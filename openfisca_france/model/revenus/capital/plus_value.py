@@ -46,7 +46,7 @@ class f1tx(Variable):
 
 
 class f3si(Variable):
-    column = IntCol
+    value_type = int
     entity = FoyerFiscal
     # start_date = date(2012, 1, 1)
     definition_period = YEAR
@@ -55,7 +55,7 @@ class f3si(Variable):
 #                                    # correspond à autre chose en 2009, vérifier 2011,2010
 
 class f3sa(Variable):
-    column = IntCol
+    value_type = int
     entity = FoyerFiscal
     end = '2009-12-31'
     definition_period = YEAR
@@ -63,7 +63,7 @@ class f3sa(Variable):
   # TODO: n'existe pas en 2013 et 2012 vérifier 2011 et 2010
 
 class f3sf(Variable):
-    column = IntCol
+    value_type = int
     entity = FoyerFiscal
     # start_date = date(2012, 1, 1)
     definition_period = YEAR
@@ -71,7 +71,7 @@ class f3sf(Variable):
   # TODO: déjà définit plus haut, vérifier si 2009, 2010, 2011 correspondent à la même chose que 12 et 13
 
 class f3sd(Variable):
-    column = IntCol
+    value_type = int
     entity = FoyerFiscal
     # start_date = date(2012, 1, 1)
     definition_period = YEAR
@@ -205,7 +205,7 @@ class f3vh(Variable):
 
 
 class f3vu(Variable):
-    column = IntCol
+    value_type = int
     entity = FoyerFiscal
     end = '2009-12-31'
     definition_period = YEAR

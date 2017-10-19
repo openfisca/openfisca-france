@@ -8,7 +8,7 @@ from openfisca_france.model.base import *  # noqa analysis:ignore
 
 
 class uc(Variable):
-    column = FloatCol
+    value_type = float
     entity = Menage
     label = u"Unités de consommation"
     definition_period = YEAR
@@ -59,7 +59,7 @@ class type_menage(Variable):
 
 
 class revenu_disponible(Variable):
-    column = FloatCol
+    value_type = float
     entity = Menage
     label = u"Revenu disponible du ménage"
     reference = "http://fr.wikipedia.org/wiki/Revenu_disponible"
@@ -85,7 +85,7 @@ class revenu_disponible(Variable):
 
 
 class niveau_de_vie(Variable):
-    column = FloatCol
+    value_type = float
     entity = Menage
     label = u"Niveau de vie du ménage"
     definition_period = YEAR
@@ -97,7 +97,7 @@ class niveau_de_vie(Variable):
 
 
 class revenu_net_individu(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Revenu net de l'individu"
     definition_period = YEAR
@@ -113,7 +113,7 @@ class revenu_net_individu(Variable):
 class revenu_net(Variable):
     entity = Menage
     label = u"Revenu net du ménage"
-    column = FloatCol
+    value_type = float
     reference = u"http://impotsurlerevenu.org/definitions/115-revenu-net-imposable.php",
     definition_period = YEAR
 
@@ -123,7 +123,7 @@ class revenu_net(Variable):
 
 
 class niveau_de_vie_net(Variable):
-    column = FloatCol
+    value_type = float
     entity = Menage
     label = u"Niveau de vie net du ménage"
     definition_period = YEAR
@@ -136,7 +136,7 @@ class niveau_de_vie_net(Variable):
 
 
 class revenu_initial_individu(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Revenu initial de l'individu"
     definition_period = YEAR
@@ -155,7 +155,7 @@ class revenu_initial_individu(Variable):
 class revenu_initial(Variable):
     entity = Menage
     label = u"Revenu initial du ménage"
-    column = FloatCol
+    value_type = float
     definition_period = YEAR
 
     def formula(menage, period):
@@ -164,7 +164,7 @@ class revenu_initial(Variable):
 
 
 class niveau_de_vie_initial(Variable):
-    column = FloatCol
+    value_type = float
     entity = Menage
     label = u"Niveau de vie initial du ménage"
     definition_period = YEAR
@@ -187,7 +187,7 @@ def _revprim(revenus_du_travail, chomage_imposable, rev_cap, cotisations_employe
 
 
 class revenus_du_travail(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Revenus du travail (salariés et non salariés)"
     reference = "http://fr.wikipedia.org/wiki/Revenu_du_travail"
@@ -203,7 +203,7 @@ class revenus_du_travail(Variable):
 
 
 class pensions(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Pensions et revenus de remplacement"
     reference = "http://fr.wikipedia.org/wiki/Rente"
@@ -226,7 +226,7 @@ class pensions(Variable):
 
 
 class cotsoc_bar(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"Cotisations sociales sur les revenus du capital imposés au barème"
     definition_period = YEAR
@@ -240,7 +240,7 @@ class cotsoc_bar(Variable):
 
 
 class cotsoc_lib(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"Cotisations sociales sur les revenus du capital soumis au prélèvement libératoire"
     definition_period = YEAR
@@ -254,7 +254,7 @@ class cotsoc_lib(Variable):
 
 
 class revenus_du_capital(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Revenus du patrimoine"
     reference = "http://fr.wikipedia.org/wiki/Revenu#Revenu_du_Capital"
@@ -280,7 +280,7 @@ class revenus_du_capital(Variable):
 
 
 class prestations_sociales(Variable):
-    column = FloatCol
+    value_type = float
     entity = Famille
     label = u"Prestations sociales"
     reference = "http://fr.wikipedia.org/wiki/Prestation_sociale"
@@ -298,7 +298,7 @@ class prestations_sociales(Variable):
 
 
 class prestations_familiales(Variable):
-    column = FloatCol
+    value_type = float
     entity = Famille
     label = u"Prestations familiales"
     reference = "http://www.social-sante.gouv.fr/informations-pratiques,89/fiches-pratiques,91/prestations-familiales,1885/les-prestations-familiales,12626.html"
@@ -318,7 +318,7 @@ class prestations_familiales(Variable):
 
 class minimum_vieillesse(Variable):
     calculate_output = calculate_output_add
-    column = FloatCol
+    value_type = float
     entity = Famille
     label = u"Minimum vieillesse (ASI + ASPA)"
     definition_period = YEAR
@@ -328,7 +328,7 @@ class minimum_vieillesse(Variable):
 
 
 class minima_sociaux(Variable):
-    column = FloatCol
+    value_type = float
     entity = Famille
     label = u"Minima sociaux"
     reference = "http://fr.wikipedia.org/wiki/Minima_sociaux"
@@ -352,7 +352,7 @@ class minima_sociaux(Variable):
 
 
 class aides_logement(Variable):
-    column = FloatCol
+    value_type = float
     entity = Famille
     label = u"Allocations logements"
     reference = "http://vosdroits.service-public.fr/particuliers/N20360.xhtml"
@@ -371,7 +371,7 @@ class aides_logement(Variable):
 
 
 class impots_directs(Variable):
-    column = FloatCol
+    value_type = float
     entity = Menage
     label = u"Impôts directs"
     reference = "http://fr.wikipedia.org/wiki/Imp%C3%B4t_direct"
@@ -388,7 +388,7 @@ class impots_directs(Variable):
 
 
 class crds(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Contributions au remboursement de la dette sociale"
     definition_period = YEAR
@@ -417,7 +417,7 @@ class crds(Variable):
 
 
 class csg(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Contribution sociale généralisée"
     definition_period = YEAR
@@ -443,7 +443,7 @@ class csg(Variable):
 
 
 class cotisations_non_contributives(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Cotisations sociales non contributives"
     definition_period = YEAR
@@ -458,7 +458,7 @@ class cotisations_non_contributives(Variable):
 
 
 class prelsoc_cap(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Prélèvements sociaux sur les revenus du capital"
     reference = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&paf_dm=popup&paf_gm=content&typePage=cpr02&sfid=501&espId=1&impot=CS"
@@ -477,7 +477,7 @@ class prelsoc_cap(Variable):
 
 
 class check_csk(Variable):
-    column = FloatCol
+    value_type = float
     entity = Menage
     label = u"check_csk"
     definition_period = YEAR
@@ -494,7 +494,7 @@ class check_csk(Variable):
 
 
 class check_csg(Variable):
-    column = FloatCol
+    value_type = float
     entity = Menage
     label = u"check_csg"
     definition_period = YEAR
@@ -510,7 +510,7 @@ class check_csg(Variable):
 
 
 class check_crds(Variable):
-    column = FloatCol
+    value_type = float
     entity = Menage
     label = u"check_crds"
     definition_period = YEAR

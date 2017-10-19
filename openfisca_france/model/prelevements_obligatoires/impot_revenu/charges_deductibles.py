@@ -285,7 +285,7 @@ class f6fl(Variable):
 
 
 class rfr_cd(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"Charges déductibles entrant dans le revenus fiscal de référence"
     reference = "http://impotsurlerevenu.org/definitions/215-charge-deductible.php"
@@ -301,7 +301,7 @@ class rfr_cd(Variable):
 
 
 class cd1(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"Charges déductibles non plafonnées"
     reference = "http://impotsurlerevenu.org/definitions/215-charge-deductible.php"
@@ -390,7 +390,7 @@ class cd1(Variable):
 
 
 class cd2(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"Charges déductibles plafonnées"
     reference = "http://impotsurlerevenu.org/definitions/215-charge-deductible.php"
@@ -427,7 +427,7 @@ class cd2(Variable):
 
 
 class rbg_int(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"Revenu brut global intermédiaire"
     definition_period = YEAR
@@ -440,7 +440,7 @@ class rbg_int(Variable):
 
 
 class charges_deduc(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"Charges déductibles"
     reference = "http://impotsurlerevenu.org/definitions/215-charge-deductible.php"
@@ -454,7 +454,7 @@ class charges_deduc(Variable):
 
 
 class pensions_alimentaires_deduites(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"Pensions alimentaires"
     reference = "http://frederic.anne.free.fr/Cours/ITV.htm"
@@ -483,7 +483,7 @@ class pensions_alimentaires_deduites(Variable):
 
 
 class cd_acc75a(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"Frais d’accueil sous votre toit d’une personne de plus de 75 ans"
     definition_period = YEAR
@@ -497,7 +497,7 @@ class cd_acc75a(Variable):
 
 
 class pertes_capital_societes_nouvelles(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"Pertes en capital consécutives à la souscription au capital de sociétés nouvelles ou de sociétés en difficulté"
     definition_period = YEAR
@@ -531,7 +531,7 @@ class pertes_capital_societes_nouvelles(Variable):
 
 
 class cd_deddiv(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"Déductions diverses"
     definition_period = YEAR
@@ -543,7 +543,7 @@ class cd_deddiv(Variable):
 
 
 class cd_doment(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"Investissements DOM-TOM dans le cadre d’une entreprise"
     end = '2005-12-31'
@@ -560,7 +560,7 @@ class cd_doment(Variable):
 
 
 class cd_eparet(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"Charge déductible au titre de l'épargne retraite (PERP, PRÉFON, COREM et CGOS)"
     definition_period = YEAR
@@ -593,7 +593,7 @@ class cd_eparet(Variable):
 
 
 class cd_sofipe(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"Souscriptions au capital des SOFIPÊCHE"
     end = '2006-12-31'
@@ -614,7 +614,7 @@ class cd_sofipe(Variable):
 
 
 class souscriptions_cinema_audiovisuel(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"Souscriptions en faveur du cinéma ou de l’audiovisuel"
     end = '2005-12-31'
@@ -634,7 +634,7 @@ class souscriptions_cinema_audiovisuel(Variable):
 
 
 class epargne_codeveloppement(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"Versements sur un compte épargne codéveloppement"
     end = '2008-12-31'
@@ -654,7 +654,7 @@ class epargne_codeveloppement(Variable):
 
 
 class grosses_reparations(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"Dépenses de grosses réparations des nus-propriétaires"
     definition_period = YEAR

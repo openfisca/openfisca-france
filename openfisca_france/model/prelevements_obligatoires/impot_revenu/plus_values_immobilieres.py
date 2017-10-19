@@ -71,7 +71,7 @@ from openfisca_france.model.base import *  # noqa analysis:ignore
 
 
 class ir_pv_immo(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"Impôt sur le revenu afférent à la plus-value immobilière"
     reference = "http://www.impots.gouv.fr/portal/dgi/public/popup?espId=1&typePage=cpr02&docOid=documentstandard_2157"

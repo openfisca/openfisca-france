@@ -9,7 +9,7 @@ from openfisca_france.model.base import *  # noqa analysis:ignore
 from openfisca_france.france_taxbenefitsystem import COUNTRY_DIR
 
 class taux_versement_transport(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u""
     definition_period = MONTH
@@ -36,7 +36,7 @@ class taux_versement_transport(Variable):
 
 
 class versement_transport(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Versement transport"
     definition_period = MONTH

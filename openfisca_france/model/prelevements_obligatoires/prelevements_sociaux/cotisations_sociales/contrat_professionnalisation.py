@@ -10,7 +10,7 @@ from openfisca_france.model.base import *  # noqa analysis:ignore
 
 
 class professionnalisation(Variable):
-    column = BoolCol
+    value_type = bool
     entity = Individu
     label = u"L'individu est en contrat de professionnalisation"
     reference = "http://www.apce.com/pid879/contrat-de-professionnalisation.html?espace=1&tp=1"
@@ -31,7 +31,7 @@ class professionnalisation(Variable):
 
 
 class remuneration_professionnalisation(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Rémunération de l'apprenti"
     reference = "http://www.apce.com/pid927/contrat-d-apprentissage.html?espace=1&tp=1&pagination=2"
@@ -96,7 +96,7 @@ class remuneration_professionnalisation(Variable):
 
 
 class exoneration_cotisations_employeur_professionnalisation(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Exonération de cotisations patronales pour l'emploi d'un apprenti"
     reference = "http://www.apce.com/pid927/contrat-d-apprentissage.html?espace=1&tp=1&pagination=2"

@@ -27,7 +27,7 @@ class pensions_alimentaires_percues_decl(Variable):
 
 
 class pensions_alimentaires_versees_individu(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Pensions alimentaires versées pour un individu"
     definition_period = MONTH
@@ -35,7 +35,7 @@ class pensions_alimentaires_versees_individu(Variable):
 
 
 class gains_exceptionnels(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Gains exceptionnels"
     definition_period = MONTH
@@ -43,7 +43,7 @@ class gains_exceptionnels(Variable):
 
 
 class allocation_aide_retour_emploi(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Allocation d'aide au retour à l'emploi"
     definition_period = MONTH
@@ -51,7 +51,7 @@ class allocation_aide_retour_emploi(Variable):
 
 
 class allocation_securisation_professionnelle(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Allocation de sécurisation professionnelle"
     definition_period = MONTH
@@ -59,7 +59,7 @@ class allocation_securisation_professionnelle(Variable):
 
 
 class prime_forfaitaire_mensuelle_reprise_activite(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Prime forfaitaire mensuelle pour la reprise d'activité"
     definition_period = MONTH
@@ -67,7 +67,7 @@ class prime_forfaitaire_mensuelle_reprise_activite(Variable):
 
 
 class indemnites_volontariat(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Indemnités de volontariat"
     definition_period = MONTH
@@ -75,7 +75,7 @@ class indemnites_volontariat(Variable):
 
 
 class dedommagement_victime_amiante(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Dédommagement versé aux victimes de l'amiante"
     definition_period = MONTH
@@ -83,7 +83,7 @@ class dedommagement_victime_amiante(Variable):
 
 
 class prestation_compensatoire(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Prestation compensatoire"
     definition_period = MONTH
@@ -91,7 +91,7 @@ class prestation_compensatoire(Variable):
 
 
 class pensions_invalidite(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Pensions d'invalidité"
     # Cette case est apparue dans la déclaration 2014
@@ -107,7 +107,7 @@ class pensions_invalidite(Variable):
 
 
 class bourse_enseignement_sup(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Bourse de l'enseignement supérieur"
     definition_period = MONTH
@@ -134,7 +134,7 @@ class f8th(Variable):
 
 class f8td_2002_2005(Variable):
     cerfa_field = u"8TD"
-    column = IntCol
+    value_type = int
     entity = FoyerFiscal
     label = u"Contribution exceptionnelle sur les hauts revenus"
     # start_date = date(2002, 1, 1)
@@ -144,7 +144,7 @@ class f8td_2002_2005(Variable):
 
 class f8td(Variable):
     cerfa_field = u"8TD"
-    column = BoolCol
+    value_type = bool
     entity = FoyerFiscal
     label = u"Revenus non imposables dépassent la moitié du RFR"
     # start_date = date(2011, 1, 1)

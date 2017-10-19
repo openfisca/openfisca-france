@@ -92,7 +92,7 @@ class f4bf(Variable):
 
 
 class f4bl(Variable):
-    column = IntCol
+    value_type = int
     entity = FoyerFiscal
     end = '2009-12-31'
     definition_period = YEAR
@@ -101,7 +101,7 @@ class f4bl(Variable):
 
 # Variables utilisées par mes aides
 class revenus_locatifs(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Revenus locatifs"
     definition_period = MONTH
@@ -109,7 +109,7 @@ class revenus_locatifs(Variable):
 
 
 class valeur_locative_immo_non_loue(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     base_function = requested_period_last_value
     label = u"Valeur locative des biens immobiliers possédés et non loués"
@@ -118,7 +118,7 @@ class valeur_locative_immo_non_loue(Variable):
 
 
 class valeur_locative_terrains_non_loue(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     base_function = requested_period_last_value
     label = u"Valeur locative des terrains possédés et non loués"

@@ -28,7 +28,7 @@ from openfisca_france.model.prelevements_obligatoires.prelevements_sociaux.cotis
 
 
 class conge_individuel_formation_cdd(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Contribution au financement des congé individuel de formation (CIF) des salariées en CDD"
     definition_period = MONTH
@@ -44,7 +44,7 @@ class conge_individuel_formation_cdd(Variable):
 
 
 class redevable_taxe_apprentissage(Variable):
-    column = BoolCol
+    value_type = bool
     entity = Individu
     label = u"Entreprise redevable de la taxe d'apprentissage"
     definition_period = MONTH
@@ -58,7 +58,7 @@ class redevable_taxe_apprentissage(Variable):
 
 
 class contribution_developpement_apprentissage(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Contribution additionnelle au développement de l'apprentissage"
     definition_period = MONTH
@@ -77,7 +77,7 @@ class contribution_developpement_apprentissage(Variable):
 
 
 class contribution_supplementaire_apprentissage(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Contribution supplémentaire à l'apprentissage"
     reference = u"https://www.service-public.fr/professionnels-entreprises/vosdroits/F22574"
@@ -116,7 +116,7 @@ class contribution_supplementaire_apprentissage(Variable):
 
 class cotisations_employeur_main_d_oeuvre(Variable):
     base_function = requested_period_added_value
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Cotisation sociales employeur main d'oeuvre"
     definition_period = MONTH
@@ -154,7 +154,7 @@ class cotisations_employeur_main_d_oeuvre(Variable):
 
 
 class fnal(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Cotisation fonds national action logement (FNAL)"
     definition_period = MONTH
@@ -166,7 +166,7 @@ class fnal(Variable):
 
 
 class fnal_tranche_a(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Cotisation fonds national action logement (FNAL tout employeur)"
     definition_period = MONTH
@@ -184,7 +184,7 @@ class fnal_tranche_a(Variable):
 
 
 class fnal_tranche_a_plus_20(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Fonds national action logement (FNAL, employeur avec plus de 20 salariés)"
     definition_period = MONTH
@@ -202,7 +202,7 @@ class fnal_tranche_a_plus_20(Variable):
 
 
 class financement_organisations_syndicales(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Contribution patronale au financement des organisations syndicales"
     definition_period = MONTH
@@ -220,7 +220,7 @@ class financement_organisations_syndicales(Variable):
 
 
 class formation_professionnelle(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Formation professionnelle"
     reference = u"https://www.service-public.fr/professionnels-entreprises/vosdroits/F22570"
@@ -252,7 +252,7 @@ class formation_professionnelle(Variable):
 
 
 class participation_effort_construction(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Participation à l'effort de construction"
     definition_period = MONTH
@@ -279,7 +279,7 @@ class participation_effort_construction(Variable):
 
 
 class taxe_apprentissage(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Taxe d'apprentissage (employeur, entreprise redevable de la taxe d'apprentissage uniquement)"
     reference = u"https://www.service-public.fr/professionnels-entreprises/vosdroits/F22574"
@@ -317,7 +317,7 @@ class taxe_apprentissage(Variable):
 
 
 class taxe_salaires(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Taxe sur les salaires"
     definition_period = MONTH

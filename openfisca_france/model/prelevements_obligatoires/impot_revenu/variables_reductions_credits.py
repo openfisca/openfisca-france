@@ -117,7 +117,7 @@ class f7df(Variable):
 
 class f7dq(Variable):
     cerfa_field = u"7DQ"
-    column = BoolCol
+    value_type = bool
     entity = FoyerFiscal
     label = u"Emploi direct pour la première fois d'un salarié à domicile durant l'année de perception des revenus déclarés"
 #    start_date = date(2009, 1, 1)
@@ -126,7 +126,7 @@ class f7dq(Variable):
 
 class f7dg(Variable):
     cerfa_field = u"7DG"
-    column = BoolCol
+    value_type = bool
     entity = FoyerFiscal
     label = u"Vous, votre conjoint ou une personne à votre charge à une carte d'invalidité d'au moins 80 % l'année de perception des revenus déclarés"
     definition_period = YEAR
@@ -134,7 +134,7 @@ class f7dg(Variable):
 
 class f7dl(Variable):
     cerfa_field = u"7DL"
-    column = IntCol
+    value_type = int
     entity = FoyerFiscal
     label = u"Nombre d'ascendants bénéficiaires de l'APA, âgés de plus de 65 ans, pour lesquels des dépenses ont été engagées l'année de perception des revenus déclarés"
     definition_period = YEAR
@@ -403,7 +403,7 @@ class f7wp(Variable):
 # Dépenses en faveur de la qualité environnementale de l'habitation principale
 class f7we(Variable):
     cerfa_field = u"7WE"
-    column = BoolCol
+    value_type = bool
     entity = FoyerFiscal
     label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: éco-prêt à taux zéro avec offre de prêt émise l'année de perception des revenus déclarés"
 #    start_date = date(2009, 1, 1)
@@ -421,7 +421,7 @@ class f7wg(Variable):
 
 class f7wa(Variable):
     cerfa_field = u"7WA"
-    column = IntCol
+    value_type = int
     entity = FoyerFiscal
     label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: travaux d'isolation thermique des murs avant le 03/04/2012"
 #    start_date = date(2012, 1, 1)
@@ -431,7 +431,7 @@ class f7wa(Variable):
 
 class f7wb(Variable):
     cerfa_field = u"7WB"
-    column = IntCol
+    value_type = int
     entity = FoyerFiscal
     label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: travaux d'isolation thermique des murs à compter du 04/04/2012"
 #    start_date = date(2012, 1, 1)
@@ -441,7 +441,7 @@ class f7wb(Variable):
 
 class f7wc(Variable):
     cerfa_field = u"7WC"
-    column = IntCol
+    value_type = int
     entity = FoyerFiscal
     label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: travaux d'isolation thermique sur plus de la moitié de la surface des murs extérieurs"
 #    start_date = date(2012, 1, 1)
@@ -450,7 +450,7 @@ class f7wc(Variable):
 
 class f7ve(Variable):
     cerfa_field = u"7VE"
-    column = IntCol
+    value_type = int
     entity = FoyerFiscal
     label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: travaux d'isolation thermique de la toiture avant le 04/04/2012"
 #    start_date = date(2012, 1, 1)
@@ -460,7 +460,7 @@ class f7ve(Variable):
 
 class f7vf(Variable):
     cerfa_field = u"7VF"
-    column = IntCol
+    value_type = int
     entity = FoyerFiscal
     label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: travaux d'isolation thermique de la toiture à compter du 04/04/2012"
 #    start_date = date(2012, 1, 1)
@@ -470,7 +470,7 @@ class f7vf(Variable):
 
 class f7vg(Variable):
     cerfa_field = u"7VG"
-    column = IntCol
+    value_type = int
     entity = FoyerFiscal
     label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: travaux d'isolation thermique de toute la toiture"
 #    start_date = date(2012, 1, 1)
@@ -479,7 +479,7 @@ class f7vg(Variable):
 
 class f7sg(Variable):
     cerfa_field = u"7SG"
-    column = IntCol
+    value_type = int
     entity = FoyerFiscal
     label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: Matériaux d'isolation thermique des murs (acquisitionn et pose)"
 #    start_date = date(2012, 1, 1)
@@ -488,7 +488,7 @@ class f7sg(Variable):
 
 class f7sj(Variable):
     cerfa_field = u"7SJ"
-    column = IntCol
+    value_type = int
     entity = FoyerFiscal
     label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: Matériaux d'isolation thermique des parois vitrées"
 #    start_date = date(2012, 1, 1)
@@ -497,7 +497,7 @@ class f7sj(Variable):
 
 class f7sk(Variable):
     cerfa_field = u"7SK"
-    column = IntCol
+    value_type = int
     entity = FoyerFiscal
     label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: Volets isolants"
 #    start_date = date(2012, 1, 1)
@@ -506,7 +506,7 @@ class f7sk(Variable):
 
 class f7sl(Variable):
     cerfa_field = u"7SL"
-    column = IntCol
+    value_type = int
     entity = FoyerFiscal
     label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: Portes d'entrées donnant sur l'extérieur"
 #    start_date = date(2012, 1, 1)
@@ -515,7 +515,7 @@ class f7sl(Variable):
 
 class f7sm(Variable):
     cerfa_field = u"7SM"
-    column = IntCol
+    value_type = int
     entity = FoyerFiscal
     label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: Équipements de production d'électricité utilisant l'énergie radiative du soleil"
 #    start_date = date(2012, 1, 1)
@@ -524,7 +524,7 @@ class f7sm(Variable):
 
 class f7sn(Variable):
     cerfa_field = u"7SN"
-    column = IntCol
+    value_type = int
     entity = FoyerFiscal
     label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: Appareils de chauffage au bois ou autres biomasses remplaçant un appareil équivalent"
 #    start_date = date(2012, 1, 1)
@@ -533,7 +533,7 @@ class f7sn(Variable):
 
 class f7so(Variable):
     cerfa_field = u"7SO"
-    column = IntCol
+    value_type = int
     entity = FoyerFiscal
     label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: Appareils de chauffage au bois ou autres biomasses ne remplaçant pas un appareil équivalent"
 #    start_date = date(2012, 1, 1)
@@ -542,7 +542,7 @@ class f7so(Variable):
 
 class f7sp(Variable):
     cerfa_field = u"7SP"
-    column = IntCol
+    value_type = int
     entity = FoyerFiscal
     label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: Pompes à chaleur autres que air/air et autres que géothermiques dont la finalité essentielle est la production de chaleur"
 #    start_date = date(2012, 1, 1)
@@ -551,7 +551,7 @@ class f7sp(Variable):
 
 class f7sq(Variable):
     cerfa_field = u"7SQ"
-    column = IntCol
+    value_type = int
     entity = FoyerFiscal
     label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: Pompes à chaleur géothermiques dont la finalité essentielle est la production de chaleur"
 #    start_date = date(2012, 1, 1)
@@ -560,7 +560,7 @@ class f7sq(Variable):
 
 class f7sr(Variable):
     cerfa_field = u"7SR"
-    column = IntCol
+    value_type = int
     entity = FoyerFiscal
     label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: Pompes à chaleur (autres que air/air) dédiées à la production d'eau chaude sanitaire (chauffe-eaux thermodynamiques)"
 #    start_date = date(2012, 1, 1)
@@ -569,7 +569,7 @@ class f7sr(Variable):
 
 class f7ss(Variable):
     cerfa_field = u"7SS"
-    column = IntCol
+    value_type = int
     entity = FoyerFiscal
     label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: Équipements de fourniture d'eau chaude sanitaire fonctionnant à l'énergie solaire et dotés de capteurs solaires"
 #    start_date = date(2012, 1, 1)
@@ -578,7 +578,7 @@ class f7ss(Variable):
 
 class f7st(Variable):
     cerfa_field = u"7ST"
-    column = IntCol
+    value_type = int
     entity = FoyerFiscal
     label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: Autres équipements de production d'énergie utilisant une source d'énergie renouvelable (éolien, hydraulique)"
 #    start_date = date(2012, 1, 1)
@@ -587,7 +587,7 @@ class f7st(Variable):
 
 class f7su(Variable):
     cerfa_field = u"7SU"
-    column = IntCol
+    value_type = int
     entity = FoyerFiscal
     label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: Équipements de récupération et de traitement des eaux pluviales"
 #    start_date = date(2012, 1, 1)
@@ -596,7 +596,7 @@ class f7su(Variable):
 
 class f7sv(Variable):
     cerfa_field = u"7SV"
-    column = IntCol
+    value_type = int
     entity = FoyerFiscal
     label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: Diagnostic de performance énergétique"
 #    start_date = date(2012, 1, 1)
@@ -605,7 +605,7 @@ class f7sv(Variable):
 
 class f7sw(Variable):
     cerfa_field = u"7SW"
-    column = IntCol
+    value_type = int
     entity = FoyerFiscal
     label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: Équipements de raccordement à un réseau de chaleur"
 #    start_date = date(2012, 1, 1)
@@ -620,7 +620,7 @@ class f7sw(Variable):
 #
 class f7wq(Variable):
     cerfa_field = u"7WQ"
-    column = BoolCol
+    value_type = bool
     entity = FoyerFiscal
     label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: dépenses d'isolation thermique des parois vitrées du 01/01/2012 au 03/04/2012"
 #    start_date = date(2010, 1, 1)
@@ -630,7 +630,7 @@ class f7wq(Variable):
 
 class f7ws(Variable):
     cerfa_field = u"7WS"
-    column = BoolCol
+    value_type = bool
     entity = FoyerFiscal
     label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: dépenses d'isolations des parois vitrées à compter du 04/04/2012"
 #    start_date = date(2012, 1, 1)
@@ -640,7 +640,7 @@ class f7ws(Variable):
 
 class f7wt(Variable):
     cerfa_field = u"7WT"
-    column = BoolCol
+    value_type = bool
     entity = FoyerFiscal
     label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: dépenses d'isolation thermique des parois vitrées réalisées sur au moins la moitié des fenêtres du logement "
 #    start_date = date(2012, 1, 1)
@@ -650,7 +650,7 @@ class f7wt(Variable):
 
 class f7wu(Variable):
     cerfa_field = u"7WU"
-    column = BoolCol
+    value_type = bool
     entity = FoyerFiscal
     label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: achat de volets avant 2012"
 #    start_date = date(2012, 1, 1)
@@ -660,7 +660,7 @@ class f7wu(Variable):
 
 class f7wv(Variable):
     cerfa_field = u"7WV"
-    column = BoolCol
+    value_type = bool
     entity = FoyerFiscal
     label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: achat de volets en 2012"
 #    start_date = date(2012, 1, 1)
@@ -670,7 +670,7 @@ class f7wv(Variable):
 
 class f7ww(Variable):
     cerfa_field = u"7WW"
-    column = BoolCol
+    value_type = bool
     entity = FoyerFiscal
     label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: achat de portes avant 2012"
 #    start_date = date(2012, 1, 1)
@@ -680,7 +680,7 @@ class f7ww(Variable):
 
 class f7wx(Variable):
     cerfa_field = u"7WX"
-    column = BoolCol
+    value_type = bool
     entity = FoyerFiscal
     label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: achat de portes en 2012"
 #    start_date = date(2012, 1, 1)
@@ -690,7 +690,7 @@ class f7wx(Variable):
 
 class f7wh(Variable):
     cerfa_field = u"7WH"
-    column = BoolCol
+    value_type = bool
     entity = FoyerFiscal
     label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale (logement achevé depuis plus de 2 ans): bouquet de travaux réalisé pendant l'année de perception des revenus"
 #    start_date = date(2013, 1, 1)
@@ -699,7 +699,7 @@ class f7wh(Variable):
 
 class f7wk(Variable):
     cerfa_field = u"7WK"
-    column = BoolCol
+    value_type = bool
     entity = FoyerFiscal
     label = u"Votre habitation principale est une maison individuelle"
 #    start_date = date(2009, 1, 1)
@@ -708,7 +708,7 @@ class f7wk(Variable):
 
 class f7wf(Variable):
     cerfa_field = u"7WF"
-    column = BoolCol
+    value_type = bool
     entity = FoyerFiscal
     label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: dépenses d'isolation thermique des parois vitrées avant le 01/01/n-1"
     end = '2013-12-31'
@@ -944,7 +944,7 @@ class f7pl(Variable):
 
 class f7pm(Variable):
     cerfa_field = u"7PM"
-    column = IntCol
+    value_type = int
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet avant 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%"
     end = '2013-12-31'
@@ -953,7 +953,7 @@ class f7pm(Variable):
 
 class f7pn(Variable):
     cerfa_field = u"7PN"
-    column = IntCol
+    value_type = int
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 50 %"
     end = '2013-12-31'
@@ -962,7 +962,7 @@ class f7pn(Variable):
 
 class f7po(Variable):
     cerfa_field = u"7PO"
-    column = IntCol
+    value_type = int
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 60 %"
     end = '2013-12-31'
@@ -971,7 +971,7 @@ class f7po(Variable):
 
 class f7pp(Variable):
     cerfa_field = u"7PP"
-    column = IntCol
+    value_type = int
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements dans votre entreprise"
     end = '2013-12-31'
@@ -980,7 +980,7 @@ class f7pp(Variable):
 
 class f7pq(Variable):
     cerfa_field = u"7PQ"
-    column = IntCol
+    value_type = int
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt calculée"
     end = '2013-12-31'
@@ -989,7 +989,7 @@ class f7pq(Variable):
 
 class f7pr(Variable):
     cerfa_field = u"7PR"
-    column = IntCol
+    value_type = int
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt dont vous demandez l'imputation en 2012"
     end = '2013-12-31'
@@ -998,7 +998,7 @@ class f7pr(Variable):
 
 class f7ps(Variable):
     cerfa_field = u"7PS"
-    column = IntCol
+    value_type = int
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 50 %"
     end = '2013-12-31'
@@ -1007,7 +1007,7 @@ class f7ps(Variable):
 
 class f7pt(Variable):
     cerfa_field = u"7PT"
-    column = IntCol
+    value_type = int
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 60 %"
     end = '2013-12-31'
@@ -1016,7 +1016,7 @@ class f7pt(Variable):
 
 class f7pu(Variable):
     cerfa_field = u"7PU"
-    column = IntCol
+    value_type = int
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements dans votre entreprise"
     end = '2013-12-31'
@@ -1025,7 +1025,7 @@ class f7pu(Variable):
 
 class f7pv(Variable):
     cerfa_field = u"7PV"
-    column = IntCol
+    value_type = int
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt calculée"
     end = '2013-12-31'
@@ -1034,7 +1034,7 @@ class f7pv(Variable):
 
 class f7pw(Variable):
     cerfa_field = u"7PW"
-    column = IntCol
+    value_type = int
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt dont vous demandez l'imputation en 2012"
     end = '2013-12-31'
@@ -1043,7 +1043,7 @@ class f7pw(Variable):
 
 class f7px(Variable):
     cerfa_field = u"7PX"
-    column = IntCol
+    value_type = int
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt  à hauteur de 52,63 %"
     end = '2013-12-31'
@@ -1052,7 +1052,7 @@ class f7px(Variable):
 
 class f7py(Variable):
     cerfa_field = u"7PY"
-    column = IntCol
+    value_type = int
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 62,5 %"
 #    start_date = date(2012, 1, 1)
@@ -1061,7 +1061,7 @@ class f7py(Variable):
 
 class f7rg(Variable):
     cerfa_field = u"7RG"
-    column = IntCol
+    value_type = int
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements dans votre entreprise"
 #    start_date = date(2012, 1, 1)
@@ -1070,7 +1070,7 @@ class f7rg(Variable):
 
 class f7rh(Variable):
     cerfa_field = u"7RH"
-    column = IntCol
+    value_type = int
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt calculée"
 #    start_date = date(2012, 1, 1)
@@ -1079,7 +1079,7 @@ class f7rh(Variable):
 
 class f7ri(Variable):
     cerfa_field = u"7RI"
-    column = IntCol
+    value_type = int
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt dont vous demandez l'imputation en 2012"
 #    start_date = date(2012, 1, 1)
@@ -1088,7 +1088,7 @@ class f7ri(Variable):
 
 class f7rj(Variable):
     cerfa_field = u"7RJ"
-    column = IntCol
+    value_type = int
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet avant 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %"
 #    start_date = date(2012, 1, 1)
@@ -1097,7 +1097,7 @@ class f7rj(Variable):
 
 class f7rk(Variable):
     cerfa_field = u"7RK"
-    column = IntCol
+    value_type = int
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 52,63 %"
 #    start_date = date(2012, 1, 1)
@@ -1106,7 +1106,7 @@ class f7rk(Variable):
 
 class f7rl(Variable):
     cerfa_field = u"7RL"
-    column = IntCol
+    value_type = int
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 62,5 %"
 #    start_date = date(2012, 1, 1)
@@ -1115,7 +1115,7 @@ class f7rl(Variable):
 
 class f7rm(Variable):
     cerfa_field = u"7RM"
-    column = IntCol
+    value_type = int
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements dans votre entreprise"
 #    start_date = date(2012, 1, 1)
@@ -1124,7 +1124,7 @@ class f7rm(Variable):
 
 class f7rn(Variable):
     cerfa_field = u"7RN"
-    column = IntCol
+    value_type = int
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt calculée"
 #    start_date = date(2012, 1, 1)
@@ -1133,7 +1133,7 @@ class f7rn(Variable):
 
 class f7ro(Variable):
     cerfa_field = u"7RO"
-    column = IntCol
+    value_type = int
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt dont vous demandez l'imputation en 2012"
 #    start_date = date(2012, 1, 1)
@@ -1142,7 +1142,7 @@ class f7ro(Variable):
 
 class f7rp(Variable):
     cerfa_field = u"7RP"
-    column = IntCol
+    value_type = int
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 52,63 %"
 #    start_date = date(2012, 1, 1)
@@ -1151,7 +1151,7 @@ class f7rp(Variable):
 
 class f7rq(Variable):
     cerfa_field = u"7RQ"
-    column = IntCol
+    value_type = int
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 62,5 %"
 #    start_date = date(2012, 1, 1)
@@ -1160,7 +1160,7 @@ class f7rq(Variable):
 
 class f7rr(Variable):
     cerfa_field = u"7RR"
-    column = IntCol
+    value_type = int
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements dans votre entreprise"
 #    start_date = date(2012, 1, 1)
@@ -1169,7 +1169,7 @@ class f7rr(Variable):
 
 class f7rs(Variable):
     cerfa_field = u"7RS"
-    column = IntCol
+    value_type = int
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt calculée"
 #    start_date = date(2012, 1, 1)
@@ -1178,7 +1178,7 @@ class f7rs(Variable):
 
 class f7rt(Variable):
     cerfa_field = u"7RT"
-    column = IntCol
+    value_type = int
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt dont vous demandez l'imputation en 2012"
 #    start_date = date(2012, 1, 1)
@@ -1187,7 +1187,7 @@ class f7rt(Variable):
 
 class f7ru(Variable):
     cerfa_field = u"7RU"
-    column = IntCol
+    value_type = int
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 52,63 %"
 #    start_date = date(2012, 1, 1)
@@ -1196,7 +1196,7 @@ class f7ru(Variable):
 
 class f7rv(Variable):
     cerfa_field = u"7RV"
-    column = IntCol
+    value_type = int
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 62,5 %"
 #    start_date = date(2012, 1, 1)
@@ -1205,7 +1205,7 @@ class f7rv(Variable):
 
 class f7rw(Variable):
     cerfa_field = u"7RW"
-    column = IntCol
+    value_type = int
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements dans votre entreprise"
 #    start_date = date(2012, 1, 1)
@@ -1214,7 +1214,7 @@ class f7rw(Variable):
 
 class f7rx(Variable):
     cerfa_field = u"7RX"
-    column = IntCol
+    value_type = int
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt calculée"
 #    start_date = date(2012, 1, 1)
@@ -1223,7 +1223,7 @@ class f7rx(Variable):
 
 class f7ry(Variable):
     cerfa_field = u"7RY"
-    column = IntCol
+    value_type = int
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt dont vous demandez l'imputation en 2012"
 #    start_date = date(2012, 1, 1)
@@ -1232,7 +1232,7 @@ class f7ry(Variable):
 
 class f7nu(Variable):
     cerfa_field = u"7NU"
-    column = IntCol
+    value_type = int
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 52,63 %"
 #    start_date = date(2012, 1, 1)
@@ -1241,7 +1241,7 @@ class f7nu(Variable):
 
 class f7nv(Variable):
     cerfa_field = u"7NV"
-    column = IntCol
+    value_type = int
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 62,5 %"
 #    start_date = date(2012, 1, 1)
@@ -1250,7 +1250,7 @@ class f7nv(Variable):
 
 class f7nw(Variable):
     cerfa_field = u"7NW"
-    column = IntCol
+    value_type = int
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, investissements dans votre entreprise"
 #    start_date = date(2012, 1, 1)
@@ -1259,7 +1259,7 @@ class f7nw(Variable):
 
 class f7nx(Variable):
     cerfa_field = u"7NX"
-    column = IntCol
+    value_type = int
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt calculée"
 #    start_date = date(2012, 1, 1)
@@ -1268,7 +1268,7 @@ class f7nx(Variable):
 
 class f7ny(Variable):
     cerfa_field = u"7NY"
-    column = IntCol
+    value_type = int
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt dont vous demandez l'imputation en 2012"
 #    start_date = date(2012, 1, 1)
@@ -1628,7 +1628,7 @@ class fhtd(Variable):
 # Aide aux créateurs et repreneurs d'entreprises
 class f7fy(Variable):
     cerfa_field = u"7FY"
-    column = IntCol
+    value_type = int
     entity = FoyerFiscal
     label = u"Aide aux créateurs et repreneurs d'entreprises, nombre de créateurs aidés: conventions signées avant l'année n-1 et ayant pris fin en année n-1"
     end = '2011-12-31'
@@ -1637,7 +1637,7 @@ class f7fy(Variable):
 
 class f7gy(Variable):
     cerfa_field = u"7GY"
-    column = IntCol
+    value_type = int
     entity = FoyerFiscal
     label = u"Aide aux créateurs et repreneurs d'entreprises, nombre de créateurs aidés dont handicapés: conventions signées avant l'année n-1 et ayant pris fin en année n-1"
 #    start_date = date(2006, 1, 1)
@@ -1647,7 +1647,7 @@ class f7gy(Variable):
 
 class f7hy(Variable):
     cerfa_field = u"7HY"
-    column = IntCol
+    value_type = int
     entity = FoyerFiscal
     label = u"Aide aux créateurs et repreneurs d'entreprises, nombre de créateurs aidés: conventions signées en n-1 et n'ayant pas pris fin en n-1"
 #    start_date = date(2009, 1, 1)
@@ -1657,7 +1657,7 @@ class f7hy(Variable):
 
 class f7ky(Variable):
     cerfa_field = u"7KY"
-    column = IntCol
+    value_type = int
     entity = FoyerFiscal
     label = u"Aide aux créateurs et repreneurs d'entreprises, nombre de créateurs aidés dont handicapés: conventions signées en n-1 et ayant pris fin en n-1"
 #    start_date = date(2009, 1, 1)
@@ -1667,7 +1667,7 @@ class f7ky(Variable):
 
 class f7iy(Variable):
     cerfa_field = u"7IY"
-    column = IntCol
+    value_type = int
     entity = FoyerFiscal
     label = u"Report du solde de réduction d'impôt non encore imputé sur les investissements réalisés"
 #    start_date = date(2013, 1, 1)
@@ -1676,7 +1676,7 @@ class f7iy(Variable):
 
 class f7ly(Variable):
     cerfa_field = u"7LY"
-    column = IntCol
+    value_type = int
     entity = FoyerFiscal
     label = u"Aide aux créateurs et repreneurs d'entreprises, nombre de créateurs aidés: conventions ayant pas pris fin l'année de perception des revenus déclarés"
 #    start_date = date(2010, 1, 1)
@@ -1686,7 +1686,7 @@ class f7ly(Variable):
 
 class f7my(Variable):
     cerfa_field = u"7MY"
-    column = IntCol
+    value_type = int
     entity = FoyerFiscal
     label = u"Aide aux créateurs et repreneurs d'entreprises, nombre de créateurs aidés dont handicapés: conventions ayant pas pris fin l'année de perception des revenus déclarés"
 #    start_date = date(2010, 1, 1)
@@ -1771,7 +1771,7 @@ class f7sy(Variable):
 
 class f7gw(Variable):
     cerfa_field = u"7GW"
-    column = IntCol
+    value_type = int
     entity = FoyerFiscal
     label = u"Investissements achevés en n-2 en Polynésie française, Nouvelle Calédonie, dans les îles Walllis et Futuna : report de 1/5 de la réduction d'impôt"
 #    start_date = date(2013, 1, 1)
@@ -1780,7 +1780,7 @@ class f7gw(Variable):
 
 class f7gx(Variable):
     cerfa_field = u"7GX"
-    column = IntCol
+    value_type = int
     entity = FoyerFiscal
     label = u"Investissements achevés en n-2 avec promesse d'achat en n-3 en Polynésie française, Nouvelle Calédonie, dans les îles Walllis et Futuna : report de 1/5 de la réduction d'impôt"
 #    start_date = date(2013, 1, 1)
@@ -1819,7 +1819,7 @@ class f7xc(Variable):
 
 class f7xd(Variable):
     cerfa_field = u"7XD"
-    column = BoolCol
+    value_type = bool
     entity = FoyerFiscal
     label = u"Investissements locatifs dans le secteur de touristique: logement neuf, demande d'étalement du solde de la réduction d'impôt sur 6 ans"
 #    start_date = date(2009, 1, 1)
@@ -1829,7 +1829,7 @@ class f7xd(Variable):
 
 class f7xe(Variable):
     cerfa_field = u"7XE"
-    column = BoolCol
+    value_type = bool
     entity = FoyerFiscal
     label = u"Investissements locatifs dans le secteur de touristique: réhabilitation d'un logement, demande d'étalement du solde de la réduction d'impôt sur 6 ans"
 #    start_date = date(2009, 1, 1)
@@ -2646,7 +2646,7 @@ class f7ff(Variable):
 
 class f7fg(Variable):
     cerfa_field = u"7FG"
-    column = IntCol
+    value_type = int
     entity = FoyerFiscal
     label = u"Frais de comptabilité et d'adhésion à un CGA ou à une AA: nombre d'exploitations"
     definition_period = YEAR
@@ -3927,7 +3927,7 @@ class f7uq(Variable):
 # Déclaration de déménagement correspondant à un crédit d'impôt aide à la mobilité
 class f1ar(Variable):
     cerfa_field = u"1AR"
-    column = BoolCol
+    value_type = bool
     entity = FoyerFiscal
     label = u"Crédit d'impôt aide à la mobilité : le déclarant déménage à plus de 200 km pour son emploi"
     end = '2008-12-31'
@@ -3937,7 +3937,7 @@ class f1ar(Variable):
 #TODO: QUIFOY
 class f1br(Variable):
     cerfa_field = u"1BR"
-    column = BoolCol
+    value_type = bool
     entity = FoyerFiscal
     label = u"Crédit d'impôt aide à la mobilité : le conjoint déménage à plus de 200 km pour son emploi"
     end = '2008-12-31'
@@ -3946,7 +3946,7 @@ class f1br(Variable):
 
 class f1cr(Variable):
     cerfa_field = u"1CR"
-    column = BoolCol
+    value_type = bool
     entity = FoyerFiscal
     label = u"Crédit d'impôt aide à la mobilité : la 1ère personne à charge déménage à plus de 200 km pour son emploi"
     end = '2008-12-31'
@@ -3955,7 +3955,7 @@ class f1cr(Variable):
 
 class f1dr(Variable):
     cerfa_field = u"1DR"
-    column = BoolCol
+    value_type = bool
     entity = FoyerFiscal
     label = u"Crédit d'impôt aide à la mobilité : la 2è personne à charge déménage à plus de 200 km pour son emploi"
     end = '2008-12-31'
@@ -3964,7 +3964,7 @@ class f1dr(Variable):
 
 class f1er(Variable):
     cerfa_field = u"1ER"
-    column = BoolCol
+    value_type = bool
     entity = FoyerFiscal
     label = u"Crédit d'impôt aide à la mobilité : la 3è personne à charge déménage à plus de 200 km pour son emploi"
     end = '2006-12-31'
@@ -4319,7 +4319,7 @@ class elig_creimp_exc_2008(Variable):
 
 
 class elig_creimp_jeunes(Variable):
-    column = BoolCol
+    value_type = bool
     entity = Individu
     label = u"Éligible au crédit d'impôt jeunes"
 #    start_date = date(2005, 1, 1)

@@ -13,7 +13,7 @@ TAUX_DE_PRIME = .10
 
 
 class salaire_imposable_pour_inversion(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u'Salaire imposable utilisé pour remonter au salaire brut'
     definition_period = MONTH

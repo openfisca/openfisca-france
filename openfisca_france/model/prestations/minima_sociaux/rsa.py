@@ -10,7 +10,7 @@ from openfisca_france.model.prestations.prestations_familiales.base_ressource im
 
 
 class rsa_base_ressources(Variable):
-    column = FloatCol
+    value_type = float
     label = u"Base ressources du Rmi ou du Rsa"
     entity = Famille
     definition_period = MONTH
@@ -72,7 +72,7 @@ class rsa_base_ressources(Variable):
 
 
 class rsa_has_ressources_substitution(Variable):
-    column = BoolCol
+    value_type = bool
     label = u"Présence de ressources de substitution au mois M, qui désactivent la neutralisation des revenus professionnels interrompus au moins M."
     entity = Individu
     definition_period = MONTH
@@ -86,7 +86,7 @@ class rsa_has_ressources_substitution(Variable):
 
 
 class rsa_base_ressources_individu(Variable):
-    column = FloatCol
+    value_type = float
     label = u"Base ressource individuelle du RSA/RMI (hors revenus d'actvité)"
     entity = Individu
     definition_period = MONTH
@@ -146,7 +146,7 @@ class rsa_base_ressources_individu(Variable):
 
 
 class rsa_base_ressources_minima_sociaux(Variable):
-    column = FloatCol
+    value_type = float
     label = u"Minima sociaux inclus dans la base ressource RSA/RMI"
     entity = Famille
     definition_period = MONTH
@@ -174,7 +174,7 @@ class rsa_base_ressources_minima_sociaux(Variable):
 
 
 class rsa_base_ressources_prestations_familiales(Variable):
-    column = FloatCol
+    value_type = float
     entity = Famille
     label = u"Prestations familiales inclues dans la base ressource RSA/RMI"
     definition_period = MONTH
@@ -267,7 +267,7 @@ class rsa_base_ressources_prestations_familiales(Variable):
 
 
 class crds_mini(Variable):
-    column = FloatCol
+    value_type = float
     entity = Famille
     label = u"CRDS versée sur les minimas sociaux"
     definition_period = MONTH
@@ -280,7 +280,7 @@ class crds_mini(Variable):
 
 
 class div_ms(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Dividende entrant en compte dans le calcul des minimas sociaux"
     definition_period = MONTH
@@ -299,7 +299,7 @@ class div_ms(Variable):
 
 
 class enceinte_fam(Variable):
-    column = BoolCol
+    value_type = bool
     entity = Famille
     definition_period = MONTH
 
@@ -315,7 +315,7 @@ class enceinte_fam(Variable):
 
 
 class rsa_enfant_a_charge(Variable):
-    column = BoolCol
+    value_type = bool
     entity = Individu
     label = u"Enfant pris en compte dans le calcul du RSA"
     definition_period = MONTH
@@ -385,7 +385,7 @@ class rsa_enfant_a_charge(Variable):
 
 
 class rsa_nb_enfants(Variable):
-    column = IntCol
+    value_type = int
     entity = Famille
     label = u"Nombre d'enfants pris en compte pour le calcul du RSA"
     definition_period = MONTH
@@ -395,14 +395,14 @@ class rsa_nb_enfants(Variable):
 
 
 class participation_frais(Variable):
-    column = BoolCol
+    value_type = bool
     entity = Menage
     label = u"Partipation aux frais de logement pour un hebergé à titre gratuit"
     definition_period = MONTH
 
 
 class rsa_revenu_activite(Variable):
-    column = FloatCol
+    value_type = float
     label = u"Revenus d'activité du RSA"
     entity = Famille
     definition_period = MONTH
@@ -418,7 +418,7 @@ class rsa_revenu_activite(Variable):
 
 
 class rsa_indemnites_journalieres_activite(Variable):
-    column = FloatCol
+    value_type = float
     label = u"Indemnités journalières prises en compte comme revenu d'activité"
     entity = Individu
     definition_period = MONTH
@@ -456,7 +456,7 @@ class rsa_indemnites_journalieres_activite(Variable):
 
 
 class rsa_indemnites_journalieres_hors_activite(Variable):
-    column = FloatCol
+    value_type = float
     label = u"Indemnités journalières prises en compte comme revenu de remplacement"
     entity = Individu
     definition_period = MONTH
@@ -466,14 +466,14 @@ class rsa_indemnites_journalieres_hors_activite(Variable):
 
 
 class primes_salaires_net(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Indemnités, primes et avantages en argent (net)"
     definition_period = MONTH
 
 
 class salaire_net_hors_revenus_exceptionnels(Variable):
-    column = FloatCol
+    value_type = float
     label = u"Salaire net hors prime, indemnites de licenciement, prime de précarité..."
     entity = Individu
     definition_period = MONTH
@@ -486,7 +486,7 @@ class salaire_net_hors_revenus_exceptionnels(Variable):
             )
 
 class rsa_revenu_activite_individu(Variable):
-    column = FloatCol
+    value_type = float
     label = u"Revenus d'activité du Rsa - Individuel"
     entity = Individu
     definition_period = MONTH
@@ -561,7 +561,7 @@ class rsa_revenu_activite_individu(Variable):
 
 
 class rsa_fictif(Variable):
-    column = FloatCol
+    value_type = float
     entity = Famille
     label = "RSA fictif pour un mois"
     definition_period = MONTH
@@ -582,7 +582,7 @@ class rsa_fictif(Variable):
 
 
 class rsa_montant(Variable):
-    column = FloatCol
+    value_type = float
     label = u"Revenu de solidarité active, avant prise en compte de la non-calculabilité."
     entity = Famille
     definition_period = MONTH
@@ -617,7 +617,7 @@ class rsa_montant(Variable):
 
 class rsa(Variable):
     calculate_output = calculate_output_add
-    column = FloatCol
+    value_type = float
     label = u"Revenu de solidarité active"
     entity = Famille
     definition_period = MONTH
@@ -631,7 +631,7 @@ class rsa(Variable):
 
 
 class rsa_base_ressources_patrimoine_individu(Variable):
-    column = FloatCol
+    value_type = float
     label = u"Base de ressources des revenus du patrimoine du RSA"
     entity = Individu
     definition_period = MONTH
@@ -656,7 +656,7 @@ class rsa_base_ressources_patrimoine_individu(Variable):
 
 
 class rsa_condition_nationalite(Variable):
-    column = BoolCol
+    value_type = bool
     entity = Individu
     label = u"Conditions de nationnalité et de titre de séjour pour bénéficier du RSA"
     definition_period = MONTH
@@ -676,7 +676,7 @@ class rsa_condition_nationalite(Variable):
 
 
 class rsa_eligibilite(Variable):
-    column = BoolCol
+    value_type = bool
     entity = Famille
     label = u"Eligibilité au RSA et au RMI"
     definition_period = MONTH
@@ -762,7 +762,7 @@ class rsa_eligibilite_tns(Variable):
 
 
 class rsa_forfait_asf(Variable):
-    column = FloatCol
+    value_type = float
     entity = Famille
     label = u"Allocation de soutien familial forfaitisée pour le RSA"
     definition_period = MONTH
@@ -782,7 +782,7 @@ class rsa_forfait_asf(Variable):
 
 
 class rsa_forfait_logement(Variable):
-    column = FloatCol
+    value_type = float
     entity = Famille
     label = u"Forfait logement intervenant dans le calcul du Rmi ou du Rsa"
     definition_period = MONTH
@@ -832,7 +832,7 @@ class rsa_forfait_logement(Variable):
 
 
 class rsa_isolement_recent(Variable):
-    column = BoolCol
+    value_type = bool
     entity = Famille
     label = u"Situation d'isolement depuis moins de 18 mois"
     base_function = requested_period_last_or_next_value
@@ -840,7 +840,7 @@ class rsa_isolement_recent(Variable):
 
 
 class rsa_majore_eligibilite(Variable):
-    column = BoolCol
+    value_type = bool
     entity = Famille
     label = u"Eligibilité au RSA majoré pour parent isolé"
     definition_period = MONTH
@@ -898,7 +898,7 @@ class rsa_non_calculable(Variable):
 
 
 class rsa_non_calculable_tns_individu(Variable):
-    column = BoolCol
+    value_type = bool
     entity = Individu
     label = u"RSA non calculable du fait de la situation de l'individu. Dans le cas des TNS, l'utilisateur est renvoyé vers son PCG"
     definition_period = MONTH
@@ -921,7 +921,7 @@ class rsa_non_calculable_tns_individu(Variable):
 
 
 class rsa_socle(Variable):
-    column = FloatCol
+    value_type = float
     entity = Famille
     label = "RSA socle"
     definition_period = MONTH
@@ -969,7 +969,7 @@ class rsa_socle(Variable):
 
 
 class rsa_socle_majore(Variable):
-    column = FloatCol
+    value_type = float
     entity = Famille
     label = u"Montant majoré pour parent isolé du Revenu de solidarité active socle"
     definition_period = MONTH

@@ -20,7 +20,7 @@ log = logging.getLogger(__name__)
 
 
 class assiette_cotisations_sociales(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Assiette des cotisations sociales des salaries"
     definition_period = MONTH
@@ -37,7 +37,7 @@ class assiette_cotisations_sociales(Variable):
 
 
 class assiette_cotisations_sociales_prive(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Assiette des cotisations sociales des salaries du prive"
     definition_period = MONTH
@@ -71,7 +71,7 @@ class assiette_cotisations_sociales_prive(Variable):
 
 
 class indemnite_fin_contrat(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Indemnité de fin de contrat"
     reference = u"https://www.service-public.fr/particuliers/vosdroits/F40"
@@ -106,14 +106,14 @@ class indemnite_fin_contrat(Variable):
 
 
 class indemnite_fin_contrat_net(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Indemnités de fin de contrat (licenciement, rupture conventionelle, prime de précarité) nettes"
     definition_period = MONTH
 
 
 class reintegration_titre_restaurant_employeur(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Prise en charge de l'employeur des dépenses de cantine et des titres restaurants non exonérés de charges sociales"  # noqa
     definition_period = MONTH
@@ -144,7 +144,7 @@ class reintegration_titre_restaurant_employeur(Variable):
 
 
 class penibilite(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Les dépenses liées à l'utilisation du compte pénibilité par le salarié sont prises en charge par un fonds financé par l'employeur"
     definition_period = MONTH
@@ -178,7 +178,7 @@ class penibilite(Variable):
 
 
 class accident_du_travail(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Cotisations employeur accident du travail et maladie professionelle"
     definition_period = MONTH
@@ -193,7 +193,7 @@ class accident_du_travail(Variable):
 
 
 class agff_salarie(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Cotisation retraite AGFF tranche A (salarié)"
     definition_period = MONTH
@@ -211,7 +211,7 @@ class agff_salarie(Variable):
 
 
 class agff_employeur(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Cotisation retraite AGFF tranche A (employeur)"
     definition_period = MONTH
@@ -244,7 +244,7 @@ class agff_employeur(Variable):
 
 
 class agirc_gmp_assiette(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Assiette de la cotisation AGIRC pour la garantie minimale de points (GMP,  salarié)"
     definition_period = MONTH
@@ -261,7 +261,7 @@ class agirc_gmp_assiette(Variable):
 
 
 class agirc_gmp_salarie(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Cotisation AGIRC pour la garantie minimale de points (GMP,  salarié)"
     definition_period = MONTH
@@ -287,7 +287,7 @@ class agirc_gmp_salarie(Variable):
 
 
 class agirc_gmp_employeur(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Cotisation AGIRC pour la garantie minimale de points (GMP, employeur)"
     definition_period = MONTH
@@ -314,7 +314,7 @@ class agirc_gmp_employeur(Variable):
 
 
 class agirc_salarie(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Cotisation AGIRC tranche B (salarié)"
     definition_period = MONTH
@@ -332,7 +332,7 @@ class agirc_salarie(Variable):
 
 
 class agirc_employeur(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Cotisation AGIRC tranche B (employeur)"
     definition_period = MONTH
@@ -349,7 +349,7 @@ class agirc_employeur(Variable):
 
 
 class ags(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Contribution à l'association pour la gestion du régime de garantie des créances des salariés (AGS, employeur)"  # noqa analysis:ignore
     definition_period = MONTH
@@ -365,7 +365,7 @@ class ags(Variable):
 
 
 class apec_salarie(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Cotisations agence pour l'emploi des cadres (APEC,  salarié)"
     definition_period = MONTH
@@ -382,7 +382,7 @@ class apec_salarie(Variable):
 
 
 class apec_employeur(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Cotisations Agenece pour l'emploi des cadres (APEC, employeur)"
     definition_period = MONTH
@@ -399,7 +399,7 @@ class apec_employeur(Variable):
 
 
 class arrco_salarie(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Cotisation ARRCO tranche 1 (salarié)"
     definition_period = MONTH
@@ -429,7 +429,7 @@ class arrco_salarie(Variable):
 
 
 class arrco_employeur(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Cotisation ARRCO tranche 1 (employeur)"
     definition_period = MONTH
@@ -459,7 +459,7 @@ class arrco_employeur(Variable):
 
 
 class chomage_salarie(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Cotisation chômage tranche A (salarié)"
     definition_period = MONTH
@@ -476,7 +476,7 @@ class chomage_salarie(Variable):
 
 
 class chomage_employeur(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Cotisation chômage tranche A (employeur)"
     definition_period = MONTH
@@ -493,7 +493,7 @@ class chomage_employeur(Variable):
 
 
 class contribution_solidarite_autonomie(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Contribution solidarité autonomie (employeur)"
     definition_period = MONTH
@@ -510,7 +510,7 @@ class contribution_solidarite_autonomie(Variable):
 
 
 class cotisation_exceptionnelle_temporaire_salarie(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Cotisation_exceptionnelle_temporaire (salarie)"
     definition_period = MONTH
@@ -527,7 +527,7 @@ class cotisation_exceptionnelle_temporaire_salarie(Variable):
 
 
 class cotisation_exceptionnelle_temporaire_employeur(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Cotisation exceptionnelle temporaire (employeur)"
     definition_period = MONTH
@@ -544,7 +544,7 @@ class cotisation_exceptionnelle_temporaire_employeur(Variable):
 
 
 class famille(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Cotisation famille (employeur)"
     definition_period = MONTH
@@ -561,7 +561,7 @@ class famille(Variable):
 
 
 class mmid_salarie(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Cotisation maladie (salarié)"
     definition_period = MONTH
@@ -591,7 +591,7 @@ class mmid_salarie(Variable):
 
 
 class mmid_employeur(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Cotisation maladie (employeur)"
     reference = u"https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-cotisation-maladie---maternit.html"
@@ -610,7 +610,7 @@ class mmid_employeur(Variable):
 
 # TODO: this formula is used only to check fiche_de_paie from memento
 class mmida_employeur(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Cotisation maladie (employeur)"
     definition_period = MONTH
@@ -629,7 +629,7 @@ class mmida_employeur(Variable):
 
 class mhsup(Variable):
     calculate_output = calculate_output_add
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Heures supplémentaires comptées négativement"
     definition_period = MONTH
@@ -641,7 +641,7 @@ class mhsup(Variable):
 
 
 class plafond_securite_sociale(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Plafond de la securite sociale"
     definition_period = MONTH
@@ -687,7 +687,7 @@ class plafond_securite_sociale(Variable):
 
 
 class prevoyance_obligatoire_cadre(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Cotisation de prévoyance pour les cadres et assimilés"
     definition_period = MONTH
@@ -709,7 +709,7 @@ class prevoyance_obligatoire_cadre(Variable):
 
 
 class complementaire_sante_employeur(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Couverture complémentaire santé collective d'entreprise - part employeur"
     definition_period = MONTH
@@ -724,7 +724,7 @@ class complementaire_sante_employeur(Variable):
 
 
 class complementaire_sante_salarie(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Couverture complémentaire santé collective d'entreprise - part salarié"
     definition_period = MONTH
@@ -769,7 +769,7 @@ class taille_entreprise(Variable):
 
 
 class taux_accident_travail(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Approximation du taux accident à partir de l'exposition au risque donnée"
     definition_period = MONTH
@@ -783,7 +783,7 @@ class taux_accident_travail(Variable):
 
 
 class vieillesse_deplafonnee_salarie(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Cotisation vieillesse déplafonnée (salarié)"
     definition_period = MONTH
@@ -800,7 +800,7 @@ class vieillesse_deplafonnee_salarie(Variable):
 
 
 class vieillesse_plafonnee_salarie(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Cotisation vieillesse plafonnée (salarié)"
     definition_period = MONTH
@@ -816,7 +816,7 @@ class vieillesse_plafonnee_salarie(Variable):
 
 
 class vieillesse_deplafonnee_employeur(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Cotisation vieillesse déplafonnée"
     definition_period = MONTH
@@ -832,7 +832,7 @@ class vieillesse_deplafonnee_employeur(Variable):
 
 
 class vieillesse_plafonnee_employeur(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Cotisation vieillesse plafonnée (employeur)"
     definition_period = MONTH

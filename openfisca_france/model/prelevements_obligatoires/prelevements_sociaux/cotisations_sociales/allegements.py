@@ -20,7 +20,7 @@ log = logging.getLogger(__name__)
 
 class assiette_allegement(Variable):
     base_function = requested_period_added_value
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Assiette des allègements de cotisations sociales employeur"
     definition_period = MONTH
@@ -36,7 +36,7 @@ class assiette_allegement(Variable):
 
 
 class coefficient_proratisation(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Coefficient de proratisation du salaire notamment pour le calcul du SMIC"
     definition_period = MONTH
@@ -127,7 +127,7 @@ class coefficient_proratisation(Variable):
 
 
 class credit_impot_competitivite_emploi(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Crédit d'impôt pour la compétitivité et l'emploi"
     definition_period = MONTH
@@ -148,7 +148,7 @@ class credit_impot_competitivite_emploi(Variable):
 
 
 class aide_premier_salarie(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Aide à l'embauche d'un premier salarié"
     definition_period = MONTH
@@ -210,7 +210,7 @@ class aide_premier_salarie(Variable):
 
 
 class aide_embauche_pme(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Aide à l'embauche d'un salarié pour les PME"
     reference = u"http://travail-emploi.gouv.fr/grands-dossiers/embauchepme"
@@ -285,7 +285,7 @@ class aide_embauche_pme(Variable):
 
 
 class smic_proratise(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"SMIC proratisé (mensuel)"
     definition_period = MONTH
@@ -299,7 +299,7 @@ class smic_proratise(Variable):
 
 
 class allegement_fillon(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Allègement de charges employeur sur les bas et moyens salaires (dit allègement Fillon)"
     reference = u"https://www.service-public.fr/professionnels-entreprises/vosdroits/F24542"
@@ -372,7 +372,7 @@ def compute_allegement_fillon(simulation, period):
 
 
 class allegement_cotisation_allocations_familiales(Variable):
-    column = FloatCol
+    value_type = float
     label = u"Allègement de la cotisation d'allocations familiales sur les bas et moyens salaires"
     entity = Individu
     reference = u"https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-cotisation-dallocations-famil/la-reduction-du-taux-de-la-cotis.html"

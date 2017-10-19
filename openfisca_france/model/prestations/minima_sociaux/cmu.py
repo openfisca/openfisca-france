@@ -9,7 +9,7 @@ from numpy import absolute as abs_, apply_along_axis, array, int32, logical_or a
 from openfisca_france.model.base import *  # noqa analysis:ignore
 
 class cmu_acs_eligibilite(Variable):
-    column = BoolCol
+    value_type = bool
     entity = Famille
     label = u"Pré-éligibilité à la CMU, avant prise en compte des ressources"
     definition_period = MONTH
@@ -40,7 +40,7 @@ class cmu_acs_eligibilite(Variable):
 
 
 class acs_montant_i(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Montant de l'ACS attribué pour une personne en cas d'éligibilité de la famille"
     definition_period = MONTH
@@ -64,7 +64,7 @@ class acs_montant_i(Variable):
 
 
 class acs_montant(Variable):
-    column = FloatCol
+    value_type = float
     entity = Famille
     label = u"Montant de l'ACS en cas d'éligibilité"
     definition_period = MONTH
@@ -75,7 +75,7 @@ class acs_montant(Variable):
 
 
 class cmu_forfait_logement_base(Variable):
-    column = FloatCol
+    value_type = float
     entity = Famille
     label = u"Forfait logement applicable en cas de propriété ou d'occupation à titre gratuit"
     definition_period = MONTH
@@ -89,7 +89,7 @@ class cmu_forfait_logement_base(Variable):
 
 
 class cmu_forfait_logement_al(Variable):
-    column = FloatCol
+    value_type = float
     entity = Famille
     label = u"Forfait logement applicable en cas d'aide au logement"
     definition_period = MONTH
@@ -117,7 +117,7 @@ class cmu_nbp_foyer(Variable):
 
 
 class cmu_eligible_majoration_dom(Variable):
-    column = BoolCol
+    value_type = bool
     entity = Famille
     definition_period = MONTH
 
@@ -132,7 +132,7 @@ class cmu_eligible_majoration_dom(Variable):
 
 
 class cmu_c_plafond(Variable):
-    column = FloatCol
+    value_type = float
     entity = Famille
     label = u"Plafond annuel de ressources pour l'éligibilité à la CMU-C"
     definition_period = MONTH
@@ -183,7 +183,7 @@ class cmu_c_plafond(Variable):
 
 
 class acs_plafond(Variable):
-    column = FloatCol
+    value_type = float
     entity = Famille
     label = u"Plafond annuel de ressources pour l'éligibilité à l'ACS"
     definition_period = MONTH
@@ -196,7 +196,7 @@ class acs_plafond(Variable):
 
 
 class cmu_base_ressources_individu(Variable):
-    column = FloatCol
+    value_type = float
     label = u"Base de ressources de l'individu prise en compte pour l'éligibilité à la CMU-C / ACS"
     entity = Individu
     definition_period = MONTH
@@ -276,7 +276,7 @@ class cmu_base_ressources_individu(Variable):
 
 
 class cmu_base_ressources(Variable):
-    column = FloatCol
+    value_type = float
     label = u"Base de ressources prise en compte pour l'éligibilité à la CMU-C / ACS"
     entity = Famille
     definition_period = MONTH
@@ -334,7 +334,7 @@ class cmu_nb_pac(Variable):
 
 
 class cmu_c(Variable):
-    column = BoolCol
+    value_type = bool
     label = u"Éligibilité à la CMU-C"
     entity = Famille
     definition_period = MONTH
@@ -364,7 +364,7 @@ class cmu_c(Variable):
 
 
 class acs(Variable):
-    column = FloatCol
+    value_type = float
     label = u"Montant (annuel) de l'ACS"
     entity = Famille
     definition_period = MONTH

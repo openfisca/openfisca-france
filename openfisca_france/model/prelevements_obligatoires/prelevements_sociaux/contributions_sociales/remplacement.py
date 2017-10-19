@@ -33,7 +33,7 @@ class taux_csg_remplacement(Variable):
 
 class csg_deductible_chomage(Variable):
     calculate_output = calculate_output_add
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"CSG déductible sur les allocations chômage"
     reference = u"http://vosdroits.service-public.fr/particuliers/F2329.xhtml"
@@ -65,7 +65,7 @@ class csg_deductible_chomage(Variable):
 
 class csg_imposable_chomage(Variable):
     calculate_output = calculate_output_add
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"CSG imposable sur les allocations chômage"
     reference = u"http://vosdroits.service-public.fr/particuliers/F2329.xhtml"
@@ -91,7 +91,7 @@ class csg_imposable_chomage(Variable):
 
 class crds_chomage(Variable):
     calculate_output = calculate_output_add
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"CRDS sur les allocations chômage"
     reference = u"http://www.insee.fr/fr/methodes/default.asp?page=definitions/contrib-remb-dette-sociale.htm"
@@ -149,7 +149,7 @@ class chomage_imposable(Variable):
 
 class chomage_net(Variable):
     base_function = requested_period_added_value
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Allocations chômage nettes"
     set_input = set_input_divide_by_period
@@ -170,7 +170,7 @@ class chomage_net(Variable):
 
 class csg_deductible_retraite(Variable):
     calculate_output = calculate_output_add
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"CSG déductible sur les pensions de retraite"
     reference = u"https://www.lassuranceretraite.fr/cs/Satellite/PUBPrincipale/Retraites/Paiement-Votre-Retraite/Prelevements-Sociaux?packedargs=null"  # noqa
@@ -193,7 +193,7 @@ class csg_deductible_retraite(Variable):
 
 class csg_imposable_retraite(Variable):
     calculate_output = calculate_output_add
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"CSG imposable sur les pensions de retraite"
     reference = u"https://www.lassuranceretraite.fr/cs/Satellite/PUBPrincipale/Retraites/Paiement-Votre-Retraite/Prelevements-Sociaux?packedargs=null"  # noqa
@@ -213,7 +213,7 @@ class csg_imposable_retraite(Variable):
 
 class crds_retraite(Variable):
     calculate_output = calculate_output_add
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"CRDS sur les pensions de retraite"
     reference = u"http://www.pensions.bercy.gouv.fr/vous-%C3%AAtes-retrait%C3%A9-ou-pensionn%C3%A9/le-calcul-de-ma-pension/les-pr%C3%A9l%C3%A8vements-effectu%C3%A9s-sur-ma-pension"  # noqa
@@ -233,7 +233,7 @@ class crds_retraite(Variable):
 
 
 class casa(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Contribution additionnelle de solidarité et d'autonomie"
     reference = u"http://www.service-public.fr/actualites/002691.html"
@@ -288,7 +288,7 @@ class retraite_imposable(Variable):
 
 class retraite_nette(Variable):
     base_function = requested_period_added_value
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Pensions de retraite nettes"
     set_input = set_input_divide_by_period
@@ -305,7 +305,7 @@ class retraite_nette(Variable):
 
 
 class crds_pfam(Variable):
-    column = FloatCol
+    value_type = float
     entity = Famille
     label = u"CRDS sur les prestations familiales)"
     reference = "http://www.cleiss.fr/docs/regimes/regime_francea1.html"

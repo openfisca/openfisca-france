@@ -13,7 +13,7 @@ SCOLARITE_LYCEE = 2
 
 
 class bourse_college_echelon(Variable):
-    column = IntCol
+    value_type = int
     label = u"Échelon de la bourse de collège attribuée"
     entity = Famille
     definition_period = MONTH
@@ -89,7 +89,7 @@ class bourse_college_echelon(Variable):
 
 
 class bourse_college(Variable):
-    column = FloatCol
+    value_type = float
     label = u"Montant annuel de la bourse de collège"
     entity = Famille
     definition_period = MONTH
@@ -123,7 +123,7 @@ class bourse_college(Variable):
 
 
 class bourse_lycee_points_de_charge(Variable):
-    column = FloatCol
+    value_type = float
     label = u"Nombre de points de charge pour la bourse de lycée"
     entity = Famille
     definition_period = MONTH
@@ -146,7 +146,7 @@ class bourse_lycee_points_de_charge(Variable):
 
 
 class bourse_lycee_nombre_parts(Variable):
-    column = FloatCol
+    value_type = float
     label = u"Nombre de parts pour le calcul du montant de la bourse de lycée"
     entity = Famille
     definition_period = MONTH
@@ -175,7 +175,7 @@ class bourse_lycee_nombre_parts(Variable):
 
 
 class bourse_lycee_echelon(Variable):
-    column = IntCol
+    value_type = int
     label = u"Échelon de la bourse de collège attribuée"
     entity = Famille
     definition_period = MONTH
@@ -255,7 +255,7 @@ class bourse_lycee_echelon(Variable):
 
 
 class bourse_lycee(Variable):
-    column = FloatCol
+    value_type = float
     label = u"Montant annuel de la bourse de lycée"
     entity = Famille
     definition_period = MONTH

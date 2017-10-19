@@ -10,7 +10,7 @@ class chomeur_longue_duree(Variable):
         QUIFOY['pac2']: u"1DI",
         QUIFOY['pac3']: u"1EI",
         }
-    column = BoolCol
+    value_type = bool
     entity = Individu
     label = u"Demandeur d'emploi inscrit depuis plus d'un an"
     definition_period = YEAR
@@ -19,7 +19,7 @@ class chomeur_longue_duree(Variable):
 
 
 class chomage_brut(Variable):
-    column = FloatCol()
+    value_type = float
     entity = Individu
     label = u"Chômage brut"
     definition_period = MONTH
@@ -28,7 +28,7 @@ class chomage_brut(Variable):
 
 
 class indemnites_chomage_partiel(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Indemnités de chômage partiel"
     definition_period = MONTH

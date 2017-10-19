@@ -226,7 +226,7 @@ class f2gr(Variable):
 
 # Utilisés par mes aides. TODO: à consolider
 class epargne_non_remuneree(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     base_function = requested_period_last_value
     label = u"Épargne non rémunérée"
@@ -235,7 +235,7 @@ class epargne_non_remuneree(Variable):
 
 
 class interets_epargne_sur_livrets(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     base_function = requested_period_last_value
     label = u"Intérêts versés pour l'épargne sur livret"
@@ -244,7 +244,7 @@ class interets_epargne_sur_livrets(Variable):
 
 
 class revenus_capital(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Revenus du capital"
     definition_period = MONTH

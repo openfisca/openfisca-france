@@ -7,7 +7,7 @@ from openfisca_france.model.base import *  # noqa analysis:ignore
 
 # TODO : Aujourd'hui, cette BR correspond uniquement au demandeur, pas au conjoint.
 class aah_base_ressources(Variable):
-    column = FloatCol
+    value_type = float
     label = u"Base ressources de l'allocation adulte handicapé"
     entity = Famille
     definition_period = MONTH
@@ -46,7 +46,7 @@ class aah_base_ressources(Variable):
 
 
 class aah_base_ressources_eval_trimestrielle(Variable):
-    column = FloatCol
+    value_type = float
     label = u"Base de ressources de l'ASS pour un individu, évaluation trimestrielle"
     entity = Individu
     definition_period = MONTH
@@ -110,7 +110,7 @@ class aah_base_ressources_eval_trimestrielle(Variable):
 
 
 class aah_base_ressources_eval_annuelle(Variable):
-    column = FloatCol
+    value_type = float
     label = u"Base de ressources de l'ASS pour un individu, évaluation annuelle"
     entity = Individu
     definition_period = MONTH
@@ -121,7 +121,7 @@ class aah_base_ressources_eval_annuelle(Variable):
 
 
 class aah_eligible(Variable):
-    column = BoolCol
+    value_type = bool
     label = u"Eligibilité à l'Allocation adulte handicapé"
     entity = Individu
     definition_period = MONTH
@@ -192,7 +192,7 @@ class aah_non_calculable(Variable):
 
 class aah_base(Variable):
     calculate_output = calculate_output_add
-    column = FloatCol
+    value_type = float
     label = u"Montant de l'Allocation adulte handicapé (hors complément) pour un individu, mensualisée"
     entity = Individu
     definition_period = MONTH
@@ -214,7 +214,7 @@ class aah_base(Variable):
 
 class aah(Variable):
     calculate_output = calculate_output_add
-    column = FloatCol
+    value_type = float
     label = u"Allocation adulte handicapé (Individu) mensualisée"
     entity = Individu
     definition_period = MONTH
@@ -230,7 +230,7 @@ class aah(Variable):
 
 class caah(Variable):
     calculate_output = calculate_output_add
-    column = FloatCol
+    value_type = float
     label = u"Complément d'allocation adulte handicapé (mensualisé)"
     entity = Individu
     definition_period = MONTH
@@ -329,13 +329,13 @@ class caah(Variable):
 
 class mva(Variable):
     entity = Individu
-    column = FloatCol
+    value_type = float
     label = u"Majoration pour la vie autonome"
     definition_period = MONTH
 
 
 class pch(Variable):
     entity = Individu
-    column = FloatCol
+    value_type = float
     label = u"Prestation de compensation du handicap"
     definition_period = MONTH

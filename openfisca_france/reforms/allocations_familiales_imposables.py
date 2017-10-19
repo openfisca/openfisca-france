@@ -68,7 +68,7 @@ class allocations_familiales_imposables(Reform):
                 )
 
     class allocations_familiales_imposables(Variable):
-        column = FloatCol
+        value_type = float
         entity = FoyerFiscal
         label = u"Allocations familiales imposables"
         definition_period = YEAR

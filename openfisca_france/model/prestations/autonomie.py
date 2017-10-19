@@ -6,7 +6,7 @@ from openfisca_france.model.base import *  # noqa analysis:ignore
 
 
 class base_ressources_apa(Variable):
-    column = FloatCol
+    value_type = float
     label = u"Ressources considérées dans le calcul de l'APA"
     entity = Individu
     definition_period = MONTH
@@ -24,7 +24,7 @@ class base_ressources_apa(Variable):
 
 
 class apa_domicile_participation(Variable):
-    column = FloatCol
+    value_type = float
     label = u"Participation du bénéficiaire de l'APA à domicile en euros"
     entity = Individu
     definition_period = MONTH
@@ -59,7 +59,7 @@ class apa_domicile_participation(Variable):
             taux_max_participation,
             ]
         return select(condition_ressources_domicile, taux_participation) * dependance_plan_aide_domicile_accepte
-        
+
 
     def formula_2016_03_01(individu, period, parameters):
         # Les départements doivent appliquer la nouvelle formule
@@ -122,7 +122,7 @@ class apa_domicile_participation(Variable):
 
 
 class apa_eligibilite(Variable):
-    column = BoolCol
+    value_type = bool
     entity = Individu
     label = u"Allocation personalisée d'autonomie - Éligibilité"
     definition_period = MONTH
@@ -135,12 +135,12 @@ class apa_eligibilite(Variable):
 
         gir = individu('gir', period)
         eligibilite_gir = (0 < gir) & (gir <= 4)
-        
+
         return (age >= apa_age_min) * eligibilite_gir
 
 
 class apa_domicile_taux_participation(Variable):
-    column = FloatCol
+    value_type = float
     label = u"Taux de participation du bénéficiaire à l'APA à domicile"
     entity = Individu
     definition_period = MONTH
@@ -153,7 +153,7 @@ class apa_domicile_taux_participation(Variable):
 
 
 class apa_domicile(Variable):
-    column = FloatCol
+    value_type = float
     label = u"Allocation personalisée d'autonomie"
     entity = Individu
     definition_period = MONTH
@@ -172,7 +172,7 @@ class apa_domicile(Variable):
 
 
 class apa_etablissement(Variable):
-    column = FloatCol
+    value_type = float
     label = u"Allocation personalisée d'autonomie en institution"
     entity = Individu
     definition_period = MONTH
@@ -181,7 +181,7 @@ class apa_etablissement(Variable):
         period = period.start.offset('first-of', 'month').period('month')
         parameters = parameters(period.start).autonomie
         seuil_non_versement = parameters.seuil_de_versement_de_l_apa.seuil_versement.seuil_de_versement_de_l_apa
-        
+
         en_couple = individu.famille('en_couple', period)
         apa_eligibilite = individu('apa_eligibilite', period)
         gir = individu('gir', period)
@@ -225,7 +225,7 @@ class apa_etablissement(Variable):
         eligibilite_etablissement = (
             (dependance_tarif_etablissement_gir_5_6 > 0) * (dependance_tarif_etablissement_gir_dependant > 0)
             )  # permet de sélectionner les individus vivant en établissement éligible.
-        
+
         return apa * (apa >= seuil_non_versement) * eligibilite_etablissement * apa_eligibilite
 
 
@@ -250,28 +250,28 @@ class gir(Variable):
 
 
 class dependance_plan_aide_domicile(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Coût du plan d'aide à domicile pour une personne dépendante"
     definition_period = MONTH
 
 
 class dependance_tarif_etablissement_gir_5_6(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Tarif dépendance de l'établissement pour les GIR 5 et 6"
     definition_period = MONTH
 
 
 class dependance_tarif_etablissement_gir_dependant(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Tarif dépendance de l'établissement pour le GIR de la personne dépendante"
     definition_period = MONTH
 
 
 class apa_urgence_domicile(Variable):
-    column = FloatCol
+    value_type = float
     label = u"Allocation personalisée d'autonomie d'urgence à domicile"
     entity = Individu
     definition_period = MONTH
@@ -286,7 +286,7 @@ class apa_urgence_domicile(Variable):
 
 
 class apa_urgence_institution(Variable):
-    column = FloatCol
+    value_type = float
     label = u"Allocation personalisée d'autonomie en institution"
     entity = Individu
     definition_period = MONTH
@@ -300,12 +300,12 @@ class apa_urgence_institution(Variable):
 
 
 class dependance_plan_aide_domicile_accepte(Variable):
-    column = FloatCol
+    value_type = float
     label = u"Coût du plan d'aide plafonné pris en compte pour la détermination de l'APA"
     entity = Individu
     definition_period = MONTH
     reference = [
-        # Code de l'action sociale et des familles - Article R232-10-1 
+        # Code de l'action sociale et des familles - Article R232-10-1
         'https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=4D213136F764CDAC77B33F705B4DE178.tplgfr41s_1?idArticle=LEGIARTI000032133764&cidTexte=LEGITEXT000006074069&dateTexte=20170929&categorieLien=id&oldAction=&nbResultRech='
     ]
 

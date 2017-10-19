@@ -39,7 +39,7 @@ class ppe_du_ns(Variable):
         QUIFOY['conj']: u"5OV",
         QUIFOY['pac1']: u"5PV",
         }
-    column = IntCol
+    value_type = int
     entity = Individu
     label = u"Prime pour l'emploi des non-salariés: nombre de jours travaillés dans l'année"
     end = '2006-12-31'
@@ -52,7 +52,7 @@ class ppe_tp_ns(Variable):
         QUIFOY['conj']: u"5OW",
         QUIFOY['pac1']: u"5PW",
         }
-    column = BoolCol
+    value_type = bool
     entity = Individu
     label = u"Prime pour l'emploi des non-salariés: indicateur de travail à temps plein sur l'année entière"
     end = '2006-12-31'
@@ -1174,7 +1174,7 @@ class revimpres(Variable):
 class pveximpres(Variable):
     cerfa_field = {QUIFOY['vous']: u"5HG",
         QUIFOY['conj']: u"5IG", }
-    column = IntCol
+    value_type = int
     entity = Individu
     label = u"Plus-values à long terme exonérées en cas de départ à la retraite à imposer aux prélèvements sociaux"
     # start_date = date(2006, 1, 1)
@@ -1185,7 +1185,7 @@ class pvtaimpres(Variable):
     cerfa_field = {QUIFOY['vous']: u"5HZ",
         QUIFOY['conj']: u"5IZ",
         QUIFOY['pac1']: u"5JZ", }
-    column = IntCol
+    value_type = int
     entity = Individu
     label = u"Plus-values à long terme taxables à 16% à la retraite à imposer aux prélèvements sociaux"
     end = '2009-12-31'
@@ -1451,7 +1451,7 @@ class f5mt(Variable):
 
 
 class f5sq(Variable):
-    column = IntCol
+    value_type = int
     entity = Individu
     definition_period = YEAR
 
@@ -1462,7 +1462,7 @@ class f5sq(Variable):
 
 # Input mensuel
 class tns_auto_entrepreneur_chiffre_affaires(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     set_input = set_input_divide_by_period
     label = u"Chiffre d'affaires en tant qu'auto-entrepreneur"
@@ -1470,7 +1470,7 @@ class tns_auto_entrepreneur_chiffre_affaires(Variable):
 
 # Input annuel
 class tns_micro_entreprise_chiffre_affaires(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Chiffre d'affaires en de micro-entreprise"
     definition_period = YEAR
@@ -1496,14 +1496,14 @@ class tns_micro_entreprise_type_activite(Variable):
 
 # Input sur le dernier exercice. Par convention, sur l'année dernière.
 class tns_autres_revenus(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Autres revenus non salariés"
     definition_period = YEAR
 
 
 class tns_autres_revenus_chiffre_affaires(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     set_input = set_input_divide_by_period
     label = u"Chiffre d'affaire pour les TNS non agricoles autres que les AE et ME"
@@ -1518,7 +1518,7 @@ class tns_autres_revenus_type_activite(Variable):
 
 
 class tns_avec_employe(Variable):
-    column = BoolCol
+    value_type = bool
     entity = Individu
     set_input = set_input_dispatch_by_period
     label = u"Le TNS a au moins un employé. Ne s'applique pas pour les agricoles ni auto-entrepreneurs ni micro entreprise"
@@ -1527,7 +1527,7 @@ class tns_avec_employe(Variable):
 
 # Input annuel
 class tns_benefice_exploitant_agricole(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     set_input = set_input_dispatch_by_period
     label = u"Dernier bénéfice agricole"
@@ -1538,7 +1538,7 @@ class tns_benefice_exploitant_agricole(Variable):
 
 class travailleur_non_salarie(Variable):
     label = u"L'individu a une activité professionnelle non salariée"
-    column = BoolCol
+    value_type = bool
     entity = Individu
     definition_period = MONTH
 
@@ -1571,7 +1571,7 @@ def compute_benefice_auto_entrepreneur_micro_entreprise(bareme, type_activite, c
 
 
 class tns_auto_entrepreneur_benefice(Variable):
-    column = FloatCol
+    value_type = float
     label = u"Bénéfice en tant qu'auto-entrepreneur"
     entity = Individu
     definition_period = MONTH
@@ -1587,7 +1587,7 @@ class tns_auto_entrepreneur_benefice(Variable):
 
 
 class tns_micro_entreprise_benefice(Variable):
-    column = FloatCol
+    value_type = float
     label = u"Bénéfice de la micro entreprise"
     entity = Individu
     definition_period = YEAR
@@ -1606,7 +1606,7 @@ class tns_micro_entreprise_benefice(Variable):
 # Although this rule seems unfair towards independent workers, we are now applying it for all presations and therefore
 # we are not using the following formulas for calculating prestations.
 class tns_auto_entrepreneur_revenus_net(Variable) :
-    column = FloatCol
+    value_type = float
     label = u"Revenu d'un auto-entrepreneur"
     entity = Individu
     definition_period = MONTH
@@ -1627,7 +1627,7 @@ class tns_auto_entrepreneur_revenus_net(Variable) :
 
 
 class tns_micro_entreprise_revenus_net(Variable) :
-    column = FloatCol
+    value_type = float
     label = u"Revenu d'un TNS dans une micro-entreprise"
     entity = Individu
     definition_period = MONTH

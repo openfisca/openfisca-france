@@ -32,7 +32,7 @@ def calculate_net_from(salaire_de_base, simulation, period, requested_variable_n
     return net
 
 class salaire_de_base(Variable):
-    column = FloatCol
+    value_type = float
     entity = entities.Individu
     label = u"Salaire brut ou traitement indiciaire brut"
     reference = u"http://www.trader-finance.fr/lexique-finance/definition-lettre-S/Salaire-brut.html"

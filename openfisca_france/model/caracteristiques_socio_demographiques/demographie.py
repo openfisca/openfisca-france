@@ -11,14 +11,14 @@ class date_naissance(Variable):
 
 
 class adoption(Variable):
-    column = BoolCol
+    value_type = bool
     entity = Individu
     label = u"Enfant adopté"
     definition_period = MONTH
 
 
 class garde_alternee(Variable):
-    column = BoolCol
+    value_type = bool
     entity = Individu
     label = u'Enfant en garde alternée'
     base_function = requested_period_last_or_next_value
@@ -42,7 +42,7 @@ class activite(Variable):
 
 
 class enceinte(Variable):
-    column = BoolCol
+    value_type = bool
     entity = Individu
     label = u"Est enceinte"
     definition_period = MONTH
@@ -82,7 +82,7 @@ class nbR(Variable):
 
 class caseE(Variable):
     cerfa_field = u"E"
-    column = BoolCol
+    value_type = bool
     entity = FoyerFiscal
     label = u"Situation pouvant donner droit à une demi-part supplémentaire : vous vivez seul au 1er janvier de l'année de perception des revenus et vous avez élevé un enfant pendant moins de 5 ans durant la période où vous viviez seul"
     end = '2012-12-31'
@@ -91,7 +91,7 @@ class caseE(Variable):
 
 class caseF(Variable):
     cerfa_field = u"F"
-    column = BoolCol
+    value_type = bool
     entity = FoyerFiscal
     label = u"Situation pouvant donner droit à une demi-part supplémentaire : conjoint titulaire d'une pension ou d'une carte d'invalidité (vivant ou décédé l'année de perception des revenus)"
     definition_period = YEAR
@@ -99,7 +99,7 @@ class caseF(Variable):
 
 class caseG(Variable):
     cerfa_field = u"G"
-    column = BoolCol
+    value_type = bool
     entity = FoyerFiscal
     label = u"Titulaire d'une pension de veuve de guerre"
     definition_period = YEAR
@@ -123,7 +123,7 @@ class caseH(Variable):
 
 class caseK(Variable):
     cerfa_field = u"K"
-    column = BoolCol
+    value_type = bool
     entity = FoyerFiscal
     label = u"Situation pouvant donner droit à une demi-part supplémentaire: vous avez eu un enfant décédé après l’âge de 16 ans ou par suite de faits de guerre"
     end = '2011-12-31'
@@ -132,7 +132,7 @@ class caseK(Variable):
 
 class caseL(Variable):
     cerfa_field = u"L"
-    column = BoolCol
+    value_type = bool
     entity = FoyerFiscal
     label = u"Situation pouvant donner droit à une demi-part supplémentaire: vous vivez seul au 1er janvier de l'année de perception des revenus et vous avez élevé un enfant pendant au moins 5 ans durant la période où vous viviez seul"
     definition_period = YEAR
@@ -140,7 +140,7 @@ class caseL(Variable):
 
 class caseN(Variable):
     cerfa_field = u"N"
-    column = BoolCol
+    value_type = bool
     entity = FoyerFiscal
     label = u"Vous ne viviez pas seul au 1er janvier de l'année de perception des revenus"
     definition_period = YEAR
@@ -148,7 +148,7 @@ class caseN(Variable):
 
 class caseP(Variable):
     cerfa_field = u"P"
-    column = BoolCol
+    value_type = bool
     entity = FoyerFiscal
     label = u"Titulaire d'une pension pour une invalidité d'au moins 40 % ou d'une carte d'invalidité d'au moins 80%"
     definition_period = YEAR
@@ -156,7 +156,7 @@ class caseP(Variable):
 
 class caseS(Variable):
     cerfa_field = u"S"
-    column = BoolCol
+    value_type = bool
     entity = FoyerFiscal
     label = u"Vous êtes mariés/pacsés et l'un des deux déclarants âgé de plus de 75 ans est titulaire de la carte du combattant ou d'une pension militaire d'invalidité ou de victime de guerre"
     definition_period = YEAR
@@ -164,7 +164,7 @@ class caseS(Variable):
 
 class caseT(Variable):
     cerfa_field = u"T"
-    column = BoolCol
+    value_type = bool
     entity = FoyerFiscal
     label = u"Vous êtes parent isolé au 1er janvier de l'année de perception des revenus"
     definition_period = MONTH
@@ -174,21 +174,21 @@ class caseT(Variable):
 
 class caseW(Variable):
     cerfa_field = u"W"
-    column = BoolCol
+    value_type = bool
     entity = FoyerFiscal
     label = u"Vous ou votre conjoint (même s'il est décédé), âgés de plus de 75 ans, êtes titulaire de la carte du combattant ou d'une pension militaire d'invalidité ou de victime de guerre"
     definition_period = YEAR
 
 
 class handicap(Variable):
-    column = BoolCol
+    value_type = bool
     entity = Individu
     label = u"Individu en situation de handicap"
     definition_period = MONTH
 
 
 class invalidite(Variable):
-    column = BoolCol
+    value_type = bool
     entity = Individu
     label = u"Individu titulaire d'une carte d'invalidité"
     definition_period = MONTH
@@ -209,7 +209,7 @@ class nb_parents(Variable):
 
 
 class maries(Variable):
-    column = BoolCol(default = False)
+    value_type = bool
     entity = Famille
     label = u"maries"
     definition_period = MONTH
@@ -224,7 +224,7 @@ class maries(Variable):
 
 
 class en_couple(Variable):
-    column = BoolCol
+    value_type = bool
     entity = Famille
     label = u"Indicatrice de vie en couple"
     definition_period = MONTH
@@ -238,7 +238,7 @@ class en_couple(Variable):
 
 
 class est_enfant_dans_famille(Variable):
-    column = BoolCol
+    value_type = bool
     entity = Individu
     label = u"Indique que l'individu est un enfant dans une famille"
     definition_period = ETERNITY
@@ -248,7 +248,7 @@ class est_enfant_dans_famille(Variable):
 
 
 class etudiant(Variable):
-    column = BoolCol(default = False)
+    value_type = bool
     entity = Individu
     label = u"Indicatrice individuelle étudiant"
     definition_period = MONTH
@@ -276,14 +276,14 @@ class ressortissant_eee(Variable):
 
 
 class duree_possession_titre_sejour(Variable):
-    column = IntCol
+    value_type = int
     entity = Individu
     label = u"Durée depuis laquelle l'individu possède un titre de séjour (en années)"
     definition_period = MONTH
 
 
 class enfant_place(Variable):
-    column = BoolCol
+    value_type = bool
     entity = Individu
     label = u"Enfant placé en structure spécialisée ou famille d'accueil"
     definition_period = MONTH

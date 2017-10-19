@@ -9,7 +9,7 @@ from openfisca_france.model.prestations.prestations_familiales.base_ressource im
 
 
 class api(Variable):
-    column = FloatCol
+    value_type = float
     entity = Famille
     label = u"Allocation de parent isolé"
     reference = u"http://fr.wikipedia.org/wiki/Allocation_de_parent_isol%C3%A9",
@@ -97,7 +97,7 @@ class api(Variable):
 
 
 class psa(Variable):
-    column = FloatCol
+    value_type = float
     entity = Famille
     label = u"Prime de solidarité active"
     end = '2009-04-30'
@@ -133,7 +133,7 @@ class psa(Variable):
 
 
 class rmi(Variable):
-    column = FloatCol
+    value_type = float
     entity = Famille
     label = u"Revenu Minimum d'Insertion"
     end = '2009-05-31'
@@ -154,7 +154,7 @@ class rmi(Variable):
 
 class rsa_activite(Variable):
     base_function = requested_period_added_value
-    column = FloatCol
+    value_type = float
     entity = Famille
     label = u"Revenu de solidarité active - activité"
     end = '2015-12-31'
@@ -170,7 +170,7 @@ class rsa_activite(Variable):
 
 
 class rsa_activite_individu(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Revenu de solidarité active - activité au niveau de l'individu"
     end = '2015-12-31'

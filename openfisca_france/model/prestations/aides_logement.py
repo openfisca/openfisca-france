@@ -22,7 +22,7 @@ zone_apl_by_depcom = None
 
 
 class al_nb_personnes_a_charge(Variable):
-    column = IntCol
+    value_type = int
     entity = Famille
     label = u"Nombre de personne à charge au sens des allocations logement"
     definition_period = MONTH
@@ -85,7 +85,7 @@ class al_nb_personnes_a_charge(Variable):
 
 
 class al_couple(Variable):
-    column = BoolCol
+    value_type = bool
     entity = Famille
     label = u'Situation de couple pour le calcul des AL'
     definition_period = MONTH
@@ -99,7 +99,7 @@ class al_couple(Variable):
 
 
 class aide_logement_base_ressources_eval_forfaitaire(Variable):
-    column = FloatCol
+    value_type = float
     entity = Famille
     label = u"Base ressources en évaluation forfaitaire des aides au logement (R351-7 du CCH)"
     definition_period = MONTH
@@ -132,7 +132,7 @@ class aide_logement_base_ressources_eval_forfaitaire(Variable):
 
 
 class aide_logement_assiette_abattement_chomage(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Assiette sur lequel un abattement chômage peut être appliqués pour les AL. Ce sont les revenus d'activité professionnelle, moins les abbattements pour frais professionnels."
     definition_period = YEAR
@@ -156,7 +156,7 @@ class aide_logement_assiette_abattement_chomage(Variable):
 
 
 class aide_logement_abattement_chomage_indemnise(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Montant de l'abattement pour personnes au chômage indemnisé (R351-13 du CCH)"
     definition_period = MONTH
@@ -174,7 +174,7 @@ class aide_logement_abattement_chomage_indemnise(Variable):
 
 
 class aide_logement_abattement_depart_retraite(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Montant de l'abattement sur les salaires en cas de départ en retraite"
     definition_period = MONTH
@@ -193,7 +193,7 @@ class aide_logement_abattement_depart_retraite(Variable):
 
 
 class aide_logement_neutralisation_rsa(Variable):
-    column = FloatCol
+    value_type = float
     entity = Famille
     label = u"Abattement sur les revenus n-2 pour les bénéficiaires du RSA"
     definition_period = MONTH
@@ -216,7 +216,7 @@ class aide_logement_neutralisation_rsa(Variable):
 
 
 class aide_logement_base_ressources_defaut(Variable):
-    column = FloatCol
+    value_type = float
     entity = Famille
     label = u"Base ressource par défaut des allocations logement"
     definition_period = MONTH
@@ -253,7 +253,7 @@ class aide_logement_base_ressources_defaut(Variable):
 
 
 class aide_logement_base_ressources(Variable):
-    column = FloatCol
+    value_type = float
     entity = Famille
     label = u"Base ressources des allocations logement"
     definition_period = MONTH
@@ -311,7 +311,7 @@ class aide_logement_base_ressources(Variable):
 
 
 class aide_logement_loyer_plafond(Variable):
-    column = FloatCol
+    value_type = float
     entity = Famille
     label = u"Loyer plafond dans le calcul des aides au logement (L2)"
     definition_period = MONTH
@@ -348,7 +348,7 @@ class aide_logement_loyer_plafond(Variable):
 
 
 class aide_logement_loyer_seuil_degressivite(Variable):
-    column = FloatCol
+    value_type = float
     entity = Famille
     label = u"Seuil de degressivité dans le calcul des aides au logement"
     definition_period = MONTH
@@ -372,7 +372,7 @@ class aide_logement_loyer_seuil_degressivite(Variable):
 
 
 class aide_logement_loyer_seuil_suppression(Variable):
-    column = FloatCol
+    value_type = float
     entity = Famille
     label = u"Seuil de suppression dans le calcul des aides au logement"
     definition_period = MONTH
@@ -396,7 +396,7 @@ class aide_logement_loyer_seuil_suppression(Variable):
 
 
 class aide_logement_loyer_reel(Variable):
-    column = FloatCol
+    value_type = float
     entity = Famille
     label = u"Loyer réel dans le calcul des aides au logement"
     definition_period = MONTH
@@ -409,7 +409,7 @@ class aide_logement_loyer_reel(Variable):
 
 
 class aide_logement_loyer_retenu(Variable):
-    column = FloatCol
+    value_type = float
     entity = Famille
     label = u"Loyer retenu (hors charge) dans le calcul des aides au logement"
     definition_period = MONTH
@@ -424,7 +424,7 @@ class aide_logement_loyer_retenu(Variable):
 
 
 class aide_logement_charges(Variable):
-    column = FloatCol
+    value_type = float
     entity = Famille
     label = u"Charges retenues dans le calcul des aides au logement"
     definition_period = MONTH
@@ -441,7 +441,7 @@ class aide_logement_charges(Variable):
 
 
 class aide_logement_R0(Variable):
-    column = FloatCol
+    value_type = float
     entity = Famille
     label = u"Revenu de référence, basé sur la situation familiale, pris en compte dans le calcul des AL."
     definition_period = MONTH
@@ -500,7 +500,7 @@ class aide_logement_R0(Variable):
 
 
 class aide_logement_taux_famille(Variable):
-    column = FloatCol
+    value_type = float
     entity = Famille
     label = u"Taux représentant la situation familiale, décroissant avec le nombre de personnes à charge"
     definition_period = MONTH
@@ -536,7 +536,7 @@ class aide_logement_taux_famille(Variable):
 
 
 class aide_logement_taux_loyer(Variable):
-    column = FloatCol
+    value_type = float
     entity = Famille
     label = u"Taux obscur basé sur une comparaison du loyer retenu à un loyer de référence."
     definition_period = MONTH
@@ -568,7 +568,7 @@ class aide_logement_taux_loyer(Variable):
 
 
 class aide_logement_participation_personnelle(Variable):
-    column = FloatCol
+    value_type = float
     entity = Famille
     label = u"Participation personelle de la famille au loyer"
     definition_period = MONTH
@@ -594,7 +594,7 @@ class aide_logement_participation_personnelle(Variable):
 
 
 class aide_logement_montant_brut_avant_degressivite(Variable):
-    column = FloatCol
+    value_type = float
     label = u"Montant des aides aux logements en secteur locatif avant degressivité et brut de CRDS"
     entity = Famille
     definition_period = MONTH
@@ -620,7 +620,7 @@ class aide_logement_montant_brut_avant_degressivite(Variable):
 
 
 class aide_logement_montant_brut(Variable):
-    column = FloatCol
+    value_type = float
     entity = Famille
     label = u"Montant des aides au logement après degressivité, avant CRDS"
     definition_period = MONTH
@@ -654,7 +654,7 @@ class aide_logement_montant_brut(Variable):
 
 
 class aide_logement_montant(Variable):
-    column = FloatCol
+    value_type = float
     entity = Famille
     label = u"Montant des aides au logement net de CRDS"
     definition_period = MONTH
@@ -669,7 +669,7 @@ class aide_logement_montant(Variable):
 
 class alf(Variable):
     calculate_output = calculate_output_add
-    column = FloatCol
+    value_type = float
     entity = Famille
     label = u"Allocation logement familiale"
     reference = u"http://vosdroits.service-public.fr/particuliers/F13132.xhtml"
@@ -687,7 +687,7 @@ class alf(Variable):
 
 
 class als_non_etudiant(Variable):
-    column = FloatCol
+    value_type = float
     entity = Famille
     label = u"Allocation logement sociale (non étudiante)"
     definition_period = MONTH
@@ -708,7 +708,7 @@ class als_non_etudiant(Variable):
 
 class als_etudiant(Variable):
     calculate_output = calculate_output_add
-    column = FloatCol
+    value_type = float
     entity = Famille
     label = u"Allocation logement sociale (étudiante)"
     reference = u"https://www.caf.fr/actualites/2012/etudiants-tout-savoir-sur-les-aides-au-logement"
@@ -730,7 +730,7 @@ class als_etudiant(Variable):
 
 class als(Variable):
     calculate_output = calculate_output_add
-    column = FloatCol
+    value_type = float
     entity = Famille
     label = u"Allocation logement sociale"
     reference = u"http://vosdroits.service-public.fr/particuliers/F1280.xhtml"
@@ -747,7 +747,7 @@ class als(Variable):
 
 class apl(Variable):
     calculate_output = calculate_output_add
-    column = FloatCol
+    value_type = float
     entity = Famille
     label = u" Aide personnalisée au logement"
     # (réservée aux logements conventionné, surtout des HLM, et financé par le fonds national de l'habitation)"
@@ -782,7 +782,7 @@ class aide_logement_non_calculable(Variable):
 
 
 class aide_logement(Variable):
-    column = FloatCol
+    value_type = float
     entity = Famille
     label = u"Aide au logement (tout type)"
     definition_period = MONTH
@@ -798,7 +798,7 @@ class aide_logement(Variable):
 
 class crds_logement(Variable):
     calculate_output = calculate_output_add
-    column = FloatCol
+    value_type = float
     entity = Famille
     label = u"CRDS des allocations logement"
     reference = u"http://vosdroits.service-public.fr/particuliers/F17585.xhtml"
@@ -866,7 +866,7 @@ def preload_zone_apl():
                 zone_apl_by_depcom[subcommune_depcom] = zone_apl_by_depcom[commune_depcom]
 
 class aides_logement_primo_accedant(Variable):
-    column = FloatCol
+    value_type = float
     entity = Famille
     label = u"Allocation logement pour les primo-accédants"
     reference = u"https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006737341&dateTexte=&categorieLien=cid"
@@ -883,7 +883,7 @@ class aides_logement_primo_accedant(Variable):
         return K * max_(0, (L + C - Lo))
 
 class aides_logement_primo_accedant_k(Variable):
-    column = FloatCol
+    value_type = float
     entity = Famille
     label = u"Allocation logement pour les primo-accédants K"
     reference = u"https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006737341&dateTexte=&categorieLien=cid"
@@ -898,7 +898,7 @@ class aides_logement_primo_accedant_k(Variable):
         return coef_k - ( R / (multi_n * N))
 
 class  aides_logement_primo_accedant_nb_part(Variable):
-    column = FloatCol
+    value_type = float
     entity = Famille
     label = u"Allocation logement pour les primo-accédants nombre de part"
     reference = u"https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006737341&dateTexte=&categorieLien=cid"
@@ -920,7 +920,7 @@ class  aides_logement_primo_accedant_nb_part(Variable):
          )
 
 class  aides_logement_primo_accedant_loyer_minimal(Variable):
-    column = FloatCol
+    value_type = float
     entity = Famille
     label = u"Allocation logement pour les primo-accédants loyer minimal"
     reference = u"https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006737341&dateTexte=&categorieLien=cid"
@@ -936,7 +936,7 @@ class  aides_logement_primo_accedant_loyer_minimal(Variable):
         return (bareme.calc(baseRessource / N) * N + majoration_loyer) / 12
 
 class aides_logement_primo_accedant_plafond_mensualite(Variable):
-    column = FloatCol
+    value_type = float
     entity = Famille
     label = u"Allocation logement pour les primo-accédants plafond mensualité"
     reference = u"https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000006737237&cidTexte=LEGITEXT000006073189&dateTexte=20170811"
@@ -963,7 +963,7 @@ class aides_logement_primo_accedant_plafond_mensualite(Variable):
          )
 
 class  aides_logement_primo_accedant_ressources(Variable):
-    column = FloatCol
+    value_type = float
     entity = Famille
     label = u"Allocation logement pour les primo-accédants ressources"
     reference = u"https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=0E9C46E37CA82EB75BD1482030D54BB5.tpdila18v_2?idArticle=LEGIARTI000021632291&cidTexte=LEGITEXT000006074096&dateTexte=20170623&categorieLien=id&oldAction="

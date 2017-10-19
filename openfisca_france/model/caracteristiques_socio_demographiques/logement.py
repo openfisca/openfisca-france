@@ -6,21 +6,21 @@ from numpy.core.defchararray import startswith
 from openfisca_france.model.base import *  # noqa analysis:ignore
 
 class coloc(Variable):
-    column = BoolCol
+    value_type = bool
     entity = Menage
     label = u"Vie en colocation"
     definition_period = MONTH
 
 
 class logement_chambre(Variable):
-    column = BoolCol
+    value_type = bool
     entity = Menage
     label = u"Le logement est considéré comme une chambre"
     definition_period = MONTH
 
 
 class loyer(Variable):
-    column = FloatCol
+    value_type = float
     entity = Menage
     set_input = set_input_divide_by_period
     label = u"Loyer ou mensualité d'emprunt pour un primo-accédant"
@@ -35,7 +35,7 @@ class depcom(Variable):
     set_input = set_input_dispatch_by_period
 
 class charges_locatives(Variable):
-    column = FloatCol
+    value_type = float
     entity = Menage
     set_input = set_input_divide_by_period
     label = u'Charges locatives'
@@ -43,14 +43,14 @@ class charges_locatives(Variable):
 
 
 class proprietaire_proche_famille(Variable):
-    column = BoolCol
+    value_type = bool
     entity = Famille
     label = u"Le propriétaire du logement a un lien de parenté avec la personne de référence ou son conjoint"
     definition_period = MONTH
 
 
 class habite_chez_parents(Variable):
-    column = BoolCol
+    value_type = bool
     entity = Individu
     label = u"L'individu habite chez ses parents"
     definition_period = MONTH
@@ -76,7 +76,7 @@ class statut_occupation_logement(Variable):
 
 
 class residence_dom(Variable):
-    column = BoolCol
+    value_type = bool
     entity = Menage
     definition_period = MONTH
 
@@ -91,7 +91,7 @@ class residence_dom(Variable):
 
 
 class residence_guadeloupe(Variable):
-    column = BoolCol
+    value_type = bool
     entity = Menage
     definition_period = MONTH
 
@@ -101,7 +101,7 @@ class residence_guadeloupe(Variable):
 
 
 class residence_martinique(Variable):
-    column = BoolCol
+    value_type = bool
     entity = Menage
     definition_period = MONTH
 
@@ -111,7 +111,7 @@ class residence_martinique(Variable):
 
 
 class residence_guyane(Variable):
-    column = BoolCol
+    value_type = bool
     entity = Menage
     definition_period = MONTH
 
@@ -121,7 +121,7 @@ class residence_guyane(Variable):
 
 
 class residence_reunion(Variable):
-    column = BoolCol
+    value_type = bool
     entity = Menage
     definition_period = MONTH
 
@@ -131,7 +131,7 @@ class residence_reunion(Variable):
 
 
 class residence_mayotte(Variable):
-    column = BoolCol
+    value_type = bool
     entity = Menage
     definition_period = MONTH
 

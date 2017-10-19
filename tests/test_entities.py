@@ -11,25 +11,25 @@ from openfisca_france.model.base import *  # noqa analysis:ignore
 
 
 class af(Variable):
-    column = FloatCol
+    value_type = float
     entity = Famille
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
 class salaire(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
 class age(Variable):
-    column = IntCol
+    value_type = int
     entity = Individu
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
 class autonomie_financiere(Variable):
-    column = BoolCol
+    value_type = bool
     entity = Individu
     definition_period = MONTH
     set_input = set_input_divide_by_period
