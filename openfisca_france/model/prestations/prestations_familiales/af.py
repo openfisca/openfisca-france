@@ -164,10 +164,13 @@ class af_allocation_forfaitaire_taux_modulation(Variable):
 
 
 class af_age_aine(Variable):
-    column = AgeCol
+    value_type = int
+    default = -9999
     entity = Famille
     label = u"Allocations familiales - Âge de l'aîné des enfants éligibles"
     definition_period = MONTH
+    is_period_size_independent = True
+
 
     def formula(famille, period, parameters):
         pfam = parameters(period).prestations.prestations_familiales
