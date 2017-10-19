@@ -33,7 +33,8 @@ class uc(Variable):
 
 
 class type_menage(Variable):
-    column = PeriodSizeIndependentIntCol
+    value_type = int
+    is_period_size_independent = True
     entity = Menage
     label = u"Type de ménage"
     definition_period = YEAR

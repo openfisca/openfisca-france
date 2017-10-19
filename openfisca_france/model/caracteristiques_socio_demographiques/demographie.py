@@ -66,7 +66,8 @@ class statut_marital(Variable):
 
 class nbN(Variable):
     cerfa_field = u"N"
-    column = PeriodSizeIndependentIntCol
+    value_type = int
+    is_period_size_independent = True
     entity = FoyerFiscal
     label = u"Nombre d'enfants mariés/pacsés et d'enfants non mariés chargés de famille"
     definition_period = YEAR
@@ -74,7 +75,8 @@ class nbN(Variable):
 
 class nbR(Variable):
     cerfa_field = u"R"
-    column = PeriodSizeIndependentIntCol
+    value_type = int
+    is_period_size_independent = True
     entity = FoyerFiscal
     label = u"Nombre de titulaires (autres que les enfants) de la carte invalidité d'au moins 80 %"
     definition_period = YEAR
@@ -109,7 +111,8 @@ class caseG(Variable):
 
 class caseH(Variable):
     cerfa_field = u"H"
-    column = PeriodSizeIndependentIntCol
+    value_type = int
+    is_period_size_independent = True
     entity = FoyerFiscal
     label = u"Année de naissance des enfants à charge en garde alternée"
     definition_period = YEAR
@@ -196,7 +199,8 @@ class invalidite(Variable):
 
 
 class nb_parents(Variable):
-    column = PeriodSizeIndependentIntCol
+    value_type = int
+    is_period_size_independent = True
     entity = Famille
     label = u"Nombre d'adultes (parents) dans la famille"
     definition_period = MONTH

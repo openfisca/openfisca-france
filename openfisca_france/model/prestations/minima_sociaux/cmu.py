@@ -104,7 +104,8 @@ class cmu_forfait_logement_al(Variable):
 
 
 class cmu_nbp_foyer(Variable):
-    column = PeriodSizeIndependentIntCol
+    value_type = int
+    is_period_size_independent = True
     entity = Famille
     label = u"Nombre de personnes dans le foyer CMU"
     definition_period = MONTH
@@ -322,7 +323,8 @@ class cmu_base_ressources(Variable):
 
 
 class cmu_nb_pac(Variable):
-    column = PeriodSizeIndependentIntCol
+    value_type = int
+    is_period_size_independent = True
     entity = Famille
     label = u"Nombre de personnes à charge au titre de la CMU"
     definition_period = MONTH

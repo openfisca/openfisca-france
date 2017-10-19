@@ -285,7 +285,8 @@ class f7gg(Variable):
 # Nombre d'enfants à charge poursuivant leurs études
 class f7ea(Variable):
     cerfa_field = u"7EA"
-    column = PeriodSizeIndependentIntCol
+    value_type = int
+    is_period_size_independent = True
     entity = FoyerFiscal
     label = u"Nombre d'enfants à charge poursuivant leurs études au collège"
     definition_period = YEAR
@@ -293,7 +294,8 @@ class f7ea(Variable):
 
 class f7eb(Variable):
     cerfa_field = u"7EB"
-    column = PeriodSizeIndependentIntCol
+    value_type = int
+    is_period_size_independent = True
     entity = FoyerFiscal
     label = u"Nombre d'enfants à charge en résidence alternée poursuivant leurs études au collège"
     definition_period = YEAR
@@ -301,7 +303,8 @@ class f7eb(Variable):
 
 class f7ec(Variable):
     cerfa_field = u"7EC"
-    column = PeriodSizeIndependentIntCol
+    value_type = int
+    is_period_size_independent = True
     entity = FoyerFiscal
     label = u"Nombre d'enfants à charge poursuivant leurs études au lycée"
     definition_period = YEAR
@@ -309,7 +312,8 @@ class f7ec(Variable):
 
 class f7ed(Variable):
     cerfa_field = u"7ED"
-    column = PeriodSizeIndependentIntCol
+    value_type = int
+    is_period_size_independent = True
     entity = FoyerFiscal
     label = u"Nombre d'enfants à charge en résidence alternée poursuivant leurs études au lycée"
     definition_period = YEAR
@@ -317,7 +321,8 @@ class f7ed(Variable):
 
 class f7ef(Variable):
     cerfa_field = u"7EF"
-    column = PeriodSizeIndependentIntCol
+    value_type = int
+    is_period_size_independent = True
     entity = FoyerFiscal
     label = u"Nombre d'enfants à charge poursuivant leurs études dans l'enseignement supérieur"
     definition_period = YEAR
@@ -325,7 +330,8 @@ class f7ef(Variable):
 
 class f7eg(Variable):
     cerfa_field = u"7EG"
-    column = PeriodSizeIndependentIntCol
+    value_type = int
+    is_period_size_independent = True
     entity = FoyerFiscal
     label = u"Nombre d'enfants à charge en résidence alternée poursuivant leurs études dans l'enseignement supérieur"
     definition_period = YEAR
@@ -343,7 +349,8 @@ class f7td(Variable):
 
 class f7vo(Variable):
     cerfa_field = u"7VO"
-    column = PeriodSizeIndependentIntCol
+    value_type = int
+    is_period_size_independent = True
     entity = FoyerFiscal
     label = u"Nombre d'années de remboursement du prêt étudiant avant l'année de perception des revenus déclarés"
 #    start_date = date(2006, 1, 1)

@@ -82,7 +82,8 @@ class f6eu(Variable):
 
 class f6ev(Variable):
     cerfa_field = u"6EV"
-    column = PeriodSizeIndependentIntCol
+    value_type = int
+    is_period_size_independent = True
     entity = FoyerFiscal
     label = u"Nombre de personnes de plus de 75 ans dans le besoin accueillies sous votre toit"
     definition_period = YEAR
