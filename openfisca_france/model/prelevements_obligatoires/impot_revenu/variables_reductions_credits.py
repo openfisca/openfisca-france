@@ -454,7 +454,8 @@ class f7we(Variable):
 
 class f7wg(Variable):
     cerfa_field = u"7WG"
-    column = BoolCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: éco-prêt à taux zéro avec offre de prêt émise l'année de perception des revenus déclarés -1"
 #    start_date = date(2012, 1, 1)
