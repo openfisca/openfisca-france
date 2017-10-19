@@ -8,14 +8,16 @@ from openfisca_france.model.base import *  # noqa analysis:ignore
 
 ## Immeubles bâtis
 class b1ab(Variable):
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Valeur de la résidence principale avant abattement"
     definition_period = YEAR
 
 
 class b1ac(Variable):
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Valeur des autres immeubles avant abattement"
     definition_period = YEAR
@@ -23,28 +25,32 @@ class b1ac(Variable):
 
 ## non bâtis
 class b1bc(Variable):
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Immeubles non bâtis : bois, fôrets et parts de groupements forestiers"
     definition_period = YEAR
 
 
 class b1be(Variable):
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Immeubles non bâtis : biens ruraux loués à long termes"
     definition_period = YEAR
 
 
 class b1bh(Variable):
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Immeubles non bâtis : parts de groupements fonciers agricoles et de groupements agricoles fonciers"
     definition_period = YEAR
 
 
 class b1bk(Variable):
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Immeubles non bâtis : autres biens"
     definition_period = YEAR
@@ -52,49 +58,56 @@ class b1bk(Variable):
 
 ## droits sociaux- valeurs mobilières-liquidités- autres meubles
 class b1cl(Variable):
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Parts et actions détenues par les salariés et mandataires sociaux"
     definition_period = YEAR
 
 
 class b1cb(Variable):
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Parts et actions de sociétés avec engagement de conservation de 6 ans minimum"
     definition_period = YEAR
 
 
 class b1cd(Variable):
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Droits sociaux de sociétés dans lesquelles vous exercez une fonction ou une activité"
     definition_period = YEAR
 
 
 class b1ce(Variable):
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Autres valeurs mobilières"
     definition_period = YEAR
 
 
 class b1cf(Variable):
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Liquidités"
     definition_period = YEAR
 
 
 class b1cg(Variable):
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Autres biens meubles"
     definition_period = YEAR
 
 
 class b1co(Variable):
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Autres biens meubles : contrats d'assurance-vie"
     definition_period = YEAR
@@ -108,7 +121,8 @@ class b1co(Variable):
 
 ## passifs et autres réductions
 class b2gh(Variable):
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Total du passif et autres déductions"
     definition_period = YEAR
@@ -116,49 +130,56 @@ class b2gh(Variable):
 
 ## réductions
 class b2mt(Variable):
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Réductions pour investissements directs dans une société"
     definition_period = YEAR
 
 
 class b2ne(Variable):
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Réductions pour investissements directs dans une société"
     definition_period = YEAR
 
 
 class b2mv(Variable):
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Réductions pour investissements par sociétés interposées, holdings"
     definition_period = YEAR
 
 
 class b2nf(Variable):
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Réductions pour investissements par sociétés interposées, holdings"
     definition_period = YEAR
 
 
 class b2mx(Variable):
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Réductions pour investissements par le biais de FIP"
     definition_period = YEAR
 
 
 class b2na(Variable):
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Réductions pour investissements par le biais de FCPI ou FCPR"
     definition_period = YEAR
 
 
 class b2nc(Variable):
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Réductions pour dons à certains organismes d'intérêt général"
     definition_period = YEAR
@@ -166,7 +187,8 @@ class b2nc(Variable):
 
 ##  montant impôt acquitté hors de France
 class b4rs(Variable):
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Montant de l'impôt acquitté hors de France"
     definition_period = YEAR
@@ -175,26 +197,30 @@ class b4rs(Variable):
 ## BOUCLIER FISCAL
 
 class rev_or(Variable):
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     definition_period = YEAR
 
 
 class rev_exo(Variable):
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     definition_period = YEAR
 
 
 class tax_fonc(Variable):
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Taxe foncière"
     definition_period = YEAR
 
 
 class restit_imp(Variable):
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     definition_period = YEAR
 

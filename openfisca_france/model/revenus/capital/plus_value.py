@@ -14,7 +14,8 @@ class f1tv(Variable):
     cerfa_field = {QUIFOY['vous']: u"1TV",
         QUIFOY['conj']: u"1UV",
         }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Gains de levée d'options sur titres en cas de cession ou de conversion au porteur dans le délai d'indisponibilité: entre 1 et 2 ans"
     definition_period = YEAR
@@ -25,7 +26,8 @@ class f1tw(Variable):
     cerfa_field = {QUIFOY['vous']: u"1TW",
         QUIFOY['conj']: u"1UW",
         }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Gains de levée d'options sur titres en cas de cession ou de conversion au porteur dans le délai d'indisponibilité: entre 2 et 3 ans"
     definition_period = YEAR
@@ -36,7 +38,8 @@ class f1tx(Variable):
     cerfa_field = {QUIFOY['vous']: u"1TX",
         QUIFOY['conj']: u"1UX",
         }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Gains de levée d'options sur titres en cas de cession ou de conversion au porteur dans le délai d'indisponibilité: entre 3 et 4 ans"
     definition_period = YEAR
@@ -80,7 +83,8 @@ class f3sd(Variable):
 
 class f3vc(Variable):
     cerfa_field = u"3VC"
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Produits et plus-values exonérés provenant de structure de capital-risque"
     # start_date = date(2006, 1, 1)
@@ -92,7 +96,8 @@ class f3vd(Variable):
     cerfa_field = {QUIFOY['vous']: u"3VD",
         QUIFOY['conj']: u"3SD",
         }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Gains de levée d'options sur titres et gains d'acquisition d'actions taxables à 18 %"
     # start_date = date(2008, 1, 1)
@@ -102,7 +107,8 @@ class f3vd(Variable):
 
 class f3ve(Variable):
     cerfa_field = u"3VE"
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Plus-values réalisées par les non-résidents pour lesquelles vous demandez le remboursement de l'excédent du prélèvement de 45 %"
     definition_period = YEAR
@@ -112,7 +118,8 @@ class f3vf(Variable):
     cerfa_field = {QUIFOY['vous']: u"3VF",
         QUIFOY['conj']: u"3SF",
         }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Gains de levée d'options sur titres et gains d'acquisition d'actions taxables à 41 %"
     definition_period = YEAR
@@ -128,7 +135,8 @@ class f3vf(Variable):
 
 class f3vl(Variable):
     cerfa_field = u"3VL"
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Distributions par des sociétés de capital-risque taxables à 19 %"
     definition_period = YEAR
@@ -139,7 +147,8 @@ class f3vi(Variable):
     cerfa_field = {QUIFOY['vous']: u"3VI",
         QUIFOY['conj']: u"3SI",
         }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Gains de levée d'options sur titres et gains d'acquisition d'actions taxables à 30 %"
     definition_period = YEAR
@@ -148,7 +157,8 @@ class f3vi(Variable):
 
 class f3vm(Variable):
     cerfa_field = u"3VM"
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Clôture du PEA avant l'expiration de la 2e année: gains taxables à 22.5 %"
     definition_period = YEAR
@@ -156,7 +166,8 @@ class f3vm(Variable):
 
 class f3vt(Variable):
     cerfa_field = u"3VT"
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Clôture du PEA  entre la 2e et la 5e année: gains taxables à 19 %"
     # start_date = date(2012, 1, 1)
@@ -167,7 +178,8 @@ class f3vj(Variable):
     cerfa_field = {QUIFOY['vous']: u"3VJ",
         QUIFOY['conj']: u"3VK",
         }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Gains imposables sur option dans la catégorie des salaires"
     definition_period = YEAR
@@ -178,7 +190,8 @@ class f3va(Variable):
     cerfa_field = {QUIFOY['vous']: u"3VA",
         QUIFOY['conj']: u"3VB",
         }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Abattement pour durée de détention des titres en cas de départ à la retraite d'un dirigeant appliqué sur des plus-values"
     # start_date = date(2006, 1, 1)
@@ -190,7 +203,8 @@ class f3va(Variable):
 
 class f3vg(Variable):
     cerfa_field = u"3VG"
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Plus-value imposable sur gains de cession de valeurs mobilières, de droits sociaux et gains assimilés"
     definition_period = YEAR
@@ -198,7 +212,8 @@ class f3vg(Variable):
 
 class f3vh(Variable):
     cerfa_field = u"3VH"
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Perte de l'année de perception des revenus"
     definition_period = YEAR
@@ -214,7 +229,8 @@ class f3vu(Variable):
 
 class f3vv(Variable):
     cerfa_field = u"3VV"
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Plus-values réalisées par les non-résidents: montant du prélèvement de 45 % déjà versé"
     # start_date = date(2013, 1, 1)
@@ -224,7 +240,8 @@ class f3vv(Variable):
 
 class f3vv_end_2010(Variable):
     cerfa_field = u"3VV"
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Pertes ouvrant droit au crédit d’impôt de 19 % "
     # start_date = date(2010, 1, 1)
@@ -234,7 +251,8 @@ class f3vv_end_2010(Variable):
 
 class f3vz(Variable):
     cerfa_field = u"3VZ"
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Plus-values imposables sur cessions d’immeubles ou de biens meubles"
     # start_date = date(2011, 1, 1)

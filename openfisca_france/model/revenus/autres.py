@@ -118,7 +118,8 @@ class bourse_enseignement_sup(Variable):
 # f2ab déjà disponible
 class f8ta(Variable):
     cerfa_field = u"8TA"
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Retenue à la source en France ou impôt payé à l'étranger"
     definition_period = YEAR
@@ -126,7 +127,8 @@ class f8ta(Variable):
 
 class f8th(Variable):
     cerfa_field = u"8TH"
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Retenue à la source élus locaux"
     definition_period = YEAR
@@ -154,7 +156,8 @@ class f8td(Variable):
 
 class f8ti(Variable):
     cerfa_field = u"8TK"
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Revenus de l'étranger exonérés d'impôt"
     definition_period = YEAR
@@ -162,7 +165,8 @@ class f8ti(Variable):
 
 class f8tk(Variable):
     cerfa_field = u"8TK"
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Revenus de l'étranger imposables"
     definition_period = YEAR
@@ -171,7 +175,8 @@ class f8tk(Variable):
 # Auto-entrepreneur : versements libératoires d’impôt sur le revenu
 class f8uy(Variable):
     cerfa_field = u"8UY"
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Auto-entrepreneur : versements libératoires d’impôt sur le revenu dont le remboursement est demandé"
     # start_date = date(2009, 1, 1)

@@ -26,7 +26,8 @@ class f5qm(Variable):
     cerfa_field = {QUIFOY['vous']: u"5QM",
         QUIFOY['conj']: u"5RM",
         }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Agents généraux d’assurances: indemnités de cessation d’activité"
     definition_period = YEAR
@@ -64,7 +65,8 @@ class frag_exon(Variable):
     cerfa_field = {QUIFOY['vous']: u"5HN",
         QUIFOY['conj']: u"5IN",
         QUIFOY['pac1']: u"5JN", }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Revenus agricoles exonérés (régime du forfait)"
     # start_date = date(2007, 1, 1)
@@ -76,7 +78,8 @@ class frag_impo(Variable):
     cerfa_field = {QUIFOY['vous']: u"5HO",
         QUIFOY['conj']: u"5IO",
         QUIFOY['pac1']: u"5JO", }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Revenus agricoles imposables (régime du forfait)"
     # start_date = date(2007, 1, 1)
@@ -88,7 +91,8 @@ class arag_exon(Variable):
     cerfa_field = {QUIFOY['vous']: u"5HB",
         QUIFOY['conj']: u"5IB",
         QUIFOY['pac1']: u"5JB", }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Revenus agricoles exonérés yc plus-values (Régime du bénéfice réel, revenus bénéficiant de l'abattement CGA ou viseur), activités exercées en Corse"
     # start_date = date(2007, 1, 1)
@@ -100,7 +104,8 @@ class arag_impg(Variable):
     cerfa_field = {QUIFOY['vous']: u"5HC",
         QUIFOY['conj']: u"5IC",
         QUIFOY['pac1']: u"5JC", }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Revenus agricoles imposables, cas général moyenne triennale (Régime du bénéfice réel, revenus bénéficiant de l'abattement CGA ou viseur)"
     # start_date = date(2007, 1, 1)
@@ -112,7 +117,8 @@ class arag_defi(Variable):
     cerfa_field = {QUIFOY['vous']: u"5HF",
         QUIFOY['conj']: u"5IF",
         QUIFOY['pac1']: u"5JF", }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Déficits agricoles (Régime du bénéfice réel, revenus bénéficiant de l'abattement CGA ou viseur)"
     # start_date = date(2007, 1, 1)
@@ -124,7 +130,8 @@ class nrag_exon(Variable):
     cerfa_field = {QUIFOY['vous']: u"5HH",
         QUIFOY['conj']: u"5IH",
         QUIFOY['pac1']: u"5JH", }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Revenus agricoles exonérés yc plus-values (Régime du bénéfice réel, revenus ne bénéficiant pas de l'abattement CGA ou viseur), activités exercées en Corse"
     # start_date = date(2007, 1, 1)
@@ -136,7 +143,8 @@ class nrag_impg(Variable):
     cerfa_field = {QUIFOY['vous']: u"5HI",
         QUIFOY['conj']: u"5II",
         QUIFOY['pac1']: u"5JI", }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Revenus agricoles imposables, cas général moyenne triennale (Régime du bénéfice réel, revenus ne bénéficiant pas de l'abattement CGA ou viseur)"
     # start_date = date(2007, 1, 1)
@@ -148,7 +156,8 @@ class nrag_defi(Variable):
     cerfa_field = {QUIFOY['vous']: u"5HL",
         QUIFOY['conj']: u"5IL",
         QUIFOY['pac1']: u"5JL", }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Déficits agricoles (Régime du bénéfice réel, revenus ne bénéficiant pas de l'abattement CGA ou viseur)"
     # start_date = date(2007, 1, 1)
@@ -160,7 +169,8 @@ class nrag_ajag(Variable):
     cerfa_field = {QUIFOY['vous']: u"5HM",
         QUIFOY['conj']: u"5IM",
         QUIFOY['pac1']: u"5JM", }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Jeunes agriculteurs, Abattement de 50% ou 100% (Régime du bénéfice réel, revenus bénéficiant de l'abattement CGA ou viseur)"
     # start_date = date(2007, 1, 1)
@@ -173,7 +183,8 @@ class ebic_impv(Variable):
     cerfa_field = {QUIFOY['vous']: u"5TA",
         QUIFOY['conj']: u"5UA",
         QUIFOY['pac1']: u"5VA", }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Revenus industriels et commerciaux professionnels imposables: vente de marchandises et assimilées (régime auto-entrepreneur)"
     # start_date = date(2009, 1, 1)
@@ -186,7 +197,8 @@ class ebic_imps(Variable):
     cerfa_field = {QUIFOY['vous']: u"5TB",
         QUIFOY['conj']: u"5UB",
         QUIFOY['pac1']: u"5VB", }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Revenus industriels et commerciaux professionnels imposables: prestations de services et locations meublées (régime auto-entrepreneur)"
     # start_date = date(2009, 1, 1)
@@ -199,7 +211,8 @@ class ebnc_impo(Variable):
     cerfa_field = {QUIFOY['vous']: u"5TE",
         QUIFOY['conj']: u"5UE",
         QUIFOY['pac1']: u"5VE", }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Revenus non commerciaux (régime auto-entrepreneur ayant opté pour le versement libératoire)"
     # start_date = date(2009, 1, 1)
@@ -212,7 +225,8 @@ class mbic_exon(Variable):
     cerfa_field = {QUIFOY['vous']: u"5KN",
         QUIFOY['conj']: u"5LN",
         QUIFOY['pac1']: u"5MN", }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Revenus industriels et commerciaux professionnels nets exonérés (régime micro entreprise)"
     definition_period = YEAR
@@ -223,7 +237,8 @@ class abic_exon(Variable):
     cerfa_field = {QUIFOY['vous']: u"5KB",
         QUIFOY['conj']: u"5LB",
         QUIFOY['pac1']: u"5MB", }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Revenus industriels et commerciaux nets exonérés yc plus-values avec CGA ou viseur (régime du bénéfice réel)"
     definition_period = YEAR
@@ -234,7 +249,8 @@ class nbic_exon(Variable):
     cerfa_field = {QUIFOY['vous']: u"5KH",
         QUIFOY['conj']: u"5LH",
         QUIFOY['pac1']: u"5MH", }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Revenus industriels et commerciaux nets exonérés yc plus-values sans CGA (régime du bénéfice réel)"
     definition_period = YEAR
@@ -245,7 +261,8 @@ class mbic_impv(Variable):
     cerfa_field = {QUIFOY['vous']: u"5KO",
         QUIFOY['conj']: u"5LO",
         QUIFOY['pac1']: u"5MO", }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Revenus industriels et commerciaux professionnels imposables: vente de marchandises (régime micro entreprise)"
     definition_period = YEAR
@@ -256,7 +273,8 @@ class mbic_imps(Variable):
     cerfa_field = {QUIFOY['vous']: u"5KP",
         QUIFOY['conj']: u"5LP",
         QUIFOY['pac1']: u"5MP", }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Revenus industriels et commerciaux professionnels imposables: prestations de services et locations meublées (régime micro entreprise)"
     definition_period = YEAR
@@ -267,7 +285,8 @@ class abic_impn(Variable):
     cerfa_field = {QUIFOY['vous']: u"5KC",
         QUIFOY['conj']: u"5LC",
         QUIFOY['pac1']: u"5MC", }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Revenus industriels et commerciaux imposables: régime normal ou simplifié avec CGA ou viseur (régime du bénéfice réel)"
     definition_period = YEAR
@@ -278,7 +297,8 @@ class abic_imps(Variable):
     cerfa_field = {QUIFOY['vous']: u"5KD",
         QUIFOY['conj']: u"5LD",
         QUIFOY['pac1']: u"5MD", }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Revenus industriels et commerciaux imposables: régime simplifié avec CGA ou viseur (régime du bénéfice réel)"
     end = '2009-12-31'
@@ -292,7 +312,8 @@ class nbic_impn(Variable):
         QUIFOY['conj']: u"5LI",
         QUIFOY['pac1']: u"5MI", }
 
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Revenus industriels et commerciaux professionnels imposables: régime normal ou simplifié sans CGA (régime du bénéfice réel)"
     definition_period = YEAR
@@ -306,7 +327,8 @@ class nbic_imps(Variable):
     cerfa_field = {QUIFOY['vous']: u"5KJ",
         QUIFOY['conj']: u"5LJ",
         QUIFOY['pac1']: u"5MJ", }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Revenus industriels et commerciaux professionnels imposables: régime simplifié sans CGA (régime du bénéfice réel)"
     end = '2009-12-31'
@@ -318,7 +340,8 @@ class nbic_mvct(Variable):
     cerfa_field = {QUIFOY['vous']: u"5KJ",
         QUIFOY['conj']: u"5LJ",
         QUIFOY['pac1']: u"5MJ", }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Revenus industriels et commerciaux professionnels moins-values nettes à court terme"
     # start_date = date(2012, 1, 1)
@@ -331,7 +354,8 @@ class abic_defn(Variable):
     cerfa_field = {QUIFOY['vous']: u"5KF",
         QUIFOY['conj']: u"5LF",
         QUIFOY['pac1']: u"5MF", }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Déficits industriels et commerciaux: régime normal ou simplifié avec CGA ou viseur (régime du bénéfice réel)"
     definition_period = YEAR
@@ -342,7 +366,8 @@ class abic_defs(Variable):
     cerfa_field = {QUIFOY['vous']: u"5KG",
         QUIFOY['conj']: u"5LG",
         QUIFOY['pac1']: u"5MG", }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Déficits industriels et commerciaux: simplifié avec CGA ou viseur (régime du bénéfice réel)"
     end = '2009-12-01'
@@ -355,7 +380,8 @@ class nbic_defn(Variable):
     cerfa_field = {QUIFOY['vous']: u"5KL",
         QUIFOY['conj']: u"5LL",
         QUIFOY['pac1']: u"5ML", }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Déficits industriels et commerciaux: régime normal ou simplifié sans CGA (régime du bénéfice réel)"
     definition_period = YEAR
@@ -366,7 +392,8 @@ class nbic_defs(Variable):
     cerfa_field = {QUIFOY['vous']: u"5KM",
         QUIFOY['conj']: u"5LM",
         QUIFOY['pac1']: u"5MM", }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Locations déjà soumises aux prélèvements sociaux sans CGA (régime du bénéfice réel)"
     end = '2009-12-31'
@@ -378,7 +405,8 @@ class nbic_apch(Variable):
     cerfa_field = {QUIFOY['vous']: u"5KS",
         QUIFOY['conj']: u"5LS",
         QUIFOY['pac1']: u"5MS", }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Artisans pêcheurs : abattement 50% avec CGA ou viseur (régime du bénéfice réel)"
     definition_period = YEAR
@@ -389,7 +417,8 @@ class macc_exon(Variable):
     cerfa_field = {QUIFOY['vous']: u"5NN",
         QUIFOY['conj']: u"5ON",
         QUIFOY['pac1']: u"5PN", }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Revenus industriels et commerciaux non professionnels nets exonérés (régime micro entreprise)"
     definition_period = YEAR
@@ -400,7 +429,8 @@ class aacc_exon(Variable):
     cerfa_field = {QUIFOY['vous']: u"5NB",
         QUIFOY['conj']: u"5OB",
         QUIFOY['pac1']: u"5PB", }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Revenus industriels et commerciaux non professionnels exonérés yc plus-values avec CGA ou viseur (régime du bénéfice réel)"
     definition_period = YEAR
@@ -411,7 +441,8 @@ class nacc_exon(Variable):
     cerfa_field = {QUIFOY['vous']: u"5NH",
         QUIFOY['conj']: u"5OH",
         QUIFOY['pac1']: u"5PH", }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Revenus industriels et commerciaux non professionnels exonérés yc plus-values sans CGA (régime du bénéfice réel)"
     definition_period = YEAR
@@ -422,7 +453,8 @@ class macc_impv(Variable):
     cerfa_field = {QUIFOY['vous']: u"5NO",
         QUIFOY['conj']: u"5OO",
         QUIFOY['pac1']: u"5PO", }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Revenus industriels et commerciaux non professionnels imposables: vente de marchandises et assimilées (régime micro entreprise)"
     definition_period = YEAR
@@ -433,7 +465,8 @@ class macc_imps(Variable):
     cerfa_field = {QUIFOY['vous']: u"5NP",
         QUIFOY['conj']: u"5OP",
         QUIFOY['pac1']: u"5PP", }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Revenus industriels et commerciaux non professionnels imposables: prestations de services (régime micro entreprise)"
     definition_period = YEAR
@@ -444,7 +477,8 @@ class aacc_impn(Variable):
     cerfa_field = {QUIFOY['vous']: u"5NC",
         QUIFOY['conj']: u"5OC",
         QUIFOY['pac1']: u"5PC", }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Revenus industriels et commerciaux non professionnels imposables: régime normal ou simplifié avec CGA ou viseur (régime du bénéfice réel)"
     definition_period = YEAR
@@ -455,7 +489,8 @@ class aacc_imps(Variable):
     cerfa_field = {QUIFOY['vous']: u"5ND",
         QUIFOY['conj']: u"5OD",
         QUIFOY['pac1']: u"5PD", }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Locations meublées non professionnelles (régime micro entreprise)"
     # start_date = date(2011, 1, 1)
@@ -467,7 +502,8 @@ class aacc_defn(Variable):
     cerfa_field = {QUIFOY['vous']: u"5NF",
         QUIFOY['conj']: u"5OF",
         QUIFOY['pac1']: u"5PF", }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Déficits industriels et commerciaux non professionnels: régime normal ou simplifié avec CGA ou viseur (régime du bénéfice réel)"
     definition_period = YEAR
@@ -478,7 +514,8 @@ class aacc_gits(Variable):
     cerfa_field = {QUIFOY['vous']: u"5NG",
         QUIFOY['conj']: u"5OG",
         QUIFOY['pac1']: u"5PG", }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Location de gîtes ruraux, chambres d'hôtes et meublés de tourisme (régime micro entreprise)"
     # start_date = date(2011, 1, 1)
@@ -490,7 +527,8 @@ class nacc_impn(Variable):
     cerfa_field = {QUIFOY['vous']: u"5NI",
         QUIFOY['conj']: u"5OI",
         QUIFOY['pac1']: u"5PI", }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Revenus industriels et commerciaux non professionnels imposables: régime normal ou simplifié sans CGA (régime du bénéfice réel)"
     definition_period = YEAR
@@ -501,7 +539,8 @@ class aacc_defs(Variable):
     cerfa_field = {QUIFOY['vous']: u"5NG",
         QUIFOY['conj']: u"5OG",
         QUIFOY['pac1']: u"5PG", }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Déficits de revenus industriels et commerciaux non professionnels avec CGA (régime simplifié du bénéfice réel)"
     end = '2009-12-31'
@@ -513,7 +552,8 @@ class nacc_meup(Variable):
     cerfa_field = {QUIFOY['vous']: u"5NJ",
         QUIFOY['conj']: u"5OJ",
         QUIFOY['pac1']: u"5PJ", }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Locations meublées non professionnelles: Locations déjà soumises aux prélèvements sociaux (régime micro entreprise)"
     # start_date = date(2012, 1, 1)
@@ -525,7 +565,8 @@ class nacc_defn(Variable):
     cerfa_field = {QUIFOY['vous']: u"5NL",
         QUIFOY['conj']: u"5OL",
         QUIFOY['pac1']: u"5PL", }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Déficits industriels et commerciaux non professionnels: régime normal ou simplifié sans CGA (régime du bénéfice réel)"
     definition_period = YEAR
@@ -536,7 +577,8 @@ class nacc_defs(Variable):
     cerfa_field = {QUIFOY['vous']: u"5NM",
         QUIFOY['conj']: u"5OM",
         QUIFOY['pac1']: u"5PM", }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Locations meublées non professionnelles: Gîtes ruraux et chambres d'hôtes déjà soumis aux prélèvements sociaux avec CGA (régime du bénéfice réel)"
     # start_date = date(2012, 1, 1)
@@ -548,7 +590,8 @@ class mncn_impo(Variable):
     cerfa_field = {QUIFOY['vous']: u"5KU",
         QUIFOY['conj']: u"5LU",
         QUIFOY['pac1']: u"5MU", }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Revenus non commerciaux non professionnels imposables (régime déclaratif spécial ou micro BNC)"
     definition_period = YEAR
@@ -559,7 +602,8 @@ class cncn_bene(Variable):
     cerfa_field = {QUIFOY['vous']: u"5SN",
         QUIFOY['conj']: u"5NS",
         QUIFOY['pac1']: u"5OS", }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Revenus non commerciaux non professionnels imposables sans AA (régime de la déclaration controlée)"
     # start_date = date(2006, 1, 1)
@@ -571,7 +615,8 @@ class cncn_defi(Variable):
     cerfa_field = {QUIFOY['vous']: u"5SP",
         QUIFOY['conj']: u"5NU",
         QUIFOY['pac1']: u"5OU", }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Déficits non commerciaux non professionnels sans AA (régime de la déclaration controlée)"
     # start_date = date(2006, 1, 1)
@@ -584,7 +629,8 @@ class mbnc_exon(Variable):
     cerfa_field = {QUIFOY['vous']: u"5HP",
         QUIFOY['conj']: u"5IP",
         QUIFOY['pac1']: u"5JP", }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Revenus non commerciaux professionnels nets exonérés (régime déclaratif spécial ou micro BNC)"
     definition_period = YEAR
@@ -595,7 +641,8 @@ class abnc_exon(Variable):
     cerfa_field = {QUIFOY['vous']: u"5QB",
         QUIFOY['conj']: u"5RB",
         QUIFOY['pac1']: u"5SB", }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Revenus non commerciaux professionnels exonérés (yc compris plus-values) (régime de la déclaration controlée, revenus bénéficiant de l'abattement association agrée ou viseur)"
     definition_period = YEAR
@@ -606,7 +653,8 @@ class nbnc_exon(Variable):
     cerfa_field = {QUIFOY['vous']: u"5QH",
         QUIFOY['conj']: u"5RH",
         QUIFOY['pac1']: u"5SH", }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Revenus non commerciaux professionnels exonérés (yc compris plus-values) (régime de la déclaration controlée, revenus ne bénéficiant pas de l'abattement association agrée)"
     definition_period = YEAR
@@ -617,7 +665,8 @@ class mbnc_impo(Variable):
     cerfa_field = {QUIFOY['vous']: u"5HQ",
         QUIFOY['conj']: u"5IQ",
         QUIFOY['pac1']: u"5JQ", }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Revenus non commerciaux professionnels imposables (régime déclaratif spécial ou micro BNC)"
     definition_period = YEAR
@@ -628,7 +677,8 @@ class abnc_impo(Variable):
     cerfa_field = {QUIFOY['vous']: u"5QC",
         QUIFOY['conj']: u"5RC",
         QUIFOY['pac1']: u"5SC", }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Revenus non commerciaux professionnels imposables (régime de la déclaration controlée, revenus bénéficiant de l'abattement association agrée ou viseur)"
     definition_period = YEAR
@@ -639,7 +689,8 @@ class abnc_defi(Variable):
     cerfa_field = {QUIFOY['vous']: u"5QE",
         QUIFOY['conj']: u"5RE",
         QUIFOY['pac1']: u"5SE", }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Déficits non commerciaux professionnels (régime de la déclaration controlée, revenus bénéficiant de l'abattement association agrée ou viseur)"
     definition_period = YEAR
@@ -650,7 +701,8 @@ class nbnc_impo(Variable):
     cerfa_field = {QUIFOY['vous']: u"5QI",
         QUIFOY['conj']: u"5RI",
         QUIFOY['pac1']: u"5SI", }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Revenus non commerciaux professionnels imposables (régime de la déclaration controlée, revenus ne bénéficiant pas de l'abattement association agrée)"
     definition_period = YEAR
@@ -661,7 +713,8 @@ class nbnc_defi(Variable):
     cerfa_field = {QUIFOY['vous']: u"5QK",
         QUIFOY['conj']: u"5RK",
         QUIFOY['pac1']: u"5SK", }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Déficits non commerciaux professionnels (régime de la déclaration controlée, revenus ne bénéficiant pas de l'abattement association agrée)"
     definition_period = YEAR
@@ -670,7 +723,8 @@ class nbnc_defi(Variable):
 
 class mbic_mvct(Variable):
     cerfa_field = u"5HU"
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Moins-values industrielles et commerciales nettes à court terme du foyer (régime micro entreprise)"
     end = '2011-12-31'
@@ -681,7 +735,8 @@ class mbic_mvct(Variable):
 
 class macc_mvct(Variable):
     cerfa_field = u"5IU"
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Moins-values industrielles et commerciales non professionnelles nettes à court terme du foyer (régime micro entreprise)"
     definition_period = YEAR
@@ -690,7 +745,8 @@ class macc_mvct(Variable):
 
 class mncn_mvct(Variable):
     cerfa_field = u"JU"
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Moins-values non commerciales non professionnelles nettes à court terme du foyer (régime déclaratif spécial ou micro BNC)"
     definition_period = YEAR
@@ -701,7 +757,8 @@ class mbnc_mvct(Variable):
     cerfa_field = {QUIFOY['vous']: u"5KZ", #TODO: pb cerfa field
         QUIFOY['conj']: u"5LZ",
         QUIFOY['pac1']: u"5MZ", }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Moins-values non commerciales professionnelles nettes à court terme (régime déclaratif spécial ou micro BNC)"
     # start_date = date(2012, 1, 1)
@@ -714,7 +771,8 @@ class frag_pvct(Variable):
     cerfa_field = {QUIFOY['vous']: u"5HW",
         QUIFOY['conj']: u"5IW",
         QUIFOY['pac1']: u"5JW", }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Plus-values agricoles  à court terme (régime du forfait)"
     # start_date = date(2007, 1, 1)
@@ -726,7 +784,8 @@ class mbic_pvct(Variable):
     cerfa_field = {QUIFOY['vous']: u"5KX",
         QUIFOY['conj']: u"5LX",
         QUIFOY['pac1']: u"5MX", }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Plus-values industrielles et commerciales professionnels imposables: plus-values nettes à court terme (régime micro entreprise)"
     definition_period = YEAR
@@ -737,7 +796,8 @@ class macc_pvct(Variable):
     cerfa_field = {QUIFOY['vous']: u"5NX",
         QUIFOY['conj']: u"5OX",
         QUIFOY['pac1']: u"5PX", }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Plus-values industrielles et commerciales non professionnelles imposables: plus-values nettes à court terme (régime micro entreprise)"
     definition_period = YEAR
@@ -748,7 +808,8 @@ class mbnc_pvct(Variable):
     cerfa_field = {QUIFOY['vous']: u"5HV",
         QUIFOY['conj']: u"5IV",
         QUIFOY['pac1']: u"5JV", }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Plus-values non commerciales professionnelles imposables et Plus-values nettes à court terme (régime déclaratif spécial ou micro BNC)"
     definition_period = YEAR
@@ -759,7 +820,8 @@ class mncn_pvct(Variable):
     cerfa_field = {QUIFOY['vous']: u"5KY",
         QUIFOY['conj']: u"5LY",
         QUIFOY['pac1']: u"5MY", }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Plus-values non commerciales non professionnelles imposables et plus-values nettes à court terme (régime déclaratif spécial ou micro BNC)"
     definition_period = YEAR
@@ -770,7 +832,8 @@ class mbic_mvlt(Variable):
     cerfa_field = {QUIFOY['vous']: u"5KR",
         QUIFOY['conj']: u"5LR",
         QUIFOY['pac1']: u"5MR", }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Moins-values industrielles et commerciales professionnels à long terme (régime micro entreprise)"
     definition_period = YEAR
@@ -781,7 +844,8 @@ class macc_mvlt(Variable):
     cerfa_field = {QUIFOY['vous']: u"5NR",
         QUIFOY['conj']: u"5OR",
         QUIFOY['pac1']: u"5PR", }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Moins-values industrielles et commerciales non professionnelles à long terme (régime micro entreprise)"
     definition_period = YEAR
@@ -792,7 +856,8 @@ class mncn_mvlt(Variable):
     cerfa_field = {QUIFOY['vous']: u"5KW",
         QUIFOY['conj']: u"5LW",
         QUIFOY['pac1']: u"5MW", }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Moins-values non commerciales non professionnelles à long terme (régime déclaratif spécial ou micro BNC)"
     definition_period = YEAR
@@ -803,7 +868,8 @@ class mbnc_mvlt(Variable):
     cerfa_field = {QUIFOY['vous']: u"5HS",
         QUIFOY['conj']: u"5IS",
         QUIFOY['pac1']: u"5JS", }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Moins-values non commerciales professionnelles à long terme (régime déclaratif spécial ou micro BNC)"
     definition_period = YEAR
@@ -814,7 +880,8 @@ class frag_pvce(Variable):
     cerfa_field = {QUIFOY['vous']: u"5HX",
         QUIFOY['conj']: u"5IX",
         QUIFOY['pac1']: u"5JX", }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Plus-values agricoles de cession taxables à 16% (régime du forfait)"
     # start_date = date(2007, 1, 1)
@@ -826,7 +893,8 @@ class arag_pvce(Variable):
     cerfa_field = {QUIFOY['vous']: u"5HE",
         QUIFOY['conj']: u"5IE",
         QUIFOY['pac1']: u"5JE", }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Plus-values agricoles de cession taxables à 16% (Régime du bénéfice réel, revenus bénéficiant de l'abattement CGA ou viseur)"
     # start_date = date(2007, 1, 1)
@@ -838,7 +906,8 @@ class nrag_pvce(Variable):
     cerfa_field = {QUIFOY['vous']: u"5HK",
         QUIFOY['conj']: u"5LK",
         QUIFOY['pac1']: u"5JK", }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Plus-values agricoles de cession taxables à 16% (Régime du bénéfice réel, revenus ne bénéficiant pas de l'abattement CGA ou viseur)"
     end = '2006-12-31'
@@ -850,7 +919,8 @@ class mbic_pvce(Variable):
     cerfa_field = {QUIFOY['vous']: u"5KQ",
         QUIFOY['conj']: u"5LQ",
         QUIFOY['pac1']: u"5MQ", }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Plus-values industrielles et commerciales professionnelles imposables: plus-values de cession taxables à 16% (régime micro entreprise)"
     definition_period = YEAR
@@ -861,7 +931,8 @@ class abic_pvce(Variable):
     cerfa_field = {QUIFOY['vous']: u"5KE",
         QUIFOY['conj']: u"5LE",
         QUIFOY['pac1']: u"5ME", }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Plus-values industrielles et commerciales de cession taxables à 16% avec CGA ou viseur (régime du bénéfice réel)"
     definition_period = YEAR
@@ -872,7 +943,8 @@ class nbic_pvce(Variable):
     cerfa_field = {QUIFOY['vous']: u"5IK",
         QUIFOY['conj']: u"5KK",
         QUIFOY['pac1']: u"5MK", }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Revenus non commerciaux non professionnels exonérés sans AA (régime de la déclaration controlée)"
     # start_date = date(2008, 1, 1)
@@ -884,7 +956,8 @@ class macc_pvce(Variable):
     cerfa_field = {QUIFOY['vous']: u"5NQ",
         QUIFOY['conj']: u"5OQ",
         QUIFOY['pac1']: u"5PQ", }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Plus-values industrielles et commerciales non professionnelles imposables: plus-values de cession taxables à 16% (régime micro entreprise)"
     definition_period = YEAR
@@ -895,7 +968,8 @@ class aacc_pvce(Variable):
     cerfa_field = {QUIFOY['vous']: u"5NE",
         QUIFOY['conj']: u"5OE",
         QUIFOY['pac1']: u"5PE", }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Plus-values industrielles et commerciales non professionnelles de cession taxables à 16% avec CGA ou viseur (régime du bénéfice réel)"
     definition_period = YEAR
@@ -906,7 +980,8 @@ class nacc_pvce(Variable):
     cerfa_field = {QUIFOY['vous']: u"5NK",
         QUIFOY['conj']: u"5OK",
         QUIFOY['pac1']: u"5PK", }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Locations meublées non professionnelles: Revenus imposables sans CGA (régime du bénéfice réel)"
     # start_date = date(2009, 1, 1)
@@ -919,7 +994,8 @@ class mncn_pvce(Variable):
     cerfa_field = {QUIFOY['vous']: u"5KV",
         QUIFOY['conj']: u"5LV",
         QUIFOY['pac1']: u"5MV", }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Plus-values non commerciales non professionnelles de cession taxables à 16% (régime déclaratif spécial ou micro BNC)"
     definition_period = YEAR
@@ -930,7 +1006,8 @@ class cncn_pvce(Variable):
     cerfa_field = {QUIFOY['vous']: u"5SO",
         QUIFOY['conj']: u"5NT",
         QUIFOY['pac1']: u"5OT", }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Plus-values non commerciales non professionnelles taxables à 16% avec AA ou viseur (régime de la déclaration controlée)"
     # start_date = date(2006, 1, 1)
@@ -942,7 +1019,8 @@ class mbnc_pvce(Variable):
     cerfa_field = {QUIFOY['vous']: u"5HR",
         QUIFOY['conj']: u"5IR",
         QUIFOY['pac1']: u"5JR", }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Plus-values non commerciales professionnelles de cession taxables à 16% (régime déclaratif spécial ou micro BNC)"
     definition_period = YEAR
@@ -953,7 +1031,8 @@ class abnc_pvce(Variable):
     cerfa_field = {QUIFOY['vous']: u"5QD",
         QUIFOY['conj']: u"5RD",
         QUIFOY['pac1']: u"5SD", }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Plus-values non commerciaux professionnels de cession taxables à 16% (régime de la déclaration controlée, revenus bénéficiant de l'abattement association agrée ou viseur)"
     definition_period = YEAR
@@ -964,7 +1043,8 @@ class nbnc_pvce(Variable):
     cerfa_field = {QUIFOY['vous']: u"5QJ",
         QUIFOY['conj']: u"5RJ",
         QUIFOY['pac1']: u"5SJ", }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Déficits industriels et commerciaux: locations meublées sans CGA (régime du bénéfice réel)"
     # start_date = date(2009, 1, 1)
@@ -976,7 +1056,8 @@ class frag_fore(Variable):
     cerfa_field = {QUIFOY['vous']: u"5HD",
         QUIFOY['conj']: u"5ID",
         QUIFOY['pac1']: u"5JD", }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Revenus des exploitants forestiers (régime du forfait)"
     # start_date = date(2007, 1, 1)
@@ -987,7 +1068,8 @@ class arag_sjag(Variable):
     cerfa_field = {QUIFOY['vous']: u"5HZ",
         QUIFOY['conj']: u"5IZ",
         QUIFOY['pac1']: u"5JZ", }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Abattement pour les jeunes agriculteurs des revenus agricoles sans CGA (régime du bénéfice réel)"
     # start_date = date(2011, 1, 1)
@@ -998,7 +1080,8 @@ class abic_impm(Variable):
     cerfa_field = {QUIFOY['vous']: u"5HA",
         QUIFOY['conj']: u"5IA",
         QUIFOY['pac1']: u"5JA", }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Locations meublées imposables avec CGA ou viseur (régime du bénéfice réel pour les revenus industriels et commerciaux professionnels)"
     # start_date = date(2009, 1, 1)
@@ -1009,7 +1092,8 @@ class nbic_impm(Variable):
     cerfa_field = {QUIFOY['vous']: u"5KA",
         QUIFOY['conj']: u"5LA",
         QUIFOY['pac1']: u"5MA", }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Locations meublées imposables sans CGA (régime du bénéfice réel)"
     # start_date = date(2009, 1, 1)
@@ -1020,7 +1104,8 @@ class abic_defm(Variable):
     cerfa_field = {QUIFOY['vous']: u"5QA",
         QUIFOY['conj']: u"5RA",
         QUIFOY['pac1']: u"5SA", }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Déficits de locations meubléesavec CGA ou viseur (régime du bénéfice réel pour les revenus industriels et commerciaux professionnels)"
     # start_date = date(2009, 1, 1)
@@ -1031,7 +1116,8 @@ class alnp_imps(Variable):
     cerfa_field = {QUIFOY['vous']: u"5NA",
         QUIFOY['conj']: u"5OA",
         QUIFOY['pac1']: u"5PA", }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Locations meublées non professionnelles imposables avec CGA ou viseur (régime du bénéfice réel)"
     # start_date = date(2009, 1, 1)
@@ -1043,7 +1129,8 @@ class alnp_defs(Variable):
     cerfa_field = {QUIFOY['vous']: u"5NY",
         QUIFOY['conj']: u"5OY",
         QUIFOY['pac1']: u"5PY", }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Déficits de locations meublées non professionnelles avec CGA ou viseur (régime du bénéfice réel)"
     # start_date = date(2009, 1, 1)
@@ -1055,7 +1142,8 @@ class nlnp_defs(Variable):
     cerfa_field = {QUIFOY['vous']: u"5NZ",
         QUIFOY['conj']: u"5OZ",
         QUIFOY['pac1']: u"5PZ", }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Déficits de locations meublées non professionnelles imposables sans CGA (régime du bénéfice réel)"
     # start_date = date(2009, 1, 1)
@@ -1066,7 +1154,8 @@ class nlnp_defs(Variable):
 class cbnc_assc(Variable):
     cerfa_field = {QUIFOY['vous']: u"5QM",
         QUIFOY['conj']: u"5RM", }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Agents généraux d'assurances : indemnités de cessation d'activité (revenus non commerciaux professionnels, régime de la déclaration contrôlée)"
     # start_date = date(2006, 1, 1)
@@ -1077,7 +1166,8 @@ class abnc_proc(Variable):
     cerfa_field = {QUIFOY['vous']: u"5TF",
         QUIFOY['conj']: u"5UF",
         QUIFOY['pac1']: u"5VF", }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Honoraires de prospection commerciale exonérés avec CGA ou viseur (revenus non commerciaux professionnels, régime de la déclaration contrôlée)"
     # start_date = date(2009, 1, 1)
@@ -1088,7 +1178,8 @@ class nbnc_proc(Variable):
     cerfa_field = {QUIFOY['vous']: u"5TI",
         QUIFOY['conj']: u"5UI",
         QUIFOY['pac1']: u"5VI", }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Honoraires de prospection commerciale exonérés sans CGA (revenus non commerciaux professionnels, régime de la déclaration contrôlée)"
     # start_date = date(2009, 1, 1)
@@ -1099,7 +1190,8 @@ class mncn_exon(Variable):
     cerfa_field = {QUIFOY['vous']: u"5TH",
         QUIFOY['conj']: u"5UH",
         QUIFOY['pac1']: u"5VH", }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Revenus nets exonérés non commerciaux non professionnels (régime déclaratif spécial ou micro BNC)"
     # start_date = date(2009, 1, 1)
@@ -1110,7 +1202,8 @@ class cncn_exon(Variable):
     cerfa_field = {QUIFOY['vous']: u"5HK",
         QUIFOY['conj']: u"5JK",
         QUIFOY['pac1']: u"5LK", }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Revenus nets exonérés non commerciaux non professionnels (régime de la déclaration contrôlée)"
     # start_date = date(2008, 1, 1)
@@ -1121,7 +1214,8 @@ class cncn_aimp(Variable):
     cerfa_field = {QUIFOY['vous']: u"5JG",
         QUIFOY['conj']: u"5RF",
         QUIFOY['pac1']: u"5SF", }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Revenus imposables non commerciaux non professionnels avec CGA (régime de la déclaration contrôlée)"
     # start_date = date(2007, 1, 1)
@@ -1132,7 +1226,8 @@ class cncn_adef(Variable):
     cerfa_field = {QUIFOY['vous']: u"5JJ",
         QUIFOY['conj']: u"5RG",
         QUIFOY['pac1']: u"5SG", }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Déficits non commerciaux non professionnels avec CGA (régime de la déclaration contrôlée)"
     # start_date = date(2007, 1, 1)
@@ -1143,7 +1238,8 @@ class cncn_info(Variable):
     cerfa_field = {QUIFOY['vous']: u"5TC",
         QUIFOY['conj']: u"5UC",
         QUIFOY['pac1']: u"5VC", }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Inventeurs et auteurs de logiciels : produits taxables à 16%, revenus non commerciaux non professionnels avec CGA (régime de la déclaration contrôlée)"
     # start_date = date(2009, 1, 1)
@@ -1154,7 +1250,8 @@ class cncn_jcre(Variable):
     cerfa_field = {QUIFOY['vous']: u"5SV",
         QUIFOY['conj']: u"5SW",
         QUIFOY['pac1']: u"5SX", }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Jeunes créateurs : abattement de 50%, revenus non commerciaux non professionnels avec CGA (régime de la déclaration contrôlée)"
     # start_date = date(2006, 1, 1)
@@ -1165,7 +1262,8 @@ class revimpres(Variable):
     cerfa_field = {QUIFOY['vous']: u"5HY",
         QUIFOY['conj']: u"5IY",
         QUIFOY['pac1']: u"5JY", }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Revenus nets à imposer aux prélèvements sociaux"
     definition_period = YEAR
@@ -1194,7 +1292,8 @@ class pvtaimpres(Variable):
 
 class f5qf(Variable):
     cerfa_field = u"5QF"
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Déficits des revenus agricoles des années antérieures non encore déduits (n-6)"
     # start_date = date(2007, 1, 1)
@@ -1203,7 +1302,8 @@ class f5qf(Variable):
 
 class f5qg(Variable):
     cerfa_field = u"5QG"
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Déficits des revenus agricoles des années antérieures non encore déduits (n-5)"
     # start_date = date(2007, 1, 1)
@@ -1212,7 +1312,8 @@ class f5qg(Variable):
 
 class f5qn(Variable):
     cerfa_field = u"5QN"
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Déficits des revenus agricoles des années antérieures non encore déduits (n-4)"
     # start_date = date(2007, 1, 1)
@@ -1221,7 +1322,8 @@ class f5qn(Variable):
 
 class f5qo(Variable):
     cerfa_field = u"5QO"
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Déficits des revenus agricoles des années antérieures non encore déduits (n-3)"
     # start_date = date(2007, 1, 1)
@@ -1230,7 +1332,8 @@ class f5qo(Variable):
 
 class f5qp(Variable):
     cerfa_field = u"5QP"
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Déficits des revenus agricoles des années antérieures non encore déduits (n-2)"
     # start_date = date(2007, 1, 1)
@@ -1239,7 +1342,8 @@ class f5qp(Variable):
 
 class f5qq(Variable):
     cerfa_field = u"5QQ"
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Déficits des revenus agricoles des années antérieures non encore déduits (n-1)"
     # start_date = date(2007, 1, 1)
@@ -1248,7 +1352,8 @@ class f5qq(Variable):
 
 class f5ga(Variable):
     cerfa_field = u"5GA"
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Déficits des revenus de locations meublées non professionnelles années antérieures non encore déduits (n-10)"
     # start_date = date(2010, 1, 1)
@@ -1258,7 +1363,8 @@ class f5ga(Variable):
 
 class f5gb(Variable):
     cerfa_field = u"5GB"
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Déficits des revenus de locations meublées non professionnelles années antérieures non encore déduits (n-9)"
     # start_date = date(2010, 1, 1)
@@ -1268,7 +1374,8 @@ class f5gb(Variable):
 
 class f5gc(Variable):
     cerfa_field = u"5GC"
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Déficits des revenus de locations meublées non professionnelles années antérieures non encore déduits (n-8)"
     # start_date = date(2010, 1, 1)
@@ -1278,7 +1385,8 @@ class f5gc(Variable):
 
 class f5gd(Variable):
     cerfa_field = u"5GD"
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Déficits des revenus de locations meublées non professionnelles années antérieures non encore déduits (n-7)"
     # start_date = date(2010, 1, 1)
@@ -1288,7 +1396,8 @@ class f5gd(Variable):
 
 class f5ge(Variable):
     cerfa_field = u"5GE"
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Déficits des revenus de locations meublées non professionnelles années antérieures non encore déduits (n-6)"
     # start_date = date(2010, 1, 1)
@@ -1298,7 +1407,8 @@ class f5ge(Variable):
 
 class f5gf(Variable):
     cerfa_field = u"5GF"
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Déficits des revenus de locations meublées non professionnelles années antérieures non encore déduits (n-5)"
     # start_date = date(2010, 1, 1)
@@ -1308,7 +1418,8 @@ class f5gf(Variable):
 
 class f5gg(Variable):
     cerfa_field = u"5GG"
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Déficits des revenus de locations meublées non professionnelles années antérieures non encore déduits (n-4)"
     # start_date = date(2010, 1, 1)
@@ -1318,7 +1429,8 @@ class f5gg(Variable):
 
 class f5gh(Variable):
     cerfa_field = u"5GH"
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Déficits des revenus de locations meublées non professionnelles années antérieures non encore déduits (n-3)"
     # start_date = date(2010, 1, 1)
@@ -1328,7 +1440,8 @@ class f5gh(Variable):
 
 class f5gi(Variable):
     cerfa_field = u"5GI"
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Déficits des revenus de locations meublées non professionnelles années antérieures non encore déduits (n-2)"
     # start_date = date(2010, 1, 1)
@@ -1338,7 +1451,8 @@ class f5gi(Variable):
 
 class f5gj(Variable):
     cerfa_field = u"5GJ"
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Déficits des revenus de locations meublées non professionnelles années antérieures non encore déduits (n-1)"
     # start_date = date(2010, 1, 1)
@@ -1348,7 +1462,8 @@ class f5gj(Variable):
 
 class f5rn(Variable):
     cerfa_field = u"5RN"
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Déficits des revenus industriels et commerciaux non professionnelles années antérieures non encore déduits (n-6)"
     # start_date = date(2010, 1, 1)
@@ -1358,7 +1473,8 @@ class f5rn(Variable):
 
 class f5ro(Variable):
     cerfa_field = u"5RO"
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Déficits des revenus industriels et commerciaux non professionnelles années antérieures non encore déduits (n-5)"
     definition_period = YEAR
@@ -1366,7 +1482,8 @@ class f5ro(Variable):
 
 class f5rp(Variable):
     cerfa_field = u"5RP"
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Déficits des revenus industriels et commerciaux non professionnelles années antérieures non encore déduits (n-4)"
     definition_period = YEAR
@@ -1374,7 +1491,8 @@ class f5rp(Variable):
 
 class f5rq(Variable):
     cerfa_field = u"5RQ"
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Déficits des revenus industriels et commerciaux non professionnelles années antérieures non encore déduits (n-3)"
     definition_period = YEAR
@@ -1382,7 +1500,8 @@ class f5rq(Variable):
 
 class f5rr(Variable):
     cerfa_field = u"5RR"
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Déficits des revenus industriels et commerciaux non professionnelles années antérieures non encore déduits (n-2)"
     definition_period = YEAR
@@ -1390,7 +1509,8 @@ class f5rr(Variable):
 
 class f5rw(Variable):
     cerfa_field = u"5RW"
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Déficits des revenus industriels et commerciaux non professionnelles années antérieures non encore déduits (n-1)"
     definition_period = YEAR
@@ -1398,7 +1518,8 @@ class f5rw(Variable):
 
 class f5ht(Variable):
     cerfa_field = u"5HT"
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Déficits des revenus non commerciaux non professionnelles années antérieures non encore déduits (n-6)"
     # start_date = date(2007, 1, 1)
@@ -1407,7 +1528,8 @@ class f5ht(Variable):
 
 class f5it(Variable):
     cerfa_field = u"5IT"
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Déficits des revenus non commerciaux non professionnelles années antérieures non encore déduits (n-5)"
     # start_date = date(2007, 1, 1)
@@ -1416,7 +1538,8 @@ class f5it(Variable):
 
 class f5jt(Variable):
     cerfa_field = u"5JT"
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Déficits des revenus non commerciaux non professionnelles années antérieures non encore déduits (n-4)"
     # start_date = date(2007, 1, 1)
@@ -1425,7 +1548,8 @@ class f5jt(Variable):
 
 class f5kt(Variable):
     cerfa_field = u"5KT"
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Déficits des revenus non commerciaux non professionnelles années antérieures non encore déduits (n-3)"
     # start_date = date(2007, 1, 1)
@@ -1434,7 +1558,8 @@ class f5kt(Variable):
 
 class f5lt(Variable):
     cerfa_field = u"5LT"
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Déficits des revenus non commerciaux non professionnelles années antérieures non encore déduits (n-2)"
     # start_date = date(2007, 1, 1)
@@ -1443,7 +1568,8 @@ class f5lt(Variable):
 
 class f5mt(Variable):
     cerfa_field = u"5MT"
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Déficits des revenus non commerciaux non professionnelles années antérieures non encore déduits (n-1)"
     # start_date = date(2007, 1, 1)

@@ -13,7 +13,8 @@ log = logging.getLogger(__name__)
 # Csg déductible
 class f6de(Variable):
     cerfa_field = u"6DE"
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"CSG déductible calculée sur les revenus du patrimoine"
     definition_period = YEAR
@@ -22,7 +23,8 @@ class f6de(Variable):
 # Pensions alimentaires
 class f6gi(Variable):
     cerfa_field = u"6GI"
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Pensions alimentaires versées à des enfants majeurs (décision de justice définitive avant 2006): 1er enfant"
     definition_period = YEAR
@@ -30,7 +32,8 @@ class f6gi(Variable):
 
 class f6gj(Variable):
     cerfa_field = u"6GJ"
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Pensions alimentaires versées à des enfants majeurs (décision de justice définitive avant 2006): 2eme enfant"
     definition_period = YEAR
@@ -38,7 +41,8 @@ class f6gj(Variable):
 
 class f6el(Variable):
     cerfa_field = u"6EL"
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Autres pensions alimentaires versées à des enfants majeurs: 1er enfant"
     # start_date = date(2006, 1, 1)
@@ -47,7 +51,8 @@ class f6el(Variable):
 
 class f6em(Variable):
     cerfa_field = u"6EM"
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Autres pensions alimentaires versées à des enfants majeurs: 2eme enfant"
     # start_date = date(2006, 1, 1)
@@ -56,7 +61,8 @@ class f6em(Variable):
 
 class f6gp(Variable):
     cerfa_field = u"6GP"
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Autres pensions alimentaires versées décision de justice définitive avant 2006 (mineurs, ascendants)"
     definition_period = YEAR
@@ -64,7 +70,8 @@ class f6gp(Variable):
 
 class f6gu(Variable):
     cerfa_field = u"6GU"
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Autres pensions alimentaires versées (mineurs, ascendants)"
     # start_date = date(2006, 1, 1)
@@ -74,7 +81,8 @@ class f6gu(Variable):
 # Frais d'accueil d'une personne de plus de 75 ans dans le besoin
 class f6eu(Variable):
     cerfa_field = u"6EU"
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Frais d'accueil de personnes de plus de 75 ans dans le besoin"
     definition_period = YEAR
@@ -92,7 +100,8 @@ class f6ev(Variable):
 # Déductions diverses
 class f6dd(Variable):
     cerfa_field = u"6DD"
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Déductions diverses"
     definition_period = YEAR
@@ -104,7 +113,8 @@ class f6ps(Variable):
         QUIFOY['conj']: u"6PT",
         QUIFOY['pac1']: u"6PU",
         }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Plafond de déduction épargne retraite (plafond calculé sur les revenus perçus en n-1)"
     definition_period = YEAR
@@ -115,7 +125,8 @@ class f6rs(Variable):
         QUIFOY['conj']: u"6RT",
         QUIFOY['pac1']: u"6RU",
         }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Cotisations d'épargne retraite versées au titre d'un PERP, PREFON, COREM et C.G.O.S"
     definition_period = YEAR
@@ -126,7 +137,8 @@ class f6ss(Variable):
         QUIFOY['conj']: u"6ST",
         QUIFOY['pac1']: u"6SU",
         }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Rachat de cotisations PERP, PREFON, COREM et C.G.O.S"
     definition_period = YEAR
@@ -135,7 +147,8 @@ class f6ss(Variable):
 # Souscriptions en faveur du cinéma ou de l’audiovisuel
 class f6aa(Variable):
     cerfa_field = u"6AA"
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Souscriptions en faveur du cinéma ou de l’audiovisuel"
     # start_date = date(2005, 1, 1)
@@ -147,7 +160,8 @@ class f6aa(Variable):
 # Souscriptions au capital des SOFIPÊCHE
 class f6cc(Variable):
     cerfa_field = u"CC"
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Souscriptions au capital des SOFIPÊCHE"
     # start_date = date(2005, 1, 1)
@@ -161,7 +175,8 @@ class f6cc(Variable):
 # ou Versements sur un compte épargne codéveloppement
 class f6eh(Variable):
     cerfa_field = u"EH"
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     # start_date = date(2005, 1, 1)
     end = '2005-12-31'
@@ -171,7 +186,8 @@ class f6eh(Variable):
 
 class f6da(Variable):
     cerfa_field = u"DA"
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Pertes en capital consécutives à la souscription au capital de sociétés nouvelles ou de sociétés en difficulté"
     # start_date = date(2005, 1, 1)
@@ -182,7 +198,8 @@ class f6da(Variable):
 # Dépenses de grosses réparations effectuées par les nus propriétaires
 class f6cb(Variable):
     cerfa_field = u"6CB"
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Dépenses de grosses réparations effectuées par les nus-propriétaires (dépenses réalisées au cours de l'année de perception des revenus)"
     # start_date = date(2009, 1, 1)
@@ -193,7 +210,8 @@ class f6cb(Variable):
 
 class f6hj(Variable):
     cerfa_field = u"6HJ"
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses des années antérieures"
     # start_date = date(2010, 1, 1)
@@ -202,7 +220,8 @@ class f6hj(Variable):
 
 class f6hk(Variable):
     cerfa_field = u"6HK"
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses des années antérieures"
     # start_date = date(2011, 1, 1)
@@ -211,7 +230,8 @@ class f6hk(Variable):
 
 class f6hl(Variable):
     cerfa_field = u"6HL"
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses des années antérieures"
     # start_date = date(2012, 1, 1)
@@ -220,7 +240,8 @@ class f6hl(Variable):
 
 class f6hm(Variable):
     cerfa_field = u"6HM"
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses des années antérieures"
     # start_date = date(2013, 1, 1)
@@ -230,7 +251,8 @@ class f6hm(Variable):
 # Sommes à rajouter au revenu imposable
 class f6gh(Variable):
     cerfa_field = u"6GH"
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Sommes à ajouter au revenu imposable"
     definition_period = YEAR
@@ -239,7 +261,8 @@ class f6gh(Variable):
 # Deficits antérieurs
 class f6fa(Variable):
     cerfa_field = u"6FA"
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Deficits globaux des années antérieures non encore déduits les années précédentes: année de perception des revenus -6"
     definition_period = YEAR
@@ -247,7 +270,8 @@ class f6fa(Variable):
 
 class f6fb(Variable):
     cerfa_field = u"6FB"
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Deficits globaux des années antérieures non encore déduits: année de perception des revenus -5"
     definition_period = YEAR
@@ -255,7 +279,8 @@ class f6fb(Variable):
 
 class f6fc(Variable):
     cerfa_field = u"6FC"
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Deficits globaux des années antérieures non encore déduits: année de perception des revenus -4"
     definition_period = YEAR
@@ -263,7 +288,8 @@ class f6fc(Variable):
 
 class f6fd(Variable):
     cerfa_field = u"6FD"
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Deficits globaux des années antérieures non encore déduits: année de perception des revenus -3"
     definition_period = YEAR
@@ -271,7 +297,8 @@ class f6fd(Variable):
 
 class f6fe(Variable):
     cerfa_field = u"6FE"
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Deficits globaux des années antérieures non encore déduits: année de perception des revenus -2"
     definition_period = YEAR
@@ -279,7 +306,8 @@ class f6fe(Variable):
 
 class f6fl(Variable):
     cerfa_field = u"6FL"
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Deficits globaux des années antérieures non encore déduits: année de perception des revenus -1"
     definition_period = YEAR

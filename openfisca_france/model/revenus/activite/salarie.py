@@ -36,7 +36,8 @@ class sal_pen_exo_etr(Variable):
         QUIFOY['pac1']: u"1CC",
         QUIFOY['pac2']: u"1DC",
         }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Salaires et pensions exonérés de source étrangère retenus pour le calcul du taux effectif"
     # start_date = date(2013, 1, 1)
@@ -50,7 +51,8 @@ class frais_reels(Variable):
         QUIFOY['pac2']: u"1DK",
         QUIFOY['pac3']: u"1EK",
         }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Frais réels"
     definition_period = YEAR
@@ -63,7 +65,8 @@ class hsup(Variable):
         QUIFOY['pac1']: u"1CU",
         QUIFOY['pac2']: u"1DU",
         }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Heures supplémentaires : revenus exonérés connus"
     # start_date = date(2007, 1, 1)

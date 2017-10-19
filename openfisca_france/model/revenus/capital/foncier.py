@@ -6,7 +6,8 @@ from openfisca_france.model.base import *  # noqa
 # Rentes viagères
 class f1aw(Variable):
     cerfa_field = u"1AW"
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Rentes viagères à titre onéreux perçues par le foyer par âge d'entrée en jouissance : Moins de 50 ans"
     definition_period = YEAR
@@ -14,7 +15,8 @@ class f1aw(Variable):
 
 class f1bw(Variable):
     cerfa_field = u"1BW"
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Rentes viagères à titre onéreux perçues par le foyer par âge d'entrée en jouissance : De 50 à 59 ans"
     definition_period = YEAR
@@ -22,7 +24,8 @@ class f1bw(Variable):
 
 class f1cw(Variable):
     cerfa_field = u"1CW"
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Rentes viagères à titre onéreux perçues par le foyer par âge d'entrée en jouissance : De 60 à 69 ans"
     definition_period = YEAR
@@ -30,7 +33,8 @@ class f1cw(Variable):
 
 class f1dw(Variable):
     cerfa_field = u"1DW"
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Rentes viagères à titre onéreux perçues par le foyer par âge d'entrée en jouissance : A partir de 70 ans"
     definition_period = YEAR
@@ -39,7 +43,8 @@ class f1dw(Variable):
 # Revenus fonciers
 class f4ba(Variable):
     cerfa_field = u"4BA"
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Revenus fonciers imposables"
     definition_period = YEAR
@@ -52,7 +57,8 @@ class f4ba(Variable):
 
 class f4bb(Variable):
     cerfa_field = u"4BB"
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Déficit imputable sur les revenus fonciers"
     definition_period = YEAR
@@ -60,7 +66,8 @@ class f4bb(Variable):
 
 class f4bc(Variable):
     cerfa_field = u"4BC"
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Déficit imputable sur le revenu global"
     definition_period = YEAR
@@ -68,7 +75,8 @@ class f4bc(Variable):
 
 class f4bd(Variable):
     cerfa_field = u"4BD"
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Déficits antérieurs non encore imputés"
     definition_period = YEAR
@@ -76,7 +84,8 @@ class f4bd(Variable):
 
 class f4be(Variable):
     cerfa_field = u"4BE"
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Micro foncier: recettes brutes sans abattement"
     definition_period = YEAR
@@ -85,7 +94,8 @@ class f4be(Variable):
 # Prime d'assurance loyers impayés
 class f4bf(Variable):
     cerfa_field = u"4BF"
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Primes d'assurance pour loyers impayés des locations conventionnées"
     definition_period = YEAR
