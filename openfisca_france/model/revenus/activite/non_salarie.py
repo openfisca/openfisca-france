@@ -1606,7 +1606,8 @@ enum_tns_type_activite = Enum([u'achat_revente', u'bic', u'bnc'])
 
 # TODO remove this ugly ETERNITY
 class tns_auto_entrepreneur_type_activite(Variable):
-    column = EnumCol(enum = enum_tns_type_activite)
+    value_type = Enum
+    possible_values = enum_tns_type_activite
     entity = Individu
     label = u"Type d'activité de l'auto-entrepreneur"
     definition_period = ETERNITY
@@ -1614,7 +1615,8 @@ class tns_auto_entrepreneur_type_activite(Variable):
 
 # TODO remove this ugly ETERNITY
 class tns_micro_entreprise_type_activite(Variable):
-    column = EnumCol(enum = enum_tns_type_activite)
+    value_type = Enum
+    possible_values = enum_tns_type_activite
     entity = Individu
     label = u"Type d'activité de la micro-entreprise"
     definition_period = ETERNITY
@@ -1637,7 +1639,8 @@ class tns_autres_revenus_chiffre_affaires(Variable):
 
 
 class tns_autres_revenus_type_activite(Variable):
-    column = EnumCol(enum = enum_tns_type_activite)
+    value_type = Enum
+    possible_values = enum_tns_type_activite
     entity = Individu
     label = u"Type d'activité de l'entreprise non AE ni ME"
     definition_period = MONTH

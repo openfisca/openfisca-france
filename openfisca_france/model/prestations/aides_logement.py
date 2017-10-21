@@ -763,14 +763,12 @@ class apl(Variable):
 
 
 class aide_logement_non_calculable(Variable):
-    column = EnumCol(
-        enum = Enum([
-            u"",
-            u"primo_accedant",
-            u"locataire_foyer"
-            ]),
-        default = 0
-        )
+    value_type = Enum
+    possible_values = Enum([
+        u"",
+        u"primo_accedant",
+        u"locataire_foyer"
+        ])
     entity = Famille
     label = u"Aide au logement non calculable"
     definition_period = MONTH
@@ -811,15 +809,14 @@ class crds_logement(Variable):
 
 
 class zone_apl(Variable):
-    column = EnumCol(
-        enum = Enum([
-            u"Non renseigné",
-            u"Zone 1",
-            u"Zone 2",
-            u"Zone 3",
-            ]),
-        default = 2
-        )
+    value_type = Enum
+    possible_values = Enum([
+        u"Non renseigné",
+        u"Zone 1",
+        u"Zone 2",
+        u"Zone 3",
+        ])
+    default = 2
     entity = Menage
     label = u"Zone APL"
     definition_period = MONTH

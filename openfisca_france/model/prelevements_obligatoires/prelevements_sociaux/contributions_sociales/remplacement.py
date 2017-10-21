@@ -12,15 +12,14 @@ log = logging.getLogger(__name__)
 
 
 class taux_csg_remplacement(Variable):
-    column = EnumCol(
-        default = 3,
-        enum = Enum([
-            u"Non renseigné/non pertinent",
-            u"Exonéré",
-            u"Taux réduit",
-            u"Taux plein",
-            ]),
-        )
+    default = 3
+    value_type = Enum
+    possible_values = Enum([
+        u"Non renseigné/non pertinent",
+        u"Exonéré",
+        u"Taux réduit",
+        u"Taux plein",
+        ])
     entity = Individu
     label = u"Taux retenu sur la CSG des revenus de remplacment"
     definition_period = MONTH

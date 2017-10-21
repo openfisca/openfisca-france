@@ -3,13 +3,12 @@
 from openfisca_france.model.base import *  # noqa analysis:ignore
 
 class eligibilite_anah(Variable):
-    column = EnumCol(
-        enum = Enum([
-            u"A vérifier",
-            u"Modestes",
-            u"Très modestes"
+    value_type = Enum
+    possible_values = Enum([
+        u"A vérifier",
+        u"Modestes",
+        u"Très modestes"
         ])
-    )
     entity = Menage
     label = u"Barème d'éligibilité aux aides ANAH"
     definition_period = YEAR

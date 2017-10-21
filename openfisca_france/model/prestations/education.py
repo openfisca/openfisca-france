@@ -301,16 +301,12 @@ class bourse_lycee(Variable):
 
 
 class scolarite(Variable):
-    column = EnumCol(
-        enum = Enum(
-            [
-                u"Inconnue",
-                u"Collège",
-                u"Lycée"
-                ],
-            ),
-        default = 0
-        )
+    value_type = Enum
+    possible_values = Enum([
+        u"Inconnue",
+        u"Collège",
+        u"Lycée"
+        ])
     entity = Individu
     label = u"Scolarité de l'enfant : collège, lycée..."
     definition_period = MONTH

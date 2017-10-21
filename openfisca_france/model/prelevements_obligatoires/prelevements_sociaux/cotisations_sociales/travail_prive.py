@@ -739,18 +739,14 @@ class complementaire_sante_salarie(Variable):
 
 
 class taille_entreprise(Variable):
-    column = EnumCol(
-        enum = Enum(
-            [
-                u"Non pertinent",
-                u"Moins de 10 salariés",
-                u"De 10 à 19 salariés",
-                u"De 20 à 249 salariés",
-                u"Plus de 250 salariés",
-                ],
-            ),
-        default = 0,
-        )
+    value_type = Enum
+    possible_values = Enum([
+        u"Non pertinent",
+        u"Moins de 10 salariés",
+        u"De 10 à 19 salariés",
+        u"De 20 à 249 salariés",
+        u"Plus de 250 salariés",
+        ])
     entity = Individu
     label = u"Catégorie de taille d'entreprise"
     reference = u"http://www.insee.fr/fr/themes/document.asp?ref_id=ip1321"

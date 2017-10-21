@@ -230,20 +230,16 @@ class apa_etablissement(Variable):
 
 
 class gir(Variable):
-    column = EnumCol(
-        enum = Enum(
-            [
-                u"Non défini",
-                u"Gir 1",
-                u"Gir 2",
-                u"Gir 3",
-                u"Gir 4",
-                u"Gir 5",
-                u"Gir 6",
-                ],
-            ),
-        default = 0,
-        )
+    value_type = Enum
+    possible_values = Enum([
+        u"Non défini",
+        u"Gir 1",
+        u"Gir 2",
+        u"Gir 3",
+        u"Gir 4",
+        u"Gir 5",
+        u"Gir 6",
+        ])
     entity = Individu
     label = u"Groupe iso-ressources de l'individu"
     definition_period = MONTH

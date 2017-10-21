@@ -171,13 +171,11 @@ class aah_eligible(Variable):
 
 
 class aah_non_calculable(Variable):
-    column = EnumCol(
-        enum = Enum([
-            u"",
-            u"intervention_CDAPH_necessaire"
-        ]),
-        default = 0
-    )
+    value_type = Enum
+    possible_values = Enum([
+        u"",
+        u"intervention_CDAPH_necessaire"
+        ])
     entity = Individu
     label = u"AAH non calculable"
     definition_period = MONTH

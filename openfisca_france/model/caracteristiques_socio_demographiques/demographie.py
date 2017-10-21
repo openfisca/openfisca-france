@@ -28,14 +28,14 @@ class garde_alternee(Variable):
 
 
 class activite(Variable):
-    column = EnumCol(
-        default = 4,
-        enum = Enum([u'Actif occupé',
-            u'Chômeur',
-            u'Étudiant, élève',
-            u'Retraité',
-            u'Autre inactif']),
-        )
+    value_type = Enum
+    default = 4
+    possible_values = Enum([
+        u'Actif occupé',
+        u'Chômeur',
+        u'Étudiant, élève',
+        u'Retraité',
+        u'Autre inactif'])
     entity = Individu
     label = u"Activité"
     definition_period = MONTH
@@ -50,15 +50,16 @@ class enceinte(Variable):
 
 
 class statut_marital(Variable):
-    column = EnumCol(
-        default = 2,
-        enum = Enum([u"Marié",
-            u"Célibataire",
-            u"Divorcé",
-            u"Veuf",
-            u"Pacsé",
-            u"Jeune veuf"], start = 1),
-        )
+    value_type = Enum
+    default = 2
+    possible_values = Enum([
+        u"",
+        u"Marié",
+        u"Célibataire",
+        u"Divorcé",
+        u"Veuf",
+        u"Pacsé",
+        u"Jeune veuf"])
     entity = Individu
     label = u"Statut marital"
     definition_period = MONTH

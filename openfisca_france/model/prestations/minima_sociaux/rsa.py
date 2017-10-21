@@ -864,14 +864,12 @@ class rsa_majore_eligibilite(Variable):
 
 
 class rsa_non_calculable(Variable):
-    column = EnumCol(
-        enum = Enum([
-            u"",
-            u"tns",
-            u"conjoint_tns"
-            ]),
-        default = 0
-        )
+    value_type = Enum
+    possible_values = Enum([
+        u"",
+        u"tns",
+        u"conjoint_tns"
+        ])
     entity = Famille
     label = u"RSA non calculable"
     end = '2016-12-31'

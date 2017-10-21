@@ -58,18 +58,17 @@ class habite_chez_parents(Variable):
 
 
 class statut_occupation_logement(Variable):
-    column = EnumCol(
-        enum = Enum([
-            u"Non renseigné",
-            u"Accédant à la propriété",
-            u"Propriétaire (non accédant) du logement",
-            u"Locataire d'un logement HLM",
-            u"Locataire ou sous-locataire d'un logement loué vide non-HLM",
-            u"Locataire ou sous-locataire d'un logement loué meublé ou d'une chambre d'hôtel",
-            u"Logé gratuitement par des parents, des amis ou l'employeur",
-            u"Locataire d'un foyer (résidence universitaire, maison de retraite, foyer de jeune travailleur, résidence sociale...)",
-            u"Sans domicile stable"])
-    )
+    value_type = Enum
+    possible_values = Enum([
+        u"Non renseigné",
+        u"Accédant à la propriété",
+        u"Propriétaire (non accédant) du logement",
+        u"Locataire d'un logement HLM",
+        u"Locataire ou sous-locataire d'un logement loué vide non-HLM",
+        u"Locataire ou sous-locataire d'un logement loué meublé ou d'une chambre d'hôtel",
+        u"Logé gratuitement par des parents, des amis ou l'employeur",
+        u"Locataire d'un foyer (résidence universitaire, maison de retraite, foyer de jeune travailleur, résidence sociale...)",
+        u"Sans domicile stable"])
     entity = Menage
     label = u"Statut d'occupation du logement"
     set_input = set_input_dispatch_by_period
