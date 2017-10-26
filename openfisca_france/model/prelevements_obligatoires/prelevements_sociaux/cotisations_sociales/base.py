@@ -27,7 +27,7 @@ def apply_bareme_for_relevant_type_sal(
     assert plafond_securite_sociale is not None
 
     def iter_cotisations():
-        for type_sal_name, type_sal_index in CATEGORIE_SALARIE:
+        for type_sal_name in [member.name for member in CATEGORIE_SALARIE]:
             if type_sal_name not in bareme_by_type_sal_name:  # to deal with public_titulaire_militaire
                 continue
 
