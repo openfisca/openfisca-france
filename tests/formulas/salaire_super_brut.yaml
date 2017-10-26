@@ -3,9 +3,9 @@
   relative_error_margin: 0.001
   input_variables:
     salaire_de_base: 1457.52
-    allegement_fillon_mode_recouvrement: 1
+    allegement_fillon_mode_recouvrement: anticipe
     effectif_entreprise: 1
-    categorie_salarie: 0
+    categorie_salarie: prive_non_cadre
   output_variables:
     cotisations_employeur: -601.06
     allegement_fillon: 407
@@ -17,9 +17,9 @@
   relative_error_margin: 0.001
   input_variables:
     salaire_de_base: 1457.52
-    allegement_fillon_mode_recouvrement: 1
+    allegement_fillon_mode_recouvrement: anticipe
     effectif_entreprise: 1
-    categorie_salarie: 0
+    categorie_salarie: prive_non_cadre
     jeune_entreprise_innovante: 1
   output_variables:
     cotisations_employeur: -601.2

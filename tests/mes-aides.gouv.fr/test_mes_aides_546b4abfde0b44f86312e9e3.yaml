@@ -9,7 +9,7 @@ keywords:
 period: month:2014-11
 relative_error_margin: 0.02
 individus:
-- activite: 1
+- activite: chomeur
   age: 28
   age_en_mois: 346
   ass_precondition_remplie: false
@@ -268,7 +268,7 @@ menages:
   - 546b4a76ba32fff66335d366
   participation_frais: false
   personne_de_reference: 546b4a76ba32fff66335d367
-  statut_occupation_logement: 6
+  statut_occupation_logement: loge_gratuitement
 output_variables:
   asf: 0
   rsa: 649.77

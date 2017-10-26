@@ -329,6 +329,6 @@ menages:
   - 55b8807e40cf7dab6b31aa1f
   participation_frais: false
   personne_de_reference: 55b8807e40cf7dab6b31aa21
-  statut_occupation_logement: 6
+  statut_occupation_logement: loge_gratuitement
 output_variables:
   rsa: 452.81

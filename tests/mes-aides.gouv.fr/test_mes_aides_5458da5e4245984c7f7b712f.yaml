@@ -7,7 +7,7 @@ description: La personne a 62 ans et a coché la case "inapte au travail", elle 
 period: "month:2014-11"
 relative_error_margin: 0.02
 individus:
-  activite: 3
+  activite: retraite
   age: 62
   age_en_mois: 746
   date_naissance: "1952-08-25"
@@ -258,6 +258,6 @@ menages:
   depcom: 75102
   enfants:
   personne_de_reference: 5458cfe44c6e1e4b7fca58c0
-  statut_occupation_logement: 2
+  statut_occupation_logement: proprietaire
 output_variables:
   aspa: 700

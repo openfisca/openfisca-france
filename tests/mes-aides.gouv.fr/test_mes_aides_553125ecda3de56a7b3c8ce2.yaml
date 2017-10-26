@@ -369,6 +369,6 @@ menages:
   loyer: 500
   logement_chambre: 1
   personne_de_reference: 553125bada3de56a7b3c8cd5
-  statut_occupation_logement: 4
+  statut_occupation_logement: locataire_vide
 output_variables:
   cf: 96.16

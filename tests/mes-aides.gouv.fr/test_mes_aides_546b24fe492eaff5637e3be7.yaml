@@ -6,7 +6,7 @@ description: null
 period: month:2014-11
 relative_error_margin: 0.02
 individus:
-- activite: 1
+- activite: chomeur
   age: 20
   age_en_mois: 250
   ass_precondition_remplie: false
@@ -250,6 +250,6 @@ menages:
   - 546b24bd492eaff5637e3be4
   participation_frais: false
   personne_de_reference: 546b24bd492eaff5637e3be5
-  statut_occupation_logement: 6
+  statut_occupation_logement: loge_gratuitement
 output_variables:
   rsa: 658.37

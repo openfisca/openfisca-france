@@ -18,7 +18,7 @@
       age: 10
     - id: "enfant2"
       age: 11
-      scolarite: 1 # Collège
+      scolarite: college
   output_variables:
     bourse_college_echelon: 0 # non boursier
     bourse_college: 0
@@ -43,7 +43,7 @@
       age: 10
     - id: "enfant2"
       age: 11
-      scolarite: 1 # Collège
+      scolarite: college
   output_variables:
     bourse_college_echelon: 1
     bourse_college: 84
@@ -70,7 +70,7 @@
       age: 10
     - id: "enfant2"
       age: 11
-      scolarite: 1 # Collège
+      scolarite: college
   output_variables:
     bourse_college_echelon: 2
     bourse_college: 231
@@ -97,7 +97,7 @@
       age: 10
     - id: "enfant2"
       age: 11
-      scolarite: 1 # Collège
+      scolarite: college
   output_variables:
     bourse_college_echelon: 1
     bourse_college: 84
@@ -122,10 +122,10 @@
       age: 10
     - id: "enfant3"
       age: 10
-      scolarite: 1 # Collège
+      scolarite: college
     - id: "enfant2"
       age: 11
-      scolarite: 1 # Collège
+      scolarite: college
   output_variables:
     bourse_college_echelon: 1
     bourse_college: 84 * 2
@@ -153,7 +153,7 @@
       age: 10
     - id: "enfant2"
       age: 11
-      scolarite: 2 # Lycée
+      scolarite: lycee
   output_variables:
     bourse_lycee_echelon: 2
     bourse_lycee: 531
@@ -182,7 +182,7 @@
       age: 10
     - id: "enfant2"
       age: 11
-      scolarite: 2 # Lycée
+      scolarite: lycee
   output_variables:
     bourse_lycee_echelon: 4
     bourse_lycee: 723
@@ -208,7 +208,7 @@
       age: 10
     - id: "enfant2"
       age: 11
-      scolarite: 2 # Lycée
+      scolarite: lycee
   output_variables:
     bourse_lycee_echelon: 2
     bourse_lycee: 531
@@ -237,7 +237,7 @@
       age: 10
     - id: "enfant2"
       age: 11
-      scolarite: 2 # Lycée
+      scolarite: lycee
   output_variables:
     bourse_lycee_echelon: 6
     bourse_lycee: 918
@@ -266,7 +266,7 @@
       age: 10
     - id: "enfant2"
       age: 11
-      scolarite: 2 # Lycée
+      scolarite: lycee
   output_variables:
     bourse_lycee_echelon: 5
     bourse_lycee: 819
@@ -292,7 +292,7 @@
       age: 10
     - id: "enfant2"
       age: 11
-      scolarite: 1 # Collège
+      scolarite: college
   output_variables:
     bourse_college_echelon: 3
     bourse_college: 360
@@ -317,7 +317,7 @@
       age: 10
     - id: "enfant2"
       age: 11
-      scolarite: 1 # Collège
+      scolarite: college
   output_variables:
     bourse_college:
       2015-09: 231
@@ -342,7 +342,7 @@
       age: 10
     - id: "enfant2"
       age: 11
-      scolarite: 1 # Collège
+      scolarite: college
   output_variables:
     bourse_college:
       2015-09: 84
@@ -368,7 +368,7 @@
       age: 10
     - id: "enfant2"
       age: 11
-      scolarite: 1 # Collège
+      scolarite: college
   output_variables:
     bourse_college:
       2015-09: 0
@@ -391,7 +391,7 @@
       age: 40
     - id: "enfant1"
       age: 10
-      scolarite: 1 # Collège
+      scolarite: college
   output_variables:
     bourse_college_echelon:
       2017-09: 1
@@ -416,7 +416,7 @@
       age: 40
     - id: "enfant1"
       age: 10
-      scolarite: 1 # Collège
+      scolarite: college
   output_variables:
     bourse_college:
       2017-09: 0
@@ -439,7 +439,7 @@
       age: 40
     - id: "enfant1"
       age: 10
-      scolarite: 1 # Collège
+      scolarite: college
     - id: "enfant2"
       age: 3
   output_variables:
@@ -466,7 +466,7 @@
       age: 40
     - id: "enfant1"
       age: 10
-      scolarite: 1 # Collège
+      scolarite: college
   output_variables:
     bourse_college_echelon:
       2017-09: 2
@@ -491,7 +491,7 @@
       age: 40
     - id: "enfant1"
       age: 10
-      scolarite: 1 # Collège
+      scolarite: college
   output_variables:
     bourse_college_echelon:
       2017-09: 1
@@ -516,7 +516,7 @@
       age: 40
     - id: "enfant1"
       age: 10
-      scolarite: 1 # Collège
+      scolarite: college
   output_variables:
     bourse_college:
       2017-09: 450

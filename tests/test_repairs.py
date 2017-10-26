@@ -6,7 +6,7 @@ import json
 from nose.tools import assert_equal
 
 from cache import tax_benefit_system
-from openfisca_france.model.caracteristiques_socio_demographiques.demographie import TypesActivite
+from openfisca_france.model.base import *
 
 
 def test_2_parents_2_enfants():

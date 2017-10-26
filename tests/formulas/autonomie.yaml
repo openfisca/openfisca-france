@@ -4,7 +4,7 @@
   absolute_error_margin: 0.01
   input_variables:
     age: 70
-    gir: "Gir 1"
+    gir: gir_1
   output_variables:
     base_ressources_apa: 0
 
@@ -14,7 +14,7 @@
   absolute_error_margin: 0.03
   input_variables:
     age: 70
-    gir: "Gir 1"
+    gir: gir_1
     dependance_plan_aide_domicile: 2000
   output_variables:
     dependance_plan_aide_domicile: 2000
@@ -26,7 +26,7 @@
   absolute_error_margin: 0.03
   input_variables:
     age: 70
-    gir: "Gir 1"
+    gir: gir_1
     dependance_plan_aide_domicile: 2000
     base_ressources_apa: 0
   output_variables:
@@ -39,7 +39,7 @@
   absolute_error_margin: 0.03
   input_variables:
     age: 50
-    gir: "Gir 1"
+    gir: gir_1
   output_variables:
     apa_eligibilite: 0
 
@@ -49,7 +49,7 @@
   absolute_error_margin: 0.03
   input_variables:
     age: 50
-    gir: "Gir 1"
+    gir: gir_1
     dependance_tarif_etablissement_gir_5_6: 2000
     dependance_tarif_etablissement_gir_dependant: 2000
     base_ressources_apa: 5000
@@ -62,7 +62,7 @@
   absolute_error_margin: 0.03
   input_variables:
     age: 75
-    gir: "Gir 1"
+    gir: gir_1
     dependance_tarif_etablissement_gir_dependant: 1500
     dependance_tarif_etablissement_gir_5_6: 600
     base_ressources_apa: 3827.25
@@ -76,7 +76,7 @@
   absolute_error_margin: 0.03
   input_variables:
     age: 75
-    gir: "Gir 1"
+    gir: gir_1
     dependance_tarif_etablissement_gir_dependant: 1500
     dependance_tarif_etablissement_gir_5_6: 600
     base_ressources_apa: 2438.55
@@ -90,7 +90,7 @@
   absolute_error_margin: 0.03
   input_variables:
     age: 75
-    gir: "Gir 3"
+    gir: gir_3
     dependance_tarif_etablissement_gir_dependant: 1200
     dependance_tarif_etablissement_gir_5_6: 600
     base_ressources_apa: 1500
@@ -104,7 +104,7 @@
   absolute_error_margin: 0.03
   input_variables:
     age: 75
-    gir: "Gir 3"
+    gir: gir_3
     dependance_plan_aide_domicile: 1800
     base_ressources_apa: 700
   output_variables:
@@ -117,7 +117,7 @@
   absolute_error_margin: 0.03
   input_variables:
     age: 75
-    gir: "Gir 5"
+    gir: gir_5
     dependance_plan_aide_domicile: 0
     base_ressources_apa: 1500
   output_variables:
@@ -130,7 +130,7 @@
   absolute_error_margin: 0.03
   input_variables:
     age: 75
-    gir: "Gir 5"
+    gir: gir_5
     dependance_tarif_etablissement_gir_5_6: 1800
     dependance_tarif_etablissement_gir_dependant: 1800
     base_ressources_apa: 1500
@@ -144,7 +144,7 @@
   absolute_error_margin: 0.03
   input_variables:
     age: 75
-    gir: "Gir 3"
+    gir: gir_3
     dependance_tarif_etablissement_gir_5_6: 1800
     dependance_tarif_etablissement_gir_dependant: 1800
     base_ressources_apa: 1500
@@ -158,7 +158,7 @@
   absolute_error_margin: 0.03
   input_variables:
     age: 75
-    gir: "Gir 1"
+    gir: gir_1
     base_ressources_apa: 3500
     dependance_plan_aide_domicile: 1200
   output_variables:
@@ -172,7 +172,7 @@
   absolute_error_margin: 0.03
   input_variables:
     age: 75
-    gir: "Gir 3"
+    gir: gir_3
     base_ressources_apa: 3500
     dependance_plan_aide_domicile: 1200
   output_variables:
@@ -184,7 +184,7 @@
   absolute_error_margin: 0.03
   input_variables:
     age: 75
-    gir: "Gir 3"
+    gir: gir_3
     dependance_tarif_etablissement_gir_5_6: 1200
     dependance_tarif_etablissement_gir_dependant: 1800
     base_ressources_apa: 1000
@@ -198,7 +198,7 @@
   absolute_error_margin: 0.03
   input_variables:
     age: 75
-    gir: "Gir 3"
+    gir: gir_3
     base_ressources_apa: 700
     dependance_plan_aide_domicile: 3000
   output_variables:
@@ -211,20 +211,20 @@
   absolute_error_margin: 0.03
   input_variables:
     age: 75
-    gir: "Gir 1"
+    gir: gir_1
     base_ressources_apa: 700
     dependance_plan_aide_domicile: 3000
   output_variables:
     apa_domicile: 1304.84
     apa_etablissement: 0
 
-- name: "APA domicile célibataire ressources inférieur seuil 1 et GIR 1 - test plafond inf gir 4"
+- name: "APA domicile célibataire ressources inférieur seuil 1 et GIR_1 1 - test plafond inf gir_1 4"
   description: Montant APA
   period: 2013-05
   absolute_error_margin: 0.03
   input_variables:
     age: 75
-    gir: "Gir 4"
+    gir: gir_4
     base_ressources_apa: 4000
     dependance_plan_aide_domicile: 100
   output_variables:
@@ -238,7 +238,7 @@
   input_variables:
     age: 75
     en_couple: 1
-    gir: "Gir 4"
+    gir: gir_4
     base_ressources_apa: 1000
     dependance_plan_aide_domicile: 100
   output_variables:
@@ -252,7 +252,7 @@
   input_variables:
     age: 75
     en_couple: 1
-    gir: "Gir 4"
+    gir: gir_4
     base_ressources_apa: 4000
     dependance_tarif_etablissement_gir_5_6: 1200
     dependance_tarif_etablissement_gir_dependant: 1800

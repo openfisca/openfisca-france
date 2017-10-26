@@ -362,6 +362,6 @@ menages:
   depcom: 75112
   enfants:
   personne_de_reference: 54817dd876be8a87669fc438
-  statut_occupation_logement: 6
+  statut_occupation_logement: loge_gratuitement
 output_variables:
   rsa: 315.18

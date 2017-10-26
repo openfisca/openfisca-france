@@ -255,6 +255,6 @@ menages:
   depcom: 75120
   enfants: 546f4304e1e8823c3da3eb4c
   personne_de_reference: 546f4304e1e8823c3da3eb59
-  statut_occupation_logement: 6
+  statut_occupation_logement: loge_gratuitement
 output_variables:
   asf: 0

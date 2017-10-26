@@ -4,7 +4,7 @@ description:
 period: "month:2014-10"
 relative_error_margin: 0.02
 individus:
-  activite: 1
+  activite: chomeur
   age: 32
   age_en_mois: 393
   date_naissance: "1982-01-01"
@@ -255,6 +255,6 @@ menages:
   depcom: 92071
   enfants:
   personne_de_reference: 544e15fd1dddcaa51c2c8ef0
-  statut_occupation_logement: 6
+  statut_occupation_logement: loge_gratuitement
 output_variables:
   rsa: 0

@@ -6,7 +6,7 @@ description: Les ressources du couple sont sup au plafond mais la pension alimen
 period: "month:2015-06"
 relative_error_margin: 0.02
 individus:
-  - activite: 1
+  - activite: chomeur
     age: 44
     age_en_mois: 533
     ass_precondition_remplie: true
@@ -62,7 +62,7 @@ individus:
       2015-04: 663
       2015-05: 663
       2015-06: 663
-    statut_marital: 1
+    statut_marital: marie
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
@@ -152,7 +152,7 @@ individus:
       2015-04: 1271
       2015-05: 1271
       2015-06: 1271
-    statut_marital: 1
+    statut_marital: marie
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
@@ -367,6 +367,6 @@ menages:
   depcom: 77004
   enfants:
   personne_de_reference: 55817e48433935771434cafe
-  statut_occupation_logement: 2
+  statut_occupation_logement: proprietaire
 output_variables:
   ass: 487.5

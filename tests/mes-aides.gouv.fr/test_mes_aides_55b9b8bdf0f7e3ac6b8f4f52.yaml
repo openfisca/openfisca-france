@@ -44,14 +44,14 @@ individus:
       2013: 1967
     salaire_imposable:
       2013: 0
-    statut_marital: 1
+    statut_marital: marie
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
   - enfant_a_charge:
       2015: true
-    activite: 1
+    activite: chomeur
     age: 29
     age_en_mois: 356
     ass_precondition_remplie: false
@@ -140,7 +140,7 @@ individus:
       2015-05: 1239
       2015-06: 1239
       2015-07: 1239
-    statut_marital: 1
+    statut_marital: marie
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
@@ -195,7 +195,7 @@ individus:
     interets_epargne_sur_livrets:
       2012-01: 0
     handicap: 0
-    scolarite: 1
+    scolarite: college
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
@@ -214,7 +214,7 @@ individus:
     interets_epargne_sur_livrets:
       2012-01: 0
     handicap: 0
-    scolarite: 1
+    scolarite: college
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
@@ -233,7 +233,7 @@ individus:
     interets_epargne_sur_livrets:
       2012-01: 0
     handicap: 0
-    scolarite: 1
+    scolarite: college
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
@@ -469,7 +469,7 @@ menages:
     - 55b9b7b4f0f7e3ac6b8f4f26
   loyer: 374
   personne_de_reference: 55b9b7b4f0f7e3ac6b8f4f45
-  statut_occupation_logement: 4
+  statut_occupation_logement: locataire_vide
 output_variables:
   aide_logement: 414.81
   rsa: 18.44

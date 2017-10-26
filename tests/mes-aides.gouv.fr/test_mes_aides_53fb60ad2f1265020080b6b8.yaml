@@ -18,7 +18,7 @@ individus:
     interets_epargne_sur_livrets:
       2012-01: 0
     handicap: 0
-    statut_marital: 2
+    statut_marital: celibataire
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
@@ -286,7 +286,7 @@ menages:
     - 53fb60822f1265020080b6b4
   loyer: 124
   personne_de_reference: 53fb60822f1265020080b6b7
-  statut_occupation_logement: 4
+  statut_occupation_logement: locataire_vide
 output_variables:
   af: 129.99
   rsa: 770.26

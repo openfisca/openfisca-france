@@ -11,7 +11,7 @@ relative_error_margin: 0.02
 individus:
   enfant_a_charge:
     2015: true
-  activite: 1
+  activite: chomeur
   age: 56
   age_en_mois: 681
   ass_precondition_remplie: false
@@ -304,6 +304,6 @@ menages:
   enfants:
   loyer: 0
   personne_de_reference: 55f02bd87869142d04874f84
-  statut_occupation_logement: 2
+  statut_occupation_logement: proprietaire
 output_variables:
   rsa: 461.26

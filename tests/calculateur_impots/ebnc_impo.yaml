@@ -13,8 +13,8 @@
   - id: ind0
     salaire_imposable: 24000
     ebnc_impo: 1500
-    activite: 0
-    statut_marital: 2
+    activite: actif
+    statut_marital: celibataire
     date_naissance: '1970-01-01'
   menages:
   - id: '0'
@@ -41,8 +41,8 @@
   - id: ind0
     salaire_imposable: 24000
     ebnc_impo: 1500
-    activite: 0
-    statut_marital: 2
+    activite: actif
+    statut_marital: celibataire
     date_naissance: '1970-01-01'
   menages:
   - id: '0'
@@ -69,8 +69,8 @@
   - id: ind0
     salaire_imposable: 24000
     ebnc_impo: 1500
-    activite: 0
-    statut_marital: 2
+    activite: actif
+    statut_marital: celibataire
     date_naissance: '1970-01-01'
   menages:
   - id: '0'
@@ -98,8 +98,8 @@
   - id: ind0
     salaire_imposable: 24000
     ebnc_impo: 1500
-    activite: 0
-    statut_marital: 2
+    activite: actif
+    statut_marital: celibataire
     date_naissance: '1970-01-01'
   menages:
   - id: '0'
@@ -127,8 +127,8 @@
   - id: ind0
     salaire_imposable: 24000
     ebnc_impo: 1500
-    activite: 0
-    statut_marital: 2
+    activite: actif
+    statut_marital: celibataire
     date_naissance: '1970-01-01'
   menages:
   - id: '0'
@@ -156,8 +156,8 @@
   - id: ind0
     salaire_imposable: 24000
     ebnc_impo: 1500
-    activite: 0
-    statut_marital: 2
+    activite: actif
+    statut_marital: celibataire
     date_naissance: '1970-01-01'
   menages:
   - id: '0'
@@ -185,8 +185,8 @@
   - id: ind0
     salaire_imposable: 24000
     ebnc_impo: 1500
-    activite: 0
-    statut_marital: 2
+    activite: actif
+    statut_marital: celibataire
     date_naissance: '1970-01-01'
   menages:
   - id: '0'
@@ -214,8 +214,8 @@
   - id: ind0
     salaire_imposable: 24000
     ebnc_impo: 1500
-    activite: 0
-    statut_marital: 2
+    activite: actif
+    statut_marital: celibataire
     date_naissance: '1970-01-01'
   menages:
   - id: '0'
@@ -244,8 +244,8 @@
   - id: ind0
     salaire_imposable: 24000
     ebnc_impo: 1500
-    activite: 0
-    statut_marital: 2
+    activite: actif
+    statut_marital: celibataire
     date_naissance: '1970-01-01'
   menages:
   - id: '0'

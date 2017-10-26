@@ -92,7 +92,7 @@ individus:
   interets_epargne_sur_livrets:
     2012-01: 0
   handicap: 0
-  scolarite: 1
+  scolarite: college
   valeur_locative_immo_non_loue:
     2012-01: 0
   valeur_locative_terrains_non_loue:
@@ -351,7 +351,7 @@ menages:
   - 55915f1f2f56a0fd2f633194
   loyer: 500
   personne_de_reference: 55915f1f2f56a0fd2f633197
-  statut_occupation_logement: 4
+  statut_occupation_logement: locataire_vide
 output_variables:
   acs: 500
   af: 295.05

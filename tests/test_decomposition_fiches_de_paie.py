@@ -16,15 +16,15 @@ def test_decomposition(print_decomposition = False):
         period = "2013-01",
         parent1 = dict(
             effectif_entreprise = 3000,
-            exposition_accident = 3,
+            exposition_accident = "tres_eleve",
             code_postal_entreprise = "75001",
             ratio_alternants = .025,
             salaire_de_base = {"2013": 12 * 3000},
-            taille_entreprise = 3,
-            categorie_salarie = 0,
+            taille_entreprise = "de_20_a_249",
+            categorie_salarie = "prive_non_cadre",
             ),
         menage = dict(
-            zone_apl = 1,
+            zone_apl = "zone_1",
             ),
         ).new_simulation()
 

@@ -6,7 +6,7 @@ description: "Valeur attendue saisie : montant brut maximal personne seule SP.fr
 period: "month:2014-12"
 relative_error_margin: 0.02
 individus:
-  activite: 3
+  activite: retraite
   age: 59
   age_en_mois: 719
   date_naissance: "1955-01-01"
@@ -242,6 +242,6 @@ menages:
   depcom: 92071
   enfants:
   personne_de_reference: 5481e2d95f35e8cf064b9bc5
-  statut_occupation_logement: 6
+  statut_occupation_logement: loge_gratuitement
 output_variables:
   asi: 403.76

@@ -265,7 +265,7 @@ menages:
   - 5633aeabeeab276a0422a3c2
   loyer: 758
   personne_de_reference: 559fb566ecfc1e52013e3e1d
-  statut_occupation_logement: 4
+  statut_occupation_logement: locataire_vide
 output_variables:
   aide_logement: 422.59
   rsa: 0

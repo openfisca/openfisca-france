@@ -76,7 +76,7 @@ individus:
     interets_epargne_sur_livrets:
       2012-01: 0
     handicap: 0
-    scolarite: 2
+    scolarite: lycee
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
@@ -289,7 +289,7 @@ menages:
   enfants: 54eb4a9010c49b0772c74580
   loyer: 500
   personne_de_reference: 548ac39ffc1609f0180de26a
-  statut_occupation_logement: 4
+  statut_occupation_logement: locataire_vide
 output_variables:
   acs: 550
   cmu_c: false

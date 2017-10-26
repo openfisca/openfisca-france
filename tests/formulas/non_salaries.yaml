@@ -86,7 +86,7 @@
     tns_micro_entreprise_chiffre_affaires:
       2014: 12000
     tns_micro_entreprise_type_activite:
-      2014: 1 # BIC
+      2014: "bic"
 
   output_variables:
     asi_aspa_base_ressources:
@@ -114,7 +114,7 @@
       2014-03: 1000
       2014-02: 1000
     tns_auto_entrepreneur_type_activite:
-      2014: 2 # BNC
+      2014: "bnc"
 
   output_variables:
     asi_aspa_base_ressources:
