@@ -64,7 +64,7 @@ class assiette_cotisations_sociales_prive(Variable):
             hsup +
             indemnites_compensatrices_conges_payes +
             remuneration_apprenti +
-            (categorie_salarie == CATEGORIE_SALARIE['public_non_titulaire']) * (indemnite_residence + primes_fonction_publique) +
+            (categorie_salarie == CATEGORIE_SALARIE.public_non_titulaire) * (indemnite_residence + primes_fonction_publique) +
             reintegration_titre_restaurant_employeur + indemnite_fin_contrat
             )
         return assiette * (assiette > 0)
@@ -701,7 +701,7 @@ class prevoyance_obligatoire_cadre(Variable):
             'prevoyance_obligatoire_cadre_taux_employeur', period)
 
         cotisation = - (
-            (categorie_salarie == CATEGORIE_SALARIE['prive_cadre']) *
+            (categorie_salarie == CATEGORIE_SALARIE.prive_cadre) *
             min_(assiette_cotisations_sociales, plafond_securite_sociale) *
             prevoyance_obligatoire_cadre_taux_employeur
             )
