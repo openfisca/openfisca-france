@@ -3,7 +3,7 @@
 from functools import partial
 from numpy import busday_count as original_busday_count, datetime64, timedelta64
 from openfisca_france.model.base import *  # noqa analysis:ignore
-
+from openfisca_france.model.prestations.aides_logement import TypesZoneApl
 
 class indemnites_stage(Variable):
     value_type = float
@@ -716,13 +716,20 @@ class indemnite_residence(Variable):
 
         P = _P.fonc.indem_resid
         min_zone_1, min_zone_2, min_zone_3 = P.min * P.taux.zone1, P.min * P.taux.zone2, P.min * P.taux.zone3
-        taux = P.taux.zone1 * (zone_apl == 1) + P.taux.zone2 * (zone_apl == 2) + P.taux.zone3 * (zone_apl == 3)
-        plancher = min_zone_1 * (zone_apl == 1) + min_zone_2 * (zone_apl == 2) + min_zone_3 * (zone_apl == 3)
+        taux = P.taux.zone1 * (zone_apl == TypesZoneApl.zone_1) + P.taux.zone2 * (zone_apl == TypesZoneApl.zone_2) + P.taux.zone3 * (zone_apl == TypesZoneApl.zone_3)
+        plancher = min_zone_1 * (zone_apl == TypesZoneApl.zone_1) + min_zone_2 * (zone_apl == TypesZoneApl.zone_2) + min_zone_3 * (zone_apl == TypesZoneApl.zone_3)
+        public = \
+            (categorie_salarie == TypesCategorieSalarie.public_titulaire_etat) \
+            + (categorie_salarie == TypesCategorieSalarie.public_titulaire_militaire) \
+            + (categorie_salarie == TypesCategorieSalarie.public_titulaire_territoriale) \
+            + (categorie_salarie == TypesCategorieSalarie.public_titulaire_hospitaliere) \
+            + (categorie_salarie == TypesCategorieSalarie.public_non_titulaire) \
+            + (categorie_salarie == TypesCategorieSalarie.non_pertinent)
 
         return max_(
             plancher,
             taux * (traitement_indiciaire_brut + salaire_de_base)
-            ) * (categorie_salarie >= 2)
+            ) * public
 
 
 class indice_majore(Variable):
@@ -738,7 +745,15 @@ class indice_majore(Variable):
         _P = simulation.parameters_at(period.start)
 
         traitement_annuel_brut = _P.fonc.IM_100
-        return (traitement_indiciaire_brut * 100 * 12 / traitement_annuel_brut) * (categorie_salarie >= 2)
+        public = \
+            (categorie_salarie == TypesCategorieSalarie.public_titulaire_etat) \
+            + (categorie_salarie == TypesCategorieSalarie.public_titulaire_militaire) \
+            + (categorie_salarie == TypesCategorieSalarie.public_titulaire_territoriale) \
+            + (categorie_salarie == TypesCategorieSalarie.public_titulaire_hospitaliere) \
+            + (categorie_salarie == TypesCategorieSalarie.public_non_titulaire) \
+            + (categorie_salarie == TypesCategorieSalarie.non_pertinent)
+
+        return (traitement_indiciaire_brut * 100 * 12 / traitement_annuel_brut) * public
 
 
 class primes_fonction_publique(Variable):
@@ -839,8 +854,14 @@ class supp_familial_traitement(Variable):
         plafond = (plafond_mensuel_1 * (fonc_nbenf == 1) + plafond_mensuel_2 * (fonc_nbenf == 2) +
                    plafond_mensuel_3 * (fonc_nbenf == 3) +
                    plafond_mensuel_supp * max_(0, fonc_nbenf - 3))
+        public = \
+            (categorie_salarie == TypesCategorieSalarie.public_titulaire_etat) \
+            + (categorie_salarie == TypesCategorieSalarie.public_titulaire_militaire) \
+            + (categorie_salarie == TypesCategorieSalarie.public_titulaire_territoriale) \
+            + (categorie_salarie == TypesCategorieSalarie.public_titulaire_hospitaliere) \
+            + (categorie_salarie == TypesCategorieSalarie.public_non_titulaire) \
 
-        sft = (categorie_salarie >= 2) * (categorie_salarie < 7) * min_(
+        sft = public * min_(
             max_(part_fixe + pct_variable * traitement_indiciaire_brut, plancher),
             plafond
             )
@@ -874,8 +895,15 @@ class remuneration_principale(Variable):
         traitement_indiciaire_brut = simulation.calculate('traitement_indiciaire_brut', period)
         nouvelle_bonification_indiciaire = simulation.calculate('nouvelle_bonification_indiciaire', period)
         categorie_salarie = simulation.calculate('categorie_salarie', period)
+
+        public = \
+            (categorie_salarie == TypesCategorieSalarie.public_titulaire_etat) \
+            + (categorie_salarie == TypesCategorieSalarie.public_titulaire_militaire) \
+            + (categorie_salarie == TypesCategorieSalarie.public_titulaire_territoriale) \
+            + (categorie_salarie == TypesCategorieSalarie.public_titulaire_hospitaliere) \
+
         return (
-            (categorie_salarie >= 2) * (categorie_salarie <= 5) * (
+            public * (
                 traitement_indiciaire_brut + nouvelle_bonification_indiciaire
                 )
             )
