@@ -343,7 +343,6 @@ class taxe_salaires(Variable):
 
         parametres = law.cotsoc.taxes_sal
         bareme = parametres.taux_maj
-        base = assiette_cotisations_sociales - prevoyance_obligatoire_cadre
         base = assiette_cotisations_sociales + (
                 - prevoyance_obligatoire_cadre + prise_en_charge_employeur_prevoyance_complementaire
                 - complementaire_sante_employeur
