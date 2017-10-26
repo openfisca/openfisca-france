@@ -48,7 +48,7 @@ individus:
     interets_epargne_sur_livrets:
       2012-01: 0
     handicap: 0
-    scolarite: 1
+    scolarite: college
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
@@ -64,7 +64,7 @@ individus:
     interets_epargne_sur_livrets:
       2012-01: 0
     handicap: 0
-    scolarite: 1
+    scolarite: college
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
@@ -283,6 +283,6 @@ menages:
     - 54ac12a5608e752d1629ea39
   loyer: 1000
   personne_de_reference: 54ac12a5608e752d1629ea3b
-  statut_occupation_logement: 4
+  statut_occupation_logement: locataire_vide
 output_variables:
   aide_logement: 486.24

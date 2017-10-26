@@ -6,7 +6,7 @@ description:
 period: "month:2015-04"
 relative_error_margin: 0.02
 individus:
-  activite: 1
+  activite: chomeur
   age: 34
   age_en_mois: 419
   ass_precondition_remplie: false
@@ -302,6 +302,6 @@ menages:
   enfants:
   loyer: 600
   personne_de_reference: 5527ea8694f21e044ad7e939
-  statut_occupation_logement: 4
+  statut_occupation_logement: locataire_vide
 output_variables:
   cmu_c: true

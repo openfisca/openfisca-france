@@ -87,7 +87,7 @@ individus:
     interets_epargne_sur_livrets:
       2012-01: 0
     handicap: 0
-    scolarite: 1
+    scolarite: college
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
@@ -103,7 +103,7 @@ individus:
     interets_epargne_sur_livrets:
       2012-01: 0
     handicap: 0
-    scolarite: 1
+    scolarite: college
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
@@ -119,7 +119,7 @@ individus:
     interets_epargne_sur_livrets:
       2012-01: 0
     handicap: 0
-    scolarite: 1
+    scolarite: college
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
@@ -363,6 +363,6 @@ menages:
     - 54915fa1df990f5b0286cf0f
   loyer: 50
   personne_de_reference: 54915fa1df990f5b0286cf13
-  statut_occupation_logement: 4
+  statut_occupation_logement: locataire_vide
 output_variables:
   cmu_c: true

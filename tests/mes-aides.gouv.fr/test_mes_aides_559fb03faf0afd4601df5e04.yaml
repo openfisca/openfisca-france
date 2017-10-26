@@ -21,7 +21,7 @@ individus:
     interets_epargne_sur_livrets:
       2012-01: 0
     handicap: 0
-    statut_marital: 1
+    statut_marital: marie
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
@@ -37,7 +37,7 @@ individus:
     interets_epargne_sur_livrets:
       2012-01: 0
     handicap: 0
-    statut_marital: 1
+    statut_marital: marie
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
@@ -269,7 +269,7 @@ menages:
   depcom: 77005
   enfants: 559fb03cf92fd455017e6e0f
   personne_de_reference: 559fb03cf92fd455017e6e11
-  statut_occupation_logement: 6
+  statut_occupation_logement: loge_gratuitement
 output_variables:
   paje_base: 184.62
   rsa: 586.82

@@ -2,11 +2,11 @@
   name: Base
   relative_error_margin: 0.001
   input_variables:
-    allegement_fillon_mode_recouvrement: 1
+    allegement_fillon_mode_recouvrement: anticipe
     effectif_entreprise: 1
     salaire_de_base: 3428.6 # supérieur en équivalent temps plein (4000) au plafond_securite_sociale
     heures_remunerees_volume: 130 # 130 heures par mois = 30h par semaine = 6/7
-    contrat_de_travail: 1 # temps partiel
+    contrat_de_travail: temps_partiel
   output_variables:
     # le plafond_securite_sociale est proratisé
     # le FNAL (effectif < 20) est donc plafonné à un montant < plafond_securite_sociale
@@ -17,10 +17,10 @@
   name: Pas de temps partiel
   relative_error_margin: 0.001
   input_variables:
-    allegement_fillon_mode_recouvrement: 1
+    allegement_fillon_mode_recouvrement: anticipe
     effectif_entreprise: 1
     salaire_de_base: 3428.6
-    contrat_de_travail: 0 # temps plein
+    contrat_de_travail: temps_plein
   output_variables:
     # le FNAL (effectif < 20) est plafonné à 3218, le plafond_securite_sociale temps plein
     fnal: -3218 * 1 * 0.001

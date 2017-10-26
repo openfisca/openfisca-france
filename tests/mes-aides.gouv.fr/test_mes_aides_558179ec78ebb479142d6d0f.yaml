@@ -8,7 +8,7 @@ description: |
 period: "month:2015-06"
 relative_error_margin: 0.02
 individus:
-  - activite: 1
+  - activite: chomeur
     age: 42
     age_en_mois: 507
     ass_precondition_remplie: true
@@ -49,7 +49,7 @@ individus:
     interets_epargne_sur_livrets:
       2012-01: 0
     handicap: 0
-    statut_marital: 1
+    statut_marital: marie
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
@@ -110,7 +110,7 @@ individus:
       2015-04: 1625.78
       2015-05: 1625.78
       2015-06: 1625.78
-    statut_marital: 1
+    statut_marital: marie
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
@@ -325,6 +325,6 @@ menages:
   depcom: 77004
   enfants:
   personne_de_reference: 558179e285a12b87142c694e
-  statut_occupation_logement: 2
+  statut_occupation_logement: proprietaire
 output_variables:
   ass: 102.3

@@ -5,12 +5,12 @@
     date_naissance: "1985-01-01"  # 29 ans
     # salaire_net: 0
     statut_occupation_logement:
-      "2014-01": 2  # Propriétaire (non accédant) du logement
+      "2014-01": "proprietaire"
   output_variables:
     aide_logement:
       "2014-01": 0
     statut_occupation_logement:
-      "2014-01": 2
+      "2014-01": "proprietaire"
     rsa_revenu_activite_individu:
       "2014-01": 0
     rsa_base_ressources:
@@ -36,12 +36,12 @@
       2013: 5000
       2014: 5000
     statut_occupation_logement:
-      "2014-01": 2  # Propriétaire (non accédant) du logement
+      "2014-01": "proprietaire"
   output_variables:
     aide_logement:
       "2014-01": 0
     statut_occupation_logement:
-      "2014-01": 2
+      "2014-01": "proprietaire"
     rsa_revenu_activite_individu:
       "2014-01": 416.67
     rsa_base_ressources:
@@ -67,12 +67,12 @@
       2013: 10000
       2014: 10000
     statut_occupation_logement:
-      "2014-01": 2  # Propriétaire (non accédant) du logement
+      "2014-01": "proprietaire"
   output_variables:
     aide_logement:
       "2014-01": 0
     statut_occupation_logement:
-      "2014-01": 2
+      "2014-01": "proprietaire"
     rsa_revenu_activite_individu:
       "2014-01": 833.33
     rsa_base_ressources:
@@ -98,12 +98,12 @@
       2013: 12000
       2014: 12000
     statut_occupation_logement:
-      "2014-01": 2  # Propriétaire (non accédant) du logement
+      "2014-01": "proprietaire"
   output_variables:
     aide_logement:
       "2014-01": 0
     statut_occupation_logement:
-      "2014-01": 2
+      "2014-01": "proprietaire"
     rsa_revenu_activite_individu:
       "2014-01": 1000
     rsa_base_ressources:
@@ -129,12 +129,12 @@
       2013: 13000
       2014: 13000
     statut_occupation_logement:
-      "2014-01": 2  # Propriétaire (non accédant) du logement
+      "2014-01": "proprietaire"
   output_variables:
     aide_logement:
       "2014-01": 0
     statut_occupation_logement:
-      "2014-01": 2
+      "2014-01": "proprietaire"
     rsa_revenu_activite_individu:
       "2014-01": 1083.33
     rsa_base_ressources:
@@ -160,12 +160,12 @@
       2013: 14000
       2014: 14000
     statut_occupation_logement:
-      "2014-01": 2  # Propriétaire (non accédant) du logement
+      "2014-01": "proprietaire"
   output_variables:
     aide_logement:
       "2014-01": 0
     statut_occupation_logement:
-      "2014-01": 2
+      "2014-01": "proprietaire"
     rsa_revenu_activite_individu:
       "2014-01": 1166.67
     rsa_base_ressources:
@@ -191,12 +191,12 @@
       2013: 15000
       2014: 15000
     statut_occupation_logement:
-      "2014-01": 2  # Propriétaire (non accédant) du logement
+      "2014-01": "proprietaire"
   output_variables:
     aide_logement:
       "2014-01": 0
     statut_occupation_logement:
-      "2014-01": 2
+      "2014-01": "proprietaire"
     rsa_revenu_activite_individu:
       "2014-01": 1250
     rsa_base_ressources:
@@ -222,12 +222,12 @@
       2013: 20000
       2014: 20000
     statut_occupation_logement:
-      "2014-01": 2  # Propriétaire (non accédant) du logement
+      "2014-01": "proprietaire"
   output_variables:
     aide_logement:
       "2014-01": 0
     statut_occupation_logement:
-      "2014-01": 2
+      "2014-01": "proprietaire"
     rsa_revenu_activite_individu:
       "2014-01": 1666.67
     rsa_base_ressources:

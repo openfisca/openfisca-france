@@ -65,7 +65,7 @@ individus:
       2015-02: 1600
       2015-03: 1600
       2015-04: 1600
-    statut_marital: 1
+    statut_marital: marie
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
@@ -81,7 +81,7 @@ individus:
     interets_epargne_sur_livrets:
       2012-01: 0
     handicap: 0
-    statut_marital: 1
+    statut_marital: marie
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
@@ -112,7 +112,7 @@ individus:
     interets_epargne_sur_livrets:
       2012-01: 0
     handicap: 0
-    scolarite: 1
+    scolarite: college
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
@@ -128,7 +128,7 @@ individus:
     interets_epargne_sur_livrets:
       2012-01: 0
     handicap: 0
-    scolarite: 1
+    scolarite: college
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
@@ -358,6 +358,6 @@ menages:
     - 55252bc877c7b0c6117a2933
   loyer: 600
   personne_de_reference: 55252bc877c7b0c6117a2937
-  statut_occupation_logement: 4
+  statut_occupation_logement: locataire_vide
 output_variables:
   cmu_c: false

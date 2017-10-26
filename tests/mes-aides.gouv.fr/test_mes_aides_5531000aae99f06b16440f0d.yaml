@@ -6,7 +6,7 @@ description: Personne qui vient d'avoir 65 ans. Jusque là non éligible à l'AS
 period: "month:2015-04"
 relative_error_margin: 0.02
 individus:
-  activite: 3
+  activite: retraite
   age: 65
   age_en_mois: 780
   date_naissance: "1950-04-01"
@@ -259,7 +259,7 @@ menages:
   enfants:
   loyer: 500
   personne_de_reference: 5530ffb7395a3e6e168f4726
-  statut_occupation_logement: 4
+  statut_occupation_logement: locataire_vide
 output_variables:
   aspa: 152.05
   cmu_c: true

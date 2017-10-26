@@ -5,10 +5,10 @@
   input_variables:
     salaire_de_base: 1467
     # nécessaire pour des requêtes sur un mois de salaire :
-    allegement_fillon_mode_recouvrement: 1
+    allegement_fillon_mode_recouvrement: anticipe
     effectif_entreprise: 89
-    categorie_salarie: 0 # non cadre
-    contrat_de_travail_duree: 0
+    categorie_salarie: prive_non_cadre
+    contrat_de_travail_duree: cdi
     entreprise_est_association_non_lucrative: 0
     ratio_alternants: 0.015
   output_variables:
@@ -22,10 +22,10 @@
   input_variables:
     salaire_de_base: 1467
     # nécessaire pour des requêtes sur un mois de salaire :
-    allegement_fillon_mode_recouvrement: 1
+    allegement_fillon_mode_recouvrement: anticipe
     effectif_entreprise: 250
-    categorie_salarie: 0 # non cadre
-    contrat_de_travail_duree: 0
+    categorie_salarie: prive_non_cadre
+    contrat_de_travail_duree: cdi
     entreprise_est_association_non_lucrative: 0
     ratio_alternants: 0.05
   output_variables:
@@ -40,10 +40,10 @@
   input_variables:
     salaire_de_base: 1467
     # nécessaire pour des requêtes sur un mois de salaire :
-    allegement_fillon_mode_recouvrement: 1
+    allegement_fillon_mode_recouvrement: anticipe
     effectif_entreprise: 250
-    categorie_salarie: 0 # non cadre
-    contrat_de_travail_duree: 0
+    categorie_salarie: prive_non_cadre # non cadre
+    contrat_de_travail_duree: cdi
     entreprise_est_association_non_lucrative: 0
     ratio_alternants: 0.036
   output_variables:
@@ -58,10 +58,10 @@
   input_variables:
     salaire_de_base: 1467
     # nécessaire pour des requêtes sur un mois de salaire :
-    allegement_fillon_mode_recouvrement: 1
+    allegement_fillon_mode_recouvrement: anticipe
     effectif_entreprise: 2000
-    categorie_salarie: 0 # non cadre
-    contrat_de_travail_duree: 0
+    categorie_salarie: prive_non_cadre # non cadre
+    contrat_de_travail_duree: cdi
     entreprise_est_association_non_lucrative: 0
     ratio_alternants: 0.0008
   output_variables:
@@ -75,10 +75,10 @@
   input_variables:
     salaire_de_base: 1467
     # nécessaire pour des requêtes sur un mois de salaire :
-    allegement_fillon_mode_recouvrement: 1
+    allegement_fillon_mode_recouvrement: anticipe
     effectif_entreprise: 89
-    categorie_salarie: 0 # non cadre
-    contrat_de_travail_duree: 0
+    categorie_salarie: prive_non_cadre # non cadre
+    contrat_de_travail_duree: cdi
     entreprise_est_association_non_lucrative: 1
     ratio_alternants: 0.015
   output_variables:
@@ -94,10 +94,10 @@
   input_variables:
     salaire_de_base: 1467
     # nécessaire pour des requêtes sur un mois de salaire :
-    allegement_fillon_mode_recouvrement: 1
+    allegement_fillon_mode_recouvrement: anticipe
     effectif_entreprise: 250
-    categorie_salarie: 0 # non cadre
-    contrat_de_travail_duree: 0
+    categorie_salarie: prive_non_cadre # non cadre
+    contrat_de_travail_duree: cdi
     ratio_alternants: 0.0178
     salarie_regime_alsace_moselle: 1
   output_variables:

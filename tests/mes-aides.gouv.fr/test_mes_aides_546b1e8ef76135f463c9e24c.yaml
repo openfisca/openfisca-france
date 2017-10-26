@@ -11,7 +11,7 @@ description: |
 period: "month:2014-11"
 relative_error_margin: 0.02
 individus:
-  - activite: 3
+  - activite: retraite
     age: 67
     age_en_mois: 812
     date_naissance: "1947-02-27"
@@ -301,7 +301,7 @@ menages:
     - 546b190bfc9936ff63f8566a
   loyer: 1000
   personne_de_reference: 546b190bfc9936ff63f8566c
-  statut_occupation_logement: 4
+  statut_occupation_logement: locataire_vide
 output_variables:
   af: 129.99
   aspa: 200

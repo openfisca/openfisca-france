@@ -10,7 +10,7 @@ scenario = tbs.new_scenario().init_from_attributes(
     input_variables = {
         'date_naissance': datetime.date(1980, 1, 1),
         'loyer': 500,
-        'statut_occupation_logement': 3,
+        'statut_occupation_logement': 'locataire_hlm',
         },
     )
 

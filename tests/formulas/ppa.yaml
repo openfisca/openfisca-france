@@ -312,7 +312,7 @@
   period: 2017-10
   absolute_error_margin: 0.005
   input_variables:
-    statut_occupation_logement: 2 # propriétaire
+    statut_occupation_logement: proprietaire
     age: 40
   output_variables:
     ppa_forfait_logement: 63.15
@@ -326,7 +326,7 @@
   menages:
     personne_de_reference: parent1
     conjoint: parent2
-    statut_occupation_logement: 2 # propriétaire
+    statut_occupation_logement: proprietaire
   individus:
     - id: "parent1"
       age: 40
@@ -346,7 +346,7 @@
     personne_de_reference: parent1
     conjoint: parent2
     enfants: ["enfant1"]
-    statut_occupation_logement: 2 # propriétaire
+    statut_occupation_logement: proprietaire
   individus:
     - id: "parent1"
       age: 40
@@ -363,7 +363,7 @@
   relative_error_margin: 0.05
   input_variables:
     age: 40
-    statut_occupation_logement: 2 # propriétaire
+    statut_occupation_logement: proprietaire
     salaire_net:
       2016-01: 918 # > 95 smic horaire brut
       2015-12: 918
@@ -378,7 +378,7 @@
   relative_error_margin: 0.05
   input_variables:
     age: 40
-    statut_occupation_logement: 4
+    statut_occupation_logement: locataire_vide
     salaire_net:
       2015-12: 1520
       2015-11: 1520
@@ -540,7 +540,7 @@
 - name: "PPA: Exploitant agricole, prise en compte du dernier bénéfice agricole connu"
   period: 2016-01
   input_variables:
-    tns_auto_entrepreneur_type_activite: 2 # BNC, abattement de 34%
+    tns_auto_entrepreneur_type_activite: "bnc" # Abattement de 34%
     tns_auto_entrepreneur_chiffre_affaires:
       2015-12: 3000
       2015-11: 3000
@@ -567,7 +567,7 @@
   input_variables:
     tns_micro_entreprise_chiffre_affaires:
       2014: 36000
-    tns_micro_entreprise_type_activite: 2 # BNC, abattement de 34%
+    tns_micro_entreprise_type_activite: "bnc" # Abattement de 34%
   output_variables:
     ppa: 0
     ppa_revenu_activite:

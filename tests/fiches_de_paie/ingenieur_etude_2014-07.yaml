@@ -2,15 +2,15 @@
   period: "2014-07"
   absolute_error_margin: 0.005
   input_variables:
-    allegement_fillon_mode_recouvrement: 1  # "anticipe_regularisation_fin_de_periode"
+    allegement_fillon_mode_recouvrement: anticipe  # "anticipe_regularisation_fin_de_periode"
     allegement_cotisation_allocations_familiales_mode_recouvrement: 1
     assujettie_taxe_salaires: False
     avantage_en_nature_valeur_reelle: 0
     date_naissance: "1974-01-01"
-    contrat_de_travail: 0  # temps plein
+    contrat_de_travail: temps_plein
     contrat_de_travail_debut: "2014-01-01"
     contrat_de_travail_fin: "2014-12-31"
-    contrat_de_travail_duree: 0  # CDI
+    contrat_de_travail_duree: cdi
     depcom_entreprise : "75114"
     effectif_entreprise: 3000
     heures_non_remunerees_volume: 0
@@ -31,7 +31,7 @@
     taux_accident_travail: 0.011
     titre_restaurant_valeur_unitaire: 0
     titre_restaurant_volume: 0
-    categorie_salarie: 1  # non cadre
+    categorie_salarie: prive_cadre  # Anciennement "categorie_salarie: 1  # non cadre", mais 1 correspondait à prive_cadre
     volume_jours_ijss: 0
   output_variables:
     # salaire_super_brut: 0
@@ -40,7 +40,6 @@
     ircantec_employeur: 0
     pension_civile_employeur: 0
     rafp_employeur: 0
-
     allocations_temporaires_invalidite: 0
     accident_du_travail: -33
     famille: -157.5

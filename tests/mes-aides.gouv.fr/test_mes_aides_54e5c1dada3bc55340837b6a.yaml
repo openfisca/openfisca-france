@@ -85,7 +85,7 @@ individus:
       2014-12: 1000
       2015-01: 1000
       2015-02: 1000
-    statut_marital: 1
+    statut_marital: marie
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
@@ -328,6 +328,6 @@ menages:
   enfants:
   loyer: 1000
   personne_de_reference: 54e5c1d77c92ea5940ba4e55
-  statut_occupation_logement: 4
+  statut_occupation_logement: locataire_vide
 output_variables:
   aide_logement: 369.56

@@ -38,7 +38,7 @@ individus:
     interets_epargne_sur_livrets:
       2012-01: 0
     handicap: 0
-    scolarite: 2
+    scolarite: lycee
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
@@ -252,6 +252,6 @@ menages:
   depcom: 67482
   enfants: 54d91222f675ddd34432ef11
   personne_de_reference: 54d91222f675ddd34432ef12
-  statut_occupation_logement: 6
+  statut_occupation_logement: loge_gratuitement
 output_variables:
   bourse_college: 0

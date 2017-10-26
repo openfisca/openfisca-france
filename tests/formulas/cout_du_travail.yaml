@@ -9,8 +9,8 @@
   input_variables:
     salaire_de_base: 1457.52
     # necessary when requesting on a 1 month salary :
-    allegement_fillon_mode_recouvrement: 1
-    allegement_cotisation_allocations_familiales_mode_recouvrement: 1
+    allegement_fillon_mode_recouvrement: anticipe
+    allegement_cotisation_allocations_familiales_mode_recouvrement: anticipe
     effectif_entreprise: 1
     contrat_de_travail_debut: 2015-07-01
   output_variables:
@@ -29,8 +29,8 @@
   input_variables:
     salaire_de_base: 1457.52
     # necessary when requesting on a 1 month salary :
-    allegement_fillon_mode_recouvrement: 1
-    allegement_cotisation_allocations_familiales_mode_recouvrement: 1
+    allegement_fillon_mode_recouvrement: anticipe
+    allegement_cotisation_allocations_familiales_mode_recouvrement: anticipe
     effectif_entreprise: 2
     contrat_de_travail_debut: 2015-07-01
   output_variables:
@@ -43,8 +43,8 @@
   input_variables:
     salaire_de_base: 1467
     # necessary when requesting on a 1 month salary :
-    allegement_fillon_mode_recouvrement: 1
-    allegement_cotisation_allocations_familiales_mode_recouvrement: 1
+    allegement_fillon_mode_recouvrement: anticipe
+    allegement_cotisation_allocations_familiales_mode_recouvrement: anticipe
     effectif_entreprise: 249
     contrat_de_travail_debut: 2016-01-25
   output_variables:

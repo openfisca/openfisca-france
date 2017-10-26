@@ -292,7 +292,7 @@ menages:
   enfants:
   loyer: 200
   personne_de_reference: 54242ed7c6d851020090b69e
-  statut_occupation_logement: 4
+  statut_occupation_logement: locataire_vide
 output_variables:
   acs: 0
   cmu_c: false
