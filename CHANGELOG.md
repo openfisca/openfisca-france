@@ -1,5 +1,11 @@
 # Changelog
 
+### 18.10.2
+
+* Amélioration technique
+* Détails :
+  - Déclare OpenFisca-France compatible avec OpenFisca-Core 19
+
 ### 18.10.1
 
 * Amélioration technique
