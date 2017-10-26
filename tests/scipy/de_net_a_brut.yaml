@@ -5,7 +5,7 @@
     salaire_net_a_payer: 1790
     effectif_entreprise: 1
     categorie_salarie: prive_non_cadre
-    allegement_fillon_mode_recouvrement: anticipe_regularisation_fin_de_periode
+    allegement_fillon_mode_recouvrement: anticipe
     allegement_cotisation_allocations_familiales_mode_recouvrement: anticipe_regularisation_fin_de_periode
     contrat_de_travail_debut: 2016-2
   output_variables: # Full payroll simulation

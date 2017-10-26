@@ -5,10 +5,10 @@
   input_variables:
     salaire_de_base: 1457.52
     # nécessaire pour des requêtes sur un mois de salaire :
-    allegement_fillon_mode_recouvrement: 1
+    allegement_fillon_mode_recouvrement: anticipe
     effectif_entreprise: 0
-    categorie_salarie: 0 # non cadre
-    contrat_de_travail_duree: 0
+    categorie_salarie: prive_non_cadre
+    contrat_de_travail_duree: cdi
   output_variables:
     credit_impot_competitivite_emploi: 87.5
 
@@ -19,10 +19,10 @@
   input_variables:
     salaire_de_base: 3643.79
     # nécessaire pour des requêtes sur un mois de salaire :
-    allegement_fillon_mode_recouvrement: 1
+    allegement_fillon_mode_recouvrement: anticipe
     effectif_entreprise: 0
-    categorie_salarie: 0 # non cadre
-    contrat_de_travail_duree: 0
+    categorie_salarie: prive_non_cadre
+    contrat_de_travail_duree: cdi
   output_variables:
     credit_impot_competitivite_emploi: 218.6
 
@@ -33,10 +33,10 @@
   input_variables:
     salaire_de_base: 3643.81
     # nécessaire pour des requêtes sur un mois de salaire :
-    allegement_fillon_mode_recouvrement: 1
+    allegement_fillon_mode_recouvrement: anticipe
     effectif_entreprise: 0
-    categorie_salarie: 0 # non cadre
-    contrat_de_travail_duree: 0
+    categorie_salarie: prive_non_cadre
+    contrat_de_travail_duree: cdi
   output_variables:
     credit_impot_competitivite_emploi: 0
 
@@ -47,10 +47,10 @@
   input_variables:
     salaire_de_base: 1467
     # nécessaire pour des requêtes sur un mois de salaire :
-    allegement_fillon_mode_recouvrement: 1
+    allegement_fillon_mode_recouvrement: anticipe
     effectif_entreprise: 0
-    categorie_salarie: 0 # non cadre
-    contrat_de_travail_duree: 0
+    categorie_salarie: prive_non_cadre
+    contrat_de_travail_duree: cdi
     entreprise_est_association_non_lucrative: 1
   output_variables:
     credit_impot_competitivite_emploi: 0

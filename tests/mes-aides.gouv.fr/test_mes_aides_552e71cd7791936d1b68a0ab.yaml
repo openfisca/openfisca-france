@@ -314,6 +314,6 @@ menages:
     - 552e7198366d30921bab9269
   loyer: 800
   personne_de_reference: 552e7198366d30921bab926b
-  statut_occupation_logement: 4
+  statut_occupation_logement: locataire_vide
 output_variables:
   cf: 115.4

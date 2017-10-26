@@ -6,7 +6,7 @@ description: les revenus tirés d'une activité ayant cessé ne doivent pas êtr
 period: "month:2015-06"
 relative_error_margin: 0.02
 individus:
-  activite: 1
+  activite: chomeur
   age: 55
   age_en_mois: 665
   ass_precondition_remplie: true
@@ -298,6 +298,6 @@ menages:
   depcom: 77004
   enfants:
   personne_de_reference: 556ecc8cb601174568edcad1
-  statut_occupation_logement: 2
+  statut_occupation_logement: proprietaire
 output_variables:
   ass: 490

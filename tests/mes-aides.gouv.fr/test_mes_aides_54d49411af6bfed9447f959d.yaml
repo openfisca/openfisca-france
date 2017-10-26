@@ -30,7 +30,7 @@ description: |
 period: "month:2015-02"
 relative_error_margin: 0.02
 individus:
-  activite: 3
+  activite: retraite
   age: 88
   age_en_mois: 1061
   date_naissance: "1926-09-05"
@@ -292,6 +292,6 @@ menages:
   enfants:
   loyer: 1000
   personne_de_reference: 54d49218f675ddd34432ea79
-  statut_occupation_logement: 4
+  statut_occupation_logement: locataire_vide
 output_variables:
   aide_logement: 183.81

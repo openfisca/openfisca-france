@@ -29,7 +29,7 @@ individus:
       2013: 0
     salaire_imposable:
       2013: 118488.88888888889
-    statut_marital: 1
+    statut_marital: marie
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
@@ -53,7 +53,7 @@ individus:
       2013: 0
     salaire_imposable:
       2013: 0
-    statut_marital: 1
+    statut_marital: marie
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
@@ -189,7 +189,7 @@ individus:
     interets_epargne_sur_livrets:
       2012-01: 0
     handicap: 0
-    scolarite: 0
+    scolarite: inconnue
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
@@ -436,6 +436,6 @@ menages:
     - 559bb07a8aba0709309a68ac
   loyer: 2000
   personne_de_reference: 559bb07a8aba0709309a68b6
-  statut_occupation_logement: 4
+  statut_occupation_logement: locataire_vide
 output_variables:
   af: 689

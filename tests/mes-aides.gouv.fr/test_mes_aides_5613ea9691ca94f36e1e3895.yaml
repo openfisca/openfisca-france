@@ -7,7 +7,7 @@ relative_error_margin: 0.02
 individus:
 - enfant_a_charge:
     2015: true
-  activite: 1
+  activite: chomeur
   age: 51
   age_en_mois: 621
   ass_precondition_remplie: false
@@ -291,7 +291,7 @@ menages:
   enfants: []
   loyer: 500
   personne_de_reference: 5613ea8a9c6bb8f86e34da3a
-  statut_occupation_logement: 4
+  statut_occupation_logement: locataire_vide
 output_variables:
   acs: 0
   cmu_c: false

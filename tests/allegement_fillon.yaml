@@ -16,10 +16,10 @@
       2013-10: 35 * 52 / 12 * 9
       2013-11: 35 * 52 / 12 * 9
       2013-12: 35 * 52 / 12 * 9 * 2
-    allegement_fillon_mode_recouvrement: 0
+    allegement_fillon_mode_recouvrement: fin_d_annee
     effectif_entreprise: 3000
     code_postal_entreprise: "75001"
-    categorie_salarie: 0
+    categorie_salarie: prive_non_cadre
   output_variables:
     allegement_fillon:
       2013-12: 3233.51

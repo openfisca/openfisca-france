@@ -67,7 +67,7 @@ individus:
       2014-09: 0
       2014-10: 0
       2014-11: 0
-    statut_marital: 1
+    statut_marital: marie
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
@@ -185,7 +185,7 @@ individus:
       2014-10: 1148
       2014-11: 1148
       2014-12: 1148
-    scolarite: 0
+    scolarite: inconnue
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
@@ -201,7 +201,7 @@ individus:
     interets_epargne_sur_livrets:
       2012-01: 0
     handicap: 0
-    scolarite: 1
+    scolarite: college
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
@@ -424,6 +424,6 @@ menages:
     - 54931f9b297947e07a4c898b
   loyer: 400
   personne_de_reference: 54931f9b297947e07a4c89a6
-  statut_occupation_logement: 4
+  statut_occupation_logement: locataire_vide
 output_variables:
   aide_logement: 0

@@ -10,7 +10,7 @@
     - personne_de_reference: moi
       depcom: 75110
   output_variables:
-    eligibilite_anah: [2]
+    eligibilite_anah: [tres_modeste]
 
 - name: "ANAH - individu aux revenus modestes - IDF"
   period: 2017
@@ -25,7 +25,7 @@
     - personne_de_reference: moi
       depcom: 75110
   output_variables:
-    eligibilite_anah: [1]
+    eligibilite_anah: [modestes]
 
 - name: "ANAH - individu aux revenus modestes - Hors IDF"
   period: 2017
@@ -40,7 +40,7 @@
     - personne_de_reference: moi
       depcom: 86500
   output_variables:
-    eligibilite_anah: [1]
+    eligibilite_anah: [modestes]
 
 - name: "ANAH - individu non éligible - IDF"
   period: 2017
@@ -54,7 +54,7 @@
     - personne_de_reference: moi
       depcom: 75110
   output_variables:
-    eligibilite_anah: [0]
+    eligibilite_anah: [a_verifier]
 
 - name: "ANAH - couple en union libre - IDF"
   period: 2017
@@ -73,7 +73,7 @@
       conjoint: toi
       depcom: 75110
   output_variables:
-    eligibilite_anah: [1]
+    eligibilite_anah: [modestes]
 
 - name: "ANAH - couple en union libre, un enfant - IDF"
   period: 2017
@@ -95,7 +95,7 @@
       autres: ["enfant"]
       depcom: 75110
   output_variables:
-    eligibilite_anah: [1]
+    eligibilite_anah: [modestes]
 
 - name: "ANAH - couple hébergeant une personne majeure - IDF"
   period: 2017
@@ -116,4 +116,4 @@
       autres: ["papa"]
       depcom: 75110
   output_variables:
-    eligibilite_anah: [1]
+    eligibilite_anah: [modestes]

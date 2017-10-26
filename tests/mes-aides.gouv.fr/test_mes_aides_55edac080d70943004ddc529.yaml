@@ -292,6 +292,6 @@ menages:
   enfants: 55edabffbd7b102a0438a5a3
   loyer: 600
   personne_de_reference: 55edabffbd7b102a0438a5a4
-  statut_occupation_logement: 4
+  statut_occupation_logement: locataire_vide
 output_variables:
   paje_base: 0

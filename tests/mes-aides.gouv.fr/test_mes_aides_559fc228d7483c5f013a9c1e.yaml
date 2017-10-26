@@ -6,7 +6,7 @@ description: "Test créé à partir d'un dossier de demande de (RSA, APL…) :"
 period: "month:2015-07"
 relative_error_margin: 0.02
 individus:
-  activite: 1
+  activite: chomeur
   age: 59
   age_en_mois: 708
   ass_precondition_remplie: false
@@ -307,7 +307,7 @@ menages:
   enfants:
   loyer: 225
   personne_de_reference: 559fc21bf394e1a7011b57a5
-  statut_occupation_logement: 4
+  statut_occupation_logement: locataire_vide
 output_variables:
   aide_logement: 242.41
   rsa: 46.05

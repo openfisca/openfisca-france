@@ -13,7 +13,7 @@ relative_error_margin: 0.02
 individus:
 - enfant_a_charge:
     2015: true
-  activite: 1
+  activite: chomeur
   age: 53
   age_en_mois: 645
   ass_precondition_remplie: false
@@ -81,7 +81,7 @@ individus:
   interets_epargne_sur_livrets:
     2012-01: 0
   handicap: 0
-  scolarite: 1
+  scolarite: college
   valeur_locative_immo_non_loue:
     2012-01: 0
   valeur_locative_terrains_non_loue:
@@ -305,7 +305,7 @@ menages:
   - 559fbd84f394e1a7011b5778
   loyer: 500
   personne_de_reference: 559fbd84f394e1a7011b5779
-  statut_occupation_logement: 4
+  statut_occupation_logement: locataire_vide
 output_variables:
   rsa_majore_eligibilite: false
   rsa: 57.7

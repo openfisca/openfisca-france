@@ -6,7 +6,7 @@ description: "Le demandeur a perçu une ARE jusqu'au mois précédent mais est e
 period: "month:2015-03"
 relative_error_margin: 0.02
 individus:
-  activite: 1
+  activite: chomeur
   age: 34
   age_en_mois: 415
   ass_precondition_remplie: true
@@ -256,6 +256,6 @@ menages:
   depcom: 67482
   enfants:
   personne_de_reference: 550317df8cf4202127bc0ec2
-  statut_occupation_logement: 6
+  statut_occupation_logement: loge_gratuitement
 output_variables:
   ass: 487.5

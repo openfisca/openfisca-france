@@ -6,7 +6,7 @@ description: Test concluant, les salaires de l'allocataire et du conjoint sont b
 period: "month:2014-12"
 relative_error_margin: 0.02
 individus:
-  - activite: 3
+  - activite: retraite
     age: 65
     age_en_mois: 788
     date_naissance: "1949-04-01"
@@ -93,12 +93,12 @@ individus:
       2014-10: 117
       2014-11: 117
       2014-12: 117
-    statut_marital: 1
+    statut_marital: marie
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
-  - activite: 3
+  - activite: retraite
     age: 65
     age_en_mois: 780
     date_naissance: "1949-12-01"

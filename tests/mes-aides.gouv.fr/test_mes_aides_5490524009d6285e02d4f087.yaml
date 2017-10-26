@@ -68,7 +68,7 @@ individus:
       2014-10: 2000
       2014-11: 2000
       2014-12: 2000
-    statut_marital: 1
+    statut_marital: marie
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
@@ -99,7 +99,7 @@ individus:
     interets_epargne_sur_livrets:
       2012-01: 0
     handicap: 0
-    scolarite: 1
+    scolarite: college
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
@@ -316,6 +316,6 @@ menages:
   enfants: 54c8e64f4ec19fce442267ca
   loyer: 200
   personne_de_reference: 549051ec6e7c895302132cad
-  statut_occupation_logement: 4
+  statut_occupation_logement: locataire_vide
 output_variables:
   acs: 600

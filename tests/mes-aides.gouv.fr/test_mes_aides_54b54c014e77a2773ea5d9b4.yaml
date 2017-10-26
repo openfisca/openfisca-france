@@ -63,7 +63,7 @@ individus:
       2014-11: 984
       2014-12: 984
       2015-01: 984
-    statut_marital: 1
+    statut_marital: marie
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
@@ -293,7 +293,7 @@ menages:
   depcom: 75118
   enfants:
   personne_de_reference: 54b54b2d44b1ef7a3e841b33
-  statut_occupation_logement: 6
+  statut_occupation_logement: loge_gratuitement
 output_variables:
   acs: 400
   cmu_c: false

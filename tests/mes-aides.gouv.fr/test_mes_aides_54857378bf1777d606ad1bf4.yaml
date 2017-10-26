@@ -4,7 +4,7 @@ description:
 period: "month:2014-12"
 relative_error_margin: 0.02
 individus:
-  - activite: 3
+  - activite: retraite
     age: 59
     age_en_mois: 719
     date_naissance: "1955-01-01"
@@ -46,7 +46,7 @@ individus:
       2014-10: 200
       2014-11: 200
       2014-12: 200
-    statut_marital: 1
+    statut_marital: marie
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
@@ -292,6 +292,6 @@ menages:
   depcom: 54084
   enfants:
   personne_de_reference: 54857348bf1777d606ad1be5
-  statut_occupation_logement: 2
+  statut_occupation_logement: proprietaire
 output_variables:
   asi: 666.27

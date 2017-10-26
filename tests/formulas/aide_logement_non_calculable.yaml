@@ -1,13 +1,13 @@
 - name: "Non calculabiité des AL pour un locataire en foyer"
   period: "month:2015-04"
   input_variables:
-    statut_occupation_logement: 7
+    statut_occupation_logement: locataire_foyer
   output_variables:
-    aide_logement_non_calculable: 2
+    aide_logement_non_calculable: locataire_foyer
 
 - name: "calculabiité des AL pour un locataire non meublé"
   period: "month:2015-04"
   input_variables:
-    statut_occupation_logement: 4
+    statut_occupation_logement: locataire_vide
   output_variables:
-    aide_logement_non_calculable: 0
+    aide_logement_non_calculable: non_renseigne

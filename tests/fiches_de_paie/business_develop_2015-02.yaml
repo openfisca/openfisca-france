@@ -2,7 +2,7 @@ name: "Business Develop (N)"
 period: "2015-02"
 absolute_error_margin: 0.005
 input_variables:
-  contrat_de_travail: 5  # forfait jour année
+  contrat_de_travail: forfait_jours_annee
   depcom_entreprise: "75102"
   effectif_entreprise: 5
   forfait_jours_remuneres_volume: 217
@@ -11,7 +11,7 @@ input_variables:
   primes_salaires: 172.9
   salaire_de_base: 2000
   taux_accident_travail: .011
-  categorie_salarie: 1
+  categorie_salarie: prive_cadre
 output_variables:
   coefficient_proratisation: 217/218
   ags: -6.52

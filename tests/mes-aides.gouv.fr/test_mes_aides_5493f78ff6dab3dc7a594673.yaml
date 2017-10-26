@@ -12,7 +12,7 @@ description: |
 period: "month:2014-12"
 relative_error_margin: 0.02
 individus:
-  - activite: 1
+  - activite: chomeur
     age: 42
     age_en_mois: 515
     ass_precondition_remplie: true
@@ -25,12 +25,12 @@ individus:
     interets_epargne_sur_livrets:
       2012-01: 0
     handicap: 0
-    statut_marital: 1
+    statut_marital: marie
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
-  - activite: 1
+  - activite: chomeur
     age: 43
     age_en_mois: 524
     ass_precondition_remplie: true
@@ -259,6 +259,6 @@ menages:
   enfants:
   loyer: 400
   personne_de_reference: 5493f63b297947e07a4c8ace
-  statut_occupation_logement: 4
+  statut_occupation_logement: locataire_vide
 output_variables:
   aide_logement: 329

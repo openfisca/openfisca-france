@@ -64,7 +64,7 @@ individus:
       2015-03: 800
       2015-04: 800
       2015-05: 800
-    statut_marital: 1
+    statut_marital: marie
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
@@ -80,7 +80,7 @@ individus:
     interets_epargne_sur_livrets:
       2012-01: 0
     handicap: 0
-    statut_marital: 1
+    statut_marital: marie
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
@@ -327,7 +327,7 @@ menages:
   enfants: 55643ef8a0084c3b26e9c8d7
   loyer: 1000
   personne_de_reference: 55643ef8a0084c3b26e9c8d9
-  statut_occupation_logement: 4
+  statut_occupation_logement: locataire_vide
 output_variables:
   acs: 500
   cmu_c: false

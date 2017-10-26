@@ -90,7 +90,7 @@
   input_variables:
     tns_autres_revenus_chiffre_affaires:
       2014: 90000
-    tns_autres_revenus_type_activite: 0
+    tns_autres_revenus_type_activite: achat_revente
   output_variables:
     rsa_eligibilite_tns: False
 
@@ -99,7 +99,7 @@
   input_variables:
     tns_autres_revenus_chiffre_affaires:
       2014: 80000
-    tns_autres_revenus_type_activite: 0
+    tns_autres_revenus_type_activite: achat_revente
   output_variables:
     rsa_eligibilite_tns: True
 
@@ -108,7 +108,7 @@
   input_variables:
     tns_autres_revenus_chiffre_affaires:
       2014: 50000
-    tns_autres_revenus_type_activite: 2
+    tns_autres_revenus_type_activite: bnc
   output_variables:
     rsa_eligibilite_tns: False
 
@@ -117,7 +117,7 @@
   input_variables:
     tns_autres_revenus_chiffre_affaires:
       2014: 30000
-    tns_autres_revenus_type_activite: 2
+    tns_autres_revenus_type_activite: bnc
   output_variables:
     rsa_eligibilite_tns: True
 
@@ -127,7 +127,7 @@
     rsa_eligibilite_tns: False
     travailleur_non_salarie: True
     age: 40
-    activite: 0
+    activite: actif
   output_variables:
     rsa_eligibilite: False
 
@@ -152,7 +152,7 @@
       tns_benefice_exploitant_agricole:
         2014: 8000
   output_variables:
-    rsa_non_calculable: 2
+    rsa_non_calculable: conjoint_tns
 
 - name: "Calculabilité du RSA quand travailleur non éligible"
   period: "month:2015-04"

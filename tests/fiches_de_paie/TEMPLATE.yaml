@@ -1,18 +1,18 @@
 name: "TEMPLATE"  # TODO: Mettre ici un nom explicite de la fiche de paie tout en préservant l'anonymat de la personne.
 period: "2014-01"  # TODO: Mettre ici le mois de la fiche de paie.
 input_variables:
-  allegement_fillon_mode_recouvrement: 1  # "anticipe_regularisation_fin_de_periode"
+  allegement_fillon_mode_recouvrement: anticipe  # "anticipe_regularisation_fin_de_periode"
   assujettie_taxe_salaires: False
   avantage_en_nature_valeur_reelle: 0
-  contrat_de_travail: 0  # temps plein
+  contrat_de_travail: temps_plein
   contrat_de_travail_debut: "2014-01-01"
   contrat_de_travail_fin: "2014-12-31"
-  contrat_de_travail_duree: 0  # CDI
+  contrat_de_travail_duree: cdi
   effectif_entreprise: 0
   heures_non_remunerees_volume: 0
   heures_remunerees_volume: 0
   hsup: 0
-  # exposition_accident: 3
+  # exposition_accident: tres_eleve
   indemnites_forfaitaires: 0
   indemnites_journalieres_maladie: 0
   indemnites_compensatrices_conges_payes: 0
@@ -31,7 +31,7 @@ input_variables:
   taux_versement_transport: 0
   titre_restaurant_valeur_unitaire: 0
   titre_restaurant_volume: 0
-  categorie_salarie: 0  # non cadre
+  categorie_salarie: prive_non_cadre
   volume_jours_ijss: 0
 output_variables:
   # TODO à inclure dans la décomposition et à finir de coder forfait_social: -3.8 # 47.49 de base
