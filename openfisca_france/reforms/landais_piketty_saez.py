@@ -48,7 +48,7 @@ class impot_revenu_lps(Variable):
         re = nbEnf * lps.reduc_enfant
         ce = nbEnf * lps.credit_enfant
         statut_marital = individu('statut_marital', period = janvier)
-        couple = (statut_marital == 1) | (statut_marital == 5)
+        couple = (statut_marital == TypesStatutMarital.marie) | (statut_marital == TypesStatutMarital.pacse)
         ac = couple * lps.abatt_conj
         rc = couple * lps.reduc_conj
         assiette_csg = individu('assiette_csg', period)

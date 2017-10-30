@@ -3,7 +3,7 @@
 from functools import partial
 from numpy import busday_count as original_busday_count, datetime64, timedelta64
 from openfisca_france.model.base import *  # noqa analysis:ignore
-from openfisca_france.model.prestations.aides_logement import TypesZoneApl
+
 
 class indemnites_stage(Variable):
     value_type = float
@@ -91,10 +91,15 @@ class ppe_du_sa(Variable):
 
     def formula(individu, period):
         heures_remunerees_volume = individu('heures_remunerees_volume', period)
+        contrat_travail = individu('contrat_de_travail', period)
         travail_temps_decompte_en_heures = (
-            (individu('contrat_de_travail', period) > 0) *
-            (individu('contrat_de_travail', period) < 6)
-            )
+            (contrat_travail == TypesContratDeTravail.temps_partiel)
+            + (contrat_travail == TypesContratDeTravail.forfait_heures_semaines)
+            + (contrat_travail == TypesContratDeTravail.forfait_heures_mois)
+            + (contrat_travail == TypesContratDeTravail.forfait_heures_annee)
+            + (contrat_travail == TypesContratDeTravail.forfait_jours_annee)
+        )
+
         return heures_remunerees_volume * travail_temps_decompte_en_heures
 
 
@@ -124,10 +129,10 @@ class ppe_tp_sa(Variable):
 
 
 class TypesExpositionAccident(Enum):
-    faible = u"Faible",
-    moyen = u"Moyen",
-    eleve = u"Élevé",
-    tres_eleve = u"Très élevé",
+    faible = u"Faible"
+    moyen = u"Moyen"
+    eleve = u"Élevé"
+    tres_eleve = u"Très élevé"
 
 class exposition_accident(Variable):
     value_type = Enum
@@ -139,9 +144,9 @@ class exposition_accident(Variable):
     set_input = set_input_dispatch_by_period
 
 class TypesExpositionPenibilite(Enum):
-    nulle = u"Nulle, pas d'exposition de l'employé à un facteur de pénibilité",
-    simple = u"Simple, exposition à un seul facteur de pénibilité",
-    multiple = u"Multiple, exposition à plusieurs facteurs de pénibilité",
+    nulle = u"Nulle, pas d'exposition de l'employé à un facteur de pénibilité"
+    simple = u"Simple, exposition à un seul facteur de pénibilité"
+    multiple = u"Multiple, exposition à plusieurs facteurs de pénibilité"
 
 class exposition_penibilite(Variable):
     value_type = Enum
@@ -233,15 +238,6 @@ class indemnite_fin_contrat_due(Variable):
     entity = Individu
     label = u"indemnite_fin_contrat_due"
     definition_period = MONTH
-
-class TypesContratDeTravail(Enum):
-    temps_plein = u"temps_plein"
-    temps_partiel = u"temps_partiel"
-    forfait_heures_semaines = u"forfait_heures_semaines"
-    forfait_heures_mois = u"forfait_heures_mois"
-    forfait_heures_annee = u"forfait_heures_annee"
-    forfait_jours_annee = u"forfait_jours_annee"
-    sans_objet = u"sans_objet"
 
 
 class contrat_de_travail(Variable):
@@ -527,15 +523,6 @@ class traitement_indiciaire_brut(Variable):
     label = u"Traitement indiciaire brut (TIB)"
     definition_period = MONTH
 
-class TypesCategorieSalarie(Enum):
-    prive_non_cadre = u'prive_non_cadre',
-    prive_cadre = u'prive_cadre',
-    public_titulaire_etat = u'public_titulaire_etat',
-    public_titulaire_militaire = u'public_titulaire_militaire',
-    public_titulaire_territoriale = u'public_titulaire_territoriale',
-    public_titulaire_hospitaliere = u'public_titulaire_hospitaliere',
-    public_non_titulaire = u'public_non_titulaire',
-    non_pertinent = u'non_pertinent',
 
 class categorie_salarie(Variable):
     value_type = Enum

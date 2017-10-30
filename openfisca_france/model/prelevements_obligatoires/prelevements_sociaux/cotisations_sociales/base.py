@@ -35,7 +35,7 @@ def apply_bareme_for_relevant_type_sal(
             if bareme_name in node._children:
                 bareme = getattr(node, bareme_name)
                 yield bareme.calc(
-                    base * (categorie_salarie == type_sal_index),
+                    base * (categorie_salarie == CATEGORIE_SALARIE[type_sal_name]),
                     factor = plafond_securite_sociale,
                     round_base_decimals = round_base_decimals,
                     )
