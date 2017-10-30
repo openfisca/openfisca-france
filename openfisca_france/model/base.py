@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-from enum import Enum
 from openfisca_core.model_api import *
 from openfisca_france.entities import Famille, FoyerFiscal, Individu, Menage
+from enum import Enum
 
 
 class TypesStatutOccupationLogement(Enum):
@@ -172,54 +172,54 @@ TAUX_DE_PRIME = 1 / 4  # primes_fonction_publique (hors suppl. familial et indem
 
 # Legacy roles. To be removed when they are not used by formulas anymore.
 class QUIFAM(Enum):
-    chef = u'chef',
-    part = u'part',
-    enf1 = u'enf1',
-    enf2 = u'enf2',
-    enf3 = u'enf3',
-    enf4 = u'enf4',
-    enf5 = u'enf5',
-    enf6 = u'enf6',
-    enf7 = u'enf7',
-    enf8 = u'enf8',
-    enf9 = u'enf9',
+    chef = 0
+    part = 1
+    enf1 = 2
+    enf2 = 3
+    enf3 = 4
+    enf4 = 5
+    enf5 = 6
+    enf6 = 7
+    enf7 = 8
+    enf8 = 9
+    enf9 = 10
 
 class QUIFOY(Enum):
-    vous = u'vous',
-    conj = u'conj',
-    pac1 = u'pac1',
-    pac2 = u'pac2',
-    pac3 = u'pac3',
-    pac4 = u'pac4',
-    pac5 = u'pac5',
-    pac6 = u'pac6',
-    pac7 = u'pac7',
-    pac8 = u'pac8',
-    pac9 = u'pac9',
+    vous = 0
+    conj = 1
+    pac1 = 2
+    pac2 = 3
+    pac3 = 4
+    pac4 = 5
+    pac5 = 6
+    pac6 = 7
+    pac7 = 8
+    pac8 = 9
+    pac9 = 10
 
 class QUIMEN(Enum):
-    pref = u'pref',
-    cref = u'cref',
-    enf1 = u'enf1',
-    enf2 = u'enf2',
-    enf3 = u'enf3',
-    enf4 = u'enf4',
-    enf5 = u'enf5',
-    enf6 = u'enf6',
-    enf7 = u'enf7',
-    enf8 = u'enf8',
-    enf9 = u'enf9',
+    pref = 0
+    cref = 1
+    enf1 = 2
+    enf2 = 3
+    enf3 = 4
+    enf4 = 5
+    enf5 = 6
+    enf6 = 7
+    enf7 = 8
+    enf8 = 9
+    enf9 = 10
 
-CHEF = QUIFAM.chef
-CONJ = QUIFOY.conj
-CREF = QUIMEN.cref
+CHEF = QUIFAM.chef.value
+CONJ = QUIFOY.conj.value
+CREF = QUIMEN.cref.value
 ENFS = [
-    QUIFAM.enf1, QUIFAM.enf2, QUIFAM.enf3, QUIFAM.enf4, QUIFAM.enf5, QUIFAM.enf6, QUIFAM.enf7,
-    QUIFAM.enf8, QUIFAM.enf9,
+    QUIFAM.enf1.value, QUIFAM.enf2.value, QUIFAM.enf3.value, QUIFAM.enf4.value, QUIFAM.enf5.value, QUIFAM.enf6.value, QUIFAM.enf7.value,
+    QUIFAM.enf8.value, QUIFAM.enf9.value,
     ]
-PAC1 = QUIFOY.pac1
-PAC2 = QUIFOY.pac2
-PAC3 = QUIFOY.pac3
-PART = QUIFAM.part
-PREF = QUIMEN.pref
-VOUS = QUIFOY.vous
+PAC1 = QUIFOY.pac1.value
+PAC2 = QUIFOY.pac2.value
+PAC3 = QUIFOY.pac3.value
+PART = QUIFAM.part.value
+PREF = QUIMEN.pref.value
+VOUS = QUIFOY.vous.value
