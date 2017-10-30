@@ -101,6 +101,7 @@ class ppe_du_sa(Variable):
 class ppe_tp_sa(Variable):
     cerfa_field = {
         QUIFOY['vous']: u"1AX",
+        QUIFOY['vous']: u"1AX",
         QUIFOY['conj']: u"1BX",
         QUIFOY['pac1']: u"1CX",
         QUIFOY['pac2']: u"1DX",
@@ -234,13 +235,13 @@ class indemnite_fin_contrat_due(Variable):
     definition_period = MONTH
 
 class TypesContratDeTravail(Enum):
-    temps_plein = u"temps_plein",
-    temps_partiel = u"temps_partiel",
-    forfait_heures_semaines = u"forfait_heures_semaines",
-    forfait_heures_mois = u"forfait_heures_mois",
-    forfait_heures_annee = u"forfait_heures_annee",
-    forfait_jours_annee = u"forfait_jours_annee",
-    sans_objet = u"sans_objet",
+    temps_plein = u"temps_plein"
+    temps_partiel = u"temps_partiel"
+    forfait_heures_semaines = u"forfait_heures_semaines"
+    forfait_heures_mois = u"forfait_heures_mois"
+    forfait_heures_annee = u"forfait_heures_annee"
+    forfait_jours_annee = u"forfait_jours_annee"
+    sans_objet = u"sans_objet"
 
 
 class contrat_de_travail(Variable):
