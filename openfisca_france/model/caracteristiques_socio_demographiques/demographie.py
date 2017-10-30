@@ -52,13 +52,13 @@ class enceinte(Variable):
     definition_period = MONTH
 
 class TypesStatutMarital(Enum):
-    non_renseigne = u'Non renseigné',
-    marie = u'Marié',
-    celibataire = u'Célibataire',
-    divorce = u'Divorcé',
-    veuf = u'Veuf',
-    pacse = u'Pacsé',
-    jeune_veuf = u'Jeune veuf',
+    non_renseigne = u'Non renseigné'
+    marie = u'Marié'
+    celibataire = u'Célibataire'
+    divorce = u'Divorcé'
+    veuf = u'Veuf'
+    pacse = u'Pacsé'
+    jeune_veuf = u'Jeune veuf'
 
 
 class statut_marital(Variable):
