@@ -8,6 +8,7 @@ from numpy import logical_or as or_, fromiter
 from openfisca_france.model.base import *  # noqa analysis:ignore
 from openfisca_france.france_taxbenefitsystem import COUNTRY_DIR
 
+
 class taux_versement_transport(Variable):
     value_type = float
     entity = Individu
@@ -22,7 +23,14 @@ class taux_versement_transport(Variable):
         seuil_effectif = simulation.parameters_at(period.start).cotsoc.versement_transport.seuil_effectif
 
         preload_taux_versement_transport()
-        public = (categorie_salarie >= 2)
+        public = \
+            (categorie_salarie == TypesCategorieSalarie.public_titulaire_etat) \
+            + (categorie_salarie == TypesCategorieSalarie.public_titulaire_militaire) \
+            + (categorie_salarie == TypesCategorieSalarie.public_titulaire_territoriale) \
+            + (categorie_salarie == TypesCategorieSalarie.public_titulaire_hospitaliere) \
+            + (categorie_salarie == TypesCategorieSalarie.public_non_titulaire) \
+            + (categorie_salarie == TypesCategorieSalarie.non_pertinent)
+
         taux_versement_transport = fromiter(
             (
                 get_taux_versement_transport(code_commune, period)

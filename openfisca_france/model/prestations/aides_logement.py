@@ -7,15 +7,13 @@ import json
 import logging
 import pkg_resources
 
-from numpy import ceil, fromiter, int16, logical_or as or_, logical_and as and_, take
+from numpy import ceil, fromiter, int16, logical_or as or_, logical_and as and_, take, nditer
 
 import openfisca_france
 from openfisca_core.periods import Instant
 
 from openfisca_france.model.base import *  # noqa  analysis:ignore
 from openfisca_france.model.prestations.prestations_familiales.base_ressource import nb_enf
-from openfisca_france.model.caracteristiques_socio_demographiques.logement import statut_occupation_logement
-from openfisca_france.model.caracteristiques_socio_demographiques.demographie import TypesActivite
 
 
 log = logging.getLogger(__name__)
@@ -341,9 +339,13 @@ class aide_logement_loyer_plafond(Variable):
             for zone in range(1, 4)]
             for i in ['personnes_seules', 'couples', 'un_enfant', 'majoration_par_enf_supp']
             ]
-        plafond_personne_seule = take(plafonds_by_zone[0], zone_apl)
-        plafond_couple = take(plafonds_by_zone[1], zone_apl)
-        plafond_famille = take(plafonds_by_zone[2], zone_apl) + (al_nb_pac > 1) * (al_nb_pac - 1) * take(plafonds_by_zone[3], zone_apl)
+        index_zone_apl = select(
+            [zone_apl == TypesZoneApl.zone_1, zone_apl == TypesZoneApl.zone_2, zone_apl == TypesZoneApl.zone_3],
+            [1, 2, 3]
+        )
+        plafond_personne_seule = take(plafonds_by_zone[0], index_zone_apl)
+        plafond_couple = take(plafonds_by_zone[1], index_zone_apl)
+        plafond_famille = take(plafonds_by_zone[2], index_zone_apl) + (al_nb_pac > 1) * (al_nb_pac - 1) * take(plafonds_by_zone[3], index_zone_apl)
 
         plafond = select(
             [not_(couple) * (al_nb_pac == 0) + chambre, al_nb_pac > 0],
@@ -371,7 +373,13 @@ class aide_logement_loyer_seuil_degressivite(Variable):
         coloc = famille.demandeur.menage('coloc', period)
 
         coeff_degressivite_by_zone = [0] + [al.loyers_plafond['zone' + str(zone)]['degressivite'] for zone in range(1, 4)]
-        coeff_degressivite = take(coeff_degressivite_by_zone, zone_apl)
+
+        index_zone_apl = select(
+            [zone_apl == TypesZoneApl.non_renseigne, zone_apl == TypesZoneApl.zone_1, zone_apl == TypesZoneApl.zone_2,
+             zone_apl == TypesZoneApl.zone_3],
+            [0, 1, 2, 3]
+        )
+        coeff_degressivite = take(coeff_degressivite_by_zone, index_zone_apl)
 
         loyer_degressivite = loyer_plafond * coeff_degressivite
         minoration_coloc = loyer_degressivite * 0.25 * coloc
@@ -395,7 +403,13 @@ class aide_logement_loyer_seuil_suppression(Variable):
         coloc = famille.demandeur.menage('coloc', period)
 
         coeff_suppression_by_zone = [0] + [al.loyers_plafond['zone' + str(zone)]['suppression'] for zone in range(1, 4)]
-        coeff_suppression = take(coeff_suppression_by_zone, zone_apl)
+
+        index_zone_apl = select(
+            [zone_apl == TypesZoneApl.non_renseigne, zone_apl == TypesZoneApl.zone_1, zone_apl == TypesZoneApl.zone_2,
+             zone_apl == TypesZoneApl.zone_3],
+            [0, 1, 2, 3]
+        )
+        coeff_suppression = take(coeff_suppression_by_zone, index_zone_apl)
 
         loyer_suppression = loyer_plafond * coeff_suppression
         minoration_coloc = loyer_suppression * 0.25 * coloc
@@ -611,8 +625,13 @@ class aide_logement_montant_brut_avant_degressivite(Variable):
     def formula(famille, period, parameters):
         al = parameters(period).prestations.aides_logement
         statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
-        locataire = ((3 <= statut_occupation_logement) * (5 >= statut_occupation_logement)) + (statut_occupation_logement == 7)
-        accedant = (statut_occupation_logement == 1)
+        locataire = (
+            (statut_occupation_logement == TypesStatutOccupationLogement.locataire_hlm)
+            + (statut_occupation_logement == TypesStatutOccupationLogement.locataire_vide)
+            + (statut_occupation_logement == TypesStatutOccupationLogement.locataire_meuble)
+            + (statut_occupation_logement == TypesStatutOccupationLogement.locataire_foyer)
+            )
+        accedant = (statut_occupation_logement == TypesStatutOccupationLogement.primo_accedant)
 
         loyer_retenu = famille('aide_logement_loyer_retenu', period)
         charges_retenues = famille('aide_logement_charges', period)
@@ -653,8 +672,8 @@ class aide_logement_montant_brut(Variable):
             )
 
         statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
-        accedant = (statut_occupation_logement == 1)
-        locataire_foyer = (statut_occupation_logement == 7)
+        accedant = (statut_occupation_logement == TypesStatutOccupationLogement.primo_accedant)
+        locataire_foyer = (statut_occupation_logement == TypesStatutOccupationLogement.locataire_foyer)
         exception = accedant + locataire_foyer + handicap
         coeff = where(exception, 1, coeff)
 
@@ -868,13 +887,14 @@ class zone_apl(Variable):
 
         preload_zone_apl()
         default_value = 2
-        return fromiter(
+        get_zone = fromiter(
             (
                 zone_apl_by_depcom.get(depcom_cell, default_value)
                 for depcom_cell in depcom
                 ),
             dtype = int16,
             )
+        return select((get_zone == 1, get_zone == 2, get_zone == 3), (TypesZoneApl.zone_1, TypesZoneApl.zone_2, TypesZoneApl.zone_3))
 
 
 def preload_zone_apl():
@@ -979,7 +999,13 @@ class aides_logement_primo_accedant_plafond_mensualite(Variable):
     def formula(famille, period, parameters):
         al_plaf_acc = parameters(period).prestations.al_plaf_acc
         zone_apl = famille.demandeur.menage('zone_apl', period)
-        formatted_zone = concat('plafond_pour_accession_a_la_propriete_zone_', zone_apl)  # zone_apl returns 1, 2 or 3 but the parameters have a long name
+        index_zone_apl = select(
+            [zone_apl == TypesZoneApl.non_renseigne, zone_apl == TypesZoneApl.zone_1, zone_apl == TypesZoneApl.zone_2, zone_apl == TypesZoneApl.zone_3],
+            [2, 1, 2, 3]
+        )
+        if 0 in index_zone_apl:
+            raise ValueError(famille.demandeur.menage('zone_apl', period))
+        formatted_zone = concat('plafond_pour_accession_a_la_propriete_zone_', index_zone_apl)  # zone_apl returns 1, 2 or 3 but the parameters have a long name
 
         plafonds = al_plaf_acc[formatted_zone]
         al_nb_pac = famille('al_nb_personnes_a_charge', period)

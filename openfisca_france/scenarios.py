@@ -10,7 +10,8 @@ import uuid
 from openfisca_core import conv, scenarios
 from entities import Individu, Famille, FoyerFiscal, Menage
 
-from model.caracteristiques_socio_demographiques.demographie import TypesActivite
+from model.base import *
+
 
 def N_(message):
     return message
@@ -482,11 +483,11 @@ class Scenario(scenarios.AbstractScenario):
             elif len(foyer_fiscal['declarants']) == 2:
                 # Suggest "PACSé" or "Marié" instead of "Célibataire" when foyer_fiscal contains 2 "declarants" without
                 # "statut_marital".
-                statut_marital = 5  # PACSé
+                statut_marital = TypesStatutMarital.pacse  # PACSé
                 for individu_id in foyer_fiscal['declarants']:
                     individu = individu_by_id[individu_id]
-                    if individu.get('statut_marital') == 1:  # Marié
-                        statut_marital = 1
+                    if individu.get('statut_marital') == TypesStatutMarital.marie:  # Marié
+                        statut_marital = TypesStatutMarital.marie
                 for individu_id in foyer_fiscal['declarants']:
                     individu = individu_by_id[individu_id]
                     if individu.get('statut_marital') is None:

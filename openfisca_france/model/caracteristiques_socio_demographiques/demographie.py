@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from openfisca_france.model.base import *  # noqa
-
+from enum import Enum, IntEnum
 
 class date_naissance(Variable):
     value_type = date
@@ -229,7 +229,7 @@ class maries(Variable):
         # Note : Cette variable est "instantanée" : quelque soit la période demandée, elle retourne la valeur au premier
         # jour, sans changer la période.
         statut_marital = famille.members('statut_marital', period)
-        individu_marie = (statut_marital == 1)
+        individu_marie = (statut_marital == TypesStatutMarital.marie)
 
         return famille.any(individu_marie, role = famille.PARENT)
 
