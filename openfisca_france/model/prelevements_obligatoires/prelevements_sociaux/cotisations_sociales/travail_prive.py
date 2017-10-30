@@ -188,7 +188,10 @@ class accident_du_travail(Variable):
             'assiette_cotisations_sociales', period)
         taux_accident_travail = simulation.calculate('taux_accident_travail', period)
         categorie_salarie = simulation.calculate('categorie_salarie', period)
-        assujetti = categorie_salarie <= 1  # TODO: ajouter contractuel du public salarié de moins d'un an ou à temps partiel
+        assujetti = \
+            (categorie_salarie == TypesCategorieSalarie.prive_non_cadre) \
+            + (categorie_salarie == TypesCategorieSalarie.prive_cadre) \
+            # TODO: ajouter contractuel du public salarié de moins d'un an ou à temps partiel
         return - assiette_cotisations_sociales * taux_accident_travail * assujetti
 
 
@@ -423,9 +426,14 @@ class arrco_salarie(Variable):
             min_(max_(assiette_cotisations_sociales, 0), plafond_securite_sociale) *
             arrco_tranche_a_taux_salarie
             )
+
+        public = \
+            (categorie_salarie == TypesCategorieSalarie.prive_non_cadre) \
+            + (categorie_salarie == TypesCategorieSalarie.prive_cadre)
+
         return (
             cotisation_minimale * (arrco_tranche_a_taux_salarie == 0) + cotisation_entreprise
-            ) * (categorie_salarie <= 1)
+            ) * public
 
 
 class arrco_employeur(Variable):
@@ -453,9 +461,14 @@ class arrco_employeur(Variable):
             min_(max_(assiette_cotisations_sociales, 0), plafond_securite_sociale) *
             arrco_tranche_a_taux_employeur
             )
+
+        public = \
+            (categorie_salarie == TypesCategorieSalarie.prive_non_cadre) \
+            + (categorie_salarie == TypesCategorieSalarie.prive_cadre)
+
         return (
             cotisation_minimale * (arrco_tranche_a_taux_employeur == 0) + cotisation_entreprise
-            ) * (categorie_salarie <= 1)
+            ) * public
 
 
 class chomage_salarie(Variable):
@@ -743,6 +756,7 @@ class TypeTailleEntreprise(Enum):
     de_10_a_19 = u"De 10 à 19 salariés",
     de_20_a_249 = u"De 20 à 249 salariés",
     plus_de_250 = u"Plus de 250 salariés",
+
 class taille_entreprise(Variable):
     value_type = Enum
     possible_values = TypeTailleEntreprise

@@ -104,16 +104,16 @@ class coefficient_proratisation(Variable):
         coefficient = switch(
             contrat_de_travail,
             {  # temps plein
-                0: ((jours_ouvres_ce_mois_incomplet - jours_absence) /
+                TypesContratDeTravail.temps_plein: ((jours_ouvres_ce_mois_incomplet - jours_absence) /
                     jours_ouvres_ce_mois
                     ),
                 # temps partiel
                 # (en l'absence du détail pour chaque jour de la semaine ou chaque semaine du mois)
-                1: coefficient_proratisation_temps_partiel * (
+                TypesContratDeTravail.temps_partiel: coefficient_proratisation_temps_partiel * (
                     (jours_ouvres_ce_mois_incomplet * coefficient_proratisation_temps_partiel - jours_absence) /
                     (jours_ouvres_ce_mois * coefficient_proratisation_temps_partiel + 1e-16)
                 ),
-                5: coefficient_proratisation_forfait_jours * (
+                TypesContratDeTravail.forfait_jours_annee: coefficient_proratisation_forfait_jours * (
                     (jours_ouvres_ce_mois_incomplet * coefficient_proratisation_forfait_jours - jours_absence) /
                     (jours_ouvres_ce_mois * coefficient_proratisation_forfait_jours + 1e-16)
                 )
@@ -337,7 +337,11 @@ def compute_allegement_fillon(simulation, period):
     assiette = simulation.calculate_add('assiette_allegement', period)
     smic_proratise = simulation.calculate_add('smic_proratise', period)
     taille_entreprise = simulation.calculate('taille_entreprise', first_month)
-    majoration = (taille_entreprise <= 2)  # majoration éventuelle pour les petites entreprises
+    majoration = (
+        (taille_entreprise == TypeTailleEntreprise.non_pertinent)
+        + (taille_entreprise == TypeTailleEntreprise.moins_de_10)
+        + (taille_entreprise == TypeTailleEntreprise.de_10_a_19)
+        )  # majoration éventuelle pour les petites entreprises
     # Calcul du taux
     # Le montant maximum de l’allègement dépend de l’effectif de l’entreprise.
     # Le montant est calculé chaque année civile, pour chaque salarié ;

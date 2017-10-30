@@ -21,7 +21,7 @@ import os
 
 import openfisca_france
 
-from openfisca_france.model.caracteristiques_socio_demographiques.demographie import TypesActivite
+from openfisca_france.model.base import *
 
 
 app_name = os.path.splitext(os.path.basename(__file__))[0]

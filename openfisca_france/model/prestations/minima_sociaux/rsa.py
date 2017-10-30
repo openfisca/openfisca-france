@@ -7,7 +7,7 @@ from numpy import datetime64, floor, logical_and as and_, logical_or as or_
 
 from openfisca_france.model.base import *  # noqa analysis:ignore
 from openfisca_france.model.prestations.prestations_familiales.base_ressource import nb_enf
-from openfisca_france.model.caracteristiques_socio_demographiques.demographie import TypesActivite
+from openfisca_france.model.revenus.activite.non_salarie import enum_tns_type_activite
 
 
 class rsa_base_ressources(Variable):
@@ -750,7 +750,13 @@ class rsa_eligibilite_tns(Variable):
             plaf_vente = P_micro.specialbnc.marchandises.max
             plaf_service = P_micro.specialbnc.services.max
 
-            return ((type_activite == 0) * (ca <= plaf_vente)) + ((type_activite >= 1) * (ca <= plaf_service))
+            achat_revente = (type_activite == enum_tns_type_activite.achat_revente)
+            service = (
+                (type_activite == enum_tns_type_activite.achat_revente)
+                + (type_activite == enum_tns_type_activite.achat_revente)
+            )
+
+            return (achat_revente * (ca <= plaf_vente)) + (service * (ca <= plaf_service))
 
         eligibilite_agricole = eligibilite_agricole(
             has_conjoint, rsa_nb_enfants, tns_benefice_agricole, P_agr

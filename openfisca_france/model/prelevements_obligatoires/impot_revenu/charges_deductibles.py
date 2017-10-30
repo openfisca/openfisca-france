@@ -598,7 +598,6 @@ class cd_eparet(Variable):
         f6ps_holder = simulation.compute('f6ps', period)
         f6rs_holder = simulation.compute('f6rs', period)
         f6ss_holder = simulation.compute('f6ss', period)
-
         f6ps = self.filter_role(f6ps_holder, role = VOUS)
         f6pt = self.filter_role(f6ps_holder, role = CONJ)
         f6pu = self.filter_role(f6ps_holder, role = PAC1)
