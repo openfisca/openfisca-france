@@ -27,14 +27,6 @@ class garde_alternee(Variable):
     set_input = set_input_dispatch_by_period
 
 
-class TypesActivite(Enum):
-    actif = u'Actif occupé',
-    chomeur = u'Chômeur',
-    etudiant = u'Étudiant, élève',
-    retraite = u'Retraité',
-    inactif = u'Autre, inactif'
-
-
 class activite(Variable):
     value_type = Enum
     default_value = TypesActivite.inactif
@@ -50,15 +42,6 @@ class enceinte(Variable):
     entity = Individu
     label = u"Est enceinte"
     definition_period = MONTH
-
-class TypesStatutMarital(Enum):
-    non_renseigne = u'Non renseigné'
-    marie = u'Marié'
-    celibataire = u'Célibataire'
-    divorce = u'Divorcé'
-    veuf = u'Veuf'
-    pacse = u'Pacsé'
-    jeune_veuf = u'Jeune veuf'
 
 
 class statut_marital(Variable):

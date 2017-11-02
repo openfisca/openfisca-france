@@ -228,15 +228,6 @@ class apa_etablissement(Variable):
 
         return apa * (apa >= seuil_non_versement) * eligibilite_etablissement * apa_eligibilite
 
-class TypesGir(Enum):
-    non_defini = u"Non défini"
-    gir_1 = u"Gir 1",
-    gir_2 = u"Gir 2",
-    gir_3 = u"Gir 3",
-    gir_4 = u"Gir 4",
-    gir_5 = u"Gir 5",
-    gir_6 = u"Gir 6",
-
 
 class gir(Variable):
     value_type = Enum

@@ -613,6 +613,7 @@ class rsa_montant(Variable):
         seuil_non_versement = P.rsa_nv
 
         montant = rsa_socle - rsa_forfait_logement - rsa_base_ressources + P.pente * rsa_revenu_activite
+
         montant = max_(montant, 0)
         montant = montant * (montant >= seuil_non_versement)
 
@@ -688,15 +689,18 @@ class rsa_eligibilite(Variable):
 
     def formula(famille, period, parameters):
         rsa_nb_enfants = famille('rsa_nb_enfants', period)
+
         rsa_eligibilite_tns = famille('rsa_eligibilite_tns', period)
 
         condition_nationalite_i = famille.members('rsa_condition_nationalite', period)
+
         condition_nationalite = famille.any(condition_nationalite_i, role = Famille.PARENT)
 
         rmi = parameters(period).prestations.minima_sociaux.rmi
         rsa = parameters(period).prestations.minima_sociaux.rsa
 
         age_i = famille.members('age', period)
+
         activite_i = famille.members('activite', period)
 
         # rsa_nb_enfants est à valeur pour une famille, il faut le projeter sur les individus avant de faire une opération avec age_i
@@ -757,6 +761,8 @@ class rsa_eligibilite_tns(Variable):
             plaf_service = P_micro.specialbnc.services.max
 
             achat_revente = (type_activite == enum_tns_type_activite.achat_revente)
+
+
             service = (
                 (type_activite == enum_tns_type_activite.achat_revente)
                 + (type_activite == enum_tns_type_activite.achat_revente)
@@ -767,10 +773,13 @@ class rsa_eligibilite_tns(Variable):
         eligibilite_agricole = eligibilite_agricole(
             has_conjoint, rsa_nb_enfants, tns_benefice_agricole, P_agr
             )
+
+
         eligibilite_chiffre_affaire = famille.all(
             eligibilite_chiffre_affaire(tns_autres_revenus_CA_i, tns_autres_revenus_type_activite_i, P_micro),
             role = Famille.PARENT
             )
+
 
         return eligibilite_agricole * not_(tns_avec_employe) * eligibilite_chiffre_affaire
 
@@ -880,15 +889,10 @@ class rsa_majore_eligibilite(Variable):
         return eligib
 
 
-class TypesRsaNonCalculable(Enum):
-    non_renseigne = u"Non Renseigne",
-    tns = u"tns",
-    conjoint_tns = u"conjoint_tns"
-
 class rsa_non_calculable(Variable):
     value_type = Enum
-    possible_values = TypesRsaNonCalculable
-    default_value = TypesRsaNonCalculable.non_renseigne
+    possible_values = TypesRSANonCalculable
+    default_value = TypesRSANonCalculable.non_renseigne
     entity = Famille
     label = u"RSA non calculable"
     end = '2016-12-31'

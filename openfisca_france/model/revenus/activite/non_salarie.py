@@ -1601,11 +1601,6 @@ class tns_micro_entreprise_chiffre_affaires(Variable):
     label = u"Chiffre d'affaires en de micro-entreprise"
     definition_period = YEAR
 
-class enum_tns_type_activite(Enum):
-    achat_revente = u'achat_revente',
-    bic = u'bic',
-    bnc = u'bnc',
-
 
 # TODO remove this ugly ETERNITY
 class tns_auto_entrepreneur_type_activite(Variable):
