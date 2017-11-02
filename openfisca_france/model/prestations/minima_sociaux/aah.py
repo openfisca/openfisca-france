@@ -170,14 +170,10 @@ class aah_eligible(Variable):
     # TODO: dated_function : avant 2008, il fallait ne pas avoir travaillé pendant les 12 mois précédant la demande.
 
 
-class TypesAahNonCalculable(Enum):
-    non_renseigne = u"Non renseigné",
-    intervention_CDAPH_necessaire = u"intervention_CDAPH_necessaire"
-
 class aah_non_calculable(Variable):
     value_type = Enum
-    possible_values = TypesAahNonCalculable
-    default_value = TypesAahNonCalculable.non_renseigne
+    possible_values = TypesAAHNonCalculable
+    default_value = TypesAAHNonCalculable.non_renseigne
     entity = Individu
     label = u"AAH non calculable"
     definition_period = MONTH

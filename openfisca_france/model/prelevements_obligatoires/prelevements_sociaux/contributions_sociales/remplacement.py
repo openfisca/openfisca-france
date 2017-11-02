@@ -10,16 +10,11 @@ from openfisca_france.model.prelevements_obligatoires.prelevements_sociaux.contr
     )
 log = logging.getLogger(__name__)
 
-class TypeTauxCsgRemplacement(Enum):
-    non_renseigne = u"Non renseigné/non pertinent",
-    exonere = u"Exonéré",
-    taux_reduit = u"Taux réduit",
-    taux_plein = u"Taux plein",
 
 class taux_csg_remplacement(Variable):
-    default_value = TypeTauxCsgRemplacement.taux_plein
+    default_value = TypeTauxCSGRemplacement.taux_plein
     value_type = Enum
-    possible_values = TypeTauxCsgRemplacement
+    possible_values = TypeTauxCSGRemplacement
     entity = Individu
     label = u"Taux retenu sur la CSG des revenus de remplacment"
     definition_period = MONTH
@@ -108,8 +103,8 @@ class crds_chomage(Variable):
         heures_mensuelles = 35 * 52 / 12
         cho_seuil_exo = law.prelevements_sociaux.contributions.csg.chomage.min_exo * heures_mensuelles * smic_h_b
         eligible = \
-            (taux_csg_remplacement == TypeTauxCsgRemplacement.taux_reduit) \
-            + (taux_csg_remplacement == TypeTauxCsgRemplacement.taux_plein)
+            (taux_csg_remplacement == TypeTauxCSGRemplacement.taux_reduit) \
+            + (taux_csg_remplacement == TypeTauxCSGRemplacement.taux_plein)
         montant_crds = montant_csg_crds(
             base_avec_abattement = chomage_brut,
             law_node = law.prelevements_sociaux.contributions.crds.activite,
@@ -182,8 +177,8 @@ class csg_deductible_retraite(Variable):
 
         montant_csg = montant_csg_crds(
             base_sans_abattement = retraite_brute,
-            indicatrice_taux_plein = (taux_csg_remplacement == TypeTauxCsgRemplacement.taux_plein),
-            indicatrice_taux_reduit = (taux_csg_remplacement == TypeTauxCsgRemplacement.taux_reduit),
+            indicatrice_taux_plein = (taux_csg_remplacement == TypeTauxCSGRemplacement.taux_plein),
+            indicatrice_taux_reduit = (taux_csg_remplacement == TypeTauxCSGRemplacement.taux_reduit),
             law_node = law.prelevements_sociaux.contributions.csg.retraite.deductible,
             plafond_securite_sociale = law.cotsoc.gen.plafond_securite_sociale,
             )
@@ -227,7 +222,7 @@ class crds_retraite(Variable):
             base_sans_abattement = retraite_brute,
             law_node = law.prelevements_sociaux.contributions.crds.retraite,
             plafond_securite_sociale = law.cotsoc.gen.plafond_securite_sociale,
-            ) * (taux_csg_remplacement == TypeTauxCsgRemplacement.exonere)
+            ) * (taux_csg_remplacement == TypeTauxCSGRemplacement.exonere)
         return montant_crds
 
 
@@ -244,7 +239,7 @@ class casa(Variable):
         taux_csg_remplacement = individu('taux_csg_remplacement', period)
         contributions = parameters(period.start).prelevements_sociaux.contributions
         casa = (
-            (taux_csg_remplacement == TypeTauxCsgRemplacement.taux_plein) *
+            (taux_csg_remplacement == TypeTauxCSGRemplacement.taux_plein) *
             (rfr > contributions.csg.remplacement.pensions_de_retraite_et_d_invalidite.seuil_de_rfr_2) *
             contributions.casa.calc(retraite_brute)
             )
@@ -255,7 +250,7 @@ class casa(Variable):
         taux_csg_remplacement = individu('taux_csg_remplacement', period)
         contributions = parameters(period.start).prelevements_sociaux.contributions
         casa = (
-            (taux_csg_remplacement == TypeTauxCsgRemplacement.taux_plein) *
+            (taux_csg_remplacement == TypeTauxCSGRemplacement.taux_plein) *
             contributions.casa.calc(retraite_brute)
             )
         return - casa
