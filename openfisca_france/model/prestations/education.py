@@ -299,10 +299,6 @@ class bourse_lycee(Variable):
 
         return montant
 
-class TypesScolarite(Enum):
-    inconnue = u"Inconnue",
-    college = u"Collège",
-    lycee = u"Lycée"
 
 class scolarite(Variable):
     value_type = Enum

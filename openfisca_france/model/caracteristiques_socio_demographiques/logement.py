@@ -56,17 +56,6 @@ class habite_chez_parents(Variable):
     label = u"L'individu habite chez ses parents"
     definition_period = MONTH
 
-class TypesStatutOccupationLogement(Enum):
-    non_renseigne = u"Non renseigné"
-    primo_accedant = u"Accédant à la propriété"
-    proprietaire = u"Propriétaire (non accédant) du logement"
-    locataire_hlm = u"Locataire d'un logement HLM"
-    locataire_vide = u"Locataire ou sous-locataire d'un logement loué vide non-HLM"
-    locataire_meuble = u"Locataire ou sous-locataire d'un logement loué meublé ou d'une chambre d'hôtel"
-    loge_gratuitement = u"Logé gratuitement par des parents, des amis ou l'employeur"
-    locataire_foyer = u"Locataire d'un foyer (résidence universitaire, maison de retraite, foyer de jeune travailleur, résidence sociale...)"
-    sans_domicile = u"Sans domicile stable"
-
 
 class statut_occupation_logement(Variable):
     value_type = Enum

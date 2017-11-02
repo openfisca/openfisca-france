@@ -127,13 +127,6 @@ class ppe_tp_sa(Variable):
             indicateur = indicateur & (individu('contrat_de_travail', mois) == 0)
         return indicateur
 
-
-class TypesExpositionAccident(Enum):
-    faible = u"Faible"
-    moyen = u"Moyen"
-    eleve = u"Élevé"
-    tres_eleve = u"Très élevé"
-
 class exposition_accident(Variable):
     value_type = Enum
     possible_values = TypesExpositionAccident
@@ -142,11 +135,6 @@ class exposition_accident(Variable):
     label = u"Exposition au risque pour les accidents du travail"
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
-
-class TypesExpositionPenibilite(Enum):
-    nulle = u"Nulle, pas d'exposition de l'employé à un facteur de pénibilité"
-    simple = u"Simple, exposition à un seul facteur de pénibilité"
-    multiple = u"Multiple, exposition à plusieurs facteurs de pénibilité"
 
 class exposition_penibilite(Variable):
     value_type = Enum
@@ -158,11 +146,6 @@ class exposition_penibilite(Variable):
     set_input = set_input_dispatch_by_period
 
 
-class TypesAllegementFillonModeRecouvrement(Enum):
-    fin_d_annee = u"fin_d_annee",
-    anticipe_regularisation_fin_de_periode = u"anticipe_regularisation_fin_de_periode",
-    progressif = u"progressif",
-
 class allegement_fillon_mode_recouvrement(Variable):
     value_type = Enum
     possible_values = TypesAllegementFillonModeRecouvrement
@@ -171,11 +154,6 @@ class allegement_fillon_mode_recouvrement(Variable):
     label = u"Mode de recouvrement des allègements Fillon"
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
-
-class TypesAllegementCotisationAllocationsFamilialesModeRecouvrement(Enum):
-    fin_d_annee = u"fin_d_annee",
-    anticipe_regularisation_fin_de_periode = u"anticipe_regularisation_fin_de_periode",
-    progressif = u"progressif",
 
 
 class allegement_cotisation_allocations_familiales_mode_recouvrement(Variable):
@@ -267,9 +245,6 @@ class contrat_de_travail_fin(Variable):
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
-class TypesContratDeTravailDuree(Enum):
-    cdi = u"cdi",
-    cdd = u"cdd",
 
 class contrat_de_travail_duree(Variable):
     value_type = Enum
@@ -280,10 +255,6 @@ class contrat_de_travail_duree(Variable):
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
-
-class TypesCotisationSocialeModeRecouvrement(Enum):
-    mensuel = u"Mensuel avec régularisation en fin d'année",
-    annuel = u"Annuel",
 
 class cotisation_sociale_mode_recouvrement(Variable):
     value_type = Enum

@@ -750,12 +750,6 @@ class complementaire_sante_salarie(Variable):
         cotisation = - (1 - complementaire_sante_taux_employeur) * complementaire_sante_montant
         return cotisation
 
-class TypeTailleEntreprise(Enum):
-    non_pertinent = u"Non pertinent",
-    moins_de_10 = u"Moins de 10 salariés",
-    de_10_a_19 = u"De 10 à 19 salariés",
-    de_20_a_249 = u"De 20 à 249 salariés",
-    plus_de_250 = u"Plus de 250 salariés",
 
 class taille_entreprise(Variable):
     value_type = Enum
