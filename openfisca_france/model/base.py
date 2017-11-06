@@ -17,7 +17,7 @@ class TypesStatutOccupationLogement(Enum):
     sans_domicile = u"Sans domicile stable"
 
 
-class TypeTailleEntreprise(Enum):
+class TypesTailleEntreprise(Enum):
     non_pertinent = u"Non pertinent"
     moins_de_10 = u"Moins de 10 salariés"
     de_10_a_19 = u"De 10 à 19 salariés"
@@ -82,7 +82,7 @@ class CATEGORIE_SALARIE(Enum):
     non_pertinent = u'non_pertinent',
 
 
-class enum_tns_type_activite(Enum):
+class TypesTnsTypeActivite(Enum):
     achat_revente = u'achat_revente'
     bic = u'bic'
     bnc = u'bnc'

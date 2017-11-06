@@ -36,7 +36,7 @@ def apply_bareme(simulation, period, cotisation_type = None, bareme_name = None,
     cotisation_mode_recouvrement = simulation.calculate('cotisation_sociale_mode_recouvrement', period)
     cotisation = (
         # en fin d'année
-        cotisation_mode_recouvrement == 1) * (
+        cotisation_mode_recouvrement == TypesCotisationSocialeModeRecouvrement.annuel) * (
             compute_cotisation_annuelle(
                 simulation,
                 period,
@@ -45,7 +45,7 @@ def apply_bareme(simulation, period, cotisation_type = None, bareme_name = None,
                 )
             ) + (
         # anticipé
-        cotisation_mode_recouvrement == 0) * (
+        cotisation_mode_recouvrement == TypesCotisationSocialeModeRecouvrement.mensuel) * (
             compute_cotisation_anticipee(
                 simulation,
                 period,

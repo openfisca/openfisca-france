@@ -420,7 +420,7 @@ class aide_logement_loyer_reel(Variable):
     def formula(famille, period):
         statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
         loyer = famille.demandeur.menage('loyer', period)
-        coeff_meuble = where(statut_occupation_logement == 5, 2 / 3, 1)  # Coeff de 2/3 pour les meublés
+        coeff_meuble = where(statut_occupation_logement == TypesStatutOccupationLogement.locataire_meuble, 2 / 3, 1)  # Coeff de 2/3 pour les meublés
         return round_(loyer * coeff_meuble)
 
 
@@ -780,7 +780,7 @@ class apl(Variable):
         aide_logement_montant = famille('aide_logement_montant', period)
         statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
 
-        return aide_logement_montant * (statut_occupation_logement == 3)
+        return aide_logement_montant * (statut_occupation_logement == TypesStatutOccupationLogement.locataire_hlm)
 
 
 class aide_logement_non_calculable(Variable):
@@ -794,7 +794,16 @@ class aide_logement_non_calculable(Variable):
     def formula(famille, period):
         statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
 
-        return (statut_occupation_logement == 7) * 2
+        return select(
+            [
+                statut_occupation_logement == TypesStatutOccupationLogement.locataire_foyer,
+                statut_occupation_logement != TypesStatutOccupationLogement.locataire_foyer
+            ],
+            [
+                TypeAideLogementNonCalculable.locataire_foyer,
+                TypeAideLogementNonCalculable.non_renseigne
+            ]
+        )
 
 
 class aide_logement(Variable):

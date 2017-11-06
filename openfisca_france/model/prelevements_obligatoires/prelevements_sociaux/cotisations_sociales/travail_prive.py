@@ -91,11 +91,11 @@ class indemnite_fin_contrat(Variable):
         taux = simulation.parameters_at(period.start).cotsoc.indemnite_fin_contrat.taux
         result = (
             # CDD
-            (contrat_de_travail_duree == 1) *
+            (contrat_de_travail_duree == TypesContratDeTravailDuree.cdd) *
             # non fonction publique
             (
-                (categorie_salarie == 0) +
-                (categorie_salarie == 1)
+                (categorie_salarie == TypesCategorieSalarie.prive_non_cadre) +
+                (categorie_salarie == TypesCategorieSalarie.prive_cadre)
                 ) *
             not_(apprenti) *
             indemnite_fin_contrat_due *
@@ -169,9 +169,9 @@ class penibilite(Variable):
         cotisation = switch(
             exposition_penibilite,
              {
-                0: cotisation_base,
-                1: cotisation_base + cotisation_additionnelle,
-                2: cotisation_base + cotisation_additionnelle * multiplicateur,
+                TypesExpositionPenibilite.nulle: cotisation_base,
+                TypesExpositionPenibilite.simple: cotisation_base + cotisation_additionnelle,
+                TypesExpositionPenibilite.multiple: cotisation_base + cotisation_additionnelle * multiplicateur,
              })
 
         return cotisation
@@ -286,7 +286,7 @@ class agirc_gmp_salarie(Variable):
             sous_plafond_securite_sociale * cotisation_forfaitaire +
             not_(sous_plafond_securite_sociale) * agirc_gmp_assiette * taux
             )
-        return min_((cotisation - agirc_salarie) * (categorie_salarie == 1), 0)  # cotisation are negative
+        return min_((cotisation - agirc_salarie) * (categorie_salarie == TypesCategorieSalarie.prive_cadre), 0)  # cotisation are negative
 
 
 class agirc_gmp_employeur(Variable):
@@ -313,7 +313,7 @@ class agirc_gmp_employeur(Variable):
             sous_plafond_securite_sociale * cotisation_forfaitaire +
             not_(sous_plafond_securite_sociale) * agirc_gmp_assiette * taux
             )
-        return min_((cotisation - agirc_employeur) * (categorie_salarie == 1), 0)  # cotisation are negative
+        return min_((cotisation - agirc_employeur) * (categorie_salarie == TypesCategorieSalarie.prive_cadre), 0)  # cotisation are negative
 
 
 class agirc_salarie(Variable):
@@ -331,7 +331,7 @@ class agirc_salarie(Variable):
             variable_name = self.__class__.__name__
             )
         categorie_salarie = simulation.calculate('categorie_salarie', period)
-        return cotisation * (categorie_salarie == 1)
+        return cotisation * (categorie_salarie == TypesCategorieSalarie.prive_cadre)
 
 
 class agirc_employeur(Variable):
@@ -348,7 +348,7 @@ class agirc_employeur(Variable):
             variable_name = self.__class__.__name__
             )
         categorie_salarie = simulation.calculate('categorie_salarie', period)
-        return cotisation * (categorie_salarie == 1)
+        return cotisation * (categorie_salarie == TypesCategorieSalarie.prive_cadre)
 
 
 class ags(Variable):
@@ -381,7 +381,7 @@ class apec_salarie(Variable):
             bareme_name = "apec",
             variable_name = self.__class__.__name__,
             )
-        return cotisation * (categorie_salarie == 1)  # TODO: check public notamment contractuel
+        return cotisation * (categorie_salarie == TypesCategorieSalarie.prive_cadre)  # TODO: check public notamment contractuel
 
 
 class apec_employeur(Variable):
@@ -678,11 +678,11 @@ class plafond_securite_sociale(Variable):
         plafond = switch(
             contrat_de_travail,
              {  # temps plein
-                0: plafond_temps_plein,
+                 TypesContratDeTravail.temps_plein: plafond_temps_plein,
                 # temps partiel
-                1: plafond_temps_plein * (heures_remunerees_volume / heures_temps_plein),
+                 TypesContratDeTravail.temps_partiel: plafond_temps_plein * (heures_remunerees_volume / heures_temps_plein),
                 # forfait jour
-                5: plafond_temps_plein * (forfait_jours_remuneres_volume / 218)
+                 TypesContratDeTravail.forfait_jours_annee: plafond_temps_plein * (forfait_jours_remuneres_volume / 218)
              })
 
         # 2) Proratisation pour mois incomplet selon la méthode des 30èmes
@@ -753,8 +753,8 @@ class complementaire_sante_salarie(Variable):
 
 class taille_entreprise(Variable):
     value_type = Enum
-    possible_values = TypeTailleEntreprise
-    default_value = TypeTailleEntreprise.non_pertinent
+    possible_values = TypesTailleEntreprise
+    default_value = TypesTailleEntreprise.non_pertinent
     entity = Individu
     label = u"Catégorie de taille d'entreprise"
     reference = u"http://www.insee.fr/fr/themes/document.asp?ref_id=ip1321"
@@ -763,12 +763,22 @@ class taille_entreprise(Variable):
     def formula(self, simulation, period):
         effectif_entreprise = simulation.calculate('effectif_entreprise', period)
 
-        taille_entreprise = (
-            (effectif_entreprise > 0).astype(int16) +
-            (effectif_entreprise > 9).astype(int16) +
-            (effectif_entreprise > 19).astype(int16) +
-            (effectif_entreprise > 249).astype(int16)
-            )
+        taille_entreprise = select(
+            [
+                (effectif_entreprise <= 0),
+                (effectif_entreprise <= 9),
+                (effectif_entreprise <= 19),
+                (effectif_entreprise <= 249),
+                (effectif_entreprise >= 250)
+            ],
+            [
+                TypesTailleEntreprise.non_pertinent,
+                TypesTailleEntreprise.moins_de_10,
+                TypesTailleEntreprise.de_10_a_19,
+                TypesTailleEntreprise.de_20_a_249,
+                TypesTailleEntreprise.plus_de_250
+            ]
+        )
         return taille_entreprise
 
 
@@ -782,8 +792,8 @@ class taux_accident_travail(Variable):
         exposition_accident = simulation.calculate('exposition_accident', period)
         accident = simulation.parameters_at(period.start).cotsoc.accident
 
-        return (exposition_accident == 0) * accident.faible + (exposition_accident == 1) * accident.moyen \
-            + (exposition_accident == 2) * accident.eleve + (exposition_accident == 3) * accident.treseleve
+        return (exposition_accident == TypesExpositionAccident.faible) * accident.faible + (exposition_accident == TypesExpositionAccident.moyen) * accident.moyen \
+            + (exposition_accident == TypesExpositionAccident.eleve) * accident.eleve + (exposition_accident == TypesExpositionAccident.tres_eleve) * accident.treseleve
 
 
 class vieillesse_deplafonnee_salarie(Variable):

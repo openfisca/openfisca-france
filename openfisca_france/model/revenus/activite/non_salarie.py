@@ -1605,8 +1605,8 @@ class tns_micro_entreprise_chiffre_affaires(Variable):
 # TODO remove this ugly ETERNITY
 class tns_auto_entrepreneur_type_activite(Variable):
     value_type = Enum
-    possible_values = enum_tns_type_activite
-    default_value = enum_tns_type_activite.achat_revente
+    possible_values = TypesTnsTypeActivite
+    default_value = TypesTnsTypeActivite.achat_revente
     entity = Individu
     label = u"Type d'activité de l'auto-entrepreneur"
     definition_period = ETERNITY
@@ -1615,8 +1615,8 @@ class tns_auto_entrepreneur_type_activite(Variable):
 # TODO remove this ugly ETERNITY
 class tns_micro_entreprise_type_activite(Variable):
     value_type = Enum
-    possible_values = enum_tns_type_activite
-    default_value = enum_tns_type_activite.achat_revente
+    possible_values = TypesTnsTypeActivite
+    default_value = TypesTnsTypeActivite.achat_revente
     entity = Individu
     label = u"Type d'activité de la micro-entreprise"
     definition_period = ETERNITY
@@ -1640,8 +1640,8 @@ class tns_autres_revenus_chiffre_affaires(Variable):
 
 class tns_autres_revenus_type_activite(Variable):
     value_type = Enum
-    possible_values = enum_tns_type_activite
-    default_value = enum_tns_type_activite.achat_revente
+    possible_values = TypesTnsTypeActivite
+    default_value = TypesTnsTypeActivite.achat_revente
     entity = Individu
     label = u"Type d'activité de l'entreprise non AE ni ME"
     definition_period = MONTH
@@ -1693,9 +1693,9 @@ def compute_benefice_auto_entrepreneur_micro_entreprise(bareme, type_activite, c
     abatt_fp_me = bareme.micro_entreprise.abattement_forfaitaire_fp
     benefice = chiffre_affaire * (
         1 -
-        (type_activite == 0) * abatt_fp_me.achat_revente -
-        (type_activite == 1) * abatt_fp_me.bic -
-        (type_activite == 2) * abatt_fp_me.bnc)
+        (type_activite == TypesTnsTypeActivite.achat_revente) * abatt_fp_me.achat_revente -
+        (type_activite == TypesTnsTypeActivite.bic) * abatt_fp_me.bic -
+        (type_activite == TypesTnsTypeActivite.bnc) * abatt_fp_me.bnc)
 
     return benefice
 
@@ -1747,9 +1747,9 @@ class tns_auto_entrepreneur_revenus_net(Variable) :
         tns_auto_entrepreneur_chiffre_affaires = simulation.calculate('tns_auto_entrepreneur_chiffre_affaires', period)
         bareme_cs_ae = simulation.parameters_at(period.start).tns.auto_entrepreneur
         taux_cotisations_sociales_sur_CA = (
-            (tns_auto_entrepreneur_type_activite == 0) * bareme_cs_ae.achat_revente +
-            (tns_auto_entrepreneur_type_activite == 1) * bareme_cs_ae.bic +
-            (tns_auto_entrepreneur_type_activite == 2) * bareme_cs_ae.bnc)
+            (tns_auto_entrepreneur_type_activite == TypesTnsTypeActivite.achat_revente) * bareme_cs_ae.achat_revente +
+            (tns_auto_entrepreneur_type_activite == TypesTnsTypeActivite.bic) * bareme_cs_ae.bic +
+            (tns_auto_entrepreneur_type_activite == TypesTnsTypeActivite.bnc) * bareme_cs_ae.bnc)
         tns_auto_entrepreneur_charges_sociales = taux_cotisations_sociales_sur_CA * tns_auto_entrepreneur_chiffre_affaires
         revenus = tns_auto_entrepreneur_benefice - tns_auto_entrepreneur_charges_sociales
 

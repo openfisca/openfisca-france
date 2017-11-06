@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 from openfisca_france.model.base import *  # noqa
-from enum import Enum, IntEnum
 
 class date_naissance(Variable):
     value_type = date
