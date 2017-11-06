@@ -7,7 +7,6 @@ from numpy import datetime64, floor, logical_and as and_, logical_or as or_
 
 from openfisca_france.model.base import *  # noqa analysis:ignore
 from openfisca_france.model.prestations.prestations_familiales.base_ressource import nb_enf
-from openfisca_france.model.revenus.activite.non_salarie import enum_tns_type_activite
 
 
 class rsa_base_ressources(Variable):
@@ -760,12 +759,12 @@ class rsa_eligibilite_tns(Variable):
             plaf_vente = P_micro.specialbnc.marchandises.max
             plaf_service = P_micro.specialbnc.services.max
 
-            achat_revente = (type_activite == enum_tns_type_activite.achat_revente)
+            achat_revente = (type_activite == TypesTnsTypeActivite.achat_revente)
 
 
             service = (
-                (type_activite == enum_tns_type_activite.achat_revente)
-                + (type_activite == enum_tns_type_activite.achat_revente)
+                (type_activite == TypesTnsTypeActivite.achat_revente)
+                + (type_activite == TypesTnsTypeActivite.achat_revente)
             )
 
             return (achat_revente * (ca <= plaf_vente)) + (service * (ca <= plaf_service))
@@ -818,8 +817,8 @@ class rsa_forfait_logement(Variable):
         loyer = famille.demandeur.menage('loyer', period)
 
         avantage_nature = or_(
-            (statut_occupation_logement == 2) * not_(loyer),
-            (statut_occupation_logement == 6) * not_(participation_frais)
+            (statut_occupation_logement == TypesStatutOccupationLogement.proprietaire) * not_(loyer),
+            (statut_occupation_logement == TypesStatutOccupationLogement.loge_gratuitement) * not_(participation_frais)
             )
         avantage_al = aide_logement > 0
 

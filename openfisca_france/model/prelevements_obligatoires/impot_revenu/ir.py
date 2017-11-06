@@ -11,7 +11,6 @@ from openfisca_core.model_api import *
 from openfisca_core import periods
 from openfisca_france.model.base import *  # noqa analysis:ignore
 
-from enum import Enum
 
 log = logging.getLogger(__name__)
 

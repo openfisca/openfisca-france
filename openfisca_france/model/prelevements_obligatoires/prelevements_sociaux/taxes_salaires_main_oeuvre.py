@@ -40,7 +40,7 @@ class conge_individuel_formation_cdd(Variable):
         assiette_cotisations_sociales = simulation.calculate('assiette_cotisations_sociales', period)
         law = simulation.parameters_at(period.start).cotsoc.conge_individuel_formation
 
-        cotisation = - law.cdd * (contrat_de_travail_duree == 1) * assiette_cotisations_sociales
+        cotisation = - law.cdd * (contrat_de_travail_duree == TypesContratDeTravailDuree.cdd) * assiette_cotisations_sociales
         return cotisation
 
 
@@ -181,9 +181,9 @@ class fnal_tranche_a(Variable):
             variable_name = self.__class__.__name__,
             )
         entreprise_eligible = (
-            (taille_entreprise == TypeTailleEntreprise.non_pertinent)
-            + (taille_entreprise == TypeTailleEntreprise.moins_de_10)
-            + (taille_entreprise == TypeTailleEntreprise.de_10_a_19)
+            (taille_entreprise == TypesTailleEntreprise.non_pertinent)
+            + (taille_entreprise == TypesTailleEntreprise.moins_de_10)
+            + (taille_entreprise == TypesTailleEntreprise.de_10_a_19)
         )
         return cotisation * entreprise_eligible
 
@@ -204,8 +204,8 @@ class fnal_tranche_a_plus_20(Variable):
             variable_name = self.__class__.__name__,
             )
         entreprise_eligible = (
-            (taille_entreprise == TypeTailleEntreprise.de_20_a_249)
-            + (taille_entreprise == TypeTailleEntreprise.plus_de_250)
+            (taille_entreprise == TypesTailleEntreprise.de_20_a_249)
+            + (taille_entreprise == TypesTailleEntreprise.plus_de_250)
         )
         return cotisation * entreprise_eligible
 
@@ -242,13 +242,13 @@ class formation_professionnelle(Variable):
 
     def formula(self, simulation, period):
         taille_entreprise = simulation.calculate('taille_entreprise', period)
-        cotisation_0_9 = (taille_entreprise == TypeTailleEntreprise.moins_de_10) * apply_bareme(
+        cotisation_0_9 = (taille_entreprise == TypesTailleEntreprise.moins_de_10) * apply_bareme(
             simulation,
             period, cotisation_type = 'employeur',
             bareme_name = 'formprof_09',
             variable_name = self.__class__.__name__,
             )
-        cotisation_10_19 = (taille_entreprise == TypeTailleEntreprise.de_10_a_19) * apply_bareme(
+        cotisation_10_19 = (taille_entreprise == TypesTailleEntreprise.de_10_a_19) * apply_bareme(
             simulation,
             period,
             cotisation_type = 'employeur',
@@ -256,8 +256,8 @@ class formation_professionnelle(Variable):
             variable_name = self.__class__.__name__,
             )
         entreprise_eligible = (
-            (taille_entreprise == TypeTailleEntreprise.de_20_a_249)
-            + (taille_entreprise == TypeTailleEntreprise.plus_de_250)
+            (taille_entreprise == TypesTailleEntreprise.de_20_a_249)
+            + (taille_entreprise == TypesTailleEntreprise.plus_de_250)
         )
         cotisation_20 = entreprise_eligible * apply_bareme(
             simulation,
