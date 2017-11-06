@@ -44,7 +44,7 @@ log = logging.getLogger(__name__)
 
 class jour_xyz(Variable):
     value_type = int
-    default = 360
+    default_value = 360
     entity = FoyerFiscal
     label = u"Jours décomptés au titre de cette déclaration"
     definition_period = YEAR
@@ -59,7 +59,7 @@ class age(Variable):
     base_function = missing_value
     unit = 'years'
     value_type = int
-    default = -9999
+    default_value = -9999
     entity = Individu
     label = u"Âge (en années) au premier jour du mois"
     definition_period = MONTH
@@ -96,7 +96,7 @@ class age(Variable):
 class age_en_mois(Variable):
     base_function = missing_value
     value_type = int
-    default = -9999
+    default_value = -9999
     unit = 'months'
     entity = Individu
     label = u"Âge (en mois)"

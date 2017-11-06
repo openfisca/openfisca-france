@@ -5,7 +5,7 @@ from openfisca_france.model.base import *  # noqa
 
 class date_naissance(Variable):
     value_type = date
-    default = date(1970, 1, 1)
+    default_value = date(1970, 1, 1)
     entity = Individu
     label = u"Date de naissance"
     definition_period = ETERNITY
@@ -29,7 +29,7 @@ class garde_alternee(Variable):
 
 class activite(Variable):
     value_type = Enum
-    default = 4
+    default_value = 4
     possible_values = Enum([
         u'Actif occupé',
         u'Chômeur',
@@ -51,7 +51,7 @@ class enceinte(Variable):
 
 class statut_marital(Variable):
     value_type = Enum
-    default = 2
+    default_value = 2
     possible_values = Enum([
         u"",
         u"Marié",
@@ -269,7 +269,7 @@ class etudiant(Variable):
 
 class rempli_obligation_scolaire(Variable):
     value_type = bool
-    default = True
+    default_value = True
     entity = Individu
     label = u"Rempli l'obligation scolaire"
     definition_period = MONTH
@@ -277,7 +277,7 @@ class rempli_obligation_scolaire(Variable):
 
 class ressortissant_eee(Variable):
     value_type = bool
-    default = True
+    default_value = True
     entity = Individu
     label = u"Ressortissant de l'EEE ou de la Suisse."
     definition_period = MONTH

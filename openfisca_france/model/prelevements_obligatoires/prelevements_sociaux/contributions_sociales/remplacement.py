@@ -12,7 +12,7 @@ log = logging.getLogger(__name__)
 
 
 class taux_csg_remplacement(Variable):
-    default = 3
+    default_value = 3
     value_type = Enum
     possible_values = Enum([
         u"Non renseigné/non pertinent",

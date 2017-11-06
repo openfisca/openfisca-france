@@ -90,7 +90,7 @@ class indemnites_journalieres_imposables(Variable):
 
 class date_arret_de_travail(Variable):
     value_type = date
-    default = date.min
+    default_value = date.min
     entity = Individu
     label = u"Date depuis laquelle la personne est en arrêt de travail"
     definition_period = ETERNITY

@@ -35,7 +35,7 @@ class asile_demandeur(Variable):
 
 class place_hebergement(Variable):
     value_type = bool
-    default = True
+    default_value = True
     entity = Famille
     label = u"Bénéficie d'une place dans un centre d'hébergement"
     definition_period = MONTH

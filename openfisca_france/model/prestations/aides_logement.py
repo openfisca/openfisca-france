@@ -816,7 +816,7 @@ class zone_apl(Variable):
         u"Zone 2",
         u"Zone 3",
         ])
-    default = 2
+    default_value = 2
     entity = Menage
     label = u"Zone APL"
     definition_period = MONTH

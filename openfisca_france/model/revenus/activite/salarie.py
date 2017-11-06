@@ -246,7 +246,7 @@ class contrat_de_travail(Variable):
 
 class contrat_de_travail_debut(Variable):
     value_type = date
-    default = date(1870, 1, 1)
+    default_value = date(1870, 1, 1)
     entity = Individu
     label = u"Date d'arrivée dans l'entreprise"
     definition_period = MONTH
@@ -255,7 +255,7 @@ class contrat_de_travail_debut(Variable):
 
 class contrat_de_travail_fin(Variable):
     value_type = date
-    default = date(2099, 12, 31)
+    default_value = date(2099, 12, 31)
     entity = Individu
     label = u"Date de départ de l'entreprise"
     definition_period = MONTH
@@ -392,7 +392,7 @@ class nouvelle_bonification_indiciaire(Variable):
 
 class prevoyance_obligatoire_cadre_taux_employe(Variable):
     value_type = float
-    default = 0.015  # 1.5% est le minimum en 2014
+    default_value = 0.015  # 1.5% est le minimum en 2014
     entity = Individu
     base_function = requested_period_last_value
     label = u"Taux de cotisation employeur pour la prévoyance obligatoire des cadres"
@@ -401,7 +401,7 @@ class prevoyance_obligatoire_cadre_taux_employe(Variable):
 
 class prevoyance_obligatoire_cadre_taux_employeur(Variable):
     value_type = float
-    default = 0.015  # 1.5% est le minimum en 2014
+    default_value = 0.015  # 1.5% est le minimum en 2014
     entity = Individu
     base_function = requested_period_last_value
     label = u"Taux de cotisation employeur pour la prévoyance obligatoire des cadres"
@@ -424,7 +424,7 @@ class complementaire_sante_montant(Variable):
 
 class complementaire_sante_taux_employeur(Variable):
     value_type = float
-    default = 0.5
+    default_value = 0.5
     # La part minimum légale est de 50 %
     entity = Individu
     label = u"Part de la complémentaire santé obligatoire payée par l'employeur"
@@ -484,7 +484,7 @@ class salaire_de_base(Variable):
 
 class titre_restaurant_taux_employeur(Variable):
     value_type = float
-    default = 0.5
+    default_value = 0.5
     entity = Individu
     label = u"Taux de participation de l'employeur au titre restaurant"
     definition_period = MONTH

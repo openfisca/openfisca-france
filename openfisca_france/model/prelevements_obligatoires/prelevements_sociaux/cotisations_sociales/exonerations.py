@@ -10,7 +10,7 @@ from openfisca_france.model.prelevements_obligatoires.prelevements_sociaux.cotis
 
 class jei_date_demande(Variable):
     value_type = date
-    default = date(2099, 12, 31)
+    default_value = date(2099, 12, 31)
     entity = Individu
     label = u"Date de demande (et d'octroi) du statut de jeune entreprise innovante (JEI)"
     definition_period = MONTH

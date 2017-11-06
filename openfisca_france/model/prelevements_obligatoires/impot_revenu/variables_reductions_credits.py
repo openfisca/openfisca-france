@@ -4692,7 +4692,7 @@ class f8wx(Variable):
   # verif<=2012
 
 class elig_creimp_exc_2008(Variable):
-    default = 1
+    default_value = 1
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal

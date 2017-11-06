@@ -30,7 +30,7 @@ def ayrault_muet_modify_parameters(parameters):
 
 class variator(Variable):
     value_type = float
-    default = 1
+    default_value = 1
     entity = FoyerFiscal
     label = u'Multiplicateur du seuil de régularisation'
     definition_period = YEAR

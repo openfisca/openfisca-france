@@ -22,7 +22,7 @@ class pensions_alimentaires_percues(Variable):
 # (f1ao, f1bo, f1co, f1do, f1eo)
 class pensions_alimentaires_percues_decl(Variable):
     value_type = bool
-    default = True
+    default_value = True
     entity = Individu
     label = u"Pension déclarée"
     definition_period = YEAR

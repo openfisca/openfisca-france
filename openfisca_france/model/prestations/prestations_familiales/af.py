@@ -24,7 +24,7 @@ class af_nbenf(Variable):
 
 class af_coeff_garde_alternee(Variable):
     value_type = float
-    default = 1
+    default_value = 1
     entity = Famille
     label = u"Coefficient à appliquer aux af pour tenir compte de la garde alternée"
     definition_period = MONTH
@@ -115,7 +115,7 @@ class af_base(Variable):
 
 class af_taux_modulation(Variable):
     value_type = float
-    default = 1
+    default_value = 1
     entity = Famille
     label = u"Taux de modulation à appliquer au montant des AF depuis 2015"
     definition_period = MONTH
@@ -139,7 +139,7 @@ class af_taux_modulation(Variable):
 
 class af_allocation_forfaitaire_taux_modulation(Variable):
     value_type = float
-    default = 1
+    default_value = 1
     entity = Famille
     label = u"Taux de modulation à appliquer à l'allocation forfaitaire des AF depuis 2015"
     definition_period = MONTH
@@ -165,7 +165,7 @@ class af_allocation_forfaitaire_taux_modulation(Variable):
 
 class af_age_aine(Variable):
     value_type = int
-    default = -9999
+    default_value = -9999
     entity = Famille
     label = u"Allocations familiales - Âge de l'aîné des enfants éligibles"
     definition_period = MONTH
