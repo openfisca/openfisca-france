@@ -4,7 +4,7 @@ from openfisca_france.model.base import *  # noqa analysis:ignore
 
 
 class retraite_brute(Variable):
-    column = FloatCol()
+    value_type = float
     entity = Individu
     label = u"Retraite brute"
     definition_period = MONTH
@@ -14,14 +14,14 @@ class retraite_brute(Variable):
 
 # L'AER est remplacée depuis le 1er juillet 2011 par l'allocation transitoire de solidarité (ATS).
 class aer(Variable):
-    column = IntCol
+    value_type = int
     entity = Individu
     label = u"Allocation équivalent retraite (AER)"
     definition_period = MONTH
 
 
 class retraite_combattant(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Retraite du combattant"
     definition_period = MONTH

@@ -17,7 +17,7 @@ dir_path = os.path.join(os.path.dirname(__file__), 'parameters')
 
 
 class assiette_csg(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Assiette de la CSG"
     definition_period = YEAR
@@ -32,7 +32,7 @@ class assiette_csg(Variable):
 
 
 class impot_revenu_lps(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Impôt individuel sur l'ensemble de l'assiette de la csg, comme proposé par Landais, Piketty et Saez"
     definition_period = YEAR
@@ -56,7 +56,7 @@ class impot_revenu_lps(Variable):
 
 
 class revenu_disponible(Variable):
-    column = FloatCol
+    value_type = float
     entity = Menage
     label = u"Revenu disponible du ménage"
     reference = u"http://fr.wikipedia.org/wiki/Revenu_disponible"

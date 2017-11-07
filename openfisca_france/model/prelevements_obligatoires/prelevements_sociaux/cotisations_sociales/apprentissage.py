@@ -9,7 +9,7 @@ from openfisca_france.model.base import *  # noqa analysis:ignore
 
 
 class apprenti(Variable):
-    column = BoolCol
+    value_type = bool
     entity = Individu
     label = u"L'individu est apprenti"
     reference = "http://www.apce.com/pid927/contrat-d-apprentissage.html?espace=1&tp=1&pagination=2"
@@ -28,7 +28,7 @@ class apprenti(Variable):
 
 
 class remuneration_apprenti(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Rémunération de l'apprenti"
     reference = "http://www.apce.com/pid927/contrat-d-apprentissage.html?espace=1&tp=1&pagination=2"
@@ -91,7 +91,7 @@ class remuneration_apprenti(Variable):
 
 
 class exoneration_cotisations_employeur_apprenti(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Exonération de cotisations employeur pour l'emploi d'un apprenti"
     reference = "http://www.apce.com/pid927/contrat-d-apprentissage.html?espace=1&tp=1&pagination=2"
@@ -138,7 +138,7 @@ class exoneration_cotisations_employeur_apprenti(Variable):
 
 
 class exoneration_cotisations_salariales_apprenti(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Exonération de cotisations salariales pour l'emploi d'un apprenti"
     reference = "http://www.apce.com/pid927/contrat-d-apprentissage.html?espace=1&tp=1&pagination=2"
@@ -153,7 +153,7 @@ class exoneration_cotisations_salariales_apprenti(Variable):
 
 
 class prime_apprentissage(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Prime d'apprentissage pour les entreprise employant un apprenti"
     reference = "http://www.apce.com/pid927/contrat-d-apprentissage.html?espace=1&tp=1&pagination=2"
@@ -180,7 +180,7 @@ class prime_apprentissage(Variable):
         return 1000 * apprenti
 
 # # class credit_impot_emploi_apprenti(Variable):
-#     column = FloatCol
+#     value_type = float
 #     entity = Individu
 #     label = u" Crédit d'impôt pour l'emploi d'apprentis"
 #     url = "http://www.apce.com/pid927/contrat-d-apprentissage.html?espace=1&tp=1&pagination=2"
@@ -204,7 +204,7 @@ class prime_apprentissage(Variable):
 
 
 # # class credit_impot_emploi_apprenti(Variable):
-#     column = FloatCol
+#     value_type = float
 #     entity = Individu
 #     label = u"Déduction de la créance "bonus alternant"
 # Les entreprises de plus de 250 salariés, tous établissements confondus, redevables de la taxe d'apprentissage,

@@ -6,7 +6,7 @@ from openfisca_france.model.base import *  # noqa analysis:ignore
 
 
 class indemnites_stage(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Indemnités de stage"
     definition_period = MONTH
@@ -14,7 +14,7 @@ class indemnites_stage(Variable):
 
 
 class revenus_stage_formation_pro(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Revenus de stage de formation professionnelle"
     definition_period = MONTH
@@ -22,7 +22,7 @@ class revenus_stage_formation_pro(Variable):
 
 
 class bourse_recherche(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Bourse de recherche"
     definition_period = MONTH
@@ -36,7 +36,8 @@ class sal_pen_exo_etr(Variable):
         QUIFOY['pac1']: u"1CC",
         QUIFOY['pac2']: u"1DC",
         }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Salaires et pensions exonérés de source étrangère retenus pour le calcul du taux effectif"
     # start_date = date(2013, 1, 1)
@@ -50,7 +51,8 @@ class frais_reels(Variable):
         QUIFOY['pac2']: u"1DK",
         QUIFOY['pac3']: u"1EK",
         }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Frais réels"
     definition_period = YEAR
@@ -63,7 +65,8 @@ class hsup(Variable):
         QUIFOY['pac1']: u"1CU",
         QUIFOY['pac2']: u"1DU",
         }
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = Individu
     label = u"Heures supplémentaires : revenus exonérés connus"
     # start_date = date(2007, 1, 1)
@@ -80,7 +83,7 @@ class ppe_du_sa(Variable):
         QUIFOY['pac2']: u"1DV",
         QUIFOY['pac3']: u"1QV",
         }
-    column = IntCol
+    value_type = int
     entity = Individu
     label = u"Prime pour l'emploi des salariés: nombre d'heures payées"
     definition_period = MONTH
@@ -103,7 +106,7 @@ class ppe_tp_sa(Variable):
         QUIFOY['pac2']: u"1DX",
         QUIFOY['pac3']: u"1QX",
         }
-    column = BoolCol
+    value_type = bool
     entity = Individu
     label = u"Prime pour l'emploi des salariés: indicateur de travail à temps plein sur l'année entière"
     definition_period = YEAR
@@ -120,14 +123,13 @@ class ppe_tp_sa(Variable):
 
 
 class exposition_accident(Variable):
-    column = EnumCol(
-        enum = Enum([
-            u"Faible",
-            u"Moyen",
-            u"Élevé",
-            u"Très élevé",
-            ]),
-        )
+    value_type = Enum
+    possible_values = Enum([
+        u"Faible",
+        u"Moyen",
+        u"Élevé",
+        u"Très élevé",
+        ])
     entity = Individu
     label = u"Exposition au risque pour les accidents du travail"
     definition_period = MONTH
@@ -135,13 +137,12 @@ class exposition_accident(Variable):
 
 
 class exposition_penibilite(Variable):
-    column = EnumCol(
-        enum = Enum([
-            u"Nulle",  # Pas d'exposition de l'employé à un facteur de pénibilité
-            u"Simple",  # Exposition à un seul facteur de pénibilité
-            u"Multiple",  # Exposition à plusieurs facteurs de pénibilité
-            ]),
-        )
+    value_type = Enum
+    possible_values = Enum([
+        u"Nulle",  # Pas d'exposition de l'employé à un facteur de pénibilité
+        u"Simple",  # Exposition à un seul facteur de pénibilité
+        u"Multiple",  # Exposition à plusieurs facteurs de pénibilité
+        ])
     entity = Individu
     label = u"Exposition à un ou plusieurs facteurs de pénibilité"
     definition_period = MONTH
@@ -149,15 +150,12 @@ class exposition_penibilite(Variable):
 
 
 class allegement_fillon_mode_recouvrement(Variable):
-    column = EnumCol(
-        enum = Enum(
-            [
-                u"fin_d_annee",
-                u"anticipe_regularisation_fin_de_periode",
-                u"progressif",
-                ],
-            ),
-        )
+    value_type = Enum
+    possible_values = Enum([
+        u"fin_d_annee",
+        u"anticipe_regularisation_fin_de_periode",
+        u"progressif",
+        ])
     entity = Individu
     label = u"Mode de recouvrement des allègements Fillon"
     definition_period = MONTH
@@ -165,15 +163,12 @@ class allegement_fillon_mode_recouvrement(Variable):
 
 
 class allegement_cotisation_allocations_familiales_mode_recouvrement(Variable):
-    column = EnumCol(
-        enum = Enum(
-            [
-                u"fin_d_annee",
-                u"anticipe_regularisation_fin_de_periode",
-                u"progressif",
-                ],
-            ),
-        )
+    value_type = Enum
+    possible_values = Enum([
+        u"fin_d_annee",
+        u"anticipe_regularisation_fin_de_periode",
+        u"progressif",
+        ])
     entity = Individu
     label = u"Mode de recouvrement de l'allègement de la cotisation d'allocations familiales"
     definition_period = MONTH
@@ -181,14 +176,14 @@ class allegement_cotisation_allocations_familiales_mode_recouvrement(Variable):
 
 
 class apprentissage_contrat_debut(Variable):
-    column = DateCol
+    value_type = date
     entity = Individu
     label = u"Date de début du contrat d'apprentissage"
     definition_period = MONTH
 
 
 class arrco_tranche_a_taux_employeur(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Taux ARRCO tranche A employeur) propre à l'entreprise"
     definition_period = MONTH
@@ -196,7 +191,7 @@ class arrco_tranche_a_taux_employeur(Variable):
 
 
 class arrco_tranche_a_taux_salarie(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Taux ARRCO tranche A salarié) propre à l'entreprise"
     definition_period = MONTH
@@ -204,7 +199,7 @@ class arrco_tranche_a_taux_salarie(Variable):
 
 
 class assujettie_taxe_salaires(Variable):
-    column = BoolCol
+    value_type = bool
     entity = Individu
     label = u"Entreprise assujettie à la taxe sur les salaires"
     definition_period = MONTH
@@ -212,40 +207,37 @@ class assujettie_taxe_salaires(Variable):
 
 
 class avantage_en_nature_valeur_reelle(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Avantages en nature (Valeur réelle)"
     definition_period = MONTH
 
 
 class indemnites_compensatrices_conges_payes(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"indemnites_compensatrices_conges_payes"
     definition_period = MONTH
 
 
 class indemnite_fin_contrat_due(Variable):
-    column = BoolCol
+    value_type = bool
     entity = Individu
     label = u"indemnite_fin_contrat_due"
     definition_period = MONTH
 
 
 class contrat_de_travail(Variable):
-    column = EnumCol(
-        enum = Enum(
-            [
-                u"temps_plein",
-                u"temps_partiel",
-                u"forfait_heures_semaines",
-                u"forfait_heures_mois",
-                u"forfait_heures_annee",
-                u"forfait_jours_annee",
-                u"sans_objet",
-                ],
-            ),
-        )
+    value_type = Enum
+    possible_values = Enum([
+        u"temps_plein",
+        u"temps_partiel",
+        u"forfait_heures_semaines",
+        u"forfait_heures_mois",
+        u"forfait_heures_annee",
+        u"forfait_jours_annee",
+        u"sans_objet",
+        ])
     entity = Individu
     label = u"Type contrat de travail"
     definition_period = MONTH
@@ -253,7 +245,8 @@ class contrat_de_travail(Variable):
 
 
 class contrat_de_travail_debut(Variable):
-    column = DateCol(default = date(1870, 1, 1))
+    value_type = date
+    default_value = date(1870, 1, 1)
     entity = Individu
     label = u"Date d'arrivée dans l'entreprise"
     definition_period = MONTH
@@ -261,7 +254,8 @@ class contrat_de_travail_debut(Variable):
 
 
 class contrat_de_travail_fin(Variable):
-    column = DateCol(default = date(2099, 12, 31))
+    value_type = date
+    default_value = date(2099, 12, 31)
     entity = Individu
     label = u"Date de départ de l'entreprise"
     definition_period = MONTH
@@ -269,12 +263,11 @@ class contrat_de_travail_fin(Variable):
 
 
 class contrat_de_travail_duree(Variable):
-    column = EnumCol(
-        enum = Enum([
-            u"cdi",
-            u"cdd",
-            ]),
-        )
+    value_type = Enum
+    possible_values = Enum([
+        u"cdi",
+        u"cdd",
+        ])
     entity = Individu
     label = u"Type (durée determinée ou indéterminée) du contrat de travail"
     definition_period = MONTH
@@ -282,12 +275,11 @@ class contrat_de_travail_duree(Variable):
 
 
 class cotisation_sociale_mode_recouvrement(Variable):
-    column = EnumCol(
-        enum = Enum([
-            u"Mensuel avec régularisation en fin d'année",
-            u"Annuel",
-            ]),
-        )
+    value_type = Enum
+    possible_values = Enum([
+        u"Mensuel avec régularisation en fin d'année",
+        u"Annuel",
+        ])
     entity = Individu
     label = u"Mode de recouvrement des cotisations sociales"
     definition_period = MONTH
@@ -295,7 +287,7 @@ class cotisation_sociale_mode_recouvrement(Variable):
 
 
 class entreprise_est_association_non_lucrative(Variable):
-    column = BoolCol
+    value_type = bool
     entity = Individu
     label = u"L'entreprise est une association à but non lucratif, par exemple loi de 1901"
     definition_period = MONTH
@@ -303,7 +295,8 @@ class entreprise_est_association_non_lucrative(Variable):
 
 
 class depcom_entreprise(Variable):
-    column = FixedStrCol(max_length = 5)
+    value_type = str
+    max_length = 5
     entity = Individu
     label = u"Localisation entreprise (depcom)"
     definition_period = MONTH
@@ -311,7 +304,8 @@ class depcom_entreprise(Variable):
 
 
 class code_postal_entreprise(Variable):
-    column = FixedStrCol(max_length = 5)
+    value_type = str
+    max_length = 5
     entity = Individu
     label = u"Localisation entreprise (Code postal)"
     definition_period = MONTH
@@ -320,7 +314,7 @@ class code_postal_entreprise(Variable):
 
 class salarie_regime_alsace_moselle(Variable):
     entity = Individu
-    column = BoolCol(default = False)
+    value_type = bool
     label = u"Le salarié cotise au régime de l'Alsace-Moselle"
     definition_period = MONTH
     # Attention : ce n'est pas équivalent au fait de travailler en Alsace-Moselle !
@@ -329,7 +323,7 @@ class salarie_regime_alsace_moselle(Variable):
 
 class effectif_entreprise(Variable):
     entity = Individu
-    column = IntCol
+    value_type = int
     base_function = requested_period_last_value
     label = u"Effectif de l'entreprise"
     set_input = set_input_dispatch_by_period
@@ -337,21 +331,21 @@ class effectif_entreprise(Variable):
 
 
 class entreprise_assujettie_cet(Variable):
-    column = BoolCol
+    value_type = bool
     entity = Individu
     label = u"Entreprise assujettie à la contribution économique territoriale"
     definition_period = MONTH
 
 
 class entreprise_assujettie_is(Variable):
-    column = BoolCol
+    value_type = bool
     entity = Individu
     label = u"Entreprise assujettie à l'impôt sur les sociétés (IS)"
     definition_period = MONTH
 
 
 class entreprise_benefice(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     set_input = set_input_divide_by_period
     label = u"Bénéfice de l'entreprise"
@@ -360,21 +354,21 @@ class entreprise_benefice(Variable):
 
 
 class entreprise_bilan(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Bilan de l'entreprise"
     definition_period = MONTH
 
 
 class entreprise_chiffre_affaire(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Chiffre d'affaire de l'entreprise"
     definition_period = MONTH
 
 
 class entreprise_creation(Variable):
-    column = DateCol
+    value_type = date
     entity = Individu
     label = u"Date de création de l'entreprise"
     definition_period = MONTH
@@ -382,7 +376,7 @@ class entreprise_creation(Variable):
 
 
 class nombre_tickets_restaurant(Variable):
-    column = IntCol
+    value_type = int
     entity = Individu
     base_function = requested_period_last_value
     label = u"Nombre de tickets restaurant"
@@ -390,14 +384,15 @@ class nombre_tickets_restaurant(Variable):
 
 
 class nouvelle_bonification_indiciaire(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Nouvelle bonification indicaire"
     definition_period = MONTH
 
 
 class prevoyance_obligatoire_cadre_taux_employe(Variable):
-    column = FloatCol(default = 0.015)  # 1.5% est le minimum en 2014
+    value_type = float
+    default_value = 0.015  # 1.5% est le minimum en 2014
     entity = Individu
     base_function = requested_period_last_value
     label = u"Taux de cotisation employeur pour la prévoyance obligatoire des cadres"
@@ -405,7 +400,8 @@ class prevoyance_obligatoire_cadre_taux_employe(Variable):
 
 
 class prevoyance_obligatoire_cadre_taux_employeur(Variable):
-    column = FloatCol(default = 0.015)  # 1.5% est le minimum en 2014
+    value_type = float
+    default_value = 0.015  # 1.5% est le minimum en 2014
     entity = Individu
     base_function = requested_period_last_value
     label = u"Taux de cotisation employeur pour la prévoyance obligatoire des cadres"
@@ -413,21 +409,22 @@ class prevoyance_obligatoire_cadre_taux_employeur(Variable):
 
 
 class primes_salaires(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Indemnités, primes et avantages en argent (brut)"
     definition_period = MONTH
 
 
 class complementaire_sante_montant(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Montant de la complémentaire santé obligatoire retenue par l'employeur"
     definition_period = MONTH
 
 
 class complementaire_sante_taux_employeur(Variable):
-    column = FloatCol(default = 0.5)
+    value_type = float
+    default_value = 0.5
     # La part minimum légale est de 50 %
     entity = Individu
     label = u"Part de la complémentaire santé obligatoire payée par l'employeur"
@@ -435,49 +432,49 @@ class complementaire_sante_taux_employeur(Variable):
 
 
 class prise_en_charge_employeur_prevoyance_complementaire(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Part salariale des cotisations de prévoyance complémentaire prise en charge par l'employeur"
     definition_period = MONTH
 
 
 class prise_en_charge_employeur_retraite_complementaire(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Part salariale des cotisations de retraite complémentaire prise en charge par l'employeur"
     definition_period = MONTH
 
 
 class prise_en_charge_employeur_retraite_supplementaire(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Part salariale des cotisations de retraite supplémentaire prise en charge par l'employeur"
     definition_period = MONTH
 
 
 class ratio_alternants(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Ratio d'alternants dans l'effectif moyen"
     definition_period = MONTH
 
 
 class remboursement_transport_base(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Base pour le calcul du remboursement des frais de transport"
     definition_period = MONTH
 
 
 class indemnites_forfaitaires(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Indemnités forfaitaires (transport, nourriture)"
     definition_period = MONTH
 
 
 class salaire_de_base(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Salaire de base, en général appelé salaire brut, la 1ère ligne sur la fiche de paie"
     set_input = set_input_divide_by_period
@@ -486,48 +483,46 @@ class salaire_de_base(Variable):
 
 
 class titre_restaurant_taux_employeur(Variable):
-    column = FloatCol(default = 0.5)
+    value_type = float
+    default_value = 0.5
     entity = Individu
     label = u"Taux de participation de l'employeur au titre restaurant"
     definition_period = MONTH
 
 
 class titre_restaurant_valeur_unitaire(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Valeur faciale unitaire du titre restaurant"
     definition_period = MONTH
 
 
 class titre_restaurant_volume(Variable):
-    column = IntCol
+    value_type = int
     entity = Individu
     label = u"Volume des titres restaurant"
     definition_period = MONTH
 
 
 class traitement_indiciaire_brut(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Traitement indiciaire brut (TIB)"
     definition_period = MONTH
 
 
 class categorie_salarie(Variable):
-    column = EnumCol(
-        enum = Enum(
-            [
-                u"prive_non_cadre",
-                u"prive_cadre",
-                u"public_titulaire_etat",
-                u"public_titulaire_militaire",
-                u"public_titulaire_territoriale",
-                u"public_titulaire_hospitaliere",
-                u"public_non_titulaire",
-                u"non_pertinent",
-                ],
-            ),
-        )
+    value_type = Enum
+    possible_values = Enum([
+        u"prive_non_cadre",
+        u"prive_cadre",
+        u"public_titulaire_etat",
+        u"public_titulaire_militaire",
+        u"public_titulaire_territoriale",
+        u"public_titulaire_hospitaliere",
+        u"public_non_titulaire",
+        u"non_pertinent",
+        ])
     entity = Individu
     label = u"Catégorie de salarié"
     definition_period = MONTH
@@ -535,14 +530,14 @@ class categorie_salarie(Variable):
 
 
 class heures_duree_collective_entreprise(Variable):
-    column = IntCol  # TODO default la valeur de la durée légale ?
+    value_type = int  # TODO default la valeur de la durée légale ?
     entity = Individu
     label = u"Durée mensuelle collective dans l'entreprise (heures, temps plein)"
     definition_period = MONTH
 
 
 class heures_non_remunerees_volume(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Volume des heures non rémunérées (convenance personnelle hors contrat/forfait)"
     set_input = set_input_divide_by_period
@@ -550,7 +545,7 @@ class heures_non_remunerees_volume(Variable):
 
 
 class heures_remunerees_volume(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Volume des heures rémunérées contractuellement (heures/mois, temps partiel)"
     set_input = set_input_divide_by_period
@@ -558,21 +553,21 @@ class heures_remunerees_volume(Variable):
 
 
 class forfait_heures_remunerees_volume(Variable):
-    column = IntCol
+    value_type = int
     entity = Individu
     label = u"Volume des heures rémunérées à un forfait heures"
     definition_period = MONTH
 
 
 class forfait_jours_remuneres_volume(Variable):
-    column = IntCol
+    value_type = int
     entity = Individu
     label = u"Volume des heures rémunérées à forfait jours"
     definition_period = MONTH
 
 
 class volume_jours_ijss(Variable):
-    column = IntCol
+    value_type = int
     entity = Individu
     label = u"Volume des jours pour lesquels sont versés une idemnité journalière par la sécurité sociale"
     definition_period = MONTH
@@ -580,7 +575,7 @@ class volume_jours_ijss(Variable):
 
 class avantage_en_nature(Variable):
     base_function = requested_period_added_value
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Avantages en nature"
     definition_period = MONTH
@@ -595,7 +590,7 @@ class avantage_en_nature(Variable):
 
 class avantage_en_nature_valeur_forfaitaire(Variable):
     # base_function = requested_period_added_value
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Evaluation fofaitaire des avantages en nature "
     definition_period = MONTH
@@ -610,7 +605,7 @@ class avantage_en_nature_valeur_forfaitaire(Variable):
 
 class depense_cantine_titre_restaurant_employe(Variable):
     base_function = requested_period_added_value
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Dépense de cantine et de titre restaurant à charge de l'employe"
     definition_period = MONTH
@@ -627,7 +622,7 @@ class depense_cantine_titre_restaurant_employe(Variable):
 
 class depense_cantine_titre_restaurant_employeur(Variable):
     base_function = requested_period_added_value
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Dépense de cantine et de titre restaurant à charge de l'employeur"
     definition_period = MONTH
@@ -642,7 +637,7 @@ class depense_cantine_titre_restaurant_employeur(Variable):
 
 
 class nombre_jours_calendaires(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Nombre de jours calendaires travaillés"
     definition_period = MONTH
@@ -666,7 +661,7 @@ class nombre_jours_calendaires(Variable):
 
 
 class remboursement_transport(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Remboursement partiel des frais de transport par l'employeur"
     definition_period = MONTH
@@ -681,7 +676,7 @@ class remboursement_transport(Variable):
 # Fonction publique
 
 class gipa(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Indemnité de garantie individuelle du pouvoir d'achat"
     definition_period = MONTH
@@ -693,7 +688,7 @@ class gipa(Variable):
 
 
 class indemnite_residence(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Indemnité de résidence des fonctionnaires"
     definition_period = MONTH
@@ -718,7 +713,7 @@ class indemnite_residence(Variable):
 
 
 class indice_majore(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Indice majoré"
     definition_period = MONTH
@@ -734,7 +729,7 @@ class indice_majore(Variable):
 
 
 class primes_fonction_publique(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Calcul des primes pour les fonctionnaries"
     reference = u"http://vosdroits.service-public.fr/particuliers/F465.xhtml"
@@ -754,7 +749,7 @@ class primes_fonction_publique(Variable):
 
 
 class af_nbenf_fonc(Variable):
-    column = IntCol
+    value_type = int
     label = u"Nombre d'enfants dans la famille au sens des allocations familiales pour les fonctionnaires"
     entity = Famille
     definition_period = MONTH
@@ -778,7 +773,7 @@ class af_nbenf_fonc(Variable):
 
 
 class supp_familial_traitement(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Supplément familial de traitement"
     definition_period = MONTH
@@ -857,7 +852,7 @@ def _traitement_brut_mensuel(indice_maj, law):
 
 
 class remuneration_principale(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Rémunération principale des agents titulaires de la fonction publique"
     definition_period = MONTH
@@ -875,7 +870,7 @@ class remuneration_principale(Variable):
 
 class salaire_net_a_payer(Variable):
     base_function = requested_period_added_value
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Salaire net à payer (fiche de paie)"
     set_input = set_input_divide_by_period
@@ -904,7 +899,7 @@ class salaire_net_a_payer(Variable):
 
 class salaire_super_brut_hors_allegements(Variable):
     base_function = requested_period_added_value
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Salaire super-brut (fiche de paie): rémunération + cotisations sociales employeur"
     set_input = set_input_divide_by_period
@@ -936,7 +931,7 @@ class salaire_super_brut_hors_allegements(Variable):
 
 
 class salaire_super_brut(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Coût du travail à court terme. Inclut les exonérations et allègements de charges"
     set_input = set_input_divide_by_period
@@ -951,7 +946,7 @@ class salaire_super_brut(Variable):
 
 
 class exonerations_et_allegements(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Charges, aides et crédits différées ou particulières"
     definition_period = MONTH
@@ -980,7 +975,7 @@ class exonerations_et_allegements(Variable):
 
 
 class cout_du_travail(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Coût du travail à long terme. Inclut les charges, aides et crédits différés"
     set_input = set_input_divide_by_period
@@ -996,7 +991,7 @@ class cout_du_travail(Variable):
 
 
 class cout_differe(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Charges, aides et crédits différées ou particulières"
     definition_period = MONTH

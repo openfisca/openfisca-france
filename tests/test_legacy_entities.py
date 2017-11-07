@@ -6,7 +6,7 @@ from openfisca_france.model.base import *  # noqa analysis:ignore
 from test_entities import TEST_CASE, tax_benefit_system
 
 class salaire_famille(Variable):
-    column = FloatCol
+    value_type = float
     entity = Famille
     definition_period = MONTH
     set_input = set_input_divide_by_period
@@ -16,7 +16,7 @@ class salaire_famille(Variable):
         return self.sum_by_entity(salaire_holder)
 
 class salaire_enfants(Variable):
-    column = FloatCol
+    value_type = float
     entity = Famille
     definition_period = MONTH
     set_input = set_input_divide_by_period
@@ -26,7 +26,7 @@ class salaire_enfants(Variable):
         return self.sum_by_entity(salaire_holder, roles = ENFS)
 
 class salaire_enf1(Variable):
-    column = FloatCol
+    value_type = float
     entity = Famille
     definition_period = MONTH
     set_input = set_input_divide_by_period
@@ -38,7 +38,7 @@ class salaire_enf1(Variable):
         return salaire[ENFS[0]]
 
 class salaire_conj(Variable):
-    column = FloatCol
+    value_type = float
     entity = Famille
     definition_period = MONTH
     set_input = set_input_divide_by_period
@@ -49,7 +49,7 @@ class salaire_conj(Variable):
         return salaire
 
 class af_chef(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     definition_period = MONTH
     set_input = set_input_divide_by_period
@@ -59,7 +59,7 @@ class af_chef(Variable):
         return self.cast_from_entity_to_roles(af_holder, roles = [CHEF])
 
 class af_tous(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     definition_period = MONTH
     set_input = set_input_divide_by_period
@@ -69,7 +69,7 @@ class af_tous(Variable):
         return self.cast_from_entity_to_roles(af_holder)
 
 class has_enfant_autonome(Variable):
-    column = BoolCol
+    value_type = bool
     entity = Famille
     definition_period = MONTH
     set_input = set_input_dispatch_by_period

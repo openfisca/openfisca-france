@@ -21,7 +21,7 @@ def modify_parameters(parameters):
 
 
 class cesthra(Variable):
-    column = FloatCol
+    value_type = float
     entity = entities.FoyerFiscal
     label = u"Contribution exceptionnelle de solidarité sur les très hauts revenus d'activité"
     definition_period = YEAR

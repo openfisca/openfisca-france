@@ -31,7 +31,7 @@ def _mhsup(hsup):
 
 class csg_cap_bar(Variable):
     """Calcule la CSG sur les revenus du capital soumis au barème."""
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"CSG sur les revenus du capital soumis au barème"
     reference = u"http://fr.wikipedia.org/wiki/Contribution_sociale_généralisée"
@@ -46,7 +46,7 @@ class csg_cap_bar(Variable):
 
 class crds_cap_bar(Variable):
     """Calcule la CRDS sur les revenus du capital soumis au barème."""
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"CRDS sur les revenus du capital soumis au barème"
     reference = "http://fr.wikipedia.org/wiki/Contribution_pour_le_remboursement_de_la_dette_sociale"
@@ -61,7 +61,7 @@ class crds_cap_bar(Variable):
 
 class prelsoc_cap_bar(Variable):
     """Calcule le prélèvement social sur les revenus du capital soumis au barème"""
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"Prélèvements sociaux sur les revenus du capital soumis au barème"
     reference = u"http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&paf_gm=content&typePage=cpr02&sfid=501&espId=1&impot=CS"  # noqa
@@ -110,7 +110,7 @@ class prelsoc_cap_bar(Variable):
 
 
 class csg_pv_mo(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"CSG sur les plus-values de cession de valeurs mobilières"
     reference = "http://vosdroits.service-public.fr/particuliers/F21618.xhtml"
@@ -127,7 +127,7 @@ class csg_pv_mo(Variable):
 
 
 class crds_pv_mo(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"CRDS sur les plus-values de cession de valeurs mobilières"
     reference = "http://fr.wikipedia.org/wiki/Contribution_pour_le_remboursement_de_la_dette_sociale"
@@ -144,7 +144,7 @@ class crds_pv_mo(Variable):
 
 
 class prelsoc_pv_mo(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"Prélèvements sociaux sur les plus-values de cession de valeurs mobilières"
     reference = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&paf_dm=popup&paf_gm=content&typePage=cpr02&sfid=501&espId=1&impot=CS"  # noqa
@@ -200,7 +200,7 @@ class prelsoc_pv_mo(Variable):
 # Plus-values immobilières
 
 class csg_pv_immo(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"CSG sur les plus-values immobilières"
     reference = "http://fr.wikipedia.org/wiki/Contribution_sociale_g%C3%A9n%C3%A9ralis%C3%A9e"
@@ -217,7 +217,7 @@ class csg_pv_immo(Variable):
 
 
 class crds_pv_immo(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"CRDS sur les plus-values immobilières"
     reference = "http://fr.wikipedia.org/wiki/Contribution_pour_le_remboursement_de_la_dette_sociale"
@@ -234,7 +234,7 @@ class crds_pv_immo(Variable):
 
 
 class prelsoc_pv_immo(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"Prélèvements sociaux sur les plus-values immobilières"
     reference = "http://www.pap.fr/argent/impots/les-plus-values-immobilieres/a1314/l-imposition-de-la-plus-value-immobiliere"
@@ -290,7 +290,7 @@ class prelsoc_pv_immo(Variable):
 # Revenus fonciers
 
 class csg_fon(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"CSG sur les revenus fonciers"
     reference = "http://fr.wikipedia.org/wiki/Contribution_sociale_g%C3%A9n%C3%A9ralis%C3%A9e"
@@ -308,7 +308,7 @@ class csg_fon(Variable):
 
 
 class crds_fon(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"CRDS sur les revenus fonciers"
     reference = "http://vosdroits.service-public.fr/particuliers/F2329.xhtml"
@@ -326,7 +326,7 @@ class crds_fon(Variable):
 
 
 class prelsoc_fon(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"Prélèvements sociaux sur les revenus fonciers"
     reference = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&paf_dm=popup&paf_gm=content&typePage=cpr02&sfid=501&espId=1&impot=CS"  # noqa
@@ -388,7 +388,7 @@ class prelsoc_fon(Variable):
 
 class csg_cap_lib(Variable):
     """Calcule la CSG sur les revenus du capital soumis au prélèvement libératoire."""
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"CSG sur les revenus du capital soumis au prélèvement libératoire"
     reference = u"http://fr.wikipedia.org/wiki/Contribution_sociale_généralisée"
@@ -402,7 +402,7 @@ class csg_cap_lib(Variable):
 
 class crds_cap_lib(Variable):
     """Calcule la CRDS sur les revenus du capital soumis au prélèvement libératoire."""
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"CRDS sur les revenus du capital soumis au prélèvement libératoire"
     reference = u"http://fr.wikipedia.org/wiki/Contribution_pour_le_remboursement_de_la_dette_sociale"
@@ -417,7 +417,7 @@ class crds_cap_lib(Variable):
 
 class prelsoc_cap_lib(Variable):
     """Calcule le prélèvement social sur les revenus du capital soumis au prélèvement libératoire."""
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"Prélèvements sociaux sur les revenus du capital soumis au prélèvement libératoire"
     reference = u"http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&paf_dm=popup&paf_gm=content&typePage=cpr02&sfid=501&espId=1&impot=CS"  # noqa

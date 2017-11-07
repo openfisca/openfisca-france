@@ -4,7 +4,7 @@ from openfisca_france.model.base import *  # noqa analysis:ignore
 
 
 class indemnites_journalieres_maternite(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Indemnités journalières de maternité"
     definition_period = MONTH
@@ -12,7 +12,7 @@ class indemnites_journalieres_maternite(Variable):
 
 
 class indemnites_journalieres_paternite(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Indemnités journalières de paternité"
     definition_period = MONTH
@@ -20,7 +20,7 @@ class indemnites_journalieres_paternite(Variable):
 
 
 class indemnites_journalieres_adoption(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Indemnités journalières d'adoption"
     definition_period = MONTH
@@ -28,7 +28,7 @@ class indemnites_journalieres_adoption(Variable):
 
 
 class indemnites_journalieres_maladie(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Indemnités journalières de maladie"
     definition_period = MONTH
@@ -36,7 +36,7 @@ class indemnites_journalieres_maladie(Variable):
 
 
 class indemnites_journalieres_accident_travail(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Indemnités journalières d'accident du travail"
     definition_period = MONTH
@@ -44,7 +44,7 @@ class indemnites_journalieres_accident_travail(Variable):
 
 
 class indemnites_journalieres_maladie_professionnelle(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Indemnités journalières de maladie professionnelle"
     definition_period = MONTH
@@ -52,7 +52,7 @@ class indemnites_journalieres_maladie_professionnelle(Variable):
 
 
 class indemnites_journalieres(Variable):
-    column = FloatCol
+    value_type = float
     label = u"Total des indemnités journalières"
     entity = Individu
     definition_period = MONTH
@@ -72,7 +72,7 @@ class indemnites_journalieres(Variable):
 
 
 class indemnites_journalieres_imposables(Variable):
-    column = FloatCol
+    value_type = float
     label = u"Total des indemnités journalières imposables"
     entity = Individu
     reference = "http://vosdroits.service-public.fr/particuliers/F3152.xhtml"
@@ -89,7 +89,8 @@ class indemnites_journalieres_imposables(Variable):
         return result
 
 class date_arret_de_travail(Variable):
-    column = DateCol(default = date.min)
+    value_type = date
+    default_value = date.min
     entity = Individu
     label = u"Date depuis laquelle la personne est en arrêt de travail"
     definition_period = ETERNITY

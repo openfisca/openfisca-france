@@ -12,7 +12,7 @@ log = logging.getLogger(__name__)
 
 
 class credits_impot(Variable):
-    column = FloatCol(default = 0)
+    value_type = float
     entity = FoyerFiscal
     label = u"Crédits d'impôt pour l'impôt sur les revenus"
     definition_period = YEAR
@@ -235,7 +235,7 @@ class credits_impot(Variable):
 
 
 class nb_pac2(Variable):
-    column = FloatCol(default = 0)
+    value_type = float
     entity = FoyerFiscal
     label = u"nb_pac2"
     definition_period = YEAR
@@ -250,7 +250,7 @@ class nb_pac2(Variable):
 
 
 class accult(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"Acquisition de biens culturels"
     definition_period = YEAR
@@ -268,7 +268,7 @@ class accult(Variable):
 
 
 class acqgpl(Variable):
-    column = FloatCol(default = 0)
+    value_type = float
     entity = FoyerFiscal
     label = u"Crédit d'impôt pour dépense d'acquisition ou de transformation d'un véhicule GPL ou mixte"
     end = '2007-12-31'
@@ -287,7 +287,7 @@ class acqgpl(Variable):
 
 
 class aidmob(Variable):
-    column = FloatCol(default = 0)
+    value_type = float
     entity = FoyerFiscal
     label = u"Crédit d'impôt aide à la mobilité"
     end = '2008-12-31'
@@ -309,7 +309,7 @@ class aidmob(Variable):
 
 
 class aidper(Variable):
-    column = FloatCol(default = 0)
+    value_type = float
     entity = FoyerFiscal
     label = u"Crédits d’impôt pour dépenses en faveur de l’aide aux personnes"
     definition_period = YEAR
@@ -480,7 +480,7 @@ class aidper(Variable):
 
 
 class assloy(Variable):
-    column = FloatCol(default = 0)
+    value_type = float
     entity = FoyerFiscal
     label = u"Crédit d’impôt primes d’assurance pour loyers impayés"
     definition_period = YEAR
@@ -497,7 +497,7 @@ class assloy(Variable):
 
 
 class autent(Variable):
-    column = FloatCol(default = 0)
+    value_type = float
     entity = FoyerFiscal
     label = u"autent"
     definition_period = YEAR
@@ -513,7 +513,7 @@ class autent(Variable):
 
 
 class ci_garext(Variable):
-    column = FloatCol(default = 0)
+    value_type = float
     entity = FoyerFiscal
     label = u"Frais de garde des enfants à l’extérieur du domicile"
     definition_period = YEAR
@@ -542,7 +542,7 @@ class ci_garext(Variable):
 
 
 class creimp_exc_2008(Variable):
-    column = FloatCol(default = 0)
+    value_type = float
     entity = FoyerFiscal
     label = u"Crédit d'impôt exceptionnel sur les revenus 2008"
     definition_period = YEAR
@@ -565,7 +565,7 @@ class creimp_exc_2008(Variable):
 
 
 class creimp(Variable):
-    column = FloatCol(default = 0)
+    value_type = float
     entity = FoyerFiscal
     label = u"Avoirs fiscaux et crédits d'impôt"
     definition_period = YEAR
@@ -827,7 +827,7 @@ class creimp(Variable):
 
 
 class direpa(Variable):
-    column = FloatCol(default = 0)
+    value_type = float
     entity = FoyerFiscal
     label = u"Crédit d’impôt directive « épargne »"
     definition_period = YEAR
@@ -843,7 +843,7 @@ class direpa(Variable):
 
 
 class divide(Variable):
-    column = FloatCol(default = 0)
+    value_type = float
     entity = FoyerFiscal
     label = u"Crédit d'impôt dividendes"
     end = '2009-12-31'
@@ -866,7 +866,7 @@ class divide(Variable):
 
 
 class drbail(Variable):
-    column = FloatCol(default = 0)
+    value_type = float
     entity = FoyerFiscal
     label = u"Crédit d’impôt représentatif de la taxe additionnelle au droit de bail"
     definition_period = YEAR
@@ -884,7 +884,7 @@ class drbail(Variable):
 
 
 class inthab(Variable):
-    column = FloatCol(default = 0)
+    value_type = float
     entity = FoyerFiscal
     label = u"Crédit d’impôt intérêts des emprunts pour l’habitation principale"
     definition_period = YEAR
@@ -1066,7 +1066,7 @@ class inthab(Variable):
 
 
 class jeunes(Variable):
-    column = FloatCol(default = 0)
+    value_type = float
     entity = FoyerFiscal
     label = u"jeunes"
     end = '2008-12-31'
@@ -1079,7 +1079,7 @@ class jeunes(Variable):
 
 
 class jeunes_ind(Variable):
-    column = FloatCol(default = 0)
+    value_type = float
     entity = Individu
     label = u"Crédit d'impôt en faveur des jeunes"
     end = '2008-12-31'
@@ -1120,7 +1120,7 @@ class jeunes_ind(Variable):
 
 
 class mecena(Variable):
-    column = FloatCol(default = 0)
+    value_type = float
     entity = FoyerFiscal
     label = u"Mécénat d'entreprise"
     definition_period = YEAR
@@ -1136,7 +1136,7 @@ class mecena(Variable):
 
 
 class percvm(Variable):
-    column = FloatCol(default = 0)
+    value_type = float
     entity = FoyerFiscal
     label = u"Crédit d’impôt pertes sur cessions de valeurs mobilières"
     end = '2010-12-31'
@@ -1154,7 +1154,7 @@ class percvm(Variable):
 
 
 class preetu(Variable):
-    column = FloatCol(default = 0)
+    value_type = float
     entity = FoyerFiscal
     label = u"Crédit d’impôt pour souscription de prêts étudiants"
     definition_period = YEAR
@@ -1203,7 +1203,7 @@ class preetu(Variable):
 
 
 class prlire(Variable):
-    column = FloatCol(default = 0)
+    value_type = float
     entity = FoyerFiscal
     label = u"Prélèvement libératoire à restituer (case 2DH)"
     end = '2013-12-31'
@@ -1225,7 +1225,7 @@ class prlire(Variable):
 
 
 class quaenv(Variable):
-    column = FloatCol(default = 0)
+    value_type = float
     entity = FoyerFiscal
     label = u"Crédits d’impôt pour dépenses en faveur de la qualité environnementale"
     definition_period = YEAR
@@ -1517,7 +1517,7 @@ class quaenv(Variable):
 
 
 class quaenv_bouquet(Variable):
-    column = BoolCol(default = False)
+    value_type = bool
     entity = FoyerFiscal
     label = u"quaenv_bouquet"
     definition_period = YEAR
@@ -1559,7 +1559,7 @@ class quaenv_bouquet(Variable):
 
 
 class saldom2(Variable):
-    column = FloatCol(default = 0)
+    value_type = float
     entity = FoyerFiscal
     label = u"Crédit d’impôt emploi d’un salarié à domicile"
     definition_period = YEAR

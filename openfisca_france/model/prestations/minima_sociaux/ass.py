@@ -8,14 +8,14 @@ from openfisca_france.model.base import *  # noqa analysis:ignore
 
 
 class ass_precondition_remplie(Variable):
-    column = BoolCol
+    value_type = bool
     entity = Individu
     label = u"Éligible à l'ASS"
     definition_period = MONTH
 
 
 class ass(Variable):
-    column = FloatCol
+    value_type = float
     label = u"Montant de l'ASS pour une famille"
     entity = Famille
     definition_period = MONTH
@@ -43,7 +43,7 @@ class ass(Variable):
 
 
 class ass_base_ressources(Variable):
-    column = FloatCol
+    value_type = float
     label = u"Base de ressources de l'ASS"
     entity = Famille
     definition_period = MONTH
@@ -57,7 +57,7 @@ class ass_base_ressources(Variable):
 
 
 class ass_base_ressources_individu(Variable):
-    column = FloatCol
+    value_type = float
     label = u"Base de ressources individuelle de l'ASS"
     entity = Individu
     definition_period = MONTH
@@ -101,7 +101,7 @@ class ass_base_ressources_individu(Variable):
 
 
 class ass_base_ressources_conjoint(Variable):
-    column = FloatCol
+    value_type = float
     label = u"Base de ressources individuelle pour le conjoint du demandeur de l'ASS"
     entity = Individu
     definition_period = MONTH
@@ -169,7 +169,7 @@ class ass_base_ressources_conjoint(Variable):
 
 
 class ass_eligibilite_individu(Variable):
-    column = BoolCol
+    value_type = bool
     label = u"Éligibilité individuelle à l'ASS"
     entity = Individu
     definition_period = MONTH

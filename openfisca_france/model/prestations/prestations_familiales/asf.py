@@ -8,7 +8,7 @@ from openfisca_france.model.prestations.prestations_familiales.base_ressource im
 
 
 class asf_elig_enfant(Variable):
-    column = BoolCol(default = False)
+    value_type = bool
     entity = Individu
     label = u"Enfant pouvant ouvrir droit à l'ASF"
     definition_period = MONTH
@@ -27,7 +27,7 @@ class asf_elig_enfant(Variable):
 
 
 class asf_elig(Variable):
-    column = BoolCol(default = False)
+    value_type = bool
     entity = Famille
     label = u"Éligibilité à l'ASF"
     definition_period = MONTH
@@ -44,7 +44,7 @@ class asf_elig(Variable):
 
 class asf(Variable):
     calculate_output = calculate_output_add
-    column = FloatCol
+    value_type = float
     entity = Famille
     label = u"Allocation de soutien familial (ASF)"
     definition_period = MONTH

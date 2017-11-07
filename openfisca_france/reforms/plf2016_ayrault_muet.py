@@ -29,14 +29,15 @@ def ayrault_muet_modify_parameters(parameters):
 
 
 class variator(Variable):
-    column = FloatCol(default = 1)
+    value_type = float
+    default_value = 1
     entity = FoyerFiscal
     label = u'Multiplicateur du seuil de régularisation'
     definition_period = YEAR
 
 
 class reduction_csg(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Réduction dégressive de CSG"
     definition_period = YEAR
@@ -62,7 +63,7 @@ class reduction_csg(Variable):
 class reduction_csg_foyer_fiscal(Variable):
     entity = FoyerFiscal
     label = u"Réduction dégressive de CSG des memebres du foyer fiscal"
-    column = FloatCol
+    value_type = float
     definition_period = YEAR
 
     def formula(self, simulation, period):
@@ -71,7 +72,7 @@ class reduction_csg_foyer_fiscal(Variable):
 
 
 class reduction_csg_nette(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Réduction dégressive de CSG"
     definition_period = YEAR
@@ -83,7 +84,7 @@ class reduction_csg_nette(Variable):
 
 
 class ppe_elig_bis(Variable):
-    column = BoolCol(default = False)
+    value_type = bool
     entity = FoyerFiscal
     label = u"ppe_elig_bis"
     definition_period = YEAR
@@ -107,7 +108,7 @@ class ppe_elig_bis(Variable):
 
 
 class regularisation_reduction_csg(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"Régularisation complète réduction dégressive de CSG"
     definition_period = YEAR

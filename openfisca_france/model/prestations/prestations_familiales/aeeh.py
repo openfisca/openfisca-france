@@ -6,14 +6,14 @@ from openfisca_france.model.base import *  # noqa
 
 
 class aeeh_niveau_handicap(Variable):
-    column = IntCol
+    value_type = int
     entity = Individu
     label = u"Catégorie de handicap prise en compte pour l'AEEH"
     definition_period = MONTH
 
 
 class aeeh(Variable):
-    column = FloatCol
+    value_type = float
     entity = Famille
     label = u"Allocation d'éducation de l'enfant handicapé"
     reference = "http://vosdroits.service-public.fr/particuliers/N14808.xhtml"

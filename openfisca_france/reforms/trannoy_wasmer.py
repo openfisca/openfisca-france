@@ -30,7 +30,7 @@ class charges_deduc(Variable):
         return cd1 + cd2 + charge_loyer
 
 class charge_loyer(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"Charge déductible pour paiement d'un loyer"
     definition_period = YEAR

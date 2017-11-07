@@ -12,15 +12,14 @@ log = logging.getLogger(__name__)
 
 
 class taux_csg_remplacement(Variable):
-    column = EnumCol(
-        default = 3,
-        enum = Enum([
-            u"Non renseigné/non pertinent",
-            u"Exonéré",
-            u"Taux réduit",
-            u"Taux plein",
-            ]),
-        )
+    default_value = 3
+    value_type = Enum
+    possible_values = Enum([
+        u"Non renseigné/non pertinent",
+        u"Exonéré",
+        u"Taux réduit",
+        u"Taux plein",
+        ])
     entity = Individu
     label = u"Taux retenu sur la CSG des revenus de remplacment"
     definition_period = MONTH
@@ -33,7 +32,7 @@ class taux_csg_remplacement(Variable):
 
 class csg_deductible_chomage(Variable):
     calculate_output = calculate_output_add
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"CSG déductible sur les allocations chômage"
     reference = u"http://vosdroits.service-public.fr/particuliers/F2329.xhtml"
@@ -65,7 +64,7 @@ class csg_deductible_chomage(Variable):
 
 class csg_imposable_chomage(Variable):
     calculate_output = calculate_output_add
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"CSG imposable sur les allocations chômage"
     reference = u"http://vosdroits.service-public.fr/particuliers/F2329.xhtml"
@@ -91,7 +90,7 @@ class csg_imposable_chomage(Variable):
 
 class crds_chomage(Variable):
     calculate_output = calculate_output_add
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"CRDS sur les allocations chômage"
     reference = u"http://www.insee.fr/fr/methodes/default.asp?page=definitions/contrib-remb-dette-sociale.htm"
@@ -125,15 +124,15 @@ class crds_chomage(Variable):
 
 class chomage_imposable(Variable):
     base_function = requested_period_added_value
-    column = FloatCol(
-        val_type = "monetary",
-        cerfa_field = {
-            QUIFOY['vous']: u"1AP",
-            QUIFOY['conj']: u"1BP",
-            QUIFOY['pac1']: u"1CP",
-            QUIFOY['pac2']: u"1DP",
-            QUIFOY['pac3']: u"1EP",
-            })
+    unit = 'currency'
+    cerfa_field = {
+        QUIFOY['vous']: u"1AP",
+        QUIFOY['conj']: u"1BP",
+        QUIFOY['pac1']: u"1CP",
+        QUIFOY['pac2']: u"1DP",
+        QUIFOY['pac3']: u"1EP",
+        }
+    value_type = float
     entity = Individu
     label = u"Allocations chômage imposables"
     set_input = set_input_divide_by_period
@@ -149,7 +148,7 @@ class chomage_imposable(Variable):
 
 class chomage_net(Variable):
     base_function = requested_period_added_value
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Allocations chômage nettes"
     set_input = set_input_divide_by_period
@@ -170,7 +169,7 @@ class chomage_net(Variable):
 
 class csg_deductible_retraite(Variable):
     calculate_output = calculate_output_add
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"CSG déductible sur les pensions de retraite"
     reference = u"https://www.lassuranceretraite.fr/cs/Satellite/PUBPrincipale/Retraites/Paiement-Votre-Retraite/Prelevements-Sociaux?packedargs=null"  # noqa
@@ -193,7 +192,7 @@ class csg_deductible_retraite(Variable):
 
 class csg_imposable_retraite(Variable):
     calculate_output = calculate_output_add
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"CSG imposable sur les pensions de retraite"
     reference = u"https://www.lassuranceretraite.fr/cs/Satellite/PUBPrincipale/Retraites/Paiement-Votre-Retraite/Prelevements-Sociaux?packedargs=null"  # noqa
@@ -213,7 +212,7 @@ class csg_imposable_retraite(Variable):
 
 class crds_retraite(Variable):
     calculate_output = calculate_output_add
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"CRDS sur les pensions de retraite"
     reference = u"http://www.pensions.bercy.gouv.fr/vous-%C3%AAtes-retrait%C3%A9-ou-pensionn%C3%A9/le-calcul-de-ma-pension/les-pr%C3%A9l%C3%A8vements-effectu%C3%A9s-sur-ma-pension"  # noqa
@@ -233,7 +232,7 @@ class crds_retraite(Variable):
 
 
 class casa(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Contribution additionnelle de solidarité et d'autonomie"
     reference = u"http://www.service-public.fr/actualites/002691.html"
@@ -264,15 +263,15 @@ class casa(Variable):
 
 class retraite_imposable(Variable):
     base_function = requested_period_added_value
-    column = FloatCol(
-        val_type = "monetary",
-        cerfa_field = {
-            QUIFOY['vous']: u"1AS",
-            QUIFOY['conj']: u"1BS",
-            QUIFOY['pac1']: u"1CS",
-            QUIFOY['pac2']: u"1DS",
-            QUIFOY['pac3']: u"1ES",
-            })
+    unit = 'currency'
+    value_type = float
+    cerfa_field = {
+        QUIFOY['vous']: u"1AS",
+        QUIFOY['conj']: u"1BS",
+        QUIFOY['pac1']: u"1CS",
+        QUIFOY['pac2']: u"1DS",
+        QUIFOY['pac3']: u"1ES",
+        }
     entity = Individu
     label = u"Retraites au sens strict imposables (rentes à titre onéreux exclues)"
     set_input = set_input_divide_by_period
@@ -288,7 +287,7 @@ class retraite_imposable(Variable):
 
 class retraite_nette(Variable):
     base_function = requested_period_added_value
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Pensions de retraite nettes"
     set_input = set_input_divide_by_period
@@ -305,7 +304,7 @@ class retraite_nette(Variable):
 
 
 class crds_pfam(Variable):
-    column = FloatCol
+    value_type = float
     entity = Famille
     label = u"CRDS sur les prestations familiales)"
     reference = "http://www.cleiss.fr/docs/regimes/regime_francea1.html"
