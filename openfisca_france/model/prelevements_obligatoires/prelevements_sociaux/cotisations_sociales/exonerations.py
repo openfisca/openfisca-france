@@ -31,7 +31,7 @@ class exoneration_cotisations_employeur_geographiques(Variable):
         exonerations_geographiques = (exoneration_cotisations_employeur_zfu + exoneration_cotisations_employeur_zrd +
             exoneration_cotisations_employeur_zrr)
 
-        return period, exonerations_geographiques
+        return exonerations_geographiques
 
 
 class exoneration_cotisations_employeur_jei(Variable):
@@ -79,7 +79,7 @@ class exoneration_cotisations_employeur_jei(Variable):
             if condition_on_year_passed.any():
                 exoneration[condition_on_year_passed] = rate * exoneration
 
-        return period, - exoneration * jeune_entreprise_innovante
+        return - exoneration * jeune_entreprise_innovante
 
 
 class exoneration_cotisations_employeur_zfu(Variable):
@@ -229,7 +229,7 @@ class exoneration_cotisations_employeur_zfu(Variable):
             small_taux_exoneration * (effectif_entreprise <= 5) +
             large_taux_exoneration * (effectif_entreprise > 5)
             )
-        return period, exoneration_cotisations_zfu
+        return exoneration_cotisations_zfu
         # TODO: propager dans le temps
 
 
@@ -268,7 +268,7 @@ class exoneration_cotisations_employeur_zrd(Variable):
 
         exoneration_cotisations_zrd = ratio * taux_exoneration * assiette_allegement * eligible
 
-        return period, exoneration_cotisations_zrd
+        return exoneration_cotisations_zrd
 
 
 class exoneration_cotisations_employeur_zrr(Variable):
@@ -323,7 +323,7 @@ class exoneration_cotisations_employeur_zrr(Variable):
         taux_exoneration = compute_taux_exoneration(assiette_allegement, smic_proratise, taux_max, seuil_max, seuil_min)
         exoneration_cotisations_zrr = taux_exoneration * assiette_allegement * eligible
 
-        return period, exoneration_cotisations_zrr
+        return exoneration_cotisations_zrr
 
 
 # Aides à la création
@@ -370,7 +370,7 @@ class exoneration_is_creation_zrr(Variable):
             condition_on_year_passed = exoneration_relative_year_passed == timedelta64(year_passed, 'Y')
             taux_exoneraion[condition_on_year_passed] = rate
 
-        return period, taux_exoneraion * entreprise_benefice
+        return taux_exoneraion * entreprise_benefice
         # TODO: mettre sur toutes les années
 
 
@@ -384,7 +384,7 @@ class exoneration_is_creation_zrr(Variable):
 #
 #     def function(self, simulation, period):
 #         effectif_entreprise = simulation.calculate('effectif_entreprise', period)
-#         return period, (effectif_entreprise >= 1) * False
+#         return (effectif_entreprise >= 1) * False
 
 class jeune_entreprise_innovante(Variable):
     column = BoolCol
@@ -444,7 +444,7 @@ class jeune_entreprise_innovante(Variable):
             (entreprise_chiffre_affaire < 50e6) *
             (entreprise_bilan < 43e6)
             )
-        return period, jeune_entreprise_innovante
+        return jeune_entreprise_innovante
 
 
 class bassin_emploi_redynamiser(Variable):
@@ -458,7 +458,7 @@ class bassin_emploi_redynamiser(Variable):
     def function(self, simulation, period):
         effectif_entreprise = simulation.calculate('effectif_entreprise', period)
 
-        return period, (effectif_entreprise >= 1) * False
+        return (effectif_entreprise >= 1) * False
 
 
 class zone_restructuration_defense(Variable):
@@ -468,7 +468,7 @@ class zone_restructuration_defense(Variable):
 
     def function(self, simulation, period):
         effectif_entreprise = simulation.calculate('effectif_entreprise', period)
-        return period, (effectif_entreprise >= 1) * False
+        return (effectif_entreprise >= 1) * False
 
 
 class zone_franche_urbaine(Variable):
@@ -478,7 +478,7 @@ class zone_franche_urbaine(Variable):
 
     def function(self, simulation, period):
         effectif_entreprise = simulation.calculate('effectif_entreprise', period)
-        return period, (effectif_entreprise >= 1) * False
+        return (effectif_entreprise >= 1) * False
 
 
 class zone_revitalisation_rurale(Variable):
@@ -488,7 +488,7 @@ class zone_revitalisation_rurale(Variable):
 
     def function(self, simulation, period):
         effectif_entreprise = simulation.calculate('effectif_entreprise', period)
-        return period, (effectif_entreprise >= 1) * False
+        return (effectif_entreprise >= 1) * False
 
 
 # Helpers

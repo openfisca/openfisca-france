@@ -27,7 +27,7 @@ class professionnalisation(Variable):
         dummy_rmi = rsa > 0
         dummy_aah = aah > 0
 
-        return period, (age_condition + dummy_ass + dummy_aah + dummy_rmi) > 0
+        return (age_condition + dummy_ass + dummy_aah + dummy_rmi) > 0
 
 
 class remuneration_professionnalisation(Variable):
@@ -92,7 +92,7 @@ class remuneration_professionnalisation(Variable):
                 (qualifie[age_condition] == qualification) * part_de_smic
                 for qualification, part_de_smic in age_interval['part_de_smic_by_qualification'].iteritems()
                 ])
-        return period, taux_smic * smic * professionnalisation
+        return taux_smic * smic * professionnalisation
 
 
 class exoneration_cotisations_employeur_professionnalisation(Variable):
@@ -125,7 +125,7 @@ class exoneration_cotisations_employeur_professionnalisation(Variable):
         # FIXME: correspond bien à vieillesse de base ?
         cotisations_exonerees = mmid_employeur + famille + vieillesse_plafonnee_employeur
 
-        return period, cotisations_exonerees * (age > 45)
+        return cotisations_exonerees * (age > 45)
         # FIXME: On est bien d'accord qu'il y a les exos uniquement pour les
         # plus de 45 ans?
 

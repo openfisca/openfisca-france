@@ -41,7 +41,7 @@ class csg_cap_bar(Variable):
         rev_cap_bar = simulation.calculate_add('rev_cap_bar', period)
         _P = simulation.legislation_at(period.start)
 
-        return period, -rev_cap_bar * _P.prelevements_sociaux.contributions.csg.capital.glob
+        return -rev_cap_bar * _P.prelevements_sociaux.contributions.csg.capital.glob
 
 
 class crds_cap_bar(Variable):
@@ -56,7 +56,7 @@ class crds_cap_bar(Variable):
         rev_cap_bar = simulation.calculate_add('rev_cap_bar', period)
         _P = simulation.legislation_at(period.start).taxation_capital.prelevements_sociaux
 
-        return period, -rev_cap_bar * _P.crds.revenus_du_patrimoine
+        return -rev_cap_bar * _P.crds.revenus_du_patrimoine
 
 
 class prelsoc_cap_bar(DatedVariable):
@@ -73,7 +73,7 @@ class prelsoc_cap_bar(DatedVariable):
         P = simulation.legislation_at(period.start).taxation_capital.prelevements_sociaux
 
         total = P.prelevement_social.revenus_du_patrimoine
-        return period, -rev_cap_bar * total
+        return -rev_cap_bar * total
 
     @dated_function(start = date(2006, 1, 1), stop = date(2008, 12, 31))
     def function_2006_2008(self, simulation, period):
@@ -82,7 +82,7 @@ class prelsoc_cap_bar(DatedVariable):
         P = simulation.legislation_at(period.start).taxation_capital.prelevements_sociaux
 
         total = P.prelevement_social.revenus_du_patrimoine + P.caps.revenus_du_patrimoine
-        return period, -rev_cap_bar * total
+        return -rev_cap_bar * total
 
     @dated_function(start = date(2009, 1, 1), stop = date(2011, 12, 31))
     def function_2009_2011(self, simulation, period):
@@ -91,7 +91,7 @@ class prelsoc_cap_bar(DatedVariable):
         P = simulation.legislation_at(period.start).taxation_capital.prelevements_sociaux
 
         total = P.prelevement_social.revenus_du_patrimoine + P.caps.revenus_du_patrimoine + P.caps.rsa
-        return period, -rev_cap_bar * total
+        return -rev_cap_bar * total
 
     @dated_function(start = date(2012, 1, 1), stop = date(2012, 12, 31))
     def function_2012(self, simulation, period):
@@ -103,7 +103,7 @@ class prelsoc_cap_bar(DatedVariable):
             P.prelevement_social.revenus_du_patrimoine + P.caps.revenus_du_patrimoine + P.caps.rsa +
             P.prelevements_solidarite.revenus_du_patrimoine
             )
-        return period, -rev_cap_bar * total
+        return -rev_cap_bar * total
 
     @dated_function(start = date(2013, 1, 1))
     def function_2013_(self, simulation, period):
@@ -115,7 +115,7 @@ class prelsoc_cap_bar(DatedVariable):
             P.prelevement_social.revenus_du_patrimoine + P.caps.revenus_du_patrimoine +
             P.prelevements_solidarite.revenus_du_patrimoine
             )
-        return period, -rev_cap_bar * total
+        return -rev_cap_bar * total
 
 
 class csg_pv_mo(Variable):
@@ -132,7 +132,7 @@ class csg_pv_mo(Variable):
         f3vg = simulation.calculate('f3vg', period)
         _P = simulation.legislation_at(period.start)
 
-        return period, -f3vg * _P.prelevements_sociaux.contributions.csg.capital.glob
+        return -f3vg * _P.prelevements_sociaux.contributions.csg.capital.glob
 
 
 class crds_pv_mo(Variable):
@@ -149,7 +149,7 @@ class crds_pv_mo(Variable):
         f3vg = simulation.calculate('f3vg', period)
         _P = simulation.legislation_at(period.start).taxation_capital.prelevements_sociaux
 
-        return period, -f3vg * _P.crds.revenus_du_patrimoine
+        return -f3vg * _P.crds.revenus_du_patrimoine
 
 
 class prelsoc_pv_mo(DatedVariable):
@@ -170,7 +170,7 @@ class prelsoc_pv_mo(DatedVariable):
 
         P = _P.taxation_capital.prelevements_sociaux
         total = P.prelevement_social.revenus_du_patrimoine
-        return period, -f3vg * total
+        return -f3vg * total
 
     @dated_function(start = date(2006, 1, 1), stop = date(2008, 12, 31))
     def function_20060101_20081231(self, simulation, period):
@@ -184,7 +184,7 @@ class prelsoc_pv_mo(DatedVariable):
 
         P = _P.taxation_capital.prelevements_sociaux
         total = P.prelevement_social.revenus_du_patrimoine + P.caps.revenus_du_patrimoine
-        return period, -f3vg * total
+        return -f3vg * total
 
     @dated_function(start = date(2009, 1, 1), stop = date(2012, 12, 31))
     def function_20090101_20121231(self, simulation, period):
@@ -197,7 +197,7 @@ class prelsoc_pv_mo(DatedVariable):
 
         P = _P.taxation_capital.prelevements_sociaux
         total = P.prelevement_social.revenus_du_patrimoine + P.caps.revenus_du_patrimoine + P.caps.rsa
-        return period, -f3vg * total
+        return -f3vg * total
 
     @dated_function(start = date(2013, 1, 1))
     def function_20130101_(self, simulation, period):
@@ -210,7 +210,7 @@ class prelsoc_pv_mo(DatedVariable):
 
         P = _P.taxation_capital.prelevements_sociaux
         total = P.prelevement_social.revenus_du_patrimoine + P.caps.revenus_du_patrimoine
-        return period, -f3vg * total
+        return -f3vg * total
 
 
 # Plus-values immobilières
@@ -229,7 +229,7 @@ class csg_pv_immo(Variable):
         f3vz = simulation.calculate('f3vz', period)
         _P = simulation.legislation_at(period.start)
 
-        return period, -f3vz * _P.prelevements_sociaux.contributions.csg.capital.glob
+        return -f3vz * _P.prelevements_sociaux.contributions.csg.capital.glob
 
 
 class crds_pv_immo(Variable):
@@ -246,7 +246,7 @@ class crds_pv_immo(Variable):
         f3vz = simulation.calculate('f3vz', period)
         _P = simulation.legislation_at(period.start).taxation_capital.prelevements_sociaux
 
-        return period, -f3vz * _P.crds.revenus_du_patrimoine
+        return -f3vz * _P.crds.revenus_du_patrimoine
 
 
 class prelsoc_pv_immo(DatedVariable):
@@ -267,7 +267,7 @@ class prelsoc_pv_immo(DatedVariable):
         P = _P.taxation_capital.prelevements_sociaux
         total = P.prelevement_social.revenus_du_patrimoine
 
-        return period, -f3vz * total
+        return -f3vz * total
 
     @dated_function(start = date(2006, 1, 1), stop = date(2008, 12, 31))
     def function_20060101_20081231(self, simulation, period):
@@ -281,7 +281,7 @@ class prelsoc_pv_immo(DatedVariable):
         P = _P.taxation_capital.prelevements_sociaux
         total = P.prelevement_social.revenus_du_patrimoine + P.caps.revenus_du_patrimoine
 
-        return period, -f3vz * total
+        return -f3vz * total
 
     @dated_function(start = date(2009, 1, 1), stop = date(2012, 12, 31))
     def function_20090101_20121231(self, simulation, period):
@@ -294,7 +294,7 @@ class prelsoc_pv_immo(DatedVariable):
 
         P = _P.taxation_capital.prelevements_sociaux
         total = P.prelevement_social.revenus_du_patrimoine + P.caps.revenus_du_patrimoine + P.caps.rsa
-        return period, -f3vz * total
+        return -f3vz * total
 
     @dated_function(start = date(2013, 1, 1))
     def function_20130101_(self, simulation, period):
@@ -307,7 +307,7 @@ class prelsoc_pv_immo(DatedVariable):
 
         P = _P.taxation_capital.prelevements_sociaux
         total = P.prelevement_social.revenus_du_patrimoine + P.caps.revenus_du_patrimoine
-        return period, -f3vz * total
+        return -f3vz * total
 
 
 # Revenus fonciers
@@ -327,7 +327,7 @@ class csg_fon(Variable):
         rev_cat_rfon = simulation.calculate('rev_cat_rfon', period)
         _P = simulation.legislation_at(period.start)
 
-        return period, -rev_cat_rfon * _P.prelevements_sociaux.contributions.csg.capital.glob
+        return -rev_cat_rfon * _P.prelevements_sociaux.contributions.csg.capital.glob
 
 
 class crds_fon(Variable):
@@ -345,7 +345,7 @@ class crds_fon(Variable):
         rev_cat_rfon = simulation.calculate('rev_cat_rfon', period)
         _P = simulation.legislation_at(period.start).taxation_capital.prelevements_sociaux
 
-        return period, -rev_cat_rfon * _P.crds.revenus_du_patrimoine
+        return -rev_cat_rfon * _P.crds.revenus_du_patrimoine
 
 
 class prelsoc_fon(DatedVariable):
@@ -367,7 +367,7 @@ class prelsoc_fon(DatedVariable):
         P = _P.taxation_capital.prelevements_sociaux
         total = P.prelevement_social.revenus_du_patrimoine
 
-        return period, -rev_cat_rfon * total
+        return -rev_cat_rfon * total
 
     @dated_function(start = date(2006, 1, 1), stop = date(2008, 12, 31))
     def function_20060101_20081231(self, simulation, period):
@@ -382,7 +382,7 @@ class prelsoc_fon(DatedVariable):
         P = _P.taxation_capital.prelevements_sociaux
         total = P.prelevement_social.revenus_du_patrimoine + P.caps.revenus_du_patrimoine
 
-        return period, -rev_cat_rfon * total
+        return -rev_cat_rfon * total
 
     @dated_function(start = date(2009, 1, 1), stop = date(2012, 12, 31))
     def function_20090101_20121231(self, simulation, period):
@@ -396,7 +396,7 @@ class prelsoc_fon(DatedVariable):
 
         P = _P.taxation_capital.prelevements_sociaux
         total = P.prelevement_social.revenus_du_patrimoine + P.caps.revenus_du_patrimoine + P.caps.rsa
-        return period, -rev_cat_rfon * total
+        return -rev_cat_rfon * total
 
     @dated_function(start = date(2013, 1, 1))
     def function_20130101_(self, simulation, period):
@@ -410,7 +410,7 @@ class prelsoc_fon(DatedVariable):
 
         P = _P.taxation_capital.prelevements_sociaux
         total = P.prelevement_social.revenus_du_patrimoine + P.caps.revenus_du_patrimoine
-        return period, -rev_cat_rfon * total
+        return -rev_cat_rfon * total
 
 
 # revenus du capital soumis au prélèvement libératoire
@@ -428,7 +428,7 @@ class csg_cap_lib(Variable):
         rev_cap_lib = simulation.calculate_add('rev_cap_lib', period)
         _P = simulation.legislation_at(period.start)
 
-        return period, -rev_cap_lib * _P.prelevements_sociaux.contributions.csg.capital.glob
+        return -rev_cap_lib * _P.prelevements_sociaux.contributions.csg.capital.glob
 
 
 class crds_cap_lib(Variable):
@@ -443,7 +443,7 @@ class crds_cap_lib(Variable):
         rev_cap_lib = simulation.calculate_add('rev_cap_lib', period)
         _P = simulation.legislation_at(period.start).taxation_capital.prelevements_sociaux
 
-        return period, -rev_cap_lib * _P.crds.revenus_du_patrimoine
+        return -rev_cap_lib * _P.crds.revenus_du_patrimoine
 
 
 class prelsoc_cap_lib(Variable):
@@ -477,7 +477,7 @@ class prelsoc_cap_lib(Variable):
                 prelsoc.prelevement_social.revenus_du_patrimoine + prelsoc.caps.revenus_du_patrimoine +
                 prelsoc.prelevements_solidarite.revenus_du_patrimoine
                 )
-        return period, -rev_cap_lib * total
+        return -rev_cap_lib * total
 
 # TODO: non_imposabilité pour les revenus au barème
 #        verse = (-csgcap_bar - crdscap_bar - prelsoccap_bar) > bareme.prelevements_sociaux.contributions.csg.capital.nonimp

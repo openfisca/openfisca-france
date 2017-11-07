@@ -87,7 +87,7 @@ def create_fusion_rsa_apl_progressive(socle = 600):
                         if np.isnan(np.sum(variable)):
                             print name
 
-                    return period, montant * (montant >= seuil_non_versement)
+                    return montant * (montant >= seuil_non_versement)
 
             class minima_sociaux(Variable):
                 column = FloatCol
@@ -110,7 +110,7 @@ def create_fusion_rsa_apl_progressive(socle = 600):
                     aah = self.sum_by_entity(aah_holder)
                     caah = self.sum_by_entity(caah_holder)
 
-                    return period, aah + caah + minimum_vieillesse + rsa + aefa + api + ass + psa + ppa + prestation_unifiee
+                    return aah + caah + minimum_vieillesse + rsa + aefa + api + ass + psa + ppa + prestation_unifiee
 
             def reform_modify_legislation_json(reference_legislation_json_copy):
                 period = periods.period('year', 2012)

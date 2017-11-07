@@ -45,7 +45,7 @@ class reductions(DatedVariable):
 
         total_reductions = (adhcga + assvie + cappme + cotsyn + dfppce + daepad + doment + domlog + donapd + ecpess +
                 garext + intemp + invfor + invrev + prcomp + rsceha + saldom + spfcpi)
-        return period, min_(ip_net, total_reductions)
+        return min_(ip_net, total_reductions)
 
     @dated_function(start = date(2003, 1, 1), stop = date(2004, 12, 31))
     def function_20030101_20041231(self, simulation, period):
@@ -76,7 +76,7 @@ class reductions(DatedVariable):
 
         total_reductions = (adhcga + assvie + cappme + cotsyn + dfppce + daepad + doment + domlog + donapd + ecpess +
                 garext + intemp + invfor + invrev + prcomp + repsoc + rsceha + saldom + spfcpi)
-        return period, min_(ip_net, total_reductions)
+        return min_(ip_net, total_reductions)
 
     @dated_function(start = date(2005, 1, 1), stop = date(2005, 12, 31))
     def function_20050101_20051231(self, simulation, period):
@@ -106,7 +106,7 @@ class reductions(DatedVariable):
 
         total_reductions = (adhcga + cappme + cotsyn + daepad + dfppce + doment + domlog + donapd + ecpess + intagr +
                 intcon + invfor + invlst + prcomp + repsoc + rsceha + saldom + spfcpi)
-        return period, min_(ip_net, total_reductions)
+        return min_(ip_net, total_reductions)
 
     @dated_function(start = date(2006, 1, 1), stop = date(2006, 12, 31))
     def function_20060101_20061231(self, simulation, period):
@@ -138,7 +138,7 @@ class reductions(DatedVariable):
 
         total_reductions = (adhcga + cappme + cotsyn + creaen + daepad + deffor + dfppce + doment + domlog + donapd +
         ecpess + intagr + invfor + invlst + prcomp + repsoc + rsceha + saldom + sofica + spfcpi)
-        return period, min_(ip_net, total_reductions)
+        return min_(ip_net, total_reductions)
 
     @dated_function(start = date(2007, 1, 1), stop = date(2007, 12, 31))
     def function_20070101_20071231(self, simulation, period):
@@ -171,7 +171,7 @@ class reductions(DatedVariable):
         total_reductions = (adhcga + cappme + cotsyn + creaen + daepad + deffor + dfppce + doment + domlog + donapd +
         ecpess + intagr + invfor + invlst + prcomp + repsoc + rsceha + saldom + sofica + spfcpi)
 
-        return period, min_(ip_net, total_reductions)
+        return min_(ip_net, total_reductions)
 
     @dated_function(start = date(2008, 1, 1), stop = date(2008, 12, 31))
     def function_20080101_20081231(self, simulation, period):
@@ -204,7 +204,7 @@ class reductions(DatedVariable):
 
         total_reductions = (adhcga + cappme + cotsyn + creaen + daepad + deffor + dfppce + doment + domlog + donapd +
         ecpess + intagr + invfor + invlst + mohist + prcomp + repsoc + rsceha + saldom + sofica + spfcpi)
-        return period, min_(ip_net, total_reductions)
+        return min_(ip_net, total_reductions)
 
     @dated_function(start = date(2009, 1, 1), stop = date(2009, 12, 31))
     def function_20090101_20091231(self, simulation, period):
@@ -244,7 +244,7 @@ class reductions(DatedVariable):
         total_reductions = (adhcga + cappme + cotsyn + creaen + daepad + deffor + dfppce + doment + domlog + domsoc +
         donapd + ecodev + ecpess + intagr + invfor + invlst + locmeu + mohist + prcomp + repsoc + resimm + rsceha +
         saldom + scelli + sofica + sofipe + spfcpi)
-        return period, min_(ip_net, total_reductions)
+        return min_(ip_net, total_reductions)
 
     @dated_function(start = date(2010, 1, 1), stop = date(2010, 12, 31))
     def function_20100101_20101231(self, simulation, period):  # TODO: check (sees checked) and report in Niches.xls
@@ -284,7 +284,7 @@ class reductions(DatedVariable):
         total_reductions = (adhcga + cappme + cotsyn + creaen + daepad + deffor + dfppce + doment + domlog + domsoc +
         donapd + ecpess + intagr + invfor + invlst + locmeu + mohist + patnat + prcomp + repsoc + resimm + rsceha +
         saldom + scelli + sofica + sofipe + spfcpi)  # TODO: check (sees checked) and report in Niches.xls
-        return period, min_(ip_net, total_reductions)
+        return min_(ip_net, total_reductions)
 
     @dated_function(start = date(2011, 1, 1), stop = date(2011, 12, 31))
     def function_20110101_20111231(self, simulation, period):
@@ -324,7 +324,7 @@ class reductions(DatedVariable):
         total_reductions = (adhcga + cappme + cotsyn + creaen + daepad + deffor + dfppce + doment + domlog + domsoc +
         donapd + ecpess + intagr + invfor + invlst + locmeu + mohist + patnat + prcomp + repsoc + resimm + rsceha +
         saldom + scelli + sofica + sofipe + spfcpi)
-        return period, min_(ip_net, total_reductions)
+        return min_(ip_net, total_reductions)
 
     @dated_function(start = date(2012, 1, 1), stop = date(2012, 12, 31))
     def function_20120101_20121231(self, simulation, period):
@@ -362,7 +362,7 @@ class reductions(DatedVariable):
         total_reductions = (adhcga + cappme + creaen + daepad + deffor + dfppce + doment + domlog + domsoc +
         donapd + ecpess + intagr + invfor + invlst + locmeu + mohist + patnat + prcomp + repsoc + resimm + rsceha +
         saldom + scelli + sofica + spfcpi)
-        return period, min_(ip_net, total_reductions)
+        return min_(ip_net, total_reductions)
 
     @dated_function(start = date(2013, 1, 1), stop = date(2013, 12, 31))
     def function_20130101_20131231(self, simulation, period):
@@ -405,7 +405,7 @@ class reductions(DatedVariable):
         duflot + ecpess + garext + intagr + invfor + invlst + locmeu + mecena + mohist +
         patnat + prcomp + reduction_impot_exceptionnelle + repsoc + resimm + rsceha + saldom + scelli + sofica +
         spfcpi)
-        return period, min_(ip_net, total_reductions)
+        return min_(ip_net, total_reductions)
 
     @dated_function(start = date(2014, 1, 1))  # Not checked
     def function_2014__(self, simulation, period):
@@ -448,7 +448,7 @@ class reductions(DatedVariable):
         duflot + ecpess + garext + intagr + invfor + invlst + locmeu + mecena + mohist +
         patnat + prcomp + reduction_impot_exceptionnelle + repsoc + resimm + rsceha + saldom + scelli + sofica +
         spfcpi)
-        return period, min_(ip_net, total_reductions)
+        return min_(ip_net, total_reductions)
 
 
         # pour tous les dfppce:
@@ -471,7 +471,7 @@ class adhcga(Variable):
         f7fg = simulation.calculate('f7fg', period)
         P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.adhcga
 
-        return period, min_(f7ff, P.max * f7fg)
+        return min_(f7ff, P.max * f7fg)
 
 
 class assvie(Variable):
@@ -494,7 +494,7 @@ class assvie(Variable):
         P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.assvie
 
         max1 = P.max + nb_pac * P.pac
-        return period, P.taux * min_(f7gw + f7gx + f7gy, max1)
+        return P.taux * min_(f7gw + f7gx + f7gy, max1)
 
 
 class cappme(DatedVariable):
@@ -516,7 +516,7 @@ class cappme(DatedVariable):
 
         base = f7cf
         seuil = P.seuil * (maries_ou_pacses + 1)
-        return period, P.taux * min_(base, seuil)
+        return P.taux * min_(base, seuil)
 
     @dated_function(start = date(2003, 1, 1), stop = date(2003, 12, 31))
     def function_20030101_20031231(self, simulation, period):
@@ -533,7 +533,7 @@ class cappme(DatedVariable):
 
         base = f7cf + f7cl
         seuil = P.seuil * (maries_ou_pacses + 1)
-        return period, P.taux * min_(base, seuil)
+        return P.taux * min_(base, seuil)
 
     @dated_function(start = date(2004, 1, 1), stop = date(2004, 12, 31))
     def function_20040101_20041231(self, simulation, period):
@@ -551,7 +551,7 @@ class cappme(DatedVariable):
 
         base = f7cf + f7cl + f7cm
         seuil = P.seuil * (maries_ou_pacses + 1)
-        return period, P.taux * min_(base, seuil)
+        return P.taux * min_(base, seuil)
 
     @dated_function(start = date(2005, 1, 1), stop = date(2008, 12, 31))
     def function_20050101_20081231(self, simulation, period):
@@ -570,7 +570,7 @@ class cappme(DatedVariable):
 
         base = f7cf + f7cl + f7cm + f7cn
         seuil = P.seuil * (maries_ou_pacses + 1)
-        return period, P.taux * min_(base, seuil)
+        return P.taux * min_(base, seuil)
 
     @dated_function(start = date(2009, 1, 1), stop = date(2010, 12, 31))
     def function_20090101_20101231(self, simulation, period):
@@ -591,7 +591,7 @@ class cappme(DatedVariable):
         base = f7cf + f7cl + f7cm + f7cn + f7cu
         seuil = P.seuil * (maries_ou_pacses + 1)
         seuil = P.seuil_tpe * (maries_ou_pacses + 1) * (f7cu > 0) + P.seuil * (maries_ou_pacses + 1) * (f7cu <= 0)
-        return period, P.taux * min_(base, seuil)
+        return P.taux * min_(base, seuil)
 
     @dated_function(start = date(2011, 1, 1), stop = date(2011, 12, 31))
     def function_20110101_20111231(self, simulation, period):
@@ -613,7 +613,7 @@ class cappme(DatedVariable):
         base = f7cl + f7cm + f7cn + f7cq
         seuil = P.seuil_tpe * (maries_ou_pacses + 1) * (f7cu > 0) + P.seuil * (maries_ou_pacses + 1) * (f7cu <= 0)
         max0 = max_(seuil - base, 0)
-        return period, max_(P.taux25 * min_(base, seuil), P.taux * min_(max0, f7cf + f7cu))
+        return max_(P.taux25 * min_(base, seuil), P.taux * min_(max0, f7cf + f7cu))
 
     @dated_function(start = date(2012, 1, 1), stop = date(2012, 12, 31))
     def function_20120101_20121231(self, simulation, period):
@@ -637,7 +637,7 @@ class cappme(DatedVariable):
         seuil1 = P.seuil * (maries_ou_pacses + 1)
         seuil2 = max_(0, P.seuil_tpe * (maries_ou_pacses + 1) - min_(base, seuil1) - min_(f7cq, seuil1) - min_(f7cu, seuil1))
         seuil3 = min_(P.seuil_tpe * (maries_ou_pacses + 1) - min_(base, seuil1) - min_(f7cq, seuil1), seuil1)
-        return period, P.taux25 * min_(base, seuil1) + P.taux * min_(f7cq, seuil1) + P.taux18 * (min_(f7cf, seuil3) +
+        return P.taux25 * min_(base, seuil1) + P.taux * min_(f7cq, seuil1) + P.taux18 * (min_(f7cf, seuil3) +
                 mini(f7cu, seuil2, seuil1))
 
     @dated_function(start = date(2013, 1, 1), stop = date(2013, 12, 31))
@@ -662,7 +662,7 @@ class cappme(DatedVariable):
         seuil1 = P.seuil * (maries_ou_pacses + 1)
         seuil2 = max_(0, P.seuil_tpe * (maries_ou_pacses + 1) - min_(base, seuil1) - min_(f7cn, seuil1) - min_(f7cu, seuil1))
         seuil3 = min_(P.seuil_tpe * (maries_ou_pacses + 1) - min_(base, seuil1) - min_(f7cq, seuil1), seuil1)
-        return period, P.taux25 * min_(base, seuil1) + P.taux22 * min_(f7cn, seuil1) + P.taux18 * (min_(f7cf + f7cc, seuil3) +
+        return P.taux25 * min_(base, seuil1) + P.taux22 * min_(f7cn, seuil1) + P.taux18 * (min_(f7cf + f7cc, seuil3) +
                 min_(f7cu + f7cq, seuil2))
 
 
@@ -699,7 +699,7 @@ class cotsyn(Variable):
         maxc = (salc + choc + rstc) * tx
         maxp = (salp + chop + rstp) * tx
 
-        return period, P.taux * (min_(f7ac, maxv) + min_(f7ae, maxc) + min_(f7ag, maxp))
+        return P.taux * (min_(f7ac, maxv) + min_(f7ae, maxc) + min_(f7ag, maxp))
 
 
 class creaen(DatedVariable):
@@ -719,7 +719,7 @@ class creaen(DatedVariable):
         _P = simulation.legislation_at(period.start)
         P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.creaen
 
-        return period, (P.base * f7fy + P.hand * f7gy)
+        return (P.base * f7fy + P.hand * f7gy)
 
     @dated_function(start = date(2009, 1, 1), stop = date(2009, 12, 31))
     def function_20090101_20091231(self, simulation, period):
@@ -737,7 +737,7 @@ class creaen(DatedVariable):
         _P = simulation.legislation_at(period.start)
         P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.creaen
 
-        return period, (P.base * ((f7jy + f7fy) + f7hy / 2) +
+        return (P.base * ((f7jy + f7fy) + f7hy / 2) +
                     P.hand * ((f7ky + f7gy) + f7iy / 2))
 
     @dated_function(start = date(2010, 1, 1), stop = date(2011, 12, 31))
@@ -758,7 +758,7 @@ class creaen(DatedVariable):
         _P = simulation.legislation_at(period.start)
         P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.creaen
 
-        return period, (P.base * ((f7jy + f7fy) + (f7hy + f7ly) / 2) +
+        return (P.base * ((f7jy + f7fy) + (f7hy + f7ly) / 2) +
                     P.hand * ((f7ky + f7gy) + (f7iy + f7my) / 2))
 
     @dated_function(start = date(2012, 1, 1), stop = date(2014, 12, 31))
@@ -773,7 +773,7 @@ class creaen(DatedVariable):
         _P = simulation.legislation_at(period.start)
         P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.creaen
 
-        return period, (P.base * (f7ly / 2) +
+        return (P.base * (f7ly / 2) +
                     P.hand * (f7my / 2))
 
 
@@ -792,7 +792,7 @@ class deffor(Variable):
         f7uc = simulation.calculate('f7uc', period)
         P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.deffor
 
-        return period, P.taux * min_(f7uc, P.max)
+        return P.taux * min_(f7uc, P.max)
 
 
 class daepad(Variable):
@@ -810,7 +810,7 @@ class daepad(Variable):
         f7ce = simulation.calculate('f7ce', period)
         P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.daepad
 
-        return period, P.taux * (min_(f7cd, P.max) + min_(f7ce, P.max))
+        return P.taux * (min_(f7cd, P.max) + min_(f7ce, P.max))
 
 
 class dfppce(DatedVariable):
@@ -832,7 +832,7 @@ class dfppce(DatedVariable):
 
         base = f7uf
         max1 = P.taux_max_dons_partipo * rbg_int
-        return period, P.taux_dons_oeuvres * min_(base, max1)
+        return P.taux_dons_oeuvres * min_(base, max1)
 
     @dated_function(start = date(2004, 1, 1), stop = date(2004, 12, 31))
     def function_20040101_20041231(self, simulation, period):
@@ -849,7 +849,7 @@ class dfppce(DatedVariable):
 
         base = f7uf + f7xs
         max1 = P.taux_max_dons_partipo * rbg_int
-        return period, P.taux_dons_oeuvres * min_(base, max1)
+        return P.taux_dons_oeuvres * min_(base, max1)
 
     @dated_function(start = date(2005, 1, 1), stop = date(2005, 12, 31))
     def function_20050101_20051231(self, simulation, period):
@@ -867,7 +867,7 @@ class dfppce(DatedVariable):
 
         base = f7uf + f7xs + f7xt
         max1 = P.taux_max_dons_partipo * rbg_int
-        return period, P.taux_dons_oeuvres * min_(base, max1)
+        return P.taux_dons_oeuvres * min_(base, max1)
 
     @dated_function(start = date(2006, 1, 1), stop = date(2006, 12, 31))
     def function_20060101_20061231(self, simulation, period):
@@ -886,7 +886,7 @@ class dfppce(DatedVariable):
 
         base = f7uf + f7xs + f7xt + f7xu
         max1 = P.taux_max_dons_partipo * rbg_int
-        return period, P.taux_dons_oeuvres * min_(base, max1)
+        return P.taux_dons_oeuvres * min_(base, max1)
 
     @dated_function(start = date(2007, 1, 1), stop = date(2007, 12, 31))
     def function_20070101_20071231(self, simulation, period):
@@ -906,7 +906,7 @@ class dfppce(DatedVariable):
 
         base = f7uf + f7xs + f7xt + f7xu + f7xw
         max1 = P.taux_max_dons_partipo * rbg_int
-        return period, P.taux_dons_oeuvres * min_(base, max1)
+        return P.taux_dons_oeuvres * min_(base, max1)
 
     @dated_function(start = date(2008, 1, 1), stop = date(2010, 12, 31))
     def function_20080101_20101231(self, simulation, period):
@@ -927,7 +927,7 @@ class dfppce(DatedVariable):
 
         base = f7uf + f7xs + f7xt + f7xu + f7xw + f7xy
         max1 = P.taux_max_dons_partipo * rbg_int
-        return period, P.taux_dons_oeuvres * min_(base, max1)
+        return P.taux_dons_oeuvres * min_(base, max1)
 
     @dated_function(start = date(2011, 1, 1), stop = date(2011, 12, 31))
     def function_20110101_20111231(self, simulation, period):
@@ -948,7 +948,7 @@ class dfppce(DatedVariable):
 
         base = f7uf + f7vc + f7xs + f7xt + f7xu + f7xw + f7xy
         max1 = P.taux_max_dons_partipo * rbg_int
-        return period, P.taux_dons_oeuvres * min_(base, max1)
+        return P.taux_dons_oeuvres * min_(base, max1)
 
     @dated_function(start = date(2012, 1, 1), stop = date(2012, 12, 31))
     def function_20120101_20121231(self, simulation, period):
@@ -969,7 +969,7 @@ class dfppce(DatedVariable):
 
         base = min_(P.max_niv, f7uf) + f7vc + f7xs + f7xt + f7xu + f7xw + f7xy
         max1 = P.taux_max_dons_partipo * rbg_int
-        return period, P.taux_dons_oeuvres * min_(base, max1)
+        return P.taux_dons_oeuvres * min_(base, max1)
 
     @dated_function(start = date(2013, 1, 1), stop = date(2013, 12, 31))
     def function_20130101_20131231(self, simulation, period):
@@ -991,7 +991,7 @@ class dfppce(DatedVariable):
 
         base = min_(P.max_niv, f7uf + f7uh) + f7vc + f7xs + f7xt + f7xu + f7xw + f7xy
         max1 = P.taux_max_dons_partipo * rbg_int
-        return period, P.taux_dons_oeuvres * min_(base, max1)
+        return P.taux_dons_oeuvres * min_(base, max1)
 
 
     # TODO: note de bas de page
@@ -1017,7 +1017,7 @@ class doment(DatedVariable):
         f7qz = simulation.calculate('f7qz', period)
         f7rz = simulation.calculate('f7rz', period)
 
-        return period,  f7ur + f7oz + f7pz + f7qz + f7rz
+        return  f7ur + f7oz + f7pz + f7qz + f7rz
 
     @dated_function(start = date(2006, 1, 1), stop = date(2008, 12, 31))
     def function_20060101_20081231(self, simulation, period):
@@ -1032,7 +1032,7 @@ class doment(DatedVariable):
         f7rz = simulation.calculate('f7rz', period)
         f7sz = simulation.calculate('f7sz', period)
 
-        return period,  f7ur + f7oz + f7pz + f7qz + f7rz + f7sz
+        return  f7ur + f7oz + f7pz + f7qz + f7rz + f7sz
 
     @dated_function(start = date(2009, 1, 1), stop = date(2009, 12, 31))
     def function_20090101_20091231(self, simulation, period):
@@ -1052,7 +1052,7 @@ class doment(DatedVariable):
         f7qi = simulation.calculate('f7qi', period)
         f7qj = simulation.calculate('f7qj', period)
 
-        return period,  f7oz + f7pz + f7qz + f7rz + f7sz + f7qe + f7qf + f7qg + f7qh + f7qi + f7qj
+        return  f7oz + f7pz + f7qz + f7rz + f7sz + f7qe + f7qf + f7qg + f7qh + f7qi + f7qj
 
     @dated_function(start = date(2010, 1, 1), stop = date(2010, 12, 31))
     def function_20100101_20101231(self, simulation, period):
@@ -1081,7 +1081,7 @@ class doment(DatedVariable):
         f7ks = simulation.calculate('f7ks', period)
         f7ls = simulation.calculate('f7ls', period)
 
-        return period, (f7oz + f7pz + f7qz + f7rz + f7qe + f7qf + f7qg + f7qh + f7qi + f7qj + f7qo + f7qp + f7qq + f7qr + f7qs +
+        return (f7oz + f7pz + f7qz + f7rz + f7qe + f7qf + f7qg + f7qh + f7qi + f7qj + f7qo + f7qp + f7qq + f7qr + f7qs +
                     f7mm + f7ma + f7lg + f7ks + f7ls)
 
     @dated_function(start = date(2011, 1, 1), stop = date(2011, 12, 31))
@@ -1124,7 +1124,7 @@ class doment(DatedVariable):
         f7qr = simulation.calculate('f7qr', period)
         f7qv = simulation.calculate('f7qv', period)
 
-        return period, (f7ks + f7kt + f7ku + f7lg + f7lh + f7li + f7mb + f7mn + f7mc + f7mm + f7ma +  f7oz + f7pa + f7pb + f7pd +
+        return (f7ks + f7kt + f7ku + f7lg + f7lh + f7li + f7mb + f7mn + f7mc + f7mm + f7ma +  f7oz + f7pa + f7pb + f7pd +
                     f7pe + f7pf + f7ph + f7pi + f7pj + f7pl + f7pz + f7qz + f7qf + f7qg + f7qh + f7qi + f7qo +
                     f7qp + f7qq + f7qr + f7qe + f7qv)
 
@@ -1196,7 +1196,7 @@ class doment(DatedVariable):
         f7rx = simulation.calculate('f7rx', period)
         f7ry = simulation.calculate('f7ry', period)
 
-        return period, (f7ks + f7kt + f7ku + f7lg + f7lh + f7li + f7ma + f7mb + f7mc + f7mm + f7mn +  f7pz + f7nu + f7nv + f7nw +
+        return (f7ks + f7kt + f7ku + f7lg + f7lh + f7li + f7ma + f7mb + f7mc + f7mm + f7mn +  f7pz + f7nu + f7nv + f7nw +
                     f7ny + f7pa + f7pb + f7pd + f7pe + f7pf + f7ph + f7pi + f7pj + f7pl + f7pm + f7pn + f7po + f7pp + f7pr +
                     f7ps + f7pt + f7pu + f7pw + f7px + f7py + f7qe + f7qf + f7qg + f7qi + f7qo + f7qp + f7qr + f7qv + f7qz +
                     f7rg + f7ri + f7rj + f7rk + f7rl + f7rm + f7ro + f7rp + f7rq + f7rr + f7rt + f7ru + f7rv + f7rw)
@@ -1290,7 +1290,7 @@ class doment(DatedVariable):
         f7rw = simulation.calculate('f7rw', period)
         f7ry = simulation.calculate('f7ry', period)
 
-        return period, (fhsa + fhsb + fhsf + fhsg + fhsc + fhsh + fhse + fhsj + fhsk + fhsl + fhsp + fhsq + fhsm + fhsr + fhso +
+        return (fhsa + fhsb + fhsf + fhsg + fhsc + fhsh + fhse + fhsj + fhsk + fhsl + fhsp + fhsq + fhsm + fhsr + fhso +
                     fhst + fhsu + fhsv + fhsw + fhsz + fhta + fhtb + fhtd + f7ks + f7kt + f7ku + f7lg + f7lh + f7li + f7ma +
                     f7mb + f7mc + f7mm + f7mn + f7nu + f7nv + f7nw + f7ny + f7pa + f7pb + f7pd + f7pe + f7pf + f7ph + f7pi +
                     f7pj + f7pl + f7pm + f7pn + f7po + f7pp + f7pr + f7ps + f7pt + f7pu + f7pw + f7px + f7py + f7qe + f7qf +
@@ -1324,7 +1324,7 @@ class domlog(DatedVariable):
         _P = simulation.legislation_at(period.start)
         P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.domlog
 
-        return period, P.taux1 * f7uj + P.taux2 * (f7ua + f7ub + f7uc)
+        return P.taux1 * f7uj + P.taux2 * (f7ua + f7ub + f7uc)
 
     @dated_function(start = date(2003, 1, 1), stop = date(2004, 12, 31))
     def function_20030101_20041231(self, simulation, period):
@@ -1341,7 +1341,7 @@ class domlog(DatedVariable):
         _P = simulation.legislation_at(period.start)
         P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.domlog
 
-        return period, P.taux1 * f7uj + P.taux2 * (f7ua + f7ub + f7uc) + f7ui
+        return P.taux1 * f7uj + P.taux2 * (f7ua + f7ub + f7uc) + f7ui
 
     @dated_function(start = date(2005, 1, 1), stop = date(2007, 12, 31))
     def function_20050101_20071231(self, simulation, period):
@@ -1358,7 +1358,7 @@ class domlog(DatedVariable):
         _P = simulation.legislation_at(period.start)
         P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.domlog
 
-        return period, P.taux1 * f7uj + P.taux2 * (f7ua + f7ub) + f7ui
+        return P.taux1 * f7uj + P.taux2 * (f7ua + f7ub) + f7ui
 
     @dated_function(start = date(2008, 1, 1), stop = date(2008, 12, 31))
     def function_20080101_20081231(self, simulation, period):
@@ -1369,7 +1369,7 @@ class domlog(DatedVariable):
         period = period.this_year
         f7ui = simulation.calculate('f7ui', period)
 
-        return period, f7ui
+        return f7ui
 
     @dated_function(start = date(2009, 1, 1), stop = date(2009, 12, 31))
     def function_20090101_20091231(self, simulation, period):
@@ -1383,7 +1383,7 @@ class domlog(DatedVariable):
         f7qd = simulation.calculate('f7qd', period)
         f7qk = simulation.calculate('f7qk', period)
 
-        return period, f7qb + f7qc + f7qd + f7qk / 2
+        return f7qb + f7qc + f7qd + f7qk / 2
 
     @dated_function(start = date(2010, 1, 1), stop = date(2010, 12, 31))
     def function_20100101_20101231(self, simulation, period):
@@ -1400,7 +1400,7 @@ class domlog(DatedVariable):
         f7qt = simulation.calculate('f7qt', period)
         f7qm = simulation.calculate('f7qm', period)
 
-        return period, f7qb + f7qc + f7qd + f7ql + f7qt + f7qm
+        return f7qb + f7qc + f7qd + f7ql + f7qt + f7qm
 
     @dated_function(start = date(2011, 1, 1), stop = date(2011, 12, 31))
     def function_20110101_20111231(self, simulation, period):
@@ -1424,7 +1424,7 @@ class domlog(DatedVariable):
         f7oj = simulation.calculate('f7oj', period)
         f7ok = simulation.calculate('f7ok', period)
 
-        return period, f7qb + f7qc + f7qd + f7ql + f7qm + f7qt + f7oa + f7ob + f7oc + f7oh + f7oi + f7oj + f7ok
+        return f7qb + f7qc + f7qd + f7ql + f7qm + f7qt + f7oa + f7ob + f7oc + f7oh + f7oi + f7oj + f7ok
 
     @dated_function(start = date(2012, 1, 1), stop = date(2012, 12, 31))
     def function_20120101_20121231(self, simulation, period):
@@ -1460,7 +1460,7 @@ class domlog(DatedVariable):
         f7ov = simulation.calculate('f7ov', period)
         f7ow = simulation.calculate('f7ow', period)
 
-        return period, (f7qb + f7qc + f7qd + f7ql + f7qm + f7qt + f7oa + f7ob + f7oc + f7oh + f7oi + f7oj + f7ok + f7ol + f7om +
+        return (f7qb + f7qc + f7qd + f7ql + f7qm + f7qt + f7oa + f7ob + f7oc + f7oh + f7oi + f7oj + f7ok + f7ol + f7om +
                     f7on + f7oo + f7op + f7oq + f7or + f7os + f7ot + f7ou + f7ov + f7ow)
 
     @dated_function(start = date(2013, 1, 1), stop = date(2013, 12, 31))
@@ -1504,7 +1504,7 @@ class domlog(DatedVariable):
         f7ov = simulation.calculate('f7ov', period)
         f7ow = simulation.calculate('f7ow', period)
 
-        return period, (f7qb + f7qc + f7qd + f7ql + f7qm + f7qt + f7oa + f7ob + f7oc + f7oh + f7oi + f7oj + f7ok + f7ol + f7om +
+        return (f7qb + f7qc + f7qd + f7ql + f7qm + f7qt + f7oa + f7ob + f7oc + f7oh + f7oi + f7oj + f7ok + f7ol + f7om +
                     f7on + f7oo + f7op + f7oq + f7or + f7os + f7ot + f7ou + f7ov + f7ow + fhod + fhoe +
                     fhof + fhog + fhox + fhoy + fhoz)
 
@@ -1536,7 +1536,7 @@ class domsoc(DatedVariable):
         f7qw = simulation.calculate('f7qw', period)
         f7qx = simulation.calculate('f7qx', period)
 
-        return period,  f7qn + f7qk + f7qu + f7kg + f7kh + f7ki + f7qj + f7qs + f7qw + f7qx
+        return  f7qn + f7qk + f7qu + f7kg + f7kh + f7ki + f7qj + f7qs + f7qw + f7qx
 
     @dated_function(start = date(2013, 1, 1), stop = date(2013, 12, 31))
     def function_20130101_20131231(self, simulation, period):
@@ -1561,7 +1561,7 @@ class domsoc(DatedVariable):
         f7qw = simulation.calculate('f7qw', period)
         f7qx = simulation.calculate('f7qx', period)
 
-        return period,  fhra + fhrb + fhrc + fhrd + f7qn + f7qk + f7qu + f7kg + f7kh + f7ki + f7qj + f7qs + f7qw + f7qx
+        return  fhra + fhrb + fhrc + fhrd + f7qn + f7qk + f7qu + f7kg + f7kh + f7ki + f7qj + f7qs + f7qw + f7qx
 
 
 class donapd(DatedVariable):
@@ -1578,7 +1578,7 @@ class donapd(DatedVariable):
         f7ud = simulation.calculate('f7ud', period)
         P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.donapd
 
-        return period, P.taux * min_(f7ud, P.max)
+        return P.taux * min_(f7ud, P.max)
 
     @dated_function(start = date(2011, 1, 1), stop = date(2013, 12, 31))
     def function_20110101_20131231(self, simulation, period):
@@ -1590,7 +1590,7 @@ class donapd(DatedVariable):
         f7va = simulation.calculate('f7va', period)
         P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.donapd
 
-        return period, P.taux * min_(f7ud + f7va, P.max)
+        return P.taux * min_(f7ud + f7va, P.max)
 
 
 class duflot(Variable):
@@ -1609,7 +1609,7 @@ class duflot(Variable):
         f7gi = simulation.calculate('f7gi', period)
         P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.duflot
 
-        return period, min_(P.plafond, P.taux_m * f7gh + P.taux_om * f7gi) / 9
+        return min_(P.plafond, P.taux_m * f7gh + P.taux_om * f7gi) / 9
 
 
 #TODO: / 5 dans trois TOM
@@ -1631,7 +1631,7 @@ class ecodev(Variable):
         rbg_int = simulation.calculate('rbg_int', period)
         P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.ecodev
 
-        return period, min_(f7uh * P.taux, min_(P.taux_plafond * rbg_int, P.plafond_par_personne))  # page3 ligne 18
+        return min_(f7uh * P.taux, min_(P.taux_plafond * rbg_int, P.plafond_par_personne))  # page3 ligne 18
 
 
 class ecpess(Variable):
@@ -1652,7 +1652,7 @@ class ecpess(Variable):
         f7eg = simulation.calculate('f7eg', period)
         P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.ecpess
 
-        return period, (P.col * (f7ea + f7eb / 2) +
+        return (P.col * (f7ea + f7eb / 2) +
                 P.lyc * (f7ec + f7ed / 2) +
                 P.sup * (f7ef + f7eg / 2))
 
@@ -1677,7 +1677,7 @@ class garext(DatedVariable):
         P = simulation.legislation_at(period.start).impot_revenu.credits_impot.garext
 
         max1 = P.plafond
-        return period, P.taux * (min_(f7ga, max1) + min_(f7gb, max1) + min_(f7gc, max1))
+        return P.taux * (min_(f7ga, max1) + min_(f7gb, max1) + min_(f7gc, max1))
 
     @dated_function(start = date(2003, 1, 1), stop = date(2005, 12, 31))
     def function_20030101_20051231(self, simulation, period):
@@ -1698,7 +1698,7 @@ class garext(DatedVariable):
 
         max1 = P.plafond
         max2 = P.plafond / 2
-        return period, P.taux * (min_(f7ga, max1) +
+        return P.taux * (min_(f7ga, max1) +
                            min_(f7gb, max1) +
                            min_(f7gc, max1) +
                            min_(f7ge, max2) +
@@ -1723,7 +1723,7 @@ class intagr(Variable):
         P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.intagr
 
         max1 = P.max * (1 + maries_ou_pacses)
-        return period, P.taux * min_(f7um, max1)
+        return P.taux * min_(f7um, max1)
 
 
 class intcon(Variable):
@@ -1743,7 +1743,7 @@ class intcon(Variable):
         P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.intcon
 
         max1 = P.max
-        return period, P.taux * min_(f7uh, max1)
+        return P.taux * min_(f7uh, max1)
 
 
 class intemp(Variable):
@@ -1764,7 +1764,7 @@ class intemp(Variable):
         P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.intemp
 
         max1 = P.max + P.pac * nb_pac
-        return period, P.taux * min_(f7wg, max1)
+        return P.taux * min_(f7wg, max1)
 
 
 class invfor(DatedVariable):
@@ -1784,7 +1784,7 @@ class invfor(DatedVariable):
         P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.invfor
 
         seuil = P.seuil * (maries_ou_pacses + 1)
-        return period, P.taux * min_(f7un, seuil)
+        return P.taux * min_(f7un, seuil)
 
     @dated_function(start = date(2006, 1, 1), stop = date(2008, 12, 31))
     def function_20060101_20081231(self, simulation, period):
@@ -1796,7 +1796,7 @@ class invfor(DatedVariable):
         _P = simulation.legislation_at(period.start)
         P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.invfor
 
-        return period, P.taux * f7un
+        return P.taux * f7un
 
     @dated_function(start = date(2009, 1, 1), stop = date(2009, 12, 31))
     def function_20090101_20091231(self, simulation, period):
@@ -1811,7 +1811,7 @@ class invfor(DatedVariable):
         _P = simulation.legislation_at(period.start)
         P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.invfor
 
-        return period, P.taux * (min_(f7un, P.seuil * (maries_ou_pacses + 1)) + min_(f7up, P.ifortra_seuil * (maries_ou_pacses + 1)) +
+        return P.taux * (min_(f7un, P.seuil * (maries_ou_pacses + 1)) + min_(f7up, P.ifortra_seuil * (maries_ou_pacses + 1)) +
                 min_(f7uq, P.iforges_seuil * (maries_ou_pacses + 1)))
 
     @dated_function(start = date(2010, 1, 1), stop = date(2010, 12, 31))
@@ -1829,7 +1829,7 @@ class invfor(DatedVariable):
         _P = simulation.legislation_at(period.start)
         P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.invfor
 
-        return period, (P.taux * (
+        return (P.taux * (
             min_(f7un, P.seuil * (maries_ou_pacses + 1)) +
             min_(f7up + f7uu + f7te, P.ifortra_seuil * (maries_ou_pacses + 1)) +
             min_(f7uq, P.iforges_seuil * (maries_ou_pacses + 1))))
@@ -1854,7 +1854,7 @@ class invfor(DatedVariable):
 
         max0 = max_(0, P.ifortra_seuil * (maries_ou_pacses + 1) - f7ul)
         max1 = max_(0, max0 - f7uu + f7te + f7uv + f7tf)
-        return period, (P.taux * (
+        return (P.taux * (
             min_(f7un, P.seuil * (maries_ou_pacses + 1)) +
             min_(f7up, max1) +
             min_(f7uq, P.iforges_seuil * (maries_ou_pacses + 1))) +
@@ -1884,7 +1884,7 @@ class invfor(DatedVariable):
         max0 = max_(0, P.ifortra_seuil * (maries_ou_pacses + 1) - f7ul)
         max1 = max_(0, max0 - f7uu + f7te + f7uv + f7tf)
         max2 = max_(0, max1 - f7tg - f7uw)
-        return period, (P.taux * (
+        return (P.taux * (
             min_(f7un, P.seuil * (maries_ou_pacses + 1)) +
             min_(f7up, max2) +
             min_(f7uq, P.iforges_seuil * (maries_ou_pacses + 1))) +
@@ -1918,7 +1918,7 @@ class invfor(DatedVariable):
         max1 = max_(0, max0 - f7uu + f7te + f7uv + f7tf)
         max2 = max_(0, max1 - f7tg - f7uw)
         max3 = max_(0, max2 - f7th - f7ux)
-        return period, (P.taux * (
+        return (P.taux * (
             min_(f7un, P.seuil * (maries_ou_pacses + 1)) +
             min_(f7up, max3) +
             min_(f7uq, P.iforges_seuil * (maries_ou_pacses + 1))) +
@@ -1975,7 +1975,7 @@ class invlst(DatedVariable):
         xn = P.taux_xn * min_(f7xn, seuil1 / 6)
         xo = P.taux_xo * f7xo
 
-        return period, around(xc + xd + xe + xf + xg + xh + xi + xj + xk + xl + xm + xn + xo)
+        return around(xc + xd + xe + xf + xg + xh + xi + xj + xk + xl + xm + xn + xo)
 
     @dated_function(start = date(2005, 1, 1), stop = date(2010, 12, 31))
     def function_20050101_20101231(self, simulation, period):
@@ -2019,7 +2019,7 @@ class invlst(DatedVariable):
         xn = P.taux_xn * min_(f7xn, seuil1 / 6)
         xo = P.taux_xo * f7xo
 
-        return period, around(xc + xd + xe + xf + xg + xh + xi + xj + xk + xl + xm + xn + xo)
+        return around(xc + xd + xe + xf + xg + xh + xi + xj + xk + xl + xm + xn + xo)
 
     @dated_function(start = date(2011, 1, 1), stop = date(2011, 12, 31))
     def function_20110101_20111231(self, simulation, period):
@@ -2064,7 +2064,7 @@ class invlst(DatedVariable):
         xl = P.taux_xl * min_(f7xl, seuil1 / 6)
         xo = P.taux_xo * (f7xk + f7xo + f7xr)
 
-        return period, around(xc + xa + xg + xb + xh + xi + xj + xl + xo)
+        return around(xc + xa + xg + xb + xh + xi + xj + xl + xo)
 
     @dated_function(start = date(2012, 1, 1), stop = date(2012, 12, 31))
     def function_20120101_20121231(self, simulation, period):
@@ -2114,7 +2114,7 @@ class invlst(DatedVariable):
         xl = P.taux_xl * min_(f7xl, seuil1 / 6)
         xo = P.taux_xo * (f7xk + f7xo + f7xr)
 
-        return period, around(xc + xa + xg + xx + xb + xz + xh + xi + xj + xl + xo)
+        return around(xc + xa + xg + xx + xb + xz + xh + xi + xj + xl + xo)
 
     @dated_function(start = date(2013, 1, 1), stop = date(2013, 12, 31))
     def function_20130101_20131231(self, simulation, period):
@@ -2144,7 +2144,7 @@ class invlst(DatedVariable):
         xj = P.taux_xj * (f7xm + f7xj + f7xq + f7xv + f7uz)
         xo = P.taux_xo * (f7xk + f7xo + f7xr)
 
-        return period, around(xi + xj + xo)
+        return around(xi + xj + xo)
 
 
 class invrev(Variable):
@@ -2170,7 +2170,7 @@ class invrev(Variable):
         f7gv = simulation.calculate('f7gv', period)
         P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.invrev
 
-        return period, (P.taux_gs * min_(f7gs, P.seuil_gs * (1 + maries_ou_pacses)) / 4 +
+        return (P.taux_gs * min_(f7gs, P.seuil_gs * (1 + maries_ou_pacses)) / 4 +
                  P.taux_gu * min_(f7gu, P.seuil_gu * (1 + maries_ou_pacses)) / 4 +
                  P.taux_xg * min_(f7xg, P.seuil_xg * (1 + maries_ou_pacses)) / 4 +
                  P.taux_gt * f7gt + P.taux_gt * f7gv)
@@ -2191,7 +2191,7 @@ class locmeu(DatedVariable):
         f7ij = simulation.calculate('f7ij', period)
         P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.locmeu
 
-        return period, P.taux * min_(P.max, f7ij) / 9
+        return P.taux * min_(P.max, f7ij) / 9
 
     @dated_function(start = date(2010, 1, 1), stop = date(2010, 12, 31))
     def function_20100101_20101231(self, simulation, period):
@@ -2207,7 +2207,7 @@ class locmeu(DatedVariable):
         f7is = simulation.calculate('f7is', period)
         P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.locmeu
 
-        return period, ((min_(P.max, max_(f7ij, f7il)) + min_(P.max, f7im)) / 9 + f7ik) * P.taux + f7is
+        return ((min_(P.max, max_(f7ij, f7il)) + min_(P.max, f7im)) / 9 + f7ik) * P.taux + f7is
 
     @dated_function(start = date(2011, 1, 1), stop = date(2011, 12, 31))
     def function_20110101_20111231(self, simulation, period):
@@ -2233,7 +2233,7 @@ class locmeu(DatedVariable):
         P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.locmeu
 
         m20 = (maxi(f7ij, f7il, f7in, f7iv) == max_(f7il, f7in))
-        return period, ((min_(P.max, maxi(f7ij, f7il, f7in, f7iv)) * (P.taux20 * m20 + P.taux18 * not_(m20)) +
+        return ((min_(P.max, maxi(f7ij, f7il, f7in, f7iv)) * (P.taux20 * m20 + P.taux18 * not_(m20)) +
                 P.taux * (min_(P.max, max_(f7im, f7iw)) + min_(P.max, f7io))) / 9 +
             P.taux * max_(f7ik, f7ip + f7ir + f7iq) +
             f7is + f7iu + f7it)
@@ -2273,7 +2273,7 @@ class locmeu(DatedVariable):
 
         m18 = (maxi(f7id, f7ie, f7if, f7ig) == max_(f7ie, f7if))
         m20 = (maxi(f7ij, f7il, f7in, f7iv) == max_(f7il, f7in))
-        return period, ((min_(P.max, maxi(f7ij, f7il, f7in, f7iv)) * (P.taux20 * m20 + P.taux18 * not_(m20)) +
+        return ((min_(P.max, maxi(f7ij, f7il, f7in, f7iv)) * (P.taux20 * m20 + P.taux18 * not_(m20)) +
                 min_(P.max, maxi(f7id, f7ie, f7if, f7ig)) * (P.taux18 * m18 + P.taux11 * not_(m18)) +
                 P.taux * (min_(P.max, max_(f7im, f7iw)) + min_(P.max, f7io))) / 9 +
             P.taux * max_(f7ik + f7ip, f7ir + f7iq) +
@@ -2324,7 +2324,7 @@ class locmeu(DatedVariable):
 
         m18 = (maxi(f7id, f7ie, f7if, f7ig) == max_(f7ie, f7if))
         m20 = (maxi(f7ij, f7il, f7in, f7iv) == max_(f7il, f7in))
-        return period, ((min_(P.max, maxi(f7ij, f7il, f7in, f7iv)) * (P.taux20 * m20 + P.taux18 * not_(m20)) +
+        return ((min_(P.max, maxi(f7ij, f7il, f7in, f7iv)) * (P.taux20 * m20 + P.taux18 * not_(m20)) +
                 min_(P.max, maxi(f7id, f7ie, f7if, f7ig)) * (P.taux18 * m18 + P.taux11 * not_(m18)) +
                 P.taux11 * min_(P.max, f7jt + f7ju) +
                 P.taux * (min_(P.max, max_(f7im, f7iw)) + min_(P.max, f7io))) / 9 +
@@ -2348,7 +2348,7 @@ class mohist(Variable):
         f7nz = simulation.calculate('f7nz', period)
         P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.mohist
 
-        return period, P.taux * min_(f7nz, P.max)
+        return P.taux * min_(f7nz, P.max)
 
 
 class patnat(DatedVariable):
@@ -2367,7 +2367,7 @@ class patnat(DatedVariable):
         P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.patnat
 
         max1 = P.max
-        return period, P.taux * min_(f7ka, max1)
+        return P.taux * min_(f7ka, max1)
 
     @dated_function(start = date(2011, 1, 1), stop = date(2011, 12, 31))
     def function_20110101_20111231(self, simulation, period):
@@ -2381,7 +2381,7 @@ class patnat(DatedVariable):
         P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.patnat
 
         max1 = P.max
-        return period, P.taux * min_(f7ka, max1) + f7kb
+        return P.taux * min_(f7ka, max1) + f7kb
 
     @dated_function(start = date(2012, 1, 1), stop = date(2012, 12, 31))
     def function_20120101_20121231(self, simulation, period):
@@ -2396,7 +2396,7 @@ class patnat(DatedVariable):
         P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.patnat
 
         max1 = P.max
-        return period, P.taux * min_(f7ka, max1) + f7kb + f7kc
+        return P.taux * min_(f7ka, max1) + f7kb + f7kc
 
     @dated_function(start = date(2013, 1, 1), stop = date(2013, 12, 31))
     def function_20130101_20131231(self, simulation, period):
@@ -2412,7 +2412,7 @@ class patnat(DatedVariable):
         P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.patnat
 
         max1 = P.max
-        return period, P.taux * min_(f7ka, max1) + f7kb + f7kc + f7kd
+        return P.taux * min_(f7ka, max1) + f7kb + f7kc + f7kd
 
 
 class prcomp(Variable):
@@ -2433,7 +2433,7 @@ class prcomp(Variable):
 
         div = (f7wo == 0) * 1 + f7wo  # Pour éviter les divisions par zéro
 
-        return period, (
+        return (
             (f7wm == 0) * (
                 (f7wn == f7wo) * P.taux * min_(f7wn, P.seuil) +
                 (f7wn < f7wo) * (f7wo <= P.seuil) * P.taux * f7wn +
@@ -2464,7 +2464,7 @@ class reduction_impot_exceptionnelle(Variable):
         params = simulation.legislation_at(period.start).impot_revenu.reductions_impots.reduction_impot_exceptionnelle
         plafond = params.seuil * nb_adult + (nbptr - nb_adult) * 2 * params.majoration_seuil
         montant = params.montant_plafond * nb_adult
-        return period, min_(max_(plafond + montant - rfr, 0), montant)
+        return min_(max_(plafond + montant - rfr, 0), montant)
 
 
 class repsoc(Variable):
@@ -2484,7 +2484,7 @@ class repsoc(Variable):
         P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.repsoc
 
         seuil = P.seuil * (maries_ou_pacses + 1)
-        return period, P.taux * min_(f7fh, seuil)
+        return P.taux * min_(f7fh, seuil)
 
 
 class resimm(DatedVariable):
@@ -2505,7 +2505,7 @@ class resimm(DatedVariable):
 
         max1 = P.max
         max2 = max_(max1 - f7rb, 0)
-        return period, P.taux_rb * min_(f7rb, max1) + P.taux_ra * min_(f7ra, max2)
+        return P.taux_rb * min_(f7rb, max1) + P.taux_ra * min_(f7ra, max2)
 
     @dated_function(start = date(2011, 1, 1), stop = date(2011, 12, 31))
     def function_20110101_20111231(self, simulation, period):
@@ -2524,7 +2524,7 @@ class resimm(DatedVariable):
         max2 = max_(max1 - f7rd, 0)
         max3 = max_(max2 - f7rb, 0)
         max4 = max_(max3 - f7rc, 0)
-        return period, (P.taux_rd * min_(f7rd, max1) + P.taux_rb * min_(f7rb, max2) + P.taux_rc * min_(f7rc, max3) +
+        return (P.taux_rd * min_(f7rd, max1) + P.taux_rb * min_(f7rb, max2) + P.taux_rc * min_(f7rc, max3) +
                 P.taux_ra * min_(f7ra, max4))
 
     @dated_function(start = date(2012, 1, 1), stop = date(2012, 12, 31))
@@ -2547,7 +2547,7 @@ class resimm(DatedVariable):
         max3 = max_(max2 - f7rb, 0)
         max4 = max_(max3 - f7rc - f7rf, 0)
         max5 = max_(max4 - f7ra, 0)
-        return period, (P.taux_rd * min_(f7rd, max1) + P.taux_rb * min_(f7rb, max2) + P.taux_rc * min_(f7rc + f7rf, max3) +
+        return (P.taux_rd * min_(f7rd, max1) + P.taux_rb * min_(f7rb, max2) + P.taux_rc * min_(f7rc + f7rf, max3) +
                 P.taux_ra * min_(f7ra, max4) + P.taux_re * min_(f7re, max5))
 
     @dated_function(start = date(2013, 1, 1), stop = date(2013, 12, 31))
@@ -2572,7 +2572,7 @@ class resimm(DatedVariable):
         max3 = max_(max2 - f7rb, 0)
         max4 = max_(max3 - f7rc - f7sy - f7rf, 0)
         max5 = max_(max4 - f7ra, 0)
-        return period, (P.taux_rd * min_(f7rd, max1) + P.taux_rb * min_(f7rb, max2) + P.taux_rc * min_(f7sy + f7rf + f7rc, max3) +
+        return (P.taux_rd * min_(f7rd, max1) + P.taux_rb * min_(f7rb, max2) + P.taux_rc * min_(f7sy + f7rf + f7rc, max3) +
                 P.taux_ra * min_(f7ra, max4) + P.taux_re * min_(f7re + f7sx, max5))
 
 
@@ -2593,7 +2593,7 @@ class rsceha(Variable):
         P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.rsceha
 
         max1 = P.seuil1 + (nb_pac2 - nbR) * P.seuil2
-        return period, P.taux * min_(f7gz, max1)
+        return P.taux * min_(f7gz, max1)
 
 
 class saldom(DatedVariable):
@@ -2615,7 +2615,7 @@ class saldom(DatedVariable):
 
         isinvalid = f7dg
         max1 = P.max1 * not_(isinvalid) + P.max3 * isinvalid
-        return period, P.taux * min_(f7df, max1)
+        return P.taux * min_(f7df, max1)
 
     @dated_function(start = date(2005, 1, 1), stop = date(2006, 12, 31))
     def function_20050101_20061231(self, simulation, period):
@@ -2637,7 +2637,7 @@ class saldom(DatedVariable):
         maxDuMaxNonInv = P.max2
         maxNonInv = min_(maxBase + P.pac * nbpacmin, maxDuMaxNonInv)
         max1 = maxNonInv * not_(isinvalid) + P.max3 * isinvalid
-        return period, P.taux * min_(f7df, max1)
+        return P.taux * min_(f7df, max1)
 
     @dated_function(start = date(2007, 1, 1), stop = date(2008, 12, 31))
     def function_20070101_20081231(self, simulation, period):
@@ -2661,7 +2661,7 @@ class saldom(DatedVariable):
         maxNonInv = min_(maxBase + P.pac * nbpacmin, maxDuMaxNonInv)
         maxEffectif = maxNonInv * not_(isinvalid) + P.max3 * isinvalid
         max1 = maxEffectif - min_(f7db, maxEffectif)
-        return period, P.taux * min_(f7df, max1)
+        return P.taux * min_(f7df, max1)
 
     @dated_function(start = date(2009, 1, 1), stop = date(2013, 12, 31))
     def function_20090101_20131231(self, simulation, period):
@@ -2687,7 +2687,7 @@ class saldom(DatedVariable):
         maxNonInv = min_(maxBase + P.pac * nbpacmin, maxDuMaxNonInv)
         maxEffectif = maxNonInv * not_(isinvalid) + P.max3 * isinvalid
         max1 = maxEffectif - min_(f7db, maxEffectif)
-        return period, P.taux * min_(f7df, max1)
+        return P.taux * min_(f7df, max1)
 
 
 class scelli(DatedVariable):
@@ -2706,7 +2706,7 @@ class scelli(DatedVariable):
         f7hk = simulation.calculate('f7hk', period)
         P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.scelli
 
-        return period, max_(P.taux1 * min_(P.max, f7hj), P.taux2 * min_(P.max, f7hk)) / 9
+        return max_(P.taux1 * min_(P.max, f7hj), P.taux2 * min_(P.max, f7hk)) / 9
 
     @dated_function(start = date(2010, 1, 1), stop = date(2010, 12, 31))
     def function_20100101_20101231(self, simulation, period):
@@ -2726,7 +2726,7 @@ class scelli(DatedVariable):
         f7la = simulation.calculate('f7la', period)
         P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.scelli
 
-        return period, (max_(
+        return (max_(
                     max_(P.taux1 * min_(P.max, f7hj),
                     P.taux2 * min_(P.max, f7hk)),
                     max_(P.taux1 * min_(P.max, f7hn),
@@ -2783,7 +2783,7 @@ class scelli(DatedVariable):
         f7nt = simulation.calculate('f7nt', period)
         P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.scelli
 
-        return period, (min_(P.max, maxi(
+        return (min_(P.max, maxi(
                     P.taux13 * max_(f7nf, f7nj) / 9,
                     P.taux15 * max_(f7ng, f7ni) / 9,
                     P.taux22 * max_(f7na, f7ne) / 9,
@@ -2872,7 +2872,7 @@ class scelli(DatedVariable):
         f7nt = simulation.calculate('f7nt', period)
         P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.scelli
 
-        return period, (min_(P.max, maxi(
+        return (min_(P.max, maxi(
                     P.taux13 * max_(f7nf, f7nj) / 9,
                     P.taux15 * max_(f7ng, f7ni) / 9,
                     P.taux22 * max_(f7na, f7ne) / 9,
@@ -2986,7 +2986,7 @@ class scelli(DatedVariable):
         f7nt = simulation.calculate('f7nt', period)
         P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.scelli
 
-        return period, (min_(P.max, maxi(
+        return (min_(P.max, maxi(
                     P.taux13 * max_(f7nf, f7nj) / 9,
                     P.taux15 * max_(f7ng, f7ni) / 9,
                     P.taux22 * max_(f7na, f7ne) / 9,
@@ -3031,7 +3031,7 @@ class sofica(Variable):
 
         max0 = min_(P.taux1 * max_(rng, 0), P.max)
         max1 = max_(0, max0 - f7gn)
-        return period, P.taux2 * min_(f7gn, max0) + P.taux3 * min_(f7fn, max1)
+        return P.taux2 * min_(f7gn, max0) + P.taux3 * min_(f7fn, max1)
 
 
 class sofipe(Variable):
@@ -3054,7 +3054,7 @@ class sofipe(Variable):
         P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.sofipe
 
         max1 = min_(P.max * (maries_ou_pacses + 1), P.base * rbg_int)  # page3 ligne 18
-        return period, P.taux * min_(f7gs, max1)
+        return P.taux * min_(f7gs, max1)
 
 
 class spfcpi(DatedVariable):
@@ -3076,7 +3076,7 @@ class spfcpi(DatedVariable):
         P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.spfcpi
 
         max1 = P.plafond_celibataire * (maries_ou_pacses + 1)
-        return period, P.taux1 * min_(f7gq, max1)
+        return P.taux1 * min_(f7gq, max1)
 
     @dated_function(start = date(2003, 1, 1), stop = date(2006, 12, 31))
     def function_20030101_20061231(self, simulation, period):
@@ -3093,7 +3093,7 @@ class spfcpi(DatedVariable):
         P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.spfcpi
 
         max1 = P.plafond_celibataire * (maries_ou_pacses + 1)
-        return period, (P.taux1 * min_(f7gq, max1) + P.taux1 * min_(f7fq, max1))
+        return (P.taux1 * min_(f7gq, max1) + P.taux1 * min_(f7fq, max1))
 
     @dated_function(start = date(2007, 1, 1), stop = date(2010, 12, 31))
     def function_20070101_20101231(self, simulation, period):
@@ -3111,7 +3111,7 @@ class spfcpi(DatedVariable):
         P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.spfcpi
 
         max1 = P.plafond_celibataire * (maries_ou_pacses + 1)
-        return period, (P.taux1 * min_(f7gq, max1) +
+        return (P.taux1 * min_(f7gq, max1) +
                     P.taux1 * min_(f7fq, max1) +
                     P.taux2 * min_(f7fm, max1))
 
@@ -3132,7 +3132,7 @@ class spfcpi(DatedVariable):
         P = simulation.legislation_at(period.start).impot_revenu.reductions_impots.spfcpi
 
         max1 = P.plafond_celibataire * (maries_ou_pacses + 1)
-        return period, (P.taux1 * min_(f7gq, max1) + P.taux1 * min_(f7fq, max1) + P.taux2 * min_(f7fm, max1) +
+        return (P.taux1 * min_(f7gq, max1) + P.taux1 * min_(f7fq, max1) + P.taux2 * min_(f7fm, max1) +
                 P.taux3 * min_(f7fl, max1))
 
     @dated_function(start = date(2014, 1, 1), stop = date(2014, 12, 31))
@@ -3145,7 +3145,7 @@ class spfcpi(DatedVariable):
         period = period.this_year
         f7gq = simulation.calculate('f7gq', period)
 
-        return period, f7gq * 0
+        return f7gq * 0
 
 
 def mini(a, b, *args):

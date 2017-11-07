@@ -31,7 +31,7 @@ class resident_93(Variable):
 
         result = is_resident_93_vec(depcom)
 
-        return period, result
+        return result
 
 class adpa_eligibilite(Variable):
     column = BoolCol
@@ -46,7 +46,7 @@ class adpa_eligibilite(Variable):
 
         result = (age >= 60) * resident_93 * perte_autonomie
 
-        return period, result
+        return result
 
 class adpa_base_ressources_i(Variable):
     column = FloatCol
@@ -72,7 +72,7 @@ class adpa_base_ressources_i(Variable):
             valeur_locative_terrains_non_loue * 0.8
         ) / 12
 
-        return period, base_ressource_mensuelle
+        return base_ressource_mensuelle
 
 class adpa_base_ressources(Variable):
     column = FloatCol
@@ -84,7 +84,7 @@ class adpa_base_ressources(Variable):
         adpa_base_ressources_i = simulation.compute('adpa_base_ressources_i', period)
         adpa_base_ressources = self.sum_by_entity(adpa_base_ressources_i)
 
-        return period, adpa_base_ressources
+        return adpa_base_ressources
 
 class adpa(Variable):
     column = FloatCol
@@ -116,7 +116,7 @@ class adpa(Variable):
 
         participation_departement = 100 - participation_usager
 
-        return period, participation_departement * adpa_eligibilite
+        return participation_departement * adpa_eligibilite
 
 
 class aides_cd93(Reform):

@@ -121,7 +121,7 @@ class salaire_de_base(Variable):
         #     (salaire_de_base <= salaire_charniere) *
         #     cotisation_forfaitaire
         #     )
-        return period, salaire_de_base + hsup
+        return salaire_de_base + hsup
 
         # public_titulaire_etat = salarie['public_titulaire_etat'] #.copy()
         # public_titulaire_etat['rafp'].multiply_rates(TAUX_DE_PRIME, inplace = True)
@@ -176,7 +176,7 @@ class salaire_de_base(Variable):
 #         # TODO: complete this to deal with the fonctionnaire
 #         # supp_familial_traitement = 0  # TODO: dépend de salbrut
 #         # indemnite_residence = 0  # TODO: fix bug
-#         return period, traitement_indiciaire_brut
+#         return traitement_indiciaire_brut
 
 
 # class primes_fonction_publique(Variable):
@@ -188,7 +188,7 @@ class salaire_de_base(Variable):
 #         traitement_indiciaire_brut = simulation.calculate('traitement_indiciaire_brut',
 #             period.start.offset('first-of', 'year').period('year'))
 
-#         return period, TAUX_DE_PRIME * traitement_indiciaire_brut
+#         return TAUX_DE_PRIME * traitement_indiciaire_brut
 
 
 class inversion_directe_salaires(Reform):

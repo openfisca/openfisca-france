@@ -48,7 +48,7 @@ class charges_deduc(Variable):
         cd2 = simulation.calculate('cd2', period)
         charge_loyer = simulation.calculate('charge_loyer', period)
 
-        return period, cd1 + cd2 + charge_loyer
+        return cd1 + cd2 + charge_loyer
 
 class charge_loyer(Variable):
     column = columns.FloatCol
@@ -67,7 +67,7 @@ class charge_loyer(Variable):
         plaf_nbp = charge_loyer.plaf_nbp
         plafond = plaf * (not_(plaf_nbp) + plaf * nbptr * plaf_nbp)
 
-        return period, 12 * min_(loyer / 12, plafond)
+        return 12 * min_(loyer / 12, plafond)
 
 
 class trannoy_wasmer(Reform):

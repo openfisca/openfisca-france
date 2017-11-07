@@ -64,7 +64,7 @@ def build_reform(tax_benefit_system):
                     # Calcule le salaire brut à partir du salaire net par inversion numérique.
                     if (salaire_net == 0).all():
                         # Quick path to avoid fsolve when using default value of input variables.
-                        return period, salaire_net
+                        return salaire_net
                     simulation = self.holder.entity.simulation
 
                     def solve_function(salaire_de_base):
@@ -74,7 +74,7 @@ def build_reform(tax_benefit_system):
                             salaire_de_base = salaire_de_base,
                             simulation = simulation,
                             ) - salaire_net
-                    return period, fsolve(solve_function, salaire_net)
+                    return fsolve(solve_function, salaire_net)
 
                 salaire_imposable_pour_inversion = simulation.calculate_add_divide('salaire_imposable_pour_inversion',
                     period)
@@ -82,7 +82,7 @@ def build_reform(tax_benefit_system):
             # Calcule le salaire brut à partir du salaire imposable par inversion numérique.
             if (salaire_imposable_pour_inversion == 0).all():
                 # Quick path to avoid fsolve when using default value of input variables.
-                return period, salaire_imposable_pour_inversion
+                return salaire_imposable_pour_inversion
             simulation = self.holder.entity.simulation
 
             def solve_function(salaire_de_base):
@@ -93,7 +93,7 @@ def build_reform(tax_benefit_system):
                     simulation = simulation,
                     ) - salaire_imposable_pour_inversion
 
-            return period, fsolve(solve_function, salaire_imposable_pour_inversion)
+            return fsolve(solve_function, salaire_imposable_pour_inversion)
 
     #       TODO: inclure un taux de prime et calculer les primes en même temps que salaire_de_base
 
@@ -170,7 +170,7 @@ def build_reform(tax_benefit_system):
     #
     #        #<NODE desc= "Supplément familial de traitement " shortname="Supp. fam." code= "supp_familial_traitement"/>
     #        #<NODE desc= "Indemnité de résidence" shortname="Ind. rés." code= "indemenite_residence"/>
-    #        return period, salbrut + hsup
+    #        return salbrut + hsup
 
     class chomage_brut(Reform.Variable):
         column = columns.FloatCol
@@ -190,7 +190,7 @@ def build_reform(tax_benefit_system):
                     # Calcule les allocations chomage brutes à partir des allocations nettes par inversion numérique.
                     if (chomage_net == 0).all():
                         # Quick path to avoid fsolve when using default value of input variables.
-                        return period, chomage_net
+                        return chomage_net
                     simulation = self.holder.entity.simulation
 
                     def solve_function(chomage_brut):
@@ -200,7 +200,7 @@ def build_reform(tax_benefit_system):
                             period = period,
                             simulation = simulation,
                             ) - chomage_net
-                    return period, fsolve(solve_function, chomage_net)
+                    return fsolve(solve_function, chomage_net)
 
                 chomage_imposable_pour_inversion = simulation.calculate_add_divide(
                     'chomage_imposable_pour_inversion', period)
@@ -209,7 +209,7 @@ def build_reform(tax_benefit_system):
             # taux_csg_remplacement = simulation.calculate('taux_csg_remplacement', period)
             if (chomage_imposable_pour_inversion == 0).all():
                 # Quick path to avoid fsolve when using default value of input variables.
-                return period, chomage_imposable_pour_inversion
+                return chomage_imposable_pour_inversion
             simulation = self.holder.entity.simulation
 
             def solve_function(chomage_brut):
@@ -220,7 +220,7 @@ def build_reform(tax_benefit_system):
                     period = period,
                     simulation = simulation,
                     ) - chomage_imposable_pour_inversion
-            return period, fsolve(solve_function, chomage_imposable_pour_inversion)
+            return fsolve(solve_function, chomage_imposable_pour_inversion)
 
     class retraite_brute(Reform.Variable):
         column = columns.FloatCol
@@ -242,7 +242,7 @@ def build_reform(tax_benefit_system):
                     # Calcule les pensions de retraite brutes à partir des pensions nettes par inversion numérique.
                     if (retraite_nette == 0).all():
                         # Quick path to avoid fsolve when using default value of input variables.
-                        return period, retraite_nette
+                        return retraite_nette
                     simulation = self.holder.entity.simulation
 
                     def solve_function(retraite_brute):
@@ -252,7 +252,7 @@ def build_reform(tax_benefit_system):
                             retraite_brute = retraite_brute,
                             simulation = simulation,
                             ) - retraite_nette
-                    return period, fsolve(solve_function, retraite_nette)
+                    return fsolve(solve_function, retraite_nette)
 
                 retraite_imposable_pour_inversion = simulation.calculate_add_divide(
                     'retraite_imposable_pour_inversion', period)
@@ -261,7 +261,7 @@ def build_reform(tax_benefit_system):
             taux_csg_remplacement = simulation.calculate('taux_csg_remplacement', period)
             if (retraite_imposable_pour_inversion == 0).all():
                 # Quick path to avoid fsolve when using default value of input variables.
-                return period, retraite_imposable_pour_inversion
+                return retraite_imposable_pour_inversion
             simulation = self.holder.entity.simulation
 
             def solve_function(retraite_brute):
@@ -272,6 +272,6 @@ def build_reform(tax_benefit_system):
                     period = period,
                     simulation = simulation,
                     ) - retraite_imposable_pour_inversion
-            return period, fsolve(solve_function, retraite_imposable_pour_inversion)
+            return fsolve(solve_function, retraite_imposable_pour_inversion)
 
     return Reform()
