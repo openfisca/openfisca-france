@@ -27,7 +27,7 @@ setup(
         ],
     extras_require = {
         'api': [
-            'OpenFisca-Web-API >= 7.0, < 8.0',
+            'OpenFisca-Web-API >= 7.2, < 8.0',
             ],
         'baremes_ipp': [
             'xlrd >= 1.0.0',
