@@ -1,54 +1,25 @@
-# OpenFisca France
+# OpenFisca-France
 
-[![Join the chat at https://gitter.im/openfisca/openfisca-france](https://badges.gitter.im/openfisca/openfisca-france.svg)](https://gitter.im/openfisca/openfisca-france?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Build Status](https://travis-ci.org/openfisca/openfisca-france.svg?branch=master)](https://travis-ci.org/openfisca/openfisca-france)
 
-[More build statuses](http://www.openfisca.fr/build-status)
+## [EN] Introduction
+OpenFisca is a versatile microsimulation free software. This repository contains the OpenFisca model of the French tax and benefit system. Therefore, the working language here is French. You can however check the [general OpenFisca documentation](https://doc.openfisca.fr/) in English !
 
-[OpenFisca](http://www.openfisca.fr/) is a versatile microsimulation free software.
-This is the source code of the France module.
+## [FR] Introduction
+[OpenFisca](https://www.openfisca.fr/) est un logiciel libre de micro-simulation. Ce dépôt contient la modélisation du système social et fiscal français. Pour plus d'information sur les fonctionnalités et la manière d'utiliser OpenFisca, vous pouvez consulter la [documentation générale](https://doc.openfisca.fr/).
 
-The documentation of the project is hosted at http://doc.openfisca.fr/
+## Stratégie de versionnement
 
-## Contributors
+Le code d'Openfisca-France est versionné de manière continue et automatique. Ainsi, à chaque fois que le code de la législation évolue sur la branche principale `master`, une nouvelle version est publiée.
 
-Initial developers: Clément Schaff and Mahdi Ben Jelloul.
+De nouvelles versions sont donc publiées très régulièrement. Cependant, la différence entre deux versions consécutives étant réduite, les efforts d'adaptation pour passer de l'une à l'autre sont en général très limités.
 
-OpenFisca Team:
-  - Mahdi Ben Jelloul
-  - Christophe Benz
-  - Claire Bernard
-  - Léo Bouloc
-  - Laurence Bouvard
-  - Grégory Cornu
-  - Sophie Cottet
-  - Pierre-Yves Cusset
-  - Félix Defrance
-  - Jérôme Desbœufs
-  - Sarah Dijols
-  - Thomas Douenne
-  - Alexis Eidelman
-  - Adrien Fabre
-  - Emmanuel Gratuze
-  - Malka Guillot
-  - Arnaud Kleinpeter
-  - Victor Le Breton
-  - Marion Monnet
-  - Adrien Pacifico
-  - Florian Pagnoux
-  - Louise Paul-Delvaux
-  - Emmanuel Raviart
-  - Lucile Romanello
-  - Stanislas Rybak
-  - Jérôme Santoul
-  - Clément Schaff
-  - Matti Schneider
-  - Romain Soufflet
-  - Maël Thomas
-  - Suzanne Vergnolle
+Par ailleurs, OpenFisca-France respecte les règles du [versionnement sémantique](http://semver.org/). Tous les changements qui ne font pas l'objet d'une augmentation du numéro majeur de version sont donc garantis rétro-compatibles.
+ 
+> Par exemple, si mon application utilise la version `13.1.1`, je sais qu'elle fonctionnera également avec la version `13.2.0`. En revanche, il est possible qu'une adaptation soit nécessaire sur mon client pour pouvoir utiliser la version `14.0.0`.
 
-Special thanks to:
-  - Antoine Bozio
-  - Fabien Dell
-  - Pierre Pezziardi
-  - Alain Trannoy
+Enfin, les impacts et périmètres des évolutions sont tous documentés sur le [CHANGELOG](CHANGELOG.md) du package. Ce document permet aux contributeurs de suivre les évolutions et d'établir leur propre stratégie de mise à jour.
+
+## Contributeurs
+
+Voir la [liste des contributeurs](https://github.com/openfisca/openfisca-france/graphs/contributors).
