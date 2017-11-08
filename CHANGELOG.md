@@ -1,6 +1,70 @@
 ﻿# Changelog
 
-## 16.0.0 - [#710](https://github.com/openfisca/openfisca-france/pull/710)
+## 18.0.0 - [#718](https://github.com/openfisca/openfisca-france/pull/718)
+
+* Évolution du système socio-fiscal
+* Périodes concernées : toutes
+* Zones impactées: `prestations/aides_logement`
+* Détails :
+    - Corrige l'erreur de frappe sur le nom de la variable `aide_logement_participation_personelle` qui devient donc `aide_logement_participation_personnelle`
+
+## 17.2.0 - [#726](https://github.com/openfisca/openfisca-france/pull/726)
+
+* Évolution du système socio-fiscal
+* Périodes concernées : à partir du 01/04/2017.
+* Zones impactées: `prelevements_obligatoires/prelevements_sociaux/contributions_sociales/versement_transport`
+* Détails :
+    - Mise à jour des taux de versement transport
+
+* Changement mineur
+* Zones impactées: `/assets/versement_transport`
+* Détails :
+    - Suppression de fichiers inutilisés (quelques mégas)
+
+## 17.1.0 - [#724](https://github.com/openfisca/openfisca-france/pull/724)
+
+* Amélioration technique.
+* Détails :
+  - Permet d'installer OpenFisca-France avec une API web compatible via `pip install openfisca_france[api]`
+  - Redéploie `api.openfisca.fr` à chaque publication de version
+
+### 17.0.1 - [#730](https://github.com/openfisca/openfisca-france/pull/730)
+
+* Amélioration technique
+* Détails :
+  - Supprime les tests non exécutés par la CI
+    - Ceux ignorés via le prefixe `IGNORE_` ou la propriété `ignore`
+    - Ceux qui n'étaient pas mentionnés dans `test_yaml.py`
+  - Exécute dans la CI tous les tests YAML présents dans le répertoire `tests`
+  - Déplace les tests hors du package principal
+  - Déplace les configurations par dossier des tests YAML vers les fichiers de tests.
+  - Simplifie en conséquence `test_yaml.py`
+
+# 17.0.0
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2003.
+* Zones impactées : `prestations/prestations_familiales/aeeh`.
+* Détails :
+  - Retourne pour `aeeh` un montant mensuel et non annuel
+
+### 16.1.1 - [#632](https://github.com/openfisca/openfisca-france/pull/632)
+
+* Changement mineur
+* Détails :
+    - Arrête d'importer de numpy des fonctions qui sont déjà fournies par `openfisca_core.model_api`
+
+## 16.1.0 - [#707](https://github.com/openfisca/openfisca-france/pull/707))
+
+* Évolution du système socio-fiscal
+* Périodes concernées : à partir du 01/07/2016.
+    - Les changements prennent effet à partir de la rentrée scolaire 2016
+* Zones impactées: `prestations/education`
+* Détails :
+    - Met à jour le mode de calcul des bourses de collège et lycée, entré en vigueur à la rentrée 2016.
+    - Introduit les variables `bourse_college_echelon` et `bourse_lycee_echelon`
+
+# 16.0.0 - [#710](https://github.com/openfisca/openfisca-france/pull/710)
 * Amélioration technique **non-rétrocompatible**
 * Détails :
     - Restreint les périodes acceptées par OpenFisca
@@ -20,7 +84,7 @@
 * Détails :
   - Adapte `france` à  la version `7.0.0` de `core`.
   - Spécifie toujours une période dans les appels de variables, dans les formules et dans les tests.
-  
+
 <!-- -->
 
 * Évolution du système socio-fiscal
@@ -43,7 +107,9 @@
 > Version précédemment publiée à tort en tant que 14.1.0
 
 * Amélioration technique **non-rétrocompatible**
-* Détails:
+* Détails :
+  - Interdit par défaut de calculer ou de définir une variable pour une période qui ne correspond pas à sa période de définition.
+    - Par exemple, interdit de définir une variable annuelle, comme l'impôt sur le revenu, sur un mois.
   - Renforce le contrôle de cohérence des entrées d'une simulation.
   - Interdit de déclarer, pour une entrée de la simulation, à la fois un montant annuel et les douze montants mensuels correspondants s'ils ne sont pas parfaitement cohérents.
 

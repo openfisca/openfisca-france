@@ -1,0 +1,312 @@
+name: 16_Couple + 3 enfants
+keywords:
+  - foyer
+  - rsa
+description: |
+  Sans revenu, le foyer a droit au complément familial majoré.
+  Sur le RSA ;
+  MF : 1121,99
+  AF : 296,53
+  CF non majoré (pris en compte pour le RSA) : 169,19 (et non 166)
+  => RSA : 656,27
+period: "month:2014-11"
+relative_error_margin: 0.02
+individus:
+  - age: 44
+    age_en_mois: 538
+    date_naissance: "1970-01-01"
+    epargne_non_remuneree:
+      2012-01: 0
+    etudiant: 0
+    id: 545a52d90e9bb9d9441ed67c
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    handicap: 0
+    statut_marital: 1
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 44
+    age_en_mois: 538
+    date_naissance: "1970-01-01"
+    epargne_non_remuneree:
+      2012-01: 0
+    etudiant: 0
+    id: 545a52d90e9bb9d9441ed67b
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    handicap: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 8
+    age_en_mois: 106
+    date_naissance: "2006-01-01"
+    epargne_non_remuneree:
+      2012-01: 0
+    etudiant: 0
+    id: 545a52d90e9bb9d9441ed67a
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    handicap: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 6
+    age_en_mois: 82
+    date_naissance: "2008-01-01"
+    epargne_non_remuneree:
+      2012-01: 0
+    etudiant: 0
+    id: 545a52d90e9bb9d9441ed679
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    handicap: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 4
+    age_en_mois: 58
+    date_naissance: "2010-01-01"
+    epargne_non_remuneree:
+      2012-01: 0
+    etudiant: 0
+    id: 545a52d90e9bb9d9441ed678
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    handicap: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+familles:
+  acs:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+  af:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+  aide_logement:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+  alf:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+  als:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+  apl:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+  asf:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+  asi:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+  aspa:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+  ass:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+  bourse_college:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+  bourse_lycee:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+  cf:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+  enfants:
+    - 545a52d90e9bb9d9441ed67a
+    - 545a52d90e9bb9d9441ed679
+    - 545a52d90e9bb9d9441ed678
+  paje_base:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+  parents:
+    - 545a52d90e9bb9d9441ed67c
+    - 545a52d90e9bb9d9441ed67b
+  rsa:
+    2013-11: 0
+    2013-12: 0
+    2014-01: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+foyers_fiscaux:
+  declarants:
+    - 545a52d90e9bb9d9441ed67c
+    - 545a52d90e9bb9d9441ed67b
+  personnes_a_charge:
+    - 545a52d90e9bb9d9441ed67a
+    - 545a52d90e9bb9d9441ed679
+    - 545a52d90e9bb9d9441ed678
+menages:
+  conjoint: 545a52d90e9bb9d9441ed67b
+  depcom: 84007
+  enfants:
+    - 545a52d90e9bb9d9441ed67a
+    - 545a52d90e9bb9d9441ed679
+    - 545a52d90e9bb9d9441ed678
+  personne_de_reference: 545a52d90e9bb9d9441ed67c
+  statut_occupation_logement: 6
+output_variables:
+  rsa: 656.27

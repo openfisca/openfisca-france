@@ -1,0 +1,312 @@
+name: Le montant est multiplié par le nombre d'enfants scolarisés au lycée
+keywords: bourse lycée
+description: |
+  Ici 2 parents avec 2 enfants au lycée.
+  RFR = 0 donc 10 parts, montant pour 1 enfant = 10*45,3 = 453
+  Montant affiché = 453 * 2 = 906 euros
+period: "month:2015-03"
+relative_error_margin: 0.02
+individus:
+  - age: 34
+    age_en_mois: 415
+    date_naissance: "1980-08-12"
+    chomage_imposable:
+      2013: 0
+    epargne_non_remuneree:
+      2012-01: 0
+    etudiant: 0
+    id: 5502b3d56d04f8192758152d
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    handicap: 0
+    pensions_alimentaires_percues:
+      2013: 0
+    retraite_imposable:
+      2013: 0
+    salaire_imposable:
+      2013: 0
+    statut_marital: 1
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 34
+    age_en_mois: 415
+    date_naissance: "1980-08-12"
+    chomage_imposable:
+      2013: 0
+    epargne_non_remuneree:
+      2012-01: 0
+    etudiant: 0
+    id: 5502b3d56d04f8192758152c
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    handicap: 0
+    pensions_alimentaires_percues:
+      2013: 0
+    retraite_imposable:
+      2013: 0
+    salaire_imposable:
+      2013: 0
+    statut_marital: 1
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 14
+    age_en_mois: 175
+    date_naissance: "2000-08-12"
+    epargne_non_remuneree:
+      2012-01: 0
+    etudiant: 0
+    id: 5502b3d56d04f8192758152b
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    handicap: 0
+    scolarite: 2
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 14
+    age_en_mois: 175
+    date_naissance: "2000-08-12"
+    epargne_non_remuneree:
+      2012-01: 0
+    etudiant: 0
+    id: 5502b3d56d04f8192758152a
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    handicap: 0
+    scolarite: 2
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+familles:
+  acs:
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+  af:
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+  aide_logement:
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+  alf:
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+  als:
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+  apl:
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+  asf:
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+  asi:
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+  aspa:
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+  ass:
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+  bourse_college:
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+  bourse_lycee:
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+  cf:
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+  enfants:
+    - 5502b3d56d04f8192758152b
+    - 5502b3d56d04f8192758152a
+  paje_base:
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+  parents:
+    - 5502b3d56d04f8192758152d
+    - 5502b3d56d04f8192758152c
+  rsa:
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+foyers_fiscaux:
+  declarants:
+    - 5502b3d56d04f8192758152d
+    - 5502b3d56d04f8192758152c
+  pensions_alimentaires_versees:
+    2013: 0
+  personnes_a_charge:
+    - 5502b3d56d04f8192758152b
+    - 5502b3d56d04f8192758152a
+  rfr:
+    2013: 0
+menages:
+  conjoint: 5502b3d56d04f8192758152c
+  depcom: 67482
+  enfants:
+    - 5502b3d56d04f8192758152b
+    - 5502b3d56d04f8192758152a
+  personne_de_reference: 5502b3d56d04f8192758152d
+  statut_occupation_logement: 6
+output_variables:
+  bourse_lycee: 906

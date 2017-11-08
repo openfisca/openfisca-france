@@ -79,5 +79,3 @@ def select_temporal_taux_versement_transport(rates, instant):
             if str(instant) >= date:
                 return float(taux[date])
         return 0.0
-
-

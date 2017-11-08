@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import division
 
-from numpy import (absolute as abs_, logical_not as not_, isfinite, maximum as max_, minimum as min_)
+from numpy import (absolute as abs_, isfinite)
 
 from openfisca_france.model.base import *  # noqa analysis:ignore
 

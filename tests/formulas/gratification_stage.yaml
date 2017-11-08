@@ -1,0 +1,31 @@
+- name: "Stage à temps complet gratification minimale"
+  period: 2015-03
+  absolute_error_margin: 0.005
+  input_variables:
+    stage_duree_heures: 22 * 7
+  output_variables:
+    stagiaire: 1
+    stage_gratification: 22 * 7 * 3.30
+    cotisations_employeur: 0
+    accident_du_travail: 0
+- name: "Stage à temps complet gratification supérieure au minimum"
+  period: 2015-03
+  absolute_error_margin: 0.005
+  input_variables:
+    stage_duree_heures: 22 * 7
+    stage_gratification: 22 * 7 * 3.30 + 300
+  output_variables:
+    stagiaire: 1
+    stage_gratification_reintegration: 300
+    stage_gratification: 22 * 7 * 3.30 + 300
+    chomage_salarie: -7.2
+    agff_salarie: -2.4
+    agirc_salarie: 0
+    arrco_salarie: -9.3
+    cotisations_salariales: -23.7
+    exoneration_cotisations_salarie_stagiaire: 18.9
+    csg_deductible_salaire: -15.03
+    csg_imposable_salaire: -7.07
+    crds_salaire: -1.47
+    allegement_fillon: 0
+    salaire_net_a_payer: 808.2 -7.07 -15.03 -23.7 -1.47 -.01  # TODO: gerer erreur d'arrondi

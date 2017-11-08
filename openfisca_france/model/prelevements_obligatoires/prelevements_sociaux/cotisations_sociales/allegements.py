@@ -6,8 +6,7 @@ from functools import partial
 import logging
 
 from numpy import (
-    busday_count as original_busday_count, datetime64, logical_not as not_, logical_or as or_, logical_and as and_,
-    maximum as max_, minimum as min_, round as round_, timedelta64
+    busday_count as original_busday_count, datetime64, logical_or as or_, logical_and as and_, timedelta64
     )
 
 from openfisca_core import periods

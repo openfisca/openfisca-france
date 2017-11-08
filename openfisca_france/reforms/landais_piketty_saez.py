@@ -9,17 +9,13 @@
 
 from __future__ import division
 
-from numpy import maximum as max_
-from openfisca_core import columns
 from openfisca_core.reforms import Reform
-from openfisca_core.variables import Variable
-from openfisca_france import entities
-from openfisca_france.model.base import QUIFAM, QUIFOY, YEAR
+from openfisca_france.model.base import *
 
 
 class assiette_csg(Variable):
-    column = columns.FloatCol
-    entity = entities.Individu
+    column = FloatCol
+    entity = Individu
     label = u"Assiette de la CSG"
     definition_period = YEAR
 
@@ -35,8 +31,8 @@ class assiette_csg(Variable):
 
 
 class impot_revenu_lps(Variable):
-    column = columns.FloatCol
-    entity = entities.Individu
+    column = FloatCol
+    entity = Individu
     label = u"Impôt individuel sur l'ensemble de l'assiette de la csg, comme proposé par Landais, Piketty et Saez"
     definition_period = YEAR
 
@@ -61,8 +57,8 @@ class impot_revenu_lps(Variable):
 
 
 class revenu_disponible(Variable):
-    column = columns.FloatCol
-    entity = entities.Menage
+    column = FloatCol
+    entity = Menage
     label = u"Revenu disponible du ménage"
     url = u"http://fr.wikipedia.org/wiki/Revenu_disponible"
     definition_period = YEAR

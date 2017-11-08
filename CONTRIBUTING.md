@@ -51,6 +51,26 @@ Chaque évolution sera documentée par les élements suivants :
 >
 > * Détails :
 >   - Déplacement du test runner depuis `france` vers `core`.
->   - _Il devient possible d'exécuter `openfisca-run-test` sur un fichier YAML. [Plus d'informations](http://openfisca.readthedocs.io/en/latest/openfisca-run-test.html)._
+>   - _Il devient possible d'exécuter `openfisca-run-test` sur un fichier YAML. [Plus d'informations](https://openfisca.readthedocs.io/en/latest/openfisca-run-test.html)._
 
 Dans le cas où une Pull Request contient plusieurs évolutions distinctes, plusieurs paragraphes peuvent être ajoutés au Changelog.
+
+## Utiliser une branche spécifique d'OpenFisca-Core pour faire passer les tests d'intégration continue
+
+Certaines interventions sur OpenFica concernent à la fois [OpenFica-Core](https://github.com/openfisca/openfisca-core) et OpenFisca-France.
+
+C'est par exemple le cas lorsqu'une version à paraître de Core contient un changement non-rétrocompatible, et que l'on souhaite s'assurer qu'il est possible d'adapter France à cette nouvelle version.
+
+Dans ce cas, il peut être pertinent de faire tourner les tests d'OpenFisca-France en se basant sur une version non-publiée de Core, disponible sur une branche spécifique. Pour ce faire, éditer le fichier `.travis.yml` comme suit :
+
+```diff
+(...)
+install:
+  - pip install --upgrade pip wheel  # pip >= 8.0 needed to be compatible with "manylinux" wheels, used by numpy >= 1.11
++  - pip install --editable git+https://github.com/openfisca/openfisca-core.git@SPECIFIC_BRANCH_NAME#egg=OpenFisca-Core
+  - pip install --editable ".[inversion_revenus, test]"
+(...)
+```
+
+Bien sûr, une fois la version spécifique de core publiée, **ce changement doit être reverté** avant le merge de la pull request sur France.
+

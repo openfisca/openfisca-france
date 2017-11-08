@@ -1,10 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from functools import partial
-from numpy import (
-    busday_count as original_busday_count, datetime64, logical_not as not_,
-    maximum as max_, minimum as min_, timedelta64,
-    )
+from numpy import busday_count as original_busday_count, datetime64, timedelta64
 from openfisca_france.model.base import *  # noqa analysis:ignore
 
 
