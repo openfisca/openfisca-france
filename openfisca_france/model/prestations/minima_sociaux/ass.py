@@ -12,16 +12,17 @@ class ass_precondition_remplie(Variable):
     column = BoolCol
     entity = Individu
     label = u"Éligible à l'ASS"
+    definition_period = MONTH
 
 
 class ass(Variable):
     column = FloatCol
     label = u"Montant de l'ASS pour une famille"
     entity = Famille
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def function(self, simulation, period):
-        period = period.this_month
-
         ass_base_ressources = simulation.calculate('ass_base_ressources', period)
         ass_eligibilite_i_holder = simulation.compute('ass_eligibilite_individu', period)
         en_couple = simulation.calculate('en_couple', period)
@@ -47,9 +48,9 @@ class ass_base_ressources(Variable):
     column = FloatCol
     label = u"Base de ressources de l'ASS"
     entity = Famille
+    definition_period = MONTH
 
     def function(self, simulation, period):
-        period = period.this_month
         ass_base_ressources_i_holder = simulation.compute('ass_base_ressources_individu', period)
         ass_base_ressources_demandeur = self.filter_role(ass_base_ressources_i_holder, role = CHEF)
         ass_base_ressources_conjoint_holder = simulation.compute('ass_base_ressources_conjoint', period)
@@ -63,9 +64,9 @@ class ass_base_ressources_individu(Variable):
     column = FloatCol
     label = u"Base de ressources individuelle de l'ASS"
     entity = Individu
+    definition_period = MONTH
 
     def function(self, simulation, period):
-        period = period.this_month
         # Rolling year
         previous_year = period.start.period('year').offset(-1)
         # N-1
@@ -88,14 +89,14 @@ class ass_base_ressources_individu(Variable):
 
             return revenus_auto_entrepreneur + tns_micro_entreprise_benefice + tns_benefice_exploitant_agricole + tns_autres_revenus
 
-        pensions_alimentaires_percues = simulation.calculate('pensions_alimentaires_percues', previous_year)
-        pensions_alimentaires_versees_individu = simulation.calculate(
+        pensions_alimentaires_percues = simulation.calculate_add('pensions_alimentaires_percues', previous_year)
+        pensions_alimentaires_versees_individu = simulation.calculate_add(
             'pensions_alimentaires_versees_individu', previous_year
             )
 
         aah = simulation.calculate_add('aah', previous_year)
-        indemnites_stage = simulation.calculate('indemnites_stage', previous_year)
-        revenus_stage_formation_pro = simulation.calculate('revenus_stage_formation_pro', previous_year)
+        indemnites_stage = simulation.calculate_add('indemnites_stage', previous_year)
+        revenus_stage_formation_pro = simulation.calculate_add('revenus_stage_formation_pro', previous_year)
 
         return (
             salaire_imposable + retraite_nette + pensions_alimentaires_percues - abs_(pensions_alimentaires_versees_individu) +
@@ -107,9 +108,9 @@ class ass_base_ressources_conjoint(Variable):
     column = FloatCol
     label = u"Base de ressources individuelle pour le conjoint du demandeur de l'ASS"
     entity = Individu
+    definition_period = MONTH
 
     def function(self, simulation, period):
-        period = period.this_month
         last_month = period.start.period('month').offset(-1)
         # Rolling year
         previous_year = period.start.period('year').offset(-1)
@@ -156,7 +157,7 @@ class ass_base_ressources_conjoint(Variable):
             # Les revenus TNS hors AE sont estimés en se basant sur le revenu N-1
             tns_micro_entreprise_benefice = simulation.calculate('tns_micro_entreprise_benefice', last_year)
             tns_benefice_exploitant_agricole = simulation.calculate('tns_benefice_exploitant_agricole', last_year)
-            tns_autres_revenus = simulation.calculate('tns_autres_revenus', last_year)
+            tns_autres_revenus = simulation.calculate_add('tns_autres_revenus', last_year)
 
             return revenus_auto_entrepreneur + tns_micro_entreprise_benefice + tns_benefice_exploitant_agricole + tns_autres_revenus
 
@@ -175,10 +176,9 @@ class ass_eligibilite_individu(Variable):
     column = BoolCol
     label = u"Éligibilité individuelle à l'ASS"
     entity = Individu
+    definition_period = MONTH
 
     def function(self, simulation, period):
-        period = period.this_month
-
         # 1 si demandeur d'emploi
         activite = simulation.calculate('activite', period)
 

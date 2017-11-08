@@ -20,9 +20,11 @@ class salaire_imposable_pour_inversion(Variable):
     column = FloatCol
     entity = Individu
     label = u'Salaire imposable utilisé pour remonter au salaire brut'
+    definition_period = MONTH
 
 
 class salaire_de_base(Variable):
+    definition_period = MONTH
 
     def function(self, simulation, period):
         """Calcule le salaire brut à partir du salaire imposable par inversion du barème
@@ -128,6 +130,7 @@ class salaire_de_base(Variable):
         # public_titulaire_etat = salarie['public_titulaire_etat'].combine_tax_scales()
 
 # class traitement_indiciaire_brut(Variable):
+#    definition_period = MONTH
 
 #     def function(self, simulation, period):
 #         """Calcule le tratement indiciaire brut à partir du salaire imposable.
@@ -180,6 +183,7 @@ class salaire_de_base(Variable):
 
 
 # class primes_fonction_publique(Variable):
+#    definition_period = MONTH
 
 #     def function(self, simulation, period):
 #         """Calcule les primes.
@@ -236,4 +240,3 @@ class inversion_directe_salaires(Reform):
         self.add_variable(salaire_imposable_pour_inversion)
         for variable in [salaire_de_base]:  # traitement_indiciaire_brut, primes_fonction_publique,
             self.update_variable(variable)
-

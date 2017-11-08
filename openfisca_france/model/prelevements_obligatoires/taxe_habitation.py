@@ -12,6 +12,7 @@ class exonere_taxe_habitation(Variable):
     entity = Menage
     label = u"Exonération de la taxe d'habitation"
     url = "http://vosdroits.service-public.fr/particuliers/F42.xhtml"
+    definition_period = YEAR
 
     def function(self, simulation, period):
         """Exonation de la taxe d'habitation
@@ -22,15 +23,16 @@ class exonere_taxe_habitation(Variable):
         bénéficiaire de l'allocation aux adultes handicapés (AAH),
         atteint d'une infirmité ou d'une invalidité vous empêchant de subvenir à vos besoins par votre travail.
         """
-        period = period.this_year
+        janvier = period.first_month
+
         aah_holder = simulation.compute_add('aah', period)
-        age_holder = simulation.compute('age', period)
+        age_holder = simulation.compute('age', janvier)
         asi_holder = simulation.compute_add('asi', period)
         aspa_holder = simulation.compute_add('aspa', period)
         isf_tot_holder = simulation.compute('isf_tot', period)
         nbptr_holder = simulation.compute('nbptr', period)
         rfr_holder = simulation.compute('rfr', period)
-        statut_marital_holder = simulation.compute('statut_marital', period)
+        statut_marital_holder = simulation.compute('statut_marital', janvier)
         _P = simulation.legislation_at(period.start)
 
         aah = self.sum_by_entity(aah_holder)
@@ -59,9 +61,11 @@ class taxe_habitation(Variable):
     entity = Menage
     label = u"Taxe d'habitation"
     url = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?espId=1&pageId=part_taxe_habitation&impot=TH&sfid=50"
+    definition_period = YEAR
 
     def function(self, simulation, period):
-        last_year= period.last_year
+        last_year = period.last_year
+
         exonere_taxe_habitation = simulation.calculate('exonere_taxe_habitation', period)
         nombre_enfants_a_charge_menage = self.sum_by_entity(simulation.calculate('enfant_a_charge', period))
         nombre_enfants_majeurs_celibataires_sans_enfant = simulation.calculate('nombre_enfants_majeurs_celibataires_sans_enfant', period)

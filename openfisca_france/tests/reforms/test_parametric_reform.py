@@ -52,7 +52,7 @@ def test_parametric_reform():
     assert_near(
         reform_simulation.calculate('impots_directs'),
         [0, -13900.20019531, -29446.52929688],
-        absolute_error_margin = .0001,
+        absolute_error_margin = .01,
         )
 
 

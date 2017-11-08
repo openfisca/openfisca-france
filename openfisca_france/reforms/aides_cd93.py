@@ -19,7 +19,7 @@ class resident_93(Variable):
     entity = Menage
 
     def function(self, simulation, period):
-        period = period.this_month
+        period = period.first_month
         depcom = simulation.calculate('depcom', period)
 
         def is_resident_93(code_insee):
@@ -39,7 +39,7 @@ class adpa_eligibilite(Variable):
     entity = Individu
 
     def function(self, simulation, period):
-        period = period.this_month
+        period = period.first_month
         age = simulation.calculate('age', period)
         resident_93 = simulation.calculate('resident_93', period)
         perte_autonomie = simulation.calculate('perte_autonomie', period)
@@ -54,13 +54,13 @@ class adpa_base_ressources_i(Variable):
     entity = Individu
 
     def function(self, simulation, period):
-        period = period.this_month
+        period = period.first_month
         previous_year = period.start.period('year').offset(-1)
         salaire_imposable = simulation.calculate_add('salaire_imposable', period.n_2)
         retraite_imposable = simulation.calculate_add('retraite_imposable', period.n_2)
         chomage_imposable = simulation.calculate_add('chomage_imposable', period.n_2)
         revenus_capital = simulation.calculate_add('revenus_capital', previous_year)
-        revenus_locatifs = simulation.calculate_add('revenus_locatifs', previous_year)
+        revenus_locatifs = simulation.calculate_add('revenus_locatifs', previous_year, options = [ADD])
         # Prélevements libératoire forfaitaire à prendre en compte sans abattement
         valeur_locative_immo_non_loue = simulation.calculate_add('valeur_locative_immo_non_loue', previous_year)
         valeur_locative_terrains_non_loue = simulation.calculate_add('valeur_locative_terrains_non_loue', previous_year)
@@ -80,7 +80,7 @@ class adpa_base_ressources(Variable):
     entity = Famille
 
     def function(self, simulation, period):
-        period = period.this_month
+        period = period.first_month
         adpa_base_ressources_i = simulation.compute('adpa_base_ressources_i', period)
         adpa_base_ressources = self.sum_by_entity(adpa_base_ressources_i)
 
@@ -92,7 +92,7 @@ class adpa(Variable):
     entity = Famille
 
     def function(self, simulation, period):
-        period = period.this_month
+        period = period.first_month
 
         adpa_eligibilite_holder = simulation.compute('adpa_eligibilite', period)
         adpa_eligibilite = self.any_by_roles(adpa_eligibilite_holder)

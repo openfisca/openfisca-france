@@ -36,7 +36,6 @@ def create_fusion_rsa_apl_progressive(socle = 600):
                 entity = Famille
 
                 def function(famille, period, legislation):
-                    period = period.this_month
                     rsa_eligibilite = famille('rsa_eligibilite', period)
                     rsa_socle_non_majore = famille('rsa_socle', period)
                     rsa_socle_majore = famille('rsa_socle_majore', period)

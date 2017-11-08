@@ -35,9 +35,9 @@ class uc_indiv(Variable):
     column = FloatCol
     entity = Individu
     label = u"Ajout unité de consommation de chaque individu"
+    definition_period = YEAR
 
     def function(self, simulation, period):
-        period = period.this_year
         # Vu que l'âge est défini tous les mois, on fait calculate_add, puis on divise par douze.
         age_add = simulation.calculate('age', period)
         age = age_add #/ 12
@@ -50,9 +50,9 @@ class uc(Variable):
     column = FloatCol
     entity = Menage
     label = u"Unités de consommation"
+    definition_period = YEAR
 
     def function(menage, period, legislation):
-        period = period.this_year
         uc_indiv = menage.members('uc_indiv', period)
         tot_uc_indiv = menage.sum(uc_indiv)
         uc = 0.5 + tot_uc_indiv
@@ -64,15 +64,16 @@ class type_menage(Variable):
     column = PeriodSizeIndependentIntCol
     entity = Menage
     label = u"Type de ménage"
+    definition_period = YEAR
 
     def function(menage, period):
         '''
         Type de menage
         TODO: prendre les enfants du ménage et non ceux de la famille
         '''
-        period = period.this_year
-        af_nbenf = menage.personne_de_reference.famille('af_nbenf')
-        isole = not_(menage.personne_de_reference.famille('en_couple'))
+        af_nbenf = menage.personne_de_reference.famille('af_nbenf', period.first_month)
+        isole = not_(menage.personne_de_reference.famille('en_couple', period.first_month))
+
         return (
             0 * (isole * (af_nbenf == 0)) +  # Célibataire
             1 * (not_(isole) * (af_nbenf == 0)) +  # Couple sans enfants
@@ -90,9 +91,9 @@ class revenu_disponible(Variable):
     entity = Menage
     label = u"Revenu disponible du ménage"
     url = "http://fr.wikipedia.org/wiki/Revenu_disponible"
+    definition_period = YEAR
 
     def function(self, simulation, period):
-        period = period.this_year
         revenus_du_travail_holder = simulation.compute('revenus_du_travail', period)
         pensions_holder = simulation.compute('pensions', period)
         revenus_du_capital_holder = simulation.compute('revenus_du_capital', period)
@@ -115,9 +116,9 @@ class revenu_disponible_noncale(Variable):
     entity = Menage
     label = u"Revenu disponible du ménage avec IRPP non calé (pour cas-types)"
     url = "http://fr.wikipedia.org/wiki/Revenu_disponible"
+    definition_period = YEAR
 
     def function(self, simulation, period):
-        period = period.this_year
         revenus_du_travail_holder = simulation.compute('revenus_du_travail', period)
         pensions_holder = simulation.compute('pensions', period)
         revenus_du_capital_holder = simulation.compute('revenus_du_capital', period)
@@ -140,20 +141,21 @@ class niveau_de_vie(Variable):
     column = FloatCol
     entity = Menage
     label = u"Niveau de vie du ménage"
+    definition_period = YEAR
 
     def function(menage, period):
-        period = period.this_year
         revenu_disponible = menage('revenu_disponible', period)
         uc = menage('uc', period)
         return revenu_disponible / uc
+
 
 class niveau_de_vie_noncale(Variable):
     column = FloatCol
     entity = Menage
     label = u"Niveau de vie du ménage avec IRPP non calé (pour cas-types)"
+    definition_period = YEAR
 
     def function(menage, period):
-        period = period.this_year
         revenu_disponible_noncale = menage('revenu_disponible_noncale', period)
         uc = menage('uc', period)
         return revenu_disponible_noncale / uc
@@ -163,9 +165,9 @@ class revenu_net_individu(Variable):
     column = FloatCol
     entity = Individu
     label = u"Revenu net de l'individu"
+    definition_period = YEAR
 
     def function(individu, period):
-        period = period.this_year
         pensions = individu('pensions', period)
         revenus_du_capital = individu('revenus_du_capital', period)
         revenus_du_travail = individu('revenus_du_travail', period)
@@ -178,6 +180,7 @@ class revenu_net(Variable):
     label = u"Revenu net du ménage"
     column = FloatCol
     url = u"http://impotsurlerevenu.org/definitions/115-revenu-net-imposable.php",
+    definition_period = YEAR
 
     def function(menage, period):
         revenu_net_individus = menage.members('revenu_net_individu', period)
@@ -188,9 +191,9 @@ class niveau_de_vie_net(Variable):
     column = FloatCol
     entity = Menage
     label = u"Niveau de vie net du ménage"
+    definition_period = YEAR
 
     def function(menage, period):
-        period = period.this_year
         revenu_net = menage('revenu_net', period)
         uc = menage('uc', period)
 
@@ -201,9 +204,9 @@ class revenu_initial_individu(Variable):
     column = FloatCol
     entity = Individu
     label = u"Revenu initial de l'individu"
+    definition_period = YEAR
 
     def function(individu, period):
-        period = period.this_year
         cotisations_employeur_contributives = individu('cotisations_employeur_contributives', period)
         cotisations_salariales_contributives = individu('cotisations_salariales_contributives', period)
         pensions = individu('pensions', period)
@@ -218,6 +221,7 @@ class revenu_initial(Variable):
     entity = Menage
     label = u"Revenu initial du ménage"
     column = FloatCol
+    definition_period = YEAR
 
     def function(menage, period):
         revenu_initial_individus = menage.members('revenu_initial_individu', period)
@@ -228,9 +232,9 @@ class niveau_de_vie_initial(Variable):
     column = FloatCol
     entity = Menage
     label = u"Niveau de vie initial du ménage"
+    definition_period = YEAR
 
     def function(menage, period):
-        period = period.this_year
         revenu_initial = menage('revenu_initial', period)
         uc = menage('uc', period)
 
@@ -246,9 +250,9 @@ class revenu_primaire(Variable):
     column = FloatCol
     entity = Menage
     label = u"Revenu primaire du ménage"
+    definition_period = YEAR
 
     def function(individu, period):
-        period = period.this_year
         revenus_du_travail = individu('revenus_du_travail', period)
         revenus_du_capital = individu('revenus_du_capital', period)
         cotisations_employeur = individu('cotisations_employeur', period)
@@ -262,9 +266,9 @@ class revenus_du_travail(Variable):
     entity = Individu
     label = u"Revenus du travail (salariés et non salariés)"
     url = "http://fr.wikipedia.org/wiki/Revenu_du_travail"
+    definition_period = YEAR
 
     def function(individu, period):
-        period = period.this_year
         salaire_net = individu('salaire_net', period, options = [ADD])
         rpns = individu('rpns', period, options = [ADD])  # TODO ou rpns_individu
 
@@ -276,13 +280,13 @@ class pensions(Variable):
     entity = Individu
     label = u"Pensions et revenus de remplacement"
     url = "http://fr.wikipedia.org/wiki/Rente"
+    definition_period = YEAR
 
     def function(individu, period):
-        period = period.this_year
         chomage_net = individu('chomage_net', period, options = [ADD])
         retraite_nette = individu('retraite_nette', period, options = [ADD])
         pensions_alimentaires_percues = individu('pensions_alimentaires_percues', period, options = [ADD])
-        pensions_invalidite = individu('pensions_invalidite', period)
+        pensions_invalidite = individu('pensions_invalidite', period, options = [ADD])
 
         # Revenus du foyer fiscal, que l'on projette uniquement sur le 1er déclarant
         foyer_fiscal = individu.foyer_fiscal
@@ -298,9 +302,9 @@ class cotsoc_bar(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"Cotisations sociales sur les revenus du capital imposés au barème"
+    definition_period = YEAR
 
     def function(foyer_fiscal, period):
-        period = period.this_year
         csg_cap_bar = foyer_fiscal('csg_cap_bar', period)
         prelsoc_cap_bar = foyer_fiscal('prelsoc_cap_bar', period)
         crds_cap_bar = foyer_fiscal('crds_cap_bar', period)
@@ -312,9 +316,9 @@ class cotsoc_lib(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"Cotisations sociales sur les revenus du capital soumis au prélèvement libératoire"
+    definition_period = YEAR
 
     def function(foyer_fiscal, period):
-        period = period.this_year
         csg_cap_lib = foyer_fiscal('csg_cap_lib', period)
         prelsoc_cap_lib = foyer_fiscal('prelsoc_cap_lib', period)
         crds_cap_lib = foyer_fiscal('crds_cap_lib', period)
@@ -325,9 +329,9 @@ class cotsoc_lib(Variable):
 class impots_directs_menage(Variable):
     column = FloatCol
     entity = Menage
+    definition_period = YEAR
 
     def function(self, simulation, period):
-        period = period.this_year
         impots_directs = simulation.calculate('impots_directs', period)
         uc = simulation.calculate('uc', period)
         return impots_directs / uc
@@ -336,9 +340,9 @@ class impots_directs_menage(Variable):
 class revenus_du_capital_menage(Variable):
     column = FloatCol
     entity = Menage
+    definition_period = YEAR
 
     def function(self, simulation, period):
-        period = period.this_year
         revenus_du_capital_holder = simulation.compute('revenus_du_capital', period)
         revenus_du_capital = self.sum_by_entity(revenus_du_capital_holder)
         uc = simulation.calculate('uc', period)
@@ -348,9 +352,9 @@ class revenus_du_capital_menage(Variable):
 class revenus_du_travail_menage(Variable):
     column = FloatCol
     entity = Menage
+    definition_period = YEAR
 
     def function(self, simulation, period):
-        period = period.this_year
         revenus_du_travail_holder = simulation.compute('revenus_du_travail', period)
         revenus_du_travail = self.sum_by_entity(revenus_du_travail_holder)
         uc = simulation.calculate('uc', period)
@@ -361,9 +365,9 @@ class revenus_du_travail_menage(Variable):
 class pensions_menage(Variable):
     column = FloatCol
     entity = Menage
+    definition_period = YEAR
 
     def function(self, simulation, period):
-        period = period.this_year
         pensions_holder = simulation.compute('pensions', period)
         pensions = self.sum_by_entity(pensions_holder)
         uc = simulation.calculate('uc', period)
@@ -374,9 +378,9 @@ class pensions_menage(Variable):
 class prestations_sociales_menage(Variable):
     column = FloatCol
     entity = Menage
+    definition_period = YEAR
 
     def function(self, simulation, period):
-        period = period.this_year
         prestations_sociales_holder = simulation.compute('prestations_sociales', period)
         prestations_sociales = self.cast_from_entity_to_role(prestations_sociales_holder, role = CHEF)
         prestations_sociales = self.sum_by_entity(prestations_sociales)
@@ -388,11 +392,11 @@ class prestations_sociales_menage(Variable):
 class ppe_menage(Variable):
     column = FloatCol
     entity = Menage
+    definition_period = YEAR
     label = u"Revenu disponible du ménage"
     url = "http://fr.wikipedia.org/wiki/Revenu_disponible"
 
     def function(self, simulation, period):
-        period = period.this_year
         ppe_holder = simulation.compute('ppe', period)
         ppe = self.cast_from_entity_to_role(ppe_holder, role = VOUS)
         ppe = self.sum_by_entity(ppe)
@@ -406,9 +410,9 @@ class revenus_du_capital(Variable):
     entity = Individu
     label = u"Revenus du patrimoine"
     url = "http://fr.wikipedia.org/wiki/Revenu#Revenu_du_Capital"
+    definition_period = YEAR
 
     def function(individu, period):
-        period = period.this_year
 
         # Revenus du foyer fiscal, que l'on projette uniquement sur le 1er déclarant
         foyer_fiscal = individu.foyer_fiscal
@@ -432,15 +436,16 @@ class prestations_sociales(Variable):
     entity = Famille
     label = u"Prestations sociales"
     url = "http://fr.wikipedia.org/wiki/Prestation_sociale"
+    definition_period = YEAR
 
     def function(famille, period):
         '''
         Prestations sociales
         '''
-        period = period.this_year
         prestations_familiales = famille('prestations_familiales', period)
         minima_sociaux = famille('minima_sociaux', period)
         aides_logement = famille('aides_logement', period)
+
         return prestations_familiales + minima_sociaux + aides_logement
 
 
@@ -449,9 +454,9 @@ class prestations_familiales(Variable):
     entity = Famille
     label = u"Prestations familiales"
     url = "http://www.social-sante.gouv.fr/informations-pratiques,89/fiches-pratiques,91/prestations-familiales,1885/les-prestations-familiales,12626.html"
+    definition_period = YEAR
 
     def function(famille, period):
-        period = period.this_year
         af = famille('af', period, options = [ADD])
         cf = famille('cf', period, options = [ADD])
         ars = famille('ars', period)
@@ -468,6 +473,7 @@ class minimum_vieillesse(Variable):
     column = FloatCol
     entity = Famille
     label = u"Minimum vieillesse (ASI + ASPA)"
+    definition_period = YEAR
 
     def function(famille, period):
         return famille('asi', period, options = [ADD]) + famille('aspa', period, options = [ADD])
@@ -478,13 +484,13 @@ class minima_sociaux(Variable):
     entity = Famille
     label = u"Minima sociaux"
     url = "http://fr.wikipedia.org/wiki/Minima_sociaux"
+    definition_period = YEAR
 
     def function(self, simulation, period):
-        period = period.this_year
         aah_holder = simulation.compute_add('aah', period)
         caah_holder = simulation.compute_add('caah', period)
         aefa = simulation.calculate('aefa', period)
-        api = simulation.calculate('api', period)
+        api = simulation.calculate_add('api', period)
         ass = simulation.calculate_add('ass', period)
         minimum_vieillesse = simulation.calculate_add('minimum_vieillesse', period)
         rsa = simulation.calculate_add('rsa', period)
@@ -503,12 +509,12 @@ class aides_logement(Variable):
     entity = Famille
     label = u"Aides logement nets"
     url = "http://vosdroits.service-public.fr/particuliers/N20360.xhtml"
+    definition_period = YEAR
 
     def function(famille, period):
         '''
         Aide au logement
         '''
-        period = period.this_year
         apl = famille('apl', period, options = [ADD])
         als = famille('als', period, options = [ADD])
         alf = famille('alf', period, options = [ADD])
@@ -522,9 +528,9 @@ class impots_directs(Variable):
     entity = Menage
     label = u"Impôts directs"
     url = "http://fr.wikipedia.org/wiki/Imp%C3%B4t_direct"
+    definition_period = YEAR
 
     def function(self, simulation, period):
-        period = period.this_year
         irpp_holder = simulation.compute('irpp', period)
         taxe_habitation = simulation.calculate('taxe_habitation', period)
 
@@ -533,14 +539,16 @@ class impots_directs(Variable):
 
         return irpp + taxe_habitation
 
+
 class impots_directs_noncale(Variable):
     column = FloatCol
     entity = Menage
     label = u"Impôts directs avec IRPP non calé (pour cas-types)"
     url = "http://fr.wikipedia.org/wiki/Imp%C3%B4t_direct"
+    definition_period = YEAR
+
 
     def function(self, simulation, period):
-        period = period.this_year
         irpp_noncale_holder = simulation.compute('irpp_noncale', period)
         taxe_habitation = simulation.calculate('taxe_habitation', period)
 
@@ -554,9 +562,9 @@ class crds(Variable):
     column = FloatCol
     entity = Individu
     label = u"Contributions au remboursement de la dette sociale"
+    definition_period = YEAR
 
     def function(individu, period):
-        period = period.this_year
         # CRDS sur revenus individuels
         crds_salaire = individu('crds_salaire', period, options = [ADD])
         crds_retraite = individu('crds_retraite', period, options = [ADD])
@@ -583,9 +591,9 @@ class csg(Variable):
     column = FloatCol
     entity = Individu
     label = u"Contribution sociale généralisée"
+    definition_period = YEAR
 
     def function(individu, period):
-        period = period.this_year
         csg_imposable_salaire = individu('csg_imposable_salaire', period, options = [ADD])
         csg_deductible_salaire = individu('csg_deductible_salaire', period, options = [ADD])
         csg_imposable_chomage = individu('csg_imposable_chomage', period, options = [ADD])
@@ -609,9 +617,9 @@ class cotisations_non_contributives(Variable):
     column = FloatCol
     entity = Individu
     label = u"Cotisations sociales non contributives"
+    definition_period = YEAR
 
     def function(individu, period):
-        period = period.this_year
         cotisations_employeur_non_contributives = individu('cotisations_employeur_non_contributives',
             period, options = [ADD])
         cotisations_salariales_non_contributives = individu('cotisations_salariales_non_contributives',
@@ -624,10 +632,9 @@ class revenu_disponible_famille(Variable):
     column = FloatCol
     entity = Famille
     label = u"Revenu disponible du foyer social (famille)"
+    definition_period = YEAR
 
     def function(self, simulation, period):
-        period = period.this_year
-
         revenus_du_travail_holder = simulation.compute('revenus_du_travail', period)
         revenus_du_travail = self.sum_by_entity(revenus_du_travail_holder)
 
@@ -657,10 +664,9 @@ class revenu_disponible_famille_noncale(Variable):
     column = FloatCol
     entity = Famille
     label = u"Revenu disponible du foyer social (famille) avec IRPP non-calé (pour cas-types)"
+    definition_period = YEAR
 
     def function(self, simulation, period):
-        period = period.this_year
-
         revenus_du_travail_holder = simulation.compute('revenus_du_travail', period)
         revenus_du_travail = self.sum_by_entity(revenus_du_travail_holder)
 
@@ -692,9 +698,9 @@ class prelsoc_cap(Variable):
     entity = Individu
     label = u"Prélèvements sociaux sur les revenus du capital"
     url = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&paf_dm=popup&paf_gm=content&typePage=cpr02&sfid=501&espId=1&impot=CS"
+    definition_period = YEAR
 
     def function(individu, period):
-        period = period.this_year
         # Prélevements effectués sur les revenus du foyer fiscal
         prelsoc_fon = individu.foyer_fiscal('prelsoc_fon', period)
         prelsoc_cap_lib = individu.foyer_fiscal('prelsoc_cap_lib', period)
@@ -710,10 +716,9 @@ class check_csk(Variable):
     column = FloatCol
     entity = Menage
     label = u"check_csk"
+    definition_period = YEAR
 
     def function(menage, period):
-        period = period.this_year
-
         foyer_fiscal = menage.personne_de_reference.foyer_fiscal
 
         # Prélevements effectués sur les revenus du foyer fiscal
@@ -728,9 +733,9 @@ class check_csg(Variable):
     column = FloatCol
     entity = Menage
     label = u"check_csg"
+    definition_period = YEAR
 
     def function(menage, period):
-        period = period.this_year
         foyer_fiscal = menage.personne_de_reference.foyer_fiscal
         # CSG prélevée sur les revenus du foyer fiscal
         csg_cap_bar = foyer_fiscal('csg_cap_bar', periop)
@@ -744,9 +749,9 @@ class check_crds(Variable):
     column = FloatCol
     entity = Menage
     label = u"check_crds"
+    definition_period = YEAR
 
     def function(menage, period):
-        period = period.this_year
         foyer_fiscal = menage.personne_de_reference.foyer_fiscal
         # CRDS prélevée sur les revenus du foyer fiscal
         crds_pv_mo = foyer_fiscal('crds_pv_mo', period)

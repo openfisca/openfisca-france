@@ -14,19 +14,19 @@ from openfisca_core import columns
 from openfisca_core.reforms import Reform
 from openfisca_core.variables import Variable
 from openfisca_france import entities
-from openfisca_france.model.base import QUIFAM, QUIFOY
+from openfisca_france.model.base import QUIFAM, QUIFOY, YEAR
 
 
 class assiette_csg(Variable):
     column = columns.FloatCol
     entity = entities.Individu
     label = u"Assiette de la CSG"
+    definition_period = YEAR
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('year')
-        salaire_de_base = simulation.calculate('salaire_de_base', period)
-        chomage_brut = simulation.calculate('chomage_brut', period)
-        retraite_brute = simulation.calculate('retraite_brute', period)
+        salaire_de_base = simulation.calculate_add('salaire_de_base', period)
+        chomage_brut = simulation.calculate_add('chomage_brut', period)
+        retraite_brute = simulation.calculate_add('retraite_brute', period)
         rev_cap_bar_holder = simulation.compute_add('rev_cap_bar', period)
         rev_cap_lib_holder = simulation.compute_add('rev_cap_lib', period)
         rev_cap_bar = self.cast_from_entity_to_role(rev_cap_bar_holder, role = QUIFOY['vous'])
@@ -38,9 +38,11 @@ class impot_revenu_lps(Variable):
     column = columns.FloatCol
     entity = entities.Individu
     label = u"Impôt individuel sur l'ensemble de l'assiette de la csg, comme proposé par Landais, Piketty et Saez"
+    definition_period = YEAR
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('year')
+        janvier = period.first_month
+
         nbF_holder = simulation.compute('nbF')
         nbF = self.cast_from_entity_to_role(nbF_holder, role = QUIFOY['vous'])
         nbH_holder = simulation.compute('nbH')
@@ -50,7 +52,7 @@ class impot_revenu_lps(Variable):
         ae = nbEnf * lps.abatt_enfant
         re = nbEnf * lps.reduc_enfant
         ce = nbEnf * lps.credit_enfant
-        statut_marital = simulation.calculate('statut_marital')
+        statut_marital = simulation.calculate('statut_marital', period = janvier)
         couple = (statut_marital == 1) | (statut_marital == 5)
         ac = couple * lps.abatt_conj
         rc = couple * lps.reduc_conj
@@ -63,9 +65,9 @@ class revenu_disponible(Variable):
     entity = entities.Menage
     label = u"Revenu disponible du ménage"
     url = u"http://fr.wikipedia.org/wiki/Revenu_disponible"
+    definition_period = YEAR
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('year')
         impot_revenu_lps_holder = simulation.compute('impot_revenu_lps')
         impot_revenu_lps = self.sum_by_entity(impot_revenu_lps_holder)
         pen_holder = simulation.compute('pensions')

@@ -28,7 +28,7 @@ def add_member(entity, **variables_value_by_name):
     # Add a cell to all arrays of all variables of entity.
     for variable_name, variable_holder in entity.holder_by_name.iteritems():
         column = variable_holder.column
-        if column.is_permanent:
+        if column.definition_period is ETERNITY:
             variable_holder._array = np.hstack((variable_holder._array, [column.default]))
         else:
             array_by_period = variable_holder._array_by_period

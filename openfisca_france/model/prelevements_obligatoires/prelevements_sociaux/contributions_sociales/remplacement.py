@@ -26,6 +26,7 @@ class taux_csg_remplacement(Variable):
         )
     entity = Individu
     label = u"Taux retenu sur la CSG des revenus de remplacment"
+    definition_period = MONTH
 
 
 ############################################################################
@@ -39,9 +40,9 @@ class csg_deductible_chomage(Variable):
     entity = Individu
     label = u"CSG déductible sur les allocations chômage"
     url = u"http://vosdroits.service-public.fr/particuliers/F2329.xhtml"
+    definition_period = MONTH
 
     def function(individu, period, legislation):
-        period = period.this_month
         chomage_brut = individu('chomage_brut', period)
         csg_imposable_chomage = individu('csg_imposable_chomage', period)
         taux_csg_remplacement = individu('taux_csg_remplacement', period)
@@ -71,9 +72,9 @@ class csg_imposable_chomage(Variable):
     entity = Individu
     label = u"CSG imposable sur les allocations chômage"
     url = u"http://vosdroits.service-public.fr/particuliers/F2329.xhtml"
+    definition_period = MONTH
 
     def function(individu, period, legislation):
-        period = period.this_month
         chomage_brut = individu('chomage_brut', period)
         legislation = legislation(period.start)
 
@@ -97,9 +98,9 @@ class crds_chomage(Variable):
     entity = Individu
     label = u"CRDS sur les allocations chômage"
     url = u"http://www.insee.fr/fr/methodes/default.asp?page=definitions/contrib-remb-dette-sociale.htm"
+    definition_period = MONTH
 
     def function(individu, period, legislation):
-        period = period.this_month
         chomage_brut = individu('chomage_brut', period)
         csg_deductible_chomage = individu('csg_deductible_chomage', period)
         csg_imposable_chomage = individu('csg_imposable_chomage', period)
@@ -141,9 +142,9 @@ class chomage_imposable(Variable):
     label = u"Allocations chômage imposables"
     set_input = set_input_divide_by_period
     url = u"http://www.insee.fr/fr/methodes/default.asp?page=definitions/chomage.htm"
+    definition_period = MONTH
 
     def function(individu, period):
-        period = period.this_month
         chomage_brut = individu('chomage_brut', period)
         csg_deductible_chomage = individu('csg_deductible_chomage', period)
 
@@ -158,9 +159,9 @@ class chomage_net(Variable):
     label = u"Allocations chômage nettes"
     set_input = set_input_divide_by_period
     url = u"http://vosdroits.service-public.fr/particuliers/N549.xhtml"
+    definition_period = MONTH
 
     def function(individu, period):
-        period = period.this_month
         chomage_imposable = individu('chomage_imposable', period)
         csg_imposable_chomage = individu('csg_imposable_chomage', period)
         crds_chomage = individu('crds_chomage', period)
@@ -179,9 +180,9 @@ class csg_deductible_retraite(Variable):
     entity = Individu
     label = u"CSG déductible sur les pensions de retraite"
     url = u"https://www.lassuranceretraite.fr/cs/Satellite/PUBPrincipale/Retraites/Paiement-Votre-Retraite/Prelevements-Sociaux?packedargs=null"  # noqa
+    definition_period = MONTH
 
     def function(individu, period, legislation):
-        period = period.this_month
         retraite_brute = individu('retraite_brute', period)
         taux_csg_remplacement = individu('taux_csg_remplacement', period)
         law = legislation(period.start)
@@ -203,9 +204,9 @@ class csg_imposable_retraite(Variable):
     entity = Individu
     label = u"CSG imposable sur les pensions de retraite"
     url = u"https://www.lassuranceretraite.fr/cs/Satellite/PUBPrincipale/Retraites/Paiement-Votre-Retraite/Prelevements-Sociaux?packedargs=null"  # noqa
+    definition_period = MONTH
 
     def function(individu, period, legislation):
-        period = period.this_month
         retraite_brute = individu('retraite_brute', period)
         law = legislation(period.start)
 
@@ -224,9 +225,9 @@ class crds_retraite(Variable):
     entity = Individu
     label = u"CRDS sur les pensions de retraite"
     url = u"http://www.pensions.bercy.gouv.fr/vous-%C3%AAtes-retrait%C3%A9-ou-pensionn%C3%A9/le-calcul-de-ma-pension/les-pr%C3%A9l%C3%A8vements-effectu%C3%A9s-sur-ma-pension"  # noqa
+    definition_period = MONTH
 
     def function(individu, period, legislation):
-        period = period.this_month
         retraite_brute = individu('retraite_brute', period)
         taux_csg_remplacement = individu('taux_csg_remplacement', period)
         law = legislation(period.start)
@@ -247,10 +248,10 @@ class casa(DatedVariable):
     label = u"Contribution additionnelle de solidarité et d'autonomie"
     start_date = date(2013, 4, 1)
     url = u"http://www.service-public.fr/actualites/002691.html"
+    definition_period = MONTH
 
     @dated_function(start = date(2015, 1, 1))
     def function_2015(individu, period, legislation):
-        period = period.this_month
         retraite_brute = individu('retraite_brute', period = period)
         rfr = individu.foyer_fiscal('rfr', period = period.n_2)
         taux_csg_remplacement = individu('taux_csg_remplacement', period)
@@ -264,7 +265,6 @@ class casa(DatedVariable):
 
     @dated_function(start = date(2013, 4, 1), stop = date(2014, 12, 31))
     def function_2013_2014(individu, period, legislation):
-        period = period.this_month
         retraite_brute = individu('retraite_brute', period = period)
         taux_csg_remplacement = individu('taux_csg_remplacement', period)
         contributions = legislation(period.start).prelevements_sociaux.contributions
@@ -290,9 +290,9 @@ class retraite_imposable(Variable):
     label = u"Retraites au sens strict imposables (rentes à titre onéreux exclues)"
     set_input = set_input_divide_by_period
     url = u"http://vosdroits.service-public.fr/particuliers/F415.xhtml"
+    definition_period = MONTH
 
     def function(individu, period):
-        period = period.this_month
         retraite_brute = individu('retraite_brute', period)
         csg_deductible_retraite = individu('csg_deductible_retraite', period)
 
@@ -306,9 +306,9 @@ class retraite_nette(Variable):
     label = u"Pensions de retraite nettes"
     set_input = set_input_divide_by_period
     url = u"http://vosdroits.service-public.fr/particuliers/N20166.xhtml"
+    definition_period = MONTH
 
     def function(individu, period):
-        period = period.this_month
         retraite_imposable = individu('retraite_imposable', period)
         casa = individu('casa', period)
         csg_imposable_retraite = individu('csg_imposable_retraite', period)
@@ -322,9 +322,9 @@ class crds_pfam(Variable):
     entity = Famille
     label = u"CRDS sur les prestations familiales)"
     url = "http://www.cleiss.fr/docs/regimes/regime_francea1.html"
+    definition_period = YEAR
 
     def function(famille, period, legislation):
-        period = period
         af = famille('af', period, options = [ADD])
         cf = famille('cf', period, options = [ADD])
         asf = famille('asf', period, options = [ADD])

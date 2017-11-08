@@ -4,13 +4,13 @@ from __future__ import division
 
 from openfisca_core import columns
 from openfisca_core.reforms import Reform
-from openfisca_core.variables import Variable
 try:
     from scipy.optimize import fsolve
 except ImportError:
     fsolve = None
 
 from .. import entities
+from ..model.base import *
 
 def calculate_net_from(salaire_de_base, simulation, period, requested_variable_names):
 
@@ -39,6 +39,7 @@ class salaire_de_base(Variable):
     entity = entities.Individu
     label = u"Salaire brut ou traitement indiciaire brut"
     url = u"http://www.trader-finance.fr/lexique-finance/definition-lettre-S/Salaire-brut.html"
+    definition_period = MONTH
 
     def function(self, simulation, period):
         # Calcule le salaire brut à partir du salaire net par inversion numérique.

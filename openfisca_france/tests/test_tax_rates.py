@@ -16,7 +16,7 @@ def test_average_tax_rate():
                 ),
             ],
         period = year,
-        parent1 = dict(age_en_mois = 40 * 12 + 6),
+        parent1 = dict(age = 40),
         ).new_simulation()
     assert (average_rate(
         target = simulation.calculate('revenu_disponible'),
@@ -36,7 +36,7 @@ def test_marginal_tax_rate():
                 ),
             ],
         period = year,
-        parent1 = dict(age_en_mois = 40 * 12 + 6),
+        parent1 = dict(age = 40),
         ).new_simulation()
     assert (marginal_rate(
         target = simulation.calculate('revenu_disponible'),

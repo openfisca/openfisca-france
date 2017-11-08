@@ -24,7 +24,8 @@
   relative_error_margin: 0.05
   input_variables:
     date_naissance: '1994-01-01' # 22 ans
-    enfant_a_charge: True
+    enfant_a_charge:
+      2016: True
   output_variables:
     cmu_acs_eligibilite: False
     cmu_c: False
@@ -34,7 +35,8 @@
   relative_error_margin: 0.05
   input_variables:
     date_naissance: '1994-01-01' # 22 ans
-    enfant_a_charge: True
+    enfant_a_charge:
+      2016: True
   output_variables:
     cmu_acs_eligibilite: False
     cmu_c: False
@@ -65,7 +67,8 @@
   input_variables:
     date_naissance: '1994-01-01' # 22 ans
     cmu_c: False
-    enfant_a_charge: True
+    enfant_a_charge:
+      2016: True
   output_variables:
     acs: 0
 

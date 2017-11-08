@@ -10,6 +10,8 @@ from . import base
 
 def test_birth():
     year = 2013
+    janvier = '2013-01'
+
     scenario = base.tax_benefit_system.new_scenario().init_single_entity(
         period = year,
         parent1 = dict(),
@@ -32,7 +34,7 @@ def test_birth():
             ],
         )
     assert_equal(
-        simulation.calculate('activite').tolist(),
+        simulation.calculate('activite', period = janvier).tolist(),
         [
             4,
             2,
@@ -41,7 +43,7 @@ def test_birth():
             ],
         )
     assert_equal(
-        simulation.calculate('age').tolist(),
+        simulation.calculate('age', period = janvier).tolist(),
         [
             40,
             10,
@@ -50,7 +52,7 @@ def test_birth():
             ],
         )
     assert_equal(
-        simulation.calculate('age_en_mois').tolist(),
+        simulation.calculate('age_en_mois', period = janvier).tolist(),
         [
             40 * 12,
             10 * 12,

@@ -30,7 +30,7 @@ scenarios_arguments = [
 
 def check_run(simulation, period):
     assert simulation.calculate('revenu_disponible') is not None, "Can't compute revenu_disponible on period {}".format(period)
-    assert simulation.calculate('salaire_super_brut') is not None, \
+    assert simulation.calculate_add('salaire_super_brut') is not None, \
         "Can't compute salaire_super_brut on period {}".format(period)
 
 

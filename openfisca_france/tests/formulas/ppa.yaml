@@ -213,7 +213,8 @@
   familles:
     parents: ["parent1", "parent2"]
     ppa_eligibilite: True
-    aides_logement: 0
+    aides_logement:
+      2016: 0
   individus:
     - id: "parent1"
       age: 40
@@ -279,7 +280,8 @@
   familles:
     parents: ["parent1", "parent2"]
     ppa_eligibilite: True
-    aides_logement: 0
+    aides_logement:
+      2016: 0
   individus:
     - id: "parent1"
       age: 40

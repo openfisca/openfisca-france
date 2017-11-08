@@ -12,9 +12,9 @@ class taux_versement_transport(Variable):
     column = FloatCol
     entity = Individu
     label = u""
+    definition_period = MONTH
 
     def function(self, simulation, period):
-        period = period.this_month
         depcom_entreprise = simulation.calculate('depcom_entreprise', period)
         effectif_entreprise = simulation.calculate('effectif_entreprise', period)
         categorie_salarie = simulation.calculate('categorie_salarie', period)
@@ -39,9 +39,9 @@ class versement_transport(Variable):
     column = FloatCol
     entity = Individu
     label = u"Versement transport"
+    definition_period = MONTH
 
     def function(self, simulation, period):
-        period = period.this_month
         assiette_cotisations_sociales = simulation.calculate('assiette_cotisations_sociales', period)
         taux_versement_transport = simulation.calculate('taux_versement_transport', period)
         cotisation = - taux_versement_transport * assiette_cotisations_sociales

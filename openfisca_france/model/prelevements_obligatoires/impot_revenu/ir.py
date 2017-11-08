@@ -8,6 +8,7 @@ import logging
 from numpy import (datetime64, logical_and as and_, logical_not as not_, logical_or as or_, logical_xor as xor_,
     maximum as max_, minimum as min_, round)
 
+from openfisca_core import periods
 from openfisca_france.model.base import *  # noqa analysis:ignore
 
 
@@ -46,6 +47,7 @@ class jour_xyz(Variable):
     column = IntCol(default = 360)
     entity = FoyerFiscal
     label = u"Jours décomptés au titre de cette déclaration"
+    definition_period = YEAR
 
 
 ###############################################################################
@@ -58,8 +60,16 @@ class age(Variable):
     column = AgeCol(val_type = "age")
     entity = Individu
     label = u"Âge (en années)"
+    definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def function(self, simulation, period):
+        def compare_periods(x, y):
+            a = x[0]
+            b = y[0]
+
+            return periods.compare_period_start(a, b) or periods.compare_period_size(a, b)
+
         has_birth = simulation.get_or_new_holder('date_naissance')._array is not None
         if not has_birth:
             has_age_en_mois = bool(simulation.get_or_new_holder('age_en_mois')._array_by_period)
@@ -70,7 +80,7 @@ class age(Variable):
             holder = self.holder
             start = period.start
             if holder._array_by_period is not None:
-                for last_period, last_array in sorted(holder._array_by_period.iteritems(), reverse = True):
+                for last_period, last_array in sorted(holder._array_by_period.iteritems(), cmp = compare_periods, reverse = True):
                     last_start = last_period.start
                     if last_start.day == start.day:
                         return last_array + int((start.year - last_start.year) +
@@ -85,13 +95,21 @@ class age_en_mois(Variable):
     column = AgeCol(val_type = "months")
     entity = Individu
     label = u"Âge (en mois)"
+    definition_period = MONTH
 
     def function(self, simulation, period):
+
+        def compare_periods(x, y):
+            a = x[0]
+            b = y[0]
+
+            return periods.compare_period_start(a, b) or periods.compare_period_size(a, b)
+
         # If age_en_mois is known at the same day of another month, compute the new age_en_mois from it.
         holder = self.holder
         start = period.start
         if holder._array_by_period is not None:
-            for last_period, last_array in sorted(holder._array_by_period.iteritems(), reverse = True):
+            for last_period, last_array in sorted(holder._array_by_period.iteritems(), cmp = compare_periods, reverse = True):
                 last_start = last_period.start
                 if last_start.day == start.day:
                     return last_array + ((start.year - last_start.year) * 12 + (start.month - last_start.month))
@@ -109,9 +127,9 @@ class nb_adult(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"Nombre d'adulte(s) déclarants dans le foyer fiscal"
+    definition_period = YEAR
 
     def function(self, simulation, period):
-        period = period.this_year
         maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         celibataire_ou_divorce = simulation.calculate('celibataire_ou_divorce', period)
         veuf = simulation.calculate('veuf', period)
@@ -123,9 +141,9 @@ class nb_pac(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"Nombre de personnes à charge dans le foyer fiscal"
+    definition_period = YEAR
 
     def function(self, simulation, period):
-        period = period.this_year
         nbF = simulation.calculate('nbF', period)
         nbJ = simulation.calculate('nbJ', period)
         nbR = simulation.calculate('nbR', period)
@@ -138,10 +156,13 @@ class enfant_a_charge(Variable):
     entity = Individu
     label = u"Enfant à charge non marié, de moins de 18 ans au 1er janvier de l'année de perception des" \
         u" revenus, ou né durant la même année, ou handicapés quel que soit son âge"
+    definition_period = YEAR
 
     def function(individu, period):
-        age = individu('age', period)
-        handicap = individu('handicap', period)
+        janvier = period.first_month
+        decembre = janvier.offset(11, 'month')
+        age = individu('age', janvier)
+        handicap = individu('handicap', decembre)
         is_pac = individu.has_role(FoyerFiscal.PERSONNE_A_CHARGE)
 
         return is_pac * ((age < 18) + handicap)
@@ -153,11 +174,13 @@ class nbF(Variable):
     column = FloatCol
     label = u"Nombre d'enfants à charge non mariés, qui ne sont pas en résidence alternée, de moins de 18 ans au 1er janvier de l'année de perception des" \
         u" revenus, ou nés durant la même année ou handicapés quel que soit leur âge"
+    definition_period = YEAR
 
     def function(self, simulation, period):
-        period = period.this_year
+        janvier = period.first_month
+
         enfant_a_charge = simulation.compute('enfant_a_charge', period)
-        garde_alternee = simulation.compute('garde_alternee', period)
+        garde_alternee = simulation.compute('garde_alternee', janvier)
         return self.sum_by_entity(enfant_a_charge.array * not_(garde_alternee.array))
 
 
@@ -166,12 +189,14 @@ class nbG(Variable):
     entity = FoyerFiscal
     column = FloatCol
     label = u"Nombre d'enfants qui ne sont pas en résidence alternée à charge titulaires de la carte d'invalidité."
+    definition_period = YEAR
 
     def function(self, simulation, period):
-        period = period.this_year
+        janvier = period.first_month
+
         enfant_a_charge = simulation.compute('enfant_a_charge', period)
-        garde_alternee = simulation.compute('garde_alternee', period)
-        invalidite = simulation.compute('invalidite', period)
+        garde_alternee = simulation.compute('garde_alternee', janvier)
+        invalidite = simulation.compute('invalidite', janvier)
         return self.sum_by_entity(enfant_a_charge.array * not_(garde_alternee.array) * invalidite.array)
 
 
@@ -180,11 +205,13 @@ class nbH(Variable):
     entity = FoyerFiscal
     column = FloatCol
     label = u"Nombre d'enfants à charge en résidence alternée, non mariés de moins de 18 ans au 1er janvier de l'année de perception des revenus, ou nés durant la même année ou handicapés quel que soit leur âge"
+    definition_period = YEAR
 
     def function(self, simulation, period):
-        period = period.this_year
+        janvier = period.first_month
+
         enfant_a_charge = simulation.compute('enfant_a_charge', period)
-        garde_alternee = simulation.compute('garde_alternee', period)
+        garde_alternee = simulation.compute('garde_alternee', janvier)
         return self.sum_by_entity(enfant_a_charge.array * garde_alternee.array)
 
 
@@ -193,12 +220,14 @@ class nbI(Variable):
     entity = FoyerFiscal
     column = FloatCol
     label = u"Nombre d'enfants à charge en résidence alternée titulaires de la carte d'invalidité"
+    definition_period = YEAR
 
     def function(self, simulation, period):
-        period = period.this_year
+        janvier = period.first_month
+
         enfant_a_charge = simulation.compute('enfant_a_charge', period)
-        garde_alternee = simulation.compute('garde_alternee', period)
-        invalidite = simulation.compute('invalidite', period)
+        garde_alternee = simulation.compute('garde_alternee', janvier)
+        invalidite = simulation.compute('invalidite', janvier)
         return self.sum_by_entity(enfant_a_charge.array * garde_alternee.array * invalidite.array)
 
 
@@ -206,11 +235,13 @@ class enfant_majeur_celibataire_sans_enfant(Variable):
     column = BoolCol
     entity = Individu
     label = u"Enfant majeur célibataire sans enfant"
+    definition_period = YEAR
 
     def function(individu, period):
-        period = period.this_year
-        age = individu('age', period)
-        handicap = individu('handicap', period)
+        janvier = period.first_month
+
+        age = individu('age', janvier)
+        handicap = individu('handicap', janvier)
         is_pac = individu.has_role(FoyerFiscal.PERSONNE_A_CHARGE)
 
         return is_pac * (age >= 18) * not_(handicap)
@@ -221,6 +252,7 @@ class nbJ(Variable):
     entity = FoyerFiscal
     label = u"Nombre d'enfants majeurs célibataires sans enfant"
     column = IntCol
+    definition_period = YEAR
 
     def function(foyer_fiscal, period):
         enfant_majeur_celibataire_sans_enfant = foyer_fiscal.members('enfant_majeur_celibataire_sans_enfant', period)
@@ -231,6 +263,7 @@ class nombre_enfants_majeurs_celibataires_sans_enfant(Variable):
     entity = Menage
     label = u"Nombre d'enfants majeurs célibataires sans enfant"
     column = IntCol
+    definition_period = YEAR
 
     def function(menage, period):
         enfant_majeur_celibataire_sans_enfant = menage.members('enfant_majeur_celibataire_sans_enfant', period)
@@ -241,10 +274,10 @@ class maries_ou_pacses(Variable):
     column = BoolCol
     entity = FoyerFiscal
     label = u"Déclarants mariés ou pacsés"
+    definition_period = YEAR
 
     def function(foyer_fiscal, period):
-        period = period.this_year
-        statut_marital = foyer_fiscal.declarant_principal('statut_marital', period)
+        statut_marital = foyer_fiscal.declarant_principal('statut_marital', period.first_month)
         marie_ou_pacse = (statut_marital == 1) | (statut_marital == 5)
 
         return marie_ou_pacse
@@ -254,37 +287,40 @@ class celibataire_ou_divorce(Variable):
     column = BoolCol
     entity = FoyerFiscal
     label = u"Déclarant célibataire ou divorcé"
+    definition_period = YEAR
 
     def function(foyer_fiscal, period):
-        period = period.this_year
-        statut_marital = foyer_fiscal.declarant_principal('statut_marital', period)
+        statut_marital = foyer_fiscal.declarant_principal('statut_marital', period.first_month)
         celibataire_ou_divorce = (statut_marital == 2) | (statut_marital == 3)
 
         return celibataire_ou_divorce
+
 
 class veuf(Variable):
     column = BoolCol
     entity = FoyerFiscal
     label = u"Déclarant veuf"
+    definition_period = YEAR
 
     def function(foyer_fiscal, period):
-        period = period.this_year
-        statut_marital = foyer_fiscal.declarant_principal('statut_marital', period)
+        statut_marital = foyer_fiscal.declarant_principal('statut_marital', period.first_month)
         veuf = (statut_marital == 4)
 
         return veuf
+
 
 class jeune_veuf(Variable):
     column = BoolCol
     entity = FoyerFiscal
     label = u"Déclarant jeune veuf"
+    definition_period = YEAR
 
     def function(foyer_fiscal, period):
-        period = period.this_year
-        statut_marital = foyer_fiscal.declarant_principal('statut_marital', period)
+        statut_marital = foyer_fiscal.declarant_principal('statut_marital', period.first_month)
         jeune_veuf = (statut_marital == 6)
 
         return jeune_veuf
+
 
 ###############################################################################
 # # Revenus catégoriels
@@ -295,9 +331,9 @@ class revenu_assimile_salaire(Variable):
     column = FloatCol
     entity = Individu
     label = u"Revenu imposé comme des salaires (salaires, mais aussi 3vj, 3vk)"
+    definition_period = YEAR
 
     def function(self, simulation, period):
-        period = period.this_year
         salaire_imposable = simulation.calculate_add('salaire_imposable', period)
         chomage_imposable = simulation.calculate_add('chomage_imposable', period)
 
@@ -308,9 +344,9 @@ class revenu_assimile_salaire_apres_abattements(Variable):
     column = FloatCol
     entity = Individu
     label = u"Salaires et chômage imposables après abattements"
+    definition_period = YEAR
 
     def function(self, simulation, period):
-        period = period.this_year
         revenu_assimile_salaire = simulation.calculate('revenu_assimile_salaire', period)
         chomeur_longue_duree = simulation.calculate('chomeur_longue_duree', period)
         frais_reels = simulation.calculate('frais_reels', period)
@@ -328,9 +364,9 @@ class revenu_activite_salariee(Variable):
     column = FloatCol
     entity = Individu
     label = u"Revenu d'activité salariée"
+    definition_period = YEAR
 
     def function(self, simulation, period):
-        period = period.this_year
         salaire_imposable = simulation.calculate_add('salaire_imposable', period)
 
         return salaire_imposable
@@ -340,9 +376,9 @@ class revenu_activite_non_salariee(Variable):
     column = FloatCol
     entity = Individu
     label = u"Revenu d'activité non salariée"
+    definition_period = YEAR
 
     def function(self, simulation, period):
-        period = period.this_year
         rpns_i = simulation.calculate('rpns_individu', period)
 
         return rpns_i  # TODO: vérifier cette définition
@@ -352,10 +388,10 @@ class revenu_activite(Variable):
     column = FloatCol
     entity = Individu
     label = u"Revenus d'activités"
+    definition_period = YEAR
 
     def function(self, simulation, period):
         ''' Revenus d'activités '''
-        period = period.this_year
         revenu_activite_non_salariee = simulation.calculate('revenu_activite_non_salariee', period)
         revenu_activite_salariee = simulation.calculate('revenu_activite_salariee', period)
 
@@ -366,9 +402,9 @@ class revenu_assimile_pension(Variable):
     column = FloatCol
     entity = Individu
     label = u"Revenu imposé comme des pensions (retraites, pensions alimentaires, etc.)"
+    definition_period = YEAR
 
     def function(individu, period):
-        period = period.this_year
         pensions_alimentaires_percues = individu('pensions_alimentaires_percues', period, options = [ADD])
         pensions_alimentaires_percues_decl = individu('pensions_alimentaires_percues_decl', period, options = [ADD])
         retraite_imposable = individu('retraite_imposable', period, options = [ADD])
@@ -381,9 +417,9 @@ class revenu_assimile_pension_apres_abattements(Variable):
     column = FloatCol
     entity = Individu
     label = u"Pensions après abattements"
+    definition_period = YEAR
 
     def function(self, simulation, period):
-        period = period.this_year
         revenu_assimile_pension = simulation.calculate('revenu_assimile_pension', period)
         abatpen = simulation.legislation_at(period.start).impot_revenu.tspr.abatpen
 
@@ -401,9 +437,9 @@ class indu_plaf_abat_pen(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"Plafonnement de l'abattement de 10% sur les pensions du foyer"
+    definition_period = YEAR
 
     def function(self, simulation, period):
-        period = period.this_year
         rev_pen_holder = simulation.compute('revenu_assimile_pension', period)
         pen_net_holder = simulation.compute('revenu_assimile_pension_apres_abattements', period)
         abatpen = simulation.legislation_at(period.start).impot_revenu.tspr.abatpen
@@ -420,9 +456,9 @@ class abattement_salaires_pensions(Variable):
     entity = Individu
     label = u"Abattement de 20% sur les salaires et pensions, en vigueur jusqu'à 2006"
     stop_date = date(2005, 12, 31)
+    definition_period = YEAR
 
     def function(self, simulation, period):
-        period = period.this_year
         revenu_assimile_salaire_apres_abattements = simulation.calculate('revenu_assimile_salaire_apres_abattements', period)
         revenu_assimile_pension_apres_abattements = simulation.calculate('revenu_assimile_pension_apres_abattements', period)
         abatsalpen = simulation.legislation_at(period.start).impot_revenu.tspr.abatsalpen
@@ -441,10 +477,10 @@ class retraite_titre_onereux(Variable):
     label = u"Rentes viagères (rentes à titre onéreux)"
     set_input = set_input_divide_by_period
     url = u"http://fr.wikipedia.org/wiki/Rente_viagère"
+    definition_period = MONTH
 
     def function(self, simulation, period):
-        year = period.start.period(u'year').offset('first-of')
-        period = period.this_month
+        year = period.this_year
         f1aw = simulation.calculate('f1aw', year)
         f1bw = simulation.calculate('f1bw', year)
         f1cw = simulation.calculate('f1cw', year)
@@ -458,9 +494,9 @@ class retraite_titre_onereux_net(Variable):
     entity = FoyerFiscal
     label = u"Rentes viagères après abattements"
     url = u"http://www.lafinancepourtous.fr/Vie-professionnelle-et-retraite/Retraite/Epargne-retraite/La-rente-viagere/La-fiscalite-de-la-rente-viagere"  # noqa
+    definition_period = YEAR
 
     def function(self, simulation, period):
-        period = period.this_year
         f1aw = simulation.calculate('f1aw', period)
         f1bw = simulation.calculate('f1bw', period)
         f1cw = simulation.calculate('f1cw', period)
@@ -476,10 +512,9 @@ class traitements_salaires_pensions_rentes(Variable):
     column = FloatCol
     entity = Individu
     label = u"Traitements salaires pensions et rentes individuelles"
+    definition_period = YEAR
 
     def function(individu, period):
-        period = period.this_year
-
         revenu_assimile_salaire_apres_abattements = individu('revenu_assimile_salaire_apres_abattements', period)
         revenu_assimile_pension_apres_abattements = individu('revenu_assimile_pension_apres_abattements', period)
         abattement_salaires_pensions = individu('abattement_salaires_pensions', period)
@@ -487,14 +522,13 @@ class traitements_salaires_pensions_rentes(Variable):
         # Quand tspr est calculé sur une année glissante, retraite_titre_onereux_net est calculé sur l'année légale
         # correspondante.
         retraite_titre_onereux_net = individu.foyer_fiscal('retraite_titre_onereux_net', period.offset('first-of'))
-        retraite_titre_onereux_net_declarant1 = (
-            retraite_titre_onereux_net * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
-            )
+        retraite_titre_onereux_net_declarant1 = retraite_titre_onereux_net * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
         return (
             revenu_assimile_salaire_apres_abattements +
             revenu_assimile_pension_apres_abattements - abattement_salaires_pensions +
             retraite_titre_onereux_net_declarant1
             )
+
 
 class rev_cat_pv(Variable):
     column = FloatCol
@@ -502,9 +536,9 @@ class rev_cat_pv(Variable):
     label = u"Revenu catégoriel - Plus-values"
     start_date = date(2013, 1, 1)
     url = "http://www.insee.fr/fr/methodes/default.asp?page=definitions/revenus-categoriesl.htm"
+    definition_period = YEAR
 
     def function(self, simulation, period):
-        period = period.this_year
         f3vg = simulation.calculate('f3vg', period)
         f3vh = simulation.calculate('f3vh', period)
 
@@ -516,9 +550,9 @@ class rev_cat_tspr(Variable):
     entity = FoyerFiscal
     label = u"Revenu catégoriel - Traitements, salaires, pensions et rentes"
     url = "http://www.insee.fr/fr/methodes/default.asp?page=definitions/revenus-categoriesl.htm"
+    definition_period = YEAR
 
     def function(self, simulation, period):
-        period = period.this_year
         tspr_holder = simulation.compute('traitements_salaires_pensions_rentes', period)
         indu_plaf_abat_pen = simulation.calculate('indu_plaf_abat_pen', period)
 
@@ -533,9 +567,9 @@ class deficit_rcm(Variable):
     label = u"Deficit capitaux mobiliers"
     start_date = date(2009, 1, 1)
     url = "http://www.lefigaro.fr/impots/2008/04/25/05003-20080425ARTFIG00254-les-subtilites-des-revenus-de-capitaux-mobiliers-.php"
+    definition_period = YEAR
 
     def function(self, simulation, period):
-        period = period.this_year
         f2aa = simulation.calculate('f2aa', period)
         f2al = simulation.calculate('f2al', period)
         f2am = simulation.calculate('f2am', period)
@@ -552,13 +586,13 @@ class rev_cat_rvcm(DatedVariable):
     entity = FoyerFiscal
     label = u"Revenu catégoriel - Capitaux"
     url = "http://www.insee.fr/fr/methodes/default.asp?page=definitions/revenus-categoriesl.htm"
+    definition_period = YEAR
 
     @dated_function(start = date(2002, 1, 1), stop = date(2004, 12, 31))
     def function_20020101_20041231(self, simulation, period):
         """
         Revenus des valeurs et capitaux mobiliers
         """
-        period = period.this_year
         maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         deficit_rcm = simulation.calculate('deficit_rcm', period)
         f2ch = simulation.calculate('f2ch', period)
@@ -606,7 +640,6 @@ class rev_cat_rvcm(DatedVariable):
         """
         Revenus des valeurs et capitaux mobiliers
         """
-        period = period.this_year
         maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         deficit_rcm = simulation.calculate('deficit_rcm', period)
         f2ch = simulation.calculate('f2ch', period)
@@ -657,7 +690,6 @@ class rev_cat_rvcm(DatedVariable):
         """
         Revenus des valeurs et capitaux mobiliers
         """
-        period = period.this_year
         maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         deficit_rcm = simulation.calculate('deficit_rcm', period)
         f2ch = simulation.calculate('f2ch', period)
@@ -707,12 +739,12 @@ class rfr_rvcm(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"rfr_rvcm"
+    definition_period = YEAR
 
     def function(self, simulation, period):
         '''
         Abattements sur rvcm à réintégrer dans le revenu fiscal de référence
         '''
-        period = period.this_year
         maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         f2dc = simulation.calculate('f2dc', period)
         f2ts = simulation.calculate('f2ts', period)
@@ -751,12 +783,12 @@ class rev_cat_rfon(Variable):
     entity = FoyerFiscal
     label = u"Revenu catégoriel - Foncier"
     url = "http://www.insee.fr/fr/methodes/default.asp?page=definitions/revenus-categoriesl.htm"
+    definition_period = YEAR
 
     def function(self, simulation, period):
         """
         Revenus fonciers
         """
-        period = period.this_year
         f4ba = simulation.calculate('f4ba', period)
         f4bb = simulation.calculate('f4bb', period)
         f4bc = simulation.calculate('f4bc', period)
@@ -784,13 +816,13 @@ class rev_cat_rpns(Variable):
     entity = FoyerFiscal
     label = u"Revenu catégoriel - Revenus personnels non salariés"
     url = "http://www.insee.fr/fr/methodes/default.asp?page=definitions/revenus-categoriesl.htm"
+    definition_period = YEAR
 
     def function(self, simulation, period):
         '''
         Revenus personnels non salariés
         'foy'
         '''
-        period = period.this_year
         nbnc_pvce_holder = simulation.compute('nbnc_pvce', period)
         mbic_mvct = simulation.calculate('mbic_mvct', period)
         rpns_i_holder = simulation.compute('rpns_individu', period)
@@ -810,12 +842,12 @@ class rev_cat(Variable):
     entity = FoyerFiscal
     label = u"Revenus catégoriels"
     url = "http://www.insee.fr/fr/methodes/default.asp?page=definitions/revenus-categoriesl.htm"
+    definition_period = YEAR
 
     def function(self, simulation, period):
         '''
         Revenus Categoriels
         '''
-        period = period.this_year
         rev_cat_tspr = simulation.calculate('rev_cat_tspr', period)
         rev_cat_rvcm = simulation.calculate('rev_cat_rvcm', period)
         rev_cat_rfon = simulation.calculate('rev_cat_rfon', period)
@@ -835,12 +867,12 @@ class deficit_ante(Variable):
     entity = FoyerFiscal
     label = u"Déficit global antérieur"
     url = "http://impotsurlerevenu.org/declaration-de-revenus-fonciers-2044/796-deficits-anterieurs-restant-a-imputer-cadre-450.php"
+    definition_period = YEAR
 
     def function(self, simulation, period):
         '''
         Déficits antérieurs
         '''
-        period = period.this_year
         f6fa = simulation.calculate('f6fa', period)
         f6fb = simulation.calculate('f6fb', period)
         f6fc = simulation.calculate('f6fc', period)
@@ -856,11 +888,11 @@ class rbg(Variable):
     entity = FoyerFiscal
     label = u"Revenu brut global"
     url = "http://www.documentissime.fr/dossiers-droit-pratique/dossier-19-l-impot-sur-le-revenu-les-modalites-generales-d-imposition/la-determination-du-revenu-imposable/le-revenu-brut-global.html"
+    definition_period = YEAR
 
     def function(self, simulation, period):
         '''Revenu brut global
         '''
-        period = period.this_year
         rev_cat = simulation.calculate('rev_cat', period)
         deficit_ante = simulation.calculate('deficit_ante', period)
         f6gh = simulation.calculate('f6gh', period)
@@ -880,13 +912,13 @@ class csg_deduc_patrimoine(Variable):
     entity = FoyerFiscal
     label = u"Csg déductible sur le patrimoine"
     url = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&typePage=cpr02&sfid=503&espId=1&communaute=1&impot=CS"
+    definition_period = YEAR
 
     def function(self, simulation, period):
         '''
         CSG déductible sur les revenus du patrimoine
         http://bofip.impots.gouv.fr/bofip/887-PGP
         '''
-        period = period.this_year
         f6de = simulation.calculate('f6de', period)
 
         return max_(f6de, 0)
@@ -897,13 +929,13 @@ class csg_deduc_patrimoine_simulated(Variable):
     entity = FoyerFiscal
     label = u"Csg déductible sur le patrimoine simulée"
     url = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&typePage=cpr02&sfid=503&espId=1&communaute=1&impot=CS"
+    definition_period = YEAR
 
     def function(self, simulation, period):
         '''
         Cette fonction simule le montant mentionné dans la case f6de de la déclaration 2042
         http://bofip.impots.gouv.fr/bofip/887-PGP
         '''
-        period = period.this_year
         rev_cat_rfon = simulation.calculate('rev_cat_rfon', period)
         rev_cap_bar = simulation.calculate('rev_cap_bar', period)
         retraite_titre_onereux = simulation.calculate('retraite_titre_onereux', period)
@@ -918,10 +950,10 @@ class csg_deduc(Variable):  # f6de
     entity = FoyerFiscal
     label = u"Csg déductible sur le patrimoine"
     url = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&typePage=cpr02&sfid=503&espId=1&communaute=1&impot=CS"
+    definition_period = YEAR
 
     def function(self, simulation, period):
         ''' CSG déductible '''
-        period = period.this_year
         rbg = simulation.calculate('rbg', period)
         csg_deduc_patrimoine = simulation.calculate('csg_deduc_patrimoine', period)
 
@@ -934,10 +966,10 @@ class rng(Variable):
     entity = FoyerFiscal
     label = u"Revenu net global"
     url = "http://impotsurlerevenu.org/definitions/114-revenu-net-global.php"
+    definition_period = YEAR
 
     def function(self, simulation, period):
         ''' Revenu net global (total 20) '''
-        period = period.this_year
         rbg = simulation.calculate('rbg', period)
         csg_deduc = simulation.calculate('csg_deduc', period)
         charges_deduc = simulation.calculate('charges_deduc', period)
@@ -950,10 +982,10 @@ class rni(Variable):
     entity = FoyerFiscal
     label = u"Revenu net imposable"
     url = "http://impotsurlerevenu.org/definitions/115-revenu-net-imposable.php"
+    definition_period = YEAR
 
     def function(self, simulation, period):
         ''' Revenu net imposable ou déficit à reporter'''
-        period = period.this_year
         rng = simulation.calculate('rng', period)
         abat_spe = simulation.calculate('abat_spe', period)
 
@@ -964,9 +996,9 @@ class ir_brut(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"Impôt sur le revenu brut avant non imposabilité et plafonnement du quotient"
+    definition_period = YEAR
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('year')
         nbptr = simulation.calculate('nbptr', period)
         taux_effectif = simulation.calculate('taux_effectif', period)
         rni = simulation.calculate('rni', period)
@@ -979,12 +1011,12 @@ class ir_ss_qf(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"Impôt sans quotient familial"
+    definition_period = YEAR
 
     def function(self, simulation, period):
         '''
         Impôt sans quotient familial
         '''
-        period = period.this_year
         rni = simulation.calculate('rni', period)
         nb_adult = simulation.calculate('nb_adult', period)
         bareme = simulation.legislation_at(period.start).impot_revenu.bareme
@@ -997,12 +1029,12 @@ class ir_plaf_qf(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"Impôt après plafonnement du quotient familial et réduction complémentaire"
+    definition_period = YEAR
 
     def function(self, simulation, period):
         '''
         Impôt après plafonnement du quotient familial et réduction complémentaire
         '''
-        period = period.this_year
         ir_brut = simulation.calculate('ir_brut', period)
         ir_ss_qf = simulation.calculate('ir_ss_qf', period)
         nb_adult = simulation.calculate('nb_adult', period)
@@ -1020,7 +1052,7 @@ class ir_plaf_qf(Variable):
         caseN = simulation.calculate('caseN', period)
         caseP = simulation.calculate('caseP', period)
         caseS = simulation.calculate('caseS', period)
-        caseT = simulation.calculate('caseT', period)
+        caseT = simulation.calculate('caseT', period.first_month)
         caseW = simulation.calculate('caseW', period)
         nbF = simulation.calculate('nbF', period)
         nbG = simulation.calculate('nbG', period)
@@ -1097,9 +1129,9 @@ class avantage_qf(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"Avantage quotient familial"
+    definition_period = YEAR
 
     def function(self, simulation, period):
-        period = period.this_year
         ir_ss_qf = simulation.calculate('ir_ss_qf', period)
         ir_plaf_qf = simulation.calculate('ir_plaf_qf', period)
 
@@ -1110,10 +1142,10 @@ class decote(DatedVariable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"décote"
+    definition_period = YEAR
 
     @dated_function(start = date(2015, 1, 1))
     def function_2015(self, simulation, period):
-        period = period.start.offset('first-of', 'year').period('year')
         ir_plaf_qf = simulation.calculate('ir_plaf_qf', period)
         nb_adult = simulation.calculate('nb_adult', period)
         decote_seuil_celib = simulation.legislation_at(period.start).impot_revenu.decote.seuil_celib
@@ -1125,7 +1157,6 @@ class decote(DatedVariable):
 
     @dated_function(start = date(2014, 1, 1), stop = date(2014, 12, 31))
     def function_2014(self, simulation, period):
-        period = period.this_year
         ir_plaf_qf = simulation.calculate('ir_plaf_qf', period)
         nb_adult = simulation.calculate('nb_adult', period)
         decote_seuil_celib = simulation.legislation_at(period.start).impot_revenu.decote.seuil_celib
@@ -1137,7 +1168,6 @@ class decote(DatedVariable):
 
     @dated_function(start = date(2001, 1, 1), stop = date(2013, 12, 31))
     def function_2001_2013(self, simulation, period):
-        period = period.start.offset('first-of', 'year').period('year')
         ir_plaf_qf = simulation.calculate('ir_plaf_qf', period)
         decote = simulation.legislation_at(period.start).impot_revenu.decote
 
@@ -1149,12 +1179,12 @@ class decote_gain_fiscal(Variable):
     entity = FoyerFiscal
     label = u"Gain fiscal de la décote/Décote au sens Dgfip tel que sur la feuille d'impôt"
     start_date = date(1982, 1, 1)
+    definition_period = YEAR
 
     def function(self, simulation, period):
         '''
         Renvoie le gain fiscal du à la décote
         '''
-        period = period.this_year
         decote = simulation.calculate('decote', period)
         ir_plaf_qf = simulation.calculate('ir_plaf_qf', period)
 
@@ -1165,12 +1195,12 @@ class nat_imp(Variable):
     column = BoolCol(default = False)
     entity = FoyerFiscal
     label = u"nat_imp"
+    definition_period = YEAR
 
     def function(self, simulation, period):
         '''
         Renvoie True si le foyer est imposable, False sinon
         '''
-        period = period.this_year
         iai = simulation.calculate('iai', period)
         credits_impot = simulation.calculate('credits_impot', period)
         cehr = simulation.calculate('cehr', period)
@@ -1184,12 +1214,12 @@ class ip_net(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"Impôt sur le revenu après décote"
+    definition_period = YEAR
 
     def function(self, simulation, period):
         '''
         irpp après décote
         '''
-        period = period.this_year
         ir_plaf_qf = simulation.calculate('ir_plaf_qf', period)
         cncn_info_holder = simulation.compute('cncn_info', period)
         decote = simulation.calculate('decote', period)
@@ -1202,12 +1232,12 @@ class iaidrdi(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"Impôt après imputation des réductions d'impôt"
+    definition_period = YEAR
 
     def function(self, simulation, period):
         '''
         Impôt après imputation des réductions d'impôt
         '''
-        period = period.this_year
         ip_net = simulation.calculate('ip_net', period)
         reductions = simulation.calculate('reductions', period)
 
@@ -1219,12 +1249,12 @@ class cont_rev_loc(Variable):
     entity = FoyerFiscal
     label = u"Contribution sur les revenus locatifs"
     start_date = date(2001, 1, 1)
+    definition_period = YEAR
 
     def function(self, simulation, period):
         '''
         Contribution sur les revenus locatifs
         '''
-        period = period.this_year
         f4bl = simulation.calculate('f4bl', period)
         crl = simulation.legislation_at(period.start).impot_revenu.crl
 
@@ -1235,12 +1265,12 @@ class teicaa(Variable):  # f5rm
     column = FloatCol
     entity = FoyerFiscal
     label = u"Taxe exceptionelle sur l'indemnité compensatrice des agents d'assurance"
+    definition_period = YEAR
 
     def function(self, simulation, period):
         """
         Taxe exceptionelle sur l'indemnité compensatrice des agents d'assurance
         """
-        period = period.this_year
         f5qm_holder = simulation.compute('f5qm', period)
         bareme = simulation.legislation_at(period.start).impot_revenu.teicaa
 
@@ -1255,12 +1285,12 @@ class assiette_vente(Variable):
     entity = FoyerFiscal
     label = u"Assiette régime microsociale pour les ventes"
     start_date = date(2009, 1, 1)
+    definition_period = YEAR
 
     def function(self, simulation, period):
         '''
         Assiette régime microsociale pour les ventes
         '''
-        period = period.this_year
         ebic_impv_holder = simulation.compute('ebic_impv', period)
 
         return self.sum_by_entity(ebic_impv_holder)
@@ -1271,12 +1301,12 @@ class assiette_service(Variable):
     entity = FoyerFiscal
     label = u"Assiette régime microsociale pour les prestations et services"
     start_date = date(2009, 1, 1)
+    definition_period = YEAR
 
     def function(self, simulation, period):
         '''
         Assiette régime microsociale pour les prestations et services
         '''
-        period = period.this_year
         ebic_imps_holder = simulation.compute('ebic_imps', period)
 
         return self.sum_by_entity(ebic_imps_holder)
@@ -1290,12 +1320,12 @@ class assiette_proflib(Variable):
     entity = FoyerFiscal
     label = u"Assiette régime microsociale pour les professions libérales"
     start_date = date(2009, 1, 1)
+    definition_period = YEAR
 
     def function(self, simulation, period):
         '''
         Assiette régime microsocial pour les professions libérales
         '''
-        period = period.this_year
         ebnc_impo_holder = simulation.compute('ebnc_impo', period)
         P = simulation.legislation_at(period.start).impot_revenu.rpns.micro
 
@@ -1312,9 +1342,9 @@ class microsocial(Variable):
     label = u"Assiette régime microsociale totale"
     start_date = date(2009, 1, 1)
     url = "http://fr.wikipedia.org/wiki/R%C3%A9gime_micro-social"
+    definition_period = YEAR
 
     def function(self, simulation, period):
-        period = period.this_year
         assiette_service = simulation.calculate('assiette_service', period)
         assiette_vente = simulation.calculate('assiette_vente', period)
         assiette_proflib = simulation.calculate('assiette_proflib', period)
@@ -1331,9 +1361,9 @@ class microentreprise(Variable):
     entity = FoyerFiscal
     label = u"microentreprise"
     start_date = date(2009, 1, 1)
+    definition_period = YEAR
 
     def function(self, simulation, period):
-        period = period.this_year
         ebnc_impo_holder = simulation.compute('ebnc_impo', period)
         ebic_imps_holder = simulation.compute('ebic_imps', period)
         ebic_impv_holder = simulation.compute('ebic_impv', period)
@@ -1352,6 +1382,7 @@ class plus_values(DatedVariable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"Taxation des plus_values"
+    definition_period = YEAR
 
     @dated_function(start = date(2007, 1, 1), stop = date(2007, 12, 31))
     def function_20070101_20071231(self, simulation, period):  # f3sd is in f3vd holder
@@ -1359,7 +1390,6 @@ class plus_values(DatedVariable):
         Taxation des plus values
         TODO: 2013 f3Vg au barème / tout refaire
         """
-        period = period.this_year
         f3vg = simulation.calculate('f3vg', period)
         f3vh = simulation.calculate('f3vh', period)
         f3vl = simulation.calculate('f3vl', period)
@@ -1396,7 +1426,6 @@ class plus_values(DatedVariable):
         Taxation des plus value
         TODO:  2013 f3Vg au barème / tout refaire
         """
-        period = period.this_year
         f3vg = simulation.calculate('f3vg', period)
         f3vh = simulation.calculate('f3vh', period)
         f3vl = simulation.calculate('f3vl', period)
@@ -1435,7 +1464,6 @@ class plus_values(DatedVariable):
         Taxation des plus value
         TODO: 2013 f3Vg au barème / tout refaire
         """
-        period = period.this_year
         f3vg = simulation.calculate('f3vg', period)
         f3vh = simulation.calculate('f3vh', period)
         f3vl = simulation.calculate('f3vl', period)
@@ -1479,7 +1507,6 @@ class plus_values(DatedVariable):
         Taxation des plus value
         TODO: 2013 f3Vg au barème / tout refaire
         """
-        period = period.this_year
         f3vg = simulation.calculate('f3vg', period)
         f3vh = simulation.calculate('f3vh', period)
         f3vl = simulation.calculate('f3vl', period)
@@ -1526,12 +1553,12 @@ class iai(Variable):
     entity = FoyerFiscal
     label = u"Impôt avant imputations de l'impôt sur le revenu"
     url = "http://forum-juridique.net-iris.fr/finances-fiscalite-assurance/43963-declaration-impots.html"
+    definition_period = YEAR
 
     def function(self, simulation, period):
         '''
         impôt avant imputation de l'irpp
         '''
-        period = period.this_year
         iaidrdi = simulation.calculate('iaidrdi', period)
         plus_values = simulation.calculate('plus_values', period)
         cont_rev_loc = simulation.calculate('cont_rev_loc', period)
@@ -1546,13 +1573,13 @@ class cehr(Variable):
     label = u"Contribution exceptionnelle sur les hauts revenus"
     start_date = date(2011, 1, 1)
     url = "http://www.legifrance.gouv.fr/affichCode.do?cidTexte=LEGITEXT000006069577&idSectionTA=LEGISCTA000025049019"
+    definition_period = YEAR
 
     def function(self, simulation, period):
         '''
         Contribution exceptionnelle sur les hauts revenus
         'foy'
         '''
-        period = period.this_year
         rfr = simulation.calculate('rfr', period)
         nb_adult = simulation.calculate('nb_adult', period)
         bareme = simulation.legislation_at(period.start).impot_revenu.cehr
@@ -1566,12 +1593,12 @@ class irpp(Variable):
     entity = FoyerFiscal
     label = u"Impôt sur le revenu des personnes physiques"
     url = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_impot_revenu&espId=1&impot=IR&sfid=50"
+    definition_period = YEAR
 
     def function(self, simulation, period):
         '''
         Montant après seuil de recouvrement (hors ppe)
         '''
-        period = period.this_year
         iai = simulation.calculate('iai', period)
         credits_impot = simulation.calculate('credits_impot', period)
         cehr = simulation.calculate('cehr', period)
@@ -1590,17 +1617,18 @@ class irpp(Variable):
                 (pre_result < 0) * (-pre_result) + (pre_result >= 0) * 0 * iai)
             ) * ratio
 
+
 class irpp_noncale(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"Impôt sur le revenu des personnes physiques non calé (pour cas-types)"
     url = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_impot_revenu&espId=1&impot=IR&sfid=50"
+    definition_period = YEAR
 
     def function(self, simulation, period):
         '''
         Montant après seuil de recouvrement (hors ppe)
         '''
-        period = period.this_year
         irpp = simulation.calculate('irpp', period)
         # Ratio de calage : la cible est décrite dans Ratio_correction_irpp.xls de Q:\Bas revenus - revenu de base\Documentation . Le numérateur est la masse que l'on calcule sans ce ratio.
         ratio = 84.41/131.71
@@ -1612,9 +1640,9 @@ class foyer_impose(Variable):
     column = BoolCol(default = False)
     entity = FoyerFiscal
     label = u"Le foyer fiscal est imposé"
+    definition_period = YEAR
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'year').period('year')
         irpp = simulation.calculate('irpp', period)
         return (irpp < 0)
 
@@ -1628,9 +1656,9 @@ class pensions_alimentaires_versees(Variable):
     entity = FoyerFiscal
     label = u"Pensions alimentaires versées"
     url = u"http://vosdroits.service-public.fr/particuliers/F2.xhtml"
+    definition_period = YEAR
 
     def function(self, simulation, period):
-        period = period.this_year
         f6gi = simulation.calculate('f6gi', period)
         f6gj = simulation.calculate('f6gj', period)
         f6el = simulation.calculate('f6el', period)
@@ -1645,13 +1673,13 @@ class rfr(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"Revenu fiscal de référence"
+    definition_period = YEAR
 
     def function(self, simulation, period):
         '''
         Revenu fiscal de référence
         f3vg -> rev_cat_pv -> ... -> rni
         '''
-        period = period.this_year
         rni = simulation.calculate('rni', period)
         f3va_holder = simulation.compute('f3va', period)
         f3vi_holder = simulation.compute('f3vi', period)
@@ -1676,12 +1704,12 @@ class glo(Variable):
     entity = Individu
     label = u"Gain de levée d'options"
     url = "http://www.officeo.fr/imposition-au-bareme-progressif-de-l-impot-sur-le-revenu-des-gains-de-levee-d-options-sur-actions-et-attributions-d-actions-gratuites"
+    definition_period = YEAR
 
     def function(self, simulation, period):
         '''
         Gains de levée d'option
         '''
-        period = period.this_year
         f1tv = simulation.calculate('f1tv', period)
         f1tw = simulation.calculate('f1tw', period)
         f1tx = simulation.calculate('f1tx', period)
@@ -1703,9 +1731,9 @@ class rev_cap_bar(Variable):
     label = u"Revenus du capital imposés au barème"
     set_input = set_input_divide_by_period
     url = "http://fr.wikipedia.org/wiki/Revenu#Revenu_du_Capital"
+    definition_period = MONTH
 
     def function(self, simulation, period):
-        period = period.this_month
         year = period.this_year
         f2dc = simulation.calculate('f2dc', year)
         f2gr = simulation.calculate('f2gr', year)
@@ -1740,10 +1768,10 @@ class rev_cap_lib(DatedVariable):
     label = u"Revenu du capital imposé au prélèvement libératoire"
     set_input = set_input_divide_by_period
     url = "http://fr.wikipedia.org/wiki/Revenu#Revenu_du_Capital"
+    definition_period = MONTH
 
     @dated_function(start = date(2002, 1, 1), stop = date(2007, 12, 31))
     def function_20020101_20071231(self, simulation, period):
-        period = period.this_month
         year = period.this_year
         f2dh = simulation.calculate('f2dh', year)
         f2ee = simulation.calculate('f2ee', year)
@@ -1755,7 +1783,6 @@ class rev_cap_lib(DatedVariable):
 
     @dated_function(start = date(2008, 1, 1))
     def function_20080101_20151231(self, simulation, period):
-        period = period.this_month
         year = period.this_year
         f2da = simulation.calculate('f2da', year)
         f2dh = simulation.calculate('f2dh', year)
@@ -1771,12 +1798,12 @@ class avf(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"Avoir fiscal et crédits d'impôt"
+    definition_period = YEAR
 
     def function(self, simulation, period):
         '''
         Avoir fiscal et crédits d'impôt (zavff)
         '''
-        period = period.this_year
         f2ab = simulation.calculate('f2ab', period)
 
         return f2ab
@@ -1787,13 +1814,13 @@ class imp_lib(DatedVariable):
     entity = FoyerFiscal
     label = u"Prelèvement libératoire sur les revenus du capital"
     url = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&paf_dm=popup&paf_gm=content&typePage=cpr02&sfid=501&espId=1&impot=CS"
+    definition_period = YEAR
 
     @dated_function(start = date(2002, 1, 1), stop = date(2007, 12, 31))
     def function_20020101_20071231(self, simulation, period):
         '''
         Prelèvement libératoire sur les revenus du capital
         '''
-        period = period.this_year
         f2dh = simulation.calculate('f2dh', period)
         f2ee = simulation.calculate('f2ee', period)
         _P = simulation.legislation_at(period.start)
@@ -1807,7 +1834,6 @@ class imp_lib(DatedVariable):
         '''
         Prelèvement libératoire sur les revenus du capital
         '''
-        period = period.this_year
         f2da = simulation.calculate('f2da', period)
         f2dh = simulation.calculate('f2dh', period)
         f2ee = simulation.calculate('f2ee', period)
@@ -1825,12 +1851,12 @@ class fon(Variable):
     entity = FoyerFiscal
     label = u"Revenus fonciers"
     url = "http://impotsurlerevenu.org/definitions/220-revenu-foncier.php"
+    definition_period = YEAR
 
     def function(self, simulation, period):
         '''
         Revenus fonciers
         '''
-        period = period.this_year
         f4ba = simulation.calculate('f4ba', period)
         f4bb = simulation.calculate('f4bb', period)
         f4bc = simulation.calculate('f4bc', period)
@@ -1845,6 +1871,7 @@ class rpns_pvce(Variable):
     column = FloatCol
     entity = Individu
     label = u"Plus values de cession - Revenu des professions non salariées"
+    definition_period = YEAR
 
     def function(self, simulation, period):
         '''
@@ -1861,7 +1888,6 @@ class rpns_pvce(Variable):
         mbnc_pvce (f5hr, f5ir, f5jr)
         abnc_pvce (f5qd, f5rd, f5sd)
         '''
-        period = period.this_year
         frag_pvce = simulation.calculate('frag_pvce', period)
         arag_pvce = simulation.calculate('arag_pvce', period)
         mbic_pvce = simulation.calculate('mbic_pvce', period)
@@ -1881,6 +1907,7 @@ class rpns_exon(Variable):
     column = FloatCol
     entity = Individu
     label = u"Plus values de cession exonérées -Revenu des professions non salariées"
+    definition_period = YEAR
 
     def function(self, simulation, period):
         '''
@@ -1900,7 +1927,6 @@ class rpns_exon(Variable):
         nbnc_exon (f5qh, f5rh, f5sh)
         nbnc_pvce (f5qj, f5rj, f5sj)
         '''
-        period = period.this_year
         frag_exon = simulation.calculate('frag_exon', period)
         arag_exon = simulation.calculate('arag_exon', period)
         nrag_exon = simulation.calculate('nrag_exon', period)
@@ -1932,9 +1958,9 @@ class defrag(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"Déficit agricole des années antérieures"
+    definition_period = YEAR
 
     def function(self, simulation, period):
-        period = period.this_year
         f5qf = simulation.calculate('f5qf', period)
         f5qg = simulation.calculate('f5qg', period)
         f5qn = simulation.calculate('f5qn', period)
@@ -1961,9 +1987,9 @@ class defacc(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"Déficit industriels et commerciaux non professionnels des années antérieures"
+    definition_period = YEAR
 
     def function(self, simulation, period):
-        period = period.this_year
         f5rn = simulation.calculate('f5rn', period)
         f5ro = simulation.calculate('f5ro', period)
         f5rp = simulation.calculate('f5rp', period)
@@ -1996,9 +2022,9 @@ class defncn(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"Déficit non commerciaux non professionnels des années antérieures"
+    definition_period = YEAR
 
     def function(self, simulation, period):
-        period = period.this_year
         f5ht = simulation.calculate('f5ht', period)
         f5it = simulation.calculate('f5it', period)
         f5jt = simulation.calculate('f5jt', period)
@@ -2028,9 +2054,9 @@ class defmeu(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"Déficit des locations meublées non professionnelles des années antérieures"
+    definition_period = YEAR
 
     def function(self, simulation, period):
-        period = period.this_year
         f5ga = simulation.calculate('f5ga', period)
         f5gb = simulation.calculate('f5gb', period)
         f5gc = simulation.calculate('f5gc', period)
@@ -2054,6 +2080,7 @@ class rag(Variable):
     entity = Individu
     label = u"Revenus agricoles"
     url = "http://www.impots.gouv.fr/portal/dgi/public/professionnels.impot?espId=2&impot=BA&pageId=prof_ba&sfid=50"
+    definition_period = YEAR
 
     def function(self, simulation, period):
         '''
@@ -2069,7 +2096,6 @@ class rag(Variable):
         nrag_defi (f5hl, f5il, f5jl)
         nrag_ajag (f5hm, f5im, f5jm)
         '''
-        period = period.this_year
         frag_exon = simulation.calculate('frag_exon', period)
         frag_impo = simulation.calculate('frag_impo', period)
         arag_exon = simulation.calculate('arag_exon', period)
@@ -2091,6 +2117,7 @@ class ric(Variable):
     entity = Individu
     label = u"Bénéfices industriels et commerciaux"
     url = "http://www.impots.gouv.fr/portal/dgi/public/professionnels.impot?pageId=prof_bic&espId=2&impot=BIC&sfid=50"
+    definition_period = YEAR
 
     def function(self, simulation, period):
         '''
@@ -2111,7 +2138,6 @@ class ric(Variable):
         nbic_defs (f5km, f5lm, f5mm)
         nbic_apch (f5ks, f5ls, f5ms)
         '''
-        period = period.this_year
         mbic_exon = simulation.calculate('mbic_exon', period)
         mbic_impv = simulation.calculate('mbic_impv', period)
         mbic_imps = simulation.calculate('mbic_imps', period)
@@ -2157,6 +2183,7 @@ class rac(Variable):
     entity = Individu
     label = u"Revenus accessoires individuels"
     url = "http://vosdroits.service-public.fr/particuliers/F1225.xhtml"
+    definition_period = YEAR
 
     def function(self, simulation, period):
         '''
@@ -2179,7 +2206,6 @@ class rac(Variable):
         cncn_defi (f5sp, f5nu, f5ou, f5sr)
         f5sv????
         '''
-        period = period.this_year
         macc_exon = simulation.calculate('macc_exon', period)
         macc_impv = simulation.calculate('macc_impv', period)
         macc_imps = simulation.calculate('macc_imps', period)
@@ -2219,6 +2245,7 @@ class rnc(Variable):
     entity = Individu
     label = u"Revenus non commerciaux individuels"
     url = "http://www.impots.gouv.fr/portal/dgi/public/professionnels.impot?espId=2&pageId=prof_bnc&impot=BNC&sfid=50"
+    definition_period = YEAR
     set_input = set_input_divide_by_period
 
     # Commented out for use with taxipp
@@ -2270,9 +2297,9 @@ class rpns(Variable):
     entity = Individu
     label = u"Revenus individuels des professions non salariées"
     set_input = set_input_divide_by_period
+    definition_period = YEAR
 
     def function(self, simulation, period):
-        period = period.this_year
         rag = simulation.calculate('rag', period)
         ric = simulation.calculate('ric', period)
         rac = simulation.calculate('rac', period)
@@ -2285,6 +2312,7 @@ class rpns_pvct(Variable):
     column = FloatCol
     entity = Individu
     label = u"Plus values de court terme -Revenu des professions non salariées"
+    definition_period = YEAR
 
     def function(self, simulation, period):
         '''
@@ -2296,7 +2324,6 @@ class rpns_pvct(Variable):
         mbnc_pvct (f5hv, f5iv, f5jv)
         mncn_pvct (f5ky, f5ly, f5my)
         '''
-        period = period.this_year
         frag_pvct = simulation.calculate('frag_pvct', period)
         mbic_pvct = simulation.calculate('mbic_pvct', period)
         macc_pvct = simulation.calculate('macc_pvct', period)
@@ -2310,6 +2337,7 @@ class rpns_mvct(Variable):
     column = FloatCol
     entity = Individu
     label = u"Moins values de court terme - Revenu des professions non salariées"
+    definition_period = YEAR
 
     def function(self, simulation, period):
         """Moins values de court terme
@@ -2319,7 +2347,6 @@ class rpns_mvct(Variable):
         mncn_mvct (f5ju)
         mbnc_mvct (f5kz)
         """
-        period = period.this_year
         macc_mvct_holder = simulation.compute('macc_mvct', period)
         mbnc_mvct = simulation.calculate('mbnc_mvct', period)
         mncn_mvct_holder = simulation.compute('mncn_mvct', period)
@@ -2333,6 +2360,7 @@ class rpns_mvlt(Variable):
     column = FloatCol
     entity = Individu
     label = u"Moins values de long terme - Revenu des professions non salariées"
+    definition_period = YEAR
 
     def function(self, simulation, period):
         '''
@@ -2343,7 +2371,6 @@ class rpns_mvlt(Variable):
         mncn_mvlt (f5kw, f5lw, f5mw)
         mbnc_mvlt (f5hs, f5is, f5js)
         '''
-        period = period.this_year
         mbic_mvlt = simulation.calculate('mbic_mvlt', period)
         macc_mvlt = simulation.calculate('macc_mvlt', period)
         mbnc_mvlt = simulation.calculate('mbnc_mvlt', period)
@@ -2358,12 +2385,12 @@ class rpns_individu(Variable):
     entity = Individu
     label = u"Revenus des professions non salariées individuels"
     set_input = set_input_divide_by_period
+    definition_period = YEAR
 
     def function(self, simulation, period):
         '''
         Revenus des professions non salariées individuels
         '''
-        period = period.this_year
         frag_impo = simulation.calculate('frag_impo', period)
         arag_impg = simulation.calculate('arag_impg', period)
         nrag_impg = simulation.calculate('nrag_impg', period)
@@ -2518,6 +2545,7 @@ class abat_spe(Variable):
     entity = FoyerFiscal
     label = u"Abattements spéciaux"
     url = "http://bofip.impots.gouv.fr/bofip/2036-PGP"
+    definition_period = YEAR
 
     def function(foyer_fiscal, period, legislation):
         """
@@ -2538,7 +2566,6 @@ class abat_spe(Variable):
           par deux soit 2 748€. Exemple : 10 990 € pour un jeune ménage et 8 243 €
           pour un célibataire avec un jeune enfant en résidence alternée.
         """
-        period = period.this_year
         caseP = foyer_fiscal('caseP', period)
         caseF = foyer_fiscal('caseF', period)
         rng = foyer_fiscal('rng', period)
@@ -2547,8 +2574,8 @@ class abat_spe(Variable):
         abattements_rni = legislation(period).impot_revenu.abattements_rni
         abattements_personne_agee_ou_invalide = abattements_rni.personne_agee_ou_invalide
 
-        ageV = foyer_fiscal.declarant_principal('age', period)
-        ageC = foyer_fiscal.conjoint('age', period)
+        ageV = foyer_fiscal.declarant_principal('age', period.first_month)
+        ageC = foyer_fiscal.conjoint('age', period.first_month)
 
         invV, invC = caseP, caseF
         nb_elig_as = (1 * (((ageV >= 65) | invV) & (ageV > 0)) +
@@ -2571,9 +2598,9 @@ class taux_effectif(Variable):
     entity = FoyerFiscal
     label = u"taux_effectif"
     start_date = date(2009, 1, 1)
+    definition_period = YEAR
 
     def function(self, simulation, period):
-        period = period.this_year
         rni = simulation.calculate('rni', period)
         nbptr = simulation.calculate('nbptr', period)
         microentreprise = simulation.calculate('microentreprise', period)
@@ -2592,9 +2619,9 @@ class taux_moyen_imposition(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"Taux moyen d'imposition"
+    definition_period = YEAR
 
     def function(self, simulation, period):
-        period = period.start.offset('first-of', 'year').period('year')
         rni = simulation.calculate('rni', period)
         irpp = simulation.calculate('irpp', period)
         return (
@@ -2612,6 +2639,7 @@ class nbptr(Variable):
     entity = FoyerFiscal
     label = u"Nombre de parts"
     url = "http://vosdroits.service-public.fr/particuliers/F2705.xhtml"
+    definition_period = YEAR
 
     def function(self, simulation, period):
         '''
@@ -2632,7 +2660,6 @@ class nbptr(Variable):
         quotient_familial.isol : demi-part parent isolé (T)
         quotient_familial.edcd : enfant issu du mariage avec conjoint décédé;
         '''
-        period = period.this_year
         nb_pac = simulation.calculate('nb_pac', period)
         maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         celibataire_ou_divorce = simulation.calculate('celibataire_ou_divorce', period)
@@ -2653,7 +2680,7 @@ class nbptr(Variable):
         caseF = simulation.calculate('caseF', period)
         caseS = simulation.calculate('caseS', period)
         caseL = simulation.calculate('caseL', period)
-        caseT = simulation.calculate('caseT', period)
+        caseT = simulation.calculate('caseT', period.first_month)
         quotient_familial = simulation.legislation_at(period.start).impot_revenu.quotient_familial
 
         no_pac = nb_pac == 0  # Aucune personne à charge en garde exclusive
@@ -2724,12 +2751,12 @@ class ppe_coef(Variable):
     entity = FoyerFiscal
     label = u"Coefficient de conversion - Prime pour l'emploi"
     stop_date = date(2015, 12, 31)
+    definition_period = YEAR
 
     def function(self, simulation, period):
         '''
         PPE: coefficient de conversion en cas de changement en cours d'année
         '''
-        period = period.this_year
         jour_xyz = simulation.calculate('jour_xyz', period)
 
         nb_jour = (jour_xyz == 0) + jour_xyz
@@ -2741,13 +2768,13 @@ class ppe_elig(Variable):
     entity = FoyerFiscal
     label = u"PPE: eligibilité à la ppe, condition sur le revenu fiscal de référence"
     stop_date = date(2015, 12, 31)
+    definition_period = YEAR
 
     def function(self, simulation, period):
         '''
         PPE: eligibilité à la ppe, condition sur le revenu fiscal de référence
         CF ligne 1: http://bofip.impots.gouv.fr/bofip/3913-PGP.html
         '''
-        period = period.this_year
         rfr = simulation.calculate('rfr', period)
         ppe_coef = simulation.calculate('ppe_coef', period)
         maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
@@ -2766,11 +2793,11 @@ class ppe_rev(Variable):
     entity = Individu
     label = u"Base ressource de la ppe"
     stop_date = date(2015, 12, 31)
+    definition_period = YEAR
 
     def function(self, simulation, period):
-        period = period.this_year
         salaire_imposable = simulation.calculate_add('salaire_imposable', period)
-        hsup = simulation.calculate('hsup', period)
+        hsup = simulation.calculate_add('hsup', period)
         rpns = simulation.calculate('rpns', period)
         ppe = simulation.legislation_at(period.start).impot_revenu.credits_impot.ppe
 
@@ -2787,10 +2814,10 @@ class ppe_coef_tp(Variable):
     entity = Individu
     label = u"PPE: coefficient de conversion temps partiel"
     stop_date = date(2015, 12, 31)
+    definition_period = YEAR
 
     def function(self, simulation, period):
-        period = period.this_year
-        ppe_du_sa = simulation.calculate('ppe_du_sa', period)
+        ppe_du_sa = simulation.calculate_add('ppe_du_sa', period)
         ppe_du_ns = simulation.calculate('ppe_du_ns', period)
         ppe_tp_sa = simulation.calculate('ppe_tp_sa', period)
         ppe_tp_ns = simulation.calculate('ppe_tp_ns', period)
@@ -2807,9 +2834,9 @@ class ppe_base(Variable):
     entity = Individu
     label = u"Montant de base de la PPE"
     stop_date = date(2015, 12, 31)
+    definition_period = YEAR
 
     def function(self, simulation, period):
-        period = period.this_year
         ppe_rev = simulation.calculate('ppe_rev', period)
         ppe_coef_tp = simulation.calculate('ppe_coef_tp', period)
         ppe_coef_holder = simulation.compute('ppe_coef', period)
@@ -2824,13 +2851,13 @@ class ppe_elig_individu(Variable):
     entity = Individu
     label = u"Eligibilité individuelle à la ppe"
     stop_date = date(2015, 12, 31)
+    definition_period = YEAR
 
     def function(self, simulation, period):
         '''
         Eligibilité individuelle à la ppe
         Attention : condition de plafonnement introduite dans ppe brute
         '''
-        period = period.this_year
         ppe_rev = simulation.calculate('ppe_rev', period)
         ppe_coef_tp = simulation.calculate('ppe_coef_tp', period)
         ppe = simulation.legislation_at(period.start).impot_revenu.credits_impot.ppe
@@ -2843,13 +2870,13 @@ class ppe_brute(Variable):
     entity = FoyerFiscal
     label = u"Prime pour l'emploi brute"
     stop_date = date(2015, 12, 31)
+    definition_period = YEAR
 
     def function(self, simulation, period):
         '''
         Prime pour l'emploi (avant éventuel dispositif de cumul avec le RSA)
         Cf. http://travail-emploi.gouv.fr/informations-pratiques,89/fiches-pratiques,91/remuneration,113/la-prime-pour-l-emploi-ppe,1034.html
         '''
-        period = period.this_year
         ppe_elig = simulation.calculate('ppe_elig', period)
         ppe_elig_i_holder = simulation.compute('ppe_elig_individu', period)
         ppe_rev_holder = simulation.compute('ppe_rev', period)
@@ -2860,7 +2887,7 @@ class ppe_brute(Variable):
         maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         celibataire_ou_divorce = simulation.calculate('celibataire_ou_divorce', period)
         veuf = simulation.calculate('veuf', period)
-        caseT = simulation.calculate('caseT', period)
+        caseT = simulation.calculate('caseT', period.first_month)
         caseL = simulation.calculate('caseL', period)
         nbH = simulation.calculate('nbH', period)
         ppe = simulation.legislation_at(period.start).impot_revenu.credits_impot.ppe
@@ -2953,12 +2980,12 @@ class ppe(Variable):
     label = u"Prime pour l'emploi"
     stop_date = date(2015, 12, 31)
     url = "http://vosdroits.service-public.fr/particuliers/F2882.xhtml"
+    definition_period = YEAR
 
     def function(self, simulation, period):
         """
         PPE effectivement versée
         """
-        period = period.this_year
         ppe_brute = simulation.calculate('ppe_brute', period)
         rsa_act_i_holder = simulation.compute_add('rsa_activite_individu', period)
 
