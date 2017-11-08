@@ -897,7 +897,7 @@ class salaire_net_a_payer(Variable):
         '''
         salaire_net = simulation.calculate_add('salaire_net', period)
         depense_cantine_titre_restaurant_employe = simulation.calculate(
-            'depense_cantine_titre_restaurant_employe')
+            'depense_cantine_titre_restaurant_employe', period)
         indemnites_forfaitaires = simulation.calculate('indemnites_forfaitaires', period)
         remuneration_apprenti = simulation.calculate_add('remuneration_apprenti', period)
         stage_gratification = simulation.calculate('stage_gratification', period)

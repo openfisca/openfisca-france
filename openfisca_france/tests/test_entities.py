@@ -74,9 +74,12 @@ AGES = [40, 37, 7, 9, 54, 20]
 for (individu, age) in zip(TEST_CASE_AGES['individus'], AGES):
         individu['age'] = age
 
+reference_period = 2013
+
+
 def new_simulation(test_case):
     return tax_benefit_system.new_scenario().init_from_test_case(
-        period = 2013,
+        period = reference_period,
         test_case = test_case
     ).new_simulation()
 
@@ -94,7 +97,7 @@ def test_transpose():
     simulation = new_simulation(test_case)
     foyer_fiscal = simulation.foyer_fiscal
 
-    af_foyer_fiscal = foyer_fiscal.first_person.famille('af', options = [ADD])
+    af_foyer_fiscal = foyer_fiscal.first_person.famille('af', period = reference_period, options = [ADD])
 
     assert_near(af_foyer_fiscal, [20000, 10000, 10000])
 
@@ -106,7 +109,7 @@ def test_transpose_string():
     simulation = new_simulation(test_case)
     famille = simulation.famille
 
-    depcom_famille = famille.first_person.menage('depcom')
+    depcom_famille = famille.first_person.menage('depcom', period = reference_period)
 
     assert((depcom_famille == ["93400", "89300"]).all())
 

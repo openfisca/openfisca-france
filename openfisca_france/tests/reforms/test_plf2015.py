@@ -38,10 +38,10 @@ def test(year = 2013):
     reform_simulation = scenario.new_simulation()
     error_margin = 1
 
-    impots_directs = reference_simulation.calculate('impots_directs')
-    reform_impots_directs = reform_simulation.calculate('impots_directs')
-    ir_plaf_qf = reference_simulation.calculate('ir_plaf_qf')
-    reform_ir_plaf_qf = reform_simulation.calculate('ir_plaf_qf')
+    impots_directs = reference_simulation.calculate('impots_directs', period = year)
+    reform_impots_directs = reform_simulation.calculate('impots_directs', period = year)
+    ir_plaf_qf = reference_simulation.calculate('ir_plaf_qf', period = year)
+    reform_ir_plaf_qf = reform_simulation.calculate('ir_plaf_qf', period = year)
     assert_less(max(abs([0, 918] - ir_plaf_qf)), error_margin)
     assert_less(max(abs([0, 911.4] - reform_ir_plaf_qf)), error_margin)
     assert_less(max(abs([0, -869] - impots_directs)), error_margin)

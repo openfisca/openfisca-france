@@ -37,7 +37,7 @@ def test_charge_loyer():
     reform_simulation = scenario.new_simulation()
     absolute_error_margin = 0.01
 
-    reform_charge_loyer = reform_simulation.calculate('charge_loyer')
+    reform_charge_loyer = reform_simulation.calculate('charge_loyer', period = year)
     assert_near(reform_charge_loyer, [1000] * 10, absolute_error_margin = absolute_error_margin)
 
 

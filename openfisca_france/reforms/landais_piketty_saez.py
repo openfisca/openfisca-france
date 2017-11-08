@@ -43,9 +43,9 @@ class impot_revenu_lps(Variable):
     def function(self, simulation, period):
         janvier = period.first_month
 
-        nbF_holder = simulation.compute('nbF')
+        nbF_holder = simulation.compute('nbF', period)
         nbF = self.cast_from_entity_to_role(nbF_holder, role = QUIFOY['vous'])
-        nbH_holder = simulation.compute('nbH')
+        nbH_holder = simulation.compute('nbH', period)
         nbH = self.cast_from_entity_to_role(nbH_holder, role = QUIFOY['vous'])
         nbEnf = (nbF + nbH / 2)
         lps = simulation.legislation_at(period.start).landais_piketty_saez
@@ -56,7 +56,7 @@ class impot_revenu_lps(Variable):
         couple = (statut_marital == 1) | (statut_marital == 5)
         ac = couple * lps.abatt_conj
         rc = couple * lps.reduc_conj
-        assiette_csg = simulation.calculate('assiette_csg')
+        assiette_csg = simulation.calculate('assiette_csg', period)
         return -max_(0, lps.bareme.calc(max_(assiette_csg - ae - ac, 0)) - re - rc) + ce
 
 
@@ -68,16 +68,16 @@ class revenu_disponible(Variable):
     definition_period = YEAR
 
     def function(self, simulation, period):
-        impot_revenu_lps_holder = simulation.compute('impot_revenu_lps')
+        impot_revenu_lps_holder = simulation.compute('impot_revenu_lps', period)
         impot_revenu_lps = self.sum_by_entity(impot_revenu_lps_holder)
-        pen_holder = simulation.compute('pensions')
+        pen_holder = simulation.compute('pensions', period)
         pen = self.sum_by_entity(pen_holder)
-        prestations_sociales_holder = simulation.compute('prestations_sociales')
+        prestations_sociales_holder = simulation.compute('prestations_sociales', period)
         prestations_sociales = self.cast_from_entity_to_role(prestations_sociales_holder, role = QUIFAM['chef'])
         prestations_sociales = self.sum_by_entity(prestations_sociales)
-        revenus_du_capital_holder = simulation.compute('revenus_du_capital')
+        revenus_du_capital_holder = simulation.compute('revenus_du_capital', period)
         revenus_du_capital = self.sum_by_entity(revenus_du_capital_holder)
-        revenus_du_travail_holder = simulation.compute('revenus_du_travail')
+        revenus_du_travail_holder = simulation.compute('revenus_du_travail', period)
         revenus_du_travail = self.sum_by_entity(revenus_du_travail_holder)
         return revenus_du_travail + pen + revenus_du_capital + impot_revenu_lps + prestations_sociales
 

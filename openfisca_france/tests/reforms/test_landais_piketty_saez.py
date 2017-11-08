@@ -35,8 +35,8 @@ def test():
 #
 
     reform_simulation = scenario.new_simulation()
-    reform_assiette_csg = reform_simulation.calculate('assiette_csg')
-    reform_impot_revenu_lps = reform_simulation.calculate('impot_revenu_lps')
+    reform_assiette_csg = reform_simulation.calculate('assiette_csg', period = year)
+    reform_impot_revenu_lps = reform_simulation.calculate('impot_revenu_lps', period = year)
     assert_near(
         -reform_impot_revenu_lps,
         ((reform_assiette_csg - 10000) * .25 / 30000 + .25) * reform_assiette_csg,
