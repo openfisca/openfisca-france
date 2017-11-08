@@ -194,7 +194,7 @@ def counterfactual_2014_modify_legislation_json(reference_legislation_json_copy)
     # TODO: inflater les paramètres de la décote le barème de l'IR
     inflator = 1 + .001 + .005
     reform_year = 2015
-    reform_period = periods.period('year', reform_year)
+    reform_period = periods.period(reform_year)
     # reference_legislation_json_copy = reforms.update_legislation(
     #     legislation_json = reference_legislation_json_copy,
     #     path = ('children', 'ir', 'children', 'reductions_impots', 'children', 'reduction_impot_exceptionnelle',

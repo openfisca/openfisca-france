@@ -7,7 +7,7 @@ from setuptools import setup, find_packages
 
 setup(
     name = 'OpenFisca-France',
-    version = '14.2.0',
+    version = '16.0.0',
     author = 'OpenFisca Team',
     author_email = 'contact@openfisca.fr',
     classifiers = [
@@ -24,7 +24,7 @@ setup(
 
     data_files = [
         ('share/locale/fr/LC_MESSAGES', ['openfisca_france/i18n/fr/LC_MESSAGES/openfisca-france.mo']),
-        ('share/openfisca/openfisca-france', ['CHANGELOG.md', 'LICENSE', 'README.md']),
+        ('share/openfisca/openfisca-france', ['CHANGELOG.md', 'LICENSE.AGPL.txt', 'README.md']),
         ],
     extras_require = {
         'inversion_revenus': [
@@ -38,6 +38,7 @@ setup(
             ],
         'test': [
             'nose',
+            'flake8',
             ],
         },
     include_package_data = True,  # Will read MANIFEST.in
@@ -45,7 +46,7 @@ setup(
         'Babel >= 0.9.4',
         'Biryani[datetimeconv] >= 0.10.4',
         'numpy >= 1.11',
-        'OpenFisca-Core >= 6.1.0, < 8.0',
+        'OpenFisca-Core >= 6.1.0, < 10.0',
         'PyYAML >= 3.10',
         'requests >= 2.8',
         ],
