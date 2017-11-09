@@ -16,7 +16,10 @@ def modify_legislation_json(reference_legislation_json_copy):
                 "@type": "Parameter",
                 "description": "Indicatrice d'imposition",
                 "format": "boolean",
-                "values": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': True}],
+                "values": [
+                    {'start': u'2015-01-01', },
+                    {'start': u'2000-01-01', 'value': True}
+                    ],
                 },
             },
         }

@@ -1,5 +1,17 @@
 ﻿# Changelog
 
+## 18.2.0 - [#731](https://github.com/openfisca/openfisca-france/pull/731)
+* Amélioration technique
+* Détails :
+  - Adapte `france` à  la version `12.0.0` de `core`.
+  - Enlève les attributs `fuzzy` des paramètres, qui devient le comportement par défaut. Enlève les attributs `fin`.
+
+## 18.1.0 - [#739](https://github.com/openfisca/openfisca-france/pull/739)
+
+* Changement mineur
+* Détails:
+  - Rends OpenFisca-France compatible avec la version `11.0` d'OpenFisca-Core
+
 ## 18.0.0 - [#718](https://github.com/openfisca/openfisca-france/pull/718)
 
 * Évolution du système socio-fiscal

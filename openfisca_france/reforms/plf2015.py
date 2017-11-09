@@ -18,14 +18,20 @@ def modify_legislation_json(reference_legislation_json_copy):
                 "description": u"Seuil de la décote pour un célibataire",
                 "format": "integer",
                 "unit": "currency",
-                "values": [{'start': u'2013-01-01', 'stop': u'2013-12-31', 'value': 1135}],
+                "values": [
+                    {'start': u'2014-01-01', },
+                    {'start': u'2013-01-01', 'value': 1135},
+                    ],
                 },
             "seuil_couple": {
                 "@type": "Parameter",
                 "description": u"Seuil de la décote pour un couple",
                 "format": "integer",
                 "unit": "currency",
-                "values": [{'start': u'2013-01-01', 'stop': u'2013-12-31', 'value': 1870}],
+                "values": [
+                    {'start': u'2014-01-01', },
+                    {'start': u'2013-01-01', 'value': 1870},
+                    ],
                 },
             },
         }

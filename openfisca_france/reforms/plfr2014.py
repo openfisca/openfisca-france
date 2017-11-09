@@ -96,7 +96,10 @@ def modify_legislation_json(reference_legislation_json_copy):
                         "description": "Montant plafond par part pour les deux premières parts",
                         "format": "integer",
                         "unit": "currency",
-                        "values": [{'start': u'2013-01-01', 'stop': u'2014-12-31', 'value': 350}],
+                        "values": [
+                            {'start': u'2015-01-01', },
+                            {'start': u'2013-01-01', 'value': 350},
+                            ],
                         },
                     "seuil": {
                         "@type": "Parameter",
@@ -104,14 +107,20 @@ def modify_legislation_json(reference_legislation_json_copy):
                                        "premières parts",
                         "format": "integer",
                         "unit": "currency",
-                        "values": [{'start': u'2013-01-01', 'stop': u'2014-12-31', 'value': 13795}],
+                        "values": [
+                            {'start': u'2015-01-01', },
+                            {'start': u'2013-01-01', 'value': 13795},
+                            ],
                         },
                     "majoration_seuil": {
                         "@type": "Parameter",
                         "description": "Majoration du seuil par demi-part supplémentaire",
                         "format": "integer",
                         "unit": "currency",
-                        "values": [{'start': u'2013-01-01', 'stop': u'2014-12-31', 'value': 3536}],
+                        "values": [
+                            {'start': u'2015-01-01', },
+                            {'start': u'2013-01-01', 'value': 3536},
+                            ],
                         },
                     },
                 },
@@ -133,13 +142,19 @@ def modify_legislation_json(reference_legislation_json_copy):
                                 "@type": "Parameter",
                                 "description": "Taux",
                                 "format": "rate",
-                                "values": [{'start': u'2014-01-01', 'stop': u'2014-12-31', 'value': 0.03}],
+                                "values": [
+                                    {'start': u'2015-01-01', },
+                                    {'start': u'2014-01-01', 'value': 0.03},
+                                    ],
                                 },
                             "seuil": {
                                 "@type": "Parameter",
                                 "description": "Seuil (en SMIC)",
                                 "format": "rate",
-                                "values": [{'start': u'2014-01-01', 'stop': u'2014-12-31', 'value': 1.3}],
+                                "values": [
+                                    {'start': u'2015-01-01', },
+                                    {'start': u'2014-01-01', 'value': 1.3},
+                                    ],
                                 },
                             },
                         },
@@ -151,133 +166,199 @@ def modify_legislation_json(reference_legislation_json_copy):
                                 "@type": "Parameter",
                                 "description": "Taux",
                                 "format": "rate",
-                                "values": [{'start': u'2014-01-01', 'stop': u'2014-12-31', 'value': 0.02}],
+                                "values": [
+                                    {'start': u'2015-01-01', },
+                                    {'start': u'2014-01-01', 'value': 0.02},
+                                    ],
                                 },
                             "seuil_1": {
                                 "@type": "Parameter",
                                 "description": "Indice majoré plafond",
                                 "format": "integer",
-                                "values": [{'start': u'2014-01-01', 'stop': u'2014-12-31', 'value': 312}],
+                                "values": [
+                                    {'start': u'2015-01-01', },
+                                    {'start': u'2014-01-01', 'value': 312},
+                                    ],
                                 },
                             "taux_2": {
                                 "@type": "Parameter",
                                 "description": "Taux",
                                 "format": "rate",
-                                "values": [{'start': u'2014-01-01', 'stop': u'2014-12-31', 'value': 0.018}],
+                                "values": [
+                                    {'start': u'2015-01-01', },
+                                    {'start': u'2014-01-01', 'value': 0.018},
+                                    ],
                                 },
                             "seuil_2": {
                                 "@type": "Parameter",
                                 "description": "Indice majoré plafond",
                                 "format": "integer",
-                                "values": [{'start': u'2014-01-01', 'stop': u'2014-12-31', 'value': 328}],
+                                "values": [
+                                    {'start': u'2015-01-01', },
+                                    {'start': u'2014-01-01', 'value': 328},
+                                    ],
                                 },
                             "taux_3": {
                                 "@type": "Parameter",
                                 "description": "Taux",
                                 "format": "rate",
-                                "values": [{'start': u'2014-01-01', 'stop': u'2014-12-31', 'value': 0.016}],
+                                "values": [
+                                    {'start': u'2015-01-01', },
+                                    {'start': u'2014-01-01', 'value': 0.016},
+                                    ],
                                 },
                             "seuil_3": {
                                 "@type": "Parameter",
                                 "description": "Indice majoré plafond",
                                 "format": "integer",
-                                "values": [{'start': u'2014-01-01', 'stop': u'2014-12-31', 'value': 343}],
+                                "values": [
+                                    {'start': u'2015-01-01', },
+                                    {'start': u'2014-01-01', 'value': 343},
+                                    ],
                                 },
                             "taux_4": {
                                 "@type": "Parameter",
                                 "description": "Taux",
                                 "format": "rate",
-                                "values": [{'start': u'2014-01-01', 'stop': u'2014-12-31', 'value': 0.014}],
+                                "values": [
+                                    {'start': u'2015-01-01', },
+                                    {'start': u'2014-01-01', 'value': 0.014},
+                                    ],
                                 },
                             "seuil_4": {
                                 "@type": "Parameter",
                                 "description": "Indice majoré plafond",
                                 "format": "integer",
-                                "values": [{'start': u'2014-01-01', 'stop': u'2014-12-31', 'value': 359}],
+                                "values": [
+                                    {'start': u'2015-01-01', },
+                                    {'start': u'2014-01-01', 'value': 359},
+                                    ],
                                 },
                             "taux_5": {
                                 "@type": "Parameter",
                                 "description": "Taux",
                                 "format": "rate",
-                                "values": [{'start': u'2014-01-01', 'stop': u'2014-12-31', 'value': 0.012}],
+                                "values": [
+                                    {'start': u'2015-01-01', },
+                                    {'start': u'2014-01-01', 'value': 0.012},
+                                    ],
                                 },
                             "seuil_5": {
                                 "@type": "Parameter",
                                 "description": "Indice majoré plafond",
                                 "format": "integer",
-                                "values": [{'start': u'2014-01-01', 'stop': u'2014-12-31', 'value': 375}],
+                                "values": [
+                                    {'start': u'2015-01-01', },
+                                    {'start': u'2014-01-01', 'value': 375},
+                                    ],
                                 },
                             "taux_6": {
                                 "@type": "Parameter",
                                 "description": "Taux",
                                 "format": "rate",
-                                "values": [{'start': u'2014-01-01', 'stop': u'2014-12-31', 'value': 0.01}],
+                                "values": [
+                                    {'start': u'2015-01-01', },
+                                    {'start': u'2014-01-01', 'value': 0.01},
+                                    ],
                                 },
                             "seuil_6": {
                                 "@type": "Parameter",
                                 "description": "Indice majoré plafond",
                                 "format": "integer",
-                                "values": [{'start': u'2014-01-01', 'stop': u'2014-12-31', 'value': 390}],
+                                "values": [
+                                    {'start': u'2015-01-01', },
+                                    {'start': u'2014-01-01', 'value': 390},
+                                    ],
                                 },
                             "taux_7": {
                                 "@type": "Parameter",
                                 "description": "Taux",
                                 "format": "rate",
-                                "values": [{'start': u'2014-01-01', 'stop': u'2014-12-31', 'value': 0.008}],
+                                "values": [
+                                    {'start': u'2015-01-01', },
+                                    {'start': u'2014-01-01', 'value': 0.008},
+                                    ],
                                 },
                             "seuil_7": {
                                 "@type": "Parameter",
                                 "description": "Indice majoré plafond",
                                 "format": "integer",
-                                "values": [{'start': u'2014-01-01', 'stop': u'2014-12-31', 'value': 406}],
+                                "values": [
+                                    {'start': u'2015-01-01', },
+                                    {'start': u'2014-01-01', 'value': 406},
+                                    ],
                                 },
                             "taux_8": {
                                 "@type": "Parameter",
                                 "description": "Taux",
                                 "format": "rate",
-                                "values": [{'start': u'2014-01-01', 'stop': u'2014-12-31', 'value': 0.007}],
+                                "values": [
+                                    {'start': u'2015-01-01', },
+                                    {'start': u'2014-01-01', 'value': 0.007},
+                                    ],
                                 },
                             "seuil_8": {
                                 "@type": "Parameter",
                                 "description": "Indice majoré plafond",
                                 "format": "integer",
-                                "values": [{'start': u'2014-01-01', 'stop': u'2014-12-31', 'value': 421}],
+                                "values": [
+                                    {'start': u'2015-01-01', },
+                                    {'start': u'2014-01-01', 'value': 421},
+                                    ],
                                 },
                             "taux_9": {
                                 "@type": "Parameter",
                                 "description": "Taux",
                                 "format": "rate",
-                                "values": [{'start': u'2014-01-01', 'stop': u'2014-12-31', 'value': 0.006}],
+                                "values": [
+                                    {'start': u'2015-01-01', },
+                                    {'start': u'2014-01-01', 'value': 0.006},
+                                    ],
                                 },
                             "seuil_9": {
                                 "@type": "Parameter",
                                 "description": "Indice majoré plafond",
                                 "format": "integer",
-                                "values": [{'start': u'2014-01-01', 'stop': u'2014-12-31', 'value': 437}],
+                                "values": [
+                                    {'start': u'2015-01-01', },
+                                    {'start': u'2014-01-01', 'value': 437},
+                                    ],
                                 },
                             "taux_10": {
                                 "@type": "Parameter",
                                 "description": "Taux",
                                 "format": "rate",
-                                "values": [{'start': u'2014-01-01', 'stop': u'2014-12-31', 'value': 0.005}],
+                                "values": [
+                                    {'start': u'2015-01-01', },
+                                    {'start': u'2014-01-01', 'value': 0.005},
+                                    ],
                                 },
                             "seuil_10": {
                                 "@type": "Parameter",
                                 "description": "Indice majoré plafond",
                                 "format": "integer",
-                                "values": [{'start': u'2014-01-01', 'stop': u'2014-12-31', 'value': 453}],
+                                "values": [
+                                    {'start': u'2015-01-01', },
+                                    {'start': u'2014-01-01', 'value': 453},
+                                    ],
                                 },
                             "taux_11": {
                                 "@type": "Parameter",
                                 "description": "Taux",
                                 "format": "rate",
-                                "values": [{'start': u'2014-01-01', 'stop': u'2014-12-31', 'value': 0.002}],
+                                "values": [
+                                    {'start': u'2015-01-01', },
+                                    {'start': u'2014-01-01', 'value': 0.002},
+                                    ],
                                 },
                             "seuil_11": {
                                 "@type": "Parameter",
                                 "description": "Indice majoré plafond",
                                 "format": "integer",
-                                "values": [{'start': u'2014-01-01', 'stop': u'2014-12-31', 'value': 468}],
+                                "values": [
+                                    {'start': u'2015-01-01', },
+                                    {'start': u'2014-01-01', 'value': 468},
+                                    ],
                                 },
                             },
                         },
