@@ -181,11 +181,11 @@ class aide_logement_abattement_depart_retraite(Variable):
     # Article R532-5 du Code de la sécurité sociale
     url = u"https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000006750910&cidTexte=LEGITEXT000006073189&dateTexte=20151231"
 
-    def formula(self, simulation, period):
-        retraite = simulation.calculate('activite', period) == 3
-        activite_n_2 = simulation.calculate_add('salaire_imposable', period.n_2)
-        retraite_n_2 = simulation.calculate_add('retraite_imposable', period.n_2)
-        taux_frais_pro = simulation.legislation_at(period.start).impot_revenu.tspr.abatpro.taux
+    def formula(individu, period, legislation):
+        retraite = individu('activite', period) == 3
+        retraite_n_2 = individu('retraite_imposable', period.n_2, options = [ADD])
+        condition_abattement = (retraite_n_2 == 0) * retraite
+        revenus_activite_pro = individu('revenu_assimile_salaire_apres_abattements', period.n_2)
 
         abattement = condition_abattement * 0.3 * revenus_activite_pro
 
