@@ -4,6 +4,7 @@ from __future__ import division
 
 
 import datetime
+import os
 import numpy as np
 
 #%%
@@ -14,14 +15,16 @@ from numpy import maximum as max_, minimum as min_, where
 
 
 from openfisca_core import periods
+from openfisca_core.parameters import load_parameter_file
 from openfisca_core.columns import FloatCol
-from openfisca_core.reforms import Reform, update_legislation
-from openfisca_france.model.base import Famille, Variable
-from openfisca_france.tests.base import tax_benefit_system
+from openfisca_core.reforms import Reform
+from openfisca_france.model.base import *
+from ..cache import tax_benefit_system
 
 
 log = logging.getLogger(__name__)
 
+parameter_file = os.path.join(os.path.dirname(__file__), 'assets', 'prestation_unifiee.yaml')
 
 def create_fusion_rsa_apl_progressive(socle = 600):
 
@@ -34,23 +37,24 @@ def create_fusion_rsa_apl_progressive(socle = 600):
                 column = FloatCol
                 label = u"Prestation unifiée"
                 entity = Famille
+                definition_period = MONTH
 
-                def formula(famille, period, legislation):
+                def formula(famille, period, parameters):
                     rsa_eligibilite = famille('rsa_eligibilite', period)
                     rsa_socle_non_majore = famille('rsa_socle', period)
                     rsa_socle_majore = famille('rsa_socle_majore', period)
                     rsa_socle = max_(rsa_socle_non_majore, rsa_socle_majore)
                     rsa_revenu_activite = famille('rsa_revenu_activite', period)
                     rsa_base_ressources = famille('rsa_base_ressources', period)
-                    legislation_rsa = legislation(period).prestations.minima_sociaux.rsa
-                    legislation_prestation_unifiee = legislation(period).prestation_unifiee
+                    parameters_rsa = parameters(period).prestations.minima_sociaux.rsa
+                    parameters_prestation_unifiee = parameters(period).prestation_unifiee
                     # loyer_imputes = famille('loyer_imputes')
                     zone_apl = famille.demandeur.menage('zone_apl', period)
-                    seuil_non_versement = legislation_rsa.rsa_nv
-                    premiere_pente = legislation_prestation_unifiee.pente
-                    montant_de_base = legislation_rsa.montant_de_base_du_rsa
-                    revenu_inflexion = legislation_prestation_unifiee.revenu_inflexion * (rsa_socle / montant_de_base)
-                    revenu_sortie = legislation_prestation_unifiee.revenu_sortie * (rsa_socle / montant_de_base)
+                    seuil_non_versement = parameters_rsa.rsa_nv
+                    premiere_pente = parameters_prestation_unifiee.pente
+                    montant_de_base = parameters_rsa.montant_de_base_du_rsa
+                    revenu_inflexion = parameters_prestation_unifiee.revenu_inflexion * (rsa_socle / montant_de_base)
+                    revenu_sortie = parameters_prestation_unifiee.revenu_sortie * (rsa_socle / montant_de_base)
                     seconde_pente = where(
                         rsa_eligibilite,
                         (
@@ -60,8 +64,8 @@ def create_fusion_rsa_apl_progressive(socle = 600):
                         0,
                         )  # deals with denominator being zero and producing nans !
                     majoration_zone_apl = (
-                        (zone_apl == 1) * legislation_prestation_unifiee.majoration_zone_1 +
-                        (zone_apl == 2) * legislation_prestation_unifiee.majoration_zone_2
+                        (zone_apl == 1) * parameters_prestation_unifiee.majoration_zone_1 +
+                        (zone_apl == 2) * parameters_prestation_unifiee.majoration_zone_2
                         ) * (rsa_socle / montant_de_base)
 
                     montant = rsa_eligibilite * (
@@ -93,9 +97,9 @@ def create_fusion_rsa_apl_progressive(socle = 600):
                 entity = Famille
                 label = u"Minima sociaux"
                 reference = "http://fr.wikipedia.org/wiki/Minima_sociaux"
+                definition_period = YEAR
 
                 def formula(self, simulation, period):
-                    period = period.this_year
                     aah_holder = simulation.compute_add('aah', period)
                     caah_holder = simulation.compute_add('caah', period)
                     aefa = simulation.calculate('aefa', period)
@@ -111,63 +115,15 @@ def create_fusion_rsa_apl_progressive(socle = 600):
 
                     return aah + caah + minimum_vieillesse + rsa + aefa + api + ass + psa + ppa + prestation_unifiee
 
-            def reform_modify_legislation_json(reference_legislation_json_copy):
-                period = periods.period('year', 2012)
-                reference_legislation_json_copy = update_legislation(
-                    legislation_json = reference_legislation_json_copy,
-                    path = [
-                        'children', 'prestations',
-                        'children', 'minima_sociaux',
-                        'children', 'rsa',
-                        'children', 'montant_de_base_du_rsa',
-                        'values'
-                        ],
-                    period = period,
-                    # start = period.start,
-                    value = socle,
-                    )
-                reform_legislation_subtree = {
-                    "@type": "Node",
-                    "description": u"Prestation unifiée",
-                    "children": {
-                        "majoration_zone_1": {
-                            "@type": "Parameter",
-                            "description": "Majoration zone 1",
-                            "format": "integer",
-                            "unit": "currency",
-                            "values": [{'start': u'2010-01-01', 'value': 53}],
-                            },
-                        "majoration_zone_2": {
-                            "@type": "Parameter",
-                            "description": "Majoration zone 2",
-                            "format": "integer",
-                            "unit": "currency",
-                            "values": [{'start': u'2010-01-01', 'value': 16}],
-                            },
-                        "pente": {
-                            "@type": "Parameter",
-                            "description": "Pente",
-                            "format": "float",
-                            "values": [{'start': u'2010-01-01', 'value': .62}],
-                            },
-                        "revenu_inflexion": {
-                            "@type": "Parameter",
-                            "description": "Revenu d'inflexion de la pente",
-                            "format": "float",
-                            "unit": "currency",
-                            "values": [{'start': u'2010-01-01', 'value': 1150}],
-                            },
-                        "revenu_sortie": {
-                            "@type": "Parameter",
-                            "description": "Revenu de sortie de la prestation",
-                            "format": "float",
-                            "unit": "currency",
-                            "values": [{'start': u'2010-01-01', 'value': 1500}],
-                            },
-                        },
-                    }
-                reference_legislation_json_copy['children']['prestation_unifiee'] = reform_legislation_subtree
-                return reference_legislation_json_copy
+            def reform_modify_parameters(reference_parameters_copy):
+                period = periods.period(2012)
+                reference_parameters_copy.prestations.minima_sociaux.rsa.montant_de_base_du_rsa.update(
+                    period = period, value = socle)
+
+                parameters_subtree = load_parameter_file(name = 'prestation_unifiee', file_path = parameter_file)
+                reference_parameters_copy.add_child('prestation_unifiee', parameters_subtree)
+
+                return reference_parameters_copy
 
             neutralized_variables = [
                 'apl',
@@ -179,16 +135,16 @@ def create_fusion_rsa_apl_progressive(socle = 600):
                 'rsa',
                 ]
             for neutralized_variable in neutralized_variables:
-                self.neutralize_column(neutralized_variable)
+                self.neutralize_variable(neutralized_variable)
 
             self.add_variable(prestation_unifiee)
             self.update_variable(minima_sociaux)
-            self.modify_legislation_json(modifier_function = reform_modify_legislation_json)
+            self.modify_parameters(modifier_function = reform_modify_parameters)
 
     return fusion_rsa_apl_progressive
 
 
-if __name__ == '__main__':
+def test():
     import logging
     import sys
     logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
@@ -204,7 +160,7 @@ if __name__ == '__main__':
                 name = 'salaire_de_base',
                 ),
             ],
-        period = periods.period('year', year),
+        period = periods.period(year),
         parent1 = dict(date_naissance = datetime.date(year - 40, 1, 1)),
         parent2 = dict(date_naissance = datetime.date(year - 40, 1, 1)),
         enfants = [
