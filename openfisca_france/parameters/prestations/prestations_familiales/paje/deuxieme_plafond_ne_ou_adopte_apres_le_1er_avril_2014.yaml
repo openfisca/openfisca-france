@@ -1,0 +1,22 @@
+reference: ipp
+deux_enfants:
+  reference: ipp
+  values:
+    2015-01-01:
+      value: 51836.0
+    2016-01-01:
+      value: 52044.0
+majoration_pour_un_enfant_supplementaire:
+  reference: ipp
+  values:
+    2015-01-01:
+      value: 6443.0
+    2016-01-01:
+      value: 6469.0
+un_enfant:
+  reference: ipp
+  values:
+    2015-01-01:
+      value: 45393.0
+    2016-01-01:
+      value: 45575.0

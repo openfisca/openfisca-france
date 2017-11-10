@@ -1,0 +1,16 @@
+reference: ipp
+deux_enfants:
+  reference: ipp
+  values:
+    2004-01-01:
+      value: 4.0
+trois_enfants_ou_plus:
+  reference: ipp
+  values:
+    2004-01-01:
+      value: 5.0
+un_enfant:
+  reference: ipp
+  values:
+    2004-01-01:
+      value: 2.0

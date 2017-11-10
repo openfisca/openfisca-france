@@ -1,0 +1,11 @@
+reference: ipp
+deux_enfants_ou_plus:
+  reference: ipp
+  values:
+    2015-01-01:
+      value: 3.0
+un_enfant:
+  reference: ipp
+  values:
+    2015-01-01:
+      value: 1.0

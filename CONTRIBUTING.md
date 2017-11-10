@@ -4,7 +4,7 @@ Avant tout, merci de votre volonté de contribuer au bien commun qu'est OpenFisc
 
 Afin de faciliter la réutilisation d'OpenFisca et d'améliorer la qualité du code, les contributions à OpenFisca suivent certaines règles.
 
-Certaines règles sont communes à tous les dépôts OpenFisca et sont détaillées dans [la documentation générale](https://doc.openfisca.fr/contribute/guidelines.html).
+Certaines règles sont communes à tous les dépôts OpenFisca et sont détaillées dans [la documentation générale](http://openfisca.org/doc/contribute/guidelines.html).
 
 
 ## Format du Changelog

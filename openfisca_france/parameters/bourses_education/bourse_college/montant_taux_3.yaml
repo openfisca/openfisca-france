@@ -4,3 +4,6 @@ unit: currency
 values:
   2009-05-15:
     value: 0.886
+  2017-05-07:
+    value: 1.1075
+    reference: https://www.legifrance.gouv.fr/eli/decret/2017/5/5/MENE1711101D/jo/texte

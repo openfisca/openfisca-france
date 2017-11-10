@@ -1,5 +1,94 @@
 ﻿# Changelog
 
+### 18.10.2
+
+* Amélioration technique
+* Détails :
+  - Déclare OpenFisca-France compatible avec OpenFisca-Core 19
+
+### 18.10.1
+
+* Amélioration technique
+* Détails :
+  - Déclare OpenFisca-France compatible avec OpenFisca-Core 18
+
+## 18.10.0
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : toutes.
+* Zones impactées : `/prestations/apa`.
+* Détails :
+  - Implémente l'Allocation Personnalisée d'Autonomie.
+
+### 18.9.10 - [#829](https://github.com/openfisca/openfisca-france/pull/829)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : toutes.
+* Zones impactées : `/prestations/aides_logement`.
+* Détails :
+  - Corrige les aides au logement pour les primo-accédants ayant une importante base ressources.
+
+### 18.9.9 - [#803](https://github.com/openfisca/openfisca-france/pull/803)
+
+* Changement mineur
+* Détails :
+  - Simplifie le calcul des aides au logement en utilisant le calcul de législation dynamique (nouvelle feature de OpenFisca)
+
+### 18.9.8 - [#825](https://github.com/openfisca/openfisca-france/pull/825)
+
+* Correction d'un crash sous Windows
+* Détails :
+  - Corrige l'erreur WindowsError: `[Error 206] Nom de fichier ou extension trop long` qui interrompt le clone d'OpenFisca-France sous Windows.
+  - Dans `parameters`, assemble dans un nouveau YAML le contenu d'un sous-répertoire lorsque le chemin vers celui-ci ou l'un de ses fichiers est trop long.
+
+### 18.9.7 - [#811](https://github.com/openfisca/openfisca-france/pull/811)
+
+* Changement mineur
+* Détails :
+  - Documente les entités `FoyerFiscal` et `Menage`
+
+### 18.9.6 - [#815](https://github.com/openfisca/openfisca-france/pull/815)
+
+* Changement mineur
+* Détails :
+  - Corrige une typo dans la description de `credit_impot_competitivite_emploi`
+
+### 18.9.5 - [#814](https://github.com/openfisca/openfisca-france/pull/814)
+
+* Changement mineur
+* Détails :
+  - Rajout des références législatives sur la baisse de la cotisation AGS au 1er juillet 2017.
+
+### 18.9.4 - [#809](https://github.com/openfisca/openfisca-france/pull/809)
+
+* Changement mineur.
+* Détails :
+  - Référence la nouvelle adresse de la documentation technique
+
+### 18.9.3 - [#817](https://github.com/openfisca/openfisca-france/pull/817)
+
+* Changement mineur.
+* Périodes concernées : à partir du 07/05/2017.
+* Zones impactées : `parameters/bourses_education/bourse_college`.
+* Détails :
+  - Mise à jour des montant des bourses des collèges conformément au [décret du 5 mai 2017](https://www.legifrance.gouv.fr/eli/decret/2017/5/5/MENE1711101D/jo/texte).
+
+### 18.9.2 - [#812](https://github.com/openfisca/openfisca-france/pull/812)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : toutes.
+* Zones impactées : `/prestations/aides_logement`.
+* Détails :
+  - Suppresion de la notification de non-calculabilité des aides au logement pour les primo-accédants.
+
+### 18.9.1 - [#583](https://github.com/openfisca/openfisca-france/pull/583)
+
+* Changement mineur.
+* Périodes concernées : à partir du 01/11/2014.
+* Zones impactées : `prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/stage`.
+* Détails :
+  - Extraction du taux de gratification minimum des stagiaires vers le fichier de paramètres.
+
 ## 18.9.0 - [#798](https://github.com/openfisca/openfisca-france/pull/798)
 
 * Amélioration technique
@@ -348,7 +437,7 @@
 * Amélioration technique **non-rétrocompatible**
 * Détails :
     - Restreint les périodes acceptées par OpenFisca
-    - La liste des périodes autorisées est disponible dans la [documentation](https://doc.openfisca.fr/periodsinstants.html)
+    - La liste des périodes autorisées est disponible dans la [documentation](http://openfisca.org/doc/periodsinstants.html)
 
 <!-- -->
 
