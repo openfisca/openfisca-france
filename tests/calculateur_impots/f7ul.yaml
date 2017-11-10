@@ -1,0 +1,121 @@
+- name: f7ul
+  period: 2010
+  relative_error_margin: 0.001
+  familles:
+  - id: '0'
+    parents:
+    - ind0
+  foyers_fiscaux:
+  - id: '0'
+    declarants:
+    - ind0
+    f7ul: 1500
+  individus:
+  - id: ind0
+    salaire_imposable: 24000
+    activite: 0
+    statut_marital: 2
+    date_naissance: '1970-01-01'
+  menages:
+  - id: '0'
+    personne_de_reference: ind0
+  output_variables:
+    iai: 1685
+    ir_plaf_qf: 1685
+    nbptr: 1
+    ppe: 0
+    rbg: 21600
+    rfr: 21600
+    rni: 21600
+- name: f7ul
+  period: 2011
+  relative_error_margin: 0.001
+  familles:
+  - id: '0'
+    parents:
+    - ind0
+  foyers_fiscaux:
+  - id: '0'
+    declarants:
+    - ind0
+    f7ul: 1500
+  individus:
+  - id: ind0
+    salaire_imposable: 24000
+    activite: 0
+    statut_marital: 2
+    date_naissance: '1970-01-01'
+  menages:
+  - id: '0'
+    personne_de_reference: ind0
+  output_variables:
+    iai: 335
+    ir_plaf_qf: 1685
+    nbptr: 1
+    ppe: 0
+    rbg: 21600
+    reductions: 1350
+    rfr: 21600
+    rni: 21600
+- name: f7ul
+  period: 2012
+  relative_error_margin: 0.001
+  familles:
+  - id: '0'
+    parents:
+    - ind0
+  foyers_fiscaux:
+  - id: '0'
+    declarants:
+    - ind0
+    f7ul: 1500
+  individus:
+  - id: ind0
+    salaire_imposable: 24000
+    activite: 0
+    statut_marital: 2
+    date_naissance: '1970-01-01'
+  menages:
+  - id: '0'
+    personne_de_reference: ind0
+  output_variables:
+    iai: 545
+    ir_plaf_qf: 1685
+    irpp: -545
+    nbptr: 1
+    ppe: 0
+    rbg: 21600
+    reductions: 1140
+    rfr: 21600
+    rni: 21600
+- name: f7ul
+  period: 2013
+  relative_error_margin: 0.001
+  familles:
+  - id: '0'
+    parents:
+    - ind0
+  foyers_fiscaux:
+  - id: '0'
+    declarants:
+    - ind0
+    f7ul: 1500
+  individus:
+  - id: ind0
+    salaire_imposable: 24000
+    activite: 0
+    statut_marital: 2
+    date_naissance: '1970-01-01'
+  menages:
+  - id: '0'
+    personne_de_reference: ind0
+  output_variables:
+    iai: 534
+    ir_plaf_qf: 1674
+    irpp: -534
+    nbptr: 1
+    ppe: 0
+    rbg: 21600
+    reductions: 1140
+    rfr: 21600
+    rni: 21600

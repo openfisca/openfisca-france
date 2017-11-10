@@ -7,7 +7,7 @@ from setuptools import setup, find_packages
 
 setup(
     name = 'OpenFisca-France',
-    version = '18.2.0',
+    version = '18.4.2',
     author = 'OpenFisca Team',
     author_email = 'contact@openfisca.fr',
     classifiers = [
@@ -23,12 +23,14 @@ setup(
     url = 'https://github.com/openfisca/openfisca-france',
 
     data_files = [
-        ('share/locale/fr/LC_MESSAGES', ['openfisca_france/i18n/fr/LC_MESSAGES/openfisca-france.mo']),
         ('share/openfisca/openfisca-france', ['CHANGELOG.md', 'LICENSE.AGPL.txt', 'README.md']),
         ],
     extras_require = {
         'api': [
             'OpenFisca-Web-API >= 4.0.0, < 6.0',
+            ],
+        'baremes_ipp': [
+            'xlrd >= 1.0.0',
             ],
         'inversion_revenus': [
             'scipy >= 0.17',
@@ -47,10 +49,9 @@ setup(
         },
     include_package_data = True,  # Will read MANIFEST.in
     install_requires = [
-        'Babel >= 0.9.4',
         'Biryani[datetimeconv] >= 0.10.4',
-        'numpy >= 1.11',
-        'OpenFisca-Core >= 12.0, < 13.0',
+        'numpy >= 1.11, < 1.13',
+        'OpenFisca-Core >= 14.0, < 15.0',
         'PyYAML >= 3.10',
         'requests >= 2.8',
         ],

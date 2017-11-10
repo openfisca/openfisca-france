@@ -27,7 +27,7 @@ class revenus_fonciers_minima_sociaux(Variable):
     label = u"Revenus fonciers pour la base ressource du rmi/rsa"
     definition_period = MONTH
 
-    def function(individu, period):
+    def formula(individu, period):
         period_declaration = period.this_year
         f4ba = individu.foyer_fiscal('f4ba', period_declaration)
         f4be = individu.foyer_fiscal('f4be', period_declaration)
@@ -43,7 +43,7 @@ class asi_aspa_base_ressources_individu(Variable):
     entity = Individu
     definition_period = MONTH
 
-    def function(individu, period, legislation):
+    def formula(individu, period, legislation):
         last_year = period.last_year
         three_previous_months = period.last_3_months
         law = legislation(period)
@@ -134,7 +134,7 @@ class asi_aspa_base_ressources(Variable):
     entity = Famille
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         asi_aspa_base_ressources_i_holder = simulation.compute('asi_aspa_base_ressources_individu', period)
         ass = simulation.calculate('ass', period)
 
@@ -148,7 +148,7 @@ class aspa_eligibilite(Variable):
     entity = Individu
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         age = simulation.calculate('age', period)
         inapte_travail = simulation.calculate('inapte_travail', period)
         taux_incapacite = simulation.calculate('taux_incapacite', period)
@@ -168,7 +168,7 @@ class asi_eligibilite(Variable):
     entity = Individu
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         last_month = period.start.period('month').offset(-1)
 
         non_eligible_aspa = not_(simulation.calculate('aspa_eligibilite', period))
@@ -192,7 +192,7 @@ class asi_aspa_condition_nationalite(Variable):
     entity = Individu
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         ressortissant_eee = simulation.calculate('ressortissant_eee', period)
         duree_possession_titre_sejour = simulation.calculate('duree_possession_titre_sejour', period)
         duree_min_titre_sejour = simulation.legislation_at(period.start).prestations.minima_sociaux.aspa.duree_min_titre_sejour
@@ -206,7 +206,7 @@ class asi_aspa_nb_alloc(Variable):
     entity = Famille
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         aspa_elig_holder = simulation.compute('aspa_eligibilite', period)
         asi_elig_holder = simulation.compute('asi_eligibilite', period)
 
@@ -220,13 +220,12 @@ class asi(Variable):
     calculate_output = calculate_output_add
     column = FloatCol
     label = u"Allocation supplémentaire d'invalidité"
-    start_date = date(2007, 1, 1)
     url = u"http://vosdroits.service-public.fr/particuliers/F16940.xhtml"
     entity = Famille
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
-    def function(self, simulation, period):
+    def formula_2007(self, simulation, period):
         asi_elig_holder = simulation.compute('asi_eligibilite', period)
         aspa_elig_holder = simulation.compute('aspa_eligibilite', period)
         maries = simulation.calculate('maries', period)
@@ -280,20 +279,18 @@ class asi(Variable):
         return elig * montant_servi_asi
 
 
-class aspa_couple(DatedVariable):
+class aspa_couple(Variable):
     column = BoolCol
     label = u"Couple au sens de l'ASPA"
     entity = Famille
     definition_period = MONTH
 
-    @dated_function(date(2002, 1, 1), date(2006, 12, 31))
-    def function_2002_2006(self, simulation, period):
+    def formula_2002_01_01(self, simulation, period):
         maries = simulation.calculate('maries', period)
 
         return maries
 
-    @dated_function(date(2007, 1, 1))
-    def function_2007(self, simulation, period):
+    def formula_2007_01_01(self, simulation, period):
         en_couple = simulation.calculate('en_couple', period)
 
         return en_couple
@@ -308,7 +305,7 @@ class aspa(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         asi_elig_holder = simulation.compute('asi_eligibilite', period)
         aspa_elig_holder = simulation.compute('aspa_eligibilite', period)
         maries = simulation.calculate('maries', period)

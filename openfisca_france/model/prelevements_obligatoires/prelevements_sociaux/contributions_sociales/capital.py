@@ -37,7 +37,7 @@ class csg_cap_bar(Variable):
     url = u"http://fr.wikipedia.org/wiki/Contribution_sociale_généralisée"
     definition_period = YEAR
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         rev_cap_bar = simulation.calculate_add('rev_cap_bar', period)
         _P = simulation.legislation_at(period.start)
 
@@ -52,14 +52,14 @@ class crds_cap_bar(Variable):
     url = "http://fr.wikipedia.org/wiki/Contribution_pour_le_remboursement_de_la_dette_sociale"
     definition_period = YEAR
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         rev_cap_bar = simulation.calculate_add('rev_cap_bar', period)
         _P = simulation.legislation_at(period.start).taxation_capital.prelevements_sociaux
 
         return -rev_cap_bar * _P.crds.revenus_du_patrimoine
 
 
-class prelsoc_cap_bar(DatedVariable):
+class prelsoc_cap_bar(Variable):
     """Calcule le prélèvement social sur les revenus du capital soumis au barème"""
     column = FloatCol
     entity = FoyerFiscal
@@ -67,32 +67,28 @@ class prelsoc_cap_bar(DatedVariable):
     url = u"http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&paf_gm=content&typePage=cpr02&sfid=501&espId=1&impot=CS"  # noqa
     definition_period = YEAR
 
-    @dated_function(start = date(2002, 1, 1), stop = date(2005, 12, 31))
-    def function_2002_2005(self, simulation, period):
+    def formula_2002_01_01(self, simulation, period):
         rev_cap_bar = simulation.calculate_add('rev_cap_bar', period)
         P = simulation.legislation_at(period.start).taxation_capital.prelevements_sociaux
 
         total = P.prelevement_social.revenus_du_patrimoine
         return -rev_cap_bar * total
 
-    @dated_function(start = date(2006, 1, 1), stop = date(2008, 12, 31))
-    def function_2006_2008(self, simulation, period):
+    def formula_2006_01_01(self, simulation, period):
         rev_cap_bar = simulation.calculate_add('rev_cap_bar', period)
         P = simulation.legislation_at(period.start).taxation_capital.prelevements_sociaux
 
         total = P.prelevement_social.revenus_du_patrimoine + P.caps.revenus_du_patrimoine
         return -rev_cap_bar * total
 
-    @dated_function(start = date(2009, 1, 1), stop = date(2011, 12, 31))
-    def function_2009_2011(self, simulation, period):
+    def formula_2009_01_01(self, simulation, period):
         rev_cap_bar = simulation.calculate_add('rev_cap_bar', period)
         P = simulation.legislation_at(period.start).taxation_capital.prelevements_sociaux
 
         total = P.prelevement_social.revenus_du_patrimoine + P.caps.revenus_du_patrimoine + P.caps.rsa
         return -rev_cap_bar * total
 
-    @dated_function(start = date(2012, 1, 1), stop = date(2012, 12, 31))
-    def function_2012(self, simulation, period):
+    def formula_2012_01_01(self, simulation, period):
         rev_cap_bar = simulation.calculate_add('rev_cap_bar', period)
         P = simulation.legislation_at(period.start).taxation_capital.prelevements_sociaux
 
@@ -102,8 +98,7 @@ class prelsoc_cap_bar(DatedVariable):
             )
         return -rev_cap_bar * total
 
-    @dated_function(start = date(2013, 1, 1))
-    def function_2013_(self, simulation, period):
+    def formula_2013_01_01(self, simulation, period):
         rev_cap_bar = simulation.calculate_add('rev_cap_bar', period)
         P = simulation.legislation_at(period.start).taxation_capital.prelevements_sociaux
 
@@ -121,7 +116,7 @@ class csg_pv_mo(Variable):
     url = "http://vosdroits.service-public.fr/particuliers/F21618.xhtml"
     definition_period = YEAR
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         """
         Calcule la CSG sur les plus-values de cession mobilière
         """
@@ -138,7 +133,7 @@ class crds_pv_mo(Variable):
     url = "http://fr.wikipedia.org/wiki/Contribution_pour_le_remboursement_de_la_dette_sociale"
     definition_period = YEAR
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         """
         Calcule la CRDS sur les plus-values de cession mobilière
         """
@@ -148,15 +143,14 @@ class crds_pv_mo(Variable):
         return -f3vg * _P.crds.revenus_du_patrimoine
 
 
-class prelsoc_pv_mo(DatedVariable):
+class prelsoc_pv_mo(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"Prélèvements sociaux sur les plus-values de cession de valeurs mobilières"
     url = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&paf_dm=popup&paf_gm=content&typePage=cpr02&sfid=501&espId=1&impot=CS"  # noqa
     definition_period = YEAR
 
-    @dated_function(start = date(2002, 1, 1), stop = date(2005, 12, 31))
-    def function_20020101_20051231(self, simulation, period):
+    def formula_2002_01_01(self, simulation, period):
         """
         Calcule le prélèvement social sur les plus-values
         de cession de valeurs mobilières
@@ -168,8 +162,7 @@ class prelsoc_pv_mo(DatedVariable):
         total = P.prelevement_social.revenus_du_patrimoine
         return -f3vg * total
 
-    @dated_function(start = date(2006, 1, 1), stop = date(2008, 12, 31))
-    def function_20060101_20081231(self, simulation, period):
+    def formula_2006_01_01(self, simulation, period):
         """
         Calcule le prélèvement social sur les plus-values
         de cession de valeurs mobilières
@@ -181,8 +174,7 @@ class prelsoc_pv_mo(DatedVariable):
         total = P.prelevement_social.revenus_du_patrimoine + P.caps.revenus_du_patrimoine
         return -f3vg * total
 
-    @dated_function(start = date(2009, 1, 1), stop = date(2012, 12, 31))
-    def function_20090101_20121231(self, simulation, period):
+    def formula_2009_01_01(self, simulation, period):
         """
         Calcule le prélèvement social sur les plus-values de cession de valeurs mobilières
         """
@@ -193,8 +185,7 @@ class prelsoc_pv_mo(DatedVariable):
         total = P.prelevement_social.revenus_du_patrimoine + P.caps.revenus_du_patrimoine + P.caps.rsa
         return -f3vg * total
 
-    @dated_function(start = date(2013, 1, 1))
-    def function_20130101_(self, simulation, period):
+    def formula_2013_01_01(self, simulation, period):
         """
         Calcule le prélèvement social sur les plus-values de cession de valeurs mobilières
         """
@@ -215,7 +206,7 @@ class csg_pv_immo(Variable):
     url = "http://fr.wikipedia.org/wiki/Contribution_sociale_g%C3%A9n%C3%A9ralis%C3%A9e"
     definition_period = YEAR
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         """
         Calcule la CSG sur les plus-values de cession immobilière
         """
@@ -232,7 +223,7 @@ class crds_pv_immo(Variable):
     url = "http://fr.wikipedia.org/wiki/Contribution_pour_le_remboursement_de_la_dette_sociale"
     definition_period = YEAR
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         """
         Calcule la CRDS sur les plus-values de cession immobilière
         """
@@ -242,15 +233,14 @@ class crds_pv_immo(Variable):
         return -f3vz * _P.crds.revenus_du_patrimoine
 
 
-class prelsoc_pv_immo(DatedVariable):
+class prelsoc_pv_immo(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"Prélèvements sociaux sur les plus-values immobilières"
     url = "http://www.pap.fr/argent/impots/les-plus-values-immobilieres/a1314/l-imposition-de-la-plus-value-immobiliere"
     definition_period = YEAR
 
-    @dated_function(start = date(2002, 1, 1), stop = date(2005, 12, 31))
-    def function_20020101_20051231(self, simulation, period):
+    def formula_2002_01_01(self, simulation, period):
         """
         Calcule le prélèvement social sur les plus-values de cession immobilière
         """
@@ -262,8 +252,7 @@ class prelsoc_pv_immo(DatedVariable):
 
         return -f3vz * total
 
-    @dated_function(start = date(2006, 1, 1), stop = date(2008, 12, 31))
-    def function_20060101_20081231(self, simulation, period):
+    def formula_2006_01_01(self, simulation, period):
         """
         Calcule le prélèvement social sur les plus-values de cession immobilière
         """
@@ -275,8 +264,7 @@ class prelsoc_pv_immo(DatedVariable):
 
         return -f3vz * total
 
-    @dated_function(start = date(2009, 1, 1), stop = date(2012, 12, 31))
-    def function_20090101_20121231(self, simulation, period):
+    def formula_2009_01_01(self, simulation, period):
         """
         Calcule le prélèvement social sur les plus-values de cession immobilière
         """
@@ -287,8 +275,7 @@ class prelsoc_pv_immo(DatedVariable):
         total = P.prelevement_social.revenus_du_patrimoine + P.caps.revenus_du_patrimoine + P.caps.rsa
         return -f3vz * total
 
-    @dated_function(start = date(2013, 1, 1))
-    def function_20130101_(self, simulation, period):
+    def formula_2013_01_01(self, simulation, period):
         """
         Calcule le prélèvement social sur les plus-values de cession immobilière
         """
@@ -309,7 +296,7 @@ class csg_fon(Variable):
     url = "http://fr.wikipedia.org/wiki/Contribution_sociale_g%C3%A9n%C3%A9ralis%C3%A9e"
     definition_period = YEAR
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         '''
         Calcule la CSG sur les revenus fonciers
         Attention : assiette CSG = asiette IR valable 2006-2014 mais pourrait changer
@@ -327,7 +314,7 @@ class crds_fon(Variable):
     url = "http://vosdroits.service-public.fr/particuliers/F2329.xhtml"
     definition_period = YEAR
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         '''
         Calcule la CRDS sur les revenus fonciers
         Attention : assiette CSG = asiette IR valable 2006-2014 mais pourrait changer
@@ -338,15 +325,14 @@ class crds_fon(Variable):
         return -rev_cat_rfon * _P.crds.revenus_du_patrimoine
 
 
-class prelsoc_fon(DatedVariable):
+class prelsoc_fon(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"Prélèvements sociaux sur les revenus fonciers"
     url = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&paf_dm=popup&paf_gm=content&typePage=cpr02&sfid=501&espId=1&impot=CS"  # noqa
     definition_period = YEAR
 
-    @dated_function(start = date(2002, 1, 1), stop = date(2005, 12, 31))
-    def function_20020101_20051231(self, simulation, period):
+    def formula_2002_01_01(self, simulation, period):
         '''
         Calcule le prélèvement social sur les revenus fonciers
         TODO : assiette CSG = asiette IR valable 2006-2014 mais pourrait changer
@@ -359,8 +345,7 @@ class prelsoc_fon(DatedVariable):
 
         return -rev_cat_rfon * total
 
-    @dated_function(start = date(2006, 1, 1), stop = date(2008, 12, 31))
-    def function_20060101_20081231(self, simulation, period):
+    def formula_2006_01_01(self, simulation, period):
         '''
         Calcule le prélèvement social sur les revenus fonciers
         Attention : assiette CSG = asiette IR valable 2006-2014 mais pourrait changer
@@ -373,8 +358,7 @@ class prelsoc_fon(DatedVariable):
 
         return -rev_cat_rfon * total
 
-    @dated_function(start = date(2009, 1, 1), stop = date(2012, 12, 31))
-    def function_20090101_20121231(self, simulation, period):
+    def formula_2009_01_01(self, simulation, period):
         '''
         Calcule le prélèvement social sur les revenus fonciers
         Attention : assiette CSG = assiette IR valable 2006-2014 mais pourrait changer
@@ -386,8 +370,7 @@ class prelsoc_fon(DatedVariable):
         total = P.prelevement_social.revenus_du_patrimoine + P.caps.revenus_du_patrimoine + P.caps.rsa
         return -rev_cat_rfon * total
 
-    @dated_function(start = date(2013, 1, 1))
-    def function_20130101_(self, simulation, period):
+    def formula_2013_01_01(self, simulation, period):
         '''
         Calcule le prélèvement social sur les revenus fonciers
         Attention : assiette CSG = assiette IR valable 2006-2014 mais pourrait changer
@@ -411,7 +394,7 @@ class csg_cap_lib(Variable):
     url = u"http://fr.wikipedia.org/wiki/Contribution_sociale_généralisée"
     definition_period = YEAR
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         rev_cap_lib = simulation.calculate_add('rev_cap_lib', period)
         _P = simulation.legislation_at(period.start)
 
@@ -426,7 +409,7 @@ class crds_cap_lib(Variable):
     url = u"http://fr.wikipedia.org/wiki/Contribution_pour_le_remboursement_de_la_dette_sociale"
     definition_period = YEAR
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         rev_cap_lib = simulation.calculate_add('rev_cap_lib', period)
         _P = simulation.legislation_at(period.start).taxation_capital.prelevements_sociaux
 
@@ -441,7 +424,7 @@ class prelsoc_cap_lib(Variable):
     url = u"http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&paf_dm=popup&paf_gm=content&typePage=cpr02&sfid=501&espId=1&impot=CS"  # noqa
     definition_period = YEAR
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         rev_cap_lib = simulation.calculate_add('rev_cap_lib', period)
         prelsoc = simulation.legislation_at(period.start).taxation_capital.prelevements_sociaux
 

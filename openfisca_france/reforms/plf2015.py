@@ -55,12 +55,11 @@ def modify_legislation_json(reference_legislation_json_copy):
     return reference_legislation_json_copy
 
 
-class decote(DatedVariable):
+class decote(Variable):
     label = u"Décote IR 2015 appliquée sur IR 2014 (revenus 2013)"
     definition_period = YEAR
 
-    @dated_function(start = date(2013, 1, 1), stop = date(2013, 12, 31))
-    def function_2013(self, simulation, period):
+    def formula_2013_01_01(self, simulation, period):
         ir_plaf_qf = simulation.calculate('ir_plaf_qf', period)
         nb_adult = simulation.calculate('nb_adult', period)
         plf = simulation.legislation_at(period.start).plf2015

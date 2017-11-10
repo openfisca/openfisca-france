@@ -6,7 +6,7 @@ from openfisca_france.model.base import *  # noqa analysis:ignore
 from openfisca_france.model.prestations.prestations_familiales.base_ressource import nb_enf
 
 
-class aefa(DatedVariable):
+class aefa(Variable):
     '''
     Aide exceptionelle de fin d'année (prime de Noël)
     Instituée en 1998
@@ -27,9 +27,9 @@ class aefa(DatedVariable):
     label = u"Aide exceptionelle de fin d'année (prime de Noël)"
     url = u"http://www.pole-emploi.fr/candidat/aide-exceptionnelle-de-fin-d-annee-dite-prime-de-noel--@/suarticle.jspz?id=70996"  # noqa
     definition_period = YEAR
+    end = '2015-12-31'
 
-    @dated_function(start = date(2009, 1, 1), stop = date(2015, 12, 31))
-    def function_2009__(famille, period, legislation):
+    def formula_2009_01_01(famille, period, legislation):
         janvier = period.first_month
 
         af_nbenf = famille('af_nbenf', janvier)
@@ -62,8 +62,7 @@ class aefa(DatedVariable):
         aefa = max_(aefa_maj, aefa)
         return aefa
 
-    @dated_function(start = date(2008, 1, 1), stop = date(2008, 12, 31))
-    def function_2008(famille, period, legislation):
+    def formula_2008_01_01(famille, period, legislation):
         janvier = period.first_month
 
         af_nbenf = famille('af_nbenf', janvier)
@@ -97,8 +96,7 @@ class aefa(DatedVariable):
         aefa = max_(aefa_maj, aefa)
         return aefa
 
-    @dated_function(start = date(2002, 1, 1), stop = date(2007, 12, 31))
-    def function__2008_(famille, period, legislation):
+    def formula_2002_01_01(famille, period, legislation):
         janvier = period.first_month
 
         af_nbenf = famille('af_nbenf', janvier)

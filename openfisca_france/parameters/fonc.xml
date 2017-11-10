@@ -42,8 +42,8 @@
   </CODE>
   <NODE code="indem_resid" description="Indemnité de résidence " origin="openfisca">
     <CODE code="min" description="Indemnité de résidence : plancher (en indice majoré)" format="integer" origin="openfisca">
-      <VALUE deb="2015-01-01" valeur="313" />
-      <VALUE deb="2013-01-01" valeur="313" /> # TODO: check in july 2014 for "fin"
+      <PLACEHOLDER deb="2014-07-01" />
+      <VALUE deb="2013-01-01" valeur="313" />
       <VALUE deb="2012-07-07" valeur="312" />
       <VALUE deb="2012-01-01" valeur="306" />
       <VALUE deb="2011-01-01" valeur="299" />
@@ -70,8 +70,8 @@
       <VALUE deb="1988-03-01" valeur="716" />
     </CODE>
     <CODE code="IM_min" description="Indice majoré plancher" format="integer" origin="openfisca">
-      <VALUE deb="2015-01-01" valeur="449" />
-      <VALUE deb="2006-11-01" valeur="449" /># TODO: check in july 2014 for "fin"
+      <PLACEHOLDER deb="2014-07-01" />
+      <VALUE deb="2006-11-01" valeur="449" />
       <VALUE deb="1999-11-14" valeur="448" />
       <VALUE deb="1999-06-13" valeur="447" />
     </CODE>

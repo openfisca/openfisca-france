@@ -1,0 +1,270 @@
+- name: f7xt
+  period: 2005
+  relative_error_margin: 0.001
+  familles:
+  - id: '0'
+    parents:
+    - ind0
+  foyers_fiscaux:
+  - id: '0'
+    declarants:
+    - ind0
+    f7xt: 1500
+  individus:
+  - id: ind0
+    salaire_imposable: 24000
+    activite: 0
+    statut_marital: 2
+    date_naissance: '1970-01-01'
+  menages:
+  - id: '0'
+    personne_de_reference: ind0
+  output_variables:
+    iai: 1131
+    ir_plaf_qf: 2121
+    nbptr: 1
+    ppe: 0
+    rbg: 17280
+    reductions: 990
+    rfr: 17280
+- name: f7xt
+  period: 2006
+  relative_error_margin: 0.001
+  familles:
+  - id: '0'
+    parents:
+    - ind0
+  foyers_fiscaux:
+  - id: '0'
+    declarants:
+    - ind0
+    f7xt: 1500
+  individus:
+  - id: ind0
+    salaire_imposable: 24000
+    activite: 0
+    statut_marital: 2
+    date_naissance: '1970-01-01'
+  menages:
+  - id: '0'
+    personne_de_reference: ind0
+  output_variables:
+    iai: 773
+    ir_plaf_qf: 1763
+    nbptr: 1
+    ppe: 0
+    rbg: 21600
+    reductions: 990
+    rfr: 21600
+- name: f7xt
+  period: 2007
+  relative_error_margin: 0.001
+  familles:
+  - id: '0'
+    parents:
+    - ind0
+  foyers_fiscaux:
+  - id: '0'
+    declarants:
+    - ind0
+    f7xt: 1500
+  individus:
+  - id: ind0
+    salaire_imposable: 24000
+    activite: 0
+    statut_marital: 2
+    date_naissance: '1970-01-01'
+  menages:
+  - id: '0'
+    personne_de_reference: ind0
+  output_variables:
+    iai: 757
+    ir_plaf_qf: 1747
+    nbptr: 1
+    ppe: 0
+    rbg: 21600
+    reductions: 990
+    rfr: 21600
+    rni: 21600
+- name: f7xt
+  period: 2008
+  relative_error_margin: 0.001
+  familles:
+  - id: '0'
+    parents:
+    - ind0
+  foyers_fiscaux:
+  - id: '0'
+    declarants:
+    - ind0
+    f7xt: 1500
+  individus:
+  - id: ind0
+    salaire_imposable: 24000
+    activite: 0
+    statut_marital: 2
+    date_naissance: '1970-01-01'
+  menages:
+  - id: '0'
+    personne_de_reference: ind0
+  output_variables:
+    iai: 720
+    ir_plaf_qf: 1710
+    nbptr: 1
+    ppe: 0
+    rbg: 21600
+    reductions: 990
+    rfr: 21600
+    rni: 21600
+- name: f7xt
+  period: 2009
+  relative_error_margin: 0.001
+  familles:
+  - id: '0'
+    parents:
+    - ind0
+  foyers_fiscaux:
+  - id: '0'
+    declarants:
+    - ind0
+    f7xt: 1500
+  individus:
+  - id: ind0
+    salaire_imposable: 24000
+    activite: 0
+    statut_marital: 2
+    date_naissance: '1970-01-01'
+  menages:
+  - id: '0'
+    personne_de_reference: ind0
+  output_variables:
+    iai: 715
+    ir_plaf_qf: 1705
+    nbptr: 1
+    ppe: 0
+    rbg: 21600
+    reductions: 990
+    rfr: 21600
+    rni: 21600
+- name: f7xt
+  period: 2010
+  relative_error_margin: 0.001
+  familles:
+  - id: '0'
+    parents:
+    - ind0
+  foyers_fiscaux:
+  - id: '0'
+    declarants:
+    - ind0
+    f7xt: 1500
+  individus:
+  - id: ind0
+    salaire_imposable: 24000
+    activite: 0
+    statut_marital: 2
+    date_naissance: '1970-01-01'
+  menages:
+  - id: '0'
+    personne_de_reference: ind0
+  output_variables:
+    iai: 695
+    ir_plaf_qf: 1685
+    nbptr: 1
+    ppe: 0
+    rbg: 21600
+    reductions: 990
+    rfr: 21600
+    rni: 21600
+- name: f7xt
+  period: 2011
+  relative_error_margin: 0.001
+  familles:
+  - id: '0'
+    parents:
+    - ind0
+  foyers_fiscaux:
+  - id: '0'
+    declarants:
+    - ind0
+    f7xt: 1500
+  individus:
+  - id: ind0
+    salaire_imposable: 24000
+    activite: 0
+    statut_marital: 2
+    date_naissance: '1970-01-01'
+  menages:
+  - id: '0'
+    personne_de_reference: ind0
+  output_variables:
+    iai: 695
+    ir_plaf_qf: 1685
+    nbptr: 1
+    ppe: 0
+    rbg: 21600
+    reductions: 990
+    rfr: 21600
+    rni: 21600
+- name: f7xt
+  period: 2012
+  relative_error_margin: 0.001
+  familles:
+  - id: '0'
+    parents:
+    - ind0
+  foyers_fiscaux:
+  - id: '0'
+    declarants:
+    - ind0
+    f7xt: 1500
+  individus:
+  - id: ind0
+    salaire_imposable: 24000
+    activite: 0
+    statut_marital: 2
+    date_naissance: '1970-01-01'
+  menages:
+  - id: '0'
+    personne_de_reference: ind0
+  output_variables:
+    iai: 695
+    ir_plaf_qf: 1685
+    irpp: -695
+    nbptr: 1
+    ppe: 0
+    rbg: 21600
+    reductions: 990
+    rfr: 21600
+    rni: 21600
+- name: f7xt
+  period: 2013
+  relative_error_margin: 0.001
+  familles:
+  - id: '0'
+    parents:
+    - ind0
+  foyers_fiscaux:
+  - id: '0'
+    declarants:
+    - ind0
+    f7xt: 1500
+  individus:
+  - id: ind0
+    salaire_imposable: 24000
+    activite: 0
+    statut_marital: 2
+    date_naissance: '1970-01-01'
+  menages:
+  - id: '0'
+    personne_de_reference: ind0
+  output_variables:
+    iai: 684
+    ir_plaf_qf: 1674
+    irpp: -684
+    nbptr: 1
+    ppe: 0
+    rbg: 21600
+    reductions: 990
+    rfr: 21600
+    rni: 21600

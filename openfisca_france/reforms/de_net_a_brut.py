@@ -41,12 +41,13 @@ class salaire_de_base(Variable):
     url = u"http://www.trader-finance.fr/lexique-finance/definition-lettre-S/Salaire-brut.html"
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         # Calcule le salaire brut à partir du salaire net par inversion numérique.
 
         net = simulation.get_array('salaire_net_a_payer', period)
 
-        assert net is not None
+        if net is None:
+            return self.zeros()
 
         simulation = self.holder.entity.simulation
 

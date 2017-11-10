@@ -1,44 +1,44 @@
 <NODE code="cotsoc" description="Cotisations sociales" origin="openfisca">
-  <NODE code="accident" description="Accident du travail" origin="openfisca"> # Wild distinction between the rates. TODO: handle the extreme diversity...
+  <NODE code="accident" description="Accident du travail" origin="openfisca">
       <CODE code="eleve" description="Accident du travail (taux eleve)" origin="openfisca">
-      <VALUE deb="2015-01-01" valeur="0.05" />
-      <VALUE deb="2012-01-01" valeur="0.05" /> # TODO: update, get more info...
+      <PLACEHOLDER deb="2015-01-01" />
+      <VALUE deb="2012-01-01" valeur="0.05" />
       </CODE>
     <CODE code="faible" description="Accident du travail (taux bureau)" origin="openfisca">
       <VALUE deb="2013-01-01" valeur="0.011" />
       <VALUE deb="1996-01-01" valeur="0.010" />
     </CODE>
     <CODE code="moyen" description="Accident du travail (taux moyen)" origin="openfisca">
-      <VALUE deb="2015-01-01" valeur="0.03" />
-      <VALUE deb="2012-01-01" valeur="0.03" /> # TODO: update, get more info...
+      <PLACEHOLDER deb="2015-01-01" />
+      <VALUE deb="2012-01-01" valeur="0.03" />
       </CODE>
     <CODE code="treseleve" description="Accident du travail (taux tres eleve)" origin="openfisca">
-      <VALUE deb="2015-01-01" valeur="0.10" />
-      <VALUE deb="2012-01-01" valeur="0.10" /> # TODO: update, get more info..
+      <PLACEHOLDER deb="2015-01-01" />
+      <VALUE deb="2012-01-01" valeur="0.10" />
       </CODE>
   </NODE>
   <NODE code="assiette" description="Paramètres régissant l'assiette des cotisations sociales" origin="openfisca">
     <NODE code="cantines_titres_restaurants" description="Cantines et titres restaurants" origin="openfisca">
       <CODE code="seuil_prix_titre" description="Taux de prise en charge par l'entreprise maximum pour non intégration dans l'assiette des cotisations sociales" format="float" origin="openfisca" type="monetary">
         <VALUE deb="2015-01-01" valeur="5.66" />
-        <VALUE deb="2000-01-01" valeur="5.33" /> # TODO check starting dates
+        <VALUE deb="2000-01-01" valeur="5.33" />
       </CODE>
       <CODE code="taux_maximum_exoneration" description="Taux de prise en charge par l'entreprise maximum pour non intégration dans l'assiette des cotisations sociales" format="percent" origin="openfisca">
-        <VALUE deb="2015-01-01" valeur="0.6" />
-        <VALUE deb="2000-01-01" valeur="0.6" /> # TODO check starting dates
+        <PLACEHOLDER deb="2015-01-01" />
+        <VALUE deb="2000-01-01" valeur="0.6" />
       </CODE>
       <CODE code="taux_minimum_exoneration" description="Taux de prise en charge par l'entreprise minimum pour non intégration dans l'assiette des cotisations sociales" format="percent" origin="openfisca">
-        <VALUE deb="2015-01-01" valeur="0.5" />
-        <VALUE deb="2000-01-01" valeur="0.5" />  # TODO check starting dates
+        <PLACEHOLDER deb="2015-01-01" />
+        <VALUE deb="2000-01-01" valeur="0.5" />
       </CODE>
     </NODE>
   </NODE>
-  <NODE code="conge_individuel_formation" description="Congé individuel de formation" origin="openfisca"> # TODO: find a better place
+  <NODE code="conge_individuel_formation" description="Congé individuel de formation" origin="openfisca">
       <CODE code="cdd" description="Taux pour les salariés en contrat à durée déterminée" format="percent" origin="openfisca">
       <VALUE deb="1990-07-14" valeur=".01" />
     </CODE>
   </NODE>
-  <NODE code="contribution_supplementaire_apprentissage" description="Contribution supplémentaire d'apprentissage" origin="openfisca"> # TODO: find a better place
+  <NODE code="contribution_supplementaire_apprentissage" description="Contribution supplémentaire d'apprentissage" origin="openfisca">
       <CODE code="entre_1_2_pc_alternants" description="Taux pour les entreprises comprenant 1%  à 2% d'atlernants" format="percent" origin="openfisca">
       <VALUE deb="2015-01-01" valeur=".002" />
       <VALUE deb="2013-01-01" valeur=".001" />
@@ -62,14 +62,10 @@
       <VALUE deb="2013-01-01" valeur=".005" />
     </CODE>
     <CODE code="plus_de_250" description="Taux pour les entreprises comprenant plus de 250 salariés" format="percent" origin="openfisca">
-      <VALUE deb="2016-01-01" valeur=".001" />
-      <VALUE deb="2013-01-01" valeur=".001" /> # TODO check and check for coherence with previous taux
-        <VALUE deb="2010-01-01" valeur=".001" /> # TODO check and check for coherence with previous taux
+      <PLACEHOLDER deb="2013-01-01" />
+      <VALUE deb="2010-01-01" valeur=".001" />
     </CODE>
-    <CODE code="multiplicateur_alsace_moselle" description="Multiplicateur CSA Alsace-Moselle" format="percent">
-      <!-- CGI Article 1609 quinvicies IV
-      Instauration :  LOI n° 2011-1977 du 28 décembre 2011 de finances pour 2012
-     -->
+    <CODE code="multiplicateur_alsace_moselle" description="Multiplicateur CSA Alsace-Moselle" format="percent" reference="CGI Article 1609 quinvicies IV, Instauration :  LOI n° 2011-1977 du 28 décembre 2011 de finances pour 2012">
       <VALUE deb="2012-01-01" valeur=".52" />
     </CODE>
   </NODE>
@@ -156,8 +152,7 @@
       <VALUE deb="2003-01-01" valeur="2399" />
       <VALUE deb="2002-01-01" valeur="2359" />
     </CODE>
-    <CODE code="plafond_securite_sociale" description="Plafond mensuel de la sécurité sociale" format="integer" origin="openfisca" type="monetary">
-      <!-- http://www.ameli.fr/employeurs/vos-demarches/chiffres-utiles/plafond-de-la-securite-sociale.php -->
+    <CODE code="plafond_securite_sociale" description="Plafond mensuel de la sécurité sociale" format="integer" origin="openfisca" type="monetary" reference="http://www.ameli.fr/employeurs/vos-demarches/chiffres-utiles/plafond-de-la-securite-sociale.php">
       <VALUE deb="2017-01-01" valeur="3269" />
       <VALUE deb="2016-01-01" valeur="3218" />
       <VALUE deb="2015-01-01" valeur="3170" />
@@ -182,8 +177,7 @@
       <VALUE deb="2010-01-01" valeur="22" />
       <VALUE deb="2009-01-01" valeur="21" />
     </CODE>
-    <CODE code="smic_h_b" description="SMIC horaire brut" format="float" origin="openfisca" type="monetary">
-      <!-- Décret n° 2016-1818 du 22 décembre 2016 portant relèvement du salaire minimum de croissance - Article 1 -->
+    <CODE code="smic_h_b" description="SMIC horaire brut" format="float" origin="openfisca" type="monetary" reference="Décret n° 2016-1818 du 22 décembre 2016 portant relèvement du salaire minimum de croissance - Article 1">
       <VALUE deb="2017-01-01" valeur="9.76" />
       <VALUE deb="2016-01-01" valeur="9.67" />
       <VALUE deb="2015-01-01" valeur="9.61" />
@@ -206,7 +200,7 @@
       <VALUE deb="2001-08-01" valeur="6.67" />
     </CODE>
   </NODE>
-  <CODE code="hsup_exo" description="Exonération des heures supplémentaires" format="bool" origin="openfisca"> # TODO: find a better place
+  <CODE code="hsup_exo" description="Exonération des heures supplémentaires" format="bool" origin="openfisca">
     <VALUE deb="2012-01-01" valeur="0" />
     <VALUE deb="2007-01-01" valeur="1" />
     <VALUE deb="2002-01-01" valeur="0" />
@@ -384,12 +378,7 @@
         </TRANCHE>
       </BAREME>
     </NODE>
-    <NODE code="commun" description="Communes aux cadres et non cadres" origin="openfisca">
-      <!-- Cotisations patronales au titre de la pénibilité
-        - https://www.service-public.fr/professionnels-entreprises/vosdroits/F33777
-        - https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/les-cotisations-patronales-au-ti/cotisations-dues.html
-        - Code du travail - Article L4162-19
-     -->
+    <NODE code="commun" description="Communes aux cadres et non cadres" origin="openfisca" reference="Cotisations patronales au titre de la pénibilité https://www.service-public.fr/professionnels-entreprises/vosdroits/F33777, https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/les-cotisations-patronales-au-ti/cotisations-dues.html, Code du travail - Article L4162-19">
       <BAREME code="penibilite_base" description="Cotisations patronale de base au titre de la pénibilité" option="contrib" origin="openfisca">
         <TRANCHE code="tranche0">
           <SEUIL>
@@ -414,7 +403,6 @@
       <CODE code="penibilite_multiplicateur_exposition_multiple" origin="openfisca">
         <VALUE deb="2015-01-01" valeur="2" />
       </CODE>
-      <!-- FIN Cotisations patronales au titre de la pénibilité -->
       <NODE code="apprentissage_node" description="Taxes d'apprentissages" origin="openfisca">
         <BAREME code="apprentissage" description="Taxe d'apprentissage (toutes entreprises)" option="main-d-oeuvre" origin="openfisca">
           <TRANCHE code="tranche0">
@@ -434,7 +422,7 @@
               </SEUIL>
               <TAUX>
                 <VALUE deb="2014-01-01" valeur="0.0044" />
-                <VALUE deb="1993-07-01" valeur="0.005" /> <!-- La valeur est vérifiée, pas la date de début (calquée aujourd'hui sur le barème régime général) -->
+                <VALUE deb="1993-07-01" valeur="0.005" />
               </TAUX>
             </TRANCHE>
           </BAREME>
@@ -490,13 +478,12 @@
           </TAUX>
         </TRANCHE>
       </BAREME>
-      <BAREME code="chomfg" description="Chômage: fond national de garantie des salaires (FNGS)" option="contrib" origin="openfisca">
+      <BAREME code="chomfg" description="Chômage: fond national de garantie des salaires (FNGS)" option="contrib" origin="openfisca" reference="http://www.ags-garantie-salaires.org/actualites/items/taux-de-cotisation-89.html">
         <TRANCHE code="tranche0">
           <SEUIL>
             <VALUE deb="1993-07-01" valeur="0" />
           </SEUIL>
           <TAUX>
-            <!-- http://www.ags-garantie-salaires.org/actualites/items/taux-de-cotisation-89.html -->
             <VALUE deb="2017-01-01"     valeur="0.0020" />
             <VALUE deb="2016-01-01" valeur="0.0025" />
             <VALUE deb="2011-04-01" valeur="0.003" />
@@ -1519,9 +1506,9 @@
               <VALUE deb="1984-01-01" valeur="0" />
             </SEUIL>
             <TAUX>
-              <VALUE deb="2021-01-01" valeur="0.1080" />
-              <VALUE deb="2020-01-01" valeur="0.1080" /> # TODO: CHECK change because reforme
-                <VALUE deb="2019-01-01" valeur="0.1053" />
+              <PLACEHOLDER deb="2021-01-01" />
+              <VALUE deb="2020-01-01" valeur="0.1080" />
+              <VALUE deb="2019-01-01" valeur="0.1053" />
               <VALUE deb="2018-01-01" valeur="0.1026" />
               <VALUE deb="2017-01-01" valeur="0.0999" />
               <VALUE deb="2016-01-01" valeur="0.0972" />
@@ -1564,7 +1551,7 @@
           <VALUE deb="2002-03-01" valeur="52.1284" />
           <VALUE deb="2002-01-01" valeur="51.8174" />
         </CODE>
-        <BAREME code="solidarite" description="Contribution exceptionnelle de solidarité (seuil d'assujetissment variable)" option="noncontrib" origin="openfisca"> # TODO: c'est une contribution donc à mettre avec la CSG/CRDS
+        <BAREME code="solidarite" description="Contribution exceptionnelle de solidarité (seuil d'assujetissment variable)" option="noncontrib" origin="openfisca">
             <TRANCHE code="tranche0">
             <SEUIL>
               <VALUE deb="1983-01-01" valeur="0" />

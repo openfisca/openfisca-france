@@ -1,0 +1,205 @@
+- name: abic_pvce
+  period: 2007
+  relative_error_margin: 0.001
+  familles:
+  - id: '0'
+    parents:
+    - ind0
+  foyers_fiscaux:
+  - id: '0'
+    declarants:
+    - ind0
+  individus:
+  - id: ind0
+    salaire_imposable: 24000
+    activite: 0
+    statut_marital: 2
+    date_naissance: '1970-01-01'
+    abic_pvce: 1500
+  menages:
+  - id: '0'
+    personne_de_reference: ind0
+  output_variables:
+    iai: 1987
+    ir_plaf_qf: 1747
+    nbptr: 1
+    ppe: 0
+    rbg: 21600
+    rfr: 23100
+    rni: 21600
+- name: abic_pvce
+  period: 2008
+  relative_error_margin: 0.001
+  familles:
+  - id: '0'
+    parents:
+    - ind0
+  foyers_fiscaux:
+  - id: '0'
+    declarants:
+    - ind0
+  individus:
+  - id: ind0
+    salaire_imposable: 24000
+    activite: 0
+    statut_marital: 2
+    date_naissance: '1970-01-01'
+    abic_pvce: 1500
+  menages:
+  - id: '0'
+    personne_de_reference: ind0
+  output_variables:
+    iai: 1950
+    ir_plaf_qf: 1710
+    nbptr: 1
+    ppe: 0
+    rbg: 21600
+    rfr: 23100
+    rni: 21600
+- name: abic_pvce
+  period: 2009
+  relative_error_margin: 0.001
+  familles:
+  - id: '0'
+    parents:
+    - ind0
+  foyers_fiscaux:
+  - id: '0'
+    declarants:
+    - ind0
+  individus:
+  - id: ind0
+    salaire_imposable: 24000
+    activite: 0
+    statut_marital: 2
+    date_naissance: '1970-01-01'
+    abic_pvce: 1500
+  menages:
+  - id: '0'
+    personne_de_reference: ind0
+  output_variables:
+    iai: 1945
+    ir_plaf_qf: 1705
+    nbptr: 1
+    ppe: 0
+    rbg: 21600
+    rfr: 23100
+    rni: 21600
+- name: abic_pvce
+  period: 2010
+  relative_error_margin: 0.001
+  familles:
+  - id: '0'
+    parents:
+    - ind0
+  foyers_fiscaux:
+  - id: '0'
+    declarants:
+    - ind0
+  individus:
+  - id: ind0
+    salaire_imposable: 24000
+    activite: 0
+    statut_marital: 2
+    date_naissance: '1970-01-01'
+    abic_pvce: 1500
+  menages:
+  - id: '0'
+    personne_de_reference: ind0
+  output_variables:
+    iai: 1925
+    ir_plaf_qf: 1685
+    nbptr: 1
+    ppe: 0
+    rbg: 21600
+    rfr: 23100
+    rni: 21600
+- name: abic_pvce
+  period: 2011
+  relative_error_margin: 0.001
+  familles:
+  - id: '0'
+    parents:
+    - ind0
+  foyers_fiscaux:
+  - id: '0'
+    declarants:
+    - ind0
+  individus:
+  - id: ind0
+    salaire_imposable: 24000
+    activite: 0
+    statut_marital: 2
+    date_naissance: '1970-01-01'
+    abic_pvce: 1500
+  menages:
+  - id: '0'
+    personne_de_reference: ind0
+  output_variables:
+    iai: 1925
+    ir_plaf_qf: 1685
+    nbptr: 1
+    ppe: 0
+    rbg: 21600
+    rfr: 23100
+    rni: 21600
+- name: abic_pvce
+  period: 2012
+  relative_error_margin: 0.001
+  familles:
+  - id: '0'
+    parents:
+    - ind0
+  foyers_fiscaux:
+  - id: '0'
+    declarants:
+    - ind0
+  individus:
+  - id: ind0
+    salaire_imposable: 24000
+    activite: 0
+    statut_marital: 2
+    date_naissance: '1970-01-01'
+    abic_pvce: 1500
+  menages:
+  - id: '0'
+    personne_de_reference: ind0
+  output_variables:
+    iai: 1925
+    ir_plaf_qf: 1685
+    irpp: -1925
+    nbptr: 1
+    ppe: 0
+    rbg: 21600
+    rfr: 23100
+    rni: 21600
+- name: abic_pvce
+  period: 2013
+  relative_error_margin: 0.001
+  familles:
+  - id: '0'
+    parents:
+    - ind0
+  foyers_fiscaux:
+  - id: '0'
+    declarants:
+    - ind0
+  individus:
+  - id: ind0
+    salaire_imposable: 24000
+    activite: 0
+    statut_marital: 2
+    date_naissance: '1970-01-01'
+    abic_pvce: 1500
+  menages:
+  - id: '0'
+    personne_de_reference: ind0
+  output_variables:
+    iai: 1914
+    ir_plaf_qf: 1674
+    irpp: -1914
+    nbptr: 1
+    ppe: 0
+    rbg: 21600
+    rfr: 23100
+    rni: 21600

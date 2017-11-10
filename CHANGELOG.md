@@ -1,5 +1,142 @@
 ﻿# Changelog
 
+### 18.4.2 - [#770](https://github.com/openfisca/openfisca-france/pull/770)
+
+* Amélioration technique
+* Détails :
+  - Mets à jour OpenFisca-Core
+    - Modifie la manière de définir les dates de début des formules, et les dates de fin des variables.
+    - Modifie les conventions de nommages des formules des variables.
+    - Pour plus d'information, voir le [Changelog d'OpenFisca-Core](https://github.com/openfisca/openfisca-core/blob/master/CHANGELOG.md#1400---522) correspondant.
+
+### 18.4.1 - [#776](https://github.com/openfisca/openfisca-france/pull/776)
+
+* Correction d'un crash
+* Détails :
+  - Openfisca n'est pas compatible avec la nouvelle version de numpy 1.13.
+  - Requiert numpy < 1.13
+
+### 18.4.0 - [#772](https://github.com/openfisca/openfisca-france/pull/772)
+
+* Amélioration technique
+* Détails :
+  - Permet d'ajouter une référence aux paramètres XML.
+  - Supprime les commentaires des XML (Compatibilité avec core 13.0.0).
+
+### 18.3.1 - [#767](https://github.com/openfisca/openfisca-france/pull/767)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/04/2017.
+* Zones impactées :
+  - `prestations.minima_sociaux.rsa`
+  - `prestations.prestations_familiales.af`
+* Détails :
+  - Mise à jour du montant du montant de base pour le RSA aux 1er avril, 1er septembre 2017.
+    - [Source](https://www.legifrance.gouv.fr/eli/decret/2017/5/4/2017-739/jo/article_1)
+  - Mise à jour de la BMAF au 1er avril 2017
+    - [Source](http://circulaire.legifrance.gouv.fr/pdf/2017/03/cir_41970.pdf)
+  - Correction mineure du taux de la BMAF au 1er avril 2015
+    - [Source](http://circulaire.legifrance.gouv.fr/pdf/2016/03/cir_40664.pdf) cf. valeur initiale (valeur erronée 406.21274, valeur corrigée 406.21)
+
+### 18.3.0 - [#746](https://github.com/openfisca/openfisca-france/pull/746)
+
+* Amélioration technique
+* Détails :
+  - Réunit dans un même répertoire les fichiers relatifs aux barèmes IPP.
+  - Ajoute un script qui exécute le processus d'import dans son ensemble.
+    - Laisse le contributeur commiter les changements manuellement.
+	- Internalisation du dépôt [converters](https://framagit.org/french-tax-and-benefit-tables/ipp-tax-and-benefit-tables-converters) de l'IPP.
+  - Désormais le seul lieu de contribution pour les paramètres est `openfisca_france/parameters`.
+    - Disparition de `param.xml`.
+
+### 18.2.9 - [#763]
+
+* Changement mineur
+* Détails :
+  - Introduit la réforme `smic_h_b_9_euros`
+
+### 18.2.8 - [#762](https://github.com/openfisca/openfisca-france/pull/762)
+
+* Changement mineur
+* Détails :
+  - Fait passer les tests en parallèle
+
+### 18.2.7 - [#728](https://github.com/openfisca/openfisca-france/pull/728)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/04/2016.
+* Zones impactées :
+  - `prestations.prestations_familiales.asf`
+  - `prestations.prestations_familiales.cf`
+  - `prestations.minima_sociaux.ass`
+* Détails :
+  - Mise à jour du montant de l'ASF aux 1er avril 2016, 1er avril 2017, et 1er avril 2018.
+    - [Source pour 2016](https://www.legifrance.gouv.fr/affichTexteArticle.do?cidTexte=JORFTEXT000032345545&idArticle=LEGIARTI000032347447&dateTexte=20160403)
+    - [Autre source pour 2016](http://circulaire.legifrance.gouv.fr/pdf/2016/03/cir_40664.pdf)
+    - [Source pour 2017 et 2018](https://www.legifrance.gouv.fr/eli/decret/2017/4/12/2017-532/jo/texte)
+  - Mise à jour du montant du CF majoré en métropole aux 1er avril 2017 et 1er avril 2018.
+    - [Source](https://www.legifrance.gouv.fr/eli/decret/2017/4/12/2017-532/jo/texte)
+  - Mise à jour du montant du du CF majoré dans les DOM au 1er avril 2017
+    - [Source](https://www.legifrance.gouv.fr/eli/decret/2017/4/12/2017-534/jo/texte)
+  - Mise à jour du montant de l'ASS aux 1er avril 2016 et premier avril 2017
+    - [Source pour 2016](https://www.legifrance.gouv.fr/eli/decret/2016/5/3/2016-540/jo/texte) 
+    - [Source pour 2017](https://www.legifrance.gouv.fr/eli/decret/2017/5/10/2017-1022/jo/texte) 
+  - Mise à jour du montant de l'ATA aux 1er avril 2016 et premier avril 2017
+    - [Source pour 2016](https://www.legifrance.gouv.fr/eli/decret/2016/5/3/2016-540/jo/texte) 
+    - [Source pour 2017](https://www.legifrance.gouv.fr/eli/decret/2017/5/10/2017-1022/jo/texte) 
+
+### 18.2.6 - [#747](https://github.com/openfisca/openfisca-france/pull/747)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/04/2017.
+* Zones impactées : `prestations/minima_sociaux/asi_aspa`, 
+* Détails :
+  - Mise à jour des plafonds et montants de l'ASI et de l'ASPA
+  - Source: http://www.legislation.cnav.fr/Documents/circulaire_cnav_2017_13_04042017.pdf
+
+### 18.2.5 - [#760](https://github.com/openfisca/openfisca-france/pull/760)
+
+* Changement mineur
+* Détails :
+  - Supprime le système de chargement automatique des extensions via le dossier `extensions` . Les extensions sont maintenant installées sous la forme de packages indépendants.
+
+### 18.2.4 - [#759](https://github.com/openfisca/openfisca-france/pull/759)
+
+* Changement mineur
+* Détails :
+  - Suppression de l'internationalisation (traductions des messages d'erreurs). Cette fonctionnalité n'était pas utilisée.
+
+### 18.2.3 - [#757](https://github.com/openfisca/openfisca-france/pull/757)
+
+* Changement mineur
+* Détails :
+  - Retirer le fichier model/datatrees, le script de génération et les références aux date-trees présentes dans france_taxbenefitsystem.py
+
+### 18.2.2 - [#742](https://github.com/openfisca/openfisca-france/pull/742)
+
+* Amélioration technique
+* Détails :
+  - Amélioration des messages d'erreur en cas d'erreur dans la législation
+
+### 18.2.1 - [#708](https://github.com/openfisca/openfisca-france/pull/708)
+
+* Évolution du système socio-fiscal
+* Périodes concernées : toutes
+* Zones impactées : `prestations/aides_logement`
+* Détails :
+  - Corrige certains calculs pour les aides logement :
+    - La neutralisation des ressources en cas de perception du RSA était sur-évaluée.
+    - Les abattements des ressources en cas de chômage ou de départ en retraite étaient imprécis.
+      - Non prise en compte des frais réels
+      - Non prise en compte du plafond et du plancher pour l'abattement sur les frais profesionnels
+  - Ajoute les références législatives
+
+<!-- -->
+
+* Amélioration technique
+* Détails :
+  - Migre toutes les formules de `prestations/aides_logement` vers la syntaxe `v4`
+
 ## 18.2.0 - [#731](https://github.com/openfisca/openfisca-france/pull/731)
 * Amélioration technique
 * Détails :
@@ -12,7 +149,7 @@
 * Détails:
   - Rends OpenFisca-France compatible avec la version `11.0` d'OpenFisca-Core
 
-## 18.0.0 - [#718](https://github.com/openfisca/openfisca-france/pull/718)
+# 18.0.0 - [#718](https://github.com/openfisca/openfisca-france/pull/718)
 
 * Évolution du système socio-fiscal
 * Périodes concernées : toutes

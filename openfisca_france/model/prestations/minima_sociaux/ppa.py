@@ -13,7 +13,7 @@ class ppa_eligibilite(Variable):
     label = u"Eligibilité à la PPA pour un mois"
     definition_period = MONTH
 
-    def function(famille, period, legislation, mois_demande):
+    def formula(famille, period, legislation, mois_demande):
         P = legislation(mois_demande).prestations
         age_min = P.minima_sociaux.ppa.age_min
         condition_age_i = famille.members('age', period) >= age_min
@@ -28,7 +28,7 @@ class ppa_eligibilite_etudiants(Variable):
     label = u"Eligibilité à la PPA (condition sur tout le trimestre)"
     definition_period = MONTH
 
-    def function(famille, period, legislation):
+    def formula(famille, period, legislation):
         P = legislation(period)
         ppa_majoree_eligibilite = famille('rsa_majore_eligibilite', period)
 
@@ -59,7 +59,7 @@ class ppa_montant_forfaitaire_familial_non_majore(Variable):
     label = u"Montant forfaitaire familial (sans majoration)"
     definition_period = MONTH
 
-    def function(famille, period, legislation, mois_demande):
+    def formula(famille, period, legislation, mois_demande):
         nb_parents = famille('nb_parents', period)
         nb_enfants = famille('rsa_nb_enfants', period)
         ppa_majoree_eligibilite = famille('rsa_majore_eligibilite', period)
@@ -86,7 +86,7 @@ class ppa_montant_forfaitaire_familial_majore(Variable):
     label = u"Montant forfaitaire familial (avec majoration)"
     definition_period = MONTH
 
-    def function(famille, period, legislation, mois_demande):
+    def formula(famille, period, legislation, mois_demande):
         nb_enfants = famille('rsa_nb_enfants', period)
         ppa = legislation(mois_demande).prestations.minima_sociaux.ppa
         rsa = legislation(period).prestations.minima_sociaux.rsa
@@ -102,7 +102,7 @@ class ppa_revenu_activite(Variable):
     label = u"Revenu d'activité pris en compte pour la PPA"
     definition_period = MONTH
 
-    def function(famille, period, legislation, mois_demande):
+    def formula(famille, period, legislation, mois_demande):
         ppa_revenu_activite_i = famille.members(
             'ppa_revenu_activite_individu', period, extra_params = [mois_demande])
         ppa_revenu_activite = famille.sum(ppa_revenu_activite_i)
@@ -116,7 +116,7 @@ class ppa_revenu_activite_individu(Variable):
     label = u"Revenu d'activité pris en compte pour la PPA (Individu) pour un mois"
     definition_period = MONTH
 
-    def function(individu, period, legislation, mois_demande):
+    def formula(individu, period, legislation, mois_demande):
         P = legislation(mois_demande)
         smic_horaire = P.cotsoc.gen.smic_h_b
 
@@ -149,7 +149,7 @@ class ppa_rsa_derniers_revenus_tns_annuels_connus(Variable):
     label = u"Derniers revenus non salariés annualisés connus"
     definition_period = YEAR
 
-    def function(individu, period):
+    def formula(individu, period):
 
         def get_last_known(variable_name):
             valeur_n = individu(variable_name, period)
@@ -173,7 +173,7 @@ class ppa_ressources_hors_activite(Variable):
     label = u"Revenu hors activité pris en compte pour la PPA"
     definition_period = MONTH
 
-    def function(famille, period, legislation, mois_demande):
+    def formula(famille, period, legislation, mois_demande):
         pf = famille(
             'ppa_base_ressources_prestations_familiales', period, extra_params = [mois_demande])
         ressources_hors_activite_i = famille.members(
@@ -196,7 +196,7 @@ class ppa_ressources_hors_activite_individu(Variable):
     label = u"Revenu hors activité pris en compte pour la PPA (Individu) pour un mois"
     definition_period = MONTH
 
-    def function(individu, period, legislation, mois_demande):
+    def formula(individu, period, legislation, mois_demande):
         P = legislation(mois_demande)
         smic_horaire = P.cotsoc.gen.smic_h_b
 
@@ -230,7 +230,7 @@ class ppa_base_ressources_prestations_familiales(Variable):
     label = u"Prestations familiales prises en compte dans le calcul de la PPA"
     definition_period = MONTH
 
-    def function(famille, period, legislation, mois_demande):
+    def formula(famille, period, legislation, mois_demande):
         prestations_calculees = [
             'rsa_forfait_asf',
             'paje_base',
@@ -262,7 +262,7 @@ class ppa_base_ressources(Variable):
     label = u"Bases ressource prise en compte pour la PPA"
     definition_period = MONTH
 
-    def function(famille, period, legislation, mois_demande):
+    def formula(famille, period, legislation, mois_demande):
         ppa_revenu_activite = famille(
             'ppa_revenu_activite', period, extra_params = [mois_demande])
         ppa_ressources_hors_activite = famille(
@@ -276,7 +276,7 @@ class ppa_bonification(Variable):
     label = u"Bonification de la PPA pour un individu"
     definition_period = MONTH
 
-    def function(individu, period, legislation, mois_demande):
+    def formula(individu, period, legislation, mois_demande):
         P = legislation(mois_demande)
         smic_horaire = P.cotsoc.gen.smic_h_b
         rsa_base = P.prestations.minima_sociaux.rmi.rmi
@@ -298,7 +298,7 @@ class ppa_fictive(Variable):
     label = u"Prime pour l'activité fictive pour un mois"
     definition_period = MONTH
 
-    def function(famille, period, legislation, mois_demande):
+    def formula(famille, period, legislation, mois_demande):
         forfait_logement = famille('rsa_forfait_logement', mois_demande)
         ppa_majoree_eligibilite = famille('rsa_majore_eligibilite', mois_demande)
 
@@ -329,15 +329,14 @@ class ppa_fictive(Variable):
         return elig * ppa_fictive
 
 
-class ppa(DatedVariable):
+class ppa(Variable):
     column = FloatCol
     entity = Famille
     label = u"Prime Pour l'Activité"
     definition_period = MONTH
     calculate_output = calculate_output_add
 
-    @dated_function(start = date(2016, 1, 1))
-    def function(famille, period, legislation):
+    def formula_2016_01_01(famille, period, legislation):
         seuil_non_versement = legislation(period).prestations.minima_sociaux.ppa.seuil_non_versement
         # éligibilité étudiants
 

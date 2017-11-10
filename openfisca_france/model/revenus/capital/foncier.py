@@ -44,7 +44,7 @@ class f4ba(Variable):
     label = u"Revenus fonciers imposables"
     definition_period = YEAR
 
-    def function(foyer_fiscal, period):
+    def formula(foyer_fiscal, period):
         revenus_locatifs = foyer_fiscal.members('revenus_locatifs', period, options = [ADD])
         return foyer_fiscal.sum(revenus_locatifs)
 
@@ -93,7 +93,7 @@ class f4bf(Variable):
 class f4bl(Variable):
     column = IntCol
     entity = FoyerFiscal
-    stop_date = date(2009, 12, 31)
+    end = '2009-12-31'
     definition_period = YEAR
     # TODO: cf 2010 2011
 

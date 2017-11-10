@@ -34,7 +34,7 @@ class conge_individuel_formation_cdd(Variable):
     definition_period = MONTH
 
     # TODO: date de début
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         contrat_de_travail_duree = simulation.calculate('contrat_de_travail_duree', period)
         assiette_cotisations_sociales = simulation.calculate('assiette_cotisations_sociales', period)
         law = simulation.legislation_at(period.start).cotsoc.conge_individuel_formation
@@ -49,7 +49,7 @@ class redevable_taxe_apprentissage(Variable):
     label = u"Entreprise redevable de la taxe d'apprentissage"
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         # L'association a but non lucratif ne paie pas d'IS de droit commun article 206 du Code général des impôts
         # -> pas de taxe d'apprentissage
         association = simulation.calculate('entreprise_est_association_non_lucrative', period)
@@ -63,7 +63,7 @@ class contribution_developpement_apprentissage(Variable):
     label = u"Contribution additionnelle au développement de l'apprentissage"
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         redevable_taxe_apprentissage = simulation.calculate('redevable_taxe_apprentissage', period)
 
         cotisation = apply_bareme(
@@ -76,15 +76,14 @@ class contribution_developpement_apprentissage(Variable):
         return cotisation * redevable_taxe_apprentissage
 
 
-class contribution_supplementaire_apprentissage(DatedVariable):
+class contribution_supplementaire_apprentissage(Variable):
     column = FloatCol
     entity = Individu
     label = u"Contribution supplémentaire à l'apprentissage"
     url = u"https://www.service-public.fr/professionnels-entreprises/vosdroits/F22574"
     definition_period = MONTH
 
-    @dated_function(date(2010, 1, 1))
-    def function(self, simulation, period):
+    def formula_2010_01_01(self, simulation, period):
         redevable_taxe_apprentissage = simulation.calculate('redevable_taxe_apprentissage', period)
         assiette_cotisations_sociales = simulation.calculate('assiette_cotisations_sociales', period)
         ratio_alternants = simulation.calculate('ratio_alternants', period)
@@ -122,7 +121,7 @@ class cotisations_employeur_main_d_oeuvre(Variable):
     label = u"Cotisation sociales employeur main d'oeuvre"
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         conge_individuel_formation_cdd = simulation.calculate('conge_individuel_formation_cdd', period)
         contribution_developpement_apprentissage = simulation.calculate(
             'contribution_developpement_apprentissage', period)
@@ -160,7 +159,7 @@ class fnal(Variable):
     label = u"Cotisation fonds national action logement (FNAL)"
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         fnal_tranche_a = simulation.calculate('fnal_tranche_a', period)
         fnal_tranche_a_plus_20 = simulation.calculate('fnal_tranche_a_plus_20', period)
         return fnal_tranche_a + fnal_tranche_a_plus_20
@@ -172,7 +171,7 @@ class fnal_tranche_a(Variable):
     label = u"Cotisation fonds national action logement (FNAL tout employeur)"
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         taille_entreprise = simulation.calculate('taille_entreprise', period)
         cotisation = apply_bareme(
             simulation,
@@ -190,7 +189,7 @@ class fnal_tranche_a_plus_20(Variable):
     label = u"Fonds national action logement (FNAL, employeur avec plus de 20 salariés)"
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         taille_entreprise = simulation.calculate('taille_entreprise', period)
         cotisation = apply_bareme(
             simulation,
@@ -202,14 +201,13 @@ class fnal_tranche_a_plus_20(Variable):
         return cotisation * (taille_entreprise > 2)
 
 
-class financement_organisations_syndicales(DatedVariable):
+class financement_organisations_syndicales(Variable):
     column = FloatCol
     entity = Individu
     label = u"Contribution patronale au financement des organisations syndicales"
     definition_period = MONTH
 
-    @dated_function(date(2015, 1, 1))
-    def function(self, simulation, period):
+    def formula_2015_01_01(self, simulation, period):
         categorie_salarie = simulation.calculate('categorie_salarie', period)
         cotisation = apply_bareme(
             simulation,
@@ -228,7 +226,7 @@ class formation_professionnelle(Variable):
     url = u"https://www.service-public.fr/professionnels-entreprises/vosdroits/F22570"
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         taille_entreprise = simulation.calculate('taille_entreprise', period)
         cotisation_0_9 = (taille_entreprise == 1) * apply_bareme(
             simulation,
@@ -259,7 +257,7 @@ class participation_effort_construction(Variable):
     label = u"Participation à l'effort de construction"
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         effectif_entreprise = simulation.calculate('effectif_entreprise', period)
 
         bareme = apply_bareme(
@@ -287,7 +285,7 @@ class taxe_apprentissage(Variable):
     url = u"https://www.service-public.fr/professionnels-entreprises/vosdroits/F22574"
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         redevable_taxe_apprentissage = simulation.calculate('redevable_taxe_apprentissage', period)
         salarie_regime_alsace_moselle = simulation.calculate('salarie_regime_alsace_moselle', period)
 
@@ -326,7 +324,7 @@ class taxe_salaires(Variable):
 # Voir
 # http://www.impots.gouv.fr/portal/deploiement/p1/fichedescriptiveformulaire_8920/fichedescriptiveformulaire_8920.pdf
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         assujettie_taxe_salaires = simulation.calculate('assujettie_taxe_salaires', period)
         assiette_cotisations_sociales = simulation.calculate('assiette_cotisations_sociales', period)
         prevoyance_obligatoire_cadre = simulation.calculate('prevoyance_obligatoire_cadre', period)

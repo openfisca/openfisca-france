@@ -11,14 +11,13 @@ from openfisca_france.model.base import *  # noqa analysis:ignore
 log = logging.getLogger(__name__)
 
 
-class credits_impot(DatedVariable):
+class credits_impot(Variable):
     column = FloatCol(default = 0)
     entity = FoyerFiscal
     label = u"Crédits d'impôt pour l'impôt sur les revenus"
     definition_period = YEAR
 
-    @dated_function(start = date(2002, 1, 1), stop = date(2002, 12, 31))
-    def function_20020101_20021231(self, simulation, period):
+    def formula_2002_01_01(self, simulation, period):
         """ Crédits d'impôt pour l'impôt sur les revenus de 2002 """
         accult = simulation.calculate('accult', period)
         acqgpl = simulation.calculate('acqgpl', period)
@@ -29,8 +28,7 @@ class credits_impot(DatedVariable):
 
         return accult + acqgpl + aidper + creimp + drbail + prlire
 
-    @dated_function(start = date(2003, 1, 1), stop = date(2004, 12, 31))
-    def function_20030101_20041231(self, simulation, period):
+    def formula_2003_01_01(self, simulation, period):
         """ Crédits d'impôt pour l'impôt sur les revenus de 2003 et 2004 """
         accult = simulation.calculate('accult', period)
         acqgpl = simulation.calculate('acqgpl', period)
@@ -42,8 +40,7 @@ class credits_impot(DatedVariable):
 
         return accult + acqgpl + aidper + creimp + drbail + mecena + prlire
 
-    @dated_function(start = date(2005, 1, 1), stop = date(2006, 12, 31))
-    def function_20050101_20061231(self, simulation, period):
+    def formula_2005_01_01(self, simulation, period):
         """ Crédits d'impôt pour l'impôt sur les revenus de 2005 et 2006 """
         accult = simulation.calculate('accult', period)
         acqgpl = simulation.calculate('acqgpl', period)
@@ -64,8 +61,7 @@ class credits_impot(DatedVariable):
         return (accult + acqgpl + aidmob + aidper + assloy + ci_garext + creimp + divide + direpa + drbail + jeunes +
                 mecena + preetu + prlire + quaenv)
 
-    @dated_function(start = date(2007, 1, 1), stop = date(2007, 12, 31))
-    def function_20070101_20071231(self, simulation, period):
+    def formula_2007_01_01(self, simulation, period):
         """ Crédits d'impôt pour l'impôt sur les revenus de 2007 """
         accult = simulation.calculate('accult', period)
         acqgpl = simulation.calculate('acqgpl', period)
@@ -88,8 +84,7 @@ class credits_impot(DatedVariable):
         return (accult + acqgpl + aidmob + aidper + assloy + ci_garext + creimp + divide + direpa + drbail + inthab +
                 jeunes + mecena + preetu + prlire + quaenv + saldom2)
 
-    @dated_function(start = date(2008, 1, 1), stop = date(2008, 12, 31))
-    def function_20080101_20081231(self, simulation, period):
+    def formula_2008_01_01(self, simulation, period):
         """ Crédits d'impôt pour l'impôt sur les revenus de 2008 """
         accult = simulation.calculate('accult', period)
         aidmob = simulation.calculate('aidmob', period)
@@ -112,8 +107,7 @@ class credits_impot(DatedVariable):
         return (accult + aidmob + aidper + assloy + ci_garext + creimp + creimp_exc_2008 + divide + direpa + drbail +
                 inthab + jeunes + mecena + preetu + prlire + quaenv + saldom2)
 
-    @dated_function(start = date(2009, 1, 1), stop = date(2009, 12, 31))
-    def function_20090101_20091231(self, simulation, period):
+    def formula_2009_01_01(self, simulation, period):
         """ Crédits d'impôt pour l'impôt sur les revenus de 2009 """
         accult = simulation.calculate('accult', period)
         aidper = simulation.calculate('aidper', period)
@@ -133,8 +127,7 @@ class credits_impot(DatedVariable):
         return (accult + aidper + assloy + ci_garext + creimp + divide + direpa + drbail + inthab + mecena + preetu +
                 prlire + quaenv + saldom2)
 
-    @dated_function(start = date(2010, 1, 1), stop = date(2010, 12, 31))
-    def function_20100101_20101231(self, simulation, period):
+    def formula_2010_01_01(self, simulation, period):
         """ Crédits d'impôt pour l'impôt sur les revenus de 2010 """
         accult = simulation.calculate('accult', period)
         aidper = simulation.calculate('aidper', period)
@@ -156,8 +149,7 @@ class credits_impot(DatedVariable):
         return (accult + aidper + assloy + autent + ci_garext + creimp + direpa + drbail + inthab + mecena + percvm +
                 preetu + prlire + quaenv + saldom2)
 
-    @dated_function(start = date(2011, 1, 1), stop = date(2011, 12, 31))
-    def function_20110101_20111231(self, simulation, period):
+    def formula_2011_01_01(self, simulation, period):
         """ Crédits d'impôt pour l'impôt sur les revenus de 2011 """
         accult = simulation.calculate('accult', period)
         aidper = simulation.calculate('aidper', period)
@@ -177,8 +169,7 @@ class credits_impot(DatedVariable):
         return (accult + aidper + assloy + autent + ci_garext + creimp + direpa + drbail + inthab + mecena + preetu +
                 prlire + quaenv + saldom2)
 
-    @dated_function(start = date(2012, 1, 1), stop = date(2012, 12, 31))
-    def function_20120101_20121231(self, simulation, period):
+    def formula_2012_01_01(self, simulation, period):
         """ Crédits d'impôt pour l'impôt sur les revenus de 2012 """
         accult = simulation.calculate('accult', period)
         aidper = simulation.calculate('aidper', period)
@@ -199,8 +190,7 @@ class credits_impot(DatedVariable):
         return (accult + aidper + assloy + autent + ci_garext + cotsyn + creimp + direpa + drbail + inthab + mecena +
                 preetu + prlire + quaenv + saldom2)
 
-    @dated_function(start = date(2013, 1, 1), stop = date(2013, 12, 31))
-    def function_20130101_20131231(self, simulation, period):
+    def formula_2013_01_01(self, simulation, period):
         """ Crédits d'impôt crédités l'impôt sur les revenus de 2013 """
         accult = simulation.calculate('accult', period)
         aidper = simulation.calculate('aidper', period)
@@ -221,8 +211,8 @@ class credits_impot(DatedVariable):
         return (accult + aidper + assloy + autent + ci_garext + cotsyn + creimp + direpa + drbail + inthab + mecena +
                 preetu + prlire + quaenv + saldom2)
 
-    @dated_function(start = date(2014, 1, 1))  # Not checked
-    def function_2014__(self, simulation, period):
+    # Not checked
+    def formula_2014_01_01(self, simulation, period):
         """ Crédits d'impôt crédités l'impôt sur les revenus de 2014 et + (non vérifié)"""
         accult = simulation.calculate('accult', period)
         aidper = simulation.calculate('aidper', period)
@@ -250,7 +240,7 @@ class nb_pac2(Variable):
     label = u"nb_pac2"
     definition_period = YEAR
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         nbF = simulation.calculate('nbF', period)
         nbJ = simulation.calculate('nbJ', period)
         nbR = simulation.calculate('nbR', period)
@@ -263,10 +253,9 @@ class accult(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"Acquisition de biens culturels"
-    start_date = date(2002, 1, 1)
     definition_period = YEAR
 
-    def function(self, simulation, period):
+    def formula_2002(self, simulation, period):
         '''
         Acquisition de biens culturels (case 7UO)
         2002-
@@ -282,11 +271,10 @@ class acqgpl(Variable):
     column = FloatCol(default = 0)
     entity = FoyerFiscal
     label = u"Crédit d'impôt pour dépense d'acquisition ou de transformation d'un véhicule GPL ou mixte"
-    start_date = date(2002, 1, 1)
-    stop_date = date(2007, 12, 31)
+    end = '2007-12-31'
     definition_period = YEAR
 
-    def function(self, simulation, period):
+    def formula_2002(self, simulation, period):
         '''
         Crédit d'impôt pour dépense d'acquisition ou de transformation d'un véhicule GPL ou mixte
         2002-2007
@@ -302,11 +290,10 @@ class aidmob(Variable):
     column = FloatCol(default = 0)
     entity = FoyerFiscal
     label = u"Crédit d'impôt aide à la mobilité"
-    start_date = date(2005, 1, 1)
-    stop_date = date(2008, 12, 31)
+    end = '2008-12-31'
     definition_period = YEAR
 
-    def function(self, simulation, period):
+    def formula_2005(self, simulation, period):
         '''
         Crédit d'impôt aide à la mobilité
         2005-2008
@@ -321,14 +308,13 @@ class aidmob(Variable):
         return (f1ar + f1br + f1cr + f1dr + f1er) * _P.impot_revenu.credits_impot.aidmob.montant
 
 
-class aidper(DatedVariable):
+class aidper(Variable):
     column = FloatCol(default = 0)
     entity = FoyerFiscal
     label = u"Crédits d’impôt pour dépenses en faveur de l’aide aux personnes"
     definition_period = YEAR
 
-    @dated_function(start = date(2002, 1, 1), stop = date(2003, 12, 31))
-    def function_20020101_20031231(self, simulation, period):
+    def formula_2002_01_01(self, simulation, period):
         '''
         Crédits d’impôt pour dépenses en faveur de l’aide aux personnes
         (cases 7WI, 7WJ, 7WL).
@@ -351,8 +337,7 @@ class aidper(DatedVariable):
 
         return P.taux_wi * min_(f7wi, max0)
 
-    @dated_function(start = date(2004, 1, 1), stop = date(2005, 12, 31))
-    def function_20040101_20051231(self, simulation, period):
+    def formula_2004_01_01(self, simulation, period):
         '''
         Crédits d’impôt pour dépenses en faveur de l’aide aux personnes
         (cases 7WI, 7WJ).
@@ -378,8 +363,7 @@ class aidper(DatedVariable):
         return (P.taux_wj * min_(f7wj, max0) +
                     P.taux_wi * min_(f7wi, max1))
 
-    @dated_function(start = date(2006, 1, 1), stop = date(2009, 12, 31))
-    def function_20060101_20091231(self, simulation, period):
+    def formula_2006_01_01(self, simulation, period):
         '''
         Crédits d’impôt pour dépenses en faveur de l’aide aux personnes
         (cases 7WI, 7WJ).
@@ -400,8 +384,7 @@ class aidper(DatedVariable):
         return (P.taux_wj * min_(f7wj, max0) +
                     P.taux_wi * min_(f7wi, max1))
 
-    @dated_function(start = date(2010, 1, 1), stop = date(2011, 12, 31))
-    def function_20100101_20111231(self, simulation, period):
+    def formula_2010_01_01(self, simulation, period):
         '''
         Crédits d’impôt pour dépenses en faveur de l’aide aux personnes
         (cases 7SF, 7WI, 7WJ, 7WL).
@@ -423,8 +406,7 @@ class aidper(DatedVariable):
         max2 = max_(0, max1 - f7wj)
         return P.taux_wl * min_(f7wl+f7sf, max0) + P.taux_wj * min_(f7wj, max1)  + P.taux_wi * min_(f7wi, max2)
 
-    @dated_function(start = date(2012, 1, 1), stop = date(2012, 12, 31))
-    def function_20120101_20121231(self, simulation, period):
+    def formula_2012_01_01(self, simulation, period):
         '''
         Crédits d’impôt pour dépenses en faveur de l’aide aux personnes
         (cases 7WI, 7WJ, 7WL, 7WR).
@@ -448,8 +430,7 @@ class aidper(DatedVariable):
         return (P.taux_wr * f7wr + P.taux_wl * min_(f7wl, max00) + P.taux_wl * max_(f7wl - max00, 0) +
                 P.taux_wj * min_(f7wj, max1)  + P.taux_wi * min_(f7wi, max2))
 
-    @dated_function(start = date(2013, 1, 1), stop = date(2013, 12, 31))
-    def function_20130101_20131231(self, simulation, period):
+    def formula_2013_01_01(self, simulation, period):
         '''
         Crédits d’impôt pour dépenses en faveur de l’aide aux personnes
         (cases 7WI, 7WJ, 7WL).
@@ -472,8 +453,7 @@ class aidper(DatedVariable):
         return (P.taux_wr * f7wr + P.taux_wl * min_(f7wl, max00) + P.taux_wl * max_(f7wl - max00, 0) + P.taux_wj *
                 min_(f7wj, max1))
 
-    @dated_function(start = date(2014, 1, 1))
-    def function_2014__(self, simulation, period):
+    def formula_2014_01_01(self, simulation, period):
         '''
         Crédits d’impôt pour dépenses en faveur de l’aide aux personnes
         (cases 7WI, 7WJ, 7WL).
@@ -503,10 +483,9 @@ class assloy(Variable):
     column = FloatCol(default = 0)
     entity = FoyerFiscal
     label = u"Crédit d’impôt primes d’assurance pour loyers impayés"
-    start_date = date(2005, 1, 1)
     definition_period = YEAR
 
-    def function(self, simulation, period):
+    def formula_2005(self, simulation, period):
         '''
         Crédit d’impôt primes d’assurance pour loyers impayés (case 4BF)
         2005-
@@ -521,10 +500,9 @@ class autent(Variable):
     column = FloatCol(default = 0)
     entity = FoyerFiscal
     label = u"autent"
-    start_date = date(2009, 1, 1)
     definition_period = YEAR
 
-    def function(self, simulation, period):
+    def formula_2009(self, simulation, period):
         '''
         Auto-entrepreneur : versements d’impôt sur le revenu (case 8UY)
         2009-
@@ -538,10 +516,9 @@ class ci_garext(Variable):
     column = FloatCol(default = 0)
     entity = FoyerFiscal
     label = u"Frais de garde des enfants à l’extérieur du domicile"
-    start_date = date(2005, 1, 1)
     definition_period = YEAR
 
-    def function(self, simulation, period):
+    def formula_2005(self, simulation, period):
         '''
         Frais de garde des enfants à l’extérieur du domicile (cases 7GA à 7GC et 7GE à 7GG)
         2005-
@@ -570,7 +547,7 @@ class creimp_exc_2008(Variable):
     label = u"Crédit d'impôt exceptionnel sur les revenus 2008"
     definition_period = YEAR
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         '''
         Crédit d'impôt exceptionnel sur les revenus 2008
         http://www11.minefi.gouv.fr/boi/boi2009/5fppub/textes/5b2509/5b2509.pdf
@@ -587,14 +564,14 @@ class creimp_exc_2008(Variable):
                 (rpp > 11673) * max_(0, 8317 * (12475 - rpp) / 802)))
 
 
-class creimp(DatedVariable):
+class creimp(Variable):
     column = FloatCol(default = 0)
     entity = FoyerFiscal
     label = u"Avoirs fiscaux et crédits d'impôt"
     definition_period = YEAR
+    end = '2013-12-31'
 
-    @dated_function(start = date(2002, 1, 1), stop = date(2002, 12, 31))
-    def function_20020101_20021231(self, simulation, period):
+    def formula_2002_01_01(self, simulation, period):
         f2ab = simulation.calculate('f2ab', period)
         f8ta = simulation.calculate('f8ta', period)
         f8tb = simulation.calculate('f8tb', period)
@@ -607,8 +584,7 @@ class creimp(DatedVariable):
 
         return (f2ab + f8ta + f8tb + f8tc + f8td_2002_2005 + f8te - f8tf + f8tg + f8th)
 
-    @dated_function(start = date(2003, 1, 1), stop = date(2003, 12, 31))
-    def function_20030101_20031231(self, simulation, period):
+    def formula_2003_01_01(self, simulation, period):
         f2ab = simulation.calculate('f2ab', period)
         f8ta = simulation.calculate('f8ta', period)
         f8tb = simulation.calculate('f8tb', period)
@@ -623,8 +599,7 @@ class creimp(DatedVariable):
 
         return (f2ab + f8ta + f8tb + f8tc + f8td_2002_2005 + f8te - f8tf + f8tg + f8th + f8to - f8tp)
 
-    @dated_function(start = date(2004, 1, 1), stop = date(2004, 12, 31))
-    def function_20040101_20041231(self, simulation, period):
+    def formula_2004_01_01(self, simulation, period):
         f2ab = simulation.calculate('f2ab', period)
         f8ta = simulation.calculate('f8ta', period)
         f8tb = simulation.calculate('f8tb', period)
@@ -641,8 +616,7 @@ class creimp(DatedVariable):
 
         return (f2ab + f8ta + f8tb + f8tc + f8td_2002_2005 + f8te - f8tf + f8tg + f8th + f8to - f8tp + f8tz + f8uz)
 
-    @dated_function(start = date(2005, 1, 1), stop = date(2005, 12, 31))
-    def function_20050101_20051231(self, simulation, period):
+    def formula_2005_01_01(self, simulation, period):
         f2ab = simulation.calculate('f2ab', period)
         f8ta = simulation.calculate('f8ta', period)
         f8tb = simulation.calculate('f8tb', period)
@@ -664,8 +638,7 @@ class creimp(DatedVariable):
         return  (f2ab + f8ta + f8tb + f8tc + f8td_2002_2005 + f8te - f8tf + f8tg + f8th + f8to - f8tp + f8tz + f8uz + f8wa +
                 f8wb + f8wc + f8we)
 
-    @dated_function(start = date(2006, 1, 1), stop = date(2006, 12, 31))
-    def function_20060101_20061231(self, simulation, period):
+    def formula_2006_01_01(self, simulation, period):
         f2ab = simulation.calculate('f2ab', period)
         f8ta = simulation.calculate('f8ta', period)
         f8tb = simulation.calculate('f8tb', period)
@@ -691,8 +664,7 @@ class creimp(DatedVariable):
         return  (f2ab + f8ta + f8tb + f8tc + f8te - f8tf + f8tg + f8th + f8to - f8tp + f8tz + f8uz + f8wa + f8wb + f8wc +
                 f8wd + f8we + f8wr + f8ws + f8wt + f8wu)
 
-    @dated_function(start = date(2007, 1, 1), stop = date(2007, 12, 31))
-    def function_20070101_20071231(self, simulation, period):
+    def formula_2007_01_01(self, simulation, period):
         f2ab = simulation.calculate('f2ab', period)
         f8ta = simulation.calculate('f8ta', period)
         f8tb = simulation.calculate('f8tb', period)
@@ -719,8 +691,7 @@ class creimp(DatedVariable):
         return  (f2ab + f8ta + f8tb + f8tc + f8te - f8tf + f8tg + f8th + f8to - f8tp + f8tz + f8uz + f8wa + f8wb + f8wc +
                 f8wd + f8wr + f8ws + f8wt + f8wu + f8wv + f8wx)
 
-    @dated_function(start = date(2008, 1, 1), stop = date(2008, 12, 31))
-    def function_20080101_20081231(self, simulation, period):
+    def formula_2008_01_01(self, simulation, period):
         f2ab = simulation.calculate('f2ab', period)
         f8ta = simulation.calculate('f8ta', period)
         f8tb = simulation.calculate('f8tb', period)
@@ -748,8 +719,7 @@ class creimp(DatedVariable):
         return  (f2ab + f8ta + f8tb + f8tc + f8te - f8tf + f8tg + f8th + f8to - f8tp + f8tz + f8uz + f8wa + f8wb + f8wc +
                 f8wd + f8wr + f8ws + f8wt + f8wu + f8wv + f8wx)
 
-    @dated_function(start = date(2009, 1, 1), stop = date(2009, 12, 31))
-    def function_20090101_20091231(self, simulation, period):
+    def formula_2009_01_01(self, simulation, period):
         f2ab = simulation.calculate('f2ab', period)
         f8ta = simulation.calculate('f8ta', period)
         f8tb = simulation.calculate('f8tb', period)
@@ -775,8 +745,7 @@ class creimp(DatedVariable):
         return  (f2ab + f8ta + f8tb + f8te - f8tf + f8tg + f8th + f8to - f8tp + f8tz + f8uz + f8wa + f8wb + f8wd +
                 f8we + f8wr + f8ws + f8wt + f8wu + f8wv + f8wx)
 
-    @dated_function(start = date(2010, 1, 1), stop = date(2011, 12, 31))
-    def function_20100101_20111231(self, simulation, period):
+    def formula_2010_01_01(self, simulation, period):
         f2ab = simulation.calculate('f2ab', period)
         f8ta = simulation.calculate('f8ta', period)
         f8tb = simulation.calculate('f8tb', period)
@@ -801,8 +770,7 @@ class creimp(DatedVariable):
         return (f2ab + f8ta + f8tb + f8tc + f8te - f8tf + f8tg + f8th + f8to - f8tp + f8tz + f8uz + f8wa + f8wb + f8wd +
         f8we + f8wr + f8wt + f8wu + f8wv)
 
-    @dated_function(start = date(2012, 1, 1), stop = date(2012, 12, 31))
-    def function_20120101_20121231(self, simulation, period):
+    def formula_2012_01_01(self, simulation, period):
         f2ab = simulation.calculate('f2ab', period)
         f8ta = simulation.calculate('f8ta', period)
         f8tb = simulation.calculate('f8tb', period)
@@ -828,8 +796,7 @@ class creimp(DatedVariable):
         return (f2ab + f8ta + f8tb + f8tc +f8te - f8tf + f8tg + f8th + f8to - f8tp + f8ts + f8tz + f8uz + f8wa + f8wb +
                 f8wd + f8we + f8wr + f8wt + f8wu + f8wv)
 
-    @dated_function(start = date(2013, 1, 1), stop = date(2013, 12, 31))
-    def function_20130101_20131231(self, simulation, period):
+    def formula_2013_01_01(self, simulation, period):
         f2ab = simulation.calculate('f2ab', period)
         f2ck = simulation.calculate('f2ck', period)
         f8ta = simulation.calculate('f8ta', period)
@@ -865,7 +832,7 @@ class direpa(Variable):
     label = u"Crédit d’impôt directive « épargne »"
     definition_period = YEAR
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         '''
         Crédit d’impôt directive « épargne » (case 2BG)
         2006-
@@ -879,11 +846,10 @@ class divide(Variable):
     column = FloatCol(default = 0)
     entity = FoyerFiscal
     label = u"Crédit d'impôt dividendes"
-    start_date = date(2005, 1, 1)
-    stop_date = date(2009, 12, 31)
+    end = '2009-12-31'
     definition_period = YEAR
 
-    def function(self, simulation, period):
+    def formula_2005_01_01(self, simulation, period):
         '''
         Crédit d'impôt dividendes
         2005-2009
@@ -905,7 +871,7 @@ class drbail(Variable):
     label = u"Crédit d’impôt représentatif de la taxe additionnelle au droit de bail"
     definition_period = YEAR
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         '''
         Crédit d’impôt représentatif de la taxe additionnelle au droit de bail (case 4TQ)
         2002-
@@ -917,14 +883,14 @@ class drbail(Variable):
         return P.taux * f4tq
 
 
-class inthab(DatedVariable):
+class inthab(Variable):
     column = FloatCol(default = 0)
     entity = FoyerFiscal
     label = u"Crédit d’impôt intérêts des emprunts pour l’habitation principale"
     definition_period = YEAR
+    end = '2013-12-31'
 
-    @dated_function(start = date(2007, 1, 1), stop = date(2007, 12, 31))
-    def function_20070101_20071231(self, simulation, period):
+    def formula_2007_01_01(self, simulation, period):
         '''
         Crédit d’impôt intérêts des emprunts pour l’habitation principale (cases 7UH)
         2007
@@ -942,8 +908,7 @@ class inthab(DatedVariable):
         max0 = P.max * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac2 * P.add
         return P.taux1 * min_(max0, f7uh)
 
-    @dated_function(start = date(2008, 1, 1), stop = date(2008, 12, 31))
-    def function_20080101_20081231(self, simulation, period):
+    def formula_2008_01_01(self, simulation, period):
         '''
         Crédit d’impôt intérêts des emprunts pour l’habitation principale (cases 7VX, 7VY et 7VZ)
         2008
@@ -967,8 +932,7 @@ class inthab(DatedVariable):
         return (P.taux1 * min_(f7vy, max0) +
                     P.taux3 * min_(f7vz, max1))
 
-    @dated_function(start = date(2009, 1, 1), stop = date(2009, 12, 31))
-    def function_20090101_20091231(self, simulation, period):
+    def formula_2009_01_01(self, simulation, period):
         '''
         Crédit d’impôt intérêts des emprunts pour l’habitation principale (cases 7VX, 7VY et 7VZ)
         2009
@@ -995,8 +959,7 @@ class inthab(DatedVariable):
                     P.taux1 * min_(f7vy, max1) +
                     P.taux3 * min_(f7vz, max2))
 
-    @dated_function(start = date(2010, 1, 1), stop = date(2010, 12, 31))
-    def function_20100101_20101231(self, simulation, period):
+    def formula_2010_01_01(self, simulation, period):
         '''
         Crédit d’impôt intérêts des emprunts pour l’habitation principale (cases 7VW, 7VX, 7VY et 7VZ)
         2010
@@ -1026,8 +989,7 @@ class inthab(DatedVariable):
                     P.taux2 * min_(f7vw, max2) +
                     P.taux3 * min_(f7vz, max3))
 
-    @dated_function(start = date(2011, 1, 1), stop = date(2011, 12, 31))
-    def function_20110101_20111231(self, simulation, period):
+    def formula_2011_01_01(self, simulation, period):
         '''
         Crédit d’impôt intérêts des emprunts pour l’habitation principale (cases 7VW, 7VX, 7VY et 7VZ)
         2011
@@ -1063,8 +1025,7 @@ class inthab(DatedVariable):
                     P.taux4 * min_(f7vz, max4) +
                     P.taux5 * min_(f7vv, max5))
 
-    @dated_function(start = date(2012, 1, 1), stop = date(2013, 12, 31))
-    def function_20120101_20131231(self, simulation, period):
+    def formula_2012_01_01(self, simulation, period):
         '''
         Crédit d’impôt intérêts des emprunts pour l’habitation principale (cases 7VW, 7VX, 7VY et 7VZ)
         2011
@@ -1108,11 +1069,10 @@ class jeunes(Variable):
     column = FloatCol(default = 0)
     entity = FoyerFiscal
     label = u"jeunes"
-    start_date = date(2005, 1, 1)
-    stop_date = date(2008, 12, 31)
+    end = '2008-12-31'
     definition_period = YEAR
 
-    def function(self, simulation, period):
+    def formula_2005_01_01(self, simulation, period):
         jeunes_ind_holder = simulation.compute('jeunes_ind', period)
 
         return self.sum_by_entity(jeunes_ind_holder)
@@ -1122,11 +1082,10 @@ class jeunes_ind(Variable):
     column = FloatCol(default = 0)
     entity = Individu
     label = u"Crédit d'impôt en faveur des jeunes"
-    start_date = date(2005, 1, 1)
-    stop_date = date(2008, 12, 31)
+    end = '2008-12-31'
     definition_period = YEAR
 
-    def function(self, simulation, period):
+    def formula_2005_01_01(self, simulation, period):
         '''
         Crédit d'impôt en faveur des jeunes
         2005-2008
@@ -1168,10 +1127,9 @@ class mecena(Variable):
     column = FloatCol(default = 0)
     entity = FoyerFiscal
     label = u"Mécénat d'entreprise"
-    start_date = date(2003, 1, 1)
     definition_period = YEAR
 
-    def function(self, simulation, period):
+    def formula_2003_01_01(self, simulation, period):
         '''
         Mécénat d'entreprise (case 7US)
         2003-
@@ -1185,11 +1143,10 @@ class percvm(Variable):
     column = FloatCol(default = 0)
     entity = FoyerFiscal
     label = u"Crédit d’impôt pertes sur cessions de valeurs mobilières"
-    start_date = date(2010, 1, 1)
-    stop_date = date(2010, 12, 31)
+    end = '2010-12-31'
     definition_period = YEAR
 
-    def function(self, simulation, period):
+    def formula_2010_01_01(self, simulation, period):
         '''
         Crédit d’impôt pertes sur cessions de valeurs mobilières (3VV)
         -2010
@@ -1200,14 +1157,13 @@ class percvm(Variable):
         return _P.impot_revenu.credits_impot.percvm.taux * f3vv_end_2010
 
 
-class preetu(DatedVariable):
+class preetu(Variable):
     column = FloatCol(default = 0)
     entity = FoyerFiscal
     label = u"Crédit d’impôt pour souscription de prêts étudiants"
     definition_period = YEAR
 
-    @dated_function(start = date(2005, 1, 1), stop = date(2005, 12, 31))
-    def function_20050101_20051231(self, simulation, period):
+    def formula_2005_01_01(self, simulation, period):
         '''
         Crédit d’impôt pour souscription de prêts étudiants (cases 7UK, 7VO et 7TD)
         2005
@@ -1219,8 +1175,7 @@ class preetu(DatedVariable):
 
         return P.taux * min_(f7uk, P.max)
 
-    @dated_function(start = date(2006, 1, 1), stop = date(2007, 12, 31))
-    def function_20060101_20071231(self, simulation, period):
+    def formula_2006_01_01(self, simulation, period):
         '''
         Crédit d’impôt pour souscription de prêts étudiants (cases 7UK, 7VO et 7TD)
         2006-2007
@@ -1234,8 +1189,8 @@ class preetu(DatedVariable):
         max1 = P.max * (1 + f7vo)
         return P.taux * min_(f7uk, max1)
 
-    @dated_function(start = date(2008, 1, 1))
-    def function_20080101_20151231(self, simulation, period):
+    # Cette formule a seulement été vérifiée jusqu'au 2015-12-31
+    def formula_2008_01_01(self, simulation, period):
         '''
         Crédit d’impôt pour souscription de prêts étudiants (cases 7UK, 7VO et 7TD)
         2008-
@@ -1255,10 +1210,10 @@ class prlire(Variable):
     column = FloatCol(default = 0)
     entity = FoyerFiscal
     label = u"Prélèvement libératoire à restituer (case 2DH)"
-    stop_date = date(2013, 12, 31)
+    end = '2013-12-31'
     definition_period = YEAR
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         '''
         Prélèvement libératoire à restituer (case 2DH)
         2002-
@@ -1273,14 +1228,14 @@ class prlire(Variable):
         return _P.impot_revenu.credits_impot.prlire.taux * min_(f2dh, plaf_resid)
 
 
-class quaenv(DatedVariable):
+class quaenv(Variable):
     column = FloatCol(default = 0)
     entity = FoyerFiscal
     label = u"Crédits d’impôt pour dépenses en faveur de la qualité environnementale"
     definition_period = YEAR
+    end = '2013-12-31'
 
-    @dated_function(start = date(2005, 1, 1), stop = date(2005, 12, 31))
-    def function_20050101_20051231(self, simulation, period):
+    def formula_2005_01_01(self, simulation, period):
         '''
         Crédits d’impôt pour dépenses en faveur de la qualité environnementale
         (cases 7WF, 7WG, 7WH)
@@ -1304,8 +1259,7 @@ class quaenv(DatedVariable):
             P.taux_wg * min_(f7wg, max1) +
             P.taux_wh * min_(f7wh, max2))
 
-    @dated_function(start = date(2006, 1, 1), stop = date(2008, 12, 31))
-    def function_20060101_20081231(self, simulation, period):
+    def formula_2006_01_01(self, simulation, period):
         '''
         Crédits d’impôt pour dépenses en faveur de la qualité environnementale
         (cases 7WF, 7WG, 7WH, 7WQ)
@@ -1331,8 +1285,7 @@ class quaenv(DatedVariable):
                     P.taux_wh * min_(f7wh, max2) +
                     P.taux_wq * min_(f7wq, max3))
 
-    @dated_function(start = date(2009, 1, 1), stop = date(2009, 12, 31))
-    def function_20090101_20091231(self, simulation, period):
+    def formula_2009_01_01(self, simulation, period):
         '''
         Crédits d’impôt pour dépenses en faveur de la qualité environnementale
         (cases 7WF, 7WG, 7WH, 7WK, 7WQ, 7SB, 7SC, 7SD, 7SE)
@@ -1375,8 +1328,7 @@ class quaenv(DatedVariable):
                     P.taux_sb * min_(f7sb, max7) +
                     P.taux_wq * min_(f7wq, max8))
 
-    @dated_function(start = date(2010, 1, 1), stop = date(2011, 12, 31))
-    def function_20100101_20111231(self, simulation, period):
+    def formula_2010_01_01(self, simulation, period):
         '''
         Crédits d’impôt pour dépenses en faveur de la qualité environnementale
         (cases 7WF, 7WH, 7WK, 7WQ, 7SB, 7SD, 7SE et 7SH)
@@ -1418,8 +1370,7 @@ class quaenv(DatedVariable):
             P.taux_sh * min_(f7sh, max7)
             )
 
-    @dated_function(start = date(2012, 1, 1), stop = date(2012, 12, 31))
-    def function_20120101_20121231(self, simulation, period):
+    def formula_2012_01_01(self, simulation, period):
         '''
         Crédits d’impôt pour dépenses en faveur de la qualité environnementale
         2012
@@ -1500,8 +1451,7 @@ class quaenv(DatedVariable):
                     ))
         return not_(f7wg) * or_(not_(f7we), (rfr < 30000)) * (montant + collectif) + f7sz
 
-    @dated_function(start = date(2013, 1, 1), stop = date(2013, 12, 31))
-    def function_20130101_20131231(self, simulation, period):
+    def formula_2013_01_01(self, simulation, period):
         '''
         Crédits d’impôt pour dépenses en faveur de la qualité environnementale
         2013
@@ -1574,10 +1524,9 @@ class quaenv_bouquet(Variable):
     column = BoolCol(default = False)
     entity = FoyerFiscal
     label = u"quaenv_bouquet"
-    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
-    def function(self, simulation, period):
+    def formula_2013_01_01(self, simulation, period):
         '''
         Les dépenses de travaux dépendent d'un bouquet de travaux
         2013
@@ -1613,14 +1562,14 @@ class quaenv_bouquet(Variable):
         return or_(bouquet, f7wh)
 
 
-class saldom2(DatedVariable):
+class saldom2(Variable):
     column = FloatCol(default = 0)
     entity = FoyerFiscal
     label = u"Crédit d’impôt emploi d’un salarié à domicile"
     definition_period = YEAR
+    end = '2013-12-31'
 
-    @dated_function(start = date(2007, 1, 1), stop = date(2008, 12, 31))
-    def function_20070101_20081231(self, simulation, period):
+    def formula_2007_01_01(self, simulation, period):
         '''
         Crédit d’impôt emploi d’un salarié à domicile (cases 7DB, 7DG)
         2007-2008
@@ -1643,8 +1592,7 @@ class saldom2(DatedVariable):
 
         return P.taux * min_(f7db, maxEffectif)
 
-    @dated_function(start = date(2009, 1, 1), stop = date(2013, 12, 31))
-    def function_20090101_20131231(self, simulation, period):
+    def formula_2009_01_01(self, simulation, period):
         '''
         Crédit d’impôt emploi d’un salarié à domicile (cases 7DB, 7DG)
         2009-2010

@@ -85,7 +85,7 @@ class caseE(Variable):
     column = BoolCol
     entity = FoyerFiscal
     label = u"Situation pouvant donner droit à une demi-part supplémentaire : vous vivez seul au 1er janvier de l'année de perception des revenus et vous avez élevé un enfant pendant moins de 5 ans durant la période où vous viviez seul"
-    stop_date = date(2012, 12, 31)
+    end = '2012-12-31'
     definition_period = YEAR
 
 
@@ -126,7 +126,7 @@ class caseK(Variable):
     column = BoolCol
     entity = FoyerFiscal
     label = u"Situation pouvant donner droit à une demi-part supplémentaire: vous avez eu un enfant décédé après l’âge de 16 ans ou par suite de faits de guerre"
-    stop_date = date(2011, 12, 31)
+    end = '2011-12-31'
     definition_period = YEAR
 
 
@@ -201,7 +201,7 @@ class nb_parents(Variable):
     label = u"Nombre d'adultes (parents) dans la famille"
     definition_period = MONTH
 
-    def function(famille, period):
+    def formula(famille, period):
         # Note : Cette variable est "instantanée" : quelque soit la période demandée, elle retourne la valeur au premier
         # jour, sans changer la période.
 
@@ -214,7 +214,7 @@ class maries(Variable):
     label = u"maries"
     definition_period = MONTH
 
-    def function(famille, period):
+    def formula(famille, period):
         # Note : Cette variable est "instantanée" : quelque soit la période demandée, elle retourne la valeur au premier
         # jour, sans changer la période.
         statut_marital = famille.members('statut_marital', period)
@@ -229,7 +229,7 @@ class en_couple(Variable):
     label = u"Indicatrice de vie en couple"
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         # Note : Cette variable est "instantanée" : quelque soit la période demandée, elle retourne la valeur au premier
         # jour, sans changer la période.
         nb_parents = simulation.calculate('nb_parents', period)
@@ -243,7 +243,7 @@ class est_enfant_dans_famille(Variable):
     label = u"Indique que l'individu est un enfant dans une famille"
     definition_period = ETERNITY
 
-    def function(individu, period):
+    def formula(individu, period):
         return individu.has_role(Famille.ENFANT)
 
 
@@ -253,7 +253,7 @@ class etudiant(Variable):
     label = u"Indicatrice individuelle étudiant"
     definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         # Note : Cette variable est "instantanée" : quelque soit la période demandée, elle retourne la valeur au premier
         # jour, sans changer la période.
         activite = simulation.calculate('activite', period)

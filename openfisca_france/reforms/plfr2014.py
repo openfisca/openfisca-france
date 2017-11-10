@@ -18,12 +18,11 @@ from ..model.prelevements_obligatoires.impot_revenu import reductions_impot
 class plfr2014(Reform):
     name = u'Projet de Loi de Finances Rectificative 2014'
 
-    class reduction_impot_exceptionnelle(DatedVariable):
+    class reduction_impot_exceptionnelle(Variable):
         reference = reductions_impot.reduction_impot_exceptionnelle
         definition_period = YEAR
 
-        @dated_function(start = date(2013, 1, 1), stop = date(2013, 12, 31))
-        def function(self, simulation, period):
+        def formula_2013_01_01(self, simulation, period):
             janvier = period.first_month
 
             nb_adult = simulation.calculate('nb_adult', period)
@@ -34,13 +33,12 @@ class plfr2014(Reform):
             montant = params.montant_plafond * nb_adult
             return min_(max_(plafond + montant - rfr, 0), montant)
 
-    class reductions(DatedVariable):
+    class reductions(Variable):
         label = u"Somme des réductions d'impôt à intégrer pour l'année 2013"
         reference = reductions_impot.reductions
         definition_period = YEAR
 
-        @dated_function(start = date(2013, 1, 1), stop = date(2013, 12, 31))
-        def function_20130101_20131231(self, simulation, period):
+        def formula_2013_01_01(self, simulation, period):
             accult = simulation.calculate('accult', period)
             adhcga = simulation.calculate('adhcga', period)
             cappme = simulation.calculate('cappme', period)

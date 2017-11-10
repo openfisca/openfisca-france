@@ -339,6 +339,7 @@
   output_variables:
     af: 0 / 12
 
+
 - name: "Allocations familiales - Couple, 3 enfants nés en 2003, 2004 et 2005"
   description: Montant AF brut de CRDS
   period: 2006-01

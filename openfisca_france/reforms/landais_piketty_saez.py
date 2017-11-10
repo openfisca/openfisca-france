@@ -19,7 +19,7 @@ class assiette_csg(Variable):
     label = u"Assiette de la CSG"
     definition_period = YEAR
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         salaire_de_base = simulation.calculate_add('salaire_de_base', period)
         chomage_brut = simulation.calculate_add('chomage_brut', period)
         retraite_brute = simulation.calculate_add('retraite_brute', period)
@@ -36,7 +36,7 @@ class impot_revenu_lps(Variable):
     label = u"Impôt individuel sur l'ensemble de l'assiette de la csg, comme proposé par Landais, Piketty et Saez"
     definition_period = YEAR
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         janvier = period.first_month
 
         nbF_holder = simulation.compute('nbF', period)
@@ -63,7 +63,7 @@ class revenu_disponible(Variable):
     url = u"http://fr.wikipedia.org/wiki/Revenu_disponible"
     definition_period = YEAR
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         impot_revenu_lps_holder = simulation.compute('impot_revenu_lps', period)
         impot_revenu_lps = self.sum_by_entity(impot_revenu_lps_holder)
         pen_holder = simulation.compute('pensions', period)

@@ -1,0 +1,261 @@
+- name: arag_defi
+  period: 2005
+  relative_error_margin: 0.001
+  familles:
+  - id: '0'
+    parents:
+    - ind0
+  foyers_fiscaux:
+  - id: '0'
+    declarants:
+    - ind0
+  individus:
+  - id: ind0
+    salaire_imposable: 24000
+    activite: 0
+    statut_marital: 2
+    date_naissance: '1970-01-01'
+    arag_defi: 1500
+  menages:
+  - id: '0'
+    personne_de_reference: ind0
+  output_variables:
+    iai: 1697
+    ir_plaf_qf: 1697
+    nbptr: 1
+    ppe: 0
+    rbg: 15780
+    rfr: 15780
+- name: arag_defi
+  period: 2006
+  relative_error_margin: 0.001
+  familles:
+  - id: '0'
+    parents:
+    - ind0
+  foyers_fiscaux:
+  - id: '0'
+    declarants:
+    - ind0
+  individus:
+  - id: ind0
+    salaire_imposable: 24000
+    activite: 0
+    statut_marital: 2
+    date_naissance: '1970-01-01'
+    arag_defi: 1500
+  menages:
+  - id: '0'
+    personne_de_reference: ind0
+  output_variables:
+    iai: 1553
+    ir_plaf_qf: 1553
+    nbptr: 1
+    ppe: 0
+    rbg: 20100
+    rfr: 20100
+- name: arag_defi
+  period: 2007
+  relative_error_margin: 0.001
+  familles:
+  - id: '0'
+    parents:
+    - ind0
+  foyers_fiscaux:
+  - id: '0'
+    declarants:
+    - ind0
+  individus:
+  - id: ind0
+    salaire_imposable: 24000
+    activite: 0
+    statut_marital: 2
+    date_naissance: '1970-01-01'
+    arag_defi: 1500
+  menages:
+  - id: '0'
+    personne_de_reference: ind0
+  output_variables:
+    iai: 1537
+    ir_plaf_qf: 1537
+    nbptr: 1
+    ppe: 0
+    rbg: 20100
+    rfr: 20100
+    rni: 20100
+- name: arag_defi
+  period: 2008
+  relative_error_margin: 0.001
+  familles:
+  - id: '0'
+    parents:
+    - ind0
+  foyers_fiscaux:
+  - id: '0'
+    declarants:
+    - ind0
+  individus:
+  - id: ind0
+    salaire_imposable: 24000
+    activite: 0
+    statut_marital: 2
+    date_naissance: '1970-01-01'
+    arag_defi: 1500
+  menages:
+  - id: '0'
+    personne_de_reference: ind0
+  output_variables:
+    iai: 1500
+    ir_plaf_qf: 1500
+    nbptr: 1
+    ppe: 0
+    rbg: 20100
+    rfr: 20100
+    rni: 20100
+- name: arag_defi
+  period: 2009
+  relative_error_margin: 0.001
+  familles:
+  - id: '0'
+    parents:
+    - ind0
+  foyers_fiscaux:
+  - id: '0'
+    declarants:
+    - ind0
+  individus:
+  - id: ind0
+    salaire_imposable: 24000
+    activite: 0
+    statut_marital: 2
+    date_naissance: '1970-01-01'
+    arag_defi: 1500
+  menages:
+  - id: '0'
+    personne_de_reference: ind0
+  output_variables:
+    iai: 1495
+    ir_plaf_qf: 1495
+    nbptr: 1
+    ppe: 0
+    rbg: 20100
+    rfr: 20100
+    rni: 20100
+- name: arag_defi
+  period: 2010
+  relative_error_margin: 0.001
+  familles:
+  - id: '0'
+    parents:
+    - ind0
+  foyers_fiscaux:
+  - id: '0'
+    declarants:
+    - ind0
+  individus:
+  - id: ind0
+    salaire_imposable: 24000
+    activite: 0
+    statut_marital: 2
+    date_naissance: '1970-01-01'
+    arag_defi: 1500
+  menages:
+  - id: '0'
+    personne_de_reference: ind0
+  output_variables:
+    iai: 1475
+    ir_plaf_qf: 1475
+    nbptr: 1
+    ppe: 0
+    rbg: 20100
+    rfr: 20100
+    rni: 20100
+- name: arag_defi
+  period: 2011
+  relative_error_margin: 0.001
+  familles:
+  - id: '0'
+    parents:
+    - ind0
+  foyers_fiscaux:
+  - id: '0'
+    declarants:
+    - ind0
+  individus:
+  - id: ind0
+    salaire_imposable: 24000
+    activite: 0
+    statut_marital: 2
+    date_naissance: '1970-01-01'
+    arag_defi: 1500
+  menages:
+  - id: '0'
+    personne_de_reference: ind0
+  output_variables:
+    iai: 1475
+    ir_plaf_qf: 1475
+    nbptr: 1
+    ppe: 0
+    rbg: 20100
+    rfr: 20100
+    rni: 20100
+- name: arag_defi
+  period: 2012
+  relative_error_margin: 0.001
+  familles:
+  - id: '0'
+    parents:
+    - ind0
+  foyers_fiscaux:
+  - id: '0'
+    declarants:
+    - ind0
+  individus:
+  - id: ind0
+    salaire_imposable: 24000
+    activite: 0
+    statut_marital: 2
+    date_naissance: '1970-01-01'
+    arag_defi: 1500
+  menages:
+  - id: '0'
+    personne_de_reference: ind0
+  output_variables:
+    iai: 1475
+    ir_plaf_qf: 1475
+    irpp: -1475
+    nbptr: 1
+    ppe: 0
+    rbg: 20100
+    rfr: 20100
+    rni: 20100
+- name: arag_defi
+  period: 2013
+  relative_error_margin: 0.001
+  familles:
+  - id: '0'
+    parents:
+    - ind0
+  foyers_fiscaux:
+  - id: '0'
+    declarants:
+    - ind0
+  individus:
+  - id: ind0
+    salaire_imposable: 24000
+    activite: 0
+    statut_marital: 2
+    date_naissance: '1970-01-01'
+    arag_defi: 1500
+  menages:
+  - id: '0'
+    personne_de_reference: ind0
+  output_variables:
+    iai: 1464
+    ir_plaf_qf: 1464
+    irpp: -1464
+    nbptr: 1
+    ppe: 0
+    rbg: 20100
+    rfr: 20100
+    rni: 20100

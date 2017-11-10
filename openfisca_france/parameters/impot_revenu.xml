@@ -2246,9 +2246,9 @@
       <VALUE deb="1978-01-01" valeur="0.15" />
     </CODE>
     <CODE code="taux1" description="Plus values de cession de valeurs mobilières" format="percent" origin="openfisca">
-      <VALUE deb="2014-01-01" valeur="0.24" />
-      <VALUE deb="2012-01-01" valeur="0.24" /> # TODO: à partir de 2013: imposition au barême progressif de l'ir avec abattement de  20 % (détention 2 à 4 ans), 30 % (4-6 ans), 40% (au-delà)
-        <VALUE deb="2011-01-01" valeur="0.19" />
+      <PLACEHOLDER deb="2013-01-01" />
+      <VALUE deb="2012-01-01" valeur="0.24" />
+      <VALUE deb="2011-01-01" valeur="0.19" />
       <VALUE deb="2008-01-01" valeur="0.18" />
       <VALUE deb="2002-01-01" valeur="0.16" />
     </CODE>
@@ -2263,8 +2263,8 @@
       <VALUE deb="2000-01-01" valeur="0.40" />
     </CODE>
     <CODE code="taux_pv_mob_pro" description="Capital risque (VL)" format="percent" origin="openfisca">
-      <VALUE deb="2014-01-01" valeur="0.24" />
-      <VALUE deb="2012-01-01" valeur="0.24" /> # TODO: Check 2013
+      <PLACEHOLDER deb="2013-01-01" />
+      <VALUE deb="2012-01-01" valeur="0.24" />
         <VALUE deb="2011-01-01" valeur="0.19" />
       <VALUE deb="2008-01-01" valeur="0.18" />
       <VALUE deb="2002-01-01" valeur="0.16" />
@@ -2755,10 +2755,10 @@
       <CODE code="taux_xb" description="Taux (XB)" format="percent" origin="openfisca">
         <VALUE deb="2011-01-01" valeur="0.2" />
       </CODE>
-      <CODE code="taux_xc" description="Taux (XC)" format="percent" origin="openfisca"># TODO: check boxes (XC...XO) over the years
-          <VALUE deb="2014-01-01" valeur="0.25" />
-        <VALUE deb="2004-01-01" valeur="0.25" /># TODO: check 2013
-        </CODE>
+      <CODE code="taux_xc" description="Taux (XC)" format="percent" origin="openfisca">
+        <PLACEHOLDER deb="2013-01-01" />
+        <VALUE deb="2004-01-01" valeur="0.25" />
+      </CODE>
       <CODE code="taux_xd" description="Taux (XD)" format="percent" origin="openfisca">
         <VALUE deb="2007-01-01" valeur="0.00" />
         <VALUE deb="2004-01-01" valeur="0.15" />
@@ -2773,14 +2773,14 @@
         <VALUE deb="2004-01-01" valeur="0.00" />
       </CODE>
       <CODE code="taux_xg" description="Taux (XG)" format="percent" origin="openfisca">
-        <VALUE deb="2014-01-01" valeur="0.36" />
-        <VALUE deb="2011-01-01" valeur="0.36" /># TODO: check 2013
+        <PLACEHOLDER deb="2013-01-01" />
+        <VALUE deb="2011-01-01" valeur="0.36" />
         <VALUE deb="2005-01-01" valeur="0.40" />
         <VALUE deb="2004-01-01" valeur="0.10" />
       </CODE>
       <CODE code="taux_xh" description="Taux (XH)" format="percent" origin="openfisca">
-        <VALUE deb="2014-01-01" valeur="0.18" />
-        <VALUE deb="2011-01-01" valeur="0.18" /># TODO: check 2013
+        <PLACEHOLDER deb="2013-01-01" />
+        <VALUE deb="2011-01-01" valeur="0.18" />
         <VALUE deb="2005-01-01" valeur="0.20" />
         <VALUE deb="2004-01-01" valeur="0.10" />
       </CODE>
@@ -2867,8 +2867,7 @@
     </NODE>
     <NODE code="locmeu" description="Investissement en vue de la location meublée non professionnelle dans certains établissements ou résidences (cases 7IJ à 7IS" origin="openfisca">
       <CODE code="max" description="Maximum" format="integer" origin="openfisca" type="monetary">
-        <VALUE deb="2014-01-01" valeur="300000" />
-        <VALUE deb="2011-01-01" valeur="300000" /> # suppr
+        <PLACEHOLDER deb="2011-01-01" />
         <VALUE deb="2009-01-01" valeur="300000" />
       </CODE>
       <CODE code="taux" description="Taux" format="percent" origin="openfisca">
@@ -3233,8 +3232,8 @@
             <VALUE deb="2002-01-01" valeur="305" />
           </CODE>
           <CODE code="taux" description="Taux" format="percent" origin="openfisca">
-            <VALUE deb="2015-01-01" valeur="0.50" />
-            <VALUE deb="2006-01-01" valeur="0.50" />  # Check 2014
+            <PLACEHOLDER deb="2014-01-01" />
+            <VALUE deb="2006-01-01" valeur="0.50" />
             <VALUE deb="2002-01-01" valeur="0.52" />
             <VALUE deb="1991-01-01" valeur="0.50" />
           </CODE>
@@ -3276,9 +3275,8 @@
       <VALUE deb="1979-01-01" valeur="3000" />
     </CODE>
     <CODE code="majGO" description="majoration case GO" format="percent" origin="openfisca">
-        TODO: CHECK wild extension of date
-      <VALUE deb="2015-01-01" valeur="1.25" />
-      <VALUE deb="2006-01-01" valeur="1.25" /> #
+      <PLACEHOLDER deb="2015-01-01" />
+      <VALUE deb="2006-01-01" valeur="1.25" />
       <VALUE deb="2002-01-01" valeur="1" />
     </CODE>
     <CODE code="plafond_du_credit_d_impot" format="float" origin="ipp" type="monetary">
