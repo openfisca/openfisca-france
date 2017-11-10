@@ -1590,7 +1590,7 @@ class irpp_noncale(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"Impôt sur le revenu des personnes physiques non calé (pour cas-types)"
-    url = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_impot_revenu&espId=1&impot=IR&sfid=50"
+    reference = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_impot_revenu&espId=1&impot=IR&sfid=50"
     definition_period = YEAR
 
     def formula(self, simulation, period):

@@ -115,7 +115,7 @@ class revenu_disponible_noncale(Variable):
     column = FloatCol
     entity = Menage
     label = u"Revenu disponible du ménage avec IRPP non calé (pour cas-types)"
-    url = "http://fr.wikipedia.org/wiki/Revenu_disponible"
+    reference = "http://fr.wikipedia.org/wiki/Revenu_disponible"
     definition_period = YEAR
 
     def formula(self, simulation, period):
@@ -394,7 +394,7 @@ class ppe_menage(Variable):
     entity = Menage
     definition_period = YEAR
     label = u"Revenu disponible du ménage"
-    url = "http://fr.wikipedia.org/wiki/Revenu_disponible"
+    reference = "http://fr.wikipedia.org/wiki/Revenu_disponible"
 
     def formula(self, simulation, period):
         ppe_holder = simulation.compute('ppe', period)
@@ -544,7 +544,7 @@ class impots_directs_noncale(Variable):
     column = FloatCol
     entity = Menage
     label = u"Impôts directs avec IRPP non calé (pour cas-types)"
-    url = "http://fr.wikipedia.org/wiki/Imp%C3%B4t_direct"
+    reference = "http://fr.wikipedia.org/wiki/Imp%C3%B4t_direct"
     definition_period = YEAR
 
 

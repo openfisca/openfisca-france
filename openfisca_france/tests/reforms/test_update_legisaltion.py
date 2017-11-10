@@ -92,7 +92,7 @@ def create_fusion_rsa_apl_progressive(socle = 600):
                 column = FloatCol
                 entity = Famille
                 label = u"Minima sociaux"
-                url = "http://fr.wikipedia.org/wiki/Minima_sociaux"
+                reference = "http://fr.wikipedia.org/wiki/Minima_sociaux"
 
                 def formula(self, simulation, period):
                     period = period.this_year

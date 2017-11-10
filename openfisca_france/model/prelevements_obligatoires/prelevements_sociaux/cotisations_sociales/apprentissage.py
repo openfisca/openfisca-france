@@ -184,7 +184,7 @@ class prime_apprentissage(Variable):
 #     column = FloatCol
 #     entity = Individu
 #     label = u" Crédit d'impôt pour l'emploi d'apprentis"
-#     url = "http://www.apce.com/pid927/contrat-d-apprentissage.html?espace=1&tp=1&pagination=2"
+#     reference = "http://www.apce.com/pid927/contrat-d-apprentissage.html?espace=1&tp=1&pagination=2"
 #
 #     def formula(self, simulation, period):
 #         pass
