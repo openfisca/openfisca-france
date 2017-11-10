@@ -12,7 +12,7 @@ from openfisca_france.model.base import *  # noqa analysis:ignore
 #     entity = Menage
 #     label = u"Unités de consommation"
 
-#     def function(self, simulation, period):
+#     def formula(self, simulation, period):
 #         '''
 #         Calcule le nombre d'unités de consommation du ménage avec l'échelle de l'INSEE
 #         '''
@@ -37,7 +37,7 @@ class uc_indiv(Variable):
     label = u"Ajout unité de consommation de chaque individu"
     definition_period = YEAR
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         # Vu que l'âge est défini tous les mois, on fait calculate_add, puis on divise par douze.
         age_add = simulation.calculate('age', period)
         age = age_add #/ 12
@@ -118,7 +118,7 @@ class revenu_disponible_noncale(Variable):
     url = "http://fr.wikipedia.org/wiki/Revenu_disponible"
     definition_period = YEAR
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         revenus_du_travail_holder = simulation.compute('revenus_du_travail', period)
         pensions_holder = simulation.compute('pensions', period)
         revenus_du_capital_holder = simulation.compute('revenus_du_capital', period)
@@ -155,7 +155,7 @@ class niveau_de_vie_noncale(Variable):
     label = u"Niveau de vie du ménage avec IRPP non calé (pour cas-types)"
     definition_period = YEAR
 
-    def function(menage, period):
+    def formula(menage, period):
         revenu_disponible_noncale = menage('revenu_disponible_noncale', period)
         uc = menage('uc', period)
         return revenu_disponible_noncale / uc
@@ -252,7 +252,7 @@ class revenu_primaire(Variable):
     label = u"Revenu primaire du ménage"
     definition_period = YEAR
 
-    def function(individu, period):
+    def formula(individu, period):
         revenus_du_travail = individu('revenus_du_travail', period)
         revenus_du_capital = individu('revenus_du_capital', period)
         cotisations_employeur = individu('cotisations_employeur', period)
@@ -331,7 +331,7 @@ class impots_directs_menage(Variable):
     entity = Menage
     definition_period = YEAR
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         impots_directs = simulation.calculate('impots_directs', period)
         uc = simulation.calculate('uc', period)
         return impots_directs / uc
@@ -342,7 +342,7 @@ class revenus_du_capital_menage(Variable):
     entity = Menage
     definition_period = YEAR
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         revenus_du_capital_holder = simulation.compute('revenus_du_capital', period)
         revenus_du_capital = self.sum_by_entity(revenus_du_capital_holder)
         uc = simulation.calculate('uc', period)
@@ -354,7 +354,7 @@ class revenus_du_travail_menage(Variable):
     entity = Menage
     definition_period = YEAR
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         revenus_du_travail_holder = simulation.compute('revenus_du_travail', period)
         revenus_du_travail = self.sum_by_entity(revenus_du_travail_holder)
         uc = simulation.calculate('uc', period)
@@ -367,7 +367,7 @@ class pensions_menage(Variable):
     entity = Menage
     definition_period = YEAR
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         pensions_holder = simulation.compute('pensions', period)
         pensions = self.sum_by_entity(pensions_holder)
         uc = simulation.calculate('uc', period)
@@ -380,7 +380,7 @@ class prestations_sociales_menage(Variable):
     entity = Menage
     definition_period = YEAR
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         prestations_sociales_holder = simulation.compute('prestations_sociales', period)
         prestations_sociales = self.cast_from_entity_to_role(prestations_sociales_holder, role = CHEF)
         prestations_sociales = self.sum_by_entity(prestations_sociales)
@@ -396,7 +396,7 @@ class ppe_menage(Variable):
     label = u"Revenu disponible du ménage"
     url = "http://fr.wikipedia.org/wiki/Revenu_disponible"
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         ppe_holder = simulation.compute('ppe', period)
         ppe = self.cast_from_entity_to_role(ppe_holder, role = VOUS)
         ppe = self.sum_by_entity(ppe)
@@ -548,7 +548,7 @@ class impots_directs_noncale(Variable):
     definition_period = YEAR
 
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         irpp_noncale_holder = simulation.compute('irpp_noncale', period)
         taxe_habitation = simulation.calculate('taxe_habitation', period)
 
@@ -634,7 +634,7 @@ class revenu_disponible_famille(Variable):
     label = u"Revenu disponible du foyer social (famille)"
     definition_period = YEAR
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         revenus_du_travail_holder = simulation.compute('revenus_du_travail', period)
         revenus_du_travail = self.sum_by_entity(revenus_du_travail_holder)
 
@@ -666,7 +666,7 @@ class revenu_disponible_famille_noncale(Variable):
     label = u"Revenu disponible du foyer social (famille) avec IRPP non-calé (pour cas-types)"
     definition_period = YEAR
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         revenus_du_travail_holder = simulation.compute('revenus_du_travail', period)
         revenus_du_travail = self.sum_by_entity(revenus_du_travail_holder)
 

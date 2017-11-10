@@ -35,7 +35,7 @@ def create_fusion_rsa_apl_progressive(socle = 600):
                 label = u"Prestation unifiée"
                 entity = Famille
 
-                def function(famille, period, legislation):
+                def formula(famille, period, legislation):
                     rsa_eligibilite = famille('rsa_eligibilite', period)
                     rsa_socle_non_majore = famille('rsa_socle', period)
                     rsa_socle_majore = famille('rsa_socle_majore', period)
@@ -94,7 +94,7 @@ def create_fusion_rsa_apl_progressive(socle = 600):
                 label = u"Minima sociaux"
                 url = "http://fr.wikipedia.org/wiki/Minima_sociaux"
 
-                def function(self, simulation, period):
+                def formula(self, simulation, period):
                     period = period.this_year
                     aah_holder = simulation.compute_add('aah', period)
                     caah_holder = simulation.compute_add('caah', period)

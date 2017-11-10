@@ -143,7 +143,7 @@ class rev_coll_individu(Variable):
     label = u"Revenus perçus par le foyer fiscal à prendre en compte dans la base ressource des prestations familiales"
     definition_period = YEAR
 
-    def function(individu, period):
+    def formula(individu, period):
         retraite_titre_onereux_net = individu.foyer_fiscal('retraite_titre_onereux_net', period)
         pensions_alimentaires_versees = individu.foyer_fiscal('pensions_alimentaires_versees', period)
         rev_cap_lib = individu.foyer_fiscal('rev_cap_lib', period, options = [ADD])

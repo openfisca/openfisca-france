@@ -240,7 +240,7 @@ class revenus_capital(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
-    def function(individu, period):
+    def formula(individu, period):
         types_revenus_capital = ['f2dc', 'f2ch', 'f2ts', 'f2tr', 'f2da', 'f2dh', 'f2ee']
         return sum(
             individu.foyer_fiscal(type_revenu, period, options = [DIVIDE]) *
