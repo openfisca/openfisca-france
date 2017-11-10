@@ -1,0 +1,7 @@
+description: Limite d'âge des enfants ouvrant droit
+reference: ipp
+values:
+  1976-10-01:
+    value: 3.0
+  2009-06-01:
+    value: null

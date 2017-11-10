@@ -1,0 +1,7 @@
+reference: ipp
+unit: /1
+values:
+  2010-01-01:
+    value: 0.0025
+  2011-01-01:
+    value: 0.004

@@ -1,0 +1,8 @@
+description: Montant plafond par part pour les deux premières parts
+reference: openfisca
+unit: currency
+values:
+  2013-01-01:
+    value: 350.0
+  2016-01-01:
+    value: null

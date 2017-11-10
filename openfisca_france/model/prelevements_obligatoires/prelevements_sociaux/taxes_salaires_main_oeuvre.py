@@ -37,7 +37,7 @@ class conge_individuel_formation_cdd(Variable):
     def formula(self, simulation, period):
         contrat_de_travail_duree = simulation.calculate('contrat_de_travail_duree', period)
         assiette_cotisations_sociales = simulation.calculate('assiette_cotisations_sociales', period)
-        law = simulation.legislation_at(period.start).cotsoc.conge_individuel_formation
+        law = simulation.parameters_at(period.start).cotsoc.conge_individuel_formation
 
         cotisation = - law.cdd * (contrat_de_travail_duree == 1) * assiette_cotisations_sociales
         return cotisation
@@ -90,7 +90,7 @@ class contribution_supplementaire_apprentissage(Variable):
         effectif_entreprise = simulation.calculate('effectif_entreprise', period)
         salarie_regime_alsace_moselle = simulation.calculate('salarie_regime_alsace_moselle', period)
 
-        cotsoc_params = simulation.legislation_at(period.start).cotsoc
+        cotsoc_params = simulation.parameters_at(period.start).cotsoc
         csa_params = cotsoc_params.contribution_supplementaire_apprentissage
 
         if period.start.year > 2012:
@@ -332,7 +332,7 @@ class taxe_salaires(Variable):
         prise_en_charge_employeur_prevoyance_complementaire = simulation.calculate_add(
             'prise_en_charge_employeur_prevoyance_complementaire', period)
 
-        law = simulation.legislation_at(period.start)
+        law = simulation.parameters_at(period.start)
         entreprise_est_association_non_lucrative = \
             simulation.calculate('entreprise_est_association_non_lucrative', period)
         effectif_entreprise = simulation.calculate('effectif_entreprise', period)

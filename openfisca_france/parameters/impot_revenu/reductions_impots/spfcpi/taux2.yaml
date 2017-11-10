@@ -1,0 +1,10 @@
+description: Second taux
+reference: openfisca
+unit: /1
+values:
+  2007-01-01:
+    value: 0.5
+  2011-01-01:
+    value: 0.45
+  2012-01-01:
+    value: 0.38

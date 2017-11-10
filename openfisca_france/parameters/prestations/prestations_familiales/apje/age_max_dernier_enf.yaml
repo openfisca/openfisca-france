@@ -1,0 +1,7 @@
+description: Âge limite inférieur
+reference: ipp
+values:
+  1985-01-01:
+    value: 3.0
+  2004-01-01:
+    value: null

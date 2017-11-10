@@ -1,0 +1,6 @@
+description: Seuil de la décote pour un couple
+reference: openfisca
+unit: currency
+values:
+  2014-01-01:
+    value: 1870.0

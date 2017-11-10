@@ -1,0 +1,7 @@
+description: Taux par pac supplémentaire
+unit: currency
+values:
+  2015-01-01:
+    value: 304.0
+  2016-01-01:
+    value: 305.0

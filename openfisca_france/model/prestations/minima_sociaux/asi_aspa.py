@@ -43,11 +43,11 @@ class asi_aspa_base_ressources_individu(Variable):
     entity = Individu
     definition_period = MONTH
 
-    def formula(individu, period, legislation):
+    def formula(individu, period, parameters):
         last_year = period.last_year
         three_previous_months = period.last_3_months
-        law = legislation(period)
-        leg_1er_janvier = legislation(period.start.offset('first-of', 'year'))
+        law = parameters(period)
+        leg_1er_janvier = parameters(period.start.offset('first-of', 'year'))
 
         ressources_incluses = [
             'allocation_securisation_professionnelle',
@@ -147,11 +147,11 @@ class aspa_eligibilite(Variable):
     entity = Individu
     definition_period = MONTH
 
-    def formula(individu, period, legislation):
+    def formula(individu, period, parameters):
         age = individu('age', period)
         inapte_travail = individu('inapte_travail', period)
         taux_incapacite = individu('taux_incapacite', period)
-        P = legislation(period).prestations.minima_sociaux
+        P = parameters(period).prestations.minima_sociaux
         condition_invalidite = (taux_incapacite > P.aspa.taux_incapacite_aspa_anticipe) + inapte_travail
         condition_age_base = (age >= P.aspa.age_min)
         condition_age_anticipe = (age >= P.aah.age_legal_retraite) * condition_invalidite
@@ -191,10 +191,10 @@ class asi_aspa_condition_nationalite(Variable):
     entity = Individu
     definition_period = MONTH
 
-    def formula(individu, period, legislation):
+    def formula(individu, period, parameters):
         ressortissant_eee = individu('ressortissant_eee', period)
         duree_possession_titre_sejour = individu('duree_possession_titre_sejour', period)
-        duree_min_titre_sejour = legislation(period).prestations.minima_sociaux.aspa.duree_min_titre_sejour
+        duree_min_titre_sejour = parameters(period).prestations.minima_sociaux.aspa.duree_min_titre_sejour
 
         return or_(ressortissant_eee, duree_possession_titre_sejour >= duree_min_titre_sejour)
 
@@ -205,7 +205,7 @@ class asi_aspa_nb_alloc(Variable):
     entity = Famille
     definition_period = MONTH
 
-    def formula(famille, period, legislation):
+    def formula(famille, period, parameters):
         aspa_elig_i = famille.members('aspa_eligibilite', period)
         asi_elig_i = famille.members('asi_eligibilite', period)
 
@@ -224,12 +224,12 @@ class asi(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
-    def formula_2007(famille, period, legislation):
+    def formula_2007(famille, period, parameters):
         maries = famille('maries', period)
         en_couple = famille('en_couple', period)
         asi_aspa_nb_alloc = famille('asi_aspa_nb_alloc', period)
         base_ressources = famille('asi_aspa_base_ressources', period)
-        P = legislation(period).prestations.minima_sociaux
+        P = parameters(period).prestations.minima_sociaux
 
         demandeur_eligible_asi = famille.demandeur('asi_eligibilite', period)
         demandeur_eligible_aspa = famille.demandeur('aspa_eligibilite', period)
@@ -304,12 +304,12 @@ class aspa(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
-    def formula(famille, period, legislation):
+    def formula(famille, period, parameters):
         maries = famille('maries', period)
         en_couple = famille('en_couple', period)
         asi_aspa_nb_alloc = famille('asi_aspa_nb_alloc', period)
         base_ressources = famille('asi_aspa_base_ressources', period)
-        P = legislation(period).prestations.minima_sociaux
+        P = parameters(period).prestations.minima_sociaux
 
         demandeur_eligible_asi = famille.demandeur('asi_eligibilite', period)
         demandeur_eligible_aspa = famille.demandeur('aspa_eligibilite', period)

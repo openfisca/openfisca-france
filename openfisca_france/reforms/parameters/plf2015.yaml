@@ -1,0 +1,17 @@
+description: PLF 2015 sur revenus 2013 (Décote)
+seuil_celib:
+  description: Seuil de la décote pour un célibataire
+  unit: currency
+  values:
+    '2014-01-01':
+      value: null
+    '2013-01-01':
+      value: 1135
+seuil_couple:
+  description: Seuil de la décote pour un couple
+  unit: currency
+  values:
+    '2014-01-01':
+      value: null
+    '2013-01-01':
+      value: 1870

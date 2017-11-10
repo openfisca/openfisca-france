@@ -1,5 +1,13 @@
 ﻿# Changelog
 
+## 18.9.0 - [#798](https://github.com/openfisca/openfisca-france/pull/798)
+
+* Amélioration technique
+* Détails :
+  - Migration vers la version 17 d'OpenFisca-Core.
+  - Transformation des paramètres depuis XML vers YAML.
+  - Ajout d'un sous-répertoire `migrations` dans le répertoire `scripts`.
+
 ### 18.8.2 - [#806](https://github.com/openfisca/openfisca-france/pull/788)
 
 * Évolution du système socio-fiscal.
@@ -30,7 +38,7 @@
 
 * Amélioration technique
 * Détails :
-  - Déclare OpenFisca-France compatible avec OpenFisca-Core 17
+  - Déclare OpenFisca-France compatible avec OpenFisca-Core 16
 
 ### 18.6.6 - [#781](https://github.com/openfisca/openfisca-france/pull/781)
 

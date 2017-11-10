@@ -1,0 +1,14 @@
+brackets:
+- rate:
+    1972-07-01:
+      value: 0.005
+    1977-01-01:
+      value: 0.006
+    1993-01-01:
+      value: 0.005
+    2014-01-01:
+      value: 0.0068
+  threshold:
+    1972-07-01:
+      value: 0.0
+reference: ipp

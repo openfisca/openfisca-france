@@ -6,11 +6,14 @@
 
 """Impôt Landais, Piketty, Saez"""
 
-
 from __future__ import division
 
-from openfisca_core.reforms import Reform
+import os
+
 from openfisca_france.model.base import *
+
+
+dir_path = os.path.join(os.path.dirname(__file__), 'parameters')
 
 
 class assiette_csg(Variable):
@@ -19,7 +22,7 @@ class assiette_csg(Variable):
     label = u"Assiette de la CSG"
     definition_period = YEAR
 
-    def formula(individu, period, legislation):
+    def formula(individu, period, parameters):
         salaire_de_base = individu('salaire_de_base', period, options = [ADD])
         chomage_brut = individu('chomage_brut', period, options = [ADD])
         retraite_brute = individu('retraite_brute', period, options = [ADD])
@@ -34,13 +37,13 @@ class impot_revenu_lps(Variable):
     label = u"Impôt individuel sur l'ensemble de l'assiette de la csg, comme proposé par Landais, Piketty et Saez"
     definition_period = YEAR
 
-    def formula(individu, period, legislation):
+    def formula(individu, period, parameters):
         janvier = period.first_month
 
         nbF = individu.foyer_fiscal('nbF', period) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
         nbH = individu.foyer_fiscal('nbH', period) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
         nbEnf = (nbF + nbH / 2)
-        lps = legislation(period).landais_piketty_saez
+        lps = parameters(period).landais_piketty_saez
         ae = nbEnf * lps.abatt_enfant
         re = nbEnf * lps.reduc_enfant
         ce = nbEnf * lps.credit_enfant
@@ -59,7 +62,7 @@ class revenu_disponible(Variable):
     reference = u"http://fr.wikipedia.org/wiki/Revenu_disponible"
     definition_period = YEAR
 
-    def formula(menage, period, legislation):
+    def formula(menage, period, parameters):
         impot_revenu_lps_i = menage.members('impot_revenu_lps', period)
         impot_revenu_lps = menage.sum(impot_revenu_lps_i)
         pen_i = menage.members('pensions', period)
@@ -74,137 +77,11 @@ class revenu_disponible(Variable):
         return revenus_du_travail + pen + revenus_du_capital + impot_revenu_lps + prestations_sociales
 
 
-def modify_legislation_json(reference_legislation_json_copy):
-    reform_legislation_subtree = {
-        "@type": "Node",
-        "description": u"Impôt à base large proposé par Landais, Piketty et Saez",
-        "children": {
-            "bareme": {
-                "@type": "Scale",
-                "unit": "currency",
-                "description": u"Barème de l'impôt",
-                "rates_kind": "average",
-                "brackets": [
-                    {
-                        "rate": [
-                            {'start': u'2015-01-01', },
-                            {'start': u'2000-01-01', 'value': .02},
-                            ],
-                        "threshold": [
-                            {'start': u'2015-01-01', },
-                            {'start': u'2000-01-01', 'value': 1100},
-                            ],
-                        },
-                    {
-                        "rate": [
-                            {'start': u'2015-01-01', },
-                            {'start': u'2000-01-01', 'value': .1},
-                            ],
-                        "threshold": [
-                            {'start': u'2015-01-01', },
-                            {'start': u'2000-01-01', 'value': 2200},
-                            ],
-                        },
-                    {
-                        "rate": [
-                            {'start': u'2015-01-01', },
-                            {'start': u'2000-01-01', 'value': .13},
-                            ],
-                        "threshold": [
-                            {'start': u'2015-01-01', },
-                            {'start': u'2000-01-01', 'value': 5000},
-                            ],
-                        },
-                    {
-                        "rate": [
-                            {'start': u'2015-01-01', },
-                            {'start': u'2000-01-01', 'value': .25},
-                            ],
-                        "threshold": [
-                            {'start': u'2015-01-01', },
-                            {'start': u'2000-01-01', 'value': 10000},
-                            ],
-                        },
-                    {
-                        "rate": [
-                            {'start': u'2015-01-01', },
-                            {'start': u'2000-01-01', 'value': .5},
-                            ],
-                        "threshold": [
-                            {'start': u'2015-01-01', },
-                            {'start': u'2000-01-01', 'value': 40000},
-                            ],
-                        },
-                    {
-                        "rate": [
-                            {'start': u'2015-01-01', },
-                            {'start': u'2000-01-01', 'value': .6},
-                            ],
-                        "threshold": [
-                            {'start': u'2015-01-01', },
-                            {'start': u'2000-01-01', 'value': 100000},
-                            ],
-                        },
-                    ],
-                },
-            "imposition": {
-                "@type": "Parameter",
-                "description": u"Indicatrice d'imposition",
-                "format": "boolean",
-                "values": [
-                    {'start': u'2015-01-01', },
-                    {'start': u'2000-01-01', 'value': True},
-                    ],
-                },
-            "credit_enfant": {
-                "@type": "Parameter",
-                "description": u"Crédit d'impôt forfaitaire par enfant",
-                "format": "integer",
-                "values": [
-                    {'start': u'2015-01-01', },
-                    {'start': u'2000-01-01', 'value': 0},
-                    ],
-                },
-            "reduc_enfant": {
-                "@type": "Parameter",
-                "description": u"Réduction d'impôt forfaitaire par enfant",
-                "format": "integer",
-                "values": [
-                    {'start': u'2015-01-01', },
-                    {'start': u'2000-01-01', 'value': 0},
-                    ],
-                },
-            "abatt_enfant": {
-                "@type": "Parameter",
-                "description": u"Abattement forfaitaire sur le revenu par enfant",
-                "format": "integer",
-                "values": [
-                    {'start': u'2015-01-01', },
-                    {'start': u'2000-01-01', 'value': 0},
-                    ],
-                },
-            "reduc_conj": {
-                "@type": "Parameter",
-                "description": u"Réduction d'impôt forfaitaire si conjoint",
-                "format": "integer",
-                "values": [
-                    {'start': u'2015-01-01', },
-                    {'start': u'2000-01-01', 'value': 0},
-                    ],
-                },
-            "abatt_conj": {
-                "@type": "Parameter",
-                "description": u"Abattement forfaitaire sur le revenu si conjoint",
-                "format": "integer",
-                "values": [
-                    {'start': u'2015-01-01', },
-                    {'start': u'2000-01-01', 'value': 0},
-                    ],
-                },
-            },
-        }
-    reference_legislation_json_copy['children']['landais_piketty_saez'] = reform_legislation_subtree
-    return reference_legislation_json_copy
+def modify_parameters(parameters):
+    file_path = os.path.join(dir_path, 'landais_piketty_saez.yaml')
+    reform_parameters_subtree = load_parameter_file(name='landais_piketty_saez', file_path=file_path)
+    parameters.add_child('landais_piketty_saez', reform_parameters_subtree)
+    return parameters
 
 
 class landais_piketty_saez(Reform):
@@ -213,4 +90,4 @@ class landais_piketty_saez(Reform):
     def apply(self):
         for variable in [assiette_csg, impot_revenu_lps, revenu_disponible]:
             self.update_variable(variable)
-        self.modify_legislation_json(modifier_function = modify_legislation_json)
+        self.modify_parameters(modifier_function = modify_parameters)

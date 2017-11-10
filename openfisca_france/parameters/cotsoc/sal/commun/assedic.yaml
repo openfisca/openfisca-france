@@ -1,0 +1,35 @@
+brackets:
+- rate:
+    1993-07-01:
+      value: 0.0377
+    1994-01-01:
+      value: 0.0386
+    1997-01-01:
+      value: 0.036
+    2001-01-01:
+      value: 0.0349
+    2001-04-01:
+      value: 0.026
+    2001-07-01:
+      value: 0.021
+    2002-01-01:
+      value: 0.02
+    2002-07-01:
+      value: 0.021
+    2003-01-01:
+      value: 0.024
+    2006-01-01:
+      value: 0.0244
+    2007-01-01:
+      value: 0.024
+  threshold:
+    1993-07-01:
+      value: 0.0
+- rate:
+    2003-01-01:
+      value: 0.0
+  threshold:
+    2003-01-01:
+      value: 4.0
+description: Chômage-emploi ASSEDIC
+reference: openfisca

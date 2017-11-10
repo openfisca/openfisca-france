@@ -1,0 +1,26 @@
+description: 'Plafond d''exonération de la taxe d''habitation: première part Guyane'
+reference: openfisca
+unit: currency
+values:
+  2002-01-01:
+    value: 8570.0
+  2003-01-01:
+    value: 8716.0
+  2004-01-01:
+    value: 8864.0
+  2005-01-01:
+    value: 9014.0
+  2006-01-01:
+    value: 9176.0
+  2007-01-01:
+    value: 11676.0
+  2008-01-01:
+    value: 11828.0
+  2009-01-01:
+    value: 12171.0
+  2010-01-01:
+    value: 12219.0
+  2011-01-01:
+    value: 12402.0
+  2012-01-01:
+    value: 12650.0

@@ -1,0 +1,32 @@
+brackets:
+- rate:
+    1991-02-01:
+      value: 0.0785
+    2011-01-01:
+      value: 0.0812
+    2012-01-01:
+      value: 0.0839
+    2012-11-01:
+      value: 0.0849
+    2013-01-01:
+      value: 0.0876
+    2014-01-01:
+      value: 0.0908
+    2015-01-01:
+      value: 0.094
+    2016-01-01:
+      value: 0.0972
+    2017-01-01:
+      value: 0.0999
+    2018-01-01:
+      value: 0.1026
+    2019-01-01:
+      value: 0.1053
+    2020-01-01:
+      value: 0.108
+    2021-01-01: expected
+  threshold:
+    1984-01-01:
+      value: 0.0
+description: Retraites des agents des collectivités locales (taux NBI)
+reference: openfisca

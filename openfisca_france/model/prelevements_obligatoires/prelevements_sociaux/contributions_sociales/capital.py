@@ -39,7 +39,7 @@ class csg_cap_bar(Variable):
 
     def formula(self, simulation, period):
         rev_cap_bar = simulation.calculate_add('rev_cap_bar', period)
-        _P = simulation.legislation_at(period.start)
+        _P = simulation.parameters_at(period.start)
 
         return -rev_cap_bar * _P.prelevements_sociaux.contributions.csg.capital.glob
 
@@ -54,7 +54,7 @@ class crds_cap_bar(Variable):
 
     def formula(self, simulation, period):
         rev_cap_bar = simulation.calculate_add('rev_cap_bar', period)
-        _P = simulation.legislation_at(period.start).taxation_capital.prelevements_sociaux
+        _P = simulation.parameters_at(period.start).taxation_capital.prelevements_sociaux
 
         return -rev_cap_bar * _P.crds.revenus_du_patrimoine
 
@@ -69,28 +69,28 @@ class prelsoc_cap_bar(Variable):
 
     def formula_2002_01_01(self, simulation, period):
         rev_cap_bar = simulation.calculate_add('rev_cap_bar', period)
-        P = simulation.legislation_at(period.start).taxation_capital.prelevements_sociaux
+        P = simulation.parameters_at(period.start).taxation_capital.prelevements_sociaux
 
         total = P.prelevement_social.revenus_du_patrimoine
         return -rev_cap_bar * total
 
     def formula_2006_01_01(self, simulation, period):
         rev_cap_bar = simulation.calculate_add('rev_cap_bar', period)
-        P = simulation.legislation_at(period.start).taxation_capital.prelevements_sociaux
+        P = simulation.parameters_at(period.start).taxation_capital.prelevements_sociaux
 
         total = P.prelevement_social.revenus_du_patrimoine + P.caps.revenus_du_patrimoine
         return -rev_cap_bar * total
 
     def formula_2009_01_01(self, simulation, period):
         rev_cap_bar = simulation.calculate_add('rev_cap_bar', period)
-        P = simulation.legislation_at(period.start).taxation_capital.prelevements_sociaux
+        P = simulation.parameters_at(period.start).taxation_capital.prelevements_sociaux
 
         total = P.prelevement_social.revenus_du_patrimoine + P.caps.revenus_du_patrimoine + P.caps.rsa
         return -rev_cap_bar * total
 
     def formula_2012_01_01(self, simulation, period):
         rev_cap_bar = simulation.calculate_add('rev_cap_bar', period)
-        P = simulation.legislation_at(period.start).taxation_capital.prelevements_sociaux
+        P = simulation.parameters_at(period.start).taxation_capital.prelevements_sociaux
 
         total = (
             P.prelevement_social.revenus_du_patrimoine + P.caps.revenus_du_patrimoine + P.caps.rsa +
@@ -100,7 +100,7 @@ class prelsoc_cap_bar(Variable):
 
     def formula_2013_01_01(self, simulation, period):
         rev_cap_bar = simulation.calculate_add('rev_cap_bar', period)
-        P = simulation.legislation_at(period.start).taxation_capital.prelevements_sociaux
+        P = simulation.parameters_at(period.start).taxation_capital.prelevements_sociaux
 
         total = (
             P.prelevement_social.revenus_du_patrimoine + P.caps.revenus_du_patrimoine +
@@ -121,7 +121,7 @@ class csg_pv_mo(Variable):
         Calcule la CSG sur les plus-values de cession mobilière
         """
         f3vg = simulation.calculate('f3vg', period)
-        _P = simulation.legislation_at(period.start)
+        _P = simulation.parameters_at(period.start)
 
         return -f3vg * _P.prelevements_sociaux.contributions.csg.capital.glob
 
@@ -138,7 +138,7 @@ class crds_pv_mo(Variable):
         Calcule la CRDS sur les plus-values de cession mobilière
         """
         f3vg = simulation.calculate('f3vg', period)
-        _P = simulation.legislation_at(period.start).taxation_capital.prelevements_sociaux
+        _P = simulation.parameters_at(period.start).taxation_capital.prelevements_sociaux
 
         return -f3vg * _P.crds.revenus_du_patrimoine
 
@@ -156,7 +156,7 @@ class prelsoc_pv_mo(Variable):
         de cession de valeurs mobilières
         """
         f3vg = simulation.calculate('f3vg', period)
-        _P = simulation.legislation_at(period.start)
+        _P = simulation.parameters_at(period.start)
 
         P = _P.taxation_capital.prelevements_sociaux
         total = P.prelevement_social.revenus_du_patrimoine
@@ -168,7 +168,7 @@ class prelsoc_pv_mo(Variable):
         de cession de valeurs mobilières
         """
         f3vg = simulation.calculate('f3vg', period)
-        _P = simulation.legislation_at(period.start)
+        _P = simulation.parameters_at(period.start)
 
         P = _P.taxation_capital.prelevements_sociaux
         total = P.prelevement_social.revenus_du_patrimoine + P.caps.revenus_du_patrimoine
@@ -179,7 +179,7 @@ class prelsoc_pv_mo(Variable):
         Calcule le prélèvement social sur les plus-values de cession de valeurs mobilières
         """
         f3vg = simulation.calculate('f3vg', period)
-        _P = simulation.legislation_at(period.start)
+        _P = simulation.parameters_at(period.start)
 
         P = _P.taxation_capital.prelevements_sociaux
         total = P.prelevement_social.revenus_du_patrimoine + P.caps.revenus_du_patrimoine + P.caps.rsa
@@ -190,7 +190,7 @@ class prelsoc_pv_mo(Variable):
         Calcule le prélèvement social sur les plus-values de cession de valeurs mobilières
         """
         f3vg = simulation.calculate('f3vg', period)
-        _P = simulation.legislation_at(period.start)
+        _P = simulation.parameters_at(period.start)
 
         P = _P.taxation_capital.prelevements_sociaux
         total = P.prelevement_social.revenus_du_patrimoine + P.caps.revenus_du_patrimoine
@@ -211,7 +211,7 @@ class csg_pv_immo(Variable):
         Calcule la CSG sur les plus-values de cession immobilière
         """
         f3vz = simulation.calculate('f3vz', period)
-        _P = simulation.legislation_at(period.start)
+        _P = simulation.parameters_at(period.start)
 
         return -f3vz * _P.prelevements_sociaux.contributions.csg.capital.glob
 
@@ -228,7 +228,7 @@ class crds_pv_immo(Variable):
         Calcule la CRDS sur les plus-values de cession immobilière
         """
         f3vz = simulation.calculate('f3vz', period)
-        _P = simulation.legislation_at(period.start).taxation_capital.prelevements_sociaux
+        _P = simulation.parameters_at(period.start).taxation_capital.prelevements_sociaux
 
         return -f3vz * _P.crds.revenus_du_patrimoine
 
@@ -245,7 +245,7 @@ class prelsoc_pv_immo(Variable):
         Calcule le prélèvement social sur les plus-values de cession immobilière
         """
         f3vz = simulation.calculate('f3vz', period)
-        _P = simulation.legislation_at(period.start)
+        _P = simulation.parameters_at(period.start)
 
         P = _P.taxation_capital.prelevements_sociaux
         total = P.prelevement_social.revenus_du_patrimoine
@@ -257,7 +257,7 @@ class prelsoc_pv_immo(Variable):
         Calcule le prélèvement social sur les plus-values de cession immobilière
         """
         f3vz = simulation.calculate('f3vz', period)
-        _P = simulation.legislation_at(period.start)
+        _P = simulation.parameters_at(period.start)
 
         P = _P.taxation_capital.prelevements_sociaux
         total = P.prelevement_social.revenus_du_patrimoine + P.caps.revenus_du_patrimoine
@@ -269,7 +269,7 @@ class prelsoc_pv_immo(Variable):
         Calcule le prélèvement social sur les plus-values de cession immobilière
         """
         f3vz = simulation.calculate('f3vz', period)
-        _P = simulation.legislation_at(period.start)
+        _P = simulation.parameters_at(period.start)
 
         P = _P.taxation_capital.prelevements_sociaux
         total = P.prelevement_social.revenus_du_patrimoine + P.caps.revenus_du_patrimoine + P.caps.rsa
@@ -280,7 +280,7 @@ class prelsoc_pv_immo(Variable):
         Calcule le prélèvement social sur les plus-values de cession immobilière
         """
         f3vz = simulation.calculate('f3vz', period)
-        _P = simulation.legislation_at(period.start)
+        _P = simulation.parameters_at(period.start)
 
         P = _P.taxation_capital.prelevements_sociaux
         total = P.prelevement_social.revenus_du_patrimoine + P.caps.revenus_du_patrimoine
@@ -302,7 +302,7 @@ class csg_fon(Variable):
         Attention : assiette CSG = asiette IR valable 2006-2014 mais pourrait changer
         '''
         rev_cat_rfon = simulation.calculate('rev_cat_rfon', period)
-        _P = simulation.legislation_at(period.start)
+        _P = simulation.parameters_at(period.start)
 
         return -rev_cat_rfon * _P.prelevements_sociaux.contributions.csg.capital.glob
 
@@ -320,7 +320,7 @@ class crds_fon(Variable):
         Attention : assiette CSG = asiette IR valable 2006-2014 mais pourrait changer
         '''
         rev_cat_rfon = simulation.calculate('rev_cat_rfon', period)
-        _P = simulation.legislation_at(period.start).taxation_capital.prelevements_sociaux
+        _P = simulation.parameters_at(period.start).taxation_capital.prelevements_sociaux
 
         return -rev_cat_rfon * _P.crds.revenus_du_patrimoine
 
@@ -338,7 +338,7 @@ class prelsoc_fon(Variable):
         TODO : assiette CSG = asiette IR valable 2006-2014 mais pourrait changer
         '''
         rev_cat_rfon = simulation.calculate('rev_cat_rfon', period)
-        _P = simulation.legislation_at(period.start)
+        _P = simulation.parameters_at(period.start)
 
         P = _P.taxation_capital.prelevements_sociaux
         total = P.prelevement_social.revenus_du_patrimoine
@@ -351,7 +351,7 @@ class prelsoc_fon(Variable):
         Attention : assiette CSG = asiette IR valable 2006-2014 mais pourrait changer
         '''
         rev_cat_rfon = simulation.calculate('rev_cat_rfon', period)
-        _P = simulation.legislation_at(period.start)
+        _P = simulation.parameters_at(period.start)
 
         P = _P.taxation_capital.prelevements_sociaux
         total = P.prelevement_social.revenus_du_patrimoine + P.caps.revenus_du_patrimoine
@@ -364,7 +364,7 @@ class prelsoc_fon(Variable):
         Attention : assiette CSG = assiette IR valable 2006-2014 mais pourrait changer
         '''
         rev_cat_rfon = simulation.calculate('rev_cat_rfon', period)
-        _P = simulation.legislation_at(period.start)
+        _P = simulation.parameters_at(period.start)
 
         P = _P.taxation_capital.prelevements_sociaux
         total = P.prelevement_social.revenus_du_patrimoine + P.caps.revenus_du_patrimoine + P.caps.rsa
@@ -376,7 +376,7 @@ class prelsoc_fon(Variable):
         Attention : assiette CSG = assiette IR valable 2006-2014 mais pourrait changer
         '''
         rev_cat_rfon = simulation.calculate('rev_cat_rfon', period)
-        _P = simulation.legislation_at(period.start)
+        _P = simulation.parameters_at(period.start)
 
         P = _P.taxation_capital.prelevements_sociaux
         total = P.prelevement_social.revenus_du_patrimoine + P.caps.revenus_du_patrimoine
@@ -396,7 +396,7 @@ class csg_cap_lib(Variable):
 
     def formula(self, simulation, period):
         rev_cap_lib = simulation.calculate_add('rev_cap_lib', period)
-        _P = simulation.legislation_at(period.start)
+        _P = simulation.parameters_at(period.start)
 
         return -rev_cap_lib * _P.prelevements_sociaux.contributions.csg.capital.glob
 
@@ -411,7 +411,7 @@ class crds_cap_lib(Variable):
 
     def formula(self, simulation, period):
         rev_cap_lib = simulation.calculate_add('rev_cap_lib', period)
-        _P = simulation.legislation_at(period.start).taxation_capital.prelevements_sociaux
+        _P = simulation.parameters_at(period.start).taxation_capital.prelevements_sociaux
 
         return -rev_cap_lib * _P.crds.revenus_du_patrimoine
 
@@ -426,7 +426,7 @@ class prelsoc_cap_lib(Variable):
 
     def formula(self, simulation, period):
         rev_cap_lib = simulation.calculate_add('rev_cap_lib', period)
-        prelsoc = simulation.legislation_at(period.start).taxation_capital.prelevements_sociaux
+        prelsoc = simulation.parameters_at(period.start).taxation_capital.prelevements_sociaux
 
         start_year = period.start.year
         if start_year < 2006:

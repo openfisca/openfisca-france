@@ -1,0 +1,6 @@
+description: Majoration du plafond pour le 1er enfant
+reference: openfisca
+unit: currency
+values:
+  2002-01-01:
+    value: 400.0

@@ -1,0 +1,7 @@
+description: Nombre d'années pleines de détentions minimale (1er seuil)
+reference: openfisca
+values:
+  2011-01-01:
+    value: 5.0
+  2012-02-01:
+    value: null

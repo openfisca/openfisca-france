@@ -42,11 +42,11 @@ class salaire_de_base(Variable):
         heures_remunerees_volume = simulation.calculate('heures_remunerees_volume', period = this_year)
         hsup = simulation.calculate('hsup', period = this_year)
 
-        P = simulation.legislation_at(period.start)
+        P = simulation.parameters_at(period.start)
 
         salarie = P.cotsoc.cotisations_salarie
         plafond_securite_sociale_annuel = P.cotsoc.gen.plafond_securite_sociale * 12
-        csg_deductible = simulation.legislation_at(period.start).prelevements_sociaux.contributions.csg.activite.deductible
+        csg_deductible = simulation.parameters_at(period.start).prelevements_sociaux.contributions.csg.activite.deductible
         taux_csg = csg_deductible.taux
         taux_abattement = csg_deductible.abattement.rates[0]
         try:
@@ -143,8 +143,8 @@ class salaire_de_base(Variable):
 #         # Sauf pour les fonctionnaires où il renvoie le traitement indiciaire brut
 #         # Note : le supplément familial de traitement est imposable.
 #         categorie_salarie = simulation.calculate('categorie_salarie', period)
-#         P = simulation.legislation_at(period.start)
-#         taux_csg = simulation.legislation_at(period.start).prelevements_sociaux.contributions.csg.activite.deductible.taux * (1 - .0175)
+#         P = simulation.parameters_at(period.start)
+#         taux_csg = simulation.parameters_at(period.start).prelevements_sociaux.contributions.csg.activite.deductible.taux * (1 - .0175)
 #         csg = MarginalRateTaxScale(name = 'csg')
 #         csg.add_bracket(0, taux_csg)
 

@@ -1,0 +1,5 @@
+description: Limite d'âge (stricte) pour bénéficier de l'APE
+reference: ipp
+values:
+  1985-01-01:
+    value: 3.0

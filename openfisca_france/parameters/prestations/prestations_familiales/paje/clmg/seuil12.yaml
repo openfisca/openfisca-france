@@ -1,0 +1,29 @@
+description: Premier plafond de ressources pour deux enfants
+reference: ipp
+values:
+  2004-01-01:
+    value: 16521.0
+  2004-07-01:
+    value: 16835.0
+  2005-07-01:
+    value: 17120.0
+  2006-07-01:
+    value: 17411.0
+  2007-07-01:
+    value: 22135.0
+  2009-01-01:
+    value: 22467.0
+  2010-01-01:
+    value: 23095.0
+  2011-01-01:
+    value: 23118.0
+  2012-01-01:
+    value: 23350.0
+  2013-01-01:
+    value: 23840.0
+  2014-01-01:
+    value: 24293.0
+  2015-01-01:
+    value: 2463.0
+  2016-01-01:
+    value: 24561.0

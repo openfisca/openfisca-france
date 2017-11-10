@@ -51,7 +51,7 @@ class exoneration_cotisations_employeur_jei(Variable):
         smic_proratise = simulation.calculate('smic_proratise', period)
         categorie_salarie = simulation.calculate('categorie_salarie', period)
 
-        bareme_by_type_sal_name = simulation.legislation_at(period.start).cotsoc.cotisations_employeur
+        bareme_by_type_sal_name = simulation.parameters_at(period.start).cotsoc.cotisations_employeur
         bareme_names = ['vieillesse_deplafonnee', 'vieillesse_plafonnee', 'maladie', 'famille']
 
         exoneration = smic_proratise * 0.0
@@ -174,7 +174,7 @@ class exoneration_cotisations_employeur_zfu(Variable):
             zone_franche_urbaine *
             entreprise_eligible
             )
-        bareme_by_name = simulation.legislation_at(period.start).cotsoc.cotisations_employeur['prive_non_cadre']
+        bareme_by_name = simulation.parameters_at(period.start).cotsoc.cotisations_employeur['prive_non_cadre']
         taux_max = (
             bareme_by_name['vieillesse_deplafonnee'].rates[0] +
             bareme_by_name['vieillesse_plafonnee'].rates[0] +

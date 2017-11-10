@@ -21,7 +21,7 @@ class FranceTaxBenefitSystem(TaxBenefitSystem):
     DATA_SOURCES_DIR = os.path.join(COUNTRY_DIR, 'data', 'sources')
     decomposition_file_path = os.path.join(
         os.path.dirname(os.path.abspath(decompositions.__file__)), 'decomp.xml')
-    preprocess_legislation = staticmethod(preprocessing.preprocess_legislation)
+    preprocess_parameters = staticmethod(preprocessing.preprocess_parameters)
 
     REFORMS_DIR = os.path.join(COUNTRY_DIR, 'reformes')
     REV_TYP = None  # utils.REV_TYP  # Not defined for France
@@ -41,23 +41,8 @@ class FranceTaxBenefitSystem(TaxBenefitSystem):
         TaxBenefitSystem.__init__(self, entities)
         self.Scenario = scenarios.Scenario
 
-        param_files = [
-            '__root__.xml',
-            'bouclier_fiscal.xml',
-            'bourses_education.xml',
-            'cmu.xml',
-            'cotsoc.xml',
-            'fonc.xml',
-            'impot_revenu.xml',
-            'prelevements_sociaux.xml',
-            'prestations.xml',
-            'taxation_capital.xml',
-            'tns.xml'
-            ]
-
-        for param_file in param_files:
-            param_path = os.path.join(COUNTRY_DIR, 'parameters', param_file)
-            self.add_legislation_params(param_path)
+        param_dir = os.path.join(COUNTRY_DIR, 'parameters')
+        self.load_parameters(param_dir)
 
         self.add_variables_from_directory(os.path.join(COUNTRY_DIR, 'model'))
         self.cache_blacklist = conf_cache_blacklist

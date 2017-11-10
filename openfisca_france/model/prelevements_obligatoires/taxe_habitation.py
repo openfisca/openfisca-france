@@ -12,7 +12,7 @@ class exonere_taxe_habitation(Variable):
     reference = "http://vosdroits.service-public.fr/particuliers/F42.xhtml"
     definition_period = YEAR
 
-    def formula(menage, period, legislation):
+    def formula(menage, period, parameters):
         """Exonation de la taxe d'habitation
         Eligibilité:
         - âgé de plus de 60 ans, non soumis à l'impôt de solidarité sur la fortune (ISF) en n-1
@@ -23,7 +23,7 @@ class exonere_taxe_habitation(Variable):
         """
         janvier = period.first_month
 
-        P = legislation(period).cotsoc.gen
+        P = parameters(period).cotsoc.gen
 
         age = menage.personne_de_reference('age', janvier)
         statut_marital = menage.personne_de_reference('statut_marital', janvier)
@@ -57,7 +57,7 @@ class taxe_habitation(Variable):
     reference = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?espId=1&pageId=part_taxe_habitation&impot=TH&sfid=50"
     definition_period = YEAR
 
-    def formula(menage, period, legislation):
+    def formula(menage, period, parameters):
         last_year = period.last_year
 
         exonere_taxe_habitation = menage('exonere_taxe_habitation', period)

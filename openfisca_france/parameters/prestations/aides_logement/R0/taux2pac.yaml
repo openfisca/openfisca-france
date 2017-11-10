@@ -1,0 +1,7 @@
+description: Taux pour 2 pac
+unit: currency
+values:
+  2015-01-01:
+    value: 7938.0
+  2016-01-01:
+    value: 7969.0

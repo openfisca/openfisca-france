@@ -1,0 +1,5 @@
+description: Enfant de rang 1 ou 2
+reference: openfisca
+values:
+  2002-01-01:
+    value: 0.5

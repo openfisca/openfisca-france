@@ -14,7 +14,7 @@ class autonomie_financiere(Variable):
     label = u"Indicatrice d'autonomie financière vis-à-vis des prestations familiales"
     definition_period = MONTH
 
-    def formula(individu, period, legislation):
+    def formula(individu, period, parameters):
         # salaire_net_mensualise = individu(
         #     'salaire_net', period.start.period('month', 6).offset(-6), options = [ADD]
         #     ) / 6
@@ -22,7 +22,7 @@ class autonomie_financiere(Variable):
             'salaire_net', period.this_year, options = [ADD]
             ) / 12
         salaire_net = individu('salaire_net', period.start.period('month', 6).offset(-6), options = [ADD])
-        _P = legislation(period)
+        _P = parameters(period)
 
         nbh_travaillees = 169
         smic_mensuel_brut = _P.cotsoc.gen.smic_h_b * nbh_travaillees
@@ -37,13 +37,13 @@ class prestations_familiales_enfant_a_charge(Variable):
     label = u"Enfant considéré à charge au sens des prestations familiales"
     definition_period = MONTH
 
-    def formula(individu, period, legislation):
+    def formula(individu, period, parameters):
         est_enfant_dans_famille = individu('est_enfant_dans_famille', period)
         autonomie_financiere = individu('autonomie_financiere', period)
         age = individu('age', period)
         rempli_obligation_scolaire = individu('rempli_obligation_scolaire', period)
 
-        pfam = legislation(period).prestations.prestations_familiales
+        pfam = parameters(period).prestations.prestations_familiales
 
         condition_enfant = ((age >= pfam.enfants.age_minimal) * (age < pfam.enfants.age_intermediaire) *
             rempli_obligation_scolaire)
@@ -76,10 +76,10 @@ class biactivite(Variable):
     label = u"Indicatrice de biactivité"
     definition_period = MONTH
 
-    def formula(famille, period, legislation):
+    def formula(famille, period, parameters):
         annee_fiscale_n_2 = period.n_2
 
-        pfam = legislation(annee_fiscale_n_2).prestations.prestations_familiales
+        pfam = parameters(annee_fiscale_n_2).prestations.prestations_familiales
         seuil_rev = 12 * pfam.af.bmaf
 
         condition_ressource = famille.members('prestations_familiales_base_ressources_individu', period) >= seuil_rev

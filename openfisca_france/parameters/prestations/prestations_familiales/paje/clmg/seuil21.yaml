@@ -1,0 +1,29 @@
+description: Second plafond de ressources pour un enfant
+reference: ipp
+values:
+  2004-01-01:
+    value: 31887.0
+  2004-07-01:
+    value: 32493.0
+  2005-07-01:
+    value: 33044.0
+  2006-07-01:
+    value: 33606.0
+  2007-07-01:
+    value: 42722.0
+  2009-01-01:
+    value: 43363.0
+  2010-01-01:
+    value: 44576.0
+  2011-01-01:
+    value: 44621.0
+  2012-01-01:
+    value: 45068.0
+  2013-01-01:
+    value: 46014.0
+  2014-01-01:
+    value: 46888.0
+  2015-01-01:
+    value: 47217.0
+  2016-01-01:
+    value: 47405.0

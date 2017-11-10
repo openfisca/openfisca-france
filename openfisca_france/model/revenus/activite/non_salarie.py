@@ -1579,7 +1579,7 @@ class tns_auto_entrepreneur_benefice(Variable):
     def formula_2008_01_01(self, simulation, period):
         tns_auto_entrepreneur_type_activite = simulation.calculate('tns_auto_entrepreneur_type_activite', period)
         tns_auto_entrepreneur_chiffre_affaires = simulation.calculate('tns_auto_entrepreneur_chiffre_affaires', period)
-        bareme = simulation.legislation_at(period.start).tns
+        bareme = simulation.parameters_at(period.start).tns
 
         benefice = compute_benefice_auto_entrepreneur_micro_entreprise(
             bareme, tns_auto_entrepreneur_type_activite, tns_auto_entrepreneur_chiffre_affaires)
@@ -1595,7 +1595,7 @@ class tns_micro_entreprise_benefice(Variable):
     def formula_2008_01_01(self, simulation, period):
         tns_micro_entreprise_type_activite = simulation.calculate('tns_micro_entreprise_type_activite', period)
         tns_micro_entreprise_chiffre_affaires = simulation.calculate('tns_micro_entreprise_chiffre_affaires', period)
-        bareme = simulation.legislation_at(period.start).tns
+        bareme = simulation.parameters_at(period.start).tns
 
         benefice = compute_benefice_auto_entrepreneur_micro_entreprise(
             bareme, tns_micro_entreprise_type_activite, tns_micro_entreprise_chiffre_affaires)
@@ -1615,7 +1615,7 @@ class tns_auto_entrepreneur_revenus_net(Variable) :
         tns_auto_entrepreneur_benefice = simulation.calculate('tns_auto_entrepreneur_benefice', period)
         tns_auto_entrepreneur_type_activite = simulation.calculate('tns_auto_entrepreneur_type_activite', period)
         tns_auto_entrepreneur_chiffre_affaires = simulation.calculate('tns_auto_entrepreneur_chiffre_affaires', period)
-        bareme_cs_ae = simulation.legislation_at(period.start).tns.auto_entrepreneur
+        bareme_cs_ae = simulation.parameters_at(period.start).tns.auto_entrepreneur
         taux_cotisations_sociales_sur_CA = (
             (tns_auto_entrepreneur_type_activite == 0) * bareme_cs_ae.achat_revente +
             (tns_auto_entrepreneur_type_activite == 1) * bareme_cs_ae.bic +
@@ -1634,7 +1634,7 @@ class tns_micro_entreprise_revenus_net(Variable) :
 
     def formula(self, simulation, period):
         tns_micro_entreprise_benefice = simulation.calculate('tns_micro_entreprise_benefice', period)
-        taux_cotisations_sociales = simulation.legislation_at(period.start).tns.micro_entreprise.cotisations_sociales
+        taux_cotisations_sociales = simulation.parameters_at(period.start).tns.micro_entreprise.cotisations_sociales
         tns_micro_entreprise_charges_sociales = tns_micro_entreprise_benefice * taux_cotisations_sociales
         revenus = tns_micro_entreprise_benefice - tns_micro_entreprise_charges_sociales
 

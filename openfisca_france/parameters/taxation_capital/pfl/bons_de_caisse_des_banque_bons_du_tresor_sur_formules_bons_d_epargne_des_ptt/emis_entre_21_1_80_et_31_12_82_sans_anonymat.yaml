@@ -1,0 +1,7 @@
+reference: ipp
+unit: /1
+values:
+  1980-01-01:
+    value: 0.38
+  2013-01-01:
+    value: 0.24

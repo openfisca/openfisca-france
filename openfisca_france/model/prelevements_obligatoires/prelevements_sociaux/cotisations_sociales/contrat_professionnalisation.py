@@ -57,7 +57,7 @@ class remuneration_professionnalisation(Variable):
 
     def formula(self, simulation, period):
         age = simulation.calculate('age', period)
-        smic = simulation.legislation_at(period.start).cotsoc.gen.smic_h_b * 52 * 35 / 12
+        smic = simulation.parameters_at(period.start).cotsoc.gen.smic_h_b * 52 * 35 / 12
         professionnalisation = simulation.calculate('professionnalisation', period)
         qualifie = simulation.calculate('qualifie')
         salaire_en_smic = [

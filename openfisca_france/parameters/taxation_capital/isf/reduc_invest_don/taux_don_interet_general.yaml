@@ -1,0 +1,6 @@
+description: Taux pour dons à certains organismes d'intérêt général
+reference: ipp
+unit: /1
+values:
+  2008-01-01:
+    value: 0.75

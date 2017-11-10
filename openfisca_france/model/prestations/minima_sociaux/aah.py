@@ -12,8 +12,8 @@ class aah_base_ressources(Variable):
     entity = Famille
     definition_period = MONTH
 
-    def formula(famille, period, legislation):
-        law = legislation(period)
+    def formula(famille, period, parameters):
+        law = parameters(period)
 
         demandeur_en_activite = famille.demandeur('salaire_imposable', period) > 0
 
@@ -66,7 +66,7 @@ class aah_base_ressources_eval_trimestrielle(Variable):
         ressources à partir de votre revenu mensuel.
     '''
 
-    def formula(individu, period, legislation):
+    def formula(individu, period, parameters):
         three_previous_months = period.start.period('month', 3).offset(-3)
         last_year = period.last_year
 
@@ -117,7 +117,7 @@ class aah_base_ressources_eval_annuelle(Variable):
     definition_period = MONTH
 
 
-    def formula(individu, period, legislation):
+    def formula(individu, period, parameters):
         return individu('revenu_activite', period.n_2) + individu('revenu_assimile_pension', period.n_2)
 
 
@@ -156,8 +156,8 @@ class aah_eligible(Variable):
         au minimum vieillesse.
     '''
 
-    def formula(individu, period, legislation):
-        law = legislation(period).prestations
+    def formula(individu, period, parameters):
+        law = parameters(period).prestations
         taux_incapacite = individu('taux_incapacite', period)
         age = individu('age', period)
         autonomie_financiere = individu('autonomie_financiere', period)
@@ -197,8 +197,8 @@ class aah_base(Variable):
     entity = Individu
     definition_period = MONTH
 
-    def formula(individu, period, legislation):
-        law = legislation(period).prestations
+    def formula(individu, period, parameters):
+        law = parameters(period).prestations
 
         aah_eligible = individu('aah_eligible', period)
         # aah_non_calculable = individu('aah_non_calculable', period)
@@ -220,7 +220,7 @@ class aah(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
-    # def formula(individu, period, legislation):
+    # def formula(individu, period, parameters):
     #     aah_base = individu('aah_base', period)
     #     # caah
     #     # mva
@@ -283,8 +283,8 @@ class caah(Variable):
         l'autre.
     '''
 
-    def formula_2005_07_01(individu, period, legislation):
-        law = legislation(period).prestations
+    def formula_2005_07_01(individu, period, parameters):
+        law = parameters(period).prestations
 
         garantie_ressources = law.minima_sociaux.caah.garantie_ressources
         aah_montant = law.minima_sociaux.aah.montant
@@ -308,8 +308,8 @@ class caah(Variable):
         return max_(compl_ress, mva)
 
     # TODO FIXME start date
-    def formula_2002_01_01(individu, period, legislation):
-        law = legislation(period).prestations
+    def formula_2002_01_01(individu, period, parameters):
+        law = parameters(period).prestations
 
         cpltx = law.minima_sociaux.caah.cpltx
         aah_montant = law.minima_sociaux.aah.montant

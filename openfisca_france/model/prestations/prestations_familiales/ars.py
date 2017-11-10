@@ -13,7 +13,7 @@ class ars(Variable):
     reference = "http://vosdroits.service-public.fr/particuliers/F1878.xhtml"
     definition_period = YEAR
 
-    def formula(famille, period, legislation):
+    def formula(famille, period, parameters):
         '''
         Allocation de rentrée scolaire brute de CRDS
         '''
@@ -21,7 +21,7 @@ class ars(Variable):
         septembre = period.start.offset('first-of', 'year').offset(9, 'month').period('month')
         af_nbenf = famille('af_nbenf', septembre)
         base_ressources = famille('prestations_familiales_base_ressources', janvier)
-        P = legislation(septembre).prestations.prestations_familiales
+        P = parameters(septembre).prestations.prestations_familiales
         # TODO: convention sur la mensualisation
         # On tient compte du fait qu'en cas de léger dépassement du plafond, une allocation dégressive
         # (appelée allocation différentielle), calculée en fonction des revenus, peut être versée.

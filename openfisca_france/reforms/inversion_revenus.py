@@ -27,25 +27,25 @@ def build_reform(tax_benefit_system):
         )
 
     class salaire_imposable_pour_inversion(Reform.Variable):
-        column = columns.FloatCol
+        column = FloatCol
         entity = entities.Individu
         label = u'Salaire imposable utilisé pour remonter au salaire brut'
         definition_period = YEAR
 
     class chomage_imposable_pour_inversion(Reform.Variable):
-        column = columns.FloatCol
+        column = FloatCol
         entity = entities.Individu
         label = u'Autres revenus imposables (chômage, préretraite), utilisé pour l’inversion'
         definition_period = YEAR
 
     class retraite_imposable_pour_inversion(Reform.Variable):
-        column = columns.FloatCol
+        column = FloatCol
         entity = entities.Individu
         label = u'Pensions, retraites, rentes connues imposables, utilisé pour l’inversion'
         definition_period = YEAR
 
     class salaire_de_base(Reform.Variable):
-        column = columns.FloatCol
+        column = FloatCol
         entity = entities.Individu
         label = u"Salaire brut ou traitement indiciaire brut"
         reference = u"http://www.trader-finance.fr/lexique-finance/definition-lettre-S/Salaire-brut.html"
@@ -105,7 +105,7 @@ def build_reform(tax_benefit_system):
     #
     #        hsup = simulation.calculate('hsup', period)
     #        categorie_salarie = simulation.calculate('categorie_salarie', period)
-    #        P = simulation.legislation_at(period.start)
+    #        P = simulation.parameters_at(period.start)
     #
     #        plafond_securite_sociale = P.cotsoc.gen.plafond_securite_sociale
     #
@@ -175,7 +175,7 @@ def build_reform(tax_benefit_system):
     #        return salbrut + hsup
 
     class chomage_brut(Reform.Variable):
-        column = columns.FloatCol
+        column = FloatCol
         entity = entities.Individu
         label = u"Allocations chômage brutes"
         reference = u"http://vosdroits.service-public.fr/particuliers/N549.xhtml"
@@ -226,7 +226,7 @@ def build_reform(tax_benefit_system):
             return fsolve(solve_function, chomage_imposable_pour_inversion)
 
     class retraite_brute(Reform.Variable):
-        column = columns.FloatCol
+        column = FloatCol
         entity = entities.Individu
         label = u"Pensions de retraite brutes"
         reference = u"http://vosdroits.service-public.fr/particuliers/N20166.xhtml"

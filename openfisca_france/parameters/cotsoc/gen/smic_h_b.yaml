@@ -1,0 +1,45 @@
+description: SMIC horaire brut
+reference: Décret n° 2016-1818 du 22 décembre 2016 portant relèvement du salaire minimum
+  de croissance - Article 1
+unit: currency
+values:
+  2001-08-01:
+    value: 6.67
+  2002-07-01:
+    value: 6.83
+  2003-07-01:
+    value: 7.19
+  2004-07-01:
+    value: 7.61
+  2005-07-01:
+    value: 8.03
+  2006-07-01:
+    value: 8.27
+  2007-07-01:
+    value: 8.44
+  2008-05-01:
+    value: 8.63
+  2008-07-01:
+    value: 8.71
+  2009-07-01:
+    value: 8.82
+  2010-01-01:
+    value: 8.86
+  2011-01-01:
+    value: 9.0
+  2011-12-01:
+    value: 9.19
+  2012-01-01:
+    value: 9.22
+  2012-07-01:
+    value: 9.4
+  2013-01-01:
+    value: 9.43
+  2014-01-01:
+    value: 9.53
+  2015-01-01:
+    value: 9.61
+  2016-01-01:
+    value: 9.67
+  2017-01-01:
+    value: 9.76

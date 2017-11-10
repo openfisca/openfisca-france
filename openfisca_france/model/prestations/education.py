@@ -18,7 +18,7 @@ class bourse_college_echelon(Variable):
     entity = Famille
     definition_period = MONTH
 
-    def formula_2016_07_01(famille, period, legislation):
+    def formula_2016_07_01(famille, period, parameters):
         """
         Références législatives :
         Arrêté du 22 mars 2016 fixant les plafonds de ressources...
@@ -28,11 +28,11 @@ class bourse_college_echelon(Variable):
         rfr = famille.demandeur.foyer_fiscal('rfr', period.n_2)
         age_i = famille.members('age', period)
         nb_enfants = famille.sum(age_i >= 0, role = Famille.ENFANT)
-        P = legislation(period).bourses_education.bourse_college.apres_2016
+        P = parameters(period).bourses_education.bourse_college.apres_2016
 
         # Les plafonds sont estimés en multiples du SMIC au 1er juillet de l'année n_2
         juillet_n_2 = period.n_2.first_month.offset(6, MONTH)
-        smic_juillet_n_2 = legislation(juillet_n_2).cotsoc.gen.smic_h_b
+        smic_juillet_n_2 = parameters(juillet_n_2).cotsoc.gen.smic_h_b
 
         P_e3 = P.echelon_3
         plafonds_echelon_3_en_pourcent_smic = select(
@@ -67,12 +67,12 @@ class bourse_college_echelon(Variable):
             choices = [3, 2, 1]
             )
 
-    def formula(famille, period, legislation):
+    def formula(famille, period, parameters):
         rfr = famille.demandeur.foyer_fiscal('rfr', period.n_2)
         age_i = famille.members('age', period)
         nb_enfants = famille.sum(age_i >= 0, role = Famille.ENFANT)
 
-        P = legislation(period).bourses_education.bourse_college.avant_2016
+        P = parameters(period).bourses_education.bourse_college.avant_2016
 
         coefficient_famille = 1 + nb_enfants * P.coeff_enfant_supplementaire
 
@@ -95,16 +95,16 @@ class bourse_college(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
-    def formula(famille, period, legislation):
+    def formula(famille, period, parameters):
         """
         Références législatives :
             Article D531-7 du code de l'éducation
             https://www.legifrance.gouv.fr/affichCode.do?idSectionTA=LEGISCTA000020743197&cidTexte=LEGITEXT000006071191&dateTexte=20160610
         """
-        P = legislation(period).bourses_education.bourse_college
+        P = parameters(period).bourses_education.bourse_college
 
         # On prends en compte la BMAF du premier janvier de l'année de la rentrée scolaire
-        bmaf_1er_janvier = legislation(period.this_year.first_month).prestations.prestations_familiales.af.bmaf
+        bmaf_1er_janvier = parameters(period.this_year.first_month).prestations.prestations_familiales.af.bmaf
 
         scolarite_i = famille.members('scolarite', period)
         nb_enfants_college = famille.sum(scolarite_i == SCOLARITE_COLLEGE, role = Famille.ENFANT)
@@ -129,7 +129,7 @@ class bourse_lycee_points_de_charge(Variable):
     definition_period = MONTH
     end = '2016-07-01'
 
-    def formula(famille, period, legislation):
+    def formula(famille, period, parameters):
         isole = not_(famille('en_couple', period))
         age_i = famille.members('age', period)
         nb_enfants = famille.sum(age_i >= 0, role = Famille.ENFANT)
@@ -152,11 +152,11 @@ class bourse_lycee_nombre_parts(Variable):
     definition_period = MONTH
     end = '2016-07-01'
 
-    def formula(famille, period, legislation):
+    def formula(famille, period, parameters):
         points_de_charge = famille('bourse_lycee_points_de_charge', period)
         rfr = famille.demandeur.foyer_fiscal('rfr', period.n_2)
-        plafonds_reference = legislation(period).bourses_education.bourse_lycee.avant_2016.plafonds_reference
-        increments_par_point_de_charge = legislation(period).bourses_education.bourse_lycee.avant_2016.increments_par_point_de_charge
+        plafonds_reference = parameters(period).bourses_education.bourse_lycee.avant_2016.plafonds_reference
+        increments_par_point_de_charge = parameters(period).bourses_education.bourse_lycee.avant_2016.increments_par_point_de_charge
 
         choices = [10, 9, 8, 7, 6, 5, 4, 3]
         nombre_parts = apply_thresholds(
@@ -180,7 +180,7 @@ class bourse_lycee_echelon(Variable):
     entity = Famille
     definition_period = MONTH
 
-    def formula(famille, period, legislation):
+    def formula(famille, period, parameters):
         """
         Références législatives :
         Arrêté du 22 mars 2016 fixant les modalités de détermination des plafonds de ressources ouvrant droit...
@@ -190,11 +190,11 @@ class bourse_lycee_echelon(Variable):
         rfr = famille.demandeur.foyer_fiscal('rfr', period.n_2)
         age_i = famille.members('age', period)
         nb_enfants = famille.sum(age_i >= 0, role = Famille.ENFANT)
-        P = legislation(period).bourses_education.bourse_lycee.apres_2016
+        P = parameters(period).bourses_education.bourse_lycee.apres_2016
 
         # Les plafonds sont estimés en multiples du SMIC au 1er juillet de l'année n_2
         juillet_n_2 = period.n_2.first_month.offset(6, MONTH)
-        smic_juillet_n_2 = legislation(juillet_n_2).cotsoc.gen.smic_h_b
+        smic_juillet_n_2 = parameters(juillet_n_2).cotsoc.gen.smic_h_b
 
         P_e6 = P.echelon_6
         plafonds_echelon_6_en_pourcent_smic = select(
@@ -261,16 +261,16 @@ class bourse_lycee(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
-    def formula_2016_07_01(famille, period, legislation):
+    def formula_2016_07_01(famille, period, parameters):
         """
         Références legislatives :
             Article Article D531-29 du code de l'éducation
             https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006071191&idArticle=LEGIARTI000020663350&dateTexte=&categorieLien=cid
         """
-        P = legislation(period).bourses_education.bourse_lycee.apres_2016
+        P = parameters(period).bourses_education.bourse_lycee.apres_2016
 
         # On prends en compte la BMAF du premier janvier de l'année de la rentrée scolaire
-        bmaf_1er_janvier = legislation(period.this_year.first_month).prestations.prestations_familiales.af.bmaf
+        bmaf_1er_janvier = parameters(period.this_year.first_month).prestations.prestations_familiales.af.bmaf
 
         scolarite_i = famille.members('scolarite', period)
         nb_enfants_lycee = famille.sum(scolarite_i == SCOLARITE_LYCEE, role = Famille.ENFANT)
@@ -288,9 +288,9 @@ class bourse_lycee(Variable):
         return nb_enfants_lycee * montant_par_enfant
 
 
-    def formula(famille, period, legislation):
+    def formula(famille, period, parameters):
         nombre_parts = famille('bourse_lycee_nombre_parts', period)
-        valeur_part = legislation(period).bourses_education.bourse_lycee.avant_2016.valeur_part
+        valeur_part = parameters(period).bourses_education.bourse_lycee.avant_2016.valeur_part
 
         scolarite_i = famille.members('scolarite', period)
         nb_enfants_lycee = famille.sum(scolarite_i == SCOLARITE_LYCEE, role = Famille.ENFANT)

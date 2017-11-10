@@ -1,7 +1,0 @@
-<NODE code="bouclier_fiscal" description="Bouclier fiscal" origin="openfisca">
-  <CODE code="taux" description="Taux d'imposition maximal" format="percent" origin="openfisca">
-    <END deb="2011-01-01"/>
-    <VALUE deb="2007-01-01" valeur="0.5"/>
-    <VALUE deb="2006-01-01" valeur="0.6"/>
-  </CODE>
-</NODE>
