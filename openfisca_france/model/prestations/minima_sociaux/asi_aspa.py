@@ -219,7 +219,7 @@ class asi(Variable):
     calculate_output = calculate_output_add
     column = FloatCol
     label = u"Allocation supplémentaire d'invalidité"
-    url = u"http://vosdroits.service-public.fr/particuliers/F16940.xhtml"
+    reference = u"http://vosdroits.service-public.fr/particuliers/F16940.xhtml"
     entity = Famille
     definition_period = MONTH
     set_input = set_input_divide_by_period
@@ -300,7 +300,7 @@ class aspa(Variable):
     column = FloatCol
     entity = Famille
     label = u"Allocation de solidarité aux personnes agées"
-    url = "http://vosdroits.service-public.fr/particuliers/F16871.xhtml"
+    reference = "http://vosdroits.service-public.fr/particuliers/F16871.xhtml"
     definition_period = MONTH
     set_input = set_input_divide_by_period
 

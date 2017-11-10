@@ -16,7 +16,7 @@ class aeeh(Variable):
     column = FloatCol
     entity = Famille
     label = u"Allocation d'éducation de l'enfant handicapé"
-    url = "http://vosdroits.service-public.fr/particuliers/N14808.xhtml"
+    reference = "http://vosdroits.service-public.fr/particuliers/N14808.xhtml"
     definition_period = MONTH
     set_input = set_input_divide_by_period
     calculate_output = calculate_output_add

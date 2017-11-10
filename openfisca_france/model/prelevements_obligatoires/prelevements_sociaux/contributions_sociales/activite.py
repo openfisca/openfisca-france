@@ -244,7 +244,7 @@ class tehr(Variable):
     column = FloatCol
     entity = Individu
     label = u"Taxe exceptionnelle de solidarité sur les très hautes rémunérations"
-    url = u"http://vosdroits.service-public.fr/professionnels-entreprises/F32096.xhtml"
+    reference = u"http://vosdroits.service-public.fr/professionnels-entreprises/F32096.xhtml"
     calculate_output = calculate_output_divide
     definition_period = YEAR
 
@@ -266,7 +266,7 @@ class rev_microsocial(Variable):
     column = FloatCol
     entity = FoyerFiscal
     label = u"Revenu net des cotisations sociales pour le régime microsocial"
-    url = u"http://www.apce.com/pid6137/regime-micro-social.html"
+    reference = u"http://www.apce.com/pid6137/regime-micro-social.html"
     definition_period = YEAR
 
     def formula_2009_01_01(self, simulation, period):

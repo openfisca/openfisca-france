@@ -1,5 +1,26 @@
 ﻿# Changelog
 
+### 18.6.2 - [#794](https://github.com/openfisca/openfisca-france/pull/794)
+
+* Correction d'un crash
++ Détails :
+  - Mets à jour la version d'OpenFisca-Web-API requise pour qu'elle soit compatible avec la version d'OpenFisca-Core requise.
+  - Les deux versions référencées dans le `setup.py` étaient incompatibles, provoquant une erreur au démarrage de l'API avec `gunicorn` ou `paster`.
+
+### 18.6.1 - [#793](https://github.com/openfisca/openfisca-france/pull/793)
+
+* Changement mineur
+* Détails :
+  - Répare la déclaration de l'URL du dépôt, endomagée dans la version `18.6.0`
+
+## 18.6.0 - [#775](https://github.com/openfisca/openfisca-france/pull/775)
+
+* Amélioration technique
+* Détails :
+  - Adapte `france` à  la version `15.0.0` de `core`.
+  - Applique le renommage de l'attribut de `Variable` `url` en `reference`.
+  - Pour les variables réformées, ne définis plus l'attribut `reference`.
+
 ### 18.5.3 - [#786](https://github.com/openfisca/openfisca-france/pull/786)
 
 * Changement mineur

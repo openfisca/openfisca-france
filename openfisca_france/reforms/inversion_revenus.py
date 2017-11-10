@@ -23,7 +23,7 @@ def build_reform(tax_benefit_system):
     Reform = reforms.make_reform(
         key = 'inversion_revenus',
         name = u'Inversion des revenus',
-        reference = tax_benefit_system,
+        reference_tax_benefit_system = tax_benefit_system,
         )
 
     class salaire_imposable_pour_inversion(Reform.Variable):
@@ -48,8 +48,7 @@ def build_reform(tax_benefit_system):
         column = columns.FloatCol
         entity = entities.Individu
         label = u"Salaire brut ou traitement indiciaire brut"
-        reference = tax_benefit_system.column_by_name["salaire_de_base"]
-        url = u"http://www.trader-finance.fr/lexique-finance/definition-lettre-S/Salaire-brut.html"
+        reference = u"http://www.trader-finance.fr/lexique-finance/definition-lettre-S/Salaire-brut.html"
         definition_period = MONTH
 
         def formula(self, simulation, period):
@@ -179,7 +178,7 @@ def build_reform(tax_benefit_system):
         column = columns.FloatCol
         entity = entities.Individu
         label = u"Allocations chômage brutes"
-        url = u"http://vosdroits.service-public.fr/particuliers/N549.xhtml"
+        reference = u"http://vosdroits.service-public.fr/particuliers/N549.xhtml"
         definition_period = MONTH
 
         def formula(self, simulation, period):
@@ -230,7 +229,7 @@ def build_reform(tax_benefit_system):
         column = columns.FloatCol
         entity = entities.Individu
         label = u"Pensions de retraite brutes"
-        url = u"http://vosdroits.service-public.fr/particuliers/N20166.xhtml"
+        reference = u"http://vosdroits.service-public.fr/particuliers/N20166.xhtml"
         definition_period = MONTH
 
         def formula(self, simulation, period):

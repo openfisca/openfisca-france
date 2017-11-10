@@ -13,7 +13,7 @@ class professionnalisation(Variable):
     column = BoolCol
     entity = Individu
     label = u"L'individu est en contrat de professionnalisation"
-    url = "http://www.apce.com/pid879/contrat-de-professionnalisation.html?espace=1&tp=1"
+    reference = "http://www.apce.com/pid879/contrat-de-professionnalisation.html?espace=1&tp=1"
     definition_period = MONTH
 
     def formula(self, simulation, period):
@@ -34,7 +34,7 @@ class remuneration_professionnalisation(Variable):
     column = FloatCol
     entity = Individu
     label = u"Rémunération de l'apprenti"
-    url = "http://www.apce.com/pid927/contrat-d-apprentissage.html?espace=1&tp=1&pagination=2"
+    reference = "http://www.apce.com/pid927/contrat-d-apprentissage.html?espace=1&tp=1&pagination=2"
     definition_period = MONTH
 
     #  La rémunération minimale varie en fonction de l'âge et du niveau de qualification des bénéficiaires des contrats
@@ -99,7 +99,7 @@ class exoneration_cotisations_employeur_professionnalisation(Variable):
     column = FloatCol
     entity = Individu
     label = u"Exonération de cotisations patronales pour l'emploi d'un apprenti"
-    url = "http://www.apce.com/pid927/contrat-d-apprentissage.html?espace=1&tp=1&pagination=2"
+    reference = "http://www.apce.com/pid927/contrat-d-apprentissage.html?espace=1&tp=1&pagination=2"
     definition_period = MONTH
 
     #  Exonération de cotisations sociales patronales d'assurance maladie-maternité, de vieillesse de base,

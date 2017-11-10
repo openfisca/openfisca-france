@@ -184,7 +184,7 @@ class pension_civile_salarie(Variable):
     column = FloatCol
     entity = Individu
     label = u"Pension civile salarié"
-    url = u"http://www.ac-besancon.fr/spip.php?article2662",
+    reference = u"http://www.ac-besancon.fr/spip.php?article2662",
     definition_period = MONTH
 
     def formula(self, simulation, period):
@@ -207,7 +207,7 @@ class pension_civile_employeur(Variable):
     column = FloatCol
     entity = Individu
     label = u"Cotisation patronale pension civile"
-    url = u"http://www.ac-besancon.fr/spip.php?article2662"
+    reference = u"http://www.ac-besancon.fr/spip.php?article2662"
     definition_period = MONTH
 
     def formula(self, simulation, period):

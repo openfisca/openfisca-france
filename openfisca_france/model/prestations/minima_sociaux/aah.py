@@ -220,20 +220,12 @@ class aah(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
-<<<<<<< HEAD
-    # def formula(self, simulation, period):
-    #     aah_base = simulation.calculate('aah_base', period)
+    # def formula(individu, period, legislation):
+    #     aah_base = individu('aah_base', period)
     #     # caah
     #     # mva
-    #     return aah_base
-=======
-    def formula(individu, period, legislation):
-        aah_base = individu('aah_base', period)
-        # caah
-        # mva
 
-        return aah_base
->>>>>>> 18.5.1
+    #     return aah_base
 
 
 class caah(Variable):

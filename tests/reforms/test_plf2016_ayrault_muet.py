@@ -32,7 +32,7 @@ def test():
             ] if people >= 3 else None,
         )
 
-    reference_simulation = scenario.new_simulation(reference = True)
+    reference_simulation = scenario.new_simulation(use_baseline = True)
     reform_simulation = scenario.new_simulation()
 
     impots_directs = reference_simulation.calculate('impots_directs', period = year)

@@ -36,7 +36,7 @@ class csg_deductible_chomage(Variable):
     column = FloatCol
     entity = Individu
     label = u"CSG déductible sur les allocations chômage"
-    url = u"http://vosdroits.service-public.fr/particuliers/F2329.xhtml"
+    reference = u"http://vosdroits.service-public.fr/particuliers/F2329.xhtml"
     definition_period = MONTH
 
     def formula(individu, period, legislation):
@@ -68,7 +68,7 @@ class csg_imposable_chomage(Variable):
     column = FloatCol
     entity = Individu
     label = u"CSG imposable sur les allocations chômage"
-    url = u"http://vosdroits.service-public.fr/particuliers/F2329.xhtml"
+    reference = u"http://vosdroits.service-public.fr/particuliers/F2329.xhtml"
     definition_period = MONTH
 
     def formula(individu, period, legislation):
@@ -94,7 +94,7 @@ class crds_chomage(Variable):
     column = FloatCol
     entity = Individu
     label = u"CRDS sur les allocations chômage"
-    url = u"http://www.insee.fr/fr/methodes/default.asp?page=definitions/contrib-remb-dette-sociale.htm"
+    reference = u"http://www.insee.fr/fr/methodes/default.asp?page=definitions/contrib-remb-dette-sociale.htm"
     definition_period = MONTH
 
     def formula(individu, period, legislation):
@@ -138,7 +138,7 @@ class chomage_imposable(Variable):
     entity = Individu
     label = u"Allocations chômage imposables"
     set_input = set_input_divide_by_period
-    url = u"http://www.insee.fr/fr/methodes/default.asp?page=definitions/chomage.htm"
+    reference = u"http://www.insee.fr/fr/methodes/default.asp?page=definitions/chomage.htm"
     definition_period = MONTH
 
     def formula(individu, period):
@@ -155,7 +155,7 @@ class chomage_net(Variable):
     entity = Individu
     label = u"Allocations chômage nettes"
     set_input = set_input_divide_by_period
-    url = u"http://vosdroits.service-public.fr/particuliers/N549.xhtml"
+    reference = u"http://vosdroits.service-public.fr/particuliers/N549.xhtml"
     definition_period = MONTH
 
     def formula(individu, period):
@@ -176,7 +176,7 @@ class csg_deductible_retraite(Variable):
     column = FloatCol
     entity = Individu
     label = u"CSG déductible sur les pensions de retraite"
-    url = u"https://www.lassuranceretraite.fr/cs/Satellite/PUBPrincipale/Retraites/Paiement-Votre-Retraite/Prelevements-Sociaux?packedargs=null"  # noqa
+    reference = u"https://www.lassuranceretraite.fr/cs/Satellite/PUBPrincipale/Retraites/Paiement-Votre-Retraite/Prelevements-Sociaux?packedargs=null"  # noqa
     definition_period = MONTH
 
     def formula(individu, period, legislation):
@@ -200,7 +200,7 @@ class csg_imposable_retraite(Variable):
     column = FloatCol
     entity = Individu
     label = u"CSG imposable sur les pensions de retraite"
-    url = u"https://www.lassuranceretraite.fr/cs/Satellite/PUBPrincipale/Retraites/Paiement-Votre-Retraite/Prelevements-Sociaux?packedargs=null"  # noqa
+    reference = u"https://www.lassuranceretraite.fr/cs/Satellite/PUBPrincipale/Retraites/Paiement-Votre-Retraite/Prelevements-Sociaux?packedargs=null"  # noqa
     definition_period = MONTH
 
     def formula(individu, period, legislation):
@@ -221,7 +221,7 @@ class crds_retraite(Variable):
     column = FloatCol
     entity = Individu
     label = u"CRDS sur les pensions de retraite"
-    url = u"http://www.pensions.bercy.gouv.fr/vous-%C3%AAtes-retrait%C3%A9-ou-pensionn%C3%A9/le-calcul-de-ma-pension/les-pr%C3%A9l%C3%A8vements-effectu%C3%A9s-sur-ma-pension"  # noqa
+    reference = u"http://www.pensions.bercy.gouv.fr/vous-%C3%AAtes-retrait%C3%A9-ou-pensionn%C3%A9/le-calcul-de-ma-pension/les-pr%C3%A9l%C3%A8vements-effectu%C3%A9s-sur-ma-pension"  # noqa
     definition_period = MONTH
 
     def formula(individu, period, legislation):
@@ -243,7 +243,7 @@ class casa(Variable):
     column = FloatCol
     entity = Individu
     label = u"Contribution additionnelle de solidarité et d'autonomie"
-    url = u"http://www.service-public.fr/actualites/002691.html"
+    reference = u"http://www.service-public.fr/actualites/002691.html"
     definition_period = MONTH
 
     def formula_2015_01_01(individu, period, legislation):
@@ -283,7 +283,7 @@ class retraite_imposable(Variable):
     entity = Individu
     label = u"Retraites au sens strict imposables (rentes à titre onéreux exclues)"
     set_input = set_input_divide_by_period
-    url = u"http://vosdroits.service-public.fr/particuliers/F415.xhtml"
+    reference = u"http://vosdroits.service-public.fr/particuliers/F415.xhtml"
     definition_period = MONTH
 
     def formula(individu, period):
@@ -299,7 +299,7 @@ class retraite_nette(Variable):
     entity = Individu
     label = u"Pensions de retraite nettes"
     set_input = set_input_divide_by_period
-    url = u"http://vosdroits.service-public.fr/particuliers/N20166.xhtml"
+    reference = u"http://vosdroits.service-public.fr/particuliers/N20166.xhtml"
     definition_period = MONTH
 
     def formula(individu, period):
@@ -315,7 +315,7 @@ class crds_pfam(Variable):
     column = FloatCol
     entity = Famille
     label = u"CRDS sur les prestations familiales)"
-    url = "http://www.cleiss.fr/docs/regimes/regime_francea1.html"
+    reference = "http://www.cleiss.fr/docs/regimes/regime_francea1.html"
     definition_period = YEAR
 
     def formula(famille, period, legislation):

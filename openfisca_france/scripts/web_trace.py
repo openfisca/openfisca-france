@@ -28,7 +28,7 @@ def trace(scenario, variables, period = None, browser_name = 'chromium',
         "variables": variables,
         }
     trace_base_url = u"http://www.openfisca.fr/outils/trace"
-    url = trace_base_url + "?" + urllib.urlencode({
+    reference = trace_base_url + "?" + urllib.urlencode({
         "simulation": json.dumps(simulation_json),
         "api_url": api_url,
         })

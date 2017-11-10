@@ -25,7 +25,7 @@ class aefa(Variable):
     column = FloatCol
     entity = Famille
     label = u"Aide exceptionelle de fin d'année (prime de Noël)"
-    url = u"http://www.pole-emploi.fr/candidat/aide-exceptionnelle-de-fin-d-annee-dite-prime-de-noel--@/suarticle.jspz?id=70996"  # noqa
+    reference = u"http://www.pole-emploi.fr/candidat/aide-exceptionnelle-de-fin-d-annee-dite-prime-de-noel--@/suarticle.jspz?id=70996"  # noqa
     definition_period = YEAR
     end = '2015-12-31'
 
