@@ -34,7 +34,6 @@ class depcom(Variable):
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
-
 class charges_locatives(Variable):
     column = FloatCol
     entity = Menage
