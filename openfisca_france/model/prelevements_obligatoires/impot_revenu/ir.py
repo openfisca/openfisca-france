@@ -2205,14 +2205,14 @@ class rac(Variable):
         return zacc - cacc
 
 
-# class rnc(Variable):
-#     base_function = requested_period_added_value
-#     column = FloatCol
-#     entity = Individu
-#     label = u"Revenus non commerciaux individuels"
-#     reference = "http://www.impots.gouv.fr/portal/dgi/public/professionnels.impot?espId=2&pageId=prof_bnc&impot=BNC&sfid=50"
-#     definition_period = YEAR
-#     set_input = set_input_divide_by_period
+class rnc(Variable):
+    base_function = requested_period_added_value
+    column = FloatCol
+    entity = Individu
+    label = u"Revenus non commerciaux individuels"
+    reference = "http://www.impots.gouv.fr/portal/dgi/public/professionnels.impot?espId=2&pageId=prof_bnc&impot=BNC&sfid=50"
+    definition_period = YEAR
+    set_input = set_input_divide_by_period
 
 #     # Commented out for use with taxipp
 #     def formula(individu, period, legislation):
