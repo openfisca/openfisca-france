@@ -1,0 +1,371 @@
+name: 500€/mois APL Zone 3
+keywords:
+- Propriétaire ou accédant à la propriété
+- al
+description: |-
+  Simulation logement
+  Aujourd'hui le 03/08/2017 à 14:57:16 vous venez de faire une simulation d'aide au logement.
+  Voici les informations que vous avez saisies
+  Vous vivez seul(e).
+  Votre code postal est 40460.
+  Vous déclarez être né(e) le 01/01/1990.
+  Ø Votre situation
+  Vous achetez un logement ancien. Actuellement, vous remboursez un prêt.
+  Ø Montant de votre remboursement
+  Le montant de votre remboursement est 500 ¤ et la date de signature du prêt est
+  01/01/2017 .
+  Ø Votre situation professionnelle
+  Vous n'êtes pas bénéficiaire du Rsa.
+  Vous êtes au chômage depuis au moins 2 mois et vous êtes en attente d'indemnisation.
+  Ø Vos ressources 2015 Aucun revenu déclaré
+  Ø Vos autres revenus 2015 Aucun autre revenu déclaré
+  Ø Vos charges et déductions 2015 Aucune charge ni déduction déclarée
+  Ø Déclaration de patrimoine
+  Vous avez déclaré ne pas détenir de patrimoine mobilier ou immobilier.
+  Le montant mensuel de l'allocation logement est estimé à 95 ¤.
+     Emplacement réservé à la Caf
+  SIMULOG(WSL) 030820171457 4.54
+  PAGE 1/1
+period: month:2017-08
+individus:
+- aah:
+    2016-08: 0
+    2016-09: 0
+    2016-10: 0
+    2016-11: 0
+    2016-12: 0
+    2017-01: 0
+    2017-02: 0
+    2017-03: 0
+    2017-04: 0
+    2017-05: 0
+    2017-06: 0
+    2017-07: 0
+  age:
+    2017-05: 27
+    2017-06: 27
+    2017-07: 27
+    2017-08: 27
+  age_en_mois:
+    2017-05: 331
+    2017-06: 331
+    2017-07: 331
+    2017-08: 331
+  boursier:
+    2017-05: false
+    2017-06: false
+    2017-07: false
+    2017-08: false
+  date_arret_de_travail:
+    2017-05: '2017-08-10'
+    2017-06: '2017-08-10'
+    2017-07: '2017-08-10'
+    2017-08: '2017-08-10'
+  date_naissance:
+    2017-05: '1990-01-01'
+    2017-06: '1990-01-01'
+    2017-07: '1990-01-01'
+    2017-08: '1990-01-01'
+  echelon_bourse:
+    2017-05: -1
+    2017-06: -1
+    2017-07: -1
+    2017-08: -1
+  enfant_a_charge:
+    '2017': false
+  enfant_place:
+    2017-05: false
+    2017-06: false
+    2017-07: false
+    2017-08: false
+  epargne_non_remuneree:
+    2012-01: 0
+  etudiant:
+    2017-05: false
+    2017-06: false
+    2017-07: false
+    2017-08: false
+  handicap:
+    2017-05: false
+    2017-06: false
+    2017-07: false
+    2017-08: false
+  id: demandeur
+  inapte_travail:
+    2017-05: false
+    2017-06: false
+    2017-07: false
+    2017-08: false
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  taux_incapacite:
+    2017-05: false
+    2017-06: false
+    2017-07: false
+    2017-08: false
+  tns_auto_entrepreneur_type_activite:
+    2017-05: bic
+    2017-06: bic
+    2017-07: bic
+    2017-08: bic
+  tns_autres_revenus_type_activite:
+    2017-05: bic
+    2017-06: bic
+    2017-07: bic
+    2017-08: bic
+  tns_micro_entreprise_type_activite:
+    2017-05: bic
+    2017-06: bic
+    2017-07: bic
+    2017-08: bic
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
+familles:
+- acs:
+    2016-08: 0
+    2016-09: 0
+    2016-10: 0
+    2016-11: 0
+    2016-12: 0
+    2017-01: 0
+    2017-02: 0
+    2017-03: 0
+    2017-04: 0
+    2017-05: 0
+    2017-06: 0
+    2017-07: 0
+  af:
+    2016-08: 0
+    2016-09: 0
+    2016-10: 0
+    2016-11: 0
+    2016-12: 0
+    2017-01: 0
+    2017-02: 0
+    2017-03: 0
+    2017-04: 0
+    2017-05: 0
+    2017-06: 0
+    2017-07: 0
+  aide_logement:
+    2016-08: 0
+    2016-09: 0
+    2016-10: 0
+    2016-11: 0
+    2016-12: 0
+    2017-01: 0
+    2017-02: 0
+    2017-03: 0
+    2017-04: 0
+    2017-05: 0
+    2017-06: 0
+    2017-07: 0
+  alf:
+    2016-08: 0
+    2016-09: 0
+    2016-10: 0
+    2016-11: 0
+    2016-12: 0
+    2017-01: 0
+    2017-02: 0
+    2017-03: 0
+    2017-04: 0
+    2017-05: 0
+    2017-06: 0
+    2017-07: 0
+  als:
+    2016-08: 0
+    2016-09: 0
+    2016-10: 0
+    2016-11: 0
+    2016-12: 0
+    2017-01: 0
+    2017-02: 0
+    2017-03: 0
+    2017-04: 0
+    2017-05: 0
+    2017-06: 0
+    2017-07: 0
+  apl:
+    2016-08: 0
+    2016-09: 0
+    2016-10: 0
+    2016-11: 0
+    2016-12: 0
+    2017-01: 0
+    2017-02: 0
+    2017-03: 0
+    2017-04: 0
+    2017-05: 0
+    2017-06: 0
+    2017-07: 0
+  asf:
+    2016-08: 0
+    2016-09: 0
+    2016-10: 0
+    2016-11: 0
+    2016-12: 0
+    2017-01: 0
+    2017-02: 0
+    2017-03: 0
+    2017-04: 0
+    2017-05: 0
+    2017-06: 0
+    2017-07: 0
+  asi:
+    2016-08: 0
+    2016-09: 0
+    2016-10: 0
+    2016-11: 0
+    2016-12: 0
+    2017-01: 0
+    2017-02: 0
+    2017-03: 0
+    2017-04: 0
+    2017-05: 0
+    2017-06: 0
+    2017-07: 0
+  aspa:
+    2016-08: 0
+    2016-09: 0
+    2016-10: 0
+    2016-11: 0
+    2016-12: 0
+    2017-01: 0
+    2017-02: 0
+    2017-03: 0
+    2017-04: 0
+    2017-05: 0
+    2017-06: 0
+    2017-07: 0
+  ass:
+    2016-08: 0
+    2016-09: 0
+    2016-10: 0
+    2016-11: 0
+    2016-12: 0
+    2017-01: 0
+    2017-02: 0
+    2017-03: 0
+    2017-04: 0
+    2017-05: 0
+    2017-06: 0
+    2017-07: 0
+  bourse_college:
+    2016-08: 0
+    2016-09: 0
+    2016-10: 0
+    2016-11: 0
+    2016-12: 0
+    2017-01: 0
+    2017-02: 0
+    2017-03: 0
+    2017-04: 0
+    2017-05: 0
+    2017-06: 0
+    2017-07: 0
+  bourse_lycee:
+    2016-08: 0
+    2016-09: 0
+    2016-10: 0
+    2016-11: 0
+    2016-12: 0
+    2017-01: 0
+    2017-02: 0
+    2017-03: 0
+    2017-04: 0
+    2017-05: 0
+    2017-06: 0
+    2017-07: 0
+  cf:
+    2016-08: 0
+    2016-09: 0
+    2016-10: 0
+    2016-11: 0
+    2016-12: 0
+    2017-01: 0
+    2017-02: 0
+    2017-03: 0
+    2017-04: 0
+    2017-05: 0
+    2017-06: 0
+    2017-07: 0
+  enfants: []
+  paje_base:
+    2016-08: 0
+    2016-09: 0
+    2016-10: 0
+    2016-11: 0
+    2016-12: 0
+    2017-01: 0
+    2017-02: 0
+    2017-03: 0
+    2017-04: 0
+    2017-05: 0
+    2017-06: 0
+    2017-07: 0
+  parents:
+  - demandeur
+  ppa:
+    2016-08: 0
+    2016-09: 0
+    2016-10: 0
+    2016-11: 0
+    2016-12: 0
+    2017-01: 0
+    2017-02: 0
+    2017-03: 0
+    2017-04: 0
+    2017-05: 0
+    2017-06: 0
+    2017-07: 0
+  rsa:
+    2016-08: 0
+    2016-09: 0
+    2016-10: 0
+    2016-11: 0
+    2016-12: 0
+    2017-01: 0
+    2017-02: 0
+    2017-03: 0
+    2017-04: 0
+    2017-05: 0
+    2017-06: 0
+    2017-07: 0
+foyers_fiscaux:
+- declarants:
+  - demandeur
+  personnes_a_charge: []
+menages:
+- coloc:
+    2017-05: false
+    2017-06: false
+    2017-07: false
+    2017-08: false
+  depcom:
+    2017-05: '40287'
+    2017-06: '40287'
+    2017-07: '40287'
+    2017-08: '40287'
+  enfants: []
+  logement_chambre:
+    2017-05: false
+    2017-06: false
+    2017-07: false
+    2017-08: false
+  loyer:
+    2017-05: 500
+    2017-06: 500
+    2017-07: 500
+    2017-08: 500
+  personne_de_reference: demandeur
+  statut_occupation_logement:
+    2017-05: 1
+    2017-06: 1
+    2017-07: 1
+    2017-08: 1
+relative_error_margin: 0.05
+output_variables:
+  aide_logement: 95

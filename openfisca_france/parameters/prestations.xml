@@ -1014,34 +1014,40 @@
         <VALUE deb="2007-07-01" valeur="1.5"/>
       </CODE>
     </NODE>
-    <NODE code="seuils" origin="ipp">
-      <CODE code="1ere_tranche" format="float" origin="ipp" type="monetary">
-        <VALUE deb="2007-07-01" valeur="1423.03"/>
-      </CODE>
-      <CODE code="2eme_tranche" format="float" origin="ipp" type="monetary">
-        <VALUE deb="2007-07-01" valeur="2047.61"/>
-      </CODE>
-      <CODE code="3eme_tranche" format="float" origin="ipp" type="monetary">
-        <VALUE deb="2007-07-01" valeur="2629.85"/>
-      </CODE>
-      <CODE code="4eme_tranche" format="float" origin="ipp" type="monetary">
-        <VALUE deb="2007-07-01" valeur="4095.05"/>
-      </CODE>
-    </NODE>
-    <NODE code="taux_pour_le_loyer_minimum_lo" origin="ipp">
-      <CODE code="1ere_tranche" format="percent" origin="ipp">
-        <VALUE deb="2007-07-01" valeur="0.024"/>
-      </CODE>
-      <CODE code="2eme_tranche" format="percent" origin="ipp">
-        <VALUE deb="2007-07-01" valeur="0.208"/>
-      </CODE>
-      <CODE code="3eme_tranche" format="percent" origin="ipp">
-        <VALUE deb="2007-07-01" valeur="0.232"/>
-      </CODE>
-      <CODE code="4eme_tranche" format="percent" origin="ipp">
-        <VALUE deb="2007-07-01" valeur="0.328"/>
-      </CODE>
-    </NODE>
+    <BAREME code="bareme_loyer_minimun_lo" description="Loyer minimun lo">
+      <TRANCHE code="1ere_tranche">
+        <SEUIL>
+           <VALUE deb="2007-07-01" valeur="1423.03"/>
+        </SEUIL>
+        <TAUX>
+            <VALUE deb="2007-07-01" valeur="0.024"/>
+        </TAUX>
+      </TRANCHE>
+      <TRANCHE code="2eme_tranche">
+        <SEUIL>
+            <VALUE deb="2007-07-01" valeur="2047.61"/>
+        </SEUIL>
+        <TAUX>
+            <VALUE deb="2007-07-01" valeur="0.208"/>
+        </TAUX>
+      </TRANCHE>
+      <TRANCHE code="3eme_tranche">
+        <SEUIL>
+           <VALUE deb="2007-07-01" valeur="2629.85"/>
+        </SEUIL>
+        <TAUX>
+            <VALUE deb="2007-07-01" valeur="0.232"/>
+        </TAUX>
+      </TRANCHE>
+      <TRANCHE code="4eme_tranche">
+        <SEUIL>
+           <VALUE deb="2007-07-01" valeur="4095.05"/>
+        </SEUIL>
+        <TAUX>
+            <VALUE deb="2007-07-01" valeur="0.328"/>
+        </TAUX>
+      </TRANCHE>
+    </BAREME>
   </NODE>
   <NODE code="al_param_accapl" origin="ipp">
     <CODE code="constante_du_coefficient_k" origin="ipp">
@@ -3030,6 +3036,7 @@
         <VALUE deb="2000-01-01" valeur="1"/>
       </CODE>
       <CODE code="montant" conflicts="children:openfisca-not-fully-included-in-ipp(openfisca_deb=2015-09-01,openfisca_fin=2016-08-31,openfisca_valeur=807.65,ipp_valeur=unknown)" description="Montant mensuel de l'allocation adulte handicapé" format="float" origin="ipp" type="monetary">
+        <VALUE deb="2017-04-01" valeur="810.89"/>
         <VALUE deb="2016-04-01" valeur="808.46"/>
         <VALUE deb="2015-09-01" valeur="807.65"/>
         <VALUE deb="2014-09-01" valeur="800.45"/>
@@ -3353,6 +3360,7 @@
         <VALUE deb="2002-01-01" valeur="0.16"/>
       </CODE>
       <CODE code="garantie_ressources" description="Garantie de ressources pour les personnes handicapées (cpltx_1+aah)" format="float" origin="ipp" type="monetary">
+        <VALUE deb="2017-04-01" valeur="990.20"/>
         <VALUE deb="2016-04-01" valeur="987.77"/>
         <VALUE deb="2015-09-01" valeur="986.96"/>
         <VALUE deb="2014-09-01" valeur="979.76"/>

@@ -1,5 +1,68 @@
 ﻿# Changelog
 
+### 18.8.2 - [#806](https://github.com/openfisca/openfisca-france/pull/788)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/07/2017
+* Zones impactées : `prelevements_obligatoires/prelevements_sociaux/contributions_sociales/versement_transport`.
+* Détails :
+  - Mise à jour conformément à [la circulaire du 31 mai](https://www.urssaf.fr/portail/files/live/sites/urssaf/files/Lettres_circulaires/2017/ref_LCIRC-2017-0000019.pdf)
+  - données extraites via l'API de l'URSSAF, cf. https://github.com/sgmap/taux-versement-transport
+
+## 18.8.1 - [#789](https://github.com/openfisca/openfisca-france/pull/789)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/07/2017
+* Zones impactées : `openfisca_france/parameters/cotsoc.xml`, `openfisca_france/parameters/prelevements_sociaux.xml`.
+* Détails :
+  - Prise en compte de la baisse de la cotisation AGS au 1er juillet.
+
+## 18.8.0 - [#801](https://github.com/openfisca/openfisca-france/pull/801)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : toutes.
+* Zones impactées : `/prestations/aides_logement`.
+* Détails :
+  - Calcul des aides au logement pour les primo-accédants.
+  - Marge d'erreur (~5% sur les tests) voir avec un expert métier pour rectifier le calcul.
+
+## 18.7.0 - [#797](https://github.com/openfisca/openfisca-france/pull/797)
+
+* Amélioration technique
+* Détails :
+  - Déclare OpenFisca-France compatible avec OpenFisca-Core 17
+
+### 18.6.6 - [#781](https://github.com/openfisca/openfisca-france/pull/781)
+
+* Changement mineur.
+* Détails :
+  - Mise à jour du `label` de `age` pour expliciter qu'il s'agit de l'âge en début de mois
+
+### 18.6.5 - [#785](https://github.com/openfisca/openfisca-france/pull/785)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/04/2017.
+* Zones impactées :
+  - `prestations/minima_sociaux/cmu`
+  - `prestations/minima_sociaux/aah`
+* Détails :
+  - Mise à jour du plafond de ressources pour la CMU
+    - [Cf. Code de la sécurité sociale - Article D861-1](https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006739670)
+  - Mise à jour du montant de l'AAH et de son complément de ressources
+    - [Montant de l'AAH au 1er avril 2017](https://www.legifrance.gouv.fr/eli/decret/2017/5/3/AFSA1710706D/jo/texte)
+    - Le montant de la garantie de revenus est calculé à partir du montant précédent, plus un montant fixe défini dans [cet article](https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000019505277)
+    - [Circulaire indiquant le coefficient de revalorisation](http://circulaire.legifrance.gouv.fr/pdf/2017/03/cir_41966.pdf)
+
+### 18.6.4 - [#784](https://github.com/openfisca/openfisca-france/pull/784)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2017
+* Zones impactées : `prestations/minima_sociaux/ass`.
+* Détails :
+  - Implémentation de la non-éligibilité à l'ASS (Allocation de Solidarité Spécifique) en cas d'éligibilité à l'AAH (Allocation aux Adultes Handicapés)
+    - [article 87 loi n° 2016-1917 du 29 décembre 2016 de finances pour 2017](https://www.legifrance.gouv.fr/affichTexteArticle.do;jsessionid=49AD9A92D43F6C7A085F8E1D669AEFC2.tpdila18v_2?cidTexte=JORFTEXT000033734169&idArticle=LEGIARTI000033760616&dateTexte=20170622&categorieLien=id#LEGIARTI000033760616)
+    - [article L. 5423-7 du code du travail](https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=49AD9A92D43F6C7A085F8E1D669AEFC2.tpdila18v_2?idArticle=LEGIARTI000033813814&cidTexte=LEGITEXT000006072050&dateTexte=20170622)
+
 ### 18.6.3 - [#787](https://github.com/openfisca/openfisca-france/pull/787)
 
 * Amélioration technique
@@ -139,17 +202,17 @@
   - Mise à jour du montant du du CF majoré dans les DOM au 1er avril 2017
     - [Source](https://www.legifrance.gouv.fr/eli/decret/2017/4/12/2017-534/jo/texte)
   - Mise à jour du montant de l'ASS aux 1er avril 2016 et premier avril 2017
-    - [Source pour 2016](https://www.legifrance.gouv.fr/eli/decret/2016/5/3/2016-540/jo/texte) 
-    - [Source pour 2017](https://www.legifrance.gouv.fr/eli/decret/2017/5/10/2017-1022/jo/texte) 
+    - [Source pour 2016](https://www.legifrance.gouv.fr/eli/decret/2016/5/3/2016-540/jo/texte)
+    - [Source pour 2017](https://www.legifrance.gouv.fr/eli/decret/2017/5/10/2017-1022/jo/texte)
   - Mise à jour du montant de l'ATA aux 1er avril 2016 et premier avril 2017
-    - [Source pour 2016](https://www.legifrance.gouv.fr/eli/decret/2016/5/3/2016-540/jo/texte) 
-    - [Source pour 2017](https://www.legifrance.gouv.fr/eli/decret/2017/5/10/2017-1022/jo/texte) 
+    - [Source pour 2016](https://www.legifrance.gouv.fr/eli/decret/2016/5/3/2016-540/jo/texte)
+    - [Source pour 2017](https://www.legifrance.gouv.fr/eli/decret/2017/5/10/2017-1022/jo/texte)
 
 ### 18.2.6 - [#747](https://github.com/openfisca/openfisca-france/pull/747)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 01/04/2017.
-* Zones impactées : `prestations/minima_sociaux/asi_aspa`, 
+* Zones impactées : `prestations/minima_sociaux/asi_aspa`,
 * Détails :
   - Mise à jour des plafonds et montants de l'ASI et de l'ASPA
   - Source: http://www.legislation.cnav.fr/Documents/circulaire_cnav_2017_13_04042017.pdf

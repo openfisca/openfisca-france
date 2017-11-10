@@ -58,7 +58,7 @@ class age(Variable):
     base_function = missing_value
     column = AgeCol(val_type = "age")
     entity = Individu
-    label = u"Âge (en années)"
+    label = u"Âge (en années) au premier jour du mois"
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
