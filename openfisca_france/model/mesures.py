@@ -52,7 +52,7 @@ class uc(Variable):
     label = u"Unités de consommation"
     definition_period = YEAR
 
-    def formula(menage, period, legislation):
+    def formula(menage, period, parameters):
         uc_indiv = menage.members('uc_indiv', period)
         tot_uc_indiv = menage.sum(uc_indiv)
         uc = 0.5 + tot_uc_indiv
