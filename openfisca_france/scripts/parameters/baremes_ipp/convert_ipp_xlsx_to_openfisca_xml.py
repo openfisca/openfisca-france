@@ -26,10 +26,9 @@ import zipfile
 import xls_to_yaml_raw
 import yaml_clean_to_xml
 import yaml_raw_to_yaml_clean
-
+from merge_ipp_xml_files_with_openfisca_parameters import merge_ipp_xml_files_with_openfisca_parameters
 
 app_name = os.path.splitext(os.path.basename(__file__))[0]
-default_zip_url = u'https://framagit.org/french-tax-and-benefit-tables/ipp-tax-and-benefit-tables-xlsx/repository/archive.zip?ref=master'  # noqa
 log = logging.getLogger(app_name)
 
 
@@ -39,12 +38,21 @@ def cmd_exists(cmd):
 
 def main():
     parser = argparse.ArgumentParser(description = __doc__)
+    parser.add_argument('--ref-ipp', default = None, help = u"Reference of the repository ipp-tax-and-benefit-tables-xlsx to use")
+    parser.add_argument('--zip-url', default = None, help = u"URL of the ZIP file to download")
     parser.add_argument('--tmp-dir', default = None, help = u"Where to write intermediary files")
     parser.add_argument('--xml-dir', default = None, help = u"Where to write XML files")
-    parser.add_argument('--zip-url', default = default_zip_url, help = u"URL of the ZIP file to download")
     parser.add_argument('-v', '--verbose', action = 'store_true', default = False, help = u"Increase output verbosity")
+    parser.add_argument('--merge', action = 'store_true', default = False, help = u"Merge the generated XML with the OpenFisca France parameters")
     args = parser.parse_args()
     logging.basicConfig(level = logging.DEBUG if args.verbose else logging.INFO)
+
+    if args.zip_url:
+        assert not args.zip_url, "Arguments --zip-url and --ref-ipp are incompatible."
+        zip_url = u'https://framagit.org/french-tax-and-benefit-tables/ipp-tax-and-benefit-tables-xlsx/repository/archive.zip?ref=master'
+    else:
+        ref_ipp = args.ref_ipp or 'master'
+        zip_url = u'https://framagit.org/french-tax-and-benefit-tables/ipp-tax-and-benefit-tables-xlsx/repository/archive.zip?ref={}'.format(ref_ipp)
 
     if args.xml_dir is not None and not os.path.exists(args.xml_dir):
         log.error(u'Directory {!r} does not exist.'.format(args.xml_dir))
@@ -62,13 +70,13 @@ def main():
     log.info(u'Temporary directory is {!r}.'.format(tmp_dir))
 
     zip_file_path = os.path.join(tmp_dir, u"xlsx_files.zip")
-    urllib.urlretrieve(args.zip_url, zip_file_path)
+    urllib.urlretrieve(zip_url, zip_file_path)
     log.info(u'ZIP file downloaded and saved as {!r}.'.format(zip_file_path))
 
     with zipfile.ZipFile(zip_file_path, "r") as zip_file:
         zip_file.extractall(tmp_dir)
     # Find the name of the only directory in `xlsx_dir_path`, ending by the git commit ID in SHA-1 format.
-    xlsx_dir_path = glob.glob(os.path.join(tmp_dir, 'ipp-tax-and-benefit-tables-xlsx-master*'))[0]
+    xlsx_dir_path = glob.glob(os.path.join(tmp_dir, 'ipp-tax-and-benefit-tables-xlsx-*'))[0]
     log.info(u'ZIP file extracted to {!r}.'.format(xlsx_dir_path))
 
     log.info(u'Converting XLSX files to XLS...')
@@ -102,6 +110,9 @@ def main():
         xml_dir_path = args.xml_dir
     yaml_clean_to_xml.transform(yaml_clean_dir_path, xml_dir_path)
     log.info(u'XML files written to {!r}'.format(xml_dir_path))
+
+    if args.merge:
+        merge_ipp_xml_files_with_openfisca_parameters(xml_dir_path)
 
 
 if __name__ == "__main__":
