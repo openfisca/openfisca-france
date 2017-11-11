@@ -135,6 +135,7 @@ class crds_salaire(Variable):
 
 
 class forfait_social(Variable):
+    value_type = float
     calculate_output = calculate_output_add
     entity = Individu
     label = u"Forfait social"
