@@ -8,7 +8,7 @@ from numpy import round as round_
 
 
 class ppa_eligibilite(Variable):
-    column = BoolCol
+    value_type = bool
     entity = Famille
     label = u"Eligibilité à la PPA pour un mois"
     definition_period = MONTH
@@ -23,7 +23,7 @@ class ppa_eligibilite(Variable):
 
 
 class ppa_eligibilite_etudiants(Variable):
-    column = BoolCol
+    value_type = bool
     entity = Famille
     label = u"Eligibilité à la PPA (condition sur tout le trimestre)"
     definition_period = MONTH
@@ -54,7 +54,7 @@ class ppa_eligibilite_etudiants(Variable):
 
 
 class ppa_montant_forfaitaire_familial_non_majore(Variable):
-    column = FloatCol
+    value_type = float
     entity = Famille
     label = u"Montant forfaitaire familial (sans majoration)"
     definition_period = MONTH
@@ -81,7 +81,7 @@ class ppa_montant_forfaitaire_familial_non_majore(Variable):
 
 
 class ppa_montant_forfaitaire_familial_majore(Variable):
-    column = FloatCol
+    value_type = float
     entity = Famille
     label = u"Montant forfaitaire familial (avec majoration)"
     definition_period = MONTH
@@ -97,7 +97,7 @@ class ppa_montant_forfaitaire_familial_majore(Variable):
 
 
 class ppa_revenu_activite(Variable):
-    column = FloatCol
+    value_type = float
     entity = Famille
     label = u"Revenu d'activité pris en compte pour la PPA"
     definition_period = MONTH
@@ -111,7 +111,7 @@ class ppa_revenu_activite(Variable):
 
 
 class ppa_revenu_activite_individu(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Revenu d'activité pris en compte pour la PPA (Individu) pour un mois"
     definition_period = MONTH
@@ -144,7 +144,7 @@ class ppa_revenu_activite_individu(Variable):
 
 
 class ppa_rsa_derniers_revenus_tns_annuels_connus(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Derniers revenus non salariés annualisés connus"
     definition_period = YEAR
@@ -168,7 +168,7 @@ class ppa_rsa_derniers_revenus_tns_annuels_connus(Variable):
 
 
 class ppa_ressources_hors_activite(Variable):
-    column = FloatCol
+    value_type = float
     entity = Famille
     label = u"Revenu hors activité pris en compte pour la PPA"
     definition_period = MONTH
@@ -191,7 +191,7 @@ class ppa_ressources_hors_activite(Variable):
 
 
 class ppa_ressources_hors_activite_individu(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Revenu hors activité pris en compte pour la PPA (Individu) pour un mois"
     definition_period = MONTH
@@ -225,7 +225,7 @@ class ppa_ressources_hors_activite_individu(Variable):
 
 
 class ppa_base_ressources_prestations_familiales(Variable):
-    column = FloatCol
+    value_type = float
     entity = Famille
     label = u"Prestations familiales prises en compte dans le calcul de la PPA"
     definition_period = MONTH
@@ -257,7 +257,7 @@ class ppa_base_ressources_prestations_familiales(Variable):
 
 
 class ppa_base_ressources(Variable):
-    column = FloatCol
+    value_type = float
     entity = Famille
     label = u"Bases ressource prise en compte pour la PPA"
     definition_period = MONTH
@@ -271,7 +271,7 @@ class ppa_base_ressources(Variable):
 
 
 class ppa_bonification(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Bonification de la PPA pour un individu"
     definition_period = MONTH
@@ -293,7 +293,7 @@ class ppa_bonification(Variable):
 
 
 class ppa_fictive(Variable):
-    column = FloatCol
+    value_type = float
     entity = Famille
     label = u"Prime pour l'activité fictive pour un mois"
     definition_period = MONTH
@@ -330,7 +330,7 @@ class ppa_fictive(Variable):
 
 
 class ppa(Variable):
-    column = FloatCol
+    value_type = float
     entity = Famille
     label = u"Prime Pour l'Activité"
     definition_period = MONTH

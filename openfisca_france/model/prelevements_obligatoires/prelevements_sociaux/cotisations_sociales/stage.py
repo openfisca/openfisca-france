@@ -8,21 +8,21 @@ from openfisca_france.model.prelevements_obligatoires.prelevements_sociaux.cotis
 
 
 class stage_duree_heures(Variable):
-    column = IntCol()
+    value_type = int
     entity = Individu
     label = u"Nombre d'heures effectuées en stage"
     definition_period = MONTH
 
 
 class stage_gratification_taux(Variable):
-    column = FloatCol()
+    value_type = float
     entity = Individu
     label = u"Taux de gratification (en plafond de la Sécurité sociale)"
     definition_period = MONTH
 
 
 class stage_gratification(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Gratification de stage"
     definition_period = MONTH
@@ -38,7 +38,7 @@ class stage_gratification(Variable):
 
 
 class stage_gratification_reintegration(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Part de la gratification de stage réintégrée à l'assiette des cotisations et contributions sociales"
     definition_period = MONTH
@@ -53,7 +53,7 @@ class stage_gratification_reintegration(Variable):
 
 
 class stagiaire(Variable):
-    column = BoolCol
+    value_type = bool
     entity = Individu
     label = u"L'individu est stagiaire"
     definition_period = MONTH
@@ -64,7 +64,7 @@ class stagiaire(Variable):
 
 
 class exoneration_cotisations_employeur_stagiaire(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Exonrérations de cotisations employeur pour un stagaire"
     reference = "http://www.apce.com/pid2798/stages.html?espace=3"
@@ -96,7 +96,7 @@ class exoneration_cotisations_employeur_stagiaire(Variable):
 
 
 class exoneration_cotisations_salarie_stagiaire(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Exonrérations de cotisations salarié pour un stagiaire"
     reference = "http://www.apce.com/pid2798/stages.html?espace=3"

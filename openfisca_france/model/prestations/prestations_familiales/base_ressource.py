@@ -9,7 +9,7 @@ from openfisca_france.model.base import *  # noqa analysis:ignore
 
 
 class autonomie_financiere(Variable):
-    column = BoolCol
+    value_type = bool
     entity = Individu
     label = u"Indicatrice d'autonomie financière vis-à-vis des prestations familiales"
     definition_period = MONTH
@@ -32,7 +32,7 @@ class autonomie_financiere(Variable):
 
 
 class prestations_familiales_enfant_a_charge(Variable):
-    column = BoolCol
+    value_type = bool
     entity = Individu
     label = u"Enfant considéré à charge au sens des prestations familiales"
     definition_period = MONTH
@@ -53,7 +53,8 @@ class prestations_familiales_enfant_a_charge(Variable):
 
 
 class prestations_familiales_base_ressources_individu(Variable):
-    column = PeriodSizeIndependentFloatCol
+    value_type = float
+    is_period_size_independent = True
     entity = Individu
     label = u"Base ressource individuelle des prestations familiales"
     definition_period = MONTH
@@ -71,7 +72,7 @@ class prestations_familiales_base_ressources_individu(Variable):
 
 
 class biactivite(Variable):
-    column = BoolCol
+    value_type = bool
     entity = Famille
     label = u"Indicatrice de biactivité"
     definition_period = MONTH
@@ -89,7 +90,7 @@ class biactivite(Variable):
 
 
 class div(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Dividendes imposés"
     definition_period = YEAR
@@ -113,8 +114,8 @@ class div(Variable):
         return  revenus_foyer_fiscal + rpns_pvce + rpns_pvct - rpns_mvct - rpns_mvlt
 
 
-class rev_coll(Variable):  # TOD Should be unused
-    column = FloatCol
+class rev_coll(Variable):  # TODO Should be unused
+    value_type = float
     entity = FoyerFiscal
     label = u"Revenus perçus par le foyer fiscal à prendre en compte dans la base ressource des prestations familiales"
     definition_period = YEAR
@@ -164,7 +165,7 @@ class rev_coll_individu(Variable):
 
 
 class prestations_familiales_base_ressources(Variable):
-    column = FloatCol
+    value_type = float
     entity = Famille
     label = u"Base ressource des prestations familiales"
     definition_period = MONTH

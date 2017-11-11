@@ -15,7 +15,7 @@ log = logging.getLogger(__name__)
 
 
 class assiette_csg_abattue(Variable):
-    column = FloatCol
+    value_type = float
     label = u"Assiette CSG - CRDS"
     entity = Individu
     definition_period = MONTH
@@ -47,7 +47,7 @@ class assiette_csg_abattue(Variable):
 
 
 class assiette_csg_non_abattue(Variable):
-    column = FloatCol
+    value_type = float
     label = u"Assiette CSG - CRDS"
     entity = Individu
     definition_period = MONTH
@@ -67,7 +67,7 @@ class assiette_csg_non_abattue(Variable):
 
 class csg_deductible_salaire(Variable):
     calculate_output = calculate_output_add
-    column = FloatCol
+    value_type = float
     label = u"CSG déductible sur les salaires"
     entity = Individu
     definition_period = MONTH
@@ -89,7 +89,7 @@ class csg_deductible_salaire(Variable):
 
 class csg_imposable_salaire(Variable):
     calculate_output = calculate_output_add
-    column = FloatCol
+    value_type = float
     label = u"CSG imposables sur les salaires"
     entity = Individu
     definition_period = MONTH
@@ -112,7 +112,7 @@ class csg_imposable_salaire(Variable):
 
 class crds_salaire(Variable):
     calculate_output = calculate_output_add
-    column = FloatCol
+    value_type = float
     label = u"CRDS sur les salaires"
     entity = Individu
     definition_period = MONTH
@@ -136,7 +136,6 @@ class crds_salaire(Variable):
 
 class forfait_social(Variable):
     calculate_output = calculate_output_add
-    column = FloatCol
     entity = Individu
     label = u"Forfait social"
     definition_period = MONTH
@@ -181,16 +180,15 @@ class forfait_social(Variable):
 
 class salaire_imposable(Variable):
     base_function = requested_period_added_value
-    column = FloatCol(
-        cerfa_field = {
-            QUIFOY['vous']: u"1AJ",
-            QUIFOY['conj']: u"1BJ",
-            QUIFOY['pac1']: u"1CJ",
-            QUIFOY['pac2']: u"1DJ",
-            QUIFOY['pac3']: u"1EJ",
-            },
-        val_type = "monetary",
-        )
+    value_type = float
+    unit = 'currency'
+    cerfa_field = {  # (f1aj, f1bj, f1cj, f1dj, f1ej)
+        QUIFOY['vous']: u"1AJ",
+        QUIFOY['conj']: u"1BJ",
+        QUIFOY['pac1']: u"1CJ",
+        QUIFOY['pac2']: u"1DJ",
+        QUIFOY['pac3']: u"1EJ",
+        }
     entity = Individu
     label = u"Salaires imposables"
     set_input = set_input_divide_by_period
@@ -222,7 +220,7 @@ class salaire_imposable(Variable):
 
 class salaire_net(Variable):
     base_function = requested_period_added_value
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Salaires nets d'après définition INSEE"
     set_input = set_input_divide_by_period
@@ -241,7 +239,7 @@ class salaire_net(Variable):
 
 
 class tehr(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Taxe exceptionnelle de solidarité sur les très hautes rémunérations"
     reference = u"http://vosdroits.service-public.fr/professionnels-entreprises/F32096.xhtml"
@@ -263,7 +261,7 @@ class tehr(Variable):
 
 class rev_microsocial(Variable):
     """Revenu net des cotisations sociales sous régime microsocial (auto-entrepreneur)"""
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"Revenu net des cotisations sociales pour le régime microsocial"
     reference = u"http://www.apce.com/pid6137/regime-micro-social.html"

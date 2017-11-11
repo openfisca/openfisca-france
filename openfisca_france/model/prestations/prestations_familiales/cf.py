@@ -8,7 +8,7 @@ from openfisca_france.model.base import *  # noqa analysis:ignore
 
 
 class cf_enfant_a_charge(Variable):
-    column = BoolCol
+    value_type = bool
     entity = Individu
     label = u"Complément familial - Enfant considéré à charge"
     definition_period = MONTH
@@ -27,7 +27,7 @@ class cf_enfant_a_charge(Variable):
 
 
 class cf_enfant_eligible(Variable):
-    column = BoolCol
+    value_type = bool
     entity = Individu
     label = u"Complément familial - Enfant pris en compte pour l'éligibilité"
     definition_period = MONTH
@@ -47,7 +47,7 @@ class cf_enfant_eligible(Variable):
 
 
 class cf_dom_enfant_eligible(Variable):
-    column = BoolCol
+    value_type = bool
     entity = Individu
     label = u"Complément familial (DOM) - Enfant pris en compte pour l'éligibilité"
     definition_period = MONTH
@@ -66,7 +66,7 @@ class cf_dom_enfant_eligible(Variable):
 
 
 class cf_dom_enfant_trop_jeune(Variable):
-    column = BoolCol
+    value_type = bool
     entity = Individu
     label = u"Complément familial (DOM) - Enfant trop jeune pour ouvrir le droit"
     definition_period = MONTH
@@ -83,7 +83,7 @@ class cf_dom_enfant_trop_jeune(Variable):
 
 
 class cf_ressources_individu(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Complément familial - Ressources de l'individu prises en compte"
     definition_period = MONTH
@@ -97,7 +97,7 @@ class cf_ressources_individu(Variable):
 
 
 class cf_plafond(Variable):
-    column = FloatCol
+    value_type = float
     entity = Famille
     label = u"Plafond d'éligibilité au Complément Familial"
     definition_period = MONTH
@@ -135,7 +135,7 @@ class cf_plafond(Variable):
 
 
 class cf_majore_plafond(Variable):
-    column = FloatCol
+    value_type = float
     entity = Famille
     label = u"Plafond d'éligibilité au Complément Familial majoré"
     definition_period = MONTH
@@ -147,7 +147,7 @@ class cf_majore_plafond(Variable):
 
 
 class cf_ressources(Variable):
-    column = FloatCol
+    value_type = float
     entity = Famille
     label = u"Ressources prises en compte pour l'éligibilité au complément familial"
     definition_period = MONTH
@@ -159,7 +159,7 @@ class cf_ressources(Variable):
 
 
 class cf_eligibilite_base(Variable):
-    column = BoolCol
+    value_type = bool
     entity = Famille
     label = u"Éligibilité au complément familial sous condition de ressources et avant cumul"
     definition_period = MONTH
@@ -174,7 +174,7 @@ class cf_eligibilite_base(Variable):
 
 
 class cf_eligibilite_dom(Variable):
-    column = BoolCol
+    value_type = bool
     entity = Famille
     label = u"Éligibilité au complément familial pour les DOM sous condition de ressources et avant cumul"
     definition_period = MONTH
@@ -197,7 +197,7 @@ class cf_eligibilite_dom(Variable):
 
 
 class cf_non_majore_avant_cumul(Variable):
-    column = FloatCol
+    value_type = float
     entity = Famille
     label = u"Complément familial non majoré avant cumul"
     definition_period = MONTH
@@ -228,7 +228,7 @@ class cf_non_majore_avant_cumul(Variable):
 
 
 class cf_majore_avant_cumul(Variable):
-    column = FloatCol
+    value_type = float
     entity = Famille
     label = u"Complément familial majoré avant cumul"
     definition_period = MONTH
@@ -252,7 +252,7 @@ class cf_majore_avant_cumul(Variable):
 
 
 class cf_montant(Variable):
-    column = FloatCol
+    value_type = float
     entity = Famille
     label = u"Montant du complément familial, avant prise en compte d'éventuels cumuls"
     definition_period = MONTH
@@ -266,7 +266,7 @@ class cf_montant(Variable):
 
 class cf(Variable):
     calculate_output = calculate_output_add
-    column = FloatCol
+    value_type = float
     entity = Famille
     label = u"Complément familial"
     reference = "http://vosdroits.service-public.fr/particuliers/F13214.xhtml"

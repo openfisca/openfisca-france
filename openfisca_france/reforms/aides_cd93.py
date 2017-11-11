@@ -9,12 +9,12 @@ from ..model.base import *
 
 
 class perte_autonomie(Variable):
-    column = BoolCol
+    value_type = bool
     entity = Individu
     label = u"Personne en perte d'autonomie"
 
 class resident_93(Variable):
-    column = BoolCol
+    value_type = bool
     label = u"Résident en Seine-Saint-Denis"
     entity = Menage
 
@@ -34,7 +34,7 @@ class resident_93(Variable):
         return result
 
 class adpa_eligibilite(Variable):
-    column = BoolCol
+    value_type = bool
     label = u"Eligibilité à l'ADPA"
     entity = Individu
 
@@ -49,7 +49,7 @@ class adpa_eligibilite(Variable):
         return result
 
 class adpa_base_ressources_i(Variable):
-    column = FloatCol
+    value_type = float
     label = u"Base ressources ADPA pour un individu"
     entity = Individu
 
@@ -75,7 +75,7 @@ class adpa_base_ressources_i(Variable):
         return base_ressource_mensuelle
 
 class adpa_base_ressources(Variable):
-    column = FloatCol
+    value_type = float
     label = u"Base ressources ADPA pour une famille"
     entity = Famille
 
@@ -87,7 +87,7 @@ class adpa_base_ressources(Variable):
         return adpa_base_ressources
 
 class adpa(Variable):
-    column = FloatCol
+    value_type = float
     label = u"ADPA"
     entity = Famille
 

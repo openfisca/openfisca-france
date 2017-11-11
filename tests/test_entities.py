@@ -11,32 +11,33 @@ from openfisca_france.model.base import *  # noqa analysis:ignore
 
 
 class af(Variable):
-    column = FloatCol
+    value_type = float
     entity = Famille
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
 class salaire(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
 class age(Variable):
-    column = IntCol
+    value_type = int
     entity = Individu
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
 class autonomie_financiere(Variable):
-    column = BoolCol
+    value_type = bool
     entity = Individu
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
 
 class depcom(Variable):
-    column = FixedStrCol(max_length = 5)
+    value_type = str
+    max_length = 5
     entity = Menage
     label = u"""Code INSEE "depcom" de la commune de résidence de la famille"""
     definition_period = ETERNITY

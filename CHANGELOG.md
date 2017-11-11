@@ -1,5 +1,13 @@
 ﻿# Changelog
 
+### 18.11.0
+
+* Amélioration technique
+* Détails :
+  - Rends OpenFisca-France comptabible avec OpenFisca-Core 20
+    - Change la manière de déclarer les variables
+    - Voir [changelog de Core](https://github.com/openfisca/openfisca-core/pull/590)
+
 ### 18.10.2
 
 * Amélioration technique

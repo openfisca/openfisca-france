@@ -13,7 +13,7 @@ log = logging.getLogger(__name__)
 
 
 class reductions(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"reductions"
     definition_period = YEAR
@@ -436,7 +436,7 @@ class reductions(Variable):
 
 
 class adhcga(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"adhcga"
     definition_period = YEAR
@@ -454,7 +454,7 @@ class adhcga(Variable):
 
 
 class assvie(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"assvie"
     end = '2004-12-31'
@@ -476,7 +476,7 @@ class assvie(Variable):
 
 
 class cappme(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"cappme"
     definition_period = YEAR
@@ -631,7 +631,7 @@ class cappme(Variable):
 
 
 class cotsyn(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"cotsyn"
     definition_period = YEAR
@@ -667,7 +667,7 @@ class cotsyn(Variable):
 
 
 class creaen(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"creaen"
     definition_period = YEAR
@@ -736,7 +736,7 @@ class creaen(Variable):
 
 
 class deffor(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"deffor"
     definition_period = YEAR
@@ -753,7 +753,7 @@ class deffor(Variable):
 
 
 class daepad(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"daepad"
     definition_period = YEAR
@@ -771,7 +771,7 @@ class daepad(Variable):
 
 
 class dfppce(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"dfppce"
     definition_period = YEAR
@@ -942,7 +942,7 @@ class dfppce(Variable):
 
 # Outre-mer : TODO: plafonnement, cf. 2041-GE 2042-IOM
 class doment(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"doment"
     definition_period = YEAR
@@ -1235,7 +1235,7 @@ class doment(Variable):
         # TODO: vérifier les dates des variables de doment et domsoc (y sont-elles encore en 2013 par ex ?)
 
 class domlog(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"domlog"
     definition_period = YEAR
@@ -1426,7 +1426,7 @@ class domlog(Variable):
 
 
 class domsoc(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"domsoc"
     definition_period = YEAR
@@ -1477,7 +1477,7 @@ class domsoc(Variable):
 
 
 class donapd(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"donapd"
     definition_period = YEAR
@@ -1504,7 +1504,7 @@ class donapd(Variable):
 
 
 class duflot(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"duflot"
     definition_period = YEAR
@@ -1524,7 +1524,7 @@ class duflot(Variable):
 #TODO: / 5 dans trois TOM
 
 class ecodev(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"ecodev"
     end = '2009-12-31'
@@ -1543,7 +1543,7 @@ class ecodev(Variable):
 
 
 class ecpess(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"ecpess"
     definition_period = YEAR
@@ -1566,7 +1566,7 @@ class ecpess(Variable):
 
 
 class garext(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"garext"
     definition_period = YEAR
@@ -1614,7 +1614,7 @@ class garext(Variable):
 
 
 class intagr(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"intagr"
     definition_period = YEAR
@@ -1633,7 +1633,7 @@ class intagr(Variable):
 
 
 class intcon(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"intcon"
     end = '2005-12-31'
@@ -1652,7 +1652,7 @@ class intcon(Variable):
 
 
 class intemp(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"intemp"
     end = '2003-12-31'
@@ -1672,7 +1672,7 @@ class intemp(Variable):
 
 
 class invfor(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"invfor"
     definition_period = YEAR
@@ -1822,7 +1822,7 @@ class invfor(Variable):
 
 
 class invlst(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"invlst"
     definition_period = YEAR
@@ -2033,7 +2033,7 @@ class invlst(Variable):
 
 
 class invrev(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"invrev"
     end = '2003-12-31'
@@ -2061,7 +2061,7 @@ class invrev(Variable):
 
 
 class locmeu(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"locmeu"
     definition_period = YEAR
@@ -2210,7 +2210,7 @@ class locmeu(Variable):
 
 
 class mohist(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"mohist"
     definition_period = YEAR
@@ -2227,7 +2227,7 @@ class mohist(Variable):
 
 
 class patnat(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"patnat"
     definition_period = YEAR
@@ -2285,7 +2285,7 @@ class patnat(Variable):
 
 
 class prcomp(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"Prestations compensatoires"
     definition_period = YEAR
@@ -2319,7 +2319,7 @@ class prcomp(Variable):
 
 
 class reduction_impot_exceptionnelle(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"Réduction d'impôt exceptionnelle"
     end = '2013-12-31'
@@ -2336,7 +2336,7 @@ class reduction_impot_exceptionnelle(Variable):
 
 
 class repsoc(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"repsoc"
     definition_period = YEAR
@@ -2355,7 +2355,7 @@ class repsoc(Variable):
 
 
 class resimm(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"resimm"
     definition_period = YEAR
@@ -2439,7 +2439,7 @@ class resimm(Variable):
 
 
 class rsceha(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"rsceha"
     definition_period = YEAR
@@ -2459,7 +2459,7 @@ class rsceha(Variable):
 
 
 class saldom(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"saldom"
     definition_period = YEAR
@@ -2548,7 +2548,7 @@ class saldom(Variable):
 
 
 class scelli(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"scelli"
     definition_period = YEAR
@@ -2863,7 +2863,7 @@ class scelli(Variable):
 
 
 class sofica(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"sofica"
     definition_period = YEAR
@@ -2884,7 +2884,7 @@ class sofica(Variable):
 
 
 class sofipe(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"sofipe"
     end = '2011-01-01'
@@ -2906,7 +2906,7 @@ class sofipe(Variable):
 
 
 class spfcpi(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"spfcpi"
     definition_period = YEAR

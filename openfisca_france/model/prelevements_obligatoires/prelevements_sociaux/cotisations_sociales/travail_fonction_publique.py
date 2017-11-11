@@ -9,7 +9,7 @@ from openfisca_france.model.prelevements_obligatoires.prelevements_sociaux.cotis
 
 
 class allocations_temporaires_invalidite(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Allocations temporaires d'invalidité (ATI, fonction publique et collectivités locales)"
     definition_period = MONTH
@@ -40,7 +40,7 @@ class allocations_temporaires_invalidite(Variable):
 
 
 class assiette_cotisations_sociales_public(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Assiette des cotisations sociales des agents titulaires de la fonction publique"
     definition_period = MONTH
@@ -66,7 +66,7 @@ class assiette_cotisations_sociales_public(Variable):
 
 
 class contribution_exceptionnelle_solidarite(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Cotisation exceptionnelle au fonds de solidarité (salarié)"
     definition_period = MONTH
@@ -116,7 +116,7 @@ class contribution_exceptionnelle_solidarite(Variable):
 
 
 class fonds_emploi_hospitalier(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Fonds pour l'emploi hospitalier (employeur)"
     definition_period = MONTH
@@ -137,7 +137,7 @@ class fonds_emploi_hospitalier(Variable):
 
 
 class ircantec_salarie(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Ircantec salarié"
     definition_period = MONTH
@@ -159,7 +159,7 @@ class ircantec_salarie(Variable):
 
 
 class ircantec_employeur(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Ircantec employeur"
     definition_period = MONTH
@@ -181,7 +181,7 @@ class ircantec_employeur(Variable):
 
 
 class pension_civile_salarie(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Pension civile salarié"
     reference = u"http://www.ac-besancon.fr/spip.php?article2662",
@@ -204,7 +204,7 @@ class pension_civile_salarie(Variable):
 
 
 class pension_civile_employeur(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Cotisation patronale pension civile"
     reference = u"http://www.ac-besancon.fr/spip.php?article2662"
@@ -229,7 +229,7 @@ class pension_civile_employeur(Variable):
 
 
 class rafp_salarie(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Part salariale de la retraite additionelle de la fonction publique"
     definition_period = MONTH
@@ -257,7 +257,7 @@ class rafp_salarie(Variable):
 
 
 class rafp_employeur(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Part patronale de la retraite additionnelle de la fonction publique"
     definition_period = MONTH

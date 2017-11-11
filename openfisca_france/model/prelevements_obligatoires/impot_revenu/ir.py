@@ -43,7 +43,8 @@ log = logging.getLogger(__name__)
 
 
 class jour_xyz(Variable):
-    column = IntCol(default = 360)
+    value_type = int
+    default_value = 360
     entity = FoyerFiscal
     label = u"Jours décomptés au titre de cette déclaration"
     definition_period = YEAR
@@ -56,10 +57,13 @@ class jour_xyz(Variable):
 
 class age(Variable):
     base_function = missing_value
-    column = AgeCol(val_type = "age")
+    unit = 'years'
+    value_type = int
+    default_value = -9999
     entity = Individu
     label = u"Âge (en années) au premier jour du mois"
     definition_period = MONTH
+    is_period_size_independent = True
     set_input = set_input_dispatch_by_period
 
     def formula(individu, period, parameters):
@@ -91,9 +95,12 @@ class age(Variable):
 
 class age_en_mois(Variable):
     base_function = missing_value
-    column = AgeCol(val_type = "months")
+    value_type = int
+    default_value = -9999
+    unit = 'months'
     entity = Individu
     label = u"Âge (en mois)"
+    is_period_size_independent = True
     definition_period = MONTH
 
     def formula(individu, period, parameters):
@@ -123,7 +130,7 @@ class age_en_mois(Variable):
 
 
 class nb_adult(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"Nombre d'adulte(s) déclarants dans le foyer fiscal"
     definition_period = YEAR
@@ -137,7 +144,7 @@ class nb_adult(Variable):
 
 
 class nb_pac(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"Nombre de personnes à charge dans le foyer fiscal"
     definition_period = YEAR
@@ -151,7 +158,7 @@ class nb_pac(Variable):
 
 
 class enfant_a_charge(Variable):
-    column = BoolCol
+    value_type = bool
     entity = Individu
     label = u"Enfant à charge non marié, de moins de 18 ans au 1er janvier de l'année de perception des" \
         u" revenus, ou né durant la même année, ou handicapés quel que soit son âge"
@@ -170,7 +177,7 @@ class enfant_a_charge(Variable):
 class nbF(Variable):
     cerfa_field = u'F'
     entity = FoyerFiscal
-    column = FloatCol
+    value_type = float
     label = u"Nombre d'enfants à charge non mariés, qui ne sont pas en résidence alternée, de moins de 18 ans au 1er janvier de l'année de perception des" \
         u" revenus, ou nés durant la même année ou handicapés quel que soit leur âge"
     definition_period = YEAR
@@ -186,7 +193,7 @@ class nbF(Variable):
 class nbG(Variable):
     cerfa_field = u'G'
     entity = FoyerFiscal
-    column = FloatCol
+    value_type = float
     label = u"Nombre d'enfants qui ne sont pas en résidence alternée à charge titulaires de la carte d'invalidité."
     definition_period = YEAR
 
@@ -202,7 +209,7 @@ class nbG(Variable):
 class nbH(Variable):
     cerfa_field = u'H'
     entity = FoyerFiscal
-    column = FloatCol
+    value_type = float
     label = u"Nombre d'enfants à charge en résidence alternée, non mariés de moins de 18 ans au 1er janvier de l'année de perception des revenus, ou nés durant la même année ou handicapés quel que soit leur âge"
     definition_period = YEAR
 
@@ -217,7 +224,7 @@ class nbH(Variable):
 class nbI(Variable):
     cerfa_field = u'I'
     entity = FoyerFiscal
-    column = FloatCol
+    value_type = float
     label = u"Nombre d'enfants à charge en résidence alternée titulaires de la carte d'invalidité"
     definition_period = YEAR
 
@@ -231,7 +238,7 @@ class nbI(Variable):
 
 
 class enfant_majeur_celibataire_sans_enfant(Variable):
-    column = BoolCol
+    value_type = bool
     entity = Individu
     label = u"Enfant majeur célibataire sans enfant"
     definition_period = YEAR
@@ -250,7 +257,7 @@ class nbJ(Variable):
     cerfa_field = u'J'
     entity = FoyerFiscal
     label = u"Nombre d'enfants majeurs célibataires sans enfant"
-    column = IntCol
+    value_type = int
     definition_period = YEAR
 
     def formula(foyer_fiscal, period):
@@ -261,7 +268,7 @@ class nbJ(Variable):
 class nombre_enfants_majeurs_celibataires_sans_enfant(Variable):
     entity = Menage
     label = u"Nombre d'enfants majeurs célibataires sans enfant"
-    column = IntCol
+    value_type = int
     definition_period = YEAR
 
     def formula(menage, period):
@@ -270,7 +277,7 @@ class nombre_enfants_majeurs_celibataires_sans_enfant(Variable):
 
 
 class maries_ou_pacses(Variable):
-    column = BoolCol
+    value_type = bool
     entity = FoyerFiscal
     label = u"Déclarants mariés ou pacsés"
     definition_period = YEAR
@@ -283,7 +290,7 @@ class maries_ou_pacses(Variable):
 
 
 class celibataire_ou_divorce(Variable):
-    column = BoolCol
+    value_type = bool
     entity = FoyerFiscal
     label = u"Déclarant célibataire ou divorcé"
     definition_period = YEAR
@@ -296,7 +303,7 @@ class celibataire_ou_divorce(Variable):
 
 
 class veuf(Variable):
-    column = BoolCol
+    value_type = bool
     entity = FoyerFiscal
     label = u"Déclarant veuf"
     definition_period = YEAR
@@ -309,7 +316,7 @@ class veuf(Variable):
 
 
 class jeune_veuf(Variable):
-    column = BoolCol
+    value_type = bool
     entity = FoyerFiscal
     label = u"Déclarant jeune veuf"
     definition_period = YEAR
@@ -327,7 +334,7 @@ class jeune_veuf(Variable):
 
 
 class revenu_assimile_salaire(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Revenu imposé comme des salaires (salaires, mais aussi 3vj, 3vk)"
     definition_period = YEAR
@@ -340,7 +347,7 @@ class revenu_assimile_salaire(Variable):
 
 
 class revenu_assimile_salaire_apres_abattements(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Salaires et chômage imposables après abattements"
     definition_period = YEAR
@@ -360,7 +367,7 @@ class revenu_assimile_salaire_apres_abattements(Variable):
 
 
 class revenu_activite_salariee(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Revenu d'activité salariée"
     definition_period = YEAR
@@ -372,7 +379,7 @@ class revenu_activite_salariee(Variable):
 
 
 class revenu_activite_non_salariee(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Revenu d'activité non salariée"
     definition_period = YEAR
@@ -384,7 +391,7 @@ class revenu_activite_non_salariee(Variable):
 
 
 class revenu_activite(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Revenus d'activités"
     definition_period = YEAR
@@ -398,7 +405,7 @@ class revenu_activite(Variable):
 
 
 class revenu_assimile_pension(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Revenu imposé comme des pensions (retraites, pensions alimentaires, etc.)"
     definition_period = YEAR
@@ -413,7 +420,7 @@ class revenu_assimile_pension(Variable):
 
 
 class revenu_assimile_pension_apres_abattements(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Pensions après abattements"
     definition_period = YEAR
@@ -433,7 +440,7 @@ class revenu_assimile_pension_apres_abattements(Variable):
 #    return max_(0, revenu_assimile_pension - min_(round_(max_(abatpen.taux*revenu_assimile_pension , abatpen.min)), abatpen.max))  le max se met au niveau du foyer
 
 class indu_plaf_abat_pen(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"Plafonnement de l'abattement de 10% sur les pensions du foyer"
     definition_period = YEAR
@@ -451,7 +458,7 @@ class indu_plaf_abat_pen(Variable):
 
 
 class abattement_salaires_pensions(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Abattement de 20% sur les salaires et pensions, en vigueur jusqu'à 2006"
     end = '2005-12-31'
@@ -471,7 +478,7 @@ class retraite_titre_onereux(Variable):
     Annuel pour les impôts mais mensuel pour la base ressource des minimas sociaux donc mensuel.
     """
     calculate_output = calculate_output_add
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"Rentes viagères (rentes à titre onéreux)"
     set_input = set_input_divide_by_period
@@ -489,7 +496,7 @@ class retraite_titre_onereux(Variable):
 
 
 class retraite_titre_onereux_net(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"Rentes viagères après abattements"
     reference = u"http://www.lafinancepourtous.fr/Vie-professionnelle-et-retraite/Retraite/Epargne-retraite/La-rente-viagere/La-fiscalite-de-la-rente-viagere"  # noqa
@@ -508,7 +515,7 @@ class retraite_titre_onereux_net(Variable):
 
 
 class traitements_salaires_pensions_rentes(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Traitements salaires pensions et rentes individuelles"
     definition_period = YEAR
@@ -530,7 +537,7 @@ class traitements_salaires_pensions_rentes(Variable):
 
 
 class rev_cat_pv(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"Revenu catégoriel - Plus-values"
     reference = "http://www.insee.fr/fr/methodes/default.asp?page=definitions/revenus-categoriesl.htm"
@@ -544,7 +551,7 @@ class rev_cat_pv(Variable):
 
 
 class rev_cat_tspr(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"Revenu catégoriel - Traitements, salaires, pensions et rentes"
     reference = "http://www.insee.fr/fr/methodes/default.asp?page=definitions/revenus-categoriesl.htm"
@@ -560,7 +567,7 @@ class rev_cat_tspr(Variable):
 
 
 class deficit_rcm(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"Deficit capitaux mobiliers"
     reference = "http://www.lefigaro.fr/impots/2008/04/25/05003-20080425ARTFIG00254-les-subtilites-des-revenus-de-capitaux-mobiliers-.php"
@@ -579,7 +586,7 @@ class deficit_rcm(Variable):
 
 
 class rev_cat_rvcm(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"Revenu catégoriel - Capitaux"
     reference = "http://www.insee.fr/fr/methodes/default.asp?page=definitions/revenus-categoriesl.htm"
@@ -731,7 +738,7 @@ class rev_cat_rvcm(Variable):
 
 
 class rfr_rvcm(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"rfr_rvcm"
     definition_period = YEAR
@@ -774,7 +781,7 @@ class rfr_rvcm(Variable):
 
 
 class rev_cat_rfon(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"Revenu catégoriel - Foncier"
     reference = "http://www.insee.fr/fr/methodes/default.asp?page=definitions/revenus-categoriesl.htm"
@@ -807,7 +814,7 @@ class rev_cat_rfon(Variable):
 
 
 class rev_cat_rpns(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"Revenu catégoriel - Revenus personnels non salariés"
     reference = "http://www.insee.fr/fr/methodes/default.asp?page=definitions/revenus-categoriesl.htm"
@@ -833,7 +840,7 @@ class rev_cat_rpns(Variable):
 
 
 class rev_cat(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"Revenus catégoriels"
     reference = "http://www.insee.fr/fr/methodes/default.asp?page=definitions/revenus-categoriesl.htm"
@@ -858,7 +865,7 @@ class rev_cat(Variable):
 
 
 class deficit_ante(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"Déficit global antérieur"
     reference = "http://impotsurlerevenu.org/declaration-de-revenus-fonciers-2044/796-deficits-anterieurs-restant-a-imputer-cadre-450.php"
@@ -879,7 +886,7 @@ class deficit_ante(Variable):
 
 
 class rbg(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"Revenu brut global"
     reference = "http://www.documentissime.fr/dossiers-droit-pratique/dossier-19-l-impot-sur-le-revenu-les-modalites-generales-d-imposition/la-determination-du-revenu-imposable/le-revenu-brut-global.html"
@@ -903,7 +910,7 @@ class rbg(Variable):
 
 
 class csg_deduc_patrimoine(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"Csg déductible sur le patrimoine"
     reference = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&typePage=cpr02&sfid=503&espId=1&communaute=1&impot=CS"
@@ -920,7 +927,7 @@ class csg_deduc_patrimoine(Variable):
 
 
 class csg_deduc_patrimoine_simulated(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"Csg déductible sur le patrimoine simulée"
     reference = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&typePage=cpr02&sfid=503&espId=1&communaute=1&impot=CS"
@@ -941,7 +948,7 @@ class csg_deduc_patrimoine_simulated(Variable):
 
 
 class csg_deduc(Variable):  # f6de
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"Csg déductible sur le patrimoine"
     reference = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&typePage=cpr02&sfid=503&espId=1&communaute=1&impot=CS"
@@ -957,7 +964,7 @@ class csg_deduc(Variable):  # f6de
 
 
 class rng(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"Revenu net global"
     reference = "http://impotsurlerevenu.org/definitions/114-revenu-net-global.php"
@@ -973,7 +980,7 @@ class rng(Variable):
 
 
 class rni(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"Revenu net imposable"
     reference = "http://impotsurlerevenu.org/definitions/115-revenu-net-imposable.php"
@@ -988,7 +995,7 @@ class rni(Variable):
 
 
 class ir_brut(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"Impôt sur le revenu brut avant non imposabilité et plafonnement du quotient"
     definition_period = YEAR
@@ -1003,7 +1010,7 @@ class ir_brut(Variable):
 
 
 class ir_ss_qf(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"Impôt sans quotient familial"
     definition_period = YEAR
@@ -1021,7 +1028,7 @@ class ir_ss_qf(Variable):
 
 
 class ir_plaf_qf(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"Impôt après plafonnement du quotient familial et réduction complémentaire"
     definition_period = YEAR
@@ -1121,7 +1128,7 @@ class ir_plaf_qf(Variable):
 
 
 class avantage_qf(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"Avantage quotient familial"
     definition_period = YEAR
@@ -1134,7 +1141,7 @@ class avantage_qf(Variable):
 
 
 class decote(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"décote"
     definition_period = YEAR
@@ -1167,7 +1174,7 @@ class decote(Variable):
 
 
 class decote_gain_fiscal(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"Gain fiscal de la décote/Décote au sens Dgfip tel que sur la feuille d'impôt"
     definition_period = YEAR
@@ -1183,7 +1190,7 @@ class decote_gain_fiscal(Variable):
 
 
 class nat_imp(Variable):
-    column = BoolCol(default = False)
+    value_type = bool
     entity = FoyerFiscal
     label = u"nat_imp"
     definition_period = YEAR
@@ -1202,7 +1209,7 @@ class nat_imp(Variable):
 
 
 class ip_net(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"Impôt sur le revenu après décote"
     definition_period = YEAR
@@ -1220,7 +1227,7 @@ class ip_net(Variable):
 
 
 class iaidrdi(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"Impôt après imputation des réductions d'impôt"
     definition_period = YEAR
@@ -1236,7 +1243,7 @@ class iaidrdi(Variable):
 
 
 class cont_rev_loc(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"Contribution sur les revenus locatifs"
     definition_period = YEAR
@@ -1252,7 +1259,7 @@ class cont_rev_loc(Variable):
 
 
 class teicaa(Variable):  # f5rm
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"Taxe exceptionelle sur l'indemnité compensatrice des agents d'assurance"
     definition_period = YEAR
@@ -1270,7 +1277,7 @@ class teicaa(Variable):  # f5rm
 
 
 class assiette_vente(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"Assiette régime microsociale pour les ventes"
     definition_period = YEAR
@@ -1285,7 +1292,7 @@ class assiette_vente(Variable):
 
 
 class assiette_service(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"Assiette régime microsociale pour les prestations et services"
     definition_period = YEAR
@@ -1303,7 +1310,7 @@ class assiette_service(Variable):
 
 
 class assiette_proflib(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"Assiette régime microsociale pour les professions libérales"
     definition_period = YEAR
@@ -1323,7 +1330,7 @@ class assiette_proflib(Variable):
 
 
 class microsocial(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"Assiette régime microsociale totale"
     reference = "http://fr.wikipedia.org/wiki/R%C3%A9gime_micro-social"
@@ -1342,7 +1349,7 @@ class microsocial(Variable):
 
 
 class microentreprise(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"microentreprise"
     definition_period = YEAR
@@ -1363,7 +1370,7 @@ class microentreprise(Variable):
 
 
 class plus_values(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"Taxation des plus_values"
     definition_period = YEAR
@@ -1518,7 +1525,7 @@ class plus_values(Variable):
 
 
 class iai(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"Impôt avant imputations de l'impôt sur le revenu"
     reference = "http://forum-juridique.net-iris.fr/finances-fiscalite-assurance/43963-declaration-impots.html"
@@ -1537,7 +1544,7 @@ class iai(Variable):
 
 
 class cehr(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"Contribution exceptionnelle sur les hauts revenus"
     reference = "http://www.legifrance.gouv.fr/affichCode.do?cidTexte=LEGITEXT000006069577&idSectionTA=LEGISCTA000025049019"
@@ -1557,7 +1564,7 @@ class cehr(Variable):
 
 
 class irpp(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"Impôt sur le revenu des personnes physiques"
     reference = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_impot_revenu&espId=1&impot=IR&sfid=50"
@@ -1605,7 +1612,7 @@ class irpp_noncale(Variable):
 
 
 class foyer_impose(Variable):
-    column = BoolCol(default = False)
+    value_type = bool
     entity = FoyerFiscal
     label = u"Le foyer fiscal est imposé"
     definition_period = YEAR
@@ -1620,7 +1627,7 @@ class foyer_impose(Variable):
 
 
 class pensions_alimentaires_versees(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"Pensions alimentaires versées"
     reference = u"http://vosdroits.service-public.fr/particuliers/F2.xhtml"
@@ -1638,7 +1645,7 @@ class pensions_alimentaires_versees(Variable):
 
 
 class rfr(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"Revenu fiscal de référence"
     definition_period = YEAR
@@ -1668,7 +1675,7 @@ class rfr(Variable):
 
 
 class glo(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Gain de levée d'options"
     reference = "http://www.officeo.fr/imposition-au-bareme-progressif-de-l-impot-sur-le-revenu-des-gains-de-levee-d-options-sur-actions-et-attributions-d-actions-gratuites"
@@ -1694,7 +1701,7 @@ class rev_cap_bar(Variable):
     Annuel pour les impôts mais mensuel pour la base ressource des minimas sociaux donc mensuel.
     """
     calculate_output = calculate_output_add
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"Revenus du capital imposés au barème"
     set_input = set_input_divide_by_period
@@ -1731,7 +1738,7 @@ class rev_cap_lib(Variable):
     Annuel pour les impôts mais mensuel pour la base ressource des minimas sociaux donc mensuel.
     '''
     calculate_output = calculate_output_add
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"Revenu du capital imposé au prélèvement libératoire"
     set_input = set_input_divide_by_period
@@ -1762,7 +1769,7 @@ class rev_cap_lib(Variable):
 
 
 class avf(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"Avoir fiscal et crédits d'impôt"
     definition_period = YEAR
@@ -1777,7 +1784,7 @@ class avf(Variable):
 
 
 class imp_lib(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"Prelèvement libératoire sur les revenus du capital"
     reference = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&paf_dm=popup&paf_gm=content&typePage=cpr02&sfid=501&espId=1&impot=CS"
@@ -1813,7 +1820,7 @@ class imp_lib(Variable):
 
 
 class fon(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"Revenus fonciers"
     reference = "http://impotsurlerevenu.org/definitions/220-revenu-foncier.php"
@@ -1834,7 +1841,7 @@ class fon(Variable):
 
 
 class rpns_pvce(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Plus values de cession - Revenu des professions non salariées"
     definition_period = YEAR
@@ -1870,7 +1877,7 @@ class rpns_pvce(Variable):
 
 
 class rpns_exon(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Plus values de cession exonérées -Revenu des professions non salariées"
     definition_period = YEAR
@@ -1921,7 +1928,7 @@ class rpns_exon(Variable):
 
 
 class defrag(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"Déficit agricole des années antérieures"
     definition_period = YEAR
@@ -1950,7 +1957,7 @@ class defrag(Variable):
 
 
 class defacc(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"Déficit industriels et commerciaux non professionnels des années antérieures"
     definition_period = YEAR
@@ -1985,7 +1992,7 @@ class defacc(Variable):
 
 
 class defncn(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"Déficit non commerciaux non professionnels des années antérieures"
     definition_period = YEAR
@@ -2017,7 +2024,7 @@ class defncn(Variable):
 
 
 class defmeu(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"Déficit des locations meublées non professionnelles des années antérieures"
     definition_period = YEAR
@@ -2042,7 +2049,7 @@ class defmeu(Variable):
 
 
 class rag(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Revenus agricoles"
     reference = "http://www.impots.gouv.fr/portal/dgi/public/professionnels.impot?espId=2&impot=BA&pageId=prof_ba&sfid=50"
@@ -2079,7 +2086,7 @@ class rag(Variable):
 
 
 class ric(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Bénéfices industriels et commerciaux"
     reference = "http://www.impots.gouv.fr/portal/dgi/public/professionnels.impot?pageId=prof_bic&espId=2&impot=BIC&sfid=50"
@@ -2145,7 +2152,7 @@ class ric(Variable):
 
 
 class rac(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Revenus accessoires individuels"
     reference = "http://vosdroits.service-public.fr/particuliers/F1225.xhtml"
@@ -2207,7 +2214,7 @@ class rac(Variable):
 
 class rnc(Variable):
     base_function = requested_period_added_value
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Revenus non commerciaux individuels"
     reference = "http://www.impots.gouv.fr/portal/dgi/public/professionnels.impot?espId=2&pageId=prof_bnc&impot=BNC&sfid=50"
@@ -2257,7 +2264,7 @@ class rnc(Variable):
 
 class rpns(Variable):
     base_function = requested_period_added_value
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Revenus individuels des professions non salariées"
     set_input = set_input_divide_by_period
@@ -2273,7 +2280,7 @@ class rpns(Variable):
 
 
 class rpns_pvct(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Plus values de court terme -Revenu des professions non salariées"
     definition_period = YEAR
@@ -2298,7 +2305,7 @@ class rpns_pvct(Variable):
 
 
 class rpns_mvct(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Moins values de court terme - Revenu des professions non salariées"
     definition_period = YEAR
@@ -2319,7 +2326,7 @@ class rpns_mvct(Variable):
 
 
 class rpns_mvlt(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Moins values de long terme - Revenu des professions non salariées"
     definition_period = YEAR
@@ -2343,7 +2350,7 @@ class rpns_mvlt(Variable):
 
 class rpns_individu(Variable):
     base_function = requested_period_added_value
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Revenus des professions non salariées individuels"
     set_input = set_input_divide_by_period
@@ -2503,7 +2510,7 @@ class rpns_individu(Variable):
 
 
 class abat_spe(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"Abattements spéciaux"
     reference = "http://bofip.impots.gouv.fr/bofip/2036-PGP"
@@ -2556,7 +2563,7 @@ class abat_spe(Variable):
 
 
 class taux_effectif(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"taux_effectif"
     definition_period = YEAR
@@ -2577,7 +2584,7 @@ class taux_effectif(Variable):
 
 
 class taux_moyen_imposition(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"Taux moyen d'imposition"
     definition_period = YEAR
@@ -2596,7 +2603,7 @@ class taux_moyen_imposition(Variable):
 
 
 class nbptr(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"Nombre de parts"
     reference = "http://vosdroits.service-public.fr/particuliers/F2705.xhtml"
@@ -2708,7 +2715,7 @@ class nbptr(Variable):
 
 
 class ppe_coef(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"Coefficient de conversion - Prime pour l'emploi"
     end = '2015-12-31'
@@ -2725,7 +2732,7 @@ class ppe_coef(Variable):
 
 
 class ppe_elig(Variable):
-    column = BoolCol
+    value_type = bool
     entity = FoyerFiscal
     label = u"PPE: eligibilité à la ppe, condition sur le revenu fiscal de référence"
     end = '2015-12-31'
@@ -2750,7 +2757,7 @@ class ppe_elig(Variable):
 
 
 class ppe_rev(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Base ressource de la ppe"
     end = '2015-12-31'
@@ -2771,7 +2778,7 @@ class ppe_rev(Variable):
 
 
 class ppe_coef_tp(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"PPE: coefficient de conversion temps partiel"
     end = '2015-12-31'
@@ -2791,7 +2798,7 @@ class ppe_coef_tp(Variable):
 
 
 class ppe_base(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Montant de base de la PPE"
     end = '2015-12-31'
@@ -2806,7 +2813,7 @@ class ppe_base(Variable):
 
 
 class ppe_elig_individu(Variable):
-    column = BoolCol(default = False)
+    value_type = bool
     entity = Individu
     label = u"Eligibilité individuelle à la ppe"
     end = '2015-12-31'
@@ -2825,7 +2832,7 @@ class ppe_elig_individu(Variable):
 
 
 class ppe_brute(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"Prime pour l'emploi brute"
     end = '2015-12-31'
@@ -2931,7 +2938,7 @@ class ppe_brute(Variable):
 
 
 class ppe(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"Prime pour l'emploi"
     end = '2015-12-31'
