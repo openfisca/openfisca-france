@@ -1594,7 +1594,7 @@ class irpp(Variable):
 
 
 class irpp_noncale(Variable):
-    column = FloatCol
+    value_type = float
     entity = FoyerFiscal
     label = u"Impôt sur le revenu des personnes physiques non calé (pour cas-types)"
     reference = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_impot_revenu&espId=1&impot=IR&sfid=50"

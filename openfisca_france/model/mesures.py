@@ -8,7 +8,7 @@ from openfisca_france.model.base import *  # noqa analysis:ignore
 
 
 # class uc(Variable):
-#     column = FloatCol
+#     value_type = float
 #     entity = Menage
 #     label = u"Unités de consommation"
 
@@ -32,7 +32,7 @@ from openfisca_france.model.base import *  # noqa analysis:ignore
 #         return uc
 
 class uc_indiv(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Ajout unité de consommation de chaque individu"
     definition_period = YEAR
@@ -113,7 +113,7 @@ class revenu_disponible(Variable):
         return revenus_du_travail + pensions + revenus_du_capital + prestations_sociales + ppe + impots_directs
 
 class revenu_disponible_noncale(Variable):
-    column = FloatCol
+    value_type = float
     entity = Menage
     label = u"Revenu disponible du ménage avec IRPP non calé (pour cas-types)"
     reference = "http://fr.wikipedia.org/wiki/Revenu_disponible"
@@ -151,7 +151,7 @@ class niveau_de_vie(Variable):
 
 
 class niveau_de_vie_noncale(Variable):
-    column = FloatCol
+    value_type = float
     entity = Menage
     label = u"Niveau de vie du ménage avec IRPP non calé (pour cas-types)"
     definition_period = YEAR
@@ -248,7 +248,7 @@ class revenu_primaire(Variable):
     Ensemble des revenus d'activités superbruts avant tout prélèvement
     Il est égale à la valeur ajoutée produite par les résidents
     '''
-    column = FloatCol
+    value_type = float
     entity = Menage
     label = u"Revenu primaire du ménage"
     definition_period = YEAR
@@ -328,7 +328,7 @@ class cotsoc_lib(Variable):
 
 
 class impots_directs_menage(Variable):
-    column = FloatCol
+    value_type = float
     entity = Menage
     definition_period = YEAR
 
@@ -339,7 +339,7 @@ class impots_directs_menage(Variable):
 
 
 class revenus_du_capital_menage(Variable):
-    column = FloatCol
+    value_type = float
     entity = Menage
     definition_period = YEAR
 
@@ -351,7 +351,7 @@ class revenus_du_capital_menage(Variable):
 
 
 class revenus_du_travail_menage(Variable):
-    column = FloatCol
+    value_type = float
     entity = Menage
     definition_period = YEAR
 
@@ -364,7 +364,7 @@ class revenus_du_travail_menage(Variable):
 
 
 class pensions_menage(Variable):
-    column = FloatCol
+    value_type = float
     entity = Menage
     definition_period = YEAR
 
@@ -377,7 +377,7 @@ class pensions_menage(Variable):
 
 
 class prestations_sociales_menage(Variable):
-    column = FloatCol
+    value_type = float
     entity = Menage
     definition_period = YEAR
 
@@ -391,7 +391,7 @@ class prestations_sociales_menage(Variable):
 
 
 class ppe_menage(Variable):
-    column = FloatCol
+    value_type = float
     entity = Menage
     definition_period = YEAR
     label = u"Revenu disponible du ménage"
@@ -542,7 +542,7 @@ class impots_directs(Variable):
 
 
 class impots_directs_noncale(Variable):
-    column = FloatCol
+    value_type = float
     entity = Menage
     label = u"Impôts directs avec IRPP non calé (pour cas-types)"
     reference = "http://fr.wikipedia.org/wiki/Imp%C3%B4t_direct"
@@ -630,7 +630,7 @@ class cotisations_non_contributives(Variable):
 
 
 class revenu_disponible_famille(Variable):
-    column = FloatCol
+    value_type = float
     entity = Famille
     label = u"Revenu disponible du foyer social (famille)"
     definition_period = YEAR
@@ -662,7 +662,7 @@ class revenu_disponible_famille(Variable):
         return revenus_du_travail + pensions + revenus_du_capital + prestations_sociales + ppe + impots_directs
 
 class revenu_disponible_famille_noncale(Variable):
-    column = FloatCol
+    value_type = float
     entity = Famille
     label = u"Revenu disponible du foyer social (famille) avec IRPP non-calé (pour cas-types)"
     definition_period = YEAR

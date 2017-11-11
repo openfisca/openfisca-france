@@ -34,7 +34,7 @@ def create_fusion_rsa_apl_progressive(socle = 600):
         def apply(self):
 
             class prestation_unifiee(Variable):
-                column = FloatCol
+                value_type = float
                 label = u"Prestation unifiée"
                 entity = Famille
                 definition_period = MONTH
@@ -93,7 +93,7 @@ def create_fusion_rsa_apl_progressive(socle = 600):
                     return montant * (montant >= seuil_non_versement)
 
             class minima_sociaux(Variable):
-                column = FloatCol
+                value_type = float
                 entity = Famille
                 label = u"Minima sociaux"
                 reference = "http://fr.wikipedia.org/wiki/Minima_sociaux"

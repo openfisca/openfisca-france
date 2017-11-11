@@ -139,7 +139,7 @@ class rev_coll(Variable):  # TODO Should be unused
 
 
 class rev_coll_individu(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Revenus perçus par le foyer fiscal à prendre en compte dans la base ressource des prestations familiales"
     definition_period = YEAR
