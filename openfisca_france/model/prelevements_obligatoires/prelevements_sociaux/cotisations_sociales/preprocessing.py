@@ -135,7 +135,7 @@ def preprocess_parameters(parameters):
             ('cotisations_salarie', sal.children),
             ):
         for category, bareme in baremes.iteritems():
-            if category in [member.name for member in CATEGORIE_SALARIE]:
+            if category in [member.name for member in TypesCategorieSalarie]:
                 cotsoc.children[cotisation_name].children[category] = bareme
 
     return parameters

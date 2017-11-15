@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from openfisca_france.model.base import CATEGORIE_SALARIE
+from openfisca_france.model.base import TypesCategorieSalarie, TypesCotisationSocialeModeRecouvrement
 
 def apply_bareme_for_relevant_type_sal(
         bareme_by_type_sal_name,
@@ -16,7 +16,7 @@ def apply_bareme_for_relevant_type_sal(
     assert base is not None
     assert plafond_securite_sociale is not None
     def iter_cotisations():
-        for type_sal_name in [member.name for member in CATEGORIE_SALARIE]:
+        for type_sal_name in [member.name for member in TypesCategorieSalarie]:
             if type_sal_name not in bareme_by_type_sal_name:  # to deal with public_titulaire_militaire
                 continue
 
@@ -24,7 +24,7 @@ def apply_bareme_for_relevant_type_sal(
             if bareme_name in node._children:
                 bareme = getattr(node, bareme_name)
                 yield bareme.calc(
-                    base * (categorie_salarie == CATEGORIE_SALARIE[type_sal_name]),
+                    base * (categorie_salarie == TypesCategorieSalarie[type_sal_name]),
                     factor = plafond_securite_sociale,
                     round_base_decimals = round_base_decimals,
                     )

@@ -728,9 +728,9 @@ class primes_fonction_publique(Variable):
 
         traitement_indiciaire_brut = simulation.calculate('traitement_indiciaire_brut', period)
         public = (
-            (categorie_salarie == CATEGORIE_SALARIE.public_titulaire_etat) +
-            (categorie_salarie == CATEGORIE_SALARIE.public_titulaire_territoriale) +
-            (categorie_salarie == CATEGORIE_SALARIE.public_titulaire_hospitaliere)
+            (categorie_salarie == TypesCategorieSalarie.public_titulaire_etat) +
+            (categorie_salarie == TypesCategorieSalarie.public_titulaire_territoriale) +
+            (categorie_salarie == TypesCategorieSalarie.public_titulaire_hospitaliere)
             )
         return TAUX_DE_PRIME * traitement_indiciaire_brut * public
 
@@ -826,7 +826,7 @@ class supp_familial_traitement(Variable):
             )
         # Nota Bene:
         # categorie_salarie is an enum :
-        # class CATEGORIE_SALARIE(Enum):
+        # class TypesCategorieSalarie(Enum):
         #   prive_non_cadre = u'prive_non_cadre'
         #   prive_cadre = u'prive_cadre'
         #   public_titulaire_etat = u'public_titulaire_etat'
