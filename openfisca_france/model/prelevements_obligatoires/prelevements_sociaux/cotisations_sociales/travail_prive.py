@@ -31,7 +31,7 @@ class assiette_cotisations_sociales(Variable):
         assiette_cotisations_sociales_public = simulation.calculate('assiette_cotisations_sociales_public', period)
         categorie_salarie = simulation.calculate('categorie_salarie', period)
         stage_gratification_reintegration = simulation.calculate('stage_gratification_reintegration', period)
-        return (categorie_salarie < 7) * (  # Tout sauf "non_pertinent", ie sans activité salariée
+        return (categorie_salarie != TypesCategorieSalarie.non_pertinent) * (
             assiette_cotisations_sociales_prive +
             assiette_cotisations_sociales_public) + stage_gratification_reintegration
 
@@ -64,7 +64,7 @@ class assiette_cotisations_sociales_prive(Variable):
             hsup +
             indemnites_compensatrices_conges_payes +
             remuneration_apprenti +
-            (categorie_salarie == CATEGORIE_SALARIE.public_non_titulaire) * (indemnite_residence + primes_fonction_publique) +
+            (categorie_salarie == TypesCategorieSalarie.public_non_titulaire) * (indemnite_residence + primes_fonction_publique) +
             reintegration_titre_restaurant_employeur + indemnite_fin_contrat
             )
 
@@ -710,7 +710,7 @@ class prevoyance_obligatoire_cadre(Variable):
             'prevoyance_obligatoire_cadre_taux_employeur', period)
 
         cotisation = - (
-            (categorie_salarie == CATEGORIE_SALARIE.prive_cadre) *
+            (categorie_salarie == TypesCategorieSalarie.prive_cadre) *
             min_(assiette_cotisations_sociales, plafond_securite_sociale) *
             prevoyance_obligatoire_cadre_taux_employeur
             )
