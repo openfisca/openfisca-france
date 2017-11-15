@@ -71,17 +71,6 @@ class TypesContratDeTravail(Enum):
     sans_objet = u"sans_objet"
 
 
-class CATEGORIE_SALARIE(Enum):
-    prive_non_cadre = u'prive_non_cadre',
-    prive_cadre = u'prive_cadre',
-    public_titulaire_etat = u'public_titulaire_etat',
-    public_titulaire_militaire = u'public_titulaire_militaire',
-    public_titulaire_territoriale = u'public_titulaire_territoriale',
-    public_titulaire_hospitaliere = u'public_titulaire_hospitaliere',
-    public_non_titulaire = u'public_non_titulaire',
-    non_pertinent = u'non_pertinent',
-
-
 class TypesTnsTypeActivite(Enum):
     achat_revente = u'achat_revente'
     bic = u'bic'

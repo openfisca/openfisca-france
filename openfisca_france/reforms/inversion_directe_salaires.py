@@ -62,9 +62,9 @@ class salaire_de_base(Variable):
         prive_non_cadre.add_tax_scale(csg)
         prive_cadre.add_tax_scale(csg)
         salaire_de_base = (
-            (categorie_salarie == CATEGORIE_SALARIE.prive_non_cadre) *
+            (categorie_salarie == TypesCategorieSalarie.prive_non_cadre) *
             prive_non_cadre.inverse().calc(salaire_imposable_pour_inversion) +
-            (categorie_salarie == CATEGORIE_SALARIE.prive_cadre) * prive_cadre.inverse().calc(salaire_imposable_pour_inversion)
+            (categorie_salarie == TypesCategorieSalarie.prive_cadre) * prive_cadre.inverse().calc(salaire_imposable_pour_inversion)
             )
         return salaire_de_base + hsup
 
@@ -124,7 +124,7 @@ class traitement_indiciaire_brut(Variable):
         bareme_prime.add_bracket(0, -TAUX_DE_PRIME)  # barème équivalent à taux_prime*TIB
         public_titulaire_etat.add_tax_scale(bareme_prime)
         traitement_indiciaire_brut = (
-            (categorie_salarie == CATEGORIE_SALARIE.public_titulaire_etat) *
+            (categorie_salarie == TypesCategorieSalarie.public_titulaire_etat) *
             public_titulaire_etat.inverse().calc(salaire_imposable_pour_inversion)
             )
         # TODO: complete this to deal with the fonctionnaire
