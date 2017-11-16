@@ -183,7 +183,8 @@ class aah_non_calculable(Variable):
         aah_eligible = individu('aah_eligible', period)
 
         # Pour le moment résultat "pas assez fiable, donc on renvoit une non calculabilité tout le temps.
-        return aah_eligible # * (taux_incapacite < 0.8)
+
+        return  select([(aah_eligible == True), (aah_eligible == False)], [TypesAAHNonCalculable.non_calculable, TypesAAHNonCalculable.non_eligible])
 
 
 class aah_base(Variable):

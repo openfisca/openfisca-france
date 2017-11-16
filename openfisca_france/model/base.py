@@ -86,7 +86,8 @@ class TypesRSANonCalculable(Enum):
 class TypesAAHNonCalculable(Enum):
     non_renseigne = u"Non renseigné"
     intervention_CDAPH_necessaire = u"intervention_CDAPH_necessaire"
-
+    non_calculable = u"non_calculable"
+    non_eligible = u"non_eligible"
 
 class TypeAideLogementNonCalculable(Enum):
     non_renseigne = u"Non renseigné"
