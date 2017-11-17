@@ -365,7 +365,7 @@ class aide_logement_loyer_seuil_degressivite(Variable):
         coeff_degressivite_by_zone = [0] + [al.loyers_plafond['zone' + str(zone)]['degressivite'] for zone in range(1, 4)]
         coeff_degressivite = take(coeff_degressivite_by_zone, zone_apl)
 
-        loyer_degressivite = loyer_plafond * coeff_degressivite
+        loyer_degressivite = 0 * loyer_plafond * coeff_degressivite
         minoration_coloc = loyer_degressivite * 0.25 * coloc
         minoration_chambre = loyer_degressivite * 0.1 * chambre
         loyer_degressivite -= minoration_coloc + minoration_chambre
@@ -389,7 +389,7 @@ class aide_logement_loyer_seuil_suppression(Variable):
         coeff_suppression_by_zone = [0] + [al.loyers_plafond['zone' + str(zone)]['suppression'] for zone in range(1, 4)]
         coeff_suppression = take(coeff_suppression_by_zone, zone_apl)
 
-        loyer_suppression = loyer_plafond * coeff_suppression
+        loyer_suppression = 0 * loyer_plafond * coeff_suppression
         minoration_coloc = loyer_suppression * 0.25 * coloc
         minoration_chambre = loyer_suppression * 0.1 * chambre
         loyer_suppression -= minoration_coloc + minoration_chambre
