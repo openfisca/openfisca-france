@@ -555,6 +555,7 @@ class rsa_revenu_activite_individu(Variable):
             'etr',
             'tns_auto_entrepreneur_benefice',
             'rsa_indemnites_journalieres_activite',
+            'rpns_individu',
             # 'ric',
             # 'rag',
             ]
@@ -564,12 +565,12 @@ class rsa_revenu_activite_individu(Variable):
         # Les revenus pros interrompus au mois M sont neutralisés s'il n'y a pas de revenus de substitution.
         return sum(
             individu(type_revenu, last_3_months, options = [ADD]) * not_(
-                (individu(type_revenu, period.first_month) == 0) *
+                (individu(type_revenu, period.this_month) == 0) *
                 (individu(type_revenu, period.last_month) > 0) *
                 not_(has_ressources_substitution)
                 )
             for type_revenu in types_revenus_activite
-            ) / 3 + individu('rpns_individu', period.this_year) / 12
+            ) / 3 #+ individu('rpns_individu', period.this_year) / 12
 
 
 class rsa_fictif(Variable):
