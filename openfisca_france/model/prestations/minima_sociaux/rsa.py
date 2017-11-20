@@ -628,7 +628,7 @@ class rsa(Variable):
         montant = famille('rsa_montant', period)
         non_calculable = famille('rsa_non_calculable', period)
 
-        return not_(non_calculable) * montant
+        return (non_calculable == TypesRSANonCalculable.non_renseigne) * montant
 
 
 class rsa_base_ressources_patrimoine_individu(Variable):
@@ -757,8 +757,8 @@ class rsa_eligibilite_tns(Variable):
 
 
             service = (
-                (type_activite == TypesTnsTypeActivite.achat_revente)
-                + (type_activite == TypesTnsTypeActivite.achat_revente)
+                (type_activite == TypesTnsTypeActivite.bic)
+                + (type_activite == TypesTnsTypeActivite.bnc)
             )
 
             return (achat_revente * (ca <= plaf_vente)) + (service * (ca <= plaf_service))
@@ -905,7 +905,10 @@ class rsa_non_calculable(Variable):
             )
         non_calculable = eligible_rsa * non_calculable
 
-        return non_calculable
+        return select(
+            [non_calculable == 0, non_calculable == 1, non_calculable == 2],
+            [TypesRSANonCalculable.non_renseigne, TypesRSANonCalculable.tns, TypesRSANonCalculable.conjoint_tns]
+        )
 
 
 class rsa_non_calculable_tns_individu(Variable):
