@@ -42,10 +42,10 @@
       2013-10: 35 * 52 / 12 * 9
       2013-11: 35 * 52 / 12 * 9
       2013-12: 35 * 52 / 12 * 9 * 2
-    allegement_fillon_mode_recouvrement: 1
+    allegement_fillon_mode_recouvrement: anticipe
     effectif_entreprise: 3000
     code_postal_entreprise: "75001"
-    categorie_salarie: 0
+    categorie_salarie: prive_non_cadre
   output_variables:
     allegement_fillon:
       2013-01: 354.9
@@ -79,10 +79,10 @@
       2013-10: 35 * 52 / 12 * 9
       2013-11: 35 * 52 / 12 * 9
       2013-12: 35 * 52 / 12 * 9 * 2
-    allegement_fillon_mode_recouvrement: 2
+    allegement_fillon_mode_recouvrement: progressif
     effectif_entreprise: 3000
     code_postal_entreprise: "75001"
-    categorie_salarie: 0
+    categorie_salarie: prive_non_cadre
   output_variables:
     allegement_fillon:
       2013-01: 354.9
@@ -116,10 +116,10 @@
       2013-10: 5000
       2013-11: 5000
       2013-12: 5000
-    allegement_fillon_mode_recouvrement: 2
+    allegement_fillon_mode_recouvrement: progressif
     effectif_entreprise: 1
     code_postal_entreprise: "75001"
-    categorie_salarie: 0
+    categorie_salarie: prive_non_cadre
     contrat_de_travail_debut: "2015-01-01"
   output_variables:
     allegement_fillon:
