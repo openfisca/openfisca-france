@@ -5,6 +5,7 @@ from __future__ import division
 from numpy import absolute as abs_, logical_and as and_, logical_or as or_
 
 from openfisca_france.model.base import *  # noqa analysis:ignore
+from openfisca_france.model.caracteristiques_socio_demographiques.demographie import TypesActivite
 
 
 class ass_precondition_remplie(Variable):
@@ -176,7 +177,7 @@ class ass_eligibilite_individu(Variable):
 
     def formula(individu, period):
         # activite = 1 pour un demandeur d'emploi
-        demandeur_emploi_non_indemnise = and_(individu('activite', period) == 1, individu('chomage_net', period) == 0)
+        demandeur_emploi_non_indemnise = and_(individu('activite', period) == TypesActivite.chomeur, individu('chomage_net', period) == 0)
 
         # Indique que l'individu a travaillé 5 ans au cours des 10 dernieres années.
         ass_precondition_remplie = individu('ass_precondition_remplie', period)
@@ -187,7 +188,7 @@ class ass_eligibilite_individu(Variable):
         aah_eligible = individu('aah', period) > 0
 
         # activite = 1 pour un demandeur d'emploi
-        demandeur_emploi_non_indemnise = and_(individu('activite', period) == 1, individu('chomage_net', period) == 0)
+        demandeur_emploi_non_indemnise = and_(individu('activite', period) == TypesActivite.chomeur, individu('chomage_net', period) == 0)
 
         # Indique que l'individu a travaillé 5 ans au cours des 10 dernieres années.
         ass_precondition_remplie = individu('ass_precondition_remplie', period)

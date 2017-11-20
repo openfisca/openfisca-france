@@ -6,6 +6,7 @@ import json
 from nose.tools import assert_equal
 
 from cache import tax_benefit_system
+from openfisca_france.model.caracteristiques_socio_demographiques.demographie import TypesActivite
 
 
 def test_2_parents_2_enfants():
@@ -39,10 +40,10 @@ def test_2_parents_2_enfants():
     assert_equal(
         simulation.calculate('activite', period=janvier).tolist(),
         [
-            4,
-            4,
-            2,
-            4,
+            TypesActivite.inactif,
+            TypesActivite.inactif,
+            TypesActivite.etudiant,
+            TypesActivite.inactif,
             ],
         )
     assert_equal(
@@ -102,10 +103,10 @@ def test_famille_1_parent_3_enfants():
     assert_equal(
         simulation.calculate('activite', period=janvier).tolist(),
         [
-            4,
-            2,
-            2,
-            4,
+            TypesActivite.inactif,
+            TypesActivite.etudiant,
+            TypesActivite.etudiant,
+            TypesActivite.inactif,
             ],
         )
     assert_equal(
@@ -165,10 +166,10 @@ def test_famille_2_parents_2_enfants():
     assert_equal(
         simulation.calculate('activite', period=janvier).tolist(),
         [
-            4,
-            4,
-            2,
-            4,
+            TypesActivite.inactif,
+            TypesActivite.inactif,
+            TypesActivite.etudiant,
+            TypesActivite.inactif,
             ],
         )
     assert_equal(
@@ -228,10 +229,10 @@ def test_foyer_fiscal_1_declarant_3_personnes_a_charge():
     assert_equal(
         simulation.calculate('activite', period=janvier).tolist(),
         [
-            4,
-            2,
-            2,
-            4,
+            TypesActivite.inactif,
+            TypesActivite.etudiant,
+            TypesActivite.etudiant,
+            TypesActivite.inactif,
             ],
         )
     assert_equal(
@@ -291,10 +292,10 @@ def test_foyer_fiscal_2_declarants_2_personnes_a_charge():
     assert_equal(
         simulation.calculate('activite', period=janvier).tolist(),
         [
-            4,
-            4,
-            2,
-            4,
+            TypesActivite.inactif,
+            TypesActivite.inactif,
+            TypesActivite.etudiant,
+            TypesActivite.inactif,
             ],
         )
     assert_equal(
@@ -354,10 +355,10 @@ def test_menage_1_personne_de_reference_3_enfants():
     assert_equal(
         simulation.calculate('activite', period=janvier).tolist(),
         [
-            4,
-            2,
-            2,
-            4,
+            TypesActivite.inactif,
+            TypesActivite.etudiant,
+            TypesActivite.etudiant,
+            TypesActivite.inactif,
             ],
         )
     assert_equal(
@@ -418,10 +419,10 @@ def test_menage_1_personne_de_reference_1_conjoint_2_enfants():
     assert_equal(
         simulation.calculate('activite', period=janvier).tolist(),
         [
-            4,
-            4,
-            2,
-            4,
+            TypesActivite.inactif,
+            TypesActivite.inactif,
+            TypesActivite.etudiant,
+            TypesActivite.inactif,
             ],
         )
     assert_equal(
