@@ -34,3 +34,8 @@ class TestNewApi(TestCase):
             subprocess.check_call(['wget', '--quiet',  '--retry-connrefused', '--waitretry=1', '--tries=10', 'http://localhost:6000/parameters', '--output-document=/dev/null'])
         except subprocess.CalledProcessError:
             raise subprocess.CalledProcessError("Could not reach OpenFisca Web API at localhost:6000 after 10s")
+        except OSError:
+            try:
+                subprocess.check_call(['wget', '--version'])
+            except OSError:
+                raise OSError("Check if 'wget'(https://www.gnu.org/software/wget/) is installed on your computer")
