@@ -18,7 +18,10 @@
   
   Les valeurs possibles des Enums ainsi que les nouvelles valeurs par défaut sont disponibles sur legislation.openfisca.fr
   
-  La liste des variable impactées :
+  #### Pour les mainteneurs de formules:
+  
+  Les Enums étaient habituellement placés au dessus de la variable qui le calculait. 
+  Ils sont maintenant tous placés dans le fichier model/base.py``, et commencent tous par `Type`
   
 ### 18.11.0
 
