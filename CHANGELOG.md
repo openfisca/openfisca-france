@@ -1,6 +1,6 @@
 # Changelog
 
-## 19.0.0
+## 19.0.0 - [#846](https://github.com/openfisca/openfisca-france/pull/846)
 
 * Amélioration technique
 * Détails :
@@ -21,7 +21,7 @@
   #### Pour les mainteneurs de formules:
   
   Les Enums étaient habituellement placés au dessus de la variable qui le calculait. 
-  Ils sont maintenant tous placés dans le fichier model/base.py``, et commencent tous par `Type`
+  Ils sont maintenant tous placés dans le fichier `model/base.py`, et commencent tous par `Types`
   
 ### 18.11.0
 
