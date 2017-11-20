@@ -1,5 +1,13 @@
 # Changelog
 
+## 19.0.0
+
+* Amélioration technique
+* Détails :
+  - Modifie la façon dont les énums sont définis et appelés.
+
+  - L'output de aah_non_calculable devient un énum --> True devient "non_calculable", False devient "non_eligible"
+
 ### 18.11.0
 
 * Amélioration technique
