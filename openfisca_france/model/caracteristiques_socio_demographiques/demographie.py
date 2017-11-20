@@ -27,15 +27,18 @@ class garde_alternee(Variable):
     set_input = set_input_dispatch_by_period
 
 
+class TypesActivite(Enum):
+    actif = u'Actif occupé',
+    chomeur = u'Chômeur',
+    etudiant = u'Étudiant, élève',
+    retraite = u'Retraité',
+    inactif = u'Autre, inactif'
+
+
 class activite(Variable):
     value_type = Enum
-    default_value = 4
-    possible_values = Enum([
-        u'Actif occupé',
-        u'Chômeur',
-        u'Étudiant, élève',
-        u'Retraité',
-        u'Autre inactif'])
+    default_value = TypesActivite.inactif
+    possible_values = TypesActivite
     entity = Individu
     label = u"Activité"
     definition_period = MONTH
@@ -264,7 +267,7 @@ class etudiant(Variable):
         # jour, sans changer la période.
         activite = simulation.calculate('activite', period)
 
-        return activite == 2
+        return activite == TypesActivite.etudiant
 
 
 class rempli_obligation_scolaire(Variable):

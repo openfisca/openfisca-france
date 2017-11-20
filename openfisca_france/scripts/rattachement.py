@@ -21,6 +21,8 @@ import os
 
 import openfisca_france
 
+from openfisca_france.model.caracteristiques_socio_demographiques.demographie import TypesActivite
+
 
 app_name = os.path.splitext(os.path.basename(__file__))[0]
 log = logging.getLogger(app_name)
@@ -42,7 +44,7 @@ def split(scenario):
     for pac_index, pac_id in enumerate(foyer_fiscal.pop('personnes_a_charge')):
         pac = individus[pac_id].copy()
         age = year - pac.pop('date_naissance').year - 1
-        if 18 <= age < (21 + 4 * (pac['activite'] == 2)): # Exprime la condition de rattachement au foyer pour les majeurs
+        if 18 <= age < (21 + 4 * (pac['activite'] == TypesActivite.etudiant)): # Exprime la condition de rattachement au foyer pour les majeurs
             rattachements_possibles.append(pac_id)
         else:
             detachements_impossibles.append(pac_id)
