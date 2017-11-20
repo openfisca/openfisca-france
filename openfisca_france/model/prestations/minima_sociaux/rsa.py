@@ -870,13 +870,15 @@ class rsa_majore_eligibilite(Variable):
         return eligib
 
 
+class TypesRsaNonCalculable(Enum):
+    non_renseigne = u"Non Renseigne",
+    tns = u"tns",
+    conjoint_tns = u"conjoint_tns"
+
 class rsa_non_calculable(Variable):
     value_type = Enum
-    possible_values = Enum([
-        u"",
-        u"tns",
-        u"conjoint_tns"
-        ])
+    possible_values = TypesRsaNonCalculable
+    default_value = TypesRsaNonCalculable.non_renseigne
     entity = Famille
     label = u"RSA non calculable"
     end = '2016-12-31'
