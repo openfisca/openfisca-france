@@ -5,7 +5,7 @@
     personne_de_reference: 1
     conjoint: 2
     statut_occupation_logement:
-      "2014-01": "proprietaire"
+      "2014-01": proprietaire
   individus:
     - id: 1
       date_naissance: "1985-01-01"
@@ -38,7 +38,7 @@
     personne_de_reference: 1
     conjoint: 2
     statut_occupation_logement:
-      "2014-01": "proprietaire"
+      "2014-01": proprietaire
   individus:
     - id: 1
       date_naissance: "1985-01-01"
@@ -66,7 +66,7 @@
     personne_de_reference: 1
     conjoint: 2
     statut_occupation_logement:
-      "2014-01": "proprietaire"
+      "2014-01": proprietaire
   individus:
     - id: 1
       date_naissance: "1985-01-01"
@@ -89,7 +89,7 @@
     personne_de_reference: 1
     conjoint: 2
     statut_occupation_logement:
-      "2014-01": "proprietaire"
+      "2014-01": proprietaire
   individus:
     - id: 1
       date_naissance: "1985-01-01"
@@ -112,7 +112,7 @@
     personne_de_reference: 1
     conjoint: 2
     statut_occupation_logement:
-      "2014-01": "proprietaire"
+      "2014-01": proprietaire
   individus:
     - id: 1
       date_naissance: "1985-01-01"
@@ -135,7 +135,7 @@
     personne_de_reference: 1
     conjoint: 2
     statut_occupation_logement:
-      "2014-01": "proprietaire"
+      "2014-01": proprietaire
   individus:
     - id: 1
       date_naissance: "1985-01-01"
@@ -158,7 +158,7 @@
     personne_de_reference: 1
     conjoint: 2
     statut_occupation_logement:
-      "2014-01": "proprietaire"
+      "2014-01": proprietaire
   individus:
     - id: 1
       date_naissance: "1985-01-01"
@@ -181,7 +181,7 @@
     personne_de_reference: 1
     conjoint: 2
     statut_occupation_logement:
-      "2014-01": "proprietaire"
+      "2014-01": proprietaire
   individus:
     - id: 1
       date_naissance: "1985-01-01"
@@ -204,7 +204,7 @@
     personne_de_reference: 1
     conjoint: 2
     statut_occupation_logement:
-      "2014-01": "proprietaire"
+      "2014-01": proprietaire
   individus:
     - id: 1
       date_naissance: "1985-01-01"
@@ -227,7 +227,7 @@
     personne_de_reference: 1
     conjoint: 2
     statut_occupation_logement:
-      "2014-01": "proprietaire"
+      "2014-01": proprietaire
   individus:
     - id: 1
       date_naissance: "1985-01-01"
@@ -250,7 +250,7 @@
     personne_de_reference: 1
     conjoint: 2
     statut_occupation_logement:
-      "2014-01": "proprietaire"
+      "2014-01": proprietaire
   individus:
     - id: 1
       date_naissance: "1985-01-01"
@@ -273,7 +273,7 @@
     personne_de_reference: 1
     conjoint: 2
     statut_occupation_logement:
-      "2014-01": "proprietaire"
+      "2014-01": proprietaire
   individus:
     - id: 1
       date_naissance: "1985-01-01"
@@ -295,7 +295,7 @@
     personne_de_reference: 1
     conjoint: 2
     statut_occupation_logement:
-      "2014-01": "proprietaire"
+      "2014-01": proprietaire
   individus:
     - id: 1
       date_naissance: "1993-01-01"
@@ -323,7 +323,7 @@
     personne_de_reference: 1
     conjoint: 2
     statut_occupation_logement:
-      "2014-01": "proprietaire"
+      "2014-01": proprietaire
   individus:
     - id: 1
       date_naissance: "1985-01-01"
@@ -345,7 +345,7 @@
     personne_de_reference: 1
     conjoint: 2
     statut_occupation_logement:
-      "2014-01": "proprietaire"
+      "2014-01": proprietaire
   individus:
     - id: 1
       date_naissance: "1985-01-01"
