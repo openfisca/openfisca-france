@@ -138,7 +138,7 @@
     tns_benefice_exploitant_agricole:
       2014: 4000
   output_variables:
-    rsa_non_calculable: True
+    rsa_non_calculable: tns
 
 - name: "Non Calculabilité du RSA quand conjoint TNS pré-éligible"
   period: "month:2015-04"
@@ -161,12 +161,12 @@
     tns_benefice_exploitant_agricole:
       2014: 10000
   output_variables:
-    rsa_non_calculable: False
+    rsa_non_calculable: non_renseigne
 
 - name: "RSA à zéro quand non calculable"
   period: "month:2015-04"
   input_variables:
-    rsa_non_calculable: True
+    rsa_non_calculable: tns
     rsa_montant: 500
   output_variables:
     rsa: 0
