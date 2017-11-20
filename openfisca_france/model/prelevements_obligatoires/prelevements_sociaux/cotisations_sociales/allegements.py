@@ -426,14 +426,25 @@ def switch_on_allegement_mode(simulation, period, mode_recouvrement, variable_na
         should precisely be the variable name prefixed with 'compute_'
     """
     compute_function = globals()['compute_' + variable_name]
-    return switch(
+    if type(mode_recouvrement[0]) == TypesAllegementCotisationAllocationsFamilialesModeRecouvrement:
+        return switch(
         mode_recouvrement,
         {
-            TypesAllegementFillonModeRecouvrement.fin_d_annee: compute_allegement_annuel(simulation, period, variable_name, compute_function),
-            TypesAllegementFillonModeRecouvrement.anticipe: compute_allegement_anticipe(simulation, period, variable_name, compute_function),
-            TypesAllegementFillonModeRecouvrement.progressif: compute_allegement_progressif(simulation, period, variable_name, compute_function),
+            TypesAllegementCotisationAllocationsFamilialesModeRecouvrement.fin_d_annee: compute_allegement_annuel(simulation, period, variable_name, compute_function),
+            TypesAllegementCotisationAllocationsFamilialesModeRecouvrement.anticipe: compute_allegement_anticipe(simulation, period, variable_name, compute_function),
+            TypesAllegementCotisationAllocationsFamilialesModeRecouvrement.progressif: compute_allegement_progressif(simulation, period, variable_name, compute_function),
+        },
+    )
+    if type(mode_recouvrement[0]) == TypesAllegementFillonModeRecouvrement:
+        return switch(
+            mode_recouvrement,
+            {
+                TypesAllegementFillonModeRecouvrement.fin_d_annee: compute_allegement_annuel(simulation, period, variable_name, compute_function),
+                TypesAllegementFillonModeRecouvrement.anticipe: compute_allegement_anticipe(simulation, period, variable_name, compute_function),
+                TypesAllegementFillonModeRecouvrement.progressif: compute_allegement_progressif(simulation, period, variable_name, compute_function),
             },
         )
+    raise ValueError("{} is not a known Mode de recouvrement".format(mode_recouvrement))
 
 
 def compute_allegement_annuel(simulation, period, variable_name, compute_function):
