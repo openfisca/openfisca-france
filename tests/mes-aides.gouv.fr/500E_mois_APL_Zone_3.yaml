@@ -362,10 +362,10 @@ menages:
     2017-08: 500
   personne_de_reference: demandeur
   statut_occupation_logement:
-    2017-05: 1
-    2017-06: 1
-    2017-07: 1
-    2017-08: 1
+    2017-05: primo_accedant
+    2017-06: primo_accedant
+    2017-07: primo_accedant
+    2017-08: primo_accedant
 relative_error_margin: 0.05
 output_variables:
   aide_logement: 95

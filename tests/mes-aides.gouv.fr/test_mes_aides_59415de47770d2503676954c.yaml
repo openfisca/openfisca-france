@@ -254,10 +254,10 @@ individus:
       2017-04: '2017-06-30'
       2017-03: '2017-06-30'
     activite:
-      2017-06: 1
-      2017-05: 1
-      2017-04: 1
-      2017-03: 1
+      2017-06: chomeur
+      2017-05: chomeur
+      2017-04: chomeur
+      2017-03: chomeur
     handicap:
       2017-06: true
       2017-05: true
@@ -369,10 +369,10 @@ menages:
   - personne_de_reference: 59415de47770d2503676954d
     enfants: []
     statut_occupation_logement:
-      2017-06: 6
-      2017-05: 6
-      2017-04: 6
-      2017-03: 6
+      2017-06: loge_gratuitement
+      2017-05: loge_gratuitement
+      2017-04: loge_gratuitement
+      2017-03: loge_gratuitement
     loyer:
       2017-06: 0
       2017-05: 0
