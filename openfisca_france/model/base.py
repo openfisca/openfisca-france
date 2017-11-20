@@ -86,16 +86,14 @@ class TypesRSANonCalculable(Enum):
 class TypesAAHNonCalculable(Enum):
     non_renseigne = u"Non renseigné"
     intervention_CDAPH_necessaire = u"intervention_CDAPH_necessaire"
-    non_calculable = u"non_calculable"
-    non_eligible = u"non_eligible"
 
-class TypeAideLogementNonCalculable(Enum):
+class TypesAideLogementNonCalculable(Enum):
     non_renseigne = u"Non renseigné"
     primo_accedant = u"Primo accedant"
     locataire_foyer = u"Locataire foyer"
 
 
-class TypeTauxCSGRemplacement(Enum):
+class TypesTauxCSGRemplacement(Enum):
     non_renseigne = u"Non renseigné/non pertinent"
     exonere = u"Exonéré"
     taux_reduit = u"Taux réduit"
