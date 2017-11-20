@@ -299,14 +299,15 @@ class bourse_lycee(Variable):
 
         return montant
 
+class TypesScolarite(Enum):
+    inconnue = u"Inconnue",
+    college = u"Collège",
+    lycee = u"Lycée"
 
 class scolarite(Variable):
     value_type = Enum
-    possible_values = Enum([
-        u"Inconnue",
-        u"Collège",
-        u"Lycée"
-        ])
+    possible_values = TypesScolarite
+    default_value = TypesScolarite.inconnue
     entity = Individu
     label = u"Scolarité de l'enfant : collège, lycée..."
     definition_period = MONTH

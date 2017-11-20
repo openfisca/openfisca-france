@@ -796,14 +796,15 @@ class apl(Variable):
 
         return aide_logement_montant * (statut_occupation_logement == 3)
 
+class TypeAideLogementNonCalculable(Enum):
+    non_renseigne = u"Non renseigné",
+    primo_accedant = u"Primo accedant",
+    locataire_foyer = u"Locataire foyer"
 
 class aide_logement_non_calculable(Variable):
     value_type = Enum
-    possible_values = Enum([
-        u"",
-        u"primo_accedant",
-        u"locataire_foyer"
-        ])
+    possible_values = TypeAideLogementNonCalculable
+    default_value = TypeAideLogementNonCalculable.non_renseigne
     entity = Famille
     label = u"Aide au logement non calculable"
     definition_period = MONTH
@@ -842,16 +843,17 @@ class crds_logement(Variable):
         crds = parameters(period).prestations.prestations_familiales.af.crds
         return -aide_logement_montant_brut * crds
 
+class TypesZoneApl(Enum) :
+    non_renseigne = u"Non renseigné",
+    zone_1 = u"Zone 1",
+    zone_2 = u"Zone 2",
+    zone_3 = u"Zone 3",
+
 
 class zone_apl(Variable):
     value_type = Enum
-    possible_values = Enum([
-        u"Non renseigné",
-        u"Zone 1",
-        u"Zone 2",
-        u"Zone 3",
-        ])
-    default_value = 2
+    possible_values = TypesZoneApl
+    default_value = TypesZoneApl.zone_2
     entity = Menage
     label = u"Zone APL"
     definition_period = MONTH

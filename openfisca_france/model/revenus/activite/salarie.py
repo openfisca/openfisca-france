@@ -122,53 +122,60 @@ class ppe_tp_sa(Variable):
         return indicateur
 
 
+class TypesExpositionAccident(Enum):
+    faible = u"Faible",
+    moyen = u"Moyen",
+    eleve = u"Élevé",
+    tres_eleve = u"Très élevé",
+
 class exposition_accident(Variable):
     value_type = Enum
-    possible_values = Enum([
-        u"Faible",
-        u"Moyen",
-        u"Élevé",
-        u"Très élevé",
-        ])
+    possible_values = TypesExpositionAccident
+    default_value = TypesExpositionAccident.faible
     entity = Individu
     label = u"Exposition au risque pour les accidents du travail"
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
+class TypesExpositionPenibilite(Enum):
+    nulle = u"Nulle, pas d'exposition de l'employé à un facteur de pénibilité",
+    simple = u"Simple, exposition à un seul facteur de pénibilité",
+    multiple = u"Multiple, exposition à plusieurs facteurs de pénibilité",
 
 class exposition_penibilite(Variable):
     value_type = Enum
-    possible_values = Enum([
-        u"Nulle",  # Pas d'exposition de l'employé à un facteur de pénibilité
-        u"Simple",  # Exposition à un seul facteur de pénibilité
-        u"Multiple",  # Exposition à plusieurs facteurs de pénibilité
-        ])
+    possible_values = TypesExpositionPenibilite
+    default_value = TypesExpositionPenibilite.nulle
     entity = Individu
     label = u"Exposition à un ou plusieurs facteurs de pénibilité"
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
 
+class TypesAllegementFillonModeRecouvrement(Enum):
+    fin_d_annee = u"fin_d_annee",
+    anticipe_regularisation_fin_de_periode = u"anticipe_regularisation_fin_de_periode",
+    progressif = u"progressif",
+
 class allegement_fillon_mode_recouvrement(Variable):
     value_type = Enum
-    possible_values = Enum([
-        u"fin_d_annee",
-        u"anticipe_regularisation_fin_de_periode",
-        u"progressif",
-        ])
+    possible_values = TypesAllegementFillonModeRecouvrement
+    default_value = TypesAllegementFillonModeRecouvrement.fin_d_annee
     entity = Individu
     label = u"Mode de recouvrement des allègements Fillon"
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
+class TypesAllegementCotisationAllocationsFamilialesModeRecouvrement(Enum):
+    fin_d_annee = u"fin_d_annee",
+    anticipe_regularisation_fin_de_periode = u"anticipe_regularisation_fin_de_periode",
+    progressif = u"progressif",
+
 
 class allegement_cotisation_allocations_familiales_mode_recouvrement(Variable):
     value_type = Enum
-    possible_values = Enum([
-        u"fin_d_annee",
-        u"anticipe_regularisation_fin_de_periode",
-        u"progressif",
-        ])
+    possible_values = TypesAllegementCotisationAllocationsFamilialesModeRecouvrement
+    default_value = TypesAllegementCotisationAllocationsFamilialesModeRecouvrement.fin_d_annee
     entity = Individu
     label = u"Mode de recouvrement de l'allègement de la cotisation d'allocations familiales"
     definition_period = MONTH
@@ -226,18 +233,20 @@ class indemnite_fin_contrat_due(Variable):
     label = u"indemnite_fin_contrat_due"
     definition_period = MONTH
 
+class TypesContratDeTravail(Enum):
+    temps_plein = u"temps_plein",
+    temps_partiel = u"temps_partiel",
+    forfait_heures_semaines = u"forfait_heures_semaines",
+    forfait_heures_mois = u"forfait_heures_mois",
+    forfait_heures_annee = u"forfait_heures_annee",
+    forfait_jours_annee = u"forfait_jours_annee",
+    sans_objet = u"sans_objet",
+
 
 class contrat_de_travail(Variable):
     value_type = Enum
-    possible_values = Enum([
-        u"temps_plein",
-        u"temps_partiel",
-        u"forfait_heures_semaines",
-        u"forfait_heures_mois",
-        u"forfait_heures_annee",
-        u"forfait_jours_annee",
-        u"sans_objet",
-        ])
+    possible_values = TypesContratDeTravail
+    default_value = TypesContratDeTravail.temps_plein
     entity = Individu
     label = u"Type contrat de travail"
     definition_period = MONTH
@@ -261,26 +270,31 @@ class contrat_de_travail_fin(Variable):
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
+class TypesContratDeTravailDuree(Enum):
+    cdi = u"cdi",
+    cdd = u"cdd",
 
 class contrat_de_travail_duree(Variable):
     value_type = Enum
-    possible_values = Enum([
-        u"cdi",
-        u"cdd",
-        ])
+    possible_values = TypesContratDeTravailDuree
+    default_value = TypesContratDeTravailDuree.cdi
     entity = Individu
     label = u"Type (durée determinée ou indéterminée) du contrat de travail"
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
 
+class TypesCotisationSocialeModeRecouvrement(Enum):
+    mensuel = u
+
+    "Mensuel avec régularisation en fin d'année",
+    annuel = u"Annuel",
+    mensuel_strict = u"Mensuel strict"
+
 class cotisation_sociale_mode_recouvrement(Variable):
     value_type = Enum
-    possible_values = Enum([
-        u"Mensuel avec régularisation en fin d'année",
-        u"Annuel",
-        u"Mensuel strict",
-        ])
+    possible_values = TypesCotisationSocialeModeRecouvrement
+    default_value = TypesCotisationSocialeModeRecouvrement.mensuel
     entity = Individu
     label = u"Mode de recouvrement des cotisations sociales"
     definition_period = MONTH
@@ -512,19 +526,20 @@ class traitement_indiciaire_brut(Variable):
     label = u"Traitement indiciaire brut (TIB)"
     definition_period = MONTH
 
+class TypesCategorieSalarie(Enum):
+    prive_non_cadre = u'prive_non_cadre',
+    prive_cadre = u'prive_cadre',
+    public_titulaire_etat = u'public_titulaire_etat',
+    public_titulaire_militaire = u'public_titulaire_militaire',
+    public_titulaire_territoriale = u'public_titulaire_territoriale',
+    public_titulaire_hospitaliere = u'public_titulaire_hospitaliere',
+    public_non_titulaire = u'public_non_titulaire',
+    non_pertinent = u'non_pertinent',
 
 class categorie_salarie(Variable):
     value_type = Enum
-    possible_values = Enum([
-        u"prive_non_cadre",
-        u"prive_cadre",
-        u"public_titulaire_etat",
-        u"public_titulaire_militaire",
-        u"public_titulaire_territoriale",
-        u"public_titulaire_hospitaliere",
-        u"public_non_titulaire",
-        u"non_pertinent",
-        ])
+    possible_values = TypesCategorieSalarie
+    default_value = TypesCategorieSalarie.prive_non_cadre
     entity = Individu
     label = u"Catégorie de salarié"
     definition_period = MONTH
@@ -833,16 +848,16 @@ class supp_familial_traitement(Variable):
             plafond
             )
         # Nota Bene:
-        # categorie_salarie is an EnumCol which enum is:
-        # CATEGORIE_SALARIE = Enum(['prive_non_cadre',
-        #             'prive_cadre',
-        #             'public_titulaire_etat',
-        #             'public_titulaire_militaire',
-        #             'public_titulaire_territoriale',
-        #             'public_titulaire_hospitaliere',
-        #             'public_non_titulaire',
-        #             'non_pertinent',
-        #             ])
+        # categorie_salarie is an enum :
+        # class CATEGORIE_SALARIE(Enum):
+        #   prive_non_cadre = u'prive_non_cadre'
+        #   prive_cadre = u'prive_cadre'
+        #   public_titulaire_etat = u'public_titulaire_etat'
+        #   public_titulaire_militaire = u'public_titulaire_militaire'
+        #   public_titulaire_territoriale = u'public_titulaire_territoriale'
+        #   public_titulaire_hospitaliere = u'public_titulaire_hospitaliere'
+        #   public_non_titulaire = u'public_non_titulaire'
+        #   non_pertinent = u'non_pertinent'
         return sft
 
 

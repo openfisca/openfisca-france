@@ -1601,13 +1601,17 @@ class tns_micro_entreprise_chiffre_affaires(Variable):
     label = u"Chiffre d'affaires en de micro-entreprise"
     definition_period = YEAR
 
-enum_tns_type_activite = Enum([u'achat_revente', u'bic', u'bnc'])
+class enum_tns_type_activite(Enum):
+    achat_revente = u'achat_revente',
+    bic = u'bic',
+    bnc = u'bnc',
 
 
 # TODO remove this ugly ETERNITY
 class tns_auto_entrepreneur_type_activite(Variable):
     value_type = Enum
     possible_values = enum_tns_type_activite
+    default_value = enum_tns_type_activite.achat_revente
     entity = Individu
     label = u"Type d'activité de l'auto-entrepreneur"
     definition_period = ETERNITY
@@ -1617,6 +1621,7 @@ class tns_auto_entrepreneur_type_activite(Variable):
 class tns_micro_entreprise_type_activite(Variable):
     value_type = Enum
     possible_values = enum_tns_type_activite
+    default_value = enum_tns_type_activite.achat_revente
     entity = Individu
     label = u"Type d'activité de la micro-entreprise"
     definition_period = ETERNITY
@@ -1641,6 +1646,7 @@ class tns_autres_revenus_chiffre_affaires(Variable):
 class tns_autres_revenus_type_activite(Variable):
     value_type = Enum
     possible_values = enum_tns_type_activite
+    default_value = enum_tns_type_activite.achat_revente
     entity = Individu
     label = u"Type d'activité de l'entreprise non AE ni ME"
     definition_period = MONTH
