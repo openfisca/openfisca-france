@@ -700,18 +700,16 @@ class rsa_eligibilite(Variable):
 
         age_i = famille.members('age', period)
 
-        activite_i = famille.members('activite', period)
+        etudiant_i = famille.members('etudiant', period)
 
         # rsa_nb_enfants est à valeur pour une famille, il faut le projeter sur les individus avant de faire une opération avec age_i
         condition_age_i = famille.project(rsa_nb_enfants > 0) + (age_i > rsa.age_pac)
 
-        eligib = (
-            famille.any(condition_age_i * not_(activite_i == TypesActivite.etudiant), role = Famille.PARENT)
+        return (
+            famille.any(condition_age_i * not_(etudiant_i), role = Famille.PARENT)
             * condition_nationalite
             * rsa_eligibilite_tns
             )
-
-        return eligib
 
 
 class rsa_eligibilite_tns(Variable):
