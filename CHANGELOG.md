@@ -4,9 +4,22 @@
 
 * Amélioration technique
 * Détails :
-  - Modifie la façon dont les énums sont définis et appelés.
+  - Modifie la façon dont les Enumerations sont définis et appelés.
+  - Certains enums étaient utilisés comme booleens. La valeur 0/1 a été remplacé par le membre d'enum correspondant.
+  Par exemple pour :
 
-  - L'output de aah_non_calculable devient un énum --> True devient "non_calculable", False devient "non_eligible"
+  ```py
+  class TypesAAHNonCalculable(Enum):
+    non_renseigne = u"Non renseigné"
+    intervention_CDAPH_necessaire = u"intervention_CDAPH_necessaire"
+  ```
+
+  `False` devient `TypesAAHNonCalculable.non_renseigne`
+  `True` devient `TypesAAHNonCalculable.intervention_CDAPH_necessaire`
+
+  Les valeurs possibles des Enums ainsi que les nouvelles valeurs par défaut sont disponibles sur legislation.openfisca.fr
+
+  La liste des variable impactées :
 
 # 19.0.0
 
