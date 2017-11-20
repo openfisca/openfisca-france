@@ -2,6 +2,14 @@
 
 # 19.0.0
 
+* Amélioration technique
+* Détails :
+  - Modifie la façon dont les énums sont définis et appelés.
+
+  - L'output de aah_non_calculable devient un énum --> True devient "non_calculable", False devient "non_eligible"
+
+# 19.0.0
+
 * Améliorations techniques **non rétro-compatibles**
 * Détails :
   - Change la valeur par défaut de `asi_aspa_condition_nationalite` à `True`
