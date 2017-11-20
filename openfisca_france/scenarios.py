@@ -10,6 +10,7 @@ import uuid
 from openfisca_core import conv, scenarios
 from entities import Individu, Famille, FoyerFiscal, Menage
 
+from model.caracteristiques_socio_demographiques.demographie import TypesActivite
 
 def N_(message):
     return message
@@ -463,9 +464,9 @@ class Scenario(scenarios.AbstractScenario):
                     'date_naissance'] = date_naissance.isoformat()
             if individu.get('activite') is None:
                 if find_age(individu, period_start_date) < 16:
-                    individu['activite'] = 2  # Étudiant, élève
+                    individu['activite'] = TypesActivite.etudiant
                     suggestions.setdefault('test_case', {}).setdefault('individus', {}).setdefault(individu_id, {})[
-                        'activite'] = u'2'  # Étudiant, élève
+                        'activite'] = TypesActivite.etudiant
 
         individu_by_id = {
             individu['id']: individu

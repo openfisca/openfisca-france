@@ -15,6 +15,8 @@ from openfisca_core.periods import Instant
 from openfisca_france.model.base import *  # noqa  analysis:ignore
 from openfisca_france.model.prestations.prestations_familiales.base_ressource import nb_enf
 from openfisca_france.model.caracteristiques_socio_demographiques.logement import statut_occupation_logement
+from openfisca_france.model.caracteristiques_socio_demographiques.demographie import TypesActivite
+
 
 log = logging.getLogger(__name__)
 
@@ -182,7 +184,7 @@ class aide_logement_abattement_depart_retraite(Variable):
     reference = u"https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000006750910&cidTexte=LEGITEXT000006073189&dateTexte=20151231"
 
     def formula(individu, period, parameters):
-        retraite = individu('activite', period) == 3
+        retraite = individu('activite', period) == TypesActivite.retraite
         retraite_n_2 = individu('retraite_imposable', period.n_2)
         condition_abattement = (retraite_n_2 == 0) * retraite
         revenus_activite_pro = individu('revenu_assimile_salaire_apres_abattements', period.n_2)

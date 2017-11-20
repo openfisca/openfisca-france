@@ -7,6 +7,7 @@ from numpy import datetime64, floor, logical_and as and_, logical_or as or_
 
 from openfisca_france.model.base import *  # noqa analysis:ignore
 from openfisca_france.model.prestations.prestations_familiales.base_ressource import nb_enf
+from openfisca_france.model.caracteristiques_socio_demographiques.demographie import TypesActivite
 
 
 class rsa_base_ressources(Variable):
@@ -698,7 +699,7 @@ class rsa_eligibilite(Variable):
         condition_age_i = famille.project(rsa_nb_enfants > 0) + (age_i > rsa.age_pac)
 
         eligib = famille.any(
-            condition_age_i * not_(activite_i == 2),
+            condition_age_i * not_(activite_i == TypesActivite.etudiant),
             role = Famille.PARENT) * condition_nationalite * rsa_eligibilite_tns
 
         return eligib
