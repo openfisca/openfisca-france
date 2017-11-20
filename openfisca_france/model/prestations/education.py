@@ -6,12 +6,6 @@ from numpy import logical_or as or_
 
 from openfisca_france.model.base import *  # noqa analysis:ignore
 
-
-SCOLARITE_INCONNUE = 0
-SCOLARITE_COLLEGE = 1
-SCOLARITE_LYCEE = 2
-
-
 class bourse_college_echelon(Variable):
     value_type = int
     label = u"Échelon de la bourse de collège attribuée"
@@ -107,7 +101,7 @@ class bourse_college(Variable):
         bmaf_1er_janvier = parameters(period.this_year.first_month).prestations.prestations_familiales.af.bmaf
 
         scolarite_i = famille.members('scolarite', period)
-        nb_enfants_college = famille.sum(scolarite_i == SCOLARITE_COLLEGE, role = Famille.ENFANT)
+        nb_enfants_college = famille.sum(scolarite_i == TypesScolarite.college, role = Famille.ENFANT)
 
         echelon = famille('bourse_college_echelon', period)
 
@@ -273,7 +267,7 @@ class bourse_lycee(Variable):
         bmaf_1er_janvier = parameters(period.this_year.first_month).prestations.prestations_familiales.af.bmaf
 
         scolarite_i = famille.members('scolarite', period)
-        nb_enfants_lycee = famille.sum(scolarite_i == SCOLARITE_LYCEE, role = Famille.ENFANT)
+        nb_enfants_lycee = famille.sum(scolarite_i == TypesScolarite.lycee, role = Famille.ENFANT)
 
         echelon = famille('bourse_lycee_echelon', period)
 
@@ -293,7 +287,7 @@ class bourse_lycee(Variable):
         valeur_part = parameters(period).bourses_education.bourse_lycee.avant_2016.valeur_part
 
         scolarite_i = famille.members('scolarite', period)
-        nb_enfants_lycee = famille.sum(scolarite_i == SCOLARITE_LYCEE, role = Famille.ENFANT)
+        nb_enfants_lycee = famille.sum(scolarite_i == TypesScolarite.lycee, role = Famille.ENFANT)
 
         montant = nombre_parts * valeur_part * nb_enfants_lycee
 
