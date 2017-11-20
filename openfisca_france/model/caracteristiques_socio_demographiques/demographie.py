@@ -51,18 +51,20 @@ class enceinte(Variable):
     label = u"Est enceinte"
     definition_period = MONTH
 
+class TypesStatutMarital(Enum):
+    non_renseigne = u'Non renseigné',
+    marie = u'Marié',
+    celibataire = u'Célibataire',
+    divorce = u'Divorcé',
+    veuf = u'Veuf',
+    pacse = u'Pacsé',
+    jeune_veuf = u'Jeune veuf',
+
 
 class statut_marital(Variable):
     value_type = Enum
-    default_value = 2
-    possible_values = Enum([
-        u"",
-        u"Marié",
-        u"Célibataire",
-        u"Divorcé",
-        u"Veuf",
-        u"Pacsé",
-        u"Jeune veuf"])
+    possible_values = TypesStatutMarital
+    default_value = TypesStatutMarital.celibataire
     entity = Individu
     label = u"Statut marital"
     definition_period = MONTH

@@ -10,16 +10,16 @@ from openfisca_france.model.prelevements_obligatoires.prelevements_sociaux.contr
     )
 log = logging.getLogger(__name__)
 
+class TypeTauxCsgRemplacement(Enum):
+    non_renseigne = u"Non renseigné/non pertinent",
+    exonere = u"Exonéré",
+    taux_reduit = u"Taux réduit",
+    taux_plein = u"Taux plein",
 
 class taux_csg_remplacement(Variable):
-    default_value = 3
+    default_value = TypeTauxCsgRemplacement.taux_plein
     value_type = Enum
-    possible_values = Enum([
-        u"Non renseigné/non pertinent",
-        u"Exonéré",
-        u"Taux réduit",
-        u"Taux plein",
-        ])
+    possible_values = TypeTauxCsgRemplacement
     entity = Individu
     label = u"Taux retenu sur la CSG des revenus de remplacment"
     definition_period = MONTH
