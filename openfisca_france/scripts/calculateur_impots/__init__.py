@@ -28,19 +28,11 @@ log = logging.getLogger(__name__)
 
 year = 2016
 
-
-scenarios_to_test_directory = os.path.join(
-    pkg_resources.get_distribution('OpenFisca-France').location,
-    'openfisca_france', 'tests', 'calculateur_impots', 'scenarios',
-    )
-output_json_directory = os.path.join( # previously : openfisca_france/tests/json
-    pkg_resources.get_distribution('OpenFisca-France').location,
-    'openfisca_france', 'tests', 'calculateur_impots', 'json',
-    )
-output_yaml_directory = os.path.join(  # previously : openfisca_france/calculateur_impots
-    pkg_resources.get_distribution('OpenFisca-France').location,
-    'openfisca_france', 'tests', 'calculateur_impots', 'yaml',
-    ) 
+calculateur_impots_path =  os.path.join(pkg_resources.get_distribution('OpenFisca-France').location,
+    'openfisca_france', 'tests', 'calculateur_impots')
+scenarios_to_test_directory = os.path.join(calculateur_impots_path, 'scenarios')
+output_json_directory = os.path.join(calculateur_impots_path, 'json')
+output_yaml_directory = os.path.join(calculateur_impots_path, 'yaml')
 
 assert os.path.isdir(os.path.join(scenarios_to_test_directory)), 'ERROR : directory {} does not exist'.format(scenarios_to_test_directory)
 if not os.listdir(os.path.join(scenarios_to_test_directory)):
