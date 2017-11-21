@@ -13,7 +13,7 @@ from openfisca_france.scripts.calculateur_impots import base
 # TODO: peut-être mutualiser les deux fonctions
 
 
-def input_to_json_data(value, state = None):
+def input_scenario_to_json(value, state = None):
     """
     Function that reformat and check the JSON file containing a scenario
     """
@@ -33,9 +33,9 @@ def input_to_json_data(value, state = None):
         )(value, state = state or conv.default_state)
 
 
-def input_to_json_data2(value, state = None):
+def input_to_json_data(value, state = None):
     """
-    Function that reformat and check the JSON file containing a scenario + the official results associated
+    Function that reformat and check the JSON file containing the input of a test (scenario + official results associated)
     """
     return conv.pipe(
         conv.make_input_to_json(),

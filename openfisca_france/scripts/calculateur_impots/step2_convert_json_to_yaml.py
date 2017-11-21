@@ -41,7 +41,7 @@ def json_to_yaml(json_dir, json_filename, var, output_dir):
 
     log.info(u"Converting file {}...".format(json_filename))
     with open(os.path.join(json_dir, json_filename)) as json_file:
-        data = conv.check(input_to_json_data2)(json_file.read()) 
+        data = conv.check(input_to_json_data)(json_file.read()) 
 
     scenario = data['scenario']
     tax_calculator_inputs = base.transform_scenario_to_tax_calculator_inputs(scenario)

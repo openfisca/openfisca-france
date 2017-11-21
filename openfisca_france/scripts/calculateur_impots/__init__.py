@@ -50,7 +50,7 @@ if not os.listdir(os.path.join(scenarios_to_test_directory)):
 
 for filename in sorted(os.listdir(scenarios_to_test_directory)):
     with codecs.open(os.path.join(scenarios_to_test_directory, filename), 'r', encoding = 'utf-8') as fichier:
-        input_data = conv.check(input_to_json_data)(fichier.read())   
+        input_data = conv.check(input_scenario_to_json)(fichier.read())
         scenario_to_test = input_data['scenario']
         variable_to_test = os.path.basename(filename).split('-',5)[1]
         json_filename = step1.create_json(scenario_to_test, directory = output_json_directory, var = variable_to_test, tested = True, rebuild_json = True)
