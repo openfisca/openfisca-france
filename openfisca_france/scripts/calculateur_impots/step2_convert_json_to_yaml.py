@@ -8,11 +8,33 @@ import os
 from openfisca_core import conv
 import yaml
 
-from openfisca_france.scripts.calculateur_impots import base
 from openfisca_france.scripts.calculateur_impots.subprogs import *
+
 
 log = logging.getLogger(__name__)
 
+
+# YAML configuration
+
+class folded_unicode(unicode):
+    pass
+
+class literal_unicode(unicode):
+    pass
+
+def dict_constructor(loader, node):
+    return collections.OrderedDict(loader.construct_pairs(node))
+
+def dict_representer(dumper, data):
+    return dumper.represent_dict(data.iteritems())
+
+yaml.add_constructor(yaml.resolver.BaseResolver.DEFAULT_MAPPING_TAG, dict_constructor)
+yaml.add_representer(folded_unicode, lambda dumper, data: dumper.represent_scalar(u'tag:yaml.org,2002:str',
+    data, style='>'))
+yaml.add_representer(literal_unicode, lambda dumper, data: dumper.represent_scalar(u'tag:yaml.org,2002:str',
+    data, style='|'))
+yaml.add_representer(collections.OrderedDict, dict_representer)
+yaml.add_representer(unicode, lambda dumper, data: dumper.represent_scalar(u'tag:yaml.org,2002:str', data))
 
 
 def json_to_yaml(json_dir, json_filename, var, output_dir):
@@ -70,4 +92,3 @@ def json_to_yaml(json_dir, json_filename, var, output_dir):
 
     with open(tests_file_path, 'w') as tests_file:
         yaml.dump(tests, tests_file, allow_unicode = True, default_flow_style = False, indent = 2, width = 120)
-        # TODO: modifier la mise en forme du test YAML stocké
