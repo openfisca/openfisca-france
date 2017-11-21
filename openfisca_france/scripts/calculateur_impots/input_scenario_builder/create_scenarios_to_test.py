@@ -31,7 +31,7 @@ def create_all_scenarios_to_test(directory):
     Description : A single childless worker + a fixed amount of wage + a fixed amount of another type of income
     Output : JSON files named "test"-'income_tested'-'year'
     Goal : Test that OpenFisca does takes into account rightfully each of the cells/type of income from the income tax report,
-    when computing the income tax
+    when computing the income tax (works only for individual incomes)
 
     - TYPE 2 scenario
     Description :
@@ -45,9 +45,8 @@ def create_all_scenarios_to_test(directory):
     # TYPE 1 SCENARIOS
     fixed_wage_amount = 50000
     tested_income_amounts = [20000]
-    variable_to_test = ["chomage_imposable"] # TODO : compléter la liste (variables de ir.py ? toutes les cases ?)
-
-    for variable in variable_to_test:
+   
+    for variable in base.individual_income_variables_to_test:
         for amount in tested_income_amounts:
             scenario = define_single_worker_scenario(year, {'salaire_imposable': fixed_wage_amount, variable: amount})
             json_filename = "test" + '-' + variable + '-' + str(scenario.period.date.year)

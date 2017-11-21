@@ -11,6 +11,8 @@ from openfisca_france import FranceTaxBenefitSystem
 __all__ = [
     'call_tax_calculator',
     'general_variable_name_by_tax_calculator_code',
+    'household_income_variables_to_test',
+    'individual_income_variables_to_test',
     'openfisca_variable_name_by_tax_calculator_code',
     'tax_benefit_system',
     'transform_scenario_to_tax_calculator_inputs',
@@ -377,6 +379,126 @@ general_variable_name_by_tax_calculator_code = {
     'TXMARJ': u'Taux marginal d\'imposition',
     'TXMOYIMP': u'Taux moyen d\'imposition',
 }
+
+household_income_variables_to_test = [ # NB: taken from input variables of FELIN-ERFS Survey Scenario (TAXIPP) 2014
+    'f1ar', 'f1br', 'f1cr', 'f1dr', 'f1er', 'f1aw', 'f1bw', 'f1cw', 'f1dw',
+    'f2aa', 'f2ab', 'f2al', 'f2am', 'f2an', 'f2aq','f2ar', 'f2bg', 'f2dm',
+    'f2ch', 'f2ck', 'f2cg', 'f2bh', 'f2dc', 'f2ts', 'f2ca', 'f2fu', 'f2go', 'f2gr', 'f2tr', 'f2da', 'f2dh', 'f2ee',
+    'f3vg', 'f3vh', 'f3vm', 'f3vt', 'f3vc', 'f3vd', 'f3ve', 'f3vf', 'f3vi', 'f3vj', 'f3vz',
+    'f4ba', 'f4bb', 'f4bc', 'f4bd', 'f4be', 'f4bf', 'f4tq',
+    'f5ga', 'f5gb', 'f5gc', 'f5gd', 'f5ge', 'f5gf', 'f5gg', 'f5gh', 'f5gi', 'f5gj',
+    'f5ht', 'f5it', 'f5jt', 'f5kt', 'f5lt', 'f5mt', 
+    'f5qf', 'f5qg', 'f5qn', 'f5qo', 'f5qp', 'f5qq',
+    'f5rn', 'f5rn', 'f5rp', 'f5rq', 'f5rr', 'f5rw', 'f5sq',
+    'f7uo', 'f7wj', 'f7wl', 'f7wr', 'f7ga', 'f7gb', 'f7gc', 'f7ge', 'f7gf', 'f7gg',
+    'f8ta', 'f8ti', 'f8tk', 'f8uy', 
+]
+
+individual_income_variables_to_test = ['chomage_imposable']
+# individual_income_variables_to_test = [ # NB: taken from input variables of FELIN-ERFS Survey Scenario (TAXIPP) 2014
+#     'aacc_defn',
+#     'aacc_defs',
+#     'aacc_exon',
+#     'aacc_gits',
+#     'aacc_impn', 
+#     'aacc_imps',  # not in 2014
+#     'aacc_pvce', 
+#     'abic_defm', 
+#     'abic_defn', 
+#     'abic_defs',  # not in 2014
+#     'abic_exon', 
+#     'abic_impm', 
+#     'abic_impn', 
+#     'abic_imps',  # not in 2014
+#     'abic_pvce', 
+#     'abnc_defi', 
+#     'abnc_exon', 
+#     'abnc_impo', 
+#     'abnc_proc', 
+#     'abnc_pvce', 
+#     'alnp_defs',  # TODO , update OpenFisca-france def of alnp_defs (wrong stop_date)
+#     'alnp_imps', 
+#     'arag_defi', 
+#     'arag_exon', 
+#     'arag_impg', 
+#     'arag_pvce', 
+#     'cbnc_assc',  
+#     'chomage_imposable',
+#     'cncn_aimp', 
+#     'cncn_bene', 
+#     'cncn_defi',  # TODO, check (f5nr)
+#     'cncn_exon', 
+#     'cncn_info', 
+#     'cncn_jcre', 
+#     'cncn_pvce', 
+#     'ebic_imps',  # TODO , update OpenFisca-france def of ebic_imps (wrong stop_date)
+#     'ebic_impv',  # TODO , update OpenFisca-france def of ebic_impv (wrong stop_date)
+#     'ebnc_impo',  # TODO , update OpenFisca-france def of ebnc_impo (wrong stop_date)
+#     # 'f1tv', 'f1tw', 'f1tx',  => individual incomes but not with this name.. TO CHECK
+#     'frag_exon', 
+#     'frag_fore', 
+#     'frag_impo', 
+#     'frag_pvce', 
+#     'frag_pvct', 
+#     'macc_exon', 
+#     'macc_imps', 
+#     'macc_impv', 
+#     'macc_mvct', 
+#     'macc_pvce', 
+#     'macc_pvct', 
+#     'mbic_exon', 
+#     'mbic_imps', 
+#     'mbic_impv', 
+#     'mbic_mvct', 
+#     'mbic_pvce', 
+#     'mbic_pvct', 
+#     'mbnc_exon', 
+#     'mbnc_impo', 
+#     'mbnc_mvct', 
+#     'mbnc_mvlt', 
+#     'mbnc_pvce', 
+#     'mbnc_pvct', 
+#     'mncn_exon', 
+#     'mncn_impo', 
+#     'mncn_mvct', 
+#     'mncn_pvce', 
+#     'mncn_pvct', 
+#     'nacc_defn', 
+#     'nacc_defs', 
+#     'nacc_exon', 
+#     'nacc_impn', 
+#     'nacc_meup',  #TODO , check
+#     'nacc_pvce',  # TODO , update OpenFisca-france def of nacc_pvce (wrong stop_date)
+#     'nbic_apch', 
+#     'nbic_defn', 
+#     'nbic_defs',  # not in 2014
+#     'nbic_exon', 
+#     'nbic_impm', 
+#     'nbic_impn', 
+#     'nbic_imps',  # TODO , wrong 2014 definition
+#     'nbic_mvct', 
+#     'nbic_pvce', 
+#     'nbnc_defi', 
+#     'nbnc_exon', 
+#     'nbnc_impo', 
+#     'nbnc_proc', 
+#     'nbnc_pvce', 
+#     'nrag_ajag', 
+#     'nrag_defi', 
+#     'nrag_exon', 
+#     'nrag_impg', 
+#     'nrag_pvce',  # WARNING , 5hk, 5ik, 5jk can be either (nrag_pvce) either (cncn_exon) depending on the year => TODO, handle this
+#     'pensions_alimentaires_percues',
+#     'pensions_invalidite',
+#     'ppe_du_ns',  # TODO , update OpenFisca-france def of ppe_du_ns (wrong stop_date)
+#     'ppe_du_sa',
+#     'ppe_tp_ns',  # TODO , update OpenFisca-france def of ppe_tp_ns (wrong stop_date)
+#     'ppe_tp_sa',
+#     'pveximpres',  
+#     'retraite_imposable',
+#     'retraite_titre_onereux',
+#     'revimpres',
+#     ]
 
 
 def call_tax_calculator(year, inputs):
