@@ -3,11 +3,7 @@
 
 """ Functions used to build the tests of __init__ """
 
-import os
-
-from lxml import etree
 from openfisca_core import conv
-
 from openfisca_france.scripts.calculateur_impots import base
 
 # TODO: peut-être mutualiser les deux fonctions
