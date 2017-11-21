@@ -17,11 +17,10 @@ from openfisca_core import conv
 from openfisca_france.scripts.calculateur_impots import base
 
 from openfisca_france.scripts.calculateur_impots.subprogs import *
+from openfisca_france.scripts.calculateur_impots.input_scenario_builder.create_scenarios_to_test import create_all_scenarios_to_test
 from openfisca_france.scripts.calculateur_impots import (
-    step0_define_scenarios_to_test as step0,
     step1_create_json_then_test as step1,
     step2_convert_json_to_yaml as step2,
-    create_scenarios_to_test as create_scenarios_to_test,
     )
 
 log = logging.getLogger(__name__)
@@ -41,13 +40,13 @@ output_json_directory = os.path.join( # previously : openfisca_france/tests/json
 output_yaml_directory = os.path.join(  # previously : openfisca_france/calculateur_impots
     pkg_resources.get_distribution('OpenFisca-France').location,
     'openfisca_france', 'tests', 'calculateur_impots', 'yaml',
-    )
+    ) 
 
 assert os.path.isdir(os.path.join(scenarios_to_test_directory)), 'ERROR : directory {} does not exist'.format(scenarios_to_test_directory)
 if not os.listdir(os.path.join(scenarios_to_test_directory)):
-    log.debug("WARNING : scenarios_to_test_directory is empty")
+    log.debug("WARNING : directory {} is empty".format(scenarios_to_test_directory))
     log.debug("Creating new scenarios to test...")
-    create_scenarios_to_test.main()
+    create_all_scenarios_to_test(scenarios_to_test_directory)
 
 for filename in sorted(os.listdir(scenarios_to_test_directory)):
     with codecs.open(os.path.join(scenarios_to_test_directory, filename), 'r', encoding = 'utf-8') as fichier:
