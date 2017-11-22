@@ -546,7 +546,7 @@ def transform_scenario_to_tax_calculator_inputs(scenario):
                 u"Veuf": 'V',
                 u"Pacsé": 'O',
                 # u"Jeune veuf": TODO
-                }[statut_marital if isinstance(statut_marital, basestring) else column.enum._vars[statut_marital]]
+                }[statut_marital if isinstance(statut_marital, basestring) else column.possible_values._vars[statut_marital]]
             assert 'pre_situation_famille' not in impots_arguments \
                 or impots_arguments['pre_situation_famille'] == pre_situation_famille, str((impots_arguments,
                     pre_situation_famille))

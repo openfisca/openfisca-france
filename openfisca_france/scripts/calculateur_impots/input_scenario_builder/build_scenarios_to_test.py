@@ -88,10 +88,10 @@ def define_single_worker_scenario(year, value_by_variable):
     foyer_fiscal = dict()
 
     for variable, value in value_by_variable.iteritems():
-        column = base.tax_benefit_system.column_by_name[variable]
+        column = base.tax_benefit_system.variables[variable]
         entity = column.entity.key
 
-        start = 1990 if column.start is None else column.start.year
+        start = 1990
         end = 2050 if column.end is None else column.end.year
         value = value if conv.test_between(start, end)(year)[1] is None else 0
 
