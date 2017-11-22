@@ -84,9 +84,16 @@ def json_to_yaml(json_dir, json_filename, var, output_dir):
     tests_file_path = os.path.join(output_dir, '{}.yaml'.format(var))
     if os.path.exists(tests_file_path):
         with open(tests_file_path) as tests_file:
-            tests = yaml.load(tests_file)
-            tests.append(test) #TODO: if a test with same name and period already exists, do not append
-            tests.sort(key = lambda test: (test['name'], test['period']))
+            existing_tests = yaml.load(tests_file)
+            add_new_test = True
+            for i in range (0,len(existing_tests)):
+                if (test['name'] == existing_tests[i]['name']) & (test['period'] == existing_tests[i]['period']):
+                    add_new_test = False
+                    log.debug("The test was not added to the file because a test with same name and period already exists")
+            tests = existing_tests
+            if add_new_test:    
+                tests.append(test)
+                tests.sort(key = lambda test: (test['name'], test['period']))
     else:
         tests = [test]
 
