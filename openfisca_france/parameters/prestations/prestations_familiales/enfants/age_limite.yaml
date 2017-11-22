@@ -1,0 +1,6 @@
+description: Âge limite (strict) pour être considéré comme enfant à charge
+reference: openfisca
+unit: year
+values:
+  2001-01-01:
+    value: 20.0

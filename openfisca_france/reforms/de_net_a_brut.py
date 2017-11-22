@@ -4,20 +4,20 @@ from __future__ import division
 
 from openfisca_core import columns
 from openfisca_core.reforms import Reform
-from openfisca_core.variables import Variable
 try:
     from scipy.optimize import fsolve
 except ImportError:
     fsolve = None
 
 from .. import entities
+from ..model.base import *
 
 def calculate_net_from(salaire_de_base, simulation, period, requested_variable_names):
 
     # We're not wanting to calculate salaire_de_base again, but instead manually set it as an input variable
     # To avoid possible conflicts, remove its function
-    simulation.holder_by_name['salaire_de_base'].formula.function = None
-    simulation.get_or_new_holder('salaire_de_base').array = salaire_de_base
+    simulation.individu.get_holder('salaire_de_base').formula.function = None
+    simulation.individu.get_holder('salaire_de_base').array = salaire_de_base
 
     # Work in isolation
     temp_simulation = simulation.clone()
@@ -25,27 +25,29 @@ def calculate_net_from(salaire_de_base, simulation, period, requested_variable_n
     # Calculated variable holders might contain undesired cache
     # (their entity.simulation points to the original simulation above)
     for name in requested_variable_names:
-        del temp_simulation.holder_by_name[name]
+        temp_simulation.individu.get_holder[name].delete_arrays()
 
     # Force recomputing of salaire_net
-    del temp_simulation.holder_by_name['salaire_net_a_payer']
+    temp_simulation.individu.get_holder('salaire_net_a_payer').delete_arrays()
 
     net = temp_simulation.calculate('salaire_net_a_payer', period)[0]
 
     return net
 
 class salaire_de_base(Variable):
-    column = columns.FloatCol
+    value_type = float
     entity = entities.Individu
     label = u"Salaire brut ou traitement indiciaire brut"
-    url = u"http://www.trader-finance.fr/lexique-finance/definition-lettre-S/Salaire-brut.html"
+    reference = u"http://www.trader-finance.fr/lexique-finance/definition-lettre-S/Salaire-brut.html"
+    definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         # Calcule le salaire brut à partir du salaire net par inversion numérique.
 
         net = simulation.get_array('salaire_net_a_payer', period)
 
-        assert net is not None
+        if net is None:
+            return self.zeros()
 
         simulation = self.holder.entity.simulation
 
@@ -72,7 +74,7 @@ class salaire_de_base(Variable):
                 xtol = 1/10  # précision
                 )
 
-        return period, brut_calcule
+        return brut_calcule
 
 class de_net_a_brut(Reform):
     name = u'Inversion du calcul brut -> net'

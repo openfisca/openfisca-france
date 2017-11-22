@@ -536,9 +536,9 @@ def transform_scenario_to_tax_calculator_inputs(scenario):
             impots_arguments['0D{}'.format(chr(ord('A') + declarant_index))] = date_naissance.year
 
             statut_marital = declarant.pop('statut_marital', None)
-            column = tax_benefit_system.column_by_name['statut_marital']
+            column = tax_benefit_system.variables['statut_marital']
             if statut_marital is None:
-                statut_marital = column.enum._vars[column.default]
+                statut_marital = column.enum._vars[column.default_value]
             pre_situation_famille = {
                 u"Marié": 'M',
                 u"Célibataire": 'C',
@@ -559,7 +559,7 @@ def transform_scenario_to_tax_calculator_inputs(scenario):
                         'id',
                         ):
                     continue
-                column = tax_benefit_system.column_by_name[column_code]
+                column = tax_benefit_system.variables[column_code]
                 cerfa_field = column.cerfa_field
                 assert cerfa_field is not None and isinstance(cerfa_field, dict), column_code
                 impots_arguments[cerfa_field[declarant_index]] = int(value) if isinstance(value, float) else value
@@ -580,7 +580,7 @@ def transform_scenario_to_tax_calculator_inputs(scenario):
                         'id',
                         ):
                     continue
-                column = tax_benefit_system.column_by_name[column_code]
+                column = tax_benefit_system.variables[column_code]
                 cerfa_field = column.cerfa_field
                 assert cerfa_field is not None and isinstance(cerfa_field, dict), column_code
                 impots_arguments[cerfa_field[personne_a_charge_index]] = value
@@ -597,7 +597,7 @@ def transform_scenario_to_tax_calculator_inputs(scenario):
                 impots_arguments['7UE'] = str(value)  # bug dans le site des impots
             if column_code == 'f7vc':
                 impots_arguments['7VD'] = str(value)  # bug dans le site des impots
-            column = tax_benefit_system.column_by_name[column_code]
+            column = tax_benefit_system.variables[column_code]
             cerfa_field = column.cerfa_field
             assert cerfa_field is not None and isinstance(cerfa_field, basestring), column_code
             impots_arguments[cerfa_field] = int(value) if isinstance(value, bool) else value

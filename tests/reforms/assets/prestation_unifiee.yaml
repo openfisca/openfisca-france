@@ -1,0 +1,26 @@
+description: Prestation unifiée
+majoration_zone_1:
+  description: Majoration zone 1
+  unit: €
+  values:
+    2010-01-01: 53
+majoration_zone_2:
+  description: Majoration zone 2
+  unit: €
+  values:
+    2010-01-01: 16
+pente:
+  description: Pente
+  unit: /1
+  values:
+    2010-01-01: .62
+revenu_inflexion:
+  description: Revenu d'inflexion de la pente
+  unit: €
+  values:
+    2010-01-01: 1150
+revenu_sortie:
+  description: Revenu de sortie de la prestation
+  unit: €
+  values:
+    2010-01-01: 1500

@@ -1,0 +1,6 @@
+description: Taux 2
+reference: openfisca
+unit: /1
+values:
+  2010-01-01:
+    value: 0.3

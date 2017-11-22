@@ -11,68 +11,86 @@ class pensions_alimentaires_percues(Variable):
         QUIFOY['pac2']: u"1DO",
         QUIFOY['pac3']: u"1EO",
         }
-    column = FloatCol(val_type = "monetary")
+    value_type = float
+    unit = 'currency'
     entity = Individu
     label = u"Pensions alimentaires perçues"
+    definition_period = MONTH
     set_input = set_input_divide_by_period
+    calculate_output = calculate_output_add
 
 
 class pensions_alimentaires_percues_decl(Variable):
-    column = BoolCol(default = True)
+    value_type = bool
+    default_value = True
     entity = Individu
     label = u"Pension déclarée"
-
+    definition_period = YEAR
 
 class pensions_alimentaires_versees_individu(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Pensions alimentaires versées pour un individu"
-
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 class gains_exceptionnels(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Gains exceptionnels"
-
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 class allocation_aide_retour_emploi(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Allocation d'aide au retour à l'emploi"
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class allocation_securisation_professionnelle(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Allocation de sécurisation professionnelle"
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class prime_forfaitaire_mensuelle_reprise_activite(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Prime forfaitaire mensuelle pour la reprise d'activité"
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class indemnites_volontariat(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Indemnités de volontariat"
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class dedommagement_victime_amiante(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Dédommagement versé aux victimes de l'amiante"
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class prestation_compensatoire(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Prestation compensatoire"
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class pensions_invalidite(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Pensions d'invalidité"
     # Cette case est apparue dans la déclaration 2014
@@ -83,79 +101,82 @@ class pensions_invalidite(Variable):
         QUIFOY['pac1']: u"1CZ",
         QUIFOY['pac2']: u"1DZ",
         }
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class bourse_enseignement_sup(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Bourse de l'enseignement supérieur"
-
-
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 # Avoir fiscaux et crédits d'impôt
 # f2ab déjà disponible
 class f8ta(Variable):
     cerfa_field = u"8TA"
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Retenue à la source en France ou impôt payé à l'étranger"
-
-
+    definition_period = YEAR
 
 
 class f8th(Variable):
     cerfa_field = u"8TH"
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Retenue à la source élus locaux"
-
-
+    definition_period = YEAR
 
 
 class f8td_2002_2005(Variable):
     cerfa_field = u"8TD"
-    column = IntCol
+    value_type = int
     entity = FoyerFiscal
     label = u"Contribution exceptionnelle sur les hauts revenus"
-    start_date = date(2002, 1, 1)
-    stop_date = date(2005, 12, 31)
-
+    # start_date = date(2002, 1, 1)
+    end = '2005-12-31'
+    definition_period = YEAR
 
 
 class f8td(Variable):
     cerfa_field = u"8TD"
-    column = BoolCol
+    value_type = bool
     entity = FoyerFiscal
     label = u"Revenus non imposables dépassent la moitié du RFR"
-    start_date = date(2011, 1, 1)
-    stop_date = date(2014, 12, 31)
-
-
+    # start_date = date(2011, 1, 1)
+    end = '2014-12-31'
+    definition_period = YEAR
 
 
 class f8ti(Variable):
     cerfa_field = u"8TK"
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Revenus de l'étranger exonérés d'impôt"
-
+    definition_period = YEAR
 
 
 class f8tk(Variable):
     cerfa_field = u"8TK"
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Revenus de l'étranger imposables"
-
+    definition_period = YEAR
 
 
 # Auto-entrepreneur : versements libératoires d’impôt sur le revenu
 class f8uy(Variable):
     cerfa_field = u"8UY"
-    column = IntCol(val_type = "monetary")
+    value_type = int
+    unit = 'currency'
     entity = FoyerFiscal
     label = u"Auto-entrepreneur : versements libératoires d’impôt sur le revenu dont le remboursement est demandé"
-    start_date = date(2009, 1, 1)
-
-
+    # start_date = date(2009, 1, 1)
+    definition_period = YEAR

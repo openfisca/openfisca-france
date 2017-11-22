@@ -1,0 +1,33 @@
+machine:
+  python:
+    version: 2.7.12  # this specific version is preinstalled on the CI servers and allows faster builds
+  environment:
+    PYPI_USERNAME: openfisca-bot  # set here the name of your Pypi account to automatically publish your template to Pypi
+    # PYPI_PASSWORD: this value is set in CircleCI's web interface; do not set it here, it is a secret!
+
+dependencies:
+  override:
+    - pip install --upgrade pip wheel  # pip >= 8.0 needed to be compatible with "manylinux" wheels, used by numpy >= 1.11
+    - pip install twine
+    - pip install ".[test, api]" --upgrade
+test:
+  pre:
+    - git fetch
+  override:
+    - pip check
+    - nosetests:
+        parallel: true
+        files:
+          - tests/**/*.py
+    - openfisca-run-test:
+        parallel: true
+        files:
+          - tests/**/*.yaml
+          - tests/**/*.yml
+    - ./check-version-bump.sh
+deployment:
+  master:
+    branch: master
+    owner: openfisca
+    commands:
+      - ./deploy-if-version-bump.sh

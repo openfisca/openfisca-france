@@ -1,0 +1,5 @@
+description: Plafond en niveau par foyer
+reference: openfisca
+values:
+  2012-01-01:
+    value: 15000.0

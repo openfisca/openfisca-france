@@ -1,0 +1,233 @@
+- name: aacc_impn
+  period: 2006
+  relative_error_margin: 0.001
+  familles:
+  - id: '0'
+    parents:
+    - ind0
+  foyers_fiscaux:
+  - id: '0'
+    declarants:
+    - ind0
+  individus:
+  - id: ind0
+    salaire_imposable: 24000
+    activite: 0
+    statut_marital: 2
+    date_naissance: '1970-01-01'
+    aacc_impn: 1500
+  menages:
+  - id: '0'
+    personne_de_reference: ind0
+  output_variables:
+    iai: 1973
+    ir_plaf_qf: 1973
+    nbptr: 1
+    ppe: 0
+    rbg: 23100
+    rfr: 23100
+- name: aacc_impn
+  period: 2007
+  relative_error_margin: 0.001
+  familles:
+  - id: '0'
+    parents:
+    - ind0
+  foyers_fiscaux:
+  - id: '0'
+    declarants:
+    - ind0
+  individus:
+  - id: ind0
+    salaire_imposable: 24000
+    activite: 0
+    statut_marital: 2
+    date_naissance: '1970-01-01'
+    aacc_impn: 1500
+  menages:
+  - id: '0'
+    personne_de_reference: ind0
+  output_variables:
+    iai: 1957
+    ir_plaf_qf: 1957
+    nbptr: 1
+    ppe: 0
+    rbg: 23100
+    rfr: 23100
+    rni: 23100
+- name: aacc_impn
+  period: 2008
+  relative_error_margin: 0.001
+  familles:
+  - id: '0'
+    parents:
+    - ind0
+  foyers_fiscaux:
+  - id: '0'
+    declarants:
+    - ind0
+  individus:
+  - id: ind0
+    salaire_imposable: 24000
+    activite: 0
+    statut_marital: 2
+    date_naissance: '1970-01-01'
+    aacc_impn: 1500
+  menages:
+  - id: '0'
+    personne_de_reference: ind0
+  output_variables:
+    iai: 1920
+    ir_plaf_qf: 1920
+    nbptr: 1
+    ppe: 0
+    rbg: 23100
+    rfr: 23100
+    rni: 23100
+- name: aacc_impn
+  period: 2009
+  relative_error_margin: 0.001
+  familles:
+  - id: '0'
+    parents:
+    - ind0
+  foyers_fiscaux:
+  - id: '0'
+    declarants:
+    - ind0
+  individus:
+  - id: ind0
+    salaire_imposable: 24000
+    activite: 0
+    statut_marital: 2
+    date_naissance: '1970-01-01'
+    aacc_impn: 1500
+  menages:
+  - id: '0'
+    personne_de_reference: ind0
+  output_variables:
+    iai: 1915
+    ir_plaf_qf: 1915
+    nbptr: 1
+    ppe: 0
+    rbg: 23100
+    rfr: 23100
+    rni: 23100
+- name: aacc_impn
+  period: 2010
+  relative_error_margin: 0.001
+  familles:
+  - id: '0'
+    parents:
+    - ind0
+  foyers_fiscaux:
+  - id: '0'
+    declarants:
+    - ind0
+  individus:
+  - id: ind0
+    salaire_imposable: 24000
+    activite: 0
+    statut_marital: 2
+    date_naissance: '1970-01-01'
+    aacc_impn: 1500
+  menages:
+  - id: '0'
+    personne_de_reference: ind0
+  output_variables:
+    iai: 1895
+    ir_plaf_qf: 1895
+    nbptr: 1
+    ppe: 0
+    rbg: 23100
+    rfr: 23100
+    rni: 23100
+- name: aacc_impn
+  period: 2011
+  relative_error_margin: 0.001
+  familles:
+  - id: '0'
+    parents:
+    - ind0
+  foyers_fiscaux:
+  - id: '0'
+    declarants:
+    - ind0
+  individus:
+  - id: ind0
+    salaire_imposable: 24000
+    activite: 0
+    statut_marital: 2
+    date_naissance: '1970-01-01'
+    aacc_impn: 1500
+  menages:
+  - id: '0'
+    personne_de_reference: ind0
+  output_variables:
+    iai: 1895
+    ir_plaf_qf: 1895
+    nbptr: 1
+    ppe: 0
+    rbg: 23100
+    rfr: 23100
+    rni: 23100
+- name: aacc_impn
+  period: 2012
+  relative_error_margin: 0.001
+  familles:
+  - id: '0'
+    parents:
+    - ind0
+  foyers_fiscaux:
+  - id: '0'
+    declarants:
+    - ind0
+  individus:
+  - id: ind0
+    salaire_imposable: 24000
+    activite: 0
+    statut_marital: 2
+    date_naissance: '1970-01-01'
+    aacc_impn: 1500
+  menages:
+  - id: '0'
+    personne_de_reference: ind0
+  output_variables:
+    iai: 1895
+    ir_plaf_qf: 1895
+    irpp: -1895
+    nbptr: 1
+    ppe: 0
+    rbg: 23100
+    rfr: 23100
+    rni: 23100
+- name: aacc_impn
+  period: 2013
+  relative_error_margin: 0.001
+  familles:
+  - id: '0'
+    parents:
+    - ind0
+  foyers_fiscaux:
+  - id: '0'
+    declarants:
+    - ind0
+  individus:
+  - id: ind0
+    salaire_imposable: 24000
+    activite: 0
+    statut_marital: 2
+    date_naissance: '1970-01-01'
+    aacc_impn: 1500
+  menages:
+  - id: '0'
+    personne_de_reference: ind0
+  output_variables:
+    iai: 1884
+    ir_plaf_qf: 1884
+    irpp: -1884
+    nbptr: 1
+    ppe: 0
+    rbg: 23100
+    rfr: 23100
+    rni: 23100

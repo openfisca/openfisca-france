@@ -1,0 +1,334 @@
+name: APL LOCATION MONSIEUR CHOMAGE NON INDEMNISE
+keywords:
+  - al
+  - recette
+description: Test créé à partir d'un dossier de demande de  APL
+period: "month:2015-07"
+relative_error_margin: 0.02
+individus:
+  - age: 55
+    age_en_mois: 661
+    date_naissance: "1960-06-08"
+    chomage_imposable:
+      2013: 9458
+    epargne_non_remuneree:
+      2012-01: 0
+    etudiant: 0
+    id: 559e4fa7ecfc1e52013e3b44
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    handicap: 0
+    pensions_alimentaires_percues:
+      2013: 0
+    retraite_imposable:
+      2013: 0
+    salaire_imposable:
+      2013: 0
+    statut_marital: 1
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - activite: 1
+    age: 58
+    age_en_mois: 703
+    ass_precondition_remplie: false
+    date_naissance: "1956-12-01"
+    chomage_imposable:
+      2013: 0
+    epargne_non_remuneree:
+      2012-01: 0
+    etudiant: 0
+    id: 559e4fa7ecfc1e52013e3b42
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    handicap: 0
+    pensions_alimentaires_percues:
+      2013: 0
+    retraite_imposable:
+      2013: 0
+    salaire_imposable:
+      2013: 0
+    statut_marital: 1
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 9
+    age_en_mois: 118
+    date_naissance: "2005-08-13"
+    epargne_non_remuneree:
+      2012-01: 0
+    etudiant: 0
+    id: 559e4fa7ecfc1e52013e3b41
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    handicap: 0
+    scolarite: 1
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 14
+    age_en_mois: 175
+    date_naissance: "2000-11-20"
+    epargne_non_remuneree:
+      2012-01: 0
+    etudiant: 0
+    id: 559e4fa7ecfc1e52013e3b40
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    handicap: 0
+    scolarite: 1
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 16
+    age_en_mois: 198
+    date_naissance: "1998-12-10"
+    epargne_non_remuneree:
+      2012-01: 0
+    etudiant: 0
+    id: 559e4fa7ecfc1e52013e3b3f
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    handicap: 0
+    scolarite: 1
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+familles:
+  acs:
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+  af:
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+  aide_logement:
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+  alf:
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+  als:
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+  apl:
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+  asf:
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+  asi:
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+  aspa:
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+  ass:
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+  bourse_college:
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+  bourse_lycee:
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+  cf:
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+  enfants:
+    - 559e4fa7ecfc1e52013e3b41
+    - 559e4fa7ecfc1e52013e3b40
+    - 559e4fa7ecfc1e52013e3b3f
+  paje_base:
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+  parents:
+    - 559e4fa7ecfc1e52013e3b44
+    - 559e4fa7ecfc1e52013e3b42
+  proprietaire_proche_famille: false
+  rsa:
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+foyers_fiscaux:
+  declarants:
+    - 559e4fa7ecfc1e52013e3b44
+    - 559e4fa7ecfc1e52013e3b42
+  pensions_alimentaires_versees:
+    2013: 0
+  personnes_a_charge:
+    - 559e4fa7ecfc1e52013e3b41
+    - 559e4fa7ecfc1e52013e3b40
+    - 559e4fa7ecfc1e52013e3b3f
+  rfr:
+    2013: 0
+menages:
+  conjoint: 559e4fa7ecfc1e52013e3b42
+  depcom: 77083
+  enfants:
+    - 559e4fa7ecfc1e52013e3b41
+    - 559e4fa7ecfc1e52013e3b40
+    - 559e4fa7ecfc1e52013e3b3f
+  loyer: 434
+  personne_de_reference: 559e4fa7ecfc1e52013e3b44
+  statut_occupation_logement: 4
+output_variables:
+  aide_logement: 476.07

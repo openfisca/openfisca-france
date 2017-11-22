@@ -3,23 +3,23 @@
 from __future__ import division
 
 from openfisca_core.reforms import Reform
-from numpy import vectorize, maximum as max_, logical_not as not_, logical_or as or_, absolute as abs_
+from numpy import vectorize, logical_or as or_, absolute as abs_
 
 from ..model.base import *
 
 
 class perte_autonomie(Variable):
-    column = BoolCol
+    value_type = bool
     entity = Individu
     label = u"Personne en perte d'autonomie"
 
 class resident_93(Variable):
-    column = BoolCol
+    value_type = bool
     label = u"Résident en Seine-Saint-Denis"
     entity = Menage
 
-    def function(self, simulation, period):
-        period = period.this_month
+    def formula(self, simulation, period):
+        period = period.first_month
         depcom = simulation.calculate('depcom', period)
 
         def is_resident_93(code_insee):
@@ -31,36 +31,36 @@ class resident_93(Variable):
 
         result = is_resident_93_vec(depcom)
 
-        return period, result
+        return result
 
 class adpa_eligibilite(Variable):
-    column = BoolCol
+    value_type = bool
     label = u"Eligibilité à l'ADPA"
     entity = Individu
 
-    def function(self, simulation, period):
-        period = period.this_month
+    def formula(self, simulation, period):
+        period = period.first_month
         age = simulation.calculate('age', period)
         resident_93 = simulation.calculate('resident_93', period)
         perte_autonomie = simulation.calculate('perte_autonomie', period)
 
         result = (age >= 60) * resident_93 * perte_autonomie
 
-        return period, result
+        return result
 
 class adpa_base_ressources_i(Variable):
-    column = FloatCol
+    value_type = float
     label = u"Base ressources ADPA pour un individu"
     entity = Individu
 
-    def function(self, simulation, period):
-        period = period.this_month
+    def formula(self, simulation, period):
+        period = period.first_month
         previous_year = period.start.period('year').offset(-1)
         salaire_imposable = simulation.calculate_add('salaire_imposable', period.n_2)
         retraite_imposable = simulation.calculate_add('retraite_imposable', period.n_2)
         chomage_imposable = simulation.calculate_add('chomage_imposable', period.n_2)
         revenus_capital = simulation.calculate_add('revenus_capital', previous_year)
-        revenus_locatifs = simulation.calculate_add('revenus_locatifs', previous_year)
+        revenus_locatifs = simulation.calculate_add('revenus_locatifs', previous_year, options = [ADD])
         # Prélevements libératoire forfaitaire à prendre en compte sans abattement
         valeur_locative_immo_non_loue = simulation.calculate_add('valeur_locative_immo_non_loue', previous_year)
         valeur_locative_terrains_non_loue = simulation.calculate_add('valeur_locative_terrains_non_loue', previous_year)
@@ -72,27 +72,27 @@ class adpa_base_ressources_i(Variable):
             valeur_locative_terrains_non_loue * 0.8
         ) / 12
 
-        return period, base_ressource_mensuelle
+        return base_ressource_mensuelle
 
 class adpa_base_ressources(Variable):
-    column = FloatCol
+    value_type = float
     label = u"Base ressources ADPA pour une famille"
     entity = Famille
 
-    def function(self, simulation, period):
-        period = period.this_month
+    def formula(self, simulation, period):
+        period = period.first_month
         adpa_base_ressources_i = simulation.compute('adpa_base_ressources_i', period)
         adpa_base_ressources = self.sum_by_entity(adpa_base_ressources_i)
 
-        return period, adpa_base_ressources
+        return adpa_base_ressources
 
 class adpa(Variable):
-    column = FloatCol
+    value_type = float
     label = u"ADPA"
     entity = Famille
 
-    def function(self, simulation, period):
-        period = period.this_month
+    def formula(self, simulation, period):
+        period = period.first_month
 
         adpa_eligibilite_holder = simulation.compute('adpa_eligibilite', period)
         adpa_eligibilite = self.any_by_roles(adpa_eligibilite_holder)
@@ -116,7 +116,7 @@ class adpa(Variable):
 
         participation_departement = 100 - participation_usager
 
-        return period, participation_departement * adpa_eligibilite
+        return participation_departement * adpa_eligibilite
 
 
 class aides_cd93(Reform):

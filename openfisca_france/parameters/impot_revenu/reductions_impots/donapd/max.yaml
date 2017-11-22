@@ -1,0 +1,26 @@
+description: Plafond des dépenses
+reference: openfisca
+unit: currency
+values:
+  2001-01-01:
+    value: 400.0
+  2002-01-01:
+    value: 407.0
+  2003-01-01:
+    value: 414.0
+  2004-01-01:
+    value: 422.0
+  2005-01-01:
+    value: 470.0
+  2006-01-01:
+    value: 479.0
+  2007-01-01:
+    value: 488.0
+  2008-01-01:
+    value: 495.0
+  2009-01-01:
+    value: 510.0
+  2010-01-01:
+    value: 513.0
+  2011-01-01:
+    value: 521.0

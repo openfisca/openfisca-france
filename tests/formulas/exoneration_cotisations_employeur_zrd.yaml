@@ -1,0 +1,26 @@
+- name: "Exonération cotisations employeur zone de restructuration défense (ZRD) : SMIC "
+  description: >
+    L'éxonération est pleine au taux de .281
+    pour les salaires < 1.4 * SMIC, puis dégressive jusqu'à 2.4 * SMIC.
+    Elle est de plus dégressive dans le temps"
+  period: "2014"
+  absolute_error_margin: 0.005
+  input_variables:
+    entreprise_creation: "2014-01-01"
+    effectif_entreprise:
+      "year:2014:15": 20
+    salaire_de_base:
+      "2014": 35 * 52 * 9.53
+      "2015": 35 * 52 * 9.61
+      "2016": 35 * 52 * 9.67
+      "2017": 35 * 52 * 9.67
+    zone_restructuration_defense:
+      "year:2014:15": True
+    categorie_salarie: 0
+  output_variables:
+    exoneration_cotisations_employeur_zrd:
+      "2014-01": 35 * 52 * 9.53 * .281 / 12
+      "2015-01": 35 * 52 * 9.61 * .281 / 12
+      "2015-09": 35 * 52 * 9.61 * .281 / 12
+      "2017-02": 35 * 52 * 9.67 * .281 * 2 / 3 / 12
+      "2017-11": 35 * 52 * 9.67 * .281 * 2 / 3 / 12

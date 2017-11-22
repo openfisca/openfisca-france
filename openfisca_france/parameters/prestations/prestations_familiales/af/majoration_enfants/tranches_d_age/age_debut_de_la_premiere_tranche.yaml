@@ -1,0 +1,8 @@
+reference: ipp
+values:
+  1984-01-01:
+    value: 10.0
+  1999-01-01:
+    value: 11.0
+  2008-05-01:
+    value: 14.0

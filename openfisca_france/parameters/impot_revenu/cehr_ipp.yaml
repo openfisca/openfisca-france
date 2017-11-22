@@ -1,0 +1,14 @@
+brackets:
+- rate:
+    2011-01-01:
+      value: 0.03
+  threshold:
+    2011-01-01:
+      value: 250000.0
+- rate:
+    2011-01-01:
+      value: 0.04
+  threshold:
+    2011-01-01:
+      value: 500000.0
+reference: ipp

@@ -1,0 +1,48 @@
+- name: "Aides logements - Primo-accédants - Zone vers plafonds mensualité"
+  description: Aides au logement de base pour les primo-accédants - Calcul intermédiaire
+  period: 2017-08
+  relative_error_margin: 0.001
+  input_variables :
+    loyer: 500
+    zone_apl: 1
+  output_variables:
+    aides_logement_primo_accedant_plafond_mensualite: 311.23
+
+- name: "Aides logements - Primo-accédants - Calcul intermédiaire - CAF Montauban"
+  description: Aides au logement de base pour les primo-accédants - Calcul intermédiaire - CAF Montauban
+  period: 2017-08
+  relative_error_margin: 0.001
+  input_variables :
+    loyer: 500
+    depcom: 82121
+  output_variables:
+    zone_apl : 3
+    aide_logement_charges: 53.27
+    aides_logement_primo_accedant_nb_part: 1.2
+    aides_logement_primo_accedant_k: 0.5839  
+    aides_logement_primo_accedant_plafond_mensualite: 256.14
+
+- name: "Aides logements - Primo-accédants - CAF Montauban"
+  description: Aides au logement de base pour les primo-accédants - CAF Montauban
+  period: 2017-08
+  relative_error_margin: 0.05
+  input_variables :
+    loyer: 500
+    depcom: 82121
+  output_variables:
+    aides_logement_primo_accedant: 95
+
+- name: "Aides logements - Primo-accédant avec 10000 euros par mois"
+  period: 2016-09
+  relative_error_margin: 0.01
+  familles:
+    parents: ["parent1"]
+    aide_logement_base_ressources: 120000
+  menages:
+    zone_apl: 1
+    loyer: 5172
+  individus:
+    - id: "parent1"
+      age: 40
+  output_variables:
+    aides_logement_primo_accedant: 0

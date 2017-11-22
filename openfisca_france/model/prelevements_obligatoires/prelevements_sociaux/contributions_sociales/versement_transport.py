@@ -9,17 +9,17 @@ from openfisca_france.model.base import *  # noqa analysis:ignore
 from openfisca_france.france_taxbenefitsystem import COUNTRY_DIR
 
 class taux_versement_transport(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u""
+    definition_period = MONTH
 
-    def function(self, simulation, period):
-        period = period.this_month
+    def formula(self, simulation, period):
         depcom_entreprise = simulation.calculate('depcom_entreprise', period)
         effectif_entreprise = simulation.calculate('effectif_entreprise', period)
         categorie_salarie = simulation.calculate('categorie_salarie', period)
 
-        seuil_effectif = simulation.legislation_at(period.start).cotsoc.versement_transport.seuil_effectif
+        seuil_effectif = simulation.parameters_at(period.start).cotsoc.versement_transport.seuil_effectif
 
         preload_taux_versement_transport()
         public = (categorie_salarie >= 2)
@@ -32,20 +32,20 @@ class taux_versement_transport(Variable):
             )
         # "L'entreprise emploie-t-elle plus de 9 ou 10 salariés dans le périmètre de l'Autorité organisatrice de transport
         # (AOT) suivante ou syndicat mixte de transport (SMT)"
-        return period, taux_versement_transport * or_(effectif_entreprise >= seuil_effectif, public) / 100
+        return taux_versement_transport * or_(effectif_entreprise >= seuil_effectif, public) / 100
 
 
 class versement_transport(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Versement transport"
+    definition_period = MONTH
 
-    def function(self, simulation, period):
-        period = period.this_month
+    def formula(self, simulation, period):
         assiette_cotisations_sociales = simulation.calculate('assiette_cotisations_sociales', period)
         taux_versement_transport = simulation.calculate('taux_versement_transport', period)
         cotisation = - taux_versement_transport * assiette_cotisations_sociales
-        return period, cotisation
+        return cotisation
 
 
 
@@ -79,5 +79,3 @@ def select_temporal_taux_versement_transport(rates, instant):
             if str(instant) >= date:
                 return float(taux[date])
         return 0.0
-
-

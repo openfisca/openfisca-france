@@ -1,0 +1,146 @@
+- period: "month:2015-03"
+  absolute_error_margin: 0.00001
+  input_variables:
+    depcom_entreprise: "75101"
+    effectif_entreprise: 3
+  output_variables:
+    taux_versement_transport: 0
+
+- period: "month:2015-03"
+  absolute_error_margin: 0.00001
+  input_variables:
+    depcom_entreprise: "75101"
+    effectif_entreprise: 9
+  output_variables:
+    taux_versement_transport: 0
+
+- period: "month:2015-03"
+  absolute_error_margin: 0.00001
+  input_variables:
+    depcom_entreprise: "75101"
+    effectif_entreprise: 10
+  output_variables:
+    taux_versement_transport: .027
+
+- period: "month:2016-03"
+  name: "Le seuil est passé à 11 en 2016"
+  absolute_error_margin: 0.00001
+  input_variables:
+    depcom_entreprise: "75101"
+    effectif_entreprise: 10
+  output_variables:
+    taux_versement_transport: 0
+
+- period: "month:2016-03"
+  name: "Le seuil est passé à 11 en 2016 (et le taux a augmenté !)"
+  absolute_error_margin: 0.00001
+  input_variables:
+    depcom_entreprise: "75101"
+    effectif_entreprise: 11
+  output_variables:
+    taux_versement_transport: .0285
+
+- period: "month:2015-03"
+  absolute_error_margin: 0.00001
+  input_variables:
+    depcom_entreprise: "34108"
+    effectif_entreprise: 13
+  output_variables:
+    taux_versement_transport: .012
+
+- period: "month:2015-03"
+  absolute_error_margin: 0.00001
+  input_variables:
+    depcom_entreprise: "34108"
+    effectif_entreprise: 9
+  output_variables:
+    taux_versement_transport: 0
+
+# 2016
+
+- period: "month:2016-06"
+  absolute_error_margin: 0.00001
+  input_variables:
+    depcom_entreprise: "29002"
+    effectif_entreprise: 11
+  output_variables:
+    taux_versement_transport: 0.008
+
+
+- period: "month:2016-06"
+  absolute_error_margin: 0.00001
+  input_variables:
+    depcom_entreprise: "91174"
+    effectif_entreprise: 11
+  output_variables:
+    taux_versement_transport: 0.0191
+
+
+- period: "month:2016-06"
+  absolute_error_margin: 0.00001
+  input_variables:
+    depcom_entreprise: "75120"
+    effectif_entreprise: 11
+  output_variables:
+    taux_versement_transport: 0.0285
+
+##############
+# > avril 2017
+
+
+- period: "month:2017-04"
+  absolute_error_margin: 0.00001
+  input_variables:
+    depcom_entreprise: "29002" #QUIMPERLÉ
+    effectif_entreprise: 11
+  output_variables:
+    taux_versement_transport: 0.008
+
+
+- period: "month:2017-04"
+  absolute_error_margin: 0.00001
+  input_variables:
+    depcom_entreprise: "91174" # Commune CORBEIL ESSONNES
+    effectif_entreprise: 11
+  output_variables:
+    taux_versement_transport: 0.0201
+
+
+- period: "month:2017-04"
+  absolute_error_margin: 0.00001
+  input_variables:
+    depcom_entreprise: "75120"
+    effectif_entreprise: 11
+  output_variables:
+    taux_versement_transport: 0.0295
+
+################
+# > juillet 2017
+# https://www.urssaf.fr/portail/home/actualites/toute-lactualite-employeur/taux-versement-transport--nouvel.html
+
+
+- period: "month:2017-07"
+  absolute_error_margin: 0.00001
+  input_variables:
+    depcom_entreprise: "65226" # Commune IBOS
+    effectif_entreprise: 11
+  output_variables:
+    taux_versement_transport: 0.0105
+
+
+- period: "month:2017-07"
+  absolute_error_margin: 0.00001
+  input_variables:
+    depcom_entreprise: "71258" # Commune LEYNES
+    effectif_entreprise: 11
+  output_variables:
+    taux_versement_transport: 0.008
+
+# Commune non présente (taux nul) précédemment
+- period: "month:2017-07"
+  absolute_error_margin: 0.00001
+  input_variables:
+    depcom_entreprise: "51614" #Commune VERZY
+    effectif_entreprise: 11
+  output_variables:
+    taux_versement_transport: 0.0015

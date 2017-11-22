@@ -6,157 +6,82 @@
 
 """Impôt Landais, Piketty, Saez"""
 
-
 from __future__ import division
 
-from numpy import maximum as max_
-from openfisca_core import columns
-from openfisca_core.reforms import Reform
-from openfisca_core.variables import Variable
-from openfisca_france import entities
-from openfisca_france.model.base import QUIFAM, QUIFOY
+import os
+
+from openfisca_france.model.base import *
+
+
+dir_path = os.path.join(os.path.dirname(__file__), 'parameters')
 
 
 class assiette_csg(Variable):
-    column = columns.FloatCol
-    entity = entities.Individu
+    value_type = float
+    entity = Individu
     label = u"Assiette de la CSG"
+    definition_period = YEAR
 
-    def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('year')
-        salaire_de_base = simulation.calculate('salaire_de_base', period)
-        chomage_brut = simulation.calculate('chomage_brut', period)
-        retraite_brute = simulation.calculate('retraite_brute', period)
-        rev_cap_bar_holder = simulation.compute_add('rev_cap_bar', period)
-        rev_cap_lib_holder = simulation.compute_add('rev_cap_lib', period)
-        rev_cap_bar = self.cast_from_entity_to_role(rev_cap_bar_holder, role = QUIFOY['vous'])
-        rev_cap_lib = self.cast_from_entity_to_role(rev_cap_lib_holder, role = QUIFOY['vous'])
-        return period, salaire_de_base + chomage_brut + retraite_brute + rev_cap_bar + rev_cap_lib
+    def formula(individu, period, parameters):
+        salaire_de_base = individu('salaire_de_base', period, options = [ADD])
+        chomage_brut = individu('chomage_brut', period, options = [ADD])
+        retraite_brute = individu('retraite_brute', period, options = [ADD])
+        rev_cap_bar = individu.foyer_fiscal('rev_cap_bar', period, options = [ADD]) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
+        rev_cap_lib = individu.foyer_fiscal('rev_cap_lib', period, options = [ADD]) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
+        return salaire_de_base + chomage_brut + retraite_brute + rev_cap_bar + rev_cap_lib
 
 
 class impot_revenu_lps(Variable):
-    column = columns.FloatCol
-    entity = entities.Individu
+    value_type = float
+    entity = Individu
     label = u"Impôt individuel sur l'ensemble de l'assiette de la csg, comme proposé par Landais, Piketty et Saez"
+    definition_period = YEAR
 
-    def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('year')
-        nbF_holder = simulation.compute('nbF')
-        nbF = self.cast_from_entity_to_role(nbF_holder, role = QUIFOY['vous'])
-        nbH_holder = simulation.compute('nbH')
-        nbH = self.cast_from_entity_to_role(nbH_holder, role = QUIFOY['vous'])
+    def formula(individu, period, parameters):
+        janvier = period.first_month
+
+        nbF = individu.foyer_fiscal('nbF', period) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
+        nbH = individu.foyer_fiscal('nbH', period) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
         nbEnf = (nbF + nbH / 2)
-        lps = simulation.legislation_at(period.start).landais_piketty_saez
+        lps = parameters(period).landais_piketty_saez
         ae = nbEnf * lps.abatt_enfant
         re = nbEnf * lps.reduc_enfant
         ce = nbEnf * lps.credit_enfant
-        statut_marital = simulation.calculate('statut_marital')
+        statut_marital = individu('statut_marital', period = janvier)
         couple = (statut_marital == 1) | (statut_marital == 5)
         ac = couple * lps.abatt_conj
         rc = couple * lps.reduc_conj
-        assiette_csg = simulation.calculate('assiette_csg')
-        return period, -max_(0, lps.bareme.calc(max_(assiette_csg - ae - ac, 0)) - re - rc) + ce
+        assiette_csg = individu('assiette_csg', period)
+        return -max_(0, lps.bareme.calc(max_(assiette_csg - ae - ac, 0)) - re - rc) + ce
 
 
 class revenu_disponible(Variable):
-    column = columns.FloatCol
-    entity = entities.Menage
+    value_type = float
+    entity = Menage
     label = u"Revenu disponible du ménage"
-    url = u"http://fr.wikipedia.org/wiki/Revenu_disponible"
+    reference = u"http://fr.wikipedia.org/wiki/Revenu_disponible"
+    definition_period = YEAR
 
-    def function(self, simulation, period):
-        period = period.start.offset('first-of', 'month').period('year')
-        impot_revenu_lps_holder = simulation.compute('impot_revenu_lps')
-        impot_revenu_lps = self.sum_by_entity(impot_revenu_lps_holder)
-        pen_holder = simulation.compute('pensions')
-        pen = self.sum_by_entity(pen_holder)
-        prestations_sociales_holder = simulation.compute('prestations_sociales')
-        prestations_sociales = self.cast_from_entity_to_role(prestations_sociales_holder, role = QUIFAM['chef'])
-        prestations_sociales = self.sum_by_entity(prestations_sociales)
-        revenus_du_capital_holder = simulation.compute('revenus_du_capital')
-        revenus_du_capital = self.sum_by_entity(revenus_du_capital_holder)
-        revenus_du_travail_holder = simulation.compute('revenus_du_travail')
-        revenus_du_travail = self.sum_by_entity(revenus_du_travail_holder)
-        return period, revenus_du_travail + pen + revenus_du_capital + impot_revenu_lps + prestations_sociales
+    def formula(menage, period, parameters):
+        impot_revenu_lps_i = menage.members('impot_revenu_lps', period)
+        impot_revenu_lps = menage.sum(impot_revenu_lps_i)
+        pen_i = menage.members('pensions', period)
+        pen = menage.sum(pen_i)
+        prestations_sociales_i = menage.members.famille('prestations_sociales', period) * individu.has_role(Famille.DEMANDEUR)
+        prestations_sociales = menage.sum(prestations_sociales)
+        revenus_du_capital_i = menage.members('revenus_du_capital', period)
+        revenus_du_capital = menage.sum(revenus_du_capital_i)
+        revenus_du_travail_i = menage.members('revenus_du_travail', period)
+        revenus_du_travail = menage.sum(revenus_du_travail_i)
+
+        return revenus_du_travail + pen + revenus_du_capital + impot_revenu_lps + prestations_sociales
 
 
-def modify_legislation_json(reference_legislation_json_copy):
-    reform_legislation_subtree = {
-        "@type": "Node",
-        "description": u"Impôt à base large proposé par Landais, Piketty et Saez",
-        "children": {
-            "bareme": {
-                "@type": "Scale",
-                "unit": "currency",
-                "description": u"Barème de l'impôt",
-                "rates_kind": "average",
-                "brackets": [
-                    {
-                        "rate": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': .02}],
-                        "threshold": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': 1100}],
-                        },
-                    {
-                        "rate": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': .1}],
-                        "threshold": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': 2200}],
-                        },
-                    {
-                        "rate": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': .13}],
-                        "threshold": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': 5000}],
-                        },
-                    {
-                        "rate": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': .25}],
-                        "threshold": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': 10000}],
-                        },
-                    {
-                        "rate": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': .5}],
-                        "threshold": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': 40000}],
-                        },
-                    {
-                        "rate": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': .6}],
-                        "threshold": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': 100000}],
-                        },
-                    ],
-                },
-            "imposition": {
-                "@type": "Parameter",
-                "description": u"Indicatrice d'imposition",
-                "format": "boolean",
-                "values": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': True}],
-                },
-            "credit_enfant": {
-                "@type": "Parameter",
-                "description": u"Crédit d'impôt forfaitaire par enfant",
-                "format": "integer",
-                "values": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': 0}],
-                },
-            "reduc_enfant": {
-                "@type": "Parameter",
-                "description": u"Réduction d'impôt forfaitaire par enfant",
-                "format": "integer",
-                "values": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': 0}],
-                },
-            "abatt_enfant": {
-                "@type": "Parameter",
-                "description": u"Abattement forfaitaire sur le revenu par enfant",
-                "format": "integer",
-                "values": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': 0}],
-                },
-            "reduc_conj": {
-                "@type": "Parameter",
-                "description": u"Réduction d'impôt forfaitaire si conjoint",
-                "format": "integer",
-                "values": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': 0}],
-                },
-            "abatt_conj": {
-                "@type": "Parameter",
-                "description": u"Abattement forfaitaire sur le revenu si conjoint",
-                "format": "integer",
-                "values": [{'start': u'2000-01-01', 'stop': u'2014-12-31', 'value': 0}],
-                },
-            },
-        }
-    reference_legislation_json_copy['children']['landais_piketty_saez'] = reform_legislation_subtree
-    return reference_legislation_json_copy
+def modify_parameters(parameters):
+    file_path = os.path.join(dir_path, 'landais_piketty_saez.yaml')
+    reform_parameters_subtree = load_parameter_file(name='landais_piketty_saez', file_path=file_path)
+    parameters.add_child('landais_piketty_saez', reform_parameters_subtree)
+    return parameters
 
 
 class landais_piketty_saez(Reform):
@@ -165,4 +90,4 @@ class landais_piketty_saez(Reform):
     def apply(self):
         for variable in [assiette_csg, impot_revenu_lps, revenu_disponible]:
             self.update_variable(variable)
-        self.modify_legislation_json(modifier_function = modify_legislation_json)
+        self.modify_parameters(modifier_function = modify_parameters)

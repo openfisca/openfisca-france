@@ -1,0 +1,26 @@
+description: 'Plafond d''exonération de la taxe d''habitation: première part DOM'
+reference: openfisca
+unit: currency
+values:
+  2002-01-01:
+    value: 8198.0
+  2003-01-01:
+    value: 8337.0
+  2004-01-01:
+    value: 8478.0
+  2005-01-01:
+    value: 8621.0
+  2006-01-01:
+    value: 8776.0
+  2007-01-01:
+    value: 11167.0
+  2008-01-01:
+    value: 11312.0
+  2009-01-01:
+    value: 11640.0
+  2010-01-01:
+    value: 11686.0
+  2011-01-01:
+    value: 11861.0
+  2012-01-01:
+    value: 12098.0

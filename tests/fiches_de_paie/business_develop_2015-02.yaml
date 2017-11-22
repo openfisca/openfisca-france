@@ -1,0 +1,85 @@
+name: "Business Develop (N)"
+period: "2015-02"
+absolute_error_margin: 0.005
+input_variables:
+  contrat_de_travail: 5  # forfait jour année
+  depcom_entreprise: "75102"
+  effectif_entreprise: 5
+  forfait_jours_remuneres_volume: 217
+  jeune_entreprise_innovante: 1
+  prevoyance_obligatoire_cadre_taux_employeur: .0074
+  primes_salaires: 172.9
+  salaire_de_base: 2000
+  taux_accident_travail: .011
+  categorie_salarie: 1
+output_variables:
+  coefficient_proratisation: 217/218
+  ags: -6.52
+  agff_employeur: -26.07
+  apec_employeur: -0.78
+  arrco_employeur: -101.04
+  agirc_employeur: -0
+  agirc_gmp_employeur: -41.16 -.01  # manque .01 dans la  fiche de paie
+  chomage_employeur: -86.92
+  cotisation_exceptionnelle_temporaire_employeur: -4.78
+  famille: -2172.9 * .0525 # = -153.74 = -74.97-78.77
+  mmid_employeur: -2172.9 * .128  # -6.52
+  vieillesse_deplafonnee_employeur: -2172.9 * .018
+  vieillesse_plafonnee_employeur: -2172.9 * .0850   # -2.17
+  exoneration_cotisations_employeur_jei: 2172.9 * (.018 + .0850 + .0525 + .128)
+  fonds_emploi_hospitalier: 0
+  ircantec_employeur: 0
+  pension_civile_employeur: 0
+  rafp_employeur: 0
+  # cotisations_employeur (somme de la feuille de paie)
+  # .35 + 23.90 + 6.52 + 2.17 + 74.97 + 78.77 + 86.92 + 6.52 + 101.4 + 41.16 + .78 + 4.78 + 26.07 + 16.08
+  # = 470.39 != 496.76
+  # cotisations_employeur: -470.39 - 2172.9 * (.018 + .0850 + .128)
+  # cotisations_employeur_non_contributives: -2172.9 * (.018 + .0850 + .0525 + .128 - .004)
+  allocations_temporaires_invalidite: 0
+  accident_du_travail: -23.9
+  taxe_salaires: 0
+  # cotisations_employeur_main_d_oeuvre: 0
+  conge_individuel_formation_cdd: 0
+  # contribution_developpement_apprentissage: 0
+  contribution_solidarite_autonomie: -6.52
+  # contribution_supplementaire_apprentissage
+  # fnal: 0
+  # formation_professionnelle: 0
+  # participation_effort_construction: 0
+  prevoyance_obligatoire_cadre: -16.08
+  # taxe_apprentissage: 0
+  versement_transport: 0 # -.027 * 2172.9
+  allegement_fillon: 0
+  credit_impot_competitivite_emploi: 130.37
+  tehr:
+    "year:2015": 0
+  # assiette_cotisations_sociales
+  cotisations_salariales: -509.15 + 109.7 + 62.38 + .01
+  # cotisations_salariales_contributives
+  agff_salarie: -17.38
+  agirc_gmp_salarie: -25.17
+  agirc_salarie: -0
+  apec_salarie: -0.52
+  arrco_salarie: -67.36
+  chomage_salarie: -52.15
+  cotisation_exceptionnelle_temporaire_salarie: -2.82
+  vieillesse_deplafonnee_salarie:  -22.82 * .003/.0105 # -2172.9 * .003
+  vieillesse_plafonnee_salarie:  -148.84
+  ircantec_salarie: 0
+  pension_civile_salarie: 0
+  rafp_salarie: 0
+  # cotisations_salariales_non_contributives
+  mmid_salarie: -22.82 * .0075/.0105  # -.0075 * 2172.9
+  # mmid_salarie: -22.82
+  contribution_exceptionnelle_solidarite: 0
+  csg_deductible_salaire: -109.7
+  mhsup: 0
+  salaire_imposable: 1726.13 + .01
+  csg_imposable_salaire: -(2172.9 * .9825 + 16.08)*.024
+  crds_salaire: -(2172.9 * .9825 + 16.08)*.005
+  salaire_net: 1663.75 +.01  # 25.18 au lieu de 25.17 agirc_gmp
+  hsup: 0
+  depense_cantine_titre_restaurant_employe: 0
+  salaire_net_a_payer: 1663.75 +.01
+  # salaire_super_brut: 2172.90 + 496.76

@@ -1,0 +1,80 @@
+name: "Salarié IPP"
+period: "2014-11"
+absolute_error_margin: 0.005
+input_variables:
+  assujettie_taxe_salaires: True
+  contrat_de_travail_duree: 1  # CDD
+  contrat_de_travail_debut: "2014-11-02"
+  effectif_entreprise: 3000
+  # exposition_accident: 3
+  code_postal_entreprise: "75014"
+  depcom_entreprise: "75114"
+  prevoyance_obligatoire_cadre_taux_employeur: .0157
+  ratio_alternants: 0
+  redevable_taxe_apprentissage: 0
+  salaire_de_base: 4600
+  taux_accident_travail: .015
+  titre_restaurant_valeur_unitaire: 9
+  titre_restaurant_volume: 19
+  categorie_salarie: 1
+output_variables:
+  conge_individuel_formation_cdd: -46
+  contribution_solidarite_autonomie: -13.8
+  participation_effort_construction: -20.70
+  fnal: -23
+  formation_professionnelle: -73.6
+  versement_transport: -124.20
+  # cotisations_employeur_main_d_oeuvre:
+  agff_salarie: -24.20 - 14.18
+  agff_employeur: -36.30 - 20.48
+  ags: -13.80
+  apec_employeur: -1.09 - .57
+  cotisation_exceptionnelle_temporaire_employeur: -10.12
+  arrco_employeur: -138.53
+  agirc_employeur: -199.75
+  agirc_gmp_employeur: 0
+  chomage_employeur: -120.99 - 63.01
+  # chomage_tranche_a_employeur: -120.99  # Inclus dans assedic
+  # chomage_tranche_b_employeur: -63.01  # Inclus dans assedic
+  vieillesse_deplafonnee_employeur: -80.5
+  vieillesse_plafonnee_employeur: -255.59
+
+  # cotisations_employeur_contributives:
+
+  accident_du_travail: -69
+  famille: -241.5
+  mmid_employeur: -588.80
+  # cotisations_employeur: - 2836.38 + 19 * 4.5  # montant juste TODO: A compléter avec presta manquantes
+  taxe_salaires: -197.52 - 27.07 - 315.27
+  prevoyance_obligatoire_cadre: -47.49
+
+  forfait_social: -3.8 # 47.49 de base
+  cotisation_exceptionnelle_temporaire_salarie: -5.98
+  mmid_salarie: -34.5
+  # cotisations_salariales_non_contributives:
+
+  apec_salarie: -.73 - .38
+  arrco_salarie: -92.25
+  agirc_salarie: -122.09
+  agirc_gmp_salarie: 0
+  # chomage_tranche_a_employe: -72.59  # Inclus dans assedic
+  # chomage_tranche_b_employe: 37.81  # Inclus dans assedic
+  chomage_salarie: -72.59 - 37.81
+
+  vieillesse_deplafonnee_salarie: -11.5
+  vieillesse_plafonnee_salarie: -205.68
+  # cotisations_salariales_contributives:
+
+  # cotisations_salariales:
+  csg_deductible_salaire: -232.92
+  csg_imposable_salaire: -109.61
+  crds_salaire: -22.83
+  reintegration_titre_restaurant_employeur: 0
+  depense_cantine_titre_restaurant_employeur: 19 * 4.5
+
+  salaire_imposable: 3745.19  # salaire imposable
+  depense_cantine_titre_restaurant_employe: -19 * 4.5
+
+  salaire_net_a_payer: 3527.25
+
+  # TODO taxe_handicapes: 18.40

@@ -2,7 +2,7 @@
 
 from __future__ import division
 
-from numpy import round, maximum as max_, logical_not as not_, logical_or as or_, vectorize, where
+from numpy import round, logical_or as or_
 
 
 from openfisca_france.model.base import *  # noqa analysis:ignore
@@ -10,27 +10,26 @@ from openfisca_france.model.prestations.prestations_familiales.base_ressource im
 
 
 class af_nbenf(Variable):
-    column = IntCol
+    value_type = int
     entity = Famille
     label = u"Nombre d'enfants dans la famille au sens des allocations familiales"
+    definition_period = MONTH
 
-    def function(famille, period):
-        period_month = period.this_month
-
-        prestations_familiales_enfant_a_charge_i = famille.members('prestations_familiales_enfant_a_charge', period_month)
+    def formula(famille, period):
+        prestations_familiales_enfant_a_charge_i = famille.members('prestations_familiales_enfant_a_charge', period)
         af_nbenf = famille.sum(prestations_familiales_enfant_a_charge_i)
 
-        return period, af_nbenf
+        return af_nbenf
 
 
 class af_coeff_garde_alternee(Variable):
-    column = FloatCol(default = 1)
+    value_type = float
+    default_value = 1
     entity = Famille
     label = u"Coefficient à appliquer aux af pour tenir compte de la garde alternée"
-    start_date = date(2007, 5, 1)
+    definition_period = MONTH
 
-    def function(famille, period):
-        period = period.this_month
+    def formula_2007_05_01(famille, period):
         nb_enf = famille('af_nbenf', period)
         garde_alternee = famille.members('garde_alternee', period)
         pfam_enfant_a_charge = famille.members('prestations_familiales_enfant_a_charge', period)
@@ -41,65 +40,62 @@ class af_coeff_garde_alternee(Variable):
         # Avoid division by zero. If nb_enf == 0, necessarily nb_enf_garde_alternee = 0 so coeff = 1
         coeff = 1 - (nb_enf_garde_alternee / (nb_enf + (nb_enf == 0))) * 0.5
 
-        return period, coeff
+        return coeff
 
 
 class af_allocation_forfaitaire_nb_enfants(Variable):
-    column = IntCol
+    value_type = int
     entity = Famille
     label = u"Nombre d'enfants ouvrant droit à l'allocation forfaitaire des AF"
+    definition_period = MONTH
 
-    def function(famille, period, legislation):
-        period = period.this_month
-        pfam = legislation(period).prestations.prestations_familiales.af
+    def formula(famille, period, parameters):
+        pfam = parameters(period).prestations.prestations_familiales.af
         af_forfaitaire_nbenf = nb_enf(famille, period, pfam.age3, pfam.age3)
 
-        return period, af_forfaitaire_nbenf
+        return af_forfaitaire_nbenf
 
 
 class af_eligibilite_base(Variable):
-    column = BoolCol
+    value_type = bool
     entity = Famille
     label = u"Allocations familiales - Éligibilité pour la France métropolitaine sous condition de ressources"
+    definition_period = MONTH
 
-    def function(famille, period):
-        period = period.this_month
-
+    def formula(famille, period):
         residence_dom = famille.demandeur.menage('residence_dom', period)
         af_nbenf = famille('af_nbenf', period)
 
-        return period, not_(residence_dom) * (af_nbenf >= 2)
+        return not_(residence_dom) * (af_nbenf >= 2)
 
 
 class af_eligibilite_dom(Variable):
-    column = BoolCol
+    value_type = bool
     entity = Famille
     label = u"Allocations familiales - Éligibilité pour les DOM (hors Mayotte) sous condition de ressources"
+    definition_period = MONTH
 
-    def function(famille, period):
-        period = period.this_month
-
+    def formula(famille, period):
         residence_dom = famille.demandeur.menage('residence_dom', period)
         residence_mayotte = famille.demandeur.menage('residence_mayotte', period)
         af_nbenf = famille('af_nbenf', period)
 
-        return period, residence_dom * not_(residence_mayotte) * (af_nbenf >= 1)
+        return residence_dom * not_(residence_mayotte) * (af_nbenf >= 1)
 
 
 class af_base(Variable):
-    column = FloatCol
+    value_type = float
     entity = Famille
     label = u"Allocations familiales - allocation de base"
+    definition_period = MONTH
     # prestations familiales (brutes de crds)
 
-    def function(famille, period, legislation):
-        period = period.this_month
-
+    def formula(famille, period, parameters):
         eligibilite_base = famille('af_eligibilite_base', period)
         eligibilite_dom = famille('af_eligibilite_dom', period)
         af_nbenf = famille('af_nbenf', period)
 
-        pfam = legislation(period).prestations.prestations_familiales.af
+        pfam = parameters(period).prestations.prestations_familiales.af
 
         eligibilite = or_(eligibilite_base, eligibilite_dom)
 
@@ -114,19 +110,19 @@ class af_base(Variable):
         af_taux_modulation = famille('af_taux_modulation', period)
         montant_base_module = montant_base * af_taux_modulation
 
-        return period, montant_base_module
+        return montant_base_module
 
 
 class af_taux_modulation(Variable):
-    column = FloatCol(default = 1)
+    value_type = float
+    default_value = 1
     entity = Famille
     label = u"Taux de modulation à appliquer au montant des AF depuis 2015"
-    start_date = date(2015, 7, 1)
+    definition_period = MONTH
 
-    def function(famille, period, legislation):
-        period = period.this_month
+    def formula_2015_07_01(famille, period, parameters):
         af_nbenf = famille('af_nbenf', period)
-        pfam = legislation(period).prestations.prestations_familiales.af
+        pfam = parameters(period).prestations.prestations_familiales.af
         base_ressources = famille('prestations_familiales_base_ressources', period)
         modulation = pfam.modulation
         plafond1 = modulation.plafond_tranche_1 + max_(af_nbenf - 2, 0) * modulation.majoration_plafond_par_enfant_supplementaire
@@ -138,18 +134,18 @@ class af_taux_modulation(Variable):
             (base_ressources > plafond2) * modulation.taux_tranche_3
         )
 
-        return period, taux
+        return taux
 
 
 class af_allocation_forfaitaire_taux_modulation(Variable):
-    column = FloatCol(default = 1)
+    value_type = float
+    default_value = 1
     entity = Famille
     label = u"Taux de modulation à appliquer à l'allocation forfaitaire des AF depuis 2015"
-    start_date = date(2015, 7, 1)
+    definition_period = MONTH
 
-    def function(famille, period, legislation):
-        period = period.this_month
-        pfam = legislation(period).prestations.prestations_familiales.af
+    def formula_2015_07_01(famille, period, parameters):
+        pfam = parameters(period).prestations.prestations_familiales.af
         af_nbenf = famille('af_nbenf', period)
         af_forfaitaire_nbenf = famille('af_allocation_forfaitaire_nb_enfants', period)
         nb_enf_tot = af_nbenf + af_forfaitaire_nbenf
@@ -164,18 +160,21 @@ class af_allocation_forfaitaire_taux_modulation(Variable):
             (base_ressources > plafond2) * modulation.taux_tranche_3
             )
 
-        return period, taux
+        return taux
 
 
 class af_age_aine(Variable):
-    column = AgeCol
+    value_type = int
+    default_value = -9999
     entity = Famille
     label = u"Allocations familiales - Âge de l'aîné des enfants éligibles"
+    definition_period = MONTH
+    is_period_size_independent = True
+    allow_infinite = True
 
-    def function(famille, period, legislation):
-        period = period.this_month
 
-        pfam = legislation(period).prestations.prestations_familiales
+    def formula(famille, period, parameters):
+        pfam = parameters(period).prestations.prestations_familiales
 
         age = famille.members('age', period)
         pfam_enfant_a_charge = famille.members('prestations_familiales_enfant_a_charge', period)
@@ -183,17 +182,16 @@ class af_age_aine(Variable):
         condition_eligibilite = pfam_enfant_a_charge * (age <= pfam.af.age2)
         age_enfants_eligiles = age * condition_eligibilite
 
-        return period, famille.max(age_enfants_eligiles, role = Famille.ENFANT)
+        return famille.max(age_enfants_eligiles, role = Famille.ENFANT)
 
 
 class af_majoration_enfant(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Allocations familiales - Majoration pour âge applicable à l'enfant"
+    definition_period = MONTH
 
-    def function(individu, period, legislation):
-        period = period.this_month
-
+    def formula(individu, period, parameters):
         pfam_enfant_a_charge = individu('prestations_familiales_enfant_a_charge', period)
         age = individu('age', period)
         garde_alternee = individu('garde_alternee', period)
@@ -202,7 +200,7 @@ class af_majoration_enfant(Variable):
         af_base = individu.famille('af_base', period)
         age_aine = individu.famille('af_age_aine', period)
 
-        pfam = legislation(period).prestations.prestations_familiales
+        pfam = parameters(period).prestations.prestations_familiales
 
         montant_enfant_seul = pfam.af.bmaf * (
             (pfam.af.af_dom.age_1er_enf_tranche_1_dom <= age) * (age < pfam.af.af_dom.age_1er_enf_tranche_2_dom) * pfam.af.af_dom.taux_1er_enf_tranche_1_dom +
@@ -221,38 +219,37 @@ class af_majoration_enfant(Variable):
 
         coeff_garde_alternee = where(garde_alternee, pfam.af.facteur_garde_alternee, 1)
 
-        return period, pfam_enfant_a_charge * (af_base > 0) * pas_aine * montant * coeff_garde_alternee
+        return pfam_enfant_a_charge * (af_base > 0) * pas_aine * montant * coeff_garde_alternee
 
 
 class af_majoration(Variable):
-    column = FloatCol
+    value_type = float
     entity = Famille
     label = u"Allocations familiales - majoration pour âge"
+    definition_period = MONTH
 
-    def function(famille, period):
-        period = period.this_month
+    def formula(famille, period):
         af_majoration_enfant = famille.members('af_majoration_enfant', period)
         af_majoration_enfants_famille = famille.sum(af_majoration_enfant, role = Famille.ENFANT)
 
         af_taux_modulation = famille('af_taux_modulation', period)
         af_majoration_enfants_module = af_majoration_enfants_famille * af_taux_modulation
 
-        return period, af_majoration_enfants_module
+        return af_majoration_enfants_module
 
 
 class af_complement_degressif(Variable):
-    column = FloatCol
+    value_type = float
     entity = Famille
     label = u"AF - Complément dégressif en cas de dépassement du plafond"
-    start_date = date(2015, 7, 1)
+    definition_period = MONTH
 
-    def function(famille, period, legislation):
-        period = period.this_month
+    def formula_2015_07_01(famille, period, parameters):
         af_nbenf = famille('af_nbenf', period)
         base_ressources = famille('prestations_familiales_base_ressources', period)
         af_base = famille('af_base', period)
         af_majoration = famille('af_majoration', period)
-        pfam = legislation(period).prestations.prestations_familiales.af
+        pfam = parameters(period).prestations.prestations_familiales.af
         modulation = pfam.modulation
         plafond1 = modulation.plafond_tranche_1 + max_(af_nbenf - 2, 0) * modulation.majoration_plafond_par_enfant_supplementaire
         plafond2 = modulation.plafond_tranche_2 + max_(af_nbenf - 2, 0) * modulation.majoration_plafond_par_enfant_supplementaire
@@ -266,20 +263,19 @@ class af_complement_degressif(Variable):
         ) / 12
 
         af = af_base + af_majoration
-        return period, max_(0, af - depassement_mensuel) * (depassement_mensuel > 0)
+        return max_(0, af - depassement_mensuel) * (depassement_mensuel > 0)
 
 
 class af_allocation_forfaitaire_complement_degressif(Variable):
-    column = FloatCol
+    value_type = float
     entity = Famille
     label = u"AF - Complément dégressif pour l'allocation forfaitaire en cas de dépassement du plafond"
-    start_date = date(2015, 7, 1)
+    definition_period = MONTH
 
-    def function(famille, period, legislation):
-        period = period.this_month
+    def formula_2015_07_01(famille, period, parameters):
         af_nbenf = famille('af_nbenf', period)
         af_forfaitaire_nbenf = famille('af_allocation_forfaitaire_nb_enfants', period)
-        pfam = legislation(period).prestations.prestations_familiales.af
+        pfam = parameters(period).prestations.prestations_familiales.af
         nb_enf_tot = af_nbenf + af_forfaitaire_nbenf
         base_ressources = famille('prestations_familiales_base_ressources', period)
         af_allocation_forfaitaire = famille('af_allocation_forfaitaire', period)
@@ -295,20 +291,19 @@ class af_allocation_forfaitaire_complement_degressif(Variable):
             (depassement_plafond2 > 0) * depassement_plafond2
         ) / 12
 
-        return period, max_(0, af_allocation_forfaitaire - depassement_mensuel) * (depassement_mensuel > 0)
+        return max_(0, af_allocation_forfaitaire - depassement_mensuel) * (depassement_mensuel > 0)
 
 
 class af_allocation_forfaitaire(Variable):
-    column = FloatCol
+    value_type = float
     entity = Famille
     label = u"Allocations familiales - forfait"
-    start_date = date(2003, 7, 1)
+    definition_period = MONTH
 
-    def function(famille, period, legislation):
-        period = period.this_month
+    def formula_2003_07_01(famille, period, parameters):
         af_nbenf = famille('af_nbenf', period)
         af_forfaitaire_nbenf = famille('af_allocation_forfaitaire_nb_enfants', period)
-        P = legislation(period).prestations.prestations_familiales.af
+        P = parameters(period).prestations.prestations_familiales.af
         bmaf = P.bmaf
         af_forfait = round(bmaf * P.majoration_enfants.taux_allocation_forfaitaire, 2)
         af_allocation_forfaitaire = ((af_nbenf >= 2) * af_forfaitaire_nbenf) * af_forfait
@@ -316,34 +311,32 @@ class af_allocation_forfaitaire(Variable):
         af_forfaitaire_taux_modulation = famille('af_allocation_forfaitaire_taux_modulation', period)
         af_forfaitaire_module = af_allocation_forfaitaire * af_forfaitaire_taux_modulation
 
-        return period, af_forfaitaire_module
+        return af_forfaitaire_module
 
 
-class af(DatedVariable):
+class af(Variable):
     calculate_output = calculate_output_add
-    column = FloatCol
+    value_type = float
     entity = Famille
     label = u"Allocations familiales - total des allocations"
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
 
-    @dated_function(start = date(2015, 7, 1))
-    def function_20150701(famille, period, legislation):
-        period = period.this_month
+    def formula_2015_07_01(famille, period, parameters):
         af_base = famille('af_base', period)
         af_majoration = famille('af_majoration', period)
         af_allocation_forfaitaire = famille('af_allocation_forfaitaire', period)
         af_complement_degressif = famille('af_complement_degressif', period)
         af_forfaitaire_complement_degressif = famille('af_allocation_forfaitaire_complement_degressif', period)
 
-        return period, (
+        return (
             af_base + af_majoration + af_allocation_forfaitaire + af_complement_degressif +
             af_forfaitaire_complement_degressif
             )
 
-    @dated_function(stop = date(2015, 6, 30))
-    def function_20150630(famille, period, legislation):
-        period = period.this_month
+    def formula(famille, period, parameters):
         af_base = famille('af_base', period)
         af_majoration = famille('af_majoration', period)
         af_allocation_forfaitaire = famille('af_allocation_forfaitaire', period)
 
-        return period, af_base + af_majoration + af_allocation_forfaitaire
+        return af_base + af_majoration + af_allocation_forfaitaire

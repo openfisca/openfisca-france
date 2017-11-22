@@ -1,0 +1,19 @@
+brackets:
+- rate:
+    1998-01-01:
+      value: 0.05
+    2005-01-01:
+      value: 0.03
+    2012-01-01:
+      value: 0.0175
+  threshold:
+    1998-01-01:
+      value: 0.0
+- rate:
+    2011-01-01:
+      value: 0.0
+  threshold:
+    2011-01-01:
+      value: 4.0
+description: Abattement sur les revenus d'activité, du chômage et des préretraites
+reference: openfisca

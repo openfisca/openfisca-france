@@ -1,0 +1,8 @@
+description: Plafond de ressources de base pour PAJE à taux plein
+reference: openfisca
+unit: currency
+values:
+  2004-01-01:
+    value: 0.0
+  2014-04-01:
+    value: 24514.0

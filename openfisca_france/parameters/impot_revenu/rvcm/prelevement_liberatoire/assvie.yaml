@@ -1,0 +1,7 @@
+description: Produits des contrats d'assurance vie (case DH)
+reference: openfisca
+values:
+  2002-01-01:
+    value: 0.075
+  2013-01-01:
+    value: null

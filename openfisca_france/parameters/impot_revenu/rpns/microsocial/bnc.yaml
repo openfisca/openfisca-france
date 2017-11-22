@@ -1,0 +1,6 @@
+description: Taux professions libérales relevant du RSI/CIPAV (bnc)
+reference: openfisca
+unit: /1
+values:
+  2009-01-01:
+    value: 0.022

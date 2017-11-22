@@ -1,0 +1,5 @@
+description: Durée minimale de titre du séjour permettant de bénéficier du RSA
+reference: ipp
+values:
+  2009-06-01:
+    value: 5.0

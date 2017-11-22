@@ -1,0 +1,5 @@
+reference: ipp
+unit: currency
+values:
+  2006-01-01:
+    value: 400.0

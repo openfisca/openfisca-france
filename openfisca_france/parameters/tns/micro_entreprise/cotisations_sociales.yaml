@@ -1,0 +1,6 @@
+description: Taux moyen des cotisations sociales sur les revenus de la micro-entreprise
+reference: openfisca
+unit: /1
+values:
+  2008-01-01:
+    value: 0.55

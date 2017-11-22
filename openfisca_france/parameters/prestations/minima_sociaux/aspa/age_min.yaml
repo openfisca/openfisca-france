@@ -1,0 +1,6 @@
+description: Âge minimal requis
+reference: openfisca
+unit: year
+values:
+  2002-01-01:
+    value: 65.0

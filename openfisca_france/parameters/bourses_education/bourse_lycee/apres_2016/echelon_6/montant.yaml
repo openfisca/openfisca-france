@@ -1,0 +1,6 @@
+description: Montant de la bourse de lycée échelon 6, en multiple de la BMAF
+reference: openfisca
+unit: currency
+values:
+  2016-07-01:
+    value: 2.2584

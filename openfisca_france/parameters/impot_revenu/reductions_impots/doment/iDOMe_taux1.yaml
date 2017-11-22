@@ -1,0 +1,9 @@
+description: Investissements dans les DOM-TOM dans le cadre d'une entreprise
+reference: openfisca
+values:
+  2003-01-01:
+    value: 0.5
+  2004-01-01:
+    value: 0.0
+  2010-01-01:
+    value: null

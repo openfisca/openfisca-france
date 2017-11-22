@@ -120,7 +120,7 @@ def _get_a_page(form_element):
 class Formulaire(object):
 
     def __init__(self, url, pages):
-        self.url = url
+        self.reference = url
         self.pages = pages
         self.pages_collections = {}
 
@@ -168,7 +168,7 @@ class Formulaire(object):
         while 'droit à une aide au logement' not in html:
             # on cherche la page, ou bien on la crée
             name_page = _get_page_name(form_element)
-            if 'otre conjoint'  in html.title(): 
+            if 'otre conjoint'  in html.title():
                 print 'Votre conjoint'
                 import pdb
                 pdb.set_trace()
@@ -181,19 +181,19 @@ class Formulaire(object):
                 page_question = self.pages_collections[name_page]
                 print name_page
                 page_question.set_next_choices()
-                
+
 
             parameters = page_question.get_parameters()
             parameters["BCContinuer"] = "Continuer"
             response, form_element, html = go_to_next_page(parameters, response, form_element)
-            
+
 #            if 'droit à une aide au logement'  in html:
         look = html[:(html.index('&euro') - 1)]
         montant = re.findall("\d+.\d+", look[-10:])[0]
         montant = montant.replace(',', '.')
         montant = float(montant)
         print montant
-            
+
         print ('fin de boucle')
         import pdb
         pdb.set_trace()

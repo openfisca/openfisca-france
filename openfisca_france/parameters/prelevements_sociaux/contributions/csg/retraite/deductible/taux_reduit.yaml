@@ -1,0 +1,8 @@
+description: taux réduit de la CSG déductible
+reference: openfisca
+unit: /1
+values:
+  1997-01-01:
+    value: 0.01
+  1998-01-01:
+    value: 0.038

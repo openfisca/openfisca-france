@@ -1,0 +1,5 @@
+description: Nombre de jour du temps plein
+reference: openfisca
+values:
+  2002-01-01:
+    value: 360.0

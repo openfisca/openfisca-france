@@ -1,0 +1,5 @@
+description: 'Note 3 : Case P'
+reference: openfisca
+values:
+  2002-01-01:
+    value: 0.5

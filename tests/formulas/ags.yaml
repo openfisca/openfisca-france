@@ -1,0 +1,23 @@
+- period: "2016-01"
+  name: AGS 2016
+  relative_error_margin: 0.001
+  input_variables:
+    salaire_de_base: 1500
+  output_variables:
+    ags: -1500 * .25 / 100
+
+- period: "2017-01"
+  name: AGS 2017
+  relative_error_margin: 0.001
+  input_variables:
+    salaire_de_base: 1500
+  output_variables:
+    ags: -1500 * .2 / 100
+
+- period: "2017-07"
+  name: AGS Juillet 2017
+  relative_error_margin: 0.001
+  input_variables:
+    salaire_de_base: 1500
+  output_variables:
+    ags: -1500 * .15 / 100

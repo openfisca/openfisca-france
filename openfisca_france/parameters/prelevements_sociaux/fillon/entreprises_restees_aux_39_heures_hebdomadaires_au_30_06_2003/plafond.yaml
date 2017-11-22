@@ -1,0 +1,8 @@
+reference: ipp
+values:
+  2003-07-01:
+    value: 1.5
+  2004-07-01:
+    value: 1.6
+  2005-07-01:
+    value: null

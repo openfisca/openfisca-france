@@ -17,14 +17,16 @@ TAUX_DE_PRIME = .10
 
 
 class salaire_imposable_pour_inversion(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u'Salaire imposable utilisé pour remonter au salaire brut'
+    definition_period = MONTH
 
 
 class salaire_de_base(Variable):
+    definition_period = MONTH
 
-    def function(self, simulation, period):
+    def formula(self, simulation, period):
         """Calcule le salaire brut à partir du salaire imposable par inversion du barème
         de cotisations sociales correspondant à la catégorie à laquelle appartient le salarié.
         """
@@ -40,11 +42,11 @@ class salaire_de_base(Variable):
         heures_remunerees_volume = simulation.calculate('heures_remunerees_volume', period = this_year)
         hsup = simulation.calculate('hsup', period = this_year)
 
-        P = simulation.legislation_at(period.start)
+        P = simulation.parameters_at(period.start)
 
         salarie = P.cotsoc.cotisations_salarie
         plafond_securite_sociale_annuel = P.cotsoc.gen.plafond_securite_sociale * 12
-        csg_deductible = simulation.legislation_at(period.start).prelevements_sociaux.contributions.csg.activite.deductible
+        csg_deductible = simulation.parameters_at(period.start).prelevements_sociaux.contributions.csg.activite.deductible
         taux_csg = csg_deductible.taux
         taux_abattement = csg_deductible.abattement.rates[0]
         try:
@@ -121,15 +123,16 @@ class salaire_de_base(Variable):
         #     (salaire_de_base <= salaire_charniere) *
         #     cotisation_forfaitaire
         #     )
-        return period, salaire_de_base + hsup
+        return salaire_de_base + hsup
 
         # public_titulaire_etat = salarie['public_titulaire_etat'] #.copy()
         # public_titulaire_etat['rafp'].multiply_rates(TAUX_DE_PRIME, inplace = True)
         # public_titulaire_etat = salarie['public_titulaire_etat'].combine_tax_scales()
 
 # class traitement_indiciaire_brut(Variable):
+#    definition_period = MONTH
 
-#     def function(self, simulation, period):
+#     def formula(self, simulation, period):
 #         """Calcule le tratement indiciaire brut à partir du salaire imposable.
 #         """
 #         # Get value for year and divide below.
@@ -140,8 +143,8 @@ class salaire_de_base(Variable):
 #         # Sauf pour les fonctionnaires où il renvoie le traitement indiciaire brut
 #         # Note : le supplément familial de traitement est imposable.
 #         categorie_salarie = simulation.calculate('categorie_salarie', period)
-#         P = simulation.legislation_at(period.start)
-#         taux_csg = simulation.legislation_at(period.start).prelevements_sociaux.contributions.csg.activite.deductible.taux * (1 - .0175)
+#         P = simulation.parameters_at(period.start)
+#         taux_csg = simulation.parameters_at(period.start).prelevements_sociaux.contributions.csg.activite.deductible.taux * (1 - .0175)
 #         csg = MarginalRateTaxScale(name = 'csg')
 #         csg.add_bracket(0, taux_csg)
 
@@ -176,19 +179,20 @@ class salaire_de_base(Variable):
 #         # TODO: complete this to deal with the fonctionnaire
 #         # supp_familial_traitement = 0  # TODO: dépend de salbrut
 #         # indemnite_residence = 0  # TODO: fix bug
-#         return period, traitement_indiciaire_brut
+#         return traitement_indiciaire_brut
 
 
 # class primes_fonction_publique(Variable):
+#    definition_period = MONTH
 
-#     def function(self, simulation, period):
+#     def formula(self, simulation, period):
 #         """Calcule les primes.
 #         """
 #         # Get value for year and divide below.
 #         traitement_indiciaire_brut = simulation.calculate('traitement_indiciaire_brut',
 #             period.start.offset('first-of', 'year').period('year'))
 
-#         return period, TAUX_DE_PRIME * traitement_indiciaire_brut
+#         return TAUX_DE_PRIME * traitement_indiciaire_brut
 
 
 class inversion_directe_salaires(Reform):
@@ -236,4 +240,3 @@ class inversion_directe_salaires(Reform):
         self.add_variable(salaire_imposable_pour_inversion)
         for variable in [salaire_de_base]:  # traitement_indiciaire_brut, primes_fonction_publique,
             self.update_variable(variable)
-

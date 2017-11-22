@@ -1,0 +1,5 @@
+description: 'Note 3 : case W ou G'
+reference: openfisca
+values:
+  2002-01-01:
+    value: 0.5

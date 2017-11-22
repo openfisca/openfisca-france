@@ -1,0 +1,83 @@
+- name: "CMU-C: Le forfait logement n'augmente plus avec le nombre de personnes à charges à partir de 3 personnes"
+  period: 2016-01
+  relative_error_margin: 0.05
+  input_variables:
+    date_naissance: '1980-01-01'
+    cmu_nb_pac: 10
+    aide_logement: 300
+  output_variables:
+    cmu_forfait_logement_al: 12 * 155.83
+
+- name: "CMU-C: Si les AL sont inférieures, au forfait, on retient le montant réel pour le forfait logement"
+  period: 2016-01
+  relative_error_margin: 0.05
+  input_variables:
+    date_naissance: '1980-01-01'
+    cmu_nb_pac: 10
+    aide_logement: 50
+  output_variables:
+    cmu_forfait_logement_al: 12 * 50
+
+
+- name: "CMU-C: Pas de CMU si demandeur moins de 25 ans à charge des parents"
+  period: 2016-01
+  relative_error_margin: 0.05
+  input_variables:
+    date_naissance: '1994-01-01' # 22 ans
+    enfant_a_charge:
+      2016: True
+  output_variables:
+    cmu_acs_eligibilite: False
+    cmu_c: False
+
+- name: "CMU-C: Pas de CMU si demandeur moins de 25 ans et habite chez ses parents"
+  period: 2016-01
+  relative_error_margin: 0.05
+  input_variables:
+    date_naissance: '1994-01-01' # 22 ans
+    enfant_a_charge:
+      2016: True
+  output_variables:
+    cmu_acs_eligibilite: False
+    cmu_c: False
+
+- name: "CMU-C: Pas de CMU si demandeur moins de 25 ans et reçoit une pension alimentaire"
+  period: 2016-01
+  relative_error_margin: 0.05
+  input_variables:
+    date_naissance: '1994-01-01' # 22 ans
+    pensions_alimentaires_percues:
+      year:2015-01: 4000
+  output_variables:
+    cmu_acs_eligibilite: False
+    cmu_c: False
+
+- name: "CMU-C: CMU ok si demandeur moins de 25 ans et indépendant fiscalement, géographiquement, et financièrement"
+  period: 2016-01
+  relative_error_margin: 0.05
+  input_variables:
+    date_naissance: '1994-01-01' # 22 ans
+  output_variables:
+    cmu_acs_eligibilite: True
+    cmu_c: True
+
+- name: "ACS: Pas d'ACS si les conditions d'indépendance ne sont pas remplies"
+  period: 2016-01
+  relative_error_margin: 0.05
+  input_variables:
+    date_naissance: '1994-01-01' # 22 ans
+    cmu_c: False
+    enfant_a_charge:
+      2016: True
+  output_variables:
+    acs: 0
+
+- name: "ACS: ok si moins de 25 ans et conditions d'indépendance remplies"
+  period: 2016-01
+  relative_error_margin: 0.05
+  input_variables:
+    date_naissance: '1994-01-01' # 22 ans
+    cmu_c: False
+  output_variables:
+    acs: 200
+

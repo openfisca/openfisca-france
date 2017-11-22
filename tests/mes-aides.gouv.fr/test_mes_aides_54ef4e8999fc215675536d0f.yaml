@@ -1,0 +1,336 @@
+name: Le loyer plafond est celui d'une personne isolée même pour les familles
+keywords:
+  - al
+  - chambres
+  - location
+description: |
+  http://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000029558125&cidTexte=LEGITEXT000006074213
+  On force le loyer plafond d'une personne seule à hauteur de 90% pour les chambres même quand c'est un couple ou une famille qui y vit.
+  Ici le demandeur est en couple et a deux enfants, mais L vaut 292,62 * 0,9 = 263,36 car il est dans une chambre.
+  Par contre le reste du calcul est en base famille (forfait de charges, taux famille, taux loyer, LR, etc).
+
+  L	263,36
+  C	77,35
+  E	340,71
+  R	16200
+  R0	8031
+  Rp	8169
+  Tf	2,38
+  LR	402,37
+  RL	65,45
+  Tl	0,092
+  Tp	2,472
+  P0	34,73
+  P1	201,94
+  Pp	236,67
+  AL	103,52
+
+  caf.fr : 101,24
+period: "month:2015-02"
+absolute_error_margin: 2
+individus:
+  - age: 34
+    age_en_mois: 414
+    date_naissance: "1980-08-12"
+    chomage_imposable:
+      2013: 0
+    epargne_non_remuneree:
+      2012-01: 0
+    etudiant: 0
+    id: 54ef4df1d365765975419541
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    handicap: 0
+    pensions_alimentaires_percues:
+      2013: 0
+    retraite_imposable:
+      2013: 0
+    salaire_imposable:
+      2013: 18000
+    statut_marital: 1
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 34
+    age_en_mois: 414
+    date_naissance: "1980-08-12"
+    chomage_imposable:
+      2013: 0
+    epargne_non_remuneree:
+      2012-01: 0
+    etudiant: 0
+    id: 54ef4df1d365765975419540
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    handicap: 0
+    pensions_alimentaires_percues:
+      2013: 0
+    retraite_imposable:
+      2013: 0
+    salaire_imposable:
+      2013: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 14
+    age_en_mois: 175
+    date_naissance: "2000-07-12"
+    epargne_non_remuneree:
+      2012-01: 0
+    etudiant: 0
+    id: 54ef4df1d36576597541953f
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    handicap: 0
+    scolarite: 1
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 14
+    age_en_mois: 174
+    date_naissance: "2000-08-12"
+    epargne_non_remuneree:
+      2012-01: 0
+    etudiant: 0
+    id: 54ef4df1d36576597541953e
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    handicap: 0
+    scolarite: 1
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+familles:
+  acs:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+  af:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+  aide_logement:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+  alf:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+  als:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+  apl:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+  asf:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+  asi:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+  aspa:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+  ass:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+  bourse_college:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+  bourse_lycee:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+  cf:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+  enfants:
+    - 54ef4df1d36576597541953f
+    - 54ef4df1d36576597541953e
+  paje_base:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+  parents:
+    - 54ef4df1d365765975419541
+    - 54ef4df1d365765975419540
+  proprietaire_proche_famille: false
+  rsa:
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+foyers_fiscaux:
+  declarants:
+    - 54ef4df1d365765975419541
+    - 54ef4df1d365765975419540
+  pensions_alimentaires_versees:
+    2013: 0
+  personnes_a_charge:
+    - 54ef4df1d36576597541953f
+    - 54ef4df1d36576597541953e
+  rfr:
+    2013: 0
+menages:
+  conjoint: 54ef4df1d365765975419540
+  depcom: 75111
+  enfants:
+    - 54ef4df1d36576597541953f
+    - 54ef4df1d36576597541953e
+  loyer: 1000
+  logement_chambre: 1
+  personne_de_reference: 54ef4df1d365765975419541
+  statut_occupation_logement: 4
+output_variables:
+  aide_logement: 101.24

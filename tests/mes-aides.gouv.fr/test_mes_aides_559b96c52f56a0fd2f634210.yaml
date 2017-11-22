@@ -1,0 +1,350 @@
+name: Allocation forfaitaire sur une tranche différente de l'allocation standard
+keywords:
+  - af
+  - allocation forfaitaire
+  - barêmes 1er juillet 2015
+description: |
+  Situation :
+  Allocataire de deux enfants à charge au sens des Pf âgés de 11 et 12 ans et un enfant de 20 ans, bénéficiaire des Af 2 enfants et du forfait Af.
+  Base ressources : 70 000 €
+  Montant des Af :
+  Le montant des Af est déterminé sur la base des plafonds Af deux enfants.
+  67 140 < 70 000 < 89 490 €
+  Les ressources sont comprises entre le 1er et le 2ème plafond de ressources pour deux enfants à charge donc il y a un droit aux Af de la tranche 2 (50%)
+  Montant du forfait Af :
+  Le montant du forfait Af est déterminé sur la base des plafonds Af trois enfants.
+  70 000 < 72 735 €
+  Les ressources n’excèdent pas le 1er plafond de ressources pour trois enfants à charge donc il y un droit au forfait Af de la tranche 1 (100%)
+
+  Donc
+  AF = 130€ / 2 = 65€
+  AF forf = 82€
+  AF  = 147 €
+  On veut 70000 € de revenus nets, donc on déclare 77778 € de revenus imposables.
+period: "month:2015-07"
+relative_error_margin: 0.02
+individus:
+  - age: 35
+    age_en_mois: 426
+    date_naissance: "1980-01-01"
+    chomage_imposable:
+      2013: 0
+    epargne_non_remuneree:
+      2012-01: 0
+    etudiant: 0
+    id: 559b96899e2a9d0330e7b2e7
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    handicap: 0
+    pensions_alimentaires_percues:
+      2013: 0
+    retraite_imposable:
+      2013: 0
+    salaire_imposable:
+      2013: 77777.77777777778
+    statut_marital: 1
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 35
+    age_en_mois: 426
+    date_naissance: "1980-01-01"
+    chomage_imposable:
+      2013: 0
+    epargne_non_remuneree:
+      2012-01: 0
+    etudiant: 0
+    id: 559b96899e2a9d0330e7b2e6
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    handicap: 0
+    pensions_alimentaires_percues:
+      2013: 0
+    retraite_imposable:
+      2013: 0
+    salaire_imposable:
+      2013: 0
+    statut_marital: 1
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 11
+    age_en_mois: 138
+    date_naissance: "2004-01-01"
+    epargne_non_remuneree:
+      2012-01: 0
+    etudiant: 0
+    id: 559b96899e2a9d0330e7b2e5
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    handicap: 0
+    scolarite: 1
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 12
+    age_en_mois: 150
+    date_naissance: "2003-01-01"
+    epargne_non_remuneree:
+      2012-01: 0
+    etudiant: 0
+    id: 559b96899e2a9d0330e7b2e4
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    handicap: 0
+    scolarite: 1
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+  - age: 20
+    age_en_mois: 246
+    date_naissance: "1995-01-01"
+    epargne_non_remuneree:
+      2012-01: 0
+    etudiant: 0
+    id: 559b96899e2a9d0330e7b2e3
+    inapte_travail: 0
+    interets_epargne_sur_livrets:
+      2012-01: 0
+    handicap: 0
+    scolarite: 0
+    valeur_locative_immo_non_loue:
+      2012-01: 0
+    valeur_locative_terrains_non_loue:
+      2012-01: 0
+familles:
+  acs:
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+  af:
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+  aide_logement:
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+  alf:
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+  als:
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+  apl:
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+  asf:
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+  asi:
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+  aspa:
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+  ass:
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+  bourse_college:
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+  bourse_lycee:
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+  cf:
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+  enfants:
+    - 559b96899e2a9d0330e7b2e5
+    - 559b96899e2a9d0330e7b2e4
+    - 559b96899e2a9d0330e7b2e3
+  paje_base:
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+  parents:
+    - 559b96899e2a9d0330e7b2e7
+    - 559b96899e2a9d0330e7b2e6
+  proprietaire_proche_famille: true
+  rsa:
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+foyers_fiscaux:
+  declarants:
+    - 559b96899e2a9d0330e7b2e7
+    - 559b96899e2a9d0330e7b2e6
+  pensions_alimentaires_versees:
+    2013: 0
+  personnes_a_charge:
+    - 559b96899e2a9d0330e7b2e5
+    - 559b96899e2a9d0330e7b2e4
+    - 559b96899e2a9d0330e7b2e3
+  rfr:
+    2013: 77777.77777777778
+menages:
+  conjoint: 559b96899e2a9d0330e7b2e6
+  depcom: 93008
+  enfants:
+    - 559b96899e2a9d0330e7b2e5
+    - 559b96899e2a9d0330e7b2e4
+    - 559b96899e2a9d0330e7b2e3
+  loyer: 1000
+  personne_de_reference: 559b96899e2a9d0330e7b2e7
+  statut_occupation_logement: 4
+output_variables:
+  af: 147

@@ -1,0 +1,34 @@
+description: Cas général - isolé ou couple
+reference: ipp
+unit: currency
+values:
+  1994-07-01:
+    value: 282.0
+  1997-07-01:
+    value: 289.0
+  1998-07-01:
+    value: 293.0
+  1999-07-01:
+    value: 297.0
+  2000-07-01:
+    value: 300.0
+  2001-07-01:
+    value: 46.5
+  2002-07-01:
+    value: 46.97
+  2007-01-01:
+    value: 47.82
+  2008-01-01:
+    value: 49.14
+  2009-01-01:
+    value: 50.59
+  2010-01-01:
+    value: 50.75
+  2011-01-01:
+    value: 51.31
+  2012-01-01:
+    value: 51.82
+  2013-01-01:
+    value: 52.93
+  2014-10-01:
+    value: 53.27

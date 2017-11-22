@@ -1,0 +1,7 @@
+reference: ipp
+unit: /1
+values:
+  1957-01-01:
+    value: 0.05
+  1968-01-01:
+    value: null

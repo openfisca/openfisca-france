@@ -1,0 +1,26 @@
+description: 'Plafond d''exonération de la taxe d''habitation: demi-part supplémentaire'
+reference: openfisca
+unit: currency
+values:
+  2002-01-01:
+    value: 1851.0
+  2003-01-01:
+    value: 1882.0
+  2004-01-01:
+    value: 1914.0
+  2005-01-01:
+    value: 1946.0
+  2006-01-01:
+    value: 1981.0
+  2007-01-01:
+    value: 2520.0
+  2008-01-01:
+    value: 2553.0
+  2009-01-01:
+    value: 2627.0
+  2010-01-01:
+    value: 2637.0
+  2011-01-01:
+    value: 2676.0
+  2012-01-01:
+    value: 2730.0

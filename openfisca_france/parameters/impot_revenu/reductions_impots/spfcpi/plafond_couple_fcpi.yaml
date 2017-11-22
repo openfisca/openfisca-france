@@ -1,0 +1,11 @@
+reference: ipp
+unit: currency
+values:
+  1997-01-01:
+    value: 150000.0
+  2001-01-01:
+    value: 22868.0
+  2002-01-01:
+    value: 24000.0
+  2013-01-01:
+    value: 40000.0

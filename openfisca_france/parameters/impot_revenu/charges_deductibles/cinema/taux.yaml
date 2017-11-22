@@ -1,0 +1,6 @@
+description: Taux
+reference: openfisca
+unit: /1
+values:
+  1984-01-01:
+    value: 0.25

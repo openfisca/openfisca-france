@@ -1,0 +1,13 @@
+description: Autres produits de placement (case EE)
+reference: openfisca
+values:
+  2004-01-01:
+    value: 0.16
+  2008-01-01:
+    value: 0.18
+  2011-01-01:
+    value: 0.19
+  2012-01-01:
+    value: 0.24
+  2013-01-01:
+    value: null

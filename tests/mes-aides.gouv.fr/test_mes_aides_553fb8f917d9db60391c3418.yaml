@@ -1,0 +1,298 @@
+name: TNS agricole en métopole - 4 personnes au foyer
+keywords:
+- rsa
+- tns
+"description": |-
+  Éligibilité au RSA d'un TNS agricole couple + 2 enfants
+  Bénéfice agricole < (800*SMIC horaire)*1,5 + (30%*800SMIC horaire) + (40%*800SMIC horaire) = 16513,6 €
+
+  Ne pas afficher de montant
+period: month:2015-04
+relative_error_margin: 0.02
+individus:
+- age: 35
+  age_en_mois: 420
+  date_naissance: '1980-04-13'
+  epargne_non_remuneree:
+    2012-01: 0
+  etudiant: 0
+  id: 553fb8f314dd6d5d39443ccc
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  handicap: 0
+  statut_marital: 1
+  tns_benefice_exploitant_agricole:
+    '2014': 16500
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
+- age: 32
+  age_en_mois: 392
+  date_naissance: '1982-08-12'
+  epargne_non_remuneree:
+    2012-01: 0
+  etudiant: 0
+  id: 553fb8f314dd6d5d39443ccb
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  handicap: 0
+  statut_marital: 1
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
+- age: 13
+  age_en_mois: 164
+  date_naissance: '2001-08-12'
+  epargne_non_remuneree:
+    2012-01: 0
+  etudiant: 0
+  id: 553fb8f314dd6d5d39443cca
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  handicap: 0
+  scolarite: 2
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
+- age: 9
+  age_en_mois: 116
+  date_naissance: '2005-08-14'
+  epargne_non_remuneree:
+    2012-01: 0
+  etudiant: 0
+  id: 553fb8f314dd6d5d39443cc9
+  inapte_travail: 0
+  interets_epargne_sur_livrets:
+    2012-01: 0
+  handicap: 0
+  scolarite: 1
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loue:
+    2012-01: 0
+familles:
+- acs:
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+  af:
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+  aide_logement:
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+  alf:
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+  als:
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+  apl:
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+  asf:
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+  asi:
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+  aspa:
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+  ass:
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+  bourse_college:
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+  bourse_lycee:
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+  cf:
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+  enfants:
+  - 553fb8f314dd6d5d39443cca
+  - 553fb8f314dd6d5d39443cc9
+  paje_base:
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+  parents:
+  - 553fb8f314dd6d5d39443ccc
+  - 553fb8f314dd6d5d39443ccb
+  rsa:
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+foyers_fiscaux:
+- declarants:
+  - 553fb8f314dd6d5d39443ccc
+  - 553fb8f314dd6d5d39443ccb
+  personnes_a_charge:
+  - 553fb8f314dd6d5d39443cca
+  - 553fb8f314dd6d5d39443cc9
+menages:
+- conjoint: 553fb8f314dd6d5d39443ccb
+  depcom: '14500'
+  enfants:
+  - 553fb8f314dd6d5d39443cca
+  - 553fb8f314dd6d5d39443cc9
+  participation_frais: false
+  personne_de_reference: 553fb8f314dd6d5d39443ccc
+  statut_occupation_logement: 6
+output_variables:
+  rsa: 0

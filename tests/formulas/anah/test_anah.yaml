@@ -1,0 +1,119 @@
+- name: "ANAH - individu aux revenus très modestes - IDF"
+  period: 2017
+  individus:
+    - id: "moi"
+  foyers_fiscaux:
+    - declarants: ["moi"]
+      rfr:
+        2015: 19870
+  menages:
+    - personne_de_reference: moi
+      depcom: 75110
+  output_variables:
+    eligibilite_anah: [2]
+
+- name: "ANAH - individu aux revenus modestes - IDF"
+  period: 2017
+  individus:
+    - id: "moi"
+  menages:
+  foyers_fiscaux:
+    - declarants: ["moi"]
+      rfr:
+        2015: 24190
+  menages:
+    - personne_de_reference: moi
+      depcom: 75110
+  output_variables:
+    eligibilite_anah: [1]
+
+- name: "ANAH - individu aux revenus modestes - Hors IDF"
+  period: 2017
+  individus:
+    - id: "moi"
+  menages:
+  foyers_fiscaux:
+    - declarants: ["moi"]
+      rfr:
+        2015: 14370
+  menages:
+    - personne_de_reference: moi
+      depcom: 86500
+  output_variables:
+    eligibilite_anah: [1]
+
+- name: "ANAH - individu non éligible - IDF"
+  period: 2017
+  individus:
+    - id: "moi"
+  foyers_fiscaux:
+    - declarants: ["moi"]
+      rfr:
+        2015: 29870
+  menages:
+    - personne_de_reference: moi
+      depcom: 75110
+  output_variables:
+    eligibilite_anah: [0]
+
+- name: "ANAH - couple en union libre - IDF"
+  period: 2017
+  individus:
+    - id: "moi"
+    - id: "toi"
+  foyers_fiscaux:
+    - declarants: ["moi"]
+      rfr:
+        2015: 15000
+    - declarants: ["toi"]
+      rfr:
+        2015: 20500
+  menages:
+    - personne_de_reference: moi
+      conjoint: toi
+      depcom: 75110
+  output_variables:
+    eligibilite_anah: [1]
+
+- name: "ANAH - couple en union libre, un enfant - IDF"
+  period: 2017
+  individus:
+    - id: "moi"
+    - id: "toi"
+    - id: "enfant"
+  foyers_fiscaux:
+    - declarants: ["moi"]
+      rfr:
+        2015: 16000
+    - declarants: ["toi"]
+      personnes_a_charge: ["enfant"]
+      rfr:
+        2015: 20000
+  menages:
+    - personne_de_reference: moi
+      conjoint: toi
+      autres: ["enfant"]
+      depcom: 75110
+  output_variables:
+    eligibilite_anah: [1]
+
+- name: "ANAH - couple hébergeant une personne majeure - IDF"
+  period: 2017
+  individus:
+    - id: "moi"
+    - id: "toi"
+    - id: "papa"
+  foyers_fiscaux:
+    - declarants: ["toi","moi"]
+      rfr:
+        2015: 16000
+    - declarants: ["papa"]
+      rfr:
+        2015: 20000
+  menages:
+    - personne_de_reference: moi
+      conjoint: toi
+      autres: ["papa"]
+      depcom: 75110
+  output_variables:
+    eligibilite_anah: [1]

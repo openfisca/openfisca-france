@@ -28,7 +28,7 @@ def trace(scenario, variables, period = None, browser_name = 'chromium',
         "variables": variables,
         }
     trace_base_url = u"http://www.openfisca.fr/outils/trace"
-    url = trace_base_url + "?" + urllib.urlencode({
+    reference = trace_base_url + "?" + urllib.urlencode({
         "simulation": json.dumps(simulation_json),
         "api_url": api_url,
         })
@@ -40,7 +40,7 @@ def trace(scenario, variables, period = None, browser_name = 'chromium',
 
 
 if __name__ == '__main__':
-    from openfisca_france.tests.base import tax_benefit_system
+    from base import tax_benefit_system
     period = "2014-12"
     parent1 = dict(
         date_naissance = datetime.date(periods.period(period).start.year - 40, 1, 1),

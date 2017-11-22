@@ -1,0 +1,7 @@
+description: Taux pour 6 pac
+unit: currency
+values:
+  2015-01-01:
+    value: 9156.0
+  2016-01-01:
+    value: 9192.0

@@ -10,13 +10,13 @@ from openfisca_france.model.base import *  # noqa analysis:ignore
 
 
 class professionnalisation(Variable):
-    column = BoolCol
+    value_type = bool
     entity = Individu
     label = u"L'individu est en contrat de professionnalisation"
-    url = "http://www.apce.com/pid879/contrat-de-professionnalisation.html?espace=1&tp=1"
+    reference = "http://www.apce.com/pid879/contrat-de-professionnalisation.html?espace=1&tp=1"
+    definition_period = MONTH
 
-    def function(self, simulation, period):
-        period = period.this_month
+    def formula(self, simulation, period):
         age = simulation.calculate('age', period)
         ass = simulation.calculate_add('ass', period)
         rsa = simulation.calculate('rsa', period)
@@ -27,14 +27,15 @@ class professionnalisation(Variable):
         dummy_rmi = rsa > 0
         dummy_aah = aah > 0
 
-        return period, (age_condition + dummy_ass + dummy_aah + dummy_rmi) > 0
+        return (age_condition + dummy_ass + dummy_aah + dummy_rmi) > 0
 
 
 class remuneration_professionnalisation(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Rémunération de l'apprenti"
-    url = "http://www.apce.com/pid927/contrat-d-apprentissage.html?espace=1&tp=1&pagination=2"
+    reference = "http://www.apce.com/pid927/contrat-d-apprentissage.html?espace=1&tp=1&pagination=2"
+    definition_period = MONTH
 
     #  La rémunération minimale varie en fonction de l'âge et du niveau de qualification des bénéficiaires des contrats
     #  de professionnalisation :
@@ -54,10 +55,9 @@ class remuneration_professionnalisation(Variable):
     #  au minimum 85 % du salaire minimum prévu par la convention ou l'accord de branche auquel est soumise
     #  l'entreprise.
 
-    def function(self, simulation, period):
-        period = period.this_month
+    def formula(self, simulation, period):
         age = simulation.calculate('age', period)
-        smic = simulation.legislation_at(period.start).cotsoc.gen.smic_h_b * 52 * 35 / 12
+        smic = simulation.parameters_at(period.start).cotsoc.gen.smic_h_b * 52 * 35 / 12
         professionnalisation = simulation.calculate('professionnalisation', period)
         qualifie = simulation.calculate('qualifie')
         salaire_en_smic = [
@@ -92,14 +92,15 @@ class remuneration_professionnalisation(Variable):
                 (qualifie[age_condition] == qualification) * part_de_smic
                 for qualification, part_de_smic in age_interval['part_de_smic_by_qualification'].iteritems()
                 ])
-        return period, taux_smic * smic * professionnalisation
+        return taux_smic * smic * professionnalisation
 
 
 class exoneration_cotisations_employeur_professionnalisation(Variable):
-    column = FloatCol
+    value_type = float
     entity = Individu
     label = u"Exonération de cotisations patronales pour l'emploi d'un apprenti"
-    url = "http://www.apce.com/pid927/contrat-d-apprentissage.html?espace=1&tp=1&pagination=2"
+    reference = "http://www.apce.com/pid927/contrat-d-apprentissage.html?espace=1&tp=1&pagination=2"
+    definition_period = MONTH
 
     #  Exonération de cotisations sociales patronales d'assurance maladie-maternité, de vieillesse de base,
     #  d'invalidité-décès et d'allocations familiales au titre des rémunérations versées aux demandeurs d'emploi de
@@ -116,8 +117,7 @@ class exoneration_cotisations_employeur_professionnalisation(Variable):
     #  Aide spécifique de 686 euros par accompagnement et pour une année pleine est attribuée sous certaines conditions
     #  aux groupements d'employeurs qui organisent dans le cadre des contrats de professionnalisation
 
-    def function(self, simulation, period):
-        period = period.this_month
+    def formula(self, simulation, period):
         age = simulation.calculate('age', period)
         mmid_employeur = simulation.calculate('mmid_employeur', period)
         famille = simulation.calculate('famille', period)
@@ -125,7 +125,7 @@ class exoneration_cotisations_employeur_professionnalisation(Variable):
         # FIXME: correspond bien à vieillesse de base ?
         cotisations_exonerees = mmid_employeur + famille + vieillesse_plafonnee_employeur
 
-        return period, cotisations_exonerees * (age > 45)
+        return cotisations_exonerees * (age > 45)
         # FIXME: On est bien d'accord qu'il y a les exos uniquement pour les
         # plus de 45 ans?
 

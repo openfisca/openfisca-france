@@ -1,0 +1,9 @@
+brackets:
+- rate:
+    2013-01-01:
+      value: 0.5
+  threshold:
+    2013-01-01:
+      value: 1000000.0
+description: Taxes exceptionnelles sur les hauts revenus
+reference: openfisca

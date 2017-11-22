@@ -2,18 +2,18 @@
 
 from __future__ import division
 
-from numpy import logical_not as not_, maximum as max_, minimum as min_
-
 from openfisca_france.model.base import *  # noqa analysis:ignore
 
 
 class exonere_taxe_habitation(Variable):
-    column = BoolCol(default = True)
+    value_type = bool
+    default_value = True
     entity = Menage
     label = u"Exonération de la taxe d'habitation"
-    url = "http://vosdroits.service-public.fr/particuliers/F42.xhtml"
+    reference = "http://vosdroits.service-public.fr/particuliers/F42.xhtml"
+    definition_period = YEAR
 
-    def function(self, simulation, period):
+    def formula(menage, period, parameters):
         """Exonation de la taxe d'habitation
         Eligibilité:
         - âgé de plus de 60 ans, non soumis à l'impôt de solidarité sur la fortune (ISF) en n-1
@@ -22,54 +22,52 @@ class exonere_taxe_habitation(Variable):
         bénéficiaire de l'allocation aux adultes handicapés (AAH),
         atteint d'une infirmité ou d'une invalidité vous empêchant de subvenir à vos besoins par votre travail.
         """
-        period = period.this_year
-        aah_holder = simulation.compute_add('aah', period)
-        age_holder = simulation.compute('age', period)
-        asi_holder = simulation.compute_add('asi', period)
-        aspa_holder = simulation.compute_add('aspa', period)
-        isf_tot_holder = simulation.compute('isf_tot', period)
-        nbptr_holder = simulation.compute('nbptr', period)
-        rfr_holder = simulation.compute('rfr', period)
-        statut_marital_holder = simulation.compute('statut_marital', period)
-        _P = simulation.legislation_at(period.start)
+        janvier = period.first_month
 
-        aah = self.sum_by_entity(aah_holder)
-        age = self.filter_role(age_holder, role = PREF)
-        asi = self.cast_from_entity_to_roles(asi_holder)
-        asi = self.sum_by_entity(asi)
-        aspa = self.cast_from_entity_to_roles(aspa_holder)
-        aspa = self.sum_by_entity(aspa)
-        isf_tot = self.cast_from_entity_to_role(isf_tot_holder, role = VOUS)
-        isf_tot = self.sum_by_entity(isf_tot)
-        nbptr = self.cast_from_entity_to_role(nbptr_holder, role = VOUS)
-        nbptr = self.sum_by_entity(nbptr)  # TODO: Beurk
-        rfr = self.cast_from_entity_to_role(rfr_holder, role = VOUS)
-        rfr = self.sum_by_entity(rfr)
-        statut_marital = self.filter_role(statut_marital_holder, role = PREF)
+        P = parameters(period).cotsoc.gen
 
-        P = _P.cotsoc.gen
+        age = menage.personne_de_reference('age', janvier)
+        statut_marital = menage.personne_de_reference('statut_marital', janvier)
+
+        aah_i = menage.members('aah', period, options = [ADD])
+        asi_i = menage.members.famille('asi', period, options = [ADD])
+        aspa_i = menage.members.famille('aspa', period, options = [ADD])
+        aah = menage.sum(aah_i)
+        asi = menage.sum(asi_i)
+        aspa = menage.sum(aspa_i)
+
+        isf_tot_i = menage.members.foyer_fiscal('isf_tot', period)
+        isf_tot = menage.sum(isf_tot_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
+
+        nbptr_i = menage.members.foyer_fiscal('nbptr', period)
+        nbptr = menage.sum(nbptr_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)  # TODO: Beurk
+
+        rfr_i = menage.members.foyer_fiscal('rfr', period)
+        rfr = menage.sum(rfr_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
+
 
         seuil_th = P.plaf_th_1 + P.plaf_th_supp * (max_(0, (nbptr - 1) / 2))
         elig = ((age >= 60) + (statut_marital == 4)) * (isf_tot <= 0) * (rfr < seuil_th) + (asi > 0) + (aspa > 0) + (aah > 0)
-        return period, not_(elig)
+        return not_(elig)
 
 
 class taxe_habitation(Variable):
-    column = FloatCol
+    value_type = float
     entity = Menage
     label = u"Taxe d'habitation"
-    url = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?espId=1&pageId=part_taxe_habitation&impot=TH&sfid=50"
+    reference = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?espId=1&pageId=part_taxe_habitation&impot=TH&sfid=50"
+    definition_period = YEAR
 
-    def function(self, simulation, period):
-        last_year= period.last_year
-        exonere_taxe_habitation = simulation.calculate('exonere_taxe_habitation', period)
-        nombre_enfants_a_charge_menage = self.sum_by_entity(simulation.calculate('enfant_a_charge', period))
-        nombre_enfants_majeurs_celibataires_sans_enfant = simulation.calculate('nombre_enfants_majeurs_celibataires_sans_enfant', period)
-        rfr_holder = simulation.compute('rfr', last_year)
+    def formula(menage, period, parameters):
+        last_year = period.last_year
 
-        rfr = self.cast_from_entity_to_role(rfr_holder, role = VOUS)
-        rfr = self.sum_by_entity(rfr)
+        exonere_taxe_habitation = menage('exonere_taxe_habitation', period)
+        enfant_a_charge_i = menage.members('enfant_a_charge', period)
+        nombre_enfants_a_charge_menage = menage.sum(enfant_a_charge_i)
+        nombre_enfants_majeurs_celibataires_sans_enfant = menage('nombre_enfants_majeurs_celibataires_sans_enfant', period)
 
+        rfr_i = menage.members.foyer_fiscal('rfr', last_year)
+        rfr = menage.sum(rfr_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
 
         # Variables TODO: à inclure dans la fonction
         valeur_locative_brute = 0
@@ -167,4 +165,4 @@ class taxe_habitation(Variable):
         prelevement_residence_secondaire = 0  # TODO
 
 
-        return period, - exonere_taxe_habitation * 0
+        return - exonere_taxe_habitation * 0

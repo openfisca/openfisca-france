@@ -27,15 +27,15 @@ def add_member(entity, **variables_value_by_name):
 
     # Add a cell to all arrays of all variables of entity.
     for variable_name, variable_holder in entity.holder_by_name.iteritems():
-        column = variable_holder.column
-        if column.is_permanent:
-            variable_holder._array = np.hstack((variable_holder._array, [column.default]))
+        column = variable_holder.variable
+        if column.definition_period is ETERNITY:
+            variable_holder._array = np.hstack((variable_holder._array, [column.default_value]))
         else:
             array_by_period = variable_holder._array_by_period
             if array_by_period is None:
                 variable_holder._array_by_period = array_by_period = {}
             for period, array in array_by_period.iteritems():
-                array_by_period[period] = np.hstack((array, [column.default]))
+                array_by_period[period] = np.hstack((array, [column.default_value]))
 
     # When entity is a person, ensure that the index & role of the person in the other entities are set.
     value_by_name = variables_value_by_name.copy()
@@ -53,13 +53,13 @@ def add_member(entity, **variables_value_by_name):
     # Set arguments in variables.
     for variable_name, value in value_by_name.iteritems():
         variable_holder = simulation.get_or_new_holder(variable_name)
-        column = variable_holder.column
+        column = variable_holder.variable
         if isinstance(value, dict):
             for period, period_value in value.iteritems():
                 array = variable_holder.get_array(period)
                 if array is None:
                     array = np.empty(entity.count, dtype = column.dtype)
-                    array.fill(column.default)
+                    array.fill(column.default_value)
                     variable_holder.put_in_cache(array, period)
                 array[member_index] = period_value
         else:
@@ -67,7 +67,7 @@ def add_member(entity, **variables_value_by_name):
             array = variable_holder.get_array(period)
             if array is None:
                 array = np.empty(entity.count, dtype = column.dtype)
-                array.fill(column.default)
+                array.fill(column.default_value)
                 variable_holder.put_in_cache(array, period)
             array[member_index] = value
 

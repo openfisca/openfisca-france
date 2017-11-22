@@ -1,0 +1,6 @@
+description: Plafond des dépenses
+reference: ipp
+unit: currency
+values:
+  2009-01-01:
+    value: 25000.0

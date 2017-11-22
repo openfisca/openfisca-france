@@ -1,0 +1,5 @@
+description: Plafond
+reference: openfisca
+values:
+  2005-01-01:
+    value: 1000.0

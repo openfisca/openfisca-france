@@ -4,18 +4,17 @@ from openfisca_france.model.base import *  # noqa analysis:ignore
 
 
 class ada(Variable):
-    column = FloatCol
+    value_type = float
     entity = Famille
     label = u"Montant mensuel  de l'aide pour demandeur d'asile"
-    start_date = date(2015, 11, 1)
+    definition_period = MONTH
 
-    def function(self, simulation, period):
-        period = period.this_month
-        nb_parents = simulation.calculate('nb_parents', period)
-        af_nbenf = simulation.calculate('af_nbenf', period)
-        place_hebergement = simulation.calculate('place_hebergement', period)
-        asile_demandeur = simulation.calculate('asile_demandeur', period)
-        ada = simulation.legislation_at(period.start).prestations.minima_sociaux.ada
+    def formula_2015_11(famille, period, parameters):
+        nb_parents = famille('nb_parents', period)
+        af_nbenf = famille('af_nbenf', period)
+        place_hebergement = famille('place_hebergement', period)
+        asile_demandeur = famille('asile_demandeur', period)
+        ada = parameters(period).prestations.minima_sociaux.ada
 
         nb_pers = af_nbenf + nb_parents
         ada_par_jour = (ada.montant_journalier_pour_une_personne +
@@ -24,16 +23,19 @@ class ada(Variable):
             )
 
         montant_ada = period.days * ada_par_jour * asile_demandeur
-        return period, montant_ada
+        return montant_ada
 
 
 class asile_demandeur(Variable):
-    column = BoolCol
+    value_type = bool
     entity = Famille
     label = u"Famille demandant l'asile"
+    definition_period = MONTH
 
 
 class place_hebergement(Variable):
-    column = BoolCol(default = True)
+    value_type = bool
+    default_value = True
     entity = Famille
     label = u"Bénéficie d'une place dans un centre d'hébergement"
+    definition_period = MONTH
