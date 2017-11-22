@@ -15,7 +15,7 @@ It is defined in [base.py](./base.py) as the default *FrenchTaxBenefitSystem()*
 
 Each test is build upon one scenario, which must contains a test case and a period. They can be builded from the [input_scenario_builder](./input_scenario_builder/build_scenarios_to_test.py). 
 
-These scenarios must have been stored in a .JSON format in [/scenarios](../../tests/calculateur_impots/scenarios/). If no scenarios are to be found in this folder, the programm will build new scenarios to test, by running the [input_scenario_builder](./input_scenario_builder/build_scenarios_to_test.py). 
+These scenarios must have been stored in a .JSON format in [openfisca-france/tests/calculateur_impots/scenarios](../../../tests/calculateur_impots/scenarios/). If no scenarios are to be found in this folder, the programm will build new scenarios to test, by running the [input_scenario_builder](./input_scenario_builder/build_scenarios_to_test.py). 
 
 ## Functionning
  
@@ -29,15 +29,15 @@ For each input scenario found in the folder, a test is created following these t
 
 ## Outputs
 
-All the outputs, as well as the input scenarios, are stored in the [openfisca_france/tests/calculateur_impots/](../../tests/calculateur_impots/) folder.
+All the outputs, as well as the input scenarios, are stored in the [openfisca-france/tests/calculateur_impots/](../../tests/calculateur_impots/) folder.
 
 * **JSON files**
 
-The intermediate JSON files are stored in the subfolder [/json](../../tests/calculateur_impots/json/) with one file for each variable tested, and for each period tested.
+The intermediate JSON files are stored in the subfolder [/json](../../../tests/calculateur_impots/json/) with one file for each variable tested, and for each period tested.
 
 * **YAML tests**
 
-The YAML tests produced are stored in the subfolder [/yaml](../../tests/calculateur_impots/yaml/) with one file for each variable tested and one test for each period in a given file.
+The YAML tests produced are stored in the subfolder [/yaml](../../../tests/calculateur_impots/yaml/) with one file for each variable tested and one test for each period in a given file.
 
 
 -----------------
