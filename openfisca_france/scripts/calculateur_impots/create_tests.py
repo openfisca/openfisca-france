@@ -22,7 +22,6 @@ from openfisca_france.scripts.calculateur_impots import (
 log = logging.getLogger(__name__)
 
 
-year = 2016 # TODO: gérer création de tests pour plusieurs années
 
 calculateur_impots_path =  os.path.join(pkg_resources.get_distribution('OpenFisca-France').location,
     'openfisca_france', 'tests', 'calculateur_impots')

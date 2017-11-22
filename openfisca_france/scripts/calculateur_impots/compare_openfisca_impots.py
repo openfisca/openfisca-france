@@ -30,7 +30,7 @@ from openfisca_france.scripts.calculateur_impots.base import (
 app_name = os.path.splitext(os.path.basename(__file__))[0]
 log = logging.getLogger(app_name)
 tax_benefit_system = openfisca_france.FranceTaxBenefitSystem()
-tax_benefit_system.neutralize_column('rpns_individu')
+tax_benefit_system.neutralize_column('rpns_individu') # TODO: recheck this, for year before 2014 it doesn't work and the program stop due to rpns_individu
 
 
 def compare(scenario, tested = False):
@@ -49,6 +49,8 @@ def compare(scenario, tested = False):
         
     """
     year = scenario.period.date.year
+    assert year > 2010, 'ERROR : the official DGFiP income tax simulator is available only since 2011 (year of income)'
+
     totpac = scenario.test_case['foyers_fiscaux'][0].get('personnes_a_charge')
     impots_arguments = transform_scenario_to_tax_calculator_inputs(scenario)
     simulation = scenario.new_simulation(debug = True)

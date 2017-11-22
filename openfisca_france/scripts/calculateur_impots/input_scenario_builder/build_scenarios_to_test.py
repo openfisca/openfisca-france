@@ -40,23 +40,25 @@ def create_all_scenarios_to_test(directory):
 
     """
     assert os.path.isdir(os.path.join(directory)), 'ERROR : directory {} does not exist'.format(directory)
-    year = 2016
+    years = range(2015,2017) # years = range(2011,2017) => all years for which the income tax simulator online is available
 
-    # TYPE 1 SCENARIOS
-    fixed_wage_amount = 50000
-    tested_income_amounts = [20000]
-   
-    for variable in base.individual_income_variables_to_test:
-        for amount in tested_income_amounts:
-            scenario = define_single_worker_scenario(year, {'salaire_imposable': fixed_wage_amount, variable: amount})
-            json_filename = "test" + '-' + variable + '-' + str(scenario.period.date.year)
-            if os.path.isfile(os.path.join(directory, json_filename)):
-                log.debug("WARNING : file {} already exists".format(json_filename))
-            with codecs.open(os.path.join(directory, json_filename + '.json'), 'w', encoding = 'utf-8') as fichier:
-                json.dump(add_scenario(scenario), fichier, encoding='utf-8', ensure_ascii=False, indent=2, sort_keys=True)
+    for year in years:
+        
+        # TYPE 1 SCENARIOS
+        fixed_wage_amount = 50000
+        tested_income_amounts = [20000]
+    
+        for variable in base.individual_income_variables_to_test:
+            for amount in tested_income_amounts:
+                scenario = define_single_worker_scenario(year, {'salaire_imposable': fixed_wage_amount, variable: amount})
+                json_filename = "test" + '-' + variable + '-' + str(scenario.period.date.year)
+                if os.path.isfile(os.path.join(directory, json_filename)):
+                    log.debug("WARNING : file {} already exists".format(json_filename))
+                with codecs.open(os.path.join(directory, json_filename + '.json'), 'w', encoding = 'utf-8') as fichier:
+                    json.dump(add_scenario(scenario), fichier, encoding='utf-8', ensure_ascii=False, indent=2, sort_keys=True)
 
-    # TYPE 2 SCENARIOS
-    # TODO
+        # TYPE 2 SCENARIOS
+        # TODO
 
 
 def define_single_worker_scenario(year, value_by_variable):
