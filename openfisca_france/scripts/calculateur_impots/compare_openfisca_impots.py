@@ -33,7 +33,7 @@ tax_benefit_system = openfisca_france.FranceTaxBenefitSystem()
 tax_benefit_system.neutralize_column('rpns_individu') # TODO: recheck this, for year before 2014 it doesn't work and the program stop due to rpns_individu
 
 
-def compare(scenario, tested = False):
+def compare(scenario, tested = False, verbose = False):
     """
         Function that computes the official DGFiP income tax simulation (loaded from its website) of a given scenario and compares 
         it to the OpenFisca income tax simulation. It compares the income tax amount but also all possible variables common to both 
@@ -66,7 +66,7 @@ def compare(scenario, tested = False):
             fields[code] = {
                 'code': code,
                 'name': names[code] if (code in names) else u'nom inconnu',
-                'value': float(element.get('value').replace(" ", "")),
+                'value': round(float(element.get('value').replace(" ", ""))), 
                 }
         except ValueError:
             fields[code] = {
@@ -76,12 +76,12 @@ def compare(scenario, tested = False):
                 }
 
     if tested:
-        compare_variables(fields, simulation)
+        compare_variables(fields, simulation, verbose = verbose)
 
     return fields, simulation
 
 
-def compare_variable(field, openfisca_variable_name, simulation, verbose = True):
+def compare_variable(field, openfisca_variable_name, simulation, verbose = False):
     """
         Function that compares the value of a given variable from the DGFiP income tax simulation to the one of a given
         OpenFisca associated variable
@@ -95,18 +95,22 @@ def compare_variable(field, openfisca_variable_name, simulation, verbose = True)
         Contains the name of the associated variable from OpenFisca
 
         simulation: 
-        verbose: Default = True
+        verbose: Default = False
         
     """
     code = field['code']
     name = field['name']
     dgfip_value = field['value']
+    # Prise en compte du fait que irpp est sous format négatif
+    if (openfisca_variable_name == "irpp") | (openfisca_variable_name == "irpp_noncale"):
+        dgfip_value = - dgfip_value
+    
     openfisca_value = simulation.calculate(openfisca_variable_name)
     field['openfisca_name'] = openfisca_variable_name
     assert len(openfisca_value) == 1
     if verbose:
         print(u'{} ({}) = {}'.format(code, name, openfisca_variable_name).encode('utf-8'))
-        print(u'{} vs {}'.format(dgfip_value, openfisca_value[0]).encode('utf-8'))
+        print(u'{} vs {}'.format(dgfip_value, round(openfisca_value[0])).encode('utf-8'))
 
 
 def compare_variables(fields, simulation, verbose = True):

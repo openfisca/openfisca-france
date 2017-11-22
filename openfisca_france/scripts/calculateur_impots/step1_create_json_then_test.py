@@ -15,7 +15,7 @@ log = logging.getLogger(__name__)
 
 def add_official(scenario, tested = False):
     json_scenario = scenario.to_json()
-    fields, _ = compare(scenario, tested)
+    fields, _ = compare(scenario, tested, verbose = False)
     return {'scenario': json_scenario, 'resultat_officiel': fields}
 
 
@@ -63,6 +63,6 @@ def create_json(scenario, directory, var = "", tested = True, rebuild_json = Fal
         log.info("The JSON file {} already exists and was rebuilt".format(json_filename))
     else:
         log.info("The JSON file {} already exists and was not modified".format(json_filename))
-        compare(scenario, tested)
+        compare(scenario, tested, verbose = True)
     
     return json_filename
