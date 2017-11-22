@@ -24,7 +24,7 @@ log = logging.getLogger(__name__)
 
 
 calculateur_impots_path =  os.path.join(pkg_resources.get_distribution('OpenFisca-France').location,
-    'openfisca_france', 'tests', 'calculateur_impots')
+    'tests', 'calculateur_impots')
 scenarios_to_test_directory = os.path.join(calculateur_impots_path, 'scenarios')
 output_json_directory = os.path.join(calculateur_impots_path, 'json')
 output_yaml_directory = os.path.join(calculateur_impots_path, 'yaml')
