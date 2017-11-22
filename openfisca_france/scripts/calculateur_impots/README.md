@@ -43,3 +43,8 @@ The YAML tests produced are stored in the subfolder [/yaml](../../tests/calculat
 -----------------
 
 NB : to test the result of an OpenFisca income tax simulation for a given year and a given scenario, one can use [compare_openfisca_impots.py](./compare_openfisca_impots.py) and define by hand the scenario wanted in *define_scenario()*
+
+NB2 : to run the YAML tests created, one can use the command *openfisca-run-test* like the following example : 
+```
+open-fisca-run-test openfisca_france/tests/calculateur_impots/yaml chomage_imposable.yaml
+```
