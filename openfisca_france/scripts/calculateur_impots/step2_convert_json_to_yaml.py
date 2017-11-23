@@ -72,6 +72,7 @@ def json_to_yaml(json_dir, json_filename, var, output_dir):
         ))
     test.update(scenario.to_json())
     test['period'] = scenario.period.start.year
+    test['absolute_error_margin'] = 1
     test_case = test.pop('test_case', None)
     for entity_name_plural, entity_variables in test_case.iteritems():
         test[entity_name_plural] = entity_variables
