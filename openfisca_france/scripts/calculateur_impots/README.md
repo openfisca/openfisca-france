@@ -46,5 +46,5 @@ NB : to test the result of an OpenFisca income tax simulation for a given year a
 
 NB2 : to run the YAML tests created, one can use the command *openfisca-run-test* like the following example : 
 ```
-openfisca-run-test tests/calculateur_impots/yaml chomage_imposable.yaml
+openfisca-run-test tests/calculateur_impots/yaml/chomage_imposable.yaml --c openfisca_france
 ```
