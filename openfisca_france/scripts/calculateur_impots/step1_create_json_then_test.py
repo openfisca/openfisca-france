@@ -16,6 +16,9 @@ log = logging.getLogger(__name__)
 def add_official(scenario, tested = False):
     json_scenario = scenario.to_json()
     fields, _ = compare(scenario, tested, verbose = False)
+    fields.pop("Annee", None)
+    fields.pop("Type", None)
+    fields.pop("blanc", None)
     return {'scenario': json_scenario, 'resultat_officiel': fields}
 
 
