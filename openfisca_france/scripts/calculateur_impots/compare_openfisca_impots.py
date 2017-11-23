@@ -78,7 +78,15 @@ def compare(scenario, tested = False, verbose = False):
         # Converting taxes into negative numbers (as in OpenFisca)
         if (fields[code]['code'] == "IINET") | (fields[code]['code'] == "IINETIR") | (fields[code]['code'] == "IRESTIR"):
             fields[code]['value'] = -fields[code]['value'] 
-    
+        
+        # Prise en compte des calages dans branche Taxipp d'OpenFisca-france (PROVISOIRE)
+        if fields[code]['openfisca_name'] == "irpp" :
+            fields[code]['openfisca_name'] = "irpp_noncale"
+
+    # If the simulator has no fields IINETIR or IRESTIR, we take field IINET and compare it to the irpp variable of OpenFisca (even if these 2 variables are not entirely the same thing)
+    if ("IINETIR" not in fields.keys()) and ("IRESTIR" not in fields.keys()) and ("IINET" in fields.keys()): 
+        fields['IINET']['openfisca_name'] = "irpp_noncale"
+
     if tested:
         compare_variables(fields, simulation, verbose = verbose)
 
@@ -115,23 +123,11 @@ def compare_variable(field, openfisca_variable_name, simulation, verbose = False
 
 
 def compare_variables(fields, simulation, verbose = True):
-    iinet = 1
 
     for code, field in fields.iteritems():
-        if code == 'IINETIR' or code == 'IRESTIR':
-            iinet = 0
         openfisca_variable_name = field['openfisca_name']
-        
-        # Prise en compte des calages dans branche Taxipp d'OpenFisca-france
-        if openfisca_variable_name == "irpp" :
-            openfisca_variable_name = "irpp_noncale"
-
         if openfisca_variable_name is not None:
             compare_variable(field, openfisca_variable_name, simulation, verbose)
-
-     # S'il n'y a pas IINETIR et IRESTIR dans les résultats, on compare irpp à IINET (pas exactement la même chose)
-    if iinet:
-        compare_variable(fields['IINET'], 'irpp_noncale', simulation, verbose)
 
 
 def define_scenario(year, tax_benefit_system = tax_benefit_system):
