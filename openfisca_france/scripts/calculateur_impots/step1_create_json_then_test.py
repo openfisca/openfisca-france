@@ -19,7 +19,7 @@ def add_official(scenario, tested = False):
     return {'scenario': json_scenario, 'resultat_officiel': fields}
 
 
-def create_json(scenario, directory, var = "", tested = True, rebuild_json = False):
+def create_json(scenario, directory, var = "", tested = False, rebuild_json = False):
     """
         Function that export a given scenario and the result of the official DGFiP income tax simulation applied to this scenario,
         into a .JSON file.

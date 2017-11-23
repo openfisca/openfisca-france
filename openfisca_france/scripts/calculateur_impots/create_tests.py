@@ -53,5 +53,5 @@ for filename in sorted(os.listdir(scenarios_to_test_directory)):
         input_data = conv.check(input_scenario_to_json)(fichier.read())
         scenario_to_test = input_data['scenario']
         variable_to_test = os.path.basename(filename).split('-',5)[1]
-        json_filename = step1.create_json(scenario_to_test, directory = output_json_directory, var = variable_to_test, tested = True, rebuild_json = True)
+        json_filename = step1.create_json(scenario_to_test, directory = output_json_directory, var = variable_to_test, tested = False, rebuild_json = True)
         step2.json_to_yaml(output_json_directory, json_filename + '.json', variable_to_test, output_yaml_directory)
