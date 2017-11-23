@@ -65,15 +65,20 @@ def compare(scenario, tested = False, verbose = False):
             fields[code] = {
                 'code': code,
                 'name': names[code] if (code in names) else u'nom inconnu',
-                'value': round(float(element.get('value').replace(" ", ""))), 
+                'value': round(float(element.get('value').replace(" ", ""))),
+                'openfisca_name': openfisca_variable_name_by_tax_calculator_code.get(code),
                 }
         except ValueError:
             fields[code] = {
                 'code': code,
                 'name': names[code] if (code in names) else u'nom inconnu',
                 'value': element.get('value').replace(" ", ""),
+                'openfisca_name': openfisca_variable_name_by_tax_calculator_code.get(code),
                 }
-
+        # Converting taxes into negative numbers (as in OpenFisca)
+        if (fields[code]['code'] == "IINET") | (fields[code]['code'] == "IINETIR") | (fields[code]['code'] == "IRESTIR"):
+            fields[code]['value'] = -fields[code]['value'] 
+    
     if tested:
         compare_variables(fields, simulation, verbose = verbose)
 
@@ -100,12 +105,9 @@ def compare_variable(field, openfisca_variable_name, simulation, verbose = False
     code = field['code']
     name = field['name']
     dgfip_value = field['value']
-    # Prise en compte du fait que irpp est sous format négatif
-    if (openfisca_variable_name == "irpp") | (openfisca_variable_name == "irpp_noncale"):
-        dgfip_value = - dgfip_value
     
     openfisca_value = simulation.calculate(openfisca_variable_name, simulation.period)
-    field['openfisca_name'] = openfisca_variable_name
+    openfisca_variable_name = field['openfisca_name']
     assert len(openfisca_value) == 1
     if verbose:
         print(u'{} ({}) = {}'.format(code, name, openfisca_variable_name).encode('utf-8'))
@@ -118,7 +120,7 @@ def compare_variables(fields, simulation, verbose = True):
     for code, field in fields.iteritems():
         if code == 'IINETIR' or code == 'IRESTIR':
             iinet = 0
-        openfisca_variable_name = openfisca_variable_name_by_tax_calculator_code.get(code)
+        openfisca_variable_name = field['openfisca_name']
         
         # Prise en compte des calages dans branche Taxipp d'OpenFisca-france
         if openfisca_variable_name == "irpp" :
