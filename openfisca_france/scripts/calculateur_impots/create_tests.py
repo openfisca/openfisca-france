@@ -48,10 +48,35 @@ if not os.path.exists(os.path.join(output_yaml_directory)):
     os.makedirs(os.path.join(output_yaml_directory))
 
 
+rebuild_option = False
+
 for filename in sorted(os.listdir(scenarios_to_test_directory)):
+
+    variable_to_test = os.path.basename(filename).split('-')[1]
+    period_to_test = os.path.basename(filename).split('.')[0].split('-')[2]
+    
+    if rebuild_option is False:
+
+        json_filename_prefix = variable_to_test + '-' + period_to_test
+        json_filename = [json_file for json_file in os.listdir(output_json_directory) if json_file.startswith(json_filename_prefix)]
+        json_exist = (len(json_filename)>0)
+        if json_exist:
+            log.info("JSON file for scenario {} already exists".format(filename))
+            log.info("JSON file and YAML file were not rebuilt")
+            continue
+
     with codecs.open(os.path.join(scenarios_to_test_directory, filename), 'r', encoding = 'utf-8') as fichier:
         input_data = conv.check(input_scenario_to_json)(fichier.read())
         scenario_to_test = input_data['scenario']
-        variable_to_test = os.path.basename(filename).split('-',5)[1]
-        json_filename = step1.create_json(scenario_to_test, directory = output_json_directory, var = variable_to_test, tested = False, rebuild_json = True)
-        step2.json_to_yaml(output_json_directory, json_filename + '.json', variable_to_test, output_yaml_directory)
+        json_filename = step1.create_json(
+            scenario = scenario_to_test, 
+            directory = output_json_directory, 
+            var = variable_to_test, 
+            tested = False, 
+            rebuild_json = rebuild_option
+            )
+        step2.json_to_yaml(
+            json_dir = output_json_directory, 
+            json_filename = json_filename + '.json', 
+            var = variable_to_test, 
+            output_dir = output_yaml_directory)
