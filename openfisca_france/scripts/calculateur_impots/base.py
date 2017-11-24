@@ -394,111 +394,127 @@ household_income_variables_to_test = [ # NB: taken from input variables of FELIN
     'f8ta', 'f8ti', 'f8tk', 'f8uy', 
 ]
 
-individual_income_variables_to_test = ['chomage_imposable']
-# individual_income_variables_to_test = [ # NB: taken from input variables of FELIN-ERFS Survey Scenario (TAXIPP) 2014
-#     'aacc_defn',
-#     'aacc_defs',
-#     'aacc_exon',
-#     'aacc_gits',
-#     'aacc_impn', 
-#     'aacc_imps',  # not in 2014
-#     'aacc_pvce', 
-#     'abic_defm', 
-#     'abic_defn', 
-#     'abic_defs',  # not in 2014
-#     'abic_exon', 
-#     'abic_impm', 
-#     'abic_impn', 
-#     'abic_imps',  # not in 2014
-#     'abic_pvce', 
-#     'abnc_defi', 
-#     'abnc_exon', 
-#     'abnc_impo', 
-#     'abnc_proc', 
-#     'abnc_pvce', 
-#     'alnp_defs',  # TODO , update OpenFisca-france def of alnp_defs (wrong stop_date)
-#     'alnp_imps', 
-#     'arag_defi', 
-#     'arag_exon', 
-#     'arag_impg', 
-#     'arag_pvce', 
-#     'cbnc_assc',  
-#     'chomage_imposable',
-#     'cncn_aimp', 
-#     'cncn_bene', 
-#     'cncn_defi',  # TODO, check (f5nr)
-#     'cncn_exon', 
-#     'cncn_info', 
-#     'cncn_jcre', 
-#     'cncn_pvce', 
-#     'ebic_imps',  # TODO , update OpenFisca-france def of ebic_imps (wrong stop_date)
-#     'ebic_impv',  # TODO , update OpenFisca-france def of ebic_impv (wrong stop_date)
-#     'ebnc_impo',  # TODO , update OpenFisca-france def of ebnc_impo (wrong stop_date)
-#     # 'f1tv', 'f1tw', 'f1tx',  => individual incomes but not with this name.. TO CHECK
-#     'frag_exon', 
-#     'frag_fore', 
-#     'frag_impo', 
-#     'frag_pvce', 
-#     'frag_pvct', 
-#     'macc_exon', 
-#     'macc_imps', 
-#     'macc_impv', 
-#     'macc_mvct', 
-#     'macc_pvce', 
-#     'macc_pvct', 
-#     'mbic_exon', 
-#     'mbic_imps', 
-#     'mbic_impv', 
-#     'mbic_mvct', 
-#     'mbic_pvce', 
-#     'mbic_pvct', 
-#     'mbnc_exon', 
-#     'mbnc_impo', 
-#     'mbnc_mvct', 
-#     'mbnc_mvlt', 
-#     'mbnc_pvce', 
-#     'mbnc_pvct', 
-#     'mncn_exon', 
-#     'mncn_impo', 
-#     'mncn_mvct', 
-#     'mncn_pvce', 
-#     'mncn_pvct', 
-#     'nacc_defn', 
-#     'nacc_defs', 
-#     'nacc_exon', 
-#     'nacc_impn', 
-#     'nacc_meup',  #TODO , check
-#     'nacc_pvce',  # TODO , update OpenFisca-france def of nacc_pvce (wrong stop_date)
-#     'nbic_apch', 
-#     'nbic_defn', 
-#     'nbic_defs',  # not in 2014
-#     'nbic_exon', 
-#     'nbic_impm', 
-#     'nbic_impn', 
-#     'nbic_imps',  # TODO , wrong 2014 definition
-#     'nbic_mvct', 
-#     'nbic_pvce', 
-#     'nbnc_defi', 
-#     'nbnc_exon', 
-#     'nbnc_impo', 
-#     'nbnc_proc', 
-#     'nbnc_pvce', 
-#     'nrag_ajag', 
-#     'nrag_defi', 
-#     'nrag_exon', 
-#     'nrag_impg', 
-#     'nrag_pvce',  # WARNING , 5hk, 5ik, 5jk can be either (nrag_pvce) either (cncn_exon) depending on the year => TODO, handle this
-#     'pensions_alimentaires_percues',
-#     'pensions_invalidite',
-#     'ppe_du_ns',  # TODO , update OpenFisca-france def of ppe_du_ns (wrong stop_date)
-#     'ppe_du_sa',
-#     'ppe_tp_ns',  # TODO , update OpenFisca-france def of ppe_tp_ns (wrong stop_date)
-#     'ppe_tp_sa',
-#     'pveximpres',  
-#     'retraite_imposable',
-#     'retraite_titre_onereux',
-#     'revimpres',
-#     ]
+individual_income_variables_to_test = [ # NB: taken from input variables of FELIN-ERFS Survey Scenario (TAXIPP) 2014
+    # 'f1tv', 'f1tw', 'f1tx',  => individual incomes but not with this name.. TO CHECK
+    #'ppe_tp_ns',  # TODO , update OpenFisca-france def of ppe_tp_ns (wrong stop_date) # WARNING : DGFiP calculator does not like this one
+    #'ppe_tp_sa', # WARNING : DGFiP calculator does not like this one
+    'aacc_defn',
+    'aacc_defs',
+    'aacc_exon',
+    'aacc_gits',
+    'aacc_impn', 
+    'aacc_imps',  # not in 2014
+    'aacc_pvce', 
+    'abic_defm', 
+    'abic_defn', 
+    'abic_defs',  # not in 2014
+    'abic_exon', 
+    'abic_impm', 
+    'abic_impn', 
+    'abic_imps',  # not in 2014
+    'abic_pvce', 
+    'abnc_defi', 
+    'abnc_exon', 
+    'abnc_impo', 
+    'abnc_proc', 
+    'abnc_pvce', 
+    'alnp_defs',  # TODO , update OpenFisca-france def of alnp_defs (wrong stop_date)
+    'alnp_imps', 
+    'arag_defi', 
+    'arag_exon', 
+    'arag_impg', 
+    'arag_pvce', 
+    'cbnc_assc',  
+    'chomage_imposable',
+    'cncn_aimp', 
+    'cncn_bene', 
+    'cncn_defi',  # TODO, check (f5nr)
+    'cncn_exon', 
+    'cncn_info', 
+    'cncn_jcre', 
+    'cncn_pvce', 
+    'ebic_imps',  # TODO , update OpenFisca-france def of ebic_imps (wrong stop_date)
+    'ebic_impv',  # TODO , update OpenFisca-france def of ebic_impv (wrong stop_date)
+    'ebnc_impo',  # TODO , update OpenFisca-france def of ebnc_impo (wrong stop_date)
+    'f7rr', 'f7rq', 'f7rp', 'f7rw', 'f7rv', 'f7ru', 'f7rc', 'f7rb', 'f7ra', 'f7rg', 'f7rf', 'f7re', 'f7rd', 'f7rk', 'f7rj', 'f7rm', 'f7rl', 'f6fl', 'f6fb', 'f6fc', 'f6fa', 'f6fd', 'f6fe', 'f6ps', 'f7gx', 'f7gz', 'f7gt', 'f7gu', 'f7gv', 'f7gw', 'f7gp', 'f7gq', 'f7gs', 'f7gl', 'f7gn', 'f7gh', 'f7gi', 'f7gj', 'f7gk', 'f7ge', 'f7gf', 'f7gg', 'f7ga', 'f7gb', 'f7gc', 'f8tz', 'f8ts', 'f8tp', 'f8tk', 'f8th', 'f8ti', 'f8to', 'f8tl', 'f8tb', 'f8ta', 'f8tf', 'f8tg', 'f8td', 'f8te', 'f7ng', 'f7nf', 'f7ne', 'f7nd', 'f7nc', 'f7nb', 'f7na', 'f7no', 'f7nn', 'f7nm', 'f7nl', 'f7nk', 'f7nj', 'f7ni', 'f7nh', 'f7nw', 'f7nv', 'f7nu', 'f7nt', 'f7ns', 'f7nr', 'f7nq', 'f7np', 'f7nz', 'f7uk', 'f7uh', 'f7un', 'f7uo', 'f7ul', 'f7um', 'f7uc', 'f7uf', 'f7ud', 'f7uz', 'f7ux', 'f7uy', 'f7us', 'f7up', 'f7uq', 'f7uv', 'f7uw', 'f7ut', 'f7uu', 'f7jk', 'f7jj', 'f7ji', 'f7jh', 'f7jo', 'f7jn', 'f7jm', 'f7jl', 'f7jc', 'f7jb', 'f7ja', 'f7jg', 'f7jf', 'f7je', 'f7jd', 'f7jx', 'f7js', 'f7jr', 'f7jq', 'f7jp', 'f7jw', 'f7jv', 'f7ju', 'f7jt', 'f7cc', 'f7cd', 'f7ce', 'f7cf', 'f7cl', 'f7cm', 'f7cn', 'f7cq', 'f7cu', 'f7xf', 'f7xi', 'f7xk', 'f7xj', 'f7xm', 'f7xo', 'f7xn', 'f7xq', 'f7xp', 'f7xs', 'f7xr', 'f7xu', 'f7xt', 'f7xw', 'f7xv', 'f7xy', 'f7xz', 'f6hj', 'f6hk', 'f6hl', 'f6hm', 'f7qx', 'f7qw', 'f7qu', 'f7qs', 'f7qj', 'f7qf', 'f7qg', 'f6gi', 'f6gh', 'f6gj', 'f6gu', 'f6gp', 'f7ma', 'f7mg', 'f7fq', 'f7fn', 'f7fm', 'f7fh', 'f7fd', 'f7fc', 'f7fb', 'f7fa', 'f8uw', 'f8uy', 'f8uz', 'f7te', 'f7td', 'f7tg', 'f7th', 'f6dd', 'f6de', 'f6cb', 'f7iv', 'f7iw', 'f7it', 'f7ir', 'f7ip', 'f7iq', 'f7iz', 'f7if', 'f7ig', 'f7id', 'f7ie', 'f7ib', 'f7ic', 'f7ia', 'f7in', 'f7io', 'f7il', 'f7im', 'f7ij', 'f7ik', 'f7ih', 'f7py', 'f7wl', 'f7wm', 'f7wn', 'f7wo', 'f7wh', 'f7wj', 'f7wk', 'f7we', 'f7wg', 'f7wc', 'f7wp', 'f7wr', 'f6eu', 'f6em', 'f6el', 'f7lm', 'f7li', 'f7le', 'f7ld', 'f7lg', 'f7lf', 'f7la', 'f7lc', 'f7lb', 'f7lz', 'f7ls', 'f8wu', 'f8wt', 'f8wr', 'f8we', 'f8wd', 'f8wc', 'f8wb', 'f8wa', 'f7sp', 'f7sq', 'f7sr', 'f7ss', 'f7st', 'f7su', 'f7sv', 'f7sw', 'f7sx', 'f7sy', 'f7sz', 'f7sf',  'f7si', 'f7sm', 'f7sn', 'f7so', 'f7oa', 'f7ob', 'f7oc', 'f7ol', 'f7om', 'f7on', 'f7oo', 'f7oh', 'f7oi', 'f7oj', 'f7ok', 'f7ot', 'f7ou', 'f7ov', 'f7ow', 'f7op', 'f7oq', 'f7or', 'f7os', 'f7hs', 'f7hr', 'f7hu', 'f7ht', 'f7hw', 'f7hv', 'f7hx', 'f7hz', 'f7ha', 'f7hb', 'f7he', 'f7hd', 'f7hg', 'f7hf', 'f7hh', 'f7hk', 'f7hj', 'f7hm', 'f7hl', 'f7ho', 'f7hn', 'f7ac', 'f7vo', 'f7vg', 'f7vc', 'f7va', 'f7vz', 'f7vy', 'f7vx', 'f7vw', 'f7vv', 'f7vu', 'f7vt', 'f7kh', 'f7ki', 'f7ka', 'f7kb', 'f7kc', 'f7kd', 'f7ks', 'f7df', 'f7db',  
+    #'f6ev', 'f6rs', 'f6ss', 'f7dg', 'f7dl', 'f7dq', 
+    # 'f7sj', 'f7sk', 'f7sl',
+    # 'f7ff', 'f7fg', TODO: f7fg = number of exploitations (must be < 10) (not an income)
+    # 'f7ea', 'f7eb','f7ec', 'f7ef', 'f7eg', 'f7ed', TODO: to test these => need to adjust scenario (nbpac)
+    # 'f7fl', TODO: to test this => need to be living in the DOMs
+    # 'f7is', 'f7iu', 'f7ix', 'f7iy',
+    # 'f7jy', TODO: f7jy must be < 16
+    # 'f7ly', 'f7my', => number of conventions d'aides aux créateurs d'entreprises (not an income)
+    # 'f7nx', 'f7ny', TODO : to test this => f7ny must be < f7nx
+    # 'f7qh', 'f7qi', TODO : to test this => f7qi must be < f7qh
+    # 'f7qr', 'f7qq', TODO : to test this => f7qr must be < f7qq
+    # 'f7ri', 'f7rh', TODO : to test this => f7ri must be < f7rh
+    # 'f7ro', 'f7rn', idem
+    # 'f7rt', 'f7rs', idem
+    # 'f7ry', 'f7rx', idem
+    # 'f7sh', 'f7sd', 'f7se', 'f7sg', TODO: to check
+    'frag_exon', 
+    'frag_fore', 
+    'frag_impo', 
+    'frag_pvce', 
+    'frag_pvct', 
+    'macc_exon', 
+    'macc_imps', 
+    'macc_impv', 
+    'macc_mvct', 
+    'macc_pvce', 
+    'macc_pvct', 
+    'mbic_exon', 
+    'mbic_imps', 
+    'mbic_impv', 
+    'mbic_mvct', 
+    'mbic_pvce', 
+    'mbic_pvct', 
+    'mbnc_exon', 
+    'mbnc_impo', 
+    'mbnc_mvct', 
+    'mbnc_mvlt', 
+    'mbnc_pvce', 
+    'mbnc_pvct', 
+    'mncn_exon', 
+    'mncn_impo', 
+    'mncn_mvct', 
+    'mncn_pvce', 
+    'mncn_pvct', 
+    'nacc_defn', 
+    'nacc_defs', 
+    'nacc_exon', 
+    'nacc_impn', 
+    'nacc_meup',  #TODO , check
+    'nacc_pvce',  # TODO , update OpenFisca-france def of nacc_pvce (wrong stop_date)
+    'nbic_apch', 
+    'nbic_defn', 
+    'nbic_defs',  # not in 2014
+    'nbic_exon', 
+    'nbic_impm', 
+    'nbic_impn', 
+    'nbic_imps',  # TODO , wrong 2014 definition
+    'nbic_mvct', 
+    'nbic_pvce', 
+    'nbnc_defi', 
+    'nbnc_exon', 
+    'nbnc_impo', 
+    'nbnc_proc', 
+    'nbnc_pvce', 
+    'nrag_ajag', 
+    'nrag_defi', 
+    'nrag_exon', 
+    'nrag_impg', 
+    'nrag_pvce',  # WARNING , 5hk, 5ik, 5jk can be either (nrag_pvce) either (cncn_exon) depending on the year => TODO, handle this
+    'pensions_alimentaires_percues',
+    'pensions_invalidite',
+    'ppe_du_ns',  # TODO , update OpenFisca-france def of ppe_du_ns (wrong stop_date)
+    'ppe_du_sa',
+    'pveximpres',  
+    'retraite_imposable',
+    'retraite_titre_onereux',
+    'revimpres',
+    ]
 
 
 def call_tax_calculator(year, inputs):
