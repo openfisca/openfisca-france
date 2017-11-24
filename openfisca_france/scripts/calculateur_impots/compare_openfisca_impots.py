@@ -49,7 +49,7 @@ def compare(scenario, tested = False, verbose = False):
         
     """
     year = scenario.period.date.year
-    assert year > 2010, 'ERROR : the official DGFiP income tax simulator is available only since 2011 (year of income)'
+    assert year > 2010, 'The official DGFiP income tax simulator is available only since 2011 (year of income)'
 
     impots_arguments = transform_scenario_to_tax_calculator_inputs(scenario)
     simulation = scenario.new_simulation(debug = True)

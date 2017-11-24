@@ -40,7 +40,7 @@ def create_all_scenarios_to_test(directory):
 
     """
     assert os.path.isdir(os.path.join(directory)), 'ERROR : directory {} does not exist'.format(directory)
-    years = range(2015,2017) # years = range(2011,2017) => all years for which the income tax simulator online is available
+    years = range(2011,2017)
 
     for year in years:
         
@@ -53,7 +53,7 @@ def create_all_scenarios_to_test(directory):
                 scenario = define_single_worker_scenario(year, {'salaire_imposable': fixed_wage_amount, variable: amount})
                 json_filename = "test" + '-' + variable + '-' + str(scenario.period.date.year)
                 if os.path.isfile(os.path.join(directory, json_filename)):
-                    log.debug("WARNING : file {} already exists".format(json_filename))
+                    log.debug("File {} already exists".format(json_filename))
                 with codecs.open(os.path.join(directory, json_filename + '.json'), 'w', encoding = 'utf-8') as fichier:
                     json.dump(add_scenario(scenario), fichier, encoding='utf-8', ensure_ascii=False, indent=2, sort_keys=True)
 

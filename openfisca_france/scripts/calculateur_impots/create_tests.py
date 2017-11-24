@@ -30,20 +30,20 @@ output_json_directory = os.path.join(calculateur_impots_path, 'json')
 output_yaml_directory = os.path.join(calculateur_impots_path, 'yaml')
 
 if not os.path.exists(os.path.join(scenarios_to_test_directory)):
-    log.info("WARNING : directory {} does not exist".format(scenarios_to_test_directory))
+    log.info("Directory {} does not exist".format(scenarios_to_test_directory))
     log.info("Creating the directory...")
     os.makedirs(os.path.join(scenarios_to_test_directory))
 if not os.listdir(os.path.join(scenarios_to_test_directory)):
-    log.info("WARNING : directory {} is empty".format(scenarios_to_test_directory))
+    log.info("Directory {} is empty".format(scenarios_to_test_directory))
     log.info("Creating new scenarios to test...")
     create_all_scenarios_to_test(scenarios_to_test_directory)
 
 if not os.path.exists(os.path.join(output_json_directory)):
-    log.info("WARNING : directory {} does not exist".format(output_json_directory))
+    log.info("Directory {} does not exist".format(output_json_directory))
     log.info("Creating the directory...")
     os.makedirs(os.path.join(output_json_directory))
 if not os.path.exists(os.path.join(output_yaml_directory)):
-    log.info("WARNING : directory {} does not exist".format(output_yaml_directory))
+    log.info("Directory {} does not exist".format(output_yaml_directory))
     log.info("Creating the directory...")
     os.makedirs(os.path.join(output_yaml_directory))
 
