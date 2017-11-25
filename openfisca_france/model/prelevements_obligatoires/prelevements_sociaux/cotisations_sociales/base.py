@@ -28,6 +28,7 @@ def apply_bareme_for_relevant_type_sal(
                     factor = plafond_securite_sociale,
                     round_base_decimals = round_base_decimals,
                     )
+
     return - sum(iter_cotisations())
 
 
@@ -61,10 +62,12 @@ def compute_cotisation(simulation, period, cotisation_type = None, bareme_name =
 
     assert cotisation_type is not None
     law = simulation.parameters_at(period.start)
+    print(law)
     if cotisation_type == "employeur":
         bareme_by_type_sal_name = law.cotsoc.cotisations_employeur
     elif cotisation_type == "salarie":
         bareme_by_type_sal_name = law.cotsoc.cotisations_salarie
+        print(law.cotsoc.cotisations_salarie)
     assert bareme_name is not None
 
     assiette_cotisations_sociales = simulation.calculate_add('assiette_cotisations_sociales', period)

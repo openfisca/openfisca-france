@@ -17,12 +17,12 @@ def modify_parameters(parameters):
     print(reform_period)
 
     parameters.prelevements_sociaux.cotisations_sociales.chomage.salarie[0].rate.update(period=reform_period, value=0.0)
-    parameters.prelevements_sociaux.contributions.csg.activite.deductible.taux.update(period=reform_period, value=0.068)
-    parameters.prelevements_sociaux.contributions.csg.retraite.deductible.taux_plein.update(period=reform_period, value=0.068)
-    parameters.prestations.minima_sociaux.aspa.montant_annuel_seul.update(period=reform_period, value=(9638.42+100*12))
-    parameters.prestations.minima_sociaux.aspa.montant_annuel_couple.update(period=reform_period, value=(14963.65+100*12))
-    parameters.prestations.minima_sociaux.rsa.montant_de_base_du_rsa.update(period=reform_period, value=(545.48+20))
-    parameters.cotsoc.sal.commun.maladie[0].rate.update(period=reform_period, value=0.10)
+    # parameters.prelevements_sociaux.contributions.csg.activite.deductible.taux.update(period=reform_period, value=0.068)
+    # parameters.prelevements_sociaux.contributions.csg.retraite.deductible.taux_plein.update(period=reform_period, value=0.068)
+    # parameters.prestations.minima_sociaux.aspa.montant_annuel_seul.update(period=reform_period, value=(9638.42+100*12))
+    # parameters.prestations.minima_sociaux.aspa.montant_annuel_couple.update(period=reform_period, value=(14963.65+100*12))
+    # parameters.prestations.minima_sociaux.rsa.montant_de_base_du_rsa.update(period=reform_period, value=(545.48+20))
+    # parameters.cotsoc.sal.commun.maladie[0].rate.update(period=reform_period, value=0.10)
 
     return parameters
 
