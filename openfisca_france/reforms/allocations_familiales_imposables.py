@@ -46,7 +46,8 @@ class allocations_familiales_imposables(Reform):
 
         def formula(self, simulation, period):
             allocations_familiales_imposables = simulation.calculate('allocations_familiales_imposables')
-            f3va_holder = simulation.calculate('f3va')
+            f3va = simulation.calculate('f3va')
+            f3vb = simulation.calculate('f3vb')
             f3vi_holder = simulation.calculate('f3vi')
             f3vz = simulation.calculate('f3vz')
             rfr_cd = simulation.calculate('rfr_cd')
@@ -57,15 +58,16 @@ class allocations_familiales_imposables(Reform):
             rev_cap_lib = simulation.calculate_add('rev_cap_lib')
             microentreprise = simulation.calculate('microentreprise')
 
-            f3va = self.sum_by_entity(f3va_holder)
             f3vi = self.sum_by_entity(f3vi_holder)
             rpns_exon = self.sum_by_entity(rpns_exon_holder)
             rpns_pvce = self.sum_by_entity(rpns_pvce_holder)
 
             return (
                 max_(0, rni - allocations_familiales_imposables) +
-                rfr_cd + rfr_rvcm + rev_cap_lib + f3vi + rpns_exon + rpns_pvce + f3va + f3vz + microentreprise
+                rfr_cd + rfr_rvcm + rev_cap_lib + f3vi + rpns_exon + rpns_pvce + f3va - f3vb + f3vz + microentreprise
                 )
+
+            # TO CHECK : f3vb after 2015 (abattements sur moins-values = interdits)
 
     class allocations_familiales_imposables(Variable):
         value_type = float
