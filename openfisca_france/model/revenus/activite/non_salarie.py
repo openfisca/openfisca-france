@@ -1085,6 +1085,7 @@ class abic_impm(Variable):
     entity = Individu
     label = u"Locations meublées imposables avec CGA ou viseur (régime du bénéfice réel pour les revenus industriels et commerciaux professionnels)"
     # start_date = date(2009, 1, 1)
+    end = '2015-12-31'
     definition_period = YEAR
 
 
@@ -1109,6 +1110,7 @@ class abic_defm(Variable):
     entity = Individu
     label = u"Déficits de locations meubléesavec CGA ou viseur (régime du bénéfice réel pour les revenus industriels et commerciaux professionnels)"
     # start_date = date(2009, 1, 1)
+    end = '2015-12-31'
     definition_period = YEAR
 
 
