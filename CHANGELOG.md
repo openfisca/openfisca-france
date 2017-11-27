@@ -10,10 +10,10 @@
   
   ```
   class TypesAAHNonCalculable(Enum):
-    non_renseigne = u"Non renseigné"
+    calculable = u"Calculable"
     intervention_CDAPH_necessaire = u"intervention_CDAPH_necessaire"
   ```
-  `False` devient `TypesAAHNonCalculable.non_renseigne`
+  `False` devient `TypesAAHNonCalculable.calculable`
   `True` devient `TypesAAHNonCalculable.intervention_CDAPH_necessaire`
   
   Les valeurs possibles des Enums ainsi que les nouvelles valeurs par défaut sont disponibles sur legislation.openfisca.fr
