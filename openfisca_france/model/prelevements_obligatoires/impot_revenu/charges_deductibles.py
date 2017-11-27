@@ -335,7 +335,7 @@ class cd1(Variable):
     label = u"Charges déductibles non plafonnées"
     reference = "http://impotsurlerevenu.org/definitions/215-charge-deductible.php"
     definition_period = YEAR
-    end = '2014-12-31'
+    end = '2016-12-31'
 
     def formula_2002_01_01(self, simulation, period):
         '''
