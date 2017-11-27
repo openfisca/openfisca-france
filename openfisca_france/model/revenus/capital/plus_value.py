@@ -216,7 +216,6 @@ class f3va(Variable):
     # start_date = date(2006, 1, 1)
     definition_period = YEAR
 
-
 class f3vb(Variable):
     cerfa_field = u"3VB"
     value_type = int
