@@ -87,10 +87,10 @@ class TypesAAHNonCalculable(Enum):
     non_renseigne = u"Non renseigné"
     intervention_CDAPH_necessaire = u"intervention_CDAPH_necessaire"
 
+
 class TypesAideLogementNonCalculable(Enum):
-    non_renseigne = u"Non renseigné"
-    primo_accedant = u"Primo accedant"
-    locataire_foyer = u"Locataire foyer"
+    calculable = u"Calculable"
+    locataire_foyer = u"Non calculable (Locataire foyer)"
 
 
 class TypesTauxCSGRemplacement(Enum):
