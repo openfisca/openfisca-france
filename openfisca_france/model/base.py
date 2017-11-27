@@ -78,13 +78,13 @@ class TypesTnsTypeActivite(Enum):
 
 
 class TypesRSANonCalculable(Enum):
-    non_renseigne = u"Non Renseigne"
+    calculable = u"Calculable"
     tns = u"tns"
     conjoint_tns = u"conjoint_tns"
 
 
 class TypesAAHNonCalculable(Enum):
-    non_renseigne = u"Non renseigné"
+    calculable = u"Calculable"
     intervention_CDAPH_necessaire = u"intervention_CDAPH_necessaire"
 
 
