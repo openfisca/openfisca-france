@@ -720,6 +720,36 @@ class grosses_reparations(Variable):
         Dépenses de grosses réparations des nus-propriétaires (case 6CB et 6HJ)
         '''
         f6cb = simulation.calculate('f6cb', period)
+        grorep = simulation.parameters_at(period.start).impot_revenu.charges_deductibles.grosses_reparations
+
+        return min_(f6cb, grorep.plafond)
+
+    def formula_2010(self, simulation, period):
+        '''
+        Dépenses de grosses réparations des nus-propriétaires
+        '''
+        f6cb = simulation.calculate('f6cb', period)
+        f6hj = simulation.calculate('f6hj', period)
+        grorep = simulation.parameters_at(period.start).impot_revenu.charges_deductibles.grosses_reparations
+
+        return min_(f6cb + f6hj, grorep.plafond)
+
+    def formula_2011(self, simulation, period):
+        '''
+        Dépenses de grosses réparations des nus-propriétaires
+        '''
+        f6cb = simulation.calculate('f6cb', period)
+        f6hj = simulation.calculate('f6hj', period)
+        f6hk = simulation.calculate('f6hk', period)
+        grorep = simulation.parameters_at(period.start).impot_revenu.charges_deductibles.grosses_reparations
+
+        return min_(f6cb + f6hj + f6hk, grorep.plafond)
+
+    def formula_2012(self, simulation, period):
+        '''
+        Dépenses de grosses réparations des nus-propriétaires
+        '''
+        f6cb = simulation.calculate('f6cb', period)
         f6hj = simulation.calculate('f6hj', period)
         f6hk = simulation.calculate('f6hk', period)
         f6hl = simulation.calculate('f6hl', period)
