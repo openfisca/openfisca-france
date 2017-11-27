@@ -4,3 +4,6 @@ unit: currency
 values:
   2014-01-01:
     value: 1135.0
+  2015-01-01:
+    value: 1165.0
+  
