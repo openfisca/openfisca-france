@@ -134,7 +134,12 @@ class apa_eligibilite(Variable):
         apa_age_min = parameters.age_ouverture_des_droits.age_d_ouverture_des_droits
 
         gir = individu('gir', period)
-        eligibilite_gir = (0 < gir) & (gir <= 4)
+        eligibilite_gir = (
+            gir == TypesGir.gir_1 +
+            gir == TypesGir.gir_2 +
+            gir == TypesGir.gir_3 +
+            gir == TypesGir.gir_4
+            )
 
         return (age >= apa_age_min) * eligibilite_gir
 
