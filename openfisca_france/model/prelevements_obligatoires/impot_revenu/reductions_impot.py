@@ -435,6 +435,23 @@ class reductions(Variable):
         # TODO: plafonnement pour parti politiques depuis 2012 P.impot_revenu.reductions_impots.dons.max_niv
 
 
+class accult(Variable):
+    value_type = float
+    entity = FoyerFiscal
+    label = u"Acquisition de biens culturels"
+    definition_period = YEAR
+
+    def formula_2002(foyer_fiscal, period, parameters):
+        '''
+        Acquisition de biens culturels (case 7UO)
+        '''
+        f7uo = foyer_fiscal('f7uo', period)
+        _P = parameters(period)
+
+        P = _P.impot_revenu.credits_impot.accult
+        return P.taux * f7uo
+
+
 class adhcga(Variable):
     value_type = float
     entity = FoyerFiscal
