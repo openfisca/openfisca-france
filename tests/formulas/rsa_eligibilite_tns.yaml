@@ -161,7 +161,7 @@
     tns_benefice_exploitant_agricole:
       2014: 10000
   output_variables:
-    rsa_non_calculable: non_renseigne
+    rsa_non_calculable: calculable
 
 - name: "RSA à zéro quand non calculable"
   period: "month:2015-04"

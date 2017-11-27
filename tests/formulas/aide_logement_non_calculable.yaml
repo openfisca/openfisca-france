@@ -10,4 +10,4 @@
   input_variables:
     statut_occupation_logement: locataire_vide
   output_variables:
-    aide_logement_non_calculable: non_renseigne
+    aide_logement_non_calculable: calculable

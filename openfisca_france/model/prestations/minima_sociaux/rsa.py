@@ -631,7 +631,7 @@ class rsa(Variable):
         montant = famille('rsa_montant', period)
         non_calculable = famille('rsa_non_calculable', period)
 
-        return (non_calculable == TypesRSANonCalculable.non_renseigne) * montant
+        return (non_calculable == TypesRSANonCalculable.calculable) * montant
 
 
 class rsa_base_ressources_patrimoine_individu(Variable):
@@ -889,7 +889,6 @@ class rsa_majore_eligibilite(Variable):
 class rsa_non_calculable(Variable):
     value_type = Enum
     possible_values = TypesRSANonCalculable
-    default_value = TypesRSANonCalculable.non_renseigne
     entity = Famille
     label = u"RSA non calculable"
     end = '2016-12-31'
@@ -914,7 +913,7 @@ class rsa_non_calculable(Variable):
 
         return select(
             [non_calculable == 0, non_calculable == 1, non_calculable == 2],
-            [TypesRSANonCalculable.non_renseigne, TypesRSANonCalculable.tns, TypesRSANonCalculable.conjoint_tns]
+            [TypesRSANonCalculable.calculable, TypesRSANonCalculable.tns, TypesRSANonCalculable.conjoint_tns]
         )
 
 
