@@ -187,17 +187,22 @@ class f3vj(Variable):
   # (f3vj, f3vk )
 
 class f3va(Variable):
-    cerfa_field = {QUIFOY['vous']: u"3VA",
-        QUIFOY['conj']: u"3VB",
-        }
+    cerfa_field = u"3VA"
     value_type = int
     unit = 'currency'
-    entity = Individu
+    entity = FoyerFiscal
     label = u"Abattement pour durée de détention des titres en cas de départ à la retraite d'un dirigeant appliqué sur des plus-values"
     # start_date = date(2006, 1, 1)
     definition_period = YEAR
 
-  # (f3va, f3vb )))
+class f3vb(Variable):
+    cerfa_field = u"3VB"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Abattement pour durée de détention des titres en cas de départ à la retraite d'un dirigeant appliqué sur des moins-values"
+    # start_date = date(2006, 1, 1)
+    definition_period = YEAR
 
 # Plus values et gains taxables à des taux forfaitaires
 
