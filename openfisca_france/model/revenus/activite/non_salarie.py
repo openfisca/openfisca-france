@@ -188,7 +188,7 @@ class ebic_impv(Variable):
     entity = Individu
     label = u"Revenus industriels et commerciaux professionnels imposables: vente de marchandises et assimilées (régime auto-entrepreneur)"
     # start_date = date(2009, 1, 1)
-    end = '2009-12-31'
+    end = '2016-12-31'
     definition_period = YEAR
 
   # (f5ta, f5ua, f5va))
@@ -202,7 +202,7 @@ class ebic_imps(Variable):
     entity = Individu
     label = u"Revenus industriels et commerciaux professionnels imposables: prestations de services et locations meublées (régime auto-entrepreneur)"
     # start_date = date(2009, 1, 1)
-    end = '2009-12-31'
+    end = '2016-12-31'
     definition_period = YEAR
 
   # (f5tb, f5ub, f5vb))
@@ -216,7 +216,7 @@ class ebnc_impo(Variable):
     entity = Individu
     label = u"Revenus non commerciaux (régime auto-entrepreneur ayant opté pour le versement libératoire)"
     # start_date = date(2009, 1, 1)
-    end = '2009-12-31'
+    end = '2016-12-31'
     definition_period = YEAR
 
   # (f5te, f5ue, f5ve))
