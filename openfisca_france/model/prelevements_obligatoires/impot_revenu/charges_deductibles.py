@@ -247,6 +247,33 @@ class f6hm(Variable):
     # start_date = date(2013, 1, 1)
     definition_period = YEAR
 
+class f6hn(Variable):
+    cerfa_field = u"6HN"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses des années antérieures"
+    # start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+class f6ho(Variable):
+    cerfa_field = u"6HO"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses des années antérieures"
+    # start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+class f6hp(Variable):
+    cerfa_field = u"6HP"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses des années antérieures"
+    # start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
 
 # Sommes à rajouter au revenu imposable
 class f6gh(Variable):
@@ -699,3 +726,62 @@ class grosses_reparations(Variable):
         grorep = simulation.parameters_at(period.start).impot_revenu.charges_deductibles.grosses_reparations
 
         return min_(f6cb + f6hj + f6hk + f6hl, grorep.plafond)
+
+    def formula_2013(self, simulation, period):
+        '''
+        Dépenses de grosses réparations des nus-propriétaires
+        '''
+        f6cb = simulation.calculate('f6cb', period)
+        f6hj = simulation.calculate('f6hj', period)
+        f6hk = simulation.calculate('f6hk', period)
+        f6hl = simulation.calculate('f6hl', period)
+        f6hm = simulation.calculate('f6hm', period)
+        grorep = simulation.parameters_at(period.start).impot_revenu.charges_deductibles.grosses_reparations
+
+        return min_(f6cb + f6hj + f6hk + f6hl + f6hm, grorep.plafond)
+
+
+    def formula_2014(self, simulation, period):
+        '''
+        Dépenses de grosses réparations des nus-propriétaires
+        '''
+        f6cb = simulation.calculate('f6cb', period)
+        f6hj = simulation.calculate('f6hj', period)
+        f6hk = simulation.calculate('f6hk', period)
+        f6hl = simulation.calculate('f6hl', period)
+        f6hm = simulation.calculate('f6hm', period)
+        f6hn = simulation.calculate('f6hn', period)
+        grorep = simulation.parameters_at(period.start).impot_revenu.charges_deductibles.grosses_reparations
+
+        return min_(f6cb + f6hj + f6hk + f6hl + f6hm + f6hn, grorep.plafond)
+
+    def formula_2015(self, simulation, period):
+        '''
+        Dépenses de grosses réparations des nus-propriétaires
+        '''
+        f6cb = simulation.calculate('f6cb', period)
+        f6hj = simulation.calculate('f6hj', period)
+        f6hk = simulation.calculate('f6hk', period)
+        f6hl = simulation.calculate('f6hl', period)
+        f6hm = simulation.calculate('f6hm', period)
+        f6hn = simulation.calculate('f6hn', period)
+        f6ho = simulation.calculate('f6ho', period)
+        grorep = simulation.parameters_at(period.start).impot_revenu.charges_deductibles.grosses_reparations
+
+        return min_(f6cb + f6hj + f6hk + f6hl + f6hm + f6hn + f6ho, grorep.plafond)
+
+    def formula_2016(self, simulation, period):
+        '''
+        Dépenses de grosses réparations des nus-propriétaires
+        '''
+        f6cb = simulation.calculate('f6cb', period)
+        f6hj = simulation.calculate('f6hj', period)
+        f6hk = simulation.calculate('f6hk', period)
+        f6hl = simulation.calculate('f6hl', period)
+        f6hm = simulation.calculate('f6hm', period)
+        f6hn = simulation.calculate('f6hn', period)
+        f6ho = simulation.calculate('f6ho', period)
+        f6hp = simulation.calculate('f6hp', period)
+        grorep = simulation.parameters_at(period.start).impot_revenu.charges_deductibles.grosses_reparations
+
+        return min_(f6cb + f6hj + f6hk + f6hl + f6hm + f6hn + f6ho + f6hp, grorep.plafond)
