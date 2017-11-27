@@ -135,10 +135,10 @@ class apa_eligibilite(Variable):
 
         gir = individu('gir', period)
         eligibilite_gir = (
-            gir == TypesGir.gir_1 +
-            gir == TypesGir.gir_2 +
-            gir == TypesGir.gir_3 +
-            gir == TypesGir.gir_4
+            (gir == TypesGir.gir_1) +
+            (gir == TypesGir.gir_2) +
+            (gir == TypesGir.gir_3) +
+            (gir == TypesGir.gir_4)
             )
 
         return (age >= apa_age_min) * eligibilite_gir
