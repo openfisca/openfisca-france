@@ -305,7 +305,7 @@ class abattement_net_duree_detention(Variable):
         f3sl = foyer_fiscal('f3sl', period)
 
         return f3sg + f3sl 
-
+    
 
 # Plus values et gains taxables à des taux forfaitaires
 
