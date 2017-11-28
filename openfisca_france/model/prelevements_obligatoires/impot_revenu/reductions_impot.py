@@ -22,6 +22,7 @@ class reductions(Variable):
         '''
         Renvoie la somme des réductions d'impôt à intégrer pour l'année 2002
         '''
+        accult = simulation.calculate('accult', period)
         adhcga = simulation.calculate('adhcga', period)
         assvie = simulation.calculate('assvie', period)
         cappme = simulation.calculate('cappme', period)
@@ -42,7 +43,7 @@ class reductions(Variable):
         saldom = simulation.calculate('saldom', period)
         spfcpi = simulation.calculate('spfcpi', period)
 
-        total_reductions = (adhcga + assvie + cappme + cotsyn + dfppce + daepad + doment + domlog + donapd + ecpess +
+        total_reductions = (accult + adhcga + assvie + cappme + cotsyn + dfppce + daepad + doment + domlog + donapd + ecpess +
                 garext + intemp + invfor + invrev + prcomp + rsceha + saldom + spfcpi)
         return min_(ip_net, total_reductions)
 
@@ -50,6 +51,7 @@ class reductions(Variable):
         '''
         Renvoie la somme des réductions d'impôt à intégrer pour l'année 2003 et 2004
         '''
+        accult = simulation.calculate('accult', period)
         adhcga = simulation.calculate('adhcga', period)
         assvie = simulation.calculate('assvie', period)
         cappme = simulation.calculate('cappme', period)
@@ -71,7 +73,7 @@ class reductions(Variable):
         saldom = simulation.calculate('saldom', period)
         spfcpi = simulation.calculate('spfcpi', period)
 
-        total_reductions = (adhcga + assvie + cappme + cotsyn + dfppce + daepad + doment + domlog + donapd + ecpess +
+        total_reductions = (accult + adhcga + assvie + cappme + cotsyn + dfppce + daepad + doment + domlog + donapd + ecpess +
                 garext + intemp + invfor + invrev + prcomp + repsoc + rsceha + saldom + spfcpi)
         return min_(ip_net, total_reductions)
 
@@ -79,6 +81,7 @@ class reductions(Variable):
         '''
         Renvoie la somme des réductions d'impôt à intégrer pour l'année 2005
         '''
+        accult = simulation.calculate('accult', period)
         adhcga = simulation.calculate('adhcga', period)
         cappme = simulation.calculate('cappme', period)
         cotsyn = simulation.calculate('cotsyn', period)
@@ -99,7 +102,7 @@ class reductions(Variable):
         saldom = simulation.calculate('saldom', period)
         spfcpi = simulation.calculate('spfcpi', period)
 
-        total_reductions = (adhcga + cappme + cotsyn + daepad + dfppce + doment + domlog + donapd + ecpess + intagr +
+        total_reductions = (accult + adhcga + cappme + cotsyn + daepad + dfppce + doment + domlog + donapd + ecpess + intagr +
                 intcon + invfor + invlst + prcomp + repsoc + rsceha + saldom + spfcpi)
         return min_(ip_net, total_reductions)
 
@@ -107,6 +110,7 @@ class reductions(Variable):
         '''
         Renvoie la somme des réductions d'impôt à intégrer pour l'année 2006
         '''
+        accult = simulation.calculate('accult', period)
         adhcga = simulation.calculate('adhcga', period)
         cappme = simulation.calculate('cappme', period)
         cotsyn = simulation.calculate('cotsyn', period)
@@ -129,7 +133,7 @@ class reductions(Variable):
         sofica = simulation.calculate('sofica', period)
         spfcpi = simulation.calculate('spfcpi', period)
 
-        total_reductions = (adhcga + cappme + cotsyn + creaen + daepad + deffor + dfppce + doment + domlog + donapd +
+        total_reductions = (accult + adhcga + cappme + cotsyn + creaen + daepad + deffor + dfppce + doment + domlog + donapd +
         ecpess + intagr + invfor + invlst + prcomp + repsoc + rsceha + saldom + sofica + spfcpi)
         return min_(ip_net, total_reductions)
 
@@ -137,6 +141,7 @@ class reductions(Variable):
         '''
         Renvoie la somme des réductions d'impôt à intégrer pour l'année 2007
         '''
+        accult = simulation.calculate('accult', period)
         adhcga = simulation.calculate('adhcga', period)
         cappme = simulation.calculate('cappme', period)
         cotsyn = simulation.calculate('cotsyn', period)
@@ -159,7 +164,7 @@ class reductions(Variable):
         sofica = simulation.calculate('sofica', period)
         spfcpi = simulation.calculate('spfcpi', period)
 
-        total_reductions = (adhcga + cappme + cotsyn + creaen + daepad + deffor + dfppce + doment + domlog + donapd +
+        total_reductions = (accult + adhcga + cappme + cotsyn + creaen + daepad + deffor + dfppce + doment + domlog + donapd +
         ecpess + intagr + invfor + invlst + prcomp + repsoc + rsceha + saldom + sofica + spfcpi)
 
         return min_(ip_net, total_reductions)
@@ -168,6 +173,7 @@ class reductions(Variable):
         '''
         Renvoie la somme des réductions d'impôt à intégrer pour l'année 2008
         '''
+        accult = simulation.calculate('accult', period)
         adhcga = simulation.calculate('adhcga', period)
         cappme = simulation.calculate('cappme', period)
         cotsyn = simulation.calculate('cotsyn', period)
@@ -191,7 +197,7 @@ class reductions(Variable):
         sofica = simulation.calculate('sofica', period)
         spfcpi = simulation.calculate('spfcpi', period)
 
-        total_reductions = (adhcga + cappme + cotsyn + creaen + daepad + deffor + dfppce + doment + domlog + donapd +
+        total_reductions = (accult + adhcga + cappme + cotsyn + creaen + daepad + deffor + dfppce + doment + domlog + donapd +
         ecpess + intagr + invfor + invlst + mohist + prcomp + repsoc + rsceha + saldom + sofica + spfcpi)
         return min_(ip_net, total_reductions)
 
@@ -199,6 +205,7 @@ class reductions(Variable):
         '''
         Renvoie la somme des réductions d'impôt à intégrer pour l'année 2009
         '''
+        accult = simulation.calculate('accult', period)
         adhcga = simulation.calculate('adhcga', period)
         cappme = simulation.calculate('cappme', period)
         cotsyn = simulation.calculate('cotsyn', period)
@@ -228,7 +235,7 @@ class reductions(Variable):
         sofipe = simulation.calculate('sofipe', period)
         spfcpi = simulation.calculate('spfcpi', period)
 
-        total_reductions = (adhcga + cappme + cotsyn + creaen + daepad + deffor + dfppce + doment + domlog + domsoc +
+        total_reductions = (accult + adhcga + cappme + cotsyn + creaen + daepad + deffor + dfppce + doment + domlog + domsoc +
         donapd + ecodev + ecpess + intagr + invfor + invlst + locmeu + mohist + prcomp + repsoc + resimm + rsceha +
         saldom + scelli + sofica + sofipe + spfcpi)
         return min_(ip_net, total_reductions)
@@ -238,6 +245,7 @@ class reductions(Variable):
         '''
         Renvoie la somme des réductions d'impôt à intégrer pour l'année 2010
         '''
+        accult = simulation.calculate('accult', period)
         adhcga = simulation.calculate('adhcga', period)
         cappme = simulation.calculate('cappme', period)
         cotsyn = simulation.calculate('cotsyn', period)
@@ -267,7 +275,7 @@ class reductions(Variable):
         sofipe = simulation.calculate('sofipe', period)
         spfcpi = simulation.calculate('spfcpi', period)
 
-        total_reductions = (adhcga + cappme + cotsyn + creaen + daepad + deffor + dfppce + doment + domlog + domsoc +
+        total_reductions = (accult + adhcga + cappme + cotsyn + creaen + daepad + deffor + dfppce + doment + domlog + domsoc +
         donapd + ecpess + intagr + invfor + invlst + locmeu + mohist + patnat + prcomp + repsoc + resimm + rsceha +
         saldom + scelli + sofica + sofipe + spfcpi)  # TODO: check (sees checked) and report in Niches.xls
         return min_(ip_net, total_reductions)
@@ -276,6 +284,7 @@ class reductions(Variable):
         '''
         Renvoie la somme des réductions d'impôt à intégrer pour l'année 2011
         '''
+        accult = simulation.calculate('accult', period)
         adhcga = simulation.calculate('adhcga', period)
         cappme = simulation.calculate('cappme', period)
         cotsyn = simulation.calculate('cotsyn', period)
@@ -305,7 +314,7 @@ class reductions(Variable):
         sofipe = simulation.calculate('sofipe', period)
         spfcpi = simulation.calculate('spfcpi', period)
 
-        total_reductions = (adhcga + cappme + cotsyn + creaen + daepad + deffor + dfppce + doment + domlog + domsoc +
+        total_reductions = (accult + adhcga + cappme + cotsyn + creaen + daepad + deffor + dfppce + doment + domlog + domsoc +
         donapd + ecpess + intagr + invfor + invlst + locmeu + mohist + patnat + prcomp + repsoc + resimm + rsceha +
         saldom + scelli + sofica + sofipe + spfcpi)
         return min_(ip_net, total_reductions)
@@ -314,6 +323,7 @@ class reductions(Variable):
         '''
         Renvoie la somme des réductions d'impôt à intégrer pour l'année 2012
         '''
+        accult = simulation.calculate('accult', period)
         adhcga = simulation.calculate('adhcga', period)
         cappme = simulation.calculate('cappme', period)
         creaen = simulation.calculate('creaen', period)
@@ -341,7 +351,7 @@ class reductions(Variable):
         sofica = simulation.calculate('sofica', period)
         spfcpi = simulation.calculate('spfcpi', period)
 
-        total_reductions = (adhcga + cappme + creaen + daepad + deffor + dfppce + doment + domlog + domsoc +
+        total_reductions = (accult + adhcga + cappme + creaen + daepad + deffor + dfppce + doment + domlog + domsoc +
         donapd + ecpess + intagr + invfor + invlst + locmeu + mohist + patnat + prcomp + repsoc + resimm + rsceha +
         saldom + scelli + sofica + spfcpi)
         return min_(ip_net, total_reductions)
