@@ -46,8 +46,7 @@ class allocations_familiales_imposables(Reform):
 
         def formula(self, simulation, period):
             allocations_familiales_imposables = simulation.calculate('allocations_familiales_imposables')
-            f3va = simulation.calculate('f3va')
-            f3vb = simulation.calculate('f3vb')
+            abatnet_retraite_dirigeant_pme = simulation.calculate('abatnet_retraite_dirigeant_pme')
             f3vi_holder = simulation.calculate('f3vi')
             f3vz = simulation.calculate('f3vz')
             rfr_cd = simulation.calculate('rfr_cd')
@@ -64,7 +63,7 @@ class allocations_familiales_imposables(Reform):
 
             return (
                 max_(0, rni - allocations_familiales_imposables) +
-                rfr_cd + rfr_rvcm + rev_cap_lib + f3vi + rpns_exon + rpns_pvce + f3va - f3vb + f3vz + microentreprise
+                rfr_cd + rfr_rvcm + rev_cap_lib + f3vi + rpns_exon + rpns_pvce + abatnet_retraite_dirigeant_pme + f3vz + microentreprise
                 )
 
             # TO CHECK : f3vb after 2015 (abattements sur moins-values = interdits)
