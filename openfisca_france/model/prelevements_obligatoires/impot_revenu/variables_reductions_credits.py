@@ -2176,8 +2176,38 @@ class f7cq(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Souscriptions au capital des PME non cotées, report de versement de l'année de perception des revenus -1pour les start-up"
-#    start_date = date(2011, 1, 1)
+    label = u"Souscriptions au capital des PME non cotées, report de versement de l'année de perception des revenus -4 pour les start-up"
+#    start_date = date(2013, 1, 1) # TO CHECK : before 2013, F7CQ was something else...
+    definition_period = YEAR
+
+
+class f7cr(Variable):
+    cerfa_field = u"7CR"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Souscriptions au capital des PME non cotées, report de versement de l'année de perception des revenus -3 pour les start-up"
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+
+class f7cv(Variable):
+    cerfa_field = u"7CV"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Souscriptions au capital des PME non cotées, report de versement de l'année de perception des revenus -2 pour les start-up"
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+
+class f7cx(Variable):
+    cerfa_field = u"7CX"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Souscriptions au capital des PME non cotées, report de versement de l'année de perception des revenus -1 pour les start-up"
+#    start_date = date(2016, 1, 1)
     definition_period = YEAR
 
 
@@ -4452,6 +4482,53 @@ class f7gi(Variable):
 #    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
+
+class f7ek(Variable):
+    cerfa_field = u"7EK"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements locatifs intermÃ©diaires du 1.1 au 31.8.2014 en mÃ©tropole"
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+
+class f7el(Variable):
+    cerfa_field = u"7EL"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements locatifs intermÃ©diaires du 1.1 au 31.8.2014 en outre-mer"
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+
+class f7fi(Variable):
+    cerfa_field = u"7FI"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Report concernant les investissements rÃ©alisÃ©s et achevÃ©s en 2013 en mÃ©tropole et outre-mer"
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+class f7fk(Variable):
+    cerfa_field = u"7FK"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Report concernant les investissements rÃ©alisÃ©s et achevÃ©s en 2014 en mÃ©tropole et outre-mer"
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+class f7fr(Variable):
+    cerfa_field = u"7FR"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Report concernant les investissements rÃ©alisÃ©s et achevÃ©s en 2015 en mÃ©tropole et outre-mer"
+#    start_date = date(2016, 1, 1)
+    definition_period = YEAR
 
 
 # section 8
