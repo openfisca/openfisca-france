@@ -802,7 +802,6 @@ class dfppce(Variable):
     entity = FoyerFiscal
     label = u"dfppce"
     definition_period = YEAR
-    end = '2013-12-31'
 
     def formula_2002_01_01(self, simulation, period):
         '''
