@@ -22,6 +22,7 @@ class reductions(Variable):
         '''
         Renvoie la somme des réductions d'impôt à intégrer pour l'année 2002
         '''
+<<<<<<< HEAD
         adhcga = foyer_fiscal('adhcga', period)
         assvie = foyer_fiscal('assvie', period)
         cappme = foyer_fiscal('cappme', period)
@@ -41,8 +42,30 @@ class reductions(Variable):
         rsceha = foyer_fiscal('rsceha', period)
         saldom = foyer_fiscal('saldom', period)
         spfcpi = foyer_fiscal('spfcpi', period)
+=======
+        accult = simulation.calculate('accult', period)
+        adhcga = simulation.calculate('adhcga', period)
+        assvie = simulation.calculate('assvie', period)
+        cappme = simulation.calculate('cappme', period)
+        cotsyn = simulation.calculate('cotsyn', period)
+        dfppce = simulation.calculate('dfppce', period)
+        daepad = simulation.calculate('daepad', period)
+        doment = simulation.calculate('doment', period)
+        domlog = simulation.calculate('domlog', period)
+        donapd = simulation.calculate('donapd', period)
+        ecpess = simulation.calculate('ecpess', period)
+        garext = simulation.calculate('garext', period)
+        intemp = simulation.calculate('intemp', period)
+        invfor = simulation.calculate('invfor', period)
+        invrev = simulation.calculate('invrev', period)
+        ip_net = simulation.calculate('ip_net', period)
+        prcomp = simulation.calculate('prcomp', period)
+        rsceha = simulation.calculate('rsceha', period)
+        saldom = simulation.calculate('saldom', period)
+        spfcpi = simulation.calculate('spfcpi', period)
+>>>>>>> Add tax reduction 'accult' for year before 2013
 
-        total_reductions = (adhcga + assvie + cappme + cotsyn + dfppce + daepad + doment + domlog + donapd + ecpess +
+        total_reductions = (accult + adhcga + assvie + cappme + cotsyn + dfppce + daepad + doment + domlog + donapd + ecpess +
                 garext + intemp + invfor + invrev + prcomp + rsceha + saldom + spfcpi)
         return min_(ip_net, total_reductions)
 
@@ -50,6 +73,7 @@ class reductions(Variable):
         '''
         Renvoie la somme des réductions d'impôt à intégrer pour l'année 2003 et 2004
         '''
+<<<<<<< HEAD
         adhcga = foyer_fiscal('adhcga', period)
         assvie = foyer_fiscal('assvie', period)
         cappme = foyer_fiscal('cappme', period)
@@ -70,8 +94,31 @@ class reductions(Variable):
         rsceha = foyer_fiscal('rsceha', period)
         saldom = foyer_fiscal('saldom', period)
         spfcpi = foyer_fiscal('spfcpi', period)
+=======
+        accult = simulation.calculate('accult', period)
+        adhcga = simulation.calculate('adhcga', period)
+        assvie = simulation.calculate('assvie', period)
+        cappme = simulation.calculate('cappme', period)
+        cotsyn = simulation.calculate('cotsyn', period)
+        dfppce = simulation.calculate('dfppce', period)
+        daepad = simulation.calculate('daepad', period)
+        doment = simulation.calculate('doment', period)
+        domlog = simulation.calculate('domlog', period)
+        donapd = simulation.calculate('donapd', period)
+        ecpess = simulation.calculate('ecpess', period)
+        garext = simulation.calculate('garext', period)
+        intemp = simulation.calculate('intemp', period)
+        invfor = simulation.calculate('invfor', period)
+        invrev = simulation.calculate('invrev', period)
+        ip_net = simulation.calculate('ip_net', period)
+        prcomp = simulation.calculate('prcomp', period)
+        repsoc = simulation.calculate('repsoc', period)
+        rsceha = simulation.calculate('rsceha', period)
+        saldom = simulation.calculate('saldom', period)
+        spfcpi = simulation.calculate('spfcpi', period)
+>>>>>>> Add tax reduction 'accult' for year before 2013
 
-        total_reductions = (adhcga + assvie + cappme + cotsyn + dfppce + daepad + doment + domlog + donapd + ecpess +
+        total_reductions = (accult + adhcga + assvie + cappme + cotsyn + dfppce + daepad + doment + domlog + donapd + ecpess +
                 garext + intemp + invfor + invrev + prcomp + repsoc + rsceha + saldom + spfcpi)
         return min_(ip_net, total_reductions)
 
@@ -79,6 +126,7 @@ class reductions(Variable):
         '''
         Renvoie la somme des réductions d'impôt à intégrer pour l'année 2005
         '''
+<<<<<<< HEAD
         adhcga = foyer_fiscal('adhcga', period)
         cappme = foyer_fiscal('cappme', period)
         cotsyn = foyer_fiscal('cotsyn', period)
@@ -98,8 +146,30 @@ class reductions(Variable):
         rsceha = foyer_fiscal('rsceha', period)
         saldom = foyer_fiscal('saldom', period)
         spfcpi = foyer_fiscal('spfcpi', period)
+=======
+        accult = simulation.calculate('accult', period)
+        adhcga = simulation.calculate('adhcga', period)
+        cappme = simulation.calculate('cappme', period)
+        cotsyn = simulation.calculate('cotsyn', period)
+        daepad = simulation.calculate('daepad', period)
+        dfppce = simulation.calculate('dfppce', period)
+        doment = simulation.calculate('doment', period)
+        domlog = simulation.calculate('domlog', period)
+        donapd = simulation.calculate('donapd', period)
+        ecpess = simulation.calculate('ecpess', period)
+        intagr = simulation.calculate('intagr', period)
+        intcon = simulation.calculate('intcon', period)
+        invfor = simulation.calculate('invfor', period)
+        invlst = simulation.calculate('invlst', period)
+        ip_net = simulation.calculate('ip_net', period)
+        prcomp = simulation.calculate('prcomp', period)
+        repsoc = simulation.calculate('repsoc', period)
+        rsceha = simulation.calculate('rsceha', period)
+        saldom = simulation.calculate('saldom', period)
+        spfcpi = simulation.calculate('spfcpi', period)
+>>>>>>> Add tax reduction 'accult' for year before 2013
 
-        total_reductions = (adhcga + cappme + cotsyn + daepad + dfppce + doment + domlog + donapd + ecpess + intagr +
+        total_reductions = (accult + adhcga + cappme + cotsyn + daepad + dfppce + doment + domlog + donapd + ecpess + intagr +
                 intcon + invfor + invlst + prcomp + repsoc + rsceha + saldom + spfcpi)
         return min_(ip_net, total_reductions)
 
@@ -107,6 +177,7 @@ class reductions(Variable):
         '''
         Renvoie la somme des réductions d'impôt à intégrer pour l'année 2006
         '''
+<<<<<<< HEAD
         adhcga = foyer_fiscal('adhcga', period)
         cappme = foyer_fiscal('cappme', period)
         cotsyn = foyer_fiscal('cotsyn', period)
@@ -128,8 +199,32 @@ class reductions(Variable):
         saldom = foyer_fiscal('saldom', period)
         sofica = foyer_fiscal('sofica', period)
         spfcpi = foyer_fiscal('spfcpi', period)
+=======
+        accult = simulation.calculate('accult', period)
+        adhcga = simulation.calculate('adhcga', period)
+        cappme = simulation.calculate('cappme', period)
+        cotsyn = simulation.calculate('cotsyn', period)
+        creaen = simulation.calculate('creaen', period)
+        daepad = simulation.calculate('daepad', period)
+        deffor = simulation.calculate('deffor', period)
+        dfppce = simulation.calculate('dfppce', period)
+        doment = simulation.calculate('doment', period)
+        domlog = simulation.calculate('domlog', period)
+        donapd = simulation.calculate('donapd', period)
+        ecpess = simulation.calculate('ecpess', period)
+        intagr = simulation.calculate('intagr', period)
+        invfor = simulation.calculate('invfor', period)
+        invlst = simulation.calculate('invlst', period)
+        ip_net = simulation.calculate('ip_net', period)
+        prcomp = simulation.calculate('prcomp', period)
+        repsoc = simulation.calculate('repsoc', period)
+        rsceha = simulation.calculate('rsceha', period)
+        saldom = simulation.calculate('saldom', period)
+        sofica = simulation.calculate('sofica', period)
+        spfcpi = simulation.calculate('spfcpi', period)
+>>>>>>> Add tax reduction 'accult' for year before 2013
 
-        total_reductions = (adhcga + cappme + cotsyn + creaen + daepad + deffor + dfppce + doment + domlog + donapd +
+        total_reductions = (accult + adhcga + cappme + cotsyn + creaen + daepad + deffor + dfppce + doment + domlog + donapd +
         ecpess + intagr + invfor + invlst + prcomp + repsoc + rsceha + saldom + sofica + spfcpi)
         return min_(ip_net, total_reductions)
 
@@ -137,6 +232,7 @@ class reductions(Variable):
         '''
         Renvoie la somme des réductions d'impôt à intégrer pour l'année 2007
         '''
+<<<<<<< HEAD
         adhcga = foyer_fiscal('adhcga', period)
         cappme = foyer_fiscal('cappme', period)
         cotsyn = foyer_fiscal('cotsyn', period)
@@ -158,8 +254,32 @@ class reductions(Variable):
         saldom = foyer_fiscal('saldom', period)
         sofica = foyer_fiscal('sofica', period)
         spfcpi = foyer_fiscal('spfcpi', period)
+=======
+        accult = simulation.calculate('accult', period)
+        adhcga = simulation.calculate('adhcga', period)
+        cappme = simulation.calculate('cappme', period)
+        cotsyn = simulation.calculate('cotsyn', period)
+        creaen = simulation.calculate('creaen', period)
+        daepad = simulation.calculate('daepad', period)
+        deffor = simulation.calculate('deffor', period)
+        dfppce = simulation.calculate('dfppce', period)
+        doment = simulation.calculate('doment', period)
+        domlog = simulation.calculate('domlog', period)
+        donapd = simulation.calculate('donapd', period)
+        ecpess = simulation.calculate('ecpess', period)
+        intagr = simulation.calculate('intagr', period)
+        invfor = simulation.calculate('invfor', period)
+        invlst = simulation.calculate('invlst', period)
+        ip_net = simulation.calculate('ip_net', period)
+        prcomp = simulation.calculate('prcomp', period)
+        repsoc = simulation.calculate('repsoc', period)
+        rsceha = simulation.calculate('rsceha', period)
+        saldom = simulation.calculate('saldom', period)
+        sofica = simulation.calculate('sofica', period)
+        spfcpi = simulation.calculate('spfcpi', period)
+>>>>>>> Add tax reduction 'accult' for year before 2013
 
-        total_reductions = (adhcga + cappme + cotsyn + creaen + daepad + deffor + dfppce + doment + domlog + donapd +
+        total_reductions = (accult + adhcga + cappme + cotsyn + creaen + daepad + deffor + dfppce + doment + domlog + donapd +
         ecpess + intagr + invfor + invlst + prcomp + repsoc + rsceha + saldom + sofica + spfcpi)
 
         return min_(ip_net, total_reductions)
@@ -168,6 +288,7 @@ class reductions(Variable):
         '''
         Renvoie la somme des réductions d'impôt à intégrer pour l'année 2008
         '''
+<<<<<<< HEAD
         adhcga = foyer_fiscal('adhcga', period)
         cappme = foyer_fiscal('cappme', period)
         cotsyn = foyer_fiscal('cotsyn', period)
@@ -190,8 +311,33 @@ class reductions(Variable):
         saldom = foyer_fiscal('saldom', period)
         sofica = foyer_fiscal('sofica', period)
         spfcpi = foyer_fiscal('spfcpi', period)
+=======
+        accult = simulation.calculate('accult', period)
+        adhcga = simulation.calculate('adhcga', period)
+        cappme = simulation.calculate('cappme', period)
+        cotsyn = simulation.calculate('cotsyn', period)
+        creaen = simulation.calculate('creaen', period)
+        daepad = simulation.calculate('daepad', period)
+        deffor = simulation.calculate('deffor', period)
+        dfppce = simulation.calculate('dfppce', period)
+        doment = simulation.calculate('doment', period)
+        domlog = simulation.calculate('domlog', period)
+        donapd = simulation.calculate('donapd', period)
+        ecpess = simulation.calculate('ecpess', period)
+        intagr = simulation.calculate('intagr', period)
+        invfor = simulation.calculate('invfor', period)
+        invlst = simulation.calculate('invlst', period)
+        ip_net = simulation.calculate('ip_net', period)
+        mohist = simulation.calculate('mohist', period)
+        prcomp = simulation.calculate('prcomp', period)
+        repsoc = simulation.calculate('repsoc', period)
+        rsceha = simulation.calculate('rsceha', period)
+        saldom = simulation.calculate('saldom', period)
+        sofica = simulation.calculate('sofica', period)
+        spfcpi = simulation.calculate('spfcpi', period)
+>>>>>>> Add tax reduction 'accult' for year before 2013
 
-        total_reductions = (adhcga + cappme + cotsyn + creaen + daepad + deffor + dfppce + doment + domlog + donapd +
+        total_reductions = (accult + adhcga + cappme + cotsyn + creaen + daepad + deffor + dfppce + doment + domlog + donapd +
         ecpess + intagr + invfor + invlst + mohist + prcomp + repsoc + rsceha + saldom + sofica + spfcpi)
         return min_(ip_net, total_reductions)
 
@@ -199,6 +345,7 @@ class reductions(Variable):
         '''
         Renvoie la somme des réductions d'impôt à intégrer pour l'année 2009
         '''
+<<<<<<< HEAD
         adhcga = foyer_fiscal('adhcga', period)
         cappme = foyer_fiscal('cappme', period)
         cotsyn = foyer_fiscal('cotsyn', period)
@@ -227,8 +374,39 @@ class reductions(Variable):
         sofica = foyer_fiscal('sofica', period)
         sofipe = foyer_fiscal('sofipe', period)
         spfcpi = foyer_fiscal('spfcpi', period)
+=======
+        accult = simulation.calculate('accult', period)
+        adhcga = simulation.calculate('adhcga', period)
+        cappme = simulation.calculate('cappme', period)
+        cotsyn = simulation.calculate('cotsyn', period)
+        creaen = simulation.calculate('creaen', period)
+        daepad = simulation.calculate('daepad', period)
+        deffor = simulation.calculate('deffor', period)
+        dfppce = simulation.calculate('dfppce', period)
+        doment = simulation.calculate('doment', period)
+        domlog = simulation.calculate('domlog', period)
+        domsoc = simulation.calculate('domsoc', period)
+        donapd = simulation.calculate('donapd', period)
+        ecodev = simulation.calculate('ecodev', period)
+        ecpess = simulation.calculate('ecpess', period)
+        intagr = simulation.calculate('intagr', period)
+        invfor = simulation.calculate('invfor', period)
+        invlst = simulation.calculate('invlst', period)
+        ip_net = simulation.calculate('ip_net', period)
+        locmeu = simulation.calculate('locmeu', period)
+        mohist = simulation.calculate('mohist', period)
+        prcomp = simulation.calculate('prcomp', period)
+        repsoc = simulation.calculate('repsoc', period)
+        resimm = simulation.calculate('resimm', period)
+        rsceha = simulation.calculate('rsceha', period)
+        saldom = simulation.calculate('saldom', period)
+        scelli = simulation.calculate('scelli', period)
+        sofica = simulation.calculate('sofica', period)
+        sofipe = simulation.calculate('sofipe', period)
+        spfcpi = simulation.calculate('spfcpi', period)
+>>>>>>> Add tax reduction 'accult' for year before 2013
 
-        total_reductions = (adhcga + cappme + cotsyn + creaen + daepad + deffor + dfppce + doment + domlog + domsoc +
+        total_reductions = (accult + adhcga + cappme + cotsyn + creaen + daepad + deffor + dfppce + doment + domlog + domsoc +
         donapd + ecodev + ecpess + intagr + invfor + invlst + locmeu + mohist + prcomp + repsoc + resimm + rsceha +
         saldom + scelli + sofica + sofipe + spfcpi)
         return min_(ip_net, total_reductions)
@@ -238,6 +416,7 @@ class reductions(Variable):
         '''
         Renvoie la somme des réductions d'impôt à intégrer pour l'année 2010
         '''
+<<<<<<< HEAD
         adhcga = foyer_fiscal('adhcga', period)
         cappme = foyer_fiscal('cappme', period)
         cotsyn = foyer_fiscal('cotsyn', period)
@@ -266,8 +445,39 @@ class reductions(Variable):
         sofica = foyer_fiscal('sofica', period)
         sofipe = foyer_fiscal('sofipe', period)
         spfcpi = foyer_fiscal('spfcpi', period)
+=======
+        accult = simulation.calculate('accult', period)
+        adhcga = simulation.calculate('adhcga', period)
+        cappme = simulation.calculate('cappme', period)
+        cotsyn = simulation.calculate('cotsyn', period)
+        creaen = simulation.calculate('creaen', period)
+        daepad = simulation.calculate('daepad', period)
+        deffor = simulation.calculate('deffor', period)
+        dfppce = simulation.calculate('dfppce', period)
+        doment = simulation.calculate('doment', period)
+        domlog = simulation.calculate('domlog', period)
+        domsoc = simulation.calculate('domsoc', period)
+        donapd = simulation.calculate('donapd', period)
+        ecpess = simulation.calculate('ecpess', period)
+        intagr = simulation.calculate('intagr', period)
+        invfor = simulation.calculate('invfor', period)
+        invlst = simulation.calculate('invlst', period)
+        ip_net = simulation.calculate('ip_net', period)
+        locmeu = simulation.calculate('locmeu', period)
+        mohist = simulation.calculate('mohist', period)
+        patnat = simulation.calculate('patnat', period)
+        prcomp = simulation.calculate('prcomp', period)
+        repsoc = simulation.calculate('repsoc', period)
+        resimm = simulation.calculate('resimm', period)
+        rsceha = simulation.calculate('rsceha', period)
+        saldom = simulation.calculate('saldom', period)
+        scelli = simulation.calculate('scelli', period)
+        sofica = simulation.calculate('sofica', period)
+        sofipe = simulation.calculate('sofipe', period)
+        spfcpi = simulation.calculate('spfcpi', period)
+>>>>>>> Add tax reduction 'accult' for year before 2013
 
-        total_reductions = (adhcga + cappme + cotsyn + creaen + daepad + deffor + dfppce + doment + domlog + domsoc +
+        total_reductions = (accult + adhcga + cappme + cotsyn + creaen + daepad + deffor + dfppce + doment + domlog + domsoc +
         donapd + ecpess + intagr + invfor + invlst + locmeu + mohist + patnat + prcomp + repsoc + resimm + rsceha +
         saldom + scelli + sofica + sofipe + spfcpi)  # TODO: check (sees checked) and report in Niches.xls
         return min_(ip_net, total_reductions)
@@ -276,6 +486,7 @@ class reductions(Variable):
         '''
         Renvoie la somme des réductions d'impôt à intégrer pour l'année 2011
         '''
+<<<<<<< HEAD
         adhcga = foyer_fiscal('adhcga', period)
         cappme = foyer_fiscal('cappme', period)
         cotsyn = foyer_fiscal('cotsyn', period)
@@ -304,8 +515,39 @@ class reductions(Variable):
         sofica = foyer_fiscal('sofica', period)
         sofipe = foyer_fiscal('sofipe', period)
         spfcpi = foyer_fiscal('spfcpi', period)
+=======
+        accult = simulation.calculate('accult', period)
+        adhcga = simulation.calculate('adhcga', period)
+        cappme = simulation.calculate('cappme', period)
+        cotsyn = simulation.calculate('cotsyn', period)
+        creaen = simulation.calculate('creaen', period)
+        daepad = simulation.calculate('daepad', period)
+        deffor = simulation.calculate('deffor', period)
+        dfppce = simulation.calculate('dfppce', period)
+        doment = simulation.calculate('doment', period)
+        domlog = simulation.calculate('domlog', period)
+        domsoc = simulation.calculate('domsoc', period)
+        donapd = simulation.calculate('donapd', period)
+        ecpess = simulation.calculate('ecpess', period)
+        intagr = simulation.calculate('intagr', period)
+        invfor = simulation.calculate('invfor', period)
+        invlst = simulation.calculate('invlst', period)
+        ip_net = simulation.calculate('ip_net', period)
+        locmeu = simulation.calculate('locmeu', period)
+        mohist = simulation.calculate('mohist', period)
+        patnat = simulation.calculate('patnat', period)
+        prcomp = simulation.calculate('prcomp', period)
+        repsoc = simulation.calculate('repsoc', period)
+        resimm = simulation.calculate('resimm', period)
+        rsceha = simulation.calculate('rsceha', period)
+        saldom = simulation.calculate('saldom', period)
+        scelli = simulation.calculate('scelli', period)
+        sofica = simulation.calculate('sofica', period)
+        sofipe = simulation.calculate('sofipe', period)
+        spfcpi = simulation.calculate('spfcpi', period)
+>>>>>>> Add tax reduction 'accult' for year before 2013
 
-        total_reductions = (adhcga + cappme + cotsyn + creaen + daepad + deffor + dfppce + doment + domlog + domsoc +
+        total_reductions = (accult + adhcga + cappme + cotsyn + creaen + daepad + deffor + dfppce + doment + domlog + domsoc +
         donapd + ecpess + intagr + invfor + invlst + locmeu + mohist + patnat + prcomp + repsoc + resimm + rsceha +
         saldom + scelli + sofica + sofipe + spfcpi)
         return min_(ip_net, total_reductions)
@@ -314,6 +556,7 @@ class reductions(Variable):
         '''
         Renvoie la somme des réductions d'impôt à intégrer pour l'année 2012
         '''
+<<<<<<< HEAD
         adhcga = foyer_fiscal('adhcga', period)
         cappme = foyer_fiscal('cappme', period)
         creaen = foyer_fiscal('creaen', period)
@@ -340,8 +583,37 @@ class reductions(Variable):
         scelli = foyer_fiscal('scelli', period)
         sofica = foyer_fiscal('sofica', period)
         spfcpi = foyer_fiscal('spfcpi', period)
+=======
+        accult = simulation.calculate('accult', period)
+        adhcga = simulation.calculate('adhcga', period)
+        cappme = simulation.calculate('cappme', period)
+        creaen = simulation.calculate('creaen', period)
+        daepad = simulation.calculate('daepad', period)
+        deffor = simulation.calculate('deffor', period)
+        dfppce = simulation.calculate('dfppce', period)
+        doment = simulation.calculate('doment', period)
+        domlog = simulation.calculate('domlog', period)
+        domsoc = simulation.calculate('domsoc', period)
+        donapd = simulation.calculate('donapd', period)
+        ecpess = simulation.calculate('ecpess', period)
+        intagr = simulation.calculate('intagr', period)
+        invfor = simulation.calculate('invfor', period)
+        invlst = simulation.calculate('invlst', period)
+        ip_net = simulation.calculate('ip_net', period)
+        locmeu = simulation.calculate('locmeu', period)
+        mohist = simulation.calculate('mohist', period)
+        patnat = simulation.calculate('patnat', period)
+        prcomp = simulation.calculate('prcomp', period)
+        repsoc = simulation.calculate('repsoc', period)
+        resimm = simulation.calculate('resimm', period)
+        rsceha = simulation.calculate('rsceha', period)
+        saldom = simulation.calculate('saldom', period)
+        scelli = simulation.calculate('scelli', period)
+        sofica = simulation.calculate('sofica', period)
+        spfcpi = simulation.calculate('spfcpi', period)
+>>>>>>> Add tax reduction 'accult' for year before 2013
 
-        total_reductions = (adhcga + cappme + creaen + daepad + deffor + dfppce + doment + domlog + domsoc +
+        total_reductions = (accult + adhcga + cappme + creaen + daepad + deffor + dfppce + doment + domlog + domsoc +
         donapd + ecpess + intagr + invfor + invlst + locmeu + mohist + patnat + prcomp + repsoc + resimm + rsceha +
         saldom + scelli + sofica + spfcpi)
         return min_(ip_net, total_reductions)
