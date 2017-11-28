@@ -47,18 +47,17 @@ class allocations_familiales_imposables(Reform):
         definition_period = YEAR
 
         def formula(foyer_fiscal, period, parameters):
-            allocations_familiales_imposables = foyer_fiscal('allocations_familiales_imposables', period)
-            f3va = foyer_fiscal('f3va', period)
-            f3vb = foyer_fiscal('f3vb', period)
-            f3vi_holder = foyer_fiscal.members('f3vi', period)
-            f3vz = foyer_fiscal('f3vz', period)
-            rfr_cd = foyer_fiscal('rfr_cd', period)
-            rfr_rvcm = foyer_fiscal('rfr_rvcm', period)
-            rni = foyer_fiscal('rni', period)
-            rpns_exon_holder = foyer_fiscal.members('rpns_exon', period)
-            rpns_pvce_holder = foyer_fiscal.members('rpns_pvce', period)
-            rev_cap_lib = foyer_fiscal_add('rev_cap_lib', period, options = [ADD])
-            microentreprise = foyer_fiscal('microentreprise', period)
+            allocations_familiales_imposables = foyer_fiscal('allocations_familiales_imposables')
+            abatnet_retraite_dirigeant_pme = foyer_fiscal('abatnet_retraite_dirigeant_pme')
+            f3vi_holder = foyer_fiscal.members('f3vi')
+            f3vz = foyer_fiscal('f3vz')
+            rfr_cd = foyer_fiscal('rfr_cd')
+            rfr_rvcm = foyer_fiscal('rfr_rvcm')
+            rni = foyer_fiscal('rni')
+            rpns_exon_holder = foyer_fiscal.members('rpns_exon')
+            rpns_pvce_holder = foyer_fiscal.members('rpns_pvce')
+            rev_cap_lib = simulation.calculate_add('rev_cap_lib')
+            microentreprise = foyer_fiscal('microentreprise')
 
             f3vi = foyer_fiscal.sum(f3vi_holder)
             rpns_exon = foyer_fiscal.sum(rpns_exon_holder)
@@ -66,7 +65,7 @@ class allocations_familiales_imposables(Reform):
 
             return (
                 max_(0, rni - allocations_familiales_imposables) +
-                rfr_cd + rfr_rvcm + rev_cap_lib + f3vi + rpns_exon + rpns_pvce + f3va - f3vb + f3vz + microentreprise
+                rfr_cd + rfr_rvcm + rev_cap_lib + f3vi + rpns_exon + rpns_pvce + abatnet_retraite_dirigeant_pme + f3vz + microentreprise
                 )
 
             # TO CHECK : f3vb after 2015 (abattements sur moins-values = interdits)
