@@ -191,7 +191,7 @@ class f3va(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Abattement pour durée de détention des titres en cas de départ à la retraite d'un dirigeant appliqué sur des plus-values"
+    label = u""
     # start_date = date(2006, 1, 1)
     definition_period = YEAR
 
@@ -200,9 +200,23 @@ class f3vb(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Abattement pour durée de détention des titres en cas de départ à la retraite d'un dirigeant appliqué sur des moins-values"
+    label = u""
     # start_date = date(2006, 1, 1)
     definition_period = YEAR
+
+class abatnet_retraite_dirigeant_pme(Variable):
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Abattement net pour durée de détention des titres en cas de départ à la retraite d'un dirigeant"
+    definition_period = YEAR
+
+    def formula_2006_01_01(foyer_fiscal, period):
+        f3va = foyer_fiscal('f3va', period)
+        f3vb = foyer_fiscal('f3va', period)
+
+        return f3va - f3vb
+
 
 # Plus values et gains taxables à des taux forfaitaires
 
