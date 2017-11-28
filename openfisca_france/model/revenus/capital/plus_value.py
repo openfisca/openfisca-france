@@ -212,7 +212,7 @@ class f3va(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Abattement pour durée de détention des titres en cas de départ à la retraite d'un dirigeant appliqué sur des plus-values"
+    label = u""
     # start_date = date(2006, 1, 1)
     definition_period = YEAR
 
@@ -221,7 +221,7 @@ class f3vb(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Abattement pour durée de détention des titres en cas de départ à la retraite d'un dirigeant appliqué sur des moins-values"
+    label = u""
     # start_date = date(2006, 1, 1)
     definition_period = YEAR
 
