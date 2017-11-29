@@ -2944,6 +2944,15 @@ class f7kd(Variable):
 #    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
+class f7ke(Variable):
+    cerfa_field = u"7KE"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Dépenses de protection du patrimoine naturel (excédent de réduction d’impôt d’années antérieures qui n’a pu être imputé)"
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
 
 class f7uh(Variable):
     cerfa_field = u"7UH"
