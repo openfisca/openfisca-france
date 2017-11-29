@@ -2286,7 +2286,7 @@ class f7ui(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    end = '2008-12-31'
+    # end = '2008-12-31'
     definition_period = YEAR
 
 
@@ -3129,6 +3129,23 @@ class f7vm(Variable):
 #    start_date = date(2016, 1, 1)
     definition_period = YEAR
 
+class f7vn(Variable):
+    cerfa_field = u"7VN"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements forestiers"
+#    start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+class f7vp(Variable):
+    cerfa_field = u"7VP"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements forestiers"
+#    start_date = date(2016, 1, 1)
+    definition_period = YEAR
 
 class f7tg(Variable):
     cerfa_field = u"7TG"
