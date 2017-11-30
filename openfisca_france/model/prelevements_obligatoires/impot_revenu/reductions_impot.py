@@ -1773,7 +1773,7 @@ class duflot(Variable):
         f7gi = foyer_fiscal('f7gi', period)
         P = parameters(period).impot_revenu.reductions_impots.duflot
 
-        return min_(P.plafond, P.taux_m * f7gh + P.taux_om * f7gi) / 9
+        return (min_(P.plafond, f7gh) * P.taux_m + min_(P.plafond, f7gi) * P.taux_om) / 9
 
 
 #TODO: / 5 dans trois TOM
