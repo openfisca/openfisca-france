@@ -1896,7 +1896,7 @@ class invlst(Variable):
     entity = FoyerFiscal
     label = u"invlst"
     definition_period = YEAR
-    end = '2013-12-31'
+    end = '2016-12-31'
 
     def formula_2004_01_01(self, simulation, period):
         '''
@@ -2100,6 +2100,76 @@ class invlst(Variable):
         xo = P.taux_xo * (f7xk + f7xo + f7xr)
 
         return around(xi + xj + xo)
+
+    def formula_2014_01_01(self, simulation, period):
+        '''
+        Investissements locatifs dans le secteur touristique
+        2014
+        '''
+        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
+        f7uy = simulation.calculate('f7uy', period)
+        f7uz = simulation.calculate('f7uz', period)
+        f7xi = simulation.calculate('f7xi', period)
+        f7xj = simulation.calculate('f7xj', period)
+        f7xk = simulation.calculate('f7xk', period)
+        f7xn = simulation.calculate('f7xn', period)
+        f7xp = simulation.calculate('f7xp', period)
+        f7xq = simulation.calculate('f7xq', period)
+        f7xr = simulation.calculate('f7xr', period)
+        f7xv = simulation.calculate('f7xv', period)
+        _P = simulation.parameters_at(period.start)
+        P = simulation.parameters_at(period.start).impot_revenu.reductions_impots.invlst
+
+        xi = P.taux_xi * (f7xi + f7xp + f7xn + f7uy)
+        xj = P.taux_xj * (f7xj + f7xq + f7xv + f7uz)
+        xo = P.taux_xo * (f7xk + f7xr)
+
+        return around(xi + xj + xo)
+
+    def formula_2015_01_01(self, simulation, period):
+        '''
+        Investissements locatifs dans le secteur touristique
+        2015
+        '''
+        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
+        f7uy = simulation.calculate('f7uy', period)
+        f7uz = simulation.calculate('f7uz', period)
+        f7xi = simulation.calculate('f7xi', period)
+        f7xj = simulation.calculate('f7xj', period)
+        f7xn = simulation.calculate('f7xn', period)
+        f7xp = simulation.calculate('f7xp', period)
+        f7xq = simulation.calculate('f7xq', period)
+        f7xr = simulation.calculate('f7xr', period)
+        f7xv = simulation.calculate('f7xv', period)
+        _P = simulation.parameters_at(period.start)
+        P = simulation.parameters_at(period.start).impot_revenu.reductions_impots.invlst
+
+        xi = P.taux_xi * (f7xi + f7xp + f7xn + f7uy)
+        xj = P.taux_xj * (f7xj + f7xq + f7xv + f7uz)
+        xo = P.taux_xo * (f7xr)
+
+        return around(xi + xj + xo)
+
+    def formula_2016_01_01(self, simulation, period):
+        '''
+        Investissements locatifs dans le secteur touristique
+        2016
+        '''
+        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
+        f7uy = simulation.calculate('f7uy', period)
+        f7uz = simulation.calculate('f7uz', period)
+        f7xn = simulation.calculate('f7xn', period)
+        f7xp = simulation.calculate('f7xp', period)
+        f7xq = simulation.calculate('f7xq', period)
+        f7xr = simulation.calculate('f7xr', period)
+        f7xv = simulation.calculate('f7xv', period)
+        _P = simulation.parameters_at(period.start)
+        P = simulation.parameters_at(period.start).impot_revenu.reductions_impots.invlst
+
+        xi = P.taux_xi * (f7xp + f7xn + f7uy)
+        xj = P.taux_xj * (f7xq + f7xv + f7uz)
+
+        return around(xi + xj)
 
 
 class invrev(Variable):
