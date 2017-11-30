@@ -2513,7 +2513,7 @@ class resimm(Variable):
     entity = FoyerFiscal
     label = u"resimm"
     definition_period = YEAR
-    end = '2013-12-31'
+    end = '2016-12-31'
 
 
     def formula_2009_01_01(self, simulation, period):
@@ -2571,7 +2571,7 @@ class resimm(Variable):
     def formula_2013_01_01(self, simulation, period):
         '''
         Travaux de restauration immobilière (cases 7RA, 7RB, 7RC, 7RD, 7RE, 7RF, 7SX, 7SY)
-        2012
+        2013-2015
         '''
         f7ra = simulation.calculate('f7ra', period)
         f7rb = simulation.calculate('f7rb', period)
@@ -2590,6 +2590,24 @@ class resimm(Variable):
         max5 = max_(max4 - f7ra, 0)
         return (P.taux_rd * min_(f7rd, max1) + P.taux_rb * min_(f7rb, max2) + P.taux_rc * min_(f7sy + f7rf + f7rc, max3) +
                 P.taux_ra * min_(f7ra, max4) + P.taux_re * min_(f7re + f7sx, max5))
+
+    def formula_2016_01_01(self, simulation, period):
+        '''
+        Travaux de restauration immobilière
+        2016
+        '''
+        f7nx = simulation.calculate('f7nx', period)
+        f7ny = simulation.calculate('f7ny', period)
+        f7re = simulation.calculate('f7re', period)
+        f7rf = simulation.calculate('f7rf', period)
+        f7sx = simulation.calculate('f7sx', period)
+        f7sy = simulation.calculate('f7sy', period)
+        P = simulation.parameters_at(period.start).impot_revenu.reductions_impots.resimm
+
+        max1 = P.max
+        max2 = max_(max1 - f7nx - f7sy - f7rf, 0)
+        return (P.taux_rc * min_(f7sy + f7rf + f7nx, max1) +
+                 P.taux_re * min_(f7re + f7sx + f7ny, max2))
 
 
 class rsceha(Variable):
