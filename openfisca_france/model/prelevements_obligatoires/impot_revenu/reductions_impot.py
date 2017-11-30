@@ -1737,7 +1737,6 @@ class donapd(Variable):
     entity = FoyerFiscal
     label = u"donapd"
     definition_period = YEAR
-    end = '2013-12-31'
 
     def formula_2002_01_01(foyer_fiscal, period, parameters):
         '''
