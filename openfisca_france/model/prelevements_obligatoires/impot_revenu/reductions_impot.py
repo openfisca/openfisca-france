@@ -2371,7 +2371,7 @@ class patnat(Variable):
     entity = FoyerFiscal
     label = u"patnat"
     definition_period = YEAR
-    end = '2013-12-31'
+    end = '2016-12-31'
 
     def formula_2010_01_01(self, simulation, period):
         '''
@@ -2422,6 +2422,20 @@ class patnat(Variable):
 
         max1 = P.max
         return P.taux * min_(f7ka, max1) + f7kb + f7kc + f7kd
+
+    def formula_2014_01_01(self, simulation, period):
+        '''
+        Dépenses de protections du patrimoine naturel (case 7KB, 7KC, 7KD, 7KE)
+        2014-
+        '''
+        f7kb = simulation.calculate('f7kb', period)
+        f7kc = simulation.calculate('f7kc', period)
+        f7kd = simulation.calculate('f7kd', period)
+        f7ke = simulation.calculate('f7ke', period)
+        P = simulation.parameters_at(period.start).impot_revenu.reductions_impots.patnat
+
+        max1 = P.max
+        return f7kb + f7kc + f7kd + f7ke
 
 
 class prcomp(Variable):
