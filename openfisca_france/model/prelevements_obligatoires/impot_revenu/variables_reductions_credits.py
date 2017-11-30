@@ -3317,6 +3317,16 @@ class f7ls(Variable):
     definition_period = YEAR
 
 
+class f7lt(Variable):
+    cerfa_field = u"7LT"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Investissements réalisés et achevés en 2010 ; réalisés en 2010 et achevés en 2011 ; réalisés et achevés en 2011 avec engagement en 2010, Report de l'année 2013"
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+
 class f7lm(Variable):
     cerfa_field = u"7LM"
     value_type = int
@@ -3324,6 +3334,16 @@ class f7lm(Variable):
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Investissements réalisés et achevés en 2009 ou 2010 ou réalisés et achevés en 2010 avec engagement avant le 1.1.2010"
 #    start_date = date(2013, 1, 1)
+    definition_period = YEAR
+
+
+class f7ln(Variable):
+    cerfa_field = u"7LN"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Investissements réalisés et achevés en 2009 ou 2010 ou réalisés et achevés en 2010 avec engagement avant le 1.1.2010, Report de l'année 2013"
+#    start_date = date(2014, 1, 1)
     definition_period = YEAR
 
 
@@ -3336,6 +3356,15 @@ class f7lz(Variable):
 #    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
+class f7lx(Variable):
+    cerfa_field = u"7LX"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Report du solde de réduction d'impôt de l'année 2013"
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
 
 class f7mg(Variable):
     cerfa_field = u"7MG"
@@ -3344,6 +3373,16 @@ class f7mg(Variable):
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Investissements réalisés et achevés en 2012 : report du solde de réduction d'impôt de l'année 2012"
 #    start_date = date(2013, 1, 1)
+    definition_period = YEAR
+
+
+class f7mh(Variable):
+    cerfa_field = u"7MH"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Investissements réalisés et achevés en 2012 : report du solde de réduction d'impôt de l'année 2013"
+#    start_date = date(2014, 1, 1)
     definition_period = YEAR
 
 
@@ -3914,6 +3953,113 @@ class f7fd(Variable):
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier : Investissements achevés ou acquis en 2013, réalisés du 1.1.2013 au 31.3.2013 en Polynésie, en Nouvelle Calédonie et à Wallis et Futuna"
 #    start_date = date(2013, 1, 1)
+    definition_period = YEAR
+
+
+class f7ya(Variable):
+    cerfa_field = u"7YA"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements locatifs neufs dispositif Scellier : Reports concernant les investissements achevés ou acquis au cours des années antérieures, Investissements achevés en 2013 et réalisés du 1.1.2013 au 31.3.2013 avec promesse d'achat en 2012, en métropole, dans les DOM, à Saint-Barthélemy, Saint-Martin, Saint-Pierre-et-Miquelon"
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+class f7yb(Variable):
+    cerfa_field = u"7YB"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements locatifs neufs dispositif Scellier : Reports concernant les investissements achevés ou acquis au cours des années antérieures, Investissements achevés en 2013 et réalisés en 2012, en métropole, dans les DOM, à Saint-Barthélemy, Saint-Martin, Saint-Pierre-et-Miquelon"
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+class f7yc(Variable):
+    cerfa_field = u"7YC"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements locatifs neufs dispositif Scellier : Reports concernant les investissements achevés ou acquis au cours des années antérieures, Investissements achevés en 2013 et réalisés en 2012 avec promesse d'achat en 2011, en métropole, dans les DOM, à Saint-Barthélemy, Saint-Martin, Saint-Pierre-et-Miquelon"
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+class f7yd(Variable):
+    cerfa_field = u"7YD"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements locatifs neufs dispositif Scellier : Reports concernant les investissements achevés ou acquis au cours des années antérieures, Investissements achevés en 2013 et réalisés en 2011, en métropole, dans les DOM, à Saint-Barthélemy, Saint-Martin, Saint-Pierre-et-Miquelon"
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+class f7ye(Variable):
+    cerfa_field = u"7YE"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements locatifs neufs dispositif Scellier : Reports concernant les investissements achevés ou acquis au cours des années antérieures, Investissements achevés en 2013 et réalisés en 2011 avec promesse d'achat en 2010, en métropole, dans les DOM, à Saint-Barthélemy, Saint-Martin, Saint-Pierre-et-Miquelon"
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+class f7yf(Variable):
+    cerfa_field = u"7YF"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements locatifs neufs dispositif Scellier : Reports concernant les investissements achevés ou acquis au cours des années antérieures, Investissements achevés en 2013 et réalisés en 2010, en métropole, dans les DOM, à Saint-Barthélemy, Saint-Martin, Saint-Pierre-et-Miquelon"
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+class f7yg(Variable):
+    cerfa_field = u"7YG"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements locatifs neufs dispositif Scellier : Reports concernant les investissements achevés ou acquis au cours des années antérieures, Investissements achevés en 2013 et réalisés en 2010 avec promesse d'achat avant le 1.1.2010, en métropole, dans les DOM, à Saint-Barthélemy, Saint-Martin, Saint-Pierre-et-Miquelon"
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+class f7yh(Variable):
+    cerfa_field = u"7YH"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements locatifs neufs dispositif Scellier : Report concernant les investissements réalisés en 2009 et achevés en 2013 en métropole et dans les DOM-COM "
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+class f7yi(Variable):
+    cerfa_field = u"7YI"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements locatifs neufs dispositif Scellier : Reports concernant les investissements achevés ou acquis au cours des années antérieures, Investissements achevés en 2013 et réalisés en 2009, en métropole, dans les DOM, à Saint-Barthélemy, Saint-Martin, Saint-Pierre-et-Miquelon"
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+class f7yj(Variable):
+    cerfa_field = u"7YJ"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Scellier: report de 1/5 de la réduction d'impôt des investissements réalisés en 2012 et achevés en 2013 en Polynésie, en Nouvelle Calédonie et à Wallis et Futuna "
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+class f7yk(Variable):
+    cerfa_field = u"7YK"
+    value_type = int
+    entity = FoyerFiscal
+    label = u"Scellier: report de 1/5 de la réduction d'impôt des investissements réalisés en 2011 ou réalisés en 2012 avec promesse d'achat en 2011 et achevés en 2013 en Polynésie, en Nouvelle Calédonie et à Wallis et Futuna "
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+class f7yl(Variable):
+    cerfa_field = u"7YL"
+    value_type = int
+    entity = FoyerFiscal
+    label = u"Scellier: report de 1/5 de la réduction d'impôt des investissements réalisés en 2011 avec promesse d'achat en 2010 et achevés en 2013 en Polynésie, en Nouvelle Calédonie et à Wallis et Futuna "
+#    start_date = date(2014, 1, 1)
     definition_period = YEAR
 
 
