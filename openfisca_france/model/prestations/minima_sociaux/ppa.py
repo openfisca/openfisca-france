@@ -282,7 +282,7 @@ class ppa_bonification(Variable):
             'ppa_revenu_activite_individu', period, extra_params = [mois_demande])
         seuil_1 = P.prestations.minima_sociaux.ppa.bonification.seuil_bonification * smic_horaire
         seuil_2 = P.prestations.minima_sociaux.ppa.bonification.seuil_max_bonification * smic_horaire
-        bonification_max = round_(P.prestations.minima_sociaux.ppa.bonification.taux_bonification_max * ppa_base)
+        bonification_max = round_(P.prestations.minima_sociaux.ppa.bonification.taux_bonification_max * ppa_base, 2)
         bonification = bonification_max * (revenu_activite - seuil_1) / (seuil_2 - seuil_1)
         bonification = max_(bonification, 0)
         bonification = min_(bonification, bonification_max)
