@@ -1581,11 +1581,7 @@ class garext(Variable):
     label = u"Réduction d'impôt en faveur des dépenses de frais de garde des jeunes enfants"
     reference = "http://bofip.impots.gouv.fr/bofip/865-PGP?datePubl=13/04/2013#"
     definition_period = YEAR
-<<<<<<< HEAD
     end = '2004-12-31'
-=======
-    end = '2016-12-31'
->>>>>>> Update end date of tax reduction 'garext' after checking validity of formula for 2014-2016
 
 
     def formula_2002_01_01(foyer_fiscal, period, parameters):
