@@ -4073,7 +4073,7 @@ class saldom(Variable):
     label = u"Réduction d'impôt au titre des sommes versées pour l'emploi d'un salarié à domicile"
     reference = "http://bofip.impots.gouv.fr/bofip/3968-PGP.html?identifiant=BOI-IR-RICI-150-20-20150515#"
     definition_period = YEAR
-    end = '2013-12-31'
+    end = '2016-12-31'
 
 
     def formula_2002_01_01(foyer_fiscal, period, parameters):
@@ -4132,7 +4132,7 @@ class saldom(Variable):
     def formula_2009_01_01(foyer_fiscal, period, parameters):
         '''
         Sommes versées pour l'emploi d'un salariés à  domicile
-        2009-2013
+        2009-2012
         '''
         nb_pac2 = foyer_fiscal('nb_pac2', period)
         f7db = foyer_fiscal('f7db', period)
@@ -4151,6 +4151,31 @@ class saldom(Variable):
         maxEffectif = maxNonInv * not_(isinvalid) + P.max3 * isinvalid
         max1 = maxEffectif - min_(f7db, maxEffectif)
         return P.taux * min_(f7df, max1)
+
+    def formula_2011_01_01(self, simulation, period):
+        '''
+        Sommes versées pour l'emploi d'un salariés à  domicile
+        2011 -
+        '''
+        nb_pac2 = simulation.calculate('nb_pac2', period)
+        f7db = simulation.calculate('f7db', period)
+        f7dd = simulation.calculate('f7dd', period)
+        f7df = simulation.calculate('f7df', period)
+        f7dl = simulation.calculate('f7dl', period)
+        f7dq = simulation.calculate('f7dq', period)
+        f7dg = simulation.calculate('f7dg', period)
+        _P = simulation.parameters_at(period.start)
+        P = simulation.parameters_at(period.start).impot_revenu.reductions_impots.salarie_domicile
+
+        isinvalid = f7dg
+        annee1 = f7dq
+        nbpacmin = nb_pac2 + f7dl
+        maxBase = P.max1 * not_(annee1) + P.max1_1ereAnnee * annee1
+        maxDuMaxNonInv = P.max2 * not_(annee1) + P.max2_1ereAnnee * annee1
+        maxNonInv = min_(maxBase + P.pac * nbpacmin, maxDuMaxNonInv)
+        maxEffectif = maxNonInv * not_(isinvalid) + P.max3 * isinvalid
+        max1 = maxEffectif - min_(f7db, maxEffectif)
+        return P.taux * min_(f7df + f7dd, max1)
 
 
 class scelli(Variable):
