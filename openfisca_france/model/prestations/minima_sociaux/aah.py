@@ -173,6 +173,7 @@ class aah_eligible(Variable):
 class aah_non_calculable(Variable):
     value_type = Enum
     possible_values = TypesAAHNonCalculable
+    default_value = TypesAAHNonCalculable.calculable
     entity = Individu
     label = u"AAH non calculable"
     definition_period = MONTH
