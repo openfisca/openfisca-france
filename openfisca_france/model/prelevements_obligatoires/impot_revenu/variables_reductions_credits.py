@@ -118,6 +118,16 @@ class f7db(Variable):
     definition_period = YEAR
 
 
+class f7dd(Variable):
+    cerfa_field = u"7DD"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Sommes versées pour l'emploi d'un salarié à domicile pour un ascendant bénéficiaire de l'APA "
+#    start_date = date(2011, 1, 1)
+    definition_period = YEAR
+
+
 class f7df(Variable):
     cerfa_field = u"7DF"
     value_type = int
@@ -2943,6 +2953,16 @@ class f7kd(Variable):
     label = u"Dépenses de protection du patrimoine naturel (excédent de réduction d’impôt d’années antérieures qui n’a pu être imputé)"
 #    start_date = date(2013, 1, 1)
     definition_period = YEAR
+
+class f7ke(Variable):
+    cerfa_field = u"7KE"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Dépenses de protection du patrimoine naturel (excédent de réduction d’impôt d’années antérieures qui n’a pu être imputé)"
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
 
 class f7ke(Variable):
     cerfa_field = u"7KE"
