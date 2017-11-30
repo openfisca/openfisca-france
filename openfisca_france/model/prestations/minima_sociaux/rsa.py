@@ -889,6 +889,7 @@ class rsa_majore_eligibilite(Variable):
 class rsa_non_calculable(Variable):
     value_type = Enum
     possible_values = TypesRSANonCalculable
+    default_value = TypesRSANonCalculable.calculable
     entity = Famille
     label = u"RSA non calculable"
     end = '2016-12-31'
