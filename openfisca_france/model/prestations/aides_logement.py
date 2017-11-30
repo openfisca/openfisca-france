@@ -793,6 +793,7 @@ class apl(Variable):
 class aide_logement_non_calculable(Variable):
     value_type = Enum
     possible_values = TypesAideLogementNonCalculable
+    default_value = TypesAideLogementNonCalculable.calculable
     entity = Famille
     label = u"Aide au logement non calculable"
     definition_period = MONTH
