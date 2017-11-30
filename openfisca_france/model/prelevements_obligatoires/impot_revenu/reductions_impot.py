@@ -4261,7 +4261,6 @@ class scelli(Variable):
             report_scelli_2015
             )
 
-   
 
 class sofica(Variable):
     value_type = float
