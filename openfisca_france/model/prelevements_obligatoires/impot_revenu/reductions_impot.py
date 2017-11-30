@@ -2749,7 +2749,7 @@ class scelli(Variable):
     entity = FoyerFiscal
     label = u"scelli"
     definition_period = YEAR
-    end = '2013-12-31'
+    end = '2014-12-31'
 
 
     def formula_2009_01_01(self, simulation, period):
@@ -3057,6 +3057,155 @@ class scelli(Variable):
                 f7ha + f7hb + f7hg + f7hh + f7hd + f7he + f7hf +
                 f7gj + f7gk + f7gl + f7gp + f7gs + f7gt + f7gu + f7gv + f7gx + f7gw
                 )
+
+    def formula_2014_01_01(self, simulation, period):
+        '''
+        Investissements locatif neufs : Dispositif Scellier
+        2014
+        '''
+        f7fa = simulation.calculate('f7fa', period)
+        f7fb = simulation.calculate('f7fb', period)
+        f7fc = simulation.calculate('f7fc', period)
+        f7fd = simulation.calculate('f7fd', period)
+        f7gj = simulation.calculate('f7gj', period)
+        f7gk = simulation.calculate('f7gk', period)
+        f7gl = simulation.calculate('f7gl', period)
+        f7gp = simulation.calculate('f7gp', period)
+        f7gs = simulation.calculate('f7gs', period)
+        f7gt = simulation.calculate('f7gt', period)
+        f7gu = simulation.calculate('f7gu', period)
+        f7gv = simulation.calculate('f7gv', period)
+        f7gw = simulation.calculate('f7gw', period)
+        f7gx = simulation.calculate('f7gx', period)
+        f7ha = simulation.calculate('f7ha', period)
+        f7hb = simulation.calculate('f7hb', period)
+        f7hg = simulation.calculate('f7hg', period)
+        f7hh = simulation.calculate('f7hh', period)
+        f7hd = simulation.calculate('f7hd', period)
+        f7he = simulation.calculate('f7he', period)
+        f7hf = simulation.calculate('f7hf', period)
+        f7hj = simulation.calculate('f7hj', period)
+        f7hk = simulation.calculate('f7hk', period)
+        f7hl = simulation.calculate('f7hl', period) 
+        f7hm = simulation.calculate('f7hm', period) 
+        f7hn = simulation.calculate('f7hn', period)
+        f7ho = simulation.calculate('f7ho', period)
+        f7hr = simulation.calculate('f7hr', period)
+        f7hs = simulation.calculate('f7hs', period)
+        f7ht = simulation.calculate('f7ht', period)
+        f7hu = simulation.calculate('f7hu', period)
+        f7hv = simulation.calculate('f7hv', period)
+        f7hw = simulation.calculate('f7hw', period)
+        f7hx = simulation.calculate('f7hx', period)
+        f7hz = simulation.calculate('f7hz', period)
+        f7ja = simulation.calculate('f7ja', period)
+        f7jb = simulation.calculate('f7jb', period)
+        f7jd = simulation.calculate('f7jd', period)
+        f7je = simulation.calculate('f7je', period)
+        f7jf = simulation.calculate('f7jf', period)
+        f7jg = simulation.calculate('f7jg', period)
+        f7jh = simulation.calculate('f7jh', period)
+        f7jj = simulation.calculate('f7jj', period)
+        f7jk = simulation.calculate('f7jk', period)
+        f7jl = simulation.calculate('f7jl', period)
+        f7jm = simulation.calculate('f7jm', period)
+        f7jn = simulation.calculate('f7jn', period)
+        f7jo = simulation.calculate('f7jo', period)
+        f7jp = simulation.calculate('f7jp', period)
+        f7jq = simulation.calculate('f7jq', period)
+        f7jr = simulation.calculate('f7jr', period)
+        f7la = simulation.calculate('f7la', period)
+        f7lb = simulation.calculate('f7lb', period)
+        f7lc = simulation.calculate('f7lc', period)
+        f7ld = simulation.calculate('f7ld', period)
+        f7le = simulation.calculate('f7le', period)
+        f7lf = simulation.calculate('f7lf', period)
+        f7lm = simulation.calculate('f7lm', period)
+        f7ln = simulation.calculate('f7ln', period)
+        f7ls = simulation.calculate('f7ls', period)
+        f7lt = simulation.calculate('f7lt', period)
+        f7lx = simulation.calculate('f7lx', period)
+        f7lz = simulation.calculate('f7lz', period)
+        f7mg = simulation.calculate('f7mg', period)
+        f7mh = simulation.calculate('f7mh', period)
+        f7na = simulation.calculate('f7na', period)
+        f7nb = simulation.calculate('f7nb', period)
+        f7nc = simulation.calculate('f7nc', period)
+        f7nd = simulation.calculate('f7nd', period)
+        f7ne = simulation.calculate('f7ne', period)
+        f7nf = simulation.calculate('f7nf', period)
+        f7ng = simulation.calculate('f7ng', period)
+        f7nh = simulation.calculate('f7nh', period)
+        f7ni = simulation.calculate('f7ni', period)
+        f7nj = simulation.calculate('f7nj', period)
+        f7nk = simulation.calculate('f7nk', period)
+        f7nl = simulation.calculate('f7nl', period)
+        f7nm = simulation.calculate('f7nm', period)
+        f7nn = simulation.calculate('f7nn', period)
+        f7no = simulation.calculate('f7no', period)
+        f7np = simulation.calculate('f7np', period)
+        f7nq = simulation.calculate('f7nq', period)
+        f7nr = simulation.calculate('f7nr', period)
+        f7ns = simulation.calculate('f7ns', period)
+        f7nt = simulation.calculate('f7nt', period)
+        f7ya = simulation.calculate('f7ya', period)
+        f7yb = simulation.calculate('f7yb', period)
+        f7yc = simulation.calculate('f7yc', period)
+        f7yd = simulation.calculate('f7yd', period)
+        f7ye = simulation.calculate('f7ye', period)
+        f7yf = simulation.calculate('f7yf', period)
+        f7yg = simulation.calculate('f7yg', period)
+        f7yh = simulation.calculate('f7yh', period)
+        f7yi = simulation.calculate('f7yi', period)
+        f7yj = simulation.calculate('f7yj', period)
+        f7yk = simulation.calculate('f7yk', period)
+        f7yl = simulation.calculate('f7yl', period)
+
+        P = simulation.parameters_at(period.start).impot_revenu.reductions_impots.scelli
+
+        report_reduc_scelli_non_impute = f7la + f7lb + f7lc + f7ld + f7le + f7lf + f7lm + f7ls + f7lz + f7mg + f7mh + f7lx + f7lt + f7ln
+        
+        report_scelli_2009 = min_(P.max, max_(P.taux1 * f7hr, P.taux2 * f7hs)) # to check si application plafond 
+        report_scelli_2010 = min_(P.max, maxi(P.taux1 * f7hv, P.taux1 * f7hx, P.taux2 * f7hw, P.taux2 * f7hz)) + min_(P.max, max_(P.taux1 * f7ht, P.taux2 * f7hu)) # to check si application plafond
+        report_scelli_2011 = f7ha + f7hb + f7hg + f7hh + f7hd + f7he + f7hf
+        report_scelli_2012 = f7gj + f7gk + f7gl + f7gp + f7gs + f7gt + f7gu + f7gv + f7gx + f7gw
+        report_scelli_2013 = f7ya + f7yb + f7yc + f7yd + f7ye + f7yf + f7yg + f7yh + f7yi + f7yj + f7yk + f7yl
+
+        reduc_scelli_2014_invest_2009 = min_(P.max, max_(P.taux1 * f7hl, P.taux2 * f7hm)) / 9
+        
+        reduc_scelli_2014_invest_2010 = min_(P.max, maxi(
+            P.taux1 * max_(f7hj, f7hn) / 9, 
+            P.taux2 * max_(f7hk, f7ho) / 9 ))
+
+        reduc_scelli_2014_invest_2011 = min_(P.max, maxi(   
+            P.taux13 * max_(f7nf, f7nj) / 9,
+            P.taux15 * max_(f7ng, f7ni) / 9,
+            P.taux22 * max_(f7na, f7ne) / 9,
+            P.taux1 * maxi(f7nb, f7nc, f7nd, f7nh) / 9,
+            P.taux36 * maxi(f7nk / 9, f7no / 9, f7np / 5, f7nt / 5),
+            P.taux2 * maxi(f7nl / 9, f7nm / 9, f7nn / 9, f7nq / 5, f7nr / 5, f7ns / 5)))
+
+        reduc_scelli_2014_invest_2012_mars_2013 = min_(P.max, maxi(                                               
+            P.taux6 * maxi(f7jf, f7jj, f7fb) / 9,
+            P.taux13 * maxi(f7ja, f7je, f7jg, f7jh, f7fa) / 9,          
+            P.taux22 * maxi(f7jb, f7jd) / 9,
+            P.taux24 * maxi(f7jk / 9, f7jn / 9, f7jo / 5, f7jr / 5, f7fc / 9, f7fd / 5),
+            P.taux36 * maxi(f7jl / 9, f7jm / 9, f7jp / 5, f7jq / 5))) # to check taux 36
+
+        return (
+            reduc_scelli_2014_invest_2009 + 
+            reduc_scelli_2014_invest_2010 +
+            reduc_scelli_2014_invest_2011 +
+            reduc_scelli_2014_invest_2012_mars_2013 +
+            report_reduc_scelli_non_impute + 
+            report_scelli_2009 + 
+            report_scelli_2010 + 
+            report_scelli_2011 + 
+            report_scelli_2012 + 
+            report_scelli_2013
+            )
+
+    # TODO: renomer P.taux1 => taux25 et P.taux2 => taux 40
 
 
 class sofica(Variable):
