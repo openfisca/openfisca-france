@@ -2761,7 +2761,7 @@ class scelli(Variable):
         f7hk = simulation.calculate('f7hk', period)
         P = simulation.parameters_at(period.start).impot_revenu.reductions_impots.scelli
 
-        return max_(P.taux1 * min_(P.max, f7hj), P.taux2 * min_(P.max, f7hk)) / 9
+        return max_(P.taux25 * min_(P.max, f7hj), P.taux40 * min_(P.max, f7hk)) / 9
 
     def formula_2010_01_01(self, simulation, period):
         '''
@@ -2780,14 +2780,14 @@ class scelli(Variable):
         P = simulation.parameters_at(period.start).impot_revenu.reductions_impots.scelli
 
         return (max_(
-                    max_(P.taux1 * min_(P.max, f7hj),
-                    P.taux2 * min_(P.max, f7hk)),
-                    max_(P.taux1 * min_(P.max, f7hn),
-                    P.taux2 * min_(P.max, f7ho))) / 9 +
+                    max_(P.taux25 * min_(P.max, f7hj),
+                    P.taux40 * min_(P.max, f7hk)),
+                    max_(P.taux25 * min_(P.max, f7hn),
+                    P.taux40 * min_(P.max, f7ho))) / 9 +
                 max_(
-                    P.taux1 * min_(P.max, f7hl),
-                    P.taux2 * min_(P.max, f7hm)) / 9 +
-                max_(P.taux1 * f7hr, P.taux2 * f7hs) +
+                    P.taux25 * min_(P.max, f7hl),
+                    P.taux40 * min_(P.max, f7hm)) / 9 +
+                max_(P.taux25 * f7hr, P.taux40 * f7hs) +
                 f7la)
 
     def formula_2011_01_01(self, simulation, period):
@@ -2838,16 +2838,16 @@ class scelli(Variable):
                     P.taux13 * max_(f7nf, f7nj) / 9,
                     P.taux15 * max_(f7ng, f7ni) / 9,
                     P.taux22 * max_(f7na, f7ne) / 9,
-                    P.taux1 * maxi(f7nb, f7nc, f7nd, f7nh) / 9,
+                    P.taux25 * maxi(f7nb, f7nc, f7nd, f7nh) / 9,
                     P.taux36 * maxi(f7nk / 9, f7no / 9, f7np / 5, f7nt / 5),
-                    P.taux2 * maxi(f7nl / 9, f7nm / 9, f7nn / 9, f7nq / 5, f7nr / 5, f7ns / 5))) +
+                    P.taux40 * maxi(f7nl / 9, f7nm / 9, f7nn / 9, f7nq / 5, f7nr / 5, f7ns / 5))) +
                 min_(P.max, maxi(
-                    P.taux1 * max_(f7hj, f7hn),
-                    P.taux2 * max_(f7hk, f7ho))) / 9 +
-                min_(P.max, max_(P.taux1 * f7hl, P.taux2 * f7hm)) / 9 +
-                min_(P.max, maxi(P.taux1 * f7hv, P.taux1 * f7hx, P.taux2 * f7hw, P.taux2 * f7hz)) +
-                min_(P.max, max_(P.taux1 * f7ht, P.taux2 * f7hu)) +
-                min_(P.max, max_(P.taux1 * f7hr, P.taux2 * f7hs)) +
+                    P.taux25 * max_(f7hj, f7hn),
+                    P.taux40 * max_(f7hk, f7ho))) / 9 +
+                min_(P.max, max_(P.taux25 * f7hl, P.taux40 * f7hm)) / 9 +
+                min_(P.max, maxi(P.taux25 * f7hv, P.taux25 * f7hx, P.taux40 * f7hw, P.taux40 * f7hz)) +
+                min_(P.max, max_(P.taux25 * f7ht, P.taux40 * f7hu)) +
+                min_(P.max, max_(P.taux25 * f7hr, P.taux40 * f7hs)) +
                 f7la + f7lb + f7lc
                 )
 
@@ -2925,16 +2925,16 @@ class scelli(Variable):
                     P.taux13 * max_(f7nf, f7nj) / 9,
                     P.taux15 * max_(f7ng, f7ni) / 9,
                     P.taux22 * max_(f7na, f7ne) / 9,
-                    P.taux1 * maxi(f7nb, f7nc, f7nd, f7nh) / 9,
+                    P.taux25 * maxi(f7nb, f7nc, f7nd, f7nh) / 9,
                     P.taux36 * maxi(f7nk / 9, f7no / 9, f7np / 5, f7nt / 5),
-                    P.taux2 * maxi(f7nl / 9, f7nm / 9, f7nn / 9, f7nq / 5, f7nr / 5, f7ns / 5))) +
+                    P.taux40 * maxi(f7nl / 9, f7nm / 9, f7nn / 9, f7nq / 5, f7nr / 5, f7ns / 5))) +
                 min_(P.max, maxi(
-                    P.taux1 * max_(f7hj, f7hn),
-                    P.taux2 * max_(f7hk, f7ho))) / 9 +
-                min_(P.max, max_(P.taux1 * f7hl, P.taux2 * f7hm)) / 9 +
-                min_(P.max, maxi(P.taux1 * f7hv, P.taux1 * f7hx, P.taux2 * f7hw, P.taux2 * f7hz)) +
-                min_(P.max, max_(P.taux1 * f7ht, P.taux2 * f7hu)) +
-                min_(P.max, max_(P.taux1 * f7hr, P.taux2 * f7hs)) +
+                    P.taux25 * max_(f7hj, f7hn),
+                    P.taux40 * max_(f7hk, f7ho))) / 9 +
+                min_(P.max, max_(P.taux25 * f7hl, P.taux40 * f7hm)) / 9 +
+                min_(P.max, maxi(P.taux25 * f7hv, P.taux25 * f7hx, P.taux40 * f7hw, P.taux40 * f7hz)) +
+                min_(P.max, max_(P.taux25 * f7ht, P.taux40 * f7hu)) +
+                min_(P.max, max_(P.taux25 * f7hr, P.taux40 * f7hs)) +
                 f7la + f7lb + f7lc + f7ld + f7le + f7lf +
                 f7ha + f7hb + f7hg + f7hh + f7hd + f7he + f7hf +
                 min_(P.max, maxi(
@@ -3037,16 +3037,16 @@ class scelli(Variable):
                     P.taux13 * max_(f7nf, f7nj) / 9,
                     P.taux15 * max_(f7ng, f7ni) / 9,
                     P.taux22 * max_(f7na, f7ne) / 9,
-                    P.taux1 * maxi(f7nb, f7nc, f7nd, f7nh) / 9,
+                    P.taux25 * maxi(f7nb, f7nc, f7nd, f7nh) / 9,
                     P.taux36 * maxi(f7nk / 9, f7no / 9, f7np / 5, f7nt / 5),
-                    P.taux2 * maxi(f7nl / 9, f7nm / 9, f7nn / 9, f7nq / 5, f7nr / 5, f7ns / 5))) +
+                    P.taux40 * maxi(f7nl / 9, f7nm / 9, f7nn / 9, f7nq / 5, f7nr / 5, f7ns / 5))) +
                 min_(P.max, maxi(
-                    P.taux1 * max_(f7hj, f7hn),
-                    P.taux2 * max_(f7hk, f7ho))) / 9 +
-                min_(P.max, max_(P.taux1 * f7hl, P.taux2 * f7hm)) / 9 +
-                min_(P.max, maxi(P.taux1 * f7hv, P.taux1 * f7hx, P.taux2 * f7hw, P.taux2 * f7hz)) +
-                min_(P.max, max_(P.taux1 * f7ht, P.taux2 * f7hu)) +
-                min_(P.max, max_(P.taux1 * f7hr, P.taux2 * f7hs)) +
+                    P.taux25 * max_(f7hj, f7hn),
+                    P.taux40 * max_(f7hk, f7ho))) / 9 +
+                min_(P.max, max_(P.taux25 * f7hl, P.taux40 * f7hm)) / 9 +
+                min_(P.max, maxi(P.taux25 * f7hv, P.taux25 * f7hx, P.taux40 * f7hw, P.taux40 * f7hz)) +
+                min_(P.max, max_(P.taux25 * f7ht, P.taux40 * f7hu)) +
+                min_(P.max, max_(P.taux25 * f7hr, P.taux40 * f7hs)) +
                 min_(P.max, maxi(
                     P.taux6 * maxi(f7jf, f7jj, f7fb) / 9,
                     P.taux13 * maxi(f7ja, f7je, f7jg, f7jh, f7fa) / 9,
@@ -3165,25 +3165,25 @@ class scelli(Variable):
 
         report_reduc_scelli_non_impute = f7la + f7lb + f7lc + f7ld + f7le + f7lf + f7lm + f7ls + f7lz + f7mg + f7mh + f7lx + f7lt + f7ln
         
-        report_scelli_2009 = min_(P.max, max_(P.taux1 * f7hr, P.taux2 * f7hs)) # to check si application plafond 
-        report_scelli_2010 = min_(P.max, maxi(P.taux1 * f7hv, P.taux1 * f7hx, P.taux2 * f7hw, P.taux2 * f7hz)) + min_(P.max, max_(P.taux1 * f7ht, P.taux2 * f7hu)) # to check si application plafond
+        report_scelli_2009 = min_(P.max, max_(P.taux25 * f7hr, P.taux40 * f7hs)) # to check si application plafond 
+        report_scelli_2010 = min_(P.max, maxi(P.taux25 * f7hv, P.taux25 * f7hx, P.taux40 * f7hw, P.taux40 * f7hz)) + min_(P.max, max_(P.taux25 * f7ht, P.taux40 * f7hu)) # to check si application plafond
         report_scelli_2011 = f7ha + f7hb + f7hg + f7hh + f7hd + f7he + f7hf
         report_scelli_2012 = f7gj + f7gk + f7gl + f7gp + f7gs + f7gt + f7gu + f7gv + f7gx + f7gw
         report_scelli_2013 = f7ya + f7yb + f7yc + f7yd + f7ye + f7yf + f7yg + f7yh + f7yi + f7yj + f7yk + f7yl
 
-        reduc_scelli_2014_invest_2009 = min_(P.max, max_(P.taux1 * f7hl, P.taux2 * f7hm)) / 9
+        reduc_scelli_2014_invest_2009 = min_(P.max, max_(P.taux25 * f7hl, P.taux40 * f7hm)) / 9
         
         reduc_scelli_2014_invest_2010 = min_(P.max, maxi(
-            P.taux1 * max_(f7hj, f7hn) / 9, 
-            P.taux2 * max_(f7hk, f7ho) / 9 ))
+            P.taux25 * max_(f7hj, f7hn) / 9, 
+            P.taux40 * max_(f7hk, f7ho) / 9 ))
 
         reduc_scelli_2014_invest_2011 = min_(P.max, maxi(   
             P.taux13 * max_(f7nf, f7nj) / 9,
             P.taux15 * max_(f7ng, f7ni) / 9,
             P.taux22 * max_(f7na, f7ne) / 9,
-            P.taux1 * maxi(f7nb, f7nc, f7nd, f7nh) / 9,
+            P.taux25 * maxi(f7nb, f7nc, f7nd, f7nh) / 9,
             P.taux36 * maxi(f7nk / 9, f7no / 9, f7np / 5, f7nt / 5),
-            P.taux2 * maxi(f7nl / 9, f7nm / 9, f7nn / 9, f7nq / 5, f7nr / 5, f7ns / 5)))
+            P.taux40 * maxi(f7nl / 9, f7nm / 9, f7nn / 9, f7nq / 5, f7nr / 5, f7ns / 5)))
 
         reduc_scelli_2014_invest_2012_mars_2013 = min_(P.max, maxi(                                               
             P.taux6 * maxi(f7jf, f7jj, f7fb) / 9,
@@ -3205,8 +3205,7 @@ class scelli(Variable):
             report_scelli_2013
             )
 
-    # TODO: renomer P.taux1 => taux25 et P.taux2 => taux 40
-
+   
 
 class sofica(Variable):
     value_type = float
