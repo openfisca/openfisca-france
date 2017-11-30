@@ -64,7 +64,6 @@ class ppa_montant_forfaitaire_familial_non_majore(Variable):
         nb_enfants = famille('rsa_nb_enfants', period)
         ppa_majoree_eligibilite = famille('rsa_majore_eligibilite', period)
         ppa = parameters(mois_demande).prestations.minima_sociaux.ppa
-        rsa = parameters(mois_demande).prestations.minima_sociaux.rsa
 
         nb_personnes = nb_parents + nb_enfants
 
@@ -77,7 +76,7 @@ class ppa_montant_forfaitaire_familial_non_majore(Variable):
             max_(nb_personnes - 4, 0) * ppa.taux_personne_supp
             )
 
-        return rsa.montant_de_base_du_rsa * taux_non_majore
+        return ppa.montant_de_base * taux_non_majore
 
 
 class ppa_montant_forfaitaire_familial_majore(Variable):
@@ -89,11 +88,10 @@ class ppa_montant_forfaitaire_familial_majore(Variable):
     def formula(famille, period, parameters, mois_demande):
         nb_enfants = famille('rsa_nb_enfants', period)
         ppa = parameters(mois_demande).prestations.minima_sociaux.ppa
-        rsa = parameters(period).prestations.minima_sociaux.rsa
 
         taux_majore = ppa.majoration_isolement_femme_enceinte + ppa.majoration_isolement_enf_charge * nb_enfants
 
-        return rsa.montant_de_base_du_rsa * taux_majore
+        return ppa.montant_de_base * taux_majore
 
 
 class ppa_revenu_activite(Variable):
@@ -279,12 +277,12 @@ class ppa_bonification(Variable):
     def formula(individu, period, parameters, mois_demande):
         P = parameters(mois_demande)
         smic_horaire = P.cotsoc.gen.smic_h_b
-        rsa_base = P.prestations.minima_sociaux.rmi.rmi
+        ppa_base = P.prestations.minima_sociaux.ppa.montant_de_base
         revenu_activite = individu(
             'ppa_revenu_activite_individu', period, extra_params = [mois_demande])
         seuil_1 = P.prestations.minima_sociaux.ppa.bonification.seuil_bonification * smic_horaire
         seuil_2 = P.prestations.minima_sociaux.ppa.bonification.seuil_max_bonification * smic_horaire
-        bonification_max = round_(P.prestations.minima_sociaux.ppa.bonification.taux_bonification_max * rsa_base)
+        bonification_max = round_(P.prestations.minima_sociaux.ppa.bonification.taux_bonification_max * ppa_base)
         bonification = bonification_max * (revenu_activite - seuil_1) / (seuil_2 - seuil_1)
         bonification = max_(bonification, 0)
         bonification = min_(bonification, bonification_max)
