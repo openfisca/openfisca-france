@@ -3435,16 +3435,6 @@ class f7lp(Variable):
     definition_period = YEAR
 
 
-class f7lp(Variable):
-    cerfa_field = u"7LP"
-    value_type = int
-    unit = 'currency'
-    entity = FoyerFiscal
-    label = u"Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Investissements réalisés en 2012 et achevés de 2012 à 2015 : report du solde de réduction d'impôt de l'année 2015"
-#    start_date = date(2016, 1, 1)
-    definition_period = YEAR
-
-
 class f7na(Variable):
     cerfa_field = u"7NA"
     value_type = int
@@ -4224,15 +4214,6 @@ class f7ys(Variable):
     label = u"Scellier: report de 1/5 de la réduction d'impôt des investissements réalisés en 2011 avec promesse d'achat en 2010 et achevés en 2014 en Polynésie, en Nouvelle Calédonie et à Wallis et Futuna "
 #    start_date = date(2015, 1, 1)
     definition_period = YEAR
-
-class f7yz(Variable):
-    cerfa_field = u"7YZ"
-    value_type = int
-    entity = FoyerFiscal
-    label = u"Scellier: report de 1/5 de la réduction d'impôt des investissements réalisés en 2011 avec promesse d'achat en 2010 et achevés en 2015 en Polynésie, en Nouvelle Calédonie et à Wallis et Futuna "
-#    start_date = date(2016, 1, 1)
-    definition_period = YEAR
-
 
 class f7yz(Variable):
     cerfa_field = u"7YZ"
