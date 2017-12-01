@@ -6393,7 +6393,6 @@ class f7yz(Variable):
 #    start_date = date(2016, 1, 1)
     definition_period = YEAR
 
-
 # Investissement en vue de la location meublée non professionnelle dans certains établissements ou résidences
 class f7ij(Variable):
     cerfa_field = u"7IJ"
