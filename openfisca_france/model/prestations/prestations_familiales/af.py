@@ -2,7 +2,7 @@
 
 from __future__ import division
 
-from numpy import round, logical_or as or_
+from numpy import logical_or as or_, infty
 
 
 from openfisca_france.model.base import *  # noqa analysis:ignore
@@ -103,7 +103,7 @@ class af_base(Variable):
         plus_de_deux_enfants = (af_nbenf >= 2) * pfam.taux.enf2
         plus_de_trois_enfants = max_(af_nbenf - 2, 0) * pfam.taux.enf3
         taux_total = un_seul_enfant + plus_de_deux_enfants + plus_de_trois_enfants
-        montant_base = eligibilite * round(pfam.bmaf * taux_total, 2)
+        montant_base = eligibilite * round_(pfam.bmaf * taux_total, 2)
         coeff_garde_alternee = famille('af_coeff_garde_alternee', period)
         montant_base = montant_base * coeff_garde_alternee
 
@@ -170,8 +170,6 @@ class af_age_aine(Variable):
     label = u"Allocations familiales - Âge de l'aîné des enfants éligibles"
     definition_period = MONTH
     is_period_size_independent = True
-    allow_infinite = True
-
 
     def formula(famille, period, parameters):
         pfam = parameters(period).prestations.prestations_familiales
@@ -182,7 +180,11 @@ class af_age_aine(Variable):
         condition_eligibilite = pfam_enfant_a_charge * (age <= pfam.af.age2)
         age_enfants_eligiles = age * condition_eligibilite
 
-        return famille.max(age_enfants_eligiles, role = Famille.ENFANT)
+        age_max = famille.max(age_enfants_eligiles, role = Famille.ENFANT)
+
+        # S'il n'y a pas d'enfant dans la famille, age_max vaut -infini.
+        # Par convention, une variable OpenFisca ne doit pas retourner de valeur infinie. On renvoit la valeur par défault à la place.
+        return where(age_max == - infty, -9999, age_max)
 
 
 class af_majoration_enfant(Variable):
@@ -305,7 +307,7 @@ class af_allocation_forfaitaire(Variable):
         af_forfaitaire_nbenf = famille('af_allocation_forfaitaire_nb_enfants', period)
         P = parameters(period).prestations.prestations_familiales.af
         bmaf = P.bmaf
-        af_forfait = round(bmaf * P.majoration_enfants.taux_allocation_forfaitaire, 2)
+        af_forfait = round_(bmaf * P.majoration_enfants.taux_allocation_forfaitaire, 2)
         af_allocation_forfaitaire = ((af_nbenf >= 2) * af_forfaitaire_nbenf) * af_forfait
 
         af_forfaitaire_taux_modulation = famille('af_allocation_forfaitaire_taux_modulation', period)
