@@ -1365,7 +1365,7 @@ class f7lh(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise REPORT : Investissements réalisés en 2010, Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 50%"
-    end = '2011-12-31'
+#    end = '2011-12-31' change meaning in 2015
     definition_period = YEAR
 
 
@@ -1397,7 +1397,7 @@ class f7li(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise REPORT : Investissements réalisés en 2010, Autres investissements réalisés en 2010, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 50%"
-#    start_date = date(2011, 1, 1)
+#    start_date = date(2011, 1, 1) changes meaningin 2015
     definition_period = YEAR
 
 
@@ -3269,6 +3269,15 @@ class f7mh(Variable):
 #    start_date = date(2014, 1, 1)
     definition_period = YEAR
 
+class f7lj(Variable):
+    cerfa_field = u"7LJ"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Investissements réalisés en 2012 et achevés de 2012 à 2014 : report du solde de réduction d'impôt de l'année 2014"
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
 
 class f7na(Variable):
     cerfa_field = u"7NA"
@@ -3944,6 +3953,62 @@ class f7yl(Variable):
     entity = FoyerFiscal
     label = u"Scellier: report de 1/5 de la réduction d'impôt des investissements réalisés en 2011 avec promesse d'achat en 2010 et achevés en 2013 en Polynésie, en Nouvelle Calédonie et à Wallis et Futuna "
 #    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+class f7ym(Variable):
+    cerfa_field = u"7YM"
+    value_type = int
+    entity = FoyerFiscal
+    label = u"Scellier: report de 1/9 de la réduction d'impôt des investissements réalisés en 2012 ou réalisés du 1.1.2013 au 31.3.2013 avec promesse d'achat en 2012 et achevés en 2014 en métropole et dans les DOM-COM"
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+class f7yn(Variable):
+    cerfa_field = u"7YN"
+    value_type = int
+    entity = FoyerFiscal
+    label = u"Scellier: report de 1/9 de la réduction d'impôt des investissements réalisés en 2011 ou réalisés en 2012 avec promesse d'achat en 2011 et achevés en 2014 en métropole et dans les DOM-COM"
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+class f7yo(Variable):
+    cerfa_field = u"7YO"
+    value_type = int
+    entity = FoyerFiscal
+    label = u"Scellier: report de 1/9 de la réduction d'impôt des investissements réalisés en 2010 ou réalisés en 2011 avec promesse d'achat en 2010 et achevés en 2014 en métropole et dans les DOM-COM"
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+class f7yp(Variable):
+    cerfa_field = u"7YP"
+    value_type = int
+    entity = FoyerFiscal
+    label = u"Scellier: report de 1/9 de la réduction d'impôt des investissements réalisés en 2009 ou réalisés en 2010 avec promesse d'achat en 2010 et achevés en 2014 en métropole et dans les DOM-COM"
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+class f7yq(Variable):
+    cerfa_field = u"7YQ"
+    value_type = int
+    entity = FoyerFiscal
+    label = u"Scellier: report de 1/5 de la réduction d'impôt des investissements réalisés en 2012 ou réalisés du 1.1.2013 au 31.3.2013 avec promesse d'achat en 2012 et achevés en 2014 en Polynésie, en Nouvelle Calédonie et à Wallis et Futuna "
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+class f7yr(Variable):
+    cerfa_field = u"7YR"
+    value_type = int
+    entity = FoyerFiscal
+    label = u"Scellier: report de 1/5 de la réduction d'impôt des investissements réalisés en 2011 ou réalisés en 2012 avec promesse d'achat en 2011 et achevés en 2014 en Polynésie, en Nouvelle Calédonie et à Wallis et Futuna "
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+class f7ys(Variable):
+    cerfa_field = u"7YS"
+    value_type = int
+    entity = FoyerFiscal
+    label = u"Scellier: report de 1/5 de la réduction d'impôt des investissements réalisés en 2011 avec promesse d'achat en 2010 et achevés en 2014 en Polynésie, en Nouvelle Calédonie et à Wallis et Futuna "
+#    start_date = date(2015, 1, 1)
     definition_period = YEAR
 
 
