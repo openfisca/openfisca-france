@@ -3563,7 +3563,7 @@ class spfcpi(Variable):
     entity = FoyerFiscal
     label = u"spfcpi"
     definition_period = YEAR
-    end = '2014-12-31'
+    end = '2016-12-31'
 
 
     def formula_2002_01_01(self, simulation, period):
@@ -3617,7 +3617,7 @@ class spfcpi(Variable):
         '''
         Souscription de parts de fonds communs de placement dans l'innovation,
         de fonds d'investissement de proximité
-        2011-2013
+        2011-
         '''
         maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
         f7gq = simulation.calculate('f7gq', period)
@@ -3630,16 +3630,6 @@ class spfcpi(Variable):
         max1 = P.plafond_celibataire * (maries_ou_pacses + 1)
         return (P.taux1 * min_(f7gq, max1) + P.taux1 * min_(f7fq, max1) + P.taux2 * min_(f7fm, max1) +
                 P.taux3 * min_(f7fl, max1))
-
-    def formula_2014_01_01(self, simulation, period):
-        '''
-        Souscription de parts de fonds communs de placement dans l'innovation,
-        de fonds d'investissement de proximité
-        2014
-        '''
-        f7gq = simulation.calculate('f7gq', period)
-
-        return f7gq * 0
 
 
 def mini(a, b, *args):
