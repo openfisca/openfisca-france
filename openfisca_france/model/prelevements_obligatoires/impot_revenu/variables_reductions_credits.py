@@ -2186,7 +2186,7 @@ class f7cq(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Souscriptions au capital des PME non cotées, report de versement de l'année de perception des revenus -4 pour les start-up"
+    label = u"Souscriptions au capital des PME non cotées, report de versement de l'année de perception des revenus 2012 pour les start-up"
 #    start_date = date(2013, 1, 1) # TO CHECK : before 2013, F7CQ was something else...
     definition_period = YEAR
 
@@ -2196,7 +2196,7 @@ class f7cr(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Souscriptions au capital des PME non cotées, report de versement de l'année de perception des revenus -3 pour les start-up"
+    label = u"Souscriptions au capital des PME non cotées, report de versement de l'année 2013 pour les start-up"
 #    start_date = date(2014, 1, 1)
     definition_period = YEAR
 
@@ -2206,7 +2206,7 @@ class f7cv(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Souscriptions au capital des PME non cotées, report de versement de l'année de perception des revenus -2 pour les start-up"
+    label = u"Souscriptions au capital des PME non cotées, report de versement de l'année 2014 pour les start-up"
 #    start_date = date(2015, 1, 1)
     definition_period = YEAR
 
@@ -2216,7 +2216,37 @@ class f7cx(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Souscriptions au capital des PME non cotées, report de versement de l'année de perception des revenus -1 pour les start-up"
+    label = u"Souscriptions au capital des PME non cotées, report de versement de l'année 2015 pour les start-up"
+#    start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+
+class f7cy(Variable):
+    cerfa_field = u"7CY"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Souscriptions au capital des PME non cotées, report de réduction d'impôt au titre du plafonnement global de l'année 2013"
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+
+class f7dy(Variable):
+    cerfa_field = u"7DY"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Souscriptions au capital des PME non cotées, report de réduction d'impôt au titre du plafonnement global de l'année 2014"
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+
+class f7ey(Variable):
+    cerfa_field = u"7CY"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Souscriptions au capital des PME non cotées, report de réduction d'impôt au titre du plafonnement global de l'année 2015"
 #    start_date = date(2016, 1, 1)
     definition_period = YEAR
 

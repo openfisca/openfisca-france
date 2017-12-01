@@ -507,7 +507,7 @@ class cappme(Variable):
     entity = FoyerFiscal
     label = u"cappme"
     definition_period = YEAR
-    end = '2013-12-31'
+    end = '2014-12-31'
 
     def formula_2002_01_01(self, simulation, period):
         '''
@@ -655,6 +655,51 @@ class cappme(Variable):
         seuil3 = min_(P.seuil_tpe * (maries_ou_pacses + 1) - min_(base, seuil1) - min_(f7cq, seuil1), seuil1)
         return P.taux25 * min_(base, seuil1) + P.taux22 * min_(f7cn, seuil1) + P.taux18 * (min_(f7cf + f7cc, seuil3) +
                 min_(f7cu + f7cq, seuil2))
+
+    def formula_2014_01_01(self, simulation, period):
+        '''
+        Souscriptions au capital des PME
+        2014
+        '''
+        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
+        f7cc = simulation.calculate('f7cc', period)
+        f7cf = simulation.calculate('f7cf', period)
+        f7cl = simulation.calculate('f7cl', period)
+        f7cm = simulation.calculate('f7cm', period)
+        f7cn = simulation.calculate('f7cn', period)
+        f7cq = simulation.calculate('f7cq', period)
+        f7cr = simulation.calculate('f7cr', period)
+        f7cu = simulation.calculate('f7cu', period)
+        f7cy = simulation.calculate('f7cy', period)
+        _P = simulation.parameters_at(period.start)
+        P = simulation.parameters_at(period.start).impot_revenu.reductions_impots.cappme
+        
+        seuil1 = P.seuil * (maries_ou_pacses + 1) 
+        seuil2 = P.seuil_tpe * (maries_ou_pacses + 1)
+        
+        # Réduction investissement PME : imputation du plus ancien au plus récent
+        base_report_cappme_2010_PME = min_(f7cl, seuil1)
+        base_report_cappme_2011_PME = max_(0, min_(f7cm, seuil1) - base_report_cappme_2010_PME)
+        base_report_cappme_2012_PME = max_(0, min_(f7cn, seuil1 - base_report_cappme_2010_PME - base_report_cappme_2011_PME)) 
+        base_report_cappme_2013_PME = max_(0, min_(f7cc, seuil1 - base_report_cappme_2010_PME - base_report_cappme_2011_PME - base_report_cappme_2012_PME ))
+        base_cappme_2014_PME = max_(0, min_(f7cu, seuil1 - base_report_cappme_2010_PME - base_report_cappme_2011_PME - base_report_cappme_2012_PME - base_report_cappme_2013_PME))
+
+        # Réduction investissement TPE : imputation du plus ancien au plus récent
+        base_report_cappme_2012_TPE = min_(f7cq, seuil2)
+        base_report_cappme_2013_TPE = max_(0, min_(f7cr, seuil2 - base_report_cappme_2012_TPE, seuil2 - base_report_cappme_2012_TPE))
+        base_cappme_2014_TPE = max_(0, min_(f7cf, seuil2 - base_report_cappme_2013_TPE, seuil2 - base_report_cappme_2012_TPE - base_report_cappme_2013_TPE))
+        
+        report_cappme_2013_plaf_general = f7cy
+
+        seuil3 = seuil2 - min_(seuil2, base_report_cappme_2010_PME)
+        seuil4 = seuil3 - min_(seuil3, base_report_cappme_2010_PME + base_report_cappme_2011_PME)
+
+        return (report_cappme_2013_plaf_general + 
+            min_(seuil2, base_report_cappme_2010_PME) * P.taux25 + 
+            min_(seuil3, base_report_cappme_2011_PME) * P.taux22 +
+            min_(seuil4, base_report_cappme_2012_PME + base_report_cappme_2013_PME + base_cappme_2014_PME + 
+                base_report_cappme_2012_TPE + base_report_cappme_2013_TPE + base_cappme_2014_TPE) * P.taux18
+            )
 
 
 class cotsyn(Variable):
