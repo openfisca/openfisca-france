@@ -1755,7 +1755,7 @@ class garext(Variable):
     entity = FoyerFiscal
     label = u"garext"
     definition_period = YEAR
-    end = '2016-12-31'
+    end = '2004-12-31'
 
 
     def formula_2002_01_01(foyer_fiscal, period, parameters):
@@ -1776,7 +1776,7 @@ class garext(Variable):
         '''
         Frais de garde des enfants à l’extérieur du domicile (cases GA, GB, GC de la 2042)
         et GE, GF, GG
-        2003-
+        2003-2004
         '''
         f7ga = foyer_fiscal('f7ga', period)
         f7gb = foyer_fiscal('f7gb', period)
