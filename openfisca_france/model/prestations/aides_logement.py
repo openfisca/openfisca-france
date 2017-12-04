@@ -7,7 +7,7 @@ import json
 import logging
 import pkg_resources
 
-from numpy import ceil, fromiter, int16, logical_or as or_, logical_and as and_, take, nditer
+from numpy import ceil, fromiter, int16, logical_or as or_, logical_and as and_, nditer
 
 import openfisca_france
 from openfisca_core.periods import Instant
@@ -324,20 +324,11 @@ class aide_logement_loyer_plafond(Variable):
         chambre = famille.demandeur.menage('logement_chambre', period)
         zone_apl = famille.demandeur.menage('zone_apl', period)
 
-        # Preprocessing pour pouvoir accéder aux paramètres dynamiquement par zone.
-        plafonds_by_zone = [
-            [0] +
-            [al.loyers_plafond['zone' + str(zone)][i]
-            for zone in range(1, 4)]
-            for i in ['personnes_seules', 'couples', 'un_enfant', 'majoration_par_enf_supp']
-            ]
-        index_zone_apl = select(
-            [zone_apl == TypesZoneApl.zone_1, zone_apl == TypesZoneApl.zone_2, zone_apl == TypesZoneApl.zone_3],
-            [1, 2, 3]
-        )
-        plafond_personne_seule = take(plafonds_by_zone[0], index_zone_apl)
-        plafond_couple = take(plafonds_by_zone[1], index_zone_apl)
-        plafond_famille = take(plafonds_by_zone[2], index_zone_apl) + (al_nb_pac > 1) * (al_nb_pac - 1) * take(plafonds_by_zone[3], index_zone_apl)
+        loyers_plafond = al.loyers_plafond.par_zone[zone_apl]
+
+        plafond_personne_seule = loyers_plafond.personnes_seules
+        plafond_couple = loyers_plafond.couples
+        plafond_famille = loyers_plafond.un_enfant + (al_nb_pac > 1) * (al_nb_pac - 1) * loyers_plafond.majoration_par_enf_supp
 
         plafond = select(
             [not_(couple) * (al_nb_pac == 0) + chambre, al_nb_pac > 0],
@@ -364,15 +355,7 @@ class aide_logement_loyer_seuil_degressivite(Variable):
         chambre = famille.demandeur.menage('logement_chambre', period)
         coloc = famille.demandeur.menage('coloc', period)
 
-        coeff_degressivite_by_zone = [0] + [al.loyers_plafond['zone' + str(zone)]['degressivite'] for zone in range(1, 4)]
-
-        index_zone_apl = select(
-            [zone_apl == TypesZoneApl.non_renseigne, zone_apl == TypesZoneApl.zone_1, zone_apl == TypesZoneApl.zone_2,
-             zone_apl == TypesZoneApl.zone_3],
-            [0, 1, 2, 3]
-        )
-        coeff_degressivite = take(coeff_degressivite_by_zone, index_zone_apl)
-
+        coeff_degressivite = al.loyers_plafond.par_zone[zone_apl].degressivite
         loyer_degressivite = loyer_plafond * coeff_degressivite
         minoration_coloc = loyer_degressivite * 0.25 * coloc
         minoration_chambre = loyer_degressivite * 0.1 * chambre
@@ -394,14 +377,7 @@ class aide_logement_loyer_seuil_suppression(Variable):
         chambre = famille.demandeur.menage('logement_chambre', period)
         coloc = famille.demandeur.menage('coloc', period)
 
-        coeff_suppression_by_zone = [0] + [al.loyers_plafond['zone' + str(zone)]['suppression'] for zone in range(1, 4)]
-
-        index_zone_apl = select(
-            [zone_apl == TypesZoneApl.non_renseigne, zone_apl == TypesZoneApl.zone_1, zone_apl == TypesZoneApl.zone_2,
-             zone_apl == TypesZoneApl.zone_3],
-            [0, 1, 2, 3]
-        )
-        coeff_suppression = take(coeff_suppression_by_zone, index_zone_apl)
+        coeff_suppression = al.loyers_plafond.par_zone[zone_apl].suppression
 
         loyer_suppression = loyer_plafond * coeff_suppression
         minoration_coloc = loyer_suppression * 0.25 * coloc
@@ -559,7 +535,7 @@ class aide_logement_taux_loyer(Variable):
 
     def formula(famille, period, parameters):
         al = parameters(period).prestations.aides_logement
-        z2 = al.loyers_plafond.zone2
+        z2 = al.loyers_plafond.par_zone.zone_2
 
         L = famille('aide_logement_loyer_retenu', period)
         couple = famille('al_couple', period)
@@ -961,15 +937,11 @@ class aides_logement_primo_accedant_plafond_mensualite(Variable):
     definition_period = MONTH
 
     def formula(famille, period, parameters):
-        al_plaf_acc = parameters(period).prestations.al_plaf_acc
+        al_plaf_acc = parameters(period).prestations.al_plafonds_accession
         zone_apl = famille.demandeur.menage('zone_apl', period)
-        index_zone_apl = select(
-            [zone_apl == TypesZoneApl.non_renseigne, zone_apl == TypesZoneApl.zone_1, zone_apl == TypesZoneApl.zone_2, zone_apl == TypesZoneApl.zone_3],
-            [2, 1, 2, 3]
-        )
-        formatted_zone = concat('plafond_pour_accession_a_la_propriete_zone_', index_zone_apl)  # zone_apl returns 1, 2 or 3 but the parameters have a long name
 
-        plafonds = al_plaf_acc[formatted_zone]
+        plafonds = al_plaf_acc[zone_apl]
+
         al_nb_pac = famille('al_nb_personnes_a_charge', period)
         couple = famille('al_couple', period)
 
