@@ -4490,6 +4490,7 @@ class f7jy(Variable):
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 class f7oa(Variable):
     cerfa_field = u"7OA"
@@ -4522,6 +4523,8 @@ class f7oc(Variable):
 
 
 >>>>>>> Update formula, parameters and variables for tax reduction 'locmeu' for years 2014-2016
+=======
+>>>>>>> Fix double declaration of same variables
 class f7od(Variable):
     cerfa_field = u"7OD"
     value_type = int
@@ -4562,6 +4565,7 @@ class f7og(Variable):
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 class f7oh(Variable):
     cerfa_field = u"7OH"
@@ -4593,6 +4597,8 @@ class f7oj(Variable):
     definition_period = YEAR
 
 >>>>>>> Update formula, parameters and variables for tax reduction 'locmeu' for years 2014-2016
+=======
+>>>>>>> Fix double declaration of same variables
 class f7jc(Variable):
     cerfa_field = u"7JC"
     value_type = int
