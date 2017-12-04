@@ -929,7 +929,7 @@ class f7pc_2011(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%, Investissements dans votre entreprise, montant de la réduction d' impôt calculée"
-    end = '2011-12-31'
+    # end = '2011-12-31' changes meaning in 2014
     definition_period = YEAR
 
 
@@ -4570,7 +4570,10 @@ class f7oj(Variable):
 #    start_date = date(2015, 1, 1)
     definition_period = YEAR
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> Update formula, parameters and variables for tax reduction 'locmeu' for years 2014-2016
 class f7jc(Variable):
     cerfa_field = u"7JC"
     value_type = int
