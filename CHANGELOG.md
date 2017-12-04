@@ -4,8 +4,9 @@
 
 * Amélioration technique
 * Détails :
-  - Modifie la façon dont les Enumerations sont définis et appelés.
-  - Certains enums étaient utilisés comme booleens. La valeur 0/1 a été remplacé par le membre d'enum correspondant.
+  - Modifie la façon dont les Enumerations sont définies et appelées.
+  - Certains Enums étaient utilisées comme booléens. La valeur 0/1 a été remplacée par le membre d'Enum correspondant.
+  
   Par exemple pour : 
   
   ```
@@ -13,15 +14,92 @@
     calculable = u"Calculable"
     intervention_CDAPH_necessaire = u"intervention_CDAPH_necessaire"
   ```
-  `False` devient `TypesAAHNonCalculable.calculable`
-  `True` devient `TypesAAHNonCalculable.intervention_CDAPH_necessaire`
+  
+  - `False` devient `TypesAAHNonCalculable.calculable`
+  - `True` devient `TypesAAHNonCalculable.intervention_CDAPH_necessaire`
   
   Les valeurs possibles des Enums ainsi que les nouvelles valeurs par défaut sont disponibles sur legislation.openfisca.fr
   
-  #### Pour les mainteneurs de formules:
+#### Pour les mainteneurs de formules:
   
-  Les Enums étaient habituellement placés au dessus de la variable qui le calculait. 
-  Ils sont maintenant tous placés dans le fichier `model/base.py`, et commencent tous par `Types`
+  Les Enums étaient habituellement placées au dessus de la variable qui la calculait. 
+  Elles sont maintenant toutes placés dans le fichier `model/base.py`, et commencent toutes par `Types`
+
+#### Effets sur la Web API
+
+Avant:
+
+```
+"individus": {
+    "Bill": {
+      "categorie_salarie": {
+        "2017-01": 1
+      }
+    }
+```
+
+Maintenant:
+
+```
+"individus": {
+    "Bill": {
+      "categorie_salarie": {
+        "2017-01": prive_cadre
+      }
+    }
+}
+```
+
+#### YAML testing
+Avant:
+
+```
+period: "2016-06"
+  name:
+    Taxe d'apprentissage / CSA non applicable car ratio 0.05
+  relative_error_margin: 0.001
+  input_variables:
+    salaire_de_base: 1467
+    # nécessaire pour des requêtes sur un mois de salaire :
+    allegement_fillon_mode_recouvrement: anticipe
+    effectif_entreprise: 250
+    categorie_salarie: 0
+    contrat_de_travail_duree: cdi
+    entreprise_est_association_non_lucrative: 0
+    ratio_alternants: 0.05
+  output_variables:
+    taxe_apprentissage: -.0068 * 1467
+    contribution_supplementaire_apprentissage: 0 # parce que ratio alternants >= 0.05 -> non applicable
+```
+Maintenant:
+
+```
+period: "2016-06"
+  name:
+    Taxe d'apprentissage / CSA non applicable car ratio 0.05
+  relative_error_margin: 0.001
+  input_variables:
+    salaire_de_base: 1467
+    # nécessaire pour des requêtes sur un mois de salaire :
+    allegement_fillon_mode_recouvrement: anticipe
+    effectif_entreprise: 250
+    categorie_salarie: prive_non_cadre
+    contrat_de_travail_duree: cdi
+    entreprise_est_association_non_lucrative: 0
+    ratio_alternants: 0.05
+  output_variables:
+    taxe_apprentissage: -.0068 * 1467
+    contribution_supplementaire_apprentissage: 0 # parce que ratio alternants >= 0.05 -> non applicable
+```
+
+#### Python API
+
+Lors du calcul d'une variable Enum en Python, l'output est un array de membres Enum.
+
+> Chaque membre d'Enum :
+> - a un attribut `name` qui contient sa clé (e.g. `nulle`)
+> - a un attribut `value` qui contient sa description (e.g. `u"Nulle, pas d'exposition de l'employé à un facteur de pénibilité"`)
+
   
 ### 18.11.0
 
