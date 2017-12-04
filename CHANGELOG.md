@@ -2,31 +2,93 @@
 
 # 20.0.0 - [#846](https://github.com/openfisca/openfisca-france/pull/846)
 
-
 * Amélioration technique
 * Détails :
-  - Modifie la façon dont les Enumerations sont définis et appelés.
-  - Certains enums étaient utilisés comme booleens. La valeur 0/1 a été remplacé par le membre d'enum correspondant.
+  - Modifie la façon dont les Enumerations sont définies et appelées.
+  - Certains Enums étaient utilisées comme booléens. La valeur 0/1 a été remplacée par le membre d'Enum correspondant.
+  - Renomme des fichiers de parametres pour pouvoir simplifier des formules dont le resultat dépend de `TypesZoneAPL` (Fancy indexing)
+
   Par exemple pour :
 
-  ```py
+  ```
   class TypesAAHNonCalculable(Enum):
     calculable = u"Calculable"
     intervention_CDAPH_necessaire = u"intervention_CDAPH_necessaire"
   ```
-  `False` devient `TypesAAHNonCalculable.calculable`
-  `True` devient `TypesAAHNonCalculable.intervention_CDAPH_necessaire`
+
+  - `False` devient `TypesAAHNonCalculable.calculable`
+  - `True` devient `TypesAAHNonCalculable.intervention_CDAPH_necessaire`
 
   Les valeurs possibles des Enums ainsi que les nouvelles valeurs par défaut sont disponibles sur legislation.openfisca.fr
 
+#### Pour les mainteneurs de formules:
 
-  #### Pour les mainteneurs de formules:
+  Les Enums étaient habituellement placées au dessus de la variable qui la calculait.
+  Elles sont maintenant toutes placés dans le fichier `model/base.py`, et commencent toutes par `Types`
 
-  Les Enums étaient habituellement placés au dessus de la variable qui le calculait.
-  Ils sont maintenant tous placés dans le fichier `model/base.py`, et commencent tous par `Types`
+#### Effets sur la Web API
+
+Avant:
+
+```
+"individus": {
+    "Bill": {
+      "categorie_salarie": {
+        "2017-01": 1
+      }
+    }
+```
+
+Maintenant:
+
+```
+"individus": {
+    "Bill": {
+      "categorie_salarie": {
+        "2017-01": prive_cadre
+      }
+    }
+}
+```
+
+#### YAML testing
+Avant:
+
+```
+period: "2016-06"
+  name:
+    Taxe d'apprentissage
+  relative_error_margin: 0.01
+  input_variables:
+    salaire_de_base: 1467
+    categorie_salarie: 0
+  output_variables:
+    taxe_apprentissage: -9.97
+```
+Maintenant:
+
+```
+period: "2016-06"
+  name:
+    Taxe d'apprentissage
+  relative_error_margin: 0.01
+  input_variables:
+    salaire_de_base: 1467
+    categorie_salarie: prive_non_cadre
+  output_variables:
+    taxe_apprentissage: -9.97
+```
+
+#### Python API
+
+Lors du calcul d'une variable Enum en Python, l'output est un array de membres Enum.
+
+> Chaque membre d'Enum :
+> - a un attribut `name` qui contient sa clé (e.g. `nulle`)
+> - a un attribut `value` qui contient sa description (e.g. `u"Nulle, pas d'exposition de l'employé à un facteur de pénibilité"`)
 
 
-# 19.0.0
+# 19.0.0 - [#858](https://github.com/openfisca/openfisca-france/pull/858)
 
 * Améliorations techniques **non rétro-compatibles**
 * Détails :
