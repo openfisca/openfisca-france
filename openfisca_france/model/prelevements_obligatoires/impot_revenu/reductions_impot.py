@@ -1967,7 +1967,7 @@ class invfor(Variable):
         P = simulation.parameters_at(period.start).impot_revenu.reductions_impots.invfor
 
         max0 = max_(0, P.ifortra_seuil * (maries_ou_pacses + 1) - f7ul)
-        max1 = max_(0, max0 - f7uu + f7te + f7uv + f7tf)
+        max1 = max_(0, max0 - f7uu - f7te - f7uv - f7tf)
         return (P.taux * (
             min_(f7un, P.seuil * (maries_ou_pacses + 1)) +
             min_(f7up, max1) +
@@ -1994,7 +1994,7 @@ class invfor(Variable):
         P = simulation.parameters_at(period.start).impot_revenu.reductions_impots.invfor
 
         max0 = max_(0, P.ifortra_seuil * (maries_ou_pacses + 1) - f7ul)
-        max1 = max_(0, max0 - f7uu + f7te + f7uv + f7tf)
+        max1 = max_(0, max0 - f7uu - f7te - f7uv - f7tf)
         max2 = max_(0, max1 - f7tg - f7uw)
         return (P.taux * (
             min_(f7un, P.seuil * (maries_ou_pacses + 1)) +
@@ -2025,7 +2025,7 @@ class invfor(Variable):
         P = simulation.parameters_at(period.start).impot_revenu.reductions_impots.invfor
 
         max0 = max_(0, P.ifortra_seuil * (maries_ou_pacses + 1) - f7ul)
-        max1 = max_(0, max0 - f7uu + f7te + f7uv + f7tf)
+        max1 = max_(0, max0 - f7uu - f7te - f7uv - f7tf)
         max2 = max_(0, max1 - f7tg - f7uw)
         max3 = max_(0, max2 - f7th - f7ux)
         return (P.taux * (
