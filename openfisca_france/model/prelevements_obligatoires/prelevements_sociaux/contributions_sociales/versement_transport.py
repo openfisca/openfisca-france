@@ -23,14 +23,14 @@ class taux_versement_transport(Variable):
         seuil_effectif = simulation.parameters_at(period.start).cotsoc.versement_transport.seuil_effectif
 
         preload_taux_versement_transport()
-        public = \
-            (categorie_salarie == TypesCategorieSalarie.public_titulaire_etat) \
-            + (categorie_salarie == TypesCategorieSalarie.public_titulaire_militaire) \
-            + (categorie_salarie == TypesCategorieSalarie.public_titulaire_territoriale) \
-            + (categorie_salarie == TypesCategorieSalarie.public_titulaire_hospitaliere) \
-            + (categorie_salarie == TypesCategorieSalarie.public_non_titulaire) \
+        public = (
+            (categorie_salarie == TypesCategorieSalarie.public_titulaire_etat)
+            + (categorie_salarie == TypesCategorieSalarie.public_titulaire_militaire)
+            + (categorie_salarie == TypesCategorieSalarie.public_titulaire_territoriale)
+            + (categorie_salarie == TypesCategorieSalarie.public_titulaire_hospitaliere)
+            + (categorie_salarie == TypesCategorieSalarie.public_non_titulaire)
             + (categorie_salarie == TypesCategorieSalarie.non_pertinent)
-
+        )
         taux_versement_transport = fromiter(
             (
                 get_taux_versement_transport(code_commune, period)
