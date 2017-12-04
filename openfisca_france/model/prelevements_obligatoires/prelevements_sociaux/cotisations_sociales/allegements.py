@@ -429,26 +429,24 @@ def switch_on_allegement_mode(simulation, period, mode_recouvrement, variable_na
         should precisely be the variable name prefixed with 'compute_'
     """
     compute_function = globals()['compute_' + variable_name]
-    if type(mode_recouvrement[0]) == TypesAllegementCotisationAllocationsFamilialesModeRecouvrement:
-        return switch(
-        mode_recouvrement,
-        {
-            TypesAllegementCotisationAllocationsFamilialesModeRecouvrement.fin_d_annee: compute_allegement_annuel(simulation, period, variable_name, compute_function),
-            TypesAllegementCotisationAllocationsFamilialesModeRecouvrement.anticipe: compute_allegement_anticipe(simulation, period, variable_name, compute_function),
-            TypesAllegementCotisationAllocationsFamilialesModeRecouvrement.progressif: compute_allegement_progressif(simulation, period, variable_name, compute_function),
-        },
-    )
-    if type(mode_recouvrement[0]) == TypesAllegementFillonModeRecouvrement:
-        return switch(
-            mode_recouvrement,
-            {
-                TypesAllegementFillonModeRecouvrement.fin_d_annee: compute_allegement_annuel(simulation, period, variable_name, compute_function),
-                TypesAllegementFillonModeRecouvrement.anticipe: compute_allegement_anticipe(simulation, period, variable_name, compute_function),
-                TypesAllegementFillonModeRecouvrement.progressif: compute_allegement_progressif(simulation, period, variable_name, compute_function),
-            },
-        )
-    raise ValueError("{} is not a known Mode de recouvrement".format(mode_recouvrement))
 
+    recouvrement_fin_annee = (
+        (mode_recouvrement == TypesAllegementCotisationAllocationsFamilialesModeRecouvrement.fin_d_annee)
+        + (mode_recouvrement == TypesAllegementFillonModeRecouvrement.fin_d_annee)
+    )
+    recouvrement_anticipe = (
+        (mode_recouvrement == TypesAllegementCotisationAllocationsFamilialesModeRecouvrement.anticipe)
+        + (mode_recouvrement == TypesAllegementFillonModeRecouvrement.anticipe)
+    )
+    recouvrement_progressif = (
+        (mode_recouvrement == TypesAllegementCotisationAllocationsFamilialesModeRecouvrement.progressif)
+        + (mode_recouvrement == TypesAllegementFillonModeRecouvrement.progressif)
+    )
+    return (
+        (recouvrement_fin_annee * compute_allegement_annuel(simulation, period, variable_name, compute_function))
+        + (recouvrement_anticipe * compute_allegement_anticipe(simulation, period, variable_name, compute_function))
+        + (recouvrement_progressif * compute_allegement_progressif(simulation, period, variable_name, compute_function))
+    )
 
 
 def compute_allegement_annuel(simulation, period, variable_name, compute_function):

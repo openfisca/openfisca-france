@@ -184,7 +184,11 @@ class aah_non_calculable(Variable):
 
         # Pour le moment résultat "pas assez fiable, donc on renvoit une non calculabilité tout le temps.
 
-        return select([(aah_eligible == True), (aah_eligible == False)], [TypesAAHNonCalculable.intervention_CDAPH_necessaire, TypesAAHNonCalculable.calculable])
+        return where(
+            aah_eligible,
+            TypesAAHNonCalculable.intervention_CDAPH_necessaire,
+            TypesAAHNonCalculable.calculable
+        )
 
 
 class aah_base(Variable):

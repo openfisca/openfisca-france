@@ -794,16 +794,11 @@ class aide_logement_non_calculable(Variable):
     def formula(famille, period):
         statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
 
-        return select(
-            [
-                statut_occupation_logement == TypesStatutOccupationLogement.locataire_foyer,
-                statut_occupation_logement != TypesStatutOccupationLogement.locataire_foyer
-            ],
-            [
-                TypesAideLogementNonCalculable.locataire_foyer,
-                TypesAideLogementNonCalculable.calculable
-            ]
-        )
+        return where(
+            statut_occupation_logement == TypesStatutOccupationLogement.locataire_foyer,
+            TypesAideLogementNonCalculable.locataire_foyer,
+            TypesAideLogementNonCalculable.calculable
+            )
 
 
 class aide_logement(Variable):
@@ -853,14 +848,17 @@ class zone_apl(Variable):
 
         preload_zone_apl()
         default_value = 2
-        get_zone = fromiter(
+        zone = fromiter(
             (
                 zone_apl_by_depcom.get(depcom_cell, default_value)
                 for depcom_cell in depcom
                 ),
             dtype = int16,
             )
-        return select((get_zone == 1, get_zone == 2, get_zone == 3), (TypesZoneApl.zone_1, TypesZoneApl.zone_2, TypesZoneApl.zone_3))
+        return select(
+            (zone == 1, zone == 2, zone == 3),
+            (TypesZoneApl.zone_1, TypesZoneApl.zone_2, TypesZoneApl.zone_3)
+        )
 
 
 def preload_zone_apl():
@@ -969,8 +967,6 @@ class aides_logement_primo_accedant_plafond_mensualite(Variable):
             [zone_apl == TypesZoneApl.non_renseigne, zone_apl == TypesZoneApl.zone_1, zone_apl == TypesZoneApl.zone_2, zone_apl == TypesZoneApl.zone_3],
             [2, 1, 2, 3]
         )
-        if 0 in index_zone_apl:
-            raise ValueError(famille.demandeur.menage('zone_apl', period))
         formatted_zone = concat('plafond_pour_accession_a_la_propriete_zone_', index_zone_apl)  # zone_apl returns 1, 2 or 3 but the parameters have a long name
 
         plafonds = al_plaf_acc[formatted_zone]

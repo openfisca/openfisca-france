@@ -188,9 +188,10 @@ class accident_du_travail(Variable):
             'assiette_cotisations_sociales', period)
         taux_accident_travail = simulation.calculate('taux_accident_travail', period)
         categorie_salarie = simulation.calculate('categorie_salarie', period)
-        assujetti = \
-            (categorie_salarie == TypesCategorieSalarie.prive_non_cadre) \
-            + (categorie_salarie == TypesCategorieSalarie.prive_cadre) \
+        assujetti = (
+            (categorie_salarie == TypesCategorieSalarie.prive_non_cadre)
+            + (categorie_salarie == TypesCategorieSalarie.prive_cadre)
+        )
             # TODO: ajouter contractuel du public salarié de moins d'un an ou à temps partiel
         return - assiette_cotisations_sociales * taux_accident_travail * assujetti
 
@@ -427,9 +428,10 @@ class arrco_salarie(Variable):
             arrco_tranche_a_taux_salarie
             )
 
-        public = \
-            (categorie_salarie == TypesCategorieSalarie.prive_non_cadre) \
+        public = (
+            (categorie_salarie == TypesCategorieSalarie.prive_non_cadre)
             + (categorie_salarie == TypesCategorieSalarie.prive_cadre)
+        )
 
         return (
             cotisation_minimale * (arrco_tranche_a_taux_salarie == 0) + cotisation_entreprise
@@ -462,10 +464,10 @@ class arrco_employeur(Variable):
             arrco_tranche_a_taux_employeur
             )
 
-        public = \
-            (categorie_salarie == TypesCategorieSalarie.prive_non_cadre) \
+        public = (
+            (categorie_salarie == TypesCategorieSalarie.prive_non_cadre)
             + (categorie_salarie == TypesCategorieSalarie.prive_cadre)
-
+        )
         return (
             cotisation_minimale * (arrco_tranche_a_taux_employeur == 0) + cotisation_entreprise
             ) * public

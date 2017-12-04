@@ -684,11 +684,8 @@ class rsa_eligibilite(Variable):
 
     def formula(famille, period, parameters):
         rsa_nb_enfants = famille('rsa_nb_enfants', period)
-
         rsa_eligibilite_tns = famille('rsa_eligibilite_tns', period)
-
         condition_nationalite_i = famille.members('rsa_condition_nationalite', period)
-
         condition_nationalite = famille.any(condition_nationalite_i, role = Famille.PARENT)
 
         rmi = parameters(period).prestations.minima_sociaux.rmi
@@ -766,8 +763,6 @@ class rsa_eligibilite_tns(Variable):
         eligibilite_agricole = eligibilite_agricole(
             has_conjoint, rsa_nb_enfants, tns_benefice_agricole, P_agr
             )
-
-
         eligibilite_chiffre_affaire = famille.all(
             eligibilite_chiffre_affaire(tns_autres_revenus_CA_i, tns_autres_revenus_type_activite_i, P_micro),
             role = Famille.PARENT
