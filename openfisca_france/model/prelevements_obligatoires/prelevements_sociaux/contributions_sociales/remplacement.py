@@ -102,9 +102,10 @@ class crds_chomage(Variable):
         # heures_mensuelles = min_(salaire_mensuel_reference / smic_h_b, 35 * 52 / 12)  # TODO: depuis 2001 mais avant ?
         heures_mensuelles = 35 * 52 / 12
         cho_seuil_exo = law.prelevements_sociaux.contributions.csg.chomage.min_exo * heures_mensuelles * smic_h_b
-        eligible = \
-            (taux_csg_remplacement == TypesTauxCSGRemplacement.taux_reduit) \
+        eligible = (
+            (taux_csg_remplacement == TypesTauxCSGRemplacement.taux_reduit)
             + (taux_csg_remplacement == TypesTauxCSGRemplacement.taux_plein)
+            )
         montant_crds = montant_csg_crds(
             base_avec_abattement = chomage_brut,
             law_node = law.prelevements_sociaux.contributions.crds.activite,

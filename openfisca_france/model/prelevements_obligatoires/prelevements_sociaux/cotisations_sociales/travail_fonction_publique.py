@@ -51,18 +51,20 @@ class assiette_cotisations_sociales_public(Variable):
         # primes_fonction_publique = simulation.calculate('primes_fonction_publique', period)
         # indemnite_residence = simulation.calculate('indemnite_residence', period)
         categorie_salarie = simulation.calculate('categorie_salarie', period)
-        public = \
-            (categorie_salarie == TypesCategorieSalarie.public_titulaire_etat) \
-            + (categorie_salarie == TypesCategorieSalarie.public_titulaire_militaire) \
-            + (categorie_salarie == TypesCategorieSalarie.public_titulaire_territoriale) \
-            + (categorie_salarie == TypesCategorieSalarie.public_titulaire_hospitaliere) \
-            + (categorie_salarie == TypesCategorieSalarie.public_non_titulaire) \
+        public = (
+            (categorie_salarie == TypesCategorieSalarie.public_titulaire_etat)
+            + (categorie_salarie == TypesCategorieSalarie.public_titulaire_militaire)
+            + (categorie_salarie == TypesCategorieSalarie.public_titulaire_territoriale)
+            + (categorie_salarie == TypesCategorieSalarie.public_titulaire_hospitaliere)
+            + (categorie_salarie == TypesCategorieSalarie.public_non_titulaire)
             + (categorie_salarie == TypesCategorieSalarie.non_pertinent)
-        # titulaire = public = \
-        #     (categorie_salarie == TypesCategorieSalarie.public_titulaire_etat) \
-        #     + (categorie_salarie == TypesCategorieSalarie.public_titulaire_militaire) \
-        #     + (categorie_salarie == TypesCategorieSalarie.public_titulaire_territoriale) \
-        #     + (categorie_salarie == TypesCategorieSalarie.public_titulaire_hospitaliere) \
+        )
+        # titulaire = public =(
+        #     (categorie_salarie == TypesCategorieSalarie.public_titulaire_etat)
+        #     + (categorie_salarie == TypesCategorieSalarie.public_titulaire_militaire)
+        #     + (categorie_salarie == TypesCategorieSalarie.public_titulaire_territoriale)
+        #     + (categorie_salarie == TypesCategorieSalarie.public_titulaire_hospitaliere)
+        # )
 
         assiette = public * (
             remuneration_principale
