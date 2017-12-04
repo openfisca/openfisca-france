@@ -6,6 +6,7 @@
 * Détails :
   - Modifie la façon dont les Enumerations sont définies et appelées.
   - Certains Enums étaient utilisées comme booléens. La valeur 0/1 a été remplacée par le membre d'Enum correspondant.
+  - Renomme des fichiers de parametres pour pouvoir simplifier des formules dont le resultat dépend de `TypesZoneAPL` (Fancy indexing)
   
   Par exemple pour : 
   
