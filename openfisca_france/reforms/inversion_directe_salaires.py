@@ -7,7 +7,7 @@ import numpy as np
 from openfisca_france.model.base import *  # noqa analysis:ignore
 
 from openfisca_core.reforms import Reform
-from openfisca_core.taxscales import MarginalRateTaxScale
+from openfisca_core.taxscales import MarginalRateTaxScale, combine_tax_scales
 
 import logging
 
@@ -96,7 +96,7 @@ class salaire_de_base(Variable):
             )
         salaire_de_base = 0.0
         for categorie in ['prive_non_cadre', 'prive_cadre']:
-            bareme = salarie[categorie].combine_tax_scales()
+            bareme = combine_tax_scales(salarie[categorie])
             bareme.add_tax_scale(csg)
             brut_proratise = bareme.inverse().calc(salaire_imposable_proratise)
             assert np.isfinite(brut_proratise).all()
@@ -127,7 +127,7 @@ class salaire_de_base(Variable):
 
         # public_titulaire_etat = salarie['public_titulaire_etat'] #.copy()
         # public_titulaire_etat['rafp'].multiply_rates(TAUX_DE_PRIME, inplace = True)
-        # public_titulaire_etat = salarie['public_titulaire_etat'].combine_tax_scales()
+        # public_titulaire_etat = combine_tax_scales(salarie['public_titulaire_etat'])
 
 # class traitement_indiciaire_brut(Variable):
 #    definition_period = MONTH
@@ -158,11 +158,11 @@ class salaire_de_base(Variable):
 
 #         public_titulaire_etat = salarie['public_titulaire_etat']  # .copy()
 #         public_titulaire_etat['rafp'].multiply_rates(TAUX_DE_PRIME, inplace = True)
-#         public_titulaire_etat = salarie['public_titulaire_etat'].combine_tax_scales()
+#         public_titulaire_etat = combine_tax_scales(salarie['public_titulaire_etat'])
 
-#         # public_titulaire_territoriale = salarie['public_titulaire_territoriale'].combine_tax_scales()
-#         # public_titulaire_hospitaliere = salarie['public_titulaire_hospitaliere'].combine_tax_scales()
-#         # public_non_titulaire = salarie['public_non_titulaire'].combine_tax_scales()
+#         # public_titulaire_territoriale = combine_tax_scales(salarie['public_titulaire_territoriale'])
+#         # public_titulaire_hospitaliere = combine_tax_scales(salarie['public_titulaire_hospitaliere'])
+#         # public_non_titulaire = combine_tax_scales(salarie['public_non_titulaire'])
 
 #         # Pour a fonction publique la csg est calculée sur l'ensemble TIB + primes
 #         # Imposable = TIB - csg( (1+taux_prime)*TIB ) - pension(TIB) + taux_prime*TIB
@@ -235,7 +235,7 @@ class inversion_directe_salaires(Reform):
         neutralized_variables += list(set(neutralized_reductions + neutralized_credits))
         for neutralized_variable in neutralized_variables:
             log.info("Neutralizing {}".format(neutralized_variable))
-            self.neutralize_column(neutralized_variable)
+            self.neutralize_variable(neutralized_variable)
 
         self.add_variable(salaire_imposable_pour_inversion)
         for variable in [salaire_de_base]:  # traitement_indiciaire_brut, primes_fonction_publique,

@@ -122,8 +122,8 @@ def build_reform(tax_benefit_system):
     #
     #        # Salariés du privé
     #
-    #        noncadre = salarie['noncadre'].combine_tax_scales()
-    #        cadre = salarie['cadre'].combine_tax_scales()
+    #        noncadre = combine_tax_scales(salarie['noncadre'])
+    #        cadre = combine_tax_scales(salarie['cadre'])
     #
     #        # On ajoute la CSG deductible
     #        noncadre.add_tax_scale(csg['activite']['deductible'])
@@ -143,7 +143,7 @@ def build_reform(tax_benefit_system):
     #        salarie['fonc']['etat']['excep_solidarite'] = salarie['fonc']['commun']['solidarite']
     #
     #        public_etat = salarie['fonc']['etat']['pension']
-    #        # public_colloc = salarie['fonc']["colloc"].combine_tax_scales()  TODO
+    #        # public_colloc = combine_tax_scales(salarie['fonc']["colloc"])  TODO
     #
     #        # Pour a fonction publique la csg est calculée sur l'ensemble salbrut(=TIB) + primes
     #        # Imposable = TIB - csg( (1+taux_prime)*TIB ) - pension(TIB) + taux_prime*TIB
