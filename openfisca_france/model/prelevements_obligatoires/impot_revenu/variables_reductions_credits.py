@@ -2286,7 +2286,7 @@ class f7ui(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    # end = '2008-12-31'
+    # end = '2008-12-31' changes meaning in 2014
     definition_period = YEAR
 
 
