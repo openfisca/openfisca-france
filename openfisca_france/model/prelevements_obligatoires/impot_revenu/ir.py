@@ -2213,7 +2213,6 @@ class rac(Variable):
 
 
 class rnc(Variable):
-    base_function = requested_period_added_value
     value_type = float
     entity = Individu
     label = u"Revenus non commerciaux individuels"
@@ -2263,7 +2262,6 @@ class rnc(Variable):
 
 
 class rpns(Variable):
-    base_function = requested_period_added_value
     value_type = float
     entity = Individu
     label = u"Revenus individuels des professions non salariées"
@@ -2349,7 +2347,6 @@ class rpns_mvlt(Variable):
 
 
 class rpns_individu(Variable):
-    base_function = requested_period_added_value
     value_type = float
     entity = Individu
     label = u"Revenus des professions non salariées individuels"

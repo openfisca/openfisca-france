@@ -476,7 +476,6 @@ class indemnites_forfaitaires(Variable):
 
 
 class salaire_de_base(Variable):
-    base_function = requested_period_added_value
     value_type = float
     entity = Individu
     label = u"Salaire de base, en général appelé salaire brut, la 1ère ligne sur la fiche de paie"
@@ -548,7 +547,6 @@ class heures_non_remunerees_volume(Variable):
 
 
 class heures_remunerees_volume(Variable):
-    base_function = requested_period_added_value
     value_type = float
     entity = Individu
     label = u"Volume des heures rémunérées contractuellement (heures/mois, temps partiel)"
@@ -578,7 +576,6 @@ class volume_jours_ijss(Variable):
 
 
 class avantage_en_nature(Variable):
-    base_function = requested_period_added_value
     value_type = float
     entity = Individu
     label = u"Avantages en nature"
@@ -593,7 +590,6 @@ class avantage_en_nature(Variable):
 
 
 class avantage_en_nature_valeur_forfaitaire(Variable):
-    # base_function = requested_period_added_value
     value_type = float
     entity = Individu
     label = u"Evaluation fofaitaire des avantages en nature "
@@ -608,7 +604,6 @@ class avantage_en_nature_valeur_forfaitaire(Variable):
 
 
 class depense_cantine_titre_restaurant_employe(Variable):
-    base_function = requested_period_added_value
     value_type = float
     entity = Individu
     label = u"Dépense de cantine et de titre restaurant à charge de l'employe"
@@ -625,7 +620,6 @@ class depense_cantine_titre_restaurant_employe(Variable):
 
 
 class depense_cantine_titre_restaurant_employeur(Variable):
-    base_function = requested_period_added_value
     value_type = float
     entity = Individu
     label = u"Dépense de cantine et de titre restaurant à charge de l'employeur"
@@ -732,7 +726,6 @@ class indice_majore(Variable):
 
 
 class primes_fonction_publique(Variable):
-    base_function = requested_period_added_value
     value_type = float
     entity = Individu
     label = u"Calcul des primes pour les fonctionnaries"
@@ -875,7 +868,6 @@ class remuneration_principale(Variable):
 
 
 class salaire_net_a_payer(Variable):
-    base_function = requested_period_added_value
     value_type = float
     entity = Individu
     label = u"Salaire net à payer (fiche de paie)"
@@ -904,7 +896,6 @@ class salaire_net_a_payer(Variable):
 
 
 class salaire_super_brut_hors_allegements(Variable):
-    base_function = requested_period_added_value
     value_type = float
     entity = Individu
     label = u"Salaire super-brut (fiche de paie): rémunération + cotisations sociales employeur"

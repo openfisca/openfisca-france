@@ -19,7 +19,6 @@ log = logging.getLogger(__name__)
 
 
 class assiette_allegement(Variable):
-    base_function = requested_period_added_value
     value_type = float
     entity = Individu
     label = u"Assiette des allègements de cotisations sociales employeur"

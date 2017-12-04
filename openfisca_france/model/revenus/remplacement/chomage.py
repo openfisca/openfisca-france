@@ -18,7 +18,6 @@ class chomeur_longue_duree(Variable):
 
 
 class chomage_brut(Variable):
-    base_function = requested_period_added_value
     value_type = float
     entity = Individu
     label = u"Chômage brut"

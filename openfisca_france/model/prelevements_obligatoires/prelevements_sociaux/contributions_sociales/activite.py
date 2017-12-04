@@ -180,7 +180,6 @@ class forfait_social(Variable):
 
 
 class salaire_imposable(Variable):
-    base_function = requested_period_added_value
     value_type = float
     unit = 'currency'
     cerfa_field = {  # (f1aj, f1bj, f1cj, f1dj, f1ej)
@@ -220,7 +219,6 @@ class salaire_imposable(Variable):
 
 
 class salaire_net(Variable):
-    base_function = requested_period_added_value
     value_type = float
     entity = Individu
     label = u"Salaires nets d'après définition INSEE"

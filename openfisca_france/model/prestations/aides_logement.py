@@ -570,7 +570,6 @@ class aide_logement_taux_loyer(Variable):
 
 
 class aide_logement_participation_personnelle(Variable):
-    base_function = requested_period_added_value
     value_type = float
     entity = Famille
     label = u"Participation personelle de la famille au loyer"

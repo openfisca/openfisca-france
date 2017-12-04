@@ -110,7 +110,6 @@ class f4bl(Variable):
 
 # Variables utilisées par mes aides
 class revenus_locatifs(Variable):
-    base_function = requested_period_added_value
     value_type = float
     entity = Individu
     label = u"Revenus locatifs"
