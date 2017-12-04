@@ -16,13 +16,20 @@ def modify_parameters(parameters):
     reform_period = period(reform_year)
     print(reform_period)
 
-    parameters.prelevements_sociaux.cotisations_sociales.chomage.salarie[0].rate.update(period=reform_period, value=0.0)
-    # parameters.prelevements_sociaux.contributions.csg.activite.deductible.taux.update(period=reform_period, value=0.068)
-    # parameters.prelevements_sociaux.contributions.csg.retraite.deductible.taux_plein.update(period=reform_period, value=0.068)
+    #revalorisation du montant forfaitaire du RSA : le reste de la réforme du RSA/prime d'activité nécessite de coder une fonction supplémentaire
+    parameters.prestations.minima_sociaux.rsa.montant_de_base_du_rsa.update(period=reform_period, value=(545.48+20)) 
+    # Bascule CSG cotisations : 
+    # - hausse de la CSG sur les revenus d'activité
+    parameters.prelevements_sociaux.contributions.csg.activite.deductible.taux.update(period=reform_period, value=0.068)
+    # - hausse de la CSG sur les retraites
+    parameters.prelevements_sociaux.contributions.csg.retraite.deductible.taux_plein.update(period=reform_period, value=0.068)
+    # - suppression de la cotisation salariale d'assurance chomage
+    parameters.prelevements_sociaux.cotisations_sociales.chomage.salarie[0].rate.update(period=reform_period, value=0.0) #fonctionne pas
+    # - suppression de la cotisation salariale maladie
+    parameters.cotsoc.sal.commun.maladie[0].rate.update(period=reform_period, value=0.0) #fonctionne pas
+    # A voir si on le met : la réforme du minimum vieillesse
     # parameters.prestations.minima_sociaux.aspa.montant_annuel_seul.update(period=reform_period, value=(9638.42+100*12))
     # parameters.prestations.minima_sociaux.aspa.montant_annuel_couple.update(period=reform_period, value=(14963.65+100*12))
-    # parameters.prestations.minima_sociaux.rsa.montant_de_base_du_rsa.update(period=reform_period, value=(545.48+20))
-    # parameters.cotsoc.sal.commun.maladie[0].rate.update(period=reform_period, value=0.10)
 
     return parameters
 
