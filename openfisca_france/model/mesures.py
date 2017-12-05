@@ -7,45 +7,6 @@ from numpy import floor
 from openfisca_france.model.base import *  # noqa analysis:ignore
 
 
-# class uc(Variable):
-#     value_type = float
-#     entity = Menage
-#     label = u"Unités de consommation"
-
-#     def formula(self, simulation, period):
-#         '''
-#         Calcule le nombre d'unités de consommation du ménage avec l'échelle de l'INSEE
-#         '''
-#         period = period.this_year
-#         age_en_mois_holder = simulation.compute('age_en_mois', period)
-
-#         age_en_mois = self.split_by_roles(age_en_mois_holder)
-
-#         uc_adt = 0.5
-#         uc_enf = 0.3
-#         uc = 0.5
-#         for agm in age_en_mois.itervalues():
-#             age = floor(agm / 12)
-#             adt = (15 <= age) & (age <= 150)
-#             enf = (0 <= age) & (age <= 14)
-#             uc += adt * uc_adt + enf * uc_enf
-#         return uc
-
-class uc_indiv(Variable):
-    value_type = float
-    entity = Individu
-    label = u"Ajout unité de consommation de chaque individu"
-    definition_period = YEAR
-
-    def formula(self, simulation, period):
-        # Vu que l'âge est défini tous les mois, on fait calculate_add, puis on divise par douze.
-        age_add = simulation.calculate('age', period)
-        age = age_add #/ 12
-        #age_en_annee = round(age_en_mois / 12)
-        uc_indiv = 0.5 * (age >= 14) + 0.3 * (age < 14)
-
-        return uc_indiv
-
 class uc(Variable):
     value_type = float
     entity = Menage
@@ -53,11 +14,11 @@ class uc(Variable):
     definition_period = YEAR
 
     def formula(menage, period, parameters):
-        uc_indiv = menage.members('uc_indiv', period)
+        age_indiv = menage.members('age', period.first_month)
+        uc_indiv = 0.5 * (age_i >= 14) + 0.3 * (age < 14)
         tot_uc_indiv = menage.sum(uc_indiv)
-        uc = 0.5 + tot_uc_indiv
 
-        return uc
+        return 0.5 + tot_uc_indiv
 
 
 class type_menage(Variable):
