@@ -883,7 +883,7 @@ class salaire_net_a_payer(Variable):
         depense_cantine_titre_restaurant_employe = simulation.calculate(
             'depense_cantine_titre_restaurant_employe', period)
         indemnites_forfaitaires = simulation.calculate('indemnites_forfaitaires', period)
-        remuneration_apprenti = simulation.calculate_add('remuneration_apprenti', period)
+        remuneration_apprenti = simulation.calculate('remuneration_apprenti', period)
         stage_gratification = simulation.calculate('stage_gratification', period)
         salaire_net_a_payer = (
             salaire_net +
@@ -906,7 +906,7 @@ class salaire_super_brut_hors_allegements(Variable):
         period = period
         salaire_de_base = simulation.calculate('salaire_de_base', period)
         remuneration_principale = simulation.calculate('remuneration_principale', period)
-        remuneration_apprenti = simulation.calculate_add('remuneration_apprenti', period)
+        remuneration_apprenti = simulation.calculate('remuneration_apprenti', period)
 
         primes_fonction_publique = simulation.calculate_add('primes_fonction_publique', period)
         indemnite_residence = simulation.calculate_add('indemnite_residence', period)

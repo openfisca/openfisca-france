@@ -27,7 +27,7 @@ class assiette_csg_abattue(Variable):
         # indemnites_journalieres_maladie = simulation.calculate('indemnites_journalieres_maladie', period)
         # TODO: mettre à part ?
         indemnite_residence = simulation.calculate('indemnite_residence', period)
-        supp_familial_traitement = simulation.calculate_add('supp_familial_traitement', period)
+        supp_familial_traitement = simulation.calculate('supp_familial_traitement', period)
         hsup = simulation.calculate('hsup', period)
         remuneration_principale = simulation.calculate('remuneration_principale', period)
         stage_gratification_reintegration = simulation.calculate_add('stage_gratification_reintegration', period)
@@ -199,7 +199,7 @@ class salaire_imposable(Variable):
         primes_salaires = individu('primes_salaires', period)
         primes_fonction_publique = individu('primes_fonction_publique', period)
         indemnite_residence = individu('indemnite_residence', period)
-        supp_familial_traitement = individu('supp_familial_traitement', period, options = [ADD])
+        supp_familial_traitement = individu('supp_familial_traitement', period)
         csg_deductible_salaire = individu('csg_deductible_salaire', period)
         cotisations_salariales = individu('cotisations_salariales', period)
         remuneration_principale = individu('remuneration_principale', period)

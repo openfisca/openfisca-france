@@ -183,7 +183,7 @@ class aide_logement_abattement_depart_retraite(Variable):
 
     def formula(individu, period, parameters):
         retraite = individu('activite', period) == 3
-        retraite_n_2 = individu('retraite_imposable', period.n_2, options = [ADD])
+        retraite_n_2 = individu('retraite_imposable', period.n_2)
         condition_abattement = (retraite_n_2 == 0) * retraite
         revenus_activite_pro = individu('revenu_assimile_salaire_apres_abattements', period.n_2)
 
