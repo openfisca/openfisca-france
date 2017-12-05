@@ -24,7 +24,11 @@ def modify_parameters(parameters):
     # - hausse de la CSG sur les retraites
     parameters.prelevements_sociaux.contributions.csg.retraite.deductible.taux_plein.update(period=reform_period, value=0.068)
     # - suppression de la cotisation salariale d'assurance chomage
-    parameters.prelevements_sociaux.cotisations_sociales.chomage.salarie[0].rate.update(period=reform_period, value=0.0) #fonctionne pas
+    parameters.cotsoc.children['cotisations_salarie'].children['prive_non_cadre'].children['assedic'][0].rate.update(start = reform_period, value=0.0)
+    parameters.cotsoc.children['cotisations_salarie'].children['prive_cadre'].children['assedic'][0].rate.update(start = reform_period, value=0.0)
+    parameters.cotsoc.children['cotisations_salarie'].children['prive_non_cadre'].children['maladie'][0].rate.update(start = reform_period, value=0.0)
+    parameters.cotsoc.children['cotisations_salarie'].children['prive_cadre'].children['maladie'][0].rate.update(start = reform_period, value=0.0)
+    # parameters.prelevements_sociaux.cotisations_sociales.chomage.salarie[0].rate.update(period=reform_period, value=0.0) #fonctionne pas
     # - suppression de la cotisation salariale maladie
     parameters.cotsoc.sal.commun.maladie[0].rate.update(period=reform_period, value=0.0) #fonctionne pas
     # A voir si on le met : la réforme du minimum vieillesse
