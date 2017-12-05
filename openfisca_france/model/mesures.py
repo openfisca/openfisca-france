@@ -166,14 +166,24 @@ class niveau_de_vie_initial(Variable):
         return revenu_initial / uc
 
 
-def _revprim(revenus_du_travail, chomage_imposable, rev_cap, cotisations_employeur, cotisations_salariales):
-    '''
-    Revenu primaire du ménage
+class revenu_primaire(Variable):
+    u'''
+    Revenus primaires
     Ensemble des revenus d'activités superbruts avant tout prélèvement
     Il est égale à la valeur ajoutée produite par les résidents
-    'men'
     '''
-    return revenus_du_travail + rev_cap - cotisations_employeur - cotisations_salariales - chomage_imposable
+    value_type = float
+    entity = Menage
+    label = u"Revenu primaire du ménage"
+    definition_period = YEAR
+
+    def formula(individu, period):
+        revenus_du_travail = individu('revenus_du_travail', period)
+        revenus_du_capital = individu('revenus_du_capital', period)
+        cotisations_employeur = individu('cotisations_employeur', period)
+        cotisations_salariales = individu('cotisations_salariales', period)
+
+        return revenus_du_travail + revenus_du_capital - cotisations_employeur - cotisations_salariales - chomage_imposable
 
 
 class revenus_du_travail(Variable):
