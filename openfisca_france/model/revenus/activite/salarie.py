@@ -996,6 +996,6 @@ class cout_differe(Variable):
         credit_impot_competitivite_emploi = simulation.calculate_add('credit_impot_competitivite_emploi', period)
         aide_premier_salarie = simulation.calculate_add('aide_premier_salarie', period)
         aide_embauche_pme = simulation.calculate_add('aide_embauche_pme', period)
-        tehr = simulation.calculate('tehr', period)
+        tehr = simulation.calculate_divide('tehr', period)
 
         return credit_impot_competitivite_emploi + aide_premier_salarie + aide_embauche_pme + tehr
