@@ -55,6 +55,7 @@ class prestations_familiales_enfant_a_charge(Variable):
 
 class prestations_familiales_base_ressources_individu(Variable):
     value_type = float
+    is_period_size_independent = True
     entity = Individu
     label = u"Base ressource individuelle des prestations familiales"
     definition_period = MONTH
