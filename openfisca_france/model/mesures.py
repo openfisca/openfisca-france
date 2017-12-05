@@ -13,23 +13,12 @@ class uc(Variable):
     label = u"Unités de consommation"
     definition_period = YEAR
 
-    def formula(self, simulation, period):
-        '''
-        Calcule le nombre d'unités de consommation du ménage avec l'échelle de l'INSEE
-        '''
-        age_en_mois_holder = simulation.compute('age_en_mois', period)
+    def formula(menage, period, parameters):
+        age_indiv = menage.members('age', period.first_month)
+        uc_indiv = 0.5 * (age_i >= 14) + 0.3 * (age < 14)
+        tot_uc_indiv = menage.sum(uc_indiv)
 
-        age_en_mois = self.split_by_roles(age_en_mois_holder)
-
-        uc_adt = 0.5
-        uc_enf = 0.3
-        uc = 0.5
-        for agm in age_en_mois.itervalues():
-            age = floor(agm / 12)
-            adt = (15 <= age) & (age <= 150)
-            enf = (0 <= age) & (age <= 14)
-            uc += adt * uc_adt + enf * uc_enf
-        return uc
+        return 0.5 + tot_uc_indiv
 
 
 class type_menage(Variable):
