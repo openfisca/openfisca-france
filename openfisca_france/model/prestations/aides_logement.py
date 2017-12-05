@@ -235,11 +235,17 @@ class aide_logement_base_ressources_defaut(Variable):
         base_ressources_enfants = famille.sum(
             max_(0, base_ressources_i - abattement_ressources_enfant), role = Famille.ENFANT)
 
+        # It would be nicer to be able to write famille.demandeur.has_role(FoyerFiscal.DECLARANT_PRINCIPAL), but it doesn't work as expected at the moment
+        declarant_principal_i = famille.members.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
+        demandeur_declarant_principal = famille.value_from_person(declarant_principal_i, Famille.DEMANDEUR)
+        conjoint_declarant_principal = famille.value_from_person(declarant_principal_i, Famille.CONJOINT)
+
         # Revenus du foyer fiscal
         rev_coll = (
-            famille.demandeur('rev_coll_individu', period.n_2) +
-            famille.conjoint('rev_coll_individu', period.n_2)
+            famille.demandeur.foyer_fiscal('rev_coll', period.n_2) *  demandeur_declarant_principal +
+            famille.conjoint.foyer_fiscal('rev_coll', period.n_2) * conjoint_declarant_principal
             )
+
         ressources = (
             base_ressources_parents + base_ressources_enfants + rev_coll -
             (abattement_chomage_indemnise + abattement_depart_retraite + neutralisation_rsa)

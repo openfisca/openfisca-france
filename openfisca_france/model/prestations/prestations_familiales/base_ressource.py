@@ -114,7 +114,7 @@ class div(Variable):
         return  revenus_foyer_fiscal + rpns_pvce + rpns_pvct - rpns_mvct - rpns_mvlt
 
 
-class rev_coll(Variable):  # TODO Should be unused
+class rev_coll(Variable):
     value_type = float
     entity = FoyerFiscal
     label = u"Revenus perçus par le foyer fiscal à prendre en compte dans la base ressource des prestations familiales"
@@ -134,34 +134,18 @@ class rev_coll(Variable):  # TODO Should be unused
         rev_cat_pv = foyer_fiscal('rev_cat_pv', period)
 
         # TODO: ajouter les revenus de l'étranger etr*0.9
-        # pensions_alimentaires_versees is negative since it is paid by the declaree
-        return (retraite_titre_onereux_net + rev_cap_lib + rev_cat_rvcm + fon + pensions_alimentaires_versees - f7ga - f7gb - f7gc - abat_spe + rev_cat_pv)
-
-
-class rev_coll_individu(Variable):
-    value_type = float
-    entity = Individu
-    label = u"Revenus perçus par le foyer fiscal à prendre en compte dans la base ressource des prestations familiales"
-    definition_period = YEAR
-
-    def formula(individu, period):
-        retraite_titre_onereux_net = individu.foyer_fiscal('retraite_titre_onereux_net', period)
-        pensions_alimentaires_versees = individu.foyer_fiscal('pensions_alimentaires_versees', period)
-        rev_cap_lib = individu.foyer_fiscal('rev_cap_lib', period, options = [ADD])
-        rev_cat_rvcm = individu.foyer_fiscal('rev_cat_rvcm', period)
-        abat_spe = individu.foyer_fiscal('abat_spe', period)
-        fon = individu.foyer_fiscal('fon', period)
-        f7ga = individu.foyer_fiscal('f7ga', period)
-        f7gb = individu.foyer_fiscal('f7gb', period)
-        f7gc = individu.foyer_fiscal('f7gc', period)
-        rev_cat_pv = individu.foyer_fiscal('rev_cat_pv', period)
-
-        # TODO: ajouter les revenus de l'étranger etr*0.9
-        # pensions_alimentaires_versees is negative since it is paid by the declaree
         return (
-            retraite_titre_onereux_net + rev_cap_lib + rev_cat_rvcm + fon +
-            pensions_alimentaires_versees - f7ga - f7gb - f7gc - abat_spe + rev_cat_pv
-            ) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
+            + fon
+            + pensions_alimentaires_versees  # négatif
+            + retraite_titre_onereux_net
+            + rev_cap_lib
+            + rev_cat_pv
+            + rev_cat_rvcm
+            - abat_spe
+            - f7ga
+            - f7gb
+            - f7gc
+            )
 
 
 class prestations_familiales_base_ressources(Variable):
@@ -184,10 +168,15 @@ class prestations_familiales_base_ressources(Variable):
         ressources_i = (not_(enfant_i) + enfant_a_charge_i) * base_ressources_i
         base_ressources_i_total = famille.sum(ressources_i)
 
+        # It would be nicer to be able to write famille.demandeur.has_role(FoyerFiscal.DECLARANT_PRINCIPAL), but it doesn't work as expected at the moment
+        declarant_principal_i = famille.members.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
+        demandeur_declarant_principal = famille.value_from_person(declarant_principal_i, Famille.DEMANDEUR)
+        conjoint_declarant_principal = famille.value_from_person(declarant_principal_i, Famille.CONJOINT)
+
         # Revenus du foyer fiscal
         rev_coll = (
-            famille.demandeur('rev_coll_individu', annee_fiscale_n_2) +
-            famille.conjoint('rev_coll_individu', annee_fiscale_n_2)
+            famille.demandeur.foyer_fiscal('rev_coll', annee_fiscale_n_2) *  demandeur_declarant_principal +
+            famille.conjoint.foyer_fiscal('rev_coll', annee_fiscale_n_2) * conjoint_declarant_principal
             )
 
         base_ressources = base_ressources_i_total + rev_coll
