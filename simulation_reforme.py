@@ -1,6 +1,3 @@
-quit()
-python
-
 import sys
 sys.path.insert(0, '/home/giuliano/Documents/openfisca/openfisca-core')
 import openfisca_core
