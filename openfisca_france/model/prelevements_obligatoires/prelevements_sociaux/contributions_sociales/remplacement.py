@@ -273,10 +273,10 @@ class retraite_imposable(Variable):
     label = u"Retraites au sens strict imposables (rentes à titre onéreux exclues)"
     set_input = set_input_divide_by_period
     reference = u"http://vosdroits.service-public.fr/particuliers/F415.xhtml"
-    definition_period = YEAR
+    definition_period = MONTH
 
     def formula(individu, period):
-        retraite_brute = individu('retraite_brute', period, options = [ADD])
+        retraite_brute = individu('retraite_brute', period)
         csg_deductible_retraite = individu('csg_deductible_retraite', period)
 
         return retraite_brute + csg_deductible_retraite
@@ -291,7 +291,7 @@ class retraite_nette(Variable):
     definition_period = MONTH
 
     def formula(individu, period):
-        retraite_imposable = individu('retraite_imposable', period, options = [DIVIDE])
+        retraite_imposable = individu('retraite_imposable', period)
         casa = individu('casa', period)
         csg_imposable_retraite = individu('csg_imposable_retraite', period)
         crds_retraite = individu('crds_retraite', period)
