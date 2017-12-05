@@ -13,16 +13,23 @@ class autonomie_financiere(Variable):
     entity = Individu
     label = u"Indicatrice d'autonomie financière vis-à-vis des prestations familiales"
     definition_period = MONTH
+    reference = [
+        'https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000006750602&cidTexte=LEGITEXT000006073189',
+        'https://www.service-public.fr/particuliers/vosdroits/F16947'
+        ]
 
     def formula(individu, period, parameters):
-        salaire_net = individu('salaire_net', period.start.period('month', 6).offset(-6), options = [ADD])
+        # D'après service-public.fr, le salaire n'est pas évalué de la même manière suivant si l'enfant est étudiant ou salarié/apprenti/stagiaire.
+        salaire_net_mensualise = individu(
+            'salaire_net', period.start.period('month', 6).offset(-6), options = [ADD]
+            ) / 6
+
         _P = parameters(period)
 
         nbh_travaillees = 169
         smic_mensuel_brut = _P.cotsoc.gen.smic_h_b * nbh_travaillees
 
-        # Oui on compare du salaire net avec un bout du SMIC brut ...
-        return salaire_net / 6 >= (_P.prestations.prestations_familiales.af.seuil_rev_taux * smic_mensuel_brut)
+        return salaire_net_mensualise >= (_P.prestations.prestations_familiales.af.seuil_rev_taux * smic_mensuel_brut)
 
 
 class prestations_familiales_enfant_a_charge(Variable):
