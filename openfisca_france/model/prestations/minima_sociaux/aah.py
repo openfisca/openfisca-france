@@ -232,6 +232,7 @@ class caah(Variable):
     value_type = float
     label = u"Complément d'allocation adulte handicapé (mensualisé)"
     entity = Individu
+    set_input = set_input_divide_by_period
     definition_period = MONTH
     '''
         Complément d'allocation adulte handicapé : complément de ressources ou majoration vie autonome.

@@ -357,6 +357,7 @@ class paje_cmg(Variable):
     value_type = float
     entity = Famille
     label = u"PAJE - Complément de libre choix du mode de garde"
+    set_input = set_input_divide_by_period
     reference = "http://www.caf.fr/aides-et-services/s-informer-sur-les-aides/petite-enfance/le-complement-de-libre-choix-du-mode-de-garde"  # noqa
     definition_period = MONTH
 
@@ -468,6 +469,7 @@ class paje_colca(Variable):
     value_type = float
     entity = Famille
     label = u"PAJE - Complément optionnel de libre choix d'activité"
+    set_input = set_input_divide_by_period
     reference = "http://vosdroits.service-public.fr/particuliers/F15110.xhtml"
     definition_period = MONTH
 

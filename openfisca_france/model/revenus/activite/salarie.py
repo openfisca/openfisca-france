@@ -343,6 +343,7 @@ class entreprise_assujettie_is(Variable):
     entity = Individu
     label = u"Entreprise assujettie à l'impôt sur les sociétés (IS)"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class entreprise_benefice(Variable):

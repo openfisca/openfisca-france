@@ -770,6 +770,7 @@ class taux_accident_travail(Variable):
     entity = Individu
     label = u"Approximation du taux accident à partir de l'exposition au risque donnée"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula_2012_01_01(self, simulation, period):
         exposition_accident = simulation.calculate('exposition_accident', period)
