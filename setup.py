@@ -7,7 +7,7 @@ from setuptools import setup, find_packages
 
 setup(
     name = 'OpenFisca-France',
-    version = '19.0.0',
+    version = '20.0.0',
     author = 'OpenFisca Team',
     author_email = 'contact@openfisca.fr',
     classifiers = [
@@ -27,7 +27,7 @@ setup(
         ],
     extras_require = {
         'api': [
-            'OpenFisca-Web-API >= 7.2.1, < 8.0',
+            'OpenFisca-Web-API >= 8.0, < 9.0',
             ],
         'baremes_ipp': [
             'xlrd >= 1.0.0',
