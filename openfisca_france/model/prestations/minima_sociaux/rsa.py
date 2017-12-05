@@ -660,6 +660,7 @@ class rsa_base_ressources_patrimoine_individu(Variable):
 
 class rsa_condition_nationalite(Variable):
     value_type = bool
+    default_value = True
     entity = Individu
     label = u"Conditions de nationnalité et de titre de séjour pour bénéficier du RSA"
     definition_period = MONTH
