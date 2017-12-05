@@ -155,7 +155,7 @@ class ircantec_salarie(Variable):
             plafond_securite_sociale = plafond_securite_sociale,
             categorie_salarie = categorie_salarie,
             )
-        return ircantec
+        return ircantec * (categorie_salarie == 6)
 
 
 class ircantec_employeur(Variable):
@@ -177,7 +177,7 @@ class ircantec_employeur(Variable):
             plafond_securite_sociale = plafond_securite_sociale,
             categorie_salarie = categorie_salarie,
             )
-        return ircantec
+        return ircantec * (categorie_salarie == 6)  # agent non titulaire
 
 
 class pension_civile_salarie(Variable):

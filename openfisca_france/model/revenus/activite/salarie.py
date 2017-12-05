@@ -279,6 +279,7 @@ class cotisation_sociale_mode_recouvrement(Variable):
     possible_values = Enum([
         u"Mensuel avec régularisation en fin d'année",
         u"Annuel",
+        u"Mensuel strict",
         ])
     entity = Individu
     label = u"Mode de recouvrement des cotisations sociales"
