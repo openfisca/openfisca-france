@@ -574,7 +574,6 @@ class volume_jours_ijss(Variable):
 
 
 class avantage_en_nature(Variable):
-    base_function = requested_period_added_value
     value_type = float
     entity = Individu
     label = u"Avantages en nature"
@@ -589,13 +588,12 @@ class avantage_en_nature(Variable):
 
 
 class avantage_en_nature_valeur_forfaitaire(Variable):
-    # base_function = requested_period_added_value
     value_type = float
     entity = Individu
     label = u"Evaluation fofaitaire des avantages en nature "
     definition_period = MONTH
 
-    # TODO: coplete this function
+    # TODO: complete this function
     def formula(self, simulation, period):
         period = period
         avantage_en_nature_valeur_reelle = simulation.calculate('avantage_en_nature_valeur_reelle', period)
@@ -604,7 +602,6 @@ class avantage_en_nature_valeur_forfaitaire(Variable):
 
 
 class depense_cantine_titre_restaurant_employe(Variable):
-    base_function = requested_period_added_value
     value_type = float
     entity = Individu
     label = u"Dépense de cantine et de titre restaurant à charge de l'employe"
@@ -621,7 +618,6 @@ class depense_cantine_titre_restaurant_employe(Variable):
 
 
 class depense_cantine_titre_restaurant_employeur(Variable):
-    base_function = requested_period_added_value
     value_type = float
     entity = Individu
     label = u"Dépense de cantine et de titre restaurant à charge de l'employeur"
@@ -694,7 +690,6 @@ class indemnite_residence(Variable):
     definition_period = MONTH
 
     def formula(individu, period, parameters):
-        period = period.first_month
         traitement_indiciaire_brut = individu('traitement_indiciaire_brut', period)
         salaire_de_base = individu('salaire_de_base', period)
         categorie_salarie = individu('categorie_salarie', period)
@@ -736,9 +731,7 @@ class primes_fonction_publique(Variable):
     definition_period = MONTH
 
     def formula(self, simulation, period):
-        # period = period.first_month
         categorie_salarie = simulation.calculate('categorie_salarie', period)
-
         traitement_indiciaire_brut = simulation.calculate('traitement_indiciaire_brut', period)
         public = (
             (categorie_salarie == CATEGORIE_SALARIE['public_titulaire_etat']) +
@@ -756,13 +749,14 @@ class af_nbenf_fonc(Variable):
     # Hack pour éviter une boucle infinie
 
     def formula(self, simulation, period):
-        # Note : Cette variable est "instantanée" : quelque soit la période demandée, elle retourne la valeur au premier
-        # jour, sans changer la période.
-        salaire_de_base = simulation.calculate_add('salaire_de_base', period.start.period('month', 6).offset(-6))
+        salaire_de_base_mensualise = simulation.calculate_add('salaire_de_base', period.start.period('month', 6).offset(-6)) / 6
         law = simulation.parameters_at(period.start)
         nbh_travaillees = 169
         smic_mensuel_brut = law.cotsoc.gen.smic_h_b * nbh_travaillees
-        autonomie_financiere = (salaire_de_base / 6) >= (law.prestations.prestations_familiales.af.seuil_rev_taux * smic_mensuel_brut)
+        autonomie_financiere = (
+            salaire_de_base_mensualise >=
+            (law.prestations.prestations_familiales.af.seuil_rev_taux * smic_mensuel_brut)
+            )
         age = simulation.calculate('age', period)
         condition_enfant = (
             (age >= law.prestations.prestations_familiales.af.age1) *
@@ -869,7 +863,6 @@ class remuneration_principale(Variable):
 
 
 class salaire_net_a_payer(Variable):
-    base_function = requested_period_added_value
     value_type = float
     entity = Individu
     label = u"Salaire net à payer (fiche de paie)"
@@ -898,7 +891,6 @@ class salaire_net_a_payer(Variable):
 
 
 class salaire_super_brut_hors_allegements(Variable):
-    base_function = requested_period_added_value
     value_type = float
     entity = Individu
     label = u"Salaire super-brut (fiche de paie): rémunération + cotisations sociales employeur"
@@ -909,7 +901,7 @@ class salaire_super_brut_hors_allegements(Variable):
         period = period
         salaire_de_base = simulation.calculate('salaire_de_base', period)
         remuneration_principale = simulation.calculate('remuneration_principale', period)
-        remuneration_apprenti = simulation.calculate_add('remuneration_apprenti', period)
+        remuneration_apprenti = simulation.calculate('remuneration_apprenti', period)
 
         primes_fonction_publique = simulation.calculate_add('primes_fonction_publique', period)
         indemnite_residence = simulation.calculate_add('indemnite_residence', period)
@@ -983,7 +975,6 @@ class cout_du_travail(Variable):
     calculate_output = calculate_output_add
 
     def formula(self, simulation, period):
-        period = period
         salaire_super_brut = simulation.calculate('salaire_super_brut', period)
         cout_differe = simulation.calculate('cout_differe', period)
 

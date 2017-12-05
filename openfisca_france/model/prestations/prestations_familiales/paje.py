@@ -93,7 +93,7 @@ class paje_base(Variable):
         parent_isole = not_(famille('en_couple', period))
         nombre_enfants = famille('af_nbenf', period)
         pfam = parameters(period).prestations.prestations_familiales
-        date_gel_paje = Instant((2013, 04, 01))   # Le montant de la PAJE est gelé depuis avril 2013.
+        date_gel_paje = Instant((2013, 04, 01))  # Le montant de la PAJE est gelé depuis avril 2013.
         bmaf = pfam.af.bmaf if period.start < date_gel_paje else parameters(date_gel_paje).prestations.prestations_familiales.af.bmaf
         montant_taux_plein = bmaf * pfam.paje.base.taux_allocation_base
 
@@ -289,7 +289,7 @@ class paje_clca(Variable):
         # A partir du 2ème enfant, il est versé jusqu’au mois précédant le 3ème anniversaire
         # de l’enfant.
 
-        # Calcul de l'année et mois de naisage_in_months( du cadet
+        # Calcul de l'année et mois de naissance du cadet
         # TODO: ajuster en fonction de la cessation des IJ etc
 
         age_en_mois_i = famille.members('age_en_mois', period)

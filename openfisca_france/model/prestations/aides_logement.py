@@ -574,7 +574,6 @@ class aide_logement_participation_personnelle(Variable):
     definition_period = MONTH
 
     def formula(famille, period, parameters):
-
         al = parameters(period).prestations.aides_logement
 
         R = famille('aide_logement_base_ressources', period)
@@ -749,7 +748,7 @@ class apl(Variable):
     calculate_output = calculate_output_add
     value_type = float
     entity = Famille
-    label = u" Aide personnalisée au logement"
+    label = u"Aide personnalisée au logement"
     # (réservée aux logements conventionné, surtout des HLM, et financé par le fonds national de l'habitation)"
     reference = u"http://vosdroits.service-public.fr/particuliers/F12006.xhtml",
     definition_period = MONTH
@@ -971,4 +970,3 @@ class  aides_logement_primo_accedant_ressources(Variable):
         loyer = famille.demandeur.menage('loyer', period)
         coef_plancher_ressources = parameters(period).prestations.aides_logement.ressources.dar_3
         return max_(baseRessource, loyer * coef_plancher_ressources)
-

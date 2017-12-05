@@ -57,21 +57,21 @@ class revenu_disponible(Variable):
 
     def formula(self, simulation, period):
         revenus_du_travail_holder = simulation.compute('revenus_du_travail', period)
-        pen_holder = simulation.compute('pensions', period)
-        rev_cap_holder = simulation.compute('revenus_du_capital', period)
+        pensions_holder = simulation.compute('pensions', period)
+        revenus_du_capital_holder = simulation.compute('revenus_du_capital', period)
         prestations_sociales_holder = simulation.compute('prestations_sociales', period)
         ppe_holder = simulation.compute('ppe', period)
         impots_directs = simulation.calculate('impots_directs', period)
 
-        pen = self.sum_by_entity(pen_holder)
+        pensions = self.sum_by_entity(pensions_holder)
         ppe = self.cast_from_entity_to_role(ppe_holder, role = VOUS)
         ppe = self.sum_by_entity(ppe)
         prestations_sociales = self.cast_from_entity_to_role(prestations_sociales_holder, role = CHEF)
         prestations_sociales = self.sum_by_entity(prestations_sociales)
-        rev_cap = self.sum_by_entity(rev_cap_holder)
+        revenus_du_capital = self.sum_by_entity(revenus_du_capital_holder)
         revenus_du_travail = self.sum_by_entity(revenus_du_travail_holder)
 
-        return revenus_du_travail + pen + rev_cap + prestations_sociales + ppe + impots_directs
+        return revenus_du_travail + pensions + revenus_du_capital + prestations_sociales + ppe + impots_directs
 
 
 class niveau_de_vie(Variable):
@@ -331,9 +331,10 @@ class minima_sociaux(Variable):
         api = simulation.calculate_add('api', period)
         ass = simulation.calculate_add('ass', period)
         minimum_vieillesse = simulation.calculate_add('minimum_vieillesse', period)
+        rsa = simulation.calculate_add('rsa', period)
+        # Certaines réformes ayant des effets de bords nécessitent que le rsa soit calculé avant la ppa
         ppa = simulation.calculate_add('ppa', period)
         psa = simulation.calculate_add('psa', period)
-        rsa = simulation.calculate_add('rsa', period)
 
         aah = self.sum_by_entity(aah_holder)
         caah = self.sum_by_entity(caah_holder)
@@ -344,13 +345,13 @@ class minima_sociaux(Variable):
 class aides_logement(Variable):
     value_type = float
     entity = Famille
-    label = u"Allocations logements"
+    label = u"Aides logement nets"
     reference = "http://vosdroits.service-public.fr/particuliers/N20360.xhtml"
     definition_period = YEAR
 
     def formula(famille, period):
         '''
-        Prestations logement
+        Aide au logement
         '''
         apl = famille('apl', period, options = [ADD])
         als = famille('als', period, options = [ADD])

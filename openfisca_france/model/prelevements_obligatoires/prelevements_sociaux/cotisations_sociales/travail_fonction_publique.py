@@ -200,7 +200,7 @@ class pension_civile_salarie(Variable):
             sal['public_titulaire_etat']['pension'].calc(traitement_indiciaire_brut) +
             terr_or_hosp * sal['public_titulaire_territoriale']['cnracl1'].calc(traitement_indiciaire_brut)
             )
-        return -pension_civile_salarie
+        return - pension_civile_salarie
 
 
 class pension_civile_employeur(Variable):

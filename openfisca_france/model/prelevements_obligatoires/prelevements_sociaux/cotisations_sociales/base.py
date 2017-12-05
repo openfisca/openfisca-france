@@ -15,6 +15,7 @@ def apply_bareme_for_relevant_type_sal(
     assert categorie_salarie is not None
     assert base is not None
     assert plafond_securite_sociale is not None
+
     def iter_cotisations():
         for type_sal_name, type_sal_index in CATEGORIE_SALARIE:
             if type_sal_name not in bareme_by_type_sal_name:  # to deal with public_titulaire_militaire
@@ -32,7 +33,6 @@ def apply_bareme_for_relevant_type_sal(
 
 
 def apply_bareme(simulation, period, cotisation_type = None, bareme_name = None, variable_name = None):
-    # period = period.first_month
     cotisation_mode_recouvrement = simulation.calculate('cotisation_sociale_mode_recouvrement', period)
     cotisation = (
         # en fin d'année

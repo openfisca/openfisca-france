@@ -142,7 +142,6 @@ class reintegration_titre_restaurant_employeur(Variable):
 # Cotisations proprement dites
 
 
-
 class penibilite(Variable):
     value_type = float
     entity = Individu
@@ -151,7 +150,7 @@ class penibilite(Variable):
 
     def formula_2015_01_01(self, simulation, period):
         exposition_penibilite = simulation.calculate('exposition_penibilite', period)
-        multiplicateur =  simulation.parameters_at(period.start).cotsoc.cotisations_employeur.prive_cadre.penibilite_multiplicateur_exposition_multiple
+        multiplicateur = simulation.parameters_at(period.start).cotsoc.cotisations_employeur.prive_cadre.penibilite_multiplicateur_exposition_multiple
 
         cotisation_base = apply_bareme(
             simulation, period,
@@ -168,11 +167,12 @@ class penibilite(Variable):
 
         cotisation = switch(
             exposition_penibilite,
-             {
+            {
                 0: cotisation_base,
                 1: cotisation_base + cotisation_additionnelle,
                 2: cotisation_base + cotisation_additionnelle * multiplicateur,
-             })
+                }
+            )
 
         return cotisation
 
@@ -253,10 +253,13 @@ class agirc_gmp_assiette(Variable):
     def formula(self, simulation, period):
         assiette_cotisations_sociales = simulation.calculate('assiette_cotisations_sociales', period)
         gmp = simulation.parameters_at(period.start).prelevements_sociaux.gmp
+        salaire_charniere = gmp.salaire_charniere_annuel / 12
+
         assiette = max_(
-            (gmp.salaire_charniere_annuel / 12 - assiette_cotisations_sociales) * (assiette_cotisations_sociales > 0),
+            (salaire_charniere - assiette_cotisations_sociales) * (assiette_cotisations_sociales > 0),
             0,
             )
+
         return assiette
 
 
@@ -272,7 +275,6 @@ class agirc_gmp_salarie(Variable):
         agirc_salarie = simulation.calculate('agirc_salarie', period)
         assiette_cotisations_sociales = simulation.calculate('assiette_cotisations_sociales', period)
         categorie_salarie = simulation.calculate('categorie_salarie', period)
-
         gmp = simulation.parameters_at(period.start).prelevements_sociaux.gmp
         cotisation_forfaitaire = gmp.cotisation_forfaitaire_mensuelle_en_euros.part_salariale
         taux = simulation.parameters_at(period.start).cotsoc.cotisations_salarie.prive_cadre.agirc.rates[1]
@@ -635,9 +637,7 @@ class mhsup(Variable):
     definition_period = MONTH
 
     def formula(self, simulation, period):
-        hsup = simulation.calculate('hsup', period)
-
-        return -hsup
+        return - simulation.calculate('hsup', period)
 
 
 class plafond_securite_sociale(Variable):
@@ -649,7 +649,6 @@ class plafond_securite_sociale(Variable):
 
     def formula(self, simulation, period):
         plafond_temps_plein = simulation.parameters_at(period.start).cotsoc.gen.plafond_securite_sociale
-        salaire_de_base = simulation.calculate('salaire_de_base', period)
         contrat_de_travail = simulation.calculate('contrat_de_travail', period)
         heures_remunerees_volume = simulation.calculate('heures_remunerees_volume', period)
         forfait_jours_remuneres_volume = simulation.calculate('forfait_jours_remuneres_volume', period)

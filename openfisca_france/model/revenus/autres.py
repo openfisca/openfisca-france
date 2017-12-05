@@ -19,14 +19,12 @@ class pensions_alimentaires_percues(Variable):
     calculate_output = calculate_output_add
 
 
-# (f1ao, f1bo, f1co, f1do, f1eo)
 class pensions_alimentaires_percues_decl(Variable):
     value_type = bool
     default_value = True
     entity = Individu
     label = u"Pension déclarée"
     definition_period = YEAR
-
 
 class pensions_alimentaires_versees_individu(Variable):
     value_type = float
@@ -35,14 +33,12 @@ class pensions_alimentaires_versees_individu(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
-
 class gains_exceptionnels(Variable):
     value_type = float
     entity = Individu
     label = u"Gains exceptionnels"
     definition_period = MONTH
     set_input = set_input_divide_by_period
-
 
 class allocation_aide_retour_emploi(Variable):
     value_type = float

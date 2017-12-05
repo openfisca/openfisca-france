@@ -4,7 +4,9 @@ from __future__ import division
 
 from numpy import int32, logical_or as or_
 
+
 from openfisca_france.model.base import *  # noqa analysis:ignore
+
 
 class autonomie_financiere(Variable):
     value_type = bool
@@ -113,8 +115,8 @@ class rev_coll(Variable):
 
     def formula(foyer_fiscal, period):
         # Quand rev_coll est calculé sur une année glissante, retraite_titre_onereux_net et pensions_alimentaires_versees sont calculés sur l'année légale correspondante.
-        retraite_titre_onereux_net = foyer_fiscal('retraite_titre_onereux_net', period.offset('first-of'))
-        pensions_alimentaires_versees = foyer_fiscal('pensions_alimentaires_versees', period.offset('first-of'))
+        retraite_titre_onereux_net = foyer_fiscal('retraite_titre_onereux_net', period)
+        pensions_alimentaires_versees = foyer_fiscal('pensions_alimentaires_versees', period)
         rev_cap_lib = foyer_fiscal('rev_cap_lib', period, options = [ADD])
         rev_cat_rvcm = foyer_fiscal('rev_cat_rvcm', period)
         abat_spe = foyer_fiscal('abat_spe', period)
@@ -125,8 +127,18 @@ class rev_coll(Variable):
         rev_cat_pv = foyer_fiscal('rev_cat_pv', period)
 
         # TODO: ajouter les revenus de l'étranger etr*0.9
-        # pensions_alimentaires_versees is negative since it is paid by the declaree
-        return (retraite_titre_onereux_net + rev_cap_lib + rev_cat_rvcm + fon + pensions_alimentaires_versees - f7ga - f7gb - f7gc - abat_spe + rev_cat_pv)
+        return (
+            + fon
+            + pensions_alimentaires_versees  # négatif
+            + retraite_titre_onereux_net
+            + rev_cap_lib
+            + rev_cat_pv
+            + rev_cat_rvcm
+            - abat_spe
+            - f7ga
+            - f7gb
+            - f7gc
+            )
 
 
 class prestations_familiales_base_ressources(Variable):
