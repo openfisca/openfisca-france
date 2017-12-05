@@ -28,7 +28,6 @@ class aah_base_ressources(Variable):
 
         def base_ressource_eval_trim():
             base_ressource_demandeur = famille.demandeur('aah_base_ressources_eval_trimestrielle', period)
-            assert isfinite(base_ressource_demandeur).all()
             base_ressource_conjoint = famille.conjoint('aah_base_ressources_eval_trimestrielle', period)
 
             return assiette_demandeur(base_ressource_demandeur) + assiette_conjoint(base_ressource_conjoint)
