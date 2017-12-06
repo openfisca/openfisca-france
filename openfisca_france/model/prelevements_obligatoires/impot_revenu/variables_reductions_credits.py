@@ -857,6 +857,7 @@ class fhqz(Variable):
     entity = FoyerFiscal
     label = u"Investissements outre-mer réalisés en 2008 dans le casdre d'une entreprise: report de réduction d'impôt non imputée les années antérieures"
     definition_period = YEAR
+    end = '2013-12-31'
 
 
 class f7rz(Variable):
@@ -1939,6 +1940,556 @@ class f7sz(Variable):
     definition_period = YEAR
 
 
+class fhaa(Variable):
+    cerfa_field = u"HAA"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2014, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt en 2010 à hauteur de 52,63%"
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+
+class fhab(Variable):
+    cerfa_field = u"HAB"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt en 2010 à hauteur de 62,5%"
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+
+class fhaf(Variable):
+    cerfa_field = u"HAF"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2014, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt en 2011 à hauteur de 52,63%"
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+
+class fhag(Variable):
+    cerfa_field = u"HAG"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2014, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt en 2011 à hauteur de 62,5%"
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+
+class fhac(Variable):
+    cerfa_field = u"HAC"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2014, Investissements dans votre entreprise en 2010"
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+
+class fhah(Variable):
+    cerfa_field = u"HAH"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2014, Investissements dans votre entreprise en 2011"
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+
+class fhad(Variable):
+    cerfa_field = u"HAD"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2014, Investissements dans votre entreprise avec exploitation directe, montant de la réduction d’impôt calculée en 2010"
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+
+class fhai(Variable):
+    cerfa_field = u"HAI"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2014, Investissements dans votre entreprise avec exploitation directe, montant de la réduction d’impôt calculée en 2011"
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+
+class fhae(Variable):
+    cerfa_field = u"HAE"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2014, Investissements dans votre entreprise avec exploitation directe montant de la réduction d’impôt dont vous demandez l’imputation en 2013, en 2010"
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+
+class fhaj(Variable):
+    cerfa_field = u"HAJ"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2014, Investissements dans votre entreprise avec exploitation directe, montant de la réduction d’impôt dont vous demandez l’imputation en 2013, en 2011"
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+
+class fhak(Variable):
+    cerfa_field = u"HAK"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements ayant fait l’objet en 2010 ou 2011 d’une demande d’agrément, d’une déclaration d’ouverture de chantier ou d’un acompte d’au moins 50 %, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d’impôt en 2010 à hauteur de 52,63%"
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+
+class fhal(Variable):
+    cerfa_field = u"HAL"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements ayant fait l’objet en 2010 ou 2011 d’une demande d’agrément, d’une déclaration d’ouverture de chantier ou d’un acompte d’au moins 50 %, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d’impôt en 2010 à hauteur de 62,5%"
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+
+class fhap(Variable):
+    cerfa_field = u"HAP"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements ayant fait l’objet en 2010 ou 2011 d’une demande d’agrément, d’une déclaration d’ouverture de chantier ou d’un acompte d’au moins 50 %, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d’impôt en 2011 à hauteur de 52,63%"
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+
+class fhaq(Variable):
+    cerfa_field = u"HAQ"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements ayant fait l’objet en 2010 ou 2011 d’une demande d’agrément, d’une déclaration d’ouverture de chantier ou d’un acompte d’au moins 50 %, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d’impôt en 2011 à hauteur de 62,5%"
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+
+class fham(Variable):
+    cerfa_field = u"HAM"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements dans votre entreprise en 2010"
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+
+class fhar(Variable):
+    cerfa_field = u"HAR"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements dans votre entreprise en 2011"
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+
+class fhan(Variable):
+    cerfa_field = u"HAN"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements dans votre entreprise avec exploitation directe en 2010"
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+
+class fhas(Variable):
+    cerfa_field = u"HAS"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements dans votre entreprise avec exploitation directe en 2011"
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+
+class fhao(Variable):
+    cerfa_field = u"HAO"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements dans votre entreprise avec exploitation directe, montant de la réduction d’impôt dont vous demandez l’imputation en 2013, en 2010"
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+
+class fhat(Variable):
+    cerfa_field = u"HAT"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements dans votre entreprise avec exploitation directe, montant de la réduction d’impôt dont vous demandez l’imputation en 2013, en 2011"
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+
+class fhau(Variable):
+    cerfa_field = u"HAU"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements ayant fait l’objet en 2012 d’une demande d’agrément, d’une déclaration d’ouverture de chantier ou d’un acompte d’au moins 50 %, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d’impôt à hauteur de 52,63%"
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+
+class fhav(Variable):
+    cerfa_field = u"HAV"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements ayant fait l’objet en 2012 d’une demande d’agrément, d’une déclaration d’ouverture de chantier ou d’un acompte d’au moins 50 %, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d’impôt à hauteur de 62,5%"
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+
+class fhaw(Variable):
+    cerfa_field = u"HAW"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements ayant fait l’objet en 2012 d’une demande d’agrément, d’une déclaration d’ouverture de chantier ou d’un acompte d’au moins 50 %, Investissements dans votre entreprise"
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+
+class fhax(Variable):
+    cerfa_field = u"HAX"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements ayant fait l’objet en 2012 d’une demande d’agrément, d’une déclaration d’ouverture de chantier ou d’un acompte d’au moins 50 %, Investissements dans votre entreprise avec exploitation directe, montant de la réduction d’impôt calculé"
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+
+class fhay(Variable):
+    cerfa_field = u"HAY"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements ayant fait l’objet en 2012 d’une demande d’agrément, d’une déclaration d’ouverture de chantier ou d’un acompte d’au moins 50 %, Investissements dans votre entreprise avec exploitation directe, montant de la réduction d’impôt dont vous demandez l’imputation en 2013"
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+
+class fhbi(Variable):
+    cerfa_field = u"HBI"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2015, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt en 2010 à hauteur de 52,63%"
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+
+class fhbj(Variable):
+    cerfa_field = u"HBJ"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2015, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt en 2010 à hauteur de 62,5%"
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+
+class fhbn(Variable):
+    cerfa_field = u"HBN"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2015, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt en 2011 à hauteur de 52,63%"
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+
+class fhbo(Variable):
+    cerfa_field = u"HBO"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2015, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt en 2011 à hauteur de 62,5%"
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+
+class fhbk(Variable):
+    cerfa_field = u"HBK"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2015, Investissements dans votre entreprise en 2010"
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+
+class fhbp(Variable):
+    cerfa_field = u"HBP"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2015, Investissements dans votre entreprise en 2011"
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+
+class fhbl(Variable):
+    cerfa_field = u"HBL"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2015, Investissements dans votre entreprise avec exploitation directe, montant de la réduction d’impôt calculée en 2010"
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+
+class fhbq(Variable):
+    cerfa_field = u"HBQ"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2015, Investissements dans votre entreprise avec exploitation directe, montant de la réduction d’impôt calculée en 2011"
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+
+class fhbm(Variable):
+    cerfa_field = u"HBM"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2015, Investissements dans votre entreprise avec exploitation directe montant de la réduction d’impôt dont vous demandez l’imputation en 2013, en 2010"
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+
+class fhbr(Variable):
+    cerfa_field = u"HBR"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2015, Investissements dans votre entreprise avec exploitation directe, montant de la réduction d’impôt dont vous demandez l’imputation en 2013, en 2011"
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+
+class fhbs(Variable):
+    cerfa_field = u"HBS"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements ayant fait l’objet en 2012, 2013 ou 2014 d’une demande d’agrément, d’une déclaration d’ouverture de chantier ou d’un acompte d’au moins 50 %, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d’impôt en 2012 à hauteur de 52,63%"
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+
+class fhbt(Variable):
+    cerfa_field = u"HBT"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements ayant fait l’objet en 2012, 2013 ou 2014 d’une demande d’agrément, d’une déclaration d’ouverture de chantier ou d’un acompte d’au moins 50 %, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d’impôt en 2012 à hauteur de 62,5%"
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+
+class fhbx(Variable):
+    cerfa_field = u"HBX"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements ayant fait l’objet en 2012, 2013 ou 2014 d’une demande d’agrément, d’une déclaration d’ouverture de chantier ou d’un acompte d’au moins 50 %, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d’impôt en 2013 ou 2014 à hauteur de 52,63%"
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+
+class fhby(Variable):
+    cerfa_field = u"HBY"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements ayant fait l’objet en 2012, 2013 ou 2014 d’une demande d’agrément, d’une déclaration d’ouverture de chantier ou d’un acompte d’au moins 50 %, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d’impôt en 2013 ou 2014 à hauteur de 62,5%"
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+
+class fhbu(Variable):
+    cerfa_field = u"HBU"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements dans votre entreprise en 2012"
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+
+class fhbz(Variable):
+    cerfa_field = u"HBZ"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements dans votre entreprise en 2013 ou 2014"
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+
+class fhbv(Variable):
+    cerfa_field = u"HBV"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements dans votre entreprise avec exploitation directe en 2012"
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+
+class fhca(Variable):
+    cerfa_field = u"HCA"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements dans votre entreprise avec exploitation directe en 2013 ou 2014"
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+
+class fhbw(Variable):
+    cerfa_field = u"HBW"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements dans votre entreprise avec exploitation directe, montant de la réduction d’impôt dont vous demandez l’imputation en 2015, en 2012"
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+
+class fhcb(Variable):
+    cerfa_field = u"HCB"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements dans votre entreprise avec exploitation directe, montant de la réduction d’impôt dont vous demandez l’imputation en 2015, en 2013 ou 2014"
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+
+class fhci(Variable):
+    cerfa_field = u"HCI"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements ayant fait l’objet en 2012, 2013 ou 2014 d’une demande d’agrément, d’une déclaration d’ouverture de chantier ou d’un acompte d’au moins 50 %, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d’impôt en 2012 à hauteur de 52,63%"
+#    start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+
+class fhcj(Variable):
+    cerfa_field = u"HCJ"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements ayant fait l’objet en 2012, 2013 ou 2014 d’une demande d’agrément, d’une déclaration d’ouverture de chantier ou d’un acompte d’au moins 50 %, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d’impôt en 2012 à hauteur de 62,5%"
+#    start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+
+class fhcn(Variable):
+    cerfa_field = u"HCN"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements ayant fait l’objet en 2012, 2013 ou 2014 d’une demande d’agrément, d’une déclaration d’ouverture de chantier ou d’un acompte d’au moins 50 %, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d’impôt en 2013 ou 2014 à hauteur de 52,63%"
+#    start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+
+class fhco(Variable):
+    cerfa_field = u"HCO"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements ayant fait l’objet en 2012, 2013 ou 2014 d’une demande d’agrément, d’une déclaration d’ouverture de chantier ou d’un acompte d’au moins 50 %, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d’impôt en 2013 ou 2014 à hauteur de 62,5%"
+#    start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+
+class fhck(Variable):
+    cerfa_field = u"HCK"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements dans votre entreprise en 2012"
+#    start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+
+class fhcp(Variable):
+    cerfa_field = u"HCP"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements dans votre entreprise en 2013 ou 2014"
+#    start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+
+class fhcl(Variable):
+    cerfa_field = u"HCL"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements dans votre entreprise avec exploitation directe en 2012"
+#    start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+
+class fhcq(Variable):
+    cerfa_field = u"HCQ"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements dans votre entreprise avec exploitation directe en 2013 ou 2014"
+#    start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+
+class fhcm(Variable):
+    cerfa_field = u"HCM"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements dans votre entreprise avec exploitation directe, montant de la réduction d’impôt dont vous demandez l’imputation en 2015, en 2012"
+#    start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+
+class fhcr(Variable):
+    cerfa_field = u"HCR"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements dans votre entreprise avec exploitation directe, montant de la réduction d’impôt dont vous demandez l’imputation en 2015, en 2013 ou 2014"
+#    start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+
 class fhsa(Variable):
     cerfa_field = u"HSA"
     value_type = int
@@ -2199,6 +2750,36 @@ class fhsz(Variable):
     definition_period = YEAR
 
 
+class fhba(Variable):
+    cerfa_field = u"HBA"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d’impôt à hauteur de 52,63%"
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+
+class fhcc(Variable):
+    cerfa_field = u"HCC"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d’impôt à hauteur de 56%"
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+
+class fhcs(Variable):
+    cerfa_field = u"HCS"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d’impôt à hauteur de 56%"
+#    start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+
 class fhta(Variable):
     cerfa_field = u"HTA"
     value_type = int
@@ -2206,6 +2787,36 @@ class fhta(Variable):
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d’impôt à hauteur de 62,5%"
 #    start_date = date(2013, 1, 1)
+    definition_period = YEAR
+
+
+class fhbb(Variable):
+    cerfa_field = u"HBB"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d’impôt à hauteur de 62,5%"
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+
+class fhcd(Variable):
+    cerfa_field = u"HCD"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d’impôt à hauteur de 66%"
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+
+class fhct(Variable):
+    cerfa_field = u"HCT"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d’impôt à hauteur de 66%"
+#    start_date = date(2016, 1, 1)
     definition_period = YEAR
 
 
@@ -2219,6 +2830,36 @@ class fhtb(Variable):
     definition_period = YEAR
 
 
+class fhbe(Variable):
+    cerfa_field = u"HBE"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, Investissements dans votre entreprise"
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+
+class fhce(Variable):
+    cerfa_field = u"HCE"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, Investissements dans votre entreprise"
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+
+class fhcu(Variable):
+    cerfa_field = u"HCU"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, Investissements dans votre entreprise"
+#    start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+
 class fhtc(Variable):
     cerfa_field = u"HTC"
     value_type = int
@@ -2229,6 +2870,36 @@ class fhtc(Variable):
     definition_period = YEAR
 
 
+class fhbf(Variable):
+    cerfa_field = u"HBF"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, Investissements dans votre entreprise avec exploitation directe, montant de la réduction d’impôt calculé"
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+
+class fhcf(Variable):
+    cerfa_field = u"HCF"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, Investissements dans votre entreprise avec exploitation directe, montant de la réduction d’impôt calculé"
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+
+class fhcv(Variable):
+    cerfa_field = u"HCV"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, Investissements dans votre entreprise avec exploitation directe, montant de la réduction d’impôt calculé"
+#    start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+
 class fhtd(Variable):
     cerfa_field = u"HTD"
     value_type = int
@@ -2236,6 +2907,36 @@ class fhtd(Variable):
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, Investissements dans votre entreprise avec exploitation directe, montant de la réduction d’impôt dont vous demandez l’imputation en 2013"
 #    start_date = date(2013, 1, 1)
+    definition_period = YEAR
+
+
+class fhbg(Variable):
+    cerfa_field = u"HBG"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, Investissements dans votre entreprise avec exploitation directe, montant de la réduction d’impôt dont vous demandez l’imputation en 2013"
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+
+class fhcg(Variable):
+    cerfa_field = u"HCG"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, Investissements dans votre entreprise avec exploitation directe, montant de la réduction d’impôt dont vous demandez l’imputation en 2013"
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+
+class fhcw(Variable):
+    cerfa_field = u"HCW"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, Investissements dans votre entreprise avec exploitation directe, montant de la réduction d’impôt dont vous demandez l’imputation en 2013"
+#    start_date = date(2016, 1, 1)
     definition_period = YEAR
 
 
