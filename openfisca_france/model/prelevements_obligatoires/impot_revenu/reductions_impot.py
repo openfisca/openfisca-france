@@ -476,7 +476,7 @@ class reductions(Variable):
         sofica = simulation.calculate('sofica', period)
         spfcpi = simulation.calculate('spfcpi', period)
 
-        total_reductions = (accult + adhcga + cappme + creaen + daepad + deffor + dfppce + doment + domlog + donapd +
+        total_reductions = (accult + adhcga + cappme + daepad + deffor + dfppce + doment + domlog + donapd +
         duflot + ecpess + intagr + invfor + invlst + locmeu + mecena + mohist +
         patnat + prcomp + repsoc + resimm + rsceha + saldom + scelli + sofica +
         spfcpi)
