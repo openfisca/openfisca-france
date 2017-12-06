@@ -4027,7 +4027,16 @@ class f7qc(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    end = '2011-12-31'
+    end = '2012-12-31'
+    definition_period = YEAR
+
+
+class fhqd(Variable):
+    cerfa_field = u"HQD"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    end = '2012-12-31'
     definition_period = YEAR
 
 
@@ -4081,6 +4090,14 @@ class f7kg(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     end = '2010-12-31'
+    definition_period = YEAR
+
+
+class fhql(Variable):
+    cerfa_field = u"7HL"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
     definition_period = YEAR
 
 
