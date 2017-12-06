@@ -3525,7 +3525,15 @@ class f7qb(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    end = '2011-12-31'
+    end = '2012-12-31'
+    definition_period = YEAR
+
+
+class fhqb(Variable):
+    cerfa_field = u"HQB"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
     definition_period = YEAR
 
 
@@ -3538,12 +3546,29 @@ class f7qc(Variable):
     definition_period = YEAR
 
 
+class fhqc(Variable):
+    cerfa_field = u"HQC"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    definition_period = YEAR
+
+
 class f7qd(Variable):
     cerfa_field = u"7QD"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    end = '2011-12-31'
+    end = '2012-12-31'
+    definition_period = YEAR
+
+
+class fhqd(Variable):
+    cerfa_field = u"HQD"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    end = '2012-12-31'
     definition_period = YEAR
 
 
@@ -3574,12 +3599,20 @@ class f7kg(Variable):
     definition_period = YEAR
 
 
+class fhql(Variable):
+    cerfa_field = u"7HL"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    definition_period = YEAR
+
+
 class f7ql(Variable):
     cerfa_field = u"7QL"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    end = '2011-12-31'
+    end = '2012-12-31'
     definition_period = YEAR
 
 
@@ -3588,7 +3621,7 @@ class f7qt(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    end = '2011-12-31'
+    end = '2012-12-31'
     definition_period = YEAR
 
 
@@ -3597,7 +3630,23 @@ class f7qm(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    end = '2011-12-31'
+    end = '2012-12-31'
+    definition_period = YEAR
+
+
+class fhqt(Variable):
+    cerfa_field = u"HQT"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    definition_period = YEAR
+
+
+class fhqm(Variable):
+    cerfa_field = u"HQM"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
     definition_period = YEAR
 
 
@@ -4016,6 +4065,196 @@ class f7ow(Variable):
 #    start_date = date(2012, 1, 1) + changes meaning in 2016
     definition_period = YEAR
 
+class fhoa(Variable):
+    cerfa_field = u"HOA"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2011, Investissements immobiliers engagés avant le 1.1.2011, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50% avant 2009"
+#    start_date = date(2011, 1, 1) changes meaning in 2014
+    definition_period = YEAR
+
+
+class fhob(Variable):
+    cerfa_field = u"HOB"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2011, Investissements immobiliers engagés avant le 1.1.2011, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50% en 2009"
+#    start_date = date(2011, 1, 1) changes meaning
+    definition_period = YEAR
+
+
+class fhoc(Variable):
+    cerfa_field = u"HOC"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2011, Investissements immobiliers engagés avant le 1.1.2011, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50% en 2010"
+#    start_date = date(2011, 1, 1) changes meaning in 2014
+    definition_period = YEAR
+
+
+class fhoh(Variable):
+    cerfa_field = u"HOH"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2011, Investissements immobiliers engagés en 2011, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50% avant 2009"
+#    start_date = date(2011, 1, 1) changes meaning in 2015
+    definition_period = YEAR
+
+
+class fhoi(Variable):
+    cerfa_field = u"HOI"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2011, Investissements immobiliers engagés en 2011, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50% en 2009"
+#    start_date = date(2011, 1, 1) changes meaning in 2015
+    definition_period = YEAR
+
+
+class fhoj(Variable):
+    cerfa_field = u"HOJ"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2011, Investissements immobiliers engagés en 2011, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50% en 2010"
+#    start_date = date(2011, 1, 1) changes meaning in 2015
+    definition_period = YEAR
+
+
+class fhok(Variable):
+    cerfa_field = u"HOK"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2011, Autres investissements"
+#    start_date = date(2011, 1, 1) + changes meaning in 2016
+    definition_period = YEAR
+
+
+class fhol(Variable):
+    cerfa_field = u"HOL"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2012, Investissements immobiliers  que vous avez engagé avant le 1.1.2011, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 % avant 2009"
+#    start_date = date(2012, 1, 1) + changes meaning in 2016
+    definition_period = YEAR
+
+
+class fhom(Variable):
+    cerfa_field = u"HOM"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2012, Investissements immobiliers  que vous avez engagé avant le 1.1.2011, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 % en 2009"
+#    start_date = date(2012, 1, 1) + changes meaning in 2016
+    definition_period = YEAR
+
+
+class fhon(Variable):
+    cerfa_field = u"HON"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2012, Investissements immobiliers  que vous avez engagé avant le 1.1.2011, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 % en 2010"
+#    start_date = date(2012, 1, 1) + changes meaning in 2016
+    definition_period = YEAR
+
+
+class fhoo(Variable):
+    cerfa_field = u"HOO"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2012, Investissements immobiliers  que vous avez engagé en 2011, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 % avant 2009"
+#    start_date = date(2012, 1, 1) + changes meaning in 2016
+    definition_period = YEAR
+
+
+class fhop(Variable):
+    cerfa_field = u"HOP"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2012, Investissements immobiliers  que vous avez engagé en 2011, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 % en 2009"
+#    start_date = date(2012, 1, 1)
+    definition_period = YEAR
+
+
+class fhoq(Variable):
+    cerfa_field = u"HOQ"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2012, Investissements immobiliers  que vous avez engagé en 2011, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 % en 2010"
+#    start_date = date(2012, 1, 1)
+    definition_period = YEAR
+
+
+class fhor(Variable):
+    cerfa_field = u"HOR"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2012, Investissements immobiliers  que vous avez engagé en 2011, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 % en 2011"
+#    start_date = date(2012, 1, 1)
+    definition_period = YEAR
+
+
+class fhos(Variable):
+    cerfa_field = u"HOS"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2012, Investissements immobiliers  que vous avez engagé en 2012, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 % avant 2009"
+#    start_date = date(2012, 1, 1)
+    definition_period = YEAR
+
+
+class fhot(Variable):
+    cerfa_field = u"HOT"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2012, Investissements immobiliers  que vous avez engagé en 2012, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 % en 2009"
+#    start_date = date(2012, 1, 1)
+    definition_period = YEAR
+
+
+class fhou(Variable):
+    cerfa_field = u"HOU"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2012, Investissements immobiliers  que vous avez engagé en 2012, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 % en 2010"
+#    start_date = date(2012, 1, 1)
+    definition_period = YEAR
+
+
+class fhov(Variable):
+    cerfa_field = u"HOV"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2012, Investissements immobiliers  que vous avez engagé en 2012, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 % en 2011"
+#    start_date = date(2012, 1, 1) + changes meaning in 2015
+    definition_period = YEAR
+
+
+class fhow(Variable):
+    cerfa_field = u"HOW"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2012, "
+#    start_date = date(2012, 1, 1) + changes meaning in 2016
+    definition_period = YEAR
+
+
  #TODO: 7O* : end ?
 
 class fhod(Variable):
@@ -4086,6 +4325,216 @@ class fhoz(Variable):
     label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2013, Autres investissements"
 #    start_date = date(2013, 1, 1)
     definition_period = YEAR
+
+class fhua(Variable):
+    cerfa_field = u"HUA"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2014, Investissements immobiliers engagés avant le 1.1.2011"
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+
+class fhub(Variable):
+    cerfa_field = u"HUB"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2014, Investissements immobiliers  que vous avez engagé en 2012, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 % en 2010"
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+
+class fhuc(Variable):
+    cerfa_field = u"HUC"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2014, Investissements immobiliers  que vous avez engagé en 2012, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 % en 2011"
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+
+class fhud(Variable):
+    cerfa_field = u"HUD"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2014, Investissements immobiliers engagés en 2012 ou 2013, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50% en 2010"
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+
+class fhue(Variable):
+    cerfa_field = u"HUE"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2014, Investissements immobiliers engagés en 2012 ou 2013, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50% en 2011"
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+
+class fhuf(Variable):
+    cerfa_field = u"HUF"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2014, Investissements immobiliers engagés en 2012 ou 2013, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50% en 2012"
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+
+class fhug(Variable):
+    cerfa_field = u"HUG"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2014, Autres investissements"
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+
+class fhuh(Variable):
+    cerfa_field = u"HUH"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2015, Investissements immobiliers engagés avant le 1.1.2011"
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+
+class fhui(Variable):
+    cerfa_field = u"HUI"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2015, Investissements immobiliers  que vous avez engagé en 2012, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 % en 2010"
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+
+class fhuj(Variable):
+    cerfa_field = u"HUJ"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2015, Investissements immobiliers  que vous avez engagé en 2012, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 % en 2011"
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+
+class fhuk(Variable):
+    cerfa_field = u"HUK"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2015, Investissements immobiliers engagés en 2012 ou 2013, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50% en 2010"
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+
+class fhul(Variable):
+    cerfa_field = u"HUL"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2015, Investissements immobiliers engagés en 2012 ou 2013, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50% en 2011"
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+
+class fhum(Variable):
+    cerfa_field = u"HUM"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2015, Investissements immobiliers engagés en 2012 ou 2013, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50% en 2012"
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+
+class fhun(Variable):
+    cerfa_field = u"HUN"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2015, Autres investissements"
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+
+class fhuo(Variable):
+    cerfa_field = u"HUO"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2016, Investissements immobiliers engagés avant le 1.1.2011"
+#    start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+
+class fhup(Variable):
+    cerfa_field = u"HUP"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2016, Investissements immobiliers  que vous avez engagé en 2012, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 % en 2010"
+#    start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+
+class fhuq(Variable):
+    cerfa_field = u"HUQ"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2016, Investissements immobiliers  que vous avez engagé en 2012, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 % en 2011"
+#    start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+
+class fhur(Variable):
+    cerfa_field = u"HUR"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2016, Investissements immobiliers engagés en 2012 ou 2013, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50% en 2010"
+#    start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+
+class fhus(Variable):
+    cerfa_field = u"HUS"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2016, Investissements immobiliers engagés en 2012 ou 2013, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50% en 2011"
+#    start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+
+class fhut(Variable):
+    cerfa_field = u"HUT"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2016, Investissements immobiliers engagés en 2012 ou 2013, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50% en 2012"
+#    start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+
+class fhuu(Variable):
+    cerfa_field = u"HUU"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2016, Autres investissements"
+#    start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
 
 # Investissements outre-mer dans le logement social
 

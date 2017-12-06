@@ -1780,7 +1780,7 @@ class domlog(Variable):
     entity = FoyerFiscal
     label = u"domlog"
     definition_period = YEAR
-    end = '2013-12-31'
+    end = '2016-12-31'
 
     def formula_2002_01_01(foyer_fiscal, period, parameters):
         '''
@@ -1959,6 +1959,177 @@ class domlog(Variable):
                     fhon + fhoo + fhop + fhoq + fhor + fhos + fhot + fhou + fhov + fhow + fhod + fhoe +
                     fhof + fhog + fhox + fhoy + fhoz)
 
+    def formula_2014_01_01(self, simulation, period):
+        '''
+        Investissements OUTRE-MER dans le secteur du logement et autres secteurs d’activité
+        2014
+        '''
+        fhod = simulation.calculate('fhod', period)
+        fhoe = simulation.calculate('fhoe', period)
+        fhof = simulation.calculate('fhof', period)
+        fhog = simulation.calculate('fhog', period)
+        fhox = simulation.calculate('fhox', period)
+        fhoy = simulation.calculate('fhoy', period)
+        fhoz = simulation.calculate('fhoz', period)
+        fhqb = simulation.calculate('fhqb', period)
+        fhqc = simulation.calculate('fhqc', period)
+        fhqd = simulation.calculate('fhqd', period)
+        fhql = simulation.calculate('fhql', period)
+        fhqm = simulation.calculate('fhqm', period)
+        fhqt = simulation.calculate('fhqt', period)
+        fhoa = simulation.calculate('fhoa', period)
+        fhob = simulation.calculate('fhob', period)
+        fhoc = simulation.calculate('fhoc', period)
+        fhoh = simulation.calculate('fhoh', period)
+        fhoi = simulation.calculate('fhoi', period)
+        fhoj = simulation.calculate('fhoj', period)
+        fhok = simulation.calculate('fhok', period)
+        fhol = simulation.calculate('fhol', period)
+        fhom = simulation.calculate('fhom', period)
+        fhon = simulation.calculate('fhon', period)
+        fhoo = simulation.calculate('fhoo', period)
+        fhop = simulation.calculate('fhop', period)
+        fhoq = simulation.calculate('fhoq', period)
+        fhor = simulation.calculate('fhor', period)
+        fhos = simulation.calculate('fhos', period)
+        fhot = simulation.calculate('fhot', period)
+        fhou = simulation.calculate('fhou', period)
+        fhov = simulation.calculate('fhov', period)
+        fhow = simulation.calculate('fhow', period)
+        fhua = simulation.calculate('fhua', period)
+        fhub = simulation.calculate('fhub', period)
+        fhuc = simulation.calculate('fhuc', period)
+        fhud = simulation.calculate('fhud', period)
+        fhue = simulation.calculate('fhue', period)
+        fhuf = simulation.calculate('fhuf', period)
+        fhug = simulation.calculate('fhug', period)
+
+        return (fhqb + fhqc + fhqd + fhql + fhqm + fhqt + fhoa + fhob + fhoc + fhoh + fhoi + fhoj + fhok + fhol + fhom +
+                    fhon + fhoo + fhop + fhoq + fhor + fhos + fhot + fhou + fhov + fhow + fhod + fhoe +
+                    fhof + fhog + fhox + fhoy + fhoz + fhua + fhub + fhuc + fhud + fhue + fhuf + fhug)
+
+
+    def formula_2015_01_01(self, simulation, period):
+        '''
+        Investissements OUTRE-MER dans le secteur du logement et autres secteurs d’activité
+        2015
+        '''
+        fhod = simulation.calculate('fhod', period)
+        fhoe = simulation.calculate('fhoe', period)
+        fhof = simulation.calculate('fhof', period)
+        fhog = simulation.calculate('fhog', period)
+        fhox = simulation.calculate('fhox', period)
+        fhoy = simulation.calculate('fhoy', period)
+        fhoz = simulation.calculate('fhoz', period)
+        fhqb = simulation.calculate('fhqb', period)
+        fhqc = simulation.calculate('fhqc', period)
+        fhqd = simulation.calculate('fhqd', period)
+        fhql = simulation.calculate('fhql', period)
+        fhqm = simulation.calculate('fhqm', period)
+        fhqt = simulation.calculate('fhqt', period)
+        fhoa = simulation.calculate('fhoa', period)
+        fhob = simulation.calculate('fhob', period)
+        fhoc = simulation.calculate('fhoc', period)
+        fhoh = simulation.calculate('fhoh', period)
+        fhoi = simulation.calculate('fhoi', period)
+        fhoj = simulation.calculate('fhoj', period)
+        fhok = simulation.calculate('fhok', period)
+        fhol = simulation.calculate('fhol', period)
+        fhom = simulation.calculate('fhom', period)
+        fhon = simulation.calculate('fhon', period)
+        fhoo = simulation.calculate('fhoo', period)
+        fhop = simulation.calculate('fhop', period)
+        fhoq = simulation.calculate('fhoq', period)
+        fhor = simulation.calculate('fhor', period)
+        fhos = simulation.calculate('fhos', period)
+        fhot = simulation.calculate('fhot', period)
+        fhou = simulation.calculate('fhou', period)
+        fhov = simulation.calculate('fhov', period)
+        fhow = simulation.calculate('fhow', period)
+        fhua = simulation.calculate('fhua', period)
+        fhub = simulation.calculate('fhub', period)
+        fhuc = simulation.calculate('fhuc', period)
+        fhud = simulation.calculate('fhud', period)
+        fhue = simulation.calculate('fhue', period)
+        fhuf = simulation.calculate('fhuf', period)
+        fhug = simulation.calculate('fhug', period)
+        fhuh = simulation.calculate('fhuh', period)
+        fhui = simulation.calculate('fhui', period)
+        fhuj = simulation.calculate('fhuj', period)
+        fhuk = simulation.calculate('fhuk', period)
+        fhul = simulation.calculate('fhul', period)
+        fhum = simulation.calculate('fhum', period)
+        fhun = simulation.calculate('fhun', period)
+
+        return (fhqb + fhqc + fhqd + fhql + fhqm + fhqt + fhoa + fhob + fhoc + fhoh + fhoi + fhoj + fhok + fhol + fhom +
+                    fhon + fhoo + fhop + fhoq + fhor + fhos + fhot + fhou + fhov + fhow + fhod + fhoe +
+                    fhof + fhog + fhox + fhoy + fhoz + fhua + fhub + fhuc + fhud + fhue + fhuf + fhug +
+                    fhuh + fhui + fhuj + fhuk + fhul + fhum + fhun)
+
+    def formula_2016_01_01(self, simulation, period):
+        '''
+        Investissements OUTRE-MER dans le secteur du logement et autres secteurs d’activité
+        2016
+        '''
+        fhod = simulation.calculate('fhod', period)
+        fhoe = simulation.calculate('fhoe', period)
+        fhof = simulation.calculate('fhof', period)
+        fhog = simulation.calculate('fhog', period)
+        fhox = simulation.calculate('fhox', period)
+        fhoy = simulation.calculate('fhoy', period)
+        fhoz = simulation.calculate('fhoz', period)
+        fhqb = simulation.calculate('fhqb', period)
+        fhqc = simulation.calculate('fhqc', period)
+        fhqd = simulation.calculate('fhqd', period)
+        fhql = simulation.calculate('fhql', period)
+        fhqm = simulation.calculate('fhqm', period)
+        fhqt = simulation.calculate('fhqt', period)
+        fhoa = simulation.calculate('fhoa', period)
+        fhob = simulation.calculate('fhob', period)
+        fhoc = simulation.calculate('fhoc', period)
+        fhoh = simulation.calculate('fhoh', period)
+        fhoi = simulation.calculate('fhoi', period)
+        fhoj = simulation.calculate('fhoj', period)
+        fhok = simulation.calculate('fhok', period)
+        fhol = simulation.calculate('fhol', period)
+        fhom = simulation.calculate('fhom', period)
+        fhon = simulation.calculate('fhon', period)
+        fhoo = simulation.calculate('fhoo', period)
+        fhop = simulation.calculate('fhop', period)
+        fhoq = simulation.calculate('fhoq', period)
+        fhor = simulation.calculate('fhor', period)
+        fhos = simulation.calculate('fhos', period)
+        fhot = simulation.calculate('fhot', period)
+        fhou = simulation.calculate('fhou', period)
+        fhov = simulation.calculate('fhov', period)
+        fhow = simulation.calculate('fhow', period)
+        fhua = simulation.calculate('fhua', period)
+        fhub = simulation.calculate('fhub', period)
+        fhuc = simulation.calculate('fhuc', period)
+        fhud = simulation.calculate('fhud', period)
+        fhue = simulation.calculate('fhue', period)
+        fhuf = simulation.calculate('fhuf', period)
+        fhug = simulation.calculate('fhug', period)
+        fhuh = simulation.calculate('fhuh', period)
+        fhui = simulation.calculate('fhui', period)
+        fhuj = simulation.calculate('fhuj', period)
+        fhuk = simulation.calculate('fhuk', period)
+        fhul = simulation.calculate('fhul', period)
+        fhum = simulation.calculate('fhum', period)
+        fhun = simulation.calculate('fhun', period)
+        fhuo = simulation.calculate('fhuo', period)
+        fhup = simulation.calculate('fhup', period)
+        fhuq = simulation.calculate('fhuq', period)
+        fhur = simulation.calculate('fhur', period)
+        fhus = simulation.calculate('fhus', period)
+        fhut = simulation.calculate('fhut', period)
+        fhuu = simulation.calculate('fhuu', period)
+
+        return (fhqb + fhqc + fhqd + fhql + fhqm + fhqt + fhoa + fhob + fhoc + fhoh + fhoi + fhoj + fhok + fhol + fhom +
+                    fhon + fhoo + fhop + fhoq + fhor + fhos + fhot + fhou + fhov + fhow + fhod + fhoe +
+                    fhof + fhog + fhox + fhoy + fhoz + fhua + fhub + fhuc + fhud + fhue + fhuf + fhug +
+                    fhuh + fhui + fhuj + fhuk + fhul + fhum + fhun + fhuo + fhup + fhuq + fhur + fhus +
+                    fhut + fhuu)
 
     #En accord avec la DGFiP mais pas de 7ub et 7uj dans la notice
 
