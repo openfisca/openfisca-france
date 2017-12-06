@@ -372,7 +372,6 @@ class reductions(Variable):
         donapd = simulation.calculate('donapd', period)
         duflot = simulation.calculate('duflot', period)
         ecpess = simulation.calculate('ecpess', period)
-        garext = simulation.calculate('garext', period)
         intagr = simulation.calculate('intagr', period)
         invfor = simulation.calculate('invfor', period)
         invlst = simulation.calculate('invlst', period)
@@ -392,15 +391,14 @@ class reductions(Variable):
         spfcpi = simulation.calculate('spfcpi', period)
 
         total_reductions = (accult + adhcga + cappme + creaen + daepad + deffor + dfppce + doment + domlog + donapd +
-        duflot + ecpess + garext + intagr + invfor + invlst + locmeu + mecena + mohist +
+        duflot + ecpess + intagr + invfor + invlst + locmeu + mecena + mohist +
         patnat + prcomp + reduction_impot_exceptionnelle + repsoc + resimm + rsceha + saldom + scelli + sofica +
         spfcpi)
         return min_(ip_net, total_reductions)
 
-    # Start date not checked
-    def formula_2014(self, simulation, period):
+    def formula_2014_01_01(self, simulation, period):
         '''
-        Renvoie la somme des réductions d'impôt à intégrer pour l'année 2014 et + (non vérifiée)
+        Renvoie la somme des réductions d'impôt à intégrer pour l'année 2014
         '''
         accult = simulation.calculate('accult', period)
         adhcga = simulation.calculate('adhcga', period)
@@ -414,7 +412,6 @@ class reductions(Variable):
         donapd = simulation.calculate('donapd', period)
         duflot = simulation.calculate('duflot', period)
         ecpess = simulation.calculate('ecpess', period)
-        garext = simulation.calculate('garext', period)
         intagr = simulation.calculate('intagr', period)
         invfor = simulation.calculate('invfor', period)
         invlst = simulation.calculate('invlst', period)
@@ -424,7 +421,6 @@ class reductions(Variable):
         mohist = simulation.calculate('mohist', period)
         patnat = simulation.calculate('patnat', period)
         prcomp = simulation.calculate('prcomp', period)
-        reduction_impot_exceptionnelle = simulation.calculate('reduction_impot_exceptionnelle', period)
         repsoc = simulation.calculate('repsoc', period)
         resimm = simulation.calculate('resimm', period)
         rsceha = simulation.calculate('rsceha', period)
@@ -434,8 +430,46 @@ class reductions(Variable):
         spfcpi = simulation.calculate('spfcpi', period)
 
         total_reductions = (accult + adhcga + cappme + creaen + daepad + deffor + dfppce + doment + domlog + donapd +
-        duflot + ecpess + garext + intagr + invfor + invlst + locmeu + mecena + mohist +
-        patnat + prcomp + reduction_impot_exceptionnelle + repsoc + resimm + rsceha + saldom + scelli + sofica +
+        duflot + ecpess + intagr + invfor + invlst + locmeu + mecena + mohist +
+        patnat + prcomp + repsoc + resimm + rsceha + saldom + scelli + sofica +
+        spfcpi)
+        return min_(ip_net, total_reductions)
+
+    def formula_2015_01_01(self, simulation, period):
+        '''
+        Renvoie la somme des réductions d'impôt à intégrer pour l'année 2015 et aprés
+        '''
+        accult = simulation.calculate('accult', period)
+        adhcga = simulation.calculate('adhcga', period)
+        cappme = simulation.calculate('cappme', period)
+        daepad = simulation.calculate('daepad', period)
+        deffor = simulation.calculate('deffor', period)
+        dfppce = simulation.calculate('dfppce', period)
+        doment = simulation.calculate('doment', period)
+        domlog = simulation.calculate('domlog', period)
+        donapd = simulation.calculate('donapd', period)
+        duflot = simulation.calculate('duflot', period)
+        ecpess = simulation.calculate('ecpess', period)
+        intagr = simulation.calculate('intagr', period)
+        invfor = simulation.calculate('invfor', period)
+        invlst = simulation.calculate('invlst', period)
+        ip_net = simulation.calculate('ip_net', period)
+        locmeu = simulation.calculate('locmeu', period)
+        mecena = simulation.calculate('mecena', period)
+        mohist = simulation.calculate('mohist', period)
+        patnat = simulation.calculate('patnat', period)
+        prcomp = simulation.calculate('prcomp', period)
+        repsoc = simulation.calculate('repsoc', period)
+        resimm = simulation.calculate('resimm', period)
+        rsceha = simulation.calculate('rsceha', period)
+        saldom = simulation.calculate('saldom', period)
+        scelli = simulation.calculate('scelli', period)
+        sofica = simulation.calculate('sofica', period)
+        spfcpi = simulation.calculate('spfcpi', period)
+
+        total_reductions = (accult + adhcga + cappme + creaen + daepad + deffor + dfppce + doment + domlog + donapd +
+        duflot + ecpess + intagr + invfor + invlst + locmeu + mecena + mohist +
+        patnat + prcomp + repsoc + resimm + rsceha + saldom + scelli + sofica +
         spfcpi)
         return min_(ip_net, total_reductions)
 
