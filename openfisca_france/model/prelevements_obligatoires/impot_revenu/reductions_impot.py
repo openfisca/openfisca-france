@@ -67,6 +67,7 @@ class reductions(Variable):
         invfor = simulation.calculate('invfor', period)
         invrev = simulation.calculate('invrev', period)
         ip_net = simulation.calculate('ip_net', period)
+        mecena = simulation.calculate('mecena', period)
         prcomp = simulation.calculate('prcomp', period)
         repsoc = simulation.calculate('repsoc', period)
         rsceha = simulation.calculate('rsceha', period)
@@ -74,7 +75,7 @@ class reductions(Variable):
         spfcpi = simulation.calculate('spfcpi', period)
 
         total_reductions = (accult + adhcga + assvie + cappme + cotsyn + dfppce + daepad + doment + domlog + donapd + ecpess +
-                garext + intemp + invfor + invrev + prcomp + repsoc + rsceha + saldom + spfcpi)
+                garext + intemp + invfor + invrev + mecena + prcomp + repsoc + rsceha + saldom + spfcpi)
         return min_(ip_net, total_reductions)
 
     def formula_2005_01_01(self, simulation, period):
@@ -96,6 +97,7 @@ class reductions(Variable):
         invfor = simulation.calculate('invfor', period)
         invlst = simulation.calculate('invlst', period)
         ip_net = simulation.calculate('ip_net', period)
+        mecena = simulation.calculate('mecena', period)
         prcomp = simulation.calculate('prcomp', period)
         repsoc = simulation.calculate('repsoc', period)
         rsceha = simulation.calculate('rsceha', period)
@@ -103,7 +105,7 @@ class reductions(Variable):
         spfcpi = simulation.calculate('spfcpi', period)
 
         total_reductions = (accult + adhcga + cappme + cotsyn + daepad + dfppce + doment + domlog + donapd + ecpess + intagr +
-                intcon + invfor + invlst + prcomp + repsoc + rsceha + saldom + spfcpi)
+                intcon + invfor + invlst + mecena + prcomp + repsoc + rsceha + saldom + spfcpi)
         return min_(ip_net, total_reductions)
 
     def formula_2006_01_01(self, simulation, period):
@@ -126,6 +128,7 @@ class reductions(Variable):
         invfor = simulation.calculate('invfor', period)
         invlst = simulation.calculate('invlst', period)
         ip_net = simulation.calculate('ip_net', period)
+        mecena = simulation.calculate('mecena', period)
         prcomp = simulation.calculate('prcomp', period)
         repsoc = simulation.calculate('repsoc', period)
         rsceha = simulation.calculate('rsceha', period)
@@ -134,7 +137,7 @@ class reductions(Variable):
         spfcpi = simulation.calculate('spfcpi', period)
 
         total_reductions = (accult + adhcga + cappme + cotsyn + creaen + daepad + deffor + dfppce + doment + domlog + donapd +
-        ecpess + intagr + invfor + invlst + prcomp + repsoc + rsceha + saldom + sofica + spfcpi)
+        ecpess + intagr + invfor + invlst + mecena + prcomp + repsoc + rsceha + saldom + sofica + spfcpi)
         return min_(ip_net, total_reductions)
 
     def formula_2007_01_01(self, simulation, period):
@@ -157,6 +160,7 @@ class reductions(Variable):
         invfor = simulation.calculate('invfor', period)
         invlst = simulation.calculate('invlst', period)
         ip_net = simulation.calculate('ip_net', period)
+        mecena = simulation.calculate('mecena', period)
         prcomp = simulation.calculate('prcomp', period)
         repsoc = simulation.calculate('repsoc', period)
         rsceha = simulation.calculate('rsceha', period)
@@ -165,7 +169,7 @@ class reductions(Variable):
         spfcpi = simulation.calculate('spfcpi', period)
 
         total_reductions = (accult + adhcga + cappme + cotsyn + creaen + daepad + deffor + dfppce + doment + domlog + donapd +
-        ecpess + intagr + invfor + invlst + prcomp + repsoc + rsceha + saldom + sofica + spfcpi)
+        ecpess + intagr + invfor + invlst + mecena + prcomp + repsoc + rsceha + saldom + sofica + spfcpi)
 
         return min_(ip_net, total_reductions)
 
@@ -189,6 +193,7 @@ class reductions(Variable):
         invfor = simulation.calculate('invfor', period)
         invlst = simulation.calculate('invlst', period)
         ip_net = simulation.calculate('ip_net', period)
+        mecena = simulation.calculate('mecena', period)
         mohist = simulation.calculate('mohist', period)
         prcomp = simulation.calculate('prcomp', period)
         repsoc = simulation.calculate('repsoc', period)
@@ -198,7 +203,7 @@ class reductions(Variable):
         spfcpi = simulation.calculate('spfcpi', period)
 
         total_reductions = (accult + adhcga + cappme + cotsyn + creaen + daepad + deffor + dfppce + doment + domlog + donapd +
-        ecpess + intagr + invfor + invlst + mohist + prcomp + repsoc + rsceha + saldom + sofica + spfcpi)
+        ecpess + intagr + invfor + invlst + mohist + mecena + prcomp + repsoc + rsceha + saldom + sofica + spfcpi)
         return min_(ip_net, total_reductions)
 
     def formula_2009_01_01(self, simulation, period):
@@ -224,6 +229,7 @@ class reductions(Variable):
         invlst = simulation.calculate('invlst', period)
         ip_net = simulation.calculate('ip_net', period)
         locmeu = simulation.calculate('locmeu', period)
+        mecena = simulation.calculate('mecena', period)
         mohist = simulation.calculate('mohist', period)
         prcomp = simulation.calculate('prcomp', period)
         repsoc = simulation.calculate('repsoc', period)
@@ -236,7 +242,7 @@ class reductions(Variable):
         spfcpi = simulation.calculate('spfcpi', period)
 
         total_reductions = (accult + adhcga + cappme + cotsyn + creaen + daepad + deffor + dfppce + doment + domlog + domsoc +
-        donapd + ecodev + ecpess + intagr + invfor + invlst + locmeu + mohist + prcomp + repsoc + resimm + rsceha +
+        donapd + ecodev + ecpess + intagr + invfor + invlst + locmeu + mecena + mohist + prcomp + repsoc + resimm + rsceha +
         saldom + scelli + sofica + sofipe + spfcpi)
         return min_(ip_net, total_reductions)
 
@@ -263,6 +269,7 @@ class reductions(Variable):
         invlst = simulation.calculate('invlst', period)
         ip_net = simulation.calculate('ip_net', period)
         locmeu = simulation.calculate('locmeu', period)
+        mecena = simulation.calculate('mecena', period)
         mohist = simulation.calculate('mohist', period)
         patnat = simulation.calculate('patnat', period)
         prcomp = simulation.calculate('prcomp', period)
@@ -276,7 +283,7 @@ class reductions(Variable):
         spfcpi = simulation.calculate('spfcpi', period)
 
         total_reductions = (accult + adhcga + cappme + cotsyn + creaen + daepad + deffor + dfppce + doment + domlog + domsoc +
-        donapd + ecpess + intagr + invfor + invlst + locmeu + mohist + patnat + prcomp + repsoc + resimm + rsceha +
+        donapd + ecpess + intagr + invfor + invlst + locmeu + mecena + mohist + patnat + prcomp + repsoc + resimm + rsceha +
         saldom + scelli + sofica + sofipe + spfcpi)  # TODO: check (sees checked) and report in Niches.xls
         return min_(ip_net, total_reductions)
 
@@ -302,6 +309,7 @@ class reductions(Variable):
         invlst = simulation.calculate('invlst', period)
         ip_net = simulation.calculate('ip_net', period)
         locmeu = simulation.calculate('locmeu', period)
+        mecena = simulation.calculate('mecena', period)
         mohist = simulation.calculate('mohist', period)
         patnat = simulation.calculate('patnat', period)
         prcomp = simulation.calculate('prcomp', period)
@@ -315,7 +323,7 @@ class reductions(Variable):
         spfcpi = simulation.calculate('spfcpi', period)
 
         total_reductions = (accult + adhcga + cappme + cotsyn + creaen + daepad + deffor + dfppce + doment + domlog + domsoc +
-        donapd + ecpess + intagr + invfor + invlst + locmeu + mohist + patnat + prcomp + repsoc + resimm + rsceha +
+        donapd + ecpess + intagr + invfor + invlst + locmeu + mecena + mohist + patnat + prcomp + repsoc + resimm + rsceha +
         saldom + scelli + sofica + sofipe + spfcpi)
         return min_(ip_net, total_reductions)
 
@@ -340,6 +348,7 @@ class reductions(Variable):
         invlst = simulation.calculate('invlst', period)
         ip_net = simulation.calculate('ip_net', period)
         locmeu = simulation.calculate('locmeu', period)
+        mecena = simulation.calculate('mecena', period)
         mohist = simulation.calculate('mohist', period)
         patnat = simulation.calculate('patnat', period)
         prcomp = simulation.calculate('prcomp', period)
@@ -352,7 +361,7 @@ class reductions(Variable):
         spfcpi = simulation.calculate('spfcpi', period)
 
         total_reductions = (accult + adhcga + cappme + creaen + daepad + deffor + dfppce + doment + domlog + domsoc +
-        donapd + ecpess + intagr + invfor + invlst + locmeu + mohist + patnat + prcomp + repsoc + resimm + rsceha +
+        donapd + ecpess + intagr + invfor + invlst + locmeu + mecena + mohist + patnat + prcomp + repsoc + resimm + rsceha +
         saldom + scelli + sofica + spfcpi)
         return min_(ip_net, total_reductions)
 
@@ -3434,6 +3443,23 @@ class locmeu(Variable):
                 P.taux * (min_(P.max, max_(f7im, f7iw)))
                 ) / 9 +
                 report_invest_anterieur + report_non_impute)
+
+
+class mecena(Variable):
+    value_type = float
+    entity = FoyerFiscal
+    label = u"Mécénat d'entreprise"
+    definition_period = YEAR
+
+    def formula_2003_01_01(foyer_fiscal, period, parameters):
+        '''
+        Mécénat d'entreprise (case 7US)
+        2003-
+        '''
+        f7us = foyer_fiscal('f7us', period)
+
+        return f7us
+
 
 class mohist(Variable):
     value_type = float
