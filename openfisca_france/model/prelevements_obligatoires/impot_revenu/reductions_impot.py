@@ -952,7 +952,6 @@ class dfppce(Variable):
     # - Verrifier si l'excédent de f7ud ne s'impute pas à la réduction 'dfppce' (comme pour 'f7va')
 
 
-# Outre-mer : TODO: plafonnement, cf. 2041-GE 2042-IOM
 class doment(Variable):
     value_type = float
     entity = FoyerFiscal
@@ -1136,13 +1135,12 @@ class doment(Variable):
         f7ru = foyer_fiscal('f7ru', period)
         f7rv = foyer_fiscal('f7rv', period)
         f7rw = foyer_fiscal('f7rw', period)
-        f7rx = foyer_fiscal('f7rx', period)
         f7ry = foyer_fiscal('f7ry', period)
 
         return (f7ks + f7kt + f7ku + f7lg + f7lh + f7li + f7ma + f7mb + f7mc + f7mm + f7mn +  f7pz + f7nu + f7nv + f7nw +
                     f7ny + f7pa + f7pb + f7pd + f7pe + f7pf + f7ph + f7pi + f7pj + f7pl + f7pm + f7pn + f7po + f7pp + f7pr +
                     f7ps + f7pt + f7pu + f7pw + f7px + f7py + f7qe + f7qf + f7qg + f7qi + f7qo + f7qp + f7qr + f7qv + f7qz +
-                    f7rg + f7ri + f7rj + f7rk + f7rl + f7rm + f7ro + f7rp + f7rq + f7rr + f7rt + f7ru + f7rv + f7rw)
+                    f7rg + f7ri + f7rj + f7rk + f7rl + f7rm + f7ro + f7rp + f7rq + f7rr + f7rt + f7ru + f7rv + f7rw + f7ry)
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
         '''
@@ -1242,6 +1240,8 @@ class doment(Variable):
         # TODO: pb 7ul 2005-2009 (ITRED = 0 au lieu de 20€ (forfaitaire), dû à ça : Cochez [7UL] si vous déclarez en ligne pour
         # la première fois vos revenus 2008 et si vous utilisez un moyen automatique de paiement (prélèvement mensuel ou à
         # l'échéance ou paiement par voie électronique))
+
+        # Outre-mer : TODO: plafonnement, cf. 2041-GE 2042-IOM
 
 
 class domlog(Variable):
@@ -1430,7 +1430,9 @@ class domlog(Variable):
                     fhof + fhog + fhox + fhoy + fhoz)
 
 
-#En accord avec la DGFiP mais pas de 7ub et 7uj dans la notice
+    #En accord avec la DGFiP mais pas de 7ub et 7uj dans la notice
+
+    # Outre-mer : TODO: plafonnement, cf. 2041-GE 2042-IOM
 
 
 class domsoc(Variable):
@@ -1483,6 +1485,8 @@ class domsoc(Variable):
         f7qx = foyer_fiscal('f7qx', period) 
 
         return  fhra + fhrb + fhrc + fhrd + f7qn + f7qk + f7qu + f7kg + f7kh + f7ki + f7qj + f7qs + f7qw + f7qx
+
+    # Outre-mer : TODO: plafonnement, cf. 2041-GE 2042-IOM
 
 
 class donapd(Variable):
