@@ -458,7 +458,7 @@ class reductions(Variable):
         sofica = foyer_fiscal('sofica', period)
         spfcpi = foyer_fiscal('spfcpi', period)
 
-        total_reductions = (accult + adhcga + cappme + creaen + daepad + deffor + dfppce + doment + domlog + donapd +
+        total_reductions = (accult + adhcga + cappme + daepad + deffor + dfppce + doment + domlog + donapd +
         duflot + ecpess + intagr + invfor + invlst + locmeu + mecena + mohist +
         patnat + prcomp + repsoc + resimm + rsceha + saldom + scelli + sofica +
         spfcpi)
