@@ -484,11 +484,12 @@ class assloy(Variable):
     entity = FoyerFiscal
     label = u"Crédit d’impôt primes d’assurance pour loyers impayés"
     definition_period = YEAR
+    end = '2016-12-31'
 
     def formula_2005(foyer_fiscal, period, parameters):
         '''
         Crédit d’impôt primes d’assurance pour loyers impayés (case 4BF)
-        2005-
+        2005-2016
         '''
         f4bf = foyer_fiscal('f4bf', period)
         _P = parameters(period)
