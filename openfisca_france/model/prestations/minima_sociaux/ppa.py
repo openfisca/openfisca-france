@@ -4,7 +4,7 @@ from __future__ import division
 
 from openfisca_france.model.base import *  # noqa analysis:ignore
 
-from numpy import round as round_
+from numpy import round as round_, logical_or as or_
 
 
 class ppa_eligibilite(Variable):
@@ -290,6 +290,39 @@ class ppa_bonification(Variable):
         return bonification
 
 
+class ppa_forfait_logement(Variable):
+    value_type = float
+    entity = Famille
+    label = u"Forfait logement intervenant dans le calcul de la primed d'activité"
+    definition_period = MONTH
+
+    def formula(famille, period, parameters):
+        np_pers = famille('nb_parents', period) + famille('rsa_nb_enfants', period)
+        aide_logement = famille('aide_logement', period)
+        statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
+        participation_frais = famille.demandeur.menage('participation_frais', period)
+        loyer = famille.demandeur.menage('loyer', period)
+
+        avantage_nature = or_(
+            (statut_occupation_logement == 2) * not_(loyer),
+            (statut_occupation_logement == 6) * not_(participation_frais)
+            )
+        avantage_al = aide_logement > 0
+        
+        params = parameters(period).prestations.minima_sociaux.rsa
+        montant_base = famille('ppa_montant_forfaitaire_familial_non_majore', period, extra_params = [period])
+        montant_forfait = montant_base * (
+            (np_pers == 1) * params.forfait_logement.taux_1_personne +
+            (np_pers == 2) * params.forfait_logement.taux_2_personnes +
+            (np_pers >= 3) * params.forfait_logement.taux_3_personnes_ou_plus
+            )
+
+        montant_al = avantage_al * min_(aide_logement, montant_forfait)
+        montant_nature = avantage_nature * montant_forfait
+
+        return max_(montant_al, montant_nature)
+
+
 class ppa_fictive(Variable):
     value_type = float
     entity = Famille
@@ -297,7 +330,7 @@ class ppa_fictive(Variable):
     definition_period = MONTH
 
     def formula(famille, period, parameters, mois_demande):
-        forfait_logement = famille('rsa_forfait_logement', mois_demande)
+        forfait_logement = famille('ppa_forfait_logement', mois_demande)
         ppa_majoree_eligibilite = famille('rsa_majore_eligibilite', mois_demande)
 
         elig = famille('ppa_eligibilite', period, extra_params = [mois_demande])
