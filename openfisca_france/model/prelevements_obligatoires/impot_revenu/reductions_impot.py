@@ -1264,17 +1264,15 @@ class doment(Variable):
         f7qe = simulation.calculate('f7qe', period)
         f7qf = simulation.calculate('f7qf', period)
         f7qg = simulation.calculate('f7qg', period)
-        f7qh = simulation.calculate('f7qh', period)
         f7qi = simulation.calculate('f7qi', period)
         f7qo = simulation.calculate('f7qo', period)
         f7qp = simulation.calculate('f7qp', period)
-        f7qq = simulation.calculate('f7qq', period)
         f7qr = simulation.calculate('f7qr', period)
         f7qv = simulation.calculate('f7qv', period)
 
         return (f7ks + f7kt + f7ku + f7lg + f7lh + f7li + f7mb + f7mn + f7mc + f7mm + f7ma +  f7oz + f7pa + f7pb + f7pd +
-                    f7pe + f7pf + f7ph + f7pi + f7pj + f7pl + f7pz + f7qz + f7qf + f7qg + f7qh + f7qi + f7qo +
-                    f7qp + f7qq + f7qr + f7qe + f7qv)
+                    f7pe + f7pf + f7ph + f7pi + f7pj + f7pl + f7pz + f7qz + f7qf + f7qg + f7qi + f7qo +
+                    f7qp + f7qr + f7qe + f7qv)
 
     def formula_2012_01_01(self, simulation, period):
         '''
@@ -4519,7 +4517,6 @@ class scelli(Variable):
         f7jp = simulation.calculate('f7jp', period)
         f7jq = simulation.calculate('f7jq', period)
         f7jr = simulation.calculate('f7jr', period)
-        f7la = simulation.calculate('f7la', period)
         f7lb = simulation.calculate('f7lb', period)
         f7lc = simulation.calculate('f7lc', period)
         f7ld = simulation.calculate('f7ld', period)
@@ -4586,7 +4583,7 @@ class scelli(Variable):
 
         P = simulation.parameters_at(period.start).impot_revenu.reductions_impots.scelli
 
-        report_reduc_scelli_non_impute = f7la + f7lb + f7lc + f7ld + f7le + f7lf + f7lm + f7ls + f7lz + f7mg + f7mh + f7lx + f7lt + f7ln + f7lg + f7lh + f7li + f7lj + f7lk + f7ll + f7lo + f7lp
+        report_reduc_scelli_non_impute = f7lb + f7lc + f7ld + f7le + f7lf + f7lm + f7ls + f7lz + f7mg + f7mh + f7lx + f7lt + f7ln + f7lg + f7lh + f7li + f7lj + f7lk + f7ll + f7lo + f7lp
         
         report_scelli_2009 = min_(P.max, max_(P.taux25 * f7hr, P.taux40 * f7hs)) # to check si application plafond 
         report_scelli_2010 = min_(P.max, maxi(P.taux25 * f7hv, P.taux25 * f7hx, P.taux40 * f7hw, P.taux40 * f7hz)) + min_(P.max, max_(P.taux25 * f7ht, P.taux40 * f7hu)) # to check si application plafond
