@@ -1614,14 +1614,13 @@ class saldom2(Variable):
         nb_pac2 = foyer_fiscal('nb_pac2', period)
         f7db = foyer_fiscal('f7db', period)
         f7dg = foyer_fiscal('f7dg', period)
-        f7dl = foyer_fiscal('f7dl', period)
         _P = parameters(period)
 
         P = _P.impot_revenu.reductions_impots.salarie_domicile
 
         isinvalid = f7dg
 
-        nbpacmin = nb_pac2 + f7dl
+        nbpacmin = nb_pac2
         maxBase = P.max1
         maxDuMaxNonInv = P.max2
         maxNonInv = min_(maxBase + P.pac * nbpacmin, maxDuMaxNonInv)
@@ -1637,7 +1636,6 @@ class saldom2(Variable):
         nb_pac2 = foyer_fiscal('nb_pac2', period)
         f7db = foyer_fiscal('f7db', period)
         f7dg = foyer_fiscal('f7dg', period)
-        f7dl = foyer_fiscal('f7dl', period)
         f7dq = foyer_fiscal('f7dq', period)
         _P = parameters(period)
 
@@ -1646,7 +1644,7 @@ class saldom2(Variable):
         isinvalid = f7dg
 
         annee1 = f7dq
-        nbpacmin = nb_pac2 + f7dl
+        nbpacmin = nb_pac2
         maxBase = P.max1 * not_(annee1) + P.max1_1ereAnnee * annee1
         maxDuMaxNonInv = P.max2 * not_(annee1) + P.max2_1ereAnnee * annee1
         maxNonInv = min_(maxBase + P.pac * nbpacmin, maxDuMaxNonInv)
