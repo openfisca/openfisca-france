@@ -785,6 +785,9 @@ class creimp(Variable):
 
         return (f2ab + f2ck + f8ta + f8tb + f8tc + f8te - f8tf + f8tg + f8th + f8to - f8tp + f8tl + f8ts + f8tz + f8uw +
                 f8uz + f8wa + f8wb + f8wc + f8wd + f8we + f8wr + f8wt + f8wu)
+  
+    # TODO : add tax credit 8VM and 8VL (2016) 
+    # TODO: add tax credit 8TK for all years ?
 
 
 class direpa(Variable):
