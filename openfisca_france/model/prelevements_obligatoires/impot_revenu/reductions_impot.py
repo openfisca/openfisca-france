@@ -3739,7 +3739,7 @@ class saldom(Variable):
 
     def formula_2007_01_01(foyer_fiscal, period, parameters):
         '''
-        Sommes versées pour l'emploi d'un salariés à  domicile
+        Sommes versées pour l'emploi d'un salariés à  domicile (à partir de 2007, 7DB donne droit à un crédit et 7DF à une réduction)
         2007-2008
         '''
         nb_pac2 = foyer_fiscal('nb_pac2', period)
@@ -3761,7 +3761,7 @@ class saldom(Variable):
     def formula_2009_01_01(foyer_fiscal, period, parameters):
         '''
         Sommes versées pour l'emploi d'un salariés à  domicile
-        2009-2012
+        2009-2011
         '''
         nb_pac2 = foyer_fiscal('nb_pac2', period)
         f7db = foyer_fiscal('f7db', period)
@@ -3777,8 +3777,10 @@ class saldom(Variable):
         maxBase = P.max1 * not_(annee1) + P.max1_1ereAnnee * annee1
         maxDuMaxNonInv = P.max2 * not_(annee1) + P.max2_1ereAnnee * annee1
         maxNonInv = min_(maxBase + P.pac * nbpacmin, maxDuMaxNonInv)
+        maxNonInv2 = min_(maxBase + P.pac * nb_pac2, maxDuMaxNonInv)
         maxEffectif = maxNonInv * not_(isinvalid) + P.max3 * isinvalid
-        max1 = maxEffectif - min_(f7db, maxEffectif)
+        maxEffectif2 = maxNonInv2 * not_(isinvalid) + P.max3 * isinvalid
+        max1 = maxEffectif - min_(f7db, maxEffectif2)
         return P.taux * min_(f7df, max1)
 
     def formula_2011_01_01(self, simulation, period):
@@ -3802,8 +3804,10 @@ class saldom(Variable):
         maxBase = P.max1 * not_(annee1) + P.max1_1ereAnnee * annee1
         maxDuMaxNonInv = P.max2 * not_(annee1) + P.max2_1ereAnnee * annee1
         maxNonInv = min_(maxBase + P.pac * nbpacmin, maxDuMaxNonInv)
+        maxNonInv2 = min_(maxBase + P.pac * nb_pac2, maxDuMaxNonInv)
         maxEffectif = maxNonInv * not_(isinvalid) + P.max3 * isinvalid
-        max1 = maxEffectif - min_(f7db, maxEffectif)
+        maxEffectif2 = maxNonInv2 * not_(isinvalid) + P.max3 * isinvalid
+        max1 = maxEffectif - min_(f7db, maxEffectif2)
         return P.taux * min_(f7df + f7dd, max1)
 
 
