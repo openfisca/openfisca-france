@@ -659,6 +659,20 @@ class aide_logement_montant_brut(Variable):
 
         return montant
 
+class aide_logement_apres_abattement_forfaitaire(Variable):
+    value_type = float
+    entity = Famille
+    label = u"Montant des aides au logement après abattement forfaitaire"
+    reference = u"https://www.legifrance.gouv.fr/eli/decret/2017/9/28/TERL1721632D/jo/texte"
+    definition_period = MONTH
+
+    def formula(famille, period, parameters):
+        abattement_forfaitaire = parameters(period).prestations.aides_logement.autres.abattement_forfaitaire
+        aide_logement_montant_brut = famille('aide_logement_montant_brut', period)
+        montant = (aide_logement_montant_brut > 0) * (aide_logement_montant_brut - abattement_forfaitaire)
+
+        return montant
+
 
 class aide_logement_montant(Variable):
     value_type = float
@@ -667,9 +681,9 @@ class aide_logement_montant(Variable):
     definition_period = MONTH
 
     def formula(famille, period):
-        aide_logement_montant_brut = famille('aide_logement_montant_brut', period)
+        aide_logement_apres_abattement_forfaitaire = famille('aide_logement_apres_abattement_forfaitaire', period)
         crds_logement = famille('crds_logement', period)
-        montant = round_(aide_logement_montant_brut + crds_logement, 2)
+        montant = round_(aide_logement_apres_abattement_forfaitaire + crds_logement, 2)
 
         return montant
 
