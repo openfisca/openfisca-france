@@ -1236,17 +1236,15 @@ class doment(Variable):
         f7qe = foyer_fiscal('f7qe', period)
         f7qf = foyer_fiscal('f7qf', period)
         f7qg = foyer_fiscal('f7qg', period)
-        f7qh = foyer_fiscal('f7qh', period)
         f7qi = foyer_fiscal('f7qi', period)
         f7qo = foyer_fiscal('f7qo', period)
         f7qp = foyer_fiscal('f7qp', period)
-        f7qq = foyer_fiscal('f7qq', period)
         f7qr = foyer_fiscal('f7qr', period)
         f7qv = foyer_fiscal('f7qv', period)
 
         return (f7ks + f7kt + f7ku + f7lg + f7lh + f7li + f7mb + f7mn + f7mc + f7mm + f7ma +  f7oz + f7pa + f7pb + f7pd +
-                    f7pe + f7pf + f7ph + f7pi + f7pj + f7pl + f7pz + f7qz + f7qf + f7qg + f7qh + f7qi + f7qo +
-                    f7qp + f7qq + f7qr + f7qe + f7qv)
+                    f7pe + f7pf + f7ph + f7pi + f7pj + f7pl + f7pz + f7qz + f7qf + f7qg + f7qi + f7qo +
+                    f7qp + f7qr + f7qe + f7qv)
 
     def formula_2012_01_01(foyer_fiscal, period, parameters):
         '''
@@ -4470,7 +4468,6 @@ class scelli(Variable):
         f7jp = foyer_fiscal('f7jp', period)
         f7jq = foyer_fiscal('f7jq', period)
         f7jr = foyer_fiscal('f7jr', period)
-        f7la = foyer_fiscal('f7la', period)
         f7lb = foyer_fiscal('f7lb', period)
         f7lc = foyer_fiscal('f7lc', period)
         f7ld = foyer_fiscal('f7ld', period)
@@ -4537,7 +4534,7 @@ class scelli(Variable):
 
         P = simulation.parameters_at(period.start).impot_revenu.reductions_impots.scelli
 
-        report_reduc_scelli_non_impute = f7la + f7lb + f7lc + f7ld + f7le + f7lf + f7lm + f7ls + f7lz + f7mg + f7mh + f7lx + f7lt + f7ln + f7lg + f7lh + f7li + f7lj + f7lk + f7ll + f7lo + f7lp
+        report_reduc_scelli_non_impute = f7lb + f7lc + f7ld + f7le + f7lf + f7lm + f7ls + f7lz + f7mg + f7mh + f7lx + f7lt + f7ln + f7lg + f7lh + f7li + f7lj + f7lk + f7ll + f7lo + f7lp
         
         report_scelli_2009 = min_(P.max, max_(P.taux25 * f7hr, P.taux40 * f7hs)) # to check si application plafond 
         report_scelli_2010 = min_(P.max, maxi(P.taux25 * f7hv, P.taux25 * f7hx, P.taux40 * f7hw, P.taux40 * f7hz)) + min_(P.max, max_(P.taux25 * f7ht, P.taux40 * f7hu)) # to check si application plafond
