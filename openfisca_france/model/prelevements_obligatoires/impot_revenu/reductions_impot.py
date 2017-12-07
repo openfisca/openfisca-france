@@ -855,7 +855,7 @@ class cotsyn(Variable):
 
     def formula(self, simulation, period):
         '''
-        Cotisations syndicales (2002-20131
+        Cotisations syndicales : réduction d'impôt (2002-2011) puis crédit d'impôt (2012- )
         '''
         f7ac_holder = simulation.compute('f7ac', period)
         salaire_imposable_holder = simulation.compute_add('salaire_imposable', period)
