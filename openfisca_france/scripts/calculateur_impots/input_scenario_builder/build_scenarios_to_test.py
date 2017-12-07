@@ -48,7 +48,7 @@ def create_all_scenarios_to_test(directory):
         fixed_wage_amount = 50000
         tested_income_amounts = [20000]
     
-        for variable in base.individual_income_variables_to_test:
+        for variable in base.individual_income_variables_to_test + base.household_income_variables_to_test :
             for amount in tested_income_amounts:
                 scenario = define_single_worker_scenario(year, {'salaire_imposable': fixed_wage_amount, variable: amount})
                 json_filename = "test" + '-' + variable + '-' + str(scenario.period.date.year)
