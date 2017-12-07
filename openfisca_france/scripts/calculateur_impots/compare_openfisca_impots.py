@@ -137,31 +137,38 @@ def define_scenario(year, tax_benefit_system = tax_benefit_system):
         parent1 = dict(
             activite = u'Actif occupé',
             date_naissance = 1973,
-            salaire_imposable = 15000,
+            salaire_imposable = 50000,
             retraite_imposable = 0,
             chomage_imposable = 0,
-            statut_marital = u'Marié',
+            abic_impn = 0,
+            #f8vm = 1200,
+            statut_marital = u'Célibataire',
             ),
-        parent2 = dict(
-             activite = u'Actif occupé',
-             date_naissance = 1973,
-             salaire_imposable = 38000,
-             statut_marital = u'Marié',
-             ),
-        enfants = [
-             dict(
-                 activite = u'Étudiant, élève',
-                 date_naissance = '1993-02-01',
-                 ),
+        # parent2 = dict(
+        #      activite = u'Actif occupé',
+        #      date_naissance = 1973,
+        #      salaire_imposable = 0,
+        #      statut_marital = u'Marié',
+        #      ),
+        # enfants = [
+        #      dict(
+        #          activite = u'Étudiant, élève',
+        #          date_naissance = '1993-02-01',
+        #          ),
         #     dict(
         #         activite = u'Étudiant, élève',
         #         date_naissance = '2000-04-17',
         #         ),
-             ],
-        # foyer_fiscal = dict(  #TODO: pb avec f2ck
-        #     f5rn = 5000,
-        #     mbic_mvct = 2000,
-        #     ),
+        #    ],
+        foyer_fiscal = dict( 
+            f7qu = 20000,
+            #f7dd = 0,
+            #f7dl = 0,
+            #f7dq = 0, 
+            #f7dg = 0,
+            #f7su = 5000,
+            #f7vt = 2000,
+            ),
         )
     scenario.suggest()
     return scenario
@@ -173,9 +180,9 @@ def main():
     args = parser.parse_args()
     logging.basicConfig(level = logging.DEBUG if args.verbose else logging.WARNING, stream = sys.stdout)
 
-    year = 2014
+    year = 2011
     scenario = define_scenario(year)
-    compare(scenario, tested = True)
+    compare(scenario, tested = True, verbose = True)
     return 0
 
 
