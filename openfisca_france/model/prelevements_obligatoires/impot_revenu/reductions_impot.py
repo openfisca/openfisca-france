@@ -848,7 +848,7 @@ class cotsyn(Variable):
 
     def formula(foyer_fiscal, period, parameters):
         '''
-        Cotisations syndicales (2002-20131
+        Cotisations syndicales : réduction d'impôt (2002-2011) puis crédit d'impôt (2012- )
         '''
         f7ac = foyer_fiscal.members('f7ac', period)
         salaire_imposable = foyer_fiscal.members('salaire_imposable', period, options = [ADD])
