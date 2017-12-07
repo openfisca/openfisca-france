@@ -1,6 +1,14 @@
 # Changelog
 
-### 18.11.0
+### 18.11.1
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2016.
+* Zones impactées : `/prestations/ppa`.
+* Détails :
+  - Améliore l'implémentation de la prime d'activité en utilisant le bon montant forfaitaire
+
+## 18.11.0
 
 * Amélioration technique
 * Détails :
