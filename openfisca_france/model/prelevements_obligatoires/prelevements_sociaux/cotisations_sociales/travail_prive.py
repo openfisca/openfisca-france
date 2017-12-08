@@ -254,9 +254,7 @@ class agirc_gmp_assiette(Variable):
     def formula(self, simulation, period):
         assiette_cotisations_sociales = simulation.calculate('assiette_cotisations_sociales', period)
         gmp = simulation.parameters_at(period.start).prelevements_sociaux.gmp
-        salaire_charniere = gmp.salaire_charniere_annuel
-        if period.unit == 'month':
-            salaire_charniere = salaire_charniere / 12
+        salaire_charniere = gmp.salaire_charniere_annuel / 12
 
         assiette = max_(
             (salaire_charniere - assiette_cotisations_sociales) * (assiette_cotisations_sociales > 0),
@@ -660,12 +658,8 @@ class plafond_securite_sociale(Variable):
         # TODO : handle contrat_de_travail > 1
 
         # 1) Proratisation pour temps partiel
-        if period.unit == 'month':
-            duree_legale_mensuelle = 35 * 52 / 12  # ~151,67
-            plafond_temps_plein = plafond_temps_plein
-        elif period.unit == 'year':
-            duree_legale_mensuelle = 35 * 52
-            plafond_temps_plein = plafond_temps_plein * 12
+        duree_legale_mensuelle = 35 * 52 / 12  # ~151,67
+        plafond_temps_plein = plafond_temps_plein
 
         heures_temps_plein = duree_legale_mensuelle
         assert (((contrat_de_travail == 0) | (contrat_de_travail == 1)) | (contrat_de_travail == 5) | (contrat_de_travail == 6)).all()
@@ -706,7 +700,7 @@ class prevoyance_obligatoire_cadre(Variable):
     def formula(self, simulation, period):
         categorie_salarie = simulation.calculate('categorie_salarie', period)
         assiette_cotisations_sociales = simulation.calculate('assiette_cotisations_sociales', period)
-        plafond_securite_sociale = simulation.calculate_add('plafond_securite_sociale', period)
+        plafond_securite_sociale = simulation.calculate('plafond_securite_sociale', period)
         prevoyance_obligatoire_cadre_taux_employeur = simulation.calculate(
             'prevoyance_obligatoire_cadre_taux_employeur', period)
 

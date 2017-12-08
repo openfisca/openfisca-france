@@ -124,7 +124,7 @@ class crds_chomage(Variable):
 
 class chomage_imposable(Variable):
     value_type = float
-    base_function = requested_period_added_value
+
     calculate_output = calculate_output_add
     unit = 'currency'
     cerfa_field = {
@@ -148,7 +148,6 @@ class chomage_imposable(Variable):
 
 
 class chomage_net(Variable):
-    base_function = requested_period_added_value
     calculate_output = calculate_output_add
     value_type = float
     entity = Individu
@@ -170,7 +169,6 @@ class chomage_net(Variable):
 ############################################################################
 
 class csg_deductible_retraite(Variable):
-    base_function = requested_period_added_value
     calculate_output = calculate_output_add
     value_type = float
     entity = Individu
@@ -194,7 +192,6 @@ class csg_deductible_retraite(Variable):
 
 
 class csg_imposable_retraite(Variable):
-    base_function = requested_period_added_value
     calculate_output = calculate_output_add
     value_type = float
     entity = Individu
@@ -215,7 +212,6 @@ class csg_imposable_retraite(Variable):
 
 
 class crds_retraite(Variable):
-    base_function = requested_period_added_value
     calculate_output = calculate_output_add
     value_type = float
     entity = Individu
@@ -237,7 +233,6 @@ class crds_retraite(Variable):
 
 
 class casa(Variable):
-    base_function = requested_period_added_value
     calculate_output = calculate_output_add
     value_type = float
     entity = Individu
@@ -269,7 +264,6 @@ class casa(Variable):
 
 
 class retraite_imposable(Variable):
-    base_function = requested_period_added_value
     unit = 'currency'
     value_type = float
     cerfa_field = {
@@ -293,7 +287,6 @@ class retraite_imposable(Variable):
 
 
 class retraite_nette(Variable):
-    base_function = requested_period_added_value
     value_type = float
     entity = Individu
     label = u"Pensions de retraite nettes"

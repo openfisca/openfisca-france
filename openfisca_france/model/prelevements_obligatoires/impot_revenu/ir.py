@@ -2213,13 +2213,11 @@ class rac(Variable):
 
 
 class rnc(Variable):
-    base_function = requested_period_added_value
     value_type = float
     entity = Individu
     label = u"Revenus non commerciaux individuels"
     reference = "http://www.impots.gouv.fr/portal/dgi/public/professionnels.impot?espId=2&pageId=prof_bnc&impot=BNC&sfid=50"
     definition_period = YEAR
-    set_input = set_input_divide_by_period
 
     # def formula(individu, period, parameters):
     #     '''
@@ -2263,11 +2261,9 @@ class rnc(Variable):
 
 
 class rpns(Variable):
-    base_function = requested_period_added_value
     value_type = float
     entity = Individu
     label = u"Revenus individuels des professions non salariées"
-    set_input = set_input_divide_by_period
     definition_period = YEAR
 
     def formula(individu, period, parameters):
@@ -2349,11 +2345,9 @@ class rpns_mvlt(Variable):
 
 
 class rpns_individu(Variable):
-    base_function = requested_period_added_value
     value_type = float
     entity = Individu
     label = u"Revenus des professions non salariées individuels"
-    set_input = set_input_divide_by_period
     definition_period = YEAR
 
     def formula(individu, period, parameters):

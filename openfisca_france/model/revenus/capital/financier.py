@@ -6,7 +6,6 @@ from openfisca_france.model.base import *  # noqa
 # RVCM
 # revenus au prélèvement libératoire
 class f2da(Variable):
-    base_function = requested_period_added_value
     cerfa_field = u"2DA"
     value_type = int
     unit = 'currency'
@@ -19,7 +18,6 @@ class f2da(Variable):
 
 
 class f2dh(Variable):
-    base_function = requested_period_added_value
     cerfa_field = u"2DH"
     value_type = int
     unit = 'currency'
@@ -28,7 +26,6 @@ class f2dh(Variable):
     definition_period = YEAR
 
 class f2ee(Variable):
-    base_function = requested_period_added_value
     cerfa_field = u"2EE"
     value_type = int
     unit = 'currency'
@@ -38,7 +35,6 @@ class f2ee(Variable):
 
 # revenus des valeurs et capitaux mobiliers ouvrant droit à abattement
 class f2dc(Variable):
-    base_function = requested_period_added_value
     cerfa_field = u"2DC"
     value_type = int
     unit = 'currency'
@@ -56,7 +52,6 @@ class f2fu(Variable):
 
 
 class f2ch(Variable):
-    base_function = requested_period_added_value
     cerfa_field = u"2CH"
     value_type = int
     unit = 'currency'
@@ -66,7 +61,6 @@ class f2ch(Variable):
 
 #  Revenus des valeurs et capitaux mobiliers n'ouvrant pas droit à abattement
 class f2ts(Variable):
-    base_function = requested_period_added_value
     cerfa_field = u"2TS"
     value_type = int
     unit = 'currency'
@@ -85,7 +79,6 @@ class f2go(Variable):
 
 
 class f2tr(Variable):
-    base_function = requested_period_added_value
     cerfa_field = u"2TR"
     value_type = int
     unit = 'currency'

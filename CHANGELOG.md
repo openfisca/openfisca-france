@@ -1,4 +1,4 @@
-﻿# Changelog
+# Changelog
 
 ### 18.11.0
 

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
-import glob
 import os
+import glob
 
 from openfisca_core.taxbenefitsystems import TaxBenefitSystem
 
@@ -26,15 +26,10 @@ class FranceTaxBenefitSystem(TaxBenefitSystem):
     REFORMS_DIR = os.path.join(COUNTRY_DIR, 'reformes')
     REV_TYP = None  # utils.REV_TYP  # Not defined for France
     REVENUES_CATEGORIES = {
-        'brut': [
-            'salaire_brut', 'chomage_brut', 'retraite_brute', 'pensions_alimentaires_percues',
-            'pensions_alimentaires_versees', 'rev_cap_brut', 'fon'],
-        'imposable': ['salaire_imposable', 'chomage_imposable', 'retraite_imposable', 'pensions_alimentaires_percues',
-            'pensions_alimentaires_versees', 'rev_cap_brut', 'fon', 'cotsoc_cap'],
-        'net': ['salaire_net', 'chomage_net', 'retraite_nette', 'pensions_alimentaires_percues',
-            'pensions_alimentaires_versees', 'rev_cap_net', 'fon'],
-        'superbrut': ['salaire_super_brut', 'chomage_brut', 'retraite_brute', 'pensions_alimentaires_percues',
-            'pensions_alimentaires_versees', 'rev_cap_brut', 'fon'],
+        'brut': ['salaire_brut', 'chomage_brut', 'retraite_brute', 'pensions_alimentaires_percues', 'pensions_alimentaires_versees', 'rev_cap_brut', 'fon'],
+        'imposable': ['salaire_imposable', 'chomage_imposable', 'retraite_imposable', 'pensions_alimentaires_percues', 'pensions_alimentaires_versees', 'rev_cap_brut', 'fon', 'cotsoc_cap'],
+        'net': ['salaire_net', 'chomage_net', 'retraite_nette', 'pensions_alimentaires_percues', 'pensions_alimentaires_versees', 'rev_cap_net', 'fon'],
+        'superbrut': ['salaire_super_brut', 'chomage_brut', 'retraite_brute', 'pensions_alimentaires_percues', 'pensions_alimentaires_versees', 'rev_cap_brut', 'fon'],
         }
 
     def __init__(self):

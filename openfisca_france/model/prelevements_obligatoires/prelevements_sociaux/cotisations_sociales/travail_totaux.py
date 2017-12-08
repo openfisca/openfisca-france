@@ -13,7 +13,6 @@ log = logging.getLogger(__name__)
 
 
 class cotisations_employeur(Variable):
-    base_function = requested_period_added_value
     value_type = float
     entity = Individu
     label = u"Cotisations sociales employeur"
@@ -35,7 +34,6 @@ class cotisations_employeur(Variable):
 
 
 class cotisations_employeur_contributives(Variable):
-    base_function = requested_period_added_value
     value_type = float
     entity = Individu
     label = u"Cotisations sociales employeur contributives"
@@ -81,7 +79,6 @@ class cotisations_employeur_contributives(Variable):
 
 
 class cotisations_employeur_non_contributives(Variable):
-    base_function = requested_period_added_value
     value_type = float
     entity = Individu
     label = u"Cotisations sociales employeur non-contributives"
@@ -113,7 +110,7 @@ class cotisations_employeur_non_contributives(Variable):
 
 class cotisations_salariales_contributives(Variable):
     calculate_output = calculate_output_add
-    base_function = requested_period_added_value
+
     value_type = float
     entity = Individu
     label = u"Cotisations sociales salariales contributives"
@@ -156,7 +153,6 @@ class cotisations_salariales_contributives(Variable):
 
 
 class cotisations_salariales_non_contributives(Variable):
-    base_function = requested_period_added_value
     calculate_output = calculate_output_add
     value_type = float
     entity = Individu
@@ -180,7 +176,6 @@ class cotisations_salariales_non_contributives(Variable):
 
 
 class cotisations_salariales(Variable):
-    base_function = requested_period_added_value
     calculate_output = calculate_output_add
     value_type = float
     entity = Individu

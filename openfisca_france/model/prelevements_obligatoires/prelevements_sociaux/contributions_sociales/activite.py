@@ -27,7 +27,7 @@ class assiette_csg_abattue(Variable):
         # indemnites_journalieres_maladie = simulation.calculate('indemnites_journalieres_maladie', period)
         # TODO: mettre à part ?
         indemnite_residence = simulation.calculate('indemnite_residence', period)
-        supp_familial_traitement = simulation.calculate_add('supp_familial_traitement', period)
+        supp_familial_traitement = simulation.calculate('supp_familial_traitement', period)
         hsup = simulation.calculate('hsup', period)
         remuneration_principale = simulation.calculate('remuneration_principale', period)
         stage_gratification_reintegration = simulation.calculate_add('stage_gratification_reintegration', period)
@@ -136,7 +136,6 @@ class crds_salaire(Variable):
 
 class forfait_social(Variable):
     value_type = float
-    calculate_output = calculate_output_add
     entity = Individu
     label = u"Forfait social"
     definition_period = MONTH
@@ -180,7 +179,6 @@ class forfait_social(Variable):
 
 
 class salaire_imposable(Variable):
-    base_function = requested_period_added_value
     value_type = float
     unit = 'currency'
     cerfa_field = {  # (f1aj, f1bj, f1cj, f1dj, f1ej)
@@ -200,7 +198,7 @@ class salaire_imposable(Variable):
         primes_salaires = individu('primes_salaires', period)
         primes_fonction_publique = individu('primes_fonction_publique', period)
         indemnite_residence = individu('indemnite_residence', period)
-        supp_familial_traitement = individu('supp_familial_traitement', period, options = [ADD])
+        supp_familial_traitement = individu('supp_familial_traitement', period)
         csg_deductible_salaire = individu('csg_deductible_salaire', period)
         cotisations_salariales = individu('cotisations_salariales', period)
         remuneration_principale = individu('remuneration_principale', period)
@@ -220,7 +218,6 @@ class salaire_imposable(Variable):
 
 
 class salaire_net(Variable):
-    base_function = requested_period_added_value
     value_type = float
     entity = Individu
     label = u"Salaires nets d'après définition INSEE"
