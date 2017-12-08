@@ -1,4 +1,5 @@
-
+exit()
+python
 
 import sys
 sys.path.insert(0, '/home/giuliano/Documents/openfisca/openfisca-core')
@@ -9,25 +10,10 @@ from openfisca_france import FranceTaxBenefitSystem
 
 # Initialize the legislation
 tax_benefit_system = FranceTaxBenefitSystem()
-print(tax_benefit_system.parameters.cotsoc.sal.commun)
-
-print(tax_benefit_system.get_parameters_at_instant("2018").cotsoc.sal.commun.assedic)
-# scenario = tax_benefit_system.new_scenario()
-# 
-
 
 from openfisca_france.reforms import plf2018
 
-# sys.stdout = open('cocococo', 'w')
 reform = plf2018.plf2018(tax_benefit_system)
-
-print(tax_benefit_system.get_parameters_at_instant("2018").cotsoc.cotisations_salarie.prive_cadre.assedic)
-print(reform.get_parameters_at_instant("2018").cotsoc.cotisations_salarie.prive_cadre.assedic)
-# print(reform.get_parameters_at_instant("2018-01").cotsoc.sal.cadre.assedic)
-# print(reform.parameters.cotsoc.cotisations_salarie)
-
-print(reform.get_parameters_at_instant("2018-01"))
-print(reform.get_parameters_at_instant("2018").prelevements_sociaux.contributions.csg.activite.deductible)
 
 
 def init_profile(scenario):
@@ -35,7 +21,7 @@ def init_profile(scenario):
         period = 2018,
         parent1 = dict(
             age = 40,
-            salaire_de_base = 1671*12,
+            salaire_de_base = 5000*12,
             ),
             
         menage = dict(loyer = 5000, # Annual basis
@@ -45,18 +31,22 @@ def init_profile(scenario):
         )
     return scenario
 
-# avec reforme
+##################################
+# Computation with reform reforme
+##################################
 #Indicate that you want to perfom the reform on this scenario
 reform_scenario = init_profile(reform.new_scenario())
 
 #Simulate the reform
-reform_simulation = reform_scenario.new_simulation() 
-
-# Choose the variable you want to calcul : here the disposable income, "revenu_disponible"
-# cho_ap = reform_simulation.calculate('chomage_salarie','2018-01')
+reform_simulation = reform_scenario.new_simulation()
+# elig_degrev_th = reform_simulation.calculate("degrevement_taxe_habitation", "2018")
+elig_degrev_th = reform_simulation.calculate("degrevement_taxe_habitation", "2018")
+print(elig_degrev_th)
+# Variables after reform
 s_brut_ap = reform_simulation.calculate("salaire_de_base","2018-01")
 cot_soc_ap = reform_simulation.calculate("cotisations_salariales","2018-01")
 cot_cho_ap = reform_simulation.calculate("chomage_salarie","2018-01")
+cot_cho_ap_oct = reform_simulation.calculate("chomage_salarie","2018-11")
 csg_ap = reform_simulation.calculate("csg","2018")
 csg_ded_ap = reform_simulation.calculate("csg_deductible_salaire","2018-01")
 crds_ap  = reform_simulation.calculate("crds","2018")
@@ -69,14 +59,17 @@ al_ap = reform_simulation.calculate("aide_logement","2018-12")
 ppa_ap = reform_simulation.calculate("ppa","2018-12")
 rd_ap = reform_simulation.calculate('revenu_disponible', '2018')
 
-# sans reforme
+
+###################################
+# Computation of th ecounterfactual
+###################################
 #Indicate that you want to perfom the standard system on this scenario
 reference_scenario = init_profile(tax_benefit_system.new_scenario())
 
 #Simulate the standard scenario
 reference_simulation = reference_scenario.new_simulation()
 
-# Choose the variable you want to calcul
+# Variables in the counterfactual situation
 s_brut_av = reference_simulation.calculate("salaire_de_base","2018-01")
 cot_soc_av = reference_simulation.calculate("cotisations_salariales","2018-01")
 cot_cho_av = reference_simulation.calculate("chomage_salarie","2018-01")
@@ -94,17 +87,6 @@ rd_av = reference_simulation.calculate('revenu_disponible', '2018')
 
 
 
-# aah 
-# caah
-# minimum_vieillesse
-# aefa 
-# api 
-# ass 
-# psa
-# ppa
-
-
-# ('revenu_net_individu','2018')
 print("sal_brut")
 print(s_brut_av)
 print("cotsoc")
@@ -113,6 +95,7 @@ print(cot_soc_ap)
 print("cot_cho")
 print(cot_cho_av)
 print(cot_cho_ap)
+print(cot_cho_ap_oct)
 print("csg")
 print(csg_av)
 print(csg_ap)
@@ -143,6 +126,8 @@ print(ppa_ap)
 print("revenu_disponible")
 print(rd_av)
 print(rd_ap) 
+print("TH")
+print(elig_degrev_th)
 
 # check_av_1 = s_brut_av + cot_soc_av + (csg_av-csg_ded_av*12 + crds_av -net_av)/12
 # check_av_1

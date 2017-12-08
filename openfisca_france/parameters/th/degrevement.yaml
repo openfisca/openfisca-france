@@ -1,0 +1,47 @@
+description: Projet de loi de finances pour 2018
+degrevement_th:
+  description: parametres pour calculer le degrevement de th du PLF 2018
+  plaf_degrevement_th_1: 
+    description: seuil d'exoneration celibataire
+    unit: currency
+    values: 
+      '2019-01-01':
+        value: null
+      '2018-01-01':
+        value: 27000
+  plaf_degrevement_sup_th_1: 
+    description: seuil d'exoneration 2 premieres demi parts
+    values: 
+      '2019-01-01':
+        value: null
+      '2018-01-01':
+        value: 8000
+  plaf_degrevement_sup2_th_1: 
+    description: seuil d'exoneration demi parts supplementaires
+    values: 
+      '2019-01-01':
+        value: null
+      '2018-01-01':
+        value: 6000
+  plaf_degrevement_th_2: 
+    description: seuil d'exoneration celibataire
+    values: 
+      '2019-01-01':
+        value: null
+      '2018-01-01':
+        value: 28000
+  plaf_degrevement_sup_th_2: 
+    description: seuil d'exoneration 2 premieres demi parts
+    values: 
+      '2019-01-01':
+        value: null
+      '2018-01-01':
+        value: 8500
+  plaf_degrevement_sup2_th_2: 
+    description: seuil d'exoneration demi parts supplementaires
+    values: 
+      '2019-01-01':
+        value: null
+      '2018-01-01':
+        value: 6000
+    
