@@ -213,8 +213,6 @@ class f2dm(Variable):
     label = u"Impatriés: revenus de capitaux mobiliers perçus à l'étranger, abattement de 50 %"
     # start_date = date(2008, 1, 1)
     definition_period = YEAR
-    # TODO: nouvelle case à utiliser où c'est nécessaire
-    # TODO: vérifier existence avant 2012
 
 
 class f2gr(Variable):
