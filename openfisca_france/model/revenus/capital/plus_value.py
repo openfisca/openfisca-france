@@ -91,6 +91,25 @@ class f3vc(Variable):
     definition_period = YEAR
 
 
+class f3vp(Variable):
+    cerfa_field = u"3VP"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Plus-values exonérées de cessions de titres de jeunes entreprises innovantes"
+    # start_date = date(2007, 1, 1)
+    definition_period = YEAR
+
+
+class f3vy(Variable):
+    cerfa_field = u"3VY"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Plus-values exonérées de cessions de participations supérieures à 25% au sein du groupe familial"
+    # start_date = date(2011, 1, 1)
+    definition_period = YEAR
+
 
 class f3vd(Variable):
     cerfa_field = {QUIFOY['vous']: u"3VD",
