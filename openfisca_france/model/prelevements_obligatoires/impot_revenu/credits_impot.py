@@ -1398,9 +1398,9 @@ class prlire(Variable):
 class quaenv(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = u"Crédits d’impôt pour dépenses en faveur de la qualité environnementale"
+    label = u"Crédits d’impôt pour dépenses en faveur de la qualité environnementale (2005 - 2014) / de la transition energétique (2014 - ) "
     definition_period = YEAR
-    end = '2013-12-31'
+    end = '2016-12-31'
 
     def formula_2005_01_01(foyer_fiscal, period, parameters):
         '''
@@ -1480,7 +1480,7 @@ class quaenv(Variable):
         max7 = max_(0, max6 - f7wh)
         max8 = max_(0, max7 - f7sb)
 
-        return or_(not_(f7we), rfr < 45000) * (P.taux_wf * min_(f7wf, max0) +
+        return or_(not_(f7we), rfr < P.max_rfr) * (P.taux_wf * min_(f7wf, max0) +
                     P.taux_se * min_(f7se, max1) +
                     P.taux_wk * min_(f7wk, max2) +
                     P.taux_sd * min_(f7sd, max3) +
@@ -1520,7 +1520,7 @@ class quaenv(Variable):
         max5 = max_(0, max4 - f7wh)
         max6 = max_(0, max5 - f7sb)
         max7 = max_(0, max6 - f7wq)
-        return not_(f7wg) * or_(not_(f7we), (rfr < 45000)) * (
+        return not_(f7wg) * or_(not_(f7we), (rfr < P.max_rfr)) * (
             P.taux_wf * min_(f7wf, max0) +
             P.taux_se * min_(f7se, max1) +
             P.taux_wk * min_(f7wk, max2) +
@@ -1593,24 +1593,24 @@ class quaenv(Variable):
         max7 = max_(0, max6 - quaenv_bouquet * (f7sf + f7si + f7su + f7sw))
         max8 = max_(0, max7 - quaenv_bouquet * (f7sm))
         montant = (quaenv_bouquet * (
-                        min_(max8, P.taux10 * (f7sk + f7sl)) +
-                        min_(max7, P.taux11 * f7sm) +
-                        min_(max6, P.taux15 * (f7sf + f7si + f7su + f7sw)) +
-                        min_(max5, P.taux18 * (f7sd + f7sj)) +
-                        min_(max4, P.taux23 * (f7sg + f7sh + f7so + f7sp)) +
-                        min_(max3, P.taux26 * f7se) +
-                        min_(max2, P.taux32 * f7sv) +
-                        min_(max1, P.taux34 * (f7sn + f7sr + f7sq)) +
-                        min_(max0, P.taux40 * (f7ss + f7st))) +
+                        P.taux10 * min_(max8, f7sk + f7sl) +
+                        P.taux11 * min_(max7, f7sm) +
+                        P.taux15 * min_(max6, f7sf + f7si + f7su + f7sw) +
+                        P.taux18 * min_(max5, f7sd + f7sj) +
+                        P.taux23 * min_(max4, f7sg + f7sh + f7so + f7sp) +
+                        P.taux26 * min_(max3, f7se) +
+                        P.taux32 * min_(max2, f7sv) +
+                        P.taux34 * min_(max1, f7sn + f7sr + f7sq) +
+                        P.taux40 * min_(max0, f7ss + f7st)) +
                     (not_(quaenv_bouquet) * (
-                        min_(max0, P.taux32 * (f7ss + f7st + f7sv)) +
-                        min_(max1, P.taux26 * (f7sn + f7sq + f7sr)) +
-                        min_(max2, P.taux17 * f7se) +
-                        min_(max3, P.taux15 * (f7sf + f7sg + f7sh + f7si + f7so + f7su + f7sw + f7sp)) +
-                        min_(max4, P.taux11 * f7sm) +
-                        min_(max5, P.taux10 * (f7sd + f7wk * (f7sj + f7sk + f7sl))))
+                        P.taux32 * min_(max0, f7ss + f7st + f7sv) +
+                        P.taux26 * min_(max1, f7sn + f7sq + f7sr) +
+                        P.taux17 * min_(max2, f7se) +
+                        P.taux15 * min_(max3, f7sf + f7sg + f7sh + f7si + f7so + f7su + f7sw + f7sp) +
+                        P.taux11 * min_(max4, f7sm) +
+                        P.taux10 * min_(max5, f7sd + not_(f7wk) * (f7sj + f7sk + f7sl)))
                     ))
-        return not_(f7wg) * or_(not_(f7we), (rfr < 30000)) * (montant + collectif) + f7sz
+        return not_(f7wg) * or_(not_(f7we), (rfr < P.max_rfr)) * (montant + collectif) + f7sz
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
         '''
@@ -1661,25 +1661,105 @@ class quaenv(Variable):
         max8 = max_(0, max7 - quaenv_bouquet * (f7sm))
 
         montant = (quaenv_bouquet * (
-                        min_(max8, P.taux10 * (f7sk + f7sl)) +
-                        min_(max7, P.taux11 * f7sm) +
-                        min_(max6, P.taux15 * (f7sf + f7si + f7su + f7sw)) +
-                        min_(max5, P.taux18 * (f7sd + f7sj)) +
-                        min_(max4, P.taux23 * (f7sg + f7sh + f7so + f7sp)) +
-                        min_(max3, P.taux26 * f7se) +
-                        min_(max2, P.taux32 * f7sv) +
-                        min_(max1, P.taux34 * (f7sn + f7sr + f7sq)) +
-                        min_(max0, P.taux40 * (f7ss + f7st))) +
-                    (not_(quaenv_bouquet) * (
-                        min_(max0, P.taux32 * (f7ss + f7st + f7sv)) +
-                        min_(max1, P.taux26 * (f7sn + f7sq + f7sr)) +
-                        min_(max2, P.taux17 * f7se) +
-                        min_(max3, P.taux15 * (f7sf + f7sg + f7sh + f7si + f7so + f7su + f7sw + f7sp)) +
-                        min_(max4, P.taux11 * f7sm) +
-                        min_(max5, P.taux10 * (f7sd + not_(f7wk) * (f7sj + f7sk + f7sl))))
-                    ))
-        return or_(not_(or_(f7we, f7wg)), (rfr < 30000)) * montant + f7sz # TODO : attention, la condition porte sur le RFR des années passées (N-2 et N-3)
+                        P.taux10 * min_(max8, f7sk + f7sl) +
+                        P.taux11 * min_(max7, f7sm) +
+                        P.taux15 * min_(max6, f7sf + f7si + f7su + f7sw) +
+                        P.taux18 * min_(max5, f7sd + f7sj) +
+                        P.taux23 * min_(max4, f7sg + f7sh + f7so + f7sp) +
+                        P.taux26 * min_(max3, f7se) +
+                        P.taux32 * min_(max2, f7sv) +
+                        P.taux34 * min_(max1, f7sn + f7sr + f7sq) +
+                        P.taux40 * min_(max0, f7ss + f7st)) +
+                    not_(quaenv_bouquet) * (
+                        P.taux32 * min_(max0, f7ss + f7st + f7sv) +
+                        P.taux26 * min_(max1, f7sn + f7sq + f7sr) +
+                        P.taux17 * min_(max2, f7se) +
+                        P.taux15 * min_(max3, f7sf + f7sg + f7sh + f7si + f7so + f7su + f7sw + f7sp) +
+                        P.taux11 * min_(max4, f7sm) +
+                        P.taux10 * min_(max5, f7sd + not_(f7wk) * (f7sj + f7sk + f7sl)))
+                    )
+        return or_(not_(or_(f7we, f7wg)), (rfr < P.max_rfr)) * montant + f7sz # TODO : attention, la condition porte sur le RFR des années passées (N-2 et N-3)
 
+    def formula_2014_01_01(foyer_fiscal, period, parameters):
+        '''
+        Crédits d’impôt pour dépenses en faveur de la qualité environnementale (1.1-31.8.2014) et transition energétique (1.9-31.12.2014)
+        2014
+        '''
+        f7rg = foyer_fiscal('f7rg', period)
+        f7rh = foyer_fiscal('f7rh', period)
+        f7ri = foyer_fiscal('f7ri', period)
+        f7rj = foyer_fiscal('f7rj', period)
+        f7rk = foyer_fiscal('f7rk', period)
+        f7rl = foyer_fiscal('f7rl', period)
+        f7rn = foyer_fiscal('f7rn', period)
+        f7rp = foyer_fiscal('f7rp', period)
+        f7rq = foyer_fiscal('f7rq', period)
+        f7rr = foyer_fiscal('f7rr', period)
+        f7rs = foyer_fiscal('f7rs', period)
+        f7rt = foyer_fiscal('f7rt', period)
+        f7rv = foyer_fiscal('f7rv', period)
+        f7rw = foyer_fiscal('f7rw', period)
+        f7rz = foyer_fiscal('f7rz', period)
+        f7sa = foyer_fiscal('f7sa', period)
+        f7sb = foyer_fiscal('f7sb', period)
+        f7sc = foyer_fiscal('f7sc', period)
+        f7sd = foyer_fiscal('f7sd', period)
+        f7se = foyer_fiscal('f7se', period)
+        f7sf = foyer_fiscal('f7sf', period)
+        f7sg = foyer_fiscal('f7sg', period)
+        f7sh = foyer_fiscal('f7sh', period)
+        f7si = foyer_fiscal('f7si', period)
+        f7sj = foyer_fiscal('f7sj', period)
+        f7sk = foyer_fiscal('f7sk', period)
+        f7sl = foyer_fiscal('f7sl', period)
+        f7sn = foyer_fiscal('f7sn', period)
+        f7so = foyer_fiscal('f7so', period)
+        f7sp = foyer_fiscal('f7sp', period)
+        f7sq = foyer_fiscal('f7sq', period)
+        f7sr = foyer_fiscal('f7sr', period)
+        f7ss = foyer_fiscal('f7ss', period)
+        f7st = foyer_fiscal('f7st', period)
+        f7sv = foyer_fiscal('f7sv', period)
+        f7sw = foyer_fiscal('f7sw', period)
+        f7tv = foyer_fiscal('f7tv', period)
+        f7tw = foyer_fiscal('f7tw', period)
+        f7vg = foyer_fiscal('f7vg', period)
+        f7vh = foyer_fiscal('f7vh', period)
+        f7wb = foyer_fiscal('f7wb', period)
+        f7wc = foyer_fiscal('f7wc', period)
+        f7we = foyer_fiscal('f7we', period)
+        f7wg = foyer_fiscal('f7wg', period)
+        f7wk = foyer_fiscal('f7wk', period)
+        f7wt = foyer_fiscal('f7wt', period)
+        f7wu = foyer_fiscal('f7wu', period)
+        maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
+        nb_pac2 = foyer_fiscal('nb_pac2', period)
+        quaenv_bouquet = foyer_fiscal('quaenv_bouquet', period)
+        rfr = foyer_fiscal('rfr', period)
+        P = parameters(period).impot_revenu.credits_impot.quaenv
+
+        depenses_transition_energetique = (
+            f7sa + f7sb + f7sc + f7wb + f7rg + f7vh + f7rh + f7ri + f7wu + f7rj + f7rk + f7rl +
+            f7rn + f7rp + f7rr + f7rs + f7rq + f7rt + f7rv + f7rw + f7rz + f7tv + f7tw
+            )
+
+        max0 = P.max * (1 + maries_ou_pacses) + P.pac1 * nb_pac2
+        max00 = max_(0, max0 - depenses_transition_energetique)
+        max1 = max_(0, max00 - quaenv_bouquet * (f7sd + f7se + f7wc + f7vg + f7wt + f7sn + f7sp + f7sr + f7ss + f7sq + f7st) - not_(quaenv_bouquet) * (max00))
+
+        credit_quaenv = (quaenv_bouquet * (P.taux25 * (min_(max00,
+                            f7sd + f7se + f7wc + f7vg + f7wt + f7sn + f7sp + f7sr + f7ss + f7sq + f7st)) +
+                            P.taux15 * min_(max1, 
+                            f7sf + f7sg + f7sh + f7si + f7sj + f7sk + f7sl + f7sv + f7sw)
+                            ) +
+                        not_(quaenv_bouquet) * P.taux15 * (min_(max00,
+                            f7se + f7wc + f7vg + f7sn + f7sp + f7sr + f7ss + f7sq + f7st + f7sf + f7sg + 
+                            f7sh + f7si + f7sv + f7sw + f7sd + not_(f7wk) * (f7wt + f7sj + f7sk + f7sl)))
+                        )
+        
+        # TODO: inclure la condition de non cumul éco-prêt / crédit quaenv si RFR > ... (condition complexifiée à partir de 2014)
+
+        return P.taux30 * min_(max0, depenses_transition_energetique) + min_(max_(0, max0 - depenses_transition_energetique), credit_quaenv)
 
 class quaenv_bouquet(Variable):
     value_type = bool
@@ -1769,13 +1849,13 @@ class quaenv_bouquet(Variable):
         f7wh = foyer_fiscal('f7wh', period)
         f7wt = foyer_fiscal('f7wt', period)
 
-        t1 = (f7wt > 0)
-        t2 = (f7wc > 0)
-        t3 = (f7vg > 0)
-        t4 = (f7sn > 0)
+        t1 = (f7wt > 0)*1
+        t2 = (f7wc > 0)*1
+        t3 = (f7vg > 0)*1
+        t4 = (f7sn > 0)*1
         t5 = or_(f7sr > 0, f7ss > 0)
         t6 = or_(or_(or_(f7st > 0, f7sp > 0), or_(f7sq > 0, f7sd > 0)), f7se > 0)
-        bouquet = (t1 + t2 + t3 + t4 + t5 + t6 > 1 and f7wh == 1)
+        bouquet = (t1 + t2 + t3 + t4 + t5 + t6 > 1)
         return bouquet
 
 class saldom2(Variable):
