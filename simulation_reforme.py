@@ -39,10 +39,10 @@ reform_scenario = init_profile(reform.new_scenario())
 
 #Simulate the reform
 reform_simulation = reform_scenario.new_simulation()
-# elig_degrev_th = reform_simulation.calculate("degrevement_taxe_habitation", "2018")
-elig_degrev_th = reform_simulation.calculate("degrevement_taxe_habitation", "2018")
-print(elig_degrev_th)
+
+
 # Variables after reform
+taux_degrev_th_ap = reform_simulation.calculate("degrevement_taxe_habitation", "2018")
 s_brut_ap = reform_simulation.calculate("salaire_de_base","2018-01")
 cot_soc_ap = reform_simulation.calculate("cotisations_salariales","2018-01")
 cot_cho_ap = reform_simulation.calculate("chomage_salarie","2018-01")
@@ -70,6 +70,7 @@ reference_scenario = init_profile(tax_benefit_system.new_scenario())
 reference_simulation = reference_scenario.new_simulation()
 
 # Variables in the counterfactual situation
+taux_degrev_th_av = reference_simulation.calculate("degrevement_taxe_habitation", "2018")
 s_brut_av = reference_simulation.calculate("salaire_de_base","2018-01")
 cot_soc_av = reference_simulation.calculate("cotisations_salariales","2018-01")
 cot_cho_av = reference_simulation.calculate("chomage_salarie","2018-01")
@@ -127,7 +128,8 @@ print("revenu_disponible")
 print(rd_av)
 print(rd_ap) 
 print("TH")
-print(elig_degrev_th)
+print(taux_degrev_th_ap)
+print(taux_degrev_th_av)
 
 # check_av_1 = s_brut_av + cot_soc_av + (csg_av-csg_ded_av*12 + crds_av -net_av)/12
 # check_av_1

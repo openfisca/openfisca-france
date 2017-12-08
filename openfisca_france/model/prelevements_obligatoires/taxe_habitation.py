@@ -169,3 +169,43 @@ class taxe_habitation(Variable):
 
 
         return - exonere_taxe_habitation * 0
+
+
+
+
+class degrevement_taxe_habitation(Variable):
+    value_type = float
+    default_value = 1
+    entity = Menage
+    label = u"Exonération de la taxe d'habitation"
+    reference = "http://vosdroits.service-public.fr/particuliers/F42.xhtml"
+    definition_period = YEAR
+    def formula(menage, period, parameters):
+        """Exonation de la taxe d'habitation
+    
+        'men'
+    
+        Eligibilité:
+        - âgé de plus de 60 ans, non soumis à l'impôt de solidarité sur la fortune (ISF) en n-1
+        - veuf quel que soit votre âge et non soumis à l'impôt de solidarité sur la fortune (ISF) n-1
+        - titulaire de l'allocation de solidarité aux personnes âgées (Aspa)  ou de l'allocation supplémentaire d'invalidité (Asi),
+        bénéficiaire de l'allocation aux adultes handicapés (AAH),
+        atteint d'une infirmité ou d'une invalidité vous empêchant de subvenir à vos besoins par votre travail.
+        """
+        janvier = period.first_month
+    
+        P = parameters(period).th
+    
+        statut_marital = menage.personne_de_reference('statut_marital', janvier)
+    
+        nbptr_i = menage.members.foyer_fiscal('nbptr', period)
+        nbptr = menage.sum(nbptr_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)  # TODO: Beurk
+    
+        rfr_i = menage.members.foyer_fiscal('rfr', period)
+        rfr = menage.sum(rfr_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
+    
+        seuil_degrevement = P.degrevement.plafonds.plaf_degrevement_th_1 + P.degrevement.plafonds.plaf_degrevement_sup_th_1 * min_((max_(0, (nbptr - 1) / 2)),2) + P.degrevement.plafonds.plaf_degrevement_sup2_th_1 * min_((max_(0, (nbptr - 1) / 2)),2)
+            
+        abattement = (1-(rfr < seuil_degrevement))*P.degrevement.taux
+        return (abattement)
+      
