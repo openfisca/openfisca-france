@@ -639,6 +639,7 @@ class nombre_jours_calendaires(Variable):
     entity = Individu
     label = u"Nombre de jours calendaires travaillés"
     definition_period = MONTH
+    default_value = 30
 
     def formula(self, simulation, period):
         contrat_de_travail_debut = simulation.calculate('contrat_de_travail_debut', period)
