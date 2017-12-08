@@ -1,38 +1,4 @@
 - period: "2012"
-  name: "RSA célibataire, salaire_de_base = 20000"
-  input_variables:
-    date_naissance: "1985-01-01"  # 27 ans
-    salaire_de_base:
-      2012: 20000
-    rpns_individu:
-      2010: 0
-      2011: 0
-      2012: 0
-    statut_occupation_logement:
-      "2012-01": 2  # Propriétaire (non accédant) du logement
-  output_variables:
-    revenus_du_travail:
-      2012: 18428
-    pensions:
-      2012: 0
-    revenus_du_capital:
-      2012: 0
-    # start prestations_sociales
-    minima_sociaux:
-      2012: 543
-    prestations_sociales:
-      2012: 543
-    # end prestations_sociales
-    ppe:
-      2012: 0
-    impots_directs:
-      2012: -1055
-    revenu_disponible:
-      2012: 18428 + 543 - 1055
-    aides_logement:
-      "2012": 0
-
-- period: "2012"
   name: "RSA célibataire, retrait_brute = 1500 * 12"
   relative_error_margin: 0.01
   input_variables:
