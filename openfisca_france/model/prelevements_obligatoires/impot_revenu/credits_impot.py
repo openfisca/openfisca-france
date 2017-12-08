@@ -1552,9 +1552,9 @@ class quaenv(Variable):
                         min_(max2, P.taux17 * f7se) +
                         min_(max3, P.taux15 * (f7sf + f7sg + f7sh + f7si + f7so + f7su + f7sw + f7sp)) +
                         min_(max4, P.taux11 * f7sm) +
-                        min_(max5, P.taux10 * (f7sd + f7wk * (f7sj + f7sk + f7sl))))
+                        min_(max5, P.taux10 * (f7sd + not_(f7wk) * (f7sj + f7sk + f7sl))))
                     ))
-        return or_(not_(or_(f7we, f7wg)), (rfr < 30000)) * montant + f7sz
+        return or_(not_(or_(f7we, f7wg)), (rfr < 30000)) * montant + f7sz # TODO : attention, la condition porte sur le RFR des années passées (N-2 et N-3)
 
 
 class quaenv_bouquet(Variable):
@@ -1562,11 +1562,12 @@ class quaenv_bouquet(Variable):
     entity = FoyerFiscal
     label = u"quaenv_bouquet"
     definition_period = YEAR
+    end = '2015-12-31'
 
-    def formula_2013_01_01(foyer_fiscal, period, parameters):
+    def formula_2012_01_01(foyer_fiscal, period, parameters):
         '''
         Les dépenses de travaux dépendent d'un bouquet de travaux
-        2013
+        2012
         '''
         f7sd = foyer_fiscal('f7sd', period)
         f7se = foyer_fiscal('f7se', period)
@@ -1595,9 +1596,63 @@ class quaenv_bouquet(Variable):
         t4 = or_(f7sn > 0, f7so > 0)
         t5 = or_(f7sr > 0, f7ss > 0)
         t6 = or_(or_(or_(f7st > 0, f7sp > 0), or_(f7sq > 0, f7sd > 0)), f7se > 0)
-        bouquet = (t1 + t2 + t3 + t4 + t5 + t6 > 1)
-        return or_(bouquet, f7wh)
+        bouquet = (t1 + t2 + t3 + t4 + t5 + t6 > 1 and f7wh == 1)
+        return bouquet
 
+    def formula_2013_01_01(foyer_fiscal, period, parameters):
+        '''
+        Les dépenses de travaux dépendent d'un bouquet de travaux
+        2013
+        '''
+        f7sd = foyer_fiscal('f7sd', period)
+        f7se = foyer_fiscal('f7se', period)
+        f7sn = foyer_fiscal('f7sn', period)
+        f7so = foyer_fiscal('f7so', period)
+        f7sp = foyer_fiscal('f7sp', period)
+        f7sq = foyer_fiscal('f7sq', period)
+        f7sr = foyer_fiscal('f7sr', period)
+        f7ss = foyer_fiscal('f7ss', period)
+        f7st = foyer_fiscal('f7st', period)
+        f7vg = foyer_fiscal('f7vg', period)
+        f7wc = foyer_fiscal('f7wc', period)
+        f7wh = foyer_fiscal('f7wh', period)
+        f7wt = foyer_fiscal('f7wt', period)
+
+        t1 = f7wt
+        t2 = f7wc
+        t3 = f7vg
+        t4 = or_(f7sn > 0, f7so > 0)
+        t5 = or_(f7sr > 0, f7ss > 0)
+        t6 = or_(or_(or_(f7st > 0, f7sp > 0), or_(f7sq > 0, f7sd > 0)), f7se > 0)
+        bouquet = (t1 + t2 + t3 + t4 + t5 + t6 > 1 and f7wh == 1)
+        return bouquet
+
+    def formula_2014_01_01(foyer_fiscal, period, parameters):
+        '''
+        Les dépenses de travaux dépendent d'un bouquet de travaux
+        2014
+        '''
+        f7sd = foyer_fiscal('f7sd', period)
+        f7se = foyer_fiscal('f7se', period)
+        f7sn = foyer_fiscal('f7sn', period)
+        f7sp = foyer_fiscal('f7sp', period)
+        f7sq = foyer_fiscal('f7sq', period)
+        f7sr = foyer_fiscal('f7sr', period)
+        f7ss = foyer_fiscal('f7ss', period)
+        f7st = foyer_fiscal('f7st', period)
+        f7vg = foyer_fiscal('f7vg', period)
+        f7wc = foyer_fiscal('f7wc', period)
+        f7wh = foyer_fiscal('f7wh', period)
+        f7wt = foyer_fiscal('f7wt', period)
+
+        t1 = (f7wt > 0)
+        t2 = (f7wc > 0)
+        t3 = (f7vg > 0)
+        t4 = (f7sn > 0)
+        t5 = or_(f7sr > 0, f7ss > 0)
+        t6 = or_(or_(or_(f7st > 0, f7sp > 0), or_(f7sq > 0, f7sd > 0)), f7se > 0)
+        bouquet = (t1 + t2 + t3 + t4 + t5 + t6 > 1 and f7wh == 1)
+        return bouquet
 
 class saldom2(Variable):
     value_type = float
