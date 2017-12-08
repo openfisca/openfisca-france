@@ -1153,7 +1153,7 @@ class f7rz_2010(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     label = u"Investissements outre-mer: report de réduction d'impôt non imputée les années antérieures année n-3"
-    end = '2010-12-31'
+    # end = '2010-12-31' changes meaning in 2014
     definition_period = YEAR
 
 
@@ -7088,7 +7088,7 @@ class f7sb_2011(Variable):
     entity = FoyerFiscal
     label = u"Dépenses en faveur de la qualité environnementale des logements donnés en location: crédit à 25 %"
 #    start_date = date(2009, 1, 1)
-    end = '2011-12-31'
+#    end = '2011-12-31' changes meaning in 2014
     definition_period = YEAR
 
 
@@ -7110,7 +7110,7 @@ class f7sc_2009(Variable):
     entity = FoyerFiscal
     label = u"Crédits d’impôt pour dépenses en faveur de la qualité environnementale"
 #    start_date = date(2009, 1, 1)
-    end = '2009-12-01'
+#    end = '2009-12-01' changes meaning in 2014
     definition_period = YEAR
 
 
