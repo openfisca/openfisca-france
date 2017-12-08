@@ -204,8 +204,18 @@ class degrevement_taxe_habitation(Variable):
         rfr_i = menage.members.foyer_fiscal('rfr', period)
         rfr = menage.sum(rfr_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
     
-        seuil_degrevement = P.degrevement.plafonds.plaf_degrevement_th_1 + P.degrevement.plafonds.plaf_degrevement_sup_th_1 * min_((max_(0, (nbptr - 1) / 2)),2) + P.degrevement.plafonds.plaf_degrevement_sup2_th_1 * min_((max_(0, (nbptr - 1) / 2)),2)
+        seuil_degrevement_1 = P.degrevement.plafonds.plaf_degrevement_th_1 + P.degrevement.plafonds.plaf_degrevement_sup_th_1 * 2*min_(max_(0, (nbptr - 1)),1) + P.degrevement.plafonds.plaf_degrevement_sup2_th_1 * 2*max_(0, (nbptr - 2))
+        seuil_degrevement_2 = P.degrevement.plafonds.plaf_degrevement_th_2 + P.degrevement.plafonds.plaf_degrevement_sup_th_2 * 2*min_(max_(0, (nbptr - 1)),1) + P.degrevement.plafonds.plaf_degrevement_sup2_th_2 * 2*max_(0, (nbptr - 2))
             
-        abattement = (1-(rfr < seuil_degrevement))*P.degrevement.taux
+        taux_lissage = max_(min_((seuil_degrevement_2-rfr)/(seuil_degrevement_2-seuil_degrevement_1),1),0)
+          
+        abattement = P.degrevement.taux*taux_lissage
+        print(statut_marital)
+        print(rfr)
+        print(seuil_degrevement_1)
+        print(seuil_degrevement_2)
+        print(taux_lissage)
+        print(nbptr_i)
+        print(nbptr)
         return (abattement)
       

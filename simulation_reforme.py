@@ -21,8 +21,18 @@ def init_profile(scenario):
         period = 2018,
         parent1 = dict(
             age = 40,
-            salaire_de_base = 5000*12,
+            salaire_de_base = 80000,
             ),
+        # parent2 = dict(
+        #     age = 40,
+        #     salaire_de_base = 2451*12,
+        #     ),
+        enfants = [
+            dict(age = 9),
+            dict(age = 10),
+            dict(age = 10),
+            dict(age = 14),
+            ],
             
         menage = dict(loyer = 5000, # Annual basis
             statut_occupation_logement = 3,
@@ -51,6 +61,7 @@ csg_ap = reform_simulation.calculate("csg","2018")
 csg_ded_ap = reform_simulation.calculate("csg_deductible_salaire","2018-01")
 crds_ap  = reform_simulation.calculate("crds","2018")
 net_ap = reform_simulation.calculate('revenu_net','2018')
+rfr_ap = reform_simulation.calculate('rfr','2018')
 ir_ap = reform_simulation.calculate('irpp', '2018')
 presta_ap = reform_simulation.calculate("prestations_sociales","2018")
 famille_ap = reform_simulation.calculate("prestations_familiales","2018")
@@ -78,6 +89,7 @@ csg_av = reference_simulation.calculate("csg","2018")
 csg_ded_av = reference_simulation.calculate("csg_deductible_salaire","2018-01")
 crds_av  = reference_simulation.calculate("crds","2018")
 net_av = reference_simulation.calculate('revenu_net','2018')
+rfr_av = reference_simulation.calculate('rfr','2018')
 ir_av = reference_simulation.calculate('irpp', '2018')
 presta_av = reference_simulation.calculate("prestations_sociales","2018")
 famille_av = reference_simulation.calculate("prestations_familiales","2018")
@@ -106,6 +118,9 @@ print(crds_ap)
 print("net")
 print(net_av)
 print(net_ap)
+print("rfr")
+print(rfr_av)
+print(rfr_ap)
 print("ir")
 print(ir_av)
 print(ir_ap)
@@ -130,6 +145,9 @@ print(rd_ap)
 print("TH")
 print(taux_degrev_th_ap)
 print(taux_degrev_th_av)
+print("rfr")
+print(rfr_av)
+print(rfr_ap)
 
 # check_av_1 = s_brut_av + cot_soc_av + (csg_av-csg_ded_av*12 + crds_av -net_av)/12
 # check_av_1
