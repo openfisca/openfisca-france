@@ -530,6 +530,15 @@ class f7vg(Variable):
     definition_period = YEAR
 
 
+class f7vh(Variable):
+    cerfa_field = u"7VH"
+    value_type = int
+    entity = FoyerFiscal
+    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: travaux d'isolation thermique de toute la toiture du 1.9 au 31.12.2014"
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+
 class f7sg(Variable):
     cerfa_field = u"7SG"
     value_type = int
@@ -866,7 +875,7 @@ class f7rz(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     label = u"Investissements outre-mer: report de réduction d'impôt non imputée les années antérieures année n-3"
-    end = '2010-12-31'
+    # end = '2010-12-31' changes meaning in 2014
     definition_period = YEAR
 
 
@@ -6412,6 +6421,15 @@ class f7us(Variable):
 
 # Crédits d’impôt pour dépenses en faveur de la qualité environnementale
 
+class f7sa(Variable):
+    cerfa_field = u"7SA"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Dépenses en faveur de la qualité environnementale des logements donnés en location du 1.9 au 31.12.2014 : chaudières à condensation "
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
 class f7sb(Variable):
     cerfa_field = u"7SB"
     value_type = int
@@ -6419,7 +6437,7 @@ class f7sb(Variable):
     entity = FoyerFiscal
     label = u"Dépenses en faveur de la qualité environnementale des logements donnés en location: crédit à 25 %"
 #    start_date = date(2009, 1, 1)
-    end = '2011-12-31'
+#    end = '2011-12-31' changes meaning in 2014
     definition_period = YEAR
 
 
@@ -6430,7 +6448,7 @@ class f7sc(Variable):
     entity = FoyerFiscal
     label = u"Crédits d’impôt pour dépenses en faveur de la qualité environnementale"
 #    start_date = date(2009, 1, 1)
-    end = '2009-12-01'
+#    end = '2009-12-01' changes meaning in 2014
     definition_period = YEAR
 
 
