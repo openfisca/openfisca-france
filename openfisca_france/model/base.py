@@ -5,6 +5,126 @@ from openfisca_france.entities import Famille, FoyerFiscal, Individu, Menage
 from enum import Enum
 
 
+class TypesAAHNonCalculable(Enum):
+    calculable = u"Calculable"
+    intervention_CDAPH_necessaire = u"intervention_CDAPH_necessaire"
+
+
+class TypesActivite(Enum):
+    actif = u'Actif occupé'
+    chomeur = u'Chômeur'
+    etudiant = u'Étudiant, élève'
+    retraite = u'Retraité'
+    inactif = u'Autre, inactif'
+
+
+class TypesAideLogementNonCalculable(Enum):
+    calculable = u"Calculable"
+    locataire_foyer = u"Non calculable (Locataire foyer)"
+
+
+class TypesAllegementCotisationAllocationsFamilialesModeRecouvrement(Enum):
+    fin_d_annee = u"fin_d_annee"
+    anticipe = u"anticipe_regularisation_fin_de_periode"
+    progressif = u"progressif"
+
+
+class TypesAllegementFillonModeRecouvrement(Enum):
+    fin_d_annee = u"fin_d_annee"
+    anticipe = u"anticipe_regularisation_fin_de_periode"
+    progressif = u"progressif"
+
+
+class TypesCategorieSalarie(Enum):
+    prive_non_cadre = u'prive_non_cadre'
+    prive_cadre = u'prive_cadre'
+    public_titulaire_etat = u'public_titulaire_etat'
+    public_titulaire_militaire = u'public_titulaire_militaire'
+    public_titulaire_territoriale = u'public_titulaire_territoriale'
+    public_titulaire_hospitaliere = u'public_titulaire_hospitaliere'
+    public_non_titulaire = u'public_non_titulaire'
+    non_pertinent = u'non_pertinent'
+
+
+class TypesContratDeTravail(Enum):
+    temps_plein = u"temps_plein"
+    temps_partiel = u"temps_partiel"
+    forfait_heures_semaines = u"forfait_heures_semaines"
+    forfait_heures_mois = u"forfait_heures_mois"
+    forfait_heures_annee = u"forfait_heures_annee"
+    forfait_jours_annee = u"forfait_jours_annee"
+    sans_objet = u"sans_objet"
+
+
+class TypesContratDeTravailDuree(Enum):
+    cdi = u"CDI"
+    cdd = u"CDD"
+
+
+class TypesTauxCSGRemplacement(Enum):
+    non_renseigne = u"Non renseigné/non pertinent"
+    exonere = u"Exonéré"
+    taux_reduit = u"Taux réduit"
+    taux_plein = u"Taux plein"
+
+
+class TypesCotisationSocialeModeRecouvrement(Enum):
+    mensuel = u"Mensuel avec régularisation en fin d'année"
+    annuel = u"Annuel"
+    mensuel_strict = u"Mensuel strict"
+
+
+class TypesEligibiliteANAH(Enum):
+    a_verifier = u"A vérifier"
+    modestes = u"Modestes"
+    tres_modeste = u"Très modestes"
+
+
+class TypesExpositionAccident(Enum):
+    faible = u"Faible"
+    moyen = u"Moyen"
+    eleve = u"Élevé"
+    tres_eleve = u"Très élevé"
+
+
+class TypesExpositionPenibilite(Enum):
+    nulle = u"Nulle, pas d'exposition de l'employé à un facteur de pénibilité"
+    simple = u"Simple, exposition à un seul facteur de pénibilité"
+    multiple = u"Multiple, exposition à plusieurs facteurs de pénibilité"
+
+
+class TypesGir(Enum):
+    non_defini = u"Non défini"
+    gir_1 = u"Gir 1"
+    gir_2 = u"Gir 2"
+    gir_3 = u"Gir 3"
+    gir_4 = u"Gir 4"
+    gir_5 = u"Gir 5"
+    gir_6 = u"Gir 6"
+
+
+class TypesRSANonCalculable(Enum):
+    calculable = u"Calculable"
+    tns = u"tns"
+    conjoint_tns = u"conjoint_tns"
+
+
+class TypesScolarite(Enum):
+    inconnue = u"Inconnue"
+    college = u"Collège"
+    lycee = u"Lycée"
+
+
+class TypesStatutMarital(Enum):
+    non_renseigne = u'Non renseigné'
+    marie = u'Marié'
+    celibataire = u'Celibataire'
+    divorce = u'Divorcé'
+    veuf = u'Veuf'
+    pacse = u'Pacsé'
+    jeune_veuf = u'Jeune veuf'
+
+
 class TypesStatutOccupationLogement(Enum):
     non_renseigne = u"Non renseigné"
     primo_accedant = u"Accédant à la propriété"
@@ -25,136 +145,17 @@ class TypesTailleEntreprise(Enum):
     plus_de_250 = u"Plus de 250 salariés"
 
 
-class TypesZoneApl(Enum) :
-    non_renseigne = u"Non renseigné"
-    zone_1 = u"Zone 1"
-    zone_2 = u"Zone 2"
-    zone_3 = u"Zone 3"
-
-
-class TypesCategorieSalarie(Enum):
-    prive_non_cadre = u'prive_non_cadre'
-    prive_cadre = u'prive_cadre'
-    public_titulaire_etat = u'public_titulaire_etat'
-    public_titulaire_militaire = u'public_titulaire_militaire'
-    public_titulaire_territoriale = u'public_titulaire_territoriale'
-    public_titulaire_hospitaliere = u'public_titulaire_hospitaliere'
-    public_non_titulaire = u'public_non_titulaire'
-    non_pertinent = u'non_pertinent'
-
-
-class TypesActivite(Enum):
-    actif = u'Actif occupé'
-    chomeur = u'Chômeur'
-    etudiant = u'Étudiant, élève'
-    retraite = u'Retraité'
-    inactif = u'Autre, inactif'
-
-
-class TypesStatutMarital(Enum):
-    non_renseigne = u'Non renseigné'
-    marie = u'Marié'
-    celibataire = u'Celibataire'
-    divorce = u'Divorcé'
-    veuf = u'Veuf'
-    pacse = u'Pacsé'
-    jeune_veuf = u'Jeune veuf'
-
-
-class TypesContratDeTravail(Enum):
-    temps_plein = u"temps_plein"
-    temps_partiel = u"temps_partiel"
-    forfait_heures_semaines = u"forfait_heures_semaines"
-    forfait_heures_mois = u"forfait_heures_mois"
-    forfait_heures_annee = u"forfait_heures_annee"
-    forfait_jours_annee = u"forfait_jours_annee"
-    sans_objet = u"sans_objet"
-
-
 class TypesTnsTypeActivite(Enum):
     achat_revente = u'achat_revente'
     bic = u'bic'
     bnc = u'bnc'
 
 
-class TypesRSANonCalculable(Enum):
-    calculable = u"Calculable"
-    tns = u"tns"
-    conjoint_tns = u"conjoint_tns"
-
-
-class TypesAAHNonCalculable(Enum):
-    calculable = u"Calculable"
-    intervention_CDAPH_necessaire = u"intervention_CDAPH_necessaire"
-
-
-class TypesAideLogementNonCalculable(Enum):
-    calculable = u"Calculable"
-    locataire_foyer = u"Non calculable (Locataire foyer)"
-
-
-class TypesTauxCSGRemplacement(Enum):
-    non_renseigne = u"Non renseigné/non pertinent"
-    exonere = u"Exonéré"
-    taux_reduit = u"Taux réduit"
-    taux_plein = u"Taux plein"
-
-
-class TypesExpositionAccident(Enum):
-    faible = u"Faible"
-    moyen = u"Moyen"
-    eleve = u"Élevé"
-    tres_eleve = u"Très élevé"
-
-
-class TypesExpositionPenibilite(Enum):
-    nulle = u"Nulle, pas d'exposition de l'employé à un facteur de pénibilité"
-    simple = u"Simple, exposition à un seul facteur de pénibilité"
-    multiple = u"Multiple, exposition à plusieurs facteurs de pénibilité"
-
-
-class TypesAllegementFillonModeRecouvrement(Enum):
-    fin_d_annee = u"fin_d_annee"
-    anticipe = u"anticipe_regularisation_fin_de_periode"
-    progressif = u"progressif"
-
-
-class TypesAllegementCotisationAllocationsFamilialesModeRecouvrement(Enum):
-    fin_d_annee = u"fin_d_annee"
-    anticipe = u"anticipe_regularisation_fin_de_periode"
-    progressif = u"progressif"
-
-
-class TypesEligibiliteANAH(Enum):
-    a_verifier = u"A vérifier"
-    modestes = u"Modestes"
-    tres_modeste = u"Très modestes"
-
-
-class TypesGir(Enum):
-    non_defini = u"Non défini"
-    gir_1 = u"Gir 1"
-    gir_2 = u"Gir 2"
-    gir_3 = u"Gir 3"
-    gir_4 = u"Gir 4"
-    gir_5 = u"Gir 5"
-    gir_6 = u"Gir 6"
-
-
-class TypesScolarite(Enum):
-    inconnue = u"Inconnue"
-    college = u"Collège"
-    lycee = u"Lycée"
-
-
-class TypesCotisationSocialeModeRecouvrement(Enum):
-    mensuel = u"Mensuel avec régularisation en fin d'année"
-    annuel = u"Annuel"
-    mensuel_strict = u"Mensuel strict"
-
-class TypesContratDeTravailDuree(Enum):
-    cdi = u"CDI"
-    cdd = u"CDD"
+class TypesZoneApl(Enum) :
+    non_renseigne = u"Non renseigné"
+    zone_1 = u"Zone 1"
+    zone_2 = u"Zone 2"
+    zone_3 = u"Zone 3"
 
 TAUX_DE_PRIME = 1 / 4  # primes_fonction_publique (hors suppl. familial et indemnité de résidence)/rémunération brute
 
