@@ -1,0 +1,6 @@
+description: Seuil de salaire minimum pour lequel la surbonification est maximale et commence à décroitre, en multiple
+  du smic horaire brut.
+reference: ipp
+values:
+  2016-01-01:
+    value: 117.97

@@ -1,0 +1,12 @@
+description: Bonification maximale, en pourcentage du montant de base du RSA
+reference: ipp
+unit: currency
+values:
+  2017-09-01:
+    value: 20
+  2018-09-01:
+    value: 20
+  2019-09-01:
+    value: 40
+  2020-09-01:
+    value: 60

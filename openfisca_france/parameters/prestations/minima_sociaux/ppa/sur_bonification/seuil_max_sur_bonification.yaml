@@ -1,0 +1,6 @@
+description: Seuil maximal de salaire à partir duquel la surbonification est nulle, en multiple
+  du smic horaire brut.
+reference: ipp
+values:
+  2016-01-01:
+    value: 141.60

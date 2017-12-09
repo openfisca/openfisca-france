@@ -290,6 +290,29 @@ class ppa_bonification(Variable):
         bonification = min_(bonification, bonification_max)
 
         return bonification
+        
+class ppa_sur_bonification(Variable):
+    value_type = float
+    entity = Individu
+    label = u"Deuxieme Bonification de la PPA pour un individu (introduite par le PLF 2018 article 63)"
+    definition_period = MONTH
+
+    def formula(individu, period, parameters, mois_demande):
+        P = parameters(mois_demande)
+        smic_horaire = P.cotsoc.gen.smic_h_b
+        rsa_base = P.prestations.minima_sociaux.rmi.rmi
+        revenu_activite = individu(
+            'ppa_revenu_activite_individu', period, extra_params = [mois_demande])
+        seuil_1 = P.prestations.minima_sociaux.ppa.sur_bonification.seuil_min_sur_bonification * smic_horaire
+        seuil_2 = P.prestations.minima_sociaux.ppa.sur_bonification.seuil_sur_bonification * smic_horaire
+        seuil_3 = P.prestations.minima_sociaux.ppa.sur_bonification.seuil_max_sur_bonification * smic_horaire
+        bonification_max = P.prestations.minima_sociaux.ppa.sur_bonification.montant_sur_bonification_max
+        bonification_pente_ascendante = max_(bonification_max * (revenu_activite - seuil_1) / (seuil_2 - seuil_1),0)*(revenu_activite < seuil_2)
+        bonification_pente_descendante = max_(bonification_max * (1-(revenu_activite - seuil_2) / (seuil_3 - seuil_2)),0)*(revenu_activite > seuil_2)
+        bonification = bonification_pente_ascendante + bonification_pente_descendante
+        bonification = min_(bonification, bonification_max)
+
+        return bonification
 
 
 class ppa_fictive(Variable):
@@ -313,6 +336,8 @@ class ppa_fictive(Variable):
         ppa_revenu_activite = famille('ppa_revenu_activite', period, extra_params = [mois_demande])
         bonification_i = famille.members('ppa_bonification', period, extra_params = [mois_demande])
         bonification = famille.sum(bonification_i)
+        sur_bonification_i = famille.members('ppa_sur_bonification', period, extra_params = [mois_demande])
+        sur_bonification = famille.sum(sur_bonification_i)
 
         ppa_montant_base = (
             montant_forfaitaire_familialise +
@@ -326,6 +351,8 @@ class ppa_fictive(Variable):
 
         ppa_fictive = ppa_montant_base - max_(ppa_deduction, 0)
         ppa_fictive = max_(ppa_fictive, 0)
+        print(sur_bonification)
+        print(bonification)
         return elig * ppa_fictive
 
 
