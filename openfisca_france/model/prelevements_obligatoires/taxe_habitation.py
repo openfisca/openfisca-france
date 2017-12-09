@@ -54,7 +54,7 @@ class exonere_taxe_habitation(Variable):
         return not_(elig)
 
 
-class taxe_habitation(Variable):
+class cotisation_taxe_habitation(Variable):
     value_type = float
     entity = Menage
     label = u"Taxe d'habitation"
@@ -64,7 +64,6 @@ class taxe_habitation(Variable):
     def formula(menage, period, parameters):
         last_year = period.last_year
 
-        exonere_taxe_habitation = menage('exonere_taxe_habitation', period)
         enfant_a_charge_i = menage.members('enfant_a_charge', period)
         nombre_enfants_a_charge_menage = menage.sum(enfant_a_charge_i)
         nombre_enfants_majeurs_celibataires_sans_enfant = menage('nombre_enfants_majeurs_celibataires_sans_enfant', period)
@@ -167,30 +166,23 @@ class taxe_habitation(Variable):
         # Prélèvement pour base élevée et sur les résidences secondaires
         prelevement_residence_secondaire = 0  # TODO
 
+        return - cotisation_brute * 0
 
-        return - exonere_taxe_habitation * 0
-
-
-
-
-class degrevement_taxe_habitation(Variable):
+class taux_degrevement_taxe_habitation(Variable):
     value_type = float
     default_value = 1
     entity = Menage
-    label = u"Exonération de la taxe d'habitation"
-    reference = "http://vosdroits.service-public.fr/particuliers/F42.xhtml"
+    label = u"Taux du degreveemnt de la taxe d'habitation"
+    reference = "PLF 2018 article 3"
     definition_period = YEAR
     def formula(menage, period, parameters):
-        """Exonation de la taxe d'habitation
+        """Degrevement de la taxe d'habitation
     
         'men'
     
         Eligibilité:
-        - âgé de plus de 60 ans, non soumis à l'impôt de solidarité sur la fortune (ISF) en n-1
-        - veuf quel que soit votre âge et non soumis à l'impôt de solidarité sur la fortune (ISF) n-1
-        - titulaire de l'allocation de solidarité aux personnes âgées (Aspa)  ou de l'allocation supplémentaire d'invalidité (Asi),
-        bénéficiaire de l'allocation aux adultes handicapés (AAH),
-        atteint d'une infirmité ou d'une invalidité vous empêchant de subvenir à vos besoins par votre travail.
+        - avoir moins de 27 000 euros de RFR pour un célibataire + 8000 pour les deux demi parts suivantes et 6000 par demi part au dela
+        - un dispositif de lissage permet d'éviter les effets de seuil : entre 27 000 et 28 000 euros de RFR pour un celibataire, le taux du degrevement diminue lineairement avec le RFR.
         """
         janvier = period.first_month
     
@@ -210,12 +202,29 @@ class degrevement_taxe_habitation(Variable):
         taux_lissage = max_(min_((seuil_degrevement_2-rfr)/(seuil_degrevement_2-seuil_degrevement_1),1),0)
           
         abattement = P.degrevement.taux*taux_lissage
-        print(statut_marital)
-        print(rfr)
-        print(seuil_degrevement_1)
-        print(seuil_degrevement_2)
-        print(taux_lissage)
-        print(nbptr_i)
-        print(nbptr)
+        
         return (abattement)
-      
+
+
+class taxe_habitation(Variable):
+    value_type = float
+    entity = Menage
+    label = u"Taxe d'habitation"
+    reference = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?espId=1&pageId=part_taxe_habitation&impot=TH&sfid=50"
+    definition_period = YEAR
+
+    def formula(menage, period, parameters):
+        last_year = period.last_year
+
+        exonere_taxe_habitation = menage('exonere_taxe_habitation', period)
+
+        enfant_a_charge_i = menage.members('enfant_a_charge', period)
+        nombre_enfants_a_charge_menage = menage.sum(enfant_a_charge_i)
+        nombre_enfants_majeurs_celibataires_sans_enfant = menage('nombre_enfants_majeurs_celibataires_sans_enfant', period)
+
+        rfr_i = menage.members.foyer_fiscal('rfr', last_year)
+        rfr = menage.sum(rfr_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
+        taux_degrevement = menage('taux_degrevement_taxe_habitation', period)
+        th = menage('cotisation_taxe_habitation', period)
+
+        return th*(1-taux_degrevement)

@@ -20,8 +20,8 @@ def init_profile(scenario):
     scenario.init_single_entity(
         period = 2018,
         parent1 = dict(
-            age = 40,
-            salaire_de_base = 80000,
+            age = 70,
+            retraite_brute = 15000,
             ),
         # parent2 = dict(
         #     age = 40,
@@ -36,7 +36,7 @@ def init_profile(scenario):
             
         menage = dict(loyer = 5000, # Annual basis
             statut_occupation_logement = 3,
-            taxe_habitation = -600,
+            cotisation_taxe_habitation = -500,
             ),
         )
     return scenario
@@ -52,6 +52,8 @@ reform_simulation = reform_scenario.new_simulation()
 
 
 # Variables after reform
+cotis_th_ap = reform_simulation.calculate("cotisation_taxe_habitation", "2018")
+th_ap = reform_simulation.calculate("taxe_habitation", "2018")
 taux_degrev_th_ap = reform_simulation.calculate("degrevement_taxe_habitation", "2018")
 s_brut_ap = reform_simulation.calculate("salaire_de_base","2018-01")
 cot_soc_ap = reform_simulation.calculate("cotisations_salariales","2018-01")
@@ -81,6 +83,7 @@ reference_scenario = init_profile(tax_benefit_system.new_scenario())
 reference_simulation = reference_scenario.new_simulation()
 
 # Variables in the counterfactual situation
+th_av = reference_simulation.calculate("taxe_habitation", "2018")
 taux_degrev_th_av = reference_simulation.calculate("degrevement_taxe_habitation", "2018")
 s_brut_av = reference_simulation.calculate("salaire_de_base","2018-01")
 cot_soc_av = reference_simulation.calculate("cotisations_salariales","2018-01")
@@ -143,8 +146,8 @@ print("revenu_disponible")
 print(rd_av)
 print(rd_ap) 
 print("TH")
-print(taux_degrev_th_ap)
-print(taux_degrev_th_av)
+print(th_ap)
+print(th_av)
 print("rfr")
 print(rfr_av)
 print(rfr_ap)
