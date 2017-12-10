@@ -21,23 +21,26 @@ def init_profile(scenario):
         period = 'year:2017:6',
         parent1 = dict(
             age = 30,
-            salaire_de_base = 1480*12*6,
+            salaire_de_base = 2599*12*6,
+            statut_marital = 1
             ),
-        # parent2 = dict(
-        #     age = 40,
-        #     salaire_de_base = 1480*12*6,
-        #     ),
+        parent2 = dict(
+            age = 40,
+            salaire_de_base = 2599*12*6,
+            statut_marital = 1
+            ),
         # enfants = [
         #     dict(age = 9),
         #     dict(age = 10),
-        #     dict(age = 10),
-        #     dict(age = 14),
-        #     ],
+            # dict(age = 10),
+            # dict(age = 14),
+            # ],
             
         menage = dict(loyer = 5000, # Annual basis
-            statut_occupation_logement = 3,
-            cotisation_taxe_habitation = -427.0*6,
+            # statut_occupation_logement = 3,
+            cotisation_taxe_habitation = -621.00*6,
             ),
+        # foyer_fiscal = dict(statut_marital = 1),
         )
     return scenario
 
@@ -57,11 +60,20 @@ reference_scenario = init_profile(tax_benefit_system.new_scenario())
 #Simulate the standard scenario
 reference_simulation = reference_scenario.new_simulation()
 
-rd_av = reference_simulation.calculate('revenu_disponible', '2019')/12
-rd_ap = reform_simulation.calculate('revenu_disponible', '2019')/12
+rd_av_2018 = reference_simulation.calculate('revenu_disponible', '2018')/12
+rd_ap_2018 = reform_simulation.calculate('revenu_disponible', '2018')/12
+gain_2018 = -(rd_av_2018-rd_ap_2018)
 
-rd_av-rd_ap
- 
+rd_av_2019 = reference_simulation.calculate('revenu_disponible', '2019')/12
+rd_ap_2019 = reform_simulation.calculate('revenu_disponible', '2019')/12
+gain_2019 = -(rd_av_2019-rd_ap_2019)
+
+print(gain_2018)
+print(gain_2019)
+
+# a exporter en JSON : gain_2018 et gain_2019
+
+
 # Variables after reform
 # cotis_th_ap = reform_simulation.calculate("taxe_habitation", "2019")
 # th_ap = reform_simulation.calculate("taxe_habitation", "2018")
@@ -77,6 +89,7 @@ rd_av-rd_ap
 # net_ap = reform_simulation.calculate('salaire_net','2018-12')
 # rfr_ap = reform_simulation.calculate('rfr','2018')
 # ir_ap = reform_simulation.calculate('irpp', '2018')
+# ir_av = reference_simulation.calculate('irpp', '2018')
 # presta_ap = reform_simulation.calculate("prestations_sociales","2018")
 # famille_ap = reform_simulation.calculate("prestations_familiales","2018")
 # minima_ap = reform_simulation.calculate("minima_sociaux","2018")
