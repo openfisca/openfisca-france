@@ -10,11 +10,8 @@ from ..model.base import *
 
 dir_path = os.path.join(os.path.dirname(__file__), 'parameters')
 
-
-
 class plf2018(Reform):
     name = u"Projet de Loi de Finances 2018 appliquée aux revenus 2018"
-
 
     def apply(self):
         self.modify_parameters(modifier_function = modify_parameters)
@@ -34,12 +31,12 @@ def modify_parameters(parameters):
     # Article 63 du PLF : dégrèvement de TH :
     #########################################
     #revalorisation du montant forfaitaire du RSA : le reste de la réforme du RSA/prime d'activité nécessite de coder une fonction supplémentaire
-    parameters.prestations.minima_sociaux.rsa.montant_de_base_du_rsa.update(period="year:2018-01:5", value=546.25)
+    parameters.prestations.minima_sociaux.rsa.montant_de_base_du_rsa.update(start="2018-01", value=546.25)
     parameters.prestations.minima_sociaux.ppa.pente.update(start="2018-01", value=0.61)
     # # création du surbonus de prime d'activité
-    parameters.prestations.minima_sociaux.ppa.sur_bonification.montant_sur_bonification_max.update(period="year:2019-01:1", value=(20))
-    parameters.prestations.minima_sociaux.ppa.sur_bonification.montant_sur_bonification_max.update(period="year:2020-01:1", value=(40))
-    parameters.prestations.minima_sociaux.ppa.sur_bonification.montant_sur_bonification_max.update(period="year:2021-01:1", value=(60))
+    parameters.prestations.minima_sociaux.ppa.sur_bonification.montant_sur_bonification_max.update(period="2019", value=(20))
+    parameters.prestations.minima_sociaux.ppa.sur_bonification.montant_sur_bonification_max.update(period="2020", value=(40))
+    parameters.prestations.minima_sociaux.ppa.sur_bonification.montant_sur_bonification_max.update(period="2021", value=(60))
     
     
     #################################################
@@ -53,7 +50,7 @@ def modify_parameters(parameters):
     # - suppression de la cotisation salariale maladie
     parameters.cotsoc.children['cotisations_salarie'].children['prive_non_cadre'].children['maladie'][0].rate.update(start = reform_period, value=0.0)
     parameters.cotsoc.children['cotisations_salarie'].children['prive_cadre'].children['maladie'][0].rate.update(start = reform_period, value=0.0)
-    # - une première baisse de 1,5 pt le 1er janvier 2018
+    # # - une première baisse de 1,5 pt le 1er janvier 2018
     parameters.cotsoc.children['cotisations_salarie'].children['prive_non_cadre'].children['assedic'][0].rate.update(start = "2018", value=0.000)
     parameters.cotsoc.children['cotisations_salarie'].children['prive_cadre'].children['assedic'][0].rate.update(start =  "2018", value=0.000)
     # - la suppression du reliquat le 1er octobre 2018
