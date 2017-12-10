@@ -2,5 +2,5 @@ description: Seuil de salaire minimum pour bénéficier de la bonification, en m
   du smic horaire brut.
 reference: ipp
 values:
-  2016-01-01:
+  2019-09-01:
     value: 95.0

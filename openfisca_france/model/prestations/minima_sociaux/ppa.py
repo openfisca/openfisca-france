@@ -297,7 +297,7 @@ class ppa_sur_bonification(Variable):
     label = u"Deuxieme Bonification de la PPA pour un individu (introduite par le PLF 2018 article 63)"
     definition_period = MONTH
 
-    def formula(individu, period, parameters, mois_demande):
+    def formula_2019_09_01(individu, period, parameters, mois_demande):
         P = parameters(mois_demande)
         smic_horaire = P.cotsoc.gen.smic_h_b
         rsa_base = P.prestations.minima_sociaux.rmi.rmi
@@ -323,6 +323,7 @@ class ppa_fictive(Variable):
 
     def formula(famille, period, parameters, mois_demande):
         forfait_logement = famille('rsa_forfait_logement', mois_demande)
+        forfait_logement = 63.15
         ppa_majoree_eligibilite = famille('rsa_majore_eligibilite', mois_demande)
 
         elig = famille('ppa_eligibilite', period, extra_params = [mois_demande])
@@ -334,6 +335,7 @@ class ppa_fictive(Variable):
         montant_forfaitaire_familialise = where(ppa_majoree_eligibilite, mff_majore, mff_non_majore)
         ppa_base_ressources = famille('ppa_base_ressources', period, extra_params = [mois_demande])
         ppa_revenu_activite = famille('ppa_revenu_activite', period, extra_params = [mois_demande])
+    
         bonification_i = famille.members('ppa_bonification', period, extra_params = [mois_demande])
         bonification = famille.sum(bonification_i)
         sur_bonification_i = famille.members('ppa_sur_bonification', period, extra_params = [mois_demande])
@@ -344,6 +346,12 @@ class ppa_fictive(Variable):
             bonification +
             pente * ppa_revenu_activite - ppa_base_ressources - forfait_logement
             )
+            
+        # print(montant_forfaitaire_familialise)
+        # print(ppa_revenu_activite)
+        # print(bonification)
+        # print(ppa_base_ressources)
+        # print(forfait_logement)
 
         ppa_deduction = (
             montant_forfaitaire_familialise - ppa_base_ressources - forfait_logement
@@ -351,8 +359,6 @@ class ppa_fictive(Variable):
 
         ppa_fictive = ppa_montant_base - max_(ppa_deduction, 0)
         ppa_fictive = max_(ppa_fictive, 0)
-        print(sur_bonification)
-        print(bonification)
         return elig * ppa_fictive
 
 
