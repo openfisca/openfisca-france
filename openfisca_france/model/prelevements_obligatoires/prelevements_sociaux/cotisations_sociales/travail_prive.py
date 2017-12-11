@@ -31,7 +31,7 @@ class assiette_cotisations_sociales(Variable):
         assiette_cotisations_sociales_public = simulation.calculate('assiette_cotisations_sociales_public', period)
         categorie_salarie = simulation.calculate('categorie_salarie', period)
         stage_gratification_reintegration = simulation.calculate('stage_gratification_reintegration', period)
-        return (categorie_salarie < 7) * (
+        return (categorie_salarie < 7) * (  # Tout sauf "non_pertinent", ie sans activité salariée
             assiette_cotisations_sociales_prive +
             assiette_cotisations_sociales_public) + stage_gratification_reintegration
 

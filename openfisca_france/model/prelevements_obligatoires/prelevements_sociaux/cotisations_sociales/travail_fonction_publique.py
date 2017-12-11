@@ -155,7 +155,7 @@ class ircantec_salarie(Variable):
             plafond_securite_sociale = plafond_securite_sociale,
             categorie_salarie = categorie_salarie,
             )
-        return ircantec * (categorie_salarie == 6)
+        return ircantec * (categorie_salarie == 6)  # agent non titulaire
 
 
 class ircantec_employeur(Variable):
