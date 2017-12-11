@@ -120,6 +120,5 @@ class taxe_habitation(Variable):
         rfr = menage.sum(rfr_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
         taux_degrevement = menage('taux_degrevement_taxe_habitation', period)
         th = menage('cotisation_taxe_habitation',period)
-        print(th)
 
         return th*(1-taux_degrevement)

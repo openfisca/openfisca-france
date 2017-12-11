@@ -255,11 +255,7 @@ class rafp_salarie(Variable):
         assiette = min_(base_imposable, plaf_ass * (traitement_indiciaire_brut + salaire_de_base) * eligible)
         # Même régime pour les fonctions publiques d'Etat et des collectivité locales
         rafp_salarie = eligible * _P.cotsoc.cotisations_salarie.public_titulaire_etat['rafp'].calc(assiette)
-        print(assiette)
-        print(eligible)
-        print(traitement_indiciaire_brut)
-        print(plaf_ass)
-        print(base_imposable)
+
         return -rafp_salarie
 
 
