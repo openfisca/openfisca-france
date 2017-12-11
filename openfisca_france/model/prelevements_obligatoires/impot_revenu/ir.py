@@ -1437,7 +1437,7 @@ class plus_values(Variable):
 
         return round_(out)
 
-    def formula_2012_01_01(foyer_fiscal, period, parameters):  # f3sd is in f3vd holder
+    def formula_2012_01_01(foyer_fiscal, period, parameters):
         """
         Taxation des plus value
         """
@@ -1446,36 +1446,29 @@ class plus_values(Variable):
         f3vl = foyer_fiscal('f3vl', period)
         f3vt = foyer_fiscal('f3vt', period)
         f3vm = foyer_fiscal('f3vm', period)
+        f3vd_i = foyer_fiscal.members('f3vd', period)
+        f3vi_i = foyer_fiscal.members('f3vi', period)
+        f3vf_i = foyer_fiscal.members('f3vf', period)
         rpns_pvce_i = foyer_fiscal.members('rpns_pvce', period)
         plus_values = parameters(period).impot_revenu.plus_values
 
         rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
-        f3vd = foyer_fiscal.declarant_principal('f3vd', period)
-        f3sd = foyer_fiscal.conjoint('f3vd', period)
-        f3vi = foyer_fiscal.declarant_principal('f3vi', period)
-        f3si = foyer_fiscal.conjoint('f3vi', period)
-        f3vf = foyer_fiscal.declarant_principal('f3vf', period)
-        f3sf = foyer_fiscal.conjoint('f3vf', period)
-        # TODO: remove this todo use sum for all fields after checking
-        # revenus taxés à un taux proportionnel
-        rdp = max_(0, f3vg - f3vh) + f3vl + rpns_pvce + f3vm + f3vi + f3vf
+        f3vd = foyer_fiscal.sum(f3vd_i)
+        f3vi = foyer_fiscal.sum(f3vi_i)
+        f3vf = foyer_fiscal.sum(f3vf_i)
+        
         out = (plus_values.pvce * rpns_pvce +
                plus_values.taux1 * max_(0, f3vg - f3vh) +
+               plus_values.taux2 * f3vd +
                plus_values.taux_pv_mob_pro * f3vl +
                plus_values.pea.taux_avant_2_ans * f3vm +
+               plus_values.pea.taux_posterieur * f3vt +
                plus_values.taux3 * f3vi +
                plus_values.taux4 * f3vf)
-        # revenus taxés à un taux proportionnel
-        rdp += f3vd
-        out += plus_values.taux1 * f3vd
-        #        out = plus_values.taux2 * f3vd + plus_values.taux3 * f3vi + plus_values.taux4 * f3vf + plus_values.taux1 *max_(
-        #            0, f3vg - f3vh)
-        out = (plus_values.taux2 * (f3vd + f3sd) + plus_values.taux3 * (f3vi + f3si) +
-            plus_values.taux4 * (f3vf + f3sf) + plus_values.taux1 * max_(0, f3vg - f3vh) + plus_values.pvce * rpns_pvce)
-                # TODO: chek this rpns missing ?
+       
         return round_(out)
 
-    def formula_2013_01_01(foyer_fiscal, period, parameters):  # f3sd is in f3vd holder
+    def formula_2013_01_01(foyer_fiscal, period, parameters):
         """
         Taxation des plus value (hors bareme)
         """
