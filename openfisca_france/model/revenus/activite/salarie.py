@@ -749,9 +749,13 @@ class af_nbenf_fonc(Variable):
     label = u"Nombre d'enfants dans la famille au sens des allocations familiales pour les fonctionnaires"
     entity = Famille
     definition_period = MONTH
-    # Hack pour éviter une boucle infinie
 
     def formula(self, simulation, period):
+        """
+            Cette variable est une version légèrement modifiée de `af_nbenf`. Elle se base sur le salaire de base, tandis que `af_nbenf` se base sur le salaire net.
+            On ne peut pas utiliser la variable `af_nbenf` dans le calcul de `supp_familial_traitement` (ci-dessous) car `af_nbenf` dépend du `salaire_net`, et `salaire_net` dépends de `supp_familial_traitement`. Cela créerait une boucle infinie.
+            D'où l'introduction de cette variable alternative.
+        """
         salaire_de_base_mensualise = simulation.calculate_add('salaire_de_base', period.start.period('month', 6).offset(-6)) / 6
         law = simulation.parameters_at(period.start)
         nbh_travaillees = 169
