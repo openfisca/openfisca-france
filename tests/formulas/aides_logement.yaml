@@ -297,7 +297,6 @@
     - id: "enfant2"
       age: 7
   output_variables:
-    aide_logement_apres_abattement_forfaitaire : 218.22
     aide_logement_montant_brut: 218.22
     aide_logement_montant: 217
 
@@ -322,8 +321,7 @@
     - id: "enfant2"
       age: 7
   output_variables:    
-    aide_logement_montant_brut: 218.22
-    aide_logement_apres_abattement_forfaitaire : 218.22 - 5 # 212.22
+    aide_logement_montant_brut: 213.22
     aide_logement_montant: 212.13
 
 - name: "Personne isolée, avec suppression avec abattement forfaitaire"
@@ -341,7 +339,6 @@
       age: 40
   output_variables:
     aide_logement_montant_brut: 0
-    aide_logement_apres_abattement_forfaitaire : 0
     aide_logement_montant: 0
 
 - name: "Personne isolée avec abattement forfaitaire"
@@ -358,6 +355,5 @@
     - id: "parent1"
       age: 40
   output_variables:
-    aide_logement_montant_brut: 47.27
-    aide_logement_apres_abattement_forfaitaire : 47.27 - 5 # 42.27
+    aide_logement_montant_brut: 42.27
     aide_logement_montant: 42.02
