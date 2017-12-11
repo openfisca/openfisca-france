@@ -658,10 +658,8 @@ class plafond_securite_sociale(Variable):
         # TODO : handle contrat_de_travail > 1
 
         # 1) Proratisation pour temps partiel
-        duree_legale_mensuelle = 35 * 52 / 12  # ~151,67
-        plafond_temps_plein = plafond_temps_plein
+        heures_temps_plein = 35 * 52 / 12  # ~151,67 (durée légale mensuelle)
 
-        heures_temps_plein = duree_legale_mensuelle
         plafond = switch(
             contrat_de_travail,
             {

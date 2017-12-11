@@ -19,7 +19,7 @@ class autonomie_financiere(Variable):
         ]
 
     def formula(individu, period, parameters):
-        # D'après service-public.fr, le salaire n'est pas évalué de la même manière suivant si l'enfant est étudiant ou salarié/apprenti/stagiaire.
+        # D'après service-public.fr, la condition de dépassement du salaire plafonds n'est pas évalué de la même manière suivant si l'enfant est étudiant ou salarié/apprenti/stagiaire.
         salaire_net_mensualise = individu(
             'salaire_net', period.start.period('month', 6).offset(-6), options = [ADD]
             ) / 6
