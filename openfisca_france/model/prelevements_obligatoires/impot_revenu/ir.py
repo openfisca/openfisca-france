@@ -1440,7 +1440,7 @@ class plus_values(Variable):
                plus_values.taux4 * f3vf)
             # revenus taxés à un taux proportionnel
         rdp += f3vd
-        out += plus_values.taux1 * f3vd
+        out += plus_values.taux2 * f3vd
 
         return round_(out)
 
@@ -1516,7 +1516,6 @@ class rfr_pv(Variable):
         f3vd_i = foyer_fiscal.members('f3vd', period)
         f3vf_i = foyer_fiscal.members('f3vf', period)
         f3vg = foyer_fiscal('f3vg', period)
-        f3vh = foyer_fiscal('f3vh', period)
         f3vi_i = foyer_fiscal.members('f3vi', period)
         f3vl = foyer_fiscal('f3vl', period)
         f3vm = foyer_fiscal('f3vm', period)
@@ -1528,7 +1527,7 @@ class rfr_pv(Variable):
         f3vd = foyer_fiscal.sum(f3vd_i)
         f3vf = foyer_fiscal.sum(f3vf_i)
         
-        return f3vc + f3vd + f3vf + f3vg + f3vh + f3vi + f3vl + f3vm + f3vp + f3vy + f3vz
+        return f3vc + f3vd + f3vf + f3vg + f3vi + f3vl + f3vm + f3vp + f3vy + f3vz
 
     def formula_2012_01_01(foyer_fiscal, period, parameters): 
         """
@@ -1538,7 +1537,6 @@ class rfr_pv(Variable):
         f3vd_i = foyer_fiscal.members('f3vd', period)
         f3vf_i = foyer_fiscal.members('f3vf', period)
         f3vg = foyer_fiscal('f3vg', period)
-        f3vh = foyer_fiscal('f3vh', period)
         f3vi_i = foyer_fiscal.members('f3vi', period)
         f3vl = foyer_fiscal('f3vl', period)
         f3vm = foyer_fiscal('f3vm', period)
@@ -1551,7 +1549,7 @@ class rfr_pv(Variable):
         f3vd = foyer_fiscal.sum(f3vd_i)
         f3vf = foyer_fiscal.sum(f3vf_i)
         
-        return f3vc + f3vd + f3vf + f3vg + f3vh + f3vi + f3vl + f3vm + f3vp + f3vt + f3vy + f3vz
+        return f3vc + f3vd + f3vf + f3vg + f3vi + f3vl + f3vm + f3vp + f3vt + f3vy + f3vz
 
     def formula_2013_01_01(foyer_fiscal, period, parameters): 
         """
