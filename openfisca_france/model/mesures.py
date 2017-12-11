@@ -7,7 +7,7 @@ from numpy import floor
 from openfisca_france.model.base import *  # noqa analysis:ignore
 
 
-class uc(Variable):
+class unites_consommation(Variable):
     value_type = float
     entity = Menage
     label = u"Unités de consommation du ménage, selon l'échelle de l'INSEE"
@@ -82,7 +82,7 @@ class niveau_de_vie(Variable):
 
     def formula(menage, period):
         revenu_disponible = menage('revenu_disponible', period)
-        uc = menage('uc', period)
+        uc = menage('unites_consommation', period)
         return revenu_disponible / uc
 
 
@@ -120,7 +120,7 @@ class niveau_de_vie_net(Variable):
 
     def formula(menage, period):
         revenu_net = menage('revenu_net', period)
-        uc = menage('uc', period)
+        uc = menage('unites_consommation', period)
 
         return revenu_net / uc
 
@@ -161,7 +161,7 @@ class niveau_de_vie_initial(Variable):
 
     def formula(menage, period):
         revenu_initial = menage('revenu_initial', period)
-        uc = menage('uc', period)
+        uc = menage('unites_consommation', period)
 
         return revenu_initial / uc
 
