@@ -1,5 +1,16 @@
 # Changelog
 
+### 19.0.1
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/10/2017.
+* Zones impactées :
+  - openfisca_france/model/prestations/aides_logement.py.
+  - openfisca_france/parameters/prestations/aides_logement/autres/abattement_forfaitaire.yaml.
+  - tests/formulas/aides_logement.yaml.
+* Détails :
+  - Ajout de l'abattement forfaitaire de 5€ dans le calcul des aides au logement à partir du 01/10/2017.
+
 # 19.0.0
 
 * Améliorations techniques **non rétro-compatibles**
