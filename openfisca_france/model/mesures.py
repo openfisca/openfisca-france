@@ -190,9 +190,9 @@ class revenus_du_travail(Variable):
 
     def formula(individu, period):
         salaire_net = individu('salaire_net', period, options = [ADD])
-        rpns = individu('rpns', period, options = [ADD])  # TODO ou rpns_individu
+        revenus_non_salaries = individu('rpns', period, options = [ADD])  # TODO ou rpns_individu
 
-        return salaire_net + rpns
+        return salaire_net + revenus_non_salaries
 
 
 class pensions(Variable):
