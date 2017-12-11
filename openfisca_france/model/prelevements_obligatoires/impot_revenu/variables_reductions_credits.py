@@ -814,6 +814,15 @@ class f7bb(Variable):
     definition_period = YEAR
 
 
+class f7bm(Variable):
+    cerfa_field = u"7BM"
+    value_type = int
+    entity = FoyerFiscal
+    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale : Systèmes de production d'électricité utilisant une source d'énergie renouvelable (éolien, hydraulique) avec signature d'un devis et versement d'un acompte avant le 1.1.2016"
+#    start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+
 class f7st(Variable):
     cerfa_field = u"7ST"
     value_type = int
@@ -6940,6 +6949,17 @@ class f7tc(Variable):
     label = u"Dépenses en faveur de la qualité environnementale des logements donnés en location en 2015 : appareils de régulation de chauffage"
 #    start_date = date(2015, 1, 1)
     definition_period = YEAR
+
+
+class f7cb(Variable):
+    cerfa_field = u"7CB"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Dépenses en faveur de la qualité environnementale des logements donnés en location : chaudières à haute performance energétique "
+#    start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
 
 class f7aa(Variable):
     cerfa_field = u"7AA"
