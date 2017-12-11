@@ -10,7 +10,7 @@ from openfisca_france.model.base import *  # noqa analysis:ignore
 class uc(Variable):
     value_type = float
     entity = Menage
-    label = u"Unités de consommation"
+    label = u"Unités de consommation du ménage, selon l'échelle de l'INSEE"
     definition_period = YEAR
 
     def formula(menage, period, parameters):
@@ -167,14 +167,9 @@ class niveau_de_vie_initial(Variable):
 
 
 class revenu_primaire(Variable):
-    u'''
-    Revenus primaires
-    Ensemble des revenus d'activités superbruts avant tout prélèvement
-    Il est égale à la valeur ajoutée produite par les résidents
-    '''
     value_type = float
     entity = Menage
-    label = u"Revenu primaire du ménage"
+    label = u"Revenu primaire du ménage (revenus superbruts avant tout prélèvement). Il est égal à la valeur ajoutée produite par les résidents."
     definition_period = YEAR
 
     def formula(individu, period):
@@ -358,9 +353,6 @@ class aides_logement(Variable):
     definition_period = YEAR
 
     def formula(famille, period):
-        '''
-        Aide au logement
-        '''
         apl = famille('apl', period, options = [ADD])
         als = famille('als', period, options = [ADD])
         alf = famille('alf', period, options = [ADD])

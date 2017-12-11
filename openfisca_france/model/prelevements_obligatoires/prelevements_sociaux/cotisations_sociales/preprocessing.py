@@ -106,7 +106,7 @@ def build_sal(node_json):
         ]:
         sal.children[type_sal_category].children['excep_solidarite'] = sal.children['fonc'].children['commun'].children['solidarite']
 
-    # Add RAFP for 'public_titulaire_territoriale' and public_titulaire_hospitaliere'
+    # Ajoute le RAFP (Régime additionnel de la fonction publique) pour 'public_titulaire_territoriale' et 'public_titulaire_hospitaliere'
     for type_sal_category in ['public_titulaire_territoriale', 'public_titulaire_hospitaliere']:
         sal.children[type_sal_category].children['rafp'] = sal.children['fonc'].children['etat'].children['rafp']
 
