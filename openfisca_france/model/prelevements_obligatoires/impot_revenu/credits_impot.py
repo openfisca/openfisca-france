@@ -1634,8 +1634,144 @@ class quaenv(Variable):
                         )
         
         # TODO: inclure la condition de non cumul éco-prêt / crédit quaenv si RFR > ... (condition complexifiée à partir de 2014)
+        # TODO : inclure la condition de RFR2 (si pas de bouquet les dépenses f7s n'ouvrent aps droit à un crédit sauf si RFR < à un certain seuil)
+        # TODO : inclure la condition de bouquet sur 2 périodes (si pas de bouquet avec les dépenses du 1.1 au 31.8, le bouquet peut s'apprécier
+        #          sur la base des dépenses faites du 1.1 au 31.12 mais le taux sera de 25% pour la 1ère moitié de l'année et 30% l'autre)
 
         return P.taux30 * min_(max0, depenses_transition_energetique) + min_(max_(0, max0 - depenses_transition_energetique), credit_quaenv)
+
+    def formula_2015_01_01(foyer_fiscal, period, parameters):
+        '''
+        Crédits d’impôt pour dépenses en faveur de la qualité environnementale (1.1-31.8.2014) et transition energétique (1.9.2014-31.12.2015)
+        2015
+        '''
+        f7aa = foyer_fiscal('f7aa', period)
+        f7ad = foyer_fiscal('f7ad', period)
+        f7af = foyer_fiscal('f7af', period)
+        f7ah = foyer_fiscal('f7ah', period)
+        f7ak = foyer_fiscal('f7ak', period)
+        f7al = foyer_fiscal('f7al', period)
+        f7am = foyer_fiscal('f7am', period)
+        f7an = foyer_fiscal('f7an', period)
+        f7aq = foyer_fiscal('f7aq', period)
+        f7ar = foyer_fiscal('f7ar', period)
+        f7av = foyer_fiscal('f7av', period)
+        f7ax = foyer_fiscal('f7ax', period)
+        f7ay = foyer_fiscal('f7ay', period)
+        f7az = foyer_fiscal('f7az', period)
+        f7bb = foyer_fiscal('f7bb', period)
+        f7bc = foyer_fiscal('f7bc', period)
+        f7bd = foyer_fiscal('f7bd', period)
+        f7be = foyer_fiscal('f7be', period)
+        f7bf = foyer_fiscal('f7bf', period)
+        f7bh = foyer_fiscal('f7bh', period)
+        f7bk = foyer_fiscal('f7bk', period)
+        f7bl = foyer_fiscal('f7bl', period)
+        f7rg = foyer_fiscal('f7rg', period)
+        f7rh = foyer_fiscal('f7rh', period)
+        f7ri = foyer_fiscal('f7ri', period)
+        f7rj = foyer_fiscal('f7rj', period)
+        f7rk = foyer_fiscal('f7rk', period)
+        f7rl = foyer_fiscal('f7rl', period)
+        f7rn = foyer_fiscal('f7rn', period)
+        f7rp = foyer_fiscal('f7rp', period)
+        f7rq = foyer_fiscal('f7rq', period)
+        f7rr = foyer_fiscal('f7rr', period)
+        f7rs = foyer_fiscal('f7rs', period)
+        f7rt = foyer_fiscal('f7rt', period)
+        f7ru = foyer_fiscal('f7ru', period)
+        f7rv = foyer_fiscal('f7rv', period)
+        f7rw = foyer_fiscal('f7rw', period)
+        f7rz = foyer_fiscal('f7rz', period)
+        f7sa = foyer_fiscal('f7sa', period)
+        f7sb = foyer_fiscal('f7sb', period)
+        f7sc = foyer_fiscal('f7sc', period)
+        f7sd = foyer_fiscal('f7sd', period)
+        f7se = foyer_fiscal('f7se', period)
+        f7sf = foyer_fiscal('f7sf', period)
+        f7sg = foyer_fiscal('f7sg', period)
+        f7sh = foyer_fiscal('f7sh', period)
+        f7si = foyer_fiscal('f7si', period)
+        f7sj = foyer_fiscal('f7sj', period)
+        f7sk = foyer_fiscal('f7sk', period)
+        f7sl = foyer_fiscal('f7sl', period)
+        f7sm = foyer_fiscal('f7sm', period)
+        f7sn = foyer_fiscal('f7sn', period)
+        f7so = foyer_fiscal('f7so', period)
+        f7so = foyer_fiscal('f7so', period)
+        f7sp = foyer_fiscal('f7sp', period)
+        f7sq = foyer_fiscal('f7sq', period)
+        f7sr = foyer_fiscal('f7sr', period)
+        f7ss = foyer_fiscal('f7ss', period)
+        f7st = foyer_fiscal('f7st', period)
+        f7su = foyer_fiscal('f7su', period)
+        f7sv = foyer_fiscal('f7sv', period)
+        f7sw = foyer_fiscal('f7sw', period)
+        f7sz = foyer_fiscal('f7sz', period)
+        f7ta = foyer_fiscal('f7ta', period)
+        f7tb = foyer_fiscal('f7tb', period)
+        f7tc = foyer_fiscal('f7tc', period)
+        f7tn = foyer_fiscal('f7tn', period)
+        f7tp = foyer_fiscal('f7tp', period)
+        f7tq = foyer_fiscal('f7tq', period)
+        f7tr = foyer_fiscal('f7tr', period)
+        f7ts = foyer_fiscal('f7ts', period)
+        f7tt = foyer_fiscal('f7tt', period)
+        f7tv = foyer_fiscal('f7tv', period)
+        f7tw = foyer_fiscal('f7tw', period)
+        f7tx = foyer_fiscal('f7tx', period)
+        f7ty = foyer_fiscal('f7ty', period)
+        f7vg = foyer_fiscal('f7vg', period)
+        f7vh = foyer_fiscal('f7vh', period)
+        f7vi = foyer_fiscal('f7vi', period)
+        f7vk = foyer_fiscal('f7vk', period)
+        f7vl = foyer_fiscal('f7vl', period)
+        f7wb = foyer_fiscal('f7wb', period)
+        f7wc = foyer_fiscal('f7wc', period)
+        f7we = foyer_fiscal('f7we', period)
+        f7wg = foyer_fiscal('f7wg', period)
+        f7wh = foyer_fiscal('f7wh', period)
+        f7wi = foyer_fiscal('f7wi', period)
+        f7wk = foyer_fiscal('f7wk', period)
+        f7wt = foyer_fiscal('f7wt', period)
+        f7wu = foyer_fiscal('f7wu', period)
+        f7wv = foyer_fiscal('f7wv', period)
+        f7ww = foyer_fiscal('f7ww', period)
+        f7xb = foyer_fiscal('f7xb', period)
+        f7xc = foyer_fiscal('f7xc', period)
+        maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
+        nb_pac2 = foyer_fiscal('nb_pac2', period)
+        quaenv_bouquet = foyer_fiscal('quaenv_bouquet', period)
+        rfr = foyer_fiscal('rfr', period)
+        P = parameters(period).impot_revenu.credits_impot.quaenv
+
+        depenses_transition_energetique_bouquet_2ans = (
+            f7sa + f7sb + f7sc + f7wb + f7rg + f7vh + f7rh + f7ri + f7wu + f7rj + f7rk + f7rl +
+            f7rn + f7rp + f7rr + f7rs + f7rq + f7rt + f7rv + f7rw + f7rz + f7tv + f7tw +
+            f7ta + f7tb + f7tc + f7xb + f7xc + f7wh + f7wi + f7vi + f7wv + f7ww + f7vk + f7vl +
+            f7tn + f7tp + f7tr + f7ts + f7tq + f7tt + f7tx + f7ty + f7ru + f7su + f7sm + f7so + f7sz
+            )
+        depenses_transition_energetique_2015 = (
+            f7aa + f7ad + f7af + f7ah + f7ak + f7al + f7am + f7an + f7aq + f7ar + f7av + f7ax +
+            f7ay + f7az + f7bb + f7bc + f7bd + f7be + f7bf + f7bh + f7bk + f7bl 
+            )    
+        depenses_transition_energetique = depenses_transition_energetique_bouquet_2ans + depenses_transition_energetique_2015
+
+        max0 = P.max * (1 + maries_ou_pacses) + P.pac1 * nb_pac2
+        max00 = max_(0, max0 - depenses_transition_energetique)
+        max1 = max_(0, max00 - quaenv_bouquet * (f7sd + f7se + f7wc + f7vg + f7wt + f7sn + f7sp + f7sr + f7ss + f7sq + f7st) - not_(quaenv_bouquet) * (max00))
+        print quaenv_bouquet
+        credit_quaenv_bouquet_2ans = (quaenv_bouquet * (P.taux25 * (min_(max00,
+                            f7sd + f7se + f7wc + f7vg + f7wt + f7sn + f7sp + f7sr + f7ss + f7sq + f7st)) +
+                            P.taux15 * min_(max1, 
+                            f7sf + f7sg + f7sh + f7si + f7sj + f7sk + f7sl + f7sv + f7sw)
+                        ))
+        
+        # TODO: inclure la condition de non cumul éco-prêt / crédit quaenv si RFR > ... (condition complexifiée à partir de 2014)
+
+        return (P.taux30 * min_(max0, depenses_transition_energetique) + 
+                min_(max_(0, max0 - depenses_transition_energetique), credit_quaenv_bouquet_2ans))
+
 
 class quaenv_bouquet(Variable):
     value_type = bool
@@ -1710,6 +1846,7 @@ class quaenv_bouquet(Variable):
     def formula_2014_01_01(foyer_fiscal, period, parameters):
         '''
         Les dépenses de travaux dépendent d'un bouquet de travaux
+        TODO : à revoir (condition de bouquets sur 2ans notamment)
         2014
         '''
         f7sd = foyer_fiscal('f7sd', period)
@@ -1732,6 +1869,73 @@ class quaenv_bouquet(Variable):
         t5 = or_(f7sr > 0, f7ss > 0)
         t6 = or_(or_(or_(f7st > 0, f7sp > 0), or_(f7sq > 0, f7sd > 0)), f7se > 0)
         bouquet = (t1 + t2 + t3 + t4 + t5 + t6 > 1)
+        return bouquet
+
+    def formula_2015_01_01(foyer_fiscal, period, parameters):
+        '''
+        Les dépenses de travaux dépendent d'un bouquet de travaux (sur 2 ans)
+        2015
+        '''
+        f7rn = foyer_fiscal('f7rn', period)
+        f7rp = foyer_fiscal('f7rp', period)
+        f7rq = foyer_fiscal('f7rq', period)
+        f7rr = foyer_fiscal('f7rr', period)
+        f7rs = foyer_fiscal('f7rs', period)
+        f7rt = foyer_fiscal('f7rt', period)
+        f7sa = foyer_fiscal('f7sa', period)
+        f7sb = foyer_fiscal('f7sb', period)
+        f7sd = foyer_fiscal('f7sd', period)
+        f7se = foyer_fiscal('f7se', period)
+        f7sf = foyer_fiscal('f7sf', period)
+        f7sg = foyer_fiscal('f7sg', period)
+        f7sh = foyer_fiscal('f7sh', period)
+        f7si = foyer_fiscal('f7si', period)
+        f7sj = foyer_fiscal('f7sj', period)
+        f7sk = foyer_fiscal('f7sk', period)
+        f7sl = foyer_fiscal('f7sl', period)
+        f7sn = foyer_fiscal('f7sn', period)
+        f7sp = foyer_fiscal('f7sp', period)
+        f7sq = foyer_fiscal('f7sq', period)
+        f7sr = foyer_fiscal('f7sr', period)
+        f7ss = foyer_fiscal('f7ss', period)
+        f7st = foyer_fiscal('f7st', period)
+        f7sv = foyer_fiscal('f7sv', period)
+        f7sw = foyer_fiscal('f7sw', period)
+        f7ta = foyer_fiscal('f7ta', period)
+        f7tb = foyer_fiscal('f7tb', period)
+        f7tn = foyer_fiscal('f7tn', period)
+        f7tp = foyer_fiscal('f7tp', period)
+        f7tq = foyer_fiscal('f7tq', period)
+        f7tr = foyer_fiscal('f7tr', period)
+        f7ts = foyer_fiscal('f7ts', period)
+        f7tt = foyer_fiscal('f7tt', period)
+        f7vg = foyer_fiscal('f7vg', period)
+        f7vh = foyer_fiscal('f7vh', period)
+        f7wb = foyer_fiscal('f7wb', period)
+        f7wc = foyer_fiscal('f7wc', period)
+        f7wh = foyer_fiscal('f7wh', period)
+        f7wt = foyer_fiscal('f7wt', period)
+        f7wu = foyer_fiscal('f7wu', period)
+        f7wv = foyer_fiscal('f7wv', period)
+        f7xb = foyer_fiscal('f7xb', period)
+       
+        depense_2014_eligible = (f7sd + f7se + f7wc + f7vg + f7wt + f7sn + f7sp + f7sr + f7ss + f7sq + f7st +
+                                 f7sf + f7sg + f7sh + f7si + f7sj + f7sk + f7sl + f7sv + f7sw)
+        depense_2015_eligible = (f7ta + f7tb + f7xb + f7wh + f7wv + f7tn + f7tp + f7tr + f7ts + f7tq + f7tt)
+
+        t1 = (f7wt + f7wu + f7wv > 0)*1
+        t2 = (f7wc + f7wb + f7xb > 0)*1
+        t3 = (f7vg + f7vh + f7wh > 0)*1
+        t4 = (f7sn + f7rn + f7tn > 0)*1
+        t5 = (f7sr + f7rr + f7tr + 
+             f7ss + f7rs + f7ts > 0)*1
+        t6 = (f7sd + f7sa + f7ta + 
+             f7se + f7sb + f7tb + 
+             f7sp + f7rp + f7tp + 
+             f7sq + f7rq + f7tq +
+             f7st + f7rt + f7tt > 0)*1
+
+        bouquet = ((t1 + t2 + t3 + t4 + t5 + t6 > 1) & (depense_2014_eligible > 0) & (depense_2015_eligible > 0))
         return bouquet
 
 class saldom2(Variable):
