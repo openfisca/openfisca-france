@@ -189,6 +189,7 @@ class pension_civile_salarie(Variable):
 
     def formula(self, simulation, period):
         traitement_indiciaire_brut = simulation.calculate('traitement_indiciaire_brut', period)  # TODO: check nbi
+        salaire_de_base = simulation.calculate('salaire_de_base', period)
         categorie_salarie = simulation.calculate('categorie_salarie', period)
         _P = simulation.parameters_at(period.start)
 
@@ -197,7 +198,7 @@ class pension_civile_salarie(Variable):
             categorie_salarie == CATEGORIE_SALARIE['public_titulaire_territoriale']) | (categorie_salarie == CATEGORIE_SALARIE['public_titulaire_hospitaliere'])
         pension_civile_salarie = (
             (categorie_salarie == CATEGORIE_SALARIE['public_titulaire_etat']) *
-            sal['public_titulaire_etat']['pension'].calc(traitement_indiciaire_brut) +
+            sal['public_titulaire_etat']['pension'].calc(traitement_indiciaire_brut+salaire_de_base) +
             terr_or_hosp * sal['public_titulaire_territoriale']['cnracl1'].calc(traitement_indiciaire_brut)
             )
         return -pension_civile_salarie
@@ -238,6 +239,7 @@ class rafp_salarie(Variable):
 
     def formula_2005_01_01(self, simulation, period):
         traitement_indiciaire_brut = simulation.calculate('traitement_indiciaire_brut', period)
+        salaire_de_base = simulation.calculate('salaire_de_base', period)
         categorie_salarie = simulation.calculate('categorie_salarie', period)
         primes_fonction_publique = simulation.calculate('primes_fonction_publique', period)
         supp_familial_traitement = simulation.calculate('supp_familial_traitement', period)
@@ -250,9 +252,14 @@ class rafp_salarie(Variable):
 
         plaf_ass = _P.cotsoc.sal.fonc.etat.rafp_plaf_assiette
         base_imposable = primes_fonction_publique + supp_familial_traitement + indemnite_residence
-        assiette = min_(base_imposable, plaf_ass * traitement_indiciaire_brut * eligible)
+        assiette = min_(base_imposable, plaf_ass * (traitement_indiciaire_brut + salaire_de_base) * eligible)
         # Même régime pour les fonctions publiques d'Etat et des collectivité locales
         rafp_salarie = eligible * _P.cotsoc.cotisations_salarie.public_titulaire_etat['rafp'].calc(assiette)
+        print(assiette)
+        print(eligible)
+        print(traitement_indiciaire_brut)
+        print(plaf_ass)
+        print(base_imposable)
         return -rafp_salarie
 
 
