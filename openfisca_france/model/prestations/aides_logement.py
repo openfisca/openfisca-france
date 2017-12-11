@@ -629,7 +629,7 @@ class aide_logement_montant_brut_avant_degressivite(Variable):
 class aide_logement_montant_brut(Variable):
     value_type = float
     entity = Famille
-    label = u"Montant des aides au logement après degressivité et abattement forfaitaire, avant CRDS"    
+    label = u"Montant des aides au logement après degressivité et abattement forfaitaire, avant CRDS"
     reference = u"https://www.legifrance.gouv.fr/eli/decret/2017/9/28/TERL1721632D/jo/texte"
     definition_period = MONTH
 
@@ -637,7 +637,30 @@ class aide_logement_montant_brut(Variable):
         montant_avant_degressivite = famille('aide_logement_montant_brut_avant_degressivite', period)
         return montant_avant_degressivite
 
-    def formula_2016_07_01(famille, period, parameters):
+    def formula_2016_07_01(famille, period):
+        montant_avant_degressivite = famille('aide_logement_montant_brut_avant_degressivite', period)
+        loyer_reel = famille('aide_logement_loyer_reel', period)
+        loyer_degressivite = famille('aide_logement_loyer_seuil_degressivite', period)
+        loyer_suppression = famille('aide_logement_loyer_seuil_suppression', period)
+        handicap_i = famille.members('handicap', period)
+        handicap = famille.any(handicap_i)
+
+        coeff = select(
+            [loyer_reel <= loyer_degressivite, loyer_reel <= loyer_suppression, loyer_reel > loyer_suppression],
+            [1, 1 - ((loyer_reel - loyer_degressivite) / (loyer_suppression - loyer_degressivite)), 0]
+            )
+
+        statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
+        accedant = (statut_occupation_logement == 1)
+        locataire_foyer = (statut_occupation_logement == 7)
+        exception = accedant + locataire_foyer + handicap
+        coeff = where(exception, 1, coeff)
+
+        montant = round_(montant_avant_degressivite * coeff, 2)
+
+        return montant
+
+    def formula_2017_10_01(famille, period, parameters):
         montant_avant_degressivite = famille('aide_logement_montant_brut_avant_degressivite', period)
         loyer_reel = famille('aide_logement_loyer_reel', period)
         loyer_degressivite = famille('aide_logement_loyer_seuil_degressivite', period)
@@ -660,7 +683,7 @@ class aide_logement_montant_brut(Variable):
 
         abattement_forfaitaire = parameters(period).prestations.aides_logement.autres.abattement_forfaitaire
         aide_logement_apres_abattement_forfaitaire = (montant_avant_degressivite_et_coeff > 0) * (montant_avant_degressivite_et_coeff - abattement_forfaitaire)
-        
+
         return aide_logement_apres_abattement_forfaitaire
 
 class aide_logement_montant(Variable):
@@ -669,8 +692,8 @@ class aide_logement_montant(Variable):
     label = u"Montant des aides au logement net de CRDS"
     definition_period = MONTH
 
-    def formula(famille, period):        
-        aide_logement_montant_brut = famille('aide_logement_montant_brut', period)        
+    def formula(famille, period):
+        aide_logement_montant_brut = famille('aide_logement_montant_brut', period)
         crds_logement = famille('crds_logement', period)
         montant = round_(aide_logement_montant_brut + crds_logement, 2)
 
