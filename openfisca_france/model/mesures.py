@@ -379,7 +379,7 @@ class impots_directs(Variable):
     definition_period = YEAR
 
     def formula(self, simulation, period):
-        irpp_holder = simulation.compute('irpp', period)
+        irpp_holder = simulation.compute('irpp',  period.last_year)
         taxe_habitation = simulation.calculate('taxe_habitation', period)
 
         irpp = self.cast_from_entity_to_role(irpp_holder, role = VOUS)

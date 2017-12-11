@@ -43,9 +43,9 @@ def modify_parameters(parameters):
     # Article 7 du PLFSS : Bascule CSG cotisations :
     #################################################
     # - hausse de la CSG sur les revenus d'activité
-    parameters.prelevements_sociaux.contributions.csg.activite.deductible.taux.update(period=reform_period, value=0.068)
+    parameters.prelevements_sociaux.contributions.csg.activite.deductible.taux.update(start="2018-01", value=0.068)
     # - hausse de la CSG sur les retraites
-    parameters.prelevements_sociaux.contributions.csg.retraite.deductible.taux_plein.update(period=reform_period, value=0.068)
+    parameters.prelevements_sociaux.contributions.csg.retraite.deductible.taux_plein.update(start="2018-01", value=0.068)
     # - suppression de la cotisation salariale d'assurance chomage en deux temps :
     # - suppression de la cotisation salariale maladie
     parameters.cotsoc.children['cotisations_salarie'].children['prive_non_cadre'].children['maladie'][0].rate.update(start = reform_period, value=0.0)
@@ -57,17 +57,13 @@ def modify_parameters(parameters):
     parameters.cotsoc.children['cotisations_salarie'].children['prive_non_cadre'].children['assedic'][0].rate.update(start = "2018-10", value=0.000)
     parameters.cotsoc.children['cotisations_salarie'].children['prive_cadre'].children['assedic'][0].rate.update(start = "2018-10", value=0.000)
     # - neutralisation de la hausse de CSG pour les fonctionnaires : énorme workaround, car en réalité c'est beaucup plus complexe.
-    parameters.cotsoc.children['cotisations_salarie'].children['public_titulaire_etat'].children['pension'][0].rate.update(start = "2018-01", value=0.1001-0.017) #vérifier la date d'entrée en vigueur.
-    parameters.cotsoc.children['cotisations_salarie'].children['public_titulaire_etat'].children['pension'][0].rate.update(start = "2019-01", value=0.1028-0.017) #vérifier la date d'entrée en vigueur.
-    parameters.cotsoc.children['cotisations_salarie'].children['public_titulaire_etat'].children['pension'][0].rate.update(start = "2020-01", value=0.1055-0.017) #vérifier la date d'entrée en vigueur.
+    parameters.cotsoc.children['cotisations_salarie'].children['public_titulaire_etat'].children['pension'][0].rate.update(start = "2018-01", value=0.1001-0.0171) #vérifier la date d'entrée en vigueur.
+    parameters.cotsoc.children['cotisations_salarie'].children['public_titulaire_etat'].children['pension'][0].rate.update(start = "2019-01", value=0.1028-0.0171) #vérifier la date d'entrée en vigueur.
+    parameters.cotsoc.children['cotisations_salarie'].children['public_titulaire_etat'].children['pension'][0].rate.update(start = "2020-01", value=0.1055-0.0171) #vérifier la date d'entrée en vigueur.
 
-
-
-
-
-    # # A voir si on le met : la réforme du minimum vieillesse
-    # parameters.prestations.minima_sociaux.aspa.montant_annuel_seul.update(period=reform_period, value=(9638.42+100*12))
-    # parameters.prestations.minima_sociaux.aspa.montant_annuel_couple.update(period=reform_period, value=(14963.65+100*12))
+    # A voir si on le met : la réforme du minimum vieillesse
+    parameters.prestations.minima_sociaux.aspa.montant_annuel_seul.update(start = "2018-01", value=(9638.42+100*12))
+    parameters.prestations.minima_sociaux.aspa.montant_annuel_couple.update(start = "2019-01", value=(14963.65+100*12))
 
     return parameters
 
