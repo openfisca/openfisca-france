@@ -2220,7 +2220,34 @@ class domsoc(Variable):
     def formula_2010_01_01(self, simulation, period):
         '''
         Investissements outre-mer dans le logement social (déclaration n°2042 IOM)
-        2010-
+        2010
+        TODO plafonnement à 15% f7qa / liens avec autres investissments ?
+        '''
+        f7qn = simulation.calculate('f7qn', period)
+        f7qk = simulation.calculate('f7qk', period)
+        f7kg = simulation.calculate('f7kg', period)
+
+        return  f7qn + f7qk + f7kg
+
+    def formula_2011_01_01(self, simulation, period):
+        '''
+        Investissements outre-mer dans le logement social (déclaration n°2042 IOM)
+        2011
+        TODO plafonnement à 15% f7qa / liens avec autres investissments ?
+        '''
+        f7qn = simulation.calculate('f7qn', period)
+        f7qk = simulation.calculate('f7qk', period)
+        f7qu = simulation.calculate('f7qu', period)
+        f7kg = simulation.calculate('f7kg', period)
+        f7kh = simulation.calculate('f7kh', period)
+        f7ki = simulation.calculate('f7ki', period)
+
+        return  f7qn + f7qk + f7qu + f7kg + f7kh + f7ki
+
+    def formula_2012_01_01(self, simulation, period):
+        '''
+        Investissements outre-mer dans le logement social (déclaration n°2042 IOM)
+        2012
         TODO plafonnement à 15% f7qa / liens avec autres investissments ?
         '''
         f7qn = simulation.calculate('f7qn', period)
