@@ -1846,29 +1846,50 @@ class quaenv_bouquet(Variable):
     def formula_2014_01_01(foyer_fiscal, period, parameters):
         '''
         Les dépenses de travaux dépendent d'un bouquet de travaux
-        TODO : à revoir (condition de bouquets sur 2ans notamment)
         2014
         '''
+        f7rn = foyer_fiscal('f7rn', period)
+        f7rp = foyer_fiscal('f7rp', period)
+        f7rq = foyer_fiscal('f7rq', period)
+        f7rr = foyer_fiscal('f7rr', period)
+        f7rs = foyer_fiscal('f7rs', period)
+        f7rt = foyer_fiscal('f7rt', period)
+        f7sa = foyer_fiscal('f7sa', period)
+        f7sb = foyer_fiscal('f7sb', period)
         f7sd = foyer_fiscal('f7sd', period)
         f7se = foyer_fiscal('f7se', period)
+        f7sf = foyer_fiscal('f7sf', period)
+        f7sg = foyer_fiscal('f7sg', period)
+        f7sh = foyer_fiscal('f7sh', period)
+        f7si = foyer_fiscal('f7si', period)
+        f7sj = foyer_fiscal('f7sj', period)
+        f7sk = foyer_fiscal('f7sk', period)
+        f7sl = foyer_fiscal('f7sl', period)
         f7sn = foyer_fiscal('f7sn', period)
         f7sp = foyer_fiscal('f7sp', period)
         f7sq = foyer_fiscal('f7sq', period)
         f7sr = foyer_fiscal('f7sr', period)
         f7ss = foyer_fiscal('f7ss', period)
         f7st = foyer_fiscal('f7st', period)
+        f7sv = foyer_fiscal('f7sv', period)
+        f7sw = foyer_fiscal('f7sw', period)
         f7vg = foyer_fiscal('f7vg', period)
+        f7vh = foyer_fiscal('f7vh', period)
+        f7wb = foyer_fiscal('f7wb', period)
         f7wc = foyer_fiscal('f7wc', period)
-        f7wh = foyer_fiscal('f7wh', period)
         f7wt = foyer_fiscal('f7wt', period)
+        f7wu = foyer_fiscal('f7wu', period)
 
-        t1 = (f7wt > 0)*1
-        t2 = (f7wc > 0)*1
-        t3 = (f7vg > 0)*1
-        t4 = (f7sn > 0)*1
-        t5 = or_(f7sr > 0, f7ss > 0)
-        t6 = or_(or_(or_(f7st > 0, f7sp > 0), or_(f7sq > 0, f7sd > 0)), f7se > 0)
-        bouquet = (t1 + t2 + t3 + t4 + t5 + t6 > 1)
+        depense_2014_eligible = (f7sd + f7se + f7wc + f7vg + f7wt + f7sn + f7sp + f7sr + f7ss + f7sq + f7st +
+                                 f7sf + f7sg + f7sh + f7si + f7sj + f7sk + f7sl + f7sv + f7sw)
+        t1 = (f7wt + f7wu > 0)*1
+        t2 = (f7wc + f7wb > 0)*1
+        t3 = (f7vg + f7vh > 0)*1
+        t4 = (f7sn + f7rn > 0)*1
+        t5 = (f7sr + f7rr + f7ss + f7rs > 0)*1
+        t6 = (f7sd + f7sa + f7se + f7sb + f7sp + f7rp + f7sq + f7rq + f7st + f7rt > 0)*1
+       
+        bouquet = ((t1 + t2 + t3 + t4 + t5 + t6 > 1) & (depense_2014_eligible > 0))
         return bouquet
 
     def formula_2015_01_01(foyer_fiscal, period, parameters):
