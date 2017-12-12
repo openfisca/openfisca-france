@@ -146,10 +146,11 @@ class exoneration_cotisations_salariales_apprenti(Variable):
 
     def formula(self, simulation, period):
         apprenti = simulation.calculate('apprenti', period)
-        cotisations_salariales_contributives = simulation.calculate('cotisations_salariales_contributives', period)
-        cotisations_salariales_non_contributives = simulation.calculate(
-            'cotisations_salariales_non_contributives', period)
-        return - (cotisations_salariales_contributives + cotisations_salariales_non_contributives) * apprenti
+        # cotisations_salariales_contributives = simulation.calculate('cotisations_salariales_contributives', period)
+        # cotisations_salariales_non_contributives = simulation.calculate(
+        #     'cotisations_salariales_non_contributives', period)
+        # return - (cotisations_salariales_contributives + cotisations_salariales_non_contributives) * apprenti
+        return - 0 * apprenti
 
 
 class prime_apprentissage(Variable):
@@ -183,7 +184,7 @@ class prime_apprentissage(Variable):
 #     value_type = float
 #     entity = Individu
 #     label = u" Crédit d'impôt pour l'emploi d'apprentis"
-#     url = "http://www.apce.com/pid927/contrat-d-apprentissage.html?espace=1&tp=1&pagination=2"
+#     reference = "http://www.apce.com/pid927/contrat-d-apprentissage.html?espace=1&tp=1&pagination=2"
 #
 #     def formula(self, simulation, period):
 #         pass

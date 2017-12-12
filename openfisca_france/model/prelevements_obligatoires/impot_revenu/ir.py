@@ -509,7 +509,9 @@ class retraite_titre_onereux_net(Variable):
         f1dw = foyer_fiscal('f1dw', period)
         abatviag = parameters(period).impot_revenu.tspr.abatviag
 
-        return round_(abatviag.taux1 * f1aw + abatviag.taux2 * f1bw + abatviag.taux3 * f1cw + abatviag.taux4 * f1dw)
+        return round_(
+            abatviag.taux1 * f1aw + abatviag.taux2 * f1bw + abatviag.taux3 * f1cw + abatviag.taux4 * f1dw
+            )
 
 
 class traitements_salaires_pensions_rentes(Variable):
@@ -527,8 +529,11 @@ class traitements_salaires_pensions_rentes(Variable):
         # correspondante.
         retraite_titre_onereux_net = individu.foyer_fiscal('retraite_titre_onereux_net', period.offset('first-of'))
         retraite_titre_onereux_net_declarant1 = retraite_titre_onereux_net * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
-
-        return revenu_assimile_salaire_apres_abattements + revenu_assimile_pension_apres_abattements - abattement_salaires_pensions + retraite_titre_onereux_net_declarant1
+        return (
+            revenu_assimile_salaire_apres_abattements +
+            revenu_assimile_pension_apres_abattements - abattement_salaires_pensions +
+            retraite_titre_onereux_net_declarant1
+            )
 
 
 class rev_cat_pv(Variable):
@@ -1575,6 +1580,9 @@ class irpp(Variable):
         P = parameters(period).impot_revenu.recouvrement
 
         pre_result = iai - credits_impot + cehr
+        # Ratio de calage : la cible est décrite dans Ratio_correction_irpp.xls de Q:\Bas revenus - revenu de base\Documentation . Le numérateur est la masse que l'on calcule sans ce ratio.
+        ratio = 84.41/131.71
+
         return (
             (iai > P.seuil) * (
                 (pre_result < P.min) * (pre_result > 0) * iai * 0 +
@@ -1582,7 +1590,25 @@ class irpp(Variable):
                 ) +
             (iai <= P.seuil) * (
                 (pre_result < 0) * (-pre_result) + (pre_result >= 0) * 0 * iai)
-            )
+            ) * ratio
+
+
+class irpp_noncale(Variable):
+    value_type = float
+    entity = FoyerFiscal
+    label = u"Impôt sur le revenu des personnes physiques non calé (pour cas-types)"
+    reference = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_impot_revenu&espId=1&impot=IR&sfid=50"
+    definition_period = YEAR
+
+    def formula(self, simulation, period):
+        '''
+        Montant après seuil de recouvrement (hors ppe)
+        '''
+        irpp = simulation.calculate('irpp', period)
+        # Ratio de calage : la cible est décrite dans Ratio_correction_irpp.xls de Q:\Bas revenus - revenu de base\Documentation . Le numérateur est la masse que l'on calcule sans ce ratio.
+        ratio = 84.41/131.71
+
+        return irpp / ratio
 
 
 class foyer_impose(Variable):
@@ -1703,9 +1729,7 @@ class rev_cap_bar(Variable):
         # elif year > 2011:
         #     return f2dc + f2gr + f2ch + f2ts + f2go + f2tr + f2fu - avf + (f2da + f2ee)
         return (f2dc + f2gr + f2ch + f2ts + f2go * majGO + f2tr + f2fu - avf + (f2da + f2ee) * finpfl) / 12
-
-
-    # We add f2da an f2ee to allow for comparaison between years
+        # We add f2da an f2ee to allow for comparaison between years
 
 
 class rev_cap_lib(Variable):
@@ -2195,45 +2219,45 @@ class rnc(Variable):
     reference = "http://www.impots.gouv.fr/portal/dgi/public/professionnels.impot?espId=2&pageId=prof_bnc&impot=BNC&sfid=50"
     definition_period = YEAR
 
-    def formula(individu, period, parameters):
-        '''
-        Revenus non commerciaux individuels
-        'ind'
-        mbnc_exon (f5hp, f5ip, f5jp)
-        abnc_exon (f5qb, f5rb, f5sb)
-        nbnc_exon (f5qh, f5rh, f5sh)
-        mbnc_impo (f5hq, f5iq, f5jq)
-        abnc_impo (f5qc, f5rc, f5sc)
-        abnc_defi (f5qe, f5re, f5se)
-        nbnc_impo (f5qi, f5ri, f5si)
-        nbnc_defi (f5qk, f5rk, f5sk)
-        f5ql, f5qm????
-        '''
-        mbnc_exon = individu('mbnc_exon', period)
-        mbnc_impo = individu('mbnc_impo', period)
-        abnc_exon = individu('abnc_exon', period)
-        nbnc_exon = individu('nbnc_exon', period)
-        abnc_impo = individu('abnc_impo', period)
-        nbnc_impo = individu('nbnc_impo', period)
-        abnc_defi = individu('abnc_defi', period)
-        nbnc_defi = individu('nbnc_defi', period)
-        specialbnc = parameters(period).impot_revenu.rpns.micro.specialbnc
+    # def formula(individu, period, parameters):
+    #     '''
+    #     Revenus non commerciaux individuels
+    #     'ind'
+    #     mbnc_exon (f5hp, f5ip, f5jp)
+    #     abnc_exon (f5qb, f5rb, f5sb)
+    #     nbnc_exon (f5qh, f5rh, f5sh)
+    #     mbnc_impo (f5hq, f5iq, f5jq)
+    #     abnc_impo (f5qc, f5rc, f5sc)
+    #     abnc_defi (f5qe, f5re, f5se)
+    #     nbnc_impo (f5qi, f5ri, f5si)
+    #     nbnc_defi (f5qk, f5rk, f5sk)
+    #     f5ql, f5qm????
+    #     '''
+    #     mbnc_exon = individu('mbnc_exon', period)
+    #     mbnc_impo = individu('mbnc_impo', period)
+    #     abnc_exon = individu('abnc_exon', period)
+    #     nbnc_exon = individu('nbnc_exon', period)
+    #     abnc_impo = individu('abnc_impo', period)
+    #     nbnc_impo = individu('nbnc_impo', period)
+    #     abnc_defi = individu('abnc_defi', period)
+    #     nbnc_defi = individu('nbnc_defi', period)
+    #     specialbnc = parameters(period).impot_revenu.rpns.micro.specialbnc
 
-        zbnc = (
-            mbnc_exon + mbnc_impo +
-            abnc_exon + nbnc_exon +
-            abnc_impo + nbnc_impo - abnc_defi - nbnc_defi
-            )
+    #     zbnc = (
+    #         mbnc_exon + mbnc_impo +
+    #         abnc_exon + nbnc_exon +
+    #         abnc_impo + nbnc_impo - abnc_defi - nbnc_defi
+    #         )
 
-        cbnc = min_(
-            mbnc_exon + mbnc_impo,
-            max_(
-                specialbnc.services.min,
-                round_((mbnc_exon + mbnc_impo) * specialbnc.taux)
-                )
-            )
+    #     cbnc = min_(
+    #         mbnc_exon + mbnc_impo,
+    #         max_(
+    #             specialbnc.services.min,
+    #             round_((mbnc_exon + mbnc_impo) * specialbnc.taux)
+    #             )
+    #         )
 
-        return zbnc - cbnc
+    #     return zbnc - cbnc
 
 
 class rpns(Variable):

@@ -1,0 +1,44 @@
+- name: "PPE célibataire"
+  period: 2012
+  familles:
+    parents: ["parent1"]
+  individus:
+    - id: "parent1"
+      age: 40
+      contrat_de_travail:
+        2012: 1
+      heures_remunerees_volume:
+        2012: 35 * 52 * .33
+      salaire_imposable:
+        2012: 5000
+      rnc:
+        2012: 0
+  output_variables:
+    ppe: 0
+    rsa: 0
+
+# - name: "PPA en couple avec 3 enfant, pas de bonification"
+#   period: 2016-01
+#   familles:
+#     parents: ["parent1", "parent2"]
+#     enfants: ["enfant1", "enfant2", "enfant3"]
+#     rsa_base_ressources_prestations_familiales: 0 # On ne prend pas en comptes les prestations CAF pour ce test
+#   individus:
+#     - id: "parent1"
+#       age: 40
+#       salaire_imposable:
+#         2012: 500
+#     - id: "parent2"
+#       age: 40
+#     - id: "enfant1"
+#       age: 10
+#     - id: "enfant2"
+#       age: 11
+#     - id: "enfant3"
+#       age: 12
+#   output_variables:
+#     ppa: 1310.40 - 0.38 * 500 - (1310.40 - 500)
+#     ppa_montant_forfaitaire_familial_non_majore:
+#       2015-12: 524.16 * (1 + 0.5 + 2 * 0.3 + 0.4) # =1310.40
+#     rsa_majore_eligibilite: False
+#     rsa: 1310.40 - 500

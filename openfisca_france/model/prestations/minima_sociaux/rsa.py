@@ -167,8 +167,8 @@ class rsa_base_ressources_minima_sociaux(Variable):
         aspa = famille('aspa', period)
         asi = famille('asi', period)
         ass = famille('ass', period)
-        aah_i = famille.members('aah', three_previous_months, options = [ADD])
-        caah_i = famille.members('caah', three_previous_months, options = [ADD])
+        aah_i = famille.members('aah', three_previous_months, options = [ADD]) / 3
+        caah_i = famille.members('caah', three_previous_months, options = [ADD]) / 3
 
         return aspa + asi + ass + famille.sum(aah_i + caah_i)
 
@@ -424,7 +424,7 @@ class rsa_indemnites_journalieres_activite(Variable):
     definition_period = MONTH
 
     def formula(individu, period):
-        m_3 = period.offset(-3,'month')
+        m_3 = period.offset(-3, 'month')
 
         def ijss_activite_sous_condition(period):
             return sum(individu(ressource, period) for ressource in [
@@ -450,7 +450,9 @@ class rsa_indemnites_journalieres_activite(Variable):
             'indemnites_journalieres_maternite',
             'indemnites_journalieres_paternite',
             'indemnites_journalieres_adoption',
-        ]) + (condition_date_arret_travail + condition_activite + condition_arret_recent) * ijss_activite_sous_condition(period)
+            ]) + (
+                condition_date_arret_travail + condition_activite + condition_arret_recent
+                ) * ijss_activite_sous_condition(period)
 
         return ijss_activite
 
@@ -462,7 +464,10 @@ class rsa_indemnites_journalieres_hors_activite(Variable):
     definition_period = MONTH
 
     def formula(individu, period):
-        return individu('indemnites_journalieres', period) - individu('rsa_indemnites_journalieres_activite', period)
+        return (
+            + individu('indemnites_journalieres', period)
+            - individu('rsa_indemnites_journalieres_activite', period)
+            )
 
 
 class primes_salaires_net(Variable):
@@ -470,6 +475,7 @@ class primes_salaires_net(Variable):
     entity = Individu
     label = u"Indemnités, primes et avantages en argent (net)"
     definition_period = MONTH
+
 
 
 class salaire_net_hors_revenus_exceptionnels(Variable):
@@ -484,6 +490,7 @@ class salaire_net_hors_revenus_exceptionnels(Variable):
             individu('primes_salaires_net', period) -
             individu('indemnite_fin_contrat_net', period)
             )
+
 
 class rsa_revenu_activite_individu(Variable):
     value_type = float
@@ -503,7 +510,7 @@ class rsa_revenu_activite_individu(Variable):
             'hsup',
             'etr',
             'tns_auto_entrepreneur_benefice',
-            'rsa_indemnites_journalieres_activite',
+            'rsa_indemnites_journalieres_activite'
             ]
 
         has_ressources_substitution = individu('rsa_has_ressources_substitution', mois_demande)
@@ -519,7 +526,10 @@ class rsa_revenu_activite_individu(Variable):
             for type_revenu in types_revenus_activite
             ) / 3
 
-        revenus_tns_annualises = individu('ppa_rsa_derniers_revenus_tns_annuels_connus', mois_demande.this_year)
+        revenus_tns_annualises = (
+            + individu('ppa_rsa_derniers_revenus_tns_annuels_connus', mois_demande.this_year)
+            + individu('rpns_individu', mois_demande.this_year) / 12
+            )
 
         revenus_non_moyennes = (
             individu('primes_salaires_net', mois_courant) +
@@ -545,6 +555,8 @@ class rsa_revenu_activite_individu(Variable):
             'etr',
             'tns_auto_entrepreneur_benefice',
             'rsa_indemnites_journalieres_activite',
+            # 'ric',
+            # 'rag',
             ]
 
         has_ressources_substitution = individu('rsa_has_ressources_substitution', period)
@@ -557,7 +569,7 @@ class rsa_revenu_activite_individu(Variable):
                 not_(has_ressources_substitution)
                 )
             for type_revenu in types_revenus_activite
-            ) / 3
+            ) / 3 + individu('rpns_individu', period.this_year) / 12
 
 
 class rsa_fictif(Variable):
@@ -577,7 +589,6 @@ class rsa_fictif(Variable):
         montant = rsa_socle - rsa_forfait_logement - rsa_base_ressources
         montant = max_(montant, 0)
 
-
         return montant
 
 
@@ -594,7 +605,6 @@ class rsa_montant(Variable):
         rsa = rsa * (rsa >= seuil_non_versement)
 
         return rsa
-
 
     def formula_2009_06(famille, period, parameters):
         rsa_socle_non_majore = famille('rsa_socle', period)
@@ -650,13 +660,14 @@ class rsa_base_ressources_patrimoine_individu(Variable):
             epargne_non_remuneree * rsa.patrimoine.taux_interet_forfaitaire_epargne_non_remunere / 12 +
             revenus_capital +
             valeur_locative_immo_non_loue * rsa.patrimoine.abattement_valeur_locative_immo_non_loue +
-            valeur_locative_terrains_non_loue * rsa.patrimoine.abattement_valeur_locative_terrains_non_loue +
-            revenus_locatifs
+            valeur_locative_terrains_non_loue * rsa.patrimoine.abattement_valeur_locative_terrains_non_loue
+            + revenus_locatifs
             )
 
 
 class rsa_condition_nationalite(Variable):
     value_type = bool
+    default_value = True
     entity = Individu
     label = u"Conditions de nationnalité et de titre de séjour pour bénéficier du RSA"
     definition_period = MONTH
@@ -697,9 +708,11 @@ class rsa_eligibilite(Variable):
         # rsa_nb_enfants est à valeur pour une famille, il faut le projeter sur les individus avant de faire une opération avec age_i
         condition_age_i = famille.project(rsa_nb_enfants > 0) + (age_i > rsa.age_pac)
 
-        eligib = famille.any(
-            condition_age_i * not_(activite_i == 2),
-            role = Famille.PARENT) * condition_nationalite * rsa_eligibilite_tns
+        eligib = (
+            famille.any(condition_age_i * not_(activite_i == 2), role = Famille.PARENT)
+            * condition_nationalite
+            * rsa_eligibilite_tns
+            )
 
         return eligib
 
@@ -882,7 +895,6 @@ class rsa_non_calculable(Variable):
         # la famille ne sera pas éligible au RSA en tenant compte de
         # ces ressources. Il n'y a donc pas non calculabilité.
         eligible_rsa = famille('rsa_montant', period) > 0
-
 
         non_calculable_tns_parent1 = famille.demandeur('rsa_non_calculable_tns_individu', period)
         non_calculable_tns_parent2 = famille.conjoint('rsa_non_calculable_tns_individu', period)

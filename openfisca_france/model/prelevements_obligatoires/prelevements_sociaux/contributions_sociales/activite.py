@@ -30,13 +30,19 @@ class assiette_csg_abattue(Variable):
         supp_familial_traitement = simulation.calculate('supp_familial_traitement', period)
         hsup = simulation.calculate('hsup', period)
         remuneration_principale = simulation.calculate('remuneration_principale', period)
-        stage_gratification_reintegration = simulation.calculate('stage_gratification_reintegration', period)
+        stage_gratification_reintegration = simulation.calculate_add('stage_gratification_reintegration', period)
         indemnite_fin_contrat = simulation.calculate('indemnite_fin_contrat', period)
 
         return (
-            remuneration_principale + salaire_de_base + primes_salaires + primes_fonction_publique +
-            indemnite_residence + stage_gratification_reintegration + supp_familial_traitement - hsup +
-            indemnite_fin_contrat
+            + indemnite_fin_contrat
+            + indemnite_residence
+            + primes_fonction_publique
+            + primes_salaires
+            + remuneration_principale
+            + salaire_de_base
+            + stage_gratification_reintegration
+            + supp_familial_traitement
+            - hsup
             )
 
 
@@ -141,7 +147,6 @@ class forfait_social(Variable):
 
     def formula_2009_01_01(individu, period, parameters):
         prise_en_charge_employeur_retraite_complementaire = individu('prise_en_charge_employeur_retraite_complementaire', period, options = [ADD])
-
         parametres = parameters(period).prelevements_sociaux.forfait_social
         taux_plein = parametres.taux_plein
         assiette_taux_plein = prise_en_charge_employeur_retraite_complementaire  # TODO: compléter l'assiette
@@ -150,7 +155,6 @@ class forfait_social(Variable):
 
     def formula_2012_08_01(individu, period, parameters):
         prise_en_charge_employeur_retraite_complementaire = individu('prise_en_charge_employeur_retraite_complementaire', period, options = [ADD])
-
         parametres = parameters(period).prelevements_sociaux.forfait_social
         taux_plein = parametres.taux_plein
         assiette_taux_plein = prise_en_charge_employeur_retraite_complementaire  # TODO: compléter l'assiette
@@ -163,7 +167,7 @@ class forfait_social(Variable):
         prevoyance_obligatoire_cadre = individu('prevoyance_obligatoire_cadre', period, options = [ADD])
         effectif_entreprise = individu('effectif_entreprise', period)
         complementaire_sante_employeur = individu('complementaire_sante_employeur', period, options = [ADD])
-        taux_reduit = parametres.taux_reduit_1  # TODO taux_reduit_2 in 2016
+        taux_reduit = parametres.taux_reduit_1  # TODO taux_reduit_2 in 2016
         assiette_taux_reduit = (
             - prevoyance_obligatoire_cadre + prise_en_charge_employeur_prevoyance_complementaire
             - complementaire_sante_employeur
@@ -174,9 +178,7 @@ class forfait_social(Variable):
             )
 
 
-
 class salaire_imposable(Variable):
-    base_function = requested_period_added_value
     value_type = float
     unit = 'currency'
     cerfa_field = {  # (f1aj, f1bj, f1cj, f1dj, f1ej)
@@ -216,7 +218,6 @@ class salaire_imposable(Variable):
 
 
 class salaire_net(Variable):
-    base_function = requested_period_added_value
     value_type = float
     entity = Individu
     label = u"Salaires nets d'après définition INSEE"
