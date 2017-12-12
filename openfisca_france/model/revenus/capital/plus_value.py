@@ -58,13 +58,13 @@ class f3si(Variable):
 #                                    # correspond à autre chose en 2009, vérifier 2011,2010
 
 class f3sa(Variable):
+    cerfa_field = u"3SA"
     value_type = int
     entity = FoyerFiscal
-    end = '2009-12-31'
+    end = '2012-12-31'
     definition_period = YEAR
 
-  # TODO: n'existe pas en 2013 et 2012 vérifier 2011 et 2010
-
+  
 class f3sf(Variable):
     value_type = int
     entity = FoyerFiscal
