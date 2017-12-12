@@ -45,7 +45,7 @@
       2011: 0
       2012: 0
     statut_occupation_logement:
-      "2012-01": 2  # Propriétaire (non accédant) du logement
+      "2012-01": proprietaire  # Propriétaire (non accédant) du logement
   output_variables:
     revenus_du_travail:
       2012: 0
@@ -83,7 +83,7 @@
       2011: 0
       2012: 0
     statut_occupation_logement:
-      "2012-01": 2  # Propriétaire (non accédant) du logement
+      "2012-01": proprietaire
   output_variables:
     revenus_du_travail:
       2012: 0
@@ -134,7 +134,7 @@
       2011: 0
       2012: 0
     statut_occupation_logement:
-      "2012-01": 2  # Propriétaire (non accédant) du logement
+      "2012-01": proprietaire
   output_variables:
     revenus_du_travail:
       2012: 0
