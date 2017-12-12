@@ -4,9 +4,8 @@ from __future__ import division
 
 
 import datetime
-
-#%%
 import logging
+import sys
 
 
 from numpy import maximum as max_, minimum as min_, where
@@ -20,8 +19,6 @@ log = logging.getLogger(__name__)
 
 
 def test():
-    import logging
-    import sys
     logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
     reform = create_fusion_rsa_apl_progressive(socle = 600)
     reform_tax_benefit_system = reform(tax_benefit_system)
