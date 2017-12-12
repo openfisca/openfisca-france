@@ -550,9 +550,8 @@ class rev_cat_pv(Variable):
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
         f3vg = foyer_fiscal('f3vg', period)
-        f3vh = foyer_fiscal('f3vh', period)
 
-        return f3vg - f3vh
+        return f3vg
 
 
 class rev_cat_tspr(Variable):
