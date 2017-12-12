@@ -63,7 +63,6 @@ class asi_aspa_base_ressources_individu(Variable):
             'prestation_compensatoire',
             'prime_forfaitaire_mensuelle_reprise_activite',
             'retraite_brute',
-            'revenus_fonciers_minima_sociaux',
             'revenus_stage_formation_pro',
             'rsa_base_ressources_patrimoine_individu',
             'salaire_de_base',
