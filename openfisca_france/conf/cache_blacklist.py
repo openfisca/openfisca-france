@@ -17,4 +17,5 @@ cache_blacklist = set([
     'aides_logement_primo_accedant_loyer_minimal',
     'aides_logement_primo_accedant_plafond_mensualite',
     'aides_logement_primo_accedant_ressources',
+    'ppa_forfait_logement'
 ])
