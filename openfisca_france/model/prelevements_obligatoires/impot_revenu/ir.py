@@ -544,6 +544,12 @@ class rev_cat_pv(Variable):
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
         f3vg = foyer_fiscal('f3vg', period)
+        f3vl = foyer_fiscal('f3vl', period)
+
+        return f3vg + f3vl
+
+    def formula_2014_01_01(foyer_fiscal, period, parameters):
+        f3vg = foyer_fiscal('f3vg', period)
 
         return f3vg
 
@@ -1545,7 +1551,7 @@ class rfr_pv(Variable):
         f3vd = foyer_fiscal.sum(f3vd_i)
         f3vf = foyer_fiscal.sum(f3vf_i)
         
-        return f3sa+ f3vc + f3vd + f3vf + f3vg + f3vi + f3vl + f3vm + f3vp + f3vt + f3vy + f3vz
+        return f3sa + f3vc + f3vd + f3vf + f3vg + f3vi + f3vl + f3vm + f3vp + f3vt + f3vy + f3vz
 
     def formula_2013_01_01(foyer_fiscal, period, parameters): 
         """
@@ -1556,14 +1562,16 @@ class rfr_pv(Variable):
         f3vf_i = foyer_fiscal.members('f3vf', period)
         f3vi_i = foyer_fiscal.members('f3vi', period)
         f3vm = foyer_fiscal('f3vm', period)
+        f3vp = foyer_fiscal('f3vp', period)
         f3vt = foyer_fiscal('f3vt', period)
+        f3vy = foyer_fiscal('f3vy', period)
         f3vz = foyer_fiscal('f3vz', period)
 
         f3vi = foyer_fiscal.sum(f3vi_i)
         f3vd = foyer_fiscal.sum(f3vd_i)
         f3vf = foyer_fiscal.sum(f3vf_i)
         
-        return f3vc + f3vd + f3vf + f3vi + f3vm + f3vt + f3vz
+        return f3vc + f3vd + f3vf + f3vi + f3vm + f3vp + f3vt + f3vy + f3vz
 
 
 class iai(Variable):
@@ -1679,6 +1687,7 @@ class rfr(Variable):
         '''
         rni = foyer_fiscal('rni', period)
         abatnet_retraite_dirigeant_pme = foyer_fiscal('abatnet_retraite_dirigeant_pme', period)
+        abatnet_duree_detention = foyer_fiscal('abatnet_duree_detention', period)
         rfr_pv = foyer_fiscal('rfr_pv', period)
         rfr_cd = foyer_fiscal('rfr_cd', period)
         rfr_rvcm = foyer_fiscal('rfr_rvcm', period)
@@ -1691,7 +1700,7 @@ class rfr(Variable):
         rpns_exon = foyer_fiscal.sum(rpns_exon_i)
         rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
         return (max_(0, rni) + rfr_cd + rfr_pv + rfr_rvcm + rev_cap_lib + rpns_exon + rpns_pvce + abatnet_retraite_dirigeant_pme +
-                f2dm +  microentreprise)
+                abatnet_duree_detention + f2dm +  microentreprise)
         
         # TO CHECK : f3vb after 2015 (abattements sur moins-values = interdits)
 
