@@ -1,5 +1,52 @@
 # Changelog
 
+# 19.0.0
+
+* Améliorations techniques **non rétro-compatibles**
+* Détails :
+  - Change la valeur par défaut de `asi_aspa_condition_nationalite` à `True`
+  - Change la valeur par défaut de `rsa_condition_nationalite` à `True`
+  - Change la valeur par défaut de `nombre_jours_calendaires` à `30`
+  - Change la péride de définition de `retraite_imposable`: cette variable est désormais mensuelle.
+
+<!-- -->
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : toutes.
+* Zones impactées : `/mesures`.
+* Détails :
+  - Corrige le calcul de `uc` (Unités de consommation d'un ménage)
+  - Introduit la variable `revenu_primaire`
+
+<!-- -->
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : toutes.
+* Zones impactées : `/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/`.
+* Détails :
+  - Introduit la nouvelle valeur `Mensuel strict` à l'énum `cotisation_sociale_mode_recouvrement`
+  - Corrige les cotisations sociales pour la fonction publique
+  - Ne compte pas de cotisations sociales à quelqu'un qui n'a pas d'activité salariée.
+
+<!-- -->
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : toutes.
+* Zones impactées :
+  - `/prestations/aides_logement`
+  - `/prestations/prestations_familiales`
+* Détails :
+  - Corrige la base ressources des aides logement et des prestations familiales quand les 2 conjoints ne sont pas dans le même foyer fiscal.
+
+<!-- -->
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : toutes.
+* Zones impactées :
+  - `/revenus/capital/`
+* Détails :
+  - Relie la variable `revenus_capital` aux variables qui lui correspondent sur la déclaration d'impot.
+
 ### 18.11.1
 
 * Évolution du système socio-fiscal.
