@@ -80,12 +80,12 @@ def compare(scenario, tested = False, verbose = False):
             fields[code]['value'] = -fields[code]['value'] 
         
         # Prise en compte des calages dans branche Taxipp d'OpenFisca-france (PROVISOIRE)
-        if fields[code]['openfisca_name'] == "irpp" :
-            fields[code]['openfisca_name'] = "irpp_noncale"
+        #if fields[code]['openfisca_name'] == "irpp" :
+            #fields[code]['openfisca_name'] = "irpp_noncale"
 
     # If the simulator has no fields IINETIR or IRESTIR, we take field IINET and compare it to the irpp variable of OpenFisca (even if these 2 variables are not entirely the same thing)
     if ("IINETIR" not in fields.keys()) and ("IRESTIR" not in fields.keys()) and ("IINET" in fields.keys()): 
-        fields['IINET']['openfisca_name'] = "irpp_noncale"
+        fields['IINET']['openfisca_name'] = "irpp" #irpp_noncale"
 
     if tested:
         compare_variables(fields, simulation, verbose = verbose)
@@ -175,7 +175,7 @@ def main():
 
     year = 2014
     scenario = define_scenario(year)
-    compare(scenario, tested = True)
+    compare(scenario, tested = True, verbose = True)
     return 0
 
 
