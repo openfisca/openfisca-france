@@ -275,3 +275,85 @@
     aide_logement_loyer_seuil_degressivite: 1554.14
     aide_logement_loyer_seuil_suppression: 1828.72
     aide_logement_montant: 217
+
+- name: "Couple avec 2 enfants, avec degressivité sans abattement forfaitaire"
+  period: 2016-09
+  relative_error_margin: 0.01
+  familles:
+    parents: ["parent1", "parent2"]
+    enfants: ["enfant1", "enfant2"]
+    aide_logement_base_ressources: 13500
+  menages:
+    zone_apl: 1
+    loyer: 1650
+    statut_occupation_logement: 4  # Locataire
+  individus:
+    - id: "parent1"
+      age: 40
+    - id: "parent2"
+      age: 37
+    - id: "enfant1"
+      age: 10
+    - id: "enfant2"
+      age: 7
+  output_variables:
+    aide_logement_montant_brut: 218.22
+    aide_logement_montant: 217
+
+- name: "Couple avec 2 enfants, avec degressivité avec abattement forfaitaire"
+  period: 2017-10
+  relative_error_margin: 0.01
+  familles:
+    parents: ["parent1", "parent2"]
+    enfants: ["enfant1", "enfant2"]
+    aide_logement_base_ressources: 13500
+  menages:
+    zone_apl: 1
+    loyer: 1650
+    statut_occupation_logement: 4  # Locataire
+  individus:
+    - id: "parent1"
+      age: 40
+    - id: "parent2"
+      age: 37
+    - id: "enfant1"
+      age: 10
+    - id: "enfant2"
+      age: 7
+  output_variables:
+    aide_logement_montant_brut: 213.22
+    aide_logement_montant: 212.13
+
+- name: "Personne isolée, avec suppression avec abattement forfaitaire"
+  period: 2017-10
+  relative_error_margin: 0.01
+  familles:
+    parents: ["parent1"]
+    aide_logement_base_ressources: 12000
+  menages:
+    zone_apl: 1
+    loyer: 1172
+    statut_occupation_logement: 4  # Locataire
+  individus:
+    - id: "parent1"
+      age: 40
+  output_variables:
+    aide_logement_montant_brut: 0
+    aide_logement_montant: 0
+
+- name: "Personne isolée avec abattement forfaitaire"
+  period: 2017-10
+  relative_error_margin: 0.01
+  familles:
+    parents: ["parent1"]
+    aide_logement_base_ressources: 12000
+  menages:
+    zone_apl: 1
+    loyer: 1054.26
+    statut_occupation_logement: 4  # Locataire
+  individus:
+    - id: "parent1"
+      age: 40
+  output_variables:
+    aide_logement_montant_brut: 42.27
+    aide_logement_montant: 42.02
