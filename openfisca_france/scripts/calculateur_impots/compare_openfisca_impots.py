@@ -78,14 +78,10 @@ def compare(scenario, tested = False, verbose = False):
         # Converting taxes into negative numbers (as in OpenFisca)
         if (fields[code]['code'] == "IINET") | (fields[code]['code'] == "IINETIR") | (fields[code]['code'] == "IRESTIR"):
             fields[code]['value'] = -fields[code]['value'] 
-        
-        # Prise en compte des calages dans branche Taxipp d'OpenFisca-france (PROVISOIRE)
-        #if fields[code]['openfisca_name'] == "irpp" :
-            #fields[code]['openfisca_name'] = "irpp_noncale"
 
     # If the simulator has no fields IINETIR or IRESTIR, we take field IINET and compare it to the irpp variable of OpenFisca (even if these 2 variables are not entirely the same thing)
     if ("IINETIR" not in fields.keys()) and ("IRESTIR" not in fields.keys()) and ("IINET" in fields.keys()): 
-        fields['IINET']['openfisca_name'] = "irpp" #irpp_noncale"
+        fields['IINET']['openfisca_name'] = "irpp"
 
     if tested:
         compare_variables(fields, simulation, verbose = verbose)
