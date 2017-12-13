@@ -67,7 +67,7 @@ def main():
                     requete(1, i, year, var)
             t = 0
 
-    for column in tax_benefit_system.column_by_name.itervalues(): # On teste les variables une par une
+    for column in tax_benefit_system.variables.itervalues(): # On teste les variables une par une
         var = column.cerfa_field
         if isinstance(var, dict):
             for k,v in var.iteritems():

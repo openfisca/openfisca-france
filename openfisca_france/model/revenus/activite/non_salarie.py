@@ -1658,7 +1658,6 @@ class tns_avec_employe(Variable):
 class tns_benefice_exploitant_agricole(Variable):
     value_type = float
     entity = Individu
-    set_input = set_input_dispatch_by_period
     label = u"Dernier bénéfice agricole"
     definition_period = YEAR
 

@@ -115,7 +115,6 @@ class contribution_supplementaire_apprentissage(Variable):
 
 
 class cotisations_employeur_main_d_oeuvre(Variable):
-    base_function = requested_period_added_value
     value_type = float
     entity = Individu
     label = u"Cotisation sociales employeur main d'oeuvre"

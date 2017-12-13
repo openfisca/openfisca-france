@@ -100,7 +100,7 @@ def check_1_parent_2_enfants_1_column(column_name, year):
 
 
 def test_1_parent_2_enfants_1_column():
-    for column_name, column in tax_benefit_system.column_by_name.iteritems():
+    for column_name, column in tax_benefit_system.variables.iteritems():
         if not column.survey_only:
             for year in range(2006, 2015):
                 yield check_1_parent_2_enfants_1_column, column_name, year

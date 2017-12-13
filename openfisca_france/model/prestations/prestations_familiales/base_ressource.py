@@ -4,23 +4,32 @@ from __future__ import division
 
 from numpy import int32, logical_or as or_
 
+
 from openfisca_france.model.base import *  # noqa analysis:ignore
+
 
 class autonomie_financiere(Variable):
     value_type = bool
     entity = Individu
     label = u"Indicatrice d'autonomie financière vis-à-vis des prestations familiales"
     definition_period = MONTH
+    reference = [
+        'https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000006750602&cidTexte=LEGITEXT000006073189',
+        'https://www.service-public.fr/particuliers/vosdroits/F16947'
+        ]
 
     def formula(individu, period, parameters):
-        salaire_net = individu('salaire_net', period.start.period('month', 6).offset(-6), options = [ADD])
+        # D'après service-public.fr, la condition de dépassement du salaire plafonds n'est pas évalué de la même manière suivant si l'enfant est étudiant ou salarié/apprenti/stagiaire.
+        salaire_net_mensualise = individu(
+            'salaire_net', period.start.period('month', 6).offset(-6), options = [ADD]
+            ) / 6
+
         _P = parameters(period)
 
         nbh_travaillees = 169
         smic_mensuel_brut = _P.cotsoc.gen.smic_h_b * nbh_travaillees
 
-        # Oui on compare du salaire net avec un bout du SMIC brut ...
-        return salaire_net / 6 >= (_P.prestations.prestations_familiales.af.seuil_rev_taux * smic_mensuel_brut)
+        return salaire_net_mensualise >= (_P.prestations.prestations_familiales.af.seuil_rev_taux * smic_mensuel_brut)
 
 
 class prestations_familiales_enfant_a_charge(Variable):
@@ -46,6 +55,7 @@ class prestations_familiales_enfant_a_charge(Variable):
 
 class prestations_familiales_base_ressources_individu(Variable):
     value_type = float
+    is_period_size_independent = True
     entity = Individu
     label = u"Base ressource individuelle des prestations familiales"
     definition_period = MONTH
@@ -113,8 +123,8 @@ class rev_coll(Variable):
 
     def formula(foyer_fiscal, period):
         # Quand rev_coll est calculé sur une année glissante, retraite_titre_onereux_net et pensions_alimentaires_versees sont calculés sur l'année légale correspondante.
-        retraite_titre_onereux_net = foyer_fiscal('retraite_titre_onereux_net', period.offset('first-of'))
-        pensions_alimentaires_versees = foyer_fiscal('pensions_alimentaires_versees', period.offset('first-of'))
+        retraite_titre_onereux_net = foyer_fiscal('retraite_titre_onereux_net', period)
+        pensions_alimentaires_versees = foyer_fiscal('pensions_alimentaires_versees', period)
         rev_cap_lib = foyer_fiscal('rev_cap_lib', period, options = [ADD])
         rev_cat_rvcm = foyer_fiscal('rev_cat_rvcm', period)
         abat_spe = foyer_fiscal('abat_spe', period)
@@ -125,8 +135,18 @@ class rev_coll(Variable):
         rev_cat_pv = foyer_fiscal('rev_cat_pv', period)
 
         # TODO: ajouter les revenus de l'étranger etr*0.9
-        # pensions_alimentaires_versees is negative since it is paid by the declaree
-        return (retraite_titre_onereux_net + rev_cap_lib + rev_cat_rvcm + fon + pensions_alimentaires_versees - f7ga - f7gb - f7gc - abat_spe + rev_cat_pv)
+        return (
+            + fon
+            + pensions_alimentaires_versees  # négatif
+            + retraite_titre_onereux_net
+            + rev_cap_lib
+            + rev_cat_pv
+            + rev_cat_rvcm
+            - abat_spe
+            - f7ga
+            - f7gb
+            - f7gc
+            )
 
 
 class prestations_familiales_base_ressources(Variable):
@@ -149,8 +169,16 @@ class prestations_familiales_base_ressources(Variable):
         ressources_i = (not_(enfant_i) + enfant_a_charge_i) * base_ressources_i
         base_ressources_i_total = famille.sum(ressources_i)
 
+        # It would be nicer to be able to write famille.demandeur.has_role(FoyerFiscal.DECLARANT_PRINCIPAL), but it doesn't work as expected at the moment
+        declarant_principal_i = famille.members.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
+        demandeur_declarant_principal = famille.value_from_person(declarant_principal_i, Famille.DEMANDEUR)
+        conjoint_declarant_principal = famille.value_from_person(declarant_principal_i, Famille.CONJOINT)
+
         # Revenus du foyer fiscal
-        rev_coll = famille.demandeur.foyer_fiscal('rev_coll', annee_fiscale_n_2)
+        rev_coll = (
+            famille.demandeur.foyer_fiscal('rev_coll', annee_fiscale_n_2) *  demandeur_declarant_principal +
+            famille.conjoint.foyer_fiscal('rev_coll', annee_fiscale_n_2) * conjoint_declarant_principal
+            )
 
         base_ressources = base_ressources_i_total + rev_coll
         return base_ressources
