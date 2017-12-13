@@ -320,7 +320,7 @@
       age: 10
     - id: "enfant2"
       age: 7
-  output_variables:    
+  output_variables:
     aide_logement_montant_brut: 213.22
     aide_logement_montant: 212.13
 
