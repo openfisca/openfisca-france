@@ -509,7 +509,12 @@ class retraite_titre_onereux_net(Variable):
         f1dw = foyer_fiscal('f1dw', period)
         abatviag = parameters(period).impot_revenu.tspr.abatviag
 
-        return round_(abatviag.taux1 * f1aw + abatviag.taux2 * f1bw + abatviag.taux3 * f1cw + abatviag.taux4 * f1dw)
+        return round_(
+            + abatviag.taux1 * f1aw
+            + abatviag.taux2 * f1bw
+            + abatviag.taux3 * f1cw
+            + abatviag.taux4 * f1dw
+            )
 
 
 class traitements_salaires_pensions_rentes(Variable):
@@ -528,7 +533,12 @@ class traitements_salaires_pensions_rentes(Variable):
         retraite_titre_onereux_net = individu.foyer_fiscal('retraite_titre_onereux_net', period.offset('first-of'))
         retraite_titre_onereux_net_declarant1 = retraite_titre_onereux_net * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
 
-        return revenu_assimile_salaire_apres_abattements + revenu_assimile_pension_apres_abattements - abattement_salaires_pensions + retraite_titre_onereux_net_declarant1
+        return (
+            + revenu_assimile_salaire_apres_abattements
+            + revenu_assimile_pension_apres_abattements
+            + retraite_titre_onereux_net_declarant1
+            - abattement_salaires_pensions
+            )
 
 
 class rev_cat_pv(Variable):
@@ -1575,6 +1585,7 @@ class irpp(Variable):
         P = parameters(period).impot_revenu.recouvrement
 
         pre_result = iai - credits_impot + cehr
+
         return (
             (iai > P.seuil) * (
                 (pre_result < P.min) * (pre_result > 0) * iai * 0 +
@@ -1703,9 +1714,7 @@ class rev_cap_bar(Variable):
         # elif year > 2011:
         #     return f2dc + f2gr + f2ch + f2ts + f2go + f2tr + f2fu - avf + (f2da + f2ee)
         return (f2dc + f2gr + f2ch + f2ts + f2go * majGO + f2tr + f2fu - avf + (f2da + f2ee) * finpfl) / 12
-
-
-    # We add f2da an f2ee to allow for comparaison between years
+        # We add f2da an f2ee to allow for comparaison between years
 
 
 class rev_cap_lib(Variable):

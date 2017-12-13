@@ -153,7 +153,6 @@ class rmi(Variable):
 
 
 class rsa_activite(Variable):
-    base_function = requested_period_added_value
     value_type = float
     entity = Famille
     label = u"Revenu de solidarité active - activité"
