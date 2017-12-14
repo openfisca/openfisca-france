@@ -138,7 +138,7 @@
 
 - name: "Salarie un seul mois (novembre) - recouvrement fin d'année"
   period: 2017
-  absolute_error_margin: 0.01
+  absolute_error_margin: 0.1
   input_variables:
     salaire_de_base: # un salaire en 2017
       2017-01: 0
@@ -158,6 +158,7 @@
     code_postal_entreprise: "75001"
     categorie_salarie: prive_non_cadre
     contrat_de_travail_debut: "2017-11-01"
+    contrat_de_travail_fin: "2017-11-30"
   output_variables:
     allegement_fillon:
       2017-01: 0
@@ -175,7 +176,7 @@
 
 - name: "Salarie un seul mois (novembre) - recouvrement progressif"
   period: 2017
-  absolute_error_margin: 0.01
+  absolute_error_margin: 0.1
   input_variables:
     salaire_de_base: # un salaire en 2017
       2017-01: 0
@@ -195,6 +196,7 @@
     code_postal_entreprise: "75001"
     categorie_salarie: prive_non_cadre
     contrat_de_travail_debut: "2017-11-01"
+    contrat_de_travail_fin: "2017-11-30"
   output_variables:
     allegement_fillon:
       2017-01: 0
@@ -212,7 +214,7 @@
 
 - name: "Salarie un seul mois (novembre) - recouvrement anticipe"
   period: 2017
-  absolute_error_margin: 0.01
+  absolute_error_margin: 0.1
   input_variables:
     salaire_de_base: # un salaire en 2017
       2017-01: 0
@@ -232,6 +234,7 @@
     code_postal_entreprise: "75001"
     categorie_salarie: prive_non_cadre
     contrat_de_travail_debut: "2017-11-01"
+    contrat_de_travail_fin: "2017-11-30"
   output_variables:
     allegement_fillon:
       2017-01: 0
@@ -249,7 +252,7 @@
 
 - name: "Salarie un seul mois (décembre) - recouvrement fin d'année"
   period: 2017
-  absolute_error_margin: 0.01
+  absolute_error_margin: 0.1
   input_variables:
     salaire_de_base: # un salaire en 2017
       2017-01: 0
@@ -286,7 +289,7 @@
 
 - name: "Salarie un seul mois (décembre) - recouvrement progressif"
   period: 2017
-  absolute_error_margin: 0.01
+  absolute_error_margin: 0.1
   input_variables:
     salaire_de_base: # un salaire en 2017
       2017-01: 0
@@ -323,7 +326,7 @@
 
 - name: "Salarie un seul mois (décembre) - recouvrement anticipe"
   period: 2017
-  absolute_error_margin: 0.01
+  absolute_error_margin: 0.1
   input_variables:
     salaire_de_base: # un salaire en 2017
       2017-01: 0
