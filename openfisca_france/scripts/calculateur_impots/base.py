@@ -633,10 +633,8 @@ def transform_scenario_to_tax_calculator_inputs(scenario):
                 cerfa_field = column.cerfa_field
                 assert cerfa_field is not None and isinstance(cerfa_field, dict), column_code
                 impots_arguments[cerfa_field[personne_a_charge_index]] = value
-
-        if foyer_fiscal.pop('caseT', False):
-            impots_arguments['0BT'] = '1'
-
+        
+        
         for column_code, value in foyer_fiscal.iteritems():
             if column_code == 'id':
                 continue
@@ -646,9 +644,38 @@ def transform_scenario_to_tax_calculator_inputs(scenario):
                 impots_arguments['7UE'] = str(value)  # bug dans le site des impots
             if column_code == 'f7vc':
                 impots_arguments['7VD'] = str(value)  # bug dans le site des impots
+            if column_code == 'nbF':
+                impots_arguments['0CF'] = int(value)
+            if column_code == 'nbG':
+                impots_arguments['0CG'] = int(value)
+            if column_code == 'nbH':
+                impots_arguments['0CH'] = int(value)
+            if column_code == 'nbI':
+                impots_arguments['0CI'] = int(value)
+            if column_code == 'nbR':
+                impots_arguments['0CR'] = int(value)
+            if column_code == 'nbJ':
+                impots_arguments['0DJ'] = int(value)
+            if column_code == 'nbN':
+                impots_arguments['0DN'] = int(value)
+            if (column_code == 'caseF') & (value == 1):
+                impots_arguments['0F'] = '1'
+            if (column_code == 'caseG') & (value == 1):
+                impots_arguments['0AG'] = '1'
+            if (column_code == 'caseL') & (value == 1):
+                impots_arguments['0AL'] = '1'
+            if (column_code == 'caseP') & (value == 1):
+                impots_arguments['0AP'] = '1'
+            if (column_code == 'caseS') & (value == 1):
+                impots_arguments['0AS'] = '1'
+            if (column_code == 'caseW') & (value == 1):
+                impots_arguments['0AW'] = '1'
+            if (column_code == 'caseT') & (value == 1):
+                impots_arguments['0BT'] = '1'
             column = tax_benefit_system.variables[column_code]
             cerfa_field = column.cerfa_field
             assert cerfa_field is not None and isinstance(cerfa_field, basestring), column_code
-            impots_arguments[cerfa_field] = int(value) if isinstance(value, bool) else value
+            if ("nb" not in column_code) and ("case" not in column_code):
+                impots_arguments[cerfa_field] = int(value) if isinstance(value, bool) else value
 
     return impots_arguments
