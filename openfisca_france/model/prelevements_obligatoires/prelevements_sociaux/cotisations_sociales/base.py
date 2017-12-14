@@ -21,18 +21,22 @@ def apply_bareme_for_relevant_type_sal(
     assert plafond_securite_sociale is not None
 
     def iter_cotisations():
-        for type_sal_name in [member.name for member in TypesCategorieSalarie]:
-            if type_sal_name not in bareme_by_type_sal_name:  # to deal with public_titulaire_militaire
+        for type_sal in TypesCategorieSalarie:
+            type_sal_name = type_sal.name
+            try:
+                node = bareme_by_type_sal_name[type_sal_name]
+            except KeyError:
+                continue  # to deal with public_titulaire_militaire
+            try:
+                bareme = node[bareme_name]
+            except KeyError:
                 continue
+            yield bareme.calc(
+                base * (categorie_salarie == type_sal),
+                factor = plafond_securite_sociale,
+                round_base_decimals = round_base_decimals,
+                )
 
-            node = bareme_by_type_sal_name[type_sal_name]
-            if bareme_name in node._children:
-                bareme = getattr(node, bareme_name)
-                yield bareme.calc(
-                    base * (categorie_salarie == TypesCategorieSalarie[type_sal_name]),
-                    factor = plafond_securite_sociale,
-                    round_base_decimals = round_base_decimals,
-                    )
     return - sum(iter_cotisations())
 
 

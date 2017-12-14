@@ -866,7 +866,8 @@ class zone_apl(Variable):
             )
         return select(
             (zone == 1, zone == 2, zone == 3),
-            (TypesZoneApl.zone_1, TypesZoneApl.zone_2, TypesZoneApl.zone_3)
+            # The .index is not striclty necessary, but it improves perfomances by avoiding a later encoding
+            (TypesZoneApl.zone_1.index, TypesZoneApl.zone_2.index, TypesZoneApl.zone_3.index)
         )
 
 
