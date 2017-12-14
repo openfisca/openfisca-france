@@ -123,7 +123,7 @@ class coefficient_proratisation(Variable):
         # coefficient = (contrat_de_travail >= 2) * (contrat_de_travail <= 3) * (
         #     forfait_heures_remunerees_volume / 45.7 * 52 / 12
         #     ) +
-        return coefficient
+        return (jours_ouvres_ce_mois_incomplet > 0) * coefficient
 
 
 class credit_impot_competitivite_emploi(Variable):
