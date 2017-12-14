@@ -17,7 +17,7 @@ def test_coefficient_proratisation_only_contract_periods():
     contrat_de_travail_debut='2017-11-1',
     allegement_fillon_mode_recouvrement=u'progressif'))
   simulation = scenario.new_simulation()
-  assert_equal(simulation.calculate_add('coefficient_proratisation','2017-11'),1)
-  assert_equal(simulation.calculate_add('coefficient_proratisation','2017-12'),1)
-  assert_equal(simulation.calculate_add('coefficient_proratisation','2017-10'),0)
+  assert_equal(simulation.calculate('coefficient_proratisation','2017-11'),1)
+  assert_equal(simulation.calculate('coefficient_proratisation','2017-12'),1)
+  assert_equal(simulation.calculate('coefficient_proratisation','2017-10'),0)
   assert_equal(simulation.calculate_add('coefficient_proratisation','2017'),2)
