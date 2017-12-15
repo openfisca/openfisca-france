@@ -158,7 +158,7 @@
     code_postal_entreprise: "75001"
     categorie_salarie: prive_non_cadre
     contrat_de_travail_debut: "2017-11-01"
-    contrat_de_travail_fin: "2017-11-30"
+    contrat_de_travail_fin: "2017-12-01"
   output_variables:
     allegement_fillon:
       2017-01: 0
@@ -196,7 +196,7 @@
     code_postal_entreprise: "75001"
     categorie_salarie: prive_non_cadre
     contrat_de_travail_debut: "2017-11-01"
-    contrat_de_travail_fin: "2017-11-30"
+    contrat_de_travail_fin: "2017-12-01"
   output_variables:
     allegement_fillon:
       2017-01: 0
@@ -234,7 +234,7 @@
     code_postal_entreprise: "75001"
     categorie_salarie: prive_non_cadre
     contrat_de_travail_debut: "2017-11-01"
-    contrat_de_travail_fin: "2017-11-30"
+    contrat_de_travail_fin: "2017-12-01"
   output_variables:
     allegement_fillon:
       2017-01: 0

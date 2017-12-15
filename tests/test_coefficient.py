@@ -9,8 +9,8 @@ from openfisca_france import FranceTaxBenefitSystem
 def test_coefficient_proratisation_only_contract_periods():
   tax_benefit_system = FranceTaxBenefitSystem()
   scenario = tax_benefit_system.new_scenario()
-  scenario.init_single_entity(period='2017-11',
-    parent1=dict(salaire_de_base=2300,
+  scenario.init_single_entity(period='2017',
+    parent1=dict(salaire_de_base={'2017-11':2300},
     effectif_entreprise=1,
     code_postal_entreprise="75001",
     categorie_salarie=u'prive_non_cadre',

@@ -373,7 +373,6 @@ def compute_allegement_fillon(individu, period, parameters):
     ratio_smic_salaire = smic_proratise / (assiette + 1e-16)
     # règle d'arrondi: 4 décimales au dix-millième le plus proche
     taux_fillon = round_(tx_max * min_(1, max_(seuil * ratio_smic_salaire - 1, 0) / (seuil - 1)), 4)
-
     # Montant de l'allegment
     return taux_fillon * assiette
 
