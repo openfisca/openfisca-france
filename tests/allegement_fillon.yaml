@@ -247,8 +247,8 @@
       2017-08: 0
       2017-09: 0
       2017-10: 0
-      2017-11: 0
-      2017-12: 32.04
+      2017-11: 32.04
+      2017-12: 0
 
 - name: "Salarie un seul mois (décembre) - recouvrement fin d'année"
   period: 2017
