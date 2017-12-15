@@ -15,7 +15,7 @@ def test_coefficient_proratisation_only_contract_periods():
     code_postal_entreprise="75001",
     categorie_salarie=u'prive_non_cadre',
     contrat_de_travail_debut='2017-11-1',
-    contrat_de_travail_fin='2017-11-30',
+    contrat_de_travail_fin='2017-12-01',
     allegement_fillon_mode_recouvrement=u'progressif'))
   simulation = scenario.new_simulation()
   assert_equal(simulation.calculate('coefficient_proratisation','2017-11'),1)
