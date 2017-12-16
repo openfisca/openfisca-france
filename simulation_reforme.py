@@ -20,8 +20,8 @@ def init_profile(scenario):
         period = 'year:2017:6',
         parent1 = dict(
             age = 40,
-            retraite_brute = 16650*6,
-            categorie_salarie = "prive_non_cadre", # prive_non_cadre ou public_titulaire_etat
+            retraite_brute = 30000*6,
+            # categorie_salarie = "prive_non_cadre", # prive_non_cadre ou public_titulaire_etat
             statut_marital = 2,
             ),
         # parent2 = dict(
@@ -69,7 +69,8 @@ csg_ret = reform_simulation.calculate("csg_deductible_retraite", "2019-01")
 csg_ret/reform_simulation.calculate("retraite_brute", "2019-01")
 csg_imp = reform_simulation.calculate("csg_imposable_retraite", "2019-01")
 csg_imp/reform_simulation.calculate("retraite_brute", "2019-01")
-
+crds = reform_simulation.calculate("crds", "2018")
+crds
 
 
 

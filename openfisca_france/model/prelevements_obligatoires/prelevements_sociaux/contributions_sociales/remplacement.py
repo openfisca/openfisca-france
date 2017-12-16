@@ -51,12 +51,6 @@ class taux_csg_remplacement_2(Variable):
         
         taux = (rfr < seuil_exoneration)*1 + (rfr >=seuil_exoneration)*(rfr < seuil_taux_reduit)*2 + (rfr>=seuil_taux_reduit)*3
         
-        print(nbptr)
-        print(rfr)
-        print(seuil_exoneration)
-        print(seuil_taux_reduit)
-        print(taux)
-        
         return taux
         
 
@@ -76,7 +70,8 @@ class csg_deductible_chomage(Variable):
     def formula(individu, period, parameters):
         chomage_brut = individu('chomage_brut', period)
         csg_imposable_chomage = individu('csg_imposable_chomage', period)
-        taux_csg_remplacement = individu('taux_csg_remplacement', period)
+        # taux_csg_remplacement = individu('taux_csg_remplacement', period)
+        taux_csg_remplacement = individu.foyer_fiscal('taux_csg_remplacement_2',period.this_year,max_nb_cycles = 0)
         parameters = parameters(period.start)
         montant_csg = montant_csg_crds(
             base_avec_abattement = chomage_brut,
@@ -107,6 +102,7 @@ class csg_imposable_chomage(Variable):
 
     def formula(individu, period, parameters):
         chomage_brut = individu('chomage_brut', period)
+        taux_csg_remplacement = individu.foyer_fiscal('taux_csg_remplacement_2',period.this_year,max_nb_cycles = 0)
         parameters = parameters(period.start)
 
         montant_csg = montant_csg_crds(
@@ -236,10 +232,13 @@ class csg_imposable_retraite(Variable):
 
     def formula(individu, period, parameters):
         retraite_brute = individu('retraite_brute', period)
+        taux_csg_remplacement = individu.foyer_fiscal('taux_csg_remplacement_2',period.this_year,max_nb_cycles = 0)
         law = parameters(period.start)
 
         montant_csg = montant_csg_crds(
             base_sans_abattement = retraite_brute,
+            indicatrice_taux_plein = (taux_csg_remplacement == 3),
+            indicatrice_taux_reduit = (taux_csg_remplacement == 2),
             law_node = law.prelevements_sociaux.contributions.csg.retraite.imposable,
             plafond_securite_sociale = law.cotsoc.gen.plafond_securite_sociale,
             )

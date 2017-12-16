@@ -45,7 +45,7 @@ def modify_parameters(parameters):
     # - hausse de la CSG sur les revenus d'activité
     parameters.prelevements_sociaux.contributions.csg.activite.deductible.taux.update(start="2018-01", value=0.068)
     # - hausse de la CSG sur les retraites
-    parameters.prelevements_sociaux.contributions.csg.retraite.deductible.taux_plein.update(start="2018-01", value=0.068)
+    parameters.prelevements_sociaux.contributions.csg.retraite.deductible.taux_plein.update(start="2018-01", value=0.059)
     # - suppression de la cotisation salariale d'assurance chomage en deux temps :
     # - suppression de la cotisation salariale maladie
     parameters.cotsoc.children['cotisations_salarie'].children['prive_non_cadre'].children['maladie'][0].rate.update(start = reform_period, value=0.0)
