@@ -121,4 +121,4 @@ class taxe_habitation(Variable):
         taux_degrevement = menage('taux_degrevement_taxe_habitation', period)
         th = menage('cotisation_taxe_habitation',period)
 
-        return th*(1-taux_degrevement)
+        return th*(1-taux_degrevement)*(exonere_taxe_habitation)

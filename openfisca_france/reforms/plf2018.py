@@ -24,9 +24,9 @@ def modify_parameters(parameters):
     ########################################
     # Article 3 du PLF : dégrèvement de TH :
     ########################################
-    parameters.th.degrevement.taux.update(period=reform_period, value=0.3)
-    parameters.th.degrevement.taux.update(period="2019", value=0.65)
-    parameters.th.degrevement.taux.update(period="2020", value=1.0)
+    parameters.th.degrevement.taux.update(start="2018-01", value=0.3)
+    parameters.th.degrevement.taux.update(start="2019-01", value=0.65)
+    parameters.th.degrevement.taux.update(start="2020-01", value=1.0)
     #########################################
     # Article 63 du PLF : dégrèvement de TH :
     #########################################
@@ -34,9 +34,9 @@ def modify_parameters(parameters):
     parameters.prestations.minima_sociaux.rsa.montant_de_base_du_rsa.update(start="2018-01", value=546.25)
     parameters.prestations.minima_sociaux.ppa.pente.update(start="2018-01", value=0.61)
     # # création du surbonus de prime d'activité
-    parameters.prestations.minima_sociaux.ppa.sur_bonification.montant_sur_bonification_max.update(period="2019", value=(20))
-    parameters.prestations.minima_sociaux.ppa.sur_bonification.montant_sur_bonification_max.update(period="2020", value=(40))
-    parameters.prestations.minima_sociaux.ppa.sur_bonification.montant_sur_bonification_max.update(period="2021", value=(60))
+    parameters.prestations.minima_sociaux.ppa.sur_bonification.montant_sur_bonification_max.update(start="2019", value=(20))
+    parameters.prestations.minima_sociaux.ppa.sur_bonification.montant_sur_bonification_max.update(start="2020", value=(40))
+    parameters.prestations.minima_sociaux.ppa.sur_bonification.montant_sur_bonification_max.update(start="2021", value=(60))
     
     
     #################################################
@@ -61,9 +61,23 @@ def modify_parameters(parameters):
     parameters.cotsoc.children['cotisations_salarie'].children['public_titulaire_etat'].children['pension'][0].rate.update(start = "2019-01", value=0.1028-0.0171) #vérifier la date d'entrée en vigueur.
     parameters.cotsoc.children['cotisations_salarie'].children['public_titulaire_etat'].children['pension'][0].rate.update(start = "2020-01", value=0.1055-0.0171) #vérifier la date d'entrée en vigueur.
 
-    # A voir si on le met : la réforme du minimum vieillesse
-    parameters.prestations.minima_sociaux.aspa.montant_annuel_seul.update(start = "2018-01", value=(9638.42+100*12))
-    parameters.prestations.minima_sociaux.aspa.montant_annuel_couple.update(start = "2019-01", value=(14963.65+100*12))
+    #######################################################################
+    # Article 28 du PLFSS : revalorisation du minimum vieillesse sur 3 ans:
+    #######################################################################
+    parameters.prestations.minima_sociaux.aspa.montant_annuel_seul.update(start = "2018-04-01", value=(9638.42+30*12))
+    parameters.prestations.minima_sociaux.aspa.plafond_ressources_seul.update(start = "2018-04-01", value=(9638.42+30*12))
+    parameters.prestations.minima_sociaux.aspa.montant_annuel_seul.update(start = "2019-01-01", value=(9638.42+65*12))
+    parameters.prestations.minima_sociaux.aspa.plafond_ressources_seul.update(start = "2019-01-01", value=(9638.42+65*12))
+    parameters.prestations.minima_sociaux.aspa.montant_annuel_seul.update(start = "2020-01-01", value=(9638.42+100*12))
+    parameters.prestations.minima_sociaux.aspa.plafond_ressources_seul.update(start = "2020-01-01", value=(9638.42+100*12))
+    
+    parameters.prestations.minima_sociaux.aspa.montant_annuel_couple.update(start = "2018-04-01", value=(14963.65+46.6*12))
+    parameters.prestations.minima_sociaux.aspa.plafond_ressources_couple.update(start = "2018-04-01", value=(14963.65+46.6*12))
+    parameters.prestations.minima_sociaux.aspa.montant_annuel_couple.update(start = "2019-01-01", value=(14963.65+101*12))
+    parameters.prestations.minima_sociaux.aspa.plafond_ressources_couple.update(start = "2019-01-01", value=(14963.65+101*12))
+    parameters.prestations.minima_sociaux.aspa.montant_annuel_couple.update(start = "2020-01-01", value=(14963.65+155.2*12))
+    parameters.prestations.minima_sociaux.aspa.plafond_ressources_couple.update(start = "2020-01-01", value=(14963.65+155.2*12))
+    
 
     return parameters
 

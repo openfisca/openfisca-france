@@ -19,17 +19,17 @@ def init_profile(scenario):
     scenario.init_single_entity(
         period = 'year:2017:6',
         parent1 = dict(
-            age = 40,
-            retraite_brute = 30000*6,
+            age = 70,
+            retraite_brute = 2074*12*6,
             # categorie_salarie = "prive_non_cadre", # prive_non_cadre ou public_titulaire_etat
-            statut_marital = 2,
+            statut_marital = 1,
             ),
-        # parent2 = dict(
-        #     age = 40,
-        #     salaire_de_base = 900*12*6,
-        #     categorie_salarie = "prive_non_cadre", # prive_non_cadre ou public_titulaire_etat
-        #     statut_marital = 1,
-        #     ),
+        parent2 = dict(
+            age = 70,
+            retraite_brute = 2074*12*6,
+            # categorie_salarie = "prive_non_cadre", # prive_non_cadre ou public_titulaire_etat
+            statut_marital = 1,
+            ),
         # enfants = [
         #     dict(age = 9),
         #     dict(age = 10),
@@ -37,7 +37,7 @@ def init_profile(scenario):
         #     dict(age = 14),
         # ],
         menage = dict(loyer = 5000, # Annual basis
-            cotisation_taxe_habitation = -621.*6,
+            cotisation_taxe_habitation = -624.*6,
             ),
         # foyer_fiscal= dict(taux_csg_remplacement_2 = 3),
         )
@@ -59,20 +59,7 @@ reference_scenario = init_profile(tax_benefit_system.new_scenario())
 #Simulate the standard scenario
 reference_simulation = reference_scenario.new_simulation()
 
-rfr = reform_simulation.calculate("rfr", "2018")
-rfr
-nbptr = reform_simulation.calculate("nbptr", "2018")
-nbptr
-tx_csg_ret = reform_simulation.calculate("taux_csg_remplacement_2", "2019")
-tx_csg_ret
-csg_ret = reform_simulation.calculate("csg_deductible_retraite", "2019-01")
-csg_ret/reform_simulation.calculate("retraite_brute", "2019-01")
-csg_imp = reform_simulation.calculate("csg_imposable_retraite", "2019-01")
-csg_imp/reform_simulation.calculate("retraite_brute", "2019-01")
-crds = reform_simulation.calculate("crds", "2018")
-crds
-
-
+retraite_nette = reference_simulation.calculate("retraite_nette", "2021-01")
 
 
 # Calcul des résultats
@@ -84,30 +71,47 @@ rd_av_2019 = reference_simulation.calculate('revenu_disponible', '2019')/12
 rd_ap_2019 = reform_simulation.calculate('revenu_disponible', '2019')/12
 gain_2019 = -(rd_av_2019-rd_ap_2019)
 
+rd_av_2020 = reference_simulation.calculate('revenu_disponible', '2020')/12
+rd_ap_2020 = reform_simulation.calculate('revenu_disponible', '2020')/12
+gain_2020 = -(rd_av_2020-rd_ap_2020)
+
 rd_av_2021 = reference_simulation.calculate('revenu_disponible', '2021')/12
 rd_ap_2021 = reform_simulation.calculate('revenu_disponible', '2021')/12
 gain_2021 = -(rd_av_2021-rd_ap_2021)
 
+rd_av_2022 = reference_simulation.calculate('revenu_disponible', '2022')/12
+rd_ap_2022 = reform_simulation.calculate('revenu_disponible', '2022')/12
+gain_2022 = -(rd_av_2022-rd_ap_2022)
+
 print(gain_2018)
 print(gain_2019)
+print(gain_2020)
 print(gain_2021)
-
-# a exporter en JSON : gain_2018 et gain_2019
-
-# Tests pour voir sir la bascule de cotisation CSG est bien faite.
-print(reform_simulation.calculate("salaire_net","2018-01")-reference_simulation.calculate("salaire_net","2018-01"))
-print(reform_simulation.calculate("salaire_net","2019-01")-reference_simulation.calculate("salaire_net","2019-01"))
-print(reform_simulation.calculate("salaire_net","2020-01")-reference_simulation.calculate("salaire_net","2020-01"))
-print(reform_simulation.calculate("salaire_net","2021-01")-reference_simulation.calculate("salaire_net","2021-01"))
-print(reform_simulation.calculate("salaire_net","2022-01")-reference_simulation.calculate("salaire_net","2022-01"))
+print(gain_2022)
+# 
+# # a exporter en JSON : gain_2018 et gain_2019
+# 
+# # Tests pour voir sir la bascule de cotisation CSG est bien faite.
+# print(reform_simulation.calculate("salaire_net","2018-01")-reference_simulation.calculate("salaire_net","2018-01"))
+# print(reform_simulation.calculate("salaire_net","2019-01")-reference_simulation.calculate("salaire_net","2019-01"))
+# print(reform_simulation.calculate("salaire_net","2020-01")-reference_simulation.calculate("salaire_net","2020-01"))
+# print(reform_simulation.calculate("salaire_net","2021-01")-reference_simulation.calculate("salaire_net","2021-01"))
+# print(reform_simulation.calculate("salaire_net","2022-01")-reference_simulation.calculate("salaire_net","2022-01"))
 
 # taux_csg_remplacement
 
 # Variables after reform
 # cotis_th_ap = reform_simulation.calculate("taxe_habitation", "2019")
 # traitement_indiciaire_brut = reform_simulation.calculate("traitement_indiciaire_brut", "2019")
-# th_av = reference_simulation.calculate("taxe_habitation", "2018")
-# th_ap = reform_simulation.calculate("taxe_habitation", "2018")
+
+mv_av = reference_simulation.calculate("aspa", "2021-01")
+mv_ap = reform_simulation.calculate("aspa", "2021-01")
+mv_av
+mv_ap
+th_av = reference_simulation.calculate("taxe_habitation", "2021")
+exo_th = reference_simulation.calculate("exonere_taxe_habitation", "2021")
+th_av
+# th_ap = reform_simulation.calculate("taxe_habitation", "2021")
 # taux_degrev_th_ap = reform_simulation.calculate("degrevement_taxe_habitation", "2018")
 # s_brut_ap = reform_simulation.calculate("salaire_de_base","2018-01")
 # cot_soc_ap = reform_simulation.calculate("cotisations_salariales","2018-12")
@@ -118,8 +122,8 @@ print(reform_simulation.calculate("salaire_net","2022-01")-reference_simulation.
 # crds_ap  = reform_simulation.calculate("crds","2018")
 # net_ap = reform_simulation.calculate('salaire_net','2018-12')
 # rfr_ap = reform_simulation.calculate('rfr','2018')
-# ir_ap = reform_simulation.calculate('impots_directs', '2018')
-# ir_av = reference_simulation.calculate('impots_directs', '2018')
+# ir_ap = reform_simulation.calculate('impots_directs', '2019')
+# ir_av = reference_simulation.calculate('impots_directs', '2019')
 # ir_ap = reform_simulation.calculate('salaire_imposable', '2018-01')
 # ir_av = reference_simulation.calculate('salaire_imposable', '2018-01')
 # presta_ap = reform_simulation.calculate("prestations_sociales","2018")
