@@ -20,27 +20,26 @@ def init_profile(scenario):
         period = 'year:2017:6',
         parent1 = dict(
             age = 40,
-            salaire_de_base = 750*12*6,
+            retraite_brute = 16650*6,
             categorie_salarie = "prive_non_cadre", # prive_non_cadre ou public_titulaire_etat
-            # statut_marital = 1,
+            statut_marital = 2,
             ),
         # parent2 = dict(
         #     age = 40,
-        #     salaire_de_base = 2599*12*6,
+        #     salaire_de_base = 900*12*6,
         #     categorie_salarie = "prive_non_cadre", # prive_non_cadre ou public_titulaire_etat
         #     statut_marital = 1,
         #     ),
         # enfants = [
         #     dict(age = 9),
         #     dict(age = 10),
-            # dict(age = 10),
-            # dict(age = 14),
-            # ],
+        #     dict(age = 10),
+        #     dict(age = 14),
+        # ],
         menage = dict(loyer = 5000, # Annual basis
-            # statut_occupation_logement = 3,
             cotisation_taxe_habitation = -621.*6,
             ),
-        # foyer_fiscal = dict(statut_marital = 1),
+        # foyer_fiscal= dict(taux_csg_remplacement_2 = 3),
         )
     return scenario
 
@@ -59,6 +58,21 @@ reform_simulation = reform_scenario.new_simulation()
 reference_scenario = init_profile(tax_benefit_system.new_scenario())
 #Simulate the standard scenario
 reference_simulation = reference_scenario.new_simulation()
+
+rfr = reform_simulation.calculate("rfr", "2018")
+rfr
+nbptr = reform_simulation.calculate("nbptr", "2018")
+nbptr
+tx_csg_ret = reform_simulation.calculate("taux_csg_remplacement_2", "2019")
+tx_csg_ret
+csg_ret = reform_simulation.calculate("csg_deductible_retraite", "2019-01")
+csg_ret/reform_simulation.calculate("retraite_brute", "2019-01")
+csg_imp = reform_simulation.calculate("csg_imposable_retraite", "2019-01")
+csg_imp/reform_simulation.calculate("retraite_brute", "2019-01")
+
+
+
+
 
 # Calcul des résultats
 rd_av_2018 = reference_simulation.calculate('revenu_disponible', '2018')/12
@@ -85,6 +99,8 @@ print(reform_simulation.calculate("salaire_net","2019-01")-reference_simulation.
 print(reform_simulation.calculate("salaire_net","2020-01")-reference_simulation.calculate("salaire_net","2020-01"))
 print(reform_simulation.calculate("salaire_net","2021-01")-reference_simulation.calculate("salaire_net","2021-01"))
 print(reform_simulation.calculate("salaire_net","2022-01")-reference_simulation.calculate("salaire_net","2022-01"))
+
+# taux_csg_remplacement
 
 # Variables after reform
 # cotis_th_ap = reform_simulation.calculate("taxe_habitation", "2019")

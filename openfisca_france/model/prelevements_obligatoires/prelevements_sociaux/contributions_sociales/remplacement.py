@@ -24,6 +24,41 @@ class taux_csg_remplacement(Variable):
     label = u"Taux retenu sur la CSG des revenus de remplacment"
     definition_period = MONTH
 
+class taux_csg_remplacement_2(Variable):
+    default_value = 3
+    value_type = Enum
+    possible_values = Enum([
+        u"Non renseigné/non pertinent",
+        u"Exonéré",
+        u"Taux réduit",
+        u"Taux plein",
+        ])
+    entity = FoyerFiscal
+    label = u"Taux calculé pour la CSG des revenus de remplacment"
+    definition_period = YEAR
+
+    def formula(foyer_fiscal, period, parameters):
+
+        P = parameters(period).prelevements_sociaux.contributions.csg.remplacement.pensions_de_retraite_et_d_invalidite
+        taux_reduit = P.taux_csg_reduit
+        taux_normal = P.taux_csg_deductible
+
+        nbptr = foyer_fiscal('nbptr',period.last_year)  # TODO: Beurk
+        rfr = foyer_fiscal('rfr',period.last_year)
+    
+        seuil_exoneration = P.seuil_de_rfr_1 + P.demi_part_suppl_1*2*max_(0, (nbptr - 1))
+        seuil_taux_reduit = P.seuil_de_rfr_2 + P.demi_part_suppl  *2*max_(0, (nbptr - 1))
+        
+        taux = (rfr < seuil_exoneration)*1 + (rfr >=seuil_exoneration)*(rfr < seuil_taux_reduit)*2 + (rfr>=seuil_taux_reduit)*3
+        
+        print(nbptr)
+        print(rfr)
+        print(seuil_exoneration)
+        print(seuil_taux_reduit)
+        print(taux)
+        
+        return taux
+        
 
 ############################################################################
 # # Allocations chômage
@@ -177,7 +212,8 @@ class csg_deductible_retraite(Variable):
 
     def formula(individu, period, parameters):
         retraite_brute = individu('retraite_brute', period)
-        taux_csg_remplacement = individu('taux_csg_remplacement', period)
+        # taux_csg_remplacement = individu('taux_csg_remplacement',period)
+        taux_csg_remplacement = individu.foyer_fiscal('taux_csg_remplacement_2',period.this_year,max_nb_cycles = 0)
         law = parameters(period.start)
 
         montant_csg = montant_csg_crds(
@@ -220,7 +256,8 @@ class crds_retraite(Variable):
 
     def formula(individu, period, parameters):
         retraite_brute = individu('retraite_brute', period)
-        taux_csg_remplacement = individu('taux_csg_remplacement', period)
+        # taux_csg_remplacement = individu('taux_csg_remplacement', period)
+        taux_csg_remplacement = individu.foyer_fiscal('taux_csg_remplacement_2',period.this_year,max_nb_cycles = 0)
         law = parameters(period.start)
 
         montant_crds = montant_csg_crds(
@@ -241,7 +278,8 @@ class casa(Variable):
     def formula_2015_01_01(individu, period, parameters):
         retraite_brute = individu('retraite_brute', period = period)
         rfr = individu.foyer_fiscal('rfr', period = period.n_2)
-        taux_csg_remplacement = individu('taux_csg_remplacement', period)
+        # taux_csg_remplacement = individu('taux_csg_remplacement', period)
+        taux_csg_remplacement = individu.foyer_fiscal('taux_csg_remplacement_2',period.this_year,max_nb_cycles = 0)
         contributions = parameters(period.start).prelevements_sociaux.contributions
         casa = (
             (taux_csg_remplacement == 3) *
@@ -252,7 +290,8 @@ class casa(Variable):
 
     def formula_2013_04_01(individu, period, parameters):
         retraite_brute = individu('retraite_brute', period = period)
-        taux_csg_remplacement = individu('taux_csg_remplacement', period)
+        # taux_csg_remplacement = individu('taux_csg_remplacement', period)
+        taux_csg_remplacement = individu.foyer_fiscal('taux_csg_remplacement_2',period.this_year,max_nb_cycles = 0)
         contributions = parameters(period.start).prelevements_sociaux.contributions
         casa = (
             (taux_csg_remplacement == 3) *
