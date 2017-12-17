@@ -27,9 +27,9 @@ def modify_parameters(parameters):
     parameters.th.degrevement.taux.update(start="2018-01", value=0.3)
     parameters.th.degrevement.taux.update(start="2019-01", value=0.65)
     parameters.th.degrevement.taux.update(start="2020-01", value=1.0)
-    #########################################
-    # Article 63 du PLF : dégrèvement de TH :
-    #########################################
+    #############################################################
+    # Article 63 du PLF : revalorisation de la prime d'activité
+    ############################################################
     #revalorisation du montant forfaitaire du RSA : le reste de la réforme du RSA/prime d'activité nécessite de coder une fonction supplémentaire
     parameters.prestations.minima_sociaux.rsa.montant_de_base_du_rsa.update(start="2018-01", value=546.25)
     parameters.prestations.minima_sociaux.ppa.pente.update(start="2018-01", value=0.61)
@@ -60,6 +60,8 @@ def modify_parameters(parameters):
     parameters.cotsoc.children['cotisations_salarie'].children['public_titulaire_etat'].children['pension'][0].rate.update(start = "2018-01", value=0.1001-0.0171) #vérifier la date d'entrée en vigueur.
     parameters.cotsoc.children['cotisations_salarie'].children['public_titulaire_etat'].children['pension'][0].rate.update(start = "2019-01", value=0.1028-0.0171) #vérifier la date d'entrée en vigueur.
     parameters.cotsoc.children['cotisations_salarie'].children['public_titulaire_etat'].children['pension'][0].rate.update(start = "2020-01", value=0.1055-0.0171) #vérifier la date d'entrée en vigueur.
+    # - baisse des cotisations famille sur les indépendants
+    # parameters.prelevements_sociaux.famille_ind.si_revenu_d_activite_140_pss.update(start = "2018-01",value = 0.0)
 
     #######################################################################
     # Article 28 du PLFSS : revalorisation du minimum vieillesse sur 3 ans:
