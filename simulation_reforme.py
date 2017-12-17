@@ -19,17 +19,17 @@ def init_profile(scenario):
     scenario.init_single_entity(
         period = 'year:2017:6',
         parent1 = dict(
-            age = 70,
-            retraite_brute = 2074*12*6,
-            # categorie_salarie = "prive_non_cadre", # prive_non_cadre ou public_titulaire_etat
-            statut_marital = 1,
+            age = 40,
+            salaire_de_base = 1480*12*6,
+            categorie_salarie = "prive_non_cadre", # prive_non_cadre ou public_titulaire_etat
+            statut_marital = 2,
             ),
-        parent2 = dict(
-            age = 70,
-            retraite_brute = 2074*12*6,
-            # categorie_salarie = "prive_non_cadre", # prive_non_cadre ou public_titulaire_etat
-            statut_marital = 1,
-            ),
+        # parent2 = dict(
+        #     age = 70,
+        #     retraite_brute = 2074*12*6,
+        #     # categorie_salarie = "prive_non_cadre", # prive_non_cadre ou public_titulaire_etat
+        #     statut_marital = 1,
+        #     ),
         # enfants = [
         #     dict(age = 9),
         #     dict(age = 10),

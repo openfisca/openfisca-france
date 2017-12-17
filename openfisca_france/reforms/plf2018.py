@@ -32,12 +32,12 @@ def modify_parameters(parameters):
     ############################################################
     #revalorisation du montant forfaitaire du RSA : le reste de la réforme du RSA/prime d'activité nécessite de coder une fonction supplémentaire
     parameters.prestations.minima_sociaux.rsa.montant_de_base_du_rsa.update(start="2018-01", value=546.25)
-    parameters.prestations.minima_sociaux.ppa.pente.update(start="2018-01", value=0.61)
+    # parameters.prestations.minima_sociaux.ppa.pente.update(start="2018-01", value=0.61)
     # # création du surbonus de prime d'activité
-    parameters.prestations.minima_sociaux.ppa.sur_bonification.montant_sur_bonification_max.update(start="2019", value=(20))
-    parameters.prestations.minima_sociaux.ppa.sur_bonification.montant_sur_bonification_max.update(start="2020", value=(40))
-    parameters.prestations.minima_sociaux.ppa.sur_bonification.montant_sur_bonification_max.update(start="2021", value=(60))
-    
+    parameters.prestations.minima_sociaux.ppa.sur_bonification.montant_sur_bonification_max.update(period="2019", value=(20))
+    parameters.prestations.minima_sociaux.ppa.sur_bonification.montant_sur_bonification_max.update(period="2020", value=(40))
+    parameters.prestations.minima_sociaux.ppa.sur_bonification.montant_sur_bonification_max.update(period="2021", value=(60))
+        
     
     #################################################
     # Article 7 du PLFSS : Bascule CSG cotisations :
