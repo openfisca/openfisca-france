@@ -1095,9 +1095,8 @@ class jeunes_ind(Variable):
         Attention seuls certains
         '''
         janvier = period.first_month
-
         age = individu('age', janvier)
-        salaire_imposable =  individu('salaire_imposable', period, options = [ADD])
+        salaire_imposable = individu('salaire_imposable', period, options = [ADD])
         elig_creimp_jeunes = individu('elig_creimp_jeunes', period)
         P = parameters(period).impot_revenu.credits_impot.jeunes
 

@@ -1,0 +1,12 @@
+description: Montant forfaitaire de base
+unit: currency
+values:
+  2016-01-01:
+    value: 524.16
+    reference: https://www.legifrance.gouv.fr/affichTexteArticle.do;jsessionid=F16D1893679E33D9ED714338F70661BC.tplgfr21s_3?idArticle=JORFARTI000031665102&cidTexte=JORFTEXT000031665094&dateTexte=29990101&categorieLien=id
+  2016-04-01:
+    value: 524.68
+    reference: https://www.legifrance.gouv.fr/affichTexteArticle.do;jsessionid=598BE225CBC742C019484C8F9C5D58A3.tplgfr21s_3?idArticle=JORFARTI000034580247&cidTexte=JORFTEXT000034580242&dateTexte=29990101&categorieLien=id
+  2017-04-01:
+    value: 526.25
+    reference: https://www.legifrance.gouv.fr/affichTexte.do;jsessionid=F0C7F140213C6E7F350E4D08F8ABCC7E.tplgfr21s_3?cidTexte=LEGITEXT000034780395&dateTexte=20170505&categorieLien=cid#LEGITEXT000034780395

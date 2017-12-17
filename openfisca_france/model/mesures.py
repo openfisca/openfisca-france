@@ -7,29 +7,18 @@ from numpy import floor
 from openfisca_france.model.base import *  # noqa analysis:ignore
 
 
-class uc(Variable):
+class unites_consommation(Variable):
     value_type = float
     entity = Menage
-    label = u"Unités de consommation"
+    label = u"Unités de consommation du ménage, selon l'échelle de l'INSEE"
     definition_period = YEAR
 
-    def formula(self, simulation, period):
-        '''
-        Calcule le nombre d'unités de consommation du ménage avec l'échelle de l'INSEE
-        '''
-        age_en_mois_holder = simulation.compute('age_en_mois', period)
+    def formula(menage, period, parameters):
+        age_indiv = menage.members('age', period.first_month)
+        uc_indiv = 0.5 * (age_i >= 14) + 0.3 * (age < 14)
+        tot_uc_indiv = menage.sum(uc_indiv)
 
-        age_en_mois = self.split_by_roles(age_en_mois_holder)
-
-        uc_adt = 0.5
-        uc_enf = 0.3
-        uc = 0.5
-        for agm in age_en_mois.itervalues():
-            age = floor(agm / 12)
-            adt = (15 <= age) & (age <= 150)
-            enf = (0 <= age) & (age <= 14)
-            uc += adt * uc_adt + enf * uc_enf
-        return uc
+        return 0.5 + tot_uc_indiv
 
 
 class type_menage(Variable):
@@ -68,21 +57,21 @@ class revenu_disponible(Variable):
 
     def formula(self, simulation, period):
         revenus_du_travail_holder = simulation.compute('revenus_du_travail', period)
-        pen_holder = simulation.compute('pensions', period)
-        rev_cap_holder = simulation.compute('revenus_du_capital', period)
+        pensions_holder = simulation.compute('pensions', period)
+        revenus_du_capital_holder = simulation.compute('revenus_du_capital', period)
         prestations_sociales_holder = simulation.compute('prestations_sociales', period)
         ppe_holder = simulation.compute('ppe', period)
         impots_directs = simulation.calculate('impots_directs', period)
 
-        pen = self.sum_by_entity(pen_holder)
+        pensions = self.sum_by_entity(pensions_holder)
         ppe = self.cast_from_entity_to_role(ppe_holder, role = VOUS)
         ppe = self.sum_by_entity(ppe)
         prestations_sociales = self.cast_from_entity_to_role(prestations_sociales_holder, role = CHEF)
         prestations_sociales = self.sum_by_entity(prestations_sociales)
-        rev_cap = self.sum_by_entity(rev_cap_holder)
+        revenus_du_capital = self.sum_by_entity(revenus_du_capital_holder)
         revenus_du_travail = self.sum_by_entity(revenus_du_travail_holder)
 
-        return revenus_du_travail + pen + rev_cap + prestations_sociales + ppe + impots_directs
+        return revenus_du_travail + pensions + revenus_du_capital + prestations_sociales + ppe + impots_directs
 
 
 class niveau_de_vie(Variable):
@@ -93,7 +82,7 @@ class niveau_de_vie(Variable):
 
     def formula(menage, period):
         revenu_disponible = menage('revenu_disponible', period)
-        uc = menage('uc', period)
+        uc = menage('unites_consommation', period)
         return revenu_disponible / uc
 
 
@@ -131,7 +120,7 @@ class niveau_de_vie_net(Variable):
 
     def formula(menage, period):
         revenu_net = menage('revenu_net', period)
-        uc = menage('uc', period)
+        uc = menage('unites_consommation', period)
 
         return revenu_net / uc
 
@@ -172,19 +161,24 @@ class niveau_de_vie_initial(Variable):
 
     def formula(menage, period):
         revenu_initial = menage('revenu_initial', period)
-        uc = menage('uc', period)
+        uc = menage('unites_consommation', period)
 
         return revenu_initial / uc
 
 
-def _revprim(revenus_du_travail, chomage_imposable, rev_cap, cotisations_employeur, cotisations_salariales):
-    '''
-    Revenu primaire du ménage
-    Ensemble des revenus d'activités superbruts avant tout prélèvement
-    Il est égale à la valeur ajoutée produite par les résidents
-    'men'
-    '''
-    return revenus_du_travail + rev_cap - cotisations_employeur - cotisations_salariales - chomage_imposable
+class revenu_primaire(Variable):
+    value_type = float
+    entity = Menage
+    label = u"Revenu primaire du ménage (revenus superbruts avant tout prélèvement). Il est égal à la valeur ajoutée produite par les résidents."
+    definition_period = YEAR
+
+    def formula(individu, period):
+        revenus_du_travail = individu('revenus_du_travail', period)
+        revenus_du_capital = individu('revenus_du_capital', period)
+        cotisations_employeur = individu('cotisations_employeur', period)
+        cotisations_salariales = individu('cotisations_salariales', period)
+
+        return revenus_du_travail + revenus_du_capital - cotisations_employeur - cotisations_salariales - chomage_imposable
 
 
 class revenus_du_travail(Variable):
@@ -195,12 +189,10 @@ class revenus_du_travail(Variable):
     definition_period = YEAR
 
     def formula(individu, period):
-        revenu_assimile_salaire = individu('revenu_assimile_salaire', period)
-        rag = individu('rag', period)
-        ric = individu('ric', period)
-        rnc = individu('rnc', period)
+        salaire_net = individu('salaire_net', period, options = [ADD])
+        revenus_non_salaries = individu('rpns', period, options = [ADD])  # TODO ou rpns_individu
 
-        return revenu_assimile_salaire + rag + ric + rnc
+        return salaire_net + revenus_non_salaries
 
 
 class pensions(Variable):
@@ -342,9 +334,10 @@ class minima_sociaux(Variable):
         api = simulation.calculate_add('api', period)
         ass = simulation.calculate_add('ass', period)
         minimum_vieillesse = simulation.calculate_add('minimum_vieillesse', period)
+        rsa = simulation.calculate_add('rsa', period)
+        # Certaines réformes ayant des effets de bords nécessitent que le rsa soit calculé avant la ppa
         ppa = simulation.calculate_add('ppa', period)
         psa = simulation.calculate_add('psa', period)
-        rsa = simulation.calculate_add('rsa', period)
 
         aah = self.sum_by_entity(aah_holder)
         caah = self.sum_by_entity(caah_holder)
@@ -355,14 +348,11 @@ class minima_sociaux(Variable):
 class aides_logement(Variable):
     value_type = float
     entity = Famille
-    label = u"Allocations logements"
+    label = u"Aides logement nets"
     reference = "http://vosdroits.service-public.fr/particuliers/N20360.xhtml"
     definition_period = YEAR
 
     def formula(famille, period):
-        '''
-        Prestations logement
-        '''
         apl = famille('apl', period, options = [ADD])
         als = famille('als', period, options = [ADD])
         alf = famille('alf', period, options = [ADD])
@@ -451,9 +441,9 @@ class cotisations_non_contributives(Variable):
 
     def formula(individu, period):
         cotisations_employeur_non_contributives = individu('cotisations_employeur_non_contributives',
-            period)
+            period, options = [ADD])
         cotisations_salariales_non_contributives = individu('cotisations_salariales_non_contributives',
-            period)
+            period, options = [ADD])
 
         return cotisations_employeur_non_contributives + cotisations_salariales_non_contributives
 

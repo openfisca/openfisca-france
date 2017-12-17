@@ -7,7 +7,8 @@ import logging
 from numpy import int16
 
 from openfisca_france.model.base import *  # noqa analysis:ignore
-from openfisca_france.model.prelevements_obligatoires.prelevements_sociaux.cotisations_sociales.base import apply_bareme, apply_bareme_for_relevant_type_sal
+from openfisca_france.model.prelevements_obligatoires.prelevements_sociaux.cotisations_sociales.base import (
+    apply_bareme, apply_bareme_for_relevant_type_sal)
 
 
 log = logging.getLogger(__name__)
@@ -28,12 +29,11 @@ class assiette_cotisations_sociales(Variable):
     def formula(self, simulation, period):
         assiette_cotisations_sociales_prive = simulation.calculate('assiette_cotisations_sociales_prive', period)
         assiette_cotisations_sociales_public = simulation.calculate('assiette_cotisations_sociales_public', period)
+        categorie_salarie = simulation.calculate('categorie_salarie', period)
         stage_gratification_reintegration = simulation.calculate('stage_gratification_reintegration', period)
-        return (
+        return (categorie_salarie < 7) * (  # Tout sauf "non_pertinent", ie sans activité salariée
             assiette_cotisations_sociales_prive +
-            assiette_cotisations_sociales_public +
-            stage_gratification_reintegration
-            )
+            assiette_cotisations_sociales_public) + stage_gratification_reintegration
 
 
 class assiette_cotisations_sociales_prive(Variable):
@@ -67,7 +67,8 @@ class assiette_cotisations_sociales_prive(Variable):
             (categorie_salarie == CATEGORIE_SALARIE['public_non_titulaire']) * (indemnite_residence + primes_fonction_publique) +
             reintegration_titre_restaurant_employeur + indemnite_fin_contrat
             )
-        return assiette * (assiette > 0)
+
+        return assiette
 
 
 class indemnite_fin_contrat(Variable):
@@ -142,7 +143,6 @@ class reintegration_titre_restaurant_employeur(Variable):
 # Cotisations proprement dites
 
 
-
 class penibilite(Variable):
     value_type = float
     entity = Individu
@@ -151,7 +151,7 @@ class penibilite(Variable):
 
     def formula_2015_01_01(self, simulation, period):
         exposition_penibilite = simulation.calculate('exposition_penibilite', period)
-        multiplicateur =  simulation.parameters_at(period.start).cotsoc.cotisations_employeur.prive_cadre.penibilite_multiplicateur_exposition_multiple
+        multiplicateur = simulation.parameters_at(period.start).cotsoc.cotisations_employeur.prive_cadre.penibilite_multiplicateur_exposition_multiple
 
         cotisation_base = apply_bareme(
             simulation, period,
@@ -168,11 +168,12 @@ class penibilite(Variable):
 
         cotisation = switch(
             exposition_penibilite,
-             {
+            {
                 0: cotisation_base,
                 1: cotisation_base + cotisation_additionnelle,
                 2: cotisation_base + cotisation_additionnelle * multiplicateur,
-             })
+                }
+            )
 
         return cotisation
 
@@ -253,10 +254,13 @@ class agirc_gmp_assiette(Variable):
     def formula(self, simulation, period):
         assiette_cotisations_sociales = simulation.calculate('assiette_cotisations_sociales', period)
         gmp = simulation.parameters_at(period.start).prelevements_sociaux.gmp
+        salaire_charniere = gmp.salaire_charniere_annuel / 12
+
         assiette = max_(
-            (gmp.salaire_charniere_annuel / 12 - assiette_cotisations_sociales) * (assiette_cotisations_sociales > 0),
+            (salaire_charniere - assiette_cotisations_sociales) * (assiette_cotisations_sociales > 0),
             0,
             )
+
         return assiette
 
 
@@ -272,7 +276,6 @@ class agirc_gmp_salarie(Variable):
         agirc_salarie = simulation.calculate('agirc_salarie', period)
         assiette_cotisations_sociales = simulation.calculate('assiette_cotisations_sociales', period)
         categorie_salarie = simulation.calculate('categorie_salarie', period)
-
         gmp = simulation.parameters_at(period.start).prelevements_sociaux.gmp
         cotisation_forfaitaire = gmp.cotisation_forfaitaire_mensuelle_en_euros.part_salariale
         taux = simulation.parameters_at(period.start).cotsoc.cotisations_salarie.prive_cadre.agirc.rates[1]
@@ -635,9 +638,7 @@ class mhsup(Variable):
     definition_period = MONTH
 
     def formula(self, simulation, period):
-        hsup = simulation.calculate('hsup', period)
-
-        return -hsup
+        return - simulation.calculate('hsup', period)
 
 
 class plafond_securite_sociale(Variable):
@@ -649,7 +650,6 @@ class plafond_securite_sociale(Variable):
 
     def formula(self, simulation, period):
         plafond_temps_plein = simulation.parameters_at(period.start).cotsoc.gen.plafond_securite_sociale
-        salaire_de_base = simulation.calculate('salaire_de_base', period)
         contrat_de_travail = simulation.calculate('contrat_de_travail', period)
         heures_remunerees_volume = simulation.calculate('heures_remunerees_volume', period)
         forfait_jours_remuneres_volume = simulation.calculate('forfait_jours_remuneres_volume', period)
@@ -658,29 +658,28 @@ class plafond_securite_sociale(Variable):
         # TODO : handle contrat_de_travail > 1
 
         # 1) Proratisation pour temps partiel
-
-        duree_legale_mensuelle = 35 * 52 / 12  # ~151,67
-        heures_temps_plein = switch(heures_duree_collective_entreprise, {0: duree_legale_mensuelle, 1: heures_duree_collective_entreprise})
+        heures_temps_plein = 35 * 52 / 12  # ~151,67 (durée légale mensuelle)
 
         plafond = switch(
             contrat_de_travail,
-             {  # temps plein
+            {
+                # temps plein
                 0: plafond_temps_plein,
                 # temps partiel
                 1: plafond_temps_plein * (heures_remunerees_volume / heures_temps_plein),
                 # forfait jour
-                5: plafond_temps_plein * (forfait_jours_remuneres_volume / 218)
-             })
+                5: plafond_temps_plein * (forfait_jours_remuneres_volume / 218),
+                # sans objet (non travailleur)
+                6: plafond_temps_plein
+                })
 
         # 2) Proratisation pour mois incomplet selon la méthode des 30èmes
-
-        # calcul du nombre de jours calendaires de présence du salarié
-        nombre_jours_calendaires = simulation.calculate('nombre_jours_calendaires', period)
 
         # Pour les salariés entrés ou sortis en cours de mois,
         # le plafond applicable est égal à autant de trentièmes du plafond mensuel
         # que le salarié a été présent de jours calendaires. Source urssaf.fr "L’assiette maximale"
-
+        # calcul du nombre de jours calendaires de présence du salarié
+        nombre_jours_calendaires = simulation.calculate('nombre_jours_calendaires', period)
         plafond = plafond * (min_(nombre_jours_calendaires, 30) / 30)
 
         return plafond
@@ -769,6 +768,7 @@ class taux_accident_travail(Variable):
     entity = Individu
     label = u"Approximation du taux accident à partir de l'exposition au risque donnée"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula_2012_01_01(self, simulation, period):
         exposition_accident = simulation.calculate('exposition_accident', period)

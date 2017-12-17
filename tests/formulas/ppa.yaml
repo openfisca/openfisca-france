@@ -309,16 +309,16 @@
     rsa: 0
 
 - name: "PPA/RSA forfait logement 1 personne"
-  period: 2016-01
+  period: 2017-10
   absolute_error_margin: 0.005
   input_variables:
     statut_occupation_logement: 2 # propriétaire
     age: 40
   output_variables:
-    rsa_forfait_logement:
-      2016-01: 62.90
+    ppa_forfait_logement: 63.15
+    rsa_forfait_logement: 65.46
 
-- name: "PPA/RSA forfait logement 2 personnes"
+- name: "PPA forfait logement 2 personnes"
   period: 2016-01
   absolute_error_margin: 0.005
   familles:
@@ -333,10 +333,10 @@
     - id: "parent2"
       age: 40
   output_variables:
-    rsa_forfait_logement:
+    ppa_forfait_logement:
       2016-01: 125.80
 
-- name: "PPA/RSA forfait logement 3 personnes"
+- name: "PPA forfait logement 3 personnes"
   period: 2016-01
   absolute_error_margin: 0.005
   familles:
@@ -355,7 +355,7 @@
     - id: "enfant1"
       age: 15
   output_variables:
-    rsa_forfait_logement:
+    ppa_forfait_logement:
       2016-01: 155.68
 
 - name: "Prise en compte du forfait logement"
@@ -371,7 +371,7 @@
       2015-10: 918
   output_variables:
     ppa: 244.21 - 62.90
-    rsa_forfait_logement: 62.90
+    ppa_forfait_logement: 62.90
 
 - name: "PPA < seuil de versement"
   period: 2016-01

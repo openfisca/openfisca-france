@@ -4,7 +4,7 @@ from __future__ import division
 
 from openfisca_france.model.base import *  # noqa analysis:ignore
 
-from numpy import round as round_
+from numpy import round as round_, logical_or as or_
 
 
 class ppa_eligibilite(Variable):
@@ -64,7 +64,6 @@ class ppa_montant_forfaitaire_familial_non_majore(Variable):
         nb_enfants = famille('rsa_nb_enfants', period)
         ppa_majoree_eligibilite = famille('rsa_majore_eligibilite', period)
         ppa = parameters(mois_demande).prestations.minima_sociaux.ppa
-        rsa = parameters(mois_demande).prestations.minima_sociaux.rsa
 
         nb_personnes = nb_parents + nb_enfants
 
@@ -77,7 +76,7 @@ class ppa_montant_forfaitaire_familial_non_majore(Variable):
             max_(nb_personnes - 4, 0) * ppa.taux_personne_supp
             )
 
-        return rsa.montant_de_base_du_rsa * taux_non_majore
+        return ppa.montant_de_base * taux_non_majore
 
 
 class ppa_montant_forfaitaire_familial_majore(Variable):
@@ -89,11 +88,10 @@ class ppa_montant_forfaitaire_familial_majore(Variable):
     def formula(famille, period, parameters, mois_demande):
         nb_enfants = famille('rsa_nb_enfants', period)
         ppa = parameters(mois_demande).prestations.minima_sociaux.ppa
-        rsa = parameters(period).prestations.minima_sociaux.rsa
 
         taux_majore = ppa.majoration_isolement_femme_enceinte + ppa.majoration_isolement_enf_charge * nb_enfants
 
-        return rsa.montant_de_base_du_rsa * taux_majore
+        return ppa.montant_de_base * taux_majore
 
 
 class ppa_revenu_activite(Variable):
@@ -279,17 +277,50 @@ class ppa_bonification(Variable):
     def formula(individu, period, parameters, mois_demande):
         P = parameters(mois_demande)
         smic_horaire = P.cotsoc.gen.smic_h_b
-        rsa_base = P.prestations.minima_sociaux.rmi.rmi
+        ppa_base = P.prestations.minima_sociaux.ppa.montant_de_base
         revenu_activite = individu(
             'ppa_revenu_activite_individu', period, extra_params = [mois_demande])
         seuil_1 = P.prestations.minima_sociaux.ppa.bonification.seuil_bonification * smic_horaire
         seuil_2 = P.prestations.minima_sociaux.ppa.bonification.seuil_max_bonification * smic_horaire
-        bonification_max = round_(P.prestations.minima_sociaux.ppa.bonification.taux_bonification_max * rsa_base)
+        bonification_max = round_(P.prestations.minima_sociaux.ppa.bonification.taux_bonification_max * ppa_base, 2)
         bonification = bonification_max * (revenu_activite - seuil_1) / (seuil_2 - seuil_1)
         bonification = max_(bonification, 0)
         bonification = min_(bonification, bonification_max)
 
         return bonification
+
+
+class ppa_forfait_logement(Variable):
+    value_type = float
+    entity = Famille
+    label = u"Forfait logement intervenant dans le calcul de la primed d'activité"
+    definition_period = MONTH
+
+    def formula(famille, period, parameters):
+        np_pers = famille('nb_parents', period) + famille('rsa_nb_enfants', period)
+        aide_logement = famille('aide_logement', period)
+        statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
+        participation_frais = famille.demandeur.menage('participation_frais', period)
+        loyer = famille.demandeur.menage('loyer', period)
+
+        avantage_nature = or_(
+            (statut_occupation_logement == 2) * not_(loyer),
+            (statut_occupation_logement == 6) * not_(participation_frais)
+            )
+        avantage_al = aide_logement > 0
+        
+        params = parameters(period).prestations.minima_sociaux.rsa
+        montant_base = famille('ppa_montant_forfaitaire_familial_non_majore', period, extra_params = [period])
+        montant_forfait = montant_base * (
+            (np_pers == 1) * params.forfait_logement.taux_1_personne +
+            (np_pers == 2) * params.forfait_logement.taux_2_personnes +
+            (np_pers >= 3) * params.forfait_logement.taux_3_personnes_ou_plus
+            )
+
+        montant_al = avantage_al * min_(aide_logement, montant_forfait)
+        montant_nature = avantage_nature * montant_forfait
+
+        return max_(montant_al, montant_nature)
 
 
 class ppa_fictive(Variable):
@@ -299,7 +330,7 @@ class ppa_fictive(Variable):
     definition_period = MONTH
 
     def formula(famille, period, parameters, mois_demande):
-        forfait_logement = famille('rsa_forfait_logement', mois_demande)
+        forfait_logement = famille('ppa_forfait_logement', mois_demande)
         ppa_majoree_eligibilite = famille('rsa_majore_eligibilite', mois_demande)
 
         elig = famille('ppa_eligibilite', period, extra_params = [mois_demande])

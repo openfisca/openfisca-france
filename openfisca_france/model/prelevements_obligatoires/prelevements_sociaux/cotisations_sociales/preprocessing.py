@@ -16,7 +16,7 @@ log = logging.getLogger(__name__)
 
 
 def build_pat(node_json):
-    """Construit le dictionnaire de barèmes des cotisations employeur à partir de node_json.children['cotsoc']['children']['pat']"""
+    """Construit le dictionnaire de barèmes des cotisations employeur à partir de node_json.children['cotsoc'].children['pat']"""
     pat = copy.deepcopy(node_json.children['cotsoc'].children['pat'])
     commun = pat.children.pop('commun')
 
@@ -82,8 +82,8 @@ def build_pat(node_json):
 
 def build_sal(node_json):
     '''
-    à partir des informations contenues dans node_json.children['cotsoc'].children['sal']
     Construit le dictionnaire de barèmes des cotisations salariales
+    à partir des informations contenues dans node_json.children['cotsoc'].children['sal']
     '''
     sal = copy.deepcopy(node_json.children['cotsoc'].children['sal'])
     sal.children['noncadre'].children.update(sal.children['commun'].children)
@@ -98,14 +98,17 @@ def build_sal(node_json):
     sal.children['public_titulaire_hospitaliere'] = sal.children['fonc'].children['colloc']
     sal.children['public_non_titulaire'] = sal.children['fonc'].children['contract']
 
-    for type_sal_category in (
-            'public_titulaire_etat',
-            'public_titulaire_territoriale',
-            'public_titulaire_hospitaliere',
-            'public_non_titulaire',
-            ):
-        sal.children[type_sal_category].children['excep_solidarite'] = sal.children['fonc'].children[
-            'commun'].children['solidarite']
+    for type_sal_category in [
+        'public_titulaire_etat',
+        'public_titulaire_territoriale',
+        'public_titulaire_hospitaliere',
+        'public_non_titulaire',
+        ]:
+        sal.children[type_sal_category].children['excep_solidarite'] = sal.children['fonc'].children['commun'].children['solidarite']
+
+    # Ajoute le RAFP (Régime additionnel de la fonction publique) pour 'public_titulaire_territoriale' et 'public_titulaire_hospitaliere'
+    for type_sal_category in ['public_titulaire_territoriale', 'public_titulaire_hospitaliere']:
+        sal.children[type_sal_category].children['rafp'] = sal.children['fonc'].children['etat'].children['rafp']
 
     sal.children['public_non_titulaire'].children.update(sal.children['commun'].children)
     del sal.children['public_non_titulaire'].children['assedic']

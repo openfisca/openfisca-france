@@ -54,7 +54,6 @@ class f4ba(Variable):
         return foyer_fiscal.sum(revenus_locatifs)
 
 
-
 class f4bb(Variable):
     cerfa_field = u"4BB"
     value_type = int
