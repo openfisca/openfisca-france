@@ -643,7 +643,7 @@ class cotsyn(Variable):
         f7ac_holder = simulation.compute('f7ac', period)
         salaire_imposable_holder = simulation.compute_add('salaire_imposable', period)
         cho_holder = simulation.compute_add('chomage_imposable', period)
-        rst_holder = simulation.compute('retraite_imposable', period)
+        rst_holder = simulation.compute_add('retraite_imposable', period)
         P = simulation.parameters_at(period.start).impot_revenu.reductions_impots.cotsyn
 
         f7ac = self.filter_role(f7ac_holder, role = VOUS)

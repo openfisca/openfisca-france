@@ -154,7 +154,7 @@ class crds_chomage(Variable):
 
 
 class chomage_imposable(Variable):
-    base_function = requested_period_added_value
+    value_type = float
     unit = 'currency'
     cerfa_field = {
         QUIFOY['vous']: u"1AP",
@@ -163,7 +163,6 @@ class chomage_imposable(Variable):
         QUIFOY['pac2']: u"1DP",
         QUIFOY['pac3']: u"1EP",
         }
-    value_type = float
     entity = Individu
     label = u"Allocations chômage imposables"
     set_input = set_input_divide_by_period
@@ -172,13 +171,12 @@ class chomage_imposable(Variable):
 
     def formula(individu, period):
         chomage_brut = individu('chomage_brut', period)
-        csg_deductible_chomage = individu('csg_deductible_chomage', period, options = [ADD])
+        csg_deductible_chomage = individu('csg_deductible_chomage', period)
 
         return chomage_brut + csg_deductible_chomage
 
 
 class chomage_net(Variable):
-    base_function = requested_period_added_value
     value_type = float
     entity = Individu
     label = u"Allocations chômage nettes"
@@ -188,8 +186,8 @@ class chomage_net(Variable):
 
     def formula(individu, period):
         chomage_imposable = individu('chomage_imposable', period)
-        csg_imposable_chomage = individu('csg_imposable_chomage', period, options = [ADD])
-        crds_chomage = individu('crds_chomage', period, options = [ADD])
+        csg_imposable_chomage = individu('csg_imposable_chomage', period)
+        crds_chomage = individu('crds_chomage', period)
 
         return chomage_imposable + csg_imposable_chomage + crds_chomage
 
@@ -300,7 +298,6 @@ class casa(Variable):
 
 
 class retraite_imposable(Variable):
-    base_function = requested_period_added_value
     unit = 'currency'
     value_type = float
     cerfa_field = {
@@ -314,17 +311,16 @@ class retraite_imposable(Variable):
     label = u"Retraites au sens strict imposables (rentes à titre onéreux exclues)"
     set_input = set_input_divide_by_period
     reference = u"http://vosdroits.service-public.fr/particuliers/F415.xhtml"
-    definition_period = YEAR
+    definition_period = MONTH
 
     def formula(individu, period):
-        retraite_brute = individu('retraite_brute', period, options = [ADD])
-        csg_deductible_retraite = individu('csg_deductible_retraite', period, options = [ADD])
+        retraite_brute = individu('retraite_brute', period)
+        csg_deductible_retraite = individu('csg_deductible_retraite', period)
 
         return retraite_brute + csg_deductible_retraite
 
 
 class retraite_nette(Variable):
-    base_function = requested_period_added_value
     value_type = float
     entity = Individu
     label = u"Pensions de retraite nettes"
@@ -333,7 +329,7 @@ class retraite_nette(Variable):
     definition_period = MONTH
 
     def formula(individu, period):
-        retraite_imposable = individu('retraite_imposable', period, options = [DIVIDE])
+        retraite_imposable = individu('retraite_imposable', period)
         casa = individu('casa', period)
         csg_imposable_retraite = individu('csg_imposable_retraite', period)
         crds_retraite = individu('crds_retraite', period)

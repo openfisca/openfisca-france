@@ -15,9 +15,6 @@ class exonere_taxe_habitation(Variable):
 
     def formula(menage, period, parameters):
         """Exonation de la taxe d'habitation
-
-        'men'
-
         Eligibilité:
         - âgé de plus de 60 ans, non soumis à l'impôt de solidarité sur la fortune (ISF) en n-1
         - veuf quel que soit votre âge et non soumis à l'impôt de solidarité sur la fortune (ISF) n-1

@@ -183,7 +183,7 @@ class aide_logement_abattement_depart_retraite(Variable):
 
     def formula(individu, period, parameters):
         retraite = individu('activite', period) == 3
-        retraite_n_2 = individu('retraite_imposable', period.n_2)
+        retraite_n_2 = individu('retraite_imposable', period.n_2, options = [ADD])
         condition_abattement = (retraite_n_2 == 0) * retraite
         revenus_activite_pro = individu('revenu_assimile_salaire_apres_abattements', period.n_2)
 
@@ -235,8 +235,16 @@ class aide_logement_base_ressources_defaut(Variable):
         base_ressources_enfants = famille.sum(
             max_(0, base_ressources_i - abattement_ressources_enfant), role = Famille.ENFANT)
 
+        # It would be nicer to be able to write famille.demandeur.has_role(FoyerFiscal.DECLARANT_PRINCIPAL), but it doesn't work as expected at the moment
+        declarant_principal_i = famille.members.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
+        demandeur_declarant_principal = famille.value_from_person(declarant_principal_i, Famille.DEMANDEUR)
+        conjoint_declarant_principal = famille.value_from_person(declarant_principal_i, Famille.CONJOINT)
+
         # Revenus du foyer fiscal
-        rev_coll = famille.demandeur.foyer_fiscal('rev_coll', period.n_2)
+        rev_coll = (
+            famille.demandeur.foyer_fiscal('rev_coll', period.n_2) *  demandeur_declarant_principal +
+            famille.conjoint.foyer_fiscal('rev_coll', period.n_2) * conjoint_declarant_principal
+            )
 
         ressources = (
             base_ressources_parents + base_ressources_enfants + rev_coll -
@@ -574,7 +582,6 @@ class aide_logement_participation_personnelle(Variable):
     definition_period = MONTH
 
     def formula(famille, period, parameters):
-
         al = parameters(period).prestations.aides_logement
 
         R = famille('aide_logement_base_ressources', period)
@@ -622,7 +629,8 @@ class aide_logement_montant_brut_avant_degressivite(Variable):
 class aide_logement_montant_brut(Variable):
     value_type = float
     entity = Famille
-    label = u"Montant des aides au logement après degressivité, avant CRDS"
+    label = u"Montant des aides au logement après degressivité et abattement forfaitaire, avant CRDS"
+    reference = u"https://www.legifrance.gouv.fr/eli/decret/2017/9/28/TERL1721632D/jo/texte"
     definition_period = MONTH
 
     def formula(famille, period):
@@ -652,6 +660,31 @@ class aide_logement_montant_brut(Variable):
 
         return montant
 
+    def formula_2017_10_01(famille, period, parameters):
+        montant_avant_degressivite = famille('aide_logement_montant_brut_avant_degressivite', period)
+        loyer_reel = famille('aide_logement_loyer_reel', period)
+        loyer_degressivite = famille('aide_logement_loyer_seuil_degressivite', period)
+        loyer_suppression = famille('aide_logement_loyer_seuil_suppression', period)
+        handicap_i = famille.members('handicap', period)
+        handicap = famille.any(handicap_i)
+
+        coeff = select(
+            [loyer_reel <= loyer_degressivite, loyer_reel <= loyer_suppression, loyer_reel > loyer_suppression],
+            [1, 1 - ((loyer_reel - loyer_degressivite) / (loyer_suppression - loyer_degressivite)), 0]
+            )
+
+        statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
+        accedant = (statut_occupation_logement == 1)
+        locataire_foyer = (statut_occupation_logement == 7)
+        exception = accedant + locataire_foyer + handicap
+        coeff = where(exception, 1, coeff)
+
+        montant_avant_degressivite_et_coeff = round_(montant_avant_degressivite * coeff, 2)
+
+        abattement_forfaitaire = parameters(period).prestations.aides_logement.autres.abattement_forfaitaire
+        aide_logement_apres_abattement_forfaitaire = (montant_avant_degressivite_et_coeff > 0) * (montant_avant_degressivite_et_coeff - abattement_forfaitaire)
+
+        return aide_logement_apres_abattement_forfaitaire
 
 class aide_logement_montant(Variable):
     value_type = float
@@ -749,7 +782,7 @@ class apl(Variable):
     calculate_output = calculate_output_add
     value_type = float
     entity = Famille
-    label = u" Aide personnalisée au logement"
+    label = u"Aide personnalisée au logement"
     # (réservée aux logements conventionné, surtout des HLM, et financé par le fonds national de l'habitation)"
     reference = u"http://vosdroits.service-public.fr/particuliers/F12006.xhtml",
     definition_period = MONTH
@@ -971,4 +1004,3 @@ class  aides_logement_primo_accedant_ressources(Variable):
         loyer = famille.demandeur.menage('loyer', period)
         coef_plancher_ressources = parameters(period).prestations.aides_logement.ressources.dar_3
         return max_(baseRessource, loyer * coef_plancher_ressources)
-

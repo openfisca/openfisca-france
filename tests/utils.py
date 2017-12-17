@@ -30,12 +30,12 @@ def simulation_from_test(test, monthly_amount = False, default_error_margin = 1,
     for variable, value in test['input_vars'].iteritems():
         if variable == "age":
             parent1['date_naissance'] = datetime.date(year - value, 1, 1)
-        elif tax_benefit_system.column_by_name[variable].entity == 'men':
+        elif tax_benefit_system.variables[variable].entity == 'men':
             menage[variable] = value
-        elif tax_benefit_system.column_by_name[variable].entity == 'ind':
+        elif tax_benefit_system.variables[variable].entity == 'ind':
             parent1[variable] = value
 # TODO: if the person is a child
-        elif tax_benefit_system.column_by_name[variable].entity == 'foy':
+        elif tax_benefit_system.variables[variable].entity == 'foy':
             foyer_fiscal[variable] = value
 
     simulation = tax_benefit_system.new_scenario().init_single_entity(

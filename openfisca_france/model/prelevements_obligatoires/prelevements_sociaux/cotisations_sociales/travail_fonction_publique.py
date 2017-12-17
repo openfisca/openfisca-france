@@ -155,7 +155,7 @@ class ircantec_salarie(Variable):
             plafond_securite_sociale = plafond_securite_sociale,
             categorie_salarie = categorie_salarie,
             )
-        return ircantec
+        return ircantec * (categorie_salarie == 6)  # agent non titulaire
 
 
 class ircantec_employeur(Variable):
@@ -177,7 +177,7 @@ class ircantec_employeur(Variable):
             plafond_securite_sociale = plafond_securite_sociale,
             categorie_salarie = categorie_salarie,
             )
-        return ircantec
+        return ircantec * (categorie_salarie == 6)  # agent non titulaire
 
 
 class pension_civile_salarie(Variable):
@@ -201,7 +201,7 @@ class pension_civile_salarie(Variable):
             sal['public_titulaire_etat']['pension'].calc(traitement_indiciaire_brut+salaire_de_base) +
             terr_or_hosp * sal['public_titulaire_territoriale']['cnracl1'].calc(traitement_indiciaire_brut)
             )
-        return -pension_civile_salarie
+        return - pension_civile_salarie
 
 
 class pension_civile_employeur(Variable):

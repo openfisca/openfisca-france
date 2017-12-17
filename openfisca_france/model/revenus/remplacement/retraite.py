@@ -12,11 +12,11 @@ class retraite_brute(Variable):
     calculate_output = calculate_output_add
 
 
-# L'AER est remplacée depuis le 1er juillet 2011 par l'allocation transitoire de solidarité (ATS).
 class aer(Variable):
     value_type = int
     entity = Individu
     label = u"Allocation équivalent retraite (AER)"
+    # L'AER est remplacée depuis le 1er juillet 2011 par l'allocation transitoire de solidarité (ATS).
     definition_period = MONTH
 
 

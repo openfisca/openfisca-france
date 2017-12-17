@@ -1,0 +1,6 @@
+description: Abattement forfaitaire
+reference: openfisca
+unit: currency
+values:
+  2017-10-01:
+    value: 5
