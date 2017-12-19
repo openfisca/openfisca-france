@@ -419,12 +419,13 @@ household_income_variables_to_test = [ # NB: taken from input variables of FELIN
     # 'f7wm', LE MONTANT 7WM EST INFERIEUR AU MONTANT 7WN
     # 'f7wn', 'f7wo', PRESENCE D UN MONTANT LIGNE 7WN SANS MONTANT 7WO OU RECIPROQUEMENT
     # 'f8tb', LES LIGNES 8TB, 8TC SONT REMPLIES SANS REVENU CORRESPONDANT
-    # 'f8te', 'f8tg', 'f8ts', 'f8uy', 'f8wa', 'f8we', 'f8wd', 'f8wc', 'f8wb', 'f8wt', 'f8wr', LA LIGNE 8TE EST REMPLIE SANS REVENU CORRESPONDANT
+    # 'f8te', 'f8tg', 'f8ts', 'f8uy', 'f8wa', 'f8we', 'f8wd', 'f8wc', 'f8wb', 'f8wt', 'f8wr', 'f8uz', 'f8wu', LA LIGNE 8TE EST REMPLIE SANS REVENU CORRESPONDANT
     # 'f8tk', LA LIGNE 8TK EST REMPLIE SANS PRISE EN CHARGE DE 8XR, 8XP OU 8XQ
-    # 'f7sb', LIGNE 7 SB, 7 SH, 7 SD, 7 SE, 7 SG SANS PRISE EN CHARGE DU CHIFFRE 7 SA
+    # 'f7sb', 'f7sa', LIGNE 7 SB, 7 SH, 7 SD, 7 SE, 7 SG SANS PRISE EN CHARGE DU CHIFFRE 7 SA
     # 'f7wv', CASE 7WU 7WV COCHEE SANS MONTANT LIGNE 7SK ET RECIPROQUEMENT
     # 'f7ww', CASE 7WW 7WX COCHEE SANS MONTANT LIGNE 7SL ET RECIPROQUEMENT
-    # ES LIGNES 8TL, 8UW SONT REMPLIES SANS REVENU CORRESPONDANT
+    # LES LIGNES 8TL, 8UW SONT REMPLIES SANS REVENU CORRESPONDANT
+    # 'f8ti', LA LIGNE 8TK EST REMPLIE SANS PRISE EN CHARGE DE 8XR, 8XP OU 8XQ
     'f1ar', 'f1br', 'f1cr', 'f1dr', 'f1er', 'f1aw', 'f1bw', 'f1cw', 'f1dw',
     'f2aa', 'f2al', 'f2am', 'f2an', 'f2aq', 'f2ar', 'f2dm',
     'f2ch', 'f2cg', 'f2dc', 'f2ts', 'f2ca', 'f2fu', 'f2go', 'f2gr', 'f2da', 'f2dh', 'f2ee',
@@ -436,10 +437,10 @@ household_income_variables_to_test = [ # NB: taken from input variables of FELIN
     'f5qf', 'f5qg', 'f5qn', 'f5qo', 'f5qp', 'f5qq',
     'f5rn', 'f5rn', 'f5rp', 'f5rq', 'f5rr', 'f5rw',
     'f7wj', 'f7wl', 'f7wr', 'f7ga', 'f7gb', 'f7gc', 'f7ge', 'f7gf', 'f7gg', 'f7bm', 'f7cb',
-    'f7ah', 'f7tn', 'f7bc', 'f7vh', 'f7sa', 'f7qb', 'f7ql', 'f7pi', 
+    'f7ah', 'f7tn', 'f7bc', 'f7vh', 'f7qb', 'f7ql', 'f7pi', 
     'f7ui', 'f7pa', 'f7cy', 'f7dy', 'f7ey', 'f7yz', 'f7ym', 'f7lt',
-    'f7rr', 'f7rq', 'f7rp', 'f7rw', 'f7rv', 'f7ru', 'f7rc', 'f7rb', 'f7ra', 'f7rg', 'f7rf', 'f7re', 'f7rd', 'f7rk', 'f7rj', 'f7rm', 'f7rl', 'f6fl', 'f6fb', 'f6fc', 'f6fa', 'f6fd', 'f6fe', 'f6ps', 'f7gx', 'f7gz', 'f7gt', 'f7gu', 'f7gv', 'f7gw', 'f7gp', 'f7gq', 'f7gs', 'f7gl', 'f7gn', 'f7gh', 'f7gi', 'f7gj', 'f7gk', 'f7ge', 'f7gf', 'f7gg', 'f7gc', 'f8tz', 'f8tp', 'f8th', 'f8ti', 'f8to', 'f8ta', 'f8tf', 'f8td', 'f7ng', 'f7nf', 'f7ne', 'f7nd', 'f7nc', 'f7nb', 'f7na', 'f7no', 'f7nn', 'f7nm', 'f7nl', 'f7nk', 'f7nj', 'f7ni', 'f7nh', 'f7nw', 'f7nv', 'f7nu', 'f7nt', 'f7ns', 'f7nr', 'f7nq', 'f7np', 'f7nz',  'f7uh', 'f7un', 'f7ul', 'f7uc', 'f7uf', 'f7uz', 'f7ux', 'f7uy', 'f7up', 'f7uq', 'f7uv', 'f7uw', 'f7uu', 'f7jk', 'f7jj', 'f7ji', 'f7jh', 'f7jo', 'f7jn', 'f7jm', 'f7jl', 'f7jc', 'f7jb', 'f7ja', 'f7jg', 'f7jf', 'f7je', 'f7jd', 'f7jx', 'f7js', 'f7jr', 'f7jq', 'f7jp', 'f7jw', 'f7jv', 'f7ju', 'f7jt', 'f7cc', 'f7cd', 'f7ce', 'f7cf', 'f7cl', 'f7cm', 'f7cn', 'f7cq', 'f7cu', 'f7xf', 'f7xi', 'f7xk', 'f7xj', 'f7xm', 'f7xo', 'f7xn', 'f7xq', 'f7xp', 'f7xs', 'f7xr', 'f7xu', 'f7xt', 'f7xw', 'f7xv', 'f7xy', 'f7xz', 'f6hj', 'f6hk', 'f6hl', 'f6hm', 'f7qx', 'f7qw', 'f7qu', 'f7qs', 'f7qj', 'f7qf', 'f7qg', 'f6gi', 'f6gh', 'f6gj', 'f6gu', 'f6gp', 'f7ma', 'f7mg', 'f7fq', 'f7fn', 'f7fm', 'f7fh', 'f7fd', 'f7fc', 'f7fb', 'f7fa', 'f7te', 'f7tg', 'f7th', 'f6dd', 'f6de', 'f6cb', 'f7iv', 'f7iw', 'f7it', 'f7ir', 'f7ip', 'f7iq', 'f7iz', 'f7if', 'f7ig', 'f7id', 'f7ie', 'f7ib', 'f7ic', 'f7ia', 'f7in', 'f7io', 'f7il', 'f7im', 'f7ij', 'f7ik', 'f7ih', 'f7py', 'f7wl', 'f7wj', 'f7wp', 'f7wr', 'f6eu', 'f6em', 'f6el', 'f7lm', 'f7li', 'f7le', 'f7ld', 'f7lg', 'f7lf', 'f7la', 'f7lc', 'f7lb', 'f7lz', 'f7ls', 'f8wu', 'f7sp', 'f7sq', 'f7sr', 'f7ss', 'f7st', 'f7su', 'f7sv', 'f7sw', 'f7sx', 'f7sy', 'f7sz', 'f7sf',  'f7si', 'f7sm', 'f7sn', 'f7so', 'f7oa', 'f7ob', 'f7oc', 'f7ol', 'f7om', 'f7on', 'f7oo', 'f7oh', 'f7oi', 'f7oj', 'f7ok', 'f7ot', 'f7ou', 'f7ov', 'f7ow', 'f7op', 'f7oq', 'f7or', 'f7os', 'f7hs', 'f7hr', 'f7hu', 'f7ht', 'f7hw', 'f7hv', 'f7hx', 'f7hz', 'f7ha', 'f7hb', 'f7he', 'f7hd', 'f7hg', 'f7hf', 'f7hh', 'f7hk', 'f7hj', 'f7hm', 'f7hl', 'f7ho', 'f7hn', 'f7ac', 'f7vc', 'f7va', 'f7vz', 'f7vy', 'f7vx', 'f7vw', 'f7vv', 'f7vu', 'f7vt', 'f7kh', 'f7ki', 'f7ka', 'f7kb', 'f7kc', 'f7kd', 'f7ks', 'f7df', 'f7db',  
-    'f8ta', 'f8vl', 'f8vm', 'f8uz', 
+    'f7rr', 'f7rq', 'f7rp', 'f7rw', 'f7rv', 'f7ru', 'f7rc', 'f7rb', 'f7ra', 'f7rg', 'f7rf', 'f7re', 'f7rd', 'f7rk', 'f7rj', 'f7rm', 'f7rl', 'f6fl', 'f6fb', 'f6fc', 'f6fa', 'f6fd', 'f6fe', 'f6ps', 'f7gx', 'f7gz', 'f7gt', 'f7gu', 'f7gv', 'f7gw', 'f7gp', 'f7gq', 'f7gs', 'f7gl', 'f7gn', 'f7gh', 'f7gi', 'f7gj', 'f7gk', 'f7ge', 'f7gf', 'f7gg', 'f7gc', 'f8tz', 'f8tp', 'f8th', 'f8to', 'f8ta', 'f8tf', 'f8td', 'f7ng', 'f7nf', 'f7ne', 'f7nd', 'f7nc', 'f7nb', 'f7na', 'f7no', 'f7nn', 'f7nm', 'f7nl', 'f7nk', 'f7nj', 'f7ni', 'f7nh', 'f7nw', 'f7nv', 'f7nu', 'f7nt', 'f7ns', 'f7nr', 'f7nq', 'f7np', 'f7nz',  'f7uh', 'f7un', 'f7ul', 'f7uc', 'f7uf', 'f7uz', 'f7ux', 'f7uy', 'f7up', 'f7uq', 'f7uv', 'f7uw', 'f7uu', 'f7jk', 'f7jj', 'f7ji', 'f7jh', 'f7jo', 'f7jn', 'f7jm', 'f7jl', 'f7jc', 'f7jb', 'f7ja', 'f7jg', 'f7jf', 'f7je', 'f7jd', 'f7jx', 'f7js', 'f7jr', 'f7jq', 'f7jp', 'f7jw', 'f7jv', 'f7ju', 'f7jt', 'f7cc', 'f7cd', 'f7ce', 'f7cf', 'f7cl', 'f7cm', 'f7cn', 'f7cq', 'f7cu', 'f7xf', 'f7xi', 'f7xk', 'f7xj', 'f7xm', 'f7xo', 'f7xn', 'f7xq', 'f7xp', 'f7xs', 'f7xr', 'f7xu', 'f7xt', 'f7xw', 'f7xv', 'f7xy', 'f7xz', 'f6hj', 'f6hk', 'f6hl', 'f6hm', 'f7qx', 'f7qw', 'f7qu', 'f7qs', 'f7qj', 'f7qf', 'f7qg', 'f6gi', 'f6gh', 'f6gj', 'f6gu', 'f6gp', 'f7ma', 'f7mg', 'f7fq', 'f7fn', 'f7fm', 'f7fh', 'f7fd', 'f7fc', 'f7fb', 'f7fa', 'f7te', 'f7tg', 'f7th', 'f6dd', 'f6de', 'f6cb', 'f7iv', 'f7iw', 'f7it', 'f7ir', 'f7ip', 'f7iq', 'f7iz', 'f7if', 'f7ig', 'f7id', 'f7ie', 'f7ib', 'f7ic', 'f7ia', 'f7in', 'f7io', 'f7il', 'f7im', 'f7ij', 'f7ik', 'f7ih', 'f7py', 'f7wl', 'f7wj', 'f7wp', 'f7wr', 'f6eu', 'f6em', 'f6el', 'f7lm', 'f7li', 'f7le', 'f7ld', 'f7lg', 'f7lf', 'f7la', 'f7lc', 'f7lb', 'f7lz', 'f7ls', 'f7sp', 'f7sq', 'f7sr', 'f7ss', 'f7st', 'f7su', 'f7sv', 'f7sw', 'f7sx', 'f7sy', 'f7sz', 'f7sf',  'f7si', 'f7sm', 'f7sn', 'f7so', 'f7oa', 'f7ob', 'f7oc', 'f7ol', 'f7om', 'f7on', 'f7oo', 'f7oh', 'f7oi', 'f7oj', 'f7ok', 'f7ot', 'f7ou', 'f7ov', 'f7ow', 'f7op', 'f7oq', 'f7or', 'f7os', 'f7hs', 'f7hr', 'f7hu', 'f7ht', 'f7hw', 'f7hv', 'f7hx', 'f7hz', 'f7ha', 'f7hb', 'f7he', 'f7hd', 'f7hg', 'f7hf', 'f7hh', 'f7hk', 'f7hj', 'f7hm', 'f7hl', 'f7ho', 'f7hn', 'f7ac', 'f7vc', 'f7va', 'f7vz', 'f7vy', 'f7vx', 'f7vw', 'f7vv', 'f7vu', 'f7vt', 'f7kh', 'f7ki', 'f7ka', 'f7kb', 'f7kc', 'f7kd', 'f7ks', 'f7df', 'f7db',  
+    'f8ta', 'f8vl', 'f8vm',
 ]
 
 individual_income_variables_to_test = [ # NB: taken from input variables of FELIN-ERFS Survey Scenario (TAXIPP) 2014
@@ -447,6 +448,7 @@ individual_income_variables_to_test = [ # NB: taken from input variables of FELI
     #'f6ev', 'f6rs', 'f6ss', 'f7dg', 'f7dl', 'f7dq', 
     #'ppe_tp_ns',  # TODO , update OpenFisca-france def of ppe_tp_ns (wrong stop_date) # WARNING : DGFiP calculator does not like this one
     #'ppe_tp_sa', # WARNING : DGFiP calculator does not like this one
+    # 'revimpres', "REVENUS A IMPOSER AUX CONTRIBUTIONS SOCIALES SANS REVENU CORRESPONDANT"
     'aacc_defn',
     'aacc_defs',
     'aacc_exon',
@@ -545,8 +547,6 @@ individual_income_variables_to_test = [ # NB: taken from input variables of FELI
     'ppe_du_sa',
     'pveximpres',  
     'retraite_imposable',
-    'retraite_titre_onereux',
-    'revimpres',
     ]
 
 
@@ -659,7 +659,7 @@ def transform_scenario_to_tax_calculator_inputs(scenario):
             if column_code == 'nbN':
                 impots_arguments['0DN'] = int(value)
             if (column_code == 'caseF') & (value == 1):
-                impots_arguments['0F'] = '1'
+                impots_arguments['0AF'] = '1'
             if (column_code == 'caseG') & (value == 1):
                 impots_arguments['0AG'] = '1'
             if (column_code == 'caseL') & (value == 1):
