@@ -16,6 +16,7 @@ class inapte_travail(Variable):
 class taux_incapacite(Variable):
     value_type = float
     entity = Individu
+    set_input = set_input_dispatch_by_period
     label = u"Taux d'incapacité"
     definition_period = MONTH
 

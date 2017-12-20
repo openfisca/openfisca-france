@@ -31,13 +31,14 @@ def modify_parameters(parameters):
     # Article 63 du PLF : revalorisation de la prime d'activité
     ############################################################
     #revalorisation du montant forfaitaire du RSA : le reste de la réforme du RSA/prime d'activité nécessite de coder une fonction supplémentaire
-    parameters.prestations.minima_sociaux.rsa.montant_de_base_du_rsa.update(start="2018-01", value=546.25)
-    # parameters.prestations.minima_sociaux.ppa.pente.update(start="2018-01", value=0.61)
+    parameters.prestations.minima_sociaux.ppa.montant_de_base.update(start="2018-01", value=546.25)
+    parameters.prestations.minima_sociaux.ppa.pente.update(start="2018-01", value=0.61)
     # # création du surbonus de prime d'activité
     parameters.prestations.minima_sociaux.ppa.sur_bonification.montant_sur_bonification_max.update(period="2019", value=(20))
     parameters.prestations.minima_sociaux.ppa.sur_bonification.montant_sur_bonification_max.update(period="2020", value=(40))
     parameters.prestations.minima_sociaux.ppa.sur_bonification.montant_sur_bonification_max.update(period="2021", value=(60))
-        
+    parameters.prestations.minima_sociaux.ppa.sur_bonification.montant_sur_bonification_max.update(period="2022", value=(60))
+    #     
     
     #################################################
     # Article 7 du PLFSS : Bascule CSG cotisations :
@@ -46,10 +47,10 @@ def modify_parameters(parameters):
     parameters.prelevements_sociaux.contributions.csg.activite.deductible.taux.update(start="2018-01", value=0.068)
     # - hausse de la CSG sur les retraites
     parameters.prelevements_sociaux.contributions.csg.retraite.deductible.taux_plein.update(start="2018-01", value=0.059)
-    # - suppression de la cotisation salariale d'assurance chomage en deux temps :
     # - suppression de la cotisation salariale maladie
     parameters.cotsoc.children['cotisations_salarie'].children['prive_non_cadre'].children['maladie'][0].rate.update(start = reform_period, value=0.0)
     parameters.cotsoc.children['cotisations_salarie'].children['prive_cadre'].children['maladie'][0].rate.update(start = reform_period, value=0.0)
+    # - suppression de la cotisation salariale d'assurance chomage en deux temps :
     # # - une première baisse de 1,5 pt le 1er janvier 2018
     parameters.cotsoc.children['cotisations_salarie'].children['prive_non_cadre'].children['assedic'][0].rate.update(start = "2018", value=0.009)
     parameters.cotsoc.children['cotisations_salarie'].children['prive_cadre'].children['assedic'][0].rate.update(start =  "2018", value=0.009)
@@ -80,6 +81,7 @@ def modify_parameters(parameters):
     parameters.prestations.minima_sociaux.aspa.montant_annuel_couple.update(start = "2020-01-01", value=(14963.65+155.2*12))
     parameters.prestations.minima_sociaux.aspa.plafond_ressources_couple.update(start = "2020-01-01", value=(14963.65+155.2*12))
     
+    parameters.prestations.minima_sociaux.aah.montant.update(start = "2019-01-01", value=(900))
 
     return parameters
 
