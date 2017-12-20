@@ -373,7 +373,7 @@ class ppa_fictive(Variable):
 
         ppa_montant_base = (
             montant_forfaitaire_familialise +
-            bonification +
+            bonification + sur_bonification +
             pente * ppa_revenu_activite - ppa_base_ressources - forfait_logement
             )
             
