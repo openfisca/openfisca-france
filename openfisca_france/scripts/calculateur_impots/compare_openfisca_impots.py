@@ -65,7 +65,7 @@ def compare(scenario, tested = False, verbose = False):
             fields[code] = {
                 'code': code,
                 'name': names[code] if (code in names) else u'nom inconnu',
-                'value': round(float(element.get('value').replace(" ", "").replace("*",""))),
+                'value': float(element.get('value').replace(" ", "").replace("*","")),
                 'openfisca_name': openfisca_variable_name_by_tax_calculator_code.get(code),
                 }
         except ValueError:
