@@ -21,34 +21,34 @@ reform = plf2018.plf2018(tax_benefit_system)
 
 
 
-def inverse_salaire(x):
-    pss = 3269
-    seuil_1 = pss*(1-0.2221)
-    seuil_2 = pss*(1-0.2221) + (3*pss-pss)*(1-0.2041)
-    seuil_3 = pss*(1-0.2221) + (3*pss-pss)*(1-0.2041) + (4*pss-3*pss)*(1-0.1141)
-      
-    if x < seuil_1:
-        res = x/(1-0.2221)
-    elif (x < seuil_2):
-        res = seuil_1/(1-0.2221) + (x-seuil_1)/(1-0.2041)
-    elif x < seuil_3:
-        res = seuil_1/(1-0.2221) + (seuil_2-seuil_1)/(1-0.2041) + (x-seuil_2)/(1-0.1141)
-    else: 
-        res = seuil_1/(1-0.2221) + (seuil_2-seuil_1)/(1-0.2041) + (seuil_3-seuil_2)/(1-0.1141) + (x-seuil_3)/(1-0.0901)
-    return res
-    
-def inverse_fonctionnaire(x):
-    if x < 258.072882:
-        res = x/(1-0.1056-0.0005-0.9825*0.08-0.01*(1-0.1056))-3.13*(1-0.9825*0.08)
-    elif (x < 1166):
-        res = x/(1.01*(1-0.9825*0.08)-0.1056-0.0005)
-    elif x < 10664.39332:#seuil à 4 pss pour la CSG
-        res = x/(1.01*(1-0.9825*0.08)-0.1056-(1-0.1056)*0.01-0.0005)
-    elif x < 11498.8564:
-        res = 10664.39332/(1.01*(1-0.9825*0.08)-0.1056-(1-0.1056)*0.01-0.0005) + (x-10664.39332)/(1.01*(1-0.9825*0.08)-0.1056-(1-0.1056)*0.01-0.0005)
-    else:
-        res = 10664.39332/(1.01*(1-0.9825*0.08)-0.1056-(1-0.1056)*0.01-0.0005) + (11498.8564-10664.39332)/(1.01*(1-0.9825*0.08)-0.1056-(1-0.1056)*0.01-0.0005) + (x-11498.8564)/(1.01*(1-0.08)-0.1056-0.0005)
-    return res
+# def inverse_salaire(x):
+#     pss = 3269
+#     seuil_1 = pss*(1-0.2221)
+#     seuil_2 = pss*(1-0.2221) + (3*pss-pss)*(1-0.2041)
+#     seuil_3 = pss*(1-0.2221) + (3*pss-pss)*(1-0.2041) + (4*pss-3*pss)*(1-0.1141)
+#       
+#     if x < seuil_1:
+#         res = x/(1-0.2221)
+#     elif (x < seuil_2):
+#         res = seuil_1/(1-0.2221) + (x-seuil_1)/(1-0.2041)
+#     elif x < seuil_3:
+#         res = seuil_1/(1-0.2221) + (seuil_2-seuil_1)/(1-0.2041) + (x-seuil_2)/(1-0.1141)
+#     else: 
+#         res = seuil_1/(1-0.2221) + (seuil_2-seuil_1)/(1-0.2041) + (seuil_3-seuil_2)/(1-0.1141) + (x-seuil_3)/(1-0.0901)
+#     return res
+#     
+# def inverse_fonctionnaire(x):
+#     if x < 258.072882:
+#         res = x/(1-0.1056-0.0005-0.9825*0.08-0.01*(1-0.1056))-3.13*(1-0.9825*0.08)
+#     elif (x < 1166):
+#         res = x/(1.01*(1-0.9825*0.08)-0.1056-0.0005)
+#     elif x < 10664.39332:#seuil à 4 pss pour la CSG
+#         res = x/(1.01*(1-0.9825*0.08)-0.1056-(1-0.1056)*0.01-0.0005)
+#     elif x < 11498.8564:
+#         res = 10664.39332/(1.01*(1-0.9825*0.08)-0.1056-(1-0.1056)*0.01-0.0005) + (x-10664.39332)/(1.01*(1-0.9825*0.08)-0.1056-(1-0.1056)*0.01-0.0005)
+#     else:
+#         res = 10664.39332/(1.01*(1-0.9825*0.08)-0.1056-(1-0.1056)*0.01-0.0005) + (11498.8564-10664.39332)/(1.01*(1-0.9825*0.08)-0.1056-(1-0.1056)*0.01-0.0005) + (x-11498.8564)/(1.01*(1-0.08)-0.1056-0.0005)
+#     return res
 
 
 def init_profile(scenario):
@@ -56,9 +56,10 @@ def init_profile(scenario):
         period = 'year:2017:6',
         parent1 = dict(
             age = 40,
-            salaire_de_base = inverse_fonctionnaire(20000)*12*6,
-            categorie_salarie = "public_titulaire_etat", # prive_non_cadre ou public_titulaire_etat
-            # statut_marital = 2,
+            salaire_de_base = 1480*12*6,
+            categorie_salarie = "prive_non_cadre", # prive_non_cadre ou public_titulaire_etat
+            # taux_incapacite = 0.9,
+            statut_marital = 2,
             ),
         # parent2 = dict(
         #     age = 70,
@@ -67,13 +68,14 @@ def init_profile(scenario):
         #     statut_marital = 1,
         #     ),
         # enfants = [
-        #     dict(age = 9),
-        #     dict(age = 10),
-        #     dict(age = 10),
-        #     dict(age = 14),
+            # dict(age = 9),
+            # dict(age = 10),
+            # dict(age = 10),
+            # dict(age = 14),
         # ],
         menage = dict(loyer = 5000, # Annual basis
             cotisation_taxe_habitation = -427.*6,
+            statut_occupation_logement = 3,
             ),
         # foyer_fiscal= dict(taux_csg_remplacement_2 = 3),
         )
@@ -107,7 +109,11 @@ csg = reference_simulation.calculate("csg", "2018")/12
 crds = reference_simulation.calculate("crds", "2018")/12
 
 
-csg_imp = reference_simulation.calculate("csg_imposable_salaire", "2018-01")
+aah_eligible = reference_simulation.calculate("aah_eligible", "2020-01")
+autonomie_financiere = reference_simulation.calculate("autonomie_financiere", "2020-01")
+nbptr = reference_simulation.calculate("nbptr", "2020")
+apl = reference_simulation.calculate("apl", "2018-11")
+csg_imp = reform_simulation.calculate("aah", "2020-01")
 csg_nimp = reference_simulation.calculate("csg_deductible_salaire", "2018-01")
 assiette_abat = reference_simulation.calculate("assiette_csg_abattue", "2018-01")
 assiette_non_abat = reference_simulation.calculate("assiette_csg_non_abattue", "2018-01")
@@ -131,8 +137,8 @@ salaire_brut-(salaire_net-indemnite_residence)
 
 
 # Calcul des résultats
-rd_av_2018 = reference_simulation.calculate('revenu_disponible', '2018')/12
-rd_ap_2018 = reform_simulation.calculate('revenu_disponible', '2018')/12
+rd_av_2018 = reference_simulation.calculate('revenu_disponible', '2018')
+rd_ap_2018 = reform_simulation.calculate('revenu_disponible', '2018')
 gain_2018 = -(rd_av_2018-rd_ap_2018)
 
 rd_av_2019 = reference_simulation.calculate('revenu_disponible', '2019')/12
