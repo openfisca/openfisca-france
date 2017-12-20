@@ -117,9 +117,15 @@ def compare_variable(field, openfisca_variable_name, simulation, verbose = False
     openfisca_value = simulation.calculate(openfisca_variable_name, simulation.period)
     openfisca_variable_name = field['openfisca_name']
     assert len(openfisca_value) == 1
-    if verbose:
-        print(u'{} ({}) = {}'.format(code, name, openfisca_variable_name).encode('utf-8'))
-        print(u'{} vs {}'.format(dgfip_value, round(openfisca_value[0])).encode('utf-8'))
+    if verbose: 
+        if (openfisca_variable_name == 'nbptr'):
+            print(u'{} ({}) = {}'.format(code, name, openfisca_variable_name).encode('utf-8'))
+            print(u'{} vs {}'.format(dgfip_value, openfisca_value[0]).encode('utf-8'))
+        else:
+            print(u'{} ({}) = {}'.format(code, name, openfisca_variable_name).encode('utf-8'))
+            print(u'{} vs {}'.format(round(dgfip_value), round(openfisca_value[0])).encode('utf-8'))
+
+
 
 
 def compare_variables(fields, simulation, verbose = True):
