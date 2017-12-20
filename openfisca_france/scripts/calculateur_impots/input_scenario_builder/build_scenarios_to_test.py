@@ -62,6 +62,7 @@ def create_all_scenarios_to_test(directory):
 
         # TYPE 2 SCENARIOS
         scenario_by_variable = {
+            # 'plaf_qf_domtom': TODO,
             'abat_65_or_invalid': define_single_worker_scenario(year, {'salaire_imposable': 20000},  caseP = 1, date_naissance = year - 80),
             'caseF': define_family_scenario(year, caseF = 1),
             'caseG': define_single_worker_scenario(year, {'salaire_imposable': 50000}, caseG = 1, statut_marital = u'Veuf', date_naissance = year - 80),
@@ -71,11 +72,15 @@ def create_all_scenarios_to_test(directory):
             'caseT': define_single_parent_scenario(year, caseT = 1),
             'caseW': define_single_worker_scenario(year, {'salaire_imposable': 50000}, caseW = 1, date_naissance = year - 80),
             'decote': define_family_scenario(year, income_amount1 = 25000, income_amount2 = 20000),
-            'maj_nbp': define_family_scenario(year, nbG = 1, nbH = 1, nbI = 1, nbR = 1, nbJ = 1),
+            'maj_nbp': define_family_scenario(year, nbF = 1, nbG = 1, nbH = 1, nbI = 1, nbR = 1, nbJ = 1),
             'nbG': define_family_scenario(year, nbG = 1),  
-            'nbI': define_family_scenario(year, nbI = 1, nbH = 1),
+            'nbI': define_family_scenario(year, nbF = 2, nbI = 1, nbH = 1),
             'nbR': define_family_scenario(year, nbR = 1),
-            'plaf_qf': define_family_scenario(year, income_amount1 = 150000, income_amount2 = 100000),
+            'plaf_qf_caseL': define_single_worker_scenario(year, {'salaire_imposable': 150000}, caseL = 1),
+            'plaf_qf_casePF_nbGI': define_family_scenario(year, income_amount1 = 150000, income_amount2 = 100000, caseP = 1, caseF = 1, nbF = 2, nbG = 1, nbH = 1, nbI = 1),
+            'plaf_qf_caseT': define_single_parent_scenario(year, income_amount1 = 150000, caseT = 1),
+            'plaf_qf_caseWG': define_single_worker_scenario(year, {'salaire_imposable': 150000}, statut_marital = u'Veuf', caseG = 1, caseW = 1),
+            'plaf_qf_family': define_family_scenario(year, income_amount1 = 150000, income_amount2 = 100000),
             'ppe': define_family_scenario(year, income_amount1 = 15000, income_amount2 = 10000), 
         }
         
@@ -158,7 +163,7 @@ def define_single_worker_scenario(year, value_by_variable, date_naissance = 1970
     return scenario
 
 def define_family_scenario(year, date_naissance1 = 1970, date_naissance2 = 1970, income_amount1 = 50000, income_amount2 = 50000, 
-    nbG = 0, nbR = 0, nbH = 0, nbI = 0, nbJ = 0, caseL = 0, caseP = 0, caseF = 0, caseW = 0, caseS = 0, caseG = 0):
+    nbF = 3, nbG = 0, nbR = 0, nbH = 0, nbI = 0, nbJ = 0, nbN = 0, caseP = 0, caseF = 0, caseW = 0, caseS = 0, caseG = 0):
     """
         Function that creates a scenario from the base tax & benefits system for one entity (a family with 3 children)
         and credit the parents with a given amount of wage.
@@ -169,6 +174,11 @@ def define_family_scenario(year, date_naissance1 = 1970, date_naissance2 = 1970,
         Year of income
 
     """
+    
+    assert nbF + nbH + nbJ + nbN <= 3
+    assert nbF >= nbG
+    assert nbH >= nbI
+
     scenario = base.tax_benefit_system.new_scenario()
     parent1 = {
         "activite": u'Actif occupé',
@@ -196,19 +206,21 @@ def define_family_scenario(year, date_naissance1 = 1970, date_naissance2 = 1970,
             date_naissance = str(year - 4) + '-01-01',
             ),
         ]
+    
     famille = dict()
     menage = dict()
     foyer_fiscal = dict(
         caseF = caseF,
         caseG = caseG,
-        caseL = caseL,
         caseP = caseP,
         caseS = caseS,
         caseW = caseW,
+        nbF = nbF,
         nbG = nbG,
         nbH = nbH,
         nbI = nbI,
         nbJ = nbJ,
+        nbN = nbN,
         nbR = nbR,
     )
 
@@ -225,8 +237,8 @@ def define_family_scenario(year, date_naissance1 = 1970, date_naissance2 = 1970,
     scenario.suggest()
     return scenario
 
-def define_single_parent_scenario(year, statut_marital = u'Célibataire', date_naissance = 1970, income_amount1 = 50000, nbG = 0, nbR = 0, 
-    nbI = 0, caseL = 0, caseP = 0, caseF = 0, caseW = 0, caseS = 0, caseG = 0, caseT = 1):
+def define_single_parent_scenario(year, statut_marital = u'Célibataire', date_naissance = 1970, income_amount1 = 50000, 
+    nbF = 1, nbG = 0, nbR = 0, nbH = 0, nbI = 0, nbJ = 0, nbN = 0, caseL = 0, caseP = 0, caseF = 0, caseW = 0, caseS = 0, caseG = 0, caseT = 1):
     """
         Function that creates a scenario from the base tax & benefits system for one entity (a single parent with 1 child)
         and credit the parents with a given amount of wage.
@@ -238,6 +250,10 @@ def define_single_parent_scenario(year, statut_marital = u'Célibataire', date_n
 
     """
     assert statut_marital in [u'Célibataire', u'Veuf', u'Divorcé']
+    assert nbF + nbH + nbJ + nbN <= 1
+    assert nbF >= nbG
+    assert nbH >= nbI
+
     scenario = base.tax_benefit_system.new_scenario()
     parent1 = {
         "activite": u'Actif occupé',
@@ -261,8 +277,12 @@ def define_single_parent_scenario(year, statut_marital = u'Célibataire', date_n
         caseS = caseS,
         caseT = caseT,
         caseW = caseW,
+        nbF = nbF,
         nbG = nbG,
+        nbH = nbH,
         nbI = nbI,
+        nbJ = nbJ,
+        nbN = nbN,
         nbR = nbR,
     )
 
