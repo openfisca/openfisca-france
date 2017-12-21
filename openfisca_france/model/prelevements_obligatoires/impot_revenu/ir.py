@@ -1209,7 +1209,6 @@ class ir_plaf_qf(Variable):
                    conditionGuyMay * min_(plafond_qf.abat_dom.plaf_GuyMay, plafond_qf.abat_dom.taux_GuyMay * IP1)) 
         IP2 = IP1 - abat_dom
 
-        print I, IP0, IP1
         return (not_(conditionDOM) * (condition62a * IP0 + condition62b * IP1) +
                 conditionDOM * IP2)
 
@@ -1233,6 +1232,12 @@ class decote(Variable):
     label = u"décote"
     definition_period = YEAR
 
+    def formula_2001_01_01(foyer_fiscal, period, parameters):
+        ir_plaf_qf = foyer_fiscal('ir_plaf_qf', period)
+        decote = parameters(period).impot_revenu.decote
+
+        return (ir_plaf_qf < decote.seuil) * (decote.seuil - ir_plaf_qf) * 0.5
+
     def formula_2015_01_01(foyer_fiscal, period, parameters):
         ir_plaf_qf = foyer_fiscal('ir_plaf_qf', period)
         nb_adult = foyer_fiscal('nb_adult', period)
@@ -1253,12 +1258,6 @@ class decote(Variable):
 
         return (nb_adult == 1) * decote_celib + (nb_adult == 2) * decote_couple
 
-    def formula_2001_01_01(foyer_fiscal, period, parameters):
-        ir_plaf_qf = foyer_fiscal('ir_plaf_qf', period)
-        decote = parameters(period).impot_revenu.decote
-
-        return (ir_plaf_qf < decote.seuil) * (decote.seuil - ir_plaf_qf) * 0.5
-
 
 class decote_gain_fiscal(Variable):
     value_type = float
@@ -1275,6 +1274,30 @@ class decote_gain_fiscal(Variable):
 
         return min_(decote, ir_plaf_qf)
 
+class reduction_ss_condition_revenus(Variable):
+    value_type = float
+    entity = FoyerFiscal
+    label = u"Réduction d'impôt sous condition de revenus, s'imputant avant toutes autres réductions"
+    definition_period = YEAR
+
+    def formula_2016_01_01(foyer_fiscal, period, parameters):
+        '''
+        Réduction d'impôt sous condition de revenus
+        '''
+        ir_plaf_qf = foyer_fiscal('ir_plaf_qf', period)
+        decote = foyer_fiscal('decote', period)
+        nb_adult = foyer_fiscal('nb_adult', period)
+        nbptr = foyer_fiscal('nbptr', period)
+        rfr = foyer_fiscal('rfr', period)
+        parameters = parameters(period).impot_revenu.plafond_qf.reduction_ss_condition_revenus
+
+        plafond1 = (parameters.seuil1 * nb_adult + parameters.seuil_maj_enf * 2 * (nbptr - nb_adult))
+        plafond2 = (parameters.seuil2 * nb_adult + parameters.seuil_maj_enf * 2 * (nbptr - nb_adult))
+
+        reduc = ((rfr < plafond1) * (parameters.taux * (ir_plaf_qf - decote)) +
+                ((rfr >= plafond1) & (rfr < plafond2)) * ((parameters.taux*(ir_plaf_qf - decote)*(plafond2 - rfr))/((plafond2 - plafond1)*nb_adult)))
+        
+        return reduc
 
 class nat_imp(Variable):
     value_type = bool
@@ -1298,20 +1321,31 @@ class nat_imp(Variable):
 class ip_net(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = u"Impôt sur le revenu après décote"
+    label = u"Impôt sur le revenu après décote et réduction sous condition de revenus, avant réductions"
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
         '''
-        irpp après décote
+        Impôt net avant réductions
         '''
-        ir_plaf_qf = foyer_fiscal('ir_plaf_qf', period)
         cncn_info_i = foyer_fiscal.members('cncn_info', period)
         decote = foyer_fiscal('decote', period)
+        ir_plaf_qf = foyer_fiscal('ir_plaf_qf', period)
         taux = parameters(period).impot_revenu.rpns.taux16
 
         return max_(0, ir_plaf_qf + foyer_fiscal.sum(cncn_info_i) * taux - decote)
 
+    def formula_2016_01_01(foyer_fiscal, period, parameters):
+        '''
+        Impôt net avant réductions
+        '''
+        cncn_info_i = foyer_fiscal.members('cncn_info', period)
+        decote = foyer_fiscal('decote', period)
+        ir_plaf_qf = foyer_fiscal('ir_plaf_qf', period)
+        reduction_ss_condition_revenus = foyer_fiscal('reduction_ss_condition_revenus', period) 
+        taux = parameters(period).impot_revenu.rpns.taux16
+
+        return max_(0, ir_plaf_qf + foyer_fiscal.sum(cncn_info_i) * taux - decote - reduction_ss_condition_revenus)
 
 class iaidrdi(Variable):
     value_type = float
