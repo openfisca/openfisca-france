@@ -1177,7 +1177,7 @@ class ir_plaf_qf(Variable):
         condition62a = (I >= C) # pas de réductions complémentaires
         condition62b = (I < C) # possible réductions complémentaires
 
-        condition62c = (caseP | caseF | caseW | caseS | caseG)
+        condition62c = (caseP | caseF | caseW | caseS | caseG | (nbG > 0) | (nbI > 0) | nbR > 0)
         condition62c0 = (caseP | caseF) | (caseW | caseS) | (caseG)
         condition62c1 = (maries_ou_pacses) & (caseP & caseF)
         condition62c2 = (nbG > 0) | (nbI > 0) | (nbR > 0)
