@@ -1,0 +1,5 @@
+reference: ipp
+unit: currency
+values:
+  2016-01-01:
+    value: 20500.0
