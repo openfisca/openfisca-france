@@ -293,7 +293,8 @@ class ppa_bonification(Variable):
 class ppa_forfait_logement(Variable):
     value_type = float
     entity = Famille
-    label = u"Forfait logement intervenant dans le calcul de la primed d'activité"
+    label = u"Forfait logement intervenant dans le calcul de la prime d'activité"
+    reference = u"https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=9A3FFF4142B563EB5510DDE9F2870BF4.tplgfr41s_2?idArticle=LEGIARTI000031675988&cidTexte=LEGITEXT000006073189&dateTexte=20171222"
     definition_period = MONTH
 
     def formula(famille, period, parameters):
@@ -303,8 +304,11 @@ class ppa_forfait_logement(Variable):
         participation_frais = famille.demandeur.menage('participation_frais', period)
         loyer = famille.demandeur.menage('loyer', period)
 
+        # 1 = Accédant à la propriété
+        # 2 = Propriétaire (non accédant) du logement
+        # 6 = Logé gratuitement par des parents, des amis ou l'employeur
         avantage_nature = or_(
-            (statut_occupation_logement == 2) * not_(loyer),
+            ((statut_occupation_logement == 1) + (statut_occupation_logement == 2)) * not_(loyer),
             (statut_occupation_logement == 6) * not_(participation_frais)
             )
         avantage_al = aide_logement > 0
@@ -366,6 +370,8 @@ class ppa(Variable):
     label = u"Prime Pour l'Activité"
     definition_period = MONTH
     calculate_output = calculate_output_add
+    # Prime d'activité sur service-public.fr
+    reference = u"https://www.service-public.fr/particuliers/vosdroits/F2882"
 
     def formula_2016_01_01(famille, period, parameters):
         seuil_non_versement = parameters(period).prestations.minima_sociaux.ppa.seuil_non_versement

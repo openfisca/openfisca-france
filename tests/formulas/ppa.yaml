@@ -358,6 +358,16 @@
     ppa_forfait_logement:
       2016-01: 155.68
 
+- name: "PPA/RSA forfait logement 1 personne accédant à la propriété"
+  period: 2017-10
+  absolute_error_margin: 0.005
+  input_variables:
+    statut_occupation_logement: 1 # Accédant à la propriété
+    age: 40
+  output_variables:
+    ppa_forfait_logement: 63.15
+    rsa_forfait_logement: 65.46
+
 - name: "Prise en compte du forfait logement"
   period: 2016-01
   relative_error_margin: 0.05
