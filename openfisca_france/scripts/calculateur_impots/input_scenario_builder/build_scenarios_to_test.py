@@ -204,13 +204,13 @@ def define_family_scenario(year, date_naissance1 = 1970, date_naissance2 = 1970,
 
     parent1 = {
         "activite": u'Actif occupé',
-        "date_naissance": 1970,
+        "date_naissance": date_naissance1,
         "statut_marital": u'Marié',
         "salaire_imposable": income_amount1,
         }
     parent2 = {
         "activite": u'Actif occupé',
-        "date_naissance": 1970,
+        "date_naissance": date_naissance2,
         "statut_marital": u'Marié',
         "salaire_imposable": income_amount2,
         }
@@ -229,7 +229,7 @@ def define_family_scenario(year, date_naissance1 = 1970, date_naissance2 = 1970,
             date_naissance = str(year - 4) + '-01-01',
             ),
         ]
-    while (len(enfants) <= nb_enfants):
+    while (len(enfants) < nb_enfants):
         enfants.append(enfants[2])
 
     famille = dict()
