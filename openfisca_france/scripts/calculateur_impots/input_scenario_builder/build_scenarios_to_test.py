@@ -107,7 +107,7 @@ def create_all_scenarios_to_test(directory):
 
 def define_single_worker_scenario(year, value_by_variable, 
     date_naissance = 1970, statut_marital = u'Célibataire', nb_enfants = 0,
-    nbG = 0, nbR = 0, nbH = 0, nbI = 0, nbJ = 0, caseL = 0, caseP = 0, caseF = 0, caseW = 0, caseS = 0, caseG = 0):
+    nbF = 0, nbG = 0, nbR = 0, nbH = 0, nbI = 0, nbJ = 0, caseL = 0, caseP = 0, caseF = 0, caseW = 0, caseS = 0, caseG = 0):
     """
         Function that creates a scenario from the base tax & benefits system for one entity (a single working person)
         and credit him with some incomes given in arguments.
@@ -147,6 +147,7 @@ def define_single_worker_scenario(year, value_by_variable,
         caseP = caseP,
         caseS = caseS,
         caseW = caseW,
+        nbF = nbF,
         nbG = nbG,
         nbH = nbH,
         nbJ = nbJ,
