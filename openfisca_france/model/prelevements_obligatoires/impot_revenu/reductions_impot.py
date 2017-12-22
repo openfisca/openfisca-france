@@ -432,6 +432,7 @@ class reductions(Variable):
         prcomp = simulation.calculate('prcomp', period)
         repsoc = simulation.calculate('repsoc', period)
         resimm = simulation.calculate('resimm', period)
+        rpinel = simulation.calculate('rpinel', period)
         rsceha = simulation.calculate('rsceha', period)
         saldom = simulation.calculate('saldom', period)
         scelli = simulation.calculate('scelli', period)
@@ -440,7 +441,7 @@ class reductions(Variable):
 
         total_reductions = (accult + adhcga + cappme + creaen + daepad + deffor + dfppce + doment + domlog + donapd +
         duflot + ecpess + intagr + invfor + invlst + locmeu + mecena + mohist +
-        patnat + prcomp + repsoc + resimm + rsceha + saldom + scelli + sofica +
+        patnat + prcomp + repsoc + resimm + rpinel + rsceha + saldom + scelli + sofica +
         spfcpi)
         return min_(ip_net, total_reductions)
 
@@ -470,6 +471,7 @@ class reductions(Variable):
         prcomp = simulation.calculate('prcomp', period)
         repsoc = simulation.calculate('repsoc', period)
         resimm = simulation.calculate('resimm', period)
+        rpinel = simulation.calculate('rpinel', period)
         rsceha = simulation.calculate('rsceha', period)
         saldom = simulation.calculate('saldom', period)
         scelli = simulation.calculate('scelli', period)
@@ -478,7 +480,7 @@ class reductions(Variable):
 
         total_reductions = (accult + adhcga + cappme + daepad + deffor + dfppce + doment + domlog + donapd +
         duflot + ecpess + intagr + invfor + invlst + locmeu + mecena + mohist +
-        patnat + prcomp + repsoc + resimm + rsceha + saldom + scelli + sofica +
+        patnat + prcomp + repsoc + resimm + rpinel + rsceha + saldom + scelli + sofica +
         spfcpi)
         return min_(ip_net, total_reductions)
 
@@ -2339,15 +2341,23 @@ class duflot(Variable):
         Investissements locatifs intermediaires (loi Duflot)
         2014
         '''
-        f7gh = simulation.calculate('f7gh', period)
-        f7gi = simulation.calculate('f7gi', period)
         f7ek = simulation.calculate('f7ek', period)
         f7el = simulation.calculate('f7el', period)
         f7fi = simulation.calculate('f7fi', period)
+        f7gh = simulation.calculate('f7gh', period)
+        f7gi = simulation.calculate('f7gi', period)
+        f7qa = simulation.calculate('f7qa', period)
+        f7qb = simulation.calculate('f7qb', period)
+        f7qc = simulation.calculate('f7qc', period)
+        f7qd = simulation.calculate('f7qd', period)
         P = simulation.parameters_at(period.start).impot_revenu.reductions_impots.duflot
- 
+
+        max1 = max_(0, P.plafond - f7el - f7qd) # 2014 : plafond commun 'duflot' et 'rpinel'
+        max2 = max_(0, max1 - f7qc)
+        max3 = max_(0, max2 - f7ek - f7qb)
+      
         return (
-            (min_(P.plafond - f7gi, f7gh) + min_(P.plafond - f7el, f7ek)) * P.taux_m + 
+            (min_(max_(0, P.plafond - f7gi), f7gh) + min_(max_(0, max2 - f7el), f7ek)) * P.taux_m + 
             (min_(P.plafond, f7gi) + min_(P.plafond, f7el)) * P.taux_om
             ) / 9 + f7fi
 
@@ -2356,12 +2366,16 @@ class duflot(Variable):
         Investissements locatifs intermediaires (loi Duflot)
         2015
         '''
-        f7gh = simulation.calculate('f7gh', period)
-        f7gi = simulation.calculate('f7gi', period)
         f7ek = simulation.calculate('f7ek', period)
         f7el = simulation.calculate('f7el', period)
         f7fi = simulation.calculate('f7fi', period)
         f7fk = simulation.calculate('f7fk', period)
+        f7gh = simulation.calculate('f7gh', period)
+        f7gi = simulation.calculate('f7gi', period)
+        f7qa = simulation.calculate('f7qa', period)
+        f7qb = simulation.calculate('f7qb', period)
+        f7qc = simulation.calculate('f7qc', period)
+        f7qd = simulation.calculate('f7qd', period)
         P = simulation.parameters_at(period.start).impot_revenu.reductions_impots.duflot
 
         return (
@@ -2374,13 +2388,17 @@ class duflot(Variable):
         Investissements locatifs intermediaires (loi Duflot)
         2016
         '''
-        f7gh = simulation.calculate('f7gh', period)
-        f7gi = simulation.calculate('f7gi', period)
         f7ek = simulation.calculate('f7ek', period)
         f7el = simulation.calculate('f7el', period)
         f7fi = simulation.calculate('f7fi', period)
         f7fk = simulation.calculate('f7fk', period)
         f7fr = simulation.calculate('f7fr', period)
+        f7gh = simulation.calculate('f7gh', period)
+        f7gi = simulation.calculate('f7gi', period)
+        f7qa = simulation.calculate('f7qa', period)
+        f7qb = simulation.calculate('f7qb', period)
+        f7qc = simulation.calculate('f7qc', period)
+        f7qd = simulation.calculate('f7qd', period)
         P = simulation.parameters_at(period.start).impot_revenu.reductions_impots.duflot
 
         return (
@@ -3755,6 +3773,129 @@ class resimm(Variable):
         max2 = max_(max1 - f7nx - f7sy - f7rf, 0)
         return (P.taux_rc * min_(f7sy + f7rf + f7nx, max1) +
                  P.taux_re * min_(f7re + f7sx + f7ny, max2))
+
+
+class rpinel(Variable):
+    value_type = float
+    entity = FoyerFiscal
+    label = u"rpinel"
+    definition_period = YEAR
+
+    def formula_2014_01_01(self, simulation, period):
+        '''
+        Investissement locatif privé - Dispositif Pinel
+        2014
+        '''
+        f7ek = simulation.calculate('f7ek', period)
+        f7el = simulation.calculate('f7el', period)
+        f7qa = simulation.calculate('f7qa', period)
+        f7qb = simulation.calculate('f7qb', period)
+        f7qc = simulation.calculate('f7qc', period)
+        f7qd = simulation.calculate('f7qd', period)
+        P = simulation.parameters_at(period.start).impot_revenu.reductions_impots.rpinel
+
+        max1 = max_(0, P.seuil - f7el - f7qd) # 2014 : plafond commun 'duflot' et 'rpinel'
+        max2 = max_(0, max1 - f7qc)
+        max3 = max_(0, max2 - f7ek - f7qb)
+
+        return (P.taux29 * min_(max_(0, P.seuil - f7el), f7qd) / 9 +
+                P.taux23 * min_(max1, f7qc) / 6 +
+                P.taux18 * min_(max_(0, max2 - f7ek), f7qb) / 9 +
+                P.taux12 * min_(max3, f7qa) / 6 )
+
+    def formula_2015_01_01(self, simulation, period):
+        '''
+        Investissement locatif privé - Dispositif Pinel
+        2015
+        '''
+        f7ai = simulation.calculate('f7ai', period)
+        f7bi = simulation.calculate('f7bi', period)
+        f7ci = simulation.calculate('f7ci', period)
+        f7di = simulation.calculate('f7di', period)
+        f7ek = simulation.calculate('f7ek', period)
+        f7el = simulation.calculate('f7el', period)
+        f7qa = simulation.calculate('f7qa', period)
+        f7qb = simulation.calculate('f7qb', period)
+        f7qc = simulation.calculate('f7qc', period)
+        f7qd = simulation.calculate('f7qd', period)
+        f7qe = simulation.calculate('f7qe', period)
+        f7qf = simulation.calculate('f7qf', period)
+        f7qg = simulation.calculate('f7qg', period)
+        f7qh = simulation.calculate('f7qh', period)
+        P = simulation.parameters_at(period.start).impot_revenu.reductions_impots.rpinel
+
+        max1 = max_(0, P.seuil - f7el - f7qd) # 2014 : plafond commun 'duflot' et 'rpinel'
+        max2 = max_(0, max1 - f7qc)
+        max3 = max_(0, max2 - f7ek - f7qb)
+
+        reduc_invest_real_2014 = (P.taux29 * min_(max_(0, P.seuil - f7el), f7qd) / 9 +
+                P.taux23 * min_(max1, f7qc) / 6 +
+                P.taux18 * min_(max_(0, max2 - f7ek), f7qb) / 9 +
+                P.taux12 * min_(max3, f7qa) / 6)
+
+        reduc_invest_real_2015 = (
+                P.taux29 * min_(P.seuil, f7qh) / 9 +
+                P.taux23 * min_(max_(0, P.seuil - f7qh), f7qg) / 6 +
+                P.taux18 * min_(max_(0, P.seuil - f7qh - f7qg), f7qf) / 9 +
+                P.taux12 * min_(max_(0, P.seuil - f7qh - f7qg - f7qf), f7qe) / 6)
+    
+        report = f7ai + f7bi + f7ci + f7di
+        
+        return reduc_invest_real_2014 + reduc_invest_real_2015 + report
+
+    def formula_2016_01_01(self, simulation, period):
+        '''
+        Investissement locatif privé - Dispositif Pinel
+        2016
+        '''
+        f7ai = simulation.calculate('f7ai', period)
+        f7bi = simulation.calculate('f7bi', period)
+        f7bz = simulation.calculate('f7bz', period)
+        f7ci = simulation.calculate('f7ci', period)
+        f7cz = simulation.calculate('f7cz', period)
+        f7di = simulation.calculate('f7di', period)
+        f7dz = simulation.calculate('f7dz', period)
+        f7ek = simulation.calculate('f7ek', period)
+        f7el = simulation.calculate('f7el', period)
+        f7ez = simulation.calculate('f7ez', period)
+        f7qa = simulation.calculate('f7qa', period)
+        f7qb = simulation.calculate('f7qb', period)
+        f7qc = simulation.calculate('f7qc', period)
+        f7qd = simulation.calculate('f7qd', period)
+        f7qe = simulation.calculate('f7qe', period)
+        f7qf = simulation.calculate('f7qf', period)
+        f7qg = simulation.calculate('f7qg', period)
+        f7qh = simulation.calculate('f7qh', period)
+        f7qi = simulation.calculate('f7qi', period)
+        f7qj = simulation.calculate('f7qj', period)
+        f7qk = simulation.calculate('f7qk', period)
+        f7ql = simulation.calculate('f7ql', period)
+        P = simulation.parameters_at(period.start).impot_revenu.reductions_impots.rpinel
+
+        max1 = max_(0, P.seuil - f7el - f7qd) # 2014 : plafond commun 'duflot' et 'rpinel'
+        max2 = max_(0, max1 - f7qc)
+        max3 = max_(0, max2 - f7ek - f7qb)
+
+        reduc_invest_real_2014 = (P.taux29 * min_(max_(0, P.seuil - f7el), f7qd) / 9 +
+                P.taux23 * min_(max1, f7qc) / 6 +
+                P.taux18 * min_(max_(0, max2 - f7ek), f7qb) / 9 +
+                P.taux12 * min_(max3, f7qa) / 6 )
+
+        reduc_invest_real_2015 = (
+                P.taux29 * min_(P.seuil, f7qh) / 9 +
+                P.taux23 * min_(max_(0, P.seuil - f7qh), f7qg) / 6 +
+                P.taux18 * min_(max_(0, P.seuil - f7qh - f7qg), f7qf) / 9 +
+                P.taux12 * min_(max_(0, P.seuil - f7qh - f7qg - f7qf), f7qe) / 6)
+
+        reduc_invest_real_2016 = (
+                P.taux29 * min_(P.seuil, f7ql) / 9 +
+                P.taux23 * min_(max_(0, P.seuil - f7ql), f7qk) / 6 +
+                P.taux18 * min_(max_(0, P.seuil - f7ql - f7qk), f7qj) / 9 +
+                P.taux12 * min_(max_(0, P.seuil - f7ql - f7qk - f7qj), f7qi) / 6)
+    
+        report = f7ai + f7bi + f7ci + f7di + f7bz + f7cz + f7dz + f7ez
+        
+        return reduc_invest_real_2014 + reduc_invest_real_2015 + reduc_invest_real_2016 + report
 
 
 class rsceha(Variable):
