@@ -2299,7 +2299,9 @@ class duflot(Variable):
         f7gi = foyer_fiscal('f7gi', period)
         P = parameters(period).impot_revenu.reductions_impots.duflot
 
-        return (min_(P.plafond, f7gh) * P.taux_m + min_(P.plafond, f7gi) * P.taux_om) / 9
+        return (
+            min_(P.plafond - f7gi, f7gh) * P.taux_m + 
+            min_(P.plafond, f7gi) * P.taux_om) / 9
 
     def formula_2014_01_01(self, simulation, period):
         '''
@@ -2313,7 +2315,10 @@ class duflot(Variable):
         f7fi = foyer_fiscal('f7fi', period)
         P = simulation.parameters_at(period.start).impot_revenu.reductions_impots.duflot
  
-        return ( (min_(P.plafond, f7gh) + min_(P.plafond, f7ek)) * P.taux_m + (min_(P.plafond, f7gi) + min_(P.plafond, f7el)) * P.taux_om) / 9 + f7fi # TO CHECK
+        return (
+            (min_(P.plafond - f7gi, f7gh) + min_(P.plafond - f7el, f7ek)) * P.taux_m + 
+            (min_(P.plafond, f7gi) + min_(P.plafond, f7el)) * P.taux_om
+            ) / 9 + f7fi
 
     def formula_2015_01_01(self, simulation, period):
         '''
@@ -2328,7 +2333,10 @@ class duflot(Variable):
         f7fk = foyer_fiscal('f7fk', period)
         P = simulation.parameters_at(period.start).impot_revenu.reductions_impots.duflot
 
-        return ( (min_(P.plafond, f7gh) + min_(P.plafond, f7ek)) * P.taux_m + (min_(P.plafond, f7gi) + min_(P.plafond, f7el)) * P.taux_om) / 9 + f7fi + f7fk # TO CHECK
+        return (
+            (min_(P.plafond - f7gi, f7gh) + min_(P.plafond - f7el, f7ek)) * P.taux_m + 
+            (min_(P.plafond, f7gi) + min_(P.plafond, f7el)) * P.taux_om
+            ) / 9 + f7fi + f7fk
 
     def formula_2016_01_01(self, simulation, period):
         '''
@@ -2344,8 +2352,10 @@ class duflot(Variable):
         f7fr = foyer_fiscal('f7fr', period)
         P = simulation.parameters_at(period.start).impot_revenu.reductions_impots.duflot
 
-        return ( (min_(P.plafond, f7gh) + min_(P.plafond, f7ek)) * P.taux_m + (min_(P.plafond, f7gi) + min_(P.plafond, f7el)) * P.taux_om) / 9 + f7fi + f7fk + f7fr # TO CHECK
-
+        return (
+            (min_(P.plafond - f7gi, f7gh) + min_(P.plafond - f7el, f7ek)) * P.taux_m + 
+            (min_(P.plafond, f7gi) + min_(P.plafond, f7el)) * P.taux_om
+            ) / 9 + f7fi + f7fk + f7fr
 
 #TODO: / 5 dans trois TOM
 
