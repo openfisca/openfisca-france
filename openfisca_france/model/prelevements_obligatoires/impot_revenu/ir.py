@@ -2788,6 +2788,7 @@ class nbptr(Variable):
         nbI = foyer_fiscal('nbI', period)
         nbR = foyer_fiscal('nbR', period)
         nbJ = foyer_fiscal('nbJ', period)
+        nbN = foyer_fiscal('nbN', period)
         caseP = foyer_fiscal('caseP', period)
         caseW = foyer_fiscal('caseW', period)
         caseG = foyer_fiscal('caseG', period)
@@ -2850,7 +2851,7 @@ class nbptr(Variable):
         m = 1 + quotient_familial.conj + enf + n2 + n4
 
         # # veufs  hors jeune_veuf
-        v = 1 + enf + n2 + n3 + n5 + n6
+        v = 1 + quotient_familial.veuf * has_pac + enf + n2 + n3 + n5 + n6
 
         # # celib div
         c = 1 + enf + n2 + n3 + n6 + n7
