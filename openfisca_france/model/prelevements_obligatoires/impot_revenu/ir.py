@@ -2821,7 +2821,7 @@ class nbptr(Variable):
         n31b = quotient_familial.not31b * (no_pac & no_alt & (caseW | caseG))
         n31 = max_(n31a, n31b)
         # - personne seule ayant élevé des enfants
-        n32 = quotient_familial.not32 * (no_pac & no_alt & ((caseE | caseK) & not_(caseN)))
+        n32 = quotient_familial.not32 * (no_pac & no_alt & ((caseE | caseK | caseL) & not_(caseN)))
         n3 = max_(n31, n32)
         # # note 4 Invalidité de la personne ou du conjoint pour les mariés ou
         # # jeunes veuf(ve)s
