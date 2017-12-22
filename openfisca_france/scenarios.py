@@ -474,10 +474,13 @@ class Scenario(scenarios.AbstractScenario):
 
         for foyer_fiscal in test_case['foyers_fiscaux']:
             if len(foyer_fiscal['declarants']) == 1 and foyer_fiscal['personnes_a_charge']:
-                # Suggest "parent isolé" when foyer_fiscal contains a single "declarant" with "personnes_a_charge".
+                # Suggest "parent isolé" when foyer_fiscal contains a single "declarant" with "personnes_a_charge" and statut marital is not "Veuf" (cf. reform of quotient familial for widow in 2008).
                 if foyer_fiscal.get('caseT') is None:
-                    suggestions.setdefault('test_case', {}).setdefault('foyers_fiscaux', {}).setdefault(
-                        foyer_fiscal['id'], {})['caseT'] = foyer_fiscal['caseT'] = True
+                    for individu_id in foyer_fiscal['declarants']:
+                        individu = individu_by_id[individu_id]
+                        if individu.get('statut_marital') != 4:  # Not veuf
+                            suggestions.setdefault('test_case', {}).setdefault('foyers_fiscaux', {}).setdefault(
+                            foyer_fiscal['id'], {})['caseT'] = foyer_fiscal['caseT'] = True
             elif len(foyer_fiscal['declarants']) == 2:
                 # Suggest "PACSé" or "Marié" instead of "Célibataire" when foyer_fiscal contains 2 "declarants" without
                 # "statut_marital".
