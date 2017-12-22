@@ -1,5 +1,15 @@
 # Changelog
 
+### 19.0.2
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : toutes.
+* Zones impactées :
+  - `prestations/minima_sociaux/ppa`
+  - `prestations/minima_sociaux/rsa`
+* Détails :
+  - Prend en compte l'avantage en nature des primo-accédants dans le calcul des aides au logement.
+
 ### 19.0.1
 
 * Évolution du système socio-fiscal.
