@@ -1225,7 +1225,6 @@ class preetu(Variable):
         max1 = P.max * (1 + f7vo)
         return P.taux * min_(f7uk, max1)
 
-    # Cette formule a seulement été vérifiée jusqu'au 2015-12-31
     def formula_2008_01_01(foyer_fiscal, period, parameters):
         '''
         Crédit d’impôt pour souscription de prêts étudiants (cases 7UK, 7VO et 7TD)
