@@ -1,0 +1,5 @@
+description: Part supplémentaire pour quotient familial d'un veuf avec PAC (suivent le régime "mariés/pacsés" à partir de 2008)
+reference: openfisca
+values:
+  2008-01-01:
+    value: 1.0
