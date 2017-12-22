@@ -1216,7 +1216,6 @@ class ir_plaf_qf(Variable):
                    conditionGuyMay * min_(plafond_qf.abat_dom.plaf_GuyMay, plafond_qf.abat_dom.taux_GuyMay * IP1)) 
         IP2 = IP1 - abat_dom
 
-        print I, IP0, IP1
         return (not_(conditionDOM) * (condition62a * IP0 + condition62b * IP1) +
                 conditionDOM * IP2)
 
