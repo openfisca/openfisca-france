@@ -56,9 +56,9 @@ def init_profile(scenario):
         period = 'year:2017:6',
         parent1 = dict(
             age = 40,
-            salaire_de_base = 1480*12*6,
+            salaire_de_base = 1671*12*6,
             categorie_salarie = "prive_non_cadre", # prive_non_cadre ou public_titulaire_etat
-            # taux_incapacite = 0.9,
+            # taux_incapacite = ,
             statut_marital = 2,
             ),
         # parent2 = dict(
@@ -73,9 +73,9 @@ def init_profile(scenario):
             # dict(age = 10),
             # dict(age = 14),
         # ],
-        menage = dict(loyer = 5000, # Annual basis
+        menage = dict(loyer = 5000*6, # Annual basis
             cotisation_taxe_habitation = -427.*6,
-            statut_occupation_logement = 3,
+            # statut_occupation_logement = 3,
             ),
         # foyer_fiscal= dict(taux_csg_remplacement_2 = 3),
         )
@@ -97,23 +97,30 @@ reference_scenario = init_profile(tax_benefit_system.new_scenario())
 #Simulate the standard scenario
 reference_simulation = reference_scenario.new_simulation()
 
-salaire_brut = reference_simulation.calculate("salaire_de_base", "2018-01")
-salaire_net = reference_simulation.calculate("salaire_net", "2018-01")
-indemnite_residence = reference_simulation.calculate("indemnite_residence", "2018-01")
 
-rafp = reference_simulation.calculate("rafp_salarie", "2018-01")
-pension_civile = reference_simulation.calculate("pension_civile_salarie", "2018-01")
-contribution_exceptionnelle_solidarite = reference_simulation.calculate("contribution_exceptionnelle_solidarite", "2018-01")
-csg = reference_simulation.calculate("csg", "2018")/12
-csg = reference_simulation.calculate("csg", "2018")/12
-crds = reference_simulation.calculate("crds", "2018")/12
+# résultats
+# salaire_brut = reference_simulation.calculate("salaire_de_base", "2018-01")
+# salaire_net = reference_simulation.calculate("salaire_net", "2018-01")
+# indemnite_residence = reference_simulation.calculate("indemnite_residence", "2018-01")
+# 
+# rafp = reference_simulation.calculate("rafp_salarie", "2018-01")
+# pension_civile = reference_simulation.calculate("pension_civile_salarie", "2018-01")
+# contribution_exceptionnelle_solidarite = reference_simulation.calculate("contribution_exceptionnelle_solidarite", "2018-01")
+# csg = reference_simulation.calculate("csg", "2018")/12
+# csg = reference_simulation.calculate("csg", "2018")/12
+# crds = reference_simulation.calculate("crds", "2018")/12
+# 
+# 
+# aah_eligible = reference_simulation.calculate("aah_eligible", "2020-01")
+# autonomie_financiere = reference_simulation.calculate("autonomie_financiere", "2020-01")
+# nbptr = reference_simulation.calculate("nbptr", "2020")
+ppa = reference_simulation.calculate("ppa", "2018-10")
+salaire_net = reference_simulation.calculate("revenu_net", "2018")/12
+ppa
+ppa_bonification = reference_simulation.calculate("ppa_fictive", "period.last_3_months","2018-01")
 
-
-aah_eligible = reference_simulation.calculate("aah_eligible", "2020-01")
-autonomie_financiere = reference_simulation.calculate("autonomie_financiere", "2020-01")
-nbptr = reference_simulation.calculate("nbptr", "2020")
-apl = reference_simulation.calculate("apl", "2018-11")
-csg_imp = reform_simulation.calculate("aah", "2020-01")
+apl = reform_simulation.calculate("apl", "2018-11")
+montant_brut_al = reform_simulation.calculate("aide_logement_montant_brut_avant_degressivite", "2020-01")
 csg_nimp = reference_simulation.calculate("csg_deductible_salaire", "2018-01")
 assiette_abat = reference_simulation.calculate("assiette_csg_abattue", "2018-01")
 assiette_non_abat = reference_simulation.calculate("assiette_csg_non_abattue", "2018-01")
@@ -137,8 +144,8 @@ salaire_brut-(salaire_net-indemnite_residence)
 
 
 # Calcul des résultats
-rd_av_2018 = reference_simulation.calculate('revenu_disponible', '2018')
-rd_ap_2018 = reform_simulation.calculate('revenu_disponible', '2018')
+rd_av_2018 = reference_simulation.calculate('revenu_disponible', '2018')/12
+rd_ap_2018 = reform_simulation.calculate('revenu_disponible', '2018')/12
 gain_2018 = -(rd_av_2018-rd_ap_2018)
 
 rd_av_2019 = reference_simulation.calculate('revenu_disponible', '2019')/12
@@ -164,10 +171,9 @@ print(gain_2021)
 print(gain_2022)
 
 
-# salaire_net_av = reference_simulation.calculate('salaire_net', '2018-11')
-# salaire_net_ap = reform_simulation.calculate('salaire_net', '2018-11')
 
-cotsoc_2018 = reference_simulation.calculate('cotisations_salariales', '2018-11')[0] - reform_simulation.calculate('cotisations_salariales', '2018-11')[0]
+cotsoc_2018_1 = reference_simulation.calculate('cotisations_salariales', '2018-04')[0] - reform_simulation.calculate('cotisations_salariales', '2018-04')[0]
+cotsoc_2018_2 = reference_simulation.calculate('cotisations_salariales', '2018-11')[0] - reform_simulation.calculate('cotisations_salariales', '2018-11')[0]
 cotsoc_2019 = reference_simulation.calculate('cotisations_salariales', '2019-11')[0] - reform_simulation.calculate('cotisations_salariales', '2019-11')[0]
 cotsoc_2020 = reference_simulation.calculate('cotisations_salariales', '2020-11')[0] - reform_simulation.calculate('cotisations_salariales', '2020-11')[0]
 cotsoc_2021 = reference_simulation.calculate('cotisations_salariales', '2021-11')[0] - reform_simulation.calculate('cotisations_salariales', '2021-11')[0]
@@ -185,17 +191,26 @@ ir_2020 = (reference_simulation.calculate('irpp', '2020')[0] - reform_simulation
 ir_2021 = (reference_simulation.calculate('irpp', '2021')[0] - reform_simulation.calculate('irpp', '2021')[0])/12
 ir_2022 = (reference_simulation.calculate('irpp', '2022')[0] - reform_simulation.calculate('irpp', '2022')[0])/12
 
-ppa_2018 = reference_simulation.calculate('ppa', '2018-12')[0] - reform_simulation.calculate('ppa', '2018-12')[0]
+ppa_2018_1 = reference_simulation.calculate('ppa', '2018-04')[0] - reform_simulation.calculate('ppa', '2018-04')[0]
+ppa_2018_2 = reference_simulation.calculate('ppa', '2018-12')[0] - reform_simulation.calculate('ppa', '2018-12')[0]
 ppa_2019 = reference_simulation.calculate('ppa', '2019-12')[0] - reform_simulation.calculate('ppa', '2019-12')[0]
 ppa_2020 = reference_simulation.calculate('ppa', '2020-12')[0] - reform_simulation.calculate('ppa', '2020-12')[0]
 ppa_2021 = reference_simulation.calculate('ppa', '2021-12')[0] - reform_simulation.calculate('ppa', '2021-12')[0]
 ppa_2022 = reference_simulation.calculate('ppa', '2022-12')[0] - reform_simulation.calculate('ppa', '2022-12')[0]
 
-mv_2018 = reference_simulation.calculate('aspa', '2018-12')[0] - reform_simulation.calculate('aspa', '2018-12')[0]
+mv_2018_1 = reference_simulation.calculate('aspa', '2018-04')[0] - reform_simulation.calculate('aspa', '2018-04')[0]
+mv_2018_2 = reference_simulation.calculate('aspa', '2018-12')[0] - reform_simulation.calculate('aspa', '2018-12')[0]
 mv_2019 = reference_simulation.calculate('aspa', '2019-12')[0] - reform_simulation.calculate('aspa', '2019-12')[0]
 mv_2020 = reference_simulation.calculate('aspa', '2020-12')[0] - reform_simulation.calculate('aspa', '2020-12')[0]
 mv_2021 = reference_simulation.calculate('aspa', '2021-12')[0] - reform_simulation.calculate('aspa', '2021-12')[0]
 mv_2022 = reference_simulation.calculate('aspa', '2022-12')[0] - reform_simulation.calculate('aspa', '2022-12')[0]
+
+aah_2018_1 = reference_simulation.calculate('aah', '2018-04')[0] - reform_simulation.calculate('aah', '2018-04')[0]
+aah_2018_2 = reference_simulation.calculate('aah', '2018-12')[0] - reform_simulation.calculate('aah', '2018-12')[0]
+aah_2019 = reference_simulation.calculate('aah', '2019-12')[0] - reform_simulation.calculate('aah', '2019-12')[0]
+aah_2020 = reference_simulation.calculate('aah', '2020-12')[0] - reform_simulation.calculate('aah', '2020-12')[0]
+aah_2021 = reference_simulation.calculate('aah', '2021-12')[0] - reform_simulation.calculate('aah', '2021-12')[0]
+aah_2022 = reference_simulation.calculate('aah', '2022-12')[0] - reform_simulation.calculate('aah', '2022-12')[0]
 
 th_2018 = (reference_simulation.calculate('taxe_habitation', '2018')[0] - reform_simulation.calculate('taxe_habitation', '2018')[0])/12
 th_2019 = (reference_simulation.calculate('taxe_habitation', '2019')[0] - reform_simulation.calculate('taxe_habitation', '2019')[0])/12
@@ -203,13 +218,11 @@ th_2020 = (reference_simulation.calculate('taxe_habitation', '2020')[0] - reform
 th_2021 = (reference_simulation.calculate('taxe_habitation', '2021')[0] - reform_simulation.calculate('taxe_habitation', '2021')[0])/12
 th_2022 = (reference_simulation.calculate('taxe_habitation', '2022')[0] - reform_simulation.calculate('taxe_habitation', '2022')[0])/12
 
-gain_2018 = cotsoc_2018 + csg_2018 + ir_2018 + ppa_2018 + mv_2018 + th_2018 
+gain_2018_1 = cotsoc_2018_1 + csg_2018 + ir_2018 + ppa_2018_1 + mv_2018_1 + th_2018 
 gain_2019 = cotsoc_2019 + csg_2019 + ir_2019 + ppa_2019 + mv_2019 + th_2019 
 gain_2020 = cotsoc_2020 + csg_2020 + ir_2020 + ppa_2020 + mv_2020 + th_2020 
 gain_2021 = cotsoc_2021 + csg_2021 + ir_2021 + ppa_2021 + mv_2021 + th_2021 
 gain_2022 = cotsoc_2022 + csg_2022 + ir_2022 + ppa_2022 + mv_2022 + th_2022 
-
-
 
 
 res = np.zeros((9, 5), dtype=float)
@@ -219,16 +232,9 @@ res[2] = np.round([ir_2018,ir_2019,ir_2020,ir_2021,ir_2022])
 res[3] = np.round([ppa_2018,ppa_2019,ppa_2020,ppa_2021,ppa_2022])
 res[4] = np.round([mv_2018,mv_2019,mv_2020,mv_2021,mv_2022])
 res[5] = np.round([0.,0.,0.,0.,0.])
-res[6] = np.round([0.,0.,0.,0.,0.])
+res[6] = np.round([aah_2018,aah_2018,aah_2018,aah_2018,aah_2018])
 res[7] = np.round([th_2018,th_2019,th_2020,th_2021,th_2022])
 res[8] = np.round([gain_2018,gain_2019,gain_2020,gain_2021,gain_2022])
-
-# with open("res.json", "w") as f:
-#     json.dump(res.tolist(),f)
-# np.savetxt("res.txt",res,fmt = "%4d")
-
-
-
 
 res2 = pd.DataFrame(res,index = ["cotsoc","csg","ir","prime_activite","minimum_vieillesse","paje","aah","taxe_habitation","total"],columns = range(2018,2023))
 
@@ -255,67 +261,4 @@ print(reform_simulation.calculate("ppa","2019-12")-reference_simulation.calculat
 print(reform_simulation.calculate("ppa","2020-01")-reference_simulation.calculate("ppa","2020-01"))
 print(reform_simulation.calculate("ppa","2021-01")-reference_simulation.calculate("ppa","2021-01"))
 print(reform_simulation.calculate("ppa","2022-01")-reference_simulation.calculate("ppa","2022-01"))
-
-
-# taux_csg_remplacement
-
-# Variables after reform
-# cotis_th_ap = reform_simulation.calculate("taxe_habitation", "2019")
-# traitement_indiciaire_brut = reform_simulation.calculate("traitement_indiciaire_brut", "2019")
-
-mv_av = reference_simulation.calculate("aspa", "2021-01")
-mv_ap = reform_simulation.calculate("aspa", "2021-01")
-mv_av
-mv_ap
-th_av = reference_simulation.calculate("taxe_habitation", "2021")
-exo_th = reference_simulation.calculate("exonere_taxe_habitation", "2021")
-th_av
-# th_ap = reform_simulation.calculate("taxe_habitation", "2021")
-# taux_degrev_th_ap = reform_simulation.calculate("degrevement_taxe_habitation", "2018")
-# s_brut_ap = reform_simulation.calculate("salaire_de_base","2018-01")
-# cot_soc_ap = reform_simulation.calculate("cotisations_salariales","2018-12")
-# cot_cho_ap = reform_simulation.calculate("chomage_salarie","2019-01")
-# cot_cho_ap_oct = reform_simulation.calculate("chomage_salarie","2018-11")
-# csg_ap = reform_simulation.calculate("csg","2018")
-# csg_ded_ap = reform_simulation.calculate("csg_deductible_salaire","2018-01")
-# crds_ap  = reform_simulation.calculate("crds","2018")
-# net_ap = reform_simulation.calculate('salaire_net','2018-12')
-# rfr_ap = reform_simulation.calculate('rfr','2018')
-# ir_ap = reform_simulation.calculate('impots_directs', '2019')
-# ir_av = reference_simulation.calculate('impots_directs', '2019')
-# ir_ap = reform_simulation.calculate('salaire_imposable', '2018-01')
-# ir_av = reference_simulation.calculate('salaire_imposable', '2018-01')
-# presta_ap = reform_simulation.calculate("prestations_sociales","2018")
-# famille_ap = reform_simulation.calculate("prestations_familiales","2018")
-# minima_ap = reform_simulation.calculate("minima_sociaux","2018")
-# al_ap = reform_simulation.calculate("aide_logement","2018-12")
-
-# ppa_ap = reform_simulation.calculate("ppa","2018-10")
-# ppa_av = reference_simulation.calculate("ppa","2018-10")
-# ppa_ap = reform_simulation.calculate("ppa","2020-10")
-
-# sur_bonification_ppa_ap = reform_simulation.calculate("ppa_bonification","2018-12")
-# rd_ap = reform_simulation.calculate('revenu_disponible', '2018')/12
-
-
-
-
-# Variables in the counterfactual situation
-# th_av = reference_simulation.calculate("cotisation_taxe_habitation", "2017")
-# taux_degrev_th_av = reference_simulation.calculate("degrevement_taxe_habitation", "2018")
-# s_brut_av = reference_simulation.calculate("salaire_de_base","2018-01")
-# cot_soc_av = reference_simulation.calculate("cotisations_salariales","2018-12")
-# cot_cho_av = reference_simulation.calculate("chomage_salarie","2018-01")
-# csg_av = reference_simulation.calculate("csg","2018")
-# csg_ded_av = reference_simulation.calculate("csg_deductible_salaire","2018-01")
-# crds_av  = reference_simulation.calculate("crds","2018")
-# net_av = reference_simulation.calculate('salaire_net','2018-12')
-# rfr_av = reference_simulation.calculate('rfr','2018')
-# ir_av = reference_simulation.calculate('irpp', '2018')
-# presta_av = reference_simulation.calculate("prestations_sociales","2018")
-# famille_av = reference_simulation.calculate("prestations_familiales","2018")
-# minima_av = reference_simulation.calculate("minima_sociaux","2018")
-# al_av = reference_simulation.calculate("aide_logement","2018-12")
-# ppa_av = reference_simulation.calculate("ppa","2018-11")
-
 
