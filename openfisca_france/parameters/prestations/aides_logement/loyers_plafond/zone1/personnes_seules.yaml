@@ -1,4 +1,4 @@
-description: Zone 1 - 1 adulte
+ajout ddescription: Zone 1 - 1 adulte
 reference: ipp
 unit: currency
 values:
@@ -32,3 +32,5 @@ values:
     value: 292.62
   2015-10-01:
     value: 292.85
+  2017-10-01:
+    value: 295.05

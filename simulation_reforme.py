@@ -73,14 +73,17 @@ def init_profile(scenario):
             # dict(age = 10),
             # dict(age = 14),
         # ],
+
         menage = dict(loyer = 1000*6, # Annual basis
             cotisation_taxe_habitation = -427.*6,
             statut_occupation_logement = 4,
             zone_apl = 2,
+
             ),
         # foyer_fiscal= dict(taux_csg_remplacement_2 = 3),
         )
     return scenario
+
 
 ##################################
 # Computation with reform reforme
@@ -89,6 +92,7 @@ def init_profile(scenario):
 reform_scenario = init_profile(reform.new_scenario())
 #Simulate the reform
 reform_simulation = reform_scenario.new_simulation()
+
 
 ###################################
 # Computation of the counterfactual
@@ -115,12 +119,14 @@ reference_simulation = reference_scenario.new_simulation()
 # aah_eligible = reference_simulation.calculate("aah_eligible", "2020-01")
 # autonomie_financiere = reference_simulation.calculate("autonomie_financiere", "2020-01")
 # nbptr = reference_simulation.calculate("nbptr", "2020")
+
 ppa = reference_simulation.calculate("ppa", "2018-10")
 ppa
 al = reference_simulation.calculate("aide_logement", "2018-01")/12
 al
 ppa_bonification = reference_simulation.calculate("ppa_fictive", "period.last_3_months","2018-01")
 salaire_net = reference_simulation.calculate("revenu_net", "2017")/12
+
 
 apl = reform_simulation.calculate("apl", "2018-11")
 montant_brut_al = reform_simulation.calculate("aide_logement_montant_brut_avant_degressivite", "2020-01")
@@ -264,4 +270,5 @@ print(reform_simulation.calculate("ppa","2019-12")-reference_simulation.calculat
 print(reform_simulation.calculate("ppa","2020-01")-reference_simulation.calculate("ppa","2020-01"))
 print(reform_simulation.calculate("ppa","2021-01")-reference_simulation.calculate("ppa","2021-01"))
 print(reform_simulation.calculate("ppa","2022-01")-reference_simulation.calculate("ppa","2022-01"))
+
 
