@@ -56,10 +56,10 @@ def init_profile(scenario):
         period = 'year:2017:6',
         parent1 = dict(
             age = 40,
-            salaire_de_base = 1671*12*6,
+            salaire_de_base = 1480*12*6,
             categorie_salarie = "prive_non_cadre", # prive_non_cadre ou public_titulaire_etat
             # taux_incapacite = ,
-            statut_marital = 2,
+            statut_marital = 1,
             ),
         # parent2 = dict(
         #     age = 70,
@@ -73,9 +73,10 @@ def init_profile(scenario):
             # dict(age = 10),
             # dict(age = 14),
         # ],
-        menage = dict(loyer = 5000*6, # Annual basis
+        menage = dict(loyer = 1000*6, # Annual basis
             cotisation_taxe_habitation = -427.*6,
-            # statut_occupation_logement = 3,
+            statut_occupation_logement = 4,
+            zone_apl = 2,
             ),
         # foyer_fiscal= dict(taux_csg_remplacement_2 = 3),
         )
@@ -115,9 +116,11 @@ reference_simulation = reference_scenario.new_simulation()
 # autonomie_financiere = reference_simulation.calculate("autonomie_financiere", "2020-01")
 # nbptr = reference_simulation.calculate("nbptr", "2020")
 ppa = reference_simulation.calculate("ppa", "2018-10")
-salaire_net = reference_simulation.calculate("revenu_net", "2018")/12
 ppa
+al = reference_simulation.calculate("aide_logement", "2018-01")/12
+al
 ppa_bonification = reference_simulation.calculate("ppa_fictive", "period.last_3_months","2018-01")
+salaire_net = reference_simulation.calculate("revenu_net", "2017")/12
 
 apl = reform_simulation.calculate("apl", "2018-11")
 montant_brut_al = reform_simulation.calculate("aide_logement_montant_brut_avant_degressivite", "2020-01")
