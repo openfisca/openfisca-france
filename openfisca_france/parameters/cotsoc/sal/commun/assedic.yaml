@@ -22,6 +22,8 @@ brackets:
       value: 0.0244
     2007-01-01:
       value: 0.024
+    2018-01-01:
+      value: 0.0095
   threshold:
     1993-07-01:
       value: 0.0
