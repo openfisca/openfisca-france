@@ -17,3 +17,22 @@
   output_variables:
     mmid_salarie: -( .0075 + .015 ) * 1467
 
+
+- period: "2018-01"
+  name:
+    Cotisation maladie MMID supprimée
+  relative_error_margin: 0.001
+  input_variables:
+    salaire_de_base: 1500
+  output_variables:
+    mmid_salarie: 0
+
+- period: "2018-01"
+  name:
+    Cotisation maladie MMID salarié Alsace-Moselle
+  relative_error_margin: 0.001
+  input_variables:
+    salaire_de_base: 1500
+    salarie_regime_alsace_moselle: 1
+  output_variables:
+    mmid_salarie: -( 0 + .015 ) * 1500

@@ -602,6 +602,7 @@ class famille(Variable):
         return cotisation
 
 
+
 class mmid_salarie(Variable):
     value_type = float
     entity = Individu
@@ -630,6 +631,21 @@ class mmid_salarie(Variable):
             )
 
         cotisation = cotisation_regime_general + salarie_regime_alsace_moselle * cotisation_regime_alsace_moselle
+
+        return cotisation
+
+    def formula_2018(self, simulation, period):
+        salarie_regime_alsace_moselle = simulation.calculate('salarie_regime_alsace_moselle', period)
+
+        cotisation_regime_alsace_moselle = apply_bareme(
+            simulation,
+            period,
+            cotisation_type = 'salarie',
+            bareme_name = 'maladie_alsace_moselle',
+            variable_name = self.__class__.__name__,
+            )
+
+        cotisation = salarie_regime_alsace_moselle * cotisation_regime_alsace_moselle
 
         return cotisation
 
