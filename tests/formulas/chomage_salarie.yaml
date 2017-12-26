@@ -1,0 +1,7 @@
+- period: "2018-01"
+  name: Cotisation de chômage salarié
+  relative_error_margin: 0.001
+  input_variables:
+    salaire_de_base: 1500
+  output_variables:
+    chomage_salarie: -(0.95 / 100) * 1500
