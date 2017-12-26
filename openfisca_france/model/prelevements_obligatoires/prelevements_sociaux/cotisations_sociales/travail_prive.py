@@ -182,6 +182,8 @@ class penibilite(Variable):
 
         return cotisation
 
+    def formula_2018(self, simulation, period):
+        return self.zeros()
 
 class accident_du_travail(Variable):
     value_type = float
