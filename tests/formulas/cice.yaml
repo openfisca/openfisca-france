@@ -64,3 +64,13 @@
     salaire_de_base: 1480
   output_variables:
     credit_impot_competitivite_emploi: 1480 * 7 / 100
+
+
+- period: "2018-01"
+  description:
+    6 % des rémunérations versées
+  relative_error_margin: 0.001
+  input_variables:
+    salaire_de_base: 1500
+  output_variables:
+    credit_impot_competitivite_emploi: 1500 * 6 / 100
