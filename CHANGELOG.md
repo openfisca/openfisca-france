@@ -1,5 +1,18 @@
 # Changelog
 
+### 20.0.7 [#892](https://github.com/openfisca/openfisca-france/pull/867)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 1er janvier 2018.
+* Détails :
+  - Mise à jour des taux MMID salarié.
+  - Mise à jour du taux du CICE.
+  - Mise à jour du SMIC horaire.
+  - Mise à jour du plafond mensuel de la sécurité sociale.
+  - Mise à jour du taux de CGS déductible.
+  - Mise à jour de la cotisation chômage salarié.
+  - Ajout de tests
+
 ### 20.0.6 [#892](https://github.com/openfisca/openfisca-france/pull/892)
 
 * Correction d'un crash
