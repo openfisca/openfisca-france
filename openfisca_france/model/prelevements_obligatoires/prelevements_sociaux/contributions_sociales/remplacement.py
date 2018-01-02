@@ -256,12 +256,12 @@ class crds_retraite(Variable):
         # taux_csg_remplacement = individu('taux_csg_remplacement', period)
         taux_csg_remplacement = individu.foyer_fiscal('taux_csg_remplacement_2',period.this_year,max_nb_cycles = 0)
         law = parameters(period.start)
-
+        
         montant_crds = montant_csg_crds(
             base_sans_abattement = retraite_brute,
             law_node = law.prelevements_sociaux.contributions.crds.retraite,
             plafond_securite_sociale = law.cotsoc.gen.plafond_securite_sociale,
-            ) * (taux_csg_remplacement == 1)
+            ) * (taux_csg_remplacement > 1)
         return montant_crds
 
 
@@ -280,7 +280,6 @@ class casa(Variable):
         contributions = parameters(period.start).prelevements_sociaux.contributions
         casa = (
             (taux_csg_remplacement == 3) *
-            (rfr > contributions.csg.remplacement.pensions_de_retraite_et_d_invalidite.seuil_de_rfr_2) *
             contributions.casa.calc(retraite_brute)
             )
         return - casa
