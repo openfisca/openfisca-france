@@ -792,6 +792,7 @@ class rsa_forfait_logement(Variable):
     value_type = float
     entity = Famille
     label = u"Forfait logement intervenant dans le calcul du Rmi ou du Rsa"
+    reference = u"https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000031694445&cidTexte=LEGITEXT000006074069&dateTexte=20171222&fastPos=2&fastReqId=1534790830&oldAction=rechCodeArticle"
     definition_period = MONTH
 
     def formula(famille, period, parameters):
@@ -801,8 +802,11 @@ class rsa_forfait_logement(Variable):
         participation_frais = famille.demandeur.menage('participation_frais', period)
         loyer = famille.demandeur.menage('loyer', period)
 
+        # 1 = Accédant à la propriété
+        # 2 = Propriétaire (non accédant) du logement
+        # 6 = Logé gratuitement par des parents, des amis ou l'employeur
         avantage_nature = or_(
-            (statut_occupation_logement == 2) * not_(loyer),
+            ((statut_occupation_logement == 1) + (statut_occupation_logement == 2)) * not_(loyer),
             (statut_occupation_logement == 6) * not_(participation_frais)
             )
         avantage_al = aide_logement > 0
