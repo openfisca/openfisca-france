@@ -1,7 +1,7 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 
-""" Functions used to build the tests of __init__ """
+""" Functions used to build the tests  """
 
 from openfisca_core import conv
 from openfisca_france.scripts.calculateur_impots import base
