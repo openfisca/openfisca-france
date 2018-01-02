@@ -78,10 +78,6 @@ def compare(scenario, tested = False, verbose = False):
         # Converting taxes into negative numbers (as in OpenFisca)
         if (fields[code]['code'] == "IINET") | (fields[code]['code'] == "IINETIR") | (fields[code]['code'] == "IRESTIR"):
             fields[code]['value'] = -fields[code]['value'] 
-        
-        # Prise en compte des calages dans branche Taxipp d'OpenFisca-france (PROVISOIRE)
-        #if fields[code]['openfisca_name'] == "irpp" :
-            #fields[code]['openfisca_name'] = "irpp_noncale"
 
     # If the simulator has no fields IINETIR or IRESTIR, we take field IINET and compare it to the irpp variable of OpenFisca (even if these 2 variables are not entirely the same thing)
     if ("IINETIR" not in fields.keys()) and ("IRESTIR" not in fields.keys()) and ("IINET" in fields.keys()): 
@@ -151,7 +147,7 @@ def define_scenario(year, tax_benefit_system = tax_benefit_system):
         parent2 = dict(
              activite = u'Actif occupé',
              date_naissance = 1973,
-             salaire_imposable = 38000,
+             salaire_imposable = 15000,
              statut_marital = u'Marié',
              ),
         enfants = [
@@ -159,15 +155,12 @@ def define_scenario(year, tax_benefit_system = tax_benefit_system):
                  activite = u'Étudiant, élève',
                  date_naissance = '1993-02-01',
                  ),
-        #     dict(
-        #         activite = u'Étudiant, élève',
-        #         date_naissance = '2000-04-17',
-        #         ),
+            dict(
+                activite = u'Étudiant, élève',
+                date_naissance = '2000-04-17',
+                ),
              ],
-        # foyer_fiscal = dict(  #TODO: pb avec f2ck
-        #     f5rn = 5000,
-        #     mbic_mvct = 2000,
-        #     ),
+        foyer_fiscal = dict(),
         )
     scenario.suggest()
     return scenario

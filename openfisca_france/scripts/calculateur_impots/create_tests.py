@@ -1,7 +1,7 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 
-""" Launch an automatic battery of tests of the income tax legislation in OpenFisca for a given tax year. """
+""" Create an automatic battery of tests of the income tax legislation in OpenFisca for given tax years """
 
 
 import logging
@@ -22,6 +22,9 @@ from openfisca_france.scripts.calculateur_impots import (
 log = logging.getLogger(__name__)
 
 
+rebuild_option = False
+years = range(2011,2017)
+
 
 calculateur_impots_path =  os.path.join(pkg_resources.get_distribution('OpenFisca-France').location,
     'tests', 'calculateur_impots')
@@ -36,8 +39,7 @@ if not os.path.exists(os.path.join(scenarios_to_test_directory)):
 if not os.listdir(os.path.join(scenarios_to_test_directory)):
     log.info("Directory {} is empty".format(scenarios_to_test_directory))
     log.info("Creating new scenarios to test...")
-    create_all_scenarios_to_test(scenarios_to_test_directory)
-
+    create_all_scenarios_to_test(scenarios_to_test_directory, years)
 if not os.path.exists(os.path.join(output_json_directory)):
     log.info("Directory {} does not exist".format(output_json_directory))
     log.info("Creating the directory...")
@@ -48,7 +50,6 @@ if not os.path.exists(os.path.join(output_yaml_directory)):
     os.makedirs(os.path.join(output_yaml_directory))
 
 
-rebuild_option = False
 
 for filename in sorted(os.listdir(scenarios_to_test_directory)):
 
