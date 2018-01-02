@@ -69,8 +69,8 @@ class aah_base_ressources_eval_trimestrielle(Variable):
         three_previous_months = period.start.period('month', 3).offset(-3)
         last_year = period.last_year
 
-        salaire_net = individu('salaire_net', three_previous_months, options = [ADD])
-        chomage_net = individu('chomage_net', three_previous_months, options = [ADD])
+        salaire_net = individu('salaire_imposable', three_previous_months, options = [ADD])*0.9
+        chomage_net = individu('chomage_imposable', three_previous_months, options = [ADD])*0.9
         retraite_nette = individu('retraite_nette', three_previous_months, options = [ADD])
         pensions_alimentaires_percues = individu('pensions_alimentaires_percues', three_previous_months, options = [ADD])
         pensions_alimentaires_versees_individu = individu(

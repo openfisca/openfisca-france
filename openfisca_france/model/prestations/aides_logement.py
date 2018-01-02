@@ -340,11 +340,11 @@ class aide_logement_loyer_plafond(Variable):
             for i in ['personnes_seules', 'couples', 'un_enfant', 'majoration_par_enf_supp']
             ]
         plafond_personne_seule = take(plafonds_by_zone[0], zone_apl)
-        print("plafond persomme seule = ", plafond_personne_seule)
+        # print("plafond persomme seule = ", plafond_personne_seule)
         plafond_couple = take(plafonds_by_zone[1], zone_apl)
-        print("plafond_couple = ", plafond_couple)
+        # print("plafond_couple = ", plafond_couple)
         plafond_famille = take(plafonds_by_zone[2], zone_apl) + (al_nb_pac > 1) * (al_nb_pac - 1) * take(plafonds_by_zone[3], zone_apl)
-        print("plafond_famille = ", plafond_famille)
+        # print("plafond_famille = ", plafond_famille)
 
         plafond = select(
             [not_(couple) * (al_nb_pac == 0) + chambre, al_nb_pac > 0],
@@ -685,6 +685,7 @@ class aide_logement_montant_brut(Variable):
         montant_avant_degressivite_et_coeff = round_(montant_avant_degressivite * coeff, 2)
 
         abattement_forfaitaire = parameters(period).prestations.aides_logement.autres.abattement_forfaitaire
+        # print(montant_avant_degressivite_et_coeff)
         aide_logement_apres_abattement_forfaitaire = (montant_avant_degressivite_et_coeff > 0) * (montant_avant_degressivite_et_coeff - abattement_forfaitaire)
 
         return aide_logement_apres_abattement_forfaitaire

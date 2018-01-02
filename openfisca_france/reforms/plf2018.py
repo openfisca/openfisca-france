@@ -20,7 +20,7 @@ class plf2018(Reform):
 def modify_parameters(parameters):
     reform_year = 2018
     reform_period = period(reform_year)
-    print(reform_period)
+
     ########################################
     # Article 3 du PLF : dégrèvement de TH :
     ########################################
@@ -32,7 +32,7 @@ def modify_parameters(parameters):
     ############################################################
     #revalorisation du montant forfaitaire du RSA : le reste de la réforme du RSA/prime d'activité nécessite de coder une fonction supplémentaire
     parameters.prestations.minima_sociaux.ppa.montant_de_base.update(start="2018-10", value=546.25)
-    # parameters.prestations.minima_sociaux.ppa.pente.update(start="2018-10", value=0.61)
+    parameters.prestations.minima_sociaux.ppa.pente.update(start="2018-10", value=0.61)
     # # création du surbonus de prime d'activité
     parameters.prestations.minima_sociaux.ppa.sur_bonification.montant_sur_bonification_max.update(period="2019", value=(20))
     parameters.prestations.minima_sociaux.ppa.sur_bonification.montant_sur_bonification_max.update(period="2020", value=(40))
@@ -52,7 +52,7 @@ def modify_parameters(parameters):
     # parameters.cotsoc.children['cotisations_salarie'].children['prive_cadre'].children['maladie'][0].rate.update(start = reform_period, value=0.0)
     # - suppression de la cotisation salariale d'assurance chomage en deux temps :
     # # - une première baisse de 1,5 pt le 1er janvier 2018
-    parameters.cotsoc.children['cotisations_salarie'].children['prive_non_cadre'].children['assedic'][0].rate.update(start = "2018", value=0.009)
+    parameters.cotsoc.children['cotisations_salarie'].children['prive_non_cadre'].children['assedic'][0].rate.update(start = "2018", value=0.0095)
     # parameters.cotsoc.children['cotisations_salarie'].children['prive_cadre'].children['assedic'][0].rate.update(start =  "2018", value=0.009)
     # - la suppression du reliquat le 1er octobre 2018
     parameters.cotsoc.children['cotisations_salarie'].children['prive_non_cadre'].children['assedic'][0].rate.update(start = "2018-10", value=0.000)
@@ -83,6 +83,8 @@ def modify_parameters(parameters):
     
     parameters.prestations.minima_sociaux.aah.montant.update(start = "2018-12-01", value=(860))
     parameters.prestations.minima_sociaux.aah.montant.update(start = "2019-12-01", value=(900))
+    
+    # parameters.prestations.aides_logement.autres.abattement_forfaitaire.update(start = "2017-10-01", value=(5))
 
     return parameters
 
