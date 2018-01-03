@@ -64,6 +64,7 @@ def create_all_scenarios_to_test(directory, years):
 
         scenario_by_variable = {
             # 'plaf_qf_domtom': TODO,
+            # 'reduc_doment': TODO,
             'abat_65_or_invalid': define_single_worker_scenario(year, {'salaire_imposable': 20000},  caseP = 1, date_naissance = year - 80),
             'caseF': define_family_scenario(year, caseF = 1),
             'caseG': define_single_worker_scenario(year, {'salaire_imposable': 50000}, caseG = 1, statut_marital = u'Veuf', date_naissance = year - 80),
@@ -91,6 +92,11 @@ def create_all_scenarios_to_test(directory, years):
             'reduc_ecpess': define_single_worker_scenario(year, {'salaire_imposable': fixed_wage_amount,'f7ea': 1, 'f7eb': 1, 'f7ec': 0, 'f7ef': 0, 'f7eg': 0, 'f7ed': 1}, nb_enfants = 6, nbF = 2, nbH = 1),
             'reduc_intagr': define_single_worker_scenario(year,  {'salaire_imposable': fixed_wage_amount, 'f7um': tested_income_amount, 'f2tr': tested_income_amount}),
             'reduc_duflot_rpinel': define_single_worker_scenario(year, {'salaire_imposable': fixed_wage_amount, 'f7el': 200000, 'f7qc': 150000, 'f7qe': tested_reduction_amount, 'f7qh': tested_reduction_amount, 'f7qj': tested_reduction_amount, 'f7ql': tested_reduction_amount, 'f7ai': tested_reduction_amount, 'f7gh': tested_reduction_amount, 'f7fi': tested_reduction_amount}),
+            'reduc_malraux': define_single_worker_scenario(year, {'salaire_imposable': fixed_wage_amount, 'f7ny': tested_reduction_amounts, 'f7nx': tested_reduction_amounts, 'f7re': tested_reduction_amounts, 'f7rf': tested_reduction_amounts, 'f7sy': tested_reduction_amounts, 'f7sx': tested_reduction_amounts}),
+            'credit_saldom': define_single_worker_scenario(year, {'salaire_imposable': fixed_wage_amount, 'f7db': tested_income_amounts, 'f7dq': 1, 'f7dg': 1}),
+            'reduc_saldom' : define_single_worker_scenario(year, {'salaire_imposable': fixed_wage_amount, 'f7df': tested_income_amounts, 'f7dq': 0, 'f7dg': 0}),
+            'reduc_saldom2': define_single_worker_scenario(year, {'salaire_imposable': fixed_wage_amount, 'f7dd': tested_income_amounts, 'f7dl': 1}),
+            
         }
         
         for variable in scenario_by_variable :
