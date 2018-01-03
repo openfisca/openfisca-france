@@ -43,7 +43,7 @@ class ppe_du_ns(Variable):
     value_type = int
     entity = Individu
     label = u"Prime pour l'emploi des non-salariés: nombre de jours travaillés dans l'année"
-    end = '2006-12-31'
+    end = '2014-12-31'
     definition_period = YEAR
 
   # (f5nv, f5ov, f5pv)
@@ -56,7 +56,7 @@ class ppe_tp_ns(Variable):
     value_type = bool
     entity = Individu
     label = u"Prime pour l'emploi des non-salariés: indicateur de travail à temps plein sur l'année entière"
-    end = '2006-12-31'
+    end = '2014-12-31'
     definition_period = YEAR
 
   # (f5nw, f5ow, f5pw)
@@ -190,7 +190,7 @@ class ebic_impv(Variable):
     entity = Individu
     label = u"Revenus industriels et commerciaux professionnels imposables: vente de marchandises et assimilées (régime auto-entrepreneur)"
     # start_date = date(2009, 1, 1)
-    end = '2016-12-31'
+    # end = '2016-12-31'
     definition_period = YEAR
 
   # (f5ta, f5ua, f5va))
@@ -204,7 +204,7 @@ class ebic_imps(Variable):
     entity = Individu
     label = u"Revenus industriels et commerciaux professionnels imposables: prestations de services et locations meublées (régime auto-entrepreneur)"
     # start_date = date(2009, 1, 1)
-    end = '2016-12-31'
+    # end = '2016-12-31'
     definition_period = YEAR
 
   # (f5tb, f5ub, f5vb))
@@ -218,7 +218,7 @@ class ebnc_impo(Variable):
     entity = Individu
     label = u"Revenus non commerciaux (régime auto-entrepreneur ayant opté pour le versement libératoire)"
     # start_date = date(2009, 1, 1)
-    end = '2016-12-31'
+    # end = '2016-12-31'
     definition_period = YEAR
 
   # (f5te, f5ue, f5ve))
@@ -987,7 +987,6 @@ class nacc_pvce(Variable):
     entity = Individu
     label = u"Locations meublées non professionnelles: Revenus imposables sans CGA (régime du bénéfice réel)"
     # start_date = date(2009, 1, 1)
-    end = '2010-12-31'
     definition_period = YEAR
 
   # (f5nk, f5ok, f5pk)) TODO: 5NK 2005/2006
@@ -1140,7 +1139,6 @@ class alnp_defs(Variable):
     entity = Individu
     label = u"Déficits de locations meublées non professionnelles avec CGA ou viseur (régime du bénéfice réel)"
     # start_date = date(2009, 1, 1)
-    end = '2010-12-31'
     definition_period = YEAR
 
 
