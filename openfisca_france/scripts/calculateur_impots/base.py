@@ -427,7 +427,6 @@ household_income_variables_to_test = [ # NB: taken from input variables of FELIN
     # prestation_compensatoire : 'f7wm', LE MONTANT 7WM EST INFERIEUR AU MONTANT 7WN
     # prestation_compensatoire : 'f7wn', 'f7wo', PRESENCE D UN MONTANT LIGNE 7WN SANS MONTANT 7WO OU RECIPROQUEMENT
     # reduc invfor : 'f7ut', CASE 7 UT COCHEE SANS PRISE EN CHARGE MONTANT LIGNE 7 UP
-    # reduc_malraux 'f7nx', 'f7ny', to test this => f7ny must be < f7nx
     'f1ar', 'f1br', 'f1cr', 'f1dr', 'f1er', 'f1aw', 'f1bw', 'f1cw', 'f1dw',
     'f2aa', 'f2al', 'f2am', 'f2an', 'f2aq', 'f2ar', 'f2dm',
     'f2ch', 'f2cg', 'f2dc', 'f2ts', 'f2ca', 'f2fu', 'f2go', 'f2gr', 'f2da', 'f2dh', 'f2ee', 'f2tr',
@@ -448,7 +447,7 @@ household_income_variables_to_test = [ # NB: taken from input variables of FELIN
 individual_income_variables_to_test = [ # NB: taken from input variables of FELIN-ERFS Survey Scenario (TAXIPP) 2014
     # 'f1tv', 'f1tw', 'f1tx',  => individual incomes but not with this name.. TO CHECK
     # 'revimpres', "REVENUS A IMPOSER AUX CONTRIBUTIONS SOCIALES SANS REVENU CORRESPONDANT"
-    #'f6ev', 'f6rs', 'f6ss', 'f7dg', 'f7dl', 'f7dq', 
+    #'f6ev', 'f6rs', 'f6ss', 
     #'ppe_tp_ns', # WARNING : DGFiP calculator does not like this one
     'aacc_defn',
     'aacc_defs',
