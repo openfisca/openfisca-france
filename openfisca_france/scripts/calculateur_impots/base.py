@@ -26,20 +26,23 @@ openfisca_variable_name_by_tax_calculator_code = dict(
     BCSG = None,
     BPRS = None,
     BRDS = None,
-    CIADCRE = None,
+    CIADCRE = None, #saldom2
     CICA = None,
     CICORSE = None,
-    CIDEPENV = None,
-    CIDEVDUR = None,
-    CIGARD = None,
+    CICULTUR = None, #accult
+    CIDEPENV = None, #quaenv
+    CIDEVDUR = None, #quaenv
+    CIGARD = u'ci_garext',
     CIGE = None,
-    CIHABPRIN = None,
+    CIHABPRIN = u'inthab',
+    CILOYIMP = u'assloy',
     CIMOBIL = None,
     CIPERT = None,
-    CIPRETUD = None,
+    CIPRETUD = u'preetu',
     CIRCM = None,
     CIRELANCE = None,
-    CITEC = None,
+    CITEC = u'aidper',
+    DIMMENAG = u'reduction_ss_condition_revenus',
     I2DH = None,
     IAVF2 = None,
     IAVIM = u'iai',
@@ -65,7 +68,7 @@ openfisca_variable_name_by_tax_calculator_code = dict(
     PPETOT = u'ppe',
     RAA = None,
     RAH = None,
-    RAIDE = None,
+    RAIDE = None, #saldom
     RCEL = None,
     RCEL2012 = None,
     RCELCOM = None,
@@ -118,26 +121,27 @@ openfisca_variable_name_by_tax_calculator_code = dict(
     RCELRREDLS = None,
     RCELRREDLZ = None,
     RCELRREDMG = None,
-    RCINE = None,
+    RCINE = u'sofica',
     RCODELOP = None,
     RCODJT = None,
     RCODJU = None,
     RCODJV = None,
     RCODJW = None,
     RCODJX = None,
-    RCOLENT = None,
+    RCOLENT = u'doment',
+    RCOMP = u'adhcga',
     RCONS = None,
     RCOTFOR = None,
-    RDIFAGRI = None,
+    RDIFAGRI = u'intagr',
     RDONS = None,
     RDUFLOGIH = None,
     REI = None,
     REVKIRE = u'rfr',
     RFCPI = None,
     RFIPC = None,
-    RFOR = None,
-    RFORET = None,
-    RHEBE = None,
+    RFOR = u'invfor',
+    RFORET = u'deffor',
+    RHEBE = u'daepad',
     RIDOMENT = None,
     RIDOMPROE1 = None,
     RIDOMPROE2 = None,
@@ -155,17 +159,17 @@ openfisca_variable_name_by_tax_calculator_code = dict(
     RILMJV = None,
     RILMJW = None,
     RILMJX = None,
-    RINNO = None,
+    RINNO = None, #spfcpi
     RINVDOMTOMLG = None,
     RINVRED = None,
     RLOCIDEFG = None,
-    RLOGDOM = None,
+    RLOGDOM = u'domlog',
     RMEUBLE = None,
     RNI = None,
     RNICOL = u'rni',
-    RNOUV = None,
-    RPATNAT = None,
-    RPATNATOT = None,
+    RNOUV = u'cappme',
+    RPATNAT = u'patnat',
+    RPATNATOT = u'patnat',
     RPECHE = None,
     RPRESCOMPREP = None,
     RPROREP = None,
@@ -173,20 +177,21 @@ openfisca_variable_name_by_tax_calculator_code = dict(
     RRDOM = None,
     RREDMEUB = None,
     RREDREP = None,
-    RREPA = None,
+    RREPA = u'donapd',
     RREPMEU = None,
     RREPNPRO = None,
     RRESIMEUB = None,
     RRESINEUV = None,
     RRESIVIEU = None,
-    RRESTIMO = None,
-    RRIRENOV = None,
+    RRESTIMO = u'resimm',
+    RRETU = u'ecpess',
+    RRIRENOV = u'mohist',
     RRPRESCOMP = None,
-    RSOCREPR = None,
+    RSOCREPR = u'repsoc',
     RSOUFIP = None,
-    RSURV = None,
+    RSURV = u'rsceha',
     RTELEIR = None,
-    RTITPRISE = None,
+    RTITPRISE = u'cappme',
     RTOUHOTR = None,
     RTOUR = None,
     RTOUREPA = None,
@@ -196,31 +201,35 @@ openfisca_variable_name_by_tax_calculator_code = dict(
     RTOURREP = None,
     RTOURTRA = None,
     TEFF = None,
-    TOTPAC = None,  # Nombre de personnes à charge dans le foyer fiscal
+    TOTPAC = u'nb_pac',
     TXMARJ = None,
     TXMOYIMP = None,
     )
 
 
 general_variable_name_by_tax_calculator_code = {  
-    'AVFISCOPTER': u'?',#TODO (f8tf)
+    'AVFISCOPTER': u'?',
     'BCSG': u'Base CSG',
     'BPRS': u'Base prélèvement social et contributions annexes',
     'BRDS': u'Base CRDS',
-    'CIADCRE': u'?',#TODO (f7dg)
-    'CICA': u'?',#TODO (f4tq)
-    'CICORSE': u'?',#TODO (f8to)
-    'CIDEPENV': u'?',#TODO (f7sz)
-    'CIDEVDUR': u'?',#TODO (f7wf)
-    'CIGARD': u'?',#TODO (f7ga)
+    'CIADCRE': u'Crédit d\'impôt pour dépenses au titre de services à la personne à domicile',
+    'CICORSE': u'Crédit d\'impôt pour investissements en Corse',
+    'CICORSEAVIS': u'Crédit d\'impôt pour investissements en Corse',
+    'CICULTUR': u'Réduction/Crédit (?) d\'impôt pour acquisitions de biens culturels',
+    'CIDEPENV': u'Crédit d\'impôt sur dépenses en faveur de la qualité environnementale des logements en location',
+    'CIDEVDUR': u'Crédit d\'impôt sur dépenses en faveur de la qualité environnementale du logement principal',
+    'CIFORET': u'Crédit d\'impôt pour investissements forestiers',
+    'CIGARD': u'Crédit d\'impôt pour frais de garde d\'enfants',
     'CIGE': u'Crédit aides aux personnes',
-    'CIHABPRIN': u'?',#TODO (f7vy)
-    'CIMOBIL': u'?',#TODO (f1ar)
+    'CIHABPRIN': u'Crédit d\'impôt au titre des intérêts d\'emprunt pour acquisition de l\'habitation principale',
+    'CILOYIMP': u'Crédit d\'impôt au titre des primes d\'assurances pour loyers impayés',
+    'CIMOBIL': u'Rentes de source étrangère ouvrant droit à un crédit impôt égal à l\'impôt français',
     'CIPERT': u'?',#TODO (f3vv)
-    'CIPRETUD': u'?',#TODO (f7uk)
-    'CIRCM': u'?',#TODO (f2dc)
+    'CIPRETUD': u'Crédit d\'impôt au titre des intérêts sur prêts étudiants',
+    'CIRCM': u'?',
     'CIRELANCE': u'Crédit d\'impôt exceptionnel sur les revenus 2008',
-    'CITEC': u'?',#TODO (f7wr)
+    'CITEC': u'Crédit d\'impôt sur dépenses de prévention des risques technologiques dans les locations (ou aide à la personne)',
+    'DIMMENAG': u'Réduction d\'impôt sous condition de revenus 2016',
     'I2DH': u'Prélèvement libératoire de 7,5%',
     'IAVF2': u'?',#TODO (f8th)
     'IAVIM': u'Impôt avant imputations',
@@ -231,7 +240,7 @@ general_variable_name_by_tax_calculator_code = {
     'IPROP': u'Impôt proportionnel',
     'IREST': u'Montant net à restituer',
     'IRESTIR': u'Impôt sur le revenu net',
-    'IRETS' : u'?',#TODO
+    'IRETS' : u'?',
     'ITRED': u'Total des réductions d\'impôt',
     'NAPCRP': u'Montant net des prélèvements sociaux (sur revenu du patrimoine et revenus d\'activité et de remplacement',
     'NAPCS': u'Montant net CSG',
@@ -242,138 +251,144 @@ general_variable_name_by_tax_calculator_code = {
     'PERPPLAFTC': u'?',#TODO (f2ch, f2dh, maries_ou_pacses)
     'PERPPLAFTV': u'Plafond de déduction pour les revenus 2014 au titre de l\'épargne retraite, pour déclarant 1',
     'PPETOT': u'Prime pour l\'emploi',
-    'RAA': u'?',#TODO (7ud)
-    'RAH': u'?',#TODO (7ce)
-    'RAIDE': u'?',#TODO (7df)
+    'RAA': u'?',
+    'RAH': u'?',
+    'RAIDE': u'Réduction d\'impôt pour dépenses au titre de services à la personne à domicile',
     'RCEL': u'?',#TODO (scellier)
     'RCEL2012': u'?',#TODO (7ja)
     'RCELCOM': u'?',#TODO (7np)
-    'RCELFABC': u'?',#TODO (7fa)
-    'RCELFD': u'?',#TODO (f7fd)
-    'RCELHJK': u'?',#TODO (scellier)
-    'RCELHL': u'?',#TODO (7hl)
-    'RCELHM': u'?',#TODO (7hm)
-    'RCELHNO': u'?',#TODO (7hn)
-    'RCELHR': u'?',#TODO (7hr)
-    'RCELJBGL': u'?',#TODO (7jb)
-    'RCELJOQR': u'?',#TODO (7jo)
-    'RCELJP': u'?',#TODO (7jp)
-    'RCELLIER': u'?',#TODO (7hk)
-    'RCELNBGL': u'?',#TODO (7nb)
-    'RCELNQ': u'?',#TODO (7nq)
-    'RCELREPGJ': u'?',#TODO (7gj)
-    'RCELREPGK': u'?',#TODO (7gk)
-    'RCELREPGL': u'?',#TODO (7gl)
-    'RCELREPGP': u'?',#TODO (7gp)
-    'RCELREPGS': u'?',#TODO (7gs)
-    'RCELREPGT': u'?',#TODO (7gt)
-    'RCELREPGU': u'?',#TODO (7gu)
-    'RCELREPGV': u'?',#TODO
-    'RCELREPGV': u'?',#TODO (7gv)
-    'RCELREPGW': u'?',#TODO (f7gw)
-    'RCELREPGX': u'?',#TODO (f7gx)
-    'RCELREPHA': u'?',#TODO (7ha)
-    'RCELREPHB': u'?',#TODO (7hb)
-    'RCELREPHD': u'?',#TODO (7hd)
-    'RCELREPHE': u'?',#TODO (7he)
-    'RCELREPHF': u'?',#TODO (7hf)
-    'RCELREPHG': u'?',#TODO (7hg)
-    'RCELREPHH': u'?',#TODO (7hh)
-    'RCELREPHR': u'?',#TODO (scellier)
-    'RCELREPHS': u'?',#TODO (7hs)
-    'RCELREPHT': u'?',#TODO (7ht)
-    'RCELREPHU': u'?',#TODO (7hu)
-    'RCELREPHV': u'?',#TODO (7hv)
-    'RCELREPHW': u'?',#TODO (7hw)
-    'RCELREPHX': u'?',#TODO (7hx)
-    'RCELREPHZ': u'?',#TODO (7hz)
-    'RCELRRED09': u'?',#TODO (7la)
-    'RCELRREDLA': u'?',#TODO (scellier)
-    'RCELRREDLB': u'?',#TODO (f7lb)
-    'RCELRREDLC': u'?',#TODO (f7lc)
-    'RCELRREDLD': u'?',#TODO (7ld)
-    'RCELRREDLE': u'?',#TODO (7le)
-    'RCELRREDLF': u'?',#TODO (7lf)
-    'RCELRREDLM': u'?',#TODO (7lm)
-    'RCELRREDLS': u'?',#TODO (7ls)
-    'RCELRREDLZ': u'?',#TODO (f7lz)
-    'RCELRREDMG': u'?',#TODO (7mg)
-    'RCINE': u'?',#TODO (7gn)
-    'RCODELOP': u'?',#TODO (7uh)
-    'RCODJT': u'?',#TODO (7jt)
-    'RCODJU': u'?',#TODO (7jt)
-    'RCODJV': u'?',#TODO (7jv)
-    'RCODJW': u'?',#TODO (7jw)
-    'RCODJX': u'?',#TODO (7jx)
-    'RCOLENT': u'?',#TODO (7ls)
-    'RCONS': u'?',#TODO (7uh)
-    'RCOTFOR': u'?',#TODO (7ul)
-    'RDIFAGRI': u'?',#TODO (7um)
-    'RDONS': u'?',#TODO (7uf)
-    'RDUFLOGIH': u'?',#TODO (7gh)
-    'REI': u'?',#TODO (f8tf)
+    'RCELFABC': u'Réduction d\'impôt Scellier : cases 7FA, 7FB, 7FC',
+    'RCELFD': u'Réduction d\'impôt Scellier : case 7FD',
+    'RCELHJK': u'Réduction d\'impôt Scellier : case 7HJ, 7HK',
+    'RCELHL': u'Réduction d\'impôt Scellier : case 7HL',
+    'RCELHM': u'Réduction d\'impôt Scellier : case 7HM',
+    'RCELHNO': u'Réduction d\'impôt Scellier : case 7HN, 7HO',
+    'RCELHR': u'Réduction d\'impôt Scellier : case 7HR',
+    'RCELHS': u'Réduction d\'impôt Scellier : case 7HS',
+    'RCELJBGL': u'Réduction d\'impôt Scellier : case ?',
+    'RCELJOQR': u'Réduction d\'impôt Scellier : case ?',
+    'RCELJP': u'Réduction d\'impôt Scellier : case ?',
+    'RCELLIER': u'Réduction d\'impôt Scellier : case ?',
+    'RCELNBGL': u'Réduction d\'impôt Scellier : case ?',
+    'RCELNQ': u'Réduction d\'impôt Scellier : case ?',
+    'RCELREPGJ': u'Réduction d\'impôt Scellier : case ?',
+    'RCELREPGK': u'Réduction d\'impôt Scellier : case ?',
+    'RCELREPGL': u'Réduction d\'impôt Scellier : case ?',
+    'RCELREPGP': u'Réduction d\'impôt Scellier : case ?',
+    'RCELREPGS': u'Réduction d\'impôt Scellier : case ?',
+    'RCELREPGT': u'Réduction d\'impôt Scellier : case ?',
+    'RCELREPGU': u'Réduction d\'impôt Scellier : case ?',
+    'RCELREPGV': u'Réduction d\'impôt Scellier : case ?',
+    'RCELREPGV': u'Réduction d\'impôt Scellier : case ?',
+    'RCELREPGW': u'Réduction d\'impôt Scellier : case ?',
+    'RCELREPGX': u'Réduction d\'impôt Scellier : case ?',
+    'RCELREPHA': u'Réduction d\'impôt Scellier : case ?',
+    'RCELREPHB': u'Réduction d\'impôt Scellier : case ?',
+    'RCELREPHD': u'Réduction d\'impôt Scellier : case ?',
+    'RCELREPHE': u'Réduction d\'impôt Scellier : case ?',
+    'RCELREPHF': u'Réduction d\'impôt Scellier : case ?',
+    'RCELREPHG': u'Réduction d\'impôt Scellier : case ?',
+    'RCELREPHH': u'Réduction d\'impôt Scellier : case ?',
+    'RCELREPHR': u'Réduction d\'impôt Scellier : case ?',
+    'RCELREPHS': u'Réduction d\'impôt Scellier : case ?',
+    'RCELREPHT': u'Réduction d\'impôt Scellier : case ?',
+    'RCELREPHU': u'Réduction d\'impôt Scellier : case ?',
+    'RCELREPHV': u'Réduction d\'impôt Scellier : case ?',
+    'RCELREPHW': u'Réduction d\'impôt Scellier : case ?',
+    'RCELREPHX': u'Réduction d\'impôt Scellier : case ?',
+    'RCELREPHZ': u'Réduction d\'impôt Scellier : case ?',
+    'RCELRRED09': u'Réduction d\'impôt Scellier : case ?',
+    'RCELRREDLA': u'Réduction d\'impôt Scellier : case ?',
+    'RCELRREDLB': u'Réduction d\'impôt Scellier : case ?',
+    'RCELRREDLC': u'Réduction d\'impôt Scellier : case ?',
+    'RCELRREDLD': u'Réduction d\'impôt Scellier : case ?',
+    'RCELRREDLE': u'Réduction d\'impôt Scellier : case ?',
+    'RCELRREDLF': u'Réduction d\'impôt Scellier : case ?',
+    'RCELRREDLM': u'Réduction d\'impôt Scellier : case ?',
+    'RCELRREDLS': u'Réduction d\'impôt Scellier : case ?',
+    'RCELRREDLZ': u'Réduction d\'impôt Scellier : case ?',
+    'RCELRREDMG': u'Réduction d\'impôt Scellier : case ?',
+    'RCINE': u'Réduction d\'impôt pour souscription au capital d\'une SOFICA',
+    'RCODELOP': u'?',
+    'RCODJT': u'Réduction d\'impôt Censi-Bouvard : case 7JT',
+    'RCODJTJU': u'Réduction d\'impôt Censi-Bouvard : case 7JT, 7JU',
+    'RCODJU': u'Réduction d\'impôt Censi-Bouvard : case 7JU',
+    'RCODJV': u'Réduction d\'impôt Censi-Bouvard : case ?',
+    'RCODJW': u'Réduction d\'impôt Censi-Bouvard : case ?',
+    'RCODJX': u'Réduction d\'impôt Censi-Bouvard : case ?',
+    'RCOLENT': u'Réduction d\'impôt pour investissements Outre-Mer dans le cadre d\'une entreprise',
+    'RCOMP': u'Réduction d\'impôt pour frais de comptabilité et d\'adhésion à un CGA',
+    'RCOTFOR': u'Réduction d\'impôt pour investissements forestiers',
+    'RDIFAGRI': u'Réduction d\'impôt pour paiement différé accordé aux agriculteurs',
+    'RDONS': u'Réduction d\'impôt pour dons à des oeuvres d\'intérêt général',
+    'RDUFLOGIH': u'Réduction d\'impôt Duflot : cases 7GH, 7GI',
+    'RDUFREPFI': u'Réduction d\'impôt Duflot : case 7FI',
+    'RDUFREPFK': u'Réduction d\'impôt Duflot : case 7FK',
+    'RDUFREPFR': u'Réduction d\'impôt Duflot : case 7FR',
+    'REI': u'Reprise de réductions ou de crédits d\'impôt : cases 8TF, 8TP',
     'REVKIRE': u'Revenu fiscal de référence',
-    'RFCPI': u'?',#TODO (7gq)
-    'RFIPC': u'?',#TODO (7fm)
-    'RFOR': u'?',#TODO (f7up)
-    'RFORET': u'?',#TODO (f7uc)
-    'RHEBE': u'?',#TODO (7ce)
+    'RFCPI': u'?',
+    'RFIPC': u'Réduction d\'impôt pour souscription au capital de FCPI en Corse',
+    'RFOR': u'Réduction d\'impôt pour investissements forestiers (jusque 2013)',
+    'RFORET': u'Réduction d\'impôt pour cotisations pour la défense des forêts contre l\'incendie',
+    'RHEBE': u'Réduction d\'impôt pour dépenses d\'acceuil dans un établissement pour personnes dépendantes',
     'RIDOMENT': u'?',#TODO (7ur)
-    'RIDOMPROE1': u'?',#TODO (f7sz)
+    'RIDOMPROE1': u'?',
     'RIDOMPROE2': u'?',#TODO (f7qz)
     'RIDOMPROE3': u'?',#TODO (f7qz)
     'RIDOMPROE4': u'?',#TODO (f7oz)
     'RIDOMPROE5': u'?',#TODO (f7oz)
-    'RILMIA': u'?',#TODO (7ia)
-    'RILMIB': u'?',#TODO (7ib)
-    'RILMIC': u'?',#TODO (7ic)
-    'RILMIH': u'?',#TODO (7ih)
-    'RILMIX': u'?',#TODO (7ix)
-    'RILMIZ': u'?',#TODO (7iz)
-    'RILMJI': u'?',#TODO (7ji)
-    'RILMJS': u'?',#TODO (7ji)
-    'RILMJV': u'?',#TODO
-    'RILMJW': u'?',#TODO
-    'RILMJX': u'?',#TODO
-    'RINNO': u'?',#TODO (7gq)
-    'RINVDOMTOMLG': u'?',#TODO (f7ui)
-    'RINVRED': u'?',#TODO (7it)
-    'RLOCIDEFG': u'?',#TODO (7id)
-    'RLOGDOM': u'?',#TODO (f7qd)
-    'RMEUBLE': u'?',#TODO (7ik)
-    'RNI': u'?',#TODO
+    'RILMIA': u'Réduction d\'impôt Censi-Bouvard : case 7IA',
+    'RILMIB': u'Réduction d\'impôt Censi-Bouvard : case 7IB',
+    'RILMIC': u'Réduction d\'impôt Censi-Bouvard : case 7IC',
+    'RILMIH': u'Réduction d\'impôt Censi-Bouvard : case 7IH',
+    'RILMIX': u'Réduction d\'impôt Censi-Bouvard : case 7IX',
+    'RILMIZ': u'Réduction d\'impôt Censi-Bouvard : case 7IZ',
+    'RILMJI': u'Réduction d\'impôt Censi-Bouvard : case 7JI',
+    'RILMJS': u'Réduction d\'impôt Censi-Bouvard : case 7JS',
+    'RILMJV': u'Réduction d\'impôt Censi-Bouvard : case 7JV',
+    'RILMJW': u'Réduction d\'impôt Censi-Bouvard : case 7JW',
+    'RILMJX': u'Réduction d\'impôt Censi-Bouvard : case 7JX',
+    'RINNO': u'Réduction d\'impôt pour souscription au capital de FCPI',
+    'RINVDOMTOMLG': u'?',
+    'RINVRED': u'Réduction d\'impôt Censi-Bouvard : case 7IT',
+    'RLOCIDEFG': u'Réduction d\'impôt Censi-Bouvard : cases 7ID, 7IE, 7IF, 7IG',
+    'RLOGDOM': u'Réduction d\'impôt pour investissements Outre-Mer dans le secteur du logement',
+    'RMEUBLE': u'Réduction d\'impôt Censi-Bouvard : case 7IK',
+    'RNI': u'?',
     'RNICOL': u'Revenu net imposable ou déficit à reporter',
-    'RNOUV': u'?',#TODO (cappme)
-    'RPATNAT': u'?',#TODO (7ka)
-    'RPATNATOT': u'?',#TODO (7ka)
-    'RPRESCOMPREP': u'?',#TODO (7wp)
+    'RNOUV': u'Réduction d\'impôt pour souscription au capital de PME',
+    'RPATNAT': u'Réduction d\'impôt pour dépenses de protection du patrimoine naturel',
+    'RPATNATOT': u'Réduction d\'impôt pour dépenses de protection du patrimoine naturel',
+    'RPRESCOMPREP': u'Prestation compensatoire : report de l\'année précédente : case 7wp',
     'RPROREP': u'?',#TODO (7is)
     'RRBG': u'Revenu brut global ou déficit',
     'RRDOM': u'?',#TODO (7ub)
     'RREDMEUB': u'?',#TODO (7is)
     'RREDREP': u'?',#TODO (7iu)
-    'RREPA': u'?',#TODO (7ud)
-    'RREPMEU': u'?',#TODO (7ip)
-    'RREPNPRO': u'?',#TODO (7ir)
+    'RREPA': u'Réduction d\'impôt pour dons à des organismes de personnes en difficultés',
+    'RREPMEU': u'Réduction d\'impôt Censi-Bouvard : case 7IP',
+    'RREPNPRO': u'Réduction d\'impôt Censi-Bouvard : case 7IQ',
     'RRESIMEUB': u'?',#TODO (7io)
     'RRESINEUV': u'?',#TODO (7ij)
-    'RRESIVIEU': u'?',#TODO (7im)
-    'RRESTIMO': u'?',#TODO (7rd)
-    'RRIRENOV': u'?',#TODO (7nz)
-    'RRPRESCOMP': u'?',#TODO (7wp)
-    'RSOCREPR': u'?',#TODO (7fh)
-    'RSOUFIP':  u'?',#TODO (7fq)
-    'RSURV': u'?',#TODO (7gz)
-    'RTELEIR': u'?',#TODO (7ul)
-    'RTITPRISE': u'?',#TODO (7cu)
-    'RTOUHOTR': u'?', #TODO (7xk)
-    'RTOUR': u'?',#TODO (f7xd)
-    'RTOUREPA': u'?', #TODO (7xj)
-    'RTOURES': u'?',#TODO (f7xc)
-    'RTOURHOT': u'?',#TODO (f7xc)
-    'RTOURNEUF': u'?', #TODO (f7xc)
-    'RTOURREP': u'?', #TODO (7xi)
-    'RTOURTRA': u'?',#TODO (f7xc)
+    'RRESIVIEU': u'?',#TODO (7im, 7iw)
+    'RRESTIMO': u'Réduction d\'impôt Malraux pour travaux de restauration immobilière',
+    'RRETU': u'Réduction d\'impôt pour enfants à charge poursuivant leurs études',
+    'RRIRENOV': u'Réduction d\'impôt pour travaux de conservation ou restauration de monuments historiques',
+    'RRPRESCOMP': u'Prestation compensatoire',
+    'RSOCREPR': u'Réduction d\'impôt au titre des intérêts d\'emprunt de reprise d\'une société',
+    'RSOUFIP': u'Réduction d\'impôt pour souscription au capital de FIP',
+    'RSURV': u'Réduction d\'impôt sur primes des contrats de rente-survie et épargne handicap',
+    'RTELEIR': u'?',
+    'RTITPRISE': u'Réduction d\'impôt pour souscription au capital de PME',
+    'RTOUHOTR': u'Réduction d\'impôt pour investissements locatifs dans le secteur touristique : résidence hôtelière',
+    'RTOUR': u'Réduction d\'impôt pour investissements locatifs dans le secteur touristique : ',
+    'RTOUREPA': u'Réduction d\'impôt pour investissements locatifs dans le secteur touristique : ',
+    'RTOURES': u'Réduction d\'impôt pour investissements locatifs dans le secteur touristique : ',
+    'RTOURHOT': u'Réduction d\'impôt pour investissements locatifs dans le secteur touristique : ',
+    'RTOURNEUF': u'Réduction d\'impôt pour investissements locatifs dans le secteur touristique : ',
+    'RTOURREP': u'Réduction d\'impôt pour investissements locatifs dans le secteur touristique : reports (case 7XF à 7XN)',
+    'RTOURTRA': u'Réduction d\'impôt pour investissements locatifs dans le secteur touristique : ',
     'TEFF': u'?',#TODO (ebnc_impo)
     'TOTPAC': u'Nombre de personnes à charge',
     'TXMARJ': u'Taux marginal d\'imposition',
@@ -434,8 +449,7 @@ individual_income_variables_to_test = [ # NB: taken from input variables of FELI
     # 'f1tv', 'f1tw', 'f1tx',  => individual incomes but not with this name.. TO CHECK
     # 'revimpres', "REVENUS A IMPOSER AUX CONTRIBUTIONS SOCIALES SANS REVENU CORRESPONDANT"
     #'f6ev', 'f6rs', 'f6ss', 'f7dg', 'f7dl', 'f7dq', 
-    #'ppe_tp_ns',  # TODO , update OpenFisca-france def of ppe_tp_ns (wrong stop_date) # WARNING : DGFiP calculator does not like this one
-    #'ppe_tp_sa', # WARNING : DGFiP calculator does not like this one
+    #'ppe_tp_ns', # WARNING : DGFiP calculator does not like this one
     'aacc_defn',
     'aacc_defs',
     'aacc_exon',
@@ -456,7 +470,7 @@ individual_income_variables_to_test = [ # NB: taken from input variables of FELI
     'abnc_impo', 
     'abnc_proc', 
     'abnc_pvce', 
-    'alnp_defs',  # TODO , update OpenFisca-france def of alnp_defs (wrong stop_date)
+    'alnp_defs',
     'alnp_imps', 
     'arag_defi', 
     'arag_exon', 
@@ -466,14 +480,14 @@ individual_income_variables_to_test = [ # NB: taken from input variables of FELI
     'chomage_imposable',
     'cncn_aimp', 
     'cncn_bene', 
-    'cncn_defi',  # TODO, check (f5nr)
+    'cncn_defi',
     'cncn_exon', 
     'cncn_info', 
     'cncn_jcre', 
     'cncn_pvce', 
-    'ebic_imps',  # TODO , update OpenFisca-france def of ebic_imps (wrong stop_date)
-    'ebic_impv',  # TODO , update OpenFisca-france def of ebic_impv (wrong stop_date)
-    'ebnc_impo',  # TODO , update OpenFisca-france def of ebnc_impo (wrong stop_date)
+    'ebic_imps',
+    'ebic_impv',
+    'ebnc_impo',
     'f3vd', 'f3vl',
     'frag_exon', 
     'frag_fore', 
@@ -507,15 +521,15 @@ individual_income_variables_to_test = [ # NB: taken from input variables of FELI
     'nacc_defs', 
     'nacc_exon', 
     'nacc_impn', 
-    'nacc_meup',  #TODO , check
-    'nacc_pvce',  # TODO , update OpenFisca-france def of nacc_pvce (wrong stop_date)
+    'nacc_meup',
+    'nacc_pvce',
     'nbic_apch', 
     'nbic_defn', 
     'nbic_defs',
     'nbic_exon', 
     'nbic_impm', 
     'nbic_impn', 
-    'nbic_imps',  # TODO , wrong 2014 definition
+    'nbic_imps',
     'nbic_mvct', 
     'nbic_pvce', 
     'nbnc_defi', 
@@ -527,10 +541,10 @@ individual_income_variables_to_test = [ # NB: taken from input variables of FELI
     'nrag_defi', 
     'nrag_exon', 
     'nrag_impg', 
-    'nrag_pvce',  # WARNING , 5hk, 5ik, 5jk can be either (nrag_pvce) either (cncn_exon) depending on the year => TODO, handle this
+    'nrag_pvce',
     'pensions_alimentaires_percues',
     'pensions_invalidite',
-    'ppe_du_ns',  # TODO , update OpenFisca-france def of ppe_du_ns (wrong stop_date)
+    'ppe_du_ns',
     'ppe_du_sa',
     'pveximpres',  
     'retraite_imposable',
