@@ -22,59 +22,56 @@ def add_scenario(scenario):
     return {'scenario': json_scenario}
 
 
-def create_all_scenarios_to_test(directory):
+def create_all_scenarios_to_test(directory, years):
     """
-    Main function that generates a serie of test-case scenarios that can be used to construct a serie of tests.
-    The output tests are stored in separate JSON files in the directory given as argument.
+    Main function that generates a serie of test-case scenarios that can be used to construct tests of income tax simulation.
+    The output scenarios are stored in separate JSON files in the directory given as argument.
 
     - TYPE 1 scenarios
-    Description : A single childless worker + a fixed amount of wage + a fixed amount of another type of income
-    Output : JSON files named "test"-'income_tested'-'year'
-    Goal : Test that OpenFisca does takes into account rightfully each of the cells/type of income from the income tax report,
-    when computing the income tax (works only for individual incomes)
+    Description : A single childless worker + a fixed amount of wage + a fixed amount of another type of income/tax reduction
+    Goal : Test that OpenFisca does takes into account rightfully each of the variables from the income tax forms (decl. 2042...)
 
     - TYPE 2 scenario
-    Description :
+    Description : Scenarios with various family and income situation to test various things
     Goal : Test that OpenFisca rightfully compute the income tax, taking into account all the complex features of the legislation
     like decote, quotient familial, PPE etc.
 
     """
     assert os.path.isdir(os.path.join(directory)), 'ERROR : directory {} does not exist'.format(directory)
-    years = range(2011,2017)
+
+
+    fixed_wage_amount = 50000
+    tested_income_amounts = 20000
+    tested_reduction_amounts = 500
 
     for year in years:
         
         # TYPE 1 SCENARIOS
-        fixed_wage_amount = 50000
-        tested_income_amounts = [20000]
-        tested_reduction_amounts = [500]
 
         for variable in base.individual_income_variables_to_test + base.household_income_variables_to_test :
             if variable not in base.tax_benefit_system.variables:
                 log.info("Variable {} does not exist in the tax_benefit system, no tests were created".format(variable))
                 continue
-            for amount in tested_income_amounts:
-                scenario = define_single_worker_scenario(year, {'salaire_imposable': fixed_wage_amount, variable: amount})
-                json_filename = "test" + '-' + variable + '-' + str(scenario.period.date.year)
-                if os.path.isfile(os.path.join(directory, json_filename)):
-                    log.debug("File {} already exists".format(json_filename))
-                with codecs.open(os.path.join(directory, json_filename + '.json'), 'w', encoding = 'utf-8') as fichier:
-                    json.dump(add_scenario(scenario), fichier, encoding='utf-8', ensure_ascii=False, indent=2, sort_keys=True)
+            scenario = define_single_worker_scenario(year, {'salaire_imposable': fixed_wage_amount, variable: tested_income_amount})
+            json_filename = "test" + '-' + variable + '-' + str(scenario.period.date.year)
+            if os.path.isfile(os.path.join(directory, json_filename)):
+                log.debug("File {} already exists".format(json_filename))
+            with codecs.open(os.path.join(directory, json_filename + '.json'), 'w', encoding = 'utf-8') as fichier:
+                json.dump(add_scenario(scenario), fichier, encoding='utf-8', ensure_ascii=False, indent=2, sort_keys=True)
 
 
         # TYPE 2 SCENARIOS
-        tested_income_amount = tested_income_amounts[0]
-        tested_reduction_amount = tested_reduction_amounts[0]
 
         scenario_by_variable = {
             # 'plaf_qf_domtom': TODO,
+            # 'reduc_doment': TODO,
             'abat_65_or_invalid': define_single_worker_scenario(year, {'salaire_imposable': 20000},  caseP = 1, date_naissance = year - 80),
             'caseF': define_family_scenario(year, caseF = 1),
             'caseG': define_single_worker_scenario(year, {'salaire_imposable': 50000}, caseG = 1, statut_marital = u'Veuf', date_naissance = year - 80),
             'caseL': define_single_worker_scenario(year, {'salaire_imposable': 50000}, caseL = 1),
             'caseP': define_family_scenario(year, caseP = 1),
             'caseS': define_family_scenario(year, caseS = 1, date_naissance1 = year - 80),
-            'caseT': define_single_parent_scenario(year, caseT = 1),
+            'caseT': define_single_worker_scenario(year,  {'salaire_imposable': fixed_wage_amount}, nb_enfants = 1, caseT = 1),
             'caseW': define_single_worker_scenario(year, {'salaire_imposable': 50000}, caseW = 1, date_naissance = year - 80),
             'credit_preetu': define_single_worker_scenario(year, {'salaire_imposable': fixed_wage_amount, 'f7uk': 1000, 'f7vo': 2, 'f7td': 3000}, date_naissance = year - 25),
             'decote': define_family_scenario(year, income_amount1 = 25000, income_amount2 = 20000),
@@ -85,15 +82,21 @@ def create_all_scenarios_to_test(directory):
             'nbR': define_family_scenario(year, nbR = 1),
             'plaf_qf_caseL': define_single_worker_scenario(year, {'salaire_imposable': 150000}, caseL = 1),
             'plaf_qf_casePF_nbGI': define_family_scenario(year, income_amount1 = 150000, income_amount2 = 100000, caseP = 1, caseF = 1, nbF = 2, nbG = 1, nbH = 1, nbI = 1),
-            'plaf_qf_caseT': define_single_parent_scenario(year, income_amount1 = 150000, caseT = 1),
+            'plaf_qf_caseT': define_single_worker_scenario(year,  {'salaire_imposable': 150000}, nb_enfants = 1, caseT = 1),
             'plaf_qf_caseWG': define_single_worker_scenario(year, {'salaire_imposable': 150000}, statut_marital = u'Veuf', caseG = 1, caseW = 1),
             'plaf_qf_family': define_family_scenario(year, income_amount1 = 150000, income_amount2 = 100000),
             'ppe': define_family_scenario(year, income_amount1 = 15000, income_amount2 = 10000), 
             'reduc_adhcga': define_single_worker_scenario(year, {'salaire_imposable': fixed_wage_amount, 'abic_impn': fixed_wage_amount, 'f7ff': tested_reduction_amount, 'f7fg': 2}),
             'reduc_autent': define_single_worker_scenario(year, {'salaire_imposable': fixed_wage_amount, 'abic_impn': fixed_wage_amount, 'f7uy': tested_reduction_amount}),
             'reduc_credit_2042pro': define_single_worker_scenario(year, {'salaire_imposable': fixed_wage_amount, 'abic_impn': fixed_wage_amount, 'arag_impg': fixed_wage_amount, 'f8tb': tested_reduction_amount, 'f8tc' : tested_reduction_amount, 'f8te' : tested_reduction_amount, 'f8tg' : tested_reduction_amount, 'f8ts' : tested_reduction_amount, 'f8tz' : tested_reduction_amount, 'f8wa' : tested_reduction_amount, 'f8wb' : tested_reduction_amount, 'f8wc' : tested_reduction_amount, 'f8wd' : tested_reduction_amount, 'f8we' : tested_reduction_amount, 'f8wt' : tested_reduction_amount, 'f8wr' : tested_reduction_amount, 'f8uz' : tested_reduction_amount, 'f8wu' : tested_reduction_amount, 'f8tl' : tested_reduction_amount, 'f8uw' : tested_reduction_amount}), 
-            'reduc_ecpess': define_family_scenario(year, {'salaire_imposable': fixed_wage_amount,'f7ea': 1, 'f7eb': 1, 'f7ec': 0, 'f7ef': 0, 'f7eg': 0, 'f7ed': 1}, nb_enfants = 6, nbF = 2, nbH = 1),
+            'reduc_ecpess': define_single_worker_scenario(year, {'salaire_imposable': fixed_wage_amount,'f7ea': 1, 'f7eb': 1, 'f7ec': 0, 'f7ef': 0, 'f7eg': 0, 'f7ed': 1}, nb_enfants = 6, nbF = 2, nbH = 1),
             'reduc_intagr': define_single_worker_scenario(year,  {'salaire_imposable': fixed_wage_amount, 'f7um': tested_income_amount, 'f2tr': tested_income_amount}),
+            'reduc_duflot_rpinel': define_single_worker_scenario(year, {'salaire_imposable': fixed_wage_amount, 'f7el': 200000, 'f7qc': 150000, 'f7qe': tested_reduction_amount, 'f7qh': tested_reduction_amount, 'f7qj': tested_reduction_amount, 'f7ql': tested_reduction_amount, 'f7ai': tested_reduction_amount, 'f7gh': tested_reduction_amount, 'f7fi': tested_reduction_amount}),
+            'reduc_malraux': define_single_worker_scenario(year, {'salaire_imposable': fixed_wage_amount, 'f7ny': tested_reduction_amounts, 'f7nx': tested_reduction_amounts, 'f7re': tested_reduction_amounts, 'f7rf': tested_reduction_amounts, 'f7sy': tested_reduction_amounts, 'f7sx': tested_reduction_amounts}),
+            'credit_saldom': define_single_worker_scenario(year, {'salaire_imposable': fixed_wage_amount, 'f7db': tested_income_amounts, 'f7dq': 1, 'f7dg': 1}),
+            'reduc_saldom' : define_single_worker_scenario(year, {'salaire_imposable': fixed_wage_amount, 'f7df': tested_income_amounts, 'f7dq': 0, 'f7dg': 0}),
+            'reduc_saldom2': define_single_worker_scenario(year, {'salaire_imposable': fixed_wage_amount, 'f7dd': tested_income_amounts, 'f7dl': 1}),
+            
         }
         
         for variable in scenario_by_variable :
@@ -107,10 +110,10 @@ def create_all_scenarios_to_test(directory):
 
 def define_single_worker_scenario(year, value_by_variable, 
     date_naissance = 1970, statut_marital = u'Célibataire', nb_enfants = 0,
-    nbG = 0, nbR = 0, nbH = 0, nbI = 0, nbJ = 0, caseL = 0, caseP = 0, caseF = 0, caseW = 0, caseS = 0, caseG = 0):
+    nbF = 0, nbG = 0, nbR = 0, nbH = 0, nbI = 0, nbJ = 0, caseL = 0, caseP = 0, caseF = 0, caseW = 0, caseS = 0, caseG = 0, caseT = 0):
     """
         Function that creates a scenario from the base tax & benefits system for one entity (a single working person)
-        and credit him with some incomes given in arguments.
+        and credit him with some incomes given in argument.
 
         Parameters
         ---------
@@ -146,7 +149,9 @@ def define_single_worker_scenario(year, value_by_variable,
         caseL = caseL,
         caseP = caseP,
         caseS = caseS,
+        caseT = caseT,
         caseW = caseW,
+        nbF = nbF,
         nbG = nbG,
         nbH = nbH,
         nbJ = nbJ,
@@ -182,6 +187,7 @@ def define_single_worker_scenario(year, value_by_variable,
 
     scenario.suggest()
     return scenario
+
 
 def define_family_scenario(year, date_naissance1 = 1970, date_naissance2 = 1970, income_amount1 = 50000, income_amount2 = 50000, nb_enfants = 3,
     nbF = 3, nbG = 0, nbR = 0, nbH = 0, nbI = 0, nbJ = 0, nbN = 0, caseP = 0, caseF = 0, caseW = 0, caseS = 0, caseG = 0):
@@ -234,9 +240,6 @@ def define_family_scenario(year, date_naissance1 = 1970, date_naissance2 = 1970,
 
     famille = dict()
     menage = dict()
-    
-    famille = dict()
-    menage = dict()
     foyer_fiscal = dict(
         caseF = caseF,
         caseG = caseG,
@@ -256,67 +259,6 @@ def define_family_scenario(year, date_naissance1 = 1970, date_naissance2 = 1970,
         period = year,
         parent1 = parent1,
         parent2 = parent2,
-        enfants = enfants,
-        famille = famille,
-        menage = menage,
-        foyer_fiscal = foyer_fiscal,
-        )
-
-    scenario.suggest()
-    return scenario
-
-def define_single_parent_scenario(year, statut_marital = u'Célibataire', date_naissance = 1970, income_amount1 = 50000, 
-    nbF = 1, nbG = 0, nbR = 0, nbH = 0, nbI = 0, nbJ = 0, nbN = 0, caseL = 0, caseP = 0, caseF = 0, caseW = 0, caseS = 0, caseG = 0, caseT = 1):
-    """
-        Function that creates a scenario from the base tax & benefits system for one entity (a single parent with 1 child)
-        and credit the parents with a given amount of wage.
-
-        Parameters
-        ---------
-        year:
-        Year of income
-
-    """
-    assert statut_marital in [u'Célibataire', u'Veuf', u'Divorcé']
-    assert nbF + nbH + nbJ + nbN <= 1
-    assert nbF >= nbG
-    assert nbH >= nbI
-
-    scenario = base.tax_benefit_system.new_scenario()
-    parent1 = {
-        "activite": u'Actif occupé',
-        "date_naissance": date_naissance,
-        "statut_marital": statut_marital,
-        "salaire_imposable": income_amount1,
-        }
-    enfants = [
-        dict(
-            activite = u'Étudiant, élève',
-            date_naissance = str(year - 4) + '-01-01',
-            ),
-        ]
-    famille = dict()
-    menage = dict()
-    foyer_fiscal = dict(
-        caseF = caseF,
-        caseG = caseG,
-        caseL = caseL,
-        caseP = caseP,
-        caseS = caseS,
-        caseT = caseT,
-        caseW = caseW,
-        nbF = nbF,
-        nbG = nbG,
-        nbH = nbH,
-        nbI = nbI,
-        nbJ = nbJ,
-        nbN = nbN,
-        nbR = nbR,
-    )
-
-    scenario.init_single_entity(
-        period = year,
-        parent1 = parent1,
         enfants = enfants,
         famille = famille,
         menage = menage,

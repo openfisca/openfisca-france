@@ -149,7 +149,7 @@ def define_scenario(year, tax_benefit_system = tax_benefit_system):
         parent2 = dict(
              activite = u'Actif occupé',
              date_naissance = 1973,
-             salaire_imposable = 25000,
+             salaire_imposable = 15000,
              statut_marital = u'Marié',
              ),
         enfants = [
@@ -161,24 +161,8 @@ def define_scenario(year, tax_benefit_system = tax_benefit_system):
                 activite = u'Étudiant, élève',
                 date_naissance = '2000-04-17',
                 ),
-            dict(
-                 activite = u'Étudiant, élève',
-                 date_naissance = '1997-02-01',
-                 ),
-            dict(
-                activite = u'Étudiant, élève',
-                date_naissance = '2000-04-17',
-                ),
-           ],
-        foyer_fiscal = dict( 
-            #f7qu = 20000,
-            #f7dd = 0,
-            #f7dl = 0,
-            #f7dq = 0, 
-            #f7dg = 0,
-            #f7su = 5000,
-            #f7vt = 2000,
-            ),
+             ],
+        foyer_fiscal = dict(),
         )
     scenario.suggest()
     return scenario
