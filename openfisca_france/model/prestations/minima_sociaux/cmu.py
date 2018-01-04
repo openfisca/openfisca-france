@@ -215,6 +215,7 @@ class cmu_base_ressources_individu(Variable):
             'allocation_securisation_professionnelle',
             'bourse_enseignement_sup',
             'bourse_recherche',
+            'caah',
             'chomage_net',
             'dedommagement_victime_amiante',
             'gains_exceptionnels',
