@@ -130,19 +130,6 @@ individus:
       2017-12: false
       2017-11: false
       2017-10: false
-    brest_metropole_transport:
-      2017-12: 0
-      2017-11: 0
-      2017-10: 0
-      2017-09: 0
-      2017-08: 0
-      2017-07: 0
-      2017-06: 0
-      2017-05: 0
-      2017-04: 0
-      2017-03: 0
-      2017-02: 0
-      2017-01: 0
     apa_eligibilite:
       2018-01: null
     aah_non_calculable:
