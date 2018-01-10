@@ -1,5 +1,13 @@
 # Changelog
 
+### 19.0.3 [#790](https://github.com/openfisca/openfisca-france/issues/790)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : toutes.
+* Zones impactées : `prestations/minima_sociaux/cmu.py`
+* Détails :
+- Ajout du CAAH à la liste des ressources prises en compte pour le calcul de la CMU-C / ACS
+
 ### 19.0.2
 
 * Évolution du système socio-fiscal.
