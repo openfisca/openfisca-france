@@ -1,6 +1,6 @@
 # Calculateur_impots
 
-This directory contains all the codes necessary to produce a battery of YAML tests of the French income tax, which can be done by running the program [create_tests.py](./create_tests.py). These tests can later be run in a separate program to check that the income tax is correctly computed by OpenFisca-France for each year. 
+This directory contains all the codes necessary to produce a battery of YAML tests of the French income tax, which can be done by running the program [create_tests.py](./create_tests.py). These tests can later be run in a separate program to check that the income tax is correctly computed by OpenFisca-France for each year.
 
 It uses the income tax simulator of the French Ministry of Finance DGFIP, that is [available online](https://www.impots.gouv.fr/portail/simulateurs), to provide the benchmark results of income tax simulation.
 
@@ -13,12 +13,12 @@ It is defined in [base.py](./base.py) as the default *FrenchTaxBenefitSystem()*
 
 * **A serie of Test case Scenarios**
 
-Each test is build upon one scenario, which must contains a test case and a period. They can be builded from the [input_scenario_builder](./input_scenario_builder/build_scenarios_to_test.py). 
+Each test is build upon one scenario, which must contains a test case and a period. They can be builded from the [input_scenario_builder](./input_scenario_builder/build_scenarios_to_test.py).
 
-These scenarios must have been stored in a .JSON format in [openfisca-france/tests/calculateur_impots/scenarios](../../../tests/calculateur_impots/scenarios/). If no scenarios are to be found in this folder, the programm will build new scenarios to test, by running the [input_scenario_builder](./input_scenario_builder/build_scenarios_to_test.py). 
+These scenarios must have been stored in a .JSON format in [openfisca-france/tests/calculateur_impots/scenarios](../../../tests/calculateur_impots/scenarios/). If no scenarios are to be found in this folder, the programm will build new scenarios to test, by running the [input_scenario_builder](./input_scenario_builder/build_scenarios_to_test.py).
 
 ## Functionning
- 
+
 For each input scenario found in the folder, a test is created following these three steps :
 
 * First, the program reads the JSON file containing the input scenario to test and deduce from its name which aspect of the income tax legislation it is made to test (a certain type of income, a certain feature of the income tax..).
@@ -44,7 +44,14 @@ The YAML tests produced are stored in the subfolder [/yaml](../../../tests/calcu
 
 NB : to test the result of an OpenFisca income tax simulation for a given year and a given scenario, one can use [compare_openfisca_impots.py](./compare_openfisca_impots.py) and define by hand the scenario wanted in *define_scenario()*
 
-NB2 : to run the YAML tests created, one can use the command *openfisca-run-test* like the following example : 
+NB2 : to run the YAML tests created, one can use the command *openfisca-run-test* like the following example :
 ```
 openfisca-run-test tests/calculateur_impots/yaml/chomage_imposable.yaml --c openfisca_france
 ```
+
+NB3 : to run the YAML test by testing only a subset of the output variables defined in the test, one can type :
+```
+openfisca-run-test tests/calculateur_impots/yaml/chomage_imposable.yaml --c openfisca_france -t variable1 variable2
+```
+
+where `variable1` and `variable2` are the output variables to be tested.
