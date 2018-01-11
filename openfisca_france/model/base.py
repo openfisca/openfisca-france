@@ -3,13 +3,17 @@
 from openfisca_core.model_api import *
 from openfisca_france.entities import Famille, FoyerFiscal, Individu, Menage
 
+# Enums used through the legislation
+# The __order__ is only necessary because of Python 2
 
 class TypesAAHNonCalculable(Enum):
+    __order__ = 'calculable intervention_CDAPH_necessaire'
     calculable = u"Calculable"
     intervention_CDAPH_necessaire = u"intervention_CDAPH_necessaire"
 
 
 class TypesActivite(Enum):
+    __order__ = 'actif chomeur etudiant retraite inactif'
     actif = u'Actif occupé'
     chomeur = u'Chômeur'
     etudiant = u'Étudiant, élève'
