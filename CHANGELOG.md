@@ -1,5 +1,12 @@
 # Changelog
 
+### 19.0.3
+
+* Amélioration technique.
+* Périodes concernées : toutes.
+* Zones impactées : `openfisca_france/model/prelevements_obligatoires/taxe_habitation.py.
+* Détails : Corrige la négation des booléens en utilisant de façon appropriée logical_not.
+
 ### 19.0.2
 
 * Évolution du système socio-fiscal.
