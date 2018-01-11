@@ -35,7 +35,7 @@ def test_birth():
             ],
         )
     assert_equal(
-        simulation.calculate('activite', period = janvier).tolist(),
+        simulation.calculate('activite', period = janvier).decode().tolist(),
         [
             TypesActivite.inactif,
             TypesActivite.etudiant,
