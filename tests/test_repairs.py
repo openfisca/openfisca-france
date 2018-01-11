@@ -38,7 +38,7 @@ def test_2_parents_2_enfants():
             ],
         )
     assert_equal(
-        simulation.calculate('activite', period=janvier).tolist(),
+        simulation.calculate('activite', period=janvier).decode().tolist(),
         [
             TypesActivite.inactif,
             TypesActivite.inactif,
@@ -101,7 +101,7 @@ def test_famille_1_parent_3_enfants():
             ],
         )
     assert_equal(
-        simulation.calculate('activite', period=janvier).tolist(),
+        simulation.calculate('activite', period=janvier).decode().tolist(),
         [
             TypesActivite.inactif,
             TypesActivite.etudiant,
@@ -164,7 +164,7 @@ def test_famille_2_parents_2_enfants():
             ],
         )
     assert_equal(
-        simulation.calculate('activite', period=janvier).tolist(),
+        simulation.calculate('activite', period=janvier).decode().tolist(),
         [
             TypesActivite.inactif,
             TypesActivite.inactif,
@@ -227,7 +227,7 @@ def test_foyer_fiscal_1_declarant_3_personnes_a_charge():
             ],
         )
     assert_equal(
-        simulation.calculate('activite', period=janvier).tolist(),
+        simulation.calculate('activite', period=janvier).decode().tolist(),
         [
             TypesActivite.inactif,
             TypesActivite.etudiant,
@@ -290,7 +290,7 @@ def test_foyer_fiscal_2_declarants_2_personnes_a_charge():
             ],
         )
     assert_equal(
-        simulation.calculate('activite', period=janvier).tolist(),
+        simulation.calculate('activite', period=janvier).decode().tolist(),
         [
             TypesActivite.inactif,
             TypesActivite.inactif,
@@ -353,7 +353,7 @@ def test_menage_1_personne_de_reference_3_enfants():
             ],
         )
     assert_equal(
-        simulation.calculate('activite', period=janvier).tolist(),
+        simulation.calculate('activite', period=janvier).decode().tolist(),
         [
             TypesActivite.inactif,
             TypesActivite.etudiant,
@@ -417,7 +417,7 @@ def test_menage_1_personne_de_reference_1_conjoint_2_enfants():
             ],
         )
     assert_equal(
-        simulation.calculate('activite', period=janvier).tolist(),
+        simulation.calculate('activite', period=janvier).decode().tolist(),
         [
             TypesActivite.inactif,
             TypesActivite.inactif,
