@@ -26,14 +26,8 @@ class TypesAideLogementNonCalculable(Enum):
     calculable = u"Calculable"
     locataire_foyer = u"Non calculable (Locataire foyer)"
 
-class TypesAllegementCotisationAllocationsFamilialesModeRecouvrement(Enum):
-    __order__ = 'fin_d_annee anticipe progressif'
-    fin_d_annee = u"fin_d_annee"
-    anticipe = u"anticipe_regularisation_fin_de_periode"
-    progressif = u"progressif"
 
-# TODO: Merge with the previous one ?
-class TypesAllegementFillonModeRecouvrement(Enum):
+class TypesAllegementModeRecouvrement(Enum):
     __order__ = 'fin_d_annee anticipe progressif'
     fin_d_annee = u"fin_d_annee"
     anticipe = u"anticipe_regularisation_fin_de_periode"
