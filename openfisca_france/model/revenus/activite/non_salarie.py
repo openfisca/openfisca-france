@@ -1602,6 +1602,13 @@ class tns_micro_entreprise_chiffre_affaires(Variable):
     definition_period = YEAR
 
 
+class TypesTnsTypeActivite(Enum):
+    __order__ = 'achat_revente bic bnc'  # Needed to preserve the enum order in Python 2
+    achat_revente = u'achat_revente'
+    bic = u'bic'
+    bnc = u'bnc'
+
+
 # TODO remove this ugly ETERNITY
 class tns_auto_entrepreneur_type_activite(Variable):
     value_type = Enum

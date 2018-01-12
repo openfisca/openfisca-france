@@ -294,6 +294,13 @@ class bourse_lycee(Variable):
         return montant
 
 
+class TypesScolarite(Enum):
+    __order__ = 'inconnue college lycee'  # Needed to preserve the enum order in Python 2
+    inconnue = u"Inconnue"
+    college = u"Collège"
+    lycee = u"Lycée"
+
+
 class scolarite(Variable):
     value_type = Enum
     possible_values = TypesScolarite

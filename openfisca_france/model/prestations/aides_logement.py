@@ -183,7 +183,8 @@ class aide_logement_abattement_depart_retraite(Variable):
 
     def formula(individu, period, parameters):
         retraite_n_2 = individu('retraite_imposable', period.n_2, options = [ADD])
-        retraite = individu('activite', period) == TypesActivite.retraite
+        activite = individu('activite', period)
+        retraite = activite == TypesActivite.retraite
         condition_abattement = (retraite_n_2 == 0) * retraite
         revenus_activite_pro = individu('revenu_assimile_salaire_apres_abattements', period.n_2)
 
@@ -766,6 +767,12 @@ class apl(Variable):
         return aide_logement_montant * (statut_occupation_logement == TypesStatutOccupationLogement.locataire_hlm)
 
 
+class TypesAideLogementNonCalculable(Enum):
+    __order__ = 'calculable locataire_foyer'  # Needed to preserve the enum order in Python 2
+    calculable = u"Calculable"
+    locataire_foyer = u"Non calculable (Locataire foyer)"
+
+
 class aide_logement_non_calculable(Variable):
     value_type = Enum
     possible_values = TypesAideLogementNonCalculable
@@ -811,6 +818,14 @@ class crds_logement(Variable):
         aide_logement_montant_brut = famille('aide_logement_montant_brut', period)
         crds = parameters(period).prestations.prestations_familiales.af.crds
         return -aide_logement_montant_brut * crds
+
+
+class TypesZoneApl(Enum):
+    __order__ = 'non_renseigne zone_1 zone_2 zone_3'  # Needed to preserve the enum order in Python 2
+    non_renseigne = u"Non renseigné"
+    zone_1 = u"Zone 1"
+    zone_2 = u"Zone 2"
+    zone_3 = u"Zone 3"
 
 
 class zone_apl(Variable):

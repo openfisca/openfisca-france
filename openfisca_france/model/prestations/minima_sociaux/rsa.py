@@ -634,6 +634,13 @@ class rsa(Variable):
         return (non_calculable == TypesRSANonCalculable.calculable) * montant
 
 
+class TypesRSANonCalculable(Enum):
+    __order__ = 'calculable tns conjoint_tns'  # Needed to preserve the enum order in Python 2
+    calculable = u"Calculable"
+    tns = u"tns"
+    conjoint_tns = u"conjoint_tns"
+
+
 class rsa_base_ressources_patrimoine_individu(Variable):
     value_type = float
     label = u"Base de ressources des revenus du patrimoine du RSA"
@@ -754,6 +761,7 @@ class rsa_eligibilite_tns(Variable):
             plaf_vente = P_micro.specialbnc.marchandises.max
             plaf_service = P_micro.specialbnc.services.max
 
+            TypesTnsTypeActivite = type_activite.possible_values
             achat_revente = (type_activite == TypesTnsTypeActivite.achat_revente)
 
 

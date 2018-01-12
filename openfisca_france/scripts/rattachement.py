@@ -35,7 +35,7 @@ def split(scenario):
     test_case = scenario.test_case
     foyer_fiscal = test_case['foyers_fiscaux'][0]
     individus = test_case['individus']
-    year = scenario.year
+    year = scenario.period
     rattachements_possibles = [] # Contient en réalité les détachements possibles puisqu'au départ tous les membres sous rattachés au même foyer
     detachements_impossibles = []
     scenarios = []
@@ -96,19 +96,19 @@ def define_scenario(year):
     scenario = tax_benefit_system.new_scenario()
     scenario.init_single_entity(
         parent1 = dict(
-            activite = u'Actif occupé',
+            activite = u'actif',
             date_naissance = 1973,
 #            cadre = True,
             salaire_imposable = 90000,
-            statut_marital = u'Célibataire',
+            statut_marital = u'celibataire',
             ),
         enfants = [
             dict(
-                activite = u'Étudiant, élève',
+                activite = u'etudiant',
                 date_naissance = '1992-02-01',
                 ),
             dict(
-                activite = u'Étudiant, élève',
+                activite = u'etudiant',
                 date_naissance = '2000-04-17',
                 ),
             ],

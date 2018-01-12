@@ -170,6 +170,12 @@ class aah_eligible(Variable):
     # TODO: dated_function : avant 2008, il fallait ne pas avoir travaillé pendant les 12 mois précédant la demande.
 
 
+class TypesAAHNonCalculable(Enum):
+    __order__ = 'calculable intervention_CDAPH_necessaire'  # Needed to preserve the enum order in Python 2
+    calculable = u"Calculable"
+    intervention_CDAPH_necessaire = u"intervention_CDAPH_necessaire"
+
+
 class aah_non_calculable(Variable):
     value_type = Enum
     possible_values = TypesAAHNonCalculable
