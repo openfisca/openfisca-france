@@ -165,4 +165,4 @@ class taxe_habitation(Variable):
         prelevement_residence_secondaire = 0  # TODO
 
 
-        return - exonere_taxe_habitation * 0
+        return - 0 * not_(exonere_taxe_habitation)
