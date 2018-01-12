@@ -633,7 +633,6 @@ class rsa(Variable):
 
         return (non_calculable == TypesRSANonCalculable.calculable) * montant
 
-
 class TypesRSANonCalculable(Enum):
     __order__ = 'calculable tns conjoint_tns'  # Needed to preserve the enum order in Python 2
     calculable = u"Calculable"
