@@ -59,7 +59,7 @@ class habite_chez_parents(Variable):
 
 class statut_occupation_logement(Variable):
     value_type = Enum
-    possible_values = TypesStatutOccupationLogement
+    possible_values = TypesStatutOccupationLogement  # defined in model/base.py
     entity = Menage
     default_value = TypesStatutOccupationLogement.non_renseigne
     label = u"Statut d'occupation du logement"

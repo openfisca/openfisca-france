@@ -80,6 +80,7 @@ class indemnite_fin_contrat(Variable):
 
     def formula(self, simulation, period):
         contrat_de_travail_duree = simulation.calculate('contrat_de_travail_duree', period)
+        TypesContratDeTravailDuree = contrat_de_travail_duree.possible_values
         salaire_de_base = simulation.calculate('salaire_de_base', period)
         categorie_salarie = simulation.calculate('categorie_salarie', period)
         apprenti = simulation.calculate('apprenti', period)
@@ -151,6 +152,7 @@ class penibilite(Variable):
 
     def formula_2015_01_01(self, simulation, period):
         exposition_penibilite = simulation.calculate('exposition_penibilite', period)
+        TypesExpositionPenibilite = exposition_penibilite.possible_values
         multiplicateur = simulation.parameters_at(period.start).cotsoc.cotisations_employeur.prive_cadre.penibilite_multiplicateur_exposition_multiple
 
         cotisation_base = apply_bareme(
@@ -666,6 +668,7 @@ class plafond_securite_sociale(Variable):
     def formula(self, simulation, period):
         plafond_temps_plein = simulation.parameters_at(period.start).cotsoc.gen.plafond_securite_sociale
         contrat_de_travail = simulation.calculate('contrat_de_travail', period)
+        TypesContratDeTravail = contrat_de_travail.possible_values
         heures_remunerees_volume = simulation.calculate('heures_remunerees_volume', period)
         forfait_jours_remuneres_volume = simulation.calculate('forfait_jours_remuneres_volume', period)
         heures_duree_collective_entreprise = simulation.calculate('heures_duree_collective_entreprise', period)
@@ -749,6 +752,15 @@ class complementaire_sante_salarie(Variable):
         return cotisation
 
 
+class TypesTailleEntreprise(Enum):
+    __order__ = 'non_pertinent moins_de_10 de_10_a_19 de_20_a_249 plus_de_250'  # Needed to preserve the enum order in Python 2
+    non_pertinent = u"Non pertinent"
+    moins_de_10 = u"Moins de 10 salariés"
+    de_10_a_19 = u"De 10 à 19 salariés"
+    de_20_a_249 = u"De 20 à 249 salariés"
+    plus_de_250 = u"Plus de 250 salariés"
+
+
 class taille_entreprise(Variable):
     value_type = Enum
     possible_values = TypesTailleEntreprise
@@ -789,6 +801,7 @@ class taux_accident_travail(Variable):
 
     def formula_2012_01_01(self, simulation, period):
         exposition_accident = simulation.calculate('exposition_accident', period)
+        TypesExpositionAccident = exposition_accident.possible_values
         accident = simulation.parameters_at(period.start).cotsoc.accident
 
         return (exposition_accident == TypesExpositionAccident.faible) * accident.faible + (exposition_accident == TypesExpositionAccident.moyen) * accident.moyen \

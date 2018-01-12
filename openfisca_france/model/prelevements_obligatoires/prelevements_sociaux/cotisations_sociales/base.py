@@ -1,8 +1,5 @@
 # -*- coding: utf-8 -*-
 
-from openfisca_france.model.base import TypesCategorieSalarie, TypesCotisationSocialeModeRecouvrement
-
-
 DEFAULT_ROUND_BASE_DECIMALS = 2
 
 
@@ -19,6 +16,7 @@ def apply_bareme_for_relevant_type_sal(
     assert categorie_salarie is not None
     assert base is not None
     assert plafond_securite_sociale is not None
+    TypesCategorieSalarie = categorie_salarie.possible_values
 
     def iter_cotisations():
         for type_sal in TypesCategorieSalarie:
@@ -42,6 +40,7 @@ def apply_bareme_for_relevant_type_sal(
 
 def apply_bareme(simulation, period, cotisation_type = None, bareme_name = None, variable_name = None):
     cotisation_mode_recouvrement = simulation.calculate('cotisation_sociale_mode_recouvrement', period)
+    TypesCotisationSocialeModeRecouvrement = cotisation_mode_recouvrement.possible_values
     cotisation = (
         # anticipé (mensuel avec recouvrement en fin d'année)
         cotisation_mode_recouvrement == TypesCotisationSocialeModeRecouvrement.mensuel) * (

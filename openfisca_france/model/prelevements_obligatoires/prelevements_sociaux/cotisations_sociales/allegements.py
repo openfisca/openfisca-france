@@ -27,7 +27,6 @@ class assiette_allegement(Variable):
     def formula(self, simulation, period):
         assiette_cotisations_sociales = simulation.calculate_add('assiette_cotisations_sociales', period)
         categorie_salarie = simulation.calculate('categorie_salarie', period)
-        period = period
         # TODO vérifier changement d'assiette
         return assiette_cotisations_sociales * (
             (categorie_salarie == TypesCategorieSalarie.prive_non_cadre) | (categorie_salarie == TypesCategorieSalarie.prive_cadre)
@@ -45,6 +44,7 @@ class coefficient_proratisation(Variable):
 
         # Les types de contrats gérés
         contrat_de_travail = simulation.calculate('contrat_de_travail', period)
+        TypesContratDeTravail = contrat_de_travail.possible_values
         # [ temps_plein
         #   temps_partiel
         #   forfait_heures_semaines
@@ -158,6 +158,7 @@ class aide_premier_salarie(Variable):
         effectif_entreprise = simulation.calculate('effectif_entreprise', period)
         apprenti = simulation.calculate('apprenti', period)
         contrat_de_travail_duree = simulation.calculate('contrat_de_travail_duree', period)
+        TypesContratDeTravailDuree = contrat_de_travail_duree.possible_values
         contrat_de_travail_debut = simulation.calculate('contrat_de_travail_debut', period)
         contrat_de_travail_fin = simulation.calculate('contrat_de_travail_fin', period)
         coefficient_proratisation = simulation.calculate('coefficient_proratisation', period)
@@ -221,6 +222,7 @@ class aide_embauche_pme(Variable):
         effectif_entreprise = simulation.calculate('effectif_entreprise', period)
         apprenti = simulation.calculate('apprenti', period)
         contrat_de_travail_duree = simulation.calculate('contrat_de_travail_duree', period)
+        TypesContratDeTravailDuree = contrat_de_travail_duree.possible_values
         contrat_de_travail_debut = simulation.calculate('contrat_de_travail_debut', period)
         contrat_de_travail_fin = simulation.calculate('contrat_de_travail_fin', period)
         coefficient_proratisation = simulation.calculate('coefficient_proratisation', period)
@@ -336,6 +338,7 @@ def compute_allegement_fillon(simulation, period):
     assiette = simulation.calculate_add('assiette_allegement', period)
     smic_proratise = simulation.calculate_add('smic_proratise', period)
     taille_entreprise = simulation.calculate('taille_entreprise', first_month)
+    TypesTailleEntreprise = taille_entreprise.possible_values
     majoration = (
         (taille_entreprise == TypesTailleEntreprise.non_pertinent)
         + (taille_entreprise == TypesTailleEntreprise.moins_de_10)
@@ -426,7 +429,7 @@ def switch_on_allegement_mode(simulation, period, mode_recouvrement, variable_na
         should precisely be the variable name prefixed with 'compute_'
     """
     compute_function = globals()['compute_' + variable_name]
-
+    TypesAllegementModeRecouvrement = mode_recouvrement.possible_values
     recouvrement_fin_annee = (mode_recouvrement == TypesAllegementModeRecouvrement.fin_d_annee)
     recouvrement_anticipe = (mode_recouvrement == TypesAllegementModeRecouvrement.anticipe)
     recouvrement_progressif = (mode_recouvrement == TypesAllegementModeRecouvrement.progressif)

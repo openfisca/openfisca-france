@@ -29,7 +29,7 @@ class garde_alternee(Variable):
 class activite(Variable):
     value_type = Enum
     default_value = TypesActivite.inactif
-    possible_values = TypesActivite
+    possible_values = TypesActivite  # defined in model/base.py
     entity = Individu
     label = u"Activité"
     definition_period = MONTH
@@ -45,7 +45,7 @@ class enceinte(Variable):
 
 class statut_marital(Variable):
     value_type = Enum
-    possible_values = TypesStatutMarital
+    possible_values = TypesStatutMarital  # defined in model/base.py
     default_value = TypesStatutMarital.celibataire
     entity = Individu
     label = u"Statut marital"

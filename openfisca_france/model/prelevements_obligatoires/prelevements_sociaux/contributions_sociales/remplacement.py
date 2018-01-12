@@ -11,6 +11,14 @@ from openfisca_france.model.prelevements_obligatoires.prelevements_sociaux.contr
 log = logging.getLogger(__name__)
 
 
+class TypesTauxCSGRemplacement(Enum):
+    __order__ = 'non_renseigne exonere taux_reduit taux_plein'  # Needed to preserve the enum order in Python 2
+    non_renseigne = u"Non renseigné/non pertinent"
+    exonere = u"Exonéré"
+    taux_reduit = u"Taux réduit"
+    taux_plein = u"Taux plein"
+
+
 class taux_csg_remplacement(Variable):
     default_value = TypesTauxCSGRemplacement.taux_plein
     value_type = Enum

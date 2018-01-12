@@ -3,6 +3,13 @@
 from openfisca_france.model.base import *  # noqa analysis:ignore
 
 
+class TypesEligibiliteANAH(Enum):
+    __order__ = 'a_verifier modestes tres_modeste'  # Needed to preserve the enum order in Python 2
+    a_verifier = u"A vérifier"
+    modestes = u"Modestes"
+    tres_modeste = u"Très modestes"
+
+
 class eligibilite_anah(Variable):
     value_type = Enum
     possible_values = TypesEligibiliteANAH
