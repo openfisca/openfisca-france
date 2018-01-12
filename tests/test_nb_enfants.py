@@ -4,7 +4,7 @@ from test_entities import TEST_CASE_AGES, new_simulation
 from openfisca_france import CountryTaxBenefitSystem as FranceTBS
 from openfisca_core.tools import assert_near
 
-tax_benefit_system = FranceTBS()
+from cache import tax_benefit_system
 
 def test_nb_enfants():
     test_case = deepcopy(TEST_CASE_AGES)
