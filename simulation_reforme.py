@@ -62,7 +62,12 @@ def inverse_chomage(x):
     return res
 
 def inverse_retraite(x):
-    res = x/(1-0.074)
+    if x < 1236:
+      res = x
+    elif x < 1391:
+      res = x/(1-0.043)
+    else :
+      res = x/(1-0.074)
     return res
 
 def init_profile(scenario):
@@ -70,7 +75,7 @@ def init_profile(scenario):
         period = 'year:2017:6',
         parent1 = dict(
             age = 40,
-            chomage_brut = 500*12*6,
+            retraite_brute = 3780*12*6,
             # categorie_salarie = "prive_non_cadre", # prive_non_cadre ou public_titulaire_etat
             # taux_incapacite = 0.8,
             statut_marital = 2,
@@ -118,7 +123,7 @@ reference_simulation = reference_scenario.new_simulation()
 
 
 # brut = reference_simulation.calculate('chomage_brut', '2017-12')
-# net = reference_simulation.calculate('chomage_net', '2017-12')
+net = reference_simulation.calculate('irpp', '2018')
 # casa = reference_simulation.calculate('casa', '2017-12')
 # crds = reference_simulation.calculate('crds_chomage', '2017-12')
 # csg_ded = reference_simulation.calculate('csg_deductible_chomage', '2017-12')
