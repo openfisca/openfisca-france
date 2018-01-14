@@ -1587,13 +1587,13 @@ class irpp(Variable):
         pre_result = iai - credits_impot + cehr
 
         return (
-            (iai > P.seuil) * (
+            ((iai > P.seuil) * (
                 (pre_result < P.min) * (pre_result > 0) * iai * 0 +
                 ((pre_result <= 0) + (pre_result >= P.min)) * (- pre_result)
                 ) +
             (iai <= P.seuil) * (
                 (pre_result < 0) * (-pre_result) + (pre_result >= 0) * 0 * iai)
-            )
+            ))*(1-P.prelevement_source)
 
 
 class foyer_impose(Variable):

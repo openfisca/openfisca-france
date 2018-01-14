@@ -1,0 +1,8 @@
+unit: boolean
+values:
+  1914-01-01:
+    value: 0
+  2018-01-01:
+    value: 1
+  2019-01-01:
+    value: 0
