@@ -799,7 +799,6 @@ class taux_accident_travail(Variable):
 
     def formula_2012_01_01(self, simulation, period):
         exposition_accident = simulation.calculate('exposition_accident', period)
-        TypesExpositionAccident = exposition_accident.possible_values
         accident = simulation.parameters_at(period.start).cotsoc.accident
 
         return (exposition_accident == TypesExpositionAccident.faible) * accident.faible + (exposition_accident == TypesExpositionAccident.moyen) * accident.moyen \

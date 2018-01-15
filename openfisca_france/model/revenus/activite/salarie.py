@@ -126,17 +126,10 @@ class ppe_tp_sa(Variable):
             indicateur = indicateur & (individu('contrat_de_travail', mois) == 0)
         return indicateur
 
-class TypesExpositionAccident(Enum):
-    __order__ = 'faible moyen eleve tres_eleve'  # Needed to preserve the enum order in Python 2
-    faible = u"Faible"
-    moyen = u"Moyen"
-    eleve = u"Élevé"
-    tres_eleve = u"Très élevé"
-
 
 class exposition_accident(Variable):
     value_type = Enum
-    possible_values = TypesExpositionAccident
+    possible_values = TypesExpositionAccident  # defined in model/base.py
     default_value = TypesExpositionAccident.faible
     entity = Individu
     label = u"Exposition au risque pour les accidents du travail"

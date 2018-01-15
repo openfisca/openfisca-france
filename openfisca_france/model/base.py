@@ -57,6 +57,14 @@ class TypesCotisationSocialeModeRecouvrement(Enum):
     mensuel_strict = u"Mensuel strict"
 
 
+class TypesExpositionAccident(Enum):
+    __order__ = 'faible moyen eleve tres_eleve'  # Needed to preserve the enum order in Python 2
+    faible = u"Faible"
+    moyen = u"Moyen"
+    eleve = u"Élevé"
+    tres_eleve = u"Très élevé"
+
+
 class TypesStatutMarital(Enum):
     __order__ = 'non_renseigne marie celibataire divorce veuf pacse jeune_veuf'  # Needed to preserve the enum order in Python 2
     non_renseigne = u'Non renseigné'
