@@ -136,16 +136,10 @@ class exposition_accident(Variable):
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
-class TypesExpositionPenibilite(Enum):
-    __order__ = 'nulle simple multiple'  # Needed to preserve the enum order in Python 2
-    nulle = u"Nulle, pas d'exposition de l'employé à un facteur de pénibilité"
-    simple = u"Simple, exposition à un seul facteur de pénibilité"
-    multiple = u"Multiple, exposition à plusieurs facteurs de pénibilité"
-
 
 class exposition_penibilite(Variable):
     value_type = Enum
-    possible_values = TypesExpositionPenibilite
+    possible_values = TypesExpositionPenibilite   # defined in model/base.py
     default_value = TypesExpositionPenibilite.nulle
     entity = Individu
     label = u"Exposition à un ou plusieurs facteurs de pénibilité"

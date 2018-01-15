@@ -151,7 +151,7 @@ class penibilite(Variable):
 
     def formula_2015_01_01(self, simulation, period):
         exposition_penibilite = simulation.calculate('exposition_penibilite', period)
-        TypesExpositionPenibilite = exposition_penibilite.possible_values
+
         multiplicateur = simulation.parameters_at(period.start).cotsoc.cotisations_employeur.prive_cadre.penibilite_multiplicateur_exposition_multiple
 
         cotisation_base = apply_bareme(

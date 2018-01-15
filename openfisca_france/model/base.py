@@ -65,6 +65,13 @@ class TypesExpositionAccident(Enum):
     tres_eleve = u"Très élevé"
 
 
+class TypesExpositionPenibilite(Enum):
+    __order__ = 'nulle simple multiple'  # Needed to preserve the enum order in Python 2
+    nulle = u"Nulle, pas d'exposition de l'employé à un facteur de pénibilité"
+    simple = u"Simple, exposition à un seul facteur de pénibilité"
+    multiple = u"Multiple, exposition à plusieurs facteurs de pénibilité"
+
+
 class TypesStatutMarital(Enum):
     __order__ = 'non_renseigne marie celibataire divorce veuf pacse jeune_veuf'  # Needed to preserve the enum order in Python 2
     non_renseigne = u'Non renseigné'
