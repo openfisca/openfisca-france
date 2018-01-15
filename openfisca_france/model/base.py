@@ -105,6 +105,13 @@ class TypesTailleEntreprise(Enum):
     plus_de_250 = u"Plus de 250 salariés"
 
 
+class TypesTnsTypeActivite(Enum):
+    __order__ = 'achat_revente bic bnc'  # Needed to preserve the enum order in Python 2
+    achat_revente = u'achat_revente'
+    bic = u'bic'
+    bnc = u'bnc'
+
+
 TAUX_DE_PRIME = 1 / 4  # primes_fonction_publique (hors suppl. familial et indemnité de résidence)/rémunération brute
 
 # Legacy roles. To be removed when they are not used by formulas anymore.
