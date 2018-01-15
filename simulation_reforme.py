@@ -20,55 +20,6 @@ from openfisca_france.reforms import plf2018
 reform = plf2018.plf2018(tax_benefit_system)
 
 
-def inverse_prive(x):
-    pss = 3269
-    seuil_1 = pss*(1-0.2221)
-    seuil_2 = pss*(1-0.2221) + (3*pss-pss)*(1-0.2041)
-    seuil_3 = pss*(1-0.2221) + (3*pss-pss)*(1-0.2041) + (4*pss-3*pss)*(1-0.1141)
-
-    if x < seuil_1:
-        res = x/(1-0.2221)
-    elif (x < seuil_2):
-        res = seuil_1/(1-0.2221) + (x-seuil_1)/(1-0.2041)
-    elif x < seuil_3:
-        res = seuil_1/(1-0.2221) + (seuil_2-seuil_1)/(1-0.2041) + (x-seuil_2)/(1-0.1141)
-    else:
-        res = seuil_1/(1-0.2221) + (seuil_2-seuil_1)/(1-0.2041) + (seuil_3-seuil_2)/(1-0.1141) + (x-seuil_3)/(1-0.0901)
-    return res
-
-def inverse_fonctionnaire(x):
-    if x < 258.072882:
-        res = x/(1-0.1056-0.0005-0.9825*0.08-0.01*(1-0.1056))-3.13*(1-0.9825*0.08)
-    elif (x < 1166):
-        res = x/(1.01*(1-0.9825*0.08)-0.1056-0.0005)
-    elif x < 10664.39332:#seuil à 4 pss pour la CSG
-        res = x/(1.01*(1-0.9825*0.08)-0.1056-(1-0.1056)*0.01-0.0005)
-    elif x < 11498.8564:
-        res = 10664.39332/(1.01*(1-0.9825*0.08)-0.1056-(1-0.1056)*0.01-0.0005) + (x-10664.39332)/(1.01*(1-0.9825*0.08)-0.1056-(1-0.1056)*0.01-0.0005)
-    else:
-        res = 10664.39332/(1.01*(1-0.9825*0.08)-0.1056-(1-0.1056)*0.01-0.0005) + (11498.8564-10664.39332)/(1.01*(1-0.9825*0.08)-0.1056-(1-0.1056)*0.01-0.0005) + (x-11498.8564)/(1.01*(1-0.08)-0.1056-0.0005)
-    return res
-
-def inverse_salaire(x,statut):
-    if statut == "public_titulaire_etat":
-        res = inverse_fonctionnaire(x)
-    elif statut == "prive_non_cadre":
-        res = inverse_prive(x)
-return res
-
-    
-def inverse_chomage(x):
-    res = x/(1-0.07)
-    return res
-
-def inverse_retraite(x):
-    if x < 1236:
-      res = x
-    elif x < 1391:
-      res = x/(1-0.043)
-    else :
-      res = x/(1-0.074)
-    return res
 
 def init_profile(scenario):
     scenario.init_single_entity(
@@ -123,7 +74,7 @@ reference_simulation = reference_scenario.new_simulation()
 
 
 # brut = reference_simulation.calculate('chomage_brut', '2017-12')
-net = reference_simulation.calculate('irpp', '2018')
+# net = reference_simulation.calculate('irpp', '2018')
 # casa = reference_simulation.calculate('casa', '2017-12')
 # crds = reference_simulation.calculate('crds_chomage', '2017-12')
 # csg_ded = reference_simulation.calculate('csg_deductible_chomage', '2017-12')
@@ -172,8 +123,8 @@ mv_2020 = reference_simulation.calculate('aspa', '2020-12')[0] - reform_simulati
 mv_2021 = reference_simulation.calculate('aspa', '2021-12')[0] - reform_simulation.calculate('aspa', '2021-12')[0]
 mv_2022 = reference_simulation.calculate('aspa', '2022-12')[0] - reform_simulation.calculate('aspa', '2022-12')[0]
 
-apl_2018 = reference_simulation.calculate('apl', '2018-10')[0] - reform_simulation.calculate('apl', '2018-08')[0]
-apl_2019 = reference_simulation.calculate('apl', '2019-12')[0] - reform_simulation.calculate('apl', '2019-09')[0]
+apl_2018 = reference_simulation.calculate('apl', '2018-12')[0] - reform_simulation.calculate('apl', '2018-12')[0]
+apl_2019 = reference_simulation.calculate('apl', '2019-12')[0] - reform_simulation.calculate('apl', '2019-12')[0]
 apl_2020 = reference_simulation.calculate('apl', '2020-12')[0] - reform_simulation.calculate('apl', '2020-12')[0]
 apl_2021 = reference_simulation.calculate('apl', '2021-12')[0] - reform_simulation.calculate('apl', '2021-12')[0]
 apl_2022 = reference_simulation.calculate('apl', '2022-12')[0] - reform_simulation.calculate('apl', '2022-12')[0]

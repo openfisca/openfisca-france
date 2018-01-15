@@ -84,7 +84,11 @@ def modify_parameters(parameters):
     parameters.prestations.minima_sociaux.aah.montant.update(start = "2018-12-01", value=(860))
     parameters.prestations.minima_sociaux.aah.montant.update(start = "2019-12-01", value=(900))
     
-    # parameters.prestations.aides_logement.autres.abattement_forfaitaire.update(start = "2017-10-01", value=(5))
+    
+    #######################################################################
+    # Baisse forfaitaire des APL
+    #######################################################################
+    parameters.prestations.aides_logement.autres.abattement_forfaitaire.update(start = "2017-10-01", value=(5))
 
     return parameters
 
