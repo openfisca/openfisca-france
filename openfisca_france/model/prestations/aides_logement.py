@@ -820,17 +820,9 @@ class crds_logement(Variable):
         return -aide_logement_montant_brut * crds
 
 
-class TypesZoneApl(Enum):
-    __order__ = 'non_renseigne zone_1 zone_2 zone_3'  # Needed to preserve the enum order in Python 2
-    non_renseigne = u"Non renseigné"
-    zone_1 = u"Zone 1"
-    zone_2 = u"Zone 2"
-    zone_3 = u"Zone 3"
-
-
 class zone_apl(Variable):
     value_type = Enum
-    possible_values = TypesZoneApl
+    possible_values = TypesZoneApl   # defined in model/base.py
     default_value = TypesZoneApl.zone_2
     entity = Menage
     label = u"Zone APL"

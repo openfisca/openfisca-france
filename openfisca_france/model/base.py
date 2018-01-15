@@ -112,6 +112,14 @@ class TypesTnsTypeActivite(Enum):
     bnc = u'bnc'
 
 
+class TypesZoneApl(Enum):
+    __order__ = 'non_renseigne zone_1 zone_2 zone_3'  # Needed to preserve the enum order in Python 2
+    non_renseigne = u"Non renseigné"
+    zone_1 = u"Zone 1"
+    zone_2 = u"Zone 2"
+    zone_3 = u"Zone 3"
+
+
 TAUX_DE_PRIME = 1 / 4  # primes_fonction_publique (hors suppl. familial et indemnité de résidence)/rémunération brute
 
 # Legacy roles. To be removed when they are not used by formulas anymore.

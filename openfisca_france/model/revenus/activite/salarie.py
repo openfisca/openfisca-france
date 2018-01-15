@@ -670,7 +670,6 @@ class indemnite_residence(Variable):
         salaire_de_base = individu('salaire_de_base', period)
         categorie_salarie = individu('categorie_salarie', period)
         zone_apl = individu.menage('zone_apl', period)
-        TypesZoneApl = zone_apl.possible_values
         _P = parameters(period)
 
         P = _P.fonc.indem_resid
