@@ -232,20 +232,9 @@ class indemnite_fin_contrat_due(Variable):
     definition_period = MONTH
 
 
-class TypesContratDeTravail(Enum):
-    __order__ = 'temps_plein temps_partiel forfait_heures_semaines forfait_heures_mois forfait_heures_annee forfait_jours_annee sans_objet'  # Needed to preserve the enum order in Python 2
-    temps_plein = u"temps_plein"
-    temps_partiel = u"temps_partiel"
-    forfait_heures_semaines = u"forfait_heures_semaines"
-    forfait_heures_mois = u"forfait_heures_mois"
-    forfait_heures_annee = u"forfait_heures_annee"
-    forfait_jours_annee = u"forfait_jours_annee"
-    sans_objet = u"sans_objet"
-
-
 class contrat_de_travail(Variable):
     value_type = Enum
-    possible_values = TypesContratDeTravail
+    possible_values = TypesContratDeTravail  # defined in model/base.py
     default_value = TypesContratDeTravail.temps_plein
     entity = Individu
     label = u"Type contrat de travail"

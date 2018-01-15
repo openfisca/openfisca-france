@@ -668,7 +668,6 @@ class plafond_securite_sociale(Variable):
     def formula(self, simulation, period):
         plafond_temps_plein = simulation.parameters_at(period.start).cotsoc.gen.plafond_securite_sociale
         contrat_de_travail = simulation.calculate('contrat_de_travail', period)
-        TypesContratDeTravail = contrat_de_travail.possible_values
         heures_remunerees_volume = simulation.calculate('heures_remunerees_volume', period)
         forfait_jours_remuneres_volume = simulation.calculate('forfait_jours_remuneres_volume', period)
         heures_duree_collective_entreprise = simulation.calculate('heures_duree_collective_entreprise', period)

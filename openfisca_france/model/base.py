@@ -33,6 +33,17 @@ class TypesCategorieSalarie(Enum):
     non_pertinent = u'non_pertinent'
 
 
+class TypesContratDeTravail(Enum):
+    __order__ = 'temps_plein temps_partiel forfait_heures_semaines forfait_heures_mois forfait_heures_annee forfait_jours_annee sans_objet'  # Needed to preserve the enum order in Python 2
+    temps_plein = u"temps_plein"
+    temps_partiel = u"temps_partiel"
+    forfait_heures_semaines = u"forfait_heures_semaines"
+    forfait_heures_mois = u"forfait_heures_mois"
+    forfait_heures_annee = u"forfait_heures_annee"
+    forfait_jours_annee = u"forfait_jours_annee"
+    sans_objet = u"sans_objet"
+
+
 class TypesStatutMarital(Enum):
     __order__ = 'non_renseigne marie celibataire divorce veuf pacse jeune_veuf'  # Needed to preserve the enum order in Python 2
     non_renseigne = u'Non renseigné'

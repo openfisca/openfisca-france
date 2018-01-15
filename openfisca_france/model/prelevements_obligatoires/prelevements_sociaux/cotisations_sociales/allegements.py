@@ -44,7 +44,6 @@ class coefficient_proratisation(Variable):
 
         # Les types de contrats gérés
         contrat_de_travail = simulation.calculate('contrat_de_travail', period)
-        TypesContratDeTravail = contrat_de_travail.possible_values
         # [ temps_plein
         #   temps_partiel
         #   forfait_heures_semaines
@@ -158,7 +157,6 @@ class aide_premier_salarie(Variable):
         effectif_entreprise = simulation.calculate('effectif_entreprise', period)
         apprenti = simulation.calculate('apprenti', period)
         contrat_de_travail_duree = simulation.calculate('contrat_de_travail_duree', period)
-        TypesContratDeTravailDuree = contrat_de_travail_duree.possible_values
         contrat_de_travail_debut = simulation.calculate('contrat_de_travail_debut', period)
         contrat_de_travail_fin = simulation.calculate('contrat_de_travail_fin', period)
         coefficient_proratisation = simulation.calculate('coefficient_proratisation', period)
