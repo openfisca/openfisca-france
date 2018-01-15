@@ -37,7 +37,6 @@ class conge_individuel_formation_cdd(Variable):
     # TODO: date de début
     def formula(self, simulation, period):
         contrat_de_travail_duree = simulation.calculate('contrat_de_travail_duree', period)
-        TypesContratDeTravailDuree = contrat_de_travail_duree.possible_values
         assiette_cotisations_sociales = simulation.calculate('assiette_cotisations_sociales', period)
         law = simulation.parameters_at(period.start).cotsoc.conge_individuel_formation
 

@@ -44,6 +44,12 @@ class TypesContratDeTravail(Enum):
     sans_objet = u"sans_objet"
 
 
+class TypesContratDeTravailDuree(Enum):
+    __order__ = 'cdi cdd'  # Needed to preserve the enum order in Python 2
+    cdi = u"CDI"
+    cdd = u"CDD"
+
+
 class TypesStatutMarital(Enum):
     __order__ = 'non_renseigne marie celibataire divorce veuf pacse jeune_veuf'  # Needed to preserve the enum order in Python 2
     non_renseigne = u'Non renseigné'

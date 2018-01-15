@@ -220,7 +220,6 @@ class aide_embauche_pme(Variable):
         effectif_entreprise = simulation.calculate('effectif_entreprise', period)
         apprenti = simulation.calculate('apprenti', period)
         contrat_de_travail_duree = simulation.calculate('contrat_de_travail_duree', period)
-        TypesContratDeTravailDuree = contrat_de_travail_duree.possible_values
         contrat_de_travail_debut = simulation.calculate('contrat_de_travail_debut', period)
         contrat_de_travail_fin = simulation.calculate('contrat_de_travail_fin', period)
         coefficient_proratisation = simulation.calculate('coefficient_proratisation', period)
@@ -336,7 +335,6 @@ def compute_allegement_fillon(simulation, period):
     assiette = simulation.calculate_add('assiette_allegement', period)
     smic_proratise = simulation.calculate_add('smic_proratise', period)
     taille_entreprise = simulation.calculate('taille_entreprise', first_month)
-    TypesTailleEntreprise = taille_entreprise.possible_values
     majoration = (
         (taille_entreprise == TypesTailleEntreprise.non_pertinent)
         + (taille_entreprise == TypesTailleEntreprise.moins_de_10)

@@ -80,7 +80,6 @@ class indemnite_fin_contrat(Variable):
 
     def formula(self, simulation, period):
         contrat_de_travail_duree = simulation.calculate('contrat_de_travail_duree', period)
-        TypesContratDeTravailDuree = contrat_de_travail_duree.possible_values
         salaire_de_base = simulation.calculate('salaire_de_base', period)
         categorie_salarie = simulation.calculate('categorie_salarie', period)
         apprenti = simulation.calculate('apprenti', period)
