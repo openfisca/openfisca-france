@@ -142,11 +142,11 @@ th_2020 = (reference_simulation.calculate('taxe_habitation', '2020')[0] - reform
 th_2021 = (reference_simulation.calculate('taxe_habitation', '2021')[0] - reform_simulation.calculate('taxe_habitation', '2021')[0])/12
 th_2022 = (reference_simulation.calculate('taxe_habitation', '2022')[0] - reform_simulation.calculate('taxe_habitation', '2022')[0])/12
 
-gain_2018 = cotsoc_2018 + csg_2018 + ir_2018 + ppa_2018 + mv_2018 + th_2018 
-gain_2019 = cotsoc_2019 + csg_2019 + ir_2019 + ppa_2019 + mv_2019 + th_2019 
-gain_2020 = cotsoc_2020 + csg_2020 + ir_2020 + ppa_2020 + mv_2020 + th_2020 
-gain_2021 = cotsoc_2021 + csg_2021 + ir_2021 + ppa_2021 + mv_2021 + th_2021 
-gain_2022 = cotsoc_2022 + csg_2022 + ir_2022 + ppa_2022 + mv_2022 + th_2022 
+gain_2018 = cotsoc_2018 + csg_2018 + ir_2018 + ppa_2018 + mv_2018 + th_2018 + aah_2018 + apl_2018
+gain_2019 = cotsoc_2019 + csg_2019 + ir_2019 + ppa_2019 + mv_2019 + th_2019 + aah_2019 + apl_2019
+gain_2020 = cotsoc_2020 + csg_2020 + ir_2020 + ppa_2020 + mv_2020 + th_2020 + aah_2020 + apl_2020
+gain_2021 = cotsoc_2021 + csg_2021 + ir_2021 + ppa_2021 + mv_2021 + th_2021 + aah_2021 + apl_2021
+gain_2022 = cotsoc_2022 + csg_2022 + ir_2022 + ppa_2022 + mv_2022 + th_2022 + aah_2022 + apl_2022
 
 
 res = np.zeros((9, 5), dtype=float)
