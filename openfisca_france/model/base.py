@@ -96,6 +96,15 @@ class TypesStatutOccupationLogement(Enum):
     sans_domicile = u"Sans domicile stable"
 
 
+class TypesTailleEntreprise(Enum):
+    __order__ = 'non_pertinent moins_de_10 de_10_a_19 de_20_a_249 plus_de_250'  # Needed to preserve the enum order in Python 2
+    non_pertinent = u"Non pertinent"
+    moins_de_10 = u"Moins de 10 salariés"
+    de_10_a_19 = u"De 10 à 19 salariés"
+    de_20_a_249 = u"De 20 à 249 salariés"
+    plus_de_250 = u"Plus de 250 salariés"
+
+
 TAUX_DE_PRIME = 1 / 4  # primes_fonction_publique (hors suppl. familial et indemnité de résidence)/rémunération brute
 
 # Legacy roles. To be removed when they are not used by formulas anymore.

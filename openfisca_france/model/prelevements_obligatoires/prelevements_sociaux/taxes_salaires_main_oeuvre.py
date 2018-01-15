@@ -173,7 +173,6 @@ class fnal_tranche_a(Variable):
 
     def formula(self, simulation, period):
         taille_entreprise = simulation.calculate('taille_entreprise', period)
-        TypesTailleEntreprise = taille_entreprise.possible_values
         cotisation = apply_bareme(
             simulation,
             period,
@@ -197,7 +196,6 @@ class fnal_tranche_a_plus_20(Variable):
 
     def formula(self, simulation, period):
         taille_entreprise = simulation.calculate('taille_entreprise', period)
-        TypesTailleEntreprise = taille_entreprise.possible_values
         cotisation = apply_bareme(
             simulation,
             period,
@@ -245,7 +243,6 @@ class formation_professionnelle(Variable):
 
     def formula(self, simulation, period):
         taille_entreprise = simulation.calculate('taille_entreprise', period)
-        TypesTailleEntreprise = taille_entreprise.possible_values
         cotisation_0_9 = (taille_entreprise == TypesTailleEntreprise.moins_de_10) * apply_bareme(
             simulation,
             period, cotisation_type = 'employeur',

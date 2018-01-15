@@ -750,18 +750,9 @@ class complementaire_sante_salarie(Variable):
         return cotisation
 
 
-class TypesTailleEntreprise(Enum):
-    __order__ = 'non_pertinent moins_de_10 de_10_a_19 de_20_a_249 plus_de_250'  # Needed to preserve the enum order in Python 2
-    non_pertinent = u"Non pertinent"
-    moins_de_10 = u"Moins de 10 salariés"
-    de_10_a_19 = u"De 10 à 19 salariés"
-    de_20_a_249 = u"De 20 à 249 salariés"
-    plus_de_250 = u"Plus de 250 salariés"
-
-
 class taille_entreprise(Variable):
     value_type = Enum
-    possible_values = TypesTailleEntreprise
+    possible_values = TypesTailleEntreprise  # defined in model/base.py
     default_value = TypesTailleEntreprise.non_pertinent
     entity = Individu
     label = u"Catégorie de taille d'entreprise"
