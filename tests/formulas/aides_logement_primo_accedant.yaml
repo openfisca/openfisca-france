@@ -46,3 +46,28 @@
       age: 40
   output_variables:
     aides_logement_primo_accedant: 0
+
+- name: AL Primo Accédant / Prêt remboursé
+  output_variables:
+    aide_logement: 0
+  absolute_error_margin: 0.01
+  period: 2018-01
+  individus:
+    - date_naissance:
+        2018-01: '1985-03-21'
+      id: demandeur
+  familles:
+    - parents:
+        - demandeur
+  foyers_fiscaux:
+    - declarants:
+        - demandeur
+  menages:
+    - loyer:
+        2018-01: 0
+      depcom:
+        2018-01: '55039'
+      statut_occupation_logement:
+        2018-01: Accédant à la propriété
+      personne_de_reference: demandeur
+      enfants: []
