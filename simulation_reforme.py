@@ -23,10 +23,10 @@ reform = plf2018.plf2018(tax_benefit_system)
 
 def init_profile(scenario):
     scenario.init_single_entity(
-        period = 'year:2017:6',
+        period = 'year:2016:7',
         parent1 = dict(
             age = 40,
-            retraite_brute = 3780*12*6,
+            salaire_de_base = 1480*12*7,
             # categorie_salarie = "prive_non_cadre", # prive_non_cadre ou public_titulaire_etat
             # taux_incapacite = 0.8,
             statut_marital = 2,
@@ -44,8 +44,8 @@ def init_profile(scenario):
         # dict(age = 14),
         # ],
 
-        menage = dict(loyer = 5000*6, # Annual basis
-            cotisation_taxe_habitation = -427.*6,
+        menage = dict(loyer = 5000*7, # Annual basis
+            cotisation_taxe_habitation = -427.*7,
             statut_occupation_logement = 3,
             zone_apl = 1,
 
