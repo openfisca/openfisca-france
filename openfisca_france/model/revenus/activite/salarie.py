@@ -270,16 +270,10 @@ class contrat_de_travail_duree(Variable):
     set_input = set_input_dispatch_by_period
 
 
-class TypesCotisationSocialeModeRecouvrement(Enum):
-    __order__ = 'mensuel annuel mensuel_strict'  # Needed to preserve the enum order in Python 2
-    mensuel = u"Mensuel avec régularisation en fin d'année"
-    annuel = u"Annuel"
-    mensuel_strict = u"Mensuel strict"
-
 
 class cotisation_sociale_mode_recouvrement(Variable):
     value_type = Enum
-    possible_values = TypesCotisationSocialeModeRecouvrement
+    possible_values = TypesCotisationSocialeModeRecouvrement   # defined in model/base.py
     default_value = TypesCotisationSocialeModeRecouvrement.mensuel
     entity = Individu
     label = u"Mode de recouvrement des cotisations sociales"

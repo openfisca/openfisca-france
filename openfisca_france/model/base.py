@@ -50,6 +50,13 @@ class TypesContratDeTravailDuree(Enum):
     cdd = u"CDD"
 
 
+class TypesCotisationSocialeModeRecouvrement(Enum):
+    __order__ = 'mensuel annuel mensuel_strict'  # Needed to preserve the enum order in Python 2
+    mensuel = u"Mensuel avec régularisation en fin d'année"
+    annuel = u"Annuel"
+    mensuel_strict = u"Mensuel strict"
+
+
 class TypesStatutMarital(Enum):
     __order__ = 'non_renseigne marie celibataire divorce veuf pacse jeune_veuf'  # Needed to preserve the enum order in Python 2
     non_renseigne = u'Non renseigné'
