@@ -14,6 +14,13 @@ class TypesActivite(Enum):
     inactif = u'Autre, inactif'
 
 
+class TypesAllegementModeRecouvrement(Enum):
+    __order__ = 'fin_d_annee anticipe progressif'  # Needed to preserve the enum order in Python 2
+    fin_d_annee = u"fin_d_annee"
+    anticipe = u"anticipe_regularisation_fin_de_periode"
+    progressif = u"progressif"
+
+
 class TypesCategorieSalarie(Enum):
     __order__ = 'prive_non_cadre prive_cadre public_titulaire_etat public_titulaire_militaire public_titulaire_territoriale public_titulaire_hospitaliere public_non_titulaire non_pertinent'  # Needed to preserve the enum order in Python 2
     prive_non_cadre = u'prive_non_cadre'

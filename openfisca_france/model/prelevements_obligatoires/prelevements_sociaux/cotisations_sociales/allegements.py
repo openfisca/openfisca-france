@@ -429,7 +429,6 @@ def switch_on_allegement_mode(simulation, period, mode_recouvrement, variable_na
         should precisely be the variable name prefixed with 'compute_'
     """
     compute_function = globals()['compute_' + variable_name]
-    TypesAllegementModeRecouvrement = mode_recouvrement.possible_values
     recouvrement_fin_annee = (mode_recouvrement == TypesAllegementModeRecouvrement.fin_d_annee)
     recouvrement_anticipe = (mode_recouvrement == TypesAllegementModeRecouvrement.anticipe)
     recouvrement_progressif = (mode_recouvrement == TypesAllegementModeRecouvrement.progressif)

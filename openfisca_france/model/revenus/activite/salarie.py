@@ -160,16 +160,9 @@ class exposition_penibilite(Variable):
     set_input = set_input_dispatch_by_period
 
 
-class TypesAllegementModeRecouvrement(Enum):
-    __order__ = 'fin_d_annee anticipe progressif'  # Needed to preserve the enum order in Python 2
-    fin_d_annee = u"fin_d_annee"
-    anticipe = u"anticipe_regularisation_fin_de_periode"
-    progressif = u"progressif"
-
-
 class allegement_fillon_mode_recouvrement(Variable):
     value_type = Enum
-    possible_values = TypesAllegementModeRecouvrement
+    possible_values = TypesAllegementModeRecouvrement  # defined in model/base.py
     default_value = TypesAllegementModeRecouvrement.fin_d_annee
     entity = Individu
     label = u"Mode de recouvrement des allègements Fillon"
@@ -179,7 +172,7 @@ class allegement_fillon_mode_recouvrement(Variable):
 
 class allegement_cotisation_allocations_familiales_mode_recouvrement(Variable):
     value_type = Enum
-    possible_values = TypesAllegementModeRecouvrement
+    possible_values = TypesAllegementModeRecouvrement  # defined in model/base.py
     default_value = TypesAllegementModeRecouvrement.fin_d_annee
     entity = Individu
     label = u"Mode de recouvrement de l'allègement de la cotisation d'allocations familiales"
