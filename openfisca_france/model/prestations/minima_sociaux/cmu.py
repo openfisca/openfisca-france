@@ -308,8 +308,8 @@ class cmu_base_ressources(Variable):
 
         P = parameters(period).cmu
 
-        proprietaire = (statut_occupation_logement == 2)
-        heberge_titre_gratuit = (statut_occupation_logement == 6)
+        proprietaire = (statut_occupation_logement == TypesStatutOccupationLogement.proprietaire)
+        heberge_titre_gratuit = (statut_occupation_logement == TypesStatutOccupationLogement.loge_gratuitement)
         forfait_logement = ((proprietaire + heberge_titre_gratuit) * cmu_forfait_logement_base +
             cmu_forfait_logement_al)
 

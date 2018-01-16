@@ -12,7 +12,7 @@
     zone_franche_urbaine:
       "2014": True
       "2015": True
-    categorie_salarie: 0
+    categorie_salarie: prive_non_cadre
   output_variables:
     exoneration_cotisations_employeur_zfu:
       "2015-01": 35 * 52 * 9.61 * .307 * .6 / 12

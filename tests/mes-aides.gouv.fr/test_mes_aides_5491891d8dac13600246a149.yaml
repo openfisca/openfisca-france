@@ -275,6 +275,6 @@ menages:
   enfants:
   loyer: 50
   personne_de_reference: 549185161abb1c570220a2be
-  statut_occupation_logement: 4
+  statut_occupation_logement: locataire_vide
 output_variables:
   acs: 200

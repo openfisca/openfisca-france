@@ -3,11 +3,7 @@
 import datetime
 import json
 
-from openfisca_france import FranceTaxBenefitSystem
-
-
-# Exceptionally for this test do not import TaxBenefitSystem from tests.base.
-tax_benefit_system = FranceTaxBenefitSystem()
+from cache import tax_benefit_system
 
 
 def test_parameters():

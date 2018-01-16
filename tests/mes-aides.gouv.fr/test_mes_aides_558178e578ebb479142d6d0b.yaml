@@ -6,7 +6,7 @@ description: "Couple avec 2 salaires:  2121,98 sup au plafond de 1787,50 donc re
 period: "month:2015-06"
 relative_error_margin: 0.02
 individus:
-  - activite: 1
+  - activite: chomeur
     age: 51
     age_en_mois: 622
     ass_precondition_remplie: true
@@ -68,7 +68,7 @@ individus:
       2015-04: 720.08
       2015-05: 720.08
       2015-06: 720.08
-    statut_marital: 1
+    statut_marital: marie
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
@@ -133,7 +133,7 @@ individus:
       2015-04: 1401.9
       2015-05: 1401.9
       2015-06: 1401.9
-    statut_marital: 1
+    statut_marital: marie
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
@@ -351,6 +351,6 @@ menages:
   depcom: 77004
   enfants:
   personne_de_reference: 558178aa78ebb479142d6cfd
-  statut_occupation_logement: 2
+  statut_occupation_logement: proprietaire
 output_variables:
   ass: 0

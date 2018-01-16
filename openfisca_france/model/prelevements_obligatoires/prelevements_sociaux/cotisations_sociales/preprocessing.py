@@ -7,7 +7,7 @@ import copy
 import logging
 
 from openfisca_france.model.base import *  # noqa
-
+from openfisca_france.model.revenus.activite.salarie import TypesCategorieSalarie
 
 DEBUG_SAL_TYPE = 'public_titulaire_etat'
 log = logging.getLogger(__name__)
@@ -138,7 +138,7 @@ def preprocess_parameters(parameters):
             ('cotisations_salarie', sal.children),
             ):
         for category, bareme in baremes.iteritems():
-            if category in CATEGORIE_SALARIE._nums:
+            if category in [member.name for member in TypesCategorieSalarie]:
                 cotsoc.children[cotisation_name].children[category] = bareme
 
     return parameters

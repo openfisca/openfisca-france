@@ -9,7 +9,7 @@ relative_error_margin: 0.05
 individus:
   enfant_a_charge:
     2015: true
-  activite: 1
+  activite: chomeur
   age: 34
   age_en_mois: 408
   ass_precondition_remplie: false
@@ -303,6 +303,6 @@ menages:
   enfants:
   loyer: 268
   personne_de_reference: 55f01ff5dbd69f2b04f56980
-  statut_occupation_logement: 4
+  statut_occupation_logement: locataire_vide
 output_variables:
   aide_logement: 254.82

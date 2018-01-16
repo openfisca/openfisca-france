@@ -7,6 +7,7 @@ import logging
 
 from numpy import datetime64, logical_and as and_, logical_or as or_, logical_xor as xor_, round as round_
 
+from openfisca_core.model_api import *
 from openfisca_core import periods
 from openfisca_france.model.base import *  # noqa analysis:ignore
 
@@ -284,7 +285,7 @@ class maries_ou_pacses(Variable):
 
     def formula(foyer_fiscal, period):
         statut_marital = foyer_fiscal.declarant_principal('statut_marital', period.first_month)
-        marie_ou_pacse = (statut_marital == 1) | (statut_marital == 5)
+        marie_ou_pacse = (statut_marital == TypesStatutMarital.marie) | (statut_marital == TypesStatutMarital.pacse)
 
         return marie_ou_pacse
 
@@ -297,7 +298,8 @@ class celibataire_ou_divorce(Variable):
 
     def formula(foyer_fiscal, period):
         statut_marital = foyer_fiscal.declarant_principal('statut_marital', period.first_month)
-        celibataire_ou_divorce = (statut_marital == 2) | (statut_marital == 3)
+        celibataire_ou_divorce = (statut_marital == TypesStatutMarital.celibataire) | (
+        statut_marital == TypesStatutMarital.divorce)
 
         return celibataire_ou_divorce
 
@@ -310,7 +312,7 @@ class veuf(Variable):
 
     def formula(foyer_fiscal, period):
         statut_marital = foyer_fiscal.declarant_principal('statut_marital', period.first_month)
-        veuf = (statut_marital == 4)
+        veuf = (statut_marital == TypesStatutMarital.veuf)
 
         return veuf
 
@@ -323,7 +325,7 @@ class jeune_veuf(Variable):
 
     def formula(foyer_fiscal, period):
         statut_marital = foyer_fiscal.declarant_principal('statut_marital', period.first_month)
-        jeune_veuf = (statut_marital == 6)
+        jeune_veuf = (statut_marital == TypesStatutMarital.jeune_veuf)
 
         return jeune_veuf
 
@@ -2684,7 +2686,6 @@ class nbptr(Variable):
 
         # # celib div
         c = 1 + enf + n2 + n3 + n6 + n7
-
         return (maries_ou_pacses | jeune_veuf) * m + (veuf & not_(jeune_veuf)) * v + celibataire_ou_divorce * c
 
 

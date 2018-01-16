@@ -31,7 +31,7 @@ class assiette_cotisations_sociales(Variable):
         assiette_cotisations_sociales_public = simulation.calculate('assiette_cotisations_sociales_public', period)
         categorie_salarie = simulation.calculate('categorie_salarie', period)
         stage_gratification_reintegration = simulation.calculate('stage_gratification_reintegration', period)
-        return (categorie_salarie < 7) * (  # Tout sauf "non_pertinent", ie sans activité salariée
+        return (categorie_salarie != TypesCategorieSalarie.non_pertinent) * (
             assiette_cotisations_sociales_prive +
             assiette_cotisations_sociales_public) + stage_gratification_reintegration
 
@@ -64,7 +64,7 @@ class assiette_cotisations_sociales_prive(Variable):
             hsup +
             indemnites_compensatrices_conges_payes +
             remuneration_apprenti +
-            (categorie_salarie == CATEGORIE_SALARIE['public_non_titulaire']) * (indemnite_residence + primes_fonction_publique) +
+            (categorie_salarie == TypesCategorieSalarie.public_non_titulaire) * (indemnite_residence + primes_fonction_publique) +
             reintegration_titre_restaurant_employeur + indemnite_fin_contrat
             )
 
@@ -80,6 +80,7 @@ class indemnite_fin_contrat(Variable):
 
     def formula(self, simulation, period):
         contrat_de_travail_duree = simulation.calculate('contrat_de_travail_duree', period)
+        TypesContratDeTravailDuree = contrat_de_travail_duree.possible_values
         salaire_de_base = simulation.calculate('salaire_de_base', period)
         categorie_salarie = simulation.calculate('categorie_salarie', period)
         apprenti = simulation.calculate('apprenti', period)
@@ -92,11 +93,11 @@ class indemnite_fin_contrat(Variable):
         taux = simulation.parameters_at(period.start).cotsoc.indemnite_fin_contrat.taux
         result = (
             # CDD
-            (contrat_de_travail_duree == 1) *
+            (contrat_de_travail_duree == TypesContratDeTravailDuree.cdd) *
             # non fonction publique
             (
-                (categorie_salarie == 0) +
-                (categorie_salarie == 1)
+                (categorie_salarie == TypesCategorieSalarie.prive_non_cadre) +
+                (categorie_salarie == TypesCategorieSalarie.prive_cadre)
                 ) *
             not_(apprenti) *
             indemnite_fin_contrat_due *
@@ -151,6 +152,7 @@ class penibilite(Variable):
 
     def formula_2015_01_01(self, simulation, period):
         exposition_penibilite = simulation.calculate('exposition_penibilite', period)
+        TypesExpositionPenibilite = exposition_penibilite.possible_values
         multiplicateur = simulation.parameters_at(period.start).cotsoc.cotisations_employeur.prive_cadre.penibilite_multiplicateur_exposition_multiple
 
         cotisation_base = apply_bareme(
@@ -169,9 +171,9 @@ class penibilite(Variable):
         cotisation = switch(
             exposition_penibilite,
             {
-                0: cotisation_base,
-                1: cotisation_base + cotisation_additionnelle,
-                2: cotisation_base + cotisation_additionnelle * multiplicateur,
+                TypesExpositionPenibilite.nulle: cotisation_base,
+                TypesExpositionPenibilite.simple: cotisation_base + cotisation_additionnelle,
+                TypesExpositionPenibilite.multiple: cotisation_base + cotisation_additionnelle * multiplicateur,
                 }
             )
 
@@ -189,7 +191,11 @@ class accident_du_travail(Variable):
             'assiette_cotisations_sociales', period)
         taux_accident_travail = simulation.calculate('taux_accident_travail', period)
         categorie_salarie = simulation.calculate('categorie_salarie', period)
-        assujetti = categorie_salarie <= 1  # TODO: ajouter contractuel du public salarié de moins d'un an ou à temps partiel
+        assujetti = (
+            (categorie_salarie == TypesCategorieSalarie.prive_non_cadre)
+            + (categorie_salarie == TypesCategorieSalarie.prive_cadre)
+        )
+            # TODO: ajouter contractuel du public salarié de moins d'un an ou à temps partiel
         return - assiette_cotisations_sociales * taux_accident_travail * assujetti
 
 
@@ -286,7 +292,7 @@ class agirc_gmp_salarie(Variable):
             sous_plafond_securite_sociale * cotisation_forfaitaire +
             not_(sous_plafond_securite_sociale) * agirc_gmp_assiette * taux
             )
-        return min_((cotisation - agirc_salarie) * (categorie_salarie == 1), 0)  # cotisation are negative
+        return min_((cotisation - agirc_salarie) * (categorie_salarie == TypesCategorieSalarie.prive_cadre), 0)  # cotisation are negative
 
 
 class agirc_gmp_employeur(Variable):
@@ -313,7 +319,7 @@ class agirc_gmp_employeur(Variable):
             sous_plafond_securite_sociale * cotisation_forfaitaire +
             not_(sous_plafond_securite_sociale) * agirc_gmp_assiette * taux
             )
-        return min_((cotisation - agirc_employeur) * (categorie_salarie == 1), 0)  # cotisation are negative
+        return min_((cotisation - agirc_employeur) * (categorie_salarie == TypesCategorieSalarie.prive_cadre), 0)  # cotisation are negative
 
 
 class agirc_salarie(Variable):
@@ -331,7 +337,7 @@ class agirc_salarie(Variable):
             variable_name = self.__class__.__name__
             )
         categorie_salarie = simulation.calculate('categorie_salarie', period)
-        return cotisation * (categorie_salarie == 1)
+        return cotisation * (categorie_salarie == TypesCategorieSalarie.prive_cadre)
 
 
 class agirc_employeur(Variable):
@@ -348,7 +354,7 @@ class agirc_employeur(Variable):
             variable_name = self.__class__.__name__
             )
         categorie_salarie = simulation.calculate('categorie_salarie', period)
-        return cotisation * (categorie_salarie == 1)
+        return cotisation * (categorie_salarie == TypesCategorieSalarie.prive_cadre)
 
 
 class ags(Variable):
@@ -381,7 +387,7 @@ class apec_salarie(Variable):
             bareme_name = "apec",
             variable_name = self.__class__.__name__,
             )
-        return cotisation * (categorie_salarie == 1)  # TODO: check public notamment contractuel
+        return cotisation * (categorie_salarie == TypesCategorieSalarie.prive_cadre)  # TODO: check public notamment contractuel
 
 
 class apec_employeur(Variable):
@@ -426,9 +432,15 @@ class arrco_salarie(Variable):
             min_(max_(assiette_cotisations_sociales, 0), plafond_securite_sociale) *
             arrco_tranche_a_taux_salarie
             )
+
+        public = (
+            (categorie_salarie == TypesCategorieSalarie.prive_non_cadre)
+            + (categorie_salarie == TypesCategorieSalarie.prive_cadre)
+        )
+
         return (
             cotisation_minimale * (arrco_tranche_a_taux_salarie == 0) + cotisation_entreprise
-            ) * (categorie_salarie <= 1)
+            ) * public
 
 
 class arrco_employeur(Variable):
@@ -456,9 +468,14 @@ class arrco_employeur(Variable):
             min_(max_(assiette_cotisations_sociales, 0), plafond_securite_sociale) *
             arrco_tranche_a_taux_employeur
             )
+
+        public = (
+            (categorie_salarie == TypesCategorieSalarie.prive_non_cadre)
+            + (categorie_salarie == TypesCategorieSalarie.prive_cadre)
+        )
         return (
             cotisation_minimale * (arrco_tranche_a_taux_employeur == 0) + cotisation_entreprise
-            ) * (categorie_salarie <= 1)
+            ) * public
 
 
 class chomage_salarie(Variable):
@@ -651,6 +668,7 @@ class plafond_securite_sociale(Variable):
     def formula(self, simulation, period):
         plafond_temps_plein = simulation.parameters_at(period.start).cotsoc.gen.plafond_securite_sociale
         contrat_de_travail = simulation.calculate('contrat_de_travail', period)
+        TypesContratDeTravail = contrat_de_travail.possible_values
         heures_remunerees_volume = simulation.calculate('heures_remunerees_volume', period)
         forfait_jours_remuneres_volume = simulation.calculate('forfait_jours_remuneres_volume', period)
         heures_duree_collective_entreprise = simulation.calculate('heures_duree_collective_entreprise', period)
@@ -663,15 +681,12 @@ class plafond_securite_sociale(Variable):
         plafond = switch(
             contrat_de_travail,
             {
-                # temps plein
-                0: plafond_temps_plein,
-                # temps partiel
-                1: plafond_temps_plein * (heures_remunerees_volume / heures_temps_plein),
-                # forfait jour
-                5: plafond_temps_plein * (forfait_jours_remuneres_volume / 218),
-                # sans objet (non travailleur)
-                6: plafond_temps_plein
-                })
+                TypesContratDeTravail.temps_plein: plafond_temps_plein,
+                TypesContratDeTravail.temps_partiel: plafond_temps_plein * (heures_remunerees_volume / heures_temps_plein),
+                TypesContratDeTravail.forfait_jours_annee: plafond_temps_plein * (forfait_jours_remuneres_volume / 218),
+                TypesContratDeTravail.sans_objet: plafond_temps_plein  # sans objet (non travailleur)
+                }
+            )
 
         # 2) Proratisation pour mois incomplet selon la méthode des 30èmes
 
@@ -700,7 +715,7 @@ class prevoyance_obligatoire_cadre(Variable):
             'prevoyance_obligatoire_cadre_taux_employeur', period)
 
         cotisation = - (
-            (categorie_salarie == CATEGORIE_SALARIE['prive_cadre']) *
+            (categorie_salarie == TypesCategorieSalarie.prive_cadre) *
             min_(assiette_cotisations_sociales, plafond_securite_sociale) *
             prevoyance_obligatoire_cadre_taux_employeur
             )
@@ -737,15 +752,19 @@ class complementaire_sante_salarie(Variable):
         return cotisation
 
 
+class TypesTailleEntreprise(Enum):
+    __order__ = 'non_pertinent moins_de_10 de_10_a_19 de_20_a_249 plus_de_250'  # Needed to preserve the enum order in Python 2
+    non_pertinent = u"Non pertinent"
+    moins_de_10 = u"Moins de 10 salariés"
+    de_10_a_19 = u"De 10 à 19 salariés"
+    de_20_a_249 = u"De 20 à 249 salariés"
+    plus_de_250 = u"Plus de 250 salariés"
+
+
 class taille_entreprise(Variable):
     value_type = Enum
-    possible_values = Enum([
-        u"Non pertinent",
-        u"Moins de 10 salariés",
-        u"De 10 à 19 salariés",
-        u"De 20 à 249 salariés",
-        u"Plus de 250 salariés",
-        ])
+    possible_values = TypesTailleEntreprise
+    default_value = TypesTailleEntreprise.non_pertinent
     entity = Individu
     label = u"Catégorie de taille d'entreprise"
     reference = u"http://www.insee.fr/fr/themes/document.asp?ref_id=ip1321"
@@ -754,12 +773,22 @@ class taille_entreprise(Variable):
     def formula(self, simulation, period):
         effectif_entreprise = simulation.calculate('effectif_entreprise', period)
 
-        taille_entreprise = (
-            (effectif_entreprise > 0).astype(int16) +
-            (effectif_entreprise > 9).astype(int16) +
-            (effectif_entreprise > 19).astype(int16) +
-            (effectif_entreprise > 249).astype(int16)
-            )
+        taille_entreprise = select(
+            [
+                (effectif_entreprise <= 0),
+                (effectif_entreprise <= 9),
+                (effectif_entreprise <= 19),
+                (effectif_entreprise <= 249),
+                (effectif_entreprise >= 250)
+            ],
+            [
+                TypesTailleEntreprise.non_pertinent,
+                TypesTailleEntreprise.moins_de_10,
+                TypesTailleEntreprise.de_10_a_19,
+                TypesTailleEntreprise.de_20_a_249,
+                TypesTailleEntreprise.plus_de_250
+            ]
+        )
         return taille_entreprise
 
 
@@ -772,10 +801,11 @@ class taux_accident_travail(Variable):
 
     def formula_2012_01_01(self, simulation, period):
         exposition_accident = simulation.calculate('exposition_accident', period)
+        TypesExpositionAccident = exposition_accident.possible_values
         accident = simulation.parameters_at(period.start).cotsoc.accident
 
-        return (exposition_accident == 0) * accident.faible + (exposition_accident == 1) * accident.moyen \
-            + (exposition_accident == 2) * accident.eleve + (exposition_accident == 3) * accident.treseleve
+        return (exposition_accident == TypesExpositionAccident.faible) * accident.faible + (exposition_accident == TypesExpositionAccident.moyen) * accident.moyen \
+            + (exposition_accident == TypesExpositionAccident.eleve) * accident.eleve + (exposition_accident == TypesExpositionAccident.tres_eleve) * accident.treseleve
 
 
 class vieillesse_deplafonnee_salarie(Variable):

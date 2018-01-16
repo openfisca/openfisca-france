@@ -9,7 +9,7 @@
   input_variables:
     salaire_de_base: 1467
     # necessary when requesting on a 1 month salary :
-    allegement_fillon_mode_recouvrement: 1
+    allegement_fillon_mode_recouvrement: anticipe
     effectif_entreprise: 29
     contrat_de_travail_debut: 2016-01-25
   output_variables:
@@ -21,7 +21,7 @@
   input_variables:
     salaire_de_base: 1908
     # necessary when requesting on a 1 month salary :
-    allegement_fillon_mode_recouvrement: 1
+    allegement_fillon_mode_recouvrement: anticipe
     effectif_entreprise: 29
     contrat_de_travail_debut: 2016-01-25
   output_variables:
@@ -33,7 +33,7 @@
   input_variables:
     salaire_de_base: 1467
     # necessary when requesting on a 1 month salary :
-    allegement_fillon_mode_recouvrement: 1
+    allegement_fillon_mode_recouvrement: anticipe
     effectif_entreprise: 1
     contrat_de_travail_debut: 2015-07-01
   output_variables:
@@ -45,7 +45,7 @@
   input_variables:
     salaire_de_base: 1467
     # necessary when requesting on a 1 month salary :
-    allegement_fillon_mode_recouvrement: 1
+    allegement_fillon_mode_recouvrement: anticipe
     effectif_entreprise: 1 # premier salarié
     contrat_de_travail_debut: 2016-01-25
   output_variables:
@@ -57,9 +57,9 @@
   input_variables:
     salaire_de_base: 1467
     # necessary when requesting on a 1 month salary :
-    allegement_fillon_mode_recouvrement: 1
+    allegement_fillon_mode_recouvrement: anticipe
     effectif_entreprise: 29
-    contrat_de_travail_duree: 1 # CDD
+    contrat_de_travail_duree: cdd
     contrat_de_travail_debut: 2016-01-25
     contrat_de_travail_fin: 2017-07-01
   output_variables:
@@ -71,9 +71,9 @@
   input_variables:
     salaire_de_base: 1467
     # necessary when requesting on a 1 month salary :
-    allegement_fillon_mode_recouvrement: 1
+    allegement_fillon_mode_recouvrement: anticipe
     effectif_entreprise: 29
-    contrat_de_travail_duree: 1 # CDD
+    contrat_de_travail_duree: cdd
     contrat_de_travail_debut: 2016-01-25
     contrat_de_travail_fin: 2016-08-01
   output_variables:
@@ -85,9 +85,9 @@
   input_variables:
     salaire_de_base: 1467
     # necessary when requesting on a 1 month salary :
-    allegement_fillon_mode_recouvrement: 1
+    allegement_fillon_mode_recouvrement: anticipe
     effectif_entreprise: 29
-    contrat_de_travail_duree: 1 # CDD
+    contrat_de_travail_duree: cdd
     contrat_de_travail_debut: 2016-01-25
     contrat_de_travail_fin: 2016-07-23
   output_variables:
@@ -99,7 +99,7 @@
   input_variables:
     salaire_de_base: 1467
     # necessary when requesting on a 1 month salary :
-    allegement_fillon_mode_recouvrement: 1
+    allegement_fillon_mode_recouvrement: anticipe
     effectif_entreprise: 29
     contrat_de_travail_debut: 2016-01-25
   output_variables:

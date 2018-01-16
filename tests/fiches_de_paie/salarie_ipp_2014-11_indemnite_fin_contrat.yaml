@@ -3,10 +3,10 @@ period: "2014-11"
 absolute_error_margin: 0.005
 input_variables:
   assujettie_taxe_salaires: True
-  contrat_de_travail_duree: 1  # CDD
+  contrat_de_travail_duree: cdd
   contrat_de_travail_debut: "2014-11-02"
   effectif_entreprise: 3000
-  # exposition_accident: 3
+  # exposition_accident: tres_eleve
   code_postal_entreprise: "75014"
   depcom_entreprise: "75114"
   prevoyance_obligatoire_cadre_taux_employeur: .0157
@@ -16,7 +16,7 @@ input_variables:
   taux_accident_travail: .015
   titre_restaurant_valeur_unitaire: 9
   titre_restaurant_volume: 19
-  categorie_salarie: 1
+  categorie_salarie: prive_cadre
   indemnite_fin_contrat_due: 1
 output_variables:
   conge_individuel_formation_cdd: -50.6

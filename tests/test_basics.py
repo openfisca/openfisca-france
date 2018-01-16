@@ -4,7 +4,6 @@ from __future__ import division
 
 import datetime
 
-from openfisca_france.model.base import CATEGORIE_SALARIE
 from cache import tax_benefit_system
 
 
@@ -15,13 +14,13 @@ scenarios_arguments = [
             date_naissance = datetime.date(1972, 1, 1),
             salaire_de_base = 2000,
             effectif_entreprise = 25,
-            categorie_salarie = CATEGORIE_SALARIE['prive_non_cadre'],
+            categorie_salarie = "prive_non_cadre",
             ),
         parent2 = dict(
             date_naissance = datetime.date(1972, 1, 1),
             ),
         menage = dict(
-            zone_apl = 1,
+            zone_apl = "zone_1",
             ),
         )
     for year in range(2006, 2017)

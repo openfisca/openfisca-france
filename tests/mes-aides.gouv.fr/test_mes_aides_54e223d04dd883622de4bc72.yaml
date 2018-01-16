@@ -11,7 +11,7 @@ description: |
 period: "month:2015-02"
 relative_error_margin: 0.02
 individus:
-  - activite: 3
+  - activite: retraite
     age: 74
     age_en_mois: 897
     date_naissance: "1940-05-05"
@@ -98,12 +98,12 @@ individus:
       2014-12: 649.74
       2015-01: 649.74
       2015-02: 649.74
-    statut_marital: 1
+    statut_marital: marie
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
-  - activite: 3
+  - activite: retraite
     age: 74
     age_en_mois: 897
     date_naissance: "1940-05-05"
@@ -359,6 +359,6 @@ menages:
   depcom: 76540
   enfants:
   personne_de_reference: 54e223cbfe7cc56a2d0dc062
-  statut_occupation_logement: 2
+  statut_occupation_logement: proprietaire
 output_variables:
   aspa: 487.77

@@ -6,7 +6,7 @@ description: Les ressources du concubin font échec au droit Aspa du demandeur
 period: "month:2014-11"
 relative_error_margin: 0.02
 individus:
-  - activite: 3
+  - activite: retraite
     age: 88
     age_en_mois: 1059
     date_naissance: "1926-08-14"
@@ -62,12 +62,12 @@ individus:
       2014-09: 555.6
       2014-10: 555.6
       2014-11: 555.6
-    statut_marital: 2
+    statut_marital: celibataire
     valeur_locative_immo_non_loue:
       2012-01: 60000
     valeur_locative_terrains_non_loue:
       2012-01: 0
-  - activite: 3
+  - activite: retraite
     age: 88
     age_en_mois: 1059
     date_naissance: "1926-08-17"

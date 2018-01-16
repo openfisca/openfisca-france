@@ -4,7 +4,7 @@ description: Les ressources ne sont plus perçues => Neutralisation
 period: "month:2015-01"
 relative_error_margin: 0.02
 individus:
-  activite: 1
+  activite: chomeur
   age: 35
   age_en_mois: 420
   ass_precondition_remplie: false
@@ -268,6 +268,6 @@ menages:
   depcom: 70429
   enfants:
   personne_de_reference: 54bfddf06d9c06c9722b3aff
-  statut_occupation_logement: 6
+  statut_occupation_logement: loge_gratuitement
 output_variables:
   rsa: 452.21

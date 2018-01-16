@@ -2,7 +2,6 @@
 
 from openfisca_france.model.base import *  # noqa
 
-
 class date_naissance(Variable):
     value_type = date
     default_value = date(1970, 1, 1)
@@ -29,13 +28,8 @@ class garde_alternee(Variable):
 
 class activite(Variable):
     value_type = Enum
-    default_value = 4
-    possible_values = Enum([
-        u'Actif occupé',
-        u'Chômeur',
-        u'Étudiant, élève',
-        u'Retraité',
-        u'Autre inactif'])
+    default_value = TypesActivite.inactif
+    possible_values = TypesActivite  # defined in model/base.py
     entity = Individu
     label = u"Activité"
     definition_period = MONTH
@@ -51,15 +45,8 @@ class enceinte(Variable):
 
 class statut_marital(Variable):
     value_type = Enum
-    default_value = 2
-    possible_values = Enum([
-        u"",
-        u"Marié",
-        u"Célibataire",
-        u"Divorcé",
-        u"Veuf",
-        u"Pacsé",
-        u"Jeune veuf"])
+    possible_values = TypesStatutMarital  # defined in model/base.py
+    default_value = TypesStatutMarital.celibataire
     entity = Individu
     label = u"Statut marital"
     definition_period = MONTH
@@ -224,7 +211,7 @@ class maries(Variable):
         # Note : Cette variable est "instantanée" : quelque soit la période demandée, elle retourne la valeur au premier
         # jour, sans changer la période.
         statut_marital = famille.members('statut_marital', period)
-        individu_marie = (statut_marital == 1)
+        individu_marie = (statut_marital == TypesStatutMarital.marie)
 
         return famille.any(individu_marie, role = famille.PARENT)
 
@@ -264,7 +251,7 @@ class etudiant(Variable):
         # jour, sans changer la période.
         activite = simulation.calculate('activite', period)
 
-        return activite == 2
+        return activite == TypesActivite.etudiant
 
 
 class rempli_obligation_scolaire(Variable):

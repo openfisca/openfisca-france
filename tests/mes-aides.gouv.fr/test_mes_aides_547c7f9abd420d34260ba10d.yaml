@@ -6,7 +6,7 @@ description: Cette ressource est effectivement à prendre dans les ressources. T
 period: "month:2014-12"
 relative_error_margin: 0.02
 individus:
-  activite: 3
+  activite: retraite
   age: 70
   age_en_mois: 842
   date_naissance: "1944-10-01"

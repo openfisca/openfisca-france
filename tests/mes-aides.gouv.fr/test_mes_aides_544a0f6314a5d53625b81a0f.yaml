@@ -276,6 +276,6 @@ menages:
   enfants:
   loyer: 100
   personne_de_reference: 544a0f49444b963225484663
-  statut_occupation_logement: 4
+  statut_occupation_logement: locataire_vide
 output_variables:
   cmu_c: true

@@ -121,7 +121,7 @@ class psa(Variable):
         af_nbenf = famille('af_nbenf', period)
         aide_logement = famille('aide_logement', period)
 
-        personne_en_activite_i = (famille.members('activite', period) == 0)
+        personne_en_activite_i = (famille.members('activite', period) == TypesActivite.actif)
         parent_en_activite = famille.any(personne_en_activite_i, role = Famille.PARENT)
 
         dummy_api = api > 0
@@ -141,7 +141,11 @@ class rmi(Variable):
 
     def formula_1988_12(famille, period):
         activite_i = famille.members('activite', period)
-        condition_activite_i = (activite_i != 0) * (activite_i != 2) * (activite_i != 3)
+        condition_activite_i = (
+            (activite_i != TypesActivite.actif)
+            * (activite_i != TypesActivite.etudiant)
+            * (activite_i != TypesActivite.retraite)
+            )
         condition_activite = famille.any(condition_activite_i)
 
         rsa_base_ressources = famille('rsa_base_ressources', period)

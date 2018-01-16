@@ -45,10 +45,10 @@ individus:
       2017-11: '1985-03-21'
       2017-10: '1985-03-21'
     statut_marital:
-      2018-01: Célibataire
-      2017-12: Célibataire
-      2017-11: Célibataire
-      2017-10: Célibataire
+      2018-01: celibataire
+      2017-12: celibataire
+      2017-11: celibataire
+      2017-10: celibataire
     aah:
       2017-01: 811
       2017-02: 811
@@ -89,10 +89,10 @@ individus:
       2017-12: 0
       2018-01: 0
     gir:
-      2018-01: Gir 6
-      2017-12: Gir 6
-      2017-11: Gir 6
-      2017-10: Gir 6
+      2018-01: gir_6
+      2017-12: gir_6
+      2017-11: gir_6
+      2017-10: gir_6
     age:
       2018-01: 32
       2017-12: 32
@@ -318,9 +318,9 @@ menages:
       2017-11: '55039'
       2017-10: '55039'
     statut_occupation_logement:
-      2018-01: Sans domicile stable
-      2017-12: Sans domicile stable
-      2017-11: Sans domicile stable
-      2017-10: Sans domicile stable
+      2018-01: sans_domicile
+      2017-12: sans_domicile
+      2017-11: sans_domicile
+      2017-10: sans_domicile
     personne_de_reference: demandeur
     enfants: []

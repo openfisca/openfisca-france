@@ -6,7 +6,7 @@ description: Si le montant calculé est < à 16.25, le montant réel est 0
 period: "month:2014-09"
 relative_error_margin: 0.02
 individus:
-  activite: 1
+  activite: chomeur
   age: 25
   age_en_mois: 300
   date_naissance: "1989-09-14"
@@ -275,6 +275,6 @@ menages:
   enfants:
   loyer: 67
   personne_de_reference: 5422c2915be58c0200a0757f
-  statut_occupation_logement: 4
+  statut_occupation_logement: locataire_vide
 output_variables:
   ass: 0

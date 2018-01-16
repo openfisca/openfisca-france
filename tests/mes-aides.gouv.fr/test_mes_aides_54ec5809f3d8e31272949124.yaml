@@ -279,6 +279,6 @@ menages:
     - 54ec57f528793d0972ec4b51
   loyer: 400
   personne_de_reference: 54ec57f528793d0972ec4b53
-  statut_occupation_logement: 4
+  statut_occupation_logement: locataire_vide
 output_variables:
   cf: 96.16

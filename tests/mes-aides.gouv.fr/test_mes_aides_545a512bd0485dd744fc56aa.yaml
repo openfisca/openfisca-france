@@ -21,7 +21,7 @@ individus:
     interets_epargne_sur_livrets:
       2012-01: 0
     handicap: 0
-    statut_marital: 1
+    statut_marital: marie
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
@@ -287,6 +287,6 @@ menages:
     - 545a50a5ffe6a1e044e6c2a6
     - 545a50a5ffe6a1e044e6c2a5
   personne_de_reference: 545a50a5ffe6a1e044e6c2a8
-  statut_occupation_logement: 6
+  statut_occupation_logement: loge_gratuitement
 output_variables:
   rsa: 602.74

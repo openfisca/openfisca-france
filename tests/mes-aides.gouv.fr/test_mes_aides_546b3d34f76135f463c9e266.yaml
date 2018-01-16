@@ -6,7 +6,7 @@ description: "Le test est concluant - Le simulateur exclut bien le RSA en ressou
 period: "month:2014-11"
 relative_error_margin: 0.02
 individus:
-  activite: 3
+  activite: retraite
   age: 65
   age_en_mois: 789
   date_naissance: "1949-02-15"

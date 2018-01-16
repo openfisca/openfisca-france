@@ -245,6 +245,6 @@ menages:
   enfants:
   loyer: 900
   personne_de_reference: 54bfdf0bd337b5d372377d43
-  statut_occupation_logement: 4
+  statut_occupation_logement: locataire_vide
 output_variables:
   rsa: 227.76

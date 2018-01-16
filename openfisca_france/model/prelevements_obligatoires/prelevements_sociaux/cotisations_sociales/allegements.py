@@ -27,10 +27,9 @@ class assiette_allegement(Variable):
     def formula(self, simulation, period):
         assiette_cotisations_sociales = simulation.calculate_add('assiette_cotisations_sociales', period)
         categorie_salarie = simulation.calculate('categorie_salarie', period)
-        period = period
         # TODO vérifier changement d'assiette
         return assiette_cotisations_sociales * (
-            (categorie_salarie == CATEGORIE_SALARIE['prive_non_cadre']) | (categorie_salarie == CATEGORIE_SALARIE['prive_cadre'])
+            (categorie_salarie == TypesCategorieSalarie.prive_non_cadre) | (categorie_salarie == TypesCategorieSalarie.prive_cadre)
             )
 
 
@@ -45,6 +44,7 @@ class coefficient_proratisation(Variable):
 
         # Les types de contrats gérés
         contrat_de_travail = simulation.calculate('contrat_de_travail', period)
+        TypesContratDeTravail = contrat_de_travail.possible_values
         # [ temps_plein
         #   temps_partiel
         #   forfait_heures_semaines
@@ -103,16 +103,16 @@ class coefficient_proratisation(Variable):
         coefficient = switch(
             contrat_de_travail,
             {  # temps plein
-                0: ((jours_ouvres_ce_mois_incomplet - jours_absence) /
+                TypesContratDeTravail.temps_plein: ((jours_ouvres_ce_mois_incomplet - jours_absence) /
                     jours_ouvres_ce_mois
                     ),
                 # temps partiel
                 # (en l'absence du détail pour chaque jour de la semaine ou chaque semaine du mois)
-                1: coefficient_proratisation_temps_partiel * (
+                TypesContratDeTravail.temps_partiel: coefficient_proratisation_temps_partiel * (
                     (jours_ouvres_ce_mois_incomplet * coefficient_proratisation_temps_partiel - jours_absence) /
                     (jours_ouvres_ce_mois * coefficient_proratisation_temps_partiel + 1e-16)
                     ),
-                5: coefficient_proratisation_forfait_jours * (
+                TypesContratDeTravail.forfait_jours_annee: coefficient_proratisation_forfait_jours * (
                     (jours_ouvres_ce_mois_incomplet * coefficient_proratisation_forfait_jours - jours_absence) /
                     (jours_ouvres_ce_mois * coefficient_proratisation_forfait_jours + 1e-16)
                     )
@@ -158,6 +158,7 @@ class aide_premier_salarie(Variable):
         effectif_entreprise = simulation.calculate('effectif_entreprise', period)
         apprenti = simulation.calculate('apprenti', period)
         contrat_de_travail_duree = simulation.calculate('contrat_de_travail_duree', period)
+        TypesContratDeTravailDuree = contrat_de_travail_duree.possible_values
         contrat_de_travail_debut = simulation.calculate('contrat_de_travail_debut', period)
         contrat_de_travail_fin = simulation.calculate('contrat_de_travail_fin', period)
         coefficient_proratisation = simulation.calculate('coefficient_proratisation', period)
@@ -175,10 +176,10 @@ class aide_premier_salarie(Variable):
         # Si CDD, durée du contrat doit être > 1 an
         eligible_duree = or_(
             # durée indéterminée
-            contrat_de_travail_duree == 0,
+            contrat_de_travail_duree == TypesContratDeTravailDuree.cdi,
             # durée déterminée supérieure à 1 an
             and_(
-                contrat_de_travail_duree == 1,  # CDD
+                contrat_de_travail_duree == TypesContratDeTravailDuree.cdd,
                 # > 6 mois
                 (contrat_de_travail_fin - contrat_de_travail_debut).astype('timedelta64[M]') >= timedelta64(6, 'M')
                 # Initialement, la condition était d'un contrat >= 12 mois,
@@ -221,6 +222,7 @@ class aide_embauche_pme(Variable):
         effectif_entreprise = simulation.calculate('effectif_entreprise', period)
         apprenti = simulation.calculate('apprenti', period)
         contrat_de_travail_duree = simulation.calculate('contrat_de_travail_duree', period)
+        TypesContratDeTravailDuree = contrat_de_travail_duree.possible_values
         contrat_de_travail_debut = simulation.calculate('contrat_de_travail_debut', period)
         contrat_de_travail_fin = simulation.calculate('contrat_de_travail_fin', period)
         coefficient_proratisation = simulation.calculate('coefficient_proratisation', period)
@@ -255,11 +257,11 @@ class aide_embauche_pme(Variable):
         # Si CDD, durée du contrat doit être > 1 an
         eligible_duree = or_(
             # durée indéterminée
-            contrat_de_travail_duree == 0,
+            contrat_de_travail_duree == TypesContratDeTravailDuree.cdi,
             # durée déterminée supérieure à 1 an
             and_(
                 # CDD
-                contrat_de_travail_duree == 1,
+                contrat_de_travail_duree == TypesContratDeTravailDuree.cdd,
                 # > 6 mois
                 (contrat_de_travail_fin - contrat_de_travail_debut).astype('timedelta64[M]') >= timedelta64(6, 'M')
                 )
@@ -336,7 +338,12 @@ def compute_allegement_fillon(simulation, period):
     assiette = simulation.calculate_add('assiette_allegement', period)
     smic_proratise = simulation.calculate_add('smic_proratise', period)
     taille_entreprise = simulation.calculate('taille_entreprise', first_month)
-    majoration = (taille_entreprise <= 2)  # majoration éventuelle pour les petites entreprises
+    TypesTailleEntreprise = taille_entreprise.possible_values
+    majoration = (
+        (taille_entreprise == TypesTailleEntreprise.non_pertinent)
+        + (taille_entreprise == TypesTailleEntreprise.moins_de_10)
+        + (taille_entreprise == TypesTailleEntreprise.de_10_a_19)
+        )  # majoration éventuelle pour les petites entreprises
     # Calcul du taux
     # Le montant maximum de l’allègement dépend de l’effectif de l’entreprise.
     # Le montant est calculé chaque année civile, pour chaque salarié ;
@@ -422,16 +429,16 @@ def switch_on_allegement_mode(simulation, period, mode_recouvrement, variable_na
         should precisely be the variable name prefixed with 'compute_'
     """
     compute_function = globals()['compute_' + variable_name]
-    return switch(
-        mode_recouvrement,
-        {
-            0: compute_allegement_annuel(simulation, period, variable_name, compute_function),
-            1: compute_allegement_anticipe(simulation, period, variable_name, compute_function),
-            2: compute_allegement_progressif(simulation, period, variable_name, compute_function),
-            },
-        )
+    TypesAllegementModeRecouvrement = mode_recouvrement.possible_values
+    recouvrement_fin_annee = (mode_recouvrement == TypesAllegementModeRecouvrement.fin_d_annee)
+    recouvrement_anticipe = (mode_recouvrement == TypesAllegementModeRecouvrement.anticipe)
+    recouvrement_progressif = (mode_recouvrement == TypesAllegementModeRecouvrement.progressif)
 
-
+    return (
+        (recouvrement_fin_annee * compute_allegement_annuel(simulation, period, variable_name, compute_function))
+        + (recouvrement_anticipe * compute_allegement_anticipe(simulation, period, variable_name, compute_function))
+        + (recouvrement_progressif * compute_allegement_progressif(simulation, period, variable_name, compute_function))
+    )
 
 def compute_allegement_annuel(simulation, period, variable_name, compute_function):
     if period.start.month < 12:

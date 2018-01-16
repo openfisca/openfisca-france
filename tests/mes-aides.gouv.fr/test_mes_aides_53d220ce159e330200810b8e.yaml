@@ -37,7 +37,7 @@ individus:
       2014-05: 950
       2014-06: 950
       2014-07: 950
-    statut_marital: 1
+    statut_marital: marie
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
@@ -268,6 +268,6 @@ menages:
   enfants:
   loyer: 500
   personne_de_reference: 53d22068159e330200810b8a
-  statut_occupation_logement: 4
+  statut_occupation_logement: locataire_vide
 output_variables:
   cmu_c: true

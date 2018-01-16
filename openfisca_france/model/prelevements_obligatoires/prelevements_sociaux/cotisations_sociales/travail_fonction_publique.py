@@ -51,8 +51,21 @@ class assiette_cotisations_sociales_public(Variable):
         # primes_fonction_publique = simulation.calculate('primes_fonction_publique', period)
         # indemnite_residence = simulation.calculate('indemnite_residence', period)
         categorie_salarie = simulation.calculate('categorie_salarie', period)
-        public = (categorie_salarie >= 2)
-        # titulaire = (categorie_salarie >= 2) * (categorie_salarie <= 5)
+        public = (
+            (categorie_salarie == TypesCategorieSalarie.public_titulaire_etat)
+            + (categorie_salarie == TypesCategorieSalarie.public_titulaire_militaire)
+            + (categorie_salarie == TypesCategorieSalarie.public_titulaire_territoriale)
+            + (categorie_salarie == TypesCategorieSalarie.public_titulaire_hospitaliere)
+            + (categorie_salarie == TypesCategorieSalarie.public_non_titulaire)
+            + (categorie_salarie == TypesCategorieSalarie.non_pertinent)
+        )
+        # titulaire = public =(
+        #     (categorie_salarie == TypesCategorieSalarie.public_titulaire_etat)
+        #     + (categorie_salarie == TypesCategorieSalarie.public_titulaire_militaire)
+        #     + (categorie_salarie == TypesCategorieSalarie.public_titulaire_territoriale)
+        #     + (categorie_salarie == TypesCategorieSalarie.public_titulaire_hospitaliere)
+        # )
+
         assiette = public * (
             remuneration_principale
             # + not_(titulaire) * (indemnite_residence + primes_fonction_publique)
@@ -88,10 +101,10 @@ class contribution_exceptionnelle_solidarite(Variable):
         seuil_assuj_fds = seuil_fds(_P)
 
         assujettis = (
-            (categorie_salarie == CATEGORIE_SALARIE['public_titulaire_etat']) +
-            (categorie_salarie == CATEGORIE_SALARIE['public_titulaire_territoriale']) +
-            (categorie_salarie == CATEGORIE_SALARIE['public_titulaire_hospitaliere']) +
-            (categorie_salarie == CATEGORIE_SALARIE['public_non_titulaire'])
+            (categorie_salarie == TypesCategorieSalarie.public_titulaire_etat) +
+            (categorie_salarie == TypesCategorieSalarie.public_titulaire_territoriale) +
+            (categorie_salarie == TypesCategorieSalarie.public_titulaire_hospitaliere) +
+            (categorie_salarie == TypesCategorieSalarie.public_non_titulaire)
             ) * (
             (traitement_indiciaire_brut + salaire_de_base - hsup) > seuil_assuj_fds
             )
@@ -105,7 +118,7 @@ class contribution_exceptionnelle_solidarite(Variable):
                     traitement_indiciaire_brut + salaire_de_base - hsup + indemnite_residence + rafp_salarie +
                     pension_civile_salarie +
                     primes_fonction_publique +
-                    (categorie_salarie == CATEGORIE_SALARIE['public_non_titulaire']) * cotisations_salariales_contributives
+                    (categorie_salarie == TypesCategorieSalarie.public_non_titulaire) * cotisations_salariales_contributives
                     ),
                 _P.prelevements_sociaux.cotisations_sociales.fds.plafond_base_solidarite,
                 ),
@@ -155,7 +168,7 @@ class ircantec_salarie(Variable):
             plafond_securite_sociale = plafond_securite_sociale,
             categorie_salarie = categorie_salarie,
             )
-        return ircantec * (categorie_salarie == 6)  # agent non titulaire
+        return ircantec * (categorie_salarie == TypesCategorieSalarie.public_non_titulaire)  # agent non titulaire
 
 
 class ircantec_employeur(Variable):
@@ -177,7 +190,7 @@ class ircantec_employeur(Variable):
             plafond_securite_sociale = plafond_securite_sociale,
             categorie_salarie = categorie_salarie,
             )
-        return ircantec * (categorie_salarie == 6)  # agent non titulaire
+        return ircantec * (categorie_salarie == TypesCategorieSalarie.public_non_titulaire)  # agent non titulaire
 
 
 class pension_civile_salarie(Variable):
@@ -194,9 +207,9 @@ class pension_civile_salarie(Variable):
 
         sal = _P.cotsoc.cotisations_salarie
         terr_or_hosp = (
-            categorie_salarie == CATEGORIE_SALARIE['public_titulaire_territoriale']) | (categorie_salarie == CATEGORIE_SALARIE['public_titulaire_hospitaliere'])
+            categorie_salarie == TypesCategorieSalarie.public_titulaire_territoriale) | (categorie_salarie == TypesCategorieSalarie.public_titulaire_hospitaliere)
         pension_civile_salarie = (
-            (categorie_salarie == CATEGORIE_SALARIE['public_titulaire_etat']) *
+            (categorie_salarie == TypesCategorieSalarie.public_titulaire_etat) *
             sal['public_titulaire_etat']['pension'].calc(traitement_indiciaire_brut) +
             terr_or_hosp * sal['public_titulaire_territoriale']['cnracl1'].calc(traitement_indiciaire_brut)
             )
@@ -218,10 +231,10 @@ class pension_civile_employeur(Variable):
 
         pat = _P.cotsoc.cotisations_employeur
         terr_or_hosp = (
-            (categorie_salarie == CATEGORIE_SALARIE['public_titulaire_territoriale']) | (categorie_salarie == CATEGORIE_SALARIE['public_titulaire_hospitaliere'])
+            (categorie_salarie == TypesCategorieSalarie.public_titulaire_territoriale) | (categorie_salarie == TypesCategorieSalarie.public_titulaire_hospitaliere)
             )
         cot_pat_pension_civile = (
-            (categorie_salarie == CATEGORIE_SALARIE['public_titulaire_etat']) * pat['public_titulaire_etat']['pension'].calc(
+            (categorie_salarie == TypesCategorieSalarie.public_titulaire_etat) * pat['public_titulaire_etat']['pension'].calc(
                 assiette_cotisations_sociales_public) +
             terr_or_hosp * pat['public_titulaire_territoriale']['cnracl'].calc(assiette_cotisations_sociales_public)
             )
@@ -244,9 +257,9 @@ class rafp_salarie(Variable):
         indemnite_residence = simulation.calculate('indemnite_residence', period)
         _P = simulation.parameters_at(period.start)
 
-        eligible = ((categorie_salarie == CATEGORIE_SALARIE['public_titulaire_etat'])
-                     + (categorie_salarie == CATEGORIE_SALARIE['public_titulaire_territoriale'])
-                     + (categorie_salarie == CATEGORIE_SALARIE['public_titulaire_hospitaliere']))
+        eligible = ((categorie_salarie == TypesCategorieSalarie.public_titulaire_etat)
+                     + (categorie_salarie == TypesCategorieSalarie.public_titulaire_territoriale)
+                     + (categorie_salarie == TypesCategorieSalarie.public_titulaire_hospitaliere))
 
         plaf_ass = _P.cotsoc.sal.fonc.etat.rafp_plaf_assiette
         base_imposable = primes_fonction_publique + supp_familial_traitement + indemnite_residence
@@ -272,9 +285,9 @@ class rafp_employeur(Variable):
         _P = simulation.parameters_at(period.start)
 
         eligible = (
-            (categorie_salarie == CATEGORIE_SALARIE['public_titulaire_etat']) +
-            (categorie_salarie == CATEGORIE_SALARIE['public_titulaire_territoriale']) +
-            (categorie_salarie == CATEGORIE_SALARIE['public_titulaire_hospitaliere'])
+            (categorie_salarie == TypesCategorieSalarie.public_titulaire_etat) +
+            (categorie_salarie == TypesCategorieSalarie.public_titulaire_territoriale) +
+            (categorie_salarie == TypesCategorieSalarie.public_titulaire_hospitaliere)
             )
         plaf_ass = _P.cotsoc.sal.fonc.etat.rafp_plaf_assiette
         base_imposable = primes_fonction_publique + supp_familial_traitement + indemnite_residence

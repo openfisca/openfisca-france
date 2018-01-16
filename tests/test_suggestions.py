@@ -6,6 +6,8 @@ import json
 from nose.tools import assert_equal
 
 from cache import tax_benefit_system
+from openfisca_france.model.base import *
+
 
 def test_birth():
     year = 2013
@@ -33,12 +35,12 @@ def test_birth():
             ],
         )
     assert_equal(
-        simulation.calculate('activite', period = janvier).tolist(),
+        simulation.calculate('activite', period = janvier).decode().tolist(),
         [
-            4,
-            2,
-            2,
-            4,
+            TypesActivite.inactif,
+            TypesActivite.etudiant,
+            TypesActivite.etudiant,
+            TypesActivite.inactif,
             ],
         )
     assert_equal(

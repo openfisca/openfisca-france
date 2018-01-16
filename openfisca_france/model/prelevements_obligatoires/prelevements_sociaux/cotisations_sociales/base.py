@@ -1,14 +1,5 @@
 # -*- coding: utf-8 -*-
 
-import logging
-
-
-from openfisca_france.model.base import CATEGORIE_SALARIE
-
-
-log = logging.getLogger(__name__)
-
-
 DEFAULT_ROUND_BASE_DECIMALS = 2
 
 
@@ -25,28 +16,34 @@ def apply_bareme_for_relevant_type_sal(
     assert categorie_salarie is not None
     assert base is not None
     assert plafond_securite_sociale is not None
+    TypesCategorieSalarie = categorie_salarie.possible_values
 
     def iter_cotisations():
-        for type_sal_name, type_sal_index in CATEGORIE_SALARIE:
-            if type_sal_name not in bareme_by_type_sal_name:  # to deal with public_titulaire_militaire
+        for type_sal in TypesCategorieSalarie:
+            type_sal_name = type_sal.name
+            try:
+                node = bareme_by_type_sal_name[type_sal_name]
+            except KeyError:
+                continue  # to deal with public_titulaire_militaire
+            try:
+                bareme = node[bareme_name]
+            except KeyError:
                 continue
+            yield bareme.calc(
+                base * (categorie_salarie == type_sal),
+                factor = plafond_securite_sociale,
+                round_base_decimals = round_base_decimals,
+                )
 
-            node = bareme_by_type_sal_name[type_sal_name]
-            if bareme_name in node._children:
-                bareme = getattr(node, bareme_name)
-                yield bareme.calc(
-                    base * (categorie_salarie == type_sal_index),
-                    factor = plafond_securite_sociale,
-                    round_base_decimals = round_base_decimals,
-                    )
     return - sum(iter_cotisations())
 
 
 def apply_bareme(simulation, period, cotisation_type = None, bareme_name = None, variable_name = None):
     cotisation_mode_recouvrement = simulation.calculate('cotisation_sociale_mode_recouvrement', period)
+    TypesCotisationSocialeModeRecouvrement = cotisation_mode_recouvrement.possible_values
     cotisation = (
         # anticipé (mensuel avec recouvrement en fin d'année)
-        cotisation_mode_recouvrement == 0) * (
+        cotisation_mode_recouvrement == TypesCotisationSocialeModeRecouvrement.mensuel) * (
             compute_cotisation_anticipee(
                 simulation,
                 period,
@@ -56,7 +53,7 @@ def apply_bareme(simulation, period, cotisation_type = None, bareme_name = None,
                 )
             ) + (
         # en fin d'année
-        cotisation_mode_recouvrement == 1) * (
+        cotisation_mode_recouvrement == TypesCotisationSocialeModeRecouvrement.annuel) * (
             compute_cotisation_annuelle(
                 simulation,
                 period,
@@ -65,7 +62,7 @@ def apply_bareme(simulation, period, cotisation_type = None, bareme_name = None,
                 )
             ) + (
         # mensuel stricte
-        cotisation_mode_recouvrement == 2) * (
+        cotisation_mode_recouvrement == TypesCotisationSocialeModeRecouvrement.mensuel_strict) * (
             compute_cotisation(
                 simulation,
                 period,

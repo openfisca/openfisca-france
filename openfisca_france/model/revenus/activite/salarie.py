@@ -91,10 +91,15 @@ class ppe_du_sa(Variable):
 
     def formula(individu, period):
         heures_remunerees_volume = individu('heures_remunerees_volume', period)
+        contrat_travail = individu('contrat_de_travail', period)
         travail_temps_decompte_en_heures = (
-            (individu('contrat_de_travail', period) > 0) *
-            (individu('contrat_de_travail', period) < 6)
-            )
+            (contrat_travail == TypesContratDeTravail.temps_partiel)
+            + (contrat_travail == TypesContratDeTravail.forfait_heures_semaines)
+            + (contrat_travail == TypesContratDeTravail.forfait_heures_mois)
+            + (contrat_travail == TypesContratDeTravail.forfait_heures_annee)
+            + (contrat_travail == TypesContratDeTravail.forfait_jours_annee)
+        )
+
         return heures_remunerees_volume * travail_temps_decompte_en_heures
 
 
@@ -121,41 +126,51 @@ class ppe_tp_sa(Variable):
             indicateur = indicateur & (individu('contrat_de_travail', mois) == 0)
         return indicateur
 
+class TypesExpositionAccident(Enum):
+    __order__ = 'faible moyen eleve tres_eleve'  # Needed to preserve the enum order in Python 2
+    faible = u"Faible"
+    moyen = u"Moyen"
+    eleve = u"Élevé"
+    tres_eleve = u"Très élevé"
+
 
 class exposition_accident(Variable):
     value_type = Enum
-    possible_values = Enum([
-        u"Faible",
-        u"Moyen",
-        u"Élevé",
-        u"Très élevé",
-        ])
+    possible_values = TypesExpositionAccident
+    default_value = TypesExpositionAccident.faible
     entity = Individu
     label = u"Exposition au risque pour les accidents du travail"
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
+class TypesExpositionPenibilite(Enum):
+    __order__ = 'nulle simple multiple'  # Needed to preserve the enum order in Python 2
+    nulle = u"Nulle, pas d'exposition de l'employé à un facteur de pénibilité"
+    simple = u"Simple, exposition à un seul facteur de pénibilité"
+    multiple = u"Multiple, exposition à plusieurs facteurs de pénibilité"
+
 
 class exposition_penibilite(Variable):
     value_type = Enum
-    possible_values = Enum([
-        u"Nulle",  # Pas d'exposition de l'employé à un facteur de pénibilité
-        u"Simple",  # Exposition à un seul facteur de pénibilité
-        u"Multiple",  # Exposition à plusieurs facteurs de pénibilité
-        ])
+    possible_values = TypesExpositionPenibilite
+    default_value = TypesExpositionPenibilite.nulle
     entity = Individu
     label = u"Exposition à un ou plusieurs facteurs de pénibilité"
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
 
+class TypesAllegementModeRecouvrement(Enum):
+    __order__ = 'fin_d_annee anticipe progressif'  # Needed to preserve the enum order in Python 2
+    fin_d_annee = u"fin_d_annee"
+    anticipe = u"anticipe_regularisation_fin_de_periode"
+    progressif = u"progressif"
+
+
 class allegement_fillon_mode_recouvrement(Variable):
     value_type = Enum
-    possible_values = Enum([
-        u"fin_d_annee",
-        u"anticipe_regularisation_fin_de_periode",
-        u"progressif",
-        ])
+    possible_values = TypesAllegementModeRecouvrement
+    default_value = TypesAllegementModeRecouvrement.fin_d_annee
     entity = Individu
     label = u"Mode de recouvrement des allègements Fillon"
     definition_period = MONTH
@@ -164,11 +179,8 @@ class allegement_fillon_mode_recouvrement(Variable):
 
 class allegement_cotisation_allocations_familiales_mode_recouvrement(Variable):
     value_type = Enum
-    possible_values = Enum([
-        u"fin_d_annee",
-        u"anticipe_regularisation_fin_de_periode",
-        u"progressif",
-        ])
+    possible_values = TypesAllegementModeRecouvrement
+    default_value = TypesAllegementModeRecouvrement.fin_d_annee
     entity = Individu
     label = u"Mode de recouvrement de l'allègement de la cotisation d'allocations familiales"
     definition_period = MONTH
@@ -227,17 +239,21 @@ class indemnite_fin_contrat_due(Variable):
     definition_period = MONTH
 
 
+class TypesContratDeTravail(Enum):
+    __order__ = 'temps_plein temps_partiel forfait_heures_semaines forfait_heures_mois forfait_heures_annee forfait_jours_annee sans_objet'  # Needed to preserve the enum order in Python 2
+    temps_plein = u"temps_plein"
+    temps_partiel = u"temps_partiel"
+    forfait_heures_semaines = u"forfait_heures_semaines"
+    forfait_heures_mois = u"forfait_heures_mois"
+    forfait_heures_annee = u"forfait_heures_annee"
+    forfait_jours_annee = u"forfait_jours_annee"
+    sans_objet = u"sans_objet"
+
+
 class contrat_de_travail(Variable):
     value_type = Enum
-    possible_values = Enum([
-        u"temps_plein",
-        u"temps_partiel",
-        u"forfait_heures_semaines",
-        u"forfait_heures_mois",
-        u"forfait_heures_annee",
-        u"forfait_jours_annee",
-        u"sans_objet",
-        ])
+    possible_values = TypesContratDeTravail
+    default_value = TypesContratDeTravail.temps_plein
     entity = Individu
     label = u"Type contrat de travail"
     definition_period = MONTH
@@ -262,25 +278,33 @@ class contrat_de_travail_fin(Variable):
     set_input = set_input_dispatch_by_period
 
 
+class TypesContratDeTravailDuree(Enum):
+    __order__ = 'cdi cdd'  # Needed to preserve the enum order in Python 2
+    cdi = u"CDI"
+    cdd = u"CDD"
+
+
 class contrat_de_travail_duree(Variable):
     value_type = Enum
-    possible_values = Enum([
-        u"cdi",
-        u"cdd",
-        ])
+    possible_values = TypesContratDeTravailDuree
+    default_value = TypesContratDeTravailDuree.cdi
     entity = Individu
     label = u"Type (durée determinée ou indéterminée) du contrat de travail"
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
 
+class TypesCotisationSocialeModeRecouvrement(Enum):
+    __order__ = 'mensuel annuel mensuel_strict'  # Needed to preserve the enum order in Python 2
+    mensuel = u"Mensuel avec régularisation en fin d'année"
+    annuel = u"Annuel"
+    mensuel_strict = u"Mensuel strict"
+
+
 class cotisation_sociale_mode_recouvrement(Variable):
     value_type = Enum
-    possible_values = Enum([
-        u"Mensuel avec régularisation en fin d'année",
-        u"Annuel",
-        u"Mensuel strict",
-        ])
+    possible_values = TypesCotisationSocialeModeRecouvrement
+    default_value = TypesCotisationSocialeModeRecouvrement.mensuel
     entity = Individu
     label = u"Mode de recouvrement des cotisations sociales"
     definition_period = MONTH
@@ -515,16 +539,8 @@ class traitement_indiciaire_brut(Variable):
 
 class categorie_salarie(Variable):
     value_type = Enum
-    possible_values = Enum([
-        u"prive_non_cadre",
-        u"prive_cadre",
-        u"public_titulaire_etat",
-        u"public_titulaire_militaire",
-        u"public_titulaire_territoriale",
-        u"public_titulaire_hospitaliere",
-        u"public_non_titulaire",
-        u"non_pertinent",
-        ])
+    possible_values = TypesCategorieSalarie  # defined in model/base.py
+    default_value = TypesCategorieSalarie.prive_non_cadre
     entity = Individu
     label = u"Catégorie de salarié"
     definition_period = MONTH
@@ -697,17 +713,25 @@ class indemnite_residence(Variable):
         salaire_de_base = individu('salaire_de_base', period)
         categorie_salarie = individu('categorie_salarie', period)
         zone_apl = individu.menage('zone_apl', period)
+        TypesZoneApl = zone_apl.possible_values
         _P = parameters(period)
 
         P = _P.fonc.indem_resid
         min_zone_1, min_zone_2, min_zone_3 = P.min * P.taux.zone1, P.min * P.taux.zone2, P.min * P.taux.zone3
-        taux = P.taux.zone1 * (zone_apl == 1) + P.taux.zone2 * (zone_apl == 2) + P.taux.zone3 * (zone_apl == 3)
-        plancher = min_zone_1 * (zone_apl == 1) + min_zone_2 * (zone_apl == 2) + min_zone_3 * (zone_apl == 3)
-
+        taux = P.taux.zone1 * (zone_apl == TypesZoneApl.zone_1) + P.taux.zone2 * (zone_apl == TypesZoneApl.zone_2) + P.taux.zone3 * (zone_apl == TypesZoneApl.zone_3)
+        plancher = min_zone_1 * (zone_apl == TypesZoneApl.zone_1) + min_zone_2 * (zone_apl == TypesZoneApl.zone_2) + min_zone_3 * (zone_apl == TypesZoneApl.zone_3)
+        public = (
+            (categorie_salarie == TypesCategorieSalarie.public_titulaire_etat)
+            + (categorie_salarie == TypesCategorieSalarie.public_titulaire_militaire)
+            + (categorie_salarie == TypesCategorieSalarie.public_titulaire_territoriale)
+            + (categorie_salarie == TypesCategorieSalarie.public_titulaire_hospitaliere)
+            + (categorie_salarie == TypesCategorieSalarie.public_non_titulaire)
+            + (categorie_salarie == TypesCategorieSalarie.non_pertinent)
+        )
         return max_(
             plancher,
             taux * (traitement_indiciaire_brut + salaire_de_base)
-            ) * (categorie_salarie >= 2)
+            ) * public
 
 
 class indice_majore(Variable):
@@ -723,7 +747,16 @@ class indice_majore(Variable):
         _P = simulation.parameters_at(period.start)
 
         traitement_annuel_brut = _P.fonc.IM_100
-        return (traitement_indiciaire_brut * 100 * 12 / traitement_annuel_brut) * (categorie_salarie >= 2)
+        public = (
+            (categorie_salarie == TypesCategorieSalarie.public_titulaire_etat)
+            + (categorie_salarie == TypesCategorieSalarie.public_titulaire_militaire)
+            + (categorie_salarie == TypesCategorieSalarie.public_titulaire_territoriale)
+            + (categorie_salarie == TypesCategorieSalarie.public_titulaire_hospitaliere)
+            + (categorie_salarie == TypesCategorieSalarie.public_non_titulaire)
+            + (categorie_salarie == TypesCategorieSalarie.non_pertinent)
+        )
+
+        return (traitement_indiciaire_brut * 100 * 12 / traitement_annuel_brut) * public
 
 
 class primes_fonction_publique(Variable):
@@ -737,9 +770,9 @@ class primes_fonction_publique(Variable):
         categorie_salarie = simulation.calculate('categorie_salarie', period)
         traitement_indiciaire_brut = simulation.calculate('traitement_indiciaire_brut', period)
         public = (
-            (categorie_salarie == CATEGORIE_SALARIE['public_titulaire_etat']) +
-            (categorie_salarie == CATEGORIE_SALARIE['public_titulaire_territoriale']) +
-            (categorie_salarie == CATEGORIE_SALARIE['public_titulaire_hospitaliere'])
+            (categorie_salarie == TypesCategorieSalarie.public_titulaire_etat) +
+            (categorie_salarie == TypesCategorieSalarie.public_titulaire_territoriale) +
+            (categorie_salarie == TypesCategorieSalarie.public_titulaire_hospitaliere)
             )
         return TAUX_DE_PRIME * traitement_indiciaire_brut * public
 
@@ -827,22 +860,28 @@ class supp_familial_traitement(Variable):
         plafond = (plafond_mensuel_1 * (fonc_nbenf == 1) + plafond_mensuel_2 * (fonc_nbenf == 2) +
                    plafond_mensuel_3 * (fonc_nbenf == 3) +
                    plafond_mensuel_supp * max_(0, fonc_nbenf - 3))
-
-        sft = (categorie_salarie >= 2) * (categorie_salarie < 7) * min_(
+        public = (
+            (categorie_salarie == TypesCategorieSalarie.public_titulaire_etat)
+            + (categorie_salarie == TypesCategorieSalarie.public_titulaire_militaire)
+            + (categorie_salarie == TypesCategorieSalarie.public_titulaire_territoriale)
+            + (categorie_salarie == TypesCategorieSalarie.public_titulaire_hospitaliere)
+            + (categorie_salarie == TypesCategorieSalarie.public_non_titulaire)
+            )
+        sft = public * min_(
             max_(part_fixe + pct_variable * traitement_indiciaire_brut, plancher),
             plafond
             )
         # Nota Bene:
-        # categorie_salarie is an EnumCol which enum is:
-        # CATEGORIE_SALARIE = Enum(['prive_non_cadre',
-        #             'prive_cadre',
-        #             'public_titulaire_etat',
-        #             'public_titulaire_militaire',
-        #             'public_titulaire_territoriale',
-        #             'public_titulaire_hospitaliere',
-        #             'public_non_titulaire',
-        #             'non_pertinent',
-        #             ])
+        # categorie_salarie is an enum :
+        # class TypesCategorieSalarie(Enum):
+        #   prive_non_cadre = u'prive_non_cadre'
+        #   prive_cadre = u'prive_cadre'
+        #   public_titulaire_etat = u'public_titulaire_etat'
+        #   public_titulaire_militaire = u'public_titulaire_militaire'
+        #   public_titulaire_territoriale = u'public_titulaire_territoriale'
+        #   public_titulaire_hospitaliere = u'public_titulaire_hospitaliere'
+        #   public_non_titulaire = u'public_non_titulaire'
+        #   non_pertinent = u'non_pertinent'
         return sft
 
 
@@ -862,8 +901,15 @@ class remuneration_principale(Variable):
         traitement_indiciaire_brut = simulation.calculate('traitement_indiciaire_brut', period)
         nouvelle_bonification_indiciaire = simulation.calculate('nouvelle_bonification_indiciaire', period)
         categorie_salarie = simulation.calculate('categorie_salarie', period)
+
+        public = (
+            (categorie_salarie == TypesCategorieSalarie.public_titulaire_etat)
+            + (categorie_salarie == TypesCategorieSalarie.public_titulaire_militaire)
+            + (categorie_salarie == TypesCategorieSalarie.public_titulaire_territoriale)
+            + (categorie_salarie == TypesCategorieSalarie.public_titulaire_hospitaliere)
+            )
         return (
-            (categorie_salarie >= 2) * (categorie_salarie <= 5) * (
+            public * (
                 traitement_indiciaire_brut + nouvelle_bonification_indiciaire
                 )
             )
