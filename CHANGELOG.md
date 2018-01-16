@@ -23,9 +23,22 @@
 
 #### Pour les mainteneurs de formules:
 
-  Les Enums étaient habituellement placées au dessus de la variable qui la calculait.
-  Elles sont maintenant toutes placés dans le fichier `model/base.py`, et commencent toutes par `Types`
-
+  Les Enums commencent toutes par `Types` et sont habituellement placées au dessus des variables qui les calculent.
+  Les Enums les plus fréquemments utilisées sont placées dans le fichier `model/base.py`.
+  
+  Référencer une Enum dans une formule :
+  
+  Si l'Enum est dans le fichier ou dans `base.py`, référencez l'Enum directement dans la formule:
+  ```py
+  statut_marital == TypesStatutMarital.celibataire
+  ```
+  
+  Sinon, importez-le dans votre formule avec l'attribut possible_values` de la variable qui la calcule :`
+  
+  ```py
+  TypesContratDeTravailDuree = contrat_de_travail_duree.possible_value
+  contrat_travail == TypesContratDeTravailDuree.mon_item
+  ```
 #### Effets sur la Web API
 
 Avant:
