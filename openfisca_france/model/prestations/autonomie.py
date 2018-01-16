@@ -310,10 +310,10 @@ class dependance_plan_aide_domicile_accepte(Variable):
         majoration_tierce_personne = parameters_autonomie.mtp.mtp
 
         condition_plafond_par_gir = [
-            gir == 1,
-            gir == 2,
-            gir == 3,
-            gir == 4,
+            gir == TypesGir.gir_1,
+            gir == TypesGir.gir_2,
+            gir == TypesGir.gir_3,
+            gir == TypesGir.gir_4,
             ]
         valeur_plafond_par_gir = [
             plafond_gir1 * majoration_tierce_personne,
