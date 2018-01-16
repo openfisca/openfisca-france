@@ -284,9 +284,9 @@
     enfants: ["enfant1", "enfant2"]
     aide_logement_base_ressources: 13500
   menages:
-    zone_apl: 1
+    zone_apl: zone_1
     loyer: 1650
-    statut_occupation_logement: 4  # Locataire
+    statut_occupation_logement: locataire_vide
   individus:
     - id: "parent1"
       age: 40
@@ -308,9 +308,9 @@
     enfants: ["enfant1", "enfant2"]
     aide_logement_base_ressources: 13500
   menages:
-    zone_apl: 1
+    zone_apl: zone_1
     loyer: 1650
-    statut_occupation_logement: 4  # Locataire
+    statut_occupation_logement: locataire_vide
   individus:
     - id: "parent1"
       age: 40
@@ -331,9 +331,9 @@
     parents: ["parent1"]
     aide_logement_base_ressources: 12000
   menages:
-    zone_apl: 1
+    zone_apl: zone_1
     loyer: 1172
-    statut_occupation_logement: 4  # Locataire
+    statut_occupation_logement: locataire_vide
   individus:
     - id: "parent1"
       age: 40
@@ -348,9 +348,9 @@
     parents: ["parent1"]
     aide_logement_base_ressources: 12000
   menages:
-    zone_apl: 1
+    zone_apl: zone_1
     loyer: 1054.26
-    statut_occupation_logement: 4  # Locataire
+    statut_occupation_logement: locataire_vide
   individus:
     - id: "parent1"
       age: 40

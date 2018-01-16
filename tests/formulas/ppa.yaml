@@ -362,7 +362,7 @@
   period: 2017-10
   absolute_error_margin: 0.005
   input_variables:
-    statut_occupation_logement: 1 # Accédant à la propriété
+    statut_occupation_logement: primo_accedant
     age: 40
   output_variables:
     ppa_forfait_logement: 63.15
