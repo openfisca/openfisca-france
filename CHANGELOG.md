@@ -5,8 +5,8 @@
 * Amélioration technique
 * Détails :
   - Modifie la façon dont les Enumerations sont définies et appelées.
+  - Renomme des fichiers de parametres pour pouvoir simplifier des formules dont le resultat dépend de `TypesZoneAPL` (Fancy indexing).
   - Certains Enums étaient utilisées comme booléens. La valeur 0/1 a été remplacée par le membre d'Enum correspondant.
-  - Renomme des fichiers de parametres pour pouvoir simplifier des formules dont le resultat dépend de `TypesZoneAPL` (Fancy indexing)
 
   Par exemple pour :
 
@@ -16,28 +16,29 @@
     intervention_CDAPH_necessaire = u"intervention_CDAPH_necessaire"
   ```
 
-  - `False` devient `TypesAAHNonCalculable.calculable`
-  - `True` devient `TypesAAHNonCalculable.intervention_CDAPH_necessaire`
+  - `False`, ancien index 0, devient `TypesAAHNonCalculable.calculable`
+  - `True`, ancien index 1, devient `TypesAAHNonCalculable.intervention_CDAPH_necessaire`
 
   Les valeurs possibles des Enums ainsi que les nouvelles valeurs par défaut sont disponibles sur legislation.openfisca.fr
 
 #### Pour les mainteneurs de formules:
 
-  Les Enums commencent toutes par `Types` et sont habituellement placées au dessus des variables qui les calculent.
-  Les Enums les plus fréquemments utilisées sont placées dans le fichier `model/base.py`.
+  Les Enums commencent tous par `Types` et sont habituellement placés au-dessus des variables qui les calculent.
   
-  Référencer une Enum dans une formule :
+  Les Enums les plus fréquemments utilisés sont placés dans le fichier `model/base.py`.
   
-  Si l'Enum est dans le fichier ou dans `base.py`, référencez l'Enum directement dans la formule:
+  Référencer un Enum dans une formule :
+  
+  Si l'Enum est dans votre fichier ou dans `base.py`, référencez le directement dans la formule:
   ```py
   statut_marital == TypesStatutMarital.celibataire
   ```
   
-  Sinon, importez-le dans votre formule avec l'attribut possible_values` de la variable qui la calcule :`
+  Sinon, importez-le dans votre formule avec l'attribut `possible_values` de la variable qui le calcule :
   
   ```py
-  TypesContratDeTravailDuree = contrat_de_travail_duree.possible_value
-  contrat_travail == TypesContratDeTravailDuree.mon_item
+  TypesContratDeTravailDuree = contrat_de_travail_duree.possible_values
+  contrat_travail == TypesContratDeTravailDuree.cdi
   ```
 #### Effets sur la Web API
 
