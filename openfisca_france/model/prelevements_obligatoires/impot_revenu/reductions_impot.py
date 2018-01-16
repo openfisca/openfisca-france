@@ -932,10 +932,13 @@ class dfppce(Variable):
         f7xu = foyer_fiscal('f7xu', period)
         f7xw = foyer_fiscal('f7xw', period)
         f7xy = foyer_fiscal('f7xy', period)
+        f7va = foyer_fiscal('f7va', period)
         f7vc = foyer_fiscal('f7vc', period)
-        P = parameters(period).impot_revenu.reductions_impots.dons
+        P = simulation.parameters_at(period.start).impot_revenu.reductions_impots.dons
+        P2 = simulation.parameters_at(period.start).impot_revenu.reductions_impots.donapd
 
-        base = min_(P.max_niv, f7uf + f7uh) + f7vc + f7xs + f7xt + f7xu + f7xw + f7xy
+        report_f7va = max_(0, f7va - P2.max)
+        base = min_(P.max_niv, f7uf + f7uh) + f7vc + f7xs + f7xt + f7xu + f7xw + f7xy + report_f7va
         max1 = P.taux_max_dons_partipo * rbg_int
         return P.taux_dons_oeuvres * min_(base, max1)
 
