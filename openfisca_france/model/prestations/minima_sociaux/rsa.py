@@ -817,13 +817,11 @@ class rsa_forfait_logement(Variable):
         participation_frais = famille.demandeur.menage('participation_frais', period)
         loyer = famille.demandeur.menage('loyer', period)
 
-        # 1 = Accédant à la propriété
-        # 2 = Propriétaire (non accédant) du logement
-        # 6 = Logé gratuitement par des parents, des amis ou l'employeur
         avantage_nature = or_(
-            (statut_occupation_logement == TypesStatutOccupationLogement.proprietaire) * not_(loyer),
+            ((statut_occupation_logement == TypesStatutOccupationLogement.primo_accedant) + (
+                    statut_occupation_logement == TypesStatutOccupationLogement.proprietaire)) * not_(loyer),
             (statut_occupation_logement == TypesStatutOccupationLogement.loge_gratuitement) * not_(participation_frais)
-            )
+        )
         avantage_al = aide_logement > 0
 
 
