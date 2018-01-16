@@ -126,33 +126,20 @@ class ppe_tp_sa(Variable):
             indicateur = indicateur & (individu('contrat_de_travail', mois) == 0)
         return indicateur
 
-class TypesExpositionAccident(Enum):
-    __order__ = 'faible moyen eleve tres_eleve'  # Needed to preserve the enum order in Python 2
-    faible = u"Faible"
-    moyen = u"Moyen"
-    eleve = u"Élevé"
-    tres_eleve = u"Très élevé"
-
 
 class exposition_accident(Variable):
     value_type = Enum
-    possible_values = TypesExpositionAccident
+    possible_values = TypesExpositionAccident  # defined in model/base.py
     default_value = TypesExpositionAccident.faible
     entity = Individu
     label = u"Exposition au risque pour les accidents du travail"
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
-class TypesExpositionPenibilite(Enum):
-    __order__ = 'nulle simple multiple'  # Needed to preserve the enum order in Python 2
-    nulle = u"Nulle, pas d'exposition de l'employé à un facteur de pénibilité"
-    simple = u"Simple, exposition à un seul facteur de pénibilité"
-    multiple = u"Multiple, exposition à plusieurs facteurs de pénibilité"
-
 
 class exposition_penibilite(Variable):
     value_type = Enum
-    possible_values = TypesExpositionPenibilite
+    possible_values = TypesExpositionPenibilite   # defined in model/base.py
     default_value = TypesExpositionPenibilite.nulle
     entity = Individu
     label = u"Exposition à un ou plusieurs facteurs de pénibilité"
@@ -160,16 +147,9 @@ class exposition_penibilite(Variable):
     set_input = set_input_dispatch_by_period
 
 
-class TypesAllegementModeRecouvrement(Enum):
-    __order__ = 'fin_d_annee anticipe progressif'  # Needed to preserve the enum order in Python 2
-    fin_d_annee = u"fin_d_annee"
-    anticipe = u"anticipe_regularisation_fin_de_periode"
-    progressif = u"progressif"
-
-
 class allegement_fillon_mode_recouvrement(Variable):
     value_type = Enum
-    possible_values = TypesAllegementModeRecouvrement
+    possible_values = TypesAllegementModeRecouvrement  # defined in model/base.py
     default_value = TypesAllegementModeRecouvrement.fin_d_annee
     entity = Individu
     label = u"Mode de recouvrement des allègements Fillon"
@@ -179,7 +159,7 @@ class allegement_fillon_mode_recouvrement(Variable):
 
 class allegement_cotisation_allocations_familiales_mode_recouvrement(Variable):
     value_type = Enum
-    possible_values = TypesAllegementModeRecouvrement
+    possible_values = TypesAllegementModeRecouvrement  # defined in model/base.py
     default_value = TypesAllegementModeRecouvrement.fin_d_annee
     entity = Individu
     label = u"Mode de recouvrement de l'allègement de la cotisation d'allocations familiales"
@@ -239,20 +219,9 @@ class indemnite_fin_contrat_due(Variable):
     definition_period = MONTH
 
 
-class TypesContratDeTravail(Enum):
-    __order__ = 'temps_plein temps_partiel forfait_heures_semaines forfait_heures_mois forfait_heures_annee forfait_jours_annee sans_objet'  # Needed to preserve the enum order in Python 2
-    temps_plein = u"temps_plein"
-    temps_partiel = u"temps_partiel"
-    forfait_heures_semaines = u"forfait_heures_semaines"
-    forfait_heures_mois = u"forfait_heures_mois"
-    forfait_heures_annee = u"forfait_heures_annee"
-    forfait_jours_annee = u"forfait_jours_annee"
-    sans_objet = u"sans_objet"
-
-
 class contrat_de_travail(Variable):
     value_type = Enum
-    possible_values = TypesContratDeTravail
+    possible_values = TypesContratDeTravail  # defined in model/base.py
     default_value = TypesContratDeTravail.temps_plein
     entity = Individu
     label = u"Type contrat de travail"
@@ -278,15 +247,9 @@ class contrat_de_travail_fin(Variable):
     set_input = set_input_dispatch_by_period
 
 
-class TypesContratDeTravailDuree(Enum):
-    __order__ = 'cdi cdd'  # Needed to preserve the enum order in Python 2
-    cdi = u"CDI"
-    cdd = u"CDD"
-
-
 class contrat_de_travail_duree(Variable):
     value_type = Enum
-    possible_values = TypesContratDeTravailDuree
+    possible_values = TypesContratDeTravailDuree  # defined in model/base.py
     default_value = TypesContratDeTravailDuree.cdi
     entity = Individu
     label = u"Type (durée determinée ou indéterminée) du contrat de travail"
@@ -294,16 +257,10 @@ class contrat_de_travail_duree(Variable):
     set_input = set_input_dispatch_by_period
 
 
-class TypesCotisationSocialeModeRecouvrement(Enum):
-    __order__ = 'mensuel annuel mensuel_strict'  # Needed to preserve the enum order in Python 2
-    mensuel = u"Mensuel avec régularisation en fin d'année"
-    annuel = u"Annuel"
-    mensuel_strict = u"Mensuel strict"
-
 
 class cotisation_sociale_mode_recouvrement(Variable):
     value_type = Enum
-    possible_values = TypesCotisationSocialeModeRecouvrement
+    possible_values = TypesCotisationSocialeModeRecouvrement   # defined in model/base.py
     default_value = TypesCotisationSocialeModeRecouvrement.mensuel
     entity = Individu
     label = u"Mode de recouvrement des cotisations sociales"
@@ -713,7 +670,6 @@ class indemnite_residence(Variable):
         salaire_de_base = individu('salaire_de_base', period)
         categorie_salarie = individu('categorie_salarie', period)
         zone_apl = individu.menage('zone_apl', period)
-        TypesZoneApl = zone_apl.possible_values
         _P = parameters(period)
 
         P = _P.fonc.indem_resid

@@ -760,7 +760,6 @@ class rsa_eligibilite_tns(Variable):
             plaf_vente = P_micro.specialbnc.marchandises.max
             plaf_service = P_micro.specialbnc.services.max
 
-            TypesTnsTypeActivite = type_activite.possible_values
             achat_revente = (type_activite == TypesTnsTypeActivite.achat_revente)
 
 

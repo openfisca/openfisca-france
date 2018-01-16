@@ -37,7 +37,6 @@ class conge_individuel_formation_cdd(Variable):
     # TODO: date de début
     def formula(self, simulation, period):
         contrat_de_travail_duree = simulation.calculate('contrat_de_travail_duree', period)
-        TypesContratDeTravailDuree = contrat_de_travail_duree.possible_values
         assiette_cotisations_sociales = simulation.calculate('assiette_cotisations_sociales', period)
         law = simulation.parameters_at(period.start).cotsoc.conge_individuel_formation
 
@@ -174,7 +173,6 @@ class fnal_tranche_a(Variable):
 
     def formula(self, simulation, period):
         taille_entreprise = simulation.calculate('taille_entreprise', period)
-        TypesTailleEntreprise = taille_entreprise.possible_values
         cotisation = apply_bareme(
             simulation,
             period,
@@ -198,7 +196,6 @@ class fnal_tranche_a_plus_20(Variable):
 
     def formula(self, simulation, period):
         taille_entreprise = simulation.calculate('taille_entreprise', period)
-        TypesTailleEntreprise = taille_entreprise.possible_values
         cotisation = apply_bareme(
             simulation,
             period,
@@ -246,7 +243,6 @@ class formation_professionnelle(Variable):
 
     def formula(self, simulation, period):
         taille_entreprise = simulation.calculate('taille_entreprise', period)
-        TypesTailleEntreprise = taille_entreprise.possible_values
         cotisation_0_9 = (taille_entreprise == TypesTailleEntreprise.moins_de_10) * apply_bareme(
             simulation,
             period, cotisation_type = 'employeur',

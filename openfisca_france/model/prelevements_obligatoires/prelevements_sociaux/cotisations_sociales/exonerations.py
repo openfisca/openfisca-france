@@ -147,7 +147,6 @@ class exoneration_cotisations_employeur_zfu(Variable):
     def formula(self, simulation, period):
         assiette_allegement = simulation.calculate('assiette_allegement', period)
         contrat_de_travail_duree = simulation.calculate('contrat_de_travail_duree', period)
-        TypesContratDeTravailDuree = contrat_de_travail_duree.possible_values
         contrat_de_travail_debut = simulation.calculate('contrat_de_travail_debut', period)
         contrat_de_travail_fin = simulation.calculate('contrat_de_travail_fin', period)
         effectif_entreprise = simulation.calculate('effectif_entreprise', period)
@@ -298,7 +297,6 @@ class exoneration_cotisations_employeur_zrr(Variable):
     def formula(self, simulation, period):
         assiette_allegement = simulation.calculate('assiette_allegement', period)
         contrat_de_travail_duree = simulation.calculate('contrat_de_travail_duree', period)
-        TypesContratDeTravailDuree = contrat_de_travail_duree.possible_values
         contrat_de_travail_debut = simulation.calculate('contrat_de_travail_debut', period)
         contrat_de_travail_fin = simulation.calculate('contrat_de_travail_fin', period)
         effectif_entreprise = simulation.calculate('effectif_entreprise', period)
@@ -346,8 +344,6 @@ class exoneration_is_creation_zrr(Variable):
         entreprise_benefice = simulation.calculate_add('entreprise_benefice', period)
         # TODO: MODIFIER avec création d'entreprise
         contrat_de_travail_duree = simulation.calculate('contrat_de_travail_duree', decembre)
-        TypesContratDeTravailDuree = contrat_de_travail_duree.possible_values
-
         contrat_de_travail_debut = simulation.calculate('contrat_de_travail_debut', decembre)
         contrat_de_travail_fin = simulation.calculate('contrat_de_travail_fin', decembre)
         duree_eligible = contrat_de_travail_fin > contrat_de_travail_debut + timedelta64(365, 'D')

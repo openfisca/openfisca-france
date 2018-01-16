@@ -7,7 +7,6 @@ import copy
 import logging
 
 from openfisca_france.model.base import *  # noqa
-from openfisca_france.model.revenus.activite.salarie import TypesCategorieSalarie
 
 DEBUG_SAL_TYPE = 'public_titulaire_etat'
 log = logging.getLogger(__name__)

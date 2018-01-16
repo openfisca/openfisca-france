@@ -14,6 +14,13 @@ class TypesActivite(Enum):
     inactif = u'Autre, inactif'
 
 
+class TypesAllegementModeRecouvrement(Enum):
+    __order__ = 'fin_d_annee anticipe progressif'  # Needed to preserve the enum order in Python 2
+    fin_d_annee = u"fin_d_annee"
+    anticipe = u"anticipe_regularisation_fin_de_periode"
+    progressif = u"progressif"
+
+
 class TypesCategorieSalarie(Enum):
     __order__ = 'prive_non_cadre prive_cadre public_titulaire_etat public_titulaire_militaire public_titulaire_territoriale public_titulaire_hospitaliere public_non_titulaire non_pertinent'  # Needed to preserve the enum order in Python 2
     prive_non_cadre = u'prive_non_cadre'
@@ -24,6 +31,45 @@ class TypesCategorieSalarie(Enum):
     public_titulaire_hospitaliere = u'public_titulaire_hospitaliere'
     public_non_titulaire = u'public_non_titulaire'
     non_pertinent = u'non_pertinent'
+
+
+class TypesContratDeTravail(Enum):
+    __order__ = 'temps_plein temps_partiel forfait_heures_semaines forfait_heures_mois forfait_heures_annee forfait_jours_annee sans_objet'  # Needed to preserve the enum order in Python 2
+    temps_plein = u"temps_plein"
+    temps_partiel = u"temps_partiel"
+    forfait_heures_semaines = u"forfait_heures_semaines"
+    forfait_heures_mois = u"forfait_heures_mois"
+    forfait_heures_annee = u"forfait_heures_annee"
+    forfait_jours_annee = u"forfait_jours_annee"
+    sans_objet = u"sans_objet"
+
+
+class TypesContratDeTravailDuree(Enum):
+    __order__ = 'cdi cdd'  # Needed to preserve the enum order in Python 2
+    cdi = u"CDI"
+    cdd = u"CDD"
+
+
+class TypesCotisationSocialeModeRecouvrement(Enum):
+    __order__ = 'mensuel annuel mensuel_strict'  # Needed to preserve the enum order in Python 2
+    mensuel = u"Mensuel avec régularisation en fin d'année"
+    annuel = u"Annuel"
+    mensuel_strict = u"Mensuel strict"
+
+
+class TypesExpositionAccident(Enum):
+    __order__ = 'faible moyen eleve tres_eleve'  # Needed to preserve the enum order in Python 2
+    faible = u"Faible"
+    moyen = u"Moyen"
+    eleve = u"Élevé"
+    tres_eleve = u"Très élevé"
+
+
+class TypesExpositionPenibilite(Enum):
+    __order__ = 'nulle simple multiple'  # Needed to preserve the enum order in Python 2
+    nulle = u"Nulle, pas d'exposition de l'employé à un facteur de pénibilité"
+    simple = u"Simple, exposition à un seul facteur de pénibilité"
+    multiple = u"Multiple, exposition à plusieurs facteurs de pénibilité"
 
 
 class TypesStatutMarital(Enum):
@@ -48,6 +94,30 @@ class TypesStatutOccupationLogement(Enum):
     loge_gratuitement = u"Logé gratuitement par des parents, des amis ou l'employeur"
     locataire_foyer = u"Locataire d'un foyer (résidence universitaire, maison de retraite, foyer de jeune travailleur, résidence sociale...)"
     sans_domicile = u"Sans domicile stable"
+
+
+class TypesTailleEntreprise(Enum):
+    __order__ = 'non_pertinent moins_de_10 de_10_a_19 de_20_a_249 plus_de_250'  # Needed to preserve the enum order in Python 2
+    non_pertinent = u"Non pertinent"
+    moins_de_10 = u"Moins de 10 salariés"
+    de_10_a_19 = u"De 10 à 19 salariés"
+    de_20_a_249 = u"De 20 à 249 salariés"
+    plus_de_250 = u"Plus de 250 salariés"
+
+
+class TypesTnsTypeActivite(Enum):
+    __order__ = 'achat_revente bic bnc'  # Needed to preserve the enum order in Python 2
+    achat_revente = u'achat_revente'
+    bic = u'bic'
+    bnc = u'bnc'
+
+
+class TypesZoneApl(Enum):
+    __order__ = 'non_renseigne zone_1 zone_2 zone_3'  # Needed to preserve the enum order in Python 2
+    non_renseigne = u"Non renseigné"
+    zone_1 = u"Zone 1"
+    zone_2 = u"Zone 2"
+    zone_3 = u"Zone 3"
 
 
 TAUX_DE_PRIME = 1 / 4  # primes_fonction_publique (hors suppl. familial et indemnité de résidence)/rémunération brute
