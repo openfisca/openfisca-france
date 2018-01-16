@@ -1,5 +1,106 @@
 # Changelog
 
+# 20.0.0 - [#846](https://github.com/openfisca/openfisca-france/pull/846)
+
+* Amélioration technique
+* Détails :
+- Modifie la façon dont les Enumerations sont définies et appelées.
+- Renomme des fichiers de parametres pour pouvoir simplifier des formules dont le resultat dépend de `TypesZoneAPL` (Fancy indexing).
+- Certains Enums étaient utilisées comme booléens. La valeur 0/1 a été remplacée par le membre d'Enum correspondant.
+
+Par exemple pour :
+
+```
+class TypesAAHNonCalculable(Enum):
+calculable = u"Calculable"
+intervention_CDAPH_necessaire = u"intervention_CDAPH_necessaire"
+```
+
+- `False`, ancien index 0, devient `TypesAAHNonCalculable.calculable`
+- `True`, ancien index 1, devient `TypesAAHNonCalculable.intervention_CDAPH_necessaire`
+
+Les valeurs possibles des Enums ainsi que les nouvelles valeurs par défaut sont disponibles sur legislation.openfisca.fr
+
+#### Pour les mainteneurs de formules:
+
+Les Enums commencent tous par `Types` et sont habituellement placés au-dessus des variables qui les calculent.
+
+Les Enums les plus fréquemments utilisés sont placés dans le fichier `model/base.py`.
+
+Référencer un Enum dans une formule :
+
+Si l'Enum est dans votre fichier ou dans `base.py`, référencez le directement dans la formule:
+```py
+statut_marital == TypesStatutMarital.celibataire
+```
+
+Sinon, importez-le dans votre formule avec l'attribut `possible_values` de la variable qui le calcule :
+
+```py
+TypesContratDeTravailDuree = contrat_de_travail_duree.possible_values
+contrat_travail == TypesContratDeTravailDuree.cdi
+```
+#### Effets sur la Web API
+
+Avant:
+
+```
+"individus": {
+"Bill": {
+"categorie_salarie": {
+"2017-01": 1
+}
+}
+```
+
+Maintenant:
+
+```
+"individus": {
+"Bill": {
+"categorie_salarie": {
+"2017-01": prive_cadre
+}
+}
+}
+```
+
+#### YAML testing
+Avant:
+
+```
+period: "2016-06"
+name:
+Taxe d'apprentissage
+relative_error_margin: 0.01
+input_variables:
+salaire_de_base: 1467
+categorie_salarie: 0
+output_variables:
+taxe_apprentissage: -9.97
+```
+Maintenant:
+
+```
+period: "2016-06"
+name:
+Taxe d'apprentissage
+relative_error_margin: 0.01
+input_variables:
+salaire_de_base: 1467
+categorie_salarie: prive_non_cadre
+output_variables:
+taxe_apprentissage: -9.97
+```
+
+#### Python API
+
+Lors du calcul d'une variable Enum en Python, l'output est un array de membres Enum.
+
+> Chaque membre d'Enum :
+> - a un attribut `name` qui contient sa clé (e.g. `nulle`)
+> - a un attribut `value` qui contient sa description (e.g. `u"Nulle, pas d'exposition de l'employé à un facteur de pénibilité"`)
+
 ### 19.0.4
 
 * Amélioration technique.
@@ -36,7 +137,8 @@
 * Détails :
   - Ajout de l'abattement forfaitaire de 5€ dans le calcul des aides au logement à partir du 01/10/2017.
 
-# 19.0.0
+# 19.0.0 - [#858](https://github.com/openfisca/openfisca-france/pull/858)
+>>>>>>> theirs
 
 * Améliorations techniques **non rétro-compatibles**
 * Détails :
