@@ -30,7 +30,7 @@ from openfisca_france.scripts.calculateur_impots.base import (
 app_name = os.path.splitext(os.path.basename(__file__))[0]
 log = logging.getLogger(app_name)
 tax_benefit_system = openfisca_france.FranceTaxBenefitSystem()
-tax_benefit_system.neutralize_variable('rpns_individu') # TODO: recheck this, for year before 2014 it doesn't work and the program stop due to rpns_individu
+#tax_benefit_system.neutralize_variable('rpns_individu') # TODO: recheck this, for year before 2014 it doesn't work and the program stop due to rpns_individu
 
 
 def compare(scenario, tested = False, verbose = False):
