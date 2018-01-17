@@ -514,3 +514,126 @@ class check_crds(Variable):
         crds_cap_bar = foyer_fiscal('crds_cap_bar', period)
 
         return crds_pv_mo + crds_fon + crds_cap_bar
+        
+        
+# -*- coding: utf-8 -*-
+
+
+
+
+class wrapper_csg(Variable):
+    value_type = float
+    entity = Famille
+    label = u"Contribution sociale généralisée annuelle"
+    definition_period = YEAR
+
+    def formula(famille, period):
+        csg_i = famille.members('csg', period, options = [ADD])
+        csg  = famille.sum(csg_i)
+        return csg
+                
+
+class wrapper_cotisations_salariales(Variable):
+    value_type = float
+    entity = Famille
+    label = u"cotisations salariales annuelles"
+    definition_period = YEAR
+
+    def formula(famille, period):
+        cotisations_salariales_i = famille.members('cotisations_salariales', period, options = [ADD])
+        cotisations_salariales = famille.sum(cotisations_salariales_i)
+      
+        return (cotisations_salariales)
+
+class cotisations_salariales_2018(Variable):
+    value_type = float
+    entity = Individu
+    label = u"cotisations salariales annuelles"
+    definition_period = YEAR
+
+    def formula(individu, period):
+        cotisations_salariales_01 = individu('cotisations_salariales', "2018-01")
+        cotisations_salariales_02 = individu('cotisations_salariales', "2018-02")
+        cotisations_salariales_03 = individu('cotisations_salariales', "2018-03")
+        cotisations_salariales_04 = individu('cotisations_salariales', "2018-04")
+        cotisations_salariales_05 = individu('cotisations_salariales', "2018-05")
+        cotisations_salariales_06 = individu('cotisations_salariales', "2018-06")
+        cotisations_salariales_07 = individu('cotisations_salariales', "2018-07")
+        cotisations_salariales_08 = individu('cotisations_salariales', "2018-08")
+        cotisations_salariales_09 = individu('cotisations_salariales', "2018-09")
+        cotisations_salariales_10 = individu('cotisations_salariales', "2018-10")
+        cotisations_salariales_11 = individu('cotisations_salariales', "2018-11")
+        cotisations_salariales_12 = individu('cotisations_salariales', "2018-11")
+        
+        return cotisations_salariales_01 +cotisations_salariales_02 +cotisations_salariales_03 +cotisations_salariales_04 +cotisations_salariales_05 +cotisations_salariales_06 +cotisations_salariales_07 +cotisations_salariales_08 +cotisations_salariales_09 +cotisations_salariales_10 +cotisations_salariales_11 +cotisations_salariales_12 
+
+
+class wrapper_cotisations_salariales_2018(Variable):
+    value_type = float
+    entity = Famille
+    label = u"cotisations salariales annuelles"
+    definition_period = YEAR
+
+    def formula(famille, period):
+        cotisations_salariales_i = famille.members('cotisations_salariales_2018', period, options = [ADD])
+        cotisations_salariales = famille.sum(cotisations_salariales_i)
+        
+        return cotisations_salariales
+
+
+class wrapper_apl(Variable):
+    value_type = float
+    entity = Famille
+    label = u"Aides logement nettes annuelles"
+    reference = "http://vosdroits.service-public.fr/particuliers/N20360.xhtml"
+    definition_period = YEAR
+
+    def formula(famille, period):
+        apl = famille('apl', period, options = [ADD])
+        als = famille('als', period, options = [ADD])
+        alf = famille('alf', period, options = [ADD])
+        crds_logement = famille('crds_logement', period, options = [ADD])
+
+        return apl + als + alf + crds_logement
+
+class wrapper_aah(Variable):
+    value_type = float
+    entity = Famille
+    label = u"aah annuelle"
+    reference = "http://vosdroits.service-public.fr/particuliers/N20360.xhtml"
+    definition_period = YEAR
+
+    def formula(famille, period):
+        aah_i = famille.members('aah', period, options = [ADD])
+        aah = famille.sum(aah_i)
+        return aah
+
+class wrapper_aspa(Variable):
+    value_type = float
+    entity = Famille
+    label = u"minimum vieillesse annuel"
+    reference = "http://vosdroits.service-public.fr/particuliers/N20360.xhtml"
+    definition_period = YEAR
+
+    def formula(famille, period):
+        aspa = famille('aspa', period, options = [ADD])
+
+        return aspa
+
+
+
+class wrapper_ppa(Variable):
+    value_type = float
+    entity = Famille
+    label = u"prime d activite annuelle"
+    definition_period = YEAR
+
+    def formula(famille, period):
+        ppa = famille('ppa', period, options = [ADD])
+      
+        return (ppa)
+
+
+
+
+
