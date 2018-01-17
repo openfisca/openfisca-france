@@ -84,14 +84,14 @@ class taux_degrevement_taxe_habitation(Variable):
         nbptr_i = menage.members.foyer_fiscal('nbptr', period)
         nbptr = menage.sum(nbptr_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)  # TODO: Beurk
     
-        rfr_i = menage.members.foyer_fiscal('rfr', period)
+        rfr_i = menage.members.foyer_fiscal('rfr', period.last_year)
         rfr = menage.sum(rfr_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
     
         seuil_degrevement_1 = P.degrevement.plafonds.plaf_degrevement_th_1 + P.degrevement.plafonds.plaf_degrevement_sup_th_1 * 2*min_(max_(0, (nbptr - 1)),1) + P.degrevement.plafonds.plaf_degrevement_sup2_th_1 * 2*max_(0, (nbptr - 2))
         seuil_degrevement_2 = P.degrevement.plafonds.plaf_degrevement_th_2 + P.degrevement.plafonds.plaf_degrevement_sup_th_2 * 2*min_(max_(0, (nbptr - 1)),1) + P.degrevement.plafonds.plaf_degrevement_sup2_th_2 * 2*max_(0, (nbptr - 2))
-            
+
         taux_lissage = max_(min_((seuil_degrevement_2-rfr)/(seuil_degrevement_2-seuil_degrevement_1),1),0)
-          
+
         abattement = P.degrevement.taux*taux_lissage
         
         return (abattement)
