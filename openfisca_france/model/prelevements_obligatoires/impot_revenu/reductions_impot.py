@@ -489,7 +489,6 @@ class cappme(Variable):
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         f7cf = foyer_fiscal('f7cf', period)
-        _P = parameters(period)
         P = parameters(period).impot_revenu.reductions_impots.cappme
 
         base = f7cf
@@ -504,7 +503,6 @@ class cappme(Variable):
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         f7cf = foyer_fiscal('f7cf', period)
         f7cl = foyer_fiscal('f7cl', period)
-        _P = parameters(period)
         P = parameters(period).impot_revenu.reductions_impots.cappme
 
         base = f7cf + f7cl
@@ -520,7 +518,6 @@ class cappme(Variable):
         f7cf = foyer_fiscal('f7cf', period)
         f7cl = foyer_fiscal('f7cl', period)
         f7cm = foyer_fiscal('f7cm', period)
-        _P = parameters(period)
         P = parameters(period).impot_revenu.reductions_impots.cappme
 
         base = f7cf + f7cl + f7cm
@@ -537,7 +534,6 @@ class cappme(Variable):
         f7cl = foyer_fiscal('f7cl', period)
         f7cm = foyer_fiscal('f7cm', period)
         f7cn = foyer_fiscal('f7cn', period)
-        _P = parameters(period)
         P = parameters(period).impot_revenu.reductions_impots.cappme
 
         base = f7cf + f7cl + f7cm + f7cn
@@ -555,7 +551,6 @@ class cappme(Variable):
         f7cm = foyer_fiscal('f7cm', period)
         f7cn = foyer_fiscal('f7cn', period)
         f7cu = foyer_fiscal('f7cu', period)
-        _P = parameters(period)
         P = parameters(period).impot_revenu.reductions_impots.cappme
 
         base = f7cf + f7cl + f7cm + f7cn + f7cu
@@ -575,7 +570,6 @@ class cappme(Variable):
         f7cn = foyer_fiscal('f7cn', period)
         f7cq = foyer_fiscal('f7cq', period)
         f7cu = foyer_fiscal('f7cu', period)
-        _P = parameters(period)
         P = parameters(period).impot_revenu.reductions_impots.cappme
 
         base = f7cl + f7cm + f7cn + f7cq
@@ -595,7 +589,6 @@ class cappme(Variable):
         f7cn = foyer_fiscal('f7cn', period)
         f7cq = foyer_fiscal('f7cq', period)
         f7cu = foyer_fiscal('f7cu', period)
-        _P = parameters(period)
         P = parameters(period).impot_revenu.reductions_impots.cappme
 
         #TODO: gérer les changements de situation familiale
@@ -619,7 +612,6 @@ class cappme(Variable):
         f7cn = foyer_fiscal('f7cn', period)
         f7cq = foyer_fiscal('f7cq', period)
         f7cu = foyer_fiscal('f7cu', period)
-        _P = parameters(period)
         P = parameters(period).impot_revenu.reductions_impots.cappme
 
         base = f7cl + f7cm
@@ -668,7 +660,6 @@ class creaen(Variable):
         '''
         f7fy = foyer_fiscal('f7fy', period)
         f7gy = foyer_fiscal('f7gy', period)
-        _P = parameters(period)
         P = parameters(period).impot_revenu.reductions_impots.creaen
 
         return (P.base * f7fy + P.hand * f7gy)
@@ -684,7 +675,6 @@ class creaen(Variable):
         f7hy = foyer_fiscal('f7hy', period)
         f7ky = foyer_fiscal('f7ky', period)
         f7iy = foyer_fiscal('f7iy', period)
-        _P = parameters(period)
         P = parameters(period).impot_revenu.reductions_impots.creaen
 
 
@@ -704,7 +694,6 @@ class creaen(Variable):
         f7iy = foyer_fiscal('f7iy', period)
         f7ly = foyer_fiscal('f7ly', period)
         f7my = foyer_fiscal('f7my', period)
-        _P = parameters(period)
         P = parameters(period).impot_revenu.reductions_impots.creaen
 
         return (P.base * ((f7jy + f7fy) + (f7hy + f7ly) / 2) +
@@ -717,7 +706,6 @@ class creaen(Variable):
         '''
         f7ly = foyer_fiscal('f7ly', period)
         f7my = foyer_fiscal('f7my', period)
-        _P = parameters(period)
         P = parameters(period).impot_revenu.reductions_impots.creaen
 
         return (P.base * (f7ly / 2) +
@@ -773,7 +761,6 @@ class dfppce(Variable):
         '''
         rbg_int = foyer_fiscal('rbg_int', period)
         f7uf = foyer_fiscal('f7uf', period)
-        _P = parameters(period)
         P = parameters(period).impot_revenu.reductions_impots.dons
 
         base = f7uf
@@ -788,7 +775,6 @@ class dfppce(Variable):
         rbg_int = foyer_fiscal('rbg_int', period)
         f7uf = foyer_fiscal('f7uf', period)
         f7xs = foyer_fiscal('f7xs', period)
-        _P = parameters(period)
         P = parameters(period).impot_revenu.reductions_impots.dons
 
         base = f7uf + f7xs
@@ -804,7 +790,6 @@ class dfppce(Variable):
         f7uf = foyer_fiscal('f7uf', period)
         f7xs = foyer_fiscal('f7xs', period)
         f7xt = foyer_fiscal('f7xt', period)
-        _P = parameters(period)
         P = parameters(period).impot_revenu.reductions_impots.dons
 
         base = f7uf + f7xs + f7xt
@@ -821,7 +806,6 @@ class dfppce(Variable):
         f7xs = foyer_fiscal('f7xs', period)
         f7xt = foyer_fiscal('f7xt', period)
         f7xu = foyer_fiscal('f7xu', period)
-        _P = parameters(period)
         P = parameters(period).impot_revenu.reductions_impots.dons
 
         base = f7uf + f7xs + f7xt + f7xu
@@ -839,7 +823,6 @@ class dfppce(Variable):
         f7xt = foyer_fiscal('f7xt', period)
         f7xu = foyer_fiscal('f7xu', period)
         f7xw = foyer_fiscal('f7xw', period)
-        _P = parameters(period)
         P = parameters(period).impot_revenu.reductions_impots.dons
 
         base = f7uf + f7xs + f7xt + f7xu + f7xw
@@ -858,7 +841,6 @@ class dfppce(Variable):
         f7xu = foyer_fiscal('f7xu', period)
         f7xw = foyer_fiscal('f7xw', period)
         f7xy = foyer_fiscal('f7xy', period)
-        _P = parameters(period)
         P = parameters(period).impot_revenu.reductions_impots.dons
 
         base = f7uf + f7xs + f7xt + f7xu + f7xw + f7xy
@@ -1239,7 +1221,6 @@ class domlog(Variable):
         f7ub = foyer_fiscal('f7ub', period)
         f7uc = foyer_fiscal('f7uc', period)
         f7uj = foyer_fiscal('f7uj', period)
-        _P = parameters(period)
         P = parameters(period).impot_revenu.reductions_impots.domlog
 
         return P.taux1 * f7uj + P.taux2 * (f7ua + f7ub + f7uc)
@@ -1254,7 +1235,6 @@ class domlog(Variable):
         f7uc = foyer_fiscal('f7uc', period)
         f7ui = foyer_fiscal('f7ui', period)
         f7uj = foyer_fiscal('f7uj', period)
-        _P = parameters(period)
         P = parameters(period).impot_revenu.reductions_impots.domlog
 
         return P.taux1 * f7uj + P.taux2 * (f7ua + f7ub + f7uc) + f7ui
@@ -1269,7 +1249,6 @@ class domlog(Variable):
         f7uc = foyer_fiscal('f7uc', period)
         f7ui = foyer_fiscal('f7ui', period)
         f7uj = foyer_fiscal('f7uj', period)
-        _P = parameters(period)
         P = parameters(period).impot_revenu.reductions_impots.domlog
 
         return P.taux1 * f7uj + P.taux2 * (f7ua + f7ub) + f7ui
@@ -1571,7 +1550,6 @@ class garext(Variable):
         f7ga = foyer_fiscal('f7ga', period)
         f7gb = foyer_fiscal('f7gb', period)
         f7gc = foyer_fiscal('f7gc', period)
-        _P = parameters(period)
         P = parameters(period).impot_revenu.credits_impot.garext
 
         max1 = P.plafond
@@ -1589,7 +1567,6 @@ class garext(Variable):
         f7ge = foyer_fiscal('f7ge', period)
         f7gf = foyer_fiscal('f7gf', period)
         f7gg = foyer_fiscal('f7gg', period)
-        _P = parameters(period)
         P = parameters(period).impot_revenu.credits_impot.garext
 
         max1 = P.plafond
@@ -1674,7 +1651,6 @@ class invfor(Variable):
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         f7un = foyer_fiscal('f7un', period)
-        _P = parameters(period)
         P = parameters(period).impot_revenu.reductions_impots.invfor
 
         seuil = P.seuil * (maries_ou_pacses + 1)
@@ -1685,7 +1661,6 @@ class invfor(Variable):
         Investissements forestiers pour 2006-2008
         '''
         f7un = foyer_fiscal('f7un', period)
-        _P = parameters(period)
         P = parameters(period).impot_revenu.reductions_impots.invfor
 
         return P.taux * f7un
@@ -1698,7 +1673,6 @@ class invfor(Variable):
         f7un = foyer_fiscal('f7un', period)
         f7up = foyer_fiscal('f7up', period)
         f7uq = foyer_fiscal('f7uq', period)
-        _P = parameters(period)
         P = parameters(period).impot_revenu.reductions_impots.invfor
 
         return P.taux * (min_(f7un, P.seuil * (maries_ou_pacses + 1)) + min_(f7up, P.ifortra_seuil * (maries_ou_pacses + 1)) +
@@ -1714,7 +1688,6 @@ class invfor(Variable):
         f7up = foyer_fiscal('f7up', period)
         f7uq = foyer_fiscal('f7uq', period)
         f7uu = foyer_fiscal('f7uu', period)
-        _P = parameters(period)
         P = parameters(period).impot_revenu.reductions_impots.invfor
 
         return (P.taux * (
@@ -1735,7 +1708,6 @@ class invfor(Variable):
         f7uq = foyer_fiscal('f7uq', period)
         f7uu = foyer_fiscal('f7uu', period)
         f7uv = foyer_fiscal('f7uv', period)
-        _P = parameters(period)
         P = parameters(period).impot_revenu.reductions_impots.invfor
 
         max0 = max_(0, P.ifortra_seuil * (maries_ou_pacses + 1) - f7ul)
@@ -1762,7 +1734,6 @@ class invfor(Variable):
         f7uu = foyer_fiscal('f7uu', period)
         f7uv = foyer_fiscal('f7uv', period)
         f7uw = foyer_fiscal('f7uw', period)
-        _P = parameters(period)
         P = parameters(period).impot_revenu.reductions_impots.invfor
 
         max0 = max_(0, P.ifortra_seuil * (maries_ou_pacses + 1) - f7ul)
@@ -1793,7 +1764,6 @@ class invfor(Variable):
         f7uv = foyer_fiscal('f7uv', period)
         f7uw = foyer_fiscal('f7uw', period)
         f7ux = foyer_fiscal('f7ux', period)
-        _P = parameters(period)
         P = parameters(period).impot_revenu.reductions_impots.invfor
 
         max0 = max_(0, P.ifortra_seuil * (maries_ou_pacses + 1) - f7ul)
@@ -1836,7 +1806,6 @@ class invlst(Variable):
         f7xm = foyer_fiscal('f7xm', period)
         f7xn = foyer_fiscal('f7xn', period)
         f7xo = foyer_fiscal('f7xo', period)
-        _P = parameters(period)
         P = parameters(period).impot_revenu.reductions_impots.invlst
 
         seuil1 = P.seuil1 * (1 + maries_ou_pacses)
@@ -1878,7 +1847,6 @@ class invlst(Variable):
         f7xm = foyer_fiscal('f7xm', period)
         f7xn = foyer_fiscal('f7xn', period)
         f7xo = foyer_fiscal('f7xo', period)
-        _P = parameters(period)
         P = parameters(period).impot_revenu.reductions_impots.invlst
 
         seuil1 = P.seuil1 * (1 + maries_ou_pacses)
@@ -1925,7 +1893,6 @@ class invlst(Variable):
         f7xp = foyer_fiscal('f7xp', period)
         f7xq = foyer_fiscal('f7xq', period)
         f7xr = foyer_fiscal('f7xr', period)
-        _P = parameters(period)
         P = parameters(period).impot_revenu.reductions_impots.invlst
 
         seuil1 = P.seuil1 * (1 + maries_ou_pacses)
@@ -1971,7 +1938,6 @@ class invlst(Variable):
         f7xv = foyer_fiscal('f7xv', period)
         f7xx = foyer_fiscal('f7xx', period)
         f7xz = foyer_fiscal('f7xz', period)
-        _P = parameters(period)
         P = parameters(period).impot_revenu.reductions_impots.invlst
 
         seuil1 = P.seuil1 * (1 + maries_ou_pacses)
@@ -2011,7 +1977,6 @@ class invlst(Variable):
         f7xq = foyer_fiscal('f7xq', period)
         f7xr = foyer_fiscal('f7xr', period)
         f7xv = foyer_fiscal('f7xv', period)
-        _P = parameters(period)
         P = parameters(period).impot_revenu.reductions_impots.invlst
 
         xi = P.taux_xi * (f7xf + f7xi + f7xp + f7xn + f7uy)
@@ -2462,7 +2427,6 @@ class saldom(Variable):
         '''
         f7df = foyer_fiscal('f7df', period)
         f7dg = foyer_fiscal('f7dg', period)
-        _P = parameters(period)
         P = parameters(period).impot_revenu.reductions_impots.salarie_domicile
 
         isinvalid = f7dg
@@ -2478,7 +2442,6 @@ class saldom(Variable):
         f7df = foyer_fiscal('f7df', period)
         f7dl = foyer_fiscal('f7dl', period)
         f7dg = foyer_fiscal('f7dg', period)
-        _P = parameters(period)
         P = parameters(period).impot_revenu.reductions_impots.salarie_domicile
 
         isinvalid = f7dg
@@ -2499,7 +2462,6 @@ class saldom(Variable):
         f7df = foyer_fiscal('f7df', period)
         f7dl = foyer_fiscal('f7dl', period)
         f7dg = foyer_fiscal('f7dg', period)
-        _P = parameters(period)
         P = parameters(period).impot_revenu.reductions_impots.salarie_domicile
 
         isinvalid = f7dg
@@ -2522,7 +2484,6 @@ class saldom(Variable):
         f7dl = foyer_fiscal('f7dl', period)
         f7dq = foyer_fiscal('f7dq', period)
         f7dg = foyer_fiscal('f7dg', period)
-        _P = parameters(period)
         P = parameters(period).impot_revenu.reductions_impots.salarie_domicile
 
         isinvalid = f7dg
@@ -2887,7 +2848,6 @@ class sofipe(Variable):
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         rbg_int = foyer_fiscal('rbg_int', period)
         f7gs = foyer_fiscal('f7gs', period)
-        _P = parameters(period)
         P = parameters(period).impot_revenu.reductions_impots.sofipe
 
         max1 = min_(P.max * (maries_ou_pacses + 1), P.base * rbg_int)  # page3 ligne 18
@@ -2910,7 +2870,6 @@ class spfcpi(Variable):
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         f7gq = foyer_fiscal('f7gq', period)
-        _P = parameters(period)
         P = parameters(period).impot_revenu.reductions_impots.spfcpi
 
         max1 = P.plafond_celibataire * (maries_ou_pacses + 1)
@@ -2925,7 +2884,6 @@ class spfcpi(Variable):
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         f7gq = foyer_fiscal('f7gq', period)
         f7fq = foyer_fiscal('f7fq', period)
-        _P = parameters(period)
         P = parameters(period).impot_revenu.reductions_impots.spfcpi
 
         max1 = P.plafond_celibataire * (maries_ou_pacses + 1)
@@ -2941,7 +2899,6 @@ class spfcpi(Variable):
         f7gq = foyer_fiscal('f7gq', period)
         f7fq = foyer_fiscal('f7fq', period)
         f7fm = foyer_fiscal('f7fm', period)
-        _P = parameters(period)
         P = parameters(period).impot_revenu.reductions_impots.spfcpi
 
         max1 = P.plafond_celibataire * (maries_ou_pacses + 1)
@@ -2960,7 +2917,6 @@ class spfcpi(Variable):
         f7fq = foyer_fiscal('f7fq', period)
         f7fm = foyer_fiscal('f7fm', period)
         f7fl = foyer_fiscal('f7fl', period)
-        _P = parameters(period)
         P = parameters(period).impot_revenu.reductions_impots.spfcpi
 
         max1 = P.plafond_celibataire * (maries_ou_pacses + 1)
