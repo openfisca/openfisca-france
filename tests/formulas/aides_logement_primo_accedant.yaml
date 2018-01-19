@@ -48,8 +48,6 @@
     aides_logement_primo_accedant: 0
 
 - name: AL Primo Accédant / Prêt remboursé
-  output_variables:
-    aide_logement: 0
   absolute_error_margin: 0.01
   period: 2018-01
   individus:
@@ -68,6 +66,8 @@
       depcom:
         2018-01: '55039'
       statut_occupation_logement:
-        2018-01: Accédant à la propriété
+        2018-01: primo_accedant
       personne_de_reference: demandeur
       enfants: []
+  output_variables:
+    aide_logement: 0
