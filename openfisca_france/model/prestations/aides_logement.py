@@ -923,7 +923,7 @@ class aides_logement_primo_accedant(Variable):
         K = famille('aides_logement_primo_accedant_k', period)
         Lo = famille('aides_logement_primo_accedant_loyer_minimal', period)
 
-        return K * max_(0, (L + C - Lo))
+        return (L > 0) * K * max_(0, (L + C - Lo))
 
 class aides_logement_primo_accedant_k(Variable):
     value_type = float

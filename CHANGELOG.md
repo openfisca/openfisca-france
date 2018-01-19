@@ -1,5 +1,13 @@
 # Changelog
 
+### 20.0.1 [#875](https://github.com/openfisca/openfisca-france/pull/875)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : toutes.
+* Zones impactées : `prestations/aides_logement.py`
+* Détails :
+- Garantie que l'aide au logement pour un foyer primo-accédant est nulle si le prêt est déjà remboursé.
+
 # 20.0.0 - [#846](https://github.com/openfisca/openfisca-france/pull/846)
 
 * Amélioration technique
@@ -101,7 +109,7 @@ Lors du calcul d'une variable Enum en Python, l'output est un array de membres E
 > - a un attribut `name` qui contient sa clé (e.g. `nulle`)
 > - a un attribut `value` qui contient sa description (e.g. `u"Nulle, pas d'exposition de l'employé à un facteur de pénibilité"`)
 
-### 19.0.4
+### 19.0.4 [#870](https://github.com/openfisca/openfisca-france/pull/870)
 
 * Amélioration technique.
 * Périodes concernées : toutes.
