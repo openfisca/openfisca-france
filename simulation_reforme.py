@@ -26,17 +26,17 @@ def init_profile(scenario):
         period = 'year:2016:7',
         parent1 = dict(
             age = 70,
-            retraite_brute = 4166*0.5*12*7,
+            retraite_brute = 500*12*7,
             # categorie_salarie = "prive_non_cadre", # prive_non_cadre ou public_titulaire_etat
             # taux_incapacite = 0.8,
             statut_marital = 1,
             ),
-        parent2 = dict(
-            age = 70,
-            retraite_brute = 4166*0.5*12*7,
-            # categorie_salarie = "prive_non_cadre", # prive_non_cadre ou public_titulaire_etat
-            statut_marital = 1,
-            ),
+        # parent2 = dict(
+        #     age = 70,
+        #     retraite_brute = 4166*0.5*12*7,
+        #     # categorie_salarie = "prive_non_cadre", # prive_non_cadre ou public_titulaire_etat
+        #     statut_marital = 1,
+        #     ),
         # enfants = [
         # dict(age = 9),
         # dict(age = 10),
@@ -46,7 +46,7 @@ def init_profile(scenario):
 
         menage = dict(loyer = 5000*7, # Annual basis
             cotisation_taxe_habitation = -624*7,
-            statut_occupation_logement = 3,
+            statut_occupation_logement = 5,
             zone_apl = 1,
 
             ),
@@ -72,9 +72,12 @@ reference_scenario = init_profile(tax_benefit_system.new_scenario())
 #Simulate the standard scenario
 reference_simulation = reference_scenario.new_simulation()
 
-# reform_simulation.calculate('taux_degrevement_taxe_habitation',"2018")
-# reform_simulation.calculate('rfr',"2017")
-# reform_simulation.calculate('csg',"2018")
+# reform_simulation.calculate('taux_csg_remplacement_2',"2016")
+# reform_simulation.calculate('taux_csg_remplacement_2',"2017")
+# reform_simulation.calculate('taux_csg_remplacement_2',"2018")
+# reference_simulation.calculate('taux_csg_remplacement_2',"2016")
+# reference_simulation.calculate('taux_csg_remplacement_2',"2017")
+# reference_simulation.calculate('taux_csg_remplacement_2',"2018")
 
 csg_2018 = (reference_simulation.calculate('wrapper_csg',"2018") - reform_simulation.calculate('wrapper_csg',"2018"))[0]
 csg_2019 = (reference_simulation.calculate('wrapper_csg',"2019") - reform_simulation.calculate('wrapper_csg',"2019"))[0]

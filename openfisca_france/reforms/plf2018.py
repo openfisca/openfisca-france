@@ -38,8 +38,8 @@ def modify_parameters(parameters):
     parameters.prestations.minima_sociaux.ppa.sur_bonification.montant_sur_bonification_max.update(period="2020", value=(40))
     parameters.prestations.minima_sociaux.ppa.sur_bonification.montant_sur_bonification_max.update(period="2021", value=(60))
     parameters.prestations.minima_sociaux.ppa.sur_bonification.montant_sur_bonification_max.update(period="2022", value=(60))
-    #     
-    
+
+
     #################################################
     # Article 7 du PLFSS : Bascule CSG cotisations :
     #################################################
@@ -73,21 +73,21 @@ def modify_parameters(parameters):
     parameters.prestations.minima_sociaux.aspa.plafond_ressources_seul.update(start = "2019-01-01", value=(9638.42+65*12))
     parameters.prestations.minima_sociaux.aspa.montant_annuel_seul.update(start = "2020-01-01", value=(9638.42+100*12))
     parameters.prestations.minima_sociaux.aspa.plafond_ressources_seul.update(start = "2020-01-01", value=(9638.42+100*12))
-    
+
     parameters.prestations.minima_sociaux.aspa.montant_annuel_couple.update(start = "2018-04-01", value=(14963.65+46.6*12))
     parameters.prestations.minima_sociaux.aspa.plafond_ressources_couple.update(start = "2018-04-01", value=(14963.65+46.6*12))
     parameters.prestations.minima_sociaux.aspa.montant_annuel_couple.update(start = "2019-01-01", value=(14963.65+101*12))
     parameters.prestations.minima_sociaux.aspa.plafond_ressources_couple.update(start = "2019-01-01", value=(14963.65+101*12))
     parameters.prestations.minima_sociaux.aspa.montant_annuel_couple.update(start = "2020-01-01", value=(14963.65+155.2*12))
     parameters.prestations.minima_sociaux.aspa.plafond_ressources_couple.update(start = "2020-01-01", value=(14963.65+155.2*12))
-    
+
     parameters.prestations.minima_sociaux.aah.montant.update(start = "2018-12-01", value=(860))
     parameters.prestations.minima_sociaux.aah.montant.update(start = "2019-12-01", value=(900))
-    
-    
-    #######################################################################
-    # Baisse forfaitaire des APL
-    #######################################################################
+
+
+    # #######################################################################
+    # # Baisse forfaitaire des APL
+    # #######################################################################
     parameters.prestations.aides_logement.autres.abattement_forfaitaire.update(start = "2017-10-01", value=(5))
 
     return parameters
