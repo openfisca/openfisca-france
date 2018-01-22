@@ -1,10 +1,16 @@
 # Changelog
 
-### 20.0.2 [#878](https://github.com/openfisca/openfisca-france/pull/878)
+### 20.0.3 [#879](https://github.com/openfisca/openfisca-france/pull/879)
 
 * Amélioration technique
 * Détails :
-  - Réduit la version d'OpenFisca-Core en attente de l'adaptation de France à Core v21.2
+  - Adapte France à OpenFisca Core v21.2
+
+### 20.0.2 [#878](https://github.com/openfisca/openfisca-france/pull/878)
+
+* Correction d'un crash
+* Détails :
+  - Fixe la version d'OpenFisca Core utilisée, la version v21.2 de Core n'étant à ce jour pas compatible avec OpenFisca France.
 
 ### 20.0.1 [#875](https://github.com/openfisca/openfisca-france/pull/875)
 
@@ -119,7 +125,7 @@ Lors du calcul d'une variable Enum en Python, l'output est un array de membres E
 
 * Amélioration technique.
 * Périodes concernées : toutes.
-* Zones impactées : `openfisca_france/model/prelevements_obligatoires/taxe_habitation.py.
+* Zones impactées : `openfisca_france/model/prelevements_obligatoires/taxe_habitation.py`.
 * Détails : Corrige la négation des booléens en utilisant de façon appropriée logical_not.
 
 ### 19.0.3 [#790](https://github.com/openfisca/openfisca-france/issues/790)
