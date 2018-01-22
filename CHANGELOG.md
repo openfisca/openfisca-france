@@ -1,5 +1,11 @@
 # Changelog
 
+### 20.0.2 [#878](https://github.com/openfisca/openfisca-france/pull/878)
+
+* Amélioration technique
+* Détails :
+  - Réduit la version d'OpenFisca-Core en attente de l'adaptation de France à Core v21.2
+
 ### 20.0.1 [#875](https://github.com/openfisca/openfisca-france/pull/875)
 
 * Évolution du système socio-fiscal.
