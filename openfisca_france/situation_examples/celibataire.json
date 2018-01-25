@@ -1,0 +1,27 @@
+{
+    "individus": {
+        "Alicia": {
+            "date_naissance": {
+                "ETERNITY": "1990-01-01"
+            }
+        }
+    },
+    "familles": {
+        "_": {
+            "parents": ["Alicia"]
+        }
+    },
+    "foyers_fiscaux": {
+        "_": {
+            "declarants": ["Alicia"]
+        }
+    },
+    "menages": {
+        "_": {
+            "personne_de_reference": ["Alicia"],
+            "revenu_disponible": {
+                "2017": null
+            }
+        }
+    }
+}

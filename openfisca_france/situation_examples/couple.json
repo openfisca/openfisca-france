@@ -1,0 +1,39 @@
+{
+    "individus": {
+        "Alicia": {
+            "date_naissance": {
+                "ETERNITY": "1990-01-01"
+            },
+            "salaire_net": {
+                "2017-01": 4000
+            }
+        },
+        "Bob": {
+            "date_naissance": {
+                "ETERNITY": "1991-06-01"
+            },
+            "salaire_net": {
+                "2017-01": 2500
+            }
+        }
+    },
+    "familles": {
+        "_": {
+            "parents": ["Alicia", "Bob"]
+        }
+    },
+    "foyers_fiscaux": {
+        "_": {
+            "declarants": ["Alicia", "Bob"]
+        }
+    },
+    "menages": {
+        "_": {
+            "personne_de_reference": ["Alicia"],
+            "conjoint": ["Bob"],
+            "revenu_disponible": {
+                "2017": null
+            }
+        }
+    }
+}
