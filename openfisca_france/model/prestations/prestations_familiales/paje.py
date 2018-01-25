@@ -320,6 +320,7 @@ class paje_prepare(Variable):
     entity = Famille
     set_input = set_input_divide_by_period
     label = u"Prestation Partagée d’éducation de l’Enfant (PreParE)"
+    reference = "http://vosdroits.service-public.fr/particuliers/F313.xhtml"
     definition_period = MONTH
 
 
