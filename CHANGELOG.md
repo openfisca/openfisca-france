@@ -1,5 +1,22 @@
 # Changelog
 
+### 20.0.5 [#882](https://github.com/openfisca/openfisca-france/pull/882)
+
+* Amélioration technique
+* Détails :
+  - Introduit des exemples de situations prêts à l'emploi
+  - Les fichiers `json` situés dans le repertoire `openfisca_france/situation_examples/` peuvent être envoyés à l'API Web
+  - En Python, une simulation peut être rapidement générée à partir de ces fichiers :
+
+```py
+from openfisca_france import CountryTaxBenefitSystem
+from openfisca_core.simulations import Simulation
+from openfisca_france.situation_examples import celibataire
+
+tax_benefit_system = CountryTaxBenefitSystem()
+simulation = Simulation(tax_benefit_system = tax_benefit_system, simulation_json = celibataire)
+```
+
 ### 20.0.3 [#879](https://github.com/openfisca/openfisca-france/pull/879)
 
 * Amélioration technique
