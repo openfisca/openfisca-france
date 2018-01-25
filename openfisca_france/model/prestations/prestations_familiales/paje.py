@@ -66,6 +66,18 @@ class paje(Variable):
     reference = "http://www.caf.fr/aides-et-services/s-informer-sur-les-aides/petite-enfance/la-prestation-d-accueil-du-jeune-enfant-paje"  # noqa
     definition_period = MONTH
 
+    def formula_2017_04(famille, period):
+        '''
+        Prestation d'accueil du jeune enfant
+        '''
+        paje_base = famille('paje_base', period)
+        paje_naissance = famille('paje_naissance', period)
+        paje_prepare = famille('paje_prepare', period)
+        paje_cmg = famille('paje_cmg', period)
+        paje_colca = famille('paje_colca', period)
+
+        return paje_base + (paje_naissance + paje_prepare + paje_cmg + paje_colca) / 12
+
     def formula_2004_01_01(famille, period):
         '''
         Prestation d'accueil du jeune enfant
