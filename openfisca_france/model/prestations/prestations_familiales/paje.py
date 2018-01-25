@@ -63,7 +63,7 @@ class paje(Variable):
     value_type = float
     entity = Famille
     label = u"PAJE - Ensemble des prestations"
-    reference = "http://www.caf.fr/aides-et-services/s-informer-sur-les-aides/petite-enfance/la-prestation-d-accueil-du-jeune-enfant-paje-0"  # noqa
+    reference = "http://www.caf.fr/aides-et-services/s-informer-sur-les-aides/petite-enfance/la-prestation-d-accueil-du-jeune-enfant-paje"  # noqa
     definition_period = MONTH
 
     def formula_2004_01_01(famille, period):
