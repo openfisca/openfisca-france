@@ -37,9 +37,9 @@ class csg_cap_bar(Variable):
     reference = u"http://fr.wikipedia.org/wiki/Contribution_sociale_généralisée"
     definition_period = YEAR
 
-    def formula(self, simulation, period):
-        rev_cap_bar = simulation.calculate_add('rev_cap_bar', period)
-        _P = simulation.parameters_at(period.start)
+    def formula(foyer_fiscal, period, parameters):
+        rev_cap_bar = foyer_fiscal('rev_cap_bar', period, options = [ADD])
+        _P = parameters(period)
 
         return -rev_cap_bar * _P.prelevements_sociaux.contributions.csg.capital.glob
 
@@ -52,9 +52,9 @@ class crds_cap_bar(Variable):
     reference = "http://fr.wikipedia.org/wiki/Contribution_pour_le_remboursement_de_la_dette_sociale"
     definition_period = YEAR
 
-    def formula(self, simulation, period):
-        rev_cap_bar = simulation.calculate_add('rev_cap_bar', period)
-        _P = simulation.parameters_at(period.start).taxation_capital.prelevements_sociaux
+    def formula(foyer_fiscal, period, parameters):
+        rev_cap_bar = foyer_fiscal('rev_cap_bar', period, options = [ADD])
+        _P = parameters(period).taxation_capital.prelevements_sociaux
 
         return -rev_cap_bar * _P.crds.revenus_du_patrimoine
 
@@ -67,30 +67,30 @@ class prelsoc_cap_bar(Variable):
     reference = u"http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&paf_gm=content&typePage=cpr02&sfid=501&espId=1&impot=CS"  # noqa
     definition_period = YEAR
 
-    def formula_2002_01_01(self, simulation, period):
-        rev_cap_bar = simulation.calculate_add('rev_cap_bar', period)
-        P = simulation.parameters_at(period.start).taxation_capital.prelevements_sociaux
+    def formula_2002_01_01(foyer_fiscal, period, parameters):
+        rev_cap_bar = foyer_fiscal('rev_cap_bar', period, options = [ADD])
+        P = parameters(period).taxation_capital.prelevements_sociaux
 
         total = P.prelevement_social.revenus_du_patrimoine
         return -rev_cap_bar * total
 
-    def formula_2006_01_01(self, simulation, period):
-        rev_cap_bar = simulation.calculate_add('rev_cap_bar', period)
-        P = simulation.parameters_at(period.start).taxation_capital.prelevements_sociaux
+    def formula_2006_01_01(foyer_fiscal, period, parameters):
+        rev_cap_bar = foyer_fiscal('rev_cap_bar', period, options = [ADD])
+        P = parameters(period).taxation_capital.prelevements_sociaux
 
         total = P.prelevement_social.revenus_du_patrimoine + P.caps.revenus_du_patrimoine
         return -rev_cap_bar * total
 
-    def formula_2009_01_01(self, simulation, period):
-        rev_cap_bar = simulation.calculate_add('rev_cap_bar', period)
-        P = simulation.parameters_at(period.start).taxation_capital.prelevements_sociaux
+    def formula_2009_01_01(foyer_fiscal, period, parameters):
+        rev_cap_bar = foyer_fiscal('rev_cap_bar', period, options = [ADD])
+        P = parameters(period).taxation_capital.prelevements_sociaux
 
         total = P.prelevement_social.revenus_du_patrimoine + P.caps.revenus_du_patrimoine + P.caps.rsa
         return -rev_cap_bar * total
 
-    def formula_2012_01_01(self, simulation, period):
-        rev_cap_bar = simulation.calculate_add('rev_cap_bar', period)
-        P = simulation.parameters_at(period.start).taxation_capital.prelevements_sociaux
+    def formula_2012_01_01(foyer_fiscal, period, parameters):
+        rev_cap_bar = foyer_fiscal('rev_cap_bar', period, options = [ADD])
+        P = parameters(period).taxation_capital.prelevements_sociaux
 
         total = (
             P.prelevement_social.revenus_du_patrimoine + P.caps.revenus_du_patrimoine + P.caps.rsa +
@@ -98,9 +98,9 @@ class prelsoc_cap_bar(Variable):
             )
         return -rev_cap_bar * total
 
-    def formula_2013_01_01(self, simulation, period):
-        rev_cap_bar = simulation.calculate_add('rev_cap_bar', period)
-        P = simulation.parameters_at(period.start).taxation_capital.prelevements_sociaux
+    def formula_2013_01_01(foyer_fiscal, period, parameters):
+        rev_cap_bar = foyer_fiscal('rev_cap_bar', period, options = [ADD])
+        P = parameters(period).taxation_capital.prelevements_sociaux
 
         total = (
             P.prelevement_social.revenus_du_patrimoine + P.caps.revenus_du_patrimoine +
@@ -116,12 +116,12 @@ class csg_pv_mo(Variable):
     reference = "http://vosdroits.service-public.fr/particuliers/F21618.xhtml"
     definition_period = YEAR
 
-    def formula(self, simulation, period):
+    def formula(foyer_fiscal, period, parameters):
         """
         Calcule la CSG sur les plus-values de cession mobilière
         """
-        f3vg = simulation.calculate('f3vg', period)
-        _P = simulation.parameters_at(period.start)
+        f3vg = foyer_fiscal('f3vg', period)
+        _P = parameters(period)
 
         return -f3vg * _P.prelevements_sociaux.contributions.csg.capital.glob
 
@@ -133,12 +133,12 @@ class crds_pv_mo(Variable):
     reference = "http://fr.wikipedia.org/wiki/Contribution_pour_le_remboursement_de_la_dette_sociale"
     definition_period = YEAR
 
-    def formula(self, simulation, period):
+    def formula(foyer_fiscal, period, parameters):
         """
         Calcule la CRDS sur les plus-values de cession mobilière
         """
-        f3vg = simulation.calculate('f3vg', period)
-        _P = simulation.parameters_at(period.start).taxation_capital.prelevements_sociaux
+        f3vg = foyer_fiscal('f3vg', period)
+        _P = parameters(period).taxation_capital.prelevements_sociaux
 
         return -f3vg * _P.crds.revenus_du_patrimoine
 
@@ -150,47 +150,47 @@ class prelsoc_pv_mo(Variable):
     reference = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&paf_dm=popup&paf_gm=content&typePage=cpr02&sfid=501&espId=1&impot=CS"  # noqa
     definition_period = YEAR
 
-    def formula_2002_01_01(self, simulation, period):
+    def formula_2002_01_01(foyer_fiscal, period, parameters):
         """
         Calcule le prélèvement social sur les plus-values
         de cession de valeurs mobilières
         """
-        f3vg = simulation.calculate('f3vg', period)
-        _P = simulation.parameters_at(period.start)
+        f3vg = foyer_fiscal('f3vg', period)
+        _P = parameters(period)
 
         P = _P.taxation_capital.prelevements_sociaux
         total = P.prelevement_social.revenus_du_patrimoine
         return -f3vg * total
 
-    def formula_2006_01_01(self, simulation, period):
+    def formula_2006_01_01(foyer_fiscal, period, parameters):
         """
         Calcule le prélèvement social sur les plus-values
         de cession de valeurs mobilières
         """
-        f3vg = simulation.calculate('f3vg', period)
-        _P = simulation.parameters_at(period.start)
+        f3vg = foyer_fiscal('f3vg', period)
+        _P = parameters(period)
 
         P = _P.taxation_capital.prelevements_sociaux
         total = P.prelevement_social.revenus_du_patrimoine + P.caps.revenus_du_patrimoine
         return -f3vg * total
 
-    def formula_2009_01_01(self, simulation, period):
+    def formula_2009_01_01(foyer_fiscal, period, parameters):
         """
         Calcule le prélèvement social sur les plus-values de cession de valeurs mobilières
         """
-        f3vg = simulation.calculate('f3vg', period)
-        _P = simulation.parameters_at(period.start)
+        f3vg = foyer_fiscal('f3vg', period)
+        _P = parameters(period)
 
         P = _P.taxation_capital.prelevements_sociaux
         total = P.prelevement_social.revenus_du_patrimoine + P.caps.revenus_du_patrimoine + P.caps.rsa
         return -f3vg * total
 
-    def formula_2013_01_01(self, simulation, period):
+    def formula_2013_01_01(foyer_fiscal, period, parameters):
         """
         Calcule le prélèvement social sur les plus-values de cession de valeurs mobilières
         """
-        f3vg = simulation.calculate('f3vg', period)
-        _P = simulation.parameters_at(period.start)
+        f3vg = foyer_fiscal('f3vg', period)
+        _P = parameters(period)
 
         P = _P.taxation_capital.prelevements_sociaux
         total = P.prelevement_social.revenus_du_patrimoine + P.caps.revenus_du_patrimoine
@@ -206,12 +206,12 @@ class csg_pv_immo(Variable):
     reference = "http://fr.wikipedia.org/wiki/Contribution_sociale_g%C3%A9n%C3%A9ralis%C3%A9e"
     definition_period = YEAR
 
-    def formula(self, simulation, period):
+    def formula(foyer_fiscal, period, parameters):
         """
         Calcule la CSG sur les plus-values de cession immobilière
         """
-        f3vz = simulation.calculate('f3vz', period)
-        _P = simulation.parameters_at(period.start)
+        f3vz = foyer_fiscal('f3vz', period)
+        _P = parameters(period)
 
         return -f3vz * _P.prelevements_sociaux.contributions.csg.capital.glob
 
@@ -223,12 +223,12 @@ class crds_pv_immo(Variable):
     reference = "http://fr.wikipedia.org/wiki/Contribution_pour_le_remboursement_de_la_dette_sociale"
     definition_period = YEAR
 
-    def formula(self, simulation, period):
+    def formula(foyer_fiscal, period, parameters):
         """
         Calcule la CRDS sur les plus-values de cession immobilière
         """
-        f3vz = simulation.calculate('f3vz', period)
-        _P = simulation.parameters_at(period.start).taxation_capital.prelevements_sociaux
+        f3vz = foyer_fiscal('f3vz', period)
+        _P = parameters(period).taxation_capital.prelevements_sociaux
 
         return -f3vz * _P.crds.revenus_du_patrimoine
 
@@ -240,47 +240,47 @@ class prelsoc_pv_immo(Variable):
     reference = "http://www.pap.fr/argent/impots/les-plus-values-immobilieres/a1314/l-imposition-de-la-plus-value-immobiliere"
     definition_period = YEAR
 
-    def formula_2002_01_01(self, simulation, period):
+    def formula_2002_01_01(foyer_fiscal, period, parameters):
         """
         Calcule le prélèvement social sur les plus-values de cession immobilière
         """
-        f3vz = simulation.calculate('f3vz', period)
-        _P = simulation.parameters_at(period.start)
+        f3vz = foyer_fiscal('f3vz', period)
+        _P = parameters(period)
 
         P = _P.taxation_capital.prelevements_sociaux
         total = P.prelevement_social.revenus_du_patrimoine
 
         return -f3vz * total
 
-    def formula_2006_01_01(self, simulation, period):
+    def formula_2006_01_01(foyer_fiscal, period, parameters):
         """
         Calcule le prélèvement social sur les plus-values de cession immobilière
         """
-        f3vz = simulation.calculate('f3vz', period)
-        _P = simulation.parameters_at(period.start)
+        f3vz = foyer_fiscal('f3vz', period)
+        _P = parameters(period)
 
         P = _P.taxation_capital.prelevements_sociaux
         total = P.prelevement_social.revenus_du_patrimoine + P.caps.revenus_du_patrimoine
 
         return -f3vz * total
 
-    def formula_2009_01_01(self, simulation, period):
+    def formula_2009_01_01(foyer_fiscal, period, parameters):
         """
         Calcule le prélèvement social sur les plus-values de cession immobilière
         """
-        f3vz = simulation.calculate('f3vz', period)
-        _P = simulation.parameters_at(period.start)
+        f3vz = foyer_fiscal('f3vz', period)
+        _P = parameters(period)
 
         P = _P.taxation_capital.prelevements_sociaux
         total = P.prelevement_social.revenus_du_patrimoine + P.caps.revenus_du_patrimoine + P.caps.rsa
         return -f3vz * total
 
-    def formula_2013_01_01(self, simulation, period):
+    def formula_2013_01_01(foyer_fiscal, period, parameters):
         """
         Calcule le prélèvement social sur les plus-values de cession immobilière
         """
-        f3vz = simulation.calculate('f3vz', period)
-        _P = simulation.parameters_at(period.start)
+        f3vz = foyer_fiscal('f3vz', period)
+        _P = parameters(period)
 
         P = _P.taxation_capital.prelevements_sociaux
         total = P.prelevement_social.revenus_du_patrimoine + P.caps.revenus_du_patrimoine
@@ -296,13 +296,13 @@ class csg_fon(Variable):
     reference = "http://fr.wikipedia.org/wiki/Contribution_sociale_g%C3%A9n%C3%A9ralis%C3%A9e"
     definition_period = YEAR
 
-    def formula(self, simulation, period):
+    def formula(foyer_fiscal, period, parameters):
         '''
         Calcule la CSG sur les revenus fonciers
         Attention : assiette CSG = asiette IR valable 2006-2014 mais pourrait changer
         '''
-        rev_cat_rfon = simulation.calculate('rev_cat_rfon', period)
-        _P = simulation.parameters_at(period.start)
+        rev_cat_rfon = foyer_fiscal('rev_cat_rfon', period)
+        _P = parameters(period)
 
         return -rev_cat_rfon * _P.prelevements_sociaux.contributions.csg.capital.glob
 
@@ -314,13 +314,13 @@ class crds_fon(Variable):
     reference = "http://vosdroits.service-public.fr/particuliers/F2329.xhtml"
     definition_period = YEAR
 
-    def formula(self, simulation, period):
+    def formula(foyer_fiscal, period, parameters):
         '''
         Calcule la CRDS sur les revenus fonciers
         Attention : assiette CSG = asiette IR valable 2006-2014 mais pourrait changer
         '''
-        rev_cat_rfon = simulation.calculate('rev_cat_rfon', period)
-        _P = simulation.parameters_at(period.start).taxation_capital.prelevements_sociaux
+        rev_cat_rfon = foyer_fiscal('rev_cat_rfon', period)
+        _P = parameters(period).taxation_capital.prelevements_sociaux
 
         return -rev_cat_rfon * _P.crds.revenus_du_patrimoine
 
@@ -332,51 +332,51 @@ class prelsoc_fon(Variable):
     reference = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&paf_dm=popup&paf_gm=content&typePage=cpr02&sfid=501&espId=1&impot=CS"  # noqa
     definition_period = YEAR
 
-    def formula_2002_01_01(self, simulation, period):
+    def formula_2002_01_01(foyer_fiscal, period, parameters):
         '''
         Calcule le prélèvement social sur les revenus fonciers
         TODO : assiette CSG = asiette IR valable 2006-2014 mais pourrait changer
         '''
-        rev_cat_rfon = simulation.calculate('rev_cat_rfon', period)
-        _P = simulation.parameters_at(period.start)
+        rev_cat_rfon = foyer_fiscal('rev_cat_rfon', period)
+        _P = parameters(period)
 
         P = _P.taxation_capital.prelevements_sociaux
         total = P.prelevement_social.revenus_du_patrimoine
 
         return -rev_cat_rfon * total
 
-    def formula_2006_01_01(self, simulation, period):
+    def formula_2006_01_01(foyer_fiscal, period, parameters):
         '''
         Calcule le prélèvement social sur les revenus fonciers
         Attention : assiette CSG = asiette IR valable 2006-2014 mais pourrait changer
         '''
-        rev_cat_rfon = simulation.calculate('rev_cat_rfon', period)
-        _P = simulation.parameters_at(period.start)
+        rev_cat_rfon = foyer_fiscal('rev_cat_rfon', period)
+        _P = parameters(period)
 
         P = _P.taxation_capital.prelevements_sociaux
         total = P.prelevement_social.revenus_du_patrimoine + P.caps.revenus_du_patrimoine
 
         return -rev_cat_rfon * total
 
-    def formula_2009_01_01(self, simulation, period):
+    def formula_2009_01_01(foyer_fiscal, period, parameters):
         '''
         Calcule le prélèvement social sur les revenus fonciers
         Attention : assiette CSG = assiette IR valable 2006-2014 mais pourrait changer
         '''
-        rev_cat_rfon = simulation.calculate('rev_cat_rfon', period)
-        _P = simulation.parameters_at(period.start)
+        rev_cat_rfon = foyer_fiscal('rev_cat_rfon', period)
+        _P = parameters(period)
 
         P = _P.taxation_capital.prelevements_sociaux
         total = P.prelevement_social.revenus_du_patrimoine + P.caps.revenus_du_patrimoine + P.caps.rsa
         return -rev_cat_rfon * total
 
-    def formula_2013_01_01(self, simulation, period):
+    def formula_2013_01_01(foyer_fiscal, period, parameters):
         '''
         Calcule le prélèvement social sur les revenus fonciers
         Attention : assiette CSG = assiette IR valable 2006-2014 mais pourrait changer
         '''
-        rev_cat_rfon = simulation.calculate('rev_cat_rfon', period)
-        _P = simulation.parameters_at(period.start)
+        rev_cat_rfon = foyer_fiscal('rev_cat_rfon', period)
+        _P = parameters(period)
 
         P = _P.taxation_capital.prelevements_sociaux
         total = P.prelevement_social.revenus_du_patrimoine + P.caps.revenus_du_patrimoine
@@ -394,9 +394,9 @@ class csg_cap_lib(Variable):
     reference = u"http://fr.wikipedia.org/wiki/Contribution_sociale_généralisée"
     definition_period = YEAR
 
-    def formula(self, simulation, period):
-        rev_cap_lib = simulation.calculate_add('rev_cap_lib', period)
-        _P = simulation.parameters_at(period.start)
+    def formula(foyer_fiscal, period, parameters):
+        rev_cap_lib = foyer_fiscal('rev_cap_lib', period, options = [ADD])
+        _P = parameters(period)
 
         return -rev_cap_lib * _P.prelevements_sociaux.contributions.csg.capital.glob
 
@@ -409,9 +409,9 @@ class crds_cap_lib(Variable):
     reference = u"http://fr.wikipedia.org/wiki/Contribution_pour_le_remboursement_de_la_dette_sociale"
     definition_period = YEAR
 
-    def formula(self, simulation, period):
-        rev_cap_lib = simulation.calculate_add('rev_cap_lib', period)
-        _P = simulation.parameters_at(period.start).taxation_capital.prelevements_sociaux
+    def formula(foyer_fiscal, period, parameters):
+        rev_cap_lib = foyer_fiscal('rev_cap_lib', period, options = [ADD])
+        _P = parameters(period).taxation_capital.prelevements_sociaux
 
         return -rev_cap_lib * _P.crds.revenus_du_patrimoine
 
@@ -424,9 +424,9 @@ class prelsoc_cap_lib(Variable):
     reference = u"http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&paf_dm=popup&paf_gm=content&typePage=cpr02&sfid=501&espId=1&impot=CS"  # noqa
     definition_period = YEAR
 
-    def formula(self, simulation, period):
-        rev_cap_lib = simulation.calculate_add('rev_cap_lib', period)
-        prelsoc = simulation.parameters_at(period.start).taxation_capital.prelevements_sociaux
+    def formula(foyer_fiscal, period, parameters):
+        rev_cap_lib = foyer_fiscal('rev_cap_lib', period, options = [ADD])
+        prelsoc = parameters(period).taxation_capital.prelevements_sociaux
 
         start_year = period.start.year
         if start_year < 2006:

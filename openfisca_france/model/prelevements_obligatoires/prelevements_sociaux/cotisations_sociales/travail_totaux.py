@@ -20,11 +20,11 @@ class cotisations_employeur(Variable):
     definition_period = MONTH
     calculate_output = calculate_output_add
 
-    def formula(self, simulation, period):
-        cotisations_employeur_contributives = simulation.calculate('cotisations_employeur_contributives', period)
-        cotisations_employeur_non_contributives = simulation.calculate(
+    def formula(individu, period, parameters):
+        cotisations_employeur_contributives = individu('cotisations_employeur_contributives', period)
+        cotisations_employeur_non_contributives = individu(
             'cotisations_employeur_non_contributives', period)
-        cotisations_employeur_main_d_oeuvre = simulation.calculate('cotisations_employeur_main_d_oeuvre', period)
+        cotisations_employeur_main_d_oeuvre = individu('cotisations_employeur_main_d_oeuvre', period)
 
         return (
             cotisations_employeur_contributives +
@@ -40,22 +40,22 @@ class cotisations_employeur_contributives(Variable):
     set_input = set_input_divide_by_period
     definition_period = MONTH
 
-    def formula(self, simulation, period):
-        ags = simulation.calculate('ags', period)
-        agff_employeur = simulation.calculate_add('agff_employeur', period)
-        agirc_employeur = simulation.calculate_add('agirc_employeur', period)
-        agirc_gmp_employeur = simulation.calculate_add('agirc_gmp_employeur', period)
-        apec_employeur = simulation.calculate('apec_employeur', period)
-        arrco_employeur = simulation.calculate('arrco_employeur', period)
-        chomage_employeur = simulation.calculate('chomage_employeur', period)
-        cotisation_exceptionnelle_temporaire_employeur = simulation.calculate(
+    def formula(individu, period, parameters):
+        ags = individu('ags', period)
+        agff_employeur = individu('agff_employeur', period, options = [ADD])
+        agirc_employeur = individu('agirc_employeur', period, options = [ADD])
+        agirc_gmp_employeur = individu('agirc_gmp_employeur', period, options = [ADD])
+        apec_employeur = individu('apec_employeur', period)
+        arrco_employeur = individu('arrco_employeur', period)
+        chomage_employeur = individu('chomage_employeur', period)
+        cotisation_exceptionnelle_temporaire_employeur = individu(
             'cotisation_exceptionnelle_temporaire_employeur', period)
-        fonds_emploi_hospitalier = simulation.calculate_add('fonds_emploi_hospitalier', period)
-        ircantec_employeur = simulation.calculate_add('ircantec_employeur', period)
-        pension_civile_employeur = simulation.calculate_add('pension_civile_employeur', period)
-        rafp_employeur = simulation.calculate_add('rafp_employeur', period)
-        vieillesse_deplafonnee_employeur = simulation.calculate_add('vieillesse_deplafonnee_employeur', period)
-        vieillesse_plafonnee_employeur = simulation.calculate_add('vieillesse_plafonnee_employeur', period)
+        fonds_emploi_hospitalier = individu('fonds_emploi_hospitalier', period, options = [ADD])
+        ircantec_employeur = individu('ircantec_employeur', period, options = [ADD])
+        pension_civile_employeur = individu('pension_civile_employeur', period, options = [ADD])
+        rafp_employeur = individu('rafp_employeur', period, options = [ADD])
+        vieillesse_deplafonnee_employeur = individu('vieillesse_deplafonnee_employeur', period, options = [ADD])
+        vieillesse_plafonnee_employeur = individu('vieillesse_plafonnee_employeur', period, options = [ADD])
 
         cotisations = (
             # prive
@@ -85,15 +85,15 @@ class cotisations_employeur_non_contributives(Variable):
     set_input = set_input_divide_by_period
     definition_period = MONTH
 
-    def formula(self, simulation, period):
-        penibilite = simulation.calculate_add('penibilite', period)
-        accident_du_travail = simulation.calculate_add('accident_du_travail', period)
-        allocations_temporaires_invalidite = simulation.calculate_add('allocations_temporaires_invalidite', period)
-        contribution_solidarite_autonomie = simulation.calculate('contribution_solidarite_autonomie', period)
-        famille = simulation.calculate('famille', period)
-        mmid_employeur = simulation.calculate_add('mmid_employeur', period)
-        taxe_salaires = simulation.calculate_add('taxe_salaires', period)
-        forfait_social = simulation.calculate_add('forfait_social', period)
+    def formula(individu, period, parameters):
+        penibilite = individu('penibilite', period, options = [ADD])
+        accident_du_travail = individu('accident_du_travail', period, options = [ADD])
+        allocations_temporaires_invalidite = individu('allocations_temporaires_invalidite', period, options = [ADD])
+        contribution_solidarite_autonomie = individu('contribution_solidarite_autonomie', period)
+        famille = individu('famille', period)
+        mmid_employeur = individu('mmid_employeur', period, options = [ADD])
+        taxe_salaires = individu('taxe_salaires', period, options = [ADD])
+        forfait_social = individu('forfait_social', period, options = [ADD])
 
         cotisations_employeur_non_contributives = (
             allocations_temporaires_invalidite +
@@ -115,20 +115,19 @@ class cotisations_salariales_contributives(Variable):
     set_input = set_input_divide_by_period
     definition_period = MONTH
 
-    def formula(self, simulation, period):
-        agff_salarie = simulation.calculate_add('agff_salarie', period)
-        agirc_salarie = simulation.calculate_add('agirc_salarie', period)
-        agirc_gmp_salarie = simulation.calculate_add('agirc_gmp_salarie', period)
-        apec_salarie = simulation.calculate_add('apec_salarie', period)
-        arrco_salarie = simulation.calculate_add('arrco_salarie', period)
-        chomage_salarie = simulation.calculate_add('chomage_salarie', period)
-        cotisation_exceptionnelle_temporaire_salarie = simulation.calculate_add(
-            'cotisation_exceptionnelle_temporaire_salarie', period)
-        ircantec_salarie = simulation.calculate_add('ircantec_salarie', period)
-        pension_civile_salarie = simulation.calculate_add('pension_civile_salarie', period)
-        rafp_salarie = simulation.calculate_add('rafp_salarie', period)
-        vieillesse_deplafonnee_salarie = simulation.calculate_add('vieillesse_deplafonnee_salarie', period)
-        vieillesse_plafonnee_salarie = simulation.calculate_add('vieillesse_plafonnee_salarie', period)
+    def formula(individu, period, parameters):
+        agff_salarie = individu('agff_salarie', period, options = [ADD])
+        agirc_salarie = individu('agirc_salarie', period, options = [ADD])
+        agirc_gmp_salarie = individu('agirc_gmp_salarie', period, options = [ADD])
+        apec_salarie = individu('apec_salarie', period, options = [ADD])
+        arrco_salarie = individu('arrco_salarie', period, options = [ADD])
+        chomage_salarie = individu('chomage_salarie', period, options = [ADD])
+        cotisation_exceptionnelle_temporaire_salarie = individu('cotisation_exceptionnelle_temporaire_salarie', period, options = [ADD])
+        ircantec_salarie = individu('ircantec_salarie', period, options = [ADD])
+        pension_civile_salarie = individu('pension_civile_salarie', period, options = [ADD])
+        rafp_salarie = individu('rafp_salarie', period, options = [ADD])
+        vieillesse_deplafonnee_salarie = individu('vieillesse_deplafonnee_salarie', period, options = [ADD])
+        vieillesse_plafonnee_salarie = individu('vieillesse_plafonnee_salarie', period, options = [ADD])
 
         cotisations_salariales_contributives = (
             # prive
@@ -157,10 +156,9 @@ class cotisations_salariales_non_contributives(Variable):
     set_input = set_input_divide_by_period
     definition_period = MONTH
 
-    def formula(self, simulation, period):
-        contribution_exceptionnelle_solidarite = simulation.calculate_add(
-            'contribution_exceptionnelle_solidarite', period)
-        mmid_salarie = simulation.calculate_add('mmid_salarie', period)
+    def formula(individu, period, parameters):
+        contribution_exceptionnelle_solidarite = individu('contribution_exceptionnelle_solidarite', period, options = [ADD])
+        mmid_salarie = individu('mmid_salarie', period, options = [ADD])
 
         cotisations_salariales_non_contributives = (
             # prive
@@ -180,14 +178,12 @@ class cotisations_salariales(Variable):
     definition_period = MONTH
     calculate_output = calculate_output_add
 
-    def formula(self, simulation, period):
-        cotisations_salariales_contributives = simulation.calculate('cotisations_salariales_contributives', period)
-        cotisations_salariales_non_contributives = simulation.calculate(
+    def formula(individu, period, parameters):
+        cotisations_salariales_contributives = individu('cotisations_salariales_contributives', period)
+        cotisations_salariales_non_contributives = individu(
             'cotisations_salariales_non_contributives', period)
-        exoneration_cotisations_salariales_apprenti = simulation.calculate_add(
-            'exoneration_cotisations_salariales_apprenti', period)
-        exoneration_cotisations_salarie_stagiaire = simulation.calculate_add(
-            'exoneration_cotisations_salarie_stagiaire', period)
+        exoneration_cotisations_salariales_apprenti = individu('exoneration_cotisations_salariales_apprenti', period, options = [ADD])
+        exoneration_cotisations_salarie_stagiaire = individu('exoneration_cotisations_salarie_stagiaire', period, options = [ADD])
 
         return (
             cotisations_salariales_contributives +

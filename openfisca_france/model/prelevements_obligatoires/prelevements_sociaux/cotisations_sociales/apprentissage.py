@@ -15,10 +15,10 @@ class apprenti(Variable):
     reference = "http://www.apce.com/pid927/contrat-d-apprentissage.html?espace=1&tp=1&pagination=2"
     definition_period = MONTH
 
-    def formula(self, simulation, period):
-        age = simulation.calculate('age', period)
+    def formula(individu, period, parameters):
+        age = individu('age', period)
         age_condition = (16 <= age) * (age < 25)
-        apprentissage_contrat_debut = simulation.calculate('apprentissage_contrat_debut', period)
+        apprentissage_contrat_debut = individu('apprentissage_contrat_debut', period)
         duree_contrat = (
             datetime64(period.start) + timedelta64(1, 'D') - apprentissage_contrat_debut
             ).astype('timedelta64[Y]')
@@ -42,14 +42,14 @@ class remuneration_apprenti(Variable):
     # secondaire, ou avoir suivi une formation dans le cadre du dispositif d'initiation aux métiers en
     # alternance (DIMA).
 
-    def formula(self, simulation, period):
-        age = simulation.calculate('age', period)
-        apprentissage_contrat_debut = simulation.calculate('apprentissage_contrat_debut', period)
-        smic = simulation.parameters_at(period.start).cotsoc.gen.smic_h_b * 52 * 35 / 12
+    def formula(individu, period, parameters):
+        age = individu('age', period)
+        apprentissage_contrat_debut = individu('apprentissage_contrat_debut', period)
+        smic = parameters(period).cotsoc.gen.smic_h_b * 52 * 35 / 12
         anciennete_contrat = (
             datetime64(period.start) + timedelta64(1, 'D') - apprentissage_contrat_debut
             ).astype('timedelta64[Y]')
-        apprenti = simulation.calculate('apprenti', period)
+        apprenti = individu('apprenti', period)
         salaire_en_smic = [  # TODO: move to parameters
             dict(
                 part_de_smic_by_anciennete = {
@@ -114,15 +114,15 @@ class exoneration_cotisations_employeur_apprenti(Variable):
     # Précision : le décompte de l'effectif des entreprises non artisanales s'apprécie au 31 décembre précédant la date
     # de conclusion du contrat d'apprentissage.
 
-    def formula(self, simulation, period):
-        accident_du_travail = simulation.calculate('accident_du_travail', period)
-        apprenti = simulation.calculate('apprenti', period)
-        cotisations_employeur = simulation.calculate('cotisations_employeur', period)
-        effectif_entreprise = simulation.calculate('effectif_entreprise', period)
-        famille = simulation.calculate('famille', period)
-        mmid_employeur = simulation.calculate('mmid_employeur', period)
-        vieillesse_deplafonnee_employeur = simulation.calculate('vieillesse_deplafonnee_employeur', period)
-        vieillesse_plafonnee_employeur = simulation.calculate('vieillesse_plafonnee_employeur', period)
+    def formula(individu, period, parameters):
+        accident_du_travail = individu('accident_du_travail', period)
+        apprenti = individu('apprenti', period)
+        cotisations_employeur = individu('cotisations_employeur', period)
+        effectif_entreprise = individu('effectif_entreprise', period)
+        famille = individu('famille', period)
+        mmid_employeur = individu('mmid_employeur', period)
+        vieillesse_deplafonnee_employeur = individu('vieillesse_deplafonnee_employeur', period)
+        vieillesse_plafonnee_employeur = individu('vieillesse_plafonnee_employeur', period)
 
         cotisations_non_exonerees = accident_du_travail
         exoneration_moins_11 = cotisations_non_exonerees - cotisations_employeur
@@ -144,10 +144,10 @@ class exoneration_cotisations_salariales_apprenti(Variable):
     reference = "http://www.apce.com/pid927/contrat-d-apprentissage.html?espace=1&tp=1&pagination=2"
     definition_period = MONTH
 
-    def formula(self, simulation, period):
-        apprenti = simulation.calculate('apprenti', period)
-        cotisations_salariales_contributives = simulation.calculate('cotisations_salariales_contributives', period)
-        cotisations_salariales_non_contributives = simulation.calculate(
+    def formula(individu, period, parameters):
+        apprenti = individu('apprenti', period)
+        cotisations_salariales_contributives = individu('cotisations_salariales_contributives', period)
+        cotisations_salariales_non_contributives = individu(
             'cotisations_salariales_non_contributives', period)
         return - (cotisations_salariales_contributives + cotisations_salariales_non_contributives) * apprenti
 
@@ -175,8 +175,8 @@ class prime_apprentissage(Variable):
     #
     # Son versement cesse lorsque l'apprenti n'est plus salarié dans l'entreprise ou l'établissement qui l'a embauché.
 
-    def formula(self, simulation, period):
-        apprenti = simulation.calculate('apprenti', period)
+    def formula(individu, period, parameters):
+        apprenti = individu('apprenti', period)
         return 1000 * apprenti
 
 # # class credit_impot_emploi_apprenti(Variable):
@@ -185,7 +185,7 @@ class prime_apprentissage(Variable):
 #     label = u" Crédit d'impôt pour l'emploi d'apprentis"
 #     reference = "http://www.apce.com/pid927/contrat-d-apprentissage.html?espace=1&tp=1&pagination=2"
 #
-#     def formula(self, simulation, period):
+#     def formula(individu, period, parameters):
 #         pass
 #     # Cet avantage fiscal est réservé aux entreprises imposées selon un régime d'imposition du réel.
 #     # Précision : les entreprises exonérées d'impôt sur les bénéfices au titre des entreprises nouvelles, d'une

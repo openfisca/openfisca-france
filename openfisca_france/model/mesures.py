@@ -32,7 +32,9 @@ class type_menage(Variable):
         '''
         Type de menage
         TODO: prendre les enfants du ménage et non ceux de la famille
+        Attention : des erreurs peuvent subsister quand ménage et famille ne coincide pas (cas des ménages complexes)
         '''
+
         af_nbenf = menage.personne_de_reference.famille('af_nbenf', period.first_month)
         isole = not_(menage.personne_de_reference.famille('en_couple', period.first_month))
 
@@ -55,23 +57,32 @@ class revenu_disponible(Variable):
     reference = "http://fr.wikipedia.org/wiki/Revenu_disponible"
     definition_period = YEAR
 
-    def formula(self, simulation, period):
-        revenus_du_travail_holder = simulation.compute('revenus_du_travail', period)
-        pensions_holder = simulation.compute('pensions', period)
-        revenus_du_capital_holder = simulation.compute('revenus_du_capital', period)
-        prestations_sociales_holder = simulation.compute('prestations_sociales', period)
-        ppe_holder = simulation.compute('ppe', period)
-        impots_directs = simulation.calculate('impots_directs', period)
+    def formula(menage, period, parameters):
+        pensions_i = menage.members('pensions', period)
+        revenus_du_capital_i = menage.members('revenus_du_capital', period)
+        revenus_du_travail_i = menage.members('revenus_du_travail', period)
+        pensions = menage.sum(pensions_i)
+        revenus_du_capital = menage.sum(revenus_du_capital_i)
+        revenus_du_travail = menage.sum(revenus_du_travail_i)
 
-        pensions = self.sum_by_entity(pensions_holder)
-        ppe = self.cast_from_entity_to_role(ppe_holder, role = VOUS)
-        ppe = self.sum_by_entity(ppe)
-        prestations_sociales = self.cast_from_entity_to_role(prestations_sociales_holder, role = CHEF)
-        prestations_sociales = self.sum_by_entity(prestations_sociales)
-        revenus_du_capital = self.sum_by_entity(revenus_du_capital_holder)
-        revenus_du_travail = self.sum_by_entity(revenus_du_travail_holder)
+        impots_directs = menage('impots_directs', period)
 
-        return revenus_du_travail + pensions + revenus_du_capital + prestations_sociales + ppe + impots_directs
+        # On prend en compte les PPE touchés par un foyer fiscal dont le déclarant principal est dans le ménage
+        ppe_i = menage.members.foyer_fiscal('ppe', period)  # PPE du foyer fiscal auquel appartient chaque membre du ménage
+        ppe = menage.sum(ppe_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)  # On somme seulement pour les déclarants principaux
+
+        # On prend en compte les prestations sociales touchées par une famille dont le demandeur est dans le ménage
+        prestations_sociales_i = menage.members.famille('prestations_sociales', period)  # PF de la famille auquel appartient chaque membre du ménage
+        prestations_sociales = menage.sum(prestations_sociales_i, role = Famille.DEMANDEUR)  # On somme seulement pour les demandeurs
+
+        return (
+            revenus_du_travail
+            + impots_directs
+            + pensions
+            + ppe
+            + prestations_sociales
+            + revenus_du_capital
+            )
 
 
 class niveau_de_vie(Variable):
@@ -138,8 +149,13 @@ class revenu_initial_individu(Variable):
         revenus_du_capital = individu('revenus_du_capital', period)
         revenus_du_travail = individu('revenus_du_travail', period)
 
-        return (revenus_du_travail + pensions + revenus_du_capital - cotisations_employeur_contributives -
-            cotisations_salariales_contributives)
+        return (
+            revenus_du_travail
+            + pensions
+            + revenus_du_capital
+            - cotisations_employeur_contributives
+            - cotisations_salariales_contributives
+            )
 
 
 class revenu_initial(Variable):
@@ -215,7 +231,13 @@ class pensions(Variable):
         pen_foyer_fiscal = pensions_alimentaires_versees + retraite_titre_onereux
         pen_foyer_fiscal_projetees = pen_foyer_fiscal * (individu.has_role(foyer_fiscal.DECLARANT_PRINCIPAL))
 
-        return (chomage_net + retraite_nette + pensions_alimentaires_percues + pensions_invalidite + pen_foyer_fiscal_projetees)
+        return (
+            chomage_net
+            + retraite_nette
+            + pensions_alimentaires_percues
+            + pensions_invalidite
+            + pen_foyer_fiscal_projetees
+            )
 
 
 class cotsoc_bar(Variable):
@@ -327,20 +349,19 @@ class minima_sociaux(Variable):
     reference = "http://fr.wikipedia.org/wiki/Minima_sociaux"
     definition_period = YEAR
 
-    def formula(self, simulation, period):
-        aah_holder = simulation.compute_add('aah', period)
-        caah_holder = simulation.compute_add('caah', period)
-        aefa = simulation.calculate('aefa', period)
-        api = simulation.calculate_add('api', period)
-        ass = simulation.calculate_add('ass', period)
-        minimum_vieillesse = simulation.calculate_add('minimum_vieillesse', period)
-        rsa = simulation.calculate_add('rsa', period)
+    def formula(famille, period, parameters):
+        aah_i = famille.members('aah', period, options = [ADD])
+        caah_i = famille.members('caah', period, options = [ADD])
+        aah = famille.sum(aah_i)
+        caah = famille.sum(caah_i)
+        aefa = famille('aefa', period)
+        api = famille('api', period, options = [ADD])
+        ass = famille('ass', period, options = [ADD])
+        minimum_vieillesse = famille('minimum_vieillesse', period, options = [ADD])
         # Certaines réformes ayant des effets de bords nécessitent que le rsa soit calculé avant la ppa
-        ppa = simulation.calculate_add('ppa', period)
-        psa = simulation.calculate_add('psa', period)
-
-        aah = self.sum_by_entity(aah_holder)
-        caah = self.sum_by_entity(caah_holder)
+        rsa = famille('rsa', period, options = [ADD])
+        ppa = famille('ppa', period, options = [ADD])
+        psa = famille('psa', period, options = [ADD])
 
         return aah + caah + minimum_vieillesse + rsa + aefa + api + ass + psa + ppa
 
@@ -368,12 +389,12 @@ class impots_directs(Variable):
     reference = "http://fr.wikipedia.org/wiki/Imp%C3%B4t_direct"
     definition_period = YEAR
 
-    def formula(self, simulation, period):
-        irpp_holder = simulation.compute('irpp', period)
-        taxe_habitation = simulation.calculate('taxe_habitation', period)
+    def formula(menage, period, parameters):
+        taxe_habitation = menage('taxe_habitation', period)
 
-        irpp = self.cast_from_entity_to_role(irpp_holder, role = VOUS)
-        irpp = self.sum_by_entity(irpp)
+        # On projette comme pour PPE dans revenu_disponible
+        irpp_i = menage.members.foyer_fiscal('irpp', period)
+        irpp = menage.sum(irpp_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
 
         return irpp + taxe_habitation
 
@@ -429,8 +450,15 @@ class csg(Variable):
         csg_foyer_fiscal = csg_fon + csg_cap_lib + csg_cap_bar + csg_pv_mo + csg_pv_immo
         csg_foyer_fiscal_projetee = csg_foyer_fiscal * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
 
-        return (csg_imposable_salaire + csg_deductible_salaire + csg_imposable_chomage +
-                csg_deductible_chomage + csg_imposable_retraite + csg_deductible_retraite + csg_foyer_fiscal_projetee)
+        return (
+            csg_imposable_salaire
+            + csg_deductible_salaire
+            + csg_imposable_chomage
+            + csg_deductible_chomage
+            + csg_imposable_retraite
+            + csg_deductible_retraite
+            + csg_foyer_fiscal_projetee
+            )
 
 
 class cotisations_non_contributives(Variable):
@@ -474,14 +502,15 @@ class check_csk(Variable):
     definition_period = YEAR
 
     def formula(menage, period):
-        foyer_fiscal = menage.personne_de_reference.foyer_fiscal
 
-        # Prélevements effectués sur les revenus du foyer fiscal
-        prelsoc_cap_bar = foyer_fiscal('prelsoc_cap_bar', period)
-        prelsoc_pv_mo = foyer_fiscal('prelsoc_pv_mo', period)
-        prelsoc_fon = foyer_fiscal('prelsoc_fon', period)
+        # Prélevements effectués sur les revenus des foyers fiscaux, projetés sur les déclarants principaux
+        prelsoc_cap_bar = menage.members.foyer_fiscal('prelsoc_cap_bar', period)
+        prelsoc_pv_mo = menage.members.foyer_fiscal('prelsoc_pv_mo', period)
+        prelsoc_fon = menage.members.foyer_fiscal('prelsoc_fon', period)
 
-        return prelsoc_cap_bar + prelsoc_pv_mo + prelsoc_fon
+        prel_foyer_fiscal_i = (prelsoc_cap_bar + prelsoc_pv_mo + prelsoc_fon) * menage.members.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
+
+        return menage.sum(prel_foyer_fiscal_i)
 
 
 class check_csg(Variable):
@@ -491,13 +520,15 @@ class check_csg(Variable):
     definition_period = YEAR
 
     def formula(menage, period):
-        foyer_fiscal = menage.personne_de_reference.foyer_fiscal
-        # CSG prélevée sur les revenus du foyer fiscal
-        csg_cap_bar = foyer_fiscal('csg_cap_bar', periop)
-        csg_pv_mo = foyer_fiscal('csg_pv_mo', periop)
-        csg_fon = foyer_fiscal('csg_fon', periop)
 
-        return csg_cap_bar + csg_pv_mo + csg_fon
+        # CSG prélevée sur les revenus des foyers fiscaux, projetée sur les déclarants principaux
+        csg_cap_bar = menage.members.foyer_fiscal('csg_cap_bar', periop)
+        csg_pv_mo = menage.members.foyer_fiscal('csg_pv_mo', periop)
+        csg_fon = menage.members.foyer_fiscal('csg_fon', periop)
+
+        csg_foyer_fiscal_i = (csg_cap_bar + csg_pv_mo + csg_fon) * menage.members.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
+
+        return menage.sum(csg_foyer_fiscal_i)
 
 
 class check_crds(Variable):
@@ -507,10 +538,11 @@ class check_crds(Variable):
     definition_period = YEAR
 
     def formula(menage, period):
-        foyer_fiscal = menage.personne_de_reference.foyer_fiscal
-        # CRDS prélevée sur les revenus du foyer fiscal
-        crds_pv_mo = foyer_fiscal('crds_pv_mo', period)
-        crds_fon = foyer_fiscal('crds_fon', period)
-        crds_cap_bar = foyer_fiscal('crds_cap_bar', period)
+        # CRDS prélevée sur les revenus des foyers fiscaux, projetée sur les déclarants principaux
+        crds_pv_mo = menage.members.foyer_fiscal('crds_pv_mo', period)
+        crds_fon = menage.members.foyer_fiscal('crds_fon', period)
+        crds_cap_bar = menage.members.foyer_fiscal('crds_cap_bar', period)
 
-        return crds_pv_mo + crds_fon + crds_cap_bar
+        crds_foyer_fiscal_i = (crds_pv_mo + crds_fon + crds_cap_bar) * menage.members.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
+
+        return menage.sum(crds_foyer_fiscal_i)

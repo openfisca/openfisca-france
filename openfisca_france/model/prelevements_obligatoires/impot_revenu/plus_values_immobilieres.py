@@ -77,12 +77,12 @@ class ir_pv_immo(Variable):
     reference = "http://www.impots.gouv.fr/portal/dgi/public/popup?espId=1&typePage=cpr02&docOid=documentstandard_2157"
     definition_period = YEAR
 
-    def formula(self, simulation, period):
+    def formula(foyer_fiscal, period, parameters):
         """
         Impôt sur le revenu afférent à la plus-value immobilière (CGI, art. 150 U, 150 UC-I et 150 UD)
         """
-        f3vz = simulation.calculate('f3vz', period)
-        pv_immo = simulation.parameters_at(period.start).impot_revenu.pv_immo
+        f3vz = foyer_fiscal('f3vz', period)
+        pv_immo = parameters(period).impot_revenu.pv_immo
 
         # 61. MONTANT DU PAR LES PERSONNES PHYSIQUES RESIDENTES DE FRANCE OU D’UN AUTRE ETAT MEMBRE DE L’EEE(1)
         # (VOIR TABLEAU PAGE 3).

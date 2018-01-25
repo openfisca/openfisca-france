@@ -24,43 +24,45 @@ class allocations_familiales_imposables(Reform):
         label = u"Nouveau revenu brut global intégrant les allocations familiales"
         definition_period = YEAR
 
-        def formula(self, simulation, period):
-            allocations_familiales_imposables = simulation.calculate_add('allocations_familiales_imposables', period)
-            deficit_ante = simulation.calculate('deficit_ante', period)
-            f6gh = simulation.calculate('f6gh', period)
-            nacc_pvce_holder = simulation.calculate('nacc_pvce', period)
-            nbic_impm_holder = simulation.calculate('nbic_impm', period)
-            rev_cat = simulation.calculate('rev_cat', period)
-            cga = simulation.parameters_at(period.start).impot_revenu.rpns.cga_taux2
+        def formula(foyer_fiscal, period, parameters):
+            allocations_familiales_imposables = foyer_fiscal('allocations_familiales_imposables', period, options = [ADD])
+            deficit_ante = foyer_fiscal('deficit_ante', period)
+            f6gh = foyer_fiscal('f6gh', period)
 
-            nacc_pvce = self.sum_by_entity(nacc_pvce_holder)
+            nacc_pvce_i = foyer_fiscal.members('nacc_pvce', period)
+            nbic_impm_i = foyer_fiscal.members('nbic_impm', period)
+
+            rev_cat = foyer_fiscal('rev_cat', period)
+            cga = parameters(period).impot_revenu.rpns.cga_taux2
+
+            nacc_pvce = foyer_fiscal.sum(nacc_pvce_i)
             return max_(
                 0,
                 allocations_familiales_imposables + rev_cat + f6gh +
-                (self.sum_by_entity(nbic_impm_holder) + nacc_pvce) * (1 + cga) - deficit_ante
+                (foyer_fiscal.sum(nbic_impm_i) + nacc_pvce) * (1 + cga) - deficit_ante
                 )
 
     class rfr(Variable):
         label = u"Nouveau revenu fiscal de référence intégrant les allocations familiales"
         definition_period = YEAR
 
-        def formula(self, simulation, period):
-            allocations_familiales_imposables = simulation.calculate('allocations_familiales_imposables')
-            f3va_holder = simulation.calculate('f3va')
-            f3vi_holder = simulation.calculate('f3vi')
-            f3vz = simulation.calculate('f3vz')
-            rfr_cd = simulation.calculate('rfr_cd')
-            rfr_rvcm = simulation.calculate('rfr_rvcm')
-            rni = simulation.calculate('rni')
-            rpns_exon_holder = simulation.calculate('rpns_exon')
-            rpns_pvce_holder = simulation.calculate('rpns_pvce')
-            rev_cap_lib = simulation.calculate_add('rev_cap_lib')
-            microentreprise = simulation.calculate('microentreprise')
+        def formula(foyer_fiscal, period, parameters):
+            allocations_familiales_imposables = foyer_fiscal('allocations_familiales_imposables')
+            f3va_i = foyer_fiscal.members('f3va', period)
+            f3vi_i = foyer_fiscal.members('f3vi', period)
+            f3vz = foyer_fiscal('f3vz', period)
+            rfr_cd = foyer_fiscal('rfr_cd', period)
+            rfr_rvcm = foyer_fiscal('rfr_rvcm', period)
+            rni = foyer_fiscal('rni', period)
+            rpns_exon_i = foyer_fiscal.members('rpns_exon', period)
+            rpns_pvce_i = foyer_fiscal.members('rpns_pvce', period)
+            rev_cap_lib = foyer_fiscal('rev_cap_lib', period, options = [ADD])
+            microentreprise = foyer_fiscal('microentreprise', period)
 
-            f3va = self.sum_by_entity(f3va_holder)
-            f3vi = self.sum_by_entity(f3vi_holder)
-            rpns_exon = self.sum_by_entity(rpns_exon_holder)
-            rpns_pvce = self.sum_by_entity(rpns_pvce_holder)
+            f3va = foyer_fiscal.sum(f3va_i)
+            f3vi = foyer_fiscal.sum(f3vi_i)
+            rpns_exon = foyer_fiscal.sum(rpns_exon_i)
+            rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
 
             return (
                 max_(0, rni - allocations_familiales_imposables) +
@@ -73,9 +75,9 @@ class allocations_familiales_imposables(Reform):
         label = u"Allocations familiales imposables"
         definition_period = YEAR
 
-        def formula(self, simulation, period):
-            imposition = simulation.parameters_at(period.start).allocations_familiales_imposables.imposition
-            af = simulation.foyer_fiscal.declarant_principal.famille('af', period, options = [ADD])
+        def formula(foyer_fiscal, period, parameters):
+            imposition = parameters(period).allocations_familiales_imposables.imposition
+            af = foyer_fiscal.declarant_principal.famille('af', period, options = [ADD])
 
             return af * imposition
 

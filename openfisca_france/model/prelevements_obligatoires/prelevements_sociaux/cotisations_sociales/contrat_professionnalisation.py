@@ -16,11 +16,11 @@ class professionnalisation(Variable):
     reference = "http://www.apce.com/pid879/contrat-de-professionnalisation.html?espace=1&tp=1"
     definition_period = MONTH
 
-    def formula(self, simulation, period):
-        age = simulation.calculate('age', period)
-        ass = simulation.calculate_add('ass', period)
-        rsa = simulation.calculate('rsa', period)
-        aah = simulation.calculate('aah', period)
+    def formula(individu, period, parameters):
+        age = individu('age', period)
+        ass = individu('ass', period, options = [ADD])
+        rsa = individu('rsa', period)
+        aah = individu('aah', period)
 
         age_condition = (16 <= age) * (age < 25)
         dummy_ass = ass > 0
@@ -55,11 +55,11 @@ class remuneration_professionnalisation(Variable):
     #  au minimum 85 % du salaire minimum prévu par la convention ou l'accord de branche auquel est soumise
     #  l'entreprise.
 
-    def formula(self, simulation, period):
-        age = simulation.calculate('age', period)
-        smic = simulation.parameters_at(period.start).cotsoc.gen.smic_h_b * 52 * 35 / 12
-        professionnalisation = simulation.calculate('professionnalisation', period)
-        qualifie = simulation.calculate('qualifie')
+    def formula(individu, period, parameters):
+        age = individu('age', period)
+        smic = parameters(period).cotsoc.gen.smic_h_b * 52 * 35 / 12
+        professionnalisation = individu('professionnalisation', period)
+        qualifie = individu('qualifie')
         salaire_en_smic = [
             dict(
                 part_de_smic_by_qualification = {
@@ -117,11 +117,11 @@ class exoneration_cotisations_employeur_professionnalisation(Variable):
     #  Aide spécifique de 686 euros par accompagnement et pour une année pleine est attribuée sous certaines conditions
     #  aux groupements d'employeurs qui organisent dans le cadre des contrats de professionnalisation
 
-    def formula(self, simulation, period):
-        age = simulation.calculate('age', period)
-        mmid_employeur = simulation.calculate('mmid_employeur', period)
-        famille = simulation.calculate('famille', period)
-        vieillesse_plafonnee_employeur = simulation.calculate('vieillesse_plafonnee_employeur', period)
+    def formula(individu, period, parameters):
+        age = individu('age', period)
+        mmid_employeur = individu('mmid_employeur', period)
+        famille = individu('famille', period)
+        vieillesse_plafonnee_employeur = individu('vieillesse_plafonnee_employeur', period)
         # FIXME: correspond bien à vieillesse de base ?
         cotisations_exonerees = mmid_employeur + famille + vieillesse_plafonnee_employeur
 

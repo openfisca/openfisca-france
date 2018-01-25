@@ -15,11 +15,11 @@ class allocations_temporaires_invalidite(Variable):
     definition_period = MONTH
     # patronale, non-contributive
 
-    def formula(self, simulation, period):
-        assiette_cotisations_sociales_public = simulation.calculate('assiette_cotisations_sociales_public', period)
-        plafond_securite_sociale = simulation.calculate('plafond_securite_sociale', period)
-        categorie_salarie = simulation.calculate('categorie_salarie', period)
-        _P = simulation.parameters_at(period.start)
+    def formula(individu, period, parameters):
+        assiette_cotisations_sociales_public = individu('assiette_cotisations_sociales_public', period)
+        plafond_securite_sociale = individu('plafond_securite_sociale', period)
+        categorie_salarie = individu('categorie_salarie', period)
+        _P = parameters(period)
 
         base = assiette_cotisations_sociales_public
         cotisation_etat = apply_bareme_for_relevant_type_sal(
@@ -46,11 +46,11 @@ class assiette_cotisations_sociales_public(Variable):
     definition_period = MONTH
     # TODO: gestion des heures supplémentaires
 
-    def formula(self, simulation, period):
-        remuneration_principale = simulation.calculate('remuneration_principale', period)
-        # primes_fonction_publique = simulation.calculate('primes_fonction_publique', period)
-        # indemnite_residence = simulation.calculate('indemnite_residence', period)
-        categorie_salarie = simulation.calculate('categorie_salarie', period)
+    def formula(individu, period, parameters):
+        remuneration_principale = individu('remuneration_principale', period)
+        # primes_fonction_publique = individu('primes_fonction_publique', period)
+        # indemnite_residence = individu('indemnite_residence', period)
+        categorie_salarie = individu('categorie_salarie', period)
         public = (
             (categorie_salarie == TypesCategorieSalarie.public_titulaire_etat)
             + (categorie_salarie == TypesCategorieSalarie.public_titulaire_militaire)
@@ -84,19 +84,19 @@ class contribution_exceptionnelle_solidarite(Variable):
     label = u"Cotisation exceptionnelle au fonds de solidarité (salarié)"
     definition_period = MONTH
 
-    def formula(self, simulation, period):
-        traitement_indiciaire_brut = simulation.calculate('traitement_indiciaire_brut', period)
-        hsup = simulation.calculate('hsup', period)
-        categorie_salarie = simulation.calculate('categorie_salarie', period)
-        indemnite_residence = simulation.calculate('indemnite_residence', period)
-        primes_fonction_publique = simulation.calculate('primes_fonction_publique', period)
-        rafp_salarie = simulation.calculate('rafp_salarie', period)
-        pension_civile_salarie = simulation.calculate('pension_civile_salarie', period)
-        cotisations_salariales_contributives = simulation.calculate('cotisations_salariales_contributives', period)
-        plafond_securite_sociale = simulation.calculate('plafond_securite_sociale', period)
-        salaire_de_base = simulation.calculate('salaire_de_base', period)
+    def formula(individu, period, parameters):
+        traitement_indiciaire_brut = individu('traitement_indiciaire_brut', period)
+        hsup = individu('hsup', period)
+        categorie_salarie = individu('categorie_salarie', period)
+        indemnite_residence = individu('indemnite_residence', period)
+        primes_fonction_publique = individu('primes_fonction_publique', period)
+        rafp_salarie = individu('rafp_salarie', period)
+        pension_civile_salarie = individu('pension_civile_salarie', period)
+        cotisations_salariales_contributives = individu('cotisations_salariales_contributives', period)
+        plafond_securite_sociale = individu('plafond_securite_sociale', period)
+        salaire_de_base = individu('salaire_de_base', period)
 
-        _P = simulation.parameters_at(period.start)
+        _P = parameters(period)
 
         seuil_assuj_fds = seuil_fds(_P)
 
@@ -134,11 +134,11 @@ class fonds_emploi_hospitalier(Variable):
     label = u"Fonds pour l'emploi hospitalier (employeur)"
     definition_period = MONTH
 
-    def formula(self, simulation, period):
-        assiette_cotisations_sociales_public = simulation.calculate('assiette_cotisations_sociales_public', period)
-        plafond_securite_sociale = simulation.calculate('plafond_securite_sociale', period)
-        categorie_salarie = simulation.calculate('categorie_salarie', period)
-        _P = simulation.parameters_at(period.start)
+    def formula(individu, period, parameters):
+        assiette_cotisations_sociales_public = individu('assiette_cotisations_sociales_public', period)
+        plafond_securite_sociale = individu('plafond_securite_sociale', period)
+        categorie_salarie = individu('categorie_salarie', period)
+        _P = parameters(period)
         cotisation = apply_bareme_for_relevant_type_sal(
             bareme_by_type_sal_name = _P.cotsoc.cotisations_employeur,
             bareme_name = "feh",
@@ -155,11 +155,11 @@ class ircantec_salarie(Variable):
     label = u"Ircantec salarié"
     definition_period = MONTH
 
-    def formula(self, simulation, period):
-        assiette_cotisations_sociales = simulation.calculate('assiette_cotisations_sociales', period)
-        plafond_securite_sociale = simulation.calculate('plafond_securite_sociale', period)
-        categorie_salarie = simulation.calculate('categorie_salarie', period)
-        _P = simulation.parameters_at(period.start)
+    def formula(individu, period, parameters):
+        assiette_cotisations_sociales = individu('assiette_cotisations_sociales', period)
+        plafond_securite_sociale = individu('plafond_securite_sociale', period)
+        categorie_salarie = individu('categorie_salarie', period)
+        _P = parameters(period)
 
         ircantec = apply_bareme_for_relevant_type_sal(
             bareme_by_type_sal_name = _P.cotsoc.cotisations_salarie,
@@ -177,11 +177,11 @@ class ircantec_employeur(Variable):
     label = u"Ircantec employeur"
     definition_period = MONTH
 
-    def formula(self, simulation, period):
-        assiette_cotisations_sociales = simulation.calculate('assiette_cotisations_sociales', period)
-        plafond_securite_sociale = simulation.calculate('plafond_securite_sociale', period)
-        categorie_salarie = simulation.calculate('categorie_salarie', period)
-        _P = simulation.parameters_at(period.start)
+    def formula(individu, period, parameters):
+        assiette_cotisations_sociales = individu('assiette_cotisations_sociales', period)
+        plafond_securite_sociale = individu('plafond_securite_sociale', period)
+        categorie_salarie = individu('categorie_salarie', period)
+        _P = parameters(period)
 
         ircantec = apply_bareme_for_relevant_type_sal(
             bareme_by_type_sal_name = _P.cotsoc.cotisations_employeur,
@@ -200,10 +200,10 @@ class pension_civile_salarie(Variable):
     reference = u"http://www.ac-besancon.fr/spip.php?article2662",
     definition_period = MONTH
 
-    def formula(self, simulation, period):
-        traitement_indiciaire_brut = simulation.calculate('traitement_indiciaire_brut', period)  # TODO: check nbi
-        categorie_salarie = simulation.calculate('categorie_salarie', period)
-        _P = simulation.parameters_at(period.start)
+    def formula(individu, period, parameters):
+        traitement_indiciaire_brut = individu('traitement_indiciaire_brut', period)  # TODO: check nbi
+        categorie_salarie = individu('categorie_salarie', period)
+        _P = parameters(period)
 
         sal = _P.cotsoc.cotisations_salarie
         terr_or_hosp = (
@@ -223,11 +223,11 @@ class pension_civile_employeur(Variable):
     reference = u"http://www.ac-besancon.fr/spip.php?article2662"
     definition_period = MONTH
 
-    def formula(self, simulation, period):
-        assiette_cotisations_sociales_public = simulation.calculate('assiette_cotisations_sociales_public', period)
-        # plafond_securite_sociale = simulation.calculate('plafond_securite_sociale', period)
-        categorie_salarie = simulation.calculate('categorie_salarie', period)
-        _P = simulation.parameters_at(period.start)
+    def formula(individu, period, parameters):
+        assiette_cotisations_sociales_public = individu('assiette_cotisations_sociales_public', period)
+        # plafond_securite_sociale = individu('plafond_securite_sociale', period)
+        categorie_salarie = individu('categorie_salarie', period)
+        _P = parameters(period)
 
         pat = _P.cotsoc.cotisations_employeur
         terr_or_hosp = (
@@ -249,13 +249,13 @@ class rafp_salarie(Variable):
     # Part salariale de la retraite additionelle de la fonction publique
     # TODO: ajouter la gipa qui n'est pas affectée par le plafond d'assiette
 
-    def formula_2005_01_01(self, simulation, period):
-        traitement_indiciaire_brut = simulation.calculate('traitement_indiciaire_brut', period)
-        categorie_salarie = simulation.calculate('categorie_salarie', period)
-        primes_fonction_publique = simulation.calculate('primes_fonction_publique', period)
-        supp_familial_traitement = simulation.calculate('supp_familial_traitement', period)
-        indemnite_residence = simulation.calculate('indemnite_residence', period)
-        _P = simulation.parameters_at(period.start)
+    def formula_2005_01_01(individu, period, parameters):
+        traitement_indiciaire_brut = individu('traitement_indiciaire_brut', period)
+        categorie_salarie = individu('categorie_salarie', period)
+        primes_fonction_publique = individu('primes_fonction_publique', period)
+        supp_familial_traitement = individu('supp_familial_traitement', period)
+        indemnite_residence = individu('indemnite_residence', period)
+        _P = parameters(period)
 
         eligible = ((categorie_salarie == TypesCategorieSalarie.public_titulaire_etat)
                      + (categorie_salarie == TypesCategorieSalarie.public_titulaire_territoriale)
@@ -276,13 +276,13 @@ class rafp_employeur(Variable):
     definition_period = MONTH
 
     # TODO: ajouter la gipa qui n'est pas affectée par le plafond d'assiette
-    def formula_2005_01_01(self, simulation, period):
-        traitement_indiciaire_brut = simulation.calculate('traitement_indiciaire_brut', period)
-        categorie_salarie = simulation.calculate('categorie_salarie', period)
-        primes_fonction_publique = simulation.calculate('primes_fonction_publique', period)
-        supp_familial_traitement = simulation.calculate('supp_familial_traitement', period)
-        indemnite_residence = simulation.calculate('indemnite_residence', period)
-        _P = simulation.parameters_at(period.start)
+    def formula_2005_01_01(individu, period, parameters):
+        traitement_indiciaire_brut = individu('traitement_indiciaire_brut', period)
+        categorie_salarie = individu('categorie_salarie', period)
+        primes_fonction_publique = individu('primes_fonction_publique', period)
+        supp_familial_traitement = individu('supp_familial_traitement', period)
+        indemnite_residence = individu('indemnite_residence', period)
+        _P = parameters(period)
 
         eligible = (
             (categorie_salarie == TypesCategorieSalarie.public_titulaire_etat) +
