@@ -5,5 +5,4 @@ unit: /1
 values:
   2004-01-01:
     value: 0.9662
-  2018-01-01:
-    value: null
+

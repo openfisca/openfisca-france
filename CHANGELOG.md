@@ -1,5 +1,13 @@
 # Changelog
 
+### 20.0.5 [#886](https://github.com/openfisca/openfisca-france/pull/886)
+
+* Correction d'un crash
+* Périodes concernées : A partir du 01/01/2018
+* Zones impactées : `parameters/prestations/prestations_familiales/paje/clca`,`parameters/prestations/prestations_familiales/paje/colca`
+* Détails :
+  - La presence de valeur `null` rendait impossible le calcul de la paje, le rsa et la ppa à partir du 01/01/2018.
+
 ### 20.0.4 [#842](https://github.com/openfisca/openfisca-france/pull/842)
 
 * Amélioration technique
