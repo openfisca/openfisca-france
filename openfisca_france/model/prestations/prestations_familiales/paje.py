@@ -74,9 +74,8 @@ class paje(Variable):
         paje_naissance = famille('paje_naissance', period)
         paje_prepare = famille('paje_prepare', period)
         paje_cmg = famille('paje_cmg', period)
-        paje_colca = famille('paje_colca', period)
 
-        return paje_base + (paje_naissance + paje_prepare + paje_cmg + paje_colca) / 12
+        return paje_base + (paje_naissance + paje_prepare + paje_cmg) / 12
 
     def formula_2004_01_01(famille, period):
         '''
