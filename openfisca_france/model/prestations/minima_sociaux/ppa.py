@@ -228,6 +228,27 @@ class ppa_base_ressources_prestations_familiales(Variable):
     label = u"Prestations familiales prises en compte dans le calcul de la PPA"
     definition_period = MONTH
 
+    def formula_2017_04(famille, period, parameters, mois_demande):
+        prestations_calculees = [
+            'rsa_forfait_asf',
+            'paje_base',
+            ]
+
+        result = sum(famille(prestation, mois_demande) for prestation in prestations_calculees)
+        result += famille('paje_prepare', period)
+        cf_non_majore_avant_cumul = famille('cf_non_majore_avant_cumul', mois_demande)
+        cf = famille('cf', mois_demande)
+        # Seul le montant non majoré est pris en compte dans la base de ressources du RSA
+        cf_non_majore = (cf > 0) * cf_non_majore_avant_cumul
+
+        af_base = famille('af_base', mois_demande)
+        af = famille('af', mois_demande)
+
+        result = result + cf_non_majore + min_(af_base, af)
+
+        return result
+
+
     def formula(famille, period, parameters, mois_demande):
         prestations_calculees = [
             'rsa_forfait_asf',
