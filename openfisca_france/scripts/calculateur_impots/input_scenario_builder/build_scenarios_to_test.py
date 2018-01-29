@@ -11,7 +11,7 @@ import logging
 import os
 import pkg_resources
 
-from openfisca_core import conv
+from openfisca_core import conv, periods
 from openfisca_france.scripts.calculateur_impots import base
 
 log = logging.getLogger(__name__)
@@ -52,6 +52,11 @@ def create_all_scenarios_to_test(directory, years):
             if variable not in base.tax_benefit_system.variables:
                 log.info("Variable {} does not exist in the tax_benefit system, no tests were created".format(variable))
                 continue
+            if base.tax_benefit_system.variables[variable].end != None: 
+                if (periods.period(str(base.tax_benefit_system.variables[variable].end)[:-3]) < periods.period('{}-01'.format(year))):
+                    log.info("Variable {} is not in effect in year {}, no tests were created".format(variable, year))
+                    continue
+
             scenario = define_single_worker_scenario(year, {'salaire_imposable': fixed_wage_amount, variable: tested_income_amount})
             json_filename = "test" + '-' + variable + '-' + str(scenario.period.date.year)
             if os.path.isfile(os.path.join(directory, json_filename)):
