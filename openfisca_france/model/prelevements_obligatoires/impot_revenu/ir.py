@@ -829,7 +829,6 @@ class rev_cat_rpns(Variable):
         'foy'
         '''
         nbnc_pvce_i = foyer_fiscal.members('nbnc_pvce', period)
-        mbic_mvct = foyer_fiscal('mbic_mvct', period)
         rpns_i = foyer_fiscal.members('rpns_individu', period)
         defrag = foyer_fiscal('defrag', period)
         defacc = foyer_fiscal('defacc', period)
@@ -838,7 +837,7 @@ class rev_cat_rpns(Variable):
 
         return (
             foyer_fiscal.sum(rpns_i) -
-            foyer_fiscal.sum(nbnc_pvce_i) - defrag - defncn - defacc - defmeu - mbic_mvct
+            foyer_fiscal.sum(nbnc_pvce_i) - defrag - defncn - defacc - defmeu
             )
 
 
