@@ -70,6 +70,7 @@ class frag_exon(Variable):
     entity = Individu
     label = u"Revenus agricoles exonérés (régime du forfait)"
     # start_date = date(2007, 1, 1)
+    end = '2015-12-31'
     definition_period = YEAR
 
   # (f5hn, f5in, f5jn))
@@ -83,6 +84,7 @@ class frag_impo(Variable):
     entity = Individu
     label = u"Revenus agricoles imposables (régime du forfait)"
     # start_date = date(2007, 1, 1)
+    end = '2015-12-31'
     definition_period = YEAR
 
   # (f5ho, f5io, f5jo))
