@@ -2657,7 +2657,7 @@ class rpns_individu(Variable):
 
         # # E revenus non commerciaux non professionnels
         # regime déclaratif special ou micro-bnc
-        mncn_timp = abat_rpns(mncn_impo, micro.specialbnc.services)  # TODO check
+        mncn_timp = abat_rpns(mncn_impo,  micro.specialbnc)
 
         # régime de la déclaration controlée
         # total 11
