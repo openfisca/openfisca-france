@@ -66,4 +66,9 @@ def create_json(scenario, directory, var = "", tested = False, rebuild_json = Fa
         log.info("The JSON file {} already exists and was not modified".format(json_filename))
         compare(scenario, tested, verbose = True)
     
+    if add_official(scenario, tested)['resultat_officiel'] == {}:
+        os.remove(os.path.join(directory, json_filename + '.json'))
+        log.info("No outputs found in the JSON file {} : the file was deleted".format(json_filename))
+        return None
+
     return json_filename
