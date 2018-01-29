@@ -2583,7 +2583,6 @@ class rpns_individu(Variable):
         nbic_defs = individu('nbic_defs', period)
         macc_impv = individu('macc_impv', period)
         macc_imps = individu('macc_imps', period)
-        nbic_mvct = individu('nbic_mvct', period)
         aacc_impn = individu('aacc_impn', period)
         aacc_defn = individu('aacc_defn', period)
         aacc_gits = individu('aacc_gits', period)

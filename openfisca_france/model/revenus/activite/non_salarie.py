@@ -1049,6 +1049,7 @@ class nbnc_pvce(Variable):
     entity = Individu
     label = u"Déficits industriels et commerciaux: locations meublées sans CGA (régime du bénéfice réel)"
     # start_date = date(2009, 1, 1)
+    end = '2015-12-31'
     definition_period = YEAR
 
   # (f5qj, f5rj, f5sj)) #TODO 5*J 2005/2006 (qui se transforme en 5*D...)
@@ -1099,6 +1100,7 @@ class nbic_impm(Variable):
     entity = Individu
     label = u"Locations meublées imposables sans CGA (régime du bénéfice réel)"
     # start_date = date(2009, 1, 1)
+    end = '2016-12-31'
     definition_period = YEAR
 
 
