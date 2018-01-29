@@ -2535,6 +2535,29 @@ class rpns_mvlt(Variable):
         return mbic_mvlt + macc_mvlt + mbnc_mvlt + mncn_mvlt
 
 
+class rpns_frag(Variable):
+    value_type = float
+    entity = Individu
+    label = u"Revenus du forfait agricole - Revenus des professions non salariées"
+    definition_period = YEAR
+
+    def formula(individu, period, parameters):
+        '''
+        Revenus du forfait agricole
+        '''
+        frag_impo = individu('frag_impo', period)
+
+        return frag_impo
+
+    def formula_2016_01_01(individu, period, parameters):
+        '''
+        Revenus du forfait agricole : remplaçé par régime micro-bénéfices agricoles
+        '''
+        # TODO
+        frag_impo = individu('frag_impo', period)*0
+        return frag_impo
+
+
 class rpns_individu(Variable):
     value_type = float
     entity = Individu
@@ -2544,8 +2567,7 @@ class rpns_individu(Variable):
     def formula(individu, period, parameters):
         '''
         Revenus des professions non salariées individuels
-        '''
-        frag_impo = individu('frag_impo', period)
+        '''  
         arag_impg = individu('arag_impg', period)
         nrag_impg = individu('nrag_impg', period)
         arag_defi = individu('arag_defi', period)
@@ -2595,6 +2617,7 @@ class rpns_individu(Variable):
         cncn_info = individu('cncn_info', period)
         cncn_jcre = individu('cncn_jcre', period)
         revimpres = individu('revimpres', period)
+        rpns_frag = individu('rpns_frag', period)
         rpns_pvct = individu('rpns_pvct', period)
         rpns_mvct_pro = individu('rpns_mvct_pro', period)
         rpns_mvct_nonpro = individu('rpns_mvct_nonpro', period)
@@ -2685,9 +2708,9 @@ class rpns_individu(Variable):
         atimp = arag_impg + abic_timp + aacc_timp + abnc_timp
         ntimp = nrag_impg + nbic_timp + nacc_timp + nbnc_timp + cncn_timp
 
-        majo_cga = max_(0, cga_taux2 * (ntimp + frag_impo))  # Pour ne pas avoir à majorer les déficits
+        majo_cga = max_(0, cga_taux2 * (ntimp + rpns_frag))  # Pour ne pas avoir à majorer les déficits
         # total 6
-        rev_NS = frag_impo + frag_fore + atimp + ntimp + majo_cga - def_agri
+        rev_NS = rpns_frag + frag_fore + atimp + ntimp + majo_cga - def_agri
 
         # revenu net après abatement
         # total 7
