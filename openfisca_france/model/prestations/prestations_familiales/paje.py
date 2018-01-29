@@ -259,7 +259,7 @@ class paje_clca(Variable):
     calculate_output = calculate_output_add
     value_type = float
     entity = Famille
-    label = u"PAJE - Complément de libre choix d'activité"
+    label = u"PAJE - Complément de libre choix d'activité - remplacée par paje_prepare à partir de 04/2017"
     reference = "http://vosdroits.service-public.fr/particuliers/F313.xhtml"
     end = '2017-04-01'
     definition_period = MONTH
@@ -385,6 +385,112 @@ class paje_cmg(Variable):
     set_input = set_input_divide_by_period
     reference = "http://www.caf.fr/aides-et-services/s-informer-sur-les-aides/petite-enfance/le-complement-de-libre-choix-du-mode-de-garde"  # noqa
     definition_period = MONTH
+
+    def formula_2017_04_01(famille, period, parameters):
+        """"
+        Prestation d accueil du jeune enfant - Complément de libre choix du mode de garde
+
+        Les conditions
+
+        Vous devez :
+
+            avoir un enfant de moins de 6 ans né, adopté ou recueilli en vue d'adoption à partir du 1er janvier 2004
+            employer une assistante maternelle agréée ou une garde à domicile.
+            avoir une activité professionnelle minimale
+                si vous êtes salarié cette activité doit vous procurer un revenu minimum de :
+                    si vous vivez seul : une fois la BMAF
+                    si vous vivez en couple  soit 2 fois la BMAF
+                si vous êtes non salarié, vous devez être à jour de vos cotisations sociales d'assurance vieillesse
+
+        Vous n'avez pas besoin de justifier d'une activité min_ si vous êtes :
+
+            bénéficiaire de l'allocation aux adultes handicapés (Aah)
+            au chômage et bénéficiaire de l'allocation d'insertion ou de l'allocation de solidarité spécifique
+            bénéficiaire du Revenu de solidarité active (Rsa), sous certaines conditions de ressources étudiées par
+            votre Caf, et inscrit dans une démarche d'insertionétudiant (si vous vivez en couple,
+            vous devez être tous les deux étudiants).
+
+        Autres conditions à remplir : Assistante maternelle agréée     Garde à domicile
+        Son salaire brut ne doit pas dépasser par jour de garde et par enfant 5 fois le montant du Smic horaire brut,
+        soit au max 45,00 €.
+        Vous ne devez pas bénéficier de l'exonération des cotisations sociales dues pour la personne employée.
+        """"
+
+        en_couple = famille('en_couple', period)
+        inactif = famille('inactif', period)
+        partiel1 = famille('partiel1', period)
+        af_nbenf = famille('af_nbenf', period)
+        base_ressources = famille('prestations_familiales_base_ressources', period.first_month)
+        empl_dir = famille('empl_dir', period)
+        ass_mat = famille('ass_mat', period)
+        gar_dom = famille('gar_dom', period)
+        paje_prepare = famille('page_prepare', period)
+        P = parameters(period).prestations.prestations_familiales
+        P_n_2 = parameters(period.offset(-2, 'year')).prestations.prestations_familiales
+
+        aah_i = famille.members('aah', period)
+        aah = famille.sum(aah_i)
+
+        etudiant_i = famille.members('etudiant', period)
+        parent_etudiant = famille.any(etudiant_i, role = Famille.PARENT)
+
+        salaire_imposable_i = famille.members('salaire_imposable', period)
+        salaire_imposable = famille.sum(salaire_imposable_i, role = Famille.PARENT)
+
+        hsup_i = famille.members('hsup', period)
+        hsup = famille.sum(hsup_i, role = Famille.PARENT)
+
+        # condition de revenu minimal
+
+        bmaf_n_2 = P_n_2.af.bmaf
+        cond_age_enf = (nb_enf(famille, period, P.paje.clmg.age1, P.paje.clmg.age2 - 1) > 0)
+        cond_sal = (
+            salaire_imposable + hsup >
+            12 * bmaf_n_2 * (1 + en_couple)
+            )
+    # TODO:    cond_rpns    =
+        cond_act = cond_sal  # | cond_rpns
+
+        cond_nonact = (aah > 0) | parent_etudiant  # | (ass>0)
+    #  TODO: RSA insertion, alloc insertion, ass
+        eligible = cond_age_enf & (cond_act | cond_nonact)
+        nbenf = af_nbenf
+        seuil1 = (P.paje.clmg.seuil11 * (nbenf == 1) + P.paje.clmg.seuil12 * (nbenf >= 2) +
+                 max_(nbenf - 2, 0) * P.paje.clmg.seuil1sup)
+        seuil2 = (P.paje.clmg.seuil21 * (nbenf == 1) + P.paje.clmg.seuil22 * (nbenf >= 2) +
+                 max_(nbenf - 2, 0) * P.paje.clmg.seuil2sup)
+
+    #        Si vous bénéficiez du Clca taux partiel (= vous travaillez entre 50 et 80% de la durée du travail fixée
+    #        dans l'entreprise), vous cumulez intégralement le Clca et le Cmg.
+    #        Si vous bénéficiez du Clca taux partiel (= vous travaillez à 50% ou moins de la durée
+    #        du travail fixée dans l'entreprise), le montant des plafonds Cmg est divisé par 2.
+        paje_prepare_temps_partiel = (paje_clca > 0) * partiel1
+        seuil1 = seuil1 * (1 - .5 * paje_prepare_temps_partiel)
+        seuil2 = seuil2 * (1 - .5 * paje_prepare_temps_partiel)
+
+        clmg = P.af.bmaf * ((nb_enf(famille, period, 0, P.paje.clmg.age1 - 1) > 0) +
+                            0.5 * (nb_enf(famille, period, P.paje.clmg.age1, P.paje.clmg.age2 - 1) > 0)
+                            ) * (
+            empl_dir * (
+                (base_ressources < seuil1) * P.paje.clmg.taux_recours_emploi_1er_plafond +
+                ((base_ressources >= seuil1) & (base_ressources < seuil2)) * P.paje.clmg.taux_recours_emploi_2e_plafond +
+                (base_ressources >= seuil2) * P.paje.clmg.taux_recours_emploi_supp_2e_plafond) +
+            ass_mat * (
+                (base_ressources < seuil1) * P.paje.clmg.ass_mat1 +
+                ((base_ressources >= seuil1) & (base_ressources < seuil2)) * P.paje.clmg.ass_mat2 +
+                (base_ressources >= seuil2) * P.paje.clmg.ass_mat3) +
+            gar_dom * (
+                (base_ressources < seuil1) * P.paje.clmg.domi1 +
+                ((base_ressources >= seuil1) & (base_ressources < seuil2)) * P.paje.clmg.domi2 +
+                (base_ressources >= seuil2) * P.paje.clmg.domi3))
+        # TODO: connecter avec le crédit d'impôt
+        # Si vous bénéficiez du Clca taux plein
+        # (= vous ne travaillez plus ou interrompez votre activité professionnelle),
+        # vous ne pouvez pas bénéficier du Cmg.
+        paje_prepare_inactif =  (paje_prepare > 0) * inactif
+        paje_cmg = eligible * not_(paje_prepare_inactif) * clmg
+        # TODO vérfiez les règles de cumul
+        return paje_cmg
 
     def formula_2004_01_01(famille, period, parameters):
         '''
