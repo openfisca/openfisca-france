@@ -342,12 +342,6 @@ class paje_clca_taux_plein(Variable):
     reference = "http://vosdroits.service-public.fr/particuliers/F313.xhtml"
     definition_period = MONTH
 
-    def formula_2017_04_01(famille, period):
-        paje_clca = famille('paje_prepare', period)
-        partiel1 = famille('inactif', period)
-
-        return (paje_clca > 0) * partiel1
-
     def formula_2004_01_01(famille, period):
         paje_clca = famille('paje_clca', period)
         inactif = famille('inactif', period)
@@ -361,12 +355,6 @@ class paje_clca_taux_partiel(Variable):
     label = u"Indicatrice Clca taux partiel"
     reference = "http://vosdroits.service-public.fr/particuliers/F313.xhtml"
     definition_period = MONTH
-
-    def formula_2017_04_01(famille, period):
-        paje_clca = famille('paje_prepare', period)
-        partiel1 = famille('partiel1', period)
-
-        return (paje_clca > 0) * partiel1
 
     def formula_2004_01_01(famille, period):
         paje_clca = famille('paje_clca', period)
