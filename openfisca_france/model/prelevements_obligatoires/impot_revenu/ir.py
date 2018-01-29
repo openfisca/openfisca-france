@@ -2329,10 +2329,10 @@ class rpns_pvct(Variable):
         return frag_pvct + macc_pvct + mbic_pvct + mbnc_pvct + mncn_pvct
 
 
-class rpns_mvct(Variable):
+class rpns_mvct_nonpro(Variable):
     value_type = float
     entity = Individu
-    label = u"Moins values de court terme - Revenu des professions non salariées"
+    label = u"Moins values de court terme - Revenu des professions non salariées non profesionnelles"
     definition_period = YEAR
 
     def formula(individu, period, parameters):
@@ -2341,13 +2341,45 @@ class rpns_mvct(Variable):
         'ind'
         macc_mvct (f5iu)
         mncn_mvct (f5ju)
-        mbnc_mvct (f5kz)
         """
-        mbnc_mvct = individu('mbnc_mvct', period)
         macc_mvct = individu.foyer_fiscal('macc_mvct', period) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
         mncn_mvct = individu.foyer_fiscal('mncn_mvct', period) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
 
-        return mbnc_mvct + macc_mvct  # mncn_mvct ?
+        return macc_mvct + mncn_mvct
+
+
+class rpns_mvct_pro(Variable):
+    value_type = float
+    entity = Individu
+    label = u"Moins values de court terme - Revenu des professions non salariées profesionnelles"
+    definition_period = YEAR
+
+    def formula(individu, period, parameters):
+        mbic_mvct = individu.foyer_fiscal('mbic_mvct', period) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
+        mbnc_mvct = individu('mbnc_mvct', period)
+
+        return mbic_mvct + mbnc_mvct
+
+    def formula_2012_01_01(individu, period, parameters):
+        nbic_mvct = individu('nbic_mvct', period)
+        mbnc_mvct = individu('mbnc_mvct', period)
+
+        return nbic_mvct + mbnc_mvct
+
+
+class rpns_mvct(Variable):
+    value_type = float
+    entity = Individu
+    label = u"Moins values de court terme - Revenu des professions non salariées (toutes)"
+    definition_period = YEAR
+
+    def formula(individu, period, parameters):
+        """Moins values de court terme
+        """
+        rpns_mvct_pro = individu('rpns_mvct_pro', period)
+        rpns_mvct_nonpro = individu('rpns_mvct_nonpro', period)
+
+        return rpns_mvct_pro + rpns_mvct_nonpro
 
 
 class rpns_mvlt(Variable):
@@ -2424,9 +2456,6 @@ class rpns_individu(Variable):
         cncn_bene = individu('cncn_bene', period)
         cncn_defi = individu('cncn_defi', period)
         abnc_proc = individu('abnc_proc', period)
-        rpns_pvct = individu('rpns_pvct', period)
-        rpns_mvct = individu('rpns_mvct', period)
-        nbnc_proc = individu('nbnc_proc', period)
         frag_fore = individu('frag_fore', period)
         f5sq = individu('f5sq', period)
         mncn_exon = individu('mncn_exon', period)
@@ -2436,6 +2465,12 @@ class rpns_individu(Variable):
         cncn_info = individu('cncn_info', period)
         cncn_jcre = individu('cncn_jcre', period)
         revimpres = individu('revimpres', period)
+        rpns_pvct = individu('rpns_pvct', period)
+        rpns_mvct_pro = individu('rpns_mvct_pro', period)
+        rpns_mvct_nonpro = individu('rpns_mvct_nonpro', period)
+        macc_mvct = individu.foyer_fiscal('macc_mvct', period) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
+        mncn_mvct = individu.foyer_fiscal('mncn_mvct', period) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
+        nbnc_proc = individu('nbnc_proc', period)
         pveximpres = individu('pveximpres', period)
         pvtaimpres = individu('pvtaimpres', period)
         cga_taux2 = parameters(period).impot_revenu.rpns.cga_taux2
@@ -2527,8 +2562,9 @@ class rpns_individu(Variable):
         # revenu net après abatement
         # total 7
         rev_NS_mi = mbic_timp + max_(0, macc_timp) + mbnc_timp + mncn_timp
-        exon = max_(0, macc_timp + nacc_timp - rpns_mvct) - macc_timp - nacc_timp  # ajout artificiel
-        RPNS = (rev_NS + rev_NS_mi + rpns_pvct + exon + abic_impm - abic_defm + alnp_imps + cncn_aimp - nbic_mvct)
+        exon_acc = max_(0, macc_timp + nacc_timp - macc_mvct) - macc_timp - nacc_timp  # ajout artificiel
+        exon_ncn = max_(0, mncn_timp - mncn_mvct) - mncn_timp  # ajout artificiel
+        RPNS = (rev_NS + rev_NS_mi + rpns_pvct + exon_acc + exon_ncn + abic_impm - abic_defm + alnp_imps + cncn_aimp - rpns_mvct_pro)
         return RPNS
 
 

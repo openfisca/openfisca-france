@@ -334,7 +334,6 @@ class nbic_imps(Variable):
     end = '2009-12-31'
     definition_period = YEAR
 
- # TODO: c'est 5HU pour les années anciennes
 
 class nbic_mvct(Variable):
     cerfa_field = {QUIFOY['vous']: u"5KJ",
@@ -343,12 +342,13 @@ class nbic_mvct(Variable):
     value_type = int
     unit = 'currency'
     entity = Individu
-    label = u"Revenus industriels et commerciaux professionnels moins-values nettes à court terme"
+    label = u"Revenus industriels et commerciaux professionnels moins-values nettes à court terme : régime micro-entreprise"
     # start_date = date(2012, 1, 1)
     definition_period = YEAR
 
   # (f5kj, f5lj, f5mj))
-                                                          # vérifier date début #####à intégrer dans OF#######
+  # NB cette variable devrait s'appeler 'mbic_mvct' comme c'est une variable de régime micro (mais il 
+  # existe déjà une variable mbic_mvct avec un autre cerfa_fiel (5HU) corresponsant à avant 2012...)
 
 class abic_defn(Variable):
     cerfa_field = {QUIFOY['vous']: u"5KF",
@@ -744,7 +744,7 @@ class macc_mvct(Variable):
   # (f5iu))
 
 class mncn_mvct(Variable):
-    cerfa_field = u"JU"
+    cerfa_field = u"5JU"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
