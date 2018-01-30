@@ -375,7 +375,7 @@ class paje_cmg(Variable):
     definition_period = MONTH
 
     def formula_2017_04_01(famille, period, parameters):
-        """"
+        """
         Prestation d accueil du jeune enfant - Complément de libre choix du mode de garde
 
         Les conditions
@@ -402,7 +402,7 @@ class paje_cmg(Variable):
         Son salaire brut ne doit pas dépasser par jour de garde et par enfant 5 fois le montant du Smic horaire brut,
         soit au max 45,00 €.
         Vous ne devez pas bénéficier de l'exonération des cotisations sociales dues pour la personne employée.
-        """"
+        """
 
         en_couple = famille('en_couple', period)
         inactif = famille('inactif', period)
