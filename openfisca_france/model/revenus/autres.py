@@ -100,6 +100,7 @@ class pensions_invalidite(Variable):
         QUIFOY['pac1']: u"1CZ",
         QUIFOY['pac2']: u"1DZ",
         }
+    # start_date = date(2014, 1, 1)
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
