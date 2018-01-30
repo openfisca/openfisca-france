@@ -997,6 +997,7 @@ start_date_by_name = {
     u'nrag_defi': '2007-01-01',
     u'nrag_exon': '2007-01-01',
     u'nrag_impg': '2007-01-01',
+    u'pensions_invalidite': '2014-01-01',
     u'pveximpres': '2006-01-01',
     u'sal_pen_exo_etr': '2013-01-01'
     }
