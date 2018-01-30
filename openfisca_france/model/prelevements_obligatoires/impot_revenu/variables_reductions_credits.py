@@ -2198,7 +2198,7 @@ class f7sz(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     label = u"Dépenses en faveur de la qualité environnementale des logements donnés en location"
-#    start_date = date(2006, 1, 1)
+#    start_date = date(2006, 1, 1) # disparait en 2010-2011, en 2014 et en 2016
     definition_period = YEAR
 
 
@@ -3703,7 +3703,7 @@ class f7dy(Variable):
 
 
 class f7ey(Variable):
-    cerfa_field = u"7CY"
+    cerfa_field = u"7EY"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
@@ -6898,7 +6898,6 @@ class f7sf(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     label = u"Crédit de travaux en faveur d'aides aux personnes pour des logements en location (avant 2012 ) / Appareils de régulation du chauffage, matériaux de calorifugeage (après 2011)"
-#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
