@@ -21,7 +21,7 @@ individus:
     interets_epargne_sur_livrets:
       2012-01: 0
     handicap: 0
-    statut_marital: 1
+    statut_marital: marie
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
@@ -37,7 +37,7 @@ individus:
     interets_epargne_sur_livrets:
       2012-01: 0
     handicap: 0
-    statut_marital: 1
+    statut_marital: marie
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
@@ -272,5 +272,5 @@ menages:
   enfants: 55eef7e50df1c6360477f602
   loyer: 600
   personne_de_reference: 555dba3b8a38a15931bef798
-  statut_occupation_logement: 4
+  statut_occupation_logement: locataire_vide
 output_variables:

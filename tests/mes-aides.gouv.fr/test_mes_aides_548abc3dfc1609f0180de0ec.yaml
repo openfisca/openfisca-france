@@ -8,7 +8,7 @@ description: |
 period: "month:2014-12"
 relative_error_margin: 0.02
 individus:
-  activite: 3
+  activite: retraite
   age: 74
   age_en_mois: 890
   date_naissance: "1940-10-01"

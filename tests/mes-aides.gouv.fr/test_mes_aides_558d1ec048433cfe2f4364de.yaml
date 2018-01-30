@@ -80,7 +80,7 @@ individus:
     interets_epargne_sur_livrets:
       2012-01: 0
     handicap: 0
-    scolarite: 1
+    scolarite: college
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
@@ -316,6 +316,6 @@ menages:
     - 558d1ea09e2a9d0330e79752
     - 558d1ea09e2a9d0330e79751
   personne_de_reference: 558d1ea09e2a9d0330e79753
-  statut_occupation_logement: 6
+  statut_occupation_logement: loge_gratuitement
 output_variables:
   af: 129.35

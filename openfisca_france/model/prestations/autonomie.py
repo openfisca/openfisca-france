@@ -134,7 +134,12 @@ class apa_eligibilite(Variable):
         apa_age_min = parameters.age_ouverture_des_droits.age_d_ouverture_des_droits
 
         gir = individu('gir', period)
-        eligibilite_gir = (0 < gir) & (gir <= 4)
+        eligibilite_gir = (
+            (gir == TypesGir.gir_1) +
+            (gir == TypesGir.gir_2) +
+            (gir == TypesGir.gir_3) +
+            (gir == TypesGir.gir_4)
+            )
 
         return (age >= apa_age_min) * eligibilite_gir
 
@@ -229,17 +234,21 @@ class apa_etablissement(Variable):
         return apa * (apa >= seuil_non_versement) * eligibilite_etablissement * apa_eligibilite
 
 
+class TypesGir(Enum):
+    __order__ = 'gir_1 gir_2 gir_3 gir_4 gir_5 gir_6'  # Needed to preserve the enum order in Python 2
+    non_defini = u"Non défini"
+    gir_1 = u"Gir 1"
+    gir_2 = u"Gir 2"
+    gir_3 = u"Gir 3"
+    gir_4 = u"Gir 4"
+    gir_5 = u"Gir 5"
+    gir_6 = u"Gir 6"
+
+
 class gir(Variable):
     value_type = Enum
-    possible_values = Enum([
-        u"Non défini",
-        u"Gir 1",
-        u"Gir 2",
-        u"Gir 3",
-        u"Gir 4",
-        u"Gir 5",
-        u"Gir 6",
-        ])
+    possible_values = TypesGir
+    default_value = TypesGir.non_defini
     entity = Individu
     label = u"Groupe iso-ressources de l'individu"
     definition_period = MONTH
@@ -317,10 +326,10 @@ class dependance_plan_aide_domicile_accepte(Variable):
         majoration_tierce_personne = parameters_autonomie.mtp.mtp
 
         condition_plafond_par_gir = [
-            gir == 1,
-            gir == 2,
-            gir == 3,
-            gir == 4,
+            gir == TypesGir.gir_1,
+            gir == TypesGir.gir_2,
+            gir == TypesGir.gir_3,
+            gir == TypesGir.gir_4,
             ]
         valeur_plafond_par_gir = [
             plafond_gir1 * majoration_tierce_personne,

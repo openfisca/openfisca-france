@@ -3,7 +3,7 @@
   relative_error_margin: 0.01
   input_variables:
     age: 40
-    statut_occupation_logement: 4 # locataire
+    statut_occupation_logement: locataire_vide
     loyer: 400
   output_variables:
     rsa:
@@ -14,7 +14,7 @@
   relative_error_margin: 0.01
   input_variables:
     age: 40
-    statut_occupation_logement: 6 # hebergé gratuitement
+    statut_occupation_logement: loge_gratuitement
     participation_frais: True
   output_variables:
     rsa:
@@ -30,7 +30,7 @@
       2016-11: 200
       2016-10: 200
     age: 40
-    statut_occupation_logement: 6 # hebergé gratuitement
+    statut_occupation_logement: loge_gratuitement
     participation_frais: True
   output_variables:
     rsa:
@@ -46,7 +46,7 @@
       2016-11: 200
       2016-10: 200
     age: 40
-    statut_occupation_logement: 6 # hebergé gratuitement
+    statut_occupation_logement: loge_gratuitement
     participation_frais: True
   output_variables:
     rsa:
@@ -77,7 +77,7 @@
     personne_de_reference: 1
     conjoint: 2
     enfants: [3,4]
-    statut_occupation_logement: 4 # locataire
+    statut_occupation_logement: locataire_vide
     loyer: 400
   output_variables:
     af_base: 130
@@ -103,7 +103,7 @@
   menages:
     personne_de_reference: 1
     enfants: [3,4]
-    statut_occupation_logement: 4 # locataire
+    statut_occupation_logement: locataire_vide
     loyer: 400
   output_variables:
     af_base: 130.12

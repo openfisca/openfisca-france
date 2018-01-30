@@ -297,6 +297,6 @@ menages:
   - 55edab8b7869142d04874899
   loyer: 600
   personne_de_reference: 55edab8b7869142d0487489a
-  statut_occupation_logement: 4
+  statut_occupation_logement: locataire_vide
 output_variables:
   paje_base: 186.65

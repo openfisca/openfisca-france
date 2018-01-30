@@ -45,7 +45,7 @@
     personne_de_reference: "parent1"
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2"]
-    zone_apl: Zone 1
+    zone_apl: zone_1
   individus:
     - id: "parent1"
       date_naissance: "1972-01-01"

@@ -29,10 +29,10 @@ class decote(Variable):
     label = u"Décote IR 2015 appliquée sur IR 2014 (revenus 2013)"
     definition_period = YEAR
 
-    def formula_2013_01_01(self, simulation, period):
-        ir_plaf_qf = simulation.calculate('ir_plaf_qf', period)
-        nb_adult = simulation.calculate('nb_adult', period)
-        plf = simulation.parameters_at(period.start).plf2015
+    def formula_2013_01_01(foyer_fiscal, period, parameters):
+        ir_plaf_qf = foyer_fiscal('ir_plaf_qf', period)
+        nb_adult = foyer_fiscal('nb_adult', period)
+        plf = parameters(period).plf2015
 
         decote_celib = (ir_plaf_qf < plf.seuil_celib) * (plf.seuil_celib - ir_plaf_qf)
         decote_couple = (ir_plaf_qf < plf.seuil_couple) * (plf.seuil_couple - ir_plaf_qf)

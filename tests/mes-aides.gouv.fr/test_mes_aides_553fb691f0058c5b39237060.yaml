@@ -21,7 +21,7 @@ individus:
   interets_epargne_sur_livrets:
     2012-01: 0
   handicap: 0
-  statut_marital: 1
+  statut_marital: marie
   tns_benefice_exploitant_agricole:
     '2014': 11500
   valeur_locative_immo_non_loue:
@@ -39,7 +39,7 @@ individus:
   interets_epargne_sur_livrets:
     2012-01: 0
   handicap: 0
-  statut_marital: 1
+  statut_marital: marie
   valeur_locative_immo_non_loue:
     2012-01: 0
   valeur_locative_terrains_non_loue:
@@ -255,6 +255,6 @@ menages:
   enfants: []
   participation_frais: false
   personne_de_reference: 553fb68c783a3066397ecc80
-  statut_occupation_logement: 6
+  statut_occupation_logement: loge_gratuitement
 output_variables:
   rsa: 0

@@ -215,6 +215,7 @@ class cmu_base_ressources_individu(Variable):
             'allocation_securisation_professionnelle',
             'bourse_enseignement_sup',
             'bourse_recherche',
+            'caah',
             'chomage_net',
             'dedommagement_victime_amiante',
             'gains_exceptionnels',
@@ -307,8 +308,8 @@ class cmu_base_ressources(Variable):
 
         P = parameters(period).cmu
 
-        proprietaire = (statut_occupation_logement == 2)
-        heberge_titre_gratuit = (statut_occupation_logement == 6)
+        proprietaire = (statut_occupation_logement == TypesStatutOccupationLogement.proprietaire)
+        heberge_titre_gratuit = (statut_occupation_logement == TypesStatutOccupationLogement.loge_gratuitement)
         forfait_logement = ((proprietaire + heberge_titre_gratuit) * cmu_forfait_logement_base +
             cmu_forfait_logement_al)
 

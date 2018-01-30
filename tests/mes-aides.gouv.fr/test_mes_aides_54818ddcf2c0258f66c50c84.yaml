@@ -9,7 +9,7 @@ keywords:
 period: month:2014-12
 relative_error_margin: 0.02
 individus:
-- activite: 2
+- activite: chomeur
   age: 34
   age_en_mois: 419
   date_naissance: '1980-01-01'
@@ -253,7 +253,7 @@ menages:
   - 54818d591c33cd86661874e1
   participation_frais: false
   personne_de_reference: 54818d591c33cd86661874e2
-  statut_occupation_logement: 6
+  statut_occupation_logement: loge_gratuitement
 output_variables:
   asf: 95.99
   rsa: 653.78

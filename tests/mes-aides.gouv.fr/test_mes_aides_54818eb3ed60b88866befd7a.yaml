@@ -6,7 +6,7 @@ description: "Non éligible (L. 262-4 CASF)"
 period: "month:2014-12"
 relative_error_margin: 0.02
 individus:
-  - activite: 2
+  - activite: chomeur
     age: 34
     age_en_mois: 419
     date_naissance: "1980-01-01"
@@ -19,12 +19,12 @@ individus:
     interets_epargne_sur_livrets:
       2012-01: 0
     handicap: 0
-    statut_marital: 1
+    statut_marital: marie
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
-  - activite: 2
+  - activite: chomeur
     age: 34
     age_en_mois: 419
     date_naissance: "1980-01-01"
@@ -266,5 +266,5 @@ menages:
   depcom: 41230
   enfants: 54818e8de061e493666d52ae
   personne_de_reference: 54818e8de061e493666d52b1
-  statut_occupation_logement: 6
+  statut_occupation_logement: loge_gratuitement
 output_variables:

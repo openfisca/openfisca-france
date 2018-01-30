@@ -77,11 +77,11 @@ class rsa_has_ressources_substitution(Variable):
     entity = Individu
     definition_period = MONTH
 
-    def formula(famille, period):
+    def formula(individu, period):
         return (
-            famille('chomage_net', period) +
-            famille('indemnites_journalieres', period) +
-            famille('retraite_nette', period)
+            individu('chomage_net', period) +
+            individu('indemnites_journalieres', period) +
+            individu('retraite_nette', period)
             ) > 0
 
 
@@ -612,6 +612,7 @@ class rsa_montant(Variable):
         seuil_non_versement = P.rsa_nv
 
         montant = rsa_socle - rsa_forfait_logement - rsa_base_ressources + P.pente * rsa_revenu_activite
+
         montant = max_(montant, 0)
         montant = montant * (montant >= seuil_non_versement)
 
@@ -630,7 +631,13 @@ class rsa(Variable):
         montant = famille('rsa_montant', period)
         non_calculable = famille('rsa_non_calculable', period)
 
-        return not_(non_calculable) * montant
+        return (non_calculable == TypesRSANonCalculable.calculable) * montant
+
+class TypesRSANonCalculable(Enum):
+    __order__ = 'calculable tns conjoint_tns'  # Needed to preserve the enum order in Python 2
+    calculable = u"Calculable"
+    tns = u"tns"
+    conjoint_tns = u"conjoint_tns"
 
 
 class rsa_base_ressources_patrimoine_individu(Variable):
@@ -688,7 +695,6 @@ class rsa_eligibilite(Variable):
     def formula(famille, period, parameters):
         rsa_nb_enfants = famille('rsa_nb_enfants', period)
         rsa_eligibilite_tns = famille('rsa_eligibilite_tns', period)
-
         condition_nationalite_i = famille.members('rsa_condition_nationalite', period)
         condition_nationalite = famille.any(condition_nationalite_i, role = Famille.PARENT)
 
@@ -696,18 +702,17 @@ class rsa_eligibilite(Variable):
         rsa = parameters(period).prestations.minima_sociaux.rsa
 
         age_i = famille.members('age', period)
-        activite_i = famille.members('activite', period)
+
+        etudiant_i = famille.members('etudiant', period)
 
         # rsa_nb_enfants est à valeur pour une famille, il faut le projeter sur les individus avant de faire une opération avec age_i
         condition_age_i = famille.project(rsa_nb_enfants > 0) + (age_i > rsa.age_pac)
 
-        eligib = (
-            famille.any(condition_age_i * not_(activite_i == 2), role = Famille.PARENT)
+        return (
+            famille.any(condition_age_i * not_(etudiant_i), role = Famille.PARENT)
             * condition_nationalite
             * rsa_eligibilite_tns
             )
-
-        return eligib
 
 
 class rsa_eligibilite_tns(Variable):
@@ -755,7 +760,16 @@ class rsa_eligibilite_tns(Variable):
             plaf_vente = P_micro.specialbnc.marchandises.max
             plaf_service = P_micro.specialbnc.services.max
 
-            return ((type_activite == 0) * (ca <= plaf_vente)) + ((type_activite >= 1) * (ca <= plaf_service))
+            TypesTnsTypeActivite = type_activite.possible_values
+            achat_revente = (type_activite == TypesTnsTypeActivite.achat_revente)
+
+
+            service = (
+                (type_activite == TypesTnsTypeActivite.bic)
+                + (type_activite == TypesTnsTypeActivite.bnc)
+            )
+
+            return (achat_revente * (ca <= plaf_vente)) + (service * (ca <= plaf_service))
 
         eligibilite_agricole = eligibilite_agricole(
             has_conjoint, rsa_nb_enfants, tns_benefice_agricole, P_agr
@@ -764,6 +778,7 @@ class rsa_eligibilite_tns(Variable):
             eligibilite_chiffre_affaire(tns_autres_revenus_CA_i, tns_autres_revenus_type_activite_i, P_micro),
             role = Famille.PARENT
             )
+
 
         return eligibilite_agricole * not_(tns_avec_employe) * eligibilite_chiffre_affaire
 
@@ -792,6 +807,7 @@ class rsa_forfait_logement(Variable):
     value_type = float
     entity = Famille
     label = u"Forfait logement intervenant dans le calcul du Rmi ou du Rsa"
+    reference = u"https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000031694445&cidTexte=LEGITEXT000006074069&dateTexte=20171222&fastPos=2&fastReqId=1534790830&oldAction=rechCodeArticle"
     definition_period = MONTH
 
     def formula(famille, period, parameters):
@@ -802,9 +818,10 @@ class rsa_forfait_logement(Variable):
         loyer = famille.demandeur.menage('loyer', period)
 
         avantage_nature = or_(
-            (statut_occupation_logement == 2) * not_(loyer),
-            (statut_occupation_logement == 6) * not_(participation_frais)
-            )
+            ((statut_occupation_logement == TypesStatutOccupationLogement.primo_accedant) + (
+                    statut_occupation_logement == TypesStatutOccupationLogement.proprietaire)) * not_(loyer),
+            (statut_occupation_logement == TypesStatutOccupationLogement.loge_gratuitement) * not_(participation_frais)
+        )
         avantage_al = aide_logement > 0
 
 
@@ -871,11 +888,8 @@ class rsa_majore_eligibilite(Variable):
 
 class rsa_non_calculable(Variable):
     value_type = Enum
-    possible_values = Enum([
-        u"",
-        u"tns",
-        u"conjoint_tns"
-        ])
+    possible_values = TypesRSANonCalculable
+    default_value = TypesRSANonCalculable.calculable
     entity = Famille
     label = u"RSA non calculable"
     end = '2016-12-31'
@@ -898,7 +912,10 @@ class rsa_non_calculable(Variable):
             )
         non_calculable = eligible_rsa * non_calculable
 
-        return non_calculable
+        return select(
+            [non_calculable == 0, non_calculable == 1, non_calculable == 2],
+            [TypesRSANonCalculable.calculable, TypesRSANonCalculable.tns, TypesRSANonCalculable.conjoint_tns]
+        )
 
 
 class rsa_non_calculable_tns_individu(Variable):

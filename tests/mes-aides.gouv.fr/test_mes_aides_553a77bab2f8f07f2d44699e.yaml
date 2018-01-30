@@ -230,6 +230,6 @@ menages:
   enfants: []
   loyer: 600
   personne_de_reference: 553a7789bf19f57b2d1d5bb5
-  statut_occupation_logement: 4
+  statut_occupation_logement: locataire_vide
 output_variables:
   cmu_c: true

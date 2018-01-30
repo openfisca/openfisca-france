@@ -6,7 +6,7 @@
     - id: "parent1"
       age: 40
       ass_precondition_remplie: true
-      activite: 1
+      activite: chomeur
       chomage_net:
         2015-01: 200
         2015-02: 200
@@ -24,7 +24,7 @@
     - id: "parent1"
       age: 40
       ass_precondition_remplie: true
-      activite: 1
+      activite: chomeur
       salaire_imposable:
         2015-01: 400
         2015-02: 400
@@ -41,7 +41,7 @@
     - id: "parent1"
       age: 40
       ass_precondition_remplie: true
-      activite: 1
+      activite: chomeur
       salaire_imposable:
         2015-01: 400
         2015-02: 400
@@ -65,7 +65,7 @@
     - id: "parent1"
       age: 40
       ass_precondition_remplie: true
-      activite: 1
+      activite: chomeur
     - id: "parent2"
       age: 40
       salaire_imposable:

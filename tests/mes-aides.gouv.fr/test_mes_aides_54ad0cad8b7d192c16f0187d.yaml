@@ -92,7 +92,7 @@ individus:
       2014-11: 800
       2014-12: 800
       2015-01: 800
-    scolarite: 1
+    scolarite: college
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
@@ -309,6 +309,6 @@ menages:
     - 54ad0c4f638f222b16b10a9b
     - 54ad0c4f638f222b16b10a8e
   personne_de_reference: 54ad0c4f638f222b16b10a9c
-  statut_occupation_logement: 6
+  statut_occupation_logement: loge_gratuitement
 output_variables:
   af: 129.99

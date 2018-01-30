@@ -236,6 +236,6 @@ menages:
   loyer: 0
   participation_frais: true
   personne_de_reference: 564f45919e135a1b0291679a
-  statut_occupation_logement: 6
+  statut_occupation_logement: loge_gratuitement
 output_variables:
   rsa: 524.16

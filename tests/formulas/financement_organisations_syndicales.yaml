@@ -3,16 +3,16 @@
   individus:
     - id: "non cadre"
       salaire_de_base: 2000
-      categorie_salarie: 0
+      categorie_salarie: prive_non_cadre
     - id: "cadre"
       salaire_de_base: 3000
-      categorie_salarie: 1
+      categorie_salarie: prive_cadre
     - id: "contractuel fonction publique"
       salaire_de_base: 2000
-      categorie_salarie: 6
+      categorie_salarie: public_non_titulaire
     - id: "titualaire fonction publique"
       salaire_de_base: 2000
-      categorie_salarie: 3
+      categorie_salarie: public_titulaire_militaire #ATTENTION, l'index 3 se transforme en public_titulaire_militaire, le titre du test fait pense que public_titulaire_etat serait plus approprié
   output_variables:
 
   output_variables:

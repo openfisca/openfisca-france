@@ -11,7 +11,7 @@ description: |
 period: "month:2015-02"
 relative_error_margin: 0.02
 individus:
-  activite: 3
+  activite: retraite
   age: 74
   age_en_mois: 897
   date_naissance: "1940-05-05"
@@ -307,6 +307,6 @@ menages:
   depcom: 76540
   enfants:
   personne_de_reference: 54e21c1421f5286b2df324ab
-  statut_occupation_logement: 2
+  statut_occupation_logement: proprietaire
 output_variables:
   aspa: 87.27

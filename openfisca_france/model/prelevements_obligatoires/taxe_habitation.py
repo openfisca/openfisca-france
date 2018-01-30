@@ -4,7 +4,6 @@ from __future__ import division
 
 from openfisca_france.model.base import *  # noqa analysis:ignore
 
-
 class exonere_taxe_habitation(Variable):
     value_type = bool
     default_value = True
@@ -47,7 +46,7 @@ class exonere_taxe_habitation(Variable):
 
 
         seuil_th = P.plaf_th_1 + P.plaf_th_supp * (max_(0, (nbptr - 1) / 2))
-        elig = ((age >= 60) + (statut_marital == 4)) * (isf_tot <= 0) * (rfr < seuil_th) + (asi > 0) + (aspa > 0) + (aah > 0)
+        elig = ((age >= 60) + (statut_marital == TypesStatutMarital.veuf)) * (isf_tot <= 0) * (rfr < seuil_th) + (asi > 0) + (aspa > 0) + (aah > 0)
         return not_(elig)
 
 
@@ -165,4 +164,4 @@ class taxe_habitation(Variable):
         prelevement_residence_secondaire = 0  # TODO
 
 
-        return - exonere_taxe_habitation * 0
+        return - 0 * not_(exonere_taxe_habitation)

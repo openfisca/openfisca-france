@@ -59,17 +59,9 @@ class habite_chez_parents(Variable):
 
 class statut_occupation_logement(Variable):
     value_type = Enum
-    possible_values = Enum([
-        u"Non renseigné",
-        u"Accédant à la propriété",
-        u"Propriétaire (non accédant) du logement",
-        u"Locataire d'un logement HLM",
-        u"Locataire ou sous-locataire d'un logement loué vide non-HLM",
-        u"Locataire ou sous-locataire d'un logement loué meublé ou d'une chambre d'hôtel",
-        u"Logé gratuitement par des parents, des amis ou l'employeur",
-        u"Locataire d'un foyer (résidence universitaire, maison de retraite, foyer de jeune travailleur, résidence sociale...)",
-        u"Sans domicile stable"])
+    possible_values = TypesStatutOccupationLogement  # defined in model/base.py
     entity = Menage
+    default_value = TypesStatutOccupationLogement.non_renseigne
     label = u"Statut d'occupation du logement"
     set_input = set_input_dispatch_by_period
     definition_period = MONTH
@@ -95,8 +87,8 @@ class residence_guadeloupe(Variable):
     entity = Menage
     definition_period = MONTH
 
-    def formula(self, simulation, period):
-        depcom = simulation.calculate('depcom', period)
+    def formula(menage, period, parameters):
+        depcom = menage('depcom', period)
         return startswith(depcom, '971')
 
 
@@ -105,8 +97,8 @@ class residence_martinique(Variable):
     entity = Menage
     definition_period = MONTH
 
-    def formula(self, simulation, period):
-        depcom = simulation.calculate('depcom', period)
+    def formula(menage, period, parameters):
+        depcom = menage('depcom', period)
         return startswith(depcom, '972')
 
 
@@ -115,8 +107,8 @@ class residence_guyane(Variable):
     entity = Menage
     definition_period = MONTH
 
-    def formula(self, simulation, period):
-        depcom = simulation.calculate('depcom', period)
+    def formula(menage, period, parameters):
+        depcom = menage('depcom', period)
         return startswith(depcom, '973')
 
 
@@ -125,8 +117,8 @@ class residence_reunion(Variable):
     entity = Menage
     definition_period = MONTH
 
-    def formula(self, simulation, period):
-        depcom = simulation.calculate('depcom', period)
+    def formula(menage, period, parameters):
+        depcom = menage('depcom', period)
         return startswith(depcom, '974')
 
 
@@ -135,6 +127,6 @@ class residence_mayotte(Variable):
     entity = Menage
     definition_period = MONTH
 
-    def formula(self, simulation, period):
-        depcom = simulation.calculate('depcom', period)
+    def formula(menage, period, parameters):
+        depcom = menage('depcom', period)
         return startswith(depcom, '976')

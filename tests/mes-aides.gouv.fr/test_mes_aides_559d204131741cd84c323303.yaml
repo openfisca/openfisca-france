@@ -10,7 +10,7 @@ description: |
 period: "month:2015-07"
 relative_error_margin: 0.02
 individus:
-  activite: 1
+  activite: chomeur
   age: 44
   age_en_mois: 535
   ass_precondition_remplie: false
@@ -273,6 +273,6 @@ menages:
   enfants:
   loyer: 438
   personne_de_reference: 559d1dd94aea99cb4c5a3da0
-  statut_occupation_logement: 4
+  statut_occupation_logement: locataire_vide
 output_variables:
   aide_logement: 77

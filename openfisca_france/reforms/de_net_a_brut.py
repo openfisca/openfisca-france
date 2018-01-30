@@ -12,25 +12,26 @@ except ImportError:
 from .. import entities
 from ..model.base import *
 
-def calculate_net_from(salaire_de_base, simulation, period, requested_variable_names):
+def calculate_net_from(salaire_de_base, individu, period, requested_variable_names):
 
     # We're not wanting to calculate salaire_de_base again, but instead manually set it as an input variable
     # To avoid possible conflicts, remove its function
-    simulation.individu.get_holder('salaire_de_base').formula.function = None
-    simulation.individu.get_holder('salaire_de_base').array = salaire_de_base
+    individu.get_holder('salaire_de_base').formula.function = None
+    individu.get_holder('salaire_de_base').array = salaire_de_base
 
     # Work in isolation
-    temp_simulation = simulation.clone()
+    temp_simulation = individu.simulation.clone()
+    temp_individu = temp_simulation.individu
 
     # Calculated variable holders might contain undesired cache
     # (their entity.simulation points to the original simulation above)
     for name in requested_variable_names:
-        temp_simulation.individu.get_holder[name].delete_arrays()
+        temp_individu.get_holder[name].delete_arrays()
 
     # Force recomputing of salaire_net
-    temp_simulation.individu.get_holder('salaire_net_a_payer').delete_arrays()
+    temp_individu.get_holder('salaire_net_a_payer').delete_arrays()
 
-    net = temp_simulation.calculate('salaire_net_a_payer', period)[0]
+    net = temp_individu('salaire_net_a_payer', period)[0]
 
     return net
 
@@ -41,15 +42,15 @@ class salaire_de_base(Variable):
     reference = u"http://www.trader-finance.fr/lexique-finance/definition-lettre-S/Salaire-brut.html"
     definition_period = MONTH
 
-    def formula(self, simulation, period):
+    def formula(individu, period, parameters):
         # Calcule le salaire brut à partir du salaire net par inversion numérique.
 
-        net = simulation.get_array('salaire_net_a_payer', period)
+        net = individu.get_holder('salaire_net_a_payer').get_array(period)
 
         if net is None:
-            return self.zeros()
+            return individu.empty_array()
 
-        simulation = self.holder.entity.simulation
+        simulation = individu.simulation
 
         # List of variables already calculated. We will need it to remove their holders,
         # that might contain undesired cache
@@ -64,7 +65,7 @@ class salaire_de_base(Variable):
 
         def solve_func(net):
             def innerfunc(essai):
-                return calculate_net_from(essai, simulation, period, requested_variable_names) - net
+                return calculate_net_from(essai, individu, period, requested_variable_names) - net
             return innerfunc
 
         brut_calcule = \

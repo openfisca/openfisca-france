@@ -9,7 +9,7 @@ description: |
 period: "month:2015-02"
 relative_error_margin: 0.02
 individus:
-  - activite: 2
+  - activite: chomeur
     age: 22
     age_en_mois: 269
     date_naissance: "1992-08-12"
@@ -22,12 +22,12 @@ individus:
     interets_epargne_sur_livrets:
       2012-01: 0
     handicap: 0
-    statut_marital: 1
+    statut_marital: marie
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
-  - activite: 2
+  - activite: chomeur
     age: 22
     age_en_mois: 269
     date_naissance: "1992-08-12"
@@ -256,6 +256,6 @@ menages:
   enfants:
   loyer: 400
   personne_de_reference: 54d8c2b0e45751d544f06cc1
-  statut_occupation_logement: 4
+  statut_occupation_logement: locataire_vide
 output_variables:
   aide_logement: 336.98

@@ -10,7 +10,7 @@ description: |
 period: "month:2014-12"
 relative_error_margin: 0.02
 individus:
-  - activite: 3
+  - activite: retraite
     age: 65
     age_en_mois: 783
     date_naissance: "1949-08-14"
@@ -52,12 +52,12 @@ individus:
       2014-10: 555.6
       2014-11: 555.6
       2014-12: 555.6
-    statut_marital: 1
+    statut_marital: marie
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:
       2012-01: 0
-  - activite: 1
+  - activite: chomeur
     age: 54
     age_en_mois: 651
     ass_precondition_remplie: true

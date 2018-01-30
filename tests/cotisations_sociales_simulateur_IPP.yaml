@@ -11,9 +11,9 @@
     depcom_entreprise: "69381"
     primes_fonction_publique: 500
     traitement_indiciaire_brut: 2000
-    taille_entreprise: 3  # TODO fix this
+    taille_entreprise: de_20_a_249  # TODO fix this
     categorie_salarie: 'public_titulaire_etat'
-    zone_apl: 1
+    zone_apl: zone_1
   output_variables:
     fnal: -8 - 2
     versement_transport: -2000 * 0.0175  # = 35
@@ -61,9 +61,9 @@
     depcom_entreprise: "69381"
     primes_fonction_publique: 500
     traitement_indiciaire_brut: 2000
-    taille_entreprise: 3  # TODO fix this
+    taille_entreprise: de_20_a_249  # TODO fix this
     categorie_salarie: 'public_titulaire_territoriale'
-    zone_apl: 1
+    zone_apl: zone_1
   output_variables:
     fnal: -8 - 2
     versement_transport: -2000 * 0.0175  # = 35
@@ -107,9 +107,9 @@
     depcom_entreprise: "69381"
     primes_fonction_publique: 500
     traitement_indiciaire_brut: 2000
-    taille_entreprise: 3  # TODO fix this
-    categorie_salarie: "public_titulaire_hospitaliere"
-    zone_apl: 1
+    taille_entreprise: de_20_a_249   # TODO fix this
+    categorie_salarie: public_titulaire_hospitaliere
+    zone_apl: zone_1
   output_variables:
     fnal: -8 - 2
     versement_transport: -2000 * 0.0175
@@ -150,9 +150,9 @@
     depcom_entreprise: "69381"
     primes_fonction_publique: 500
     salaire_de_base: 2000
-    taille_entreprise: 3
+    taille_entreprise: de_20_a_249
     categorie_salarie: 'public_non_titulaire'
-    zone_apl: 1
+    zone_apl: zone_1
   output_variables:
     fnal: -10.24 - 2.56
     versement_transport: -2560 * 0.0175
@@ -200,14 +200,14 @@
     personne_de_reference: "parent1"
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2"]
-    zone_apl: 1
+    zone_apl: zone_1
   individus:
     - id: "parent1"
       date_naissance: 1972-01-01
       depcom_entreprise: "69381"
       primes_fonction_publique: 500
       traitement_indiciaire_brut: 2000
-      taille_entreprise: 3  # TODO fix this
+      taille_entreprise: de_20_a_249   # TODO fix this
       categorie_salarie: 'public_titulaire_etat'
     - id: "parent2"
       date_naissance: 1972-01-01
@@ -258,21 +258,21 @@
     personne_de_reference: "parent1"
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2"]
-    zone_apl: 2
+    zone_apl: zone_2
   individus:
     - id: "parent1"
       date_naissance: 1972-01-01
       depcom_entreprise: "69381"
       primes_fonction_publique: 500
       traitement_indiciaire_brut: 2000
-      taille_entreprise: 3  # TODO fix this
+      taille_entreprise: de_20_a_249   # TODO fix this
       categorie_salarie: 'public_titulaire_etat'
     - id: "parent2"
       date_naissance: 1972-01-01
       depcom_entreprise: "69381"
       primes_fonction_publique: 500
       traitement_indiciaire_brut: 2000
-      taille_entreprise: 3  # TODO fix this
+      taille_entreprise: de_20_a_249   # TODO fix this
       categorie_salarie: 'public_titulaire_etat'
     - id: "enfant1"
       date_naissance: 2000-01-01

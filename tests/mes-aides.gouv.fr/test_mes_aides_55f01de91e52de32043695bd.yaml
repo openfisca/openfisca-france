@@ -12,7 +12,7 @@ absolute_error_margin: 4
 individus:
 - enfant_a_charge:
     2015: true
-  activite: 3
+  activite: retraite
   age: 64
   age_en_mois: 775
   date_naissance: '1951-01-10'
@@ -279,6 +279,6 @@ menages:
   enfants: []
   loyer: 292
   personne_de_reference: 55f01daa8c9ccb340464e89e
-  statut_occupation_logement: 4
+  statut_occupation_logement: locataire_vide
 output_variables:
   aide_logement: 142.53

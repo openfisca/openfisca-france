@@ -6,7 +6,7 @@ description:
 period: "month:2014-11"
 relative_error_margin: 0.02
 individus:
-  activite: 1
+  activite: chomeur
   age: 34
   age_en_mois: 411
   ass_precondition_remplie: true
@@ -273,6 +273,6 @@ menages:
   depcom: 67482
   enfants:
   personne_de_reference: 546f515e48f57f393d6d1eb0
-  statut_occupation_logement: 6
+  statut_occupation_logement: loge_gratuitement
 output_variables:
   ass: 0

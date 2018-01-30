@@ -2,13 +2,13 @@ name: "Coordinatrice"
 period: "2014-03"
 absolute_error_margin: 0.005
 input_variables:
-  allegement_fillon_mode_recouvrement: 1  # "anticipe_regularisation_fin_de_periode"
+  allegement_fillon_mode_recouvrement: anticipe  # "anticipe_regularisation_fin_de_periode"
   assujettie_taxe_salaires: True
   avantage_en_nature_valeur_reelle: 0
-  contrat_de_travail: 0  # temps plein
+  contrat_de_travail: temps_plein
   contrat_de_travail_debut: "2013-07-02"
   contrat_de_travail_fin: "2014-12-31"
-  contrat_de_travail_duree: 0  # CDI
+  contrat_de_travail_duree: cdi
   effectif_entreprise: 250
   heures_non_remunerees_volume: 0
   code_postal_entreprise: "13299"
@@ -26,7 +26,7 @@ input_variables:
   taux_versement_transport: .02
   titre_restaurant_valeur_unitaire: 0
   titre_restaurant_volume: 0
-  categorie_salarie: 0  # non cadre
+  categorie_salarie: prive_non_cadre
   volume_jours_ijss: 0
 output_variables:
 

@@ -170,12 +170,16 @@ class aah_eligible(Variable):
     # TODO: dated_function : avant 2008, il fallait ne pas avoir travaillé pendant les 12 mois précédant la demande.
 
 
+class TypesAAHNonCalculable(Enum):
+    __order__ = 'calculable intervention_CDAPH_necessaire'  # Needed to preserve the enum order in Python 2
+    calculable = u"Calculable"
+    intervention_CDAPH_necessaire = u"intervention_CDAPH_necessaire"
+
+
 class aah_non_calculable(Variable):
     value_type = Enum
-    possible_values = Enum([
-        u"",
-        u"intervention_CDAPH_necessaire"
-        ])
+    possible_values = TypesAAHNonCalculable
+    default_value = TypesAAHNonCalculable.calculable
     entity = Individu
     label = u"AAH non calculable"
     definition_period = MONTH
@@ -185,7 +189,12 @@ class aah_non_calculable(Variable):
         aah_eligible = individu('aah_eligible', period)
 
         # Pour le moment résultat "pas assez fiable, donc on renvoit une non calculabilité tout le temps.
-        return aah_eligible # * (taux_incapacite < 0.8)
+
+        return where(
+            aah_eligible,
+            TypesAAHNonCalculable.intervention_CDAPH_necessaire,
+            TypesAAHNonCalculable.calculable
+        )
 
 
 class aah_base(Variable):

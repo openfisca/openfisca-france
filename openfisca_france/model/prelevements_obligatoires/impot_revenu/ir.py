@@ -7,6 +7,7 @@ import logging
 
 from numpy import datetime64, logical_and as and_, logical_or as or_, logical_xor as xor_, round as round_
 
+from openfisca_core.model_api import *
 from openfisca_core import periods
 from openfisca_france.model.base import *  # noqa analysis:ignore
 
@@ -67,25 +68,21 @@ class age(Variable):
     set_input = set_input_dispatch_by_period
 
     def formula(individu, period, parameters):
-        def compare_periods(x, y):
-            a = x[0]
-            b = y[0]
-
-            return periods.compare_period_start(a, b) or periods.compare_period_size(a, b)
-
-        has_birth = individu.get_holder('date_naissance')._array is not None
+        has_birth = individu.get_holder('date_naissance').get_known_periods()
         if not has_birth:
-            has_age_en_mois = bool(individu.get_holder('age_en_mois')._array_by_period)
+            has_age_en_mois = bool(individu.get_holder('age_en_mois').get_known_periods())
             if has_age_en_mois:
                 return individu('age_en_mois', period) // 12
 
             # If age is known at the same day of another year, compute the new age from it.
             holder = individu.get_holder('age')
             start = period.start
-            if holder._array_by_period is not None:
-                for last_period, last_array in sorted(holder._array_by_period.iteritems(), cmp = compare_periods, reverse = True):
+            known_periods = holder.get_known_periods()
+            if known_periods:
+                for last_period in sorted(known_periods, reverse = True):
                     last_start = last_period.start
                     if last_start.day == start.day:
+                        last_array = holder.get_array(last_period)
                         return last_array + int((start.year - last_start.year) +
                             (start.month - last_start.month) / 12)
 
@@ -104,25 +101,20 @@ class age_en_mois(Variable):
     definition_period = MONTH
 
     def formula(individu, period, parameters):
-
-        def compare_periods(x, y):
-            a = x[0]
-            b = y[0]
-
-            return periods.compare_period_start(a, b) or periods.compare_period_size(a, b)
-
         # If age_en_mois is known at the same day of another month, compute the new age_en_mois from it.
         holder = individu.get_holder('age_en_mois')
         start = period.start
-        if holder._array_by_period is not None:
-            for last_period, last_array in sorted(holder._array_by_period.iteritems(), cmp = compare_periods, reverse = True):
-                last_start = last_period.start
-                if last_start.day == start.day:
-                    return last_array + ((start.year - last_start.year) * 12 + (start.month - last_start.month))
+        known_periods = holder.get_known_periods()
 
-        has_birth = individu.get_holder('date_naissance')._array is not None
+        for last_period in sorted(known_periods, reverse = True):
+            last_start = last_period.start
+            if last_start.day == start.day:
+                last_array = holder.get_array(last_period)
+                return last_array + ((start.year - last_start.year) * 12 + (start.month - last_start.month))
+
+        has_birth = individu.get_holder('date_naissance').get_known_periods()
         if not has_birth:
-            has_age = bool(individu.get_holder('age')._array_by_period)
+            has_age = bool(individu.get_holder('age').get_known_periods())
             if has_age:
                 return individu('age', period) * 12
         date_naissance = individu('date_naissance', period)
@@ -284,7 +276,7 @@ class maries_ou_pacses(Variable):
 
     def formula(foyer_fiscal, period):
         statut_marital = foyer_fiscal.declarant_principal('statut_marital', period.first_month)
-        marie_ou_pacse = (statut_marital == 1) | (statut_marital == 5)
+        marie_ou_pacse = (statut_marital == TypesStatutMarital.marie) | (statut_marital == TypesStatutMarital.pacse)
 
         return marie_ou_pacse
 
@@ -297,7 +289,8 @@ class celibataire_ou_divorce(Variable):
 
     def formula(foyer_fiscal, period):
         statut_marital = foyer_fiscal.declarant_principal('statut_marital', period.first_month)
-        celibataire_ou_divorce = (statut_marital == 2) | (statut_marital == 3)
+        celibataire_ou_divorce = (statut_marital == TypesStatutMarital.celibataire) | (
+        statut_marital == TypesStatutMarital.divorce)
 
         return celibataire_ou_divorce
 
@@ -310,7 +303,7 @@ class veuf(Variable):
 
     def formula(foyer_fiscal, period):
         statut_marital = foyer_fiscal.declarant_principal('statut_marital', period.first_month)
-        veuf = (statut_marital == 4)
+        veuf = (statut_marital == TypesStatutMarital.veuf)
 
         return veuf
 
@@ -323,7 +316,7 @@ class jeune_veuf(Variable):
 
     def formula(foyer_fiscal, period):
         statut_marital = foyer_fiscal.declarant_principal('statut_marital', period.first_month)
-        jeune_veuf = (statut_marital == 6)
+        jeune_veuf = (statut_marital == TypesStatutMarital.jeune_veuf)
 
         return jeune_veuf
 
@@ -2684,7 +2677,6 @@ class nbptr(Variable):
 
         # # celib div
         c = 1 + enf + n2 + n3 + n6 + n7
-
         return (maries_ou_pacses | jeune_veuf) * m + (veuf & not_(jeune_veuf)) * v + celibataire_ou_divorce * c
 
 
