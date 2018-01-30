@@ -50,11 +50,15 @@ def create_all_scenarios_to_test(directory, years):
 
         for variable in base.individual_income_variables_to_test + base.household_income_variables_to_test :
             if variable not in base.tax_benefit_system.variables:
-                log.info("Variable {} does not exist in the tax_benefit system, no tests were created".format(variable))
+                log.info("Variable {} does not exist in the tax_benefit system, no scenarios to test were created".format(variable))
                 continue
             if base.tax_benefit_system.variables[variable].end != None: 
                 if (periods.period(str(base.tax_benefit_system.variables[variable].end)[:-3]) < periods.period('{}-01'.format(year))):
-                    log.info("Variable {} is not in effect in year {}, no tests were created".format(variable, year))
+                    log.info("Variable {} is not in effect in year {}, no scenarios to tests were created for this year".format(variable, year))
+                    continue
+            if variable in base.start_date_by_name.keys(): 
+                if (periods.period(str(base.start_date_by_name[variable])[:-3]) > periods.period('{}-01'.format(year))):
+                    log.info("Variable {} is not in effect in year {}, no scenarios to tests were created for this year".format(variable, year))
                     continue
 
             scenario = define_single_worker_scenario(year, {'salaire_imposable': fixed_wage_amount, variable: tested_income_amount})
