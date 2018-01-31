@@ -403,15 +403,16 @@ class paje_cmg(Variable):
         soit au max 45,00 €.
         Vous ne devez pas bénéficier de l'exonération des cotisations sociales dues pour la personne employée.
         """
+        # Récupération des données
 
         en_couple = famille('en_couple', period)
         inactif = famille('inactif', period)
         partiel1 = famille('partiel1', period)
-        af_nbenf = famille('af_nbenf', period)
+        nombre_enfants = famille('af_nbenf', period)
         base_ressources = famille('prestations_familiales_base_ressources', period.first_month)
-        empl_dir = famille('empl_dir', period)
-        ass_mat = famille('ass_mat', period)
-        gar_dom = famille('gar_dom', period)
+        emploi_direct = famille('empl_dir', period)
+        assistant_maternel = famille('ass_mat', period)
+        garde_a_domicile = famille('gar_dom', period)
         paje_prepare = famille('page_prepare', period)
         P = parameters(period).prestations.prestations_familiales
         P_n_2 = parameters(period.offset(-2, 'year')).prestations.prestations_familiales
@@ -441,42 +442,60 @@ class paje_cmg(Variable):
 
         cond_nonact = (aah > 0) | parent_etudiant  # | (ass>0)
     #  TODO: RSA insertion, alloc insertion, ass
-        eligible = cond_age_enf & (cond_act | cond_nonact)
-        nbenf = af_nbenf
-        seuil1 = (P.paje.clmg.seuil11 * (nbenf == 1) + P.paje.clmg.seuil12 * (nbenf >= 2) +
-                 max_(nbenf - 2, 0) * P.paje.clmg.seuil1sup)
-        seuil2 = (P.paje.clmg.seuil21 * (nbenf == 1) + P.paje.clmg.seuil22 * (nbenf >= 2) +
-                 max_(nbenf - 2, 0) * P.paje.clmg.seuil2sup)
+        cond_eligibilite = cond_age_enf & (cond_act | cond_nonact)
 
-    #        Si vous bénéficiez du Clca taux partiel (= vous travaillez entre 50 et 80% de la durée du travail fixée
-    #        dans l'entreprise), vous cumulez intégralement le Clca et le Cmg.
-    #        Si vous bénéficiez du Clca taux partiel (= vous travaillez à 50% ou moins de la durée
-    #        du travail fixée dans l'entreprise), le montant des plafonds Cmg est divisé par 2.
-        paje_prepare_temps_partiel = (paje_clca > 0) * partiel1
-        seuil1 = seuil1 * (1 - .5 * paje_prepare_temps_partiel)
-        seuil2 = seuil2 * (1 - .5 * paje_prepare_temps_partiel)
-
-        clmg = P.af.bmaf * ((nb_enf(famille, period, 0, P.paje.clmg.age1 - 1) > 0) +
-                            0.5 * (nb_enf(famille, period, P.paje.clmg.age1, P.paje.clmg.age2 - 1) > 0)
-                            ) * (
-            empl_dir * (
-                (base_ressources < seuil1) * P.paje.clmg.taux_recours_emploi_1er_plafond +
-                ((base_ressources >= seuil1) & (base_ressources < seuil2)) * P.paje.clmg.taux_recours_emploi_2e_plafond +
-                (base_ressources >= seuil2) * P.paje.clmg.taux_recours_emploi_supp_2e_plafond) +
-            ass_mat * (
-                (base_ressources < seuil1) * P.paje.clmg.ass_mat1 +
-                ((base_ressources >= seuil1) & (base_ressources < seuil2)) * P.paje.clmg.ass_mat2 +
-                (base_ressources >= seuil2) * P.paje.clmg.ass_mat3) +
-            gar_dom * (
-                (base_ressources < seuil1) * P.paje.clmg.domi1 +
-                ((base_ressources >= seuil1) & (base_ressources < seuil2)) * P.paje.clmg.domi2 +
-                (base_ressources >= seuil2) * P.paje.clmg.domi3))
-        # TODO: connecter avec le crédit d'impôt
-        # Si vous bénéficiez du Clca taux plein
+        # Si vous bénéficiez de la PreParE taux plein
         # (= vous ne travaillez plus ou interrompez votre activité professionnelle),
         # vous ne pouvez pas bénéficier du Cmg.
-        paje_prepare_inactif =  (paje_prepare > 0) * inactif
-        paje_cmg = eligible * not_(paje_prepare_inactif) * clmg
+        paje_prepare_inactif = (paje_prepare > 0) * inactif
+        eligible = cond_eligibilite * not_(paje_prepare_inactif)
+
+    # Les plafonds de ressource
+
+        seuil_revenus_bas = (
+                (nombre_enfants == 1) * P.paje.clmg.seuil11 +
+                (nombre_enfants >= 2) * P.paje.clmg.seuil12 +
+                max_(nombre_enfants - 2, 0) * P.paje.clmg.seuil1sup
+        )
+        seuil_revenus_hauts = (
+                (nombre_enfants == 1) * P.paje.clmg.seuil21 +
+                (nombre_enfants >= 2) * P.paje.clmg.seuil22 +
+                max_(nombre_enfants - 2, 0) * P.paje.clmg.seuil2sup
+        )
+
+    #        Si vous bénéficiez du PreParE taux partiel (= vous travaillez entre 50 et 80% de la durée du travail fixée
+    #        dans l'entreprise), vous cumulez intégralement la PreParE et le Cmg.
+    #        Si vous bénéficiez du PreParE taux partiel (= vous travaillez à 50% ou moins de la durée
+    #        du travail fixée dans l'entreprise), le montant des plafonds Cmg est divisé par 2.
+
+        paje_prepare_temps_partiel = (paje_prepare > 0) * partiel1
+        seuil_revenus_bas = seuil_revenus_bas * (1 - .5 * paje_prepare_temps_partiel)
+        seuil_revenus_hauts = seuil_revenus_hauts * (1 - .5 * paje_prepare_temps_partiel)
+        
+    # calcul du montant
+        montant_cmg = (
+                P.af.bmaf *
+                (
+                    1.0 * (nb_enf(famille, period, 0, P.paje.clmg.age1 - 1) > 0) +
+                    0.5 * (nb_enf(famille, period, P.paje.clmg.age1, P.paje.clmg.age2 - 1) > 0)
+                ) *
+                (
+            emploi_direct * (
+                (base_ressources < seuil_revenus_bas) * P.paje.clmg.taux_recours_emploi_1er_plafond +
+                ((base_ressources >= seuil_revenus_bas) & (base_ressources < seuil_revenus_hauts)) * P.paje.clmg.taux_recours_emploi_2e_plafond +
+                (base_ressources >= seuil_revenus_hauts) * P.paje.clmg.taux_recours_emploi_supp_2e_plafond) +
+            assistant_maternel * (
+                (base_ressources < seuil_revenus_bas) * P.paje.clmg.ass_mat1 +
+                ((base_ressources >= seuil_revenus_bas) & (base_ressources < seuil_revenus_hauts)) * P.paje.clmg.ass_mat2 +
+                (base_ressources >= seuil_revenus_hauts) * P.paje.clmg.ass_mat3) +
+            garde_a_domicile * (
+                (base_ressources < seuil_revenus_bas) * P.paje.clmg.domi1 +
+                ((base_ressources >= seuil_revenus_bas) & (base_ressources < seuil_revenus_hauts)) * P.paje.clmg.domi2 +
+                (base_ressources >= seuil_revenus_hauts) * P.paje.clmg.domi3))
+        )
+
+        paje_cmg = eligible * montant_cmg
+        # TODO: connecter avec le crédit d'impôt
         # TODO vérfiez les règles de cumul
         return paje_cmg
 
