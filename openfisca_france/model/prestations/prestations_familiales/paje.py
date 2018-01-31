@@ -413,7 +413,7 @@ class paje_cmg(Variable):
         emploi_direct = famille('empl_dir', period)
         assistant_maternel = famille('ass_mat', period)
         garde_a_domicile = famille('gar_dom', period)
-        paje_prepare = famille('page_prepare', period)
+        paje_prepare = famille('paje_prepare', period)
         P = parameters(period).prestations.prestations_familiales
         P_n_2 = parameters(period.offset(-2, 'year')).prestations.prestations_familiales
 
@@ -437,11 +437,11 @@ class paje_cmg(Variable):
             salaire_imposable + hsup >
             12 * bmaf_n_2 * (1 + en_couple)
             )
-    # TODO:    cond_rpns    =
+        # TODO:    cond_rpns    =
+        # TODO: RSA insertion, alloc insertion, ass
         cond_act = cond_sal  # | cond_rpns
-
         cond_nonact = (aah > 0) | parent_etudiant  # | (ass>0)
-    #  TODO: RSA insertion, alloc insertion, ass
+
         cond_eligibilite = cond_age_enf & (cond_act | cond_nonact)
 
         # Si vous bénéficiez de la PreParE taux plein
@@ -471,7 +471,7 @@ class paje_cmg(Variable):
         paje_prepare_temps_partiel = (paje_prepare > 0) * partiel1
         seuil_revenus_bas = seuil_revenus_bas * (1 - .5 * paje_prepare_temps_partiel)
         seuil_revenus_hauts = seuil_revenus_hauts * (1 - .5 * paje_prepare_temps_partiel)
-        
+
     # calcul du montant
         montant_cmg = (
                 P.af.bmaf *
