@@ -1,0 +1,132 @@
+{
+  "resultat_officiel": {
+    "IDRS2": {
+      "code": "IDRS2", 
+      "name": "Droits simples", 
+      "openfisca_name": "ir_plaf_qf", 
+      "value": 7850.0
+    }, 
+    "IINET": {
+      "code": "IINET", 
+      "name": "Montant net à payer", 
+      "openfisca_name": null, 
+      "value": -0.0
+    }, 
+    "IINETIR": {
+      "code": "IINETIR", 
+      "name": "Impôt sur le revenu net", 
+      "openfisca_name": "irpp", 
+      "value": -0.0
+    }, 
+    "IREST": {
+      "code": "IREST", 
+      "name": "Montant net à restituer", 
+      "openfisca_name": null, 
+      "value": 0.0
+    }, 
+    "ITRED": {
+      "code": "ITRED", 
+      "name": "Total des réductions d'impôt", 
+      "openfisca_name": "reductions", 
+      "value": 7850.0
+    }, 
+    "NAPCRP": {
+      "code": "NAPCRP", 
+      "name": "Montant net des prélèvements sociaux (sur revenu du patrimoine et revenus d'activité et de remplacement", 
+      "openfisca_name": null, 
+      "value": 0.0
+    }, 
+    "NBPT": {
+      "code": "NBPT", 
+      "name": "Nombre de parts", 
+      "openfisca_name": "nbptr", 
+      "value": 1.0
+    }, 
+    "PERPPLAFTV": {
+      "code": "PERPPLAFTV", 
+      "name": "Plafond de déduction pour les revenus 2014 au titre de l'épargne retraite, pour déclarant 1", 
+      "openfisca_name": null, 
+      "value": 4500.0
+    }, 
+    "REVKIRE": {
+      "code": "REVKIRE", 
+      "name": "Revenu fiscal de référence", 
+      "openfisca_name": "rfr", 
+      "value": 45000.0
+    }, 
+    "RILMIC": {
+      "code": "RILMIC", 
+      "name": "Réduction d'impôt Censi-Bouvard : case 7IC", 
+      "openfisca_name": null, 
+      "value": 7850.0
+    }, 
+    "RNICOL": {
+      "code": "RNICOL", 
+      "name": "Revenu net imposable ou déficit à reporter", 
+      "openfisca_name": "rni", 
+      "value": 45000.0
+    }, 
+    "RRBG": {
+      "code": "RRBG", 
+      "name": "Revenu brut global ou déficit", 
+      "openfisca_name": "rbg", 
+      "value": 45000.0
+    }, 
+    "TXMARJ": {
+      "code": "TXMARJ", 
+      "name": "Taux marginal d'imposition", 
+      "openfisca_name": null, 
+      "value": 30.0
+    }
+  }, 
+  "scenario": {
+    "period": "2016", 
+    "test_case": {
+      "familles": [
+        {
+          "id": 0, 
+          "parents": [
+            "ind0"
+          ]
+        }
+      ], 
+      "foyers_fiscaux": [
+        {
+          "caseF": false, 
+          "caseG": false, 
+          "caseL": false, 
+          "caseP": false, 
+          "caseS": false, 
+          "caseT": false, 
+          "caseW": false, 
+          "declarants": [
+            "ind0"
+          ], 
+          "f7ic": 20000, 
+          "id": 0, 
+          "nbF": 0.0, 
+          "nbG": 0.0, 
+          "nbH": 0.0, 
+          "nbI": 0.0, 
+          "nbJ": 0, 
+          "nbR": 0
+        }
+      ], 
+      "individus": [
+        {
+          "activite": 0, 
+          "date_naissance": "1970-01-01", 
+          "id": "ind0", 
+          "salaire_imposable": 50000.0, 
+          "statut_marital": 2
+        }
+      ], 
+      "menages": [
+        {
+          "id": 0, 
+          "personne_de_reference": "ind0"
+        }
+      ]
+    }
+  }
+}

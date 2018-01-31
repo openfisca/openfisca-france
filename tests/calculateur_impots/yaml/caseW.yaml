@@ -1,0 +1,250 @@
+- name: caseW
+  period: 2011
+  absolute_error_margin: 1
+  foyers_fiscaux:
+  - caseF: false
+    caseG: false
+    caseL: false
+    caseP: false
+    caseS: false
+    caseT: false
+    caseW: true
+    declarants:
+    - ind0
+    id: 0
+    nbF: 0.0
+    nbG: 0.0
+    nbH: 0.0
+    nbI: 0.0
+    nbJ: 0
+    nbR: 0
+  individus:
+  - activite: 0
+    date_naissance: '1931-01-01'
+    id: ind0
+    salaire_imposable: 50000.0
+    statut_marital: 2
+  familles:
+  - id: 0
+    parents:
+    - ind0
+  menages:
+  - id: 0
+    personne_de_reference: ind0
+  output_variables:
+    iai: 5151.0
+    ir_plaf_qf: 5598.0
+    irpp: -5151.0
+    nbptr: 1.5
+    ppe: 0.0
+    rbg: 45000.0
+    rfr: 45000.0
+    rni: 45000.0
+- name: caseW
+  period: 2012
+  absolute_error_margin: 1
+  foyers_fiscaux:
+  - caseF: false
+    caseG: false
+    caseL: false
+    caseP: false
+    caseS: false
+    caseT: false
+    caseW: true
+    declarants:
+    - ind0
+    id: 0
+    nbF: 0.0
+    nbG: 0.0
+    nbH: 0.0
+    nbI: 0.0
+    nbJ: 0
+    nbR: 0
+  individus:
+  - activite: 0
+    date_naissance: '1932-01-01'
+    id: ind0
+    salaire_imposable: 50000.0
+    statut_marital: 2
+  familles:
+  - id: 0
+    parents:
+    - ind0
+  menages:
+  - id: 0
+    personne_de_reference: ind0
+  output_variables:
+    iai: 5151.0
+    ir_plaf_qf: 5934.0
+    irpp: -5151.0
+    nbptr: 1.5
+    ppe: 0.0
+    rbg: 45000.0
+    rfr: 45000.0
+    rni: 45000.0
+- name: caseW
+  period: 2013
+  absolute_error_margin: 1
+  foyers_fiscaux:
+  - caseF: false
+    caseG: false
+    caseL: false
+    caseP: false
+    caseS: false
+    caseT: false
+    caseW: true
+    declarants:
+    - ind0
+    id: 0
+    nbF: 0.0
+    nbG: 0.0
+    nbH: 0.0
+    nbI: 0.0
+    nbJ: 0
+    nbR: 0
+  individus:
+  - activite: 0
+    date_naissance: '1933-01-01'
+    id: ind0
+    salaire_imposable: 50000.0
+    statut_marital: 2
+  familles:
+  - id: 0
+    parents:
+    - ind0
+  menages:
+  - id: 0
+    personne_de_reference: ind0
+  output_variables:
+    iai: 5084.0
+    ir_plaf_qf: 6389.0
+    irpp: -5084.0
+    nbptr: 1.5
+    ppe: 0.0
+    rbg: 45000.0
+    rfr: 45000.0
+    rni: 45000.0
+- name: caseW
+  period: 2014
+  absolute_error_margin: 1
+  foyers_fiscaux:
+  - caseF: false
+    caseG: false
+    caseL: false
+    caseP: false
+    caseS: false
+    caseT: false
+    caseW: true
+    declarants:
+    - ind0
+    id: 0
+    nbF: 0.0
+    nbG: 0.0
+    nbH: 0.0
+    nbI: 0.0
+    nbJ: 0
+    nbR: 0
+  individus:
+  - activite: 0
+    date_naissance: '1934-01-01'
+    id: ind0
+    salaire_imposable: 50000.0
+    statut_marital: 2
+  familles:
+  - id: 0
+    parents:
+    - ind0
+  menages:
+  - id: 0
+    personne_de_reference: ind0
+  output_variables:
+    iai: 5042.0
+    ir_plaf_qf: 6353.0
+    irpp: -5042.0
+    nbptr: 1.5
+    ppe: 0.0
+    rbg: 45000.0
+    rfr: 45000.0
+    rni: 45000.0
+- name: caseW
+  period: 2015
+  absolute_error_margin: 1
+  foyers_fiscaux:
+  - caseF: false
+    caseG: false
+    caseL: false
+    caseP: false
+    caseS: false
+    caseT: false
+    caseW: true
+    declarants:
+    - ind0
+    id: 0
+    nbF: 0.0
+    nbG: 0.0
+    nbH: 0.0
+    nbI: 0.0
+    nbJ: 0
+    nbR: 0
+  individus:
+  - activite: 0
+    date_naissance: '1935-01-01'
+    id: ind0
+    salaire_imposable: 50000.0
+    statut_marital: 2
+  familles:
+  - id: 0
+    parents:
+    - ind0
+  menages:
+  - id: 0
+    personne_de_reference: ind0
+  output_variables:
+    iai: 5033.0
+    ir_plaf_qf: 6345.0
+    irpp: -5033.0
+    nbptr: 1.5
+    rbg: 45000.0
+    rfr: 45000.0
+    rni: 45000.0
+- name: caseW
+  period: 2016
+  absolute_error_margin: 1
+  foyers_fiscaux:
+  - caseF: false
+    caseG: false
+    caseL: false
+    caseP: false
+    caseS: false
+    caseT: false
+    caseW: true
+    declarants:
+    - ind0
+    id: 0
+    nbF: 0.0
+    nbG: 0.0
+    nbH: 0.0
+    nbI: 0.0
+    nbJ: 0
+    nbR: 0
+  individus:
+  - activite: 0
+    date_naissance: '1936-01-01'
+    id: ind0
+    salaire_imposable: 50000.0
+    statut_marital: 2
+  familles:
+  - id: 0
+    parents:
+    - ind0
+  menages:
+  - id: 0
+    personne_de_reference: ind0
+  output_variables:
+    iai: 5025.0
+    ir_plaf_qf: 6338.0
+    irpp: -5025.0
+    nbptr: 1.5
+    rbg: 45000.0
+    rfr: 45000.0
+    rni: 45000.0

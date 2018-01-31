@@ -1,0 +1,256 @@
+- name: macc_imps
+  period: 2011
+  absolute_error_margin: 1
+  foyers_fiscaux:
+  - caseF: false
+    caseG: false
+    caseL: false
+    caseP: false
+    caseS: false
+    caseT: false
+    caseW: false
+    declarants:
+    - ind0
+    id: 0
+    nbF: 0.0
+    nbG: 0.0
+    nbH: 0.0
+    nbI: 0.0
+    nbJ: 0
+    nbR: 0
+  individus:
+  - activite: 0
+    date_naissance: '1970-01-01'
+    id: ind0
+    macc_imps: 20000
+    salaire_imposable: 50000.0
+    statut_marital: 2
+  familles:
+  - id: 0
+    parents:
+    - ind0
+  menages:
+  - id: 0
+    personne_de_reference: ind0
+  output_variables:
+    iai: 10934.0
+    ir_plaf_qf: 10934.0
+    irpp: -10934.0
+    nbptr: 1.0
+    ppe: 0.0
+    rbg: 55000.0
+    rfr: 55000.0
+    rni: 55000.0
+- name: macc_imps
+  period: 2012
+  absolute_error_margin: 1
+  foyers_fiscaux:
+  - caseF: false
+    caseG: false
+    caseL: false
+    caseP: false
+    caseS: false
+    caseT: false
+    caseW: false
+    declarants:
+    - ind0
+    id: 0
+    nbF: 0.0
+    nbG: 0.0
+    nbH: 0.0
+    nbI: 0.0
+    nbJ: 0
+    nbR: 0
+  individus:
+  - activite: 0
+    date_naissance: '1970-01-01'
+    id: ind0
+    macc_imps: 20000
+    salaire_imposable: 50000.0
+    statut_marital: 2
+  familles:
+  - id: 0
+    parents:
+    - ind0
+  menages:
+  - id: 0
+    personne_de_reference: ind0
+  output_variables:
+    iai: 10934.0
+    ir_plaf_qf: 10934.0
+    irpp: -10934.0
+    nbptr: 1.0
+    ppe: 0.0
+    rbg: 55000.0
+    rfr: 55000.0
+    rni: 55000.0
+- name: macc_imps
+  period: 2013
+  absolute_error_margin: 1
+  foyers_fiscaux:
+  - caseF: false
+    caseG: false
+    caseL: false
+    caseP: false
+    caseS: false
+    caseT: false
+    caseW: false
+    declarants:
+    - ind0
+    id: 0
+    nbF: 0.0
+    nbG: 0.0
+    nbH: 0.0
+    nbI: 0.0
+    nbJ: 0
+    nbR: 0
+  individus:
+  - activite: 0
+    date_naissance: '1970-01-01'
+    id: ind0
+    macc_imps: 20000
+    salaire_imposable: 50000.0
+    statut_marital: 2
+  familles:
+  - id: 0
+    parents:
+    - ind0
+  menages:
+  - id: 0
+    personne_de_reference: ind0
+  output_variables:
+    iai: 10889.0
+    ir_plaf_qf: 10889.0
+    irpp: -10889.0
+    nbptr: 1.0
+    ppe: 0.0
+    rbg: 55000.0
+    rfr: 55000.0
+    rni: 55000.0
+- name: macc_imps
+  period: 2014
+  absolute_error_margin: 1
+  foyers_fiscaux:
+  - caseF: false
+    caseG: false
+    caseL: false
+    caseP: false
+    caseS: false
+    caseT: false
+    caseW: false
+    declarants:
+    - ind0
+    id: 0
+    nbF: 0.0
+    nbG: 0.0
+    nbH: 0.0
+    nbI: 0.0
+    nbJ: 0
+    nbR: 0
+  individus:
+  - activite: 0
+    date_naissance: '1970-01-01'
+    id: ind0
+    macc_imps: 20000
+    salaire_imposable: 50000.0
+    statut_marital: 2
+  familles:
+  - id: 0
+    parents:
+    - ind0
+  menages:
+  - id: 0
+    personne_de_reference: ind0
+  output_variables:
+    iai: 10861.0
+    ir_plaf_qf: 10861.0
+    irpp: -10861.0
+    nbptr: 1.0
+    ppe: 0.0
+    rbg: 55000.0
+    rfr: 55000.0
+    rni: 55000.0
+- name: macc_imps
+  period: 2015
+  absolute_error_margin: 1
+  foyers_fiscaux:
+  - caseF: false
+    caseG: false
+    caseL: false
+    caseP: false
+    caseS: false
+    caseT: false
+    caseW: false
+    declarants:
+    - ind0
+    id: 0
+    nbF: 0.0
+    nbG: 0.0
+    nbH: 0.0
+    nbI: 0.0
+    nbJ: 0
+    nbR: 0
+  individus:
+  - activite: 0
+    date_naissance: '1970-01-01'
+    id: ind0
+    macc_imps: 20000
+    salaire_imposable: 50000.0
+    statut_marital: 2
+  familles:
+  - id: 0
+    parents:
+    - ind0
+  menages:
+  - id: 0
+    personne_de_reference: ind0
+  output_variables:
+    iai: 10855.0
+    ir_plaf_qf: 10855.0
+    irpp: -10855.0
+    nbptr: 1.0
+    rbg: 55000.0
+    rfr: 55000.0
+    rni: 55000.0
+- name: macc_imps
+  period: 2016
+  absolute_error_margin: 1
+  foyers_fiscaux:
+  - caseF: false
+    caseG: false
+    caseL: false
+    caseP: false
+    caseS: false
+    caseT: false
+    caseW: false
+    declarants:
+    - ind0
+    id: 0
+    nbF: 0.0
+    nbG: 0.0
+    nbH: 0.0
+    nbI: 0.0
+    nbJ: 0
+    nbR: 0
+  individus:
+  - activite: 0
+    date_naissance: '1970-01-01'
+    id: ind0
+    macc_imps: 20000
+    salaire_imposable: 50000.0
+    statut_marital: 2
+  familles:
+  - id: 0
+    parents:
+    - ind0
+  menages:
+  - id: 0
+    personne_de_reference: ind0
+  output_variables:
+    iai: 10850.0
+    ir_plaf_qf: 10850.0
+    irpp: -10850.0
+    nbptr: 1.0
+    rbg: 55000.0
+    rfr: 55000.0
+    rni: 55000.0
