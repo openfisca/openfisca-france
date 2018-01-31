@@ -1,3 +1,30 @@
+- name: "Au 1er avril 2017, la paje_clca et la paje_colca sont supprimées au profit de la paje_prepare"
+  period: 2018-02
+  individus:
+    - id: "parent1"
+      age: 40
+      salaire_de_base: 20000
+    - id: "enfant1"
+      date_naissance: 2017-01-01
+  familles:
+    parents: ["parent1"]
+    enfants: ["enfant1"]
+    inactif: true
+    ass_mat: true
+  foyers_fiscaux:
+    declarants: ["parent1"]
+    personnes_a_charge: ["enfant1"]  
+  menages:
+    personne_de_reference: "parent1"
+    enfants: ["enfant1"]
+  output_variables:
+    # BMAF 2017-04-01 = 407.84
+    paje_base: 0.45950 * 407.84
+    paje_naissance: 0
+    paje_cmg: 462.78
+    paje_prepare: 0
+    paje: 187.40248 + 462.78
+
 - name: "Avant le 1er avril 2014, le montant de la PAJE est proprotionnel à la BMAF"
   period: 2012-11
   familles:
