@@ -1,0 +1,52 @@
+{
+  "scenario": {
+    "period": "2012", 
+    "test_case": {
+      "familles": [
+        {
+          "id": 0, 
+          "parents": [
+            "ind0"
+          ]
+        }
+      ], 
+      "foyers_fiscaux": [
+        {
+          "caseF": false, 
+          "caseG": false, 
+          "caseL": false, 
+          "caseP": false, 
+          "caseS": false, 
+          "caseT": false, 
+          "caseW": false, 
+          "declarants": [
+            "ind0"
+          ], 
+          "id": 0, 
+          "nbF": 0.0, 
+          "nbG": 0.0, 
+          "nbH": 0.0, 
+          "nbI": 0.0, 
+          "nbJ": 0, 
+          "nbR": 0
+        }
+      ], 
+      "individus": [
+        {
+          "activite": 0, 
+          "cncn_aimp": 20000, 
+          "date_naissance": "1970-01-01", 
+          "id": "ind0", 
+          "salaire_imposable": 50000.0, 
+          "statut_marital": 2
+        }
+      ], 
+      "menages": [
+        {
+          "id": 0, 
+          "personne_de_reference": "ind0"
+        }
+      ]
+    }
+  }
+}
