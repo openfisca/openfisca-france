@@ -1,5 +1,11 @@
 # Changelog
 
+### 20.0.5 [#857](https://github.com/openfisca/openfisca-france/pull/857)
+
+* Changement mineur.
+* Détails :
+  - Clarification d'un nom de variable intermédiaire intervenant dans le calcul de af_base.
+
 ### 20.0.4 [#842](https://github.com/openfisca/openfisca-france/pull/842)
 
 * Amélioration technique
