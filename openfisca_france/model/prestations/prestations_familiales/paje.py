@@ -270,7 +270,7 @@ class paje_cmg(Variable):
     entity = Famille
     label = u"PAJE - Complément de libre choix du mode de garde"
     set_input = set_input_divide_by_period
-    reference = "http://www.caf.fr/aides-et-services/s-informer-sur-les-aides/petite-enfance/le-complement-de-libre-choix-du-mode-de-garde"  # noqa
+    reference = ["http://www.caf.fr/aides-et-services/s-informer-sur-les-aides/petite-enfance/le-complement-de-libre-choix-du-mode-de-garde", "https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=C92307A93BE5F694EB49FE51DC09602C.tplgfr29s_1?idArticle=LEGIARTI000031500755&cidTexte=LEGITEXT000006073189&categorieLien=id&dateTexte=" ] # noqa
     definition_period = MONTH
 
     def formula_2017_04_01(famille, period, parameters):
@@ -283,11 +283,6 @@ class paje_cmg(Variable):
 
             avoir un enfant de moins de 6 ans né, adopté ou recueilli en vue d'adoption à partir du 1er janvier 2004
             employer une assistante maternelle agréée ou une garde à domicile.
-            avoir une activité professionnelle minimale
-                si vous êtes salarié cette activité doit vous procurer un revenu minimum de :
-                    si vous vivez seul : une fois la BMAF
-                    si vous vivez en couple  soit 2 fois la BMAF
-                si vous êtes non salarié, vous devez être à jour de vos cotisations sociales d'assurance vieillesse
 
         Vous n'avez pas besoin de justifier d'une activité min_ si vous êtes :
 
@@ -304,7 +299,6 @@ class paje_cmg(Variable):
         """
         # Récupération des données
 
-        en_couple = famille('en_couple', period)
         inactif = famille('inactif', period)
         partiel1 = famille('partiel1', period)
         nombre_enfants = famille('af_nbenf', period)
@@ -314,7 +308,6 @@ class paje_cmg(Variable):
         garde_a_domicile = famille('gar_dom', period)
         paje_prepare = famille('paje_prepare', period)
         P = parameters(period).prestations.prestations_familiales
-        P_n_2 = parameters(period.offset(-2, 'year')).prestations.prestations_familiales
 
         aah_i = famille.members('aah', period)
         aah = famille.sum(aah_i)
@@ -322,27 +315,16 @@ class paje_cmg(Variable):
         etudiant_i = famille.members('etudiant', period)
         parent_etudiant = famille.any(etudiant_i, role = Famille.PARENT)
 
-        salaire_imposable_i = famille.members('salaire_imposable', period)
-        salaire_imposable = famille.sum(salaire_imposable_i, role = Famille.PARENT)
-
-        hsup_i = famille.members('hsup', period)
-        hsup = famille.sum(hsup_i, role = Famille.PARENT)
 
     # condition de revenu minimal
 
         cond_age_enf = (nb_enf(famille, period, 0, P.paje.clmg.age2 - 1) > 0)
 
-        bmaf_n_2 = P_n_2.af.bmaf
-        cond_sal = (
-            salaire_imposable +
-            hsup > 12 * bmaf_n_2 * (1 + en_couple)
-            )
         # TODO:    cond_rpns    =
         # TODO: RSA insertion, alloc insertion, ass
-        cond_act = cond_sal  # | cond_rpns
         cond_nonact = (aah > 0) | parent_etudiant  # | (ass>0)
 
-        cond_eligibilite = cond_age_enf & (cond_act | cond_nonact)
+        cond_eligibilite = cond_age_enf & (not_(inactif)| cond_nonact)
 
         # Si vous bénéficiez de la PreParE taux plein
         # (= vous ne travaillez plus ou interrompez votre activité professionnelle),
