@@ -23,7 +23,7 @@ scenarios_arguments = [
             zone_apl = "zone_1",
             ),
         )
-    for year in range(2006, 2017)
+    for year in range(2006, 2020)
     ]
 
 
