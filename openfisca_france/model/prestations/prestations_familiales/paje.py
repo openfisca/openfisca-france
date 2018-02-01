@@ -250,6 +250,7 @@ class paje_clca(Variable):
     entity = Famille
     label = u"PAJE - Complément de libre choix d'activité"
     reference = "http://vosdroits.service-public.fr/particuliers/F313.xhtml"
+    end = '2017-04-01'
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -469,6 +470,7 @@ class paje_colca(Variable):
     value_type = float
     entity = Famille
     label = u"PAJE - Complément optionnel de libre choix d'activité"
+    end = '2017-04-01'
     set_input = set_input_divide_by_period
     reference = "http://vosdroits.service-public.fr/particuliers/F15110.xhtml"
     definition_period = MONTH
