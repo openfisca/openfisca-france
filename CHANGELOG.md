@@ -1,5 +1,12 @@
 # Changelog
 
+### 20.0.6 [#892](https://github.com/openfisca/openfisca-france/pull/892)
+
+* Correction d'un crash
+* Détails :
+  - Corrige l'erreur 500 qui apparaît dans les calculs de la PPA et du RSA depuis février 2018.
+  - Vérifie dans les tests que le revenu disponible peut être calculé jusuqu'à 2020 pour éviter qu'un problème similaire se reproduise.
+
 ### 20.0.5 [#857](https://github.com/openfisca/openfisca-france/pull/857)
 
 * Changement mineur.
