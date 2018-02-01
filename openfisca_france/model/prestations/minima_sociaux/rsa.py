@@ -236,6 +236,35 @@ class rsa_base_ressources_prestations_familiales(Variable):
 
         return result
 
+    def formula_2017_01_01(famille, mois_demande, parameters, mois_courant):
+        # TODO : Neutraliser les ressources de type prestations familiales quand elles sont interrompues
+        prestations_calculees = [
+            'rsa_forfait_asf',
+            'paje_base',
+        ]
+        prestations_autres = [
+            'paje_clca',
+            'paje_prepare',
+            'paje_colca',
+        ]
+
+        # On réinjecte le montant des prestations calculées
+        result = sum(famille(prestation, mois_demande) for prestation in prestations_calculees)
+
+        result += sum(famille(prestation, mois_courant) for prestation in prestations_autres)
+
+        cf_non_majore_avant_cumul = famille('cf_non_majore_avant_cumul', mois_demande)
+        cf = famille('cf', mois_demande)
+        # Seul le montant non majoré est pris en compte dans la base de ressources du RSA
+        cf_non_majore = (cf > 0) * cf_non_majore_avant_cumul
+
+        af_base = famille('af_base', mois_demande)
+        af = famille('af', mois_demande)
+
+        result = result + cf_non_majore + min_(af_base, af)  # Si des AF on été injectées et sont plus faibles que le cf
+
+        return result
+
 
 class crds_mini(Variable):
     value_type = float
