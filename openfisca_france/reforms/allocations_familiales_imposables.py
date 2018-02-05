@@ -44,29 +44,28 @@ class allocations_familiales_imposables(Reform):
         label = u"Nouveau revenu fiscal de référence intégrant les allocations familiales"
         definition_period = YEAR
 
-        def formula(self, simulation, period):
-            allocations_familiales_imposables = simulation.calculate('allocations_familiales_imposables')
-            abatnet_retraite_dirigeant_pme = simulation.calculate('abatnet_retraite_dirigeant_pme')
-            f3vi_holder = simulation.calculate('f3vi')
-            f3vz = simulation.calculate('f3vz')
-            rfr_cd = simulation.calculate('rfr_cd')
-            rfr_rvcm = simulation.calculate('rfr_rvcm')
-            rni = simulation.calculate('rni')
-            rpns_exon_holder = simulation.calculate('rpns_exon')
-            rpns_pvce_holder = simulation.calculate('rpns_pvce')
-            rev_cap_lib = simulation.calculate_add('rev_cap_lib')
-            microentreprise = simulation.calculate('microentreprise')
+        def formula(foyer_fiscal, period, parameters):
+            allocations_familiales_imposables = foyer_fiscal('allocations_familiales_imposables')
+            abatnet_retraite_dirigeant_pme = foyer_fiscal('abatnet_retraite_dirigeant_pme')
+            f3vi_i = foyer_fiscal.members('f3vi', period)
+            f3vz = foyer_fiscal('f3vz', period)
+            rfr_cd = foyer_fiscal('rfr_cd', period)
+            rfr_rvcm = foyer_fiscal('rfr_rvcm', period)
+            rni = foyer_fiscal('rni', period)
+            rpns_exon_i = foyer_fiscal.members('rpns_exon', period)
+            rpns_pvce_i = foyer_fiscal.members('rpns_pvce', period)
+            rev_cap_lib = foyer_fiscal('rev_cap_lib', period, options = [ADD])
+            microentreprise = foyer_fiscal('microentreprise', period)
 
-            f3vi = self.sum_by_entity(f3vi_holder)
-            rpns_exon = self.sum_by_entity(rpns_exon_holder)
-            rpns_pvce = self.sum_by_entity(rpns_pvce_holder)
-
+            f3vi = foyer_fiscal.sum(f3vi_i)
+            rpns_exon = foyer_fiscal.sum(rpns_exon_i)
+            rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
+            
             return (
                 max_(0, rni - allocations_familiales_imposables) +
                 rfr_cd + rfr_rvcm + rev_cap_lib + f3vi + rpns_exon + rpns_pvce + abatnet_retraite_dirigeant_pme + f3vz + microentreprise
                 )
 
-            # TO CHECK : f3vb after 2015 (abattements sur moins-values = interdits)
 
     class allocations_familiales_imposables(Variable):
         value_type = float
