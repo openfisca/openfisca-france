@@ -1985,7 +1985,7 @@ class quaenv_bouquet(Variable):
         t4 = or_(f7sn > 0, f7so > 0)
         t5 = or_(f7sr > 0, f7ss > 0)
         t6 = or_(or_(or_(f7st > 0, f7sp > 0), or_(f7sq > 0, f7sd > 0)), f7se > 0)
-        bouquet = (t1 + t2 + t3 + t4 + t5 + t6 > 1 and f7wh == 1)
+        bouquet = (t1 + t2 + t3 + t4 + t5 + t6 > 1) * (f7wh == 1)  # * = and
         return bouquet
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
@@ -2013,7 +2013,7 @@ class quaenv_bouquet(Variable):
         t4 = or_(f7sn > 0, f7so > 0)
         t5 = or_(f7sr > 0, f7ss > 0)
         t6 = or_(or_(or_(f7st > 0, f7sp > 0), or_(f7sq > 0, f7sd > 0)), f7se > 0)
-        bouquet = (t1 + t2 + t3 + t4 + t5 + t6 > 1 and f7wh == 1)
+        bouquet = (t1 + t2 + t3 + t4 + t5 + t6 > 1) * (f7wh == 1)
         return bouquet
 
     def formula_2014_01_01(foyer_fiscal, period, parameters):
@@ -2062,7 +2062,7 @@ class quaenv_bouquet(Variable):
         t5 = (f7sr + f7rr + f7ss + f7rs > 0)*1
         t6 = (f7sd + f7sa + f7se + f7sb + f7sp + f7rp + f7sq + f7rq + f7st + f7rt > 0)*1
        
-        bouquet = ((t1 + t2 + t3 + t4 + t5 + t6 > 1) & (depense_2014_eligible > 0))
+        bouquet = (t1 + t2 + t3 + t4 + t5 + t6 > 1) * (depense_2014_eligible > 0)
         return bouquet
 
     def formula_2015_01_01(foyer_fiscal, period, parameters):
@@ -2129,7 +2129,7 @@ class quaenv_bouquet(Variable):
              f7sq + f7rq + f7tq +
              f7st + f7rt + f7tt > 0)*1
 
-        bouquet = ((t1 + t2 + t3 + t4 + t5 + t6 > 1) & (depense_2014_eligible > 0) & (depense_2015_eligible > 0))
+        bouquet = (t1 + t2 + t3 + t4 + t5 + t6 > 1) * (depense_2014_eligible > 0) * (depense_2015_eligible > 0)
         return bouquet
 
 class saldom2(Variable):
