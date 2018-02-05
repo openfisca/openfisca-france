@@ -49,16 +49,16 @@ NB2 : to run the YAML tests created, one can use the command *openfisca-run-test
 openfisca-run-test tests/calculateur_impots/yaml/chomage_imposable.yaml --c openfisca_france
 ```
 
-NB3 : to run the YAML test by testing only a subset of the output variables defined in the test, one can use the `only` option, by typing:
+NB3 : to run the YAML test by testing only a subset of the output variables defined in the test, one can use the `only-variables` option, by typing:
 ```
 openfisca-run-test tests/calculateur_impots/yaml/chomage_imposable.yaml --c openfisca_france -o variable1 variable2
 ```
 
 where `variable1` and `variable2` are the output variables to be tested.
 
-NB4 : to run the YAML test by excluding from output variables a subset of variables, one can use the `ignore` option, by typing:
+NB4 : to run the YAML test by excluding from output variables a subset of variables, one can use the `ignore-variables` option, by typing:
 ```
-openfisca-run-test tests/calculateur_impots/yaml/chomage_imposable.yaml --c openfisca_france -o variable1 variable2
+openfisca-run-test tests/calculateur_impots/yaml/chomage_imposable.yaml --c openfisca_france -i variable1 variable2
 ```
 
 where `variable1` and `variable2` are the output variables to be excluded. This option is the reverse of the `only` option.
