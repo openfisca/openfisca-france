@@ -117,6 +117,15 @@ class revenus_locatifs(Variable):
     set_input = set_input_divide_by_period
 
 
+class valeur_locative_loue(Variable):
+    value_type = float
+    entity = Individu
+    base_function = requested_period_last_value
+    label = u"Valeur locative des biens immobiliers loués"
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
+
+
 class valeur_locative_immo_non_loue(Variable):
     value_type = float
     entity = Individu

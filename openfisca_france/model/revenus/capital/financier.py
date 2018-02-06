@@ -240,6 +240,33 @@ class epargne_non_remuneree(Variable):
 
 
 
+class livret_a(Variable):
+    value_type = float
+    entity = Individu
+    base_function = requested_period_last_value
+    label = u"Épargne sur Livret A"
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
+
+
+class epargne_revenus_non_imposables(Variable):
+    value_type = float
+    entity = Individu
+    base_function = requested_period_last_value
+    label = u"Épargne générant des revenus non imposables"
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
+
+
+class epargne_revenus_imposables(Variable):
+    value_type = float
+    entity = Individu
+    base_function = requested_period_last_value
+    label = u"Épargne générant des revenus imposables"
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
+
+
 class interets_epargne_sur_livrets(Variable):
     value_type = float
     entity = Individu
