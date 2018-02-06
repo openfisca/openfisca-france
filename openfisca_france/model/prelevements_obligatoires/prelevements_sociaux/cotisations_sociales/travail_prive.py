@@ -4,7 +4,7 @@ from __future__ import division
 
 import logging
 
-from numpy import int16
+from numpy import int16, zeros_like
 
 from openfisca_france.model.base import *  # noqa analysis:ignore
 from openfisca_france.model.prelevements_obligatoires.prelevements_sociaux.cotisations_sociales.base import (
