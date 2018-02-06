@@ -182,8 +182,8 @@ class penibilite(Variable):
 
         return cotisation
 
-    def formula_2018(self, simulation, period):
-        return self.zeros()
+    def formula_2018(individu, period, parameters):
+        return zeros_like(individu)
 
 class accident_du_travail(Variable):
     value_type = float
@@ -636,15 +636,16 @@ class mmid_salarie(Variable):
 
         return cotisation
 
-    def formula_2018(self, simulation, period):
-        salarie_regime_alsace_moselle = simulation.calculate('salarie_regime_alsace_moselle', period)
+    def formula_2018(individu, period, parameters):
+        salarie_regime_alsace_moselle = individu('salarie_regime_alsace_moselle', period)
 
         cotisation_regime_alsace_moselle = apply_bareme(
-            simulation,
+            individu,
             period,
+            parameters,
             cotisation_type = 'salarie',
             bareme_name = 'maladie_alsace_moselle',
-            variable_name = self.__class__.__name__,
+            variable_name = 'mmid_salarie',
             )
 
         cotisation = salarie_regime_alsace_moselle * cotisation_regime_alsace_moselle
