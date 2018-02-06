@@ -720,7 +720,7 @@ class grosses_reparations(Variable):
         Dépenses de grosses réparations des nus-propriétaires (case 6CB et 6HJ)
         '''
         f6cb = foyer_fiscal('f6cb', period)
-        grorep = paramters(period).impot_revenu.charges_deductibles.grosses_reparations
+        grorep = parameters(period).impot_revenu.charges_deductibles.grosses_reparations
 
         return min_(f6cb, grorep.plafond)
 
@@ -730,7 +730,7 @@ class grosses_reparations(Variable):
         '''
         f6cb = foyer_fiscal('f6cb', period)
         f6hj = foyer_fiscal('f6hj', period)
-        grorep = paramters(period).impot_revenu.charges_deductibles.grosses_reparations
+        grorep = parameters(period).impot_revenu.charges_deductibles.grosses_reparations
 
         return min_(f6cb + f6hj, grorep.plafond)
 
@@ -741,7 +741,7 @@ class grosses_reparations(Variable):
         f6cb = foyer_fiscal('f6cb', period)
         f6hj = foyer_fiscal('f6hj', period)
         f6hk = foyer_fiscal('f6hk', period)
-        grorep = paramters(period).impot_revenu.charges_deductibles.grosses_reparations
+        grorep = parameters(period).impot_revenu.charges_deductibles.grosses_reparations
 
         return min_(f6cb + f6hj + f6hk, grorep.plafond)
 
@@ -753,7 +753,7 @@ class grosses_reparations(Variable):
         f6hj = foyer_fiscal('f6hj', period)
         f6hk = foyer_fiscal('f6hk', period)
         f6hl = foyer_fiscal('f6hl', period)
-        grorep = paramters(period).impot_revenu.charges_deductibles.grosses_reparations
+        grorep = parameters(period).impot_revenu.charges_deductibles.grosses_reparations
 
         return min_(f6cb + f6hj + f6hk + f6hl, grorep.plafond)
 
@@ -766,7 +766,7 @@ class grosses_reparations(Variable):
         f6hk = foyer_fiscal('f6hk', period)
         f6hl = foyer_fiscal('f6hl', period)
         f6hm = foyer_fiscal('f6hm', period)
-        grorep = paramters(period).impot_revenu.charges_deductibles.grosses_reparations
+        grorep = parameters(period).impot_revenu.charges_deductibles.grosses_reparations
 
         return min_(f6cb + f6hj + f6hk + f6hl + f6hm, grorep.plafond)
 
@@ -781,7 +781,7 @@ class grosses_reparations(Variable):
         f6hl = foyer_fiscal('f6hl', period)
         f6hm = foyer_fiscal('f6hm', period)
         f6hn = foyer_fiscal('f6hn', period)
-        grorep = paramters(period).impot_revenu.charges_deductibles.grosses_reparations
+        grorep = parameters(period).impot_revenu.charges_deductibles.grosses_reparations
 
         return min_(f6cb + f6hj + f6hk + f6hl + f6hm + f6hn, grorep.plafond)
 
@@ -796,7 +796,7 @@ class grosses_reparations(Variable):
         f6hm = foyer_fiscal('f6hm', period)
         f6hn = foyer_fiscal('f6hn', period)
         f6ho = foyer_fiscal('f6ho', period)
-        grorep = paramters(period).impot_revenu.charges_deductibles.grosses_reparations
+        grorep = parameters(period).impot_revenu.charges_deductibles.grosses_reparations
 
         return min_(f6cb + f6hj + f6hk + f6hl + f6hm + f6hn + f6ho, grorep.plafond)
 
@@ -812,6 +812,6 @@ class grosses_reparations(Variable):
         f6hn = foyer_fiscal('f6hn', period)
         f6ho = foyer_fiscal('f6ho', period)
         f6hp = foyer_fiscal('f6hp', period)
-        grorep = paramters(period).impot_revenu.charges_deductibles.grosses_reparations
+        grorep = parameters(period).impot_revenu.charges_deductibles.grosses_reparations
 
         return min_(f6cb + f6hj + f6hk + f6hl + f6hm + f6hn + f6ho + f6hp, grorep.plafond)
