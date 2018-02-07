@@ -446,7 +446,7 @@ class reductions(Variable):
         spfcpi)
         return min_(ip_net, total_reductions)
 
-    def formula_2015_01_01(self, simulation, period):
+    def formula_2015_01_01(foyer_fiscal, period, parameters):
         '''
         Renvoie la somme des réductions d'impôt à intégrer pour l'année 2015 et aprés
         '''
@@ -694,7 +694,7 @@ class cappme(Variable):
         return P.taux25 * min_(base, seuil1) + P.taux22 * min_(f7cn, seuil1) + P.taux18 * (min_(f7cf + f7cc, seuil3) +
                 min_(f7cu + f7cq, seuil2))
 
-    def formula_2014_01_01(self, simulation, period):
+    def formula_2014_01_01(foyer_fiscal, period, parameters):
         '''
         Souscriptions au capital des PME
         2014
@@ -709,8 +709,8 @@ class cappme(Variable):
         f7cr = foyer_fiscal('f7cr', period)
         f7cu = foyer_fiscal('f7cu', period)
         f7cy = foyer_fiscal('f7cy', period)
-        _P = simulation.parameters_at(period.start)
-        P = simulation.parameters_at(period.start).impot_revenu.reductions_impots.cappme
+        _P = parameters(period)
+        P = parameters(period).impot_revenu.reductions_impots.cappme
         
         seuil1 = P.seuil * (maries_ou_pacses + 1) 
         seuil2 = P.seuil_tpe * (maries_ou_pacses + 1)
@@ -739,7 +739,7 @@ class cappme(Variable):
                 base_report_cappme_2012_TPE + base_report_cappme_2013_TPE + base_cappme_2014_TPE) * P.taux18
             )
 
-    def formula_2015_01_01(self, simulation, period):
+    def formula_2015_01_01(foyer_fiscal, period, parameters):
         '''
         Souscriptions au capital des PME
         2015
@@ -756,8 +756,8 @@ class cappme(Variable):
         f7cv = foyer_fiscal('f7cv', period)
         f7cy = foyer_fiscal('f7cy', period)
         f7dy = foyer_fiscal('f7dy', period)
-        _P = simulation.parameters_at(period.start)
-        P = simulation.parameters_at(period.start).impot_revenu.reductions_impots.cappme
+        _P = parameters(period)
+        P = parameters(period).impot_revenu.reductions_impots.cappme
         
         seuil1 = P.seuil * (maries_ou_pacses + 1) 
         seuil2 = P.seuil_tpe * (maries_ou_pacses + 1)
@@ -790,7 +790,7 @@ class cappme(Variable):
                 base_report_cappme_2012_TPE + base_report_cappme_2013_TPE + base_report_cappme_2014_TPE + base_cappme_2015_TPE)
             )
 
-    def formula_2016_01_01(self, simulation, period):
+    def formula_2016_01_01(foyer_fiscal, period, parameters):
         '''
         Souscriptions au capital des PME
         2016
@@ -809,8 +809,8 @@ class cappme(Variable):
         f7cy = foyer_fiscal('f7cy', period)
         f7dy = foyer_fiscal('f7dy', period)
         f7ey = foyer_fiscal('f7ey', period)
-        _P = simulation.parameters_at(period.start)
-        P = simulation.parameters_at(period.start).impot_revenu.reductions_impots.cappme
+        _P = parameters(period)
+        P = parameters(period).impot_revenu.reductions_impots.cappme
         
         seuil1 = P.seuil * (maries_ou_pacses + 1) 
         seuil2 = P.seuil_tpe * (maries_ou_pacses + 1)
@@ -1119,8 +1119,8 @@ class dfppce(Variable):
         f7xy = foyer_fiscal('f7xy', period)
         f7va = foyer_fiscal('f7va', period)
         f7vc = foyer_fiscal('f7vc', period)
-        P = simulation.parameters_at(period.start).impot_revenu.reductions_impots.dons
-        P2 = simulation.parameters_at(period.start).impot_revenu.reductions_impots.donapd
+        P = parameters(period).impot_revenu.reductions_impots.dons
+        P2 = parameters(period).impot_revenu.reductions_impots.donapd
 
         report_f7va = max_(0, f7va - P2.max)
         base = min_(P.max_niv, f7uf + f7uh) + f7vc + f7xs + f7xt + f7xu + f7xw + f7xy + report_f7va
@@ -1415,7 +1415,7 @@ class doment(Variable):
                     fhqg + fhqi + fhqo + fhqp + fhqr + fhqv + fhqz + fhrg + fhri + fhrj + fhrk + fhrl + fhrm + fhro + fhrp +
                     fhrq + fhrr + fhrt + fhru + fhrv + fhrw + fhry)
 
-    def formula_2014_01_01(self, simulation, period):
+    def formula_2014_01_01(foyer_fiscal, period, parameters):
         '''
         Investissements dans les DOM-TOM dans le cadre d'une entrepise.
         '''
@@ -1534,7 +1534,7 @@ class doment(Variable):
                     fhqg + fhqi + fhqo + fhqp + fhqr + fhqv + fhrg + fhri + fhrj + fhrk + fhrl + fhrm + fhro + fhrp +
                     fhrq + fhrr + fhrt + fhru + fhrv + fhrw + fhry)
 
-    def formula_2015_01_01(self, simulation, period):
+    def formula_2015_01_01(foyer_fiscal, period, parameters):
         '''
         Investissements dans les DOM-TOM dans le cadre d'une entrepise.
         '''
@@ -1671,7 +1671,7 @@ class doment(Variable):
                     fhqg + fhqi + fhqo + fhqp + fhqr + fhqv + fhrg + fhri + fhrj + fhrk + fhrl + fhrm + fhro + fhrp +
                     fhrq + fhrr + fhrt + fhru + fhrv + fhrw + fhry)
 
-    def formula_2016_01_01(self, simulation, period):
+    def formula_2016_01_01(foyer_fiscal, period, parameters):
         '''
         Investissements dans les DOM-TOM dans le cadre d'une entrepise.
         '''
@@ -2006,7 +2006,7 @@ class domlog(Variable):
                     fhon + fhoo + fhop + fhoq + fhor + fhos + fhot + fhou + fhov + fhow + fhod + fhoe +
                     fhof + fhog + fhox + fhoy + fhoz)
 
-    def formula_2014_01_01(self, simulation, period):
+    def formula_2014_01_01(foyer_fiscal, period, parameters):
         '''
         Investissements OUTRE-MER dans le secteur du logement et autres secteurs d’activité
         2014
@@ -2056,7 +2056,7 @@ class domlog(Variable):
                     fhof + fhog + fhox + fhoy + fhoz + fhua + fhub + fhuc + fhud + fhue + fhuf + fhug)
 
 
-    def formula_2015_01_01(self, simulation, period):
+    def formula_2015_01_01(foyer_fiscal, period, parameters):
         '''
         Investissements OUTRE-MER dans le secteur du logement et autres secteurs d’activité
         2015
@@ -2113,7 +2113,7 @@ class domlog(Variable):
                     fhof + fhog + fhox + fhoy + fhoz + fhua + fhub + fhuc + fhud + fhue + fhuf + fhug +
                     fhuh + fhui + fhuj + fhuk + fhul + fhum + fhun)
 
-    def formula_2016_01_01(self, simulation, period):
+    def formula_2016_01_01(foyer_fiscal, period, parameters):
         '''
         Investissements OUTRE-MER dans le secteur du logement et autres secteurs d’activité
         2016
@@ -2203,7 +2203,7 @@ class domsoc(Variable):
 
         return  f7qn + f7qk + f7kg
 
-    def formula_2011_01_01(self, simulation, period):
+    def formula_2011_01_01(foyer_fiscal, period, parameters):
         '''
         Investissements outre-mer dans le logement social (déclaration n°2042 IOM)
         2011
@@ -2218,7 +2218,7 @@ class domsoc(Variable):
 
         return  f7qn + f7qk + f7qu + f7kg + f7kh + f7ki
 
-    def formula_2012_01_01(self, simulation, period):
+    def formula_2012_01_01(foyer_fiscal, period, parameters):
         '''
         Investissements outre-mer dans le logement social (déclaration n°2042 IOM)
         2012
@@ -2308,7 +2308,7 @@ class duflot(Variable):
             min_(P.plafond - f7gi, f7gh) * P.taux_m + 
             min_(P.plafond, f7gi) * P.taux_om) / 9
 
-    def formula_2014_01_01(self, simulation, period):
+    def formula_2014_01_01(foyer_fiscal, period, parameters):
         '''
         Investissements locatifs intermediaires (loi Duflot)
         2014
@@ -2322,7 +2322,7 @@ class duflot(Variable):
         f7qb = foyer_fiscal('f7qb', period)
         f7qc = foyer_fiscal('f7qc', period)
         f7qd = foyer_fiscal('f7qd', period)
-        P = simulation.parameters_at(period.start).impot_revenu.reductions_impots.duflot
+        P = parameters(period).impot_revenu.reductions_impots.duflot
 
         max1 = max_(0, P.plafond - f7el - f7qd) # 2014 : plafond commun 'duflot' et 'rpinel'
         max2 = max_(0, max1 - f7qc)
@@ -2333,7 +2333,7 @@ class duflot(Variable):
             (min_(P.plafond, f7gi) + min_(P.plafond, f7el)) * P.taux_om
             ) / 9 + f7fi
 
-    def formula_2015_01_01(self, simulation, period):
+    def formula_2015_01_01(foyer_fiscal, period, parameters):
         '''
         Investissements locatifs intermediaires (loi Duflot)
         2015
@@ -2348,14 +2348,14 @@ class duflot(Variable):
         f7qb = foyer_fiscal('f7qb', period)
         f7qc = foyer_fiscal('f7qc', period)
         f7qd = foyer_fiscal('f7qd', period)
-        P = simulation.parameters_at(period.start).impot_revenu.reductions_impots.duflot
+        P = parameters(period).impot_revenu.reductions_impots.duflot
 
         return (
             (min_(P.plafond - f7gi, f7gh) + min_(P.plafond - f7el, f7ek)) * P.taux_m + 
             (min_(P.plafond, f7gi) + min_(P.plafond, f7el)) * P.taux_om
             ) / 9 + f7fi + f7fk
 
-    def formula_2016_01_01(self, simulation, period):
+    def formula_2016_01_01(foyer_fiscal, period, parameters):
         '''
         Investissements locatifs intermediaires (loi Duflot)
         2016
@@ -2371,7 +2371,7 @@ class duflot(Variable):
         f7qb = foyer_fiscal('f7qb', period)
         f7qc = foyer_fiscal('f7qc', period)
         f7qd = foyer_fiscal('f7qd', period)
-        P = simulation.parameters_at(period.start).impot_revenu.reductions_impots.duflot
+        P = parameters(period).impot_revenu.reductions_impots.duflot
 
         return (
             (min_(P.plafond - f7gi, f7gh) + min_(P.plafond - f7el, f7ek)) * P.taux_m + 
@@ -2668,7 +2668,7 @@ class invfor(Variable):
             P.report12 * min_(f7th + f7ux, max2) +
             P.taux_ass * min_(f7ul, P.ifortra_seuil * (maries_ou_pacses + 1)))
 
-    def formula_2014_01_01(self, simulation, period):
+    def formula_2014_01_01(foyer_fiscal, period, parameters):
         '''
         Investissements forestiers pour 2014 cf. 2041 GK
         '''
@@ -2684,8 +2684,8 @@ class invfor(Variable):
         f7uv = foyer_fiscal('f7uv', period)
         f7uw = foyer_fiscal('f7uw', period)
         f7ux = foyer_fiscal('f7ux', period)
-        _P = simulation.parameters_at(period.start)
-        P = simulation.parameters_at(period.start).impot_revenu.reductions_impots.invfor
+        _P = parameters(period)
+        P = parameters(period).impot_revenu.reductions_impots.invfor
 
         max0 = max_(0, P.ifortra_seuil * (maries_ou_pacses + 1) - f7ul)
         max1 = max_(0, max0 - f7uu - f7te - f7tf)
@@ -2697,7 +2697,7 @@ class invfor(Variable):
             P.report11 * min_(f7tg + f7uv, max1) +
             P.report12 * min_(f7th + f7uw + f7ux + f7ti, max2))
 
-    def formula_2015_01_01(self, simulation, period):
+    def formula_2015_01_01(foyer_fiscal, period, parameters):
         '''
         Investissements forestiers pour 2015 cf. 2041 GK
         '''
@@ -2712,8 +2712,8 @@ class invfor(Variable):
         f7uu = foyer_fiscal('f7uu', period)
         f7uv = foyer_fiscal('f7uv', period)
         f7uw = foyer_fiscal('f7uw', period)
-        _P = simulation.parameters_at(period.start)
-        P = simulation.parameters_at(period.start).impot_revenu.reductions_impots.invfor
+        _P = parameters(period)
+        P = parameters(period).impot_revenu.reductions_impots.invfor
 
         max0 = max_(0, P.ifortra_seuil * (maries_ou_pacses + 1) - f7ul)
         max1 = max_(0, max0 - f7te - f7tf)
@@ -2725,7 +2725,7 @@ class invfor(Variable):
             P.report11 * min_(f7tg + f7uu, max1) +
             P.report12 * min_(f7th + f7uv + f7uw + f7ti, max2))
 
-    def formula_2016_01_01(self, simulation, period):
+    def formula_2016_01_01(foyer_fiscal, period, parameters):
         '''
         Investissements forestiers pour 2016 cf. 2041 GK
         '''
@@ -2739,8 +2739,8 @@ class invfor(Variable):
         f7un = foyer_fiscal('f7un', period)
         f7uu = foyer_fiscal('f7uu', period)
         f7uv = foyer_fiscal('f7uv', period)
-        _P = simulation.parameters_at(period.start)
-        P = simulation.parameters_at(period.start).impot_revenu.reductions_impots.invfor
+        _P = parameters(period)
+        P = parameters(period).impot_revenu.reductions_impots.invfor
 
         max0 = max_(0, P.ifortra_seuil * (maries_ou_pacses + 1) - f7ul)
         max1 = max_(0, max0 - f7te - f7tf)
@@ -2958,7 +2958,7 @@ class invlst(Variable):
 
         return around(xi + xj + xo)
 
-    def formula_2014_01_01(self, simulation, period):
+    def formula_2014_01_01(foyer_fiscal, period, parameters):
         '''
         Investissements locatifs dans le secteur touristique
         2014
@@ -2974,8 +2974,8 @@ class invlst(Variable):
         f7xq = foyer_fiscal('f7xq', period)
         f7xr = foyer_fiscal('f7xr', period)
         f7xv = foyer_fiscal('f7xv', period)
-        _P = simulation.parameters_at(period.start)
-        P = simulation.parameters_at(period.start).impot_revenu.reductions_impots.invlst
+        _P = parameters(period)
+        P = parameters(period).impot_revenu.reductions_impots.invlst
 
         xi = P.taux_xi * (f7xi + f7xp + f7xn + f7uy)
         xj = P.taux_xj * (f7xj + f7xq + f7xv + f7uz)
@@ -2983,7 +2983,7 @@ class invlst(Variable):
 
         return around(xi + xj + xo)
 
-    def formula_2015_01_01(self, simulation, period):
+    def formula_2015_01_01(foyer_fiscal, period, parameters):
         '''
         Investissements locatifs dans le secteur touristique
         2015
@@ -2998,8 +2998,8 @@ class invlst(Variable):
         f7xq = foyer_fiscal('f7xq', period)
         f7xr = foyer_fiscal('f7xr', period)
         f7xv = foyer_fiscal('f7xv', period)
-        _P = simulation.parameters_at(period.start)
-        P = simulation.parameters_at(period.start).impot_revenu.reductions_impots.invlst
+        _P = parameters(period)
+        P = parameters(period).impot_revenu.reductions_impots.invlst
 
         xi = P.taux_xi * (f7xi + f7xp + f7xn + f7uy)
         xj = P.taux_xj * (f7xj + f7xq + f7xv + f7uz)
@@ -3007,7 +3007,7 @@ class invlst(Variable):
 
         return around(xi + xj + xo)
 
-    def formula_2016_01_01(self, simulation, period):
+    def formula_2016_01_01(foyer_fiscal, period, parameters):
         '''
         Investissements locatifs dans le secteur touristique
         2016
@@ -3020,8 +3020,8 @@ class invlst(Variable):
         f7xq = foyer_fiscal('f7xq', period)
         f7xr = foyer_fiscal('f7xr', period)
         f7xv = foyer_fiscal('f7xv', period)
-        _P = simulation.parameters_at(period.start)
-        P = simulation.parameters_at(period.start).impot_revenu.reductions_impots.invlst
+        _P = parameters(period)
+        P = parameters(period).impot_revenu.reductions_impots.invlst
 
         xi = P.taux_xi * (f7xp + f7xn + f7uy)
         xj = P.taux_xj * (f7xq + f7xv + f7uz)
@@ -3205,7 +3205,7 @@ class locmeu(Variable):
             f7ia + f7ib + f7ic + f7ih + f7is + f7iu + f7it + f7ix + f7iy + f7iz + f7jv + f7jw + f7jx + f7jy + f7jc +
                 f7ji + f7js)
 
-    def formula_2014_01_01(self, simulation, period):
+    def formula_2014_01_01(foyer_fiscal, period, parameters):
         '''
         Investissement en vue de la location meublée non professionnelle dans certains établissements ou résidences
         2014
@@ -3256,7 +3256,7 @@ class locmeu(Variable):
         f7pd = foyer_fiscal('f7pd', period)
         f7pe = foyer_fiscal('f7pe', period)
 
-        P = simulation.parameters_at(period.start).impot_revenu.reductions_impots.locmeu
+        P = parameters(period).impot_revenu.reductions_impots.locmeu
 
         m18 = (maxi(f7id, f7ie, f7if, f7ig) == max_(f7ie, f7if)) 
         m20 = (maxi(f7ij, f7il, f7in, f7iv) == max_(f7il, f7in))         
@@ -3277,7 +3277,7 @@ class locmeu(Variable):
                 ) / 9 +
                 report_invest_anterieur + report_non_impute)
 
-    def formula_2015_01_01(self, simulation, period):
+    def formula_2015_01_01(foyer_fiscal, period, parameters):
         '''
         Investissement en vue de la location meublée non professionnelle dans certains établissements ou résidences
         2015
@@ -3339,7 +3339,7 @@ class locmeu(Variable):
         f7pi = foyer_fiscal('f7pi', period)
         f7pj = foyer_fiscal('f7pj', period)
 
-        P = simulation.parameters_at(period.start).impot_revenu.reductions_impots.locmeu
+        P = parameters(period).impot_revenu.reductions_impots.locmeu
 
         m18 = (maxi(f7id, f7ie, f7if, f7ig) == max_(f7ie, f7if)) 
         m20 = (maxi(f7ij, f7il, f7in, f7iv) == max_(f7il, f7in))         
@@ -3361,7 +3361,7 @@ class locmeu(Variable):
                 ) / 9 +
                 report_invest_anterieur + report_non_impute)
 
-    def formula_2016_01_01(self, simulation, period):
+    def formula_2016_01_01(foyer_fiscal, period, parameters):
         '''
         Investissement en vue de la location meublée non professionnelle dans certains établissements ou résidences
         2016
@@ -3432,7 +3432,7 @@ class locmeu(Variable):
         f7pn = foyer_fiscal('f7pn', period)
         f7po = foyer_fiscal('f7po', period)
 
-        P = simulation.parameters_at(period.start).impot_revenu.reductions_impots.locmeu
+        P = parameters(period).impot_revenu.reductions_impots.locmeu
 
         m18 = (maxi(f7id, f7ie, f7if, f7ig) == max_(f7ie, f7if)) 
         m20 = (maxi(f7ij, f7il, f7in, f7iv) == max_(f7il, f7in))         
@@ -3546,7 +3546,7 @@ class patnat(Variable):
         max1 = P.max
         return P.taux * min_(f7ka, max1) + f7kb + f7kc + f7kd
 
-    def formula_2014_01_01(self, simulation, period):
+    def formula_2014_01_01(foyer_fiscal, period, parameters):
         '''
         Dépenses de protections du patrimoine naturel (case 7KB, 7KC, 7KD, 7KE)
         2014-
@@ -3555,7 +3555,7 @@ class patnat(Variable):
         f7kc = foyer_fiscal('f7kc', period)
         f7kd = foyer_fiscal('f7kd', period)
         f7ke = foyer_fiscal('f7ke', period)
-        P = simulation.parameters_at(period.start).impot_revenu.reductions_impots.patnat
+        P = parameters(period).impot_revenu.reductions_impots.patnat
 
         max1 = P.max
         return f7kb + f7kc + f7kd + f7ke
@@ -3714,7 +3714,7 @@ class resimm(Variable):
         return (P.taux_rd * min_(f7rd, max1) + P.taux_rb * min_(f7rb, max2) + P.taux_rc * min_(f7sy + f7rf + f7rc, max3) +
                 P.taux_ra * min_(f7ra, max4) + P.taux_re * min_(f7re + f7sx, max5))
 
-    def formula_2016_01_01(self, simulation, period):
+    def formula_2016_01_01(foyer_fiscal, period, parameters):
         '''
         Travaux de restauration immobilière
         2016
@@ -3725,7 +3725,7 @@ class resimm(Variable):
         f7rf = foyer_fiscal('f7rf', period)
         f7sx = foyer_fiscal('f7sx', period)
         f7sy = foyer_fiscal('f7sy', period)
-        P = simulation.parameters_at(period.start).impot_revenu.reductions_impots.resimm
+        P = parameters(period).impot_revenu.reductions_impots.resimm
 
         max1 = P.max
         max2 = max_(max1 - f7nx - f7sy - f7rf, 0)
@@ -3739,7 +3739,7 @@ class rpinel(Variable):
     label = u"rpinel"
     definition_period = YEAR
 
-    def formula_2014_01_01(self, simulation, period):
+    def formula_2014_01_01(foyer_fiscal, period, parameters):
         '''
         Investissement locatif privé - Dispositif Pinel
         2014
@@ -3750,7 +3750,7 @@ class rpinel(Variable):
         f7qb = foyer_fiscal('f7qb', period)
         f7qc = foyer_fiscal('f7qc', period)
         f7qd = foyer_fiscal('f7qd', period)
-        P = simulation.parameters_at(period.start).impot_revenu.reductions_impots.rpinel
+        P = parameters(period).impot_revenu.reductions_impots.rpinel
 
         max1 = max_(0, P.seuil - f7el - f7qd) # 2014 : plafond commun 'duflot' et 'rpinel'
         max2 = max_(0, max1 - f7qc)
@@ -3761,7 +3761,7 @@ class rpinel(Variable):
                 P.taux18 * min_(max_(0, max2 - f7ek), f7qb) / 9 +
                 P.taux12 * min_(max3, f7qa) / 6 )
 
-    def formula_2015_01_01(self, simulation, period):
+    def formula_2015_01_01(foyer_fiscal, period, parameters):
         '''
         Investissement locatif privé - Dispositif Pinel
         2015
@@ -3780,7 +3780,7 @@ class rpinel(Variable):
         f7qf = foyer_fiscal('f7qf', period)
         f7qg = foyer_fiscal('f7qg', period)
         f7qh = foyer_fiscal('f7qh', period)
-        P = simulation.parameters_at(period.start).impot_revenu.reductions_impots.rpinel
+        P = parameters(period).impot_revenu.reductions_impots.rpinel
 
         max1 = max_(0, P.seuil - f7el - f7qd) # 2014 : plafond commun 'duflot' et 'rpinel'
         max2 = max_(0, max1 - f7qc)
@@ -3801,7 +3801,7 @@ class rpinel(Variable):
         
         return reduc_invest_real_2014 + reduc_invest_real_2015 + report
 
-    def formula_2016_01_01(self, simulation, period):
+    def formula_2016_01_01(foyer_fiscal, period, parameters):
         '''
         Investissement locatif privé - Dispositif Pinel
         2016
@@ -3828,7 +3828,7 @@ class rpinel(Variable):
         f7qj = foyer_fiscal('f7qj', period)
         f7qk = foyer_fiscal('f7qk', period)
         f7ql = foyer_fiscal('f7ql', period)
-        P = simulation.parameters_at(period.start).impot_revenu.reductions_impots.rpinel
+        P = parameters(period).impot_revenu.reductions_impots.rpinel
 
         max1 = max_(0, P.seuil - f7el - f7qd) # 2014 : plafond commun 'duflot' et 'rpinel'
         max2 = max_(0, max1 - f7qc)
@@ -3962,7 +3962,7 @@ class saldom(Variable):
         max1 = maxEffectif - min_(f7db, maxEffectif2)
         return P.taux * min_(f7df, max1)
 
-    def formula_2011_01_01(self, simulation, period):
+    def formula_2011_01_01(foyer_fiscal, period, parameters):
         '''
         Sommes versées pour l'emploi d'un salariés à  domicile
         2011 -
@@ -3974,8 +3974,8 @@ class saldom(Variable):
         f7dl = foyer_fiscal('f7dl', period)
         f7dq = foyer_fiscal('f7dq', period)
         f7dg = foyer_fiscal('f7dg', period)
-        _P = simulation.parameters_at(period.start)
-        P = simulation.parameters_at(period.start).impot_revenu.reductions_impots.salarie_domicile
+        _P = parameters(period)
+        P = parameters(period).impot_revenu.reductions_impots.salarie_domicile
 
         isinvalid = f7dg
         annee1 = f7dq
@@ -4304,7 +4304,7 @@ class scelli(Variable):
                 f7gj + f7gk + f7gl + f7gp + f7gs + f7gt + f7gu + f7gv + f7gx + f7gw
                 )
 
-    def formula_2014_01_01(self, simulation, period):
+    def formula_2014_01_01(foyer_fiscal, period, parameters):
         '''
         Investissements locatif neufs : Dispositif Scellier
         2014
@@ -4407,7 +4407,7 @@ class scelli(Variable):
         f7yk = foyer_fiscal('f7yk', period)
         f7yl = foyer_fiscal('f7yl', period)
 
-        P = simulation.parameters_at(period.start).impot_revenu.reductions_impots.scelli
+        P = parameters(period).impot_revenu.reductions_impots.scelli
 
         report_reduc_scelli_non_impute = f7la + f7lb + f7lc + f7ld + f7le + f7lf + f7lm + f7ls + f7lz + f7mg + f7mh + f7lx + f7lt + f7ln
         
@@ -4451,7 +4451,7 @@ class scelli(Variable):
             report_scelli_2013
             )
 
-    def formula_2015_01_01(self, simulation, period):
+    def formula_2015_01_01(foyer_fiscal, period, parameters):
         '''
         Investissements locatif neufs : Dispositif Scellier
         2015
@@ -4556,7 +4556,7 @@ class scelli(Variable):
         f7yr = foyer_fiscal('f7yr', period)
         f7ys = foyer_fiscal('f7ys', period)
 
-        P = simulation.parameters_at(period.start).impot_revenu.reductions_impots.scelli
+        P = parameters(period).impot_revenu.reductions_impots.scelli
 
         report_reduc_scelli_non_impute = f7la + f7lb + f7lc + f7ld + f7le + f7lf + f7lm + f7ls + f7lz + f7mg + f7mh + f7lx + f7lt + f7ln + f7lg + f7lh + f7li + f7lj
         
@@ -4602,7 +4602,7 @@ class scelli(Variable):
             report_scelli_2014
             )
 
-    def formula_2016_01_01(self, simulation, period):
+    def formula_2016_01_01(foyer_fiscal, period, parameters):
         '''
         Investissements locatif neufs : Dispositif Scellier
         2016
@@ -4713,7 +4713,7 @@ class scelli(Variable):
         f7yy = foyer_fiscal('f7yy', period)
         f7yz = foyer_fiscal('f7yz', period)
 
-        P = simulation.parameters_at(period.start).impot_revenu.reductions_impots.scelli
+        P = parameters(period).impot_revenu.reductions_impots.scelli
 
         report_reduc_scelli_non_impute = f7lb + f7lc + f7ld + f7le + f7lf + f7lm + f7ls + f7lz + f7mg + f7mh + f7lx + f7lt + f7ln + f7lg + f7lh + f7li + f7lj + f7lk + f7ll + f7lo + f7lp
         
