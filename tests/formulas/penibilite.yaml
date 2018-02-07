@@ -26,3 +26,13 @@
     exposition_penibilite: multiple
   output_variables:
     penibilite: -6.068
+
+
+- period: "2018-01"
+  name:
+    Cotisation pénibilité supprimée
+  relative_error_margin: 0.001
+  input_variables:
+    salaire_de_base: 1500
+  output_variables:
+    penibilite: 0

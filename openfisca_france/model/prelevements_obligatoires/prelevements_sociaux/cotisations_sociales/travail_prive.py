@@ -182,6 +182,8 @@ class penibilite(Variable):
 
         return cotisation
 
+    def formula_2018(individu, period, parameters):
+        return individu.empty_array()
 
 class accident_du_travail(Variable):
     value_type = float
@@ -602,6 +604,7 @@ class famille(Variable):
         return cotisation
 
 
+
 class mmid_salarie(Variable):
     value_type = float
     entity = Individu
@@ -630,6 +633,22 @@ class mmid_salarie(Variable):
             )
 
         cotisation = cotisation_regime_general + salarie_regime_alsace_moselle * cotisation_regime_alsace_moselle
+
+        return cotisation
+
+    def formula_2018(individu, period, parameters):
+        salarie_regime_alsace_moselle = individu('salarie_regime_alsace_moselle', period)
+
+        cotisation_regime_alsace_moselle = apply_bareme(
+            individu,
+            period,
+            parameters,
+            cotisation_type = 'salarie',
+            bareme_name = 'maladie_alsace_moselle',
+            variable_name = 'mmid_salarie',
+            )
+
+        cotisation = salarie_regime_alsace_moselle * cotisation_regime_alsace_moselle
 
         return cotisation
 
