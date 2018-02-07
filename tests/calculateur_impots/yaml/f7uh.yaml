@@ -20,11 +20,11 @@
     nbJ: 0
     nbR: 0
   individus:
-  - activite: 0
+  - activite: actif
     date_naissance: '1970-01-01'
     id: ind0
     salaire_imposable: 50000.0
-    statut_marital: 2
+    statut_marital: celibataire
   familles:
   - id: 0
     parents:
@@ -63,11 +63,11 @@
     nbJ: 0
     nbR: 0
   individus:
-  - activite: 0
+  - activite: actif
     date_naissance: '1970-01-01'
     id: ind0
     salaire_imposable: 50000.0
-    statut_marital: 2
+    statut_marital: celibataire
   familles:
   - id: 0
     parents:
@@ -106,11 +106,11 @@
     nbJ: 0
     nbR: 0
   individus:
-  - activite: 0
+  - activite: actif
     date_naissance: '1970-01-01'
     id: ind0
     salaire_imposable: 50000.0
-    statut_marital: 2
+    statut_marital: celibataire
   familles:
   - id: 0
     parents:
@@ -150,11 +150,11 @@
     nbJ: 0
     nbR: 0
   individus:
-  - activite: 0
+  - activite: actif
     date_naissance: '1970-01-01'
     id: ind0
     salaire_imposable: 50000.0
-    statut_marital: 2
+    statut_marital: celibataire
   familles:
   - id: 0
     parents:
@@ -194,11 +194,11 @@
     nbJ: 0
     nbR: 0
   individus:
-  - activite: 0
+  - activite: actif
     date_naissance: '1970-01-01'
     id: ind0
     salaire_imposable: 50000.0
-    statut_marital: 2
+    statut_marital: celibataire
   familles:
   - id: 0
     parents:
@@ -237,11 +237,11 @@
     nbJ: 0
     nbR: 0
   individus:
-  - activite: 0
+  - activite: actif
     date_naissance: '1970-01-01'
     id: ind0
     salaire_imposable: 50000.0
-    statut_marital: 2
+    statut_marital: celibataire
   familles:
   - id: 0
     parents:

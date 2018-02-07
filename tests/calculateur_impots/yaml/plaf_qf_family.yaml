@@ -23,23 +23,23 @@
     - ind3
     - ind4
   individus:
-  - activite: 0
+  - activite: actif
     date_naissance: '1970-01-01'
     id: ind0
     salaire_imposable: 150000.0
-    statut_marital: 1
-  - activite: 0
+    statut_marital: marie
+  - activite: actif
     date_naissance: '1970-01-01'
     id: ind1
     salaire_imposable: 100000.0
-    statut_marital: 1
-  - activite: 2
+    statut_marital: marie
+  - activite: actif
     date_naissance: '1991-01-01'
     id: ind2
-  - activite: 2
+  - activite: actif
     date_naissance: '1996-01-01'
     id: ind3
-  - activite: 2
+  - activite: actif
     date_naissance: '2007-01-01'
     id: ind4
   familles:
@@ -94,23 +94,23 @@
     - ind3
     - ind4
   individus:
-  - activite: 0
+  - activite: actif
     date_naissance: '1970-01-01'
     id: ind0
     salaire_imposable: 150000.0
-    statut_marital: 1
-  - activite: 0
+    statut_marital: marie
+  - activite: actif
     date_naissance: '1970-01-01'
     id: ind1
     salaire_imposable: 100000.0
-    statut_marital: 1
-  - activite: 2
+    statut_marital: marie
+  - activite: actif
     date_naissance: '1992-01-01'
     id: ind2
-  - activite: 2
+  - activite: actif
     date_naissance: '1997-01-01'
     id: ind3
-  - activite: 2
+  - activite: actif
     date_naissance: '2008-01-01'
     id: ind4
   familles:
@@ -165,23 +165,23 @@
     - ind3
     - ind4
   individus:
-  - activite: 0
+  - activite: actif
     date_naissance: '1970-01-01'
     id: ind0
     salaire_imposable: 150000.0
-    statut_marital: 1
-  - activite: 0
+    statut_marital: marie
+  - activite: actif
     date_naissance: '1970-01-01'
     id: ind1
     salaire_imposable: 100000.0
-    statut_marital: 1
-  - activite: 2
+    statut_marital: marie
+  - activite: actif
     date_naissance: '1993-01-01'
     id: ind2
-  - activite: 2
+  - activite: actif
     date_naissance: '1998-01-01'
     id: ind3
-  - activite: 2
+  - activite: actif
     date_naissance: '2009-01-01'
     id: ind4
   familles:
@@ -236,23 +236,23 @@
     - ind3
     - ind4
   individus:
-  - activite: 0
+  - activite: actif
     date_naissance: '1970-01-01'
     id: ind0
     salaire_imposable: 150000.0
-    statut_marital: 1
-  - activite: 0
+    statut_marital: marie
+  - activite: actif
     date_naissance: '1970-01-01'
     id: ind1
     salaire_imposable: 100000.0
-    statut_marital: 1
-  - activite: 2
+    statut_marital: marie
+  - activite: actif
     date_naissance: '1994-01-01'
     id: ind2
-  - activite: 2
+  - activite: actif
     date_naissance: '1999-01-01'
     id: ind3
-  - activite: 2
+  - activite: actif
     date_naissance: '2010-01-01'
     id: ind4
   familles:
@@ -307,23 +307,23 @@
     - ind3
     - ind4
   individus:
-  - activite: 0
+  - activite: actif
     date_naissance: '1970-01-01'
     id: ind0
     salaire_imposable: 150000.0
-    statut_marital: 1
-  - activite: 0
+    statut_marital: marie
+  - activite: actif
     date_naissance: '1970-01-01'
     id: ind1
     salaire_imposable: 100000.0
-    statut_marital: 1
-  - activite: 2
+    statut_marital: marie
+  - activite: actif
     date_naissance: '1995-01-01'
     id: ind2
-  - activite: 2
+  - activite: actif
     date_naissance: '2000-01-01'
     id: ind3
-  - activite: 2
+  - activite: actif
     date_naissance: '2011-01-01'
     id: ind4
   familles:
@@ -377,23 +377,23 @@
     - ind3
     - ind4
   individus:
-  - activite: 0
+  - activite: actif
     date_naissance: '1970-01-01'
     id: ind0
     salaire_imposable: 150000.0
-    statut_marital: 1
-  - activite: 0
+    statut_marital: marie
+  - activite: actif
     date_naissance: '1970-01-01'
     id: ind1
     salaire_imposable: 100000.0
-    statut_marital: 1
-  - activite: 2
+    statut_marital: marie
+  - activite: actif
     date_naissance: '1996-01-01'
     id: ind2
-  - activite: 2
+  - activite: actif
     date_naissance: '2001-01-01'
     id: ind3
-  - activite: 2
+  - activite: actif
     date_naissance: '2012-01-01'
     id: ind4
   familles:

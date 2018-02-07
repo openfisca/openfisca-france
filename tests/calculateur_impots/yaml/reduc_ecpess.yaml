@@ -29,18 +29,18 @@
     - ind3
     - ind4
   individus:
-  - activite: 0
+  - activite: actif
     date_naissance: '1970-01-01'
     id: ind0
     salaire_imposable: 50000.0
-    statut_marital: 2
-  - activite: 2
+    statut_marital: celibataire
+  - activite: actif
     date_naissance: '2001-01-01'
     id: ind2
-  - activite: 2
+  - activite: actif
     date_naissance: '2001-01-01'
     id: ind3
-  - activite: 2
+  - activite: actif
     date_naissance: '2001-01-01'
     id: ind4
   familles:
@@ -101,18 +101,18 @@
     - ind3
     - ind4
   individus:
-  - activite: 0
+  - activite: actif
     date_naissance: '1970-01-01'
     id: ind0
     salaire_imposable: 50000.0
-    statut_marital: 2
-  - activite: 2
+    statut_marital: celibataire
+  - activite: actif
     date_naissance: '2002-01-01'
     id: ind2
-  - activite: 2
+  - activite: actif
     date_naissance: '2002-01-01'
     id: ind3
-  - activite: 2
+  - activite: actif
     date_naissance: '2002-01-01'
     id: ind4
   familles:
@@ -173,18 +173,18 @@
     - ind3
     - ind4
   individus:
-  - activite: 0
+  - activite: actif
     date_naissance: '1970-01-01'
     id: ind0
     salaire_imposable: 50000.0
-    statut_marital: 2
-  - activite: 2
+    statut_marital: celibataire
+  - activite: actif
     date_naissance: '2003-01-01'
     id: ind2
-  - activite: 2
+  - activite: actif
     date_naissance: '2003-01-01'
     id: ind3
-  - activite: 2
+  - activite: actif
     date_naissance: '2003-01-01'
     id: ind4
   familles:
@@ -245,18 +245,18 @@
     - ind3
     - ind4
   individus:
-  - activite: 0
+  - activite: actif
     date_naissance: '1970-01-01'
     id: ind0
     salaire_imposable: 50000.0
-    statut_marital: 2
-  - activite: 2
+    statut_marital: celibataire
+  - activite: actif
     date_naissance: '2004-01-01'
     id: ind2
-  - activite: 2
+  - activite: actif
     date_naissance: '2004-01-01'
     id: ind3
-  - activite: 2
+  - activite: actif
     date_naissance: '2004-01-01'
     id: ind4
   familles:
@@ -317,18 +317,18 @@
     - ind3
     - ind4
   individus:
-  - activite: 0
+  - activite: actif
     date_naissance: '1970-01-01'
     id: ind0
     salaire_imposable: 50000.0
-    statut_marital: 2
-  - activite: 2
+    statut_marital: celibataire
+  - activite: actif
     date_naissance: '2005-01-01'
     id: ind2
-  - activite: 2
+  - activite: actif
     date_naissance: '2005-01-01'
     id: ind3
-  - activite: 2
+  - activite: actif
     date_naissance: '2005-01-01'
     id: ind4
   familles:
@@ -388,18 +388,18 @@
     - ind3
     - ind4
   individus:
-  - activite: 0
+  - activite: actif
     date_naissance: '1970-01-01'
     id: ind0
     salaire_imposable: 50000.0
-    statut_marital: 2
-  - activite: 2
+    statut_marital: celibataire
+  - activite: actif
     date_naissance: '2006-01-01'
     id: ind2
-  - activite: 2
+  - activite: actif
     date_naissance: '2006-01-01'
     id: ind3
-  - activite: 2
+  - activite: actif
     date_naissance: '2006-01-01'
     id: ind4
   familles:
