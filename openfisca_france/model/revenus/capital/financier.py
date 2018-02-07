@@ -230,16 +230,6 @@ class f2gr(Variable):
 
 
 # Utilisés par mes aides. TODO: à consolider
-class epargne_non_remuneree(Variable):
-    value_type = float
-    entity = Individu
-    base_function = requested_period_last_value
-    label = u"Épargne non rémunérée"
-    definition_period = MONTH
-    set_input = set_input_divide_by_period
-
-
-
 class livret_a(Variable):
     value_type = float
     entity = Individu
