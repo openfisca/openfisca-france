@@ -23,7 +23,7 @@
     date_naissance: '1931-01-01'
     id: ind0
     salaire_imposable: 50000.0
-    statut_marital: 4
+    statut_marital: veuf
   familles:
   - id: 0
     parents:
@@ -65,7 +65,7 @@
     date_naissance: '1932-01-01'
     id: ind0
     salaire_imposable: 50000.0
-    statut_marital: 4
+    statut_marital: veuf
   familles:
   - id: 0
     parents:
@@ -107,7 +107,7 @@
     date_naissance: '1933-01-01'
     id: ind0
     salaire_imposable: 50000.0
-    statut_marital: 4
+    statut_marital: veuf
   familles:
   - id: 0
     parents:
@@ -149,7 +149,7 @@
     date_naissance: '1934-01-01'
     id: ind0
     salaire_imposable: 50000.0
-    statut_marital: 4
+    statut_marital: veuf
   familles:
   - id: 0
     parents:
@@ -191,7 +191,7 @@
     date_naissance: '1935-01-01'
     id: ind0
     salaire_imposable: 50000.0
-    statut_marital: 4
+    statut_marital: veuf
   familles:
   - id: 0
     parents:
@@ -232,7 +232,7 @@
     date_naissance: '1936-01-01'
     id: ind0
     salaire_imposable: 50000.0
-    statut_marital: 4
+    statut_marital: veuf
   familles:
   - id: 0
     parents:
