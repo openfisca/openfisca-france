@@ -262,16 +262,6 @@ class epargne_revenus_imposables(Variable):
     definition_period = MONTH
 
 
-class interets_epargne_sur_livrets(Variable):
-    value_type = float
-    entity = Individu
-    base_function = requested_period_last_value
-    label = u"Intérêts versés pour l'épargne sur livret"
-    definition_period = MONTH
-    set_input = set_input_divide_by_period
-
-
-
 class revenus_capital(Variable):
     value_type = float
     entity = Individu

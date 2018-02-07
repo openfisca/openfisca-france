@@ -649,7 +649,6 @@ class rsa_base_ressources_patrimoine_individu(Variable):
     def formula_2009_06_01(individu, period, parameters):
         livret_a = individu('livret_a', period)
         taux_livret_a = parameters(period).epargne.livret_a.taux
-        interets_epargne_sur_livrets = individu('interets_epargne_sur_livrets', period)
         epargne_non_remuneree = individu('epargne_non_remuneree', period)
         revenus_capital = individu('revenus_capital', period)
         valeur_locative_immo_non_loue = individu('valeur_locative_immo_non_loue', period)
@@ -660,7 +659,6 @@ class rsa_base_ressources_patrimoine_individu(Variable):
         return (
             + livret_a * taux_livret_a / 12
             + epargne_non_remuneree * rsa.patrimoine.taux_interet_forfaitaire_epargne_non_remunere / 12
-            + interets_epargne_sur_livrets / 12
             + revenus_capital
             + revenus_locatifs
             + valeur_locative_immo_non_loue * rsa.patrimoine.abattement_valeur_locative_immo_non_loue
