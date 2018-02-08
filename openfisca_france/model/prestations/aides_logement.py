@@ -84,6 +84,42 @@ class al_nb_personnes_a_charge(Variable):
         return nb_pac
 
 
+class aide_logement_base_ressources_patrimoine(Variable):
+    value_type = float
+    label = u"Base de ressources des revenus du patrimoine des aides au logement"
+    entity = Famille
+    definition_period = MONTH
+
+    def formula_2016_10_01(famille, period, parameters):
+        livret_a_i = famille.members('livret_a', period)
+        livret_a = famille.sum(livret_a_i)
+        taux_livret_a = parameters(period).epargne.livret_a.taux
+        epargne_revenus_non_imposables_i = famille.members('epargne_revenus_non_imposables', period)
+        epargne_revenus_non_imposables = famille.sum(epargne_revenus_non_imposables_i)
+        epargne_revenus_imposables_i = famille.members('epargne_revenus_imposables', period)
+        epargne_revenus_imposables = famille.sum(epargne_revenus_imposables_i)
+        valeur_locative_loue_i = famille.members('valeur_locative_loue', period)
+        valeur_locative_loue = famille.sum(valeur_locative_loue_i)
+        valeur_locative_immo_non_loue_i = famille.members('valeur_locative_immo_non_loue', period)
+        valeur_locative_immo_non_loue = famille.sum(valeur_locative_immo_non_loue_i)
+        valeur_locative_terrains_non_loue_i = famille.members('valeur_locative_terrains_non_loue', period)
+        valeur_locative_terrains_non_loue = famille.sum(valeur_locative_terrains_non_loue_i)
+
+        # Les abatements sont les mêmes que pour le RSA
+        abattements = parameters(period).prestations.minima_sociaux.rsa.patrimoine
+
+        capitaux_non_productifs = livret_a + epargne_revenus_non_imposables
+        foncier = valeur_locative_loue + valeur_locative_immo_non_loue + valeur_locative_terrains_non_loue
+
+        patrimoine = epargne_revenus_imposables + capitaux_non_productifs + foncier
+
+        return (patrimoine > 30000) * (
+            + capitaux_non_productifs * abattements.taux_interet_forfaitaire_epargne_non_imposable
+            + valeur_locative_immo_non_loue * abattements.abattement_valeur_locative_immo_non_loue
+            + valeur_locative_terrains_non_loue * abattements.abattement_valeur_locative_terrains_non_loue
+            )
+
+
 class al_couple(Variable):
     value_type = bool
     entity = Famille
@@ -227,6 +263,7 @@ class aide_logement_base_ressources_defaut(Variable):
         Pr = parameters(period).prestations.aides_logement.ressources
         base_ressources_i = famille.members('prestations_familiales_base_ressources_individu', period)
         base_ressources_parents = famille.sum(base_ressources_i, role = Famille.PARENT)
+        ressources_patrimoine = famille('aide_logement_base_ressources_patrimoine', period)
         abattement_chomage_indemnise_i = famille.members('aide_logement_abattement_chomage_indemnise', period)
         abattement_chomage_indemnise = famille.sum(abattement_chomage_indemnise_i, role = Famille.PARENT)
         abattement_depart_retraite_i = famille.members('aide_logement_abattement_depart_retraite', period)
@@ -248,7 +285,7 @@ class aide_logement_base_ressources_defaut(Variable):
             )
 
         ressources = (
-            base_ressources_parents + base_ressources_enfants + rev_coll -
+            base_ressources_parents + base_ressources_enfants + ressources_patrimoine + rev_coll -
             (abattement_chomage_indemnise + abattement_depart_retraite + neutralisation_rsa)
             )
 
