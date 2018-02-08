@@ -15,8 +15,6 @@ individus:
   etudiant: 0
   id: 548ac1ccc498cde71866d641
   inapte_travail: 0
-  interets_epargne_sur_livrets:
-    2012-01: 0
   handicap: 0
   prestation_compensatoire:
     2012: 1200

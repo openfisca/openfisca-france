@@ -20,8 +20,6 @@ individus:
     etudiant: 0
     id: 5591634afdd7360730df878c
     inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
     handicap: 0
     retraite_brute:
       2013: 13710.23758099352
@@ -66,8 +64,6 @@ individus:
     etudiant: 0
     id: 5591634afdd7360730df878b
     inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
     handicap: 0
     statut_marital: marie
     valeur_locative_immo_non_loue:
@@ -82,8 +78,6 @@ individus:
     etudiant: 0
     id: 5591634afdd7360730df878a
     inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
     handicap: 0
     scolarite: college
     valeur_locative_immo_non_loue:

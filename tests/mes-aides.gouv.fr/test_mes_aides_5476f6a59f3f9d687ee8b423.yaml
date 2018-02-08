@@ -14,8 +14,6 @@ individus:
   etudiant: 0
   id: 5476f666733e68607ea97115
   inapte_travail: 0
-  interets_epargne_sur_livrets:
-    2012-01: 0
   handicap: 0
   salaire_de_base:
     2012: 15384.615384615381

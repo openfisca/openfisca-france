@@ -20,8 +20,6 @@ individus:
   etudiant: 0
   id: 559fb566ecfc1e52013e3e1d
   inapte_travail: 0
-  interets_epargne_sur_livrets:
-    2012-01: 0
   handicap: 0
   tns_auto_entrepreneur_type_activite: bic
   tns_autres_revenus_type_activite: bic
@@ -41,8 +39,6 @@ individus:
   etudiant: 0
   id: 5633aeabeeab276a0422a3c2
   inapte_travail: 0
-  interets_epargne_sur_livrets:
-    2012-01: 0
   handicap: 1
   taux_incapacite: 0.9
   tns_auto_entrepreneur_type_activite: bic

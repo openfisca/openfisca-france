@@ -18,8 +18,6 @@ individus:
   etudiant: 0
   id: 5550a2ed80cc9b9f6118068e
   inapte_travail: 0
-  interets_epargne_sur_livrets:
-    2012-01: 0
   handicap: 0
   tns_benefice_exploitant_agricole:
     '2014': 5600

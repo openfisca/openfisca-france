@@ -21,8 +21,6 @@ individus:
   etudiant: 0
   id: 559e560decfc1e52013e3b51
   inapte_travail: 0
-  interets_epargne_sur_livrets:
-    2012-01: 0
   handicap: 0
   tns_auto_entrepreneur_type_activite: bic
   tns_autres_revenus_type_activite: bic
@@ -39,8 +37,6 @@ individus:
   etudiant: 0
   id: 559e560decfc1e52013e3b50
   inapte_travail: 0
-  interets_epargne_sur_livrets:
-    2012-01: 0
   handicap: 0
   scolarite: college
   valeur_locative_immo_non_loue:

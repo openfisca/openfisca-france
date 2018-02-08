@@ -20,8 +20,6 @@ individus:
     etudiant: 0
     id: 546b190bfc9936ff63f8566c
     inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
     handicap: 0
     retraite_brute:
       2012: 7200
@@ -65,8 +63,6 @@ individus:
     etudiant: 0
     id: 546b190bfc9936ff63f8566b
     inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
     handicap: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
@@ -80,8 +76,6 @@ individus:
     etudiant: 0
     id: 546b190bfc9936ff63f8566a
     inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
     handicap: 0
     valeur_locative_immo_non_loue:
       2012-01: 0

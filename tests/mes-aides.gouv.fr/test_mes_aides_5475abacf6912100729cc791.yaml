@@ -15,8 +15,6 @@ individus:
     etudiant: 0
     id: 5475a9af76a4260d7262ae13
     inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
     handicap: 0
     revenus_locatifs:
       2012: 0
@@ -76,8 +74,6 @@ individus:
     etudiant: 0
     id: 5475a9af76a4260d7262ae05
     inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
     handicap: 0
     retraite_brute:
       2012: 8400

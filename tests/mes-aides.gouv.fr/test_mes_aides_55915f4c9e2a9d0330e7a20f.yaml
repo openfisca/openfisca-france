@@ -32,8 +32,6 @@ individus:
     2015-04: 1038.78
     2015-05: 680.58
     2015-06: 680.58
-  interets_epargne_sur_livrets:
-    2012-01: 0
   handicap: 0
   salaire_de_base:
     '2013': 8765.371794871795
@@ -89,8 +87,6 @@ individus:
   etudiant: 0
   id: 55915f1f2f56a0fd2f633196
   inapte_travail: 0
-  interets_epargne_sur_livrets:
-    2012-01: 0
   handicap: 0
   scolarite: college
   valeur_locative_immo_non_loue:
@@ -105,8 +101,6 @@ individus:
   etudiant: 0
   id: 55915f1f2f56a0fd2f633195
   inapte_travail: 0
-  interets_epargne_sur_livrets:
-    2012-01: 0
   handicap: 0
   valeur_locative_immo_non_loue:
     2012-01: 0
@@ -120,8 +114,6 @@ individus:
   etudiant: 0
   id: 55915f1f2f56a0fd2f633194
   inapte_travail: 0
-  interets_epargne_sur_livrets:
-    2012-01: 0
   handicap: 0
   valeur_locative_immo_non_loue:
     2012-01: 0

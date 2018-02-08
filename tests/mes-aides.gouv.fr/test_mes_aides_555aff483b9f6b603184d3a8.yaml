@@ -14,8 +14,6 @@ individus:
   etudiant: 0
   id: 555aff415dcb456331928911
   inapte_travail: 0
-  interets_epargne_sur_livrets:
-    2012-01: 0
   handicap: 0
   tns_autres_revenus_type_activite: bnc
   tns_avec_employe: true

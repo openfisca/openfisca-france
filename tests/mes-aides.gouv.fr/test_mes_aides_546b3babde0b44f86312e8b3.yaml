@@ -21,8 +21,6 @@ individus:
     etudiant: 0
     id: 546b3ae0f76135f463c9e264
     inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
     handicap: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
@@ -36,8 +34,6 @@ individus:
     etudiant: 0
     id: 546b3ae0f76135f463c9e263
     inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
     handicap: 0
     valeur_locative_immo_non_loue:
       2012-01: 0

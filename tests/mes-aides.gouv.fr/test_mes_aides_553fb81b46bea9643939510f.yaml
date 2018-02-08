@@ -18,8 +18,6 @@ individus:
   etudiant: 0
   id: 553fb80c1d3fb75a399b8067
   inapte_travail: 0
-  interets_epargne_sur_livrets:
-    2012-01: 0
   handicap: 0
   statut_marital: marie
   tns_benefice_exploitant_agricole:
@@ -36,8 +34,6 @@ individus:
   etudiant: 0
   id: 553fb80c1d3fb75a399b8066
   inapte_travail: 0
-  interets_epargne_sur_livrets:
-    2012-01: 0
   handicap: 0
   statut_marital: marie
   valeur_locative_immo_non_loue:
@@ -52,8 +48,6 @@ individus:
   etudiant: 0
   id: 553fb80c1d3fb75a399b8065
   inapte_travail: 0
-  interets_epargne_sur_livrets:
-    2012-01: 0
   handicap: 0
   scolarite: lycee
   valeur_locative_immo_non_loue:
