@@ -88,6 +88,7 @@ class aide_logement_base_ressources_patrimoine(Variable):
     value_type = float
     label = u"Base de ressources des revenus du patrimoine des aides au logement"
     entity = Famille
+    reference = u"https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000033243725&categorieLien=id"
     definition_period = MONTH
 
     def formula_2016_10_01(famille, period, parameters):
