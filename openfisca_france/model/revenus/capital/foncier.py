@@ -123,7 +123,6 @@ class valeur_locative_loue(Variable):
     base_function = requested_period_last_value
     label = u"Valeur locative des biens immobiliers et des terrains loués"
     definition_period = MONTH
-    set_input = set_input_divide_by_period
 
 
 class valeur_locative_immo_non_loue(Variable):
@@ -132,7 +131,6 @@ class valeur_locative_immo_non_loue(Variable):
     base_function = requested_period_last_value
     label = u"Valeur locative des biens immobiliers possédés et non loués"
     definition_period = MONTH
-    set_input = set_input_divide_by_period
 
 
 class valeur_locative_terrains_non_loue(Variable):
@@ -141,4 +139,3 @@ class valeur_locative_terrains_non_loue(Variable):
     base_function = requested_period_last_value
     label = u"Valeur locative des terrains possédés et non loués"
     definition_period = MONTH
-    set_input = set_input_divide_by_period
