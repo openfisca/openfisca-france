@@ -1,6 +1,6 @@
 # Changelog
 
-# 21.0.0
+# 21.0.0 [#902](https://github.com/openfisca/openfisca-france/pull/902)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 1er octobre 2016.
