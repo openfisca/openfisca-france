@@ -1,4 +1,4 @@
-name: Montant soustrait de 1% des intérêts théoriques mensuels de l'épargne sur livret
+name: Base ressource RSA
 keywords:
   - patrimoine
   - rsa
@@ -18,6 +18,10 @@ individus:
     2012-01: 0
   valeur_locative_terrains_non_loue:
     2012-01: 0
+  livret_a:
+    2012-01: 10000
+  epargne_revenus_non_imposables:
+    2012-01: 30000
 familles:
   acs:
     2013-09: 0

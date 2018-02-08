@@ -11,6 +11,8 @@ individus:
   id: 545a36e6462d93232aac08bc
   inapte_travail: 0
   handicap: 0
+  epargne_revenus_non_imposables:
+    2012-01: 20000
   revenus_capital:
     2012: 0
     2013-11: 0

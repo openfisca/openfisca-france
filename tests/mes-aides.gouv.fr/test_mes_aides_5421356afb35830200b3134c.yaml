@@ -14,6 +14,8 @@ individus:
   id: 54213529fb35830200b3134b
   inapte_travail: 0
   handicap: 0
+  epargne_revenus_non_imposables:
+    2012-01: 30000
   valeur_locative_immo_non_loue:
     2012-01: 0
   valeur_locative_terrains_non_loue:
