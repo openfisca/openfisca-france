@@ -43,8 +43,6 @@ individus:
   date_naissance: "1979-07-12"
   chomage_imposable:
     2013: 0
-  epargne_non_remuneree:
-    2012-01: 0
   etudiant: 0
   id: 54be86a5d337b5d372377c27
   inapte_travail: 0

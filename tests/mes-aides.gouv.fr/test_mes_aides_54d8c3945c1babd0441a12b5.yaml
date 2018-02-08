@@ -14,8 +14,6 @@ individus:
     age_en_mois: 269
     date_naissance: "1992-08-12"
     boursier: false
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 1
     id: 54d8c2b0e45751d544f06cc1
     inapte_travail: 0
@@ -30,8 +28,6 @@ individus:
     age_en_mois: 269
     date_naissance: "1992-08-12"
     boursier: true
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 1
     id: 54d8c2b0e45751d544f06cbf
     inapte_travail: 0

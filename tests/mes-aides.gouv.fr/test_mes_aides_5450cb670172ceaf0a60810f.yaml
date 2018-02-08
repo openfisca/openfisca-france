@@ -9,8 +9,6 @@ individus:
   age: 34
   age_en_mois: 417
   date_naissance: "1980-01-01"
-  epargne_non_remuneree:
-    2012-01: 0
   etudiant: 0
   id: 5450cac80172ceaf0a60810e
   inapte_travail: 0

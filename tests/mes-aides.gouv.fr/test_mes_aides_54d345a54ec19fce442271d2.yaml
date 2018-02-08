@@ -31,8 +31,6 @@ individus:
   age_en_mois: 293
   date_naissance: "1990-08-12"
   boursier: false
-  epargne_non_remuneree:
-    2012-01: 0
   etudiant: 1
   id: 54d344cf4ec19fce442271d0
   inapte_travail: 0

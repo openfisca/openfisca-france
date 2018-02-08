@@ -16,8 +16,6 @@ individus:
   age_en_mois: 346
   ass_precondition_remplie: false
   date_naissance: "1986-01-01"
-  epargne_non_remuneree:
-    2012-01: 0
   etudiant: 0
   id: 546b466cba32fff66335d33d
   inapte_travail: 0

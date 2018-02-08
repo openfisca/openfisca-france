@@ -295,8 +295,6 @@ individus:
       2017-05: false
       2017-04: false
       2017-03: false
-    epargne_non_remuneree:
-      2012-01: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
     valeur_locative_terrains_non_loue:

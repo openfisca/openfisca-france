@@ -13,8 +13,6 @@ individus:
     age_en_mois: 666
     date_naissance: "1960-03-02"
     enfant_place: false
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 55edabffbd7b102a0438a5a4
     inapte_travail: 0
@@ -69,8 +67,6 @@ individus:
     age_en_mois: 23
     date_naissance: "2013-09-08"
     enfant_place: false
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 55edabffbd7b102a0438a5a3
     inapte_travail: 0

@@ -15,8 +15,6 @@ individus:
     age_en_mois: 544
     date_naissance: "1970-04-13"
     enfant_place: false
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 55e80e2727b85cf35b443d60
     inapte_travail: 0
@@ -91,8 +89,6 @@ individus:
     age_en_mois: 186
     date_naissance: "2000-02-14"
     enfant_place: false
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 55e80e2727b85cf35b443d5f
     inapte_travail: 0

@@ -9,8 +9,6 @@ individus:
   age_en_mois: 414
   date_naissance: '1979-12-31'
   enceinte: false
-  epargne_non_remuneree:
-    2012-01: 0
   etudiant: 0
   id: 53d79a06f6aa390200a6cd0b
   inapte_travail: 0
@@ -22,8 +20,6 @@ individus:
 - age: 4
   age_en_mois: 54
   date_naissance: '2009-12-31'
-  epargne_non_remuneree:
-    2012-01: 0
   etudiant: 0
   id: 53d79a06f6aa390200a6cd0a
   inapte_travail: 0

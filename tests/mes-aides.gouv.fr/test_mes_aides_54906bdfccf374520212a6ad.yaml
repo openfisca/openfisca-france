@@ -15,8 +15,6 @@ individus:
   - age: 40
     age_en_mois: 491
     date_naissance: "1974-01-01"
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 54906b7edf990f5b0286c752
     inapte_travail: 0
@@ -74,8 +72,6 @@ individus:
   - age: 40
     age_en_mois: 491
     date_naissance: "1974-01-01"
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 54906b7edf990f5b0286c745
     inapte_travail: 0
@@ -87,8 +83,6 @@ individus:
   - age: 15
     age_en_mois: 191
     date_naissance: "1999-01-01"
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 54906b7edf990f5b0286c744
     inapte_travail: 0
@@ -101,8 +95,6 @@ individus:
   - age: 4
     age_en_mois: 59
     date_naissance: "2010-01-01"
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 54906b7edf990f5b0286c743
     inapte_travail: 0

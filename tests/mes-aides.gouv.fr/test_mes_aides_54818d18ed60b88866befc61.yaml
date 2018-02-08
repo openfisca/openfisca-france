@@ -9,8 +9,6 @@ individus:
   age_en_mois: 419
   date_naissance: "1980-01-01"
   boursier: false
-  epargne_non_remuneree:
-    2012-01: 0
   etudiant: 1
   id: 54818cbfaad65891668c6c80
   inapte_travail: 0

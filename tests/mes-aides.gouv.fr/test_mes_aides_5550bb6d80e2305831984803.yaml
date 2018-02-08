@@ -13,8 +13,6 @@ individus:
 - age: 32
   age_en_mois: 394
   date_naissance: '1982-06-14'
-  epargne_non_remuneree:
-    2012-01: 0
   etudiant: 0
   id: 5550a2ed80cc9b9f6118068e
   inapte_travail: 0

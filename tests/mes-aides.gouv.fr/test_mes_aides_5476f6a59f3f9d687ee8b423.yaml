@@ -9,8 +9,6 @@ individus:
   age: 46
   age_en_mois: 559
   date_naissance: "1968-03-30"
-  epargne_non_remuneree:
-    2012-01: 0
   etudiant: 0
   id: 5476f666733e68607ea97115
   inapte_travail: 0

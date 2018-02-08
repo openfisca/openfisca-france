@@ -11,8 +11,6 @@ individus:
     age_en_mois: 250
     ass_precondition_remplie: false
     date_naissance: "1994-01-01"
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 546b31eb5d4a0b016431dbb6
     inapte_travail: 0
@@ -26,8 +24,6 @@ individus:
     age_en_mois: 250
     date_naissance: "1994-01-01"
     enceinte: true
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 546b31eb5d4a0b016431dbb5
     inapte_travail: 0

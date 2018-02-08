@@ -25,8 +25,6 @@ individus:
   age: 36
   age_en_mois: 434
   date_naissance: "1978-08-12"
-  epargne_non_remuneree:
-    2012-01: 0
   etudiant: 0
   id: 5441297683b38a957e4d856c
   inapte_travail: 0

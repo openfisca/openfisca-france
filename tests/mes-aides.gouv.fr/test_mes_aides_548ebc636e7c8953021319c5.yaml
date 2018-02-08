@@ -45,8 +45,6 @@ individus:
       2014-09: 796
       2014-10: 796
       2014-11: 796
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 548ebb9509d6285e02d4dfb3
     inapte_travail: 0
@@ -91,8 +89,6 @@ individus:
       2014-10: 1300
       2014-11: 1300
       2014-12: 1300
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 548ebb9509d6285e02d4df99
     inapte_travail: 0

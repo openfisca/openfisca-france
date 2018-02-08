@@ -13,8 +13,6 @@ individus:
     age_en_mois: 666
     date_naissance: "1960-03-02"
     enfant_place: false
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 55eda7930df1c6360477f24f
     inapte_travail: 0
@@ -70,8 +68,6 @@ individus:
     age_en_mois: 666
     date_naissance: "1960-03-02"
     enfant_place: false
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 55eda7930df1c6360477f24e
     inapte_travail: 0
@@ -87,8 +83,6 @@ individus:
     age_en_mois: 24
     date_naissance: "2013-08-09"
     enfant_place: false
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 55eda7930df1c6360477f24d
     inapte_travail: 0
@@ -103,8 +97,6 @@ individus:
     age_en_mois: 72
     date_naissance: "2009-08-09"
     enfant_place: false
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 55eda7930df1c6360477f24c
     inapte_travail: 0
@@ -119,8 +111,6 @@ individus:
     age_en_mois: 59
     date_naissance: "2010-09-09"
     enfant_place: false
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 55eda7930df1c6360477f24b
     inapte_travail: 0
@@ -135,8 +125,6 @@ individus:
     age_en_mois: 60
     date_naissance: "2010-08-09"
     enfant_place: false
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 55eda7930df1c6360477f24a
     inapte_travail: 0

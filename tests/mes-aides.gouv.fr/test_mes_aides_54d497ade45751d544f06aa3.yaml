@@ -37,8 +37,6 @@ individus:
     date_naissance: "1926-09-05"
     chomage_imposable:
       2013: 0
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 54d4951fd4e3b0d74454c76f
     inapte_travail: 0
@@ -85,8 +83,6 @@ individus:
   - age: 14
     age_en_mois: 173
     date_naissance: "2000-08-12"
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 54d496deaf6bfed9447f95bc
     inapte_travail: 0

@@ -14,8 +14,6 @@ individus:
   age_en_mois: 419
   date_naissance: '1980-01-01'
   boursier: false
-  epargne_non_remuneree:
-    2012-01: 0
   etudiant: 1
   id: 54818d591c33cd86661874e2
   inapte_travail: 0
@@ -27,8 +25,6 @@ individus:
 - age: 4
   age_en_mois: 59
   date_naissance: '2010-01-01'
-  epargne_non_remuneree:
-    2012-01: 0
   etudiant: 0
   id: 54818d591c33cd86661874e1
   inapte_travail: 0

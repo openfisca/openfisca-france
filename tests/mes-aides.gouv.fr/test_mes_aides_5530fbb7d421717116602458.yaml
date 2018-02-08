@@ -7,8 +7,6 @@ individus:
   - age: 51
     age_en_mois: 615
     date_naissance: "1964-01-01"
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 5530fbb44a0ca0741632ae78
     inapte_travail: 0
@@ -65,8 +63,6 @@ individus:
   - age: 0
     age_en_mois: 0
     date_naissance: "2015-04-01"
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 5530fbb44a0ca0741632ae77
     inapte_travail: 0

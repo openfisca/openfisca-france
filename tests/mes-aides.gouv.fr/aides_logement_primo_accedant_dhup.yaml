@@ -52,8 +52,6 @@ individus:
     2017-01: false
     2017-02: false
     2017-03: false
-  epargne_non_remuneree:
-    2012-01: 0
   etudiant:
     2016-12: false
     2017-01: false
@@ -139,8 +137,6 @@ individus:
     2017-01: false
     2017-02: false
     2017-03: false
-  epargne_non_remuneree:
-    2012-01: 0
   etudiant:
     2016-12: false
     2017-01: false

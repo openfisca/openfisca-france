@@ -9,8 +9,6 @@ individus:
   - age: 28
     age_en_mois: 346
     date_naissance: "1986-01-01"
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 546c98bfefc21c287d798167
     inapte_travail: 0
@@ -23,8 +21,6 @@ individus:
   - age: 29
     age_en_mois: 358
     date_naissance: "1985-01-01"
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 546c98bfefc21c287d798166
     inapte_travail: 0

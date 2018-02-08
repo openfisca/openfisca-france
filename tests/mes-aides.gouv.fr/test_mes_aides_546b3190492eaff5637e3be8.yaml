@@ -10,8 +10,6 @@ individus:
     age_en_mois: 250
     date_naissance: "1994-01-01"
     enceinte: true
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 546b3157de0b44f86312e8b1
     inapte_travail: 0
@@ -23,8 +21,6 @@ individus:
   - age: 4
     age_en_mois: 58
     date_naissance: "2010-01-01"
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 546b3157de0b44f86312e8b0
     inapte_travail: 0
