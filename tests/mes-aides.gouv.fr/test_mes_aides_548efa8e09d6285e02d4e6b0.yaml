@@ -30,8 +30,6 @@ individus:
   boursier: true
   chomage_imposable:
     2012: 0
-  epargne_non_remuneree:
-    2012-01: 0
   etudiant: 0
   id: 548ef9d98dac136002468a88
   inapte_travail: 0

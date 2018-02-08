@@ -49,8 +49,6 @@ individus:
     2015-06: 504
     2015-07: 504
   enfant_place: false
-  epargne_non_remuneree:
-    2012-01: 0
   etudiant: 0
   id: 559fbd84f394e1a7011b5779
   inapte_travail: 0
@@ -71,8 +69,6 @@ individus:
 - age: 18
   age_en_mois: 217
   date_naissance: '1997-05-19'
-  epargne_non_remuneree:
-    2012-01: 0
   etudiant: 0
   id: 559fbd84f394e1a7011b5778
   inapte_travail: 0

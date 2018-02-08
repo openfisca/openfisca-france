@@ -12,8 +12,6 @@ individus:
 - age: 34
   age_en_mois: 416
   date_naissance: '1980-07-07'
-  epargne_non_remuneree:
-    2012-01: 0
   etudiant: 0
   id: 551d4c72d8e0018545eb06ff
   inapte_travail: 0
@@ -71,8 +69,6 @@ individus:
   age_en_mois: 92
   garde_alternee: true
   date_naissance: '2007-07-09'
-  epargne_non_remuneree:
-    2012-01: 0
   etudiant: 0
   id: 551d4c72d8e0018545eb06fe
   inapte_travail: 0
@@ -85,8 +81,6 @@ individus:
   age_en_mois: 58
   garde_alternee: true
   date_naissance: '2010-05-04'
-  epargne_non_remuneree:
-    2012-01: 0
   etudiant: 0
   id: 551d4c72d8e0018545eb06fd
   inapte_travail: 0

@@ -13,8 +13,6 @@ individus:
   age: 74
   age_en_mois: 894
   date_naissance: "1940-10-10"
-  epargne_non_remuneree:
-    2012-01: 0
   etudiant: 0
   id: 55364e375808ef7e2d505449
   inapte_travail: 0

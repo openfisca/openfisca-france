@@ -42,8 +42,6 @@ individus:
       2015-03: 843
       2015-04: 843
       2015-05: 843
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 5582ce61433935771434ce8c
     inapte_travail: 0
@@ -88,8 +86,6 @@ individus:
       2015-04: 1006
       2015-05: 1006
       2015-06: 1006
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 5582ce61433935771434ce71
     inapte_travail: 0

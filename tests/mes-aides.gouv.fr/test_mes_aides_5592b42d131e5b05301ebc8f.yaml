@@ -12,8 +12,6 @@ individus:
   date_naissance: '1960-01-01'
   chomage_imposable:
     '2013': 100000
-  epargne_non_remuneree:
-    2012-01: 0
   etudiant: 0
   id: 5592b4049e2a9d0330e7a5b5
   inapte_travail: 0
@@ -36,8 +34,6 @@ individus:
   date_naissance: '1960-01-01'
   chomage_imposable:
     '2013': 0
-  epargne_non_remuneree:
-    2012-01: 0
   etudiant: 0
   id: 5592b4049e2a9d0330e7a5b3
   inapte_travail: 0

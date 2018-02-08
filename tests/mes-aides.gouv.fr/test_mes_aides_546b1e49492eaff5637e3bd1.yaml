@@ -10,8 +10,6 @@ individus:
   age: 88
   age_en_mois: 1059
   date_naissance: "1926-08-14"
-  epargne_non_remuneree:
-    2012-01: 0
   etudiant: 0
   id: 546b1d6d8de28ffd63d63ef8
   inapte_travail: 0

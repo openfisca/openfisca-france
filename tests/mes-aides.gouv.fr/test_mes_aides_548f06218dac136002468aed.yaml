@@ -45,8 +45,6 @@ individus:
       2014-09: 796
       2014-10: 796
       2014-11: 796
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 548f04ffdf990f5b0286bac2
     inapte_travail: 0
@@ -60,8 +58,6 @@ individus:
     age: 62
     age_en_mois: 745
     date_naissance: "1952-10-26"
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 548f04ffdf990f5b0286baa8
     inapte_travail: 0

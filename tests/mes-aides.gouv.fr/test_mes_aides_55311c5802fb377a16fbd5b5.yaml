@@ -11,8 +11,6 @@ individus:
     date_naissance: "1980-02-09"
     chomage_imposable:
       2013: 0
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 55311bf2d4217171166024dd
     inapte_travail: 0
@@ -68,8 +66,6 @@ individus:
   - age: 3
     age_en_mois: 44
     date_naissance: "2011-08-09"
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 55311bf2d4217171166024dc
     inapte_travail: 0

@@ -16,8 +16,6 @@ individus:
     age_en_mois: 346
     ass_precondition_remplie: false
     date_naissance: "1986-01-01"
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 546b3ae0f76135f463c9e264
     inapte_travail: 0
@@ -29,8 +27,6 @@ individus:
   - age: 2
     age_en_mois: 34
     date_naissance: "2012-01-01"
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 546b3ae0f76135f463c9e263
     inapte_travail: 0

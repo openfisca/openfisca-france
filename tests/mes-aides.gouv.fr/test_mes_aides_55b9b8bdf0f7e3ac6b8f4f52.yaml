@@ -17,8 +17,6 @@ individus:
     chomage_imposable:
       2013: 0
     enfant_place: false
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 55b9b7b4f0f7e3ac6b8f4f45
     inapte_travail: 0
@@ -83,8 +81,6 @@ individus:
       2015-05: 0
       2015-06: 0
     enfant_place: false
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 55b9b7b4f0f7e3ac6b8f4f2b
     inapte_travail: 0
@@ -147,8 +143,6 @@ individus:
     age_en_mois: 43
     date_naissance: "2011-12-17"
     enfant_place: false
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 55b9b7b4f0f7e3ac6b8f4f2a
     inapte_travail: 0
@@ -163,8 +157,6 @@ individus:
     age_en_mois: 97
     date_naissance: "2007-06-01"
     enfant_place: false
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 55b9b7b4f0f7e3ac6b8f4f29
     inapte_travail: 0
@@ -179,8 +171,6 @@ individus:
     age_en_mois: 120
     date_naissance: "2005-07-16"
     enfant_place: false
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 55b9b7b4f0f7e3ac6b8f4f28
     inapte_travail: 0
@@ -196,8 +186,6 @@ individus:
     age_en_mois: 156
     date_naissance: "2002-07-10"
     enfant_place: false
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 55b9b7b4f0f7e3ac6b8f4f27
     inapte_travail: 0
@@ -213,8 +201,6 @@ individus:
     age_en_mois: 179
     date_naissance: "2000-08-07"
     enfant_place: false
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 55b9b7b4f0f7e3ac6b8f4f26
     inapte_travail: 0

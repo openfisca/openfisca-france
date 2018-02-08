@@ -15,8 +15,6 @@ individus:
     date_naissance: "1980-08-12"
     chomage_imposable:
       2013: 0
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 55016d38c1724a2b5a08c153
     inapte_travail: 0
@@ -34,8 +32,6 @@ individus:
   - age: 14
     age_en_mois: 175
     date_naissance: "2000-08-12"
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 55016d38c1724a2b5a08c152
     inapte_travail: 0

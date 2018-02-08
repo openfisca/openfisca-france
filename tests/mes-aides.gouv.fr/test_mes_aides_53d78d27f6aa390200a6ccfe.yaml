@@ -8,8 +8,6 @@ individus:
     age_en_mois: 298
     date_naissance: "1989-09-14"
     enceinte: false
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 53d78cf4f6aa390200a6ccfd
     inapte_travail: 0
@@ -21,8 +19,6 @@ individus:
   - age: 6
     age_en_mois: 82
     date_naissance: "2007-09-14"
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 53d78cf4f6aa390200a6ccfc
     inapte_travail: 0
@@ -34,8 +30,6 @@ individus:
   - age: 6
     age_en_mois: 82
     date_naissance: "2007-09-14"
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 53d78cf4f6aa390200a6ccfb
     inapte_travail: 0
@@ -47,8 +41,6 @@ individus:
   - age: 6
     age_en_mois: 82
     date_naissance: "2007-09-14"
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 53d78cf4f6aa390200a6ccfa
     inapte_travail: 0

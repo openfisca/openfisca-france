@@ -11,8 +11,6 @@ individus:
   age_en_mois: 298
   date_naissance: "1989-09-14"
   enceinte: false
-  epargne_non_remuneree:
-    2012-01: 0
   etudiant: 0
   id: 53d21e21159e330200810b83
   inapte_travail: 0

@@ -15,8 +15,6 @@ individus:
     date_naissance: "1970-01-01"
     chomage_imposable:
       2013: 0
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 559bb07a8aba0709309a68b6
     inapte_travail: 0
@@ -37,8 +35,6 @@ individus:
     date_naissance: "1970-01-01"
     chomage_imposable:
       2013: 0
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 559bb07a8aba0709309a68b5
     inapte_travail: 0
@@ -57,8 +53,6 @@ individus:
   - age: 0
     age_en_mois: 6
     date_naissance: "2015-01-01"
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 559bb07a8aba0709309a68b4
     inapte_travail: 0
@@ -70,8 +64,6 @@ individus:
   - age: 1
     age_en_mois: 18
     date_naissance: "2014-01-01"
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 559bb07a8aba0709309a68b3
     inapte_travail: 0
@@ -83,8 +75,6 @@ individus:
   - age: 2
     age_en_mois: 30
     date_naissance: "2013-01-01"
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 559bb07a8aba0709309a68b2
     inapte_travail: 0
@@ -96,8 +86,6 @@ individus:
   - age: 3
     age_en_mois: 42
     date_naissance: "2012-01-01"
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 559bb07a8aba0709309a68b1
     inapte_travail: 0
@@ -109,8 +97,6 @@ individus:
   - age: 4
     age_en_mois: 54
     date_naissance: "2011-01-01"
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 559bb07a8aba0709309a68b0
     inapte_travail: 0
@@ -122,8 +108,6 @@ individus:
   - age: 5
     age_en_mois: 66
     date_naissance: "2010-01-01"
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 559bb07a8aba0709309a68af
     inapte_travail: 0
@@ -135,8 +119,6 @@ individus:
   - age: 6
     age_en_mois: 78
     date_naissance: "2009-01-01"
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 559bb07a8aba0709309a68ae
     inapte_travail: 0
@@ -148,8 +130,6 @@ individus:
   - age: 7
     age_en_mois: 90
     date_naissance: "2008-01-01"
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 559bb07a8aba0709309a68ad
     inapte_travail: 0
@@ -161,8 +141,6 @@ individus:
   - age: 20
     age_en_mois: 246
     date_naissance: "1995-01-01"
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 559bb07a8aba0709309a68ac
     inapte_travail: 0

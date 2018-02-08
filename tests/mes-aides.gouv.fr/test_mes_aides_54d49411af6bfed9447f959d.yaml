@@ -36,8 +36,6 @@ individus:
   date_naissance: "1926-09-05"
   chomage_imposable:
     2013: 0
-  epargne_non_remuneree:
-    2012-01: 0
   etudiant: 0
   id: 54d49218f675ddd34432ea79
   inapte_travail: 0

@@ -23,8 +23,6 @@ individus:
     age_en_mois: 592
     date_naissance: "1965-04-20"
     enceinte: false
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 54113b47db10e7020066c729
     inapte_travail: 0
@@ -36,8 +34,6 @@ individus:
   - age: 11
     age_en_mois: 143
     date_naissance: "2002-09-12"
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 54113b47db10e7020066c728
     inapte_travail: 0
@@ -49,8 +45,6 @@ individus:
   - age: 10
     age_en_mois: 124
     date_naissance: "2004-04-21"
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 54113b47db10e7020066c727
     inapte_travail: 0

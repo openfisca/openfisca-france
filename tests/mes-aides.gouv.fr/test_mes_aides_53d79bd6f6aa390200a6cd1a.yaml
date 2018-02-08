@@ -8,8 +8,6 @@ individus:
   age_en_mois: 414
   date_naissance: "1980-01-01"
   enceinte: false
-  epargne_non_remuneree:
-    2012-01: 0
   etudiant: 0
   id: 53d79bbcf6aa390200a6cd16
   inapte_travail: 0

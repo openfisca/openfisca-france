@@ -10,8 +10,6 @@ individus:
   age: 25
   age_en_mois: 302
   date_naissance: "1989-08-12"
-  epargne_non_remuneree:
-    2012-01: 0
   etudiant: 0
   id: 5447980768bffeba26368beb
   inapte_travail: 0

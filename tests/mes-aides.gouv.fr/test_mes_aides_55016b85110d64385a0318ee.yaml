@@ -15,8 +15,6 @@ individus:
     date_naissance: "1980-08-12"
     chomage_imposable:
       2013: 0
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 55016b6ce471d52f5a015635
     inapte_travail: 0
@@ -37,8 +35,6 @@ individus:
     date_naissance: "1980-08-12"
     chomage_imposable:
       2013: 0
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 55016b6ce471d52f5a015634
     inapte_travail: 0
@@ -57,8 +53,6 @@ individus:
   - age: 14
     age_en_mois: 175
     date_naissance: "2000-08-12"
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 55016b6ce471d52f5a015633
     inapte_travail: 0
@@ -71,8 +65,6 @@ individus:
   - age: 0
     age_en_mois: 7
     date_naissance: "2014-08-12"
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 55016b6ce471d52f5a015632
     inapte_travail: 0
@@ -84,8 +76,6 @@ individus:
   - age: 0
     age_en_mois: 7
     date_naissance: "2014-08-12"
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 55016b6ce471d52f5a015631
     inapte_travail: 0
@@ -97,8 +87,6 @@ individus:
   - age: 0
     age_en_mois: 7
     date_naissance: "2014-08-12"
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 55016b6ce471d52f5a015630
     inapte_travail: 0

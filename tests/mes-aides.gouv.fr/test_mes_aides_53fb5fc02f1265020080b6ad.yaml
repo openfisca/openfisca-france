@@ -10,8 +10,6 @@ individus:
     age_en_mois: 407
     date_naissance: "1980-09-14"
     enceinte: true
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 53fb5f942f1265020080b6ac
     inapte_travail: 0
@@ -30,8 +28,6 @@ individus:
     age: 33
     age_en_mois: 407
     date_naissance: "1980-09-14"
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 53fb5f942f1265020080b6a8
     inapte_travail: 0

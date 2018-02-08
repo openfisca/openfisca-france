@@ -26,8 +26,6 @@ individus:
   date_naissance: "1980-08-12"
   chomage_imposable:
     2013: 0
-  epargne_non_remuneree:
-    2012-01: 0
   etudiant: 0
   id: 54d39f89f675ddd34432e918
   inapte_travail: 0
