@@ -659,7 +659,7 @@ class rsa_base_ressources_patrimoine_individu(Variable):
 
         return (
             + livret_a * taux_livret_a / 12
-            + epargne_revenus_non_imposables * rsa.patrimoine.taux_interet_forfaitaire_epargne_non_remunere / 12
+            + epargne_revenus_non_imposables * rsa.patrimoine.taux_interet_forfaitaire_epargne_non_imposable / 12
             + revenus_capital
             + revenus_locatifs
             + valeur_locative_immo_non_loue * rsa.patrimoine.abattement_valeur_locative_immo_non_loue
