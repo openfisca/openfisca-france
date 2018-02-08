@@ -14,8 +14,6 @@ individus:
   etudiant: 0
   id: 5540d71317d9db60391c36af
   inapte_travail: 0
-  interets_epargne_sur_livrets:
-    2012-01: 0
   handicap: 0
   tns_autres_revenus:
     '2014': 30000

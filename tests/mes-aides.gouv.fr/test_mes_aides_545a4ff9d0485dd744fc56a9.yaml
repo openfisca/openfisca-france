@@ -14,8 +14,6 @@ individus:
     etudiant: 0
     id: 545a4fdf4abd22dc4420c7a4
     inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
     handicap: 0
     statut_marital: celibataire
     valeur_locative_immo_non_loue:
@@ -30,8 +28,6 @@ individus:
     etudiant: 0
     id: 545a4fdf4abd22dc4420c7a3
     inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
     handicap: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
@@ -45,8 +41,6 @@ individus:
     etudiant: 0
     id: 545a4fdf4abd22dc4420c7a2
     inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
     handicap: 0
     valeur_locative_immo_non_loue:
       2012-01: 0

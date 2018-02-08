@@ -74,8 +74,6 @@ individus:
     2017-06: false
     2017-07: false
     2017-08: false
-  interets_epargne_sur_livrets:
-    2012-01: 0
   salaire_de_base:
     2015-01: 1443.5897435897439
     2015-02: 1443.5897435897439
@@ -251,8 +249,6 @@ individus:
     2017-06: false
     2017-07: false
     2017-08: false
-  interets_epargne_sur_livrets:
-    2012-01: 0
   statut_marital:
     2017-05: marie
     2017-06: marie

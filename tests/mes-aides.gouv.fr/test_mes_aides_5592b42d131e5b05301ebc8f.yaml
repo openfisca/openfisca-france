@@ -17,8 +17,6 @@ individus:
   etudiant: 0
   id: 5592b4049e2a9d0330e7a5b5
   inapte_travail: 0
-  interets_epargne_sur_livrets:
-    2012-01: 0
   handicap: 0
   pensions_alimentaires_percues:
     '2013': 0
@@ -43,8 +41,6 @@ individus:
   etudiant: 0
   id: 5592b4049e2a9d0330e7a5b3
   inapte_travail: 0
-  interets_epargne_sur_livrets:
-    2012-01: 0
   handicap: 0
   pensions_alimentaires_percues:
     '2013': 0

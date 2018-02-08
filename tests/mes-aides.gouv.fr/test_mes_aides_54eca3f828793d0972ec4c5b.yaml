@@ -16,8 +16,6 @@ individus:
     etudiant: 0
     id: 54eca3da0d710a0672dcaf2b
     inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
     handicap: 0
     pensions_alimentaires_percues:
       2013: 0
@@ -78,8 +76,6 @@ individus:
     etudiant: 0
     id: 54eca3da0d710a0672dcaf1e
     inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
     handicap: 0
     salaire_de_base:
       2014-02: 1025.6410256410256
@@ -136,8 +132,6 @@ individus:
     etudiant: 0
     id: 54eca3da0d710a0672dcaf1d
     inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
     handicap: 0
     scolarite: college
     valeur_locative_immo_non_loue:
@@ -152,8 +146,6 @@ individus:
     etudiant: 0
     id: 54eca3da0d710a0672dcaf1c
     inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
     handicap: 0
     scolarite: college
     valeur_locative_immo_non_loue:

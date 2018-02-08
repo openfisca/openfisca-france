@@ -15,8 +15,6 @@ individus:
     etudiant: 0
     id: 547d8536bd420d34260ba250
     inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
     handicap: 0
     retraite_brute:
       2012: 7200
@@ -107,8 +105,6 @@ individus:
     etudiant: 0
     id: 547d8536bd420d34260ba242
     inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
     handicap: 0
     salaire_de_base:
       2012: 3600

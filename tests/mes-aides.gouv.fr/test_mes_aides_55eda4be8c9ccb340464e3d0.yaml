@@ -18,8 +18,6 @@ individus:
   etudiant: 0
   id: 55eda20abb8d0c3804776156
   inapte_travail: 0
-  interets_epargne_sur_livrets:
-    2012-01: 0
   handicap: 0
   salaire_de_base:
     2014-09: 7264.957264957265
@@ -77,8 +75,6 @@ individus:
   etudiant: 0
   id: 55eda20abb8d0c3804776155
   inapte_travail: 0
-  interets_epargne_sur_livrets:
-    2012-01: 0
   handicap: 0
   statut_marital: marie
   valeur_locative_immo_non_loue:
@@ -96,8 +92,6 @@ individus:
   etudiant: 0
   id: 55eda20abb8d0c3804776154
   inapte_travail: 0
-  interets_epargne_sur_livrets:
-    2012-01: 0
   handicap: 0
   valeur_locative_immo_non_loue:
     2012-01: 0
@@ -114,8 +108,6 @@ individus:
   etudiant: 0
   id: 55eda20abb8d0c3804776153
   inapte_travail: 0
-  interets_epargne_sur_livrets:
-    2012-01: 0
   handicap: 0
   valeur_locative_immo_non_loue:
     2012-01: 0
@@ -132,8 +124,6 @@ individus:
   etudiant: 0
   id: 55eda20abb8d0c3804776152
   inapte_travail: 0
-  interets_epargne_sur_livrets:
-    2012-01: 0
   handicap: 0
   valeur_locative_immo_non_loue:
     2012-01: 0

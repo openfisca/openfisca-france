@@ -22,8 +22,6 @@ individus:
   etudiant: 0
   id: 55f01daa8c9ccb340464e89e
   inapte_travail: 0
-  interets_epargne_sur_livrets:
-    2012-01: 0
   handicap: 0
   salaire_de_base:
     2014-09: 1973.931623931624

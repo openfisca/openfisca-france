@@ -19,8 +19,6 @@ individus:
     etudiant: 0
     id: 546b3e14de0b44f86312e8c5
     inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
     handicap: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
@@ -34,8 +32,6 @@ individus:
     etudiant: 0
     id: 546b3e14de0b44f86312e8c4
     inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
     handicap: 0
     pensions_alimentaires_percues:
       2012: 1200

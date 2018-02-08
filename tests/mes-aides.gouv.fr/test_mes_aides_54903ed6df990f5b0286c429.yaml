@@ -17,8 +17,6 @@ individus:
     etudiant: 0
     id: 54903ea07b85005902283c59
     inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
     handicap: 0
     salaire_de_base:
       2012: 22564.102564102563
@@ -78,8 +76,6 @@ individus:
     etudiant: 0
     id: 54903ea07b85005902283c4c
     inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
     handicap: 0
     valeur_locative_immo_non_loue:
       2012-01: 0

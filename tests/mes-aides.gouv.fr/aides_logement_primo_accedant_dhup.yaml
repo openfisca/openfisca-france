@@ -70,8 +70,6 @@ individus:
     2017-01: false
     2017-02: false
     2017-03: false
-  interets_epargne_sur_livrets:
-    2012-01: 0
   statut_marital:
     2016-12: marie
     2017-01: marie
@@ -159,8 +157,6 @@ individus:
     2017-01: false
     2017-02: false
     2017-03: false
-  interets_epargne_sur_livrets:
-    2012-01: 0
   statut_marital:
     2016-12: marie
     2017-01: marie

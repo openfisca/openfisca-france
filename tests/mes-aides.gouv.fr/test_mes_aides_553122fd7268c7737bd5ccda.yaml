@@ -16,8 +16,6 @@ individus:
     etudiant: 0
     id: 553122ecf19ad7677b5ea499
     inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
     handicap: 0
     pensions_alimentaires_percues:
       2013: 0
@@ -75,8 +73,6 @@ individus:
     etudiant: 0
     id: 553122ecf19ad7677b5ea498
     inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
     handicap: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
@@ -90,8 +86,6 @@ individus:
     etudiant: 0
     id: 553122ecf19ad7677b5ea497
     inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
     handicap: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
@@ -105,8 +99,6 @@ individus:
     etudiant: 0
     id: 553122ecf19ad7677b5ea496
     inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
     handicap: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
@@ -120,8 +112,6 @@ individus:
     etudiant: 0
     id: 553122ecf19ad7677b5ea495
     inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
     handicap: 0
     valeur_locative_immo_non_loue:
       2012-01: 0

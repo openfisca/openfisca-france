@@ -14,8 +14,6 @@ individus:
   etudiant: 0
   id: 5481e7029f3789cc06d512f5
   inapte_travail: 0
-  interets_epargne_sur_livrets:
-    2012-01: 0
   handicap: 1
   valeur_locative_immo_non_loue:
     2012-01: 0

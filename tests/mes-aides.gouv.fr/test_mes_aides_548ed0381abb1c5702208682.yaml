@@ -50,8 +50,6 @@ individus:
   etudiant: 0
   id: 548ecfec7b85005902282cc4
   inapte_travail: 0
-  interets_epargne_sur_livrets:
-    2012-01: 0
   handicap: 0
   revenus_locatifs:
     2012: 48000

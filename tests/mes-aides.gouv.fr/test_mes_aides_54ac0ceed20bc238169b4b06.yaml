@@ -30,8 +30,6 @@ individus:
     etudiant: 0
     id: 54ac0b9ed20bc238169b4b05
     inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
     handicap: 0
     statut_marital: marie
     valeur_locative_immo_non_loue:
@@ -46,8 +44,6 @@ individus:
     etudiant: 0
     id: 54ac0b9ed20bc238169b4b04
     inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
     handicap: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
@@ -61,8 +57,6 @@ individus:
     etudiant: 0
     id: 54ac0b9ed20bc238169b4b03
     inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
     handicap: 0
     scolarite: college
     valeur_locative_immo_non_loue:

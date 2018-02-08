@@ -17,8 +17,6 @@ individus:
   etudiant: 0
   id: 563b8e9152c2836804f25b28
   inapte_travail: 0
-  interets_epargne_sur_livrets:
-    2012-01: 0
   handicap: 0
   salaire_de_base:
     2014-11: 1709.4017094017092
@@ -79,8 +77,6 @@ individus:
   etudiant: 0
   id: 563b8e9152c2836804f25b27
   inapte_travail: 0
-  interets_epargne_sur_livrets:
-    2012-01: 0
   handicap: 0
   scolarite: college
   tns_auto_entrepreneur_type_activite: bic
@@ -101,8 +97,6 @@ individus:
   etudiant: 0
   id: 563b8e9152c2836804f25b26
   inapte_travail: 0
-  interets_epargne_sur_livrets:
-    2012-01: 0
   handicap: 0
   scolarite: college
   tns_auto_entrepreneur_type_activite: bic
@@ -123,8 +117,6 @@ individus:
   etudiant: 0
   id: 563b8e9152c2836804f25b19
   inapte_travail: 0
-  interets_epargne_sur_livrets:
-    2012-01: 0
   handicap: 0
   salaire_de_base:
     2014-11: 1709.4017094017092

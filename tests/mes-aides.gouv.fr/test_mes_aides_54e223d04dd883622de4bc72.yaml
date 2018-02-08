@@ -20,8 +20,6 @@ individus:
     etudiant: 0
     id: 54e223cbfe7cc56a2d0dc062
     inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
     handicap: 0
     retraite_brute:
       2013: 6000
@@ -112,8 +110,6 @@ individus:
     etudiant: 0
     id: 54e223cbfe7cc56a2d0dc054
     inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
     handicap: 0
     retraite_brute:
       2013: 1800

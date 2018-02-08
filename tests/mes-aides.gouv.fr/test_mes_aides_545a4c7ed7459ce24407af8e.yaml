@@ -16,8 +16,6 @@ individus:
   etudiant: 0
   id: 545a4bebd0485dd744fc568d
   inapte_travail: 0
-  interets_epargne_sur_livrets:
-    2012-01: 0
   handicap: 0
   revenus_stage_formation_pro:
     2012: -0.029999999999915872

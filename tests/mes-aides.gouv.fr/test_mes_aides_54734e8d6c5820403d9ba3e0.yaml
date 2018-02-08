@@ -14,8 +14,6 @@ individus:
     etudiant: 0
     id: 54734de71e6217443d918aed
     inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
     handicap: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
@@ -29,8 +27,6 @@ individus:
     etudiant: 0
     id: 54734de71e6217443d918ae0
     inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
     handicap: 0
     salaire_de_base:
       2012: 13846.15384615385
@@ -89,8 +85,6 @@ individus:
     etudiant: 0
     id: 54734de71e6217443d918adf
     inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
     handicap: 0
     valeur_locative_immo_non_loue:
       2012-01: 0

@@ -97,8 +97,6 @@ individus:
     2017-06: false
     2017-07: false
     2017-08: false
-  interets_epargne_sur_livrets:
-    2012-01: 0
   taux_incapacite:
     2017-05: false
     2017-06: false
