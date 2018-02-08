@@ -15,7 +15,8 @@ class b1ab(Variable):
     definition_period = YEAR
 
 
-class b1ac(Variable):
+class valeur_autres_immeubles_avant_abattement(Variable):
+    cerfa_field = u"1AC"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
@@ -248,10 +249,10 @@ class isf_imm_bati(Variable):
         Immeubles bâtis
         '''
         b1ab = foyer_fiscal('b1ab', period)
-        b1ac = foyer_fiscal('b1ac', period)
+        valeur_autres_immeubles_avant_abattement = foyer_fiscal('valeur_autres_immeubles_avant_abattement', period)
         P = parameters(period).taxation_capital.isf.res_princ
 
-        return (1 - P.abattement_sur_residence_principale) * b1ab + b1ac
+        return (1 - P.abattement_sur_residence_principale) * b1ab + valeur_autres_immeubles_avant_abattement
 
 
 class isf_imm_non_bati(Variable):

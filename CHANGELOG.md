@@ -10,6 +10,8 @@
     + Création de `livret_a` et `epargne_revenus_non_imposables`
   - Prise en compte du patrimoine dans la base ressource des aides au logement
     + Création de `valeur_locative_loue` et `epargne_revenus_imposables`
+  - Rapprochement des différentes variables de patrimoine
+    + Renommage de `b1ac` en `valeur_autres_immeubles_avant_abattement`
 
 ### 20.0.7 [#892](https://github.com/openfisca/openfisca-france/pull/867)
 
