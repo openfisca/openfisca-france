@@ -1,5 +1,16 @@
 # Changelog
 
+# 21.0.0
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 1er octobre 2016.
+* Détails :
+  - Mise à jour de la prise en compte du patrimoine dans la base ressource du RSA
+    + Suppression de `interets_epargne_sur_livrets` et `epargne_non_remuneree`
+    + Création de `livret_a` et `epargne_revenus_non_imposables`
+  - Prise en compte du patrimoine dans la base ressource des aides au logement
+    + Création de `valeur_locative_loue` et `epargne_revenus_imposables`
+
 ### 20.0.7 [#892](https://github.com/openfisca/openfisca-france/pull/867)
 
 * Évolution du système socio-fiscal.
