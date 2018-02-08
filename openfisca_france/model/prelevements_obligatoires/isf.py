@@ -23,6 +23,15 @@ class valeur_autres_immeubles_avant_abattement(Variable):
     label = u"Valeur des autres immeubles avant abattement"
     definition_period = YEAR
 
+    def formula(foyer_fiscal, period):
+        last_period = period.stop().month()
+        valeur_locative_loue_i = foyer_fiscal.members('valeur_locative_loue', last_period)
+        valeur_locative_loue = foyer_fiscal.sum(valeur_locative_loue_i)
+        valeur_locative_immo_non_loue_i = foyer_fiscal.members('valeur_locative_immo_non_loue', last_period)
+        valeur_locative_immo_non_loue = foyer_fiscal.sum(valeur_locative_immo_non_loue_i)
+
+        return valeur_locative_loue + valeur_locative_immo_non_loue
+
 
 ## non bâtis
 class b1bc(Variable):
