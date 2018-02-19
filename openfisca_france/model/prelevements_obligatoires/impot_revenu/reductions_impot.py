@@ -1234,7 +1234,7 @@ class doment(Variable):
                     fhqg + fhqi + fhqo + fhqp + fhqr + fhqv + fhqz + fhrg + fhri + fhrj + fhrk + fhrl + fhrm + fhro + fhrp +
                     fhrq + fhrr + fhrt + fhru + fhrv + fhrw + fhry)
 
-    def formula_2014_01_01(self, simulation, period):
+    def formula_2014_01_01(foyer_fiscal, period, parameters):
         '''
         Investissements dans les DOM-TOM dans le cadre d'une entrepise.
         '''
@@ -1353,7 +1353,7 @@ class doment(Variable):
                     fhqg + fhqi + fhqo + fhqp + fhqr + fhqv + fhrg + fhri + fhrj + fhrk + fhrl + fhrm + fhro + fhrp +
                     fhrq + fhrr + fhrt + fhru + fhrv + fhrw + fhry)
 
-    def formula_2015_01_01(self, simulation, period):
+    def formula_2015_01_01(foyer_fiscal, period, parameters):
         '''
         Investissements dans les DOM-TOM dans le cadre d'une entrepise.
         '''
@@ -1490,7 +1490,7 @@ class doment(Variable):
                     fhqg + fhqi + fhqo + fhqp + fhqr + fhqv + fhrg + fhri + fhrj + fhrk + fhrl + fhrm + fhro + fhrp +
                     fhrq + fhrr + fhrt + fhru + fhrv + fhrw + fhry)
 
-    def formula_2016_01_01(self, simulation, period):
+    def formula_2016_01_01(foyer_fiscal, period, parameters):
         '''
         Investissements dans les DOM-TOM dans le cadre d'une entrepise.
         '''
@@ -1826,7 +1826,7 @@ class domlog(Variable):
                     fhon + fhoo + fhop + fhoq + fhor + fhos + fhot + fhou + fhov + fhow + fhod + fhoe +
                     fhof + fhog + fhox + fhoy + fhoz)
 
-    def formula_2014_01_01(self, simulation, period):
+    def formula_2014_01_01(foyer_fiscal, period, parameters):
         '''
         Investissements OUTRE-MER dans le secteur du logement et autres secteurs d’activité
         2014
@@ -1876,7 +1876,7 @@ class domlog(Variable):
                     fhof + fhog + fhox + fhoy + fhoz + fhua + fhub + fhuc + fhud + fhue + fhuf + fhug)
 
 
-    def formula_2015_01_01(self, simulation, period):
+    def formula_2015_01_01(foyer_fiscal, period, parameters):
         '''
         Investissements OUTRE-MER dans le secteur du logement et autres secteurs d’activité
         2015
@@ -1933,7 +1933,7 @@ class domlog(Variable):
                     fhof + fhog + fhox + fhoy + fhoz + fhua + fhub + fhuc + fhud + fhue + fhuf + fhug +
                     fhuh + fhui + fhuj + fhuk + fhul + fhum + fhun)
 
-    def formula_2016_01_01(self, simulation, period):
+    def formula_2016_01_01(foyer_fiscal, period, parameters):
         '''
         Investissements OUTRE-MER dans le secteur du logement et autres secteurs d’activité
         2016
@@ -2024,7 +2024,7 @@ class domsoc(Variable):
 
         return  f7qn + f7qk + f7kg
 
-    def formula_2011_01_01(self, simulation, period):
+    def formula_2011_01_01(foyer_fiscal, period, parameters):
         '''
         Investissements outre-mer dans le logement social (déclaration n°2042 IOM)
         2011
@@ -2039,7 +2039,7 @@ class domsoc(Variable):
 
         return  f7qn + f7qk + f7qu + f7kg + f7kh + f7ki
 
-    def formula_2012_01_01(self, simulation, period):
+    def formula_2012_01_01(foyer_fiscal, period, parameters):
         '''
         Investissements outre-mer dans le logement social (déclaration n°2042 IOM)
         2012
