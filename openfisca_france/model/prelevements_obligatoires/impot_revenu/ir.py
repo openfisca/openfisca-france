@@ -1516,14 +1516,12 @@ class rfr_pv(Variable):
         f3vp = foyer_fiscal('f3vp', period)
         f3vy = foyer_fiscal('f3vy', period)
         f3vz = foyer_fiscal('f3vz', period)
-        rpns_pvce_i = foyer_fiscal.members('rpns_pvce', period)
 
-        rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
         f3vi = foyer_fiscal.sum(f3vi_i)
         f3vd = foyer_fiscal.sum(f3vd_i)
         f3vf = foyer_fiscal.sum(f3vf_i)
         
-        return f3vc + f3vd + f3vf + f3vg + f3vh + f3vi + f3vl + f3vm + f3vp + f3vy + f3vz + rpns_pvce
+        return f3vc + f3vd + f3vf + f3vg + f3vh + f3vi + f3vl + f3vm + f3vp + f3vy + f3vz
 
     def formula_2012_01_01(foyer_fiscal, period, parameters): 
         """
@@ -1541,14 +1539,12 @@ class rfr_pv(Variable):
         f3vt = foyer_fiscal('f3vt', period)
         f3vy = foyer_fiscal('f3vy', period)
         f3vz = foyer_fiscal('f3vz', period)
-        rpns_pvce_i = foyer_fiscal.members('rpns_pvce', period)
 
-        rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
         f3vi = foyer_fiscal.sum(f3vi_i)
         f3vd = foyer_fiscal.sum(f3vd_i)
         f3vf = foyer_fiscal.sum(f3vf_i)
         
-        return f3vc + f3vd + f3vf + f3vg + f3vh + f3vi + f3vl + f3vm + f3vp + f3vt + f3vy + f3vz + rpns_pvce
+        return f3vc + f3vd + f3vf + f3vg + f3vh + f3vi + f3vl + f3vm + f3vp + f3vt + f3vy + f3vz
 
     def formula_2013_01_01(foyer_fiscal, period, parameters): 
         """
@@ -1559,13 +1555,13 @@ class rfr_pv(Variable):
         f3vi_i = foyer_fiscal.members('f3vi', period)
         f3vm = foyer_fiscal('f3vm', period)
         f3vt = foyer_fiscal('f3vt', period)
+        f3vz = foyer_fiscal('f3vz', period)
 
-        rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
         f3vi = foyer_fiscal.sum(f3vi_i)
         f3vd = foyer_fiscal.sum(f3vd_i)
         f3vf = foyer_fiscal.sum(f3vf_i)
         
-        return f3vd + f3vf + f3vi + f3vm + f3vt
+        return f3vd + f3vf + f3vi + f3vm + f3vt + f3vz
 
 
 class iai(Variable):
