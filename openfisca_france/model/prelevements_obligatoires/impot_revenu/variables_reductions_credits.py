@@ -930,7 +930,7 @@ class f7qe(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements ayant fait l'objet avant 1.1.2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%"
-    end = '2009-12-31'
+    # end = '2012-12-31' changes meaning in 2014
     definition_period = YEAR
 
 
@@ -1728,8 +1728,7 @@ class fhtc(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, Investissements dans votre entreprise avec exploitation directe, montant de la réduction d’impôt calculé"
-#    start_date = date(2013, 1, 1)
+    #end = '2012-12-31' changes meaning in 2014
     definition_period = YEAR
 
 
@@ -1787,8 +1786,7 @@ class f7iy(Variable):
     cerfa_field = u"7IY"
     value_type = int
     entity = FoyerFiscal
-    label = u"Report du solde de réduction d'impôt non encore imputé sur les investissements réalisés"
-#    start_date = date(2013, 1, 1)
+    # end = '2009-12-31' changes meaning in 2014
     definition_period = YEAR
 
 
@@ -1829,8 +1827,7 @@ class f7rb(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Travaux de restauration immobilière dans un secteur sauvegardé ou assimilé"
-#    start_date = date(2009, 1, 1)
+    # end = '2012-12-31' changes meaning in 2014
     definition_period = YEAR
 
 
@@ -4867,6 +4864,97 @@ class f7fr(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     label = u"Report concernant les investissements rÃ©alisÃ©s et achevÃ©s en 2015 en mÃ©tropole et outre-mer"
+#    start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+# Réduction d'impôts sur les investissements locatifs intermédiaires (loi Pinel)
+
+class f7qa(Variable):
+    cerfa_field = u"7QA"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements locatifs intermédiaires en métropole réalisés du 1.9.2014 au 31.12.2014 avec engagement de location 6 ans"
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+
+class f7ai(Variable):
+    cerfa_field = u"7AI"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Report concernant les investissements locatifs intermédiaires en métropole 2014 avec engagement de location 6 ans"
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+
+class f7bi(Variable):
+    cerfa_field = u"7BI"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Report concernant les investissements locatifs intermédiaires en métropole réalisés 2014 avec engagement de location 9 ans"
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+
+class f7ci(Variable):
+    cerfa_field = u"7CI"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Report concernant les investissements locatifs intermédiaires en outre-mer 2014 avec engagement de location 6 ans"
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+
+class f7di(Variable):
+    cerfa_field = u"7DI"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Report concernant les investissements locatifs intermédiaires en outre-mer 2014 avec engagement de location 9 ans"
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+
+class f7bz(Variable):
+    cerfa_field = u"7BZ"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Report concernant les investissements locatifs intermédiaires en métropole 2015 avec engagement de location 6 ans"
+#    start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+
+class f7cz(Variable):
+    cerfa_field = u"7CZ"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Report concernant les investissements locatifs intermédiaires en métropole réalisés 2015 avec engagement de location 9 ans"
+#    start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+
+class f7dz(Variable):
+    cerfa_field = u"7DZ"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Report concernant les investissements locatifs intermédiaires en outre-mer 2015 avec engagement de location 6 ans"
+#    start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+
+class f7ez(Variable):
+    cerfa_field = u"7EZ"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Report concernant les investissements locatifs intermédiaires en outre-mer 2015 avec engagement de location 9 ans"
 #    start_date = date(2016, 1, 1)
     definition_period = YEAR
 
