@@ -1640,7 +1640,6 @@ class doment(Variable):
 
         # Outre-mer : TODO: plafonnement, cf. 2041-GE 2042-IOM
 
-
 class domlog(Variable):
     value_type = float
     entity = FoyerFiscal
