@@ -137,35 +137,35 @@ def define_scenario(year, tax_benefit_system = tax_benefit_system):
     scenario.init_single_entity(
         period = year,
         parent1 = dict(
-            activite = u'Actif occupé',
+            activite = u'actif',
             date_naissance = 1970,
-            salaire_imposable = 50000,
+            salaire_imposable = 200000,
             #retraite_imposable = 0,
             #chomage_imposable = 0,
             #nbic_mvct = 20000,
             #mbnc_mvct = 10000,
             # f6ss = 200,
             # f6ps = 200,
-            statut_marital = u'Célibataire',
+            statut_marital = u'marie',
             ),
-        # parent2 = dict(
-        #      activite = u'Actif occupé',
-        #      date_naissance = 1973,
-        #      salaire_imposable = 15000,
-        #      statut_marital = u'Marié',
-        #      ),
+        parent2 = dict(
+             activite = u'actif',
+             date_naissance = 1973,
+             salaire_imposable = 15000,
+             statut_marital = u'marie',
+             ),
         # enfants = [
         #     dict(
-        #          activite = u'Étudiant, élève',
+        #          activite = u'etudiant',
         #          date_naissance = '1993-02-01',
         #          ),
         #     dict(
-        #         activite = u'Étudiant, élève',
+        #         activite = u'etudiant',
         #         date_naissance = '2000-04-17',
         #         ),
         #      ],
         foyer_fiscal = dict(
-            f8ta = 20000,
+            #f8ta = 20000,
             #f6ps = 10000,
             # f2ch = 100,
             # f2dc = 500,

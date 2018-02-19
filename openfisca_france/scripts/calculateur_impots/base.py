@@ -1039,15 +1039,15 @@ def transform_scenario_to_tax_calculator_inputs(scenario):
             statut_marital = declarant.pop('statut_marital', None)
             column = tax_benefit_system.variables['statut_marital']
             if statut_marital is None:
-                statut_marital = column.enum._vars[column.default_value]
+                statut_marital = column.default_value
             pre_situation_famille = {
-                u"Marié": 'M',
-                u"Célibataire": 'C',
-                u"Divorcé": 'D',
-                u"Veuf": 'V',
-                u"Pacsé": 'O',
+                u"marie": 'M',
+                u"celibataire": 'C',
+                u"divorce": 'D',
+                u"veuf": 'V',
+                u"pacse": 'O',
                 # u"Jeune veuf": TODO
-                }[statut_marital if isinstance(statut_marital, basestring) else column.possible_values._vars[statut_marital]]
+                }[statut_marital.name]  # else column.possible_values._vars[statut_marital]]
             assert 'pre_situation_famille' not in impots_arguments \
                 or impots_arguments['pre_situation_famille'] == pre_situation_famille, str((impots_arguments,
                     pre_situation_famille))
@@ -1060,9 +1060,14 @@ def transform_scenario_to_tax_calculator_inputs(scenario):
                         'id',
                         ):
                     continue
+                print column_code, value
                 column = tax_benefit_system.variables[column_code]
                 cerfa_field = column.cerfa_field
+                print cerfa_field
                 assert cerfa_field is not None and isinstance(cerfa_field, dict), column_code
+                print declarant_index
+                print cerfa_field.keys()
+                print cerfa_field[QUIFOY.vous : 0]
                 impots_arguments[cerfa_field[declarant_index]] = int(value) if isinstance(value, float) else value
 
         impots_arguments['0CF'] = len(foyer_fiscal['personnes_a_charge'])
