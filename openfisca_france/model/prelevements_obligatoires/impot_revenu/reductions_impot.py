@@ -2221,7 +2221,6 @@ class patnat(Variable):
     entity = FoyerFiscal
     label = u"patnat"
     definition_period = YEAR
-    end = '2016-12-31'
 
     def formula_2010_01_01(foyer_fiscal, period, parameters):
         '''
@@ -2282,7 +2281,7 @@ class patnat(Variable):
         f7kc = foyer_fiscal('f7kc', period)
         f7kd = foyer_fiscal('f7kd', period)
         f7ke = foyer_fiscal('f7ke', period)
-        P = parameters(period)..impot_revenu.reductions_impots.patnat
+        P = parameters(period).impot_revenu.reductions_impots.patnat
 
         max1 = P.max
         return f7kb + f7kc + f7kd + f7ke
@@ -2909,8 +2908,6 @@ class spfcpi(Variable):
     entity = FoyerFiscal
     label = u"spfcpi"
     definition_period = YEAR
-    end = '2016-12-31'
-
 
     def formula_2002_01_01(foyer_fiscal, period, parameters):
         '''
