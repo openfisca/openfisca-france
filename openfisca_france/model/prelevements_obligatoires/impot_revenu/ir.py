@@ -1498,7 +1498,7 @@ class plus_values(Variable):
 class rfr_pv(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = u"Plus-values hors RNI entrant dans le calcul du revenu fiscal de référence"
+    label = u"Plus-values hors RNI entrant dans le calcul du revenu fiscal de référence (PV au barème, PV éxonérées ..)"
     definition_period = YEAR
 
     def formula_2011_01_01(foyer_fiscal, period, parameters): 
@@ -1548,6 +1548,7 @@ class rfr_pv(Variable):
         """
         Plus-values 2013 et + entrant dans le calcul du revenu fiscal de référence
         """
+        f3vc = foyer_fiscal('f3vc', period)
         f3vd_i = foyer_fiscal.members('f3vd', period)
         f3vf_i = foyer_fiscal.members('f3vf', period)
         f3vi_i = foyer_fiscal.members('f3vi', period)
@@ -1559,7 +1560,7 @@ class rfr_pv(Variable):
         f3vd = foyer_fiscal.sum(f3vd_i)
         f3vf = foyer_fiscal.sum(f3vf_i)
         
-        return f3vd + f3vf + f3vi + f3vm + f3vt + f3vz
+        return f3vc + f3vd + f3vf + f3vi + f3vm + f3vt + f3vz
 
 
 class iai(Variable):
