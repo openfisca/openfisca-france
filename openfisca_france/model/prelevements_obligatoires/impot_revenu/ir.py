@@ -1376,7 +1376,6 @@ class plus_values(Variable):
     def formula_2007_01_01(foyer_fiscal, period, parameters):  # f3sd is in f3vd holder
         """
         Taxation des plus values
-        TODO: 2013 f3Vg au barème / tout refaire
         """
         f3vg = foyer_fiscal('f3vg', period)
         f3vh = foyer_fiscal('f3vh', period)
@@ -1408,7 +1407,6 @@ class plus_values(Variable):
     def formula_2008_01_01(foyer_fiscal, period, parameters):  # f3sd is in f3vd holder
         """
         Taxation des plus value
-        TODO:  2013 f3Vg au barème / tout refaire
         """
         f3vg = foyer_fiscal('f3vg', period)
         f3vh = foyer_fiscal('f3vh', period)
@@ -1442,7 +1440,6 @@ class plus_values(Variable):
     def formula_2012_01_01(foyer_fiscal, period, parameters):  # f3sd is in f3vd holder
         """
         Taxation des plus value
-        TODO: 2013 f3Vg au barème / tout refaire
         """
         f3vg = foyer_fiscal('f3vg', period)
         f3vh = foyer_fiscal('f3vh', period)
@@ -1478,47 +1475,31 @@ class plus_values(Variable):
                 # TODO: chek this rpns missing ?
         return round_(out)
 
-    # Cette formule a seulement été vérifiée jusqu'au 2015-12-31
     def formula_2013_01_01(foyer_fiscal, period, parameters):  # f3sd is in f3vd holder
         """
-        Taxation des plus value
-        TODO: 2013 f3Vg au barème / tout refaire
+        Taxation des plus value (hors bareme)
         """
-        f3vg = foyer_fiscal('f3vg', period)
-        f3vh = foyer_fiscal('f3vh', period)
-        f3vl = foyer_fiscal('f3vl', period)
         f3vm = foyer_fiscal('f3vm', period)
         f3vt = foyer_fiscal('f3vt', period)
-        f3sa = foyer_fiscal('f3sa', period)
+        f3vd_i = foyer_fiscal.members('f3vd', period)
+        f3vi_i = foyer_fiscal.members('f3vi', period)
+        f3vf_i = foyer_fiscal.members('f3vf', period)
         rpns_pvce_i = foyer_fiscal.members('rpns_pvce', period)
-        _P = parameters(period)
-        plus_values = parameters(period).impot_revenu.plus_values
 
         rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
-        f3vd = foyer_fiscal.declarant_principal('f3vd', period)
-        f3sd = foyer_fiscal.conjoint('f3vd', period)
-        f3vi = foyer_fiscal.declarant_principal('f3vi', period)
-        f3si = foyer_fiscal.conjoint('f3vi', period)
-        f3vf = foyer_fiscal.declarant_principal('f3vf', period)
-        f3sf = foyer_fiscal.conjoint('f3vf', period)
-        #  TODO: remove this todo use sum for all fields after checking
-        # revenus taxés à un taux proportionnel
-        rdp = max_(0, f3vg - f3vh) + f3vl + rpns_pvce + f3vm + f3vi + f3vf
+        f3vd = foyer_fiscal.sum(f3vd_i)
+        f3vi = foyer_fiscal.sum(f3vi_i)
+        f3vf = foyer_fiscal.sum(f3vf_i)
+        _P = parameters(period)
+        plus_values = parameters(period).impot_revenu.plus_values
+       
         out = (plus_values.pvce * rpns_pvce +
-               plus_values.taux1 * max_(0, f3vg - f3vh) +
-               plus_values.taux_pv_mob_pro * f3vl +
                plus_values.pea.taux_avant_2_ans * f3vm +
+               plus_values.pea.taux_posterieur * f3vt +
+               plus_values.taux2 * f3vd +
                plus_values.taux3 * f3vi +
                plus_values.taux4 * f3vf)
 
-        # revenus taxés à un taux proportionnel
-        rdp += f3vd
-        out += plus_values.taux1 * f3vd
-        #  out = plus_values.taux2 * f3vd + plus_values.taux3 * f3vi + plus_values.taux4 * f3vf + plus_values.taux1 * max_(
-        #          0, f3vg - f3vh)
-        out = (plus_values.taux2 * (f3vd + f3sd) + plus_values.taux3 * (f3vi + f3si) +
-            plus_values.taux4 * (f3vf + f3sf) + plus_values.taux1 * max_(0, - f3vh) + plus_values.pvce * (rpns_pvce + f3sa))
-        # TODO: chek this 3VG
         return round_(out)
 
 class rfr_pv(Variable):
@@ -1553,8 +1534,7 @@ class rfr_pv(Variable):
 
     def formula_2012_01_01(foyer_fiscal, period, parameters): 
         """
-        Plus-values 2012 et + entrant dans le calcul du revenu fiscal de référence
-        TODO: 2013 f3vg au barème
+        Plus-values 2012 entrant dans le calcul du revenu fiscal de référence
         """
         f3vc = foyer_fiscal('f3vc', period)
         f3vd_i = foyer_fiscal.members('f3vd', period)
@@ -1577,29 +1557,22 @@ class rfr_pv(Variable):
         
         return f3vc + f3vd + f3vf + f3vg + f3vh + f3vi + f3vl + f3vm + f3vp + f3vt + f3vy + f3vz + rpns_pvce
 
-    def formula_2014_01_01(foyer_fiscal, period, parameters): 
+    def formula_2013_01_01(foyer_fiscal, period, parameters): 
         """
-        Plus-values 2014 et + entrant dans le calcul du revenu fiscal de référence
-        TODO: 2013 f3vg au barème
+        Plus-values 2013 et + entrant dans le calcul du revenu fiscal de référence
         """
-        f3vc = foyer_fiscal('f3vc', period)
         f3vd_i = foyer_fiscal.members('f3vd', period)
         f3vf_i = foyer_fiscal.members('f3vf', period)
-        f3vg = foyer_fiscal('f3vg', period)
-        f3vh = foyer_fiscal('f3vh', period)
         f3vi_i = foyer_fiscal.members('f3vi', period)
-        f3vl = foyer_fiscal('f3vl', period)
         f3vm = foyer_fiscal('f3vm', period)
         f3vt = foyer_fiscal('f3vt', period)
-        f3vz = foyer_fiscal('f3vz', period)
-        rpns_pvce_i = foyer_fiscal.members('rpns_pvce', period)
 
         rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
         f3vi = foyer_fiscal.sum(f3vi_i)
         f3vd = foyer_fiscal.sum(f3vd_i)
         f3vf = foyer_fiscal.sum(f3vf_i)
         
-        return f3vc + f3vd + f3vf + f3vg + f3vh + f3vi + f3vl + f3vm + f3vt + f3vz + rpns_pvce
+        return f3vd + f3vf + f3vi + f3vm + f3vt
 
 
 class iai(Variable):
