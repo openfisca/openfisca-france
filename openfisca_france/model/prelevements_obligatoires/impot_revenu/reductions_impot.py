@@ -1903,24 +1903,24 @@ class invfor(Variable):
             P.report12 * min_(f7th + f7ux, max2) +
             P.taux_ass * min_(f7ul, P.ifortra_seuil * (maries_ou_pacses + 1)))
 
-    def formula_2014_01_01(self, simulation, period):
+    def formula_2014_01_01(foyer_fiscal, period, parameters):
         '''
         Investissements forestiers pour 2014 cf. 2041 GK
         '''
-        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
-        f7te = simulation.calculate('f7te', period)
-        f7tf = simulation.calculate('f7tf', period)
-        f7tg = simulation.calculate('f7tg', period)
-        f7th = simulation.calculate('f7th', period)
-        f7ti = simulation.calculate('f7ti', period)
-        f7ul = simulation.calculate('f7ul', period)
-        f7un = simulation.calculate('f7un', period)
-        f7uu = simulation.calculate('f7uu', period)
-        f7uv = simulation.calculate('f7uv', period)
-        f7uw = simulation.calculate('f7uw', period)
-        f7ux = simulation.calculate('f7ux', period)
-        _P = simulation.parameters_at(period.start)
-        P = simulation.parameters_at(period.start).impot_revenu.reductions_impots.invfor
+        maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
+        f7te = foyer_fiscal('f7te', period)
+        f7tf = foyer_fiscal('f7tf', period)
+        f7tg = foyer_fiscal('f7tg', period)
+        f7th = foyer_fiscal('f7th', period)
+        f7ti = foyer_fiscal('f7ti', period)
+        f7ul = foyer_fiscal('f7ul', period)
+        f7un = foyer_fiscal('f7un', period)
+        f7uu = foyer_fiscal('f7uu', period)
+        f7uv = foyer_fiscal('f7uv', period)
+        f7uw = foyer_fiscal('f7uw', period)
+        f7ux = foyer_fiscal('f7ux', period)
+        _P = parameters(period)
+        P = parameters(period).impot_revenu.reductions_impots.invfor
 
         max0 = max_(0, P.ifortra_seuil * (maries_ou_pacses + 1) - f7ul)
         max1 = max_(0, max0 - f7uu - f7te - f7tf)
@@ -1932,23 +1932,23 @@ class invfor(Variable):
             P.report11 * min_(f7tg + f7uv, max1) +
             P.report12 * min_(f7th + f7uw + f7ux + f7ti, max2))
 
-    def formula_2015_01_01(self, simulation, period):
+    def formula_2015_01_01(foyer_fiscal, period, parameters):
         '''
         Investissements forestiers pour 2015 cf. 2041 GK
         '''
-        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
-        f7te = simulation.calculate('f7te', period)
-        f7tf = simulation.calculate('f7tf', period)
-        f7tg = simulation.calculate('f7tg', period)
-        f7th = simulation.calculate('f7th', period)
-        f7ti = simulation.calculate('f7ti', period)
-        f7ul = simulation.calculate('f7ul', period)
-        f7un = simulation.calculate('f7un', period)
-        f7uu = simulation.calculate('f7uu', period)
-        f7uv = simulation.calculate('f7uv', period)
-        f7uw = simulation.calculate('f7uw', period)
-        _P = simulation.parameters_at(period.start)
-        P = simulation.parameters_at(period.start).impot_revenu.reductions_impots.invfor
+        maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
+        f7te = foyer_fiscal('f7te', period)
+        f7tf = foyer_fiscal('f7tf', period)
+        f7tg = foyer_fiscal('f7tg', period)
+        f7th = foyer_fiscal('f7th', period)
+        f7ti = foyer_fiscal('f7ti', period)
+        f7ul = foyer_fiscal('f7ul', period)
+        f7un = foyer_fiscal('f7un', period)
+        f7uu = foyer_fiscal('f7uu', period)
+        f7uv = foyer_fiscal('f7uv', period)
+        f7uw = foyer_fiscal('f7uw', period)
+        _P = parameters(period)
+        P = parameters(period).impot_revenu.reductions_impots.invfor
 
         max0 = max_(0, P.ifortra_seuil * (maries_ou_pacses + 1) - f7ul)
         max1 = max_(0, max0 - f7te - f7tf)
@@ -1960,22 +1960,22 @@ class invfor(Variable):
             P.report11 * min_(f7tg + f7uu, max1) +
             P.report12 * min_(f7th + f7uv + f7uw + f7ti, max2))
 
-    def formula_2016_01_01(self, simulation, period):
+    def formula_2016_01_01(foyer_fiscal, period, parameters):
         '''
         Investissements forestiers pour 2016 cf. 2041 GK
         '''
-        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
-        f7te = simulation.calculate('f7te', period)
-        f7tf = simulation.calculate('f7tf', period)
-        f7tg = simulation.calculate('f7tg', period)
-        f7th = simulation.calculate('f7th', period)
-        f7ti = simulation.calculate('f7ti', period)
-        f7ul = simulation.calculate('f7ul', period)
-        f7un = simulation.calculate('f7un', period)
-        f7uu = simulation.calculate('f7uu', period)
-        f7uv = simulation.calculate('f7uv', period)
-        _P = simulation.parameters_at(period.start)
-        P = simulation.parameters_at(period.start).impot_revenu.reductions_impots.invfor
+        maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
+        f7te = foyer_fiscal('f7te', period)
+        f7tf = foyer_fiscal('f7tf', period)
+        f7tg = foyer_fiscal('f7tg', period)
+        f7th = foyer_fiscal('f7th', period)
+        f7ti = foyer_fiscal('f7ti', period)
+        f7ul = foyer_fiscal('f7ul', period)
+        f7un = foyer_fiscal('f7un', period)
+        f7uu = foyer_fiscal('f7uu', period)
+        f7uv = foyer_fiscal('f7uv', period)
+        _P = parameters(period)
+        P = parameters(period).impot_revenu.reductions_impots.invfor
 
         max0 = max_(0, P.ifortra_seuil * (maries_ou_pacses + 1) - f7ul)
         max1 = max_(0, max0 - f7te - f7tf)
