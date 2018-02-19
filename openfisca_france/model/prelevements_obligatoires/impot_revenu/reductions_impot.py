@@ -1768,8 +1768,6 @@ class invfor(Variable):
     label = u"Réduction d'impôt au titre des investissements forestiers"
     reference = "http://bofip.impots.gouv.fr/bofip/5537-PGP"
     definition_period = YEAR
-    end = '2016-12-31'
-
 
     def formula_2002_01_01(foyer_fiscal, period, parameters):
         '''
