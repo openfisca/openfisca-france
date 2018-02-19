@@ -2209,7 +2209,6 @@ class locmeu(Variable):
     label = u"Réduction d'impôt en faveur de l'acquisition de logements destinés à la location meublée non professionnelle - Dispositif Censi-Bouvard"
     reference = "http://bofip.impots.gouv.fr/bofip/4885-PGP"
     definition_period = YEAR
-    end = '2016-12-31'
 
     def formula_2009_01_01(foyer_fiscal, period, parameters):
         '''
@@ -2765,7 +2764,6 @@ class resimm(Variable):
     label = u"Réduction d'impôt au titre des dépenses de restauration immobilière - Dispositif Malraux"
     reference = "http://bofip.impots.gouv.fr/bofip/1372-PGP"
     definition_period = YEAR
-    end = '2016-12-31'
 
 
     def formula_2009_01_01(foyer_fiscal, period, parameters):
@@ -3097,8 +3095,6 @@ class scelli(Variable):
     label = u"Réduction d'impôt au titre des investissements locatifs - Dispositif Scellier"
     reference = "http://bofip.impots.gouv.fr/bofip/4951-PGP"
     definition_period = YEAR
-    end = '2016-12-31'
-
 
     def formula_2009_01_01(foyer_fiscal, period, parameters):
         '''
