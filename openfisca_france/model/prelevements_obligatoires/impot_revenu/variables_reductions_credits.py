@@ -4724,29 +4724,6 @@ class fhov(Variable):
 #    start_date = date(2012, 1, 1) + changes meaning in 2015
     definition_period = YEAR
 
-class f7lk(Variable):
-    cerfa_field = u"7LK"
-    value_type = int
-    unit = 'currency'
-    entity = FoyerFiscal
-#    start_date = date(2016, 1, 1)
-    definition_period = YEAR
-
-class f7ll(Variable):
-    cerfa_field = u"7LL"
-    value_type = int
-    unit = 'currency'
-    entity = FoyerFiscal
-#    start_date = date(2016, 1, 1)
-    definition_period = YEAR
-
-class f7lo(Variable):
-    cerfa_field = u"7LO"
-    value_type = int
-    unit = 'currency'
-    entity = FoyerFiscal
-#    start_date = date(2016, 1, 1)
-    definition_period = YEAR
 
 class fhow(Variable):
     cerfa_field = u"HOW"
