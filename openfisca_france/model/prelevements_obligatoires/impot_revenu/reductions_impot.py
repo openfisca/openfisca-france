@@ -2018,9 +2018,9 @@ class domsoc(Variable):
         2010
         TODO plafonnement à 15% f7qa / liens avec autres investissments ?
         '''
-        f7qn = simulation.calculate('f7qn', period)
-        f7qk = simulation.calculate('f7qk', period)
-        f7kg = simulation.calculate('f7kg', period)
+        f7qn = foyer_fiscal('f7qn', period)
+        f7qk = foyer_fiscal('f7qk', period)
+        f7kg = foyer_fiscal('f7kg', period)
 
         return  f7qn + f7qk + f7kg
 
@@ -2030,12 +2030,12 @@ class domsoc(Variable):
         2011
         TODO plafonnement à 15% f7qa / liens avec autres investissments ?
         '''
-        f7qn = simulation.calculate('f7qn', period)
-        f7qk = simulation.calculate('f7qk', period)
-        f7qu = simulation.calculate('f7qu', period)
-        f7kg = simulation.calculate('f7kg', period)
-        f7kh = simulation.calculate('f7kh', period)
-        f7ki = simulation.calculate('f7ki', period)
+        f7qn = foyer_fiscal('f7qn', period)
+        f7qk = foyer_fiscal('f7qk', period)
+        f7qu = foyer_fiscal('f7qu', period)
+        f7kg = foyer_fiscal('f7kg', period)
+        f7kh = foyer_fiscal('f7kh', period)
+        f7ki = foyer_fiscal('f7ki', period)
 
         return  f7qn + f7qk + f7qu + f7kg + f7kh + f7ki
 

@@ -1033,7 +1033,7 @@ class f7qe(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements ayant fait l'objet avant 1.1.2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%"
-    end = '2012-12-31'
+    # end = '2012-12-31' changes meaning in 2014
     definition_period = YEAR
 
 
@@ -3506,7 +3506,7 @@ class f7qb(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    end = '2012-12-31'
+    #end = '2012-12-31' changes meaning in 2014
     definition_period = YEAR
 
 
@@ -3540,7 +3540,7 @@ class f7qd(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    end = '2012-12-31'
+    # end = '2012-12-31' changes meaning in 2014
     definition_period = YEAR
 
 
@@ -3558,7 +3558,7 @@ class f7qk(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    end = '2009-12-31'
+    # end = '2009-12-31' changes meaning in 2014
     definition_period = YEAR
 
 
