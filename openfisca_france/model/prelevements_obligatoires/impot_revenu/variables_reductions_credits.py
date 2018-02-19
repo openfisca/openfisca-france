@@ -1575,7 +1575,6 @@ class f7po(Variable):
     end = '2012-12-31'
     definition_period = YEAR
 
-
 class fhpo(Variable):
     cerfa_field = u"HPO"
     value_type = int
@@ -1924,13 +1923,21 @@ class fhmb(Variable):
 #    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
-
 class f7rt(Variable):
     cerfa_field = u"7RT"
     value_type = int
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt dont vous demandez l'imputation en 2012"
 #    start_date = date(2012, 1, 1)
+    definition_period = YEAR
+
+class fhmc(Variable):
+    cerfa_field = u"HMC"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise REPORT : Investissements réalisés en 2010, Autres investissements réalisés en 2010, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 60%"
+#    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
 
@@ -1952,14 +1959,6 @@ class f7ru(Variable):
 #    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
-class fhli(Variable):
-    cerfa_field = u"HLI"
-    value_type = int
-    unit = 'currency'
-    entity = FoyerFiscal
-    label = u"Investissements outre-mer dans le cadre de l'entreprise REPORT : Investissements réalisés en 2010, Autres investissements réalisés en 2010, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 50%"
-#    start_date = date(2013, 1, 1)
-    definition_period = YEAR
 
 class f7rv(Variable):
     cerfa_field = u"7RV"
@@ -4673,13 +4672,6 @@ class fhod(Variable):
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2013, Investissements immobiliers engagés avant le 1.1.2011"
 #    start_date = date(2013, 1, 1)
-    definition_period = YEAR
-
-class fhks(Variable):
-    cerfa_field = u"HKS"
-    value_type = int
-    unit = 'currency'
-    entity = FoyerFiscal
     definition_period = YEAR
 
 
