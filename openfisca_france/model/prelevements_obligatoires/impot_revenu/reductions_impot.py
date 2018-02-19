@@ -426,7 +426,7 @@ class reductions(Variable):
         spfcpi)
         return min_(ip_net, total_reductions)
 
-    def formula_2015_01_01(self, simulation, period):
+    def formula_2015_01_01(foyer_fiscal, period, parameters):
         '''
         Renvoie la somme des réductions d'impôt à intégrer pour l'année 2015 et aprés
         '''
@@ -934,8 +934,8 @@ class dfppce(Variable):
         f7xy = foyer_fiscal('f7xy', period)
         f7va = foyer_fiscal('f7va', period)
         f7vc = foyer_fiscal('f7vc', period)
-        P = simulation.parameters_at(period.start).impot_revenu.reductions_impots.dons
-        P2 = simulation.parameters_at(period.start).impot_revenu.reductions_impots.donapd
+        P = parameters(period).impot_revenu.reductions_impots.dons
+        P2 = parameters(period).impot_revenu.reductions_impots.donapd
 
         report_f7va = max_(0, f7va - P2.max)
         base = min_(P.max_niv, f7uf + f7uh) + f7vc + f7xs + f7xt + f7xu + f7xw + f7xy + report_f7va
@@ -2273,16 +2273,16 @@ class patnat(Variable):
         max1 = P.max
         return P.taux * min_(f7ka, max1) + f7kb + f7kc + f7kd
 
-    def formula_2014_01_01(self, simulation, period):
+    def formula_2014_01_01(foyer_fiscal, period, parameters):
         '''
         Dépenses de protections du patrimoine naturel (case 7KB, 7KC, 7KD, 7KE)
         2014-
         '''
-        f7kb = simulation.calculate('f7kb', period)
-        f7kc = simulation.calculate('f7kc', period)
-        f7kd = simulation.calculate('f7kd', period)
-        f7ke = simulation.calculate('f7ke', period)
-        P = simulation.parameters_at(period.start).impot_revenu.reductions_impots.patnat
+        f7kb = foyer_fiscal('f7kb', period)
+        f7kc = foyer_fiscal('f7kc', period)
+        f7kd = foyer_fiscal('f7kd', period)
+        f7ke = foyer_fiscal('f7ke', period)
+        P = parameters(period)..impot_revenu.reductions_impots.patnat
 
         max1 = P.max
         return f7kb + f7kc + f7kd + f7ke
