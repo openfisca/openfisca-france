@@ -2423,14 +2423,6 @@ class locmeu(Variable):
                 ) / 9 +
                 report_invest_anterieur + report_non_impute)
 
-                
-class patnat(Variable):
-    value_type = float
-    entity = FoyerFiscal
-    label = u"patnat"
-    definition_period = YEAR
-    end = '2016-12-31'
-
     def formula_2015_01_01(foyer_fiscal, period, parameters):
         '''
         Investissement en vue de la location meublée non professionnelle dans certains établissements ou résidences
