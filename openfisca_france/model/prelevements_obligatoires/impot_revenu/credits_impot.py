@@ -1881,17 +1881,17 @@ class quaenv(Variable):
             f7ay + f7az + f7bb + f7bc + f7bd + f7be + f7bf + f7bh + f7bk + f7bl 
             )    
         depenses_transition_energetique = (depenses_transition_energetique_bouquet_2ans_2014_part2 * quaenv_bouquet + 
-                                          depenses_transition_energetique_bouquet_2ans_2015 +
-                                          depenses_transition_energetique_2015)
+                                           depenses_transition_energetique_bouquet_2ans_2015 +
+                                           depenses_transition_energetique_2015)
 
         max0 = P.max * (1 + maries_ou_pacses) + P.pac1 * nb_pac2
         max00 = max_(0, max0 - depenses_transition_energetique)
         max1 = max_(0, max00 - quaenv_bouquet * (f7sd + f7se + f7wc + f7vg + f7wt + f7sn + f7sp + f7sr + f7ss + f7sq + f7st) - not_(quaenv_bouquet) * (max00))
         credit_quaenv_bouquet_2ans = (quaenv_bouquet * (P.taux25 * (min_(max00,
-                            f7sd + f7se + f7wc + f7vg + f7wt + f7sn + f7sp + f7sr + f7ss + f7sq + f7st)) +
-                            P.taux15 * min_(max1, 
-                            f7sf + f7sg + f7sh + f7si + f7sj + f7sk + f7sl + f7sv + f7sw)
-                        ))
+                                      f7sd + f7se + f7wc + f7vg + f7wt + f7sn + f7sp + f7sr + f7ss + f7sq + f7st)) +
+                                      P.taux15 * min_(max1, 
+                                      f7sf + f7sg + f7sh + f7si + f7sj + f7sk + f7sl + f7sv + f7sw)
+                                      ))
         
         # TODO: inclure la condition de non cumul éco-prêt / crédit quaenv si RFR > ... (condition complexifiée à partir de 2014)
 
