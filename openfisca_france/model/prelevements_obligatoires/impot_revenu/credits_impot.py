@@ -211,7 +211,6 @@ class credits_impot(Variable):
         return (accult + aidper + assloy + autent + ci_garext + cotsyn + creimp + direpa + drbail + inthab + mecena +
                 preetu + prlire + quaenv + saldom2)
 
-    # Not checked
     def formula_2014_01_01(foyer_fiscal, period, parameters):
         """ Crédits d'impôt crédités l'impôt sur les revenus de 2014 et + (non vérifié)"""
         accult = foyer_fiscal('accult', period)
@@ -1869,9 +1868,11 @@ class quaenv(Variable):
         rfr = foyer_fiscal('rfr', period)
         P = parameters(period).impot_revenu.credits_impot.quaenv
 
-        depenses_transition_energetique_bouquet_2ans = (
+        depenses_transition_energetique_bouquet_2ans_2014_part2 = (
             f7sa + f7sb + f7sc + f7wb + f7rg + f7vh + f7rh + f7ri + f7wu + f7rj + f7rk + f7rl +
-            f7rn + f7rp + f7rr + f7rs + f7rq + f7rt + f7rv + f7rw + f7rz + f7tv + f7tw +
+            f7rn + f7rp + f7rr + f7rs + f7rq + f7rt + f7rv + f7rw + f7rz + f7tv + f7tw
+            )
+        depenses_transition_energetique_bouquet_2ans_2015 = (
             f7ta + f7tb + f7tc + f7xb + f7xc + f7wh + f7wi + f7vi + f7wv + f7ww + f7vk + f7vl +
             f7tn + f7tp + f7tr + f7ts + f7tq + f7tt + f7tx + f7ty + f7ru + f7su + f7sm + f7so + f7sz
             )
@@ -1879,7 +1880,9 @@ class quaenv(Variable):
             f7aa + f7ad + f7af + f7ah + f7ak + f7al + f7am + f7an + f7aq + f7ar + f7av + f7ax +
             f7ay + f7az + f7bb + f7bc + f7bd + f7be + f7bf + f7bh + f7bk + f7bl 
             )    
-        depenses_transition_energetique = depenses_transition_energetique_bouquet_2ans + depenses_transition_energetique_2015
+        depenses_transition_energetique = (depenses_transition_energetique_bouquet_2ans_2014_part2 * quaenv_bouquet + 
+                                          depenses_transition_energetique_bouquet_2ans_2015 +
+                                          depenses_transition_energetique_2015)
 
         max0 = P.max * (1 + maries_ou_pacses) + P.pac1 * nb_pac2
         max00 = max_(0, max0 - depenses_transition_energetique)
