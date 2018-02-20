@@ -412,10 +412,9 @@ def compute_allegement_cotisation_allocations_familiales(individu, period, param
     # TODO: Ne semble pas dépendre de la taille de l'entreprise mais à vérifier
     # taille_entreprise = individu('taille_entreprise', period)
     law = parameters(period).prelevements_sociaux.allegement_cotisation_allocations_familiales
-    ratio_smic_salaire = assiette / smic_proratise
 
     # Montant de l'allegment
-    return (ratio_smic_salaire < law.plafond_en_nombre_de_smic) * law.reduction * assiette
+    return (assiette < law.plafond_en_nombre_de_smic * smic_proratise) * law.reduction * assiette
 
 
 ###############################
