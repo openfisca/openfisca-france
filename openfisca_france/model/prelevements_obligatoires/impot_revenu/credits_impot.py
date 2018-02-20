@@ -1979,13 +1979,13 @@ class quaenv_bouquet(Variable):
         f7ws = foyer_fiscal('f7ws', period)
         f7wt = foyer_fiscal('f7wt', period)
 
-        t1 = or_(or_(f7wt * f7ws, f7wq), f7wf)
-        t2 = or_(f7wc * f7wb, f7wa)
-        t3 = or_(f7vg * f7vf, f7ve)
-        t4 = or_(f7sn > 0, f7so > 0)
-        t5 = or_(f7sr > 0, f7ss > 0)
-        t6 = or_(or_(or_(f7st > 0, f7sp > 0), or_(f7sq > 0, f7sd > 0)), f7se > 0)
-        bouquet = (t1 + t2 + t3 + t4 + t5 + t6 > 1) * (f7wh == 1)  # * = and
+        t1 = ((f7wt * f7ws + f7wq + f7wf) > 0) * 1
+        t2 = ((f7wc * f7wb + f7wa) > 0) * 1
+        t3 = ((f7vg * f7vf + f7ve) > 0) * 1
+        t4 = ((f7sn + f7so) > 0) * 1
+        t5 = ((f7sr + f7ss) > 0) * 1
+        t6 = ((f7st + f7sp + f7sq + f7sd + f7se) > 0) * 1
+        bouquet = ((t1 + t2 + t3 + t4 + t5 + t6) > 1) * (f7wh == 1)
         return bouquet
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
@@ -2010,10 +2010,10 @@ class quaenv_bouquet(Variable):
         t1 = f7wt
         t2 = f7wc
         t3 = f7vg
-        t4 = or_(f7sn > 0, f7so > 0)
-        t5 = or_(f7sr > 0, f7ss > 0)
-        t6 = or_(or_(or_(f7st > 0, f7sp > 0), or_(f7sq > 0, f7sd > 0)), f7se > 0)
-        bouquet = (t1 + t2 + t3 + t4 + t5 + t6 > 1) * (f7wh == 1)
+        t4 = ((f7sn + f7so) > 0) * 1
+        t5 = ((f7sr + f7ss) > 0) * 1
+        t6 = ((f7st + f7sp + f7sq + f7sd + f7se) > 0) * 1
+        bouquet = ((t1 + t2 + t3 + t4 + t5 + t6) > 1) * (f7wh == 1)
         return bouquet
 
     def formula_2014_01_01(foyer_fiscal, period, parameters):
@@ -2055,14 +2055,14 @@ class quaenv_bouquet(Variable):
 
         depense_2014_eligible = (f7sd + f7se + f7wc + f7vg + f7wt + f7sn + f7sp + f7sr + f7ss + f7sq + f7st +
                                  f7sf + f7sg + f7sh + f7si + f7sj + f7sk + f7sl + f7sv + f7sw)
-        t1 = (f7wt + f7wu > 0)*1
-        t2 = (f7wc + f7wb > 0)*1
-        t3 = (f7vg + f7vh > 0)*1
-        t4 = (f7sn + f7rn > 0)*1
-        t5 = (f7sr + f7rr + f7ss + f7rs > 0)*1
-        t6 = (f7sd + f7sa + f7se + f7sb + f7sp + f7rp + f7sq + f7rq + f7st + f7rt > 0)*1
+        t1 = ((f7wt + f7wu) > 0) * 1
+        t2 = ((f7wc + f7wb) > 0) * 1
+        t3 = ((f7vg + f7vh) > 0) * 1
+        t4 = ((f7sn + f7rn) > 0) * 1
+        t5 = ((f7sr + f7rr + f7ss + f7rs) > 0) * 1
+        t6 = ((f7sd + f7sa + f7se + f7sb + f7sp + f7rp + f7sq + f7rq + f7st + f7rt) > 0) * 1
        
-        bouquet = (t1 + t2 + t3 + t4 + t5 + t6 > 1) * (depense_2014_eligible > 0)
+        bouquet = ((t1 + t2 + t3 + t4 + t5 + t6) > 1) * (depense_2014_eligible > 0)
         return bouquet
 
     def formula_2015_01_01(foyer_fiscal, period, parameters):
@@ -2117,19 +2117,19 @@ class quaenv_bouquet(Variable):
                                  f7sf + f7sg + f7sh + f7si + f7sj + f7sk + f7sl + f7sv + f7sw)
         depense_2015_eligible = (f7ta + f7tb + f7xb + f7wh + f7wv + f7tn + f7tp + f7tr + f7ts + f7tq + f7tt)
 
-        t1 = (f7wt + f7wu + f7wv > 0)*1
-        t2 = (f7wc + f7wb + f7xb > 0)*1
-        t3 = (f7vg + f7vh + f7wh > 0)*1
-        t4 = (f7sn + f7rn + f7tn > 0)*1
-        t5 = (f7sr + f7rr + f7tr + 
-             f7ss + f7rs + f7ts > 0)*1
-        t6 = (f7sd + f7sa + f7ta + 
-             f7se + f7sb + f7tb + 
-             f7sp + f7rp + f7tp + 
-             f7sq + f7rq + f7tq +
-             f7st + f7rt + f7tt > 0)*1
+        t1 = ((f7wt + f7wu + f7wv) > 0) * 1
+        t2 = ((f7wc + f7wb + f7xb) > 0) * 1
+        t3 = ((f7vg + f7vh + f7wh) > 0) * 1
+        t4 = ((f7sn + f7rn + f7tn) > 0) * 1
+        t5 = ((f7sr + f7rr + f7tr + 
+               f7ss + f7rs + f7ts) > 0) * 1
+        t6 = ((f7sd + f7sa + f7ta + 
+               f7se + f7sb + f7tb + 
+               f7sp + f7rp + f7tp + 
+               f7sq + f7rq + f7tq +
+               f7st + f7rt + f7tt) > 0) * 1
 
-        bouquet = (t1 + t2 + t3 + t4 + t5 + t6 > 1) * (depense_2014_eligible > 0) * (depense_2015_eligible > 0)
+        bouquet = ((t1 + t2 + t3 + t4 + t5 + t6) > 1) * (depense_2014_eligible > 0) * (depense_2015_eligible > 0)
         return bouquet
 
 class saldom2(Variable):
