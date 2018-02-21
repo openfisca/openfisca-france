@@ -1,5 +1,5 @@
 description: Réduction post plafond
-reference: ipp
+reference: Barèmes IPP - https://www.ipp.eu/wp-content/uploads/2017/07/baremes-ipp-impot-revenu-income-tax.xlsx
 unit: currency
 values:
   1998-01-01:

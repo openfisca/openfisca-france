@@ -1,3 +1,5 @@
+description: Tranches de l'IR
+reference: Barèmes IPP - https://www.ipp.eu/wp-content/uploads/2017/07/baremes-ipp-impot-revenu-income-tax.xlsx
 brackets:
 - rate:
     1945-01-01:
@@ -1163,5 +1165,3 @@ brackets:
       value: 241740.0
     1986-01-01:
       value: null
-description: Tranches de l'IR
-reference: ipp
