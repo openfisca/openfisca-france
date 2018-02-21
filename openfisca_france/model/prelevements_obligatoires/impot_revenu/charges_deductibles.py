@@ -213,7 +213,7 @@ class f6hj(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses des années antérieures"
+    label = u"Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses de l'année 2009"
     # start_date = date(2010, 1, 1)
     definition_period = YEAR
 
@@ -223,7 +223,7 @@ class f6hk(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses des années antérieures"
+    label = u"Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses de l'année 2010"
     # start_date = date(2011, 1, 1)
     definition_period = YEAR
 
@@ -233,7 +233,7 @@ class f6hl(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses des années antérieures"
+    label = u"Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses de l'année 2011"
     # start_date = date(2012, 1, 1)
     definition_period = YEAR
 
@@ -243,7 +243,7 @@ class f6hm(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses des années antérieures"
+    label = u"Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses de l'année 2012"
     # start_date = date(2013, 1, 1)
     definition_period = YEAR
 
@@ -252,7 +252,7 @@ class f6hn(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses des années antérieures"
+    label = u"Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses de l'année 2013"
     # start_date = date(2014, 1, 1)
     definition_period = YEAR
 
@@ -261,7 +261,7 @@ class f6ho(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses des années antérieures"
+    label = u"Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses de l'année 2014"
     # start_date = date(2015, 1, 1)
     definition_period = YEAR
 
@@ -270,7 +270,7 @@ class f6hp(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses des années antérieures"
+    label = u"Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses de l'année 2015"
     # start_date = date(2016, 1, 1)
     definition_period = YEAR
 
@@ -362,7 +362,6 @@ class cd1(Variable):
     label = u"Charges déductibles non plafonnées"
     reference = "http://impotsurlerevenu.org/definitions/215-charge-deductible.php"
     definition_period = YEAR
-    end = '2016-12-31'
 
     def formula_2002_01_01(foyer_fiscal, period, parameters):
         '''
