@@ -1,5 +1,12 @@
 # Changelog
 
+### 20.0.9 [#907](https://github.com/openfisca/openfisca-france/pull/907)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : 2009 - 2016
+* Détails :
+  - Ammélioration du calcul des grosses réparations et de leurs prise en compte dans le calcul des charges déductibles
+
 ### 20.0.8 [#906](https://github.com/openfisca/openfisca-france/pull/906)
 
 * Évolution du système socio-fiscal.
