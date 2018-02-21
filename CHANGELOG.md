@@ -1,5 +1,13 @@
 # Changelog
 
+### 20.0.8 [#906](https://github.com/openfisca/openfisca-france/pull/906)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : principalement, mise à jour avec les barèmes 2016, avec quelques corrections sur 2012-2013 et 2015.
+* Détails :
+  - Ajout des barèmes IPP de l'impôt sur le revenu 2016
+  - Correction de quelques paramètres de l'impôt, pour les années précédentes
+
 ### 20.0.7 [#892](https://github.com/openfisca/openfisca-france/pull/867)
 
 * Évolution du système socio-fiscal.
