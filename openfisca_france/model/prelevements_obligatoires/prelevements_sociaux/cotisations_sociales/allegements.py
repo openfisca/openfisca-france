@@ -123,7 +123,7 @@ class coefficient_proratisation(Variable):
         # coefficient = (contrat_de_travail >= 2) * (contrat_de_travail <= 3) * (
         #     forfait_heures_remunerees_volume / 45.7 * 52 / 12
         #     ) +
-        return coefficient
+        return (jours_ouvres_ce_mois_incomplet > 0) * coefficient
 
 
 class credit_impot_competitivite_emploi(Variable):
@@ -373,7 +373,6 @@ def compute_allegement_fillon(individu, period, parameters):
     ratio_smic_salaire = smic_proratise / (assiette + 1e-16)
     # règle d'arrondi: 4 décimales au dix-millième le plus proche
     taux_fillon = round_(tx_max * min_(1, max_(seuil * ratio_smic_salaire - 1, 0) / (seuil - 1)), 4)
-
     # Montant de l'allegment
     return taux_fillon * assiette
 
@@ -413,10 +412,9 @@ def compute_allegement_cotisation_allocations_familiales(individu, period, param
     # TODO: Ne semble pas dépendre de la taille de l'entreprise mais à vérifier
     # taille_entreprise = individu('taille_entreprise', period)
     law = parameters(period).prelevements_sociaux.allegement_cotisation_allocations_familiales
-    ratio_smic_salaire = assiette / smic_proratise
 
     # Montant de l'allegment
-    return (ratio_smic_salaire < law.plafond_en_nombre_de_smic) * law.reduction * assiette
+    return (assiette < law.plafond_en_nombre_de_smic * smic_proratise) * law.reduction * assiette
 
 
 ###############################
