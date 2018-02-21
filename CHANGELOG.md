@@ -4,6 +4,7 @@
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : 2009 - 2016
+* Zones impactées : openfisca_france/model/prelevements_obligatoires/impot_revenu/charges_deductibles.py.* 
 * Détails :
   - Ammélioration du calcul des grosses réparations et de leurs prise en compte dans le calcul des charges déductibles
 
