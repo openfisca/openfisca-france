@@ -153,7 +153,7 @@
       2017-10: 0
       2017-11: 2300
       2017-12: 0
-    allegement_fillon_mode_recouvrement: "fin-d-annee"
+    allegement_fillon_mode_recouvrement: "fin_d_annee"
     effectif_entreprise: 1
     code_postal_entreprise: "75001"
     categorie_salarie: prive_non_cadre
@@ -229,7 +229,7 @@
       2017-10: 0
       2017-11: 2300
       2017-12: 0
-    allegement_fillon_mode_recouvrement: "anticipe-regularisation-fin-de-periode"
+    allegement_fillon_mode_recouvrement: "anticipe"
     effectif_entreprise: 1
     code_postal_entreprise: "75001"
     categorie_salarie: prive_non_cadre
@@ -267,7 +267,7 @@
       2017-10: 0
       2017-11: 0
       2017-12: 2300
-    allegement_fillon_mode_recouvrement: "fin-d-annee"
+    allegement_fillon_mode_recouvrement: "fin_d_annee"
     effectif_entreprise: 1
     code_postal_entreprise: "75001"
     categorie_salarie: prive_non_cadre
@@ -341,7 +341,7 @@
       2017-10: 0
       2017-11: 0
       2017-12: 2300
-    allegement_fillon_mode_recouvrement: "anticipe-regularisation-fin-de-periode"
+    allegement_fillon_mode_recouvrement: anticipe
     effectif_entreprise: 1
     code_postal_entreprise: "75001"
     categorie_salarie: prive_non_cadre
