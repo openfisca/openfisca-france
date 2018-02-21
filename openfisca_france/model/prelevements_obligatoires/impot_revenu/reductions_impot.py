@@ -22,6 +22,7 @@ class reductions(Variable):
         '''
         Renvoie la somme des réductions d'impôt à intégrer pour l'année 2002
         '''
+        accult = foyer_fiscal('accult', period)
         adhcga = foyer_fiscal('adhcga', period)
         assvie = foyer_fiscal('assvie', period)
         cappme = foyer_fiscal('cappme', period)
@@ -42,7 +43,7 @@ class reductions(Variable):
         saldom = foyer_fiscal('saldom', period)
         spfcpi = foyer_fiscal('spfcpi', period)
 
-        total_reductions = (adhcga + assvie + cappme + cotsyn + dfppce + daepad + doment + domlog + donapd + ecpess +
+        total_reductions = (accult + adhcga + assvie + cappme + cotsyn + dfppce + daepad + doment + domlog + donapd + ecpess +
                 garext + intemp + invfor + invrev + prcomp + rsceha + saldom + spfcpi)
         return min_(impot_net, total_reductions)
 
@@ -50,6 +51,7 @@ class reductions(Variable):
         '''
         Renvoie la somme des réductions d'impôt à intégrer pour l'année 2003 et 2004
         '''
+        accult = foyer_fiscal('accult', period)
         adhcga = foyer_fiscal('adhcga', period)
         assvie = foyer_fiscal('assvie', period)
         cappme = foyer_fiscal('cappme', period)
@@ -80,6 +82,7 @@ class reductions(Variable):
         '''
         Renvoie la somme des réductions d'impôt à intégrer pour l'année 2005
         '''
+        accult = foyer_fiscal('accult', period)
         adhcga = foyer_fiscal('adhcga', period)
         cappme = foyer_fiscal('cappme', period)
         cotsyn = foyer_fiscal('cotsyn', period)
@@ -109,6 +112,7 @@ class reductions(Variable):
         '''
         Renvoie la somme des réductions d'impôt à intégrer pour l'année 2006
         '''
+        accult = foyer_fiscal('accult', period)
         adhcga = foyer_fiscal('adhcga', period)
         cappme = foyer_fiscal('cappme', period)
         cotsyn = foyer_fiscal('cotsyn', period)
@@ -140,6 +144,7 @@ class reductions(Variable):
         '''
         Renvoie la somme des réductions d'impôt à intégrer pour l'année 2007
         '''
+        accult = foyer_fiscal('accult', period)
         adhcga = foyer_fiscal('adhcga', period)
         cappme = foyer_fiscal('cappme', period)
         cotsyn = foyer_fiscal('cotsyn', period)
@@ -172,6 +177,7 @@ class reductions(Variable):
         '''
         Renvoie la somme des réductions d'impôt à intégrer pour l'année 2008
         '''
+        accult = foyer_fiscal('accult', period)
         adhcga = foyer_fiscal('adhcga', period)
         cappme = foyer_fiscal('cappme', period)
         cotsyn = foyer_fiscal('cotsyn', period)
@@ -204,6 +210,7 @@ class reductions(Variable):
         '''
         Renvoie la somme des réductions d'impôt à intégrer pour l'année 2009
         '''
+        accult = foyer_fiscal('accult', period)
         adhcga = foyer_fiscal('adhcga', period)
         cappme = foyer_fiscal('cappme', period)
         cotsyn = foyer_fiscal('cotsyn', period)
@@ -244,6 +251,7 @@ class reductions(Variable):
         '''
         Renvoie la somme des réductions d'impôt à intégrer pour l'année 2010
         '''
+        accult = foyer_fiscal('accult', period)
         adhcga = foyer_fiscal('adhcga', period)
         cappme = foyer_fiscal('cappme', period)
         cotsyn = foyer_fiscal('cotsyn', period)
@@ -283,6 +291,7 @@ class reductions(Variable):
         '''
         Renvoie la somme des réductions d'impôt à intégrer pour l'année 2011
         '''
+        accult = foyer_fiscal('accult', period)
         adhcga = foyer_fiscal('adhcga', period)
         cappme = foyer_fiscal('cappme', period)
         cotsyn = foyer_fiscal('cotsyn', period)
@@ -322,6 +331,7 @@ class reductions(Variable):
         '''
         Renvoie la somme des réductions d'impôt à intégrer pour l'année 2012
         '''
+        accult = foyer_fiscal('accult', period)
         adhcga = foyer_fiscal('adhcga', period)
         cappme = foyer_fiscal('cappme', period)
         creaen = foyer_fiscal('creaen', period)
@@ -479,6 +489,23 @@ class reductions(Variable):
         # pour tous les dfppce:
         # : note de bas de page
         # TODO: plafonnement pour parti politiques depuis 2012 P.impot_revenu.reductions_impots.dons.max_niv
+
+
+class accult(Variable):
+    value_type = float
+    entity = FoyerFiscal
+    label = u"Acquisition de biens culturels"
+    definition_period = YEAR
+
+    def formula_2002(foyer_fiscal, period, parameters):
+        '''
+        Acquisition de biens culturels (case 7UO)
+        2002-
+        '''
+        f7uo = foyer_fiscal('f7uo', period)
+        P = parameters(period).impot_revenu.credits_impot.accult
+
+        return P.taux * f7uo
 
 
 class adhcga(Variable):

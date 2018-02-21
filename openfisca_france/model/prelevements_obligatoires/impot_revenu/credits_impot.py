@@ -19,18 +19,16 @@ class credits_impot(Variable):
 
     def formula_2002_01_01(foyer_fiscal, period, parameters):
         """ Crédits d'impôt pour l'impôt sur les revenus de 2002 """
-        accult = foyer_fiscal('accult', period)
         acqgpl = foyer_fiscal('acqgpl', period)
         aidper = foyer_fiscal('aidper', period)
         creimp = foyer_fiscal('creimp', period)
         drbail = foyer_fiscal('drbail', period)
         prlire = foyer_fiscal('prlire', period)
 
-        return accult + acqgpl + aidper + creimp + drbail + prlire
+        return acqgpl + aidper + creimp + drbail + prlire
 
     def formula_2003_01_01(foyer_fiscal, period, parameters):
         """ Crédits d'impôt pour l'impôt sur les revenus de 2003 et 2004 """
-        accult = foyer_fiscal('accult', period)
         acqgpl = foyer_fiscal('acqgpl', period)
         aidper = foyer_fiscal('aidper', period)
         creimp = foyer_fiscal('creimp', period)
@@ -41,7 +39,6 @@ class credits_impot(Variable):
 
     def formula_2005_01_01(foyer_fiscal, period, parameters):
         """ Crédits d'impôt pour l'impôt sur les revenus de 2005 et 2006 """
-        accult = foyer_fiscal('accult', period)
         acqgpl = foyer_fiscal('acqgpl', period)
         aidmob = foyer_fiscal('aidmob', period)
         aidper = foyer_fiscal('aidper', period)
@@ -61,7 +58,6 @@ class credits_impot(Variable):
 
     def formula_2007_01_01(foyer_fiscal, period, parameters):
         """ Crédits d'impôt pour l'impôt sur les revenus de 2007 """
-        accult = foyer_fiscal('accult', period)
         acqgpl = foyer_fiscal('acqgpl', period)
         aidmob = foyer_fiscal('aidmob', period)
         aidper = foyer_fiscal('aidper', period)
@@ -83,7 +79,6 @@ class credits_impot(Variable):
 
     def formula_2008_01_01(foyer_fiscal, period, parameters):
         """ Crédits d'impôt pour l'impôt sur les revenus de 2008 """
-        accult = foyer_fiscal('accult', period)
         aidmob = foyer_fiscal('aidmob', period)
         aidper = foyer_fiscal('aidper', period)
         assloy = foyer_fiscal('assloy', period)
@@ -105,7 +100,6 @@ class credits_impot(Variable):
 
     def formula_2009_01_01(foyer_fiscal, period, parameters):
         """ Crédits d'impôt pour l'impôt sur les revenus de 2009 """
-        accult = foyer_fiscal('accult', period)
         aidper = foyer_fiscal('aidper', period)
         assloy = foyer_fiscal('assloy', period)
         ci_garext = foyer_fiscal('ci_garext', period)
@@ -124,7 +118,6 @@ class credits_impot(Variable):
 
     def formula_2010_01_01(foyer_fiscal, period, parameters):
         """ Crédits d'impôt pour l'impôt sur les revenus de 2010 """
-        accult = foyer_fiscal('accult', period)
         aidper = foyer_fiscal('aidper', period)
         assloy = foyer_fiscal('assloy', period)
         autent = foyer_fiscal('autent', period)
@@ -145,7 +138,6 @@ class credits_impot(Variable):
 
     def formula_2011_01_01(foyer_fiscal, period, parameters):
         """ Crédits d'impôt pour l'impôt sur les revenus de 2011 """
-        accult = foyer_fiscal('accult', period)
         aidper = foyer_fiscal('aidper', period)
         assloy = foyer_fiscal('assloy', period)
         autent = foyer_fiscal('autent', period)
@@ -164,7 +156,6 @@ class credits_impot(Variable):
 
     def formula_2012_01_01(foyer_fiscal, period, parameters):
         """ Crédits d'impôt pour l'impôt sur les revenus de 2012 """
-        accult = foyer_fiscal('accult', period)
         aidper = foyer_fiscal('aidper', period)
         assloy = foyer_fiscal('assloy', period)
         autent = foyer_fiscal('autent', period)
@@ -184,7 +175,6 @@ class credits_impot(Variable):
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
         """ Crédits d'impôt crédités l'impôt sur les revenus de 2013 """
-        accult = foyer_fiscal('accult', period)
         aidper = foyer_fiscal('aidper', period)
         assloy = foyer_fiscal('assloy', period)
         autent = foyer_fiscal('autent', period)
@@ -204,7 +194,6 @@ class credits_impot(Variable):
 
     def formula_2014_01_01(foyer_fiscal, period, parameters):
         """ Crédits d'impôt crédités l'impôt sur les revenus de 2014 et + (non vérifié)"""
-        accult = foyer_fiscal('accult', period)
         aidper = foyer_fiscal('aidper', period)
         assloy = foyer_fiscal('assloy', period)
         autent = foyer_fiscal('autent', period)
@@ -236,24 +225,6 @@ class nb_pac2(Variable):
         nbH = foyer_fiscal('nbH', period)
 
         return nbF + nbJ + nbpac_invalideR - nbH / 2
-
-
-class accult(Variable):
-    value_type = float
-    entity = FoyerFiscal
-    label = u"Acquisition de biens culturels"
-    reference = "http://bofip.impots.gouv.fr/bofip/5741-PGP"
-    definition_period = YEAR
-
-    def formula_2002(foyer_fiscal, period, parameters):
-        '''
-        Acquisition de biens culturels (case 7UO)
-        2002-
-        '''
-        f7uo = foyer_fiscal('f7uo', period)
-        P = parameters(period).impot_revenu.credits_impot.accult
-
-        return P.taux * f7uo
 
 
 class acqgpl(Variable):
