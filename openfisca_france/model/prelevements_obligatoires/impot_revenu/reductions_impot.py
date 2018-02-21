@@ -1581,7 +1581,7 @@ class garext(Variable):
     label = u"Réduction d'impôt en faveur des dépenses de frais de garde des jeunes enfants"
     reference = "http://bofip.impots.gouv.fr/bofip/865-PGP?datePubl=13/04/2013#"
     definition_period = YEAR
-    end = '2004-12-31'
+    end = '2016-12-31'
 
 
     def formula_2002_01_01(foyer_fiscal, period, parameters):
@@ -1602,7 +1602,7 @@ class garext(Variable):
         '''
         Frais de garde des enfants à l’extérieur du domicile (cases GA, GB, GC de la 2042)
         et GE, GF, GG
-        2003-2004
+        2003-
         '''
         f7ga = foyer_fiscal('f7ga', period)
         f7gb = foyer_fiscal('f7gb', period)
