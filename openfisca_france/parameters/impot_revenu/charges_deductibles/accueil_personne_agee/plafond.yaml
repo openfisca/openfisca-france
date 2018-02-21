@@ -1,5 +1,5 @@
 description: Maximum par personne
-reference: ipp
+reference: Barèmes IPP - https://www.ipp.eu/wp-content/uploads/2017/07/baremes-ipp-impot-revenu-income-tax.xlsx
 unit: currency
 values:
   1984-01-01:
