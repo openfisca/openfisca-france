@@ -1035,7 +1035,7 @@ class ir_plaf_qf(Variable):
 
     def formula(foyer_fiscal, period, parameters):
         '''
-        Impôt après plafonnement du quotient familial et réduction complémentaire
+        Impôt après plafonnement du quotient familial et réduction complémentaire (cf. fiche calcul IR)
         '''
         ir_brut = foyer_fiscal('ir_brut', period)
         ir_ss_qf = foyer_fiscal('ir_ss_qf', period)
@@ -1066,28 +1066,22 @@ class ir_plaf_qf(Variable):
         A = ir_ss_qf
         I = ir_brut
 
-        aa0 = (nbptr - nb_adult) * 2  # nombre de demi part excédant nbadult
-        # on dirait que les impôts font une erreur sur aa1 (je suis obligé de
-        # diviser par 2)
-        aa1 = min_((nbptr - 1) * 2, 2) / 2  # deux première demi part excédants une part
-        aa2 = max_((nbptr - 2) * 2, 0)  # nombre de demi part restantes
-        # celibataire_ou_divorce parents isolés
-        condition61 = celibataire_ou_divorce & caseT
-        B1 = plafond_qf.celib_enf * aa1 + plafond_qf.maries_ou_pacses * aa2
-        # tous les autres
-        B2 = plafond_qf.maries_ou_pacses * aa0  # si autre
-        # celibataire_ou_divorce, veufs (non jeune_veuf) vivants seuls et autres conditions
-
-        # TODO: année en dur... pour caseH
-        condition63 = (celibataire_ou_divorce | (veuf & not_(jeune_veuf))) & not_(caseN) & (nb_pac == 0) & (caseK | caseE) & (caseH < 1981)
+        aa0 = (nbptr - nb_adult) * 2  # nombre de demi part excédant nbadult 
+        aa1 = min_((nbptr - 1) * 2, 2)  # deux première demi part excédants une part
+        
+        B1 = plafond_qf.celib_enf * aa1 / 2 + plafond_qf.maries_ou_pacses * (aa0 - aa1)
+        B2 = plafond_qf.maries_ou_pacses * aa0 
         B3 = plafond_qf.celib
+        
+        condition61 = celibataire_ou_divorce & caseT
+        condition63 = (celibataire_ou_divorce | (veuf & not_(jeune_veuf))) & not_(caseN) & (nb_pac == 0) & (caseK | caseE) & (caseH < int(period.start.year) - 25)
 
         B = B1 * condition61 + \
             B2 * (not_(condition61 | condition63)) + \
             B3 * (condition63 & not_(condition61))
         C = max_(0, A - B)
-        # Impôt après plafonnement
-        IP0 = max_(I, C)
+        
+        IP0 = max_(I, C) # Impôt après plafonnement
 
         # 6.2 réduction d'impôt pratiquée sur l'impot après plafonnement et le cas particulier des DOM
         # pas de réduction complémentaire
@@ -1125,6 +1119,95 @@ class ir_plaf_qf(Variable):
         # Récapitulatif
 
         return condition62a * IP0 + condition62b * IP1  # IP2 si DOM
+
+    def formula_2013_01_01(foyer_fiscal, period, parameters):
+        '''
+        Impôt après plafonnement du quotient familial et réduction complémentaire (cf. fiche calcul IR)
+        '''
+        celibataire_ou_divorce = foyer_fiscal('celibataire_ou_divorce', period)
+        ir_brut = foyer_fiscal('ir_brut', period)
+        ir_ss_qf = foyer_fiscal('ir_ss_qf', period)
+        maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
+        nb_adult = foyer_fiscal('nb_adult', period)
+        nb_pac = foyer_fiscal('nb_pac', period)
+        nbptr = foyer_fiscal('nbptr', period)
+        veuf = foyer_fiscal('veuf', period)
+
+        caseF = foyer_fiscal('caseF', period)
+        caseG = foyer_fiscal('caseG', period)
+        caseL = foyer_fiscal('caseL', period)
+        caseP = foyer_fiscal('caseP', period)
+        caseS = foyer_fiscal('caseS', period)
+        caseT = foyer_fiscal('caseT', period.first_month)
+        caseW = foyer_fiscal('caseW', period)
+        nbF = foyer_fiscal('nbF', period)
+        nbG = foyer_fiscal('nbG', period)
+        nbH = foyer_fiscal('nbH', period)
+        nbI = foyer_fiscal('nbI', period)
+        nbJ = foyer_fiscal('nbI', period)
+        nbN = foyer_fiscal('nbJ', period)
+        nbR = foyer_fiscal('nbR', period)
+
+        plafond_qf = parameters(period).impot_revenu.plafond_qf
+
+        # PART1 - PLAFONNEMENT DU QF
+
+        A = ir_ss_qf
+        I = ir_brut
+
+        aa0 = (nbptr - nb_adult) * 2
+        aa1 = min_((nbptr - 1) * 2, 2)
+        B1 = plafond_qf.celib_enf * aa1 / 2 + plafond_qf.maries_ou_pacses * (aa0 - aa1)
+        B2 = plafond_qf.maries_ou_pacses * aa0 
+        B3 = plafond_qf.celib
+        
+        condition61 = celibataire_ou_divorce & caseT
+        condition63 = (celibataire_ou_divorce | veuf) & (nb_pac == 0) & caseL
+
+        B = B1 * condition61 + \
+            B2 * (not_(condition61 | condition63)) + \
+            B3 * (condition63 & not_(condition61))
+
+        C = max_(0, A - B)
+        
+        IP0 = max_(I, C)
+
+        # PART2 - REDUCTION IR APRES PLAFONNEMENT 
+
+        condition62a = (I >= C) # pas de réductions complémentaires
+        condition62b = (I < C) # possible réductions complémentaires
+
+        condition62c = (caseP | caseF | caseW | caseS | caseG)
+        condition62c0 = (caseP | caseF) | (caseW | caseS) | (caseG)
+        condition62c1 = (maries_ou_pacses) & (caseP & caseF)
+        condition62c2 = (nbG > 0) | (nbI > 0) | (nbR > 0)
+        condition62d = (nb_pac > 0) & (veuf)
+
+        E = condition62b * condition62c * (
+            plafond_qf.reduc_postplafond * condition62c0 * not_(condition62c1)  +
+            plafond_qf.reduc_postplafond * 2 * condition62c1 + 
+            plafond_qf.reduc_postplafond * (nbG + nbI/2 + nbR) * condition62c2)
+
+        D = condition62b * condition62d * plafond_qf.reduc_postplafond_veuf
+
+        F = D + E
+        G = max_(0, A - I - B)
+        H = F * (F <= G) + G * (G < F)
+        IP1 = IP0 - H
+
+         # PART3 - ABATTEMENT PARTICULIE DOM
+
+        conditionGuadMarReu = 0 # faire une condition avec département + code commune (Depcom qui est pour l'instant une variable ménage)
+        conditionGuyMay = 0 # provisoire
+        conditionDOM = conditionGuadMarReu | conditionGuyMay
+
+        abat_dom = (conditionGuadMarReu * min_(plafond_qf.abat_dom.plaf_GuadMarReu, plafond_qf.abat_dom.taux_GuadMarReu * IP1) + 
+                   conditionGuyMay * min_(plafond_qf.abat_dom.plaf_GuyMay, plafond_qf.abat_dom.taux_GuyMay * IP1)) 
+        IP2 = IP1 - abat_dom
+
+        print I, IP0, IP1
+        return (not_(conditionDOM) * (condition62a * IP0 + condition62b * IP1) +
+                conditionDOM * IP2)
 
 
 class avantage_qf(Variable):
