@@ -1100,7 +1100,7 @@ class f7wr(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     label = u"Dépenses en faveur de l'aide aux personnes réalisées dans des habitations données en location : travaux de prévention des risques technologiques"
-#    start_date = date(2013, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
