@@ -65,14 +65,15 @@ class reductions(Variable):
         invfor = foyer_fiscal('invfor', period)
         invrev = foyer_fiscal('invrev', period)
         impot_net = foyer_fiscal('ip_net', period)
+        mecena = foyer_fiscal('mecena', period)
         prcomp = foyer_fiscal('prcomp', period)
         repsoc = foyer_fiscal('repsoc', period)
         rsceha = foyer_fiscal('rsceha', period)
         saldom = foyer_fiscal('saldom', period)
         spfcpi = foyer_fiscal('spfcpi', period)
 
-        total_reductions = (adhcga + assvie + cappme + cotsyn + dfppce + daepad + doment + domlog + donapd + ecpess +
-                garext + intemp + invfor + invrev + prcomp + repsoc + rsceha + saldom + spfcpi)
+        total_reductions = (accult + adhcga + assvie + cappme + cotsyn + dfppce + daepad + doment + domlog + donapd + ecpess +
+                garext + intemp + invfor + invrev + mecena + prcomp + repsoc + rsceha + saldom + spfcpi)
         return min_(impot_net, total_reductions)
 
     def formula_2005_01_01(foyer_fiscal, period, parameters):
@@ -93,14 +94,15 @@ class reductions(Variable):
         invfor = foyer_fiscal('invfor', period)
         invlst = foyer_fiscal('invlst', period)
         impot_net = foyer_fiscal('ip_net', period)
+        mecena = foyer_fiscal('mecena', period)
         prcomp = foyer_fiscal('prcomp', period)
         repsoc = foyer_fiscal('repsoc', period)
         rsceha = foyer_fiscal('rsceha', period)
         saldom = foyer_fiscal('saldom', period)
         spfcpi = foyer_fiscal('spfcpi', period)
 
-        total_reductions = (adhcga + cappme + cotsyn + daepad + dfppce + doment + domlog + donapd + ecpess + intagr +
-                intcon + invfor + invlst + prcomp + repsoc + rsceha + saldom + spfcpi)
+        total_reductions = (accult + adhcga + cappme + cotsyn + daepad + dfppce + doment + domlog + donapd + ecpess + intagr +
+                intcon + invfor + invlst + mecena + prcomp + repsoc + rsceha + saldom + spfcpi)
         return min_(impot_net, total_reductions)
 
     def formula_2006_01_01(foyer_fiscal, period, parameters):
@@ -122,6 +124,7 @@ class reductions(Variable):
         invfor = foyer_fiscal('invfor', period)
         invlst = foyer_fiscal('invlst', period)
         impot_net = foyer_fiscal('ip_net', period)
+        mecena = foyer_fiscal('mecena', period)
         prcomp = foyer_fiscal('prcomp', period)
         repsoc = foyer_fiscal('repsoc', period)
         rsceha = foyer_fiscal('rsceha', period)
@@ -129,8 +132,8 @@ class reductions(Variable):
         sofica = foyer_fiscal('sofica', period)
         spfcpi = foyer_fiscal('spfcpi', period)
 
-        total_reductions = (adhcga + cappme + cotsyn + creaen + daepad + deffor + dfppce + doment + domlog + donapd +
-        ecpess + intagr + invfor + invlst + prcomp + repsoc + rsceha + saldom + sofica + spfcpi)
+        total_reductions = (accult + adhcga + cappme + cotsyn + creaen + daepad + deffor + dfppce + doment + domlog + donapd +
+        ecpess + intagr + invfor + invlst + mecena + prcomp + repsoc + rsceha + saldom + sofica + spfcpi)
         return min_(impot_net, total_reductions)
 
     def formula_2007_01_01(foyer_fiscal, period, parameters):
@@ -152,6 +155,7 @@ class reductions(Variable):
         invfor = foyer_fiscal('invfor', period)
         invlst = foyer_fiscal('invlst', period)
         impot_net = foyer_fiscal('ip_net', period)
+        mecena = foyer_fiscal('mecena', period)
         prcomp = foyer_fiscal('prcomp', period)
         repsoc = foyer_fiscal('repsoc', period)
         rsceha = foyer_fiscal('rsceha', period)
@@ -159,8 +163,8 @@ class reductions(Variable):
         sofica = foyer_fiscal('sofica', period)
         spfcpi = foyer_fiscal('spfcpi', period)
 
-        total_reductions = (adhcga + cappme + cotsyn + creaen + daepad + deffor + dfppce + doment + domlog + donapd +
-        ecpess + intagr + invfor + invlst + prcomp + repsoc + rsceha + saldom + sofica + spfcpi)
+        total_reductions = (accult + adhcga + cappme + cotsyn + creaen + daepad + deffor + dfppce + doment + domlog + donapd +
+        ecpess + intagr + invfor + invlst + mecena + prcomp + repsoc + rsceha + saldom + sofica + spfcpi)
 
         return min_(impot_net, total_reductions)
 
@@ -183,6 +187,7 @@ class reductions(Variable):
         invfor = foyer_fiscal('invfor', period)
         invlst = foyer_fiscal('invlst', period)
         impot_net = foyer_fiscal('ip_net', period)
+        mecena = foyer_fiscal('mecena', period)
         mohist = foyer_fiscal('mohist', period)
         prcomp = foyer_fiscal('prcomp', period)
         repsoc = foyer_fiscal('repsoc', period)
@@ -191,8 +196,8 @@ class reductions(Variable):
         sofica = foyer_fiscal('sofica', period)
         spfcpi = foyer_fiscal('spfcpi', period)
 
-        total_reductions = (adhcga + cappme + cotsyn + creaen + daepad + deffor + dfppce + doment + domlog + donapd +
-        ecpess + intagr + invfor + invlst + mohist + prcomp + repsoc + rsceha + saldom + sofica + spfcpi)
+        total_reductions = (accult + adhcga + cappme + cotsyn + creaen + daepad + deffor + dfppce + doment + domlog + donapd +
+        ecpess + intagr + invfor + invlst + mohist + mecena + prcomp + repsoc + rsceha + saldom + sofica + spfcpi)
         return min_(impot_net, total_reductions)
 
     def formula_2009_01_01(foyer_fiscal, period, parameters):
@@ -217,6 +222,7 @@ class reductions(Variable):
         invlst = foyer_fiscal('invlst', period)
         impot_net = foyer_fiscal('ip_net', period)
         locmeu = foyer_fiscal('locmeu', period)
+        mecena = foyer_fiscal('mecena', period)
         mohist = foyer_fiscal('mohist', period)
         prcomp = foyer_fiscal('prcomp', period)
         repsoc = foyer_fiscal('repsoc', period)
@@ -228,8 +234,8 @@ class reductions(Variable):
         sofipe = foyer_fiscal('sofipe', period)
         spfcpi = foyer_fiscal('spfcpi', period)
 
-        total_reductions = (adhcga + cappme + cotsyn + creaen + daepad + deffor + dfppce + doment + domlog + domsoc +
-        donapd + ecodev + ecpess + intagr + invfor + invlst + locmeu + mohist + prcomp + repsoc + resimm + rsceha +
+        total_reductions = (accult + adhcga + cappme + cotsyn + creaen + daepad + deffor + dfppce + doment + domlog + domsoc +
+        donapd + ecodev + ecpess + intagr + invfor + invlst + locmeu + mecena + mohist + prcomp + repsoc + resimm + rsceha +
         saldom + scelli + sofica + sofipe + spfcpi)
         return min_(impot_net, total_reductions)
 
@@ -255,6 +261,7 @@ class reductions(Variable):
         invlst = foyer_fiscal('invlst', period)
         impot_net = foyer_fiscal('ip_net', period)
         locmeu = foyer_fiscal('locmeu', period)
+        mecena = foyer_fiscal('mecena', period)
         mohist = foyer_fiscal('mohist', period)
         patnat = foyer_fiscal('patnat', period)
         prcomp = foyer_fiscal('prcomp', period)
@@ -267,8 +274,8 @@ class reductions(Variable):
         sofipe = foyer_fiscal('sofipe', period)
         spfcpi = foyer_fiscal('spfcpi', period)
 
-        total_reductions = (adhcga + cappme + cotsyn + creaen + daepad + deffor + dfppce + doment + domlog + domsoc +
-        donapd + ecpess + intagr + invfor + invlst + locmeu + mohist + patnat + prcomp + repsoc + resimm + rsceha +
+        total_reductions = (accult + adhcga + cappme + cotsyn + creaen + daepad + deffor + dfppce + doment + domlog + domsoc +
+        donapd + ecpess + intagr + invfor + invlst + locmeu + mecena + mohist + patnat + prcomp + repsoc + resimm + rsceha +
         saldom + scelli + sofica + sofipe + spfcpi)  # TODO: check (sees checked) and report in Niches.xls
         return min_(impot_net, total_reductions)
 
@@ -293,6 +300,7 @@ class reductions(Variable):
         invlst = foyer_fiscal('invlst', period)
         impot_net = foyer_fiscal('ip_net', period)
         locmeu = foyer_fiscal('locmeu', period)
+        mecena = foyer_fiscal('mecena', period)
         mohist = foyer_fiscal('mohist', period)
         patnat = foyer_fiscal('patnat', period)
         prcomp = foyer_fiscal('prcomp', period)
@@ -305,8 +313,8 @@ class reductions(Variable):
         sofipe = foyer_fiscal('sofipe', period)
         spfcpi = foyer_fiscal('spfcpi', period)
 
-        total_reductions = (adhcga + cappme + cotsyn + creaen + daepad + deffor + dfppce + doment + domlog + domsoc +
-        donapd + ecpess + intagr + invfor + invlst + locmeu + mohist + patnat + prcomp + repsoc + resimm + rsceha +
+        total_reductions = (accult + adhcga + cappme + cotsyn + creaen + daepad + deffor + dfppce + doment + domlog + domsoc +
+        donapd + ecpess + intagr + invfor + invlst + locmeu + mecena + mohist + patnat + prcomp + repsoc + resimm + rsceha +
         saldom + scelli + sofica + sofipe + spfcpi)
         return min_(impot_net, total_reductions)
 
@@ -330,6 +338,7 @@ class reductions(Variable):
         invlst = foyer_fiscal('invlst', period)
         impot_net = foyer_fiscal('ip_net', period)
         locmeu = foyer_fiscal('locmeu', period)
+        mecena = foyer_fiscal('mecena', period)
         mohist = foyer_fiscal('mohist', period)
         patnat = foyer_fiscal('patnat', period)
         prcomp = foyer_fiscal('prcomp', period)
@@ -341,8 +350,8 @@ class reductions(Variable):
         sofica = foyer_fiscal('sofica', period)
         spfcpi = foyer_fiscal('spfcpi', period)
 
-        total_reductions = (adhcga + cappme + creaen + daepad + deffor + dfppce + doment + domlog + domsoc +
-        donapd + ecpess + intagr + invfor + invlst + locmeu + mohist + patnat + prcomp + repsoc + resimm + rsceha +
+        total_reductions = (accult + adhcga + cappme + creaen + daepad + deffor + dfppce + doment + domlog + domsoc +
+        donapd + ecpess + intagr + invfor + invlst + locmeu + mecena + mohist + patnat + prcomp + repsoc + resimm + rsceha +
         saldom + scelli + sofica + spfcpi)
         return min_(impot_net, total_reductions)
 
@@ -3599,6 +3608,23 @@ class locmeu(Variable):
                 ) / 9 +
                 report_invest_anterieur + report_non_impute
             )
+
+
+
+class mecena(Variable):
+    value_type = float
+    entity = FoyerFiscal
+    label = u"Mécénat d'entreprise"
+    definition_period = YEAR
+
+    def formula_2003_01_01(foyer_fiscal, period, parameters):
+        '''
+        Mécénat d'entreprise (case 7US)
+        2003-
+        '''
+        f7us = foyer_fiscal('f7us', period)
+
+        return f7us
 
 
 class mohist(Variable):
