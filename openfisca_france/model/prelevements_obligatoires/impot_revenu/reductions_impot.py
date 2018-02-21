@@ -4159,15 +4159,14 @@ class saldom(Variable):
         Sommes versées pour l'emploi d'un salariés à  domicile
         2011 -
         '''
-        nb_pac2 = simulation.calculate('nb_pac2', period)
-        f7db = simulation.calculate('f7db', period)
-        f7dd = simulation.calculate('f7dd', period)
-        f7df = simulation.calculate('f7df', period)
-        f7dl = simulation.calculate('f7dl', period)
-        f7dq = simulation.calculate('f7dq', period)
-        f7dg = simulation.calculate('f7dg', period)
-        _P = simulation.parameters_at(period.start)
-        P = simulation.parameters_at(period.start).impot_revenu.reductions_impots.salarie_domicile
+        nb_pac2 = foyer_fiscal('nb_pac2', period)
+        f7db = foyer_fiscal('f7db', period)
+        f7dd = foyer_fiscal('f7dd', period)
+        f7df = foyer_fiscal('f7df', period)
+        f7dl = foyer_fiscal('f7dl', period)
+        f7dq = foyer_fiscal('f7dq', period)
+        f7dg = foyer_fiscal('f7dg', period)
+        P = parameters(period).impot_revenu.reductions_impots.salarie_domicile
 
         isinvalid = f7dg
         annee1 = f7dq
