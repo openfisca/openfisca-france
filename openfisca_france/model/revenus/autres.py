@@ -124,6 +124,29 @@ class f8ta(Variable):
     definition_period = YEAR
 
 
+class f8vl(Variable):
+    cerfa_field = u"8VL"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Impôt payé à l'étranger sur revenus de capitaux mobiliers et plus-values ouvrant droit à un crédit d'impôt"
+    # start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+
+class f8vm(Variable):
+    cerfa_field = {QUIFOY['vous']: u"8VM",
+        QUIFOY['conj']: u"8WM",
+        QUIFOY['pac1']: u"8UM",
+        }
+    value_type = int
+    unit = 'currency'
+    entity = Individu
+    label = u"Impôt payé à l'étranger sur revenus de capitaux mobiliers et plus-values ouvrant droit à un crédit d'impôt"
+    # start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+
 class f8th(Variable):
     cerfa_field = u"8TH"
     value_type = int
