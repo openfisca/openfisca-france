@@ -4344,6 +4344,36 @@ class f7oj(Variable):
     definition_period = YEAR
 
 
+class f7cr(Variable):
+    cerfa_field = u"7CR"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Souscriptions au capital des PME non cotées, report de versement de l'année de perception des revenus -3 pour les start-up"
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+
+class f7cv(Variable):
+    cerfa_field = u"7CV"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Souscriptions au capital des PME non cotées, report de versement de l'année de perception des revenus -2 pour les start-up"
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+
+class f7cx(Variable):
+    cerfa_field = u"7CX"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Souscriptions au capital des PME non cotées, report de versement de l'année de perception des revenus -1 pour les start-up"
+#    start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+
 class f7ok(Variable):
     cerfa_field = u"7OK"
     value_type = int
