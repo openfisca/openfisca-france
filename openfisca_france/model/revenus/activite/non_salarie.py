@@ -1100,7 +1100,7 @@ class nbic_impm(Variable):
     entity = Individu
     label = u"Locations meublées imposables sans CGA (régime du bénéfice réel)"
     # start_date = date(2009, 1, 1)
-    end = '2016-12-31'
+    end = '2015-12-31'
     definition_period = YEAR
 
 
