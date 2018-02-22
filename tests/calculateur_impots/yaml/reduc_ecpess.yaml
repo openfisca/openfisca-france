@@ -1,0 +1,429 @@
+- name: reduc_ecpess
+  period: 2011
+  absolute_error_margin: 1
+  foyers_fiscaux:
+  - caseF: false
+    caseG: false
+    caseL: false
+    caseP: false
+    caseS: false
+    caseT: false
+    caseW: false
+    declarants:
+    - ind0
+    f7ea: 1
+    f7eb: 1
+    f7ec: 0
+    f7ed: 1
+    f7ef: 0
+    f7eg: 0
+    id: 0
+    nbF: 1.0
+    nbG: 0.0
+    nbH: 2.0
+    nbI: 0.0
+    nbJ: 0
+    nbR: 0
+    personnes_a_charge:
+    - ind2
+    - ind3
+    - ind4
+  individus:
+  - activite: actif
+    date_naissance: '1970-01-01'
+    id: ind0
+    salaire_imposable: 50000.0
+    statut_marital: celibataire
+  - activite: actif
+    date_naissance: '2001-01-01'
+    id: ind2
+  - activite: actif
+    date_naissance: '2001-01-01'
+    id: ind3
+  - activite: actif
+    date_naissance: '2001-01-01'
+    id: ind4
+  familles:
+  - enfants:
+    - ind2
+    - ind3
+    - ind4
+    id: 0
+    parents:
+    - ind0
+  menages:
+  - enfants:
+    - ind2
+    - ind3
+    - ind4
+    id: 0
+    personne_de_reference: ind0
+  output_variables:
+    ecpess: 168.0
+    iai: 3119.0
+    ir_plaf_qf: 3287.0
+    irpp: -3119.0
+    nb_pac: 3.0
+    nbptr: 2.25
+    ppe: 0.0
+    rbg: 45000.0
+    reductions: 168.0
+    rfr: 45000.0
+    rni: 45000.0
+- name: reduc_ecpess
+  period: 2012
+  absolute_error_margin: 1
+  foyers_fiscaux:
+  - caseF: false
+    caseG: false
+    caseL: false
+    caseP: false
+    caseS: false
+    caseT: false
+    caseW: false
+    declarants:
+    - ind0
+    f7ea: 1
+    f7eb: 1
+    f7ec: 0
+    f7ed: 1
+    f7ef: 0
+    f7eg: 0
+    id: 0
+    nbF: 1.0
+    nbG: 0.0
+    nbH: 2.0
+    nbI: 0.0
+    nbJ: 0
+    nbR: 0
+    personnes_a_charge:
+    - ind2
+    - ind3
+    - ind4
+  individus:
+  - activite: actif
+    date_naissance: '1970-01-01'
+    id: ind0
+    salaire_imposable: 50000.0
+    statut_marital: celibataire
+  - activite: actif
+    date_naissance: '2002-01-01'
+    id: ind2
+  - activite: actif
+    date_naissance: '2002-01-01'
+    id: ind3
+  - activite: actif
+    date_naissance: '2002-01-01'
+    id: ind4
+  familles:
+  - enfants:
+    - ind2
+    - ind3
+    - ind4
+    id: 0
+    parents:
+    - ind0
+  menages:
+  - enfants:
+    - ind2
+    - ind3
+    - ind4
+    id: 0
+    personne_de_reference: ind0
+  output_variables:
+    ecpess: 168.0
+    iai: 3119.0
+    ir_plaf_qf: 3287.0
+    irpp: -3119.0
+    nb_pac: 3.0
+    nbptr: 2.25
+    ppe: 0.0
+    rbg: 45000.0
+    reductions: 168.0
+    rfr: 45000.0
+    rni: 45000.0
+- name: reduc_ecpess
+  period: 2013
+  absolute_error_margin: 1
+  foyers_fiscaux:
+  - caseF: false
+    caseG: false
+    caseL: false
+    caseP: false
+    caseS: false
+    caseT: false
+    caseW: false
+    declarants:
+    - ind0
+    f7ea: 1
+    f7eb: 1
+    f7ec: 0
+    f7ed: 1
+    f7ef: 0
+    f7eg: 0
+    id: 0
+    nbF: 1.0
+    nbG: 0.0
+    nbH: 2.0
+    nbI: 0.0
+    nbJ: 0
+    nbR: 0
+    personnes_a_charge:
+    - ind2
+    - ind3
+    - ind4
+  individus:
+  - activite: actif
+    date_naissance: '1970-01-01'
+    id: ind0
+    salaire_imposable: 50000.0
+    statut_marital: celibataire
+  - activite: actif
+    date_naissance: '2003-01-01'
+    id: ind2
+  - activite: actif
+    date_naissance: '2003-01-01'
+    id: ind3
+  - activite: actif
+    date_naissance: '2003-01-01'
+    id: ind4
+  familles:
+  - enfants:
+    - ind2
+    - ind3
+    - ind4
+    id: 0
+    parents:
+    - ind0
+  menages:
+  - enfants:
+    - ind2
+    - ind3
+    - ind4
+    id: 0
+    personne_de_reference: ind0
+  output_variables:
+    ecpess: 168.0
+    iai: 3971.0
+    ir_plaf_qf: 4139.0
+    irpp: -3971.0
+    nb_pac: 3.0
+    nbptr: 2.25
+    ppe: 0.0
+    rbg: 45000.0
+    reductions: 168.0
+    rfr: 45000.0
+    rni: 45000.0
+- name: reduc_ecpess
+  period: 2014
+  absolute_error_margin: 1
+  foyers_fiscaux:
+  - caseF: false
+    caseG: false
+    caseL: false
+    caseP: false
+    caseS: false
+    caseT: false
+    caseW: false
+    declarants:
+    - ind0
+    f7ea: 1
+    f7eb: 1
+    f7ec: 0
+    f7ed: 1
+    f7ef: 0
+    f7eg: 0
+    id: 0
+    nbF: 1.0
+    nbG: 0.0
+    nbH: 2.0
+    nbI: 0.0
+    nbJ: 0
+    nbR: 0
+    personnes_a_charge:
+    - ind2
+    - ind3
+    - ind4
+  individus:
+  - activite: actif
+    date_naissance: '1970-01-01'
+    id: ind0
+    salaire_imposable: 50000.0
+    statut_marital: celibataire
+  - activite: actif
+    date_naissance: '2004-01-01'
+    id: ind2
+  - activite: actif
+    date_naissance: '2004-01-01'
+    id: ind3
+  - activite: actif
+    date_naissance: '2004-01-01'
+    id: ind4
+  familles:
+  - enfants:
+    - ind2
+    - ind3
+    - ind4
+    id: 0
+    parents:
+    - ind0
+  menages:
+  - enfants:
+    - ind2
+    - ind3
+    - ind4
+    id: 0
+    personne_de_reference: ind0
+  output_variables:
+    ecpess: 168.0
+    iai: 3923.0
+    ir_plaf_qf: 4091.0
+    irpp: -3923.0
+    nb_pac: 3.0
+    nbptr: 2.25
+    ppe: 0.0
+    rbg: 45000.0
+    reductions: 168.0
+    rfr: 45000.0
+    rni: 45000.0
+- name: reduc_ecpess
+  period: 2015
+  absolute_error_margin: 1
+  foyers_fiscaux:
+  - caseF: false
+    caseG: false
+    caseL: false
+    caseP: false
+    caseS: false
+    caseT: false
+    caseW: false
+    declarants:
+    - ind0
+    f7ea: 1
+    f7eb: 1
+    f7ec: 0
+    f7ed: 1
+    f7ef: 0
+    f7eg: 0
+    id: 0
+    nbF: 1.0
+    nbG: 0.0
+    nbH: 2.0
+    nbI: 0.0
+    nbJ: 0
+    nbR: 0
+    personnes_a_charge:
+    - ind2
+    - ind3
+    - ind4
+  individus:
+  - activite: actif
+    date_naissance: '1970-01-01'
+    id: ind0
+    salaire_imposable: 50000.0
+    statut_marital: celibataire
+  - activite: actif
+    date_naissance: '2005-01-01'
+    id: ind2
+  - activite: actif
+    date_naissance: '2005-01-01'
+    id: ind3
+  - activite: actif
+    date_naissance: '2005-01-01'
+    id: ind4
+  familles:
+  - enfants:
+    - ind2
+    - ind3
+    - ind4
+    id: 0
+    parents:
+    - ind0
+  menages:
+  - enfants:
+    - ind2
+    - ind3
+    - ind4
+    id: 0
+    personne_de_reference: ind0
+  output_variables:
+    ecpess: 168.0
+    iai: 3912.0
+    ir_plaf_qf: 4080.0
+    irpp: -3912.0
+    nb_pac: 3.0
+    nbptr: 2.25
+    rbg: 45000.0
+    reductions: 168.0
+    rfr: 45000.0
+    rni: 45000.0
+- name: reduc_ecpess
+  period: 2016
+  absolute_error_margin: 1
+  foyers_fiscaux:
+  - caseF: false
+    caseG: false
+    caseL: false
+    caseP: false
+    caseS: false
+    caseT: false
+    caseW: false
+    declarants:
+    - ind0
+    f7ea: 1
+    f7eb: 1
+    f7ec: 0
+    f7ed: 1
+    f7ef: 0
+    f7eg: 0
+    id: 0
+    nbF: 1.0
+    nbG: 0.0
+    nbH: 2.0
+    nbI: 0.0
+    nbJ: 0
+    nbR: 0
+    personnes_a_charge:
+    - ind2
+    - ind3
+    - ind4
+  individus:
+  - activite: actif
+    date_naissance: '1970-01-01'
+    id: ind0
+    salaire_imposable: 50000.0
+    statut_marital: celibataire
+  - activite: actif
+    date_naissance: '2006-01-01'
+    id: ind2
+  - activite: actif
+    date_naissance: '2006-01-01'
+    id: ind3
+  - activite: actif
+    date_naissance: '2006-01-01'
+    id: ind4
+  familles:
+  - enfants:
+    - ind2
+    - ind3
+    - ind4
+    id: 0
+    parents:
+    - ind0
+  menages:
+  - enfants:
+    - ind2
+    - ind3
+    - ind4
+    id: 0
+    personne_de_reference: ind0
+  output_variables:
+    ecpess: 168.0
+    iai: 3902.0
+    ir_plaf_qf: 4070.0
+    irpp: -3902.0
+    nbptr: 2.25
+    rbg: 45000.0
+    reductions: 168.0
+    rfr: 45000.0
+    rni: 45000.0

@@ -1,0 +1,259 @@
+- name: f6gp
+  period: 2011
+  absolute_error_margin: 1
+  foyers_fiscaux:
+  - caseF: false
+    caseG: false
+    caseL: false
+    caseP: false
+    caseS: false
+    caseT: false
+    caseW: false
+    declarants:
+    - ind0
+    f6gp: 20000
+    id: 0
+    nbF: 0.0
+    nbG: 0.0
+    nbH: 0.0
+    nbI: 0.0
+    nbJ: 0
+    nbR: 0
+  individus:
+  - activite: actif
+    date_naissance: '1970-01-01'
+    id: ind0
+    salaire_imposable: 50000.0
+    statut_marital: celibataire
+  familles:
+  - id: 0
+    parents:
+    - ind0
+  menages:
+  - id: 0
+    personne_de_reference: ind0
+  output_variables:
+    iai: 1461.0
+    ir_plaf_qf: 1461.0
+    irpp: -1461.0
+    nbptr: 1.0
+    ppe: 0.0
+    rbg: 45000.0
+    rfr: 20000.0
+    rni: 20000.0
+- name: f6gp
+  period: 2012
+  absolute_error_margin: 1
+  foyers_fiscaux:
+  - caseF: false
+    caseG: false
+    caseL: false
+    caseP: false
+    caseS: false
+    caseT: false
+    caseW: false
+    declarants:
+    - ind0
+    f6gp: 20000
+    id: 0
+    nbF: 0.0
+    nbG: 0.0
+    nbH: 0.0
+    nbI: 0.0
+    nbJ: 0
+    nbR: 0
+  individus:
+  - activite: actif
+    date_naissance: '1970-01-01'
+    id: ind0
+    salaire_imposable: 50000.0
+    statut_marital: celibataire
+  familles:
+  - id: 0
+    parents:
+    - ind0
+  menages:
+  - id: 0
+    personne_de_reference: ind0
+  output_variables:
+    iai: 1461.0
+    ir_plaf_qf: 1461.0
+    irpp: -1461.0
+    nbptr: 1.0
+    ppe: 0.0
+    rbg: 45000.0
+    rfr: 20000.0
+    rni: 20000.0
+- name: f6gp
+  period: 2013
+  absolute_error_margin: 1
+  foyers_fiscaux:
+  - caseF: false
+    caseG: false
+    caseL: false
+    caseP: false
+    caseS: false
+    caseT: false
+    caseW: false
+    declarants:
+    - ind0
+    f6gp: 20000
+    id: 0
+    nbF: 0.0
+    nbG: 0.0
+    nbH: 0.0
+    nbI: 0.0
+    nbJ: 0
+    nbR: 0
+  individus:
+  - activite: actif
+    date_naissance: '1970-01-01'
+    id: ind0
+    salaire_imposable: 50000.0
+    statut_marital: celibataire
+  familles:
+  - id: 0
+    parents:
+    - ind0
+  menages:
+  - id: 0
+    personne_de_reference: ind0
+  output_variables:
+    iai: 1450.0
+    ir_plaf_qf: 1450.0
+    irpp: -1450.0
+    nbptr: 1.0
+    ppe: 0.0
+    rbg: 45000.0
+    rfr: 20000.0
+    rni: 20000.0
+- name: f6gp
+  period: 2014
+  absolute_error_margin: 1
+  foyers_fiscaux:
+  - caseF: false
+    caseG: false
+    caseL: false
+    caseP: false
+    caseS: false
+    caseT: false
+    caseW: false
+    declarants:
+    - ind0
+    f6gp: 20000
+    id: 0
+    nbF: 0.0
+    nbG: 0.0
+    nbH: 0.0
+    nbI: 0.0
+    nbJ: 0
+    nbR: 0
+  individus:
+  - activite: actif
+    date_naissance: '1970-01-01'
+    id: ind0
+    salaire_imposable: 50000.0
+    statut_marital: celibataire
+  familles:
+  - id: 0
+    parents:
+    - ind0
+  menages:
+  - id: 0
+    personne_de_reference: ind0
+  output_variables:
+    iai: 1443.0
+    ir_plaf_qf: 1443.0
+    irpp: -1443.0
+    nbptr: 1.0
+    ppe: 0.0
+    rbg: 45000.0
+    rfr: 20000.0
+    rni: 20000.0
+- name: f6gp
+  period: 2015
+  absolute_error_margin: 1
+  foyers_fiscaux:
+  - caseF: false
+    caseG: false
+    caseL: false
+    caseP: false
+    caseS: false
+    caseT: false
+    caseW: false
+    declarants:
+    - ind0
+    f6gp: 20000
+    id: 0
+    nbF: 0.0
+    nbG: 0.0
+    nbH: 0.0
+    nbI: 0.0
+    nbJ: 0
+    nbR: 0
+  individus:
+  - activite: actif
+    date_naissance: '1970-01-01'
+    id: ind0
+    salaire_imposable: 50000.0
+    statut_marital: celibataire
+  familles:
+  - id: 0
+    parents:
+    - ind0
+  menages:
+  - id: 0
+    personne_de_reference: ind0
+  output_variables:
+    decote_gain_fiscal: 84.0
+    iai: 1358.0
+    ir_plaf_qf: 1442.0
+    irpp: -1358.0
+    nbptr: 1.0
+    rbg: 45000.0
+    rfr: 20000.0
+    rni: 20000.0
+- name: f6gp
+  period: 2016
+  absolute_error_margin: 1
+  foyers_fiscaux:
+  - caseF: false
+    caseG: false
+    caseL: false
+    caseP: false
+    caseS: false
+    caseT: false
+    caseW: false
+    declarants:
+    - ind0
+    f6gp: 20000
+    id: 0
+    nbF: 0.0
+    nbG: 0.0
+    nbH: 0.0
+    nbI: 0.0
+    nbJ: 0
+    nbR: 0
+  individus:
+  - activite: actif
+    date_naissance: '1970-01-01'
+    id: ind0
+    salaire_imposable: 50000.0
+    statut_marital: celibataire
+  familles:
+  - id: 0
+    parents:
+    - ind0
+  menages:
+  - id: 0
+    personne_de_reference: ind0
+  output_variables:
+    decote_gain_fiscal: 84.0
+    iai: 1289.0
+    ir_plaf_qf: 1441.0
+    irpp: -1289.0
+    nbptr: 1.0
+    rbg: 45000.0
+    reduction_ss_condition_revenus: 68.0
+    rfr: 20000.0
+    rni: 20000.0

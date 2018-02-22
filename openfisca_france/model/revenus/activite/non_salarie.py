@@ -43,7 +43,7 @@ class ppe_du_ns(Variable):
     value_type = int
     entity = Individu
     label = u"Prime pour l'emploi des non-salariés: nombre de jours travaillés dans l'année"
-    end = '2006-12-31'
+    end = '2014-12-31'
     definition_period = YEAR
 
   # (f5nv, f5ov, f5pv)
@@ -56,7 +56,7 @@ class ppe_tp_ns(Variable):
     value_type = bool
     entity = Individu
     label = u"Prime pour l'emploi des non-salariés: indicateur de travail à temps plein sur l'année entière"
-    end = '2006-12-31'
+    end = '2014-12-31'
     definition_period = YEAR
 
   # (f5nw, f5ow, f5pw)
@@ -70,6 +70,7 @@ class frag_exon(Variable):
     entity = Individu
     label = u"Revenus agricoles exonérés (régime du forfait)"
     # start_date = date(2007, 1, 1)
+    end = '2015-12-31'
     definition_period = YEAR
 
   # (f5hn, f5in, f5jn))
@@ -83,6 +84,7 @@ class frag_impo(Variable):
     entity = Individu
     label = u"Revenus agricoles imposables (régime du forfait)"
     # start_date = date(2007, 1, 1)
+    end = '2015-12-31'
     definition_period = YEAR
 
   # (f5ho, f5io, f5jo))
@@ -188,7 +190,7 @@ class ebic_impv(Variable):
     entity = Individu
     label = u"Revenus industriels et commerciaux professionnels imposables: vente de marchandises et assimilées (régime auto-entrepreneur)"
     # start_date = date(2009, 1, 1)
-    end = '2009-12-31'
+    # end = '2016-12-31'
     definition_period = YEAR
 
   # (f5ta, f5ua, f5va))
@@ -202,7 +204,7 @@ class ebic_imps(Variable):
     entity = Individu
     label = u"Revenus industriels et commerciaux professionnels imposables: prestations de services et locations meublées (régime auto-entrepreneur)"
     # start_date = date(2009, 1, 1)
-    end = '2009-12-31'
+    # end = '2016-12-31'
     definition_period = YEAR
 
   # (f5tb, f5ub, f5vb))
@@ -216,7 +218,7 @@ class ebnc_impo(Variable):
     entity = Individu
     label = u"Revenus non commerciaux (régime auto-entrepreneur ayant opté pour le versement libératoire)"
     # start_date = date(2009, 1, 1)
-    end = '2009-12-31'
+    # end = '2016-12-31'
     definition_period = YEAR
 
   # (f5te, f5ue, f5ve))
@@ -334,7 +336,6 @@ class nbic_imps(Variable):
     end = '2009-12-31'
     definition_period = YEAR
 
- # TODO: c'est 5HU pour les années anciennes
 
 class nbic_mvct(Variable):
     cerfa_field = {QUIFOY['vous']: u"5KJ",
@@ -343,12 +344,13 @@ class nbic_mvct(Variable):
     value_type = int
     unit = 'currency'
     entity = Individu
-    label = u"Revenus industriels et commerciaux professionnels moins-values nettes à court terme"
+    label = u"Revenus industriels et commerciaux professionnels moins-values nettes à court terme : régime micro-entreprise"
     # start_date = date(2012, 1, 1)
     definition_period = YEAR
 
   # (f5kj, f5lj, f5mj))
-                                                          # vérifier date début #####à intégrer dans OF#######
+  # NB cette variable devrait s'appeler 'mbic_mvct' comme c'est une variable de régime micro (mais il 
+  # existe déjà une variable mbic_mvct avec un autre cerfa_fiel (5HU) corresponsant à avant 2012...)
 
 class abic_defn(Variable):
     cerfa_field = {QUIFOY['vous']: u"5KF",
@@ -744,7 +746,7 @@ class macc_mvct(Variable):
   # (f5iu))
 
 class mncn_mvct(Variable):
-    cerfa_field = u"JU"
+    cerfa_field = u"5JU"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
@@ -985,7 +987,6 @@ class nacc_pvce(Variable):
     entity = Individu
     label = u"Locations meublées non professionnelles: Revenus imposables sans CGA (régime du bénéfice réel)"
     # start_date = date(2009, 1, 1)
-    end = '2010-12-31'
     definition_period = YEAR
 
   # (f5nk, f5ok, f5pk)) TODO: 5NK 2005/2006
@@ -1048,6 +1049,7 @@ class nbnc_pvce(Variable):
     entity = Individu
     label = u"Déficits industriels et commerciaux: locations meublées sans CGA (régime du bénéfice réel)"
     # start_date = date(2009, 1, 1)
+    end = '2015-12-31'
     definition_period = YEAR
 
   # (f5qj, f5rj, f5sj)) #TODO 5*J 2005/2006 (qui se transforme en 5*D...)
@@ -1085,6 +1087,7 @@ class abic_impm(Variable):
     entity = Individu
     label = u"Locations meublées imposables avec CGA ou viseur (régime du bénéfice réel pour les revenus industriels et commerciaux professionnels)"
     # start_date = date(2009, 1, 1)
+    end = '2015-12-31'
     definition_period = YEAR
 
 
@@ -1097,6 +1100,7 @@ class nbic_impm(Variable):
     entity = Individu
     label = u"Locations meublées imposables sans CGA (régime du bénéfice réel)"
     # start_date = date(2009, 1, 1)
+    end = '2015-12-31'
     definition_period = YEAR
 
 
@@ -1109,6 +1113,7 @@ class abic_defm(Variable):
     entity = Individu
     label = u"Déficits de locations meubléesavec CGA ou viseur (régime du bénéfice réel pour les revenus industriels et commerciaux professionnels)"
     # start_date = date(2009, 1, 1)
+    end = '2015-12-31'
     definition_period = YEAR
 
 
@@ -1134,7 +1139,6 @@ class alnp_defs(Variable):
     entity = Individu
     label = u"Déficits de locations meublées non professionnelles avec CGA ou viseur (régime du bénéfice réel)"
     # start_date = date(2009, 1, 1)
-    end = '2010-12-31'
     definition_period = YEAR
 
 

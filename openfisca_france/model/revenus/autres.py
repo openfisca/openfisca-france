@@ -100,6 +100,7 @@ class pensions_invalidite(Variable):
         QUIFOY['pac1']: u"1CZ",
         QUIFOY['pac2']: u"1DZ",
         }
+    # start_date = date(2014, 1, 1)
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -120,6 +121,29 @@ class f8ta(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     label = u"Retenue à la source en France ou impôt payé à l'étranger"
+    definition_period = YEAR
+
+
+class f8vl(Variable):
+    cerfa_field = u"8VL"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Impôt payé à l'étranger sur revenus de capitaux mobiliers et plus-values ouvrant droit à un crédit d'impôt"
+    # start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+
+class f8vm(Variable):
+    cerfa_field = {QUIFOY['vous']: u"8VM",
+        QUIFOY['conj']: u"8WM",
+        QUIFOY['pac1']: u"8UM",
+        }
+    value_type = int
+    unit = 'currency'
+    entity = Individu
+    label = u"Impôt payé à l'étranger sur revenus de capitaux mobiliers et plus-values ouvrant droit à un crédit d'impôt"
+    # start_date = date(2016, 1, 1)
     definition_period = YEAR
 
 
