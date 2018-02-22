@@ -701,6 +701,7 @@ class grosses_reparations(Variable):
     value_type = float
     entity = FoyerFiscal
     label = u"Dépenses de grosses réparations des nus-propriétaires"
+    reference = u"http://bofip.impots.gouv.fr/bofip/1852-PGP"
     definition_period = YEAR
 
     def formula_2009(foyer_fiscal, period, parameters):
