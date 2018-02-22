@@ -709,9 +709,9 @@ class grosses_reparations(Variable):
         '''
 
         f6cb = foyer_fiscal('f6cb', period)
-        grorep = parameters(period).impot_revenu.charges_deductibles.grosses_reparations
+        plafond_grosses_reparations = parameters(period).impot_revenu.charges_deductibles.grosses_reparations.plafond
 
-        return min_(f6cb, grorep.plafond)
+        return min_(f6cb, plafond_grosses_reparations)
 
     def formula_2010(foyer_fiscal, period, parameters):
         '''
@@ -719,9 +719,9 @@ class grosses_reparations(Variable):
         '''
         f6cb = foyer_fiscal('f6cb', period)
         f6hj = foyer_fiscal('f6hj', period)
-        grorep = parameters(period).impot_revenu.charges_deductibles.grosses_reparations
+        plafond_grosses_reparations = parameters(period).impot_revenu.charges_deductibles.grosses_reparations.plafond
 
-        return min_(f6cb + f6hj, grorep.plafond)
+        return min_(f6cb + f6hj, plafond_grosses_reparations)
 
     def formula_2011(foyer_fiscal, period, parameters):
         '''
@@ -730,9 +730,9 @@ class grosses_reparations(Variable):
         f6cb = foyer_fiscal('f6cb', period)
         f6hj = foyer_fiscal('f6hj', period)
         f6hk = foyer_fiscal('f6hk', period)
-        grorep = parameters(period).impot_revenu.charges_deductibles.grosses_reparations
+        plafond_grosses_reparations = parameters(period).impot_revenu.charges_deductibles.grosses_reparations.plafond
 
-        return min_(f6cb + f6hj + f6hk, grorep.plafond)
+        return min_(f6cb + f6hj + f6hk, plafond_grosses_reparations)
 
     def formula_2012(foyer_fiscal, period, parameters):
         '''
@@ -742,9 +742,9 @@ class grosses_reparations(Variable):
         f6hj = foyer_fiscal('f6hj', period)
         f6hk = foyer_fiscal('f6hk', period)
         f6hl = foyer_fiscal('f6hl', period)
-        grorep = parameters(period).impot_revenu.charges_deductibles.grosses_reparations
+        plafond_grosses_reparations = parameters(period).impot_revenu.charges_deductibles.grosses_reparations.plafond
         
-        return min_(f6cb + f6hj + f6hk + f6hl, grorep.plafond)
+        return min_(f6cb + f6hj + f6hk + f6hl, plafond_grosses_reparations)
 
     def formula_2013(foyer_fiscal, period, parameters):
         '''
@@ -755,9 +755,9 @@ class grosses_reparations(Variable):
         f6hk = foyer_fiscal('f6hk', period)
         f6hl = foyer_fiscal('f6hl', period)
         f6hm = foyer_fiscal('f6hm', period)
-        grorep = parameters(period).impot_revenu.charges_deductibles.grosses_reparations
+        plafond_grosses_reparations = parameters(period).impot_revenu.charges_deductibles.grosses_reparations.plafond
 
-        return min_(f6cb + f6hj + f6hk + f6hl + f6hm, grorep.plafond)
+        return min_(f6cb + f6hj + f6hk + f6hl + f6hm, plafond_grosses_reparations)
 
 
     def formula_2014(foyer_fiscal, period, parameters):
@@ -770,9 +770,9 @@ class grosses_reparations(Variable):
         f6hl = foyer_fiscal('f6hl', period)
         f6hm = foyer_fiscal('f6hm', period)
         f6hn = foyer_fiscal('f6hn', period)
-        grorep = parameters(period).impot_revenu.charges_deductibles.grosses_reparations
+        plafond_grosses_reparations = parameters(period).impot_revenu.charges_deductibles.grosses_reparations.plafond
 
-        return min_(f6cb + f6hj + f6hk + f6hl + f6hm + f6hn, grorep.plafond)
+        return min_(f6cb + f6hj + f6hk + f6hl + f6hm + f6hn, plafond_grosses_reparations)
 
     def formula_2015(foyer_fiscal, period, parameters):
         '''
@@ -785,9 +785,9 @@ class grosses_reparations(Variable):
         f6hm = foyer_fiscal('f6hm', period)
         f6hn = foyer_fiscal('f6hn', period)
         f6ho = foyer_fiscal('f6ho', period)
-        grorep = parameters(period).impot_revenu.charges_deductibles.grosses_reparations
+        plafond_grosses_reparations = parameters(period).impot_revenu.charges_deductibles.grosses_reparations.plafond
 
-        return min_(f6cb + f6hj + f6hk + f6hl + f6hm + f6hn + f6ho, grorep.plafond)
+        return min_(f6cb + f6hj + f6hk + f6hl + f6hm + f6hn + f6ho, plafond_grosses_reparations)
 
     def formula_2016(foyer_fiscal, period, parameters):
         '''
@@ -801,6 +801,6 @@ class grosses_reparations(Variable):
         f6hn = foyer_fiscal('f6hn', period)
         f6ho = foyer_fiscal('f6ho', period)
         f6hp = foyer_fiscal('f6hp', period)
-        grorep = parameters(period).impot_revenu.charges_deductibles.grosses_reparations
+        plafond_grosses_reparations = parameters(period).impot_revenu.charges_deductibles.grosses_reparations.plafond
 
-        return min_(f6cb + f6hj + f6hk + f6hl + f6hm + f6hn + f6ho + f6hp, grorep.plafond)
+        return min_(f6cb + f6hj + f6hk + f6hl + f6hm + f6hn + f6ho + f6hp, plafond_grosses_reparations)
