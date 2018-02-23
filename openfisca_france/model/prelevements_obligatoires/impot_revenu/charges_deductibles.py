@@ -719,46 +719,46 @@ class grosses_reparations(Variable):
         Dépenses de grosses réparations des nus-propriétaires
         '''
         f6cb = foyer_fiscal('f6cb', period)
-        f6hj = foyer_fiscal('f6hj', period)
+        report_2009 = foyer_fiscal('f6hj', period)
         plafond_grosses_reparations = parameters(period).impot_revenu.charges_deductibles.grosses_reparations.plafond
 
-        return min_(f6cb + f6hj, plafond_grosses_reparations)
+        return min_(f6cb + report_2009, plafond_grosses_reparations)
 
     def formula_2011(foyer_fiscal, period, parameters):
         '''
         Dépenses de grosses réparations des nus-propriétaires
         '''
         f6cb = foyer_fiscal('f6cb', period)
-        f6hj = foyer_fiscal('f6hj', period)
-        f6hk = foyer_fiscal('f6hk', period)
+        report_2009 = foyer_fiscal('f6hj', period)
+        report_2010 = foyer_fiscal('f6hk', period)
         plafond_grosses_reparations = parameters(period).impot_revenu.charges_deductibles.grosses_reparations.plafond
 
-        return min_(f6cb + f6hj + f6hk, plafond_grosses_reparations)
+        return min_(f6cb + report_2009 + report_2010, plafond_grosses_reparations)
 
     def formula_2012(foyer_fiscal, period, parameters):
         '''
         Dépenses de grosses réparations des nus-propriétaires
         '''
         f6cb = foyer_fiscal('f6cb', period)
-        f6hj = foyer_fiscal('f6hj', period)
-        f6hk = foyer_fiscal('f6hk', period)
-        f6hl = foyer_fiscal('f6hl', period)
+        report_2009 = foyer_fiscal('f6hj', period)
+        report_2010 = foyer_fiscal('f6hk', period)
+        report_2011 = foyer_fiscal('f6hl', period)
         plafond_grosses_reparations = parameters(period).impot_revenu.charges_deductibles.grosses_reparations.plafond
         
-        return min_(f6cb + f6hj + f6hk + f6hl, plafond_grosses_reparations)
+        return min_(f6cb + report_2009 + report_2010 + report_2011, plafond_grosses_reparations)
 
     def formula_2013(foyer_fiscal, period, parameters):
         '''
         Dépenses de grosses réparations des nus-propriétaires
         '''
         f6cb = foyer_fiscal('f6cb', period)
-        f6hj = foyer_fiscal('f6hj', period)
-        f6hk = foyer_fiscal('f6hk', period)
-        f6hl = foyer_fiscal('f6hl', period)
-        f6hm = foyer_fiscal('f6hm', period)
+        report_2009 = foyer_fiscal('f6hj', period)
+        report_2010 = foyer_fiscal('f6hk', period)
+        report_2011 = foyer_fiscal('f6hl', period)
+        report_2012 = foyer_fiscal('f6hm', period)
         plafond_grosses_reparations = parameters(period).impot_revenu.charges_deductibles.grosses_reparations.plafond
 
-        return min_(f6cb + f6hj + f6hk + f6hl + f6hm, plafond_grosses_reparations)
+        return min_(f6cb + report_2009 + report_2010 + report_2011 + f6hm, plafond_grosses_reparations)
 
 
     def formula_2014(foyer_fiscal, period, parameters):
@@ -766,42 +766,42 @@ class grosses_reparations(Variable):
         Dépenses de grosses réparations des nus-propriétaires
         '''
         f6cb = foyer_fiscal('f6cb', period)
-        f6hj = foyer_fiscal('f6hj', period)
-        f6hk = foyer_fiscal('f6hk', period)
-        f6hl = foyer_fiscal('f6hl', period)
-        f6hm = foyer_fiscal('f6hm', period)
-        f6hn = foyer_fiscal('f6hn', period)
+        report_2009 = foyer_fiscal('f6hj', period)
+        report_2010 = foyer_fiscal('f6hk', period)
+        report_2011 = foyer_fiscal('f6hl', period)
+        report_2012 = foyer_fiscal('f6hm', period)
+        report_2013 = foyer_fiscal('f6hn', period)
         plafond_grosses_reparations = parameters(period).impot_revenu.charges_deductibles.grosses_reparations.plafond
 
-        return min_(f6cb + f6hj + f6hk + f6hl + f6hm + f6hn, plafond_grosses_reparations)
+        return min_(f6cb + report_2009 + report_2010 + report_2011 + report_2012 + f6hn, plafond_grosses_reparations)
 
     def formula_2015(foyer_fiscal, period, parameters):
         '''
         Dépenses de grosses réparations des nus-propriétaires
         '''
         f6cb = foyer_fiscal('f6cb', period)
-        f6hj = foyer_fiscal('f6hj', period)
-        f6hk = foyer_fiscal('f6hk', period)
-        f6hl = foyer_fiscal('f6hl', period)
-        f6hm = foyer_fiscal('f6hm', period)
-        f6hn = foyer_fiscal('f6hn', period)
-        f6ho = foyer_fiscal('f6ho', period)
+        report_2009 = foyer_fiscal('f6hj', period)
+        report_2010 = foyer_fiscal('f6hk', period)
+        report_2011 = foyer_fiscal('f6hl', period)
+        report_2012 = foyer_fiscal('f6hm', period)
+        report_2013 = foyer_fiscal('f6hn', period)
+        report_2014 = foyer_fiscal('f6ho', period)
         plafond_grosses_reparations = parameters(period).impot_revenu.charges_deductibles.grosses_reparations.plafond
 
-        return min_(f6cb + f6hj + f6hk + f6hl + f6hm + f6hn + f6ho, plafond_grosses_reparations)
+        return min_(f6cb + report_2009 + report_2010 + report_2011 + report_2012 + report_2013 + report_2014, plafond_grosses_reparations)
 
     def formula_2016(foyer_fiscal, period, parameters):
         '''
         Dépenses de grosses réparations des nus-propriétaires
         '''
         f6cb = foyer_fiscal('f6cb', period)
-        f6hj = foyer_fiscal('f6hj', period)
-        f6hk = foyer_fiscal('f6hk', period)
-        f6hl = foyer_fiscal('f6hl', period)
-        f6hm = foyer_fiscal('f6hm', period)
-        f6hn = foyer_fiscal('f6hn', period)
-        f6ho = foyer_fiscal('f6ho', period)
-        f6hp = foyer_fiscal('f6hp', period)
+        report_2009 = foyer_fiscal('f6hj', period)
+        report_2010 = foyer_fiscal('f6hk', period)
+        report_2011 = foyer_fiscal('f6hl', period)
+        report_2012 = foyer_fiscal('f6hm', period)
+        report_2013 = foyer_fiscal('f6hn', period)
+        report_2014 = foyer_fiscal('f6ho', period)
+        report_2015 = foyer_fiscal('f6hp', period)
         plafond_grosses_reparations = parameters(period).impot_revenu.charges_deductibles.grosses_reparations.plafond
 
-        return min_(f6cb + f6hj + f6hk + f6hl + f6hm + f6hn + f6ho + f6hp, plafond_grosses_reparations)
+        return min_(f6cb + report_2009 + report_2010 + report_2011 + report_2012 + report_2013 + report_2014 + report_2015, plafond_grosses_reparations)
