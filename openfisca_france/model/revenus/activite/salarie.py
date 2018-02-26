@@ -266,6 +266,7 @@ class contrat_de_travail_debut(Variable):
     entity = Individu
     label = u"Date d'arrivée dans l'entreprise"
     definition_period = MONTH
+    base_function = requested_period_last_or_next_value
     set_input = set_input_dispatch_by_period
 
 
@@ -275,6 +276,7 @@ class contrat_de_travail_fin(Variable):
     entity = Individu
     label = u"Date de départ de l'entreprise"
     definition_period = MONTH
+    base_function = requested_period_last_or_next_value
     set_input = set_input_dispatch_by_period
 
 
