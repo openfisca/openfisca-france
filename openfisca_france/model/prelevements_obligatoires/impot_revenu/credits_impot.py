@@ -857,9 +857,7 @@ class divide(Variable):
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         f2dc = foyer_fiscal('f2dc', period)
         f2gr = foyer_fiscal('f2gr', period)
-        _P = parameters(period)
-
-        P = _P.impot_revenu.credits_impot.divide
+        P = parameters(period).impot_revenu.credits_impot.divide
 
         max1 = P.max * (maries_ou_pacses + 1)
         return min_(P.taux * (f2dc + f2gr), max1)
@@ -877,9 +875,8 @@ class drbail(Variable):
         2002-
         '''
         f4tq = foyer_fiscal('f4tq', period)
-        _P = parameters(period)
-
-        P = _P.impot_revenu.credits_impot.drbail
+        P = parameters(period).impot_revenu.credits_impot.drbail
+        
         return P.taux * f4tq
 
 
@@ -921,9 +918,7 @@ class inthab(Variable):
         nbR = foyer_fiscal('nbR', period)
         f7vy = foyer_fiscal('f7vy', period)
         f7vz = foyer_fiscal('f7vz', period)
-        _P = parameters(period)
-
-        P = _P.impot_revenu.credits_impot.inthab
+        P = parameters(period).impot_revenu.credits_impot.inthab
 
         invalide = caseP | caseF | (nbG != 0) | (nbR != 0)
         max0 = P.max * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac2 * P.add
@@ -946,9 +941,7 @@ class inthab(Variable):
         f7vx = foyer_fiscal('f7vx', period)
         f7vy = foyer_fiscal('f7vy', period)
         f7vz = foyer_fiscal('f7vz', period)
-        _P = parameters(period)
-
-        P = _P.impot_revenu.credits_impot.inthab
+        P = parameters(period).impot_revenu.credits_impot.inthab
 
         invalide = caseP | caseF | (nbG != 0) | (nbR != 0)
         max0 = P.max * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac2 * P.add
@@ -974,9 +967,7 @@ class inthab(Variable):
         f7vx = foyer_fiscal('f7vx', period)
         f7vy = foyer_fiscal('f7vy', period)
         f7vz = foyer_fiscal('f7vz', period)
-        _P = parameters(period)
-
-        P = _P.impot_revenu.credits_impot.inthab
+        P = parameters(period).impot_revenu.credits_impot.inthab
 
         invalide = caseP | caseF | (nbG != 0) | (nbR != 0)
         max0 = P.max * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac2 * P.add
@@ -1006,9 +997,7 @@ class inthab(Variable):
         f7vx = foyer_fiscal('f7vx', period)
         f7vy = foyer_fiscal('f7vy', period)
         f7vz = foyer_fiscal('f7vz', period)
-        _P = parameters(period)
-
-        P = _P.impot_revenu.credits_impot.inthab
+        P = parameters(period).impot_revenu.credits_impot.inthab
 
         invalide = caseP | caseF | (nbG != 0) | (nbR != 0)
         max0 = P.max * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac2 * P.add
@@ -1044,9 +1033,7 @@ class inthab(Variable):
         f7vx = foyer_fiscal('f7vx', period)
         f7vy = foyer_fiscal('f7vy', period)
         f7vz = foyer_fiscal('f7vz', period)
-        _P = parameters(period)
-
-        P = _P.impot_revenu.credits_impot.inthab
+        P = parameters(period).impot_revenu.credits_impot.inthab
 
         invalide = caseP | caseF | (nbG != 0) | (nbR != 0) | (nbI != 0)
         max0 = P.max * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac2 * P.add
@@ -1082,9 +1069,7 @@ class inthab(Variable):
         f7vv = foyer_fiscal('f7vv', period)
         f7vx = foyer_fiscal('f7vx', period)
         f7vz = foyer_fiscal('f7vz', period)
-        _P = parameters(period)
-
-        P = _P.impot_revenu.credits_impot.inthab
+        P = parameters(period).impot_revenu.credits_impot.inthab
 
         invalide = caseP | caseF | (nbG != 0) | (nbR != 0) | (nbI != 0)
         max0 = P.max * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac2 * P.add
@@ -1115,9 +1100,7 @@ class inthab(Variable):
         f7vv = foyer_fiscal('f7vv', period)
         f7vx = foyer_fiscal('f7vx', period)
         f7vz = foyer_fiscal('f7vz', period)
-        _P = parameters(period)
-
-        P = _P.impot_revenu.credits_impot.inthab
+        P = parameters(period).impot_revenu.credits_impot.inthab
 
         invalide = caseP | caseF | (nbG != 0) | (nbR != 0) | (nbI != 0)
         max0 = P.max * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac2 * P.add
@@ -1145,9 +1128,7 @@ class inthab(Variable):
         f7vt = foyer_fiscal('f7vt', period)
         f7vx = foyer_fiscal('f7vx', period)
         f7vz = foyer_fiscal('f7vz', period)
-        _P = parameters(period)
-
-        P = _P.impot_revenu.credits_impot.inthab
+        P = parameters(period).impot_revenu.credits_impot.inthab
 
         invalide = caseP | caseF | (nbG != 0) | (nbR != 0) | (nbI != 0)
         max0 = P.max * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac2 * P.add
@@ -1241,9 +1222,9 @@ class percvm(Variable):
         -2010
         '''
         f3vv_end_2010 = foyer_fiscal('f3vv_end_2010', period)
-        _P = parameters(period)
+        P = parameters(period).impot_revenu.credits_impot.percvm
 
-        return _P.impot_revenu.credits_impot.percvm.taux * f3vv_end_2010
+        return P.taux * f3vv_end_2010
 
 
 class preetu(Variable):
@@ -1258,9 +1239,7 @@ class preetu(Variable):
         2005
         '''
         f7uk = foyer_fiscal('f7uk', period)
-        _P = parameters(period)
-
-        P = _P.impot_revenu.credits_impot.preetu
+        P = parameters(period).impot_revenu.credits_impot.preetu
 
         return P.taux * min_(f7uk, P.max)
 
@@ -1271,9 +1250,7 @@ class preetu(Variable):
         '''
         f7uk = foyer_fiscal('f7uk', period)
         f7vo = foyer_fiscal('f7vo', period)
-        _P = parameters(period)
-
-        P = _P.impot_revenu.credits_impot.preetu
+        P = parameters(period).impot_revenu.credits_impot.preetu
 
         max1 = P.max * (1 + f7vo)
         return P.taux * min_(f7uk, max1)
@@ -1286,9 +1263,7 @@ class preetu(Variable):
         f7uk = foyer_fiscal('f7uk', period)
         f7vo = foyer_fiscal('f7vo', period)
         f7td = foyer_fiscal('f7td', period)
-        _P = parameters(period)
-
-        P = _P.impot_revenu.credits_impot.preetu
+        P = parameters(period).impot_revenu.credits_impot.preetu
 
         max1 = P.max * f7vo
         return P.taux * min_(f7uk, P.max) + P.taux * min_(f7td, max1)
@@ -1309,10 +1284,10 @@ class prlire(Variable):
         f2dh = foyer_fiscal('f2dh', period)
         f2ch = foyer_fiscal('f2ch', period)
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
-        _P = parameters(period)
+        P = parameters(period)
 
-        plaf_resid = max_(_P.impot_revenu.rvcm.abat_assvie * (1 + maries_ou_pacses) - f2ch, 0)
-        return _P.impot_revenu.credits_impot.prlire.taux * min_(f2dh, plaf_resid)
+        plaf_resid = max_(P.impot_revenu.rvcm.abat_assvie * (1 + maries_ou_pacses) - f2ch, 0)
+        return P.impot_revenu.credits_impot.prlire.taux * min_(f2dh, plaf_resid)
 
 
 class quaenv(Variable):
@@ -1333,9 +1308,7 @@ class quaenv(Variable):
         f7wf = foyer_fiscal('f7wf', period)
         f7wg = foyer_fiscal('f7wg', period)
         f7wh = foyer_fiscal('f7wh', period)
-        _P = parameters(period)
-
-        P = _P.impot_revenu.credits_impot.quaenv
+        P = parameters(period).impot_revenu.credits_impot.quaenv
 
         n = nb_pac2
         max0 = P.max * (1 + maries_ou_pacses) + P.pac1 * (n >= 1) + P.pac2 * (n >= 2) + P.pac2 * (max_(n - 2, 0))
@@ -1358,9 +1331,7 @@ class quaenv(Variable):
         f7wg = foyer_fiscal('f7wg', period)
         f7wh = foyer_fiscal('f7wh', period)
         f7wq = foyer_fiscal('f7wq', period)
-        _P = parameters(period)
-
-        P = _P.impot_revenu.credits_impot.quaenv
+        P = parameters(period).impot_revenu.credits_impot.quaenv
 
         max0 = P.max * (1 + maries_ou_pacses) + P.pac1 * nb_pac2
 
@@ -1391,9 +1362,8 @@ class quaenv(Variable):
         f7sd = foyer_fiscal('f7sd', period)
         f7se = foyer_fiscal('f7se', period)
         rfr = foyer_fiscal('rfr', period)
-        _P = parameters(period)
+        P = parameters(period).impot_revenu.credits_impot.quaenv
 
-        P = _P.impot_revenu.credits_impot.quaenv
         max0 = P.max * (1 + maries_ou_pacses) + P.pac1 * nb_pac2
 
         max1 = max_(0, max0 - f7wf)
@@ -1434,9 +1404,8 @@ class quaenv(Variable):
         f7se = foyer_fiscal('f7se', period)
         f7sh = foyer_fiscal('f7sh', period)
         rfr = foyer_fiscal('rfr', period)
-        _P = parameters(period)
+        P = parameters(period).impot_revenu.credits_impot.quaenv
 
-        P = _P.impot_revenu.credits_impot.quaenv
         max0 = P.max * (1 + maries_ou_pacses) + P.pac1 * nb_pac2
 
         max1 = max_(0, max0 - f7wf)
@@ -1665,12 +1634,9 @@ class saldom2(Variable):
         f7db = foyer_fiscal('f7db', period)
         f7dg = foyer_fiscal('f7dg', period)
         f7dl = foyer_fiscal('f7dl', period)
-        _P = parameters(period)
-
-        P = _P.impot_revenu.reductions_impots.salarie_domicile
+        P = parameters(period).impot_revenu.reductions_impots.salarie_domicile
 
         isinvalid = f7dg
-
         nbpacmin = nb_pac2 + f7dl
         maxBase = P.max1
         maxDuMaxNonInv = P.max2
@@ -1689,12 +1655,9 @@ class saldom2(Variable):
         f7dg = foyer_fiscal('f7dg', period)
         f7dl = foyer_fiscal('f7dl', period)
         f7dq = foyer_fiscal('f7dq', period)
-        _P = parameters(period)
-
-        P = _P.impot_revenu.reductions_impots.salarie_domicile
+        P = parameters(period).impot_revenu.reductions_impots.salarie_domicile
 
         isinvalid = f7dg
-
         annee1 = f7dq
         nbpacmin = nb_pac2 + f7dl
         maxBase = P.max1 * not_(annee1) + P.max1_1ereAnnee * annee1
