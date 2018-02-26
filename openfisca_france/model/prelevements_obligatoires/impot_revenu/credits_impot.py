@@ -1037,11 +1037,7 @@ class inthab(Variable):
         max0 = P.max * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac_majoration_plafond * P.add
 
         max1 = max_(max0 - f7vx, 0)
-        max2 = max_(max1 - f7vy, 0)
         max3 = max_(max2 - f7vw, 0)
-        max4 = max_(max3 - f7vu, 0)
-        max5 = max_(max4 - f7vz, 0)
-        max6 = max_(max5 - f7vv, 0)
         return (
             P.taux1 * min_(f7vx, max0) +
             P.taux1 * min_(f7vy, max1) +
