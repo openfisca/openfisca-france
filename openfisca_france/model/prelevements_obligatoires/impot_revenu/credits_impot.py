@@ -924,8 +924,10 @@ class inthab(Variable):
         max0 = P.max * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac2 * P.add
 
         max1 = max_(max0 - f7vy, 0)
-        return (P.taux1 * min_(f7vy, max0) +
-                    P.taux3 * min_(f7vz, max1))
+        return (
+            P.taux1 * min_(f7vy, max0) +
+            P.taux3 * min_(f7vz, max1)
+            )
 
     def formula_2009_01_01(foyer_fiscal, period, parameters):
         '''
@@ -948,9 +950,11 @@ class inthab(Variable):
 
         max1 = max_(max0 - f7vx, 0)
         max2 = max_(max1 - f7vy, 0)
-        return (P.taux1 * min_(f7vx, max0) +
-                    P.taux1 * min_(f7vy, max1) +
-                    P.taux3 * min_(f7vz, max2))
+        return (
+            P.taux1 * min_(f7vx, max0) +
+            P.taux1 * min_(f7vy, max1) +
+            P.taux3 * min_(f7vz, max2)
+            )
 
     def formula_2010_01_01(foyer_fiscal, period, parameters):
         '''
@@ -975,10 +979,12 @@ class inthab(Variable):
         max1 = max_(max0 - f7vx, 0)
         max2 = max_(max1 - f7vy, 0)
         max3 = max_(max2 - f7vw, 0)
-        return (P.taux1 * min_(f7vx, max0) +
-                    P.taux1 * min_(f7vy, max1) +
-                    P.taux2 * min_(f7vw, max2) +
-                    P.taux3 * min_(f7vz, max3))
+        return (
+            P.taux1 * min_(f7vx, max0) +
+            P.taux1 * min_(f7vy, max1) +
+            P.taux2 * min_(f7vw, max2) +
+            P.taux3 * min_(f7vz, max3)
+            )
 
     def formula_2011_01_01(foyer_fiscal, period, parameters):
         '''
@@ -1007,12 +1013,14 @@ class inthab(Variable):
         max3 = max_(max2 - f7vw, 0)
         max4 = max_(max3 - f7vu, 0)
         max5 = max_(max4 - f7vz, 0)
-        return (P.taux1 * min_(f7vx, max0) +
-                    P.taux1 * min_(f7vy, max1) +
-                    P.taux2 * min_(f7vw, max2) +
-                    P.taux3 * min_(f7vu, max3) +
-                    P.taux4 * min_(f7vz, max4) +
-                    P.taux5 * min_(f7vv, max5))
+        return (
+            P.taux1 * min_(f7vx, max0) +
+            P.taux1 * min_(f7vy, max1) +
+            P.taux2 * min_(f7vw, max2) +
+            P.taux3 * min_(f7vu, max3) +
+            P.taux4 * min_(f7vz, max4) +
+            P.taux5 * min_(f7vv, max5)
+            )
 
     def formula_2012_01_01(foyer_fiscal, period, parameters):
         '''
@@ -1044,13 +1052,15 @@ class inthab(Variable):
         max4 = max_(max3 - f7vu, 0)
         max5 = max_(max4 - f7vz, 0)
         max6 = max_(max5 - f7vv, 0)
-        return (P.taux1 * min_(f7vx, max0) +
-                    P.taux1 * min_(f7vy, max1) +
-                    P.taux2 * min_(f7vw, max2) +
-                    P.taux3 * min_(f7vu, max3) +
-                    P.taux4 * min_(f7vz, max4) +
-                    P.taux5 * min_(f7vv, max5) +
-                    P.taux6 * min_(f7vt, max6))
+        return (
+            P.taux1 * min_(f7vx, max0) +
+            P.taux1 * min_(f7vy, max1) +
+            P.taux2 * min_(f7vw, max2) +
+            P.taux3 * min_(f7vu, max3) +
+            P.taux4 * min_(f7vz, max4) +
+            P.taux5 * min_(f7vv, max5) +
+            P.taux6 * min_(f7vt, max6)
+            )
 
     def formula_2014_01_01(foyer_fiscal, period, parameters):
         '''
@@ -1078,11 +1088,13 @@ class inthab(Variable):
         max2 = max_(max1 - f7vu, 0)
         max3 = max_(max2 - f7vz, 0)
         max4 = max_(max3 - f7vv, 0)
-        return (P.taux1 * min_(f7vx, max0) +
-                    P.taux3 * min_(f7vu, max1) +
-                    P.taux4 * min_(f7vz, max2) +
-                    P.taux5 * min_(f7vv, max3) +
-                    P.taux6 * min_(f7vt, max4))
+        return (
+            P.taux1 * min_(f7vx, max0) +
+            P.taux3 * min_(f7vu, max1) +
+            P.taux4 * min_(f7vz, max2) +
+            P.taux5 * min_(f7vv, max3) +
+            P.taux6 * min_(f7vt, max4)
+            )
 
     def formula_2015_01_01(foyer_fiscal, period, parameters):
         '''
@@ -1108,10 +1120,12 @@ class inthab(Variable):
         max1 = max_(max0 - f7vx, 0)
         max2 = max_(max1 - f7vz, 0)
         max3 = max_(max2 - f7vv, 0)
-        return (P.taux1 * min_(f7vx, max0) +
-                    P.taux4 * min_(f7vz, max1) +
-                    P.taux5 * min_(f7vv, max2) +
-                    P.taux6 * min_(f7vt, max3))
+        return (
+            P.taux1 * min_(f7vx, max0) +
+            P.taux4 * min_(f7vz, max1) +
+            P.taux5 * min_(f7vv, max2) +
+            P.taux6 * min_(f7vt, max3)
+            )
 
     def formula_2016_01_01(foyer_fiscal, period, parameters):
         '''
@@ -1135,9 +1149,11 @@ class inthab(Variable):
 
         max1 = max_(max0 - f7vx, 0)
         max2 = max_(max1 - f7vz, 0)
-        return (P.taux1 * min_(f7vx, max0) +
-                    P.taux4 * min_(f7vz, max1) +
-                    P.taux6 * min_(f7vt, max2))
+        return (
+            P.taux1 * min_(f7vx, max0) +
+            P.taux4 * min_(f7vz, max1) +
+            P.taux6 * min_(f7vt, max2)
+            )
 
 
 class jeunes(Variable):
