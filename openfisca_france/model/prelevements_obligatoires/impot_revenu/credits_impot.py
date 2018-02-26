@@ -324,9 +324,7 @@ class aidper(Variable):
         nb_pac_majoration_plafond = foyer_fiscal('nb_pac2', period)
         nbH = foyer_fiscal('nbH', period)
         f7wi = foyer_fiscal('f7wi', period)
-        _P = parameters(period)
-
-        P = _P.impot_revenu.credits_impot.aidper
+        P = parameters(period).impot_revenu.credits_impot.aidper
 
         n = nb_pac_majoration_plafond - nbH / 2
         max0 = (P.max * (1 + maries_ou_pacses) +
@@ -348,9 +346,7 @@ class aidper(Variable):
         nbH = foyer_fiscal('nbH', period)
         f7wi = foyer_fiscal('f7wi', period)
         f7wj = foyer_fiscal('f7wj', period)
-        _P = parameters(period)
-
-        P = _P.impot_revenu.credits_impot.aidper
+        P = parameters(period).impot_revenu.credits_impot.aidper
 
         n = nb_pac_majoration_plafond - nbH/2
         max0 = (P.max * (1 + maries_ou_pacses) +
@@ -374,12 +370,9 @@ class aidper(Variable):
         nb_pac_majoration_plafond = foyer_fiscal('nb_pac2', period)
         f7wi = foyer_fiscal('f7wi', period)
         f7wj = foyer_fiscal('f7wj', period)
-        _P = parameters(period)
-
-        P = _P.impot_revenu.credits_impot.aidper
+        P = parameters(period).impot_revenu.credits_impot.aidper
 
         max0 = P.max * (1 + maries_ou_pacses) + P.pac1 * nb_pac2
-
         max1 = max_(0, max0 - f7wj)
         return (P.taux_wj * min_(f7wj, max0) +
                     P.taux_wi * min_(f7wi, max1))
@@ -396,12 +389,9 @@ class aidper(Variable):
         f7wi = foyer_fiscal('f7wi', period)
         f7wj = foyer_fiscal('f7wj', period)
         f7wl = foyer_fiscal('f7wl', period)
-        _P = parameters(period)
-
-
-        P = _P.impot_revenu.credits_impot.aidper
+        P = parameters(period).impot_revenu.credits_impot.aidper
+        
         max0 = P.max * (1 + maries_ou_pacses) + P.pac1 * nb_pac2
-
         max1 = max_(0, max0 - f7wl - f7sf)
         max2 = max_(0, max1 - f7wj)
         return P.taux_wl * min_(f7wl+f7sf, max0) + P.taux_wj * min_(f7wj, max1)  + P.taux_wi * min_(f7wi, max2)
@@ -418,9 +408,8 @@ class aidper(Variable):
         f7wj = foyer_fiscal('f7wj', period)
         f7wl = foyer_fiscal('f7wl', period)
         f7wr = foyer_fiscal('f7wr', period)
-        _P = parameters(period)
-
-        P = _P.impot_revenu.credits_impot.aidper
+        P = parameters(period).impot_revenu.credits_impot.aidper
+       
         # On ne contrôle pas que 7WR ne dépasse pas le plafond (ça dépend du nombre de logements (7sa) et de la nature des
         #travaux, c'est un peu le bordel)
         max00 = P.max * (1 + maries_ou_pacses)
@@ -441,9 +430,8 @@ class aidper(Variable):
         f7wj = foyer_fiscal('f7wj', period)
         f7wl = foyer_fiscal('f7wl', period)
         f7wr = foyer_fiscal('f7wr', period)
-        _P = parameters(period)
+        P = parameters(period).impot_revenu.credits_impot.aidper
 
-        P = _P.impot_revenu.credits_impot.aidper
         # On ne contrôle pas que 7WR ne dépasse pas le plafond (ça dépend du nombre de logements et de la nature des
         # travaux, c'est un peu le bordel)
         max00 = P.max * (1 + maries_ou_pacses)
@@ -464,9 +452,8 @@ class aidper(Variable):
         f7wj = foyer_fiscal('f7wj', period)
         f7wl = foyer_fiscal('f7wl', period)
         f7wr = foyer_fiscal('f7wr', period)
-        _P = parameters(period)
-
-        P = _P.impot_revenu.credits_impot.aidper
+        P = parameters(period).impot_revenu.credits_impot.aidper
+        
         # On ne contrôle pas que 7WR ne dépasse pas le plafond (ça dépend du nombre de logements et de la nature des
         # travaux, c'est un peu le bordel)
         max00 = P.max * (1 + maries_ou_pacses)
@@ -491,9 +478,9 @@ class assloy(Variable):
         2005-
         '''
         f4bf = foyer_fiscal('f4bf', period)
-        _P = parameters(period)
+        P = parameters(period).impot_revenu.credits_impot.assloy
 
-        return _P.impot_revenu.credits_impot.assloy.taux * f4bf
+        return P.taux * f4bf
 
 
 class autent(Variable):
@@ -529,9 +516,8 @@ class ci_garext(Variable):
         f7ge = foyer_fiscal('f7ge', period)
         f7gf = foyer_fiscal('f7gf', period)
         f7gg = foyer_fiscal('f7gg', period)
-        _P = parameters(period)
+        P = parameters(period).impot_revenu.credits_impot.garext
 
-        P = _P.impot_revenu.credits_impot.garext
         max1 = P.plafond
         return P.taux * (min_(f7ga, max1) +
                               min_(f7gb, max1) +
