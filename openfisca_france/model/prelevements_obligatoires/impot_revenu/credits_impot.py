@@ -1164,7 +1164,7 @@ class inthab(Variable):
         f7vz = foyer_fiscal('f7vz', period)
         P = parameters(period).impot_revenu.credits_impot.inthab
 
-        invalide = caseP | caseF | (nbG != 0) | (nbR != 0) | (nbI != 0)
+        invalide = invalidite_decl | invalidite_conj | (nbpac_invalideG != 0) | (nbpac_invalideR != 0) | (nbpac_invalideI != 0)
         max0 = P.max * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac_majoration_plafond * P.add
 
         max1 = max_(max0 - f7vx, 0)
@@ -1186,18 +1186,18 @@ class inthab(Variable):
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         nb_pac_majoration_plafond = foyer_fiscal('nb_pac2', period)
-        caseP = foyer_fiscal('caseP', period)
-        caseF = foyer_fiscal('caseF', period)
-        nbG = foyer_fiscal('nbG', period)
-        nbR = foyer_fiscal('nbR', period)
-        nbI = foyer_fiscal('nbI', period)
+        invalidite_decl = foyer_fiscal('caseP', period)
+        invalidite_conj = foyer_fiscal('caseF', period)
+        nbpac_invalideG = foyer_fiscal('nbG', period)
+        nbpac_invalideR = foyer_fiscal('nbR', period)
+        nbpac_invalideI = foyer_fiscal('nbI', period)
         f7vt = foyer_fiscal('f7vt', period)
         f7vv = foyer_fiscal('f7vv', period)
         f7vx = foyer_fiscal('f7vx', period)
         f7vz = foyer_fiscal('f7vz', period)
         P = parameters(period).impot_revenu.credits_impot.inthab
 
-        invalide = caseP | caseF | (nbG != 0) | (nbR != 0) | (nbI != 0)
+        invalide = invalidite_decl | invalidite_conj | (nbpac_invalideG != 0) | (nbpac_invalideR != 0) | (nbpac_invalideI != 0)
         max0 = P.max * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac_majoration_plafond * P.add
 
         max1 = max_(max0 - f7vx, 0)
@@ -1217,17 +1217,17 @@ class inthab(Variable):
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         nb_pac_majoration_plafond = foyer_fiscal('nb_pac2', period)
-        caseP = foyer_fiscal('caseP', period)
-        caseF = foyer_fiscal('caseF', period)
-        nbG = foyer_fiscal('nbG', period)
-        nbR = foyer_fiscal('nbR', period)
-        nbI = foyer_fiscal('nbI', period)
+        invalidite_decl = foyer_fiscal('caseP', period)
+        invalidite_conj = foyer_fiscal('caseF', period)
+        nbpac_invalideG = foyer_fiscal('nbG', period)
+        nbpac_invalideR = foyer_fiscal('nbR', period)
+        nbpac_invalideI = foyer_fiscal('nbI', period)
         f7vt = foyer_fiscal('f7vt', period)
         f7vx = foyer_fiscal('f7vx', period)
         f7vz = foyer_fiscal('f7vz', period)
         P = parameters(period).impot_revenu.credits_impot.inthab
 
-        invalide = caseP | caseF | (nbG != 0) | (nbR != 0) | (nbI != 0)
+        invalide = invalidite_decl | invalidite_conj | (nbpac_invalideG != 0) | (nbpac_invalideR != 0) | (nbpac_invalideI != 0)
         max0 = P.max * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac_majoration_plafond * P.add
 
         max1 = max_(max0 - f7vx, 0)
