@@ -263,10 +263,11 @@ class f3sm(Variable):
     end = '2014-12-31'
     definition_period = YEAR
 
-class abatnet_retraite_dirigeant_pme(Variable):
+class abattement_net_retraite_dirigeant_pme(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
+    reference = u"http://bofip.impots.gouv.fr/bofip/2894-PGP"
     label = u"Abattement net pour durée de détention des titres en cas de départ à la retraite d'un dirigeant"
     definition_period = YEAR
 
@@ -276,10 +277,11 @@ class abatnet_retraite_dirigeant_pme(Variable):
 
         return f3va - f3vb
 
-class abatnet_duree_detention(Variable):
+class abattement_net_duree_detention(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
+    reference = u"http://bofip.impots.gouv.fr/bofip/9540-PGP"
     label = u"Abattement net pour durée de détention"
     definition_period = YEAR
 

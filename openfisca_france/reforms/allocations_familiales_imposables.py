@@ -48,7 +48,7 @@ class allocations_familiales_imposables(Reform):
 
         def formula(foyer_fiscal, period, parameters):
             allocations_familiales_imposables = foyer_fiscal('allocations_familiales_imposables')
-            abatnet_retraite_dirigeant_pme = foyer_fiscal('abatnet_retraite_dirigeant_pme')
+            abattement_net_retraite_dirigeant_pme = foyer_fiscal('abattement_net_retraite_dirigeant_pme')
             f3vi_holder = foyer_fiscal.members('f3vi')
             f3vz = foyer_fiscal('f3vz')
             rfr_cd = foyer_fiscal('rfr_cd')
@@ -65,7 +65,7 @@ class allocations_familiales_imposables(Reform):
 
             return (
                 max_(0, rni - allocations_familiales_imposables) +
-                rfr_cd + rfr_rvcm + rev_cap_lib + f3vi + rpns_exon + rpns_pvce + abatnet_retraite_dirigeant_pme + f3vz + microentreprise
+                rfr_cd + rfr_rvcm + rev_cap_lib + f3vi + rpns_exon + rpns_pvce + abattement_net_retraite_dirigeant_pme + f3vz + microentreprise
                 )
 
             # TO CHECK : f3vb after 2015 (abattements sur moins-values = interdits)

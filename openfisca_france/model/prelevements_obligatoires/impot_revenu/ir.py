@@ -1685,8 +1685,8 @@ class rfr(Variable):
         f3vg -> rev_cat_pv -> ... -> rni
         '''
         rni = foyer_fiscal('rni', period)
-        abattement_retraite_dirigeant_pme = foyer_fiscal('abatnet_retraite_dirigeant_pme', period)
-        abattement_net_duree_detention = foyer_fiscal('abatnet_duree_detention', period)
+        abattement_net_retraite_dirigeant_pme = foyer_fiscal('abattement_net_retraite_dirigeant_pme', period)
+        abattement_net_duree_detention = foyer_fiscal('abattement_net_duree_detention', period)
         rfr_pv = foyer_fiscal('rfr_pv', period)
         rfr_cd = foyer_fiscal('rfr_cd', period)
         rfr_rvcm = foyer_fiscal('rfr_rvcm', period)
@@ -1698,7 +1698,7 @@ class rfr(Variable):
 
         rpns_exon = foyer_fiscal.sum(rpns_exon_i)
         rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
-        return (max_(0, rni) + rfr_cd + rfr_pv + rfr_rvcm + rev_cap_lib + rpns_exon + rpns_pvce + abattement_retraite_dirigeant_pme +
+        return (max_(0, rni) + rfr_cd + rfr_pv + rfr_rvcm + rev_cap_lib + rpns_exon + rpns_pvce + abattement_net_retraite_dirigeant_pme +
                 abattement_net_duree_detention + f2dm +  microentreprise)
         
         # TO CHECK : f3vb after 2015 (abattements sur moins-values = interdits)
