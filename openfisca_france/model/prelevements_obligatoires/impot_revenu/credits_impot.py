@@ -876,6 +876,7 @@ class inthab(Variable):
     label = u"Crédit d’impôt intérêts des emprunts pour l’habitation principale"
     reference = u"http://bofip.impots.gouv.fr/bofip/3863-PGP.html?identifiant=BOI-IR-RICI-350-20120912"
     definition_period = YEAR
+    end = '2016-12-31'
 
     def formula_2007_01_01(foyer_fiscal, period, parameters):
         '''
