@@ -1165,7 +1165,7 @@ class inthab(Variable):
         P = parameters(period).impot_revenu.credits_impot.inthab
 
         invalide = caseP | caseF | (nbG != 0) | (nbR != 0) | (nbI != 0)
-        max0 = P.max * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac2 * P.add
+        max0 = P.max * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac_majoration_plafond * P.add
 
         max1 = max_(max0 - f7vx, 0)
         max2 = max_(max1 - f7vu, 0)
@@ -1185,7 +1185,7 @@ class inthab(Variable):
         2015
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
-        nb_pac2 = foyer_fiscal('nb_pac2', period)
+        nb_pac_majoration_plafond = foyer_fiscal('nb_pac2', period)
         caseP = foyer_fiscal('caseP', period)
         caseF = foyer_fiscal('caseF', period)
         nbG = foyer_fiscal('nbG', period)
@@ -1198,7 +1198,7 @@ class inthab(Variable):
         P = parameters(period).impot_revenu.credits_impot.inthab
 
         invalide = caseP | caseF | (nbG != 0) | (nbR != 0) | (nbI != 0)
-        max0 = P.max * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac2 * P.add
+        max0 = P.max * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac_majoration_plafond * P.add
 
         max1 = max_(max0 - f7vx, 0)
         max2 = max_(max1 - f7vz, 0)
@@ -1216,7 +1216,7 @@ class inthab(Variable):
         2016
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
-        nb_pac2 = foyer_fiscal('nb_pac2', period)
+        nb_pac_majoration_plafond = foyer_fiscal('nb_pac2', period)
         caseP = foyer_fiscal('caseP', period)
         caseF = foyer_fiscal('caseF', period)
         nbG = foyer_fiscal('nbG', period)
@@ -1228,7 +1228,7 @@ class inthab(Variable):
         P = parameters(period).impot_revenu.credits_impot.inthab
 
         invalide = caseP | caseF | (nbG != 0) | (nbR != 0) | (nbI != 0)
-        max0 = P.max * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac2 * P.add
+        max0 = P.max * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac_majoration_plafond * P.add
 
         max1 = max_(max0 - f7vx, 0)
         max2 = max_(max1 - f7vz, 0)
