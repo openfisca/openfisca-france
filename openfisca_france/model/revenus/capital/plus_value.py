@@ -61,6 +61,8 @@ class f3sa(Variable):
     cerfa_field = u"3SA"
     value_type = int
     entity = FoyerFiscal
+    label = u"Plus-values de cessions de titres réalisées par un entrepreneur, taxables à 19%"
+    # start_date = date(2012, 1, 1)
     end = '2012-12-31'
     definition_period = YEAR
 
