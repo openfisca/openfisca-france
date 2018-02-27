@@ -4,6 +4,7 @@ from __future__ import division
 
 from functools import partial
 
+import numpy as np
 from numpy import absolute as abs_, apply_along_axis, array, int32, logical_or as or_
 
 from openfisca_france.model.base import *  # noqa analysis:ignore
@@ -132,56 +133,91 @@ class cmu_eligible_majoration_dom(Variable):
         return residence_guadeloupe | residence_martinique | residence_guyane | residence_reunion
 
 
+def get_rank(entity, criteria, condition = True):
+    """
+    Get the rank of a person within an entity according the a criteria
+    If condition is specified, then the persons who don't respect it won't be taken into account.
+    """
+    nb = entity.nb_persons()
+    ids = entity.members_entity_id
+    positions = entity.members_position
+    mask = np.argsort(ids)  # mask to group the individus by entity
+    biggest_entity_size = np.max(positions) + 1
+
+    def get_kth_column(k):
+        """
+            Get the value of criteria for the kth persons of each family.
+            If the kth person does not respect the condition, get np.inf instead
+            The result has the same dimension than the number of families
+        """
+        result = entity.filled_array(np.inf)
+        filtered_criteria = np.where(condition, criteria, np.inf)
+        # For families that have at least k persons, set the result as the value of criteria for the person for which the position is k.
+        # The mask is needed b/c the order of the kth persons of each family in the persons vector is not necessarily the same than the family order.
+        result[nb > k] = filtered_criteria[mask][positions[mask] == k]
+
+        return result
+
+    # Matrix: the value in line i and column j is the value of criteria for the jth person of the ith entity
+    matrix = np.asarray([get_kth_column(i) for i in range(biggest_entity_size)]).transpose()
+
+    # We double-argsort all lines of the matrix.
+    # Double-argsorting gets the rank of each value once sorted
+    sorted_matrix = np.argsort(np.argsort(matrix))
+
+    # Build the result vector by taking for each person the value in the right line (corresponding to its family id) and the right column (corresponding to its position)
+    result = sorted_matrix[ids, positions]
+
+    # Return -1 for the persons who don't respect the condition
+    return np.where(condition, result, -1)
+
+
 class cmu_c_plafond(Variable):
     value_type = float
     entity = Famille
     label = u"Plafond annuel de ressources pour l'éligibilité à la CMU-C"
     definition_period = MONTH
 
-    def formula(self, simulation, period):
-        age_holder = simulation.compute('age', period)
-        alt_holder = simulation.compute('garde_alternee', period)
-        cmu_eligible_majoration_dom = simulation.calculate('cmu_eligible_majoration_dom', period)
-        # cmu_nbp_foyer = simulation.calculate('cmu_nbp_foyer', period)
-        P = simulation.parameters_at(period.start).cmu
+    def formula(famille, period, parameters):
+        """
+        Le plafond dépends du nombre de personnes dans le foyer.
+        Il y a 3 taux: celui pour la 2eme personne, celui pour les 3e et 4e personne, et celui pour toute personne supplémentaire
+        Si un enfant est en garde alternée, on ne prend en compte que la moitié de son coefficient.
+        Pour savoir quel coefficient est attribué à chaque enfant, il faut trier les enfants de chaque famille par age.
+        """
 
-        PAC = [PART] + ENFS
+        cmu = parameters(period).cmu
+        age_i = famille.members('age', period)
+        is_couple = (famille('nb_parents', period) == 2)
+        is_enfant = famille.members.has_role(Famille.ENFANT)
+        cmu_eligible_majoration_dom = famille('cmu_eligible_majoration_dom', period)
+        coeff_garde_alt_i = where(famille.members('garde_alternee', period), 0.5, 1)
 
-        # Calcul du coefficient personnes à charge, avec prise en compte de la garde alternée
+        rang_dans_fratrie = get_rank(famille, - age_i, condition = is_enfant)  # 0 pour l'aîné, 1 pour le cadet, etc.
 
-        # Tableau des coefficients
-        coefficients_array = array(
-            [P.coeff_p2, P.coeff_p3_p4, P.coeff_p3_p4] + [P.coeff_p5_plus] * (len(PAC) - 3)
+        # Famille monoparentale
+
+        coeff_enfant_i = select(
+            [rang_dans_fratrie == 0, rang_dans_fratrie <= 2, rang_dans_fratrie >= 3],
+            [cmu.coeff_p2, cmu.coeff_p3_p4, cmu.coeff_p5_plus]
+            ) * coeff_garde_alt_i
+
+        coeff_monoparental = 1 + famille.sum(coeff_enfant_i, role = famille.ENFANT)
+
+
+        # Couple
+
+        coeff_enfant_i = select(
+            [rang_dans_fratrie <= 1, rang_dans_fratrie >= 2],
+            [cmu.coeff_p3_p4, cmu.coeff_p5_plus]
+            ) * coeff_garde_alt_i
+
+        coeff_couple = 1 + cmu.coeff_p2 + famille.sum(coeff_enfant_i, role = famille.ENFANT)
+
+        return (cmu.plafond_base *
+            (1 + cmu_eligible_majoration_dom * cmu.majoration_dom) *
+            where(is_couple, coeff_couple, coeff_monoparental)
             )
-
-        # Tri des personnes à charge, le conjoint en premier, les enfants par âge décroissant
-        age_by_role = self.split_by_roles(age_holder, roles = PAC)
-        alt_by_role = self.split_by_roles(alt_holder, roles = PAC)
-
-        age_and_alt_matrix = array(
-            [
-                (role == PART) * 10000 + age_by_role[role] * 10 + alt_by_role[role] - (age_by_role[role] < 0) * 999999
-                for role in sorted(age_by_role)
-                ]
-            ).transpose()
-
-        # Calcul avec matrices intermédiaires
-        reverse_sorted = partial(sorted, reverse = True)
-
-        sorted_age_and_alt_matrix = apply_along_axis(reverse_sorted, 1, age_and_alt_matrix)
-        # Calcule weighted_alt_matrix, qui vaut 0.5 pour les enfants en garde alternée, 1 sinon.
-        sorted_present_matrix = sorted_age_and_alt_matrix >= 0
-        sorted_alt_matrix = (sorted_age_and_alt_matrix % 10) * sorted_present_matrix
-        weighted_alt_matrix = sorted_present_matrix - sorted_alt_matrix * 0.5
-
-        # Calcul final du coefficient
-        coeff_pac = weighted_alt_matrix.dot(coefficients_array)
-
-        return (P.plafond_base *
-            (1 + cmu_eligible_majoration_dom * P.majoration_dom) *
-            (1 + coeff_pac)
-            )
-
 
 class acs_plafond(Variable):
     value_type = float
