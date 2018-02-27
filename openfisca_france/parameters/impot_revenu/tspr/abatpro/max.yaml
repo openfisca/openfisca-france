@@ -1,5 +1,5 @@
 description: Abattement maximum
-reference: ipp
+reference: Barèmes IPP - https://www.ipp.eu/wp-content/uploads/2017/07/baremes-ipp-impot-revenu-income-tax.xlsx
 unit: currency
 values:
   1943-01-01:
@@ -78,3 +78,5 @@ values:
     value: 12157.0
   2015-01-01:
     value: 12170.0
+  2016-01-01:
+    value: 12183.0

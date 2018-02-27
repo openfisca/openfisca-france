@@ -49,7 +49,7 @@ pea:
         value: 0.15
       1984-01-01:
         value: 0.16
-      2013-01-01:
+      2012-01-01:
         value: 0.19
 pea2:
   description: Clôture PEA ou PEA-PME entre 2 ans et 5 ans (3VT)
@@ -148,7 +148,7 @@ taux2:
   reference: openfisca
   unit: /1
   values:
-    2009-01-01:
+    2008-01-01:
       value: 0.18
 taux3:
   description: Actions gratuites 30%
@@ -180,3 +180,12 @@ taux_pv_mob_pro:
     2012-01-01:
       value: 0.24
     2013-01-01: expected
+taux_pv_entrep:
+  description: Cessions titres réalisées par un entrepreneur
+  reference: openfisca
+  unit: /1
+  values:
+    2012-01-01:
+      value: 0.19
+    2013-01-01:
+      value: null

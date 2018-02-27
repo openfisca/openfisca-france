@@ -1,6 +1,8 @@
 description: Seuil de la décote pour un célibataire
-reference: openfisca
+reference: Barèmes IPP - https://www.ipp.eu/wp-content/uploads/2017/07/baremes-ipp-impot-revenu-income-tax.xlsx
 unit: currency
 values:
   2014-01-01:
     value: 1135.0
+  2015-01-01:
+    value: 1165.0

@@ -1,5 +1,5 @@
 description: Plafond des dépenses
-reference: openfisca
+reference: Barèmes IPP - https://www.ipp.eu/wp-content/uploads/2017/07/baremes-ipp-impot-revenu-income-tax.xlsx
 unit: currency
 values:
   2001-01-01:
@@ -24,3 +24,9 @@ values:
     value: 513.0
   2011-01-01:
     value: 521.0
+  2014-01-01:
+    value: 526.0
+  2015-01-01:
+    value: 529.0
+  2016-01-01:
+    value: 530.0

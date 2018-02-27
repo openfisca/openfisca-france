@@ -1,5 +1,5 @@
 description: Non mariés ou non PACS
-reference: ipp
+reference: Barèmes IPP - https://www.ipp.eu/wp-content/uploads/2017/07/baremes-ipp-impot-revenu-income-tax.xlsx
 unit: currency
 values:
   1997-01-01:
@@ -32,3 +32,5 @@ values:
     value: 901.0
   2015-01-01:
     value: 902.0
+  2016-01-01:
+    value: 903.0

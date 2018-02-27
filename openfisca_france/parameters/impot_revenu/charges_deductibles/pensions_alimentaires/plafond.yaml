@@ -1,5 +1,5 @@
 description: Limite par enfant
-reference: ipp
+reference: Barèmes IPP - https://www.ipp.eu/wp-content/uploads/2017/07/baremes-ipp-impot-revenu-income-tax.xlsx
 unit: currency
 values:
   1974-01-01:
@@ -78,3 +78,5 @@ values:
     value: 5726.0
   2015-01-01:
     value: 5732.0
+  2016-01-01:
+    value: 5738.0
