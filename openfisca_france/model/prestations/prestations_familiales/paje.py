@@ -63,8 +63,19 @@ class paje(Variable):
     value_type = float
     entity = Famille
     label = u"PAJE - Ensemble des prestations"
-    reference = "http://www.caf.fr/aides-et-services/s-informer-sur-les-aides/petite-enfance/la-prestation-d-accueil-du-jeune-enfant-paje-0"  # noqa
+    reference = "http://www.caf.fr/aides-et-services/s-informer-sur-les-aides/petite-enfance/la-prestation-d-accueil-du-jeune-enfant-paje"  # noqa
     definition_period = MONTH
+
+    def formula_2017_04(famille, period):
+        '''
+        Prestation d'accueil du jeune enfant
+        '''
+        paje_base = famille('paje_base', period)
+        paje_naissance = famille('paje_naissance', period)
+        paje_prepare = famille('paje_prepare', period)
+        paje_cmg = famille('paje_cmg', period)
+
+        return paje_base + (paje_naissance + paje_prepare + paje_cmg)
 
     def formula_2004_01_01(famille, period):
         '''
@@ -76,7 +87,7 @@ class paje(Variable):
         paje_cmg = famille('paje_cmg', period)
         paje_colca = famille('paje_colca', period)
 
-        return paje_base + (paje_naissance + paje_clca + paje_cmg + paje_colca) / 12
+        return paje_base + (paje_naissance + paje_clca + paje_cmg + paje_colca)
 
 
 class paje_base(Variable):
@@ -244,113 +255,13 @@ class paje_naissance(Variable):
         return nais_prime * elig * nb_enfants_7e_mois_grossese
 
 
-class paje_clca(Variable):
-    calculate_output = calculate_output_add
-    value_type = float
-    entity = Famille
-    label = u"PAJE - Complément de libre choix d'activité"
-    reference = "http://vosdroits.service-public.fr/particuliers/F313.xhtml"
-    end = '2017-04-01'
-    definition_period = MONTH
-    set_input = set_input_divide_by_period
-
-    def formula_2004(famille, period, parameters):
-        """
-        Prestation d'accueil du jeune enfant - Complément de libre choix d'activité
-        'fam'
-
-        Parameters:
-        -----------
-
-        age :  âge en mois
-        af_nbenf : nombre d'enfants aus sens des allocations familiales
-        paje_base : allocation de base de la PAJE
-        inactif : indicatrice d'inactivité
-        partiel1 : Salarié: Temps de travail ne dépassant pas 50 % de la durée du travail fixée dans l'entreprise pour
-                   les salariés VRP ou non salarié travaillant à temps partiel: Temps de travail ne dépassant pas 76
-                   heures par mois et un revenu professionnel mensuel inférieur ou égal à (smic_8.27*169*85 %)
-        partiel2 :  Salarié: Temps de travail compris entre 50 et 80 % de la durée du travail fixée dans l'entreprise.
-                    VRP ou non salarié travaillant à temps partiel: Temps de travail compris entre 77 et 122 heures
-                    par mois et un revenu professionnel mensuel ne dépassant pas (smic_8.27*169*136 %)
-
-        http://www.caf.fr/wps/portal/particuliers/catalogue/metropole/paje
-        """
-        af_nbenf = famille('af_nbenf', period)
-        paje_base = famille('paje_base', period)
-        inactif = famille('inactif', period)
-        partiel1 = famille('partiel1', period)
-        partiel2 = famille('partiel2', period)
-
-        P = parameters(period).prestations.prestations_familiales
-
-        paje = paje_base >= 0
-        # durée de versement :
-        # Pour un seul enfant à charge, le CLCA est versé pendant une période de 6 mois (P.paje.clca.duree1)
-        # à partir de la naissance ou de la cessation des IJ maternité et paternité.
-        # A partir du 2ème enfant, il est versé jusqu’au mois précédant le 3ème anniversaire
-        # de l’enfant.
-
-        # Calcul de l'année et mois de naissance du cadet
-        # TODO: ajuster en fonction de la cessation des IJ etc
-
-        age_en_mois_i = famille.members('age_en_mois', period)
-        age_m_benjamin = famille.min(age_en_mois_i, role = Famille.ENFANT)
-
-        condition1 = (af_nbenf == 1) * (age_m_benjamin >= 0) * (age_m_benjamin < P.paje.clca.duree1)
-        age_benjamin = floor(age_m_benjamin / 12)
-        condition2 = (age_benjamin <= (P.paje.base.age_max_enfant - 1))
-        condition = (af_nbenf >= 2) * condition2 + condition1
-        paje_clca = (condition * P.af.bmaf) * (
-            not_(paje) * (
-                inactif * P.paje.clca.sansab_tx_inactif +
-                partiel1 * P.paje.clca.sansab_tx_partiel1 +
-                partiel2 * P.paje.clca.sansab_tx_partiel2
-                ) +
-            paje * (
-                inactif * P.paje.clca.avecab_tx_inactif +
-                partiel1 * P.paje.clca.avecab_tx_partiel1 +
-                partiel2 * P.paje.clca.avecab_tx_partiel2
-                )
-            )
-        return paje_clca
-
-
 class paje_prepare(Variable):
     value_type = float
     entity = Famille
     set_input = set_input_divide_by_period
     label = u"Prestation Partagée d’éducation de l’Enfant (PreParE)"
+    reference = "https://www.service-public.fr/particuliers/vosdroits/F32485"
     definition_period = MONTH
-
-
-class paje_clca_taux_plein(Variable):
-    value_type = bool
-    entity = Famille
-    label = u"Indicatrice Clca taux plein"
-    reference = "http://vosdroits.service-public.fr/particuliers/F313.xhtml"
-    definition_period = MONTH
-
-    def formula_2004_01_01(famille, period):
-        paje_clca = famille('paje_clca', period)
-        inactif = famille('inactif', period)
-
-        return (paje_clca > 0) * inactif
-
-
-class paje_clca_taux_partiel(Variable):
-    value_type = bool
-    entity = Famille
-    label = u"Indicatrice Clca taux partiel"
-    reference = "http://vosdroits.service-public.fr/particuliers/F313.xhtml"
-    definition_period = MONTH
-
-    def formula_2004_01_01(famille, period):
-        paje_clca = famille('paje_clca', period)
-        partiel1 = famille('partiel1', period)
-
-        return (paje_clca > 0) * partiel1
-
-    # TODO gérer les cumuls avec autres revenus et colca voir site caf
 
 
 class paje_cmg(Variable):
@@ -359,8 +270,118 @@ class paje_cmg(Variable):
     entity = Famille
     label = u"PAJE - Complément de libre choix du mode de garde"
     set_input = set_input_divide_by_period
-    reference = "http://www.caf.fr/aides-et-services/s-informer-sur-les-aides/petite-enfance/le-complement-de-libre-choix-du-mode-de-garde"  # noqa
+    reference = ["http://www.caf.fr/aides-et-services/s-informer-sur-les-aides/petite-enfance/le-complement-de-libre-choix-du-mode-de-garde", "https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=C92307A93BE5F694EB49FE51DC09602C.tplgfr29s_1?idArticle=LEGIARTI000031500755&cidTexte=LEGITEXT000006073189&categorieLien=id&dateTexte=" ] # noqa
     definition_period = MONTH
+
+    def formula_2017_04_01(famille, period, parameters):
+        """
+        Prestation d accueil du jeune enfant - Complément de libre choix du mode de garde
+
+        Les conditions
+
+        Vous devez :
+
+            avoir un enfant de moins de 6 ans né, adopté ou recueilli en vue d'adoption à partir du 1er janvier 2004
+            employer une assistante maternelle agréée ou une garde à domicile.
+
+        Vous n'avez pas besoin de justifier d'une activité min_ si vous êtes :
+
+            bénéficiaire de l'allocation aux adultes handicapés (Aah)
+            au chômage et bénéficiaire de l'allocation d'insertion ou de l'allocation de solidarité spécifique
+            bénéficiaire du Revenu de solidarité active (Rsa), sous certaines conditions de ressources étudiées par
+            votre Caf, et inscrit dans une démarche d'insertionétudiant (si vous vivez en couple,
+            vous devez être tous les deux étudiants).
+
+        Autres conditions à remplir : Assistante maternelle agréée     Garde à domicile
+        Son salaire brut ne doit pas dépasser par jour de garde et par enfant 5 fois le montant du Smic horaire brut,
+        soit au max 45,00 €.
+        Vous ne devez pas bénéficier de l'exonération des cotisations sociales dues pour la personne employée.
+        """
+        # Récupération des données
+
+        inactif = famille('inactif', period)
+        partiel1 = famille('partiel1', period)
+        nombre_enfants = famille('af_nbenf', period)
+        base_ressources = famille('prestations_familiales_base_ressources', period.first_month)
+        emploi_direct = famille('empl_dir', period)
+        assistant_maternel = famille('ass_mat', period)
+        garde_a_domicile = famille('gar_dom', period)
+        paje_prepare = famille('paje_prepare', period)
+        P = parameters(period).prestations.prestations_familiales
+
+        aah_i = famille.members('aah', period)
+        aah = famille.sum(aah_i)
+
+        etudiant_i = famille.members('etudiant', period)
+        parent_etudiant = famille.any(etudiant_i, role = Famille.PARENT)
+
+
+    # condition de revenu minimal
+
+        cond_age_enf = (nb_enf(famille, period, 0, P.paje.clmg.age2 - 1) > 0)
+
+        # TODO:    cond_rpns    =
+        # TODO: RSA insertion, alloc insertion, ass
+        cond_nonact = (aah > 0) | parent_etudiant  # | (ass>0)
+
+        cond_eligibilite = cond_age_enf & (not_(inactif)| cond_nonact)
+
+        # Si vous bénéficiez de la PreParE taux plein
+        # (= vous ne travaillez plus ou interrompez votre activité professionnelle),
+        # vous ne pouvez pas bénéficier du Cmg.
+        paje_prepare_inactif = (paje_prepare > 0) * inactif
+        eligible = cond_eligibilite * not_(paje_prepare_inactif)
+
+    # Les plafonds de ressource
+
+        seuil_revenus_1 = (
+                (nombre_enfants == 1) * P.paje.clmg.seuil11 +
+                (nombre_enfants >= 2) * P.paje.clmg.seuil12 +
+                max_(nombre_enfants - 2, 0) * P.paje.clmg.seuil1sup
+        )
+        seuil_revenus_2 = (
+                (nombre_enfants == 1) * P.paje.clmg.seuil21 +
+                (nombre_enfants >= 2) * P.paje.clmg.seuil22 +
+                max_(nombre_enfants - 2, 0) * P.paje.clmg.seuil2sup
+        )
+
+
+    #        Si vous bénéficiez du PreParE taux partiel (= vous travaillez entre 50 et 80% de la durée du travail fixée
+    #        dans l'entreprise), vous cumulez intégralement la PreParE et le Cmg.
+    #        Si vous bénéficiez du PreParE taux partiel (= vous travaillez à 50% ou moins de la durée
+    #        du travail fixée dans l'entreprise), le montant des plafonds Cmg est divisé par 2.
+
+        paje_prepare_temps_partiel = (paje_prepare > 0) * partiel1
+        seuil_revenus_1 = seuil_revenus_1 * (1 - .5 * paje_prepare_temps_partiel)
+        seuil_revenus_2 = seuil_revenus_2 * (1 - .5 * paje_prepare_temps_partiel)
+
+    # calcul du montant
+
+        montant_cmg = (
+                P.af.bmaf *
+                (
+                    1.0 * (nb_enf(famille, period, 0, P.paje.clmg.age1 - 1) > 0) +
+                    0.5 * (nb_enf(famille, period, P.paje.clmg.age1, P.paje.clmg.age2 - 1) > 0)
+                ) *
+                (
+            emploi_direct * (
+                (base_ressources < seuil_revenus_1) * P.paje.clmg.taux_recours_emploi_1er_plafond +
+                ((base_ressources >= seuil_revenus_1) & (base_ressources < seuil_revenus_2)) * P.paje.clmg.taux_recours_emploi_2e_plafond +
+                (base_ressources >= seuil_revenus_2) * P.paje.clmg.taux_recours_emploi_supp_2e_plafond) +
+            assistant_maternel * (
+                (base_ressources < seuil_revenus_1) * P.paje.clmg.ass_mat1 +
+                ((base_ressources >= seuil_revenus_1) & (base_ressources < seuil_revenus_2)) * P.paje.clmg.ass_mat2 +
+                (base_ressources >= seuil_revenus_2) * P.paje.clmg.ass_mat3) +
+            garde_a_domicile * (
+                (base_ressources < seuil_revenus_1) * P.paje.clmg.domi1 +
+                ((base_ressources >= seuil_revenus_1) & (base_ressources < seuil_revenus_2)) * P.paje.clmg.domi2 +
+                (base_ressources >= seuil_revenus_2) * P.paje.clmg.domi3))
+        )
+
+        paje_cmg = eligible * montant_cmg
+        # TODO: connecter avec le crédit d'impôt
+        # TODO vérfiez les règles de cumul
+        return paje_cmg
 
     def formula_2004_01_01(famille, period, parameters):
         '''
@@ -417,7 +438,7 @@ class paje_cmg(Variable):
         # condition de revenu minimal
 
         bmaf_n_2 = P_n_2.af.bmaf
-        cond_age_enf = (nb_enf(famille, period, P.paje.clmg.age1, P.paje.clmg.age2 - 1) > 0)
+        cond_age_enf = (nb_enf(famille, period, 0, P.paje.clmg.age2 - 1) > 0)
         cond_sal = (
             salaire_imposable + hsup >
             12 * bmaf_n_2 * (1 + en_couple)
@@ -463,37 +484,6 @@ class paje_cmg(Variable):
         paje_cmg = elig * not_(paje_clca_taux_plein) * clmg
         # TODO vérfiez les règles de cumul
         return paje_cmg
-
-
-class paje_colca(Variable):
-    calculate_output = calculate_output_add
-    value_type = float
-    entity = Famille
-    label = u"PAJE - Complément optionnel de libre choix d'activité"
-    end = '2017-04-01'
-    set_input = set_input_divide_by_period
-    reference = "http://vosdroits.service-public.fr/particuliers/F15110.xhtml"
-    definition_period = MONTH
-
-    def formula_2004_01_01(famille, period, parameters):
-        '''
-        Prestation d'accueil du jeune enfant - Complément optionnel de libre choix du mode de garde
-        '''
-        af_nbenf = famille('af_nbenf', period)
-        opt_colca = famille('opt_colca', period)
-        paje_base = famille('paje_base', period)
-
-        P = parameters(period).prestations.prestations_familiales
-
-        age_en_mois_i = famille.members('age_en_mois', period)
-        age_m_benjamin = famille.min(age_en_mois_i, role = Famille.ENFANT)
-
-        condition = (age_m_benjamin < 12 * P.paje.colca.age) * (age_m_benjamin >= 0)
-        nbenf = af_nbenf
-        paje = (paje_base > 0)
-        paje_colca = opt_colca * condition * (nbenf >= 3) * P.af.bmaf * (
-            (paje) * P.paje.colca.avecab + not_(paje) * P.paje.colca.sansab)
-        return paje_colca
 
 
 class ape_avant_cumul(Variable):
@@ -637,3 +627,137 @@ class apje(Variable):
 
         apje = (cf_montant < apje_avant_cumul) * (ape_avant_cumul < apje_avant_cumul) * apje_avant_cumul
         return round(apje, 2)
+
+
+class paje_clca(Variable):
+    calculate_output = calculate_output_add
+    value_type = float
+    entity = Famille
+    label = u"PAJE - Complément de libre choix d'activité - remplacée par paje_prepare à partir de 04/2017"
+    reference = "http://vosdroits.service-public.fr/particuliers/F313.xhtml"
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
+    end = '2017-04-01'
+
+    def formula_2004(famille, period, parameters):
+        """
+        Prestation d'accueil du jeune enfant - Complément de libre choix d'activité
+        'fam'
+
+        Parameters:
+        -----------
+
+        age :  âge en mois
+        af_nbenf : nombre d'enfants aus sens des allocations familiales
+        paje_base : allocation de base de la PAJE
+        inactif : indicatrice d'inactivité
+        partiel1 : Salarié: Temps de travail ne dépassant pas 50 % de la durée du travail fixée dans l'entreprise pour
+                   les salariés VRP ou non salarié travaillant à temps partiel: Temps de travail ne dépassant pas 76
+                   heures par mois et un revenu professionnel mensuel inférieur ou égal à (smic_8.27*169*85 %)
+        partiel2 :  Salarié: Temps de travail compris entre 50 et 80 % de la durée du travail fixée dans l'entreprise.
+                    VRP ou non salarié travaillant à temps partiel: Temps de travail compris entre 77 et 122 heures
+                    par mois et un revenu professionnel mensuel ne dépassant pas (smic_8.27*169*136 %)
+
+        http://www.caf.fr/wps/portal/particuliers/catalogue/metropole/paje
+        """
+        af_nbenf = famille('af_nbenf', period)
+        paje_base = famille('paje_base', period)
+        inactif = famille('inactif', period)
+        partiel1 = famille('partiel1', period)
+        partiel2 = famille('partiel2', period)
+
+        P = parameters(period).prestations.prestations_familiales
+
+        paje = paje_base >= 0
+        # durée de versement :
+        # Pour un seul enfant à charge, le CLCA est versé pendant une période de 6 mois (P.paje.clca.duree1)
+        # à partir de la naissance ou de la cessation des IJ maternité et paternité.
+        # A partir du 2ème enfant, il est versé jusqu’au mois précédant le 3ème anniversaire
+        # de l’enfant.
+
+        # Calcul de l'année et mois de naissance du cadet
+        # TODO: ajuster en fonction de la cessation des IJ etc
+
+        age_en_mois_i = famille.members('age_en_mois', period)
+        age_m_benjamin = famille.min(age_en_mois_i, role = Famille.ENFANT)
+
+        condition1 = (af_nbenf == 1) * (age_m_benjamin >= 0) * (age_m_benjamin < P.paje.clca.duree1)
+        age_benjamin = floor(age_m_benjamin / 12)
+        condition2 = (age_benjamin <= (P.paje.base.age_max_enfant - 1))
+        condition = (af_nbenf >= 2) * condition2 + condition1
+        paje_clca = (condition * P.af.bmaf) * (
+            not_(paje) * (
+                inactif * P.paje.clca.sansab_tx_inactif +
+                partiel1 * P.paje.clca.sansab_tx_partiel1 +
+                partiel2 * P.paje.clca.sansab_tx_partiel2
+                ) +
+            paje * (
+                inactif * P.paje.clca.avecab_tx_inactif +
+                partiel1 * P.paje.clca.avecab_tx_partiel1 +
+                partiel2 * P.paje.clca.avecab_tx_partiel2
+                )
+            )
+        return paje_clca
+
+
+class paje_clca_taux_plein(Variable):
+    value_type = bool
+    entity = Famille
+    label = u"Indicatrice Clca taux plein"
+    reference = "http://vosdroits.service-public.fr/particuliers/F313.xhtml"
+    definition_period = MONTH
+    end = '2017-04-01'
+
+    def formula_2004_01_01(famille, period):
+        paje_clca = famille('paje_clca', period)
+        inactif = famille('inactif', period)
+
+        return (paje_clca > 0) * inactif
+
+
+class paje_clca_taux_partiel(Variable):
+    value_type = bool
+    entity = Famille
+    label = u"Indicatrice Clca taux partiel"
+    reference = "http://vosdroits.service-public.fr/particuliers/F313.xhtml"
+    definition_period = MONTH
+    end = '2017-04-01'
+
+    def formula_2004_01_01(famille, period):
+        paje_clca = famille('paje_clca', period)
+        partiel1 = famille('partiel1', period)
+
+        return (paje_clca > 0) * partiel1
+
+    # TODO gérer les cumuls avec autres revenus et colca voir site caf
+
+
+class paje_colca(Variable):
+    calculate_output = calculate_output_add
+    value_type = float
+    entity = Famille
+    label = u"PAJE - Complément optionnel de libre choix d'activité"
+    set_input = set_input_divide_by_period
+    reference = "http://vosdroits.service-public.fr/particuliers/F15110.xhtml"
+    definition_period = MONTH
+    end = '2017-04-01'
+
+    def formula_2004_01_01(famille, period, parameters):
+        '''
+        Prestation d'accueil du jeune enfant - Complément optionnel de libre choix du mode de garde
+        '''
+        af_nbenf = famille('af_nbenf', period)
+        opt_colca = famille('opt_colca', period)
+        paje_base = famille('paje_base', period)
+
+        P = parameters(period).prestations.prestations_familiales
+
+        age_en_mois_i = famille.members('age_en_mois', period)
+        age_m_benjamin = famille.min(age_en_mois_i, role = Famille.ENFANT)
+
+        condition = (age_m_benjamin < 12 * P.paje.colca.age) * (age_m_benjamin >= 0)
+        nbenf = af_nbenf
+        paje = (paje_base > 0)
+        paje_colca = opt_colca * condition * (nbenf >= 3) * P.af.bmaf * (
+            (paje) * P.paje.colca.avecab + not_(paje) * P.paje.colca.sansab)
+        return paje_colca
