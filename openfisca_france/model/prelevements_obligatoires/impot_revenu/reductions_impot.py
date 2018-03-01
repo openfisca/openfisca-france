@@ -1526,83 +1526,74 @@ class duflot(Variable):
         Investissements locatifs interméiaires (loi Duflot)
         2013
         '''
-        f7gh = foyer_fiscal('f7gh', period)
-        f7gi = foyer_fiscal('f7gi', period)
+        invest_domtom_2013 = foyer_fiscal('f7gi', period)
+        invest_metropole_2013 = foyer_fiscal('f7gh', period)
         P = parameters(period).impot_revenu.reductions_impots.duflot
 
         return (
-            min_(P.plafond - f7gi, f7gh) * P.taux_m + 
-            min_(P.plafond, f7gi) * P.taux_om) / 9
+            min_(P.plafond - invest_domtom_2013, invest_metropole_2013) * P.taux_m + 
+            min_(P.plafond, invest_domtom_2013) * P.taux_om) / 9
 
     def formula_2014_01_01(foyer_fiscal, period, parameters):
         '''
         Investissements locatifs intermediaires (loi Duflot)
         2014
         '''
-        f7ek = foyer_fiscal('f7ek', period)
-        f7el = foyer_fiscal('f7el', period)
-        f7fi = foyer_fiscal('f7fi', period)
-        f7gh = foyer_fiscal('f7gh', period)
-        f7gi = foyer_fiscal('f7gi', period)
-        f7qa = foyer_fiscal('f7qa', period)
-        f7qb = foyer_fiscal('f7qb', period)
-        f7qc = foyer_fiscal('f7qc', period)
-        f7qd = foyer_fiscal('f7qd', period)
+        invest_domtom_2013 = foyer_fiscal('f7gi', period)
+        invest_domtom_2014 = foyer_fiscal('f7el', period)
+        invest_metropole_2013 = foyer_fiscal('f7gh', period)
+        invest_metropole_2014 = foyer_fiscal('f7ek', period)
+        report_reduc_2013 = foyer_fiscal('f7fi', period)
+        f7qb = foyer_fiscal('f7qb', period) # Dépenses entrant dans la réduction Pinel
+        f7qc = foyer_fiscal('f7qc', period) # Dépenses entrant dans la réduction Pinel
+        f7qd = foyer_fiscal('f7qd', period) # Dépenses entrant dans la réduction Pinel
         P = parameters(period).impot_revenu.reductions_impots.duflot
 
-        max1 = max_(0, P.plafond - f7el - f7qd) # 2014 : plafond commun 'duflot' et 'rpinel'
+        max1 = max_(0, P.plafond - invest_domtom_2014 - f7qd) # 2014 : plafond commun 'duflot' et 'rpinel'
         max2 = max_(0, max1 - f7qc)
-        max3 = max_(0, max2 - f7ek - f7qb)
+        max3 = max_(0, max2 - invest_metropole_2014 - f7qb)
       
         return (
-            (min_(max_(0, P.plafond - f7gi), f7gh) + min_(max_(0, max2 - f7el), f7ek)) * P.taux_m + 
-            (min_(P.plafond, f7gi) + min_(P.plafond, f7el)) * P.taux_om
-            ) / 9 + f7fi
+            (min_(max_(0, P.plafond - invest_domtom_2013), invest_metropole_2013) + min_(max_(0, max2 - invest_domtom_2014), invest_metropole_2014)) * P.taux_m + 
+            (min_(P.plafond, invest_domtom_2013) + min_(P.plafond, invest_domtom_2014)) * P.taux_om
+            ) / 9 + report_reduc_2013
 
     def formula_2015_01_01(foyer_fiscal, period, parameters):
         '''
         Investissements locatifs intermediaires (loi Duflot)
         2015
         '''
-        f7ek = foyer_fiscal('f7ek', period)
-        f7el = foyer_fiscal('f7el', period)
-        f7fi = foyer_fiscal('f7fi', period)
-        f7fk = foyer_fiscal('f7fk', period)
-        f7gh = foyer_fiscal('f7gh', period)
-        f7gi = foyer_fiscal('f7gi', period)
-        f7qa = foyer_fiscal('f7qa', period)
-        f7qb = foyer_fiscal('f7qb', period)
-        f7qc = foyer_fiscal('f7qc', period)
-        f7qd = foyer_fiscal('f7qd', period)
+        invest_domtom_2013 = foyer_fiscal('f7gi', period)
+        invest_domtom_2014 = foyer_fiscal('f7el', period)
+        invest_metropole_2013 = foyer_fiscal('f7gh', period)
+        invest_metropole_2014 = foyer_fiscal('f7ek', period)
+        report_reduc_2013 = foyer_fiscal('f7fi', period)
+        report_reduc_2014 = foyer_fiscal('f7fk', period)
         P = parameters(period).impot_revenu.reductions_impots.duflot
 
         return (
-            (min_(P.plafond - f7gi, f7gh) + min_(P.plafond - f7el, f7ek)) * P.taux_m + 
-            (min_(P.plafond, f7gi) + min_(P.plafond, f7el)) * P.taux_om
-            ) / 9 + f7fi + f7fk
+            (min_(P.plafond - invest_domtom_2013, invest_metropole_2013) + min_(P.plafond - invest_domtom_2014, invest_metropole_2014)) * P.taux_m + 
+            (min_(P.plafond, invest_domtom_2013) + min_(P.plafond, invest_domtom_2014)) * P.taux_om
+            ) / 9 + report_reduc_2013 + report_reduc_2014
 
     def formula_2016_01_01(foyer_fiscal, period, parameters):
         '''
         Investissements locatifs intermediaires (loi Duflot)
         2016
         '''
-        f7ek = foyer_fiscal('f7ek', period)
-        f7el = foyer_fiscal('f7el', period)
-        f7fi = foyer_fiscal('f7fi', period)
-        f7fk = foyer_fiscal('f7fk', period)
-        f7fr = foyer_fiscal('f7fr', period)
-        f7gh = foyer_fiscal('f7gh', period)
-        f7gi = foyer_fiscal('f7gi', period)
-        f7qa = foyer_fiscal('f7qa', period)
-        f7qb = foyer_fiscal('f7qb', period)
-        f7qc = foyer_fiscal('f7qc', period)
-        f7qd = foyer_fiscal('f7qd', period)
+        invest_domtom_2013 = foyer_fiscal('f7gi', period)
+        invest_domtom_2014 = foyer_fiscal('f7el', period)
+        invest_metropole_2013 = foyer_fiscal('f7gh', period)
+        invest_metropole_2014 = foyer_fiscal('f7ek', period)
+        report_reduc_2013 = foyer_fiscal('f7fi', period)
+        report_reduc_2014 = foyer_fiscal('f7fk', period)
+        report_reduc_2015 = foyer_fiscal('f7fr', period)
         P = parameters(period).impot_revenu.reductions_impots.duflot
 
         return (
-            (min_(P.plafond - f7gi, f7gh) + min_(P.plafond - f7el, f7ek)) * P.taux_m + 
-            (min_(P.plafond, f7gi) + min_(P.plafond, f7el)) * P.taux_om
-            ) / 9 + f7fi + f7fk + f7fr
+            (min_(P.plafond - invest_domtom_2013, invest_metropole_2013) + min_(P.plafond - invest_domtom_2014, invest_metropole_2014)) * P.taux_m + 
+            (min_(P.plafond, invest_domtom_2013) + min_(P.plafond, invest_domtom_2014)) * P.taux_om
+            ) / 9 + report_reduc_2013 + report_reduc_2014 + report_reduc_2015
 
 #TODO: / 5 dans trois TOM
 
@@ -2871,8 +2862,8 @@ class rpinel(Variable):
         Investissement locatif privé - Dispositif Pinel
         2014
         '''
-        f7ek = foyer_fiscal('f7ek', period)
-        f7el = foyer_fiscal('f7el', period)
+        invest_metropole_2014 = foyer_fiscal('f7ek', period)
+        invest_domtom_2014 = foyer_fiscal('f7el', period)
         f7qa = foyer_fiscal('f7qa', period)
         f7qb = foyer_fiscal('f7qb', period)
         f7qc = foyer_fiscal('f7qc', period)
@@ -2897,8 +2888,8 @@ class rpinel(Variable):
         f7bi = foyer_fiscal('f7bi', period)
         f7ci = foyer_fiscal('f7ci', period)
         f7di = foyer_fiscal('f7di', period)
-        f7ek = foyer_fiscal('f7ek', period)
-        f7el = foyer_fiscal('f7el', period)
+        invest_metropole_2014 = foyer_fiscal('f7ek', period)
+        invest_domtom_2014 = foyer_fiscal('f7el', period)
         f7qa = foyer_fiscal('f7qa', period)
         f7qb = foyer_fiscal('f7qb', period)
         f7qc = foyer_fiscal('f7qc', period)
@@ -2940,8 +2931,8 @@ class rpinel(Variable):
         f7cz = foyer_fiscal('f7cz', period)
         f7di = foyer_fiscal('f7di', period)
         f7dz = foyer_fiscal('f7dz', period)
-        f7ek = foyer_fiscal('f7ek', period)
-        f7el = foyer_fiscal('f7el', period)
+        invest_metropole_2014 = foyer_fiscal('f7ek', period)
+        invest_domtom_2014 = foyer_fiscal('f7el', period)
         f7ez = foyer_fiscal('f7ez', period)
         f7qa = foyer_fiscal('f7qa', period)
         f7qb = foyer_fiscal('f7qb', period)
