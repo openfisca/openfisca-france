@@ -786,6 +786,7 @@ class dfppce(Variable):
     value_type = float
     entity = FoyerFiscal
     label = u"dfppce"
+    reference = "http://bofip.impots.gouv.fr/bofip/5869-PGP"
     definition_period = YEAR
 
     def formula_2002_01_01(foyer_fiscal, period, parameters):
