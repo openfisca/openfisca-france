@@ -2443,7 +2443,7 @@ class resimm(Variable):
     value_type = float
     entity = FoyerFiscal
     label = u"Réduction d'impôt au titre des dépenses de restauration immobilière - Dispositif Malraux"
-    referennce = "http://bofip.impots.gouv.fr/bofip/1372-PGP"
+    reference = "http://bofip.impots.gouv.fr/bofip/1372-PGP"
     definition_period = YEAR
     end = '2013-12-31'
 
