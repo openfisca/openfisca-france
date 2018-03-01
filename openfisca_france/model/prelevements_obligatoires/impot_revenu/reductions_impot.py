@@ -785,7 +785,7 @@ class daepad(Variable):
 class dfppce(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = u"dfppce"
+    label = u"Dons à des organismes d'intérêt général et dons pour le financement des partis politiques"
     reference = "http://bofip.impots.gouv.fr/bofip/5869-PGP"
     definition_period = YEAR
 
@@ -936,17 +936,17 @@ class dfppce(Variable):
         f7va = foyer_fiscal('f7va', period)
         f7vc = foyer_fiscal('f7vc', period)
         P = parameters(period).impot_revenu.reductions_impots.dons
-        P2 = parameters(period).impot_revenu.reductions_impots.donapd
+        plafond_reduction_donapd = parameters(period).impot_revenu.reductions_impots.donapd.max
 
-        report_f7va = max_(0, f7va - P2.max)
+        report_f7va = max_(0, f7va - plafond_reduction_donapd) 
         base = min_(P.max_niv, f7uf + f7uh) + f7vc + f7xs + f7xt + f7xu + f7xw + f7xy + report_f7va
         max1 = P.taux_max_dons_partipo * rbg_int
         return P.taux_dons_oeuvres * min_(base, max1)
 
 
-    # TODO: note de bas de page
-    #       Introduire plus de détails dans la déclaration pour séparer les dons aux partis poitiques
-    #       et aux candidats des autres dons
+    # TODO:
+    # - Introduire plus de détails dans la déclaration pour séparer les dons aux partis politiques et aux candidats des autres dons (intérêt général)
+    # - Verrifier si l'excédent de f7ud ne s'impute pas à la réduction 'dfppce' (comme pour 'f7va')
 
 
 # Outre-mer : TODO: plafonnement, cf. 2041-GE 2042-IOM
