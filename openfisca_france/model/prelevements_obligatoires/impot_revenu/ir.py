@@ -1376,6 +1376,7 @@ class plus_values(Variable):
     value_type = float
     entity = FoyerFiscal
     label = u"Taxation des plus_values"
+    reference = "http://bofip.impots.gouv.fr/bofip/6957-PGP"
     definition_period = YEAR
 
     def formula_2007_01_01(foyer_fiscal, period, parameters):  # f3sd is in f3vd holder
@@ -1411,7 +1412,7 @@ class plus_values(Variable):
 
     def formula_2008_01_01(foyer_fiscal, period, parameters):  # f3sd is in f3vd holder
         """
-        Taxation des plus value
+        Taxation des plus values
         """
         f3vg = foyer_fiscal('f3vg', period)
         f3vh = foyer_fiscal('f3vh', period)
@@ -1444,7 +1445,7 @@ class plus_values(Variable):
 
     def formula_2012_01_01(foyer_fiscal, period, parameters):
         """
-        Taxation des plus value
+        Taxation des plus values
         """
         f3sa = foyer_fiscal('f3sa', period)
         f3vg = foyer_fiscal('f3vg', period)
@@ -1477,7 +1478,7 @@ class plus_values(Variable):
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
         """
-        Taxation des plus value (hors bareme)
+        Taxation des plus values (hors bareme)
         """
         f3vm = foyer_fiscal('f3vm', period)
         f3vt = foyer_fiscal('f3vt', period)
