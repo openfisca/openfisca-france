@@ -253,6 +253,7 @@ class accult(Variable):
     value_type = float
     entity = FoyerFiscal
     label = u"Acquisition de biens culturels"
+    reference = "http://bofip.impots.gouv.fr/bofip/5741-PGP"
     definition_period = YEAR
 
     def formula_2002(foyer_fiscal, period, parameters):
@@ -261,9 +262,8 @@ class accult(Variable):
         2002-
         '''
         f7uo = foyer_fiscal('f7uo', period)
-        _P = parameters(period)
+        P = parameters(period).impot_revenu.credits_impot.accult
 
-        P = _P.impot_revenu.credits_impot.accult
         return P.taux * f7uo
 
 
@@ -312,6 +312,7 @@ class aidper(Variable):
     value_type = float
     entity = FoyerFiscal
     label = u"Crédits d’impôt pour dépenses en faveur de l’aide aux personnes"
+    reference = "http://bofip.impots.gouv.fr/bofip/3859-PGP"
     definition_period = YEAR
 
     def formula_2002_01_01(foyer_fiscal, period, parameters):
@@ -470,6 +471,7 @@ class assloy(Variable):
     value_type = float
     entity = FoyerFiscal
     label = u"Crédit d’impôt primes d’assurance pour loyers impayés"
+    reference = "http://bofip.impots.gouv.fr/bofip/844-PGP.html?identifiant=BOI-IR-RICI-320-20120912"
     definition_period = YEAR
 
     def formula_2005(foyer_fiscal, period, parameters):
@@ -503,6 +505,7 @@ class ci_garext(Variable):
     value_type = float
     entity = FoyerFiscal
     label = u"Frais de garde des enfants à l’extérieur du domicile"
+    reference = "http://bofip.impots.gouv.fr/bofip/865-PGP?datePubl=13/04/2013"
     definition_period = YEAR
 
     def formula_2005(foyer_fiscal, period, parameters):
