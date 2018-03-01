@@ -2036,24 +2036,36 @@ class invlst(Variable):
         2014
         '''
         maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
-        f7uy = simulation.calculate('f7uy', period)
-        f7uz = simulation.calculate('f7uz', period)
-        f7xi = simulation.calculate('f7xi', period)
-        f7xj = simulation.calculate('f7xj', period)
-        f7xk = simulation.calculate('f7xk', period)
-        f7xn = simulation.calculate('f7xn', period)
-        f7xp = simulation.calculate('f7xp', period)
-        f7xq = simulation.calculate('f7xq', period)
-        f7xr = simulation.calculate('f7xr', period)
-        f7xv = simulation.calculate('f7xv', period)
-        _P = simulation.parameters_at(period.start)
-        P = simulation.parameters_at(period.start).impot_revenu.reductions_impots.invlst
+        report_logement_neuf_2009 = simulation.calculate('f7xi', period)
+        report_logement_neuf_2010 = simulation.calculate('f7xp', period)
+        report_logement_neuf_2011 = simulation.calculate('f7xn', period)
+        report_logement_neuf_2012 = simulation.calculate('f7uy', period)
+        report_rehabilitation_2009 = simulation.calculate('f7xj', period)
+        report_rehabilitation_2010 = simulation.calculate('f7xq', period)
+        report_rehabilitation_2011 = simulation.calculate('f7xv', period)
+        report_rehabilitation_2012 = simulation.calculate('f7uz', period)
+        report_residence_sociale_2009 = simulation.calculate('f7xk', period)
+        report_residence_sociale_2010 = simulation.calculate('f7xr', period) 
+        P = simulation.parameters(period).impot_revenu.reductions_impots.invlst
 
-        xi = P.taux_xi * (f7xi + f7xp + f7xn + f7uy)
-        xj = P.taux_xj * (f7xj + f7xq + f7xv + f7uz)
-        xo = P.taux_xo * (f7xk + f7xr)
+        reduction_logement_neuf = P.taux_xi * (
+            report_logement_neuf_2009 + 
+            report_logement_neuf_2010 + 
+            report_logement_neuf_2011 + 
+            report_logement_neuf_2012
+            )
+        reduction_rehabilitation = P.taux_xj * (
+            report_rehabilitation_2009 + 
+            report_rehabilitation_2010 + 
+            report_rehabilitation_2011 +
+            report_rehabilitation_2012
+            )
+        reduction_residence_sociale = P.taux_xo * (
+            report_residence_sociale_2009 +
+            report_residence_sociale_2010
+            )
 
-        return around(xi + xj + xo)
+        return around(reduction_logement_neuf + reduction_rehabilitation + reduction_residence_sociale)
 
     def formula_2015_01_01(self, simulation, period):
         '''
@@ -2061,23 +2073,32 @@ class invlst(Variable):
         2015
         '''
         maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
-        f7uy = simulation.calculate('f7uy', period)
-        f7uz = simulation.calculate('f7uz', period)
-        f7xi = simulation.calculate('f7xi', period)
-        f7xj = simulation.calculate('f7xj', period)
-        f7xn = simulation.calculate('f7xn', period)
-        f7xp = simulation.calculate('f7xp', period)
-        f7xq = simulation.calculate('f7xq', period)
-        f7xr = simulation.calculate('f7xr', period)
-        f7xv = simulation.calculate('f7xv', period)
-        _P = simulation.parameters_at(period.start)
-        P = simulation.parameters_at(period.start).impot_revenu.reductions_impots.invlst
+        report_logement_neuf_2009 = simulation.calculate('f7xi', period)
+        report_logement_neuf_2010 = simulation.calculate('f7xp', period)
+        report_logement_neuf_2011 = simulation.calculate('f7xn', period)
+        report_logement_neuf_2012 = simulation.calculate('f7uy', period)
+        report_rehabilitation_2009 = simulation.calculate('f7xj', period)
+        report_rehabilitation_2010 = simulation.calculate('f7xq', period)
+        report_rehabilitation_2011 = simulation.calculate('f7xv', period)
+        report_rehabilitation_2012 = simulation.calculate('f7uz', period)
+        report_residence_sociale_2010 = simulation.calculate('f7xr', period) 
+        P = simulation.parameters(period).impot_revenu.reductions_impots.invlst
 
-        xi = P.taux_xi * (f7xi + f7xp + f7xn + f7uy)
-        xj = P.taux_xj * (f7xj + f7xq + f7xv + f7uz)
-        xo = P.taux_xo * (f7xr)
+        reduction_logement_neuf = P.taux_xi * (
+            report_logement_neuf_2009 + 
+            report_logement_neuf_2010 + 
+            report_logement_neuf_2011 + 
+            report_logement_neuf_2012
+            )
+        reduction_rehabilitation = P.taux_xj * (
+            report_rehabilitation_2009 + 
+            report_rehabilitation_2010 + 
+            report_rehabilitation_2011 +
+            report_rehabilitation_2012
+            )
+        reduction_residence_sociale = P.taux_xo * report_residence_sociale_2010
 
-        return around(xi + xj + xo)
+        return around(reduction_logement_neuf + reduction_rehabilitation + reduction_residence_sociale)
 
     def formula_2016_01_01(self, simulation, period):
         '''
@@ -2085,49 +2106,28 @@ class invlst(Variable):
         2016
         '''
         maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
-        f7uy = simulation.calculate('f7uy', period)
-        f7uz = simulation.calculate('f7uz', period)
-        f7xn = simulation.calculate('f7xn', period)
-        f7xp = simulation.calculate('f7xp', period)
-        f7xq = simulation.calculate('f7xq', period)
-        f7xr = simulation.calculate('f7xr', period)
-        f7xv = simulation.calculate('f7xv', period)
-        _P = simulation.parameters_at(period.start)
-        P = simulation.parameters_at(period.start).impot_revenu.reductions_impots.invlst
+        report_logement_neuf_2010 = simulation.calculate('f7xp', period)
+        report_logement_neuf_2011 = simulation.calculate('f7xn', period)
+        report_logement_neuf_2012 = simulation.calculate('f7uy', period)
+        report_rehabilitation_2010 = simulation.calculate('f7xq', period)
+        report_rehabilitation_2011 = simulation.calculate('f7xv', period)
+        report_rehabilitation_2012 = simulation.calculate('f7uz', period)
+        P = simulation.parameters(period).impot_revenu.reductions_impots.invlst
 
-        xi = P.taux_xi * (f7xp + f7xn + f7uy)
-        xj = P.taux_xj * (f7xq + f7xv + f7uz)
+        reduction_logement_neuf = P.taux_xi * (
+            report_logement_neuf_2010 + 
+            report_logement_neuf_2011 + 
+            report_logement_neuf_2012
+            )
+        reduction_rehabilitation = P.taux_xj * (s
+            report_rehabilitation_2010 + 
+            report_rehabilitation_2011 +
+            report_rehabilitation_2012
+            )
 
-        return around(xi + xj)
+        return around(reduction_logement_neuf + reduction_rehabilitation)
 
-
-class invrev(Variable):
-    value_type = float
-    entity = FoyerFiscal
-    label = u"Réduction d'impôt en faveur des investissements dans les résidences de tourisme"
-    reference = "http://bofip.impots.gouv.fr/bofip/6266-PGP"
-    end = '2003-12-31'
-    definition_period = YEAR
-
-    def formula_2002_01_01(foyer_fiscal, period, parameters):
-        '''
-        Investissements locatifs dans les résidences de tourisme situées dans une zone de
-        revitalisation rurale (cases GS, GT, XG, GU et GV)
-        2002-2003
-        TODO 1/4 codé en dur
-        '''
-        maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
-        f7gs = foyer_fiscal('f7gs', period)
-        f7gt = foyer_fiscal('f7gt', period)
-        f7xg = foyer_fiscal('f7xg', period)
-        f7gu = foyer_fiscal('f7gu', period)
-        f7gv = foyer_fiscal('f7gv', period)
-        P = parameters(period).impot_revenu.reductions_impots.invrev
-
-        return (P.taux_gs * min_(f7gs, P.seuil_gs * (1 + maries_ou_pacses)) / 4 +
-                 P.taux_gu * min_(f7gu, P.seuil_gu * (1 + maries_ou_pacses)) / 4 +
-                 P.taux_xg * min_(f7xg, P.seuil_xg * (1 + maries_ou_pacses)) / 4 +
-                 P.taux_gt * f7gt + P.taux_gt * f7gv)
+    # TODO : verrifier la formule de cette réduction pour les années 2004-2013, les cases changent de signification d'une année à l'autre, cela ne semble pas pris en compte dans le calcul (ex: f7xd)
 
 
 class locmeu(Variable):
