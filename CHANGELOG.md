@@ -1,5 +1,13 @@
 # Changelog
 
+### 20.1.0 [#884](https://github.com/openfisca/openfisca-france/pull/884)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : A partir de 04/2017
+* Zones impactées : `prestations_familiales/paje.py`
+* Détails :
+  - Remplace la `paje_clca` par la `page_prepare` dans le calcul de la `paje` à partir d'avril 2017.
+
 ### 20.0.9 [#906](https://github.com/openfisca/openfisca-france/pull/906)
 
 * Évolution du système socio-fiscal.

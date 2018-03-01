@@ -241,12 +241,12 @@ class rsa_base_ressources_prestations_familiales(Variable):
         prestations_calculees = [
             'rsa_forfait_asf',
             'paje_base',
-           ]
+        ]
         prestations_autres = [
             'paje_clca',
             'paje_prepare',
             'paje_colca',
-            ]
+        ]
 
         # On réinjecte le montant des prestations calculées
         result = sum(famille(prestation, mois_demande) for prestation in prestations_calculees)
