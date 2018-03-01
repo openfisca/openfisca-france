@@ -457,7 +457,7 @@ class aidper(Variable):
         # On ne contrôle pas que 7WR ne dépasse pas le plafond (ça dépend du nombre de logements et de la nature des
         # travaux, c'est un peu le bordel)
         max00 = P.max * (1 + maries_ou_pacses)
-        max0 = max00 + P.pac1 * nb_pac_majoration_plafond +
+        max0 = max00 + P.pac1 * nb_pac_majoration_plafond
         max1 = max_(0, max0 - max_(0, f7wl - max00))
 
         return (
