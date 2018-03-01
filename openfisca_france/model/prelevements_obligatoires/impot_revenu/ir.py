@@ -1375,7 +1375,7 @@ class microentreprise(Variable):
 class plus_values(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = u"Taxation des plus_values"
+    label = u"Taxation forfaitaire des plus_values"
     reference = "http://bofip.impots.gouv.fr/bofip/6957-PGP"
     definition_period = YEAR
 
@@ -1678,12 +1678,12 @@ class rfr(Variable):
     value_type = float
     entity = FoyerFiscal
     label = u"Revenu fiscal de référence"
+    reference = "http://bofip.impots.gouv.fr/bofip/5934-PGP.html?identifiant=BOI-IF-TH-10-50-30-20-20121127#5934-PGP_Calcul_du_revenu_fiscal_de__40"
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
         '''
         Revenu fiscal de référence
-        f3vg -> rev_cat_pv -> ... -> rni
         '''
         rni = foyer_fiscal('rni', period)
         abattement_net_retraite_dirigeant_pme = foyer_fiscal('abattement_net_retraite_dirigeant_pme', period)
