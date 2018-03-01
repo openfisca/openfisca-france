@@ -2119,7 +2119,7 @@ class invlst(Variable):
             report_logement_neuf_2011 + 
             report_logement_neuf_2012
             )
-        reduction_rehabilitation = P.taux_xj * (s
+        reduction_rehabilitation = P.taux_xj * (
             report_rehabilitation_2010 + 
             report_rehabilitation_2011 +
             report_rehabilitation_2012
