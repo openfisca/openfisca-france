@@ -7,6 +7,7 @@
 * Zones impactées : openfisca_france/model/prelevements_obligatoires/impot_revenu/charges_deductibles.py
 * Détails :
   - Ammélioration du calcul des grosses réparations et de leurs prise en compte dans le calcul des charges déductibles
+  - Ajout de nouvelles variables d'inputs pour les cases de l'IR correspondantes
 
 ### 20.0.9 [#906](https://github.com/openfisca/openfisca-france/pull/906)
 
