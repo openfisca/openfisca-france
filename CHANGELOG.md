@@ -1,9 +1,15 @@
 # Changelog
 
+### 20.6.2 [#920](https://github.com/openfisca/openfisca-france/pull/920)
+
+* Amélioration technique
+* Détails :
+  - Migre la formule de `cmu_c_plafond` vers la syntaxe standard
+
 ### 20.6.1 [#927](https://github.com/openfisca/openfisca-france/pull/927)
 
 * Correction d'un crash.
-* Zones impactées : openfisca_france/reforms/landais_piketty_saez.py.
+* Zones impactées : `reforms/landais_piketty_saez`
 * Détails :
    - La réforme ne fonctionnait plus à la suite d'un changement de syntaxe qui a conduit à une erreur sur le nom d'une variable dans une formule non-testée.
 
@@ -20,7 +26,7 @@
 ### 20.5.1 [#925](https://github.com/openfisca/openfisca-france/pull/925)
 
 * Correction d'un bug
-* Zones impactées : openfisca_france/model/revenus/activite/salarie.py
+* Zones impactées : `revenus/activite/salarie`
 * Détails :
   - Autorise, pour les fonctionnaires, le basculement automatique en mensuel si les revenus sont renseignés en annuel
   - Adopte un comportement similaire aux autres revenus des salariés
@@ -38,7 +44,7 @@
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : toutes.
-* Zones impactées : `model/prestations/aides_logement`.
+* Zones impactées : `prestations/aides_logement`.
 * Détails :
   - Implémentation des décrets limitant l'application de [`abat_spe`](https://legislation.openfisca.fr/abat_spe) dans la base ressources des ALs
 
@@ -46,7 +52,7 @@
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : A partir de 2017
-* Zones impactées : `prestations/cheque_energie.py`
+* Zones impactées : `prestations/cheque_energie`
 * Détails :
   - Ajoute le calcul du montant du chèque énergie
 
@@ -65,7 +71,7 @@
 
 Évolution du système socio-fiscal.
 * Périodes concernées : 2009 - 2016
-* Zones impactées : openfisca_france/model/prelevements_obligatoires/impot_revenu/charges_deductibles.py
+* Zones impactées : `prelevements_obligatoires/impot_revenu/charges_deductibles`
 * Détails :
   - Ammélioration du calcul des grosses réparations et de leurs prise en compte dans le calcul des charges déductibles
   - Ajout de nouvelles variables d'inputs pour les cases de l'IR correspondantes
