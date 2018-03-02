@@ -4,7 +4,6 @@ from __future__ import division
 
 from functools import partial
 
-import numpy as np
 from numpy import absolute as abs_, apply_along_axis, array, int32, logical_or as or_
 
 from openfisca_france.model.base import *  # noqa analysis:ignore
@@ -133,45 +132,6 @@ class cmu_eligible_majoration_dom(Variable):
         return residence_guadeloupe | residence_martinique | residence_guyane | residence_reunion
 
 
-def get_rank(entity, criteria, condition = True):
-    """
-    Get the rank of a person within an entity according the a criteria
-    If condition is specified, then the persons who don't respect it won't be taken into account.
-    """
-    nb = entity.nb_persons()
-    ids = entity.members_entity_id
-    positions = entity.members_position
-    mask = np.argsort(ids)  # mask to group the individus by entity
-    biggest_entity_size = np.max(positions) + 1
-
-    def get_kth_column(k):
-        """
-            Get the value of criteria for the kth persons of each family.
-            If the kth person does not respect the condition, get np.inf instead
-            The result has the same dimension than the number of families
-        """
-        result = entity.filled_array(np.inf)
-        filtered_criteria = np.where(condition, criteria, np.inf)
-        # For families that have at least k persons, set the result as the value of criteria for the person for which the position is k.
-        # The mask is needed b/c the order of the kth persons of each family in the persons vector is not necessarily the same than the family order.
-        result[nb > k] = filtered_criteria[mask][positions[mask] == k]
-
-        return result
-
-    # Matrix: the value in line i and column j is the value of criteria for the jth person of the ith entity
-    matrix = np.asarray([get_kth_column(i) for i in range(biggest_entity_size)]).transpose()
-
-    # We double-argsort all lines of the matrix.
-    # Double-argsorting gets the rank of each value once sorted
-    sorted_matrix = np.argsort(np.argsort(matrix))
-
-    # Build the result vector by taking for each person the value in the right line (corresponding to its family id) and the right column (corresponding to its position)
-    result = sorted_matrix[ids, positions]
-
-    # Return -1 for the persons who don't respect the condition
-    return np.where(condition, result, -1)
-
-
 class cmu_c_plafond(Variable):
     value_type = float
     entity = Famille
@@ -193,7 +153,7 @@ class cmu_c_plafond(Variable):
         cmu_eligible_majoration_dom = famille('cmu_eligible_majoration_dom', period)
         coeff_garde_alt_i = where(famille.members('garde_alternee', period), 0.5, 1)
 
-        rang_dans_fratrie = get_rank(famille, - age_i, condition = is_enfant)  # 0 pour l'aîné, 1 pour le cadet, etc.
+        rang_dans_fratrie = famille.members.get_rank(famille, - age_i, condition = is_enfant)  # 0 pour l'aîné, 1 pour le cadet, etc.
 
         # Famille monoparentale
 
