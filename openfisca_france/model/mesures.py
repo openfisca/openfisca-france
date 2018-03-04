@@ -11,6 +11,7 @@ class unites_consommation(Variable):
     value_type = float
     entity = Menage
     label = u"Unités de consommation du ménage, selon l'échelle de l'INSEE"
+    reference = u"https://insee.fr/fr/metadonnees/definition/c1802"
     definition_period = YEAR
 
     def formula(menage, period, parameters):
