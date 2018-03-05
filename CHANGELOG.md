@@ -1,5 +1,15 @@
 # Changelog
 
+
+### 20.2.0 [#907](https://github.com/openfisca/openfisca-france/pull/907)
+
+Évolution du système socio-fiscal.
+* Périodes concernées : 2009 - 2016
+* Zones impactées : openfisca_france/model/prelevements_obligatoires/impot_revenu/charges_deductibles.py
+* Détails :
+  - Ammélioration du calcul des grosses réparations et de leurs prise en compte dans le calcul des charges déductibles
+  - Ajout de nouvelles variables d'inputs pour les cases de l'IR correspondantes
+
 ### 20.1.0 [#884](https://github.com/openfisca/openfisca-france/pull/884)
 
 * Évolution du système socio-fiscal.
