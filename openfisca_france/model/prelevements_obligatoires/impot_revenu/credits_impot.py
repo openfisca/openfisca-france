@@ -1071,9 +1071,10 @@ class inthab(Variable):
         f7vz = foyer_fiscal('f7vz', period)
         P = parameters(period).impot_revenu.credits_impot.inthab
 
-        invalide = caseP | caseF | (nbG != 0) | (nbR != 0) | (nbI != 0)
+        invalide = invalidite_decl | invalidite_conj | (nbpac_invalideG != 0) | (nbpac_invalideR != 0) | (nbpac_invalideI != 0)
+        # NB : max0 = plafond initial du montant d'intérêts retenus pour calculer le crédit
+        #      max1..max4 = plafonds après imputations successives (dans l'ordre décrit dans la législation) des intérêts éligibles au crédit d'impôt
         max0 = P.max * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac_majoration_plafond * P.add
-
         max1 = max_(max0 - f7vx, 0)
         max2 = max_(max1 - f7vu, 0)
         max3 = max_(max2 - f7vz, 0)
@@ -1104,9 +1105,10 @@ class inthab(Variable):
         f7vz = foyer_fiscal('f7vz', period)
         P = parameters(period).impot_revenu.credits_impot.inthab
 
-        invalide = caseP | caseF | (nbG != 0) | (nbR != 0) | (nbI != 0)
+        invalide = invalidite_decl | invalidite_conj | (nbpac_invalideG != 0) | (nbpac_invalideR != 0) | (nbpac_invalideI != 0)
+        # NB : max0 = plafond initial du montant d'intérêts retenus pour calculer le crédit
+        #      max1..max4 = plafonds après imputations successives (dans l'ordre décrit dans la législation) des intérêts éligibles au crédit d'impôt
         max0 = P.max * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac_majoration_plafond * P.add
-
         max1 = max_(max0 - f7vx, 0)
         max2 = max_(max1 - f7vz, 0)
         max3 = max_(max2 - f7vv, 0)
@@ -1134,9 +1136,10 @@ class inthab(Variable):
         f7vz = foyer_fiscal('f7vz', period)
         P = parameters(period).impot_revenu.credits_impot.inthab
 
-        invalide = caseP | caseF | (nbG != 0) | (nbR != 0) | (nbI != 0)
+        invalide = invalidite_decl | invalidite_conj | (nbpac_invalideG != 0) | (nbpac_invalideR != 0) | (nbpac_invalideI != 0)
+        # NB : max0 = plafond initial du montant d'intérêts retenus pour calculer le crédit
+        #      max1..max4 = plafonds après imputations successives (dans l'ordre décrit dans la législation) des intérêts éligibles au crédit d'impôt
         max0 = P.max * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac_majoration_plafond * P.add
-
         max1 = max_(max0 - f7vx, 0)
         max2 = max_(max1 - f7vz, 0)
         return (
