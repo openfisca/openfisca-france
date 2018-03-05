@@ -1554,8 +1554,14 @@ class duflot(Variable):
         max3 = max_(0, max2 - invest_metropole_2014 - f7qb)
       
         return (
-            (min_(max_(0, P.plafond - invest_domtom_2013), invest_metropole_2013) + min_(max_(0, max2 - invest_domtom_2014), invest_metropole_2014)) * P.taux_m + 
-            (min_(P.plafond, invest_domtom_2013) + min_(P.plafond, invest_domtom_2014)) * P.taux_om
+            P.taux_m * (
+                min_(max_(0, P.plafond - invest_domtom_2013), invest_metropole_2013) + 
+                min_(max_(0, max2 - invest_domtom_2014), invest_metropole_2014)
+                ) + 
+            P.taux_om * (
+                min_(P.plafond, invest_domtom_2013) + 
+                min_(P.plafond, invest_domtom_2014)
+                )
             ) / 9 + report_reduc_2013
 
     def formula_2015_01_01(foyer_fiscal, period, parameters):
@@ -1572,8 +1578,14 @@ class duflot(Variable):
         P = parameters(period).impot_revenu.reductions_impots.duflot
 
         return (
-            (min_(P.plafond - invest_domtom_2013, invest_metropole_2013) + min_(P.plafond - invest_domtom_2014, invest_metropole_2014)) * P.taux_m + 
-            (min_(P.plafond, invest_domtom_2013) + min_(P.plafond, invest_domtom_2014)) * P.taux_om
+            P.taux_m * (
+                min_(P.plafond - invest_domtom_2013, invest_metropole_2013) + 
+                min_(P.plafond - invest_domtom_2014, invest_metropole_2014)
+                ) + 
+            P.taux_om * (
+                min_(P.plafond, invest_domtom_2013) + 
+                min_(P.plafond, invest_domtom_2014)
+                ) 
             ) / 9 + report_reduc_2013 + report_reduc_2014
 
     def formula_2016_01_01(foyer_fiscal, period, parameters):
@@ -1591,8 +1603,14 @@ class duflot(Variable):
         P = parameters(period).impot_revenu.reductions_impots.duflot
 
         return (
-            (min_(P.plafond - invest_domtom_2013, invest_metropole_2013) + min_(P.plafond - invest_domtom_2014, invest_metropole_2014)) * P.taux_m + 
-            (min_(P.plafond, invest_domtom_2013) + min_(P.plafond, invest_domtom_2014)) * P.taux_om
+            P.taux_m * (
+                min_(P.plafond - invest_domtom_2013, invest_metropole_2013) + 
+                min_(P.plafond - invest_domtom_2014, invest_metropole_2014)
+                ) + 
+            P.taux_om * (
+                min_(P.plafond, invest_domtom_2013) + 
+                min_(P.plafond, invest_domtom_2014)
+                )
             ) / 9 + report_reduc_2013 + report_reduc_2014 + report_reduc_2015
 
 #TODO: / 5 dans trois TOM
