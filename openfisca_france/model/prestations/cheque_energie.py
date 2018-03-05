@@ -12,12 +12,13 @@ class unites_consommation_cheque_energie(Variable):
     definition_period = YEAR
 
     def formula_2017(menage, period, parameters):
+        uc = parameters(period).cheque_energie.unites_consommation
         nb_persons = menage.nb_persons()
         gardes_alternee = menage.sum(menage.members('garde_alternee', period.first_month))
 
         adj_nb = nb_persons - 0.5 * gardes_alternee
 
-        return 1 + 0.5 * (adj_nb > 1) * (adj_nb - 1) + 0.3 * (adj_nb > 2) * (adj_nb - 2)
+        return uc.premiere_personne + uc.deuxieme_personne * (adj_nb > 1) * (adj_nb - 1) + uc.autres_personnes * (adj_nb > 2) * (adj_nb - 2)
 
 
 class montant_cheque_energie(Variable):
@@ -28,13 +29,28 @@ class montant_cheque_energie(Variable):
     definition_period = YEAR
 
     def formula_2017(menage, period, parameters):
+        baremes = parameters(period).cheque_energie.baremes
+        th = baremes.thresholds
+        montants = baremes.montants
+
         uc = menage('unites_consommation_cheque_energie', period)
         rfr = menage.personne_de_reference.foyer_fiscal('rfr', period.n_2)
 
         base = rfr / uc
 
         return (
-            + (uc <= 1)    * ((base < 5600) * 144 + (5600 <= base < 6700) *  96 + (6700 <= base < 7700) * 48)
-            + (1 < uc < 2) * ((base < 5600) * 190 + (5600 <= base < 6700) * 126 + (6700 <= base < 7700) * 63)
-            + (2 <= uc)    * ((base < 5600) * 227 + (5600 <= base < 6700) * 152 + (6700 <= base < 7700) * 76)
+            + (     uc <= 1) * ((base < th.un) * montants.une_uc.un + (th.un <= base < th.deux) * montants.une_uc.deux + (th.deux <= base < th.trois) * montants.une_uc.trois)
+            + (1 <  uc <  2) * ((base < th.un) * montants.une_uc_a_deux_uc.un + (th.un <= base < th.deux) * montants.une_uc_a_deux_uc.deux + (th.deux <= base < th.trois) * montants.une_uc_a_deux_uc.trois)
+            + (2 <= uc     ) * ((base < th.un) * montants.plus_de_deux_uc.un + (th.un <= base < th.deux) * montants.plus_de_deux_uc.deux + (th.deux <= base < th.trois) * montants.plus_de_deux_uc.trois)
             )
+
+
+class cheque_energie(Variable):
+    entity = Menage
+    value_type = float
+    reference = "https://chequeenergie.gouv.fr"
+    label = u"Chèque énergie"
+    definition_period = MONTH
+
+    def formula_2017(menage, period, parameters):
+        return menage('montant_cheque_energie', period.this_year)
