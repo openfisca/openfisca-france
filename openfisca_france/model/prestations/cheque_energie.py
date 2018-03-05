@@ -4,7 +4,7 @@ from __future__ import division
 
 from openfisca_france.model.base import *  # noqa analysis:ignore
 
-class unites_consommation_cheque_energie(Variable):
+class cheque_energie_unites_consommation(Variable):
     entity = Menage
     value_type = float
     reference = "https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=1EA40CA7787AF90A95D1E1B3155D9028.tplgfr29s_1?idArticle=LEGIARTI000032497834&cidTexte=LEGITEXT000023983208&dateTexte=20160511"
@@ -21,7 +21,25 @@ class unites_consommation_cheque_energie(Variable):
         return uc.premiere_personne + uc.deuxieme_personne * (adj_nb > 1) * (adj_nb - 1) + uc.autres_personnes * (adj_nb > 2) * (adj_nb - 2)
 
 
-class montant_cheque_energie(Variable):
+class cheque_energie_eligibilite_logement(Variable):
+    entity = Menage
+    value_type = bool
+    label = u"Éligibilité du logement occupé au chèque énergie"
+    definition_period = MONTH
+
+    def formula_2017(menage, period, parameters):
+        statut_occupation_logement = menage('statut_occupation_logement', period)
+
+        return (
+            + (statut_occupation_logement == TypesStatutOccupationLogement.primo_accedant)
+            + (statut_occupation_logement == TypesStatutOccupationLogement.proprietaire)
+            + (statut_occupation_logement == TypesStatutOccupationLogement.locataire_hlm)
+            + (statut_occupation_logement == TypesStatutOccupationLogement.locataire_vide)
+            + (statut_occupation_logement == TypesStatutOccupationLogement.locataire_meuble)
+            )
+
+
+class cheque_energie_montant(Variable):
     entity = Menage
     value_type = float
     reference = "https://www.legifrance.gouv.fr/affichTexteArticle.do;jsessionid=1EA40CA7787AF90A95D1E1B3155D9028.tplgfr29s_1?idArticle=JORFARTI000032496647&cidTexte=JORFTEXT000032496630&dateTexte=20160508&categorieLien=id"
@@ -33,7 +51,7 @@ class montant_cheque_energie(Variable):
         th = baremes.thresholds
         montants = baremes.montants
 
-        uc = menage('unites_consommation_cheque_energie', period)
+        uc = menage('cheque_energie_unites_consommation', period)
         rfr = menage.personne_de_reference.foyer_fiscal('rfr', period.n_2)
 
         base = rfr / uc
@@ -53,4 +71,4 @@ class cheque_energie(Variable):
     definition_period = MONTH
 
     def formula_2017(menage, period, parameters):
-        return menage('montant_cheque_energie', period.this_year)
+        return menage('cheque_energie_montant', period.this_year) * menage('cheque_energie_eligibilite_logement', period)

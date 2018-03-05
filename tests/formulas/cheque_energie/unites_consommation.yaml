@@ -2,7 +2,7 @@
   period: 2018
   input_variables:
   output_variables:
-    unites_consommation_cheque_energie:
+    cheque_energie_unites_consommation:
       2018: 1
 
 - name: UC isolé
@@ -18,7 +18,7 @@
   individus:
     - id: parent
   output_variables:
-    unites_consommation_cheque_energie:
+    cheque_energie_unites_consommation:
       2018: 1
 
 - name: UC avec 1 enfant
@@ -41,7 +41,7 @@
     - id: parent
     - id: Mila
   output_variables:
-    unites_consommation_cheque_energie:
+    cheque_energie_unites_consommation:
       2018: 1.5
 
 - name: UC avec 1 enfant en garde alternée
@@ -65,5 +65,5 @@
     - id: Mila
       garde_alternee: True
   output_variables:
-    unites_consommation_cheque_energie:
+    cheque_energie_unites_consommation:
       2018: 1.25

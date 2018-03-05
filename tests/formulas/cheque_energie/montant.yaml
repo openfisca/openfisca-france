@@ -1,119 +1,119 @@
 - name: 1 UC - RFR < 5600
   period: 2018
   input_variables:
-    unites_consommation_cheque_energie: 1
+    cheque_energie_unites_consommation: 1
     rfr:
      2016: 5599
   output_variables:
-    montant_cheque_energie:
+    cheque_energie_montant:
       2018: 144
 
 - name: 1 UC - RFR = 5600
   period: 2018
   input_variables:
-    unites_consommation_cheque_energie: 1
+    cheque_energie_unites_consommation: 1
     rfr:
      2016: 5600
   output_variables:
-    montant_cheque_energie:
+    cheque_energie_montant:
       2018: 96
 
 - name: 1 UC - RFR = 6700
   period: 2018
   input_variables:
-    unites_consommation_cheque_energie: 1
+    cheque_energie_unites_consommation: 1
     rfr:
      2016: 6700
   output_variables:
-    montant_cheque_energie:
+    cheque_energie_montant:
       2018: 48
 
 - name: 1 UC - RFR = 7700
   period: 2018
   input_variables:
-    unites_consommation_cheque_energie: 1
+    cheque_energie_unites_consommation: 1
     rfr:
      2016: 7700
   output_variables:
-    montant_cheque_energie:
+    cheque_energie_montant:
       2018: 0
 
 - name: 1.5 UC - RFR < 5600 * 1.5
   period: 2018
   input_variables:
-    unites_consommation_cheque_energie: 1.5
+    cheque_energie_unites_consommation: 1.5
     rfr:
      2016: 5599
   output_variables:
-    montant_cheque_energie:
+    cheque_energie_montant:
       2018: 190
 
 - name: 1.5 UC - RFR = 5600 * 1.5
   period: 2018
   input_variables:
-    unites_consommation_cheque_energie: 1.5
+    cheque_energie_unites_consommation: 1.5
     rfr:
      2016: 5600 * 1.5
   output_variables:
-    montant_cheque_energie:
+    cheque_energie_montant:
       2018: 126
 
 - name: 1.5 UC - RFR = 6700 * 1.5
   period: 2018
   input_variables:
-    unites_consommation_cheque_energie: 1.5
+    cheque_energie_unites_consommation: 1.5
     rfr:
      2016: 6700 * 1.5
   output_variables:
-    montant_cheque_energie:
+    cheque_energie_montant:
       2018: 63
 
 - name: 1.5 UC - RFR = 7700 * 1.5
   period: 2018
   input_variables:
-    unites_consommation_cheque_energie: 1.5
+    cheque_energie_unites_consommation: 1.5
     rfr:
      2016: 7700 * 1.5
   output_variables:
-    montant_cheque_energie:
+    cheque_energie_montant:
       2018: 0
 
 - name: 2 UC - RFR < 5600 * 2
   period: 2018
   input_variables:
-    unites_consommation_cheque_energie: 2
+    cheque_energie_unites_consommation: 2
     rfr:
      2016: 5599 
   output_variables:
-    montant_cheque_energie:
+    cheque_energie_montant:
       2018: 227
 
 - name: 2 UC - RFR = 5600 * 2
   period: 2018
   input_variables:
-    unites_consommation_cheque_energie: 2
+    cheque_energie_unites_consommation: 2
     rfr:
      2016: 5600 * 2
   output_variables:
-    montant_cheque_energie:
+    cheque_energie_montant:
       2018: 152
 
 - name: 2 UC - RFR = 6700 * 2
   period: 2018
   input_variables:
-    unites_consommation_cheque_energie: 2
+    cheque_energie_unites_consommation: 2
     rfr:
      2016: 6700 * 2
   output_variables:
-    montant_cheque_energie:
+    cheque_energie_montant:
       2018: 76
 
 - name: 2 UC - RFR = 7700 * 2
   period: 2018
   input_variables:
-    unites_consommation_cheque_energie: 2
+    cheque_energie_unites_consommation: 2
     rfr:
      2016: 7700 * 2
   output_variables:
-    montant_cheque_energie:
+    cheque_energie_montant:
       2018: 0
