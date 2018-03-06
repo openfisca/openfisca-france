@@ -61,7 +61,7 @@ individus:
     statut_marital: marie
     valeur_locative_immo_non_loue:
       2012-01: 0
-    valeur_locative_terrains_non_loue:
+    valeur_locative_terrains_non_loues:
       2012-01: 0
   - age: 34
     age_en_mois: 418
@@ -118,7 +118,7 @@ individus:
     statut_marital: marie
     valeur_locative_immo_non_loue:
       2012-01: 0
-    valeur_locative_terrains_non_loue:
+    valeur_locative_terrains_non_loues:
       2012-01: 0
   - age: 7
     age_en_mois: 91
@@ -129,7 +129,7 @@ individus:
     handicap: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
-    valeur_locative_terrains_non_loue:
+    valeur_locative_terrains_non_loues:
       2012-01: 0
   - age: 9
     age_en_mois: 116
@@ -141,7 +141,7 @@ individus:
     scolarite: inconnue
     valeur_locative_immo_non_loue:
       2012-01: 0
-    valeur_locative_terrains_non_loue:
+    valeur_locative_terrains_non_loues:
       2012-01: 0
   - age: 4
     age_en_mois: 54
@@ -152,7 +152,7 @@ individus:
     handicap: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
-    valeur_locative_terrains_non_loue:
+    valeur_locative_terrains_non_loues:
       2012-01: 0
 familles:
   acs:

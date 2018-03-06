@@ -652,7 +652,7 @@ class rsa_base_ressources_patrimoine_individu(Variable):
         epargne_revenus_non_imposables = individu('epargne_revenus_non_imposables', period)
         revenus_capital = individu('revenus_capital', period)
         valeur_locative_immo_non_loue = individu('valeur_locative_immo_non_loue', period)
-        valeur_locative_terrains_non_loue = individu('valeur_locative_terrains_non_loue', period)
+        valeur_locative_terrains_non_loues = individu('valeur_locative_terrains_non_loues', period)
         revenus_locatifs = individu('revenus_locatifs', period)
         rsa = parameters(period).prestations.minima_sociaux.rsa
 
@@ -662,7 +662,7 @@ class rsa_base_ressources_patrimoine_individu(Variable):
             + revenus_capital
             + revenus_locatifs
             + valeur_locative_immo_non_loue * rsa.patrimoine.abattement_valeur_locative_immo_non_loue
-            + valeur_locative_terrains_non_loue * rsa.patrimoine.abattement_valeur_locative_terrains_non_loue
+            + valeur_locative_terrains_non_loues * rsa.patrimoine.abattement_valeur_locative_terrains_non_loues
             )
 
 

@@ -25,7 +25,7 @@ individus:
   tns_micro_entreprise_type_activite: bic
   valeur_locative_immo_non_loue:
     2012-01: 0
-  valeur_locative_terrains_non_loue:
+  valeur_locative_terrains_non_loues:
     2012-01: 0
 - age: 11
   age_en_mois: 143
@@ -37,7 +37,7 @@ individus:
   scolarite: college
   valeur_locative_immo_non_loue:
     2012-01: 0
-  valeur_locative_terrains_non_loue:
+  valeur_locative_terrains_non_loues:
     2012-01: 0
 familles:
 - acs:

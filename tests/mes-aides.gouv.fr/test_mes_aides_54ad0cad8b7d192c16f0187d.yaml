@@ -15,7 +15,7 @@ individus:
     handicap: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
-    valeur_locative_terrains_non_loue:
+    valeur_locative_terrains_non_loues:
       2012-01: 0
   - age: 4
     age_en_mois: 52
@@ -26,7 +26,7 @@ individus:
     handicap: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
-    valeur_locative_terrains_non_loue:
+    valeur_locative_terrains_non_loues:
       2012-01: 0
   - age: 17
     age_en_mois: 208
@@ -83,7 +83,7 @@ individus:
     scolarite: college
     valeur_locative_immo_non_loue:
       2012-01: 0
-    valeur_locative_terrains_non_loue:
+    valeur_locative_terrains_non_loues:
       2012-01: 0
 familles:
   acs:

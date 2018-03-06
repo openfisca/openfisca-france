@@ -379,7 +379,7 @@
   individus:
     - id: "parent1"
       epargne_revenus_imposables: 35000
-      valeur_locative_terrains_non_loue: 100
+      valeur_locative_terrains_non_loues: 100
   output_variables:
     aide_logement_base_ressources_patrimoine: 80
 

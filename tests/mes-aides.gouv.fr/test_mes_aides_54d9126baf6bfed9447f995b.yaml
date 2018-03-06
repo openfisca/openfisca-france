@@ -21,7 +21,7 @@ individus:
       2013: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
-    valeur_locative_terrains_non_loue:
+    valeur_locative_terrains_non_loues:
       2012-01: 0
   - age: 14
     age_en_mois: 173
@@ -33,7 +33,7 @@ individus:
     scolarite: lycee
     valeur_locative_immo_non_loue:
       2012-01: 0
-    valeur_locative_terrains_non_loue:
+    valeur_locative_terrains_non_loues:
       2012-01: 0
 familles:
   acs:

@@ -103,21 +103,21 @@ class aide_logement_base_ressources_patrimoine(Variable):
         valeur_locative_loue = famille.sum(valeur_locative_loue_i)
         valeur_locative_immo_non_loue_i = famille.members('valeur_locative_immo_non_loue', period)
         valeur_locative_immo_non_loue = famille.sum(valeur_locative_immo_non_loue_i)
-        valeur_locative_terrains_non_loue_i = famille.members('valeur_locative_terrains_non_loue', period)
-        valeur_locative_terrains_non_loue = famille.sum(valeur_locative_terrains_non_loue_i)
+        valeur_locative_terrains_non_loues_i = famille.members('valeur_locative_terrains_non_loues', period)
+        valeur_locative_terrains_non_loues = famille.sum(valeur_locative_terrains_non_loues_i)
 
         # Les abatements sont les mêmes que pour le RSA
         abattements = parameters(period).prestations.minima_sociaux.rsa.patrimoine
 
         capitaux_non_productifs = livret_a + epargne_revenus_non_imposables
-        foncier = valeur_locative_loue + valeur_locative_immo_non_loue + valeur_locative_terrains_non_loue
+        foncier = valeur_locative_loue + valeur_locative_immo_non_loue + valeur_locative_terrains_non_loues
 
         patrimoine = epargne_revenus_imposables + capitaux_non_productifs + foncier
 
         return (patrimoine > 30000) * (
             + capitaux_non_productifs * abattements.taux_interet_forfaitaire_epargne_non_imposable
             + valeur_locative_immo_non_loue * abattements.abattement_valeur_locative_immo_non_loue
-            + valeur_locative_terrains_non_loue * abattements.abattement_valeur_locative_terrains_non_loue
+            + valeur_locative_terrains_non_loues * abattements.abattement_valeur_locative_terrains_non_loues
             )
 
 

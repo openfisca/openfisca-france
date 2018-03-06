@@ -92,7 +92,7 @@ individus:
     statut_marital: marie
     valeur_locative_immo_non_loue:
       2012-01: 0
-    valeur_locative_terrains_non_loue:
+    valeur_locative_terrains_non_loues:
       2012-01: 0
   - activite: retraite
     age: 65
@@ -149,7 +149,7 @@ individus:
       2014-12: 234
     valeur_locative_immo_non_loue:
       2012-01: 0
-    valeur_locative_terrains_non_loue:
+    valeur_locative_terrains_non_loues:
       2012-01: 0
 familles:
   acs:

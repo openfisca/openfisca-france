@@ -177,7 +177,7 @@ individus:
     2017-08: bic
   valeur_locative_immo_non_loue:
     2012-01: 0
-  valeur_locative_terrains_non_loue:
+  valeur_locative_terrains_non_loues:
     2012-01: 0
 - aah:
     2016-08: 0
@@ -272,7 +272,7 @@ individus:
     2017-08: bic
   valeur_locative_immo_non_loue:
     2012-01: 0
-  valeur_locative_terrains_non_loue:
+  valeur_locative_terrains_non_loues:
     2012-01: 0
 familles:
 - acs:

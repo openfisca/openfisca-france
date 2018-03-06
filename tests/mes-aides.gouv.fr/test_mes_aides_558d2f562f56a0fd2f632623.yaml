@@ -66,7 +66,7 @@ individus:
       2015-06: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
-    valeur_locative_terrains_non_loue:
+    valeur_locative_terrains_non_loues:
       2012-01: 0
   - age: 9
     age_en_mois: 119
@@ -78,7 +78,7 @@ individus:
     scolarite: college
     valeur_locative_immo_non_loue:
       2012-01: 0
-    valeur_locative_terrains_non_loue:
+    valeur_locative_terrains_non_loues:
       2012-01: 0
   - age: 9
     age_en_mois: 111
@@ -90,7 +90,7 @@ individus:
     scolarite: college
     valeur_locative_immo_non_loue:
       2012-01: 0
-    valeur_locative_terrains_non_loue:
+    valeur_locative_terrains_non_loues:
       2012-01: 0
   - age: 15
     age_en_mois: 190
@@ -102,7 +102,7 @@ individus:
     scolarite: college
     valeur_locative_immo_non_loue:
       2012-01: 0
-    valeur_locative_terrains_non_loue:
+    valeur_locative_terrains_non_loues:
       2012-01: 0
 familles:
   acs:

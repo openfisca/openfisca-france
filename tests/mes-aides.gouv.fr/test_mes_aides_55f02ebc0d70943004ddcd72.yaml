@@ -65,7 +65,7 @@ individus:
     statut_marital: celibataire
     valeur_locative_immo_non_loue:
       2012-01: 0
-    valeur_locative_terrains_non_loue:
+    valeur_locative_terrains_non_loues:
       2012-01: 0
   - enfant_a_charge:
       2015: true
@@ -122,7 +122,7 @@ individus:
     statut_marital: celibataire
     valeur_locative_immo_non_loue:
       2012-01: 0
-    valeur_locative_terrains_non_loue:
+    valeur_locative_terrains_non_loues:
       2012-01: 0
 familles:
   acs:

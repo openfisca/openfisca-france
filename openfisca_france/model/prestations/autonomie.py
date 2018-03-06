@@ -16,10 +16,10 @@ class base_ressources_apa(Variable):
         revenu_fiscal_de_reference = individu.foyer_fiscal('rfr', period.n_2) / 12
         aide_logement_montant = individu.famille('aide_logement_montant', period)
         valeur_locative_immo_non_loue = individu('valeur_locative_immo_non_loue', period)
-        valeur_locative_terrains_non_loue = individu('valeur_locative_terrains_non_loue', period)
+        valeur_locative_terrains_non_loues = individu('valeur_locative_terrains_non_loues', period)
 
         return revenu_fiscal_de_reference - (
-            valeur_locative_immo_non_loue + valeur_locative_terrains_non_loue + aide_logement_montant
+            valeur_locative_immo_non_loue + valeur_locative_terrains_non_loues + aide_logement_montant
             )
 
 

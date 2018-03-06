@@ -133,7 +133,7 @@ class valeur_locative_immo_non_loue(Variable):
     definition_period = MONTH
 
 
-class valeur_locative_terrains_non_loue(Variable):
+class valeur_locative_terrains_non_loues(Variable):
     value_type = float
     entity = Individu
     base_function = requested_period_last_value
