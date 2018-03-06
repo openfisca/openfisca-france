@@ -4,6 +4,13 @@ from __future__ import division
 
 from openfisca_france.model.base import *  # noqa analysis:ignore
 
+class UCChequeEnergie(Enum):
+    __order__ = 'une_uc une_uc_a_deux_uc plus_de_deux_uc'  # Needed to preserve the enum order in Python 2
+    une_uc = u'Une UC'
+    une_uc_a_deux_uc = u'Une UC à deux UC'
+    plus_de_deux_uc = u'Plus de deux UC'
+
+
 class cheque_energie_unites_consommation(Variable):
     entity = Menage
     value_type = float
@@ -51,16 +58,17 @@ class cheque_energie_montant(Variable):
         th = baremes.thresholds
         montants = baremes.montants
 
-        uc = menage('cheque_energie_unites_consommation', period)
+        uc_nb = menage('cheque_energie_unites_consommation', period)
         rfr = menage.personne_de_reference.foyer_fiscal('rfr', period.n_2)
 
-        base = rfr / uc
+        base = rfr / uc_nb
 
-        return (
-            + (     uc <= 1) * ((base < th.un) * montants.une_uc.un + (th.un <= base < th.deux) * montants.une_uc.deux + (th.deux <= base < th.trois) * montants.une_uc.trois)
-            + (1 <  uc <  2) * ((base < th.un) * montants.une_uc_a_deux_uc.un + (th.un <= base < th.deux) * montants.une_uc_a_deux_uc.deux + (th.deux <= base < th.trois) * montants.une_uc_a_deux_uc.trois)
-            + (2 <= uc     ) * ((base < th.un) * montants.plus_de_deux_uc.un + (th.un <= base < th.deux) * montants.plus_de_deux_uc.deux + (th.deux <= base < th.trois) * montants.plus_de_deux_uc.trois)
+        uc = select(
+            [uc_nb <= 1, uc_nb < 2, 2 <= uc_nb],
+            [UCChequeEnergie.une_uc, UCChequeEnergie.une_uc_a_deux_uc, UCChequeEnergie.plus_de_deux_uc]
             )
+
+        return (base < th.un) * montants[uc].un + (th.un <= base < th.deux) * montants[uc].deux + (th.deux <= base < th.trois) * montants[uc].trois
 
 
 class cheque_energie(Variable):
