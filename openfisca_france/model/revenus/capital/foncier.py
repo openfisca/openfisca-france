@@ -137,7 +137,7 @@ class valeur_locative_immo_non_loue(Variable):
     value_type = float
     entity = Individu
     base_function = requested_period_last_value
-    label = u"Valeur locative des biens immobiliers possédés et non loués"
+    label = u"Valeur locative, à l'année, des biens immobiliers possédés et non loués"
     definition_period = MONTH
 
 
@@ -153,5 +153,5 @@ class valeur_locative_terrains_non_loues(Variable):
     value_type = float
     entity = Individu
     base_function = requested_period_last_value
-    label = u"Valeur locative des terrains possédés et non loués"
+    label = u"Valeur locative, à l'année, des terrains possédés et non loués"
     definition_period = MONTH
