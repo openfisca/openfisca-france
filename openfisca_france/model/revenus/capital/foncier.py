@@ -109,6 +109,14 @@ class f4bl(Variable):
 
 
 # Variables utilisées par mes aides
+class valeur_patrimoine_loue(Variable):
+    value_type = float
+    entity = Individu
+    base_function = requested_period_last_value
+    label = u"Valeur des biens immobiliers et des terrains loués"
+    definition_period = MONTH
+
+
 class revenus_locatifs(Variable):
     value_type = float
     entity = Individu
@@ -117,11 +125,11 @@ class revenus_locatifs(Variable):
     set_input = set_input_divide_by_period
 
 
-class valeur_locative_loue(Variable):
+class valeur_immo_non_loue(Variable):
     value_type = float
     entity = Individu
     base_function = requested_period_last_value
-    label = u"Valeur locative des biens immobiliers et des terrains loués"
+    label = u"Valeur des biens immobiliers possédés et non loués"
     definition_period = MONTH
 
 
@@ -130,6 +138,14 @@ class valeur_locative_immo_non_loue(Variable):
     entity = Individu
     base_function = requested_period_last_value
     label = u"Valeur locative des biens immobiliers possédés et non loués"
+    definition_period = MONTH
+
+
+class valeur_terrains_non_loues(Variable):
+    value_type = float
+    entity = Individu
+    base_function = requested_period_last_value
+    label = u"Valeur des terrains possédés et non loués"
     definition_period = MONTH
 
 

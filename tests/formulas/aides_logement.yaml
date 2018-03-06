@@ -378,7 +378,8 @@
   menages:
   individus:
     - id: "parent1"
-      epargne_revenus_imposables: 35000
+      epargne_revenus_imposables: 25000
+      valeur_terrains_non_loues: 5001
       valeur_locative_terrains_non_loues: 100
   output_variables:
     aide_logement_base_ressources_patrimoine: 80
@@ -391,7 +392,8 @@
   menages:
   individus:
     - id: "parent1"
-      epargne_revenus_imposables: 35000
+      epargne_revenus_imposables: 20000
+      valeur_immo_non_loue: 10001
       valeur_locative_immo_non_loue: 100
   output_variables:
     aide_logement_base_ressources_patrimoine: 50
@@ -404,7 +406,7 @@
   menages:
   individus:
     - id: "parent1"
-      epargne_revenus_imposables: 35000
-      livret_a: 1000
+      epargne_revenus_imposables: 15000
+      livret_a: 20000
   output_variables:
-    aide_logement_base_ressources_patrimoine: 30
+    aide_logement_base_ressources_patrimoine: 600

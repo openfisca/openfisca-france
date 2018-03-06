@@ -99,8 +99,14 @@ class aide_logement_base_ressources_patrimoine(Variable):
         epargne_revenus_non_imposables = famille.sum(epargne_revenus_non_imposables_i)
         epargne_revenus_imposables_i = famille.members('epargne_revenus_imposables', period)
         epargne_revenus_imposables = famille.sum(epargne_revenus_imposables_i)
-        valeur_locative_loue_i = famille.members('valeur_locative_loue', period)
-        valeur_locative_loue = famille.sum(valeur_locative_loue_i)
+
+        valeur_patrimoine_loue_i = famille.members('valeur_patrimoine_loue', period)
+        valeur_patrimoine_loue = famille.sum(valeur_patrimoine_loue_i)
+        valeur_immo_non_loue_i = famille.members('valeur_immo_non_loue', period)
+        valeur_immo_non_loue = famille.sum(valeur_immo_non_loue_i)
+        valeur_terrains_non_loues_i = famille.members('valeur_terrains_non_loues', period)
+        valeur_terrains_non_loues = famille.sum(valeur_terrains_non_loues_i)
+
         valeur_locative_immo_non_loue_i = famille.members('valeur_locative_immo_non_loue', period)
         valeur_locative_immo_non_loue = famille.sum(valeur_locative_immo_non_loue_i)
         valeur_locative_terrains_non_loues_i = famille.members('valeur_locative_terrains_non_loues', period)
@@ -110,7 +116,7 @@ class aide_logement_base_ressources_patrimoine(Variable):
         abattements = parameters(period).prestations.minima_sociaux.rsa.patrimoine
 
         capitaux_non_productifs = livret_a + epargne_revenus_non_imposables
-        foncier = valeur_locative_loue + valeur_locative_immo_non_loue + valeur_locative_terrains_non_loues
+        foncier = valeur_patrimoine_loue + valeur_immo_non_loue + valeur_terrains_non_loues
 
         patrimoine = epargne_revenus_imposables + capitaux_non_productifs + foncier
 
