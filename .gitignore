@@ -2,6 +2,7 @@
 .idea*
 .tags*
 *.egg-info
+*.pickle
 *.pyc
 *.pyo
 .pydevproject
