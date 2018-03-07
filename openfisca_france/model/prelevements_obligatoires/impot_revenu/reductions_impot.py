@@ -2363,9 +2363,7 @@ class patnat(Variable):
         f7kc = foyer_fiscal('f7kc', period)
         f7kd = foyer_fiscal('f7kd', period)
         f7ke = foyer_fiscal('f7ke', period)
-        P = parameters(period).impot_revenu.reductions_impots.patnat
-
-        max1 = P.max
+        
         return f7kb + f7kc + f7kd + f7ke
 
 
