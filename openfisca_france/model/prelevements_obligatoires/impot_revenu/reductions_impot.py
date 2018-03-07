@@ -2646,6 +2646,10 @@ class locmeu(Variable):
                 report_invest_anterieur + report_non_impute
             )
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> Corrige erreur dans le code : 'mohist' apparaissait deux fois
 class mohist(Variable):
     value_type = float
     entity = FoyerFiscal
