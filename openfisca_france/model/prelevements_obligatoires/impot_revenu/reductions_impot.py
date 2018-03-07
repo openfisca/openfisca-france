@@ -2264,11 +2264,16 @@ class locmeu(Variable):
         f7iw = foyer_fiscal('f7iw', period)
         P = parameters(period).impot_revenu.reductions_impots.locmeu
 
-        m20 = (maxi(f7ij, f7il, f7in, f7iv) == max_(f7il, f7in))
-        return ((min_(P.max, maxi(f7ij, f7il, f7in, f7iv)) * (P.taux20 * m20 + P.taux18 * not_(m20)) +
-                P.taux * (min_(P.max, max_(f7im, f7iw)) + min_(P.max, f7io))) / 9 +
-            P.taux * max_(f7ik, f7ip + f7ir + f7iq) +
-            f7is + f7iu + f7it)
+        majoration_taux_invest_2011 = (maxi(f7ij, f7il, f7in, f7iv) == max_(f7il, f7in))
+        taux_reduc_2009_2010 = P.taux
+        taux_reduc_2011 = P.taux20 * majoration_taux_invest_2011 + P.taux18 * not_(majoration_taux_invest_2011)
+        report = P.taux * max_(f7ik, f7ip + f7ir + f7iq) + f7is + f7iu + f7it
+        
+        return ((
+                (min_(P.max, max_(f7im, f7iw)) + min_(P.max, f7io)) * taux_reduc_2009_2010 + 
+                min_(P.max, maxi(f7ij, f7il, f7in, f7iv)) * taux_reduc_2011
+                ) / 9 + report
+            )
 
     def formula_2012_01_01(foyer_fiscal, period, parameters):
         '''
@@ -2301,13 +2306,18 @@ class locmeu(Variable):
         f7iz = foyer_fiscal('f7iz', period)
         P = parameters(period).impot_revenu.reductions_impots.locmeu
 
-        m18 = (maxi(f7id, f7ie, f7if, f7ig) == max_(f7ie, f7if))
-        m20 = (maxi(f7ij, f7il, f7in, f7iv) == max_(f7il, f7in))
-        return ((min_(P.max, maxi(f7ij, f7il, f7in, f7iv)) * (P.taux20 * m20 + P.taux18 * not_(m20)) +
-                min_(P.max, maxi(f7id, f7ie, f7if, f7ig)) * (P.taux18 * m18 + P.taux11 * not_(m18)) +
-                P.taux * (min_(P.max, max_(f7im, f7iw)) + min_(P.max, f7io))) / 9 +
-            P.taux * max_(f7ik + f7ip, f7ir + f7iq) +
-            f7ia + f7ib + f7ic + f7ih + f7is + f7iu + f7it + f7ix + f7iz)
+        majoration_taux_invest_2011 = (maxi(f7ij, f7il, f7in, f7iv) == max_(f7il, f7in))
+        majoration_taux_invest_2012 = (maxi(f7id, f7ie, f7if, f7ig) == max_(f7ie, f7if))
+        taux_reduc_2009_2010 = P.taux
+        taux_reduc_2011 = P.taux20 * majoration_taux_invest_2011 + P.taux18 * not_(majoration_taux_invest_2011)
+        taux_reduc_2012 = P.taux18 * majoration_taux_invest_2012 + P.taux11 * not_(majoration_taux_invest_2012)
+        report = P.taux * max_(f7ik + f7ip, f7ir + f7iq) + f7ia + f7ib + f7ic + f7ih + f7is + f7iu + f7it + f7ix + f7iz
+        return ((
+                (min_(P.max, max_(f7im, f7iw)) + min_(P.max, f7io)) * taux_reduc_2009_2010 + 
+                min_(P.max, maxi(f7ij, f7il, f7in, f7iv)) * taux_reduc_2011 +
+                min_(P.max, maxi(f7id, f7ie, f7if, f7ig)) * taux_reduc_2012
+                ) / 9 + report
+            )
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
         '''
@@ -2350,15 +2360,22 @@ class locmeu(Variable):
         f7jy = foyer_fiscal('f7jy', period)
         P = parameters(period).impot_revenu.reductions_impots.locmeu
 
-        m18 = (maxi(f7id, f7ie, f7if, f7ig) == max_(f7ie, f7if))
-        m20 = (maxi(f7ij, f7il, f7in, f7iv) == max_(f7il, f7in))
-        return ((min_(P.max, maxi(f7ij, f7il, f7in, f7iv)) * (P.taux20 * m20 + P.taux18 * not_(m20)) +
-                min_(P.max, maxi(f7id, f7ie, f7if, f7ig)) * (P.taux18 * m18 + P.taux11 * not_(m18)) +
-                P.taux11 * min_(P.max, f7jt + f7ju) +
-                P.taux * (min_(P.max, max_(f7im, f7iw)) + min_(P.max, f7io))) / 9 +
-            P.taux * max_(f7ik + f7ip, f7ir + f7iq) +
-            f7ia + f7ib + f7ic + f7ih + f7is + f7iu + f7it + f7ix + f7iy + f7iz + f7jv + f7jw + f7jx + f7jy + f7jc +
-                f7ji + f7js)
+        majoration_taux_invest_2011 = (maxi(f7ij, f7il, f7in, f7iv) == max_(f7il, f7in))
+        majoration_taux_invest_2012 = (maxi(f7id, f7ie, f7if, f7ig) == max_(f7ie, f7if))
+        taux_reduc_2009_2010 = P.taux
+        taux_reduc_2011 = P.taux20 * majoration_taux_invest_2011 + P.taux18 * not_(majoration_taux_invest_2011)
+        taux_reduc_2012 = P.taux18 * majoration_taux_invest_2012 + P.taux11 * not_(majoration_taux_invest_2012)
+        taux_reduc_2013 = P.taux11
+        report = (P.taux * max_(f7ik + f7ip, f7ir + f7iq) + f7ia + f7ib + f7ic + f7ih + f7is + f7iu + 
+            f7it + f7ix + f7iy + f7iz + f7jv + f7jw + f7jx + f7jy + f7jc + f7ji + f7js)
+        
+        return ((
+                (min_(P.max, max_(f7im, f7iw)) + min_(P.max, f7io)) * taux_reduc_2009_2010 + 
+                min_(P.max, maxi(f7ij, f7il, f7in, f7iv)) * taux_reduc_2011 +
+                min_(P.max, maxi(f7id, f7ie, f7if, f7ig)) * taux_reduc_2012 +
+                min_(P.max, f7jt + f7ju) * taux_reduc_2013
+                ) / 9 + report
+            )
 
     def formula_2014_01_01(foyer_fiscal, period, parameters):
         '''
@@ -2413,8 +2430,13 @@ class locmeu(Variable):
 
         P = parameters(period).impot_revenu.reductions_impots.locmeu
 
-        m18 = (maxi(f7id, f7ie, f7if, f7ig) == max_(f7ie, f7if)) 
-        m20 = (maxi(f7ij, f7il, f7in, f7iv) == max_(f7il, f7in))         
+        majoration_taux_invest_2011 = (maxi(f7ij, f7il, f7in, f7iv) == max_(f7il, f7in))
+        majoration_taux_invest_2012 = (maxi(f7id, f7ie, f7if, f7ig) == max_(f7ie, f7if))
+        taux_reduc_2009_2010 = P.taux
+        taux_reduc_2011 = P.taux20 * majoration_taux_invest_2011 + P.taux18 * not_(majoration_taux_invest_2011)
+        taux_reduc_2012 = P.taux18 * majoration_taux_invest_2012 + P.taux11 * not_(majoration_taux_invest_2012)     
+        taux_reduc_2013 = P.taux11
+
         report_invest_anterieur = (P.taux * max_(f7ik + f7ip, f7ir + f7iq) +
             f7ia + f7ib + f7ic + 
             f7jv + f7jw + f7jx + f7jy + 
@@ -2425,12 +2447,13 @@ class locmeu(Variable):
             f7js + f7pd +
             f7pe)
 
-        return ((min_(P.max, maxi(f7ij, f7il, f7in, f7iv)) * (P.taux20 * m20 + P.taux18 * not_(m20)) + # to check : impossible de remplir à la fois f7ij et f7il par exemple ?
-                min_(P.max, maxi(f7id, f7ie, f7if, f7ig)) * (P.taux18 * m18 + P.taux11 * not_(m18)) +
-                P.taux11 * (min_(P.max, f7jt + f7ju) + min_(P.max, f7ou)) + 
-                P.taux * (min_(P.max, max_(f7im, f7iw)) + min_(P.max, f7io))
-                ) / 9 +
-                report_invest_anterieur + report_non_impute)
+        return ((
+                (min_(P.max, max_(f7im, f7iw)) + min_(P.max, f7io)) * taux_reduc_2009_2010 + 
+                min_(P.max, maxi(f7ij, f7il, f7in, f7iv)) * taux_reduc_2011 + # to check : impossible de remplir à la fois f7ij et f7il par exemple ?
+                min_(P.max, maxi(f7id, f7ie, f7if, f7ig)) * taux_reduc_2012 +
+                (min_(P.max, f7jt + f7ju) + min_(P.max, f7ou)) * taux_reduc_2013
+                ) / 9 + report_invest_anterieur + report_non_impute
+            )
 
     def formula_2015_01_01(foyer_fiscal, period, parameters):
         '''
@@ -2496,8 +2519,13 @@ class locmeu(Variable):
 
         P = parameters(period).impot_revenu.reductions_impots.locmeu
 
-        m18 = (maxi(f7id, f7ie, f7if, f7ig) == max_(f7ie, f7if)) 
-        m20 = (maxi(f7ij, f7il, f7in, f7iv) == max_(f7il, f7in))         
+        majoration_taux_invest_2011 = (maxi(f7ij, f7il, f7in, f7iv) == max_(f7il, f7in))
+        majoration_taux_invest_2012 = (maxi(f7id, f7ie, f7if, f7ig) == max_(f7ie, f7if))
+        taux_reduc_2009_2010 = P.taux
+        taux_reduc_2011 = P.taux20 * majoration_taux_invest_2011 + P.taux18 * not_(majoration_taux_invest_2011)
+        taux_reduc_2012 = P.taux18 * majoration_taux_invest_2012 + P.taux11 * not_(majoration_taux_invest_2012)    
+        taux_reduc_2013 = P.taux11
+
         report_invest_anterieur = (P.taux * max_(f7ik + f7ip, f7ir + f7iq) +
             f7ia + f7ib + f7ic + 
             f7jv + f7jw + f7jx + f7jy + 
@@ -2509,12 +2537,13 @@ class locmeu(Variable):
             f7js + f7pd + f7pi +
             f7pe + f7pj)
 
-        return ((min_(P.max, maxi(f7ij, f7il, f7in, f7iv)) * (P.taux20 * m20 + P.taux18 * not_(m20)) + # to check : impossible de remplir à la fois f7ij et f7il par exemple ?
-                min_(P.max, maxi(f7id, f7ie, f7if, f7ig)) * (P.taux18 * m18 + P.taux11 * not_(m18)) +
-                P.taux11 * (min_(P.max, f7jt + f7ju) + min_(P.max, f7ou) + min_(P.max, f7ov)) +
-                P.taux * (min_(P.max, max_(f7im, f7iw)) + min_(P.max, f7io))
-                ) / 9 +
-                report_invest_anterieur + report_non_impute)
+        return ((
+                (min_(P.max, max_(f7im, f7iw)) + min_(P.max, f7io)) * taux_reduc_2009_2010 + 
+                min_(P.max, maxi(f7ij, f7il, f7in, f7iv)) * taux_reduc_2011 + # to check : impossible de remplir à la fois f7ij et f7il par exemple ?
+                min_(P.max, maxi(f7id, f7ie, f7if, f7ig)) * taux_reduc_2012 +
+                (min_(P.max, f7jt + f7ju) + min_(P.max, f7ou) + min_(P.max, f7ov)) * taux_reduc_2013
+                ) / 9 + report_invest_anterieur + report_non_impute
+            )
 
     def formula_2016_01_01(foyer_fiscal, period, parameters):
         '''
@@ -2589,8 +2618,13 @@ class locmeu(Variable):
 
         P = parameters(period).impot_revenu.reductions_impots.locmeu
 
-        m18 = (maxi(f7id, f7ie, f7if, f7ig) == max_(f7ie, f7if)) 
-        m20 = (maxi(f7ij, f7il, f7in, f7iv) == max_(f7il, f7in))         
+        majoration_taux_invest_2011 = (maxi(f7ij, f7il, f7in, f7iv) == max_(f7il, f7in))   
+        majoration_taux_invest_2012 = (maxi(f7id, f7ie, f7if, f7ig) == max_(f7ie, f7if)) 
+        taux_reduc_2009_2010 = P.taux
+        taux_reduc_2011 = P.taux20 * majoration_taux_invest_2011 + P.taux18 * not_(majoration_taux_invest_2011)
+        taux_reduc_2012 = P.taux18 * majoration_taux_invest_2012 + P.taux11 * not_(majoration_taux_invest_2012)      
+        taux_reduc_2013 = P.taux11
+
         report_invest_anterieur = (P.taux * max_(f7ik + f7ip, f7ir + f7iq) +
             f7ia + f7ib + f7ic + 
             f7jv + f7jw + f7jx + f7jy + 
@@ -2603,12 +2637,14 @@ class locmeu(Variable):
             f7js + f7pd + f7pi + f7pn +
             f7pe + f7pj + f7po)
 
-        return ((min_(P.max, maxi(f7ij, f7il, f7in, f7iv)) * (P.taux20 * m20 + P.taux18 * not_(m20)) + # to check : impossible de remplir à la fois f7ij et f7il par exemple ?
-                min_(P.max, maxi(f7id, f7ie, f7if, f7ig)) * (P.taux18 * m18 + P.taux11 * not_(m18)) +
-                P.taux11 * (min_(P.max, f7jt + f7ju) + min_(P.max, f7ou) + min_(P.max, f7ov) + min_(P.max, f7ow)) +
-                P.taux * (min_(P.max, max_(f7im, f7iw)))
+        return ((
+                min_(P.max, max_(f7im, f7iw)) * taux_reduc_2009_2010 + 
+                min_(P.max, maxi(f7ij, f7il, f7in, f7iv)) * taux_reduc_2011 + # to check : impossible de remplir à la fois f7ij et f7il par exemple ?
+                min_(P.max, maxi(f7id, f7ie, f7if, f7ig)) * taux_reduc_2012 +
+                (min_(P.max, f7jt + f7ju) + min_(P.max, f7ou) + min_(P.max, f7ov) + min_(P.max, f7ow)) * taux_reduc_2013
                 ) / 9 +
-                report_invest_anterieur + report_non_impute)
+                report_invest_anterieur + report_non_impute
+            )
 
 class mohist(Variable):
     value_type = float
