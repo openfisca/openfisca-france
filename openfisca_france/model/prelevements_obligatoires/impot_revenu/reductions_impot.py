@@ -2437,15 +2437,15 @@ class locmeu(Variable):
         taux_reduc_2012 = P.taux18 * majoration_taux_invest_2012 + P.taux11 * not_(majoration_taux_invest_2012)     
         taux_reduc_2013 = P.taux11
 
-        report_invest_anterieur = (P.taux * max_(f7ik + f7ip, f7ir + f7iq) +
-            f7ia + f7ib + f7ic + 
-            f7jv + f7jw + f7jx + f7jy + 
-            f7oa + f7ob + f7oc + f7od + f7oe)
-        report_non_impute = (f7is + f7iu + f7ix + f7iy + f7pa +
-            f7it + f7ih + f7jc + f7pb +
-            f7iz + f7ji + f7pc +
-            f7js + f7pd +
-            f7pe)
+        report_invest_anterieur = (P.taux * max_(f7ik + f7ip, f7ir + f7iq)
+            + f7ia + f7ib + f7ic
+            + f7jv + f7jw + f7jx + f7jy 
+            + f7oa + f7ob + f7oc + f7od + f7oe)
+        report_non_impute = (f7is + f7iu + f7ix + f7iy + f7pa
+            + f7it + f7ih + f7jc + f7pb
+            + f7iz + f7ji + f7pc
+            + f7js + f7pd
+            + f7pe)
 
         return ((
                 (min_(P.max, max_(f7im, f7iw)) + min_(P.max, f7io)) * taux_reduc_2009_2010 + 
@@ -2526,16 +2526,16 @@ class locmeu(Variable):
         taux_reduc_2012 = P.taux18 * majoration_taux_invest_2012 + P.taux11 * not_(majoration_taux_invest_2012)    
         taux_reduc_2013 = P.taux11
 
-        report_invest_anterieur = (P.taux * max_(f7ik + f7ip, f7ir + f7iq) +
-            f7ia + f7ib + f7ic + 
-            f7jv + f7jw + f7jx + f7jy + 
-            f7oa + f7ob + f7oc + f7od + f7oe + 
-            f7of + f7og + f7oh + f7oi + f7oj)
-        report_non_impute = (f7is + f7iu + f7ix + f7iy + f7pa + f7pf +
-            f7it + f7ih + f7jc + f7pb + f7pg +
-            f7iz + f7ji + f7pc + f7ph +
-            f7js + f7pd + f7pi +
-            f7pe + f7pj)
+        report_invest_anterieur = (P.taux * max_(f7ik + f7ip, f7ir + f7iq)
+            + f7ia + f7ib + f7ic
+            + f7jv + f7jw + f7jx + f7jy 
+            + f7oa + f7ob + f7oc + f7od + f7oe 
+            + f7of + f7og + f7oh + f7oi + f7oj)
+        report_non_impute = (f7is + f7iu + f7ix + f7iy + f7pa + f7pf
+            + f7it + f7ih + f7jc + f7pb + f7pg
+            + f7iz + f7ji + f7pc + f7ph
+            + f7js + f7pd + f7pi
+            + f7pe + f7pj)
 
         return ((
                 (min_(P.max, max_(f7im, f7iw)) + min_(P.max, f7io)) * taux_reduc_2009_2010 + 
@@ -2625,17 +2625,17 @@ class locmeu(Variable):
         taux_reduc_2012 = P.taux18 * majoration_taux_invest_2012 + P.taux11 * not_(majoration_taux_invest_2012)      
         taux_reduc_2013 = P.taux11
 
-        report_invest_anterieur = (P.taux * max_(f7ik + f7ip, f7ir + f7iq) +
-            f7ia + f7ib + f7ic + 
-            f7jv + f7jw + f7jx + f7jy + 
-            f7oa + f7ob + f7oc + f7od + f7oe + 
-            f7of + f7og + f7oh + f7oi + f7oj +
-            f7ok + f7ol + f7om + f7on + f7oo)
-        report_non_impute = (f7iu + f7ix + f7iy + f7pa + f7pf + f7pk +
-            f7it + f7ih + f7jc + f7pb + f7pg + f7pl +
-            f7iz + f7ji + f7pc + f7ph + f7pm +
-            f7js + f7pd + f7pi + f7pn +
-            f7pe + f7pj + f7po)
+        report_invest_anterieur = (P.taux * max_(f7ik + f7ip, f7ir + f7iq) 
+            + f7ia + f7ib + f7ic
+            + f7jv + f7jw + f7jx + f7jy
+            + f7oa + f7ob + f7oc + f7od + f7oe 
+            + f7of + f7og + f7oh + f7oi + f7oj
+            + f7ok + f7ol + f7om + f7on + f7oo)
+        report_non_impute = (f7iu + f7ix + f7iy + f7pa + f7pf + f7pk
+            + f7it + f7ih + f7jc + f7pb + f7pg + f7pl
+            + f7iz + f7ji + f7pc + f7ph + f7pm
+            + f7js + f7pd + f7pi + f7pn
+            + f7pe + f7pj + f7po)
 
         return ((
                 min_(P.max, max_(f7im, f7iw)) * taux_reduc_2009_2010 + 
