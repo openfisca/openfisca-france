@@ -2908,7 +2908,8 @@ class resimm(Variable):
 class rpinel(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = u"rpinel"
+    label = u"Réduction d'impôt en faveur de l'investissement locatif intermédiaire - Dispositif Pinel"
+    reference = "http://bofip.impots.gouv.fr/bofip/8425-PGP"
     definition_period = YEAR
 
     def formula_2014_01_01(foyer_fiscal, period, parameters):
