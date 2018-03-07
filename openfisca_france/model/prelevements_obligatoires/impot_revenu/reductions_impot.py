@@ -2839,8 +2839,8 @@ class resimm(Variable):
         max2 = max_(max1 - f7rd, 0)
         max3 = max_(max2 - f7rb, 0)
         max4 = max_(max3 - f7rc, 0)
-        return (P.taux_rd * min_(f7rd, max1) + P.taux_rb * min_(f7rb, max2) + P.taux_rc * min_(f7rc, max3) +
-                P.taux_ra * min_(f7ra, max4))
+        return (P.taux_rd * min_(f7rd, max1) + P.taux_rb * min_(f7rb, max2) + P.taux_rc * min_(f7rc, max3) 
+            + P.taux_ra * min_(f7ra, max4))
 
     def formula_2012_01_01(foyer_fiscal, period, parameters):
         '''
@@ -2860,8 +2860,8 @@ class resimm(Variable):
         max3 = max_(max2 - f7rb, 0)
         max4 = max_(max3 - f7rc - f7rf, 0)
         max5 = max_(max4 - f7ra, 0)
-        return (P.taux_rd * min_(f7rd, max1) + P.taux_rb * min_(f7rb, max2) + P.taux_rc * min_(f7rc + f7rf, max3) +
-                P.taux_ra * min_(f7ra, max4) + P.taux_re * min_(f7re, max5))
+        return (P.taux_rd * min_(f7rd, max1) + P.taux_rb * min_(f7rb, max2) + P.taux_rc * min_(f7rc + f7rf, max3) 
+            + P.taux_ra * min_(f7ra, max4) + P.taux_re * min_(f7re, max5))
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
         '''
@@ -2883,8 +2883,8 @@ class resimm(Variable):
         max3 = max_(max2 - f7rb, 0)
         max4 = max_(max3 - f7rc - f7sy - f7rf, 0)
         max5 = max_(max4 - f7ra, 0)
-        return (P.taux_rd * min_(f7rd, max1) + P.taux_rb * min_(f7rb, max2) + P.taux_rc * min_(f7sy + f7rf + f7rc, max3) +
-                P.taux_ra * min_(f7ra, max4) + P.taux_re * min_(f7re + f7sx, max5))
+        return (P.taux_rd * min_(f7rd, max1) + P.taux_rb * min_(f7rb, max2) + P.taux_rc * min_(f7sy + f7rf + f7rc, max3) 
+            + P.taux_ra * min_(f7ra, max4) + P.taux_re * min_(f7re + f7sx, max5))
 
     def formula_2016_01_01(foyer_fiscal, period, parameters):
         '''
@@ -2901,8 +2901,8 @@ class resimm(Variable):
 
         max1 = P.max
         max2 = max_(max1 - f7nx - f7sy - f7rf, 0)
-        return (P.taux_rc * min_(f7sy + f7rf + f7nx, max1) +
-                 P.taux_re * min_(f7re + f7sx + f7ny, max2))
+        return (P.taux_rc * min_(f7sy + f7rf + f7nx, max1) 
+            + P.taux_re * min_(f7re + f7sx + f7ny, max2))
 
 
 class rpinel(Variable):
