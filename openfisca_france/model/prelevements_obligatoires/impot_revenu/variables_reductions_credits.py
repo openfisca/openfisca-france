@@ -883,14 +883,33 @@ class f7qp(Variable):
     end = '2009-12-31'
     definition_period = YEAR
 
+class f7pa_2012(Variable):
+    cerfa_field = u"7PA"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 52,63%"
+    end = '2012-12-31'
+    definition_period = YEAR
+
 
 class f7pa(Variable):
     cerfa_field = u"7PA"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 52,63%"
-    # end = '2011-12-31' changes meaning in 2014
+    label = u"Investissements destinés à la location meublée non professionnelle : Report du solde de réduction d'impôt non encore imputé 2013"
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+
+class f7pb_2012(Variable):
+    cerfa_field = u"7PB"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 62,5%"
+    end = '2012-12-31'
     definition_period = YEAR
 
 
@@ -899,8 +918,18 @@ class f7pb(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 62,5%"
-    # end = '2011-12-31' changes meaning in 2014
+    label = u"Investissements destinés à la location meublée non professionnelle : Report du solde de réduction d'impôt non encore imputé 2013"
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+
+class f7pc_2011(Variable):
+    cerfa_field = u"7PC"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%, Investissements dans votre entreprise, montant de la réduction d' impôt calculée"
+    end = '2011-12-31'
     definition_period = YEAR
 
 
@@ -909,8 +938,18 @@ class f7pc(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%, Investissements dans votre entreprise, montant de la réduction d' impôt calculée"
-    # end = '2011-12-31' changes meaning in 2014
+    label = u"Investissements destinés à la location meublée non professionnelle : Report du solde de réduction d'impôt non encore imputé 2013"
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+
+class f7pd_2012(Variable):
+    cerfa_field = u"7PD"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%, Investissements dans votre entreprise, montant de la réduction d' impôt dont vous demandez l'imputation en 2011"
+    end = '2012-12-31'
     definition_period = YEAR
 
 
@@ -919,8 +958,8 @@ class f7pd(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%, Investissements dans votre entreprise, montant de la réduction d' impôt dont vous demandez l'imputation en 2011"
-    # end = '2011-12-31' changes meaning in 2014
+    label = u"Investissements destinés à la location meublée non professionnelle : Report du solde de réduction d'impôt non encore imputé 2013"
+#    start_date = date(2014, 1, 1)
     definition_period = YEAR
 
 
