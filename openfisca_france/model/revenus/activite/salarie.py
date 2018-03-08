@@ -537,7 +537,7 @@ class traitement_indiciaire_brut(Variable):
     entity = Individu
     label = u"Traitement indiciaire brut (TIB)"
     definition_period = MONTH
-
+    set_input = set_input_divide_by_period
 
 class categorie_salarie(Variable):
     value_type = Enum
@@ -767,6 +767,7 @@ class primes_fonction_publique(Variable):
     label = u"Calcul des primes pour les fonctionnaries"
     reference = u"http://vosdroits.service-public.fr/particuliers/F465.xhtml"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
         # period = period.first_month
