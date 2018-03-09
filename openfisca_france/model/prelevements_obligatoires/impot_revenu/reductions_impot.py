@@ -2030,7 +2030,7 @@ class invlst(Variable):
 
         return around(xi + xj + xo)
 
-    def formula_2014_01_01(self, simulation, period):
+    def formula_2014_01_01(foyer_fiscal, period, parameters):
         '''
         Investissements locatifs dans le secteur touristique
         2014
@@ -2046,7 +2046,7 @@ class invlst(Variable):
         report_rehabilitation_2012 = simulation.calculate('f7uz', period)
         report_residence_sociale_2009 = simulation.calculate('f7xk', period)
         report_residence_sociale_2010 = simulation.calculate('f7xr', period) 
-        P = simulation.parameters(period).impot_revenu.reductions_impots.invlst
+        P = parameters(period).impot_revenu.reductions_impots.invlst
 
         reduction_logement_neuf = P.taux_xi * (
             report_logement_neuf_2009 + 
@@ -2067,7 +2067,7 @@ class invlst(Variable):
 
         return around(reduction_logement_neuf + reduction_rehabilitation + reduction_residence_sociale)
 
-    def formula_2015_01_01(self, simulation, period):
+    def formula_2015_01_01(foyer_fiscal, period, parameters):
         '''
         Investissements locatifs dans le secteur touristique
         2015
@@ -2082,7 +2082,7 @@ class invlst(Variable):
         report_rehabilitation_2011 = simulation.calculate('f7xv', period)
         report_rehabilitation_2012 = simulation.calculate('f7uz', period)
         report_residence_sociale_2010 = simulation.calculate('f7xr', period) 
-        P = simulation.parameters(period).impot_revenu.reductions_impots.invlst
+        P = parameters(period).impot_revenu.reductions_impots.invlst
 
         reduction_logement_neuf = P.taux_xi * (
             report_logement_neuf_2009 + 
@@ -2100,7 +2100,7 @@ class invlst(Variable):
 
         return around(reduction_logement_neuf + reduction_rehabilitation + reduction_residence_sociale)
 
-    def formula_2016_01_01(self, simulation, period):
+    def formula_2016_01_01(foyer_fiscal, period, parameters):
         '''
         Investissements locatifs dans le secteur touristique
         2016
@@ -2112,7 +2112,7 @@ class invlst(Variable):
         report_rehabilitation_2010 = simulation.calculate('f7xq', period)
         report_rehabilitation_2011 = simulation.calculate('f7xv', period)
         report_rehabilitation_2012 = simulation.calculate('f7uz', period)
-        P = simulation.parameters(period).impot_revenu.reductions_impots.invlst
+        P = parameters(period).impot_revenu.reductions_impots.invlst
 
         reduction_logement_neuf = P.taux_xi * (
             report_logement_neuf_2010 + 
