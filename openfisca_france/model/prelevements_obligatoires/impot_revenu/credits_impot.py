@@ -373,7 +373,7 @@ class aidper(Variable):
         f7wj = foyer_fiscal('f7wj', period)
         P = parameters(period).impot_revenu.credits_impot.aidper
 
-        max0 = P.max * (1 + maries_ou_pacses) + P.pac1 * nb_pac2
+        max0 = P.max * (1 + maries_ou_pacses) + P.pac1 * nb_pac_majoration_plafond
         max1 = max_(0, max0 - f7wj)
         return (P.taux_wj * min_(f7wj, max0) +
                     P.taux_wi * min_(f7wi, max1))
@@ -392,7 +392,7 @@ class aidper(Variable):
         f7wl = foyer_fiscal('f7wl', period)
         P = parameters(period).impot_revenu.credits_impot.aidper
         
-        max0 = P.max * (1 + maries_ou_pacses) + P.pac1 * nb_pac2
+        max0 = P.max * (1 + maries_ou_pacses) + P.pac1 * nb_pac_majoration_plafond
         max1 = max_(0, max0 - f7wl - f7sf)
         max2 = max_(0, max1 - f7wj)
         return P.taux_wl * min_(f7wl+f7sf, max0) + P.taux_wj * min_(f7wj, max1)  + P.taux_wi * min_(f7wi, max2)
@@ -414,7 +414,7 @@ class aidper(Variable):
         # On ne contrôle pas que 7WR ne dépasse pas le plafond (ça dépend du nombre de logements (7sa) et de la nature des
         #travaux, c'est un peu le bordel)
         max00 = P.max * (1 + maries_ou_pacses)
-        max0 = max00 + P.pac1 * nb_pac2
+        max0 = max00 + P.pac1 * nb_pac_majoration_plafond
         max1 = max_(0, max0 - max_(0,f7wl-max00))
         max2 = max_(0, max1 - f7wj)
         return (P.taux_wr * f7wr + P.taux_wl * min_(f7wl, max00) + P.taux_wl * max_(f7wl - max00, 0) +
@@ -436,7 +436,7 @@ class aidper(Variable):
         # On ne contrôle pas que 7WR ne dépasse pas le plafond (ça dépend du nombre de logements et de la nature des
         # travaux, c'est un peu le bordel)
         max00 = P.max * (1 + maries_ou_pacses)
-        max0 = max00 + P.pac1 * nb_pac2
+        max0 = max00 + P.pac1 * nb_pac_majoration_plafond
         max1 = max_(0, max0 - max_(0, f7wl - max00))
 
         return (P.taux_wr * f7wr + P.taux_wl * min_(f7wl, max00) + P.taux_wl * max_(f7wl - max00, 0) + P.taux_wj *
@@ -1342,7 +1342,7 @@ class quaenv(Variable):
         f7wq = foyer_fiscal('f7wq', period)
         P = parameters(period).impot_revenu.credits_impot.quaenv
 
-        max0 = P.max * (1 + maries_ou_pacses) + P.pac1 * nb_pac2
+        max0 = P.max * (1 + maries_ou_pacses) + P.pac1 * nb_pac_majoration_plafond
 
         max1 = max_(0, max0 - f7wf)
         max2 = max_(0, max1 - f7wg)
@@ -1373,7 +1373,7 @@ class quaenv(Variable):
         rfr = foyer_fiscal('rfr', period)
         P = parameters(period).impot_revenu.credits_impot.quaenv
 
-        max0 = P.max * (1 + maries_ou_pacses) + P.pac1 * nb_pac2
+        max0 = P.max * (1 + maries_ou_pacses) + P.pac1 * nb_pac_majoration_plafond
 
         max1 = max_(0, max0 - f7wf)
         max2 = max_(0, max1 - f7se)
@@ -1415,7 +1415,7 @@ class quaenv(Variable):
         rfr = foyer_fiscal('rfr', period)
         P = parameters(period).impot_revenu.credits_impot.quaenv
 
-        max0 = P.max * (1 + maries_ou_pacses) + P.pac1 * nb_pac2
+        max0 = P.max * (1 + maries_ou_pacses) + P.pac1 * nb_pac_majoration_plafond
 
         max1 = max_(0, max0 - f7wf)
         max2 = max_(0, max1 - f7se)
@@ -1478,7 +1478,7 @@ class quaenv(Variable):
         rfr = foyer_fiscal('rfr', period)
         P = parameters(period).impot_revenu.credits_impot.quaenv
 
-        max0 = P.max * (1 + maries_ou_pacses) + P.pac1 * nb_pac2
+        max0 = P.max * (1 + maries_ou_pacses) + P.pac1 * nb_pac_majoration_plafond
         maxi1 = max_(0, max0 - f7ty)
         maxi2 = max_(0, maxi1 - f7tx)
         maxi3 = max_(0, maxi2 - f7tw)
@@ -1553,7 +1553,7 @@ class quaenv(Variable):
         rfr = foyer_fiscal('rfr', period)
         P = parameters(period).impot_revenu.credits_impot.quaenv
 
-        max0 = P.max * (1 + maries_ou_pacses) + P.pac1 * nb_pac2
+        max0 = P.max * (1 + maries_ou_pacses) + P.pac1 * nb_pac_majoration_plafond
         max1 = max_(0, max0 - quaenv_bouquet * (f7ss + f7st) - not_(quaenv_bouquet) * (f7ss + f7st + f7sv))
         max2 = max_(0, max1 - quaenv_bouquet * (f7sn + f7sr + f7sq) - not_(quaenv_bouquet) * (f7sn + f7sq + f7sr))
         max3 = max_(0, max2 - quaenv_bouquet * (f7sv) - not_(quaenv_bouquet) * (f7se))
