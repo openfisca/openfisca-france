@@ -2035,17 +2035,17 @@ class invlst(Variable):
         Investissements locatifs dans le secteur touristique
         2014
         '''
-        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
-        report_logement_neuf_2009 = simulation.calculate('f7xi', period)
-        report_logement_neuf_2010 = simulation.calculate('f7xp', period)
-        report_logement_neuf_2011 = simulation.calculate('f7xn', period)
-        report_logement_neuf_2012 = simulation.calculate('f7uy', period)
-        report_rehabilitation_2009 = simulation.calculate('f7xj', period)
-        report_rehabilitation_2010 = simulation.calculate('f7xq', period)
-        report_rehabilitation_2011 = simulation.calculate('f7xv', period)
-        report_rehabilitation_2012 = simulation.calculate('f7uz', period)
-        report_residence_sociale_2009 = simulation.calculate('f7xk', period)
-        report_residence_sociale_2010 = simulation.calculate('f7xr', period) 
+        maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
+        report_logement_neuf_2009 = foyer_fiscal('f7xi', period)
+        report_logement_neuf_2010 = foyer_fiscal('f7xp', period)
+        report_logement_neuf_2011 = foyer_fiscal('f7xn', period)
+        report_logement_neuf_2012 = foyer_fiscal('f7uy', period)
+        report_rehabilitation_2009 = foyer_fiscal('f7xj', period)
+        report_rehabilitation_2010 = foyer_fiscal('f7xq', period)
+        report_rehabilitation_2011 = foyer_fiscal('f7xv', period)
+        report_rehabilitation_2012 = foyer_fiscal('f7uz', period)
+        report_residence_sociale_2009 = foyer_fiscal('f7xk', period)
+        report_residence_sociale_2010 = foyer_fiscal('f7xr', period) 
         P = parameters(period).impot_revenu.reductions_impots.invlst
 
         reduction_logement_neuf = P.taux_xi * (
@@ -2072,16 +2072,16 @@ class invlst(Variable):
         Investissements locatifs dans le secteur touristique
         2015
         '''
-        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
-        report_logement_neuf_2009 = simulation.calculate('f7xi', period)
-        report_logement_neuf_2010 = simulation.calculate('f7xp', period)
-        report_logement_neuf_2011 = simulation.calculate('f7xn', period)
-        report_logement_neuf_2012 = simulation.calculate('f7uy', period)
-        report_rehabilitation_2009 = simulation.calculate('f7xj', period)
-        report_rehabilitation_2010 = simulation.calculate('f7xq', period)
-        report_rehabilitation_2011 = simulation.calculate('f7xv', period)
-        report_rehabilitation_2012 = simulation.calculate('f7uz', period)
-        report_residence_sociale_2010 = simulation.calculate('f7xr', period) 
+        maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
+        report_logement_neuf_2009 = foyer_fiscal('f7xi', period)
+        report_logement_neuf_2010 = foyer_fiscal('f7xp', period)
+        report_logement_neuf_2011 = foyer_fiscal('f7xn', period)
+        report_logement_neuf_2012 = foyer_fiscal('f7uy', period)
+        report_rehabilitation_2009 = foyer_fiscal('f7xj', period)
+        report_rehabilitation_2010 = foyer_fiscal('f7xq', period)
+        report_rehabilitation_2011 = foyer_fiscal('f7xv', period)
+        report_rehabilitation_2012 = foyer_fiscal('f7uz', period)
+        report_residence_sociale_2010 = foyer_fiscal('f7xr', period) 
         P = parameters(period).impot_revenu.reductions_impots.invlst
 
         reduction_logement_neuf = P.taux_xi * (
@@ -2105,13 +2105,13 @@ class invlst(Variable):
         Investissements locatifs dans le secteur touristique
         2016
         '''
-        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
-        report_logement_neuf_2010 = simulation.calculate('f7xp', period)
-        report_logement_neuf_2011 = simulation.calculate('f7xn', period)
-        report_logement_neuf_2012 = simulation.calculate('f7uy', period)
-        report_rehabilitation_2010 = simulation.calculate('f7xq', period)
-        report_rehabilitation_2011 = simulation.calculate('f7xv', period)
-        report_rehabilitation_2012 = simulation.calculate('f7uz', period)
+        maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
+        report_logement_neuf_2010 = foyer_fiscal('f7xp', period)
+        report_logement_neuf_2011 = foyer_fiscal('f7xn', period)
+        report_logement_neuf_2012 = foyer_fiscal('f7uy', period)
+        report_rehabilitation_2010 = foyer_fiscal('f7xq', period)
+        report_rehabilitation_2011 = foyer_fiscal('f7xv', period)
+        report_rehabilitation_2012 = foyer_fiscal('f7uz', period)
         P = parameters(period).impot_revenu.reductions_impots.invlst
 
         reduction_logement_neuf = P.taux_xi * (
