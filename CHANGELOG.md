@@ -1,7 +1,5 @@
 # Changelog
 
-# Changelog
-
 ### 20.3.0 [#908](https://github.com/openfisca/openfisca-france/pull/908)
 
 * Évolution du système socio-fiscal.
