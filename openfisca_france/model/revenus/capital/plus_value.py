@@ -216,6 +216,7 @@ class f3va(Variable):
     # start_date = date(2006, 1, 1)
     definition_period = YEAR
 
+
 class f3vb(Variable):
     cerfa_field = u"3VB"
     value_type = int
@@ -225,6 +226,7 @@ class f3vb(Variable):
     # start_date = date(2006, 1, 1)
     definition_period = YEAR
 
+
 class f3sg(Variable):
     cerfa_field = u"3SG"
     value_type = int
@@ -233,6 +235,7 @@ class f3sg(Variable):
     label = u"Abattement net pour durée de détention : appliqué sur des plus-values"
     # start_date = date(2013, 1, 1)
     definition_period = YEAR
+
 
 class f3sh(Variable):
     cerfa_field = u"3SH"
@@ -244,6 +247,7 @@ class f3sh(Variable):
     end = '2014-12-31'
     definition_period = YEAR
 
+
 class f3sl(Variable):
     cerfa_field = u"3SL"
     value_type = int
@@ -252,6 +256,7 @@ class f3sl(Variable):
     label = u"Abattement net pour durée de détention renforcée : appliqué sur des plus-values"
     # start_date = date(2013, 1, 1)
     definition_period = YEAR
+
 
 class f3sm(Variable):
     cerfa_field = u"3SM"
@@ -262,6 +267,7 @@ class f3sm(Variable):
     # start_date = date(2013, 1, 1)
     end = '2014-12-31'
     definition_period = YEAR
+
 
 class abattement_net_retraite_dirigeant_pme(Variable):
     value_type = int
@@ -276,6 +282,7 @@ class abattement_net_retraite_dirigeant_pme(Variable):
         f3vb = foyer_fiscal('f3va', period)
 
         return f3va - f3vb
+
 
 class abattement_net_duree_detention(Variable):
     value_type = int
