@@ -1534,7 +1534,7 @@ class rfr_pv(Variable):
         """
         Plus-values 2012 entrant dans le calcul du revenu fiscal de référence
         """
-        f3sa = foyer_fiscal('f3sa', period) # Nouveauté 2012 : Plus values de cessions de titres réalisées par un entrepreneur (imposable forfaitairement sur option en 2012)
+        f3sa = foyer_fiscal('f3sa', period)
         f3vc = foyer_fiscal('f3vc', period)
         f3vd_i = foyer_fiscal.members('f3vd', period)
         f3vf_i = foyer_fiscal.members('f3vf', period)
@@ -1543,14 +1543,14 @@ class rfr_pv(Variable):
         f3vl = foyer_fiscal('f3vl', period)
         f3vm = foyer_fiscal('f3vm', period)
         f3vp = foyer_fiscal('f3vp', period)
-        f3vt = foyer_fiscal('f3vt', period) # Nouveauté 2012 : Le gain lors de la clôture d'un PEA est taxé à 19% si il a lieu entre la 2ème et la 5ème année (au lieu de 22.5% avant la 2ème année)
+        f3vt = foyer_fiscal('f3vt', period)
         f3vy = foyer_fiscal('f3vy', period)
         f3vz = foyer_fiscal('f3vz', period)
 
         f3vi = foyer_fiscal.sum(f3vi_i)
         f3vd = foyer_fiscal.sum(f3vd_i)
         f3vf = foyer_fiscal.sum(f3vf_i)
-        
+
         return f3sa + f3vc + f3vd + f3vf + f3vg + f3vi + f3vl + f3vm + f3vp + f3vt + f3vy + f3vz
 
     def formula_2013_01_01(foyer_fiscal, period, parameters): 
@@ -1570,7 +1570,7 @@ class rfr_pv(Variable):
         f3vi = foyer_fiscal.sum(f3vi_i)
         f3vd = foyer_fiscal.sum(f3vd_i)
         f3vf = foyer_fiscal.sum(f3vf_i)
-        
+
         return f3vc + f3vd + f3vf + f3vi + f3vm + f3vp + f3vt + f3vy + f3vz
 
 
