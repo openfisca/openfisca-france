@@ -1,5 +1,10 @@
 # Changelog
 
+* Correction d'un bug
+* Zones impactées : openfisca_france/model/revenus/activite/salarie.py
+* Détails :
+  - Autorise, pour les fonctionnaires, le basculement automatique en mensuel si les revenus sont renseignés en annuel
+  - Adopte un comportement similaire aux autres revenus des salariés
 
 ### 20.2.0 [#907](https://github.com/openfisca/openfisca-france/pull/907)
 
