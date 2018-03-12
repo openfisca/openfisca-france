@@ -7,7 +7,7 @@ import json
 import logging
 import pkg_resources
 
-from numpy import ceil, fromiter, int16, logical_or as or_, logical_and as and_, nditer
+from numpy import ceil, datetime64, fromiter, int16, logical_or as or_, logical_and as and_, nditer
 
 import openfisca_france
 from openfisca_core.periods import Instant
@@ -272,12 +272,20 @@ class aide_logement_base_revenus_fiscaux(Variable):
         pensions_alimentaires_versees = foyer_fiscal('pensions_alimentaires_versees', period)
         rev_cap_lib = foyer_fiscal('rev_cap_lib', period, options = [ADD])
         rev_cat_rvcm = foyer_fiscal('rev_cat_rvcm', period)
-        abat_spe = foyer_fiscal('abat_spe', period)
         fon = foyer_fiscal('fon', period)
         f7ga = foyer_fiscal('f7ga', period)
         f7gb = foyer_fiscal('f7gb', period)
         f7gc = foyer_fiscal('f7gc', period)
         rev_cat_pv = foyer_fiscal('rev_cat_pv', period)
+
+        abat_spe = foyer_fiscal('abat_spe', period)
+        caseP = foyer_fiscal('caseP', period)
+        caseF = foyer_fiscal('caseF', period)
+        invV, invC = caseP, caseF
+        naissanceP = foyer_fiscal.declarant_principal('date_naissance', period)
+        naissanceC = foyer_fiscal.conjoint('date_naissance', period)
+        dateLimite = datetime64('1931-01-01')
+        apply_abat_spe = (abat_spe > 0) * (invV + invC + (naissanceP < dateLimite) + (naissanceC < dateLimite))
 
         return (
             + fon
@@ -286,7 +294,7 @@ class aide_logement_base_revenus_fiscaux(Variable):
             + rev_cap_lib
             + rev_cat_pv
             + rev_cat_rvcm
-            - abat_spe
+            - abat_spe * apply_abat_spe
             - f7ga
             - f7gb
             - f7gc
