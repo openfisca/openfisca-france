@@ -242,13 +242,13 @@ class aide_logement_base_ressources_defaut(Variable):
         conjoint_declarant_principal = famille.value_from_person(declarant_principal_i, Famille.CONJOINT)
 
         # Revenus du foyer fiscal
-        rev_coll = (
-            famille.demandeur.foyer_fiscal('rev_coll', period.n_2) *  demandeur_declarant_principal +
-            famille.conjoint.foyer_fiscal('rev_coll', period.n_2) * conjoint_declarant_principal
+        aide_logement_base_revenus_fiscaux = (
+            famille.demandeur.foyer_fiscal('aide_logement_base_revenus_fiscaux', period.n_2) *  demandeur_declarant_principal +
+            famille.conjoint.foyer_fiscal('aide_logement_base_revenus_fiscaux', period.n_2) * conjoint_declarant_principal
             )
 
         ressources = (
-            base_ressources_parents + base_ressources_enfants + rev_coll -
+            base_ressources_parents + base_ressources_enfants + aide_logement_base_revenus_fiscaux -
             (abattement_chomage_indemnise + abattement_depart_retraite + neutralisation_rsa)
             )
 
@@ -259,6 +259,38 @@ class aide_logement_base_ressources_defaut(Variable):
         result = max_(ressources - abattement_double_activite, 0)
 
         return result
+
+
+class aide_logement_base_revenus_fiscaux(Variable):
+    value_type = float
+    entity = FoyerFiscal
+    label = u"Revenus fiscaux perçus par le foyer fiscal à prendre en compte dans la base ressource des aides au logement"
+    definition_period = YEAR
+
+    def formula(foyer_fiscal, period):
+        retraite_titre_onereux_net = foyer_fiscal('retraite_titre_onereux_net', period)
+        pensions_alimentaires_versees = foyer_fiscal('pensions_alimentaires_versees', period)
+        rev_cap_lib = foyer_fiscal('rev_cap_lib', period, options = [ADD])
+        rev_cat_rvcm = foyer_fiscal('rev_cat_rvcm', period)
+        abat_spe = foyer_fiscal('abat_spe', period)
+        fon = foyer_fiscal('fon', period)
+        f7ga = foyer_fiscal('f7ga', period)
+        f7gb = foyer_fiscal('f7gb', period)
+        f7gc = foyer_fiscal('f7gc', period)
+        rev_cat_pv = foyer_fiscal('rev_cat_pv', period)
+
+        return (
+            + fon
+            + pensions_alimentaires_versees
+            + retraite_titre_onereux_net
+            + rev_cap_lib
+            + rev_cat_pv
+            + rev_cat_rvcm
+            - abat_spe
+            - f7ga
+            - f7gb
+            - f7gc
+            )
 
 
 class aide_logement_base_ressources(Variable):
