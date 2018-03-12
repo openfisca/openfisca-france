@@ -1375,7 +1375,7 @@ class microentreprise(Variable):
 class plus_values(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = u"Taxation forfaitaire des plus_values"
+    label = u"Taxation forfaitaire des plus-values"
     reference = "http://bofip.impots.gouv.fr/bofip/6957-PGP"
     definition_period = YEAR
 
