@@ -1381,7 +1381,7 @@ class plus_values(Variable):
 
     def formula_2007_01_01(foyer_fiscal, period, parameters):  # f3sd is in f3vd holder
         """
-        Taxation des plus values
+        Taxation des plus-values
         """
         f3vg = foyer_fiscal('f3vg', period)
         f3vh = foyer_fiscal('f3vh', period)
