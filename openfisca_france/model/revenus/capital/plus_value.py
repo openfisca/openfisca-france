@@ -58,13 +58,15 @@ class f3si(Variable):
 #                                    # correspond à autre chose en 2009, vérifier 2011,2010
 
 class f3sa(Variable):
+    cerfa_field = u"3SA"
     value_type = int
     entity = FoyerFiscal
-    end = '2009-12-31'
+    label = u"Plus-values de cessions de titres réalisées par un entrepreneur, taxables à 19%"
+    # start_date = date(2012, 1, 1)
+    end = '2012-12-31'
     definition_period = YEAR
 
-  # TODO: n'existe pas en 2013 et 2012 vérifier 2011 et 2010
-
+  
 class f3sf(Variable):
     value_type = int
     entity = FoyerFiscal
@@ -90,6 +92,25 @@ class f3vc(Variable):
     # start_date = date(2006, 1, 1)
     definition_period = YEAR
 
+
+class f3vp(Variable):
+    cerfa_field = u"3VP"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Plus-values exonérées de cessions de titres de jeunes entreprises innovantes"
+    # start_date = date(2007, 1, 1)
+    definition_period = YEAR
+
+
+class f3vy(Variable):
+    cerfa_field = u"3VY"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Plus-values exonérées de cessions de participations supérieures à 25% au sein du groupe familial"
+    # start_date = date(2011, 1, 1)
+    definition_period = YEAR
 
 
 class f3vd(Variable):
@@ -139,9 +160,9 @@ class f3vl(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     label = u"Distributions par des sociétés de capital-risque taxables à 19 %"
+    end = '2013-12-31'
     definition_period = YEAR
 
-  # vérifier pour 2011 et 2010
 
 class f3vi(Variable):
     cerfa_field = {QUIFOY['vous']: u"3VI",
@@ -187,17 +208,97 @@ class f3vj(Variable):
   # (f3vj, f3vk )
 
 class f3va(Variable):
-    cerfa_field = {QUIFOY['vous']: u"3VA",
-        QUIFOY['conj']: u"3VB",
-        }
+    cerfa_field = u"3VA"
     value_type = int
     unit = 'currency'
-    entity = Individu
-    label = u"Abattement pour durée de détention des titres en cas de départ à la retraite d'un dirigeant appliqué sur des plus-values"
+    entity = FoyerFiscal
+    label = u""
     # start_date = date(2006, 1, 1)
     definition_period = YEAR
 
-  # (f3va, f3vb )))
+class f3vb(Variable):
+    cerfa_field = u"3VB"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u""
+    # start_date = date(2006, 1, 1)
+    definition_period = YEAR
+
+class f3sg(Variable):
+    cerfa_field = u"3SG"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Abattement net pour durée de détention : appliqué sur des plus-values"
+    # start_date = date(2013, 1, 1)
+    definition_period = YEAR
+
+class f3sh(Variable):
+    cerfa_field = u"3SH"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Abattement net pour durée de détention : appliqué sur des moins-values"
+    # start_date = date(2013, 1, 1)
+    end = '2014-12-31'
+    definition_period = YEAR
+
+class f3sl(Variable):
+    cerfa_field = u"3SL"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Abattement net pour durée de détention renforcée : appliqué sur des plus-values"
+    # start_date = date(2013, 1, 1)
+    definition_period = YEAR
+
+class f3sm(Variable):
+    cerfa_field = u"3SM"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Abattement net pour durée de détention renforcée : appliqué sur des moins-values"
+    # start_date = date(2013, 1, 1)
+    end = '2014-12-31'
+    definition_period = YEAR
+
+class abattement_net_retraite_dirigeant_pme(Variable):
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    reference = u"http://bofip.impots.gouv.fr/bofip/2894-PGP"
+    label = u"Abattement net pour durée de détention des titres en cas de départ à la retraite d'un dirigeant"
+    definition_period = YEAR
+
+    def formula_2006_01_01(foyer_fiscal, period):
+        f3va = foyer_fiscal('f3va', period)
+        f3vb = foyer_fiscal('f3va', period)
+
+        return f3va - f3vb
+
+class abattement_net_duree_detention(Variable):
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    reference = u"http://bofip.impots.gouv.fr/bofip/9540-PGP"
+    label = u"Abattement net pour durée de détention"
+    definition_period = YEAR
+
+    def formula_2013_01_01(foyer_fiscal, period):
+        f3sg = foyer_fiscal('f3sg', period)
+        f3sh = foyer_fiscal('f3sh', period)
+        f3sl = foyer_fiscal('f3sl', period)
+        f3sm = foyer_fiscal('f3sm', period)
+
+        return max_(0, f3sg - f3sh) + max_(0, f3sl - f3sm)
+
+    def formula_2015_01_01(foyer_fiscal, period):
+        f3sg = foyer_fiscal('f3sg', period)
+        f3sl = foyer_fiscal('f3sl', period)
+
+        return f3sg + f3sl 
+
 
 # Plus values et gains taxables à des taux forfaitaires
 
