@@ -265,6 +265,14 @@ class aide_logement_base_revenus_fiscaux(Variable):
     value_type = float
     entity = FoyerFiscal
     label = u"Revenus fiscaux perçus par le foyer fiscal à prendre en compte dans la base ressource des aides au logement"
+    reference = [
+        u"Code de la construction et de l'habitation - Article R351-5",
+        u"https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=F039735F667F9271DFB284F78105BDC0.tplgfr31s_3?idArticle=LEGIARTI000021632267&cidTexte=LEGITEXT000006074096&dateTexte=20171123",
+        u"Code de la sécurité sociale - Article R831-6",
+        u"https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=9A3FFF4142B563EB5510DDE9F2870BF4.tplgfr41s_2?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000020080073&dateTexte=20171222&categorieLien=cid#LEGIARTI000020080073",
+        u"Code de la sécurité sociale - Article D542-10",
+        u"https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=F1CF3B807CE064C9F518B442EF8C856F.tpdila22v_1?idArticle=LEGIARTI000020986758&cidTexte=LEGITEXT000006073189&dateTexte=20170803&categorieLien=id&oldAction=&nbResultRech="
+    ]
     definition_period = YEAR
 
     def formula(foyer_fiscal, period):
