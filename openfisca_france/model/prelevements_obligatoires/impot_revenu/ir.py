@@ -1506,7 +1506,7 @@ class plus_values(Variable):
 class rfr_pv(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = u"Plus-values hors RNI entrant dans le calcul du revenu fiscal de référence (PV taxées forfaitairement, PV éxonérées ..)"
+    label = u"Plus-values hors RNI entrant dans le calcul du revenu fiscal de référence (PV au barème, PV éxonérées ..)"
     definition_period = YEAR
 
     def formula_2011_01_01(foyer_fiscal, period, parameters): 
