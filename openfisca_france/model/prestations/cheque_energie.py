@@ -20,12 +20,11 @@ class cheque_energie_unites_consommation(Variable):
 
     def formula_2017(menage, period, parameters):
         uc = parameters(period).cheque_energie.unites_consommation
-        nb_persons = menage.nb_persons()
-        gardes_alternee = menage.sum(menage.members('garde_alternee', period.first_month))
+        nb_personnes = menage.nb_persons()
+        gardes_alternees = menage.sum(menage.members('garde_alternee', period.first_month))
 
-        adj_nb = nb_persons - 0.5 * gardes_alternee
-
-        return uc.premiere_personne + uc.deuxieme_personne * (adj_nb > 1) * (adj_nb - 1) + uc.autres_personnes * (adj_nb > 2) * (adj_nb - 2)
+        nb_personnes_ajuste = nb_personnes - 0.5 * gardes_alternees
+        return uc.premiere_personne + uc.deuxieme_personne * (nb_personnes_ajuste > 1) * (nb_personnes_ajuste - 1) + uc.autres_personnes * (nb_personnes_ajuste > 2) * (nb_personnes_ajuste - 2)
 
 
 class cheque_energie_eligibilite_logement(Variable):
