@@ -6,7 +6,7 @@ from openfisca_france.model.base import *  # noqa analysis:ignore
 
 class UCChequeEnergie(Enum):
     __order__ = 'une_uc une_uc_a_deux_uc plus_de_deux_uc'  # Needed to preserve the enum order in Python 2
-    une_uc = u'Une UC'
+    une_uc = u'Une unité de consommation (UC)'
     une_uc_a_deux_uc = u'Une UC à deux UC'
     plus_de_deux_uc = u'Plus de deux UC'
 
@@ -30,6 +30,10 @@ class cheque_energie_unites_consommation(Variable):
 class cheque_energie_eligibilite_logement(Variable):
     entity = Menage
     value_type = bool
+    reference = [
+        u"Article L124-1 du Code de l'énergie",
+        u"https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=5AB50D02153C9CB753729850314A2E17.tplgfr29s_1?idArticle=LEGIARTI000031057544&cidTexte=LEGITEXT000023983208&dateTexte=20180314",
+    ]
     label = u"Éligibilité du logement occupé au chèque énergie"
     definition_period = MONTH
 
@@ -54,27 +58,31 @@ class cheque_energie_montant(Variable):
 
     def formula_2017(menage, period, parameters):
         baremes = parameters(period).cheque_energie.baremes
-        th = baremes.thresholds
+        seuils = baremes.thresholds
         montants = baremes.montants
 
-        uc_nb = menage('cheque_energie_unites_consommation', period)
+        uc_menage = menage('cheque_energie_unites_consommation', period)
         rfr = menage.personne_de_reference.foyer_fiscal('rfr', period.n_2)
 
-        base = rfr / uc_nb
+        ressources_par_uc = rfr / uc_menage
 
         uc = select(
-            [uc_nb <= 1, uc_nb < 2, 2 <= uc_nb],
+            [uc_menage <= 1, uc_menage < 2, 2 <= uc_menage],
             [UCChequeEnergie.une_uc, UCChequeEnergie.une_uc_a_deux_uc, UCChequeEnergie.plus_de_deux_uc]
             )
 
-        return (base < th.un) * montants[uc].un + (th.un <= base < th.deux) * montants[uc].deux + (th.deux <= base < th.trois) * montants[uc].trois
+        return (
+            + (ressources_par_uc < seuils.tranche_une) * montants[uc].tranche_une
+            + (seuils.tranche_une <= ressources_par_uc < seuils.tranche_deux) * montants[uc].tranche_deux
+            + (seuils.tranche_deux <= ressources_par_uc < seuils.tranche_trois) * montants[uc].tranche_trois
+            )
 
 
 class cheque_energie(Variable):
     entity = Menage
     value_type = float
     reference = "https://chequeenergie.gouv.fr"
-    label = u"Chèque énergie"
+    label = u"Montant auquel le ménage peut prétendre au titre du chèque energie"
     definition_period = MONTH
 
     def formula_2017(menage, period, parameters):
