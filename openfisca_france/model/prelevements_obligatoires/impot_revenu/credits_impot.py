@@ -1155,7 +1155,7 @@ class inthab(Variable):
         2014 
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
-        nb_pac2 = foyer_fiscal('nb_pac2', period)
+        nb_pac_majoration_plafond = foyer_fiscal('nb_pac2', period)
         invalidite_decl = foyer_fiscal('caseP', period)
         invalidite_conj = foyer_fiscal('caseF', period)
         nbpac_invalideG = foyer_fiscal('nbG', period)
