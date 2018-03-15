@@ -1042,6 +1042,7 @@ class inthab(Variable):
         max3 = max_(max2 - f7vw, 0)
         max4 = max_(max3 - f7vu, 0)
         max5 = max_(max4 - f7vz, 0)
+        max6 = max_(max5 - f7vv, 0)
         return (
             P.taux1 * min_(f7vx, max0) +
             P.taux1 * min_(f7vy, max1) +
