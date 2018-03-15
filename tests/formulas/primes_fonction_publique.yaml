@@ -1,5 +1,5 @@
 - period: "2014"
-  name: Basculement en mensuel du traitement indiciaire brut annuel
+  name: Basculement en mensuel des primes de la fonction publique annuelles
   relative_error_margin: 0.001
   input_variables:
     traitement_indiciaire_brut: 6000
