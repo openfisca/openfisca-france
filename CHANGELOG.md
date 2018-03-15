@@ -1,6 +1,14 @@
 # Changelog
 
-### 20.3.0 [#908](https://github.com/openfisca/openfisca-france/pull/908)
+## 20.4.0
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : A partir de 2017
+* Zones impactées : `prestations/cheque_energie.py`
+* Détails :
+  - Ajoute le calcul du montant du chèque énergie
+
+## 20.3.0 [#908](https://github.com/openfisca/openfisca-france/pull/908)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : 2009 - 2016
@@ -11,7 +19,7 @@
 - Correction d'un des taux forfaitaires
 - Ajout de nouvelles inputs variables associées aux nouvelles cases des déclarations fiscales se rapportant aux plus-values
 
-### 20.2.0 [#907](https://github.com/openfisca/openfisca-france/pull/907)
+## 20.2.0 [#907](https://github.com/openfisca/openfisca-france/pull/907)
 
 Évolution du système socio-fiscal.
 * Périodes concernées : 2009 - 2016
@@ -20,7 +28,7 @@
   - Ammélioration du calcul des grosses réparations et de leurs prise en compte dans le calcul des charges déductibles
   - Ajout de nouvelles variables d'inputs pour les cases de l'IR correspondantes
 
-### 20.1.0 [#884](https://github.com/openfisca/openfisca-france/pull/884)
+## 20.1.0 [#884](https://github.com/openfisca/openfisca-france/pull/884)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : A partir de 04/2017

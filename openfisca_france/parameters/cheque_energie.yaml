@@ -1,0 +1,68 @@
+---
+unites_consommation:
+  premiere_personne:
+    values:
+      2017-01-01:
+        value: 1
+  deuxieme_personne:
+    values:
+      2017-01-01:
+        value: 0.5
+  autres_personnes:
+    values:
+      2017-01-01:
+        value: 0.3
+baremes:
+  thresholds:
+    tranche_une:
+      values:
+        2017-01-01:
+          value: 5600
+    tranche_deux:
+      values:
+        2017-01-1:
+          value: 6700
+    tranche_trois:
+      values:
+        2017-01-01:
+          value: 7700
+  montants:
+    une_uc:
+      tranche_une:
+        values:
+          2017-01-01:
+            value: 144
+      tranche_deux:
+        values:
+          2017-01-1:
+            value: 96
+      tranche_trois:
+        values:
+          2017-01-01:
+            value: 48
+    une_uc_a_deux_uc:
+      tranche_une:
+        values:
+          2017-01-01:
+            value: 190
+      tranche_deux:
+        values:
+          2017-01-1:
+            value: 126
+      tranche_trois:
+        values:
+          2017-01-01:
+            value: 63
+    plus_de_deux_uc:
+      tranche_une:
+        values:
+          2017-01-01:
+            value: 227
+      tranche_deux:
+        values:
+          2017-01-1:
+            value: 152
+      tranche_trois:
+        values:
+          2017-01-01:
+            value: 76
