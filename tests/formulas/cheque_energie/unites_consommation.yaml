@@ -1,0 +1,69 @@
+- name: UC base
+  period: 2018
+  input_variables:
+  output_variables:
+    cheque_energie_unites_consommation:
+      2018: 1
+
+- name: UC isolé
+  period: 2018
+  menages:
+    - personne_de_reference: parent
+  foyers_fiscaux:
+    - declarants:
+      - parent
+  familles:
+    - parents:
+      - parent
+  individus:
+    - id: parent
+  output_variables:
+    cheque_energie_unites_consommation:
+      2018: 1
+
+- name: UC avec 1 enfant
+  period: 2018
+  menages:
+    - personne_de_reference: parent
+      enfants:
+      - Mila
+  foyers_fiscaux:
+    - declarants:
+      - parent
+      personnes_a_charge:
+      - Mila
+  familles:
+    - parents:
+      - parent
+      enfants:
+      - Mila
+  individus:
+    - id: parent
+    - id: Mila
+  output_variables:
+    cheque_energie_unites_consommation:
+      2018: 1.5
+
+- name: UC avec 1 enfant en garde alternée
+  period: 2018
+  menages:
+    - personne_de_reference: parent
+      enfants:
+      - Mila
+  foyers_fiscaux:
+    - declarants:
+      - parent
+      personnes_a_charge:
+      - Mila
+  familles:
+    - parents:
+      - parent
+      enfants:
+      - Mila
+  individus:
+    - id: parent
+    - id: Mila
+      garde_alternee: True
+  output_variables:
+    cheque_energie_unites_consommation:
+      2018: 1.25

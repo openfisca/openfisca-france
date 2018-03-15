@@ -7,7 +7,7 @@ import json
 import logging
 import pkg_resources
 
-from numpy import ceil, fromiter, int16, logical_or as or_, logical_and as and_, nditer
+from numpy import ceil, datetime64, fromiter, int16, logical_or as or_, logical_and as and_, nditer
 
 import openfisca_france
 from openfisca_core.periods import Instant
@@ -242,13 +242,13 @@ class aide_logement_base_ressources_defaut(Variable):
         conjoint_declarant_principal = famille.value_from_person(declarant_principal_i, Famille.CONJOINT)
 
         # Revenus du foyer fiscal
-        rev_coll = (
-            famille.demandeur.foyer_fiscal('rev_coll', period.n_2) *  demandeur_declarant_principal +
-            famille.conjoint.foyer_fiscal('rev_coll', period.n_2) * conjoint_declarant_principal
+        aide_logement_base_revenus_fiscaux = (
+            famille.demandeur.foyer_fiscal('aide_logement_base_revenus_fiscaux', period.n_2) *  demandeur_declarant_principal +
+            famille.conjoint.foyer_fiscal('aide_logement_base_revenus_fiscaux', period.n_2) * conjoint_declarant_principal
             )
 
         ressources = (
-            base_ressources_parents + base_ressources_enfants + rev_coll -
+            base_ressources_parents + base_ressources_enfants + aide_logement_base_revenus_fiscaux -
             (abattement_chomage_indemnise + abattement_depart_retraite + neutralisation_rsa)
             )
 
@@ -259,6 +259,54 @@ class aide_logement_base_ressources_defaut(Variable):
         result = max_(ressources - abattement_double_activite, 0)
 
         return result
+
+
+class aide_logement_base_revenus_fiscaux(Variable):
+    value_type = float
+    entity = FoyerFiscal
+    label = u"Revenus fiscaux perçus par le foyer fiscal à prendre en compte dans la base ressource des aides au logement"
+    reference = [
+        u"Code de la construction et de l'habitation - Article R351-5",
+        u"https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=F039735F667F9271DFB284F78105BDC0.tplgfr31s_3?idArticle=LEGIARTI000021632267&cidTexte=LEGITEXT000006074096&dateTexte=20171123",
+        u"Code de la sécurité sociale - Article R831-6",
+        u"https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=9A3FFF4142B563EB5510DDE9F2870BF4.tplgfr41s_2?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000020080073&dateTexte=20171222&categorieLien=cid#LEGIARTI000020080073",
+        u"Code de la sécurité sociale - Article D542-10",
+        u"https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=F1CF3B807CE064C9F518B442EF8C856F.tpdila22v_1?idArticle=LEGIARTI000020986758&cidTexte=LEGITEXT000006073189&dateTexte=20170803&categorieLien=id&oldAction=&nbResultRech="
+    ]
+    definition_period = YEAR
+
+    def formula(foyer_fiscal, period):
+        retraite_titre_onereux_net = foyer_fiscal('retraite_titre_onereux_net', period)
+        pensions_alimentaires_versees = foyer_fiscal('pensions_alimentaires_versees', period)
+        rev_cap_lib = foyer_fiscal('rev_cap_lib', period, options = [ADD])
+        rev_cat_rvcm = foyer_fiscal('rev_cat_rvcm', period)
+        fon = foyer_fiscal('fon', period)
+        f7ga = foyer_fiscal('f7ga', period)
+        f7gb = foyer_fiscal('f7gb', period)
+        f7gc = foyer_fiscal('f7gc', period)
+        rev_cat_pv = foyer_fiscal('rev_cat_pv', period)
+
+        abat_spe = foyer_fiscal('abat_spe', period)
+        caseP = foyer_fiscal('caseP', period)
+        caseF = foyer_fiscal('caseF', period)
+        invV, invC = caseP, caseF
+        naissanceP = foyer_fiscal.declarant_principal('date_naissance', period)
+        naissanceC = foyer_fiscal.conjoint('date_naissance', period)
+        dateLimite = datetime64('1931-01-01')
+        apply_abat_spe = (abat_spe > 0) * (invV + invC + (naissanceP < dateLimite) + (naissanceC < dateLimite))
+
+        return (
+            + fon
+            + pensions_alimentaires_versees
+            + retraite_titre_onereux_net
+            + rev_cap_lib
+            + rev_cat_pv
+            + rev_cat_rvcm
+            - abat_spe * apply_abat_spe
+            - f7ga
+            - f7gb
+            - f7gc
+            )
 
 
 class aide_logement_base_ressources(Variable):

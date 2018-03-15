@@ -1,13 +1,29 @@
 # Changelog
 
-### 20.3.1
+### 20.4.2
 * Correction d'un bug
 * Zones impactées : openfisca_france/model/revenus/activite/salarie.py
 * Détails :
   - Autorise, pour les fonctionnaires, le basculement automatique en mensuel si les revenus sont renseignés en annuel
   - Adopte un comportement similaire aux autres revenus des salariés
 
-### 20.3.0 [#908](https://github.com/openfisca/openfisca-france/pull/908)
+### 20.4.1 [#948](https://github.com/openfisca/openfisca-france/pull/948)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : toutes.
+* Zones impactées : `model/prestations/aides_logement`.
+* Détails :
+  - Implémentation des décrets limitant l'application de [`abat_spe`](https://legislation.openfisca.fr/abat_spe) dans la base ressources des ALs
+
+## 20.4.0 [#924](https://github.com/openfisca/openfisca-france/pull/924)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : A partir de 2017
+* Zones impactées : `prestations/cheque_energie.py`
+* Détails :
+  - Ajoute le calcul du montant du chèque énergie
+
+## 20.3.0 [#908](https://github.com/openfisca/openfisca-france/pull/908)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : 2009 - 2016
@@ -18,7 +34,7 @@
 - Correction d'un des taux forfaitaires
 - Ajout de nouvelles inputs variables associées aux nouvelles cases des déclarations fiscales se rapportant aux plus-values
 
-### 20.2.0 [#907](https://github.com/openfisca/openfisca-france/pull/907)
+## 20.2.0 [#907](https://github.com/openfisca/openfisca-france/pull/907)
 
 Évolution du système socio-fiscal.
 * Périodes concernées : 2009 - 2016
@@ -27,7 +43,7 @@
   - Ammélioration du calcul des grosses réparations et de leurs prise en compte dans le calcul des charges déductibles
   - Ajout de nouvelles variables d'inputs pour les cases de l'IR correspondantes
 
-### 20.1.0 [#884](https://github.com/openfisca/openfisca-france/pull/884)
+## 20.1.0 [#884](https://github.com/openfisca/openfisca-france/pull/884)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : A partir de 04/2017

@@ -153,6 +153,10 @@ class prestations_familiales_base_ressources(Variable):
     value_type = float
     entity = Famille
     label = u"Base ressource des prestations familiales"
+    reference = [
+        u"Article D521-4 du Code de la sécurité sociale",
+        u"https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000030678081&cidTexte=LEGITEXT000006073189&categorieLien=id"
+    ]
     definition_period = MONTH
 
     def formula(famille, period):
