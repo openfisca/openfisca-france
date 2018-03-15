@@ -8,6 +8,14 @@
 * Détails :
   - Implémentation des décrets limitant l'application de [`abat_spe`](https://legislation.openfisca.fr/abat_spe) dans la base ressources des ALs
 
+### 20.4.1 [#948](https://github.com/openfisca/openfisca-france/pull/948)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : toutes.
+* Zones impactées : `model/prestations/aides_logement`.
+* Détails :
+  - Implémentation des décrets limitant l'application de [`abat_spe`](https://legislation.openfisca.fr/abat_spe) dans la base ressources des ALs
+
 ## 20.4.0 [#924](https://github.com/openfisca/openfisca-france/pull/924)
 
 * Évolution du système socio-fiscal.
