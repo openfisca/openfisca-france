@@ -1,5 +1,14 @@
 # Changelog
 
+### 20.5.0 [#909](https://github.com/openfisca/openfisca-france/pull/909)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : 2004 - 2016
+* Détails :
+- Correction des formules de certaines réductions et certains crédits d'impôts
+- Mise à jour des formules pour la période 2014 - 2016
+- Ajout de nouvelles inputs variables associées
+
 ### 20.4.1 [#948](https://github.com/openfisca/openfisca-france/pull/948)
 
 * Évolution du système socio-fiscal.
