@@ -36,7 +36,7 @@ class reductions(Variable):
         intemp = foyer_fiscal('intemp', period)
         invfor = foyer_fiscal('invfor', period)
         invrev = foyer_fiscal('invrev', period)
-        ip_net = foyer_fiscal('ip_net', period)
+        impot_net = foyer_fiscal('ip_net', period)
         prcomp = foyer_fiscal('prcomp', period)
         rsceha = foyer_fiscal('rsceha', period)
         saldom = foyer_fiscal('saldom', period)
@@ -44,7 +44,7 @@ class reductions(Variable):
 
         total_reductions = (adhcga + assvie + cappme + cotsyn + dfppce + daepad + doment + domlog + donapd + ecpess +
                 garext + intemp + invfor + invrev + prcomp + rsceha + saldom + spfcpi)
-        return min_(ip_net, total_reductions)
+        return min_(impot_net, total_reductions)
 
     def formula_2003_01_01(foyer_fiscal, period, parameters):
         '''
@@ -64,7 +64,7 @@ class reductions(Variable):
         intemp = foyer_fiscal('intemp', period)
         invfor = foyer_fiscal('invfor', period)
         invrev = foyer_fiscal('invrev', period)
-        ip_net = foyer_fiscal('ip_net', period)
+        impot_net = foyer_fiscal('ip_net', period)
         prcomp = foyer_fiscal('prcomp', period)
         repsoc = foyer_fiscal('repsoc', period)
         rsceha = foyer_fiscal('rsceha', period)
@@ -73,7 +73,7 @@ class reductions(Variable):
 
         total_reductions = (adhcga + assvie + cappme + cotsyn + dfppce + daepad + doment + domlog + donapd + ecpess +
                 garext + intemp + invfor + invrev + prcomp + repsoc + rsceha + saldom + spfcpi)
-        return min_(ip_net, total_reductions)
+        return min_(impot_net, total_reductions)
 
     def formula_2005_01_01(foyer_fiscal, period, parameters):
         '''
@@ -92,7 +92,7 @@ class reductions(Variable):
         intcon = foyer_fiscal('intcon', period)
         invfor = foyer_fiscal('invfor', period)
         invlst = foyer_fiscal('invlst', period)
-        ip_net = foyer_fiscal('ip_net', period)
+        impot_net = foyer_fiscal('ip_net', period)
         prcomp = foyer_fiscal('prcomp', period)
         repsoc = foyer_fiscal('repsoc', period)
         rsceha = foyer_fiscal('rsceha', period)
@@ -101,7 +101,7 @@ class reductions(Variable):
 
         total_reductions = (adhcga + cappme + cotsyn + daepad + dfppce + doment + domlog + donapd + ecpess + intagr +
                 intcon + invfor + invlst + prcomp + repsoc + rsceha + saldom + spfcpi)
-        return min_(ip_net, total_reductions)
+        return min_(impot_net, total_reductions)
 
     def formula_2006_01_01(foyer_fiscal, period, parameters):
         '''
@@ -121,7 +121,7 @@ class reductions(Variable):
         intagr = foyer_fiscal('intagr', period)
         invfor = foyer_fiscal('invfor', period)
         invlst = foyer_fiscal('invlst', period)
-        ip_net = foyer_fiscal('ip_net', period)
+        impot_net = foyer_fiscal('ip_net', period)
         prcomp = foyer_fiscal('prcomp', period)
         repsoc = foyer_fiscal('repsoc', period)
         rsceha = foyer_fiscal('rsceha', period)
@@ -131,7 +131,7 @@ class reductions(Variable):
 
         total_reductions = (adhcga + cappme + cotsyn + creaen + daepad + deffor + dfppce + doment + domlog + donapd +
         ecpess + intagr + invfor + invlst + prcomp + repsoc + rsceha + saldom + sofica + spfcpi)
-        return min_(ip_net, total_reductions)
+        return min_(impot_net, total_reductions)
 
     def formula_2007_01_01(foyer_fiscal, period, parameters):
         '''
@@ -151,7 +151,7 @@ class reductions(Variable):
         intagr = foyer_fiscal('intagr', period)
         invfor = foyer_fiscal('invfor', period)
         invlst = foyer_fiscal('invlst', period)
-        ip_net = foyer_fiscal('ip_net', period)
+        impot_net = foyer_fiscal('ip_net', period)
         prcomp = foyer_fiscal('prcomp', period)
         repsoc = foyer_fiscal('repsoc', period)
         rsceha = foyer_fiscal('rsceha', period)
@@ -162,7 +162,7 @@ class reductions(Variable):
         total_reductions = (adhcga + cappme + cotsyn + creaen + daepad + deffor + dfppce + doment + domlog + donapd +
         ecpess + intagr + invfor + invlst + prcomp + repsoc + rsceha + saldom + sofica + spfcpi)
 
-        return min_(ip_net, total_reductions)
+        return min_(impot_net, total_reductions)
 
     def formula_2008_01_01(foyer_fiscal, period, parameters):
         '''
@@ -182,7 +182,7 @@ class reductions(Variable):
         intagr = foyer_fiscal('intagr', period)
         invfor = foyer_fiscal('invfor', period)
         invlst = foyer_fiscal('invlst', period)
-        ip_net = foyer_fiscal('ip_net', period)
+        impot_net = foyer_fiscal('ip_net', period)
         mohist = foyer_fiscal('mohist', period)
         prcomp = foyer_fiscal('prcomp', period)
         repsoc = foyer_fiscal('repsoc', period)
@@ -193,7 +193,7 @@ class reductions(Variable):
 
         total_reductions = (adhcga + cappme + cotsyn + creaen + daepad + deffor + dfppce + doment + domlog + donapd +
         ecpess + intagr + invfor + invlst + mohist + prcomp + repsoc + rsceha + saldom + sofica + spfcpi)
-        return min_(ip_net, total_reductions)
+        return min_(impot_net, total_reductions)
 
     def formula_2009_01_01(foyer_fiscal, period, parameters):
         '''
@@ -215,7 +215,7 @@ class reductions(Variable):
         intagr = foyer_fiscal('intagr', period)
         invfor = foyer_fiscal('invfor', period)
         invlst = foyer_fiscal('invlst', period)
-        ip_net = foyer_fiscal('ip_net', period)
+        impot_net = foyer_fiscal('ip_net', period)
         locmeu = foyer_fiscal('locmeu', period)
         mohist = foyer_fiscal('mohist', period)
         prcomp = foyer_fiscal('prcomp', period)
@@ -231,7 +231,7 @@ class reductions(Variable):
         total_reductions = (adhcga + cappme + cotsyn + creaen + daepad + deffor + dfppce + doment + domlog + domsoc +
         donapd + ecodev + ecpess + intagr + invfor + invlst + locmeu + mohist + prcomp + repsoc + resimm + rsceha +
         saldom + scelli + sofica + sofipe + spfcpi)
-        return min_(ip_net, total_reductions)
+        return min_(impot_net, total_reductions)
 
     # TODO: check (sees checked) and report in Niches.xls
     def formula_2010_01_01(foyer_fiscal, period, parameters):
@@ -253,7 +253,7 @@ class reductions(Variable):
         intagr = foyer_fiscal('intagr', period)
         invfor = foyer_fiscal('invfor', period)
         invlst = foyer_fiscal('invlst', period)
-        ip_net = foyer_fiscal('ip_net', period)
+        impot_net = foyer_fiscal('ip_net', period)
         locmeu = foyer_fiscal('locmeu', period)
         mohist = foyer_fiscal('mohist', period)
         patnat = foyer_fiscal('patnat', period)
@@ -270,7 +270,7 @@ class reductions(Variable):
         total_reductions = (adhcga + cappme + cotsyn + creaen + daepad + deffor + dfppce + doment + domlog + domsoc +
         donapd + ecpess + intagr + invfor + invlst + locmeu + mohist + patnat + prcomp + repsoc + resimm + rsceha +
         saldom + scelli + sofica + sofipe + spfcpi)  # TODO: check (sees checked) and report in Niches.xls
-        return min_(ip_net, total_reductions)
+        return min_(impot_net, total_reductions)
 
     def formula_2011_01_01(foyer_fiscal, period, parameters):
         '''
@@ -291,7 +291,7 @@ class reductions(Variable):
         intagr = foyer_fiscal('intagr', period)
         invfor = foyer_fiscal('invfor', period)
         invlst = foyer_fiscal('invlst', period)
-        ip_net = foyer_fiscal('ip_net', period)
+        impot_net = foyer_fiscal('ip_net', period)
         locmeu = foyer_fiscal('locmeu', period)
         mohist = foyer_fiscal('mohist', period)
         patnat = foyer_fiscal('patnat', period)
@@ -308,7 +308,7 @@ class reductions(Variable):
         total_reductions = (adhcga + cappme + cotsyn + creaen + daepad + deffor + dfppce + doment + domlog + domsoc +
         donapd + ecpess + intagr + invfor + invlst + locmeu + mohist + patnat + prcomp + repsoc + resimm + rsceha +
         saldom + scelli + sofica + sofipe + spfcpi)
-        return min_(ip_net, total_reductions)
+        return min_(impot_net, total_reductions)
 
     def formula_2012_01_01(foyer_fiscal, period, parameters):
         '''
@@ -328,7 +328,7 @@ class reductions(Variable):
         intagr = foyer_fiscal('intagr', period)
         invfor = foyer_fiscal('invfor', period)
         invlst = foyer_fiscal('invlst', period)
-        ip_net = foyer_fiscal('ip_net', period)
+        impot_net = foyer_fiscal('ip_net', period)
         locmeu = foyer_fiscal('locmeu', period)
         mohist = foyer_fiscal('mohist', period)
         patnat = foyer_fiscal('patnat', period)
@@ -344,7 +344,7 @@ class reductions(Variable):
         total_reductions = (adhcga + cappme + creaen + daepad + deffor + dfppce + doment + domlog + domsoc +
         donapd + ecpess + intagr + invfor + invlst + locmeu + mohist + patnat + prcomp + repsoc + resimm + rsceha +
         saldom + scelli + sofica + spfcpi)
-        return min_(ip_net, total_reductions)
+        return min_(impot_net, total_reductions)
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
         '''
@@ -362,11 +362,10 @@ class reductions(Variable):
         donapd = foyer_fiscal('donapd', period)
         duflot = foyer_fiscal('duflot', period)
         ecpess = foyer_fiscal('ecpess', period)
-        garext = foyer_fiscal('garext', period)
         intagr = foyer_fiscal('intagr', period)
         invfor = foyer_fiscal('invfor', period)
         invlst = foyer_fiscal('invlst', period)
-        ip_net = foyer_fiscal('ip_net', period)
+        impot_net = foyer_fiscal('ip_net', period)
         locmeu = foyer_fiscal('locmeu', period)
         mecena = foyer_fiscal('mecena', period)
         mohist = foyer_fiscal('mohist', period)
@@ -382,15 +381,15 @@ class reductions(Variable):
         spfcpi = foyer_fiscal('spfcpi', period)
 
         total_reductions = (accult + adhcga + cappme + creaen + daepad + deffor + dfppce + doment + domlog + donapd +
-        duflot + ecpess + garext + intagr + invfor + invlst + locmeu + mecena + mohist +
+        duflot + ecpess + intagr + invfor + invlst + locmeu + mecena + mohist +
         patnat + prcomp + reduction_impot_exceptionnelle + repsoc + resimm + rsceha + saldom + scelli + sofica +
         spfcpi)
-        return min_(ip_net, total_reductions)
+        return min_(impot_net, total_reductions)
 
     # Start date not checked
     def formula_2014(foyer_fiscal, period, parameters):
         '''
-        Renvoie la somme des réductions d'impôt à intégrer pour l'année 2014 et + (non vérifiée)
+        Renvoie la somme des réductions d'impôt à intégrer pour l'année 2014
         '''
         accult = foyer_fiscal('accult', period)
         adhcga = foyer_fiscal('adhcga', period)
@@ -404,17 +403,15 @@ class reductions(Variable):
         donapd = foyer_fiscal('donapd', period)
         duflot = foyer_fiscal('duflot', period)
         ecpess = foyer_fiscal('ecpess', period)
-        garext = foyer_fiscal('garext', period)
         intagr = foyer_fiscal('intagr', period)
         invfor = foyer_fiscal('invfor', period)
         invlst = foyer_fiscal('invlst', period)
-        ip_net = foyer_fiscal('ip_net', period)
+        impot_net = foyer_fiscal('ip_net', period)
         locmeu = foyer_fiscal('locmeu', period)
         mecena = foyer_fiscal('mecena', period)
         mohist = foyer_fiscal('mohist', period)
         patnat = foyer_fiscal('patnat', period)
         prcomp = foyer_fiscal('prcomp', period)
-        reduction_impot_exceptionnelle = foyer_fiscal('reduction_impot_exceptionnelle', period)
         repsoc = foyer_fiscal('repsoc', period)
         resimm = foyer_fiscal('resimm', period)
         rsceha = foyer_fiscal('rsceha', period)
@@ -423,11 +420,49 @@ class reductions(Variable):
         sofica = foyer_fiscal('sofica', period)
         spfcpi = foyer_fiscal('spfcpi', period)
 
-        total_reductions = (accult + adhcga + cappme + creaen + daepad + deffor + dfppce + doment + domlog + donapd +
-        duflot + ecpess + garext + intagr + invfor + invlst + locmeu + mecena + mohist +
-        patnat + prcomp + reduction_impot_exceptionnelle + repsoc + resimm + rsceha + saldom + scelli + sofica +
+        total_reductions = (accult + adhcga + cappme + daepad + deffor + dfppce + doment + domlog + donapd +
+        duflot + ecpess + intagr + invfor + invlst + locmeu + mecena + mohist +
+        patnat + prcomp + repsoc + resimm + rsceha + saldom + scelli + sofica +
         spfcpi)
-        return min_(ip_net, total_reductions)
+        return min_(impot_net, total_reductions)
+
+    def formula_2015_01_01(foyer_fiscal, period, parameters):
+        '''
+        Renvoie la somme des réductions d'impôt à intégrer pour l'année 2015 et aprés
+        '''
+        accult = foyer_fiscal('accult', period)
+        adhcga = foyer_fiscal('adhcga', period)
+        cappme = foyer_fiscal('cappme', period)
+        daepad = foyer_fiscal('daepad', period)
+        deffor = foyer_fiscal('deffor', period)
+        dfppce = foyer_fiscal('dfppce', period)
+        doment = foyer_fiscal('doment', period)
+        domlog = foyer_fiscal('domlog', period)
+        donapd = foyer_fiscal('donapd', period)
+        duflot = foyer_fiscal('duflot', period)
+        ecpess = foyer_fiscal('ecpess', period)
+        intagr = foyer_fiscal('intagr', period)
+        invfor = foyer_fiscal('invfor', period)
+        invlst = foyer_fiscal('invlst', period)
+        impot_net = foyer_fiscal('ip_net', period)
+        locmeu = foyer_fiscal('locmeu', period)
+        mecena = foyer_fiscal('mecena', period)
+        mohist = foyer_fiscal('mohist', period)
+        patnat = foyer_fiscal('patnat', period)
+        prcomp = foyer_fiscal('prcomp', period)
+        repsoc = foyer_fiscal('repsoc', period)
+        resimm = foyer_fiscal('resimm', period)
+        rsceha = foyer_fiscal('rsceha', period)
+        saldom = foyer_fiscal('saldom', period)
+        scelli = foyer_fiscal('scelli', period)
+        sofica = foyer_fiscal('sofica', period)
+        spfcpi = foyer_fiscal('spfcpi', period)
+
+        total_reductions = (accult + adhcga + cappme + daepad + deffor + dfppce + doment + domlog + donapd +
+        duflot + ecpess + intagr + invfor + invlst + locmeu + mecena + mohist +
+        patnat + prcomp + repsoc + resimm + rsceha + saldom + scelli + sofica +
+        spfcpi)
+        return min_(impot_net, total_reductions)
 
 
         # pour tous les dfppce:
@@ -478,7 +513,8 @@ class assvie(Variable):
 class cappme(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = u"cappme"
+    label = u"Réduction d'impôt au titre des souscriptions en numéraire au capital de PME non côtées"
+    reference = "http://bofip.impots.gouv.fr/bofip/4374-PGP"
     definition_period = YEAR
     end = '2013-12-31'
 
@@ -630,7 +666,7 @@ class cotsyn(Variable):
 
     def formula(foyer_fiscal, period, parameters):
         '''
-        Cotisations syndicales (2002-20131
+        Cotisations syndicales : réduction d'impôt (2002-2011) puis crédit d'impôt (2012- )
         '''
         f7ac = foyer_fiscal.members('f7ac', period)
         salaire_imposable = foyer_fiscal.members('salaire_imposable', period, options = [ADD])
@@ -750,9 +786,9 @@ class daepad(Variable):
 class dfppce(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = u"dfppce"
+    label = u"Dons à des organismes d'intérêt général et dons pour le financement des partis politiques"
+    reference = "http://bofip.impots.gouv.fr/bofip/5823-PGP"
     definition_period = YEAR
-    end = '2013-12-31'
 
     def formula_2002_01_01(foyer_fiscal, period, parameters):
         '''
@@ -898,17 +934,20 @@ class dfppce(Variable):
         f7xu = foyer_fiscal('f7xu', period)
         f7xw = foyer_fiscal('f7xw', period)
         f7xy = foyer_fiscal('f7xy', period)
+        f7va = foyer_fiscal('f7va', period)
         f7vc = foyer_fiscal('f7vc', period)
         P = parameters(period).impot_revenu.reductions_impots.dons
+        plafond_reduction_donapd = parameters(period).impot_revenu.reductions_impots.donapd.max
 
-        base = min_(P.max_niv, f7uf + f7uh) + f7vc + f7xs + f7xt + f7xu + f7xw + f7xy
+        report_f7va = max_(0, f7va - plafond_reduction_donapd) 
+        base = min_(P.max_niv, f7uf + f7uh) + f7vc + f7xs + f7xt + f7xu + f7xw + f7xy + report_f7va
         max1 = P.taux_max_dons_partipo * rbg_int
         return P.taux_dons_oeuvres * min_(base, max1)
 
 
-    # TODO: note de bas de page
-    #       Introduire plus de détails dans la déclaration pour séparer les dons aux partis poitiques
-    #       et aux candidats des autres dons
+    # TODO:
+    # - Introduire plus de détails dans la déclaration pour séparer les dons aux partis politiques et aux candidats des autres dons (intérêt général)
+    # - Verrifier si l'excédent de f7ud ne s'impute pas à la réduction 'dfppce' (comme pour 'f7va')
 
 
 # Outre-mer : TODO: plafonnement, cf. 2041-GE 2042-IOM
@@ -1208,7 +1247,8 @@ class doment(Variable):
 class domlog(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = u"domlog"
+    label = u"Réduction d'impôt au titre des investissements outre-mer réalisés par des personnes physiques"
+    reference = "http://bofip.impots.gouv.fr/bofip/6716-PGP"
     definition_period = YEAR
     end = '2013-12-31'
 
@@ -1396,7 +1436,8 @@ class domlog(Variable):
 class domsoc(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = u"domsoc"
+    label = u"Réduction d'impôt au titre de l'acquisition ou de la souscription de logements sociaux outre-mer"
+    reference = "http://bofip.impots.gouv.fr/bofip/9398-PGP"
     definition_period = YEAR
     end = '2013-12-31'
 
@@ -1439,7 +1480,7 @@ class domsoc(Variable):
         f7qj = foyer_fiscal('f7qj', period)
         f7qs = foyer_fiscal('f7qs', period)
         f7qw = foyer_fiscal('f7qw', period)
-        f7qx = foyer_fiscal('f7qx', period)
+        f7qx = foyer_fiscal('f7qx', period) 
 
         return  fhra + fhrb + fhrc + fhrd + f7qn + f7qk + f7qu + f7kg + f7kh + f7ki + f7qj + f7qs + f7qw + f7qx
 
@@ -1448,8 +1489,8 @@ class donapd(Variable):
     value_type = float
     entity = FoyerFiscal
     label = u"donapd"
+    reference = "http://bofip.impots.gouv.fr/bofip/5873-PGP?datePubl=vig#5873-PGP_Cas_particulier_des_dons_fa_21"
     definition_period = YEAR
-    end = '2013-12-31'
 
     def formula_2002_01_01(foyer_fiscal, period, parameters):
         '''
@@ -1474,7 +1515,8 @@ class donapd(Variable):
 class duflot(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = u"duflot"
+    label = u"Réduction d'impôt en faveur de l'investissement locatif intermédiaire - Dispositif Duflot"
+    reference = "http://bofip.impots.gouv.fr/bofip/8425-PGP"
     definition_period = YEAR
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
@@ -1536,9 +1578,10 @@ class ecpess(Variable):
 class garext(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = u"garext"
+    label = u"Réduction d'impôt en faveur des dépenses de frais de garde des jeunes enfants"
+    reference = "http://bofip.impots.gouv.fr/bofip/865-PGP?datePubl=13/04/2013#"
     definition_period = YEAR
-    end = '2005-12-31'
+    end = '2004-12-31'
 
 
     def formula_2002_01_01(foyer_fiscal, period, parameters):
@@ -1559,7 +1602,7 @@ class garext(Variable):
         '''
         Frais de garde des enfants à l’extérieur du domicile (cases GA, GB, GC de la 2042)
         et GE, GF, GG
-        2003-2005
+        2003-2004
         '''
         f7ga = foyer_fiscal('f7ga', period)
         f7gb = foyer_fiscal('f7gb', period)
@@ -1640,7 +1683,8 @@ class intemp(Variable):
 class invfor(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = u"invfor"
+    label = u"Réduction d'impôt au titre des investissements forestiers"
+    reference = "http://bofip.impots.gouv.fr/bofip/5537-PGP"
     definition_period = YEAR
     end = '2013-12-31'
 
@@ -1783,9 +1827,10 @@ class invfor(Variable):
 class invlst(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = u"invlst"
+    label = u"Réduction d'impôt en faveur des investissements dans le secteur touristique"
+    reference = "http://bofip.impots.gouv.fr/bofip/6265-PGP"
     definition_period = YEAR
-    end = '2013-12-31'
+    end = '2016-12-31'
 
     def formula_2004_01_01(foyer_fiscal, period, parameters):
         '''
@@ -1985,39 +2030,111 @@ class invlst(Variable):
 
         return around(xi + xj + xo)
 
-
-class invrev(Variable):
-    value_type = float
-    entity = FoyerFiscal
-    label = u"invrev"
-    end = '2003-12-31'
-    definition_period = YEAR
-
-    def formula_2002_01_01(foyer_fiscal, period, parameters):
+    def formula_2014_01_01(foyer_fiscal, period, parameters):
         '''
-        Investissements locatifs dans les résidences de tourisme situées dans une zone de
-        revitalisation rurale (cases GS, GT, XG, GU et GV)
-        2002-2003
-        TODO 1/4 codé en dur
+        Investissements locatifs dans le secteur touristique
+        2014
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
-        f7gs = foyer_fiscal('f7gs', period)
-        f7gt = foyer_fiscal('f7gt', period)
-        f7xg = foyer_fiscal('f7xg', period)
-        f7gu = foyer_fiscal('f7gu', period)
-        f7gv = foyer_fiscal('f7gv', period)
-        P = parameters(period).impot_revenu.reductions_impots.invrev
+        report_logement_neuf_2009 = foyer_fiscal('f7xi', period)
+        report_logement_neuf_2010 = foyer_fiscal('f7xp', period)
+        report_logement_neuf_2011 = foyer_fiscal('f7xn', period)
+        report_logement_neuf_2012 = foyer_fiscal('f7uy', period)
+        report_rehabilitation_2009 = foyer_fiscal('f7xj', period)
+        report_rehabilitation_2010 = foyer_fiscal('f7xq', period)
+        report_rehabilitation_2011 = foyer_fiscal('f7xv', period)
+        report_rehabilitation_2012 = foyer_fiscal('f7uz', period)
+        report_residence_sociale_2009 = foyer_fiscal('f7xk', period)
+        report_residence_sociale_2010 = foyer_fiscal('f7xr', period) 
+        P = parameters(period).impot_revenu.reductions_impots.invlst
 
-        return (P.taux_gs * min_(f7gs, P.seuil_gs * (1 + maries_ou_pacses)) / 4 +
-                 P.taux_gu * min_(f7gu, P.seuil_gu * (1 + maries_ou_pacses)) / 4 +
-                 P.taux_xg * min_(f7xg, P.seuil_xg * (1 + maries_ou_pacses)) / 4 +
-                 P.taux_gt * f7gt + P.taux_gt * f7gv)
+        reduction_logement_neuf = P.taux_xi * (
+            report_logement_neuf_2009 + 
+            report_logement_neuf_2010 + 
+            report_logement_neuf_2011 + 
+            report_logement_neuf_2012
+            )
+        reduction_rehabilitation = P.taux_xj * (
+            report_rehabilitation_2009 + 
+            report_rehabilitation_2010 + 
+            report_rehabilitation_2011 +
+            report_rehabilitation_2012
+            )
+        reduction_residence_sociale = P.taux_xo * (
+            report_residence_sociale_2009 +
+            report_residence_sociale_2010
+            )
+
+        return around(reduction_logement_neuf + reduction_rehabilitation + reduction_residence_sociale)
+
+    def formula_2015_01_01(foyer_fiscal, period, parameters):
+        '''
+        Investissements locatifs dans le secteur touristique
+        2015
+        '''
+        maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
+        report_logement_neuf_2009 = foyer_fiscal('f7xi', period)
+        report_logement_neuf_2010 = foyer_fiscal('f7xp', period)
+        report_logement_neuf_2011 = foyer_fiscal('f7xn', period)
+        report_logement_neuf_2012 = foyer_fiscal('f7uy', period)
+        report_rehabilitation_2009 = foyer_fiscal('f7xj', period)
+        report_rehabilitation_2010 = foyer_fiscal('f7xq', period)
+        report_rehabilitation_2011 = foyer_fiscal('f7xv', period)
+        report_rehabilitation_2012 = foyer_fiscal('f7uz', period)
+        report_residence_sociale_2010 = foyer_fiscal('f7xr', period) 
+        P = parameters(period).impot_revenu.reductions_impots.invlst
+
+        reduction_logement_neuf = P.taux_xi * (
+            report_logement_neuf_2009 + 
+            report_logement_neuf_2010 + 
+            report_logement_neuf_2011 + 
+            report_logement_neuf_2012
+            )
+        reduction_rehabilitation = P.taux_xj * (
+            report_rehabilitation_2009 + 
+            report_rehabilitation_2010 + 
+            report_rehabilitation_2011 +
+            report_rehabilitation_2012
+            )
+        reduction_residence_sociale = P.taux_xo * report_residence_sociale_2010
+
+        return around(reduction_logement_neuf + reduction_rehabilitation + reduction_residence_sociale)
+
+    def formula_2016_01_01(foyer_fiscal, period, parameters):
+        '''
+        Investissements locatifs dans le secteur touristique
+        2016
+        '''
+        maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
+        report_logement_neuf_2010 = foyer_fiscal('f7xp', period)
+        report_logement_neuf_2011 = foyer_fiscal('f7xn', period)
+        report_logement_neuf_2012 = foyer_fiscal('f7uy', period)
+        report_rehabilitation_2010 = foyer_fiscal('f7xq', period)
+        report_rehabilitation_2011 = foyer_fiscal('f7xv', period)
+        report_rehabilitation_2012 = foyer_fiscal('f7uz', period)
+        P = parameters(period).impot_revenu.reductions_impots.invlst
+
+        reduction_logement_neuf = P.taux_xi * (
+            report_logement_neuf_2010 + 
+            report_logement_neuf_2011 + 
+            report_logement_neuf_2012
+            )
+        reduction_rehabilitation = P.taux_xj * (
+            report_rehabilitation_2010 + 
+            report_rehabilitation_2011 +
+            report_rehabilitation_2012
+            )
+
+        return around(reduction_logement_neuf + reduction_rehabilitation)
+
+    # TODO : verrifier la formule de cette réduction pour les années 2004-2013, les cases changent de signification d'une année à l'autre, cela ne semble pas pris en compte dans le calcul (ex: f7xd)
 
 
 class locmeu(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = u"locmeu"
+    label = u"Réduction d'impôt en faveur de l'acquisition de logements destinés à la location meublée non professionnelle - Dispositif Censi-Bouvard"
+    reference = "http://bofip.impots.gouv.fr/bofip/4885-PGP"
     definition_period = YEAR
     end = '2013-12-31'
 
@@ -2183,9 +2300,9 @@ class mohist(Variable):
 class patnat(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = u"patnat"
+    label = u"Réduction d'impôt en faveur des dépenses de préservation du patrimoine naturel"
+    reference = "http://bofip.impots.gouv.fr/bofip/6240-PGP"
     definition_period = YEAR
-    end = '2013-12-31'
 
     def formula_2010_01_01(foyer_fiscal, period, parameters):
         '''
@@ -2236,6 +2353,18 @@ class patnat(Variable):
 
         max1 = P.max
         return P.taux * min_(f7ka, max1) + f7kb + f7kc + f7kd
+
+    def formula_2014_01_01(foyer_fiscal, period, parameters):
+        '''
+        Dépenses de protections du patrimoine naturel (case 7KB, 7KC, 7KD, 7KE)
+        2014-
+        '''
+        f7kb = foyer_fiscal('f7kb', period)
+        f7kc = foyer_fiscal('f7kc', period)
+        f7kd = foyer_fiscal('f7kd', period)
+        f7ke = foyer_fiscal('f7ke', period)
+        
+        return f7kb + f7kc + f7kd + f7ke
 
 
 class prcomp(Variable):
@@ -2311,7 +2440,8 @@ class repsoc(Variable):
 class resimm(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = u"resimm"
+    label = u"Réduction d'impôt au titre des dépenses de restauration immobilière - Dispositif Malraux"
+    reference = "http://bofip.impots.gouv.fr/bofip/1372-PGP"
     definition_period = YEAR
     end = '2013-12-31'
 
@@ -2415,7 +2545,8 @@ class rsceha(Variable):
 class saldom(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = u"saldom"
+    label = u"Réduction d'impôt au titre des sommes versées pour l'emploi d'un salarié à domicile"
+    reference = "http://bofip.impots.gouv.fr/bofip/3968-PGP.html?identifiant=BOI-IR-RICI-150-20-20150515#"
     definition_period = YEAR
     end = '2013-12-31'
 
@@ -2500,7 +2631,8 @@ class saldom(Variable):
 class scelli(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = u"scelli"
+    label = u"Réduction d'impôt au titre des investissements locatifs - Dispositif Scellier"
+    reference = "http://bofip.impots.gouv.fr/bofip/4951-PGP"
     definition_period = YEAR
     end = '2013-12-31'
 
@@ -2858,9 +2990,8 @@ class spfcpi(Variable):
     value_type = float
     entity = FoyerFiscal
     label = u"spfcpi"
+    reference = "http://bofip.impots.gouv.fr/bofip/5321-PGP"   
     definition_period = YEAR
-    end = '2014-12-31'
-
 
     def formula_2002_01_01(foyer_fiscal, period, parameters):
         '''
@@ -2910,7 +3041,7 @@ class spfcpi(Variable):
         '''
         Souscription de parts de fonds communs de placement dans l'innovation,
         de fonds d'investissement de proximité
-        2011-2013
+        2011-
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         f7gq = foyer_fiscal('f7gq', period)
@@ -2922,16 +3053,6 @@ class spfcpi(Variable):
         max1 = P.plafond_celibataire * (maries_ou_pacses + 1)
         return (P.taux1 * min_(f7gq, max1) + P.taux1 * min_(f7fq, max1) + P.taux2 * min_(f7fm, max1) +
                 P.taux3 * min_(f7fl, max1))
-
-    def formula_2014_01_01(foyer_fiscal, period, parameters):
-        '''
-        Souscription de parts de fonds communs de placement dans l'innovation,
-        de fonds d'investissement de proximité
-        2014
-        '''
-        f7gq = foyer_fiscal('f7gq', period)
-
-        return f7gq * 0
 
 
 def mini(a, b, *args):

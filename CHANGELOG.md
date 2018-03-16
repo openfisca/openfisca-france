@@ -1,11 +1,20 @@
 # Changelog
 
-### 20.4.2
+### 20.5.1
 * Correction d'un bug
 * Zones impactées : openfisca_france/model/revenus/activite/salarie.py
 * Détails :
   - Autorise, pour les fonctionnaires, le basculement automatique en mensuel si les revenus sont renseignés en annuel
   - Adopte un comportement similaire aux autres revenus des salariés
+
+### 20.5.0 [#909](https://github.com/openfisca/openfisca-france/pull/909)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : 2004 - 2016
+* Détails :
+- Correction des formules de certaines réductions et certains crédits d'impôts
+- Mise à jour des formules pour la période 2014 - 2016
+- Ajout de nouvelles inputs variables associées
 
 ### 20.4.1 [#948](https://github.com/openfisca/openfisca-france/pull/948)
 
