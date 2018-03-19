@@ -2928,7 +2928,7 @@ class rpinel(Variable):
 
         max1 = max_(0, P.seuil - invest_domtom_2014 - f7qd) # 2014 : plafond commun 'duflot' et 'rpinel'
         max2 = max_(0, max1 - f7qc)
-        max3 = max_(0, max2 - f7ek - f7qb)
+        max3 = max_(0, max2 - invest_metropole_2014 - f7qb)
 
         return (P.taux29 * min_(max_(0, P.seuil - invest_domtom_2014), f7qd) / 9 +
                 P.taux23 * min_(max1, f7qc) / 6 +
