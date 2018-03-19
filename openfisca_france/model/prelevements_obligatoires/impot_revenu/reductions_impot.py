@@ -2926,13 +2926,13 @@ class rpinel(Variable):
         f7qd = foyer_fiscal('f7qd', period)
         P = parameters(period).impot_revenu.reductions_impots.rpinel
 
-        max1 = max_(0, P.seuil - f7el - f7qd) # 2014 : plafond commun 'duflot' et 'rpinel'
+        max1 = max_(0, P.seuil - invest_domtom_2014 - f7qd) # 2014 : plafond commun 'duflot' et 'rpinel'
         max2 = max_(0, max1 - f7qc)
         max3 = max_(0, max2 - f7ek - f7qb)
 
-        return (P.taux29 * min_(max_(0, P.seuil - f7el), f7qd) / 9 +
+        return (P.taux29 * min_(max_(0, P.seuil - invest_domtom_2014), f7qd) / 9 +
                 P.taux23 * min_(max1, f7qc) / 6 +
-                P.taux18 * min_(max_(0, max2 - f7ek), f7qb) / 9 +
+                P.taux18 * min_(max_(0, max2 - invest_metropole_2014), f7qb) / 9 +
                 P.taux12 * min_(max3, f7qa) / 6 )
 
     def formula_2015_01_01(foyer_fiscal, period, parameters):
@@ -2956,13 +2956,13 @@ class rpinel(Variable):
         f7qh = foyer_fiscal('f7qh', period)
         P = parameters(period).impot_revenu.reductions_impots.rpinel
 
-        max1 = max_(0, P.seuil - f7el - f7qd) # 2014 : plafond commun 'duflot' et 'rpinel'
+        max1 = max_(0, P.seuil - invest_domtom_2014 - f7qd) # 2014 : plafond commun 'duflot' et 'rpinel'
         max2 = max_(0, max1 - f7qc)
-        max3 = max_(0, max2 - f7ek - f7qb)
+        max3 = max_(0, max2 - invest_metropole_2014 - f7qb)
 
-        reduc_invest_real_2014 = (P.taux29 * min_(max_(0, P.seuil - f7el), f7qd) / 9 +
+        reduc_invest_real_2014 = (P.taux29 * min_(max_(0, P.seuil - invest_domtom_2014), f7qd) / 9 +
                 P.taux23 * min_(max1, f7qc) / 6 +
-                P.taux18 * min_(max_(0, max2 - f7ek), f7qb) / 9 +
+                P.taux18 * min_(max_(0, max2 - invest_metropole_2014), f7qb) / 9 +
                 P.taux12 * min_(max3, f7qa) / 6)
 
         reduc_invest_real_2015 = (
@@ -3004,13 +3004,13 @@ class rpinel(Variable):
         f7ql = foyer_fiscal('f7ql', period)
         P = parameters(period).impot_revenu.reductions_impots.rpinel
 
-        max1 = max_(0, P.seuil - f7el - f7qd) # 2014 : plafond commun 'duflot' et 'rpinel'
+        max1 = max_(0, P.seuil - invest_domtom_2014 - f7qd) # 2014 : plafond commun 'duflot' et 'rpinel'
         max2 = max_(0, max1 - f7qc)
-        max3 = max_(0, max2 - f7ek - f7qb)
+        max3 = max_(0, max2 - invest_metropole_2014 - f7qb)
 
-        reduc_invest_real_2014 = (P.taux29 * min_(max_(0, P.seuil - f7el), f7qd) / 9 +
+        reduc_invest_real_2014 = (P.taux29 * min_(max_(0, P.seuil - invest_domtom_2014), f7qd) / 9 +
                 P.taux23 * min_(max1, f7qc) / 6 +
-                P.taux18 * min_(max_(0, max2 - f7ek), f7qb) / 9 +
+                P.taux18 * min_(max_(0, max2 - invest_metropole_2014), f7qb) / 9 +
                 P.taux12 * min_(max3, f7qa) / 6 )
 
         reduc_invest_real_2015 = (

@@ -1556,6 +1556,7 @@ class rfr_pv(Variable):
         """
         Plus-values 2013 et + entrant dans le calcul du revenu fiscal de référence
         """
+        f3vc = foyer_fiscal('f3vc', period)
         f3vd_i = foyer_fiscal.members('f3vd', period)
         f3vf_i = foyer_fiscal.members('f3vf', period)
         f3vi_i = foyer_fiscal.members('f3vi', period)
