@@ -3346,10 +3346,7 @@ class f7lj(Variable):
 #    start_date = date(2015, 1, 1)
     definition_period = YEAR
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> Update formula for tax reduction 'scelli' in 2016 + Add new variables
+
 class f7lp(Variable):
     cerfa_field = u"7LP"
     value_type = int
@@ -3359,11 +3356,6 @@ class f7lp(Variable):
 #    start_date = date(2016, 1, 1)
     definition_period = YEAR
 
-<<<<<<< HEAD
-=======
->>>>>>> Update formula for tax reduction 'scelli' in 2015 + add new variables related
-=======
->>>>>>> Update formula for tax reduction 'scelli' in 2016 + Add new variables
 
 class f7na(Variable):
     cerfa_field = u"7NA"
@@ -4049,10 +4041,7 @@ class f7ym(Variable):
 #    start_date = date(2015, 1, 1)
     definition_period = YEAR
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> Update formula for tax reduction 'scelli' in 2016 + Add new variables
+
 class f7yt(Variable):
     cerfa_field = u"7YT"
     value_type = int
@@ -4061,11 +4050,7 @@ class f7yt(Variable):
 #    start_date = date(2016, 1, 1)
     definition_period = YEAR
 
-<<<<<<< HEAD
-=======
->>>>>>> Update formula for tax reduction 'scelli' in 2015 + add new variables related
-=======
->>>>>>> Update formula for tax reduction 'scelli' in 2016 + Add new variables
+
 class f7yn(Variable):
     cerfa_field = u"7YN"
     value_type = int
@@ -4074,10 +4059,7 @@ class f7yn(Variable):
 #    start_date = date(2015, 1, 1)
     definition_period = YEAR
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> Update formula for tax reduction 'scelli' in 2016 + Add new variables
+
 class f7yu(Variable):
     cerfa_field = u"7YU"
     value_type = int
@@ -4086,11 +4068,7 @@ class f7yu(Variable):
 #    start_date = date(2016, 1, 1)
     definition_period = YEAR
 
-<<<<<<< HEAD
-=======
->>>>>>> Update formula for tax reduction 'scelli' in 2015 + add new variables related
-=======
->>>>>>> Update formula for tax reduction 'scelli' in 2016 + Add new variables
+
 class f7yo(Variable):
     cerfa_field = u"7YO"
     value_type = int
@@ -4099,10 +4077,7 @@ class f7yo(Variable):
 #    start_date = date(2015, 1, 1)
     definition_period = YEAR
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> Update formula for tax reduction 'scelli' in 2016 + Add new variables
+
 class f7yv(Variable):
     cerfa_field = u"7YV"
     value_type = int
@@ -4111,11 +4086,7 @@ class f7yv(Variable):
 #    start_date = date(2016, 1, 1)
     definition_period = YEAR
 
-<<<<<<< HEAD
-=======
->>>>>>> Update formula for tax reduction 'scelli' in 2015 + add new variables related
-=======
->>>>>>> Update formula for tax reduction 'scelli' in 2016 + Add new variables
+
 class f7yp(Variable):
     cerfa_field = u"7YP"
     value_type = int
@@ -4124,10 +4095,7 @@ class f7yp(Variable):
 #    start_date = date(2015, 1, 1)
     definition_period = YEAR
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> Update formula for tax reduction 'scelli' in 2016 + Add new variables
+
 class f7yw(Variable):
     cerfa_field = u"7YW"
     value_type = int
@@ -4136,11 +4104,7 @@ class f7yw(Variable):
 #    start_date = date(2016, 1, 1)
     definition_period = YEAR
 
-<<<<<<< HEAD
-=======
->>>>>>> Update formula for tax reduction 'scelli' in 2015 + add new variables related
-=======
->>>>>>> Update formula for tax reduction 'scelli' in 2016 + Add new variables
+
 class f7yq(Variable):
     cerfa_field = u"7YQ"
     value_type = int
@@ -4149,10 +4113,7 @@ class f7yq(Variable):
 #    start_date = date(2015, 1, 1)
     definition_period = YEAR
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> Update formula for tax reduction 'scelli' in 2016 + Add new variables
+
 class f7yx(Variable):
     cerfa_field = u"7YX"
     value_type = int
@@ -4161,11 +4122,7 @@ class f7yx(Variable):
 #    start_date = date(2016, 1, 1)
     definition_period = YEAR
 
-<<<<<<< HEAD
-=======
->>>>>>> Update formula for tax reduction 'scelli' in 2015 + add new variables related
-=======
->>>>>>> Update formula for tax reduction 'scelli' in 2016 + Add new variables
+
 class f7yr(Variable):
     cerfa_field = u"7YR"
     value_type = int
@@ -4174,10 +4131,7 @@ class f7yr(Variable):
 #    start_date = date(2015, 1, 1)
     definition_period = YEAR
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> Update formula for tax reduction 'scelli' in 2016 + Add new variables
+
 class f7yy(Variable):
     cerfa_field = u"7YY"
     value_type = int
@@ -4186,11 +4140,7 @@ class f7yy(Variable):
 #    start_date = date(2016, 1, 1)
     definition_period = YEAR
 
-<<<<<<< HEAD
-=======
->>>>>>> Update formula for tax reduction 'scelli' in 2015 + add new variables related
-=======
->>>>>>> Update formula for tax reduction 'scelli' in 2016 + Add new variables
+
 class f7ys(Variable):
     cerfa_field = u"7YS"
     value_type = int
@@ -4199,10 +4149,7 @@ class f7ys(Variable):
 #    start_date = date(2015, 1, 1)
     definition_period = YEAR
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> Update formula for tax reduction 'scelli' in 2016 + Add new variables
+
 class f7yz(Variable):
     cerfa_field = u"7YZ"
     value_type = int
@@ -4211,11 +4158,6 @@ class f7yz(Variable):
 #    start_date = date(2016, 1, 1)
     definition_period = YEAR
 
-<<<<<<< HEAD
-=======
->>>>>>> Update formula for tax reduction 'scelli' in 2015 + add new variables related
-=======
->>>>>>> Update formula for tax reduction 'scelli' in 2016 + Add new variables
 
 # Investissement en vue de la location meublée non professionnelle dans certains établissements ou résidences
 class f7ij(Variable):
@@ -4528,9 +4470,6 @@ class f7jy(Variable):
     definition_period = YEAR
 
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 class f7oa(Variable):
     cerfa_field = u"7OA"
     value_type = int
@@ -4561,9 +4500,6 @@ class f7oc(Variable):
     definition_period = YEAR
 
 
->>>>>>> Update formula, parameters and variables for tax reduction 'locmeu' for years 2014-2016
-=======
->>>>>>> Fix double declaration of same variables
 class f7od(Variable):
     cerfa_field = u"7OD"
     value_type = int
@@ -4603,9 +4539,6 @@ class f7og(Variable):
     definition_period = YEAR
 
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 class f7oh(Variable):
     cerfa_field = u"7OH"
     value_type = int
@@ -4635,9 +4568,7 @@ class f7oj(Variable):
 #    start_date = date(2015, 1, 1)
     definition_period = YEAR
 
->>>>>>> Update formula, parameters and variables for tax reduction 'locmeu' for years 2014-2016
-=======
->>>>>>> Fix double declaration of same variables
+
 class f7jc(Variable):
     cerfa_field = u"7JC"
     value_type = int
