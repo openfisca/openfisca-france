@@ -147,7 +147,7 @@ class cmu_c_plafond(Variable):
         """
 
         cmu = parameters(period).cmu
-        age_i = famille.members('age', period)
+        age_i = famille.members('age_en_mois', period)
         is_couple = (famille('nb_parents', period) == 2)
         is_enfant = famille.members.has_role(Famille.ENFANT)
         cmu_eligible_majoration_dom = famille('cmu_eligible_majoration_dom', period)
