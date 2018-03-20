@@ -1,6 +1,6 @@
 # Changelog
 
-### 20.5.1 [#951](https://github.com/openfisca/openfisca-france/pull/951)
+### 20.5.1 [#927](https://github.com/openfisca/openfisca-france/pull/927)
 
 * Correction d'un crash.
 * Zones impactées : openfisca_france/reforms/landais_piketty_saez.py.
