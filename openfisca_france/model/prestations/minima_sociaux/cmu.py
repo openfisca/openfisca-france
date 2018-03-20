@@ -174,10 +174,17 @@ class cmu_c_plafond(Variable):
 
         coeff_couple = 1 + cmu.coeff_p2 + famille.sum(coeff_enfant_i, role = famille.ENFANT)
 
-        return (cmu.plafond_base *
-            (1 + cmu_eligible_majoration_dom * cmu.majoration_dom) *
-            where(is_couple, coeff_couple, coeff_monoparental)
+        coefficient_famille = where(is_couple, coeff_couple, coeff_monoparental)
+        coefficient_dom = 1 + cmu_eligible_majoration_dom * cmu.majoration_dom
+
+        plafonds = (
+            cmu.plafond_base
+            *  coefficient_dom
+            *  coefficient_famille
             )
+
+        return round_(plafonds)
+
 
 class acs_plafond(Variable):
     value_type = float
