@@ -414,6 +414,7 @@ class reductions(Variable):
         prcomp = foyer_fiscal('prcomp', period)
         repsoc = foyer_fiscal('repsoc', period)
         resimm = foyer_fiscal('resimm', period)
+        rpinel = foyer_fiscal('rpinel', period)
         rsceha = foyer_fiscal('rsceha', period)
         saldom = foyer_fiscal('saldom', period)
         scelli = foyer_fiscal('scelli', period)
@@ -422,7 +423,7 @@ class reductions(Variable):
 
         total_reductions = (accult + adhcga + cappme + daepad + deffor + dfppce + doment + domlog + donapd +
         duflot + ecpess + intagr + invfor + invlst + locmeu + mecena + mohist +
-        patnat + prcomp + repsoc + resimm + rsceha + saldom + scelli + sofica +
+        patnat + prcomp + repsoc + resimm + rpinel + rsceha + saldom + scelli + sofica +
         spfcpi)
         return min_(impot_net, total_reductions)
 
@@ -452,6 +453,7 @@ class reductions(Variable):
         prcomp = foyer_fiscal('prcomp', period)
         repsoc = foyer_fiscal('repsoc', period)
         resimm = foyer_fiscal('resimm', period)
+        rpinel = foyer_fiscal('rpinel', period)
         rsceha = foyer_fiscal('rsceha', period)
         saldom = foyer_fiscal('saldom', period)
         scelli = foyer_fiscal('scelli', period)
@@ -460,7 +462,7 @@ class reductions(Variable):
 
         total_reductions = (accult + adhcga + cappme + daepad + deffor + dfppce + doment + domlog + donapd +
         duflot + ecpess + intagr + invfor + invlst + locmeu + mecena + mohist +
-        patnat + prcomp + repsoc + resimm + rsceha + saldom + scelli + sofica +
+        patnat + prcomp + repsoc + resimm + rpinel + rsceha + saldom + scelli + sofica +
         spfcpi)
         return min_(impot_net, total_reductions)
 
@@ -1045,9 +1047,9 @@ class doment(Variable):
         f7mc = foyer_fiscal('f7mc', period)
         f7mn = foyer_fiscal('f7mn', period)
         f7oz = foyer_fiscal('f7oz', period)
-        f7pa = foyer_fiscal('f7pa', period)
-        f7pb = foyer_fiscal('f7pb', period)
-        f7pd = foyer_fiscal('f7pd', period)
+        f7pa = foyer_fiscal('f7pa_2012', period)
+        f7pb = foyer_fiscal('f7pb_2012', period)
+        f7pd = foyer_fiscal('f7pd_2012', period)
         f7pe = foyer_fiscal('f7pe', period)
         f7pf = foyer_fiscal('f7pf', period)
         f7ph = foyer_fiscal('f7ph', period)
@@ -1090,9 +1092,9 @@ class doment(Variable):
         f7nv = foyer_fiscal('f7nv', period)
         f7nw = foyer_fiscal('f7nw', period)
         f7ny = foyer_fiscal('f7ny', period)
-        f7pa = foyer_fiscal('f7pa', period)
-        f7pb = foyer_fiscal('f7pb', period)
-        f7pd = foyer_fiscal('f7pd', period)
+        f7pa = foyer_fiscal('f7pa_2012', period)
+        f7pb = foyer_fiscal('f7pb_2012', period)
+        f7pd = foyer_fiscal('f7pd_2012', period)
         f7pe = foyer_fiscal('f7pe', period)
         f7pf = foyer_fiscal('f7pf', period)
         f7ph = foyer_fiscal('f7ph', period)
@@ -1522,14 +1524,94 @@ class duflot(Variable):
     def formula_2013_01_01(foyer_fiscal, period, parameters):
         '''
         Investissements locatifs interméiaires (loi Duflot)
-        2013-
+        2013
         '''
-        f7gh = foyer_fiscal('f7gh', period)
-        f7gi = foyer_fiscal('f7gi', period)
+        invest_domtom_2013 = foyer_fiscal('f7gi', period)
+        invest_metropole_2013 = foyer_fiscal('f7gh', period)
         P = parameters(period).impot_revenu.reductions_impots.duflot
 
-        return min_(P.plafond, P.taux_m * f7gh + P.taux_om * f7gi) / 9
+        return (
+            min_(P.plafond - invest_domtom_2013, invest_metropole_2013) * P.taux_m + 
+            min_(P.plafond, invest_domtom_2013) * P.taux_om) / 9
 
+    def formula_2014_01_01(foyer_fiscal, period, parameters):
+        '''
+        Investissements locatifs intermediaires (loi Duflot)
+        2014
+        '''
+        invest_domtom_2013 = foyer_fiscal('f7gi', period)
+        invest_domtom_2014 = foyer_fiscal('f7el', period)
+        invest_metropole_2013 = foyer_fiscal('f7gh', period)
+        invest_metropole_2014 = foyer_fiscal('f7ek', period)
+        report_reduc_2013 = foyer_fiscal('f7fi', period)
+        f7qb = foyer_fiscal('f7qb', period) # Dépenses entrant dans la réduction Pinel
+        f7qc = foyer_fiscal('f7qc', period) # Dépenses entrant dans la réduction Pinel
+        f7qd = foyer_fiscal('f7qd', period) # Dépenses entrant dans la réduction Pinel
+        P = parameters(period).impot_revenu.reductions_impots.duflot
+
+        max1 = max_(0, P.plafond - invest_domtom_2014 - f7qd) # 2014 : plafond commun 'duflot' et 'rpinel'
+        max2 = max_(0, max1 - f7qc)
+        max3 = max_(0, max2 - invest_metropole_2014 - f7qb)
+      
+        return (
+            P.taux_m * (
+                min_(max_(0, P.plafond - invest_domtom_2013), invest_metropole_2013) + 
+                min_(max_(0, max2 - invest_domtom_2014), invest_metropole_2014)
+                ) + 
+            P.taux_om * (
+                min_(P.plafond, invest_domtom_2013) + 
+                min_(P.plafond, invest_domtom_2014)
+                )
+            ) / 9 + report_reduc_2013
+
+    def formula_2015_01_01(foyer_fiscal, period, parameters):
+        '''
+        Investissements locatifs intermediaires (loi Duflot)
+        2015
+        '''
+        invest_domtom_2013 = foyer_fiscal('f7gi', period)
+        invest_domtom_2014 = foyer_fiscal('f7el', period)
+        invest_metropole_2013 = foyer_fiscal('f7gh', period)
+        invest_metropole_2014 = foyer_fiscal('f7ek', period)
+        report_reduc_2013 = foyer_fiscal('f7fi', period)
+        report_reduc_2014 = foyer_fiscal('f7fk', period)
+        P = parameters(period).impot_revenu.reductions_impots.duflot
+
+        return (
+            P.taux_m * (
+                min_(P.plafond - invest_domtom_2013, invest_metropole_2013) + 
+                min_(P.plafond - invest_domtom_2014, invest_metropole_2014)
+                ) + 
+            P.taux_om * (
+                min_(P.plafond, invest_domtom_2013) + 
+                min_(P.plafond, invest_domtom_2014)
+                ) 
+            ) / 9 + report_reduc_2013 + report_reduc_2014
+
+    def formula_2016_01_01(foyer_fiscal, period, parameters):
+        '''
+        Investissements locatifs intermediaires (loi Duflot)
+        2016
+        '''
+        invest_domtom_2013 = foyer_fiscal('f7gi', period)
+        invest_domtom_2014 = foyer_fiscal('f7el', period)
+        invest_metropole_2013 = foyer_fiscal('f7gh', period)
+        invest_metropole_2014 = foyer_fiscal('f7ek', period)
+        report_reduc_2013 = foyer_fiscal('f7fi', period)
+        report_reduc_2014 = foyer_fiscal('f7fk', period)
+        report_reduc_2015 = foyer_fiscal('f7fr', period)
+        P = parameters(period).impot_revenu.reductions_impots.duflot
+
+        return (
+            P.taux_m * (
+                min_(P.plafond - invest_domtom_2013, invest_metropole_2013) + 
+                min_(P.plafond - invest_domtom_2014, invest_metropole_2014)
+                ) + 
+            P.taux_om * (
+                min_(P.plafond, invest_domtom_2013) + 
+                min_(P.plafond, invest_domtom_2014)
+                )
+            ) / 9 + report_reduc_2013 + report_reduc_2014 + report_reduc_2015
 
 #TODO: / 5 dans trois TOM
 
@@ -2136,7 +2218,6 @@ class locmeu(Variable):
     label = u"Réduction d'impôt en faveur de l'acquisition de logements destinés à la location meublée non professionnelle - Dispositif Censi-Bouvard"
     reference = "http://bofip.impots.gouv.fr/bofip/4885-PGP"
     definition_period = YEAR
-    end = '2013-12-31'
 
     def formula_2009_01_01(foyer_fiscal, period, parameters):
         '''
@@ -2183,11 +2264,16 @@ class locmeu(Variable):
         f7iw = foyer_fiscal('f7iw', period)
         P = parameters(period).impot_revenu.reductions_impots.locmeu
 
-        m20 = (maxi(f7ij, f7il, f7in, f7iv) == max_(f7il, f7in))
-        return ((min_(P.max, maxi(f7ij, f7il, f7in, f7iv)) * (P.taux20 * m20 + P.taux18 * not_(m20)) +
-                P.taux * (min_(P.max, max_(f7im, f7iw)) + min_(P.max, f7io))) / 9 +
-            P.taux * max_(f7ik, f7ip + f7ir + f7iq) +
-            f7is + f7iu + f7it)
+        majoration_taux_invest_2011 = (maxi(f7ij, f7il, f7in, f7iv) == max_(f7il, f7in))
+        taux_reduc_2009_2010 = P.taux
+        taux_reduc_2011 = P.taux20 * majoration_taux_invest_2011 + P.taux18 * not_(majoration_taux_invest_2011)
+        report = P.taux * max_(f7ik, f7ip + f7ir + f7iq) + f7is + f7iu + f7it
+        
+        return ((
+                (min_(P.max, max_(f7im, f7iw)) + min_(P.max, f7io)) * taux_reduc_2009_2010 + 
+                min_(P.max, maxi(f7ij, f7il, f7in, f7iv)) * taux_reduc_2011
+                ) / 9 + report
+            )
 
     def formula_2012_01_01(foyer_fiscal, period, parameters):
         '''
@@ -2220,13 +2306,18 @@ class locmeu(Variable):
         f7iz = foyer_fiscal('f7iz', period)
         P = parameters(period).impot_revenu.reductions_impots.locmeu
 
-        m18 = (maxi(f7id, f7ie, f7if, f7ig) == max_(f7ie, f7if))
-        m20 = (maxi(f7ij, f7il, f7in, f7iv) == max_(f7il, f7in))
-        return ((min_(P.max, maxi(f7ij, f7il, f7in, f7iv)) * (P.taux20 * m20 + P.taux18 * not_(m20)) +
-                min_(P.max, maxi(f7id, f7ie, f7if, f7ig)) * (P.taux18 * m18 + P.taux11 * not_(m18)) +
-                P.taux * (min_(P.max, max_(f7im, f7iw)) + min_(P.max, f7io))) / 9 +
-            P.taux * max_(f7ik + f7ip, f7ir + f7iq) +
-            f7ia + f7ib + f7ic + f7ih + f7is + f7iu + f7it + f7ix + f7iz)
+        majoration_taux_invest_2011 = (maxi(f7ij, f7il, f7in, f7iv) == max_(f7il, f7in))
+        majoration_taux_invest_2012 = (maxi(f7id, f7ie, f7if, f7ig) == max_(f7ie, f7if))
+        taux_reduc_2009_2010 = P.taux
+        taux_reduc_2011 = P.taux20 * majoration_taux_invest_2011 + P.taux18 * not_(majoration_taux_invest_2011)
+        taux_reduc_2012 = P.taux18 * majoration_taux_invest_2012 + P.taux11 * not_(majoration_taux_invest_2012)
+        report = P.taux * max_(f7ik + f7ip, f7ir + f7iq) + f7ia + f7ib + f7ic + f7ih + f7is + f7iu + f7it + f7ix + f7iz
+        return ((
+                (min_(P.max, max_(f7im, f7iw)) + min_(P.max, f7io)) * taux_reduc_2009_2010 + 
+                min_(P.max, maxi(f7ij, f7il, f7in, f7iv)) * taux_reduc_2011 +
+                min_(P.max, maxi(f7id, f7ie, f7if, f7ig)) * taux_reduc_2012
+                ) / 9 + report
+            )
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
         '''
@@ -2269,15 +2360,291 @@ class locmeu(Variable):
         f7jy = foyer_fiscal('f7jy', period)
         P = parameters(period).impot_revenu.reductions_impots.locmeu
 
-        m18 = (maxi(f7id, f7ie, f7if, f7ig) == max_(f7ie, f7if))
-        m20 = (maxi(f7ij, f7il, f7in, f7iv) == max_(f7il, f7in))
-        return ((min_(P.max, maxi(f7ij, f7il, f7in, f7iv)) * (P.taux20 * m20 + P.taux18 * not_(m20)) +
-                min_(P.max, maxi(f7id, f7ie, f7if, f7ig)) * (P.taux18 * m18 + P.taux11 * not_(m18)) +
-                P.taux11 * min_(P.max, f7jt + f7ju) +
-                P.taux * (min_(P.max, max_(f7im, f7iw)) + min_(P.max, f7io))) / 9 +
-            P.taux * max_(f7ik + f7ip, f7ir + f7iq) +
-            f7ia + f7ib + f7ic + f7ih + f7is + f7iu + f7it + f7ix + f7iy + f7iz + f7jv + f7jw + f7jx + f7jy + f7jc +
-                f7ji + f7js)
+        majoration_taux_invest_2011 = (maxi(f7ij, f7il, f7in, f7iv) == max_(f7il, f7in))
+        majoration_taux_invest_2012 = (maxi(f7id, f7ie, f7if, f7ig) == max_(f7ie, f7if))
+        taux_reduc_2009_2010 = P.taux
+        taux_reduc_2011 = P.taux20 * majoration_taux_invest_2011 + P.taux18 * not_(majoration_taux_invest_2011)
+        taux_reduc_2012 = P.taux18 * majoration_taux_invest_2012 + P.taux11 * not_(majoration_taux_invest_2012)
+        taux_reduc_2013 = P.taux11
+        report = (P.taux * max_(f7ik + f7ip, f7ir + f7iq) + f7ia + f7ib + f7ic + f7ih + f7is + f7iu + 
+            f7it + f7ix + f7iy + f7iz + f7jv + f7jw + f7jx + f7jy + f7jc + f7ji + f7js)
+        
+        return ((
+                (min_(P.max, max_(f7im, f7iw)) + min_(P.max, f7io)) * taux_reduc_2009_2010 + 
+                min_(P.max, maxi(f7ij, f7il, f7in, f7iv)) * taux_reduc_2011 +
+                min_(P.max, maxi(f7id, f7ie, f7if, f7ig)) * taux_reduc_2012 +
+                min_(P.max, f7jt + f7ju) * taux_reduc_2013
+                ) / 9 + report
+            )
+
+    def formula_2014_01_01(foyer_fiscal, period, parameters):
+        '''
+        Investissement en vue de la location meublée non professionnelle dans certains établissements ou résidences
+        2014
+        '''
+        f7ia = foyer_fiscal('f7ia', period)
+        f7ib = foyer_fiscal('f7ib', period)
+        f7ic = foyer_fiscal('f7ic', period)
+        f7id = foyer_fiscal('f7id', period)
+        f7ie = foyer_fiscal('f7ie', period)
+        f7if = foyer_fiscal('f7if', period)
+        f7ig = foyer_fiscal('f7ig', period)
+        f7ih = foyer_fiscal('f7ih', period)
+        f7ij = foyer_fiscal('f7ij', period)
+        f7ik = foyer_fiscal('f7ik', period)
+        f7il = foyer_fiscal('f7il', period)
+        f7im = foyer_fiscal('f7im', period)
+        f7in = foyer_fiscal('f7in', period)
+        f7io = foyer_fiscal('f7io', period)
+        f7ip = foyer_fiscal('f7ip', period)
+        f7iq = foyer_fiscal('f7iq', period)
+        f7ir = foyer_fiscal('f7ir', period)
+        f7is = foyer_fiscal('f7is', period)
+        f7it = foyer_fiscal('f7it', period)
+        f7iu = foyer_fiscal('f7iu', period)
+        f7iv = foyer_fiscal('f7iv', period)
+        f7iw = foyer_fiscal('f7iw', period)
+        f7ix = foyer_fiscal('f7ix', period)
+        f7iy = foyer_fiscal('f7iy', period)
+        f7iz = foyer_fiscal('f7iz', period)
+        f7jc = foyer_fiscal('f7jc', period)
+        f7ji = foyer_fiscal('f7ji', period)
+        f7js = foyer_fiscal('f7js', period)
+        f7jt = foyer_fiscal('f7jt', period)
+        f7ju = foyer_fiscal('f7ju', period)
+        f7jv = foyer_fiscal('f7jv', period)
+        f7jw = foyer_fiscal('f7jw', period)
+        f7jx = foyer_fiscal('f7jx', period)
+        f7jy = foyer_fiscal('f7jy', period)
+        f7oa = foyer_fiscal('f7oa', period)
+        f7ob = foyer_fiscal('f7ob', period)
+        f7oc = foyer_fiscal('f7oc', period)
+        f7od = foyer_fiscal('f7od', period)
+        f7oe = foyer_fiscal('f7oe', period)
+        f7ou = foyer_fiscal('f7ou', period)
+        f7pa = foyer_fiscal('f7pa', period)
+        f7pb = foyer_fiscal('f7pb', period)
+        f7pc = foyer_fiscal('f7pc', period)
+        f7pd = foyer_fiscal('f7pd', period)
+        f7pe = foyer_fiscal('f7pe', period)
+
+        P = parameters(period).impot_revenu.reductions_impots.locmeu
+
+        majoration_taux_invest_2011 = (maxi(f7ij, f7il, f7in, f7iv) == max_(f7il, f7in))
+        majoration_taux_invest_2012 = (maxi(f7id, f7ie, f7if, f7ig) == max_(f7ie, f7if))
+        taux_reduc_2009_2010 = P.taux
+        taux_reduc_2011 = P.taux20 * majoration_taux_invest_2011 + P.taux18 * not_(majoration_taux_invest_2011)
+        taux_reduc_2012 = P.taux18 * majoration_taux_invest_2012 + P.taux11 * not_(majoration_taux_invest_2012)     
+        taux_reduc_2013 = P.taux11
+
+        report_invest_anterieur = (P.taux * max_(f7ik + f7ip, f7ir + f7iq)
+            + f7ia + f7ib + f7ic
+            + f7jv + f7jw + f7jx + f7jy 
+            + f7oa + f7ob + f7oc + f7od + f7oe)
+        report_non_impute = (f7is + f7iu + f7ix + f7iy + f7pa
+            + f7it + f7ih + f7jc + f7pb
+            + f7iz + f7ji + f7pc
+            + f7js + f7pd
+            + f7pe)
+
+        return ((
+                (min_(P.max, max_(f7im, f7iw)) + min_(P.max, f7io)) * taux_reduc_2009_2010 + 
+                min_(P.max, maxi(f7ij, f7il, f7in, f7iv)) * taux_reduc_2011 + # to check : impossible de remplir à la fois f7ij et f7il par exemple ?
+                min_(P.max, maxi(f7id, f7ie, f7if, f7ig)) * taux_reduc_2012 +
+                (min_(P.max, f7jt + f7ju) + min_(P.max, f7ou)) * taux_reduc_2013
+                ) / 9 + report_invest_anterieur + report_non_impute
+            )
+
+    def formula_2015_01_01(foyer_fiscal, period, parameters):
+        '''
+        Investissement en vue de la location meublée non professionnelle dans certains établissements ou résidences
+        2015
+        '''
+        f7ia = foyer_fiscal('f7ia', period)
+        f7ib = foyer_fiscal('f7ib', period)
+        f7ic = foyer_fiscal('f7ic', period)
+        f7id = foyer_fiscal('f7id', period)
+        f7ie = foyer_fiscal('f7ie', period)
+        f7if = foyer_fiscal('f7if', period)
+        f7ig = foyer_fiscal('f7ig', period)
+        f7ih = foyer_fiscal('f7ih', period)
+        f7ij = foyer_fiscal('f7ij', period)
+        f7ik = foyer_fiscal('f7ik', period)
+        f7il = foyer_fiscal('f7il', period)
+        f7im = foyer_fiscal('f7im', period)
+        f7in = foyer_fiscal('f7in', period)
+        f7io = foyer_fiscal('f7io', period)
+        f7ip = foyer_fiscal('f7ip', period)
+        f7iq = foyer_fiscal('f7iq', period)
+        f7ir = foyer_fiscal('f7ir', period)
+        f7is = foyer_fiscal('f7is', period)
+        f7it = foyer_fiscal('f7it', period)
+        f7iu = foyer_fiscal('f7iu', period)
+        f7iv = foyer_fiscal('f7iv', period)
+        f7iw = foyer_fiscal('f7iw', period)
+        f7ix = foyer_fiscal('f7ix', period)
+        f7iy = foyer_fiscal('f7iy', period)
+        f7iz = foyer_fiscal('f7iz', period)
+        f7jc = foyer_fiscal('f7jc', period)
+        f7ji = foyer_fiscal('f7ji', period)
+        f7js = foyer_fiscal('f7js', period)
+        f7jt = foyer_fiscal('f7jt', period)
+        f7ju = foyer_fiscal('f7ju', period)
+        f7jv = foyer_fiscal('f7jv', period)
+        f7jw = foyer_fiscal('f7jw', period)
+        f7jx = foyer_fiscal('f7jx', period)
+        f7jy = foyer_fiscal('f7jy', period)
+        f7oa = foyer_fiscal('f7oa', period)
+        f7ob = foyer_fiscal('f7ob', period)
+        f7oc = foyer_fiscal('f7oc', period)
+        f7od = foyer_fiscal('f7od', period)
+        f7oe = foyer_fiscal('f7oe', period)
+        f7of = foyer_fiscal('f7of', period)
+        f7og = foyer_fiscal('f7og', period)
+        f7oh = foyer_fiscal('f7oh', period)
+        f7oi = foyer_fiscal('f7oi', period)
+        f7oj = foyer_fiscal('f7oj', period)
+        f7ou = foyer_fiscal('f7ou', period)
+        f7ov = foyer_fiscal('f7ov', period)
+        f7pa = foyer_fiscal('f7pa', period)
+        f7pb = foyer_fiscal('f7pb', period)
+        f7pc = foyer_fiscal('f7pc', period)
+        f7pd = foyer_fiscal('f7pd', period)
+        f7pe = foyer_fiscal('f7pe', period)
+        f7pf = foyer_fiscal('f7pf', period)
+        f7pg = foyer_fiscal('f7pg', period)
+        f7ph = foyer_fiscal('f7ph', period)
+        f7pi = foyer_fiscal('f7pi', period)
+        f7pj = foyer_fiscal('f7pj', period)
+
+        P = parameters(period).impot_revenu.reductions_impots.locmeu
+
+        majoration_taux_invest_2011 = (maxi(f7ij, f7il, f7in, f7iv) == max_(f7il, f7in))
+        majoration_taux_invest_2012 = (maxi(f7id, f7ie, f7if, f7ig) == max_(f7ie, f7if))
+        taux_reduc_2009_2010 = P.taux
+        taux_reduc_2011 = P.taux20 * majoration_taux_invest_2011 + P.taux18 * not_(majoration_taux_invest_2011)
+        taux_reduc_2012 = P.taux18 * majoration_taux_invest_2012 + P.taux11 * not_(majoration_taux_invest_2012)    
+        taux_reduc_2013 = P.taux11
+
+        report_invest_anterieur = (P.taux * max_(f7ik + f7ip, f7ir + f7iq)
+            + f7ia + f7ib + f7ic
+            + f7jv + f7jw + f7jx + f7jy 
+            + f7oa + f7ob + f7oc + f7od + f7oe 
+            + f7of + f7og + f7oh + f7oi + f7oj)
+        report_non_impute = (f7is + f7iu + f7ix + f7iy + f7pa + f7pf
+            + f7it + f7ih + f7jc + f7pb + f7pg
+            + f7iz + f7ji + f7pc + f7ph
+            + f7js + f7pd + f7pi
+            + f7pe + f7pj)
+
+        return ((
+                (min_(P.max, max_(f7im, f7iw)) + min_(P.max, f7io)) * taux_reduc_2009_2010 + 
+                min_(P.max, maxi(f7ij, f7il, f7in, f7iv)) * taux_reduc_2011 + # to check : impossible de remplir à la fois f7ij et f7il par exemple ?
+                min_(P.max, maxi(f7id, f7ie, f7if, f7ig)) * taux_reduc_2012 +
+                (min_(P.max, f7jt + f7ju) + min_(P.max, f7ou) + min_(P.max, f7ov)) * taux_reduc_2013
+                ) / 9 + report_invest_anterieur + report_non_impute
+            )
+
+    def formula_2016_01_01(foyer_fiscal, period, parameters):
+        '''
+        Investissement en vue de la location meublée non professionnelle dans certains établissements ou résidences
+        2016
+        '''
+        f7ia = foyer_fiscal('f7ia', period)
+        f7ib = foyer_fiscal('f7ib', period)
+        f7ic = foyer_fiscal('f7ic', period)
+        f7id = foyer_fiscal('f7id', period)
+        f7ie = foyer_fiscal('f7ie', period)
+        f7if = foyer_fiscal('f7if', period)
+        f7ig = foyer_fiscal('f7ig', period)
+        f7ih = foyer_fiscal('f7ih', period)
+        f7ij = foyer_fiscal('f7ij', period)
+        f7ik = foyer_fiscal('f7ik', period)
+        f7il = foyer_fiscal('f7il', period)
+        f7im = foyer_fiscal('f7im', period)
+        f7in = foyer_fiscal('f7in', period)
+        f7ip = foyer_fiscal('f7ip', period)
+        f7iq = foyer_fiscal('f7iq', period)
+        f7ir = foyer_fiscal('f7ir', period)
+        f7it = foyer_fiscal('f7it', period)
+        f7iu = foyer_fiscal('f7iu', period)
+        f7iv = foyer_fiscal('f7iv', period)
+        f7iw = foyer_fiscal('f7iw', period)
+        f7ix = foyer_fiscal('f7ix', period)
+        f7iy = foyer_fiscal('f7iy', period)
+        f7iz = foyer_fiscal('f7iz', period)
+        f7jc = foyer_fiscal('f7jc', period)
+        f7ji = foyer_fiscal('f7ji', period)
+        f7js = foyer_fiscal('f7js', period)
+        f7jt = foyer_fiscal('f7jt', period)
+        f7ju = foyer_fiscal('f7ju', period)
+        f7jv = foyer_fiscal('f7jv', period)
+        f7jw = foyer_fiscal('f7jw', period)
+        f7jx = foyer_fiscal('f7jx', period)
+        f7jy = foyer_fiscal('f7jy', period)
+        f7oa = foyer_fiscal('f7oa', period)
+        f7ob = foyer_fiscal('f7ob', period)
+        f7oc = foyer_fiscal('f7oc', period)
+        f7od = foyer_fiscal('f7od', period)
+        f7oe = foyer_fiscal('f7oe', period)
+        f7of = foyer_fiscal('f7of', period)
+        f7og = foyer_fiscal('f7og', period)
+        f7oh = foyer_fiscal('f7oh', period)
+        f7oi = foyer_fiscal('f7oi', period)
+        f7oj = foyer_fiscal('f7oj', period)
+        f7ok = foyer_fiscal('f7ok', period)
+        f7ol = foyer_fiscal('f7ol', period)
+        f7om = foyer_fiscal('f7om', period)
+        f7on = foyer_fiscal('f7on', period)
+        f7oo = foyer_fiscal('f7oo', period)
+        f7ou = foyer_fiscal('f7ou', period)
+        f7ov = foyer_fiscal('f7ov', period)
+        f7ow = foyer_fiscal('f7ow', period)
+        f7pa = foyer_fiscal('f7pa', period)
+        f7pb = foyer_fiscal('f7pb', period)
+        f7pc = foyer_fiscal('f7pc', period)
+        f7pd = foyer_fiscal('f7pd', period)
+        f7pe = foyer_fiscal('f7pe', period)
+        f7pf = foyer_fiscal('f7pf', period)
+        f7pg = foyer_fiscal('f7pg', period)
+        f7ph = foyer_fiscal('f7ph', period)
+        f7pi = foyer_fiscal('f7pi', period)
+        f7pj = foyer_fiscal('f7pj', period)
+        f7pk = foyer_fiscal('f7pk', period)
+        f7pl = foyer_fiscal('f7pl', period)
+        f7pm = foyer_fiscal('f7pm', period)
+        f7pn = foyer_fiscal('f7pn', period)
+        f7po = foyer_fiscal('f7po', period)
+
+        P = parameters(period).impot_revenu.reductions_impots.locmeu
+
+        majoration_taux_invest_2011 = (maxi(f7ij, f7il, f7in, f7iv) == max_(f7il, f7in))   
+        majoration_taux_invest_2012 = (maxi(f7id, f7ie, f7if, f7ig) == max_(f7ie, f7if)) 
+        taux_reduc_2009_2010 = P.taux
+        taux_reduc_2011 = P.taux20 * majoration_taux_invest_2011 + P.taux18 * not_(majoration_taux_invest_2011)
+        taux_reduc_2012 = P.taux18 * majoration_taux_invest_2012 + P.taux11 * not_(majoration_taux_invest_2012)      
+        taux_reduc_2013 = P.taux11
+
+        report_invest_anterieur = (P.taux * max_(f7ik + f7ip, f7ir + f7iq) 
+            + f7ia + f7ib + f7ic
+            + f7jv + f7jw + f7jx + f7jy
+            + f7oa + f7ob + f7oc + f7od + f7oe 
+            + f7of + f7og + f7oh + f7oi + f7oj
+            + f7ok + f7ol + f7om + f7on + f7oo)
+        report_non_impute = (f7iu + f7ix + f7iy + f7pa + f7pf + f7pk
+            + f7it + f7ih + f7jc + f7pb + f7pg + f7pl
+            + f7iz + f7ji + f7pc + f7ph + f7pm
+            + f7js + f7pd + f7pi + f7pn
+            + f7pe + f7pj + f7po)
+
+        return ((
+                min_(P.max, max_(f7im, f7iw)) * taux_reduc_2009_2010 + 
+                min_(P.max, maxi(f7ij, f7il, f7in, f7iv)) * taux_reduc_2011 + # to check : impossible de remplir à la fois f7ij et f7il par exemple ?
+                min_(P.max, maxi(f7id, f7ie, f7if, f7ig)) * taux_reduc_2012 +
+                (min_(P.max, f7jt + f7ju) + min_(P.max, f7ou) + min_(P.max, f7ov) + min_(P.max, f7ow)) * taux_reduc_2013
+                ) / 9 +
+                report_invest_anterieur + report_non_impute
+            )
 
 
 class mohist(Variable):
@@ -2443,7 +2810,6 @@ class resimm(Variable):
     label = u"Réduction d'impôt au titre des dépenses de restauration immobilière - Dispositif Malraux"
     reference = "http://bofip.impots.gouv.fr/bofip/1372-PGP"
     definition_period = YEAR
-    end = '2013-12-31'
 
 
     def formula_2009_01_01(foyer_fiscal, period, parameters):
@@ -2474,8 +2840,8 @@ class resimm(Variable):
         max2 = max_(max1 - f7rd, 0)
         max3 = max_(max2 - f7rb, 0)
         max4 = max_(max3 - f7rc, 0)
-        return (P.taux_rd * min_(f7rd, max1) + P.taux_rb * min_(f7rb, max2) + P.taux_rc * min_(f7rc, max3) +
-                P.taux_ra * min_(f7ra, max4))
+        return (P.taux_rd * min_(f7rd, max1) + P.taux_rb * min_(f7rb, max2) + P.taux_rc * min_(f7rc, max3) 
+            + P.taux_ra * min_(f7ra, max4))
 
     def formula_2012_01_01(foyer_fiscal, period, parameters):
         '''
@@ -2495,13 +2861,13 @@ class resimm(Variable):
         max3 = max_(max2 - f7rb, 0)
         max4 = max_(max3 - f7rc - f7rf, 0)
         max5 = max_(max4 - f7ra, 0)
-        return (P.taux_rd * min_(f7rd, max1) + P.taux_rb * min_(f7rb, max2) + P.taux_rc * min_(f7rc + f7rf, max3) +
-                P.taux_ra * min_(f7ra, max4) + P.taux_re * min_(f7re, max5))
+        return (P.taux_rd * min_(f7rd, max1) + P.taux_rb * min_(f7rb, max2) + P.taux_rc * min_(f7rc + f7rf, max3) 
+            + P.taux_ra * min_(f7ra, max4) + P.taux_re * min_(f7re, max5))
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
         '''
         Travaux de restauration immobilière (cases 7RA, 7RB, 7RC, 7RD, 7RE, 7RF, 7SX, 7SY)
-        2012
+        2013-2015
         '''
         f7ra = foyer_fiscal('f7ra', period)
         f7rb = foyer_fiscal('f7rb', period)
@@ -2518,8 +2884,150 @@ class resimm(Variable):
         max3 = max_(max2 - f7rb, 0)
         max4 = max_(max3 - f7rc - f7sy - f7rf, 0)
         max5 = max_(max4 - f7ra, 0)
-        return (P.taux_rd * min_(f7rd, max1) + P.taux_rb * min_(f7rb, max2) + P.taux_rc * min_(f7sy + f7rf + f7rc, max3) +
-                P.taux_ra * min_(f7ra, max4) + P.taux_re * min_(f7re + f7sx, max5))
+        return (P.taux_rd * min_(f7rd, max1) + P.taux_rb * min_(f7rb, max2) + P.taux_rc * min_(f7sy + f7rf + f7rc, max3) 
+            + P.taux_ra * min_(f7ra, max4) + P.taux_re * min_(f7re + f7sx, max5))
+
+    def formula_2016_01_01(foyer_fiscal, period, parameters):
+        '''
+        Travaux de restauration immobilière
+        2016
+        '''
+        f7nx = foyer_fiscal('f7nx', period)
+        f7ny = foyer_fiscal('f7ny', period)
+        f7re = foyer_fiscal('f7re', period)
+        f7rf = foyer_fiscal('f7rf', period)
+        f7sx = foyer_fiscal('f7sx', period)
+        f7sy = foyer_fiscal('f7sy', period)
+        P = parameters(period).impot_revenu.reductions_impots.resimm
+
+        max1 = P.max
+        max2 = max_(max1 - f7nx - f7sy - f7rf, 0)
+        return (P.taux_rc * min_(f7sy + f7rf + f7nx, max1) 
+            + P.taux_re * min_(f7re + f7sx + f7ny, max2))
+
+
+class rpinel(Variable):
+    value_type = float
+    entity = FoyerFiscal
+    label = u"Réduction d'impôt en faveur de l'investissement locatif intermédiaire - Dispositif Pinel"
+    reference = "http://bofip.impots.gouv.fr/bofip/8425-PGP"
+    definition_period = YEAR
+
+    def formula_2014_01_01(foyer_fiscal, period, parameters):
+        '''
+        Investissement locatif privé - Dispositif Pinel
+        2014
+        '''
+        invest_metropole_2014 = foyer_fiscal('f7ek', period)
+        invest_domtom_2014 = foyer_fiscal('f7el', period)
+        f7qa = foyer_fiscal('f7qa', period)
+        f7qb = foyer_fiscal('f7qb', period)
+        f7qc = foyer_fiscal('f7qc', period)
+        f7qd = foyer_fiscal('f7qd', period)
+        P = parameters(period).impot_revenu.reductions_impots.rpinel
+
+        max1 = max_(0, P.seuil - invest_domtom_2014 - f7qd) # 2014 : plafond commun 'duflot' et 'rpinel'
+        max2 = max_(0, max1 - f7qc)
+        max3 = max_(0, max2 - invest_metropole_2014 - f7qb)
+
+        return (P.taux29 * min_(max_(0, P.seuil - invest_domtom_2014), f7qd) / 9 +
+                P.taux23 * min_(max1, f7qc) / 6 +
+                P.taux18 * min_(max_(0, max2 - invest_metropole_2014), f7qb) / 9 +
+                P.taux12 * min_(max3, f7qa) / 6 )
+
+    def formula_2015_01_01(foyer_fiscal, period, parameters):
+        '''
+        Investissement locatif privé - Dispositif Pinel
+        2015
+        '''
+        f7ai = foyer_fiscal('f7ai', period)
+        f7bi = foyer_fiscal('f7bi', period)
+        f7ci = foyer_fiscal('f7ci', period)
+        f7di = foyer_fiscal('f7di', period)
+        invest_metropole_2014 = foyer_fiscal('f7ek', period)
+        invest_domtom_2014 = foyer_fiscal('f7el', period)
+        f7qa = foyer_fiscal('f7qa', period)
+        f7qb = foyer_fiscal('f7qb', period)
+        f7qc = foyer_fiscal('f7qc', period)
+        f7qd = foyer_fiscal('f7qd', period)
+        f7qe = foyer_fiscal('f7qe', period)
+        f7qf = foyer_fiscal('f7qf', period)
+        f7qg = foyer_fiscal('f7qg', period)
+        f7qh = foyer_fiscal('f7qh', period)
+        P = parameters(period).impot_revenu.reductions_impots.rpinel
+
+        max1 = max_(0, P.seuil - invest_domtom_2014 - f7qd) # 2014 : plafond commun 'duflot' et 'rpinel'
+        max2 = max_(0, max1 - f7qc)
+        max3 = max_(0, max2 - invest_metropole_2014 - f7qb)
+
+        reduc_invest_real_2014 = (P.taux29 * min_(max_(0, P.seuil - invest_domtom_2014), f7qd) / 9 +
+                P.taux23 * min_(max1, f7qc) / 6 +
+                P.taux18 * min_(max_(0, max2 - invest_metropole_2014), f7qb) / 9 +
+                P.taux12 * min_(max3, f7qa) / 6)
+
+        reduc_invest_real_2015 = (
+                P.taux29 * min_(P.seuil, f7qh) / 9 +
+                P.taux23 * min_(max_(0, P.seuil - f7qh), f7qg) / 6 +
+                P.taux18 * min_(max_(0, P.seuil - f7qh - f7qg), f7qf) / 9 +
+                P.taux12 * min_(max_(0, P.seuil - f7qh - f7qg - f7qf), f7qe) / 6)
+    
+        report = f7ai + f7bi + f7ci + f7di
+        
+        return reduc_invest_real_2014 + reduc_invest_real_2015 + report
+
+    def formula_2016_01_01(foyer_fiscal, period, parameters):
+        '''
+        Investissement locatif privé - Dispositif Pinel
+        2016
+        '''
+        f7ai = foyer_fiscal('f7ai', period)
+        f7bi = foyer_fiscal('f7bi', period)
+        f7bz = foyer_fiscal('f7bz', period)
+        f7ci = foyer_fiscal('f7ci', period)
+        f7cz = foyer_fiscal('f7cz', period)
+        f7di = foyer_fiscal('f7di', period)
+        f7dz = foyer_fiscal('f7dz', period)
+        invest_metropole_2014 = foyer_fiscal('f7ek', period)
+        invest_domtom_2014 = foyer_fiscal('f7el', period)
+        f7ez = foyer_fiscal('f7ez', period)
+        f7qa = foyer_fiscal('f7qa', period)
+        f7qb = foyer_fiscal('f7qb', period)
+        f7qc = foyer_fiscal('f7qc', period)
+        f7qd = foyer_fiscal('f7qd', period)
+        f7qe = foyer_fiscal('f7qe', period)
+        f7qf = foyer_fiscal('f7qf', period)
+        f7qg = foyer_fiscal('f7qg', period)
+        f7qh = foyer_fiscal('f7qh', period)
+        f7qi = foyer_fiscal('f7qi', period)
+        f7qj = foyer_fiscal('f7qj', period)
+        f7qk = foyer_fiscal('f7qk', period)
+        f7ql = foyer_fiscal('f7ql', period)
+        P = parameters(period).impot_revenu.reductions_impots.rpinel
+
+        max1 = max_(0, P.seuil - invest_domtom_2014 - f7qd) # 2014 : plafond commun 'duflot' et 'rpinel'
+        max2 = max_(0, max1 - f7qc)
+        max3 = max_(0, max2 - invest_metropole_2014 - f7qb)
+
+        reduc_invest_real_2014 = (P.taux29 * min_(max_(0, P.seuil - invest_domtom_2014), f7qd) / 9 +
+                P.taux23 * min_(max1, f7qc) / 6 +
+                P.taux18 * min_(max_(0, max2 - invest_metropole_2014), f7qb) / 9 +
+                P.taux12 * min_(max3, f7qa) / 6 )
+
+        reduc_invest_real_2015 = (
+                P.taux29 * min_(P.seuil, f7qh) / 9 +
+                P.taux23 * min_(max_(0, P.seuil - f7qh), f7qg) / 6 +
+                P.taux18 * min_(max_(0, P.seuil - f7qh - f7qg), f7qf) / 9 +
+                P.taux12 * min_(max_(0, P.seuil - f7qh - f7qg - f7qf), f7qe) / 6)
+
+        reduc_invest_real_2016 = (
+                P.taux29 * min_(P.seuil, f7ql) / 9 +
+                P.taux23 * min_(max_(0, P.seuil - f7ql), f7qk) / 6 +
+                P.taux18 * min_(max_(0, P.seuil - f7ql - f7qk), f7qj) / 9 +
+                P.taux12 * min_(max_(0, P.seuil - f7ql - f7qk - f7qj), f7qi) / 6)
+    
+        report = f7ai + f7bi + f7ci + f7di + f7bz + f7cz + f7dz + f7ez
+        
+        return reduc_invest_real_2014 + reduc_invest_real_2015 + reduc_invest_real_2016 + report
 
 
 class rsceha(Variable):
@@ -2634,8 +3142,6 @@ class scelli(Variable):
     label = u"Réduction d'impôt au titre des investissements locatifs - Dispositif Scellier"
     reference = "http://bofip.impots.gouv.fr/bofip/4951-PGP"
     definition_period = YEAR
-    end = '2013-12-31'
-
 
     def formula_2009_01_01(foyer_fiscal, period, parameters):
         '''
@@ -2646,7 +3152,7 @@ class scelli(Variable):
         f7hk = foyer_fiscal('f7hk', period)
         P = parameters(period).impot_revenu.reductions_impots.scelli
 
-        return max_(P.taux1 * min_(P.max, f7hj), P.taux2 * min_(P.max, f7hk)) / 9
+        return max_(P.taux25 * min_(P.max, f7hj), P.taux40 * min_(P.max, f7hk)) / 9
 
     def formula_2010_01_01(foyer_fiscal, period, parameters):
         '''
@@ -2665,14 +3171,14 @@ class scelli(Variable):
         P = parameters(period).impot_revenu.reductions_impots.scelli
 
         return (max_(
-                    max_(P.taux1 * min_(P.max, f7hj),
-                    P.taux2 * min_(P.max, f7hk)),
-                    max_(P.taux1 * min_(P.max, f7hn),
-                    P.taux2 * min_(P.max, f7ho))) / 9 +
+                    max_(P.taux25 * min_(P.max, f7hj),
+                    P.taux40 * min_(P.max, f7hk)),
+                    max_(P.taux25 * min_(P.max, f7hn),
+                    P.taux40 * min_(P.max, f7ho))) / 9 +
                 max_(
-                    P.taux1 * min_(P.max, f7hl),
-                    P.taux2 * min_(P.max, f7hm)) / 9 +
-                max_(P.taux1 * f7hr, P.taux2 * f7hs) +
+                    P.taux25 * min_(P.max, f7hl),
+                    P.taux40 * min_(P.max, f7hm)) / 9 +
+                max_(P.taux25 * f7hr, P.taux40 * f7hs) +
                 f7la)
 
     def formula_2011_01_01(foyer_fiscal, period, parameters):
@@ -2723,16 +3229,16 @@ class scelli(Variable):
                     P.taux13 * max_(f7nf, f7nj) / 9,
                     P.taux15 * max_(f7ng, f7ni) / 9,
                     P.taux22 * max_(f7na, f7ne) / 9,
-                    P.taux1 * maxi(f7nb, f7nc, f7nd, f7nh) / 9,
+                    P.taux25 * maxi(f7nb, f7nc, f7nd, f7nh) / 9,
                     P.taux36 * maxi(f7nk / 9, f7no / 9, f7np / 5, f7nt / 5),
-                    P.taux2 * maxi(f7nl / 9, f7nm / 9, f7nn / 9, f7nq / 5, f7nr / 5, f7ns / 5))) +
+                    P.taux40 * maxi(f7nl / 9, f7nm / 9, f7nn / 9, f7nq / 5, f7nr / 5, f7ns / 5))) +
                 min_(P.max, maxi(
-                    P.taux1 * max_(f7hj, f7hn),
-                    P.taux2 * max_(f7hk, f7ho))) / 9 +
-                min_(P.max, max_(P.taux1 * f7hl, P.taux2 * f7hm)) / 9 +
-                min_(P.max, maxi(P.taux1 * f7hv, P.taux1 * f7hx, P.taux2 * f7hw, P.taux2 * f7hz)) +
-                min_(P.max, max_(P.taux1 * f7ht, P.taux2 * f7hu)) +
-                min_(P.max, max_(P.taux1 * f7hr, P.taux2 * f7hs)) +
+                    P.taux25 * max_(f7hj, f7hn),
+                    P.taux40 * max_(f7hk, f7ho))) / 9 +
+                min_(P.max, max_(P.taux25 * f7hl, P.taux40 * f7hm)) / 9 +
+                min_(P.max, maxi(P.taux25 * f7hv, P.taux25 * f7hx, P.taux40 * f7hw, P.taux40 * f7hz)) +
+                min_(P.max, max_(P.taux25 * f7ht, P.taux40 * f7hu)) +
+                min_(P.max, max_(P.taux25 * f7hr, P.taux40 * f7hs)) +
                 f7la + f7lb + f7lc
                 )
 
@@ -2810,16 +3316,16 @@ class scelli(Variable):
                     P.taux13 * max_(f7nf, f7nj) / 9,
                     P.taux15 * max_(f7ng, f7ni) / 9,
                     P.taux22 * max_(f7na, f7ne) / 9,
-                    P.taux1 * maxi(f7nb, f7nc, f7nd, f7nh) / 9,
+                    P.taux25 * maxi(f7nb, f7nc, f7nd, f7nh) / 9,
                     P.taux36 * maxi(f7nk / 9, f7no / 9, f7np / 5, f7nt / 5),
-                    P.taux2 * maxi(f7nl / 9, f7nm / 9, f7nn / 9, f7nq / 5, f7nr / 5, f7ns / 5))) +
+                    P.taux40 * maxi(f7nl / 9, f7nm / 9, f7nn / 9, f7nq / 5, f7nr / 5, f7ns / 5))) +
                 min_(P.max, maxi(
-                    P.taux1 * max_(f7hj, f7hn),
-                    P.taux2 * max_(f7hk, f7ho))) / 9 +
-                min_(P.max, max_(P.taux1 * f7hl, P.taux2 * f7hm)) / 9 +
-                min_(P.max, maxi(P.taux1 * f7hv, P.taux1 * f7hx, P.taux2 * f7hw, P.taux2 * f7hz)) +
-                min_(P.max, max_(P.taux1 * f7ht, P.taux2 * f7hu)) +
-                min_(P.max, max_(P.taux1 * f7hr, P.taux2 * f7hs)) +
+                    P.taux25 * max_(f7hj, f7hn),
+                    P.taux40 * max_(f7hk, f7ho))) / 9 +
+                min_(P.max, max_(P.taux25 * f7hl, P.taux40 * f7hm)) / 9 +
+                min_(P.max, maxi(P.taux25 * f7hv, P.taux25 * f7hx, P.taux40 * f7hw, P.taux40 * f7hz)) +
+                min_(P.max, max_(P.taux25 * f7ht, P.taux40 * f7hu)) +
+                min_(P.max, max_(P.taux25 * f7hr, P.taux40 * f7hs)) +
                 f7la + f7lb + f7lc + f7ld + f7le + f7lf +
                 f7ha + f7hb + f7hg + f7hh + f7hd + f7he + f7hf +
                 min_(P.max, maxi(
@@ -2922,16 +3428,16 @@ class scelli(Variable):
                     P.taux13 * max_(f7nf, f7nj) / 9,
                     P.taux15 * max_(f7ng, f7ni) / 9,
                     P.taux22 * max_(f7na, f7ne) / 9,
-                    P.taux1 * maxi(f7nb, f7nc, f7nd, f7nh) / 9,
+                    P.taux25 * maxi(f7nb, f7nc, f7nd, f7nh) / 9,
                     P.taux36 * maxi(f7nk / 9, f7no / 9, f7np / 5, f7nt / 5),
-                    P.taux2 * maxi(f7nl / 9, f7nm / 9, f7nn / 9, f7nq / 5, f7nr / 5, f7ns / 5))) +
+                    P.taux40 * maxi(f7nl / 9, f7nm / 9, f7nn / 9, f7nq / 5, f7nr / 5, f7ns / 5))) +
                 min_(P.max, maxi(
-                    P.taux1 * max_(f7hj, f7hn),
-                    P.taux2 * max_(f7hk, f7ho))) / 9 +
-                min_(P.max, max_(P.taux1 * f7hl, P.taux2 * f7hm)) / 9 +
-                min_(P.max, maxi(P.taux1 * f7hv, P.taux1 * f7hx, P.taux2 * f7hw, P.taux2 * f7hz)) +
-                min_(P.max, max_(P.taux1 * f7ht, P.taux2 * f7hu)) +
-                min_(P.max, max_(P.taux1 * f7hr, P.taux2 * f7hs)) +
+                    P.taux25 * max_(f7hj, f7hn),
+                    P.taux40 * max_(f7hk, f7ho))) / 9 +
+                min_(P.max, max_(P.taux25 * f7hl, P.taux40 * f7hm)) / 9 +
+                min_(P.max, maxi(P.taux25 * f7hv, P.taux25 * f7hx, P.taux40 * f7hw, P.taux40 * f7hz)) +
+                min_(P.max, max_(P.taux25 * f7ht, P.taux40 * f7hu)) +
+                min_(P.max, max_(P.taux25 * f7hr, P.taux40 * f7hs)) +
                 min_(P.max, maxi(
                     P.taux6 * maxi(f7jf, f7jj, f7fb) / 9,
                     P.taux13 * maxi(f7ja, f7je, f7jg, f7jh, f7fa) / 9,
@@ -2943,6 +3449,461 @@ class scelli(Variable):
                 f7gj + f7gk + f7gl + f7gp + f7gs + f7gt + f7gu + f7gv + f7gx + f7gw
                 )
 
+    def formula_2014_01_01(foyer_fiscal, period, parameters):
+        '''
+        Investissements locatif neufs : Dispositif Scellier
+        2014
+        '''
+        f7fa = foyer_fiscal('f7fa', period)
+        f7fb = foyer_fiscal('f7fb', period)
+        f7fc = foyer_fiscal('f7fc', period)
+        f7fd = foyer_fiscal('f7fd', period)
+        f7gj = foyer_fiscal('f7gj', period)
+        f7gk = foyer_fiscal('f7gk', period)
+        f7gl = foyer_fiscal('f7gl', period)
+        f7gp = foyer_fiscal('f7gp', period)
+        f7gs = foyer_fiscal('f7gs', period)
+        f7gt = foyer_fiscal('f7gt', period)
+        f7gu = foyer_fiscal('f7gu', period)
+        f7gv = foyer_fiscal('f7gv', period)
+        f7gw = foyer_fiscal('f7gw', period)
+        f7gx = foyer_fiscal('f7gx', period)
+        f7ha = foyer_fiscal('f7ha', period)
+        f7hb = foyer_fiscal('f7hb', period)
+        f7hg = foyer_fiscal('f7hg', period)
+        f7hh = foyer_fiscal('f7hh', period)
+        f7hd = foyer_fiscal('f7hd', period)
+        f7he = foyer_fiscal('f7he', period)
+        f7hf = foyer_fiscal('f7hf', period)
+        f7hj = foyer_fiscal('f7hj', period)
+        f7hk = foyer_fiscal('f7hk', period)
+        f7hl = foyer_fiscal('f7hl', period) 
+        f7hm = foyer_fiscal('f7hm', period) 
+        f7hn = foyer_fiscal('f7hn', period)
+        f7ho = foyer_fiscal('f7ho', period)
+        f7hr = foyer_fiscal('f7hr', period)
+        f7hs = foyer_fiscal('f7hs', period)
+        f7ht = foyer_fiscal('f7ht', period)
+        f7hu = foyer_fiscal('f7hu', period)
+        f7hv = foyer_fiscal('f7hv', period)
+        f7hw = foyer_fiscal('f7hw', period)
+        f7hx = foyer_fiscal('f7hx', period)
+        f7hz = foyer_fiscal('f7hz', period)
+        f7ja = foyer_fiscal('f7ja', period)
+        f7jb = foyer_fiscal('f7jb', period)
+        f7jd = foyer_fiscal('f7jd', period)
+        f7je = foyer_fiscal('f7je', period)
+        f7jf = foyer_fiscal('f7jf', period)
+        f7jg = foyer_fiscal('f7jg', period)
+        f7jh = foyer_fiscal('f7jh', period)
+        f7jj = foyer_fiscal('f7jj', period)
+        f7jk = foyer_fiscal('f7jk', period)
+        f7jl = foyer_fiscal('f7jl', period)
+        f7jm = foyer_fiscal('f7jm', period)
+        f7jn = foyer_fiscal('f7jn', period)
+        f7jo = foyer_fiscal('f7jo', period)
+        f7jp = foyer_fiscal('f7jp', period)
+        f7jq = foyer_fiscal('f7jq', period)
+        f7jr = foyer_fiscal('f7jr', period)
+        f7la = foyer_fiscal('f7la', period)
+        f7lb = foyer_fiscal('f7lb', period)
+        f7lc = foyer_fiscal('f7lc', period)
+        f7ld = foyer_fiscal('f7ld', period)
+        f7le = foyer_fiscal('f7le', period)
+        f7lf = foyer_fiscal('f7lf', period)
+        f7lm = foyer_fiscal('f7lm', period)
+        f7ln = foyer_fiscal('f7ln', period)
+        f7ls = foyer_fiscal('f7ls', period)
+        f7lt = foyer_fiscal('f7lt', period)
+        f7lx = foyer_fiscal('f7lx', period)
+        f7lz = foyer_fiscal('f7lz', period)
+        f7mg = foyer_fiscal('f7mg', period)
+        f7mh = foyer_fiscal('f7mh', period)
+        f7na = foyer_fiscal('f7na', period)
+        f7nb = foyer_fiscal('f7nb', period)
+        f7nc = foyer_fiscal('f7nc', period)
+        f7nd = foyer_fiscal('f7nd', period)
+        f7ne = foyer_fiscal('f7ne', period)
+        f7nf = foyer_fiscal('f7nf', period)
+        f7ng = foyer_fiscal('f7ng', period)
+        f7nh = foyer_fiscal('f7nh', period)
+        f7ni = foyer_fiscal('f7ni', period)
+        f7nj = foyer_fiscal('f7nj', period)
+        f7nk = foyer_fiscal('f7nk', period)
+        f7nl = foyer_fiscal('f7nl', period)
+        f7nm = foyer_fiscal('f7nm', period)
+        f7nn = foyer_fiscal('f7nn', period)
+        f7no = foyer_fiscal('f7no', period)
+        f7np = foyer_fiscal('f7np', period)
+        f7nq = foyer_fiscal('f7nq', period)
+        f7nr = foyer_fiscal('f7nr', period)
+        f7ns = foyer_fiscal('f7ns', period)
+        f7nt = foyer_fiscal('f7nt', period)
+        f7ya = foyer_fiscal('f7ya', period)
+        f7yb = foyer_fiscal('f7yb', period)
+        f7yc = foyer_fiscal('f7yc', period)
+        f7yd = foyer_fiscal('f7yd', period)
+        f7ye = foyer_fiscal('f7ye', period)
+        f7yf = foyer_fiscal('f7yf', period)
+        f7yg = foyer_fiscal('f7yg', period)
+        f7yh = foyer_fiscal('f7yh', period)
+        f7yi = foyer_fiscal('f7yi', period)
+        f7yj = foyer_fiscal('f7yj', period)
+        f7yk = foyer_fiscal('f7yk', period)
+        f7yl = foyer_fiscal('f7yl', period)
+
+        P = parameters(period).impot_revenu.reductions_impots.scelli
+
+        report_reduc_scelli_non_impute = f7la + f7lb + f7lc + f7ld + f7le + f7lf + f7lm + f7ls + f7lz + f7mg + f7mh + f7lx + f7lt + f7ln
+        
+        report_scelli_2009 = min_(P.max, max_(P.taux25 * f7hr, P.taux40 * f7hs)) # to check si application plafond 
+        report_scelli_2010 = min_(P.max, maxi(P.taux25 * f7hv, P.taux25 * f7hx, P.taux40 * f7hw, P.taux40 * f7hz)) + min_(P.max, max_(P.taux25 * f7ht, P.taux40 * f7hu)) # to check si application plafond
+        report_scelli_2011 = f7ha + f7hb + f7hg + f7hh + f7hd + f7he + f7hf
+        report_scelli_2012 = f7gj + f7gk + f7gl + f7gp + f7gs + f7gt + f7gu + f7gv + f7gx + f7gw
+        report_scelli_2013 = f7ya + f7yb + f7yc + f7yd + f7ye + f7yf + f7yg + f7yh + f7yi + f7yj + f7yk + f7yl
+
+        reduc_scelli_2014_invest_2009 = min_(P.max, max_(P.taux25 * f7hl, P.taux40 * f7hm)) / 9
+        
+        reduc_scelli_2014_invest_2010 = min_(P.max, maxi(
+            P.taux25 * max_(f7hj, f7hn) / 9, 
+            P.taux40 * max_(f7hk, f7ho) / 9 ))
+
+        reduc_scelli_2014_invest_2011 = min_(P.max, maxi(   
+            P.taux13 * max_(f7nf, f7nj) / 9,
+            P.taux15 * max_(f7ng, f7ni) / 9,
+            P.taux22 * max_(f7na, f7ne) / 9,
+            P.taux25 * maxi(f7nb, f7nc, f7nd, f7nh) / 9,
+            P.taux36 * maxi(f7nk / 9, f7no / 9, f7np / 5, f7nt / 5),
+            P.taux40 * maxi(f7nl / 9, f7nm / 9, f7nn / 9, f7nq / 5, f7nr / 5, f7ns / 5)))
+
+        reduc_scelli_2014_invest_2012_mars_2013 = min_(P.max, maxi(                                               
+            P.taux6 * maxi(f7jf, f7jj, f7fb) / 9,
+            P.taux13 * maxi(f7ja, f7je, f7jg, f7jh, f7fa) / 9,          
+            P.taux22 * maxi(f7jb, f7jd) / 9,
+            P.taux24 * maxi(f7jk / 9, f7jn / 9, f7jo / 5, f7jr / 5, f7fc / 9, f7fd / 5),
+            P.taux36 * maxi(f7jl / 9, f7jm / 9, f7jp / 5, f7jq / 5))) 
+
+        return (
+            reduc_scelli_2014_invest_2009 + 
+            reduc_scelli_2014_invest_2010 +
+            reduc_scelli_2014_invest_2011 +
+            reduc_scelli_2014_invest_2012_mars_2013 +
+            report_reduc_scelli_non_impute + 
+            report_scelli_2009 + 
+            report_scelli_2010 + 
+            report_scelli_2011 + 
+            report_scelli_2012 + 
+            report_scelli_2013
+            )
+
+    def formula_2015_01_01(foyer_fiscal, period, parameters):
+        '''
+        Investissements locatif neufs : Dispositif Scellier
+        2015
+        '''
+        f7fa = foyer_fiscal('f7fa', period)
+        f7fb = foyer_fiscal('f7fb', period)
+        f7fc = foyer_fiscal('f7fc', period)
+        f7fd = foyer_fiscal('f7fd', period)
+        f7gj = foyer_fiscal('f7gj', period)
+        f7gl = foyer_fiscal('f7gl', period)
+        f7gs = foyer_fiscal('f7gs', period)
+        f7gu = foyer_fiscal('f7gu', period)
+        f7gv = foyer_fiscal('f7gv', period)
+        f7gw = foyer_fiscal('f7gw', period)
+        f7gx = foyer_fiscal('f7gx', period)
+        f7ha = foyer_fiscal('f7ha', period)
+        f7hg = foyer_fiscal('f7hg', period)
+        f7hh = foyer_fiscal('f7hh', period)
+        f7hd = foyer_fiscal('f7hd', period)
+        f7hf = foyer_fiscal('f7hf', period)
+        f7hj = foyer_fiscal('f7hj', period)
+        f7hk = foyer_fiscal('f7hk', period)
+        f7hl = foyer_fiscal('f7hl', period) 
+        f7hm = foyer_fiscal('f7hm', period) 
+        f7hn = foyer_fiscal('f7hn', period)
+        f7ho = foyer_fiscal('f7ho', period)
+        f7hr = foyer_fiscal('f7hr', period)
+        f7hs = foyer_fiscal('f7hs', period)
+        f7ht = foyer_fiscal('f7ht', period)
+        f7hu = foyer_fiscal('f7hu', period)
+        f7hv = foyer_fiscal('f7hv', period)
+        f7hw = foyer_fiscal('f7hw', period)
+        f7hx = foyer_fiscal('f7hx', period)
+        f7hz = foyer_fiscal('f7hz', period)
+        f7ja = foyer_fiscal('f7ja', period)
+        f7jb = foyer_fiscal('f7jb', period)
+        f7jd = foyer_fiscal('f7jd', period)
+        f7je = foyer_fiscal('f7je', period)
+        f7jf = foyer_fiscal('f7jf', period)
+        f7jg = foyer_fiscal('f7jg', period)
+        f7jh = foyer_fiscal('f7jh', period)
+        f7jj = foyer_fiscal('f7jj', period)
+        f7jk = foyer_fiscal('f7jk', period)
+        f7jl = foyer_fiscal('f7jl', period)
+        f7jm = foyer_fiscal('f7jm', period)
+        f7jn = foyer_fiscal('f7jn', period)
+        f7jo = foyer_fiscal('f7jo', period)
+        f7jp = foyer_fiscal('f7jp', period)
+        f7jq = foyer_fiscal('f7jq', period)
+        f7jr = foyer_fiscal('f7jr', period)
+        f7la = foyer_fiscal('f7la', period)
+        f7lb = foyer_fiscal('f7lb', period)
+        f7lc = foyer_fiscal('f7lc', period)
+        f7ld = foyer_fiscal('f7ld', period)
+        f7le = foyer_fiscal('f7le', period)
+        f7lf = foyer_fiscal('f7lf', period)
+        f7lg = foyer_fiscal('f7lg', period)
+        f7lh = foyer_fiscal('f7lh', period)
+        f7li = foyer_fiscal('f7li', period)
+        f7lj = foyer_fiscal('f7lj', period)
+        f7lm = foyer_fiscal('f7lm', period)
+        f7ln = foyer_fiscal('f7ln', period)
+        f7ls = foyer_fiscal('f7ls', period)
+        f7lt = foyer_fiscal('f7lt', period)
+        f7lx = foyer_fiscal('f7lx', period)
+        f7lz = foyer_fiscal('f7lz', period)
+        f7mg = foyer_fiscal('f7mg', period)
+        f7mh = foyer_fiscal('f7mh', period)
+        f7na = foyer_fiscal('f7na', period)
+        f7nb = foyer_fiscal('f7nb', period)
+        f7nc = foyer_fiscal('f7nc', period)
+        f7nd = foyer_fiscal('f7nd', period)
+        f7ne = foyer_fiscal('f7ne', period)
+        f7nf = foyer_fiscal('f7nf', period)
+        f7ng = foyer_fiscal('f7ng', period)
+        f7nh = foyer_fiscal('f7nh', period)
+        f7ni = foyer_fiscal('f7ni', period)
+        f7nj = foyer_fiscal('f7nj', period)
+        f7nk = foyer_fiscal('f7nk', period)
+        f7nl = foyer_fiscal('f7nl', period)
+        f7nm = foyer_fiscal('f7nm', period)
+        f7nn = foyer_fiscal('f7nn', period)
+        f7no = foyer_fiscal('f7no', period)
+        f7np = foyer_fiscal('f7np', period)
+        f7nq = foyer_fiscal('f7nq', period)
+        f7nr = foyer_fiscal('f7nr', period)
+        f7ns = foyer_fiscal('f7ns', period)
+        f7nt = foyer_fiscal('f7nt', period)
+        f7yb = foyer_fiscal('f7yb', period)
+        f7yd = foyer_fiscal('f7yd', period)
+        f7yf = foyer_fiscal('f7yf', period)
+        f7yg = foyer_fiscal('f7yg', period)
+        f7yh = foyer_fiscal('f7yh', period)
+        f7yj = foyer_fiscal('f7yj', period)
+        f7yk = foyer_fiscal('f7yk', period)
+        f7yl = foyer_fiscal('f7yl', period)
+        f7ym = foyer_fiscal('f7ym', period)
+        f7yn = foyer_fiscal('f7yn', period)
+        f7yo = foyer_fiscal('f7yo', period)
+        f7yp = foyer_fiscal('f7yp', period)
+        f7yq = foyer_fiscal('f7yq', period)
+        f7yr = foyer_fiscal('f7yr', period)
+        f7ys = foyer_fiscal('f7ys', period)
+
+        P = parameters(period).impot_revenu.reductions_impots.scelli
+
+        report_reduc_scelli_non_impute = f7la + f7lb + f7lc + f7ld + f7le + f7lf + f7lm + f7ls + f7lz + f7mg + f7mh + f7lx + f7lt + f7ln + f7lg + f7lh + f7li + f7lj
+        
+        report_scelli_2009 = min_(P.max, max_(P.taux25 * f7hr, P.taux40 * f7hs)) # to check si application plafond 
+        report_scelli_2010 = min_(P.max, maxi(P.taux25 * f7hv, P.taux25 * f7hx, P.taux40 * f7hw, P.taux40 * f7hz)) + min_(P.max, max_(P.taux25 * f7ht, P.taux40 * f7hu)) # to check si application plafond
+        report_scelli_2011 = f7ha + f7hg + f7hh + f7hd + f7hf
+        report_scelli_2012 = f7gj + f7gl + f7gs + f7gu + f7gv + f7gx + f7gw
+        report_scelli_2013 = f7yb + f7yd + f7yf + f7yh + f7yj + f7yk + f7yl
+        report_scelli_2014 = f7ym + f7yn + f7yo + f7yp + f7yq + f7yr + f7ys
+
+        reduc_scelli_2015_invest_2009 = min_(P.max, max_(P.taux25 * f7hl, P.taux40 * f7hm)) / 9
+        
+        reduc_scelli_2015_invest_2010 = min_(P.max, maxi(
+            P.taux25 * max_(f7hj, f7hn) / 9, 
+            P.taux40 * max_(f7hk, f7ho) / 9 ))
+
+        reduc_scelli_2015_invest_2011 = min_(P.max, maxi(   
+            P.taux13 * max_(f7nf, f7nj) / 9,
+            P.taux15 * max_(f7ng, f7ni) / 9,
+            P.taux22 * max_(f7na, f7ne) / 9,
+            P.taux25 * maxi(f7nb, f7nc, f7nd, f7nh) / 9,
+            P.taux36 * maxi(f7nk / 9, f7no / 9, f7np / 5, f7nt / 5),
+            P.taux40 * maxi(f7nl / 9, f7nm / 9, f7nn / 9, f7nq / 5, f7nr / 5, f7ns / 5)))
+
+        reduc_scelli_2015_invest_2012_mars_2013 = min_(P.max, maxi(                                               
+            P.taux6 * maxi(f7jf, f7jj, f7fb) / 9,
+            P.taux13 * maxi(f7ja, f7je, f7jg, f7jh, f7fa) / 9,          
+            P.taux22 * maxi(f7jb, f7jd) / 9,
+            P.taux24 * maxi(f7jk / 9, f7jn / 9, f7jo / 5, f7jr / 5, f7fc / 9, f7fd / 5),
+            P.taux36 * maxi(f7jl / 9, f7jm / 9, f7jp / 5, f7jq / 5)))
+
+        return (
+            reduc_scelli_2015_invest_2009 + 
+            reduc_scelli_2015_invest_2010 +
+            reduc_scelli_2015_invest_2011 +
+            reduc_scelli_2015_invest_2012_mars_2013 +
+            report_reduc_scelli_non_impute + 
+            report_scelli_2009 + 
+            report_scelli_2010 + 
+            report_scelli_2011 + 
+            report_scelli_2012 + 
+            report_scelli_2013 + 
+            report_scelli_2014
+            )
+
+    def formula_2016_01_01(foyer_fiscal, period, parameters):
+        '''
+        Investissements locatif neufs : Dispositif Scellier
+        2016
+        '''
+        f7fa = foyer_fiscal('f7fa', period)
+        f7fb = foyer_fiscal('f7fb', period)
+        f7fc = foyer_fiscal('f7fc', period)
+        f7fd = foyer_fiscal('f7fd', period)
+        f7gj = foyer_fiscal('f7gj', period)
+        f7gl = foyer_fiscal('f7gl', period)
+        f7gs = foyer_fiscal('f7gs', period)
+        f7gu = foyer_fiscal('f7gu', period)
+        f7gv = foyer_fiscal('f7gv', period)
+        f7gw = foyer_fiscal('f7gw', period)
+        f7gx = foyer_fiscal('f7gx', period)
+        f7ha = foyer_fiscal('f7ha', period)
+        f7hd = foyer_fiscal('f7hd', period)
+        f7hf = foyer_fiscal('f7hf', period)
+        f7hj = foyer_fiscal('f7hj', period)
+        f7hk = foyer_fiscal('f7hk', period)
+        f7hn = foyer_fiscal('f7hn', period)
+        f7ho = foyer_fiscal('f7ho', period)
+        f7hr = foyer_fiscal('f7hr', period)
+        f7hs = foyer_fiscal('f7hs', period)
+        f7ht = foyer_fiscal('f7ht', period)
+        f7hu = foyer_fiscal('f7hu', period)
+        f7hv = foyer_fiscal('f7hv', period)
+        f7hw = foyer_fiscal('f7hw', period)
+        f7hx = foyer_fiscal('f7hx', period)
+        f7hz = foyer_fiscal('f7hz', period)
+        f7ja = foyer_fiscal('f7ja', period)
+        f7jb = foyer_fiscal('f7jb', period)
+        f7jd = foyer_fiscal('f7jd', period)
+        f7je = foyer_fiscal('f7je', period)
+        f7jf = foyer_fiscal('f7jf', period)
+        f7jg = foyer_fiscal('f7jg', period)
+        f7jh = foyer_fiscal('f7jh', period)
+        f7jj = foyer_fiscal('f7jj', period)
+        f7jk = foyer_fiscal('f7jk', period)
+        f7jl = foyer_fiscal('f7jl', period)
+        f7jm = foyer_fiscal('f7jm', period)
+        f7jn = foyer_fiscal('f7jn', period)
+        f7jo = foyer_fiscal('f7jo', period)
+        f7jp = foyer_fiscal('f7jp', period)
+        f7jq = foyer_fiscal('f7jq', period)
+        f7jr = foyer_fiscal('f7jr', period)
+        f7lb = foyer_fiscal('f7lb', period)
+        f7lc = foyer_fiscal('f7lc', period)
+        f7ld = foyer_fiscal('f7ld', period)
+        f7le = foyer_fiscal('f7le', period)
+        f7lf = foyer_fiscal('f7lf', period)
+        f7lg = foyer_fiscal('f7lg', period)
+        f7lh = foyer_fiscal('f7lh', period)
+        f7li = foyer_fiscal('f7li', period)
+        f7lj = foyer_fiscal('f7lj', period)
+        f7lk = foyer_fiscal('f7lk', period)
+        f7ll = foyer_fiscal('f7ll', period)
+        f7lm = foyer_fiscal('f7lm', period)
+        f7ln = foyer_fiscal('f7ln', period)
+        f7lo = foyer_fiscal('f7lo', period)
+        f7lp = foyer_fiscal('f7lp', period)
+        f7ls = foyer_fiscal('f7ls', period)
+        f7lt = foyer_fiscal('f7lt', period)
+        f7lx = foyer_fiscal('f7lx', period)
+        f7lz = foyer_fiscal('f7lz', period)
+        f7mg = foyer_fiscal('f7mg', period)
+        f7mh = foyer_fiscal('f7mh', period)
+        f7na = foyer_fiscal('f7na', period)
+        f7nb = foyer_fiscal('f7nb', period)
+        f7nc = foyer_fiscal('f7nc', period)
+        f7nd = foyer_fiscal('f7nd', period)
+        f7ne = foyer_fiscal('f7ne', period)
+        f7nf = foyer_fiscal('f7nf', period)
+        f7ng = foyer_fiscal('f7ng', period)
+        f7nh = foyer_fiscal('f7nh', period)
+        f7ni = foyer_fiscal('f7ni', period)
+        f7nj = foyer_fiscal('f7nj', period)
+        f7nk = foyer_fiscal('f7nk', period)
+        f7nl = foyer_fiscal('f7nl', period)
+        f7nm = foyer_fiscal('f7nm', period)
+        f7nn = foyer_fiscal('f7nn', period)
+        f7no = foyer_fiscal('f7no', period)
+        f7np = foyer_fiscal('f7np', period)
+        f7nq = foyer_fiscal('f7nq', period)
+        f7nr = foyer_fiscal('f7nr', period)
+        f7ns = foyer_fiscal('f7ns', period)
+        f7nt = foyer_fiscal('f7nt', period)
+        f7yb = foyer_fiscal('f7yb', period)
+        f7yd = foyer_fiscal('f7yd', period)
+        f7yf = foyer_fiscal('f7yf', period)
+        f7yg = foyer_fiscal('f7yg', period)
+        f7yh = foyer_fiscal('f7yh', period)
+        f7yj = foyer_fiscal('f7yj', period)
+        f7yk = foyer_fiscal('f7yk', period)
+        f7yl = foyer_fiscal('f7yl', period)
+        f7ym = foyer_fiscal('f7ym', period)
+        f7yn = foyer_fiscal('f7yn', period)
+        f7yo = foyer_fiscal('f7yo', period)
+        f7yp = foyer_fiscal('f7yp', period)
+        f7yq = foyer_fiscal('f7yq', period)
+        f7yr = foyer_fiscal('f7yr', period)
+        f7ys = foyer_fiscal('f7ys', period)
+        f7yt = foyer_fiscal('f7yt', period)
+        f7yu = foyer_fiscal('f7yu', period)
+        f7yv = foyer_fiscal('f7yv', period)
+        f7yw = foyer_fiscal('f7yw', period)
+        f7yx = foyer_fiscal('f7yx', period)
+        f7yy = foyer_fiscal('f7yy', period)
+        f7yz = foyer_fiscal('f7yz', period)
+
+        P = parameters(period).impot_revenu.reductions_impots.scelli
+
+        report_reduc_scelli_non_impute = f7lb + f7lc + f7ld + f7le + f7lf + f7lm + f7ls + f7lz + f7mg + f7mh + f7lx + f7lt + f7ln + f7lg + f7lh + f7li + f7lj + f7lk + f7ll + f7lo + f7lp
+        
+        report_scelli_2009 = min_(P.max, max_(P.taux25 * f7hr, P.taux40 * f7hs)) # to check si application plafond 
+        report_scelli_2010 = min_(P.max, maxi(P.taux25 * f7hv, P.taux25 * f7hx, P.taux40 * f7hw, P.taux40 * f7hz)) + min_(P.max, max_(P.taux25 * f7ht, P.taux40 * f7hu)) # to check si application plafond
+        report_scelli_2011 = f7ha + f7hd + f7hf
+        report_scelli_2012 = f7gj + f7gl + f7gs + f7gu + f7gv + f7gx + f7gw
+        report_scelli_2013 = f7yb + f7yd + f7yf + f7yh + f7yj + f7yk + f7yl
+        report_scelli_2014 = f7ym + f7yn + f7yo + f7yp + f7yq + f7yr + f7ys
+        report_scelli_2015 = f7yt + f7yu + f7yv + f7yw + f7yx + f7yy + f7yz
+        
+        reduc_scelli_2016_invest_2010 = min_(P.max, maxi(
+            P.taux25 * max_(f7hj, f7hn) / 9, 
+            P.taux40 * max_(f7hk, f7ho) / 9 ))
+
+        reduc_scelli_2016_invest_2011 = min_(P.max, maxi(   
+            P.taux13 * max_(f7nf, f7nj) / 9,
+            P.taux15 * max_(f7ng, f7ni) / 9,
+            P.taux22 * max_(f7na, f7ne) / 9,
+            P.taux25 * maxi(f7nb, f7nc, f7nd, f7nh) / 9,
+            P.taux36 * maxi(f7nk / 9, f7no / 9, f7np / 5, f7nt / 5),
+            P.taux40 * maxi(f7nl / 9, f7nm / 9, f7nn / 9, f7nq / 5, f7nr / 5, f7ns / 5)))
+
+        reduc_scelli_2016_invest_2012_mars_2013 = min_(P.max, maxi(                                               
+            P.taux6 * maxi(f7jf, f7jj, f7fb) / 9,
+            P.taux13 * maxi(f7ja, f7je, f7jg, f7jh, f7fa) / 9,          
+            P.taux22 * maxi(f7jb, f7jd) / 9,
+            P.taux24 * maxi(f7jk / 9, f7jn / 9, f7jo / 5, f7jr / 5, f7fc / 9, f7fd / 5),
+            P.taux36 * maxi(f7jl / 9, f7jm / 9, f7jp / 5, f7jq / 5)))
+
+        return (
+            reduc_scelli_2016_invest_2010 +
+            reduc_scelli_2016_invest_2011 +
+            reduc_scelli_2016_invest_2012_mars_2013 +
+            report_reduc_scelli_non_impute + 
+            report_scelli_2009 +
+            report_scelli_2010 + 
+            report_scelli_2011 + 
+            report_scelli_2012 + 
+            report_scelli_2013 + 
+            report_scelli_2014 +
+            report_scelli_2015
+            )
+
+   
 
 class sofica(Variable):
     value_type = float
