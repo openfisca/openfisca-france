@@ -81,3 +81,37 @@
   output_variables:
     acs: 200
 
+- name: "CMU: Plafonds pour 3 enfants et 1 parent"
+  period: 2018-01
+  individus:
+    - id: 1
+    - id: 2
+    - id: 3
+    - id: 4
+  familles:
+    parents: [1]
+    enfants: [2, 3, 4]
+  output_variables:
+    cmu_c_plafond: 18318
+
+- name: "CMU: Plafonds pour 4 enfants dont 3 en garde alternée et 1 parent"
+  period: 2018-01
+  individus:
+    - id: 1
+    - id: 2
+      date_naissance: '2010-01-01'
+      garde_alternee: True
+    - id: 3
+      date_naissance: '2010-10-01'
+      garde_alternee: True
+    - id: 4
+      date_naissance: '2011-08-01'
+      garde_alternee: False
+    - id: 5
+      date_naissance: '2012-04-01'
+      garde_alternee: True
+  familles:
+    parents: [1]
+    enfants: [2, 3, 4, 5]
+  output_variables:
+    cmu_c_plafond: 16574 # 8723 * (1 + 0.25 + 0.15 + 0.3 + 0.2)
