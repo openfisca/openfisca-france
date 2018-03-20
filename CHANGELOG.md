@@ -1,13 +1,20 @@
 # Changelog
 
-### 20.5.1
+### 20.5.1 [#951](https://github.com/openfisca/openfisca-france/pull/951)
+
+* Correction d'un crash.
+* Zones impactées : openfisca_france/reforms/landais_piketty_saez.py.
+* Détails :
+   - La réforme ne fonctionnait plus à la suite d'un changement de syntaxe qui a conduit à une erreur sur le nom d'une variable dans une formule non-testée.
+
+### 20.5.1 [#925](https://github.com/openfisca/openfisca-france/pull/925)
 * Correction d'un bug
 * Zones impactées : openfisca_france/model/revenus/activite/salarie.py
 * Détails :
   - Autorise, pour les fonctionnaires, le basculement automatique en mensuel si les revenus sont renseignés en annuel
   - Adopte un comportement similaire aux autres revenus des salariés
 
-### 20.5.0 [#909](https://github.com/openfisca/openfisca-france/pull/909)
+## 20.5.0 [#909](https://github.com/openfisca/openfisca-france/pull/909)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : 2004 - 2016
