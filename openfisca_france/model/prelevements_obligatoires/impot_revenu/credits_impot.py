@@ -243,10 +243,10 @@ class nb_pac2(Variable):
     def formula(foyer_fiscal, period, parameters):
         nbF = foyer_fiscal('nbF', period)
         nbJ = foyer_fiscal('nbJ', period)
-        nbR = foyer_fiscal('nbR', period)
+        nbpac_invalideR = foyer_fiscal('nbR', period)
         nbH = foyer_fiscal('nbH', period)
 
-        return nbF + nbJ + nbR - nbH / 2
+        return nbF + nbJ + nbpac_invalideR - nbH / 2
 
 
 class accult(Variable):
@@ -473,12 +473,11 @@ class assloy(Variable):
     label = u"Crédit d’impôt primes d’assurance pour loyers impayés"
     reference = "http://bofip.impots.gouv.fr/bofip/844-PGP.html?identifiant=BOI-IR-RICI-320-20120912"
     definition_period = YEAR
-    end = '2016-12-31'
 
     def formula_2005(foyer_fiscal, period, parameters):
         '''
         Crédit d’impôt primes d’assurance pour loyers impayés (case 4BF)
-        2005-2016
+        2005-
         '''
         f4bf = foyer_fiscal('f4bf', period)
         P = parameters(period).impot_revenu.credits_impot.assloy
@@ -885,14 +884,14 @@ class inthab(Variable):
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         nb_pac_majoration_plafond = foyer_fiscal('nb_pac2', period)
-        caseP = foyer_fiscal('caseP', period)
-        caseF = foyer_fiscal('caseF', period)
-        nbG = foyer_fiscal('nbG', period)
-        nbR = foyer_fiscal('nbR', period)
+        invalidite_decl = foyer_fiscal('caseP', period)
+        invalidite_conj = foyer_fiscal('caseF', period)
+        nbpac_invalideG = foyer_fiscal('nbG', period)
+        nbpac_invalideR = foyer_fiscal('nbR', period)
         f7uh = foyer_fiscal('f7uh', period)
         P = parameters(period).impot_revenu.credits_impot.inthab
 
-        invalide = caseP | caseF | (nbG != 0) | (nbR != 0)
+        invalide = invalidite_decl | invalidite_conj | (nbpac_invalideG != 0) | (nbpac_invalideR != 0)
         max0 = P.max * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac_majoration_plafond * P.add
         return P.taux1 * min_(max0, f7uh)
 
@@ -903,15 +902,15 @@ class inthab(Variable):
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         nb_pac_majoration_plafond = foyer_fiscal('nb_pac2', period)
-        caseP = foyer_fiscal('caseP', period)
-        caseF = foyer_fiscal('caseF', period)
-        nbG = foyer_fiscal('nbG', period)
-        nbR = foyer_fiscal('nbR', period)
+        invalidite_decl = foyer_fiscal('caseP', period)
+        invalidite_conj = foyer_fiscal('caseF', period)
+        nbpac_invalideG = foyer_fiscal('nbG', period)
+        nbpac_invalideR = foyer_fiscal('nbR', period)
         f7vy = foyer_fiscal('f7vy', period)
         f7vz = foyer_fiscal('f7vz', period)
         P = parameters(period).impot_revenu.credits_impot.inthab
 
-        invalide = caseP | caseF | (nbG != 0) | (nbR != 0)
+        invalide = invalidite_decl | invalidite_conj | (nbpac_invalideG != 0) | (nbpac_invalideR != 0)
         max0 = P.max * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac_majoration_plafond * P.add
 
         max1 = max_(max0 - f7vy, 0)
@@ -927,16 +926,16 @@ class inthab(Variable):
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         nb_pac_majoration_plafond = foyer_fiscal('nb_pac2', period)
-        caseP = foyer_fiscal('caseP', period)
-        caseF = foyer_fiscal('caseF', period)
-        nbG = foyer_fiscal('nbG', period)
-        nbR = foyer_fiscal('nbR', period)
+        invalidite_decl = foyer_fiscal('caseP', period)
+        invalidite_conj = foyer_fiscal('caseF', period)
+        nbpac_invalideG = foyer_fiscal('nbG', period)
+        nbpac_invalideR = foyer_fiscal('nbR', period)
         f7vx = foyer_fiscal('f7vx', period)
         f7vy = foyer_fiscal('f7vy', period)
         f7vz = foyer_fiscal('f7vz', period)
         P = parameters(period).impot_revenu.credits_impot.inthab
 
-        invalide = caseP | caseF | (nbG != 0) | (nbR != 0)
+        invalide = invalidite_decl | invalidite_conj | (nbpac_invalideG != 0) | (nbpac_invalideR != 0)
         max0 = P.max * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac_majoration_plafond * P.add
 
         max1 = max_(max0 - f7vx, 0)
@@ -954,17 +953,17 @@ class inthab(Variable):
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         nb_pac_majoration_plafond = foyer_fiscal('nb_pac2', period)
-        caseP = foyer_fiscal('caseP', period)
-        caseF = foyer_fiscal('caseF', period)
-        nbG = foyer_fiscal('nbG', period)
-        nbR = foyer_fiscal('nbR', period)
+        invalidite_decl = foyer_fiscal('caseP', period)
+        invalidite_conj = foyer_fiscal('caseF', period)
+        nbpac_invalideG = foyer_fiscal('nbG', period)
+        nbpac_invalideR = foyer_fiscal('nbR', period)
         f7vw = foyer_fiscal('f7vw', period)
         f7vx = foyer_fiscal('f7vx', period)
         f7vy = foyer_fiscal('f7vy', period)
         f7vz = foyer_fiscal('f7vz', period)
         P = parameters(period).impot_revenu.credits_impot.inthab
 
-        invalide = caseP | caseF | (nbG != 0) | (nbR != 0)
+        invalide = invalidite_decl | invalidite_conj | (nbpac_invalideG != 0) | (nbpac_invalideR != 0)
         max0 = P.max * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac_majoration_plafond * P.add
 
         max1 = max_(max0 - f7vx, 0)
@@ -984,10 +983,10 @@ class inthab(Variable):
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         nb_pac_majoration_plafond = foyer_fiscal('nb_pac2', period)
-        caseP = foyer_fiscal('caseP', period)
-        caseF = foyer_fiscal('caseF', period)
-        nbG = foyer_fiscal('nbG', period)
-        nbR = foyer_fiscal('nbR', period)
+        invalidite_decl = foyer_fiscal('caseP', period)
+        invalidite_conj = foyer_fiscal('caseF', period)
+        nbpac_invalideG = foyer_fiscal('nbG', period)
+        nbpac_invalideR = foyer_fiscal('nbR', period)
         f7vu = foyer_fiscal('f7vu', period)
         f7vw = foyer_fiscal('f7vw', period)
         f7vv = foyer_fiscal('f7vv', period)
@@ -996,7 +995,7 @@ class inthab(Variable):
         f7vz = foyer_fiscal('f7vz', period)
         P = parameters(period).impot_revenu.credits_impot.inthab
 
-        invalide = caseP | caseF | (nbG != 0) | (nbR != 0)
+        invalide = invalidite_decl | invalidite_conj | (nbpac_invalideG != 0) | (nbpac_invalideR != 0)
         max0 = P.max * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac_majoration_plafond * P.add
 
         max1 = max_(max0 - f7vx, 0)
@@ -1020,11 +1019,11 @@ class inthab(Variable):
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         nb_pac_majoration_plafond = foyer_fiscal('nb_pac2', period)
-        caseP = foyer_fiscal('caseP', period)
-        caseF = foyer_fiscal('caseF', period)
-        nbG = foyer_fiscal('nbG', period)
-        nbR = foyer_fiscal('nbR', period)
-        nbI = foyer_fiscal('nbI', period)
+        invalidite_decl = foyer_fiscal('caseP', period)
+        invalidite_conj = foyer_fiscal('caseF', period)
+        nbpac_invalideG = foyer_fiscal('nbG', period)
+        nbpac_invalideR = foyer_fiscal('nbR', period)
+        nbpac_invalideI = foyer_fiscal('nbI', period)
         f7vt = foyer_fiscal('f7vt', period)
         f7vu = foyer_fiscal('f7vu', period)
         f7vv = foyer_fiscal('f7vv', period)
@@ -1034,7 +1033,7 @@ class inthab(Variable):
         f7vz = foyer_fiscal('f7vz', period)
         P = parameters(period).impot_revenu.credits_impot.inthab
 
-        invalide = caseP | caseF | (nbG != 0) | (nbR != 0) | (nbI != 0)
+        invalide = invalidite_decl | invalidite_conj | (nbpac_invalideG != 0) | (nbpac_invalideR != 0) | (nbpac_invalideI != 0)
         max0 = P.max * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac_majoration_plafond * P.add
 
         max1 = max_(max0 - f7vx, 0)
@@ -1060,11 +1059,11 @@ class inthab(Variable):
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         nb_pac_majoration_plafond = foyer_fiscal('nb_pac2', period)
-        caseP = foyer_fiscal('caseP', period)
-        caseF = foyer_fiscal('caseF', period)
-        nbG = foyer_fiscal('nbG', period)
-        nbR = foyer_fiscal('nbR', period)
-        nbI = foyer_fiscal('nbI', period)
+        invalidite_decl = foyer_fiscal('caseP', period)
+        invalidite_conj = foyer_fiscal('caseF', period)
+        nbpac_invalideG = foyer_fiscal('nbG', period)
+        nbpac_invalideR = foyer_fiscal('nbR', period)
+        nbpac_invalideI = foyer_fiscal('nbI', period)
         f7vt = foyer_fiscal('f7vt', period)
         f7vu = foyer_fiscal('f7vu', period)
         f7vv = foyer_fiscal('f7vv', period)
@@ -1095,11 +1094,11 @@ class inthab(Variable):
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         nb_pac_majoration_plafond = foyer_fiscal('nb_pac2', period)
-        caseP = foyer_fiscal('caseP', period)
-        caseF = foyer_fiscal('caseF', period)
-        nbG = foyer_fiscal('nbG', period)
-        nbR = foyer_fiscal('nbR', period)
-        nbI = foyer_fiscal('nbI', period)
+        invalidite_decl = foyer_fiscal('caseP', period)
+        invalidite_conj = foyer_fiscal('caseF', period)
+        nbpac_invalideG = foyer_fiscal('nbG', period)
+        nbpac_invalideR = foyer_fiscal('nbR', period)
+        nbpac_invalideI = foyer_fiscal('nbI', period)
         f7vt = foyer_fiscal('f7vt', period)
         f7vv = foyer_fiscal('f7vv', period)
         f7vx = foyer_fiscal('f7vx', period)
@@ -1127,11 +1126,11 @@ class inthab(Variable):
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         nb_pac_majoration_plafond = foyer_fiscal('nb_pac2', period)
-        caseP = foyer_fiscal('caseP', period)
-        caseF = foyer_fiscal('caseF', period)
-        nbG = foyer_fiscal('nbG', period)
-        nbR = foyer_fiscal('nbR', period)
-        nbI = foyer_fiscal('nbI', period)
+        invalidite_decl = foyer_fiscal('caseP', period)
+        invalidite_conj = foyer_fiscal('caseF', period)
+        nbpac_invalideG = foyer_fiscal('nbG', period)
+        nbpac_invalideR = foyer_fiscal('nbR', period)
+        nbpac_invalideI = foyer_fiscal('nbI', period)
         f7vt = foyer_fiscal('f7vt', period)
         f7vx = foyer_fiscal('f7vx', period)
         f7vz = foyer_fiscal('f7vz', period)

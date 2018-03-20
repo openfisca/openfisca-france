@@ -1,13 +1,24 @@
 # Changelog
 
-### 20.5.1 [#927](https://github.com/openfisca/openfisca-france/pull/927)
+### 20.6.1 [#927](https://github.com/openfisca/openfisca-france/pull/927)
 
 * Correction d'un crash.
 * Zones impactées : openfisca_france/reforms/landais_piketty_saez.py.
 * Détails :
    - La réforme ne fonctionnait plus à la suite d'un changement de syntaxe qui a conduit à une erreur sur le nom d'une variable dans une formule non-testée.
 
+## 20.6.0 [#910](https://github.com/openfisca/openfisca-france/pull/910)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : 2014 - 2016
+* Détails :
+- Correction de la formule de la réduction Duflot en 2013 (plafonnement)
+- Mise à jour des formules (2014-2016) des réductions d'impôts : 'resimm' (réduction d'impot Malraux), 'locmeu' (réduction d'impôt Censi-Bouvard), 'scelli' (réduction d'impôt Scellier) et 'duflot (réduction d'impôt Duflot) qui sont toutes des réductions d'impôts portant sur les investissements immobiliers
+- Ajout de la réduction d'impôt Pinel crée en 2014
+- Ajout d'inputs variables associées à ces réductions
+
 ### 20.5.1 [#925](https://github.com/openfisca/openfisca-france/pull/925)
+
 * Correction d'un bug
 * Zones impactées : openfisca_france/model/revenus/activite/salarie.py
 * Détails :

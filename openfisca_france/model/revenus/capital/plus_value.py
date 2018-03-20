@@ -212,20 +212,18 @@ class f3va(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Abattement pour durée de détention des titres en cas de départ à la retraite d'un dirigeant appliqué sur des plus-values"
+    label = u""
     # start_date = date(2006, 1, 1)
     definition_period = YEAR
-
 
 class f3vb(Variable):
     cerfa_field = u"3VB"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Abattement pour durée de détention des titres en cas de départ à la retraite d'un dirigeant appliqué sur des moins-values"
+    label = u""
     # start_date = date(2006, 1, 1)
     definition_period = YEAR
-
 
 class f3sg(Variable):
     cerfa_field = u"3SG"
@@ -235,7 +233,6 @@ class f3sg(Variable):
     label = u"Abattement net pour durée de détention : appliqué sur des plus-values"
     # start_date = date(2013, 1, 1)
     definition_period = YEAR
-
 
 class f3sh(Variable):
     cerfa_field = u"3SH"
@@ -247,7 +244,6 @@ class f3sh(Variable):
     end = '2014-12-31'
     definition_period = YEAR
 
-
 class f3sl(Variable):
     cerfa_field = u"3SL"
     value_type = int
@@ -256,7 +252,6 @@ class f3sl(Variable):
     label = u"Abattement net pour durée de détention renforcée : appliqué sur des plus-values"
     # start_date = date(2013, 1, 1)
     definition_period = YEAR
-
 
 class f3sm(Variable):
     cerfa_field = u"3SM"
@@ -282,6 +277,27 @@ class abattement_net_retraite_dirigeant_pme(Variable):
         f3vb = foyer_fiscal('f3va', period)
 
         return f3va - f3vb
+
+class abatnet_duree_detention(Variable):
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Abattement net pour durée de détention"
+    definition_period = YEAR
+
+    def formula_2013_01_01(foyer_fiscal, period):
+        f3sg = foyer_fiscal('f3sg', period)
+        f3sh = foyer_fiscal('f3sh', period)
+        f3sl = foyer_fiscal('f3sl', period)
+        f3sm = foyer_fiscal('f3sm', period)
+
+        return max_(0, f3sg - f3sh) + max_(0, f3sl - f3sm)
+
+    def formula_2015_01_01(foyer_fiscal, period):
+        f3sg = foyer_fiscal('f3sg', period)
+        f3sl = foyer_fiscal('f3sl', period)
+
+        return f3sg + f3sl 
 
 
 class abattement_net_duree_detention(Variable):

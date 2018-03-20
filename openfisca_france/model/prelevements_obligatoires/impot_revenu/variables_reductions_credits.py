@@ -883,14 +883,33 @@ class f7qp(Variable):
     end = '2009-12-31'
     definition_period = YEAR
 
+class f7pa_2012(Variable):
+    cerfa_field = u"7PA"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 52,63%"
+    end = '2012-12-31'
+    definition_period = YEAR
+
 
 class f7pa(Variable):
     cerfa_field = u"7PA"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 52,63%"
-    end = '2011-12-31'
+    label = u"Investissements destinés à la location meublée non professionnelle : Report du solde de réduction d'impôt non encore imputé 2013"
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+
+class f7pb_2012(Variable):
+    cerfa_field = u"7PB"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 62,5%"
+    end = '2012-12-31'
     definition_period = YEAR
 
 
@@ -899,12 +918,12 @@ class f7pb(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 62,5%"
-    end = '2011-12-31'
+    label = u"Investissements destinés à la location meublée non professionnelle : Report du solde de réduction d'impôt non encore imputé 2013"
+#    start_date = date(2014, 1, 1)
     definition_period = YEAR
 
 
-class f7pc(Variable):
+class f7pc_2011(Variable):
     cerfa_field = u"7PC"
     value_type = int
     unit = 'currency'
@@ -914,13 +933,33 @@ class f7pc(Variable):
     definition_period = YEAR
 
 
-class f7pd(Variable):
+class f7pc(Variable):
+    cerfa_field = u"7PC"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements destinés à la location meublée non professionnelle : Report du solde de réduction d'impôt non encore imputé 2013"
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+
+class f7pd_2012(Variable):
     cerfa_field = u"7PD"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%, Investissements dans votre entreprise, montant de la réduction d' impôt dont vous demandez l'imputation en 2011"
-    end = '2011-12-31'
+    end = '2012-12-31'
+    definition_period = YEAR
+
+
+class f7pd(Variable):
+    cerfa_field = u"7PD"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements destinés à la location meublée non professionnelle : Report du solde de réduction d'impôt non encore imputé 2013"
+#    start_date = date(2014, 1, 1)
     definition_period = YEAR
 
 
@@ -930,7 +969,7 @@ class f7qe(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements ayant fait l'objet avant 1.1.2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%"
-    end = '2009-12-31'
+    # end = '2012-12-31' changes meaning in 2014
     definition_period = YEAR
 
 
@@ -940,7 +979,7 @@ class f7pe(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 52,63%"
-    end = '2011-12-31'
+    # end = '2011-12-31' changes meaning in 2014
     definition_period = YEAR
 
 
@@ -950,7 +989,7 @@ class f7pf(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 62,5%"
-    end = '2011-12-31'
+    # end = '2011-12-31' changes meaning in 2015
     definition_period = YEAR
 
 
@@ -960,7 +999,7 @@ class f7pg(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%, Investissements dans votre entreprise, montant de la réduction d' impôt calculée"
-    end = '2011-12-31'
+    # end = '2011-12-31' changes meaning in 2015
     definition_period = YEAR
 
 
@@ -970,7 +1009,7 @@ class f7ph(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%, Investissements dans votre entreprise, montant de la réduction d' impôt dont vous demandez l'imputation en 2011"
-    end = '2011-12-31'
+    # end = '2011-12-31' changes meaning in 2015
     definition_period = YEAR
 
 
@@ -980,7 +1019,7 @@ class f7pi(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 52,63%"
-    end = '2011-12-31'
+    # end = '2011-12-31' changes meaning in 2015
     definition_period = YEAR
 
 
@@ -990,7 +1029,7 @@ class f7pj(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 62,5%"
-    end = '2011-12-31'
+    # end = '2011-12-31' changes meaning in 2015
     definition_period = YEAR
 
 
@@ -1000,7 +1039,7 @@ class f7pk(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, Investissements dans votre entreprise, montant de la réduction d' impôt calculée"
-    end = '2011-12-31'
+    # end = '2011-12-31' changes meaning in 2016
     definition_period = YEAR
 
 
@@ -1010,7 +1049,7 @@ class f7pl(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, Investissements dans votre entreprise, montant de la réduction d' impôt dont vous demandez l'imputation en 2011"
-    end = '2011-12-31'
+    # end = '2011-12-31' changes meaning in 2016
     definition_period = YEAR
 
 
@@ -1019,7 +1058,7 @@ class f7pm(Variable):
     value_type = int
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet avant 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%"
-    end = '2013-12-31'
+    # end = '2013-12-31' changes meaning in 2016
     definition_period = YEAR
 
 
@@ -1028,7 +1067,7 @@ class f7pn(Variable):
     value_type = int
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 50 %"
-    end = '2013-12-31'
+    # end = '2013-12-31' changes meaning in 2016
     definition_period = YEAR
 
 
@@ -1038,6 +1077,14 @@ class f7po(Variable):
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 60 %"
     end = '2013-12-31'
+    definition_period = YEAR
+
+class f7po(Variable):
+    cerfa_field = u"7PO"
+    value_type = int
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 60 %"
+    #end = '2013-12-31'
     definition_period = YEAR
 
 
@@ -1365,7 +1412,7 @@ class f7lh(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise REPORT : Investissements réalisés en 2010, Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 50%"
-    end = '2011-12-31'
+#    end = '2011-12-31' change meaning in 2015
     definition_period = YEAR
 
 
@@ -1397,7 +1444,7 @@ class f7li(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise REPORT : Investissements réalisés en 2010, Autres investissements réalisés en 2010, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 50%"
-#    start_date = date(2011, 1, 1)
+#    start_date = date(2011, 1, 1) changes meaningin 2015
     definition_period = YEAR
 
 
@@ -1720,8 +1767,7 @@ class fhtc(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, Investissements dans votre entreprise avec exploitation directe, montant de la réduction d’impôt calculé"
-#    start_date = date(2013, 1, 1)
+    #end = '2012-12-31' changes meaning in 2014
     definition_period = YEAR
 
 
@@ -1779,8 +1825,7 @@ class f7iy(Variable):
     cerfa_field = u"7IY"
     value_type = int
     entity = FoyerFiscal
-    label = u"Report du solde de réduction d'impôt non encore imputé sur les investissements réalisés"
-#    start_date = date(2013, 1, 1)
+    # end = '2009-12-31' changes meaning in 2014
     definition_period = YEAR
 
 
@@ -1821,8 +1866,7 @@ class f7rb(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Travaux de restauration immobilière dans un secteur sauvegardé ou assimilé"
-#    start_date = date(2009, 1, 1)
+    # end = '2012-12-31' changes meaning in 2014
     definition_period = YEAR
 
 
@@ -2212,7 +2256,7 @@ class f7ua(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    end = '2007-12-31'
+    #end = '2007-12-31' starts again in 2014 with other meaning
     definition_period = YEAR
 
 class f7ub(Variable):
@@ -2450,6 +2494,29 @@ class f7lg(Variable):
 #    start_date = date(2010, 1, 1)
     definition_period = YEAR
 
+class f7lk(Variable):
+    cerfa_field = u"7LK"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+#    start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+class f7ll(Variable):
+    cerfa_field = u"7LL"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+#    start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+class f7lo(Variable):
+    cerfa_field = u"7LO"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+#    start_date = date(2016, 1, 1)
+    definition_period = YEAR
 
 class f7ma(Variable):
     cerfa_field = u"7MA"
@@ -2482,7 +2549,7 @@ class f7oa(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2011, Investissements immobiliers engagés avant le 1.1.2011, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50% avant 2009"
-#    start_date = date(2011, 1, 1)
+#    start_date = date(2011, 1, 1) changes meaning in 2014
     definition_period = YEAR
 
 
@@ -2492,7 +2559,7 @@ class f7ob(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2011, Investissements immobiliers engagés avant le 1.1.2011, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50% en 2009"
-#    start_date = date(2011, 1, 1)
+#    start_date = date(2011, 1, 1) changes meaning
     definition_period = YEAR
 
 
@@ -2502,7 +2569,7 @@ class f7oc(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2011, Investissements immobiliers engagés avant le 1.1.2011, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50% en 2010"
-#    start_date = date(2011, 1, 1)
+#    start_date = date(2011, 1, 1) changes meaning in 2014
     definition_period = YEAR
 
 
@@ -2512,7 +2579,7 @@ class f7oh(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2011, Investissements immobiliers engagés en 2011, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50% avant 2009"
-#    start_date = date(2011, 1, 1)
+#    start_date = date(2011, 1, 1) changes meaning in 2015
     definition_period = YEAR
 
 
@@ -2522,7 +2589,7 @@ class f7oi(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2011, Investissements immobiliers engagés en 2011, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50% en 2009"
-#    start_date = date(2011, 1, 1)
+#    start_date = date(2011, 1, 1) changes meaning in 2015
     definition_period = YEAR
 
 
@@ -2532,7 +2599,7 @@ class f7oj(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2011, Investissements immobiliers engagés en 2011, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50% en 2010"
-#    start_date = date(2011, 1, 1)
+#    start_date = date(2011, 1, 1) changes meaning in 2015
     definition_period = YEAR
 
 
@@ -2542,7 +2609,7 @@ class f7ok(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2011, Autres investissements"
-#    start_date = date(2011, 1, 1)
+#    start_date = date(2011, 1, 1) + changes meaning in 2016
     definition_period = YEAR
 
 
@@ -2552,7 +2619,7 @@ class f7ol(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2012, Investissements immobiliers  que vous avez engagé avant le 1.1.2011, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 % avant 2009"
-#    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1) + changes meaning in 2016
     definition_period = YEAR
 
 
@@ -2562,7 +2629,7 @@ class f7om(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2012, Investissements immobiliers  que vous avez engagé avant le 1.1.2011, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 % en 2009"
-#    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1) + changes meaning in 2016
     definition_period = YEAR
 
 
@@ -2572,7 +2639,7 @@ class f7on(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2012, Investissements immobiliers  que vous avez engagé avant le 1.1.2011, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 % en 2010"
-#    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1) + changes meaning in 2016
     definition_period = YEAR
 
 
@@ -2582,7 +2649,7 @@ class f7oo(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2012, Investissements immobiliers  que vous avez engagé en 2011, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 % avant 2009"
-#    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1) + changes meaning in 2016
     definition_period = YEAR
 
 
@@ -2652,7 +2719,7 @@ class f7ov(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2012, Investissements immobiliers  que vous avez engagé en 2012, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 % en 2011"
-#    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1) + changes meaning in 2015
     definition_period = YEAR
 
 
@@ -2662,7 +2729,7 @@ class f7ow(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2012, "
-#    start_date = date(2012, 1, 1)
+#    start_date = date(2012, 1, 1) + changes meaning in 2016
     definition_period = YEAR
 
  #TODO: 7O* : end ?
@@ -2885,6 +2952,7 @@ class f7ka(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     label = u"Dépenses de protection du patrimoine naturel"
+    end = '2013-12-31'
 #    start_date = date(2010, 1, 1)
     definition_period = YEAR
 
@@ -3026,7 +3094,7 @@ class f7tf(Variable):
     entity = FoyerFiscal
     label = u"Investissements forestiers"
 #    start_date = date(2011, 1, 1)
-    end = '2013-12-31'
+#    end = '2013-12-31'
     definition_period = YEAR
 
 
@@ -3201,6 +3269,16 @@ class f7ls(Variable):
     definition_period = YEAR
 
 
+class f7lt(Variable):
+    cerfa_field = u"7LT"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Investissements réalisés et achevés en 2010 ; réalisés en 2010 et achevés en 2011 ; réalisés et achevés en 2011 avec engagement en 2010, Report de l'année 2013"
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+
 class f7lm(Variable):
     cerfa_field = u"7LM"
     value_type = int
@@ -3208,6 +3286,16 @@ class f7lm(Variable):
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Investissements réalisés et achevés en 2009 ou 2010 ou réalisés et achevés en 2010 avec engagement avant le 1.1.2010"
 #    start_date = date(2013, 1, 1)
+    definition_period = YEAR
+
+
+class f7ln(Variable):
+    cerfa_field = u"7LN"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Investissements réalisés et achevés en 2009 ou 2010 ou réalisés et achevés en 2010 avec engagement avant le 1.1.2010, Report de l'année 2013"
+#    start_date = date(2014, 1, 1)
     definition_period = YEAR
 
 
@@ -3220,6 +3308,15 @@ class f7lz(Variable):
 #    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
+class f7lx(Variable):
+    cerfa_field = u"7LX"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Report du solde de réduction d'impôt de l'année 2013"
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
 
 class f7mg(Variable):
     cerfa_field = u"7MG"
@@ -3228,6 +3325,35 @@ class f7mg(Variable):
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Investissements réalisés et achevés en 2012 : report du solde de réduction d'impôt de l'année 2012"
 #    start_date = date(2013, 1, 1)
+    definition_period = YEAR
+
+
+class f7mh(Variable):
+    cerfa_field = u"7MH"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Investissements réalisés et achevés en 2012 : report du solde de réduction d'impôt de l'année 2013"
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+class f7lj(Variable):
+    cerfa_field = u"7LJ"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Investissements réalisés en 2012 et achevés de 2012 à 2014 : report du solde de réduction d'impôt de l'année 2014"
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+
+class f7lp(Variable):
+    cerfa_field = u"7LP"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Investissements réalisés en 2012 et achevés de 2012 à 2015 : report du solde de réduction d'impôt de l'année 2015"
+#    start_date = date(2016, 1, 1)
     definition_period = YEAR
 
 
@@ -3801,6 +3927,238 @@ class f7fd(Variable):
     definition_period = YEAR
 
 
+class f7ya(Variable):
+    cerfa_field = u"7YA"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements locatifs neufs dispositif Scellier : Reports concernant les investissements achevés ou acquis au cours des années antérieures, Investissements achevés en 2013 et réalisés du 1.1.2013 au 31.3.2013 avec promesse d'achat en 2012, en métropole, dans les DOM, à Saint-Barthélemy, Saint-Martin, Saint-Pierre-et-Miquelon"
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+class f7yb(Variable):
+    cerfa_field = u"7YB"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements locatifs neufs dispositif Scellier : Reports concernant les investissements achevés ou acquis au cours des années antérieures, Investissements achevés en 2013 et réalisés en 2012, en métropole, dans les DOM, à Saint-Barthélemy, Saint-Martin, Saint-Pierre-et-Miquelon"
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+class f7yc(Variable):
+    cerfa_field = u"7YC"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements locatifs neufs dispositif Scellier : Reports concernant les investissements achevés ou acquis au cours des années antérieures, Investissements achevés en 2013 et réalisés en 2012 avec promesse d'achat en 2011, en métropole, dans les DOM, à Saint-Barthélemy, Saint-Martin, Saint-Pierre-et-Miquelon"
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+class f7yd(Variable):
+    cerfa_field = u"7YD"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements locatifs neufs dispositif Scellier : Reports concernant les investissements achevés ou acquis au cours des années antérieures, Investissements achevés en 2013 et réalisés en 2011, en métropole, dans les DOM, à Saint-Barthélemy, Saint-Martin, Saint-Pierre-et-Miquelon"
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+class f7ye(Variable):
+    cerfa_field = u"7YE"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements locatifs neufs dispositif Scellier : Reports concernant les investissements achevés ou acquis au cours des années antérieures, Investissements achevés en 2013 et réalisés en 2011 avec promesse d'achat en 2010, en métropole, dans les DOM, à Saint-Barthélemy, Saint-Martin, Saint-Pierre-et-Miquelon"
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+class f7yf(Variable):
+    cerfa_field = u"7YF"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements locatifs neufs dispositif Scellier : Reports concernant les investissements achevés ou acquis au cours des années antérieures, Investissements achevés en 2013 et réalisés en 2010, en métropole, dans les DOM, à Saint-Barthélemy, Saint-Martin, Saint-Pierre-et-Miquelon"
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+class f7yg(Variable):
+    cerfa_field = u"7YG"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements locatifs neufs dispositif Scellier : Reports concernant les investissements achevés ou acquis au cours des années antérieures, Investissements achevés en 2013 et réalisés en 2010 avec promesse d'achat avant le 1.1.2010, en métropole, dans les DOM, à Saint-Barthélemy, Saint-Martin, Saint-Pierre-et-Miquelon"
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+class f7yh(Variable):
+    cerfa_field = u"7YH"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements locatifs neufs dispositif Scellier : Report concernant les investissements réalisés en 2009 et achevés en 2013 en métropole et dans les DOM-COM "
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+class f7yi(Variable):
+    cerfa_field = u"7YI"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements locatifs neufs dispositif Scellier : Reports concernant les investissements achevés ou acquis au cours des années antérieures, Investissements achevés en 2013 et réalisés en 2009, en métropole, dans les DOM, à Saint-Barthélemy, Saint-Martin, Saint-Pierre-et-Miquelon"
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+class f7yj(Variable):
+    cerfa_field = u"7YJ"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Scellier: report de 1/5 de la réduction d'impôt des investissements réalisés en 2012 et achevés en 2013 en Polynésie, en Nouvelle Calédonie et à Wallis et Futuna "
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+class f7yk(Variable):
+    cerfa_field = u"7YK"
+    value_type = int
+    entity = FoyerFiscal
+    label = u"Scellier: report de 1/5 de la réduction d'impôt des investissements réalisés en 2011 ou réalisés en 2012 avec promesse d'achat en 2011 et achevés en 2013 en Polynésie, en Nouvelle Calédonie et à Wallis et Futuna "
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+class f7yl(Variable):
+    cerfa_field = u"7YL"
+    value_type = int
+    entity = FoyerFiscal
+    label = u"Scellier: report de 1/5 de la réduction d'impôt des investissements réalisés en 2011 avec promesse d'achat en 2010 et achevés en 2013 en Polynésie, en Nouvelle Calédonie et à Wallis et Futuna "
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+class f7ym(Variable):
+    cerfa_field = u"7YM"
+    value_type = int
+    entity = FoyerFiscal
+    label = u"Scellier: report de 1/9 de la réduction d'impôt des investissements réalisés en 2012 ou réalisés du 1.1.2013 au 31.3.2013 avec promesse d'achat en 2012 et achevés en 2014 en métropole et dans les DOM-COM"
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+
+class f7yt(Variable):
+    cerfa_field = u"7YT"
+    value_type = int
+    entity = FoyerFiscal
+    label = u"Scellier: report de 1/9 de la réduction d'impôt des investissements réalisés en 2012 ou réalisés du 1.1.2013 au 31.3.2013 avec promesse d'achat en 2012 et achevés en 2015 en métropole et dans les DOM-COM"
+#    start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+
+class f7yn(Variable):
+    cerfa_field = u"7YN"
+    value_type = int
+    entity = FoyerFiscal
+    label = u"Scellier: report de 1/9 de la réduction d'impôt des investissements réalisés en 2011 ou réalisés en 2012 avec promesse d'achat en 2011 et achevés en 2014 en métropole et dans les DOM-COM"
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+
+class f7yu(Variable):
+    cerfa_field = u"7YU"
+    value_type = int
+    entity = FoyerFiscal
+    label = u"Scellier: report de 1/9 de la réduction d'impôt des investissements réalisés en 2011 ou réalisés en 2012 avec promesse d'achat en 2011 et achevés en 2015 en métropole et dans les DOM-COM"
+#    start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+
+class f7yo(Variable):
+    cerfa_field = u"7YO"
+    value_type = int
+    entity = FoyerFiscal
+    label = u"Scellier: report de 1/9 de la réduction d'impôt des investissements réalisés en 2010 ou réalisés en 2011 avec promesse d'achat en 2010 et achevés en 2014 en métropole et dans les DOM-COM"
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+
+class f7yv(Variable):
+    cerfa_field = u"7YV"
+    value_type = int
+    entity = FoyerFiscal
+    label = u"Scellier: report de 1/9 de la réduction d'impôt des investissements réalisés en 2010 ou réalisés en 2011 avec promesse d'achat en 2010 et achevés en 2015 en métropole et dans les DOM-COM"
+#    start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+
+class f7yp(Variable):
+    cerfa_field = u"7YP"
+    value_type = int
+    entity = FoyerFiscal
+    label = u"Scellier: report de 1/9 de la réduction d'impôt des investissements réalisés en 2009 ou réalisés en 2010 avec promesse d'achat en 2010 et achevés en 2014 en métropole et dans les DOM-COM"
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+
+class f7yw(Variable):
+    cerfa_field = u"7YW"
+    value_type = int
+    entity = FoyerFiscal
+    label = u"Scellier: report de 1/9 de la réduction d'impôt des investissements réalisés en 2009 ou réalisés en 2010 avec promesse d'achat en 2010 et achevés en 2015 en métropole et dans les DOM-COM"
+#    start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+
+class f7yq(Variable):
+    cerfa_field = u"7YQ"
+    value_type = int
+    entity = FoyerFiscal
+    label = u"Scellier: report de 1/5 de la réduction d'impôt des investissements réalisés en 2012 ou réalisés du 1.1.2013 au 31.3.2013 avec promesse d'achat en 2012 et achevés en 2014 en Polynésie, en Nouvelle Calédonie et à Wallis et Futuna "
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+
+class f7yx(Variable):
+    cerfa_field = u"7YX"
+    value_type = int
+    entity = FoyerFiscal
+    label = u"Scellier: report de 1/5 de la réduction d'impôt des investissements réalisés en 2012 ou réalisés du 1.1.2013 au 31.3.2013 avec promesse d'achat en 2012 et achevés en 2015 en Polynésie, en Nouvelle Calédonie et à Wallis et Futuna "
+#    start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+
+class f7yr(Variable):
+    cerfa_field = u"7YR"
+    value_type = int
+    entity = FoyerFiscal
+    label = u"Scellier: report de 1/5 de la réduction d'impôt des investissements réalisés en 2011 ou réalisés en 2012 avec promesse d'achat en 2011 et achevés en 2014 en Polynésie, en Nouvelle Calédonie et à Wallis et Futuna "
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+
+class f7yy(Variable):
+    cerfa_field = u"7YY"
+    value_type = int
+    entity = FoyerFiscal
+    label = u"Scellier: report de 1/5 de la réduction d'impôt des investissements réalisés en 2011 ou réalisés en 2012 avec promesse d'achat en 2011 et achevés en 2015 en Polynésie, en Nouvelle Calédonie et à Wallis et Futuna "
+#    start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+
+class f7ys(Variable):
+    cerfa_field = u"7YS"
+    value_type = int
+    entity = FoyerFiscal
+    label = u"Scellier: report de 1/5 de la réduction d'impôt des investissements réalisés en 2011 avec promesse d'achat en 2010 et achevés en 2014 en Polynésie, en Nouvelle Calédonie et à Wallis et Futuna "
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+
+class f7yz(Variable):
+    cerfa_field = u"7YZ"
+    value_type = int
+    entity = FoyerFiscal
+    label = u"Scellier: report de 1/5 de la réduction d'impôt des investissements réalisés en 2011 avec promesse d'achat en 2010 et achevés en 2015 en Polynésie, en Nouvelle Calédonie et à Wallis et Futuna "
+#    start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+
 # Investissement en vue de la location meublée non professionnelle dans certains établissements ou résidences
 class f7ij(Variable):
     cerfa_field = u"7IJ"
@@ -4062,6 +4420,16 @@ class f7ju(Variable):
     definition_period = YEAR
 
 
+class f7ou(Variable):
+    cerfa_field = u"7OU"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés en 2014"
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+
 class f7jv(Variable):
     cerfa_field = u"7JV"
     value_type = int
@@ -4099,6 +4467,105 @@ class f7jy(Variable):
     entity = FoyerFiscal
     label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2012, réalisés en 2010 avec promesse d'achat en 2009 ou réalisés en 2009"
 #    start_date = date(2013, 1, 1)
+    definition_period = YEAR
+
+
+class f7oa(Variable):
+    cerfa_field = u"7OA"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements destinés à la location meublée non professionnelle : Report de 1/9 de la réduction d'impôt. Investissements réalisés et achevés en 2013"
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+
+class f7ob(Variable):
+    cerfa_field = u"7OB"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements destinés à la location meublée non professionnelle : Report de 1/9 de la réduction d'impôt. Investissements achevés en 2013 et réalisés en 2012 ou réalisés en 2013 avec promesse d'achat en 2012"
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+
+class f7oc(Variable):
+    cerfa_field = u"7OC"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements destinés à la location meublée non professionnelle : Report de 1/9 de la réduction d'impôt. Investissements achevés en 2013 et réalisés en 2011 ou réalisés en 2012 avec promesse d'achat en 2011"
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+
+class f7od(Variable):
+    cerfa_field = u"7OD"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements destinés à la location meublée non professionnelle : Report de 1/9 de la réduction d'impôt. Investissements achevés en 2013 et réalisés en 2010 ou réalisés en 2011 avec promesse d'achat en 2010"
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+
+class f7oe(Variable):
+    cerfa_field = u"7OE"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements destinés à la location meublée non professionnelle : Report de 1/9 de la réduction d'impôt. Investissements achevés en 2013 et réalisés en 2009 ou réalisés en 2010 avec promesse d'achat en 2009"
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+class f7of(Variable):
+    cerfa_field = u"7OF"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements destinés à la location meublée non professionnelle : Report de 1/9 de la réduction d'impôt. Investissements réalisés en 2013 ou 2014 et achevés en 2014"
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+
+class f7og(Variable):
+    cerfa_field = u"7OG"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements destinés à la location meublée non professionnelle : Report de 1/9 de la réduction d'impôt. Investissements achevés en 2014 et réalisés en 2012 ou réalisés en 2013 avec promesse d'achat en 2012"
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+
+class f7oh(Variable):
+    cerfa_field = u"7OH"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements destinés à la location meublée non professionnelle : Report de 1/9 de la réduction d'impôt. Investissements achevés en 2014 et réalisés en 2011 ou réalisés en 2012 avec promesse d'achat en 2011"
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+
+class f7oi(Variable):
+    cerfa_field = u"7OI"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements destinés à la location meublée non professionnelle : Report de 1/9 de la réduction d'impôt. Investissements achevés en 2014 et réalisés en 2010 ou réalisés en 2011 avec promesse d'achat en 2010"
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+
+class f7oj(Variable):
+    cerfa_field = u"7OJ"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements destinés à la location meublée non professionnelle : Report de 1/9 de la réduction d'impôt. Investissements achevés en 2014 et réalisés en 2009 ou réalisés en 2010 avec promesse d'achat en 2009"
+#    start_date = date(2015, 1, 1)
     definition_period = YEAR
 
 
@@ -4465,6 +4932,144 @@ class f7gi(Variable):
 #    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
+
+class f7ek(Variable):
+    cerfa_field = u"7EK"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements locatifs intermÃ©diaires du 1.1 au 31.8.2014 en mÃ©tropole"
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+
+class f7el(Variable):
+    cerfa_field = u"7EL"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements locatifs intermÃ©diaires du 1.1 au 31.8.2014 en outre-mer"
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+
+class f7fi(Variable):
+    cerfa_field = u"7FI"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Report concernant les investissements rÃ©alisÃ©s et achevÃ©s en 2013 en mÃ©tropole et outre-mer"
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+class f7fk(Variable):
+    cerfa_field = u"7FK"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Report concernant les investissements rÃ©alisÃ©s et achevÃ©s en 2014 en mÃ©tropole et outre-mer"
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+class f7fr(Variable):
+    cerfa_field = u"7FR"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Report concernant les investissements rÃ©alisÃ©s et achevÃ©s en 2015 en mÃ©tropole et outre-mer"
+#    start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+# Réduction d'impôts sur les investissements locatifs intermédiaires (loi Pinel)
+
+class f7qa(Variable):
+    cerfa_field = u"7QA"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements locatifs intermédiaires en métropole réalisés du 1.9.2014 au 31.12.2014 avec engagement de location 6 ans"
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+
+class f7ai(Variable):
+    cerfa_field = u"7AI"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Report concernant les investissements locatifs intermédiaires en métropole 2014 avec engagement de location 6 ans"
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+
+class f7bi(Variable):
+    cerfa_field = u"7BI"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Report concernant les investissements locatifs intermédiaires en métropole réalisés 2014 avec engagement de location 9 ans"
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+
+class f7ci(Variable):
+    cerfa_field = u"7CI"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Report concernant les investissements locatifs intermédiaires en outre-mer 2014 avec engagement de location 6 ans"
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+
+class f7di(Variable):
+    cerfa_field = u"7DI"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Report concernant les investissements locatifs intermédiaires en outre-mer 2014 avec engagement de location 9 ans"
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+
+class f7bz(Variable):
+    cerfa_field = u"7BZ"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Report concernant les investissements locatifs intermédiaires en métropole 2015 avec engagement de location 6 ans"
+#    start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+
+class f7cz(Variable):
+    cerfa_field = u"7CZ"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Report concernant les investissements locatifs intermédiaires en métropole réalisés 2015 avec engagement de location 9 ans"
+#    start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+
+class f7dz(Variable):
+    cerfa_field = u"7DZ"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Report concernant les investissements locatifs intermédiaires en outre-mer 2015 avec engagement de location 6 ans"
+#    start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+
+class f7ez(Variable):
+    cerfa_field = u"7EZ"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Report concernant les investissements locatifs intermédiaires en outre-mer 2015 avec engagement de location 9 ans"
+#    start_date = date(2016, 1, 1)
+    definition_period = YEAR
 
 
 # section 8
