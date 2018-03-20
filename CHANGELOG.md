@@ -1,6 +1,13 @@
 # Changelog
 
-### 20.6.0 [#910](https://github.com/openfisca/openfisca-france/pull/910)
+### 20.6.1 [#927](https://github.com/openfisca/openfisca-france/pull/927)
+
+* Correction d'un crash.
+* Zones impactées : openfisca_france/reforms/landais_piketty_saez.py.
+* Détails :
+   - La réforme ne fonctionnait plus à la suite d'un changement de syntaxe qui a conduit à une erreur sur le nom d'une variable dans une formule non-testée.
+
+## 20.6.0 [#910](https://github.com/openfisca/openfisca-france/pull/910)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : 2014 - 2016
@@ -10,15 +17,15 @@
 - Ajout de la réduction d'impôt Pinel crée en 2014
 - Ajout d'inputs variables associées à ces réductions
 
+### 20.5.1 [#925](https://github.com/openfisca/openfisca-france/pull/925)
 
-### 20.5.1
 * Correction d'un bug
 * Zones impactées : openfisca_france/model/revenus/activite/salarie.py
 * Détails :
   - Autorise, pour les fonctionnaires, le basculement automatique en mensuel si les revenus sont renseignés en annuel
   - Adopte un comportement similaire aux autres revenus des salariés
 
-### 20.5.0 [#909](https://github.com/openfisca/openfisca-france/pull/909)
+## 20.5.0 [#909](https://github.com/openfisca/openfisca-france/pull/909)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : 2004 - 2016
