@@ -2281,12 +2281,22 @@ class f7uc(Variable):
     definition_period = YEAR
 
 
+class f7ui_2008(Variable):
+    cerfa_field = u"7UI"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    end = '2008-12-31'
+    definition_period = YEAR
+
+
 class f7ui(Variable):
     cerfa_field = u"7UI"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    # end = '2008-12-31' changes meaning in 2014
+    label = u"Investissements forestiers : contrat de gestion avec adhésion à une organisation de producteurs "
+#    start_date = date(2014, 1, 1)
     definition_period = YEAR
 
 
