@@ -139,10 +139,13 @@ class cmu_c_plafond(Variable):
 
     def formula(famille, period, parameters):
         """
-        Le plafond dépends du nombre de personnes dans le foyer.
-        Il y a 3 taux: celui pour la 2eme personne, celui pour les 3e et 4e personne, et celui pour toute personne supplémentaire
-        Si un enfant est en garde alternée, on ne prend en compte que la moitié de son coefficient.
-        Pour savoir quel coefficient est attribué à chaque enfant, il faut trier les enfants de chaque famille par age.
+        - Le plafond dépends du nombre de personnes dans le foyer.
+        - À un plafond de base pour une personne, on applique pour chaque personne supplémentaire un certain coefficient supplémentaire
+                - Un coefficient pour la 2eme personne,
+                - Un coefficient pour les 3e et 4e personne,
+                - Un coefficient pour toute personne supplémentaire
+        - Si un enfant est en garde alternée, on ne prend en compte que la moitié de son coefficient.
+        - Pour savoir quel coefficient est attribué à chaque enfant, il faut trier les enfants de chaque famille par age.
         """
 
         cmu = parameters(period).cmu
