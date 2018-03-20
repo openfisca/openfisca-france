@@ -135,6 +135,7 @@ class cmu_c_plafond(Variable):
     entity = Famille
     label = u"Plafond annuel de ressources pour l'éligibilité à la CMU-C"
     definition_period = MONTH
+    reference = u"https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006753234"
 
     def formula(famille, period, parameters):
         """
