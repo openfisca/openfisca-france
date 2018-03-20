@@ -33,7 +33,6 @@ def test():
 
 #    reference_simulation = scenario.new_simulation(use_baseline = True)
 #
-
     reform_simulation = scenario.new_simulation()
     reform_assiette_csg = reform_simulation.calculate('assiette_csg', period = year)
     reform_impot_revenu_lps = reform_simulation.calculate('impot_revenu_lps', period = year)
@@ -42,3 +41,4 @@ def test():
         ((reform_assiette_csg - 10000) * .25 / 30000 + .25) * reform_assiette_csg,
         absolute_error_margin = 0.01,
         )
+    reform_simulation.calculate('revenu_disponible', period = year)
