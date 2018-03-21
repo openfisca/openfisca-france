@@ -2,9 +2,7 @@
 
 from __future__ import division
 
-from functools import partial
-
-from numpy import absolute as abs_, apply_along_axis, array, int32, logical_or as or_
+from numpy import absolute as abs_, logical_or as or_
 
 from openfisca_france.model.base import *  # noqa analysis:ignore
 
@@ -137,50 +135,57 @@ class cmu_c_plafond(Variable):
     entity = Famille
     label = u"Plafond annuel de ressources pour l'éligibilité à la CMU-C"
     definition_period = MONTH
+    reference = u"https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006753234"
 
-    def formula(self, simulation, period):
-        age_holder = simulation.compute('age', period)
-        alt_holder = simulation.compute('garde_alternee', period)
-        cmu_eligible_majoration_dom = simulation.calculate('cmu_eligible_majoration_dom', period)
-        # cmu_nbp_foyer = simulation.calculate('cmu_nbp_foyer', period)
-        P = simulation.parameters_at(period.start).cmu
+    def formula(famille, period, parameters):
+        """
+        - Le plafond dépends du nombre de personnes dans le foyer.
+        - À un plafond de base pour une personne, on applique pour chaque personne supplémentaire un certain coefficient supplémentaire
+                - Un coefficient pour la 2eme personne,
+                - Un coefficient pour les 3e et 4e personne,
+                - Un coefficient pour toute personne supplémentaire
+        - Si un enfant est en garde alternée, on ne prend en compte que la moitié de son coefficient.
+        - Pour savoir quel coefficient est attribué à chaque enfant, il faut trier les enfants de chaque famille par age.
+        """
 
-        PAC = [PART] + ENFS
+        cmu = parameters(period).cmu
+        age_i = famille.members('age_en_mois', period)
+        is_couple = (famille('nb_parents', period) == 2)
+        is_enfant = famille.members.has_role(Famille.ENFANT)
+        cmu_eligible_majoration_dom = famille('cmu_eligible_majoration_dom', period)
+        coeff_garde_alt_i = where(famille.members('garde_alternee', period), 0.5, 1)
 
-        # Calcul du coefficient personnes à charge, avec prise en compte de la garde alternée
+        rang_dans_fratrie = famille.members.get_rank(famille, - age_i, condition = is_enfant)  # 0 pour l'aîné, 1 pour le cadet, etc.
 
-        # Tableau des coefficients
-        coefficients_array = array(
-            [P.coeff_p2, P.coeff_p3_p4, P.coeff_p3_p4] + [P.coeff_p5_plus] * (len(PAC) - 3)
+        # Famille monoparentale
+
+        coeff_enfant_i = select(
+            [rang_dans_fratrie == 0, rang_dans_fratrie <= 2, rang_dans_fratrie >= 3],
+            [cmu.coeff_p2, cmu.coeff_p3_p4, cmu.coeff_p5_plus]
+            ) * coeff_garde_alt_i
+
+        coeff_monoparental = 1 + famille.sum(coeff_enfant_i, role = famille.ENFANT)
+
+
+        # Couple
+
+        coeff_enfant_i = select(
+            [rang_dans_fratrie <= 1, rang_dans_fratrie >= 2],
+            [cmu.coeff_p3_p4, cmu.coeff_p5_plus]
+            ) * coeff_garde_alt_i
+
+        coeff_couple = 1 + cmu.coeff_p2 + famille.sum(coeff_enfant_i, role = famille.ENFANT)
+
+        coefficient_famille = where(is_couple, coeff_couple, coeff_monoparental)
+        coefficient_dom = 1 + cmu_eligible_majoration_dom * cmu.majoration_dom
+
+        plafonds = (
+            cmu.plafond_base
+            *  coefficient_dom
+            *  coefficient_famille
             )
 
-        # Tri des personnes à charge, le conjoint en premier, les enfants par âge décroissant
-        age_by_role = self.split_by_roles(age_holder, roles = PAC)
-        alt_by_role = self.split_by_roles(alt_holder, roles = PAC)
-
-        age_and_alt_matrix = array(
-            [
-                (role == PART) * 10000 + age_by_role[role] * 10 + alt_by_role[role] - (age_by_role[role] < 0) * 999999
-                for role in sorted(age_by_role)
-                ]
-            ).transpose()
-
-        # Calcul avec matrices intermédiaires
-        reverse_sorted = partial(sorted, reverse = True)
-
-        sorted_age_and_alt_matrix = apply_along_axis(reverse_sorted, 1, age_and_alt_matrix)
-        # Calcule weighted_alt_matrix, qui vaut 0.5 pour les enfants en garde alternée, 1 sinon.
-        sorted_present_matrix = sorted_age_and_alt_matrix >= 0
-        sorted_alt_matrix = (sorted_age_and_alt_matrix % 10) * sorted_present_matrix
-        weighted_alt_matrix = sorted_present_matrix - sorted_alt_matrix * 0.5
-
-        # Calcul final du coefficient
-        coeff_pac = weighted_alt_matrix.dot(coefficients_array)
-
-        return (P.plafond_base *
-            (1 + cmu_eligible_majoration_dom * P.majoration_dom) *
-            (1 + coeff_pac)
-            )
+        return round_(plafonds)
 
 
 class acs_plafond(Variable):
