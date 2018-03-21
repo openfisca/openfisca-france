@@ -7,7 +7,7 @@ from setuptools import setup, find_packages
 
 setup(
     name = 'OpenFisca-France',
-    version = '20.6.2',
+    version = '20.7.0',
     author = 'OpenFisca Team',
     author_email = 'contact@openfisca.fr',
     classifiers = [
@@ -27,7 +27,7 @@ setup(
         ],
     extras_require = {
         'api': [
-            'OpenFisca-Web-API >= 8.0, < 9.0',
+            'OpenFisca-Web-API >= 8.1, < 9.0',
             ],
         'baremes_ipp': [
             'xlrd >= 1.0.0',
@@ -52,7 +52,7 @@ setup(
     include_package_data = True,  # Will read MANIFEST.in
     install_requires = [
         'numpy >= 1.11, < 1.13',
-        'OpenFisca-Core >= 21.5.0, < 22',
+        'OpenFisca-Core >= 22.0.0, < 23',
         'PyYAML >= 3.10',
         'requests >= 2.8',
         ],

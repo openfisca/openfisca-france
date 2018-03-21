@@ -372,8 +372,7 @@ class rsa_enfant_a_charge(Variable):
 
             presence_autres_enfants = famille.sum(enfant * not_(autonomie_financiere) * (age <= age_pac)) > 1
 
-            # individu.famille.sum retourne un résultat qui n'est pas implicitement projeté sur l'individu.
-            return not_(enceinte_fam) * isole * isolement_recent * not_(famille.project(presence_autres_enfants))
+            return not_(enceinte_fam) * isole * isolement_recent * not_(presence_autres_enfants)
 
         rsa_enf_charge = enfant * not_(autonomie_financiere) * (age <= age_pac) * where(
             ouvre_droit_majoration(),
