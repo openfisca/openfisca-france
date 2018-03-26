@@ -1046,13 +1046,33 @@ class fhqe(Variable):
     definition_period = YEAR
 
 
-class f7pe(Variable):
+class f7pe_2012(Variable):
     cerfa_field = u"7PE"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 52,63%"
-    # end = '2012-12-31' changes meaning in 2014
+    end = '2012-12-31'
+    definition_period = YEAR
+
+
+class f7pe(Variable):
+    cerfa_field = u"7PE"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements destinés à la location meublée non professionnelle : Report du solde de réduction d'impôt non encore imputé 2013 (investissements réalisés et achevés en 2013)"
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+
+class f7pf_2012(Variable):
+    cerfa_field = u"7PF"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 62,5%"
+    end = '2012-12-31'
     definition_period = YEAR
 
 
@@ -1061,8 +1081,8 @@ class f7pf(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 62,5%"
-    # end = '2012-12-31' changes meaning in 2015
+    label = u"Investissements destinés à la location meublée non professionnelle : Report du solde de réduction d'impôt non encore imputé 2014 (investissements réalisés en 2009 et achevés de 2010 à 2015)"
+#    start_date = date(2015, 1, 1)
     definition_period = YEAR
 
 
@@ -1113,13 +1133,23 @@ class fhph(Variable):
     definition_period = YEAR
 
 
-class f7pi(Variable):
+class f7pi_2012(Variable):
     cerfa_field = u"7PI"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 52,63%"
-    # end = '2012-12-31' changes meaning in 2015
+    end = '2012-12-31'
+    definition_period = YEAR
+
+
+class f7pi(Variable):
+    cerfa_field = u"7PI"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements destinés à la location meublée non professionnelle : Report du solde de réduction d'impôt non encore imputé 2014 (investissements réalisés en 2012 et achevés de 2012 à 2015)"
+#    start_date = date(2015, 1, 1)
     definition_period = YEAR
 
 
@@ -1132,13 +1162,23 @@ class fhpi(Variable):
     definition_period = YEAR
 
 
-class f7pj(Variable):
+class f7pj_2012(Variable):
     cerfa_field = u"7PJ"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 62,5%"
-    # end = '2012-12-31' changes meaning in 2015
+    end = '2012-12-31'
+    definition_period = YEAR
+
+
+class f7pj(Variable):
+    cerfa_field = u"7PJ"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements destinés à la location meublée non professionnelle : Report du solde de réduction d'impôt non encore imputé 2014 (investissements réalisés et achevés de 2013 à 2015)"
+#    start_date = date(2015, 1, 1)
     definition_period = YEAR
 
 
@@ -1851,8 +1891,19 @@ class f7lh(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise REPORT : Investissements réalisés en 2010, Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 50%"
-#    end = '2012-12-31' change meaning in 2015
+    end = '2012-12-31'
     definition_period = YEAR
+
+
+class f7lh(Variable):
+    cerfa_field = u"7LH"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Investissements réalisés et achevés en 2010 ; réalisés en 2010 et achevés en 2011 ; réalisés et achevés en 2011 avec engagement en 2010, Report de l'année 2014"
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
 
 class fhlh(Variable):
     cerfa_field = u"HLH"
