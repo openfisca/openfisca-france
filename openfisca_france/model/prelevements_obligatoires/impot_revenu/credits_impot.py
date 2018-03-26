@@ -1420,9 +1420,9 @@ class quaenv(Variable):
         max1 = max_(0, max0 - f7wf)
         max2 = max_(0, max1 - f7wg)
         return (
-            P.taux_wf * min_(f7wf, max0) +
-            P.taux_wg * min_(f7wg, max1) +
-            P.taux_wh * min_(f7wh, max2)
+            P.taux_wf * min_(f7wf, max0) 
+            + P.taux_wg * min_(f7wg, max1)
+            + P.taux_wh * min_(f7wh, max2)
             )
 
     def formula_2006_01_01(foyer_fiscal, period, parameters):
@@ -1445,10 +1445,10 @@ class quaenv(Variable):
         max2 = max_(0, max1 - f7wg)
         max3 = max_(0, max2 - f7wh)
         return (
-            P.taux_wf * min_(f7wf, max0) +
-            P.taux_wg * min_(f7wg, max1) +
-            P.taux_wh * min_(f7wh, max2) +
-            P.taux_wq * min_(f7wq, max3)
+            P.taux_wf * min_(f7wf, max0)
+            + P.taux_wg * min_(f7wg, max1)
+            + P.taux_wh * min_(f7wh, max2)
+            + P.taux_wq * min_(f7wq, max3)
             )
 
     def formula_2009_01_01(foyer_fiscal, period, parameters):
@@ -1484,15 +1484,15 @@ class quaenv(Variable):
         max8 = max_(0, max7 - f7sb)
 
         return or_(not_(f7we), rfr < P.max_rfr) * (
-            P.taux_wf * min_(f7wf, max0) +
-            P.taux_se * min_(f7se, max1) +
-            P.taux_wk * min_(f7wk, max2) +
-            P.taux_sd * min_(f7sd, max3) +
-            P.taux_wg * min_(f7wg, max4) +
-            P.taux_sc * min_(f7sc, max5) +
-            P.taux_wh * min_(f7wh, max6) +
-            P.taux_sb * min_(f7sb, max7) +
-            P.taux_wq * min_(f7wq, max8)
+            P.taux_wf * min_(f7wf, max0) 
+            + P.taux_se * min_(f7se, max1)
+            + P.taux_wk * min_(f7wk, max2)
+            + P.taux_sd * min_(f7sd, max3)
+            + P.taux_wg * min_(f7wg, max4)
+            + P.taux_sc * min_(f7sc, max5)
+            + P.taux_wh * min_(f7wh, max6)
+            + P.taux_sb * min_(f7sb, max7)
+            + P.taux_wq * min_(f7wq, max8)
             )
 
     def formula_2010_01_01(foyer_fiscal, period, parameters):
@@ -1526,14 +1526,14 @@ class quaenv(Variable):
         max6 = max_(0, max5 - f7sb)
         max7 = max_(0, max6 - f7wq)
         return not_(f7wg) * or_(not_(f7we), (rfr < P.max_rfr)) * (
-            P.taux_wf * min_(f7wf, max0) +
-            P.taux_se * min_(f7se, max1) +
-            P.taux_wk * min_(f7wk, max2) +
-            P.taux_sd * min_(f7sd, max3) +
-            P.taux_wh * min_(f7wh, max4) +
-            P.taux_sb * min_(f7sb, max5) +
-            P.taux_wq * min_(f7wq, max6) +
-            P.taux_sh * min_(f7sh, max7)
+            P.taux_wf * min_(f7wf, max0)
+            + P.taux_se * min_(f7se, max1)
+            + P.taux_wk * min_(f7wk, max2)
+            + P.taux_sd * min_(f7sd, max3)
+            + P.taux_wh * min_(f7wh, max4)
+            + P.taux_sb * min_(f7sb, max5)
+            + P.taux_wq * min_(f7wq, max6)
+            + P.taux_sh * min_(f7sh, max7)
             )
 
     def formula_2012_01_01(foyer_fiscal, period, parameters):
@@ -1586,8 +1586,12 @@ class quaenv(Variable):
         maxi4 = max_(0, maxi3 - f7tv)
         maxi5 = max_(0, maxi4 - f7tu)
         collectif = (
-            P.taux_ty * min_(f7ty, max0) + P.taux_tx * min_(f7tx, maxi1) + P.taux_tw * min_(f7tw, maxi2) +
-            P.taux_tv * min_(f7tv, maxi3) + P.taux_tu * min_(f7tu, maxi4) + P.taux_tt * min_(f7tt, maxi5)
+            P.taux_ty * min_(f7ty, max0)
+            + P.taux_tx * min_(f7tx, maxi1)
+            + P.taux_tw * min_(f7tw, maxi2)
+            + P.taux_tv * min_(f7tv, maxi3)
+            + P.taux_tu * min_(f7tu, maxi4)
+            + P.taux_tt * min_(f7tt, maxi5)
             )
 
         max1 = max_(0, max0 - quaenv_bouquet * (f7ss + f7st) - not_(quaenv_bouquet) * (f7ss + f7st + f7sv))
@@ -1600,22 +1604,22 @@ class quaenv(Variable):
         max8 = max_(0, max7 - quaenv_bouquet * (f7sm))
         montant = (
             quaenv_bouquet * (
-                P.taux10 * min_(max8, f7sk + f7sl) +
-                P.taux11 * min_(max7, f7sm) +
-                P.taux15 * min_(max6, f7sf + f7si + f7su + f7sw) +
-                P.taux18 * min_(max5, f7sd + f7sj) +
-                P.taux23 * min_(max4, f7sg + f7sh + f7so + f7sp) +
-                P.taux26 * min_(max3, f7se) +
-                P.taux32 * min_(max2, f7sv) +
-                P.taux34 * min_(max1, f7sn + f7sr + f7sq) +
-                P.taux40 * min_(max0, f7ss + f7st)) +
+                P.taux10 * min_(max8, f7sk + f7sl)
+                + P.taux11 * min_(max7, f7sm)
+                + P.taux15 * min_(max6, f7sf + f7si + f7su + f7sw)
+                + P.taux18 * min_(max5, f7sd + f7sj)
+                + P.taux23 * min_(max4, f7sg + f7sh + f7so + f7sp)
+                + P.taux26 * min_(max3, f7se)
+                + P.taux32 * min_(max2, f7sv)
+                + P.taux34 * min_(max1, f7sn + f7sr + f7sq)
+                + P.taux40 * min_(max0, f7ss + f7st))
             (not_(quaenv_bouquet) * (
-                P.taux32 * min_(max0, f7ss + f7st + f7sv) +
-                P.taux26 * min_(max1, f7sn + f7sq + f7sr) +
-                P.taux17 * min_(max2, f7se) +
-                P.taux15 * min_(max3, f7sf + f7sg + f7sh + f7si + f7so + f7su + f7sw + f7sp) +
-                P.taux11 * min_(max4, f7sm) +
-                P.taux10 * min_(max5, f7sd + not_(f7wk) * (f7sj + f7sk + f7sl)))
+                P.taux32 * min_(max0, f7ss + f7st + f7sv)
+                + P.taux26 * min_(max1, f7sn + f7sq + f7sr)
+                + P.taux17 * min_(max2, f7se)
+                + P.taux15 * min_(max3, f7sf + f7sg + f7sh + f7si + f7so + f7su + f7sw + f7sp)
+                + P.taux11 * min_(max4, f7sm)
+                + P.taux10 * min_(max5, f7sd + not_(f7wk) * (f7sj + f7sk + f7sl)))
             ))
         return not_(f7wg) * or_(not_(f7we), (rfr < P.max_rfr)) * (montant + collectif) + f7sz
 
@@ -1668,22 +1672,22 @@ class quaenv(Variable):
 
         montant = (
             quaenv_bouquet * (
-                P.taux10 * min_(max8, f7sk + f7sl) +
-                P.taux11 * min_(max7, f7sm) +
-                P.taux15 * min_(max6, f7sf + f7si + f7su + f7sw) +
-                P.taux18 * min_(max5, f7sd + f7sj) +
-                P.taux23 * min_(max4, f7sg + f7sh + f7so + f7sp) +
-                P.taux26 * min_(max3, f7se) +
-                P.taux32 * min_(max2, f7sv) +
-                P.taux34 * min_(max1, f7sn + f7sr + f7sq) +
-                P.taux40 * min_(max0, f7ss + f7st)) +
+                P.taux10 * min_(max8, f7sk + f7sl)
+                + P.taux11 * min_(max7, f7sm)
+                + P.taux15 * min_(max6, f7sf + f7si + f7su + f7sw)
+                + P.taux18 * min_(max5, f7sd + f7sj)
+                + P.taux23 * min_(max4, f7sg + f7sh + f7so + f7sp)
+                + P.taux26 * min_(max3, f7se)
+                + P.taux32 * min_(max2, f7sv)
+                + P.taux34 * min_(max1, f7sn + f7sr + f7sq)
+                + P.taux40 * min_(max0, f7ss + f7st))
             not_(quaenv_bouquet) * (
-                P.taux32 * min_(max0, f7ss + f7st + f7sv) +
-                P.taux26 * min_(max1, f7sn + f7sq + f7sr) +
-                P.taux17 * min_(max2, f7se) +
-                P.taux15 * min_(max3, f7sf + f7sg + f7sh + f7si + f7so + f7su + f7sw + f7sp) +
-                P.taux11 * min_(max4, f7sm) +
-                P.taux10 * min_(max5, f7sd + not_(f7wk) * (f7sj + f7sk + f7sl)))
+                + P.taux32 * min_(max0, f7ss + f7st + f7sv)
+                + P.taux26 * min_(max1, f7sn + f7sq + f7sr)
+                + P.taux17 * min_(max2, f7se)
+                + P.taux15 * min_(max3, f7sf + f7sg + f7sh + f7si + f7so + f7su + f7sw + f7sp)
+                + P.taux11 * min_(max4, f7sm)
+                + P.taux10 * min_(max5, f7sd + not_(f7wk) * (f7sj + f7sk + f7sl)))
             )
         return or_(not_(or_(f7we, f7wg)), (rfr < P.max_rfr)) * montant + f7sz # TODO : attention, la condition porte sur le RFR des années passées (N-2 et N-3)
 
@@ -1899,11 +1903,13 @@ class quaenv(Variable):
         max00 = max_(0, max0 - depenses_transition_energetique)
         max1 = max_(0, max00 - quaenv_bouquet * (f7sd + f7se + f7wc + f7vg + f7wt + f7sn + f7sp + f7sr + f7ss + f7sq + f7st) - not_(quaenv_bouquet) * (max00))
         credit_quaenv_bouquet_2ans = (
-            quaenv_bouquet * (P.taux25 * (min_(max00,
-                f7sd + f7se + f7wc + f7vg + f7wt + f7sn + f7sp + f7sr + f7ss + f7sq + f7st)) +
-                P.taux15 * min_(max1, 
-                f7sf + f7sg + f7sh + f7si + f7sj + f7sk + f7sl + f7sv + f7sw)
-                ))
+            quaenv_bouquet * (
+                P.taux25 * (min_(max00,
+                    f7sd + f7se + f7wc + f7vg + f7wt + f7sn + f7sp + f7sr + f7ss + f7sq + f7st))
+                + P.taux15 * min_(max1, 
+                    f7sf + f7sg + f7sh + f7si + f7sj + f7sk + f7sl + f7sv + f7sw)
+                )
+            )
 
         # TODO: inclure la condition de non cumul éco-prêt / crédit quaenv si RFR > ... (condition complexifiée à partir de 2014)
 
