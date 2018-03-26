@@ -1,5 +1,13 @@
 # Changelog
 
+## 20.8.0 [#911](https://github.com/openfisca/openfisca-france/pull/911)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : 2002 - 2016
+* Détails :
+- Mise à jour des formules (2014-2016) de la réduction d'impôt 'invfor'
+- Correction d'une erreur dans la formule précédente : les reports de dépenses entrent dans le plafonnement de la réduction
+
 ## 20.7.0 [#895](https://github.com/openfisca/openfisca-france/pull/895)
 
 * Amélioration technique
