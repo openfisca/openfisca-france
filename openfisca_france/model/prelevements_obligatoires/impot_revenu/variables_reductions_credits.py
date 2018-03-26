@@ -4649,10 +4649,6 @@ class f7oj(Variable):
 #    start_date = date(2015, 1, 1)
     definition_period = YEAR
 
-<<<<<<< HEAD
-
-=======
->>>>>>> Update formula, parameters and variables for tax reduction 'locmeu' for years 2014-2016
 class f7jc(Variable):
     cerfa_field = u"7JC"
     value_type = int
