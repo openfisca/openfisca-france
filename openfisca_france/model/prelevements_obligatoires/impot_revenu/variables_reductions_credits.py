@@ -3058,6 +3058,7 @@ class f7rb(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
+    label = u"Travaux de restauration immobilière dans un secteur sauvegardé ou assimilé : dépenses payées en 2014 sur opérations engagées en 2011"
     # end = '2012-12-31' changes meaning in 2014
     definition_period = YEAR
 
