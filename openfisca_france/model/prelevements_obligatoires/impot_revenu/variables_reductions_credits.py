@@ -4153,7 +4153,10 @@ class f7yu(Variable):
 #    start_date = date(2016, 1, 1)
     definition_period = YEAR
 
+class f7yo(Variable):
     cerfa_field = u"7YO"
+    value_type = int
+    entity = FoyerFiscal
     label = u"Scellier: report de 1/9 de la réduction d'impôt des investissements réalisés en 2010 ou réalisés en 2011 avec promesse d'achat en 2010 et achevés en 2014 en métropole et dans les DOM-COM"
 #    start_date = date(2015, 1, 1)
     definition_period = YEAR
