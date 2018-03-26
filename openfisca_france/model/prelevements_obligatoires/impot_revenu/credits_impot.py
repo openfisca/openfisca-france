@@ -1967,8 +1967,9 @@ class quaenv(Variable):
 class quaenv_bouquet(Variable):
     value_type = bool
     entity = FoyerFiscal
-    label = u"quaenv_bouquet"
+    label = u"Indicateur de réalisation d'un bouquet de travaux, dans le cadre du crédit d'impôt en faveur de la qualité environnementale"
     definition_period = YEAR
+    reference = "http://bofip.impots.gouv.fr/bofip/3883-PGP.html?identifiant=BOI-IR-RICI-280-20170807"
     end = '2015-12-31'
 
     def formula_2012_01_01(foyer_fiscal, period, parameters):
