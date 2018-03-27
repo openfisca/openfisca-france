@@ -967,13 +967,23 @@ class f7wu(Variable):
     definition_period = YEAR
 
 
-class f7wv(Variable):
+class f7wv_2012(Variable):
     cerfa_field = u"7WV"
     value_type = bool
     entity = FoyerFiscal
     label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: achat de volets en 2012"
 #    start_date = date(2012, 1, 1)
-#    end = '2012-12-31' changes meaning in 2015
+    end = '2012-12-31'
+    definition_period = YEAR
+
+
+class f7wv(Variable):
+    cerfa_field = u"7WV"
+    value_type = bool
+    entity = FoyerFiscal
+    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: achat en 2015 de matériaux d'isolation thermique des parois vitrées concernant au moins la moitié des fenêtres"
+    start_date = date(2015, 1, 1)
+    end = '2015-12-31'
     definition_period = YEAR
 
 
