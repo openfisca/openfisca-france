@@ -4100,9 +4100,9 @@ class saldom(Variable):
         P = parameters(period).impot_revenu.reductions_impots.salarie_domicile
 
         nbpacmin = nb_pac_majoration_plafond + f7dl
-        maxBase = P.max1
+        max_base = P.max1
         max_du_max_non_inv = P.max2
-        max_non_inv = min_(maxBase + P.pac * nbpacmin, max_du_max_non_inv)
+        max_non_inv = min_(max_base + P.pac * nbpacmin, max_du_max_non_inv)
         max1 = max_non_inv * not_(invalide) + P.max3 * invalide
         return P.taux * min_(f7df, max1)
 
@@ -4119,11 +4119,11 @@ class saldom(Variable):
         P = parameters(period).impot_revenu.reductions_impots.salarie_domicile
 
         nbpacmin = nb_pac_majoration_plafond + f7dl
-        maxBase = P.max1
+        max_base = P.max1
         max_du_max_non_inv = P.max2
-        max_non_inv = min_(maxBase + P.pac * nbpacmin, max_du_max_non_inv)
-        maxEffectif = max_non_inv * not_(invalide) + P.max3 * invalide
-        max1 = maxEffectif - min_(f7db, maxEffectif)
+        max_non_inv = min_(max_base + P.pac * nbpacmin, max_du_max_non_inv)
+        max_effectif = max_non_inv * not_(invalide) + P.max3 * invalide
+        max1 = max_effectif - min_(f7db, max_effectif)
         return P.taux * min_(f7df, max1)
 
     def formula_2009_01_01(foyer_fiscal, period, parameters):
@@ -4140,16 +4140,16 @@ class saldom(Variable):
         P = parameters(period).impot_revenu.reductions_impots.salarie_domicile
 
         nbpacmin = nb_pac_majoration_plafond + f7dl
-        maxBase = P.max1 * not_(annee1) + P.max1_1ereAnnee * annee1
-        max_du_max_non_inv = P.max2 * not_(annee1) + P.max2_1ereAnnee * annee1
-        max_non_inv = min_(maxBase + P.pac * nbpacmin, max_du_max_non_inv)
-        max_non_inv2 = min_(maxBase + P.pac * nb_pac_majoration_plafond, max_du_max_non_inv)
-        maxEffectif = max_non_inv * not_(invalide) + P.max3 * invalide
-        maxEffectif2 = max_non_inv2 * not_(invalide) + P.max3 * invalide
-        max1 = maxEffectif - min_(f7db, maxEffectif2)
+        max_base = P.max1 * not_(annee1) + P.max1_1ereAnnee * annee1
+        max_du_max_non_inv = P.max2 * not_(annee1) + P.max2_premiere_annee * annee1
+        max_non_inv = min_(max_base + P.pac * nbpacmin, max_du_max_non_inv)
+        max_non_inv2 = min_(max_base + P.pac * nb_pac_majoration_plafond, max_du_max_non_inv)
+        max_effectif = max_non_inv * not_(invalide) + P.max3 * invalide
+        max_effectif2 = max_non_inv2 * not_(invalide) + P.max3 * invalide
+        max1 = max_effectif - min_(f7db, max_effectif2)
         return P.taux * min_(f7df, max1)
 
-    def formula_2011_01_01(self, simulation, period):
+    def formula_2011_01_01(foyer_fiscal, period, parameters):
         '''
         Sommes versées pour l'emploi d'un salariés à domicile
         2011 -
@@ -4164,13 +4164,13 @@ class saldom(Variable):
         P = parameters(period).impot_revenu.reductions_impots.salarie_domicile
 
         nbpacmin = nb_pac_majoration_plafond + f7dl
-        maxBase = P.max1 * not_(annee1) + P.max1_1ereAnnee * annee1
-        max_du_max_non_inv = P.max2 * not_(annee1) + P.max2_1ereAnnee * annee1
-        max_non_inv = min_(maxBase + P.pac * nbpacmin, max_du_max_non_inv)
-        max_non_inv2 = min_(maxBase + P.pac * nb_pac_majoration_plafond, max_du_max_non_inv)
-        maxEffectif = max_non_inv * not_(invalide) + P.max3 * invalide
-        maxEffectif2 = max_non_inv2 * not_(invalide) + P.max3 * invalide
-        max1 = maxEffectif - min_(f7db, maxEffectif2)
+        max_base = P.max1 * not_(annee1) + P.max1_1ereAnnee * annee1
+        max_du_max_non_inv = P.max2 * not_(annee1) + P.max2_premiere_annee * annee1
+        max_non_inv = min_(max_base + P.pac * nbpacmin, max_du_max_non_inv)
+        max_non_inv2 = min_(max_base + P.pac * nb_pac_majoration_plafond, max_du_max_non_inv)
+        max_effectif = max_non_inv * not_(invalide) + P.max3 * invalide
+        max_effectif2 = max_non_inv2 * not_(invalide) + P.max3 * invalide
+        max1 = max_effectif - min_(f7db, max_effectif2)
         return P.taux * min_(f7df + f7dd, max1)
 
 
