@@ -3495,20 +3495,43 @@ class f7gs(Variable):
 
 
 # Investissements OUTRE-MER dans le secteur du logement et autres secteurs d’activité
+class f7ua_2007(Variable):
+    cerfa_field = u"7UA"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le secteur du logement et autres secteurs d'activité : dans le secteur du logement du 01-01-2002 au 20-07-2003"
+    end = '2007-12-31'
+    definition_period = YEAR
+
+
 class f7ua(Variable):
     cerfa_field = u"7UA"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    #end = '2007-12-31' starts again in 2014 with other meaning
+    label = u"Investissements forestiers : travaux avec adhésion à une organisation de producteurs 
+#    start_date = date(2014, 1, 1)
     definition_period = YEAR
+
+
+class f7ub_2007(Variable):
+    cerfa_field = u"7UB"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le secteur du logement et autres secteurs d'activité : dans les autres secteurs d'activité du 01-01-2002 au 20-07-2003"
+    end = '2007-12-31'
+    definition_period = YEAR
+
 
 class f7ub(Variable):
     cerfa_field = u"7UB"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    end = '2007-12-31'
+    label = u"Investissements forestiers : travaux consécutifs à un sinistre, avec adhésion à une organisation de producteurs 
+#    start_date = date(2014, 1, 1)
     definition_period = YEAR
 
 

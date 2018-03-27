@@ -1654,8 +1654,8 @@ class domlog(Variable):
         Investissements OUTRE-MER dans le secteur du logement et autres secteurs d’activité
         2002
         '''
-        f7ua = foyer_fiscal('f7ua', period)
-        f7ub = foyer_fiscal('f7ub', period)
+        f7ua = foyer_fiscal('f7ua_2007', period)
+        f7ub = foyer_fiscal('f7ub_2007', period)
         f7uc = foyer_fiscal('f7uc', period)
         f7uj = foyer_fiscal('f7uj', period)
         P = parameters(period).impot_revenu.reductions_impots.domlog
@@ -1667,8 +1667,8 @@ class domlog(Variable):
         Investissements OUTRE-MER dans le secteur du logement et autres secteurs d’activité
         2003-2004
         '''
-        f7ua = foyer_fiscal('f7ua', period)
-        f7ub = foyer_fiscal('f7ub', period)
+        f7ua = foyer_fiscal('f7ua_2007', period)
+        f7ub = foyer_fiscal('f7ub_2007', period)
         f7uc = foyer_fiscal('f7uc', period)
         f7ui = foyer_fiscal('f7ui_2008', period)
         f7uj = foyer_fiscal('f7uj', period)
@@ -1681,8 +1681,8 @@ class domlog(Variable):
         Investissements OUTRE-MER dans le secteur du logement et autres secteurs d’activité
         2005-2007
         '''
-        f7ua = foyer_fiscal('f7ua', period)
-        f7ub = foyer_fiscal('f7ub', period)
+        f7ua = foyer_fiscal('f7ua_2007', period)
+        f7ub = foyer_fiscal('f7ub_2007', period)
         f7uc = foyer_fiscal('f7uc', period)
         f7ui = foyer_fiscal('f7ui_2008', period)
         f7uj = foyer_fiscal('f7uj', period)
