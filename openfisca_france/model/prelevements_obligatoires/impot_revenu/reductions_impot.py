@@ -967,7 +967,7 @@ class doment(Variable):
         f7oz = foyer_fiscal('f7oz', period)
         f7pz = foyer_fiscal('f7pz', period)
         f7qz = foyer_fiscal('f7qz', period)
-        f7rz = foyer_fiscal('f7rz', period)
+        f7rz = foyer_fiscal('f7rz_2010', period)
 
         return  f7ur + f7oz + f7pz + f7qz + f7rz
 
@@ -979,7 +979,7 @@ class doment(Variable):
         f7oz = foyer_fiscal('f7oz', period)
         f7pz = foyer_fiscal('f7pz', period)
         f7qz = foyer_fiscal('f7qz', period)
-        f7rz = foyer_fiscal('f7rz', period)
+        f7rz = foyer_fiscal('f7rz_2010', period)
         f7sz = foyer_fiscal('f7sz', period)
 
         return  f7ur + f7oz + f7pz + f7qz + f7rz + f7sz
@@ -991,7 +991,7 @@ class doment(Variable):
         f7oz = foyer_fiscal('f7oz', period)
         f7pz = foyer_fiscal('f7pz', period)
         f7qz = foyer_fiscal('f7qz', period)
-        f7rz = foyer_fiscal('f7rz', period)
+        f7rz = foyer_fiscal('f7rz_2010', period)
         f7sz = foyer_fiscal('f7sz', period)
         f7qe = foyer_fiscal('f7qe', period)
         f7qf = foyer_fiscal('f7qf', period)
@@ -1009,7 +1009,7 @@ class doment(Variable):
         f7oz = foyer_fiscal('f7oz', period)
         f7pz = foyer_fiscal('f7pz', period)
         f7qz = foyer_fiscal('f7qz', period)
-        f7rz = foyer_fiscal('f7rz', period)
+        f7rz = foyer_fiscal('f7rz_2010', period)
         f7qe = foyer_fiscal('f7qe', period)
         f7qf = foyer_fiscal('f7qf', period)
         f7qg = foyer_fiscal('f7qg', period)
@@ -2690,7 +2690,7 @@ class invlst(Variable):
         2004
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
-        f7xc = foyer_fiscal('f7xc', period)
+        f7xc = foyer_fiscal('f7xc_2012', period)
         f7xd = foyer_fiscal('f7xd', period)
         f7xe = foyer_fiscal('f7xe', period)
         f7xf = foyer_fiscal('f7xf', period)
@@ -2731,7 +2731,7 @@ class invlst(Variable):
         2005-2010
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
-        f7xc = foyer_fiscal('f7xc', period)
+        f7xc = foyer_fiscal('f7xc_2012', period)
         f7xd = foyer_fiscal('f7xd', period)
         f7xe = foyer_fiscal('f7xe', period)
         f7xf = foyer_fiscal('f7xf', period)
@@ -2773,8 +2773,8 @@ class invlst(Variable):
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         f7xa = foyer_fiscal('f7xa', period)
-        f7xb = foyer_fiscal('f7xb', period)
-        f7xc = foyer_fiscal('f7xc', period)
+        f7xb = foyer_fiscal('f7xb_2012', period)
+        f7xc = foyer_fiscal('f7xc_2012', period)
         f7xd = foyer_fiscal('f7xd', period)
         f7xe = foyer_fiscal('f7xe', period)
         f7xf = foyer_fiscal('f7xf', period)
@@ -2815,8 +2815,8 @@ class invlst(Variable):
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         f7xa = foyer_fiscal('f7xa', period)
-        f7xb = foyer_fiscal('f7xb', period)
-        f7xc = foyer_fiscal('f7xc', period)
+        f7xb = foyer_fiscal('f7xb_2012', period)
+        f7xc = foyer_fiscal('f7xc_2012', period)
         f7xd = foyer_fiscal('f7xd', period)
         f7xe = foyer_fiscal('f7xe', period)
         f7xf = foyer_fiscal('f7xf', period)

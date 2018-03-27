@@ -323,7 +323,7 @@ class aidper(Variable):
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         nb_pac_majoration_plafond = foyer_fiscal('nb_pac2', period)
         nbH = foyer_fiscal('nbH', period)
-        f7wi = foyer_fiscal('f7wi', period)
+        f7wi = foyer_fiscal('f7wi_2012', period)
         P = parameters(period).impot_revenu.credits_impot.aidper
 
         n = nb_pac_majoration_plafond - nbH / 2
@@ -344,7 +344,7 @@ class aidper(Variable):
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         nb_pac_majoration_plafond = foyer_fiscal('nb_pac2', period)
         nbH = foyer_fiscal('nbH', period)
-        f7wi = foyer_fiscal('f7wi', period)
+        f7wi = foyer_fiscal('f7wi_2012', period)
         f7wj = foyer_fiscal('f7wj', period)
         P = parameters(period).impot_revenu.credits_impot.aidper
 
@@ -368,7 +368,7 @@ class aidper(Variable):
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         nb_pac_majoration_plafond = foyer_fiscal('nb_pac2', period)
-        f7wi = foyer_fiscal('f7wi', period)
+        f7wi = foyer_fiscal('f7wi_2012', period)
         f7wj = foyer_fiscal('f7wj', period)
         P = parameters(period).impot_revenu.credits_impot.aidper
 
@@ -386,7 +386,7 @@ class aidper(Variable):
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         nb_pac_majoration_plafond = foyer_fiscal('nb_pac2', period)
         f7sf = foyer_fiscal('f7sf', period)
-        f7wi = foyer_fiscal('f7wi', period)
+        f7wi = foyer_fiscal('f7wi_2012', period)
         f7wj = foyer_fiscal('f7wj', period)
         f7wl = foyer_fiscal('f7wl', period)
         P = parameters(period).impot_revenu.credits_impot.aidper
@@ -404,7 +404,7 @@ class aidper(Variable):
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         nb_pac_majoration_plafond = foyer_fiscal('nb_pac2', period)
-        f7wi = foyer_fiscal('f7wi', period)
+        f7wi = foyer_fiscal('f7wi_2012', period)
         f7wj = foyer_fiscal('f7wj', period)
         f7wl = foyer_fiscal('f7wl', period)
         f7wr = foyer_fiscal('f7wr', period)
@@ -1465,7 +1465,7 @@ class quaenv(Variable):
         f7wh = foyer_fiscal('f7wh', period)
         f7wk = foyer_fiscal('f7wk', period)
         f7wq = foyer_fiscal('f7wq', period)
-        f7sb = foyer_fiscal('f7sb', period)
+        f7sb = foyer_fiscal('f7sb_2011', period)
         f7sc = foyer_fiscal('f7sc', period)
         f7sd = foyer_fiscal('f7sd', period)
         f7se = foyer_fiscal('f7se', period)
@@ -1509,7 +1509,7 @@ class quaenv(Variable):
         f7wh = foyer_fiscal('f7wh', period)
         f7wk = foyer_fiscal('f7wk', period)
         f7wq = foyer_fiscal('f7wq', period)
-        f7sb = foyer_fiscal('f7sb', period)
+        f7sb = foyer_fiscal('f7sb_2011', period)
         f7sd = foyer_fiscal('f7sd', period)
         f7se = foyer_fiscal('f7se', period)
         f7sh = foyer_fiscal('f7sh', period)
