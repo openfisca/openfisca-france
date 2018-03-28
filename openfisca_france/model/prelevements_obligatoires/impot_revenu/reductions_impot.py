@@ -952,13 +952,12 @@ class dfppce(Variable):
     # - Verrifier si l'excédent de f7ud ne s'impute pas à la réduction 'dfppce' (comme pour 'f7va')
 
 
-# Outre-mer : TODO: plafonnement, cf. 2041-GE 2042-IOM
 class doment(Variable):
     value_type = float
     entity = FoyerFiscal
     label = u"doment"
     definition_period = YEAR
-    end = '2013-12-31'
+    end = '2016-12-31'
 
     def formula_2005_01_01(foyer_fiscal, period, parameters):
         '''
@@ -1039,7 +1038,7 @@ class doment(Variable):
         f7kt = foyer_fiscal('f7kt', period)
         f7ku = foyer_fiscal('f7ku', period)
         f7lg = foyer_fiscal('f7lg', period)
-        f7lh = foyer_fiscal('f7lh', period)
+        f7lh = foyer_fiscal('f7lh_2012', period)
         f7li = foyer_fiscal('f7li', period)
         f7mm = foyer_fiscal('f7mm', period)
         f7ma = foyer_fiscal('f7ma', period)
@@ -1050,28 +1049,26 @@ class doment(Variable):
         f7pa = foyer_fiscal('f7pa_2012', period)
         f7pb = foyer_fiscal('f7pb_2012', period)
         f7pd = foyer_fiscal('f7pd_2012', period)
-        f7pe = foyer_fiscal('f7pe', period)
-        f7pf = foyer_fiscal('f7pf', period)
+        f7pe = foyer_fiscal('f7pe_2012', period)
+        f7pf = foyer_fiscal('f7pf_2012', period)
         f7ph = foyer_fiscal('f7ph', period)
-        f7pi = foyer_fiscal('f7pi', period)
-        f7pj = foyer_fiscal('f7pj', period)
+        f7pi = foyer_fiscal('f7pi_2012', period)
+        f7pj = foyer_fiscal('f7pj_2012', period)
         f7pl = foyer_fiscal('f7pl', period)
         f7pz = foyer_fiscal('f7pz', period)
         f7qz = foyer_fiscal('f7qz', period)
         f7qe = foyer_fiscal('f7qe', period)
         f7qf = foyer_fiscal('f7qf', period)
         f7qg = foyer_fiscal('f7qg', period)
-        f7qh = foyer_fiscal('f7qh', period)
         f7qi = foyer_fiscal('f7qi', period)
         f7qo = foyer_fiscal('f7qo', period)
         f7qp = foyer_fiscal('f7qp', period)
-        f7qq = foyer_fiscal('f7qq', period)
         f7qr = foyer_fiscal('f7qr', period)
         f7qv = foyer_fiscal('f7qv', period)
 
         return (f7ks + f7kt + f7ku + f7lg + f7lh + f7li + f7mb + f7mn + f7mc + f7mm + f7ma +  f7oz + f7pa + f7pb + f7pd +
-                    f7pe + f7pf + f7ph + f7pi + f7pj + f7pl + f7pz + f7qz + f7qf + f7qg + f7qh + f7qi + f7qo +
-                    f7qp + f7qq + f7qr + f7qe + f7qv)
+                    f7pe + f7pf + f7ph + f7pi + f7pj + f7pl + f7pz + f7qz + f7qf + f7qg + f7qi + f7qo +
+                    f7qp + f7qr + f7qe + f7qv)
 
     def formula_2012_01_01(foyer_fiscal, period, parameters):
         '''
@@ -1081,7 +1078,7 @@ class doment(Variable):
         f7kt = foyer_fiscal('f7kt', period)
         f7ku = foyer_fiscal('f7ku', period)
         f7lg = foyer_fiscal('f7lg', period)
-        f7lh = foyer_fiscal('f7lh', period)
+        f7lh = foyer_fiscal('f7lh_2012', period)
         f7li = foyer_fiscal('f7li', period)
         f7ma = foyer_fiscal('f7ma', period)
         f7mb = foyer_fiscal('f7mb', period)
@@ -1095,11 +1092,11 @@ class doment(Variable):
         f7pa = foyer_fiscal('f7pa_2012', period)
         f7pb = foyer_fiscal('f7pb_2012', period)
         f7pd = foyer_fiscal('f7pd_2012', period)
-        f7pe = foyer_fiscal('f7pe', period)
-        f7pf = foyer_fiscal('f7pf', period)
+        f7pe = foyer_fiscal('f7pe_2012', period)
+        f7pf = foyer_fiscal('f7pf_2012', period)
         f7ph = foyer_fiscal('f7ph', period)
-        f7pi = foyer_fiscal('f7pi', period)
-        f7pj = foyer_fiscal('f7pj', period)
+        f7pi = foyer_fiscal('f7pi_2012', period)
+        f7pj = foyer_fiscal('f7pj_2012', period)
         f7pl = foyer_fiscal('f7pl', period)
         f7pm = foyer_fiscal('f7pm', period)
         f7pn = foyer_fiscal('f7pn', period)
@@ -1136,13 +1133,12 @@ class doment(Variable):
         f7ru = foyer_fiscal('f7ru', period)
         f7rv = foyer_fiscal('f7rv', period)
         f7rw = foyer_fiscal('f7rw', period)
-        f7rx = foyer_fiscal('f7rx', period)
         f7ry = foyer_fiscal('f7ry', period)
 
         return (f7ks + f7kt + f7ku + f7lg + f7lh + f7li + f7ma + f7mb + f7mc + f7mm + f7mn +  f7pz + f7nu + f7nv + f7nw +
                     f7ny + f7pa + f7pb + f7pd + f7pe + f7pf + f7ph + f7pi + f7pj + f7pl + f7pm + f7pn + f7po + f7pp + f7pr +
                     f7ps + f7pt + f7pu + f7pw + f7px + f7py + f7qe + f7qf + f7qg + f7qi + f7qo + f7qp + f7qr + f7qv + f7qz +
-                    f7rg + f7ri + f7rj + f7rk + f7rl + f7rm + f7ro + f7rp + f7rq + f7rr + f7rt + f7ru + f7rv + f7rw)
+                    f7rg + f7ri + f7rj + f7rk + f7rl + f7rm + f7ro + f7rp + f7rq + f7rr + f7rt + f7ru + f7rv + f7rw + f7ry)
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
         '''
@@ -1171,80 +1167,479 @@ class doment(Variable):
         fhta = foyer_fiscal('fhta', period)
         fhtb = foyer_fiscal('fhtb', period)
         fhtd = foyer_fiscal('fhtd', period)
-        f7ks = foyer_fiscal('f7ks', period)
-        f7kt = foyer_fiscal('f7kt', period)
-        f7ku = foyer_fiscal('f7ku', period)
-        f7lg = foyer_fiscal('f7lg', period)
-        f7lh = foyer_fiscal('f7lh', period)
-        f7li = foyer_fiscal('f7li', period)
-        f7ma = foyer_fiscal('f7ma', period)
-        f7mb = foyer_fiscal('f7mb', period)
-        f7mc = foyer_fiscal('f7mc', period)
-        f7mm = foyer_fiscal('f7mm', period)
-        f7mn = foyer_fiscal('f7mn', period)
-        f7nu = foyer_fiscal('f7nu', period)
-        f7nv = foyer_fiscal('f7nv', period)
-        f7nw = foyer_fiscal('f7nw', period)
-        f7ny = foyer_fiscal('f7ny', period)
-        f7pa = foyer_fiscal('f7pa', period)
-        f7pb = foyer_fiscal('f7pb', period)
-        f7pd = foyer_fiscal('f7pd', period)
-        f7pe = foyer_fiscal('f7pe', period)
-        f7pf = foyer_fiscal('f7pf', period)
-        f7ph = foyer_fiscal('f7ph', period)
-        f7pi = foyer_fiscal('f7pi', period)
-        f7pj = foyer_fiscal('f7pj', period)
-        f7pl = foyer_fiscal('f7pl', period)
-        f7pm = foyer_fiscal('f7pm', period)
-        f7pn = foyer_fiscal('f7pn', period)
-        f7po = foyer_fiscal('f7po', period)
-        f7pp = foyer_fiscal('f7pp', period)
-        f7pr = foyer_fiscal('f7pr', period)
-        f7ps = foyer_fiscal('f7ps', period)
-        f7pt = foyer_fiscal('f7pt', period)
-        f7pu = foyer_fiscal('f7pu', period)
-        f7pw = foyer_fiscal('f7pw', period)
-        f7px = foyer_fiscal('f7px', period)
-        f7py = foyer_fiscal('f7py', period)
-        f7qe = foyer_fiscal('f7qe', period)
-        f7qf = foyer_fiscal('f7qf', period)
-        f7qg = foyer_fiscal('f7qg', period)
-        f7qi = foyer_fiscal('f7qi', period)
-        f7qo = foyer_fiscal('f7qo', period)
-        f7qp = foyer_fiscal('f7qp', period)
-        f7qr = foyer_fiscal('f7qr', period)
-        f7qv = foyer_fiscal('f7qv', period)
-        f7qz = foyer_fiscal('f7qz', period)
-        f7rg = foyer_fiscal('f7rg', period)
-        f7ri = foyer_fiscal('f7ri', period)
-        f7rj = foyer_fiscal('f7rj', period)
-        f7rk = foyer_fiscal('f7rk', period)
-        f7rl = foyer_fiscal('f7rl', period)
-        f7rm = foyer_fiscal('f7rm', period)
-        f7ro = foyer_fiscal('f7ro', period)
-        f7rp = foyer_fiscal('f7rp', period)
-        f7rq = foyer_fiscal('f7rq', period)
-        f7rr = foyer_fiscal('f7rr', period)
-        f7rt = foyer_fiscal('f7rt', period)
-        f7ru = foyer_fiscal('f7ru', period)
-        f7rv = foyer_fiscal('f7rv', period)
-        f7rw = foyer_fiscal('f7rw', period)
-        f7ry = foyer_fiscal('f7ry', period)
+        fhks = foyer_fiscal('fhks', period)
+        fhkt = foyer_fiscal('fhkt', period)
+        fhku = foyer_fiscal('fhku', period)
+        fhlg = foyer_fiscal('fhlg', period)
+        fhlh = foyer_fiscal('fhlh', period)
+        fhli = foyer_fiscal('fhli', period)
+        fhma = foyer_fiscal('fhma', period)
+        fhmb = foyer_fiscal('fhmb', period)
+        fhmc = foyer_fiscal('fhmc', period)
+        fhmm = foyer_fiscal('fhmm', period)
+        fhmn = foyer_fiscal('fhmn', period)
+        fhnu = foyer_fiscal('fhnu', period)
+        fhnv = foyer_fiscal('fhnv', period)
+        fhnw = foyer_fiscal('fhnw', period)
+        fhny = foyer_fiscal('fhny', period)
+        fhpa = foyer_fiscal('fhpa', period)
+        fhpb = foyer_fiscal('fhpb', period)
+        fhpd = foyer_fiscal('fhpd', period)
+        fhpe = foyer_fiscal('fhpe', period)
+        fhpf = foyer_fiscal('fhpf', period)
+        fhph = foyer_fiscal('fhph', period)
+        fhpi = foyer_fiscal('fhpi', period)
+        fhpj = foyer_fiscal('fhpj', period)
+        fhpl = foyer_fiscal('fhpl', period)
+        fhpm = foyer_fiscal('fhpm', period)
+        fhpn = foyer_fiscal('fhpn', period)
+        fhpo = foyer_fiscal('fhpo', period)
+        fhpp = foyer_fiscal('fhpp', period)
+        fhpr = foyer_fiscal('fhpr', period)
+        fhps = foyer_fiscal('fhps', period)
+        fhpt = foyer_fiscal('fhpt', period)
+        fhpu = foyer_fiscal('fhpu', period)
+        fhpw = foyer_fiscal('fhpw', period)
+        fhpx = foyer_fiscal('fhpx', period)
+        fhpy = foyer_fiscal('fhpy', period)
+        fhqe = foyer_fiscal('fhqe', period)
+        fhqf = foyer_fiscal('fhqf', period)
+        fhqg = foyer_fiscal('fhqg', period)
+        fhqi = foyer_fiscal('fhqi', period)
+        fhqo = foyer_fiscal('fhqo', period)
+        fhqp = foyer_fiscal('fhqp', period)
+        fhqr = foyer_fiscal('fhqr', period)
+        fhqv = foyer_fiscal('fhqv', period)
+        fhqz = foyer_fiscal('fhqz', period)
+        fhrg = foyer_fiscal('fhrg', period)
+        fhri = foyer_fiscal('fhri', period)
+        fhrj = foyer_fiscal('fhrj', period)
+        fhrk = foyer_fiscal('fhrk', period)
+        fhrl = foyer_fiscal('fhrl', period)
+        fhrm = foyer_fiscal('fhrm', period)
+        fhro = foyer_fiscal('fhro', period)
+        fhrp = foyer_fiscal('fhrp', period)
+        fhrq = foyer_fiscal('fhrq', period)
+        fhrr = foyer_fiscal('fhrr', period)
+        fhrt = foyer_fiscal('fhrt', period)
+        fhru = foyer_fiscal('fhru', period)
+        fhrv = foyer_fiscal('fhrv', period)
+        fhrw = foyer_fiscal('fhrw', period)
+        fhry = foyer_fiscal('fhry', period)
 
         return (fhsa + fhsb + fhsf + fhsg + fhsc + fhsh + fhse + fhsj + fhsk + fhsl + fhsp + fhsq + fhsm + fhsr + fhso +
-                    fhst + fhsu + fhsv + fhsw + fhsz + fhta + fhtb + fhtd + f7ks + f7kt + f7ku + f7lg + f7lh + f7li + f7ma +
-                    f7mb + f7mc + f7mm + f7mn + f7nu + f7nv + f7nw + f7ny + f7pa + f7pb + f7pd + f7pe + f7pf + f7ph + f7pi +
-                    f7pj + f7pl + f7pm + f7pn + f7po + f7pp + f7pr + f7ps + f7pt + f7pu + f7pw + f7px + f7py + f7qe + f7qf +
-                    f7qg + f7qi + f7qo + f7qp + f7qr + f7qv + f7qz + f7rg + f7ri + f7rj + f7rk + f7rl + f7rm + f7ro + f7rp +
-                    f7rq + f7rr + f7rt + f7ru + f7rv + f7rw)
+                    fhst + fhsu + fhsv + fhsw + fhsz + fhta + fhtb + fhtd + fhks + fhkt + fhku + fhlg + fhlh + fhli + fhma +
+                    fhmb + fhmc + fhmm + fhmn + fhnu + fhnv + fhnw + fhny + fhpa + fhpb + fhpd + fhpe + fhpf + fhph + fhpi +
+                    fhpj + fhpl + fhpm + fhpn + fhpo + fhpp + fhpr + fhps + fhpt + fhpu + fhpw + fhpx + fhpy + fhqe + fhqf +
+                    fhqg + fhqi + fhqo + fhqp + fhqr + fhqv + fhqz + fhrg + fhri + fhrj + fhrk + fhrl + fhrm + fhro + fhrp +
+                    fhrq + fhrr + fhrt + fhru + fhrv + fhrw + fhry)
+
+    def formula_2014_01_01(foyer_fiscal, period, parameters):
+        '''
+        Investissements dans les DOM-TOM dans le cadre d'une entrepise.
+        '''
+        fhaa = foyer_fiscal('fhaa', period)
+        fhab = foyer_fiscal('fhab', period)
+        fhac = foyer_fiscal('fhac', period)
+        fhae = foyer_fiscal('fhae', period)
+        fhaf = foyer_fiscal('fhaf', period)
+        fhag = foyer_fiscal('fhag', period)
+        fhah = foyer_fiscal('fhah', period)
+        fhaj = foyer_fiscal('fhaj', period)
+        fhak = foyer_fiscal('fhak', period)
+        fhal = foyer_fiscal('fhal', period)
+        fham = foyer_fiscal('fhal', period)
+        fhao = foyer_fiscal('fhao', period)
+        fhap = foyer_fiscal('fhap', period)
+        fhaq = foyer_fiscal('fhaq', period)
+        fhar = foyer_fiscal('fhar', period)
+        fhat = foyer_fiscal('fhat', period)
+        fhau = foyer_fiscal('fhau', period)
+        fhav = foyer_fiscal('fhav', period)
+        fhaw = foyer_fiscal('fhaw', period)
+        fhay = foyer_fiscal('fhay', period)
+        fhba = foyer_fiscal('fhba', period)
+        fhbb = foyer_fiscal('fhbb', period)
+        fhbe = foyer_fiscal('fhbe', period)
+        fhbg = foyer_fiscal('fhbg', period)
+        fhks = foyer_fiscal('fhks', period)
+        fhkt = foyer_fiscal('fhkt', period)
+        fhku = foyer_fiscal('fhku', period)
+        fhlg = foyer_fiscal('fhlg', period)
+        fhlh = foyer_fiscal('fhlh', period)
+        fhli = foyer_fiscal('fhli', period)
+        fhma = foyer_fiscal('fhma', period)
+        fhmb = foyer_fiscal('fhmb', period)
+        fhmc = foyer_fiscal('fhmc', period)
+        fhmm = foyer_fiscal('fhmm', period)
+        fhmn = foyer_fiscal('fhmn', period)
+        fhnu = foyer_fiscal('fhnu', period)
+        fhnv = foyer_fiscal('fhnv', period)
+        fhnw = foyer_fiscal('fhnw', period)
+        fhny = foyer_fiscal('fhny', period)
+        fhpa = foyer_fiscal('fhpa', period)
+        fhpb = foyer_fiscal('fhpb', period)
+        fhpd = foyer_fiscal('fhpd', period)
+        fhpe = foyer_fiscal('fhpe', period)
+        fhpf = foyer_fiscal('fhpf', period)
+        fhph = foyer_fiscal('fhph', period)
+        fhpi = foyer_fiscal('fhpi', period)
+        fhpj = foyer_fiscal('fhpj', period)
+        fhpl = foyer_fiscal('fhpl', period)
+        fhpm = foyer_fiscal('fhpm', period)
+        fhpn = foyer_fiscal('fhpn', period)
+        fhpo = foyer_fiscal('fhpo', period)
+        fhpp = foyer_fiscal('fhpp', period)
+        fhpr = foyer_fiscal('fhpr', period)
+        fhps = foyer_fiscal('fhps', period)
+        fhpt = foyer_fiscal('fhpt', period)
+        fhpu = foyer_fiscal('fhpu', period)
+        fhpw = foyer_fiscal('fhpw', period)
+        fhpx = foyer_fiscal('fhpx', period)
+        fhpy = foyer_fiscal('fhpy', period)
+        fhqe = foyer_fiscal('fhqe', period)
+        fhqf = foyer_fiscal('fhqf', period)
+        fhqg = foyer_fiscal('fhqg', period)
+        fhqi = foyer_fiscal('fhqi', period)
+        fhqo = foyer_fiscal('fhqo', period)
+        fhqp = foyer_fiscal('fhqp', period)
+        fhqr = foyer_fiscal('fhqr', period)
+        fhqv = foyer_fiscal('fhqv', period)
+        fhrg = foyer_fiscal('fhrg', period)
+        fhri = foyer_fiscal('fhri', period)
+        fhrj = foyer_fiscal('fhrj', period)
+        fhrk = foyer_fiscal('fhrk', period)
+        fhrl = foyer_fiscal('fhrl', period)
+        fhrm = foyer_fiscal('fhrm', period)
+        fhro = foyer_fiscal('fhro', period)
+        fhrp = foyer_fiscal('fhrp', period)
+        fhrq = foyer_fiscal('fhrq', period)
+        fhrr = foyer_fiscal('fhrr', period)
+        fhrt = foyer_fiscal('fhrt', period)
+        fhru = foyer_fiscal('fhru', period)
+        fhrv = foyer_fiscal('fhrv', period)
+        fhrw = foyer_fiscal('fhrw', period)
+        fhry = foyer_fiscal('fhry', period)
+        fhsa = foyer_fiscal('fhsa', period)
+        fhsb = foyer_fiscal('fhsb', period)
+        fhsc = foyer_fiscal('fhsc', period)
+        fhse = foyer_fiscal('fhse', period)
+        fhsf = foyer_fiscal('fhsf', period)
+        fhsg = foyer_fiscal('fhsg', period)
+        fhsh = foyer_fiscal('fhsh', period)
+        fhsj = foyer_fiscal('fhsj', period)
+        fhsk = foyer_fiscal('fhsk', period)
+        fhsl = foyer_fiscal('fhsl', period)
+        fhsm = foyer_fiscal('fhsm', period)
+        fhso = foyer_fiscal('fhso', period)
+        fhsp = foyer_fiscal('fhsp', period)
+        fhsq = foyer_fiscal('fhsq', period)
+        fhsr = foyer_fiscal('fhsr', period)
+        fhst = foyer_fiscal('fhst', period)
+        fhsu = foyer_fiscal('fhsu', period)
+        fhsv = foyer_fiscal('fhsv', period)
+        fhsw = foyer_fiscal('fhsw', period)
+        fhsz = foyer_fiscal('fhsz', period)
+        fhta = foyer_fiscal('fhta', period)
+        fhtb = foyer_fiscal('fhtb', period)
+        fhtd = foyer_fiscal('fhtd', period)
+
+        return (fhaa + fhab + fhac + fhae + fhaf + fhag + fhah + fhaj + fhak + fhal + fham + fhao + fhap + fhaq + fhar + 
+                    fhat + fhau + fhav + fhaw + fhba + fhbb + fhbe + fhbg +
+                    fhsa + fhsb + fhsf + fhsg + fhsc + fhsh + fhse + fhsj + fhsk + fhsl + fhsp + fhsq + fhsm + fhsr + fhso +
+                    fhst + fhsu + fhsv + fhsw + fhsz + fhta + fhtb + fhtd + fhks + fhkt + fhku + fhlg + fhlh + fhli + fhma +
+                    fhmb + fhmc + fhmm + fhmn + fhnu + fhnv + fhnw + fhny + fhpa + fhpb + fhpd + fhpe + fhpf + fhph + fhpi +
+                    fhpj + fhpl + fhpm + fhpn + fhpo + fhpp + fhpr + fhps + fhpt + fhpu + fhpw + fhpx + fhpy + fhqe + fhqf +
+                    fhqg + fhqi + fhqo + fhqp + fhqr + fhqv + fhrg + fhri + fhrj + fhrk + fhrl + fhrm + fhro + fhrp +
+                    fhrq + fhrr + fhrt + fhru + fhrv + fhrw + fhry)
+
+    def formula_2015_01_01(foyer_fiscal, period, parameters):
+        '''
+        Investissements dans les DOM-TOM dans le cadre d'une entrepise.
+        '''
+        fhaa = foyer_fiscal('fhaa', period)
+        fhab = foyer_fiscal('fhab', period)
+        fhac = foyer_fiscal('fhac', period)
+        fhae = foyer_fiscal('fhae', period)
+        fhaf = foyer_fiscal('fhaf', period)
+        fhag = foyer_fiscal('fhag', period)
+        fhah = foyer_fiscal('fhah', period)
+        fhaj = foyer_fiscal('fhaj', period)
+        fhak = foyer_fiscal('fhak', period)
+        fhal = foyer_fiscal('fhal', period)
+        fham = foyer_fiscal('fhal', period)
+        fhao = foyer_fiscal('fhao', period)
+        fhap = foyer_fiscal('fhap', period)
+        fhaq = foyer_fiscal('fhaq', period)
+        fhar = foyer_fiscal('fhar', period)
+        fhat = foyer_fiscal('fhat', period)
+        fhau = foyer_fiscal('fhau', period)
+        fhav = foyer_fiscal('fhav', period)
+        fhaw = foyer_fiscal('fhaw', period)
+        fhay = foyer_fiscal('fhay', period)
+        fhba = foyer_fiscal('fhba', period)
+        fhbb = foyer_fiscal('fhbb', period)
+        fhbe = foyer_fiscal('fhbe', period)
+        fhbg = foyer_fiscal('fhbg', period)
+        fhbi = foyer_fiscal('fhbi', period)
+        fhbj = foyer_fiscal('fhbj', period)
+        fhbk = foyer_fiscal('fhbk', period)
+        fhbm = foyer_fiscal('fhbm', period)
+        fhbn = foyer_fiscal('fhbn', period)
+        fhbo = foyer_fiscal('fhbo', period)
+        fhbp = foyer_fiscal('fhbp', period)
+        fhbr = foyer_fiscal('fhbr', period)
+        fhbs = foyer_fiscal('fhbs', period)
+        fhbt = foyer_fiscal('fhbt', period)
+        fhbu = foyer_fiscal('fhbu', period)
+        fhbw = foyer_fiscal('fhbw', period)
+        fhbx = foyer_fiscal('fhbx', period)
+        fhby = foyer_fiscal('fhby', period)
+        fhbz = foyer_fiscal('fhbz', period)
+        fhcb = foyer_fiscal('fhcb', period)
+        fhcc = foyer_fiscal('fhcc', period)
+        fhcd = foyer_fiscal('fhcd', period)
+        fhce = foyer_fiscal('fhce', period)
+        fhcg = foyer_fiscal('fhcg', period)
+        fhkt = foyer_fiscal('fhkt', period)
+        fhku = foyer_fiscal('fhku', period)
+        fhlh = foyer_fiscal('fhlh', period)
+        fhli = foyer_fiscal('fhli', period)
+        fhmb = foyer_fiscal('fhmb', period)
+        fhmc = foyer_fiscal('fhmc', period)
+        fhmn = foyer_fiscal('fhmn', period)
+        fhnu = foyer_fiscal('fhnu', period)
+        fhnv = foyer_fiscal('fhnv', period)
+        fhnw = foyer_fiscal('fhnw', period)
+        fhny = foyer_fiscal('fhny', period)
+        fhpa = foyer_fiscal('fhpa', period)
+        fhpb = foyer_fiscal('fhpb', period)
+        fhpd = foyer_fiscal('fhpd', period)
+        fhpe = foyer_fiscal('fhpe', period)
+        fhpf = foyer_fiscal('fhpf', period)
+        fhph = foyer_fiscal('fhph', period)
+        fhpi = foyer_fiscal('fhpi', period)
+        fhpj = foyer_fiscal('fhpj', period)
+        fhpl = foyer_fiscal('fhpl', period)
+        fhpm = foyer_fiscal('fhpm', period)
+        fhpn = foyer_fiscal('fhpn', period)
+        fhpo = foyer_fiscal('fhpo', period)
+        fhpp = foyer_fiscal('fhpp', period)
+        fhpr = foyer_fiscal('fhpr', period)
+        fhps = foyer_fiscal('fhps', period)
+        fhpt = foyer_fiscal('fhpt', period)
+        fhpu = foyer_fiscal('fhpu', period)
+        fhpw = foyer_fiscal('fhpw', period)
+        fhpx = foyer_fiscal('fhpx', period)
+        fhpy = foyer_fiscal('fhpy', period)
+        fhqe = foyer_fiscal('fhqe', period)
+        fhqf = foyer_fiscal('fhqf', period)
+        fhqg = foyer_fiscal('fhqg', period)
+        fhqi = foyer_fiscal('fhqi', period)
+        fhqo = foyer_fiscal('fhqo', period)
+        fhqp = foyer_fiscal('fhqp', period)
+        fhqr = foyer_fiscal('fhqr', period)
+        fhqv = foyer_fiscal('fhqv', period)
+        fhrg = foyer_fiscal('fhrg', period)
+        fhri = foyer_fiscal('fhri', period)
+        fhrj = foyer_fiscal('fhrj', period)
+        fhrk = foyer_fiscal('fhrk', period)
+        fhrl = foyer_fiscal('fhrl', period)
+        fhrm = foyer_fiscal('fhrm', period)
+        fhro = foyer_fiscal('fhro', period)
+        fhrp = foyer_fiscal('fhrp', period)
+        fhrq = foyer_fiscal('fhrq', period)
+        fhrr = foyer_fiscal('fhrr', period)
+        fhrt = foyer_fiscal('fhrt', period)
+        fhru = foyer_fiscal('fhru', period)
+        fhrv = foyer_fiscal('fhrv', period)
+        fhrw = foyer_fiscal('fhrw', period)
+        fhry = foyer_fiscal('fhry', period)
+        fhsa = foyer_fiscal('fhsa', period)
+        fhsb = foyer_fiscal('fhsb', period)
+        fhsc = foyer_fiscal('fhsc', period)
+        fhse = foyer_fiscal('fhse', period)
+        fhsf = foyer_fiscal('fhsf', period)
+        fhsg = foyer_fiscal('fhsg', period)
+        fhsh = foyer_fiscal('fhsh', period)
+        fhsj = foyer_fiscal('fhsj', period)
+        fhsk = foyer_fiscal('fhsk', period)
+        fhsl = foyer_fiscal('fhsl', period)
+        fhsm = foyer_fiscal('fhsm', period)
+        fhso = foyer_fiscal('fhso', period)
+        fhsp = foyer_fiscal('fhsp', period)
+        fhsq = foyer_fiscal('fhsq', period)
+        fhsr = foyer_fiscal('fhsr', period)
+        fhst = foyer_fiscal('fhst', period)
+        fhsu = foyer_fiscal('fhsu', period)
+        fhsv = foyer_fiscal('fhsv', period)
+        fhsw = foyer_fiscal('fhsw', period)
+        fhsz = foyer_fiscal('fhsz', period)
+        fhta = foyer_fiscal('fhta', period)
+        fhtb = foyer_fiscal('fhtb', period)
+        fhtd = foyer_fiscal('fhtd', period)
+
+        return (fhbi + fhbj + fhbk + fhbm + fhbn + fhbo + fhbp + fhbr + fhbs + fhbt + fhbu + fhbw + fhbx + fhby + fhbz +
+                    fhcb + fhcc + fhcd + fhce + fhcg +
+                    fhaa + fhab + fhac + fhae + fhaf + fhag + fhah + fhaj + fhak + fhal + fham + fhao + fhap + fhaq + fhar + 
+                    fhat + fhau + fhav + fhaw + fhba + fhbb + fhbe + fhbg +
+                    fhsa + fhsb + fhsf + fhsg + fhsc + fhsh + fhse + fhsj + fhsk + fhsl + fhsp + fhsq + fhsm + fhsr + fhso +
+                    fhst + fhsu + fhsv + fhsw + fhsz + fhta + fhtb + fhtd + fhkt + fhku + fhlh + fhli + 
+                    fhmb + fhmc + fhmn + fhnu + fhnv + fhnw + fhny + fhpa + fhpb + fhpd + fhpe + fhpf + fhph + fhpi +
+                    fhpj + fhpl + fhpm + fhpn + fhpo + fhpp + fhpr + fhps + fhpt + fhpu + fhpw + fhpx + fhpy + fhqe + fhqf +
+                    fhqg + fhqi + fhqo + fhqp + fhqr + fhqv + fhrg + fhri + fhrj + fhrk + fhrl + fhrm + fhro + fhrp +
+                    fhrq + fhrr + fhrt + fhru + fhrv + fhrw + fhry)
+
+    def formula_2016_01_01(foyer_fiscal, period, parameters):
+        '''
+        Investissements dans les DOM-TOM dans le cadre d'une entrepise.
+        '''
+        fhaa = foyer_fiscal('fhaa', period)
+        fhab = foyer_fiscal('fhab', period)
+        fhac = foyer_fiscal('fhac', period)
+        fhae = foyer_fiscal('fhae', period)
+        fhaf = foyer_fiscal('fhaf', period)
+        fhag = foyer_fiscal('fhag', period)
+        fhah = foyer_fiscal('fhah', period)
+        fhaj = foyer_fiscal('fhaj', period)
+        fhak = foyer_fiscal('fhak', period)
+        fhal = foyer_fiscal('fhal', period)
+        fham = foyer_fiscal('fhal', period)
+        fhao = foyer_fiscal('fhao', period)
+        fhap = foyer_fiscal('fhap', period)
+        fhaq = foyer_fiscal('fhaq', period)
+        fhar = foyer_fiscal('fhar', period)
+        fhat = foyer_fiscal('fhat', period)
+        fhau = foyer_fiscal('fhau', period)
+        fhav = foyer_fiscal('fhav', period)
+        fhaw = foyer_fiscal('fhaw', period)
+        fhay = foyer_fiscal('fhay', period)
+        fhba = foyer_fiscal('fhba', period)
+        fhbb = foyer_fiscal('fhbb', period)
+        fhbe = foyer_fiscal('fhbe', period)
+        fhbg = foyer_fiscal('fhbg', period)
+        fhbi = foyer_fiscal('fhbi', period)
+        fhbj = foyer_fiscal('fhbj', period)
+        fhbk = foyer_fiscal('fhbk', period)
+        fhbm = foyer_fiscal('fhbm', period)
+        fhbn = foyer_fiscal('fhbn', period)
+        fhbo = foyer_fiscal('fhbo', period)
+        fhbp = foyer_fiscal('fhbp', period)
+        fhbr = foyer_fiscal('fhbr', period)
+        fhbs = foyer_fiscal('fhbs', period)
+        fhbt = foyer_fiscal('fhbt', period)
+        fhbu = foyer_fiscal('fhbu', period)
+        fhbw = foyer_fiscal('fhbw', period)
+        fhbx = foyer_fiscal('fhbx', period)
+        fhby = foyer_fiscal('fhby', period)
+        fhbz = foyer_fiscal('fhbz', period)
+        fhcb = foyer_fiscal('fhcb', period)
+        fhcc = foyer_fiscal('fhcc', period)
+        fhcd = foyer_fiscal('fhcd', period)
+        fhce = foyer_fiscal('fhce', period)
+        fhcg = foyer_fiscal('fhcg', period)
+        fhci = foyer_fiscal('fhci', period)
+        fhcj = foyer_fiscal('fhcj', period)
+        fhck = foyer_fiscal('fhck', period)
+        fhcm = foyer_fiscal('fhcm', period)
+        fhcn = foyer_fiscal('fhcn', period)
+        fhco = foyer_fiscal('fhco', period)
+        fhcp = foyer_fiscal('fhcp', period)
+        fhcr = foyer_fiscal('fhcr', period)
+        fhcs = foyer_fiscal('fhcs', period)
+        fhct = foyer_fiscal('fhct', period)
+        fhcu = foyer_fiscal('fhcu', period)
+        fhcw = foyer_fiscal('fhcw', period)
+        fhnu = foyer_fiscal('fhnu', period)
+        fhnv = foyer_fiscal('fhnv', period)
+        fhnw = foyer_fiscal('fhnw', period)
+        fhny = foyer_fiscal('fhny', period)
+        fhpa = foyer_fiscal('fhpa', period)
+        fhpb = foyer_fiscal('fhpb', period)
+        fhpd = foyer_fiscal('fhpd', period)
+        fhpe = foyer_fiscal('fhpe', period)
+        fhpf = foyer_fiscal('fhpf', period)
+        fhph = foyer_fiscal('fhph', period)
+        fhpi = foyer_fiscal('fhpi', period)
+        fhpj = foyer_fiscal('fhpj', period)
+        fhpl = foyer_fiscal('fhpl', period)
+        fhpm = foyer_fiscal('fhpm', period)
+        fhpn = foyer_fiscal('fhpn', period)
+        fhpo = foyer_fiscal('fhpo', period)
+        fhpp = foyer_fiscal('fhpp', period)
+        fhpr = foyer_fiscal('fhpr', period)
+        fhps = foyer_fiscal('fhps', period)
+        fhpt = foyer_fiscal('fhpt', period)
+        fhpu = foyer_fiscal('fhpu', period)
+        fhpw = foyer_fiscal('fhpw', period)
+        fhpx = foyer_fiscal('fhpx', period)
+        fhpy = foyer_fiscal('fhpy', period)
+        fhqe = foyer_fiscal('fhqe', period)
+        fhqf = foyer_fiscal('fhqf', period)
+        fhqg = foyer_fiscal('fhqg', period)
+        fhqi = foyer_fiscal('fhqi', period)
+        fhqo = foyer_fiscal('fhqo', period)
+        fhqp = foyer_fiscal('fhqp', period)
+        fhqr = foyer_fiscal('fhqr', period)
+        fhqv = foyer_fiscal('fhqv', period)
+        fhrg = foyer_fiscal('fhrg', period)
+        fhri = foyer_fiscal('fhri', period)
+        fhrj = foyer_fiscal('fhrj', period)
+        fhrk = foyer_fiscal('fhrk', period)
+        fhrl = foyer_fiscal('fhrl', period)
+        fhrm = foyer_fiscal('fhrm', period)
+        fhro = foyer_fiscal('fhro', period)
+        fhrp = foyer_fiscal('fhrp', period)
+        fhrq = foyer_fiscal('fhrq', period)
+        fhrr = foyer_fiscal('fhrr', period)
+        fhrt = foyer_fiscal('fhrt', period)
+        fhru = foyer_fiscal('fhru', period)
+        fhrv = foyer_fiscal('fhrv', period)
+        fhrw = foyer_fiscal('fhrw', period)
+        fhry = foyer_fiscal('fhry', period)
+        fhsa = foyer_fiscal('fhsa', period)
+        fhsb = foyer_fiscal('fhsb', period)
+        fhsc = foyer_fiscal('fhsc', period)
+        fhse = foyer_fiscal('fhse', period)
+        fhsf = foyer_fiscal('fhsf', period)
+        fhsg = foyer_fiscal('fhsg', period)
+        fhsh = foyer_fiscal('fhsh', period)
+        fhsj = foyer_fiscal('fhsj', period)
+        fhsk = foyer_fiscal('fhsk', period)
+        fhsl = foyer_fiscal('fhsl', period)
+        fhsm = foyer_fiscal('fhsm', period)
+        fhso = foyer_fiscal('fhso', period)
+        fhsp = foyer_fiscal('fhsp', period)
+        fhsq = foyer_fiscal('fhsq', period)
+        fhsr = foyer_fiscal('fhsr', period)
+        fhst = foyer_fiscal('fhst', period)
+        fhsu = foyer_fiscal('fhsu', period)
+        fhsv = foyer_fiscal('fhsv', period)
+        fhsw = foyer_fiscal('fhsw', period)
+        fhsz = foyer_fiscal('fhsz', period)
+        fhta = foyer_fiscal('fhta', period)
+        fhtb = foyer_fiscal('fhtb', period)
+        fhtd = foyer_fiscal('fhtd', period)
+
+        return (fhci + fhcj + fhck + fhcm + fhcn + fhco + fhcp + fhcr + fhcs + fhct + fhcu + fhcw +
+                    fhbi + fhbj + fhbk + fhbm + fhbn + fhbo + fhbp + fhbr + fhbs + fhbt + fhbu + fhbw + fhbx + fhby + fhbz +
+                    fhcb + fhcc + fhcd + fhce + fhcg +
+                    fhaa + fhab + fhac + fhae + fhaf + fhag + fhah + fhaj + fhak + fhal + fham + fhao + fhap + fhaq + fhar + 
+                    fhat + fhau + fhav + fhaw + fhba + fhbb + fhbe + fhbg +
+                    fhsa + fhsb + fhsf + fhsg + fhsc + fhsh + fhse + fhsj + fhsk + fhsl + fhsp + fhsq + fhsm + fhsr + fhso +
+                    fhst + fhsu + fhsv + fhsw + fhsz + fhta + fhtb + fhtd + 
+                    fhnu + fhnv + fhnw + fhny + fhpa + fhpb + fhpd + fhpe + fhpf + fhph + fhpi +
+                    fhpj + fhpl + fhpm + fhpn + fhpo + fhpp + fhpr + fhps + fhpt + fhpu + fhpw + fhpx + fhpy + fhqe + fhqf +
+                    fhqg + fhqi + fhqo + fhqp + fhqr + fhqv + fhrg + fhri + fhrj + fhrk + fhrl + fhrm + fhro + fhrp +
+                    fhrq + fhrr + fhrt + fhru + fhrv + fhrw + fhry)
 
         # TODO: vérifier pour 2002
         # TODO: pb 7ul 2005-2009 (ITRED = 0 au lieu de 20€ (forfaitaire), dû à ça : Cochez [7UL] si vous déclarez en ligne pour
         # la première fois vos revenus 2008 et si vous utilisez un moyen automatique de paiement (prélèvement mensuel ou à
         # l'échéance ou paiement par voie électronique))
 
+        # Outre-mer : TODO: plafonnement, cf. 2041-GE 2042-IOM
 
-        # TODO: vérifier les dates des variables de doment et domsoc (y sont-elles encore en 2013 par ex ?)
 
 class domlog(Variable):
     value_type = float
@@ -1252,15 +1647,15 @@ class domlog(Variable):
     label = u"Réduction d'impôt au titre des investissements outre-mer réalisés par des personnes physiques"
     reference = "http://bofip.impots.gouv.fr/bofip/6716-PGP"
     definition_period = YEAR
-    end = '2013-12-31'
+    end = '2016-12-31'
 
     def formula_2002_01_01(foyer_fiscal, period, parameters):
         '''
         Investissements OUTRE-MER dans le secteur du logement et autres secteurs d’activité
         2002
         '''
-        f7ua = foyer_fiscal('f7ua', period)
-        f7ub = foyer_fiscal('f7ub', period)
+        f7ua = foyer_fiscal('f7ua_2007', period)
+        f7ub = foyer_fiscal('f7ub_2007', period)
         f7uc = foyer_fiscal('f7uc', period)
         f7uj = foyer_fiscal('f7uj', period)
         P = parameters(period).impot_revenu.reductions_impots.domlog
@@ -1272,8 +1667,8 @@ class domlog(Variable):
         Investissements OUTRE-MER dans le secteur du logement et autres secteurs d’activité
         2003-2004
         '''
-        f7ua = foyer_fiscal('f7ua', period)
-        f7ub = foyer_fiscal('f7ub', period)
+        f7ua = foyer_fiscal('f7ua_2007', period)
+        f7ub = foyer_fiscal('f7ub_2007', period)
         f7uc = foyer_fiscal('f7uc', period)
         f7ui = foyer_fiscal('f7ui_2008', period)
         f7uj = foyer_fiscal('f7uj', period)
@@ -1286,8 +1681,8 @@ class domlog(Variable):
         Investissements OUTRE-MER dans le secteur du logement et autres secteurs d’activité
         2005-2007
         '''
-        f7ua = foyer_fiscal('f7ua', period)
-        f7ub = foyer_fiscal('f7ub', period)
+        f7ua = foyer_fiscal('f7ua_2007', period)
+        f7ub = foyer_fiscal('f7ub_2007', period)
         f7uc = foyer_fiscal('f7uc', period)
         f7ui = foyer_fiscal('f7ui_2008', period)
         f7uj = foyer_fiscal('f7uj', period)
@@ -1401,38 +1796,211 @@ class domlog(Variable):
         fhox = foyer_fiscal('fhox', period)
         fhoy = foyer_fiscal('fhoy', period)
         fhoz = foyer_fiscal('fhoz', period)
-        f7qb = foyer_fiscal('f7qb', period)
-        f7qc = foyer_fiscal('f7qc', period)
-        f7qd = foyer_fiscal('f7qd', period)
-        f7ql = foyer_fiscal('f7ql', period)
-        f7qm = foyer_fiscal('f7qm', period)
-        f7qt = foyer_fiscal('f7qt', period)
-        f7oa = foyer_fiscal('f7oa', period)
-        f7ob = foyer_fiscal('f7ob', period)
-        f7oc = foyer_fiscal('f7oc', period)
-        f7oh = foyer_fiscal('f7oh', period)
-        f7oi = foyer_fiscal('f7oi', period)
-        f7oj = foyer_fiscal('f7oj', period)
-        f7ok = foyer_fiscal('f7ok', period)
-        f7ol = foyer_fiscal('f7ol', period)
-        f7om = foyer_fiscal('f7om', period)
-        f7on = foyer_fiscal('f7on', period)
-        f7oo = foyer_fiscal('f7oo', period)
-        f7op = foyer_fiscal('f7op', period)
-        f7oq = foyer_fiscal('f7oq', period)
-        f7or = foyer_fiscal('f7or', period)
-        f7os = foyer_fiscal('f7os', period)
-        f7ot = foyer_fiscal('f7ot', period)
-        f7ou = foyer_fiscal('f7ou', period)
-        f7ov = foyer_fiscal('f7ov', period)
-        f7ow = foyer_fiscal('f7ow', period)
+        fhqb = foyer_fiscal('fhqb', period)
+        fhqc = foyer_fiscal('fhqc', period)
+        fhqd = foyer_fiscal('fhqd', period)
+        fhql = foyer_fiscal('fhql', period)
+        fhqm = foyer_fiscal('fhqm', period)
+        fhqt = foyer_fiscal('fhqt', period)
+        fhoa = foyer_fiscal('fhoa', period)
+        fhob = foyer_fiscal('fhob', period)
+        fhoc = foyer_fiscal('fhoc', period)
+        fhoh = foyer_fiscal('fhoh', period)
+        fhoi = foyer_fiscal('fhoi', period)
+        fhoj = foyer_fiscal('fhoj', period)
+        fhok = foyer_fiscal('fhok', period)
+        fhol = foyer_fiscal('fhol', period)
+        fhom = foyer_fiscal('fhom', period)
+        fhon = foyer_fiscal('fhon', period)
+        fhoo = foyer_fiscal('fhoo', period)
+        fhop = foyer_fiscal('fhop', period)
+        fhoq = foyer_fiscal('fhoq', period)
+        fhor = foyer_fiscal('fhor', period)
+        fhos = foyer_fiscal('fhos', period)
+        fhot = foyer_fiscal('fhot', period)
+        fhou = foyer_fiscal('fhou', period)
+        fhov = foyer_fiscal('fhov', period)
+        fhow = foyer_fiscal('fhow', period)
 
-        return (f7qb + f7qc + f7qd + f7ql + f7qm + f7qt + f7oa + f7ob + f7oc + f7oh + f7oi + f7oj + f7ok + f7ol + f7om +
-                    f7on + f7oo + f7op + f7oq + f7or + f7os + f7ot + f7ou + f7ov + f7ow + fhod + fhoe +
+        return (fhqb + fhqc + fhqd + fhql + fhqm + fhqt + fhoa + fhob + fhoc + fhoh + fhoi + fhoj + fhok + fhol + fhom +
+                    fhon + fhoo + fhop + fhoq + fhor + fhos + fhot + fhou + fhov + fhow + fhod + fhoe +
                     fhof + fhog + fhox + fhoy + fhoz)
 
+    def formula_2014_01_01(foyer_fiscal, period, parameters):
+        '''
+        Investissements OUTRE-MER dans le secteur du logement et autres secteurs d’activité
+        2014
+        '''
+        fhod = foyer_fiscal('fhod', period)
+        fhoe = foyer_fiscal('fhoe', period)
+        fhof = foyer_fiscal('fhof', period)
+        fhog = foyer_fiscal('fhog', period)
+        fhox = foyer_fiscal('fhox', period)
+        fhoy = foyer_fiscal('fhoy', period)
+        fhoz = foyer_fiscal('fhoz', period)
+        fhqb = foyer_fiscal('fhqb', period)
+        fhqc = foyer_fiscal('fhqc', period)
+        fhqd = foyer_fiscal('fhqd', period)
+        fhql = foyer_fiscal('fhql', period)
+        fhqm = foyer_fiscal('fhqm', period)
+        fhqt = foyer_fiscal('fhqt', period)
+        fhoa = foyer_fiscal('fhoa', period)
+        fhob = foyer_fiscal('fhob', period)
+        fhoc = foyer_fiscal('fhoc', period)
+        fhoh = foyer_fiscal('fhoh', period)
+        fhoi = foyer_fiscal('fhoi', period)
+        fhoj = foyer_fiscal('fhoj', period)
+        fhok = foyer_fiscal('fhok', period)
+        fhol = foyer_fiscal('fhol', period)
+        fhom = foyer_fiscal('fhom', period)
+        fhon = foyer_fiscal('fhon', period)
+        fhoo = foyer_fiscal('fhoo', period)
+        fhop = foyer_fiscal('fhop', period)
+        fhoq = foyer_fiscal('fhoq', period)
+        fhor = foyer_fiscal('fhor', period)
+        fhos = foyer_fiscal('fhos', period)
+        fhot = foyer_fiscal('fhot', period)
+        fhou = foyer_fiscal('fhou', period)
+        fhov = foyer_fiscal('fhov', period)
+        fhow = foyer_fiscal('fhow', period)
+        fhua = foyer_fiscal('fhua', period)
+        fhub = foyer_fiscal('fhub', period)
+        fhuc = foyer_fiscal('fhuc', period)
+        fhud = foyer_fiscal('fhud', period)
+        fhue = foyer_fiscal('fhue', period)
+        fhuf = foyer_fiscal('fhuf', period)
+        fhug = foyer_fiscal('fhug', period)
 
-#En accord avec la DGFiP mais pas de 7ub et 7uj dans la notice
+        return (fhqb + fhqc + fhqd + fhql + fhqm + fhqt + fhoa + fhob + fhoc + fhoh + fhoi + fhoj + fhok + fhol + fhom +
+                    fhon + fhoo + fhop + fhoq + fhor + fhos + fhot + fhou + fhov + fhow + fhod + fhoe +
+                    fhof + fhog + fhox + fhoy + fhoz + fhua + fhub + fhuc + fhud + fhue + fhuf + fhug)
+
+
+    def formula_2015_01_01(foyer_fiscal, period, parameters):
+        '''
+        Investissements OUTRE-MER dans le secteur du logement et autres secteurs d’activité
+        2015
+        '''
+        fhod = foyer_fiscal('fhod', period)
+        fhoe = foyer_fiscal('fhoe', period)
+        fhof = foyer_fiscal('fhof', period)
+        fhog = foyer_fiscal('fhog', period)
+        fhox = foyer_fiscal('fhox', period)
+        fhoy = foyer_fiscal('fhoy', period)
+        fhoz = foyer_fiscal('fhoz', period)
+        fhqb = foyer_fiscal('fhqb', period)
+        fhqc = foyer_fiscal('fhqc', period)
+        fhqd = foyer_fiscal('fhqd', period)
+        fhql = foyer_fiscal('fhql', period)
+        fhqm = foyer_fiscal('fhqm', period)
+        fhqt = foyer_fiscal('fhqt', period)
+        fhoa = foyer_fiscal('fhoa', period)
+        fhob = foyer_fiscal('fhob', period)
+        fhoc = foyer_fiscal('fhoc', period)
+        fhoh = foyer_fiscal('fhoh', period)
+        fhoi = foyer_fiscal('fhoi', period)
+        fhoj = foyer_fiscal('fhoj', period)
+        fhok = foyer_fiscal('fhok', period)
+        fhol = foyer_fiscal('fhol', period)
+        fhom = foyer_fiscal('fhom', period)
+        fhon = foyer_fiscal('fhon', period)
+        fhoo = foyer_fiscal('fhoo', period)
+        fhop = foyer_fiscal('fhop', period)
+        fhoq = foyer_fiscal('fhoq', period)
+        fhor = foyer_fiscal('fhor', period)
+        fhos = foyer_fiscal('fhos', period)
+        fhot = foyer_fiscal('fhot', period)
+        fhou = foyer_fiscal('fhou', period)
+        fhov = foyer_fiscal('fhov', period)
+        fhow = foyer_fiscal('fhow', period)
+        fhua = foyer_fiscal('fhua', period)
+        fhub = foyer_fiscal('fhub', period)
+        fhuc = foyer_fiscal('fhuc', period)
+        fhud = foyer_fiscal('fhud', period)
+        fhue = foyer_fiscal('fhue', period)
+        fhuf = foyer_fiscal('fhuf', period)
+        fhug = foyer_fiscal('fhug', period)
+        fhuh = foyer_fiscal('fhuh', period)
+        fhui = foyer_fiscal('fhui', period)
+        fhuj = foyer_fiscal('fhuj', period)
+        fhuk = foyer_fiscal('fhuk', period)
+        fhul = foyer_fiscal('fhul', period)
+        fhum = foyer_fiscal('fhum', period)
+        fhun = foyer_fiscal('fhun', period)
+
+        return (fhqb + fhqc + fhqd + fhql + fhqm + fhqt + fhoa + fhob + fhoc + fhoh + fhoi + fhoj + fhok + fhol + fhom +
+                    fhon + fhoo + fhop + fhoq + fhor + fhos + fhot + fhou + fhov + fhow + fhod + fhoe +
+                    fhof + fhog + fhox + fhoy + fhoz + fhua + fhub + fhuc + fhud + fhue + fhuf + fhug +
+                    fhuh + fhui + fhuj + fhuk + fhul + fhum + fhun)
+
+    def formula_2016_01_01(foyer_fiscal, period, parameters):
+        '''
+        Investissements OUTRE-MER dans le secteur du logement et autres secteurs d’activité
+        2016
+        '''
+        fhod = foyer_fiscal('fhod', period)
+        fhoe = foyer_fiscal('fhoe', period)
+        fhof = foyer_fiscal('fhof', period)
+        fhog = foyer_fiscal('fhog', period)
+        fhox = foyer_fiscal('fhox', period)
+        fhoy = foyer_fiscal('fhoy', period)
+        fhoz = foyer_fiscal('fhoz', period)
+        fhqb = foyer_fiscal('fhqb', period)
+        fhqc = foyer_fiscal('fhqc', period)
+        fhqd = foyer_fiscal('fhqd', period)
+        fhql = foyer_fiscal('fhql', period)
+        fhqm = foyer_fiscal('fhqm', period)
+        fhqt = foyer_fiscal('fhqt', period)
+        fhoa = foyer_fiscal('fhoa', period)
+        fhob = foyer_fiscal('fhob', period)
+        fhoc = foyer_fiscal('fhoc', period)
+        fhoh = foyer_fiscal('fhoh', period)
+        fhoi = foyer_fiscal('fhoi', period)
+        fhoj = foyer_fiscal('fhoj', period)
+        fhok = foyer_fiscal('fhok', period)
+        fhol = foyer_fiscal('fhol', period)
+        fhom = foyer_fiscal('fhom', period)
+        fhon = foyer_fiscal('fhon', period)
+        fhoo = foyer_fiscal('fhoo', period)
+        fhop = foyer_fiscal('fhop', period)
+        fhoq = foyer_fiscal('fhoq', period)
+        fhor = foyer_fiscal('fhor', period)
+        fhos = foyer_fiscal('fhos', period)
+        fhot = foyer_fiscal('fhot', period)
+        fhou = foyer_fiscal('fhou', period)
+        fhov = foyer_fiscal('fhov', period)
+        fhow = foyer_fiscal('fhow', period)
+        fhua = foyer_fiscal('fhua', period)
+        fhub = foyer_fiscal('fhub', period)
+        fhuc = foyer_fiscal('fhuc', period)
+        fhud = foyer_fiscal('fhud', period)
+        fhue = foyer_fiscal('fhue', period)
+        fhuf = foyer_fiscal('fhuf', period)
+        fhug = foyer_fiscal('fhug', period)
+        fhuh = foyer_fiscal('fhuh', period)
+        fhui = foyer_fiscal('fhui', period)
+        fhuj = foyer_fiscal('fhuj', period)
+        fhuk = foyer_fiscal('fhuk', period)
+        fhul = foyer_fiscal('fhul', period)
+        fhum = foyer_fiscal('fhum', period)
+        fhun = foyer_fiscal('fhun', period)
+        fhuo = foyer_fiscal('fhuo', period)
+        fhup = foyer_fiscal('fhup', period)
+        fhuq = foyer_fiscal('fhuq', period)
+        fhur = foyer_fiscal('fhur', period)
+        fhus = foyer_fiscal('fhus', period)
+        fhut = foyer_fiscal('fhut', period)
+        fhuu = foyer_fiscal('fhuu', period)
+
+        return (fhqb + fhqc + fhqd + fhql + fhqm + fhqt + fhoa + fhob + fhoc + fhoh + fhoi + fhoj + fhok + fhol + fhom +
+                    fhon + fhoo + fhop + fhoq + fhor + fhos + fhot + fhou + fhov + fhow + fhod + fhoe +
+                    fhof + fhog + fhox + fhoy + fhoz + fhua + fhub + fhuc + fhud + fhue + fhuf + fhug +
+                    fhuh + fhui + fhuj + fhuk + fhul + fhum + fhun + fhuo + fhup + fhuq + fhur + fhus +
+                    fhut + fhuu)
+
+    #En accord avec la DGFiP mais pas de 7ub et 7uj dans la notice
+
+    # Outre-mer : TODO: plafonnement, cf. 2041-GE 2042-IOM
 
 
 class domsoc(Variable):
@@ -1447,7 +2015,34 @@ class domsoc(Variable):
     def formula_2010_01_01(foyer_fiscal, period, parameters):
         '''
         Investissements outre-mer dans le logement social (déclaration n°2042 IOM)
-        2010-
+        2010
+        TODO plafonnement à 15% f7qa / liens avec autres investissments ?
+        '''
+        f7qn = foyer_fiscal('f7qn', period)
+        f7qk = foyer_fiscal('f7qk', period)
+        f7kg = foyer_fiscal('f7kg', period)
+
+        return  f7qn + f7qk + f7kg
+
+    def formula_2011_01_01(foyer_fiscal, period, parameters):
+        '''
+        Investissements outre-mer dans le logement social (déclaration n°2042 IOM)
+        2011
+        TODO plafonnement à 15% f7qa / liens avec autres investissments ?
+        '''
+        f7qn = foyer_fiscal('f7qn', period)
+        f7qk = foyer_fiscal('f7qk', period)
+        f7qu = foyer_fiscal('f7qu', period)
+        f7kg = foyer_fiscal('f7kg', period)
+        f7kh = foyer_fiscal('f7kh', period)
+        f7ki = foyer_fiscal('f7ki', period)
+
+        return  f7qn + f7qk + f7qu + f7kg + f7kh + f7ki
+
+    def formula_2012_01_01(foyer_fiscal, period, parameters):
+        '''
+        Investissements outre-mer dans le logement social (déclaration n°2042 IOM)
+        2012
         TODO plafonnement à 15% f7qa / liens avec autres investissments ?
         '''
         f7qn = foyer_fiscal('f7qn', period)
@@ -1485,6 +2080,8 @@ class domsoc(Variable):
         f7qx = foyer_fiscal('f7qx', period) 
 
         return  fhra + fhrb + fhrc + fhrd + f7qn + f7qk + f7qu + f7kg + f7kh + f7ki + f7qj + f7qs + f7qw + f7qx
+
+    # Outre-mer : TODO: plafonnement, cf. 2041-GE 2042-IOM
 
 
 class donapd(Variable):
@@ -4261,7 +4858,6 @@ class scelli(Variable):
             report_scelli_2015
             )
 
-   
 
 class sofica(Variable):
     value_type = float
