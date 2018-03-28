@@ -3511,7 +3511,7 @@ class f7ua(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Investissements forestiers : travaux avec adhésion à une organisation de producteurs 
+    label = u"Investissements forestiers : travaux avec adhésion à une organisation de producteurs"
 #    start_date = date(2014, 1, 1)
     definition_period = YEAR
 
