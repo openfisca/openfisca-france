@@ -1,5 +1,15 @@
 # Changelog
 
+## 20.9.0 [#912](https://github.com/openfisca/openfisca-france/pull/912)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : 2005 - 2016
+* Détails :
+- Mise à jour des formules (2014-2016) des réductions 'doment', 'domlog', 'domsoc'
+- Correction de la formule de 'doment' en 2013 (les cases de la déclaration correspondant à cette réduction sont dans le nouveau formulaire 2042 IOM et commencent toutes par "fh" et non "f7")
+- Ajout des inputs variables associées à ces réductions (nouvelles cases de la déclaration IOM à partir de 2014)
+
+
 ## 20.8.0 [#911](https://github.com/openfisca/openfisca-france/pull/911)
 
 * Évolution du système socio-fiscal.
