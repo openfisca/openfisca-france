@@ -803,6 +803,7 @@ class f7wr(Variable):
 
 
 # Investissements dans les DOM-TOM dans le cadre d'une entrepise
+
 class f7ur(Variable):
     cerfa_field = u"7UR"
     value_type = int
