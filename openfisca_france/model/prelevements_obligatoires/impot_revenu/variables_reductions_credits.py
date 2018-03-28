@@ -1886,7 +1886,7 @@ class fhmn(Variable):
     definition_period = YEAR
 
 
-class f7lh(Variable):
+class f7lh_2012(Variable):
     cerfa_field = u"7LH"
     value_type = int
     unit = 'currency'
