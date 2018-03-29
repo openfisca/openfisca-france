@@ -1612,7 +1612,7 @@ class quaenv(Variable):
                 + P.taux26 * min_(max3, f7se)
                 + P.taux32 * min_(max2, f7sv)
                 + P.taux34 * min_(max1, f7sn + f7sr + f7sq)
-                + P.taux40 * min_(max0, f7ss + f7st))
+                + P.taux40 * min_(max0, f7ss + f7st)) +
             (not_(quaenv_bouquet) * (
                 P.taux32 * min_(max0, f7ss + f7st + f7sv)
                 + P.taux26 * min_(max1, f7sn + f7sq + f7sr)
@@ -1680,7 +1680,7 @@ class quaenv(Variable):
                 + P.taux26 * min_(max3, f7se)
                 + P.taux32 * min_(max2, f7sv)
                 + P.taux34 * min_(max1, f7sn + f7sr + f7sq)
-                + P.taux40 * min_(max0, f7ss + f7st))
+                + P.taux40 * min_(max0, f7ss + f7st)) +
             not_(quaenv_bouquet) * (
                 + P.taux32 * min_(max0, f7ss + f7st + f7sv)
                 + P.taux26 * min_(max1, f7sn + f7sq + f7sr)
