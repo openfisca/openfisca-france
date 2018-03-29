@@ -1,5 +1,12 @@
 # Changelog
 
+## 20.9.1 [#953](https://github.com/openfisca/openfisca-france/pull/953)
+
+* Correction d'un bug
+* Zones impactées : `revenus/mesures`
+* Détails :
+  - Corrige la formule des `unites_consommation`
+
 ## 20.9.0 [#912](https://github.com/openfisca/openfisca-france/pull/912)
 
 * Évolution du système socio-fiscal.

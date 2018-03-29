@@ -15,11 +15,9 @@ class unites_consommation(Variable):
     definition_period = YEAR
 
     def formula(menage, period, parameters):
-        age_indiv = menage.members('age', period.first_month)
-        uc_indiv = 0.5 * (age_i >= 14) + 0.3 * (age < 14)
-        tot_uc_indiv = menage.sum(uc_indiv)
-
-        return 0.5 + tot_uc_indiv
+        age_individu = menage.members('age', period.first_month)
+        uc_individu = 0.5 * (age_individu >= 14) + 0.3 * (age_individu < 14)
+        return 0.5 + menage.sum(uc_individu)  # 1 uc pour la personne de référence
 
 
 class type_menage(Variable):
