@@ -1,6 +1,6 @@
 # Changelog
 
-## 20.9.1 [#953](https://github.com/openfisca/openfisca-france/pull/953)
+## 20.9.1 [#954](https://github.com/openfisca/openfisca-france/pull/954)
 
 * Correction d'un bug
 * Zones impactées : `revenus/mesures`
