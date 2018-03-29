@@ -1,5 +1,15 @@
 # Changelog
 
+## 21.2.0 [#913](https://github.com/openfisca/openfisca-france/pull/913)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : 2005 - 2016
+* Détails :
+- Mise à jour des formules (2014-2016) du crédit d'impôt 'quaenv' (et de la condition de bouquet : variables 'quaenv_bouquet')
+- Ajout des "inputs variables" (cases de la déclaration fiscales) associées
+- Création de paramètres YAML associés (notamment pour éviter de rentrer "en dur" les plafonds de RFR)
+- Correction de la formule (à partir de 2012) : le plafonnement s'applique aux dépenses et non à la réduction.
+
 ## 21.1.0 [#949](https://github.com/openfisca/openfisca-france/pull/949)
 
 * Changement mineur.
@@ -20,7 +30,7 @@
     + Création de `valeur_patrimoine_loue`, `valeur_immo_non_loue`, `valeur_terrains_non_loues` et `epargne_revenus_imposables`
     + Renommage de `valeur_terrains_non_loue` en `valeur_terrains_non_loues`
 
-### 20.9.1 [#954](https://github.com/openfisca/openfisca-france/pull/954)
+## 20.9.1 [#954](https://github.com/openfisca/openfisca-france/pull/954)
 
 * Correction d'un bug
 * Zones impactées : `revenus/mesures`
