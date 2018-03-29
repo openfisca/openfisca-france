@@ -3720,7 +3720,8 @@ class rpinel(Variable):
 class rpinel(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = u"rpinel"
+    label = u"Réduction d'impôt en faveur de l'investissement locatif intermédiaire - Dispositif Pinel"
+    reference = "http://bofip.impots.gouv.fr/bofip/8425-PGP"
     definition_period = YEAR
 
     def formula_2014_01_01(foyer_fiscal, period, parameters):
@@ -3728,21 +3729,21 @@ class rpinel(Variable):
         Investissement locatif privé - Dispositif Pinel
         2014
         '''
-        f7ek = foyer_fiscal('f7ek', period)
-        f7el = foyer_fiscal('f7el', period)
+        invest_metropole_2014 = foyer_fiscal('f7ek', period)
+        invest_domtom_2014 = foyer_fiscal('f7el', period)
         f7qa = foyer_fiscal('f7qa', period)
         f7qb = foyer_fiscal('f7qb', period)
         f7qc = foyer_fiscal('f7qc', period)
         f7qd = foyer_fiscal('f7qd', period)
-        P = simulation.parameters_at(period.start).impot_revenu.reductions_impots.rpinel
+        P = parameters(period).impot_revenu.reductions_impots.rpinel
 
-        max1 = max_(0, P.seuil - f7el - f7qd) # 2014 : plafond commun 'duflot' et 'rpinel'
+        max1 = max_(0, P.seuil - invest_domtom_2014 - f7qd) # 2014 : plafond commun 'duflot' et 'rpinel'
         max2 = max_(0, max1 - f7qc)
-        max3 = max_(0, max2 - f7ek - f7qb)
+        max3 = max_(0, max2 - invest_metropole_2014 - f7qb)
 
-        return (P.taux29 * min_(max_(0, P.seuil - f7el), f7qd) / 9 +
+        return (P.taux29 * min_(max_(0, P.seuil - invest_domtom_2014), f7qd) / 9 +
                 P.taux23 * min_(max1, f7qc) / 6 +
-                P.taux18 * min_(max_(0, max2 - f7ek), f7qb) / 9 +
+                P.taux18 * min_(max_(0, max2 - invest_metropole_2014), f7qb) / 9 +
                 P.taux12 * min_(max3, f7qa) / 6 )
 
     def formula_2015_01_01(foyer_fiscal, period, parameters):
@@ -3754,8 +3755,8 @@ class rpinel(Variable):
         f7bi = foyer_fiscal('f7bi', period)
         f7ci = foyer_fiscal('f7ci', period)
         f7di = foyer_fiscal('f7di', period)
-        f7ek = foyer_fiscal('f7ek', period)
-        f7el = foyer_fiscal('f7el', period)
+        invest_metropole_2014 = foyer_fiscal('f7ek', period)
+        invest_domtom_2014 = foyer_fiscal('f7el', period)
         f7qa = foyer_fiscal('f7qa', period)
         f7qb = foyer_fiscal('f7qb', period)
         f7qc = foyer_fiscal('f7qc', period)
@@ -3764,15 +3765,15 @@ class rpinel(Variable):
         f7qf = foyer_fiscal('f7qf', period)
         f7qg = foyer_fiscal('f7qg', period)
         f7qh = foyer_fiscal('f7qh', period)
-        P = simulation.parameters_at(period.start).impot_revenu.reductions_impots.rpinel
+        P = parameters(period).impot_revenu.reductions_impots.rpinel
 
-        max1 = max_(0, P.seuil - f7el - f7qd) # 2014 : plafond commun 'duflot' et 'rpinel'
+        max1 = max_(0, P.seuil - invest_domtom_2014 - f7qd) # 2014 : plafond commun 'duflot' et 'rpinel'
         max2 = max_(0, max1 - f7qc)
-        max3 = max_(0, max2 - f7ek - f7qb)
+        max3 = max_(0, max2 - invest_metropole_2014 - f7qb)
 
-        reduc_invest_real_2014 = (P.taux29 * min_(max_(0, P.seuil - f7el), f7qd) / 9 +
+        reduc_invest_real_2014 = (P.taux29 * min_(max_(0, P.seuil - invest_domtom_2014), f7qd) / 9 +
                 P.taux23 * min_(max1, f7qc) / 6 +
-                P.taux18 * min_(max_(0, max2 - f7ek), f7qb) / 9 +
+                P.taux18 * min_(max_(0, max2 - invest_metropole_2014), f7qb) / 9 +
                 P.taux12 * min_(max3, f7qa) / 6)
 
         reduc_invest_real_2015 = (
@@ -3797,8 +3798,8 @@ class rpinel(Variable):
         f7cz = foyer_fiscal('f7cz', period)
         f7di = foyer_fiscal('f7di', period)
         f7dz = foyer_fiscal('f7dz', period)
-        f7ek = foyer_fiscal('f7ek', period)
-        f7el = foyer_fiscal('f7el', period)
+        invest_metropole_2014 = foyer_fiscal('f7ek', period)
+        invest_domtom_2014 = foyer_fiscal('f7el', period)
         f7ez = foyer_fiscal('f7ez', period)
         f7qa = foyer_fiscal('f7qa', period)
         f7qb = foyer_fiscal('f7qb', period)
@@ -3812,15 +3813,15 @@ class rpinel(Variable):
         f7qj = foyer_fiscal('f7qj', period)
         f7qk = foyer_fiscal('f7qk', period)
         f7ql = foyer_fiscal('f7ql', period)
-        P = simulation.parameters_at(period.start).impot_revenu.reductions_impots.rpinel
+        P = parameters(period).impot_revenu.reductions_impots.rpinel
 
-        max1 = max_(0, P.seuil - f7el - f7qd) # 2014 : plafond commun 'duflot' et 'rpinel'
+        max1 = max_(0, P.seuil - invest_domtom_2014 - f7qd) # 2014 : plafond commun 'duflot' et 'rpinel'
         max2 = max_(0, max1 - f7qc)
-        max3 = max_(0, max2 - f7ek - f7qb)
+        max3 = max_(0, max2 - invest_metropole_2014 - f7qb)
 
-        reduc_invest_real_2014 = (P.taux29 * min_(max_(0, P.seuil - f7el), f7qd) / 9 +
+        reduc_invest_real_2014 = (P.taux29 * min_(max_(0, P.seuil - invest_domtom_2014), f7qd) / 9 +
                 P.taux23 * min_(max1, f7qc) / 6 +
-                P.taux18 * min_(max_(0, max2 - f7ek), f7qb) / 9 +
+                P.taux18 * min_(max_(0, max2 - invest_metropole_2014), f7qb) / 9 +
                 P.taux12 * min_(max3, f7qa) / 6 )
 
         reduc_invest_real_2015 = (
