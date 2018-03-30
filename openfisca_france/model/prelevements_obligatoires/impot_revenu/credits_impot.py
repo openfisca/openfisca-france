@@ -1466,7 +1466,7 @@ class quaenv(Variable):
         f7wk = foyer_fiscal('f7wk', period)
         f7wq = foyer_fiscal('f7wq', period)
         f7sb = foyer_fiscal('f7sb_2011', period)
-        f7sc = foyer_fiscal('f7sc', period)
+        f7sc = foyer_fiscal('f7sc_2009', period)
         f7sd = foyer_fiscal('f7sd', period)
         f7se = foyer_fiscal('f7se', period)
         rfr = foyer_fiscal('rfr', period)

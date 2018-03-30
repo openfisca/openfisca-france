@@ -6983,15 +6983,27 @@ class f7sb(Variable):
     definition_period = YEAR
 
 
-class f7sc(Variable):
+class f7sc_2009(Variable):
     cerfa_field = u"7SC"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = u"Crédits d’impôt pour dépenses en faveur de la qualité environnementale"
 #    start_date = date(2009, 1, 1)
-#    end = '2009-12-01' changes meaning in 2014
+    end = '2009-12-01'
     definition_period = YEAR
+
+
+class f7sc(Variable):
+    cerfa_field = u"7SC"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Dépenses en faveur de la qualité environnementale des logements donnés en location, payées du 1.9 au 31.12.2014 : appareils de régulation du chauffage, matériaux de calorifugeage"
+#    start_date = date(2014, 1, 1)
+    end = '2016-12-01'
+    definition_period = YEAR
+
 
 class f7ta(Variable):
     cerfa_field = u"7TA"
