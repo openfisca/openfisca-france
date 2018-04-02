@@ -3,6 +3,9 @@
 ## 21.2.0 [#913](https://github.com/openfisca/openfisca-france/pull/913)
 
 * Évolution du système socio-fiscal.
+* Zones impactées :
+  - `prelevements_obligatoires/impot_revenu/credits_impot`
+  - `prelevements_obligatoires/impot_revenu/reductions_impot`
 * Périodes concernées : 2005 - 2016
 * Détails :
 - Mise à jour des formules (2014-2016) du crédit d'impôt 'quaenv' (et de la condition de bouquet : variables 'quaenv_bouquet')
@@ -12,7 +15,8 @@
 
 ## 21.1.0 [#949](https://github.com/openfisca/openfisca-france/pull/949)
 
-* Changement mineur.
+* Évolution du système socio-fiscal.
+* Zones impactées : `prestations/cheque_energie`
 * Périodes concernées : À partir de 2018
 * Détails :
 - Suppression de l'éligibilité des foyers de Saint Martin au chèque énergie
@@ -20,6 +24,9 @@
 # 21.0.0 [#902](https://github.com/openfisca/openfisca-france/pull/902)
 
 * Évolution du système socio-fiscal.
+* Zones impactées :
+  -  `prestations/aides_logement`
+  -  `prestations/minima_sociaux/rsa`
 * Périodes concernées : à partir de juin 2009.
 * Détails :
   - Mise à jour de la prise en compte du patrimoine dans la base ressource du RSA
@@ -32,8 +39,8 @@
 
 ## 20.9.1 [#954](https://github.com/openfisca/openfisca-france/pull/954)
 
-* Correction d'un bug
-* Zones impactées : `revenus/mesures`
+* Évolution du système socio-fiscal.
+* Zones impactées : `mesures`
 * Détails :
   - Corrige la formule des `unites_consommation`
 
@@ -141,7 +148,7 @@
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : A partir de 04/2017
-* Zones impactées : `prestations_familiales/paje.py`
+* Zones impactées : `prestations_familiales/paje`
 * Détails :
   - Remplace la `paje_clca` par la `page_prepare` dans le calcul de la `paje` à partir d'avril 2017.
 
@@ -153,17 +160,16 @@
   - Ajout des barèmes IPP de l'impôt sur le revenu 2016
   - Correction de quelques paramètres de l'impôt, pour les années précédentes
 
-### 20.0.8 [#892](https://github.com/openfisca/openfisca-france/pull/862)
+### 20.0.8 [#862](https://github.com/openfisca/openfisca-france/pull/862)
 
-* Correction d'un bug
+* Évolution du système socio-fiscal.
 * Zones impactées :
   - `prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/allegements`
-  - `openfisca_france/model/revenus/activite/salarie.py`
+  - `revenus/activite/salarie`
 * Détails :
   - Corrige #844 (erreurs de calcul constatées sur la réduction générale dite "Fillon")
-  - `base_function` des dates de début et de fin de contrat de travail devient `requested_period_last_or_next_value`
 
-### 20.0.7 [#892](https://github.com/openfisca/openfisca-france/pull/867)
+### 20.0.7 [#867](https://github.com/openfisca/openfisca-france/pull/867)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 1er janvier 2018.
@@ -211,7 +217,7 @@
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : toutes.
-* Zones impactées : `prestations/aides_logement.py`
+* Zones impactées : `prestations/aides_logement`
 * Détails :
   - Garantie que l'aide au logement pour un foyer primo-accédant est nulle si le prêt est déjà remboursé.
 
@@ -320,14 +326,14 @@ Lors du calcul d'une variable Enum en Python, l'output est un array de membres E
 
 * Amélioration technique.
 * Périodes concernées : toutes.
-* Zones impactées : `openfisca_france/model/prelevements_obligatoires/taxe_habitation.py`.
+* Zones impactées : `prelevements_obligatoires/taxe_habitation`.
 * Détails : Corrige la négation des booléens en utilisant de façon appropriée logical_not.
 
 ### 19.0.3 [#790](https://github.com/openfisca/openfisca-france/issues/790)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : toutes.
-* Zones impactées : `prestations/minima_sociaux/cmu.py`
+* Zones impactées : `prestations/minima_sociaux/cmu`
 * Détails :
 - Ajout du CAAH à la liste des ressources prises en compte pour le calcul de la CMU-C / ACS
 
@@ -346,9 +352,7 @@ Lors du calcul d'une variable Enum en Python, l'output est un array de membres E
 * Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 01/10/2017.
 * Zones impactées :
-  - openfisca_france/model/prestations/aides_logement.py.
-  - openfisca_france/parameters/prestations/aides_logement/autres/abattement_forfaitaire.yaml.
-  - tests/formulas/aides_logement.yaml.
+  - prestations/aides_logement
 * Détails :
   - Ajout de l'abattement forfaitaire de 5€ dans le calcul des aides au logement à partir du 01/10/2017.
 
