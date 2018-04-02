@@ -27,7 +27,7 @@ setup(
         ],
     extras_require = {
         'api': [
-            'OpenFisca-Web-API >= 8.1, < 9.0',
+            'OpenFisca-Web-API >= 8.1.1, < 9.0',
             ],
         'baremes_ipp': [
             'xlrd >= 1.0.0',
@@ -51,7 +51,7 @@ setup(
         },
     include_package_data = True,  # Will read MANIFEST.in
     install_requires = [
-        'OpenFisca-Core >= 22.0.0, < 23',
+        'OpenFisca-Core >= 22.0.3, < 23',
         'requests >= 2.8',
         ],
     message_extractors = {'openfisca_france': [
