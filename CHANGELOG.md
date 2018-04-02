@@ -1,5 +1,11 @@
 # Changelog
 
+### 21.2.1 [#956](https://github.com/openfisca/openfisca-france/pull/956)
+
+* Amélioration technique
+* Détails :
+  - Adapte France à Numpy v1.14
+
 ## 21.2.0 [#913](https://github.com/openfisca/openfisca-france/pull/913)
 
 * Évolution du système socio-fiscal.
