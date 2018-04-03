@@ -130,3 +130,23 @@ class residence_mayotte(Variable):
     def formula(menage, period, parameters):
         depcom = menage('depcom', period)
         return startswith(depcom, '976')
+
+
+class residence_saint_bartelemy(Variable):
+    value_type = bool
+    entity = Menage
+    definition_period = MONTH
+
+    def formula(menage, period, parameters):
+        depcom = menage('depcom', period)
+        return startswith(depcom, '977')
+
+
+class residence_saint_martin(Variable):
+    value_type = bool
+    entity = Menage
+    definition_period = MONTH
+
+    def formula(menage, period, parameters):
+        depcom = menage('depcom', period)
+        return startswith(depcom, '978')

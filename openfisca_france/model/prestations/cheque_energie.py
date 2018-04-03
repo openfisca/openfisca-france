@@ -33,20 +33,25 @@ class cheque_energie_eligibilite_logement(Variable):
     reference = [
         u"Article L124-1 du Code de l'énergie",
         u"https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=5AB50D02153C9CB753729850314A2E17.tplgfr29s_1?idArticle=LEGIARTI000031057544&cidTexte=LEGITEXT000023983208&dateTexte=20180314",
+        u"Article LO6314-3 du Code général des collectivités territoriales",
+        u"https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=6A3717E70623B148432581CC8F585C5F.tplgfr31s_1?idArticle=LEGIARTI000006394061&cidTexte=LEGITEXT000006070633&dateTexte=20180316",
     ]
     label = u"Éligibilité du logement occupé au chèque énergie"
     definition_period = MONTH
 
     def formula_2017(menage, period, parameters):
         statut_occupation_logement = menage('statut_occupation_logement', period)
+        residence_saint_martin = menage('residence_saint_martin', period)
 
         return (
+            not_(residence_saint_martin) * (
             + (statut_occupation_logement == TypesStatutOccupationLogement.primo_accedant)
             + (statut_occupation_logement == TypesStatutOccupationLogement.proprietaire)
             + (statut_occupation_logement == TypesStatutOccupationLogement.locataire_hlm)
             + (statut_occupation_logement == TypesStatutOccupationLogement.locataire_vide)
             + (statut_occupation_logement == TypesStatutOccupationLogement.locataire_meuble)
             )
+        )
 
 
 class cheque_energie_montant(Variable):
