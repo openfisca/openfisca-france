@@ -13,13 +13,9 @@ individus:
   - age: 19
     age_en_mois: 239
     date_naissance: "1995-05-03"
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 5525272da7629db1117ea8a8
     inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
     handicap: 0
     salaire_de_base:
       2013: 18717.948717948715
@@ -69,89 +65,69 @@ individus:
     statut_marital: marie
     valeur_locative_immo_non_loue:
       2012-01: 0
-    valeur_locative_terrains_non_loue:
+    valeur_locative_terrains_non_loues:
       2012-01: 0
   - age: 19
     age_en_mois: 239
     date_naissance: "1995-05-03"
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 5525272da7629db1117ea8a7
     inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
     handicap: 0
     statut_marital: marie
     valeur_locative_immo_non_loue:
       2012-01: 0
-    valeur_locative_terrains_non_loue:
+    valeur_locative_terrains_non_loues:
       2012-01: 0
   - age: 14
     age_en_mois: 176
     date_naissance: "2000-07-09"
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 5525272da7629db1117ea8a6
     inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
     handicap: 0
     scolarite: college
     valeur_locative_immo_non_loue:
       2012-01: 0
-    valeur_locative_terrains_non_loue:
+    valeur_locative_terrains_non_loues:
       2012-01: 0
   - age: 13
     age_en_mois: 162
     date_naissance: "2001-09-09"
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 5525272da7629db1117ea8a5
     inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
     handicap: 0
     scolarite: college
     valeur_locative_immo_non_loue:
       2012-01: 0
-    valeur_locative_terrains_non_loue:
+    valeur_locative_terrains_non_loues:
       2012-01: 0
   - age: 12
     age_en_mois: 150
     garde_alternee: true
     date_naissance: "2002-09-09"
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 5525272da7629db1117ea8a4
     inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
     handicap: 0
     scolarite: college
     valeur_locative_immo_non_loue:
       2012-01: 0
-    valeur_locative_terrains_non_loue:
+    valeur_locative_terrains_non_loues:
       2012-01: 0
   - age: 11
     age_en_mois: 138
     garde_alternee: true
     date_naissance: "2003-09-09"
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 5525272da7629db1117ea8a3
     inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
     handicap: 0
     scolarite: college
     valeur_locative_immo_non_loue:
       2012-01: 0
-    valeur_locative_terrains_non_loue:
+    valeur_locative_terrains_non_loues:
       2012-01: 0
 familles:
   acs:

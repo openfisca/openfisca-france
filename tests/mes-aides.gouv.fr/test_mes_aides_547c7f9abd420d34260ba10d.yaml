@@ -10,13 +10,9 @@ individus:
   age: 70
   age_en_mois: 842
   date_naissance: "1944-10-01"
-  epargne_non_remuneree:
-    2012-01: 0
   etudiant: 0
   id: 547c7e4dcc51d53d260e889e
   inapte_travail: 0
-  interets_epargne_sur_livrets:
-    2012-01: 0
   handicap: 0
   retraite_brute:
     2012: 9000
@@ -50,7 +46,7 @@ individus:
     2014-12: 694.5
   valeur_locative_immo_non_loue:
     2012-01: 0
-  valeur_locative_terrains_non_loue:
+  valeur_locative_terrains_non_loues:
     2012-01: 0
 familles:
   acs:

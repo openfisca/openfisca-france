@@ -13,13 +13,9 @@ individus:
     age_en_mois: 666
     date_naissance: "1960-03-02"
     enfant_place: false
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 55edabffbd7b102a0438a5a4
     inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
     handicap: 0
     salaire_de_base:
       2014-09: 7122.507122507122
@@ -63,7 +59,7 @@ individus:
       2015-08: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
-    valeur_locative_terrains_non_loue:
+    valeur_locative_terrains_non_loues:
       2012-01: 0
   - enfant_a_charge:
       2015: true
@@ -71,17 +67,13 @@ individus:
     age_en_mois: 23
     date_naissance: "2013-09-08"
     enfant_place: false
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 55edabffbd7b102a0438a5a3
     inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
     handicap: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
-    valeur_locative_terrains_non_loue:
+    valeur_locative_terrains_non_loues:
       2012-01: 0
 familles:
   acs:

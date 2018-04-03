@@ -41,13 +41,9 @@ individus:
     2015-05: 234
     2015-06: 304
     2015-07: 304
-  epargne_non_remuneree:
-    2012-01: 0
   etudiant: 0
   id: 559fc21bf394e1a7011b57a5
   inapte_travail: 0
-  interets_epargne_sur_livrets:
-    2012-01: 0
   handicap: 0
   salaire_de_base:
     2013: 5071.794871794871
@@ -96,7 +92,7 @@ individus:
     2015-07: 287
   valeur_locative_immo_non_loue:
     2012-01: 0
-  valeur_locative_terrains_non_loue:
+  valeur_locative_terrains_non_loues:
     2012-01: 0
 familles:
   acs:

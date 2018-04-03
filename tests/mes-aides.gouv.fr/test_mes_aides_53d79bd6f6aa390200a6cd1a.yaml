@@ -8,13 +8,9 @@ individus:
   age_en_mois: 414
   date_naissance: "1980-01-01"
   enceinte: false
-  epargne_non_remuneree:
-    2012-01: 0
   etudiant: 0
   id: 53d79bbcf6aa390200a6cd16
   inapte_travail: 0
-  interets_epargne_sur_livrets:
-    2012-01: 0
   handicap: 0
   pensions_alimentaires_percues:
     2012: 1302
@@ -24,7 +20,7 @@ individus:
     2014-07: 434
   valeur_locative_immo_non_loue:
     2012-01: 0
-  valeur_locative_terrains_non_loue:
+  valeur_locative_terrains_non_loues:
     2012-01: 0
 familles:
   acs:

@@ -9,17 +9,13 @@ individus:
   age: 27
   age_en_mois: 326
   date_naissance: "1987-12-12"
-  epargne_non_remuneree:
-    2012-01: 0
   etudiant: 0
   id: 54f07c3699fc215675536ec3
   inapte_travail: 0
-  interets_epargne_sur_livrets:
-    2012-01: 0
   handicap: 0
   valeur_locative_immo_non_loue:
     2012-01: 0
-  valeur_locative_terrains_non_loue:
+  valeur_locative_terrains_non_loues:
     2012-01: 0
 familles:
   acs:

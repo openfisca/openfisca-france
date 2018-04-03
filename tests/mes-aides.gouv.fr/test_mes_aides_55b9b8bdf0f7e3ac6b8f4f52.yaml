@@ -17,13 +17,9 @@ individus:
     chomage_imposable:
       2013: 0
     enfant_place: false
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 55b9b7b4f0f7e3ac6b8f4f45
     inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
     handicap: 0
     pensions_alimentaires_percues:
       2013: 0
@@ -47,7 +43,7 @@ individus:
     statut_marital: marie
     valeur_locative_immo_non_loue:
       2012-01: 0
-    valeur_locative_terrains_non_loue:
+    valeur_locative_terrains_non_loues:
       2012-01: 0
   - enfant_a_charge:
       2015: true
@@ -85,13 +81,9 @@ individus:
       2015-05: 0
       2015-06: 0
     enfant_place: false
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 55b9b7b4f0f7e3ac6b8f4f2b
     inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
     handicap: 0
     pensions_alimentaires_percues:
       2013: 0
@@ -143,7 +135,7 @@ individus:
     statut_marital: marie
     valeur_locative_immo_non_loue:
       2012-01: 0
-    valeur_locative_terrains_non_loue:
+    valeur_locative_terrains_non_loues:
       2012-01: 0
   - enfant_a_charge:
       2015: true
@@ -151,17 +143,13 @@ individus:
     age_en_mois: 43
     date_naissance: "2011-12-17"
     enfant_place: false
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 55b9b7b4f0f7e3ac6b8f4f2a
     inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
     handicap: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
-    valeur_locative_terrains_non_loue:
+    valeur_locative_terrains_non_loues:
       2012-01: 0
   - enfant_a_charge:
       2015: true
@@ -169,17 +157,13 @@ individus:
     age_en_mois: 97
     date_naissance: "2007-06-01"
     enfant_place: false
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 55b9b7b4f0f7e3ac6b8f4f29
     inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
     handicap: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
-    valeur_locative_terrains_non_loue:
+    valeur_locative_terrains_non_loues:
       2012-01: 0
   - enfant_a_charge:
       2015: true
@@ -187,18 +171,14 @@ individus:
     age_en_mois: 120
     date_naissance: "2005-07-16"
     enfant_place: false
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 55b9b7b4f0f7e3ac6b8f4f28
     inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
     handicap: 0
     scolarite: college
     valeur_locative_immo_non_loue:
       2012-01: 0
-    valeur_locative_terrains_non_loue:
+    valeur_locative_terrains_non_loues:
       2012-01: 0
   - enfant_a_charge:
       2015: true
@@ -206,18 +186,14 @@ individus:
     age_en_mois: 156
     date_naissance: "2002-07-10"
     enfant_place: false
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 55b9b7b4f0f7e3ac6b8f4f27
     inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
     handicap: 0
     scolarite: college
     valeur_locative_immo_non_loue:
       2012-01: 0
-    valeur_locative_terrains_non_loue:
+    valeur_locative_terrains_non_loues:
       2012-01: 0
   - enfant_a_charge:
       2015: true
@@ -225,18 +201,14 @@ individus:
     age_en_mois: 179
     date_naissance: "2000-08-07"
     enfant_place: false
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 55b9b7b4f0f7e3ac6b8f4f26
     inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
     handicap: 0
     scolarite: college
     valeur_locative_immo_non_loue:
       2012-01: 0
-    valeur_locative_terrains_non_loue:
+    valeur_locative_terrains_non_loues:
       2012-01: 0
 familles:
   acs:

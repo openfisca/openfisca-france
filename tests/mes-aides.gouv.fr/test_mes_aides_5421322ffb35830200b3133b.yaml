@@ -9,13 +9,9 @@ individus:
   age_en_mois: 409
   date_naissance: "1980-08-12"
   enceinte: false
-  epargne_non_remuneree:
-    2012-01: 0
   etudiant: 0
   id: 54213203fb35830200b3133a
   inapte_travail: 0
-  interets_epargne_sur_livrets:
-    2012-01: 0
   handicap: 0
   revenus_locatifs:
     2012: 2400
@@ -34,7 +30,7 @@ individus:
     2014-09: 200
   valeur_locative_immo_non_loue:
     2012-01: 0
-  valeur_locative_terrains_non_loue:
+  valeur_locative_terrains_non_loues:
     2012-01: 0
 familles:
   acs:

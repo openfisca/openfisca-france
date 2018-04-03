@@ -45,17 +45,13 @@ individus:
     2014-10: 482
     2014-11: 482
     2014-12: 482
-  epargne_non_remuneree:
-    2012-01: 0
   etudiant: 0
   id: 548fe97840562f54026ef32e
   inapte_travail: 0
-  interets_epargne_sur_livrets:
-    2012-01: 0
   handicap: 0
   valeur_locative_immo_non_loue:
     2012-01: 0
-  valeur_locative_terrains_non_loue:
+  valeur_locative_terrains_non_loues:
     2012-01: 0
 familles:
   acs:

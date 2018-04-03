@@ -87,8 +87,6 @@ individus:
     2014-08: 45
     2014-09: 45
     2014-10: 45
-  epargne_non_remuneree:
-    2012-01: 0
   etudiant: 0
   gains_exceptionnels:
     2012: 540
@@ -197,8 +195,6 @@ individus:
     2014-08: 45
     2014-09: 45
     2014-10: 45
-  interets_epargne_sur_livrets:
-    2012-01: 0
   handicap: 0
   pensions_alimentaires_percues:
     2012: 540
@@ -352,7 +348,7 @@ individus:
     2014-10: 35.1
   valeur_locative_immo_non_loue:
     2012-01: 0
-  valeur_locative_terrains_non_loue:
+  valeur_locative_terrains_non_loues:
     2012-01: 0
 familles:
   acs:

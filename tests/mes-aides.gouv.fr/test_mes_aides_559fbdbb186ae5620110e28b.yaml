@@ -49,13 +49,9 @@ individus:
     2015-06: 504
     2015-07: 504
   enfant_place: false
-  epargne_non_remuneree:
-    2012-01: 0
   etudiant: 0
   id: 559fbd84f394e1a7011b5779
   inapte_travail: 0
-  interets_epargne_sur_livrets:
-    2012-01: 0
   handicap: 0
   pensions_alimentaires_percues:
     '2013': 0
@@ -68,23 +64,19 @@ individus:
   tns_micro_entreprise_type_activite: bic
   valeur_locative_immo_non_loue:
     2012-01: 0
-  valeur_locative_terrains_non_loue:
+  valeur_locative_terrains_non_loues:
     2012-01: 0
 - age: 18
   age_en_mois: 217
   date_naissance: '1997-05-19'
-  epargne_non_remuneree:
-    2012-01: 0
   etudiant: 0
   id: 559fbd84f394e1a7011b5778
   inapte_travail: 0
-  interets_epargne_sur_livrets:
-    2012-01: 0
   handicap: 0
   scolarite: college
   valeur_locative_immo_non_loue:
     2012-01: 0
-  valeur_locative_terrains_non_loue:
+  valeur_locative_terrains_non_loues:
     2012-01: 0
 familles:
 - acs:

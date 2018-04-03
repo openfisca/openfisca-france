@@ -10,13 +10,9 @@ individus:
   age: 59
   age_en_mois: 719
   date_naissance: "1955-01-01"
-  epargne_non_remuneree:
-    2012-01: 0
   etudiant: 0
   id: 5481e2d95f35e8cf064b9bc5
   inapte_travail: 0
-  interets_epargne_sur_livrets:
-    2012-01: 0
   handicap: 1
   pensions_invalidite:
     2012: 1200
@@ -35,7 +31,7 @@ individus:
     2014-12: 100
   valeur_locative_immo_non_loue:
     2012-01: 0
-  valeur_locative_terrains_non_loue:
+  valeur_locative_terrains_non_loues:
     2012-01: 0
 familles:
   acs:

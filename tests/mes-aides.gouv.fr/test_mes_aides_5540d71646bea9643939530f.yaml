@@ -9,13 +9,9 @@ individus:
 - age: 32
   age_en_mois: 392
   date_naissance: '1982-08-12'
-  epargne_non_remuneree:
-    2012-01: 0
   etudiant: 0
   id: 5540d71317d9db60391c36af
   inapte_travail: 0
-  interets_epargne_sur_livrets:
-    2012-01: 0
   handicap: 0
   tns_autres_revenus:
     '2014': 30000
@@ -25,7 +21,7 @@ individus:
   tns_micro_entreprise_type_activite: bnc
   valeur_locative_immo_non_loue:
     2012-01: 0
-  valeur_locative_terrains_non_loue:
+  valeur_locative_terrains_non_loues:
     2012-01: 0
 familles:
 - acs:

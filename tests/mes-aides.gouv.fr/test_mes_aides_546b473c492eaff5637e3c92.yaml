@@ -16,13 +16,9 @@ individus:
   age_en_mois: 346
   ass_precondition_remplie: false
   date_naissance: "1986-01-01"
-  epargne_non_remuneree:
-    2012-01: 0
   etudiant: 0
   id: 546b466cba32fff66335d33d
   inapte_travail: 0
-  interets_epargne_sur_livrets:
-    2012-01: 0
   handicap: 0
   salaire_de_base:
     2012: 25641.07692307692
@@ -71,7 +67,7 @@ individus:
     2014-11: 200
   valeur_locative_immo_non_loue:
     2012-01: 0
-  valeur_locative_terrains_non_loue:
+  valeur_locative_terrains_non_loues:
     2012-01: 0
 familles:
   acs:

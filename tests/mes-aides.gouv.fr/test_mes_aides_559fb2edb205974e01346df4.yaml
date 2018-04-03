@@ -9,13 +9,9 @@ individus:
   - age: 49
     age_en_mois: 599
     date_naissance: "1965-08-10"
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 559fb2ddaf0afd4601df5e11
     inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
     handicap: 0
     salaire_de_base:
       2013: 20769.23076923077
@@ -65,71 +61,55 @@ individus:
     statut_marital: marie
     valeur_locative_immo_non_loue:
       2012-01: 0
-    valeur_locative_terrains_non_loue:
+    valeur_locative_terrains_non_loues:
       2012-01: 0
   - age: 48
     age_en_mois: 579
     date_naissance: "1967-03-24"
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 559fb2ddaf0afd4601df5e10
     inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
     handicap: 0
     statut_marital: marie
     valeur_locative_immo_non_loue:
       2012-01: 0
-    valeur_locative_terrains_non_loue:
+    valeur_locative_terrains_non_loues:
       2012-01: 0
   - age: 22
     age_en_mois: 269
     date_naissance: "1993-02-04"
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 559fb2ddaf0afd4601df5e0f
     inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
     handicap: 0
     scolarite: college
     valeur_locative_immo_non_loue:
       2012-01: 0
-    valeur_locative_terrains_non_loue:
+    valeur_locative_terrains_non_loues:
       2012-01: 0
   - age: 21
     age_en_mois: 255
     date_naissance: "1994-04-02"
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 559fb2ddaf0afd4601df5e0e
     inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
     handicap: 0
     scolarite: college
     valeur_locative_immo_non_loue:
       2012-01: 0
-    valeur_locative_terrains_non_loue:
+    valeur_locative_terrains_non_loues:
       2012-01: 0
   - age: 13
     age_en_mois: 165
     date_naissance: "2001-10-03"
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 559fb2ddaf0afd4601df5e0d
     inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
     handicap: 0
     scolarite: college
     valeur_locative_immo_non_loue:
       2012-01: 0
-    valeur_locative_terrains_non_loue:
+    valeur_locative_terrains_non_loues:
       2012-01: 0
 familles:
   acs:

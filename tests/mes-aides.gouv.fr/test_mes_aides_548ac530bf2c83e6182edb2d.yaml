@@ -7,13 +7,9 @@ individus:
   - age: 50
     age_en_mois: 611
     date_naissance: "1964-01-01"
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 548ac39ffc1609f0180de26a
     inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
     handicap: 0
     salaire_de_base:
       2012: 14102.564102564105
@@ -62,24 +58,20 @@ individus:
       2014-12: 1000
     valeur_locative_immo_non_loue:
       2012-01: 0
-    valeur_locative_terrains_non_loue:
+    valeur_locative_terrains_non_loues:
       2012-01: 0
   - age: 16
     age_en_mois: 203
     garde_alternee: true
     date_naissance: "1998-01-01"
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 54eb4a9010c49b0772c74580
     inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
     handicap: 0
     scolarite: lycee
     valeur_locative_immo_non_loue:
       2012-01: 0
-    valeur_locative_terrains_non_loue:
+    valeur_locative_terrains_non_loues:
       2012-01: 0
 familles:
   acs:

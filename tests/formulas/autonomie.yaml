@@ -268,7 +268,7 @@
     rfr:
       2011: 60000
     valeur_locative_immo_non_loue: 250
-    valeur_locative_terrains_non_loue: 250
+    valeur_locative_terrains_non_loues: 250
     aide_logement_montant: 500
   output_variables:
    base_ressources_apa: 4000

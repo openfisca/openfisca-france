@@ -14,13 +14,9 @@ individus:
   age_en_mois: 287
   date_naissance: '1991-09-13'
   enfant_place: false
-  epargne_non_remuneree:
-    2012-01: 0
   etudiant: 0
   id: 55e6c292dc46199d042bb6e8
   inapte_travail: 0
-  interets_epargne_sur_livrets:
-    2012-01: 0
   handicap: 0
   salaire_de_base:
     '2013': 2.8421709430404007e-13
@@ -69,7 +65,7 @@ individus:
     2015-09: 489
   valeur_locative_immo_non_loue:
     2012-01: 0
-  valeur_locative_terrains_non_loue:
+  valeur_locative_terrains_non_loues:
     2012-01: 0
 - enfant_a_charge:
     2015: true
@@ -77,18 +73,14 @@ individus:
   age_en_mois: 287
   date_naissance: '1991-09-13'
   enfant_place: false
-  epargne_non_remuneree:
-    2012-01: 0
   etudiant: 0
   id: 55e6c292dc46199d042bb6e7
   inapte_travail: 0
-  interets_epargne_sur_livrets:
-    2012-01: 0
   handicap: 0
   scolarite: college
   valeur_locative_immo_non_loue:
     2012-01: 0
-  valeur_locative_terrains_non_loue:
+  valeur_locative_terrains_non_loues:
     2012-01: 0
 familles:
 - acs:

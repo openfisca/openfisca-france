@@ -10,62 +10,46 @@ individus:
     age_en_mois: 298
     date_naissance: "1989-09-14"
     enceinte: false
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 53d7b719f6aa390200a6cd5b
     inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
     handicap: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
-    valeur_locative_terrains_non_loue:
+    valeur_locative_terrains_non_loues:
       2012-01: 0
   - age: 6
     age_en_mois: 82
     date_naissance: "2007-09-14"
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 54bd315f2f0101c535c554cb
     inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
     handicap: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
-    valeur_locative_terrains_non_loue:
+    valeur_locative_terrains_non_loues:
       2012-01: 0
   - age: 6
     age_en_mois: 82
     date_naissance: "2007-09-14"
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 54bd315f2f0101c535c554ca
     inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
     handicap: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
-    valeur_locative_terrains_non_loue:
+    valeur_locative_terrains_non_loues:
       2012-01: 0
   - age: 6
     age_en_mois: 82
     date_naissance: "2007-09-14"
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 54bd315f2f0101c535c554c9
     inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
     handicap: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
-    valeur_locative_terrains_non_loue:
+    valeur_locative_terrains_non_loues:
       2012-01: 0
 familles:
   acs:

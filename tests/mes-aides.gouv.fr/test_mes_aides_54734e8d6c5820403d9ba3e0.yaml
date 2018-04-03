@@ -9,28 +9,20 @@ individus:
   - age: 34
     age_en_mois: 411
     date_naissance: "1980-08-12"
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 54734de71e6217443d918aed
     inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
     handicap: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
-    valeur_locative_terrains_non_loue:
+    valeur_locative_terrains_non_loues:
       2012-01: 0
   - age: 18
     age_en_mois: 219
     date_naissance: "1996-08-12"
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 54734de71e6217443d918ae0
     inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
     handicap: 0
     salaire_de_base:
       2012: 13846.15384615385
@@ -79,22 +71,18 @@ individus:
       2014-11: 900
     valeur_locative_immo_non_loue:
       2012-01: 0
-    valeur_locative_terrains_non_loue:
+    valeur_locative_terrains_non_loues:
       2012-01: 0
   - age: 4
     age_en_mois: 51
     date_naissance: "2010-08-12"
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 54734de71e6217443d918adf
     inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
     handicap: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
-    valeur_locative_terrains_non_loue:
+    valeur_locative_terrains_non_loues:
       2012-01: 0
 familles:
   acs:

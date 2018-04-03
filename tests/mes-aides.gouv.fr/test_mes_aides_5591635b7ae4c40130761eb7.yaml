@@ -15,13 +15,9 @@ individus:
     age: 65
     age_en_mois: 781
     date_naissance: "1950-05-08"
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 5591634afdd7360730df878c
     inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
     handicap: 0
     retraite_brute:
       2013: 13710.23758099352
@@ -56,39 +52,31 @@ individus:
     statut_marital: marie
     valeur_locative_immo_non_loue:
       2012-01: 0
-    valeur_locative_terrains_non_loue:
+    valeur_locative_terrains_non_loues:
       2012-01: 0
   - age: 52
     age_en_mois: 634
     date_naissance: "1962-08-01"
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 5591634afdd7360730df878b
     inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
     handicap: 0
     statut_marital: marie
     valeur_locative_immo_non_loue:
       2012-01: 0
-    valeur_locative_terrains_non_loue:
+    valeur_locative_terrains_non_loues:
       2012-01: 0
   - age: 14
     age_en_mois: 176
     date_naissance: "2000-10-25"
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 5591634afdd7360730df878a
     inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
     handicap: 0
     scolarite: college
     valeur_locative_immo_non_loue:
       2012-01: 0
-    valeur_locative_terrains_non_loue:
+    valeur_locative_terrains_non_loues:
       2012-01: 0
 familles:
   acs:

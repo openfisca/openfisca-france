@@ -39,17 +39,13 @@ individus:
     2014-12: 2000
     2015-01: 2000
     2015-02: 2000
-  epargne_non_remuneree:
-    2012-01: 0
   etudiant: 0
   id: 550317df8cf4202127bc0ec2
   inapte_travail: 0
-  interets_epargne_sur_livrets:
-    2012-01: 0
   handicap: 0
   valeur_locative_immo_non_loue:
     2012-01: 0
-  valeur_locative_terrains_non_loue:
+  valeur_locative_terrains_non_loues:
     2012-01: 0
 familles:
   acs:

@@ -43,13 +43,9 @@ individus:
   date_naissance: "1979-07-12"
   chomage_imposable:
     2013: 0
-  epargne_non_remuneree:
-    2012-01: 0
   etudiant: 0
   id: 54be86a5d337b5d372377c27
   inapte_travail: 0
-  interets_epargne_sur_livrets:
-    2012-01: 0
   handicap: 1
   pensions_alimentaires_percues:
     2013: 0
@@ -100,7 +96,7 @@ individus:
     2015-01: 800
   valeur_locative_immo_non_loue:
     2012-01: 0
-  valeur_locative_terrains_non_loue:
+  valeur_locative_terrains_non_loues:
     2012-01: 0
 familles:
   acs:

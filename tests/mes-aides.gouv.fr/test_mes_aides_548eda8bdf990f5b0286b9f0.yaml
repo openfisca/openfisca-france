@@ -46,18 +46,14 @@ individus:
       2014-10: 965
       2014-11: 965
       2014-12: 965
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 548ed9e5df990f5b0286b9e2
     inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
     handicap: 0
     statut_marital: marie
     valeur_locative_immo_non_loue:
       2012-01: 0
-    valeur_locative_terrains_non_loue:
+    valeur_locative_terrains_non_loues:
       2012-01: 0
   - activite: chomeur
     age: 45
@@ -92,13 +88,9 @@ individus:
       2014-09: 0
       2014-10: 0
       2014-11: 0
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 548ed9e5df990f5b0286b9c8
     inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
     handicap: 0
     retraite_brute:
       2012: 19438.44492440604
@@ -132,7 +124,7 @@ individus:
       2014-12: 1500
     valeur_locative_immo_non_loue:
       2012-01: 0
-    valeur_locative_terrains_non_loue:
+    valeur_locative_terrains_non_loues:
       2012-01: 0
 familles:
   acs:

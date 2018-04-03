@@ -1,5 +1,18 @@
 # Changelog
 
+# 21.0.0 [#902](https://github.com/openfisca/openfisca-france/pull/902)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir de juin 2009.
+* Détails :
+  - Mise à jour de la prise en compte du patrimoine dans la base ressource du RSA
+    + Suppression de `interets_epargne_sur_livrets` et `epargne_non_remuneree`
+    + Création de `livret_a` et `epargne_revenus_non_imposables`
+    + Renommage de `prestations.minima_sociaux.rsa.patrimoine.abattement_valeur_locative_terrains_non_loue` en `prestations.minima_sociaux.rsa.patrimoine.abattement_valeur_locative_terrains_non_loues`
+  - Prise en compte du patrimoine dans la base ressource des aides au logement
+    + Création de `valeur_patrimoine_loue`, `valeur_immo_non_loue`, `valeur_terrains_non_loues` et `epargne_revenus_imposables`
+    + Renommage de `valeur_terrains_non_loue` en `valeur_terrains_non_loues`
+
 ## 20.9.1 [#954](https://github.com/openfisca/openfisca-france/pull/954)
 
 * Correction d'un bug

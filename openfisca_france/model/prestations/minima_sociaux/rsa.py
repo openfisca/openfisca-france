@@ -642,25 +642,27 @@ class TypesRSANonCalculable(Enum):
 class rsa_base_ressources_patrimoine_individu(Variable):
     value_type = float
     label = u"Base de ressources des revenus du patrimoine du RSA"
+    reference = u"https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006074069&idArticle=LEGIARTI000006905072&dateTexte=&categorieLien=cid"
     entity = Individu
     definition_period = MONTH
 
     def formula_2009_06_01(individu, period, parameters):
-        interets_epargne_sur_livrets = individu('interets_epargne_sur_livrets', period)
-        epargne_non_remuneree = individu('epargne_non_remuneree', period)
+        livret_a = individu('livret_a', period)
+        taux_livret_a = parameters(period).epargne.livret_a.taux
+        epargne_revenus_non_imposables = individu('epargne_revenus_non_imposables', period)
         revenus_capital = individu('revenus_capital', period)
         valeur_locative_immo_non_loue = individu('valeur_locative_immo_non_loue', period)
-        valeur_locative_terrains_non_loue = individu('valeur_locative_terrains_non_loue', period)
+        valeur_locative_terrains_non_loues = individu('valeur_locative_terrains_non_loues', period)
         revenus_locatifs = individu('revenus_locatifs', period)
         rsa = parameters(period).prestations.minima_sociaux.rsa
 
         return (
-            + epargne_non_remuneree * rsa.patrimoine.taux_interet_forfaitaire_epargne_non_remunere / 12
-            + interets_epargne_sur_livrets / 12
+            + livret_a * taux_livret_a / 12
+            + epargne_revenus_non_imposables * rsa.patrimoine.taux_interet_forfaitaire_epargne_non_imposable / 12
             + revenus_capital
             + revenus_locatifs
             + valeur_locative_immo_non_loue * rsa.patrimoine.abattement_valeur_locative_immo_non_loue
-            + valeur_locative_terrains_non_loue * rsa.patrimoine.abattement_valeur_locative_terrains_non_loue
+            + valeur_locative_terrains_non_loues * rsa.patrimoine.abattement_valeur_locative_terrains_non_loues
             )
 
 

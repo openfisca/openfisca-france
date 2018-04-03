@@ -52,8 +52,6 @@ individus:
     2017-01: false
     2017-02: false
     2017-03: false
-  epargne_non_remuneree:
-    2012-01: 0
   etudiant:
     2016-12: false
     2017-01: false
@@ -70,8 +68,6 @@ individus:
     2017-01: false
     2017-02: false
     2017-03: false
-  interets_epargne_sur_livrets:
-    2012-01: 0
   statut_marital:
     2016-12: marie
     2017-01: marie
@@ -94,7 +90,7 @@ individus:
     2017-03: bic
   valeur_locative_immo_non_loue:
     2012-01: 0
-  valeur_locative_terrains_non_loue:
+  valeur_locative_terrains_non_loues:
     2012-01: 0
 - aah:
     2016-03: 0
@@ -141,8 +137,6 @@ individus:
     2017-01: false
     2017-02: false
     2017-03: false
-  epargne_non_remuneree:
-    2012-01: 0
   etudiant:
     2016-12: false
     2017-01: false
@@ -159,8 +153,6 @@ individus:
     2017-01: false
     2017-02: false
     2017-03: false
-  interets_epargne_sur_livrets:
-    2012-01: 0
   statut_marital:
     2016-12: marie
     2017-01: marie
@@ -183,7 +175,7 @@ individus:
     2017-03: bic
   valeur_locative_immo_non_loue:
     2012-01: 0
-  valeur_locative_terrains_non_loue:
+  valeur_locative_terrains_non_loues:
     2012-01: 0
 familles:
 - acs:

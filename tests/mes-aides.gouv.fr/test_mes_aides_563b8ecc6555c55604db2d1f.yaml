@@ -12,13 +12,9 @@ individus:
   age_en_mois: 398
   date_naissance: '1982-08-12'
   enfant_place: false
-  epargne_non_remuneree:
-    2012-01: 0
   etudiant: 0
   id: 563b8e9152c2836804f25b28
   inapte_travail: 0
-  interets_epargne_sur_livrets:
-    2012-01: 0
   handicap: 0
   salaire_de_base:
     2014-11: 1709.4017094017092
@@ -66,7 +62,7 @@ individus:
   tns_micro_entreprise_type_activite: bic
   valeur_locative_immo_non_loue:
     2012-01: 0
-  valeur_locative_terrains_non_loue:
+  valeur_locative_terrains_non_loues:
     2012-01: 0
 - enfant_a_charge:
     2015: true
@@ -74,13 +70,9 @@ individus:
   age_en_mois: 163
   date_naissance: '2002-03-12'
   enfant_place: false
-  epargne_non_remuneree:
-    2012-01: 0
   etudiant: 0
   id: 563b8e9152c2836804f25b27
   inapte_travail: 0
-  interets_epargne_sur_livrets:
-    2012-01: 0
   handicap: 0
   scolarite: college
   tns_auto_entrepreneur_type_activite: bic
@@ -88,7 +80,7 @@ individus:
   tns_micro_entreprise_type_activite: bic
   valeur_locative_immo_non_loue:
     2012-01: 0
-  valeur_locative_terrains_non_loue:
+  valeur_locative_terrains_non_loues:
     2012-01: 0
 - enfant_a_charge:
     2015: true
@@ -96,13 +88,9 @@ individus:
   age_en_mois: 180
   date_naissance: '2000-11-01'
   enfant_place: false
-  epargne_non_remuneree:
-    2012-01: 0
   etudiant: 0
   id: 563b8e9152c2836804f25b26
   inapte_travail: 0
-  interets_epargne_sur_livrets:
-    2012-01: 0
   handicap: 0
   scolarite: college
   tns_auto_entrepreneur_type_activite: bic
@@ -110,7 +98,7 @@ individus:
   tns_micro_entreprise_type_activite: bic
   valeur_locative_immo_non_loue:
     2012-01: 0
-  valeur_locative_terrains_non_loue:
+  valeur_locative_terrains_non_loues:
     2012-01: 0
 - enfant_a_charge:
     2015: true
@@ -118,13 +106,9 @@ individus:
   age_en_mois: 350
   date_naissance: '1986-08-12'
   enfant_place: false
-  epargne_non_remuneree:
-    2012-01: 0
   etudiant: 0
   id: 563b8e9152c2836804f25b19
   inapte_travail: 0
-  interets_epargne_sur_livrets:
-    2012-01: 0
   handicap: 0
   salaire_de_base:
     2014-11: 1709.4017094017092
@@ -171,7 +155,7 @@ individus:
   tns_micro_entreprise_type_activite: bic
   valeur_locative_immo_non_loue:
     2012-01: 0
-  valeur_locative_terrains_non_loue:
+  valeur_locative_terrains_non_loues:
     2012-01: 0
 familles:
 - acs:

@@ -44,13 +44,9 @@ individus:
       2015-04: 992.31
       2015-05: 896.28
       2015-06: 896.28
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 55915b09a7a520fc2f41dd41
     inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
     handicap: 0
     salaire_de_base:
       2013: 5049.5641025641025
@@ -96,41 +92,33 @@ individus:
       2015-05: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
-    valeur_locative_terrains_non_loue:
+    valeur_locative_terrains_non_loues:
       2012-01: 0
   - age: 13
     age_en_mois: 162
     garde_alternee: true
     date_naissance: "2001-12-17"
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 55915b09a7a520fc2f41dd40
     inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
     handicap: 0
     scolarite: college
     valeur_locative_immo_non_loue:
       2012-01: 0
-    valeur_locative_terrains_non_loue:
+    valeur_locative_terrains_non_loues:
       2012-01: 0
   - age: 10
     age_en_mois: 131
     garde_alternee: true
     date_naissance: "2004-07-24"
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 55915b09a7a520fc2f41dd3f
     inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
     handicap: 0
     scolarite: college
     valeur_locative_immo_non_loue:
       2012-01: 0
-    valeur_locative_terrains_non_loue:
+    valeur_locative_terrains_non_loues:
       2012-01: 0
 familles:
   acs:

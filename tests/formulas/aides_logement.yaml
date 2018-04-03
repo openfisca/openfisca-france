@@ -357,3 +357,56 @@
   output_variables:
     aide_logement_montant_brut: 42.27
     aide_logement_montant: 42.02
+
+- name: "Le patrimoine composé uniquement d'épargne générant des revenus imposables n'augmente pas la base ressources des ALs"
+  period: 2017-10
+  relative_error_margin: 0.01
+  familles:
+    parents: ["parent1"]
+  menages:
+  individus:
+    - id: "parent1"
+      epargne_revenus_imposables: 35000
+  output_variables:
+    aide_logement_base_ressources_patrimoine: 0
+
+- name: "Les terrains non loués augmentent la base ressources des ALs de 80% de leurs valeurs locatives lorsque le patrimoine > 30.000"
+  period: 2017-10
+  relative_error_margin: 0.01
+  familles:
+    parents: ["parent1"]
+  menages:
+  individus:
+    - id: "parent1"
+      epargne_revenus_imposables: 25000
+      valeur_terrains_non_loues: 5001
+      valeur_locative_terrains_non_loues: 100
+  output_variables:
+    aide_logement_base_ressources_patrimoine: 80
+
+- name: "Les appartements non loués augmentent la base ressources des ALs de 50% de leurs valeurs locatives lorsque le patrimoine > 30.000"
+  period: 2017-10
+  relative_error_margin: 0.01
+  familles:
+    parents: ["parent1"]
+  menages:
+  individus:
+    - id: "parent1"
+      epargne_revenus_imposables: 20000
+      valeur_immo_non_loue: 10001
+      valeur_locative_immo_non_loue: 100
+  output_variables:
+    aide_logement_base_ressources_patrimoine: 50
+
+- name: "L'épargne sur livret A augmentent la base ressources des ALs de 3% du montant de l'épargne lorsque le patrimoine > 30.000"
+  period: 2017-10
+  relative_error_margin: 0.01
+  familles:
+    parents: ["parent1"]
+  menages:
+  individus:
+    - id: "parent1"
+      epargne_revenus_imposables: 15000
+      livret_a: 20000
+  output_variables:
+    aide_logement_base_ressources_patrimoine: 600

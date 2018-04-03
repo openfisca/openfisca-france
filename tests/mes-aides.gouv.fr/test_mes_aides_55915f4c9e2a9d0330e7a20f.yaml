@@ -12,8 +12,6 @@ individus:
 - age: 30
   age_en_mois: 370
   date_naissance: '1984-08-20'
-  epargne_non_remuneree:
-    2012-01: 0
   etudiant: 0
   id: 55915f1f2f56a0fd2f633197
   inapte_travail: 0
@@ -32,8 +30,6 @@ individus:
     2015-04: 1038.78
     2015-05: 680.58
     2015-06: 680.58
-  interets_epargne_sur_livrets:
-    2012-01: 0
   handicap: 0
   salaire_de_base:
     '2013': 8765.371794871795
@@ -79,53 +75,41 @@ individus:
     2015-05: 0
   valeur_locative_immo_non_loue:
     2012-01: 0
-  valeur_locative_terrains_non_loue:
+  valeur_locative_terrains_non_loues:
     2012-01: 0
 - age: 12
   age_en_mois: 149
   date_naissance: '2003-01-27'
-  epargne_non_remuneree:
-    2012-01: 0
   etudiant: 0
   id: 55915f1f2f56a0fd2f633196
   inapte_travail: 0
-  interets_epargne_sur_livrets:
-    2012-01: 0
   handicap: 0
   scolarite: college
   valeur_locative_immo_non_loue:
     2012-01: 0
-  valeur_locative_terrains_non_loue:
+  valeur_locative_terrains_non_loues:
     2012-01: 0
 - age: 8
   age_en_mois: 98
   date_naissance: '2007-04-17'
-  epargne_non_remuneree:
-    2012-01: 0
   etudiant: 0
   id: 55915f1f2f56a0fd2f633195
   inapte_travail: 0
-  interets_epargne_sur_livrets:
-    2012-01: 0
   handicap: 0
   valeur_locative_immo_non_loue:
     2012-01: 0
-  valeur_locative_terrains_non_loue:
+  valeur_locative_terrains_non_loues:
     2012-01: 0
 - age: 6
   age_en_mois: 72
   date_naissance: '2009-06-29'
-  epargne_non_remuneree:
-    2012-01: 0
   etudiant: 0
   id: 55915f1f2f56a0fd2f633194
   inapte_travail: 0
-  interets_epargne_sur_livrets:
-    2012-01: 0
   handicap: 0
   valeur_locative_immo_non_loue:
     2012-01: 0
-  valeur_locative_terrains_non_loue:
+  valeur_locative_terrains_non_loues:
     2012-01: 0
 familles:
 - acs:

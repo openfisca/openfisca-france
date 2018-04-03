@@ -9,13 +9,9 @@ individus:
   age_en_mois: 420
   ass_precondition_remplie: false
   date_naissance: "1980-01-01"
-  epargne_non_remuneree:
-    2012-01: 0
   etudiant: 0
   id: 54bfddf06d9c06c9722b3aff
   inapte_travail: 0
-  interets_epargne_sur_livrets:
-    2012-01: 0
   handicap: 0
   salaire_de_base:
     2013: 46153.84615384615
@@ -61,7 +57,7 @@ individus:
     2014-12: 3000
   valeur_locative_immo_non_loue:
     2012-01: 0
-  valeur_locative_terrains_non_loue:
+  valeur_locative_terrains_non_loues:
     2012-01: 0
 familles:
   acs:

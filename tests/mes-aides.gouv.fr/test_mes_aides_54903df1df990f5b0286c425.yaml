@@ -12,13 +12,9 @@ individus:
   - age: 50
     age_en_mois: 611
     date_naissance: "1964-01-01"
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 54903dc31abb1c57022095be
     inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
     handicap: 0
     salaire_de_base:
       2012: 22435.897435897434
@@ -68,22 +64,18 @@ individus:
     statut_marital: marie
     valeur_locative_immo_non_loue:
       2012-01: 0
-    valeur_locative_terrains_non_loue:
+    valeur_locative_terrains_non_loues:
       2012-01: 0
   - age: 50
     age_en_mois: 611
     date_naissance: "1964-01-01"
-    epargne_non_remuneree:
-      2012-01: 0
     etudiant: 0
     id: 54903dc31abb1c57022095b1
     inapte_travail: 0
-    interets_epargne_sur_livrets:
-      2012-01: 0
     handicap: 0
     valeur_locative_immo_non_loue:
       2012-01: 0
-    valeur_locative_terrains_non_loue:
+    valeur_locative_terrains_non_loues:
       2012-01: 0
 familles:
   acs:
