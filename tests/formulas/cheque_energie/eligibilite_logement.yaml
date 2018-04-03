@@ -1,0 +1,7 @@
+- name: Saint Martin n'est pas concerné par le chèque énergie
+  period: 2018-01
+  input_variables:
+    depcom: 97801
+    statut_occupation_logement: proprietaire
+  output_variables:
+    cheque_energie_eligibilite_logement: False
