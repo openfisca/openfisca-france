@@ -524,6 +524,15 @@ class f7vg(Variable):
     definition_period = YEAR
 
 
+class f7vh(Variable):
+    cerfa_field = u"7VH"
+    value_type = int
+    entity = FoyerFiscal
+    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: travaux d'isolation thermique de toute la toiture du 1.9 au 31.12.2014"
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+
 class f7sg(Variable):
     cerfa_field = u"7SG"
     value_type = int
@@ -557,6 +566,80 @@ class f7sl(Variable):
     entity = FoyerFiscal
     label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: Portes d'entrées donnant sur l'extérieur"
 #    start_date = date(2012, 1, 1)
+    definition_period = YEAR
+
+
+
+class f7ah(Variable):
+    cerfa_field = u"7AH"
+    value_type = int
+    entity = FoyerFiscal
+    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale (hors bouquet sur 2 ans) : Matériaux d'isolation thermique des murs (acquisitionn et pose)"
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+
+class f7ak(Variable):
+    cerfa_field = u"7AK"
+    value_type = int
+    entity = FoyerFiscal
+    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale (hors bouquet sur 2 ans) : travaux d'isolation thermique de toute la toiture"
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+
+class f7al(Variable):
+    cerfa_field = u"7AL"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale (hors bouquet sur 2 ans) : Matériaux d’isolation des planchers bas sur sous-sol, sur vide sanitaire ou sur passage couvert (acquisition et pose)"
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+
+class f7am(Variable):
+    cerfa_field = u"7AM"
+    value_type = int
+    entity = FoyerFiscal
+    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale (hors bouquet sur 2 ans) : Matériaux d'isolation thermique des parois vitrées"
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+
+class f7an(Variable):
+    cerfa_field = u"7AN"
+    value_type = int
+    entity = FoyerFiscal
+    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale (hors bouquet sur 2 ans) : Volets isolants"
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+
+class f7aq(Variable):
+    cerfa_field = u"7AQ"
+    value_type = int
+    entity = FoyerFiscal
+    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale (hors bouquet sur 2 ans) : Portes d'entrées donnant sur l'extérieur"
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+
+class f7vk(Variable):
+    cerfa_field = u"7VK"
+    value_type = int
+    entity = FoyerFiscal
+    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: Volets isolants 2015"
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+
+class f7vl(Variable):
+    cerfa_field = u"7VL"
+    value_type = int
+    entity = FoyerFiscal
+    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: Portes d'entrées donnant sur l'extérieur 2015"
+#    start_date = date(2015, 1, 1)
     definition_period = YEAR
 
 
@@ -632,6 +715,123 @@ class f7st(Variable):
     definition_period = YEAR
 
 
+class f7tn(Variable):
+    cerfa_field = u"7TN"
+    value_type = int
+    entity = FoyerFiscal
+    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale en 2015: Appareils de chauffage au bois ou autres biomasses remplaçant un appareil équivalent"
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+
+class f7tp(Variable):
+    cerfa_field = u"7TP"
+    value_type = int
+    entity = FoyerFiscal
+    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale 2015: Pompes à chaleur autres que air/air et autres que géothermiques dont la finalité essentielle est la production de chaleur"
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+
+class f7tq(Variable):
+    cerfa_field = u"7TQ"
+    value_type = int
+    entity = FoyerFiscal
+    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale 2015: Pompes à chaleur géothermiques dont la finalité essentielle est la production de chaleur"
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+
+class f7tr(Variable):
+    cerfa_field = u"7TR"
+    value_type = int
+    entity = FoyerFiscal
+    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale 2015: Pompes à chaleur (autres que air/air) dédiées à la production d'eau chaude sanitaire (chauffe-eaux thermodynamiques)"
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+
+class f7ts(Variable):
+    cerfa_field = u"7TS"
+    value_type = int
+    entity = FoyerFiscal
+    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale 2015: Équipements de fourniture d'eau chaude sanitaire fonctionnant à l'énergie solaire et dotés de capteurs solaires"
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+
+class f7ar(Variable):
+    cerfa_field = u"7AR"
+    value_type = int
+    entity = FoyerFiscal
+    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale en 2015 (hors bouquet sur 2 ans) : Appareils de chauffage au bois ou autres biomasses "
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+
+class f7av(Variable):
+    cerfa_field = u"7AV"
+    value_type = int
+    entity = FoyerFiscal
+    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale 2015 (hors bouquet sur 2 ans) : Pompes à chaleur autres que air/air dont la finalité essentielle est la production de chaleur"
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+
+class f7ax(Variable):
+    cerfa_field = u"7AX"
+    value_type = int
+    entity = FoyerFiscal
+    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale 2015 (hors bouquet sur 2 ans) : Pompes à chaleur (autres que air/air) dédiées à la production d'eau chaude sanitaire (chauffe-eaux thermodynamiques)"
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+
+class f7ay(Variable):
+    cerfa_field = u"7AY"
+    value_type = int
+    entity = FoyerFiscal
+    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale 2015 (hors bouquet sur 2 ans) : Équipements de fourniture d'eau chaude sanitaire fonctionnant à l'énergie solaire et dotés de capteurs solaires"
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+
+class f7az(Variable):
+    cerfa_field = u"7AZ"
+    value_type = int
+    entity = FoyerFiscal
+    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale 2015 (hors bouquet sur 2 ans) : Équipements de fourniture d'eau chaude sanitaire fonctionnant à l'énergie hydraulique"
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+
+class f7bb(Variable):
+    cerfa_field = u"7BB"
+    value_type = int
+    entity = FoyerFiscal
+    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale (hors bouquet sur 2 ans) : Systèmes de production d'électricité utilisant une source d'énergie renouvelable (éolien, hydraulique)"
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+
+class f7bm(Variable):
+    cerfa_field = u"7BM"
+    value_type = int
+    entity = FoyerFiscal
+    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale : Systèmes de production d'électricité utilisant une source d'énergie renouvelable (éolien, hydraulique) avec signature d'un devis et versement d'un acompte avant le 1.1.2016"
+#    start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+
+class f7st(Variable):
+    cerfa_field = u"7ST"
+    value_type = int
+    entity = FoyerFiscal
+    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: Autres équipements de production d'énergie utilisant une source d'énergie renouvelable (éolien, hydraulique)"
+#    start_date = date(2012, 1, 1)
+    definition_period = YEAR
+
+
 class f7su(Variable):
     cerfa_field = u"7SU"
     value_type = int
@@ -658,6 +858,68 @@ class f7sw(Variable):
 #    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
+
+class f7bc(Variable):
+    cerfa_field = u"7BC"
+    value_type = int
+    entity = FoyerFiscal
+    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale (hors bouquet sur 2 ans) : Diagnostic de performance énergétique"
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+
+class f7bd(Variable):
+    cerfa_field = u"7BD"
+    value_type = int
+    entity = FoyerFiscal
+    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale (hors bouquet sur 2 ans) : Équipements de raccordement à un réseau de chaleur"
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+
+class f7be(Variable):
+    cerfa_field = u"7BE"
+    value_type = int
+    entity = FoyerFiscal
+    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale (hors bouquet sur 2 ans) : Compteurs individuels de chauffage ou d'eau chaude sanitaire dans immeuble collectif"
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+
+class f7bf(Variable):
+    cerfa_field = u"7BF"
+    value_type = int
+    entity = FoyerFiscal
+    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale (hors bouquet sur 2 ans) : Système de charge pour véhicules électriques "
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+
+class f7bh(Variable):
+    cerfa_field = u"7BH"
+    value_type = int
+    entity = FoyerFiscal
+    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale (hors bouquet sur 2 ans) : Equipements installés dans les DOM (raccordement à un réseau de froid) "
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+
+class f7bk(Variable):
+    cerfa_field = u"7BK"
+    value_type = int
+    entity = FoyerFiscal
+    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale (hors bouquet sur 2 ans) : Equipements installés dans les DOM (protection des parois vitrés)"
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+
+class f7bl(Variable):
+    cerfa_field = u"7BL"
+    value_type = int
+    entity = FoyerFiscal
+    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale (hors bouquet sur 2 ans) : Equipements installés dans les DOM (optimisation de la ventilation naturelle)"
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
 
               # TODO, nouvelle variable à intégrer dans OF (cf ancien nom déjà utilisé)
                                 # TODO vérifier pour les années précédentes
@@ -705,7 +967,7 @@ class f7wu(Variable):
     definition_period = YEAR
 
 
-class f7wv(Variable):
+class f7wv_2012(Variable):
     cerfa_field = u"7WV"
     value_type = bool
     entity = FoyerFiscal
@@ -715,13 +977,32 @@ class f7wv(Variable):
     definition_period = YEAR
 
 
+class f7wv(Variable):
+    cerfa_field = u"7WV"
+    value_type = bool
+    entity = FoyerFiscal
+    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: achat en 2015 de matériaux d'isolation thermique des parois vitrées concernant au moins la moitié des fenêtres"
+#    start_date = date(2015, 1, 1)
+    end = '2015-12-31'
+    definition_period = YEAR
+
+
+class f7ww_2012(Variable):
+    cerfa_field = u"7WW"
+    value_type = bool
+    entity = FoyerFiscal
+    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: vous avez réalisé des dépenses d'acquisitions de portes d'entrées donnant sur l'extérieur, avant le 1.1.2012"
+#    start_date = date(2012, 1, 1)
+    end = '2012-12-31'
+    definition_period = YEAR
+
+
 class f7ww(Variable):
     cerfa_field = u"7WW"
     value_type = bool
     entity = FoyerFiscal
-    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: achat de portes avant 2012"
-#    start_date = date(2012, 1, 1)
-    end = '2012-12-31'
+    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: achat en 2015 de matériaux d'isolation thermique des parois vitrées concernant moins de la moitié des fenêtres"
+#    start_date = date(2015, 1, 1)
     definition_period = YEAR
 
 
@@ -763,13 +1044,24 @@ class f7wf(Variable):
 
 
 # Dépenses en faveur de l'aide aux personnes réalisées dans l'habitation principale
-class f7wi(Variable):
+class f7wi_2012(Variable):
     cerfa_field = u"7WI"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = u"Dépenses en faveur de l'aide aux personnes réalisées dans l'habitation principale: Ascenseurs électriques à traction"
     end = '2012-12-31'
+    definition_period = YEAR
+
+
+class f7wi(Variable):
+    cerfa_field = u"7WI"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Dépenses en faveur de l'aide aux personnes réalisées dans l'habitation principale: dépenses payées en 2015 de matériaux d'isolation des toitures, posés sur une partie de la toiture"
+#    start_date = date(2015, 1, 1)
+    end = '2015-12-31'
     definition_period = YEAR
 
 
@@ -855,13 +1147,23 @@ class fhqz(Variable):
     end = '2013-12-31'
 
 
-class f7rz(Variable):
+class f7rz_2010(Variable):
     cerfa_field = u"7RZ"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = u"Investissements outre-mer: report de réduction d'impôt non imputée les années antérieures année n-3"
     end = '2010-12-31'
+    definition_period = YEAR
+
+
+class f7rz(Variable):
+    cerfa_field = u"7RZ"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Dépenses en faveur de la qualité environnementale des logements donnés en location : Dans les logements situés dans les départements d’outre-mer : équipements de raccordement à un réseau de froid ;  équipements ou matériaux de protection des parois vitrées ou opaques contre les rayonnements solaires ;  équipements visant à l’optimisation de la ventilation naturelle "
+#    start_date = date(2014, 1, 1)
     definition_period = YEAR
 
 
@@ -985,7 +1287,7 @@ class f7pc_2011(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%, Investissements dans votre entreprise, montant de la réduction d' impôt calculée"
-    end = '2011-12-31'
+    # end = '2011-12-31' changes meaning in 2014
     definition_period = YEAR
 
 
@@ -1035,6 +1337,15 @@ class f7qe(Variable):
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements ayant fait l'objet avant 1.1.2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%"
     # end = '2012-12-31' changes meaning in 2014
+    definition_period = YEAR
+
+
+class fhqe(Variable):
+    cerfa_field = u"HQE"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements ayant fait l'objet avant 1.1.2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%"
     definition_period = YEAR
 
 
@@ -1261,6 +1572,13 @@ class f7po(Variable):
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 60 %"
     end = '2012-12-31'
+    definition_period = YEAR
+
+class fhpo(Variable):
+    cerfa_field = u"HPO"
+    value_type = int
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 60 %"
     definition_period = YEAR
 
 class fhpo(Variable):
@@ -1575,6 +1893,15 @@ class f7rq(Variable):
 #    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
+class fhmn(Variable):
+    cerfa_field = u"HMN"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise REPORT : Investissements réalisés en 2010, Investissements ayant fait l'objet avant 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%"
+#    start_date = date(2013, 1, 1)
+    definition_period = YEAR
+
 
 class f7rr(Variable):
     cerfa_field = u"7RR"
@@ -1584,6 +1911,14 @@ class f7rr(Variable):
 #    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
+class fhlh(Variable):
+    cerfa_field = u"HLH"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise REPORT : Investissements réalisés en 2010, Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 50%"
+#    start_date = date(2013, 1, 1)
+    definition_period = YEAR
 
 class f7rs(Variable):
     cerfa_field = u"7RS"
@@ -1591,6 +1926,15 @@ class f7rs(Variable):
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt calculée"
 #    start_date = date(2012, 1, 1)
+    definition_period = YEAR
+
+class fhmb(Variable):
+    cerfa_field = u"HMB"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise REPORT : Investissements réalisés en 2010, Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 60%"
+#    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
 
@@ -1602,6 +1946,15 @@ class f7rt(Variable):
 #    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
+class fhkt(Variable):
+    cerfa_field = u"7KT"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise REPORT : Investissements réalisés en 2010, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt, Investissements dans votre entreprise"
+#    start_date = date(2013, 1, 1)
+    definition_period = YEAR
+
 
 class f7ru(Variable):
     cerfa_field = u"7RU"
@@ -1611,6 +1964,14 @@ class f7ru(Variable):
 #    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
+class fhli(Variable):
+    cerfa_field = u"HLI"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise REPORT : Investissements réalisés en 2010, Autres investissements réalisés en 2010, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 50%"
+#    start_date = date(2013, 1, 1)
+    definition_period = YEAR
 
 class f7rv(Variable):
     cerfa_field = u"7RV"
@@ -1618,6 +1979,15 @@ class f7rv(Variable):
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 62,5 %"
 #    start_date = date(2012, 1, 1)
+    definition_period = YEAR
+
+class fhmc(Variable):
+    cerfa_field = u"HMC"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise REPORT : Investissements réalisés en 2010, Autres investissements réalisés en 2010, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 60%"
+#    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
 
@@ -2021,7 +2391,7 @@ class f7sz(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     label = u"Dépenses en faveur de la qualité environnementale des logements donnés en location"
-#    start_date = date(2006, 1, 1)
+#    start_date = date(2006, 1, 1) # disparait en 2010-2011, en 2014 et en 2016
     definition_period = YEAR
 
 
@@ -3206,13 +3576,32 @@ class f7xa(Variable):
     definition_period = YEAR
 
 
-class f7xb(Variable):
+class f7xb_2012(Variable):
     cerfa_field = u"7XB"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = u"Investissements locatifs dans le secteur de touristique: travaux engagés avant 2011 dans une résidence de tourisme classée ou meublée"
 #    start_date = date(2011, 1, 1)
+    definition_period = YEAR
+
+
+class f7xb(Variable):
+    cerfa_field = u"7XB"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: achat en 2015 de matériaux d'isolation des murs concernant au moins la moitié de la surface des murs"
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+
+class f7xc_2012(Variable):
+    cerfa_field = u"7XC"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements locatifs dans le secteur de touristique: prix d'acquisition ou de revient d'un logement neuf acquis ou achevé en n-1"
     end = '2012-12-31'
     definition_period = YEAR
 
@@ -3222,8 +3611,8 @@ class f7xc(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Investissements locatifs dans le secteur de touristique: prix d'acquisition ou de revient d'un logement neuf acquis ou achevé en n-1"
-    end = '2012-12-31'
+    label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: achat en 2015 de matériaux d'isolation des murs concernant moins de la moitié de la surface des murs"
+#    start_date = date(2015, 1, 1)
     definition_period = YEAR
 
 
@@ -3669,7 +4058,7 @@ class f7ql(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    end = '2012-12-31'
+    # end = '2012-12-31' changes meaning in 2014
     definition_period = YEAR
 
 
@@ -4301,6 +4690,37 @@ class fhov(Variable):
 #    start_date = date(2012, 1, 1) + changes meaning in 2015
     definition_period = YEAR
 
+class fhlg(Variable):
+    cerfa_field = u"HLG"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+#    start_date = date(2013, 1, 1)
+    definition_period = YEAR
+
+class f7lk(Variable):
+    cerfa_field = u"7LK"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+#    start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+class f7ll(Variable):
+    cerfa_field = u"7LL"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+#    start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+class f7lo(Variable):
+    cerfa_field = u"7LO"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+#    start_date = date(2016, 1, 1)
+    definition_period = YEAR
 
 class fhow(Variable):
     cerfa_field = u"HOW"
@@ -4311,6 +4731,13 @@ class fhow(Variable):
 #    start_date = date(2012, 1, 1) + changes meaning in 2016
     definition_period = YEAR
 
+class fhma(Variable):
+    cerfa_field = u"HMA"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+#    start_date = date(2013, 1, 1)
+    definition_period = YEAR
 
  #TODO: 7O* : end ?
 
@@ -4321,6 +4748,13 @@ class fhod(Variable):
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2013, Investissements immobiliers engagés avant le 1.1.2011"
 #    start_date = date(2013, 1, 1)
+    definition_period = YEAR
+
+class fhks(Variable):
+    cerfa_field = u"HKS"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
     definition_period = YEAR
 
 
@@ -6517,7 +6951,17 @@ class f7us(Variable):
 
 # Crédits d’impôt pour dépenses en faveur de la qualité environnementale
 
-class f7sb(Variable):
+class f7sa(Variable):
+    cerfa_field = u"7SA"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Dépenses en faveur de la qualité environnementale des logements donnés en location du 1.9 au 31.12.2014 : chaudières à condensation "
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+
+class f7sb_2011(Variable):
     cerfa_field = u"7SB"
     value_type = int
     unit = 'currency'
@@ -6528,7 +6972,18 @@ class f7sb(Variable):
     definition_period = YEAR
 
 
-class f7sc(Variable):
+class f7sb(Variable):
+    cerfa_field = u"7SB"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Dépenses en faveur de la qualité environnementale des logements donnés en location, payées du 1.9 au 31.12.2014 : chaudière à micro-cogénération de gaz "
+#    start_date = date(2014, 1, 1)
+    end = '2015-12-31'
+    definition_period = YEAR
+
+
+class f7sc_2009(Variable):
     cerfa_field = u"7SC"
     value_type = int
     unit = 'currency'
@@ -6536,6 +6991,85 @@ class f7sc(Variable):
     label = u"Crédits d’impôt pour dépenses en faveur de la qualité environnementale"
 #    start_date = date(2009, 1, 1)
     end = '2009-12-01'
+    definition_period = YEAR
+
+
+class f7sc(Variable):
+    cerfa_field = u"7SC"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Dépenses en faveur de la qualité environnementale des logements donnés en location, payées du 1.9 au 31.12.2014 : appareils de régulation du chauffage, matériaux de calorifugeage"
+#    start_date = date(2014, 1, 1)
+    end = '2016-12-01'
+    definition_period = YEAR
+
+
+class f7ta(Variable):
+    cerfa_field = u"7TA"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Dépenses en faveur de la qualité environnementale des logements donnés en location en 2015 : chaudières à condensation "
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+class f7tb(Variable):
+    cerfa_field = u"7TB"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Dépenses en faveur de la qualité environnementale des logements donnés en location en 2015 : chaudières à micro-génération gaz"
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+
+class f7tc(Variable):
+    cerfa_field = u"7TC"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Dépenses en faveur de la qualité environnementale des logements donnés en location en 2015 : appareils de régulation de chauffage"
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+
+class f7cb(Variable):
+    cerfa_field = u"7CB"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Dépenses en faveur de la qualité environnementale des logements donnés en location : chaudières à haute performance energétique "
+#    start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+
+class f7aa(Variable):
+    cerfa_field = u"7AA"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Dépenses en faveur de la qualité environnementale des logements donnés en location en 2015 (hors bouquet sur 2 ans) : chaudières à condensation "
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+class f7ad(Variable):
+    cerfa_field = u"7AD"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Dépenses en faveur de la qualité environnementale des logements donnés en location en 2015 (hors bouquet sur 2 ans) : chaudières à micro-génération gaz"
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+
+class f7af(Variable):
+    cerfa_field = u"7AF"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Dépenses en faveur de la qualité environnementale des logements donnés en location en 2015 (hors bouquet sur 2 ans) : appareils de régulation de chauffage"
+#    start_date = date(2015, 1, 1)
     definition_period = YEAR
 
 
@@ -6665,7 +7199,6 @@ class f7sf(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     label = u"Crédit de travaux en faveur d'aides aux personnes pour des logements en location (avant 2012 ) / Appareils de régulation du chauffage, matériaux de calorifugeage (après 2011)"
-#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -6676,6 +7209,16 @@ class f7si(Variable):
     entity = FoyerFiscal
     label = u"Matériaux d’isolation des planchers bas sur sous-sol, sur vide sanitaire ou sur passage couvert (acquisition et pose)"
 #    start_date = date(2012, 1, 1)
+    definition_period = YEAR
+
+
+class f7vi(Variable):
+    cerfa_field = u"7VI"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Matériaux d’isolation des planchers bas sur sous-sol, sur vide sanitaire ou sur passage couvert (acquisition et pose) en 2015"
+#    start_date = date(2015, 1, 1)
     definition_period = YEAR
 
 
@@ -6696,7 +7239,7 @@ class f7tu(Variable):
     entity = FoyerFiscal
     label = u"Dépenses de travaux dans l'habitation principale"
 #    start_date = date(2012, 1, 1)
-    end = '2012-12-31'
+#   end = '2012-12-31'
     definition_period = YEAR
 
 
@@ -6707,7 +7250,7 @@ class f7tt(Variable):
     entity = FoyerFiscal
     label = u"Dépenses de travaux dans l'habitation principale"
 #    start_date = date(2012, 1, 1)
-    end = '2012-12-31'
+#    end = '2012-12-31'
     definition_period = YEAR
 
 
@@ -6718,7 +7261,7 @@ class f7tv(Variable):
     entity = FoyerFiscal
     label = u"Dépenses de travaux dans l'habitation principale"
 #    start_date = date(2012, 1, 1)
-    end = '2012-12-31'
+#    end = '2012-12-31'
     definition_period = YEAR
 
 

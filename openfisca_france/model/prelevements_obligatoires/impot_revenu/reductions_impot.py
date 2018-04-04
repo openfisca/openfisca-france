@@ -967,7 +967,7 @@ class doment(Variable):
         f7oz = foyer_fiscal('f7oz', period)
         f7pz = foyer_fiscal('f7pz', period)
         f7qz = foyer_fiscal('f7qz', period)
-        f7rz = foyer_fiscal('f7rz', period)
+        f7rz = foyer_fiscal('f7rz_2010', period)
 
         return  f7ur + f7oz + f7pz + f7qz + f7rz
 
@@ -979,7 +979,7 @@ class doment(Variable):
         f7oz = foyer_fiscal('f7oz', period)
         f7pz = foyer_fiscal('f7pz', period)
         f7qz = foyer_fiscal('f7qz', period)
-        f7rz = foyer_fiscal('f7rz', period)
+        f7rz = foyer_fiscal('f7rz_2010', period)
         f7sz = foyer_fiscal('f7sz', period)
 
         return  f7ur + f7oz + f7pz + f7qz + f7rz + f7sz
@@ -991,7 +991,7 @@ class doment(Variable):
         f7oz = foyer_fiscal('f7oz', period)
         f7pz = foyer_fiscal('f7pz', period)
         f7qz = foyer_fiscal('f7qz', period)
-        f7rz = foyer_fiscal('f7rz', period)
+        f7rz = foyer_fiscal('f7rz_2010', period)
         f7sz = foyer_fiscal('f7sz', period)
         f7qe = foyer_fiscal('f7qe', period)
         f7qf = foyer_fiscal('f7qf', period)
@@ -1009,7 +1009,7 @@ class doment(Variable):
         f7oz = foyer_fiscal('f7oz', period)
         f7pz = foyer_fiscal('f7pz', period)
         f7qz = foyer_fiscal('f7qz', period)
-        f7rz = foyer_fiscal('f7rz', period)
+        f7rz = foyer_fiscal('f7rz_2010', period)
         f7qe = foyer_fiscal('f7qe', period)
         f7qf = foyer_fiscal('f7qf', period)
         f7qg = foyer_fiscal('f7qg', period)
@@ -1639,7 +1639,6 @@ class doment(Variable):
         # l'échéance ou paiement par voie électronique))
 
         # Outre-mer : TODO: plafonnement, cf. 2041-GE 2042-IOM
-
 
 class domlog(Variable):
     value_type = float
@@ -2607,7 +2606,7 @@ class invlst(Variable):
         2004
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
-        f7xc = foyer_fiscal('f7xc', period)
+        f7xc = foyer_fiscal('f7xc_2012', period)
         f7xd = foyer_fiscal('f7xd', period)
         f7xe = foyer_fiscal('f7xe', period)
         f7xf = foyer_fiscal('f7xf', period)
@@ -2648,7 +2647,7 @@ class invlst(Variable):
         2005-2010
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
-        f7xc = foyer_fiscal('f7xc', period)
+        f7xc = foyer_fiscal('f7xc_2012', period)
         f7xd = foyer_fiscal('f7xd', period)
         f7xe = foyer_fiscal('f7xe', period)
         f7xf = foyer_fiscal('f7xf', period)
@@ -2690,8 +2689,8 @@ class invlst(Variable):
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         f7xa = foyer_fiscal('f7xa', period)
-        f7xb = foyer_fiscal('f7xb', period)
-        f7xc = foyer_fiscal('f7xc', period)
+        f7xb = foyer_fiscal('f7xb_2012', period)
+        f7xc = foyer_fiscal('f7xc_2012', period)
         f7xd = foyer_fiscal('f7xd', period)
         f7xe = foyer_fiscal('f7xe', period)
         f7xf = foyer_fiscal('f7xf', period)
@@ -2732,8 +2731,8 @@ class invlst(Variable):
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         f7xa = foyer_fiscal('f7xa', period)
-        f7xb = foyer_fiscal('f7xb', period)
-        f7xc = foyer_fiscal('f7xc', period)
+        f7xb = foyer_fiscal('f7xb_2012', period)
+        f7xc = foyer_fiscal('f7xc_2012', period)
         f7xd = foyer_fiscal('f7xd', period)
         f7xe = foyer_fiscal('f7xe', period)
         f7xf = foyer_fiscal('f7xf', period)
@@ -3064,6 +3063,7 @@ class locmeu(Variable):
                 ) / 9 + report
             )
 
+    
     def formula_2014_01_01(foyer_fiscal, period, parameters):
         '''
         Investissement en vue de la location meublée non professionnelle dans certains établissements ou résidences
@@ -3333,255 +3333,6 @@ class locmeu(Variable):
                 report_invest_anterieur + report_non_impute
             )
 
-    def formula_2014_01_01(self, simulation, period):
-        '''
-        Investissement en vue de la location meublée non professionnelle dans certains établissements ou résidences
-        2014
-        '''
-        f7ia = simulation.calculate('f7ia', period)
-        f7ib = simulation.calculate('f7ib', period)
-        f7ic = simulation.calculate('f7ic', period)
-        f7id = simulation.calculate('f7id', period)
-        f7ie = simulation.calculate('f7ie', period)
-        f7if = simulation.calculate('f7if', period)
-        f7ig = simulation.calculate('f7ig', period)
-        f7ih = simulation.calculate('f7ih', period)
-        f7ij = simulation.calculate('f7ij', period)
-        f7ik = simulation.calculate('f7ik', period)
-        f7il = simulation.calculate('f7il', period)
-        f7im = simulation.calculate('f7im', period)
-        f7in = simulation.calculate('f7in', period)
-        f7io = simulation.calculate('f7io', period)
-        f7ip = simulation.calculate('f7ip', period)
-        f7iq = simulation.calculate('f7iq', period)
-        f7ir = simulation.calculate('f7ir', period)
-        f7is = simulation.calculate('f7is', period)
-        f7it = simulation.calculate('f7it', period)
-        f7iu = simulation.calculate('f7iu', period)
-        f7iv = simulation.calculate('f7iv', period)
-        f7iw = simulation.calculate('f7iw', period)
-        f7ix = simulation.calculate('f7ix', period)
-        f7iy = simulation.calculate('f7iy', period)
-        f7iz = simulation.calculate('f7iz', period)
-        f7jc = simulation.calculate('f7jc', period)
-        f7ji = simulation.calculate('f7ji', period)
-        f7js = simulation.calculate('f7js', period)
-        f7jt = simulation.calculate('f7jt', period)
-        f7ju = simulation.calculate('f7ju', period)
-        f7jv = simulation.calculate('f7jv', period)
-        f7jw = simulation.calculate('f7jw', period)
-        f7jx = simulation.calculate('f7jx', period)
-        f7jy = simulation.calculate('f7jy', period)
-        f7oa = simulation.calculate('f7oa', period)
-        f7ob = simulation.calculate('f7ob', period)
-        f7oc = simulation.calculate('f7oc', period)
-        f7od = simulation.calculate('f7od', period)
-        f7oe = simulation.calculate('f7oe', period)
-        f7ou = simulation.calculate('f7ou', period)
-        f7pa = simulation.calculate('f7pa', period)
-        f7pb = simulation.calculate('f7pb', period)
-        f7pc = simulation.calculate('f7pc', period)
-        f7pd = simulation.calculate('f7pd', period)
-        f7pe = simulation.calculate('f7pe', period)
-
-        P = simulation.parameters_at(period.start).impot_revenu.reductions_impots.locmeu
-
-        m18 = (maxi(f7id, f7ie, f7if, f7ig) == max_(f7ie, f7if)) 
-        m20 = (maxi(f7ij, f7il, f7in, f7iv) == max_(f7il, f7in))         
-        report_invest_anterieur = (P.taux * max_(f7ik + f7ip, f7ir + f7iq) +
-            f7ia + f7ib + f7ic + 
-            f7jv + f7jw + f7jx + f7jy + 
-            f7oa + f7ob + f7oc + f7od + f7oe)
-        report_non_impute = (f7is + f7iu + f7ix + f7iy + f7pa +
-            f7it + f7ih + f7jc + f7pb +
-            f7iz + f7ji + f7pc +
-            f7js + f7pd +
-            f7pe)
-
-        return ((min_(P.max, maxi(f7ij, f7il, f7in, f7iv)) * (P.taux20 * m20 + P.taux18 * not_(m20)) + # to check : impossible de remplir à la fois f7ij et f7il par exemple ?
-                min_(P.max, maxi(f7id, f7ie, f7if, f7ig)) * (P.taux18 * m18 + P.taux11 * not_(m18)) +
-                P.taux11 * (min_(P.max, f7jt + f7ju) + min_(P.max, f7ou)) + 
-                P.taux * (min_(P.max, max_(f7im, f7iw)) + min_(P.max, f7io))
-                ) / 9 +
-                report_invest_anterieur + report_non_impute)
-
-    def formula_2015_01_01(self, simulation, period):
-        '''
-        Investissement en vue de la location meublée non professionnelle dans certains établissements ou résidences
-        2015
-        '''
-        f7ia = simulation.calculate('f7ia', period)
-        f7ib = simulation.calculate('f7ib', period)
-        f7ic = simulation.calculate('f7ic', period)
-        f7id = simulation.calculate('f7id', period)
-        f7ie = simulation.calculate('f7ie', period)
-        f7if = simulation.calculate('f7if', period)
-        f7ig = simulation.calculate('f7ig', period)
-        f7ih = simulation.calculate('f7ih', period)
-        f7ij = simulation.calculate('f7ij', period)
-        f7ik = simulation.calculate('f7ik', period)
-        f7il = simulation.calculate('f7il', period)
-        f7im = simulation.calculate('f7im', period)
-        f7in = simulation.calculate('f7in', period)
-        f7io = simulation.calculate('f7io', period)
-        f7ip = simulation.calculate('f7ip', period)
-        f7iq = simulation.calculate('f7iq', period)
-        f7ir = simulation.calculate('f7ir', period)
-        f7is = simulation.calculate('f7is', period)
-        f7it = simulation.calculate('f7it', period)
-        f7iu = simulation.calculate('f7iu', period)
-        f7iv = simulation.calculate('f7iv', period)
-        f7iw = simulation.calculate('f7iw', period)
-        f7ix = simulation.calculate('f7ix', period)
-        f7iy = simulation.calculate('f7iy', period)
-        f7iz = simulation.calculate('f7iz', period)
-        f7jc = simulation.calculate('f7jc', period)
-        f7ji = simulation.calculate('f7ji', period)
-        f7js = simulation.calculate('f7js', period)
-        f7jt = simulation.calculate('f7jt', period)
-        f7ju = simulation.calculate('f7ju', period)
-        f7jv = simulation.calculate('f7jv', period)
-        f7jw = simulation.calculate('f7jw', period)
-        f7jx = simulation.calculate('f7jx', period)
-        f7jy = simulation.calculate('f7jy', period)
-        f7oa = simulation.calculate('f7oa', period)
-        f7ob = simulation.calculate('f7ob', period)
-        f7oc = simulation.calculate('f7oc', period)
-        f7od = simulation.calculate('f7od', period)
-        f7oe = simulation.calculate('f7oe', period)
-        f7of = simulation.calculate('f7of', period)
-        f7og = simulation.calculate('f7og', period)
-        f7oh = simulation.calculate('f7oh', period)
-        f7oi = simulation.calculate('f7oi', period)
-        f7oj = simulation.calculate('f7oj', period)
-        f7ou = simulation.calculate('f7ou', period)
-        f7ov = simulation.calculate('f7ov', period)
-        f7pa = simulation.calculate('f7pa', period)
-        f7pb = simulation.calculate('f7pb', period)
-        f7pc = simulation.calculate('f7pc', period)
-        f7pd = simulation.calculate('f7pd', period)
-        f7pe = simulation.calculate('f7pe', period)
-        f7pf = simulation.calculate('f7pf', period)
-        f7pg = simulation.calculate('f7pg', period)
-        f7ph = simulation.calculate('f7ph', period)
-        f7pi = simulation.calculate('f7pi', period)
-        f7pj = simulation.calculate('f7pj', period)
-
-        P = simulation.parameters_at(period.start).impot_revenu.reductions_impots.locmeu
-
-        m18 = (maxi(f7id, f7ie, f7if, f7ig) == max_(f7ie, f7if)) 
-        m20 = (maxi(f7ij, f7il, f7in, f7iv) == max_(f7il, f7in))         
-        report_invest_anterieur = (P.taux * max_(f7ik + f7ip, f7ir + f7iq) +
-            f7ia + f7ib + f7ic + 
-            f7jv + f7jw + f7jx + f7jy + 
-            f7oa + f7ob + f7oc + f7od + f7oe + 
-            f7of + f7og + f7oh + f7oi + f7oj)
-        report_non_impute = (f7is + f7iu + f7ix + f7iy + f7pa + f7pf +
-            f7it + f7ih + f7jc + f7pb + f7pg +
-            f7iz + f7ji + f7pc + f7ph +
-            f7js + f7pd + f7pi +
-            f7pe + f7pj)
-
-        return ((min_(P.max, maxi(f7ij, f7il, f7in, f7iv)) * (P.taux20 * m20 + P.taux18 * not_(m20)) + # to check : impossible de remplir à la fois f7ij et f7il par exemple ?
-                min_(P.max, maxi(f7id, f7ie, f7if, f7ig)) * (P.taux18 * m18 + P.taux11 * not_(m18)) +
-                P.taux11 * (min_(P.max, f7jt + f7ju) + min_(P.max, f7ou) + min_(P.max, f7ov)) +
-                P.taux * (min_(P.max, max_(f7im, f7iw)) + min_(P.max, f7io))
-                ) / 9 +
-                report_invest_anterieur + report_non_impute)
-
-    def formula_2016_01_01(self, simulation, period):
-        '''
-        Investissement en vue de la location meublée non professionnelle dans certains établissements ou résidences
-        2016
-        '''
-        f7ia = simulation.calculate('f7ia', period)
-        f7ib = simulation.calculate('f7ib', period)
-        f7ic = simulation.calculate('f7ic', period)
-        f7id = simulation.calculate('f7id', period)
-        f7ie = simulation.calculate('f7ie', period)
-        f7if = simulation.calculate('f7if', period)
-        f7ig = simulation.calculate('f7ig', period)
-        f7ih = simulation.calculate('f7ih', period)
-        f7ij = simulation.calculate('f7ij', period)
-        f7ik = simulation.calculate('f7ik', period)
-        f7il = simulation.calculate('f7il', period)
-        f7im = simulation.calculate('f7im', period)
-        f7in = simulation.calculate('f7in', period)
-        f7ip = simulation.calculate('f7ip', period)
-        f7iq = simulation.calculate('f7iq', period)
-        f7ir = simulation.calculate('f7ir', period)
-        f7it = simulation.calculate('f7it', period)
-        f7iu = simulation.calculate('f7iu', period)
-        f7iv = simulation.calculate('f7iv', period)
-        f7iw = simulation.calculate('f7iw', period)
-        f7ix = simulation.calculate('f7ix', period)
-        f7iy = simulation.calculate('f7iy', period)
-        f7iz = simulation.calculate('f7iz', period)
-        f7jc = simulation.calculate('f7jc', period)
-        f7ji = simulation.calculate('f7ji', period)
-        f7js = simulation.calculate('f7js', period)
-        f7jt = simulation.calculate('f7jt', period)
-        f7ju = simulation.calculate('f7ju', period)
-        f7jv = simulation.calculate('f7jv', period)
-        f7jw = simulation.calculate('f7jw', period)
-        f7jx = simulation.calculate('f7jx', period)
-        f7jy = simulation.calculate('f7jy', period)
-        f7oa = simulation.calculate('f7oa', period)
-        f7ob = simulation.calculate('f7ob', period)
-        f7oc = simulation.calculate('f7oc', period)
-        f7od = simulation.calculate('f7od', period)
-        f7oe = simulation.calculate('f7oe', period)
-        f7of = simulation.calculate('f7of', period)
-        f7og = simulation.calculate('f7og', period)
-        f7oh = simulation.calculate('f7oh', period)
-        f7oi = simulation.calculate('f7oi', period)
-        f7oj = simulation.calculate('f7oj', period)
-        f7ok = simulation.calculate('f7ok', period)
-        f7ol = simulation.calculate('f7ol', period)
-        f7om = simulation.calculate('f7om', period)
-        f7on = simulation.calculate('f7on', period)
-        f7oo = simulation.calculate('f7oo', period)
-        f7ou = simulation.calculate('f7ou', period)
-        f7ov = simulation.calculate('f7ov', period)
-        f7ow = simulation.calculate('f7ow', period)
-        f7pa = simulation.calculate('f7pa', period)
-        f7pb = simulation.calculate('f7pb', period)
-        f7pc = simulation.calculate('f7pc', period)
-        f7pd = simulation.calculate('f7pd', period)
-        f7pe = simulation.calculate('f7pe', period)
-        f7pf = simulation.calculate('f7pf', period)
-        f7pg = simulation.calculate('f7pg', period)
-        f7ph = simulation.calculate('f7ph', period)
-        f7pi = simulation.calculate('f7pi', period)
-        f7pj = simulation.calculate('f7pj', period)
-        f7pk = simulation.calculate('f7pk', period)
-        f7pl = simulation.calculate('f7pl', period)
-        f7pm = simulation.calculate('f7pm', period)
-        f7pn = simulation.calculate('f7pn', period)
-        f7po = simulation.calculate('f7po', period)
-
-        P = simulation.parameters_at(period.start).impot_revenu.reductions_impots.locmeu
-
-        m18 = (maxi(f7id, f7ie, f7if, f7ig) == max_(f7ie, f7if)) 
-        m20 = (maxi(f7ij, f7il, f7in, f7iv) == max_(f7il, f7in))         
-        report_invest_anterieur = (P.taux * max_(f7ik + f7ip, f7ir + f7iq) +
-            f7ia + f7ib + f7ic + 
-            f7jv + f7jw + f7jx + f7jy + 
-            f7oa + f7ob + f7oc + f7od + f7oe + 
-            f7of + f7og + f7oh + f7oi + f7oj +
-            f7ok + f7ol + f7om + f7on + f7oo)
-        report_non_impute = (f7iu + f7ix + f7iy + f7pa + f7pf + f7pk +
-            f7it + f7ih + f7jc + f7pb + f7pg + f7pl +
-            f7iz + f7ji + f7pc + f7ph + f7pm +
-            f7js + f7pd + f7pi + f7pn +
-            f7pe + f7pj + f7po)
-
-        return ((min_(P.max, maxi(f7ij, f7il, f7in, f7iv)) * (P.taux20 * m20 + P.taux18 * not_(m20)) + # to check : impossible de remplir à la fois f7ij et f7il par exemple ?
-                min_(P.max, maxi(f7id, f7ie, f7if, f7ig)) * (P.taux18 * m18 + P.taux11 * not_(m18)) +
-                P.taux11 * (min_(P.max, f7jt + f7ju) + min_(P.max, f7ou) + min_(P.max, f7ov) + min_(P.max, f7ow)) +
-                P.taux * (min_(P.max, max_(f7im, f7iw)))
-                ) / 9 +
-                report_invest_anterieur + report_non_impute)
 
 class mohist(Variable):
     value_type = float
@@ -3822,25 +3573,6 @@ class resimm(Variable):
         max5 = max_(max4 - f7ra, 0)
         return (P.taux_rd * min_(f7rd, max1) + P.taux_rb * min_(f7rb, max2) + P.taux_rc * min_(f7sy + f7rf + f7rc, max3) +
                 P.taux_ra * min_(f7ra, max4) + P.taux_re * min_(f7re + f7sx, max5))
-
-    def formula_2016_01_01(self, simulation, period):
-        '''
-        Travaux de restauration immobilière
-        2016
-        '''
-        f7nx = simulation.calculate('f7nx', period)
-        f7ny = simulation.calculate('f7ny', period)
-        f7re = simulation.calculate('f7re', period)
-        f7rf = simulation.calculate('f7rf', period)
-        f7sx = simulation.calculate('f7sx', period)
-        f7sy = simulation.calculate('f7sy', period)
-        P = simulation.parameters_at(period.start).impot_revenu.reductions_impots.resimm
-
-        max1 = P.max
-        max2 = max_(max1 - f7nx - f7sy - f7rf, 0)
-        return (P.taux_rc * min_(f7sy + f7rf + f7nx, max1) +
-                 P.taux_re * min_(f7re + f7sx + f7ny, max2))
-
 
     def formula_2016_01_01(foyer_fiscal, period, parameters):
         '''
