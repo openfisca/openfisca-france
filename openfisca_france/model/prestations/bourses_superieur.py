@@ -42,6 +42,8 @@ class bourse_superieur_points_de_charge(Variable):
 
     def formula(individu, period, parameters):
 
+        eligible = individu('bourse_superieur_eligibilite', period.this_year)
+
         distance = individu('distance_domicile_etablissement_superieur', period)
         points_eloignement = (
             0 * (distance < 30) +
@@ -56,7 +58,41 @@ class bourse_superieur_points_de_charge(Variable):
             4 * (nb_enfants_dans_enseignement_sup - 1) 
             )
 
-        return points_eloignement + points_de_charge_famille
+        return (points_eloignement + points_de_charge_famille) * eligible
+
+
+class bourse_superieur_annuel(Variable):
+    value_type = float
+    entity = Individu
+    label = u"Montant annuel de la bourse sur critères sociaux de l'enseignement supérieur"
+    definition_period = MONTH
+
+    def formula(individu, period, parameters):
+
+        age = individu('age', period) # NB : age au 01/09/N normalement
+        est_etudiant = individu('etudiant', period)
+        echelon = individu('echelon_bourse', period)
+        eligible = individu('bourse_superieur_eligibilite', period.this_year)
+        P = parameters(period).bourses_education.bourse_superieur
+
+        montant_bourse_annuel = P.montant[echelon] # NB : normalement montant bourse = montant annuel sur 10 mois (pas de bourses juillet-aout), pour simplifier on divise par 12 pour obtenir montant mensuel
+
+        return eligible * montant_bourse_annuel
+
+
+class bourse_superieur_eligibilite(Variable):
+    value_type = bool
+    entity = Individu
+    label = u"Eligibilité à une bourse de l'enseignement supérieur"
+    definition_period = YEAR
+
+    def formula(individu, period, parameters):
+
+        age = individu('age', period.first_month) # NB : age au 01/09/N normalement
+        est_etudiant = individu('etudiant', period.first_month)
+        eligible = (age > 17) * (age <= 28) * est_etudiant # TODO : gérer le fait qu'on peut être étudiant et avoir moins de 18ans
+        
+        return eligible
 
 
 class bourse_superieur(Variable):
@@ -67,15 +103,10 @@ class bourse_superieur(Variable):
 
     def formula(individu, period, parameters):
 
-        age = individu('age', period) # NB : age au 01/09/N normalement
-        est_etudiant = individu('etudiant', period)
-        echelon = individu('echelon_bourse', period)
-        P = parameters(period).bourses_education.bourse_superieur
+        montant_bourse_annuel = individu('bourse_superieur_annuel', period) # NB : normalement montant bourse = montant annuel sur 10 mois (pas de bourses juillet-aout), pour simplifier on divise par 12 pour obtenir montant mensuel
+        eligible = individu('bourse_superieur_eligibilite', period.this_year)
 
-        eligible = (age <= 28) * est_etudiant
-        montant_bourse_annuel = P.montant[echelon] # NB : normalement montant bourse = montant annuel sur 10 mois (pas de bourses juillet-aout), pour simplifier on divise par 12 pour obtenir montant mensuel
-
-        return eligible * (montant_bourse_annuel / 12)
+        return (montant_bourse_annuel / 12) * eligible
 
 
 class boursier(Variable):
@@ -124,6 +155,7 @@ class echelon_bourse(Variable):
 
         points_de_charge = individu('bourse_superieur_points_de_charge', period)
         revenus_famille = individu('base_ressource_bourse_superieur', period)
+        eligible = individu('bourse_superieur_eligibilite', period.this_year)
         P = parameters(period).bourses_education.bourse_superieur
  
         echelons = [7, 6, 5, 4, 3, 2, 1, 0]
@@ -159,7 +191,7 @@ class echelon_bourse(Variable):
             revenus_famille, 
             thresholds = plafonds_ressources,
             choices = [7, 6, 5, 4, 3, 2, 1, 0, 9999]
-        )
+        ) * eligible
 
         return select(
             (echelon_bourse == 9999, echelon_bourse == 0, echelon_bourse == 1, echelon_bourse == 2, echelon_bourse == 3, echelon_bourse == 4, echelon_bourse == 5, echelon_bourse == 6, echelon_bourse == 7),
@@ -221,7 +253,7 @@ def main():
                  ),
             dict(
                 activite = u'etudiant',
-                date_naissance = '2000-04-17',
+                date_naissance = '1994-04-17',
                 ),
              ],
         )
@@ -229,6 +261,8 @@ def main():
 
     simulation = scenario.new_simulation(debug = True)
 
+    eligibilite = simulation.calculate('bourse_superieur_eligibilite', simulation.period)
+    print("Eligibilite : {}".format(eligibilite))
     base_ressource = simulation.calculate('base_ressource_bourse_superieur', simulation.period.first_month)
     print("Base ressource : {}".format(base_ressource))
     points =  simulation.calculate('bourse_superieur_points_de_charge', simulation.period.first_month)
