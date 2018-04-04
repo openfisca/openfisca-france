@@ -89,9 +89,9 @@ class bourse_superieur_eligibilite(Variable):
     def formula(individu, period, parameters):
 
         age = individu('age', period.first_month) # NB : age au 01/09/N normalement
-        est_etudiant = individu('etudiant', period.first_month)
+        est_etudiant = individu('etudiant', period.first_month.offset(9))
         eligible = (age > 17) * (age <= 28) * est_etudiant # TODO : gérer le fait qu'on peut être étudiant et avoir moins de 18ans
-        
+
         return eligible
 
 
@@ -275,5 +275,4 @@ def main():
 
 if __name__ == "__main__":
     import sys
-    
     sys.exit(main())
