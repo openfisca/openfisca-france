@@ -24,7 +24,11 @@ class cheque_energie_unites_consommation(Variable):
         gardes_alternees = menage.sum(menage.members('garde_alternee', period.first_month))
 
         nb_personnes_ajuste = nb_personnes - 0.5 * gardes_alternees
-        return uc.premiere_personne + uc.deuxieme_personne * (nb_personnes_ajuste > 1) * (nb_personnes_ajuste - 1) + uc.autres_personnes * (nb_personnes_ajuste > 2) * (nb_personnes_ajuste - 2)
+        return (
+            + uc.premiere_personne
+            + uc.deuxieme_personne * (nb_personnes_ajuste > 1) * (min_(nb_personnes_ajuste, 2) - 1)
+            + uc.autres_personnes * (nb_personnes_ajuste > 2) * (nb_personnes_ajuste - 2)
+        )
 
 
 class cheque_energie_eligibilite_logement(Variable):
