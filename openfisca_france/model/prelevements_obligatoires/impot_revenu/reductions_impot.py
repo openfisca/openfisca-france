@@ -2591,90 +2591,6 @@ class invfor(Variable):
             + P.report12 * min_(f7th + f7uu + f7uv + f7ti, max2)
             )
 
-    def formula_2014_01_01(self, simulation, period):
-        '''
-        Investissements forestiers pour 2014 cf. 2041 GK
-        '''
-        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
-        f7te = simulation.calculate('f7te', period)
-        f7tf = simulation.calculate('f7tf', period)
-        f7tg = simulation.calculate('f7tg', period)
-        f7th = simulation.calculate('f7th', period)
-        f7ti = simulation.calculate('f7ti', period)
-        f7ul = simulation.calculate('f7ul', period)
-        f7un = simulation.calculate('f7un', period)
-        f7uu = simulation.calculate('f7uu', period)
-        f7uv = simulation.calculate('f7uv', period)
-        f7uw = simulation.calculate('f7uw', period)
-        f7ux = simulation.calculate('f7ux', period)
-        _P = simulation.parameters_at(period.start)
-        P = simulation.parameters_at(period.start).impot_revenu.reductions_impots.invfor
-
-        max0 = max_(0, P.ifortra_seuil * (maries_ou_pacses + 1) - f7ul)
-        max1 = max_(0, max0 - f7uu - f7te - f7tf)
-        max2 = max_(0, max1 - f7tg - f7uv)
-        max3 = max_(0, max2 - f7th - f7uw - f7ux - f7ti)
-        return (P.taux * min_(f7un, P.seuil * (maries_ou_pacses + 1)) +
-            P.taux_ass * min_(f7ul, P.ifortra_seuil * (maries_ou_pacses + 1)) +
-            P.report10 * min_(f7uu + f7te + f7tf, max0) +
-            P.report11 * min_(f7tg + f7uv, max1) +
-            P.report12 * min_(f7th + f7uw + f7ux + f7ti, max2))
-
-    def formula_2015_01_01(self, simulation, period):
-        '''
-        Investissements forestiers pour 2015 cf. 2041 GK
-        '''
-        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
-        f7te = simulation.calculate('f7te', period)
-        f7tf = simulation.calculate('f7tf', period)
-        f7tg = simulation.calculate('f7tg', period)
-        f7th = simulation.calculate('f7th', period)
-        f7ti = simulation.calculate('f7ti', period)
-        f7ul = simulation.calculate('f7ul', period)
-        f7un = simulation.calculate('f7un', period)
-        f7uu = simulation.calculate('f7uu', period)
-        f7uv = simulation.calculate('f7uv', period)
-        f7uw = simulation.calculate('f7uw', period)
-        _P = simulation.parameters_at(period.start)
-        P = simulation.parameters_at(period.start).impot_revenu.reductions_impots.invfor
-
-        max0 = max_(0, P.ifortra_seuil * (maries_ou_pacses + 1) - f7ul)
-        max1 = max_(0, max0 - f7te - f7tf)
-        max2 = max_(0, max1 - f7tg - f7uu)
-        max3 = max_(0, max2 - f7th - f7uv - f7uw - f7ti)
-        return (P.taux * min_(f7un, P.seuil * (maries_ou_pacses + 1)) +
-            P.taux_ass * min_(f7ul, P.ifortra_seuil * (maries_ou_pacses + 1)) +
-            P.report10 * min_(f7te + f7tf, max0) +
-            P.report11 * min_(f7tg + f7uu, max1) +
-            P.report12 * min_(f7th + f7uv + f7uw + f7ti, max2))
-
-    def formula_2016_01_01(self, simulation, period):
-        '''
-        Investissements forestiers pour 2016 cf. 2041 GK
-        '''
-        maries_ou_pacses = simulation.calculate('maries_ou_pacses', period)
-        f7te = simulation.calculate('f7te', period)
-        f7tf = simulation.calculate('f7tf', period)
-        f7tg = simulation.calculate('f7tg', period)
-        f7th = simulation.calculate('f7th', period)
-        f7ti = simulation.calculate('f7ti', period)
-        f7ul = simulation.calculate('f7ul', period)
-        f7un = simulation.calculate('f7un', period)
-        f7uu = simulation.calculate('f7uu', period)
-        f7uv = simulation.calculate('f7uv', period)
-        _P = simulation.parameters_at(period.start)
-        P = simulation.parameters_at(period.start).impot_revenu.reductions_impots.invfor
-
-        max0 = max_(0, P.ifortra_seuil * (maries_ou_pacses + 1) - f7ul)
-        max1 = max_(0, max0 - f7te - f7tf)
-        max2 = max_(0, max1 - f7tg)
-        max3 = max_(0, max2 - f7th - f7uu - f7uv - f7ti)
-        return (P.taux * min_(f7un, P.seuil * (maries_ou_pacses + 1)) +
-            P.taux_ass * min_(f7ul, P.ifortra_seuil * (maries_ou_pacses + 1)) +
-            P.report10 * min_(f7te + f7tf, max0) +
-            P.report11 * min_(f7tg, max1) +
-            P.report12 * min_(f7th + f7uu + f7uv + f7ti, max2))
-
 
 class invlst(Variable):
     value_type = float
@@ -3930,7 +3846,7 @@ class rpinel(Variable):
     label = u"rpinel"
     definition_period = YEAR
 
-    def formula_2014_01_01(self, simulation, period):
+    def formula_2014_01_01(foyer_fiscal, period, parameters):
         '''
         Investissement locatif privé - Dispositif Pinel
         2014
@@ -3941,7 +3857,7 @@ class rpinel(Variable):
         f7qb = foyer_fiscal('f7qb', period)
         f7qc = foyer_fiscal('f7qc', period)
         f7qd = foyer_fiscal('f7qd', period)
-        P = simulation.parameters_at(period.start).impot_revenu.reductions_impots.rpinel
+        P = parameters(period).impot_revenu.reductions_impots.rpinel
 
         max1 = max_(0, P.seuil - f7el - f7qd) # 2014 : plafond commun 'duflot' et 'rpinel'
         max2 = max_(0, max1 - f7qc)
@@ -3952,7 +3868,7 @@ class rpinel(Variable):
                 P.taux18 * min_(max_(0, max2 - f7ek), f7qb) / 9 +
                 P.taux12 * min_(max3, f7qa) / 6 )
 
-    def formula_2015_01_01(self, simulation, period):
+    def formula_2015_01_01(foyer_fiscal, period, parameters):
         '''
         Investissement locatif privé - Dispositif Pinel
         2015
@@ -3971,7 +3887,7 @@ class rpinel(Variable):
         f7qf = foyer_fiscal('f7qf', period)
         f7qg = foyer_fiscal('f7qg', period)
         f7qh = foyer_fiscal('f7qh', period)
-        P = simulation.parameters_at(period.start).impot_revenu.reductions_impots.rpinel
+        P = parameters(period).impot_revenu.reductions_impots.rpinel
 
         max1 = max_(0, P.seuil - f7el - f7qd) # 2014 : plafond commun 'duflot' et 'rpinel'
         max2 = max_(0, max1 - f7qc)
@@ -3992,7 +3908,7 @@ class rpinel(Variable):
         
         return reduc_invest_real_2014 + reduc_invest_real_2015 + report
 
-    def formula_2016_01_01(self, simulation, period):
+    def formula_2016_01_01(foyer_fiscal, period, parameters):
         '''
         Investissement locatif privé - Dispositif Pinel
         2016
@@ -4019,7 +3935,7 @@ class rpinel(Variable):
         f7qj = foyer_fiscal('f7qj', period)
         f7qk = foyer_fiscal('f7qk', period)
         f7ql = foyer_fiscal('f7ql', period)
-        P = simulation.parameters_at(period.start).impot_revenu.reductions_impots.rpinel
+        P = parameters(period).impot_revenu.reductions_impots.rpinel
 
         max1 = max_(0, P.seuil - f7el - f7qd) # 2014 : plafond commun 'duflot' et 'rpinel'
         max2 = max_(0, max1 - f7qc)
