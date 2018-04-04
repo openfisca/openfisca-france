@@ -67,3 +67,36 @@
   output_variables:
     cheque_energie_unites_consommation:
       2018: 1.25
+
+- name: UC union libre, avec deux enfants
+  period: 2018
+  menages:
+    - personne_de_reference: parent
+      conjoint: conjoint
+      enfants:
+      - Mila
+      - Luca
+  foyers_fiscaux:
+    - declarants:
+      - parent
+      personnes_a_charge:
+      - Mila
+    - declarants:
+      - conjoint
+      personnes_a_charge:
+      - Luca
+  familles:
+    - parents:
+      - parent
+      - conjoint
+      enfants:
+      - Mila
+      - Luca
+  individus:
+    - id: parent
+    - id: conjoint
+    - id: Mila
+    - id: Luca
+  output_variables:
+    cheque_energie_unites_consommation:
+      2018: 2.1
