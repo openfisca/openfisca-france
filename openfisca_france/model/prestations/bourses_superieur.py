@@ -40,7 +40,7 @@ class bourse_superieur_points_de_charge(Variable):
     entity = Individu
     definition_period = MONTH
 
-    def formula(individu, period, parameters):
+    def formula_2013_09_01(individu, period, parameters):
 
         eligible = individu('bourse_superieur_eligibilite', period.this_year)
 
@@ -67,7 +67,7 @@ class bourse_superieur_annuel(Variable):
     label = u"Montant annuel de la bourse sur critères sociaux de l'enseignement supérieur"
     definition_period = MONTH
 
-    def formula(individu, period, parameters):
+    def formula_2013_09_01(individu, period, parameters):
 
         age = individu('age', period) # NB : age au 01/09/N normalement
         est_etudiant = individu('etudiant', period)
@@ -77,7 +77,7 @@ class bourse_superieur_annuel(Variable):
 
         montant_bourse_annuel = P.montant[echelon] # NB : normalement montant bourse = montant annuel sur 10 mois (pas de bourses juillet-aout), pour simplifier on divise par 12 pour obtenir montant mensuel
 
-        return eligible * montant_bourse_annuel
+        return montant_bourse_annuel * eligible
 
 
 class bourse_superieur_eligibilite(Variable):
@@ -101,7 +101,7 @@ class bourse_superieur(Variable):
     label = u"Montant mensuel de la bourse sur critères sociaux de l'enseignement supérieur"
     definition_period = MONTH
 
-    def formula(individu, period, parameters):
+    def formula_2013_09_01(individu, period, parameters):
 
         montant_bourse_annuel = individu('bourse_superieur_annuel', period) # NB : normalement montant bourse = montant annuel sur 10 mois (pas de bourses juillet-aout), pour simplifier on divise par 12 pour obtenir montant mensuel
         eligible = individu('bourse_superieur_eligibilite', period.this_year)
@@ -151,7 +151,7 @@ class echelon_bourse(Variable):
     label = u"Echelon de la bourse perçue (de 0 à 7)"
     definition_period = MONTH
 
-    def formula(individu, period, parameters):
+    def formula_2013_09_01(individu, period, parameters):
 
         points_de_charge = individu('bourse_superieur_points_de_charge', period)
         revenus_famille = individu('base_ressource_bourse_superieur', period)
