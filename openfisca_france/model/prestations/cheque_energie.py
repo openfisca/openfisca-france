@@ -23,13 +23,14 @@ class cheque_energie_unites_consommation(Variable):
         nb_personnes = menage.nb_persons()
         gardes_alternees = menage.sum(menage.members('garde_alternee', period.first_month))
 
-		return (
-				  uc.base_uc_personne * nb_personnes
-				+ uc.bonus_premiere_personne * ( nb_personnes > 0 )
-				+ uc.bonus_deuxieme_personne * ( nb_personnes > 1 )
-				+ uc.bonus_deuxieme_personne * ( nb_personnes > 1 ) * ( ( nb_personnes - gardes_alternees ) > 1 )
-				+ uc.bonus_personne_non_alternee * ( nb_personnes - gardes_alternees - 1 )
-				)
+        return (
+                uc.base_uc_personne * nb_personnes
+                + uc.bonus_premiere_personne * (nb_personnes > 0)
+                + uc.bonus_deuxieme_personne * (nb_personnes > 1)
+                + uc.bonus_deuxieme_personne * (nb_personnes > 1) * ((nb_personnes - gardes_alternees) > 1)
+                + uc.bonus_personne_non_alternee * (nb_personnes - gardes_alternees - 1)
+                )
+
 
 class cheque_energie_eligibilite_logement(Variable):
     entity = Menage
