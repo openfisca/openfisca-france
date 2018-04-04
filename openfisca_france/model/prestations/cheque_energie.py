@@ -18,7 +18,7 @@ class cheque_energie_unites_consommation(Variable):
     label = u"Unités de consommation du ménage pour le calcul du chèque Énergie"
     definition_period = YEAR
 
-    def formula_2017(menage, period, parameters):
+    def formula_2018(menage, period, parameters):
         uc = parameters(period).cheque_energie.unites_consommation
         nb_personnes = menage.nb_persons()
         gardes_alternees = menage.sum(menage.members('garde_alternee', period.first_month))
@@ -43,7 +43,7 @@ class cheque_energie_eligibilite_logement(Variable):
     label = u"Éligibilité du logement occupé au chèque énergie"
     definition_period = MONTH
 
-    def formula_2017(menage, period, parameters):
+    def formula_2018(menage, period, parameters):
         statut_occupation_logement = menage('statut_occupation_logement', period)
         residence_saint_martin = menage('residence_saint_martin', period)
 
@@ -65,7 +65,7 @@ class cheque_energie_montant(Variable):
     label = u"Montant du chèque énergie"
     definition_period = YEAR
 
-    def formula_2017(menage, period, parameters):
+    def formula_2018(menage, period, parameters):
         baremes = parameters(period).cheque_energie.baremes
         seuils = baremes.thresholds
         montants = baremes.montants
@@ -94,5 +94,5 @@ class cheque_energie(Variable):
     label = u"Montant auquel le ménage peut prétendre au titre du chèque energie"
     definition_period = MONTH
 
-    def formula_2017(menage, period, parameters):
+    def formula_2018(menage, period, parameters):
         return menage('cheque_energie_montant', period.this_year) * menage('cheque_energie_eligibilite_logement', period)

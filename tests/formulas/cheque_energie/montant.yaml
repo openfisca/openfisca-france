@@ -117,3 +117,13 @@
   output_variables:
     cheque_energie_montant:
       2018: 0
+
+- name: 1 UC - RFR < 5600 en 2017
+  period: 2017
+  input_variables:
+    cheque_energie_unites_consommation: 1
+    rfr:
+     2016: 5599
+  output_variables:
+    cheque_energie:
+      2017-01: 0
