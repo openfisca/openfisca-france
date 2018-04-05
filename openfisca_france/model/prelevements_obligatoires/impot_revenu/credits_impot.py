@@ -2186,6 +2186,7 @@ class saldom2(Variable):
         nb_pac_majoration_plafond = foyer_fiscal('nb_pac2', period)
         f7db = foyer_fiscal('f7db', period)
         f7dg = foyer_fiscal('f7dg', period)
+        f7dl = foyer_fiscal('f7dl', period)
         f7dq = foyer_fiscal('f7dq', period)
         P = parameters(period).impot_revenu.reductions_impots.salarie_domicile
 
