@@ -3810,7 +3810,7 @@ class saldom(Variable):
         P = parameters(period).impot_revenu.reductions_impots.salarie_domicile
 
         nbpacmin = nb_pac_majoration_plafond + f7dl
-        max_base = P.max1 * not_(annee1) + P.max1_1ereAnnee * annee1
+        max_base = P.max1 * not_(annee1) + P.max1_premiere_annee * annee1
         max_du_max_non_inv = P.max2 * not_(annee1) + P.max2_premiere_annee * annee1
         max_non_inv = min_(max_base + P.pac * nbpacmin, max_du_max_non_inv)
         max_non_inv2 = min_(max_base + P.pac * nb_pac_majoration_plafond, max_du_max_non_inv)
@@ -3834,7 +3834,7 @@ class saldom(Variable):
         P = parameters(period).impot_revenu.reductions_impots.salarie_domicile
 
         nbpacmin = nb_pac_majoration_plafond + f7dl
-        max_base = P.max1 * not_(annee1) + P.max1_1ereAnnee * annee1
+        max_base = P.max1 * not_(annee1) + P.max1_premiere_annee * annee1
         max_du_max_non_inv = P.max2 * not_(annee1) + P.max2_premiere_annee * annee1
         max_non_inv = min_(max_base + P.pac * nbpacmin, max_du_max_non_inv)
         max_non_inv2 = min_(max_base + P.pac * nb_pac_majoration_plafond, max_du_max_non_inv)
