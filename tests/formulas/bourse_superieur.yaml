@@ -3,6 +3,8 @@
   familles:
     parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2", "enfant3"]
+    nb_enfants_a_charge: 3
+    nb_enfants_a_charge_superieur: 2
   foyers_fiscaux:
     declarants: ["parent1", "parent2"]
     personnes_a_charge: ["enfant1", "enfant2", "enfant3"]
@@ -22,13 +24,13 @@
     - id: "enfant2"
       date_naissance: '1995-02-01'
       activite: etudiant
-      distance_domicile_etablissement_superieur: 20 # 6pts
+      distance_domicile_etablissement_superieur: 20 # + 0pts
     - id: "enfant3"
       date_naissance: '1993-02-01'
       activite: etudiant
-      distance_domicile_etablissement_superieur: 100 # 7pts
+      distance_domicile_etablissement_superieur: 100 # + 1pts
   output_variables:
-    bourse_superieur_points_de_charge: [0, 0, 0, 6, 7]
+    bourse_superieur_points_de_charge: [0, 0, 0, 8, 9]
     echelon_bourse: ['non_boursier', 'non_boursier', 'non_boursier', 'non_boursier', 'non_boursier']
     bourse_superieur_annuel: [0, 0, 0, 0, 0] # non boursiers
 
@@ -37,6 +39,8 @@
   familles:
     parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2", "enfant3"]
+    nb_enfants_a_charge: 3
+    nb_enfants_a_charge_superieur: 2
   foyers_fiscaux:
     declarants: ["parent1", "parent2"]
     personnes_a_charge: ["enfant1", "enfant2", "enfant3"]
@@ -56,13 +60,13 @@
     - id: "enfant2"
       date_naissance: '1995-02-01'
       activite: etudiant
-      distance_domicile_etablissement_superieur: 20 # 6pts
+      distance_domicile_etablissement_superieur: 20 # + 0pts
     - id: "enfant3"
       date_naissance: '1993-02-01'
       activite: etudiant
-      distance_domicile_etablissement_superieur: 100 # 7pts
+      distance_domicile_etablissement_superieur: 100 # + 1pts
   output_variables:
-    bourse_superieur_points_de_charge: [0, 0, 0, 6, 7]
+    bourse_superieur_points_de_charge: [0, 0, 0, 8, 9]
     echelon_bourse: ['non_boursier', 'non_boursier', 'non_boursier', 'echelon_0', 'echelon_0']
     bourse_superieur_annuel: [0, 0, 0, 1009, 1009]
 
@@ -71,6 +75,8 @@
   familles:
     parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2", "enfant3"]
+    nb_enfants_a_charge: 3
+    nb_enfants_a_charge_superieur: 2
   foyers_fiscaux:
     declarants: ["parent1", "parent2"]
     personnes_a_charge: ["enfant1", "enfant2", "enfant3"]
@@ -90,13 +96,13 @@
     - id: "enfant2"
       date_naissance: '1995-02-01'
       activite: etudiant
-      distance_domicile_etablissement_superieur: 20 # 6pts
+      distance_domicile_etablissement_superieur: 20 # + 0pts
     - id: "enfant3"
       date_naissance: '1993-02-01'
       activite: etudiant
-      distance_domicile_etablissement_superieur: 100 # 7pts
+      distance_domicile_etablissement_superieur: 100 # +1pts
   output_variables:
-    bourse_superieur_points_de_charge: [0, 0, 0, 6, 7]
+    bourse_superieur_points_de_charge: [0, 0, 0, 8, 9]
     echelon_bourse: ['non_boursier', 'non_boursier', 'non_boursier', 'echelon_0', 'echelon_1']
     bourse_superieur_annuel: [0, 0, 0, 1009, 1669]
 
@@ -105,6 +111,8 @@
   familles:
     parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2", "enfant3"]
+    nb_enfants_a_charge: 3
+    nb_enfants_a_charge_superieur: 2
   foyers_fiscaux:
     declarants: ["parent1", "parent2"]
     personnes_a_charge: ["enfant1", "enfant2", "enfant3"]
@@ -124,13 +132,13 @@
     - id: "enfant2"
       date_naissance: '1995-02-01'
       activite: etudiant
-      distance_domicile_etablissement_superieur: 20 # 6pts
+      distance_domicile_etablissement_superieur: 20 # + 0pts
     - id: "enfant3"
       date_naissance: '1993-02-01'
       activite: etudiant
-      distance_domicile_etablissement_superieur: 100 # 7pts
+      distance_domicile_etablissement_superieur: 100 # + 1pts
   output_variables:
-    bourse_superieur_points_de_charge: [0, 0, 0, 6, 7]
+    bourse_superieur_points_de_charge: [0, 0, 0, 8, 9]
     echelon_bourse: ['non_boursier', 'non_boursier', 'non_boursier', 'echelon_2', 'echelon_2']
     bourse_superieur_annuel: [0, 0, 0, 2513, 2513]
 
@@ -139,6 +147,8 @@
   familles:
     parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2", "enfant3"]
+    nb_enfants_a_charge: 3
+    nb_enfants_a_charge_superieur: 2
   foyers_fiscaux:
     declarants: ["parent1", "parent2"]
     personnes_a_charge: ["enfant1", "enfant2", "enfant3"]
@@ -158,13 +168,13 @@
     - id: "enfant2"
       date_naissance: '1995-02-01'
       activite: etudiant
-      distance_domicile_etablissement_superieur: 20 # 6pts
+      distance_domicile_etablissement_superieur: 20 # + 0pts
     - id: "enfant3"
       date_naissance: '1993-02-01'
       activite: etudiant
-      distance_domicile_etablissement_superieur: 100 # 7pts
+      distance_domicile_etablissement_superieur: 100 # + 1pts
   output_variables:
-    bourse_superieur_points_de_charge: [0, 0, 0, 6, 7]
+    bourse_superieur_points_de_charge: [0, 0, 0, 8, 9]
     echelon_bourse: ['non_boursier', 'non_boursier', 'non_boursier', 'echelon_4', 'echelon_5']
     bourse_superieur_annuel: [0, 0, 0, 3924, 4505]
 
@@ -173,6 +183,8 @@
   familles:
     parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2", "enfant3"]
+    nb_enfants_a_charge: 3
+    nb_enfants_a_charge_superieur: 2
   foyers_fiscaux:
     declarants: ["parent1", "parent2"]
     personnes_a_charge: ["enfant1", "enfant2", "enfant3"]
@@ -192,13 +204,13 @@
     - id: "enfant2"
       date_naissance: '1995-02-01'
       activite: etudiant
-      distance_domicile_etablissement_superieur: 20 # 6pts
+      distance_domicile_etablissement_superieur: 20 # + 0pts
     - id: "enfant3"
       date_naissance: '1993-02-01'
       activite: etudiant
-      distance_domicile_etablissement_superieur: 100 # 7pts
+      distance_domicile_etablissement_superieur: 100 # + 1pts
   output_variables:
-    bourse_superieur_points_de_charge: [0, 0, 0, 6, 7]
+    bourse_superieur_points_de_charge: [0, 0, 0, 8, 9]
     echelon_bourse: ['non_boursier', 'non_boursier', 'non_boursier', 'echelon_6', 'echelon_6']
     bourse_superieur_annuel: [0, 0, 0, 4778, 4778]
 

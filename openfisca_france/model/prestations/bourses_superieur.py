@@ -219,11 +219,9 @@ class nb_enfants_a_charge_superieur(Variable):
     entity = Famille
     label = u"Nombre d'enfants à charge étudiants dans l'enseignement supérieur, à prendre en compte pour le calcul des bourses"
     definition_period = MONTH
-    default_value = 1 # provisoire (utiliser les cases 7EF et 7EG de la déclaration 2042 ?)
 
-    # NB : enfants à charge = rattachés fiscalement aux parents en N-2
     # NB2 : enfants étudiants = inscrit dans l'enseignement supérieur l'année N (de demande de la bourse)
-
+    
 
 def main():
 
