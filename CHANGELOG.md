@@ -1,5 +1,17 @@
 # Changelog
 
+### 21.4.0 [#915](https://github.com/openfisca/openfisca-france/pull/915)
+
+* Évolution du système socio-fiscal.
+* Zones impactées :
+  - `prelevements_obligatoires/impot_revenu/credits_impot`
+  - `prelevements_obligatoires/impot_revenu/reductions_impot`
+  - `prelevements_obligatoires/impot_revenu/variables_reductions_credits`
+* Périodes concernées : 2014 - 2016
+* Détails :
+  - Mise à jour des formules (2014-2016) de la réduction 'cappme' (réduction pour souscription au capital de PME non cotées)
+  - Ajout des inputs variables associées
+
 ### 21.3.0 [#914](https://github.com/openfisca/openfisca-france/pull/914)
 
 * Évolution du système socio-fiscal.
