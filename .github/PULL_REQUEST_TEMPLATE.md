@@ -1,4 +1,4 @@
-Merci de contribuer à OpenFisca ! Effacez cette ligne ainsi que, pour chaque ligne ci-dessous, les cas ne concernant pas votre contribution  :)
+Merci de contribuer à OpenFisca ! **Effacez cette ligne ainsi que, pour chaque ligne ci-dessous, les cas ne concernant pas votre contribution**  :)
 
 * Évolution du système socio-fiscal. | Amélioration technique. | Correction d'un crash. | Changement mineur.
 * Périodes concernées : toutes. | jusqu'au JJ/MM/AAAA. | à partir du JJ/MM/AAAA.
@@ -11,7 +11,17 @@ Merci de contribuer à OpenFisca ! Effacez cette ligne ainsi que, pour chaque li
 
 Ces changements _(effacez les lignes ne correspondant pas à votre cas)_ :
 
-- Impactent l'API publique d'OpenFisca France (par exemple renommage ou suppression de variables).
+- Breaking-change de l'API publique d'OpenFisca France (par exemple renommage ou suppression de variables).
 - Ajoutent une fonctionnalité (par exemple ajout d'une variable).
 - Corrigent ou améliorent un calcul déjà existant.
 - Modifient des éléments non fonctionnels de ce dépôt (par exemple modification du README).
+
+- - - -
+
+Tips avant de demander une review :
+
+- [ ] J'ai fait un rebase à partir de [`master`](https://git-scm.com/docs/git-rebase)
+- [ ] J'ai mis à jour le [`CHANGELOG.md`](https://github.com/openfisca/openfisca-france/blob/master/CONTRIBUTING.md#format-du-changelog)
+- [ ] J'ai mis à jour les références législatives (si cela s'applique)
+- [ ] J'ai crée / modifié les tests qui correspondent au changements (si cela s'applique)
+- [ ] J'ai augmenté le numéro de version dans [`setup.py`](https://github.com/openfisca/openfisca-france/blob/master/setup.py)
