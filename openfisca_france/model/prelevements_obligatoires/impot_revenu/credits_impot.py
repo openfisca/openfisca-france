@@ -2156,7 +2156,7 @@ class saldom2(Variable):
     entity = FoyerFiscal
     label = u"Crédit d’impôt emploi d’un salarié à domicile"
     definition_period = YEAR
-    end = '2013-12-31'
+    end = '2016-12-31'
 
     def formula_2007_01_01(foyer_fiscal, period, parameters):
         '''
@@ -2181,7 +2181,7 @@ class saldom2(Variable):
     def formula_2009_01_01(foyer_fiscal, period, parameters):
         '''
         Crédit d’impôt emploi d’un salarié à domicile (cases 7DB, 7DG)
-        2009-2010
+        2009-
         '''
         nb_pac_majoration_plafond = foyer_fiscal('nb_pac2', period)
         f7db = foyer_fiscal('f7db', period)
@@ -2193,8 +2193,8 @@ class saldom2(Variable):
         isinvalid = f7dg
         annee1 = f7dq
         nbpacmin = nb_pac_majoration_plafond + f7dl
-        maxBase = P.max1 * not_(annee1) + P.max1_1ereAnnee * annee1
-        maxDuMaxNonInv = P.max2 * not_(annee1) + P.max2_1ereAnnee * annee1
+        maxBase = P.max1 * not_(annee1) + P.max1_premiere_annee * annee1
+        maxDuMaxNonInv = P.max2 * not_(annee1) + P.max2_premiere_annee * annee1
         maxNonInv = min_(maxBase + P.pac * nbpacmin, maxDuMaxNonInv)
         maxEffectif = maxNonInv * not_(isinvalid) + P.max3 * isinvalid
 

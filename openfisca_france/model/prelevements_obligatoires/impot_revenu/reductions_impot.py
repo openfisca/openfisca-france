@@ -3728,12 +3728,12 @@ class rsceha(Variable):
         Rentes de survie et contrats d'épargne handicap
         2002-
         '''
-        nb_pac2 = foyer_fiscal('nb_pac2', period)
+        nb_pac_majoration_plafond = foyer_fiscal('nb_pac2', period)
         nbR = foyer_fiscal('nbR', period)
         f7gz = foyer_fiscal('f7gz', period)
         P = parameters(period).impot_revenu.reductions_impots.rsceha
 
-        max1 = P.seuil1 + (nb_pac2 - nbR) * P.seuil2
+        max1 = P.seuil1 + (nb_pac_majoration_plafond - nbR) * P.seuil2
         return P.taux * min_(f7gz, max1)
 
 
@@ -3743,84 +3743,105 @@ class saldom(Variable):
     label = u"Réduction d'impôt au titre des sommes versées pour l'emploi d'un salarié à domicile"
     reference = "http://bofip.impots.gouv.fr/bofip/3968-PGP.html?identifiant=BOI-IR-RICI-150-20-20150515#"
     definition_period = YEAR
-    end = '2013-12-31'
+    end = '2016-12-31'
 
 
     def formula_2002_01_01(foyer_fiscal, period, parameters):
         '''
-        Sommes versées pour l'emploi d'un salariés à  domicile
+        Sommes versées pour l'emploi d'un salariés à domicile
         2002-2004
         '''
         f7df = foyer_fiscal('f7df', period)
-        f7dg = foyer_fiscal('f7dg', period)
+        invalide = foyer_fiscal('f7dg', period)
         P = parameters(period).impot_revenu.reductions_impots.salarie_domicile
 
-        isinvalid = f7dg
-        max1 = P.max1 * not_(isinvalid) + P.max3 * isinvalid
+        max1 = P.max1 * not_(invalide) + P.max3 * invalide
         return P.taux * min_(f7df, max1)
 
     def formula_2005_01_01(foyer_fiscal, period, parameters):
         '''
-        Sommes versées pour l'emploi d'un salariés à  domicile
+        Sommes versées pour l'emploi d'un salariés à domicile
         2005-2006
         '''
-        nb_pac2 = foyer_fiscal('nb_pac2', period)
+        nb_pac_majoration_plafond = foyer_fiscal('nb_pac2', period)
         f7df = foyer_fiscal('f7df', period)
         f7dl = foyer_fiscal('f7dl', period)
-        f7dg = foyer_fiscal('f7dg', period)
+        invalide = foyer_fiscal('f7dg', period)
         P = parameters(period).impot_revenu.reductions_impots.salarie_domicile
 
-        isinvalid = f7dg
-        nbpacmin = nb_pac2 + f7dl
-        maxBase = P.max1
-        maxDuMaxNonInv = P.max2
-        maxNonInv = min_(maxBase + P.pac * nbpacmin, maxDuMaxNonInv)
-        max1 = maxNonInv * not_(isinvalid) + P.max3 * isinvalid
+        nbpacmin = nb_pac_majoration_plafond + f7dl
+        max_base = P.max1
+        max_du_max_non_inv = P.max2
+        max_non_inv = min_(max_base + P.pac * nbpacmin, max_du_max_non_inv)
+        max1 = max_non_inv * not_(invalide) + P.max3 * invalide
         return P.taux * min_(f7df, max1)
 
     def formula_2007_01_01(foyer_fiscal, period, parameters):
         '''
-        Sommes versées pour l'emploi d'un salariés à  domicile
+        Sommes versées pour l'emploi d'un salariés à domicile (à partir de 2007, 7DB donne droit à un crédit et 7DF à une réduction)
         2007-2008
         '''
-        nb_pac2 = foyer_fiscal('nb_pac2', period)
+        nb_pac_majoration_plafond = foyer_fiscal('nb_pac2', period)
         f7db = foyer_fiscal('f7db', period)
         f7df = foyer_fiscal('f7df', period)
         f7dl = foyer_fiscal('f7dl', period)
-        f7dg = foyer_fiscal('f7dg', period)
+        invalide = foyer_fiscal('f7dg', period)
         P = parameters(period).impot_revenu.reductions_impots.salarie_domicile
 
-        isinvalid = f7dg
-        nbpacmin = nb_pac2 + f7dl
-        maxBase = P.max1
-        maxDuMaxNonInv = P.max2
-        maxNonInv = min_(maxBase + P.pac * nbpacmin, maxDuMaxNonInv)
-        maxEffectif = maxNonInv * not_(isinvalid) + P.max3 * isinvalid
-        max1 = maxEffectif - min_(f7db, maxEffectif)
+        nbpacmin = nb_pac_majoration_plafond + f7dl
+        max_base = P.max1
+        max_du_max_non_inv = P.max2
+        max_non_inv = min_(max_base + P.pac * nbpacmin, max_du_max_non_inv)
+        max_effectif = max_non_inv * not_(invalide) + P.max3 * invalide
+        max1 = max_effectif - min_(f7db, max_effectif)
         return P.taux * min_(f7df, max1)
 
     def formula_2009_01_01(foyer_fiscal, period, parameters):
         '''
-        Sommes versées pour l'emploi d'un salariés à  domicile
-        2009-2013
+        Sommes versées pour l'emploi d'un salariés à domicile
+        2009-2011
         '''
-        nb_pac2 = foyer_fiscal('nb_pac2', period)
+        nb_pac_majoration_plafond = foyer_fiscal('nb_pac2', period)
         f7db = foyer_fiscal('f7db', period)
         f7df = foyer_fiscal('f7df', period)
         f7dl = foyer_fiscal('f7dl', period)
-        f7dq = foyer_fiscal('f7dq', period)
-        f7dg = foyer_fiscal('f7dg', period)
+        annee1 = foyer_fiscal('f7dq', period)
+        invalide = foyer_fiscal('f7dg', period)
         P = parameters(period).impot_revenu.reductions_impots.salarie_domicile
 
-        isinvalid = f7dg
-        annee1 = f7dq
-        nbpacmin = nb_pac2 + f7dl
-        maxBase = P.max1 * not_(annee1) + P.max1_1ereAnnee * annee1
-        maxDuMaxNonInv = P.max2 * not_(annee1) + P.max2_1ereAnnee * annee1
-        maxNonInv = min_(maxBase + P.pac * nbpacmin, maxDuMaxNonInv)
-        maxEffectif = maxNonInv * not_(isinvalid) + P.max3 * isinvalid
-        max1 = maxEffectif - min_(f7db, maxEffectif)
+        nbpacmin = nb_pac_majoration_plafond + f7dl
+        max_base = P.max1 * not_(annee1) + P.max1_premiere_annee * annee1
+        max_du_max_non_inv = P.max2 * not_(annee1) + P.max2_premiere_annee * annee1
+        max_non_inv = min_(max_base + P.pac * nbpacmin, max_du_max_non_inv)
+        max_non_inv2 = min_(max_base + P.pac * nb_pac_majoration_plafond, max_du_max_non_inv)
+        max_effectif = max_non_inv * not_(invalide) + P.max3 * invalide
+        max_effectif2 = max_non_inv2 * not_(invalide) + P.max3 * invalide
+        max1 = max_effectif - min_(f7db, max_effectif2)
         return P.taux * min_(f7df, max1)
+
+    def formula_2011_01_01(foyer_fiscal, period, parameters):
+        '''
+        Sommes versées pour l'emploi d'un salariés à domicile
+        2011 -
+        '''
+        nb_pac_majoration_plafond = foyer_fiscal('nb_pac2', period)
+        f7db = foyer_fiscal('f7db', period)
+        f7dd = foyer_fiscal('f7dd', period)
+        f7df = foyer_fiscal('f7df', period)
+        f7dl = foyer_fiscal('f7dl', period)
+        annee1 = foyer_fiscal('f7dq', period)
+        invalide = foyer_fiscal('f7dg', period)
+        P = parameters(period).impot_revenu.reductions_impots.salarie_domicile
+
+        nbpacmin = nb_pac_majoration_plafond + f7dl
+        max_base = P.max1 * not_(annee1) + P.max1_premiere_annee * annee1
+        max_du_max_non_inv = P.max2 * not_(annee1) + P.max2_premiere_annee * annee1
+        max_non_inv = min_(max_base + P.pac * nbpacmin, max_du_max_non_inv)
+        max_non_inv2 = min_(max_base + P.pac * nb_pac_majoration_plafond, max_du_max_non_inv)
+        max_effectif = max_non_inv * not_(invalide) + P.max3 * invalide
+        max_effectif2 = max_non_inv2 * not_(invalide) + P.max3 * invalide
+        max1 = max_effectif - min_(f7db, max_effectif2)
+        return P.taux * min_(f7df + f7dd, max1)
 
 
 class scelli(Variable):
