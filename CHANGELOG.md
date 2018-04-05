@@ -1,5 +1,19 @@
 # Changelog
 
+### 21.3.0 [#914](https://github.com/openfisca/openfisca-france/pull/914)
+
+* Évolution du système socio-fiscal.
+* Zones impactées :
+  - `prelevements_obligatoires/impot_revenu/credits_impot`
+  - `prelevements_obligatoires/impot_revenu/reductions_impot`
+  - `prelevements_obligatoires/impot_revenu/variables_reductions_credits`
+* Périodes concernées : 2005 - 2016
+* Détails :
+- Mise à jour des formules (2014-2016) du crédit d'impôt 'saldom2' et de la réduction d'impôt 'saldom'
+- Correction de la formule du crédit d'IR (sur la majoration pour nombre d'ascendants sd eplus de 65 bénéficiaires de l'APA et pour lesquels des dépenses d'emploi à domicile ont été engagées - case 7DL)
+- Ajout de la case 7DD dans les inputs variables
+
+
 ### 21.2.1 [#956](https://github.com/openfisca/openfisca-france/pull/956)
 
 * Amélioration technique
