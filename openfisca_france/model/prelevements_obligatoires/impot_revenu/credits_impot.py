@@ -2193,8 +2193,8 @@ class saldom2(Variable):
         isinvalid = f7dg
         annee1 = f7dq
         nbpacmin = nb_pac_majoration_plafond + f7dl
-        maxBase = P.max1 * not_(annee1) + P.max1_1ereAnnee * annee1
-        maxDuMaxNonInv = P.max2 * not_(annee1) + P.max2_1ereAnnee * annee1
+        maxBase = P.max1 * not_(annee1) + P.max1_premiere_annee * annee1
+        maxDuMaxNonInv = P.max2 * not_(annee1) + P.max2_premiere_annee * annee1
         maxNonInv = min_(maxBase + P.pac * nbpacmin, maxDuMaxNonInv)
         maxEffectif = maxNonInv * not_(isinvalid) + P.max3 * isinvalid
 
