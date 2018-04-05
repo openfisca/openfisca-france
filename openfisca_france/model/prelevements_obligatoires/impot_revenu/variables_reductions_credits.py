@@ -1575,7 +1575,6 @@ class f7po(Variable):
     end = '2012-12-31'
     definition_period = YEAR
 
-
 class fhpo(Variable):
     cerfa_field = u"HPO"
     value_type = int
@@ -1924,7 +1923,6 @@ class fhmb(Variable):
 #    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
-
 class f7rt(Variable):
     cerfa_field = u"7RT"
     value_type = int
@@ -1952,14 +1950,6 @@ class f7ru(Variable):
 #    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
-class fhli(Variable):
-    cerfa_field = u"HLI"
-    value_type = int
-    unit = 'currency'
-    entity = FoyerFiscal
-    label = u"Investissements outre-mer dans le cadre de l'entreprise REPORT : Investissements réalisés en 2010, Autres investissements réalisés en 2010, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 50%"
-#    start_date = date(2013, 1, 1)
-    definition_period = YEAR
 
 class f7rv(Variable):
     cerfa_field = u"7RV"
@@ -4345,6 +4335,87 @@ class f7oj(Variable):
     definition_period = YEAR
 
 
+class f7cr(Variable):
+    cerfa_field = u"7CR"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Souscriptions au capital des PME non cotées, report de versement de l'année 2013 pour les start-up"
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+
+class f7cv(Variable):
+    cerfa_field = u"7CV"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Souscriptions au capital des PME non cotées, report de versement de l'année 2014 pour les start-up"
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+
+class f7cx(Variable):
+    cerfa_field = u"7CX"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Souscriptions au capital des PME non cotées, report de versement de l'année 2015 pour les start-up"
+#    start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+
+class f7cy(Variable):
+    cerfa_field = u"7CY"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Souscriptions au capital des PME non cotées, report de réduction d'impôt au titre du plafonnement global de l'année 2013"
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+
+class f7dy(Variable):
+    cerfa_field = u"7DY"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Souscriptions au capital des PME non cotées, report de réduction d'impôt au titre du plafonnement global de l'année 2014"
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+
+class f7ey(Variable):
+    cerfa_field = u"7CY"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Souscriptions au capital des PME non cotées, report de réduction d'impôt au titre du plafonnement global de l'année 2015"
+#    start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+
+class f7cu(Variable):
+    cerfa_field = u"7CU"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Souscriptions au capital des PME non cotées, montant versé au titre de souscriptions antérieures"
+    definition_period = YEAR
+
+
+# TODO: en 2013 et 2012 plus de sofipêche (pourtant présent dans param à ces dates...), case 7gs réutilisée
+
+class f7gs(Variable):
+    cerfa_field = u"7GS"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Souscriptions au capital des PME non cotées, report de versement de l'année de perception des revenus -1 pour les start-up"
+#    start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+
 class f7ok(Variable):
     cerfa_field = u"7OK"
     value_type = int
@@ -4654,30 +4725,6 @@ class fhov(Variable):
     definition_period = YEAR
 
 
-class f7lk(Variable):
-    cerfa_field = u"7LK"
-    value_type = int
-    unit = 'currency'
-    entity = FoyerFiscal
-#    start_date = date(2016, 1, 1)
-    definition_period = YEAR
-
-class f7ll(Variable):
-    cerfa_field = u"7LL"
-    value_type = int
-    unit = 'currency'
-    entity = FoyerFiscal
-#    start_date = date(2016, 1, 1)
-    definition_period = YEAR
-
-class f7lo(Variable):
-    cerfa_field = u"7LO"
-    value_type = int
-    unit = 'currency'
-    entity = FoyerFiscal
-#    start_date = date(2016, 1, 1)
-    definition_period = YEAR
-
 class fhow(Variable):
     cerfa_field = u"HOW"
     value_type = int
@@ -4687,13 +4734,6 @@ class fhow(Variable):
 #    start_date = date(2012, 1, 1) + changes meaning in 2016
     definition_period = YEAR
 
-class fhma(Variable):
-    cerfa_field = u"HMA"
-    value_type = int
-    unit = 'currency'
-    entity = FoyerFiscal
-#    start_date = date(2013, 1, 1)
-    definition_period = YEAR
 
  #TODO: 7O* : end ?
 
@@ -4704,13 +4744,6 @@ class fhod(Variable):
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2013, Investissements immobiliers engagés avant le 1.1.2011"
 #    start_date = date(2013, 1, 1)
-    definition_period = YEAR
-
-class fhks(Variable):
-    cerfa_field = u"HKS"
-    value_type = int
-    unit = 'currency'
-    entity = FoyerFiscal
     definition_period = YEAR
 
 
@@ -6392,7 +6425,6 @@ class f7yz(Variable):
     label = u"Scellier: report de 1/5 de la réduction d'impôt des investissements réalisés en 2011 avec promesse d'achat en 2010 et achevés en 2015 en Polynésie, en Nouvelle Calédonie et à Wallis et Futuna "
 #    start_date = date(2016, 1, 1)
     definition_period = YEAR
-
 
 # Investissement en vue de la location meublée non professionnelle dans certains établissements ou résidences
 class f7ij(Variable):
