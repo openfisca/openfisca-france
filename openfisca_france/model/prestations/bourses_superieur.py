@@ -140,7 +140,7 @@ class TypesEchelonBourse(Enum):
     echelon_5 = u"Echelon 5"
     echelon_6 = u"Echelon 6"
     echelon_7 = u"Echelon 7"
-    non_boursier = u"Non boursier"
+    non_boursier = u"Non boursier" # NB : echelon 8 = non boursier
 
 
 class echelon_bourse(Variable):
@@ -187,11 +187,11 @@ class echelon_bourse(Variable):
             for echelon in echelons
             ]
 
-        echelon_bourse = apply_thresholds(
-            revenus_famille, 
-            thresholds = plafonds_ressources,
-            choices = [7, 6, 5, 4, 3, 2, 1, 0, 9999]
-        ) * eligible
+        echelon_bourse = select(
+            (eligible == True, eligible == False), 
+            (apply_thresholds(revenus_famille, thresholds = plafonds_ressources, choices = [7, 6, 5, 4, 3, 2, 1, 0, 9999]), 9999)
+        )
+
 
         return select(
             (echelon_bourse == 9999, echelon_bourse == 0, echelon_bourse == 1, echelon_bourse == 2, echelon_bourse == 3, echelon_bourse == 4, echelon_bourse == 5, echelon_bourse == 6, echelon_bourse == 7),
@@ -219,6 +219,7 @@ class nb_enfants_a_charge_superieur(Variable):
     entity = Famille
     label = u"Nombre d'enfants à charge étudiants dans l'enseignement supérieur, à prendre en compte pour le calcul des bourses"
     definition_period = MONTH
+    default_value = 1 # provisoire (utiliser les cases 7EF et 7EG de la dÃ©claration 2042 ?)
 
     # NB2 : enfants étudiants = inscrit dans l'enseignement supérieur l'année N (de demande de la bourse)
     
