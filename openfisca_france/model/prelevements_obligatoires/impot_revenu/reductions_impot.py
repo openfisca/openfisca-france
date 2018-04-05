@@ -673,7 +673,7 @@ class cappme(Variable):
         f7cq = foyer_fiscal('f7cq', period)
         f7cr = foyer_fiscal('f7cr', period)
         f7cu = foyer_fiscal('f7cu', period)
-        f7cy = foyer_fiscal('f7cy', period)
+        report_cappme_2013_plaf_general = foyer_fiscal('f7cy', period)
         P = parameters(period).impot_revenu.reductions_impots.cappme
         
         seuil1 = P.seuil * (maries_ou_pacses + 1) 
@@ -690,16 +690,15 @@ class cappme(Variable):
         base_report_cappme_2012_TPE = min_(f7cq, seuil2)
         base_report_cappme_2013_TPE = max_(0, min_(f7cr, seuil2 - base_report_cappme_2012_TPE))
         base_cappme_2014_TPE = max_(0, min_(f7cf, seuil2 - base_report_cappme_2012_TPE - base_report_cappme_2013_TPE))
-        
-        report_cappme_2013_plaf_general = f7cy
 
         seuil3 = seuil2 - min_(seuil2, base_report_cappme_2010_PME)
         seuil4 = seuil3 - min_(seuil3, base_report_cappme_2010_PME + base_report_cappme_2011_PME)
 
-        return (report_cappme_2013_plaf_general + 
-            min_(seuil2, base_report_cappme_2010_PME) * P.taux25 + 
-            min_(seuil3, base_report_cappme_2011_PME) * P.taux22 +
-            min_(seuil4, base_report_cappme_2012_PME + base_report_cappme_2013_PME + base_cappme_2014_PME + 
+        return (
+            report_cappme_2013_plaf_general
+            + min_(seuil2, base_report_cappme_2010_PME) * P.taux25
+            + min_(seuil3, base_report_cappme_2011_PME) * P.taux22
+            + min_(seuil4, base_report_cappme_2012_PME + base_report_cappme_2013_PME + base_cappme_2014_PME + 
                 base_report_cappme_2012_TPE + base_report_cappme_2013_TPE + base_cappme_2014_TPE) * P.taux18
             )
 
@@ -744,11 +743,11 @@ class cappme(Variable):
         seuil3 = seuil2 - min_(seuil2, base_report_cappme_2011_PME)
 
         return (
-            report_cappme_2013_plaf_general + 
-            report_cappme_2014_plaf_general + 
-            P.taux22 * min_(seuil2, 
-                base_report_cappme_2011_PME)  + 
-            P.taux18 * min_(seuil3, 
+            report_cappme_2013_plaf_general 
+            + report_cappme_2014_plaf_general
+            + P.taux22 * min_(seuil2, 
+                base_report_cappme_2011_PME)
+            + P.taux18 * min_(seuil3, 
                 base_report_cappme_2012_PME + base_report_cappme_2013_PME + base_report_cappme_2014_PME + base_cappme_2015_PME +
                 base_report_cappme_2012_TPE + base_report_cappme_2013_TPE + base_report_cappme_2014_TPE + base_cappme_2015_TPE)
             )
@@ -796,10 +795,10 @@ class cappme(Variable):
         report_cappme_2015_plaf_general = f7ey
 
         return (
-            report_cappme_2013_plaf_general + 
-            report_cappme_2014_plaf_general + 
-            report_cappme_2015_plaf_general + 
-            P.taux18 * min_(seuil2, 
+            report_cappme_2013_plaf_general
+            + report_cappme_2014_plaf_general
+            + report_cappme_2015_plaf_general 
+            + P.taux18 * min_(seuil2, 
                 base_report_cappme_2012_PME + base_report_cappme_2013_PME + base_report_cappme_2014_PME + base_report_cappme_2015_PME + base_cappme_2016_PME + 
                 base_report_cappme_2012_TPE + base_report_cappme_2013_TPE + base_report_cappme_2014_TPE + base_report_cappme_2015_TPE + base_cappme_2016_TPE)
             )
