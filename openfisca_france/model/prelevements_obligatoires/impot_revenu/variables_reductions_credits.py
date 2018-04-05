@@ -1931,15 +1931,6 @@ class f7rt(Variable):
 #    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
-class fhmc(Variable):
-    cerfa_field = u"HMC"
-    value_type = int
-    unit = 'currency'
-    entity = FoyerFiscal
-    label = u"Investissements outre-mer dans le cadre de l'entreprise REPORT : Investissements réalisés en 2010, Autres investissements réalisés en 2010, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 60%"
-#    start_date = date(2013, 1, 1)
-    definition_period = YEAR
-
 
 class fhkt(Variable):
     cerfa_field = u"7KT"
