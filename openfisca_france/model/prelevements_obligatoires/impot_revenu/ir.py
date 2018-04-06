@@ -1675,22 +1675,29 @@ class rfr(Variable):
         '''
         Revenu fiscal de référence
         '''
-        rni = foyer_fiscal('rni', period)
         abattement_net_retraite_dirigeant_pme = foyer_fiscal('abattement_net_retraite_dirigeant_pme', period)
         abattement_net_duree_detention = foyer_fiscal('abattement_net_duree_detention', period)
-        rfr_pv = foyer_fiscal('rfr_plus_values', period)
-        rfr_cd = foyer_fiscal('rfr_cd', period)
-        rfr_rvcm = foyer_fiscal('rfr_rvcm', period)
-        rpns_exon_i = foyer_fiscal.members('rpns_exon', period)
-        rpns_pvce_i = foyer_fiscal.members('rpns_pvce', period)
-        rev_cap_lib = foyer_fiscal('rev_cap_lib', period, options = [ADD])
         f2dm = foyer_fiscal('f2dm', period)
         microentreprise = foyer_fiscal('microentreprise', period)
+        rev_cap_lib = foyer_fiscal('rev_cap_lib', period, options = [ADD])
+        rfr_charges_deductibles = foyer_fiscal('rfr_cd', period)
+        rfr_plus_values = foyer_fiscal('rfr_plus_values', period)
+        rfr_rev_capitaux_mobiliers = foyer_fiscal('rfr_rvcm', period)
+        rni = foyer_fiscal('rni', period)
+        rpns_exon_i = foyer_fiscal.members('rpns_exon', period)
+        rpns_pvce_i = foyer_fiscal.members('rpns_pvce', period)
 
         rpns_exon = foyer_fiscal.sum(rpns_exon_i)
         rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
-        return (max_(0, rni) + rfr_cd + rfr_pv + rfr_rvcm + rev_cap_lib + rpns_exon + rpns_pvce + abattement_net_retraite_dirigeant_pme +
-                abattement_net_duree_detention + f2dm +  microentreprise)
+
+        return (
+            max_(0, rni)
+            + rfr_charges_deductibles + rfr_plus_values + rfr_rev_capitaux_mobiliers + rev_cap_lib
+            + rpns_exon + rpns_pvce
+            + abattement_net_retraite_dirigeant_pme
+            + abattement_net_duree_detention
+            + f2dm + microentreprise
+            )
         
         # TO CHECK : f3vb after 2015 (abattements sur moins-values = interdits)
 
