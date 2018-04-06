@@ -19,30 +19,26 @@ class credits_impot(Variable):
 
     def formula_2002_01_01(foyer_fiscal, period, parameters):
         """ Crédits d'impôt pour l'impôt sur les revenus de 2002 """
-        accult = foyer_fiscal('accult', period)
         acqgpl = foyer_fiscal('acqgpl', period)
         aidper = foyer_fiscal('aidper', period)
         creimp = foyer_fiscal('creimp', period)
         drbail = foyer_fiscal('drbail', period)
         prlire = foyer_fiscal('prlire', period)
 
-        return accult + acqgpl + aidper + creimp + drbail + prlire
+        return acqgpl + aidper + creimp + drbail + prlire
 
     def formula_2003_01_01(foyer_fiscal, period, parameters):
         """ Crédits d'impôt pour l'impôt sur les revenus de 2003 et 2004 """
-        accult = foyer_fiscal('accult', period)
         acqgpl = foyer_fiscal('acqgpl', period)
         aidper = foyer_fiscal('aidper', period)
         creimp = foyer_fiscal('creimp', period)
         drbail = foyer_fiscal('drbail', period)
-        mecena = foyer_fiscal('mecena', period)
         prlire = foyer_fiscal('prlire', period)
 
-        return accult + acqgpl + aidper + creimp + drbail + mecena + prlire
+        return acqgpl + aidper + creimp + drbail + prlire
 
     def formula_2005_01_01(foyer_fiscal, period, parameters):
         """ Crédits d'impôt pour l'impôt sur les revenus de 2005 et 2006 """
-        accult = foyer_fiscal('accult', period)
         acqgpl = foyer_fiscal('acqgpl', period)
         aidmob = foyer_fiscal('aidmob', period)
         aidper = foyer_fiscal('aidper', period)
@@ -53,17 +49,15 @@ class credits_impot(Variable):
         direpa = foyer_fiscal('direpa', period)
         drbail = foyer_fiscal('drbail', period)
         jeunes = foyer_fiscal('jeunes', period)
-        mecena = foyer_fiscal('mecena', period)
         preetu = foyer_fiscal('preetu', period)
         prlire = foyer_fiscal('prlire', period)
         quaenv = foyer_fiscal('quaenv', period)
 
-        return (accult + acqgpl + aidmob + aidper + assloy + ci_garext + creimp + divide + direpa + drbail + jeunes +
-                mecena + preetu + prlire + quaenv)
+        return (acqgpl + aidmob + aidper + assloy + ci_garext + creimp + divide + direpa + drbail + jeunes +
+                preetu + prlire + quaenv)
 
     def formula_2007_01_01(foyer_fiscal, period, parameters):
         """ Crédits d'impôt pour l'impôt sur les revenus de 2007 """
-        accult = foyer_fiscal('accult', period)
         acqgpl = foyer_fiscal('acqgpl', period)
         aidmob = foyer_fiscal('aidmob', period)
         aidper = foyer_fiscal('aidper', period)
@@ -75,18 +69,16 @@ class credits_impot(Variable):
         drbail = foyer_fiscal('drbail', period)
         inthab = foyer_fiscal('inthab', period)
         jeunes = foyer_fiscal('jeunes', period)
-        mecena = foyer_fiscal('mecena', period)
         preetu = foyer_fiscal('preetu', period)
         prlire = foyer_fiscal('prlire', period)
         quaenv = foyer_fiscal('quaenv', period)
         saldom2 = foyer_fiscal('saldom2', period)
 
-        return (accult + acqgpl + aidmob + aidper + assloy + ci_garext + creimp + divide + direpa + drbail + inthab +
-                jeunes + mecena + preetu + prlire + quaenv + saldom2)
+        return (acqgpl + aidmob + aidper + assloy + ci_garext + creimp + divide + direpa + drbail + inthab +
+                jeunes + preetu + prlire + quaenv + saldom2)
 
     def formula_2008_01_01(foyer_fiscal, period, parameters):
         """ Crédits d'impôt pour l'impôt sur les revenus de 2008 """
-        accult = foyer_fiscal('accult', period)
         aidmob = foyer_fiscal('aidmob', period)
         aidper = foyer_fiscal('aidper', period)
         assloy = foyer_fiscal('assloy', period)
@@ -98,18 +90,16 @@ class credits_impot(Variable):
         drbail = foyer_fiscal('drbail', period)
         inthab = foyer_fiscal('inthab', period)
         jeunes = foyer_fiscal('jeunes', period)
-        mecena = foyer_fiscal('mecena', period)
         preetu = foyer_fiscal('preetu', period)
         prlire = foyer_fiscal('prlire', period)
         quaenv = foyer_fiscal('quaenv', period)
         saldom2 = foyer_fiscal('saldom2', period)
 
-        return (accult + aidmob + aidper + assloy + ci_garext + creimp + creimp_exc_2008 + divide + direpa + drbail +
-                inthab + jeunes + mecena + preetu + prlire + quaenv + saldom2)
+        return (aidmob + aidper + assloy + ci_garext + creimp + creimp_exc_2008 + divide + direpa + drbail +
+                inthab + jeunes + preetu + prlire + quaenv + saldom2)
 
     def formula_2009_01_01(foyer_fiscal, period, parameters):
         """ Crédits d'impôt pour l'impôt sur les revenus de 2009 """
-        accult = foyer_fiscal('accult', period)
         aidper = foyer_fiscal('aidper', period)
         assloy = foyer_fiscal('assloy', period)
         ci_garext = foyer_fiscal('ci_garext', period)
@@ -118,18 +108,16 @@ class credits_impot(Variable):
         direpa = foyer_fiscal('direpa', period)
         drbail = foyer_fiscal('drbail', period)
         inthab = foyer_fiscal('inthab', period)
-        mecena = foyer_fiscal('mecena', period)
         preetu = foyer_fiscal('preetu', period)
         prlire = foyer_fiscal('prlire', period)
         quaenv = foyer_fiscal('quaenv', period)
         saldom2 = foyer_fiscal('saldom2', period)
 
-        return (accult + aidper + assloy + ci_garext + creimp + divide + direpa + drbail + inthab + mecena + preetu +
+        return (aidper + assloy + ci_garext + creimp + divide + direpa + drbail + inthab + preetu +
                 prlire + quaenv + saldom2)
 
     def formula_2010_01_01(foyer_fiscal, period, parameters):
         """ Crédits d'impôt pour l'impôt sur les revenus de 2010 """
-        accult = foyer_fiscal('accult', period)
         aidper = foyer_fiscal('aidper', period)
         assloy = foyer_fiscal('assloy', period)
         autent = foyer_fiscal('autent', period)
@@ -139,19 +127,17 @@ class credits_impot(Variable):
         drbail = foyer_fiscal('drbail', period)
         inthab = foyer_fiscal('inthab', period)
         jeunes = foyer_fiscal('jeunes', period)
-        mecena = foyer_fiscal('mecena', period)
         percvm = foyer_fiscal('percvm', period)
         preetu = foyer_fiscal('preetu', period)
         prlire = foyer_fiscal('prlire', period)
         quaenv = foyer_fiscal('quaenv', period)
         saldom2 = foyer_fiscal('saldom2', period)
 
-        return (accult + aidper + assloy + autent + ci_garext + creimp + direpa + drbail + inthab + mecena + percvm +
+        return (aidper + assloy + autent + ci_garext + creimp + direpa + drbail + inthab + percvm +
                 preetu + prlire + quaenv + saldom2)
 
     def formula_2011_01_01(foyer_fiscal, period, parameters):
         """ Crédits d'impôt pour l'impôt sur les revenus de 2011 """
-        accult = foyer_fiscal('accult', period)
         aidper = foyer_fiscal('aidper', period)
         assloy = foyer_fiscal('assloy', period)
         autent = foyer_fiscal('autent', period)
@@ -160,18 +146,16 @@ class credits_impot(Variable):
         direpa = foyer_fiscal('direpa', period)
         drbail = foyer_fiscal('drbail', period)
         inthab = foyer_fiscal('inthab', period)
-        mecena = foyer_fiscal('mecena', period)
         preetu = foyer_fiscal('preetu', period)
         prlire = foyer_fiscal('prlire', period)
         quaenv = foyer_fiscal('quaenv', period)
         saldom2 = foyer_fiscal('saldom2', period)
 
-        return (accult + aidper + assloy + autent + ci_garext + creimp + direpa + drbail + inthab + mecena + preetu +
+        return (aidper + assloy + autent + ci_garext + creimp + direpa + drbail + inthab + preetu +
                 prlire + quaenv + saldom2)
 
     def formula_2012_01_01(foyer_fiscal, period, parameters):
         """ Crédits d'impôt pour l'impôt sur les revenus de 2012 """
-        accult = foyer_fiscal('accult', period)
         aidper = foyer_fiscal('aidper', period)
         assloy = foyer_fiscal('assloy', period)
         autent = foyer_fiscal('autent', period)
@@ -181,18 +165,16 @@ class credits_impot(Variable):
         direpa = foyer_fiscal('direpa', period)
         drbail = foyer_fiscal('drbail', period)
         inthab = foyer_fiscal('inthab', period)
-        mecena = foyer_fiscal('mecena', period)
         preetu = foyer_fiscal('preetu', period)
         prlire = foyer_fiscal('prlire', period)
         quaenv = foyer_fiscal('quaenv', period)
         saldom2 = foyer_fiscal('saldom2', period)
 
-        return (accult + aidper + assloy + autent + ci_garext + cotsyn + creimp + direpa + drbail + inthab + mecena +
+        return (aidper + assloy + autent + ci_garext + cotsyn + creimp + direpa + drbail + inthab +
                 preetu + prlire + quaenv + saldom2)
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
         """ Crédits d'impôt crédités l'impôt sur les revenus de 2013 """
-        accult = foyer_fiscal('accult', period)
         aidper = foyer_fiscal('aidper', period)
         assloy = foyer_fiscal('assloy', period)
         autent = foyer_fiscal('autent', period)
@@ -202,18 +184,16 @@ class credits_impot(Variable):
         direpa = foyer_fiscal('direpa', period)
         drbail = foyer_fiscal('drbail', period)
         inthab = foyer_fiscal('inthab', period)
-        mecena = foyer_fiscal('mecena', period)
         preetu = foyer_fiscal('preetu', period)
         prlire = foyer_fiscal('prlire', period)
         quaenv = foyer_fiscal('quaenv', period)
         saldom2 = foyer_fiscal('saldom2', period)
 
-        return (accult + aidper + assloy + autent + ci_garext + cotsyn + creimp + direpa + drbail + inthab + mecena +
+        return (aidper + assloy + autent + ci_garext + cotsyn + creimp + direpa + drbail + inthab +
                 preetu + prlire + quaenv + saldom2)
 
     def formula_2014_01_01(foyer_fiscal, period, parameters):
         """ Crédits d'impôt crédités l'impôt sur les revenus de 2014 et + (non vérifié)"""
-        accult = foyer_fiscal('accult', period)
         aidper = foyer_fiscal('aidper', period)
         assloy = foyer_fiscal('assloy', period)
         autent = foyer_fiscal('autent', period)
@@ -223,13 +203,12 @@ class credits_impot(Variable):
         direpa = foyer_fiscal('direpa', period)
         drbail = foyer_fiscal('drbail', period)
         inthab = foyer_fiscal('inthab', period)
-        mecena = foyer_fiscal('mecena', period)
         preetu = foyer_fiscal('preetu', period)
         prlire = foyer_fiscal('prlire', period)
         quaenv = foyer_fiscal('quaenv', period)
         saldom2 = foyer_fiscal('saldom2', period)
 
-        return (accult + aidper + assloy + autent + ci_garext + cotsyn + creimp + direpa + drbail + inthab + mecena +
+        return (aidper + assloy + autent + ci_garext + cotsyn + creimp + direpa + drbail + inthab +
                 preetu + prlire + quaenv + saldom2)
 
 
@@ -246,24 +225,6 @@ class nb_pac2(Variable):
         nbH = foyer_fiscal('nbH', period)
 
         return nbF + nbJ + nbpac_invalideR - nbH / 2
-
-
-class accult(Variable):
-    value_type = float
-    entity = FoyerFiscal
-    label = u"Acquisition de biens culturels"
-    reference = "http://bofip.impots.gouv.fr/bofip/5741-PGP"
-    definition_period = YEAR
-
-    def formula_2002(foyer_fiscal, period, parameters):
-        '''
-        Acquisition de biens culturels (case 7UO)
-        2002-
-        '''
-        f7uo = foyer_fiscal('f7uo', period)
-        P = parameters(period).impot_revenu.credits_impot.accult
-
-        return P.taux * f7uo
 
 
 class acqgpl(Variable):
@@ -570,7 +531,7 @@ class creimp(Variable):
     entity = FoyerFiscal
     label = u"Avoirs fiscaux et crédits d'impôt"
     definition_period = YEAR
-    end = '2013-12-31'
+    end = '2016-12-31'
 
     def formula_2002_01_01(foyer_fiscal, period, parameters):
         f2ab = foyer_fiscal('f2ab', period)
@@ -787,6 +748,7 @@ class creimp(Variable):
         f8uz = foyer_fiscal('f8uz', period)
         f8wa = foyer_fiscal('f8wa', period)
         f8wb = foyer_fiscal('f8wb', period)
+        f8wc = foyer_fiscal('f8wc', period)
         f8wd = foyer_fiscal('f8wd', period)
         f8we = foyer_fiscal('f8we', period)
         f8wr = foyer_fiscal('f8wr', period)
@@ -795,7 +757,7 @@ class creimp(Variable):
         f8wv = foyer_fiscal('f8wv', period)
 
         return (f2ab + f8ta + f8tb + f8tc +f8te - f8tf + f8tg + f8th + f8to - f8tp + f8ts + f8tz + f8uz + f8wa + f8wb +
-                f8wd + f8we + f8wr + f8wt + f8wu + f8wv)
+                f8wc + f8wd + f8we + f8wr + f8wt + f8wu + f8wv)
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
         f2ab = foyer_fiscal('f2ab', period)
@@ -825,6 +787,41 @@ class creimp(Variable):
 
         return (f2ab + f2ck + f8ta + f8tb + f8tc + f8te - f8tf + f8tg + f8th + f8to - f8tp + f8tl + f8ts + f8tz + f8uw +
                 f8uz + f8wa + f8wb + f8wc + f8wd + f8we + f8wr + f8wt + f8wu)
+
+    def formula_2016_01_01(foyer_fiscal, period, parameters):
+        f2ab = foyer_fiscal('f2ab', period)
+        f2ck = foyer_fiscal('f2ck', period)
+        f8ta = foyer_fiscal('f8ta', period)
+        f8tb = foyer_fiscal('f8tb', period)
+        f8tc = foyer_fiscal('f8tc', period)
+        f8te = foyer_fiscal('f8te', period)
+        f8tf = foyer_fiscal('f8tf', period)
+        f8tg = foyer_fiscal('f8tg', period)
+        f8th = foyer_fiscal('f8th', period)
+        f8tl = foyer_fiscal('f8tl', period)
+        f8to = foyer_fiscal('f8to', period)
+        f8tp = foyer_fiscal('f8tp', period)
+        f8ts = foyer_fiscal('f8ts', period)
+        f8tz = foyer_fiscal('f8tz', period)
+        f8uw = foyer_fiscal('f8uw', period)
+        f8uz = foyer_fiscal('f8uz', period)
+        f8wa = foyer_fiscal('f8wa', period)
+        f8wb = foyer_fiscal('f8wb', period)
+        f8wc = foyer_fiscal('f8wc', period)
+        f8wd = foyer_fiscal('f8wd', period)
+        f8we = foyer_fiscal('f8we', period)
+        f8wr = foyer_fiscal('f8wr', period)
+        f8wt = foyer_fiscal('f8wt', period)
+        f8wu = foyer_fiscal('f8wu', period)
+
+        f8vm_i = foyer_fiscal.members('f8vm', period)
+        f8vm = foyer_fiscal.sum(f8vm_i)
+
+        return (f2ab + f2ck + f8ta + f8tb + f8tc + f8te - f8tf + f8tg + f8th + f8to - f8tp + f8tl + f8ts + f8tz + f8uw +
+                f8uz + f8vm + f8wa + f8wb + f8wc + f8wd + f8we + f8wr + f8wt + f8wu)
+  
+    # TODO : add tax credit 8VM and 8VL (2016) 
+    # TODO: add tax credit 8TK for all years ?
 
 
 class direpa(Variable):
@@ -1308,23 +1305,7 @@ class jeunes_ind(Variable):
 
 
                                 # somme calculée sur formulaire 2041
-
-
-class mecena(Variable):
-    value_type = float
-    entity = FoyerFiscal
-    label = u"Mécénat d'entreprise"
-    definition_period = YEAR
-
-    def formula_2003_01_01(foyer_fiscal, period, parameters):
-        '''
-        Mécénat d'entreprise (case 7US)
-        2003-
-        '''
-        f7us = foyer_fiscal('f7us', period)
-
-        return f7us
-
+                                
 
 class percvm(Variable):
     value_type = float

@@ -1297,7 +1297,7 @@ class f7pc_2011(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Autres investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%, Investissements dans votre entreprise, montant de la réduction d' impôt calculée"
-    # end = '2011-12-31' changes meaning in 2014
+    end = '2011-12-31'
     definition_period = YEAR
 
 
