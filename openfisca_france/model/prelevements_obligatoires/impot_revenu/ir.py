@@ -583,7 +583,6 @@ class deficit_rcm(Variable):
         f2an = foyer_fiscal('f2an', period)
         f2aq = foyer_fiscal('f2aq', period)
         f2ar = foyer_fiscal('f2ar', period)
-        _P = parameters(period)
 
         return f2aa + f2al + f2am + f2an + f2aq + f2ar
 
@@ -609,7 +608,6 @@ class rev_cat_rvcm(Variable):
         f2go = foyer_fiscal('f2go', period)
         f2gr = foyer_fiscal('f2gr', period)
         f2tr = foyer_fiscal('f2tr', period)
-        _P = parameters(period)
         finpfl = parameters(period).impot_revenu.autre.finpfl
         rvcm = parameters(period).impot_revenu.rvcm
 
@@ -1771,7 +1769,6 @@ class rev_cap_lib(Variable):
         year = period.this_year
         f2dh = foyer_fiscal('f2dh', year)
         f2ee = foyer_fiscal('f2ee', year)
-        _P = parameters(period)
         finpfl = parameters(period).impot_revenu.autre.finpfl
 
         out = f2dh + f2ee
@@ -1783,7 +1780,6 @@ class rev_cap_lib(Variable):
         f2da = foyer_fiscal('f2da', year)
         f2dh = foyer_fiscal('f2dh', year)
         f2ee = foyer_fiscal('f2ee', year)
-        _P = parameters(period)
         finpfl = parameters(period).impot_revenu.autre.finpfl
 
         out = f2da + f2dh + f2ee
@@ -1819,7 +1815,6 @@ class imp_lib(Variable):
         '''
         f2dh = foyer_fiscal('f2dh', period)
         f2ee = foyer_fiscal('f2ee', period)
-        _P = parameters(period)
         prelevement_liberatoire = parameters(period).impot_revenu.rvcm.prelevement_liberatoire
 
         out = -(prelevement_liberatoire.assvie * f2dh + prelevement_liberatoire.autre * f2ee)
@@ -1832,7 +1827,6 @@ class imp_lib(Variable):
         f2da = foyer_fiscal('f2da', period)
         f2dh = foyer_fiscal('f2dh', period)
         f2ee = foyer_fiscal('f2ee', period)
-        _P = parameters(period)
         finpfl = parameters(period).impot_revenu.autre.finpfl
         prelevement_liberatoire = parameters(period).impot_revenu.rvcm.prelevement_liberatoire
 
