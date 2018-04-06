@@ -2555,8 +2555,12 @@ class rpns_individu(Variable):
         rev_ns_mi = mbic_timp + max_(0, macc_timp) + mbnc_timp + mncn_timp
         exon_acc = max_(0, macc_timp + nacc_timp - macc_mvct) - macc_timp - nacc_timp  # ajout artificiel
         exon_ncn = max_(0, mncn_timp - mncn_mvct) - mncn_timp  # ajout artificiel
-        RPNS = (revevenus_non_salaries + rev_ns_mi + rpns_pvct + exon_acc + exon_ncn + abic_impm - abic_defm + alnp_imps + cncn_aimp - rpns_mvct_pro)
-        return RPNS
+        
+        return (
+            revevenus_non_salaries + rev_ns_mi + rpns_pvct + exon_acc + exon_ncn 
+            + abic_impm - abic_defm + alnp_imps + cncn_aimp - rpns_mvct_pro
+            )
+
 
 
 class abat_spe(Variable):
