@@ -1494,7 +1494,7 @@ class plus_values(Variable):
 
         return round_(out)
 
-class rfr_pv(Variable):
+class rfr_plus_values(Variable):
     value_type = float
     entity = FoyerFiscal
     label = u"Plus-values hors RNI entrant dans le calcul du revenu fiscal de référence (PV au barème, PV éxonérées ..)"
@@ -1678,7 +1678,7 @@ class rfr(Variable):
         rni = foyer_fiscal('rni', period)
         abattement_net_retraite_dirigeant_pme = foyer_fiscal('abattement_net_retraite_dirigeant_pme', period)
         abattement_net_duree_detention = foyer_fiscal('abattement_net_duree_detention', period)
-        rfr_pv = foyer_fiscal('rfr_pv', period)
+        rfr_pv = foyer_fiscal('rfr_plus_values', period)
         rfr_cd = foyer_fiscal('rfr_cd', period)
         rfr_rvcm = foyer_fiscal('rfr_rvcm', period)
         rpns_exon_i = foyer_fiscal.members('rpns_exon', period)
