@@ -1,5 +1,17 @@
 # Changelog
 
+### 21.8.0 [#919](https://github.com/openfisca/openfisca-france/pull/919)
+
+* Evolution du système socio-fiscal
+* Périodes concernées : toutes
+* Zones impactées :
+  - `prelevements_obligatoires/impot_revenu/credits_impot`
+  - `prelevements_obligatoires/impot_revenu/reductions_impot`
+  - `revenus/autres`
+* Détails :
+  - Les avantages fiscaux pour mécénat d'entreprises (depuis 2003) et pour acquisition de biens culturels (depuis 2002) sont définies comme des réductions d'impôt et non plus des crédits d'impôt
+  - Mise à jour de 'creimp' pour 2014-2016, et correction d'une petite erreur pour 2012
+
 ### 21.7.0 [#918](https://github.com/openfisca/openfisca-france/pull/918)
 
 * Correction du système socio-fiscal.
