@@ -2875,14 +2875,15 @@ class nbptr(Variable):
         n7 = quotient_familial.isol * caseT * ((no_pac & has_alt) * ((nbH == 1) * 0.5 + (nbH >= 2)) + 1 * has_pac)
 
         # # Régime des mariés ou pacsés
-        m = 1 + quotient_familial.conj + enf + n2 + n4
+        nb_parts_famille = 1 + quotient_familial.conj + enf + n2 + n4
 
         # # veufs  hors jeune_veuf
-        v = 1 + quotient_familial.veuf * has_pac + enf + n2 + n3 + n5 + n6
+        nb_parts_veuf = 1 + quotient_familial.veuf * has_pac + enf + n2 + n3 + n5 + n6
 
         # # celib div
-        c = 1 + enf + n2 + n3 + n6 + n7
-        return (maries_ou_pacses | jeune_veuf) * m + (veuf & not_(jeune_veuf)) * v + celibataire_ou_divorce * c
+        nb_parts_celib = 1 + enf + n2 + n3 + n6 + n7
+
+        return (maries_ou_pacses | jeune_veuf) * nb_parts_famille + (veuf & not_(jeune_veuf)) * nb_parts_veuf + celibataire_ou_divorce * nb_parts_celib
 
 
 ###############################################################################
