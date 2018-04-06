@@ -1287,13 +1287,18 @@ class reduction_ss_condition_revenus(Variable):
         rfr = foyer_fiscal('rfr', period)
         P = parameters(period).impot_revenu.plafond_qf.reduction_ss_condition_revenus
 
-        plafond1 = (P.seuil1 * nb_adult + P.seuil_maj_enf * 2 * (nb_parts - nb_adult))
-        plafond2 = (P.seuil2 * nb_adult + P.seuil_maj_enf * 2 * (nb_parts - nb_adult))
+        ir_apres_plaf_qf_et_decote = ir_plaf_qf - decote 
+        plafond1 = P.seuil1 * nb_adult + P.seuil_maj_enf * 2 * (nb_parts - nb_adult)
+        plafond2 = P.seuil2 * nb_adult + P.seuil_maj_enf * 2 * (nb_parts - nb_adult)
+        reduction1 =  P.taux * ir_apres_plaf_qf_et_decote
+        reduction2 = (P.taux * ir_apres_plaf_qf_et_decote * (plafond2 - rfr)) / ((plafond2 - plafond1) * nb_adult)))
 
-        reduc = ((rfr < plafond1) * (P.taux * (ir_plaf_qf - decote)) +
-                ((rfr >= plafond1) & (rfr < plafond2)) * ((P.taux*(ir_plaf_qf - decote) * (plafond2 - rfr))/((plafond2 - plafond1)*nb_adult)))
+        reduction_sous_condition_de_ressources = (
+            (rfr < plafond1) * reduction1
+            + (rfr >= plafond1) * (rfr < plafond2) * reduction2
+            )
         
-        return reduc
+        return reduction_sous_condition_de_ressources
 
 class nat_imp(Variable):
     value_type = bool
