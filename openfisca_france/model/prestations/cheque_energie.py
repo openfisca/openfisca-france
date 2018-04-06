@@ -25,7 +25,7 @@ class cheque_energie_unites_consommation(Variable):
 
         nb_personnes_ajuste = nb_personnes - 0.5 * gardes_alternees
         return (
-            + uc.premiere_personne
+            uc.premiere_personne
             + uc.deuxieme_personne * (nb_personnes_ajuste > 1) * (min_(nb_personnes_ajuste, 2) - 1)
             + uc.autres_personnes * (nb_personnes_ajuste > 2) * (nb_personnes_ajuste - 2)
         )
