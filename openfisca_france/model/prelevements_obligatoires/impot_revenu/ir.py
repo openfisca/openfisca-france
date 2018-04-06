@@ -2548,7 +2548,7 @@ class rpns_individu(Variable):
 
         # # E revenus non commerciaux non professionnels
         # regime déclaratif special ou micro-bnc
-        mncn_timp = abat_rpns(mncn_impo,  micro.specialbnc)
+        mncn_timp = abat_rpns(mncn_impo, micro.specialbnc)
 
         # régime de la déclaration controlée
         # total 11
@@ -2571,14 +2571,14 @@ class rpns_individu(Variable):
 
         majo_cga = max_(0, cga_taux2 * (ntimp + rpns_frag))  # Pour ne pas avoir à majorer les déficits
         # total 6
-        rev_NS = rpns_frag + frag_fore + atimp + ntimp + majo_cga - def_agri
+        rev_ns = rpns_frag + frag_fore + atimp + ntimp + majo_cga - def_agri
 
         # revenu net après abatement
         # total 7
-        rev_NS_mi = mbic_timp + max_(0, macc_timp) + mbnc_timp + mncn_timp
+        rev_ns_mi = mbic_timp + max_(0, macc_timp) + mbnc_timp + mncn_timp
         exon_acc = max_(0, macc_timp + nacc_timp - macc_mvct) - macc_timp - nacc_timp  # ajout artificiel
         exon_ncn = max_(0, mncn_timp - mncn_mvct) - mncn_timp  # ajout artificiel
-        RPNS = (rev_NS + rev_NS_mi + rpns_pvct + exon_acc + exon_ncn + abic_impm - abic_defm + alnp_imps + cncn_aimp - rpns_mvct_pro)
+        RPNS = (rev_ns + rev_ns_mi + rpns_pvct + exon_acc + exon_ncn + abic_impm - abic_defm + alnp_imps + cncn_aimp - rpns_mvct_pro)
         return RPNS
 
 
