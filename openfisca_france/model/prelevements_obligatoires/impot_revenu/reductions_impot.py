@@ -2734,7 +2734,7 @@ class invfor(Variable):
             + P.report12 * min_(f7th + f7uu + f7uv + f7ti, max2)
             )
 
-    
+
 class invlst(Variable):
     value_type = float
     entity = FoyerFiscal
