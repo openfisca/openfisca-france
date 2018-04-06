@@ -461,7 +461,7 @@ class aidper(Variable):
         2015 - 
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
-        nb_pac2 = foyer_fiscal('nb_pac2', period)
+        nb_pac_majoration_plafond = foyer_fiscal('nb_pac2', period)
         f7wj = foyer_fiscal('f7wj', period)
         f7wl = foyer_fiscal('f7wl', period)
         f7wr = foyer_fiscal('f7wr', period)
@@ -469,7 +469,7 @@ class aidper(Variable):
         
         # On ne contrôle pas que 7WR ne dépasse pas le plafond (dépend du nombre de logements et de la nature des travaux)
         max00 = P.max * (1 + maries_ou_pacses)
-        max0 = max00 + P.pac1 * nb_pac2
+        max0 = max00 + P.pac1 * nb_pac_majoration_plafond
         max1 = P.max_wl
 
         return (
