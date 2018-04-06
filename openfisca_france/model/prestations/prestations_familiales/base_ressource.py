@@ -100,7 +100,7 @@ class div(Variable):
         rpns_pvce = individu('rpns_pvce', period)
         rpns_pvct = individu('rpns_pvct', period)
         rpns_mvct = individu('moins_values_court_terme_non_salaries', period)
-        rpns_mvlt = individu('rpns_mvlt', period)
+        rpns_mvlt = individu('moins_values_long_terme_non_salaries', period)
         f3vc = individu.foyer_fiscal('f3vc', period)
         f3ve = individu.foyer_fiscal('f3ve', period)
         f3vg = individu.foyer_fiscal('f3vg', period)

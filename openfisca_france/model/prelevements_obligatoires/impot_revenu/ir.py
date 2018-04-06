@@ -2368,7 +2368,7 @@ class moins_values_court_terme_non_salaries(Variable):
         return rpns_mvct_pro + rpns_mvct_nonpro
 
 
-class rpns_mvlt(Variable):
+class moins_values_long_terme_non_salaries(Variable):
     value_type = float
     entity = Individu
     label = u"Moins values de long terme - Revenu des professions non salariées"
