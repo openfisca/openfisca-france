@@ -442,7 +442,7 @@ class aidper(Variable):
         f7wl = foyer_fiscal('f7wl', period)
         f7wr = foyer_fiscal('f7wr', period)
         P = parameters(period).impot_revenu.credits_impot.aidper
-
+        
         # On ne contrôle pas que 7WR ne dépasse pas le plafond (dépend du nombre de logements et de la nature des travaux)
         max00 = P.max * (1 + maries_ou_pacses)
         max0 = max00 + P.pac1 * nb_pac_majoration_plafond
