@@ -2328,26 +2328,20 @@ class rpns_pvct(Variable):
         return frag_pvct + macc_pvct + mbic_pvct + mbnc_pvct + mncn_pvct
 
 
-class rpns_mvct_nonpro(Variable):
+class moins_values_court_terme_nonpro(Variable):
     value_type = float
     entity = Individu
     label = u"Moins values de court terme - Revenu des professions non salariées non profesionnelles"
     definition_period = YEAR
 
     def formula(individu, period, parameters):
-        """Moins values de court terme
-
-        'ind'
-        macc_mvct (f5iu)
-        mncn_mvct (f5ju)
-        """
         macc_mvct = individu.foyer_fiscal('macc_mvct', period) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
         mncn_mvct = individu.foyer_fiscal('mncn_mvct', period) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
 
         return macc_mvct + mncn_mvct
 
 
-class rpns_mvct_pro(Variable):
+class moins_values_court_terme_pro(Variable):
     value_type = float
     entity = Individu
     label = u"Moins values de court terme - Revenu des professions non salariées profesionnelles"
@@ -2366,17 +2360,15 @@ class rpns_mvct_pro(Variable):
         return nbic_mvct + mbnc_mvct
 
 
-class rpns_mvct(Variable):
+class moins_values_court_terme_non_salaries(Variable):
     value_type = float
     entity = Individu
     label = u"Moins values de court terme - Revenu des professions non salariées (toutes)"
     definition_period = YEAR
 
     def formula(individu, period, parameters):
-        """Moins values de court terme
-        """
-        rpns_mvct_pro = individu('rpns_mvct_pro', period)
-        rpns_mvct_nonpro = individu('rpns_mvct_nonpro', period)
+        rpns_mvct_pro = individu('moins_values_court_terme_pro', period)
+        rpns_mvct_nonpro = individu('moins_values_court_terme_nonpro', period)
 
         return rpns_mvct_pro + rpns_mvct_nonpro
 
@@ -2480,8 +2472,8 @@ class rpns_individu(Variable):
         revimpres = individu('revimpres', period)
         rpns_frag = individu('rpns_frag', period)
         rpns_pvct = individu('rpns_pvct', period)
-        rpns_mvct_pro = individu('rpns_mvct_pro', period)
-        rpns_mvct_nonpro = individu('rpns_mvct_nonpro', period)
+        rpns_mvct_pro = individu('moins_values_court_terme_pro', period)
+        rpns_mvct_nonpro = individu('moins_values_court_terme_nonpro', period)
         macc_mvct = individu.foyer_fiscal('macc_mvct', period) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
         mncn_mvct = individu.foyer_fiscal('mncn_mvct', period) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
         nbnc_proc = individu('nbnc_proc', period)

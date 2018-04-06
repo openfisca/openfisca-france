@@ -99,7 +99,7 @@ class div(Variable):
     def formula(individu, period):
         rpns_pvce = individu('rpns_pvce', period)
         rpns_pvct = individu('rpns_pvct', period)
-        rpns_mvct = individu('rpns_mvct', period)
+        rpns_mvct = individu('moins_values_court_terme_non_salaries', period)
         rpns_mvlt = individu('rpns_mvlt', period)
         f3vc = individu.foyer_fiscal('f3vc', period)
         f3ve = individu.foyer_fiscal('f3ve', period)
