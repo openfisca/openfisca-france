@@ -1,5 +1,22 @@
 # Changelog
 
+### 21.7.0 [#918](https://github.com/openfisca/openfisca-france/pull/918)
+
+* Correction du système socio-fiscal.
+* Périodes concernées : toutes
+* Zones impactées :
+  - `caracteristiques_socio_demographiques/demographie`
+  - `revenus/autres`
+  - `prelevements_obligatoires/impot_revenu/ir`
+  - `parameters/impot_revenu/plafond_qf`
+  - `parameters/impot_revenu/quotient_familial/veuf`
+* Détails :
+  - Ajout de la nouvelle réduction d'impôt de 20% "sous condition de revenus" (2016-) qui s'impute juste après la décote dans le calcul de l'impôt (https://www.impots.gouv.fr/portail/files/formulaires/2042/2017/2042_1891.pdf, p.3)
+  - Corrige et nettoie le calcul du plafonnement du quotient familial à partir de 2013
+  - Correction du calcul du nombre de parts fiscales (demi-part pour personnes seules ayant élevé des enfants caseL, nombre de parts des veufs avec enfants revalorisé depuis 2008 ..)
+  - Création de paramètres spécifiques à la réduction d'impôt spécial DOM-TOM qui intervient juste après le plafonnement du quotient familial (pour l'instant non calculée mais à termes oui ?)
+  - Mise à jour des paramètres
+
 ### 21.6.0 [#917](https://github.com/openfisca/openfisca-france/pull/917)
 
 * Correction du système socio-fiscal.
