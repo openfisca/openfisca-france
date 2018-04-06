@@ -5,10 +5,10 @@
 * Correction du système socio-fiscal.
 * Périodes concernées : toutes
 * Zones impactées :
-  - `openfisca_france/model/prelevements_obligatoires/impot_revenu/ir`
-  - `openfisca_france/model/revenus/activite/non_salarie`
-  - `openfisca_france/parameters/impot_revenu/rpns/micro/specialbnc/max`
-  - `openfisca_france/parameters/impot_revenu/rpns/micro/specialbnc/min`
+  - `prelevements_obligatoires/impot_revenu/ir`
+  - `revenus/activite/non_salarie`
+  - `impot_revenu/rpns/micro/specialbnc/max`
+  - `impot_revenu/rpns/micro/specialbnc/min`
 * Détails :
   - Correction de la formule des 'rpns'
   - Distinction des moins-values des revenus non salariaux "professionnels" (variable 'rpns_mvct_pro') de celles des revenus non salariaux "non professionnels" ('rpns_mvct_nonpro'), car seuls les premiers peuvent s'imputer sur le revenu global
