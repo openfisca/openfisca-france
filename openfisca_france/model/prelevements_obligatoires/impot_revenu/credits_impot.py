@@ -302,9 +302,9 @@ class aidmob(Variable):
         f1cr = foyer_fiscal('f1cr', period)
         f1dr = foyer_fiscal('f1dr', period)
         f1er = foyer_fiscal('f1er', period)
-        _P = parameters(period)
+        montant = parameters(period).impot_revenu.credits_impot.aidmob.montant
 
-        return (f1ar + f1br + f1cr + f1dr + f1er) * _P.impot_revenu.credits_impot.aidmob.montant
+        return (f1ar + f1br + f1cr + f1dr + f1er) * montant
 
 
 class aidper(Variable):
@@ -356,8 +356,10 @@ class aidper(Variable):
             (n == 0) * (P.pac1 + (nbH > 1) * P.pac2 * (nbH - 1) + (nbH > 2) * P.pac3 * (nbH - 2)) * (nbH >= 1)) / 2)
 
         max1 = max_(0, max0 - f7wj)
-        return (P.taux_wj * min_(f7wj, max0) +
-                    P.taux_wi * min_(f7wi, max1))
+        return (
+            P.taux_wj * min_(f7wj, max0)
+            + P.taux_wi * min_(f7wi, max1)
+            )
 
     def formula_2006_01_01(foyer_fiscal, period, parameters):
         '''
@@ -374,8 +376,10 @@ class aidper(Variable):
 
         max0 = P.max * (1 + maries_ou_pacses) + P.pac1 * nb_pac_majoration_plafond
         max1 = max_(0, max0 - f7wj)
-        return (P.taux_wj * min_(f7wj, max0) +
-                    P.taux_wi * min_(f7wi, max1))
+        return (
+            P.taux_wj * min_(f7wj, max0)
+            + P.taux_wi * min_(f7wi, max1)
+            )
 
     def formula_2010_01_01(foyer_fiscal, period, parameters):
         '''
@@ -394,7 +398,11 @@ class aidper(Variable):
         max0 = P.max * (1 + maries_ou_pacses) + P.pac1 * nb_pac_majoration_plafond
         max1 = max_(0, max0 - f7wl - f7sf)
         max2 = max_(0, max1 - f7wj)
-        return P.taux_wl * min_(f7wl+f7sf, max0) + P.taux_wj * min_(f7wj, max1)  + P.taux_wi * min_(f7wi, max2)
+        return (
+            P.taux_wl * min_(f7wl+f7sf, max0)
+            + P.taux_wj * min_(f7wj, max1)
+            + P.taux_wi * min_(f7wi, max2)
+            )
 
     def formula_2012_01_01(foyer_fiscal, period, parameters):
         '''
@@ -410,20 +418,23 @@ class aidper(Variable):
         f7wr = foyer_fiscal('f7wr', period)
         P = parameters(period).impot_revenu.credits_impot.aidper
        
-        # On ne contrôle pas que 7WR ne dépasse pas le plafond (ça dépend du nombre de logements (7sa) et de la nature des
-        #travaux, c'est un peu le bordel)
+        # On ne contrôle pas que 7WR ne dépasse pas le plafond (dépend du nombre de logements et de la nature des travaux)
         max00 = P.max * (1 + maries_ou_pacses)
-        max0 = max00 + P.pac1 * nb_pac_majoration_plafond
-        max1 = max_(0, max0 - max_(0,f7wl-max00))
-        max2 = max_(0, max1 - f7wj)
-        return (P.taux_wr * f7wr + P.taux_wl * min_(f7wl, max00) + P.taux_wl * max_(f7wl - max00, 0) +
-                P.taux_wj * min_(f7wj, max1)  + P.taux_wi * min_(f7wi, max2))
+        max0 = max00 + P.pac1 *  nb_pac_majoration_plafond
+        max1 = max_(0, max0 - f7wj) # f7wj s'impute avant f7wl et f7wi
+        max2 = max_(0, max1 - f7wi) # f7wi s'impute avant f7wl
+        return (
+            P.taux_wr * f7wr + 
+            + P.taux_wj * min_(f7wj, max0)
+            + P.taux_wi * min_(f7wi, max1)
+            + P.taux_wl * (min_(f7wl, max2) + min_(max_(0,f7wl - max2), max00))
+            )
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
         '''
         Crédits d’impôt pour dépenses en faveur de l’aide aux personnes
         (cases 7WI, 7WJ, 7WL).
-        2013
+        2013 - 2015
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         nb_pac_majoration_plafond = foyer_fiscal('nb_pac2', period)
@@ -432,20 +443,22 @@ class aidper(Variable):
         f7wr = foyer_fiscal('f7wr', period)
         P = parameters(period).impot_revenu.credits_impot.aidper
 
-        # On ne contrôle pas que 7WR ne dépasse pas le plafond (ça dépend du nombre de logements et de la nature des
-        # travaux, c'est un peu le bordel)
+        # On ne contrôle pas que 7WR ne dépasse pas le plafond (dépend du nombre de logements et de la nature des travaux)
         max00 = P.max * (1 + maries_ou_pacses)
         max0 = max00 + P.pac1 * nb_pac_majoration_plafond
-        max1 = max_(0, max0 - max_(0, f7wl - max00))
+        max1 = max_(0, max0 - f7wj) # f7wj s'impute avant f7wl
 
-        return (P.taux_wr * f7wr + P.taux_wl * min_(f7wl, max00) + P.taux_wl * max_(f7wl - max00, 0) + P.taux_wj *
-                min_(f7wj, max1))
+        return (
+            P.taux_wr * f7wr
+            + P.taux_wj * min_(f7wj, max0)
+            + P.taux_wl * (min_(f7wl, max1) + min_(max_(0,f7wl - max1), max00))
+            )
 
-    def formula_2014_01_01(foyer_fiscal, period, parameters):
+    def formula_2015_01_01(foyer_fiscal, period, parameters):
         '''
         Crédits d’impôt pour dépenses en faveur de l’aide aux personnes
         (cases 7WI, 7WJ, 7WL).
-        2014 et supérieurs non vérifiée
+        2015 - 
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         nb_pac_majoration_plafond = foyer_fiscal('nb_pac2', period)
@@ -454,16 +467,16 @@ class aidper(Variable):
         f7wr = foyer_fiscal('f7wr', period)
         P = parameters(period).impot_revenu.credits_impot.aidper
         
-        # On ne contrôle pas que 7WR ne dépasse pas le plafond (ça dépend du nombre de logements et de la nature des
-        # travaux, c'est un peu le bordel)
+        # On ne contrôle pas que 7WR ne dépasse pas le plafond (dépend du nombre de logements et de la nature des travaux)
         max00 = P.max * (1 + maries_ou_pacses)
         max0 = max00 + P.pac1 * nb_pac_majoration_plafond
-        max1 = max_(0, max0 - max_(0, f7wl - max00))
+        max1 = P.max_wl
 
         return (
-            P.taux_wr * f7wr + P.taux_wl * min_(f7wl, max00) + P.taux_wl * max_(f7wl - max00, 0) +
-            P.taux_wj * min_(f7wj, max1)
-            )
+            P.taux_wr * f7wr
+            + P.taux_wj * min_(f7wj, max0)
+            + P.taux_wl * min_(f7wl, max1)
+            ) 
 
 
 class assloy(Variable):

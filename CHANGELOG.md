@@ -1,5 +1,19 @@
 # Changelog
 
+### 21.5.0 [#916](https://github.com/openfisca/openfisca-france/pull/916)
+
+* Évolution du système socio-fiscal.
+* Zones impactées :
+  - `openfisca_france/model/prelevements_obligatoires/impot_revenu/credits_impots`
+  - `openfisca_france/parameters/impot_revenu/credits_impot/aidper/max_wl`
+* Périodes concernées : à partir du 01/01/2012
+
+* Détails :
+  - Mise à jour de la formule (2014-2016) du crédit d'impôt 'aidper'
+  - Correction de la formule du crédit d'impôt en 2012 et 2013
+  - Ajout d'un nouveau paramètre associé
+
+
 ### 21.4.0 [#915](https://github.com/openfisca/openfisca-france/pull/915)
 
 * Évolution du système socio-fiscal.
