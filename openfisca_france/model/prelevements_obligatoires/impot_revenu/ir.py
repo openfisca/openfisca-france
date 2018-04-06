@@ -1130,7 +1130,7 @@ class ir_plaf_qf(Variable):
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         nb_adult = foyer_fiscal('nb_adult', period)
         nb_pac = foyer_fiscal('nb_pac', period)
-        nb_parts = foyer_fiscal('nb_parts', period)
+        nb_parts = foyer_fiscal('nbptr', period)
         veuf = foyer_fiscal('veuf', period)
 
         caseF = foyer_fiscal('caseF', period)
@@ -1283,7 +1283,7 @@ class reduction_ss_condition_revenus(Variable):
         ir_plaf_qf = foyer_fiscal('ir_plaf_qf', period)
         decote = foyer_fiscal('decote', period)
         nb_adult = foyer_fiscal('nb_adult', period)
-        nb_parts = foyer_fiscal('nb_parts', period)
+        nb_parts = foyer_fiscal('nbptr', period)
         rfr = foyer_fiscal('rfr', period)
         P = parameters(period).impot_revenu.plafond_qf.reduction_ss_condition_revenus
 
