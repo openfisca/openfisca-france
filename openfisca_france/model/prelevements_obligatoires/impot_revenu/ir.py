@@ -2409,6 +2409,7 @@ class rpns_frag(Variable):
     entity = Individu
     label = u"Revenus du forfait agricole - Revenus des professions non salariées"
     definition_period = YEAR
+    end = '2015-12-31' # TODO : le forfait agricole est remplaçé par le régime micro-bénéfices agricoles à partir de 2016
 
     def formula(individu, period, parameters):
         '''
@@ -2416,14 +2417,6 @@ class rpns_frag(Variable):
         '''
         frag_impo = individu('frag_impo', period)
 
-        return frag_impo
-
-    def formula_2016_01_01(individu, period, parameters):
-        '''
-        Revenus du forfait agricole : remplaçé par régime micro-bénéfices agricoles
-        '''
-        # TODO
-        frag_impo = individu('frag_impo', period)*0
         return frag_impo
 
 
