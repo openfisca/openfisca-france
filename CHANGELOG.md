@@ -6,6 +6,7 @@
 * Zones impactées :
   - `openfisca_france/model/prelevements_obligatoires/impot_revenu/credits_impots`
   - `openfisca_france/parameters/impot_revenu/credits_impot/aidper/max_wl`
+* Périodes concernées : à partir du 01/01/2012
 
 * Détails :
   - Mise à jour de la formule (2014-2016) du crédit d'impôt 'aidper'
