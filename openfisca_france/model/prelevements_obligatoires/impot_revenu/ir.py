@@ -2380,14 +2380,6 @@ class rpns_mvlt(Variable):
     definition_period = YEAR
 
     def formula(individu, period, parameters):
-        '''
-        Moins values de long terme
-        'ind'
-        mbic_mvlt (f5kr, f5lr, f5mr)
-        macc_mvlt (f5nr, f5or, f5pr)
-        mncn_mvlt (f5kw, f5lw, f5mw)
-        mbnc_mvlt (f5hs, f5is, f5js)
-        '''
         mbic_mvlt = individu('mbic_mvlt', period)
         macc_mvlt = individu('macc_mvlt', period)
         mbnc_mvlt = individu('mbnc_mvlt', period)
@@ -2396,7 +2388,7 @@ class rpns_mvlt(Variable):
         return mbic_mvlt + macc_mvlt + mbnc_mvlt + mncn_mvlt
 
 
-class rpns_frag(Variable):
+class rpns_revenus_forfait_agricole(Variable):
     value_type = float
     entity = Individu
     label = u"Revenus du forfait agricole - Revenus des professions non salariées"
@@ -2404,9 +2396,7 @@ class rpns_frag(Variable):
     end = '2015-12-31' # TODO : le forfait agricole est remplaçé par le régime micro-bénéfices agricoles à partir de 2016
 
     def formula(individu, period, parameters):
-        '''
-        Revenus du forfait agricole
-        '''
+
         frag_impo = individu('frag_impo', period)
 
         return frag_impo
@@ -2470,7 +2460,7 @@ class rpns_individu(Variable):
         cncn_info = individu('cncn_info', period)
         cncn_jcre = individu('cncn_jcre', period)
         revimpres = individu('revimpres', period)
-        rpns_frag = individu('rpns_frag', period)
+        rpns_frag = individu('rpns_revenus_forfait_agricole', period)
         rpns_pvct = individu('rpns_pvct', period)
         rpns_mvct_pro = individu('moins_values_court_terme_pro', period)
         rpns_mvct_nonpro = individu('moins_values_court_terme_nonpro', period)
@@ -2563,14 +2553,14 @@ class rpns_individu(Variable):
 
         majo_cga = max_(0, cga_taux2 * (ntimp + rpns_frag))  # Pour ne pas avoir à majorer les déficits
         # total 6
-        rev_ns = rpns_frag + frag_fore + atimp + ntimp + majo_cga - def_agri
+        revevenus_non_salaries = rpns_frag + frag_fore + atimp + ntimp + majo_cga - def_agri
 
         # revenu net après abatement
         # total 7
         rev_ns_mi = mbic_timp + max_(0, macc_timp) + mbnc_timp + mncn_timp
         exon_acc = max_(0, macc_timp + nacc_timp - macc_mvct) - macc_timp - nacc_timp  # ajout artificiel
         exon_ncn = max_(0, mncn_timp - mncn_mvct) - mncn_timp  # ajout artificiel
-        RPNS = (rev_ns + rev_ns_mi + rpns_pvct + exon_acc + exon_ncn + abic_impm - abic_defm + alnp_imps + cncn_aimp - rpns_mvct_pro)
+        RPNS = (revevenus_non_salaries + rev_ns_mi + rpns_pvct + exon_acc + exon_ncn + abic_impm - abic_defm + alnp_imps + cncn_aimp - rpns_mvct_pro)
         return RPNS
 
 
