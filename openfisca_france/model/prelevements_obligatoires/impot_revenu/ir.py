@@ -1041,7 +1041,7 @@ class ir_plaf_qf(Variable):
         ir_ss_qf = foyer_fiscal('ir_ss_qf', period)
         nb_adult = foyer_fiscal('nb_adult', period)
         nb_pac = foyer_fiscal('nb_pac', period)
-        nbptr = foyer_fiscal('nbptr', period)
+        nb_parts = foyer_fiscal('nbptr', period)
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         veuf = foyer_fiscal('veuf', period)
         jeune_veuf = foyer_fiscal('jeune_veuf', period)
@@ -1066,8 +1066,8 @@ class ir_plaf_qf(Variable):
         A = ir_ss_qf
         I = ir_brut
 
-        aa0 = (nbptr - nb_adult) * 2  # nombre de demi part excédant nbadult 
-        aa1 = min_((nbptr - 1) * 2, 2)  # deux première demi part excédants une part
+        aa0 = (nb_parts - nb_adult) * 2  # nombre de demi part excédant nbadult 
+        aa1 = min_((nb_parts - 1) * 2, 2)  # deux première demi part excédants une part
         
         B1 = plafond_qf.celib_enf * aa1 / 2 + plafond_qf.maries_ou_pacses * (aa0 - aa1)
         B2 = plafond_qf.maries_ou_pacses * aa0 
@@ -1130,7 +1130,7 @@ class ir_plaf_qf(Variable):
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         nb_adult = foyer_fiscal('nb_adult', period)
         nb_pac = foyer_fiscal('nb_pac', period)
-        nbptr = foyer_fiscal('nbptr', period)
+        nb_parts = foyer_fiscal('nb_parts', period)
         veuf = foyer_fiscal('veuf', period)
 
         caseF = foyer_fiscal('caseF', period)
@@ -1155,8 +1155,8 @@ class ir_plaf_qf(Variable):
         A = ir_ss_qf
         I = ir_brut
 
-        aa0 = (nbptr - nb_adult) * 2
-        aa1 = min_((nbptr - 1) * 2, 2)
+        aa0 = (nb_parts - nb_adult) * 2
+        aa1 = min_((nb_parts - 1) * 2, 2)
         B1 = plafond_qf.celib_enf * aa1 / 2 + plafond_qf.maries_ou_pacses * (aa0 - aa1)
         B2 = plafond_qf.maries_ou_pacses * aa0 
         B3 = plafond_qf.celib
@@ -1283,15 +1283,15 @@ class reduction_ss_condition_revenus(Variable):
         ir_plaf_qf = foyer_fiscal('ir_plaf_qf', period)
         decote = foyer_fiscal('decote', period)
         nb_adult = foyer_fiscal('nb_adult', period)
-        nbptr = foyer_fiscal('nbptr', period)
+        nb_parts = foyer_fiscal('nb_parts', period)
         rfr = foyer_fiscal('rfr', period)
-        parameters = parameters(period).impot_revenu.plafond_qf.reduction_ss_condition_revenus
+        P = parameters(period).impot_revenu.plafond_qf.reduction_ss_condition_revenus
 
-        plafond1 = (parameters.seuil1 * nb_adult + parameters.seuil_maj_enf * 2 * (nbptr - nb_adult))
-        plafond2 = (parameters.seuil2 * nb_adult + parameters.seuil_maj_enf * 2 * (nbptr - nb_adult))
+        plafond1 = (P.seuil1 * nb_adult + P.seuil_maj_enf * 2 * (nb_parts - nb_adult))
+        plafond2 = (P.seuil2 * nb_adult + P.seuil_maj_enf * 2 * (nb_parts - nb_adult))
 
-        reduc = ((rfr < plafond1) * (parameters.taux * (ir_plaf_qf - decote)) +
-                ((rfr >= plafond1) & (rfr < plafond2)) * ((parameters.taux*(ir_plaf_qf - decote)*(plafond2 - rfr))/((plafond2 - plafond1)*nb_adult)))
+        reduc = ((rfr < plafond1) * (P.taux * (ir_plaf_qf - decote)) +
+                ((rfr >= plafond1) & (rfr < plafond2)) * ((P.taux*(ir_plaf_qf - decote) * (plafond2 - rfr))/((plafond2 - plafond1)*nb_adult)))
         
         return reduc
 
