@@ -1035,13 +1035,13 @@ class ir_plaf_qf(Variable):
 
     def formula(foyer_fiscal, period, parameters):
         '''
-        Impôt après plafonnement du quotient familial et réduction complémentaire
+        Impôt après plafonnement du quotient familial et réduction complémentaire (cf. fiche calcul IR)
         '''
         ir_brut = foyer_fiscal('ir_brut', period)
         ir_ss_qf = foyer_fiscal('ir_ss_qf', period)
         nb_adult = foyer_fiscal('nb_adult', period)
         nb_pac = foyer_fiscal('nb_pac', period)
-        nbptr = foyer_fiscal('nbptr', period)
+        nb_parts = foyer_fiscal('nbptr', period)
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         veuf = foyer_fiscal('veuf', period)
         jeune_veuf = foyer_fiscal('jeune_veuf', period)
@@ -1066,28 +1066,22 @@ class ir_plaf_qf(Variable):
         A = ir_ss_qf
         I = ir_brut
 
-        aa0 = (nbptr - nb_adult) * 2  # nombre de demi part excédant nbadult
-        # on dirait que les impôts font une erreur sur aa1 (je suis obligé de
-        # diviser par 2)
-        aa1 = min_((nbptr - 1) * 2, 2) / 2  # deux première demi part excédants une part
-        aa2 = max_((nbptr - 2) * 2, 0)  # nombre de demi part restantes
-        # celibataire_ou_divorce parents isolés
-        condition61 = celibataire_ou_divorce & caseT
-        B1 = plafond_qf.celib_enf * aa1 + plafond_qf.maries_ou_pacses * aa2
-        # tous les autres
-        B2 = plafond_qf.maries_ou_pacses * aa0  # si autre
-        # celibataire_ou_divorce, veufs (non jeune_veuf) vivants seuls et autres conditions
-
-        # TODO: année en dur... pour caseH
-        condition63 = (celibataire_ou_divorce | (veuf & not_(jeune_veuf))) & not_(caseN) & (nb_pac == 0) & (caseK | caseE) & (caseH < 1981)
+        aa0 = (nb_parts - nb_adult) * 2  # nombre de demi part excédant nbadult 
+        aa1 = min_((nb_parts - 1) * 2, 2)  # deux première demi part excédants une part
+        
+        B1 = plafond_qf.celib_enf * aa1 / 2 + plafond_qf.maries_ou_pacses * (aa0 - aa1)
+        B2 = plafond_qf.maries_ou_pacses * aa0 
         B3 = plafond_qf.celib
+        
+        condition61 = celibataire_ou_divorce & caseT
+        condition63 = (celibataire_ou_divorce | (veuf & not_(jeune_veuf))) & not_(caseN) & (nb_pac == 0) & (caseK | caseE) & (caseH < int(period.start.year) - 25)
 
         B = B1 * condition61 + \
             B2 * (not_(condition61 | condition63)) + \
             B3 * (condition63 & not_(condition61))
         C = max_(0, A - B)
-        # Impôt après plafonnement
-        IP0 = max_(I, C)
+        
+        IP0 = max_(I, C) # Impôt après plafonnement
 
         # 6.2 réduction d'impôt pratiquée sur l'impot après plafonnement et le cas particulier des DOM
         # pas de réduction complémentaire
@@ -1126,6 +1120,94 @@ class ir_plaf_qf(Variable):
 
         return condition62a * IP0 + condition62b * IP1  # IP2 si DOM
 
+    def formula_2013_01_01(foyer_fiscal, period, parameters):
+        '''
+        Impôt après plafonnement du quotient familial et réduction complémentaire (cf. fiche calcul IR)
+        '''
+        celibataire_ou_divorce = foyer_fiscal('celibataire_ou_divorce', period)
+        ir_brut = foyer_fiscal('ir_brut', period)
+        ir_ss_qf = foyer_fiscal('ir_ss_qf', period)
+        maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
+        nb_adult = foyer_fiscal('nb_adult', period)
+        nb_pac = foyer_fiscal('nb_pac', period)
+        nb_parts = foyer_fiscal('nbptr', period)
+        veuf = foyer_fiscal('veuf', period)
+
+        caseF = foyer_fiscal('caseF', period)
+        caseG = foyer_fiscal('caseG', period)
+        caseL = foyer_fiscal('caseL', period)
+        caseP = foyer_fiscal('caseP', period)
+        caseS = foyer_fiscal('caseS', period)
+        caseT = foyer_fiscal('caseT', period.first_month)
+        caseW = foyer_fiscal('caseW', period)
+        nbF = foyer_fiscal('nbF', period)
+        nbG = foyer_fiscal('nbG', period)
+        nbH = foyer_fiscal('nbH', period)
+        nbI = foyer_fiscal('nbI', period)
+        nbJ = foyer_fiscal('nbI', period)
+        nbN = foyer_fiscal('nbJ', period)
+        nbR = foyer_fiscal('nbR', period)
+
+        plafond_qf = parameters(period).impot_revenu.plafond_qf
+
+        # PART1 - PLAFONNEMENT DU QF
+
+        A = ir_ss_qf
+        I = ir_brut
+
+        aa0 = (nb_parts - nb_adult) * 2
+        aa1 = min_((nb_parts - 1) * 2, 2)
+        B1 = plafond_qf.celib_enf * aa1 / 2 + plafond_qf.maries_ou_pacses * (aa0 - aa1)
+        B2 = plafond_qf.maries_ou_pacses * aa0 
+        B3 = plafond_qf.celib
+        
+        condition61 = celibataire_ou_divorce & caseT
+        condition63 = (celibataire_ou_divorce | veuf) & (nb_pac == 0) & caseL
+
+        B = B1 * condition61 + \
+            B2 * (not_(condition61 | condition63)) + \
+            B3 * (condition63 & not_(condition61))
+
+        C = max_(0, A - B)
+        
+        IP0 = max_(I, C)
+
+        # PART2 - REDUCTION IR APRES PLAFONNEMENT 
+
+        condition62a = (I >= C) # pas de réductions complémentaires
+        condition62b = (I < C) # possible réductions complémentaires
+
+        condition62c = (caseP | caseF | caseW | caseS | caseG | (nbG > 0) | (nbI > 0) | nbR > 0)
+        condition62c0 = (caseP | caseF) | (caseW | caseS) | (caseG)
+        condition62c1 = (maries_ou_pacses) & (caseP & caseF)
+        condition62c2 = (nbG > 0) | (nbI > 0) | (nbR > 0)
+        condition62d = (nb_pac > 0) & (veuf)
+
+        E = condition62b * condition62c * (
+            plafond_qf.reduc_postplafond * condition62c0 * not_(condition62c1)  +
+            plafond_qf.reduc_postplafond * 2 * condition62c1 + 
+            plafond_qf.reduc_postplafond * (nbG + nbI/2 + nbR) * condition62c2)
+
+        D = condition62b * condition62d * plafond_qf.reduc_postplafond_veuf
+
+        F = D + E
+        G = max_(0, A - I - B)
+        H = F * (F <= G) + G * (G < F)
+        IP1 = IP0 - H
+
+         # PART3 - ABATTEMENT PARTICULIE DOM
+
+        conditionGuadMarReu = 0 # faire une condition avec département + code commune (Depcom qui est pour l'instant une variable ménage)
+        conditionGuyMay = 0 # provisoire
+        conditionDOM = conditionGuadMarReu | conditionGuyMay
+
+        abat_dom = (conditionGuadMarReu * min_(plafond_qf.abat_dom.plaf_GuadMarReu, plafond_qf.abat_dom.taux_GuadMarReu * IP1) + 
+                   conditionGuyMay * min_(plafond_qf.abat_dom.plaf_GuyMay, plafond_qf.abat_dom.taux_GuyMay * IP1)) 
+        IP2 = IP1 - abat_dom
+
+        return (not_(conditionDOM) * (condition62a * IP0 + condition62b * IP1) +
+                conditionDOM * IP2)
+
 
 class avantage_qf(Variable):
     value_type = float
@@ -1145,6 +1227,12 @@ class decote(Variable):
     entity = FoyerFiscal
     label = u"décote"
     definition_period = YEAR
+
+    def formula_2001_01_01(foyer_fiscal, period, parameters):
+        ir_plaf_qf = foyer_fiscal('ir_plaf_qf', period)
+        decote = parameters(period).impot_revenu.decote
+
+        return (ir_plaf_qf < decote.seuil) * (decote.seuil - ir_plaf_qf) * 0.5
 
     def formula_2015_01_01(foyer_fiscal, period, parameters):
         ir_plaf_qf = foyer_fiscal('ir_plaf_qf', period)
@@ -1166,12 +1254,6 @@ class decote(Variable):
 
         return (nb_adult == 1) * decote_celib + (nb_adult == 2) * decote_couple
 
-    def formula_2001_01_01(foyer_fiscal, period, parameters):
-        ir_plaf_qf = foyer_fiscal('ir_plaf_qf', period)
-        decote = parameters(period).impot_revenu.decote
-
-        return (ir_plaf_qf < decote.seuil) * (decote.seuil - ir_plaf_qf) * 0.5
-
 
 class decote_gain_fiscal(Variable):
     value_type = float
@@ -1188,6 +1270,35 @@ class decote_gain_fiscal(Variable):
 
         return min_(decote, ir_plaf_qf)
 
+class reduction_ss_condition_revenus(Variable):
+    value_type = float
+    entity = FoyerFiscal
+    label = u"Réduction d'impôt sous condition de revenus, s'imputant avant toutes autres réductions"
+    definition_period = YEAR
+
+    def formula_2016_01_01(foyer_fiscal, period, parameters):
+        '''
+        Réduction d'impôt sous condition de revenus
+        '''
+        ir_plaf_qf = foyer_fiscal('ir_plaf_qf', period)
+        decote = foyer_fiscal('decote', period)
+        nb_adult = foyer_fiscal('nb_adult', period)
+        nb_parts = foyer_fiscal('nbptr', period)
+        rfr = foyer_fiscal('rfr', period)
+        P = parameters(period).impot_revenu.plafond_qf.reduction_ss_condition_revenus
+
+        ir_apres_plaf_qf_et_decote = ir_plaf_qf - decote 
+        plafond1 = P.seuil1 * nb_adult + P.seuil_maj_enf * 2 * (nb_parts - nb_adult)
+        plafond2 = P.seuil2 * nb_adult + P.seuil_maj_enf * 2 * (nb_parts - nb_adult)
+        reduction1 =  P.taux * ir_apres_plaf_qf_et_decote
+        reduction2 = (P.taux * ir_apres_plaf_qf_et_decote * (plafond2 - rfr)) / ((plafond2 - plafond1) * nb_adult)
+
+        reduction_sous_condition_de_ressources = (
+            (rfr < plafond1) * reduction1
+            + (rfr >= plafond1) * (rfr < plafond2) * reduction2
+            )
+        
+        return reduction_sous_condition_de_ressources
 
 class nat_imp(Variable):
     value_type = bool
@@ -1211,20 +1322,31 @@ class nat_imp(Variable):
 class ip_net(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = u"Impôt sur le revenu après décote"
+    label = u"Impôt sur le revenu après décote et réduction sous condition de revenus, avant réductions"
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
         '''
-        irpp après décote
+        Impôt net avant réductions
         '''
-        ir_plaf_qf = foyer_fiscal('ir_plaf_qf', period)
         cncn_info_i = foyer_fiscal.members('cncn_info', period)
         decote = foyer_fiscal('decote', period)
+        ir_plaf_qf = foyer_fiscal('ir_plaf_qf', period)
         taux = parameters(period).impot_revenu.rpns.taux16
 
         return max_(0, ir_plaf_qf + foyer_fiscal.sum(cncn_info_i) * taux - decote)
 
+    def formula_2016_01_01(foyer_fiscal, period, parameters):
+        '''
+        Impôt net avant réductions
+        '''
+        cncn_info_i = foyer_fiscal.members('cncn_info', period)
+        decote = foyer_fiscal('decote', period)
+        ir_plaf_qf = foyer_fiscal('ir_plaf_qf', period)
+        reduction_ss_condition_revenus = foyer_fiscal('reduction_ss_condition_revenus', period) 
+        taux = parameters(period).impot_revenu.rpns.taux16
+
+        return max_(0, ir_plaf_qf + foyer_fiscal.sum(cncn_info_i) * taux - decote - reduction_ss_condition_revenus)
 
 class iaidrdi(Variable):
     value_type = float
@@ -2693,6 +2815,7 @@ class nbptr(Variable):
         nbI = foyer_fiscal('nbI', period)
         nbR = foyer_fiscal('nbR', period)
         nbJ = foyer_fiscal('nbJ', period)
+        nbN = foyer_fiscal('nbN', period)
         caseP = foyer_fiscal('caseP', period)
         caseW = foyer_fiscal('caseW', period)
         caseG = foyer_fiscal('caseG', period)
@@ -2732,7 +2855,7 @@ class nbptr(Variable):
         n31b = quotient_familial.not31b * (no_pac & no_alt & (caseW | caseG))
         n31 = max_(n31a, n31b)
         # - personne seule ayant élevé des enfants
-        n32 = quotient_familial.not32 * (no_pac & no_alt & ((caseE | caseK) & not_(caseN)))
+        n32 = quotient_familial.not32 * (no_pac & no_alt & ((caseE | caseK | caseL) & not_(caseN)))
         n3 = max_(n31, n32)
         # # note 4 Invalidité de la personne ou du conjoint pour les mariés ou
         # # jeunes veuf(ve)s
@@ -2752,14 +2875,15 @@ class nbptr(Variable):
         n7 = quotient_familial.isol * caseT * ((no_pac & has_alt) * ((nbH == 1) * 0.5 + (nbH >= 2)) + 1 * has_pac)
 
         # # Régime des mariés ou pacsés
-        m = 1 + quotient_familial.conj + enf + n2 + n4
+        nb_parts_famille = 1 + quotient_familial.conj + enf + n2 + n4
 
         # # veufs  hors jeune_veuf
-        v = 1 + enf + n2 + n3 + n5 + n6
+        nb_parts_veuf = 1 + quotient_familial.veuf * has_pac + enf + n2 + n3 + n5 + n6
 
         # # celib div
-        c = 1 + enf + n2 + n3 + n6 + n7
-        return (maries_ou_pacses | jeune_veuf) * m + (veuf & not_(jeune_veuf)) * v + celibataire_ou_divorce * c
+        nb_parts_celib = 1 + enf + n2 + n3 + n6 + n7
+
+        return (maries_ou_pacses | jeune_veuf) * nb_parts_famille + (veuf & not_(jeune_veuf)) * nb_parts_veuf + celibataire_ou_divorce * nb_parts_celib
 
 
 ###############################################################################

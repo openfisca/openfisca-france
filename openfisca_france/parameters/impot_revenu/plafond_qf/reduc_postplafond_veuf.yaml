@@ -1,0 +1,14 @@
+description: Veuf avec enfants à charge
+reference: ipp
+unit: currency
+values:
+  2012-01-01:
+    value: 672.0
+  2013-01-01:
+    value: 1672.0
+  2014-01-01:
+    value: 1680.0
+  2015-01-01:
+    value: 1682.0
+  2016-01-01:
+    value: 1684.0

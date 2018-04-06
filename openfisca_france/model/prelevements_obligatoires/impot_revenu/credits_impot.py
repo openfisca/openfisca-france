@@ -1773,13 +1773,13 @@ class quaenv(Variable):
 
         credit_quaenv = (
             quaenv_bouquet * (P.taux25 * (min_(max00,
-                f7sd + f7se + f7wc + f7vg + f7wt + f7sn + f7sp + f7sr + f7ss + f7sq + f7st)) +
-                P.taux15 * min_(max1, 
-                f7sf + f7sg + f7sh + f7si + f7sj + f7sk + f7sl + f7sv + f7sw)
-                ) +
-            not_(quaenv_bouquet) * P.taux15 * (min_(max00,
-                f7se + f7wc + f7vg + f7sn + f7sp + f7sr + f7ss + f7sq + f7st + f7sf + f7sg + 
-                f7sh + f7si + f7sv + f7sw + f7sd + not_(f7wk) * (f7wt + f7sj + f7sk + f7sl)))
+                f7sd + f7se + f7wc + f7vg + f7wt + f7sn + f7sp + f7sr + f7ss + f7sq + f7st))
+                + P.taux15 * min_(max1, 
+                    f7sf + f7sg + f7sh + f7si + f7sj + f7sk + f7sl + f7sv + f7sw)
+                )
+            + not_(quaenv_bouquet) * P.taux15 * (min_(max00,
+                f7se + f7wc + f7vg + f7sn + f7sp + f7sr + f7ss + f7sq + f7st + f7sf + f7sg
+                + f7sh + f7si + f7sv + f7sw + f7sd + not_(f7wk) * (f7wt + f7sj + f7sk + f7sl)))
             )
         
         # TODO: inclure la condition de non cumul éco-prêt / crédit quaenv si RFR > ... (condition complexifiée à partir de 2014)
