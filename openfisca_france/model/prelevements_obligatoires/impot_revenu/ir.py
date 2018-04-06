@@ -824,10 +824,6 @@ class rev_cat_rpns(Variable):
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
-        '''
-        Revenus personnels non salariés
-        'foy'
-        '''
         nbnc_pvce_i = foyer_fiscal.members('nbnc_pvce', period)
         rpns_i = foyer_fiscal.members('rpns_individu', period)
         defrag = foyer_fiscal('defrag', period)
@@ -836,8 +832,12 @@ class rev_cat_rpns(Variable):
         defmeu = foyer_fiscal('defmeu', period)
 
         return (
-            foyer_fiscal.sum(rpns_i) -
-            foyer_fiscal.sum(nbnc_pvce_i) - defrag - defncn - defacc - defmeu
+            foyer_fiscal.sum(rpns_i)
+            - foyer_fiscal.sum(nbnc_pvce_i)
+            - defrag
+            - defncn
+            - defacc
+            - defmeu
             )
 
 
