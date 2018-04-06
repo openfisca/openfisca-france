@@ -1,5 +1,21 @@
 # Changelog
 
+### 21.6.0 [#917](https://github.com/openfisca/openfisca-france/pull/917)
+
+* Correction du système socio-fiscal.
+* Périodes concernées : toutes
+* Zones impactées :
+  - `openfisca_france/model/prelevements_obligatoires/impot_revenu/ir`
+  - `openfisca_france/model/revenus/activite/non_salarie`
+  - `openfisca_france/parameters/impot_revenu/rpns/micro/specialbnc/max`
+  - `openfisca_france/parameters/impot_revenu/rpns/micro/specialbnc/min`
+* Détails :
+  - Correction de la formule des 'rpns'
+  - Distinction des moins-values des revenus non salariaux "professionnels" (variable 'rpns_mvct_pro') de celles des revenus non salariaux "non professionnels" ('rpns_mvct_nonpro'), car seuls les premiers peuvent s'imputer sur le revenu global
+  - Création d'une variable intermédiaire 'rpns_frag' : revenus non salariaux relevant du forfait agricole. Celui-ci disparait en 2016 et est remplacé par le régime "micro bénéfice agricole" (A FAIRE)
+  - Correction du calcul de l'abattement appliqué aux revenus non commerciaux relevant du régime micro-bnc (34%) + Ajout de nouveaux paramètres associés à cet abattement
+  - Modification des labels et end_date de variables de revenus non salariaux dans non_salarie.py
+
 ### 21.5.0 [#916](https://github.com/openfisca/openfisca-france/pull/916)
 
 * Évolution du système socio-fiscal.
