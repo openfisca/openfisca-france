@@ -12,6 +12,22 @@ unites_consommation:
     values:
       2017-01-01:
         value: 0.3
+  bonus_premiere_personne:
+    values:
+      2017-01-01:
+        value: 0.85
+  bonus_deuxieme_personne:
+    values:
+      2017-01-01:
+        value: 0.1
+  bonus_personne_non_alternee:
+    values:
+      2017-01-01:
+        value: 0.15	
+  base_uc_personne:
+    values:
+      2017-01-01:
+        value: 0.15	
 baremes:
   thresholds:
     tranche_une:
