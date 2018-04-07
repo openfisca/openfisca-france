@@ -1,6 +1,15 @@
 # Changelog
 
-### 21.8.0 [#919](https://github.com/openfisca/openfisca-france/pull/919)
+### 21.8.1 [#960](https://github.com/openfisca/openfisca-france/pull/960)
+
+* Évolution du système socio-fiscal.
+* Zones impactées : `prestations/cheque_energie`
+* Périodes concernées : À partir de 2017
+* Détails :
+  - Corrige le calcul des unités de consommation pour le chèque énergie
+  - Corrige la période de validité des variables relatives au chèque énergie
+
+## 21.8.0 [#919](https://github.com/openfisca/openfisca-france/pull/919)
 
 * Evolution du système socio-fiscal
 * Périodes concernées : toutes
@@ -12,7 +21,7 @@
   - Les avantages fiscaux pour mécénat d'entreprises (depuis 2003) et pour acquisition de biens culturels (depuis 2002) sont définies comme des réductions d'impôt et non plus des crédits d'impôt
   - Mise à jour de 'creimp' pour 2014-2016, et correction d'une petite erreur pour 2012
 
-### 21.7.0 [#918](https://github.com/openfisca/openfisca-france/pull/918)
+## 21.7.0 [#918](https://github.com/openfisca/openfisca-france/pull/918)
 
 * Correction du système socio-fiscal.
 * Périodes concernées : toutes
@@ -29,7 +38,7 @@
   - Création de paramètres spécifiques à la réduction d'impôt spécial DOM-TOM qui intervient juste après le plafonnement du quotient familial (pour l'instant non calculée mais à termes oui ?)
   - Mise à jour des paramètres
 
-### 21.6.0 [#917](https://github.com/openfisca/openfisca-france/pull/917)
+## 21.6.0 [#917](https://github.com/openfisca/openfisca-france/pull/917)
 
 * Correction du système socio-fiscal.
 * Périodes concernées : toutes
@@ -45,7 +54,7 @@
   - Correction du calcul de l'abattement appliqué aux revenus non commerciaux relevant du régime micro-bnc (34%) + Ajout de nouveaux paramètres associés à cet abattement
   - Modification des labels et end_date de variables de revenus non salariaux dans non_salarie.py
 
-### 21.5.0 [#916](https://github.com/openfisca/openfisca-france/pull/916)
+## 21.5.0 [#916](https://github.com/openfisca/openfisca-france/pull/916)
 
 * Évolution du système socio-fiscal.
 * Zones impactées :
@@ -58,8 +67,7 @@
   - Correction de la formule du crédit d'impôt en 2012 et 2013
   - Ajout d'un nouveau paramètre associé
 
-
-### 21.4.0 [#915](https://github.com/openfisca/openfisca-france/pull/915)
+## 21.4.0 [#915](https://github.com/openfisca/openfisca-france/pull/915)
 
 * Évolution du système socio-fiscal.
 * Zones impactées :
@@ -71,7 +79,7 @@
   - Mise à jour des formules (2014-2016) de la réduction 'cappme' (réduction pour souscription au capital de PME non cotées)
   - Ajout des inputs variables associées
 
-### 21.3.0 [#914](https://github.com/openfisca/openfisca-france/pull/914)
+## 21.3.0 [#914](https://github.com/openfisca/openfisca-france/pull/914)
 
 * Évolution du système socio-fiscal.
 * Zones impactées :
@@ -83,7 +91,6 @@
 - Mise à jour des formules (2014-2016) du crédit d'impôt 'saldom2' et de la réduction d'impôt 'saldom'
 - Correction de la formule du crédit d'IR (sur la majoration pour nombre d'ascendants sd eplus de 65 bénéficiaires de l'APA et pour lesquels des dépenses d'emploi à domicile ont été engagées - case 7DL)
 - Ajout de la case 7DD dans les inputs variables
-
 
 ### 21.2.1 [#956](https://github.com/openfisca/openfisca-france/pull/956)
 
@@ -128,7 +135,7 @@
     + Création de `valeur_patrimoine_loue`, `valeur_immo_non_loue`, `valeur_terrains_non_loues` et `epargne_revenus_imposables`
     + Renommage de `valeur_terrains_non_loue` en `valeur_terrains_non_loues`
 
-## 20.9.1 [#954](https://github.com/openfisca/openfisca-france/pull/954)
+### 20.9.1 [#954](https://github.com/openfisca/openfisca-france/pull/954)
 
 * Évolution du système socio-fiscal.
 * Zones impactées : `mesures`
