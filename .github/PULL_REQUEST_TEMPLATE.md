@@ -11,7 +11,7 @@ Merci de contribuer à OpenFisca ! Effacez cette ligne ainsi que, pour chaque li
 
 Ces changements (effacez les lignes ne correspondant pas à votre cas) :
 
-- Breaking-change de l'API publique d'OpenFisca France (par exemple renommage ou suppression de variables).
+- Modifient l'API publique d'OpenFisca France (par exemple renommage ou suppression de variables).
 - Ajoutent une fonctionnalité (par exemple ajout d'une variable).
 - Corrigent ou améliorent un calcul déjà existant.
 - Modifient des éléments non fonctionnels de ce dépôt (par exemple modification du README).
