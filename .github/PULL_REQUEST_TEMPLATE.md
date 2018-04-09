@@ -20,8 +20,8 @@ Ces changements _(effacez les lignes ne correspondant pas à votre cas)_ :
 
 Quelques conseils à prendre en compte :
 
-- [ ] J'ai fait un rebase à partir de [`master`](https://git-scm.com/docs/git-rebase)
-- [ ] J'ai mis à jour le [`CHANGELOG.md`](https://github.com/openfisca/openfisca-france/blob/master/CONTRIBUTING.md#format-du-changelog)
-- [ ] J'ai mis à jour les références législatives (si cela s'applique)
-- [ ] J'ai crée / modifié les tests qui correspondent au changements (si cela s'applique)
-- [ ] J'ai augmenté le numéro de version dans [`setup.py`](https://github.com/openfisca/openfisca-france/blob/master/setup.py)
+- J'ai fait un rebase à partir de [`master`](https://git-scm.com/docs/git-rebase)
+- J'ai mis à jour le [`CHANGELOG.md`](https://github.com/openfisca/openfisca-france/blob/master/CONTRIBUTING.md#format-du-changelog)
+- J'ai mis à jour les références législatives (si cela s'applique)
+- J'ai crée / modifié les tests qui correspondent au changements (si cela s'applique)
+- J'ai augmenté le numéro de version dans [`setup.py`](https://github.com/openfisca/openfisca-france/blob/master/setup.py)
