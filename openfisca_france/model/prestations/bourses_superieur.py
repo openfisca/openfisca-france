@@ -5,13 +5,14 @@ from __future__ import division
 import csv
 import pkg_resources
 
-from numpy import fromiter, int16
+from numpy import fromiter
 
 import openfisca_france
 
 from openfisca_france.model.base import *  # noqa analysis:ignore
 
-# NB : les variables de bourses de l'enseignment supérieur sont au niveau Individu, car elles sont versées au jeune et dépendent de la distance établissement scolaire-domicile familial qui est spécifique au jeune
+# NB : les variables de bourses de l'enseignment supérieur sont au niveau Individu, car elles sont versées au jeune et
+# dépendent de la distance établissement scolaire-domicile familial qui est spécifique au jeune
 
 
 class base_ressource_bourse_superieur(Variable):
@@ -24,8 +25,8 @@ class base_ressource_bourse_superieur(Variable):
     def formula(individu, period, parameters):
 
         rbg_foyer = individu.foyer_fiscal('rbg', period.this_year.n_2) # Ex : pour l'année scolaire 2017-2018 c'est les revenus 2015 qui comptent
-        
-        # Cas particuliers à traiter : 
+
+        # Cas particuliers à traiter :
         # (Cf. annexe 3.1.1 de la référence ci-dessus)
         # - Cas des parents séparés => prendre les deux RBG si pas de pension alimentaire prevue
         # - Cas de parents concubins non mariés => prendre les deux RBG
@@ -49,13 +50,13 @@ class bourse_superieur_points_de_charge(Variable):
             0 * (distance < 30) +
             1 * (distance >= 30) * (distance < 250) +
             2 * (distance >= 250)
-        )
+            )
 
         nb_enfants = individu.famille('nb_enfants_a_charge', period)
         nb_enfants_dans_enseignement_sup = individu.famille('nb_enfants_a_charge_superieur', period)
         points_de_charge_famille = (
-            2 * (nb_enfants - 1) +
-            4 * (nb_enfants_dans_enseignement_sup - 1) 
+            2 * max_((nb_enfants - 1), 0) +
+            4 * max_((nb_enfants_dans_enseignement_sup - 1), 0)
             )
 
         return (points_eloignement + points_de_charge_famille) * eligible
@@ -68,14 +69,15 @@ class bourse_superieur_annuel(Variable):
     definition_period = MONTH
 
     def formula_2013_09_01(individu, period, parameters):
-
-        age = individu('age', period) # NB : age au 01/09/N normalement
+        age = individu('age', period)  # NB : age au 01/09/N normalement
         est_etudiant = individu('etudiant', period)
         echelon = individu('echelon_bourse', period)
         eligible = individu('bourse_superieur_eligibilite', period.this_year)
-        P = parameters(period).bourses_education.bourse_superieur
+        bourse_superieur = parameters(period).bourses_education.bourse_superieur
 
-        montant_bourse_annuel = P.montant[echelon] # NB : normalement montant bourse = montant annuel sur 10 mois (pas de bourses juillet-aout), pour simplifier on divise par 12 pour obtenir montant mensuel
+        montant_bourse_annuel = bourse_superieur.montant[echelon]
+        # NB : normalement montant bourse = montant annuel sur 10 mois (pas de bourses juillet-aout),
+        # pour simplifier on divise par 12 pour obtenir montant mensuel
 
         return montant_bourse_annuel * eligible
 
@@ -87,10 +89,10 @@ class bourse_superieur_eligibilite(Variable):
     definition_period = YEAR
 
     def formula(individu, period, parameters):
-
-        age = individu('age', period.first_month) # NB : age au 01/09/N normalement
+        age = individu('age', period.first_month)  # NB : age au 01/09/N normalement
         est_etudiant = individu('etudiant', period.first_month.offset(9))
-        eligible = (age > 17) * (age <= 28) * est_etudiant # TODO : gérer le fait qu'on peut être étudiant et avoir moins de 18ans
+        eligible = (age > 17) * (age <= 28) * est_etudiant  # TODO : gérer le fait qu'on peut être
+        # étudiant et avoir moins de 18ans
 
         return eligible
 
@@ -102,8 +104,9 @@ class bourse_superieur(Variable):
     definition_period = MONTH
 
     def formula_2013_09_01(individu, period, parameters):
-
-        montant_bourse_annuel = individu('bourse_superieur_annuel', period) # NB : normalement montant bourse = montant annuel sur 10 mois (pas de bourses juillet-aout), pour simplifier on divise par 12 pour obtenir montant mensuel
+        montant_bourse_annuel = individu('bourse_superieur_annuel', period)  # NB : normalement montant
+        # bourse = montant annuel sur 10 mois (pas de bourses juillet-aout),
+        # pour simplifier on divise par 12 pour obtenir montant mensuel
         eligible = individu('bourse_superieur_eligibilite', period.this_year)
 
         return (montant_bourse_annuel / 12) * eligible
@@ -127,7 +130,7 @@ class distance_domicile_etablissement_superieur(Variable):
     entity = Individu
     label = u"Distance (en km) entre le domicile familial et l'établissement d'enseignement supérieur"
     definition_period = MONTH
-    default_value = 30 # Temporaire
+    default_value = 30  # FIXME Temporaire
 
 
 class TypesEchelonBourse(Enum):
@@ -140,7 +143,7 @@ class TypesEchelonBourse(Enum):
     echelon_5 = u"Echelon 5"
     echelon_6 = u"Echelon 6"
     echelon_7 = u"Echelon 7"
-    non_boursier = u"Non boursier" # NB : echelon 8 = non boursier
+    non_boursier = u"Non boursier"  # NB : echelon 8 = non boursier
 
 
 class echelon_bourse(Variable):
@@ -156,8 +159,8 @@ class echelon_bourse(Variable):
         points_de_charge = individu('bourse_superieur_points_de_charge', period)
         revenus_famille = individu('base_ressource_bourse_superieur', period)
         eligible = individu('bourse_superieur_eligibilite', period.this_year)
-        P = parameters(period).bourses_education.bourse_superieur
- 
+        bourse_superieur = parameters(period).bourses_education.bourse_superieur
+
         echelons = [7, 6, 5, 4, 3, 2, 1, 0]
 
         with pkg_resources.resource_stream(
@@ -183,20 +186,47 @@ class echelon_bourse(Variable):
             fromiter(
                 (plafonds_ressources_by_pts.get(pts_cell)[echelon] for pts_cell in points_de_charge),
                 dtype = float,
-            )
+                )
             for echelon in echelons
             ]
 
         echelon_bourse = select(
-            (eligible == True, eligible == False), 
-            (apply_thresholds(revenus_famille, thresholds = plafonds_ressources, choices = [7, 6, 5, 4, 3, 2, 1, 0, 9999]), 9999)
-        )
-
+            [
+                eligible,
+                not_(eligible)
+                ],
+            [
+                apply_thresholds(
+                    revenus_famille,
+                    thresholds = plafonds_ressources,
+                    choices = [7, 6, 5, 4, 3, 2, 1, 0, 9999]
+                    ),
+                9999]
+            )
 
         return select(
-            (echelon_bourse == 9999, echelon_bourse == 0, echelon_bourse == 1, echelon_bourse == 2, echelon_bourse == 3, echelon_bourse == 4, echelon_bourse == 5, echelon_bourse == 6, echelon_bourse == 7),
-            (TypesEchelonBourse.non_boursier.index, TypesEchelonBourse.echelon_0.index, TypesEchelonBourse.echelon_1.index, TypesEchelonBourse.echelon_2.index, TypesEchelonBourse.echelon_3.index, TypesEchelonBourse.echelon_4.index, TypesEchelonBourse.echelon_5.index, TypesEchelonBourse.echelon_6.index, TypesEchelonBourse.echelon_7.index,)
-        )
+            [
+                echelon_bourse == 9999,
+                echelon_bourse == 0,
+                echelon_bourse == 1,
+                echelon_bourse == 2,
+                echelon_bourse == 3,
+                echelon_bourse == 4,
+                echelon_bourse == 5,
+                echelon_bourse == 6,
+                echelon_bourse == 7],
+            [
+                TypesEchelonBourse.non_boursier.index,
+                TypesEchelonBourse.echelon_0.index,
+                TypesEchelonBourse.echelon_1.index,
+                TypesEchelonBourse.echelon_2.index,
+                TypesEchelonBourse.echelon_3.index,
+                TypesEchelonBourse.echelon_4.index,
+                TypesEchelonBourse.echelon_5.index,
+                TypesEchelonBourse.echelon_6.index,
+                TypesEchelonBourse.echelon_7.index,
+                ]
+            )
 
 
 class nb_enfants_a_charge(Variable):
@@ -209,8 +239,8 @@ class nb_enfants_a_charge(Variable):
 
     def formula (famille, period, paramaters):
         age_i = famille.members('age', period)
-        nb_enfants = famille.sum(age_i >= 0, role = Famille.ENFANT) 
-    
+        nb_enfants = famille.sum(age_i >= 0, role = Famille.ENFANT)
+
         return nb_enfants
 
 
@@ -222,7 +252,7 @@ class nb_enfants_a_charge_superieur(Variable):
     default_value = 1 # provisoire (utiliser les cases 7EF et 7EG de la dÃ©claration 2042 ?)
 
     # NB2 : enfants étudiants = inscrit dans l'enseignement supérieur l'année N (de demande de la bourse)
-    
+
 
 def main():
 

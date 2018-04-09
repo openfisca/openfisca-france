@@ -24,15 +24,15 @@
     - id: "enfant2"
       date_naissance: '1995-02-01'
       activite: etudiant
-      distance_domicile_etablissement_superieur: 20 # + 0pts
+      distance_domicile_etablissement_superieur: 20  # + 0pts
     - id: "enfant3"
       date_naissance: '1993-02-01'
       activite: etudiant
-      distance_domicile_etablissement_superieur: 100 # + 1pts
+      distance_domicile_etablissement_superieur: 100  # + 1pts
   output_variables:
     bourse_superieur_points_de_charge: [0, 0, 0, 8, 9]
     echelon_bourse: ['non_boursier', 'non_boursier', 'non_boursier', 'non_boursier', 'non_boursier']
-    bourse_superieur_annuel: [0, 0, 0, 0, 0] # non boursiers
+    bourse_superieur_annuel: [0, 0, 0, 0, 0]  # non boursiers
 
 - name: "Scolarité 2017-2018 : bourse sur critères sociaux, 3 enfants dont 2 étudiants, rbg = 50000"
   period: 2017-09
@@ -70,7 +70,7 @@
     echelon_bourse: ['non_boursier', 'non_boursier', 'non_boursier', 'echelon_0', 'echelon_0']
     bourse_superieur_annuel: [0, 0, 0, 1009, 1009]
 
-- name: "Scolarité 2017-2018 : bourse sur critères sociaux, 3 enfants dont 2 étudiants, rbg = 40000"
+- name: "Scolarité 2017-2018 : bourse sur critères sociaux, 3 enfants dont 2 étudiants, rbg = 43000"
   period: 2017-09
   familles:
     parents: ["parent1", "parent2"]
@@ -81,7 +81,7 @@
     declarants: ["parent1", "parent2"]
     personnes_a_charge: ["enfant1", "enfant2", "enfant3"]
     rbg:
-      2015: 40000.0
+      2015: 43000.0
       2016: 0.0
       2017: 0.0
   menages:
@@ -139,8 +139,8 @@
       distance_domicile_etablissement_superieur: 100 # + 1pts
   output_variables:
     bourse_superieur_points_de_charge: [0, 0, 0, 8, 9]
-    echelon_bourse: ['non_boursier', 'non_boursier', 'non_boursier', 'echelon_2', 'echelon_2']
-    bourse_superieur_annuel: [0, 0, 0, 2513, 2513]
+    echelon_bourse: ['non_boursier', 'non_boursier', 'non_boursier', 'echelon_3', 'echelon_3']
+    bourse_superieur_annuel: [0, 0, 0, 3218, 3218]
 
 - name: "Scolarité 2017-2018 : bourse sur critères sociaux, 3 enfants dont 2 étudiants, rbg = 20000"
   period: 2017-09
@@ -247,6 +247,6 @@
       distance_domicile_etablissement_superieur: 100 # + 1pts
   output_variables:
     bourse_superieur_points_de_charge: [0, 0, 0, 8, 9]
-    echelon_bourse: ['non_boursier', 'non_boursier', 'non_boursier', 'echelon_6', 'echelon_7'] 
+    echelon_bourse: ['non_boursier', 'non_boursier', 'non_boursier', 'echelon_6', 'echelon_7']
     bourse_superieur_annuel: [0, 0, 0, 4778, 5551]
-    
+
