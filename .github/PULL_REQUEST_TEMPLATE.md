@@ -24,4 +24,3 @@ Quelques conseils à prendre en compte :
 - Mettre à jour ou ajouter les tests qui correspondent à ma contribution.
 - Mettre à jour le [`CHANGELOG.md`](https://github.com/openfisca/openfisca-france/blob/master/CONTRIBUTING.md#format-du-changelog).
 - Augmenter le [numéro de version](https://speakerdeck.com/mattisg/git-session-2-strategies?slide=81) dans [`setup.py`](https://github.com/openfisca/openfisca-france/blob/master/setup.py).
-- J'ai fait un rebase à partir de [`master`](https://git-scm.com/docs/git-rebase)
