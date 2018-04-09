@@ -106,7 +106,7 @@ Félicitations :tada: OpenFisca-France est prêt à être utilisé !
 
 #### Prochaines étapes
 
-- Apprenez à utiliser OpenFisca avec nos [tutoriels](http://openfisca.org/doc/getting-started.html) (en anglais).
+- Apprenez à utiliser OpenFisca avec nos [tutoriels](http://openfisca.org/doc/) (en anglais).
 - Hébergez et servez votre instance d'OpenFisca-France avec l'[API Web OpenFisca](#servez-openfisca-france-avec-lapi-web-openfisca).
 
 En fonction de vos projets, vous pourriez bénéficier de l'installation des paquets suivants dans votre _virtualenv_ :
