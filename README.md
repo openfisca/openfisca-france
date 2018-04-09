@@ -56,7 +56,7 @@ pip install pew
 Créez un nouveau _virtualenv_ nommé **openfisca** et configurez-le avec python2.7 :
 
 ```sh
-pew new openfisca --python=python2.7
+pew new openfisca --python python2.7
 # Si demandé, répondez "Y" à la question sur la modification du fichier de configuration de votre shell
 ```
 Le  _virtualenv_  **openfisca** sera alors activé, c'est-à-dire que les commandes suivantes s'exécuteront directement dans l'environnement virtuel. Vous verrez dans votre terminal :
@@ -106,7 +106,7 @@ Félicitations :tada: OpenFisca-France est prêt à être utilisé !
 
 #### Prochaines étapes
 
-- Apprenez à utiliser OpenFisca avec nos [tutoriels](http://openfisca.org/doc/getting-started.html) (en anglais).
+- Apprenez à utiliser OpenFisca avec nos [tutoriels](http://openfisca.org/doc/) (en anglais).
 - Hébergez et servez votre instance d'OpenFisca-France avec l'[API Web OpenFisca](#servez-openfisca-france-avec-lapi-web-openfisca).
 
 En fonction de vos projets, vous pourriez bénéficier de l'installation des paquets suivants dans votre _virtualenv_ :
