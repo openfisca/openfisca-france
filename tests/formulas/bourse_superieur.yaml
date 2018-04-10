@@ -32,7 +32,7 @@
   output_variables:
     bourse_superieur_points_de_charge: [0, 0, 0, 8, 9]
     echelon_bourse: ['non_boursier', 'non_boursier', 'non_boursier', 'non_boursier', 'non_boursier']
-    bourse_superieur_annuel: [0, 0, 0, 0, 0]  # non boursiers
+    bourse_superieur: [0, 0, 0, 0, 0]  # non boursiers
 
 - name: "Scolarité 2017-2018 : bourse sur critères sociaux, 3 enfants dont 2 étudiants, rbg = 50000"
   period: 2017-09
@@ -68,7 +68,7 @@
   output_variables:
     bourse_superieur_points_de_charge: [0, 0, 0, 8, 9]
     echelon_bourse: ['non_boursier', 'non_boursier', 'non_boursier', 'echelon_0', 'echelon_0']
-    bourse_superieur_annuel: [0, 0, 0, 1009, 1009]
+    bourse_superieur: [0, 0, 0, 1009 / 12, 1009 / 12]
 
 - name: "Scolarité 2017-2018 : bourse sur critères sociaux, 3 enfants dont 2 étudiants, rbg = 43000"
   period: 2017-09
@@ -104,7 +104,7 @@
   output_variables:
     bourse_superieur_points_de_charge: [0, 0, 0, 8, 9]
     echelon_bourse: ['non_boursier', 'non_boursier', 'non_boursier', 'echelon_0', 'echelon_1']
-    bourse_superieur_annuel: [0, 0, 0, 1009, 1669]
+    bourse_superieur: [0, 0, 0, 1009 / 12, 1669 / 12]
 
 - name: "Scolarité 2017-2018 : bourse sur critères sociaux, 3 enfants dont 2 étudiants, rbg = 30000"
   period: 2017-09
@@ -140,7 +140,7 @@
   output_variables:
     bourse_superieur_points_de_charge: [0, 0, 0, 8, 9]
     echelon_bourse: ['non_boursier', 'non_boursier', 'non_boursier', 'echelon_3', 'echelon_3']
-    bourse_superieur_annuel: [0, 0, 0, 3218, 3218]
+    bourse_superieur: [0, 0, 0, 3218 / 12, 3218 / 12]
 
 - name: "Scolarité 2017-2018 : bourse sur critères sociaux, 3 enfants dont 2 étudiants, rbg = 20000"
   period: 2017-09
@@ -176,7 +176,7 @@
   output_variables:
     bourse_superieur_points_de_charge: [0, 0, 0, 8, 9]
     echelon_bourse: ['non_boursier', 'non_boursier', 'non_boursier', 'echelon_4', 'echelon_5']
-    bourse_superieur_annuel: [0, 0, 0, 3924, 4505]
+    bourse_superieur: [0, 0, 0, 3924 / 12, 4505 / 12]
 
 - name: "Scolarité 2017-2018 : bourse sur critères sociaux, 3 enfants dont 2 étudiants, rbg = 10000"
   period: 2017-09
@@ -212,7 +212,7 @@
   output_variables:
     bourse_superieur_points_de_charge: [0, 0, 0, 8, 9]
     echelon_bourse: ['non_boursier', 'non_boursier', 'non_boursier', 'echelon_6', 'echelon_6']
-    bourse_superieur_annuel: [0, 0, 0, 4778, 4778]
+    bourse_superieur: [0, 0, 0, 4778 / 12, 4778 / 12]
 
 - name: "Scolarité 2017-2018 : bourse sur critères sociaux, 3 enfants dont 2 étudiants, rbg = 2000"
   period: 2017-09
@@ -248,5 +248,5 @@
   output_variables:
     bourse_superieur_points_de_charge: [0, 0, 0, 8, 9]
     echelon_bourse: ['non_boursier', 'non_boursier', 'non_boursier', 'echelon_6', 'echelon_7']
-    bourse_superieur_annuel: [0, 0, 0, 4778, 5551]
+    bourse_superieur: [0, 0, 0, 4778 / 12, 5551 / 12]
 

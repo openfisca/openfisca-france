@@ -62,26 +62,6 @@ class bourse_superieur_points_de_charge(Variable):
         return (points_eloignement + points_de_charge_famille) * eligible
 
 
-class bourse_superieur_annuel(Variable):
-    value_type = float
-    entity = Individu
-    label = u"Montant annuel de la bourse sur critères sociaux de l'enseignement supérieur"
-    definition_period = MONTH
-
-    def formula_2013_09_01(individu, period, parameters):
-        age = individu('age', period)  # NB : age au 01/09/N normalement
-        est_etudiant = individu('etudiant', period)
-        echelon = individu('echelon_bourse', period)
-        eligible = individu('bourse_superieur_eligibilite', period.this_year)
-        bourse_superieur = parameters(period).bourses_education.bourse_superieur
-
-        montant_bourse_annuel = bourse_superieur.montant[echelon]
-        # NB : normalement montant bourse = montant annuel sur 10 mois (pas de bourses juillet-aout),
-        # pour simplifier on divise par 12 pour obtenir montant mensuel
-
-        return montant_bourse_annuel * eligible
-
-
 class bourse_superieur_eligibilite(Variable):
     value_type = bool
     entity = Individu
@@ -104,10 +84,17 @@ class bourse_superieur(Variable):
     definition_period = MONTH
 
     def formula_2013_09_01(individu, period, parameters):
-        montant_bourse_annuel = individu('bourse_superieur_annuel', period)  # NB : normalement montant
-        # bourse = montant annuel sur 10 mois (pas de bourses juillet-aout),
-        # pour simplifier on divise par 12 pour obtenir montant mensuel
+
+        age = individu('age', period)  # NB : age au 01/09/N normalement
+        est_etudiant = individu('etudiant', period)
+        echelon = individu('echelon_bourse', period)
         eligible = individu('bourse_superieur_eligibilite', period.this_year)
+        bourse_superieur = parameters(
+            period).bourses_education.bourse_superieur
+
+        montant_bourse_annuel = bourse_superieur.montant[echelon]
+        # NB : normalement montant bourse = montant annuel sur 10 mois (pas de bourses juillet-aout),
+        # pour simplifier on divise par 12 pour obtenir montant mensuel
 
         return (montant_bourse_annuel / 12) * eligible
 
@@ -135,7 +122,7 @@ class distance_domicile_etablissement_superieur(Variable):
 
 class TypesEchelonBourse(Enum):
     __order__ = 'echelon_0 echelon_1 echelon_2 echelon_3 echelon_4 echelon_5 echelon_6 echelon_7 non_boursier'  # Needed to preserve the enum order in Python 2
-    echelon_0 = u"Echelon 0"
+    echelon_0 = u"Echelon 0 bis"
     echelon_1 = u"Echelon 1"
     echelon_2 = u"Echelon 2"
     echelon_3 = u"Echelon 3"
