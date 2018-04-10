@@ -55,7 +55,7 @@ class bourse_superieur_points_de_charge(Variable):
         nb_enfants = individu.famille('nb_enfants_a_charge', period)
         nb_enfants_dans_enseignement_sup = individu.famille('nb_enfants_a_charge_superieur', period)
         points_de_charge_famille = (
-            2 * max_((nb_enfants - 1), 0) +
+            2 * max_((nb_enfants - nb_enfants_dans_enseignement_sup), 0) +
             4 * max_((nb_enfants_dans_enseignement_sup - 1), 0)
             )
 
