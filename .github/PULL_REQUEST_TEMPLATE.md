@@ -21,7 +21,7 @@ Ces changements (effacez les lignes ne correspondant pas à votre cas) :
 Quelques conseils à prendre en compte :
 
 - Documenter ma contribution avec des références législatives.
-- Mettre à jour ou ajouter les tests qui correspondent à ma contribution.
+- Mettre à jour ou ajouter des tests qui correspondent à ma contribution.
 - Mettre à jour le [`CHANGELOG.md`](https://github.com/openfisca/openfisca-france/blob/master/CONTRIBUTING.md#format-du-changelog).
 - Augmenter le [numéro de version](https://speakerdeck.com/mattisg/git-session-2-strategies?slide=81) dans [`setup.py`](https://github.com/openfisca/openfisca-france/blob/master/setup.py).
 - Ne pas hésiter à demander de l'aide :)
