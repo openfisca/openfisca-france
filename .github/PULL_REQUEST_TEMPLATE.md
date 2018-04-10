@@ -20,8 +20,12 @@ Ces changements (effacez les lignes ne correspondant pas à votre cas) :
 
 Quelques conseils à prendre en compte :
 
-- Documenter ma contribution avec des références législatives.
-- Mettre à jour ou ajouter des tests qui correspondent à ma contribution.
-- Mettre à jour le [`CHANGELOG.md`](https://github.com/openfisca/openfisca-france/blob/master/CONTRIBUTING.md#format-du-changelog).
-- Augmenter le [numéro de version](https://speakerdeck.com/mattisg/git-session-2-strategies?slide=81) dans [`setup.py`](https://github.com/openfisca/openfisca-france/blob/master/setup.py).
-- Ne pas hésiter à demander de l'aide :)
+- [ ] Jetez un coup d'œil au [guide de contribution](CONTRIBUTING.md).
+- [ ] Regardez s'il n'y a pas une [proposition introduisant ces mêmes changements](https://github.com/openfisca/openfisca-france/pulls).
+- [ ] Documentez votre contribution avec des références législatives.
+- [ ] Mettez à jour ou ajoutez des tests correspondant à votre contribution.
+- [ ] Augmentez le [numéro de version](https://speakerdeck.com/mattisg/git-session-2-strategies?slide=81) dans [`setup.py`](setup.py).
+- [ ] Mettez à jour le [`CHANGELOG.md`](CHANGELOG.md).
+- [ ] Assurez-vous de bien décrire votre contribution, comme indiqué ci-dessus
+
+Finalement, n'hésitez pas à demander de l'aide ! :)
