@@ -242,7 +242,6 @@ class nb_enfants_a_charge_superieur(Variable):
 
 
 def main():
-
     import openfisca_france
 
     tax_benefit_system = openfisca_france.FranceTaxBenefitSystem()
@@ -264,14 +263,14 @@ def main():
              ),
         enfants = [
             dict(
-                 activite = u'etudiant',
-                 date_naissance = '1993-02-01',
-                 ),
+                activite = u'etudiant',
+                date_naissance = '1993-02-01',
+                ),
             dict(
                 activite = u'etudiant',
                 date_naissance = '1994-04-17',
                 ),
-             ],
+            ],
         )
     scenario.suggest()
 
