@@ -1,4 +1,4 @@
-Merci de contribuer à OpenFisca ! Effacez cette ligne ainsi que, pour chaque ligne ci-dessous, les cas ne correspondant pas à votre cas :)
+Merci de contribuer à OpenFisca ! Effacez cette ligne ainsi que, pour chaque ligne ci-dessous, les cas ne correspondant pas à votre contribution :)
 
 * Évolution du système socio-fiscal. | Amélioration technique. | Correction d'un crash. | Changement mineur.
 * Périodes concernées : toutes. | jusqu'au JJ/MM/AAAA. | à partir du JJ/MM/AAAA.
@@ -28,4 +28,4 @@ Quelques conseils à prendre en compte :
 - [ ] Mettez à jour le [`CHANGELOG.md`](CHANGELOG.md).
 - [ ] Assurez-vous de bien décrire votre contribution, comme indiqué ci-dessus
 
-Finalement, n'hésitez pas à demander de l'aide ! :)
+Et surtout, n'hésitez pas à demander de l'aide ! :)
