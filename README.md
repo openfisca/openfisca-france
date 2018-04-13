@@ -4,12 +4,12 @@
 
 ## [EN] Introduction
 OpenFisca is a versatile microsimulation free software. This repository contains the OpenFisca model of the French tax and benefit system. Therefore, the working language here is French. You can however check the [general OpenFisca documentation](http://openfisca.org/doc/) in English!
-> We host a public instance of of the [OpenFisca-France Web API](https://fr.openfisca.org/api/v18/). Learn more about its endpoint in the [Swagger documentation](https://legislation.openfisca.fr/swagger).
+> We host a public instance of of the [OpenFisca-France Web API](https://fr.openfisca.org/api/v18/). Learn more about its endpoint in the [Swagger documentation](https://fr.openfisca.org/legislation/swagger).
 > If you need to run large amount of calculations, or add extensions, you should [host your own instance](#servez-openfisca-france-avec-l-api-web-openfisca).
 
 ## [FR] Introduction
 [OpenFisca](https://www.openfisca.fr/) est un logiciel libre de micro-simulation. Ce dépôt contient la modélisation du système social et fiscal français. Pour plus d'information sur les fonctionnalités et la manière d'utiliser OpenFisca, vous pouvez consulter la [documentation générale](http://openfisca.org/doc/).
-> Nous mettons à disposition une instance publique de [l'API Web OpenFisca-France](https://fr.openfisca.org/api/v18/). Découvrez ses capacité sur sa [documentation Swagger](https://legislation.openfisca.fr/swagger).
+> Nous mettons à disposition une instance publique de [l'API Web OpenFisca-France](https://fr.openfisca.org/api/v18/). Découvrez ses capacité sur sa [documentation Swagger](https://fr.openfisca.org/legislation/swagger).
 > Si vous avez besoin de réaliser un grand nombre de calculs ou d'ajouter des extensions, vous pouvez [servir votre propre instance](#servez-openfisca-france-avec-l-api-web-openfisca).
 
 ## API Web publique : interrogez OpenFisca-France sans installation
@@ -20,7 +20,7 @@ Utilisez l'API publique si vous souhaitez :
 - consulter une formule de calcul (Ex : [le calcul de l'allocation de base des allocations familiales](https://fr.openfisca.org/api/v18/variable/af_base)) ;
 - faire des calculs sur une situation (Ex : le calcul du coût du travail).
 
-L'ensembles des endpoints sont décrits dans la [documentation Swagger](https://legislation.openfisca.fr/swagger).
+L'ensembles des endpoints sont décrits dans la [documentation Swagger](https://fr.openfisca.org/legislation/swagger).
 
 [L'explorateur de législation](https://legislation.openfisca.fr/) contient la liste des paramètres et variables disponibles.
 
@@ -106,7 +106,7 @@ Félicitations :tada: OpenFisca-France est prêt à être utilisé !
 
 #### Prochaines étapes
 
-- Apprenez à utiliser OpenFisca avec nos [tutoriels](http://openfisca.org/doc/getting-started.html) (en anglais).
+- Apprenez à utiliser OpenFisca avec nos [tutoriels](http://openfisca.org/doc/) (en anglais).
 - Hébergez et servez votre instance d'OpenFisca-France avec l'[API Web OpenFisca](#servez-openfisca-france-avec-lapi-web-openfisca).
 
 En fonction de vos projets, vous pourriez bénéficier de l'installation des paquets suivants dans votre _virtualenv_ :
@@ -177,28 +177,28 @@ curl "http://localhost:6000/parameter/cotsoc.gen.smic_h_b"
 Vous devriez avoir le resultat suivant :
 ```JSON
 {
-  "description": "SMIC horaire brut", 
-  "id": "cotsoc.gen.smic_h_b", 
+  "description": "SMIC horaire brut",
+  "id": "cotsoc.gen.smic_h_b",
   "values": {
-    "2001-08-01": 6.67, 
-    "2002-07-01": 6.83, 
-    "2003-07-01": 7.19, 
-    "2004-07-01": 7.61, 
-    "2005-07-01": 8.03, 
-    "2006-07-01": 8.27, 
-    "2007-07-01": 8.44, 
-    "2008-05-01": 8.63, 
-    "2008-07-01": 8.71, 
-    "2009-07-01": 8.82, 
-    "2010-01-01": 8.86, 
-    "2011-01-01": 9.0, 
-    "2011-12-01": 9.19, 
-    "2012-01-01": 9.22, 
-    "2012-07-01": 9.4, 
-    "2013-01-01": 9.43, 
-    "2014-01-01": 9.53, 
-    "2015-01-01": 9.61, 
-    "2016-01-01": 9.67, 
+    "2001-08-01": 6.67,
+    "2002-07-01": 6.83,
+    "2003-07-01": 7.19,
+    "2004-07-01": 7.61,
+    "2005-07-01": 8.03,
+    "2006-07-01": 8.27,
+    "2007-07-01": 8.44,
+    "2008-05-01": 8.63,
+    "2008-07-01": 8.71,
+    "2009-07-01": 8.82,
+    "2010-01-01": 8.86,
+    "2011-01-01": 9.0,
+    "2011-12-01": 9.19,
+    "2012-01-01": 9.22,
+    "2012-07-01": 9.4,
+    "2013-01-01": 9.43,
+    "2014-01-01": 9.53,
+    "2015-01-01": 9.61,
+    "2016-01-01": 9.67,
     "2017-01-01": 9.76
   }
 }
@@ -206,7 +206,7 @@ Vous devriez avoir le resultat suivant :
 
 :tada: Vous servez OpenFisca-France via l'API Web OpenFisca !
 
-Pour en savoir plus, explorez [la documentation de l'API Web](https://legislation.openfisca.fr/swagger).
+Pour en savoir plus, explorez [la documentation de l'API Web](https://fr.openfisca.org/legislation/swagger).
 
 Vous pouvez activer le suivi des visites sur votre instance via Piwik avec _[le Tracker API OpenFisca](https://github.com/openfisca/tracker)_ (en anglais).
 

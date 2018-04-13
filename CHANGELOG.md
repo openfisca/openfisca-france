@@ -1,5 +1,15 @@
 # Changelog
 
+### 21.8.2 [#968](https://github.com/openfisca/openfisca-france/pull/968)
+
+* Changement mineur.
+* Zones impactées :
+  - `README.md`
+  - `notebooks/getting-started.ipynb`
+* Détails :
+  - Corrige lien vers la documentation
+  - Corrige lien vers Swagger
+
 ### 21.8.1 [#960](https://github.com/openfisca/openfisca-france/pull/960)
 
 * Évolution du système socio-fiscal.
