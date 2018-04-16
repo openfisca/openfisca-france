@@ -1,4 +1,4 @@
-Merci de contribuer à OpenFisca ! Effacez cette ligne ainsi que, pour chaque ligne ci-dessous, les cas ne concernant pas votre contribution  :)
+Merci de contribuer à OpenFisca ! Effacez cette ligne ainsi que, pour chaque ligne ci-dessous, les cas ne correspondant pas à votre contribution :)
 
 * Évolution du système socio-fiscal. | Amélioration technique. | Correction d'un crash. | Changement mineur.
 * Périodes concernées : toutes. | jusqu'au JJ/MM/AAAA. | à partir du JJ/MM/AAAA.
@@ -9,9 +9,23 @@ Merci de contribuer à OpenFisca ! Effacez cette ligne ainsi que, pour chaque li
 
 - - - -
 
-Ces changements _(effacez les lignes ne correspondant pas à votre cas)_ :
+Ces changements (effacez les lignes ne correspondant pas à votre cas) :
 
-- Impactent l'API publique d'OpenFisca France (par exemple renommage ou suppression de variables).
+- Modifient l'API publique d'OpenFisca France (par exemple renommage ou suppression de variables).
 - Ajoutent une fonctionnalité (par exemple ajout d'une variable).
 - Corrigent ou améliorent un calcul déjà existant.
 - Modifient des éléments non fonctionnels de ce dépôt (par exemple modification du README).
+
+- - - -
+
+Quelques conseils à prendre en compte :
+
+- [ ] Jetez un coup d'œil au [guide de contribution](CONTRIBUTING.md).
+- [ ] Regardez s'il n'y a pas une [proposition introduisant ces mêmes changements](https://github.com/openfisca/openfisca-france/pulls).
+- [ ] Documentez votre contribution avec des références législatives.
+- [ ] Mettez à jour ou ajoutez des tests correspondant à votre contribution.
+- [ ] Augmentez le [numéro de version](https://speakerdeck.com/mattisg/git-session-2-strategies?slide=81) dans [`setup.py`](setup.py).
+- [ ] Mettez à jour le [`CHANGELOG.md`](CHANGELOG.md).
+- [ ] Assurez-vous de bien décrire votre contribution, comme indiqué ci-dessus
+
+Et surtout, n'hésitez pas à demander de l'aide ! :)

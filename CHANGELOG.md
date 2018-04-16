@@ -1,5 +1,13 @@
 # Changelog
 
+### 21.8.3 [#962](https://github.com/openfisca/openfisca-france/pull/962)
+
+* Changement mineur.
+* Zones impactées : `.github/PULL_REQUEST_TEMPLATE.md`.
+* Détails :
+  - Amélioration du template de ce message-ci.
+  - Ajout d'une liste de casses à cocher avec de bonnes conseils pour rédiger une belle pull request.
+
 ### 21.8.2 [#968](https://github.com/openfisca/openfisca-france/pull/968)
 
 * Changement mineur.
