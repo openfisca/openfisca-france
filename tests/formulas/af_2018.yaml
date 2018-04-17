@@ -388,7 +388,7 @@
     - id: "enfant4"
       age: 5
   output_variables:
-    af: 231.31 / (1 - 0.005) + 47.81
+    af: 231.31 / (1 - 0.005) + 48.97
 
 - name: "Allocations familiales - Cas N°11"
   description: Montant AF
