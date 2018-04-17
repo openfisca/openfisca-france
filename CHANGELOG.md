@@ -1,5 +1,13 @@
 # Changelog
 
+### 21.8.4 [#970](https://github.com/openfisca/openfisca-france/pull/970)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2018.
+* Zones impactées : `prestations/prestations_familiales/af/modulation`
+* Détails :
+  - Revalorisation des plafonds de ressources et de la majoration du plafond par enfant dans le calcul de l'Allocation Familiale
+
 ### 21.8.3 [#962](https://github.com/openfisca/openfisca-france/pull/962)
 
 * Changement mineur.
