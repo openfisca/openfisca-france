@@ -1,3 +1,4 @@
+# Dans tous les tests, le montant de l'AF est ajusté de la CSG
 - name: "Allocations familiales - Cas N°1"
   description: Montant AF
   period: 2018-01
@@ -389,6 +390,7 @@
       age: 5
   output_variables:
     af: 231.31 / (1 - 0.005) + 48.97
+    #af de base + complement dégressif
 
 - name: "Allocations familiales - Cas N°11"
   description: Montant AF
