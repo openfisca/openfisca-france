@@ -237,6 +237,8 @@ class paje_naissance(Variable):
     def formula_2015_01_01(famille, period, parameters):
         '''
         Prestation d'accueil du jeune enfant - Allocation de naissance
+        Références législatives :git
+        https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006737121&dateTexte=&categorieLien=cid
         '''
         af_nbenf = famille('af_nbenf', period)
         base_ressources = famille('prestations_familiales_base_ressources', period)
