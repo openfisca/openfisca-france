@@ -34,6 +34,7 @@
       age: 1
   output_variables:
     paje: 184.62 / (1 - 0.005)
+    # paje base nette - crds
 
 - name: "PAJE - PAB - Cas N°2"
   description: Montant PAJE
@@ -74,6 +75,7 @@
       age: 1
   output_variables:
     paje: 184.62 / (1 - 0.005)
+    # paje base nette - crds
 
 - name: "PAJE - PAB - Cas N°3"
   description: Montant PAJE
@@ -117,6 +119,7 @@
       age: 1
   output_variables:
     paje: 184.62 / (1 - 0.005)
+    # paje base nette - crds
 
 - name: "PAJE - PAB - Cas N°4"
   description: Montant PAJE
@@ -154,6 +157,7 @@
       age: 1
   output_variables:
     paje: 92.31 / (1 - 0.005)
+    # paje base nette - crds
 
 - name: "PAJE - PAB - Cas N°5"
   description: Montant PAJE
@@ -194,6 +198,7 @@
       age: 1
   output_variables:
     paje: 92.31 / (1 - 0.005)
+    # paje base nette - crds
 
 - name: "PAJE - PAB - Cas N°6"
   description: Montant PAJE
@@ -237,6 +242,7 @@
       age: 1
   output_variables:
     paje: 92.31 / (1 - 0.005)
+    # paje base nette - crds
 
 - name: "PAJE - PAB Non Passant - Cas N°1"
   description: Montant PAJE
@@ -428,6 +434,7 @@
       date_naissance: 2018-01-01
   output_variables:
     paje: 923.08 / (1 - 0.005)
+    # prime naissance nette - crds
 
 - name: "PAJE - PPN - Cas N°2"
   description: Montant PAJE
@@ -464,6 +471,7 @@
       date_naissance: 2018-01-01
   output_variables:
     paje: 1846.16 / (1 - 0.005)
+    # prime naissance nette - crds
 
 - name: "PAJE - PPN - Cas N°3"
   description: Montant PAJE
@@ -502,6 +510,7 @@
       date_naissance: 2018-01-01
   output_variables:
     paje: 2769.24 / (1 - 0.005)
+    # prime naissance nette - crds
 
 - name: "PAJE - PPN Non Passant - Cas N°1"
   description: Montant PAJE
