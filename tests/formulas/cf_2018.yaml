@@ -35,6 +35,7 @@
       age: 7
   output_variables:
     cf: 169.03 / (1 - 0.005)
+    # cf net - crds
 
 - name: "Complement familial - Cas N°2"
   description: Montant CF
@@ -75,6 +76,7 @@
       age: 5
   output_variables:
     cf: 169.03 / (1 - 0.005)
+    # cf net - crds
 
 - name: "Complement familial - Cas N°3"
   description: Montant CF
@@ -117,6 +119,7 @@
       age: 3
   output_variables:
     cf: 169.03 / (1 - 0.005)
+    # cf net - crds
 
 - name: "Complement familial - Cas N°4"
   description: Montant CF
@@ -155,6 +158,7 @@
       age: 7
   output_variables:
     cf: 236.71 / (1 - 0.005)
+    # cf net - crds
 
 - name: "Complement familial - Cas N°5"
   description: Montant CF
@@ -195,6 +199,7 @@
       age: 5
   output_variables:
     cf: 236.71 / (1 - 0.005)
+    # cf net - crds
 
 - name: "Complement familial - Cas N°6"
   description: Montant CF
@@ -237,6 +242,7 @@
       age: 3
   output_variables:
     cf: 236.71 / (1 - 0.005)
+    # cf net - crds
 
 - name: "Complement familial - Cas Non Passant N°1"
   description: Montant CF
