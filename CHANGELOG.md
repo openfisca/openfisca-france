@@ -4,11 +4,6 @@
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 01/01/2018.
-* Zones impactées : `prestations/prestations_familiales/cf`
-* Détails :
-  - Revalorisation du plafond de ressources de base (0 enfants) et de la majoration biactif/personne isolée dans le calcul du Complément Familial
-* Évolution du système socio-fiscal.
-* Périodes concernées : à partir du 01/01/2018.
 * Zones impactées :
   - parameters\prestations\prestations_familiales\paje\base\apres_2014\taux_partiel\
   - parameters\prestations\prestations_familiales\paje\base\apres_2014\taux_plein\
