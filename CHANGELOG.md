@@ -1,5 +1,13 @@
 # Changelog
 
+### 21.8.5 [#971](https://github.com/openfisca/openfisca-france/pull/971)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2018.
+* Zones impactées : `prestations/prestations_familiales/cf`
+* Détails :
+  - Revalorisation du plafond de ressources de base (0 enfants) et de la majoration biactif/personne isolée dans le calcul du Complément Familial
+
 ### 21.8.4 [#970](https://github.com/openfisca/openfisca-france/pull/970)
 
 * Évolution du système socio-fiscal.
