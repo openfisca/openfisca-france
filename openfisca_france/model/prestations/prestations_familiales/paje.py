@@ -154,11 +154,11 @@ class paje_base(Variable):
 
         def enfant_eligible_ne_avant_avril_2014():
             enfant_eligible_avant_reforme_2014 = famille.members('paje_base_enfant_eligible_avant_reforme_2014', period)
-            return famille.any(enfant_eligible_avant_reforme_2014)
+            return enfant_eligible_avant_reforme_2014
 
         def enfant_eligible_ne_apres_avril_2014():
             enfant_eligible_apres_reforme_2014 = famille.members('paje_base_enfant_eligible_apres_reforme_2014', period)
-            return famille.any(enfant_eligible_apres_reforme_2014)
+            return enfant_eligible_apres_reforme_2014
 
         def montant_enfant_ne_avant_avril_2014():
             ressources = famille('prestations_familiales_base_ressources', period)
@@ -177,9 +177,9 @@ class paje_base(Variable):
         age_plus_jeune_enfant = min(famille.members('age', period))
         est_plus_jeune_enfant = famille.members('age', period) == age_plus_jeune_enfant
 
-        enfant_elig_avant_avril_2014 = any(enfant_eligible_ne_avant_avril_2014() * est_plus_jeune_enfant)
+        enfant_elig_avant_avril_2014 = famille.any(enfant_eligible_ne_avant_avril_2014() * est_plus_jeune_enfant)
         montant_elig_avant_avril_2014 = montant_enfant_ne_avant_avril_2014()
-        enfant_elig_apres_avril_2014 = any(enfant_eligible_ne_apres_avril_2014() * est_plus_jeune_enfant)
+        enfant_elig_apres_avril_2014 = famille.any(enfant_eligible_ne_apres_avril_2014() * est_plus_jeune_enfant)
         montant_elig_apres_avril_2014 = montant_enfant_ne_apres_avril_2014()
 
         montant = (
