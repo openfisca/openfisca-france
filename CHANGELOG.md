@@ -1,5 +1,23 @@
 # Changelog
 
+### 21.8.6 [#972](https://github.com/openfisca/openfisca-france/pull/972)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2018.
+* Zones impactées : `prestations/prestations_familiales/cf`
+* Détails :
+  - Revalorisation du plafond de ressources de base (0 enfants) et de la majoration biactif/personne isolée dans le calcul du Complément Familial
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2018.
+* Zones impactées :
+  - parameters\prestations\prestations_familiales\paje\base\apres_2014\taux_partiel\
+  - parameters\prestations\prestations_familiales\paje\base\apres_2014\taux_plein\
+  - model\prestations\prestations_familiales\paje.py
+* Détails :
+  - Revalorisation des plafonds de ressources pour la PAJE en date du 01/01/2018
+  - Prise en compte du plus jeune enfant dans le calcul de l'éligibilité à la PAJE
+  - Mise à jour de la formule de calcul de la PAJE naissance en date du 01/01/2015
+
 ### 21.8.5 [#971](https://github.com/openfisca/openfisca-france/pull/971)
 
 * Évolution du système socio-fiscal.
