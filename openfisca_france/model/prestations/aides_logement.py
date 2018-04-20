@@ -120,7 +120,14 @@ class aide_logement_base_ressources_patrimoine(Variable):
 
         patrimoine = epargne_revenus_imposables + capitaux_non_productifs + foncier
 
-        return (patrimoine > 30000) * (
+        statut_logement = famille.demandeur.menage("statut_occupation_logement", period)
+        est_locataire_foyer = statut_logement == TypesStatutOccupationLogement.locataire_foyer
+        membres_famille_percoit_aah = famille.members('aah', period) > 0
+        famille_percoit_aah = famille.any(membres_famille_percoit_aah)
+        famille_percoit_aeeh = famille('aeeh', period) > 0
+
+        return not_(est_locataire_foyer) * not_(famille_percoit_aah) * not_(famille_percoit_aeeh) *\
+            (patrimoine > 30000) * (
             + capitaux_non_productifs * abattements.taux_interet_forfaitaire_epargne_non_imposable
             + valeur_locative_immo_non_loue * abattements.abattement_valeur_locative_immo_non_loue
             + valeur_locative_terrains_non_loues * abattements.abattement_valeur_locative_terrains_non_loues
