@@ -433,8 +433,8 @@
     - id: "enfant1"
       date_naissance: 2018-01-01
   output_variables:
-    paje: 923.08 / (1 - 0.005)
-    # prime naissance nette - crds
+    paje: 923.08 / (1 - 0.005) + 92.31 / (1 - 0.005)
+    # (prime naissance nette - crds) + (paje base nette - crds)
 
 - name: "PAJE - PPN - Cas N°2"
   description: Montant PAJE
@@ -470,8 +470,8 @@
     - id: "enfant2"
       date_naissance: 2018-01-01
   output_variables:
-    paje: 1846.16 / (1 - 0.005)
-    # prime naissance nette - crds
+    paje: 1846.16 / (1 - 0.005) + 92.31 / (1 - 0.005)
+    # (prime naissance nette - crds) + (paje base nette - crds)
 
 - name: "PAJE - PPN - Cas N°3"
   description: Montant PAJE
@@ -509,8 +509,8 @@
     - id: "enfant3"
       date_naissance: 2018-01-01
   output_variables:
-    paje: 2769.24 / (1 - 0.005)
-    # prime naissance nette - crds
+    paje: 2769.24 / (1 - 0.005) + 92.31 / (1 - 0.005)
+    # (prime naissance nette - crds) + (paje base nette - crds)
 
 - name: "PAJE - PPN Non Passant - Cas N°1"
   description: Montant PAJE
