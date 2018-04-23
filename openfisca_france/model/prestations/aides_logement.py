@@ -121,7 +121,7 @@ class aide_logement_base_ressources_patrimoine(Variable):
         patrimoine = epargne_revenus_imposables + capitaux_non_productifs + foncier
 
         statut_logement = famille.demandeur.menage("statut_occupation_logement", period)
-        est_locataire_foyer = statut_logement == TypesStatutOccupationLogement.locataire_foyer
+        est_locataire_foyer = (statut_logement == TypesStatutOccupationLogement.locataire_foyer)
         membres_famille_percoit_aah = famille.members('aah', period) > 0
         famille_percoit_aah = famille.any(membres_famille_percoit_aah)
         famille_percoit_aeeh = famille('aeeh', period) > 0
