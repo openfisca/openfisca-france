@@ -248,7 +248,7 @@ class paje_naissance(Variable):
 
         date_gel_paje = Instant((2013, 04, 01))  # Le montant de la PAJE est gelé depuis avril 2013.
         bmaf = P.af.bmaf if period.start < date_gel_paje else parameters(date_gel_paje).prestations.prestations_familiales.af.bmaf
-        nais_prime = round(100 * P.paje.prime_naissance.prime_tx * bmaf) / 100
+        prime_naissance = round(100 * P.paje.prime_naissance.prime_tx * bmaf) / 100
 
         date_naissance_i = famille.members('date_naissance', period)
 
@@ -259,12 +259,12 @@ class paje_naissance(Variable):
         nbenf = af_nbenf + nb_enfants_eligible  # On ajoute l'enfant à  naître;
 
         # Est-ce que ces taux n'ont pas été mis à jour en avril 2014 ?
-        plaf_tx = (nbenf > 0) + P.paje.base.avant_2014.taux_majoration_2_premiers_enf * min_(nbenf, 2) + P.paje.base.avant_2014.taux_majoration_3eme_enf_et_plus * max_(nbenf - 2, 0)
-        majo = isole | biactivite
-        plaf = P.paje.base.avant_2014.plafond_ressources_0_enf * plaf_tx + (plaf_tx > 0) * P.paje.base.avant_2014.majoration_biact_parent_isoles * majo
-        elig = (base_ressources <= plaf)
+        taux_plafond = (nbenf > 0) + P.paje.base.avant_2014.taux_majoration_2_premiers_enf * min_(nbenf, 2) + P.paje.base.avant_2014.taux_majoration_3eme_enf_et_plus * max_(nbenf - 2, 0)
+        majoration_isole_biactif = isole | biactivite
+        plafond_de_ressources = P.paje.base.avant_2014.plafond_ressources_0_enf * taux_plafond + (taux_plafond > 0) * P.paje.base.avant_2014.majoration_biact_parent_isoles * majoration_isole_biactif
+        eligible_prime_naissance = (base_ressources <= plafond_de_ressources)
 
-        return nais_prime * elig * nb_enfants_eligible
+        return prime_naissance * eligible_prime_naissance * nb_enfants_eligible
 
     def formula_2004_01_01(famille, period, parameters):
         '''
