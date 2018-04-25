@@ -16,3 +16,6 @@ values:
     value: 1872.83
   2013-01-01:
     value: 1910.29
+  2018-01-01:
+    value: 1958.47
+    reference: https://www.legifrance.gouv.fr/eli/arrete/2017/12/29/TERL1732837A/jo/texte

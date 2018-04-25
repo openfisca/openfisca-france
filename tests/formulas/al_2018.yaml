@@ -1,0 +1,208 @@
+- name: "Aides Logement - Cas N°1"
+  description: Montant AL
+  period: 2018-04
+  absolute_error_margin: 0.02
+  familles:
+    parents: ["etudiant1"]
+    proprietaire_proche_famille: false
+  foyers_fiscaux:
+    declarants: ["etudiant1"]
+  menages:
+    personne_de_reference: "etudiant1"
+    loyer: 450
+    statut_occupation_logement:
+        2018-04: locataire_vide
+    coloc: false
+    logement_chambre: false
+    depcom: 81000
+  individus:
+    - id: "etudiant1"
+      date_naissance: 1995-06-15
+      activite: etudiant
+      boursier: false
+      revenu_assimile_salaire:
+        2016: 0
+        2017: 0
+        2018: 0
+  output_variables:
+    aide_logement: 156.78 / (1 - 0.005)
+    # al
+
+- name: "Aides Logement - Cas N°2"
+  description: Montant AL
+  period: 2018-04
+  absolute_error_margin: 0.02
+  familles:
+    parents: ["etudiant1"]
+    proprietaire_proche_famille: false
+  foyers_fiscaux:
+    declarants: ["etudiant1"]
+  menages:
+    personne_de_reference: "etudiant1"
+    loyer: 450
+    statut_occupation_logement:
+        2018-04: locataire_hlm
+    coloc: false
+    logement_chambre: false
+    depcom: 81000
+  individus:
+    - id: "etudiant1"
+      date_naissance: 1995-06-15
+      activite: etudiant
+      boursier: true
+      revenu_assimile_salaire:
+        2016: 1500
+        2017: 1500
+        2018: 1500
+  output_variables:
+    aide_logement: 203.02 / (1 - 0.005)
+    # al
+
+- name: "Aides Logement - Cas N°3"
+  description: Montant AL
+  period: 2018-04
+  absolute_error_margin: 0.02
+  familles:
+    parents: ["etudiant1"]
+    proprietaire_proche_famille: false
+  foyers_fiscaux:
+    declarants: ["etudiant1"]
+  menages:
+    personne_de_reference: "etudiant1"
+    loyer: 400
+    statut_occupation_logement:
+        2018-04: locataire_foyer
+    coloc: false
+    logement_chambre: true
+    depcom: 81000
+  individus:
+    - id: "etudiant1"
+      date_naissance: 1995-06-15
+      activite: etudiant
+      boursier: false
+      revenu_assimile_salaire:
+        2016: 0
+        2017: 0
+        2018: 0
+  output_variables:
+    aide_logement: 85.43 / (1 - 0.005)
+    # al
+
+- name: "Aides Logement - Cas N°4"
+  description: Montant AL
+  period: 2018-04
+  absolute_error_margin: 0.02
+  familles:
+    parents: ["etudiant1", "etudiant2"]
+    proprietaire_proche_famille: false
+  foyers_fiscaux:
+    declarants: ["etudiant1", "etudiant2"]
+  menages:
+    personne_de_reference: "etudiant1"
+    conjoint: "etudiant2"
+    loyer: 550
+    statut_occupation_logement:
+        2018-04: locataire_vide
+    coloc: false
+    logement_chambre: false
+    depcom: 66000
+  individus:
+    - id: "etudiant1"
+      date_naissance: 1995-06-15
+      activite: etudiant
+      boursier: false
+      revenu_assimile_salaire:
+        2016: 800
+        2017: 800
+        2018: 800
+    - id: "etudiant2"
+      date_naissance: 1996-04-30
+      activite: etudiant
+      revenu_assimile_salaire:
+        2016: 0
+        2017: 0
+        2018: 0
+  output_variables:
+    aide_logement: 287.44 / (1 - 0.005)
+    # al
+
+- name: "Aides Logement - Cas N°5"
+  description: Montant AL
+  period: 2018-04
+  absolute_error_margin: 0.02
+  familles:
+    parents: ["salarie1"]
+    proprietaire_proche_famille: false
+  foyers_fiscaux:
+    declarants: ["salarie1"]
+  menages:
+    personne_de_reference: "salarie1"
+    loyer: 450
+    statut_occupation_logement:
+        2018-04: locataire_vide
+    coloc: false
+    logement_chambre: false
+    depcom: 78000
+  individus:
+    - id: "salarie1"
+      date_naissance: 1994-03-15
+      activite: actif
+      boursier: false
+      revenu_assimile_salaire:
+        2016: 12500
+        2017: 12500
+        2018: 12500
+  output_variables:
+    aide_logement: 90.45 / (1 - 0.005)
+    # al
+
+- name: "Aides Logement - Cas N°6"
+  description: Montant AL
+  period: 2018-04
+  absolute_error_margin: 0.02
+  familles:
+    - parents: ["parent1", "parent2"]
+      enfants: ["enfant1", "enfant2"]
+      proprietaire_proche_famille: false
+  foyers_fiscaux:
+    declarants: ["parent1", "parent2"]
+    personnes_a_charge: ["enfant1", "enfant2"]
+  menages:
+    personne_de_reference: "parent1"
+    conjoint: "parent2"
+    enfants: ["enfant1", "enfant2"]
+    autres: ["ascendant1"]
+    loyer: 1200
+    statut_occupation_logement:
+        2018-04: locataire_vide
+    coloc: false
+    logement_chambre: false
+    depcom: 13000
+  individus:
+    - id: "parent1"
+      date_naissance: 1970-02-02
+      activite: actif
+      revenu_assimile_salaire:
+        2016: 30000
+        2017: 30000
+        2018: 30000
+    - id: "parent2"
+      date_naissance: 1972-07-06
+      revenu_assimile_salaire:
+        2016: 0
+        2017: 0
+        2018: 0
+    - id: "ascendant1"
+      date_naissance: 1947-06-26
+      activite: retraite
+      retraite_nette:
+        2016: 10200
+        2017: 10200
+        2018: 10200
+    - id: "enfant1"
+      date_naissance: 2005-01-19
+    - id: "enfant2"
+      date_naissance: 2007-12-03
+  output_variables:
+    aide_logement: 48.24 / (1 - 0.005)
+    # al
