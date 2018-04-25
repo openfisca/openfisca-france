@@ -154,11 +154,11 @@ class paje_base(Variable):
 
         def enfant_eligible_ne_avant_avril_2014():
             enfant_eligible_avant_reforme_2014 = famille.members('paje_base_enfant_eligible_avant_reforme_2014', period)
-            return famille.any(enfant_eligible_avant_reforme_2014)
+            return enfant_eligible_avant_reforme_2014
 
         def enfant_eligible_ne_apres_avril_2014():
             enfant_eligible_apres_reforme_2014 = famille.members('paje_base_enfant_eligible_apres_reforme_2014', period)
-            return famille.any(enfant_eligible_apres_reforme_2014)
+            return enfant_eligible_apres_reforme_2014
 
         def montant_enfant_ne_avant_avril_2014():
             ressources = famille('prestations_familiales_base_ressources', period)
@@ -174,9 +174,17 @@ class paje_base(Variable):
                 )
             return montant
 
+        age_plus_jeune_enfant = min(famille.members('age', period))
+        est_plus_jeune_enfant = famille.members('age', period) == age_plus_jeune_enfant
+
+        enfant_elig_avant_avril_2014 = famille.any(enfant_eligible_ne_avant_avril_2014() * est_plus_jeune_enfant)
+        montant_elig_avant_avril_2014 = montant_enfant_ne_avant_avril_2014()
+        enfant_elig_apres_avril_2014 = famille.any(enfant_eligible_ne_apres_avril_2014() * est_plus_jeune_enfant)
+        montant_elig_apres_avril_2014 = montant_enfant_ne_apres_avril_2014()
+
         montant = (
-            enfant_eligible_ne_avant_avril_2014() * montant_enfant_ne_avant_avril_2014() +
-            not_(enfant_eligible_ne_avant_avril_2014()) * enfant_eligible_ne_apres_avril_2014() * montant_enfant_ne_apres_avril_2014()
+            enfant_elig_avant_avril_2014 * montant_elig_avant_avril_2014 +
+            not_(enfant_elig_avant_avril_2014) * enfant_elig_apres_avril_2014 * montant_elig_apres_avril_2014
             )
 
         return montant
@@ -225,6 +233,38 @@ class paje_naissance(Variable):
     label = u"Allocation de naissance de la PAJE"
     reference = "http://vosdroits.service-public.fr/particuliers/F2550.xhtml"
     definition_period = MONTH
+
+    def formula_2015_01_01(famille, period, parameters):
+        '''
+        Prestation d'accueil du jeune enfant - Allocation de naissance
+        Références législatives :git
+        https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006737121&dateTexte=&categorieLien=cid
+        '''
+        af_nbenf = famille('af_nbenf', period)
+        base_ressources = famille('prestations_familiales_base_ressources', period)
+        isole = not_(famille('en_couple', period))
+        biactivite = famille('biactivite', period)
+        P = parameters(period).prestations.prestations_familiales
+
+        date_gel_paje = Instant((2013, 04, 01))  # Le montant de la PAJE est gelé depuis avril 2013.
+        bmaf = P.af.bmaf if period.start < date_gel_paje else parameters(date_gel_paje).prestations.prestations_familiales.af.bmaf
+        prime_naissance = round(100 * P.paje.prime_naissance.prime_tx * bmaf) / 100
+
+        date_naissance_i = famille.members('date_naissance', period)
+
+        # Versée au 2 mois après la grossesse donc les enfants concernés sont les enfants qui ont 2 mois
+        diff_mois_naissance_periode = (date_naissance_i.astype('datetime64[M]') - datetime64(period.start, 'M'))
+        nb_enfants_eligible = famille.sum(diff_mois_naissance_periode.astype('int') == -2, role = Famille.ENFANT)
+
+        nbenf = af_nbenf + nb_enfants_eligible  # On ajoute l'enfant à  naître;
+
+        # Est-ce que ces taux n'ont pas été mis à jour en avril 2014 ?
+        taux_plafond = (nbenf > 0) + P.paje.base.avant_2014.taux_majoration_2_premiers_enf * min_(nbenf, 2) + P.paje.base.avant_2014.taux_majoration_3eme_enf_et_plus * max_(nbenf - 2, 0)
+        majoration_isole_biactif = isole | biactivite
+        plafond_de_ressources = P.paje.base.avant_2014.plafond_ressources_0_enf * taux_plafond + (taux_plafond > 0) * P.paje.base.avant_2014.majoration_biact_parent_isoles * majoration_isole_biactif
+        eligible_prime_naissance = (base_ressources <= plafond_de_ressources)
+
+        return prime_naissance * eligible_prime_naissance * nb_enfants_eligible
 
     def formula_2004_01_01(famille, period, parameters):
         '''
