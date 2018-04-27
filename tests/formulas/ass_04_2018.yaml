@@ -102,30 +102,6 @@
   output_variables:
     ass: 312.80
 
-- name: "Allocation de solidarité spécifique - Cas N°6"
-  description: Montant ASS pour personne seule avec ressources mensuelles égale à 1500
-  period: 2018-04
-  absolute_error_margin: 0.02
-  familles:
-    parents: ["parent1", "parent2"]
-    ass_base_ressources: 1500 * 12
-    # resources mensuelles * 12
-  foyers_fiscaux:
-    declarants: ["parent1", "parent2"]
-  menages:
-    personne_de_reference: "parent1"
-    conjoint: "parent2"
-  individus:
-    - id: "parent1"
-      ass_precondition_remplie: true
-      activite: "chomeur"
-      chomage_net: 0
-      aah: 0
-    - id: "parent2"
-  output_variables:
-    ass: 312.80
-    # TODO
-
 - name: "Allocation de solidarité spécifique - Cas Non Passant N°1"
   description: Montant ASS pour personne seule avec ressources mensuelles superieure à 1153.60
   period: 2018-04
