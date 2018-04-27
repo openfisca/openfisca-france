@@ -126,8 +126,10 @@ class aide_logement_base_ressources_patrimoine(Variable):
         famille_percoit_aah = famille.any(membres_famille_percoit_aah)
         famille_percoit_aeeh = famille('aeeh', period) > 0
 
+        seuil_valorisation = parameters(period).prestations.aides_logement.patrimoine.seuil_valorisation
+
         return not_(est_locataire_foyer) * not_(famille_percoit_aah) * not_(famille_percoit_aeeh) * (
-                (patrimoine > 30000) * (
+                (patrimoine > seuil_valorisation) * (
                     + capitaux_non_productifs * abattements.taux_interet_forfaitaire_epargne_non_imposable
                     + valeur_locative_immo_non_loue * abattements.abattement_valeur_locative_immo_non_loue
                     + valeur_locative_terrains_non_loues * abattements.abattement_valeur_locative_terrains_non_loues
