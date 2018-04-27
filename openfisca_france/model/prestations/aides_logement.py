@@ -92,6 +92,12 @@ class aide_logement_base_ressources_patrimoine(Variable):
     definition_period = MONTH
 
     def formula_2016_10_01(famille, period, parameters):
+        '''
+        Exclusion des titulaires de l'AAH, AEEH et des personnes résidant en EHPAD :
+        'Les personnes titulaires de l’AAH ainsi que les personnes âgées dépendantes en EHPAD
+        ne sont pas concernées par la mesure.'
+        Lien: http://www.cohesion-territoires.gouv.fr/IMG/pdf/160923_edl_apl_detailles_patrimoine.pdf
+        '''
         livret_a_i = famille.members('livret_a', period)
         livret_a = famille.sum(livret_a_i)
         taux_livret_a = parameters(period).epargne.livret_a.taux
