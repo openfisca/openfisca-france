@@ -90,7 +90,7 @@ def compute_cotisation(individu, period, parameters, cotisation_type = None, bar
 
     assiette_cotisations_sociales = individu('assiette_cotisations_sociales', period, options = [ADD])
     plafond_securite_sociale = individu('plafond_securite_sociale', period, options = [ADD])
-    categorie_salarie = individu('categorie_salarie', period, options = [ADD])
+    categorie_salarie = individu('categorie_salarie', period.first_month)
 
     cotisation = apply_bareme_for_relevant_type_sal(
         bareme_by_type_sal_name = bareme_by_type_sal_name,

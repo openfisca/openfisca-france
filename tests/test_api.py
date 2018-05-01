@@ -9,7 +9,7 @@ from nose.tools import assert_equal
 class TestOldApi(TestCase):
 
     def setUp(self):
-        self.process = subprocess.Popen("openfisca-serve")
+        self.process = subprocess.Popen(['openfisca-serve', '--country-package', 'openfisca_france'])
 
     def tearDown(self):
         self.process.terminate()
@@ -24,7 +24,7 @@ class TestOldApi(TestCase):
 class TestNewApi(TestCase):
 
     def setUp(self):
-        self.process = subprocess.Popen(['openfisca', 'serve'])
+        self.process = subprocess.Popen(['openfisca', 'serve', '--country-package', 'openfisca_france'])
 
     def tearDown(self):
         self.process.terminate()

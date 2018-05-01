@@ -15,9 +15,7 @@ from ..model.base import *
 def calculate_net_from(salaire_de_base, individu, period, requested_variable_names):
 
     # We're not wanting to calculate salaire_de_base again, but instead manually set it as an input variable
-    # To avoid possible conflicts, remove its function
-    individu.get_holder('salaire_de_base').formula.function = None
-    individu.get_holder('salaire_de_base').array = salaire_de_base
+    individu.get_holder('salaire_de_base').put_in_cache(salaire_de_base, period)
 
     # Work in isolation
     temp_simulation = individu.simulation.clone()
