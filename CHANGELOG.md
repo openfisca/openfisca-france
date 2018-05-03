@@ -1,5 +1,14 @@
 # Changelog
 
+### 21.9.1 [#975](https://github.com/openfisca/openfisca-france/pull/975)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/10/2016.
+* Zones impactées :
+  - `prestations/aides_logement`
+* Détails :
+  - Ajoute l'exclusion des cas particuliers dans le calcul des ressources prises en compte pour l'aide logement (AAH, AEEH, logement foyer)
+
 ## 21.9.0 [#969](https://github.com/openfisca/openfisca-france/pull/969)
 
 * Amélioration technique

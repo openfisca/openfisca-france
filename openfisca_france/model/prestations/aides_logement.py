@@ -92,6 +92,12 @@ class aide_logement_base_ressources_patrimoine(Variable):
     definition_period = MONTH
 
     def formula_2016_10_01(famille, period, parameters):
+        '''
+        Exclusion des titulaires de l'AAH, AEEH et des personnes résidant en EHPAD :
+        'Les personnes titulaires de l’AAH ainsi que les personnes âgées dépendantes en EHPAD
+        ne sont pas concernées par la mesure.'
+        Lien: http://www.cohesion-territoires.gouv.fr/IMG/pdf/160923_edl_apl_detailles_patrimoine.pdf
+        '''
         livret_a_i = famille.members('livret_a', period)
         livret_a = famille.sum(livret_a_i)
         taux_livret_a = parameters(period).epargne.livret_a.taux
@@ -120,10 +126,20 @@ class aide_logement_base_ressources_patrimoine(Variable):
 
         patrimoine = epargne_revenus_imposables + capitaux_non_productifs + foncier
 
-        return (patrimoine > 30000) * (
-            + capitaux_non_productifs * abattements.taux_interet_forfaitaire_epargne_non_imposable
-            + valeur_locative_immo_non_loue * abattements.abattement_valeur_locative_immo_non_loue
-            + valeur_locative_terrains_non_loues * abattements.abattement_valeur_locative_terrains_non_loues
+        statut_logement = famille.demandeur.menage("statut_occupation_logement", period)
+        est_locataire_foyer = (statut_logement == TypesStatutOccupationLogement.locataire_foyer)
+        membres_famille_percoit_aah = famille.members('aah', period) > 0
+        famille_percoit_aah = famille.any(membres_famille_percoit_aah)
+        famille_percoit_aeeh = famille('aeeh', period) > 0
+
+        seuil_valorisation = parameters(period).prestations.aides_logement.patrimoine.seuil_valorisation
+
+        return not_(est_locataire_foyer) * not_(famille_percoit_aah) * not_(famille_percoit_aeeh) * (
+                (patrimoine > seuil_valorisation) * (
+                    + capitaux_non_productifs * abattements.taux_interet_forfaitaire_epargne_non_imposable
+                    + valeur_locative_immo_non_loue * abattements.abattement_valeur_locative_immo_non_loue
+                    + valeur_locative_terrains_non_loues * abattements.abattement_valeur_locative_terrains_non_loues
+                )
             )
 
 
