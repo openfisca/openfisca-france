@@ -1,0 +1,39 @@
+description: Montant de la bourse d'enseignement supérieur sur critères sociaux, boursier échelon 0 (taux annuel sur 10 mois)
+reference: "https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000035329665" 
+#unit: currency
+non_boursier:
+  values:
+    2017-01-09:
+      value: 0
+echelon_0:
+    2017-01-09:
+      value: 1009
+echelon_1:
+  values:
+    2017-01-09:
+      value: 1669
+echelon_2:
+  values:
+      2017-01-09:
+        value: 2513
+echelon_3:
+  values:
+      2017-01-09:
+        value: 3218
+echelon_4:
+  values:
+      2017-01-09:
+        value: 3924
+echelon_5:
+  values:
+      2017-01-09:
+        value: 4505
+echelon_6:
+  values:
+      2017-01-09:
+        value: 4778
+echelon_7:
+  values:
+      2017-01-09:
+        value: 5551
+
