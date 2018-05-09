@@ -220,21 +220,21 @@ class asi(Variable):
     value_type = float
     label = u"Allocation supplémentaire d'invalidité"
     reference = u"http://vosdroits.service-public.fr/particuliers/F16940.xhtml"
-    entity = Famille
+    entity = Individu
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
-    def formula_2007(famille, period, parameters):
-        maries = famille('maries', period)
-        en_couple = famille('en_couple', period)
-        asi_aspa_nb_alloc = famille('asi_aspa_nb_alloc', period)
-        base_ressources = famille('asi_aspa_base_ressources', period)
+    def formula_2007(individu, period, parameters):
+        maries = individu.famille('maries', period)
+        en_couple = individu.famille('en_couple', period)
+        asi_aspa_nb_alloc = individu.famille('asi_aspa_nb_alloc', period)
+        base_ressources = individu.famille('asi_aspa_base_ressources', period)
         P = parameters(period).prestations.minima_sociaux
 
-        demandeur_eligible_asi = famille.demandeur('asi_eligibilite', period)
-        demandeur_eligible_aspa = famille.demandeur('aspa_eligibilite', period)
-        conjoint_eligible_asi = famille.conjoint('asi_eligibilite', period)
-        conjoint_eligible_aspa = famille.conjoint('aspa_eligibilite', period)
+        demandeur_eligible_asi = individu.famille.demandeur('asi_eligibilite', period)
+        demandeur_eligible_aspa = individu.famille.demandeur('aspa_eligibilite', period)
+        conjoint_eligible_asi = individu.famille.conjoint('asi_eligibilite', period)
+        conjoint_eligible_aspa = individu.famille.conjoint('aspa_eligibilite', period)
 
         # Un seul éligible
         elig1 = ((asi_aspa_nb_alloc == 1) & (demandeur_eligible_asi | conjoint_eligible_asi))
@@ -271,11 +271,10 @@ class asi(Variable):
 
         # Montant mensuel servi (sous réserve d'éligibilité)
         montant_servi_asi = max_(diff, 0)
-
-        # TODO: Faute de mieux, on verse l'asi à la famille plutôt qu'aux individus
-        # asi[CHEF] = demandeur_eligible_asi*montant_servi_asi*(elig1*1 + elig2/2 + elig3/2)
-        # asi[PART] = conjoint_eligible_asi*montant_servi_asi*(elig1*1 + elig2/2 + elig3/2)
-        return elig * montant_servi_asi
+        return montant_servi_asi * (
+            + individu.has_role(Famille.DEMANDEUR) * demandeur_eligible_asi * (elig1 + elig2 / 2 + elig3 / 2)
+            + individu.has_role(Famille.CONJOINT) * conjoint_eligible_asi * (elig1 + elig2 / 2 + elig3 / 2)
+            )
 
 
 class aspa_couple(Variable):
