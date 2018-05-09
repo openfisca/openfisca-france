@@ -29,7 +29,7 @@ class exonere_taxe_habitation(Variable):
         statut_marital = menage.personne_de_reference('statut_marital', janvier)
 
         aah_i = menage.members('aah', period, options = [ADD])
-        asi_i = menage.members.famille('asi', period, options = [ADD])
+        asi_i = menage.members('asi', period, options = [ADD])
         aspa_i = menage.members.famille('aspa', period, options = [ADD])
         aah = menage.sum(aah_i)
         asi = menage.sum(asi_i)

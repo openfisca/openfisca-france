@@ -338,7 +338,7 @@ class minimum_vieillesse(Variable):
     definition_period = YEAR
 
     def formula(famille, period):
-        return famille('asi', period, options = [ADD]) + famille('aspa', period, options = [ADD])
+        return famille.sum(famille.members('asi', period, options = [ADD])) + famille('aspa', period, options = [ADD])
 
 
 class minima_sociaux(Variable):
