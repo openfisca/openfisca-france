@@ -190,7 +190,6 @@ class ppa_ressources_hors_activite(Variable):
             'ppa_ressources_hors_activite_individu', period, extra_params = [mois_demande])
         ressources = [
             'ass',
-            'asi',
             'aspa'
             ]
 
@@ -211,6 +210,7 @@ class ppa_ressources_hors_activite_individu(Variable):
         smic_horaire = P.cotsoc.gen.smic_h_b
 
         ressources = [
+            'asi',
             'chomage_net',
             'retraite_nette',
             'retraite_combattant',
