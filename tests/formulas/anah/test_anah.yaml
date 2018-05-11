@@ -16,7 +16,6 @@
   period: 2017
   individus:
     - id: "moi"
-  menages:
   foyers_fiscaux:
     - declarants: ["moi"]
       rfr:
@@ -31,7 +30,6 @@
   period: 2017
   individus:
     - id: "moi"
-  menages:
   foyers_fiscaux:
     - declarants: ["moi"]
       rfr:

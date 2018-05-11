@@ -80,8 +80,6 @@ output_variables:
   forfait_social: 0
   tehr: {'2014': 0}
   assiette_cotisations_sociales: 35 * 52 * 9.61 * .49 / 12
-
-  cotisations_employeur: -284.96 - 10.71 -.11
   cotisations_employeur: -2.14 -8.57 -33.21 -28.57 -12.86 -60.71 -10.71 -37.49 -91.42 -2.14 -3.93 -.71 -.11
   exoneration_cotisations_employeur_apprenti: 281.86
 
