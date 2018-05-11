@@ -37,6 +37,15 @@ jobs:
             yamllint `circleci tests glob "**/*.{yaml,yml}" | circleci tests split`
 
       - run:
+          name: Run YAML formatter and check for changes
+          command: |
+            mkdir -p /tmp/artifacts
+            .circleci/are-yaml-files-properly-formatted.sh `circleci tests glob tests/**/*.{yaml,yml} | circleci tests split` 2> /tmp/artifacts/yaml.diff
+
+      - store_artifacts:
+          path: /tmp/artifacts
+
+      - run:
           name: Run tests
           command: |
             nosetests `circleci tests glob "tests/**/*.py" | circleci tests split`
@@ -113,6 +122,15 @@ jobs:
           name: Lint YAML files
           command: |
             yamllint `circleci tests glob "**/*.{yaml,yml}" | circleci tests split`
+
+      - run:
+          name: Run YAML formatter and check for changes
+          command: |
+            mkdir -p /tmp/artifacts
+            .circleci/are-yaml-files-properly-formatted.sh `circleci tests glob tests/**/*.{yaml,yml} | circleci tests split` 2> /tmp/artifacts/yaml.diff
+
+      - store_artifacts:
+          path: /tmp/artifacts
 
       - run:
           name: Run tests

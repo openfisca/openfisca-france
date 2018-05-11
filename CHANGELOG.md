@@ -1,5 +1,11 @@
 # Changelog
 
+### 24.1.2 [#991](https://github.com/openfisca/openfisca-france/pull/991)
+
+* Amélioration technique.
+* Détails :
+  - Normalisation des fichiers de test en YAML
+
 ### 24.1.1 [#1085](https://github.com/openfisca/openfisca-france/pull/1085)
 
 * Changement mineur.
