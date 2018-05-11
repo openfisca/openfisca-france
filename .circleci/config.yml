@@ -24,6 +24,7 @@ jobs:
           command: |
             pip install --upgrade pip twine wheel
             pip install --editable .[test] --upgrade
+            pip install ruamel.yaml
           #  pip install --editable git+https://github.com/openfisca/openfisca-core.git@BRANCH_NAME#egg=OpenFisca-Core  # use a specific branch of OpenFisca-Core
 
       - save_cache:
@@ -35,6 +36,11 @@ jobs:
           name: Lint YAML files
           command: |
             yamllint `circleci tests glob "**/*.{yaml,yml}" | circleci tests split`
+
+      - run:
+          name: Run YAML formatter and check for changes
+          command: |
+            .circleci/are-yaml-files-properly-formatted.sh `circleci tests glob **/*.yaml`
 
       - run:
           name: Run tests
@@ -102,6 +108,7 @@ jobs:
           command: |
             pip install --upgrade pip twine wheel
             pip install --editable .[test] --upgrade
+            pip install ruamel.yaml
           #  pip install --editable git+https://github.com/openfisca/openfisca-core.git@BRANCH_NAME#egg=OpenFisca-Core  # use a specific branch of OpenFisca-Core
 
       - save_cache:
@@ -113,6 +120,11 @@ jobs:
           name: Lint YAML files
           command: |
             yamllint `circleci tests glob "**/*.{yaml,yml}" | circleci tests split`
+
+      - run:
+          name: Run YAML formatter and check for changes
+          command: |
+            .circleci/are-yaml-files-properly-formatted.sh `circleci tests glob **/*.yaml`
 
       - run:
           name: Run tests

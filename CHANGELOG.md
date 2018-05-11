@@ -1,5 +1,12 @@
 # Changelog
 
+### 22.3.1 [#991](https://github.com/openfisca/openfisca-france/pull/991)
+
+* Amélioration technique.
+* Zones impactées : `**/*.yaml`.
+* Détails :
+  - Normalisation des fichiers YAML
+
 ### 22.3.0 [#998](https://github.com/openfisca/openfisca-france/pull/998)
 
 * Évolution du système socio-fiscal.
