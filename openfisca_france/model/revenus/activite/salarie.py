@@ -28,13 +28,12 @@ class bourse_recherche(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
-
 class sal_pen_exo_etr(Variable):
     cerfa_field = {
-        QUIFOY['vous']: u"1AC",
-        QUIFOY['conj']: u"1BC",
-        QUIFOY['pac1']: u"1CC",
-        QUIFOY['pac2']: u"1DC",
+        0: u"1AC",
+        1: u"1BC",
+        2: u"1CC",
+        3: u"1DC",
         }
     value_type = int
     unit = 'currency'
@@ -45,11 +44,11 @@ class sal_pen_exo_etr(Variable):
 
 
 class frais_reels(Variable):
-    cerfa_field = {QUIFOY['vous']: u"1AK",
-        QUIFOY['conj']: u"1BK",
-        QUIFOY['pac1']: u"1CK",
-        QUIFOY['pac2']: u"1DK",
-        QUIFOY['pac3']: u"1EK",
+    cerfa_field = {0: u"1AK",
+        1: u"1BK",
+        2: u"1CK",
+        3: u"1DK",
+        4: u"1EK",
         }
     value_type = int
     unit = 'currency'
@@ -60,10 +59,10 @@ class frais_reels(Variable):
 
 class hsup(Variable):
     cerfa_field = {
-        QUIFOY['vous']: u"1AU",
-        QUIFOY['conj']: u"1BU",
-        QUIFOY['pac1']: u"1CU",
-        QUIFOY['pac2']: u"1DU",
+        0: u"1AU",
+        1: u"1BU",
+        2: u"1CU",
+        3: u"1DU",
         }
     value_type = int
     unit = 'currency'
@@ -77,11 +76,11 @@ class hsup(Variable):
 
 
 class ppe_du_sa(Variable):
-    cerfa_field = {QUIFOY['vous']: u"1AV",
-        QUIFOY['conj']: u"1BV",
-        QUIFOY['pac1']: u"1CV",
-        QUIFOY['pac2']: u"1DV",
-        QUIFOY['pac3']: u"1QV",
+    cerfa_field = {0: u"1AV",
+        1: u"1BV",
+        2: u"1CV",
+        3: u"1DV",
+        4: u"1QV",
         }
     value_type = int
     entity = Individu
@@ -105,11 +104,11 @@ class ppe_du_sa(Variable):
 
 class ppe_tp_sa(Variable):
     cerfa_field = {
-        QUIFOY['vous']: u"1AX",
-        QUIFOY['conj']: u"1BX",
-        QUIFOY['pac1']: u"1CX",
-        QUIFOY['pac2']: u"1DX",
-        QUIFOY['pac3']: u"1QX",
+        0: u"1AX",
+        1: u"1BX",
+        2: u"1CX",
+        3: u"1DX",
+        4: u"1QX",
         }
     value_type = bool
     entity = Individu

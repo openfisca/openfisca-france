@@ -4,11 +4,11 @@ from openfisca_france.model.base import *  # noqa analysis:ignore
 
 
 class chomeur_longue_duree(Variable):
-    cerfa_field = {QUIFOY['vous']: u"1AI",
-        QUIFOY['conj']: u"1BI",
-        QUIFOY['pac1']: u"1CI",
-        QUIFOY['pac2']: u"1DI",
-        QUIFOY['pac3']: u"1EI",
+    cerfa_field = {0: u"1AI",
+        1: u"1BI",
+        2: u"1CI",
+        3: u"1DI",
+        4: u"1EI",
         }
     value_type = bool
     entity = Individu

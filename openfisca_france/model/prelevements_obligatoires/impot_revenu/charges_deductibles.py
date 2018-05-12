@@ -109,9 +109,9 @@ class f6dd(Variable):
 
 # Épargne retraite - PERP, PRÉFON, COREM et CGOS
 class f6ps(Variable):
-    cerfa_field = {QUIFOY['vous']: u"6PS",
-        QUIFOY['conj']: u"6PT",
-        QUIFOY['pac1']: u"6PU",
+    cerfa_field = {0: u"6PS",
+        1: u"6PT",
+        2: u"6PU",
         }
     value_type = int
     unit = 'currency'
@@ -121,9 +121,9 @@ class f6ps(Variable):
 
 
 class f6rs(Variable):
-    cerfa_field = {QUIFOY['vous']: u"6RS",
-        QUIFOY['conj']: u"6RT",
-        QUIFOY['pac1']: u"6RU",
+    cerfa_field = {0: u"6RS",
+        1: u"6RT",
+        2: u"6RU",
         }
     value_type = int
     unit = 'currency'
@@ -133,9 +133,9 @@ class f6rs(Variable):
 
 
 class f6ss(Variable):
-    cerfa_field = {QUIFOY['vous']: u"6SS",
-        QUIFOY['conj']: u"6ST",
-        QUIFOY['pac1']: u"6SU",
+    cerfa_field = {0: u"6SS",
+        1: u"6ST",
+        2: u"6SU",
         }
     value_type = int
     unit = 'currency'
@@ -744,7 +744,7 @@ class grosses_reparations(Variable):
         report_2010 = foyer_fiscal('f6hk', period)
         report_2011 = foyer_fiscal('f6hl', period)
         plafond_grosses_reparations = parameters(period).impot_revenu.charges_deductibles.grosses_reparations.plafond
-        
+
         return min_(f6cb + report_2009 + report_2010 + report_2011, plafond_grosses_reparations)
 
     def formula_2013(foyer_fiscal, period, parameters):

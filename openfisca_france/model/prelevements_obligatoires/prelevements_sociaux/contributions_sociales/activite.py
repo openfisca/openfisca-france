@@ -182,11 +182,11 @@ class salaire_imposable(Variable):
     value_type = float
     unit = 'currency'
     cerfa_field = {  # (f1aj, f1bj, f1cj, f1dj, f1ej)
-        QUIFOY['vous']: u"1AJ",
-        QUIFOY['conj']: u"1BJ",
-        QUIFOY['pac1']: u"1CJ",
-        QUIFOY['pac2']: u"1DJ",
-        QUIFOY['pac3']: u"1EJ",
+        0: u"1AJ",
+        1: u"1BJ",
+        2: u"1CJ",
+        3: u"1DJ",
+        4: u"1EJ",
         }
     entity = Individu
     label = u"Salaires imposables"
