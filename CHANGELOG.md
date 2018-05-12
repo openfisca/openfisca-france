@@ -1,5 +1,11 @@
 # Changelog
 
+## 21.10.0 [#980](https://github.com/openfisca/openfisca-france/pull/980)
+
+* Amélioration technique
+* Détails :
+  - Adapte à Python 3
+
 ### 21.9.2 [#982](https://github.com/openfisca/openfisca-france/pull/982)
 
 * Changement mineur
