@@ -353,7 +353,7 @@ class cmu_c(Variable):
         residence_mayotte = famille.demandeur.menage('residence_mayotte', period)
         cmu_acs_eligibilite = famille('cmu_acs_eligibilite', period)
 
-        if period.start.date >= date(2016, 01, 01):
+        if period.start.date >= date(2016, 1, 1):
             eligibilite_rsa = famille('rsa', period) > 0
         else:
             # Avant 2016, seules les bénéficiaires du RSA socle avait le droit d'office à la CMU.

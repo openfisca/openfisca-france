@@ -26,7 +26,7 @@ def add_member(entity, **variables_value_by_name):
     simulation = entity.simulation
 
     # Add a cell to all arrays of all variables of entity.
-    for variable_name, variable_holder in entity.holder_by_name.iteritems():
+    for variable_name, variable_holder in entity.holder_by_name.items():
         column = variable_holder.variable
         if column.definition_period is ETERNITY:
             variable_holder._array = np.hstack((variable_holder._array, [column.default_value]))
@@ -34,7 +34,7 @@ def add_member(entity, **variables_value_by_name):
             array_by_period = variable_holder._array_by_period
             if array_by_period is None:
                 variable_holder._array_by_period = array_by_period = {}
-            for period, array in array_by_period.iteritems():
+            for period, array in array_by_period.items():
                 array_by_period[period] = np.hstack((array, [column.default_value]))
 
     # When entity is a person, ensure that the index & role of the person in the other entities are set.
@@ -51,11 +51,11 @@ def add_member(entity, **variables_value_by_name):
                     other_entity.roles_count = role + 1
 
     # Set arguments in variables.
-    for variable_name, value in value_by_name.iteritems():
+    for variable_name, value in value_by_name.items():
         variable_holder = simulation.get_or_new_holder(variable_name)
         column = variable_holder.variable
         if isinstance(value, dict):
-            for period, period_value in value.iteritems():
+            for period, period_value in value.items():
                 array = variable_holder.get_array(period)
                 if array is None:
                     array = np.empty(entity.count, dtype = column.dtype)
@@ -99,7 +99,7 @@ def test_irpp(year, irpp, **variables_value_by_name):
 
     # Dispatch arguments to their respective entities.
     variables_value_by_name_by_entity = {}
-    for variable_name, value in variables_value_by_name.iteritems():
+    for variable_name, value in variables_value_by_name.items():
         variable_holder = simulation.get_or_new_holder(variable_name)
         entity_variables_value_by_name = variables_value_by_name_by_entity.setdefault(variable_holder.entity, {})
         entity_variables_value_by_name[variable_name] = value

@@ -3,7 +3,7 @@
 import datetime
 import json
 
-from cache import tax_benefit_system
+from .cache import tax_benefit_system
 
 
 def test_parameters():

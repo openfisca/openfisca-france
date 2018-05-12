@@ -30,7 +30,7 @@ def fixed_bases_tax_scale(base_by_slice_name, rates_tree, null_rate_base = None)
     assert first_start is not UnboundLocalError
 
     # Convert constant brackets to real brackets.
-    for slice_name, bracket in rates_tree.iteritems():
+    for slice_name, bracket in rates_tree.items():
         if isinstance(bracket, (float, int)):
             rates_bracket_item = dict(
                 start = first_start,
@@ -61,7 +61,7 @@ def fixed_bases_tax_scale(base_by_slice_name, rates_tree, null_rate_base = None)
 
     # Generate bases_tree.
     bases_tree = collections.OrderedDict()
-    for slice_name, rates_bracket in sorted(rates_tree.iteritems()):
+    for slice_name, rates_bracket in sorted(rates_tree.items()):
         bases_bracket_item = dict(
             start = rates_bracket[0]['start'],
             value = str(base_by_slice_name[slice_name]),

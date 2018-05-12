@@ -85,7 +85,7 @@ class remuneration_apprenti(Variable):
             age_condition = (age_interval["age_min"] <= age) * (age < age_interval["age_max"])
             output[age_condition] = sum([
                 (anciennete_contrat[age_condition] == timedelta64(anciennete, 'Y')) * part_de_smic
-                for anciennete, part_de_smic in age_interval['part_de_smic_by_anciennete'].iteritems()
+                for anciennete, part_de_smic in age_interval['part_de_smic_by_anciennete'].items()
                 ])
         return output * smic * apprenti
 

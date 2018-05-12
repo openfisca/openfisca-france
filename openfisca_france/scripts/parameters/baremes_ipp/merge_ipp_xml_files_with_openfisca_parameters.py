@@ -31,7 +31,7 @@ def replace_children(element, children):
 
 
 def merge_attributes(openfisca_element, ipp_element):
-    for key, value in ipp_element.attrib.iteritems():
+    for key, value in ipp_element.attrib.items():
         if key in openfisca_element.attrib:
             if openfisca_element.attrib[key] != ipp_element.attrib[key]:
                 openfisca_element.attrib[key] = ipp_element.attrib[key]
@@ -69,7 +69,7 @@ def merge_elements(openfisca_element, ipp_element, path = []):
                 ipp_child = ipp_children_by_code[code]
                 del ipp_children_by_code[code]
                 merge_elements(openfisca_child, ipp_child, path + [openfisca_element.attrib['code']])
-        for code, ipp_child in ipp_children_by_code.iteritems():
+        for code, ipp_child in ipp_children_by_code.items():
             openfisca_element.append(ipp_child)
 
     elif openfisca_element.tag == 'CODE':
@@ -92,7 +92,7 @@ def merge_elements(openfisca_element, ipp_element, path = []):
                     ipp_tranche_child = ipp_tranche_children_by_tag[tag]
                     del ipp_tranche_children_by_tag[tag]
                     replace_children(openfisca_tranche_child, ipp_tranche_child)
-            for tag, ipp_tranche_child in ipp_tranche_children_by_tag.iteritems():
+            for tag, ipp_tranche_child in ipp_tranche_children_by_tag.items():
                 openfisca_tranche.append(ipp_tranche_child)
     else:
         raise NotImplementedError(openfisca_element)
@@ -132,7 +132,7 @@ def merge_ipp_xml_files_with_openfisca_parameters(ipp_xml_dir):
         print("Warning : no IPP XML found.")
     ipp_xml_tree_by_file_name = get_xml_tree_by_file_name(xmlschema, ipp_file_paths)
 
-    for openfisca_file_name, openfisca_xml_tree in openfisca_xml_tree_by_file_name.iteritems():
+    for openfisca_file_name, openfisca_xml_tree in openfisca_xml_tree_by_file_name.items():
         openfisca_xml_root_element = openfisca_xml_tree.getroot()
         ipp_xml_tree = ipp_xml_tree_by_file_name.get(openfisca_file_name)
         if ipp_xml_tree is not None:

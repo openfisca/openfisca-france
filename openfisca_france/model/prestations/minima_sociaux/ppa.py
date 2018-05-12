@@ -156,7 +156,7 @@ class ppa_rsa_derniers_revenus_tns_annuels_connus(Variable):
             return select(
                 [valeur_n > 0, valeur_n_1 > 0, valeur_n_2 > 0],
                 [valeur_n, valeur_n_1, valeur_n_2]
-                ) / 12l
+                ) / 12.
 
         return (
             get_last_known('tns_benefice_exploitant_agricole') +
@@ -309,7 +309,7 @@ class ppa_forfait_logement(Variable):
             (statut_occupation_logement == TypesStatutOccupationLogement.loge_gratuitement) * not_(participation_frais)
         )
         avantage_al = aide_logement > 0
-        
+
         params = parameters(period).prestations.minima_sociaux.rsa
         montant_base = famille('ppa_montant_forfaitaire_familial_non_majore', period, extra_params = [period])
         montant_forfait = montant_base * (

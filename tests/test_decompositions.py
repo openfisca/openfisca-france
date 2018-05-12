@@ -6,7 +6,7 @@ import xml.etree.ElementTree
 
 from openfisca_core import conv, decompositions, decompositionsxml
 
-from cache import tax_benefit_system
+from .cache import tax_benefit_system
 
 decompositions_directory = os.path.dirname(tax_benefit_system.decomposition_file_path)
 

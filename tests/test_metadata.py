@@ -2,7 +2,7 @@
 
 from nose.tools import assert_equal
 
-from cache import tax_benefit_system
+from .cache import tax_benefit_system
 
 
 def test_metadata():

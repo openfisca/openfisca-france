@@ -562,7 +562,7 @@ class aide_logement_R0(Variable):
         residence_dom = famille.demandeur.menage('residence_dom', period)
 
         n_2 = period.start.offset(-2, 'year')
-        if n_2.date >= date(2009, 6, 01):
+        if n_2.date >= date(2009, 6, 1):
             montant_de_base = minim_n_2.rsa.montant_de_base_du_rsa
         else:
             montant_de_base = minim_n_2.rmi.montant_de_base_du_rmi
@@ -1011,7 +1011,7 @@ def preload_zone_apl():
                 'assets/apl/commune_depcom_by_subcommune_depcom.json',
                 ) as json_file:
             commune_depcom_by_subcommune_depcom = json.load(json_file)
-            for subcommune_depcom, commune_depcom in commune_depcom_by_subcommune_depcom.iteritems():
+            for subcommune_depcom, commune_depcom in commune_depcom_by_subcommune_depcom.items():
                 zone_apl_by_depcom[subcommune_depcom] = zone_apl_by_depcom[commune_depcom]
 
 class aides_logement_primo_accedant(Variable):

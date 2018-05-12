@@ -90,7 +90,7 @@ class remuneration_professionnalisation(Variable):
             age_condition = (age_interval['age_min'] <= age) * (age <= age_interval['age_max'])
             taux_smic[age_condition] = sum([
                 (qualifie[age_condition] == qualification) * part_de_smic
-                for qualification, part_de_smic in age_interval['part_de_smic_by_qualification'].iteritems()
+                for qualification, part_de_smic in age_interval['part_de_smic_by_qualification'].items()
                 ])
         return taux_smic * smic * professionnalisation
 

@@ -85,13 +85,13 @@ def build_tree_from_yaml_clean(yaml_dir):
                 elif not isinstance(start, datetime.date):
                     start = start[u"Année Revenus"]
                 row_by_start[start] = row
-            sorted_row_by_start = sorted(row_by_start.iteritems())
+            sorted_row_by_start = sorted(row_by_start.items())
 
             relative_ipp_paths_by_start = {}
             unsorted_relative_ipp_paths = set()
             for start, row in sorted_row_by_start:
                 relative_ipp_paths_by_start[start] = start_relative_ipp_paths = []
-                for name, child in row.iteritems():
+                for name, child in row.items():
                     if name in date_names:
                         continue
                     if name in note_names:
@@ -159,7 +159,7 @@ def build_tree_from_yaml_clean(yaml_dir):
 
 def iter_ipp_values(node):
     if isinstance(node, dict):
-        for name, child in node.iteritems():
+        for name, child in node.items():
             for path, value in iter_ipp_values(child):
                 yield [name] + path, value
     else:
@@ -257,7 +257,7 @@ def ipp_node_to_element(name, node):
                 code = strings.slugify(name, separator = u'_'),
                 origin = u'ipp',
                 ))
-            for key, value in node.iteritems():
+            for key, value in node.items():
                 child_element = ipp_node_to_element(key, value)
                 if child_element is not None:
                     node_element.append(child_element)

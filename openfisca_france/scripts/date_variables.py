@@ -70,7 +70,7 @@ def main():
     for column in tax_benefit_system.variables.itervalues(): # On teste les variables une par une
         var = column.cerfa_field
         if isinstance(var, dict):
-            for k,v in var.iteritems():
+            for k,v in var.items():
                 if len('_' + v) > 2:
                     test('_' + v)
         elif var is not None:

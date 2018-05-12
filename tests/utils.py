@@ -6,7 +6,7 @@ from openfisca_core import periods
 from openfisca_core.tools import assert_near
 from nose.tools import nottest
 
-from cache import tax_benefit_system
+from .cache import tax_benefit_system
 
 
 def check_calculation(variable, calculated_value, expected_value, error_margin):
@@ -17,7 +17,7 @@ def process_tests_list(tests_list, monthly_amount = False, default_error_margin 
     for test in tests_list:
         error_margin = forced_error_margin if forced_error_margin else test.pop("error_margin", default_error_margin)
         simulation = simulation_from_test(test)
-        for variable, expected_value in test['output_vars'].iteritems():
+        for variable, expected_value in test['output_vars'].items():
             calculated_value = simulation.calculate(variable).sum() / (1 * (not monthly_amount) + 12 * monthly_amount)
             yield check_calculation, variable, calculated_value, expected_value, error_margin
 
@@ -27,7 +27,7 @@ def simulation_from_test(test, monthly_amount = False, default_error_margin = 1,
     parent1 = dict(date_naissance = datetime.date(year - 40, 1, 1))
     menage = dict()
     foyer_fiscal = dict()
-    for variable, value in test['input_vars'].iteritems():
+    for variable, value in test['input_vars'].items():
         if variable == "age":
             parent1['date_naissance'] = datetime.date(year - value, 1, 1)
         elif tax_benefit_system.variables[variable].entity == 'men':
