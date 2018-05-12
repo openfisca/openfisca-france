@@ -110,7 +110,7 @@ def test_transpose_string():
 
     depcom_famille = famille.first_person.menage('depcom', period = reference_period)
 
-    assert((depcom_famille == ["93400", "89300"]).all())
+    assert((depcom_famille == [b"93400", b"89300"]).all())
 
 def test_value_from_person():
     test_case = deepcopy(TEST_CASE_AGES)
