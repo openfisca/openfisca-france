@@ -3,9 +3,11 @@
 from __future__ import division
 
 import csv
+import codecs
 import json
 import logging
 import pkg_resources
+import sys
 
 from numpy import ceil, datetime64, fromiter, int16, logical_or as or_, logical_and as and_, nditer
 
@@ -999,7 +1001,11 @@ def preload_zone_apl():
                 openfisca_france.__name__,
                 'assets/apl/20110914_zonage.csv',
                 ) as csv_file:
-            csv_reader = csv.DictReader(csv_file)
+            if sys.version_info < (3, 0):
+                csv_reader = csv.DictReader(csv_file)
+            else:
+                utf8_reader = codecs.getreader("utf-8")
+                csv_reader = csv.DictReader(utf8_reader(csv_file))
             zone_apl_by_depcom = {
                 # Keep only first char of Zonage column because of 1bis value considered equivalent to 1.
                 row['CODGEO']: int(row['Zonage'][0])
