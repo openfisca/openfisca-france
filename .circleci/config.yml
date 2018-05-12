@@ -1,0 +1,160 @@
+version: 2
+
+jobs:
+  checkout: &checkout
+    working_directory: ~/openfisca-france
+    docker:
+      - image: python:2.7.14
+
+    steps:
+      - checkout
+
+      - run:
+          name: Fetch remote refs
+          command: git fetch
+
+      - save_cache:
+          key: v1-checkout-{{ .Environment.CIRCLE_SHA1 }}
+          paths:
+            - .
+            - ~/.ssh/known_hosts
+
+  dependencies: &dependencies
+    working_directory: ~/openfisca-france
+    docker:
+      - image: python:2.7.14
+    environment:
+      CREATE_VENV: "virtualenv"
+
+    steps:
+      - restore_cache:
+          keys:
+            - v1-checkout-{{ .Environment.CIRCLE_SHA1 }}
+
+      - run:
+          name: Create virtualenv
+          command: |
+            mkdir -p /tmp/venv/openfisca-france
+            ${CREATE_VENV} /tmp/venv/openfisca-france
+
+      # pip >= 8.0 needed to be compatible with "manylinux" wheels, used by numpy >= 1.11
+      - run:
+          name: Install dependencies
+          command: |
+            . /tmp/venv/openfisca-france/bin/activate
+            pip install --upgrade pip twine wheel
+            pip install .[test] --upgrade
+
+      # # Uncomment and adapt the next line to use a particular feature branch of OpenFisca-Core to run Circle CI tests
+      # - run:
+      #     name: Install a particular feature branch of OpenFisca-Core
+      #     command: |
+      #       . /tmp/venv/openfisca-france/bin/activate
+      #       pip install --editable git+https://github.com/openfisca/openfisca-core.git@BRANCH_NAME#egg=OpenFisca-Core
+
+      - save_cache:
+          # PY_VERSION is set in the context
+          key: v1-{{ .Environment.PY_VERSION }}-dependencies-{{ .Environment.CIRCLE_SHA1 }}
+          paths:
+            - /tmp/venv/openfisca-france
+
+  dependencies_python3:
+    <<: *dependencies
+    docker:
+      - image: python:3.6
+    environment:
+      CREATE_VENV: "python -m venv"
+
+  tests: &tests
+    parallelism: 3
+    working_directory: ~/openfisca-france
+    docker:
+      - image: python:2.7.14
+
+    steps:
+      - restore_cache:
+          keys:
+            - v1-checkout-{{ .Environment.CIRCLE_SHA1 }}
+
+      - restore_cache:
+          keys:
+            - v1-{{ .Environment.PY_VERSION }}-dependencies-{{ .Environment.CIRCLE_SHA1 }}
+
+      - run:
+          name: Run tests
+          command: |
+            . /tmp/venv/openfisca-france/bin/activate
+            nosetests `circleci tests glob tests/**/*.py | circleci tests split`
+            openfisca-run-test `circleci tests glob tests/**/*.{yaml,yml} | circleci tests split`
+            . check-version-bump.sh
+
+  tests_python3:
+    <<: *tests
+    docker:
+      - image: python:3.6
+
+  deploy: &deploy
+    working_directory: ~/openfisca-france
+    docker:
+      - image: python:2.7.14
+    environment:
+      PYPI_USERNAME: openfisca-bot
+      # PYPI_PASSWORD: this value is set in CircleCI's web interface; do not set it here, it is a secret!
+
+    steps:
+      - restore_cache:
+          keys:
+            - v1-checkout-{{ .Environment.CIRCLE_SHA1 }}
+
+      - restore_cache:
+          keys:
+            - v1-{{ .Environment.PY_VERSION }}-dependencies-{{ .Environment.CIRCLE_SHA1 }}
+
+      - run:
+          name: Deploy (if version bump)
+          command: |
+            . /tmp/venv/openfisca-france/bin/activate
+            . deploy-if-version-bump.sh
+
+  deploy_python3:
+    <<: *deploy
+    docker:
+      - image: python:3.6
+
+workflows:
+  version: 2
+  openfisca-france:
+    jobs:
+      - checkout
+      - dependencies:
+          context: Py2
+          requires:
+            - checkout
+      - tests:
+          context: Py2
+          requires:
+            - dependencies
+      - dependencies_python3:
+          context: Py3
+          requires:
+            - checkout
+      - tests_python3:
+          context: Py3
+          requires:
+            - dependencies_python3
+      - deploy:
+          context: Py2
+          requires:
+            - tests
+            - tests_python3
+          filters:
+            branches:
+              only: master
+      - deploy_python3:
+          context: Py3
+          requires:
+            - tests
+            - tests_python3
+          filters:
+            branches:
+              only: master

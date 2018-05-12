@@ -6,7 +6,9 @@ if ! git rev-parse `python setup.py --version` 2>/dev/null ; then
     git push --tags  # update the repository version
     python setup.py bdist_wheel  # build this package in the dist directory
     twine upload dist/* --username $PYPI_USERNAME --password $PYPI_PASSWORD  # publish
-    ssh deploy-api@api.openfisca.fr
+    if [ $PY_VERSION = "2" ]; then
+       ssh -o StrictHostKeyChecking=no deploy-api@fr.openfisca.org
+    fi
 else
     echo "No deployment - Only non-functional elements were modified in this change"
 fi
