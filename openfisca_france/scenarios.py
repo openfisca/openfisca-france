@@ -9,9 +9,9 @@ import uuid
 
 from openfisca_core import conv, scenarios
 from openfisca_core.commons import to_unicode
-from .entities import Individu, Famille, FoyerFiscal, Menage
+from openfisca_france.entities import Individu, Famille, FoyerFiscal, Menage
 
-from .model.base import *
+from openfisca_france.model.base import *
 
 
 def N_(message):
