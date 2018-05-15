@@ -982,7 +982,7 @@ class zone_apl(Variable):
         default_value = 2
         zone = fromiter(
             (
-                zone_apl_by_depcom.get(depcom_cell, default_value)
+                zone_apl_by_depcom.get(depcom_cell if isinstance(depcom_cell, str) else depcom_cell.decode('utf-8'), default_value)
                 for depcom_cell in depcom
                 ),
             dtype = int16,
