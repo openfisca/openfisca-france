@@ -67,6 +67,8 @@ def preload_taux_versement_transport():
 
 
 def get_taux_versement_transport(code_commune, period):
+    if not isinstance(code_commune, str):  # In Python 3, code_commune is a bytes
+        code_commune = code_commune.decode('utf-8')
     instant = period.start
     taux_commune = table_versement_transport.get(code_commune, None)
     if taux_commune is None:
