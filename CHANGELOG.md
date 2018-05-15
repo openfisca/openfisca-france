@@ -1,5 +1,11 @@
 # Changelog
 
+### 21.9.2 [#982](https://github.com/openfisca/openfisca-france/pull/982)
+
+* Changement mineur
+* Détails :
+  - Supprime les énums utilisées en syntaxe pré-V4, qui n'est plus supportée.
+
 ### 21.9.1 [#975](https://github.com/openfisca/openfisca-france/pull/975)
 
 * Évolution du système socio-fiscal.
@@ -47,20 +53,16 @@
 ### 21.8.3 [#962](https://github.com/openfisca/openfisca-france/pull/962)
 
 * Changement mineur.
-* Zones impactées : `.github/PULL_REQUEST_TEMPLATE.md`.
 * Détails :
-  - Amélioration du template de ce message-ci.
+  - Amélioration du template de Pull Request.
   - Ajout d'une liste de casses à cocher avec de bonnes conseils pour rédiger une belle pull request.
 
 ### 21.8.2 [#968](https://github.com/openfisca/openfisca-france/pull/968)
 
 * Changement mineur.
-* Zones impactées :
-  - `README.md`
-  - `notebooks/getting-started.ipynb`
 * Détails :
-  - Corrige lien vers la documentation
-  - Corrige lien vers Swagger
+  - Corrige lien vers la documentation dans `README.md`
+  - Corrige lien vers Swagger dans `notebooks/getting-started.ipynb`
 
 ### 21.8.1 [#960](https://github.com/openfisca/openfisca-france/pull/960)
 
