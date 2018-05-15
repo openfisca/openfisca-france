@@ -505,7 +505,7 @@ class Scenario(scenarios.AbstractScenario):
 def find_age(individu, date, default = None):
     date_naissance = individu.get('date_naissance')
     if isinstance(date_naissance, dict):
-        date_naissance = date_naissance.values()[0] if date_naissance else None
+        date_naissance = next(iter(date_naissance.values())) if date_naissance else None
     if date_naissance is not None:
         age = date.year - date_naissance.year
         if date.month < date_naissance.month or date.month == date_naissance.month and date.day < date_naissance.day:
@@ -520,7 +520,7 @@ def find_age(individu, date, default = None):
 
     age_en_mois = individu.get('age_en_mois')
     if isinstance(age_en_mois, dict):
-        age_en_mois = age_en_mois.values()[0] if age_en_mois else None
+        age_en_mois = next(iter(age_en_mois.values())) if age_en_mois else None
     if age_en_mois is not None:
         return age_en_mois / 12.0
 
