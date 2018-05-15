@@ -151,6 +151,7 @@ class apa_domicile_taux_participation(Variable):
     definition_period = MONTH
 
     def formula(individu, period, parameters):
+        apa_domicile = individu('apa_domicile', period)
         dependance_plan_aide_domicile_accepte = individu('dependance_plan_aide_domicile_accepte', period)
         apa_domicile_participation = individu('apa_domicile_participation', period)
 
