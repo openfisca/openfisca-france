@@ -35,6 +35,7 @@ def fixed_bases_tax_scale(base_by_slice_name, rates_tree, null_rate_base = None)
             rates_bracket_item = dict(
                 start = first_start,
                 value = str(bracket),
+                reference = '',
                 )
             rates_tree[slice_name] = [rates_bracket_item]
 
@@ -45,6 +46,7 @@ def fixed_bases_tax_scale(base_by_slice_name, rates_tree, null_rate_base = None)
                 bracket.insert(0, dict(
                     start = first_start,
                     value = '0',
+                    reference = '',
                     ))
             for item in bracket:
                 if item['value'] is None:
@@ -53,6 +55,7 @@ def fixed_bases_tax_scale(base_by_slice_name, rates_tree, null_rate_base = None)
         rates_bracket_null_item = dict(
             start = first_start,
             value = '0',
+            reference = '',
             )
         rates_tree['tranche_nulle'] = [rates_bracket_null_item]
 
@@ -65,6 +68,7 @@ def fixed_bases_tax_scale(base_by_slice_name, rates_tree, null_rate_base = None)
         bases_bracket_item = dict(
             start = rates_bracket[0]['start'],
             value = str(base_by_slice_name[slice_name]),
+            reference = '',
             )
         bases_tree[slice_name] = [bases_bracket_item]
 
@@ -608,6 +612,7 @@ def transform_ipp_tree(root):
     # assert not vieillesse_plafonnee
     #
     # cnracl
+    '''
     cotisations_sociales['cnracl'] = cnracl_node = prelevements_sociaux.pop('cnracl')
     cnracl_node['cnracl'] = cnracl = cnracl_node.pop('cnracl')
     cnracl['salarie'] = cnracl_salarie = cnracl.pop('agents')
@@ -655,6 +660,7 @@ def transform_ipp_tree(root):
             )
         )
     #
+    '''
     cotisations_sociales['construction'] = construction = prelevements_sociaux.pop('construction')
     construction_employeur_sur_tout_salaire = construction.pop('employeur_sur_tout_salaire')
     construction['construction_10_19'] = fixed_bases_tax_scale(
@@ -1081,7 +1087,7 @@ def transform_ipp_tree(root):
     cf['taux_base_dom'] = taux_base_dom = complement_familial_en_de_la_bmaf_dom.pop('montant_de_base')
     cf['taux_majore_dom'] = taux_majore_dom = complement_familial_en_de_la_bmaf_dom.pop('montant_majore')
     cf['nombre_enfant_minimum_dom'] = nombre_enfant_minimum_dom = cf.pop('nombre_d_enfant_minimum')
-    cf['age_en_dessous_duquel_l_enfant_prive_la_famille_du_cf_dom'] = age_en_dessous_duquel_l_enfant_prive_la_famille_du_cf_dom = cf.pop('age_en_dessous_duquel_l_enfant_prive_la_famille_du_complement_familiale')
+    # cf['age_en_dessous_duquel_l_enfant_prive_la_famille_du_cf_dom'] = age_en_dessous_duquel_l_enfant_prive_la_famille_du_cf_dom = cf.pop('age_en_dessous_duquel_l_enfant_prive_la_famille_du_complement_familiale')
 
     # ape
     prestations_familiales['ape'] = ape = dict()
