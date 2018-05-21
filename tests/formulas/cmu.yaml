@@ -115,3 +115,209 @@
     enfants: [2, 3, 4, 5]
   output_variables:
     cmu_c_plafond: 16574 # 8723 * (1 + 0.25 + 0.15 + 0.3 + 0.2)
+
+# msa_reval_cmuc_acs_lot1 : Cas 1
+- name: "CMU-C: CMU-C Ok demandeur plus de 25 ans avec droits ouverts, percevant des salaires pour un motant inférieur à 8810 euros, résident métropole"
+  period: 2018-04
+  relative_error_margin: 0.05
+  input_variables:
+    date_naissance: '1992-01-01' # 26 ans
+    salaire_net:
+      2018: 4000
+      2017: 4000
+  output_variables:
+    cmu_acs_eligibilite: True
+    cmu_c_plafond: 8810
+    acs_plafond: 11894
+    cmu_c: True
+
+# msa_reval_cmuc_acs_lot1 : Cas 2 (à revoir cmu_c devrait être false?)
+# TODO: cmuc_c: False devrait peut-être passer
+- name: "ACS: ACS Ok demandeur plus de 25 avec droits ouverts, percevant des salaires pour un motant supérieur à 8810 euros et inférieur à 11894, résident métropole"
+  period: 2018-04
+  relative_error_margin: 0.05
+  input_variables:
+  individus:
+  - id: "parent1"
+    age: 26
+    salaire_net:
+      2018: 5000
+      2017: 5000
+  menages:
+    personne_de_reference: "parent1"
+    statut_occupation_logement: locataire_meuble
+  output_variables:
+    cmu_acs_eligibilite: True
+    cmu_c_plafond: 8810
+    acs_plafond: 11894
+    #cmu_c: False
+
+# msa_reval_cmuc_acs_lot1 : Cas 3
+- name: "CMU-C: CMU-C Ok demandeur plus de 25 avec droits ouverts, percevant des salaires pour un montant maximum de 18501 euros 
+Foyer composé de 3 personnes (enfant -20 ans et conjoint sans activité), locataire avec aide au logement (2000 euros),  résident métropole"
+  period: 2018-04
+  relative_error_margin: 0.05
+  individus:
+    - id: "parent1"
+      age: 36
+      salaire_net:
+        2018: 7500
+        2017: 7000
+    - id: "parent2"
+      age: 36
+    - id: "enfant1"
+      age: 16
+    - id: "enfant2"
+      age: 10
+  familles:
+    parents: ["parent1", "parent2"]
+    enfants: ["enfant1", "enfant2"]
+    prestations_familiales: 
+      year:2018-01: 2000
+  output_variables:
+    cmu_acs_eligibilite: True
+    cmu_c_plafond: 18501
+    acs_plafond: 24977
+    cmu_c: True
+
+# msa_reval_cmuc_acs_lot1 : Cas 4 (à revoir)
+# TODO: Résultats différents de ce que nous attendons
+- name: "CMU-C: CMU-C Ok demandeur plus de 25 avec droits ouverts, percevant des salaires + indemnités journalières  
+Foyer composé de 4 personnes (2 enfants + 20 ans et conjoint avec activité percevant des revenus), locataire avec aide au logement (2000 euros), résident métropole"
+  period: 2018-04
+  relative_error_margin: 0.05
+  individus:
+    - id: "parent1"
+      age: 36
+      salaire_net:
+        2017-12: 10000
+      indemnites_journalieres: 3500
+    - id: "parent2"
+      age: 36
+      salaire_net:
+        2017-12: 6700
+    - id: "enfant1"
+      age: 22
+    - id: "enfant2"
+      age: 21
+  familles:
+    parents: ["parent1", "parent2"]
+    enfants: ["enfant1", "enfant2"]
+    prestations_familiales: 
+      year:2018-01: 2200
+  foyers_fiscaux:
+    declarants: ["parent1", "parent2"]
+    maries_ou_pacses:
+      year:2018-01: True
+    personnes_a_charge: ["enfant1", "enfant2"]
+  output_variables:
+    cmu_acs_eligibilite: True
+    cmu_c_plafond: 18501
+    acs_plafond: 24977
+    cmu_c: True
+
+# msa_reval_cmuc_acs_lot1 : Cas 5
+- name: "ACS: ACS Ok demandeur plus de 25 Assuré + de 25 ans  avec droits ouverts, percevant des salaires + indemnités chômages
+Foyer composé de 6 personnes (3 enfants - 20 ans, 1 enfant +20ans  et conjoint avec activité percevant des revenus et du chômage), propriétaire avec aide au logement (2000 euros), résident métropole"
+  period: 2018-04
+  relative_error_margin: 0.05
+  individus:
+    - id: "parent1"
+      age: 36
+      salaire_net:
+        2017-12: 5700
+      indemnites_journalieres: 1250
+      chomage_net: 4600
+      activite: chomeur
+    - id: "parent2"
+      age: 36
+      salaire_net:
+        2017-12: 9560
+      chomage_net: 4500
+      activite: chomeur
+    - id: "enfant1"
+      age: 24
+      salaire_net:
+        2017-12: 5000
+    - id: "enfant2"
+      age: 19
+    - id: "enfant3"
+      age: 18
+    - id: "enfant4"
+      age: 17 
+  familles:
+    parents: ["parent1", "parent2"]
+    enfants: ["enfant1", "enfant2", "enfant3", "enfant4"]
+    prestations_familiales: 
+      year:2018-01: 1350
+  foyers_fiscaux:
+    declarants: ["parent1", "parent2"]
+    maries_ou_pacses:
+      year:2018-01: True
+    personnes_a_charge: ["enfant1", "enfant2", "enfant3", "enfant4"]
+  menages:
+    personne_de_reference: "parent1"
+    conjoint: "parent2"
+    enfants: ["enfant1", "enfant2", "enfant3", "enfant4"]
+    statut_occupation_logement: proprietaire
+  output_variables:
+    cmu_acs_eligibilite: True
+    cmu_c_plafond: 25549.56
+    acs_plafond: 34491.84
+    cmu_c: True
+
+# msa_reval_cmuc_acs_lot1 : Cas 6
+- name: "CMU-C: CMU-C Ok demandeur assuré au RSA ayant perçu des ressources  au cours des 12 derniers mois"
+  period: 2018-04
+  relative_error_margin: 0.05
+  input_variables:
+    date_naissance: '1996-01-01' # 26 ans
+    rsa: 450
+    statut_occupation_logement: loge_gratuitement
+    salaire_net:
+      2017: 3500
+  output_variables:
+    cmu_acs_eligibilite: True
+    cmu_c_plafond: 8810
+    acs_plafond: 11894
+    cmu_c: True
+
+# msa_reval_cmuc_acs_lot1 : Cas 7 (à revoir)
+# TODO: résultats à renseigner
+- name: "ACS: ACS Ko Foyer recomposé de deux adultes avec 3 enfants moins de 20 ans
+Mr est séparé de son ex conjointe et verse une pension alimentaire de 1235 euros
+Mme est séparée et reçoit une pension alimentaire de son ex conjoint pour ces trois enfants, elle perçoit des revenus non salariés
+Les enfants ne sont pas en garde alternée"
+  period: 2018-04
+  relative_error_margin: 0.05
+  individus:
+    - id: "parent1"
+      age: 36
+      salaire_net:
+        2017-12: 7500
+      indemnites_journalieres: 6500
+      chomage_net: 600      
+    - id: "parent2"
+      age: 45
+      tns_autres_revenus:
+        year:2017-12: 12600
+      pensions_alimentaires_percues: 2650
+      valeur_immo_non_loue: 700
+      valeur_terrains_non_loues: 625
+    - id: "enfant1"
+      age: 15
+    - id: "enfant2"
+      age: 12
+    - id: "enfant3"
+      age: 7
+  familles:
+    parents: ["parent2"]
+    enfants: ["enfant1", "enfant2", "enfant3"]
+    prestations_familiales:
+      year:2018-01: 2050
+  foyers_fiscaux:
+    declarants: ["parent1"]
+    pensions_alimentaires_versees: 
+      year:2018-01: 1235
+  output_variables:
+  
