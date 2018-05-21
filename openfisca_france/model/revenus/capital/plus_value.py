@@ -11,8 +11,8 @@ from openfisca_france.model.base import *  # noqa analysis:ignore
 # du coups je n'ai pas changé et j'ai fait un dico comme pour salaire_imposable
 
 class f1tv(Variable):
-    cerfa_field = {QUIFOY['vous']: u"1TV",
-        QUIFOY['conj']: u"1UV",
+    cerfa_field = {0: u"1TV",
+        1: u"1UV",
         }
     value_type = int
     unit = 'currency'
@@ -23,8 +23,8 @@ class f1tv(Variable):
   # (f1tv,f1uv))
 
 class f1tw(Variable):
-    cerfa_field = {QUIFOY['vous']: u"1TW",
-        QUIFOY['conj']: u"1UW",
+    cerfa_field = {0: u"1TW",
+        1: u"1UW",
         }
     value_type = int
     unit = 'currency'
@@ -35,8 +35,8 @@ class f1tw(Variable):
   # (f1tw,f1uw))
 
 class f1tx(Variable):
-    cerfa_field = {QUIFOY['vous']: u"1TX",
-        QUIFOY['conj']: u"1UX",
+    cerfa_field = {0: u"1TX",
+        1: u"1UX",
         }
     value_type = int
     unit = 'currency'
@@ -66,7 +66,7 @@ class f3sa(Variable):
     end = '2012-12-31'
     definition_period = YEAR
 
-  
+
 class f3sf(Variable):
     value_type = int
     entity = FoyerFiscal
@@ -114,8 +114,8 @@ class f3vy(Variable):
 
 
 class f3vd(Variable):
-    cerfa_field = {QUIFOY['vous']: u"3VD",
-        QUIFOY['conj']: u"3SD",
+    cerfa_field = {0: u"3VD",
+        1: u"3SD",
         }
     value_type = int
     unit = 'currency'
@@ -136,8 +136,8 @@ class f3ve(Variable):
 
 
 class f3vf(Variable):
-    cerfa_field = {QUIFOY['vous']: u"3VF",
-        QUIFOY['conj']: u"3SF",
+    cerfa_field = {0: u"3VF",
+        1: u"3SF",
         }
     value_type = int
     unit = 'currency'
@@ -165,8 +165,8 @@ class f3vl(Variable):
 
 
 class f3vi(Variable):
-    cerfa_field = {QUIFOY['vous']: u"3VI",
-        QUIFOY['conj']: u"3SI",
+    cerfa_field = {0: u"3VI",
+        1: u"3SI",
         }
     value_type = int
     unit = 'currency'
@@ -196,8 +196,8 @@ class f3vt(Variable):
 
 
 class f3vj(Variable):
-    cerfa_field = {QUIFOY['vous']: u"3VJ",
-        QUIFOY['conj']: u"3VK",
+    cerfa_field = {0: u"3VJ",
+        1: u"3VK",
         }
     value_type = int
     unit = 'currency'
@@ -297,7 +297,7 @@ class abatnet_duree_detention(Variable):
         f3sg = foyer_fiscal('f3sg', period)
         f3sl = foyer_fiscal('f3sl', period)
 
-        return f3sg + f3sl 
+        return f3sg + f3sl
 
 
 class abattement_net_duree_detention(Variable):
@@ -320,7 +320,7 @@ class abattement_net_duree_detention(Variable):
         f3sg = foyer_fiscal('f3sg', period)
         f3sl = foyer_fiscal('f3sl', period)
 
-        return f3sg + f3sl 
+        return f3sg + f3sl
 
 
 # Plus values et gains taxables à des taux forfaitaires

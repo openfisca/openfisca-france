@@ -132,11 +132,11 @@ class chomage_imposable(Variable):
     value_type = float
     unit = 'currency'
     cerfa_field = {
-        QUIFOY['vous']: u"1AP",
-        QUIFOY['conj']: u"1BP",
-        QUIFOY['pac1']: u"1CP",
-        QUIFOY['pac2']: u"1DP",
-        QUIFOY['pac3']: u"1EP",
+        0: u"1AP",
+        1: u"1BP",
+        2: u"1CP",
+        3: u"1DP",
+        4: u"1EP",
         }
     entity = Individu
     label = u"Allocations chômage imposables"
@@ -269,11 +269,11 @@ class retraite_imposable(Variable):
     unit = 'currency'
     value_type = float
     cerfa_field = {
-        QUIFOY['vous']: u"1AS",
-        QUIFOY['conj']: u"1BS",
-        QUIFOY['pac1']: u"1CS",
-        QUIFOY['pac2']: u"1DS",
-        QUIFOY['pac3']: u"1ES",
+        0: u"1AS",
+        1: u"1BS",
+        2: u"1CS",
+        3: u"1DS",
+        4: u"1ES",
         }
     entity = Individu
     label = u"Retraites au sens strict imposables (rentes à titre onéreux exclues)"

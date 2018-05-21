@@ -94,9 +94,9 @@ class f7vc(Variable):
 
 # Cotisations syndicales des salariées et pensionnés
 class f7ac(Variable):
-    cerfa_field = {QUIFOY['vous']: u"7AC",
-        QUIFOY['conj']: u"7AE",
-        QUIFOY['pac1']: u"7AG",
+    cerfa_field = {0: u"7AC",
+        1: u"7AE",
+        2: u"7AG",
         }
     value_type = int
     unit = 'currency'

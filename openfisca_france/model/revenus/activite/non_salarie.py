@@ -23,8 +23,8 @@ from openfisca_france.model.base import *  # noqa
 # après l'underscore : abbréviation du label de la case
 
 class f5qm(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5QM",
-        QUIFOY['conj']: u"5RM",
+    cerfa_field = {0: u"5QM",
+        1: u"5RM",
         }
     value_type = int
     unit = 'currency'
@@ -36,9 +36,9 @@ class f5qm(Variable):
 
 # Revenus des professions non salariées
 class ppe_du_ns(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5NV",
-        QUIFOY['conj']: u"5OV",
-        QUIFOY['pac1']: u"5PV",
+    cerfa_field = {0: u"5NV",
+        1: u"5OV",
+        2: u"5PV",
         }
     value_type = int
     entity = Individu
@@ -49,9 +49,9 @@ class ppe_du_ns(Variable):
   # (f5nv, f5ov, f5pv)
 
 class ppe_tp_ns(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5NW",
-        QUIFOY['conj']: u"5OW",
-        QUIFOY['pac1']: u"5PW",
+    cerfa_field = {0: u"5NW",
+        1: u"5OW",
+        2: u"5PW",
         }
     value_type = bool
     entity = Individu
@@ -62,9 +62,9 @@ class ppe_tp_ns(Variable):
   # (f5nw, f5ow, f5pw)
 
 class frag_exon(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5HN",
-        QUIFOY['conj']: u"5IN",
-        QUIFOY['pac1']: u"5JN", }
+    cerfa_field = {0: u"5HN",
+        1: u"5IN",
+        2: u"5JN", }
     value_type = int
     unit = 'currency'
     entity = Individu
@@ -76,9 +76,9 @@ class frag_exon(Variable):
   # (f5hn, f5in, f5jn))
 
 class frag_impo(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5HO",
-        QUIFOY['conj']: u"5IO",
-        QUIFOY['pac1']: u"5JO", }
+    cerfa_field = {0: u"5HO",
+        1: u"5IO",
+        2: u"5JO", }
     value_type = int
     unit = 'currency'
     entity = Individu
@@ -90,9 +90,9 @@ class frag_impo(Variable):
   # (f5ho, f5io, f5jo))
 
 class arag_exon(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5HB",
-        QUIFOY['conj']: u"5IB",
-        QUIFOY['pac1']: u"5JB", }
+    cerfa_field = {0: u"5HB",
+        1: u"5IB",
+        2: u"5JB", }
     value_type = int
     unit = 'currency'
     entity = Individu
@@ -103,9 +103,9 @@ class arag_exon(Variable):
   # (f5hb, f5ib, f5jb))
 
 class arag_impg(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5HC",
-        QUIFOY['conj']: u"5IC",
-        QUIFOY['pac1']: u"5JC", }
+    cerfa_field = {0: u"5HC",
+        1: u"5IC",
+        2: u"5JC", }
     value_type = int
     unit = 'currency'
     entity = Individu
@@ -116,9 +116,9 @@ class arag_impg(Variable):
   # (f5hc, f5ic, f5jc))
 
 class arag_defi(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5HF",
-        QUIFOY['conj']: u"5IF",
-        QUIFOY['pac1']: u"5JF", }
+    cerfa_field = {0: u"5HF",
+        1: u"5IF",
+        2: u"5JF", }
     value_type = int
     unit = 'currency'
     entity = Individu
@@ -129,9 +129,9 @@ class arag_defi(Variable):
   # (f5hf, f5if, f5jf))
 
 class nrag_exon(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5HH",
-        QUIFOY['conj']: u"5IH",
-        QUIFOY['pac1']: u"5JH", }
+    cerfa_field = {0: u"5HH",
+        1: u"5IH",
+        2: u"5JH", }
     value_type = int
     unit = 'currency'
     entity = Individu
@@ -142,9 +142,9 @@ class nrag_exon(Variable):
   # (f5hh, f5ih, f5jh))
 
 class nrag_impg(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5HI",
-        QUIFOY['conj']: u"5II",
-        QUIFOY['pac1']: u"5JI", }
+    cerfa_field = {0: u"5HI",
+        1: u"5II",
+        2: u"5JI", }
     value_type = int
     unit = 'currency'
     entity = Individu
@@ -155,9 +155,9 @@ class nrag_impg(Variable):
   # (f5hi, f5ii, f5ji))
 
 class nrag_defi(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5HL",
-        QUIFOY['conj']: u"5IL",
-        QUIFOY['pac1']: u"5JL", }
+    cerfa_field = {0: u"5HL",
+        1: u"5IL",
+        2: u"5JL", }
     value_type = int
     unit = 'currency'
     entity = Individu
@@ -168,9 +168,9 @@ class nrag_defi(Variable):
   # (f5hl, f5il, f5jl))
 
 class nrag_ajag(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5HM",
-        QUIFOY['conj']: u"5IM",
-        QUIFOY['pac1']: u"5JM", }
+    cerfa_field = {0: u"5HM",
+        1: u"5IM",
+        2: u"5JM", }
     value_type = int
     unit = 'currency'
     entity = Individu
@@ -182,9 +182,9 @@ class nrag_ajag(Variable):
 
 # Autoentrepreneur
 class ebic_impv(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5TA",
-        QUIFOY['conj']: u"5UA",
-        QUIFOY['pac1']: u"5VA", }
+    cerfa_field = {0: u"5TA",
+        1: u"5UA",
+        2: u"5VA", }
     value_type = int
     unit = 'currency'
     entity = Individu
@@ -196,9 +196,9 @@ class ebic_impv(Variable):
   # (f5ta, f5ua, f5va))
 
 class ebic_imps(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5TB",
-        QUIFOY['conj']: u"5UB",
-        QUIFOY['pac1']: u"5VB", }
+    cerfa_field = {0: u"5TB",
+        1: u"5UB",
+        2: u"5VB", }
     value_type = int
     unit = 'currency'
     entity = Individu
@@ -210,9 +210,9 @@ class ebic_imps(Variable):
   # (f5tb, f5ub, f5vb))
 
 class ebnc_impo(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5TE",
-        QUIFOY['conj']: u"5UE",
-        QUIFOY['pac1']: u"5VE", }
+    cerfa_field = {0: u"5TE",
+        1: u"5UE",
+        2: u"5VE", }
     value_type = int
     unit = 'currency'
     entity = Individu
@@ -224,9 +224,9 @@ class ebnc_impo(Variable):
   # (f5te, f5ue, f5ve))
 
 class mbic_exon(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5KN",
-        QUIFOY['conj']: u"5LN",
-        QUIFOY['pac1']: u"5MN", }
+    cerfa_field = {0: u"5KN",
+        1: u"5LN",
+        2: u"5MN", }
     value_type = int
     unit = 'currency'
     entity = Individu
@@ -236,9 +236,9 @@ class mbic_exon(Variable):
   # (f5kn, f5ln, f5mn))
 
 class abic_exon(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5KB",
-        QUIFOY['conj']: u"5LB",
-        QUIFOY['pac1']: u"5MB", }
+    cerfa_field = {0: u"5KB",
+        1: u"5LB",
+        2: u"5MB", }
     value_type = int
     unit = 'currency'
     entity = Individu
@@ -248,9 +248,9 @@ class abic_exon(Variable):
   # (f5kb, f5lb, f5mb))
 
 class nbic_exon(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5KH",
-        QUIFOY['conj']: u"5LH",
-        QUIFOY['pac1']: u"5MH", }
+    cerfa_field = {0: u"5KH",
+        1: u"5LH",
+        2: u"5MH", }
     value_type = int
     unit = 'currency'
     entity = Individu
@@ -260,9 +260,9 @@ class nbic_exon(Variable):
   # (f5kh, f5lh, f5mh))
 
 class mbic_impv(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5KO",
-        QUIFOY['conj']: u"5LO",
-        QUIFOY['pac1']: u"5MO", }
+    cerfa_field = {0: u"5KO",
+        1: u"5LO",
+        2: u"5MO", }
     value_type = int
     unit = 'currency'
     entity = Individu
@@ -272,9 +272,9 @@ class mbic_impv(Variable):
   # (f5ko, f5lo, f5mo))
 
 class mbic_imps(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5KP",
-        QUIFOY['conj']: u"5LP",
-        QUIFOY['pac1']: u"5MP", }
+    cerfa_field = {0: u"5KP",
+        1: u"5LP",
+        2: u"5MP", }
     value_type = int
     unit = 'currency'
     entity = Individu
@@ -284,9 +284,9 @@ class mbic_imps(Variable):
   # (f5kp, f5lp, f5mp))
 
 class abic_impn(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5KC",
-        QUIFOY['conj']: u"5LC",
-        QUIFOY['pac1']: u"5MC", }
+    cerfa_field = {0: u"5KC",
+        1: u"5LC",
+        2: u"5MC", }
     value_type = int
     unit = 'currency'
     entity = Individu
@@ -296,9 +296,9 @@ class abic_impn(Variable):
   # (f5kc, f5lc, f5mc))
 
 class abic_imps(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5KD",
-        QUIFOY['conj']: u"5LD",
-        QUIFOY['pac1']: u"5MD", }
+    cerfa_field = {0: u"5KD",
+        1: u"5LD",
+        2: u"5MD", }
     value_type = int
     unit = 'currency'
     entity = Individu
@@ -310,9 +310,9 @@ class abic_imps(Variable):
 
 
 class nbic_impn(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5KI",
-        QUIFOY['conj']: u"5LI",
-        QUIFOY['pac1']: u"5MI", }
+    cerfa_field = {0: u"5KI",
+        1: u"5LI",
+        2: u"5MI", }
 
     value_type = int
     unit = 'currency'
@@ -326,9 +326,9 @@ class nbic_impn(Variable):
 # réutilisation cases 2013
 # """
 class nbic_imps(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5KJ",
-        QUIFOY['conj']: u"5LJ",
-        QUIFOY['pac1']: u"5MJ", }
+    cerfa_field = {0: u"5KJ",
+        1: u"5LJ",
+        2: u"5MJ", }
     value_type = int
     unit = 'currency'
     entity = Individu
@@ -338,9 +338,9 @@ class nbic_imps(Variable):
 
 
 class nbic_mvct(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5KJ",
-        QUIFOY['conj']: u"5LJ",
-        QUIFOY['pac1']: u"5MJ", }
+    cerfa_field = {0: u"5KJ",
+        1: u"5LJ",
+        2: u"5MJ", }
     value_type = int
     unit = 'currency'
     entity = Individu
@@ -349,13 +349,13 @@ class nbic_mvct(Variable):
     definition_period = YEAR
 
   # (f5kj, f5lj, f5mj))
-  # NB cette variable devrait s'appeler 'mbic_mvct' comme c'est une variable de régime micro (mais il 
+  # NB cette variable devrait s'appeler 'mbic_mvct' comme c'est une variable de régime micro (mais il
   # existe déjà une variable mbic_mvct avec un autre cerfa_fiel (5HU) corresponsant à avant 2012...)
 
 class abic_defn(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5KF",
-        QUIFOY['conj']: u"5LF",
-        QUIFOY['pac1']: u"5MF", }
+    cerfa_field = {0: u"5KF",
+        1: u"5LF",
+        2: u"5MF", }
     value_type = int
     unit = 'currency'
     entity = Individu
@@ -365,9 +365,9 @@ class abic_defn(Variable):
   # (f5kf, f5lf, f5mf))
 
 class abic_defs(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5KG",
-        QUIFOY['conj']: u"5LG",
-        QUIFOY['pac1']: u"5MG", }
+    cerfa_field = {0: u"5KG",
+        1: u"5LG",
+        2: u"5MG", }
     value_type = int
     unit = 'currency'
     entity = Individu
@@ -379,9 +379,9 @@ class abic_defs(Variable):
                                                           # vérif <=2012
 
 class nbic_defn(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5KL",
-        QUIFOY['conj']: u"5LL",
-        QUIFOY['pac1']: u"5ML", }
+    cerfa_field = {0: u"5KL",
+        1: u"5LL",
+        2: u"5ML", }
     value_type = int
     unit = 'currency'
     entity = Individu
@@ -391,9 +391,9 @@ class nbic_defn(Variable):
   # (f5kl, f5ll, f5ml))
 
 class nbic_defs(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5KM",
-        QUIFOY['conj']: u"5LM",
-        QUIFOY['pac1']: u"5MM", }
+    cerfa_field = {0: u"5KM",
+        1: u"5LM",
+        2: u"5MM", }
     value_type = int
     unit = 'currency'
     entity = Individu
@@ -404,9 +404,9 @@ class nbic_defs(Variable):
   # (f5km, f5lm, f5mm))
 
 class nbic_apch(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5KS",
-        QUIFOY['conj']: u"5LS",
-        QUIFOY['pac1']: u"5MS", }
+    cerfa_field = {0: u"5KS",
+        1: u"5LS",
+        2: u"5MS", }
     value_type = int
     unit = 'currency'
     entity = Individu
@@ -416,9 +416,9 @@ class nbic_apch(Variable):
   # (f5ks, f5ls, f5ms))
 
 class macc_exon(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5NN",
-        QUIFOY['conj']: u"5ON",
-        QUIFOY['pac1']: u"5PN", }
+    cerfa_field = {0: u"5NN",
+        1: u"5ON",
+        2: u"5PN", }
     value_type = int
     unit = 'currency'
     entity = Individu
@@ -428,9 +428,9 @@ class macc_exon(Variable):
   # (f5nn, f5on, f5pn))
 
 class aacc_exon(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5NB",
-        QUIFOY['conj']: u"5OB",
-        QUIFOY['pac1']: u"5PB", }
+    cerfa_field = {0: u"5NB",
+        1: u"5OB",
+        2: u"5PB", }
     value_type = int
     unit = 'currency'
     entity = Individu
@@ -440,9 +440,9 @@ class aacc_exon(Variable):
   # (f5nb, f5ob, f5pb))
 
 class nacc_exon(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5NH",
-        QUIFOY['conj']: u"5OH",
-        QUIFOY['pac1']: u"5PH", }
+    cerfa_field = {0: u"5NH",
+        1: u"5OH",
+        2: u"5PH", }
     value_type = int
     unit = 'currency'
     entity = Individu
@@ -452,9 +452,9 @@ class nacc_exon(Variable):
   # (f5nh, f5oh, f5ph))
 
 class macc_impv(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5NO",
-        QUIFOY['conj']: u"5OO",
-        QUIFOY['pac1']: u"5PO", }
+    cerfa_field = {0: u"5NO",
+        1: u"5OO",
+        2: u"5PO", }
     value_type = int
     unit = 'currency'
     entity = Individu
@@ -464,9 +464,9 @@ class macc_impv(Variable):
   # (f5no, f5oo, f5po))
 
 class macc_imps(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5NP",
-        QUIFOY['conj']: u"5OP",
-        QUIFOY['pac1']: u"5PP", }
+    cerfa_field = {0: u"5NP",
+        1: u"5OP",
+        2: u"5PP", }
     value_type = int
     unit = 'currency'
     entity = Individu
@@ -476,9 +476,9 @@ class macc_imps(Variable):
   # (f5np, f5op, f5pp))
 
 class aacc_impn(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5NC",
-        QUIFOY['conj']: u"5OC",
-        QUIFOY['pac1']: u"5PC", }
+    cerfa_field = {0: u"5NC",
+        1: u"5OC",
+        2: u"5PC", }
     value_type = int
     unit = 'currency'
     entity = Individu
@@ -488,9 +488,9 @@ class aacc_impn(Variable):
   # (f5nc, f5oc, f5pc))
 
 class aacc_imps(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5ND",
-        QUIFOY['conj']: u"5OD",
-        QUIFOY['pac1']: u"5PD", }
+    cerfa_field = {0: u"5ND",
+        1: u"5OD",
+        2: u"5PD", }
     value_type = int
     unit = 'currency'
     entity = Individu
@@ -501,9 +501,9 @@ class aacc_imps(Variable):
   # (f5nd, f5od, f5pd)) #TODO: avant 2010
 
 class aacc_defn(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5NF",
-        QUIFOY['conj']: u"5OF",
-        QUIFOY['pac1']: u"5PF", }
+    cerfa_field = {0: u"5NF",
+        1: u"5OF",
+        2: u"5PF", }
     value_type = int
     unit = 'currency'
     entity = Individu
@@ -513,9 +513,9 @@ class aacc_defn(Variable):
   # (f5nf, f5of, f5pf))
 
 class aacc_gits(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5NG",
-        QUIFOY['conj']: u"5OG",
-        QUIFOY['pac1']: u"5PG", }
+    cerfa_field = {0: u"5NG",
+        1: u"5OG",
+        2: u"5PG", }
     value_type = int
     unit = 'currency'
     entity = Individu
@@ -526,9 +526,9 @@ class aacc_gits(Variable):
   # (f5ng, f5og, f5pg))
 
 class nacc_impn(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5NI",
-        QUIFOY['conj']: u"5OI",
-        QUIFOY['pac1']: u"5PI", }
+    cerfa_field = {0: u"5NI",
+        1: u"5OI",
+        2: u"5PI", }
     value_type = int
     unit = 'currency'
     entity = Individu
@@ -538,9 +538,9 @@ class nacc_impn(Variable):
   # (f5ni, f5oi, f5pi))
 
 class aacc_defs(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5NG",
-        QUIFOY['conj']: u"5OG",
-        QUIFOY['pac1']: u"5PG", }
+    cerfa_field = {0: u"5NG",
+        1: u"5OG",
+        2: u"5PG", }
     value_type = int
     unit = 'currency'
     entity = Individu
@@ -551,9 +551,9 @@ class aacc_defs(Variable):
 
 
 class nacc_meup(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5NJ",
-        QUIFOY['conj']: u"5OJ",
-        QUIFOY['pac1']: u"5PJ", }
+    cerfa_field = {0: u"5NJ",
+        1: u"5OJ",
+        2: u"5PJ", }
     value_type = int
     unit = 'currency'
     entity = Individu
@@ -564,9 +564,9 @@ class nacc_meup(Variable):
   # (f5nj, f5oj, f5pj)) #TODO: dates 5PJ, 5PG, 5PD, 5OM
 
 class nacc_defn(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5NL",
-        QUIFOY['conj']: u"5OL",
-        QUIFOY['pac1']: u"5PL", }
+    cerfa_field = {0: u"5NL",
+        1: u"5OL",
+        2: u"5PL", }
     value_type = int
     unit = 'currency'
     entity = Individu
@@ -576,9 +576,9 @@ class nacc_defn(Variable):
   # (f5nl, f5ol, f5pl))
 
 class nacc_defs(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5NM",
-        QUIFOY['conj']: u"5OM",
-        QUIFOY['pac1']: u"5PM", }
+    cerfa_field = {0: u"5NM",
+        1: u"5OM",
+        2: u"5PM", }
     value_type = int
     unit = 'currency'
     entity = Individu
@@ -589,9 +589,9 @@ class nacc_defs(Variable):
   # (f5nm, f5om, f5pm)) #TODO autres 5NM
 
 class mncn_impo(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5KU",
-        QUIFOY['conj']: u"5LU",
-        QUIFOY['pac1']: u"5MU", }
+    cerfa_field = {0: u"5KU",
+        1: u"5LU",
+        2: u"5MU", }
     value_type = int
     unit = 'currency'
     entity = Individu
@@ -601,9 +601,9 @@ class mncn_impo(Variable):
   # (f5ku, f5lu, f5mu))
 
 class cncn_bene(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5SN",
-        QUIFOY['conj']: u"5NS",
-        QUIFOY['pac1']: u"5OS", }
+    cerfa_field = {0: u"5SN",
+        1: u"5NS",
+        2: u"5OS", }
     value_type = int
     unit = 'currency'
     entity = Individu
@@ -614,9 +614,9 @@ class cncn_bene(Variable):
   # (f5sn, f5ns, f5os))
 
 class cncn_defi(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5SP",
-        QUIFOY['conj']: u"5NU",
-        QUIFOY['pac1']: u"5OU", }
+    cerfa_field = {0: u"5SP",
+        1: u"5NU",
+        2: u"5OU", }
     value_type = int
     unit = 'currency'
     entity = Individu
@@ -628,9 +628,9 @@ class cncn_defi(Variable):
                                                                   # pas de f5sr en 2013
 
 class mbnc_exon(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5HP",
-        QUIFOY['conj']: u"5IP",
-        QUIFOY['pac1']: u"5JP", }
+    cerfa_field = {0: u"5HP",
+        1: u"5IP",
+        2: u"5JP", }
     value_type = int
     unit = 'currency'
     entity = Individu
@@ -640,9 +640,9 @@ class mbnc_exon(Variable):
   # (f5hp, f5ip, f5jp))
 
 class abnc_exon(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5QB",
-        QUIFOY['conj']: u"5RB",
-        QUIFOY['pac1']: u"5SB", }
+    cerfa_field = {0: u"5QB",
+        1: u"5RB",
+        2: u"5SB", }
     value_type = int
     unit = 'currency'
     entity = Individu
@@ -652,9 +652,9 @@ class abnc_exon(Variable):
   # (f5qb, f5rb, f5sb))
 
 class nbnc_exon(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5QH",
-        QUIFOY['conj']: u"5RH",
-        QUIFOY['pac1']: u"5SH", }
+    cerfa_field = {0: u"5QH",
+        1: u"5RH",
+        2: u"5SH", }
     value_type = int
     unit = 'currency'
     entity = Individu
@@ -664,9 +664,9 @@ class nbnc_exon(Variable):
   # (f5qh, f5rh, f5sh))
 
 class mbnc_impo(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5HQ",
-        QUIFOY['conj']: u"5IQ",
-        QUIFOY['pac1']: u"5JQ", }
+    cerfa_field = {0: u"5HQ",
+        1: u"5IQ",
+        2: u"5JQ", }
     value_type = int
     unit = 'currency'
     entity = Individu
@@ -676,9 +676,9 @@ class mbnc_impo(Variable):
   # (f5hq, f5iq, f5jq))
 
 class abnc_impo(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5QC",
-        QUIFOY['conj']: u"5RC",
-        QUIFOY['pac1']: u"5SC", }
+    cerfa_field = {0: u"5QC",
+        1: u"5RC",
+        2: u"5SC", }
     value_type = int
     unit = 'currency'
     entity = Individu
@@ -688,9 +688,9 @@ class abnc_impo(Variable):
   # (f5qc, f5rc, f5sc))
 
 class abnc_defi(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5QE",
-        QUIFOY['conj']: u"5RE",
-        QUIFOY['pac1']: u"5SE", }
+    cerfa_field = {0: u"5QE",
+        1: u"5RE",
+        2: u"5SE", }
     value_type = int
     unit = 'currency'
     entity = Individu
@@ -700,9 +700,9 @@ class abnc_defi(Variable):
   # (f5qe, f5re, f5se))
 
 class nbnc_impo(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5QI",
-        QUIFOY['conj']: u"5RI",
-        QUIFOY['pac1']: u"5SI", }
+    cerfa_field = {0: u"5QI",
+        1: u"5RI",
+        2: u"5SI", }
     value_type = int
     unit = 'currency'
     entity = Individu
@@ -712,9 +712,9 @@ class nbnc_impo(Variable):
   # (f5qi, f5ri, f5si))
 
 class nbnc_defi(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5QK",
-        QUIFOY['conj']: u"5RK",
-        QUIFOY['pac1']: u"5SK", }
+    cerfa_field = {0: u"5QK",
+        1: u"5RK",
+        2: u"5SK", }
     value_type = int
     unit = 'currency'
     entity = Individu
@@ -756,9 +756,9 @@ class mncn_mvct(Variable):
   # (f5ju))
 
 class mbnc_mvct(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5KZ", #TODO: pb cerfa field
-        QUIFOY['conj']: u"5LZ",
-        QUIFOY['pac1']: u"5MZ", }
+    cerfa_field = {0: u"5KZ", #TODO: pb cerfa field
+        1: u"5LZ",
+        2: u"5MZ", }
     value_type = int
     unit = 'currency'
     entity = Individu
@@ -770,9 +770,9 @@ class mbnc_mvct(Variable):
 
 
 class frag_pvct(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5HW",
-        QUIFOY['conj']: u"5IW",
-        QUIFOY['pac1']: u"5JW", }
+    cerfa_field = {0: u"5HW",
+        1: u"5IW",
+        2: u"5JW", }
     value_type = int
     unit = 'currency'
     entity = Individu
@@ -783,9 +783,9 @@ class frag_pvct(Variable):
   # (f5hw, f5iw, f5jw))
 
 class mbic_pvct(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5KX",
-        QUIFOY['conj']: u"5LX",
-        QUIFOY['pac1']: u"5MX", }
+    cerfa_field = {0: u"5KX",
+        1: u"5LX",
+        2: u"5MX", }
     value_type = int
     unit = 'currency'
     entity = Individu
@@ -795,9 +795,9 @@ class mbic_pvct(Variable):
   # (f5kx, f5lx, f5mx))
 
 class macc_pvct(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5NX",
-        QUIFOY['conj']: u"5OX",
-        QUIFOY['pac1']: u"5PX", }
+    cerfa_field = {0: u"5NX",
+        1: u"5OX",
+        2: u"5PX", }
     value_type = int
     unit = 'currency'
     entity = Individu
@@ -807,9 +807,9 @@ class macc_pvct(Variable):
   # (f5nx, f5ox, f5px))
 
 class mbnc_pvct(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5HV",
-        QUIFOY['conj']: u"5IV",
-        QUIFOY['pac1']: u"5JV", }
+    cerfa_field = {0: u"5HV",
+        1: u"5IV",
+        2: u"5JV", }
     value_type = int
     unit = 'currency'
     entity = Individu
@@ -819,9 +819,9 @@ class mbnc_pvct(Variable):
   # (f5hv, f5iv, f5jv))
 
 class mncn_pvct(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5KY",
-        QUIFOY['conj']: u"5LY",
-        QUIFOY['pac1']: u"5MY", }
+    cerfa_field = {0: u"5KY",
+        1: u"5LY",
+        2: u"5MY", }
     value_type = int
     unit = 'currency'
     entity = Individu
@@ -831,9 +831,9 @@ class mncn_pvct(Variable):
   # (f5ky, f5ly, f5my))
 
 class mbic_mvlt(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5KR",
-        QUIFOY['conj']: u"5LR",
-        QUIFOY['pac1']: u"5MR", }
+    cerfa_field = {0: u"5KR",
+        1: u"5LR",
+        2: u"5MR", }
     value_type = int
     unit = 'currency'
     entity = Individu
@@ -843,9 +843,9 @@ class mbic_mvlt(Variable):
   # (f5kr, f5lr, f5mr))
 
 class macc_mvlt(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5NR",
-        QUIFOY['conj']: u"5OR",
-        QUIFOY['pac1']: u"5PR", }
+    cerfa_field = {0: u"5NR",
+        1: u"5OR",
+        2: u"5PR", }
     value_type = int
     unit = 'currency'
     entity = Individu
@@ -855,9 +855,9 @@ class macc_mvlt(Variable):
   # (f5nr, f5or, f5pr))
 
 class mncn_mvlt(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5KW",
-        QUIFOY['conj']: u"5LW",
-        QUIFOY['pac1']: u"5MW", }
+    cerfa_field = {0: u"5KW",
+        1: u"5LW",
+        2: u"5MW", }
     value_type = int
     unit = 'currency'
     entity = Individu
@@ -867,9 +867,9 @@ class mncn_mvlt(Variable):
   # (f5kw, f5lw, f5mw))
 
 class mbnc_mvlt(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5HS",
-        QUIFOY['conj']: u"5IS",
-        QUIFOY['pac1']: u"5JS", }
+    cerfa_field = {0: u"5HS",
+        1: u"5IS",
+        2: u"5JS", }
     value_type = int
     unit = 'currency'
     entity = Individu
@@ -879,9 +879,9 @@ class mbnc_mvlt(Variable):
   # (f5hs, f5is, f5js))
 
 class frag_pvce(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5HX",
-        QUIFOY['conj']: u"5IX",
-        QUIFOY['pac1']: u"5JX", }
+    cerfa_field = {0: u"5HX",
+        1: u"5IX",
+        2: u"5JX", }
     value_type = int
     unit = 'currency'
     entity = Individu
@@ -892,9 +892,9 @@ class frag_pvce(Variable):
   # (f5hx, f5ix, f5jx))
 
 class arag_pvce(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5HE",
-        QUIFOY['conj']: u"5IE",
-        QUIFOY['pac1']: u"5JE", }
+    cerfa_field = {0: u"5HE",
+        1: u"5IE",
+        2: u"5JE", }
     value_type = int
     unit = 'currency'
     entity = Individu
@@ -905,9 +905,9 @@ class arag_pvce(Variable):
   # (f5he, f5ie, f5je))
 
 class nrag_pvce(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5HK",
-        QUIFOY['conj']: u"5LK",
-        QUIFOY['pac1']: u"5JK", }
+    cerfa_field = {0: u"5HK",
+        1: u"5LK",
+        2: u"5JK", }
     value_type = int
     unit = 'currency'
     entity = Individu
@@ -918,9 +918,9 @@ class nrag_pvce(Variable):
   # TODO: vérif <=2012))  # (f5hk, f5lk, f5jk) codent autre chose sur d'autres années),
 
 class mbic_pvce(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5KQ",
-        QUIFOY['conj']: u"5LQ",
-        QUIFOY['pac1']: u"5MQ", }
+    cerfa_field = {0: u"5KQ",
+        1: u"5LQ",
+        2: u"5MQ", }
     value_type = int
     unit = 'currency'
     entity = Individu
@@ -930,9 +930,9 @@ class mbic_pvce(Variable):
   # (f5kq, f5lq, f5mq))
 
 class abic_pvce(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5KE",
-        QUIFOY['conj']: u"5LE",
-        QUIFOY['pac1']: u"5ME", }
+    cerfa_field = {0: u"5KE",
+        1: u"5LE",
+        2: u"5ME", }
     value_type = int
     unit = 'currency'
     entity = Individu
@@ -942,9 +942,9 @@ class abic_pvce(Variable):
   # (f5ke, f5le, f5me))
 
 class nbic_pvce(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5IK",
-        QUIFOY['conj']: u"5KK",
-        QUIFOY['pac1']: u"5MK", }
+    cerfa_field = {0: u"5IK",
+        1: u"5KK",
+        2: u"5MK", }
     value_type = int
     unit = 'currency'
     entity = Individu
@@ -955,9 +955,9 @@ class nbic_pvce(Variable):
   # (f5kk, f5ik, f5mk)) TODO: autre 5KK 2005/20006
 
 class macc_pvce(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5NQ",
-        QUIFOY['conj']: u"5OQ",
-        QUIFOY['pac1']: u"5PQ", }
+    cerfa_field = {0: u"5NQ",
+        1: u"5OQ",
+        2: u"5PQ", }
     value_type = int
     unit = 'currency'
     entity = Individu
@@ -967,9 +967,9 @@ class macc_pvce(Variable):
   # (f5nq, f5oq, f5pq))
 
 class aacc_pvce(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5NE",
-        QUIFOY['conj']: u"5OE",
-        QUIFOY['pac1']: u"5PE", }
+    cerfa_field = {0: u"5NE",
+        1: u"5OE",
+        2: u"5PE", }
     value_type = int
     unit = 'currency'
     entity = Individu
@@ -979,9 +979,9 @@ class aacc_pvce(Variable):
   # (f5ne, f5oe, f5pe))
 
 class nacc_pvce(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5NK",
-        QUIFOY['conj']: u"5OK",
-        QUIFOY['pac1']: u"5PK", }
+    cerfa_field = {0: u"5NK",
+        1: u"5OK",
+        2: u"5PK", }
     value_type = int
     unit = 'currency'
     entity = Individu
@@ -992,9 +992,9 @@ class nacc_pvce(Variable):
   # (f5nk, f5ok, f5pk)) TODO: 5NK 2005/2006
 
 class mncn_pvce(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5KV",
-        QUIFOY['conj']: u"5LV",
-        QUIFOY['pac1']: u"5MV", }
+    cerfa_field = {0: u"5KV",
+        1: u"5LV",
+        2: u"5MV", }
     value_type = int
     unit = 'currency'
     entity = Individu
@@ -1004,9 +1004,9 @@ class mncn_pvce(Variable):
   # (f5kv, f5lv, f5mv))
 
 class cncn_pvce(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5SO",
-        QUIFOY['conj']: u"5NT",
-        QUIFOY['pac1']: u"5OT", }
+    cerfa_field = {0: u"5SO",
+        1: u"5NT",
+        2: u"5OT", }
     value_type = int
     unit = 'currency'
     entity = Individu
@@ -1017,9 +1017,9 @@ class cncn_pvce(Variable):
   # (f5so, f5nt, f5ot))
 
 class mbnc_pvce(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5HR",
-        QUIFOY['conj']: u"5IR",
-        QUIFOY['pac1']: u"5JR", }
+    cerfa_field = {0: u"5HR",
+        1: u"5IR",
+        2: u"5JR", }
     value_type = int
     unit = 'currency'
     entity = Individu
@@ -1029,9 +1029,9 @@ class mbnc_pvce(Variable):
   # (f5hr, f5ir, f5jr))
 
 class abnc_pvce(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5QD",
-        QUIFOY['conj']: u"5RD",
-        QUIFOY['pac1']: u"5SD", }
+    cerfa_field = {0: u"5QD",
+        1: u"5RD",
+        2: u"5SD", }
     value_type = int
     unit = 'currency'
     entity = Individu
@@ -1041,9 +1041,9 @@ class abnc_pvce(Variable):
   # (f5qd, f5rd, f5sd))
 
 class nbnc_pvce(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5QJ",
-        QUIFOY['conj']: u"5RJ",
-        QUIFOY['pac1']: u"5SJ", }
+    cerfa_field = {0: u"5QJ",
+        1: u"5RJ",
+        2: u"5SJ", }
     value_type = int
     unit = 'currency'
     entity = Individu
@@ -1055,9 +1055,9 @@ class nbnc_pvce(Variable):
   # (f5qj, f5rj, f5sj)) #TODO 5*J 2005/2006 (qui se transforme en 5*D...)
 
 class frag_fore(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5HD",
-        QUIFOY['conj']: u"5ID",
-        QUIFOY['pac1']: u"5JD", }
+    cerfa_field = {0: u"5HD",
+        1: u"5ID",
+        2: u"5JD", }
     value_type = int
     unit = 'currency'
     entity = Individu
@@ -1067,9 +1067,9 @@ class frag_fore(Variable):
 
 
 class arag_sjag(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5HZ",
-        QUIFOY['conj']: u"5IZ",
-        QUIFOY['pac1']: u"5JZ", }
+    cerfa_field = {0: u"5HZ",
+        1: u"5IZ",
+        2: u"5JZ", }
     value_type = int
     unit = 'currency'
     entity = Individu
@@ -1079,9 +1079,9 @@ class arag_sjag(Variable):
 
 
 class abic_impm(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5HA",
-        QUIFOY['conj']: u"5IA",
-        QUIFOY['pac1']: u"5JA", }
+    cerfa_field = {0: u"5HA",
+        1: u"5IA",
+        2: u"5JA", }
     value_type = int
     unit = 'currency'
     entity = Individu
@@ -1092,9 +1092,9 @@ class abic_impm(Variable):
 
 
 class nbic_impm(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5KA",
-        QUIFOY['conj']: u"5LA",
-        QUIFOY['pac1']: u"5MA", }
+    cerfa_field = {0: u"5KA",
+        1: u"5LA",
+        2: u"5MA", }
     value_type = int
     unit = 'currency'
     entity = Individu
@@ -1105,9 +1105,9 @@ class nbic_impm(Variable):
 
 
 class abic_defm(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5QA",
-        QUIFOY['conj']: u"5RA",
-        QUIFOY['pac1']: u"5SA", }
+    cerfa_field = {0: u"5QA",
+        1: u"5RA",
+        2: u"5SA", }
     value_type = int
     unit = 'currency'
     entity = Individu
@@ -1118,9 +1118,9 @@ class abic_defm(Variable):
 
 
 class alnp_imps(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5NA",
-        QUIFOY['conj']: u"5OA",
-        QUIFOY['pac1']: u"5PA", }
+    cerfa_field = {0: u"5NA",
+        1: u"5OA",
+        2: u"5PA", }
     value_type = int
     unit = 'currency'
     entity = Individu
@@ -1131,9 +1131,9 @@ class alnp_imps(Variable):
 
 
 class alnp_defs(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5NY",
-        QUIFOY['conj']: u"5OY",
-        QUIFOY['pac1']: u"5PY", }
+    cerfa_field = {0: u"5NY",
+        1: u"5OY",
+        2: u"5PY", }
     value_type = int
     unit = 'currency'
     entity = Individu
@@ -1143,9 +1143,9 @@ class alnp_defs(Variable):
 
 
 class nlnp_defs(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5NZ",
-        QUIFOY['conj']: u"5OZ",
-        QUIFOY['pac1']: u"5PZ", }
+    cerfa_field = {0: u"5NZ",
+        1: u"5OZ",
+        2: u"5PZ", }
     value_type = int
     unit = 'currency'
     entity = Individu
@@ -1156,8 +1156,8 @@ class nlnp_defs(Variable):
 
 
 class cbnc_assc(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5QM",
-        QUIFOY['conj']: u"5RM", }
+    cerfa_field = {0: u"5QM",
+        1: u"5RM", }
     value_type = int
     unit = 'currency'
     entity = Individu
@@ -1167,9 +1167,9 @@ class cbnc_assc(Variable):
 
 
 class abnc_proc(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5TF",
-        QUIFOY['conj']: u"5UF",
-        QUIFOY['pac1']: u"5VF", }
+    cerfa_field = {0: u"5TF",
+        1: u"5UF",
+        2: u"5VF", }
     value_type = int
     unit = 'currency'
     entity = Individu
@@ -1179,9 +1179,9 @@ class abnc_proc(Variable):
 
 
 class nbnc_proc(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5TI",
-        QUIFOY['conj']: u"5UI",
-        QUIFOY['pac1']: u"5VI", }
+    cerfa_field = {0: u"5TI",
+        1: u"5UI",
+        2: u"5VI", }
     value_type = int
     unit = 'currency'
     entity = Individu
@@ -1191,9 +1191,9 @@ class nbnc_proc(Variable):
 
 
 class mncn_exon(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5TH",
-        QUIFOY['conj']: u"5UH",
-        QUIFOY['pac1']: u"5VH", }
+    cerfa_field = {0: u"5TH",
+        1: u"5UH",
+        2: u"5VH", }
     value_type = int
     unit = 'currency'
     entity = Individu
@@ -1203,9 +1203,9 @@ class mncn_exon(Variable):
 
 
 class cncn_exon(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5HK",
-        QUIFOY['conj']: u"5JK",
-        QUIFOY['pac1']: u"5LK", }
+    cerfa_field = {0: u"5HK",
+        1: u"5JK",
+        2: u"5LK", }
     value_type = int
     unit = 'currency'
     entity = Individu
@@ -1215,9 +1215,9 @@ class cncn_exon(Variable):
 
 
 class cncn_aimp(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5JG",
-        QUIFOY['conj']: u"5RF",
-        QUIFOY['pac1']: u"5SF", }
+    cerfa_field = {0: u"5JG",
+        1: u"5RF",
+        2: u"5SF", }
     value_type = int
     unit = 'currency'
     entity = Individu
@@ -1227,9 +1227,9 @@ class cncn_aimp(Variable):
 
 
 class cncn_adef(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5JJ",
-        QUIFOY['conj']: u"5RG",
-        QUIFOY['pac1']: u"5SG", }
+    cerfa_field = {0: u"5JJ",
+        1: u"5RG",
+        2: u"5SG", }
     value_type = int
     unit = 'currency'
     entity = Individu
@@ -1239,9 +1239,9 @@ class cncn_adef(Variable):
 
 
 class cncn_info(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5TC",
-        QUIFOY['conj']: u"5UC",
-        QUIFOY['pac1']: u"5VC", }
+    cerfa_field = {0: u"5TC",
+        1: u"5UC",
+        2: u"5VC", }
     value_type = int
     unit = 'currency'
     entity = Individu
@@ -1251,9 +1251,9 @@ class cncn_info(Variable):
 
 
 class cncn_jcre(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5SV",
-        QUIFOY['conj']: u"5SW",
-        QUIFOY['pac1']: u"5SX", }
+    cerfa_field = {0: u"5SV",
+        1: u"5SW",
+        2: u"5SX", }
     value_type = int
     unit = 'currency'
     entity = Individu
@@ -1263,9 +1263,9 @@ class cncn_jcre(Variable):
 
 
 class revimpres(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5HY",
-        QUIFOY['conj']: u"5IY",
-        QUIFOY['pac1']: u"5JY", }
+    cerfa_field = {0: u"5HY",
+        1: u"5IY",
+        2: u"5JY", }
     value_type = int
     unit = 'currency'
     entity = Individu
@@ -1274,8 +1274,8 @@ class revimpres(Variable):
 
 
 class pveximpres(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5HG",
-        QUIFOY['conj']: u"5IG", }
+    cerfa_field = {0: u"5HG",
+        1: u"5IG", }
     value_type = int
     entity = Individu
     label = u"Plus-values à long terme exonérées en cas de départ à la retraite à imposer aux prélèvements sociaux"
@@ -1284,9 +1284,9 @@ class pveximpres(Variable):
 
 
 class pvtaimpres(Variable):
-    cerfa_field = {QUIFOY['vous']: u"5HZ",
-        QUIFOY['conj']: u"5IZ",
-        QUIFOY['pac1']: u"5JZ", }
+    cerfa_field = {0: u"5HZ",
+        1: u"5IZ",
+        2: u"5JZ", }
     value_type = int
     entity = Individu
     label = u"Plus-values à long terme taxables à 16% à la retraite à imposer aux prélèvements sociaux"

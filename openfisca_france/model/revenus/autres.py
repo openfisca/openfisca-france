@@ -4,11 +4,11 @@ from openfisca_france.model.base import *  # noqa analysis:ignore
 
 
 class pensions_alimentaires_percues(Variable):
-    cerfa_field = {QUIFOY['vous']: u"1AO",
-        QUIFOY['conj']: u"1BO",
-        QUIFOY['pac1']: u"1CO",
-        QUIFOY['pac2']: u"1DO",
-        QUIFOY['pac3']: u"1EO",
+    cerfa_field = {0: u"1AO",
+        1: u"1BO",
+        2: u"1CO",
+        3: u"1DO",
+        4: u"1EO",
         }
     value_type = float
     unit = 'currency'
@@ -95,10 +95,10 @@ class pensions_invalidite(Variable):
     # Cette case est apparue dans la déclaration 2014
     # Auparavant, les pensions d'invalidité étaient incluses dans la case 1AS
     cerfa_field = {
-        QUIFOY['vous']: u"1AZ",
-        QUIFOY['conj']: u"1BZ",
-        QUIFOY['pac1']: u"1CZ",
-        QUIFOY['pac2']: u"1DZ",
+        0: u"1AZ",
+        1: u"1BZ",
+        2: u"1CZ",
+        3: u"1DZ",
         }
     # start_date = date(2014, 1, 1)
     definition_period = MONTH
@@ -135,9 +135,9 @@ class f8vl(Variable):
 
 
 class f8vm(Variable):
-    cerfa_field = {QUIFOY['vous']: u"8VM",
-        QUIFOY['conj']: u"8WM",
-        QUIFOY['pac1']: u"8UM",
+    cerfa_field = {0: u"8VM",
+        1: u"8WM",
+        2: u"8UM",
         }
     value_type = int
     unit = 'currency'
