@@ -70,6 +70,10 @@ jobs:
           name: Publish a git tag
           command: .circleci/publish-git-tag.sh
 
+      - run:
+          name: Deploy the Web API
+          command: ssh -o StrictHostKeyChecking=no deploy-api@fr.openfisca.org
+
   build_python3:
     parallelism: 3  # Speed up the tests, while letting a container available for other builds.
     docker:
