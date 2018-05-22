@@ -1,0 +1,6 @@
+description: Taux permettant de calculer le montant mensuel mininal de l'allocation adulte handicapé (après 60 jours d'hospitalisation, d'accueil en MAS, d'incarcération)
+reference: ipp
+unit: currency
+values:
+  2017-04-01:
+    value: 0.3
