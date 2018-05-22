@@ -1,0 +1,6 @@
+description: Majoration pour biactifs et isolés
+reference: ipp
+unit: currency
+values:
+  2016-01-01:
+    value: 11534.0

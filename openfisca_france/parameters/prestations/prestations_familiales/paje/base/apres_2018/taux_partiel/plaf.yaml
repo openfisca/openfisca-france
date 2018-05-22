@@ -1,0 +1,6 @@
+description: Plafond de ressources de base pour PAJE à taux partiel
+reference: openfisca
+unit: currency
+values:
+  2018-04-01:
+    value: 25076

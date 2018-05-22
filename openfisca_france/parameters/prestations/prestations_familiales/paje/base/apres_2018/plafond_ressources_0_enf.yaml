@@ -1,0 +1,6 @@
+description: Plafond de ressources
+reference: ipp
+unit: currency
+values:
+  2016-01-01:
+    value: 28697.0

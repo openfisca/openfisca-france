@@ -1,0 +1,6 @@
+description: Majoration pour biactifs et isolés, pour plafond taux partiel
+reference: openfisca
+unit: currency
+values:
+  2018-04-01:
+    value: 10080
