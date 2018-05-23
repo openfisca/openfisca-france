@@ -1,5 +1,14 @@
 # Changelog
 
+### 21.10.3 [#975](https://github.com/openfisca/openfisca-france/pull/985)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/04/2018.
+* Zones impactées :
+  - `prestations/minima_sociaux/rsa`
+* Détails :
+  - Met à jour le montant de base du RSA en date du 1er avril 2018
+
 ### 21.10.2 [#982](https://github.com/openfisca/openfisca-france/pull/984)
 
 * Évolution du système socio-fiscal.
