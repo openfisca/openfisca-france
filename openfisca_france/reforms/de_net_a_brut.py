@@ -52,7 +52,7 @@ class salaire_de_base(Variable):
 
         # List of variables already calculated. We will need it to remove their holders,
         # that might contain undesired cache
-        requested_variable_names = simulation.requested_periods_by_variable_name.keys()
+        requested_variable_names = list(simulation.requested_periods_by_variable_name.keys())
         if requested_variable_names:
             requested_variable_names.remove(u'salaire_de_base')
         # Clean 'requested_periods_by_variable_name', that is used by -core to check for computation cycles.
@@ -65,13 +65,11 @@ class salaire_de_base(Variable):
             def innerfunc(essai):
                 return calculate_net_from(essai, individu, period, requested_variable_names) - net
             return innerfunc
-
-        brut_calcule = \
-            fsolve(
-                solve_func(net),
-                net*1.5,  # on entend souvent parler cette méthode...
-                xtol = 1/10  # précision
-                )
+        brut_calcule = fsolve(
+            solve_func(net),
+            net * 1.5,  # on entend souvent parler cette méthode...
+            xtol = 1 / 10  # précision
+            )
 
         return brut_calcule
 

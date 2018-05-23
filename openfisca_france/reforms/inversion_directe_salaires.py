@@ -52,7 +52,7 @@ class salaire_de_base(Variable):
 #            elif (categorie_salarie == 2).all():
 #                cat = 'public_titulaire_etat'
 #            if cat is not None:
-#                for name, bareme in salarie[cat].iteritems():
+#                for name, bareme in salarie[cat].items():
 #                    print name, bareme
 
         prive_non_cadre = salarie['prive_non_cadre'].combine_tax_scales().scale_tax_scales(
@@ -98,7 +98,7 @@ class traitement_indiciaire_brut(Variable):
 #            if (categorie_salarie == 2).all():
 #                cat = 'public_titulaire_etat'
 #            if cat is not None:
-#                for name, bareme in salarie[cat].iteritems():
+#                for name, bareme in salarie[cat].items():
 #                    print name, bareme
 
         # public etat

@@ -67,8 +67,7 @@ def build_pat(node_json):
 
     pat.children['public_titulaire_hospitaliere'] = copy.deepcopy(pat.children['public_titulaire_territoriale'])
     for category in ['territoriale', 'hospitaliere']:
-        for name, bareme in pat.children['public_titulaire_' + category].children[category].children.iteritems(
-                ):
+        for name, bareme in pat.children['public_titulaire_' + category].children[category].children.items():
             pat.children['public_titulaire_{}'.format(category)].children[name] = bareme
 
     for category in ['territoriale', 'hospitaliere']:
@@ -137,7 +136,7 @@ def preprocess_parameters(parameters):
             ('cotisations_employeur', pat.children),
             ('cotisations_salarie', sal.children),
             ):
-        for category, bareme in baremes.iteritems():
+        for category, bareme in baremes.items():
             if category in [member.name for member in TypesCategorieSalarie]:
                 cotsoc.children[cotisation_name].children[category] = bareme
 

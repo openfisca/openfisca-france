@@ -5,7 +5,7 @@ import json
 
 from nose.tools import assert_equal
 
-from cache import tax_benefit_system
+from .cache import tax_benefit_system
 from openfisca_france.model.base import *
 
 
@@ -23,7 +23,7 @@ def test_birth():
             ],
         )
     scenario.suggest()
-    json.dumps(scenario.to_json(), encoding = 'utf-8', ensure_ascii = False, indent = 2)
+    json.dumps(scenario.to_json(), ensure_ascii = False, indent = 2)
     simulation = scenario.new_simulation()
     assert_equal(
         simulation.calculate('date_naissance', period = None).tolist(),

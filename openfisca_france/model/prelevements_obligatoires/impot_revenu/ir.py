@@ -674,7 +674,7 @@ class rev_cat_rvcm(Variable):
         rev = g12b + f2gr + f2fu * (1 - rvcm.taux_abattement_capitaux_mobiliers)
 
         # Abattements, limité au revenu
-        if period.start.date >= date(2012, 1, 01):
+        if period.start.date >= date(2012, 1, 1):
             h12 = 0
         else:
             h12 = rvcm.abatmob * (1 + maries_ou_pacses)
@@ -773,7 +773,7 @@ class rfr_rvcm(Variable):
         rev = g12b + f2gr + f2fu * (1 - rvcm.taux_abattement_capitaux_mobiliers)
 
         # Abattements, limité au revenu
-        if period.start.date >= date(2012, 1, 01):
+        if period.start.date >= date(2012, 1, 1):
             h12 = 0
         else:
             h12 = rvcm.abatmob * (1 + maries_ou_pacses)
@@ -1066,13 +1066,13 @@ class ir_plaf_qf(Variable):
         A = ir_ss_qf
         I = ir_brut
 
-        aa0 = (nb_parts - nb_adult) * 2  # nombre de demi part excédant nbadult 
+        aa0 = (nb_parts - nb_adult) * 2  # nombre de demi part excédant nbadult
         aa1 = min_((nb_parts - 1) * 2, 2)  # deux première demi part excédants une part
-        
+
         B1 = plafond_qf.celib_enf * aa1 / 2 + plafond_qf.maries_ou_pacses * (aa0 - aa1)
-        B2 = plafond_qf.maries_ou_pacses * aa0 
+        B2 = plafond_qf.maries_ou_pacses * aa0
         B3 = plafond_qf.celib
-        
+
         condition61 = celibataire_ou_divorce & caseT
         condition63 = (celibataire_ou_divorce | (veuf & not_(jeune_veuf))) & not_(caseN) & (nb_pac == 0) & (caseK | caseE) & (caseH < int(period.start.year) - 25)
 
@@ -1080,7 +1080,7 @@ class ir_plaf_qf(Variable):
             B2 * (not_(condition61 | condition63)) + \
             B3 * (condition63 & not_(condition61))
         C = max_(0, A - B)
-        
+
         IP0 = max_(I, C) # Impôt après plafonnement
 
         # 6.2 réduction d'impôt pratiquée sur l'impot après plafonnement et le cas particulier des DOM
@@ -1158,9 +1158,9 @@ class ir_plaf_qf(Variable):
         aa0 = (nb_parts - nb_adult) * 2
         aa1 = min_((nb_parts - 1) * 2, 2)
         B1 = plafond_qf.celib_enf * aa1 / 2 + plafond_qf.maries_ou_pacses * (aa0 - aa1)
-        B2 = plafond_qf.maries_ou_pacses * aa0 
+        B2 = plafond_qf.maries_ou_pacses * aa0
         B3 = plafond_qf.celib
-        
+
         condition61 = celibataire_ou_divorce & caseT
         condition63 = (celibataire_ou_divorce | veuf) & (nb_pac == 0) & caseL
 
@@ -1169,10 +1169,10 @@ class ir_plaf_qf(Variable):
             B3 * (condition63 & not_(condition61))
 
         C = max_(0, A - B)
-        
+
         IP0 = max_(I, C)
 
-        # PART2 - REDUCTION IR APRES PLAFONNEMENT 
+        # PART2 - REDUCTION IR APRES PLAFONNEMENT
 
         condition62a = (I >= C) # pas de réductions complémentaires
         condition62b = (I < C) # possible réductions complémentaires
@@ -1185,7 +1185,7 @@ class ir_plaf_qf(Variable):
 
         E = condition62b * condition62c * (
             plafond_qf.reduc_postplafond * condition62c0 * not_(condition62c1)  +
-            plafond_qf.reduc_postplafond * 2 * condition62c1 + 
+            plafond_qf.reduc_postplafond * 2 * condition62c1 +
             plafond_qf.reduc_postplafond * (nbG + nbI/2 + nbR) * condition62c2)
 
         D = condition62b * condition62d * plafond_qf.reduc_postplafond_veuf
@@ -1201,8 +1201,8 @@ class ir_plaf_qf(Variable):
         conditionGuyMay = 0 # provisoire
         conditionDOM = conditionGuadMarReu | conditionGuyMay
 
-        abat_dom = (conditionGuadMarReu * min_(plafond_qf.abat_dom.plaf_GuadMarReu, plafond_qf.abat_dom.taux_GuadMarReu * IP1) + 
-                   conditionGuyMay * min_(plafond_qf.abat_dom.plaf_GuyMay, plafond_qf.abat_dom.taux_GuyMay * IP1)) 
+        abat_dom = (conditionGuadMarReu * min_(plafond_qf.abat_dom.plaf_GuadMarReu, plafond_qf.abat_dom.taux_GuadMarReu * IP1) +
+                   conditionGuyMay * min_(plafond_qf.abat_dom.plaf_GuyMay, plafond_qf.abat_dom.taux_GuyMay * IP1))
         IP2 = IP1 - abat_dom
 
         return (not_(conditionDOM) * (condition62a * IP0 + condition62b * IP1) +
@@ -1287,7 +1287,7 @@ class reduction_ss_condition_revenus(Variable):
         rfr = foyer_fiscal('rfr', period)
         P = parameters(period).impot_revenu.plafond_qf.reduction_ss_condition_revenus
 
-        ir_apres_plaf_qf_et_decote = ir_plaf_qf - decote 
+        ir_apres_plaf_qf_et_decote = ir_plaf_qf - decote
         plafond1 = P.seuil1 * nb_adult + P.seuil_maj_enf * 2 * (nb_parts - nb_adult)
         plafond2 = P.seuil2 * nb_adult + P.seuil_maj_enf * 2 * (nb_parts - nb_adult)
         reduction1 =  P.taux * ir_apres_plaf_qf_et_decote
@@ -1297,7 +1297,7 @@ class reduction_ss_condition_revenus(Variable):
             (rfr < plafond1) * reduction1
             + (rfr >= plafond1) * (rfr < plafond2) * reduction2
             )
-        
+
         return reduction_sous_condition_de_ressources
 
 class nat_imp(Variable):
@@ -1343,7 +1343,7 @@ class ip_net(Variable):
         cncn_info_i = foyer_fiscal.members('cncn_info', period)
         decote = foyer_fiscal('decote', period)
         ir_plaf_qf = foyer_fiscal('ir_plaf_qf', period)
-        reduction_ss_condition_revenus = foyer_fiscal('reduction_ss_condition_revenus', period) 
+        reduction_ss_condition_revenus = foyer_fiscal('reduction_ss_condition_revenus', period)
         taux = parameters(period).impot_revenu.rpns.taux16
 
         return max_(0, ir_plaf_qf + foyer_fiscal.sum(cncn_info_i) * taux - decote - reduction_ss_condition_revenus)
@@ -1577,7 +1577,7 @@ class plus_values(Variable):
         f3vd = foyer_fiscal.sum(f3vd_i)
         f3vi = foyer_fiscal.sum(f3vi_i)
         f3vf = foyer_fiscal.sum(f3vf_i)
-        
+
         out = (plus_values.pvce * rpns_pvce +
                plus_values.taux1 * max_(0, f3vg - f3vh) +
                plus_values.taux2 * f3vd +
@@ -1587,7 +1587,7 @@ class plus_values(Variable):
                plus_values.taux_pv_entrep * f3sa +
                plus_values.taux3 * f3vi +
                plus_values.taux4 * f3vf)
-       
+
         return round_(out)
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
@@ -1606,7 +1606,7 @@ class plus_values(Variable):
         f3vi = foyer_fiscal.sum(f3vi_i)
         f3vf = foyer_fiscal.sum(f3vf_i)
         plus_values = parameters(period).impot_revenu.plus_values
-       
+
         out = (plus_values.pvce * rpns_pvce +
                plus_values.pea.taux_avant_2_ans * f3vm +
                plus_values.pea.taux_posterieur * f3vt +
@@ -1622,7 +1622,7 @@ class rfr_plus_values(Variable):
     label = u"Plus-values hors RNI entrant dans le calcul du revenu fiscal de référence (PV au barème, PV éxonérées ..)"
     definition_period = YEAR
 
-    def formula_2011_01_01(foyer_fiscal, period, parameters): 
+    def formula_2011_01_01(foyer_fiscal, period, parameters):
         """
         Plus-values 2011 entrant dans le calcul du revenu fiscal de référence
         """
@@ -1639,10 +1639,10 @@ class rfr_plus_values(Variable):
         f3vi = foyer_fiscal.sum(f3vi_i)
         f3vd = foyer_fiscal.sum(f3vd_i)
         f3vf = foyer_fiscal.sum(f3vf_i)
-        
+
         return f3vc + f3vd + f3vf + f3vg + f3vi + f3vl + f3vm + f3vp + f3vy + f3vz
 
-    def formula_2012_01_01(foyer_fiscal, period, parameters): 
+    def formula_2012_01_01(foyer_fiscal, period, parameters):
         """
         Plus-values 2012 entrant dans le calcul du revenu fiscal de référence
         """
@@ -1665,7 +1665,7 @@ class rfr_plus_values(Variable):
 
         return f3sa + f3vc + f3vd + f3vf + f3vg + f3vi + f3vl + f3vm + f3vp + f3vt + f3vy + f3vz
 
-    def formula_2013_01_01(foyer_fiscal, period, parameters): 
+    def formula_2013_01_01(foyer_fiscal, period, parameters):
         """
         Plus-values 2013 et + entrant dans le calcul du revenu fiscal de référence
         """
@@ -1820,7 +1820,7 @@ class rfr(Variable):
             + abattement_net_duree_detention
             + f2dm + microentreprise
             )
-        
+
         # TO CHECK : f3vb after 2015 (abattements sur moins-values = interdits)
 
 class glo(Variable):
@@ -2528,7 +2528,7 @@ class rpns_individu(Variable):
     def formula(individu, period, parameters):
         '''
         Revenus des professions non salariées individuels
-        '''  
+        '''
         arag_impg = individu('arag_impg', period)
         nrag_impg = individu('nrag_impg', period)
         arag_defi = individu('arag_defi', period)
@@ -2677,9 +2677,9 @@ class rpns_individu(Variable):
         rev_ns_mi = mbic_timp + max_(0, macc_timp) + mbnc_timp + mncn_timp
         exon_acc = max_(0, macc_timp + nacc_timp - macc_mvct) - macc_timp - nacc_timp  # ajout artificiel
         exon_ncn = max_(0, mncn_timp - mncn_mvct) - mncn_timp  # ajout artificiel
-        
+
         return (
-            revevenus_non_salaries + rev_ns_mi + rpns_pvct + exon_acc + exon_ncn 
+            revevenus_non_salaries + rev_ns_mi + rpns_pvct + exon_acc + exon_ncn
             + abic_impm - abic_defm + alnp_imps + cncn_aimp - rpns_mvct_pro
             )
 

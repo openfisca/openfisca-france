@@ -72,7 +72,7 @@ def dict_constructor(loader, node):
 
 
 def dict_representer(dumper, data):
-    return dumper.represent_dict(data.iteritems())
+    return dumper.represent_dict(data.items())
 
 
 yaml.add_constructor(yaml.resolver.BaseResolver.DEFAULT_MAPPING_TAG, dict_constructor)
@@ -253,7 +253,7 @@ def rename_keys(new_key_by_old_key):
         if value is None:
             return value, None
         renamed_value = value.__class__()
-        for item_key, item_value in value.iteritems():
+        for item_key, item_value in value.items():
             new_key = new_key_by_old_key.get(item_key)
             if new_key is None:
                 new_key = item_key
@@ -301,7 +301,7 @@ def warn_keys_alias(new_key_by_old_key):
         if value is None:
             return value, None
         warnings = collections.OrderedDict()
-        for item_key, item_value in value.iteritems():
+        for item_key, item_value in value.items():
             label = new_key_by_old_key.get(item_key)
             if label is not None:
                 warnings[item_key] = u'Label "{}" should be renamed to "{}"'.format(item_key, label)
@@ -434,7 +434,7 @@ def encapsulate_yaml(value):
     if isinstance(value, dict):
         return type(value)(
             (item_name, encapsulate_yaml(item_value))
-            for item_name, item_value in value.iteritems()
+            for item_name, item_value in value.items()
             )
     if isinstance(value, list):
         return [
@@ -497,7 +497,7 @@ def clean(yaml_raw_dir, yaml_clean_dir):
                     if data_errors is None:
                         clean_data[u'ERRORS'] = error
                     elif isinstance(data_errors, dict) and isinstance(error, dict):
-                        for item_name, item_value in error.iteritems():
+                        for item_name, item_value in error.items():
                             if item_name not in data_errors:
                                 data_errors[item_name] = item_value
                     error_by_sheet_name[sheet_name] = error
@@ -509,7 +509,7 @@ def clean(yaml_raw_dir, yaml_clean_dir):
                         if data_warnings is None:
                             clean_data[u'WARNINGS'] = warning
                         elif isinstance(data_warnings, dict) and isinstance(warning, dict):
-                            for item_name, item_value in warning.iteritems():
+                            for item_name, item_value in warning.items():
                                 if item_name not in data_warnings:
                                     data_warnings[item_name] = item_value
                     warning_by_sheet_name[sheet_name] = warning

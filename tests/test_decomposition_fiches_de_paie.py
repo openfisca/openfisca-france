@@ -6,7 +6,8 @@ import json
 import os
 
 from openfisca_core import decompositions
-from cache import tax_benefit_system
+from openfisca_core.commons import to_unicode
+from .cache import tax_benefit_system
 
 decompositions_directory = os.path.dirname(tax_benefit_system.decomposition_file_path)
 
@@ -38,9 +39,9 @@ def test_decomposition(print_decomposition = False):
     simulations = [simulation]
     response = decompositions.calculate(simulations, decomposition_json)
     if print_decomposition:
-        print unicode(
+        print(to_unicode(
             json.dumps(response, encoding = 'utf-8', ensure_ascii = False, indent = 2)
-            )
+            ))
 
 
 if __name__ == '__main__':

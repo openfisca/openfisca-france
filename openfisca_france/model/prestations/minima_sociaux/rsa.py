@@ -328,7 +328,7 @@ class rsa_enfant_a_charge(Variable):
         age = individu('age', period)
         autonomie_financiere = individu('autonomie_financiere', period)
 
-        if period.start.date >= date(2017, 01, 01):
+        if period.start.date >= date(2017, 1, 1):
             m_1 = period.last_month
             m_2 = m_1.last_month
             m_3 = m_2.last_month
@@ -345,7 +345,7 @@ class rsa_enfant_a_charge(Variable):
                 )
 
         # Les parametres ont changé de nom au moment où le RMI est devenu le RSA
-        if period.start.date >= date(2009, 6, 01):
+        if period.start.date >= date(2009, 6, 1):
             age_pac = P_rsa.age_pac
             majo_rsa = P_rsa.majo_rsa
             montant_base_rsa = P_rsa.montant_de_base_du_rsa
@@ -829,7 +829,7 @@ class rsa_forfait_logement(Variable):
         # Les parametres ont changé de nom au moment où le RMI est devenu le RSA
         # Pour le RSA, on utilise les taux des textes de lois, pour le RMI ils sont déjà aggrégés
         # Il faudrait uniformiser, mais les taux légaux pour le RMI commencent par "1", et ne passent pas en python
-        if period.start.date >= date(2009, 6, 01):
+        if period.start.date >= date(2009, 6, 1):
             params = parameters(period).prestations.minima_sociaux.rsa
             montant_base = params.montant_de_base_du_rsa
             taux_2p = 1 + params.majoration_rsa.taux_deuxieme_personne

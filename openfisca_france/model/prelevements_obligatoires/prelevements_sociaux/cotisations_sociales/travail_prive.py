@@ -288,6 +288,7 @@ class agirc_gmp_salarie(Variable):
         agirc_salarie = individu('agirc_salarie', period)
         assiette_cotisations_sociales = individu('assiette_cotisations_sociales', period)
         categorie_salarie = individu('categorie_salarie', period)
+        plafond_securite_sociale = individu('plafond_securite_sociale', period)
 
         gmp = parameters(period).prelevements_sociaux.gmp
         cotisation_forfaitaire = gmp.cotisation_forfaitaire_mensuelle_en_euros.part_salariale
@@ -315,6 +316,7 @@ class agirc_gmp_employeur(Variable):
         agirc_gmp_assiette = individu('agirc_gmp_assiette', period)
         assiette_cotisations_sociales = individu('assiette_cotisations_sociales', period)
         categorie_salarie = individu('categorie_salarie', period)
+        plafond_securite_sociale = individu('plafond_securite_sociale', period)
 
         gmp = parameters(period).prelevements_sociaux.gmp
         cotisation_forfaitaire = gmp.cotisation_forfaitaire_mensuelle_en_euros.part_patronale

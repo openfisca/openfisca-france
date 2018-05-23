@@ -74,7 +74,7 @@ class exoneration_cotisations_employeur_jei(Variable):
             6: 1,
             7: 1,
             }  # TODO: move to parameters file
-        for year_passed, rate in rate_by_year_passed.iteritems():
+        for year_passed, rate in rate_by_year_passed.items():
             condition_on_year_passed = exoneration_relative_year_passed == timedelta64(year_passed, 'Y')
             if condition_on_year_passed.any():
                 exoneration[condition_on_year_passed] = rate * exoneration
@@ -217,12 +217,12 @@ class exoneration_cotisations_employeur_zfu(Variable):
             }  # TODO: move to parameters file
         large_taux_exoneration = eligible * 0.0
         small_taux_exoneration = eligible * 0.0
-        for year_passed, rate in large_rate_by_year_passed.iteritems():
+        for year_passed, rate in large_rate_by_year_passed.items():
             condition_on_year_passed = exoneration_relative_year_passed == timedelta64(year_passed, 'Y')
             if condition_on_year_passed.any():
                 large_taux_exoneration[condition_on_year_passed] = rate * taux_exoneration
 
-        for year_passed, rate in small_rate_by_year_passed.iteritems():
+        for year_passed, rate in small_rate_by_year_passed.items():
             if condition_on_year_passed.any():
                 small_taux_exoneration[condition_on_year_passed] = rate * taux_exoneration
 
@@ -262,7 +262,7 @@ class exoneration_cotisations_employeur_zrd(Variable):
             4: 1 / 3,
             }  # TODO: move to parameters file
         ratio = eligible * 0.0
-        for year_passed, rate in rate_by_year_passed.iteritems():
+        for year_passed, rate in rate_by_year_passed.items():
             condition_on_year_passed = exoneration_relative_year_passed == timedelta64(year_passed, 'Y')
             if condition_on_year_passed.any():
                 ratio[condition_on_year_passed] = rate
@@ -371,7 +371,7 @@ class exoneration_is_creation_zrr(Variable):
             7: .25,
             }  # TODO: move to parameters file
         taux_exoneraion = eligible * 0.0
-        for year_passed, rate in rate_by_year_passed.iteritems():
+        for year_passed, rate in rate_by_year_passed.items():
             condition_on_year_passed = exoneration_relative_year_passed == timedelta64(year_passed, 'Y')
             taux_exoneraion[condition_on_year_passed] = rate
 

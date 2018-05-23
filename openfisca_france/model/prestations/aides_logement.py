@@ -3,9 +3,11 @@
 from __future__ import division
 
 import csv
+import codecs
 import json
 import logging
 import pkg_resources
+import sys
 
 from numpy import ceil, datetime64, fromiter, int16, logical_or as or_, logical_and as and_, nditer
 
@@ -562,7 +564,7 @@ class aide_logement_R0(Variable):
         residence_dom = famille.demandeur.menage('residence_dom', period)
 
         n_2 = period.start.offset(-2, 'year')
-        if n_2.date >= date(2009, 6, 01):
+        if n_2.date >= date(2009, 6, 1):
             montant_de_base = minim_n_2.rsa.montant_de_base_du_rsa
         else:
             montant_de_base = minim_n_2.rmi.montant_de_base_du_rmi
@@ -980,7 +982,7 @@ class zone_apl(Variable):
         default_value = 2
         zone = fromiter(
             (
-                zone_apl_by_depcom.get(depcom_cell, default_value)
+                zone_apl_by_depcom.get(depcom_cell if isinstance(depcom_cell, str) else depcom_cell.decode('utf-8'), default_value)
                 for depcom_cell in depcom
                 ),
             dtype = int16,
@@ -999,7 +1001,11 @@ def preload_zone_apl():
                 openfisca_france.__name__,
                 'assets/apl/20110914_zonage.csv',
                 ) as csv_file:
-            csv_reader = csv.DictReader(csv_file)
+            if sys.version_info < (3, 0):
+                csv_reader = csv.DictReader(csv_file)
+            else:
+                utf8_reader = codecs.getreader("utf-8")
+                csv_reader = csv.DictReader(utf8_reader(csv_file))
             zone_apl_by_depcom = {
                 # Keep only first char of Zonage column because of 1bis value considered equivalent to 1.
                 row['CODGEO']: int(row['Zonage'][0])
@@ -1011,7 +1017,7 @@ def preload_zone_apl():
                 'assets/apl/commune_depcom_by_subcommune_depcom.json',
                 ) as json_file:
             commune_depcom_by_subcommune_depcom = json.load(json_file)
-            for subcommune_depcom, commune_depcom in commune_depcom_by_subcommune_depcom.iteritems():
+            for subcommune_depcom, commune_depcom in commune_depcom_by_subcommune_depcom.items():
                 zone_apl_by_depcom[subcommune_depcom] = zone_apl_by_depcom[commune_depcom]
 
 class aides_logement_primo_accedant(Variable):

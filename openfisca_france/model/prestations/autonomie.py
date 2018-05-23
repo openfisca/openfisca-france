@@ -151,6 +151,7 @@ class apa_domicile_taux_participation(Variable):
     definition_period = MONTH
 
     def formula(individu, period, parameters):
+        apa_domicile = individu('apa_domicile', period)
         dependance_plan_aide_domicile_accepte = individu('dependance_plan_aide_domicile_accepte', period)
         apa_domicile_participation = individu('apa_domicile_participation', period)
 
@@ -235,7 +236,7 @@ class apa_etablissement(Variable):
 
 
 class TypesGir(Enum):
-    __order__ = 'gir_1 gir_2 gir_3 gir_4 gir_5 gir_6'  # Needed to preserve the enum order in Python 2
+    __order__ = 'non_defini gir_1 gir_2 gir_3 gir_4 gir_5 gir_6'  # Needed to preserve the enum order in Python 2
     non_defini = u"Non défini"
     gir_1 = u"Gir 1"
     gir_2 = u"Gir 2"

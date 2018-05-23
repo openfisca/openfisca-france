@@ -13,7 +13,7 @@ def brut_to_target(target_name = None, period = None, individu = None, **input_a
     simulation = individu.simulation.clone(debug = individu.simulation.debug, trace = individu.simulation.trace)
     new_individu = simulation.individu
     new_individu.get_holder(target_name).delete_arrays()
-    for variable_name, array in input_array_by_name.iteritems():
+    for variable_name, array in input_array_by_name.items():
         new_individu.get_holder(variable_name).put_in_cache(array, period)
     return new_individu(target_name, options = [ADD])
 
