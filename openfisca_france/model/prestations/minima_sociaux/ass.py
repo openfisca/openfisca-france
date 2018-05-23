@@ -174,33 +174,20 @@ class ass_eligibilite_cumul_individu(Variable):
     definition_period = MONTH
     reference = u"https://www.legifrance.gouv.fr/eli/decret/2017/5/5/ETSD1708117D/jo/article_2"
 
-def formula_2017_09_01(individu, period):
-        # liste des périodes à contrôler plus la période en cours
-        periods_a_inclure = [
-            period.offset(-12),
-            period.offset(-11),
-            period.offset(-10),
-            period.offset(-9),
-            period.offset(-8),
-            period.offset(-7),
-            period.offset(-6),
-            period.offset(-5),
-            period.offset(-4),
-            period.offset(-3),
-            period.offset(-2),
-            period.offset(-1),
-            period,
-        ]
+    def formula_2017_09_01(individu, period):
+        # liste des decalage de périodes à contrôler plus la période en cours
+
+        douze_mois_precedents = [period.offset(offset) for offset in range(-12, 0 + 1)]
 
         nb_mois_cumul = 0
         nb_mois_consecutif_sans_activite = 0
 
-        for period_a_tester in periods_a_inclure:
-            presence_ressources_activite = individu('salaire_imposable', period_a_tester) > 0
+        for mois in douze_mois_precedents:
+            presence_ressources_activite = individu('salaire_imposable', mois) > 0
             absence_ressources_activite = not_(presence_ressources_activite)
-            ass_precondition_remplie = individu('ass_precondition_remplie', period_a_tester)
-            chomeur = individu('activite', period_a_tester) == TypesActivite.chomeur
-            absence_aah = not_(individu('aah', period_a_tester) > 0)
+            ass_precondition_remplie = individu('ass_precondition_remplie', mois)
+            chomeur = individu('activite', mois) == TypesActivite.chomeur
+            absence_aah = not_(individu('aah', mois) > 0)
 
             # reinitialisation du nombre de mois de cumul après 3 mois consécutif sans activité
             nb_mois_cumul = nb_mois_cumul * (nb_mois_consecutif_sans_activite < 3)

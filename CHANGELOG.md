@@ -1,5 +1,15 @@
 # Changelog
 
+### 21.10.7 [#986](https://github.com/openfisca/openfisca-france/pull/986)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/09/2017.
+* Zones impactées :
+  - `prestations/minima_sociaux/ass`
+* Détails :
+  - Ajoute la possibilité de cumuler l'ASS avec un revenu d'activité.
+  - Ajoute une variable calculée ass_eligibilite_cumul_individu qui permet de déterminer le droit à ce cumul.
+
 ## 21.10.6 [#993](https://github.com/openfisca/openfisca-france/pull/993)
 
 * Évolution du système socio-fiscal.
