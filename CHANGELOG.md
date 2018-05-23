@@ -1,5 +1,13 @@
 # Changelog
 
+### 21.10.2 [#982](https://github.com/openfisca/openfisca-france/pull/984)
+
+* Évolution du système socio-fiscal.
+* Zones impactées : `prestations/minima_sociaux/ppa`
+* Périodes concernées : à partir du 01/04/2018.
+* Détails :
+  - Met à jour le montant forfaitaire de base du calcul de la PPA
+
 ### 21.10.1 [#977](https://github.com/openfisca/openfisca-france/pull/977)
 
 * Évolution du système socio-fiscal.
