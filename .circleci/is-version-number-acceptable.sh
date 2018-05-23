@@ -6,7 +6,7 @@ then
     exit 0
 fi
 
-if $(dirname "$BASH_SOURCE")/detect-functional-changes.sh
+if ! $(dirname "$BASH_SOURCE")/detect-functional-changes.sh
 then
     echo "No need for a version update."
     exit 0

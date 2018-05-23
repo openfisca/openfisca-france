@@ -58,7 +58,7 @@ jobs:
 
       - run:
           name: Check for functional changes
-          command: if .circleci/detect-functional-changes.sh ; then circleci step halt ; fi
+          command: if ! .circleci/detect-functional-changes.sh ; then circleci step halt ; fi
 
       - run:
           name: Upload a Python package to Pypi
