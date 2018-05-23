@@ -167,6 +167,50 @@ class ass_base_ressources_conjoint(Variable):
 
         return result
 
+class ass_eligibilite_cumul_individu(Variable):
+    value_type = bool
+    label = u"Eligibilité au cumul de l'ASS avec un revenu d'activité"
+    entity = Individu
+    definition_period = MONTH
+    reference = u"https://www.legifrance.gouv.fr/eli/decret/2017/5/5/ETSD1708117D/jo/article_2"
+
+def formula_2017_09_01(individu, period):
+        # liste des périodes à contrôler plus la période en cours
+        periods_a_inclure = [
+            period.offset(-12),
+            period.offset(-11),
+            period.offset(-10),
+            period.offset(-9),
+            period.offset(-8),
+            period.offset(-7),
+            period.offset(-6),
+            period.offset(-5),
+            period.offset(-4),
+            period.offset(-3),
+            period.offset(-2),
+            period.offset(-1),
+            period,
+        ]
+
+        nb_mois_cumul = 0
+        nb_mois_consecutif_sans_activite = 0
+
+        for period_a_tester in periods_a_inclure:
+            presence_ressources_activite = individu('salaire_imposable', period_a_tester) > 0
+            absence_ressources_activite = not_(presence_ressources_activite)
+            ass_precondition_remplie = individu('ass_precondition_remplie', period_a_tester)
+            chomeur = individu('activite', period_a_tester) == TypesActivite.chomeur
+            absence_aah = not_(individu('aah', period_a_tester) > 0)
+
+            # reinitialisation du nombre de mois de cumul après 3 mois consécutif sans activité
+            nb_mois_cumul = nb_mois_cumul * (nb_mois_consecutif_sans_activite < 3)
+            nb_mois_consecutif_sans_activite = where(absence_ressources_activite * chomeur,
+                                                     nb_mois_consecutif_sans_activite + 1, 0)
+
+            nb_mois_cumul = nb_mois_cumul + 1 * presence_ressources_activite * not_(
+                chomeur) * ass_precondition_remplie * absence_aah
+            # si 3 mois de cumul ou moins en comptant le mois courant, droit au cumul au moins courant
+        return nb_mois_cumul <= 3
 
 class ass_eligibilite_individu(Variable):
     value_type = bool
@@ -191,3 +235,20 @@ class ass_eligibilite_individu(Variable):
         ass_precondition_remplie = individu('ass_precondition_remplie', period)
 
         return and_(not_(aah_eligible), and_(demandeur_emploi_non_indemnise, ass_precondition_remplie))
+
+    def formula_2017_09_01(individu, period):
+        '''
+        Reference : https://www.legifrance.gouv.fr/eli/decret/2017/5/5/ETSD1708117D/jo/article_2
+        '''
+        aah_eligible = individu('aah', period) > 0
+
+        demandeur_emploi_non_indemnise = and_(individu('activite', period) == TypesActivite.chomeur, individu('chomage_net', period) == 0)
+
+        eligible_cumul_ass = individu('ass_eligibilite_cumul_individu', period)
+
+        demandeur_emploi_non_indemnise_et_cumul_accepte = or_(demandeur_emploi_non_indemnise, not_(demandeur_emploi_non_indemnise) * eligible_cumul_ass)
+
+        # Indique que l'individu a travaillé 5 ans au cours des 10 dernieres années.
+        ass_precondition_remplie = individu('ass_precondition_remplie', period)
+
+        return and_(not_(aah_eligible), and_(demandeur_emploi_non_indemnise_et_cumul_accepte, ass_precondition_remplie))
