@@ -286,4 +286,4 @@ menages:
   personne_de_reference: 54857348bf1777d606ad1be5
   statut_occupation_logement: proprietaire
 output_variables:
-  asi: 666.27
+  asi: [333.13, 333.13]
