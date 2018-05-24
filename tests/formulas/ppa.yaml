@@ -429,11 +429,11 @@
       2016-02: 91.40
     ass:
       2016-02: 100
-    asi:
-      2016-02: 100
     aspa:
       2016-02: 100
     # Autres ressources, on utilise le mois M-1
+    asi:
+      2016-01: 100
     paje_clca:
       2016-01: 100
     paje_prepare:
@@ -460,7 +460,7 @@
     ppa:
       2016-02: 0
     ppa_ressources_hors_activite_individu:
-      2016-01: 800
+      2016-01: 900
     ppa_ressources_hors_activite:
       2016-01: 1691.40
 
