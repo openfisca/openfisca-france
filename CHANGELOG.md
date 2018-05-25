@@ -1,5 +1,14 @@
 # Changelog
 
+### 21.10.1 [#977](https://github.com/openfisca/openfisca-france/pull/977)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/04/2018.
+* Zones impactées :
+  - `prestations/minima_sociaux/ass`
+* Détails :
+  - Met à jour le montant journalier à taux plein de l'ASS en date du 01/04/2018
+
 ## 21.10.0 [#980](https://github.com/openfisca/openfisca-france/pull/980)
 
 * Amélioration technique
