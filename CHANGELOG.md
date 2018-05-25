@@ -1,5 +1,15 @@
 # Changelog
 
+## 21.10.6 [#993](https://github.com/openfisca/openfisca-france/pull/993)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/04/2018.
+* Zones impactées :
+  - `parameters/minima_sociaux/aah`
+  - `parameters/minima_sociaux/caah`
+* Détails :
+  - Met à jour le montant maximum de l'AAH en date du 01/04/2018
+
 ### 21.10.5 [#997](https://github.com/openfisca/openfisca-france/pull/997)
 
 * Correction d'une erreur
@@ -24,7 +34,7 @@
 * Détails :
   - Met à jour le montant de base du RSA en date du 1er avril 2018
 
-### 21.10.2 [#982](https://github.com/openfisca/openfisca-france/pull/984)
+### 21.10.2 [#984](https://github.com/openfisca/openfisca-france/pull/984)
 
 * Évolution du système socio-fiscal.
 * Zones impactées : `prestations/minima_sociaux/ppa`
