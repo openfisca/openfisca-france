@@ -117,32 +117,67 @@
     cmu_c_plafond: 16574 # 8723 * (1 + 0.25 + 0.15 + 0.3 + 0.2)
 
 # msa_reval_cmuc_acs_lot1 : Cas 1
-- name: "CMU-C: CMU-C Ok demandeur plus de 25 ans avec droits ouverts, percevant des salaires pour un motant inférieur à 8810 euros, résident métropole"
+- name: "CMU-C: CMU-C Ok demandeur plus de 25 ans avec droits ouverts, percevant des salaires pour un montant inférieur à 8810 euros, résident métropole"
   period: 2018-04
-  relative_error_margin: 0.05
+  absolute_error_margin: 0.5
   input_variables:
     date_naissance: '1992-01-01' # 26 ans
     salaire_net:
-      2018: 4000
-      2017: 4000
+      2018-04: 0
+      2018-03: 0
+      2018-02: 1384
+      2018-01: 0
+      2017-12: 531
+      2017-11: 985
+      2017-10: 1100
+      2017-09: 750
+      2017-08: 1250
+      2017-07: 500
+      2017-06: 1500
+      2017-05: 810
   output_variables:
     cmu_acs_eligibilite: True
     cmu_c_plafond: 8810
     acs_plafond: 11894
     cmu_c: True
 
-# msa_reval_cmuc_acs_lot1 : Cas 2 (à revoir cmu_c devrait être false?)
-# TODO: cmuc_c: False devrait peut-être passer
-- name: "ACS: ACS Ok demandeur plus de 25 avec droits ouverts, percevant des salaires pour un motant supérieur à 8810 euros et inférieur à 11894, résident métropole"
+# msa_reval_cmuc_acs_lot1 : Cas 2
+- name: "ACS: ACS Ok demandeur plus de 25 avec droits ouverts, percevant des salaires pour un montant supérieur à 8810 euros et inférieur à 11894, résident métropole"
   period: 2018-04
-  relative_error_margin: 0.05
+  absolute_error_margin: 0.5
   input_variables:
   individus:
   - id: "parent1"
     age: 26
     salaire_net:
-      2018: 5000
-      2017: 5000
+      2018-04: 1000
+      2018-03: 190
+      2018-02: 1384
+      2018-01: 0
+      2017-12: 531
+      2017-11: 985
+      2017-10: 1100
+      2017-09: 750
+      2017-08: 1250
+      2017-07: 500
+      2017-06: 1500
+      2017-05: 810
+  familles:
+    parents: ["parent1"]
+    af:
+      2018-04: 0
+      2018-03: 0
+      2018-02: 0
+      2018-01: 0
+      2017-12: 0
+      2017-11: 0
+      2017-10: 0
+      2017-09: 0
+      2017-08: 0
+      2017-07: 0
+      2017-06: 0
+      2017-05: 0
+    rsa: 0
   menages:
     personne_de_reference: "parent1"
     statut_occupation_logement: locataire_meuble
@@ -150,21 +185,44 @@
     cmu_acs_eligibilite: True
     cmu_c_plafond: 8810
     acs_plafond: 11894
-    #cmu_c: False
+    cmu_c: False
 
 # msa_reval_cmuc_acs_lot1 : Cas 3
-- name: "CMU-C: CMU-C Ok demandeur plus de 25 avec droits ouverts, percevant des salaires pour un montant maximum de 18501 euros 
-Foyer composé de 3 personnes (enfant -20 ans et conjoint sans activité), locataire avec aide au logement (2000 euros),  résident métropole"
+- name: "CMU-C: CMU-C Ok demandeur plus de 25 avec droits ouverts, percevant des salaires pour un montant maximum de 18501 euros
+Foyer composé de 3 personnes (enfant -20 ans et conjoint sans activité), locataire avec aide au logement (2000 euros), résident métropole"
   period: 2018-04
-  relative_error_margin: 0.05
+  absolute_error_margin: 0.5
   individus:
     - id: "parent1"
       age: 36
       salaire_net:
-        2018: 7500
-        2017: 7000
+        2018-04: 0
+        2018-03: 0
+        2018-02: 1384
+        2018-01: 800
+        2017-12: 531
+        2017-11: 985
+        2017-10: 1100
+        2017-09: 750
+        2017-08: 1250
+        2017-07: 850
+        2017-06: 1500
+        2017-05: 850
     - id: "parent2"
       age: 36
+      salaire_net:
+        2018-04: 0
+        2018-03: 0
+        2018-02: 950
+        2018-01: 1000
+        2017-12: 1050
+        2017-11: 1050
+        2017-10: 450
+        2017-09: 0
+        2017-08: 0
+        2017-07: 0
+        2017-06: 0
+        2017-05: 0
     - id: "enfant1"
       age: 16
     - id: "enfant2"
@@ -172,30 +230,77 @@ Foyer composé de 3 personnes (enfant -20 ans et conjoint sans activité), locat
   familles:
     parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2"]
-    prestations_familiales: 
-      year:2018-01: 2000
+    cmu_forfait_logement_al: 1638.57
+    af:
+      2018-04: 131.16
+      2018-03: 131.16
+      2018-02: 131.16
+      2018-01: 131.16
+      2017-12: 131.16
+      2017-11: 131.16
+      2017-10: 131.16
+      2017-09: 131.16
+      2017-08: 131.16
+      2017-07: 131.16
+      2017-06: 131.16
+      2017-05: 131.16
+    cf:
+      2018-04: 0
+      2018-03: 0
+      2018-02: 0
+      2018-01: 0
+      2017-12: 0
+      2017-11: 0
+      2017-10: 0
+      2017-09: 0
+      2017-08: 0
+      2017-07: 0
+      2017-06: 0
+      2017-05: 0
+    rsa: 0
   output_variables:
     cmu_acs_eligibilite: True
     cmu_c_plafond: 18501
-    acs_plafond: 24977
+    acs_plafond: 24976
     cmu_c: True
 
-# msa_reval_cmuc_acs_lot1 : Cas 4 (à revoir)
-# TODO: Résultats différents de ce que nous attendons
-- name: "CMU-C: CMU-C Ok demandeur plus de 25 avec droits ouverts, percevant des salaires + indemnités journalières  
+# msa_reval_cmuc_acs_lot1 : Cas 4
+- name: "CMU-C: CMU-C Ok demandeur plus de 25 avec droits ouverts, percevant des salaires + indemnités journalières
 Foyer composé de 4 personnes (2 enfants + 20 ans et conjoint avec activité percevant des revenus), locataire avec aide au logement (2000 euros), résident métropole"
   period: 2018-04
-  relative_error_margin: 0.05
+  absolute_error_margin: 0.5
   individus:
     - id: "parent1"
       age: 36
       salaire_net:
-        2017-12: 10000
-      indemnites_journalieres: 3500
+        2018-04: 0
+        2018-03: 0
+        2018-02: 1384
+        2018-01: 800
+        2017-12: 531
+        2017-11: 985
+        2017-10: 1100
+        2017-09: 750
+        2017-08: 1250
+        2017-07: 850
+        2017-06: 1500
+        2017-05: 850
     - id: "parent2"
       age: 36
       salaire_net:
-        2017-12: 6700
+        2018-04: 0
+        2018-03: 950
+        2018-02: 950
+        2018-01: 1000
+        2017-12: 1050
+        2017-11: 1050
+        2017-10: 450
+        2017-09: 1200
+        2017-08: 1000
+        2017-07: 0
+        2017-06: 0
+        2017-05: 0
+      indemnites_journalieres_maladie: 2050
     - id: "enfant1"
       age: 22
     - id: "enfant2"
@@ -203,8 +308,34 @@ Foyer composé de 4 personnes (2 enfants + 20 ans et conjoint avec activité per
   familles:
     parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2"]
-    prestations_familiales: 
-      year:2018-01: 2200
+    cmu_forfait_logement_al: 1638.57
+    af:
+      2018-04: 131.16
+      2018-03: 131.16
+      2018-02: 131.16
+      2018-01: 131.16
+      2017-12: 131.16
+      2017-11: 131.16
+      2017-10: 131.16
+      2017-09: 131.16
+      2017-08: 131.16
+      2017-07: 131.16
+      2017-06: 131.16
+      2017-05: 131.16
+    cf:
+      2018-04: 0
+      2018-03: 0
+      2018-02: 0
+      2018-01: 0
+      2017-12: 0
+      2017-11: 0
+      2017-10: 0
+      2017-09: 0
+      2017-08: 0
+      2017-07: 0
+      2017-06: 0
+      2017-05: 0
+    rsa: 0
   foyers_fiscaux:
     declarants: ["parent1", "parent2"]
     maries_ou_pacses:
@@ -213,43 +344,126 @@ Foyer composé de 4 personnes (2 enfants + 20 ans et conjoint avec activité per
   output_variables:
     cmu_acs_eligibilite: True
     cmu_c_plafond: 18501
-    acs_plafond: 24977
+    acs_plafond: 24976
     cmu_c: True
 
 # msa_reval_cmuc_acs_lot1 : Cas 5
-- name: "ACS: ACS Ok demandeur plus de 25 Assuré + de 25 ans  avec droits ouverts, percevant des salaires + indemnités chômages
-Foyer composé de 6 personnes (3 enfants - 20 ans, 1 enfant +20ans  et conjoint avec activité percevant des revenus et du chômage), propriétaire avec aide au logement (2000 euros), résident métropole"
+- name: "ACS: ACS Ok demandeur plus de 25 Assuré + de 25 ans avec droits ouverts, percevant des salaires + indemnités chômages
+Foyer composé de 6 personnes (3 enfants - 20 ans, 1 enfant +20ans et conjoint avec activité percevant des revenus et du chômage), propriétaire avec aide au logement (2000 euros), résident métropole"
   period: 2018-04
-  relative_error_margin: 0.05
+  absolute_error_margin: 0.05
   individus:
     - id: "parent1"
       age: 36
       salaire_net:
-        2017-12: 5700
-      indemnites_journalieres: 1250
-      chomage_net: 4600
+        2018-04: 0
+        2018-03: 0
+        2018-02: 0
+        2018-01: 1384
+        2017-12: 800
+        2017-11: 531
+        2017-10: 985
+        2017-09: 1200
+        2017-08: 800
+        2017-07: 0
+        2017-06: 0
+        2017-05: 0
+      indemnites_journalieres_maladie: 1250
+      chomage_net:
+        2018-04: 0
+        2018-03: 600
+        2018-02: 1000
+        2018-01: 0
+        2017-12: 0
+        2017-11: 0
+        2017-10: 0
+        2017-09: 0
+        2017-08: 0
+        2017-07: 0
+        2017-06: 0
+        2017-05: 1000
       activite: chomeur
     - id: "parent2"
       age: 36
       salaire_net:
-        2017-12: 9560
-      chomage_net: 4500
+        2018-04: 0
+        2018-03: 0
+        2018-02: 650
+        2018-01: 1000
+        2017-12: 1050
+        2017-11: 1050
+        2017-10: 450
+        2017-09: 1200
+        2017-08: 1000
+        2017-07: 450
+        2017-06: 1500
+        2017-05: 910
+      chomage_net:
+        2018-04: 0
+        2018-03: 0
+        2018-02: 0
+        2018-01: 0
+        2017-12: 0
+        2017-11: 0
+        2017-10: 0
+        2017-09: 1000
+        2017-08: 1000
+        2017-07: 1000
+        2017-06: 1000
+        2017-05: 0
       activite: chomeur
     - id: "enfant1"
       age: 24
       salaire_net:
-        2017-12: 5000
+        2018-04: 0
+        2018-03: 1000
+        2018-02: 1000
+        2018-01: 1000
+        2017-12: 0
+        2017-11: 0
+        2017-10: 0
+        2017-09: 0
+        2017-08: 0
+        2017-07: 0
+        2017-06: 0
+        2017-05: 0
     - id: "enfant2"
       age: 19
     - id: "enfant3"
       age: 18
     - id: "enfant4"
-      age: 17 
+      age: 17
   familles:
     parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2", "enfant3", "enfant4"]
-    prestations_familiales: 
-      year:2018-01: 1350
+    cmu_forfait_logement_base: 1638.57
+    af:
+      2018-04: 532.83
+      2018-03: 532.83
+      2018-02: 532.83
+      2018-01: 532.83
+      2017-12: 532.83
+      2017-11: 532.83
+      2017-10: 532.83
+      2017-09: 532.83
+      2017-08: 532.83
+      2017-07: 532.83
+      2017-06: 532.83
+      2017-05: 532.83
+    cf:
+      2018-04: 0
+      2018-03: 0
+      2018-02: 0
+      2018-01: 0
+      2017-12: 0
+      2017-11: 0
+      2017-10: 0
+      2017-09: 0
+      2017-08: 0
+      2017-07: 0
+      2017-06: 0
+      2017-05: 0
+    rsa: 0
   foyers_fiscaux:
     declarants: ["parent1", "parent2"]
     maries_ou_pacses:
@@ -262,29 +476,66 @@ Foyer composé de 6 personnes (3 enfants - 20 ans, 1 enfant +20ans  et conjoint 
     statut_occupation_logement: proprietaire
   output_variables:
     cmu_acs_eligibilite: True
-    cmu_c_plafond: 25549.56
-    acs_plafond: 34491.84
-    cmu_c: True
+    cmu_c_plafond: 25550
+    acs_plafond: 34492.5
+    cmu_c: False
 
 # msa_reval_cmuc_acs_lot1 : Cas 6
-- name: "CMU-C: CMU-C Ok demandeur assuré au RSA ayant perçu des ressources  au cours des 12 derniers mois"
+- name: "CMU-C: CMU-C Ok demandeur assuré au RSA ayant perçu des ressources au cours des 12 derniers mois"
   period: 2018-04
-  relative_error_margin: 0.05
+  absolute_error_margin: 0.5
   input_variables:
     date_naissance: '1996-01-01' # 26 ans
-    rsa: 450
     statut_occupation_logement: loge_gratuitement
     salaire_net:
-      2017: 3500
+      2018-04: 542
+      2018-03: 542
+      2018-02: 542
+      2018-01: 542
+      2017-12: 542
+      2017-11: 542
+      2017-10: 542
+      2017-09: 542
+      2017-08: 542
+      2017-07: 542
+      2017-06: 542
+      2017-05: 542
+    cmu_forfait_logement_base: 780.27
+    af:
+      2018-04: 0
+      2018-03: 0
+      2018-02: 0
+      2018-01: 0
+      2017-12: 0
+      2017-11: 0
+      2017-10: 0
+      2017-09: 0
+      2017-08: 0
+      2017-07: 0
+      2017-06: 0
+      2017-05: 0
+    cf:
+      2018-04: 0
+      2018-03: 0
+      2018-02: 0
+      2018-01: 0
+      2017-12: 0
+      2017-11: 0
+      2017-10: 0
+      2017-09: 0
+      2017-08: 0
+      2017-07: 0
+      2017-06: 0
+      2017-05: 0
+    rsa: 450
   output_variables:
     cmu_acs_eligibilite: True
     cmu_c_plafond: 8810
     acs_plafond: 11894
     cmu_c: True
 
-# msa_reval_cmuc_acs_lot1 : Cas 7 (à revoir)
-# TODO: résultats à renseigner
-- name: "ACS: ACS Ko Foyer recomposé de deux adultes avec 3 enfants moins de 20 ans
+# msa_reval_cmuc_acs_lot1 : Cas 7
+- name: "ACS: ACS non eligible Foyer recomposé de deux adultes avec 3 enfants moins de 20 ans
 Mr est séparé de son ex conjointe et verse une pension alimentaire de 1235 euros
 Mme est séparée et reçoit une pension alimentaire de son ex conjoint pour ces trois enfants, elle perçoit des revenus non salariés
 Les enfants ne sont pas en garde alternée"
@@ -294,29 +545,107 @@ Les enfants ne sont pas en garde alternée"
     - id: "parent1"
       age: 36
       salaire_net:
-        2017-12: 7500
-      indemnites_journalieres: 6500
-      chomage_net: 600      
+        2018-04: 1083
+        2018-03: 1083
+        2018-02: 1083
+        2018-01: 1083
+        2017-12: 1083
+        2017-11: 1083
+        2017-10: 1083
+        2017-09: 1083
+        2017-08: 1083
+        2017-07: 1083
+        2017-06: 1083
+        2017-05: 1083
+      indemnites_journalieres: 600
+      pensions_alimentaires_versees_individu:
+        2018-04: 103
+        2018-03: 103
+        2018-02: 103
+        2018-01: 103
+        2017-12: 103
+        2017-11: 103
+        2017-10: 103
+        2017-09: 103
+        2017-08: 103
+        2017-07: 103
+        2017-06: 103
+        2017-05: 103
     - id: "parent2"
       age: 45
-      tns_autres_revenus:
-        year:2017-12: 12600
+      salaire_net:
+        2018-04: 666.66
+        2018-03: 666.66
+        2018-02: 666.66
+        2018-01: 666.66
+        2017-12: 666.66
+        2017-11: 666.66
+        2017-10: 666.66
+        2017-09: 666.66
+        2017-08: 666.66
+        2017-07: 666.66
+        2017-06: 666.66
+        2017-05: 666.66
+      chomage_net:
+        2018-04: 500
+        2018-03: 500
+        2018-02: 500
+        2018-01: 500
+        2017-12: 500
+        2017-11: 500
+        2017-10: 500
+        2017-09: 500
+        2017-08: 500
+        2017-07: 500
+        2017-06: 500
+        2017-05: 500
       pensions_alimentaires_percues: 2650
       valeur_immo_non_loue: 700
       valeur_terrains_non_loues: 625
     - id: "enfant1"
       age: 15
+      garde_alternee: True
     - id: "enfant2"
       age: 12
     - id: "enfant3"
       age: 7
   familles:
-    parents: ["parent2"]
+    parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2", "enfant3"]
-    prestations_familiales:
-      year:2018-01: 2050
+    cmu_forfait_logement_al: 1642.14
+    af:
+      2018-04: 249.83
+      2018-03: 249.83
+      2018-02: 249.83
+      2018-01: 249.83
+      2017-12: 249.83
+      2017-11: 249.83
+      2017-10: 249.83
+      2017-09: 249.83
+      2017-08: 249.83
+      2017-07: 249.83
+      2017-06: 249.83
+      2017-05: 249.83
+    cf:
+      2018-04: 0
+      2018-03: 0
+      2018-02: 0
+      2018-01: 0
+      2017-12: 0
+      2017-11: 0
+      2017-10: 0
+      2017-09: 0
+      2017-08: 0
+      2017-07: 0
+      2017-06: 0
+      2017-05: 0
+    rsa: 0
   foyers_fiscaux:
-    declarants: ["parent1"]
-    pensions_alimentaires_versees: 
-      year:2018-01: 1235
+    declarants: ["parent1", "parent2"]
+    personnes_a_charge: ["enfant1", "enfant2", "enfant3"]
   output_variables:
+    cmu_acs_eligibilite: True
+    cmu_c_plafond: 20704
+    acs_plafond: 27950
+    cmu_c: False
+    acs: 0

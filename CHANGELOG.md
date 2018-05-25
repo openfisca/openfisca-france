@@ -1,5 +1,15 @@
 # Changelog
 
+## 21.10.8 [#996](https://github.com/openfisca/openfisca-france/pull/992)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/04/2018.
+* Zones impactées :
+  - `parameters/cmu`
+  - `prestations/minima_sociaux/rsa`
+* Détails :
+  - Revalorise les plafonds de ressources pour bénéficier des aides CMU-c et ACS en date du 01/04/2018.
+
 ### 21.10.7 [#986](https://github.com/openfisca/openfisca-france/pull/986)
 
 * Évolution du système socio-fiscal.
