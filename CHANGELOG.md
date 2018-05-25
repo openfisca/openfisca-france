@@ -1,6 +1,15 @@
 # Changelog
 
-## 21.10.8 [#996](https://github.com/openfisca/openfisca-france/pull/992)
+### 21.10.9 [#1006](https://github.com/openfisca/openfisca-france/pull/1006)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/04/2018.
+* Zones impactées :
+  - `prestations/minima_sociaux/cmu`
+* Détails :
+  - Fiabilise le calcul de la CMUc-ACS en complétant les ressources prises en compte
+
+### 21.10.8 [#996](https://github.com/openfisca/openfisca-france/pull/996)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 01/04/2018.
@@ -20,7 +29,7 @@
   - Ajoute la possibilité de cumuler l'ASS avec un revenu d'activité.
   - Ajoute une variable calculée ass_eligibilite_cumul_individu qui permet de déterminer le droit à ce cumul.
 
-## 21.10.6 [#993](https://github.com/openfisca/openfisca-france/pull/993)
+### 21.10.6 [#993](https://github.com/openfisca/openfisca-france/pull/993)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 01/04/2018.
@@ -29,7 +38,7 @@
   - `parameters/minima_sociaux/caah`
 * Détails :
   - Met à jour le montant maximum de l'AAH en date du 01/04/2018
-
+  
 ### 21.10.5 [#997](https://github.com/openfisca/openfisca-france/pull/997)
 
 * Correction d'une erreur
