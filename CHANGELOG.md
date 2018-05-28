@@ -1,6 +1,10 @@
 # Changelog
 
-### 21.10.5
+### 21.10.5 [#997](https://github.com/openfisca/openfisca-france/pull/997)
+
+* Correction d'une erreur
+* Détails :
+  - Rappatrie `test_mes_aides_54d4e0704ec19fce442273a0.yaml` de la racine au répertoire de tests
 
 ### 21.10.4 [#983](https://github.com/openfisca/openfisca-france/pull/983)
 
