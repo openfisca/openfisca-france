@@ -1,0 +1,654 @@
+# Les tests sont en erreurs car la PR concernant les revalorisation CMUC-ACS n'est pas encore mergée.
+- name: "CMU-C: N°1 refus CMUC, accord ACS"
+  period: 2018-05
+  absolute_error_margin: 0.05
+  individus:
+    - id: "parent1"
+      salaire_net:
+        2018-04: 0
+        2018-03: 0
+        2018-02: 0
+        2018-01: 0
+        2017-12: 980
+        2017-11: 980
+        2017-10: 980
+        2017-09: 980
+        2017-08: 980
+        2017-07: 980
+        2017-06: 980
+        2017-05: 980
+      chomage_net:
+        2018-04: 0
+        2018-03: 760
+        2018-02: 760
+        2018-01: 760
+        2017-12: 0
+        2017-11: 0
+        2017-10: 0
+        2017-09: 0
+        2017-08: 0
+        2017-07: 0
+        2017-06: 0
+        2017-05: 0
+      pensions_alimentaires_versees_individu:
+        2018-04: 126
+        2018-03: 126
+        2018-02: 126
+        2018-01: 126
+        2017-12: 126
+        2017-11: 126
+        2017-10: 126
+        2017-09: 126
+        2017-08: 126
+        2017-07: 126
+        2017-06: 126
+        2017-05: 126
+    - id: "parent2"
+      salaire_net:
+        2018-04: 0
+        2018-03: 0
+        2018-02: 0
+        2018-01: 0
+        2017-12: 0
+        2017-11: 0
+        2017-10: 0
+        2017-09: 0
+        2017-08: 0
+        2017-07: 650
+        2017-06: 1145
+        2017-05: 1145
+      indemnites_journalieres_maladie:
+        2018-04: 0
+        2018-03: 0
+        2018-02: 0
+        2018-01: 0
+        2017-12: 0
+        2017-11: 0
+        2017-10: 0
+        2017-09: 0
+        2017-08: 760
+        2017-07: 350
+        2017-06: 0
+        2017-05: 0
+      indemnites_journalieres_maternite:
+        2018-04: 0
+        2018-03: 0
+        2018-02: 450
+        2018-01: 450
+        2017-12: 450
+        2017-11: 450
+        2017-10: 450
+        2017-09: 450
+        2017-08: 0
+        2017-07: 0
+        2017-06: 0
+        2017-05: 0
+      pensions_alimentaires_percues:
+        2018-04: 230
+        2018-03: 230
+        2018-02: 230
+        2018-01: 230
+        2017-12: 230
+        2017-11: 0
+        2017-10: 230
+        2017-09: 230
+        2017-08: 230
+        2017-07: 0
+        2017-06: 230
+        2017-05: 230
+    - id: "enfant1"
+      date_naissance: 2018-01-01
+    - id: "enfant2"
+      date_naissance: 1998-01-01
+    - id: "enfant3"
+      date_naissance: 2001-06-05
+      garde_alternee: True
+  familles:
+    parents: ["parent1", "parent2"]
+    enfants: ["enfant1", "enfant2", "enfant3"]
+    cmu_forfait_logement_base: 1642.14
+    af:
+      2018-04: 0
+      2018-03: 0
+      2018-02: 0
+      2018-01: 0
+      2017-12: 0
+      2017-11: 0
+      2017-10: 0
+      2017-09: 0
+      2017-08: 0
+      2017-07: 0
+      2017-06: 0
+      2017-05: 0
+    paje_naissance:
+      2018-04: 0
+      2018-03: 0
+      2018-02: 0
+      2018-01: 946.39
+      2017-12: 0
+      2017-11: 0
+      2017-10: 0
+      2017-09: 0
+      2017-08: 0
+      2017-07: 0
+      2017-06: 0
+      2017-05: 0
+    paje_clca:
+      2018-04: 469.75
+      2018-03: 469.75
+      2018-02: 469.75
+      2018-01: 0
+      2017-12: 0
+      2017-11: 0
+      2017-10: 0
+      2017-09: 0
+      2017-08: 0
+      2017-07: 0
+      2017-06: 0
+      2017-05: 0
+    rsa: 0
+  menages:
+    personne_de_reference: "parent1"
+    conjoint: "parent2"
+    enfants: ["enfant1", "enfant2", "enfant3"]
+    statut_occupation_logement: proprietaire
+  foyers_fiscaux:
+    declarants: ["parent1", "parent2"]
+    personnes_a_charge: ["enfant1", "enfant2", "enfant3"]
+  output_variables:
+    cmu_acs_eligibilite: True
+    cmu_c_plafond: 20704
+    acs_plafond: 27950.40
+    cmu_base_ressources: 20709.40 #cas de test fourni : 21655.78, ecart de 946.39, soit exactement la PAJE Naissance qui devrait être exclu
+    cmu_c: False
+
+- name: "CMU-C: N°2 refus CMUC, accord ACS"
+  period: 2018-05
+  absolute_error_margin: 0.05
+  individus:
+    - id: "parent1"
+      tns_autres_revenus:
+        2017: 1925
+      pensions_invalidite:
+        2018-04: 473
+        2018-03: 473
+        2018-02: 473
+        2018-01: 473
+        2017-12: 473
+        2017-11: 473
+        2017-10: 473
+        2017-09: 0
+        2017-08: 0
+        2017-07: 0
+        2017-06: 0
+        2017-05: 0
+      revenus_locatifs:
+        2018-04: 135
+      epargne_revenus_non_imposables:
+        2018-04: 198
+        2018-03: 198
+        2018-02: 198
+        2018-01: 198
+        2017-12: 198
+        2017-11: 198
+        2017-10: 198
+        2017-09: 198
+        2017-08: 198
+        2017-07: 198
+        2017-06: 198
+        2017-05: 198
+    - id: "parent2"
+      aah:
+        2018-04: 721
+        2018-03: 721
+        2018-02: 721
+        2018-01: 721
+        2017-12: 721
+        2017-11: 721
+        2017-10: 721
+        2017-09: 721
+        2017-08: 721
+        2017-07: 721
+        2017-06: 721
+        2017-05: 721
+      caah:
+        2018-04: 179.31
+        2018-03: 179.31
+        2018-02: 179.31
+        2018-01: 179.31
+        2017-12: 179.31
+        2017-11: 179.31
+        2017-10: 179.31
+        2017-09: 179.31
+        2017-08: 179.31
+        2017-07: 179.31
+        2017-06: 179.31
+        2017-05: 179.31
+    - id: "enfant1"
+      date_naissance: 2005-01-01
+    - id: "enfant2"
+      date_naissance: 1998-01-01
+      tns_auto_entrepreneur_benefice:
+        2018-04: 50
+        2018-03: 650
+        2018-02: 390
+        2018-01: 125
+        2017-12: 0
+        2017-11: 0
+        2017-10: 0
+        2017-09: 0
+        2017-08: 0
+        2017-07: 0
+        2017-06: 0
+        2017-05: 0
+    - id: "enfant3"
+      date_naissance: 2001-06-05
+    - id: "enfant4"
+      date_naissance: 1999-03-17
+      salaire_net:
+        2018-04: 650
+        2018-03: 0
+        2018-02: 350
+        2018-01: 0
+        2017-12: 350
+        2017-11: 945
+        2017-10: 0
+        2017-09: 470
+        2017-08: 125
+        2017-07: 0
+        2017-06: 0
+        2017-05: 0
+  familles:
+    parents: ["parent1", "parent2"]
+    enfants: ["enfant1", "enfant2", "enfant3", "enfant4"]
+    af:
+      2018-04: 430.36
+      2018-03: 430.36
+      2018-02: 430.36
+      2018-01: 430.36
+      2017-12: 430.36
+      2017-11: 430.36
+      2017-10: 430.36
+      2017-09: 430.36
+      2017-08: 430.36
+      2017-07: 430.36
+      2017-06: 430.36
+      2017-05: 430.36
+    cf:
+      2018-04: 170.71
+      2018-03: 170.71
+      2018-02: 170.71
+      2018-01: 170.71
+      2017-12: 170.71
+      2017-11: 170.71
+      2017-10: 170.71
+      2017-09: 170.71
+      2017-08: 170.71
+      2017-07: 170.71
+      2017-06: 170.71
+      2017-05: 170.71
+    asi:
+      2018-04: 0
+      2018-03: 0
+      2018-02: 0
+      2018-01: 0
+      2017-12: 0
+      2017-11: 0
+      2017-10: 0
+      2017-09: 0
+      2017-08: 0
+      2017-07: 0
+      2017-06: 0
+      2017-05: 0
+    cmu_forfait_logement_al: 1642.14
+    ars:
+      2018: 369.57
+    rsa: 0
+  menages:
+    personne_de_reference: "parent1"
+    conjoint: "parent2"
+    enfants: ["enfant1", "enfant2", "enfant3", "enfant4"]
+    statut_occupation_logement:
+      2018-05: locataire_vide
+  foyers_fiscaux:
+    declarants: ["parent1", "parent2"]
+    personnes_a_charge: ["enfant1", "enfant2", "enfant3", "enfant4"]
+  output_variables:
+    cmu_acs_eligibilite: True
+    cmu_c_plafond: 25550
+    acs_plafond: 34492.5
+    cmu_base_ressources: 29140.64 #cas de test fourni : 29510.21, ecart de 369.57, soit exactement l'ARS qui devrait être exclu
+    cmu_c: False
+
+- name: "CMU-C: N°3 accord CMUC"
+  period: 2018-05
+  absolute_error_margin: 0.05
+  individus:
+    - id: "parent1"
+      salaire_net:
+        2018-04: 0
+        2018-03: 0
+        2018-02: 0
+        2018-01: 0
+        2017-12: 0
+        2017-11: 0
+        2017-10: 0
+        2017-09: 0
+        2017-08: 0
+        2017-07: 0
+        2017-06: 0
+        2017-05: 1970
+      indemnites_compensatrices_conges_payes:
+        2018-04: 0
+        2018-03: 0
+        2018-02: 0
+        2018-01: 0
+        2017-12: 0
+        2017-11: 0
+        2017-10: 0
+        2017-09: 0
+        2017-08: 0
+        2017-07: 0
+        2017-06: 0
+        2017-05: 2257
+    - id: "parent2"
+      indemnites_chomage_partiel:
+        2018-04: 0
+        2018-03: 0
+        2018-02: 0
+        2018-01: 0
+        2017-12: 0
+        2017-11: 0
+        2017-10: 0
+        2017-09: 125
+        2017-08: 125
+        2017-07: 125
+        2017-06: 125
+        2017-05: 125
+    - id: "enfant1"
+      date_naissance: 1997-01-01
+    - id: "enfant2"
+      date_naissance: 1998-01-01
+      tns_micro_entreprise_benefice:
+        2017: 5420
+    - id: "enfant3"
+      date_naissance: 2001-06-05
+  familles:
+    parents: ["parent1", "parent2"]
+    enfants: ["enfant1", "enfant2", "enfant3"]
+    aspa:
+      2018-04: 1293
+      2018-03: 1293
+      2018-02: 1293
+      2018-01: 1293
+      2017-12: 1293
+      2017-11: 1293
+      2017-10: 1293
+      2017-09: 0
+      2017-08: 0
+      2017-07: 0
+      2017-06: 0
+      2017-05: 0
+    af:
+      2018-04: 0
+      2018-03: 0
+      2018-02: 0
+      2018-01: 0
+      2017-12: 0
+      2017-11: 0
+      2017-10: 0
+      2017-09: 0
+      2017-08: 0
+      2017-07: 0
+      2017-06: 0
+      2017-05: 0
+    cf:
+      2018-04: 0
+      2018-03: 0
+      2018-02: 0
+      2018-01: 0
+      2017-12: 0
+      2017-11: 0
+      2017-10: 0
+      2017-09: 0
+      2017-08: 0
+      2017-07: 0
+      2017-06: 0
+      2017-05: 0
+    cmu_forfait_logement_base: 0
+    cmu_forfait_logement_al: 0
+    rsa: 0
+  menages:
+    personne_de_reference: "parent1"
+    conjoint: "parent2"
+    enfants: ["enfant1", "enfant2", "enfant3"]
+    statut_occupation_logement: locataire_vide
+  foyers_fiscaux:
+    declarants: ["parent1", "parent2"]
+    personnes_a_charge: ["enfant1", "enfant2", "enfant3"]
+  output_variables:
+    cmu_acs_eligibilite: True
+    cmu_c_plafond: 22026
+    acs_plafond: 29735.10
+    cmu_base_ressources: 19323
+    cmu_c: True
+
+- name: "CMU-C: N°4 refus CMUC, accord ACS"
+  period: 2018-05
+  absolute_error_margin: 0.05
+  individus:
+    - id: "parent1"
+      retraite_imposable:
+        2018-04: 780
+        2018-03: 780
+        2018-02: 780
+        2018-01: 0
+        2017-12: 0
+        2017-11: 0
+        2017-10: 0
+        2017-09: 0
+        2017-08: 0
+        2017-07: 0
+        2017-06: 0
+        2017-05: 0
+      revenus_locatifs:
+        2018-04: 1200
+      revenus_capital:
+        2018-04: 236
+      tns_benefice_exploitant_agricole:
+        2017: 4600
+    - id: "parent2"
+      pensions_invalidite:
+        2018-04: 0
+        2018-03: 0
+        2018-02: 0
+        2018-01: 0
+        2017-12: 0
+        2017-11: 0
+        2017-10: 0
+        2017-09: 248
+        2017-08: 248
+        2017-07: 248
+        2017-06: 248
+        2017-05: 248
+      retraite_imposable:
+        2018-04: 459
+        2018-03: 459
+        2018-02: 459
+        2018-01: 459
+        2017-12: 459
+        2017-11: 459
+        2017-10: 0
+        2017-09: 0
+        2017-08: 0
+        2017-07: 0
+        2017-06: 0
+        2017-05: 0
+      casa:
+        2018-04: 350
+        2018-03: 350
+        2018-02: 350
+        2018-01: 350
+        2017-12: 0
+        2017-11: 0
+        2017-10: 0
+        2017-09: 0
+        2017-08: 0
+        2017-07: 0
+        2017-06: 0
+        2017-05: 0
+  familles:
+    parents: ["parent1", "parent2"]
+    asi:
+      2018-04: 0
+      2018-03: 0
+      2018-02: 0
+      2018-01: 0
+      2017-12: 0
+      2017-11: 0
+      2017-10: 0
+      2017-09: 169
+      2017-08: 169
+      2017-07: 169
+      2017-06: 169
+      2017-05: 169
+    cmu_forfait_logement_base: 0
+    cmu_forfait_logement_al: 0
+    rsa: 0
+  menages:
+    personne_de_reference: "parent1"
+    conjoint: "parent2"
+    statut_occupation_logement: proprietaire
+  foyers_fiscaux:
+    declarants: ["parent1", "parent2"]
+  output_variables:
+    cmu_acs_eligibilite: True
+    cmu_c_plafond: 13215
+    acs_plafond: 17840.25
+    cmu_base_ressources: 14615
+    cmu_c: False
+
+- name: "CMU-C: N°5 accord CMUC"
+  period: 2018-05
+  relative_error_margin: 0.05
+  individus:
+    - id: "parent1"
+      salaire_net:
+        2018-04: 563
+        2018-03: 563
+        2018-02: 563
+        2018-01: 563
+        2017-12: 148
+        2017-11: 0
+        2017-10: 0
+        2017-09: 563
+        2017-08: 563
+        2017-07: 420
+        2017-06: 563
+        2017-05: 563
+      indemnites_journalieres_maternite:
+        2018-04: 0
+        2018-03: 0
+        2018-02: 0
+        2018-01: 0
+        2017-12: 260
+        2017-11: 260
+        2017-10: 260
+        2017-09: 0
+        2017-08: 0
+        2017-07: 0
+        2017-06: 0
+        2017-05: 0
+      prestation_compensatoire:
+        2018-04: 150
+        2018-03: 150
+        2018-02: 150
+        2018-01: 150
+        2017-12: 150
+        2017-11: 150
+        2017-10: 150
+        2017-09: 0
+        2017-08: 0
+        2017-07: 0
+        2017-06: 0
+        2017-05: 0
+    - id: "enfant1"
+      date_naissance: 2009-01-01
+      garde_alternee: True
+    - id: "enfant2"
+      date_naissance: 2011-01-01
+    - id: "enfant3"
+      date_naissance: 2013-01-01
+    - id: "enfant4"
+      date_naissance: 2015-01-01
+  familles:
+    parents: ["parent1"]
+    enfants: ["enfant1", "enfant2", "enfant3", "enfant4"]
+    asf:
+      2018-04: 154.47
+      2018-03: 154.47
+      2018-02: 154.47
+      2018-01: 154.47
+      2017-12: 154.47
+      2017-11: 154.47
+      2017-10: 154.47
+      2017-09: 154.47
+      2017-08: 154.47
+      2017-07: 154.47
+      2017-06: 154.47
+      2017-05: 154.47
+    paje_prepare:
+      2018-04: 396.01
+      2018-03: 396.01
+      2018-02: 396.01
+      2018-01: 396.01
+      2017-12: 396.01
+      2017-11: 396.01
+      2017-10: 396.01
+      2017-09: 396.01
+      2017-08: 396.01
+      2017-07: 396.01
+      2017-06: 396.01
+      2017-05: 396.01
+    af:
+      2018-04: 408
+      2018-03: 408
+      2018-02: 408
+      2018-01: 408
+      2017-12: 408
+      2017-11: 408
+      2017-10: 408
+      2017-09: 408
+      2017-08: 408
+      2017-07: 408
+      2017-06: 408
+      2017-05: 408
+    cf:
+      2018-04: 0
+      2018-03: 0
+      2018-02: 0
+      2018-01: 0
+      2017-12: 0
+      2017-11: 0
+      2017-10: 0
+      2017-09: 0
+      2017-08: 0
+      2017-07: 0
+      2017-06: 0
+      2017-05: 0
+    cmu_forfait_logement_base: 0
+    cmu_forfait_logement_al: 0
+    rsa: 0
+  menages:
+    personne_de_reference: "parent1"
+    enfants: ["enfant1", "enfant2", "enfant3", "enfant4"]
+    statut_occupation_logement: loge_gratuitement
+  foyers_fiscaux:
+    declarants: ["parent1"]
+    personnes_a_charge: ["enfant1", "enfant2", "enfant3", "enfant4"]
+  output_variables:
+    cmu_acs_eligibilite: True
+    cmu_c_plafond: 19823
+    acs_plafond: 26761
+    cmu_base_ressources: 18403.76
+    cmu_c: True
