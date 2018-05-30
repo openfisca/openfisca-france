@@ -291,6 +291,31 @@ class caah(Variable):
         La personne qui remplit les conditions d'octroi de ces deux avantages doit choisir de bénéficier de l'un ou de
         l'autre.
     '''
+    def formula_2015_07_01(individu, period, parameters):
+        # Rolling year
+        previous_year = period.start.period('year').offset(-1)
+        law = parameters(period).prestations
+
+        garantie_ressources = law.minima_sociaux.caah.garantie_ressources
+        aah_montant = law.minima_sociaux.aah.montant
+        mva_montant = law.minima_sociaux.aah.mva
+
+        aah = individu('aah', period)
+        asi_eligibilite = individu('asi_eligibilite', period)
+        asi = individu.famille('asi', period)  # montant asi de la famille
+        benef_asi = (asi_eligibilite * (asi > 0))
+        al = individu.famille('aide_logement_montant', period)  # montant allocs logement de la famille
+        taux_incapacite = individu('taux_incapacite', period)
+        locataire_foyer = individu('statut_occupation_logement', period) == TypesStatutOccupationLogement.locataire_foyer
+        salaire_net = individu('salaire_net', previous_year, options=[ADD])
+
+        eligible_cr = (taux_incapacite > 0.8) * ((aah > 0) | (benef_asi > 0)) * not_(locataire_foyer) * (salaire_net == 0)
+        complement_ressources = eligible_cr * max_(garantie_ressources - aah_montant, 0)
+
+        eligible_mva = (al > 0) * (taux_incapacite > 0.8) * ((aah > 0) | (benef_asi > 0)) * not_(locataire_foyer)* (salaire_net == 0)
+        mva = mva_montant * eligible_mva
+
+        return max_(complement_ressources, mva)
 
     def formula_2005_07_01(individu, period, parameters):
         law = parameters(period).prestations
