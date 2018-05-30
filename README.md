@@ -154,6 +154,20 @@ nosetests tests/test_basics.py # Ces test peuvent prendre jusqu'à 60 secondes.
 ```
 :tada: OpenFisca-France est prêt à être utilisé !
 
+### C. Installation avancée avec Docker
+
+Si vous ne souhaitez pas avoir à gérer Python directement sur votre machine, vous pouvez utiliser Docker.
+
+Installez [Docker](https://docs.docker.com/install/) et [Docker Compose](https://docs.docker.com/compose/install/).
+
+[Clonez OpenFisca avec Git](#cloner-openfisca-france-avec-git), puis lancez simplement :
+
+```
+docker-compose up
+```
+
+Hop :space_invader: L'API Web OpenFisca est disponible sur le port 6000 de l'hôte Docker.
+
 #### Prochaines étapes
 
 - Pour enrichir ou faire évoluer la législation d'OpenFisca-France, lisez _[Coding the Legislation](http://openfisca.org/doc/coding-the-legislation/index.html)_ (en anglais).
