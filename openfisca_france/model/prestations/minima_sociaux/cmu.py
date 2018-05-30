@@ -259,26 +259,39 @@ class cmu_base_ressources_individu(Variable):
         def abbattement_chomage():
             indemnites_journalieres_maladie = individu('indemnites_journalieres_maladie', period)
 
-            #TODO CONDITIONS
-            # 1
-            # interruption activité ?
-            # indemnites_journalieres_maladie > 0
-            indemnites_journalieres_maladie = individu('indemnites_journalieres_maladie', period)
-            # 2
-            # chomage total ou partiel
-            activite = individu('activite', period) == TypesActivite.chomeur
-            # indemnites (chomage, ARE) > 0
+            chomage = individu('activite', period) == TypesActivite.chomeur
             indemnites_chomage_partiel = individu('indemnites_chomage_partiel', period)
             chomage_net = individu('chomage_net', period)
             allocation_aide_retour_emploi = individu('allocation_aide_retour_emploi', period)
-            # 3
-            # ass > 0
+
             ass = individu('ass', period)
-            # 4
-            # revenus_stage_formation_pro > 0
+
             revenus_stage_formation_pro = individu('revenus_stage_formation_pro', period)
 
+<<<<<<< HEAD
             return condition * salaire_net * P.abattement_chomage
+=======
+            condition_ij_maladie = indemnites_journalieres_maladie > 0
+            condition_chomage = chomage * ((indemnites_chomage_partiel + chomage_net + allocation_aide_retour_emploi) > 0)
+            condition_ass = ass > 0
+            condition_revenus_formation_pro = revenus_stage_formation_pro > 0
+
+            condition = or_(condition_ij_maladie, or_(condition_chomage, or_(condition_ass, condition_revenus_formation_pro)))
+
+            salaire_net = individu('salaire_net', previous_year, options=[ADD])
+
+            return condition * salaire_net * P.abattement_chomage
+
+        # Abattement sur revenus d'activité si chômage ou formation professionnelle
+        def abbattement_chomage():
+            indemnites_chomage_partiel = individu('indemnites_chomage_partiel', previous_year, options = [ADD])
+            salaire_net = individu('salaire_net', previous_year, options = [ADD])
+            chomage_last_month = individu('chomage_net', last_month)
+            condition = or_(chomage_last_month > 0, revenus_stage_formation_pro_last_month > 0)
+            assiette = indemnites_chomage_partiel + salaire_net
+            return condition * assiette * P.abattement_chomage
+
+>>>>>>> e648101eb... Corrige l'eligibilité à l'abattement de 30% (abattement "chomage")
 
         # Revenus de stage de formation professionnelle exclus si plus perçus depuis 1 mois
         def neutralisation_stage_formation_pro():
@@ -300,9 +313,13 @@ class cmu_base_ressources_individu(Variable):
 
 <<<<<<< HEAD
 
+<<<<<<< HEAD
 =======
 >>>>>>> 26cc7b5c7... Complete les tests et la fiabilisation de la CMU
         return ressources + revenus_tns() - pensions_alim_versees - abbattement_chomage() - neutralisation_stage_formation_pro()
+=======
+        return ressources + revenus_tns() - pensions_alim_versees - abbattement_30_pourcents() - neutralisation_stage_formation_pro()
+>>>>>>> e648101eb... Corrige l'eligibilité à l'abattement de 30% (abattement "chomage")
 
 
 class cmu_base_ressources(Variable):
