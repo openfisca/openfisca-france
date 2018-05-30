@@ -1,6 +1,15 @@
 # Changelog
 
-### 21.10.3 [#975](https://github.com/openfisca/openfisca-france/pull/985)
+### 21.10.4 [#983](https://github.com/openfisca/openfisca-france/pull/983)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2018.
+* Zones impactées :
+  - `prestations/aides_logement/ressources`
+* Détails :
+  - Met à jour les planchers de ressources intervenant dans le calcul de l'Aide au logement
+
+### 21.10.3 [#985](https://github.com/openfisca/openfisca-france/pull/985)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 01/04/2018.
