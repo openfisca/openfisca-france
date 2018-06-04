@@ -306,7 +306,7 @@ class caah(Variable):
         benef_asi = (asi_eligibilite * (asi > 0))
         al = individu.famille('aide_logement_montant', period)  # montant allocs logement de la famille
         taux_incapacite = individu('taux_incapacite', period)
-        locataire_foyer = individu('statut_occupation_logement', period) == TypesStatutOccupationLogement.locataire_foyer
+        locataire_foyer = (individu.menage('statut_occupation_logement', period) == TypesStatutOccupationLogement.locataire_foyer)
         salaire_net = individu('salaire_net', previous_year, options=[ADD])
 
         eligible_cr = (taux_incapacite > 0.8) * ((aah > 0) | (benef_asi > 0)) * not_(locataire_foyer) * (salaire_net == 0)
