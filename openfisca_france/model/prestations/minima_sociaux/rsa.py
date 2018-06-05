@@ -91,7 +91,7 @@ class rsa_base_ressources_individu(Variable):
     entity = Individu
     definition_period = MONTH
 
-    def formula_2016_09_01(individu, period, parameters):
+    def formula_2009_06_01(individu, period, parameters):
         # Revenus professionels
         types_revenus_pros = [
             'chomage_net',
