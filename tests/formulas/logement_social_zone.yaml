@@ -1,0 +1,27 @@
+- name: "Logement social - Paris"
+  period: 2018-01
+  input_variables:
+    depcom: 75056
+  output_variables:
+    zone_logement_social: paris_communes_limitrophes
+
+- name: "Logement social - Bagnolet"
+  period: 2018-01
+  input_variables:
+    depcom: 93006
+  output_variables:
+    zone_logement_social: paris_communes_limitrophes
+
+- name: "Logement social - Bobigny"
+  period: 2018-01
+  input_variables:
+    depcom: 93008
+  output_variables:
+    zone_logement_social: ile_de_france
+
+- name: "Logement social - Marseille"
+  period: 2018-01
+  input_variables:
+    depcom: 13055
+  output_variables:
+    zone_logement_social: autres_regions

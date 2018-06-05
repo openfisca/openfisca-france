@@ -1,0 +1,6 @@
+description: Catégorie 4 / Autres régions - Plafonds de ressources annuelles imposables
+unit: currency
+values:
+  2016-12-22:
+    reference: https://www.legifrance.gouv.fr/affichTexte.do;jsessionid=186AC8F0B7590C42DAA390BA6C89612B.tpdila11v_1?cidTexte=JORFTEXT000033681769&dateTexte=&oldAction=rechJO&categorieLien=id&idJO=JORFCONT000033680662
+    value: 21575
