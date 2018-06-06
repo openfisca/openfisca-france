@@ -99,6 +99,154 @@ class paje_base(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
+    def formula_2018_04_01(famille, period, parameters):
+        couple_biactif = famille('biactivite', period)
+        parent_isole = not_(famille('en_couple', period))
+        nombre_enfants = famille('af_nbenf', period)
+        pfam = parameters(period).prestations.prestations_familiales
+        bmaf = pfam.af.bmaf
+        montant_taux_plein = bmaf * pfam.paje.base.taux_allocation_base
+
+        def plafond_avant_avril_2014():
+            plafond_de_base = pfam.paje.base.avant_2014.plafond_ressources_0_enf
+            maj_plafond_2_premiers_enfants = pfam.paje.base.avant_2014.taux_majoration_2_premiers_enf * plafond_de_base
+            maj_plafond_par_enfant_sup = pfam.paje.base.avant_2014.taux_majoration_3eme_enf_et_plus * plafond_de_base
+            maj_plafond_seul_biactif = pfam.paje.base.avant_2014.majoration_biact_parent_isoles
+
+            plafond = (
+                    plafond_de_base +
+                    min_(nombre_enfants, 2) * maj_plafond_2_premiers_enfants +
+                    max_(nombre_enfants - 2, 0) * maj_plafond_par_enfant_sup +
+                    (couple_biactif + parent_isole) * maj_plafond_seul_biactif
+            )
+            return plafond
+
+        def plafond_taux_plein_apres_avril_2014_avant_avril_2018():
+            plafond_de_base = pfam.paje.base.apres_2014.taux_plein.plaf
+            maj_plafond_seul_biactif = pfam.paje.base.apres_2014.taux_plein.plaf_maj
+            if period.start.date >= date(2014, 4, 1):
+                maj_plafond_par_enfant = plafond_de_base * pfam.paje.base.apres_2014.plaf_tx_par_enf
+            else:
+                maj_plafond_par_enfant = 0
+
+            plafond = (
+                    plafond_de_base +
+                    nombre_enfants * maj_plafond_par_enfant +
+                    (couple_biactif + parent_isole) * maj_plafond_seul_biactif
+            )
+            return plafond
+
+        def plafond_taux_partiel_apres_avril_2014_avant_avril_2018():
+            plafond_de_base = pfam.paje.base.apres_2014.taux_partiel.plaf
+            maj_plafond_seul_biactif = pfam.paje.base.apres_2014.taux_partiel.plaf_maj
+            if period.start.date >= date(2014, 4, 1):
+                maj_plafond_par_enfant = plafond_de_base * pfam.paje.base.apres_2014.plaf_tx_par_enf
+            else:
+                maj_plafond_par_enfant = 0
+
+            plafond = (
+                    plafond_de_base +
+                    nombre_enfants * maj_plafond_par_enfant +
+                    (couple_biactif + parent_isole) * maj_plafond_seul_biactif
+            )
+            return plafond
+
+        def plafond_taux_plein_apres_avril_2018():
+            plafond_de_base = pfam.paje.base.apres_2018.taux_plein.plaf
+            maj_plafond_seul_biactif = pfam.paje.base.apres_2018.taux_plein.plaf_maj
+            if period.start.date >= date(2018, 4, 1):
+                maj_plafond_par_enfant = plafond_de_base * pfam.paje.base.apres_2018.plaf_tx_par_enf
+            else:
+                maj_plafond_par_enfant = 0
+
+            plafond = (
+                    plafond_de_base +
+                    nombre_enfants * maj_plafond_par_enfant +
+                    (couple_biactif + parent_isole) * maj_plafond_seul_biactif
+            )
+            return plafond
+
+        def plafond_taux_partiel_apres_avril_2018():
+            plafond_de_base = pfam.paje.base.apres_2018.taux_partiel.plaf
+            maj_plafond_seul_biactif = pfam.paje.base.apres_2018.taux_partiel.plaf_maj
+            if period.start.date >= date(2018, 4, 1):
+                maj_plafond_par_enfant = plafond_de_base * pfam.paje.base.apres_2018.plaf_tx_par_enf
+            else:
+                maj_plafond_par_enfant = 0
+
+            plafond = (
+                    plafond_de_base +
+                    nombre_enfants * maj_plafond_par_enfant +
+                    (couple_biactif + parent_isole) * maj_plafond_seul_biactif
+            )
+            return plafond
+
+        def enfant_eligible_ne_avant_avril_2014():
+            enfant_eligible_avant_reforme_2014 = famille.members('paje_base_enfant_eligible_avant_reforme_2014', period)
+            return enfant_eligible_avant_reforme_2014
+
+        def enfant_eligible_ne_apres_avril_2014_avant_avril_2018():
+            enfant_eligible_apres_reforme_2014 = famille.members(
+                'paje_base_enfant_eligible_apres_reforme_2014_ne_apres_avril_2014_avant_avril_2018', period)
+            return enfant_eligible_apres_reforme_2014
+
+        def enfant_eligible_ne_apres_avril_2018():
+            paje_base_enfant_eligible_apres_reforme_2014_ne_apres_avril_2018 = famille.members(
+                'paje_base_enfant_eligible_apres_reforme_2014_ne_apres_avril_2018', period)
+            return paje_base_enfant_eligible_apres_reforme_2014_ne_apres_avril_2018
+
+        def montant_enfant_ne_avant_avril_2014():
+            ressources = famille('prestations_familiales_base_ressources', period)
+            return (ressources <= plafond_avant_avril_2014()) * montant_taux_plein
+
+        def montant_enfant_ne_apres_avril_2014_avant_avril_2018():
+            ressources = famille('prestations_familiales_base_ressources', period)
+            montant_taux_partiel = montant_taux_plein / 2
+
+            montant = (
+                    (ressources <= plafond_taux_plein_apres_avril_2014_avant_avril_2018()) * montant_taux_plein +
+                    (ressources <= plafond_taux_partiel_apres_avril_2014_avant_avril_2018()) * (
+                                ressources > plafond_taux_plein_apres_avril_2014_avant_avril_2018()) * montant_taux_partiel
+            )
+            return montant
+
+        def montant_enfant_ne_apres_avril_2018():
+            ressources = famille('prestations_familiales_base_ressources', period)
+            montant_taux_partiel = montant_taux_plein / 2
+
+            montant = (
+                    (ressources <= plafond_taux_plein_apres_avril_2018()) * montant_taux_plein +
+                    (ressources <= plafond_taux_partiel_apres_avril_2018()) * (
+                                ressources > plafond_taux_plein_apres_avril_2018()) * montant_taux_partiel
+            )
+            return montant
+
+        age_plus_jeune_enfant = min(famille.members('age', period))
+        est_plus_jeune_enfant = famille.members('age', period) == age_plus_jeune_enfant
+
+        # Eligibilité avant le 1er avril 2014
+        enfant_elig_avant_avril_2014 = famille.any(enfant_eligible_ne_avant_avril_2014() * est_plus_jeune_enfant)
+        montant_elig_avant_avril_2014 = montant_enfant_ne_avant_avril_2014()
+
+        # Eligibilité après le 1er avril 2014
+        # Enfants nés après le 1er avril 2014 mais avant le 1er avril 2018
+        enfant_eligible_ne_apres_avril_2014_avant_avril_2018 = famille.any(
+            enfant_eligible_ne_apres_avril_2014_avant_avril_2018() * est_plus_jeune_enfant)
+        montant_elig_apres_avril_2014_avant_avril_2018 = montant_enfant_ne_apres_avril_2014_avant_avril_2018()
+        # Enfants nés après le 1er avril 2018
+        enfant_eligible_ne_apres_avril_2018 = famille.any(enfant_eligible_ne_apres_avril_2018() * est_plus_jeune_enfant)
+        montant_elig_apres_avril_2018 = montant_enfant_ne_apres_avril_2018()
+
+        montant = (
+                enfant_elig_avant_avril_2014 * montant_elig_avant_avril_2014 +
+                not_(enfant_elig_avant_avril_2014) * not_(
+            enfant_eligible_ne_apres_avril_2018) * enfant_eligible_ne_apres_avril_2014_avant_avril_2018 * montant_elig_apres_avril_2014_avant_avril_2018 +
+                not_(enfant_elig_avant_avril_2014) * not_(
+            enfant_eligible_ne_apres_avril_2014_avant_avril_2018) * enfant_eligible_ne_apres_avril_2018 * montant_elig_apres_avril_2018
+        )
+
+        return montant
+
     def formula_2004(famille, period, parameters):
         couple_biactif = famille('biactivite', period)
         parent_isole = not_(famille('en_couple', period))
@@ -225,6 +373,40 @@ class paje_base_enfant_eligible_apres_reforme_2014(Variable):
         # celui au cours duquel l'enfant atteint l'âge de 3 ans.
         return (age < age_limite) * not_(autonomie_financiere) * not_(ne_avant_2014)
 
+class paje_base_enfant_eligible_apres_reforme_2014_ne_apres_avril_2014_avant_avril_2018(Variable):
+    value_type = bool
+    entity = Individu
+    label = u"Enfant ouvrant droit à la PAJE de base né après le 1er avril 2014"
+    definition_period = MONTH
+
+    def formula(individu, period, parameters):
+        age = individu('age', period)
+        autonomie_financiere = individu('autonomie_financiere', period)
+        date_naissance = individu('date_naissance', period)
+        ne_avant_2014 = datetime64('2014-04-01') > date_naissance
+        ne_apres_avril_2018 = datetime64('2018-04-01') < date_naissance
+        age_limite = parameters(period.start).prestations.prestations_familiales.paje.base.age_max_enfant
+
+        # L'allocation de base est versée jusqu'au dernier jour du mois civil précédant
+        # celui au cours duquel l'enfant atteint l'âge de 3 ans.
+        return (age < age_limite) * not_(autonomie_financiere) * not_(ne_avant_2014) * not_(ne_apres_avril_2018)
+
+class paje_base_enfant_eligible_apres_reforme_2014_ne_apres_avril_2018(Variable):
+    value_type = bool
+    entity = Individu
+    label = u"Enfant ouvrant droit à la PAJE de base né après le 1er avril 2018"
+    definition_period = MONTH
+
+    def formula(individu, period, parameters):
+        age = individu('age', period)
+        autonomie_financiere = individu('autonomie_financiere', period)
+        date_naissance = individu('date_naissance', period)
+        ne_apres_avril_2018 = datetime64('2018-04-01') < date_naissance
+        age_limite = parameters(period.start).prestations.prestations_familiales.paje.base.age_max_enfant
+
+        # L'allocation de base est versée jusqu'au dernier jour du mois civil précédant
+        # celui au cours duquel l'enfant atteint l'âge de 3 ans.
+        return (age < age_limite) * not_(autonomie_financiere) * ne_apres_avril_2018
 
 class paje_naissance(Variable):
     calculate_output = calculate_output_add
@@ -233,6 +415,40 @@ class paje_naissance(Variable):
     label = u"Allocation de naissance de la PAJE"
     reference = "http://vosdroits.service-public.fr/particuliers/F2550.xhtml"
     definition_period = MONTH
+
+    def formula_2018_04_01(famille, period, parameters):
+        '''
+        Prestation d'accueil du jeune enfant - Allocation de naissance
+        Références législatives :git
+        https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006737121&dateTexte=&categorieLien=cid
+        '''
+        af_nbenf = famille('af_nbenf', period)
+        base_ressources = famille('prestations_familiales_base_ressources', period)
+        isole = not_(famille('en_couple', period))
+        biactivite = famille('biactivite', period)
+        P = parameters(period).prestations.prestations_familiales
+
+        bmaf = P.af.bmaf
+        prime_naissance = round(100 * P.paje.prime_naissance.prime_tx * bmaf) / 100
+
+        date_naissance_i = famille.members('date_naissance', period)
+
+        # Versée au 2 mois après la grossesse donc les enfants concernés sont les enfants qui ont 2 mois
+        diff_mois_naissance_periode = (date_naissance_i.astype('datetime64[M]') - datetime64(period.start, 'M'))
+        nb_enfants_eligible = famille.sum(diff_mois_naissance_periode.astype('int') == -2, role=Famille.ENFANT)
+
+        nbenf = af_nbenf + nb_enfants_eligible  # On ajoute l'enfant à  naître;
+
+        # Est-ce que ces taux n'ont pas été mis à jour en avril 2014 ?
+        taux_plafond = (nbenf > 0) + P.paje.base.apres_2018.taux_majoration_2_premiers_enf * min_(nbenf,
+                                                                                                  2) + P.paje.base.apres_2018.taux_majoration_3eme_enf_et_plus * max_(
+            nbenf - 2, 0)
+        majoration_isole_biactif = isole | biactivite
+        plafond_de_ressources = P.paje.base.apres_2018.plafond_ressources_0_enf * taux_plafond + (
+                    taux_plafond > 0) * P.paje.base.apres_2018.majoration_biact_parent_isoles * majoration_isole_biactif
+        eligible_prime_naissance = (base_ressources <= plafond_de_ressources)
+
+        return prime_naissance * eligible_prime_naissance * nb_enfants_eligible
 
     def formula_2015_01_01(famille, period, parameters):
         '''
