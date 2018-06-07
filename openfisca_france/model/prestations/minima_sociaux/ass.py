@@ -175,10 +175,7 @@ class ass_eligibilite_cumul_individu(Variable):
     reference = u"https://www.legifrance.gouv.fr/eli/decret/2017/5/5/ETSD1708117D/jo/article_2"
 
     def formula_2017_09_01(individu, period):
-        # liste des decalage de périodes à contrôler plus la période en cours
-
         douze_mois_precedents = [period.offset(offset) for offset in range(-12, 0 + 1)]
-
         nb_mois_cumul = 0
         nb_mois_consecutif_sans_activite = 0
 
@@ -196,7 +193,8 @@ class ass_eligibilite_cumul_individu(Variable):
 
             nb_mois_cumul = nb_mois_cumul + 1 * presence_ressources_activite * not_(
                 chomeur) * ass_precondition_remplie * absence_aah
-            # si 3 mois de cumul ou moins en comptant le mois courant, droit au cumul au moins courant
+
+        # si 3 mois de cumul ou moins en comptant le mois courant, droit au cumul au moins courant
         return nb_mois_cumul <= 3
 
 class ass_eligibilite_individu(Variable):
