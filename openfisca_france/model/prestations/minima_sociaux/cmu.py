@@ -227,6 +227,7 @@ class cmu_base_ressources_individu(Variable):
             'indemnites_chomage_partiel',
             'indemnites_journalieres',
             'indemnites_stage',
+            'indemnites_compensatrices_conges_payes',
             'pensions_alimentaires_percues',
             'pensions_invalidite',
             'prestation_compensatoire',
@@ -250,37 +251,52 @@ class cmu_base_ressources_individu(Variable):
 
         revenus_stage_formation_pro_last_month = individu('revenus_stage_formation_pro', last_month)
 
-        # Abattement sur revenus d'activité si chômage ou formation professionnelle
+        # Abattement sur revenus d'activité si :
+        # - IJ maladie
+        # - chômage
+        # - ass
+        # - formation professionnelle
         def abbattement_chomage():
-            indemnites_chomage_partiel = individu('indemnites_chomage_partiel', previous_year, options = [ADD])
-            salaire_net = individu('salaire_net', previous_year, options = [ADD])
-            chomage_last_month = individu('chomage_net', last_month)
-            condition = or_(chomage_last_month > 0, revenus_stage_formation_pro_last_month > 0)
-            assiette = indemnites_chomage_partiel + salaire_net
-            return condition * assiette * P.abattement_chomage
+            indemnites_journalieres_maladie = individu('indemnites_journalieres_maladie', period)
 
+            chomage = individu('activite', period) == TypesActivite.chomeur
+            indemnites_chomage_partiel = individu('indemnites_chomage_partiel', period)
+            chomage_net = individu('chomage_net', period)
+            allocation_aide_retour_emploi = individu('allocation_aide_retour_emploi', period)
+
+            ass = individu.famille('ass', period)
+
+            revenus_stage_formation_pro = individu('revenus_stage_formation_pro', period)
+
+            condition_ij_maladie = indemnites_journalieres_maladie > 0
+            condition_chomage = chomage * ((indemnites_chomage_partiel + chomage_net + allocation_aide_retour_emploi) > 0)
+            condition_ass = ass > 0
+            condition_revenus_formation_pro = revenus_stage_formation_pro > 0
+
+            condition = or_(condition_ij_maladie, or_(condition_chomage, or_(condition_ass, condition_revenus_formation_pro)))
+
+            salaire_net = individu('salaire_net', previous_year, options=[ADD])
+
+            return condition * salaire_net * P.abattement_chomage
 
         # Revenus de stage de formation professionnelle exclus si plus perçus depuis 1 mois
         def neutralisation_stage_formation_pro():
             revenus_stage_formation_pro_annee = individu('revenus_stage_formation_pro', previous_year, options = [ADD])
             return (revenus_stage_formation_pro_last_month == 0) * revenus_stage_formation_pro_annee
 
-
         def revenus_tns():
             last_year = period.last_year
 
             revenus_auto_entrepreneur = individu('tns_auto_entrepreneur_benefice', previous_year, options = [ADD])
 
-            # Les revenus TNS hors AE sont estimés en se basant sur le revenu N-1
+            # Les revenus TNS hors AE sont estimés en se basant sur N-1
             tns_micro_entreprise_benefice = individu('tns_micro_entreprise_benefice', last_year)
             tns_benefice_exploitant_agricole = individu('tns_benefice_exploitant_agricole', last_year)
             tns_autres_revenus = individu('tns_autres_revenus', last_year)
 
             return revenus_auto_entrepreneur + tns_micro_entreprise_benefice + tns_benefice_exploitant_agricole + tns_autres_revenus
 
-
         return ressources + revenus_tns() - pensions_alim_versees - abbattement_chomage() - neutralisation_stage_formation_pro()
-
 
 class cmu_base_ressources(Variable):
     value_type = float
@@ -305,7 +321,6 @@ class cmu_base_ressources(Variable):
         ressources_famille = sum(
             [famille(ressource, previous_year, options = [ADD]) for ressource in ressources_a_inclure]
             )
-
 
         statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
         cmu_forfait_logement_base = famille('cmu_forfait_logement_base', period)
@@ -366,7 +381,6 @@ class cmu_c(Variable):
             eligibilite_rsa = (rsa > 0) * (rsa_base_ressources < socle - rsa_forfait_logement)
 
         eligibilite_basique = cmu_base_ressources <= cmu_c_plafond
-
 
         return cmu_acs_eligibilite * not_(residence_mayotte) * or_(eligibilite_basique, eligibilite_rsa)
 

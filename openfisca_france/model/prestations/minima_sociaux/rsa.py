@@ -90,6 +90,123 @@ class rsa_base_ressources_individu(Variable):
     label = u"Base ressource individuelle du RSA/RMI (hors revenus d'actvité)"
     entity = Individu
     definition_period = MONTH
+    reference = u"https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000036393176&dateTexte=&categorieLien=id"
+
+    def formula_2009_06_01(individu, period, parameters):
+        # Revenus professionels
+        types_revenus_pros = [
+            'chomage_net',
+            'retraite_nette',
+            ]
+
+        possede_ressources_substitution = individu('rsa_has_ressources_substitution', period)
+
+        # Les revenus pros interrompus au mois M sont neutralisés s'il n'y a pas de revenus de substitution.
+        revenus_pro = sum(
+            individu(type_revenu, period.last_3_months, options = [ADD])
+            * not_(
+                (individu(type_revenu, period) == 0)
+                * (individu(type_revenu, period.last_month) > 0)
+                * not_(possede_ressources_substitution)
+                )
+            for type_revenu in types_revenus_pros
+            )
+
+        types_revenus_non_pros = [
+            'allocation_aide_retour_emploi',
+            'allocation_securisation_professionnelle',
+            'dedommagement_victime_amiante',
+            'div_ms',
+            'gains_exceptionnels',
+            'pensions_alimentaires_percues',
+            'pensions_invalidite',
+            'prestation_compensatoire',
+            'prime_forfaitaire_mensuelle_reprise_activite',
+            'rsa_base_ressources_patrimoine_individu',
+            'rsa_indemnites_journalieres_hors_activite',
+            ]
+
+        # Les revenus non-pro interrompus au mois M sont neutralisés dans la limite d'un montant forfaitaire,
+        # sans condition de revenu de substitution.
+        montant_de_base_du_rsa = parameters(period).prestations.minima_sociaux.rsa.montant_de_base_du_rsa
+        montant_forfaitaire_neutralisation = 3 * montant_de_base_du_rsa
+        revenus_non_pros = sum(
+                max_(
+                    0,
+                    individu(type_revenu, period.last_3_months, options = [ADD])
+                    - (
+                        montant_forfaitaire_neutralisation
+                        * (individu(type_revenu, period) == 0)
+                        * (individu(type_revenu, period.last_month) > 0)
+                        )
+                    )
+            for type_revenu in types_revenus_non_pros
+            )
+
+        # Revenus du foyer fiscal que l'on projette sur le premier invidividus
+        revenus_capitaux = (
+                max_(0, individu.foyer_fiscal('rev_cap_bar', period.last_3_months, options = [ADD]))
+                + max_(0, individu.foyer_fiscal('rev_cap_lib', period.last_3_months, options = [ADD]))
+        )
+
+        rentes_viageres = individu.foyer_fiscal('retraite_titre_onereux', period.last_3_months, options = [ADD])
+        revenus_foyer_fiscal = revenus_capitaux + rentes_viageres
+        revenus_foyer_fiscal_projetes = revenus_foyer_fiscal * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
+
+        return (revenus_pro + revenus_non_pros + revenus_foyer_fiscal_projetes) / 3
+
+    def formula_2009_06_01(individu, period, parameters):
+        # Revenus professionels
+        types_revenus_pros = [
+            'chomage_net',
+            'retraite_nette',
+            ]
+
+        has_ressources_substitution = individu('rsa_has_ressources_substitution', period)
+
+        # Les revenus pros interrompus au mois M sont neutralisés s'il n'y a pas de revenus de substitution.
+        revenus_pro = sum(
+            individu(type_revenu, period.last_3_months, options = [ADD]) * not_(
+                (individu(type_revenu, period) == 0) *
+                (individu(type_revenu, period.last_month) > 0) *
+                not_(has_ressources_substitution)
+                )
+            for type_revenu in types_revenus_pros
+            )
+
+        types_revenus_non_pros = [
+            'allocation_aide_retour_emploi',
+            'allocation_securisation_professionnelle',
+            'dedommagement_victime_amiante',
+            'div_ms',
+            'gains_exceptionnels',
+            'pensions_alimentaires_percues',
+            'pensions_invalidite',
+            'prestation_compensatoire',
+            'prime_forfaitaire_mensuelle_reprise_activite',
+            'rsa_base_ressources_patrimoine_individu',
+            'rsa_indemnites_journalieres_hors_activite',
+            ]
+
+        # Les revenus non-pro interrompus au mois M sont neutralisés dans la limite d'un montant forfaitaire,
+        # sans condition de revenu de substitution.
+        neutral_max_forfaitaire = 3 * parameters(period).prestations.minima_sociaux.rsa.montant_de_base_du_rsa
+        revenus_non_pros = sum(
+            max_(0, individu(type_revenu, period.last_3_months, options = [ADD]) - neutral_max_forfaitaire * (
+                (individu(type_revenu, period) == 0) *
+                (individu(type_revenu, period.last_month) > 0)
+                ))
+            for type_revenu in types_revenus_non_pros
+            )
+
+        # Revenus du foyer fiscal que l'on projette sur le premier invidividus
+        rev_cap_bar = max_(0, individu.foyer_fiscal('rev_cap_bar', period.last_3_months, options = [ADD]))
+        rev_cap_lib = max_(0, individu.foyer_fiscal('rev_cap_lib', period.last_3_months, options = [ADD]))
+        retraite_titre_onereux = individu.foyer_fiscal('retraite_titre_onereux', period.last_3_months, options = [ADD])
+        revenus_foyer_fiscal = rev_cap_bar + rev_cap_lib + retraite_titre_onereux
+        revenus_foyer_fiscal_projetes = revenus_foyer_fiscal * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
+
+        return (revenus_pro + revenus_non_pros + revenus_foyer_fiscal_projetes) / 3
 
     def formula(individu, period, parameters):
         # Revenus professionels
