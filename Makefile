@@ -20,3 +20,6 @@ test: check-syntax-errors check-no-prints
 	@# before parsing source files containing formulas.
 	nosetests tests --exe --with-doctest
 	openfisca-run-test --country-package openfisca_france tests
+
+performance:
+	python performance_tests/test_perf_tests.py
