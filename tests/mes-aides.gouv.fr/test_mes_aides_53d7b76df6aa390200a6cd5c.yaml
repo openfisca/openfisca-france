@@ -3,54 +3,54 @@ keywords: cf
 description: |
   Le montant est majoré lorsque le parent vit seul.
   Montant = taux majoré (45,82%) * BMAF (406,21 €) = 186,13 euros
-period: "month:2014-07"
+period: month:2014-07
 relative_error_margin: 0.02
 individus:
-  - age: 24
-    age_en_mois: 298
-    date_naissance: "1989-09-14"
-    enceinte: false
-    etudiant: 0
-    id: 53d7b719f6aa390200a6cd5b
-    inapte_travail: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 6
-    age_en_mois: 82
-    date_naissance: "2007-09-14"
-    etudiant: 0
-    id: 54bd315f2f0101c535c554cb
-    inapte_travail: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 6
-    age_en_mois: 82
-    date_naissance: "2007-09-14"
-    etudiant: 0
-    id: 54bd315f2f0101c535c554ca
-    inapte_travail: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 6
-    age_en_mois: 82
-    date_naissance: "2007-09-14"
-    etudiant: 0
-    id: 54bd315f2f0101c535c554c9
-    inapte_travail: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
+- age: 24
+  age_en_mois: 298
+  date_naissance: '1989-09-14'
+  enceinte: false
+  etudiant: 0
+  id: 53d7b719f6aa390200a6cd5b
+  inapte_travail: 0
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 6
+  age_en_mois: 82
+  date_naissance: '2007-09-14'
+  etudiant: 0
+  id: 54bd315f2f0101c535c554cb
+  inapte_travail: 0
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 6
+  age_en_mois: 82
+  date_naissance: '2007-09-14'
+  etudiant: 0
+  id: 54bd315f2f0101c535c554ca
+  inapte_travail: 0
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 6
+  age_en_mois: 82
+  date_naissance: '2007-09-14'
+  etudiant: 0
+  id: 54bd315f2f0101c535c554c9
+  inapte_travail: 0
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
 familles:
   acs:
     2013-07: 0
@@ -222,9 +222,9 @@ familles:
     2014-05: 0
     2014-06: 0
   enfants:
-    - 54bd315f2f0101c535c554cb
-    - 54bd315f2f0101c535c554ca
-    - 54bd315f2f0101c535c554c9
+  - 54bd315f2f0101c535c554cb
+  - 54bd315f2f0101c535c554ca
+  - 54bd315f2f0101c535c554c9
   paje_base:
     2013-07: 0
     2013-08: 0
@@ -256,15 +256,15 @@ familles:
 foyers_fiscaux:
   declarants: 53d7b719f6aa390200a6cd5b
   personnes_a_charge:
-    - 54bd315f2f0101c535c554cb
-    - 54bd315f2f0101c535c554ca
-    - 54bd315f2f0101c535c554c9
+  - 54bd315f2f0101c535c554cb
+  - 54bd315f2f0101c535c554ca
+  - 54bd315f2f0101c535c554c9
 menages:
   depcom: 92063
   enfants:
-    - 54bd315f2f0101c535c554cb
-    - 54bd315f2f0101c535c554ca
-    - 54bd315f2f0101c535c554c9
+  - 54bd315f2f0101c535c554cb
+  - 54bd315f2f0101c535c554ca
+  - 54bd315f2f0101c535c554c9
   personne_de_reference: 53d7b719f6aa390200a6cd5b
   statut_occupation_logement: loge_gratuitement
 output_variables:

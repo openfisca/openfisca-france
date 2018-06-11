@@ -1,116 +1,116 @@
 name: Couple 3 enfants 5 (1 enft à charge PF, 3 enfts au titre RSA) mr  salarié me sans activité
 keywords:
-  - recette
-  - rsa
+- recette
+- rsa
 description: Test créé à partir d'un dossier de demande de RSA,
-period: "month:2015-07"
+period: month:2015-07
 relative_error_margin: 0.02
 individus:
-  - age: 49
-    age_en_mois: 599
-    date_naissance: "1965-08-10"
-    etudiant: 0
-    id: 559fb2ddaf0afd4601df5e11
-    inapte_travail: 0
-    handicap: 0
-    salaire_de_base:
-      2013: 20769.23076923077
-      2014-07: 1730.7692307692307
-      2014-08: 1730.7692307692307
-      2014-09: 1730.7692307692307
-      2014-10: 1730.7692307692307
-      2014-11: 1730.7692307692307
-      2014-12: 1730.7692307692307
-      2015-01: 1730.7692307692307
-      2015-02: 1730.7692307692307
-      2015-03: 1730.7692307692307
-      2015-04: 1730.7692307692307
-      2015-05: 1730.7692307692307
-      2015-06: 1730.7692307692307
-      2015-07: 1730.7692307692307
-    salaire_imposable:
-      2013: 16791.767307692306
-      2014-07: 1399.3139423076923
-      2014-08: 1399.3139423076923
-      2014-09: 1399.3139423076923
-      2014-10: 1399.3139423076923
-      2014-11: 1399.3139423076923
-      2014-12: 1399.3139423076923
-      2015-01: 1399.3139423076923
-      2015-02: 1399.3139423076923
-      2015-03: 1399.3139423076923
-      2015-04: 1399.3139423076923
-      2015-05: 1399.3139423076923
-      2015-06: 1399.3139423076923
-      2015-07: 1399.3139423076923
-    salaire_net:
-      2013: 16200
-      2014-07: 1350
-      2014-08: 1350
-      2014-09: 1350
-      2014-10: 1350
-      2014-11: 1350
-      2014-12: 1350
-      2015-01: 1350
-      2015-02: 1350
-      2015-03: 1350
-      2015-04: 1350
-      2015-05: 1350
-      2015-06: 1350
-      2015-07: 1350
-    statut_marital: marie
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 48
-    age_en_mois: 579
-    date_naissance: "1967-03-24"
-    etudiant: 0
-    id: 559fb2ddaf0afd4601df5e10
-    inapte_travail: 0
-    handicap: 0
-    statut_marital: marie
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 22
-    age_en_mois: 269
-    date_naissance: "1993-02-04"
-    etudiant: 0
-    id: 559fb2ddaf0afd4601df5e0f
-    inapte_travail: 0
-    handicap: 0
-    scolarite: college
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 21
-    age_en_mois: 255
-    date_naissance: "1994-04-02"
-    etudiant: 0
-    id: 559fb2ddaf0afd4601df5e0e
-    inapte_travail: 0
-    handicap: 0
-    scolarite: college
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 13
-    age_en_mois: 165
-    date_naissance: "2001-10-03"
-    etudiant: 0
-    id: 559fb2ddaf0afd4601df5e0d
-    inapte_travail: 0
-    handicap: 0
-    scolarite: college
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
+- age: 49
+  age_en_mois: 599
+  date_naissance: '1965-08-10'
+  etudiant: 0
+  id: 559fb2ddaf0afd4601df5e11
+  inapte_travail: 0
+  handicap: 0
+  salaire_de_base:
+    2013: 20769.23076923077
+    2014-07: 1730.7692307692307
+    2014-08: 1730.7692307692307
+    2014-09: 1730.7692307692307
+    2014-10: 1730.7692307692307
+    2014-11: 1730.7692307692307
+    2014-12: 1730.7692307692307
+    2015-01: 1730.7692307692307
+    2015-02: 1730.7692307692307
+    2015-03: 1730.7692307692307
+    2015-04: 1730.7692307692307
+    2015-05: 1730.7692307692307
+    2015-06: 1730.7692307692307
+    2015-07: 1730.7692307692307
+  salaire_imposable:
+    2013: 16791.767307692306
+    2014-07: 1399.3139423076923
+    2014-08: 1399.3139423076923
+    2014-09: 1399.3139423076923
+    2014-10: 1399.3139423076923
+    2014-11: 1399.3139423076923
+    2014-12: 1399.3139423076923
+    2015-01: 1399.3139423076923
+    2015-02: 1399.3139423076923
+    2015-03: 1399.3139423076923
+    2015-04: 1399.3139423076923
+    2015-05: 1399.3139423076923
+    2015-06: 1399.3139423076923
+    2015-07: 1399.3139423076923
+  salaire_net:
+    2013: 16200
+    2014-07: 1350
+    2014-08: 1350
+    2014-09: 1350
+    2014-10: 1350
+    2014-11: 1350
+    2014-12: 1350
+    2015-01: 1350
+    2015-02: 1350
+    2015-03: 1350
+    2015-04: 1350
+    2015-05: 1350
+    2015-06: 1350
+    2015-07: 1350
+  statut_marital: marie
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 48
+  age_en_mois: 579
+  date_naissance: '1967-03-24'
+  etudiant: 0
+  id: 559fb2ddaf0afd4601df5e10
+  inapte_travail: 0
+  handicap: 0
+  statut_marital: marie
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 22
+  age_en_mois: 269
+  date_naissance: '1993-02-04'
+  etudiant: 0
+  id: 559fb2ddaf0afd4601df5e0f
+  inapte_travail: 0
+  handicap: 0
+  scolarite: college
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 21
+  age_en_mois: 255
+  date_naissance: '1994-04-02'
+  etudiant: 0
+  id: 559fb2ddaf0afd4601df5e0e
+  inapte_travail: 0
+  handicap: 0
+  scolarite: college
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 13
+  age_en_mois: 165
+  date_naissance: '2001-10-03'
+  etudiant: 0
+  id: 559fb2ddaf0afd4601df5e0d
+  inapte_travail: 0
+  handicap: 0
+  scolarite: college
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
 familles:
   acs:
     2014-07: 0
@@ -282,9 +282,9 @@ familles:
     2015-05: 0
     2015-06: 0
   enfants:
-    - 559fb2ddaf0afd4601df5e0f
-    - 559fb2ddaf0afd4601df5e0e
-    - 559fb2ddaf0afd4601df5e0d
+  - 559fb2ddaf0afd4601df5e0f
+  - 559fb2ddaf0afd4601df5e0e
+  - 559fb2ddaf0afd4601df5e0d
   paje_base:
     2014-07: 0
     2014-08: 0
@@ -299,8 +299,8 @@ familles:
     2015-05: 0
     2015-06: 0
   parents:
-    - 559fb2ddaf0afd4601df5e11
-    - 559fb2ddaf0afd4601df5e10
+  - 559fb2ddaf0afd4601df5e11
+  - 559fb2ddaf0afd4601df5e10
   rsa:
     2014-07: 0
     2014-08: 0
@@ -316,19 +316,19 @@ familles:
     2015-06: 0
 foyers_fiscaux:
   declarants:
-    - 559fb2ddaf0afd4601df5e11
-    - 559fb2ddaf0afd4601df5e10
+  - 559fb2ddaf0afd4601df5e11
+  - 559fb2ddaf0afd4601df5e10
   personnes_a_charge:
-    - 559fb2ddaf0afd4601df5e0f
-    - 559fb2ddaf0afd4601df5e0e
-    - 559fb2ddaf0afd4601df5e0d
+  - 559fb2ddaf0afd4601df5e0f
+  - 559fb2ddaf0afd4601df5e0e
+  - 559fb2ddaf0afd4601df5e0d
 menages:
   conjoint: 559fb2ddaf0afd4601df5e10
   depcom: 77181
   enfants:
-    - 559fb2ddaf0afd4601df5e0f
-    - 559fb2ddaf0afd4601df5e0e
-    - 559fb2ddaf0afd4601df5e0d
+  - 559fb2ddaf0afd4601df5e0f
+  - 559fb2ddaf0afd4601df5e0e
+  - 559fb2ddaf0afd4601df5e0d
   personne_de_reference: 559fb2ddaf0afd4601df5e11
   statut_occupation_logement: loge_gratuitement
 output_variables:

@@ -1,16 +1,16 @@
 name: bénéficiaire ARE enfin de droit avec activité salariée ayant pris fin en cours de période.
 keywords:
-  - ass
-  - recette
+- ass
+- recette
 description: les revenus tirés d'une activité ayant cessé ne doivent pas être intégrés dans les ressources.
-period: "month:2015-06"
+period: month:2015-06
 relative_error_margin: 0.02
 individus:
   activite: chomeur
   age: 55
   age_en_mois: 665
   ass_precondition_remplie: true
-  date_naissance: "1960-01-01"
+  date_naissance: '1960-01-01'
   chomage_brut:
     2013: 19863.767660130936
     2014-06: 1655.313971677578
@@ -259,7 +259,7 @@ familles:
     2015-03: 0
     2015-04: 0
     2015-05: 0
-  enfants:
+  enfants: null
   paje_base:
     2014-06: 0
     2014-07: 0
@@ -289,10 +289,10 @@ familles:
     2015-05: 0
 foyers_fiscaux:
   declarants: 556ecc8cb601174568edcad1
-  personnes_a_charge:
+  personnes_a_charge: null
 menages:
   depcom: 77004
-  enfants:
+  enfants: null
   personne_de_reference: 556ecc8cb601174568edcad1
   statut_occupation_logement: proprietaire
 output_variables:

@@ -1,6 +1,5 @@
-- period: "2015-11"
-  description:
-    6 % des rémunérations versées
+- period: 2015-11
+  description: 6 % des rémunérations versées
   relative_error_margin: 0.001
   input_variables:
     salaire_de_base: 1457.52
@@ -12,9 +11,8 @@
   output_variables:
     credit_impot_competitivite_emploi: 87.5
 
-- period: "2015-11"
-  description:
-    C'est bon en dessous de 2.5 fois le SMIC
+- period: 2015-11
+  description: C'est bon en dessous de 2.5 fois le SMIC
   relative_error_margin: 0.001
   input_variables:
     salaire_de_base: 3643.79
@@ -26,9 +24,8 @@
   output_variables:
     credit_impot_competitivite_emploi: 218.6
 
-- period: "2015-11"
-  description:
-    Rien au dessus de 2.5 fois le SMIC
+- period: 2015-11
+  description: Rien au dessus de 2.5 fois le SMIC
   relative_error_margin: 0.001
   input_variables:
     salaire_de_base: 3643.81
@@ -40,9 +37,8 @@
   output_variables:
     credit_impot_competitivite_emploi: 0
 
-- period: "2015-11"
-  description:
-    Pas de CICE pour les associations à but non lucratif
+- period: 2015-11
+  description: Pas de CICE pour les associations à but non lucratif
   relative_error_margin: 0.001
   input_variables:
     salaire_de_base: 1467
@@ -56,9 +52,8 @@
     credit_impot_competitivite_emploi: 0
 
 
-- period: "2017-01"
-  description:
-    7 % des rémunérations versées
+- period: 2017-01
+  description: 7 % des rémunérations versées
   relative_error_margin: 0.001
   input_variables:
     salaire_de_base: 1480
@@ -66,9 +61,8 @@
     credit_impot_competitivite_emploi: 1480 * 7 / 100
 
 
-- period: "2018-01"
-  description:
-    6 % des rémunérations versées
+- period: 2018-01
+  description: 6 % des rémunérations versées
   relative_error_margin: 0.001
   input_variables:
     salaire_de_base: 1500

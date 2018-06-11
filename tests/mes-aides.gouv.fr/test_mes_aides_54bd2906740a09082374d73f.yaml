@@ -1,104 +1,104 @@
 name: Les enfants qui gagnent moins de 55% du SMIC sont considérés à charge
 keywords:
-  - cf
-  - enfants à charge
+- cf
+- enfants à charge
 description: |
   cf. http://www.caf.fr/aides-et-services/s-informer-sur-les-aides/les-enfants-a-charge
   Les enfants touchant un salaire net de moins de 55% du SMIC brut (soit 893 euros) sont considérés à charge.
   Ici on verse bien le CF car l'enfant qui touche des salaires touche 800 euros.
-period: "month:2015-01"
+period: month:2015-01
 relative_error_margin: 0.02
 individus:
-  - age: 34
-    age_en_mois: 413
-    date_naissance: "1980-08-12"
-    etudiant: 0
-    id: 54bd2854740a09082374d73e
-    inapte_travail: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 20
-    age_en_mois: 245
-    date_naissance: "1994-08-12"
-    etudiant: 0
-    id: 54bd2854740a09082374d731
-    inapte_travail: 0
-    handicap: 0
-    salaire_de_base:
-      2013: 12307.692307692307
-      2014-01: 1025.6410256410256
-      2014-02: 1025.6410256410256
-      2014-03: 1025.6410256410256
-      2014-04: 1025.6410256410256
-      2014-05: 1025.6410256410256
-      2014-06: 1025.6410256410256
-      2014-07: 1025.6410256410256
-      2014-08: 1025.6410256410256
-      2014-09: 1025.6410256410256
-      2014-10: 1025.6410256410256
-      2014-11: 1025.6410256410256
-      2014-12: 1025.6410256410256
-      2015-01: 1025.6410256410256
-    salaire_imposable:
-      2013: 9950.676923076926
-      2014-01: 829.223076923077
-      2014-02: 829.223076923077
-      2014-03: 829.223076923077
-      2014-04: 829.223076923077
-      2014-05: 829.223076923077
-      2014-06: 829.223076923077
-      2014-07: 829.223076923077
-      2014-08: 829.223076923077
-      2014-09: 829.223076923077
-      2014-10: 829.223076923077
-      2014-11: 829.223076923077
-      2014-12: 829.223076923077
-      2015-01: 829.223076923077
-    salaire_net:
-      2013: 9600
-      2014-01: 800
-      2014-02: 800
-      2014-03: 800
-      2014-04: 800
-      2014-05: 800
-      2014-06: 800
-      2014-07: 800
-      2014-08: 800
-      2014-09: 800
-      2014-10: 800
-      2014-11: 800
-      2014-12: 800
-      2015-01: 800
-    scolarite: inconnue
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 7
-    age_en_mois: 90
-    date_naissance: "2007-07-12"
-    etudiant: 0
-    id: 54bd2854740a09082374d730
-    inapte_travail: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 7
-    age_en_mois: 90
-    date_naissance: "2007-07-12"
-    etudiant: 0
-    id: 54bd2854740a09082374d72f
-    inapte_travail: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
+- age: 34
+  age_en_mois: 413
+  date_naissance: '1980-08-12'
+  etudiant: 0
+  id: 54bd2854740a09082374d73e
+  inapte_travail: 0
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 20
+  age_en_mois: 245
+  date_naissance: '1994-08-12'
+  etudiant: 0
+  id: 54bd2854740a09082374d731
+  inapte_travail: 0
+  handicap: 0
+  salaire_de_base:
+    2013: 12307.692307692307
+    2014-01: 1025.6410256410256
+    2014-02: 1025.6410256410256
+    2014-03: 1025.6410256410256
+    2014-04: 1025.6410256410256
+    2014-05: 1025.6410256410256
+    2014-06: 1025.6410256410256
+    2014-07: 1025.6410256410256
+    2014-08: 1025.6410256410256
+    2014-09: 1025.6410256410256
+    2014-10: 1025.6410256410256
+    2014-11: 1025.6410256410256
+    2014-12: 1025.6410256410256
+    2015-01: 1025.6410256410256
+  salaire_imposable:
+    2013: 9950.676923076926
+    2014-01: 829.223076923077
+    2014-02: 829.223076923077
+    2014-03: 829.223076923077
+    2014-04: 829.223076923077
+    2014-05: 829.223076923077
+    2014-06: 829.223076923077
+    2014-07: 829.223076923077
+    2014-08: 829.223076923077
+    2014-09: 829.223076923077
+    2014-10: 829.223076923077
+    2014-11: 829.223076923077
+    2014-12: 829.223076923077
+    2015-01: 829.223076923077
+  salaire_net:
+    2013: 9600
+    2014-01: 800
+    2014-02: 800
+    2014-03: 800
+    2014-04: 800
+    2014-05: 800
+    2014-06: 800
+    2014-07: 800
+    2014-08: 800
+    2014-09: 800
+    2014-10: 800
+    2014-11: 800
+    2014-12: 800
+    2015-01: 800
+  scolarite: inconnue
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 7
+  age_en_mois: 90
+  date_naissance: '2007-07-12'
+  etudiant: 0
+  id: 54bd2854740a09082374d730
+  inapte_travail: 0
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 7
+  age_en_mois: 90
+  date_naissance: '2007-07-12'
+  etudiant: 0
+  id: 54bd2854740a09082374d72f
+  inapte_travail: 0
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
 familles:
   acs:
     2014-01: 0
@@ -270,9 +270,9 @@ familles:
     2014-11: 0
     2014-12: 0
   enfants:
-    - 54bd2854740a09082374d731
-    - 54bd2854740a09082374d730
-    - 54bd2854740a09082374d72f
+  - 54bd2854740a09082374d731
+  - 54bd2854740a09082374d730
+  - 54bd2854740a09082374d72f
   paje_base:
     2014-01: 0
     2014-02: 0
@@ -304,15 +304,15 @@ familles:
 foyers_fiscaux:
   declarants: 54bd2854740a09082374d73e
   personnes_a_charge:
-    - 54bd2854740a09082374d731
-    - 54bd2854740a09082374d730
-    - 54bd2854740a09082374d72f
+  - 54bd2854740a09082374d731
+  - 54bd2854740a09082374d730
+  - 54bd2854740a09082374d72f
 menages:
   depcom: 67482
   enfants:
-    - 54bd2854740a09082374d731
-    - 54bd2854740a09082374d730
-    - 54bd2854740a09082374d72f
+  - 54bd2854740a09082374d731
+  - 54bd2854740a09082374d730
+  - 54bd2854740a09082374d72f
   personne_de_reference: 54bd2854740a09082374d73e
   statut_occupation_logement: loge_gratuitement
 output_variables:

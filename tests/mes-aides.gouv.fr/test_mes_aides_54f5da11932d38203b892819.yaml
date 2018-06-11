@@ -1,7 +1,7 @@
 name: Déduction des pensions alimentaires versées
 keywords:
-  - al
-  - base ressources
+- al
+- base ressources
 description: |
   Ce test vérifie que les pensions alimentaires versées sont bien prises en compte dans le calcul de la base ressources.
   cf. article 156 du CGI
@@ -27,12 +27,12 @@ description: |
   AL	183,81
 
   caf.fr : 182,23 euros
-period: "month:2015-03"
+period: month:2015-03
 relative_error_margin: 0.02
 individus:
   age: 43
   age_en_mois: 516
-  date_naissance: "1972-02-17"
+  date_naissance: '1972-02-17'
   chomage_imposable:
     2013: 0
   etudiant: 0
@@ -219,7 +219,7 @@ familles:
     2014-12: 0
     2015-01: 0
     2015-02: 0
-  enfants:
+  enfants: null
   paje_base:
     2014-03: 0
     2014-04: 0
@@ -252,11 +252,11 @@ foyers_fiscaux:
   declarants: 54f5d9fc932d38203b89280c
   pensions_alimentaires_versees:
     2013: -5000
-  personnes_a_charge:
-  rfr:
+  personnes_a_charge: null
+  rfr: null
 menages:
   depcom: 75120
-  enfants:
+  enfants: null
   loyer: 1000
   personne_de_reference: 54f5d9fc932d38203b89280c
   statut_occupation_logement: locataire_vide

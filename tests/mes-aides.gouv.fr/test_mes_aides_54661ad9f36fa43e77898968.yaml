@@ -2,7 +2,7 @@ name: Ressources incluses
 keywords:
 - base ressources
 - cmu-c/acs
-"description": |-
+description: |-
   Test sur les ressources incluses dans la base ressource cmu-c/acs.
   Pour une personne seule : plafond de 8645 euros sur l'année glissante.
   Ici, le demandeur a déclaré 444 euros sur l'année glissante pour les 20 types de ressources à prendre en compte dans la base ressource.

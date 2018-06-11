@@ -1,20 +1,20 @@
 name: Personne seule cumule retraite avec revenus d'activité
 keywords:
-  - abattements
-  - aspa
-  - plafonds
+- abattements
+- aspa
+- plafonds
 description: |
   Retraite = 650
   Salaire = 500 auquel il faut appliquer l'abattement de 0,9 SMIC = 437,26 soit 62,73 euros
   d'où 650 + 62,73 = 712,73
   800 - 712,73 = 87,27
-period: "month:2015-02"
+period: month:2015-02
 relative_error_margin: 0.02
 individus:
   activite: retraite
   age: 74
   age_en_mois: 897
-  date_naissance: "1940-05-05"
+  date_naissance: '1940-05-05'
   etudiant: 0
   id: 54e21c1421f5286b2df324ab
   inapte_travail: 0
@@ -268,7 +268,7 @@ familles:
     2014-11: 0
     2014-12: 0
     2015-01: 0
-  enfants:
+  enfants: null
   paje_base:
     2014-02: 0
     2014-03: 0
@@ -298,10 +298,10 @@ familles:
     2015-01: 0
 foyers_fiscaux:
   declarants: 54e21c1421f5286b2df324ab
-  personnes_a_charge:
+  personnes_a_charge: null
 menages:
   depcom: 76540
-  enfants:
+  enfants: null
   personne_de_reference: 54e21c1421f5286b2df324ab
   statut_occupation_logement: proprietaire
 output_variables:

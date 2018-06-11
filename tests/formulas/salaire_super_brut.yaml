@@ -1,4 +1,4 @@
-- period: "2015-04"
+- period: 2015-04
   name: Base
   relative_error_margin: 0.001
   input_variables:
@@ -12,7 +12,7 @@
     salaire_super_brut_hors_allegements: 2059
     salaire_super_brut: 1651.3 # fillon
 
-- period: "2015-04"
+- period: 2015-04
   name: JEI -> plus d'allègement général base salaire (fillon)
   relative_error_margin: 0.001
   input_variables:

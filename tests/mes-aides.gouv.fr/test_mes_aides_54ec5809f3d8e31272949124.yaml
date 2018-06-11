@@ -1,55 +1,55 @@
 name: Foyer 2 enfants de 4 et 7 ans ressources comprises entre montants CF et CF majoré
 keywords:
-  - cf
-  - dom
+- cf
+- dom
 description: |
   Dans les DOM, les règles du CF sont différentes  : ouverture de droit pour les familles d'un ou de plusieurs enfants tous âgés de plus de trois ans, à la condition qu'au moins l'un d'entre eux ait moins de cinq ans.
   Le barème du plafond de ressources est différent de celui de la métropole, de même que le montant du CF et du montant majoré du CF.
   Dans le cas précis, la famille a droit au CF de base soit 96,16 €.
-period: "month:2015-02"
+period: month:2015-02
 relative_error_margin: 0.02
 individus:
-  - age: 43
-    age_en_mois: 517
-    date_naissance: "1972-01-09"
-    chomage_imposable:
-      2013: 0
-    etudiant: 0
-    id: 54ec57f528793d0972ec4b53
-    inapte_travail: 0
-    handicap: 0
-    pensions_alimentaires_percues:
-      2013: 0
-    retraite_imposable:
-      2013: 0
-    salaire_imposable:
-      2013: 20000
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 4
-    age_en_mois: 49
-    date_naissance: "2011-01-02"
-    etudiant: 0
-    id: 54ec57f528793d0972ec4b52
-    inapte_travail: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 7
-    age_en_mois: 86
-    date_naissance: "2007-12-17"
-    etudiant: 0
-    id: 54ec57f528793d0972ec4b51
-    inapte_travail: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
+- age: 43
+  age_en_mois: 517
+  date_naissance: '1972-01-09'
+  chomage_imposable:
+    2013: 0
+  etudiant: 0
+  id: 54ec57f528793d0972ec4b53
+  inapte_travail: 0
+  handicap: 0
+  pensions_alimentaires_percues:
+    2013: 0
+  retraite_imposable:
+    2013: 0
+  salaire_imposable:
+    2013: 20000
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 4
+  age_en_mois: 49
+  date_naissance: '2011-01-02'
+  etudiant: 0
+  id: 54ec57f528793d0972ec4b52
+  inapte_travail: 0
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 7
+  age_en_mois: 86
+  date_naissance: '2007-12-17'
+  etudiant: 0
+  id: 54ec57f528793d0972ec4b51
+  inapte_travail: 0
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
 familles:
   acs:
     2014-02: 0
@@ -221,8 +221,8 @@ familles:
     2014-12: 0
     2015-01: 0
   enfants:
-    - 54ec57f528793d0972ec4b52
-    - 54ec57f528793d0972ec4b51
+  - 54ec57f528793d0972ec4b52
+  - 54ec57f528793d0972ec4b51
   paje_base:
     2014-02: 0
     2014-03: 0
@@ -257,14 +257,14 @@ foyers_fiscaux:
   pensions_alimentaires_versees:
     2013: 0
   personnes_a_charge:
-    - 54ec57f528793d0972ec4b52
-    - 54ec57f528793d0972ec4b51
-  rfr:
+  - 54ec57f528793d0972ec4b52
+  - 54ec57f528793d0972ec4b51
+  rfr: null
 menages:
   depcom: 97105
   enfants:
-    - 54ec57f528793d0972ec4b52
-    - 54ec57f528793d0972ec4b51
+  - 54ec57f528793d0972ec4b52
+  - 54ec57f528793d0972ec4b51
   loyer: 400
   personne_de_reference: 54ec57f528793d0972ec4b53
   statut_occupation_logement: locataire_vide

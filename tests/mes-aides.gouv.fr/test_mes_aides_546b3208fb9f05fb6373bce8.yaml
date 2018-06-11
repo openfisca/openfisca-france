@@ -1,37 +1,37 @@
 name: 24_Couple de jeunes, < 25 ans, enceinte
 keywords:
-  - foyer
-  - rsa
-description:
-period: "month:2014-11"
+- foyer
+- rsa
+description: null
+period: month:2014-11
 relative_error_margin: 0.02
 individus:
-  - activite: chomeur
-    age: 20
-    age_en_mois: 250
-    ass_precondition_remplie: false
-    date_naissance: "1994-01-01"
-    etudiant: 0
-    id: 546b31eb5d4a0b016431dbb6
-    inapte_travail: 0
-    handicap: 0
-    statut_marital: marie
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 20
-    age_en_mois: 250
-    date_naissance: "1994-01-01"
-    enceinte: true
-    etudiant: 0
-    id: 546b31eb5d4a0b016431dbb5
-    inapte_travail: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
+- activite: chomeur
+  age: 20
+  age_en_mois: 250
+  ass_precondition_remplie: false
+  date_naissance: '1994-01-01'
+  etudiant: 0
+  id: 546b31eb5d4a0b016431dbb6
+  inapte_travail: 0
+  handicap: 0
+  statut_marital: marie
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 20
+  age_en_mois: 250
+  date_naissance: '1994-01-01'
+  enceinte: true
+  etudiant: 0
+  id: 546b31eb5d4a0b016431dbb5
+  inapte_travail: 0
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
 familles:
   acs:
     2013-11: 0
@@ -202,7 +202,7 @@ familles:
     2014-08: 0
     2014-09: 0
     2014-10: 0
-  enfants:
+  enfants: null
   paje_base:
     2013-11: 0
     2013-12: 0
@@ -217,8 +217,8 @@ familles:
     2014-09: 0
     2014-10: 0
   parents:
-    - 546b31eb5d4a0b016431dbb6
-    - 546b31eb5d4a0b016431dbb5
+  - 546b31eb5d4a0b016431dbb6
+  - 546b31eb5d4a0b016431dbb5
   rsa:
     2013-11: 0
     2013-12: 0
@@ -234,13 +234,13 @@ familles:
     2014-10: 0
 foyers_fiscaux:
   declarants:
-    - 546b31eb5d4a0b016431dbb6
-    - 546b31eb5d4a0b016431dbb5
-  personnes_a_charge:
+  - 546b31eb5d4a0b016431dbb6
+  - 546b31eb5d4a0b016431dbb5
+  personnes_a_charge: null
 menages:
   conjoint: 546b31eb5d4a0b016431dbb5
   depcom: 75114
-  enfants:
+  enfants: null
   personne_de_reference: 546b31eb5d4a0b016431dbb6
   statut_occupation_logement: loge_gratuitement
-output_variables:
+output_variables: null

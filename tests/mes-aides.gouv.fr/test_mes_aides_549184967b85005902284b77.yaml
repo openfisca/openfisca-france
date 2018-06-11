@@ -1,16 +1,16 @@
 name: Plafond CMU 1 personne seule dans les DOM
 keywords:
-  - "cmu-c"
-  - "cmu-c/acs"
-  - dom
-  - plafonds
+- cmu-c
+- cmu-c/acs
+- dom
+- plafonds
 description: Test avec des revenus légèrement inférieurs au plafond CMUc pour une personne seule.
-period: "month:2014-12"
+period: month:2014-12
 relative_error_margin: 0.02
 individus:
   age: 50
   age_en_mois: 611
-  date_naissance: "1964-01-01"
+  date_naissance: '1964-01-01'
   etudiant: 0
   id: 549183b440562f54026f0765
   inapte_travail: 0
@@ -231,7 +231,7 @@ familles:
     2014-09: 0
     2014-10: 0
     2014-11: 0
-  enfants:
+  enfants: null
   paje_base:
     2013-12: 0
     2014-01: 0
@@ -262,10 +262,10 @@ familles:
     2014-11: 0
 foyers_fiscaux:
   declarants: 549183b440562f54026f0765
-  personnes_a_charge:
+  personnes_a_charge: null
 menages:
   depcom: 97356
-  enfants:
+  enfants: null
   loyer: 50
   personne_de_reference: 549183b440562f54026f0765
   statut_occupation_logement: locataire_vide

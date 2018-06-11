@@ -3,10 +3,7 @@ keywords:
 - dom
 - rsa
 - tns
-"description": "Le droit au RSA d'un exploitant agricole dans les DOM se calcule sur la base de la superficie en hectare de\
-  \ son exploitation. \n\nCette superficie doit être inférieure à 3 hectares pour une personne seule, puis majorée de 50%,\
-  \ 30% et 40% de la même manière qu’est majoré le plafond du dernier bénéfice agricole connu pour les foyers métropolitains.\n\
-  \nOn affiche une éligibilité potentielle au RSA alors qu'on ne capture les informations utiles au calcul de l'éligibilité."
+description: "Le droit au RSA d'un exploitant agricole dans les DOM se calcule sur la base de la superficie en hectare de son exploitation. \n\nCette superficie doit être inférieure à 3 hectares pour une personne seule, puis majorée de 50%, 30% et 40% de la même manière qu’est majoré le plafond du dernier bénéfice agricole connu pour les foyers métropolitains.\n\nOn affiche une éligibilité potentielle au RSA alors qu'on ne capture les informations utiles au calcul de l'éligibilité."
 period: month:2015-05
 relative_error_margin: 0.02
 individus:

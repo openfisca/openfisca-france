@@ -1,13 +1,13 @@
 name: Neutralisation du RSA par l'ARE
 keywords: rsa
-description:
-period: "month:2014-10"
+description: null
+period: month:2014-10
 relative_error_margin: 0.02
 individus:
   activite: chomeur
   age: 32
   age_en_mois: 393
-  date_naissance: "1982-01-01"
+  date_naissance: '1982-01-01'
   chomage_brut:
     2012: 10594.009418736501
     2013-10: 882.8341182280416
@@ -216,7 +216,7 @@ familles:
     2014-07: 0
     2014-08: 0
     2014-09: 0
-  enfants:
+  enfants: null
   paje_base:
     2013-10: 0
     2013-11: 0
@@ -246,10 +246,10 @@ familles:
     2014-09: 0
 foyers_fiscaux:
   declarants: 544e15fd1dddcaa51c2c8ef0
-  personnes_a_charge:
+  personnes_a_charge: null
 menages:
   depcom: 92071
-  enfants:
+  enfants: null
   personne_de_reference: 544e15fd1dddcaa51c2c8ef0
   statut_occupation_logement: loge_gratuitement
 output_variables:

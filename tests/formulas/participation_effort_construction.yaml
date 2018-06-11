@@ -1,4 +1,4 @@
-- period: "2016-01"
+- period: 2016-01
   name: Participation à l'effort de construction
   relative_error_margin: 0.01
   input_variables:
@@ -7,7 +7,7 @@
   output_variables:
     participation_effort_construction: -1467 * 0.0045
 
-- period: "2016-01"
+- period: 2016-01
   name: Participation à l'effort de construction - entreprise en dessous du seuil
   relative_error_margin: 0.01
   input_variables:

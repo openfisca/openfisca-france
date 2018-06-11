@@ -1,32 +1,32 @@
 name: Montant de base pour un parent seul ayant un enfant à charge
 keywords: asf
-description:
-period: "month:2014-07"
+description: null
+period: month:2014-07
 relative_error_margin: 0.02
 individus:
-  - age: 24
-    age_en_mois: 298
-    date_naissance: "1989-09-14"
-    enceinte: false
-    etudiant: 0
-    id: 53d78aebf6aa390200a6ccf7
-    inapte_travail: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 6
-    age_en_mois: 82
-    date_naissance: "2007-09-14"
-    etudiant: 0
-    id: 53d78aebf6aa390200a6ccf6
-    inapte_travail: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
+- age: 24
+  age_en_mois: 298
+  date_naissance: '1989-09-14'
+  enceinte: false
+  etudiant: 0
+  id: 53d78aebf6aa390200a6ccf7
+  inapte_travail: 0
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 6
+  age_en_mois: 82
+  date_naissance: '2007-09-14'
+  etudiant: 0
+  id: 53d78aebf6aa390200a6ccf6
+  inapte_travail: 0
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
 familles:
   acs:
     2013-07: 0

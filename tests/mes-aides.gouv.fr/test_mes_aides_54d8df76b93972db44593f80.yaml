@@ -1,8 +1,8 @@
 name: Loyer plafonné à 75% et forfait de charges à 50% pour une personne seule
 keywords:
-  - al
-  - colocation
-  - location
+- al
+- colocation
+- location
 description: |
   Zone 3, personne seule
 
@@ -23,12 +23,12 @@ description: |
   AL	170,29
 
   caf.fr : 170,30
-period: "month:2015-02"
+period: month:2015-02
 relative_error_margin: 0.02
 individus:
   age: 34
   age_en_mois: 412
-  date_naissance: "1980-09-12"
+  date_naissance: '1980-09-12'
   chomage_imposable:
     2013: 0
   etudiant: 0
@@ -215,7 +215,7 @@ familles:
     2014-11: 0
     2014-12: 0
     2015-01: 0
-  enfants:
+  enfants: null
   paje_base:
     2014-02: 0
     2014-03: 0
@@ -248,12 +248,12 @@ foyers_fiscaux:
   declarants: 54d8dd8cb93972db44593f6e
   pensions_alimentaires_versees:
     2013: 0
-  personnes_a_charge:
-  rfr:
+  personnes_a_charge: null
+  rfr: null
 menages:
   coloc: 1
   depcom: 67382
-  enfants:
+  enfants: null
   loyer: 500
   personne_de_reference: 54d8dd8cb93972db44593f6e
   statut_occupation_logement: locataire_vide

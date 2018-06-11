@@ -2,7 +2,7 @@ name: 38_RSA majoré et Congé parental, sabbatique, sans solde ou en disponibil
 keywords:
 - majoration
 - rsa
-"description": |-
+description: |-
   Ici, la personne est en congé parental, sabbatique, sans solde ou en disponibilité. Mais comme elle ouvre droit au RSA majoré, elle est éligible au RSA (L. 262-4, 4°).
 
   Si l'ASF apparaît en sortie de simulation, elle doit être prise en compte pour le RSA, faute de quoi l'utilisateur pense qu'il va cumuler les deux prestations pour ces montants-là, soit un revenu total de 845,76€ : c'est faux.

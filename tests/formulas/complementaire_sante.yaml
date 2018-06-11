@@ -1,4 +1,4 @@
-- period: "2016-06"
+- period: 2016-06
   name: Complémentaire santé (obligatoire depuis le 1er janvier 2016)
   relative_error_margin: 0.001
   input_variables:

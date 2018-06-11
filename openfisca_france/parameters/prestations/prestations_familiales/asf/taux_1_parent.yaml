@@ -1,6 +1,4 @@
-description: 'Montant de l''ASF, en pourcentage de la BMAF, pour un enfant orphelin
-  de père ou de mère (un seul parent manquant) ou dans une situation assimilée: beaux
-  parents ou pension alimentaire non versée'
+description: "Montant de l'ASF, en pourcentage de la BMAF, pour un enfant orphelin de père ou de mère (un seul parent manquant) ou dans une situation assimilée: beaux parents ou pension alimentaire non versée"
 reference: ipp
 unit: /1
 values:

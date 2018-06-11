@@ -3,14 +3,14 @@ keywords: rsa
 description: |
   La personne se déclare demandeuse d'emploi. De plus, son salaire est diminué sur le dernier mois (700 € 2 mois puis 200€ seulement) : son activité a pris fin, il faut neutraliser les revenus dont la perception est interrompue.
   Il manque l'information que le demandeur devrait pouvoir remplir : "La perception de ce revenu est-elle interrompue ?".
-period: "month:2014-11"
+period: month:2014-11
 relative_error_margin: 0.02
 individus:
   activite: chomeur
   age: 28
   age_en_mois: 346
   ass_precondition_remplie: false
-  date_naissance: "1986-01-01"
+  date_naissance: '1986-01-01'
   etudiant: 0
   id: 545a38fa462d93232aac08be
   inapte_travail: 0
@@ -231,7 +231,7 @@ familles:
     2014-08: 0
     2014-09: 0
     2014-10: 0
-  enfants:
+  enfants: null
   paje_base:
     2013-11: 0
     2013-12: 0
@@ -261,10 +261,10 @@ familles:
     2014-10: 0
 foyers_fiscaux:
   declarants: 545a38fa462d93232aac08be
-  personnes_a_charge:
+  personnes_a_charge: null
 menages:
   depcom: 21032
-  enfants:
+  enfants: null
   personne_de_reference: 545a38fa462d93232aac08be
   statut_occupation_logement: loge_gratuitement
 output_variables:

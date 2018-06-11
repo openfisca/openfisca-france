@@ -1,68 +1,68 @@
-- period: "month:2015-01"
+- period: month:2015-01
   output_variables:
     nombre_jours_calendaires: 31
 
-- period: "month:2015-02"
+- period: month:2015-02
   output_variables:
     nombre_jours_calendaires: 28
 
-- period: "month:2015-02"
+- period: month:2015-02
   input_variables:
-    contrat_de_travail_debut: "2014-01-01"
+    contrat_de_travail_debut: '2014-01-01'
   output_variables:
     nombre_jours_calendaires: 28
 
-- period: "month:2015-02"
+- period: month:2015-02
   input_variables:
-    contrat_de_travail_debut: "2015-02-02"
+    contrat_de_travail_debut: '2015-02-02'
   output_variables:
     nombre_jours_calendaires: 27
 
-- period: "month:2015-02"
+- period: month:2015-02
   input_variables:
-    contrat_de_travail_fin: "2015-12-31"
+    contrat_de_travail_fin: '2015-12-31'
   output_variables:
     nombre_jours_calendaires: 28
 
-- period: "month:2015-02"
+- period: month:2015-02
   input_variables:
-    contrat_de_travail_fin: "2015-02-27"
+    contrat_de_travail_fin: '2015-02-27'
   output_variables:
     nombre_jours_calendaires: 27
 
-- period: "month:2015-02"
+- period: month:2015-02
   input_variables:
-    contrat_de_travail_debut: "2015-02-02"
-    contrat_de_travail_fin: "2015-12-31"
+    contrat_de_travail_debut: '2015-02-02'
+    contrat_de_travail_fin: '2015-12-31'
   output_variables:
     nombre_jours_calendaires: 27
 
-- period: "month:2015-02"
+- period: month:2015-02
   input_variables:
-    contrat_de_travail_debut: "2015-02-02"
-    contrat_de_travail_fin: "2015-02-27"
+    contrat_de_travail_debut: '2015-02-02'
+    contrat_de_travail_fin: '2015-02-27'
   output_variables:
     nombre_jours_calendaires: 26
 
-- period: "month:2015-02"
+- period: month:2015-02
   input_variables:
-    contrat_de_travail_fin: "2014-12-31"
+    contrat_de_travail_fin: '2014-12-31'
   output_variables:
     nombre_jours_calendaires: 0
 
-- period: "month:2015-02"
+- period: month:2015-02
   output_variables:
     nombre_jours_calendaires:
-      "month:2015-01": 31
-      "month:2015-02": 28
-      "month:2015-03": 31
+      month:2015-01: 31
+      month:2015-02: 28
+      month:2015-03: 31
 
-- period: "month:2015-02"
+- period: month:2015-02
   input_variables:
     contrat_de_travail_debut:
-      - "2014-01-01"
-      - "2015-02-02"
+    - '2014-01-01'
+    - '2015-02-02'
   output_variables:
     nombre_jours_calendaires:
-      - 28
-      - 27
+    - 28
+    - 27

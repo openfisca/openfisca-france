@@ -1,69 +1,69 @@
 name: Couple, 2 enfants, retraite
 keywords:
-  - foyer
-  - rsa
-description:
-period: "month:2014-07"
+- foyer
+- rsa
+description: null
+period: month:2014-07
 relative_error_margin: 0.02
 individus:
-  - age: 34
-    age_en_mois: 414
-    date_naissance: "1980-01-01"
-    enceinte: false
-    etudiant: 0
-    id: 53d79d42f6aa390200a6cd28
-    inapte_travail: 0
-    handicap: 0
-    retraite_brute:
-      2012: 647.9481641468683
-      2014-04: 215.9827213822894
-      2014-05: 215.9827213822894
-      2014-06: 215.9827213822894
-      2014-07: 215.9827213822894
-    retraite_nette:
-      2012: 600
-      2014-04: 200
-      2014-05: 200
-      2014-06: 200
-      2014-07: 200
-    statut_marital: celibataire
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 34
-    age_en_mois: 414
-    date_naissance: "1980-01-01"
-    etudiant: 0
-    id: 53d79d42f6aa390200a6cd27
-    inapte_travail: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 4
-    age_en_mois: 54
-    date_naissance: "2010-01-01"
-    etudiant: 0
-    id: 53d79d42f6aa390200a6cd26
-    inapte_travail: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 4
-    age_en_mois: 54
-    date_naissance: "2010-01-01"
-    etudiant: 0
-    id: 53d79d42f6aa390200a6cd25
-    inapte_travail: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
+- age: 34
+  age_en_mois: 414
+  date_naissance: '1980-01-01'
+  enceinte: false
+  etudiant: 0
+  id: 53d79d42f6aa390200a6cd28
+  inapte_travail: 0
+  handicap: 0
+  retraite_brute:
+    2012: 647.9481641468683
+    2014-04: 215.9827213822894
+    2014-05: 215.9827213822894
+    2014-06: 215.9827213822894
+    2014-07: 215.9827213822894
+  retraite_nette:
+    2012: 600
+    2014-04: 200
+    2014-05: 200
+    2014-06: 200
+    2014-07: 200
+  statut_marital: celibataire
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 34
+  age_en_mois: 414
+  date_naissance: '1980-01-01'
+  etudiant: 0
+  id: 53d79d42f6aa390200a6cd27
+  inapte_travail: 0
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 4
+  age_en_mois: 54
+  date_naissance: '2010-01-01'
+  etudiant: 0
+  id: 53d79d42f6aa390200a6cd26
+  inapte_travail: 0
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 4
+  age_en_mois: 54
+  date_naissance: '2010-01-01'
+  etudiant: 0
+  id: 53d79d42f6aa390200a6cd25
+  inapte_travail: 0
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
 familles:
   acs:
     2013-07: 0
@@ -235,8 +235,8 @@ familles:
     2014-05: 0
     2014-06: 0
   enfants:
-    - 53d79d42f6aa390200a6cd26
-    - 53d79d42f6aa390200a6cd25
+  - 53d79d42f6aa390200a6cd26
+  - 53d79d42f6aa390200a6cd25
   paje_base:
     2013-07: 0
     2013-08: 0
@@ -251,8 +251,8 @@ familles:
     2014-05: 0
     2014-06: 0
   parents:
-    - 53d79d42f6aa390200a6cd28
-    - 53d79d42f6aa390200a6cd27
+  - 53d79d42f6aa390200a6cd28
+  - 53d79d42f6aa390200a6cd27
   rsa:
     2013-07: 0
     2013-08: 0
@@ -268,16 +268,16 @@ familles:
     2014-06: 0
 foyers_fiscaux:
   declarants:
-    - 53d79d42f6aa390200a6cd28
-    - 53d79d42f6aa390200a6cd27
+  - 53d79d42f6aa390200a6cd28
+  - 53d79d42f6aa390200a6cd27
   personnes_a_charge:
-    - 53d79d42f6aa390200a6cd26
-    - 53d79d42f6aa390200a6cd25
+  - 53d79d42f6aa390200a6cd26
+  - 53d79d42f6aa390200a6cd25
 menages:
   conjoint: 53d79d42f6aa390200a6cd27
   enfants:
-    - 53d79d42f6aa390200a6cd26
-    - 53d79d42f6aa390200a6cd25
+  - 53d79d42f6aa390200a6cd26
+  - 53d79d42f6aa390200a6cd25
   personne_de_reference: 53d79d42f6aa390200a6cd28
   statut_occupation_logement: loge_gratuitement
 output_variables:

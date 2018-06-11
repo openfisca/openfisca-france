@@ -1,5 +1,4 @@
-description: Seuil de salaire minimum pour bénéficier de la bonification, en multiple
-  du smic horaire brut.
+description: Seuil de salaire minimum pour bénéficier de la bonification, en multiple du smic horaire brut.
 reference: ipp
 values:
   2016-01-01:

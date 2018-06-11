@@ -1,5 +1,4 @@
-description: Taux de prise en charge par l'entreprise maximum pour non intégration
-  dans l'assiette des cotisations sociales
+description: Taux de prise en charge par l'entreprise maximum pour non intégration dans l'assiette des cotisations sociales
 reference: openfisca
 unit: currency
 values:

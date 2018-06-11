@@ -1,5 +1,4 @@
-description: Plafond de référence pour l'échelon 3, pour une famille avec 8 enfants
-  ou plus, en multiple du SMIC horaire brut
+description: Plafond de référence pour l'échelon 3, pour une famille avec 8 enfants ou plus, en multiple du SMIC horaire brut
 reference: openfisca
 unit: /1
 values:

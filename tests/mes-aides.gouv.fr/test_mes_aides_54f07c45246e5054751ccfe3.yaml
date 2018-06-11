@@ -1,14 +1,14 @@
 name: Lien de parenté avec le propriétaire
 keywords:
-  - al
-  - location
+- al
+- location
 description: Pas droit à l'AL si le propriétaire du logement loué est un ascendant ou descendant du demandeur ou de son conjoint.
-period: "month:2015-02"
+period: month:2015-02
 relative_error_margin: 0.02
 individus:
   age: 27
   age_en_mois: 326
-  date_naissance: "1987-12-12"
+  date_naissance: '1987-12-12'
   etudiant: 0
   id: 54f07c3699fc215675536ec3
   inapte_travail: 0
@@ -187,7 +187,7 @@ familles:
     2014-11: 0
     2014-12: 0
     2015-01: 0
-  enfants:
+  enfants: null
   paje_base:
     2014-02: 0
     2014-03: 0
@@ -218,10 +218,10 @@ familles:
     2015-01: 0
 foyers_fiscaux:
   declarants: 54f07c3699fc215675536ec3
-  personnes_a_charge:
+  personnes_a_charge: null
 menages:
   depcom: 75111
-  enfants:
+  enfants: null
   loyer: 1000
   personne_de_reference: 54f07c3699fc215675536ec3
   statut_occupation_logement: locataire_vide

@@ -1,40 +1,40 @@
 name: Pas d'éligibilité si l'enfant n'est pas scolarisé au collège
 keywords: bourse collège
-description:
-period: "month:2015-02"
+description: null
+period: month:2015-02
 relative_error_margin: 0.02
 individus:
-  - age: 34
-    age_en_mois: 413
-    date_naissance: "1980-08-12"
-    chomage_imposable:
-      2013: 0
-    etudiant: 0
-    id: 54d91222f675ddd34432ef12
-    inapte_travail: 0
-    handicap: 0
-    pensions_alimentaires_percues:
-      2013: 0
-    retraite_imposable:
-      2013: 0
-    salaire_imposable:
-      2013: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 14
-    age_en_mois: 173
-    date_naissance: "2000-08-12"
-    etudiant: 0
-    id: 54d91222f675ddd34432ef11
-    inapte_travail: 0
-    handicap: 0
-    scolarite: lycee
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
+- age: 34
+  age_en_mois: 413
+  date_naissance: '1980-08-12'
+  chomage_imposable:
+    2013: 0
+  etudiant: 0
+  id: 54d91222f675ddd34432ef12
+  inapte_travail: 0
+  handicap: 0
+  pensions_alimentaires_percues:
+    2013: 0
+  retraite_imposable:
+    2013: 0
+  salaire_imposable:
+    2013: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 14
+  age_en_mois: 173
+  date_naissance: '2000-08-12'
+  etudiant: 0
+  id: 54d91222f675ddd34432ef11
+  inapte_travail: 0
+  handicap: 0
+  scolarite: lycee
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
 familles:
   acs:
     2014-02: 0
@@ -239,7 +239,7 @@ foyers_fiscaux:
   pensions_alimentaires_versees:
     2013: 0
   personnes_a_charge: 54d91222f675ddd34432ef11
-  rfr:
+  rfr: null
 menages:
   depcom: 67482
   enfants: 54d91222f675ddd34432ef11

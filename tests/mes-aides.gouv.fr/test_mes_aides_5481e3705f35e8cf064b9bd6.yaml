@@ -1,15 +1,15 @@
 name: Droit à l'ASI si handicap retraité
 keywords:
-  - asi
-  - eligibilité
-description: "Valeur attendue saisie : montant brut maximal personne seule SP.fr"
-period: "month:2014-12"
+- asi
+- eligibilité
+description: 'Valeur attendue saisie : montant brut maximal personne seule SP.fr'
+period: month:2014-12
 relative_error_margin: 0.02
 individus:
   activite: retraite
   age: 59
   age_en_mois: 719
-  date_naissance: "1955-01-01"
+  date_naissance: '1955-01-01'
   etudiant: 0
   id: 5481e2d95f35e8cf064b9bc5
   inapte_travail: 0
@@ -203,7 +203,7 @@ familles:
     2014-09: 0
     2014-10: 0
     2014-11: 0
-  enfants:
+  enfants: null
   paje_base:
     2013-12: 0
     2014-01: 0
@@ -233,10 +233,10 @@ familles:
     2014-11: 0
 foyers_fiscaux:
   declarants: 5481e2d95f35e8cf064b9bc5
-  personnes_a_charge:
+  personnes_a_charge: null
 menages:
   depcom: 92071
-  enfants:
+  enfants: null
   personne_de_reference: 5481e2d95f35e8cf064b9bc5
   statut_occupation_logement: loge_gratuitement
 output_variables:

@@ -2,17 +2,17 @@
 # alors qu'Openfisca la caclule pour Lyon (.0175)
 # Marges d'erreur définies par défaut égales à 0.5 euros
 
-- name: "Cotisations sociales - Celibataire public titulaire etat"
+- name: Cotisations sociales - Celibataire public titulaire etat
   description: Montant cotisations sociales celibataire public titulaire etat
   period: 2012-01
   absolute_error_margin: 0.005
   input_variables:
-    date_naissance: "1972-01-01"
-    depcom_entreprise: "69381"
+    date_naissance: '1972-01-01'
+    depcom_entreprise: '69381'
     primes_fonction_publique: 500
     traitement_indiciaire_brut: 2000
     taille_entreprise: de_20_a_249  # TODO fix this
-    categorie_salarie: 'public_titulaire_etat'
+    categorie_salarie: public_titulaire_etat
     zone_apl: zone_1
   output_variables:
     fnal: -8 - 2
@@ -52,17 +52,17 @@
     salaire_net: 2147.26
     salaire_super_brut: 4328.40 + 2000 * (0.0175 - 0.026)  # Correction transport
 
-- name: "Cotisations sociales - Celibataire public titulaire territoriale"
+- name: Cotisations sociales - Celibataire public titulaire territoriale
   description: Montant cotisations sociales celibataire public titulaire territoriale
   period: 2012-01
   absolute_error_margin: 0.005
   input_variables:
-    date_naissance: "1972-01-01"
-    depcom_entreprise: "69381"
+    date_naissance: '1972-01-01'
+    depcom_entreprise: '69381'
     primes_fonction_publique: 500
     traitement_indiciaire_brut: 2000
     taille_entreprise: de_20_a_249  # TODO fix this
-    categorie_salarie: 'public_titulaire_territoriale'
+    categorie_salarie: public_titulaire_territoriale
     zone_apl: zone_1
   output_variables:
     fnal: -8 - 2
@@ -98,13 +98,13 @@
     salaire_net: 2147.26
     salaire_super_brut: 3542 + 2000 * (0.0175 - 0.026)
 
-- name: "Cotisations sociales - Celibataire public titulaire hospitaliere"
+- name: Cotisations sociales - Celibataire public titulaire hospitaliere
   description: Montant cotisations sociales celibataire public titulaire hospitaliere
   period: 2012-01
   absolute_error_margin: 0.005
   input_variables:
-    date_naissance: "1972-01-01"
-    depcom_entreprise: "69381"
+    date_naissance: '1972-01-01'
+    depcom_entreprise: '69381'
     primes_fonction_publique: 500
     traitement_indiciaire_brut: 2000
     taille_entreprise: de_20_a_249   # TODO fix this
@@ -140,17 +140,17 @@
     salaire_net: 2147.26
     salaire_super_brut: 3562 + 2000 * (0.0175 - 0.026)
 
-- name: "Cotisations sociales - Celibataire public non titulaire"
+- name: Cotisations sociales - Celibataire public non titulaire
   description: Montant cotisations sociales celibataire public non titulaire
   period: 2012-01
   absolute_error_margin: 1
   input_variables:
     date_naissance: 1972-01-01
-    depcom_entreprise: "69381"
+    depcom_entreprise: '69381'
     primes_fonction_publique: 500
     salaire_de_base: 2000
     taille_entreprise: de_20_a_249
-    categorie_salarie: 'public_non_titulaire'
+    categorie_salarie: public_non_titulaire
     zone_apl: zone_1
   output_variables:
     fnal: -10.24 - 2.56
@@ -164,9 +164,7 @@
     contribution_solidarite_autonomie: -7.68
     cotisations_employeur_contributives: -343.68 # -40.96 -212.48 -90.24 - 7.68
     cotisations_employeur_non_contributives: -465.92 - 7.68
-    cotisations_employeur: -(
-                    212.48 + 40.96 + 90.24 + 327.68 + 138.24 + 2.56 + 10.24 + 2560 * 0.0175 + 7.68
-                    )
+    cotisations_employeur: -( 212.48 + 40.96 + 90.24 + 327.68 + 138.24 + 2.56 + 10.24 + 2560 * 0.0175 + 7.68 )
     pension_civile_salarie: 0
     rafp_salarie: 0
     ircantec_salarie: -60.16  # TODO: Trouver source extérieur site IPP buggé
@@ -185,35 +183,35 @@
     crds_salaire: -12.58
     indemnite_residence: 60
 
-- name: "Cotisations sociales - Couple 1 public titulaire etat deux enfants"
+- name: Cotisations sociales - Couple 1 public titulaire etat deux enfants
   period: 2012-01
   absolute_error_margin: 1
   description: Montant cotisations sociales couple un public titulaire deux enfants
   familles:
-    parents: ["parent1", "parent2"]
-    enfants: ["enfant1", "enfant2"]
+    parents: [parent1, parent2]
+    enfants: [enfant1, enfant2]
   foyers_fiscaux:
-    declarants: ["parent1", "parent2"]
-    personnes_a_charge: ["enfant1", "enfant2"]
+    declarants: [parent1, parent2]
+    personnes_a_charge: [enfant1, enfant2]
   menages:
-    personne_de_reference: "parent1"
-    conjoint: "parent2"
-    enfants: ["enfant1", "enfant2"]
+    personne_de_reference: parent1
+    conjoint: parent2
+    enfants: [enfant1, enfant2]
     zone_apl: zone_1
   individus:
-    - id: "parent1"
-      date_naissance: 1972-01-01
-      depcom_entreprise: "69381"
-      primes_fonction_publique: 500
-      traitement_indiciaire_brut: 2000
-      taille_entreprise: de_20_a_249   # TODO fix this
-      categorie_salarie: 'public_titulaire_etat'
-    - id: "parent2"
-      date_naissance: 1972-01-01
-    - id: "enfant1"
-      date_naissance: 2000-01-01
-    - id: "enfant2"
-      date_naissance: 2009-01-01
+  - id: parent1
+    date_naissance: 1972-01-01
+    depcom_entreprise: '69381'
+    primes_fonction_publique: 500
+    traitement_indiciaire_brut: 2000
+    taille_entreprise: de_20_a_249     # TODO fix this
+    categorie_salarie: public_titulaire_etat
+  - id: parent2
+    date_naissance: 1972-01-01
+  - id: enfant1
+    date_naissance: 2000-01-01
+  - id: enfant2
+    date_naissance: 2009-01-01
   output_variables:
     fnal: [-8 - 2, 0, 0, 0]
     versement_transport: [-2000 * 0.0175, 0, 0, 0]  # = 35
@@ -241,40 +239,40 @@
     salaire_super_brut: [4401.44 + 2000 * (.0175 - 0.026), 0, 0, 0]
     supplement_familial_traitement: [73.04, 0, 0, 0]
 
-- name: "Cotisations sociales - Couple 2 public titulaire etat deux enfants"
+- name: Cotisations sociales - Couple 2 public titulaire etat deux enfants
   period: 2012-01
   absolute_error_margin: 1
   description: Montant cotisations sociales couple deux public titulaire deux enfants
   familles:
-    parents: ["parent1", "parent2"]
-    enfants: ["enfant1", "enfant2"]
+    parents: [parent1, parent2]
+    enfants: [enfant1, enfant2]
   foyers_fiscaux:
-    declarants: ["parent1", "parent2"]
-    personnes_a_charge: ["enfant1", "enfant2"]
+    declarants: [parent1, parent2]
+    personnes_a_charge: [enfant1, enfant2]
   menages:
-    personne_de_reference: "parent1"
-    conjoint: "parent2"
-    enfants: ["enfant1", "enfant2"]
+    personne_de_reference: parent1
+    conjoint: parent2
+    enfants: [enfant1, enfant2]
     zone_apl: zone_2
   individus:
-    - id: "parent1"
-      date_naissance: 1972-01-01
-      depcom_entreprise: "69381"
-      primes_fonction_publique: 500
-      traitement_indiciaire_brut: 2000
-      taille_entreprise: de_20_a_249   # TODO fix this
-      categorie_salarie: 'public_titulaire_etat'
-    - id: "parent2"
-      date_naissance: 1972-01-01
-      depcom_entreprise: "69381"
-      primes_fonction_publique: 500
-      traitement_indiciaire_brut: 2000
-      taille_entreprise: de_20_a_249   # TODO fix this
-      categorie_salarie: 'public_titulaire_etat'
-    - id: "enfant1"
-      date_naissance: 2000-01-01
-    - id: "enfant2"
-      date_naissance: 2009-01-01
+  - id: parent1
+    date_naissance: 1972-01-01
+    depcom_entreprise: '69381'
+    primes_fonction_publique: 500
+    traitement_indiciaire_brut: 2000
+    taille_entreprise: de_20_a_249     # TODO fix this
+    categorie_salarie: public_titulaire_etat
+  - id: parent2
+    date_naissance: 1972-01-01
+    depcom_entreprise: '69381'
+    primes_fonction_publique: 500
+    traitement_indiciaire_brut: 2000
+    taille_entreprise: de_20_a_249     # TODO fix this
+    categorie_salarie: public_titulaire_etat
+  - id: enfant1
+    date_naissance: 2000-01-01
+  - id: enfant2
+    date_naissance: 2009-01-01
 #    error_margin: 2
   output_variables:
     fnal: [-10, -10, 0, 0]

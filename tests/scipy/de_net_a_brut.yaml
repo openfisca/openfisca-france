@@ -1,4 +1,4 @@
-- period: "2016-02"
+- period: 2016-02
   reforms: openfisca_france.reforms.de_net_a_brut.de_net_a_brut
   relative_error_margin: 0.005
   input_variables:
@@ -14,7 +14,7 @@
     aide_premier_salarie: 166.6666717529297
     agff_salarie: -18.399999618530273
     arrco_salarie: -71.30000305175781
-    agirc_gmp_employeur: -0
+    agirc_gmp_employeur: 0
     agirc_salarie: 0
     famille: -120.75
     csg_imposable_salaire: -54.23400115966797
@@ -23,7 +23,7 @@
     chomage_employeur: -92
     arrco_employeur: -106.94999694824219
     smic_proratise: 1466.61669921875
-    prevoyance_obligatoire_cadre: -0
+    prevoyance_obligatoire_cadre: 0
     taxe_apprentissage: -15.640000343322754
     financement_organisations_syndicales: -0.3700000047683716
     participation_effort_construction: 0
@@ -33,7 +33,7 @@
     exoneration_cotisations_employeur_stagiaire: 0
     cout_du_travail: 2892.01318359375
     cotisation_exceptionnelle_temporaire_employeur: 0
-    versement_transport: -0
+    versement_transport: 0
     csg_deductible_salaire: -115.24725341796875
     formation_professionnelle: -12.649999618530273
     salaire_super_brut: 3196.679931640625
@@ -44,7 +44,7 @@
     agff_employeur: -27.600000381469727
     vieillesse_deplafonnee_salarie: -8.050000190734863
     exoneration_cotisations_employeur_apprenti: 0
-    agirc_gmp_salarie: -0
+    agirc_gmp_salarie: 0
     aide_embauche_pme: 0
     cotisation_exceptionnelle_temporaire_salarie: 0
     crds_salaire: -11.298749923706055

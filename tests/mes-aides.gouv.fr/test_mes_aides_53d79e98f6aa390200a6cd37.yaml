@@ -1,55 +1,55 @@
 name: Couple, 2 enfants, chômage
 keywords: rsa
-description:
-period: "month:2014-07"
+description: null
+period: month:2014-07
 relative_error_margin: 0.02
 individus:
-  - age: 34
-    age_en_mois: 414
-    date_naissance: "1980-01-01"
-    enceinte: false
-    etudiant: 0
-    id: 53d79e75f6aa390200a6cd36
-    inapte_travail: 0
-    handicap: 0
-    statut_marital: celibataire
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 34
-    age_en_mois: 414
-    date_naissance: "1980-01-01"
-    etudiant: 0
-    id: 53d79e75f6aa390200a6cd35
-    inapte_travail: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 4
-    age_en_mois: 54
-    date_naissance: "2010-01-01"
-    etudiant: 0
-    id: 53d79e75f6aa390200a6cd34
-    inapte_travail: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 4
-    age_en_mois: 54
-    date_naissance: "2010-01-01"
-    etudiant: 0
-    id: 53d79e75f6aa390200a6cd33
-    inapte_travail: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
+- age: 34
+  age_en_mois: 414
+  date_naissance: '1980-01-01'
+  enceinte: false
+  etudiant: 0
+  id: 53d79e75f6aa390200a6cd36
+  inapte_travail: 0
+  handicap: 0
+  statut_marital: celibataire
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 34
+  age_en_mois: 414
+  date_naissance: '1980-01-01'
+  etudiant: 0
+  id: 53d79e75f6aa390200a6cd35
+  inapte_travail: 0
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 4
+  age_en_mois: 54
+  date_naissance: '2010-01-01'
+  etudiant: 0
+  id: 53d79e75f6aa390200a6cd34
+  inapte_travail: 0
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 4
+  age_en_mois: 54
+  date_naissance: '2010-01-01'
+  etudiant: 0
+  id: 53d79e75f6aa390200a6cd33
+  inapte_travail: 0
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
 familles:
   acs:
     2013-07: 0
@@ -221,8 +221,8 @@ familles:
     2014-05: 0
     2014-06: 0
   enfants:
-    - 53d79e75f6aa390200a6cd34
-    - 53d79e75f6aa390200a6cd33
+  - 53d79e75f6aa390200a6cd34
+  - 53d79e75f6aa390200a6cd33
   paje_base:
     2013-07: 0
     2013-08: 0
@@ -237,8 +237,8 @@ familles:
     2014-05: 0
     2014-06: 0
   parents:
-    - 53d79e75f6aa390200a6cd36
-    - 53d79e75f6aa390200a6cd35
+  - 53d79e75f6aa390200a6cd36
+  - 53d79e75f6aa390200a6cd35
   rsa:
     2013-07: 0
     2013-08: 0
@@ -254,16 +254,16 @@ familles:
     2014-06: 0
 foyers_fiscaux:
   declarants:
-    - 53d79e75f6aa390200a6cd36
-    - 53d79e75f6aa390200a6cd35
+  - 53d79e75f6aa390200a6cd36
+  - 53d79e75f6aa390200a6cd35
   personnes_a_charge:
-    - 53d79e75f6aa390200a6cd34
-    - 53d79e75f6aa390200a6cd33
+  - 53d79e75f6aa390200a6cd34
+  - 53d79e75f6aa390200a6cd33
 menages:
   conjoint: 53d79e75f6aa390200a6cd35
   enfants:
-    - 53d79e75f6aa390200a6cd34
-    - 53d79e75f6aa390200a6cd33
+  - 53d79e75f6aa390200a6cd34
+  - 53d79e75f6aa390200a6cd33
   personne_de_reference: 53d79e75f6aa390200a6cd36
   statut_occupation_logement: loge_gratuitement
 output_variables:

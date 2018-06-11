@@ -1,47 +1,47 @@
 name: Couple, 1 des 2 éligible, ressources > plafond haut
 keywords:
-  - aspa
-  - plafonds
-description:
-period: "month:2014-07"
+- aspa
+- plafonds
+description: null
+period: month:2014-07
 relative_error_margin: 0.02
 individus:
-  - age: 68
-    age_en_mois: 826
-    date_naissance: "1945-09-14"
-    enceinte: false
-    etudiant: 0
-    id: 53d2521be40a7902009c338e
-    inapte_travail: 0
-    handicap: 0
-    retraite_brute:
-      2012: 3750
-      2014-04: 1250
-      2014-05: 1250
-      2014-06: 1250
-      2014-07: 1250
-    retraite_nette:
-      2012: 3472.5
-      2014-04: 1157.5
-      2014-05: 1157.5
-      2014-06: 1157.5
-      2014-07: 1157.5
-    statut_marital: celibataire
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 33
-    age_en_mois: 406
-    date_naissance: "1980-09-14"
-    etudiant: 0
-    id: 53d2521be40a7902009c338d
-    inapte_travail: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
+- age: 68
+  age_en_mois: 826
+  date_naissance: '1945-09-14'
+  enceinte: false
+  etudiant: 0
+  id: 53d2521be40a7902009c338e
+  inapte_travail: 0
+  handicap: 0
+  retraite_brute:
+    2012: 3750
+    2014-04: 1250
+    2014-05: 1250
+    2014-06: 1250
+    2014-07: 1250
+  retraite_nette:
+    2012: 3472.5
+    2014-04: 1157.5
+    2014-05: 1157.5
+    2014-06: 1157.5
+    2014-07: 1157.5
+  statut_marital: celibataire
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 33
+  age_en_mois: 406
+  date_naissance: '1980-09-14'
+  etudiant: 0
+  id: 53d2521be40a7902009c338d
+  inapte_travail: 0
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
 familles:
   acs:
     2013-07: 0
@@ -212,7 +212,7 @@ familles:
     2014-04: 0
     2014-05: 0
     2014-06: 0
-  enfants:
+  enfants: null
   paje_base:
     2013-07: 0
     2013-08: 0
@@ -227,8 +227,8 @@ familles:
     2014-05: 0
     2014-06: 0
   parents:
-    - 53d2521be40a7902009c338e
-    - 53d2521be40a7902009c338d
+  - 53d2521be40a7902009c338e
+  - 53d2521be40a7902009c338d
   proprietaire_proche_famille: true
   rsa:
     2013-07: 0
@@ -245,12 +245,12 @@ familles:
     2014-06: 0
 foyers_fiscaux:
   declarants:
-    - 53d2521be40a7902009c338e
-    - 53d2521be40a7902009c338d
-  personnes_a_charge:
+  - 53d2521be40a7902009c338e
+  - 53d2521be40a7902009c338d
+  personnes_a_charge: null
 menages:
   conjoint: 53d2521be40a7902009c338d
-  enfants:
+  enfants: null
   loyer: 123
   personne_de_reference: 53d2521be40a7902009c338e
   statut_occupation_logement: locataire_vide

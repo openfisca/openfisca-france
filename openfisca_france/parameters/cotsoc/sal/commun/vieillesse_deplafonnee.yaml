@@ -13,6 +13,5 @@ brackets:
   threshold:
     2004-07-01:
       value: 0.0
-description: Vieillesse déplafonnée (ancienne assurance veuvage transférée à la CNAV
-  en 2004)
+description: Vieillesse déplafonnée (ancienne assurance veuvage transférée à la CNAV en 2004)
 reference: openfisca

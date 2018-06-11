@@ -1,9 +1,9 @@
 name: Fillon
 
-period: "month:2015-10"
+period: month:2015-10
 relative_error_margin: 0.02
 input_variables:
-  contrat_de_travail_debut: "2015-1-1"
+  contrat_de_travail_debut: 2015-1-1
   effectif_entreprise: 1
   salaire_de_base: 1500
   categorie_salarie: prive_non_cadre

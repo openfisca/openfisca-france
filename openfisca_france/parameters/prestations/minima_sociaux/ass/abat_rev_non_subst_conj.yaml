@@ -1,5 +1,4 @@
-description: Abbatement appliqué aux revenus interompus et non substitués du conjoint
-  (pas de pension de retraite, ni de chômage, etc.
+description: Abbatement appliqué aux revenus interompus et non substitués du conjoint (pas de pension de retraite, ni de chômage, etc.
 reference: openfisca
 values:
   2005-01-01:

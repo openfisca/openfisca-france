@@ -1,18 +1,18 @@
-name: "TNS Auto-entrepreneur (BIC)"
+name: TNS Auto-entrepreneur (BIC)
 keywords:
-  - rsa
-  - tns
+- rsa
+- tns
 description: |
   ((1000+300+100)/3)*50% = 233,33
   (513,88 + 62%*233,33) - (233,33 + 61,67)
   =  658,54 - 295
   = 363,5
-period: "month:2015-04"
+period: month:2015-04
 relative_error_margin: 0.02
 individus:
   age: 35
   age_en_mois: 420
-  date_naissance: "1980-04-13"
+  date_naissance: '1980-04-13'
   etudiant: 0
   id: 553fc12f17d9db60391c3445
   inapte_travail: 0
@@ -207,7 +207,7 @@ familles:
     2015-01: 0
     2015-02: 0
     2015-03: 0
-  enfants:
+  enfants: null
   paje_base:
     2014-04: 0
     2014-05: 0
@@ -237,10 +237,10 @@ familles:
     2015-03: 0
 foyers_fiscaux:
   declarants: 553fc12f17d9db60391c3445
-  personnes_a_charge:
+  personnes_a_charge: null
 menages:
   depcom: 67482
-  enfants:
+  enfants: null
   personne_de_reference: 553fc12f17d9db60391c3445
   statut_occupation_logement: loge_gratuitement
 output_variables:

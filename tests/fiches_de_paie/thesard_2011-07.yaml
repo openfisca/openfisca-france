@@ -1,18 +1,18 @@
-name: "Thésard 1"
-period: "2011-07"
+name: Thésard 1
+period: 2011-07
 absolute_error_margin: 0.005
 input_variables:
   allegement_fillon_mode_recouvrement: anticipe  # "anticipe_regularisation_fin_de_periode"
   assujettie_taxe_salaires: false
   avantage_en_nature_valeur_reelle: 0
   contrat_de_travail: temps_plein
-  contrat_de_travail_debut: "2011-01-01"
-  contrat_de_travail_fin: "2011-12-31"
+  contrat_de_travail_debut: '2011-01-01'
+  contrat_de_travail_fin: '2011-12-31'
   contrat_de_travail_duree: cdd
   effectif_entreprise: 10000
   heures_non_remunerees_volume: 0
   indemnite_residence: 0  # WARNING
-  code_postal_entreprise: "21000"
+  code_postal_entreprise: '21000'
   nombre_tickets_restaurant: 0
   prevoyance_obligatoire_cadre_taux_employeur: 0.015  # 1.5% est le minimum
   prise_en_charge_employeur_retraite_complementaire: 0

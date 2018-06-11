@@ -1,19 +1,19 @@
 name: Personne seule avec salaire et pension alimentaire
 keywords:
-  - ass
-  - recette
+- ass
+- recette
 description: |
   Ressources comprises entre 640 et 1137,50 = ASS différentielle
   (Montant journalier: 8,47 X30 ou X31)
   (Le montant de la pension alimentaire est enregistrée en net)
-period: "month:2015-06"
+period: month:2015-06
 relative_error_margin: 0.02
 individus:
   activite: chomeur
   age: 45
   age_en_mois: 548
   ass_precondition_remplie: true
-  date_naissance: "1969-10-14"
+  date_naissance: '1969-10-14'
   etudiant: 0
   id: 55817b386825fb781480b2ee
   inapte_travail: 0
@@ -252,7 +252,7 @@ familles:
     2015-03: 0
     2015-04: 0
     2015-05: 0
-  enfants:
+  enfants: null
   paje_base:
     2014-06: 0
     2014-07: 0
@@ -282,10 +282,10 @@ familles:
     2015-05: 0
 foyers_fiscaux:
   declarants: 55817b386825fb781480b2ee
-  personnes_a_charge:
+  personnes_a_charge: null
 menages:
   depcom: 77004
-  enfants:
+  enfants: null
   personne_de_reference: 55817b386825fb781480b2ee
   statut_occupation_logement: proprietaire
 output_variables:

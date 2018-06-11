@@ -1,8 +1,8 @@
 name: 1 enfant
 keywords:
-  - al
-  - location
-  - ménage
+- al
+- location
+- ménage
 description: |
   L	398,87
   C	65,29
@@ -19,44 +19,44 @@ description: |
   P1	0
   Pp	39,45
   AL	422,59
-period: "month:2015-01"
+period: month:2015-01
 relative_error_margin: 0.02
 individus:
-  - age: 34
-    age_en_mois: 412
-    date_naissance: "1980-08-12"
-    etudiant: 0
-    id: 54ac0b9ed20bc238169b4b05
-    inapte_travail: 0
-    handicap: 0
-    statut_marital: marie
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 34
-    age_en_mois: 412
-    date_naissance: "1980-08-12"
-    etudiant: 0
-    id: 54ac0b9ed20bc238169b4b04
-    inapte_travail: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 14
-    age_en_mois: 172
-    date_naissance: "2000-08-12"
-    etudiant: 0
-    id: 54ac0b9ed20bc238169b4b03
-    inapte_travail: 0
-    handicap: 0
-    scolarite: college
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
+- age: 34
+  age_en_mois: 412
+  date_naissance: '1980-08-12'
+  etudiant: 0
+  id: 54ac0b9ed20bc238169b4b05
+  inapte_travail: 0
+  handicap: 0
+  statut_marital: marie
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 34
+  age_en_mois: 412
+  date_naissance: '1980-08-12'
+  etudiant: 0
+  id: 54ac0b9ed20bc238169b4b04
+  inapte_travail: 0
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 14
+  age_en_mois: 172
+  date_naissance: '2000-08-12'
+  etudiant: 0
+  id: 54ac0b9ed20bc238169b4b03
+  inapte_travail: 0
+  handicap: 0
+  scolarite: college
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
 familles:
   acs:
     2014-01: 0
@@ -242,8 +242,8 @@ familles:
     2014-11: 0
     2014-12: 0
   parents:
-    - 54ac0b9ed20bc238169b4b05
-    - 54ac0b9ed20bc238169b4b04
+  - 54ac0b9ed20bc238169b4b05
+  - 54ac0b9ed20bc238169b4b04
   proprietaire_proche_famille: false
   rsa:
     2014-01: 0
@@ -260,8 +260,8 @@ familles:
     2014-12: 0
 foyers_fiscaux:
   declarants:
-    - 54ac0b9ed20bc238169b4b05
-    - 54ac0b9ed20bc238169b4b04
+  - 54ac0b9ed20bc238169b4b05
+  - 54ac0b9ed20bc238169b4b04
   personnes_a_charge: 54ac0b9ed20bc238169b4b03
 menages:
   conjoint: 54ac0b9ed20bc238169b4b04

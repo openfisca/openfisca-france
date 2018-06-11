@@ -1,8 +1,8 @@
 name: Cas RL > 75
 keywords:
-  - al
-  - location
-  - taux loyer
+- al
+- location
+- taux loyer
 description: |
   On veut rentrer dans ce test dans le cas où RL est supérieur à 75.
   Dans l'exemple, personne seule en zone 1, loyer > loyer plafond, salaires 2013 = 9000 euros
@@ -24,12 +24,12 @@ description: |
   AL	196,68
 
   Sur CAF.FR on trouve 175,79 euros : ils sont faux
-period: "month:2015-01"
+period: month:2015-01
 relative_error_margin: 0.02
 individus:
   age: 34
   age_en_mois: 413
-  date_naissance: "1980-08-12"
+  date_naissance: '1980-08-12'
   chomage_imposable:
     2013: 0
   etudiant: 0
@@ -216,7 +216,7 @@ familles:
     2014-10: 0
     2014-11: 0
     2014-12: 0
-  enfants:
+  enfants: null
   paje_base:
     2014-01: 0
     2014-02: 0
@@ -249,12 +249,12 @@ foyers_fiscaux:
   declarants: 54c1339aa488cca035fe15e1
   pensions_alimentaires_versees:
     2013: 0
-  personnes_a_charge:
+  personnes_a_charge: null
   rfr:
     2013: 0
 menages:
   depcom: 75111
-  enfants:
+  enfants: null
   loyer: 1000
   personne_de_reference: 54c1339aa488cca035fe15e1
   statut_occupation_logement: locataire_vide

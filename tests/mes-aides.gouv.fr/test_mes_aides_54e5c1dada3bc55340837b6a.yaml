@@ -1,8 +1,8 @@
 name: Pas d'eval forfaitaire si le conjoint a moins de 25 ans et si somme des salaires < plafond
 keywords:
-  - al
-  - base ressources
-  - eval forfaitaire
+- al
+- base ressources
+- eval forfaitaire
 description: |
   Le demandeur a 34 ans mais le conjoint a 22 ans.
   On n'applique pas l'eval forfaitaire car le demandeur n'a déclaré que 1000 euros mensuels, ce qui est inférieur au plafond de 1273 euros.
@@ -22,89 +22,89 @@ description: |
   P1	0
   Pp	34,73
   AL	369,56
-period: "month:2015-02"
+period: month:2015-02
 relative_error_margin: 0.02
 individus:
-  - age: 34
-    age_en_mois: 414
-    date_naissance: "1980-08-12"
-    chomage_imposable:
-      2013: 0
-    etudiant: 0
-    id: 54e5c1d77c92ea5940ba4e55
-    inapte_travail: 0
-    handicap: 0
-    pensions_alimentaires_percues:
-      2013: 0
-    retraite_imposable:
-      2013: 0
-    salaire_de_base:
-      2014-02: 1282.051282051282
-      2014-03: 1282.051282051282
-      2014-04: 1282.051282051282
-      2014-05: 1282.051282051282
-      2014-06: 1282.051282051282
-      2014-07: 1282.051282051282
-      2014-08: 1282.051282051282
-      2014-09: 1282.051282051282
-      2014-10: 1282.051282051282
-      2014-11: 1282.051282051282
-      2014-12: 1282.051282051282
-      2015-01: 1282.051282051282
-      2015-02: 1282.051282051282
-    salaire_imposable:
-      2013: 0
-      2014-02: 1036.5288461538462
-      2014-03: 1036.5288461538462
-      2014-04: 1036.5288461538462
-      2014-05: 1036.5288461538462
-      2014-06: 1036.5288461538462
-      2014-07: 1036.5288461538462
-      2014-08: 1036.5288461538462
-      2014-09: 1036.5288461538462
-      2014-10: 1036.5288461538462
-      2014-11: 1036.5288461538462
-      2014-12: 1036.5288461538462
-      2015-01: 1036.5288461538462
-      2015-02: 1036.5288461538462
-    salaire_net:
-      2014-02: 1000
-      2014-03: 1000
-      2014-04: 1000
-      2014-05: 1000
-      2014-06: 1000
-      2014-07: 1000
-      2014-08: 1000
-      2014-09: 1000
-      2014-10: 1000
-      2014-11: 1000
-      2014-12: 1000
-      2015-01: 1000
-      2015-02: 1000
-    statut_marital: marie
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 22
-    age_en_mois: 270
-    date_naissance: "1992-08-12"
-    chomage_imposable:
-      2013: 0
-    etudiant: 0
-    id: 54e5c1d77c92ea5940ba4e54
-    inapte_travail: 0
-    handicap: 0
-    pensions_alimentaires_percues:
-      2013: 0
-    retraite_imposable:
-      2013: 0
-    salaire_imposable:
-      2013: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
+- age: 34
+  age_en_mois: 414
+  date_naissance: '1980-08-12'
+  chomage_imposable:
+    2013: 0
+  etudiant: 0
+  id: 54e5c1d77c92ea5940ba4e55
+  inapte_travail: 0
+  handicap: 0
+  pensions_alimentaires_percues:
+    2013: 0
+  retraite_imposable:
+    2013: 0
+  salaire_de_base:
+    2014-02: 1282.051282051282
+    2014-03: 1282.051282051282
+    2014-04: 1282.051282051282
+    2014-05: 1282.051282051282
+    2014-06: 1282.051282051282
+    2014-07: 1282.051282051282
+    2014-08: 1282.051282051282
+    2014-09: 1282.051282051282
+    2014-10: 1282.051282051282
+    2014-11: 1282.051282051282
+    2014-12: 1282.051282051282
+    2015-01: 1282.051282051282
+    2015-02: 1282.051282051282
+  salaire_imposable:
+    2013: 0
+    2014-02: 1036.5288461538462
+    2014-03: 1036.5288461538462
+    2014-04: 1036.5288461538462
+    2014-05: 1036.5288461538462
+    2014-06: 1036.5288461538462
+    2014-07: 1036.5288461538462
+    2014-08: 1036.5288461538462
+    2014-09: 1036.5288461538462
+    2014-10: 1036.5288461538462
+    2014-11: 1036.5288461538462
+    2014-12: 1036.5288461538462
+    2015-01: 1036.5288461538462
+    2015-02: 1036.5288461538462
+  salaire_net:
+    2014-02: 1000
+    2014-03: 1000
+    2014-04: 1000
+    2014-05: 1000
+    2014-06: 1000
+    2014-07: 1000
+    2014-08: 1000
+    2014-09: 1000
+    2014-10: 1000
+    2014-11: 1000
+    2014-12: 1000
+    2015-01: 1000
+    2015-02: 1000
+  statut_marital: marie
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 22
+  age_en_mois: 270
+  date_naissance: '1992-08-12'
+  chomage_imposable:
+    2013: 0
+  etudiant: 0
+  id: 54e5c1d77c92ea5940ba4e54
+  inapte_travail: 0
+  handicap: 0
+  pensions_alimentaires_percues:
+    2013: 0
+  retraite_imposable:
+    2013: 0
+  salaire_imposable:
+    2013: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
 familles:
   acs:
     2014-02: 0
@@ -275,7 +275,7 @@ familles:
     2014-11: 0
     2014-12: 0
     2015-01: 0
-  enfants:
+  enfants: null
   paje_base:
     2014-02: 0
     2014-03: 0
@@ -290,8 +290,8 @@ familles:
     2014-12: 0
     2015-01: 0
   parents:
-    - 54e5c1d77c92ea5940ba4e55
-    - 54e5c1d77c92ea5940ba4e54
+  - 54e5c1d77c92ea5940ba4e55
+  - 54e5c1d77c92ea5940ba4e54
   proprietaire_proche_famille: false
   rsa:
     2014-02: 0
@@ -308,16 +308,16 @@ familles:
     2015-01: 0
 foyers_fiscaux:
   declarants:
-    - 54e5c1d77c92ea5940ba4e55
-    - 54e5c1d77c92ea5940ba4e54
+  - 54e5c1d77c92ea5940ba4e55
+  - 54e5c1d77c92ea5940ba4e54
   pensions_alimentaires_versees:
     2013: 0
-  personnes_a_charge:
-  rfr:
+  personnes_a_charge: null
+  rfr: null
 menages:
   conjoint: 54e5c1d77c92ea5940ba4e54
   depcom: 75111
-  enfants:
+  enfants: null
   loyer: 1000
   personne_de_reference: 54e5c1d77c92ea5940ba4e55
   statut_occupation_logement: locataire_vide

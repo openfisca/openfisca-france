@@ -1,4 +1,4 @@
-- period: "2015-11"
+- period: 2015-11
   name: 1xSMIC
   relative_error_margin: 0.001
   input_variables:
@@ -12,7 +12,7 @@
   output_variables:
     allegement_cotisation_allocations_familiales: 26.23
 
-- period: "2015-11"
+- period: 2015-11
   name: 2xSMIC
   relative_error_margin: 0.001
   input_variables:
@@ -26,7 +26,7 @@
   output_variables:
     allegement_cotisation_allocations_familiales: 0
 
-- period: "2016-05"
+- period: 2016-05
   name: 3.5xSMIC
   description: après avril 2016, l'allègement est étendu jusqu'à 3.5 SMIC
   relative_error_margin: 0.001

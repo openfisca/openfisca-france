@@ -1,4 +1,4 @@
-- period: "month:2015-03"
+- period: month:2015-03
   input_variables:
     jeune_entreprise_innovante: 1
     effectif_entreprise: 30
@@ -9,27 +9,27 @@
     vieillesse_deplafonnee_employeur: -45
     vieillesse_plafonnee_employeur: -212.5
     exoneration_cotisations_employeur_jei: -(-131.25 - 320 - 45 - 212.5)
-- period: "month:2015-03"
+- period: month:2015-03
   input_variables:
-    entreprise_creation: "2015-01-01"
-    jei_date_demande: "2015-01-01"
+    entreprise_creation: '2015-01-01'
+    jei_date_demande: '2015-01-01'
     effectif_entreprise: 430
     salaire_de_base: 2500
   output_variables:
     exoneration_cotisations_employeur_jei: 0
-- period: "month:2015-03"
+- period: month:2015-03
   input_variables:
-    entreprise_creation: "2007-03-01"
-    jei_date_demande: "2015-01-01"
+    entreprise_creation: '2007-03-01'
+    jei_date_demande: '2015-01-01'
     effectif_entreprise: 200
     salaire_de_base: 2500
   output_variables:
     exoneration_cotisations_employeur_jei: -(-131.25 - 320 - 45 - 212.5)
 
-- period: "month:2016-10"
+- period: month:2016-10
   name: Pas de réductions et aides de l'État si JEI
   input_variables:
-    entreprise_creation: "2015-03-01"
+    entreprise_creation: '2015-03-01'
     jeune_entreprise_innovante: true
     effectif_entreprise: 30
     salaire_de_base: 1500
@@ -43,10 +43,10 @@
     aide_embauche_pme: 0
 
 
-- period: "month:2016-10"
+- period: month:2016-10
   name: Pas d'aide première embauche si JEI
   input_variables:
-    entreprise_creation: "2015-03-01"
+    entreprise_creation: '2015-03-01'
     jeune_entreprise_innovante: true
     effectif_entreprise: 1
     salaire_de_base: 1500

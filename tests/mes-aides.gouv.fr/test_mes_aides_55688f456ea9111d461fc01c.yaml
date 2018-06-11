@@ -1,90 +1,90 @@
 name: Couple avec un seul revenu et 1 enfant avant 01/04/2014 > plafond
 keywords:
-  - montant
-  - paje
-  - plafonds
-description: "Couple avec un seul revenu et 1 enfant né avant 01/04/2014 > plafond : 35 729"
-period: "month:2015-05"
+- montant
+- paje
+- plafonds
+description: 'Couple avec un seul revenu et 1 enfant né avant 01/04/2014 > plafond : 35 729'
+period: month:2015-05
 relative_error_margin: 0.02
 individus:
-  - age: 45
-    age_en_mois: 548
-    date_naissance: "1969-09-08"
-    etudiant: 0
-    id: 55688f3d2617041246ef4bc8
-    inapte_travail: 0
-    handicap: 0
-    salaire_de_base:
-      2014-05: 4700.8547008547
-      2014-06: 4700.8547008547
-      2014-07: 4700.8547008547
-      2014-08: 4700.8547008547
-      2014-09: 4700.8547008547
-      2014-10: 4700.8547008547
-      2014-11: 4700.8547008547
-      2014-12: 4700.8547008547
-      2015-01: 4700.8547008547
-      2015-02: 1282.051282051282
-      2015-03: 1282.051282051282
-      2015-04: 1282.051282051282
-      2015-05: 1282.051282051282
-    salaire_imposable:
-      2013: 40000
-      2014-05: 3800.605769230769
-      2014-06: 3800.605769230769
-      2014-07: 3800.605769230769
-      2014-08: 3800.605769230769
-      2014-09: 3800.605769230769
-      2014-10: 3800.605769230769
-      2014-11: 3800.605769230769
-      2014-12: 3800.605769230769
-      2015-01: 3800.605769230769
-      2015-02: 1036.5288461538462
-      2015-03: 1036.5288461538462
-      2015-04: 1036.5288461538462
-      2015-05: 1036.5288461538462
-    salaire_net:
-      2014-05: 3666.6666666666665
-      2014-06: 3666.6666666666665
-      2014-07: 3666.6666666666665
-      2014-08: 3666.6666666666665
-      2014-09: 3666.6666666666665
-      2014-10: 3666.6666666666665
-      2014-11: 3666.6666666666665
-      2014-12: 3666.6666666666665
-      2015-01: 3666.6666666666665
-      2015-02: 1000
-      2015-03: 1000
-      2015-04: 1000
-      2015-05: 1000
-    statut_marital: marie
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 35
-    age_en_mois: 420
-    date_naissance: "1980-05-03"
-    etudiant: 0
-    id: 55688f3d2617041246ef4bc7
-    inapte_travail: 0
-    handicap: 0
-    statut_marital: marie
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 2
-    age_en_mois: 27
-    date_naissance: "2013-02-04"
-    etudiant: 0
-    id: 55688f3d2617041246ef4bc6
-    inapte_travail: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
+- age: 45
+  age_en_mois: 548
+  date_naissance: '1969-09-08'
+  etudiant: 0
+  id: 55688f3d2617041246ef4bc8
+  inapte_travail: 0
+  handicap: 0
+  salaire_de_base:
+    2014-05: 4700.8547008547
+    2014-06: 4700.8547008547
+    2014-07: 4700.8547008547
+    2014-08: 4700.8547008547
+    2014-09: 4700.8547008547
+    2014-10: 4700.8547008547
+    2014-11: 4700.8547008547
+    2014-12: 4700.8547008547
+    2015-01: 4700.8547008547
+    2015-02: 1282.051282051282
+    2015-03: 1282.051282051282
+    2015-04: 1282.051282051282
+    2015-05: 1282.051282051282
+  salaire_imposable:
+    2013: 40000
+    2014-05: 3800.605769230769
+    2014-06: 3800.605769230769
+    2014-07: 3800.605769230769
+    2014-08: 3800.605769230769
+    2014-09: 3800.605769230769
+    2014-10: 3800.605769230769
+    2014-11: 3800.605769230769
+    2014-12: 3800.605769230769
+    2015-01: 3800.605769230769
+    2015-02: 1036.5288461538462
+    2015-03: 1036.5288461538462
+    2015-04: 1036.5288461538462
+    2015-05: 1036.5288461538462
+  salaire_net:
+    2014-05: 3666.6666666666665
+    2014-06: 3666.6666666666665
+    2014-07: 3666.6666666666665
+    2014-08: 3666.6666666666665
+    2014-09: 3666.6666666666665
+    2014-10: 3666.6666666666665
+    2014-11: 3666.6666666666665
+    2014-12: 3666.6666666666665
+    2015-01: 3666.6666666666665
+    2015-02: 1000
+    2015-03: 1000
+    2015-04: 1000
+    2015-05: 1000
+  statut_marital: marie
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 35
+  age_en_mois: 420
+  date_naissance: '1980-05-03'
+  etudiant: 0
+  id: 55688f3d2617041246ef4bc7
+  inapte_travail: 0
+  handicap: 0
+  statut_marital: marie
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 2
+  age_en_mois: 27
+  date_naissance: '2013-02-04'
+  etudiant: 0
+  id: 55688f3d2617041246ef4bc6
+  inapte_travail: 0
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
 familles:
   acs:
     2014-05: 0
@@ -270,8 +270,8 @@ familles:
     2015-03: 0
     2015-04: 0
   parents:
-    - 55688f3d2617041246ef4bc8
-    - 55688f3d2617041246ef4bc7
+  - 55688f3d2617041246ef4bc8
+  - 55688f3d2617041246ef4bc7
   rsa:
     2014-05: 0
     2014-06: 0
@@ -287,10 +287,10 @@ familles:
     2015-04: 0
 foyers_fiscaux:
   declarants:
-    - 55688f3d2617041246ef4bc8
-    - 55688f3d2617041246ef4bc7
+  - 55688f3d2617041246ef4bc8
+  - 55688f3d2617041246ef4bc7
   personnes_a_charge: 55688f3d2617041246ef4bc6
-  rfr:
+  rfr: null
 menages:
   conjoint: 55688f3d2617041246ef4bc7
   depcom: 76540

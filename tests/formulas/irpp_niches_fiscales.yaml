@@ -1,4 +1,4 @@
-- name: "IRPP - Niches fiscales - PA de type f6gi"
+- name: IRPP - Niches fiscales - PA de type f6gi
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
@@ -6,7 +6,7 @@
     f6gi: 1800
   output_variables:
     irpp: -819
-- name: "IRPP - Niches fiscales - PA de type f6gi"
+- name: IRPP - Niches fiscales - PA de type f6gi
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
@@ -14,7 +14,7 @@
     f6gi: 1800
   output_variables:
     irpp: -860
-- name: "IRPP - Niches fiscales - PA de type f6gi"
+- name: IRPP - Niches fiscales - PA de type f6gi
   period: 2010
   absolute_error_margin: 0.5
   input_variables:
@@ -23,7 +23,7 @@
   output_variables:
     irpp: -860
 
-- name: "IRPP - Niches fiscales - PA de type f6el"
+- name: IRPP - Niches fiscales - PA de type f6el
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
@@ -31,7 +31,7 @@
     f6el: 1800
   output_variables:
     irpp: -913
-- name: "IRPP - Niches fiscales - PA de type f6el"
+- name: IRPP - Niches fiscales - PA de type f6el
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
@@ -39,7 +39,7 @@
     f6el: 1800
   output_variables:
     irpp: -929
-- name: "IRPP - Niches fiscales - PA de type f6el"
+- name: IRPP - Niches fiscales - PA de type f6el
   period: 2010
   absolute_error_margin: 0.5
   input_variables:
@@ -48,7 +48,7 @@
   output_variables:
     irpp: -929
 
-- name: "IRPP - Niches fiscales - PA de type f6gj"
+- name: IRPP - Niches fiscales - PA de type f6gj
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
@@ -56,7 +56,7 @@
     f6gj: 1800
   output_variables:
     irpp: -819
-- name: "IRPP - Niches fiscales - PA de type f6gj"
+- name: IRPP - Niches fiscales - PA de type f6gj
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
@@ -64,7 +64,7 @@
     f6gj: 1800
   output_variables:
     irpp: -860
-- name: "IRPP - Niches fiscales - PA de type f6gj"
+- name: IRPP - Niches fiscales - PA de type f6gj
   period: 2010
   absolute_error_margin: 0.5
   input_variables:
@@ -73,7 +73,7 @@
   output_variables:
     irpp: -860
 
-- name: "IRPP - Niches fiscales - PA de type f6em"
+- name: IRPP - Niches fiscales - PA de type f6em
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
@@ -81,7 +81,7 @@
     f6em: 1800
   output_variables:
     irpp: -913
-- name: "IRPP - Niches fiscales - PA de type f6em"
+- name: IRPP - Niches fiscales - PA de type f6em
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
@@ -89,7 +89,7 @@
     f6em: 1800
   output_variables:
     irpp: -929
-- name: "IRPP - Niches fiscales - PA de type f6em"
+- name: IRPP - Niches fiscales - PA de type f6em
   period: 2010
   absolute_error_margin: 0.5
   input_variables:
@@ -98,7 +98,7 @@
   output_variables:
     irpp: -929
 
-- name: "IRPP - Niches fiscales - PA de type f6gp"
+- name: IRPP - Niches fiscales - PA de type f6gp
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
@@ -106,7 +106,7 @@
     f6gp: 1800
   output_variables:
     irpp: -819
-- name: "IRPP - Niches fiscales - PA de type f6gp"
+- name: IRPP - Niches fiscales - PA de type f6gp
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
@@ -114,7 +114,7 @@
     f6gp: 1800
   output_variables:
     irpp: -860
-- name: "IRPP - Niches fiscales - PA de type f6gp"
+- name: IRPP - Niches fiscales - PA de type f6gp
   period: 2010
   absolute_error_margin: 0.5
   input_variables:
@@ -123,7 +123,7 @@
   output_variables:
     irpp: -860
 
-- name: "IRPP - Niches fiscales - PA de type f6gu"
+- name: IRPP - Niches fiscales - PA de type f6gu
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
@@ -131,7 +131,7 @@
     f6gu: 1800
   output_variables:
     irpp: -913
-- name: "IRPP - Niches fiscales - PA de type f6gu"
+- name: IRPP - Niches fiscales - PA de type f6gu
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
@@ -139,7 +139,7 @@
     f6gu: 1800
   output_variables:
     irpp: -929
-- name: "IRPP - Niches fiscales - PA de type f6gu"
+- name: IRPP - Niches fiscales - PA de type f6gu
   period: 2010
   absolute_error_margin: 0.5
   input_variables:
@@ -148,7 +148,7 @@
   output_variables:
     irpp: -929
 
-- name: "IRPP - Niches fiscales - Plafond"
+- name: IRPP - Niches fiscales - Plafond
   period: 2012
   absolute_error_margin: 1  # TODO: Should be 0.5?
   input_variables:
@@ -156,7 +156,7 @@
     f6gi: 6000
   output_variables:
     irpp: -94
-- name: "IRPP - Niches fiscales - Plafond"
+- name: IRPP - Niches fiscales - Plafond
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
@@ -164,9 +164,9 @@
     f6gi: 1800
     f6gj: 6000
   output_variables:
-    irpp: -0
+    irpp: 0
 
-- name: "IRPP - Niches fiscales - Charges déductibles : CSG déductible connue, calculée sur les revenus du patrimoine (f6de)"
+- name: 'IRPP - Niches fiscales - Charges déductibles : CSG déductible connue, calculée sur les revenus du patrimoine (f6de)'
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
@@ -174,7 +174,7 @@
     f6de: 1800
   output_variables:
     irpp: -913
-- name: "IRPP - Niches fiscales - Charges déductibles : CSG déductible connue, calculée sur les revenus du patrimoine (f6de)"
+- name: 'IRPP - Niches fiscales - Charges déductibles : CSG déductible connue, calculée sur les revenus du patrimoine (f6de)'
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
@@ -182,7 +182,7 @@
     f6de: 1800
   output_variables:
     irpp: -929
-- name: "IRPP - Niches fiscales - Charges déductibles : CSG déductible connue, calculée sur les revenus du patrimoine (f6de)"
+- name: 'IRPP - Niches fiscales - Charges déductibles : CSG déductible connue, calculée sur les revenus du patrimoine (f6de)'
   period: 2010
   absolute_error_margin: 0.5
   input_variables:
@@ -191,7 +191,7 @@
   output_variables:
     irpp: -929
 
-- name: "IRPP - Niches fiscales - Charges déductibles : déductions diverses (f6dd)"
+- name: 'IRPP - Niches fiscales - Charges déductibles : déductions diverses (f6dd)'
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
@@ -199,7 +199,7 @@
     f6dd: 1800
   output_variables:
     irpp: -913
-- name: "IRPP - Niches fiscales - Charges déductibles : déductions diverses (f6dd)"
+- name: 'IRPP - Niches fiscales - Charges déductibles : déductions diverses (f6dd)'
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
@@ -207,7 +207,7 @@
     f6dd: 1800
   output_variables:
     irpp: -929
-- name: "IRPP - Niches fiscales - Charges déductibles : déductions diverses (f6dd)"
+- name: 'IRPP - Niches fiscales - Charges déductibles : déductions diverses (f6dd)'
   period: 2010
   absolute_error_margin: 0.5
   input_variables:
@@ -294,7 +294,7 @@
   output_variables:
     irpp: -576
 
-- name: "IRPP - Niches fiscales - Épargne retraite : cotisations et produits assimilés (f6rs)"
+- name: 'IRPP - Niches fiscales - Épargne retraite : cotisations et produits assimilés (f6rs)'
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
@@ -302,7 +302,7 @@
     f6rs: 1800
   output_variables:
     irpp: -913
-- name: "IRPP - Niches fiscales - Épargne retraite : cotisations et produits assimilés (f6rs)"
+- name: 'IRPP - Niches fiscales - Épargne retraite : cotisations et produits assimilés (f6rs)'
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
@@ -310,7 +310,7 @@
     f6rs: 1800
   output_variables:
     irpp: -929
-- name: "IRPP - Niches fiscales - Épargne retraite : cotisations et produits assimilés (f6rs)"
+- name: 'IRPP - Niches fiscales - Épargne retraite : cotisations et produits assimilés (f6rs)'
   period: 2010
   absolute_error_margin: 0.5
   input_variables:
@@ -319,7 +319,7 @@
   output_variables:
     irpp: -929
 
-- name: "IRPP - Niches fiscales - Épargne retraite : cotisations et produits assimilés (f6rs) -- 1 PAC"
+- name: 'IRPP - Niches fiscales - Épargne retraite : cotisations et produits assimilés (f6rs) -- 1 PAC'
   period: 2012
   absolute_error_margin: 1  # TODO: Should be 0.5?
   input_variables:
@@ -328,7 +328,7 @@
     f6rs: 1800
   output_variables:
     irpp: -118
-- name: "IRPP - Niches fiscales - Épargne retraite : cotisations et produits assimilés (f6rs) -- 1 PAC"
+- name: 'IRPP - Niches fiscales - Épargne retraite : cotisations et produits assimilés (f6rs) -- 1 PAC'
   period: 2011
   absolute_error_margin: 1  # TODO: Should be 0.5?
   input_variables:
@@ -337,7 +337,7 @@
     f6rs: 1800
   output_variables:
     irpp: -159
-- name: "IRPP - Niches fiscales - Épargne retraite : cotisations et produits assimilés (f6rs) -- 1 PAC"
+- name: 'IRPP - Niches fiscales - Épargne retraite : cotisations et produits assimilés (f6rs) -- 1 PAC'
   period: 2010
   absolute_error_margin: 1  # TODO: Should be 0.5?
   input_variables:
@@ -347,7 +347,7 @@
   output_variables:
     irpp: -159
 
-- name: "IRPP - Niches fiscales - Épargne retraite : rachats de cotisations (f6ss)"
+- name: 'IRPP - Niches fiscales - Épargne retraite : rachats de cotisations (f6ss)'
   period: 2012
   absolute_error_margin: 1  # TODO: Should be 0.5?
   input_variables:
@@ -355,7 +355,7 @@
     f6ss: 1800
   output_variables:
     irpp: -913
-- name: "IRPP - Niches fiscales - Épargne retraite : rachats de cotisations (f6ss)"
+- name: 'IRPP - Niches fiscales - Épargne retraite : rachats de cotisations (f6ss)'
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
@@ -363,7 +363,7 @@
     f6ss: 1800
   output_variables:
     irpp: -929
-- name: "IRPP - Niches fiscales - Épargne retraite : rachats de cotisations (f6ss)"
+- name: 'IRPP - Niches fiscales - Épargne retraite : rachats de cotisations (f6ss)'
   period: 2010
   absolute_error_margin: 0.5
   input_variables:
@@ -372,7 +372,7 @@
   output_variables:
     irpp: -929
 
-- name: "IRPP - Niches fiscales - Épargne retraite : rachats de cotisations (f6ss) -- 1 PAC"
+- name: 'IRPP - Niches fiscales - Épargne retraite : rachats de cotisations (f6ss) -- 1 PAC'
   period: 2012
   absolute_error_margin: 1  # TODO: Should be 0.5?
   input_variables:
@@ -381,7 +381,7 @@
     f6ss: 1800
   output_variables:
     irpp: -118
-- name: "IRPP - Niches fiscales - Épargne retraite : rachats de cotisations (f6ss) -- 1 PAC"
+- name: 'IRPP - Niches fiscales - Épargne retraite : rachats de cotisations (f6ss) -- 1 PAC'
   period: 2011
   absolute_error_margin: 1  # TODO: Should be 0.5?
   input_variables:
@@ -390,7 +390,7 @@
     f6ss: 1800
   output_variables:
     irpp: -159
-- name: "IRPP - Niches fiscales - Épargne retraite : rachats de cotisations (f6ss) -- 1 PAC"
+- name: 'IRPP - Niches fiscales - Épargne retraite : rachats de cotisations (f6ss) -- 1 PAC'
   period: 2010
   absolute_error_margin: 1  # TODO: Should be 0.5?
   input_variables:
@@ -401,7 +401,7 @@
     irpp: -159
 
 
-- name: "IRPP - Niches fiscales - Dépenses de grosses réparations des nus-propriétaires (plafond 25 000 €) (f6cb)"
+- name: IRPP - Niches fiscales - Dépenses de grosses réparations des nus-propriétaires (plafond 25 000 €) (f6cb)
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
@@ -409,7 +409,7 @@
     f6cb: 1800
   output_variables:
     irpp: -913
-- name: "IRPP - Niches fiscales - Dépenses de grosses réparations des nus-propriétaires (plafond 25 000 €) (f6cb)"
+- name: IRPP - Niches fiscales - Dépenses de grosses réparations des nus-propriétaires (plafond 25 000 €) (f6cb)
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
@@ -417,7 +417,7 @@
     f6cb: 1800
   output_variables:
     irpp: -929
-- name: "IRPP - Niches fiscales - Dépenses de grosses réparations des nus-propriétaires (plafond 25 000 €) (f6cb)"
+- name: IRPP - Niches fiscales - Dépenses de grosses réparations des nus-propriétaires (plafond 25 000 €) (f6cb)
   period: 2010
   absolute_error_margin: 0.5
   input_variables:
@@ -426,7 +426,7 @@
   output_variables:
     irpp: -929
 
-- name: "IRPP - Niches fiscales - Dépenses de grosses réparations des nus-propriétaires (plafond 25 000 €) (f6hl, uniquement présente en 2012)"
+- name: IRPP - Niches fiscales - Dépenses de grosses réparations des nus-propriétaires (plafond 25 000 €) (f6hl, uniquement présente en 2012)
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
@@ -435,7 +435,7 @@
   output_variables:
     irpp: -913
 
-- name: "IRPP - Niches fiscales - Dépenses de grosses réparations des nus-propriétaires (plafond 25 000 €) (f6hl, présente en 2012 et 2011)"
+- name: IRPP - Niches fiscales - Dépenses de grosses réparations des nus-propriétaires (plafond 25 000 €) (f6hl, présente en 2012 et 2011)
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
@@ -443,7 +443,7 @@
     f6hk: 1800
   output_variables:
     irpp: -913
-- name: "IRPP - Niches fiscales - Dépenses de grosses réparations des nus-propriétaires (plafond 25 000 €) (f6hl, présente en 2012 et 2011)"
+- name: IRPP - Niches fiscales - Dépenses de grosses réparations des nus-propriétaires (plafond 25 000 €) (f6hl, présente en 2012 et 2011)
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
@@ -452,7 +452,7 @@
   output_variables:
     irpp: -929
 
-- name: "IRPP - Niches fiscales - Dépenses de grosses réparations des nus-propriétaires (plafond 25 000 €) (f6hj)"
+- name: IRPP - Niches fiscales - Dépenses de grosses réparations des nus-propriétaires (plafond 25 000 €) (f6hj)
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
@@ -460,7 +460,7 @@
     f6hj: 1800
   output_variables:
     irpp: -913
-- name: "IRPP - Niches fiscales - Dépenses de grosses réparations des nus-propriétaires (plafond 25 000 €) (f6hj)"
+- name: IRPP - Niches fiscales - Dépenses de grosses réparations des nus-propriétaires (plafond 25 000 €) (f6hj)
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
@@ -468,7 +468,7 @@
     f6hj: 1800
   output_variables:
     irpp: -929
-- name: "IRPP - Niches fiscales - Dépenses de grosses réparations des nus-propriétaires (plafond 25 000 €) (f6hj)"
+- name: IRPP - Niches fiscales - Dépenses de grosses réparations des nus-propriétaires (plafond 25 000 €) (f6hj)
   period: 2010
   absolute_error_margin: 0.5
   input_variables:
@@ -477,21 +477,21 @@
   output_variables:
     irpp: -929
 
-- name: "IRPP - Niches fiscales - Dépassement plafond avec 70 000 €"
+- name: IRPP - Niches fiscales - Dépassement plafond avec 70 000 €
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
     salaire_imposable: 70000
   output_variables:
     irpp: -13334
-- name: "IRPP - Niches fiscales - Dépassement plafond avec 70 000 €"
+- name: IRPP - Niches fiscales - Dépassement plafond avec 70 000 €
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
     salaire_imposable: 70000
   output_variables:
     irpp: -13334
-- name: "IRPP - Niches fiscales - Dépassement plafond avec 70 000 €"
+- name: IRPP - Niches fiscales - Dépassement plafond avec 70 000 €
   period: 2010
   absolute_error_margin: 0.5
   input_variables:
@@ -499,7 +499,7 @@
   output_variables:
     irpp: -13334
 
-- name: "IRPP - Niches fiscales - Dépassement plafond avec f6cb"
+- name: IRPP - Niches fiscales - Dépassement plafond avec f6cb
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
@@ -507,7 +507,7 @@
     f6cb: 28000
   output_variables:
     irpp: -5834
-- name: "IRPP - Niches fiscales - Dépassement plafond avec f6cb"
+- name: IRPP - Niches fiscales - Dépassement plafond avec f6cb
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
@@ -515,7 +515,7 @@
     f6cb: 28000
   output_variables:
     irpp: -5834
-- name: "IRPP - Niches fiscales - Dépassement plafond avec f6cb"
+- name: IRPP - Niches fiscales - Dépassement plafond avec f6cb
   period: 2010
   absolute_error_margin: 0.5
   input_variables:
@@ -524,7 +524,7 @@
   output_variables:
     irpp: -5834
 
-- name: "IRPP - Niches fiscales - Déficits globaux antérieurs non encore déduits (f6fa)"
+- name: IRPP - Niches fiscales - Déficits globaux antérieurs non encore déduits (f6fa)
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
@@ -532,7 +532,7 @@
     f6fa: 1800
   output_variables:
     irpp: -913
-- name: "IRPP - Niches fiscales - Déficits globaux antérieurs non encore déduits (f6fa)"
+- name: IRPP - Niches fiscales - Déficits globaux antérieurs non encore déduits (f6fa)
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
@@ -540,7 +540,7 @@
     f6fa: 1800
   output_variables:
     irpp: -929
-- name: "IRPP - Niches fiscales - Déficits globaux antérieurs non encore déduits (f6fa)"
+- name: IRPP - Niches fiscales - Déficits globaux antérieurs non encore déduits (f6fa)
   period: 2010
   absolute_error_margin: 0.5
   input_variables:
@@ -549,7 +549,7 @@
   output_variables:
     irpp: -929
 
-- name: "IRPP - Niches fiscales - Déficits globaux antérieurs non encore déduits (f6fb)"
+- name: IRPP - Niches fiscales - Déficits globaux antérieurs non encore déduits (f6fb)
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
@@ -557,7 +557,7 @@
     f6fb: 1800
   output_variables:
     irpp: -913
-- name: "IRPP - Niches fiscales - Déficits globaux antérieurs non encore déduits (f6fb)"
+- name: IRPP - Niches fiscales - Déficits globaux antérieurs non encore déduits (f6fb)
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
@@ -565,7 +565,7 @@
     f6fb: 1800
   output_variables:
     irpp: -929
-- name: "IRPP - Niches fiscales - Déficits globaux antérieurs non encore déduits (f6fb)"
+- name: IRPP - Niches fiscales - Déficits globaux antérieurs non encore déduits (f6fb)
   period: 2010
   absolute_error_margin: 0.5
   input_variables:
@@ -574,7 +574,7 @@
   output_variables:
     irpp: -929
 
-- name: "IRPP - Niches fiscales - Déficits globaux antérieurs non encore déduits (f6fc)"
+- name: IRPP - Niches fiscales - Déficits globaux antérieurs non encore déduits (f6fc)
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
@@ -582,7 +582,7 @@
     f6fc: 1800
   output_variables:
     irpp: -913
-- name: "IRPP - Niches fiscales - Déficits globaux antérieurs non encore déduits (f6fc)"
+- name: IRPP - Niches fiscales - Déficits globaux antérieurs non encore déduits (f6fc)
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
@@ -590,7 +590,7 @@
     f6fc: 1800
   output_variables:
     irpp: -929
-- name: "IRPP - Niches fiscales - Déficits globaux antérieurs non encore déduits (f6fc)"
+- name: IRPP - Niches fiscales - Déficits globaux antérieurs non encore déduits (f6fc)
   period: 2010
   absolute_error_margin: 0.5
   input_variables:
@@ -599,7 +599,7 @@
   output_variables:
     irpp: -929
 
-- name: "IRPP - Niches fiscales - Déficits globaux antérieurs non encore déduits (f6fd)"
+- name: IRPP - Niches fiscales - Déficits globaux antérieurs non encore déduits (f6fd)
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
@@ -607,7 +607,7 @@
     f6fd: 1800
   output_variables:
     irpp: -913
-- name: "IRPP - Niches fiscales - Déficits globaux antérieurs non encore déduits (f6fd)"
+- name: IRPP - Niches fiscales - Déficits globaux antérieurs non encore déduits (f6fd)
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
@@ -615,7 +615,7 @@
     f6fd: 1800
   output_variables:
     irpp: -929
-- name: "IRPP - Niches fiscales - Déficits globaux antérieurs non encore déduits (f6fd)"
+- name: IRPP - Niches fiscales - Déficits globaux antérieurs non encore déduits (f6fd)
   period: 2010
   absolute_error_margin: 0.5
   input_variables:
@@ -624,7 +624,7 @@
   output_variables:
     irpp: -929
 
-- name: "IRPP - Niches fiscales - Déficits globaux antérieurs non encore déduits (f6fe)"
+- name: IRPP - Niches fiscales - Déficits globaux antérieurs non encore déduits (f6fe)
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
@@ -632,7 +632,7 @@
     f6fe: 1800
   output_variables:
     irpp: -913
-- name: "IRPP - Niches fiscales - Déficits globaux antérieurs non encore déduits (f6fe)"
+- name: IRPP - Niches fiscales - Déficits globaux antérieurs non encore déduits (f6fe)
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
@@ -640,7 +640,7 @@
     f6fe: 1800
   output_variables:
     irpp: -929
-- name: "IRPP - Niches fiscales - Déficits globaux antérieurs non encore déduits (f6fe)"
+- name: IRPP - Niches fiscales - Déficits globaux antérieurs non encore déduits (f6fe)
   period: 2010
   absolute_error_margin: 0.5
   input_variables:
@@ -649,7 +649,7 @@
   output_variables:
     irpp: -929
 
-- name: "IRPP - Niches fiscales - Déficits globaux antérieurs non encore déduits (f6fl)"
+- name: IRPP - Niches fiscales - Déficits globaux antérieurs non encore déduits (f6fl)
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
@@ -657,7 +657,7 @@
     f6fl: 1800
   output_variables:
     irpp: -913
-- name: "IRPP - Niches fiscales - Déficits globaux antérieurs non encore déduits (f6fl)"
+- name: IRPP - Niches fiscales - Déficits globaux antérieurs non encore déduits (f6fl)
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
@@ -665,7 +665,7 @@
     f6fl: 1800
   output_variables:
     irpp: -929
-- name: "IRPP - Niches fiscales - Déficits globaux antérieurs non encore déduits (f6fl)"
+- name: IRPP - Niches fiscales - Déficits globaux antérieurs non encore déduits (f6fl)
   period: 2010
   absolute_error_margin: 0.5
   input_variables:
@@ -678,32 +678,32 @@
 # abattement accordé aux personnes âgées ou invalides
 # pour 2010, 2011 et 2012 : 2312€ si rng<14510€, 1156€ si 14510€ < rng < 23390€"
 # test personnes âgées rng<14510
-- name: "IRPP - Niches fiscales - Abattement accordé aux personnes âgées ou invalides -- 14 000 €"
+- name: IRPP - Niches fiscales - Abattement accordé aux personnes âgées ou invalides -- 14 000 €
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
     salaire_imposable: 14000
     age: 66
   output_variables:
-    irpp: -0
-- name: "IRPP - Niches fiscales - Abattement accordé aux personnes âgées ou invalides -- 14 000 €"
+    irpp: 0
+- name: IRPP - Niches fiscales - Abattement accordé aux personnes âgées ou invalides -- 14 000 €
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
     salaire_imposable: 14000
     age: 66
   output_variables:
-    irpp: -0
-- name: "IRPP - Niches fiscales - Abattement accordé aux personnes âgées ou invalides -- 14 000 €"
+    irpp: 0
+- name: IRPP - Niches fiscales - Abattement accordé aux personnes âgées ou invalides -- 14 000 €
   period: 2010
   absolute_error_margin: 0.5
   input_variables:
     salaire_imposable: 14000
     age: 66
   output_variables:
-    irpp: -0
+    irpp: 0
 
-- name: "IRPP - Niches fiscales - Abattement accordé aux personnes âgées ou invalides -- 18 000 €"
+- name: IRPP - Niches fiscales - Abattement accordé aux personnes âgées ou invalides -- 18 000 €
   period: 2012
   absolute_error_margin: 1  # TODO: Should be 0.5?
   input_variables:
@@ -711,7 +711,7 @@
     age: 66
   output_variables:
     irpp: -670
-- name: "IRPP - Niches fiscales - Abattement accordé aux personnes âgées ou invalides -- 18 000 €"
+- name: IRPP - Niches fiscales - Abattement accordé aux personnes âgées ou invalides -- 18 000 €
   period: 2011
   absolute_error_margin: 1  # TODO: Should be 0.5?
   input_variables:
@@ -719,7 +719,7 @@
     age: 66
   output_variables:
     irpp: -711
-- name: "IRPP - Niches fiscales - Abattement accordé aux personnes âgées ou invalides -- 18 000 €"
+- name: IRPP - Niches fiscales - Abattement accordé aux personnes âgées ou invalides -- 18 000 €
   period: 2010
   absolute_error_margin: 1  # TODO: Should be 0.5?
   input_variables:
@@ -728,7 +728,7 @@
   output_variables:
     irpp: -711
 
-- name: "IRPP - Niches fiscales - Abattement accordé aux personnes âgées ou invalides -- 25 000 €"
+- name: IRPP - Niches fiscales - Abattement accordé aux personnes âgées ou invalides -- 25 000 €
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
@@ -736,7 +736,7 @@
     age: 66
   output_variables:
     irpp: -1649
-- name: "IRPP - Niches fiscales - Abattement accordé aux personnes âgées ou invalides -- 25 000 €"
+- name: IRPP - Niches fiscales - Abattement accordé aux personnes âgées ou invalides -- 25 000 €
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
@@ -744,7 +744,7 @@
     age: 66
   output_variables:
     irpp: -1649
-- name: "IRPP - Niches fiscales - Abattement accordé aux personnes âgées ou invalides -- 25 000 €"
+- name: IRPP - Niches fiscales - Abattement accordé aux personnes âgées ou invalides -- 25 000 €
   period: 2010
   absolute_error_margin: 0.5
   input_variables:
@@ -753,7 +753,7 @@
   output_variables:
     irpp: -1649
 
-- name: "IRPP - Niches fiscales - Abattement accordé aux personnes âgées -- 28 000 €"
+- name: IRPP - Niches fiscales - Abattement accordé aux personnes âgées -- 28 000 €
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
@@ -761,7 +761,7 @@
     age: 66
   output_variables:
     irpp: -2189
-- name: "IRPP - Niches fiscales - Abattement accordé aux personnes âgées -- 28 000 €"
+- name: IRPP - Niches fiscales - Abattement accordé aux personnes âgées -- 28 000 €
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
@@ -769,7 +769,7 @@
     age: 66
   output_variables:
     irpp: -2189
-- name: "IRPP - Niches fiscales - Abattement accordé aux personnes âgées -- 28 000 €"
+- name: IRPP - Niches fiscales - Abattement accordé aux personnes âgées -- 28 000 €
   period: 2010
   absolute_error_margin: 0.5
   input_variables:
@@ -778,32 +778,32 @@
   output_variables:
     irpp: -2189
 
-- name: "IRPP - Niches fiscales - Abattement accordé aux invalides -- 14 000 €"
+- name: IRPP - Niches fiscales - Abattement accordé aux invalides -- 14 000 €
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
     salaire_imposable: 14000
     caseP: 1
   output_variables:
-    irpp: -0
-- name: "IRPP - Niches fiscales - Abattement accordé aux invalides -- 14 000 €"
+    irpp: 0
+- name: IRPP - Niches fiscales - Abattement accordé aux invalides -- 14 000 €
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
     salaire_imposable: 14000
     caseP: 1
   output_variables:
-    irpp: -0
-- name: "IRPP - Niches fiscales - Abattement accordé aux invalides -- 14 000 €"
+    irpp: 0
+- name: IRPP - Niches fiscales - Abattement accordé aux invalides -- 14 000 €
   period: 2010
   absolute_error_margin: 0.5
   input_variables:
     salaire_imposable: 14000
     caseP: 1
   output_variables:
-    irpp: -0
+    irpp: 0
 
-- name: "IRPP - Niches fiscales - Abattement accordé aux invalides -- 25 000 €"
+- name: IRPP - Niches fiscales - Abattement accordé aux invalides -- 25 000 €
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
@@ -811,7 +811,7 @@
     caseP: 1
   output_variables:
     irpp: -979
-- name: "IRPP - Niches fiscales - Abattement accordé aux invalides -- 25 000 €"
+- name: IRPP - Niches fiscales - Abattement accordé aux invalides -- 25 000 €
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
@@ -819,7 +819,7 @@
     caseP: 1
   output_variables:
     irpp: -979
-- name: "IRPP - Niches fiscales - Abattement accordé aux invalides -- 25 000 €"
+- name: IRPP - Niches fiscales - Abattement accordé aux invalides -- 25 000 €
   period: 2010
   absolute_error_margin: 0.5
   input_variables:
@@ -828,7 +828,7 @@
   output_variables:
     irpp: -979
 
-- name: "IRPP - Niches fiscales - Abattement accordé aux invalides -- 28 000 €"
+- name: IRPP - Niches fiscales - Abattement accordé aux invalides -- 28 000 €
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
@@ -836,7 +836,7 @@
     caseP: 1
   output_variables:
     irpp: -1519
-- name: "IRPP - Niches fiscales - Abattement accordé aux invalides -- 28 000 €"
+- name: IRPP - Niches fiscales - Abattement accordé aux invalides -- 28 000 €
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
@@ -844,7 +844,7 @@
     caseP: 1
   output_variables:
     irpp: -1519
-- name: "IRPP - Niches fiscales - Abattement accordé aux invalides -- 28 000 €"
+- name: IRPP - Niches fiscales - Abattement accordé aux invalides -- 28 000 €
   period: 2010
   absolute_error_margin: 0.5
   input_variables:
@@ -853,7 +853,7 @@
   output_variables:
     irpp: -1519
 
-- name: "IRPP - Niches fiscales - Abattement pour enfants à charge ayant fondé un foyer distinct"
+- name: IRPP - Niches fiscales - Abattement pour enfants à charge ayant fondé un foyer distinct
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
@@ -861,7 +861,7 @@
     nbN: 3
   output_variables:
     irpp: -1056
-- name: "IRPP - Niches fiscales - Abattement pour enfants à charge ayant fondé un foyer distinct"
+- name: IRPP - Niches fiscales - Abattement pour enfants à charge ayant fondé un foyer distinct
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
@@ -869,7 +869,7 @@
     nbN: 3
   output_variables:
     irpp: -1056
-- name: "IRPP - Niches fiscales - Abattement pour enfants à charge ayant fondé un foyer distinct"
+- name: IRPP - Niches fiscales - Abattement pour enfants à charge ayant fondé un foyer distinct
   period: 2010
   absolute_error_margin: 0.5
   input_variables:

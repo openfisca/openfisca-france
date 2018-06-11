@@ -1,14 +1,14 @@
 name: 121_Neutral revenus pro
 keywords: rsa
 description: Les ressources ne sont plus perçues => Neutralisation
-period: "month:2015-01"
+period: month:2015-01
 relative_error_margin: 0.02
 individus:
   activite: chomeur
   age: 35
   age_en_mois: 420
   ass_precondition_remplie: false
-  date_naissance: "1980-01-01"
+  date_naissance: '1980-01-01'
   etudiant: 0
   id: 54bfddf06d9c06c9722b3aff
   inapte_travail: 0
@@ -229,7 +229,7 @@ familles:
     2014-10: 0
     2014-11: 0
     2014-12: 0
-  enfants:
+  enfants: null
   paje_base:
     2014-01: 0
     2014-02: 0
@@ -259,10 +259,10 @@ familles:
     2014-12: 0
 foyers_fiscaux:
   declarants: 54bfddf06d9c06c9722b3aff
-  personnes_a_charge:
+  personnes_a_charge: null
 menages:
   depcom: 70429
-  enfants:
+  enfants: null
   personne_de_reference: 54bfddf06d9c06c9722b3aff
   statut_occupation_logement: loge_gratuitement
 output_variables:

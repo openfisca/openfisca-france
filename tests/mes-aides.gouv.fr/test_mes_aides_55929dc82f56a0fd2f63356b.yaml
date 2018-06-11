@@ -1,35 +1,35 @@
 name: Pas de forfait logement pour un bénéficiaire sans domicile stable
 keywords:
-  - forfait logement
-  - rsa
+- forfait logement
+- rsa
 description: Il ne faut pas appliquer le forfait logement
-period: "month:2015-06"
+period: month:2015-06
 relative_error_margin: 0.02
 individus:
-  - age: 55
-    age_en_mois: 665
-    date_naissance: "1960-01-01"
-    etudiant: 0
-    id: 55929dc4131e5b05301ebc1a
-    inapte_travail: 0
-    handicap: 0
-    statut_marital: marie
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 55
-    age_en_mois: 665
-    date_naissance: "1960-01-01"
-    etudiant: 0
-    id: 55929dc4131e5b05301ebc19
-    inapte_travail: 0
-    handicap: 0
-    statut_marital: marie
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
+- age: 55
+  age_en_mois: 665
+  date_naissance: '1960-01-01'
+  etudiant: 0
+  id: 55929dc4131e5b05301ebc1a
+  inapte_travail: 0
+  handicap: 0
+  statut_marital: marie
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 55
+  age_en_mois: 665
+  date_naissance: '1960-01-01'
+  etudiant: 0
+  id: 55929dc4131e5b05301ebc19
+  inapte_travail: 0
+  handicap: 0
+  statut_marital: marie
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
 familles:
   acs:
     2014-06: 0
@@ -200,7 +200,7 @@ familles:
     2015-03: 0
     2015-04: 0
     2015-05: 0
-  enfants:
+  enfants: null
   paje_base:
     2014-06: 0
     2014-07: 0
@@ -215,8 +215,8 @@ familles:
     2015-04: 0
     2015-05: 0
   parents:
-    - 55929dc4131e5b05301ebc1a
-    - 55929dc4131e5b05301ebc19
+  - 55929dc4131e5b05301ebc1a
+  - 55929dc4131e5b05301ebc19
   rsa:
     2014-06: 0
     2014-07: 0
@@ -232,13 +232,13 @@ familles:
     2015-05: 0
 foyers_fiscaux:
   declarants:
-    - 55929dc4131e5b05301ebc1a
-    - 55929dc4131e5b05301ebc19
-  personnes_a_charge:
+  - 55929dc4131e5b05301ebc1a
+  - 55929dc4131e5b05301ebc19
+  personnes_a_charge: null
 menages:
   conjoint: 55929dc4131e5b05301ebc19
   depcom: 77004
-  enfants:
+  enfants: null
   personne_de_reference: 55929dc4131e5b05301ebc1a
 output_variables:
   cmu_c: true

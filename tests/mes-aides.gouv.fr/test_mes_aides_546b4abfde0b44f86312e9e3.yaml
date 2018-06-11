@@ -2,7 +2,7 @@ name: 31_Personne isolée (1 enfant) depuis 6 mois
 keywords:
 - majoration
 - rsa
-"description": |-
+description: |-
   Le demandeur a perçu 6 mois de RSA majoré sur les 12 derniers mois, dont les 3 derniers mois. Elle a encore droit au RSA majoré, donc.
 
   En revanche, elle touche une pension alimentaire > ASF, donc pas d'ASF.

@@ -1,215 +1,215 @@
 name: Couple 5 enfts dont 1 +14 ans me ss activité mr chômage
 keywords:
-  - recette
-  - rsa
+- recette
+- rsa
 description: |
   Test créé à partir d'un dossier de demande de (RSA, APL…) :
   Ces paramètres (ressources non déclarables, situation personnelle…) n'ont pas pu être capturés :
   La différence observée provient a priori de (prestations manquantes, règles non prises en compte…) : majoration AF prise en compte à tort pr RSA
-period: "month:2015-07"
+period: month:2015-07
 relative_error_margin: 0.02
 individus:
-  - enfant_a_charge:
-      2015: true
-    age: 34
-    age_en_mois: 408
-    date_naissance: "1981-07-11"
-    chomage_imposable:
-      2013: 0
-    enfant_place: false
-    etudiant: 0
-    id: 55b9b7b4f0f7e3ac6b8f4f45
-    inapte_travail: 0
-    handicap: 0
-    pensions_alimentaires_percues:
-      2013: 0
-      2014-07: 146
-      2014-08: 146
-      2014-09: 146
-      2014-10: 146
-      2014-11: 146
-      2014-12: 146
-      2015-01: 146
-      2015-02: 146
-      2015-03: 146
-      2015-04: 146
-      2015-05: 146
-      2015-06: 146
-      2015-07: 146
-    retraite_imposable:
-      2013: 1967
-    salaire_imposable:
-      2013: 0
-    statut_marital: marie
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - enfant_a_charge:
-      2015: true
-    activite: chomeur
-    age: 29
-    age_en_mois: 356
-    ass_precondition_remplie: false
-    date_naissance: "1985-11-28"
-    chomage_imposable:
-      2013: 0
-    chomage_brut:
-      2014-07: 120.28614860857066
-      2014-08: 120.28614860857066
-      2014-09: 120.28614860857066
-      2014-10: 120.28614860857066
-      2014-11: 120.28614860857066
-      2014-12: 120.28614860857066
-      2015-01: 120.28614860857066
-      2015-02: 120.28614860857066
-      2015-03: 120.28614860857066
-      2015-04: 360.85844582571195
-      2015-05: 0
-      2015-06: 0
-    chomage_net:
-      2014-07: 109
-      2014-08: 109
-      2014-09: 109
-      2014-10: 109
-      2014-11: 109
-      2014-12: 109
-      2015-01: 109
-      2015-02: 109
-      2015-03: 109
-      2015-04: 327
-      2015-05: 0
-      2015-06: 0
-    enfant_place: false
-    etudiant: 0
-    id: 55b9b7b4f0f7e3ac6b8f4f2b
-    inapte_travail: 0
-    handicap: 0
-    pensions_alimentaires_percues:
-      2013: 0
-    retraite_imposable:
-      2013: 0
-    salaire_de_base:
-      2014-07: 1588.4615384615383
-      2014-08: 1588.4615384615383
-      2014-09: 1588.4615384615383
-      2014-10: 1588.4615384615383
-      2014-11: 1588.4615384615383
-      2014-12: 1588.4615384615383
-      2015-01: 1588.4615384615383
-      2015-02: 1588.4615384615383
-      2015-03: 1588.4615384615383
-      2015-04: 1588.4615384615383
-      2015-05: 1588.4615384615383
-      2015-06: 1588.4615384615383
-      2015-07: 1588.4615384615383
-    salaire_imposable:
-      2013: 9683
-      2014-07: 1284.2592403846154
-      2014-08: 1284.2592403846154
-      2014-09: 1284.2592403846154
-      2014-10: 1284.2592403846154
-      2014-11: 1284.2592403846154
-      2014-12: 1284.2592403846154
-      2015-01: 1284.2592403846154
-      2015-02: 1284.2592403846154
-      2015-03: 1284.2592403846154
-      2015-04: 1284.2592403846154
-      2015-05: 1284.2592403846154
-      2015-06: 1284.2592403846154
-      2015-07: 1284.2592403846154
-    salaire_net:
-      2014-07: 1239
-      2014-08: 1239
-      2014-09: 1239
-      2014-10: 1239
-      2014-11: 1239
-      2014-12: 1239
-      2015-01: 1239
-      2015-02: 1239
-      2015-03: 1239
-      2015-04: 1239
-      2015-05: 1239
-      2015-06: 1239
-      2015-07: 1239
-    statut_marital: marie
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - enfant_a_charge:
-      2015: true
-    age: 3
-    age_en_mois: 43
-    date_naissance: "2011-12-17"
-    enfant_place: false
-    etudiant: 0
-    id: 55b9b7b4f0f7e3ac6b8f4f2a
-    inapte_travail: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - enfant_a_charge:
-      2015: true
-    age: 8
-    age_en_mois: 97
-    date_naissance: "2007-06-01"
-    enfant_place: false
-    etudiant: 0
-    id: 55b9b7b4f0f7e3ac6b8f4f29
-    inapte_travail: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - enfant_a_charge:
-      2015: true
-    age: 10
-    age_en_mois: 120
-    date_naissance: "2005-07-16"
-    enfant_place: false
-    etudiant: 0
-    id: 55b9b7b4f0f7e3ac6b8f4f28
-    inapte_travail: 0
-    handicap: 0
-    scolarite: college
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - enfant_a_charge:
-      2015: true
-    age: 13
-    age_en_mois: 156
-    date_naissance: "2002-07-10"
-    enfant_place: false
-    etudiant: 0
-    id: 55b9b7b4f0f7e3ac6b8f4f27
-    inapte_travail: 0
-    handicap: 0
-    scolarite: college
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - enfant_a_charge:
-      2015: true
-    age: 14
-    age_en_mois: 179
-    date_naissance: "2000-08-07"
-    enfant_place: false
-    etudiant: 0
-    id: 55b9b7b4f0f7e3ac6b8f4f26
-    inapte_travail: 0
-    handicap: 0
-    scolarite: college
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
+- enfant_a_charge:
+    2015: true
+  age: 34
+  age_en_mois: 408
+  date_naissance: '1981-07-11'
+  chomage_imposable:
+    2013: 0
+  enfant_place: false
+  etudiant: 0
+  id: 55b9b7b4f0f7e3ac6b8f4f45
+  inapte_travail: 0
+  handicap: 0
+  pensions_alimentaires_percues:
+    2013: 0
+    2014-07: 146
+    2014-08: 146
+    2014-09: 146
+    2014-10: 146
+    2014-11: 146
+    2014-12: 146
+    2015-01: 146
+    2015-02: 146
+    2015-03: 146
+    2015-04: 146
+    2015-05: 146
+    2015-06: 146
+    2015-07: 146
+  retraite_imposable:
+    2013: 1967
+  salaire_imposable:
+    2013: 0
+  statut_marital: marie
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- enfant_a_charge:
+    2015: true
+  activite: chomeur
+  age: 29
+  age_en_mois: 356
+  ass_precondition_remplie: false
+  date_naissance: '1985-11-28'
+  chomage_imposable:
+    2013: 0
+  chomage_brut:
+    2014-07: 120.28614860857066
+    2014-08: 120.28614860857066
+    2014-09: 120.28614860857066
+    2014-10: 120.28614860857066
+    2014-11: 120.28614860857066
+    2014-12: 120.28614860857066
+    2015-01: 120.28614860857066
+    2015-02: 120.28614860857066
+    2015-03: 120.28614860857066
+    2015-04: 360.85844582571195
+    2015-05: 0
+    2015-06: 0
+  chomage_net:
+    2014-07: 109
+    2014-08: 109
+    2014-09: 109
+    2014-10: 109
+    2014-11: 109
+    2014-12: 109
+    2015-01: 109
+    2015-02: 109
+    2015-03: 109
+    2015-04: 327
+    2015-05: 0
+    2015-06: 0
+  enfant_place: false
+  etudiant: 0
+  id: 55b9b7b4f0f7e3ac6b8f4f2b
+  inapte_travail: 0
+  handicap: 0
+  pensions_alimentaires_percues:
+    2013: 0
+  retraite_imposable:
+    2013: 0
+  salaire_de_base:
+    2014-07: 1588.4615384615383
+    2014-08: 1588.4615384615383
+    2014-09: 1588.4615384615383
+    2014-10: 1588.4615384615383
+    2014-11: 1588.4615384615383
+    2014-12: 1588.4615384615383
+    2015-01: 1588.4615384615383
+    2015-02: 1588.4615384615383
+    2015-03: 1588.4615384615383
+    2015-04: 1588.4615384615383
+    2015-05: 1588.4615384615383
+    2015-06: 1588.4615384615383
+    2015-07: 1588.4615384615383
+  salaire_imposable:
+    2013: 9683
+    2014-07: 1284.2592403846154
+    2014-08: 1284.2592403846154
+    2014-09: 1284.2592403846154
+    2014-10: 1284.2592403846154
+    2014-11: 1284.2592403846154
+    2014-12: 1284.2592403846154
+    2015-01: 1284.2592403846154
+    2015-02: 1284.2592403846154
+    2015-03: 1284.2592403846154
+    2015-04: 1284.2592403846154
+    2015-05: 1284.2592403846154
+    2015-06: 1284.2592403846154
+    2015-07: 1284.2592403846154
+  salaire_net:
+    2014-07: 1239
+    2014-08: 1239
+    2014-09: 1239
+    2014-10: 1239
+    2014-11: 1239
+    2014-12: 1239
+    2015-01: 1239
+    2015-02: 1239
+    2015-03: 1239
+    2015-04: 1239
+    2015-05: 1239
+    2015-06: 1239
+    2015-07: 1239
+  statut_marital: marie
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- enfant_a_charge:
+    2015: true
+  age: 3
+  age_en_mois: 43
+  date_naissance: '2011-12-17'
+  enfant_place: false
+  etudiant: 0
+  id: 55b9b7b4f0f7e3ac6b8f4f2a
+  inapte_travail: 0
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- enfant_a_charge:
+    2015: true
+  age: 8
+  age_en_mois: 97
+  date_naissance: '2007-06-01'
+  enfant_place: false
+  etudiant: 0
+  id: 55b9b7b4f0f7e3ac6b8f4f29
+  inapte_travail: 0
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- enfant_a_charge:
+    2015: true
+  age: 10
+  age_en_mois: 120
+  date_naissance: '2005-07-16'
+  enfant_place: false
+  etudiant: 0
+  id: 55b9b7b4f0f7e3ac6b8f4f28
+  inapte_travail: 0
+  handicap: 0
+  scolarite: college
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- enfant_a_charge:
+    2015: true
+  age: 13
+  age_en_mois: 156
+  date_naissance: '2002-07-10'
+  enfant_place: false
+  etudiant: 0
+  id: 55b9b7b4f0f7e3ac6b8f4f27
+  inapte_travail: 0
+  handicap: 0
+  scolarite: college
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- enfant_a_charge:
+    2015: true
+  age: 14
+  age_en_mois: 179
+  date_naissance: '2000-08-07'
+  enfant_place: false
+  etudiant: 0
+  id: 55b9b7b4f0f7e3ac6b8f4f26
+  inapte_travail: 0
+  handicap: 0
+  scolarite: college
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
 familles:
   acs:
     2014-07: 0
@@ -381,11 +381,11 @@ familles:
     2015-05: 0
     2015-06: 0
   enfants:
-    - 55b9b7b4f0f7e3ac6b8f4f2a
-    - 55b9b7b4f0f7e3ac6b8f4f29
-    - 55b9b7b4f0f7e3ac6b8f4f28
-    - 55b9b7b4f0f7e3ac6b8f4f27
-    - 55b9b7b4f0f7e3ac6b8f4f26
+  - 55b9b7b4f0f7e3ac6b8f4f2a
+  - 55b9b7b4f0f7e3ac6b8f4f29
+  - 55b9b7b4f0f7e3ac6b8f4f28
+  - 55b9b7b4f0f7e3ac6b8f4f27
+  - 55b9b7b4f0f7e3ac6b8f4f26
   paje_base:
     2014-07: 0
     2014-08: 0
@@ -400,8 +400,8 @@ familles:
     2015-05: 0
     2015-06: 0
   parents:
-    - 55b9b7b4f0f7e3ac6b8f4f45
-    - 55b9b7b4f0f7e3ac6b8f4f2b
+  - 55b9b7b4f0f7e3ac6b8f4f45
+  - 55b9b7b4f0f7e3ac6b8f4f2b
   proprietaire_proche_famille: false
   rsa:
     2014-07: 0
@@ -418,27 +418,27 @@ familles:
     2015-06: 0
 foyers_fiscaux:
   declarants:
-    - 55b9b7b4f0f7e3ac6b8f4f45
-    - 55b9b7b4f0f7e3ac6b8f4f2b
+  - 55b9b7b4f0f7e3ac6b8f4f45
+  - 55b9b7b4f0f7e3ac6b8f4f2b
   pensions_alimentaires_versees:
     2013: 0
   personnes_a_charge:
-    - 55b9b7b4f0f7e3ac6b8f4f2a
-    - 55b9b7b4f0f7e3ac6b8f4f29
-    - 55b9b7b4f0f7e3ac6b8f4f28
-    - 55b9b7b4f0f7e3ac6b8f4f27
-    - 55b9b7b4f0f7e3ac6b8f4f26
+  - 55b9b7b4f0f7e3ac6b8f4f2a
+  - 55b9b7b4f0f7e3ac6b8f4f29
+  - 55b9b7b4f0f7e3ac6b8f4f28
+  - 55b9b7b4f0f7e3ac6b8f4f27
+  - 55b9b7b4f0f7e3ac6b8f4f26
   rfr:
     2013: 0
 menages:
   conjoint: 55b9b7b4f0f7e3ac6b8f4f2b
   depcom: 77182
   enfants:
-    - 55b9b7b4f0f7e3ac6b8f4f2a
-    - 55b9b7b4f0f7e3ac6b8f4f29
-    - 55b9b7b4f0f7e3ac6b8f4f28
-    - 55b9b7b4f0f7e3ac6b8f4f27
-    - 55b9b7b4f0f7e3ac6b8f4f26
+  - 55b9b7b4f0f7e3ac6b8f4f2a
+  - 55b9b7b4f0f7e3ac6b8f4f29
+  - 55b9b7b4f0f7e3ac6b8f4f28
+  - 55b9b7b4f0f7e3ac6b8f4f27
+  - 55b9b7b4f0f7e3ac6b8f4f26
   loyer: 374
   personne_de_reference: 55b9b7b4f0f7e3ac6b8f4f45
   statut_occupation_logement: locataire_vide

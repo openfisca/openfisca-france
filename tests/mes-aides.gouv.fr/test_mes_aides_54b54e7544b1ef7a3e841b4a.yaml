@@ -1,92 +1,92 @@
 name: Couple + 1 enfant hébergés à titre gratuit < plafond
 keywords:
-  - base ressources
-  - "cmu-c/acs"
-  - forfait logement
+- base ressources
+- cmu-c/acs
+- forfait logement
 description: Un couple ayant un enfant hébergés à titre gratuit a droit à la CMUC si ses ressources = 1287 = 1157 + 130 (forfait logement)
-period: "month:2015-01"
+period: month:2015-01
 relative_error_margin: 0.02
 individus:
-  - age: 34
-    age_en_mois: 418
-    date_naissance: "1980-03-02"
-    etudiant: 0
-    id: 54b54e1a397579703e58d04b
-    inapte_travail: 0
-    handicap: 0
-    salaire_de_base:
-      2013: 17800.000000000004
-      2014-01: 1483.3333333333333
-      2014-02: 1483.3333333333333
-      2014-03: 1483.3333333333333
-      2014-04: 1483.3333333333333
-      2014-05: 1483.3333333333333
-      2014-06: 1483.3333333333333
-      2014-07: 1483.3333333333333
-      2014-08: 1483.3333333333333
-      2014-09: 1483.3333333333333
-      2014-10: 1483.3333333333333
-      2014-11: 1483.3333333333333
-      2014-12: 1483.3333333333333
-      2015-01: 1483.3333333333333
-    salaire_imposable:
-      2013: 14391.166500000005
-      2014-01: 1199.263875
-      2014-02: 1199.263875
-      2014-03: 1199.263875
-      2014-04: 1199.263875
-      2014-05: 1199.263875
-      2014-06: 1199.263875
-      2014-07: 1199.263875
-      2014-08: 1199.263875
-      2014-09: 1199.263875
-      2014-10: 1199.263875
-      2014-11: 1199.263875
-      2014-12: 1199.263875
-      2015-01: 1199.263875
-    salaire_net:
-      2013: 13884
-      2014-01: 1157
-      2014-02: 1157
-      2014-03: 1157
-      2014-04: 1157
-      2014-05: 1157
-      2014-06: 1157
-      2014-07: 1157
-      2014-08: 1157
-      2014-09: 1157
-      2014-10: 1157
-      2014-11: 1157
-      2014-12: 1157
-      2015-01: 1157
-    statut_marital: marie
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 34
-    age_en_mois: 418
-    date_naissance: "1980-03-02"
-    etudiant: 0
-    id: 54b54e1a397579703e58d04a
-    inapte_travail: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 14
-    age_en_mois: 179
-    date_naissance: "2000-02-02"
-    etudiant: 0
-    id: 54b54e1a397579703e58d049
-    inapte_travail: 0
-    handicap: 0
-    scolarite: college
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
+- age: 34
+  age_en_mois: 418
+  date_naissance: '1980-03-02'
+  etudiant: 0
+  id: 54b54e1a397579703e58d04b
+  inapte_travail: 0
+  handicap: 0
+  salaire_de_base:
+    2013: 17800.000000000004
+    2014-01: 1483.3333333333333
+    2014-02: 1483.3333333333333
+    2014-03: 1483.3333333333333
+    2014-04: 1483.3333333333333
+    2014-05: 1483.3333333333333
+    2014-06: 1483.3333333333333
+    2014-07: 1483.3333333333333
+    2014-08: 1483.3333333333333
+    2014-09: 1483.3333333333333
+    2014-10: 1483.3333333333333
+    2014-11: 1483.3333333333333
+    2014-12: 1483.3333333333333
+    2015-01: 1483.3333333333333
+  salaire_imposable:
+    2013: 14391.166500000005
+    2014-01: 1199.263875
+    2014-02: 1199.263875
+    2014-03: 1199.263875
+    2014-04: 1199.263875
+    2014-05: 1199.263875
+    2014-06: 1199.263875
+    2014-07: 1199.263875
+    2014-08: 1199.263875
+    2014-09: 1199.263875
+    2014-10: 1199.263875
+    2014-11: 1199.263875
+    2014-12: 1199.263875
+    2015-01: 1199.263875
+  salaire_net:
+    2013: 13884
+    2014-01: 1157
+    2014-02: 1157
+    2014-03: 1157
+    2014-04: 1157
+    2014-05: 1157
+    2014-06: 1157
+    2014-07: 1157
+    2014-08: 1157
+    2014-09: 1157
+    2014-10: 1157
+    2014-11: 1157
+    2014-12: 1157
+    2015-01: 1157
+  statut_marital: marie
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 34
+  age_en_mois: 418
+  date_naissance: '1980-03-02'
+  etudiant: 0
+  id: 54b54e1a397579703e58d04a
+  inapte_travail: 0
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 14
+  age_en_mois: 179
+  date_naissance: '2000-02-02'
+  etudiant: 0
+  id: 54b54e1a397579703e58d049
+  inapte_travail: 0
+  handicap: 0
+  scolarite: college
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
 familles:
   acs:
     2014-01: 0
@@ -272,8 +272,8 @@ familles:
     2014-11: 0
     2014-12: 0
   parents:
-    - 54b54e1a397579703e58d04b
-    - 54b54e1a397579703e58d04a
+  - 54b54e1a397579703e58d04b
+  - 54b54e1a397579703e58d04a
   rsa:
     2014-01: 0
     2014-02: 0
@@ -289,8 +289,8 @@ familles:
     2014-12: 0
 foyers_fiscaux:
   declarants:
-    - 54b54e1a397579703e58d04b
-    - 54b54e1a397579703e58d04a
+  - 54b54e1a397579703e58d04b
+  - 54b54e1a397579703e58d04a
   personnes_a_charge: 54b54e1a397579703e58d049
 menages:
   conjoint: 54b54e1a397579703e58d04a

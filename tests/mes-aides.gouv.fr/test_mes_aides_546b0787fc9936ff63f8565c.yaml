@@ -1,8 +1,8 @@
 name: Déduction ASF
 keywords:
-  - base ressources
-  - majoration
-  - rsa
+- base ressources
+- majoration
+- rsa
 description: |
   situation femme seul avec enfant né en 2005, hébergement à titre gratuit, aucune ressource :
   droit rsa calculé 650€ et droit Asf 90 et droit Cmu
@@ -11,31 +11,31 @@ description: |
 
   dans l'hypothèse où l'usager n'a fait aucune démarche en caf et qu'il n'a pas encore de droit à l'Asf, il ne cochera pas, dans la page "ressources", l'Asf.
   Anomalie : l'Asf est bien calculée en page résultat mais pas déduite dans le montant Rsa estimé
-period: "month:2014-11"
+period: month:2014-11
 relative_error_margin: 0.02
 individus:
-  - age: 34
-    age_en_mois: 418
-    date_naissance: "1980-01-01"
-    etudiant: 0
-    id: 546b06c0de0b44f86312e845
-    inapte_travail: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 9
-    age_en_mois: 118
-    date_naissance: "2005-01-01"
-    etudiant: 0
-    id: 546b06c0de0b44f86312e844
-    inapte_travail: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
+- age: 34
+  age_en_mois: 418
+  date_naissance: '1980-01-01'
+  etudiant: 0
+  id: 546b06c0de0b44f86312e845
+  inapte_travail: 0
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 9
+  age_en_mois: 118
+  date_naissance: '2005-01-01'
+  etudiant: 0
+  id: 546b06c0de0b44f86312e844
+  inapte_travail: 0
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
 familles:
   acs:
     2013-11: 0

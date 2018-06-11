@@ -1,9 +1,9 @@
 name: L'AAH du demandeur est exclue de la base ressource
 keywords:
-  - aspa
-  - base ressources
+- aspa
+- base ressources
 description: "L' AAH du demandeur doit être exclue : application lettre ministérielle n°558 G/79 du 19/03/1982 et annexe circulaire Cnav n°2007/15 du 01/02/2007"
-period: "month:2014-11"
+period: month:2014-11
 relative_error_margin: 0.02
 individus:
   aah:
@@ -24,7 +24,7 @@ individus:
   activite: retraite
   age: 88
   age_en_mois: 1059
-  date_naissance: "1926-08-14"
+  date_naissance: '1926-08-14'
   etudiant: 0
   id: 546b06b5fc9936ff63f85642
   inapte_travail: 0
@@ -233,7 +233,7 @@ familles:
     2014-08: 0
     2014-09: 0
     2014-10: 0
-  enfants:
+  enfants: null
   paje_base:
     2013-11: 0
     2013-12: 0
@@ -264,10 +264,10 @@ familles:
     2014-10: 0
 foyers_fiscaux:
   declarants: 546b06b5fc9936ff63f85642
-  personnes_a_charge:
+  personnes_a_charge: null
 menages:
   depcom: 75119
-  enfants:
+  enfants: null
   loyer: 700
   personne_de_reference: 546b06b5fc9936ff63f85642
 output_variables:

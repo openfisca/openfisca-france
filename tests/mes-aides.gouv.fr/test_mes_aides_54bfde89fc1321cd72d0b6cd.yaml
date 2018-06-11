@@ -1,12 +1,12 @@
 name: 122_Neutral revenus de remplacement
 keywords: rsa
-description:
-period: "month:2015-01"
+description: null
+period: month:2015-01
 relative_error_margin: 0.02
 individus:
   age: 35
   age_en_mois: 420
-  date_naissance: "1980-01-01"
+  date_naissance: '1980-01-01'
   chomage_brut:
     2013: 39727.53532026187
     2014-01: 3310.627943355156
@@ -213,7 +213,7 @@ familles:
     2014-10: 0
     2014-11: 0
     2014-12: 0
-  enfants:
+  enfants: null
   paje_base:
     2014-01: 0
     2014-02: 0
@@ -243,10 +243,10 @@ familles:
     2014-12: 0
 foyers_fiscaux:
   declarants: 54bfde77d337b5d372377d35
-  personnes_a_charge:
+  personnes_a_charge: null
 menages:
   depcom: 70429
-  enfants:
+  enfants: null
   personne_de_reference: 54bfde77d337b5d372377d35
   statut_occupation_logement: loge_gratuitement
 output_variables:

@@ -1,7 +1,7 @@
 name: Le montant ne peut pas être inférieur à 15 euros
 keywords:
-  - al
-  - montant
+- al
+- montant
 description: |
   L	292,62
   C	53,23
@@ -18,12 +18,12 @@ description: |
   P1	304,32
   Pp	339,05
   AL	6,77 (montant théorique), mais comme il est < 15 on obtient 0
-period: "month:2015-02"
+period: month:2015-02
 relative_error_margin: 0.02
 individus:
   age: 34
   age_en_mois: 413
-  date_naissance: "1980-08-12"
+  date_naissance: '1980-08-12'
   chomage_imposable:
     2013: 0
   etudiant: 0
@@ -251,7 +251,7 @@ familles:
     2014-11: 0
     2014-12: 0
     2015-01: 0
-  enfants:
+  enfants: null
   paje_base:
     2014-02: 0
     2014-03: 0
@@ -284,11 +284,11 @@ foyers_fiscaux:
   declarants: 54d39f89f675ddd34432e918
   pensions_alimentaires_versees:
     2013: 0
-  personnes_a_charge:
-  rfr:
+  personnes_a_charge: null
+  rfr: null
 menages:
   depcom: 75111
-  enfants:
+  enfants: null
   loyer: 1000
   personne_de_reference: 54d39f89f675ddd34432e918
   statut_occupation_logement: locataire_vide

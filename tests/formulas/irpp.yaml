@@ -1,18 +1,18 @@
-- name: "IRPP - Célibataire ayant des revenus salariaux (1AJ) de 20 000 €"
+- name: IRPP - Célibataire ayant des revenus salariaux (1AJ) de 20 000 €
   period: 2010
   absolute_error_margin: 0.5
   input_variables:
     salaire_imposable: 20000
   output_variables:
     irpp: -1181
-- name: "IRPP - Célibataire ayant des revenus salariaux (1AJ) de 50 000 €"
+- name: IRPP - Célibataire ayant des revenus salariaux (1AJ) de 50 000 €
   period: 2010
   absolute_error_margin: 0.5
   input_variables:
     salaire_imposable: 50000
   output_variables:
     irpp: -7934
-- name: "IRPP - Célibataire ayant des revenus salariaux (1AJ) de 150 000 €"
+- name: IRPP - Célibataire ayant des revenus salariaux (1AJ) de 150 000 €
   period: 2010
   absolute_error_margin: 0.5
   input_variables:
@@ -20,21 +20,21 @@
   output_variables:
     irpp: -42338
 
-- name: "IRPP - Célibataire ayant des revenus salariaux (1AJ) de 20 000 €"
+- name: IRPP - Célibataire ayant des revenus salariaux (1AJ) de 20 000 €
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
     salaire_imposable: 20000
   output_variables:
     irpp: -1181
-- name: "IRPP - Célibataire ayant des revenus salariaux (1AJ) de 50 000 €"
+- name: IRPP - Célibataire ayant des revenus salariaux (1AJ) de 50 000 €
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
     salaire_imposable: 50000
   output_variables:
     irpp: -7934
-- name: "IRPP - Célibataire ayant des revenus salariaux (1AJ) de 150 000 €"
+- name: IRPP - Célibataire ayant des revenus salariaux (1AJ) de 150 000 €
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
@@ -42,21 +42,21 @@
   output_variables:
     irpp: -42338
 
-- name: "IRPP - Célibataire ayant des revenus salariaux (1AJ) de 20 000 €"
+- name: IRPP - Célibataire ayant des revenus salariaux (1AJ) de 20 000 €
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
     salaire_imposable: 20000
   output_variables:
     irpp: -1181
-- name: "IRPP - Célibataire ayant des revenus salariaux (1AJ) de 50 000 €"
+- name: IRPP - Célibataire ayant des revenus salariaux (1AJ) de 50 000 €
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
     salaire_imposable: 50000
   output_variables:
     irpp: -7934
-- name: "IRPP - Célibataire ayant des revenus salariaux (1AJ) de 150 000 €"
+- name: IRPP - Célibataire ayant des revenus salariaux (1AJ) de 150 000 €
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
@@ -64,21 +64,21 @@
   output_variables:
     irpp: -43222
 
-- name: "IRPP - Célibataire ayant des revenus salariaux (1AJ) de 20 000 €"
+- name: IRPP - Célibataire ayant des revenus salariaux (1AJ) de 20 000 €
   period: 2013
   absolute_error_margin: 0.5
   input_variables:
     salaire_imposable: 20000
   output_variables:
     irpp: -1170
-- name: "IRPP - Célibataire ayant des revenus salariaux (1AJ) de 50 000 €"
+- name: IRPP - Célibataire ayant des revenus salariaux (1AJ) de 50 000 €
   period: 2013
   absolute_error_margin: 0.5
   input_variables:
     salaire_imposable: 50000
   output_variables:
     irpp: -7889
-- name: "IRPP - Célibataire ayant des revenus salariaux (1AJ) de 150 000 €"
+- name: IRPP - Célibataire ayant des revenus salariaux (1AJ) de 150 000 €
   period: 2013
   absolute_error_margin: 0.5
   input_variables:
@@ -87,7 +87,7 @@
     irpp: -43076
 
 
-- name: "IRPP - Retraité célibataire ayant une pension (1AS) de 20 000 €"
+- name: IRPP - Retraité célibataire ayant une pension (1AS) de 20 000 €
   description: |
     TODO: test mal spécifié passe toujours au dessus du seuil
     qui est d'environ 3500 euros (e.g.faire test pour amount de 500
@@ -98,7 +98,7 @@
     retraite_imposable: 20000
   output_variables:
     irpp: -1181
-- name: "IRPP - Retraité célibataire ayant une pension (1AS) de 50 000 €"
+- name: IRPP - Retraité célibataire ayant une pension (1AS) de 50 000 €
   description: |
     TODO: test mal spécifié passe toujours au dessus du seuil
     qui est d'environ 3500 euros (e.g.faire test pour amount de 500
@@ -109,7 +109,7 @@
     retraite_imposable: 50000
   output_variables:
     irpp: -8336
-- name: "IRPP - Retraité célibataire ayant une pension (1AS) de 150 000 €"
+- name: IRPP - Retraité célibataire ayant une pension (1AS) de 150 000 €
   description: |
     TODO: test mal spécifié passe toujours au dessus du seuil
     qui est d'environ 3500 euros (e.g.faire test pour amount de 500
@@ -121,7 +121,7 @@
   output_variables:
     irpp: -46642
 
-- name: "IRPP - Retraité célibataire ayant une pension (1AS) de 20 000 €"
+- name: IRPP - Retraité célibataire ayant une pension (1AS) de 20 000 €
   description: |
     TODO: test mal spécifié passe toujours au dessus du seuil
     qui est d'environ 3500 euros (e.g.faire test pour amount de 500
@@ -132,7 +132,7 @@
     retraite_imposable: 20000
   output_variables:
     irpp: -1181
-- name: "IRPP - Retraité célibataire ayant une pension (1AS) de 50 000 €"
+- name: IRPP - Retraité célibataire ayant une pension (1AS) de 50 000 €
   description: |
     TODO: test mal spécifié passe toujours au dessus du seuil
     qui est d'environ 3500 euros (e.g.faire test pour amount de 500
@@ -143,7 +143,7 @@
     retraite_imposable: 50000
   output_variables:
     irpp: -8336
-- name: "IRPP - Retraité célibataire ayant une pension (1AS) de 150 000 €"
+- name: IRPP - Retraité célibataire ayant une pension (1AS) de 150 000 €
   description: |
     TODO: test mal spécifié passe toujours au dessus du seuil
     qui est d'environ 3500 euros (e.g.faire test pour amount de 500
@@ -155,7 +155,7 @@
   output_variables:
     irpp: -46642
 
-- name: "IRPP - Retraité célibataire ayant une pension (1AS) de 20 000 €"
+- name: IRPP - Retraité célibataire ayant une pension (1AS) de 20 000 €
   description: |
     TODO: test mal spécifié passe toujours au dessus du seuil
     qui est d'environ 3500 euros (e.g.faire test pour amount de 500
@@ -166,7 +166,7 @@
     retraite_imposable: 20000
   output_variables:
     irpp: -1181
-- name: "IRPP - Retraité célibataire ayant une pension (1AS) de 50 000 €"
+- name: IRPP - Retraité célibataire ayant une pension (1AS) de 50 000 €
   description: |
     TODO: test mal spécifié passe toujours au dessus du seuil
     qui est d'environ 3500 euros (e.g.faire test pour amount de 500
@@ -177,7 +177,7 @@
     retraite_imposable: 50000
   output_variables:
     irpp: -8336
-- name: "IRPP - Retraité célibataire ayant une pension (1AS) de 150 000 €"
+- name: IRPP - Retraité célibataire ayant une pension (1AS) de 150 000 €
   description: |
     TODO: test mal spécifié passe toujours au dessus du seuil
     qui est d'environ 3500 euros (e.g.faire test pour amount de 500
@@ -189,7 +189,7 @@
   output_variables:
     irpp: -46642
 
-- name: "IRPP - Retraité célibataire ayant une pension (1AS) de 20 000 €"
+- name: IRPP - Retraité célibataire ayant une pension (1AS) de 20 000 €
   description: |
     TODO: test mal spécifié passe toujours au dessus du seuil
     qui est d'environ 3500 euros (e.g.faire test pour amount de 500
@@ -200,7 +200,7 @@
     retraite_imposable: 20000
   output_variables:
     irpp: -1170
-- name: "IRPP - Retraité célibataire ayant une pension (1AS) de 50 000 €"
+- name: IRPP - Retraité célibataire ayant une pension (1AS) de 50 000 €
   description: |
     TODO: test mal spécifié passe toujours au dessus du seuil
     qui est d'environ 3500 euros (e.g.faire test pour amount de 500
@@ -211,7 +211,7 @@
     retraite_imposable: 50000
   output_variables:
     irpp: -8283
-- name: "IRPP - Retraité célibataire ayant une pension (1AS) de 150 000 €"
+- name: IRPP - Retraité célibataire ayant une pension (1AS) de 150 000 €
   description: |
     TODO: test mal spécifié passe toujours au dessus du seuil
     qui est d'environ 3500 euros (e.g.faire test pour amount de 500
@@ -224,97 +224,97 @@
     irpp: -46523
 
 
-- name: "IRPP - Célibataire ayant des revenus d'actions soumises à un prélèvement libératoire de 21 % (2DA) de 20 000 €"
+- name: IRPP - Célibataire ayant des revenus d'actions soumises à un prélèvement libératoire de 21 % (2DA) de 20 000 €
   period: 2010
   absolute_error_margin: 0.5
   input_variables:
     f2da: 20000
   output_variables:
-    irpp: -0
-- name: "IRPP - Célibataire ayant des revenus d'actions soumises à un prélèvement libératoire de 21 % (2DA) de 50 000 €"
+    irpp: 0
+- name: IRPP - Célibataire ayant des revenus d'actions soumises à un prélèvement libératoire de 21 % (2DA) de 50 000 €
   period: 2010
   absolute_error_margin: 0.5
   input_variables:
     f2da: 50000
   output_variables:
-    irpp: -0
-- name: "IRPP - Célibataire ayant des revenus d'actions soumises à un prélèvement libératoire de 21 % (2DA) de 150 000 €"
+    irpp: 0
+- name: IRPP - Célibataire ayant des revenus d'actions soumises à un prélèvement libératoire de 21 % (2DA) de 150 000 €
   period: 2010
   absolute_error_margin: 0.5
   input_variables:
     f2da: 150000
   output_variables:
-    irpp: -0
+    irpp: 0
 
-- name: "IRPP - Célibataire ayant des revenus d'actions soumises à un prélèvement libératoire de 21 % (2DA) de 20 000 €"
+- name: IRPP - Célibataire ayant des revenus d'actions soumises à un prélèvement libératoire de 21 % (2DA) de 20 000 €
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
     f2da: 20000
   output_variables:
-    irpp: -0
+    irpp: 0
 
-- name: "IRPP - Célibataire ayant des revenus d'actions soumises à un prélèvement libératoire de 21 % (2DA) de 50 000 €"
+- name: IRPP - Célibataire ayant des revenus d'actions soumises à un prélèvement libératoire de 21 % (2DA) de 50 000 €
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
     f2da: 50000
   output_variables:
-    irpp: -0
-- name: "IRPP - Célibataire ayant des revenus d'actions soumises à un prélèvement libératoire de 21 % (2DA) de 150 000 €"
+    irpp: 0
+- name: IRPP - Célibataire ayant des revenus d'actions soumises à un prélèvement libératoire de 21 % (2DA) de 150 000 €
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
     f2da: 150000
   output_variables:
-    irpp: -0
+    irpp: 0
 
-- name: "IRPP - Célibataire ayant des revenus d'actions soumises à un prélèvement libératoire de 21 % (2DA) de 20 000 €"
+- name: IRPP - Célibataire ayant des revenus d'actions soumises à un prélèvement libératoire de 21 % (2DA) de 20 000 €
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
     f2da: 20000
   output_variables:
-    irpp: -0
-- name: "IRPP - Célibataire ayant des revenus d'actions soumises à un prélèvement libératoire de 21 % (2DA) de 50 000 €"
+    irpp: 0
+- name: IRPP - Célibataire ayant des revenus d'actions soumises à un prélèvement libératoire de 21 % (2DA) de 50 000 €
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
     f2da: 50000
   output_variables:
-    irpp: -0
-- name: "IRPP - Célibataire ayant des revenus d'actions soumises à un prélèvement libératoire de 21 % (2DA) de 150 000 €"
+    irpp: 0
+- name: IRPP - Célibataire ayant des revenus d'actions soumises à un prélèvement libératoire de 21 % (2DA) de 150 000 €
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
     f2da: 150000
   output_variables:
-    irpp: -0
+    irpp: 0
 
-- name: "IRPP - Célibataire ayant des revenus d'actions soumises à un prélèvement libératoire de 21 % (2DA) de 20 000 €"
-  description: "TODO: Check with Mahdi wether 2DA exists in 2013."
+- name: IRPP - Célibataire ayant des revenus d'actions soumises à un prélèvement libératoire de 21 % (2DA) de 20 000 €
+  description: 'TODO: Check with Mahdi wether 2DA exists in 2013.'
   period: 2013
   absolute_error_margin: 0.5
   input_variables:
     f2da: 20000
   output_variables:
-    irpp: -0
+    irpp: 0
 
-- name: "IRPP - Célibataire ayant des revenus d'actions et parts (2DC) de 20 000 €"
+- name: IRPP - Célibataire ayant des revenus d'actions et parts (2DC) de 20 000 €
   period: 2010
   absolute_error_margin: 0.5
   input_variables:
     f2dc: 20000
   output_variables:
-    irpp: -0
-- name: "IRPP - Célibataire ayant des revenus d'actions et parts (2DC) de 50 000 €"
+    irpp: 0
+- name: IRPP - Célibataire ayant des revenus d'actions et parts (2DC) de 50 000 €
   period: 2010
   absolute_error_margin: 0.5
   input_variables:
     f2dc: 50000
   output_variables:
     irpp: -2976
-- name: "IRPP - Célibataire ayant des revenus d'actions et parts (2DC) de 150 000 €"
+- name: IRPP - Célibataire ayant des revenus d'actions et parts (2DC) de 150 000 €
   period: 2010
   absolute_error_margin: 0.5
   input_variables:
@@ -322,21 +322,21 @@
   output_variables:
     irpp: -22917
 
-- name: "IRPP - Célibataire ayant des revenus d'actions et parts (2DC) de 20 000 €"
+- name: IRPP - Célibataire ayant des revenus d'actions et parts (2DC) de 20 000 €
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
     f2dc: 20000
   output_variables:
-    irpp: -0
-- name: "IRPP - Célibataire ayant des revenus d'actions et parts (2DC) de 50 000 €"
+    irpp: 0
+- name: IRPP - Célibataire ayant des revenus d'actions et parts (2DC) de 50 000 €
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
     f2dc: 50000
   output_variables:
     irpp: -2976
-- name: "IRPP - Célibataire ayant des revenus d'actions et parts (2DC) de 150 000 €"
+- name: IRPP - Célibataire ayant des revenus d'actions et parts (2DC) de 150 000 €
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
@@ -344,21 +344,21 @@
   output_variables:
     irpp: -22917
 
-- name: "IRPP - Célibataire ayant des revenus d'actions et parts (2DC) de 20 000 €"
+- name: IRPP - Célibataire ayant des revenus d'actions et parts (2DC) de 20 000 €
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
     f2dc: 20000
   output_variables:
-    irpp: -0
-- name: "IRPP - Célibataire ayant des revenus d'actions et parts (2DC) de 50 000 €"
+    irpp: 0
+- name: IRPP - Célibataire ayant des revenus d'actions et parts (2DC) de 50 000 €
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
     f2dc: 50000
   output_variables:
     irpp: -3434
-- name: "IRPP - Célibataire ayant des revenus d'actions et parts (2DC) de 150 000 €"
+- name: IRPP - Célibataire ayant des revenus d'actions et parts (2DC) de 150 000 €
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
@@ -366,30 +366,30 @@
   output_variables:
     irpp: -23542
 
-- name: "IRPP - Célibataire ayant des revenus d'actions et parts (2DC) de 20 000 €"
-  description: "TODO: Check with Mahdi."
+- name: IRPP - Célibataire ayant des revenus d'actions et parts (2DC) de 20 000 €
+  description: 'TODO: Check with Mahdi.'
   period: 2013
   absolute_error_margin: 0.5
   input_variables:
     f2dc: 20000
   output_variables:
-    irpp: -0
+    irpp: 0
 
-- name: "IRPP - Célibataire ayant des revenus issus des produits d'assurance vie et de capitalisation soumis au prélèvement libératoire de 7.5 % (2DH) de 20 000 €"
+- name: IRPP - Célibataire ayant des revenus issus des produits d'assurance vie et de capitalisation soumis au prélèvement libératoire de 7.5 % (2DH) de 20 000 €
   period: 2010
   absolute_error_margin: 0.5
   input_variables:
     f2dh: 20000
   output_variables:
     irpp: 345
-- name: "IRPP - Célibataire ayant des revenus issus des produits d'assurance vie et de capitalisation soumis au prélèvement libératoire de 7.5 % (2DH) de 50 000 €"
+- name: IRPP - Célibataire ayant des revenus issus des produits d'assurance vie et de capitalisation soumis au prélèvement libératoire de 7.5 % (2DH) de 50 000 €
   period: 2010
   absolute_error_margin: 0.5
   input_variables:
     f2dh: 50000
   output_variables:
     irpp: 345
-- name: "IRPP - Célibataire ayant des revenus issus des produits d'assurance vie et de capitalisation soumis au prélèvement libératoire de 7.5 % (2DH) de 150 000 €"
+- name: IRPP - Célibataire ayant des revenus issus des produits d'assurance vie et de capitalisation soumis au prélèvement libératoire de 7.5 % (2DH) de 150 000 €
   period: 2010
   absolute_error_margin: 0.5
   input_variables:
@@ -397,21 +397,21 @@
   output_variables:
     irpp: 345
 
-- name: "IRPP - Célibataire ayant des revenus issus des produits d'assurance vie et de capitalisation soumis au prélèvement libératoire de 7.5 % (2DH) de 20 000 €"
+- name: IRPP - Célibataire ayant des revenus issus des produits d'assurance vie et de capitalisation soumis au prélèvement libératoire de 7.5 % (2DH) de 20 000 €
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
     f2dh: 20000
   output_variables:
     irpp: 345
-- name: "IRPP - Célibataire ayant des revenus issus des produits d'assurance vie et de capitalisation soumis au prélèvement libératoire de 7.5 % (2DH) de 50 000 €"
+- name: IRPP - Célibataire ayant des revenus issus des produits d'assurance vie et de capitalisation soumis au prélèvement libératoire de 7.5 % (2DH) de 50 000 €
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
     f2dh: 50000
   output_variables:
     irpp: 345
-- name: "IRPP - Célibataire ayant des revenus issus des produits d'assurance vie et de capitalisation soumis au prélèvement libératoire de 7.5 % (2DH) de 150 000 €"
+- name: IRPP - Célibataire ayant des revenus issus des produits d'assurance vie et de capitalisation soumis au prélèvement libératoire de 7.5 % (2DH) de 150 000 €
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
@@ -419,21 +419,21 @@
   output_variables:
     irpp: 345
 
-- name: "IRPP - Célibataire ayant des revenus issus des produits d'assurance vie et de capitalisation soumis au prélèvement libératoire de 7.5 % (2DH) de 20 000 €"
+- name: IRPP - Célibataire ayant des revenus issus des produits d'assurance vie et de capitalisation soumis au prélèvement libératoire de 7.5 % (2DH) de 20 000 €
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
     f2dh: 20000
   output_variables:
     irpp: 345
-- name: "IRPP - Célibataire ayant des revenus issus des produits d'assurance vie et de capitalisation soumis au prélèvement libératoire de 7.5 % (2DH) de 50 000 €"
+- name: IRPP - Célibataire ayant des revenus issus des produits d'assurance vie et de capitalisation soumis au prélèvement libératoire de 7.5 % (2DH) de 50 000 €
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
     f2dh: 50000
   output_variables:
     irpp: 345
-- name: "IRPP - Célibataire ayant des revenus issus des produits d'assurance vie et de capitalisation soumis au prélèvement libératoire de 7.5 % (2DH) de 150 000 €"
+- name: IRPP - Célibataire ayant des revenus issus des produits d'assurance vie et de capitalisation soumis au prélèvement libératoire de 7.5 % (2DH) de 150 000 €
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
@@ -441,21 +441,21 @@
   output_variables:
     irpp: 345
 
-- name: "IRPP - Célibataire ayant des revenus issus des produits d'assurance vie et de capitalisation soumis au prélèvement libératoire de 7.5 % (2DH) de 20 000 €"
+- name: IRPP - Célibataire ayant des revenus issus des produits d'assurance vie et de capitalisation soumis au prélèvement libératoire de 7.5 % (2DH) de 20 000 €
   period: 2013
   absolute_error_margin: 0.5
   input_variables:
     f2dh: 20000
   output_variables:
     irpp: 345
-- name: "IRPP - Célibataire ayant des revenus issus des produits d'assurance vie et de capitalisation soumis au prélèvement libératoire de 7.5 % (2DH) de 50 000 €"
+- name: IRPP - Célibataire ayant des revenus issus des produits d'assurance vie et de capitalisation soumis au prélèvement libératoire de 7.5 % (2DH) de 50 000 €
   period: 2013
   absolute_error_margin: 0.5
   input_variables:
     f2dh: 50000
   output_variables:
     irpp: 345
-- name: "IRPP - Célibataire ayant des revenus issus des produits d'assurance vie et de capitalisation soumis au prélèvement libératoire de 7.5 % (2DH) de 150 000 €"
+- name: IRPP - Célibataire ayant des revenus issus des produits d'assurance vie et de capitalisation soumis au prélèvement libératoire de 7.5 % (2DH) de 150 000 €
   period: 2013
   absolute_error_margin: 0.5
   input_variables:
@@ -464,21 +464,21 @@
     irpp: 345
 
 
-- name: "IRPP - Célibataire ayant des revenus d'intérêts (2TR) de 20 000 €"
+- name: IRPP - Célibataire ayant des revenus d'intérêts (2TR) de 20 000 €
   period: 2010
   absolute_error_margin: 0.5
   input_variables:
     f2tr: 20000
   output_variables:
     irpp: -1461
-- name: "IRPP - Célibataire ayant des revenus d'intérêts (2TR) de 50 000 €"
+- name: IRPP - Célibataire ayant des revenus d'intérêts (2TR) de 50 000 €
   period: 2010
   absolute_error_margin: 0.5
   input_variables:
     f2tr: 50000
   output_variables:
     irpp: -9434
-- name: "IRPP - Célibataire ayant des revenus d'intérêts (2TR) de 150 000 €"
+- name: IRPP - Célibataire ayant des revenus d'intérêts (2TR) de 150 000 €
   period: 2010
   absolute_error_margin: 0.5
   input_variables:
@@ -486,21 +486,21 @@
   output_variables:
     irpp: -48142
 
-- name: "IRPP - Célibataire ayant des revenus d'intérêts (2TR) de 20 000 €"
+- name: IRPP - Célibataire ayant des revenus d'intérêts (2TR) de 20 000 €
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
     f2tr: 20000
   output_variables:
     irpp: -1461
-- name: "IRPP - Célibataire ayant des revenus d'intérêts (2TR) de 50 000 €"
+- name: IRPP - Célibataire ayant des revenus d'intérêts (2TR) de 50 000 €
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
     f2tr: 50000
   output_variables:
     irpp: -9434
-- name: "IRPP - Célibataire ayant des revenus d'intérêts (2TR) de 150 000 €"
+- name: IRPP - Célibataire ayant des revenus d'intérêts (2TR) de 150 000 €
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
@@ -508,21 +508,21 @@
   output_variables:
     irpp: -48142
 
-- name: "IRPP - Célibataire ayant des revenus d'intérêts (2TR) de 20 000 €"
+- name: IRPP - Célibataire ayant des revenus d'intérêts (2TR) de 20 000 €
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
     f2tr: 20000
   output_variables:
     irpp: -1461
-- name: "IRPP - Célibataire ayant des revenus d'intérêts (2TR) de 50 000 €"
+- name: IRPP - Célibataire ayant des revenus d'intérêts (2TR) de 50 000 €
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
     f2tr: 50000
   output_variables:
     irpp: -9434
-- name: "IRPP - Célibataire ayant des revenus d'intérêts (2TR) de 150 000 €"
+- name: IRPP - Célibataire ayant des revenus d'intérêts (2TR) de 150 000 €
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
@@ -530,21 +530,21 @@
   output_variables:
     irpp: -48142
 
-- name: "IRPP - Célibataire ayant des revenus d'intérêts (2TR) de 20 000 €"
+- name: IRPP - Célibataire ayant des revenus d'intérêts (2TR) de 20 000 €
   period: 2013
   absolute_error_margin: 0.5
   input_variables:
     f2tr: 20000
   output_variables:
     irpp: -1450
-- name: "IRPP - Célibataire ayant des revenus d'intérêts (2TR) de 50 000 €"
+- name: IRPP - Célibataire ayant des revenus d'intérêts (2TR) de 50 000 €
   period: 2013
   absolute_error_margin: 0.5
   input_variables:
     f2tr: 50000
   output_variables:
     irpp: -9389
-- name: "IRPP - Célibataire ayant des revenus d'intérêts (2TR) de 150 000 €"
+- name: IRPP - Célibataire ayant des revenus d'intérêts (2TR) de 150 000 €
   period: 2013
   absolute_error_margin: 0.5
   input_variables:
@@ -553,21 +553,21 @@
     irpp: -48036
 
 
-- name: "IRPP - Célibataire ayant des revenus de valeurs mobilières (2TS) de 20 000 €"
+- name: IRPP - Célibataire ayant des revenus de valeurs mobilières (2TS) de 20 000 €
   period: 2010
   absolute_error_margin: 0.5
   input_variables:
     f2ts: 20000
   output_variables:
     irpp: -1461
-- name: "IRPP - Célibataire ayant des revenus de valeurs mobilières (2TS) de 50 000 €"
+- name: IRPP - Célibataire ayant des revenus de valeurs mobilières (2TS) de 50 000 €
   period: 2010
   absolute_error_margin: 0.5
   input_variables:
     f2ts: 50000
   output_variables:
     irpp: -9434
-- name: "IRPP - Célibataire ayant des revenus de valeurs mobilières (2TS) de 150 000 €"
+- name: IRPP - Célibataire ayant des revenus de valeurs mobilières (2TS) de 150 000 €
   period: 2010
   absolute_error_margin: 0.5
   input_variables:
@@ -575,21 +575,21 @@
   output_variables:
     irpp: -48142
 
-- name: "IRPP - Célibataire ayant des revenus de valeurs mobilières (2TS) de 20 000 €"
+- name: IRPP - Célibataire ayant des revenus de valeurs mobilières (2TS) de 20 000 €
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
     f2ts: 20000
   output_variables:
     irpp: -1461
-- name: "IRPP - Célibataire ayant des revenus de valeurs mobilières (2TS) de 50 000 €"
+- name: IRPP - Célibataire ayant des revenus de valeurs mobilières (2TS) de 50 000 €
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
     f2ts: 50000
   output_variables:
     irpp: -9434
-- name: "IRPP - Célibataire ayant des revenus de valeurs mobilières (2TS) de 150 000 €"
+- name: IRPP - Célibataire ayant des revenus de valeurs mobilières (2TS) de 150 000 €
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
@@ -597,21 +597,21 @@
   output_variables:
     irpp: -48142
 
-- name: "IRPP - Célibataire ayant des revenus de valeurs mobilières (2TS) de 20 000 €"
+- name: IRPP - Célibataire ayant des revenus de valeurs mobilières (2TS) de 20 000 €
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
     f2ts: 20000
   output_variables:
     irpp: -1461
-- name: "IRPP - Célibataire ayant des revenus de valeurs mobilières (2TS) de 50 000 €"
+- name: IRPP - Célibataire ayant des revenus de valeurs mobilières (2TS) de 50 000 €
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
     f2ts: 50000
   output_variables:
     irpp: -9434
-- name: "IRPP - Célibataire ayant des revenus de valeurs mobilières (2TS) de 150 000 €"
+- name: IRPP - Célibataire ayant des revenus de valeurs mobilières (2TS) de 150 000 €
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
@@ -619,21 +619,21 @@
   output_variables:
     irpp: -48142
 
-- name: "IRPP - Célibataire ayant des revenus de valeurs mobilières (2TS) de 20 000 €"
+- name: IRPP - Célibataire ayant des revenus de valeurs mobilières (2TS) de 20 000 €
   period: 2013
   absolute_error_margin: 0.5
   input_variables:
     f2ts: 20000
   output_variables:
     irpp: -1450
-- name: "IRPP - Célibataire ayant des revenus de valeurs mobilières (2TS) de 50 000 €"
+- name: IRPP - Célibataire ayant des revenus de valeurs mobilières (2TS) de 50 000 €
   period: 2013
   absolute_error_margin: 0.5
   input_variables:
     f2ts: 50000
   output_variables:
     irpp: -9389
-- name: "IRPP - Célibataire ayant des revenus de valeurs mobilières (2TS) de 150 000 €"
+- name: IRPP - Célibataire ayant des revenus de valeurs mobilières (2TS) de 150 000 €
   period: 2013
   absolute_error_margin: 0.5
   input_variables:
@@ -642,21 +642,21 @@
     irpp: -48036
 
 
-- name: "IRPP - Célibataire ayant des revenus de plus-values mobilières (3VG) de 20 000 €"
+- name: IRPP - Célibataire ayant des revenus de plus-values mobilières (3VG) de 20 000 €
   period: 2010
   absolute_error_margin: 0.5
   input_variables:
     f3vg: 20000
   output_variables:
     irpp: -3600
-- name: "IRPP - Célibataire ayant des revenus de plus-values mobilières (3VG) de 50 000 €"
+- name: IRPP - Célibataire ayant des revenus de plus-values mobilières (3VG) de 50 000 €
   period: 2010
   absolute_error_margin: 0.5
   input_variables:
     f3vg: 50000
   output_variables:
     irpp: -9000
-- name: "IRPP - Célibataire ayant des revenus de plus-values mobilières (3VG) de 150 000 €"
+- name: IRPP - Célibataire ayant des revenus de plus-values mobilières (3VG) de 150 000 €
   period: 2010
   absolute_error_margin: 0.5
   input_variables:
@@ -664,21 +664,21 @@
   output_variables:
     irpp: -27000
 
-- name: "IRPP - Célibataire ayant des revenus de plus-values mobilières (3VG) de 20 000 €"
+- name: IRPP - Célibataire ayant des revenus de plus-values mobilières (3VG) de 20 000 €
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
     f3vg: 20000
   output_variables:
     irpp: -3800
-- name: "IRPP - Célibataire ayant des revenus de plus-values mobilières (3VG) de 50 000 €"
+- name: IRPP - Célibataire ayant des revenus de plus-values mobilières (3VG) de 50 000 €
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
     f3vg: 50000
   output_variables:
     irpp: -9500
-- name: "IRPP - Célibataire ayant des revenus de plus-values mobilières (3VG) de 150 000 €"
+- name: IRPP - Célibataire ayant des revenus de plus-values mobilières (3VG) de 150 000 €
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
@@ -686,21 +686,21 @@
   output_variables:
     irpp: -28500
 
-- name: "IRPP - Célibataire ayant des revenus de plus-values mobilières (3VG) de 20 000 €"
+- name: IRPP - Célibataire ayant des revenus de plus-values mobilières (3VG) de 20 000 €
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
     f3vg: 20000
   output_variables:
     irpp: -4800
-- name: "IRPP - Célibataire ayant des revenus de plus-values mobilières (3VG) de 50 000 €"
+- name: IRPP - Célibataire ayant des revenus de plus-values mobilières (3VG) de 50 000 €
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
     f3vg: 50000
   output_variables:
     irpp: -12000
-- name: "IRPP - Célibataire ayant des revenus de plus-values mobilières (3VG) de 150 000 €"
+- name: IRPP - Célibataire ayant des revenus de plus-values mobilières (3VG) de 150 000 €
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
@@ -708,21 +708,21 @@
   output_variables:
     irpp: -36000
 
-- name: "IRPP - Célibataire ayant des revenus de plus-values mobilières (3VG) de 20 000 €"
+- name: IRPP - Célibataire ayant des revenus de plus-values mobilières (3VG) de 20 000 €
   period: 2013
   absolute_error_margin: 0.5
   input_variables:
     f3vg: 20000
   output_variables:
     irpp: -1450
-- name: "IRPP - Célibataire ayant des revenus de plus-values mobilières (3VG) de 50 000 €"
+- name: IRPP - Célibataire ayant des revenus de plus-values mobilières (3VG) de 50 000 €
   period: 2013
   absolute_error_margin: 0.5
   input_variables:
     f3vg: 50000
   output_variables:
     irpp: -9389
-- name: "IRPP - Célibataire ayant des revenus de plus-values mobilières (3VG) de 150 000 €"
+- name: IRPP - Célibataire ayant des revenus de plus-values mobilières (3VG) de 150 000 €
   period: 2013
   absolute_error_margin: 0.5
   input_variables:
@@ -731,113 +731,113 @@
     irpp: -48036
 
 
-- name: "IRPP - Célibataire ayant des revenus de plus-values immobilières (3VZ) de 20 000 €"
-  description: "TODO: Test value for 2010."
+- name: IRPP - Célibataire ayant des revenus de plus-values immobilières (3VZ) de 20 000 €
+  description: 'TODO: Test value for 2010.'
   period: 2010
   absolute_error_margin: 0.5
   input_variables:
     f3vz: 20000
   output_variables:
-    irpp: -0
-- name: "IRPP - Célibataire ayant des revenus de plus-values immobilières (3VZ) de 50 000 €"
-  description: "TODO: Test value for 2010."
+    irpp: 0
+- name: IRPP - Célibataire ayant des revenus de plus-values immobilières (3VZ) de 50 000 €
+  description: 'TODO: Test value for 2010.'
   period: 2010
   absolute_error_margin: 0.5
   input_variables:
     f3vz: 50000
   output_variables:
-    irpp: -0
-- name: "IRPP - Célibataire ayant des revenus de plus-values immobilières (3VZ) de 150 000 €"
-  description: "TODO: Test value for 2010."
+    irpp: 0
+- name: IRPP - Célibataire ayant des revenus de plus-values immobilières (3VZ) de 150 000 €
+  description: 'TODO: Test value for 2010.'
   period: 2010
   absolute_error_margin: 0.5
   input_variables:
     f3vz: 150000
   output_variables:
-    irpp: -0
+    irpp: 0
 
-- name: "IRPP - Célibataire ayant des revenus de plus-values immobilières (3VZ) de 20 000 €"
+- name: IRPP - Célibataire ayant des revenus de plus-values immobilières (3VZ) de 20 000 €
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
     f3vz: 20000
   output_variables:
-    irpp: -0
-- name: "IRPP - Célibataire ayant des revenus de plus-values immobilières (3VZ) de 50 000 €"
+    irpp: 0
+- name: IRPP - Célibataire ayant des revenus de plus-values immobilières (3VZ) de 50 000 €
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
     f3vz: 50000
   output_variables:
-    irpp: -0
-- name: "IRPP - Célibataire ayant des revenus de plus-values immobilières (3VZ) de 150 000 €"
+    irpp: 0
+- name: IRPP - Célibataire ayant des revenus de plus-values immobilières (3VZ) de 150 000 €
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
     f3vz: 150000
   output_variables:
-    irpp: -0
+    irpp: 0
 
-- name: "IRPP - Célibataire ayant des revenus de plus-values immobilières (3VZ) de 20 000 €"
+- name: IRPP - Célibataire ayant des revenus de plus-values immobilières (3VZ) de 20 000 €
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
     f3vz: 20000
   output_variables:
-    irpp: -0
-- name: "IRPP - Célibataire ayant des revenus de plus-values immobilières (3VZ) de 50 000 €"
+    irpp: 0
+- name: IRPP - Célibataire ayant des revenus de plus-values immobilières (3VZ) de 50 000 €
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
     f3vz: 50000
   output_variables:
-    irpp: -0
-- name: "IRPP - Célibataire ayant des revenus de plus-values immobilières (3VZ) de 150 000 €"
+    irpp: 0
+- name: IRPP - Célibataire ayant des revenus de plus-values immobilières (3VZ) de 150 000 €
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
     f3vz: 150000
   output_variables:
-    irpp: -0
+    irpp: 0
 
-- name: "IRPP - Célibataire ayant des revenus de plus-values immobilières (3VZ) de 20 000 €"
+- name: IRPP - Célibataire ayant des revenus de plus-values immobilières (3VZ) de 20 000 €
   period: 2013
   absolute_error_margin: 0.5
   input_variables:
     f3vz: 20000
   output_variables:
-    irpp: -0
-- name: "IRPP - Célibataire ayant des revenus de plus-values immobilières (3VZ) de 50 000 €"
+    irpp: 0
+- name: IRPP - Célibataire ayant des revenus de plus-values immobilières (3VZ) de 50 000 €
   period: 2013
   absolute_error_margin: 0.5
   input_variables:
     f3vz: 50000
   output_variables:
-    irpp: -0
-- name: "IRPP - Célibataire ayant des revenus de plus-values immobilières (3VZ) de 150 000 €"
+    irpp: 0
+- name: IRPP - Célibataire ayant des revenus de plus-values immobilières (3VZ) de 150 000 €
   period: 2013
   absolute_error_margin: 0.5
   input_variables:
     f3vz: 150000
   output_variables:
-    irpp: -0
+    irpp: 0
 
 
-- name: "IRPP - Célibataire ayant des revenus fonciers (4BA) de 20 000 €"
+- name: IRPP - Célibataire ayant des revenus fonciers (4BA) de 20 000 €
   period: 2010
   absolute_error_margin: 0.5
   input_variables:
     f4ba: 20000
   output_variables:
     irpp: -1461
-- name: "IRPP - Célibataire ayant des revenus fonciers (4BA) de 50 000 €"
+- name: IRPP - Célibataire ayant des revenus fonciers (4BA) de 50 000 €
   period: 2010
   absolute_error_margin: 0.5
   input_variables:
     f4ba: 50000
   output_variables:
     irpp: -9434
-- name: "IRPP - Célibataire ayant des revenus fonciers (4BA) de 150 000 €"
+- name: IRPP - Célibataire ayant des revenus fonciers (4BA) de 150 000 €
   period: 2010
   absolute_error_margin: 0.5
   input_variables:
@@ -845,21 +845,21 @@
   output_variables:
     irpp: -48142
 
-- name: "IRPP - Célibataire ayant des revenus fonciers (4BA) de 20 000 €"
+- name: IRPP - Célibataire ayant des revenus fonciers (4BA) de 20 000 €
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
     f4ba: 20000
   output_variables:
     irpp: -1461
-- name: "IRPP - Célibataire ayant des revenus fonciers (4BA) de 50 000 €"
+- name: IRPP - Célibataire ayant des revenus fonciers (4BA) de 50 000 €
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
     f4ba: 50000
   output_variables:
     irpp: -9434
-- name: "IRPP - Célibataire ayant des revenus fonciers (4BA) de 150 000 €"
+- name: IRPP - Célibataire ayant des revenus fonciers (4BA) de 150 000 €
   period: 2011
   absolute_error_margin: 0.5
   input_variables:
@@ -867,21 +867,21 @@
   output_variables:
     irpp: -48142
 
-- name: "IRPP - Célibataire ayant des revenus fonciers (4BA) de 20 000 €"
+- name: IRPP - Célibataire ayant des revenus fonciers (4BA) de 20 000 €
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
     f4ba: 20000
   output_variables:
     irpp: -1461
-- name: "IRPP - Célibataire ayant des revenus fonciers (4BA) de 50 000 €"
+- name: IRPP - Célibataire ayant des revenus fonciers (4BA) de 50 000 €
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
     f4ba: 50000
   output_variables:
     irpp: -9434
-- name: "IRPP - Célibataire ayant des revenus fonciers (4BA) de 150 000 €"
+- name: IRPP - Célibataire ayant des revenus fonciers (4BA) de 150 000 €
   period: 2012
   absolute_error_margin: 0.5
   input_variables:
@@ -889,28 +889,28 @@
   output_variables:
     irpp: -48142
 
-- name: "IRPP - Célibataire ayant des revenus fonciers (4BA) de 20 000 €"
+- name: IRPP - Célibataire ayant des revenus fonciers (4BA) de 20 000 €
   period: 2013
   absolute_error_margin: 0.5
   input_variables:
     f4ba: 20000
   output_variables:
     irpp: -1450
-- name: "IRPP - Célibataire ayant des revenus fonciers (4BA) de 50 000 €"
+- name: IRPP - Célibataire ayant des revenus fonciers (4BA) de 50 000 €
   period: 2013
   absolute_error_margin: 0.5
   input_variables:
     f4ba: 50000
   output_variables:
     irpp: -9389
-- name: "IRPP - Célibataire ayant des revenus fonciers (4BA) de 150 000 €"
+- name: IRPP - Célibataire ayant des revenus fonciers (4BA) de 150 000 €
   period: 2013
   absolute_error_margin: 0.5
   input_variables:
     f4ba: 150000
   output_variables:
     irpp: -48036
-- name: "IRPP - Célibataire ayant des 	Revenu net imposable de 16000 € (teste la décote)"
+- name: "IRPP - Célibataire ayant des \tRevenu net imposable de 16000 € (teste la décote)"
   period: 2014
   absolute_error_margin: 0.9 #TODO : check why the error margin is so large, is there bottom round made by dgfip ?
   input_variables:
@@ -918,7 +918,7 @@
   output_variables:
     irpp: -183
     decote: 476
-- name: "IRPP - Célibataire ayant des 	Revenu net imposable de 150000 €"
+- name: "IRPP - Célibataire ayant des \tRevenu net imposable de 150000 €"
   period: 2014
   absolute_error_margin: 0.5
   input_variables:
@@ -926,15 +926,15 @@
   output_variables:
     irpp: -42984
     decote_gain_fiscal: 0
-- name: "IRPP - Célibataire ayant des 	Revenu net imposable de 15000 € (teste la décote)"
+- name: "IRPP - Célibataire ayant des \tRevenu net imposable de 15000 € (teste la décote)"
   period: 2014
   absolute_error_margin: 0.9 #TODO : check why the error margin is so large, is there bottom round made by dgfip ?
   input_variables:
     salaire_imposable: 15000
   output_variables:
-    irpp: -0
+    irpp: 0
     decote_gain_fiscal: 533
-- name: "IRPP - Célibataire ayant des 	Revenu net imposable de 18000 € (teste la décote)"
+- name: "IRPP - Célibataire ayant des \tRevenu net imposable de 18000 € (teste la décote)"
   period: 2014
   absolute_error_margin: 0.9 #TODO : check why the error margin is so large, is there bottom round made by dgfip ?
   input_variables:
@@ -942,30 +942,30 @@
   output_variables:
     irpp: -687
     decote_gain_fiscal: 224
-- name: "IRPP - Célibataire ayant des 	Revenu net imposable de 10000 € (teste la décote)"
+- name: "IRPP - Célibataire ayant des \tRevenu net imposable de 10000 € (teste la décote)"
   period: 2014
   absolute_error_margin: 0.9 #TODO : check why the error margin is so large, is there bottom round made by dgfip ?
   input_variables:
     salaire_imposable: 10000
   output_variables:
-    irpp: -0
+    irpp: 0
     decote_gain_fiscal: 0
 
-- period: "2014"
+- period: '2014'
   absolute_error_margin: 0.5
-  name: "IRPP Couple, salaire_net = [30000, 0]"
+  name: IRPP Couple, salaire_net = [30000, 0]
   foyers_fiscaux:
     declarants: [1, 2]
   individus:
-    - id: 1
-      date_naissance: "1985-01-01"
-      salaire_imposable: 30000
-      statut_marital: pacse
+  - id: 1
+    date_naissance: '1985-01-01'
+    salaire_imposable: 30000
+    statut_marital: pacse
 
-    - id: 2
-      date_naissance: "1985-01-01"
-      salaire_imposable: 0
-      statut_marital: pacse
+  - id: 2
+    date_naissance: '1985-01-01'
+    salaire_imposable: 0
+    statut_marital: pacse
   output_variables:
     decote_gain_fiscal: 803
     irpp: -264

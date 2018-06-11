@@ -1,89 +1,89 @@
 name: APL LOCATION MONSIEUR CHOMAGE NON INDEMNISE
 keywords:
-  - al
-  - recette
+- al
+- recette
 description: Test créé à partir d'un dossier de demande de  APL
-period: "month:2015-07"
+period: month:2015-07
 relative_error_margin: 0.02
 individus:
-  - age: 55
-    age_en_mois: 661
-    date_naissance: "1960-06-08"
-    chomage_imposable:
-      2013: 9458
-    etudiant: 0
-    id: 559e4fa7ecfc1e52013e3b44
-    inapte_travail: 0
-    handicap: 0
-    pensions_alimentaires_percues:
-      2013: 0
-    retraite_imposable:
-      2013: 0
-    salaire_imposable:
-      2013: 0
-    statut_marital: marie
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - activite: chomeur
-    age: 58
-    age_en_mois: 703
-    ass_precondition_remplie: false
-    date_naissance: "1956-12-01"
-    chomage_imposable:
-      2013: 0
-    etudiant: 0
-    id: 559e4fa7ecfc1e52013e3b42
-    inapte_travail: 0
-    handicap: 0
-    pensions_alimentaires_percues:
-      2013: 0
-    retraite_imposable:
-      2013: 0
-    salaire_imposable:
-      2013: 0
-    statut_marital: marie
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 9
-    age_en_mois: 118
-    date_naissance: "2005-08-13"
-    etudiant: 0
-    id: 559e4fa7ecfc1e52013e3b41
-    inapte_travail: 0
-    handicap: 0
-    scolarite: college
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 14
-    age_en_mois: 175
-    date_naissance: "2000-11-20"
-    etudiant: 0
-    id: 559e4fa7ecfc1e52013e3b40
-    inapte_travail: 0
-    handicap: 0
-    scolarite: college
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 16
-    age_en_mois: 198
-    date_naissance: "1998-12-10"
-    etudiant: 0
-    id: 559e4fa7ecfc1e52013e3b3f
-    inapte_travail: 0
-    handicap: 0
-    scolarite: college
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
+- age: 55
+  age_en_mois: 661
+  date_naissance: '1960-06-08'
+  chomage_imposable:
+    2013: 9458
+  etudiant: 0
+  id: 559e4fa7ecfc1e52013e3b44
+  inapte_travail: 0
+  handicap: 0
+  pensions_alimentaires_percues:
+    2013: 0
+  retraite_imposable:
+    2013: 0
+  salaire_imposable:
+    2013: 0
+  statut_marital: marie
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- activite: chomeur
+  age: 58
+  age_en_mois: 703
+  ass_precondition_remplie: false
+  date_naissance: '1956-12-01'
+  chomage_imposable:
+    2013: 0
+  etudiant: 0
+  id: 559e4fa7ecfc1e52013e3b42
+  inapte_travail: 0
+  handicap: 0
+  pensions_alimentaires_percues:
+    2013: 0
+  retraite_imposable:
+    2013: 0
+  salaire_imposable:
+    2013: 0
+  statut_marital: marie
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 9
+  age_en_mois: 118
+  date_naissance: '2005-08-13'
+  etudiant: 0
+  id: 559e4fa7ecfc1e52013e3b41
+  inapte_travail: 0
+  handicap: 0
+  scolarite: college
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 14
+  age_en_mois: 175
+  date_naissance: '2000-11-20'
+  etudiant: 0
+  id: 559e4fa7ecfc1e52013e3b40
+  inapte_travail: 0
+  handicap: 0
+  scolarite: college
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 16
+  age_en_mois: 198
+  date_naissance: '1998-12-10'
+  etudiant: 0
+  id: 559e4fa7ecfc1e52013e3b3f
+  inapte_travail: 0
+  handicap: 0
+  scolarite: college
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
 familles:
   acs:
     2014-07: 0
@@ -255,9 +255,9 @@ familles:
     2015-05: 0
     2015-06: 0
   enfants:
-    - 559e4fa7ecfc1e52013e3b41
-    - 559e4fa7ecfc1e52013e3b40
-    - 559e4fa7ecfc1e52013e3b3f
+  - 559e4fa7ecfc1e52013e3b41
+  - 559e4fa7ecfc1e52013e3b40
+  - 559e4fa7ecfc1e52013e3b3f
   paje_base:
     2014-07: 0
     2014-08: 0
@@ -272,8 +272,8 @@ familles:
     2015-05: 0
     2015-06: 0
   parents:
-    - 559e4fa7ecfc1e52013e3b44
-    - 559e4fa7ecfc1e52013e3b42
+  - 559e4fa7ecfc1e52013e3b44
+  - 559e4fa7ecfc1e52013e3b42
   proprietaire_proche_famille: false
   rsa:
     2014-07: 0
@@ -290,23 +290,23 @@ familles:
     2015-06: 0
 foyers_fiscaux:
   declarants:
-    - 559e4fa7ecfc1e52013e3b44
-    - 559e4fa7ecfc1e52013e3b42
+  - 559e4fa7ecfc1e52013e3b44
+  - 559e4fa7ecfc1e52013e3b42
   pensions_alimentaires_versees:
     2013: 0
   personnes_a_charge:
-    - 559e4fa7ecfc1e52013e3b41
-    - 559e4fa7ecfc1e52013e3b40
-    - 559e4fa7ecfc1e52013e3b3f
+  - 559e4fa7ecfc1e52013e3b41
+  - 559e4fa7ecfc1e52013e3b40
+  - 559e4fa7ecfc1e52013e3b3f
   rfr:
     2013: 0
 menages:
   conjoint: 559e4fa7ecfc1e52013e3b42
   depcom: 77083
   enfants:
-    - 559e4fa7ecfc1e52013e3b41
-    - 559e4fa7ecfc1e52013e3b40
-    - 559e4fa7ecfc1e52013e3b3f
+  - 559e4fa7ecfc1e52013e3b41
+  - 559e4fa7ecfc1e52013e3b40
+  - 559e4fa7ecfc1e52013e3b3f
   loyer: 434
   personne_de_reference: 559e4fa7ecfc1e52013e3b44
   statut_occupation_logement: locataire_vide

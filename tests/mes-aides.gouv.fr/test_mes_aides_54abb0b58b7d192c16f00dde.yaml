@@ -1,8 +1,8 @@
 name: Zone 2
 keywords:
-  - al
-  - location
-  - zones
+- al
+- location
+- zones
 description: |
   L	255,03
   C	53,23
@@ -21,12 +21,12 @@ description: |
   AL	272,16
 
   caf.fr : 272,17
-period: "month:2015-01"
+period: month:2015-01
 relative_error_margin: 0.02
 individus:
   age: 34
   age_en_mois: 412
-  date_naissance: "1980-08-12"
+  date_naissance: '1980-08-12'
   etudiant: 0
   id: 54abaf5ed20bc238169b42a1
   inapte_travail: 0
@@ -205,7 +205,7 @@ familles:
     2014-10: 0
     2014-11: 0
     2014-12: 0
-  enfants:
+  enfants: null
   paje_base:
     2014-01: 0
     2014-02: 0
@@ -236,10 +236,10 @@ familles:
     2014-12: 0
 foyers_fiscaux:
   declarants: 54abaf5ed20bc238169b42a1
-  personnes_a_charge:
+  personnes_a_charge: null
 menages:
-  depcom: "06004"
-  enfants:
+  depcom: '06004'
+  enfants: null
   loyer: 500
   personne_de_reference: 54abaf5ed20bc238169b42a1
   statut_occupation_logement: locataire_vide

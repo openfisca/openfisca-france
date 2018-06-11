@@ -1,145 +1,145 @@
-- name: "Allocation de solidarité spécifique - Cas N°1"
+- name: Allocation de solidarité spécifique - Cas N°1
   description: Montant ASS pour personne seule sans ressources
   period: 2018-04
   absolute_error_margin: 0.02
   familles:
-    parents: ["parent1"]
+    parents: [parent1]
     ass_base_ressources: 0 * 12
   foyers_fiscaux:
-    declarants: ["parent1"]
+    declarants: [parent1]
   menages:
-    personne_de_reference: "parent1"
+    personne_de_reference: parent1
   individus:
-    - id: "parent1"
-      ass_precondition_remplie: true
-      activite: "chomeur"
-      chomage_net: 0
-      aah: 0
+  - id: parent1
+    ass_precondition_remplie: true
+    activite: chomeur
+    chomage_net: 0
+    aah: 0
   output_variables:
     ass: 494.40
 
-- name: "Allocation de solidarité spécifique - Cas N°2"
+- name: Allocation de solidarité spécifique - Cas N°2
   description: Montant ASS pour personne seule avec ressources mensuelles inferieures à 659.20
   period: 2018-04
   absolute_error_margin: 0.02
   familles:
-    parents: ["parent1"]
+    parents: [parent1]
     ass_base_ressources: 650 * 12
   foyers_fiscaux:
-    declarants: ["parent1"]
+    declarants: [parent1]
   menages:
-    personne_de_reference: "parent1"
+    personne_de_reference: parent1
   individus:
-    - id: "parent1"
-      ass_precondition_remplie: true
-      activite: "chomeur"
-      chomage_net: 0
-      aah: 0
+  - id: parent1
+    ass_precondition_remplie: true
+    activite: chomeur
+    chomage_net: 0
+    aah: 0
   output_variables:
     ass: 494.40
 
-- name: "Allocation de solidarité spécifique - Cas N°3"
+- name: Allocation de solidarité spécifique - Cas N°3
   description: Montant ASS pour personne en couple avec ressources mensuelles inferieures à 1318.40
   period: 2018-04
   absolute_error_margin: 0.02
   familles:
-    parents: ["parent1", "parent2"]
+    parents: [parent1, parent2]
     ass_base_ressources: 1300 * 12
   foyers_fiscaux:
-    declarants: ["parent1", "parent2"]
+    declarants: [parent1, parent2]
   menages:
-    personne_de_reference: "parent1"
-    conjoint: "parent2"
+    personne_de_reference: parent1
+    conjoint: parent2
   individus:
-    - id: "parent1"
-      ass_precondition_remplie: true
-      activite: "chomeur"
-      chomage_net: 0
-      aah: 0
-    - id: "parent2"
+  - id: parent1
+    ass_precondition_remplie: true
+    activite: chomeur
+    chomage_net: 0
+    aah: 0
+  - id: parent2
   output_variables:
     ass: 494.40
 
-- name: "Allocation de solidarité spécifique - Cas N°4"
+- name: Allocation de solidarité spécifique - Cas N°4
   description: Montant ASS pour personne seule avec ressources mensuelles égale à 900
   period: 2018-04
   absolute_error_margin: 0.02
   familles:
-    parents: ["parent1"]
+    parents: [parent1]
     ass_base_ressources: 900 * 12
   foyers_fiscaux:
-    declarants: ["parent1"]
+    declarants: [parent1]
   menages:
-    personne_de_reference: "parent1"
+    personne_de_reference: parent1
   individus:
-    - id: "parent1"
-      ass_precondition_remplie: true
-      activite: "chomeur"
-      chomage_net: 0
-      aah: 0
+  - id: parent1
+    ass_precondition_remplie: true
+    activite: chomeur
+    chomage_net: 0
+    aah: 0
   output_variables:
     ass: 253.60
 
-- name: "Allocation de solidarité spécifique - Cas N°5"
+- name: Allocation de solidarité spécifique - Cas N°5
   description: Montant ASS pour personne seule avec ressources mensuelles égale à 1500
   period: 2018-04
   absolute_error_margin: 0.02
   familles:
-    parents: ["parent1", "parent2"]
+    parents: [parent1, parent2]
     ass_base_ressources: 1500 * 12
   foyers_fiscaux:
-    declarants: ["parent1", "parent2"]
+    declarants: [parent1, parent2]
   menages:
-    personne_de_reference: "parent1"
-    conjoint: "parent2"
+    personne_de_reference: parent1
+    conjoint: parent2
   individus:
-    - id: "parent1"
-      ass_precondition_remplie: true
-      activite: "chomeur"
-      chomage_net: 0
-      aah: 0
-    - id: "parent2"
+  - id: parent1
+    ass_precondition_remplie: true
+    activite: chomeur
+    chomage_net: 0
+    aah: 0
+  - id: parent2
   output_variables:
     ass: 312.80
 
-- name: "Allocation de solidarité spécifique - Cas Non Passant N°1"
+- name: Allocation de solidarité spécifique - Cas Non Passant N°1
   description: Montant ASS pour personne seule avec ressources mensuelles superieure à 1153.60
   period: 2018-04
   absolute_error_margin: 0.02
   familles:
-    parents: ["parent1"]
+    parents: [parent1]
     ass_base_ressources: 1153.60 * 12
   foyers_fiscaux:
-    declarants: ["parent1"]
+    declarants: [parent1]
   menages:
-    personne_de_reference: "parent1"
+    personne_de_reference: parent1
   individus:
-    - id: "parent1"
-      ass_precondition_remplie: true
-      activite: "chomeur"
-      chomage_net: 0
-      aah: 0
+  - id: parent1
+    ass_precondition_remplie: true
+    activite: chomeur
+    chomage_net: 0
+    aah: 0
   output_variables:
     ass: 0
 
-- name: "Allocation de solidarité spécifique - Cas Non Passant N°1"
+- name: Allocation de solidarité spécifique - Cas Non Passant N°1
   description: Montant ASS pour personne en couple avec ressources mensuelles superieure à 1812.80
   period: 2018-04
   absolute_error_margin: 0.02
   familles:
-    parents: ["parent1", "parent2"]
+    parents: [parent1, parent2]
     ass_base_ressources: 1812.80 * 12
   foyers_fiscaux:
-    declarants: ["parent1", "parent2"]
+    declarants: [parent1, parent2]
   menages:
-    personne_de_reference: "parent1"
-    conjoint: "parent2"
+    personne_de_reference: parent1
+    conjoint: parent2
   individus:
-    - id: "parent1"
-      ass_precondition_remplie: true
-      activite: "chomeur"
-      chomage_net: 0
-      aah: 0
-    - id: "parent2"
+  - id: parent1
+    ass_precondition_remplie: true
+    activite: chomeur
+    chomage_net: 0
+    aah: 0
+  - id: parent2
   output_variables:
     ass: 0

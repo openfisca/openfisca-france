@@ -1,15 +1,15 @@
 name: Personne seule, 1 allocataire, Rente AT
 keywords:
-  - aspa
-  - base ressources
+- aspa
+- base ressources
 description: Test concluant
-period: "month:2014-11"
+period: month:2014-11
 relative_error_margin: 0.02
 individus:
   activite: retraite
   age: 65
   age_en_mois: 787
-  date_naissance: "1949-04-01"
+  date_naissance: '1949-04-01'
   etudiant: 0
   id: 5478a0b1d97a8932263c255d
   inapte_travail: 0
@@ -218,7 +218,7 @@ familles:
     2014-08: 0
     2014-09: 0
     2014-10: 0
-  enfants:
+  enfants: null
   paje_base:
     2013-11: 0
     2013-12: 0
@@ -249,10 +249,10 @@ familles:
     2014-10: 0
 foyers_fiscaux:
   declarants: 5478a0b1d97a8932263c255d
-  personnes_a_charge:
+  personnes_a_charge: null
 menages:
   depcom: 75119
-  enfants:
+  enfants: null
   loyer: 700
   personne_de_reference: 5478a0b1d97a8932263c255d
 output_variables:

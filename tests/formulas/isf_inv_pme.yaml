@@ -1,4 +1,4 @@
-- name: "Impôt sur la fortune - Célibataire"
+- name: Impôt sur la fortune - Célibataire
   keywords: isf
   period: 2013
   absolute_error_margin: 0.5

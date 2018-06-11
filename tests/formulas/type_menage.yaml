@@ -1,4 +1,4 @@
-- period: "2012"
+- period: '2012'
   name: Type menage, couple 1 enfant
   familles:
     parents: [1, 2]
@@ -7,31 +7,31 @@
     personne_de_reference: 1
     conjoint: 2
     statut_occupation_logement:
-      "2012": proprietaire
+      '2012': proprietaire
   individus:
-    - id: 1
-      date_naissance: "1985-01-01"
-    - id: 2
-      date_naissance: "1985-01-01"
-    - id: 3
-      date_naissance: "2004-01-01"
+  - id: 1
+    date_naissance: '1985-01-01'
+  - id: 2
+    date_naissance: '1985-01-01'
+  - id: 3
+    date_naissance: '2004-01-01'
   output_variables:
     type_menage:
-      "2012": 2
+      '2012': 2
 
-- period: "2012"
+- period: '2012'
   name: Type menage, famille monoparentale 1 enfant
   familles:
     parents: [1]
     enfants: [2]
   menages:
     personne_de_reference: 1
-    statut_occupation_logement:
+    statut_occupation_logement: null
   individus:
-    - id: 1
-      date_naissance: "1985-01-01"
-    - id: 2
-      date_naissance: "2004-01-01"
+  - id: 1
+    date_naissance: '1985-01-01'
+  - id: 2
+    date_naissance: '2004-01-01'
   output_variables:
     type_menage:
-      "2012": 5
+      '2012': 5

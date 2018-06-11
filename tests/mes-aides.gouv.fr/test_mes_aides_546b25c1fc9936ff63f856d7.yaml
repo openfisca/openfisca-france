@@ -1,14 +1,14 @@
 name: 23_Jeune < 25 ans, enceinte
 keywords:
-  - majoration
-  - rsa
-description:
-period: "month:2014-11"
+- majoration
+- rsa
+description: null
+period: month:2014-11
 relative_error_margin: 0.02
 individus:
   age: 20
   age_en_mois: 250
-  date_naissance: "1994-01-01"
+  date_naissance: '1994-01-01'
   enceinte: true
   etudiant: 0
   id: 546b2540fc9936ff63f856d6
@@ -188,7 +188,7 @@ familles:
     2014-08: 0
     2014-09: 0
     2014-10: 0
-  enfants:
+  enfants: null
   paje_base:
     2013-11: 0
     2013-12: 0
@@ -218,10 +218,10 @@ familles:
     2014-10: 0
 foyers_fiscaux:
   declarants: 546b2540fc9936ff63f856d6
-  personnes_a_charge:
+  personnes_a_charge: null
 menages:
   depcom: 75114
-  enfants:
+  enfants: null
   personne_de_reference: 546b2540fc9936ff63f856d6
   statut_occupation_logement: loge_gratuitement
 output_variables:

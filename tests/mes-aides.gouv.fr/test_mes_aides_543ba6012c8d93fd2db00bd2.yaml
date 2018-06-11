@@ -1,98 +1,98 @@
 name: Parent isolé, non éligible si ressources > plafond
 keywords: cf
-description:
-period: "month:2014-10"
+description: null
+period: month:2014-10
 relative_error_margin: 0.02
 individus:
-  - age: 25
-    age_en_mois: 300
-    date_naissance: "1989-09-14"
-    etudiant: 0
-    id: 543ba5e779b1c2ff2d25dc38
-    inapte_travail: 0
-    handicap: 0
-    salaire_de_base:
-      2012: 92307.6923076923
-      2013-10: 7692.307692307692
-      2013-11: 7692.307692307692
-      2013-12: 7692.307692307692
-      2014-01: 7692.307692307692
-      2014-02: 7692.307692307692
-      2014-03: 7692.307692307692
-      2014-04: 7692.307692307692
-      2014-05: 7692.307692307692
-      2014-06: 7692.307692307692
-      2014-07: 7692.307692307692
-      2014-08: 7692.307692307692
-      2014-09: 7692.307692307692
-      2014-10: 7692.307692307692
-    salaire_imposable:
-      2012: 74630.07692307692
-      2013-10: 6219.173076923077
-      2013-11: 6219.173076923077
-      2013-12: 6219.173076923077
-      2014-01: 6219.173076923077
-      2014-02: 6219.173076923077
-      2014-03: 6219.173076923077
-      2014-04: 6219.173076923077
-      2014-05: 6219.173076923077
-      2014-06: 6219.173076923077
-      2014-07: 6219.173076923077
-      2014-08: 6219.173076923077
-      2014-09: 6219.173076923077
-      2014-10: 6219.173076923077
-    salaire_net:
-      2012: 72000
-      2013-10: 6000
-      2013-11: 6000
-      2013-12: 6000
-      2014-01: 6000
-      2014-02: 6000
-      2014-03: 6000
-      2014-04: 6000
-      2014-05: 6000
-      2014-06: 6000
-      2014-07: 6000
-      2014-08: 6000
-      2014-09: 6000
-      2014-10: 6000
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 7
-    age_en_mois: 87
-    date_naissance: "2007-07-12"
-    etudiant: 0
-    id: 543ba5e779b1c2ff2d25dc37
-    inapte_travail: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 7
-    age_en_mois: 87
-    date_naissance: "2007-07-12"
-    etudiant: 0
-    id: 543ba5e779b1c2ff2d25dc36
-    inapte_travail: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 7
-    age_en_mois: 87
-    date_naissance: "2007-07-12"
-    etudiant: 0
-    id: 543ba5e779b1c2ff2d25dc35
-    inapte_travail: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
+- age: 25
+  age_en_mois: 300
+  date_naissance: '1989-09-14'
+  etudiant: 0
+  id: 543ba5e779b1c2ff2d25dc38
+  inapte_travail: 0
+  handicap: 0
+  salaire_de_base:
+    2012: 92307.6923076923
+    2013-10: 7692.307692307692
+    2013-11: 7692.307692307692
+    2013-12: 7692.307692307692
+    2014-01: 7692.307692307692
+    2014-02: 7692.307692307692
+    2014-03: 7692.307692307692
+    2014-04: 7692.307692307692
+    2014-05: 7692.307692307692
+    2014-06: 7692.307692307692
+    2014-07: 7692.307692307692
+    2014-08: 7692.307692307692
+    2014-09: 7692.307692307692
+    2014-10: 7692.307692307692
+  salaire_imposable:
+    2012: 74630.07692307692
+    2013-10: 6219.173076923077
+    2013-11: 6219.173076923077
+    2013-12: 6219.173076923077
+    2014-01: 6219.173076923077
+    2014-02: 6219.173076923077
+    2014-03: 6219.173076923077
+    2014-04: 6219.173076923077
+    2014-05: 6219.173076923077
+    2014-06: 6219.173076923077
+    2014-07: 6219.173076923077
+    2014-08: 6219.173076923077
+    2014-09: 6219.173076923077
+    2014-10: 6219.173076923077
+  salaire_net:
+    2012: 72000
+    2013-10: 6000
+    2013-11: 6000
+    2013-12: 6000
+    2014-01: 6000
+    2014-02: 6000
+    2014-03: 6000
+    2014-04: 6000
+    2014-05: 6000
+    2014-06: 6000
+    2014-07: 6000
+    2014-08: 6000
+    2014-09: 6000
+    2014-10: 6000
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 7
+  age_en_mois: 87
+  date_naissance: '2007-07-12'
+  etudiant: 0
+  id: 543ba5e779b1c2ff2d25dc37
+  inapte_travail: 0
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 7
+  age_en_mois: 87
+  date_naissance: '2007-07-12'
+  etudiant: 0
+  id: 543ba5e779b1c2ff2d25dc36
+  inapte_travail: 0
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 7
+  age_en_mois: 87
+  date_naissance: '2007-07-12'
+  etudiant: 0
+  id: 543ba5e779b1c2ff2d25dc35
+  inapte_travail: 0
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
 familles:
   acs:
     2013-10: 0
@@ -264,9 +264,9 @@ familles:
     2014-08: 0
     2014-09: 0
   enfants:
-    - 543ba5e779b1c2ff2d25dc37
-    - 543ba5e779b1c2ff2d25dc36
-    - 543ba5e779b1c2ff2d25dc35
+  - 543ba5e779b1c2ff2d25dc37
+  - 543ba5e779b1c2ff2d25dc36
+  - 543ba5e779b1c2ff2d25dc35
   paje_base:
     2013-10: 0
     2013-11: 0
@@ -298,15 +298,15 @@ familles:
 foyers_fiscaux:
   declarants: 543ba5e779b1c2ff2d25dc38
   personnes_a_charge:
-    - 543ba5e779b1c2ff2d25dc37
-    - 543ba5e779b1c2ff2d25dc36
-    - 543ba5e779b1c2ff2d25dc35
+  - 543ba5e779b1c2ff2d25dc37
+  - 543ba5e779b1c2ff2d25dc36
+  - 543ba5e779b1c2ff2d25dc35
 menages:
   depcom: 75111
   enfants:
-    - 543ba5e779b1c2ff2d25dc37
-    - 543ba5e779b1c2ff2d25dc36
-    - 543ba5e779b1c2ff2d25dc35
+  - 543ba5e779b1c2ff2d25dc37
+  - 543ba5e779b1c2ff2d25dc36
+  - 543ba5e779b1c2ff2d25dc35
   personne_de_reference: 543ba5e779b1c2ff2d25dc38
   statut_occupation_logement: loge_gratuitement
 output_variables:

@@ -1,90 +1,90 @@
 name: Les enfants qui travaillent et gagnent moins de 55% du smic sont considérés à charge
 keywords:
-  - af
-  - enfants à charge
+- af
+- enfants à charge
 description: L'enfant gagne ici 800 euros nets par mois ce qui est moins de 55% du smic brut mensuel (893,25 euros), les allocations sont donc versées.
-period: "month:2015-01"
+period: month:2015-01
 relative_error_margin: 0.02
 individus:
-  - age: 34
-    age_en_mois: 412
-    date_naissance: "1980-08-12"
-    etudiant: 0
-    id: 54ad0c4f638f222b16b10a9c
-    inapte_travail: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 4
-    age_en_mois: 52
-    date_naissance: "2010-08-12"
-    etudiant: 0
-    id: 54ad0c4f638f222b16b10a9b
-    inapte_travail: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 17
-    age_en_mois: 208
-    date_naissance: "1997-08-12"
-    etudiant: 0
-    id: 54ad0c4f638f222b16b10a8e
-    inapte_travail: 0
-    handicap: 0
-    salaire_de_base:
-      2013: 12307.692307692307
-      2014-01: 1025.6410256410256
-      2014-02: 1025.6410256410256
-      2014-03: 1025.6410256410256
-      2014-04: 1025.6410256410256
-      2014-05: 1025.6410256410256
-      2014-06: 1025.6410256410256
-      2014-07: 1025.6410256410256
-      2014-08: 1025.6410256410256
-      2014-09: 1025.6410256410256
-      2014-10: 1025.6410256410256
-      2014-11: 1025.6410256410256
-      2014-12: 1025.6410256410256
-      2015-01: 1025.6410256410256
-    salaire_imposable:
-      2013: 9950.676923076926
-      2014-01: 829.223076923077
-      2014-02: 829.223076923077
-      2014-03: 829.223076923077
-      2014-04: 829.223076923077
-      2014-05: 829.223076923077
-      2014-06: 829.223076923077
-      2014-07: 829.223076923077
-      2014-08: 829.223076923077
-      2014-09: 829.223076923077
-      2014-10: 829.223076923077
-      2014-11: 829.223076923077
-      2014-12: 829.223076923077
-      2015-01: 829.223076923077
-    salaire_net:
-      2013: 9600
-      2014-01: 800
-      2014-02: 800
-      2014-03: 800
-      2014-04: 800
-      2014-05: 800
-      2014-06: 800
-      2014-07: 800
-      2014-08: 800
-      2014-09: 800
-      2014-10: 800
-      2014-11: 800
-      2014-12: 800
-      2015-01: 800
-    scolarite: college
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
+- age: 34
+  age_en_mois: 412
+  date_naissance: '1980-08-12'
+  etudiant: 0
+  id: 54ad0c4f638f222b16b10a9c
+  inapte_travail: 0
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 4
+  age_en_mois: 52
+  date_naissance: '2010-08-12'
+  etudiant: 0
+  id: 54ad0c4f638f222b16b10a9b
+  inapte_travail: 0
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 17
+  age_en_mois: 208
+  date_naissance: '1997-08-12'
+  etudiant: 0
+  id: 54ad0c4f638f222b16b10a8e
+  inapte_travail: 0
+  handicap: 0
+  salaire_de_base:
+    2013: 12307.692307692307
+    2014-01: 1025.6410256410256
+    2014-02: 1025.6410256410256
+    2014-03: 1025.6410256410256
+    2014-04: 1025.6410256410256
+    2014-05: 1025.6410256410256
+    2014-06: 1025.6410256410256
+    2014-07: 1025.6410256410256
+    2014-08: 1025.6410256410256
+    2014-09: 1025.6410256410256
+    2014-10: 1025.6410256410256
+    2014-11: 1025.6410256410256
+    2014-12: 1025.6410256410256
+    2015-01: 1025.6410256410256
+  salaire_imposable:
+    2013: 9950.676923076926
+    2014-01: 829.223076923077
+    2014-02: 829.223076923077
+    2014-03: 829.223076923077
+    2014-04: 829.223076923077
+    2014-05: 829.223076923077
+    2014-06: 829.223076923077
+    2014-07: 829.223076923077
+    2014-08: 829.223076923077
+    2014-09: 829.223076923077
+    2014-10: 829.223076923077
+    2014-11: 829.223076923077
+    2014-12: 829.223076923077
+    2015-01: 829.223076923077
+  salaire_net:
+    2013: 9600
+    2014-01: 800
+    2014-02: 800
+    2014-03: 800
+    2014-04: 800
+    2014-05: 800
+    2014-06: 800
+    2014-07: 800
+    2014-08: 800
+    2014-09: 800
+    2014-10: 800
+    2014-11: 800
+    2014-12: 800
+    2015-01: 800
+  scolarite: college
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
 familles:
   acs:
     2014-01: 0
@@ -256,8 +256,8 @@ familles:
     2014-11: 0
     2014-12: 0
   enfants:
-    - 54ad0c4f638f222b16b10a9b
-    - 54ad0c4f638f222b16b10a8e
+  - 54ad0c4f638f222b16b10a9b
+  - 54ad0c4f638f222b16b10a8e
   paje_base:
     2014-01: 0
     2014-02: 0
@@ -289,13 +289,13 @@ familles:
 foyers_fiscaux:
   declarants: 54ad0c4f638f222b16b10a9c
   personnes_a_charge:
-    - 54ad0c4f638f222b16b10a9b
-    - 54ad0c4f638f222b16b10a8e
+  - 54ad0c4f638f222b16b10a9b
+  - 54ad0c4f638f222b16b10a8e
 menages:
   depcom: 67482
   enfants:
-    - 54ad0c4f638f222b16b10a9b
-    - 54ad0c4f638f222b16b10a8e
+  - 54ad0c4f638f222b16b10a9b
+  - 54ad0c4f638f222b16b10a8e
   personne_de_reference: 54ad0c4f638f222b16b10a9c
   statut_occupation_logement: loge_gratuitement
 output_variables:

@@ -1,34 +1,34 @@
-- period: "month:2015-11"
+- period: month:2015-11
   absolute_error_margin: 0.005
   input_variables:
     effectif_entreprise: 1
     categorie_salarie: prive_non_cadre
-    salaire_de_base: "1457.52"
+    salaire_de_base: '1457.52'
     allegement_fillon_mode_recouvrement: progressif
-    jeune_entreprise_innovante: "false"
-    contrat_de_travail_debut: "2015-01-01"
+    jeune_entreprise_innovante: 'false'
+    contrat_de_travail_debut: '2015-01-01'
   output_variables:
     formation_professionnelle: -8.016
 
-- period: "month:2015-11"
+- period: month:2015-11
   absolute_error_margin: 0.005
   input_variables:
     effectif_entreprise: 10
     categorie_salarie: prive_non_cadre
-    salaire_de_base: "1457.52"
+    salaire_de_base: '1457.52'
     allegement_fillon_mode_recouvrement: progressif
-    jeune_entreprise_innovante: "false"
-    contrat_de_travail_debut: "2015-01-01"
+    jeune_entreprise_innovante: 'false'
+    contrat_de_travail_debut: '2015-01-01'
   output_variables:
     formation_professionnelle: -14.5752
 
-- period: "month:2015-11"
+- period: month:2015-11
   input_variables:
     effectif_entreprise: 300
     categorie_salarie: prive_non_cadre
-    salaire_de_base: "3000"
+    salaire_de_base: '3000'
     allegement_fillon_mode_recouvrement: progressif
-    jeune_entreprise_innovante: "false"
-    contrat_de_travail_debut: "2015-01-01"
+    jeune_entreprise_innovante: 'false'
+    contrat_de_travail_debut: '2015-01-01'
   output_variables:
     formation_professionnelle: -30

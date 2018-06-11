@@ -1,17 +1,17 @@
 name: Pas d'acs si revenus du capital font dépasser le plafond
 keywords:
-  - base ressources
-  - "cmu-c/acs"
-  - patrimoine
+- base ressources
+- cmu-c/acs
+- patrimoine
 description: |
   Ressources d'activité + aide au logement = droit ACS
   Existence de revenus du capital : dépassement seuil
-period: "month:2014-09"
+period: month:2014-09
 relative_error_margin: 0.02
 individus:
   age: 44
   age_en_mois: 536
-  date_naissance: "1970-01-01"
+  date_naissance: '1970-01-01'
   enceinte: false
   etudiant: 0
   id: 54242ed7c6d851020090b69e
@@ -251,7 +251,7 @@ familles:
     2014-06: 0
     2014-07: 0
     2014-08: 0
-  enfants:
+  enfants: null
   paje_base:
     2013-09: 0
     2013-10: 0
@@ -282,10 +282,10 @@ familles:
     2014-08: 0
 foyers_fiscaux:
   declarants: 54242ed7c6d851020090b69e
-  personnes_a_charge:
+  personnes_a_charge: null
 menages:
   depcom: 75112
-  enfants:
+  enfants: null
   loyer: 200
   personne_de_reference: 54242ed7c6d851020090b69e
   statut_occupation_logement: locataire_vide

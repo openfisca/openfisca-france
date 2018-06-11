@@ -1,8 +1,8 @@
 name: Pas d'eval forfaitaire si RNC > 1015 fois le SMIC
 keywords:
-  - al
-  - base ressources
-  - eval forfaitaire
+- al
+- base ressources
+- eval forfaitaire
 description: |
   Attention test peu robuste en raison d'un operateur ceil
   Pas d'application de l'évaluation forfaitaire dans le cas d'un allocataire qui perçoit une rémunération mensuelle en m-1 et dont les RNC N-2 sont supérieurs à 1015 fois le SMIC horaire brut n-2 (9,43 € en 2013).
@@ -26,12 +26,12 @@ description: |
   AL	23,95
 
   Résultat caf.fr = 22,53€
-period: "month:2015-01"
+period: month:2015-01
 relative_error_margin: 0.02
 individus:
   age: 36
   age_en_mois: 441
-  date_naissance: "1978-04-12"
+  date_naissance: '1978-04-12'
   chomage_imposable:
     2013: 0
   etudiant: 0
@@ -259,7 +259,7 @@ familles:
     2014-10: 0
     2014-11: 0
     2014-12: 0
-  enfants:
+  enfants: null
   paje_base:
     2014-01: 0
     2014-02: 0
@@ -292,12 +292,12 @@ foyers_fiscaux:
   declarants: 54be835fd337b5d372377c19
   pensions_alimentaires_versees:
     2013: 0
-  personnes_a_charge:
+  personnes_a_charge: null
   rfr:
     2013: 0
 menages:
   depcom: 62263
-  enfants:
+  enfants: null
   loyer: 160
   personne_de_reference: 54be835fd337b5d372377c19
   statut_occupation_logement: locataire_vide

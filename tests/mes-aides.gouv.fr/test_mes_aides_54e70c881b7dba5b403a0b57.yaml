@@ -1,109 +1,109 @@
 name: 19 Cf differentiel montant
 keywords:
-  - cf
-  - montant
+- cf
+- montant
 description: |
   Le plafond de ressources du Cf pour une personne seule avec 3 enfants est de 45 941 €. Les ressources du foyer dépassent.
   Donc pas de droit au Cf en son montant complet.
   Les ressources du foyer ne dépassent pas le plafond augmenté de 12 fois le montant du Cf [45 941 + (12x168,35)] = 47 941,2.
   Donc droit au Cf différentiel.
   Calcul du Cf différentiel : (47 941,2 - 47 000)/12 = 80,1 €
-period: "month:2015-02"
+period: month:2015-02
 relative_error_margin: 0.02
 individus:
-  - age: 65
-    age_en_mois: 780
-    date_naissance: "1950-02-01"
-    chomage_imposable:
-      2013: 0
-    etudiant: 0
-    id: 54e70c4f003c75524011601b
-    inapte_travail: 0
-    handicap: 0
-    pensions_alimentaires_percues:
-      2013: 0
-    retraite_imposable:
-      2013: 0
-    salaire_de_base:
-      2014-02: 6695.156695156696
-      2014-03: 6695.156695156696
-      2014-04: 6695.156695156696
-      2014-05: 6695.156695156696
-      2014-06: 6695.156695156696
-      2014-07: 6695.156695156696
-      2014-08: 6695.156695156696
-      2014-09: 6695.156695156696
-      2014-10: 6695.156695156696
-      2014-11: 0
-      2014-12: 0
-      2015-01: 0
-    salaire_imposable:
-      2013: 52222
-      2014-02: 5412.983974358975
-      2014-03: 5412.983974358975
-      2014-04: 5412.983974358975
-      2014-05: 5412.983974358975
-      2014-06: 5412.983974358975
-      2014-07: 5412.983974358975
-      2014-08: 5412.983974358975
-      2014-09: 5412.983974358975
-      2014-10: 5412.983974358975
-      2014-11: 0
-      2014-12: 0
-      2015-01: 0
-    salaire_net:
-      2014-02: 5222.222222222223
-      2014-03: 5222.222222222223
-      2014-04: 5222.222222222223
-      2014-05: 5222.222222222223
-      2014-06: 5222.222222222223
-      2014-07: 5222.222222222223
-      2014-08: 5222.222222222223
-      2014-09: 5222.222222222223
-      2014-10: 5222.222222222223
-      2014-11: 0
-      2014-12: 0
-      2015-01: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 11
-    age_en_mois: 132
-    date_naissance: "2004-02-01"
-    etudiant: 0
-    id: 54e70c4f003c75524011601a
-    inapte_travail: 0
-    handicap: 0
-    scolarite: college
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 12
-    age_en_mois: 144
-    date_naissance: "2003-02-01"
-    etudiant: 0
-    id: 54e70c4f003c755240116019
-    inapte_travail: 0
-    handicap: 0
-    scolarite: college
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 15
-    age_en_mois: 180
-    date_naissance: "2000-02-01"
-    etudiant: 0
-    id: 54e70c4f003c755240116018
-    inapte_travail: 0
-    handicap: 0
-    scolarite: college
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
+- age: 65
+  age_en_mois: 780
+  date_naissance: '1950-02-01'
+  chomage_imposable:
+    2013: 0
+  etudiant: 0
+  id: 54e70c4f003c75524011601b
+  inapte_travail: 0
+  handicap: 0
+  pensions_alimentaires_percues:
+    2013: 0
+  retraite_imposable:
+    2013: 0
+  salaire_de_base:
+    2014-02: 6695.156695156696
+    2014-03: 6695.156695156696
+    2014-04: 6695.156695156696
+    2014-05: 6695.156695156696
+    2014-06: 6695.156695156696
+    2014-07: 6695.156695156696
+    2014-08: 6695.156695156696
+    2014-09: 6695.156695156696
+    2014-10: 6695.156695156696
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+  salaire_imposable:
+    2013: 52222
+    2014-02: 5412.983974358975
+    2014-03: 5412.983974358975
+    2014-04: 5412.983974358975
+    2014-05: 5412.983974358975
+    2014-06: 5412.983974358975
+    2014-07: 5412.983974358975
+    2014-08: 5412.983974358975
+    2014-09: 5412.983974358975
+    2014-10: 5412.983974358975
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+  salaire_net:
+    2014-02: 5222.222222222223
+    2014-03: 5222.222222222223
+    2014-04: 5222.222222222223
+    2014-05: 5222.222222222223
+    2014-06: 5222.222222222223
+    2014-07: 5222.222222222223
+    2014-08: 5222.222222222223
+    2014-09: 5222.222222222223
+    2014-10: 5222.222222222223
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 11
+  age_en_mois: 132
+  date_naissance: '2004-02-01'
+  etudiant: 0
+  id: 54e70c4f003c75524011601a
+  inapte_travail: 0
+  handicap: 0
+  scolarite: college
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 12
+  age_en_mois: 144
+  date_naissance: '2003-02-01'
+  etudiant: 0
+  id: 54e70c4f003c755240116019
+  inapte_travail: 0
+  handicap: 0
+  scolarite: college
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 15
+  age_en_mois: 180
+  date_naissance: '2000-02-01'
+  etudiant: 0
+  id: 54e70c4f003c755240116018
+  inapte_travail: 0
+  handicap: 0
+  scolarite: college
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
 familles:
   acs:
     2014-02: 0
@@ -275,9 +275,9 @@ familles:
     2014-12: 0
     2015-01: 0
   enfants:
-    - 54e70c4f003c75524011601a
-    - 54e70c4f003c755240116019
-    - 54e70c4f003c755240116018
+  - 54e70c4f003c75524011601a
+  - 54e70c4f003c755240116019
+  - 54e70c4f003c755240116018
   paje_base:
     2014-02: 0
     2014-03: 0
@@ -311,17 +311,17 @@ foyers_fiscaux:
   pensions_alimentaires_versees:
     2013: 0
   personnes_a_charge:
-    - 54e70c4f003c75524011601a
-    - 54e70c4f003c755240116019
-    - 54e70c4f003c755240116018
+  - 54e70c4f003c75524011601a
+  - 54e70c4f003c755240116019
+  - 54e70c4f003c755240116018
   rfr:
     2013: 52222
 menages:
   depcom: 75114
   enfants:
-    - 54e70c4f003c75524011601a
-    - 54e70c4f003c755240116019
-    - 54e70c4f003c755240116018
+  - 54e70c4f003c75524011601a
+  - 54e70c4f003c755240116019
+  - 54e70c4f003c755240116018
   personne_de_reference: 54e70c4f003c75524011601b
   statut_occupation_logement: loge_gratuitement
 output_variables:

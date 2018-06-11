@@ -1,18 +1,18 @@
 name: Plafond majoré pour les DOM (hors Mayotte)
 keywords:
-  - "cmu-c"
-  - "cmu-c/acs"
-  - dom
-  - plafonds
+- cmu-c
+- cmu-c/acs
+- dom
+- plafonds
 description: |
   Test sur une ville de la Guadeloupe (DOM).
   Le plafond est de 9621 € / an (801.75 € / mois).
-period: "month:2014-10"
+period: month:2014-10
 relative_error_margin: 0.02
 individus:
   age: 34
   age_en_mois: 417
-  date_naissance: "1980-01-01"
+  date_naissance: '1980-01-01'
   etudiant: 0
   id: 544fbd3258d3be9826107645
   inapte_travail: 0
@@ -236,7 +236,7 @@ familles:
     2014-07: 0
     2014-08: 0
     2014-09: 0
-  enfants:
+  enfants: null
   paje_base:
     2013-10: 0
     2013-11: 0
@@ -267,10 +267,10 @@ familles:
     2014-09: 0
 foyers_fiscaux:
   declarants: 544fbd3258d3be9826107645
-  personnes_a_charge:
+  personnes_a_charge: null
 menages:
   depcom: 97105
-  enfants:
+  enfants: null
   loyer: 100
   personne_de_reference: 544fbd3258d3be9826107645
   statut_occupation_logement: locataire_vide

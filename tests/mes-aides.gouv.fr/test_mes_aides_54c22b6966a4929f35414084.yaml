@@ -1,7 +1,7 @@
-name: "Femme enceinte isolée : calcul sur base couple"
+name: 'Femme enceinte isolée : calcul sur base couple'
 keywords:
-  - al
-  - location
+- al
+- location
 description: |
   Pour une femme enceinte isolée sans enfants, on fait comme si elle était en couple. cf. D542-6 du CSS : http://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000006737370&cidTexte=LEGITEXT000006073189
 
@@ -20,12 +20,12 @@ description: |
   P1	54,01
   Pp	88,74
   AL	315,82
-period: "month:2015-01"
+period: month:2015-01
 relative_error_margin: 0.02
 individus:
   age: 34
   age_en_mois: 413
-  date_naissance: "1980-08-12"
+  date_naissance: '1980-08-12'
   chomage_imposable:
     2013: 0
   enceinte: true
@@ -213,7 +213,7 @@ familles:
     2014-10: 0
     2014-11: 0
     2014-12: 0
-  enfants:
+  enfants: null
   paje_base:
     2014-01: 0
     2014-02: 0
@@ -246,12 +246,12 @@ foyers_fiscaux:
   declarants: 54c22a358a248fab3505d37a
   pensions_alimentaires_versees:
     2013: 0
-  personnes_a_charge:
+  personnes_a_charge: null
   rfr:
     2013: 0
 menages:
   depcom: 75111
-  enfants:
+  enfants: null
   loyer: 1000
   personne_de_reference: 54c22a358a248fab3505d37a
   statut_occupation_logement: locataire_vide

@@ -1,80 +1,80 @@
-name: "Taux 3 : 357 euros par an / plafond de 2790 euros"
+name: 'Taux 3 : 357 euros par an / plafond de 2790 euros'
 keywords:
-  - bourse collège
-  - montant
+- bourse collège
+- montant
 description: RFR = 2700 euros < plafond de 2790 euros pour le montant de 357 euros
-period: "month:2014-12"
+period: month:2014-12
 relative_error_margin: 0.02
 individus:
-  - age: 34
-    age_en_mois: 411
-    date_naissance: "1980-08-12"
-    chomage_imposable:
-      2013: 0
-    etudiant: 0
-    id: 5485d40b3bc432e473c703b7
-    inapte_travail: 0
-    handicap: 0
-    pensions_alimentaires_percues:
-      2013: 0
-    retraite_imposable:
-      2013: 0
-    salaire_de_base:
-      2013-12: 384.6153846153846
-      2014-01: 384.6153846153846
-      2014-02: 384.6153846153846
-      2014-03: 384.6153846153846
-      2014-04: 384.6153846153846
-      2014-05: 384.6153846153846
-      2014-06: 384.6153846153846
-      2014-07: 384.6153846153846
-      2014-08: 384.6153846153846
-      2014-09: 0
-      2014-10: 0
-      2014-11: 0
-    salaire_imposable:
-      2013: 0
-      2013-12: 310.9586538461538
-      2014-01: 310.9586538461538
-      2014-02: 310.9586538461538
-      2014-03: 310.9586538461538
-      2014-04: 310.9586538461538
-      2014-05: 310.9586538461538
-      2014-06: 310.9586538461538
-      2014-07: 310.9586538461538
-      2014-08: 310.9586538461538
-      2014-09: 0
-      2014-10: 0
-      2014-11: 0
-    salaire_net:
-      2013-12: 300
-      2014-01: 300
-      2014-02: 300
-      2014-03: 300
-      2014-04: 300
-      2014-05: 300
-      2014-06: 300
-      2014-07: 300
-      2014-08: 300
-      2014-09: 0
-      2014-10: 0
-      2014-11: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 14
-    age_en_mois: 171
-    date_naissance: "2000-08-12"
-    etudiant: 0
-    id: 5485d40b3bc432e473c703b6
-    inapte_travail: 0
-    handicap: 0
-    scolarite: college
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
+- age: 34
+  age_en_mois: 411
+  date_naissance: '1980-08-12'
+  chomage_imposable:
+    2013: 0
+  etudiant: 0
+  id: 5485d40b3bc432e473c703b7
+  inapte_travail: 0
+  handicap: 0
+  pensions_alimentaires_percues:
+    2013: 0
+  retraite_imposable:
+    2013: 0
+  salaire_de_base:
+    2013-12: 384.6153846153846
+    2014-01: 384.6153846153846
+    2014-02: 384.6153846153846
+    2014-03: 384.6153846153846
+    2014-04: 384.6153846153846
+    2014-05: 384.6153846153846
+    2014-06: 384.6153846153846
+    2014-07: 384.6153846153846
+    2014-08: 384.6153846153846
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+  salaire_imposable:
+    2013: 0
+    2013-12: 310.9586538461538
+    2014-01: 310.9586538461538
+    2014-02: 310.9586538461538
+    2014-03: 310.9586538461538
+    2014-04: 310.9586538461538
+    2014-05: 310.9586538461538
+    2014-06: 310.9586538461538
+    2014-07: 310.9586538461538
+    2014-08: 310.9586538461538
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+  salaire_net:
+    2013-12: 300
+    2014-01: 300
+    2014-02: 300
+    2014-03: 300
+    2014-04: 300
+    2014-05: 300
+    2014-06: 300
+    2014-07: 300
+    2014-08: 300
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 14
+  age_en_mois: 171
+  date_naissance: '2000-08-12'
+  etudiant: 0
+  id: 5485d40b3bc432e473c703b6
+  inapte_travail: 0
+  handicap: 0
+  scolarite: college
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
 familles:
   acs:
     2013-12: 0

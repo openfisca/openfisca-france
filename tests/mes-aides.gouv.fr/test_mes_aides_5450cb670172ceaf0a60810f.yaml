@@ -1,14 +1,14 @@
 name: Locataire meublé non conventionné
 keywords:
-  - al
-  - caf.fr
-description:
-period: "month:2014-10"
+- al
+- caf.fr
+description: null
+period: month:2014-10
 relative_error_margin: 0.02
 individus:
   age: 34
   age_en_mois: 417
-  date_naissance: "1980-01-01"
+  date_naissance: '1980-01-01'
   etudiant: 0
   id: 5450cac80172ceaf0a60810e
   inapte_travail: 0
@@ -187,7 +187,7 @@ familles:
     2014-07: 0
     2014-08: 0
     2014-09: 0
-  enfants:
+  enfants: null
   paje_base:
     2013-10: 0
     2013-11: 0
@@ -218,10 +218,10 @@ familles:
     2014-09: 0
 foyers_fiscaux:
   declarants: 5450cac80172ceaf0a60810e
-  personnes_a_charge:
+  personnes_a_charge: null
 menages:
   depcom: 92071
-  enfants:
+  enfants: null
   loyer: 500
   personne_de_reference: 5450cac80172ceaf0a60810e
   statut_occupation_logement: locataire_meuble

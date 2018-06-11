@@ -1,4 +1,4 @@
-- period: "2016-06"
+- period: 2016-06
   name: Forfait social
   relative_error_margin: 0.001
   input_variables:
@@ -15,7 +15,7 @@
     # Forfait social : seulement le taux réduit de 8 %
     forfait_social: -(40 * 0.625 + 1467 * 1.5 / 100) * (8 / 100)
 
-- period: "2016-06"
+- period: 2016-06
   name: Forfait social nul pour moins de 11 salariés en 2016
   relative_error_margin: 0.001
   input_variables:

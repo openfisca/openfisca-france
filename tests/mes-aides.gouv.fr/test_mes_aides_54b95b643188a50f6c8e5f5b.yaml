@@ -1,8 +1,8 @@
 name: Application eval forfaitaire si RNC en dessous de 1015 fois le SMIC
 keywords:
-  - al
-  - base ressources
-  - eval forfaitaire
+- al
+- base ressources
+- eval forfaitaire
 description: |
   Application d'une évaluation forfaitaire dans le cas d'un allocataire qui perçoit un salaire en m-1 et dont les RNC N-2 sont inférieurs à 1015 fois le SMIC horaire brut n-2 (9,43 € en 2013), c'est-à-dire 9,43 * 1015 = 9570 €.
   Cas d'un salarié = évaluation forfaitaire de 12 fois le salaire m-1.
@@ -27,12 +27,12 @@ description: |
   AL	22,87
 
   Résultat caf.fr en mettant 1200/0.971=1236 comme salaire imposable : 24,51€
-period: "month:2015-01"
+period: month:2015-01
 absolute_error_margin: 2
 individus:
   age: 27
   age_en_mois: 331
-  date_naissance: "1987-05-17"
+  date_naissance: '1987-05-17'
   chomage_imposable:
     2013: 0
   etudiant: 0
@@ -260,7 +260,7 @@ familles:
     2014-10: 0
     2014-11: 0
     2014-12: 0
-  enfants:
+  enfants: null
   paje_base:
     2014-01: 0
     2014-02: 0
@@ -293,12 +293,12 @@ foyers_fiscaux:
   declarants: 54b95373955a42106c94b338
   pensions_alimentaires_versees:
     2013: 0
-  personnes_a_charge:
+  personnes_a_charge: null
   rfr:
     2013: 9570
 menages:
   depcom: 75120
-  enfants:
+  enfants: null
   loyer: 540
   personne_de_reference: 54b95373955a42106c94b338
   statut_occupation_logement: locataire_meuble

@@ -1,16 +1,16 @@
 name: 118_Bourses
 keywords:
-  - base ressources
-  - rsa
+- base ressources
+- rsa
 description: |
   Bourses de l'enseignement supérieur => Non prises en compte
   Bourses d'étude => Prises en compte comme un revenu d'activité (abattement 62%)
-period: "month:2015-01"
+period: month:2015-01
 relative_error_margin: 0.02
 individus:
   age: 35
   age_en_mois: 420
-  date_naissance: "1980-01-01"
+  date_naissance: '1980-01-01'
   bourse_enseignement_sup:
     2013: 24000
     2014-01: 2000
@@ -219,7 +219,7 @@ familles:
     2014-10: 0
     2014-11: 0
     2014-12: 0
-  enfants:
+  enfants: null
   paje_base:
     2014-01: 0
     2014-02: 0
@@ -249,10 +249,10 @@ familles:
     2014-12: 0
 foyers_fiscaux:
   declarants: 54bfd7856d9c06c9722b3ad5
-  personnes_a_charge:
+  personnes_a_charge: null
 menages:
   depcom: 30092
-  enfants:
+  enfants: null
   personne_de_reference: 54bfd7856d9c06c9722b3ad5
   statut_occupation_logement: loge_gratuitement
 output_variables:

@@ -1,5 +1,4 @@
-description: Plafond de ressources pour un couple (mensuel), en multiple du montant
-  journalier à taux plein
+description: Plafond de ressources pour un couple (mensuel), en multiple du montant journalier à taux plein
 reference: openfisca
 unit: currency
 values:

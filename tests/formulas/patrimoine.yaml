@@ -1,278 +1,278 @@
 - name: 1. Montant soustrait de 3% des revenus théoriques de l'épargne ne générant pas de revenus
   keywords:
-    - patrimoine
-  description:
-  period: "2016-10"
+  - patrimoine
+  description: null
+  period: 2016-10
   relative_error_margin: 0.02
   individus:
-    - id: "parent1"
-      date_naissance: 1968-01-10
-      epargne_revenus_non_imposables: 34400
-      valeur_immo_non_loue: 156000
-      valeur_locative_immo_non_loue: 450 * 2
-      valeur_terrains_non_loues: 40000
-      valeur_locative_terrains_non_loues: 150 * 2
-    - id: "parent2"
-      date_naissance: 1971-01-20
-      epargne_revenus_non_imposables: 17800
-      valeur_immo_non_loue: 0
-      valeur_locative_immo_non_loue: 0
-      valeur_terrains_non_loues: 40000
-      valeur_locative_terrains_non_loues: 150 * 2
+  - id: parent1
+    date_naissance: 1968-01-10
+    epargne_revenus_non_imposables: 34400
+    valeur_immo_non_loue: 156000
+    valeur_locative_immo_non_loue: 450 * 2
+    valeur_terrains_non_loues: 40000
+    valeur_locative_terrains_non_loues: 150 * 2
+  - id: parent2
+    date_naissance: 1971-01-20
+    epargne_revenus_non_imposables: 17800
+    valeur_immo_non_loue: 0
+    valeur_locative_immo_non_loue: 0
+    valeur_terrains_non_loues: 40000
+    valeur_locative_terrains_non_loues: 150 * 2
   familles:
-    parents: ["parent1", "parent2"]
+    parents: [parent1, parent2]
   foyers_fiscaux:
-    declarants: ["parent1", "parent2"]
+    declarants: [parent1, parent2]
   menages:
-    personne_de_reference: "parent1"
-    conjoint: "parent2"
+    personne_de_reference: parent1
+    conjoint: parent2
   output_variables:
-     aide_logement_base_ressources_patrimoine: 1566 + 450 + 480
+    aide_logement_base_ressources_patrimoine: 1566 + 450 + 480
 
 - name: 2. Montant soustrait de 3% des revenus théoriques de l'épargne ne générant pas de revenus
   keywords:
-    - patrimoine
-  description:
-  period: "2016-10"
+  - patrimoine
+  description: null
+  period: 2016-10
   relative_error_margin: 0.02
   individus:
-    - id: "parent1"
-      date_naissance: 1968-01-10
-      epargne_revenus_non_imposables: 15000
-      valeur_immo_non_loue: 100000
-      valeur_locative_immo_non_loue: 300 * 2
-      valeur_terrains_non_loues: 20000
-      valeur_locative_terrains_non_loues: 70 * 2
-    - id: "parent2"
-      date_naissance: 1971-01-20
-      epargne_revenus_non_imposables: 8000
-      valeur_immo_non_loue: 100000
-      valeur_locative_immo_non_loue: 300 * 2
-      valeur_terrains_non_loues: 20000
-      valeur_locative_terrains_non_loues: 70 * 2
+  - id: parent1
+    date_naissance: 1968-01-10
+    epargne_revenus_non_imposables: 15000
+    valeur_immo_non_loue: 100000
+    valeur_locative_immo_non_loue: 300 * 2
+    valeur_terrains_non_loues: 20000
+    valeur_locative_terrains_non_loues: 70 * 2
+  - id: parent2
+    date_naissance: 1971-01-20
+    epargne_revenus_non_imposables: 8000
+    valeur_immo_non_loue: 100000
+    valeur_locative_immo_non_loue: 300 * 2
+    valeur_terrains_non_loues: 20000
+    valeur_locative_terrains_non_loues: 70 * 2
   familles:
-    parents: ["parent1", "parent2"]
+    parents: [parent1, parent2]
   foyers_fiscaux:
-    declarants: ["parent1", "parent2"]
+    declarants: [parent1, parent2]
   menages:
-    personne_de_reference: "parent1"
-    conjoint: "parent2"
+    personne_de_reference: parent1
+    conjoint: parent2
   output_variables:
-     aide_logement_base_ressources_patrimoine: 690 + 600 + 224
+    aide_logement_base_ressources_patrimoine: 690 + 600 + 224
 
 
 - name: 3. Montant soustrait de 3% des revenus théoriques de l'épargne ne générant pas de revenus
   keywords:
-    - patrimoine
-  description:
-  period: "2016-10"
+  - patrimoine
+  description: null
+  period: 2016-10
   relative_error_margin: 0.02
   individus:
-    - id: "parent1"
-      date_naissance: 1968-01-10
-      epargne_revenus_non_imposables: 12000
-      valeur_immo_non_loue: 0
-      valeur_locative_immo_non_loue: 0 * 2
-      valeur_terrains_non_loues: 0
-      valeur_locative_terrains_non_loues: 0 * 2
-    - id: "parent2"
-      date_naissance: 1971-01-20
-      epargne_revenus_non_imposables: 25000
-      valeur_immo_non_loue: 280000
-      valeur_locative_immo_non_loue: 800 * 2
-      valeur_terrains_non_loues: 80000
-      valeur_locative_terrains_non_loues: 400 * 2
-    - id: "enfant1"
-      date_naissance: 2002-02-10
-      epargne_revenus_non_imposables: 10000
-    - id: "enfant2"
-      date_naissance: 2008-06-30
+  - id: parent1
+    date_naissance: 1968-01-10
+    epargne_revenus_non_imposables: 12000
+    valeur_immo_non_loue: 0
+    valeur_locative_immo_non_loue: 0 * 2
+    valeur_terrains_non_loues: 0
+    valeur_locative_terrains_non_loues: 0 * 2
+  - id: parent2
+    date_naissance: 1971-01-20
+    epargne_revenus_non_imposables: 25000
+    valeur_immo_non_loue: 280000
+    valeur_locative_immo_non_loue: 800 * 2
+    valeur_terrains_non_loues: 80000
+    valeur_locative_terrains_non_loues: 400 * 2
+  - id: enfant1
+    date_naissance: 2002-02-10
+    epargne_revenus_non_imposables: 10000
+  - id: enfant2
+    date_naissance: 2008-06-30
   familles:
-    parents: ["parent1", "parent2"]
+    parents: [parent1, parent2]
   foyers_fiscaux:
-    declarants: ["parent1", "parent2"]
-    personnes_a_charge: ["enfant1", "enfant2"]
+    declarants: [parent1, parent2]
+    personnes_a_charge: [enfant1, enfant2]
   menages:
-    personne_de_reference: "parent1"
-    conjoint: "parent2"
-    enfants: ["enfant1", "enfant2"]
+    personne_de_reference: parent1
+    conjoint: parent2
+    enfants: [enfant1, enfant2]
   output_variables:
-     aide_logement_base_ressources_patrimoine: 1410 + 800 + 640
+    aide_logement_base_ressources_patrimoine: 1410 + 800 + 640
 
 - name: 4. Montant soustrait de 3% des revenus théoriques de l'épargne ne générant pas de revenus
   keywords:
-    - patrimoine
-  description:
-  period: "2016-10"
+  - patrimoine
+  description: null
+  period: 2016-10
   relative_error_margin: 0.02
   individus:
-    - id: "parent1"
-      date_naissance: 1968-01-10
-      epargne_revenus_non_imposables: 8000
-      valeur_immo_non_loue: 0
-      valeur_locative_immo_non_loue: 0 * 2
-      valeur_terrains_non_loues: 0
-      valeur_locative_terrains_non_loues: 0 * 2
-    - id: "parent2"
-      date_naissance: 1971-01-20
-      epargne_revenus_non_imposables: 4000
-      valeur_immo_non_loue: 0
-      valeur_locative_immo_non_loue: 0 * 2
-      valeur_terrains_non_loues: 0
-      valeur_locative_terrains_non_loues: 0 * 2
+  - id: parent1
+    date_naissance: 1968-01-10
+    epargne_revenus_non_imposables: 8000
+    valeur_immo_non_loue: 0
+    valeur_locative_immo_non_loue: 0 * 2
+    valeur_terrains_non_loues: 0
+    valeur_locative_terrains_non_loues: 0 * 2
+  - id: parent2
+    date_naissance: 1971-01-20
+    epargne_revenus_non_imposables: 4000
+    valeur_immo_non_loue: 0
+    valeur_locative_immo_non_loue: 0 * 2
+    valeur_terrains_non_loues: 0
+    valeur_locative_terrains_non_loues: 0 * 2
   familles:
-    parents: ["parent1", "parent2"]
+    parents: [parent1, parent2]
   foyers_fiscaux:
-    declarants: ["parent1", "parent2"]
+    declarants: [parent1, parent2]
   menages:
-    personne_de_reference: "parent1"
-    conjoint: "parent2"
+    personne_de_reference: parent1
+    conjoint: parent2
   output_variables:
-     aide_logement_base_ressources_patrimoine: 0 + 0 + 0
+    aide_logement_base_ressources_patrimoine: 0 + 0 + 0
 
 - name: 5. Personne Résidant en EHPAD
   keywords:
-    - patrimoine
-  description:
-  period: "2016-10"
+  - patrimoine
+  description: null
+  period: 2016-10
   relative_error_margin: 0.02
   individus:
-    - id: "parent1"
-      date_naissance: 1948-03-15
-      epargne_revenus_non_imposables: 9800
-      valeur_immo_non_loue: 156000
-      valeur_locative_immo_non_loue: 450 * 2
-      valeur_terrains_non_loues: 0
-      valeur_locative_terrains_non_loues: 0 * 2
+  - id: parent1
+    date_naissance: 1948-03-15
+    epargne_revenus_non_imposables: 9800
+    valeur_immo_non_loue: 156000
+    valeur_locative_immo_non_loue: 450 * 2
+    valeur_terrains_non_loues: 0
+    valeur_locative_terrains_non_loues: 0 * 2
   familles:
-    parents: ["parent1"]
+    parents: [parent1]
   foyers_fiscaux:
-    declarants: ["parent1"]
+    declarants: [parent1]
   menages:
-    personne_de_reference: "parent1"
-    statut_occupation_logement: "locataire_foyer"
+    personne_de_reference: parent1
+    statut_occupation_logement: locataire_foyer
   output_variables:
-     aide_logement_base_ressources_patrimoine: 0 + 0 + 0
+    aide_logement_base_ressources_patrimoine: 0 + 0 + 0
 
 - name: 6. Personne residant en Logement-foyer
   keywords:
-    - patrimoine
-  description:
-  period: "2016-10"
+  - patrimoine
+  description: null
+  period: 2016-10
   relative_error_margin: 0.02
   individus:
-    - id: "parent1"
-      date_naissance: 1940-01-27
-      epargne_revenus_non_imposables: 7200
-      valeur_immo_non_loue: 120000
-      valeur_locative_immo_non_loue: 350 * 2
-      valeur_terrains_non_loues: 80000
-      valeur_locative_terrains_non_loues: 300 * 2
+  - id: parent1
+    date_naissance: 1940-01-27
+    epargne_revenus_non_imposables: 7200
+    valeur_immo_non_loue: 120000
+    valeur_locative_immo_non_loue: 350 * 2
+    valeur_terrains_non_loues: 80000
+    valeur_locative_terrains_non_loues: 300 * 2
   familles:
-    parents: ["parent1"]
+    parents: [parent1]
   foyers_fiscaux:
-    declarants: ["parent1"]
+    declarants: [parent1]
   menages:
-    personne_de_reference: "parent1"
-    statut_occupation_logement: "locataire_foyer"
+    personne_de_reference: parent1
+    statut_occupation_logement: locataire_foyer
   output_variables:
-     aide_logement_base_ressources_patrimoine: 0 + 0 + 0
+    aide_logement_base_ressources_patrimoine: 0 + 0 + 0
 
 - name: 7. Personne résidant en Maison de retraite
   keywords:
-    - patrimoine
-  description:
-  period: "2016-10"
+  - patrimoine
+  description: null
+  period: 2016-10
   relative_error_margin: 0.02
   individus:
-    - id: "parent1"
-      date_naissance: 1946-07-20
-      epargne_revenus_non_imposables: 10200
-      valeur_immo_non_loue: 180000
-      valeur_locative_immo_non_loue: 450 * 2
-      valeur_terrains_non_loues: 40000
-      valeur_locative_terrains_non_loues: 150 * 2
+  - id: parent1
+    date_naissance: 1946-07-20
+    epargne_revenus_non_imposables: 10200
+    valeur_immo_non_loue: 180000
+    valeur_locative_immo_non_loue: 450 * 2
+    valeur_terrains_non_loues: 40000
+    valeur_locative_terrains_non_loues: 150 * 2
   familles:
-    parents: ["parent1"]
+    parents: [parent1]
   foyers_fiscaux:
-    declarants: ["parent1"]
+    declarants: [parent1]
   menages:
-    personne_de_reference: "parent1"
-    statut_occupation_logement: "locataire_foyer"
+    personne_de_reference: parent1
+    statut_occupation_logement: locataire_foyer
   output_variables:
-     aide_logement_base_ressources_patrimoine: 0 + 0 + 0
+    aide_logement_base_ressources_patrimoine: 0 + 0 + 0
 
 - name: 8. Foyer avec un membre bénéficiaire d'AAH
   keywords:
-    - patrimoine
-  description:
-  period: "2016-10"
+  - patrimoine
+  description: null
+  period: 2016-10
   relative_error_margin: 0.02
   individus:
-    - id: "parent1"
-      date_naissance: 1968-01-10
-      epargne_revenus_non_imposables: 20768
-      valeur_immo_non_loue: 0
-      valeur_locative_immo_non_loue: 0 * 2
-      valeur_terrains_non_loues: 80000
-      valeur_locative_terrains_non_loues: 300 * 2
-    - id: "parent2"
-      date_naissance: 1971-01-20
-      epargne_revenus_non_imposables: 4812
-      valeur_immo_non_loue: 0
-      valeur_locative_immo_non_loue: 0 * 2
-      valeur_terrains_non_loues: 0
-      valeur_locative_terrains_non_loues: 0 * 2
-      aah: 1000
-    - id: "enfant1"
-      date_naissance: 2005-07-11
+  - id: parent1
+    date_naissance: 1968-01-10
+    epargne_revenus_non_imposables: 20768
+    valeur_immo_non_loue: 0
+    valeur_locative_immo_non_loue: 0 * 2
+    valeur_terrains_non_loues: 80000
+    valeur_locative_terrains_non_loues: 300 * 2
+  - id: parent2
+    date_naissance: 1971-01-20
+    epargne_revenus_non_imposables: 4812
+    valeur_immo_non_loue: 0
+    valeur_locative_immo_non_loue: 0 * 2
+    valeur_terrains_non_loues: 0
+    valeur_locative_terrains_non_loues: 0 * 2
+    aah: 1000
+  - id: enfant1
+    date_naissance: 2005-07-11
   familles:
-    parents: ["parent1", "parent2"]
-    enfants: ["enfant1"]
+    parents: [parent1, parent2]
+    enfants: [enfant1]
   foyers_fiscaux:
-    declarants: ["parent1", "parent2"]
-    personnes_a_charge: ["enfant1"]
+    declarants: [parent1, parent2]
+    personnes_a_charge: [enfant1]
   menages:
-    personne_de_reference: "parent1"
-    conjoint: "parent2"
-    enfants: ["enfant1"]
+    personne_de_reference: parent1
+    conjoint: parent2
+    enfants: [enfant1]
   output_variables:
-     aide_logement_base_ressources_patrimoine: 0 + 0 + 0
+    aide_logement_base_ressources_patrimoine: 0 + 0 + 0
 
 - name: 9. Foyer avec un membre bénéficiaire d'AEEH
   keywords:
-    - patrimoine
-  description:
-  period: "2016-10"
+  - patrimoine
+  description: null
+  period: 2016-10
   relative_error_margin: 0.02
   individus:
-    - id: "parent1"
-      date_naissance: 1968-01-10
-      epargne_revenus_non_imposables: 0
-      valeur_immo_non_loue: 0
-      valeur_locative_immo_non_loue: 0 * 2
-      valeur_terrains_non_loues: 80000
-      valeur_locative_terrains_non_loues: 300 * 2
-    - id: "parent2"
-      date_naissance: 1971-01-20
-      epargne_revenus_non_imposables: 10000
-      valeur_immo_non_loue: 0
-      valeur_locative_immo_non_loue: 0 * 2
-      valeur_terrains_non_loues: 0
-      valeur_locative_terrains_non_loues: 0 * 2
-      aah: 1000
-    - id: "enfant1"
-      date_naissance: 2005-07-11
+  - id: parent1
+    date_naissance: 1968-01-10
+    epargne_revenus_non_imposables: 0
+    valeur_immo_non_loue: 0
+    valeur_locative_immo_non_loue: 0 * 2
+    valeur_terrains_non_loues: 80000
+    valeur_locative_terrains_non_loues: 300 * 2
+  - id: parent2
+    date_naissance: 1971-01-20
+    epargne_revenus_non_imposables: 10000
+    valeur_immo_non_loue: 0
+    valeur_locative_immo_non_loue: 0 * 2
+    valeur_terrains_non_loues: 0
+    valeur_locative_terrains_non_loues: 0 * 2
+    aah: 1000
+  - id: enfant1
+    date_naissance: 2005-07-11
   familles:
-    parents: ["parent1", "parent2"]
-    enfants: ["enfant1"]
+    parents: [parent1, parent2]
+    enfants: [enfant1]
     aeeh: 1000
   foyers_fiscaux:
-    declarants: ["parent1", "parent2"]
-    personnes_a_charge: ["enfant1"]
+    declarants: [parent1, parent2]
+    personnes_a_charge: [enfant1]
   menages:
-    personne_de_reference: "parent1"
-    conjoint: "parent2"
-    enfants: ["enfant1"]
+    personne_de_reference: parent1
+    conjoint: parent2
+    enfants: [enfant1]
   output_variables:
-     aide_logement_base_ressources_patrimoine: 0 + 0 + 0
+    aide_logement_base_ressources_patrimoine: 0 + 0 + 0

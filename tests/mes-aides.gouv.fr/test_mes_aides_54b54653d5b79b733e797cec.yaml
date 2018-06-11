@@ -1,15 +1,15 @@
 name: Personne hébergée à titre gratuit ressources < plafond
 keywords:
-  - base ressources
-  - "cmu-c/acs"
-  - forfait logement
+- base ressources
+- cmu-c/acs
+- forfait logement
 description: Une personne hébergée à titre gratuit si c'est ressources <720 euros = 650eur + 60 eur (forfait logement) a droit à la CMUC
-period: "month:2015-01"
+period: month:2015-01
 relative_error_margin: 0.02
 individus:
   age: 34
   age_en_mois: 418
-  date_naissance: "1980-03-02"
+  date_naissance: '1980-03-02'
   etudiant: 0
   id: 54b544f65d6c356f3ea1cb25
   inapte_travail: 0
@@ -233,7 +233,7 @@ familles:
     2014-10: 0
     2014-11: 0
     2014-12: 0
-  enfants:
+  enfants: null
   paje_base:
     2014-01: 0
     2014-02: 0
@@ -263,10 +263,10 @@ familles:
     2014-12: 0
 foyers_fiscaux:
   declarants: 54b544f65d6c356f3ea1cb25
-  personnes_a_charge:
+  personnes_a_charge: null
 menages:
   depcom: 77389
-  enfants:
+  enfants: null
   personne_de_reference: 54b544f65d6c356f3ea1cb25
   statut_occupation_logement: loge_gratuitement
 output_variables:

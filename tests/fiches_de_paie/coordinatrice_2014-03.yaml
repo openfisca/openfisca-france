@@ -1,17 +1,17 @@
-name: "Coordinatrice"
-period: "2014-03"
+name: Coordinatrice
+period: 2014-03
 absolute_error_margin: 0.005
 input_variables:
   allegement_fillon_mode_recouvrement: anticipe  # "anticipe_regularisation_fin_de_periode"
   assujettie_taxe_salaires: true
   avantage_en_nature_valeur_reelle: 0
   contrat_de_travail: temps_plein
-  contrat_de_travail_debut: "2013-07-02"
-  contrat_de_travail_fin: "2014-12-31"
+  contrat_de_travail_debut: '2013-07-02'
+  contrat_de_travail_fin: '2014-12-31'
   contrat_de_travail_duree: cdi
   effectif_entreprise: 250
   heures_non_remunerees_volume: 0
-  code_postal_entreprise: "13299"
+  code_postal_entreprise: '13299'
   nombre_tickets_restaurant: 0
   prevoyance_obligatoire_cadre_taux_employeur: 0.015  # 1.5% est le minimum
   primes_salaires: 0

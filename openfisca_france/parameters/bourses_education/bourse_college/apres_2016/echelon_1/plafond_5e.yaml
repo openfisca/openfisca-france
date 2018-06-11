@@ -1,5 +1,4 @@
-description: Plafond de référence pour l'échelon 1, pour une famille avec 5 enfants,
-  en multiple du SMIC horaire brut
+description: Plafond de référence pour l'échelon 1, pour une famille avec 5 enfants, en multiple du SMIC horaire brut
 reference: openfisca
 unit: /1
 values:

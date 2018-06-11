@@ -1,54 +1,54 @@
 name: Couple qui touche une AL, ressources < plafond
 keywords:
-  - base ressources
-  - "cmu-c/acs"
-  - forfait logement
-description: "Forfait logement pour 2 personnes : 120 €, ressources < 1080 - 120 = 960."
-period: "month:2014-07"
+- base ressources
+- cmu-c/acs
+- forfait logement
+description: 'Forfait logement pour 2 personnes : 120 €, ressources < 1080 - 120 = 960.'
+period: month:2014-07
 relative_error_margin: 0.02
 individus:
-  - age: 24
-    age_en_mois: 298
-    date_naissance: "1989-09-14"
-    enceinte: false
-    etudiant: 0
-    id: 53d22068159e330200810b8a
-    inapte_travail: 0
-    handicap: 0
-    salaire_de_base:
-      2012: 3653.8461538461543
-      2014-04: 1217.948717948718
-      2014-05: 1217.948717948718
-      2014-06: 1217.948717948718
-      2014-07: 1217.948717948718
-    salaire_imposable:
-      2012: 2954.1072115384613
-      2014-04: 984.7024038461539
-      2014-05: 984.7024038461539
-      2014-06: 984.7024038461539
-      2014-07: 984.7024038461539
-    salaire_net:
-      2012: 2850
-      2014-04: 950
-      2014-05: 950
-      2014-06: 950
-      2014-07: 950
-    statut_marital: marie
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 24
-    age_en_mois: 298
-    date_naissance: "1989-09-14"
-    etudiant: 0
-    id: 53d22068159e330200810b89
-    inapte_travail: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
+- age: 24
+  age_en_mois: 298
+  date_naissance: '1989-09-14'
+  enceinte: false
+  etudiant: 0
+  id: 53d22068159e330200810b8a
+  inapte_travail: 0
+  handicap: 0
+  salaire_de_base:
+    2012: 3653.8461538461543
+    2014-04: 1217.948717948718
+    2014-05: 1217.948717948718
+    2014-06: 1217.948717948718
+    2014-07: 1217.948717948718
+  salaire_imposable:
+    2012: 2954.1072115384613
+    2014-04: 984.7024038461539
+    2014-05: 984.7024038461539
+    2014-06: 984.7024038461539
+    2014-07: 984.7024038461539
+  salaire_net:
+    2012: 2850
+    2014-04: 950
+    2014-05: 950
+    2014-06: 950
+    2014-07: 950
+  statut_marital: marie
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 24
+  age_en_mois: 298
+  date_naissance: '1989-09-14'
+  etudiant: 0
+  id: 53d22068159e330200810b89
+  inapte_travail: 0
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
 familles:
   acs:
     2013-07: 0
@@ -219,7 +219,7 @@ familles:
     2014-04: 0
     2014-05: 0
     2014-06: 0
-  enfants:
+  enfants: null
   paje_base:
     2013-07: 0
     2013-08: 0
@@ -234,8 +234,8 @@ familles:
     2014-05: 0
     2014-06: 0
   parents:
-    - 53d22068159e330200810b8a
-    - 53d22068159e330200810b89
+  - 53d22068159e330200810b8a
+  - 53d22068159e330200810b89
   proprietaire_proche_famille: false
   rsa:
     2013-07: 0
@@ -252,12 +252,12 @@ familles:
     2014-06: 0
 foyers_fiscaux:
   declarants:
-    - 53d22068159e330200810b8a
-    - 53d22068159e330200810b89
-  personnes_a_charge:
+  - 53d22068159e330200810b8a
+  - 53d22068159e330200810b89
+  personnes_a_charge: null
 menages:
   conjoint: 53d22068159e330200810b89
-  enfants:
+  enfants: null
   loyer: 500
   personne_de_reference: 53d22068159e330200810b8a
   statut_occupation_logement: locataire_vide

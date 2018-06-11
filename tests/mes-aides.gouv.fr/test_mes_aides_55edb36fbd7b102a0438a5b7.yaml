@@ -1,97 +1,97 @@
 name: Couple 1 revenu 1 enfant à charge né après le 1/4/14 > plafond
 keywords:
-  - montant
-  - paje
-  - plafonds
-  - taux partiel
-description: "Plafond Couple 1 revenu 1 enfant à charge né après le 1/4/14 : 35 729"
-period: "month:2015-09"
+- montant
+- paje
+- plafonds
+- taux partiel
+description: 'Plafond Couple 1 revenu 1 enfant à charge né après le 1/4/14 : 35 729'
+period: month:2015-09
 relative_error_margin: 0.02
 individus:
-  - enfant_a_charge:
-      2015: true
-    age: 55
-    age_en_mois: 666
-    date_naissance: "1960-03-02"
-    enfant_place: false
-    etudiant: 0
-    id: 55edb366dbd69f2b04f5639d
-    inapte_travail: 0
-    handicap: 0
-    salaire_de_base:
-      2014-09: 5270.655270655271
-      2014-10: 5270.655270655271
-      2014-11: 5270.655270655271
-      2014-12: 5270.655270655271
-      2015-01: 5270.655270655271
-      2015-02: 5270.655270655271
-      2015-03: 5270.655270655271
-      2015-04: 5270.655270655271
-      2015-05: 5270.655270655271
-      2015-06: 0
-      2015-07: 0
-      2015-08: 0
-    salaire_imposable:
-      2013: 41000
-      2014-09: 4261.285256410257
-      2014-10: 4261.285256410257
-      2014-11: 4261.285256410257
-      2014-12: 4261.285256410257
-      2015-01: 4261.285256410257
-      2015-02: 4261.285256410257
-      2015-03: 4261.285256410257
-      2015-04: 4261.285256410257
-      2015-05: 4261.285256410257
-      2015-06: 0
-      2015-07: 0
-      2015-08: 0
-    salaire_net:
-      2014-09: 4111.111111111111
-      2014-10: 4111.111111111111
-      2014-11: 4111.111111111111
-      2014-12: 4111.111111111111
-      2015-01: 4111.111111111111
-      2015-02: 4111.111111111111
-      2015-03: 4111.111111111111
-      2015-04: 4111.111111111111
-      2015-05: 4111.111111111111
-      2015-06: 0
-      2015-07: 0
-      2015-08: 0
-    statut_marital: marie
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - enfant_a_charge:
-      2015: true
-    age: 54
-    age_en_mois: 659
-    date_naissance: "1960-09-08"
-    enfant_place: false
-    etudiant: 0
-    id: 55edb366dbd69f2b04f5639c
-    inapte_travail: 0
-    handicap: 0
-    statut_marital: marie
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - enfant_a_charge:
-      2015: true
-    age: 0
-    age_en_mois: 4
-    date_naissance: "2015-04-08"
-    enfant_place: false
-    etudiant: 0
-    id: 55edb366dbd69f2b04f5639b
-    inapte_travail: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
+- enfant_a_charge:
+    2015: true
+  age: 55
+  age_en_mois: 666
+  date_naissance: '1960-03-02'
+  enfant_place: false
+  etudiant: 0
+  id: 55edb366dbd69f2b04f5639d
+  inapte_travail: 0
+  handicap: 0
+  salaire_de_base:
+    2014-09: 5270.655270655271
+    2014-10: 5270.655270655271
+    2014-11: 5270.655270655271
+    2014-12: 5270.655270655271
+    2015-01: 5270.655270655271
+    2015-02: 5270.655270655271
+    2015-03: 5270.655270655271
+    2015-04: 5270.655270655271
+    2015-05: 5270.655270655271
+    2015-06: 0
+    2015-07: 0
+    2015-08: 0
+  salaire_imposable:
+    2013: 41000
+    2014-09: 4261.285256410257
+    2014-10: 4261.285256410257
+    2014-11: 4261.285256410257
+    2014-12: 4261.285256410257
+    2015-01: 4261.285256410257
+    2015-02: 4261.285256410257
+    2015-03: 4261.285256410257
+    2015-04: 4261.285256410257
+    2015-05: 4261.285256410257
+    2015-06: 0
+    2015-07: 0
+    2015-08: 0
+  salaire_net:
+    2014-09: 4111.111111111111
+    2014-10: 4111.111111111111
+    2014-11: 4111.111111111111
+    2014-12: 4111.111111111111
+    2015-01: 4111.111111111111
+    2015-02: 4111.111111111111
+    2015-03: 4111.111111111111
+    2015-04: 4111.111111111111
+    2015-05: 4111.111111111111
+    2015-06: 0
+    2015-07: 0
+    2015-08: 0
+  statut_marital: marie
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- enfant_a_charge:
+    2015: true
+  age: 54
+  age_en_mois: 659
+  date_naissance: '1960-09-08'
+  enfant_place: false
+  etudiant: 0
+  id: 55edb366dbd69f2b04f5639c
+  inapte_travail: 0
+  handicap: 0
+  statut_marital: marie
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- enfant_a_charge:
+    2015: true
+  age: 0
+  age_en_mois: 4
+  date_naissance: '2015-04-08'
+  enfant_place: false
+  etudiant: 0
+  id: 55edb366dbd69f2b04f5639b
+  inapte_travail: 0
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
 familles:
   acs:
     2014-09: 0
@@ -277,8 +277,8 @@ familles:
     2015-07: 0
     2015-08: 0
   parents:
-    - 55edb366dbd69f2b04f5639d
-    - 55edb366dbd69f2b04f5639c
+  - 55edb366dbd69f2b04f5639d
+  - 55edb366dbd69f2b04f5639c
   proprietaire_proche_famille: true
   rsa:
     2014-09: 0
@@ -295,10 +295,10 @@ familles:
     2015-08: 0
 foyers_fiscaux:
   declarants:
-    - 55edb366dbd69f2b04f5639d
-    - 55edb366dbd69f2b04f5639c
+  - 55edb366dbd69f2b04f5639d
+  - 55edb366dbd69f2b04f5639c
   personnes_a_charge: 55edb366dbd69f2b04f5639b
-  rfr:
+  rfr: null
 menages:
   conjoint: 55edb366dbd69f2b04f5639c
   depcom: 78646

@@ -1,61 +1,61 @@
-- name: "taille_entreprise vaut 0 pour 0 salariés"
-  period: "2015-01"
+- name: taille_entreprise vaut 0 pour 0 salariés
+  period: 2015-01
   input_variables:
     effectif_entreprise: 0
   output_variables:
     taille_entreprise: non_pertinent
 
-- name: "taille_entreprise vaut 1 pour 1 salarié"
-  period: "2015-01"
+- name: taille_entreprise vaut 1 pour 1 salarié
+  period: 2015-01
   input_variables:
     effectif_entreprise: 1
   output_variables:
     taille_entreprise: moins_de_10
 
-- name: "taille_entreprise vaut 1 pour 9 salariés"
-  period: "2015-01"
+- name: taille_entreprise vaut 1 pour 9 salariés
+  period: 2015-01
   input_variables:
     effectif_entreprise: 9
   output_variables:
     taille_entreprise: moins_de_10
 
-- name: "taille_entreprise vaut 2 pour 10 salariés"
-  period: "2015-01"
+- name: taille_entreprise vaut 2 pour 10 salariés
+  period: 2015-01
   input_variables:
     effectif_entreprise: 10
   output_variables:
     taille_entreprise: de_10_a_19
 
-- name: "taille_entreprise vaut 2 pour 19 salariés"
-  period: "2015-01"
+- name: taille_entreprise vaut 2 pour 19 salariés
+  period: 2015-01
   input_variables:
     effectif_entreprise: 19
   output_variables:
     taille_entreprise: de_10_a_19
 
-- name: "taille_entreprise vaut 3 pour 20 salariés"
-  period: "2015-01"
+- name: taille_entreprise vaut 3 pour 20 salariés
+  period: 2015-01
   input_variables:
     effectif_entreprise: 20
   output_variables:
     taille_entreprise: de_20_a_249
 
-- name: "taille_entreprise vaut 3 pour 249 salariés"
-  period: "2015-01"
+- name: taille_entreprise vaut 3 pour 249 salariés
+  period: 2015-01
   input_variables:
     effectif_entreprise: 249
   output_variables:
     taille_entreprise: de_20_a_249
 
-- name: "taille_entreprise vaut 4 pour 250 salariés"
-  period: "2015-01"
+- name: taille_entreprise vaut 4 pour 250 salariés
+  period: 2015-01
   input_variables:
     effectif_entreprise: 250
   output_variables:
     taille_entreprise: plus_de_250
 
-- name: "taille_entreprise vaut 4 pour 2000 salariés"
-  period: "2015-01"
+- name: taille_entreprise vaut 4 pour 2000 salariés
+  period: 2015-01
   input_variables:
     effectif_entreprise: 2000
   output_variables:

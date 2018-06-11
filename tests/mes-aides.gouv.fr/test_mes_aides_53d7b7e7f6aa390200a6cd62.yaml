@@ -1,54 +1,54 @@
 name: Les enfants doivent avoir plus de 3 ans
 keywords: cf
-description: "Ici un des 3 enfants a moins de 3 ans : pas de CF"
-period: "month:2014-07"
+description: 'Ici un des 3 enfants a moins de 3 ans : pas de CF'
+period: month:2014-07
 relative_error_margin: 0.02
 individus:
-  - age: 24
-    age_en_mois: 298
-    date_naissance: "1989-09-14"
-    enceinte: false
-    etudiant: 0
-    id: 53d7b7c5f6aa390200a6cd61
-    inapte_travail: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 6
-    age_en_mois: 82
-    date_naissance: "2007-09-14"
-    etudiant: 0
-    id: 54bd242b98e20604236633ea
-    inapte_travail: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 6
-    age_en_mois: 82
-    date_naissance: "2007-09-14"
-    etudiant: 0
-    id: 54bd242b98e20604236633e9
-    inapte_travail: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 1
-    age_en_mois: 23
-    date_naissance: "2012-08-15"
-    etudiant: 0
-    id: 54bd251905a4d80223d55c97
-    inapte_travail: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
+- age: 24
+  age_en_mois: 298
+  date_naissance: '1989-09-14'
+  enceinte: false
+  etudiant: 0
+  id: 53d7b7c5f6aa390200a6cd61
+  inapte_travail: 0
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 6
+  age_en_mois: 82
+  date_naissance: '2007-09-14'
+  etudiant: 0
+  id: 54bd242b98e20604236633ea
+  inapte_travail: 0
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 6
+  age_en_mois: 82
+  date_naissance: '2007-09-14'
+  etudiant: 0
+  id: 54bd242b98e20604236633e9
+  inapte_travail: 0
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 1
+  age_en_mois: 23
+  date_naissance: '2012-08-15'
+  etudiant: 0
+  id: 54bd251905a4d80223d55c97
+  inapte_travail: 0
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
 familles:
   acs:
     2013-07: 0
@@ -220,9 +220,9 @@ familles:
     2014-05: 0
     2014-06: 0
   enfants:
-    - 54bd242b98e20604236633ea
-    - 54bd242b98e20604236633e9
-    - 54bd251905a4d80223d55c97
+  - 54bd242b98e20604236633ea
+  - 54bd242b98e20604236633e9
+  - 54bd251905a4d80223d55c97
   paje_base:
     2013-07: 0
     2013-08: 0
@@ -254,15 +254,15 @@ familles:
 foyers_fiscaux:
   declarants: 53d7b7c5f6aa390200a6cd61
   personnes_a_charge:
-    - 54bd242b98e20604236633ea
-    - 54bd242b98e20604236633e9
-    - 54bd251905a4d80223d55c97
+  - 54bd242b98e20604236633ea
+  - 54bd242b98e20604236633e9
+  - 54bd251905a4d80223d55c97
 menages:
   depcom: 92063
   enfants:
-    - 54bd242b98e20604236633ea
-    - 54bd242b98e20604236633e9
-    - 54bd251905a4d80223d55c97
+  - 54bd242b98e20604236633ea
+  - 54bd242b98e20604236633e9
+  - 54bd251905a4d80223d55c97
   personne_de_reference: 53d7b7c5f6aa390200a6cd61
   statut_occupation_logement: loge_gratuitement
 output_variables:

@@ -1,13 +1,13 @@
 - period: 2013
   absolute_error_margin: 0.005
   familles:
-    parents: "ind0"
+    parents: ind0
   foyers_fiscaux:
-    declarants: "ind0"
+    declarants: ind0
   menages:
-    personne_de_reference: "ind0"
+    personne_de_reference: ind0
   individus:
-    id: "ind0"
+    id: ind0
     salaire_de_base:
       2011: 15000
       2012: 15000

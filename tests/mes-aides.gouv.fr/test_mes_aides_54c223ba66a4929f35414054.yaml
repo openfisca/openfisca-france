@@ -1,8 +1,8 @@
 name: Cas RL compris entre 45 et 75
 keywords:
-  - al
-  - location
-  - taux loyer
+- al
+- location
+- taux loyer
 description: |
   On veut rentrer dans ce test dans le cas où RL est compris entre 45 et 75
   Dans l'exemple, personne seule en zone 1, loyer = 150 euros, salaires 2013 = 9000 euros
@@ -22,12 +22,12 @@ description: |
   P1	101,42
   Pp	136,15
   AL	66,74
-period: "month:2015-01"
+period: month:2015-01
 absolute_error_margin: 2
 individus:
   age: 34
   age_en_mois: 413
-  date_naissance: "1980-08-12"
+  date_naissance: '1980-08-12'
   chomage_imposable:
     2013: 0
   etudiant: 0
@@ -214,7 +214,7 @@ familles:
     2014-10: 0
     2014-11: 0
     2014-12: 0
-  enfants:
+  enfants: null
   paje_base:
     2014-01: 0
     2014-02: 0
@@ -247,12 +247,12 @@ foyers_fiscaux:
   declarants: 54c2237e315293a23516f86c
   pensions_alimentaires_versees:
     2013: 0
-  personnes_a_charge:
+  personnes_a_charge: null
   rfr:
     2013: 0
 menages:
   depcom: 75111
-  enfants:
+  enfants: null
   loyer: 150
   personne_de_reference: 54c2237e315293a23516f86c
   statut_occupation_logement: locataire_vide

@@ -1,21 +1,21 @@
-name: "Personne seule, ressources > plafond de 644,40 €, montant = plafond haut - ressources"
+name: Personne seule, ressources > plafond de 644,40 €, montant = plafond haut - ressources
 keywords:
-  - ass
-  - base ressources
-  - montant
+- ass
+- base ressources
+- montant
 description: |
   BR = 640 en salaires nets
   Conversion en salaire imposable : 640 + (0,029 X 0,9825 X 640 : 0,78) = 663.38
   663.38 > 650
   Donc ASS = 1137,50 - 663.38 = 474,12
-period: "month:2015-04"
+period: month:2015-04
 relative_error_margin: 0.02
 individus:
   activite: chomeur
   age: 24
   age_en_mois: 294
   ass_precondition_remplie: true
-  date_naissance: "1990-10-10"
+  date_naissance: '1990-10-10'
   etudiant: 0
   id: 5536453401d81a812d2dfa51
   inapte_travail: 0
@@ -239,7 +239,7 @@ familles:
     2015-01: 0
     2015-02: 0
     2015-03: 0
-  enfants:
+  enfants: null
   paje_base:
     2014-04: 0
     2014-05: 0
@@ -269,10 +269,10 @@ familles:
     2015-03: 0
 foyers_fiscaux:
   declarants: 5536453401d81a812d2dfa51
-  personnes_a_charge:
+  personnes_a_charge: null
 menages:
   depcom: 93070
-  enfants:
+  enfants: null
   personne_de_reference: 5536453401d81a812d2dfa51
   statut_occupation_logement: loge_gratuitement
 output_variables:

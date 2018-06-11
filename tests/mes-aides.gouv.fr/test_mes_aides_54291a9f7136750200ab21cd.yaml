@@ -1,13 +1,13 @@
 name: Les étudiants ne peuvent pas toucher le RSA
 keywords: rsa
 description: Dans le cas général, un étudiant n'a pas droit au RSA
-period: "month:2014-09"
+period: month:2014-09
 relative_error_margin: 0.02
 individus:
   activite: etudiant
   age: 34
   age_en_mois: 409
-  date_naissance: "1980-08-12"
+  date_naissance: '1980-08-12'
   etudiant: 1
   id: 54291a817136750200ab21cb
   inapte_travail: 0
@@ -186,7 +186,7 @@ familles:
     2014-06: 0
     2014-07: 0
     2014-08: 0
-  enfants:
+  enfants: null
   paje_base:
     2013-09: 0
     2013-10: 0
@@ -216,10 +216,10 @@ familles:
     2014-08: 0
 foyers_fiscaux:
   declarants: 54291a817136750200ab21cb
-  personnes_a_charge:
+  personnes_a_charge: null
 menages:
   depcom: 67382
-  enfants:
+  enfants: null
   personne_de_reference: 54291a817136750200ab21cb
   statut_occupation_logement: loge_gratuitement
 output_variables:

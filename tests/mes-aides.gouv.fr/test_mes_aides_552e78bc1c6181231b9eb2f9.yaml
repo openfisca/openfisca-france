@@ -1,90 +1,90 @@
 name: Foyer 2 enfants dont 1 de 4 ans > plafond CF
 keywords:
-  - cf
-  - dom
+- cf
+- dom
 description: Pas de droit au CF car > plafond CF (24 306 euros)
-period: "month:2015-04"
+period: month:2015-04
 relative_error_margin: 0.02
 individus:
-  - age: 34
-    age_en_mois: 416
-    date_naissance: "1980-08-12"
-    chomage_imposable:
-      2013: 0
-    etudiant: 0
-    id: 552e78b70b4c20791bad5386
-    inapte_travail: 0
-    handicap: 0
-    pensions_alimentaires_percues:
-      2013: 0
-    retraite_imposable:
-      2013: 0
-    salaire_de_base:
-      2014-04: 4558.404558404558
-      2014-05: 4558.404558404558
-      2014-06: 4558.404558404558
-      2014-07: 4558.404558404558
-      2014-08: 4558.404558404558
-      2014-09: 4558.404558404558
-      2014-10: 4558.404558404558
-      2014-11: 4558.404558404558
-      2014-12: 4558.404558404558
-      2015-01: 0
-      2015-02: 0
-      2015-03: 0
-    salaire_imposable:
-      2013: 35555
-      2014-04: 3685.4358974358975
-      2014-05: 3685.4358974358975
-      2014-06: 3685.4358974358975
-      2014-07: 3685.4358974358975
-      2014-08: 3685.4358974358975
-      2014-09: 3685.4358974358975
-      2014-10: 3685.4358974358975
-      2014-11: 3685.4358974358975
-      2014-12: 3685.4358974358975
-      2015-01: 0
-      2015-02: 0
-      2015-03: 0
-    salaire_net:
-      2014-04: 3555.5555555555557
-      2014-05: 3555.5555555555557
-      2014-06: 3555.5555555555557
-      2014-07: 3555.5555555555557
-      2014-08: 3555.5555555555557
-      2014-09: 3555.5555555555557
-      2014-10: 3555.5555555555557
-      2014-11: 3555.5555555555557
-      2014-12: 3555.5555555555557
-      2015-01: 0
-      2015-02: 0
-      2015-03: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 3
-    age_en_mois: 43
-    date_naissance: "2011-09-09"
-    etudiant: 0
-    id: 552e78b70b4c20791bad5385
-    inapte_travail: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 6
-    age_en_mois: 79
-    date_naissance: "2008-09-08"
-    etudiant: 0
-    id: 552e78b70b4c20791bad5384
-    inapte_travail: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
+- age: 34
+  age_en_mois: 416
+  date_naissance: '1980-08-12'
+  chomage_imposable:
+    2013: 0
+  etudiant: 0
+  id: 552e78b70b4c20791bad5386
+  inapte_travail: 0
+  handicap: 0
+  pensions_alimentaires_percues:
+    2013: 0
+  retraite_imposable:
+    2013: 0
+  salaire_de_base:
+    2014-04: 4558.404558404558
+    2014-05: 4558.404558404558
+    2014-06: 4558.404558404558
+    2014-07: 4558.404558404558
+    2014-08: 4558.404558404558
+    2014-09: 4558.404558404558
+    2014-10: 4558.404558404558
+    2014-11: 4558.404558404558
+    2014-12: 4558.404558404558
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+  salaire_imposable:
+    2013: 35555
+    2014-04: 3685.4358974358975
+    2014-05: 3685.4358974358975
+    2014-06: 3685.4358974358975
+    2014-07: 3685.4358974358975
+    2014-08: 3685.4358974358975
+    2014-09: 3685.4358974358975
+    2014-10: 3685.4358974358975
+    2014-11: 3685.4358974358975
+    2014-12: 3685.4358974358975
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+  salaire_net:
+    2014-04: 3555.5555555555557
+    2014-05: 3555.5555555555557
+    2014-06: 3555.5555555555557
+    2014-07: 3555.5555555555557
+    2014-08: 3555.5555555555557
+    2014-09: 3555.5555555555557
+    2014-10: 3555.5555555555557
+    2014-11: 3555.5555555555557
+    2014-12: 3555.5555555555557
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 3
+  age_en_mois: 43
+  date_naissance: '2011-09-09'
+  etudiant: 0
+  id: 552e78b70b4c20791bad5385
+  inapte_travail: 0
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 6
+  age_en_mois: 79
+  date_naissance: '2008-09-08'
+  etudiant: 0
+  id: 552e78b70b4c20791bad5384
+  inapte_travail: 0
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
 familles:
   acs:
     2014-04: 0
@@ -256,8 +256,8 @@ familles:
     2015-02: 0
     2015-03: 0
   enfants:
-    - 552e78b70b4c20791bad5385
-    - 552e78b70b4c20791bad5384
+  - 552e78b70b4c20791bad5385
+  - 552e78b70b4c20791bad5384
   paje_base:
     2014-04: 0
     2014-05: 0
@@ -292,14 +292,14 @@ foyers_fiscaux:
   pensions_alimentaires_versees:
     2013: 0
   personnes_a_charge:
-    - 552e78b70b4c20791bad5385
-    - 552e78b70b4c20791bad5384
-  rfr:
+  - 552e78b70b4c20791bad5385
+  - 552e78b70b4c20791bad5384
+  rfr: null
 menages:
   depcom: 97419
   enfants:
-    - 552e78b70b4c20791bad5385
-    - 552e78b70b4c20791bad5384
+  - 552e78b70b4c20791bad5385
+  - 552e78b70b4c20791bad5384
   loyer: 600
   personne_de_reference: 552e78b70b4c20791bad5386
   statut_occupation_logement: locataire_vide

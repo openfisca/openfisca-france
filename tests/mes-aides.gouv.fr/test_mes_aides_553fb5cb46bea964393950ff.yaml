@@ -2,8 +2,7 @@ name: TNS agricole en métopole - personne seule
 keywords:
 - rsa
 - tns
-"description": "Éligibilité au RSA d'un TNS agricole seul \nBénéfice agricole = 7000€ < 800*SMIC horaire = 7688€\n\nNe pas\
-  \ afficher de montant"
+description: "Éligibilité au RSA d'un TNS agricole seul \nBénéfice agricole = 7000€ < 800*SMIC horaire = 7688€\n\nNe pas afficher de montant"
 period: month:2015-04
 relative_error_margin: 0.02
 individus:

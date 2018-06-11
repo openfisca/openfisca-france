@@ -1,8 +1,8 @@
 name: Couple sans enfant
 keywords:
-  - al
-  - location
-  - ménage
+- al
+- location
+- ménage
 description: |
   L	352,92
   C	53,23
@@ -19,32 +19,32 @@ description: |
   P1	0
   Pp	34,73
   AL	369,56
-period: "month:2015-02"
+period: month:2015-02
 relative_error_margin: 0.02
 individus:
-  - age: 34
-    age_en_mois: 413
-    date_naissance: "1980-08-12"
-    etudiant: 0
-    id: 54d4d61ff675ddd34432eb1e
-    inapte_travail: 0
-    handicap: 0
-    statut_marital: marie
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 34
-    age_en_mois: 413
-    date_naissance: "1980-08-12"
-    etudiant: 0
-    id: 54d4d61ff675ddd34432eb1d
-    inapte_travail: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
+- age: 34
+  age_en_mois: 413
+  date_naissance: '1980-08-12'
+  etudiant: 0
+  id: 54d4d61ff675ddd34432eb1e
+  inapte_travail: 0
+  handicap: 0
+  statut_marital: marie
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 34
+  age_en_mois: 413
+  date_naissance: '1980-08-12'
+  etudiant: 0
+  id: 54d4d61ff675ddd34432eb1d
+  inapte_travail: 0
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
 familles:
   acs:
     2014-02: 0
@@ -215,7 +215,7 @@ familles:
     2014-11: 0
     2014-12: 0
     2015-01: 0
-  enfants:
+  enfants: null
   paje_base:
     2014-02: 0
     2014-03: 0
@@ -230,8 +230,8 @@ familles:
     2014-12: 0
     2015-01: 0
   parents:
-    - 54d4d61ff675ddd34432eb1e
-    - 54d4d61ff675ddd34432eb1d
+  - 54d4d61ff675ddd34432eb1e
+  - 54d4d61ff675ddd34432eb1d
   proprietaire_proche_famille: false
   rsa:
     2014-02: 0
@@ -248,13 +248,13 @@ familles:
     2015-01: 0
 foyers_fiscaux:
   declarants:
-    - 54d4d61ff675ddd34432eb1e
-    - 54d4d61ff675ddd34432eb1d
-  personnes_a_charge:
+  - 54d4d61ff675ddd34432eb1e
+  - 54d4d61ff675ddd34432eb1d
+  personnes_a_charge: null
 menages:
   conjoint: 54d4d61ff675ddd34432eb1d
   depcom: 75111
-  enfants:
+  enfants: null
   loyer: 1000
   personne_de_reference: 54d4d61ff675ddd34432eb1e
   statut_occupation_logement: locataire_vide

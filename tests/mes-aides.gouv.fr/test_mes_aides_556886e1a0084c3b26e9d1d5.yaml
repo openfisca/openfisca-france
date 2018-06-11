@@ -1,17 +1,17 @@
 name: Personne de plus de 62 ans handicapé à moins de 50%
 keywords:
-  - age
-  - aspa
+- age
+- aspa
 description: |
   Test créé à partir d'un dossier de demande de (RSA, APL…) :
   Ces paramètres (ressources non déclarables, situation personnelle…) n'ont pas pu être capturés :
   La différence observée provient a priori de (prestations manquantes, règles non prises en compte…) :
-period: "month:2015-05"
+period: month:2015-05
 relative_error_margin: 0.02
 individus:
   age: 63
   age_en_mois: 767
-  date_naissance: "1951-06-09"
+  date_naissance: '1951-06-09'
   etudiant: 0
   id: 556886ddb6b1363e267b9699
   inapte_travail: 0
@@ -191,7 +191,7 @@ familles:
     2015-02: 0
     2015-03: 0
     2015-04: 0
-  enfants:
+  enfants: null
   paje_base:
     2014-05: 0
     2014-06: 0
@@ -221,10 +221,10 @@ familles:
     2015-04: 0
 foyers_fiscaux:
   declarants: 556886ddb6b1363e267b9699
-  personnes_a_charge:
+  personnes_a_charge: null
 menages:
   depcom: 76540
-  enfants:
+  enfants: null
   personne_de_reference: 556886ddb6b1363e267b9699
   statut_occupation_logement: loge_gratuitement
 output_variables:

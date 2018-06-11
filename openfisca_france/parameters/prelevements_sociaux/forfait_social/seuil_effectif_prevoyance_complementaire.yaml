@@ -1,5 +1,4 @@
-description: Seuil effectif à partir duquel les contributions patronales de prévoyance
-  complémentaire rentrent dans l'assiette du FNAL à taux réduit
+description: Seuil effectif à partir duquel les contributions patronales de prévoyance complémentaire rentrent dans l'assiette du FNAL à taux réduit
 reference: openfisca
 values:
   2009-01-01:

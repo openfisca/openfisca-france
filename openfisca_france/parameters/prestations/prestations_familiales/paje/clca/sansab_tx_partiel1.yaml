@@ -1,5 +1,4 @@
-description: Taux pour les personnes à temps partiel inf. à 50% ne percevant pas l'allocation
-  de base de la PAJE
+description: Taux pour les personnes à temps partiel inf. à 50% ne percevant pas l'allocation de base de la PAJE
 reference: ipp
 unit: /1
 values:

@@ -1,15 +1,15 @@
-name: "Ressources exclues : retraite du combattant"
+name: 'Ressources exclues : retraite du combattant'
 keywords:
-  - aspa
-  - base ressources
+- aspa
+- base ressources
 description: Test concluant. Le simulateur exclut bien la retraite du combattant dans le calcul de l'ASPA.
-period: "month:2014-11"
+period: month:2014-11
 relative_error_margin: 0.02
 individus:
   activite: retraite
   age: 65
   age_en_mois: 789
-  date_naissance: "1949-02-15"
+  date_naissance: '1949-02-15'
   etudiant: 0
   id: 546b452f5d4a0b016431dc30
   inapte_travail: 0
@@ -233,7 +233,7 @@ familles:
     2014-08: 0
     2014-09: 0
     2014-10: 0
-  enfants:
+  enfants: null
   paje_base:
     2013-11: 0
     2013-12: 0
@@ -264,10 +264,10 @@ familles:
     2014-10: 0
 foyers_fiscaux:
   declarants: 546b452f5d4a0b016431dc30
-  personnes_a_charge:
+  personnes_a_charge: null
 menages:
   depcom: 75119
-  enfants:
+  enfants: null
   loyer: 900
   personne_de_reference: 546b452f5d4a0b016431dc30
 output_variables:

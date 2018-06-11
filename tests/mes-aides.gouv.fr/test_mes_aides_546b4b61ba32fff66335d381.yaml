@@ -1,14 +1,14 @@
 name: 32_Personne > 25 ans, enceinte sans enfant (RSA majoré)
 keywords:
-  - majoration
-  - rsa
-description:
-period: "month:2014-11"
+- majoration
+- rsa
+description: null
+period: month:2014-11
 relative_error_margin: 0.02
 individus:
   age: 28
   age_en_mois: 346
-  date_naissance: "1986-01-01"
+  date_naissance: '1986-01-01'
   enceinte: true
   etudiant: 0
   id: 546b4b2cfc9936ff63f8579a
@@ -188,7 +188,7 @@ familles:
     2014-08: 0
     2014-09: 0
     2014-10: 0
-  enfants:
+  enfants: null
   paje_base:
     2013-11: 0
     2013-12: 0
@@ -218,10 +218,10 @@ familles:
     2014-10: 0
 foyers_fiscaux:
   declarants: 546b4b2cfc9936ff63f8579a
-  personnes_a_charge:
+  personnes_a_charge: null
 menages:
   depcom: 75114
-  enfants:
+  enfants: null
   personne_de_reference: 546b4b2cfc9936ff63f8579a
   statut_occupation_logement: loge_gratuitement
 output_variables:

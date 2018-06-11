@@ -1,15 +1,15 @@
 name: Personne handicapée à 50% éligible à l'ASPA  à partir de 62 ans
 keywords:
-  - aspa
-  - eligibilité
-description:
-period: "month:2015-02"
+- aspa
+- eligibilité
+description: null
+period: month:2015-02
 relative_error_margin: 0.02
 individus:
   activite: retraite
   age: 63
   age_en_mois: 756
-  date_naissance: "1952-02-05"
+  date_naissance: '1952-02-05'
   etudiant: 0
   id: 54e4c0af4598885640140950
   inapte_travail: 0
@@ -219,7 +219,7 @@ familles:
     2014-11: 0
     2014-12: 0
     2015-01: 0
-  enfants:
+  enfants: null
   paje_base:
     2014-02: 0
     2014-03: 0
@@ -249,10 +249,10 @@ familles:
     2015-01: 0
 foyers_fiscaux:
   declarants: 54e4c0af4598885640140950
-  personnes_a_charge:
+  personnes_a_charge: null
 menages:
   depcom: 67482
-  enfants:
+  enfants: null
   personne_de_reference: 54e4c0af4598885640140950
   statut_occupation_logement: proprietaire
 output_variables:

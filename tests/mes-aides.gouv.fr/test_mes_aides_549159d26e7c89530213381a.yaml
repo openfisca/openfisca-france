@@ -1,108 +1,108 @@
-name: "Plafond ACS 4 personnes - cas en-dessous du plafond"
+name: Plafond ACS 4 personnes - cas en-dessous du plafond
 keywords:
-  - acs
-  - "cmu-c/acs"
-  - plafonds
+- acs
+- cmu-c/acs
+- plafonds
 description: |
   Plafond ACS 4 personnes = 24507 euros.
   Droits AF = 130 euros
   130*12 = 1560
   Salaires déclarés 22900 euros
   22900 + 1560 = 24460 > 24507, donc droit à l'ACS.
-period: "month:2014-12"
+period: month:2014-12
 relative_error_margin: 0.02
 individus:
-  - age: 40
-    age_en_mois: 491
-    date_naissance: "1974-01-01"
-    etudiant: 0
-    id: 5491597a6e7c89530213380d
-    inapte_travail: 0
-    handicap: 0
-    salaire_de_base:
-      2012: 29358.974358974363
-      2013-12: 2407.4074074074074
-      2014-01: 2407.4074074074074
-      2014-02: 2407.4074074074074
-      2014-03: 2407.4074074074074
-      2014-04: 2407.4074074074074
-      2014-05: 2407.4074074074074
-      2014-06: 2407.4074074074074
-      2014-07: 2407.4074074074074
-      2014-08: 2407.4074074074074
-      2014-09: 2564.102564102564
-      2014-10: 2564.102564102564
-      2014-11: 2564.102564102564
-      2014-12: 2564.102564102564
-    salaire_imposable:
-      2012: 23736.510576923083
-      2013-12: 1946.3708333333334
-      2014-01: 1946.3708333333334
-      2014-02: 1946.3708333333334
-      2014-03: 1946.3708333333334
-      2014-04: 1946.3708333333334
-      2014-05: 1946.3708333333334
-      2014-06: 1946.3708333333334
-      2014-07: 1946.3708333333334
-      2014-08: 1946.3708333333334
-      2014-09: 2073.0576923076924
-      2014-10: 2073.0576923076924
-      2014-11: 2073.0576923076924
-      2014-12: 2073.0576923076924
-    salaire_net:
-      2012: 22899.999999999996
-      2013-12: 1877.7777777777778
-      2014-01: 1877.7777777777778
-      2014-02: 1877.7777777777778
-      2014-03: 1877.7777777777778
-      2014-04: 1877.7777777777778
-      2014-05: 1877.7777777777778
-      2014-06: 1877.7777777777778
-      2014-07: 1877.7777777777778
-      2014-08: 1877.7777777777778
-      2014-09: 2000
-      2014-10: 2000
-      2014-11: 2000
-      2014-12: 2000
-    statut_marital: marie
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 40
-    age_en_mois: 491
-    date_naissance: "1974-01-01"
-    etudiant: 0
-    id: 5491597a6e7c895302133800
-    inapte_travail: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 4
-    age_en_mois: 59
-    date_naissance: "2010-01-01"
-    etudiant: 0
-    id: 5491597a6e7c8953021337fe
-    inapte_travail: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 17
-    age_en_mois: 215
-    date_naissance: "1997-01-01"
-    etudiant: 0
-    id: 54c8e53f1fe4e8cf448e1e58
-    inapte_travail: 0
-    handicap: 0
-    scolarite: college
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
+- age: 40
+  age_en_mois: 491
+  date_naissance: '1974-01-01'
+  etudiant: 0
+  id: 5491597a6e7c89530213380d
+  inapte_travail: 0
+  handicap: 0
+  salaire_de_base:
+    2012: 29358.974358974363
+    2013-12: 2407.4074074074074
+    2014-01: 2407.4074074074074
+    2014-02: 2407.4074074074074
+    2014-03: 2407.4074074074074
+    2014-04: 2407.4074074074074
+    2014-05: 2407.4074074074074
+    2014-06: 2407.4074074074074
+    2014-07: 2407.4074074074074
+    2014-08: 2407.4074074074074
+    2014-09: 2564.102564102564
+    2014-10: 2564.102564102564
+    2014-11: 2564.102564102564
+    2014-12: 2564.102564102564
+  salaire_imposable:
+    2012: 23736.510576923083
+    2013-12: 1946.3708333333334
+    2014-01: 1946.3708333333334
+    2014-02: 1946.3708333333334
+    2014-03: 1946.3708333333334
+    2014-04: 1946.3708333333334
+    2014-05: 1946.3708333333334
+    2014-06: 1946.3708333333334
+    2014-07: 1946.3708333333334
+    2014-08: 1946.3708333333334
+    2014-09: 2073.0576923076924
+    2014-10: 2073.0576923076924
+    2014-11: 2073.0576923076924
+    2014-12: 2073.0576923076924
+  salaire_net:
+    2012: 22899.999999999996
+    2013-12: 1877.7777777777778
+    2014-01: 1877.7777777777778
+    2014-02: 1877.7777777777778
+    2014-03: 1877.7777777777778
+    2014-04: 1877.7777777777778
+    2014-05: 1877.7777777777778
+    2014-06: 1877.7777777777778
+    2014-07: 1877.7777777777778
+    2014-08: 1877.7777777777778
+    2014-09: 2000
+    2014-10: 2000
+    2014-11: 2000
+    2014-12: 2000
+  statut_marital: marie
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 40
+  age_en_mois: 491
+  date_naissance: '1974-01-01'
+  etudiant: 0
+  id: 5491597a6e7c895302133800
+  inapte_travail: 0
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 4
+  age_en_mois: 59
+  date_naissance: '2010-01-01'
+  etudiant: 0
+  id: 5491597a6e7c8953021337fe
+  inapte_travail: 0
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 17
+  age_en_mois: 215
+  date_naissance: '1997-01-01'
+  etudiant: 0
+  id: 54c8e53f1fe4e8cf448e1e58
+  inapte_travail: 0
+  handicap: 0
+  scolarite: college
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
 familles:
   acs:
     2013-12: 0
@@ -274,8 +274,8 @@ familles:
     2014-10: 0
     2014-11: 0
   enfants:
-    - 5491597a6e7c8953021337fe
-    - 54c8e53f1fe4e8cf448e1e58
+  - 5491597a6e7c8953021337fe
+  - 54c8e53f1fe4e8cf448e1e58
   paje_base:
     2013-12: 0
     2014-01: 0
@@ -290,8 +290,8 @@ familles:
     2014-10: 0
     2014-11: 0
   parents:
-    - 5491597a6e7c89530213380d
-    - 5491597a6e7c895302133800
+  - 5491597a6e7c89530213380d
+  - 5491597a6e7c895302133800
   proprietaire_proche_famille: false
   rsa:
     2013-12: 0
@@ -308,17 +308,17 @@ familles:
     2014-11: 0
 foyers_fiscaux:
   declarants:
-    - 5491597a6e7c89530213380d
-    - 5491597a6e7c895302133800
+  - 5491597a6e7c89530213380d
+  - 5491597a6e7c895302133800
   personnes_a_charge:
-    - 5491597a6e7c8953021337fe
-    - 54c8e53f1fe4e8cf448e1e58
+  - 5491597a6e7c8953021337fe
+  - 54c8e53f1fe4e8cf448e1e58
 menages:
   conjoint: 5491597a6e7c895302133800
   depcom: 85194
   enfants:
-    - 5491597a6e7c8953021337fe
-    - 54c8e53f1fe4e8cf448e1e58
+  - 5491597a6e7c8953021337fe
+  - 54c8e53f1fe4e8cf448e1e58
   loyer: 200
   personne_de_reference: 5491597a6e7c89530213380d
   statut_occupation_logement: locataire_vide

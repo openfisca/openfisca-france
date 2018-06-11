@@ -1,19 +1,19 @@
-name: "Personne seule, montant fixe en-dessous de 644,40 € de ressources par mois"
+name: Personne seule, montant fixe en-dessous de 644,40 € de ressources par mois
 keywords:
-  - ass
-  - base ressources
-  - montant
+- ass
+- base ressources
+- montant
 description: |
   Revenu = 600 < 644.4
   donc ASS complète = 487,50
-period: "month:2015-04"
+period: month:2015-04
 relative_error_margin: 0.02
 individus:
   activite: chomeur
   age: 24
   age_en_mois: 294
   ass_precondition_remplie: true
-  date_naissance: "1990-10-10"
+  date_naissance: '1990-10-10'
   etudiant: 0
   id: 553643d3b2f8f07f2d4461e3
   inapte_travail: 0
@@ -237,7 +237,7 @@ familles:
     2015-01: 0
     2015-02: 0
     2015-03: 0
-  enfants:
+  enfants: null
   paje_base:
     2014-04: 0
     2014-05: 0
@@ -268,10 +268,10 @@ familles:
     2015-03: 0
 foyers_fiscaux:
   declarants: 553643d3b2f8f07f2d4461e3
-  personnes_a_charge:
+  personnes_a_charge: null
 menages:
   depcom: 93070
-  enfants:
+  enfants: null
   loyer: 400
   personne_de_reference: 553643d3b2f8f07f2d4461e3
   statut_occupation_logement: locataire_vide

@@ -1,5 +1,4 @@
-description: Âge intermédiaire à partir duquel une condition de ressource s'applique
-  pour être considéré comme enfant à charge
+description: Âge intermédiaire à partir duquel une condition de ressource s'applique pour être considéré comme enfant à charge
 reference: openfisca
 unit: year
 values:

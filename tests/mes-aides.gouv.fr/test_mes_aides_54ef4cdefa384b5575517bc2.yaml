@@ -1,8 +1,8 @@
 name: Le loyer plafond est pris à 90%
 keywords:
-  - al
-  - chambres
-  - location
+- al
+- chambres
+- location
 description: |
   http://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000029558125&cidTexte=LEGITEXT000006074213
 
@@ -26,12 +26,12 @@ description: |
   AL	280,45
 
   caf.fr : 280,46 €
-period: "month:2015-02"
+period: month:2015-02
 relative_error_margin: 0.02
 individus:
   age: 34
   age_en_mois: 414
-  date_naissance: "1980-08-12"
+  date_naissance: '1980-08-12'
   chomage_imposable:
     2013: 0
   etudiant: 0
@@ -218,7 +218,7 @@ familles:
     2014-11: 0
     2014-12: 0
     2015-01: 0
-  enfants:
+  enfants: null
   paje_base:
     2014-02: 0
     2014-03: 0
@@ -251,12 +251,12 @@ foyers_fiscaux:
   declarants: 54ef4cd17516fb5d75533549
   pensions_alimentaires_versees:
     2013: 0
-  personnes_a_charge:
-  rfr:
+  personnes_a_charge: null
+  rfr: null
 menages:
   logement_chambre: 1
   depcom: 75111
-  enfants:
+  enfants: null
   loyer: 1000
   personne_de_reference: 54ef4cd17516fb5d75533549
   statut_occupation_logement: locataire_vide

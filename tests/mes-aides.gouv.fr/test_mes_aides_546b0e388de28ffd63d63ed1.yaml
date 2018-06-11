@@ -1,12 +1,12 @@
 name: 20_Personne seule sans revenu 80% d'invalidité
 keywords: rsa
 description: "L'existence de la case \"handicap\" et d'un taux d'invalidité pose problème. Ici, faute de mieux, le simulateur devrait proposer du RSA à \"taux plein\", (440€), il n'en propose qu'un résidu : pour quelle raison ?"
-period: "month:2014-11"
+period: month:2014-11
 relative_error_margin: 0.02
 individus:
   age: 28
   age_en_mois: 346
-  date_naissance: "1986-01-01"
+  date_naissance: '1986-01-01'
   etudiant: 0
   id: 546b0d71fc9936ff63f85663
   inapte_travail: 0
@@ -185,7 +185,7 @@ familles:
     2014-08: 0
     2014-09: 0
     2014-10: 0
-  enfants:
+  enfants: null
   paje_base:
     2013-11: 0
     2013-12: 0
@@ -215,10 +215,10 @@ familles:
     2014-10: 0
 foyers_fiscaux:
   declarants: 546b0d71fc9936ff63f85663
-  personnes_a_charge:
+  personnes_a_charge: null
 menages:
   depcom: 75114
-  enfants:
+  enfants: null
   personne_de_reference: 546b0d71fc9936ff63f85663
   statut_occupation_logement: loge_gratuitement
 output_variables:

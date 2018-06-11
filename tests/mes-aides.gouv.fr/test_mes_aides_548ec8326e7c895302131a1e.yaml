@@ -1,15 +1,15 @@
-name: "Plafond ACS 1 personne - cas en-dessous du plafond"
+name: Plafond ACS 1 personne - cas en-dessous du plafond
 keywords:
-  - acs
-  - "cmu-c/acs"
-  - plafonds
-description: "11669 euros déclarés en année glissante, ce qui est inférieur au plafond ACS pour 1 personne en métropole (11670 euros) : droit ACS."
-period: "month:2014-12"
+- acs
+- cmu-c/acs
+- plafonds
+description: '11669 euros déclarés en année glissante, ce qui est inférieur au plafond ACS pour 1 personne en métropole (11670 euros) : droit ACS.'
+period: month:2014-12
 relative_error_margin: 0.02
 individus:
   age: 50
   age_en_mois: 611
-  date_naissance: "1964-01-01"
+  date_naissance: '1964-01-01'
   etudiant: 0
   id: 548ec77d40562f54026eead1
   inapte_travail: 0
@@ -233,7 +233,7 @@ familles:
     2014-09: 0
     2014-10: 0
     2014-11: 0
-  enfants:
+  enfants: null
   paje_base:
     2013-12: 0
     2014-01: 0
@@ -264,10 +264,10 @@ familles:
     2014-11: 0
 foyers_fiscaux:
   declarants: 548ec77d40562f54026eead1
-  personnes_a_charge:
+  personnes_a_charge: null
 menages:
   depcom: 75115
-  enfants:
+  enfants: null
   loyer: 50
   personne_de_reference: 548ec77d40562f54026eead1
   statut_occupation_logement: locataire_vide

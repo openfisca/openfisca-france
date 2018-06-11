@@ -1,12 +1,12 @@
 name: Ressources incluses
 keywords:
-  - aspa
-  - base ressources
+- aspa
+- base ressources
 description: |
   18 types de ressources * 45 euros par mois = 810 €
   Plafond mensuel : 792 euros par mois (personne seule)
   Donc pas d'éligibilité
-period: "month:2014-10"
+period: month:2014-10
 relative_error_margin: 0.02
 individus:
   aah:
@@ -41,7 +41,7 @@ individus:
     2014-08: 45
     2014-09: 45
     2014-10: 45
-  date_naissance: "1980-08-12"
+  date_naissance: '1980-08-12'
   chomage_brut:
     2012: 595.913029803928
     2013-10: 49.65941915032734
@@ -520,7 +520,7 @@ familles:
     2014-07: 0
     2014-08: 0
     2014-09: 0
-  enfants:
+  enfants: null
   paje_base:
     2013-10: 0
     2013-11: 0
@@ -551,10 +551,10 @@ familles:
     2014-09: 0
 foyers_fiscaux:
   declarants: 544f7ddb75fec1b37e6c01af
-  personnes_a_charge:
+  personnes_a_charge: null
 menages:
   depcom: 75111
-  enfants:
+  enfants: null
   loyer: 100
   personne_de_reference: 544f7ddb75fec1b37e6c01af
   statut_occupation_logement: locataire_vide

@@ -1,78 +1,78 @@
-name: "2ème enfant : 1 point"
+name: '2ème enfant : 1 point'
 keywords:
-  - bourse lycée
-  - points de charge
+- bourse lycée
+- points de charge
 description: |
   1 point de charge supplémentaire pour le deuxième enfant
   Points de charge = (9 + 2) + 1 = 12
   Plafond RFR correspondant : 16130 euros
   RFR déclaré : 16100, donc parts = 3, montant = 3 * 45,3 = 135,9
-period: "month:2015-03"
+period: month:2015-03
 relative_error_margin: 0.02
 individus:
-  - age: 34
-    age_en_mois: 415
-    date_naissance: "1980-08-12"
-    chomage_imposable:
-      2013: 0
-    etudiant: 0
-    id: 55016893110d64385a0318ed
-    inapte_travail: 0
-    handicap: 0
-    pensions_alimentaires_percues:
-      2013: 0
-    retraite_imposable:
-      2013: 0
-    salaire_imposable:
-      2013: 0
-    statut_marital: marie
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 34
-    age_en_mois: 415
-    date_naissance: "1980-08-12"
-    chomage_imposable:
-      2013: 0
-    etudiant: 0
-    id: 55016893110d64385a0318ec
-    inapte_travail: 0
-    handicap: 0
-    pensions_alimentaires_percues:
-      2013: 0
-    retraite_imposable:
-      2013: 0
-    salaire_imposable:
-      2013: 0
-    statut_marital: marie
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 14
-    age_en_mois: 175
-    date_naissance: "2000-08-12"
-    etudiant: 0
-    id: 55016893110d64385a0318eb
-    inapte_travail: 0
-    handicap: 0
-    scolarite: lycee
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 0
-    age_en_mois: 7
-    date_naissance: "2014-08-12"
-    etudiant: 0
-    id: 55016893110d64385a0318ea
-    inapte_travail: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
+- age: 34
+  age_en_mois: 415
+  date_naissance: '1980-08-12'
+  chomage_imposable:
+    2013: 0
+  etudiant: 0
+  id: 55016893110d64385a0318ed
+  inapte_travail: 0
+  handicap: 0
+  pensions_alimentaires_percues:
+    2013: 0
+  retraite_imposable:
+    2013: 0
+  salaire_imposable:
+    2013: 0
+  statut_marital: marie
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 34
+  age_en_mois: 415
+  date_naissance: '1980-08-12'
+  chomage_imposable:
+    2013: 0
+  etudiant: 0
+  id: 55016893110d64385a0318ec
+  inapte_travail: 0
+  handicap: 0
+  pensions_alimentaires_percues:
+    2013: 0
+  retraite_imposable:
+    2013: 0
+  salaire_imposable:
+    2013: 0
+  statut_marital: marie
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 14
+  age_en_mois: 175
+  date_naissance: '2000-08-12'
+  etudiant: 0
+  id: 55016893110d64385a0318eb
+  inapte_travail: 0
+  handicap: 0
+  scolarite: lycee
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 0
+  age_en_mois: 7
+  date_naissance: '2014-08-12'
+  etudiant: 0
+  id: 55016893110d64385a0318ea
+  inapte_travail: 0
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
 familles:
   acs:
     2014-03: 0
@@ -244,8 +244,8 @@ familles:
     2015-01: 0
     2015-02: 0
   enfants:
-    - 55016893110d64385a0318eb
-    - 55016893110d64385a0318ea
+  - 55016893110d64385a0318eb
+  - 55016893110d64385a0318ea
   paje_base:
     2014-03: 0
     2014-04: 0
@@ -260,8 +260,8 @@ familles:
     2015-01: 0
     2015-02: 0
   parents:
-    - 55016893110d64385a0318ed
-    - 55016893110d64385a0318ec
+  - 55016893110d64385a0318ed
+  - 55016893110d64385a0318ec
   rsa:
     2014-03: 0
     2014-04: 0
@@ -277,21 +277,21 @@ familles:
     2015-02: 0
 foyers_fiscaux:
   declarants:
-    - 55016893110d64385a0318ed
-    - 55016893110d64385a0318ec
+  - 55016893110d64385a0318ed
+  - 55016893110d64385a0318ec
   pensions_alimentaires_versees:
     2013: 0
   personnes_a_charge:
-    - 55016893110d64385a0318eb
-    - 55016893110d64385a0318ea
+  - 55016893110d64385a0318eb
+  - 55016893110d64385a0318ea
   rfr:
     2013: 16100
 menages:
   conjoint: 55016893110d64385a0318ec
   depcom: 67482
   enfants:
-    - 55016893110d64385a0318eb
-    - 55016893110d64385a0318ea
+  - 55016893110d64385a0318eb
+  - 55016893110d64385a0318ea
   personne_de_reference: 55016893110d64385a0318ed
   statut_occupation_logement: loge_gratuitement
 output_variables:

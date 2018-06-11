@@ -1,8 +1,8 @@
-name: "3 enfants - couple"
+name: 3 enfants - couple
 keywords:
-  - al
-  - location
-  - ménage
+- al
+- location
+- ménage
 description: |
   couple salariés
   3 enfants moins de 16 ans
@@ -28,159 +28,159 @@ description: |
   AL	370,86
 
   caf.fr : 370,64
-period: "month:2014-12"
+period: month:2014-12
 relative_error_margin: 0.02
 individus:
-  - age: 42
-    age_en_mois: 515
-    date_naissance: "1972-01-09"
-    chomage_imposable:
-      2012: 0
-    etudiant: 0
-    id: 54931cd7145ac2e27afc0100
-    inapte_travail: 0
-    handicap: 0
-    pensions_alimentaires_percues:
-      2012: 0
-    retraite_imposable:
-      2012: 0
-    salaire_de_base:
-      2013-12: 980.9102564102564
-      2014-01: 980.9102564102564
-      2014-02: 980.9102564102564
-      2014-03: 980.9102564102564
-      2014-04: 980.9102564102564
-      2014-05: 980.9102564102564
-      2014-06: 980.9102564102564
-      2014-07: 980.9102564102564
-      2014-08: 980.9102564102564
-      2014-09: 0
-      2014-10: 0
-      2014-11: 0
-    salaire_imposable:
-      2012: 6886
-      2013-12: 793.0585854807692
-      2014-01: 793.0585854807692
-      2014-02: 793.0585854807692
-      2014-03: 793.0585854807692
-      2014-04: 793.0585854807692
-      2014-05: 793.0585854807692
-      2014-06: 793.0585854807692
-      2014-07: 793.0585854807692
-      2014-08: 793.0585854807692
-      2014-09: 0
-      2014-10: 0
-      2014-11: 0
-    salaire_net:
-      2013-12: 765.11
-      2014-01: 765.11
-      2014-02: 765.11
-      2014-03: 765.11
-      2014-04: 765.11
-      2014-05: 765.11
-      2014-06: 765.11
-      2014-07: 765.11
-      2014-08: 765.11
-      2014-09: 0
-      2014-10: 0
-      2014-11: 0
-    statut_marital: marie
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 43
-    age_en_mois: 524
-    date_naissance: "1971-04-02"
-    chomage_imposable:
-      2012: 0
-    etudiant: 0
-    id: 54931cd7145ac2e27afc00f3
-    inapte_travail: 0
-    handicap: 0
-    pensions_alimentaires_percues:
-      2012: 0
-    retraite_imposable:
-      2012: 0
-    salaire_de_base:
-      2013-12: 980.9102564102564
-      2014-01: 980.9102564102564
-      2014-02: 980.9102564102564
-      2014-03: 980.9102564102564
-      2014-04: 980.9102564102564
-      2014-05: 980.9102564102564
-      2014-06: 980.9102564102564
-      2014-07: 980.9102564102564
-      2014-08: 980.9102564102564
-      2014-09: 0
-      2014-10: 0
-      2014-11: 0
-    salaire_imposable:
-      2012: 6886
-      2013-12: 793.0585854807692
-      2014-01: 793.0585854807692
-      2014-02: 793.0585854807692
-      2014-03: 793.0585854807692
-      2014-04: 793.0585854807692
-      2014-05: 793.0585854807692
-      2014-06: 793.0585854807692
-      2014-07: 793.0585854807692
-      2014-08: 793.0585854807692
-      2014-09: 0
-      2014-10: 0
-      2014-11: 0
-    salaire_net:
-      2013-12: 765.11
-      2014-01: 765.11
-      2014-02: 765.11
-      2014-03: 765.11
-      2014-04: 765.11
-      2014-05: 765.11
-      2014-06: 765.11
-      2014-07: 765.11
-      2014-08: 765.11
-      2014-09: 0
-      2014-10: 0
-      2014-11: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 13
-    age_en_mois: 165
-    date_naissance: "2001-03-08"
-    etudiant: 0
-    id: 54931cd7145ac2e27afc00f2
-    inapte_travail: 0
-    handicap: 0
-    scolarite: college
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 11
-    age_en_mois: 132
-    date_naissance: "2003-11-23"
-    etudiant: 0
-    id: 54931cd7145ac2e27afc00f1
-    inapte_travail: 0
-    handicap: 0
-    scolarite: college
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 7
-    age_en_mois: 95
-    date_naissance: "2007-01-17"
-    etudiant: 0
-    id: 54931cd7145ac2e27afc00f0
-    inapte_travail: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
+- age: 42
+  age_en_mois: 515
+  date_naissance: '1972-01-09'
+  chomage_imposable:
+    2012: 0
+  etudiant: 0
+  id: 54931cd7145ac2e27afc0100
+  inapte_travail: 0
+  handicap: 0
+  pensions_alimentaires_percues:
+    2012: 0
+  retraite_imposable:
+    2012: 0
+  salaire_de_base:
+    2013-12: 980.9102564102564
+    2014-01: 980.9102564102564
+    2014-02: 980.9102564102564
+    2014-03: 980.9102564102564
+    2014-04: 980.9102564102564
+    2014-05: 980.9102564102564
+    2014-06: 980.9102564102564
+    2014-07: 980.9102564102564
+    2014-08: 980.9102564102564
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+  salaire_imposable:
+    2012: 6886
+    2013-12: 793.0585854807692
+    2014-01: 793.0585854807692
+    2014-02: 793.0585854807692
+    2014-03: 793.0585854807692
+    2014-04: 793.0585854807692
+    2014-05: 793.0585854807692
+    2014-06: 793.0585854807692
+    2014-07: 793.0585854807692
+    2014-08: 793.0585854807692
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+  salaire_net:
+    2013-12: 765.11
+    2014-01: 765.11
+    2014-02: 765.11
+    2014-03: 765.11
+    2014-04: 765.11
+    2014-05: 765.11
+    2014-06: 765.11
+    2014-07: 765.11
+    2014-08: 765.11
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+  statut_marital: marie
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 43
+  age_en_mois: 524
+  date_naissance: '1971-04-02'
+  chomage_imposable:
+    2012: 0
+  etudiant: 0
+  id: 54931cd7145ac2e27afc00f3
+  inapte_travail: 0
+  handicap: 0
+  pensions_alimentaires_percues:
+    2012: 0
+  retraite_imposable:
+    2012: 0
+  salaire_de_base:
+    2013-12: 980.9102564102564
+    2014-01: 980.9102564102564
+    2014-02: 980.9102564102564
+    2014-03: 980.9102564102564
+    2014-04: 980.9102564102564
+    2014-05: 980.9102564102564
+    2014-06: 980.9102564102564
+    2014-07: 980.9102564102564
+    2014-08: 980.9102564102564
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+  salaire_imposable:
+    2012: 6886
+    2013-12: 793.0585854807692
+    2014-01: 793.0585854807692
+    2014-02: 793.0585854807692
+    2014-03: 793.0585854807692
+    2014-04: 793.0585854807692
+    2014-05: 793.0585854807692
+    2014-06: 793.0585854807692
+    2014-07: 793.0585854807692
+    2014-08: 793.0585854807692
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+  salaire_net:
+    2013-12: 765.11
+    2014-01: 765.11
+    2014-02: 765.11
+    2014-03: 765.11
+    2014-04: 765.11
+    2014-05: 765.11
+    2014-06: 765.11
+    2014-07: 765.11
+    2014-08: 765.11
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 13
+  age_en_mois: 165
+  date_naissance: '2001-03-08'
+  etudiant: 0
+  id: 54931cd7145ac2e27afc00f2
+  inapte_travail: 0
+  handicap: 0
+  scolarite: college
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 11
+  age_en_mois: 132
+  date_naissance: '2003-11-23'
+  etudiant: 0
+  id: 54931cd7145ac2e27afc00f1
+  inapte_travail: 0
+  handicap: 0
+  scolarite: college
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 7
+  age_en_mois: 95
+  date_naissance: '2007-01-17'
+  etudiant: 0
+  id: 54931cd7145ac2e27afc00f0
+  inapte_travail: 0
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
 familles:
   acs:
     2013-12: 0
@@ -352,9 +352,9 @@ familles:
     2014-10: 0
     2014-11: 0
   enfants:
-    - 54931cd7145ac2e27afc00f2
-    - 54931cd7145ac2e27afc00f1
-    - 54931cd7145ac2e27afc00f0
+  - 54931cd7145ac2e27afc00f2
+  - 54931cd7145ac2e27afc00f1
+  - 54931cd7145ac2e27afc00f0
   paje_base:
     2013-12: 0
     2014-01: 0
@@ -369,8 +369,8 @@ familles:
     2014-10: 0
     2014-11: 0
   parents:
-    - 54931cd7145ac2e27afc0100
-    - 54931cd7145ac2e27afc00f3
+  - 54931cd7145ac2e27afc0100
+  - 54931cd7145ac2e27afc00f3
   proprietaire_proche_famille: false
   rsa:
     2013-12: 0
@@ -387,23 +387,23 @@ familles:
     2014-11: 0
 foyers_fiscaux:
   declarants:
-    - 54931cd7145ac2e27afc0100
-    - 54931cd7145ac2e27afc00f3
+  - 54931cd7145ac2e27afc0100
+  - 54931cd7145ac2e27afc00f3
   pensions_alimentaires_versees:
     2012: 0
   personnes_a_charge:
-    - 54931cd7145ac2e27afc00f2
-    - 54931cd7145ac2e27afc00f1
-    - 54931cd7145ac2e27afc00f0
+  - 54931cd7145ac2e27afc00f2
+  - 54931cd7145ac2e27afc00f1
+  - 54931cd7145ac2e27afc00f0
   rfr:
     2012: 0
 menages:
   conjoint: 54931cd7145ac2e27afc00f3
   depcom: 59619
   enfants:
-    - 54931cd7145ac2e27afc00f2
-    - 54931cd7145ac2e27afc00f1
-    - 54931cd7145ac2e27afc00f0
+  - 54931cd7145ac2e27afc00f2
+  - 54931cd7145ac2e27afc00f1
+  - 54931cd7145ac2e27afc00f0
   loyer: 500
   personne_de_reference: 54931cd7145ac2e27afc0100
   statut_occupation_logement: locataire_vide

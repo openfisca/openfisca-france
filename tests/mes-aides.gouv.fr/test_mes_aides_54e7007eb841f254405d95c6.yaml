@@ -1,102 +1,102 @@
-name: "14 Cf - enfant de plus de 20 ans"
+name: 14 Cf - enfant de plus de 20 ans
 keywords:
-  - age
-  - cf
+- age
+- cf
 description: |
   Pour avoir droit au complément familial en métropole, il faut avoir trois enfants à charge âgés de 3 à 20 ans.
   Dans le cas, il y 2 enfants de 16 et 17 ans et un enfant de 21 ans donc pas de droit au Cf.
-period: "month:2015-02"
+period: month:2015-02
 relative_error_margin: 0.02
 individus:
-  - age: 64
-    age_en_mois: 773
-    date_naissance: "1950-09-04"
-    etudiant: 0
-    id: 54e6febe70a3f65f40b60edc
-    inapte_travail: 0
-    handicap: 0
-    salaire_de_base:
-      2013: 0
-      2014-02: 0
-      2014-03: 0
-      2014-04: 0
-      2014-05: 0
-      2014-06: 0
-      2014-07: 0
-      2014-08: 0
-      2014-09: 0
-      2014-10: 0
-      2014-11: 0
-      2014-12: 0
-      2015-01: 0
-    salaire_imposable:
-      2013: 0
-      2014-02: 0
-      2014-03: 0
-      2014-04: 0
-      2014-05: 0
-      2014-06: 0
-      2014-07: 0
-      2014-08: 0
-      2014-09: 0
-      2014-10: 0
-      2014-11: 0
-      2014-12: 0
-      2015-01: 0
-    salaire_net:
-      2013: 0
-      2014-02: 0
-      2014-03: 0
-      2014-04: 0
-      2014-05: 0
-      2014-06: 0
-      2014-07: 0
-      2014-08: 0
-      2014-09: 0
-      2014-10: 0
-      2014-11: 0
-      2014-12: 0
-      2015-01: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 16
-    age_en_mois: 192
-    date_naissance: "1999-02-01"
-    etudiant: 0
-    id: 54e6febe70a3f65f40b60edb
-    inapte_travail: 0
-    handicap: 0
-    scolarite: college
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 17
-    age_en_mois: 204
-    date_naissance: "1998-02-01"
-    etudiant: 0
-    id: 54e6febe70a3f65f40b60eda
-    inapte_travail: 0
-    handicap: 0
-    scolarite: college
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 21
-    age_en_mois: 252
-    date_naissance: "1994-02-01"
-    etudiant: 0
-    id: 54e86c740f7afafd54c4d4d4
-    inapte_travail: 0
-    handicap: 0
-    scolarite: lycee
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
+- age: 64
+  age_en_mois: 773
+  date_naissance: '1950-09-04'
+  etudiant: 0
+  id: 54e6febe70a3f65f40b60edc
+  inapte_travail: 0
+  handicap: 0
+  salaire_de_base:
+    2013: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+  salaire_imposable:
+    2013: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+  salaire_net:
+    2013: 0
+    2014-02: 0
+    2014-03: 0
+    2014-04: 0
+    2014-05: 0
+    2014-06: 0
+    2014-07: 0
+    2014-08: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 16
+  age_en_mois: 192
+  date_naissance: '1999-02-01'
+  etudiant: 0
+  id: 54e6febe70a3f65f40b60edb
+  inapte_travail: 0
+  handicap: 0
+  scolarite: college
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 17
+  age_en_mois: 204
+  date_naissance: '1998-02-01'
+  etudiant: 0
+  id: 54e6febe70a3f65f40b60eda
+  inapte_travail: 0
+  handicap: 0
+  scolarite: college
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 21
+  age_en_mois: 252
+  date_naissance: '1994-02-01'
+  etudiant: 0
+  id: 54e86c740f7afafd54c4d4d4
+  inapte_travail: 0
+  handicap: 0
+  scolarite: lycee
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
 familles:
   acs:
     2014-02: 0
@@ -268,9 +268,9 @@ familles:
     2014-12: 0
     2015-01: 0
   enfants:
-    - 54e6febe70a3f65f40b60edb
-    - 54e6febe70a3f65f40b60eda
-    - 54e86c740f7afafd54c4d4d4
+  - 54e6febe70a3f65f40b60edb
+  - 54e6febe70a3f65f40b60eda
+  - 54e86c740f7afafd54c4d4d4
   paje_base:
     2014-02: 0
     2014-03: 0
@@ -302,15 +302,15 @@ familles:
 foyers_fiscaux:
   declarants: 54e6febe70a3f65f40b60edc
   personnes_a_charge:
-    - 54e6febe70a3f65f40b60edb
-    - 54e6febe70a3f65f40b60eda
-    - 54e86c740f7afafd54c4d4d4
+  - 54e6febe70a3f65f40b60edb
+  - 54e6febe70a3f65f40b60eda
+  - 54e86c740f7afafd54c4d4d4
 menages:
   depcom: 75114
   enfants:
-    - 54e6febe70a3f65f40b60edb
-    - 54e6febe70a3f65f40b60eda
-    - 54e86c740f7afafd54c4d4d4
+  - 54e6febe70a3f65f40b60edb
+  - 54e6febe70a3f65f40b60eda
+  - 54e86c740f7afafd54c4d4d4
   personne_de_reference: 54e6febe70a3f65f40b60edc
   statut_occupation_logement: loge_gratuitement
 output_variables:

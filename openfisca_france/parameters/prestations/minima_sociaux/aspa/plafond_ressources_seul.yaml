@@ -1,5 +1,4 @@
-description: Plafond de ressources annuelles pour une personne seule pour percevoir
-  l'ASPA
+description: Plafond de ressources annuelles pour une personne seule pour percevoir l'ASPA
 reference: openfisca
 unit: currency
 values:

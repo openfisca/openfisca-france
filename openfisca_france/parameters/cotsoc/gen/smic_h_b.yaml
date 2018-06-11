@@ -1,6 +1,5 @@
 description: SMIC horaire brut
-reference: Décret n° 2016-1818 du 22 décembre 2016 portant relèvement du salaire minimum
-  de croissance - Article 1
+reference: Décret n° 2016-1818 du 22 décembre 2016 portant relèvement du salaire minimum de croissance - Article 1
 unit: currency
 values:
   2001-08-01:

@@ -1,4 +1,4 @@
-- name: "ASI - Une personne"
+- name: ASI - Une personne
   period: 2016-08
   absolute_error_margin: 1
   input_variables:

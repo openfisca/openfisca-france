@@ -1,95 +1,95 @@
 name: Personne seule 2 enfants dont 1 né après le 1/4/14 > plafond
 keywords:
-  - montant
-  - paje
-  - plafonds
-  - taux partiel
-description: "Plafond Personne seule 2 enfants dont 1 né après le 1/4/14: 51 836"
-period: "month:2015-09"
+- montant
+- paje
+- plafonds
+- taux partiel
+description: 'Plafond Personne seule 2 enfants dont 1 né après le 1/4/14: 51 836'
+period: month:2015-09
 relative_error_margin: 0.02
 individus:
-  - enfant_a_charge:
-      2015: true
-    age: 55
-    age_en_mois: 668
-    date_naissance: "1960-01-01"
-    enfant_place: false
-    etudiant: 0
-    id: 55eeab5cdbd69f2b04f5662c
-    inapte_travail: 0
-    handicap: 0
-    salaire_de_base:
-      2014-09: 8262.108262108262
-      2014-10: 8262.108262108262
-      2014-11: 8262.108262108262
-      2014-12: 8262.108262108262
-      2015-01: 8262.108262108262
-      2015-02: 8262.108262108262
-      2015-03: 8262.108262108262
-      2015-04: 8262.108262108262
-      2015-05: 8262.108262108262
-      2015-06: 0
-      2015-07: 0
-      2015-08: 0
-    salaire_imposable:
-      2013: 58000
-      2014-09: 6679.852564102564
-      2014-10: 6679.852564102564
-      2014-11: 6679.852564102564
-      2014-12: 6679.852564102564
-      2015-01: 6679.852564102564
-      2015-02: 6679.852564102564
-      2015-03: 6679.852564102564
-      2015-04: 6679.852564102564
-      2015-05: 6679.852564102564
-      2015-06: 0
-      2015-07: 0
-      2015-08: 0
-    salaire_net:
-      2014-09: 6444.444444444444
-      2014-10: 6444.444444444444
-      2014-11: 6444.444444444444
-      2014-12: 6444.444444444444
-      2015-01: 6444.444444444444
-      2015-02: 6444.444444444444
-      2015-03: 6444.444444444444
-      2015-04: 6444.444444444444
-      2015-05: 6444.444444444444
-      2015-06: 0
-      2015-07: 0
-      2015-08: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - enfant_a_charge:
-      2015: true
-    age: 5
-    age_en_mois: 71
-    date_naissance: "2009-09-09"
-    enfant_place: false
-    etudiant: 0
-    id: 55eeab5cdbd69f2b04f5662b
-    inapte_travail: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - enfant_a_charge:
-      2015: true
-    age: 0
-    age_en_mois: 8
-    date_naissance: "2015-01-01"
-    enfant_place: false
-    etudiant: 0
-    id: 55eeab5cdbd69f2b04f5662a
-    inapte_travail: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
+- enfant_a_charge:
+    2015: true
+  age: 55
+  age_en_mois: 668
+  date_naissance: '1960-01-01'
+  enfant_place: false
+  etudiant: 0
+  id: 55eeab5cdbd69f2b04f5662c
+  inapte_travail: 0
+  handicap: 0
+  salaire_de_base:
+    2014-09: 8262.108262108262
+    2014-10: 8262.108262108262
+    2014-11: 8262.108262108262
+    2014-12: 8262.108262108262
+    2015-01: 8262.108262108262
+    2015-02: 8262.108262108262
+    2015-03: 8262.108262108262
+    2015-04: 8262.108262108262
+    2015-05: 8262.108262108262
+    2015-06: 0
+    2015-07: 0
+    2015-08: 0
+  salaire_imposable:
+    2013: 58000
+    2014-09: 6679.852564102564
+    2014-10: 6679.852564102564
+    2014-11: 6679.852564102564
+    2014-12: 6679.852564102564
+    2015-01: 6679.852564102564
+    2015-02: 6679.852564102564
+    2015-03: 6679.852564102564
+    2015-04: 6679.852564102564
+    2015-05: 6679.852564102564
+    2015-06: 0
+    2015-07: 0
+    2015-08: 0
+  salaire_net:
+    2014-09: 6444.444444444444
+    2014-10: 6444.444444444444
+    2014-11: 6444.444444444444
+    2014-12: 6444.444444444444
+    2015-01: 6444.444444444444
+    2015-02: 6444.444444444444
+    2015-03: 6444.444444444444
+    2015-04: 6444.444444444444
+    2015-05: 6444.444444444444
+    2015-06: 0
+    2015-07: 0
+    2015-08: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- enfant_a_charge:
+    2015: true
+  age: 5
+  age_en_mois: 71
+  date_naissance: '2009-09-09'
+  enfant_place: false
+  etudiant: 0
+  id: 55eeab5cdbd69f2b04f5662b
+  inapte_travail: 0
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- enfant_a_charge:
+    2015: true
+  age: 0
+  age_en_mois: 8
+  date_naissance: '2015-01-01'
+  enfant_place: false
+  etudiant: 0
+  id: 55eeab5cdbd69f2b04f5662a
+  inapte_travail: 0
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
 familles:
   acs:
     2014-09: 0
@@ -261,8 +261,8 @@ familles:
     2015-07: 0
     2015-08: 0
   enfants:
-    - 55eeab5cdbd69f2b04f5662b
-    - 55eeab5cdbd69f2b04f5662a
+  - 55eeab5cdbd69f2b04f5662b
+  - 55eeab5cdbd69f2b04f5662a
   paje_base:
     2014-09: 0
     2014-10: 0
@@ -294,14 +294,14 @@ familles:
 foyers_fiscaux:
   declarants: 55eeab5cdbd69f2b04f5662c
   personnes_a_charge:
-    - 55eeab5cdbd69f2b04f5662b
-    - 55eeab5cdbd69f2b04f5662a
-  rfr:
+  - 55eeab5cdbd69f2b04f5662b
+  - 55eeab5cdbd69f2b04f5662a
+  rfr: null
 menages:
   depcom: 78646
   enfants:
-    - 55eeab5cdbd69f2b04f5662b
-    - 55eeab5cdbd69f2b04f5662a
+  - 55eeab5cdbd69f2b04f5662b
+  - 55eeab5cdbd69f2b04f5662a
   loyer: 0
   personne_de_reference: 55eeab5cdbd69f2b04f5662c
-output_variables:
+output_variables: null

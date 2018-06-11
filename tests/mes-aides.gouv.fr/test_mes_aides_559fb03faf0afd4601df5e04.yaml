@@ -1,50 +1,50 @@
-name: "COUPLE -25 ANS 1 ENFANT ME SS ACTIVITE MR TI"
+name: COUPLE -25 ANS 1 ENFANT ME SS ACTIVITE MR TI
 keywords:
-  - recette
-  - rsa
+- recette
+- rsa
 description: |
   Test créé à partir d'un dossier de demande de RSA,
   Couple - 25 ans mais présence d'1 enfant  = droit RSA
 
   RSA non calculé
-period: "month:2015-07"
+period: month:2015-07
 relative_error_margin: 0.02
 individus:
-  - age: 19
-    age_en_mois: 237
-    date_naissance: "1995-09-11"
-    etudiant: 0
-    id: 559fb03cf92fd455017e6e11
-    inapte_travail: 0
-    handicap: 0
-    statut_marital: marie
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 23
-    age_en_mois: 286
-    date_naissance: "1991-09-05"
-    etudiant: 0
-    id: 559fb03cf92fd455017e6e10
-    inapte_travail: 0
-    handicap: 0
-    statut_marital: marie
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 1
-    age_en_mois: 16
-    date_naissance: "2014-03-08"
-    etudiant: 0
-    id: 559fb03cf92fd455017e6e0f
-    inapte_travail: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
+- age: 19
+  age_en_mois: 237
+  date_naissance: '1995-09-11'
+  etudiant: 0
+  id: 559fb03cf92fd455017e6e11
+  inapte_travail: 0
+  handicap: 0
+  statut_marital: marie
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 23
+  age_en_mois: 286
+  date_naissance: '1991-09-05'
+  etudiant: 0
+  id: 559fb03cf92fd455017e6e10
+  inapte_travail: 0
+  handicap: 0
+  statut_marital: marie
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 1
+  age_en_mois: 16
+  date_naissance: '2014-03-08'
+  etudiant: 0
+  id: 559fb03cf92fd455017e6e0f
+  inapte_travail: 0
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
 familles:
   acs:
     2014-07: 0
@@ -232,8 +232,8 @@ familles:
     2015-06: 184.62
     2015-07: 184.62
   parents:
-    - 559fb03cf92fd455017e6e11
-    - 559fb03cf92fd455017e6e10
+  - 559fb03cf92fd455017e6e11
+  - 559fb03cf92fd455017e6e10
   rsa:
     2014-07: 0
     2014-08: 0
@@ -249,8 +249,8 @@ familles:
     2015-06: 0
 foyers_fiscaux:
   declarants:
-    - 559fb03cf92fd455017e6e11
-    - 559fb03cf92fd455017e6e10
+  - 559fb03cf92fd455017e6e11
+  - 559fb03cf92fd455017e6e10
   personnes_a_charge: 559fb03cf92fd455017e6e0f
 menages:
   conjoint: 559fb03cf92fd455017e6e10

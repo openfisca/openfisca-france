@@ -1,89 +1,89 @@
 name: Les enfants qui travaillent et gagnent plus de 55% du smic ne sont pas considérés à charge
 keywords:
-  - af
-  - enfants à charge
+- af
+- enfants à charge
 description: Pas d'allocations familiales versées car dans l'exemple l'enfant gagne 900 euros par mois, ce qui est supérieur au maximum de 893 euros par mois.
-period: "month:2014-11"
+period: month:2014-11
 relative_error_margin: 0.02
 individus:
-  - age: 34
-    age_en_mois: 411
-    date_naissance: "1980-08-12"
-    etudiant: 0
-    id: 54734de71e6217443d918aed
-    inapte_travail: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 18
-    age_en_mois: 219
-    date_naissance: "1996-08-12"
-    etudiant: 0
-    id: 54734de71e6217443d918ae0
-    inapte_travail: 0
-    handicap: 0
-    salaire_de_base:
-      2012: 13846.15384615385
-      2013-11: 1153.8461538461538
-      2013-12: 1153.8461538461538
-      2014-01: 1153.8461538461538
-      2014-02: 1153.8461538461538
-      2014-03: 1153.8461538461538
-      2014-04: 1153.8461538461538
-      2014-05: 1153.8461538461538
-      2014-06: 1153.8461538461538
-      2014-07: 1153.8461538461538
-      2014-08: 1153.8461538461538
-      2014-09: 1153.8461538461538
-      2014-10: 1153.8461538461538
-      2014-11: 1153.8461538461538
-    salaire_imposable:
-      2012: 11194.511538461542
-      2013-11: 932.8759615384615
-      2013-12: 932.8759615384615
-      2014-01: 932.8759615384615
-      2014-02: 932.8759615384615
-      2014-03: 932.8759615384615
-      2014-04: 932.8759615384615
-      2014-05: 932.8759615384615
-      2014-06: 932.8759615384615
-      2014-07: 932.8759615384615
-      2014-08: 932.8759615384615
-      2014-09: 932.8759615384615
-      2014-10: 932.8759615384615
-      2014-11: 932.8759615384615
-    salaire_net:
-      2012: 10800
-      2013-11: 900
-      2013-12: 900
-      2014-01: 900
-      2014-02: 900
-      2014-03: 900
-      2014-04: 900
-      2014-05: 900
-      2014-06: 900
-      2014-07: 900
-      2014-08: 900
-      2014-09: 900
-      2014-10: 900
-      2014-11: 900
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 4
-    age_en_mois: 51
-    date_naissance: "2010-08-12"
-    etudiant: 0
-    id: 54734de71e6217443d918adf
-    inapte_travail: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
+- age: 34
+  age_en_mois: 411
+  date_naissance: '1980-08-12'
+  etudiant: 0
+  id: 54734de71e6217443d918aed
+  inapte_travail: 0
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 18
+  age_en_mois: 219
+  date_naissance: '1996-08-12'
+  etudiant: 0
+  id: 54734de71e6217443d918ae0
+  inapte_travail: 0
+  handicap: 0
+  salaire_de_base:
+    2012: 13846.15384615385
+    2013-11: 1153.8461538461538
+    2013-12: 1153.8461538461538
+    2014-01: 1153.8461538461538
+    2014-02: 1153.8461538461538
+    2014-03: 1153.8461538461538
+    2014-04: 1153.8461538461538
+    2014-05: 1153.8461538461538
+    2014-06: 1153.8461538461538
+    2014-07: 1153.8461538461538
+    2014-08: 1153.8461538461538
+    2014-09: 1153.8461538461538
+    2014-10: 1153.8461538461538
+    2014-11: 1153.8461538461538
+  salaire_imposable:
+    2012: 11194.511538461542
+    2013-11: 932.8759615384615
+    2013-12: 932.8759615384615
+    2014-01: 932.8759615384615
+    2014-02: 932.8759615384615
+    2014-03: 932.8759615384615
+    2014-04: 932.8759615384615
+    2014-05: 932.8759615384615
+    2014-06: 932.8759615384615
+    2014-07: 932.8759615384615
+    2014-08: 932.8759615384615
+    2014-09: 932.8759615384615
+    2014-10: 932.8759615384615
+    2014-11: 932.8759615384615
+  salaire_net:
+    2012: 10800
+    2013-11: 900
+    2013-12: 900
+    2014-01: 900
+    2014-02: 900
+    2014-03: 900
+    2014-04: 900
+    2014-05: 900
+    2014-06: 900
+    2014-07: 900
+    2014-08: 900
+    2014-09: 900
+    2014-10: 900
+    2014-11: 900
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 4
+  age_en_mois: 51
+  date_naissance: '2010-08-12'
+  etudiant: 0
+  id: 54734de71e6217443d918adf
+  inapte_travail: 0
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
 familles:
   acs:
     2013-11: 0
@@ -255,8 +255,8 @@ familles:
     2014-09: 0
     2014-10: 0
   enfants:
-    - 54734de71e6217443d918ae0
-    - 54734de71e6217443d918adf
+  - 54734de71e6217443d918ae0
+  - 54734de71e6217443d918adf
   paje_base:
     2013-11: 0
     2013-12: 0
@@ -288,13 +288,13 @@ familles:
 foyers_fiscaux:
   declarants: 54734de71e6217443d918aed
   personnes_a_charge:
-    - 54734de71e6217443d918ae0
-    - 54734de71e6217443d918adf
+  - 54734de71e6217443d918ae0
+  - 54734de71e6217443d918adf
 menages:
   depcom: 75111
   enfants:
-    - 54734de71e6217443d918ae0
-    - 54734de71e6217443d918adf
+  - 54734de71e6217443d918ae0
+  - 54734de71e6217443d918adf
   personne_de_reference: 54734de71e6217443d918aed
   statut_occupation_logement: loge_gratuitement
 output_variables:

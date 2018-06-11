@@ -1,16 +1,16 @@
 name: Personne seule, ressources > plafond de 1137,50 euros
 keywords:
-  - ass
-  - plafonds
-description:
-period: "month:2014-11"
+- ass
+- plafonds
+description: null
+period: month:2014-11
 relative_error_margin: 0.02
 individus:
   activite: chomeur
   age: 34
   age_en_mois: 411
   ass_precondition_remplie: true
-  date_naissance: "1980-08-12"
+  date_naissance: '1980-08-12'
   etudiant: 0
   id: 546f515e48f57f393d6d1eb0
   inapte_travail: 0
@@ -234,7 +234,7 @@ familles:
     2014-08: 0
     2014-09: 0
     2014-10: 0
-  enfants:
+  enfants: null
   paje_base:
     2013-11: 0
     2013-12: 0
@@ -264,10 +264,10 @@ familles:
     2014-10: 0
 foyers_fiscaux:
   declarants: 546f515e48f57f393d6d1eb0
-  personnes_a_charge:
+  personnes_a_charge: null
 menages:
   depcom: 67482
-  enfants:
+  enfants: null
   personne_de_reference: 546f515e48f57f393d6d1eb0
   statut_occupation_logement: loge_gratuitement
 output_variables:

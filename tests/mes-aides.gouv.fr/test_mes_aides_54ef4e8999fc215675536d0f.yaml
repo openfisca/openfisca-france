@@ -1,8 +1,8 @@
 name: Le loyer plafond est celui d'une personne isolée même pour les familles
 keywords:
-  - al
-  - chambres
-  - location
+- al
+- chambres
+- location
 description: |
   http://www.legifrance.gouv.fr/affichTexteArticle.do?idArticle=LEGIARTI000029558125&cidTexte=LEGITEXT000006074213
   On force le loyer plafond d'une personne seule à hauteur de 90% pour les chambres même quand c'est un couple ou une famille qui y vit.
@@ -26,72 +26,72 @@ description: |
   AL	103,52
 
   caf.fr : 101,24
-period: "month:2015-02"
+period: month:2015-02
 absolute_error_margin: 2
 individus:
-  - age: 34
-    age_en_mois: 414
-    date_naissance: "1980-08-12"
-    chomage_imposable:
-      2013: 0
-    etudiant: 0
-    id: 54ef4df1d365765975419541
-    inapte_travail: 0
-    handicap: 0
-    pensions_alimentaires_percues:
-      2013: 0
-    retraite_imposable:
-      2013: 0
-    salaire_imposable:
-      2013: 18000
-    statut_marital: marie
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 34
-    age_en_mois: 414
-    date_naissance: "1980-08-12"
-    chomage_imposable:
-      2013: 0
-    etudiant: 0
-    id: 54ef4df1d365765975419540
-    inapte_travail: 0
-    handicap: 0
-    pensions_alimentaires_percues:
-      2013: 0
-    retraite_imposable:
-      2013: 0
-    salaire_imposable:
-      2013: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 14
-    age_en_mois: 175
-    date_naissance: "2000-07-12"
-    etudiant: 0
-    id: 54ef4df1d36576597541953f
-    inapte_travail: 0
-    handicap: 0
-    scolarite: college
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 14
-    age_en_mois: 174
-    date_naissance: "2000-08-12"
-    etudiant: 0
-    id: 54ef4df1d36576597541953e
-    inapte_travail: 0
-    handicap: 0
-    scolarite: college
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
+- age: 34
+  age_en_mois: 414
+  date_naissance: '1980-08-12'
+  chomage_imposable:
+    2013: 0
+  etudiant: 0
+  id: 54ef4df1d365765975419541
+  inapte_travail: 0
+  handicap: 0
+  pensions_alimentaires_percues:
+    2013: 0
+  retraite_imposable:
+    2013: 0
+  salaire_imposable:
+    2013: 18000
+  statut_marital: marie
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 34
+  age_en_mois: 414
+  date_naissance: '1980-08-12'
+  chomage_imposable:
+    2013: 0
+  etudiant: 0
+  id: 54ef4df1d365765975419540
+  inapte_travail: 0
+  handicap: 0
+  pensions_alimentaires_percues:
+    2013: 0
+  retraite_imposable:
+    2013: 0
+  salaire_imposable:
+    2013: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 14
+  age_en_mois: 175
+  date_naissance: '2000-07-12'
+  etudiant: 0
+  id: 54ef4df1d36576597541953f
+  inapte_travail: 0
+  handicap: 0
+  scolarite: college
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 14
+  age_en_mois: 174
+  date_naissance: '2000-08-12'
+  etudiant: 0
+  id: 54ef4df1d36576597541953e
+  inapte_travail: 0
+  handicap: 0
+  scolarite: college
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
 familles:
   acs:
     2014-02: 0
@@ -263,8 +263,8 @@ familles:
     2014-12: 0
     2015-01: 0
   enfants:
-    - 54ef4df1d36576597541953f
-    - 54ef4df1d36576597541953e
+  - 54ef4df1d36576597541953f
+  - 54ef4df1d36576597541953e
   paje_base:
     2014-02: 0
     2014-03: 0
@@ -279,8 +279,8 @@ familles:
     2014-12: 0
     2015-01: 0
   parents:
-    - 54ef4df1d365765975419541
-    - 54ef4df1d365765975419540
+  - 54ef4df1d365765975419541
+  - 54ef4df1d365765975419540
   proprietaire_proche_famille: false
   rsa:
     2014-02: 0
@@ -297,21 +297,21 @@ familles:
     2015-01: 0
 foyers_fiscaux:
   declarants:
-    - 54ef4df1d365765975419541
-    - 54ef4df1d365765975419540
+  - 54ef4df1d365765975419541
+  - 54ef4df1d365765975419540
   pensions_alimentaires_versees:
     2013: 0
   personnes_a_charge:
-    - 54ef4df1d36576597541953f
-    - 54ef4df1d36576597541953e
+  - 54ef4df1d36576597541953f
+  - 54ef4df1d36576597541953e
   rfr:
     2013: 0
 menages:
   conjoint: 54ef4df1d365765975419540
   depcom: 75111
   enfants:
-    - 54ef4df1d36576597541953f
-    - 54ef4df1d36576597541953e
+  - 54ef4df1d36576597541953f
+  - 54ef4df1d36576597541953e
   loyer: 1000
   logement_chambre: 1
   personne_de_reference: 54ef4df1d365765975419541

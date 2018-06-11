@@ -1,7 +1,6 @@
 name: 'CMUC/ACS : abattement 30% appliqué à tort'
 keywords: []
-description: La personne est demandeur d'emploi mais n'est pas indemnisée. L'abattement de 30% ne doit pas être appliqué.
-  Le montant de ses ressources ne lui ouvre aucun droit CMUC/ACS
+description: La personne est demandeur d'emploi mais n'est pas indemnisée. L'abattement de 30% ne doit pas être appliqué. Le montant de ses ressources ne lui ouvre aucun droit CMUC/ACS
 period: month:2015-10
 relative_error_margin: 0.02
 individus:

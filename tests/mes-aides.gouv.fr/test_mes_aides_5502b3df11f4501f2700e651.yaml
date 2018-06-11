@@ -4,73 +4,73 @@ description: |
   Ici 2 parents avec 2 enfants au lycée.
   RFR = 0 donc 10 parts, montant pour 1 enfant = 10*45,3 = 453
   Montant affiché = 453 * 2 = 906 euros
-period: "month:2015-03"
+period: month:2015-03
 relative_error_margin: 0.02
 individus:
-  - age: 34
-    age_en_mois: 415
-    date_naissance: "1980-08-12"
-    chomage_imposable:
-      2013: 0
-    etudiant: 0
-    id: 5502b3d56d04f8192758152d
-    inapte_travail: 0
-    handicap: 0
-    pensions_alimentaires_percues:
-      2013: 0
-    retraite_imposable:
-      2013: 0
-    salaire_imposable:
-      2013: 0
-    statut_marital: marie
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 34
-    age_en_mois: 415
-    date_naissance: "1980-08-12"
-    chomage_imposable:
-      2013: 0
-    etudiant: 0
-    id: 5502b3d56d04f8192758152c
-    inapte_travail: 0
-    handicap: 0
-    pensions_alimentaires_percues:
-      2013: 0
-    retraite_imposable:
-      2013: 0
-    salaire_imposable:
-      2013: 0
-    statut_marital: marie
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 14
-    age_en_mois: 175
-    date_naissance: "2000-08-12"
-    etudiant: 0
-    id: 5502b3d56d04f8192758152b
-    inapte_travail: 0
-    handicap: 0
-    scolarite: lycee
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 14
-    age_en_mois: 175
-    date_naissance: "2000-08-12"
-    etudiant: 0
-    id: 5502b3d56d04f8192758152a
-    inapte_travail: 0
-    handicap: 0
-    scolarite: lycee
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
+- age: 34
+  age_en_mois: 415
+  date_naissance: '1980-08-12'
+  chomage_imposable:
+    2013: 0
+  etudiant: 0
+  id: 5502b3d56d04f8192758152d
+  inapte_travail: 0
+  handicap: 0
+  pensions_alimentaires_percues:
+    2013: 0
+  retraite_imposable:
+    2013: 0
+  salaire_imposable:
+    2013: 0
+  statut_marital: marie
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 34
+  age_en_mois: 415
+  date_naissance: '1980-08-12'
+  chomage_imposable:
+    2013: 0
+  etudiant: 0
+  id: 5502b3d56d04f8192758152c
+  inapte_travail: 0
+  handicap: 0
+  pensions_alimentaires_percues:
+    2013: 0
+  retraite_imposable:
+    2013: 0
+  salaire_imposable:
+    2013: 0
+  statut_marital: marie
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 14
+  age_en_mois: 175
+  date_naissance: '2000-08-12'
+  etudiant: 0
+  id: 5502b3d56d04f8192758152b
+  inapte_travail: 0
+  handicap: 0
+  scolarite: lycee
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 14
+  age_en_mois: 175
+  date_naissance: '2000-08-12'
+  etudiant: 0
+  id: 5502b3d56d04f8192758152a
+  inapte_travail: 0
+  handicap: 0
+  scolarite: lycee
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
 familles:
   acs:
     2014-03: 0
@@ -242,8 +242,8 @@ familles:
     2015-01: 0
     2015-02: 0
   enfants:
-    - 5502b3d56d04f8192758152b
-    - 5502b3d56d04f8192758152a
+  - 5502b3d56d04f8192758152b
+  - 5502b3d56d04f8192758152a
   paje_base:
     2014-03: 0
     2014-04: 0
@@ -258,8 +258,8 @@ familles:
     2015-01: 0
     2015-02: 0
   parents:
-    - 5502b3d56d04f8192758152d
-    - 5502b3d56d04f8192758152c
+  - 5502b3d56d04f8192758152d
+  - 5502b3d56d04f8192758152c
   rsa:
     2014-03: 0
     2014-04: 0
@@ -275,21 +275,21 @@ familles:
     2015-02: 0
 foyers_fiscaux:
   declarants:
-    - 5502b3d56d04f8192758152d
-    - 5502b3d56d04f8192758152c
+  - 5502b3d56d04f8192758152d
+  - 5502b3d56d04f8192758152c
   pensions_alimentaires_versees:
     2013: 0
   personnes_a_charge:
-    - 5502b3d56d04f8192758152b
-    - 5502b3d56d04f8192758152a
+  - 5502b3d56d04f8192758152b
+  - 5502b3d56d04f8192758152a
   rfr:
     2013: 0
 menages:
   conjoint: 5502b3d56d04f8192758152c
   depcom: 67482
   enfants:
-    - 5502b3d56d04f8192758152b
-    - 5502b3d56d04f8192758152a
+  - 5502b3d56d04f8192758152b
+  - 5502b3d56d04f8192758152a
   personne_de_reference: 5502b3d56d04f8192758152d
   statut_occupation_logement: loge_gratuitement
 output_variables:

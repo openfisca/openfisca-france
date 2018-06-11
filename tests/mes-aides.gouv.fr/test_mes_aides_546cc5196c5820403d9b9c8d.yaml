@@ -1,85 +1,85 @@
 name: Couple qui touche une AL, forfait logement de 120 euros fait dépasser le plafond
 keywords:
-  - base ressources
-  - "cmu-c/acs"
-  - forfait logement
+- base ressources
+- cmu-c/acs
+- forfait logement
 description: |
   Forfait logement pour 2 personnes qui touchent une allocation logement : 120 €
   Plafond 1080 euros
   Salaires déclarés 970 euros
   Forfait logement = 120 euros
   970 + 120 = 1090 euros > plafond de 1080
-period: "month:2014-11"
+period: month:2014-11
 relative_error_margin: 0.02
 individus:
-  - age: 34
-    age_en_mois: 411
-    date_naissance: "1980-08-12"
-    etudiant: 0
-    id: 546cc4cb1fdfd7423d81f44b
-    inapte_travail: 0
-    handicap: 0
-    salaire_de_base:
-      2012: 14923.076923076927
-      2013-11: 1243.5897435897436
-      2013-12: 1243.5897435897436
-      2014-01: 1243.5897435897436
-      2014-02: 1243.5897435897436
-      2014-03: 1243.5897435897436
-      2014-04: 1243.5897435897436
-      2014-05: 1243.5897435897436
-      2014-06: 1243.5897435897436
-      2014-07: 1243.5897435897436
-      2014-08: 1243.5897435897436
-      2014-09: 1243.5897435897436
-      2014-10: 1243.5897435897436
-      2014-11: 1243.5897435897436
-    salaire_imposable:
-      2012: 12065.195769230768
-      2013-11: 1005.4329807692308
-      2013-12: 1005.4329807692308
-      2014-01: 1005.4329807692308
-      2014-02: 1005.4329807692308
-      2014-03: 1005.4329807692308
-      2014-04: 1005.4329807692308
-      2014-05: 1005.4329807692308
-      2014-06: 1005.4329807692308
-      2014-07: 1005.4329807692308
-      2014-08: 1005.4329807692308
-      2014-09: 1005.4329807692308
-      2014-10: 1005.4329807692308
-      2014-11: 1005.4329807692308
-    salaire_net:
-      2012: 11640
-      2013-11: 970
-      2013-12: 970
-      2014-01: 970
-      2014-02: 970
-      2014-03: 970
-      2014-04: 970
-      2014-05: 970
-      2014-06: 970
-      2014-07: 970
-      2014-08: 970
-      2014-09: 970
-      2014-10: 970
-      2014-11: 970
-    statut_marital: marie
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 34
-    age_en_mois: 411
-    date_naissance: "1980-08-12"
-    etudiant: 0
-    id: 546cc4cb1fdfd7423d81f44a
-    inapte_travail: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
+- age: 34
+  age_en_mois: 411
+  date_naissance: '1980-08-12'
+  etudiant: 0
+  id: 546cc4cb1fdfd7423d81f44b
+  inapte_travail: 0
+  handicap: 0
+  salaire_de_base:
+    2012: 14923.076923076927
+    2013-11: 1243.5897435897436
+    2013-12: 1243.5897435897436
+    2014-01: 1243.5897435897436
+    2014-02: 1243.5897435897436
+    2014-03: 1243.5897435897436
+    2014-04: 1243.5897435897436
+    2014-05: 1243.5897435897436
+    2014-06: 1243.5897435897436
+    2014-07: 1243.5897435897436
+    2014-08: 1243.5897435897436
+    2014-09: 1243.5897435897436
+    2014-10: 1243.5897435897436
+    2014-11: 1243.5897435897436
+  salaire_imposable:
+    2012: 12065.195769230768
+    2013-11: 1005.4329807692308
+    2013-12: 1005.4329807692308
+    2014-01: 1005.4329807692308
+    2014-02: 1005.4329807692308
+    2014-03: 1005.4329807692308
+    2014-04: 1005.4329807692308
+    2014-05: 1005.4329807692308
+    2014-06: 1005.4329807692308
+    2014-07: 1005.4329807692308
+    2014-08: 1005.4329807692308
+    2014-09: 1005.4329807692308
+    2014-10: 1005.4329807692308
+    2014-11: 1005.4329807692308
+  salaire_net:
+    2012: 11640
+    2013-11: 970
+    2013-12: 970
+    2014-01: 970
+    2014-02: 970
+    2014-03: 970
+    2014-04: 970
+    2014-05: 970
+    2014-06: 970
+    2014-07: 970
+    2014-08: 970
+    2014-09: 970
+    2014-10: 970
+    2014-11: 970
+  statut_marital: marie
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 34
+  age_en_mois: 411
+  date_naissance: '1980-08-12'
+  etudiant: 0
+  id: 546cc4cb1fdfd7423d81f44a
+  inapte_travail: 0
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
 familles:
   acs:
     2013-11: 0
@@ -252,7 +252,7 @@ familles:
     2014-08: 0
     2014-09: 0
     2014-10: 0
-  enfants:
+  enfants: null
   paje_base:
     2013-11: 0
     2013-12: 0
@@ -267,8 +267,8 @@ familles:
     2014-09: 0
     2014-10: 0
   parents:
-    - 546cc4cb1fdfd7423d81f44b
-    - 546cc4cb1fdfd7423d81f44a
+  - 546cc4cb1fdfd7423d81f44b
+  - 546cc4cb1fdfd7423d81f44a
   proprietaire_proche_famille: false
   rsa:
     2013-11: 0
@@ -285,13 +285,13 @@ familles:
     2014-10: 0
 foyers_fiscaux:
   declarants:
-    - 546cc4cb1fdfd7423d81f44b
-    - 546cc4cb1fdfd7423d81f44a
-  personnes_a_charge:
+  - 546cc4cb1fdfd7423d81f44b
+  - 546cc4cb1fdfd7423d81f44a
+  personnes_a_charge: null
 menages:
   conjoint: 546cc4cb1fdfd7423d81f44a
   depcom: 75111
-  enfants:
+  enfants: null
   loyer: 1000
   personne_de_reference: 546cc4cb1fdfd7423d81f44b
   statut_occupation_logement: locataire_vide

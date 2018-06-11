@@ -2,7 +2,7 @@
 # Some variables tested here (ppa_fictive, ppa_ressources_hors_activite) need extra parameters to be computed. The mechanism to inject these extra params from a yaml file is not implemented yet. Directly testing these variables would thus throw an error.
 # The workaround is to always compute ppa before these variables. This way, ppa will call their formulas with the appriate extra params, and store the result in the cache. Then we can test them, as we will get the cached value.
 
-- name: "PPA - Pas d'éligibilité si moins de 18 ans"
+- name: PPA - Pas d'éligibilité si moins de 18 ans
   period: 2016-01
   relative_error_margin: 0.05
   input_variables:
@@ -18,7 +18,7 @@
       2015-11: false
       2015-10: false
 
-- name: "PPA - Eligibilité si age > 18"
+- name: PPA - Eligibilité si age > 18
   period: 2016-01
   relative_error_margin: 0.05
   input_variables:
@@ -34,7 +34,7 @@
       2015-11: true
       2015-10: true
 
-- name: "PPA - Eligibilité sur certains mois seulement"
+- name: PPA - Eligibilité sur certains mois seulement
   period: 2016-01
   relative_error_margin: 0.05
   input_variables:
@@ -54,7 +54,7 @@
       2015-11: false
       2015-10: false
 
-- name: "Pas de PPA avant 2016"
+- name: Pas de PPA avant 2016
   period: 2015-12
   input_variables:
     age: 40
@@ -65,7 +65,7 @@
   output_variables:
     ppa: 0
 
-- name: "PPA personne seule, pas de bonification"
+- name: PPA personne seule, pas de bonification
   period: 2016-01
   absolute_error_margin: 0.005
   input_variables:
@@ -79,20 +79,20 @@
     rsa: 524.16 - 500 # Pas de pente sur le RSA socle
     ppa: 524.16 - 0.38*500 - (524.16 - 500) # Le second terme de la différence n'est pas nul
 
-- name: "PPA personne en couple, pas de bonification"
+- name: PPA personne en couple, pas de bonification
   period: 2016-01
   familles:
-    parents: ["parent1", "parent2"]
+    parents: [parent1, parent2]
   individus:
-    - id: "parent1"
-      age: 40
-    - id: "parent2"
-      age: 40
-      salaire_net:
-        2016-01: 500
-        2015-12: 500
-        2015-11: 500
-        2015-10: 500
+  - id: parent1
+    age: 40
+  - id: parent2
+    age: 40
+    salaire_net:
+      2016-01: 500
+      2015-12: 500
+      2015-11: 500
+      2015-10: 500
   output_variables:
     ppa: 786.24 - 0.38 * 500 - (786.24 - 500)
     ppa_montant_forfaitaire_familial_non_majore:
@@ -100,24 +100,24 @@
     rsa_majore_eligibilite: false
     rsa: 786.24 - 500
 
-- name: "PPA en couple avec 1 enfant, pas de bonification"
+- name: PPA en couple avec 1 enfant, pas de bonification
   period: 2016-01
   absolute_error_margin: 0.005
   familles:
-    parents: ["parent1", "parent2"]
-    enfants: ["enfant1"]
+    parents: [parent1, parent2]
+    enfants: [enfant1]
   individus:
-    - id: "parent1"
-      age: 40
-      salaire_net:
-        2016-01: 500
-        2015-12: 500
-        2015-11: 500
-        2015-10: 500
-    - id: "parent2"
-      age: 40
-    - id: "enfant1"
-      age: 10
+  - id: parent1
+    age: 40
+    salaire_net:
+      2016-01: 500
+      2015-12: 500
+      2015-11: 500
+      2015-10: 500
+  - id: parent2
+    age: 40
+  - id: enfant1
+    age: 10
   output_variables:
     ppa: 943.49 - 0.38 * 500 - (943.49 - 500)
     ppa_montant_forfaitaire_familial_non_majore:
@@ -125,28 +125,28 @@
     rsa_majore_eligibilite: false
     rsa: 943.49 - 500
 
-- name: "PPA en couple avec 3 enfant, pas de bonification"
+- name: PPA en couple avec 3 enfant, pas de bonification
   period: 2016-01
   familles:
-    parents: ["parent1", "parent2"]
-    enfants: ["enfant1", "enfant2", "enfant3"]
+    parents: [parent1, parent2]
+    enfants: [enfant1, enfant2, enfant3]
     rsa_base_ressources_prestations_familiales: 0 # On ne prend pas en comptes les prestations CAF pour ce test
   individus:
-    - id: "parent1"
-      age: 40
-    - id: "parent2"
-      age: 40
-      salaire_net:
-        2016-01: 500
-        2015-12: 500
-        2015-11: 500
-        2015-10: 500
-    - id: "enfant1"
-      age: 10
-    - id: "enfant2"
-      age: 11
-    - id: "enfant3"
-      age: 12
+  - id: parent1
+    age: 40
+  - id: parent2
+    age: 40
+    salaire_net:
+      2016-01: 500
+      2015-12: 500
+      2015-11: 500
+      2015-10: 500
+  - id: enfant1
+    age: 10
+  - id: enfant2
+    age: 11
+  - id: enfant3
+    age: 12
   output_variables:
     ppa: 1310.40 - 0.38 * 500 - (1310.40 - 500)
     ppa_montant_forfaitaire_familial_non_majore:
@@ -154,23 +154,23 @@
     rsa_majore_eligibilite: false
     rsa: 1310.40 - 500
 
-- name: "PPA majoré: personne seule avec 1 enfant de moins de 3 ans"
+- name: 'PPA majoré: personne seule avec 1 enfant de moins de 3 ans'
   period: 2016-01
   absolute_error_margin: 0.005
   familles:
-    parents: ["parent1"]
-    enfants: ["enfant1"]
+    parents: [parent1]
+    enfants: [enfant1]
     rsa_base_ressources_prestations_familiales: 0 # On ne prend pas en comptes les prestations CAF pour ce test
   individus:
-    - id: "parent1"
-      age: 40
-      salaire_net:
-        2016-01: 500
-        2015-12: 500
-        2015-11: 500
-        2015-10: 500
-    - id: "enfant1"
-      age: 2
+  - id: parent1
+    age: 40
+    salaire_net:
+      2016-01: 500
+      2015-12: 500
+      2015-11: 500
+      2015-10: 500
+  - id: enfant1
+    age: 2
   output_variables:
     ppa: 897.45 - 0.38 * 500 - (897.45 - 500)
     ppa_montant_forfaitaire_familial_majore:
@@ -178,7 +178,7 @@
     rsa_majore_eligibilite: true
     rsa: 897.45 - 500
 
-- name: "PPA: pas de moyennisation des ressources"
+- name: 'PPA: pas de moyennisation des ressources'
   period: 2016-01
   relative_error_margin: 0.05
   input_variables:
@@ -193,7 +193,7 @@
       2015-11: 244.21
       2015-10: 0
 
-- name: "PPA personne seule, revenus variables, pas de bonification"
+- name: PPA personne seule, revenus variables, pas de bonification
   period: 2016-01
   relative_error_margin: 0.05
   input_variables:
@@ -211,29 +211,29 @@
       2015-10: 524.16 - 0.38 * 550 - 0 # =315, pas de second terme car < 0
     rsa: 524.16 - 500
 
-- name: "PPA personne en couple avec deux sources de revenus, pas de bonification"
+- name: PPA personne en couple avec deux sources de revenus, pas de bonification
   period: 2016-01
   absolute_error_margin: 0.005
   familles:
-    parents: ["parent1", "parent2"]
+    parents: [parent1, parent2]
     ppa_eligibilite: true
     aides_logement:
       2016: 0
   individus:
-    - id: "parent1"
-      age: 40
-      salaire_net:
-        2016-01: 300
-        2015-12: 300
-        2015-11: 300
-        2015-10: 300
-    - id: "parent2"
-      age: 40
-      salaire_net:
-        2016-01: 300
-        2015-12: 300
-        2015-11: 300
-        2015-10: 300
+  - id: parent1
+    age: 40
+    salaire_net:
+      2016-01: 300
+      2015-12: 300
+      2015-11: 300
+      2015-10: 300
+  - id: parent2
+    age: 40
+    salaire_net:
+      2016-01: 300
+      2015-12: 300
+      2015-11: 300
+      2015-10: 300
   output_variables:
     ppa: 786.24 - 0.38 * 600 - (786.24 - 600)
     ppa_montant_forfaitaire_familial_non_majore:
@@ -242,7 +242,7 @@
     rsa_revenu_activite: 600
     rsa: 786.24 - 600
 
-- name: "PPA personne seule avec revenus bonifiés (>95 SMIC horaire brut)"
+- name: PPA personne seule avec revenus bonifiés (>95 SMIC horaire brut)
   period: 2016-01
   relative_error_margin: 0.05
   input_variables:
@@ -260,7 +260,7 @@
       2015-10: 67
     rsa: 0
 
-- name: "PPA personne seule avec revenus bonifiés (>59 SMIC horaire brut)"
+- name: PPA personne seule avec revenus bonifiés (>59 SMIC horaire brut)
   period: 2016-01
   relative_error_margin: 0.05
   input_variables:
@@ -278,29 +278,29 @@
       2015-10: 44
     rsa: 0
 
-- name: "PPA personne en couple avec deux sources de revenus"
+- name: PPA personne en couple avec deux sources de revenus
   period: 2016-01
   relative_error_margin: 0.05
   familles:
-    parents: ["parent1", "parent2"]
+    parents: [parent1, parent2]
     ppa_eligibilite: true
     aides_logement:
       2016: 0
   individus:
-    - id: "parent1"
-      age: 40
-      salaire_net:
-        2016-01: 918
-        2015-12: 918
-        2015-11: 918
-        2015-10: 918
-    - id: "parent2"
-      age: 40
-      salaire_net:
-        2016-01: 800
-        2015-12: 800
-        2015-11: 800
-        2015-10: 800
+  - id: parent1
+    age: 40
+    salaire_net:
+      2016-01: 918
+      2015-12: 918
+      2015-11: 918
+      2015-10: 918
+  - id: parent2
+    age: 40
+    salaire_net:
+      2016-01: 800
+      2015-12: 800
+      2015-11: 800
+      2015-10: 800
   output_variables:
     ppa: 786.24 - 0.38 * (800 + 918) + 67 + 44
     ppa_montant_forfaitaire_familial_non_majore:
@@ -308,7 +308,7 @@
     rsa_majore_eligibilite: false
     rsa: 0
 
-- name: "PPA/RSA forfait logement 1 personne"
+- name: PPA/RSA forfait logement 1 personne
   period: 2017-10
   absolute_error_margin: 0.005
   input_variables:
@@ -318,47 +318,47 @@
     ppa_forfait_logement: 63.15
     rsa_forfait_logement: 65.46
 
-- name: "PPA forfait logement 2 personnes"
+- name: PPA forfait logement 2 personnes
   period: 2016-01
   absolute_error_margin: 0.005
   familles:
-    parents: ["parent1", "parent2"]
+    parents: [parent1, parent2]
   menages:
     personne_de_reference: parent1
     conjoint: parent2
     statut_occupation_logement: proprietaire
   individus:
-    - id: "parent1"
-      age: 40
-    - id: "parent2"
-      age: 40
+  - id: parent1
+    age: 40
+  - id: parent2
+    age: 40
   output_variables:
     ppa_forfait_logement:
       2016-01: 125.80
 
-- name: "PPA forfait logement 3 personnes"
+- name: PPA forfait logement 3 personnes
   period: 2016-01
   absolute_error_margin: 0.005
   familles:
-    parents: ["parent1", "parent2"]
-    enfants: ["enfant1"]
+    parents: [parent1, parent2]
+    enfants: [enfant1]
   menages:
     personne_de_reference: parent1
     conjoint: parent2
-    enfants: ["enfant1"]
+    enfants: [enfant1]
     statut_occupation_logement: proprietaire
   individus:
-    - id: "parent1"
-      age: 40
-    - id: "parent2"
-      age: 40
-    - id: "enfant1"
-      age: 15
+  - id: parent1
+    age: 40
+  - id: parent2
+    age: 40
+  - id: enfant1
+    age: 15
   output_variables:
     ppa_forfait_logement:
       2016-01: 155.68
 
-- name: "PPA/RSA forfait logement 1 personne accédant à la propriété"
+- name: PPA/RSA forfait logement 1 personne accédant à la propriété
   period: 2017-10
   absolute_error_margin: 0.005
   input_variables:
@@ -368,7 +368,7 @@
     ppa_forfait_logement: 63.15
     rsa_forfait_logement: 65.46
 
-- name: "Prise en compte du forfait logement"
+- name: Prise en compte du forfait logement
   period: 2016-01
   relative_error_margin: 0.05
   input_variables:
@@ -383,7 +383,7 @@
     ppa: 244.21 - 62.90
     ppa_forfait_logement: 62.90
 
-- name: "PPA < seuil de versement"
+- name: PPA < seuil de versement
   period: 2016-01
   relative_error_margin: 0.05
   input_variables:
@@ -417,7 +417,7 @@
     ppa_revenu_activite:
       2015-12: 2500
 
-- name: "PPA: ressources prises en compte hors activité (M-1)"
+- name: 'PPA: ressources prises en compte hors activité (M-1)'
   period: 2016-02
   input_variables:
     # Prestations calculées qui sont réinjectées dans la BR. On utilise donc la valeur du mois M.
@@ -464,7 +464,7 @@
     ppa_ressources_hors_activite:
       2016-01: 1691.40
 
-- name: "PPA: étudiant éligible (ressources > plancher)"
+- name: 'PPA: étudiant éligible (ressources > plancher)'
   period: 2016-01
   relative_error_margin: 0.05
   input_variables:
@@ -477,7 +477,7 @@
     ppa_eligibilite_etudiants: true
     ppa: 244.21
 
-- name: "PPA: étudiant non éligible (ressources < plancher)"
+- name: 'PPA: étudiant non éligible (ressources < plancher)'
   period: 2016-01
   input_variables:
     salaire_net:
@@ -489,7 +489,7 @@
     ppa_eligibilite_etudiants: false
     ppa: 0
 
-- name: "PPA: étudiant éligible (majoré)"
+- name: 'PPA: étudiant éligible (majoré)'
   period: 2016-01
   input_variables:
     salaire_net:
@@ -501,7 +501,7 @@
   output_variables:
     ppa_eligibilite_etudiants: true
 
-- name: "PPA: étudiant non éligible car plancher non atteint pour un mois du trimestre de référence"
+- name: 'PPA: étudiant non éligible car plancher non atteint pour un mois du trimestre de référence'
   period: 2016-01
   input_variables:
     salaire_net:
@@ -516,28 +516,28 @@
 - name: "PPA: couple d'étudiants avec enfant:  pas de ppa"
   period: 2016-01
   familles:
-    parents: ["parent1", "parent2"]
-    enfants: ["enfant1"]
+    parents: [parent1, parent2]
+    enfants: [enfant1]
   individus:
-    - id: "parent1"
-      age: 40
-      etudiant: true
-      salaire_net:
-        2015-12: 800
-        2015-11: 800
-        2015-10: 800
-    - id: "parent2"
-      age: 40
-      etudiant: true
-      salaire_net:
-        2015-12: 800
-        2015-11: 800
-        2015-10: 800
-    - id: "enfant1"
+  - id: parent1
+    age: 40
+    etudiant: true
+    salaire_net:
+      2015-12: 800
+      2015-11: 800
+      2015-10: 800
+  - id: parent2
+    age: 40
+    etudiant: true
+    salaire_net:
+      2015-12: 800
+      2015-11: 800
+      2015-10: 800
+  - id: enfant1
   output_variables:
     ppa: 0
 
-- name: "PPA: Auto-entrepreneur - activité libérale (BNC)"
+- name: 'PPA: Auto-entrepreneur - activité libérale (BNC)'
   period: 2016-01
   input_variables:
     tns_benefice_exploitant_agricole:
@@ -547,7 +547,7 @@
     ppa_revenu_activite:
       2015-12: 3000
 
-- name: "PPA: Exploitant agricole, prise en compte du dernier bénéfice agricole connu"
+- name: 'PPA: Exploitant agricole, prise en compte du dernier bénéfice agricole connu'
   period: 2016-01
   input_variables:
     tns_auto_entrepreneur_type_activite: bnc # Abattement de 34%
@@ -562,7 +562,7 @@
       2015-11: 1980
       2015-10: 1980
 
-- name: "PPA: Travailleur non salarié, prise en compte des derniers revenus déclarés. (Dans mes-aides, N-2)"
+- name: 'PPA: Travailleur non salarié, prise en compte des derniers revenus déclarés. (Dans mes-aides, N-2)'
   period: 2016-01
   input_variables:
     tns_autres_revenus:
@@ -638,7 +638,7 @@
     ppa_ressources_hors_activite_individu:
       2015-12: 800
 
-- name: "PPA - Les IJSS sont considérés comme un revenu de remplacement après 3 mois "
+- name: 'PPA - Les IJSS sont considérés comme un revenu de remplacement après 3 mois '
   period: 2016-01
   relative_error_margin: 0.05
   input_variables:
@@ -747,7 +747,7 @@
       2015-11: 0
       2015-10: 0
 
-- name: "PPA - Les IJSS maternité/paternité/adoptions sont toujours considérés comme un revenu d'activité"
+- name: PPA - Les IJSS maternité/paternité/adoptions sont toujours considérés comme un revenu d'activité
   period: 2016-01
   relative_error_margin: 0.05
   input_variables:
@@ -776,7 +776,7 @@
       2015-11: 0
       2015-10: 0
 
-- name: "PPA - Les IJSS sont toujours considérés comme un revenu d'activité quand un autre revenu d'activité est perçu"
+- name: PPA - Les IJSS sont toujours considérés comme un revenu d'activité quand un autre revenu d'activité est perçu
   period: 2016-01
   relative_error_margin: 0.05
   input_variables:

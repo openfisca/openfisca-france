@@ -1,4 +1,4 @@
-- period: "2016-01"
+- period: 2016-01
   name: AGS 2016
   relative_error_margin: 0.001
   input_variables:
@@ -6,7 +6,7 @@
   output_variables:
     ags: -1500 * 0.25 / 100
 
-- period: "2017-01"
+- period: 2017-01
   name: AGS 2017
   relative_error_margin: 0.001
   input_variables:
@@ -14,7 +14,7 @@
   output_variables:
     ags: -1500 * 0.2 / 100
 
-- period: "2017-07"
+- period: 2017-07
   name: AGS Juillet 2017
   relative_error_margin: 0.001
   input_variables:

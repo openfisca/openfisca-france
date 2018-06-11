@@ -1,34 +1,34 @@
 name: 12_Couple sans enfant
 keywords:
-  - foyer
-  - rsa
-description:
-period: "month:2014-11"
+- foyer
+- rsa
+description: null
+period: month:2014-11
 relative_error_margin: 0.02
 individus:
-  - age: 28
-    age_en_mois: 346
-    date_naissance: "1986-01-01"
-    etudiant: 0
-    id: 545a4d050e9bb9d9441ed62e
-    inapte_travail: 0
-    handicap: 0
-    statut_marital: marie
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 28
-    age_en_mois: 346
-    date_naissance: "1986-01-01"
-    etudiant: 0
-    id: 545a4d050e9bb9d9441ed62d
-    inapte_travail: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
+- age: 28
+  age_en_mois: 346
+  date_naissance: '1986-01-01'
+  etudiant: 0
+  id: 545a4d050e9bb9d9441ed62e
+  inapte_travail: 0
+  handicap: 0
+  statut_marital: marie
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 28
+  age_en_mois: 346
+  date_naissance: '1986-01-01'
+  etudiant: 0
+  id: 545a4d050e9bb9d9441ed62d
+  inapte_travail: 0
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
 familles:
   acs:
     2013-11: 0
@@ -199,7 +199,7 @@ familles:
     2014-08: 0
     2014-09: 0
     2014-10: 0
-  enfants:
+  enfants: null
   paje_base:
     2013-11: 0
     2013-12: 0
@@ -214,8 +214,8 @@ familles:
     2014-09: 0
     2014-10: 0
   parents:
-    - 545a4d050e9bb9d9441ed62e
-    - 545a4d050e9bb9d9441ed62d
+  - 545a4d050e9bb9d9441ed62e
+  - 545a4d050e9bb9d9441ed62d
   rsa:
     2013-11: 0
     2013-12: 0
@@ -231,13 +231,13 @@ familles:
     2014-10: 0
 foyers_fiscaux:
   declarants:
-    - 545a4d050e9bb9d9441ed62e
-    - 545a4d050e9bb9d9441ed62d
-  personnes_a_charge:
+  - 545a4d050e9bb9d9441ed62e
+  - 545a4d050e9bb9d9441ed62d
+  personnes_a_charge: null
 menages:
   conjoint: 545a4d050e9bb9d9441ed62d
   depcom: 86194
-  enfants:
+  enfants: null
   personne_de_reference: 545a4d050e9bb9d9441ed62e
   statut_occupation_logement: loge_gratuitement
 output_variables:

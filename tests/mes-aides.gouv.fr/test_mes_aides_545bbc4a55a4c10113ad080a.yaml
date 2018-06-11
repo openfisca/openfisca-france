@@ -1,15 +1,15 @@
 name: 1 allocataire, barème octobre 2014
 keywords:
-  - aspa
-  - montant
+- aspa
+- montant
 description: Le montant a été revalorisé à 800 euros.
-period: "month:2014-11"
+period: month:2014-11
 relative_error_margin: 0.02
 individus:
   activite: retraite
   age: 74
   age_en_mois: 898
-  date_naissance: "1940-01-01"
+  date_naissance: '1940-01-01'
   etudiant: 0
   id: 545bbc0355a4c10113ad0808
   inapte_travail: 0
@@ -218,7 +218,7 @@ familles:
     2014-08: 0
     2014-09: 0
     2014-10: 0
-  enfants:
+  enfants: null
   paje_base:
     2013-11: 0
     2013-12: 0
@@ -248,10 +248,10 @@ familles:
     2014-10: 0
 foyers_fiscaux:
   declarants: 545bbc0355a4c10113ad0808
-  personnes_a_charge:
+  personnes_a_charge: null
 menages:
   depcom: 92071
-  enfants:
+  enfants: null
   personne_de_reference: 545bbc0355a4c10113ad0808
   statut_occupation_logement: loge_gratuitement
 output_variables:

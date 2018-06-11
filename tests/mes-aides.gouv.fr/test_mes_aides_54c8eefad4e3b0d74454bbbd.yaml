@@ -1,18 +1,18 @@
-name: "Ressources exclues - RSA"
+name: Ressources exclues - RSA
 keywords:
-  - base ressources
-  - "cmu-c/acs"
+- base ressources
+- cmu-c/acs
 description: |
   Le RSA n'est pas inclus dans la base ressource de la CMU-C/ACS.
   Les montants simulés des prestations familiales étant inclus dans la base ressource, on vérifie ici que ce mécanisme de montant simulé de RSA n'est pas effectué pour la CMU-C/ACS.
   Plafond 1 personne CMU-C : 8645 euros.
   Salaires déclarés 8600 euros < plafiond, malgré le RSA de 514 euros.
-period: "month:2015-01"
+period: month:2015-01
 relative_error_margin: 0.02
 individus:
   age: 34
   age_en_mois: 413
-  date_naissance: "1980-08-12"
+  date_naissance: '1980-08-12'
   etudiant: 0
   id: 54c8ee7be45751d544f05fb4
   inapte_travail: 0
@@ -233,7 +233,7 @@ familles:
     2014-10: 0
     2014-11: 0
     2014-12: 0
-  enfants:
+  enfants: null
   paje_base:
     2014-01: 0
     2014-02: 0
@@ -264,10 +264,10 @@ familles:
     2014-12: 0
 foyers_fiscaux:
   declarants: 54c8ee7be45751d544f05fb4
-  personnes_a_charge:
+  personnes_a_charge: null
 menages:
   depcom: 75111
-  enfants:
+  enfants: null
   loyer: 50
   personne_de_reference: 54c8ee7be45751d544f05fb4
   statut_occupation_logement: locataire_vide

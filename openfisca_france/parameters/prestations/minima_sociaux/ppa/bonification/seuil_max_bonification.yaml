@@ -1,5 +1,4 @@
-description: Seuil de salaire pour bénéficier de la bonification maximale, en multiple
-  du smic horaire brut.
+description: Seuil de salaire pour bénéficier de la bonification maximale, en multiple du smic horaire brut.
 reference: ipp
 values:
   2016-01-01:

@@ -1,12 +1,12 @@
 name: 7_Jeune < 25 ans
 keywords: rsa
-description:
-period: "month:2014-11"
+description: null
+period: month:2014-11
 relative_error_margin: 0.02
 individus:
   age: 20
   age_en_mois: 250
-  date_naissance: "1994-01-01"
+  date_naissance: '1994-01-01'
   etudiant: 0
   id: 545a453491e1b6222a3ab3cd
   inapte_travail: 0
@@ -185,7 +185,7 @@ familles:
     2014-08: 0
     2014-09: 0
     2014-10: 0
-  enfants:
+  enfants: null
   paje_base:
     2013-11: 0
     2013-12: 0
@@ -215,10 +215,10 @@ familles:
     2014-10: 0
 foyers_fiscaux:
   declarants: 545a453491e1b6222a3ab3cd
-  personnes_a_charge:
+  personnes_a_charge: null
 menages:
   depcom: 55207
-  enfants:
+  enfants: null
   personne_de_reference: 545a453491e1b6222a3ab3cd
   statut_occupation_logement: loge_gratuitement
 output_variables:

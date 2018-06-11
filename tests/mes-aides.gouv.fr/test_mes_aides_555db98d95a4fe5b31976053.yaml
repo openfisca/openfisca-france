@@ -4,7 +4,7 @@ keywords:
 - age
 - eligibilité
 - paje
-description: 'Condition d''éligibilité de la Paje: avoir un enfant de moins de 3 ans à sa charge'
+description: "Condition d'éligibilité de la Paje: avoir un enfant de moins de 3 ans à sa charge"
 period: month:2015-05
 relative_error_margin: 0.02
 individus:

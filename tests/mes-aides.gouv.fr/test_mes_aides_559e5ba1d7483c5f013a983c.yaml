@@ -2,7 +2,7 @@ name: Personne isolée - 1 enfant - sans ressource
 keywords:
 - recette
 - rsa
-"description": |-
+description: |-
   Le simulateur propose à tort du RSA majoré.
   Un parent isolé est éligible au RSA majoré sous certaines conditions de situation d'isolement
 

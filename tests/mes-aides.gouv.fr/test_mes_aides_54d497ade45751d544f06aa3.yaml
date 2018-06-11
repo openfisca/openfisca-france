@@ -1,8 +1,8 @@
 name: Abattement pour personnes de plus de 65 ans, cas revenu < 23580 €
 keywords:
-  - abattements
-  - al
-  - base ressources
+- abattements
+- al
+- base ressources
 description: |
   Article 157 bis du code général des impôts
   http://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000029042269&cidTexte=LEGITEXT000006069577&dateTexte=20150112
@@ -28,70 +28,70 @@ description: |
   P1	336,21
   Pp	375,66
   AL	88,06
-period: "month:2015-02"
+period: month:2015-02
 absolute_error_margin: 3
 individus:
-  - activite: retraite
-    age: 88
-    age_en_mois: 1061
-    date_naissance: "1926-09-05"
-    chomage_imposable:
-      2013: 0
-    etudiant: 0
-    id: 54d4951fd4e3b0d74454c76f
-    inapte_travail: 0
-    handicap: 0
-    pensions_alimentaires_percues:
-      2013: 0
-    retraite_imposable:
-      2013: 22000
-    retraite_brute:
-      2014-02: 1955.8435325173984
-      2014-03: 1955.8435325173984
-      2014-04: 1955.8435325173984
-      2014-05: 1955.8435325173984
-      2014-06: 1955.8435325173984
-      2014-07: 1955.8435325173984
-      2014-08: 1955.8435325173984
-      2014-09: 1955.8435325173984
-      2014-10: 1955.8435325173984
-      2014-11: 2051.8358531317494
-      2014-12: 2051.8358531317494
-      2015-01: 2051.8358531317494
-      2015-02: 2051.8358531317494
-    retraite_nette:
-      2014-02: 1811.111111111111
-      2014-03: 1811.111111111111
-      2014-04: 1811.111111111111
-      2014-05: 1811.111111111111
-      2014-06: 1811.111111111111
-      2014-07: 1811.111111111111
-      2014-08: 1811.111111111111
-      2014-09: 1811.111111111111
-      2014-10: 1811.111111111111
-      2014-11: 1900
-      2014-12: 1900
-      2015-01: 1900
-      2015-02: 1900
-    salaire_imposable:
-      2013: 0
-    statut_marital: marie
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 14
-    age_en_mois: 173
-    date_naissance: "2000-08-12"
-    etudiant: 0
-    id: 54d496deaf6bfed9447f95bc
-    inapte_travail: 0
-    handicap: 0
-    scolarite: college
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
+- activite: retraite
+  age: 88
+  age_en_mois: 1061
+  date_naissance: '1926-09-05'
+  chomage_imposable:
+    2013: 0
+  etudiant: 0
+  id: 54d4951fd4e3b0d74454c76f
+  inapte_travail: 0
+  handicap: 0
+  pensions_alimentaires_percues:
+    2013: 0
+  retraite_imposable:
+    2013: 22000
+  retraite_brute:
+    2014-02: 1955.8435325173984
+    2014-03: 1955.8435325173984
+    2014-04: 1955.8435325173984
+    2014-05: 1955.8435325173984
+    2014-06: 1955.8435325173984
+    2014-07: 1955.8435325173984
+    2014-08: 1955.8435325173984
+    2014-09: 1955.8435325173984
+    2014-10: 1955.8435325173984
+    2014-11: 2051.8358531317494
+    2014-12: 2051.8358531317494
+    2015-01: 2051.8358531317494
+    2015-02: 2051.8358531317494
+  retraite_nette:
+    2014-02: 1811.111111111111
+    2014-03: 1811.111111111111
+    2014-04: 1811.111111111111
+    2014-05: 1811.111111111111
+    2014-06: 1811.111111111111
+    2014-07: 1811.111111111111
+    2014-08: 1811.111111111111
+    2014-09: 1811.111111111111
+    2014-10: 1811.111111111111
+    2014-11: 1900
+    2014-12: 1900
+    2015-01: 1900
+    2015-02: 1900
+  salaire_imposable:
+    2013: 0
+  statut_marital: marie
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 14
+  age_en_mois: 173
+  date_naissance: '2000-08-12'
+  etudiant: 0
+  id: 54d496deaf6bfed9447f95bc
+  inapte_travail: 0
+  handicap: 0
+  scolarite: college
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
 familles:
   acs:
     2014-02: 0

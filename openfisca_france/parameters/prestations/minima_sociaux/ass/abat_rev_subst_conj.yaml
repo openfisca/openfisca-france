@@ -1,5 +1,4 @@
-description: Abbatement appliqué aux revenus interompus et substitués du conjoint,
-  en cas de licenciement, départ en retraite, etc.
+description: Abbatement appliqué aux revenus interompus et substitués du conjoint, en cas de licenciement, départ en retraite, etc.
 reference: openfisca
 values:
   2005-01-01:

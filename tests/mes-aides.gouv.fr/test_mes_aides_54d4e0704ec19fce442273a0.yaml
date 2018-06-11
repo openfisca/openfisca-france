@@ -1,12 +1,12 @@
 name: Personne éligible au RSA socle a droit à la CMUC
-keywords: "cmu-c/acs"
+keywords: cmu-c/acs
 description: Cette personne a droit à un RSA socle seul et donc est éligible à la CMUC
-period: "month:2015-02"
+period: month:2015-02
 relative_error_margin: 0.02
 individus:
   age: 34
   age_en_mois: 419
-  date_naissance: "1980-03-02"
+  date_naissance: '1980-03-02'
   etudiant: 0
   id: 54d4def2e45751d544f06b0f
   inapte_travail: 0
@@ -227,7 +227,7 @@ familles:
     2014-11: 0
     2014-12: 0
     2015-01: 0
-  enfants:
+  enfants: null
   paje_base:
     2014-02: 0
     2014-03: 0
@@ -258,10 +258,10 @@ familles:
     2015-01: 0
 foyers_fiscaux:
   declarants: 54d4def2e45751d544f06b0f
-  personnes_a_charge:
+  personnes_a_charge: null
 menages:
   depcom: 76540
-  enfants:
+  enfants: null
   loyer: 1
   personne_de_reference: 54d4def2e45751d544f06b0f
 output_variables:

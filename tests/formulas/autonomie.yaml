@@ -1,4 +1,4 @@
-- name: "base ressources APA domicile celibataire sans ressources GIR 1"
+- name: base ressources APA domicile celibataire sans ressources GIR 1
   description: Montant base ressources
   period: 2014-05
   absolute_error_margin: 0.01
@@ -8,7 +8,7 @@
   output_variables:
     base_ressources_apa: 0
 
-- name: "plan d'aide APA domicile celibataire sans ressources GIR 1"
+- name: plan d'aide APA domicile celibataire sans ressources GIR 1
   description: Montant base ressources
   period: 2014-05
   absolute_error_margin: 0.03
@@ -20,7 +20,7 @@
     dependance_plan_aide_domicile: 2000
     base_ressources_apa: 0
 
-- name: "APA domicile celibataire sans ressources GIR 1"
+- name: APA domicile celibataire sans ressources GIR 1
   description: Montant APA
   period: 2014-05
   absolute_error_margin: 0.03
@@ -33,7 +33,7 @@
     apa_domicile: 1312.67
     apa_etablissement: 0
 
-- name: "APA condition d'âge - test l'âge d'ouverture à domicile"
+- name: APA condition d'âge - test l'âge d'ouverture à domicile
   description: Montant APA
   period: 2014-05
   absolute_error_margin: 0.03
@@ -43,7 +43,7 @@
   output_variables:
     apa_eligibilite: 0
 
-- name: "APA condition d'âge - test l'âge d'ouverture en établissement"
+- name: APA condition d'âge - test l'âge d'ouverture en établissement
   description: Montant APA
   period: 2014-05
   absolute_error_margin: 0.03
@@ -56,7 +56,7 @@
   output_variables:
     apa_eligibilite: 0
 
-- name: "APA établissement célibataire ressources supérieures seuil 2 GIR 1 - test ressource seuil 2 établissement"
+- name: APA établissement célibataire ressources supérieures seuil 2 GIR 1 - test ressource seuil 2 établissement
   description: Montant APA
   period: 2014-05
   absolute_error_margin: 0.03
@@ -70,7 +70,7 @@
     apa_domicile: 0
     apa_etablissement: 180
 
-- name: "APA établissement célibataire ressources entre seuil 1 et 2 GIR 1 - test ressource entre seuil 1 et 2 établsisement"
+- name: APA établissement célibataire ressources entre seuil 1 et 2 GIR 1 - test ressource entre seuil 1 et 2 établsisement
   description: Montant APA
   period: 2014-05
   absolute_error_margin: 0.03
@@ -84,7 +84,7 @@
     apa_domicile: 0
     apa_etablissement: 899.59
 
-- name: "APA établissement célibataire ressources inférieures seuil 1 GIR 3 - test ressource seuil 1 établissement"
+- name: APA établissement célibataire ressources inférieures seuil 1 GIR 3 - test ressource seuil 1 établissement
   description: Montant APA
   period: 2014-05
   absolute_error_margin: 0.03
@@ -98,7 +98,7 @@
     apa_domicile: 0
     apa_etablissement: 600
 
-- name: "APA domicile célibataire ressources inférieures seuil 1 GIR 3 - test ressource seuil 1 domicile"
+- name: APA domicile célibataire ressources inférieures seuil 1 GIR 3 - test ressource seuil 1 domicile
   description: Montant APA
   period: 2014-05
   absolute_error_margin: 0.03
@@ -111,7 +111,7 @@
     apa_domicile: 843.86
     apa_etablissement: 0
 
-- name: "APA domicile célibataire ressources inférieures seuil 1 GIR 5 - test gir à domicile"
+- name: APA domicile célibataire ressources inférieures seuil 1 GIR 5 - test gir à domicile
   description: Montant APA
   period: 2014-05
   absolute_error_margin: 0.03
@@ -124,7 +124,7 @@
     apa_domicile: 0
     apa_etablissement: 0
 
-- name: "APA établissement célibataire ressources inférieures seuil 1 GIR 5 - test gir en établissement"
+- name: APA établissement célibataire ressources inférieures seuil 1 GIR 5 - test gir en établissement
   description: Montant APA
   period: 2014-05
   absolute_error_margin: 0.03
@@ -138,7 +138,7 @@
     apa_domicile: 0
     apa_etablissement: 0
 
-- name: "APA établissement célibataire ressources inférieures seuil 1 et GIR 3 - test année en établissement"
+- name: APA établissement célibataire ressources inférieures seuil 1 et GIR 3 - test année en établissement
   description: Montant APA
   period: 2013-05
   absolute_error_margin: 0.03
@@ -152,7 +152,7 @@
     apa_domicile: 0
     apa_etablissement: 450
 
-- name: "APA domicile célibataire ressources supérieures à seuil 2 et GIR 1 - test année à domicile"
+- name: APA domicile célibataire ressources supérieures à seuil 2 et GIR 1 - test année à domicile
   description: Montant APA
   period: 2013-05
   absolute_error_margin: 0.03
@@ -166,7 +166,7 @@
     apa_domicile: 120
 
 
-- name: "APA domicile célibataire ressources supérieures à seuil 2 et GIR 3 - test participation"
+- name: APA domicile célibataire ressources supérieures à seuil 2 et GIR 3 - test participation
   description: Montant APA
   period: 2013-05
   absolute_error_margin: 0.03
@@ -178,7 +178,7 @@
   output_variables:
     apa_domicile_participation: 754.94
 
-- name: "APA établissement célibataire ressources inférieures seuil 1 et GIR 3 - test le reste-a-vivre"
+- name: APA établissement célibataire ressources inférieures seuil 1 et GIR 3 - test le reste-a-vivre
   description: Montant APA
   period: 2014-05
   absolute_error_margin: 0.03
@@ -192,7 +192,7 @@
     apa_domicile: 0
     apa_etablissement: 900
 
-- name: "APA domicile célibataire ressources inférieures seuil 1 et GIR 3 - test plafond sup gir 3"
+- name: APA domicile célibataire ressources inférieures seuil 1 et GIR 3 - test plafond sup gir 3
   description: Montant APA
   period: 2013-05
   absolute_error_margin: 0.03
@@ -205,7 +205,7 @@
     apa_domicile: 838.82
     apa_etablissement: 0
 
-- name: "APA domicile célibataire ressources inférieur seuil 1 et GIR 1 - test plafond sup gir 1"
+- name: APA domicile célibataire ressources inférieur seuil 1 et GIR 1 - test plafond sup gir 1
   description: Montant APA
   period: 2013-05
   absolute_error_margin: 0.03
@@ -218,7 +218,7 @@
     apa_domicile: 1304.84
     apa_etablissement: 0
 
-- name: "APA domicile célibataire ressources inférieur seuil 1 et GIR_1 1 - test plafond inf gir_1 4"
+- name: APA domicile célibataire ressources inférieur seuil 1 et GIR_1 1 - test plafond inf gir_1 4
   description: Montant APA
   period: 2013-05
   absolute_error_margin: 0.03
@@ -231,7 +231,7 @@
     apa_domicile: 0
     apa_etablissement: 0
 
-- name: "APA domicile couple ressources inférieur seuil 1 et GIR 1 - test couple"
+- name: APA domicile couple ressources inférieur seuil 1 et GIR 1 - test couple
   description: Montant APA
   period: 2013-05
   absolute_error_margin: 0.03
@@ -245,7 +245,7 @@
     apa_domicile: 100
     apa_etablissement: 0
 
-- name: "APA établissement couple ressources inférieur seuil 1 et GIR 1 - test couple"
+- name: APA établissement couple ressources inférieur seuil 1 et GIR 1 - test couple
   description: Montant APA
   period: 2013-05
   absolute_error_margin: 0.03
@@ -260,7 +260,7 @@
     apa_domicile: 0
     apa_etablissement: 600
 
-- name: "Test base ressource APA"
+- name: Test base ressource APA
   description: Montant APA
   period: 2013-05
   absolute_error_margin: 0.03
@@ -271,10 +271,10 @@
     valeur_locative_terrains_non_loues: 250
     aide_logement_montant: 500
   output_variables:
-   base_ressources_apa: 4000
+    base_ressources_apa: 4000
 
 
-- name: "Test plafond taux participation APA domicile"
+- name: Test plafond taux participation APA domicile
   description: Montant APA
   period: 2017-05
   absolute_error_margin: 0.03
@@ -282,4 +282,4 @@
     dependance_plan_aide_domicile_accepte: 100
     base_ressources_apa: 3000
   output_variables:
-   apa_domicile_taux_participation: 0.9
+    apa_domicile_taux_participation: 0.9

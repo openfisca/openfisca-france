@@ -1,16 +1,16 @@
 name: Ressources exclues
 keywords:
-  - ass
-  - base ressources
-description:
-period: "month:2014-11"
+- ass
+- base ressources
+description: null
+period: month:2014-11
 relative_error_margin: 0.02
 individus:
   activite: chomeur
   age: 34
   age_en_mois: 411
   ass_precondition_remplie: true
-  date_naissance: "1980-08-12"
+  date_naissance: '1980-08-12'
   chomage_imposable:
     2012: 0
   chomage_brut:
@@ -237,7 +237,7 @@ familles:
     2014-08: 0
     2014-09: 0
     2014-10: 0
-  enfants:
+  enfants: null
   paje_base:
     2013-11: 0
     2013-12: 0
@@ -270,11 +270,11 @@ foyers_fiscaux:
   declarants: 546f4850bbaefa3e3dc48b3f
   pensions_alimentaires_versees:
     2012: 0
-  personnes_a_charge:
-  rfr:
+  personnes_a_charge: null
+  rfr: null
 menages:
   depcom: 76540
-  enfants:
+  enfants: null
   loyer: 900
   personne_de_reference: 546f4850bbaefa3e3dc48b3f
   statut_occupation_logement: locataire_vide

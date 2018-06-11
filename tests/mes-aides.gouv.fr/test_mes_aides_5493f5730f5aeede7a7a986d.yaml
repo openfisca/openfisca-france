@@ -9,36 +9,36 @@ description: |
   zone 2
   Commentaire : dans la rubrique ressources n'apparait pas le RSA or perception du RSA socle entraîne la neutralisation des ressources N-2
   Simulateur CAF indique droit aux AL : 284 € (avec RNC 2 SMIC pour le couple en 2012
-period: "month:2014-12"
+period: month:2014-12
 relative_error_margin: 0.02
 individus:
-  - activite: chomeur
-    age: 42
-    age_en_mois: 515
-    ass_precondition_remplie: true
-    date_naissance: "1972-01-09"
-    etudiant: 0
-    id: 5493f3ddf170fae47a4bfc17
-    inapte_travail: 0
-    handicap: 0
-    statut_marital: marie
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - activite: chomeur
-    age: 43
-    age_en_mois: 524
-    ass_precondition_remplie: true
-    date_naissance: "1971-04-02"
-    etudiant: 0
-    id: 5493f3ddf170fae47a4bfc15
-    inapte_travail: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
+- activite: chomeur
+  age: 42
+  age_en_mois: 515
+  ass_precondition_remplie: true
+  date_naissance: '1972-01-09'
+  etudiant: 0
+  id: 5493f3ddf170fae47a4bfc17
+  inapte_travail: 0
+  handicap: 0
+  statut_marital: marie
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- activite: chomeur
+  age: 43
+  age_en_mois: 524
+  ass_precondition_remplie: true
+  date_naissance: '1971-04-02'
+  etudiant: 0
+  id: 5493f3ddf170fae47a4bfc15
+  inapte_travail: 0
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
 familles:
   acs:
     2013-12: 0
@@ -209,7 +209,7 @@ familles:
     2014-09: 0
     2014-10: 0
     2014-11: 0
-  enfants:
+  enfants: null
   paje_base:
     2013-12: 0
     2014-01: 0
@@ -224,8 +224,8 @@ familles:
     2014-10: 0
     2014-11: 0
   parents:
-    - 5493f3ddf170fae47a4bfc17
-    - 5493f3ddf170fae47a4bfc15
+  - 5493f3ddf170fae47a4bfc17
+  - 5493f3ddf170fae47a4bfc15
   proprietaire_proche_famille: false
   rsa:
     2013-12: 0
@@ -242,13 +242,13 @@ familles:
     2014-11: 0
 foyers_fiscaux:
   declarants:
-    - 5493f3ddf170fae47a4bfc17
-    - 5493f3ddf170fae47a4bfc15
-  personnes_a_charge:
+  - 5493f3ddf170fae47a4bfc17
+  - 5493f3ddf170fae47a4bfc15
+  personnes_a_charge: null
 menages:
   conjoint: 5493f3ddf170fae47a4bfc15
   depcom: 13209
-  enfants:
+  enfants: null
   loyer: 400
   personne_de_reference: 5493f3ddf170fae47a4bfc17
   statut_occupation_logement: locataire_meuble

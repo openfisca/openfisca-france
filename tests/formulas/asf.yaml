@@ -1,14 +1,14 @@
-- name: "Famille ayant droit à l'ASF"
+- name: Famille ayant droit à l'ASF
   period: 2015-01
   relative_error_margin: 0.01
   familles:
-    parents: ["parent1"]
-    enfants: ["enfant1"]
+    parents: [parent1]
+    enfants: [enfant1]
   individus:
-    - id: "parent1"
-      age: 40
-    - id: "enfant1"
-      age: 9
+  - id: parent1
+    age: 40
+  - id: enfant1
+    age: 9
   output_variables:
     asf: 96
 
@@ -16,12 +16,12 @@
   period: 2015-01
   relative_error_margin: 0.01
   familles:
-    parents: ["parent1"]
-    enfants: ["enfant1"]
+    parents: [parent1]
+    enfants: [enfant1]
   individus:
-    - id: "parent1"
-      age: 40
-    - id: "enfant1"
-      age: 20
+  - id: parent1
+    age: 40
+  - id: enfant1
+    age: 20
   output_variables:
     asf: 0

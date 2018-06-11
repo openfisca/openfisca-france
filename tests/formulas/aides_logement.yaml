@@ -1,162 +1,162 @@
-- name: "Aides logements - les enfants de moins de 21 ans sont considérés à charge"
+- name: Aides logements - les enfants de moins de 21 ans sont considérés à charge
   description: Nombre de personnes à charge pour les AL
   period: 2015-01
   familles:
-    parents: ["parent1"]
-    enfants: ["enfant1"]
+    parents: [parent1]
+    enfants: [enfant1]
   individus:
-    - id: "parent1"
-      age: 40
-    - id: "enfant1"
-      age: 20
+  - id: parent1
+    age: 40
+  - id: enfant1
+    age: 20
   output_variables:
     al_nb_personnes_a_charge: 1
 
-- name: "Aides logements - les enfants de plus de 21 ans ne sont pas considérés à charge"
+- name: Aides logements - les enfants de plus de 21 ans ne sont pas considérés à charge
   description: Nombre de personnes à charge pour les AL
   period: 2015-01
   familles:
-    parents: ["parent1"]
-    enfants: ["enfant1"]
+    parents: [parent1]
+    enfants: [enfant1]
   individus:
-    - id: "parent1"
-      age: 40
-    - id: "enfant1"
-      age: 21
+  - id: parent1
+    age: 40
+  - id: enfant1
+    age: 21
   output_variables:
     al_nb_personnes_a_charge: 0
 
-- name: "Aides logements - les enfants de plus de 21 ans handicapés (>80%) sont considérés à charge"
+- name: Aides logements - les enfants de plus de 21 ans handicapés (>80%) sont considérés à charge
   description: Nombre de personnes à charge pour les AL
   period: 2015-01
   familles:
-    parents: ["parent1"]
-    enfants: ["enfant1"]
+    parents: [parent1]
+    enfants: [enfant1]
   foyers_fiscaux:
-    declarants: ["parent1"]
-    personnes_a_charge: ["enfant1"]
+    declarants: [parent1]
+    personnes_a_charge: [enfant1]
   menages:
-    personne_de_reference: "parent1"
-    enfants: ["enfant1"]
+    personne_de_reference: parent1
+    enfants: [enfant1]
   individus:
-    - id: "parent1"
-      age: 40
-    - id: "enfant1"
-      age: 30
-      handicap: true
-      taux_incapacite: 0.9
+  - id: parent1
+    age: 40
+  - id: enfant1
+    age: 30
+    handicap: true
+    taux_incapacite: 0.9
   output_variables:
     al_nb_personnes_a_charge: 1
 
-- name: "Aides logements - les enfants de plus de 21 ans inaptes au travail sont considérés à charge"
+- name: Aides logements - les enfants de plus de 21 ans inaptes au travail sont considérés à charge
   description: Nombre de personnes à charge pour les AL
   period: 2015-01
   familles:
-    parents: ["parent1"]
-    enfants: ["enfant1"]
+    parents: [parent1]
+    enfants: [enfant1]
   individus:
-    - id: "parent1"
-      age: 40
-    - id: "enfant1"
-      age: 30
-      handicap: true
-      inapte_travail: true
+  - id: parent1
+    age: 40
+  - id: enfant1
+    age: 30
+    handicap: true
+    inapte_travail: true
   output_variables:
     al_nb_personnes_a_charge: 1
 
-- name: "Aides logements - les enfants de plus de 21 ans handicapés (<80%) ne sont pas considérés à charge"
+- name: Aides logements - les enfants de plus de 21 ans handicapés (<80%) ne sont pas considérés à charge
   description: Nombre de personnes à charge pour les AL
   period: 2015-01
   familles:
-    parents: ["parent1"]
-    enfants: ["enfant1"]
+    parents: [parent1]
+    enfants: [enfant1]
   individus:
-    - id: "parent1"
-      age: 40
-    - id: "enfant1"
-      age: 30
-      handicap: true
-      taux_incapacite: 0.7
+  - id: parent1
+    age: 40
+  - id: enfant1
+    age: 30
+    handicap: true
+    taux_incapacite: 0.7
   output_variables:
     al_nb_personnes_a_charge: 0
 
-- name: "Aides logements - les enfants de plus de 21 ans indaptes au travail ou handicapés sont considérés à charge si ressources <= 12000 en 2016"
+- name: Aides logements - les enfants de plus de 21 ans indaptes au travail ou handicapés sont considérés à charge si ressources <= 12000 en 2016
   description: Nombre de personnes à charge pour les AL
   period: 2016-01
   familles:
-    parents: ["parent1"]
-    enfants: ["enfant1"]
+    parents: [parent1]
+    enfants: [enfant1]
   individus:
-    - id: "parent1"
-      age: 40
-    - id: "enfant1"
-      age: 30
-      handicap: true
-      inapte_travail: true
-      prestations_familiales_base_ressources_individu: 11900
+  - id: parent1
+    age: 40
+  - id: enfant1
+    age: 30
+    handicap: true
+    inapte_travail: true
+    prestations_familiales_base_ressources_individu: 11900
   output_variables:
     al_nb_personnes_a_charge: 1
 
-- name: "Aides logements - les enfants de plus de 21 ans indaptes au travail ou handicapés ne sont pas considérés à charge si ressources > 12000 en 2016"
+- name: Aides logements - les enfants de plus de 21 ans indaptes au travail ou handicapés ne sont pas considérés à charge si ressources > 12000 en 2016
   description: Nombre de personnes à charge pour les AL
   period: 2015-01
   familles:
-    parents: ["parent1"]
-    enfants: ["enfant1"]
+    parents: [parent1]
+    enfants: [enfant1]
   individus:
-    - id: "parent1"
-      age: 40
-    - id: "enfant1"
-      age: 30
-      handicap: true
-      inapte_travail: true
-      prestations_familiales_base_ressources_individu: 12100
+  - id: parent1
+    age: 40
+  - id: enfant1
+    age: 30
+    handicap: true
+    inapte_travail: true
+    prestations_familiales_base_ressources_individu: 12100
   output_variables:
     al_nb_personnes_a_charge: 0
 
-- name: "Abattement sur les ressources des enfants à hauteur de 125% du plafond ASPA personne seule"
+- name: Abattement sur les ressources des enfants à hauteur de 125% du plafond ASPA personne seule
   period: 2016-01
   familles:
-    parents: ["parent1"]
-    enfants: ["enfant1"]
+    parents: [parent1]
+    enfants: [enfant1]
   individus:
-    - id: "parent1"
-      age: 40
-    - id: "enfant1"
-      age: 19
-      prestations_familiales_base_ressources_individu: 12500
+  - id: parent1
+    age: 40
+  - id: enfant1
+    age: 19
+    prestations_familiales_base_ressources_individu: 12500
   output_variables:
     aide_logement_base_ressources: 500
 
 # Pour vérifier qu'on prend le plafond ASPA pour la bonne période
-- name: "Abattement sur les ressources des enfants à hauteur de 125% du plafond ASPA personne seule (autre période)"
+- name: Abattement sur les ressources des enfants à hauteur de 125% du plafond ASPA personne seule (autre période)
   period: 2012-01
   absolute_error_margin: 0.005
   familles:
-    parents: ["parent1"]
-    enfants: ["enfant1"]
+    parents: [parent1]
+    enfants: [enfant1]
   individus:
-    - id: "parent1"
-      age: 40
-    - id: "enfant1"
-      age: 19
-      prestations_familiales_base_ressources_individu: 12500
+  - id: parent1
+    age: 40
+  - id: enfant1
+    age: 19
+    prestations_familiales_base_ressources_individu: 12500
   output_variables:
     aide_logement_base_ressources_defaut: 12500 - 10634.36
 
-- name: "Personne isolée 2016-06"
+- name: Personne isolée 2016-06
   period: 2016-06
   relative_error_margin: 0.01
   familles:
-    parents: ["parent1"]
+    parents: [parent1]
     aide_logement_base_ressources: 12000
   menages:
     zone_apl: zone_1
     loyer: 800
     statut_occupation_logement: locataire_vide
   individus:
-    - id: "parent1"
-      age: 40
+  - id: parent1
+    age: 40
   output_variables:
     aide_logement_loyer_retenu: 292.85
     aide_logement_charges: 53.27
@@ -171,20 +171,20 @@
     aide_logement_participation_personnelle: 34.73 + (0.0283 + 0.00405) * 7438  # 275.35
     aide_logement_montant_brut: 292.85 + 53.27 - 275.35 # 70.77
 
-- name: "Personne isolée 2016-10"
+- name: Personne isolée 2016-10
   period: 2016-06
   relative_error_margin: 0.01
   familles:
-    parents: ["parent1"]
+    parents: [parent1]
     aide_logement_base_ressources: 12000
   menages:
-    personne_de_reference: "parent1"
+    personne_de_reference: parent1
     statut_occupation_logement: locataire_vide
     zone_apl: zone_1
     loyer: 800
   individus:
-    - id: "parent1"
-      age: 40
+  - id: parent1
+    age: 40
   output_variables:
     aide_logement_loyer_retenu: 292.85
     aide_logement_charges: 53.27
@@ -199,214 +199,214 @@
     aide_logement_participation_personnelle: 34.73 + (0.0283 + 0.00405) * 7438  # 275.35
     aide_logement_montant_brut: 292.85 + 53.27 - 275.35 # 70.77 brut CRDS
 
-- name: "Personne isolée, avant degressivité"
+- name: Personne isolée, avant degressivité
   period: 2016-06
   relative_error_margin: 0.01
   familles:
-    parents: ["parent1"]
+    parents: [parent1]
     aide_logement_base_ressources: 12000
   menages:
     zone_apl: zone_1
     loyer: 1054.26
     statut_occupation_logement: locataire_vide
   individus:
-    - id: "parent1"
-      age: 40
+  - id: parent1
+    age: 40
   output_variables:
     aide_logement_montant: 70  # 70.77 brut de CRDS
 
-- name: "Personne isolée, avec degressivité"
+- name: Personne isolée, avec degressivité
   period: 2016-09
   relative_error_margin: 0.025
   familles:
-    parents: ["parent1"]
+    parents: [parent1]
     aide_logement_base_ressources: 12000
   menages:
     zone_apl: zone_1
     loyer: 1054.26
     statut_occupation_logement: locataire_vide
   individus:
-    - id: "parent1"
-      age: 40
+  - id: parent1
+    age: 40
   output_variables:
     aide_logement_loyer_seuil_degressivite: 995.69
     aide_logement_loyer_seuil_suppression: 1171.40
     aide_logement_montant: 46
 
-- name: "Personne isolée, avec suppression"
+- name: Personne isolée, avec suppression
   period: 2016-09
   relative_error_margin: 0.01
   familles:
-    parents: ["parent1"]
+    parents: [parent1]
     aide_logement_base_ressources: 12000
   menages:
     zone_apl: zone_1
     loyer: 1172
     statut_occupation_logement: locataire_vide
   individus:
-    - id: "parent1"
-      age: 40
+  - id: parent1
+    age: 40
   output_variables:
     aide_logement_loyer_seuil_degressivite: 995.69
     aide_logement_loyer_seuil_suppression: 1171.40
     aide_logement_montant: 0
 
-- name: "Couple avec 2 enfants, avec degressivité"
+- name: Couple avec 2 enfants, avec degressivité
   period: 2016-09
   relative_error_margin: 0.01
   familles:
-    parents: ["parent1", "parent2"]
-    enfants: ["enfant1", "enfant2"]
+    parents: [parent1, parent2]
+    enfants: [enfant1, enfant2]
     aide_logement_base_ressources: 13500
   menages:
     zone_apl: zone_1
     loyer: 1650
     statut_occupation_logement: locataire_vide
   individus:
-    - id: "parent1"
-      age: 40
-    - id: "parent2"
-      age: 37
-    - id: "enfant1"
-      age: 10
-    - id: "enfant2"
-      age: 7
+  - id: parent1
+    age: 40
+  - id: parent2
+    age: 37
+  - id: enfant1
+    age: 10
+  - id: enfant2
+    age: 7
   output_variables:
     aide_logement_loyer_seuil_degressivite: 1554.14
     aide_logement_loyer_seuil_suppression: 1828.72
     aide_logement_montant: 217
 
-- name: "Couple avec 2 enfants, avec degressivité sans abattement forfaitaire"
+- name: Couple avec 2 enfants, avec degressivité sans abattement forfaitaire
   period: 2016-09
   relative_error_margin: 0.01
   familles:
-    parents: ["parent1", "parent2"]
-    enfants: ["enfant1", "enfant2"]
+    parents: [parent1, parent2]
+    enfants: [enfant1, enfant2]
     aide_logement_base_ressources: 13500
   menages:
     zone_apl: zone_1
     loyer: 1650
     statut_occupation_logement: locataire_vide
   individus:
-    - id: "parent1"
-      age: 40
-    - id: "parent2"
-      age: 37
-    - id: "enfant1"
-      age: 10
-    - id: "enfant2"
-      age: 7
+  - id: parent1
+    age: 40
+  - id: parent2
+    age: 37
+  - id: enfant1
+    age: 10
+  - id: enfant2
+    age: 7
   output_variables:
     aide_logement_montant_brut: 218.22
     aide_logement_montant: 217
 
-- name: "Couple avec 2 enfants, avec degressivité avec abattement forfaitaire"
+- name: Couple avec 2 enfants, avec degressivité avec abattement forfaitaire
   period: 2017-10
   relative_error_margin: 0.01
   familles:
-    parents: ["parent1", "parent2"]
-    enfants: ["enfant1", "enfant2"]
+    parents: [parent1, parent2]
+    enfants: [enfant1, enfant2]
     aide_logement_base_ressources: 13500
   menages:
     zone_apl: zone_1
     loyer: 1650
     statut_occupation_logement: locataire_vide
   individus:
-    - id: "parent1"
-      age: 40
-    - id: "parent2"
-      age: 37
-    - id: "enfant1"
-      age: 10
-    - id: "enfant2"
-      age: 7
+  - id: parent1
+    age: 40
+  - id: parent2
+    age: 37
+  - id: enfant1
+    age: 10
+  - id: enfant2
+    age: 7
   output_variables:
     aide_logement_montant_brut: 213.22
     aide_logement_montant: 212.13
 
-- name: "Personne isolée, avec suppression avec abattement forfaitaire"
+- name: Personne isolée, avec suppression avec abattement forfaitaire
   period: 2017-10
   relative_error_margin: 0.01
   familles:
-    parents: ["parent1"]
+    parents: [parent1]
     aide_logement_base_ressources: 12000
   menages:
     zone_apl: zone_1
     loyer: 1172
     statut_occupation_logement: locataire_vide
   individus:
-    - id: "parent1"
-      age: 40
+  - id: parent1
+    age: 40
   output_variables:
     aide_logement_montant_brut: 0
     aide_logement_montant: 0
 
-- name: "Personne isolée avec abattement forfaitaire"
+- name: Personne isolée avec abattement forfaitaire
   period: 2017-10
   relative_error_margin: 0.01
   familles:
-    parents: ["parent1"]
+    parents: [parent1]
     aide_logement_base_ressources: 12000
   menages:
     zone_apl: zone_1
     loyer: 1054.26
     statut_occupation_logement: locataire_vide
   individus:
-    - id: "parent1"
-      age: 40
+  - id: parent1
+    age: 40
   output_variables:
     aide_logement_montant_brut: 42.27
     aide_logement_montant: 42.02
 
-- name: "Le patrimoine composé uniquement d'épargne générant des revenus imposables n'augmente pas la base ressources des ALs"
+- name: Le patrimoine composé uniquement d'épargne générant des revenus imposables n'augmente pas la base ressources des ALs
   period: 2017-10
   relative_error_margin: 0.01
   familles:
-    parents: ["parent1"]
-  menages:
+    parents: [parent1]
+  menages: null
   individus:
-    - id: "parent1"
-      epargne_revenus_imposables: 35000
+  - id: parent1
+    epargne_revenus_imposables: 35000
   output_variables:
     aide_logement_base_ressources_patrimoine: 0
 
-- name: "Les terrains non loués augmentent la base ressources des ALs de 80% de leurs valeurs locatives lorsque le patrimoine > 30.000"
+- name: Les terrains non loués augmentent la base ressources des ALs de 80% de leurs valeurs locatives lorsque le patrimoine > 30.000
   period: 2017-10
   relative_error_margin: 0.01
   familles:
-    parents: ["parent1"]
-  menages:
+    parents: [parent1]
+  menages: null
   individus:
-    - id: "parent1"
-      epargne_revenus_imposables: 25000
-      valeur_terrains_non_loues: 5001
-      valeur_locative_terrains_non_loues: 100
+  - id: parent1
+    epargne_revenus_imposables: 25000
+    valeur_terrains_non_loues: 5001
+    valeur_locative_terrains_non_loues: 100
   output_variables:
     aide_logement_base_ressources_patrimoine: 80
 
-- name: "Les appartements non loués augmentent la base ressources des ALs de 50% de leurs valeurs locatives lorsque le patrimoine > 30.000"
+- name: Les appartements non loués augmentent la base ressources des ALs de 50% de leurs valeurs locatives lorsque le patrimoine > 30.000
   period: 2017-10
   relative_error_margin: 0.01
   familles:
-    parents: ["parent1"]
-  menages:
+    parents: [parent1]
+  menages: null
   individus:
-    - id: "parent1"
-      epargne_revenus_imposables: 20000
-      valeur_immo_non_loue: 10001
-      valeur_locative_immo_non_loue: 100
+  - id: parent1
+    epargne_revenus_imposables: 20000
+    valeur_immo_non_loue: 10001
+    valeur_locative_immo_non_loue: 100
   output_variables:
     aide_logement_base_ressources_patrimoine: 50
 
-- name: "L'épargne sur livret A augmentent la base ressources des ALs de 3% du montant de l'épargne lorsque le patrimoine > 30.000"
+- name: L'épargne sur livret A augmentent la base ressources des ALs de 3% du montant de l'épargne lorsque le patrimoine > 30.000
   period: 2017-10
   relative_error_margin: 0.01
   familles:
-    parents: ["parent1"]
-  menages:
+    parents: [parent1]
+  menages: null
   individus:
-    - id: "parent1"
-      epargne_revenus_imposables: 15000
-      livret_a: 20000
+  - id: parent1
+    epargne_revenus_imposables: 15000
+    livret_a: 20000
   output_variables:
     aide_logement_base_ressources_patrimoine: 600

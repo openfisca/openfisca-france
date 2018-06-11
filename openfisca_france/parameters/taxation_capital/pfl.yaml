@@ -189,8 +189,8 @@ plan_d_epargne_populaire:
         value: 0.24
       2013-01-01:
         value: null
-titres_de_creances_negociables_billets_de_tresorerie_certificats_de_depots_negociables_bons_du_tresor_negociables_et_bons_des_institutions_financieres_specialisees:
-  reference: ipp
+? titres_de_creances_negociables_billets_de_tresorerie_certificats_de_depots_negociables_bons_du_tresor_negociables_et_bons_des_institutions_financieres_specialisees
+: reference: ipp
   unit: /1
   values:
     1974-01-01:

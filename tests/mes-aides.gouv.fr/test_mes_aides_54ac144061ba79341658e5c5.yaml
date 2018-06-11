@@ -1,8 +1,8 @@
 name: 2 enfants
 keywords:
-  - al
-  - location
-  - ménage
+- al
+- location
+- ménage
 description: |
   L	456,73
   C	77,35
@@ -19,44 +19,44 @@ description: |
   P1	0
   Pp	45,4
   AL	486,24
-period: "month:2015-01"
+period: month:2015-01
 relative_error_margin: 0.02
 individus:
-  - age: 34
-    age_en_mois: 412
-    date_naissance: "1980-08-12"
-    etudiant: 0
-    id: 54ac12a5608e752d1629ea3b
-    inapte_travail: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 14
-    age_en_mois: 172
-    date_naissance: "2000-08-12"
-    etudiant: 0
-    id: 54ac12a5608e752d1629ea3a
-    inapte_travail: 0
-    handicap: 0
-    scolarite: college
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 14
-    age_en_mois: 173
-    date_naissance: "2000-07-12"
-    etudiant: 0
-    id: 54ac12a5608e752d1629ea39
-    inapte_travail: 0
-    handicap: 0
-    scolarite: college
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
+- age: 34
+  age_en_mois: 412
+  date_naissance: '1980-08-12'
+  etudiant: 0
+  id: 54ac12a5608e752d1629ea3b
+  inapte_travail: 0
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 14
+  age_en_mois: 172
+  date_naissance: '2000-08-12'
+  etudiant: 0
+  id: 54ac12a5608e752d1629ea3a
+  inapte_travail: 0
+  handicap: 0
+  scolarite: college
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 14
+  age_en_mois: 173
+  date_naissance: '2000-07-12'
+  etudiant: 0
+  id: 54ac12a5608e752d1629ea39
+  inapte_travail: 0
+  handicap: 0
+  scolarite: college
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
 familles:
   acs:
     2014-01: 0
@@ -228,8 +228,8 @@ familles:
     2014-11: 0
     2014-12: 0
   enfants:
-    - 54ac12a5608e752d1629ea3a
-    - 54ac12a5608e752d1629ea39
+  - 54ac12a5608e752d1629ea3a
+  - 54ac12a5608e752d1629ea39
   paje_base:
     2014-01: 0
     2014-02: 0
@@ -262,13 +262,13 @@ familles:
 foyers_fiscaux:
   declarants: 54ac12a5608e752d1629ea3b
   personnes_a_charge:
-    - 54ac12a5608e752d1629ea3a
-    - 54ac12a5608e752d1629ea39
+  - 54ac12a5608e752d1629ea3a
+  - 54ac12a5608e752d1629ea39
 menages:
   depcom: 75111
   enfants:
-    - 54ac12a5608e752d1629ea3a
-    - 54ac12a5608e752d1629ea39
+  - 54ac12a5608e752d1629ea3a
+  - 54ac12a5608e752d1629ea39
   loyer: 1000
   personne_de_reference: 54ac12a5608e752d1629ea3b
   statut_occupation_logement: locataire_vide

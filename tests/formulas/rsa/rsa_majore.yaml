@@ -1,83 +1,83 @@
-- name: "Pas de RSA majoré en cas d'isolement non récent"
+- name: Pas de RSA majoré en cas d'isolement non récent
   description: RSA majoré
   period: 2015-01
   absolute_error_margin: 0.03
   familles:
-    parents: ["parent1"]
-    enfants: ["enfant1"]
+    parents: [parent1]
+    enfants: [enfant1]
   foyers_fiscaux:
-    declarants: ["parent1"]
-    personnes_a_charge: ["enfant1"]
+    declarants: [parent1]
+    personnes_a_charge: [enfant1]
   menages:
-    personne_de_reference: "parent1"
-    enfants: ["enfant1"]
+    personne_de_reference: parent1
+    enfants: [enfant1]
   individus:
-    - id: "parent1"
-      age: 40
-    - id: "enfant1"
-      age: 5
+  - id: parent1
+    age: 40
+  - id: enfant1
+    age: 5
   output_variables:
     rsa_majore_eligibilite: false
 
-- name: "RSA majoré en cas d'isolement récent"
+- name: RSA majoré en cas d'isolement récent
   description: RSA majoré
   period: 2015-01
   absolute_error_margin: 0.03
   familles:
-    parents: ["parent1"]
-    enfants: ["enfant1"]
+    parents: [parent1]
+    enfants: [enfant1]
     rsa_isolement_recent: true
   foyers_fiscaux:
-    declarants: ["parent1"]
-    personnes_a_charge: ["enfant1"]
+    declarants: [parent1]
+    personnes_a_charge: [enfant1]
   menages:
-    personne_de_reference: "parent1"
-    enfants: ["enfant1"]
+    personne_de_reference: parent1
+    enfants: [enfant1]
   individus:
-    - id: "parent1"
-      age: 40
-    - id: "enfant1"
-      age: 5
+  - id: parent1
+    age: 40
+  - id: enfant1
+    age: 5
   output_variables:
     rsa_majore_eligibilite: true
 
-- name: "RSA majoré si enfant de moins de 3 ans"
+- name: RSA majoré si enfant de moins de 3 ans
   description: RSA majoré
   period: 2015-01
   absolute_error_margin: 0.03
   familles:
-    parents: ["parent1"]
-    enfants: ["enfant1"]
+    parents: [parent1]
+    enfants: [enfant1]
   foyers_fiscaux:
-    declarants: ["parent1"]
-    personnes_a_charge: ["enfant1"]
+    declarants: [parent1]
+    personnes_a_charge: [enfant1]
   menages:
-    personne_de_reference: "parent1"
-    enfants: ["enfant1"]
+    personne_de_reference: parent1
+    enfants: [enfant1]
   individus:
-    - id: "parent1"
-      age: 40
-    - id: "enfant1"
-      age: 2
+  - id: parent1
+    age: 40
+  - id: enfant1
+    age: 2
   output_variables:
     rsa_majore_eligibilite: true
 
-- name: "RSA majoré si demandeur enceinte"
+- name: RSA majoré si demandeur enceinte
   description: RSA majoré
   period: 2015-01
   absolute_error_margin: 0.03
   familles:
-    parents: ["parent1"]
+    parents: [parent1]
     enfants: []
   foyers_fiscaux:
-    declarants: ["parent1"]
+    declarants: [parent1]
     personnes_a_charge: []
   menages:
-    personne_de_reference: "parent1"
+    personne_de_reference: parent1
     enfants: []
   individus:
-    - id: "parent1"
-      age: 40
-      enceinte: true
+  - id: parent1
+    age: 40
+    enceinte: true
   output_variables:
     rsa_majore_eligibilite: true

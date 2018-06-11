@@ -1,575 +1,575 @@
-- name: "Complement familial - Cas N°1"
+- name: Complement familial - Cas N°1
   description: Montant CF
   period: 2018-01
   absolute_error_margin: 0.02
   familles:
-    parents: ["parent1", "parent2"]
-    enfants: ["enfant1", "enfant2", "enfant3"]
+    parents: [parent1, parent2]
+    enfants: [enfant1, enfant2, enfant3]
   foyers_fiscaux:
-    declarants: ["parent1", "parent2"]
-    personnes_a_charge: ["enfant1", "enfant2", "enfant3"]
+    declarants: [parent1, parent2]
+    personnes_a_charge: [enfant1, enfant2, enfant3]
   menages:
-    personne_de_reference: "parent1"
-    conjoint: "parent2"
-    enfants: ["enfant1", "enfant2", "enfant3"]
+    personne_de_reference: parent1
+    conjoint: parent2
+    enfants: [enfant1, enfant2, enfant3]
   individus:
-    - id: "parent1"
-      age: 38
-      revenu_assimile_salaire:
-        2015: 20000
-        2016: 20000
-        2017: 20000
-        2018: 20000
-    - id: "parent2"
-      age: 35
-      revenu_assimile_salaire:
-        2015: 15000
-        2016: 15000
-        2017: 15000
-        2018: 15000
-    - id: "enfant1"
-      age: 12
-    - id: "enfant2"
-      age: 10
-    - id: "enfant3"
-      age: 7
+  - id: parent1
+    age: 38
+    revenu_assimile_salaire:
+      2015: 20000
+      2016: 20000
+      2017: 20000
+      2018: 20000
+  - id: parent2
+    age: 35
+    revenu_assimile_salaire:
+      2015: 15000
+      2016: 15000
+      2017: 15000
+      2018: 15000
+  - id: enfant1
+    age: 12
+  - id: enfant2
+    age: 10
+  - id: enfant3
+    age: 7
   output_variables:
     cf: 169.03 / (1 - 0.005)
     # cf net - crds
 
-- name: "Complement familial - Cas N°2"
+- name: Complement familial - Cas N°2
   description: Montant CF
   period: 2018-01
   absolute_error_margin: 0.02
   familles:
-    parents: ["parent1", "parent2"]
-    enfants: ["enfant1", "enfant2", "enfant3", "enfant4"]
+    parents: [parent1, parent2]
+    enfants: [enfant1, enfant2, enfant3, enfant4]
   foyers_fiscaux:
-    declarants: ["parent1", "parent2"]
-    personnes_a_charge: ["enfant1", "enfant2", "enfant3", "enfant4"]
+    declarants: [parent1, parent2]
+    personnes_a_charge: [enfant1, enfant2, enfant3, enfant4]
   menages:
-    personne_de_reference: "parent1"
-    conjoint: "parent2"
-    enfants: ["enfant1", "enfant2", "enfant3", "enfant4"]
+    personne_de_reference: parent1
+    conjoint: parent2
+    enfants: [enfant1, enfant2, enfant3, enfant4]
   individus:
-    - id: "parent1"
-      age: 38
-      revenu_assimile_salaire:
-        2015: 20000
-        2016: 20000
-        2017: 20000
-        2018: 20000
-    - id: "parent2"
-      age: 35
-      revenu_assimile_salaire:
-        2015: 15000
-        2016: 15000
-        2017: 15000
-        2018: 15000
-    - id: "enfant1"
-      age: 12
-    - id: "enfant2"
-      age: 10
-    - id: "enfant3"
-      age: 7
-    - id: "enfant4"
-      age: 5
+  - id: parent1
+    age: 38
+    revenu_assimile_salaire:
+      2015: 20000
+      2016: 20000
+      2017: 20000
+      2018: 20000
+  - id: parent2
+    age: 35
+    revenu_assimile_salaire:
+      2015: 15000
+      2016: 15000
+      2017: 15000
+      2018: 15000
+  - id: enfant1
+    age: 12
+  - id: enfant2
+    age: 10
+  - id: enfant3
+    age: 7
+  - id: enfant4
+    age: 5
   output_variables:
     cf: 169.03 / (1 - 0.005)
     # cf net - crds
 
-- name: "Complement familial - Cas N°3"
+- name: Complement familial - Cas N°3
   description: Montant CF
   period: 2018-01
   absolute_error_margin: 0.02
   familles:
-    parents: ["parent1", "parent2"]
-    enfants: ["enfant1", "enfant2", "enfant3", "enfant4", "enfant5"]
+    parents: [parent1, parent2]
+    enfants: [enfant1, enfant2, enfant3, enfant4, enfant5]
   foyers_fiscaux:
-    declarants: ["parent1", "parent2"]
-    personnes_a_charge: ["enfant1", "enfant2", "enfant3", "enfant4", "enfant5"]
+    declarants: [parent1, parent2]
+    personnes_a_charge: [enfant1, enfant2, enfant3, enfant4, enfant5]
   menages:
-    personne_de_reference: "parent1"
-    conjoint: "parent2"
-    enfants: ["enfant1", "enfant2", "enfant3", "enfant4", "enfant5"]
+    personne_de_reference: parent1
+    conjoint: parent2
+    enfants: [enfant1, enfant2, enfant3, enfant4, enfant5]
   individus:
-    - id: "parent1"
-      age: 38
-      revenu_assimile_salaire:
-        2015: 20000
-        2016: 20000
-        2017: 20000
-        2018: 20000
-    - id: "parent2"
-      age: 35
-      revenu_assimile_salaire:
-        2015: 15000
-        2016: 15000
-        2017: 15000
-        2018: 15000
-    - id: "enfant1"
-      age: 12
-    - id: "enfant2"
-      age: 10
-    - id: "enfant3"
-      age: 7
-    - id: "enfant4"
-      age: 5
-    - id: "enfant5"
-      age: 3
+  - id: parent1
+    age: 38
+    revenu_assimile_salaire:
+      2015: 20000
+      2016: 20000
+      2017: 20000
+      2018: 20000
+  - id: parent2
+    age: 35
+    revenu_assimile_salaire:
+      2015: 15000
+      2016: 15000
+      2017: 15000
+      2018: 15000
+  - id: enfant1
+    age: 12
+  - id: enfant2
+    age: 10
+  - id: enfant3
+    age: 7
+  - id: enfant4
+    age: 5
+  - id: enfant5
+    age: 3
   output_variables:
     cf: 169.03 / (1 - 0.005)
     # cf net - crds
 
-- name: "Complement familial - Cas N°4"
+- name: Complement familial - Cas N°4
   description: Montant CF
   period: 2018-01
   absolute_error_margin: 0.02
   familles:
-    parents: ["parent1", "parent2"]
-    enfants: ["enfant1", "enfant2", "enfant3"]
+    parents: [parent1, parent2]
+    enfants: [enfant1, enfant2, enfant3]
   foyers_fiscaux:
-    declarants: ["parent1", "parent2"]
-    personnes_a_charge: ["enfant1", "enfant2", "enfant3"]
+    declarants: [parent1, parent2]
+    personnes_a_charge: [enfant1, enfant2, enfant3]
   menages:
-    personne_de_reference: "parent1"
-    conjoint: "parent2"
-    enfants: ["enfant1", "enfant2", "enfant3"]
+    personne_de_reference: parent1
+    conjoint: parent2
+    enfants: [enfant1, enfant2, enfant3]
   individus:
-    - id: "parent1"
-      age: 38
-      revenu_assimile_salaire:
-        2015: 10000
-        2016: 10000
-        2017: 10000
-        2018: 10000
-    - id: "parent2"
-      age: 35
-      revenu_assimile_salaire:
-        2015: 5000
-        2016: 5000
-        2017: 5000
-        2018: 5000
-    - id: "enfant1"
-      age: 12
-    - id: "enfant2"
-      age: 10
-    - id: "enfant3"
-      age: 7
+  - id: parent1
+    age: 38
+    revenu_assimile_salaire:
+      2015: 10000
+      2016: 10000
+      2017: 10000
+      2018: 10000
+  - id: parent2
+    age: 35
+    revenu_assimile_salaire:
+      2015: 5000
+      2016: 5000
+      2017: 5000
+      2018: 5000
+  - id: enfant1
+    age: 12
+  - id: enfant2
+    age: 10
+  - id: enfant3
+    age: 7
   output_variables:
     cf: 236.71 / (1 - 0.005)
     # cf net - crds
 
-- name: "Complement familial - Cas N°5"
+- name: Complement familial - Cas N°5
   description: Montant CF
   period: 2018-01
   absolute_error_margin: 0.02
   familles:
-    parents: ["parent1", "parent2"]
-    enfants: ["enfant1", "enfant2", "enfant3", "enfant4"]
+    parents: [parent1, parent2]
+    enfants: [enfant1, enfant2, enfant3, enfant4]
   foyers_fiscaux:
-    declarants: ["parent1", "parent2"]
-    personnes_a_charge: ["enfant1", "enfant2", "enfant3", "enfant4"]
+    declarants: [parent1, parent2]
+    personnes_a_charge: [enfant1, enfant2, enfant3, enfant4]
   menages:
-    personne_de_reference: "parent1"
-    conjoint: "parent2"
-    enfants: ["enfant1", "enfant2", "enfant3", "enfant4"]
+    personne_de_reference: parent1
+    conjoint: parent2
+    enfants: [enfant1, enfant2, enfant3, enfant4]
   individus:
-    - id: "parent1"
-      age: 38
-      revenu_assimile_salaire:
-        2015: 10000
-        2016: 10000
-        2017: 10000
-        2018: 10000
-    - id: "parent2"
-      age: 35
-      revenu_assimile_salaire:
-        2015: 5000
-        2016: 5000
-        2017: 5000
-        2018: 5000
-    - id: "enfant1"
-      age: 12
-    - id: "enfant2"
-      age: 10
-    - id: "enfant3"
-      age: 7
-    - id: "enfant4"
-      age: 5
+  - id: parent1
+    age: 38
+    revenu_assimile_salaire:
+      2015: 10000
+      2016: 10000
+      2017: 10000
+      2018: 10000
+  - id: parent2
+    age: 35
+    revenu_assimile_salaire:
+      2015: 5000
+      2016: 5000
+      2017: 5000
+      2018: 5000
+  - id: enfant1
+    age: 12
+  - id: enfant2
+    age: 10
+  - id: enfant3
+    age: 7
+  - id: enfant4
+    age: 5
   output_variables:
     cf: 236.71 / (1 - 0.005)
     # cf net - crds
 
-- name: "Complement familial - Cas N°6"
+- name: Complement familial - Cas N°6
   description: Montant CF
   period: 2018-01
   absolute_error_margin: 0.02
   familles:
-    parents: ["parent1", "parent2"]
-    enfants: ["enfant1", "enfant2", "enfant3", "enfant4", "enfant5"]
+    parents: [parent1, parent2]
+    enfants: [enfant1, enfant2, enfant3, enfant4, enfant5]
   foyers_fiscaux:
-    declarants: ["parent1", "parent2"]
-    personnes_a_charge: ["enfant1", "enfant2", "enfant3", "enfant4", "enfant5"]
+    declarants: [parent1, parent2]
+    personnes_a_charge: [enfant1, enfant2, enfant3, enfant4, enfant5]
   menages:
-    personne_de_reference: "parent1"
-    conjoint: "parent2"
-    enfants: ["enfant1", "enfant2", "enfant3", "enfant4", "enfant5"]
+    personne_de_reference: parent1
+    conjoint: parent2
+    enfants: [enfant1, enfant2, enfant3, enfant4, enfant5]
   individus:
-    - id: "parent1"
-      age: 38
-      revenu_assimile_salaire:
-        2015: 10000
-        2016: 10000
-        2017: 10000
-        2018: 10000
-    - id: "parent2"
-      age: 35
-      revenu_assimile_salaire:
-        2015: 5000
-        2016: 5000
-        2017: 5000
-        2018: 5000
-    - id: "enfant1"
-      age: 14
-    - id: "enfant2"
-      age: 10
-    - id: "enfant3"
-      age: 7
-    - id: "enfant4"
-      age: 5
-    - id: "enfant5"
-      age: 3
+  - id: parent1
+    age: 38
+    revenu_assimile_salaire:
+      2015: 10000
+      2016: 10000
+      2017: 10000
+      2018: 10000
+  - id: parent2
+    age: 35
+    revenu_assimile_salaire:
+      2015: 5000
+      2016: 5000
+      2017: 5000
+      2018: 5000
+  - id: enfant1
+    age: 14
+  - id: enfant2
+    age: 10
+  - id: enfant3
+    age: 7
+  - id: enfant4
+    age: 5
+  - id: enfant5
+    age: 3
   output_variables:
     cf: 236.71 / (1 - 0.005)
     # cf net - crds
 
-- name: "Complement familial - Cas Non Passant N°1"
+- name: Complement familial - Cas Non Passant N°1
   description: Montant CF
   period: 2018-01
   absolute_error_margin: 0.02
   familles:
-    parents: ["parent1", "parent2"]
-    enfants: ["enfant1"]
+    parents: [parent1, parent2]
+    enfants: [enfant1]
   foyers_fiscaux:
-    declarants: ["parent1", "parent2"]
-    personnes_a_charge: ["enfant1"]
+    declarants: [parent1, parent2]
+    personnes_a_charge: [enfant1]
   menages:
-    personne_de_reference: "parent1"
-    conjoint: "parent2"
-    enfants: ["enfant1"]
+    personne_de_reference: parent1
+    conjoint: parent2
+    enfants: [enfant1]
   individus:
-    - id: "parent1"
-      age: 38
-      revenu_assimile_salaire:
-        2015: 20000
-        2016: 20000
-        2017: 20000
-        2018: 20000
-    - id: "parent2"
-      age: 35
-      revenu_assimile_salaire:
-        2015: 15000
-        2016: 15000
-        2017: 15000
-        2018: 15000
-    - id: "enfant1"
-      age: 12
+  - id: parent1
+    age: 38
+    revenu_assimile_salaire:
+      2015: 20000
+      2016: 20000
+      2017: 20000
+      2018: 20000
+  - id: parent2
+    age: 35
+    revenu_assimile_salaire:
+      2015: 15000
+      2016: 15000
+      2017: 15000
+      2018: 15000
+  - id: enfant1
+    age: 12
   output_variables:
     cf: 0
 
-- name: "Complement familial - Cas Non Passant N°2"
+- name: Complement familial - Cas Non Passant N°2
   description: Montant CF
   period: 2018-01
   absolute_error_margin: 0.02
   familles:
-    parents: ["parent1", "parent2"]
-    enfants: ["enfant1"]
+    parents: [parent1, parent2]
+    enfants: [enfant1]
   foyers_fiscaux:
-    declarants: ["parent1", "parent2"]
-    personnes_a_charge: ["enfant1"]
+    declarants: [parent1, parent2]
+    personnes_a_charge: [enfant1]
   menages:
-    personne_de_reference: "parent1"
-    conjoint: "parent2"
-    enfants: ["enfant1"]
+    personne_de_reference: parent1
+    conjoint: parent2
+    enfants: [enfant1]
   individus:
-    - id: "parent1"
-      age: 38
-      revenu_assimile_salaire:
-        2015: 10000
-        2016: 10000
-        2017: 10000
-        2018: 10000
-    - id: "parent2"
-      age: 35
-      revenu_assimile_salaire:
-        2015: 5000
-        2016: 5000
-        2017: 5000
-        2018: 5000
-    - id: "enfant1"
-      age: 12
+  - id: parent1
+    age: 38
+    revenu_assimile_salaire:
+      2015: 10000
+      2016: 10000
+      2017: 10000
+      2018: 10000
+  - id: parent2
+    age: 35
+    revenu_assimile_salaire:
+      2015: 5000
+      2016: 5000
+      2017: 5000
+      2018: 5000
+  - id: enfant1
+    age: 12
   output_variables:
     cf: 0
 
-- name: "Complement familial - Cas Non Passant N°3"
+- name: Complement familial - Cas Non Passant N°3
   description: Montant CF
   period: 2018-01
   absolute_error_margin: 0.02
   familles:
-    parents: ["parent1", "parent2"]
-    enfants: ["enfant1", "enfant2"]
+    parents: [parent1, parent2]
+    enfants: [enfant1, enfant2]
   foyers_fiscaux:
-    declarants: ["parent1", "parent2"]
-    personnes_a_charge: ["enfant1", "enfant2"]
+    declarants: [parent1, parent2]
+    personnes_a_charge: [enfant1, enfant2]
   menages:
-    personne_de_reference: "parent1"
-    conjoint: "parent2"
-    enfants: ["enfant1", "enfant2"]
+    personne_de_reference: parent1
+    conjoint: parent2
+    enfants: [enfant1, enfant2]
   individus:
-    - id: "parent1"
-      age: 38
-      revenu_assimile_salaire:
-        2015: 20000
-        2016: 20000
-        2017: 20000
-        2018: 20000
-    - id: "parent2"
-      age: 35
-      revenu_assimile_salaire:
-        2015: 15000
-        2016: 15000
-        2017: 15000
-        2018: 15000
-    - id: "enfant1"
-      age: 12
-    - id: "enfant2"
-      age: 10
+  - id: parent1
+    age: 38
+    revenu_assimile_salaire:
+      2015: 20000
+      2016: 20000
+      2017: 20000
+      2018: 20000
+  - id: parent2
+    age: 35
+    revenu_assimile_salaire:
+      2015: 15000
+      2016: 15000
+      2017: 15000
+      2018: 15000
+  - id: enfant1
+    age: 12
+  - id: enfant2
+    age: 10
   output_variables:
     cf: 0
 
-- name: "Complement familial - Cas Non Passant N°4"
+- name: Complement familial - Cas Non Passant N°4
   description: Montant CF
   period: 2018-01
   absolute_error_margin: 0.02
   familles:
-    parents: ["parent1", "parent2"]
-    enfants: ["enfant1", "enfant2"]
+    parents: [parent1, parent2]
+    enfants: [enfant1, enfant2]
   foyers_fiscaux:
-    declarants: ["parent1", "parent2"]
-    personnes_a_charge: ["enfant1", "enfant2"]
+    declarants: [parent1, parent2]
+    personnes_a_charge: [enfant1, enfant2]
   menages:
-    personne_de_reference: "parent1"
-    conjoint: "parent2"
-    enfants: ["enfant1", "enfant2"]
+    personne_de_reference: parent1
+    conjoint: parent2
+    enfants: [enfant1, enfant2]
   individus:
-    - id: "parent1"
-      age: 38
-      revenu_assimile_salaire:
-        2015: 10000
-        2016: 10000
-        2017: 10000
-        2018: 10000
-    - id: "parent2"
-      age: 35
-      revenu_assimile_salaire:
-        2015: 55000
-        2016: 55000
-        2017: 55000
-        2018: 55000
-    - id: "enfant1"
-      age: 12
-    - id: "enfant2"
-      age: 10
+  - id: parent1
+    age: 38
+    revenu_assimile_salaire:
+      2015: 10000
+      2016: 10000
+      2017: 10000
+      2018: 10000
+  - id: parent2
+    age: 35
+    revenu_assimile_salaire:
+      2015: 55000
+      2016: 55000
+      2017: 55000
+      2018: 55000
+  - id: enfant1
+    age: 12
+  - id: enfant2
+    age: 10
   output_variables:
     cf: 0
 
-- name: "Complement familial - Cas Non Passant N°5"
+- name: Complement familial - Cas Non Passant N°5
   description: Montant CF
   period: 2018-01
   absolute_error_margin: 0.02
   familles:
-    parents: ["parent1", "parent2"]
-    enfants: ["enfant1", "enfant2", "enfant3"]
+    parents: [parent1, parent2]
+    enfants: [enfant1, enfant2, enfant3]
   foyers_fiscaux:
-    declarants: ["parent1", "parent2"]
-    personnes_a_charge: ["enfant1", "enfant2", "enfant3"]
+    declarants: [parent1, parent2]
+    personnes_a_charge: [enfant1, enfant2, enfant3]
   menages:
-    personne_de_reference: "parent1"
-    conjoint: "parent2"
-    enfants: ["enfant1", "enfant2", "enfant3"]
+    personne_de_reference: parent1
+    conjoint: parent2
+    enfants: [enfant1, enfant2, enfant3]
   individus:
-    - id: "parent1"
-      age: 38
-      revenu_assimile_salaire:
-        2015: 30000
-        2016: 30000
-        2017: 30000
-        2018: 30000
-    - id: "parent2"
-      age: 35
-      revenu_assimile_salaire:
-        2015: 25000
-        2016: 25000
-        2017: 25000
-        2018: 25000
-    - id: "enfant1"
-      age: 12
-    - id: "enfant2"
-      age: 10
-    - id: "enfant3"
-      age: 7
+  - id: parent1
+    age: 38
+    revenu_assimile_salaire:
+      2015: 30000
+      2016: 30000
+      2017: 30000
+      2018: 30000
+  - id: parent2
+    age: 35
+    revenu_assimile_salaire:
+      2015: 25000
+      2016: 25000
+      2017: 25000
+      2018: 25000
+  - id: enfant1
+    age: 12
+  - id: enfant2
+    age: 10
+  - id: enfant3
+    age: 7
   output_variables:
     cf: 0
 
-- name: "Complement familial - Cas Non Passant N°6"
+- name: Complement familial - Cas Non Passant N°6
   description: Montant CF
   period: 2018-01
   absolute_error_margin: 0.02
   familles:
-    parents: ["parent1", "parent2"]
-    enfants: ["enfant1", "enfant2", "enfant3"]
+    parents: [parent1, parent2]
+    enfants: [enfant1, enfant2, enfant3]
   foyers_fiscaux:
-    declarants: ["parent1", "parent2"]
-    personnes_a_charge: ["enfant1", "enfant2", "enfant3"]
+    declarants: [parent1, parent2]
+    personnes_a_charge: [enfant1, enfant2, enfant3]
   menages:
-    personne_de_reference: "parent1"
-    conjoint: "parent2"
-    enfants: ["enfant1", "enfant2", "enfant3"]
+    personne_de_reference: parent1
+    conjoint: parent2
+    enfants: [enfant1, enfant2, enfant3]
   individus:
-    - id: "parent1"
-      age: 38
-      revenu_assimile_salaire:
-        2015: 20000
-        2016: 20000
-        2017: 20000
-        2018: 20000
-    - id: "parent2"
-      age: 35
-      revenu_assimile_salaire:
-        2015: 15000
-        2016: 15000
-        2017: 15000
-        2018: 15000
-    - id: "enfant1"
-      age: 21
-    - id: "enfant2"
-      age: 12
-    - id: "enfant3"
-      age: 10
+  - id: parent1
+    age: 38
+    revenu_assimile_salaire:
+      2015: 20000
+      2016: 20000
+      2017: 20000
+      2018: 20000
+  - id: parent2
+    age: 35
+    revenu_assimile_salaire:
+      2015: 15000
+      2016: 15000
+      2017: 15000
+      2018: 15000
+  - id: enfant1
+    age: 21
+  - id: enfant2
+    age: 12
+  - id: enfant3
+    age: 10
   output_variables:
     cf: 0
 
-- name: "Complement familial - Cas Non Passant N°7"
+- name: Complement familial - Cas Non Passant N°7
   description: Montant CF
   period: 2018-01
   absolute_error_margin: 0.02
   familles:
-    parents: ["parent1", "parent2"]
-    enfants: ["enfant1", "enfant2", "enfant3"]
+    parents: [parent1, parent2]
+    enfants: [enfant1, enfant2, enfant3]
   foyers_fiscaux:
-    declarants: ["parent1", "parent2"]
-    personnes_a_charge: ["enfant1", "enfant2", "enfant3"]
+    declarants: [parent1, parent2]
+    personnes_a_charge: [enfant1, enfant2, enfant3]
   menages:
-    personne_de_reference: "parent1"
-    conjoint: "parent2"
-    enfants: ["enfant1", "enfant2", "enfant3"]
+    personne_de_reference: parent1
+    conjoint: parent2
+    enfants: [enfant1, enfant2, enfant3]
   individus:
-    - id: "parent1"
-      age: 38
-      revenu_assimile_salaire:
-        2015: 10000
-        2016: 10000
-        2017: 10000
-        2018: 10000
-    - id: "parent2"
-      age: 35
-      revenu_assimile_salaire:
-        2015: 5000
-        2016: 5000
-        2017: 5000
-        2018: 5000
-    - id: "enfant1"
-      age: 21
-    - id: "enfant2"
-      age: 12
-    - id: "enfant3"
-      age: 10
+  - id: parent1
+    age: 38
+    revenu_assimile_salaire:
+      2015: 10000
+      2016: 10000
+      2017: 10000
+      2018: 10000
+  - id: parent2
+    age: 35
+    revenu_assimile_salaire:
+      2015: 5000
+      2016: 5000
+      2017: 5000
+      2018: 5000
+  - id: enfant1
+    age: 21
+  - id: enfant2
+    age: 12
+  - id: enfant3
+    age: 10
   output_variables:
     cf: 0
 
-- name: "Complement familial - Cas Non Passant N°8"
+- name: Complement familial - Cas Non Passant N°8
   description: Montant CF
   period: 2018-01
   absolute_error_margin: 0.02
   familles:
-    parents: ["parent1", "parent2"]
-    enfants: ["enfant1", "enfant2", "enfant3"]
+    parents: [parent1, parent2]
+    enfants: [enfant1, enfant2, enfant3]
   foyers_fiscaux:
-    declarants: ["parent1", "parent2"]
-    personnes_a_charge: ["enfant1", "enfant2", "enfant3"]
+    declarants: [parent1, parent2]
+    personnes_a_charge: [enfant1, enfant2, enfant3]
   menages:
-    personne_de_reference: "parent1"
-    conjoint: "parent2"
-    enfants: ["enfant1", "enfant2", "enfant3"]
+    personne_de_reference: parent1
+    conjoint: parent2
+    enfants: [enfant1, enfant2, enfant3]
   individus:
-    - id: "parent1"
-      age: 38
-      revenu_assimile_salaire:
-        2015: 20000
-        2016: 20000
-        2017: 20000
-        2018: 20000
-    - id: "parent2"
-      age: 35
-      revenu_assimile_salaire:
-        2015: 15000
-        2016: 15000
-        2017: 15000
-        2018: 15000
-    - id: "enfant1"
-      age: 12
-    - id: "enfant2"
-      age: 10
-    - id: "enfant3"
-      age: 1
+  - id: parent1
+    age: 38
+    revenu_assimile_salaire:
+      2015: 20000
+      2016: 20000
+      2017: 20000
+      2018: 20000
+  - id: parent2
+    age: 35
+    revenu_assimile_salaire:
+      2015: 15000
+      2016: 15000
+      2017: 15000
+      2018: 15000
+  - id: enfant1
+    age: 12
+  - id: enfant2
+    age: 10
+  - id: enfant3
+    age: 1
   output_variables:
     cf: 0
 
-- name: "Complement familial - Cas Non Passant N°9"
+- name: Complement familial - Cas Non Passant N°9
   description: Montant CF
   period: 2018-01
   absolute_error_margin: 0.02
   familles:
-    parents: ["parent1", "parent2"]
-    enfants: ["enfant1", "enfant2", "enfant3"]
+    parents: [parent1, parent2]
+    enfants: [enfant1, enfant2, enfant3]
   foyers_fiscaux:
-    declarants: ["parent1", "parent2"]
-    personnes_a_charge: ["enfant1", "enfant2", "enfant3"]
+    declarants: [parent1, parent2]
+    personnes_a_charge: [enfant1, enfant2, enfant3]
   menages:
-    personne_de_reference: "parent1"
-    conjoint: "parent2"
-    enfants: ["enfant1", "enfant2", "enfant3"]
+    personne_de_reference: parent1
+    conjoint: parent2
+    enfants: [enfant1, enfant2, enfant3]
   individus:
-    - id: "parent1"
-      age: 38
-      revenu_assimile_salaire:
-        2015: 10000
-        2016: 10000
-        2017: 10000
-        2018: 10000
-    - id: "parent2"
-      age: 35
-      revenu_assimile_salaire:
-        2015: 5000
-        2016: 5000
-        2017: 5000
-        2018: 5000
-    - id: "enfant1"
-      age: 12
-    - id: "enfant2"
-      age: 10
-    - id: "enfant3"
-      age: 1
+  - id: parent1
+    age: 38
+    revenu_assimile_salaire:
+      2015: 10000
+      2016: 10000
+      2017: 10000
+      2018: 10000
+  - id: parent2
+    age: 35
+    revenu_assimile_salaire:
+      2015: 5000
+      2016: 5000
+      2017: 5000
+      2018: 5000
+  - id: enfant1
+    age: 12
+  - id: enfant2
+    age: 10
+  - id: enfant3
+    age: 1
   output_variables:
     cf: 0

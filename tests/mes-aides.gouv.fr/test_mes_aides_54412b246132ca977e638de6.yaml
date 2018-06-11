@@ -1,10 +1,10 @@
 name: Ressources exclues
 keywords:
-  - al
-  - base ressources
-  - projection année glissante
+- al
+- base ressources
+- projection année glissante
 description: L'AAH est exclue de la base ressource des allocations logement
-period: "month:2014-10"
+period: month:2014-10
 relative_error_margin: 0.02
 individus:
   aah:
@@ -24,7 +24,7 @@ individus:
     2014-10: 99999
   age: 36
   age_en_mois: 434
-  date_naissance: "1978-08-12"
+  date_naissance: '1978-08-12'
   etudiant: 0
   id: 5441297683b38a957e4d856c
   inapte_travail: 0
@@ -203,7 +203,7 @@ familles:
     2014-07: 0
     2014-08: 0
     2014-09: 0
-  enfants:
+  enfants: null
   paje_base:
     2013-10: 0
     2013-11: 0
@@ -234,10 +234,10 @@ familles:
     2014-09: 0
 foyers_fiscaux:
   declarants: 5441297683b38a957e4d856c
-  personnes_a_charge:
+  personnes_a_charge: null
 menages:
   depcom: 75111
-  enfants:
+  enfants: null
   loyer: 1000
   personne_de_reference: 5441297683b38a957e4d856c
   statut_occupation_logement: locataire_vide

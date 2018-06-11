@@ -1,20 +1,20 @@
-name: "ALS - apprenti - evaluation forfaitaire"
+name: ALS - apprenti - evaluation forfaitaire
 keywords:
-  - base ressources
-  - eval forfaitaire
-  - recette
+- base ressources
+- eval forfaitaire
+- recette
 description: |
   Test créé à partir d'un dossier de demande de ALS :
   Ces paramètres (ressources non déclarables, situation personnelle…) n'ont pas pu être capturés : salaire de novembre 2014 pour renouvellement droit à janvier 2015
   La différence observée provient a priori de (prestations manquantes, règles non prises en compte…) : minime car salaire de novembre est peu élevé
-period: "month:2015-09"
+period: month:2015-09
 relative_error_margin: 0.02
 individus:
   enfant_a_charge:
     2015: true
   age: 22
   age_en_mois: 269
-  date_naissance: "1993-03-28"
+  date_naissance: '1993-03-28'
   enfant_place: false
   etudiant: 0
   id: 55f024840d70943004ddccd0
@@ -236,7 +236,7 @@ familles:
     2015-06: 0
     2015-07: 0
     2015-08: 0
-  enfants:
+  enfants: null
   paje_base:
     2014-09: 0
     2014-10: 0
@@ -267,10 +267,10 @@ familles:
     2015-08: 0
 foyers_fiscaux:
   declarants: 55f024840d70943004ddccd0
-  personnes_a_charge:
+  personnes_a_charge: null
 menages:
   depcom: 44109
-  enfants:
+  enfants: null
   loyer: 335
   personne_de_reference: 55f024840d70943004ddccd0
   statut_occupation_logement: locataire_vide

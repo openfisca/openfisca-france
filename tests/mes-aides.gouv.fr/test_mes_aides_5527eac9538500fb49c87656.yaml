@@ -1,16 +1,16 @@
 name: Abattement de 30% pour un chômeur indemnisé
 keywords:
-  - abattements
-  - "cmu-c/acs"
-description:
-period: "month:2015-04"
+- abattements
+- cmu-c/acs
+description: null
+period: month:2015-04
 relative_error_margin: 0.02
 individus:
   activite: chomeur
   age: 34
   age_en_mois: 419
   ass_precondition_remplie: false
-  date_naissance: "1980-05-03"
+  date_naissance: '1980-05-03'
   chomage_brut:
     2013: 8717.986917501908
     2014-04: 678.0656491390374
@@ -261,7 +261,7 @@ familles:
     2015-01: 0
     2015-02: 0
     2015-03: 0
-  enfants:
+  enfants: null
   paje_base:
     2014-04: 0
     2014-05: 0
@@ -292,10 +292,10 @@ familles:
     2015-03: 0
 foyers_fiscaux:
   declarants: 5527ea8694f21e044ad7e939
-  personnes_a_charge:
+  personnes_a_charge: null
 menages:
   depcom: 76540
-  enfants:
+  enfants: null
   loyer: 600
   personne_de_reference: 5527ea8694f21e044ad7e939
   statut_occupation_logement: locataire_vide

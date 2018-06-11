@@ -1,89 +1,89 @@
-name: "3ème enfant : 2 points"
+name: '3ème enfant : 2 points'
 keywords:
-  - bourse lycée
-  - points de charge
+- bourse lycée
+- points de charge
 description: |
   2 points de charge supplémentaires pour le 3ème enfant à charge
   Points de charge = (9 + 2) + 1 + 2 = 14
   Plafond pour 3 parts correspondant : 18819 euros
   RFR = 18800, donc montant = 135,9
-period: "month:2015-03"
+period: month:2015-03
 relative_error_margin: 0.02
 individus:
-  - age: 34
-    age_en_mois: 415
-    date_naissance: "1980-08-12"
-    chomage_imposable:
-      2013: 0
-    etudiant: 0
-    id: 550169b2cc1bb4365a5d7269
-    inapte_travail: 0
-    handicap: 0
-    pensions_alimentaires_percues:
-      2013: 0
-    retraite_imposable:
-      2013: 0
-    salaire_imposable:
-      2013: 0
-    statut_marital: marie
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 34
-    age_en_mois: 415
-    date_naissance: "1980-08-12"
-    chomage_imposable:
-      2013: 0
-    etudiant: 0
-    id: 550169b2cc1bb4365a5d7268
-    inapte_travail: 0
-    handicap: 0
-    pensions_alimentaires_percues:
-      2013: 0
-    retraite_imposable:
-      2013: 0
-    salaire_imposable:
-      2013: 0
-    statut_marital: marie
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 14
-    age_en_mois: 175
-    date_naissance: "2000-08-12"
-    etudiant: 0
-    id: 550169b2cc1bb4365a5d7267
-    inapte_travail: 0
-    handicap: 0
-    scolarite: lycee
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 0
-    age_en_mois: 7
-    date_naissance: "2014-08-12"
-    etudiant: 0
-    id: 550169b2cc1bb4365a5d7266
-    inapte_travail: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 0
-    age_en_mois: 7
-    date_naissance: "2014-08-12"
-    etudiant: 0
-    id: 550169b2cc1bb4365a5d7265
-    inapte_travail: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
+- age: 34
+  age_en_mois: 415
+  date_naissance: '1980-08-12'
+  chomage_imposable:
+    2013: 0
+  etudiant: 0
+  id: 550169b2cc1bb4365a5d7269
+  inapte_travail: 0
+  handicap: 0
+  pensions_alimentaires_percues:
+    2013: 0
+  retraite_imposable:
+    2013: 0
+  salaire_imposable:
+    2013: 0
+  statut_marital: marie
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 34
+  age_en_mois: 415
+  date_naissance: '1980-08-12'
+  chomage_imposable:
+    2013: 0
+  etudiant: 0
+  id: 550169b2cc1bb4365a5d7268
+  inapte_travail: 0
+  handicap: 0
+  pensions_alimentaires_percues:
+    2013: 0
+  retraite_imposable:
+    2013: 0
+  salaire_imposable:
+    2013: 0
+  statut_marital: marie
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 14
+  age_en_mois: 175
+  date_naissance: '2000-08-12'
+  etudiant: 0
+  id: 550169b2cc1bb4365a5d7267
+  inapte_travail: 0
+  handicap: 0
+  scolarite: lycee
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 0
+  age_en_mois: 7
+  date_naissance: '2014-08-12'
+  etudiant: 0
+  id: 550169b2cc1bb4365a5d7266
+  inapte_travail: 0
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 0
+  age_en_mois: 7
+  date_naissance: '2014-08-12'
+  etudiant: 0
+  id: 550169b2cc1bb4365a5d7265
+  inapte_travail: 0
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
 familles:
   acs:
     2014-03: 0
@@ -255,9 +255,9 @@ familles:
     2015-01: 0
     2015-02: 0
   enfants:
-    - 550169b2cc1bb4365a5d7267
-    - 550169b2cc1bb4365a5d7266
-    - 550169b2cc1bb4365a5d7265
+  - 550169b2cc1bb4365a5d7267
+  - 550169b2cc1bb4365a5d7266
+  - 550169b2cc1bb4365a5d7265
   paje_base:
     2014-03: 0
     2014-04: 0
@@ -272,8 +272,8 @@ familles:
     2015-01: 0
     2015-02: 0
   parents:
-    - 550169b2cc1bb4365a5d7269
-    - 550169b2cc1bb4365a5d7268
+  - 550169b2cc1bb4365a5d7269
+  - 550169b2cc1bb4365a5d7268
   rsa:
     2014-03: 0
     2014-04: 0
@@ -289,23 +289,23 @@ familles:
     2015-02: 0
 foyers_fiscaux:
   declarants:
-    - 550169b2cc1bb4365a5d7269
-    - 550169b2cc1bb4365a5d7268
+  - 550169b2cc1bb4365a5d7269
+  - 550169b2cc1bb4365a5d7268
   pensions_alimentaires_versees:
     2013: 0
   personnes_a_charge:
-    - 550169b2cc1bb4365a5d7267
-    - 550169b2cc1bb4365a5d7266
-    - 550169b2cc1bb4365a5d7265
+  - 550169b2cc1bb4365a5d7267
+  - 550169b2cc1bb4365a5d7266
+  - 550169b2cc1bb4365a5d7265
   rfr:
     2013: 18800
 menages:
   conjoint: 550169b2cc1bb4365a5d7268
   depcom: 67482
   enfants:
-    - 550169b2cc1bb4365a5d7267
-    - 550169b2cc1bb4365a5d7266
-    - 550169b2cc1bb4365a5d7265
+  - 550169b2cc1bb4365a5d7267
+  - 550169b2cc1bb4365a5d7266
+  - 550169b2cc1bb4365a5d7265
   personne_de_reference: 550169b2cc1bb4365a5d7269
   statut_occupation_logement: loge_gratuitement
 output_variables:

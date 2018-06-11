@@ -1,20 +1,20 @@
-name: "Abattement 30% sur ressources n-2 pour chômeur indemnisé"
+name: Abattement 30% sur ressources n-2 pour chômeur indemnisé
 keywords:
-  - abattements
-  - al
-  - recette
+- abattements
+- al
+- recette
 description: |
   Test créé à partir d'un dossier de demande de (RSA, APL…) :
   Ces paramètres (ressources non déclarables, situation personnelle…) n'ont pas pu être capturés :
   La différence observée provient a priori de (prestations manquantes, règles non prises en compte…) :
-period: "month:2015-07"
+period: month:2015-07
 relative_error_margin: 0.02
 individus:
   activite: chomeur
   age: 44
   age_en_mois: 535
   ass_precondition_remplie: false
-  date_naissance: "1970-12-02"
+  date_naissance: '1970-12-02'
   chomage_imposable:
     2013: 0
   chomage_brut:
@@ -229,7 +229,7 @@ familles:
     2015-04: 0
     2015-05: 0
     2015-06: 0
-  enfants:
+  enfants: null
   paje_base:
     2014-07: 0
     2014-08: 0
@@ -262,11 +262,11 @@ foyers_fiscaux:
   declarants: 559d1dd94aea99cb4c5a3da0
   pensions_alimentaires_versees:
     2013: 0
-  personnes_a_charge:
-  rfr:
+  personnes_a_charge: null
+  rfr: null
 menages:
   depcom: 77122
-  enfants:
+  enfants: null
   loyer: 438
   personne_de_reference: 559d1dd94aea99cb4c5a3da0
   statut_occupation_logement: locataire_vide

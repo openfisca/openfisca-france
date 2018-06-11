@@ -2,7 +2,7 @@ name: Couple avec 1 enfant avant 01/04/2014 revenu < plafond
 keywords:
 - paje
 - plafonds
-"description": |-
+description: |-
   Enfant né avant 01/04/2014
   Couple avec 1 revenu < plafond : 35 729 euros
 period: month:2015-05

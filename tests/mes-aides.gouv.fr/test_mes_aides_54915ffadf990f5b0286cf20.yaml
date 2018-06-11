@@ -1,124 +1,124 @@
-name: "Plafond CMU-C pour 5 personnes"
+name: Plafond CMU-C pour 5 personnes
 keywords:
-  - "cmu-c"
-  - "cmu-c/acs"
-  - plafonds
+- cmu-c
+- cmu-c/acs
+- plafonds
 description: |
   Plafond CMU-C pour 5 personnes : 21611 euros.
   Ici éligible aux AF, à l'ASF, au CF : le montant simulé de ces ressources est inclus dans la base ressources.
   12*(594+384+170) = 13776 euros
   Salaire déclaré en année glissante : 7820 euros
   13776 + 7820 = 21596 < 21611, donc droit CMU-C
-period: "month:2014-12"
+period: month:2014-12
 relative_error_margin: 0.02
 individus:
-  - age: 40
-    age_en_mois: 491
-    date_naissance: "1974-01-01"
-    chomage_imposable:
-      2012: 0
-    etudiant: 0
-    id: 54915fa1df990f5b0286cf13
-    inapte_travail: 0
-    handicap: 0
-    pensions_alimentaires_percues:
-      2012: 0
-    retraite_imposable:
-      2012: 0
-    salaire_de_base:
-      2013-12: 832.4786324786324
-      2014-01: 832.4786324786324
-      2014-02: 832.4786324786324
-      2014-03: 832.4786324786324
-      2014-04: 832.4786324786324
-      2014-05: 832.4786324786324
-      2014-06: 832.4786324786324
-      2014-07: 832.4786324786324
-      2014-08: 832.4786324786324
-      2014-09: 835.8974358974359
-      2014-10: 835.8974358974359
-      2014-11: 835.8974358974359
-      2014-12: 835.8974358974359
-    salaire_imposable:
-      2012: 100000
-      2013-12: 673.0527307692308
-      2014-01: 673.0527307692308
-      2014-02: 673.0527307692308
-      2014-03: 673.0527307692308
-      2014-04: 673.0527307692308
-      2014-05: 673.0527307692308
-      2014-06: 673.0527307692308
-      2014-07: 673.0527307692308
-      2014-08: 673.0527307692308
-      2014-09: 675.8168076923077
-      2014-10: 675.8168076923077
-      2014-11: 675.8168076923077
-      2014-12: 675.8168076923077
-    salaire_net:
-      2013-12: 649.3333333333334
-      2014-01: 649.3333333333334
-      2014-02: 649.3333333333334
-      2014-03: 649.3333333333334
-      2014-04: 649.3333333333334
-      2014-05: 649.3333333333334
-      2014-06: 649.3333333333334
-      2014-07: 649.3333333333334
-      2014-08: 649.3333333333334
-      2014-09: 652
-      2014-10: 652
-      2014-11: 652
-      2014-12: 652
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 15
-    age_en_mois: 191
-    date_naissance: "1999-01-01"
-    etudiant: 0
-    id: 54915fa1df990f5b0286cf12
-    inapte_travail: 0
-    handicap: 0
-    scolarite: college
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 13
-    age_en_mois: 167
-    date_naissance: "2001-01-01"
-    etudiant: 0
-    id: 54915fa1df990f5b0286cf11
-    inapte_travail: 0
-    handicap: 0
-    scolarite: college
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 11
-    age_en_mois: 143
-    date_naissance: "2003-01-01"
-    etudiant: 0
-    id: 54915fa1df990f5b0286cf10
-    inapte_travail: 0
-    handicap: 0
-    scolarite: college
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 8
-    age_en_mois: 107
-    date_naissance: "2006-01-01"
-    etudiant: 0
-    id: 54915fa1df990f5b0286cf0f
-    inapte_travail: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
+- age: 40
+  age_en_mois: 491
+  date_naissance: '1974-01-01'
+  chomage_imposable:
+    2012: 0
+  etudiant: 0
+  id: 54915fa1df990f5b0286cf13
+  inapte_travail: 0
+  handicap: 0
+  pensions_alimentaires_percues:
+    2012: 0
+  retraite_imposable:
+    2012: 0
+  salaire_de_base:
+    2013-12: 832.4786324786324
+    2014-01: 832.4786324786324
+    2014-02: 832.4786324786324
+    2014-03: 832.4786324786324
+    2014-04: 832.4786324786324
+    2014-05: 832.4786324786324
+    2014-06: 832.4786324786324
+    2014-07: 832.4786324786324
+    2014-08: 832.4786324786324
+    2014-09: 835.8974358974359
+    2014-10: 835.8974358974359
+    2014-11: 835.8974358974359
+    2014-12: 835.8974358974359
+  salaire_imposable:
+    2012: 100000
+    2013-12: 673.0527307692308
+    2014-01: 673.0527307692308
+    2014-02: 673.0527307692308
+    2014-03: 673.0527307692308
+    2014-04: 673.0527307692308
+    2014-05: 673.0527307692308
+    2014-06: 673.0527307692308
+    2014-07: 673.0527307692308
+    2014-08: 673.0527307692308
+    2014-09: 675.8168076923077
+    2014-10: 675.8168076923077
+    2014-11: 675.8168076923077
+    2014-12: 675.8168076923077
+  salaire_net:
+    2013-12: 649.3333333333334
+    2014-01: 649.3333333333334
+    2014-02: 649.3333333333334
+    2014-03: 649.3333333333334
+    2014-04: 649.3333333333334
+    2014-05: 649.3333333333334
+    2014-06: 649.3333333333334
+    2014-07: 649.3333333333334
+    2014-08: 649.3333333333334
+    2014-09: 652
+    2014-10: 652
+    2014-11: 652
+    2014-12: 652
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 15
+  age_en_mois: 191
+  date_naissance: '1999-01-01'
+  etudiant: 0
+  id: 54915fa1df990f5b0286cf12
+  inapte_travail: 0
+  handicap: 0
+  scolarite: college
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 13
+  age_en_mois: 167
+  date_naissance: '2001-01-01'
+  etudiant: 0
+  id: 54915fa1df990f5b0286cf11
+  inapte_travail: 0
+  handicap: 0
+  scolarite: college
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 11
+  age_en_mois: 143
+  date_naissance: '2003-01-01'
+  etudiant: 0
+  id: 54915fa1df990f5b0286cf10
+  inapte_travail: 0
+  handicap: 0
+  scolarite: college
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 8
+  age_en_mois: 107
+  date_naissance: '2006-01-01'
+  etudiant: 0
+  id: 54915fa1df990f5b0286cf0f
+  inapte_travail: 0
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
 familles:
   acs:
     2013-12: 0
@@ -290,10 +290,10 @@ familles:
     2014-10: 0
     2014-11: 0
   enfants:
-    - 54915fa1df990f5b0286cf12
-    - 54915fa1df990f5b0286cf11
-    - 54915fa1df990f5b0286cf10
-    - 54915fa1df990f5b0286cf0f
+  - 54915fa1df990f5b0286cf12
+  - 54915fa1df990f5b0286cf11
+  - 54915fa1df990f5b0286cf10
+  - 54915fa1df990f5b0286cf0f
   paje_base:
     2013-12: 0
     2014-01: 0
@@ -328,19 +328,19 @@ foyers_fiscaux:
   pensions_alimentaires_versees:
     2012: 0
   personnes_a_charge:
-    - 54915fa1df990f5b0286cf12
-    - 54915fa1df990f5b0286cf11
-    - 54915fa1df990f5b0286cf10
-    - 54915fa1df990f5b0286cf0f
+  - 54915fa1df990f5b0286cf12
+  - 54915fa1df990f5b0286cf11
+  - 54915fa1df990f5b0286cf10
+  - 54915fa1df990f5b0286cf0f
   rfr:
     2012: 100000
 menages:
   depcom: 75113
   enfants:
-    - 54915fa1df990f5b0286cf12
-    - 54915fa1df990f5b0286cf11
-    - 54915fa1df990f5b0286cf10
-    - 54915fa1df990f5b0286cf0f
+  - 54915fa1df990f5b0286cf12
+  - 54915fa1df990f5b0286cf11
+  - 54915fa1df990f5b0286cf10
+  - 54915fa1df990f5b0286cf0f
   loyer: 50
   personne_de_reference: 54915fa1df990f5b0286cf13
   statut_occupation_logement: locataire_vide

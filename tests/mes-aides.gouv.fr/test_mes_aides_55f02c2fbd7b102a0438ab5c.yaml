@@ -1,12 +1,12 @@
-name: "RSA - PERSONNE ISOLEE SANS ENFANT"
+name: RSA - PERSONNE ISOLEE SANS ENFANT
 keywords:
-  - base ressources
-  - recette
+- base ressources
+- recette
 description: |
   Test créé à partir d'un dossier de demande de RSA :
   Ces paramètres (ressources non déclarables, situation personnelle…) n'ont pas pu être capturés : aucune
   La différence observée provient a priori de (prestations manquantes, règles non prises en compte…) : aucune
-period: "month:2015-09"
+period: month:2015-09
 relative_error_margin: 0.02
 individus:
   enfant_a_charge:
@@ -15,7 +15,7 @@ individus:
   age: 56
   age_en_mois: 681
   ass_precondition_remplie: false
-  date_naissance: "1958-11-25"
+  date_naissance: '1958-11-25'
   chomage_imposable:
     2013: 5219
   chomage_brut:
@@ -263,7 +263,7 @@ familles:
     2015-06: 0
     2015-07: 0
     2015-08: 0
-  enfants:
+  enfants: null
   paje_base:
     2014-09: 0
     2014-10: 0
@@ -293,11 +293,11 @@ familles:
     2015-08: 0
 foyers_fiscaux:
   declarants: 55f02bd87869142d04874f84
-  personnes_a_charge:
-  rfr:
+  personnes_a_charge: null
+  rfr: null
 menages:
   depcom: 44041
-  enfants:
+  enfants: null
   loyer: 0
   personne_de_reference: 55f02bd87869142d04874f84
   statut_occupation_logement: proprietaire

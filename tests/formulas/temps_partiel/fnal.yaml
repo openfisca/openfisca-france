@@ -1,4 +1,4 @@
-- period: "2016-01"
+- period: 2016-01
   name: Base
   relative_error_margin: 0.001
   input_variables:
@@ -13,7 +13,7 @@
     plafond_securite_sociale: 3218 * (6 / 7)
     fnal: -3218 * (6 / 7) * 0.001
 
-- period: "2016-01"
+- period: 2016-01
   name: Pas de temps partiel
   relative_error_margin: 0.001
   input_variables:

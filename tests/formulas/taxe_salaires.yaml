@@ -1,4 +1,4 @@
-- period: "2014-01"
+- period: 2014-01
   name: Taxe sur les salaires pour les associations 1901
   relative_error_margin: 0.001
   input_variables:
@@ -16,7 +16,7 @@
 #      # Abattement spécial
 #      - (20283/12)/80 )
 
-- period: "2014-01"
+- period: 2014-01
   name: Pas de taxe sur les salaires par défaut
   relative_error_margin: 0.001
   input_variables:
@@ -26,7 +26,7 @@
     taxe_salaires: 0
 
 
-- period: "2014-01"
+- period: 2014-01
   name: Taxe sur les salaires
   relative_error_margin: 0.001
   input_variables:
@@ -38,7 +38,7 @@
 
 #.0425*(7666/12)+0.085*((15308−7666)/12)+0.136*(2300−15308÷12)
 
-- period: "2014-01"
+- period: 2014-01
   name: Taxe sur les salaires (décote, franchise)
   relative_error_margin: 0.001
   input_variables:

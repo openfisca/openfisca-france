@@ -1,4 +1,4 @@
-- period: "2016-06"
+- period: 2016-06
   name: CSG
   relative_error_margin: 0.001
   input_variables:
@@ -16,7 +16,7 @@
     csg_deductible_salaire: -(1467 * 0.9825 + 40 * 0.625 + 1467 * 1.5 / 100) * 5.1 / 100
 
 
-- period: "2018-01"
+- period: 2018-01
   name: CSG et CRDS
   relative_error_margin: 0.001
   input_variables:

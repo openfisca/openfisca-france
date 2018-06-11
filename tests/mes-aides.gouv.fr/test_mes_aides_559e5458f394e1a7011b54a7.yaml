@@ -1,14 +1,14 @@
 name: ISOLEE SANS ENFANT SALARIEE
 keywords:
-  - recette
-  - rsa
+- recette
+- rsa
 description: Test créé à partir d'un dossier de demande de RSA
-period: "month:2015-07"
+period: month:2015-07
 relative_error_margin: 0.02
 individus:
   age: 58
   age_en_mois: 706
-  date_naissance: "1956-09-02"
+  date_naissance: '1956-09-02'
   etudiant: 0
   id: 559e5451f92fd455017e6a83
   inapte_travail: 0
@@ -187,7 +187,7 @@ familles:
     2015-04: 0
     2015-05: 0
     2015-06: 0
-  enfants:
+  enfants: null
   paje_base:
     2014-07: 0
     2014-08: 0
@@ -217,10 +217,10 @@ familles:
     2015-06: 0
 foyers_fiscaux:
   declarants: 559e5451f92fd455017e6a83
-  personnes_a_charge:
+  personnes_a_charge: null
 menages:
   depcom: 77107
-  enfants:
+  enfants: null
   personne_de_reference: 559e5451f92fd455017e6a83
   statut_occupation_logement: loge_gratuitement
 output_variables:

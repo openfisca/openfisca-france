@@ -1,115 +1,115 @@
-name: "Le plafond augmente de 30% par enfant à charge supplémentaire (cas au-dessous du plafond)"
+name: Le plafond augmente de 30% par enfant à charge supplémentaire (cas au-dessous du plafond)
 keywords:
-  - bourse collège
-  - plafonds
+- bourse collège
+- plafonds
 description: |
   Ici 4 enfants déclarés dont 1 scolarisé au collège
   pour un montant de 84 euros, le plafond est de 24754 euros, pour ici un rfr de 27000 euros
-period: "month:2014-12"
+period: month:2014-12
 relative_error_margin: 0.02
 individus:
-  - age: 34
-    age_en_mois: 411
-    date_naissance: "1980-08-12"
-    chomage_imposable:
-      2013: 0
-    etudiant: 0
-    id: 5485d5e42d85b4e6733b52bf
-    inapte_travail: 0
-    handicap: 0
-    pensions_alimentaires_percues:
-      2013: 0
-    retraite_imposable:
-      2013: 0
-    salaire_de_base:
-      2013-12: 3846.153846153846
-      2014-01: 3846.153846153846
-      2014-02: 3846.153846153846
-      2014-03: 3846.153846153846
-      2014-04: 3846.153846153846
-      2014-05: 3846.153846153846
-      2014-06: 3846.153846153846
-      2014-07: 3846.153846153846
-      2014-08: 3846.153846153846
-      2014-09: 0
-      2014-10: 0
-      2014-11: 0
-    salaire_imposable:
-      2013: 0
-      2013-12: 3109.5865384615386
-      2014-01: 3109.5865384615386
-      2014-02: 3109.5865384615386
-      2014-03: 3109.5865384615386
-      2014-04: 3109.5865384615386
-      2014-05: 3109.5865384615386
-      2014-06: 3109.5865384615386
-      2014-07: 3109.5865384615386
-      2014-08: 3109.5865384615386
-      2014-09: 0
-      2014-10: 0
-      2014-11: 0
-    salaire_net:
-      2013-12: 3000
-      2014-01: 3000
-      2014-02: 3000
-      2014-03: 3000
-      2014-04: 3000
-      2014-05: 3000
-      2014-06: 3000
-      2014-07: 3000
-      2014-08: 3000
-      2014-09: 0
-      2014-10: 0
-      2014-11: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 14
-    age_en_mois: 171
-    date_naissance: "2000-08-12"
-    etudiant: 0
-    id: 5485d5e42d85b4e6733b52be
-    inapte_travail: 0
-    handicap: 0
-    scolarite: college
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 4
-    age_en_mois: 51
-    date_naissance: "2010-08-12"
-    etudiant: 0
-    id: 5485d5e42d85b4e6733b52bd
-    inapte_travail: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 4
-    age_en_mois: 51
-    date_naissance: "2010-08-12"
-    etudiant: 0
-    id: 5485d5e42d85b4e6733b52bc
-    inapte_travail: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 4
-    age_en_mois: 52
-    date_naissance: "2010-07-12"
-    etudiant: 0
-    id: 5485d5e42d85b4e6733b52bb
-    inapte_travail: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
+- age: 34
+  age_en_mois: 411
+  date_naissance: '1980-08-12'
+  chomage_imposable:
+    2013: 0
+  etudiant: 0
+  id: 5485d5e42d85b4e6733b52bf
+  inapte_travail: 0
+  handicap: 0
+  pensions_alimentaires_percues:
+    2013: 0
+  retraite_imposable:
+    2013: 0
+  salaire_de_base:
+    2013-12: 3846.153846153846
+    2014-01: 3846.153846153846
+    2014-02: 3846.153846153846
+    2014-03: 3846.153846153846
+    2014-04: 3846.153846153846
+    2014-05: 3846.153846153846
+    2014-06: 3846.153846153846
+    2014-07: 3846.153846153846
+    2014-08: 3846.153846153846
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+  salaire_imposable:
+    2013: 0
+    2013-12: 3109.5865384615386
+    2014-01: 3109.5865384615386
+    2014-02: 3109.5865384615386
+    2014-03: 3109.5865384615386
+    2014-04: 3109.5865384615386
+    2014-05: 3109.5865384615386
+    2014-06: 3109.5865384615386
+    2014-07: 3109.5865384615386
+    2014-08: 3109.5865384615386
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+  salaire_net:
+    2013-12: 3000
+    2014-01: 3000
+    2014-02: 3000
+    2014-03: 3000
+    2014-04: 3000
+    2014-05: 3000
+    2014-06: 3000
+    2014-07: 3000
+    2014-08: 3000
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 14
+  age_en_mois: 171
+  date_naissance: '2000-08-12'
+  etudiant: 0
+  id: 5485d5e42d85b4e6733b52be
+  inapte_travail: 0
+  handicap: 0
+  scolarite: college
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 4
+  age_en_mois: 51
+  date_naissance: '2010-08-12'
+  etudiant: 0
+  id: 5485d5e42d85b4e6733b52bd
+  inapte_travail: 0
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 4
+  age_en_mois: 51
+  date_naissance: '2010-08-12'
+  etudiant: 0
+  id: 5485d5e42d85b4e6733b52bc
+  inapte_travail: 0
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 4
+  age_en_mois: 52
+  date_naissance: '2010-07-12'
+  etudiant: 0
+  id: 5485d5e42d85b4e6733b52bb
+  inapte_travail: 0
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
 familles:
   acs:
     2013-12: 0
@@ -281,10 +281,10 @@ familles:
     2014-10: 0
     2014-11: 0
   enfants:
-    - 5485d5e42d85b4e6733b52be
-    - 5485d5e42d85b4e6733b52bd
-    - 5485d5e42d85b4e6733b52bc
-    - 5485d5e42d85b4e6733b52bb
+  - 5485d5e42d85b4e6733b52be
+  - 5485d5e42d85b4e6733b52bd
+  - 5485d5e42d85b4e6733b52bc
+  - 5485d5e42d85b4e6733b52bb
   paje_base:
     2013-12: 0
     2014-01: 0
@@ -318,19 +318,19 @@ foyers_fiscaux:
   pensions_alimentaires_versees:
     2013: 0
   personnes_a_charge:
-    - 5485d5e42d85b4e6733b52be
-    - 5485d5e42d85b4e6733b52bd
-    - 5485d5e42d85b4e6733b52bc
-    - 5485d5e42d85b4e6733b52bb
+  - 5485d5e42d85b4e6733b52be
+  - 5485d5e42d85b4e6733b52bd
+  - 5485d5e42d85b4e6733b52bc
+  - 5485d5e42d85b4e6733b52bb
   rfr:
     2012: 27000
 menages:
   depcom: 75111
   enfants:
-    - 5485d5e42d85b4e6733b52be
-    - 5485d5e42d85b4e6733b52bd
-    - 5485d5e42d85b4e6733b52bc
-    - 5485d5e42d85b4e6733b52bb
+  - 5485d5e42d85b4e6733b52be
+  - 5485d5e42d85b4e6733b52bd
+  - 5485d5e42d85b4e6733b52bc
+  - 5485d5e42d85b4e6733b52bb
   personne_de_reference: 5485d5e42d85b4e6733b52bf
   statut_occupation_logement: loge_gratuitement
 output_variables:

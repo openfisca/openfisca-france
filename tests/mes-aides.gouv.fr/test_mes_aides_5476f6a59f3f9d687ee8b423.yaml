@@ -1,14 +1,14 @@
 name: Pas d'APL dans les DOM
 keywords:
-  - al
-  - dom
+- al
+- dom
 description: Il n'y a pas d'APL dans les DOM, on ne peut que toucher l'ALS ou l'ALF.
-period: "month:2014-11"
+period: month:2014-11
 relative_error_margin: 0.02
 individus:
   age: 46
   age_en_mois: 559
-  date_naissance: "1968-03-30"
+  date_naissance: '1968-03-30'
   etudiant: 0
   id: 5476f666733e68607ea97115
   inapte_travail: 0
@@ -232,7 +232,7 @@ familles:
     2014-08: 0
     2014-09: 0
     2014-10: 0
-  enfants:
+  enfants: null
   paje_base:
     2013-11: 0
     2013-12: 0
@@ -263,10 +263,10 @@ familles:
     2014-10: 0
 foyers_fiscaux:
   declarants: 5476f666733e68607ea97115
-  personnes_a_charge:
+  personnes_a_charge: null
 menages:
   depcom: 97105
-  enfants:
+  enfants: null
   loyer: 300
   personne_de_reference: 5476f666733e68607ea97115
 output_variables:

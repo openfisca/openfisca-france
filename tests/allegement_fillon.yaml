@@ -1,4 +1,4 @@
-- name: "Annuel"
+- name: Annuel
   period: 2013
   reforms: openfisca_france.reforms.smic_h_b_9_euros.smic_h_b_9_euros
   absolute_error_margin: 0.01
@@ -18,13 +18,13 @@
       2013-12: 35 * 52 / 12 * 9 * 2
     allegement_fillon_mode_recouvrement: fin_d_annee
     effectif_entreprise: 3000
-    code_postal_entreprise: "75001"
+    code_postal_entreprise: '75001'
     categorie_salarie: prive_non_cadre
   output_variables:
     allegement_fillon:
       2013-12: 3233.51
 
-- name: "Circulaire acoss 2013 regularisation fin de periode"
+- name: Circulaire acoss 2013 regularisation fin de periode
   period: 2013
   reforms: openfisca_france.reforms.smic_h_b_9_euros.smic_h_b_9_euros
   absolute_error_margin: 0.01
@@ -44,7 +44,7 @@
       2013-12: 35 * 52 / 12 * 9 * 2
     allegement_fillon_mode_recouvrement: anticipe
     effectif_entreprise: 3000
-    code_postal_entreprise: "75001"
+    code_postal_entreprise: '75001'
     categorie_salarie: prive_non_cadre
   output_variables:
     allegement_fillon:
@@ -61,7 +61,7 @@
       2013-11: 354.9
       2013-12: -315.49  # employeur est redevable
 
-- name: "Circulaire acoss 2013 progressif"
+- name: Circulaire acoss 2013 progressif
   period: 2013
   reforms: openfisca_france.reforms.smic_h_b_9_euros.smic_h_b_9_euros
   absolute_error_margin: 0.01
@@ -81,7 +81,7 @@
       2013-12: 35 * 52 / 12 * 9 * 2
     allegement_fillon_mode_recouvrement: progressif
     effectif_entreprise: 3000
-    code_postal_entreprise: "75001"
+    code_postal_entreprise: '75001'
     categorie_salarie: prive_non_cadre
   output_variables:
     allegement_fillon:
@@ -98,7 +98,7 @@
       2013-11: 354.39
       2013-12: -236.94
 
-- name: "Salarie 2015 5000 euros"
+- name: Salarie 2015 5000 euros
   period: 2015
   reforms: openfisca_france.reforms.smic_h_b_9_euros.smic_h_b_9_euros
   absolute_error_margin: 0.01
@@ -118,9 +118,9 @@
       2013-12: 5000
     allegement_fillon_mode_recouvrement: progressif
     effectif_entreprise: 1
-    code_postal_entreprise: "75001"
+    code_postal_entreprise: '75001'
     categorie_salarie: prive_non_cadre
-    contrat_de_travail_debut: "2015-01-01"
+    contrat_de_travail_debut: '2015-01-01'
   output_variables:
     allegement_fillon:
       2015-01: 0
@@ -136,7 +136,7 @@
       2015-11: 0
       2015-12: 0
 
-- name: "Salarie un seul mois (novembre) - recouvrement fin d'année"
+- name: Salarie un seul mois (novembre) - recouvrement fin d'année
   period: 2017
   absolute_error_margin: 0.1
   input_variables:
@@ -153,12 +153,12 @@
       2017-10: 0
       2017-11: 2300
       2017-12: 0
-    allegement_fillon_mode_recouvrement: "fin_d_annee"
+    allegement_fillon_mode_recouvrement: fin_d_annee
     effectif_entreprise: 1
-    code_postal_entreprise: "75001"
+    code_postal_entreprise: '75001'
     categorie_salarie: prive_non_cadre
-    contrat_de_travail_debut: "2017-11-01"
-    contrat_de_travail_fin: "2017-12-01"
+    contrat_de_travail_debut: '2017-11-01'
+    contrat_de_travail_fin: '2017-12-01'
   output_variables:
     allegement_fillon:
       2017-01: 0
@@ -174,7 +174,7 @@
       2017-11: 0
       2017-12: 32.04
 
-- name: "Salarie un seul mois (novembre) - recouvrement progressif"
+- name: Salarie un seul mois (novembre) - recouvrement progressif
   period: 2017
   absolute_error_margin: 0.1
   input_variables:
@@ -191,12 +191,12 @@
       2017-10: 0
       2017-11: 2300
       2017-12: 0
-    allegement_fillon_mode_recouvrement: "progressif"
+    allegement_fillon_mode_recouvrement: progressif
     effectif_entreprise: 1
-    code_postal_entreprise: "75001"
+    code_postal_entreprise: '75001'
     categorie_salarie: prive_non_cadre
-    contrat_de_travail_debut: "2017-11-01"
-    contrat_de_travail_fin: "2017-12-01"
+    contrat_de_travail_debut: '2017-11-01'
+    contrat_de_travail_fin: '2017-12-01'
   output_variables:
     allegement_fillon:
       2017-01: 0
@@ -212,7 +212,7 @@
       2017-11: 32.04
       2017-12: 0
 
-- name: "Salarie un seul mois (novembre) - recouvrement anticipe"
+- name: Salarie un seul mois (novembre) - recouvrement anticipe
   period: 2017
   absolute_error_margin: 0.1
   input_variables:
@@ -229,12 +229,12 @@
       2017-10: 0
       2017-11: 2300
       2017-12: 0
-    allegement_fillon_mode_recouvrement: "anticipe"
+    allegement_fillon_mode_recouvrement: anticipe
     effectif_entreprise: 1
-    code_postal_entreprise: "75001"
+    code_postal_entreprise: '75001'
     categorie_salarie: prive_non_cadre
-    contrat_de_travail_debut: "2017-11-01"
-    contrat_de_travail_fin: "2017-12-01"
+    contrat_de_travail_debut: '2017-11-01'
+    contrat_de_travail_fin: '2017-12-01'
   output_variables:
     allegement_fillon:
       2017-01: 0
@@ -250,7 +250,7 @@
       2017-11: 32.04
       2017-12: 0
 
-- name: "Salarie un seul mois (décembre) - recouvrement fin d'année"
+- name: Salarie un seul mois (décembre) - recouvrement fin d'année
   period: 2017
   absolute_error_margin: 0.1
   input_variables:
@@ -267,11 +267,11 @@
       2017-10: 0
       2017-11: 0
       2017-12: 2300
-    allegement_fillon_mode_recouvrement: "fin_d_annee"
+    allegement_fillon_mode_recouvrement: fin_d_annee
     effectif_entreprise: 1
-    code_postal_entreprise: "75001"
+    code_postal_entreprise: '75001'
     categorie_salarie: prive_non_cadre
-    contrat_de_travail_debut: "2017-12-01"
+    contrat_de_travail_debut: '2017-12-01'
   output_variables:
     allegement_fillon:
       2017-01: 0
@@ -287,7 +287,7 @@
       2017-11: 0
       2017-12: 32.04
 
-- name: "Salarie un seul mois (décembre) - recouvrement progressif"
+- name: Salarie un seul mois (décembre) - recouvrement progressif
   period: 2017
   absolute_error_margin: 0.1
   input_variables:
@@ -304,11 +304,11 @@
       2017-10: 0
       2017-11: 0
       2017-12: 2300
-    allegement_fillon_mode_recouvrement: "progressif"
+    allegement_fillon_mode_recouvrement: progressif
     effectif_entreprise: 1
-    code_postal_entreprise: "75001"
+    code_postal_entreprise: '75001'
     categorie_salarie: prive_non_cadre
-    contrat_de_travail_debut: "2017-12-01"
+    contrat_de_travail_debut: '2017-12-01'
   output_variables:
     allegement_fillon:
       2017-01: 0
@@ -324,7 +324,7 @@
       2017-11: 0
       2017-12: 32.04
 
-- name: "Salarie un seul mois (décembre) - recouvrement anticipe"
+- name: Salarie un seul mois (décembre) - recouvrement anticipe
   period: 2017
   absolute_error_margin: 0.1
   input_variables:
@@ -343,9 +343,9 @@
       2017-12: 2300
     allegement_fillon_mode_recouvrement: anticipe
     effectif_entreprise: 1
-    code_postal_entreprise: "75001"
+    code_postal_entreprise: '75001'
     categorie_salarie: prive_non_cadre
-    contrat_de_travail_debut: "2017-12-01"
+    contrat_de_travail_debut: '2017-12-01'
   output_variables:
     allegement_fillon:
       2017-01: 0

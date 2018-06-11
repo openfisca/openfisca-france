@@ -1,15 +1,15 @@
 name: Montant mensuel minimal = 16.25
 keywords:
-  - ass
-  - montant
+- ass
+- montant
 description: Si le montant calculé est < à 16.25, le montant réel est 0
-period: "month:2014-09"
+period: month:2014-09
 relative_error_margin: 0.02
 individus:
   activite: chomeur
   age: 25
   age_en_mois: 300
-  date_naissance: "1989-09-14"
+  date_naissance: '1989-09-14'
   enceinte: false
   etudiant: 0
   id: 5422c2915be58c0200a0757f
@@ -234,7 +234,7 @@ familles:
     2014-06: 0
     2014-07: 0
     2014-08: 0
-  enfants:
+  enfants: null
   paje_base:
     2013-09: 0
     2013-10: 0
@@ -265,10 +265,10 @@ familles:
     2014-08: 0
 foyers_fiscaux:
   declarants: 5422c2915be58c0200a0757f
-  personnes_a_charge:
+  personnes_a_charge: null
 menages:
   depcom: 67382
-  enfants:
+  enfants: null
   loyer: 67
   personne_de_reference: 5422c2915be58c0200a0757f
   statut_occupation_logement: locataire_vide

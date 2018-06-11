@@ -1,15 +1,15 @@
 name: Personne seule propriétaire, ressources < plafond
 keywords:
-  - base ressources
-  - "cmu-c/acs"
-  - forfait logement
-description: "Le demandeur a droit à la CMU s'il est propriétaire de son logement et que ses ressources ne dépassent pas 720 (salaires) - 60 (forfait logement) = 660 €."
-period: "month:2014-07"
+- base ressources
+- cmu-c/acs
+- forfait logement
+description: Le demandeur a droit à la CMU s'il est propriétaire de son logement et que ses ressources ne dépassent pas 720 (salaires) - 60 (forfait logement) = 660 €.
+period: month:2014-07
 relative_error_margin: 0.02
 individus:
   age: 24
   age_en_mois: 298
-  date_naissance: "1989-09-14"
+  date_naissance: '1989-09-14'
   enceinte: false
   etudiant: 0
   id: 53d21e21159e330200810b83
@@ -207,7 +207,7 @@ familles:
     2014-04: 0
     2014-05: 0
     2014-06: 0
-  enfants:
+  enfants: null
   paje_base:
     2013-07: 0
     2013-08: 0
@@ -237,9 +237,9 @@ familles:
     2014-06: 0
 foyers_fiscaux:
   declarants: 53d21e21159e330200810b83
-  personnes_a_charge:
+  personnes_a_charge: null
 menages:
-  enfants:
+  enfants: null
   loyer: 1224
   personne_de_reference: 53d21e21159e330200810b83
   statut_occupation_logement: proprietaire

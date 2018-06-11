@@ -1,4 +1,4 @@
-- period: "2015-11"
+- period: 2015-11
   description: ARRCO cadre 12680€
   relative_error_margin: 0.01
   input_variables:
@@ -8,7 +8,7 @@
     arrco_employeur: -147.405
     arrco_salarie: -98.27
 
-- period: "2015-11"
+- period: 2015-11
   description: ARRCO non-cadre 9510€
   relative_error_margin: 0.01
   input_variables:

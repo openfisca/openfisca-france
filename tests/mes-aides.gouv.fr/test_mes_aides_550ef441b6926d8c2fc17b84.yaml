@@ -8,64 +8,64 @@ description: |
   Montant net : 203,06 - 1,02 = 202,04 €
 
   Remarque : test à mettre à jour quand le montant de la BMAF au 1er avril 2015 sera connue.
-period: "month:2015-04"
+period: month:2015-04
 relative_error_margin: 0.02
 individus:
-  - age: 35
-    age_en_mois: 423
-    date_naissance: "1980-01-01"
-    chomage_imposable:
-      2013: 0
-    etudiant: 0
-    id: 550ef43331b367952f71033a
-    inapte_travail: 0
-    handicap: 0
-    pensions_alimentaires_percues:
-      2013: 0
-    retraite_imposable:
-      2013: 0
-    salaire_imposable:
-      2013: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 15
-    age_en_mois: 183
-    date_naissance: "2000-01-01"
-    etudiant: 0
-    id: 550ef43331b367952f710339
-    inapte_travail: 0
-    handicap: 0
-    scolarite: college
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 13
-    age_en_mois: 159
-    date_naissance: "2002-01-01"
-    etudiant: 0
-    id: 550ef43331b367952f710338
-    inapte_travail: 0
-    handicap: 0
-    scolarite: college
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 11
-    age_en_mois: 135
-    date_naissance: "2004-01-01"
-    etudiant: 0
-    id: 550ef43331b367952f710337
-    inapte_travail: 0
-    handicap: 0
-    scolarite: college
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
+- age: 35
+  age_en_mois: 423
+  date_naissance: '1980-01-01'
+  chomage_imposable:
+    2013: 0
+  etudiant: 0
+  id: 550ef43331b367952f71033a
+  inapte_travail: 0
+  handicap: 0
+  pensions_alimentaires_percues:
+    2013: 0
+  retraite_imposable:
+    2013: 0
+  salaire_imposable:
+    2013: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 15
+  age_en_mois: 183
+  date_naissance: '2000-01-01'
+  etudiant: 0
+  id: 550ef43331b367952f710339
+  inapte_travail: 0
+  handicap: 0
+  scolarite: college
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 13
+  age_en_mois: 159
+  date_naissance: '2002-01-01'
+  etudiant: 0
+  id: 550ef43331b367952f710338
+  inapte_travail: 0
+  handicap: 0
+  scolarite: college
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 11
+  age_en_mois: 135
+  date_naissance: '2004-01-01'
+  etudiant: 0
+  id: 550ef43331b367952f710337
+  inapte_travail: 0
+  handicap: 0
+  scolarite: college
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
 familles:
   acs:
     2014-04: 0
@@ -237,9 +237,9 @@ familles:
     2015-02: 0
     2015-03: 0
   enfants:
-    - 550ef43331b367952f710339
-    - 550ef43331b367952f710338
-    - 550ef43331b367952f710337
+  - 550ef43331b367952f710339
+  - 550ef43331b367952f710338
+  - 550ef43331b367952f710337
   paje_base:
     2014-04: 0
     2014-05: 0
@@ -273,17 +273,17 @@ foyers_fiscaux:
   pensions_alimentaires_versees:
     2013: 0
   personnes_a_charge:
-    - 550ef43331b367952f710339
-    - 550ef43331b367952f710338
-    - 550ef43331b367952f710337
+  - 550ef43331b367952f710339
+  - 550ef43331b367952f710338
+  - 550ef43331b367952f710337
   rfr:
     2013: 0
 menages:
   depcom: 92071
   enfants:
-    - 550ef43331b367952f710339
-    - 550ef43331b367952f710338
-    - 550ef43331b367952f710337
+  - 550ef43331b367952f710339
+  - 550ef43331b367952f710338
+  - 550ef43331b367952f710337
   personne_de_reference: 550ef43331b367952f71033a
   statut_occupation_logement: loge_gratuitement
 output_variables:

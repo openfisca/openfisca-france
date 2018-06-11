@@ -2,7 +2,7 @@ name: 35_Etudiant et RSA majoré
 keywords:
 - majoration
 - rsa
-"description": |-
+description: |-
   Accès au RSA de l'étudiant, si remplit les conditions du L. 262-9 CASF => parent isolé
   Idem pour les élèves et stagiaires au sens du L. 612-8 du code de l'éducation.
   => Compléter la case à cocher.

@@ -1,8 +1,8 @@
-name: "3 enfants - parent isolé"
+name: 3 enfants - parent isolé
 keywords:
-  - al
-  - location
-  - ménage
+- al
+- location
+- ménage
 description: |
   L	514,59
   C	89,41
@@ -19,68 +19,68 @@ description: |
   P1	0
   Pp	51,34
   AL	549,9
-period: "month:2015-01"
+period: month:2015-01
 relative_error_margin: 0.02
 individus:
-  - age: 34
-    age_en_mois: 412
-    date_naissance: "1980-08-12"
-    etudiant: 0
-    id: 54ac159b83a941301681c0d7
-    inapte_travail: 0
-    handicap: 0
-    statut_marital: marie
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 34
-    age_en_mois: 412
-    date_naissance: "1980-08-12"
-    etudiant: 0
-    id: 54ac159b83a941301681c0d6
-    inapte_travail: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 14
-    age_en_mois: 172
-    date_naissance: "2000-08-12"
-    etudiant: 0
-    id: 54ac159b83a941301681c0d5
-    inapte_travail: 0
-    handicap: 0
-    scolarite: college
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 14
-    age_en_mois: 172
-    date_naissance: "2000-08-12"
-    etudiant: 0
-    id: 54ac159b83a941301681c0d4
-    inapte_travail: 0
-    handicap: 0
-    scolarite: college
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 14
-    age_en_mois: 172
-    date_naissance: "2000-08-12"
-    etudiant: 0
-    id: 54ac159b83a941301681c0d3
-    inapte_travail: 0
-    handicap: 0
-    scolarite: college
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
+- age: 34
+  age_en_mois: 412
+  date_naissance: '1980-08-12'
+  etudiant: 0
+  id: 54ac159b83a941301681c0d7
+  inapte_travail: 0
+  handicap: 0
+  statut_marital: marie
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 34
+  age_en_mois: 412
+  date_naissance: '1980-08-12'
+  etudiant: 0
+  id: 54ac159b83a941301681c0d6
+  inapte_travail: 0
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 14
+  age_en_mois: 172
+  date_naissance: '2000-08-12'
+  etudiant: 0
+  id: 54ac159b83a941301681c0d5
+  inapte_travail: 0
+  handicap: 0
+  scolarite: college
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 14
+  age_en_mois: 172
+  date_naissance: '2000-08-12'
+  etudiant: 0
+  id: 54ac159b83a941301681c0d4
+  inapte_travail: 0
+  handicap: 0
+  scolarite: college
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 14
+  age_en_mois: 172
+  date_naissance: '2000-08-12'
+  etudiant: 0
+  id: 54ac159b83a941301681c0d3
+  inapte_travail: 0
+  handicap: 0
+  scolarite: college
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
 familles:
   acs:
     2014-01: 0
@@ -252,9 +252,9 @@ familles:
     2014-11: 0
     2014-12: 0
   enfants:
-    - 54ac159b83a941301681c0d5
-    - 54ac159b83a941301681c0d4
-    - 54ac159b83a941301681c0d3
+  - 54ac159b83a941301681c0d5
+  - 54ac159b83a941301681c0d4
+  - 54ac159b83a941301681c0d3
   paje_base:
     2014-01: 0
     2014-02: 0
@@ -269,8 +269,8 @@ familles:
     2014-11: 0
     2014-12: 0
   parents:
-    - 54ac159b83a941301681c0d7
-    - 54ac159b83a941301681c0d6
+  - 54ac159b83a941301681c0d7
+  - 54ac159b83a941301681c0d6
   proprietaire_proche_famille: false
   rsa:
     2014-01: 0
@@ -287,19 +287,19 @@ familles:
     2014-12: 0
 foyers_fiscaux:
   declarants:
-    - 54ac159b83a941301681c0d7
-    - 54ac159b83a941301681c0d6
+  - 54ac159b83a941301681c0d7
+  - 54ac159b83a941301681c0d6
   personnes_a_charge:
-    - 54ac159b83a941301681c0d5
-    - 54ac159b83a941301681c0d4
-    - 54ac159b83a941301681c0d3
+  - 54ac159b83a941301681c0d5
+  - 54ac159b83a941301681c0d4
+  - 54ac159b83a941301681c0d3
 menages:
   conjoint: 54ac159b83a941301681c0d6
   depcom: 75111
   enfants:
-    - 54ac159b83a941301681c0d5
-    - 54ac159b83a941301681c0d4
-    - 54ac159b83a941301681c0d3
+  - 54ac159b83a941301681c0d5
+  - 54ac159b83a941301681c0d4
+  - 54ac159b83a941301681c0d3
   loyer: 1000
   personne_de_reference: 54ac159b83a941301681c0d7
   statut_occupation_logement: locataire_vide

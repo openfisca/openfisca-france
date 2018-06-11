@@ -1,80 +1,80 @@
 name: Couple hébergé à titre gratuit > plafond
 keywords:
-  - base ressources
-  - "cmu-c/acs"
-  - forfait logement
+- base ressources
+- cmu-c/acs
+- forfait logement
 description: Un couple hébergé à titre gratuit n'a pas droit à la CMUC si ses ressources = 1091 = 984 + 107 (forfait logement)
-period: "month:2015-01"
+period: month:2015-01
 relative_error_margin: 0.02
 individus:
-  - age: 34
-    age_en_mois: 418
-    date_naissance: "1980-03-02"
-    etudiant: 0
-    id: 54b54b2d44b1ef7a3e841b33
-    inapte_travail: 0
-    handicap: 0
-    salaire_de_base:
-      2013: 15138.461538461534
-      2014-01: 1261.5384615384614
-      2014-02: 1261.5384615384614
-      2014-03: 1261.5384615384614
-      2014-04: 1261.5384615384614
-      2014-05: 1261.5384615384614
-      2014-06: 1261.5384615384614
-      2014-07: 1261.5384615384614
-      2014-08: 1261.5384615384614
-      2014-09: 1261.5384615384614
-      2014-10: 1261.5384615384614
-      2014-11: 1261.5384615384614
-      2014-12: 1261.5384615384614
-      2015-01: 1261.5384615384614
-    salaire_imposable:
-      2013: 12239.332615384616
-      2014-01: 1019.9443846153846
-      2014-02: 1019.9443846153846
-      2014-03: 1019.9443846153846
-      2014-04: 1019.9443846153846
-      2014-05: 1019.9443846153846
-      2014-06: 1019.9443846153846
-      2014-07: 1019.9443846153846
-      2014-08: 1019.9443846153846
-      2014-09: 1019.9443846153846
-      2014-10: 1019.9443846153846
-      2014-11: 1019.9443846153846
-      2014-12: 1019.9443846153846
-      2015-01: 1019.9443846153846
-    salaire_net:
-      2013: 11808
-      2014-01: 984
-      2014-02: 984
-      2014-03: 984
-      2014-04: 984
-      2014-05: 984
-      2014-06: 984
-      2014-07: 984
-      2014-08: 984
-      2014-09: 984
-      2014-10: 984
-      2014-11: 984
-      2014-12: 984
-      2015-01: 984
-    statut_marital: marie
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 34
-    age_en_mois: 418
-    date_naissance: "1980-03-02"
-    etudiant: 0
-    id: 54b54b2d44b1ef7a3e841b32
-    inapte_travail: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
+- age: 34
+  age_en_mois: 418
+  date_naissance: '1980-03-02'
+  etudiant: 0
+  id: 54b54b2d44b1ef7a3e841b33
+  inapte_travail: 0
+  handicap: 0
+  salaire_de_base:
+    2013: 15138.461538461534
+    2014-01: 1261.5384615384614
+    2014-02: 1261.5384615384614
+    2014-03: 1261.5384615384614
+    2014-04: 1261.5384615384614
+    2014-05: 1261.5384615384614
+    2014-06: 1261.5384615384614
+    2014-07: 1261.5384615384614
+    2014-08: 1261.5384615384614
+    2014-09: 1261.5384615384614
+    2014-10: 1261.5384615384614
+    2014-11: 1261.5384615384614
+    2014-12: 1261.5384615384614
+    2015-01: 1261.5384615384614
+  salaire_imposable:
+    2013: 12239.332615384616
+    2014-01: 1019.9443846153846
+    2014-02: 1019.9443846153846
+    2014-03: 1019.9443846153846
+    2014-04: 1019.9443846153846
+    2014-05: 1019.9443846153846
+    2014-06: 1019.9443846153846
+    2014-07: 1019.9443846153846
+    2014-08: 1019.9443846153846
+    2014-09: 1019.9443846153846
+    2014-10: 1019.9443846153846
+    2014-11: 1019.9443846153846
+    2014-12: 1019.9443846153846
+    2015-01: 1019.9443846153846
+  salaire_net:
+    2013: 11808
+    2014-01: 984
+    2014-02: 984
+    2014-03: 984
+    2014-04: 984
+    2014-05: 984
+    2014-06: 984
+    2014-07: 984
+    2014-08: 984
+    2014-09: 984
+    2014-10: 984
+    2014-11: 984
+    2014-12: 984
+    2015-01: 984
+  statut_marital: marie
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 34
+  age_en_mois: 418
+  date_naissance: '1980-03-02'
+  etudiant: 0
+  id: 54b54b2d44b1ef7a3e841b32
+  inapte_travail: 0
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
 familles:
   acs:
     2014-01: 0
@@ -245,7 +245,7 @@ familles:
     2014-10: 0
     2014-11: 0
     2014-12: 0
-  enfants:
+  enfants: null
   paje_base:
     2014-01: 0
     2014-02: 0
@@ -260,8 +260,8 @@ familles:
     2014-11: 0
     2014-12: 0
   parents:
-    - 54b54b2d44b1ef7a3e841b33
-    - 54b54b2d44b1ef7a3e841b32
+  - 54b54b2d44b1ef7a3e841b33
+  - 54b54b2d44b1ef7a3e841b32
   rsa:
     2014-01: 0
     2014-02: 0
@@ -277,13 +277,13 @@ familles:
     2014-12: 0
 foyers_fiscaux:
   declarants:
-    - 54b54b2d44b1ef7a3e841b33
-    - 54b54b2d44b1ef7a3e841b32
-  personnes_a_charge:
+  - 54b54b2d44b1ef7a3e841b33
+  - 54b54b2d44b1ef7a3e841b32
+  personnes_a_charge: null
 menages:
   conjoint: 54b54b2d44b1ef7a3e841b32
   depcom: 75118
-  enfants:
+  enfants: null
   personne_de_reference: 54b54b2d44b1ef7a3e841b33
   statut_occupation_logement: loge_gratuitement
 output_variables:

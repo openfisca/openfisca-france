@@ -1,17 +1,17 @@
 name: 119_Immeuble non loué
 keywords:
-  - patrimoine
-  - rsa
+- patrimoine
+- rsa
 description: |
   Prise en compte de 50% de la valeur
 
   Edit Arnaud Kleinpeter : la valeur locative s'exprime sur un montant annuel, on la considère comme un montant mensuel, à corriger.
-period: "month:2015-01"
+period: month:2015-01
 relative_error_margin: 0.02
 individus:
   age: 35
   age_en_mois: 420
-  date_naissance: "1980-01-01"
+  date_naissance: '1980-01-01'
   etudiant: 0
   id: 54bfd9a1715c97ca720ca785
   inapte_travail: 0
@@ -204,7 +204,7 @@ familles:
     2014-10: 0
     2014-11: 0
     2014-12: 0
-  enfants:
+  enfants: null
   paje_base:
     2014-01: 0
     2014-02: 0
@@ -234,10 +234,10 @@ familles:
     2014-12: 0
 foyers_fiscaux:
   declarants: 54bfd9a1715c97ca720ca785
-  personnes_a_charge:
+  personnes_a_charge: null
 menages:
   depcom: 70429
-  enfants:
+  enfants: null
   personne_de_reference: 54bfd9a1715c97ca720ca785
   statut_occupation_logement: loge_gratuitement
 output_variables:

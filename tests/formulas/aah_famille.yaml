@@ -1,104 +1,104 @@
-- name: "AAH niveau Famille - célibataire, sans enfants, ressources supérieures au plafond"
+- name: AAH niveau Famille - célibataire, sans enfants, ressources supérieures au plafond
   description: Montant AAH au niveau de la famille
   period: 2015-01
   absolute_error_margin: 100
   familles:
-    parents: ["parent1"]
+    parents: [parent1]
     en_couple: 0
     aah_base_ressources: 9700
     af_nbenf: 0
   individus:
-    - id: "parent1"
-      taux_incapacite: 0.9
-      age: 50 # eligible aah
+  - id: parent1
+    taux_incapacite: 0.9
+    age: 50   # eligible aah
   output_variables:
     aah_base: 0
 
-- name: "AAH niveau Famille - célibataire, sans enfants, sans ressources"
+- name: AAH niveau Famille - célibataire, sans enfants, sans ressources
   description: Montant AAH au niveau de la famille
   period: 2015-01
   absolute_error_margin: 100
   familles:
-    parents: ["parent1"]
+    parents: [parent1]
     en_couple: 0
     aah_base_ressources: 0
     af_nbenf: 0
   individus:
-    - id: "parent1"
-      taux_incapacite: 0.9
-      age: 27
+  - id: parent1
+    taux_incapacite: 0.9
+    age: 27
   output_variables:
     aah_base: 800.45  # l'aah taux plein
 
-- name: "AAH niveau Famille - concubinage, sans enfants, un éligible (chef), ressources inférieures au plafond"
+- name: AAH niveau Famille - concubinage, sans enfants, un éligible (chef), ressources inférieures au plafond
   description: Montant AAH au niveau de la famille
   period: 2013-03
   absolute_error_margin: 100
   familles:
-    parents: ["parent1", "parent2"]
+    parents: [parent1, parent2]
     en_couple: 'True'
     aah_base_ressources: 15000
     af_nbenf: 0
   individus:
-    - id: "parent1"
-      aah_eligible: 'True'
-    - id: "parent2"
-      aah_eligible: 'False'
+  - id: parent1
+    aah_eligible: 'True'
+  - id: parent2
+    aah_eligible: 'False'
   output_variables:
     aah_base: [3638.16 / 12, 0]  # (18638,16 - 15000) / 12
 
-- name: "AAH niveau Famille - concubinage, sans enfants, deux éligibles, ressources inférieures au plafond"
+- name: AAH niveau Famille - concubinage, sans enfants, deux éligibles, ressources inférieures au plafond
   description: Montant AAH au niveau de la famille
   period: 2013-03
   absolute_error_margin: 100
   familles:
-    parents: ["parent1", "parent2"]
+    parents: [parent1, parent2]
     en_couple: 'True'
     aah_base_ressources: 15000
     af_nbenf: 0
   individus:
-    - id: "parent1"
-      aah_eligible: 'True'
-    - id: "parent2"
-      aah_eligible: 'True'
+  - id: parent1
+    aah_eligible: 'True'
+  - id: parent2
+    aah_eligible: 'True'
   output_variables:
     aah_base: [3638.16 / 12, 3638.16 / 12]  # (18638,16 - 15000) / 12   # il faut que ce soit ça, ou le double ??
 
-- name: "AAH niveau Famille - concubinage, avec enfants, un seul éligible, ressources inférieures au plafond"
+- name: AAH niveau Famille - concubinage, avec enfants, un seul éligible, ressources inférieures au plafond
   description: Montant AAH au niveau de la famille
   period: 2013-10
   absolute_error_margin: 100
   familles:
-    parents: ["parent1", "parent2"]
+    parents: [parent1, parent2]
     en_couple: 'True'
     aah_base_ressources: 20000
     af_nbenf: 1
   individus:
-    - id: "parent1"
-      aah_eligible: 'False'
-    - id: "parent2"
-      aah_eligible: 'True'
+  - id: parent1
+    aah_eligible: 'False'
+  - id: parent2
+    aah_eligible: 'True'
   output_variables:
     aah_base: [0, 3638.16 / 12] # (18964,32 + 4741,08 (= 23705,4) - 20000) / 12
 
-- name: "AAH niveau Famille - concubinage, avec enfant, enfant éligible, ressources inférieures au plafond"
+- name: AAH niveau Famille - concubinage, avec enfant, enfant éligible, ressources inférieures au plafond
   description: Montant AAH au niveau de la famille
   period: 2014-01
   absolute_error_margin: 100
   familles:
-    parents: ["parent1", "parent2"]
-    enfants: ["enfant1", "enfant2"]
+    parents: [parent1, parent2]
+    enfants: [enfant1, enfant2]
     en_couple: 'True'
     aah_base_ressources: 25000
     af_nbenf: 2
   individus:
-    - id: "parent1"
-      aah_eligible: 'False'
-    - id: "parent2"
-      aah_eligible: 'False'
-    - id: "enfant1"
-      aah_eligible: 'True'
-    - id: "enfant2"
-      aah_eligible: 'False'
+  - id: parent1
+    aah_eligible: 'False'
+  - id: parent2
+    aah_eligible: 'False'
+  - id: enfant1
+    aah_eligible: 'True'
+  - id: enfant2
+    aah_eligible: 'False'
   output_variables:
     aah_base: [0, 0, 287, 0] # xxxxx.xx (conucub + 2enf à charge, grille montants pre-Sept.2014) - 25000 / 12  = 3446.48 / 12

@@ -1,4 +1,4 @@
-- period: "2018-01"
+- period: 2018-01
   name: Cotisation de chômage salarié
   relative_error_margin: 0.001
   input_variables:

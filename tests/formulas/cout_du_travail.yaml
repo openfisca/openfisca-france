@@ -1,10 +1,6 @@
-- period: "2015-11"
+- period: 2015-11
   name: Cout du travail
-  description: >
-    Dans le cas d'une première embauche (effectif = 1) et en CDI,
-    le coût du travail final est plus faible que le salaire super brut,
-    grâce à l'aide à la première embauche mensuelle de 167 € et
-    au CICE de 87,45
+  description: "Dans le cas d'une première embauche (effectif = 1) et en CDI, le coût du travail final est plus faible que le salaire super brut, grâce à l'aide à la première embauche mensuelle de 167 € et au CICE de 87,45\n"
   relative_error_margin: 0.001
   input_variables:
     salaire_de_base: 1457.52
@@ -23,7 +19,7 @@
     aide_premier_salarie: 166.7
     credit_impot_competitivite_emploi: 87.5
 
-- period: "2015-11"
+- period: 2015-11
   name: Cout du travail micro entreprise ayant déjà des employés
   relative_error_margin: 0.001
   input_variables:
@@ -37,7 +33,7 @@
     salaire_super_brut: 1625.1
     cout_du_travail: 1537.56
 
-- period: "2016-02"
+- period: 2016-02
   name: Cout du travail 2016, pas d'aide 1er sal. mais aide PME
   relative_error_margin: 0.001
   input_variables:

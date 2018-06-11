@@ -1,4 +1,4 @@
-- name: "Impôt sur la fortune - Célibataire - Montant de la décôte"
+- name: Impôt sur la fortune - Célibataire - Montant de la décôte
   keywords: isf
   period: 2016
   absolute_error_margin: 0.5
@@ -15,7 +15,7 @@
     ass_isf: 1392250 # 1390000 + #22500 + 4250 + 1000 - 3000
     decote_isf: 96.875 # 17500 - 0.0125 * 1392250
 
-- name: "Impôt sur la fortune - Célibataire - Abattement résidence principale"
+- name: Impôt sur la fortune - Célibataire - Abattement résidence principale
   keywords: isf
   period: 2016
   absolute_error_margin: 0.5

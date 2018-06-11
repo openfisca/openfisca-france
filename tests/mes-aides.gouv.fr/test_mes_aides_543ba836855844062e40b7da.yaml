@@ -4,98 +4,98 @@ description: |
   Montant = taux de base (41,65%) * BMAF (406,21) = 169.19
   Pour les personnes seules, les ressources doivent être comprises entre 22813 € et 45623 €
   Ici, 3000 € par mois = 36000 par an, amputé des frais professionnels = 32400
-period: "month:2014-10"
+period: month:2014-10
 relative_error_margin: 0.02
 individus:
-  - age: 25
-    age_en_mois: 300
-    date_naissance: "1989-09-14"
-    etudiant: 0
-    id: 543ba81c855844062e40b7d5
-    inapte_travail: 0
-    handicap: 0
-    salaire_de_base:
-      2012: 46153.84615384615
-      2013-10: 3846.153846153846
-      2013-11: 3846.153846153846
-      2013-12: 3846.153846153846
-      2014-01: 3846.153846153846
-      2014-02: 3846.153846153846
-      2014-03: 3846.153846153846
-      2014-04: 3846.153846153846
-      2014-05: 3846.153846153846
-      2014-06: 3846.153846153846
-      2014-07: 3846.153846153846
-      2014-08: 3846.153846153846
-      2014-09: 3846.153846153846
-      2014-10: 3846.153846153846
-    salaire_imposable:
-      2012: 37315.03846153846
-      2013-10: 3109.5865384615386
-      2013-11: 3109.5865384615386
-      2013-12: 3109.5865384615386
-      2014-01: 3109.5865384615386
-      2014-02: 3109.5865384615386
-      2014-03: 3109.5865384615386
-      2014-04: 3109.5865384615386
-      2014-05: 3109.5865384615386
-      2014-06: 3109.5865384615386
-      2014-07: 3109.5865384615386
-      2014-08: 3109.5865384615386
-      2014-09: 3109.5865384615386
-      2014-10: 3109.5865384615386
-    salaire_net:
-      2012: 36000
-      2013-10: 3000
-      2013-11: 3000
-      2013-12: 3000
-      2014-01: 3000
-      2014-02: 3000
-      2014-03: 3000
-      2014-04: 3000
-      2014-05: 3000
-      2014-06: 3000
-      2014-07: 3000
-      2014-08: 3000
-      2014-09: 3000
-      2014-10: 3000
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 7
-    age_en_mois: 87
-    date_naissance: "2007-07-12"
-    etudiant: 0
-    id: 543ba81c855844062e40b7d4
-    inapte_travail: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 7
-    age_en_mois: 87
-    date_naissance: "2007-07-12"
-    etudiant: 0
-    id: 543ba81c855844062e40b7d3
-    inapte_travail: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 7
-    age_en_mois: 87
-    date_naissance: "2007-07-12"
-    etudiant: 0
-    id: 543ba81c855844062e40b7d2
-    inapte_travail: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
+- age: 25
+  age_en_mois: 300
+  date_naissance: '1989-09-14'
+  etudiant: 0
+  id: 543ba81c855844062e40b7d5
+  inapte_travail: 0
+  handicap: 0
+  salaire_de_base:
+    2012: 46153.84615384615
+    2013-10: 3846.153846153846
+    2013-11: 3846.153846153846
+    2013-12: 3846.153846153846
+    2014-01: 3846.153846153846
+    2014-02: 3846.153846153846
+    2014-03: 3846.153846153846
+    2014-04: 3846.153846153846
+    2014-05: 3846.153846153846
+    2014-06: 3846.153846153846
+    2014-07: 3846.153846153846
+    2014-08: 3846.153846153846
+    2014-09: 3846.153846153846
+    2014-10: 3846.153846153846
+  salaire_imposable:
+    2012: 37315.03846153846
+    2013-10: 3109.5865384615386
+    2013-11: 3109.5865384615386
+    2013-12: 3109.5865384615386
+    2014-01: 3109.5865384615386
+    2014-02: 3109.5865384615386
+    2014-03: 3109.5865384615386
+    2014-04: 3109.5865384615386
+    2014-05: 3109.5865384615386
+    2014-06: 3109.5865384615386
+    2014-07: 3109.5865384615386
+    2014-08: 3109.5865384615386
+    2014-09: 3109.5865384615386
+    2014-10: 3109.5865384615386
+  salaire_net:
+    2012: 36000
+    2013-10: 3000
+    2013-11: 3000
+    2013-12: 3000
+    2014-01: 3000
+    2014-02: 3000
+    2014-03: 3000
+    2014-04: 3000
+    2014-05: 3000
+    2014-06: 3000
+    2014-07: 3000
+    2014-08: 3000
+    2014-09: 3000
+    2014-10: 3000
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 7
+  age_en_mois: 87
+  date_naissance: '2007-07-12'
+  etudiant: 0
+  id: 543ba81c855844062e40b7d4
+  inapte_travail: 0
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 7
+  age_en_mois: 87
+  date_naissance: '2007-07-12'
+  etudiant: 0
+  id: 543ba81c855844062e40b7d3
+  inapte_travail: 0
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 7
+  age_en_mois: 87
+  date_naissance: '2007-07-12'
+  etudiant: 0
+  id: 543ba81c855844062e40b7d2
+  inapte_travail: 0
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
 familles:
   acs:
     2013-10: 0
@@ -267,9 +267,9 @@ familles:
     2014-08: 0
     2014-09: 0
   enfants:
-    - 543ba81c855844062e40b7d4
-    - 543ba81c855844062e40b7d3
-    - 543ba81c855844062e40b7d2
+  - 543ba81c855844062e40b7d4
+  - 543ba81c855844062e40b7d3
+  - 543ba81c855844062e40b7d2
   paje_base:
     2013-10: 0
     2013-11: 0
@@ -301,15 +301,15 @@ familles:
 foyers_fiscaux:
   declarants: 543ba81c855844062e40b7d5
   personnes_a_charge:
-    - 543ba81c855844062e40b7d4
-    - 543ba81c855844062e40b7d3
-    - 543ba81c855844062e40b7d2
+  - 543ba81c855844062e40b7d4
+  - 543ba81c855844062e40b7d3
+  - 543ba81c855844062e40b7d2
 menages:
   depcom: 67382
   enfants:
-    - 543ba81c855844062e40b7d4
-    - 543ba81c855844062e40b7d3
-    - 543ba81c855844062e40b7d2
+  - 543ba81c855844062e40b7d4
+  - 543ba81c855844062e40b7d3
+  - 543ba81c855844062e40b7d2
   personne_de_reference: 543ba81c855844062e40b7d5
   statut_occupation_logement: loge_gratuitement
 output_variables:

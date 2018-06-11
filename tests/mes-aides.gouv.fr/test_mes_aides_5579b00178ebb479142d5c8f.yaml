@@ -1,19 +1,19 @@
-name: "Pas de neutralisation des ressources non perçues en m-1"
+name: Pas de neutralisation des ressources non perçues en m-1
 keywords:
-  - base ressources
-  - rsa
+- base ressources
+- rsa
 description: |
   M-3 et M-2: salaires de 300€
   Plus de ressources en M-1 et ne percevra plus cette ressource au mois M
   Pas de neutralisation des ressources dans la BR
 
   (513,88 + 62%[(2*300)/3]) - ([(2*300)/3] - 61,67) = 128,21€
-period: "month:2015-06"
+period: month:2015-06
 relative_error_margin: 0.02
 individus:
   age: 32
   age_en_mois: 393
-  date_naissance: "1982-08-12"
+  date_naissance: '1982-08-12'
   etudiant: 0
   id: 5579affb85a12b87142c5706
   inapte_travail: 0
@@ -234,7 +234,7 @@ familles:
     2015-03: 0
     2015-04: 0
     2015-05: 0
-  enfants:
+  enfants: null
   paje_base:
     2014-06: 0
     2014-07: 0
@@ -264,10 +264,10 @@ familles:
     2015-05: 0
 foyers_fiscaux:
   declarants: 5579affb85a12b87142c5706
-  personnes_a_charge:
+  personnes_a_charge: null
 menages:
   depcom: 14127
-  enfants:
+  enfants: null
   personne_de_reference: 5579affb85a12b87142c5706
   statut_occupation_logement: loge_gratuitement
 output_variables:

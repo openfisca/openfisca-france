@@ -1,87 +1,87 @@
-name: "Couple, ressources > plafond de 1300 montant = plafond haut - ressources"
+name: Couple, ressources > plafond de 1300 montant = plafond haut - ressources
 keywords:
-  - ass
-  - base ressources
-  - montant
+- ass
+- base ressources
+- montant
 description: |
   BR = 1290 en salaires nets
   Conversion en salaire imposable : 1290 + (0,029 X 0,9825 X 1290 : 0,78) = 1337.12
   1337.12 > 1300
   Donc ASS = 1 787,50 - 1337.12 = 450,38
-period: "month:2015-04"
+period: month:2015-04
 relative_error_margin: 0.02
 individus:
-  - activite: chomeur
-    age: 24
-    age_en_mois: 294
-    ass_precondition_remplie: true
-    date_naissance: "1990-10-10"
-    etudiant: 0
-    id: 553647ce88bcee752ddf9414
-    inapte_travail: 0
-    handicap: 0
-    salaire_de_base:
-      2013: 19846.153846153844
-      2014-04: 1653.8461538461538
-      2014-05: 1653.8461538461538
-      2014-06: 1653.8461538461538
-      2014-07: 1653.8461538461538
-      2014-08: 1653.8461538461538
-      2014-09: 1653.8461538461538
-      2014-10: 1653.8461538461538
-      2014-11: 1653.8461538461538
-      2014-12: 1653.8461538461538
-      2015-01: 1653.8461538461538
-      2015-02: 1653.8461538461538
-      2015-03: 1653.8461538461538
-      2015-04: 1653.8461538461538
-    salaire_imposable:
-      2013: 16045.466538461535
-      2014-04: 1337.1222115384614
-      2014-05: 1337.1222115384614
-      2014-06: 1337.1222115384614
-      2014-07: 1337.1222115384614
-      2014-08: 1337.1222115384614
-      2014-09: 1337.1222115384614
-      2014-10: 1337.1222115384614
-      2014-11: 1337.1222115384614
-      2014-12: 1337.1222115384614
-      2015-01: 1337.1222115384614
-      2015-02: 1337.1222115384614
-      2015-03: 1337.1222115384614
-      2015-04: 1337.1222115384614
-    salaire_net:
-      2013: 15480
-      2014-04: 1290
-      2014-05: 1290
-      2014-06: 1290
-      2014-07: 1290
-      2014-08: 1290
-      2014-09: 1290
-      2014-10: 1290
-      2014-11: 1290
-      2014-12: 1290
-      2015-01: 1290
-      2015-02: 1290
-      2015-03: 1290
-      2015-04: 1290
-    statut_marital: marie
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 24
-    age_en_mois: 294
-    date_naissance: "1990-10-10"
-    etudiant: 0
-    id: 553647ce88bcee752ddf9413
-    inapte_travail: 0
-    handicap: 0
-    statut_marital: marie
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
+- activite: chomeur
+  age: 24
+  age_en_mois: 294
+  ass_precondition_remplie: true
+  date_naissance: '1990-10-10'
+  etudiant: 0
+  id: 553647ce88bcee752ddf9414
+  inapte_travail: 0
+  handicap: 0
+  salaire_de_base:
+    2013: 19846.153846153844
+    2014-04: 1653.8461538461538
+    2014-05: 1653.8461538461538
+    2014-06: 1653.8461538461538
+    2014-07: 1653.8461538461538
+    2014-08: 1653.8461538461538
+    2014-09: 1653.8461538461538
+    2014-10: 1653.8461538461538
+    2014-11: 1653.8461538461538
+    2014-12: 1653.8461538461538
+    2015-01: 1653.8461538461538
+    2015-02: 1653.8461538461538
+    2015-03: 1653.8461538461538
+    2015-04: 1653.8461538461538
+  salaire_imposable:
+    2013: 16045.466538461535
+    2014-04: 1337.1222115384614
+    2014-05: 1337.1222115384614
+    2014-06: 1337.1222115384614
+    2014-07: 1337.1222115384614
+    2014-08: 1337.1222115384614
+    2014-09: 1337.1222115384614
+    2014-10: 1337.1222115384614
+    2014-11: 1337.1222115384614
+    2014-12: 1337.1222115384614
+    2015-01: 1337.1222115384614
+    2015-02: 1337.1222115384614
+    2015-03: 1337.1222115384614
+    2015-04: 1337.1222115384614
+  salaire_net:
+    2013: 15480
+    2014-04: 1290
+    2014-05: 1290
+    2014-06: 1290
+    2014-07: 1290
+    2014-08: 1290
+    2014-09: 1290
+    2014-10: 1290
+    2014-11: 1290
+    2014-12: 1290
+    2015-01: 1290
+    2015-02: 1290
+    2015-03: 1290
+    2015-04: 1290
+  statut_marital: marie
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 24
+  age_en_mois: 294
+  date_naissance: '1990-10-10'
+  etudiant: 0
+  id: 553647ce88bcee752ddf9413
+  inapte_travail: 0
+  handicap: 0
+  statut_marital: marie
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
 familles:
   acs:
     2014-04: 0
@@ -252,7 +252,7 @@ familles:
     2015-01: 0
     2015-02: 0
     2015-03: 0
-  enfants:
+  enfants: null
   paje_base:
     2014-04: 0
     2014-05: 0
@@ -267,8 +267,8 @@ familles:
     2015-02: 0
     2015-03: 0
   parents:
-    - 553647ce88bcee752ddf9414
-    - 553647ce88bcee752ddf9413
+  - 553647ce88bcee752ddf9414
+  - 553647ce88bcee752ddf9413
   rsa:
     2014-04: 0
     2014-05: 0
@@ -284,13 +284,13 @@ familles:
     2015-03: 0
 foyers_fiscaux:
   declarants:
-    - 553647ce88bcee752ddf9414
-    - 553647ce88bcee752ddf9413
-  personnes_a_charge:
+  - 553647ce88bcee752ddf9414
+  - 553647ce88bcee752ddf9413
+  personnes_a_charge: null
 menages:
   conjoint: 553647ce88bcee752ddf9413
   depcom: 93070
-  enfants:
+  enfants: null
   personne_de_reference: 553647ce88bcee752ddf9414
   statut_occupation_logement: loge_gratuitement
 output_variables:

@@ -1,155 +1,155 @@
 name: Cumulabilité des compléments dégressifs standard et forfaitaire
 keywords:
-  - af
-  - barêmes 1er juillet 2015
+- af
+- barêmes 1er juillet 2015
 description: |
   8 enfants
   BR CAF = 106640
   Juste au dessus du plafond bas pour l'allocation forfaitaire
   Dans ce cas, l'usager est éligible aux deux compléments dégressifs, contrairement à ce qu'indique la notice CAF.
-period: "month:2015-07"
+period: month:2015-07
 relative_error_margin: 0.02
 individus:
-  - age: 45
-    age_en_mois: 546
-    date_naissance: "1970-01-01"
-    chomage_imposable:
-      2013: 0
-    etudiant: 0
-    id: 559bb07a8aba0709309a68b6
-    inapte_travail: 0
-    handicap: 0
-    pensions_alimentaires_percues:
-      2013: 0
-    retraite_imposable:
-      2013: 0
-    salaire_imposable:
-      2013: 118488.88888888889
-    statut_marital: marie
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 45
-    age_en_mois: 546
-    date_naissance: "1970-01-01"
-    chomage_imposable:
-      2013: 0
-    etudiant: 0
-    id: 559bb07a8aba0709309a68b5
-    inapte_travail: 0
-    handicap: 0
-    pensions_alimentaires_percues:
-      2013: 0
-    retraite_imposable:
-      2013: 0
-    salaire_imposable:
-      2013: 0
-    statut_marital: marie
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 0
-    age_en_mois: 6
-    date_naissance: "2015-01-01"
-    etudiant: 0
-    id: 559bb07a8aba0709309a68b4
-    inapte_travail: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 1
-    age_en_mois: 18
-    date_naissance: "2014-01-01"
-    etudiant: 0
-    id: 559bb07a8aba0709309a68b3
-    inapte_travail: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 2
-    age_en_mois: 30
-    date_naissance: "2013-01-01"
-    etudiant: 0
-    id: 559bb07a8aba0709309a68b2
-    inapte_travail: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 3
-    age_en_mois: 42
-    date_naissance: "2012-01-01"
-    etudiant: 0
-    id: 559bb07a8aba0709309a68b1
-    inapte_travail: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 4
-    age_en_mois: 54
-    date_naissance: "2011-01-01"
-    etudiant: 0
-    id: 559bb07a8aba0709309a68b0
-    inapte_travail: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 5
-    age_en_mois: 66
-    date_naissance: "2010-01-01"
-    etudiant: 0
-    id: 559bb07a8aba0709309a68af
-    inapte_travail: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 6
-    age_en_mois: 78
-    date_naissance: "2009-01-01"
-    etudiant: 0
-    id: 559bb07a8aba0709309a68ae
-    inapte_travail: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 7
-    age_en_mois: 90
-    date_naissance: "2008-01-01"
-    etudiant: 0
-    id: 559bb07a8aba0709309a68ad
-    inapte_travail: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 20
-    age_en_mois: 246
-    date_naissance: "1995-01-01"
-    etudiant: 0
-    id: 559bb07a8aba0709309a68ac
-    inapte_travail: 0
-    handicap: 0
-    scolarite: inconnue
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
+- age: 45
+  age_en_mois: 546
+  date_naissance: '1970-01-01'
+  chomage_imposable:
+    2013: 0
+  etudiant: 0
+  id: 559bb07a8aba0709309a68b6
+  inapte_travail: 0
+  handicap: 0
+  pensions_alimentaires_percues:
+    2013: 0
+  retraite_imposable:
+    2013: 0
+  salaire_imposable:
+    2013: 118488.88888888889
+  statut_marital: marie
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 45
+  age_en_mois: 546
+  date_naissance: '1970-01-01'
+  chomage_imposable:
+    2013: 0
+  etudiant: 0
+  id: 559bb07a8aba0709309a68b5
+  inapte_travail: 0
+  handicap: 0
+  pensions_alimentaires_percues:
+    2013: 0
+  retraite_imposable:
+    2013: 0
+  salaire_imposable:
+    2013: 0
+  statut_marital: marie
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 0
+  age_en_mois: 6
+  date_naissance: '2015-01-01'
+  etudiant: 0
+  id: 559bb07a8aba0709309a68b4
+  inapte_travail: 0
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 1
+  age_en_mois: 18
+  date_naissance: '2014-01-01'
+  etudiant: 0
+  id: 559bb07a8aba0709309a68b3
+  inapte_travail: 0
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 2
+  age_en_mois: 30
+  date_naissance: '2013-01-01'
+  etudiant: 0
+  id: 559bb07a8aba0709309a68b2
+  inapte_travail: 0
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 3
+  age_en_mois: 42
+  date_naissance: '2012-01-01'
+  etudiant: 0
+  id: 559bb07a8aba0709309a68b1
+  inapte_travail: 0
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 4
+  age_en_mois: 54
+  date_naissance: '2011-01-01'
+  etudiant: 0
+  id: 559bb07a8aba0709309a68b0
+  inapte_travail: 0
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 5
+  age_en_mois: 66
+  date_naissance: '2010-01-01'
+  etudiant: 0
+  id: 559bb07a8aba0709309a68af
+  inapte_travail: 0
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 6
+  age_en_mois: 78
+  date_naissance: '2009-01-01'
+  etudiant: 0
+  id: 559bb07a8aba0709309a68ae
+  inapte_travail: 0
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 7
+  age_en_mois: 90
+  date_naissance: '2008-01-01'
+  etudiant: 0
+  id: 559bb07a8aba0709309a68ad
+  inapte_travail: 0
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 20
+  age_en_mois: 246
+  date_naissance: '1995-01-01'
+  etudiant: 0
+  id: 559bb07a8aba0709309a68ac
+  inapte_travail: 0
+  handicap: 0
+  scolarite: inconnue
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
 familles:
   acs:
     2014-07: 0
@@ -321,15 +321,15 @@ familles:
     2015-05: 0
     2015-06: 0
   enfants:
-    - 559bb07a8aba0709309a68b4
-    - 559bb07a8aba0709309a68b3
-    - 559bb07a8aba0709309a68b2
-    - 559bb07a8aba0709309a68b1
-    - 559bb07a8aba0709309a68b0
-    - 559bb07a8aba0709309a68af
-    - 559bb07a8aba0709309a68ae
-    - 559bb07a8aba0709309a68ad
-    - 559bb07a8aba0709309a68ac
+  - 559bb07a8aba0709309a68b4
+  - 559bb07a8aba0709309a68b3
+  - 559bb07a8aba0709309a68b2
+  - 559bb07a8aba0709309a68b1
+  - 559bb07a8aba0709309a68b0
+  - 559bb07a8aba0709309a68af
+  - 559bb07a8aba0709309a68ae
+  - 559bb07a8aba0709309a68ad
+  - 559bb07a8aba0709309a68ac
   paje_base:
     2014-07: 0
     2014-08: 0
@@ -344,8 +344,8 @@ familles:
     2015-05: 0
     2015-06: 0
   parents:
-    - 559bb07a8aba0709309a68b6
-    - 559bb07a8aba0709309a68b5
+  - 559bb07a8aba0709309a68b6
+  - 559bb07a8aba0709309a68b5
   proprietaire_proche_famille: true
   rsa:
     2014-07: 0
@@ -362,34 +362,34 @@ familles:
     2015-06: 0
 foyers_fiscaux:
   declarants:
-    - 559bb07a8aba0709309a68b6
-    - 559bb07a8aba0709309a68b5
+  - 559bb07a8aba0709309a68b6
+  - 559bb07a8aba0709309a68b5
   pensions_alimentaires_versees:
     2013: 0
   personnes_a_charge:
-    - 559bb07a8aba0709309a68b4
-    - 559bb07a8aba0709309a68b3
-    - 559bb07a8aba0709309a68b2
-    - 559bb07a8aba0709309a68b1
-    - 559bb07a8aba0709309a68b0
-    - 559bb07a8aba0709309a68af
-    - 559bb07a8aba0709309a68ae
-    - 559bb07a8aba0709309a68ad
-    - 559bb07a8aba0709309a68ac
-  rfr:
+  - 559bb07a8aba0709309a68b4
+  - 559bb07a8aba0709309a68b3
+  - 559bb07a8aba0709309a68b2
+  - 559bb07a8aba0709309a68b1
+  - 559bb07a8aba0709309a68b0
+  - 559bb07a8aba0709309a68af
+  - 559bb07a8aba0709309a68ae
+  - 559bb07a8aba0709309a68ad
+  - 559bb07a8aba0709309a68ac
+  rfr: null
 menages:
   conjoint: 559bb07a8aba0709309a68b5
   depcom: 93008
   enfants:
-    - 559bb07a8aba0709309a68b4
-    - 559bb07a8aba0709309a68b3
-    - 559bb07a8aba0709309a68b2
-    - 559bb07a8aba0709309a68b1
-    - 559bb07a8aba0709309a68b0
-    - 559bb07a8aba0709309a68af
-    - 559bb07a8aba0709309a68ae
-    - 559bb07a8aba0709309a68ad
-    - 559bb07a8aba0709309a68ac
+  - 559bb07a8aba0709309a68b4
+  - 559bb07a8aba0709309a68b3
+  - 559bb07a8aba0709309a68b2
+  - 559bb07a8aba0709309a68b1
+  - 559bb07a8aba0709309a68b0
+  - 559bb07a8aba0709309a68af
+  - 559bb07a8aba0709309a68ae
+  - 559bb07a8aba0709309a68ad
+  - 559bb07a8aba0709309a68ac
   loyer: 2000
   personne_de_reference: 559bb07a8aba0709309a68b6
   statut_occupation_logement: locataire_vide

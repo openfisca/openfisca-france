@@ -1,15 +1,15 @@
 name: 550 euros pour les > 60 ans
 keywords:
-  - acs
-  - "cmu-c/acs"
-  - montant
-description:
-period: "month:2014-10"
+- acs
+- cmu-c/acs
+- montant
+description: null
+period: month:2014-10
 relative_error_margin: 0.02
 individus:
   age: 64
   age_en_mois: 769
-  date_naissance: "1950-09-14"
+  date_naissance: '1950-09-14'
   etudiant: 0
   id: 544798e0700e06b826532b49
   inapte_travail: 0
@@ -233,7 +233,7 @@ familles:
     2014-07: 0
     2014-08: 0
     2014-09: 0
-  enfants:
+  enfants: null
   paje_base:
     2013-10: 0
     2013-11: 0
@@ -264,10 +264,10 @@ familles:
     2014-09: 0
 foyers_fiscaux:
   declarants: 544798e0700e06b826532b49
-  personnes_a_charge:
+  personnes_a_charge: null
 menages:
   depcom: 75111
-  enfants:
+  enfants: null
   loyer: 100
   personne_de_reference: 544798e0700e06b826532b49
   statut_occupation_logement: locataire_vide

@@ -1,96 +1,96 @@
 name: 2 enfants tous les deux âgés de plus de 14 ans
 keywords:
-  - af
-  - dom
-  - majoration
-description: "isolé avec 2 enfants de plus de 14 ans dans les DOM : droit aux AF 2 + 1 majoration pour âge soit 129,35 +64,67=194,02 €"
-period: "month:2015-01"
+- af
+- dom
+- majoration
+description: 'isolé avec 2 enfants de plus de 14 ans dans les DOM : droit aux AF 2 + 1 majoration pour âge soit 129,35 +64,67=194,02 €'
+period: month:2015-01
 relative_error_margin: 0.02
 individus:
-  - age: 43
-    age_en_mois: 516
-    date_naissance: "1972-01-09"
-    chomage_imposable:
-      2013: 0
-    etudiant: 0
-    id: 54cb54a9f675ddd34432e241
-    inapte_travail: 0
-    handicap: 0
-    pensions_alimentaires_percues:
-      2013: 0
-    retraite_imposable:
-      2013: 0
-    salaire_de_base:
-      2014-01: 1666.6666666666665
-      2014-02: 1666.6666666666665
-      2014-03: 1666.6666666666665
-      2014-04: 1666.6666666666665
-      2014-05: 1666.6666666666665
-      2014-06: 1666.6666666666665
-      2014-07: 1666.6666666666665
-      2014-08: 1666.6666666666665
-      2014-09: 1666.6666666666665
-      2014-10: 1666.6666666666665
-      2014-11: 1666.6666666666665
-      2014-12: 1666.6666666666665
-      2015-01: 1666.6666666666665
-    salaire_imposable:
-      2013: 1200
-      2014-01: 1347.4875
-      2014-02: 1347.4875
-      2014-03: 1347.4875
-      2014-04: 1347.4875
-      2014-05: 1347.4875
-      2014-06: 1347.4875
-      2014-07: 1347.4875
-      2014-08: 1347.4875
-      2014-09: 1347.4875
-      2014-10: 1347.4875
-      2014-11: 1347.4875
-      2014-12: 1347.4875
-      2015-01: 1347.4875
-    salaire_net:
-      2014-01: 1300
-      2014-02: 1300
-      2014-03: 1300
-      2014-04: 1300
-      2014-05: 1300
-      2014-06: 1300
-      2014-07: 1300
-      2014-08: 1300
-      2014-09: 1300
-      2014-10: 1300
-      2014-11: 1300
-      2014-12: 1300
-      2015-01: 1300
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 15
-    age_en_mois: 182
-    date_naissance: "1999-11-15"
-    etudiant: 0
-    id: 54cb54a9f675ddd34432e240
-    inapte_travail: 0
-    handicap: 0
-    scolarite: college
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 14
-    age_en_mois: 169
-    date_naissance: "2000-12-23"
-    etudiant: 0
-    id: 54cb54a9f675ddd34432e23f
-    inapte_travail: 0
-    handicap: 0
-    scolarite: college
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
+- age: 43
+  age_en_mois: 516
+  date_naissance: '1972-01-09'
+  chomage_imposable:
+    2013: 0
+  etudiant: 0
+  id: 54cb54a9f675ddd34432e241
+  inapte_travail: 0
+  handicap: 0
+  pensions_alimentaires_percues:
+    2013: 0
+  retraite_imposable:
+    2013: 0
+  salaire_de_base:
+    2014-01: 1666.6666666666665
+    2014-02: 1666.6666666666665
+    2014-03: 1666.6666666666665
+    2014-04: 1666.6666666666665
+    2014-05: 1666.6666666666665
+    2014-06: 1666.6666666666665
+    2014-07: 1666.6666666666665
+    2014-08: 1666.6666666666665
+    2014-09: 1666.6666666666665
+    2014-10: 1666.6666666666665
+    2014-11: 1666.6666666666665
+    2014-12: 1666.6666666666665
+    2015-01: 1666.6666666666665
+  salaire_imposable:
+    2013: 1200
+    2014-01: 1347.4875
+    2014-02: 1347.4875
+    2014-03: 1347.4875
+    2014-04: 1347.4875
+    2014-05: 1347.4875
+    2014-06: 1347.4875
+    2014-07: 1347.4875
+    2014-08: 1347.4875
+    2014-09: 1347.4875
+    2014-10: 1347.4875
+    2014-11: 1347.4875
+    2014-12: 1347.4875
+    2015-01: 1347.4875
+  salaire_net:
+    2014-01: 1300
+    2014-02: 1300
+    2014-03: 1300
+    2014-04: 1300
+    2014-05: 1300
+    2014-06: 1300
+    2014-07: 1300
+    2014-08: 1300
+    2014-09: 1300
+    2014-10: 1300
+    2014-11: 1300
+    2014-12: 1300
+    2015-01: 1300
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 15
+  age_en_mois: 182
+  date_naissance: '1999-11-15'
+  etudiant: 0
+  id: 54cb54a9f675ddd34432e240
+  inapte_travail: 0
+  handicap: 0
+  scolarite: college
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 14
+  age_en_mois: 169
+  date_naissance: '2000-12-23'
+  etudiant: 0
+  id: 54cb54a9f675ddd34432e23f
+  inapte_travail: 0
+  handicap: 0
+  scolarite: college
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
 familles:
   acs:
     2014-01: 0
@@ -262,8 +262,8 @@ familles:
     2014-11: 0
     2014-12: 0
   enfants:
-    - 54cb54a9f675ddd34432e240
-    - 54cb54a9f675ddd34432e23f
+  - 54cb54a9f675ddd34432e240
+  - 54cb54a9f675ddd34432e23f
   paje_base:
     2014-01: 0
     2014-02: 0
@@ -298,15 +298,15 @@ foyers_fiscaux:
   pensions_alimentaires_versees:
     2013: 0
   personnes_a_charge:
-    - 54cb54a9f675ddd34432e240
-    - 54cb54a9f675ddd34432e23f
+  - 54cb54a9f675ddd34432e240
+  - 54cb54a9f675ddd34432e23f
   rfr:
     2013: 0
 menages:
   depcom: 97411
   enfants:
-    - 54cb54a9f675ddd34432e240
-    - 54cb54a9f675ddd34432e23f
+  - 54cb54a9f675ddd34432e240
+  - 54cb54a9f675ddd34432e23f
   loyer: 600
   personne_de_reference: 54cb54a9f675ddd34432e241
   statut_occupation_logement: locataire_vide

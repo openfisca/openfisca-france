@@ -1,5 +1,4 @@
-description: Durée minimale de titre du séjour permettant de bénéficier de l'ASPA
-  ou de l'ASI
+description: Durée minimale de titre du séjour permettant de bénéficier de l'ASPA ou de l'ASI
 reference: openfisca
 values:
   2002-01-01:

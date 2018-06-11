@@ -1,21 +1,21 @@
-- name: "Zone APL ville inconnue"
-  period: "2013-01"
+- name: Zone APL ville inconnue
+  period: 2013-01
   output_variables:
     zone_apl: zone_2
-- name: "Zone APL Paris 14ème arrondissement"
-  period: "2013-02"
+- name: Zone APL Paris 14ème arrondissement
+  period: 2013-02
   input_variables:
     depcom: 75114
   output_variables:
     zone_apl: zone_1
-- name: "Zone APL Lyon 1er arrondissement"
-  period: "2013-03"
+- name: Zone APL Lyon 1er arrondissement
+  period: 2013-03
   input_variables:
     depcom: 69381
   output_variables:
     zone_apl: zone_2
-- name: "Zone APL Séreilhac"
-  period: "2013-04"
+- name: Zone APL Séreilhac
+  period: 2013-04
   input_variables:
     depcom: 87191
   output_variables:

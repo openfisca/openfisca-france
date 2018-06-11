@@ -1,10 +1,6 @@
-- period: "2015-11"
+- period: 2015-11
   name: Base
-  description: >
-    Aide à l'embauche d'un premier salarié.
-    Le montant total de l’aide est égal à 4 000 €,
-    réparti sur 24 mois maximum, à raison de 500 €
-    sur chaque période de 3 mois d’exécution du contrat de travail.
+  description: "Aide à l'embauche d'un premier salarié. Le montant total de l’aide est égal à 4 000 €, réparti sur 24 mois maximum, à raison de 500 € sur chaque période de 3 mois d’exécution du contrat de travail.\n"
   relative_error_margin: 0.001
   input_variables:
     salaire_de_base: 1457.52
@@ -15,7 +11,7 @@
   output_variables:
     aide_premier_salarie: 166.67
 
-- period: "2015-11"
+- period: 2015-11
   name: Pas le premier salarié
   relative_error_margin: 0.001
   input_variables:
@@ -26,7 +22,7 @@
   output_variables:
     aide_premier_salarie: 0
 
-- period: "2015-11"
+- period: 2015-11
   name: CDD > de 12 mois
   relative_error_margin: 0.001
   input_variables:
@@ -40,7 +36,7 @@
   output_variables:
     aide_premier_salarie: 166.67
 
-- period: "2015-11"
+- period: 2015-11
   name: CDD > 6 mois
   relative_error_margin: 0.001
   input_variables:
@@ -55,7 +51,7 @@
   output_variables:
     aide_premier_salarie: 166.67
 
-- period: "2015-11"
+- period: 2015-11
   name: CDD < 6 mois
   relative_error_margin: 0.001
   input_variables:
@@ -70,12 +66,9 @@
   output_variables:
     aide_premier_salarie: 0
 
-- period: "2015-11"
+- period: 2015-11
   name: Temps partiel
-  description: >
-    Si le salarié est embauché à temps partiel, l’aide est proratisée
-    en fonction de sa durée de travail.
-    TODO : ajouter une input_variable temps partiel et changer l'output_variable en conséquence
+  description: "Si le salarié est embauché à temps partiel, l’aide est proratisée en fonction de sa durée de travail. TODO : ajouter une input_variable temps partiel et changer l'output_variable en conséquence\n"
   relative_error_margin: 0.001
   input_variables:
     salaire_de_base: 1457.52
@@ -87,7 +80,7 @@
     aide_premier_salarie: 166.67
 
 
-- period: "2017-07"
+- period: 2017-07
   name: L'aide n'est plus disponible 2 ans après
   relative_error_margin: 0.001
   input_variables:
@@ -97,7 +90,7 @@
     effectif_entreprise: 1
     contrat_de_travail_duree: cdd
     # supérieur à 1 an :
-    contrat_de_travail_debut: "2015-07-01"
-    contrat_de_travail_fin: "2019-06-30"
+    contrat_de_travail_debut: '2015-07-01'
+    contrat_de_travail_fin: '2019-06-30'
   output_variables:
     aide_premier_salarie: 0

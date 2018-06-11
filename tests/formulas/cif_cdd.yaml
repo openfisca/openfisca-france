@@ -1,4 +1,4 @@
-- period: "2016-03"
+- period: 2016-03
   name: CDI, pas de CIF CDD
   relative_error_margin: 0.01
   input_variables:
@@ -11,7 +11,7 @@
   output_variables:
     conge_individuel_formation_cdd: 0
 
-- period: "2016-03"
+- period: 2016-03
   name: CDD, 1% de cotisation CIF-CDD, indemité de fin de contrat
   relative_error_margin: 0.01
   input_variables:

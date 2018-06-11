@@ -1,18 +1,18 @@
 name: La valeur locative des biens immobiliers non loués est prise en compte à 50%
 keywords:
-  - base ressources
-  - "cmu-c/acs"
-  - patrimoine
+- base ressources
+- cmu-c/acs
+- patrimoine
 description: |
   valeur locative : 2000 euros
   plafond de ressources pour personne seule : 972 euros
   2000*50%=1000>972 donc pas d'éligibilité CMU-C ni ACS
-period: "month:2014-10"
+period: month:2014-10
 relative_error_margin: 0.02
 individus:
   age: 34
   age_en_mois: 408
-  date_naissance: "1980-09-12"
+  date_naissance: '1980-09-12'
   etudiant: 0
   id: 54365f5493aeb8714ddd28cf
   inapte_travail: 0
@@ -191,7 +191,7 @@ familles:
     2014-07: 0
     2014-08: 0
     2014-09: 0
-  enfants:
+  enfants: null
   paje_base:
     2013-10: 0
     2013-11: 0
@@ -222,10 +222,10 @@ familles:
     2014-09: 0
 foyers_fiscaux:
   declarants: 54365f5493aeb8714ddd28cf
-  personnes_a_charge:
+  personnes_a_charge: null
 menages:
   depcom: 75111
-  enfants:
+  enfants: null
   loyer: 200
   personne_de_reference: 54365f5493aeb8714ddd28cf
   statut_occupation_logement: locataire_vide

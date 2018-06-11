@@ -1,42 +1,42 @@
 name: ISOLE CHOMAGE NON INDEMNISE 1 ENFANT+ 20 ANS
 keywords:
-  - al
-  - recette
+- al
+- recette
 description: Test créé à partir d'un dossier de demande d'AL LOCATION
-period: "month:2015-07"
+period: month:2015-07
 relative_error_margin: 0.02
 individus:
-  - age: 47
-    age_en_mois: 573
-    date_naissance: "1967-09-22"
-    chomage_imposable:
-      2013: 0
-    etudiant: 0
-    id: 559e52b3fa617858013d9a58
-    inapte_travail: 0
-    handicap: 0
-    pensions_alimentaires_percues:
-      2013: 700
-    retraite_imposable:
-      2013: 0
-    salaire_imposable:
-      2013: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 20
-    age_en_mois: 242
-    date_naissance: "1995-04-28"
-    etudiant: 0
-    id: 559e52fab205974e01346b47
-    inapte_travail: 0
-    handicap: 0
-    scolarite: college
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
+- age: 47
+  age_en_mois: 573
+  date_naissance: '1967-09-22'
+  chomage_imposable:
+    2013: 0
+  etudiant: 0
+  id: 559e52b3fa617858013d9a58
+  inapte_travail: 0
+  handicap: 0
+  pensions_alimentaires_percues:
+    2013: 700
+  retraite_imposable:
+    2013: 0
+  salaire_imposable:
+    2013: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 20
+  age_en_mois: 242
+  date_naissance: '1995-04-28'
+  etudiant: 0
+  id: 559e52fab205974e01346b47
+  inapte_travail: 0
+  handicap: 0
+  scolarite: college
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
 familles:
   acs:
     2014-07: 0

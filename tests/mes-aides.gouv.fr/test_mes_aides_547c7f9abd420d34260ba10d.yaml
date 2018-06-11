@@ -1,15 +1,15 @@
 name: Retraite mutualiste du combattant
 keywords:
-  - aspa
-  - base ressources
+- aspa
+- base ressources
 description: Cette ressource est effectivement à prendre dans les ressources. Toutefois, il est envisageable qu'un assuré déclare cette ressource dans "retraite du combattant" et dans ce cas le résultat ne serait pas le même puisque cette ressource serait, de ce fait, exclue et on obtiendrait alors un montant d'Aspa à 200€ au lieu des 50€ attendus.
-period: "month:2014-12"
+period: month:2014-12
 relative_error_margin: 0.02
 individus:
   activite: retraite
   age: 70
   age_en_mois: 842
-  date_naissance: "1944-10-01"
+  date_naissance: '1944-10-01'
   etudiant: 0
   id: 547c7e4dcc51d53d260e889e
   inapte_travail: 0
@@ -218,7 +218,7 @@ familles:
     2014-09: 0
     2014-10: 0
     2014-11: 0
-  enfants:
+  enfants: null
   paje_base:
     2013-12: 0
     2014-01: 0
@@ -249,10 +249,10 @@ familles:
     2014-11: 0
 foyers_fiscaux:
   declarants: 547c7e4dcc51d53d260e889e
-  personnes_a_charge:
+  personnes_a_charge: null
 menages:
   depcom: 75119
-  enfants:
+  enfants: null
   loyer: 700
   personne_de_reference: 547c7e4dcc51d53d260e889e
 output_variables:

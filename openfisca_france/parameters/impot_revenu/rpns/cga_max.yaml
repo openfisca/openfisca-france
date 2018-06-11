@@ -1,5 +1,4 @@
-description: 'Abattement centre de gestion agréé ou association aggréé///si revenu
-  inférieur à '
+description: 'Abattement centre de gestion agréé ou association aggréé///si revenu inférieur à '
 reference: openfisca
 unit: currency
 values:

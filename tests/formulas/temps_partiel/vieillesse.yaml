@@ -1,4 +1,4 @@
-- period: "2016-01"
+- period: 2016-01
   name: Temps partiel
   relative_error_margin: 0.001
   input_variables:
@@ -14,7 +14,7 @@
     vieillesse_plafonnee_employeur: -3218 * (6 / 7) * 0.0855
     vieillesse_deplafonnee_employeur: -3428.6 * 0.0185
 
-- period: "2016-01"
+- period: 2016-01
   name: Temps plein
   relative_error_margin: 0.001
   input_variables:

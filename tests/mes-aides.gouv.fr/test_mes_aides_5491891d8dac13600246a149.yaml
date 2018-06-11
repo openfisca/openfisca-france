@@ -1,16 +1,16 @@
 name: Plancher ACS pour une personne seule dans les DOM
 keywords:
-  - acs
-  - "cmu-c/acs"
-  - dom
-  - plafonds
+- acs
+- cmu-c/acs
+- dom
+- plafonds
 description: Test réalisé avec des ressources légèrement supérieures au plafond CMUc.
-period: "month:2014-12"
+period: month:2014-12
 relative_error_margin: 0.02
 individus:
   age: 40
   age_en_mois: 491
-  date_naissance: "1974-01-01"
+  date_naissance: '1974-01-01'
   etudiant: 0
   id: 549185161abb1c570220a2be
   inapte_travail: 0
@@ -234,7 +234,7 @@ familles:
     2014-09: 0
     2014-10: 0
     2014-11: 0
-  enfants:
+  enfants: null
   paje_base:
     2013-12: 0
     2014-01: 0
@@ -265,10 +265,10 @@ familles:
     2014-11: 0
 foyers_fiscaux:
   declarants: 549185161abb1c570220a2be
-  personnes_a_charge:
+  personnes_a_charge: null
 menages:
   depcom: 97130
-  enfants:
+  enfants: null
   loyer: 50
   personne_de_reference: 549185161abb1c570220a2be
   statut_occupation_logement: locataire_vide

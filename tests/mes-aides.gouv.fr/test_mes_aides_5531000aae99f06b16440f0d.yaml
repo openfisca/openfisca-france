@@ -1,15 +1,15 @@
 name: CMUC/ACS base ressources intégration à tort de l'ASPA non perçue
 keywords:
-  - base ressources
-  - "cmu-c/acs"
+- base ressources
+- cmu-c/acs
 description: Personne qui vient d'avoir 65 ans. Jusque là non éligible à l'ASPA compte tenu de son âge. Retraite de 600€ par mois, soit 7200€ pour l'année de référence. A droit à la CMUC (au moins pour une année)
-period: "month:2015-04"
+period: month:2015-04
 relative_error_margin: 0.02
 individus:
   activite: retraite
   age: 65
   age_en_mois: 780
-  date_naissance: "1950-04-01"
+  date_naissance: '1950-04-01'
   etudiant: 0
   id: 5530ffb7395a3e6e168f4726
   inapte_travail: 0
@@ -218,7 +218,7 @@ familles:
     2015-01: 0
     2015-02: 0
     2015-03: 0
-  enfants:
+  enfants: null
   paje_base:
     2014-04: 0
     2014-05: 0
@@ -249,10 +249,10 @@ familles:
     2015-03: 0
 foyers_fiscaux:
   declarants: 5530ffb7395a3e6e168f4726
-  personnes_a_charge:
+  personnes_a_charge: null
 menages:
   depcom: 75112
-  enfants:
+  enfants: null
   loyer: 500
   personne_de_reference: 5530ffb7395a3e6e168f4726
   statut_occupation_logement: locataire_vide

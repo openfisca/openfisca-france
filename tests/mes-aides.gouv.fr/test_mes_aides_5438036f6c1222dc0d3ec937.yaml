@@ -1,16 +1,16 @@
 name: Pas d'éligibilité si on n'a pas travaillé 5 ans au cours des 10 dernières années
 keywords:
-  - ass
-  - eligibilité
-description:
-period: "month:2014-10"
+- ass
+- eligibilité
+description: null
+period: month:2014-10
 relative_error_margin: 0.02
 individus:
   activite: chomeur
   age: 34
   age_en_mois: 409
   ass_precondition_remplie: false
-  date_naissance: "1980-08-12"
+  date_naissance: '1980-08-12'
   etudiant: 0
   id: 5438034cc7d061e50d572904
   inapte_travail: 0
@@ -189,7 +189,7 @@ familles:
     2014-07: 0
     2014-08: 0
     2014-09: 0
-  enfants:
+  enfants: null
   paje_base:
     2013-10: 0
     2013-11: 0
@@ -220,10 +220,10 @@ familles:
     2014-09: 0
 foyers_fiscaux:
   declarants: 5438034cc7d061e50d572904
-  personnes_a_charge:
+  personnes_a_charge: null
 menages:
   depcom: 75111
-  enfants:
+  enfants: null
   loyer: 800
   personne_de_reference: 5438034cc7d061e50d572904
   statut_occupation_logement: locataire_vide

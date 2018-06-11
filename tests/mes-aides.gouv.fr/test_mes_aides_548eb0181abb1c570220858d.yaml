@@ -1,14 +1,14 @@
 name: Valeur locative d'un bien immobilier non loué (Test 21)
-keywords: "cmu-c/acs"
+keywords: cmu-c/acs
 description: |
   Aucune ressource. Détient un immeuble dont la valeur locative de 15000 €, prise en compte à hauteur de 50%, donne droit à la CMUC.
   L'article R861-6 dispose :... les biens non productifs de revenus sont considérés comme procurant un revenu annuel égal à 50% de leur valeur locative...
-period: "month:2014-12"
+period: month:2014-12
 relative_error_margin: 0.02
 individus:
   age: 50
   age_en_mois: 611
-  date_naissance: "1964-01-01"
+  date_naissance: '1964-01-01'
   etudiant: 0
   id: 548eaf29ccf3745202129282
   inapte_travail: 0
@@ -201,7 +201,7 @@ familles:
     2014-09: 0
     2014-10: 0
     2014-11: 0
-  enfants:
+  enfants: null
   paje_base:
     2013-12: 0
     2014-01: 0
@@ -232,10 +232,10 @@ familles:
     2014-11: 0
 foyers_fiscaux:
   declarants: 548eaf29ccf3745202129282
-  personnes_a_charge:
+  personnes_a_charge: null
 menages:
   depcom: 75112
-  enfants:
+  enfants: null
   loyer: 500
   personne_de_reference: 548eaf29ccf3745202129282
   statut_occupation_logement: locataire_vide

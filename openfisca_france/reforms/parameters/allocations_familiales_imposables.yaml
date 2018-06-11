@@ -1,6 +1,6 @@
 description: Intégration au revenu imposable des allocations familiales
 imposition:
-  description: "Indicatrice d'imposition"
+  description: Indicatrice d'imposition
   values:
     '2015-01-01':
       value: null

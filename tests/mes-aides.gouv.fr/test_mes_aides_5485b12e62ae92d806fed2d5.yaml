@@ -1,84 +1,84 @@
-name: "1 allocataire - couple - Ressources retenues = indemnités journalières du conjoint = 600 euros moyenne mensuelle"
+name: 1 allocataire - couple - Ressources retenues = indemnités journalières du conjoint = 600 euros moyenne mensuelle
 keywords:
-  - aspa
-  - base ressources
+- aspa
+- base ressources
 description: |
   Ressources du couple = 1200
   Plafond de ressources couple = 1242
   Dépassement de ressources = 758
   => l'Aspa réduit s'élève à 42,00 euros
-period: "month:2014-12"
+period: month:2014-12
 relative_error_margin: 0.02
 individus:
-  - activite: retraite
-    age: 66
-    age_en_mois: 795
-    date_naissance: "1948-08-14"
-    etudiant: 0
-    id: 5485b08f5f35e8cf064ba47f
-    inapte_travail: 0
-    handicap: 0
-    retraite_brute:
-      2012: 7200
-      2013-12: 600
-      2014-01: 600
-      2014-02: 600
-      2014-03: 600
-      2014-04: 600
-      2014-05: 600
-      2014-06: 600
-      2014-07: 600
-      2014-08: 600
-      2014-09: 600
-      2014-10: 600
-      2014-11: 600
-      2014-12: 600
-    retraite_nette:
-      2012: 6667.200000000002
-      2013-12: 555.6
-      2014-01: 555.6
-      2014-02: 555.6
-      2014-03: 555.6
-      2014-04: 555.6
-      2014-05: 555.6
-      2014-06: 555.6
-      2014-07: 555.6
-      2014-08: 555.6
-      2014-09: 555.6
-      2014-10: 555.6
-      2014-11: 555.6
-      2014-12: 555.6
-    statut_marital: marie
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 60
-    age_en_mois: 723
-    date_naissance: "1954-08-17"
-    etudiant: 0
-    id: 5485b08f5f35e8cf064ba472
-    inapte_travail: 0
-    indemnites_journalieres_maladie:
-      2012: 7200
-      2013-12: 600
-      2014-01: 600
-      2014-02: 600
-      2014-03: 600
-      2014-04: 600
-      2014-05: 600
-      2014-06: 600
-      2014-07: 600
-      2014-08: 600
-      2014-09: 600
-      2014-10: 600
-      2014-11: 600
-      2014-12: 600
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
+- activite: retraite
+  age: 66
+  age_en_mois: 795
+  date_naissance: '1948-08-14'
+  etudiant: 0
+  id: 5485b08f5f35e8cf064ba47f
+  inapte_travail: 0
+  handicap: 0
+  retraite_brute:
+    2012: 7200
+    2013-12: 600
+    2014-01: 600
+    2014-02: 600
+    2014-03: 600
+    2014-04: 600
+    2014-05: 600
+    2014-06: 600
+    2014-07: 600
+    2014-08: 600
+    2014-09: 600
+    2014-10: 600
+    2014-11: 600
+    2014-12: 600
+  retraite_nette:
+    2012: 6667.200000000002
+    2013-12: 555.6
+    2014-01: 555.6
+    2014-02: 555.6
+    2014-03: 555.6
+    2014-04: 555.6
+    2014-05: 555.6
+    2014-06: 555.6
+    2014-07: 555.6
+    2014-08: 555.6
+    2014-09: 555.6
+    2014-10: 555.6
+    2014-11: 555.6
+    2014-12: 555.6
+  statut_marital: marie
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 60
+  age_en_mois: 723
+  date_naissance: '1954-08-17'
+  etudiant: 0
+  id: 5485b08f5f35e8cf064ba472
+  inapte_travail: 0
+  indemnites_journalieres_maladie:
+    2012: 7200
+    2013-12: 600
+    2014-01: 600
+    2014-02: 600
+    2014-03: 600
+    2014-04: 600
+    2014-05: 600
+    2014-06: 600
+    2014-07: 600
+    2014-08: 600
+    2014-09: 600
+    2014-10: 600
+    2014-11: 600
+    2014-12: 600
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
 familles:
   acs:
     2013-12: 0
@@ -249,7 +249,7 @@ familles:
     2014-09: 0
     2014-10: 0
     2014-11: 0
-  enfants:
+  enfants: null
   paje_base:
     2013-12: 0
     2014-01: 0
@@ -264,8 +264,8 @@ familles:
     2014-10: 0
     2014-11: 0
   parents:
-    - 5485b08f5f35e8cf064ba47f
-    - 5485b08f5f35e8cf064ba472
+  - 5485b08f5f35e8cf064ba47f
+  - 5485b08f5f35e8cf064ba472
   proprietaire_proche_famille: false
   rsa:
     2013-12: 0
@@ -282,13 +282,13 @@ familles:
     2014-11: 0
 foyers_fiscaux:
   declarants:
-    - 5485b08f5f35e8cf064ba47f
-    - 5485b08f5f35e8cf064ba472
-  personnes_a_charge:
+  - 5485b08f5f35e8cf064ba47f
+  - 5485b08f5f35e8cf064ba472
+  personnes_a_charge: null
 menages:
   conjoint: 5485b08f5f35e8cf064ba472
   depcom: 75119
-  enfants:
+  enfants: null
   loyer: 700
   personne_de_reference: 5485b08f5f35e8cf064ba47f
 output_variables:

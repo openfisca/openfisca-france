@@ -1,7 +1,7 @@
 name: Prise en compte de tous les revenus nets catégoriels
 keywords:
-  - al
-  - base ressources
+- al
+- base ressources
 description: |
   Ce test vérifie que les cases "autres montants imposables" (préretraite, chômage), "pensions, retraites, rentes" et "pensions alimentaires reçues", sont bien prises en compte de la même manière que les revenus d'activité (abattement de 10% pour frais professionnels).
   Ici, somme des revenus = 2738 * 4 = 10952
@@ -24,52 +24,52 @@ description: |
   P1	49,21
   Pp	87,36
   AL	359,63
-period: "month:2015-02"
+period: month:2015-02
 relative_error_margin: 0.02
 individus:
-  - age: 46
-    age_en_mois: 555
-    date_naissance: "1968-11-25"
-    chomage_imposable:
-      2013: 2738
-    etudiant: 0
-    id: 54edcd5028793d0972ec4dc2
-    inapte_travail: 0
-    handicap: 0
-    pensions_alimentaires_percues:
-      2013: 2738
-    retraite_imposable:
-      2013: 2738
-    salaire_imposable:
-      2013: 2738
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 18
-    age_en_mois: 225
-    date_naissance: "1996-05-03"
-    etudiant: 0
-    id: 54edcd5028793d0972ec4dc1
-    inapte_travail: 0
-    handicap: 0
-    scolarite: college
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 15
-    age_en_mois: 181
-    date_naissance: "2000-01-09"
-    etudiant: 0
-    id: 54edcd5028793d0972ec4dc0
-    inapte_travail: 0
-    handicap: 0
-    scolarite: college
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
+- age: 46
+  age_en_mois: 555
+  date_naissance: '1968-11-25'
+  chomage_imposable:
+    2013: 2738
+  etudiant: 0
+  id: 54edcd5028793d0972ec4dc2
+  inapte_travail: 0
+  handicap: 0
+  pensions_alimentaires_percues:
+    2013: 2738
+  retraite_imposable:
+    2013: 2738
+  salaire_imposable:
+    2013: 2738
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 18
+  age_en_mois: 225
+  date_naissance: '1996-05-03'
+  etudiant: 0
+  id: 54edcd5028793d0972ec4dc1
+  inapte_travail: 0
+  handicap: 0
+  scolarite: college
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 15
+  age_en_mois: 181
+  date_naissance: '2000-01-09'
+  etudiant: 0
+  id: 54edcd5028793d0972ec4dc0
+  inapte_travail: 0
+  handicap: 0
+  scolarite: college
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
 familles:
   acs:
     2014-02: 0
@@ -241,8 +241,8 @@ familles:
     2014-12: 0
     2015-01: 0
   enfants:
-    - 54edcd5028793d0972ec4dc1
-    - 54edcd5028793d0972ec4dc0
+  - 54edcd5028793d0972ec4dc1
+  - 54edcd5028793d0972ec4dc0
   paje_base:
     2014-02: 0
     2014-03: 0
@@ -277,15 +277,15 @@ foyers_fiscaux:
   pensions_alimentaires_versees:
     2013: 0
   personnes_a_charge:
-    - 54edcd5028793d0972ec4dc1
-    - 54edcd5028793d0972ec4dc0
+  - 54edcd5028793d0972ec4dc1
+  - 54edcd5028793d0972ec4dc0
   rfr:
     2013: 0
 menages:
   depcom: 67102
   enfants:
-    - 54edcd5028793d0972ec4dc1
-    - 54edcd5028793d0972ec4dc0
+  - 54edcd5028793d0972ec4dc1
+  - 54edcd5028793d0972ec4dc0
   loyer: 585
   personne_de_reference: 54edcd5028793d0972ec4dc2
   statut_occupation_logement: locataire_vide

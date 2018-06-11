@@ -2,9 +2,7 @@ name: personne isolée 1 enft salariée hébergement à titre gratuit
 keywords:
 - recette
 - rsa
-"description": "Test créé à partir d'un dossier de demande de (RSA, APL…) : \nCes paramètres (ressources non déclarables,\
-  \ situation personnelle…) n'ont pas pu être capturés : \nLa différence observée provient a priori de (prestations manquantes,\
-  \ règles non prises en compte…) : "
+description: "Test créé à partir d'un dossier de demande de (RSA, APL…) : \nCes paramètres (ressources non déclarables, situation personnelle…) n'ont pas pu être capturés : \nLa différence observée provient a priori de (prestations manquantes, règles non prises en compte…) : "
 period: month:2015-09
 relative_error_margin: 0.02
 individus:

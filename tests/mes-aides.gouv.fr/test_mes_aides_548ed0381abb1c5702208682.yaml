@@ -1,20 +1,20 @@
 name: Revenus locatifs
 keywords:
-  - ass
-  - patrimoine
+- ass
+- patrimoine
 description: |
   perception de loyers supérieur au plafond de ressource : 1127.70 E
 
   Chiffres revenus imposables
   Demandeur: salaire= 1000 X 3 mois (année glissante: 12000)
-period: "month:2014-12"
+period: month:2014-12
 relative_error_margin: 0.02
 individus:
   activite: chomeur
   age: 45
   age_en_mois: 541
   ass_precondition_remplie: true
-  date_naissance: "1969-10-26"
+  date_naissance: '1969-10-26'
   chomage_brut:
     2012: 12779.023861350901
     2013-12: 1064.9186551125752
@@ -238,7 +238,7 @@ familles:
     2014-09: 0
     2014-10: 0
     2014-11: 0
-  enfants:
+  enfants: null
   paje_base:
     2013-12: 0
     2014-01: 0
@@ -269,10 +269,10 @@ familles:
     2014-11: 0
 foyers_fiscaux:
   declarants: 548ecfec7b85005902282cc4
-  personnes_a_charge:
+  personnes_a_charge: null
 menages:
   depcom: 77029
-  enfants:
+  enfants: null
   loyer: 500
   personne_de_reference: 548ecfec7b85005902282cc4
   statut_occupation_logement: locataire_vide

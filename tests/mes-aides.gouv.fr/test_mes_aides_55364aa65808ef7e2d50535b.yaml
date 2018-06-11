@@ -1,7 +1,7 @@
 name: Déduction pensions alimentaires versées
 keywords:
-  - "cmu-c/acs"
-  - pension alimentaire
+- cmu-c/acs
+- pension alimentaire
 description: |
   Plafond CMUC 1 personne = 8644
   Salaire = 8760 > plafond
@@ -9,12 +9,12 @@ description: |
   Donc droit à la CMUC
 
   Note : Propriétaire membre de la famille pour neutraliser les APL
-period: "month:2015-04"
+period: month:2015-04
 relative_error_margin: 0.02
 individus:
   age: 24
   age_en_mois: 294
-  date_naissance: "1990-10-10"
+  date_naissance: '1990-10-10'
   etudiant: 0
   id: 55364a9b01d81a812d2dfa62
   inapte_travail: 0
@@ -253,7 +253,7 @@ familles:
     2015-01: 0
     2015-02: 0
     2015-03: 0
-  enfants:
+  enfants: null
   paje_base:
     2014-04: 0
     2014-05: 0
@@ -284,10 +284,10 @@ familles:
     2015-03: 0
 foyers_fiscaux:
   declarants: 55364a9b01d81a812d2dfa62
-  personnes_a_charge:
+  personnes_a_charge: null
 menages:
   depcom: 93070
-  enfants:
+  enfants: null
   loyer: 700
   personne_de_reference: 55364a9b01d81a812d2dfa62
   statut_occupation_logement: locataire_vide

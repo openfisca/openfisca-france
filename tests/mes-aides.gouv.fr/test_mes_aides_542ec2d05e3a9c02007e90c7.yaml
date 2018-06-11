@@ -1,8 +1,8 @@
 name: Zone 3
 keywords:
-  - al
-  - location
-  - zones
+- al
+- location
+- zones
 description: |
   L	239,02
   C	53,23
@@ -21,12 +21,12 @@ description: |
   AL	256,23
 
   caf.fr : 256,24
-period: "month:2014-10"
+period: month:2014-10
 relative_error_margin: 0.02
 individus:
   age: 34
   age_en_mois: 409
-  date_naissance: "1980-08-12"
+  date_naissance: '1980-08-12'
   etudiant: 0
   id: 542ec2bc5e3a9c02007e90c6
   inapte_travail: 0
@@ -205,7 +205,7 @@ familles:
     2014-07: 0
     2014-08: 0
     2014-09: 0
-  enfants:
+  enfants: null
   paje_base:
     2013-10: 0
     2013-11: 0
@@ -236,10 +236,10 @@ familles:
     2014-09: 0
 foyers_fiscaux:
   declarants: 542ec2bc5e3a9c02007e90c6
-  personnes_a_charge:
+  personnes_a_charge: null
 menages:
   depcom: 67382
-  enfants:
+  enfants: null
   loyer: 600
   personne_de_reference: 542ec2bc5e3a9c02007e90c6
   statut_occupation_logement: locataire_vide

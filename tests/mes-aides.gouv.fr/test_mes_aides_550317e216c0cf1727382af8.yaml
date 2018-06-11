@@ -1,16 +1,16 @@
 name: Eligibilité si chômeur indemnisé en fin de droit
 keywords:
-  - ass
-  - eligibilité
+- ass
+- eligibilité
 description: "Le demandeur a perçu une ARE jusqu'au mois précédent mais est en fin de droit, il a décoché la case \"je continuerai à percevoir cette ressource\" : éligible à l'ASS"
-period: "month:2015-03"
+period: month:2015-03
 relative_error_margin: 0.02
 individus:
   activite: chomeur
   age: 34
   age_en_mois: 415
   ass_precondition_remplie: true
-  date_naissance: "1980-08-12"
+  date_naissance: '1980-08-12'
   chomage_brut:
     2013: 26485.023546841254
     2014-03: 2207.085295570104
@@ -217,7 +217,7 @@ familles:
     2014-12: 0
     2015-01: 0
     2015-02: 0
-  enfants:
+  enfants: null
   paje_base:
     2014-03: 0
     2014-04: 0
@@ -247,10 +247,10 @@ familles:
     2015-02: 0
 foyers_fiscaux:
   declarants: 550317df8cf4202127bc0ec2
-  personnes_a_charge:
+  personnes_a_charge: null
 menages:
   depcom: 67482
-  enfants:
+  enfants: null
   personne_de_reference: 550317df8cf4202127bc0ec2
   statut_occupation_logement: loge_gratuitement
 output_variables:

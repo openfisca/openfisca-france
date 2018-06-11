@@ -1,4 +1,4 @@
-- period: "2016-03"
+- period: 2016-03
   name: CDI, pas de prime de fin de contrat
   relative_error_margin: 0.01
   input_variables:
@@ -13,7 +13,7 @@
     assiette_cotisations_sociales: 1467
     participation_effort_construction: -1467 * 0.0045
 
-- period: "2016-03"
+- period: 2016-03
   name: CDD, prime de 10% non activée
   relative_error_margin: 0.01
   input_variables:
@@ -29,7 +29,7 @@
     indemnite_fin_contrat: 0
     participation_effort_construction: -1467 * 0.0045
 
-- period: "2016-03"
+- period: 2016-03
   name: CDD, prime de 10% activée
   relative_error_margin: 0.01
   input_variables:

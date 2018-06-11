@@ -1,8 +1,8 @@
-- period: "2012"
-  name: "RSA célibataire, retrait_brute = 1500 * 12"
+- period: '2012'
+  name: RSA célibataire, retrait_brute = 1500 * 12
   relative_error_margin: 0.01
   input_variables:
-    date_naissance: "1945-01-01"  # 67 ans
+    date_naissance: '1945-01-01'  # 67 ans
     retraite_brute:
       2010-01: 1500
       2010-02: 1500
@@ -45,7 +45,7 @@
       2011: 0
       2012: 0
     statut_occupation_logement:
-      "2012-01": proprietaire  # Propriétaire (non accédant) du logement
+      2012-01: proprietaire    # Propriétaire (non accédant) du logement
   output_variables:
     revenus_du_travail:
       2012: 0
@@ -68,12 +68,12 @@
     revenu_disponible:
       2012: 16812 - 528
     aides_logement:
-      "2012": 0
+      '2012': 0
 
-- period: "2012"
-  name: "RSA célibataire, f2ee = 1500 * 12"
+- period: '2012'
+  name: RSA célibataire, f2ee = 1500 * 12
   input_variables:
-    date_naissance: "1945-01-01"  # 67 ans
+    date_naissance: '1945-01-01'  # 67 ans
     f2ee:
       2010: 1500 * 12
       2011: 1500 * 12
@@ -83,7 +83,7 @@
       2011: 0
       2012: 0
     statut_occupation_logement:
-      "2012-01": proprietaire
+      2012-01: proprietaire
   output_variables:
     revenus_du_travail:
       2012: 0
@@ -118,13 +118,13 @@
     revenu_disponible:
       2012: 10530
     aides_logement:
-      "2012": 0
+      '2012': 0
 
-- period: "2012"
-  name: "RSA célibataire, f2dc = 1500 * 12"
+- period: '2012'
+  name: RSA célibataire, f2dc = 1500 * 12
   relative_error_margin: 0.001
   input_variables:
-    date_naissance: "1945-01-01"  # 67 ans
+    date_naissance: '1945-01-01'  # 67 ans
     f2dc:
       2010: 2500 * 12
       2011: 2500 * 12
@@ -134,7 +134,7 @@
       2011: 0
       2012: 0
     statut_occupation_logement:
-      "2012-01": proprietaire
+      2012-01: proprietaire
   output_variables:
     revenus_du_travail:
       2012: 0
@@ -169,4 +169,4 @@
     revenu_disponible:
       2012: 2500 * 12 * (1 - 0.175) - 1019
     aides_logement:
-      "2012": 0
+      '2012': 0

@@ -1,6 +1,6 @@
 reference: ipp
-moyenne_des_produits_de_base_de_l_office_des_3_dernieres_annees_limitee_a_3_moyenne_generale_des_produits_des_offices_de_france:
-  reference: ipp
+? moyenne_des_produits_de_base_de_l_office_des_3_dernieres_annees_limitee_a_3_moyenne_generale_des_produits_des_offices_de_france
+: reference: ipp
   colmar_metz:
     reference: ipp
     unit: /1

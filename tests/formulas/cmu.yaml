@@ -8,7 +8,7 @@
   output_variables:
     cmu_forfait_logement_al: 12 * 155.83
 
-- name: "CMU-C: Si les AL sont inférieures, au forfait, on retient le montant réel pour le forfait logement"
+- name: 'CMU-C: Si les AL sont inférieures, au forfait, on retient le montant réel pour le forfait logement'
   period: 2016-01
   relative_error_margin: 0.05
   input_variables:
@@ -19,7 +19,7 @@
     cmu_forfait_logement_al: 12 * 50
 
 
-- name: "CMU-C: Pas de CMU si demandeur moins de 25 ans à charge des parents"
+- name: 'CMU-C: Pas de CMU si demandeur moins de 25 ans à charge des parents'
   period: 2016-01
   relative_error_margin: 0.05
   input_variables:
@@ -30,7 +30,7 @@
     cmu_acs_eligibilite: false
     cmu_c: false
 
-- name: "CMU-C: Pas de CMU si demandeur moins de 25 ans et habite chez ses parents"
+- name: 'CMU-C: Pas de CMU si demandeur moins de 25 ans et habite chez ses parents'
   period: 2016-01
   relative_error_margin: 0.05
   input_variables:
@@ -41,7 +41,7 @@
     cmu_acs_eligibilite: false
     cmu_c: false
 
-- name: "CMU-C: Pas de CMU si demandeur moins de 25 ans et reçoit une pension alimentaire"
+- name: 'CMU-C: Pas de CMU si demandeur moins de 25 ans et reçoit une pension alimentaire'
   period: 2016-01
   relative_error_margin: 0.05
   input_variables:
@@ -52,7 +52,7 @@
     cmu_acs_eligibilite: false
     cmu_c: false
 
-- name: "CMU-C: CMU ok si demandeur moins de 25 ans et indépendant fiscalement, géographiquement, et financièrement"
+- name: 'CMU-C: CMU ok si demandeur moins de 25 ans et indépendant fiscalement, géographiquement, et financièrement'
   period: 2016-01
   relative_error_margin: 0.05
   input_variables:
@@ -81,35 +81,35 @@
   output_variables:
     acs: 200
 
-- name: "CMU: Plafonds pour 3 enfants et 1 parent"
+- name: 'CMU: Plafonds pour 3 enfants et 1 parent'
   period: 2018-01
   individus:
-    - id: 1
-    - id: 2
-    - id: 3
-    - id: 4
+  - id: 1
+  - id: 2
+  - id: 3
+  - id: 4
   familles:
     parents: [1]
     enfants: [2, 3, 4]
   output_variables:
     cmu_c_plafond: 18318
 
-- name: "CMU: Plafonds pour 4 enfants dont 3 en garde alternée et 1 parent"
+- name: 'CMU: Plafonds pour 4 enfants dont 3 en garde alternée et 1 parent'
   period: 2018-01
   individus:
-    - id: 1
-    - id: 2
-      date_naissance: '2010-01-01'
-      garde_alternee: true
-    - id: 3
-      date_naissance: '2010-10-01'
-      garde_alternee: true
-    - id: 4
-      date_naissance: '2011-08-01'
-      garde_alternee: false
-    - id: 5
-      date_naissance: '2012-04-01'
-      garde_alternee: true
+  - id: 1
+  - id: 2
+    date_naissance: '2010-01-01'
+    garde_alternee: true
+  - id: 3
+    date_naissance: '2010-10-01'
+    garde_alternee: true
+  - id: 4
+    date_naissance: '2011-08-01'
+    garde_alternee: false
+  - id: 5
+    date_naissance: '2012-04-01'
+    garde_alternee: true
   familles:
     parents: [1]
     enfants: [2, 3, 4, 5]

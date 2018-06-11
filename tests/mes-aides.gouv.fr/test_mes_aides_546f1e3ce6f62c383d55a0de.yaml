@@ -1,14 +1,14 @@
 name: Pas d'éligibilité si pas demandeur d'emploi
 keywords:
-  - ass
-  - eligibilité
-description:
-period: "month:2014-11"
+- ass
+- eligibilité
+description: null
+period: month:2014-11
 relative_error_margin: 0.02
 individus:
   age: 34
   age_en_mois: 411
-  date_naissance: "1980-08-12"
+  date_naissance: '1980-08-12'
   etudiant: 0
   id: 546f1e1548f57f393d6d1e32
   inapte_travail: 0
@@ -187,7 +187,7 @@ familles:
     2014-08: 0
     2014-09: 0
     2014-10: 0
-  enfants:
+  enfants: null
   paje_base:
     2013-11: 0
     2013-12: 0
@@ -217,10 +217,10 @@ familles:
     2014-10: 0
 foyers_fiscaux:
   declarants: 546f1e1548f57f393d6d1e32
-  personnes_a_charge:
+  personnes_a_charge: null
 menages:
   depcom: 67482
-  enfants:
+  enfants: null
   personne_de_reference: 546f1e1548f57f393d6d1e32
   statut_occupation_logement: loge_gratuitement
 output_variables:

@@ -1,15 +1,15 @@
-name: "Application eval forfaitaire pour moins de 25 ans si salaire m-1 > plafond"
+name: Application eval forfaitaire pour moins de 25 ans si salaire m-1 > plafond
 keywords:
-  - al
-  - base ressources
-  - eval forfaitaire
+- al
+- base ressources
+- eval forfaitaire
 description: La personne déclare un salaire > 1273 euros, on applique donc bien l'eval forfaitaire même si elle a moins de 25 ans.
-period: "month:2015-02"
+period: month:2015-02
 relative_error_margin: 0.02
 individus:
   age: 22
   age_en_mois: 270
-  date_naissance: "1992-08-12"
+  date_naissance: '1992-08-12'
   etudiant: 0
   id: 54e5b03b1b7dba5b403a097c
   inapte_travail: 0
@@ -233,7 +233,7 @@ familles:
     2014-11: 0
     2014-12: 0
     2015-01: 0
-  enfants:
+  enfants: null
   paje_base:
     2014-02: 0
     2014-03: 0
@@ -264,10 +264,10 @@ familles:
     2015-01: 0
 foyers_fiscaux:
   declarants: 54e5b03b1b7dba5b403a097c
-  personnes_a_charge:
+  personnes_a_charge: null
 menages:
   depcom: 75111
-  enfants:
+  enfants: null
   loyer: 1000
   personne_de_reference: 54e5b03b1b7dba5b403a097c
   statut_occupation_logement: locataire_vide

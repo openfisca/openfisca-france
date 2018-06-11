@@ -1,8 +1,8 @@
 name: Pas d'eval forfaitaire pour une personne qui touche l'AAH
 keywords:
-  - al
-  - base ressources
-  - eval forfaitaire
+- al
+- base ressources
+- eval forfaitaire
 description: |
   Salaire en m-1 et RNC n-2 = 0, on n'applique pas l'évaluation forfaitaire car bénéficiaire de l'AAH, donc R = 0.
 
@@ -21,7 +21,7 @@ description: |
   P1	0
   Pp	34,73
   AL	309,56
-period: "month:2015-01"
+period: month:2015-01
 relative_error_margin: 0.02
 individus:
   aah:
@@ -40,7 +40,7 @@ individus:
     2015-01: 200
   age: 35
   age_en_mois: 426
-  date_naissance: "1979-07-12"
+  date_naissance: '1979-07-12'
   chomage_imposable:
     2013: 0
   etudiant: 0
@@ -268,7 +268,7 @@ familles:
     2014-10: 0
     2014-11: 0
     2014-12: 0
-  enfants:
+  enfants: null
   paje_base:
     2014-01: 0
     2014-02: 0
@@ -301,12 +301,12 @@ foyers_fiscaux:
   declarants: 54be86a5d337b5d372377c27
   pensions_alimentaires_versees:
     2013: 0
-  personnes_a_charge:
+  personnes_a_charge: null
   rfr:
     2013: 9570
 menages:
   depcom: 75114
-  enfants:
+  enfants: null
   loyer: 750
   personne_de_reference: 54be86a5d337b5d372377c27
   statut_occupation_logement: locataire_vide

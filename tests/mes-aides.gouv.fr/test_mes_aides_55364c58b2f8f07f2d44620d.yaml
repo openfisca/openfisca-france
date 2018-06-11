@@ -1,20 +1,20 @@
 name: Personne seule versant une pension alimentaire
 keywords:
-  - ass
-  - pension alimentaire
+- ass
+- pension alimentaire
 description: |
   Salaire 700 euros / mois
   Pension alimentaire versée : 100 euros /mois
   Donc revenus 700 - 100 = 600 euros < 644,4 (plafonds bas ASS)
   donc la personne a droit a une ASS complète = 487,50 euros
-period: "month:2015-04"
+period: month:2015-04
 relative_error_margin: 0.02
 individus:
   activite: chomeur
   age: 24
   age_en_mois: 294
   ass_precondition_remplie: true
-  date_naissance: "1990-10-10"
+  date_naissance: '1990-10-10'
   chomage_imposable:
     2013: 0
   etudiant: 0
@@ -256,7 +256,7 @@ familles:
     2015-01: 0
     2015-02: 0
     2015-03: 0
-  enfants:
+  enfants: null
   paje_base:
     2014-04: 0
     2014-05: 0
@@ -289,11 +289,11 @@ foyers_fiscaux:
   declarants: 55364c4bc03d26772db577ac
   pensions_alimentaires_versees:
     2013: 0
-  personnes_a_charge:
-  rfr:
+  personnes_a_charge: null
+  rfr: null
 menages:
   depcom: 93070
-  enfants:
+  enfants: null
   loyer: 600
   personne_de_reference: 55364c4bc03d26772db577ac
   statut_occupation_logement: locataire_vide

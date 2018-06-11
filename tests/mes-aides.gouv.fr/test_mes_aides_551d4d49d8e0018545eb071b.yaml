@@ -3,7 +3,7 @@ keywords:
 - cmu-c/acs
 - enfants à charge
 - garde alternée
-"description": |-
+description: |-
   Plafond d'une personne seule avec deux enfants en garde alternée = 12102,33 euros
   Salaire = 1012 * 12 = 12 150 euros > plafond CMUC donc ACS
 period: month:2015-04

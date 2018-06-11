@@ -1,12 +1,12 @@
 name: Chômage partiel
 keywords: rsa
 description: Il y a une pente à appliquer sur les indemnités de chômage partiel
-period: "month:2014-08"
+period: month:2014-08
 relative_error_margin: 0.02
 individus:
   age: 34
   age_en_mois: 415
-  date_naissance: "1980-01-01"
+  date_naissance: '1980-01-01'
   enceinte: false
   etudiant: 0
   id: 53fc4c08b7e0050200ee1b02
@@ -210,7 +210,7 @@ familles:
     2014-05: 0
     2014-06: 0
     2014-07: 0
-  enfants:
+  enfants: null
   paje_base:
     2013-08: 0
     2013-09: 0
@@ -240,9 +240,9 @@ familles:
     2014-07: 0
 foyers_fiscaux:
   declarants: 53fc4c08b7e0050200ee1b02
-  personnes_a_charge:
+  personnes_a_charge: null
 menages:
-  enfants:
+  enfants: null
   personne_de_reference: 53fc4c08b7e0050200ee1b02
   statut_occupation_logement: loge_gratuitement
 output_variables:

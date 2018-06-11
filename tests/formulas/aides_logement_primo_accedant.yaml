@@ -1,4 +1,4 @@
-- name: "Aides logements - Primo-accédants - Zone vers plafonds mensualité"
+- name: Aides logements - Primo-accédants - Zone vers plafonds mensualité
   description: Aides au logement de base pour les primo-accédants - Calcul intermédiaire
   period: 2017-08
   relative_error_margin: 0.001
@@ -8,7 +8,7 @@
   output_variables:
     aides_logement_primo_accedant_plafond_mensualite: 311.23
 
-- name: "Aides logements - Primo-accédants - Calcul intermédiaire - CAF Montauban"
+- name: Aides logements - Primo-accédants - Calcul intermédiaire - CAF Montauban
   description: Aides au logement de base pour les primo-accédants - Calcul intermédiaire - CAF Montauban
   period: 2017-08
   relative_error_margin: 0.001
@@ -16,13 +16,13 @@
     loyer: 500
     depcom: 82121
   output_variables:
-    zone_apl: "zone_3"
+    zone_apl: zone_3
     aide_logement_charges: 53.27
     aides_logement_primo_accedant_nb_part: 1.2
     aides_logement_primo_accedant_k: 0.5839
     aides_logement_primo_accedant_plafond_mensualite: 256.14
 
-- name: "Aides logements - Primo-accédants - CAF Montauban"
+- name: Aides logements - Primo-accédants - CAF Montauban
   description: Aides au logement de base pour les primo-accédants - CAF Montauban
   period: 2017-08
   relative_error_margin: 0.05
@@ -32,18 +32,18 @@
   output_variables:
     aides_logement_primo_accedant: 95
 
-- name: "Aides logements - Primo-accédant avec 10000 euros par mois"
+- name: Aides logements - Primo-accédant avec 10000 euros par mois
   period: 2016-09
   relative_error_margin: 0.01
   familles:
-    parents: ["parent1"]
+    parents: [parent1]
     aide_logement_base_ressources: 120000
   menages:
     zone_apl: zone_1
     loyer: 5172
   individus:
-    - id: "parent1"
-      age: 40
+  - id: parent1
+    age: 40
   output_variables:
     aides_logement_primo_accedant: 0
 
@@ -51,23 +51,23 @@
   absolute_error_margin: 0.01
   period: 2018-01
   individus:
-    - date_naissance:
-        2018-01: '1985-03-21'
-      id: demandeur
+  - date_naissance:
+      2018-01: '1985-03-21'
+    id: demandeur
   familles:
-    - parents:
-        - demandeur
+  - parents:
+    - demandeur
   foyers_fiscaux:
-    - declarants:
-        - demandeur
+  - declarants:
+    - demandeur
   menages:
-    - loyer:
-        2018-01: 0
-      depcom:
-        2018-01: '55039'
-      statut_occupation_logement:
-        2018-01: primo_accedant
-      personne_de_reference: demandeur
-      enfants: []
+  - loyer:
+      2018-01: 0
+    depcom:
+      2018-01: '55039'
+    statut_occupation_logement:
+      2018-01: primo_accedant
+    personne_de_reference: demandeur
+    enfants: []
   output_variables:
     aide_logement: 0

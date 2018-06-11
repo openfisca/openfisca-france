@@ -8,32 +8,32 @@ description: |
   Montant net : 100,58 - 0,50 = 100,08 €
 
   Remarque : test à mettre à jour quand le montant de la BMAF au 1er avril 2015 sera connue.
-period: "month:2015-04"
+period: month:2015-04
 relative_error_margin: 0.02
 individus:
-  - age: 35
-    age_en_mois: 423
-    date_naissance: "1980-01-01"
-    etudiant: 0
-    id: 550ef8772f7d278e2ff97b9d
-    inapte_travail: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 15
-    age_en_mois: 183
-    date_naissance: "2000-01-01"
-    etudiant: 0
-    id: 550ef8772f7d278e2ff97b9c
-    inapte_travail: 0
-    handicap: 0
-    scolarite: college
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
+- age: 35
+  age_en_mois: 423
+  date_naissance: '1980-01-01'
+  etudiant: 0
+  id: 550ef8772f7d278e2ff97b9d
+  inapte_travail: 0
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 15
+  age_en_mois: 183
+  date_naissance: '2000-01-01'
+  etudiant: 0
+  id: 550ef8772f7d278e2ff97b9c
+  inapte_travail: 0
+  handicap: 0
+  scolarite: college
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
 familles:
   acs:
     2014-04: 0

@@ -1,14 +1,14 @@
 name: Pas d'ASI si pas retraité
 keywords:
-  - asi
-  - eligibilité
-description:
-period: "month:2014-12"
+- asi
+- eligibilité
+description: null
+period: month:2014-12
 relative_error_margin: 0.02
 individus:
   age: 34
   age_en_mois: 411
-  date_naissance: "1980-08-12"
+  date_naissance: '1980-08-12'
   etudiant: 0
   id: 5481e7029f3789cc06d512f5
   inapte_travail: 0
@@ -187,7 +187,7 @@ familles:
     2014-09: 0
     2014-10: 0
     2014-11: 0
-  enfants:
+  enfants: null
   paje_base:
     2013-12: 0
     2014-01: 0
@@ -218,10 +218,10 @@ familles:
     2014-11: 0
 foyers_fiscaux:
   declarants: 5481e7029f3789cc06d512f5
-  personnes_a_charge:
+  personnes_a_charge: null
 menages:
   depcom: 64011
-  enfants:
+  enfants: null
   loyer: 100
   personne_de_reference: 5481e7029f3789cc06d512f5
   statut_occupation_logement: locataire_vide

@@ -1,12 +1,12 @@
 name: Chômeur seul, pension alimentaire
 keywords: rsa
-description:
-period: "month:2014-07"
+description: null
+period: month:2014-07
 relative_error_margin: 0.02
 individus:
   age: 34
   age_en_mois: 414
-  date_naissance: "1980-01-01"
+  date_naissance: '1980-01-01'
   enceinte: false
   etudiant: 0
   id: 53d79bbcf6aa390200a6cd16
@@ -192,7 +192,7 @@ familles:
     2014-04: 0
     2014-05: 0
     2014-06: 0
-  enfants:
+  enfants: null
   paje_base:
     2013-07: 0
     2013-08: 0
@@ -222,9 +222,9 @@ familles:
     2014-06: 0
 foyers_fiscaux:
   declarants: 53d79bbcf6aa390200a6cd16
-  personnes_a_charge:
+  personnes_a_charge: null
 menages:
-  enfants:
+  enfants: null
   personne_de_reference: 53d79bbcf6aa390200a6cd16
   statut_occupation_logement: loge_gratuitement
 output_variables:

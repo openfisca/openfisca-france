@@ -1,84 +1,84 @@
 name: Foyer 1 adulte 1 enfant de 4 ans < plafond montant CF majoré
 keywords:
-  - cf
-  - dom
+- cf
+- dom
 description: |
   Dans les DOM droit au CF dès  un enfant à charge de plus de 3 ans et de moins de 5 ans.
   En l'espèce droit au montant majoré du CF dans les DOM (105,78 €) car ressources inférieures au plafond applicable pour 1 enfant  à charge soit 12 154 € par an.
-period: "month:2015-02"
+period: month:2015-02
 relative_error_margin: 0.02
 individus:
-  - age: 43
-    age_en_mois: 517
-    date_naissance: "1972-01-09"
-    chomage_imposable:
-      2013: 0
-    etudiant: 0
-    id: 54ecaef328793d0972ec4c8c
-    inapte_travail: 0
-    handicap: 0
-    pensions_alimentaires_percues:
-      2013: 0
-    retraite_imposable:
-      2013: 0
-    salaire_de_base:
-      2014-02: 1282.051282051282
-      2014-03: 1282.051282051282
-      2014-04: 1282.051282051282
-      2014-05: 1282.051282051282
-      2014-06: 1282.051282051282
-      2014-07: 1282.051282051282
-      2014-08: 1282.051282051282
-      2014-09: 1282.051282051282
-      2014-10: 1282.051282051282
-      2014-11: 1282.051282051282
-      2014-12: 1282.051282051282
-      2015-01: 1282.051282051282
-      2015-02: 1282.051282051282
-    salaire_imposable:
-      2013: 12000
-      2014-02: 1036.5288461538462
-      2014-03: 1036.5288461538462
-      2014-04: 1036.5288461538462
-      2014-05: 1036.5288461538462
-      2014-06: 1036.5288461538462
-      2014-07: 1036.5288461538462
-      2014-08: 1036.5288461538462
-      2014-09: 1036.5288461538462
-      2014-10: 1036.5288461538462
-      2014-11: 1036.5288461538462
-      2014-12: 1036.5288461538462
-      2015-01: 1036.5288461538462
-      2015-02: 1036.5288461538462
-    salaire_net:
-      2014-02: 1000
-      2014-03: 1000
-      2014-04: 1000
-      2014-05: 1000
-      2014-06: 1000
-      2014-07: 1000
-      2014-08: 1000
-      2014-09: 1000
-      2014-10: 1000
-      2014-11: 1000
-      2014-12: 1000
-      2015-01: 1000
-      2015-02: 1000
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 4
-    age_en_mois: 49
-    date_naissance: "2011-01-02"
-    etudiant: 0
-    id: 54ecaef328793d0972ec4c8b
-    inapte_travail: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
+- age: 43
+  age_en_mois: 517
+  date_naissance: '1972-01-09'
+  chomage_imposable:
+    2013: 0
+  etudiant: 0
+  id: 54ecaef328793d0972ec4c8c
+  inapte_travail: 0
+  handicap: 0
+  pensions_alimentaires_percues:
+    2013: 0
+  retraite_imposable:
+    2013: 0
+  salaire_de_base:
+    2014-02: 1282.051282051282
+    2014-03: 1282.051282051282
+    2014-04: 1282.051282051282
+    2014-05: 1282.051282051282
+    2014-06: 1282.051282051282
+    2014-07: 1282.051282051282
+    2014-08: 1282.051282051282
+    2014-09: 1282.051282051282
+    2014-10: 1282.051282051282
+    2014-11: 1282.051282051282
+    2014-12: 1282.051282051282
+    2015-01: 1282.051282051282
+    2015-02: 1282.051282051282
+  salaire_imposable:
+    2013: 12000
+    2014-02: 1036.5288461538462
+    2014-03: 1036.5288461538462
+    2014-04: 1036.5288461538462
+    2014-05: 1036.5288461538462
+    2014-06: 1036.5288461538462
+    2014-07: 1036.5288461538462
+    2014-08: 1036.5288461538462
+    2014-09: 1036.5288461538462
+    2014-10: 1036.5288461538462
+    2014-11: 1036.5288461538462
+    2014-12: 1036.5288461538462
+    2015-01: 1036.5288461538462
+    2015-02: 1036.5288461538462
+  salaire_net:
+    2014-02: 1000
+    2014-03: 1000
+    2014-04: 1000
+    2014-05: 1000
+    2014-06: 1000
+    2014-07: 1000
+    2014-08: 1000
+    2014-09: 1000
+    2014-10: 1000
+    2014-11: 1000
+    2014-12: 1000
+    2015-01: 1000
+    2015-02: 1000
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 4
+  age_en_mois: 49
+  date_naissance: '2011-01-02'
+  etudiant: 0
+  id: 54ecaef328793d0972ec4c8b
+  inapte_travail: 0
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
 familles:
   acs:
     2014-02: 0
@@ -284,7 +284,7 @@ foyers_fiscaux:
   pensions_alimentaires_versees:
     2013: 0
   personnes_a_charge: 54ecaef328793d0972ec4c8b
-  rfr:
+  rfr: null
 menages:
   depcom: 97105
   enfants: 54ecaef328793d0972ec4c8b

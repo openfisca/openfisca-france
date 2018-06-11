@@ -1,5 +1,4 @@
-description: Coefficient multiplicateur du smic horaire brut au 31/12/n-2 (R. 351-7)
-  pour un salarié
+description: Coefficient multiplicateur du smic horaire brut au 31/12/n-2 (R. 351-7) pour un salarié
 reference: openfisca
 values:
   2007-07-01:

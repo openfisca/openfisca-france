@@ -1,14 +1,14 @@
-name: "8_Personne seule en outre-mer"
+name: 8_Personne seule en outre-mer
 keywords:
-  - dom
-  - rsa
-description:
-period: "month:2014-11"
+- dom
+- rsa
+description: null
+period: month:2014-11
 relative_error_margin: 0.02
 individus:
   age: 28
   age_en_mois: 346
-  date_naissance: "1986-01-01"
+  date_naissance: '1986-01-01'
   etudiant: 0
   id: 545a4616124c302f2a640ddf
   inapte_travail: 0
@@ -187,7 +187,7 @@ familles:
     2014-08: 0
     2014-09: 0
     2014-10: 0
-  enfants:
+  enfants: null
   paje_base:
     2013-11: 0
     2013-12: 0
@@ -217,10 +217,10 @@ familles:
     2014-10: 0
 foyers_fiscaux:
   declarants: 545a4616124c302f2a640ddf
-  personnes_a_charge:
+  personnes_a_charge: null
 menages:
   depcom: 97209
-  enfants:
+  enfants: null
   personne_de_reference: 545a4616124c302f2a640ddf
   statut_occupation_logement: loge_gratuitement
 output_variables:

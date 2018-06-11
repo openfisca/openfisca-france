@@ -1,53 +1,53 @@
 name: 29_Personne seule, 1 enfant > 3 ans, RSA non majoré
 keywords:
-  - majoration
-  - rsa
+- majoration
+- rsa
 description: |
   La personne perçoit une pension alimentaire > ASF (100 € mensuels), donc elle n'ouvre pas droit à l'ASF.
   La personne perçoit du RSA non majoré : elle n'ouvre plus droit au RSA majoré (enfant > 3 ans).
   Soit un RSA de : 641,72 - 100 = 541,72 €
-period: "month:2014-11"
+period: month:2014-11
 relative_error_margin: 0.02
 individus:
-  - activite: chomeur
-    age: 28
-    age_en_mois: 346
-    ass_precondition_remplie: false
-    date_naissance: "1986-01-01"
-    etudiant: 0
-    id: 546b3d12fc9936ff63f85714
-    inapte_travail: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 6
-    age_en_mois: 82
-    date_naissance: "2008-01-01"
-    etudiant: 0
-    id: 546b3d12fc9936ff63f85713
-    inapte_travail: 0
-    handicap: 0
-    pensions_alimentaires_percues:
-      2012: 1200
-      2013-11: 100
-      2013-12: 100
-      2014-01: 100
-      2014-02: 100
-      2014-03: 100
-      2014-04: 100
-      2014-05: 100
-      2014-06: 100
-      2014-07: 100
-      2014-08: 100
-      2014-09: 100
-      2014-10: 100
-      2014-11: 100
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
+- activite: chomeur
+  age: 28
+  age_en_mois: 346
+  ass_precondition_remplie: false
+  date_naissance: '1986-01-01'
+  etudiant: 0
+  id: 546b3d12fc9936ff63f85714
+  inapte_travail: 0
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 6
+  age_en_mois: 82
+  date_naissance: '2008-01-01'
+  etudiant: 0
+  id: 546b3d12fc9936ff63f85713
+  inapte_travail: 0
+  handicap: 0
+  pensions_alimentaires_percues:
+    2012: 1200
+    2013-11: 100
+    2013-12: 100
+    2014-01: 100
+    2014-02: 100
+    2014-03: 100
+    2014-04: 100
+    2014-05: 100
+    2014-06: 100
+    2014-07: 100
+    2014-08: 100
+    2014-09: 100
+    2014-10: 100
+    2014-11: 100
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
 familles:
   acs:
     2013-11: 0

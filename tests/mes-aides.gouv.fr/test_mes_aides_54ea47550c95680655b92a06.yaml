@@ -1,7 +1,7 @@
 name: Chômeur seul locataire
 keywords:
-  - al
-  - caf.fr
+- al
+- caf.fr
 description: |
   Zone 2
 
@@ -22,14 +22,14 @@ description: |
   AL	172,13
 
   caf.fr : 173,72
-period: "month:2015-02"
+period: month:2015-02
 relative_error_margin: 0.02
 individus:
   activite: chomeur
   age: 34
   age_en_mois: 414
   ass_precondition_remplie: false
-  date_naissance: "1980-08-12"
+  date_naissance: '1980-08-12'
   chomage_imposable:
     2013: 8580
   chomage_brut:
@@ -244,7 +244,7 @@ familles:
     2014-11: 0
     2014-12: 0
     2015-01: 0
-  enfants:
+  enfants: null
   paje_base:
     2014-02: 0
     2014-03: 0
@@ -277,11 +277,11 @@ foyers_fiscaux:
   declarants: 54ea473f0f7afafd54c4d64d
   pensions_alimentaires_versees:
     2013: 0
-  personnes_a_charge:
-  rfr:
+  personnes_a_charge: null
+  rfr: null
 menages:
   depcom: 44069
-  enfants:
+  enfants: null
   loyer: 329
   personne_de_reference: 54ea473f0f7afafd54c4d64d
   statut_occupation_logement: locataire_vide

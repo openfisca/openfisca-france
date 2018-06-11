@@ -1,14 +1,14 @@
 name: Personne seule touchant une AL
 keywords:
-  - "cmu-c/acs"
-  - forfait logement
+- cmu-c/acs
+- forfait logement
 description: Si l'APL est inférieure au forfait logement alors c'est l'APL qui est prise en compte
-period: "month:2015-07"
+period: month:2015-07
 relative_error_margin: 0.02
 individus:
   age: 55
   age_en_mois: 664
-  date_naissance: "1960-03-02"
+  date_naissance: '1960-03-02'
   etudiant: 0
   id: 559563bafdd7360730df8fe7
   inapte_travail: 0
@@ -230,7 +230,7 @@ familles:
     2015-04: 0
     2015-05: 0
     2015-06: 0
-  enfants:
+  enfants: null
   paje_base:
     2014-07: 0
     2014-08: 0
@@ -261,10 +261,10 @@ familles:
     2015-06: 0
 foyers_fiscaux:
   declarants: 559563bafdd7360730df8fe7
-  personnes_a_charge:
+  personnes_a_charge: null
 menages:
   depcom: 75112
-  enfants:
+  enfants: null
   loyer: 500
   personne_de_reference: 559563bafdd7360730df8fe7
   statut_occupation_logement: locataire_vide

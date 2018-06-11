@@ -1,4 +1,4 @@
-- name: "Célibataire auto-entrepreneur non salarié - ebic_impv"
+- name: Célibataire auto-entrepreneur non salarié - ebic_impv
   description: |
     cf http://www.experts-comptables.fr/csoec/Focus-bases-documentaires/Auto-Entrepreneur/Simulateur-Auto-Entrepreneur-version-entreprise
   period: 2013
@@ -8,7 +8,7 @@
   output_variables:
     microsocial: 200  # TODO: BUGGY result
 
-- name: "Célibataire auto-entrepreneur non salarié - ebic_imps"
+- name: Célibataire auto-entrepreneur non salarié - ebic_imps
   description: |
     cf http://www.experts-comptables.fr/csoec/Focus-bases-documentaires/Auto-Entrepreneur/Simulateur-Auto-Entrepreneur-version-entreprise
   period: 2013
@@ -19,7 +19,7 @@
     rev_microsocial: 20000 - 4920
     microsocial: 340
 
-- name: "Célibataire auto-entrepreneur non salarié - ebnc_impo"
+- name: Célibataire auto-entrepreneur non salarié - ebnc_impo
   description: |
     cf http://www.experts-comptables.fr/csoec/Focus-bases-documentaires/Auto-Entrepreneur/Simulateur-Auto-Entrepreneur-version-entreprise
   period: 2013
@@ -30,33 +30,33 @@
     rev_microsocial: 20000 - 4920
     microsocial: 440
 
-- name: "Couple d'auto-entrepreneurs non salariés, 2 enfants - ebnc_impo"
+- name: Couple d'auto-entrepreneurs non salariés, 2 enfants - ebnc_impo
   description: |
     cf http://www.experts-comptables.fr/csoec/Focus-bases-documentaires/Auto-Entrepreneur/Simulateur-Auto-Entrepreneur-version-entreprise
   period: 2013
   absolute_error_margin: 0.5
   familles:
-    parents: ["parent1", "parent2"]
-    enfants: ["enfant1", "enfant2"]
+    parents: [parent1, parent2]
+    enfants: [enfant1, enfant2]
   foyers_fiscaux:
-    declarants: ["parent1", "parent2"]
-    personnes_a_charge: ["enfant1", "enfant2"]
+    declarants: [parent1, parent2]
+    personnes_a_charge: [enfant1, enfant2]
   menages:
-    personne_de_reference: "parent1"
-    conjoint: "parent2"
-    enfants: ["enfant1", "enfant2"]
+    personne_de_reference: parent1
+    conjoint: parent2
+    enfants: [enfant1, enfant2]
     zone_apl: zone_1
   individus:
-    - id: "parent1"
-      date_naissance: "1972-01-01"
-      ebic_impv: 20000
-    - id: "parent2"
-      date_naissance: "1972-01-01"
-      ebic_impv: 10000
-    - id: "enfant1"
-      date_naissance: "2000-01-01"
-    - id: "enfant2"
-      date_naissance: "2009-01-01"
+  - id: parent1
+    date_naissance: '1972-01-01'
+    ebic_impv: 20000
+  - id: parent2
+    date_naissance: '1972-01-01'
+    ebic_impv: 10000
+  - id: enfant1
+    date_naissance: '2000-01-01'
+  - id: enfant2
+    date_naissance: '2009-01-01'
   output_variables:
     # rev_microsocial: (20000 + 10000) - (2820 + 1410) # TODO?
     microsocial: 200 + 100

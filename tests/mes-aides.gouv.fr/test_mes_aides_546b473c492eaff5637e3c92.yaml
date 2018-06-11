@@ -1,21 +1,21 @@
-name: "Personne éligible au RSA socle : éligibiité sans condition de ressources"
+name: 'Personne éligible au RSA socle : éligibiité sans condition de ressources'
 keywords:
-  - "cmu-c"
-  - "cmu-c/acs"
+- cmu-c
+- cmu-c/acs
 description: |
   Le bénéficiaire du RSA socle a droit à la CMU-C peu importe ses ressources déclarées en année glissante.
   Cf. L861-2 du CSS : http://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006745379
 
   Dans le cas testé, le demandeur déclare 200 euros par mois de salaire sur les 3 derniers mois et est donc éligible à la fois au RSA socle et au RSA activité.
   Il déclare également 20000 euros de salaires sur l'année glissante, ce qui devrait en théorie lui enlever le droit à la CMU-C. Mais la fraction de RSA socle dont il dispose lui octroie automatiquement le droit à la CMU-C.
-period: "month:2014-11"
+period: month:2014-11
 relative_error_margin: 0.02
 individus:
   activite: chomeur
   age: 28
   age_en_mois: 346
   ass_precondition_remplie: false
-  date_naissance: "1986-01-01"
+  date_naissance: '1986-01-01'
   etudiant: 0
   id: 546b466cba32fff66335d33d
   inapte_travail: 0
@@ -239,7 +239,7 @@ familles:
     2014-08: 0
     2014-09: 0
     2014-10: 0
-  enfants:
+  enfants: null
   paje_base:
     2013-11: 0
     2013-12: 0
@@ -269,10 +269,10 @@ familles:
     2014-10: 0
 foyers_fiscaux:
   declarants: 546b466cba32fff66335d33d
-  personnes_a_charge:
+  personnes_a_charge: null
 menages:
   depcom: 75114
-  enfants:
+  enfants: null
   personne_de_reference: 546b466cba32fff66335d33d
   statut_occupation_logement: loge_gratuitement
 output_variables:

@@ -1,7 +1,7 @@
-name: "Meublé : 2/3 du loyer charges comprises"
+name: 'Meublé : 2/3 du loyer charges comprises'
 keywords:
-  - al
-  - location
+- al
+- location
 relative_error_margin: 0.02
 description: |
   Le loyer pris en compte est égal à 2/3 du loyer CC pour un meublé ou un hôtel
@@ -22,11 +22,11 @@ description: |
   P1	0
   Pp	34,73
   AL	151,07
-period: "month:2014-12"
+period: month:2014-12
 individus:
   age: 34
   age_en_mois: 412
-  date_naissance: "1980-08-12"
+  date_naissance: '1980-08-12'
   boursier: true
   chomage_imposable:
     2012: 0
@@ -214,7 +214,7 @@ familles:
     2014-09: 0
     2014-10: 0
     2014-11: 0
-  enfants:
+  enfants: null
   paje_base:
     2013-12: 0
     2014-01: 0
@@ -247,11 +247,11 @@ foyers_fiscaux:
   declarants: 548ef9d98dac136002468a88
   pensions_alimentaires_versees:
     2012: 0
-  personnes_a_charge:
-  rfr:
+  personnes_a_charge: null
+  rfr: null
 menages:
   depcom: 75101
-  enfants:
+  enfants: null
   loyer: 200
   personne_de_reference: 548ef9d98dac136002468a88
   statut_occupation_logement: locataire_meuble

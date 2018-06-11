@@ -1,104 +1,104 @@
 name: Les enfants touchant plus de 55% du SMIC ne sont pas considérés à charge
 keywords:
-  - cf
-  - enfants à charge
+- cf
+- enfants à charge
 description: |
   cf. http://www.caf.fr/aides-et-services/s-informer-sur-les-aides/les-enfants-a-charge
   Ici, un des enfants déclare toucher 1000 euros nets par mois, ce qui est supérieur à la limite de 55% du SMIC brut (893 euros).
   Le CF ne doit donc pas être versé.
-period: "month:2015-01"
+period: month:2015-01
 relative_error_margin: 0.02
 individus:
-  - age: 34
-    age_en_mois: 413
-    date_naissance: "1980-08-12"
-    etudiant: 0
-    id: 54bd295198e2060423663411
-    inapte_travail: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 6
-    age_en_mois: 77
-    date_naissance: "2008-08-12"
-    etudiant: 0
-    id: 54bd295198e2060423663410
-    inapte_travail: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 6
-    age_en_mois: 77
-    date_naissance: "2008-08-12"
-    etudiant: 0
-    id: 54bd295198e206042366340f
-    inapte_travail: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 18
-    age_en_mois: 221
-    date_naissance: "1996-08-12"
-    etudiant: 0
-    id: 54bd295198e2060423663402
-    inapte_travail: 0
-    handicap: 0
-    salaire_de_base:
-      2013: 15384.615384615381
-      2014-01: 1282.051282051282
-      2014-02: 1282.051282051282
-      2014-03: 1282.051282051282
-      2014-04: 1282.051282051282
-      2014-05: 1282.051282051282
-      2014-06: 1282.051282051282
-      2014-07: 1282.051282051282
-      2014-08: 1282.051282051282
-      2014-09: 1282.051282051282
-      2014-10: 1282.051282051282
-      2014-11: 1282.051282051282
-      2014-12: 1282.051282051282
-      2015-01: 1282.051282051282
-    salaire_imposable:
-      2013: 12438.34615384615
-      2014-01: 1036.5288461538462
-      2014-02: 1036.5288461538462
-      2014-03: 1036.5288461538462
-      2014-04: 1036.5288461538462
-      2014-05: 1036.5288461538462
-      2014-06: 1036.5288461538462
-      2014-07: 1036.5288461538462
-      2014-08: 1036.5288461538462
-      2014-09: 1036.5288461538462
-      2014-10: 1036.5288461538462
-      2014-11: 1036.5288461538462
-      2014-12: 1036.5288461538462
-      2015-01: 1036.5288461538462
-    salaire_net:
-      2013: 12000
-      2014-01: 1000
-      2014-02: 1000
-      2014-03: 1000
-      2014-04: 1000
-      2014-05: 1000
-      2014-06: 1000
-      2014-07: 1000
-      2014-08: 1000
-      2014-09: 1000
-      2014-10: 1000
-      2014-11: 1000
-      2014-12: 1000
-      2015-01: 1000
-    scolarite: college
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
+- age: 34
+  age_en_mois: 413
+  date_naissance: '1980-08-12'
+  etudiant: 0
+  id: 54bd295198e2060423663411
+  inapte_travail: 0
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 6
+  age_en_mois: 77
+  date_naissance: '2008-08-12'
+  etudiant: 0
+  id: 54bd295198e2060423663410
+  inapte_travail: 0
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 6
+  age_en_mois: 77
+  date_naissance: '2008-08-12'
+  etudiant: 0
+  id: 54bd295198e206042366340f
+  inapte_travail: 0
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 18
+  age_en_mois: 221
+  date_naissance: '1996-08-12'
+  etudiant: 0
+  id: 54bd295198e2060423663402
+  inapte_travail: 0
+  handicap: 0
+  salaire_de_base:
+    2013: 15384.615384615381
+    2014-01: 1282.051282051282
+    2014-02: 1282.051282051282
+    2014-03: 1282.051282051282
+    2014-04: 1282.051282051282
+    2014-05: 1282.051282051282
+    2014-06: 1282.051282051282
+    2014-07: 1282.051282051282
+    2014-08: 1282.051282051282
+    2014-09: 1282.051282051282
+    2014-10: 1282.051282051282
+    2014-11: 1282.051282051282
+    2014-12: 1282.051282051282
+    2015-01: 1282.051282051282
+  salaire_imposable:
+    2013: 12438.34615384615
+    2014-01: 1036.5288461538462
+    2014-02: 1036.5288461538462
+    2014-03: 1036.5288461538462
+    2014-04: 1036.5288461538462
+    2014-05: 1036.5288461538462
+    2014-06: 1036.5288461538462
+    2014-07: 1036.5288461538462
+    2014-08: 1036.5288461538462
+    2014-09: 1036.5288461538462
+    2014-10: 1036.5288461538462
+    2014-11: 1036.5288461538462
+    2014-12: 1036.5288461538462
+    2015-01: 1036.5288461538462
+  salaire_net:
+    2013: 12000
+    2014-01: 1000
+    2014-02: 1000
+    2014-03: 1000
+    2014-04: 1000
+    2014-05: 1000
+    2014-06: 1000
+    2014-07: 1000
+    2014-08: 1000
+    2014-09: 1000
+    2014-10: 1000
+    2014-11: 1000
+    2014-12: 1000
+    2015-01: 1000
+  scolarite: college
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
 familles:
   acs:
     2014-01: 0
@@ -270,9 +270,9 @@ familles:
     2014-11: 0
     2014-12: 0
   enfants:
-    - 54bd295198e2060423663410
-    - 54bd295198e206042366340f
-    - 54bd295198e2060423663402
+  - 54bd295198e2060423663410
+  - 54bd295198e206042366340f
+  - 54bd295198e2060423663402
   paje_base:
     2014-01: 0
     2014-02: 0
@@ -304,15 +304,15 @@ familles:
 foyers_fiscaux:
   declarants: 54bd295198e2060423663411
   personnes_a_charge:
-    - 54bd295198e2060423663410
-    - 54bd295198e206042366340f
-    - 54bd295198e2060423663402
+  - 54bd295198e2060423663410
+  - 54bd295198e206042366340f
+  - 54bd295198e2060423663402
 menages:
   depcom: 67482
   enfants:
-    - 54bd295198e2060423663410
-    - 54bd295198e206042366340f
-    - 54bd295198e2060423663402
+  - 54bd295198e2060423663410
+  - 54bd295198e206042366340f
+  - 54bd295198e2060423663402
   personne_de_reference: 54bd295198e2060423663411
   statut_occupation_logement: loge_gratuitement
 output_variables:

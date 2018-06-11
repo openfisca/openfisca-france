@@ -1,17 +1,17 @@
-name: "TNS Auto-entrepreneur (vente de marchandise)"
+name: TNS Auto-entrepreneur (vente de marchandise)
 keywords:
-  - rsa
-  - tns
+- rsa
+- tns
 description: |
   (1400+500+150)/3 = 683,3*(1-0,71)= 198,16
   (MF + 62%198,16) - (198,16 + FL)
   636,74 - 259,83 = 376,9
-period: "month:2015-04"
+period: month:2015-04
 relative_error_margin: 0.02
 individus:
   age: 35
   age_en_mois: 420
-  date_naissance: "1980-04-13"
+  date_naissance: '1980-04-13'
   etudiant: 0
   id: 553fbb38af42215939d56100
   inapte_travail: 0
@@ -206,7 +206,7 @@ familles:
     2015-01: 0
     2015-02: 0
     2015-03: 0
-  enfants:
+  enfants: null
   paje_base:
     2014-04: 0
     2014-05: 0
@@ -236,10 +236,10 @@ familles:
     2015-03: 0
 foyers_fiscaux:
   declarants: 553fbb38af42215939d56100
-  personnes_a_charge:
+  personnes_a_charge: null
 menages:
   depcom: 97133
-  enfants:
+  enfants: null
   personne_de_reference: 553fbb38af42215939d56100
   statut_occupation_logement: loge_gratuitement
 output_variables:

@@ -1,14 +1,14 @@
 name: Base ressource RSA
 keywords:
-  - patrimoine
-  - rsa
-description:
-period: "month:2014-09"
+- patrimoine
+- rsa
+description: null
+period: month:2014-09
 relative_error_margin: 0.02
 individus:
   age: 34
   age_en_mois: 409
-  date_naissance: "1980-08-12"
+  date_naissance: '1980-08-12'
   enceinte: false
   etudiant: 0
   id: 5421345afb35830200b31344
@@ -192,7 +192,7 @@ familles:
     2014-06: 0
     2014-07: 0
     2014-08: 0
-  enfants:
+  enfants: null
   paje_base:
     2013-09: 0
     2013-10: 0
@@ -222,10 +222,10 @@ familles:
     2014-08: 0
 foyers_fiscaux:
   declarants: 5421345afb35830200b31344
-  personnes_a_charge:
+  personnes_a_charge: null
 menages:
   depcom: 67382
-  enfants:
+  enfants: null
   personne_de_reference: 5421345afb35830200b31344
   statut_occupation_logement: loge_gratuitement
 output_variables:

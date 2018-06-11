@@ -1,5 +1,4 @@
-description: Taux de remboursements des cotisations (entre les deux limites d'âge
-  ou APE taux partiel)
+description: Taux de remboursements des cotisations (entre les deux limites d'âge ou APE taux partiel)
 reference: openfisca
 unit: /1
 values:

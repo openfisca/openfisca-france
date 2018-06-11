@@ -16,43 +16,43 @@ description: |
   P1	0
   Pp	40,78
   AL	436,75
-period: "month:2014-09"
+period: month:2014-09
 relative_error_margin: 0.02
 individus:
-  - age: 49
-    age_en_mois: 592
-    date_naissance: "1965-04-20"
-    enceinte: false
-    etudiant: 0
-    id: 54113b47db10e7020066c729
-    inapte_travail: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 11
-    age_en_mois: 143
-    date_naissance: "2002-09-12"
-    etudiant: 0
-    id: 54113b47db10e7020066c728
-    inapte_travail: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 10
-    age_en_mois: 124
-    date_naissance: "2004-04-21"
-    etudiant: 0
-    id: 54113b47db10e7020066c727
-    inapte_travail: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
+- age: 49
+  age_en_mois: 592
+  date_naissance: '1965-04-20'
+  enceinte: false
+  etudiant: 0
+  id: 54113b47db10e7020066c729
+  inapte_travail: 0
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 11
+  age_en_mois: 143
+  date_naissance: '2002-09-12'
+  etudiant: 0
+  id: 54113b47db10e7020066c728
+  inapte_travail: 0
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 10
+  age_en_mois: 124
+  date_naissance: '2004-04-21'
+  etudiant: 0
+  id: 54113b47db10e7020066c727
+  inapte_travail: 0
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
 familles:
   acs:
     2013-09: 0
@@ -224,8 +224,8 @@ familles:
     2014-07: 0
     2014-08: 0
   enfants:
-    - 54113b47db10e7020066c728
-    - 54113b47db10e7020066c727
+  - 54113b47db10e7020066c728
+  - 54113b47db10e7020066c727
   paje_base:
     2013-09: 0
     2013-10: 0
@@ -258,12 +258,12 @@ familles:
 foyers_fiscaux:
   declarants: 54113b47db10e7020066c729
   personnes_a_charge:
-    - 54113b47db10e7020066c728
-    - 54113b47db10e7020066c727
+  - 54113b47db10e7020066c728
+  - 54113b47db10e7020066c727
 menages:
   enfants:
-    - 54113b47db10e7020066c728
-    - 54113b47db10e7020066c727
+  - 54113b47db10e7020066c728
+  - 54113b47db10e7020066c727
   loyer: 795
   personne_de_reference: 54113b47db10e7020066c729
   statut_occupation_logement: locataire_vide

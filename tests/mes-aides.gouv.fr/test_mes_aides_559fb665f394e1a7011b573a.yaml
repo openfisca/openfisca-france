@@ -3,9 +3,7 @@ keywords:
 - age
 - al
 - recette
-"description": "Test créé à partir d'un dossier de demande de RSA, APL…) : \nRsa non simulé : personne + 65 ans doit faire\
-  \ valoir droit à retraite\nLa personne est bénéficiaire du RSA socle en attendant qu'elle ait fait valoir ses droits à la\
-  \ retraite et à l'ASPA. \n\ndifférence APL= pas de neutralisation ressources annuelles en tant que bénéfciaire du RSA"
+description: "Test créé à partir d'un dossier de demande de RSA, APL…) : \nRsa non simulé : personne + 65 ans doit faire valoir droit à retraite\nLa personne est bénéficiaire du RSA socle en attendant qu'elle ait fait valoir ses droits à la retraite et à l'ASPA. \n\ndifférence APL= pas de neutralisation ressources annuelles en tant que bénéfciaire du RSA"
 period: month:2015-07
 relative_error_margin: 0.02
 individus:

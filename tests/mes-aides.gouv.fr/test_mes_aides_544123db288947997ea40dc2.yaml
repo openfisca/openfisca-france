@@ -1,9 +1,9 @@
 name: Ressources incluses
 keywords:
-  - base ressources
-  - rsa
+- base ressources
+- rsa
 description: 25 types de ressources incluses * 48 euros par mois = 1200 euros par mois > plafond RSA pour personne seule
-period: "month:2014-10"
+period: month:2014-10
 relative_error_margin: 0.02
 individus:
   aah:
@@ -38,7 +38,7 @@ individus:
     2014-08: 48
     2014-09: 48
     2014-10: 48
-  date_naissance: "1980-08-12"
+  date_naissance: '1980-08-12'
   bourse_enseignement_sup:
     2012: 576
     2013-10: 48
@@ -583,7 +583,7 @@ familles:
     2014-07: 0
     2014-08: 0
     2014-09: 0
-  enfants:
+  enfants: null
   paje_base:
     2013-10: 0
     2013-11: 0
@@ -614,10 +614,10 @@ familles:
     2014-09: 0
 foyers_fiscaux:
   declarants: 5441239a86033f967e5c55f2
-  personnes_a_charge:
+  personnes_a_charge: null
 menages:
   depcom: 75111
-  enfants:
+  enfants: null
   loyer: 100
   personne_de_reference: 5441239a86033f967e5c55f2
   statut_occupation_logement: locataire_vide

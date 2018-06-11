@@ -1,106 +1,106 @@
 name: Foyer 3 enfants > plafond 72 735
 keywords:
-  - af
-  - barêmes 1er juillet 2015
+- af
+- barêmes 1er juillet 2015
 description: |
   73 000 - 72 735 = 265
   CD = 147,53 - (265/12) = 125,45
   AF= 147,53 + 125,45 = 272,98
   On veut 73000 € de revenus nets, donc on déclare 81111 € de revenus imposables.
-period: "month:2015-07"
+period: month:2015-07
 relative_error_margin: 0.02
 individus:
-  - age: 35
-    age_en_mois: 424
-    date_naissance: "1980-03-02"
-    chomage_imposable:
-      2013: 0
-    etudiant: 0
-    id: 558d21e98aba0709309a49a5
-    inapte_travail: 0
-    handicap: 0
-    pensions_alimentaires_percues:
-      2013: 0
-    retraite_imposable:
-      2013: 0
-    salaire_de_base:
-      2014-07: 11554.28933206711
-      2014-08: 11554.28933206711
-      2014-09: 11554.28933206711
-      2014-10: 11554.28933206711
-      2014-11: 11554.28933206711
-      2014-12: 11554.28933206711
-      2015-01: 11554.28933206711
-      2015-02: 11554.28933206711
-      2015-03: 11554.28933206711
-      2015-04: 0
-      2015-05: 0
-      2015-06: 0
-    salaire_imposable:
-      2013: 81111.11111111111
-      2014-07: 9341.556267806267
-      2014-08: 9341.556267806267
-      2014-09: 9341.556267806267
-      2014-10: 9341.556267806267
-      2014-11: 9341.556267806267
-      2014-12: 9341.556267806267
-      2015-01: 9341.556267806267
-      2015-02: 9341.556267806267
-      2015-03: 9341.556267806267
-      2015-04: 0
-      2015-05: 0
-      2015-06: 0
-    salaire_net:
-      2014-07: 9012.345679012345
-      2014-08: 9012.345679012345
-      2014-09: 9012.345679012345
-      2014-10: 9012.345679012345
-      2014-11: 9012.345679012345
-      2014-12: 9012.345679012345
-      2015-01: 9012.345679012345
-      2015-02: 9012.345679012345
-      2015-03: 9012.345679012345
-      2015-04: 0
-      2015-05: 0
-      2015-06: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 9
-    age_en_mois: 118
-    date_naissance: "2005-08-09"
-    etudiant: 0
-    id: 558d21e98aba0709309a49a4
-    inapte_travail: 0
-    handicap: 0
-    scolarite: college
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 8
-    age_en_mois: 106
-    date_naissance: "2006-08-09"
-    etudiant: 0
-    id: 558d21e98aba0709309a49a3
-    inapte_travail: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 7
-    age_en_mois: 94
-    date_naissance: "2007-08-09"
-    etudiant: 0
-    id: 558d21e98aba0709309a49a2
-    inapte_travail: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
+- age: 35
+  age_en_mois: 424
+  date_naissance: '1980-03-02'
+  chomage_imposable:
+    2013: 0
+  etudiant: 0
+  id: 558d21e98aba0709309a49a5
+  inapte_travail: 0
+  handicap: 0
+  pensions_alimentaires_percues:
+    2013: 0
+  retraite_imposable:
+    2013: 0
+  salaire_de_base:
+    2014-07: 11554.28933206711
+    2014-08: 11554.28933206711
+    2014-09: 11554.28933206711
+    2014-10: 11554.28933206711
+    2014-11: 11554.28933206711
+    2014-12: 11554.28933206711
+    2015-01: 11554.28933206711
+    2015-02: 11554.28933206711
+    2015-03: 11554.28933206711
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+  salaire_imposable:
+    2013: 81111.11111111111
+    2014-07: 9341.556267806267
+    2014-08: 9341.556267806267
+    2014-09: 9341.556267806267
+    2014-10: 9341.556267806267
+    2014-11: 9341.556267806267
+    2014-12: 9341.556267806267
+    2015-01: 9341.556267806267
+    2015-02: 9341.556267806267
+    2015-03: 9341.556267806267
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+  salaire_net:
+    2014-07: 9012.345679012345
+    2014-08: 9012.345679012345
+    2014-09: 9012.345679012345
+    2014-10: 9012.345679012345
+    2014-11: 9012.345679012345
+    2014-12: 9012.345679012345
+    2015-01: 9012.345679012345
+    2015-02: 9012.345679012345
+    2015-03: 9012.345679012345
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 9
+  age_en_mois: 118
+  date_naissance: '2005-08-09'
+  etudiant: 0
+  id: 558d21e98aba0709309a49a4
+  inapte_travail: 0
+  handicap: 0
+  scolarite: college
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 8
+  age_en_mois: 106
+  date_naissance: '2006-08-09'
+  etudiant: 0
+  id: 558d21e98aba0709309a49a3
+  inapte_travail: 0
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 7
+  age_en_mois: 94
+  date_naissance: '2007-08-09'
+  etudiant: 0
+  id: 558d21e98aba0709309a49a2
+  inapte_travail: 0
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
 familles:
   acs:
     2014-07: 0
@@ -272,9 +272,9 @@ familles:
     2015-05: 0
     2015-06: 0
   enfants:
-    - 558d21e98aba0709309a49a4
-    - 558d21e98aba0709309a49a3
-    - 558d21e98aba0709309a49a2
+  - 558d21e98aba0709309a49a4
+  - 558d21e98aba0709309a49a3
+  - 558d21e98aba0709309a49a2
   paje_base:
     2014-07: 0
     2014-08: 0
@@ -308,17 +308,17 @@ foyers_fiscaux:
   pensions_alimentaires_versees:
     2013: 0
   personnes_a_charge:
-    - 558d21e98aba0709309a49a4
-    - 558d21e98aba0709309a49a3
-    - 558d21e98aba0709309a49a2
+  - 558d21e98aba0709309a49a4
+  - 558d21e98aba0709309a49a3
+  - 558d21e98aba0709309a49a2
   rfr:
     2013: 81111.11111111111
 menages:
   depcom: 76540
   enfants:
-    - 558d21e98aba0709309a49a4
-    - 558d21e98aba0709309a49a3
-    - 558d21e98aba0709309a49a2
+  - 558d21e98aba0709309a49a4
+  - 558d21e98aba0709309a49a3
+  - 558d21e98aba0709309a49a2
   personne_de_reference: 558d21e98aba0709309a49a5
   statut_occupation_logement: loge_gratuitement
 output_variables:

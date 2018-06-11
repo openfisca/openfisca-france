@@ -1,66 +1,66 @@
 name: RFR < plafond 10 parts
 keywords:
-  - bourse lycée
-  - parts
+- bourse lycée
+- parts
 description: |
   Cas nominal : 2 parents et un seul enfant scolarisé au lycée.
   Nombre de parts = 10 car rfr = 7100, points de charge = 11 et plafond = 7198
   Montant = 10 * 45,3 = 453 euros
-period: "month:2015-03"
+period: month:2015-03
 relative_error_margin: 0.02
 individus:
-  - age: 34
-    age_en_mois: 414
-    date_naissance: "1980-08-12"
-    chomage_imposable:
-      2013: 0
-    etudiant: 0
-    id: 5500761a3774028f471fb19b
-    inapte_travail: 0
-    handicap: 0
-    pensions_alimentaires_percues:
-      2013: 0
-    retraite_imposable:
-      2013: 0
-    salaire_imposable:
-      2013: 0
-    statut_marital: marie
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 34
-    age_en_mois: 414
-    date_naissance: "1980-08-12"
-    chomage_imposable:
-      2013: 0
-    etudiant: 0
-    id: 5500761a3774028f471fb19a
-    inapte_travail: 0
-    handicap: 0
-    pensions_alimentaires_percues:
-      2013: 0
-    retraite_imposable:
-      2013: 0
-    salaire_imposable:
-      2013: 0
-    statut_marital: marie
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 14
-    age_en_mois: 174
-    date_naissance: "2000-08-12"
-    etudiant: 0
-    id: 5500761a3774028f471fb199
-    inapte_travail: 0
-    handicap: 0
-    scolarite: lycee
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
+- age: 34
+  age_en_mois: 414
+  date_naissance: '1980-08-12'
+  chomage_imposable:
+    2013: 0
+  etudiant: 0
+  id: 5500761a3774028f471fb19b
+  inapte_travail: 0
+  handicap: 0
+  pensions_alimentaires_percues:
+    2013: 0
+  retraite_imposable:
+    2013: 0
+  salaire_imposable:
+    2013: 0
+  statut_marital: marie
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 34
+  age_en_mois: 414
+  date_naissance: '1980-08-12'
+  chomage_imposable:
+    2013: 0
+  etudiant: 0
+  id: 5500761a3774028f471fb19a
+  inapte_travail: 0
+  handicap: 0
+  pensions_alimentaires_percues:
+    2013: 0
+  retraite_imposable:
+    2013: 0
+  salaire_imposable:
+    2013: 0
+  statut_marital: marie
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 14
+  age_en_mois: 174
+  date_naissance: '2000-08-12'
+  etudiant: 0
+  id: 5500761a3774028f471fb199
+  inapte_travail: 0
+  handicap: 0
+  scolarite: lycee
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
 familles:
   acs:
     2014-03: 0
@@ -246,8 +246,8 @@ familles:
     2015-01: 0
     2015-02: 0
   parents:
-    - 5500761a3774028f471fb19b
-    - 5500761a3774028f471fb19a
+  - 5500761a3774028f471fb19b
+  - 5500761a3774028f471fb19a
   rsa:
     2014-03: 0
     2014-04: 0
@@ -263,8 +263,8 @@ familles:
     2015-02: 0
 foyers_fiscaux:
   declarants:
-    - 5500761a3774028f471fb19b
-    - 5500761a3774028f471fb19a
+  - 5500761a3774028f471fb19b
+  - 5500761a3774028f471fb19a
   pensions_alimentaires_versees:
     2013: 0
   personnes_a_charge: 5500761a3774028f471fb199

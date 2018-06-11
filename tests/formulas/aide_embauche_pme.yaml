@@ -1,10 +1,6 @@
-- period: "2016-02"
+- period: 2016-02
   name: Base
-  description: >
-    Aide à l'embauche PME.
-    Le montant total de l’aide est égal à 4 000 €,
-    réparti sur 24 mois maximum, à raison de 500 €
-    sur chaque période de 3 mois d’exécution du contrat de travail.
+  description: "Aide à l'embauche PME. Le montant total de l’aide est égal à 4 000 €, réparti sur 24 mois maximum, à raison de 500 € sur chaque période de 3 mois d’exécution du contrat de travail.\n"
   relative_error_margin: 0.001
   input_variables:
     salaire_de_base: 1467
@@ -15,7 +11,7 @@
   output_variables:
     aide_embauche_pme: 166.67
 
-- period: "2016-02"
+- period: 2016-02
   name: Salaire > 1.3 x SMIC
   relative_error_margin: 0.001
   input_variables:
@@ -27,7 +23,7 @@
   output_variables:
     aide_embauche_pme: 0
 
-- period: "2015-11"
+- period: 2015-11
   name: Aide non existante en 2015 !
   relative_error_margin: 0.001
   input_variables:
@@ -39,7 +35,7 @@
   output_variables:
     aide_embauche_pme: 0
 
-- period: "2016-02"
+- period: 2016-02
   name: Pas de cumul possible aide 1er sal.
   relative_error_margin: 0.001
   input_variables:
@@ -51,7 +47,7 @@
   output_variables:
     aide_embauche_pme: 0
 
-- period: "2016-02"
+- period: 2016-02
   name: CDD > de 12 mois
   relative_error_margin: 0.001
   input_variables:
@@ -65,7 +61,7 @@
   output_variables:
     aide_embauche_pme: 166.67
 
-- period: "2016-02"
+- period: 2016-02
   name: CDD > 6 mois
   relative_error_margin: 0.001
   input_variables:
@@ -79,7 +75,7 @@
   output_variables:
     aide_embauche_pme: 166.67
 
-- period: "2016-02"
+- period: 2016-02
   name: CDD < 6 mois
   relative_error_margin: 0.001
   input_variables:
@@ -93,7 +89,7 @@
   output_variables:
     aide_embauche_pme: 0
 
-- period: "2018-02"
+- period: 2018-02
   name: L'aide n'est plus disponible 2 ans après
   relative_error_margin: 0.001
   input_variables:

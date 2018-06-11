@@ -1,118 +1,118 @@
-name: "Plafond CMUC pour 5 personnes - cas au-dessus du plafond"
+name: Plafond CMUC pour 5 personnes - cas au-dessus du plafond
 keywords:
-  - "cmu-c/acs"
-  - plafonds
+- cmu-c/acs
+- plafonds
 description: |
   Plafond CMUC pour 5 personnes = 21611
   Ici éligible à l'AF (360 x 12) + CF (170 X 12) = 6 360
   Revenus = 20000 + 6360 = 26360 donc > plafond
-period: "month:2015-04"
+period: month:2015-04
 relative_error_margin: 0.02
 individus:
-  - age: 19
-    age_en_mois: 234
-    date_naissance: "1995-09-09"
-    etudiant: 0
-    id: 55252bc877c7b0c6117a2937
-    inapte_travail: 0
-    handicap: 0
-    salaire_de_base:
-      2013: 25641.02564102564
-      2014-04: 2165.2421652421654
-      2014-05: 2165.2421652421654
-      2014-06: 2165.2421652421654
-      2014-07: 2165.2421652421654
-      2014-08: 2165.2421652421654
-      2014-09: 2165.2421652421654
-      2014-10: 2165.2421652421654
-      2014-11: 2165.2421652421654
-      2014-12: 2165.2421652421654
-      2015-01: 2051.2820512820513
-      2015-02: 2051.2820512820513
-      2015-03: 2051.2820512820513
-      2015-04: 2051.2820512820513
-    salaire_imposable:
-      2013: 20730.576923076922
-      2014-04: 1750.5820512820512
-      2014-05: 1750.5820512820512
-      2014-06: 1750.5820512820512
-      2014-07: 1750.5820512820512
-      2014-08: 1750.5820512820512
-      2014-09: 1750.5820512820512
-      2014-10: 1750.5820512820512
-      2014-11: 1750.5820512820512
-      2014-12: 1750.5820512820512
-      2015-01: 1658.446153846154
-      2015-02: 1658.446153846154
-      2015-03: 1658.446153846154
-      2015-04: 1658.446153846154
-    salaire_net:
-      2013: 20000.000000000004
-      2014-04: 1688.888888888889
-      2014-05: 1688.888888888889
-      2014-06: 1688.888888888889
-      2014-07: 1688.888888888889
-      2014-08: 1688.888888888889
-      2014-09: 1688.888888888889
-      2014-10: 1688.888888888889
-      2014-11: 1688.888888888889
-      2014-12: 1688.888888888889
-      2015-01: 1600
-      2015-02: 1600
-      2015-03: 1600
-      2015-04: 1600
-    statut_marital: marie
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 19
-    age_en_mois: 239
-    date_naissance: "1995-05-03"
-    etudiant: 0
-    id: 55252bc877c7b0c6117a2936
-    inapte_travail: 0
-    handicap: 0
-    statut_marital: marie
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 7
-    age_en_mois: 92
-    date_naissance: "2007-07-09"
-    etudiant: 0
-    id: 55252bc877c7b0c6117a2935
-    inapte_travail: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 9
-    age_en_mois: 115
-    date_naissance: "2005-09-08"
-    etudiant: 0
-    id: 55252bc877c7b0c6117a2934
-    inapte_travail: 0
-    handicap: 0
-    scolarite: college
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 14
-    age_en_mois: 176
-    date_naissance: "2000-07-09"
-    etudiant: 0
-    id: 55252bc877c7b0c6117a2933
-    inapte_travail: 0
-    handicap: 0
-    scolarite: college
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
+- age: 19
+  age_en_mois: 234
+  date_naissance: '1995-09-09'
+  etudiant: 0
+  id: 55252bc877c7b0c6117a2937
+  inapte_travail: 0
+  handicap: 0
+  salaire_de_base:
+    2013: 25641.02564102564
+    2014-04: 2165.2421652421654
+    2014-05: 2165.2421652421654
+    2014-06: 2165.2421652421654
+    2014-07: 2165.2421652421654
+    2014-08: 2165.2421652421654
+    2014-09: 2165.2421652421654
+    2014-10: 2165.2421652421654
+    2014-11: 2165.2421652421654
+    2014-12: 2165.2421652421654
+    2015-01: 2051.2820512820513
+    2015-02: 2051.2820512820513
+    2015-03: 2051.2820512820513
+    2015-04: 2051.2820512820513
+  salaire_imposable:
+    2013: 20730.576923076922
+    2014-04: 1750.5820512820512
+    2014-05: 1750.5820512820512
+    2014-06: 1750.5820512820512
+    2014-07: 1750.5820512820512
+    2014-08: 1750.5820512820512
+    2014-09: 1750.5820512820512
+    2014-10: 1750.5820512820512
+    2014-11: 1750.5820512820512
+    2014-12: 1750.5820512820512
+    2015-01: 1658.446153846154
+    2015-02: 1658.446153846154
+    2015-03: 1658.446153846154
+    2015-04: 1658.446153846154
+  salaire_net:
+    2013: 20000.000000000004
+    2014-04: 1688.888888888889
+    2014-05: 1688.888888888889
+    2014-06: 1688.888888888889
+    2014-07: 1688.888888888889
+    2014-08: 1688.888888888889
+    2014-09: 1688.888888888889
+    2014-10: 1688.888888888889
+    2014-11: 1688.888888888889
+    2014-12: 1688.888888888889
+    2015-01: 1600
+    2015-02: 1600
+    2015-03: 1600
+    2015-04: 1600
+  statut_marital: marie
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 19
+  age_en_mois: 239
+  date_naissance: '1995-05-03'
+  etudiant: 0
+  id: 55252bc877c7b0c6117a2936
+  inapte_travail: 0
+  handicap: 0
+  statut_marital: marie
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 7
+  age_en_mois: 92
+  date_naissance: '2007-07-09'
+  etudiant: 0
+  id: 55252bc877c7b0c6117a2935
+  inapte_travail: 0
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 9
+  age_en_mois: 115
+  date_naissance: '2005-09-08'
+  etudiant: 0
+  id: 55252bc877c7b0c6117a2934
+  inapte_travail: 0
+  handicap: 0
+  scolarite: college
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 14
+  age_en_mois: 176
+  date_naissance: '2000-07-09'
+  etudiant: 0
+  id: 55252bc877c7b0c6117a2933
+  inapte_travail: 0
+  handicap: 0
+  scolarite: college
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
 familles:
   acs:
     2014-04: 0
@@ -288,9 +288,9 @@ familles:
     2015-03: 170
     2015-04: 170
   enfants:
-    - 55252bc877c7b0c6117a2935
-    - 55252bc877c7b0c6117a2934
-    - 55252bc877c7b0c6117a2933
+  - 55252bc877c7b0c6117a2935
+  - 55252bc877c7b0c6117a2934
+  - 55252bc877c7b0c6117a2933
   paje_base:
     2014-04: 0
     2014-05: 0
@@ -305,8 +305,8 @@ familles:
     2015-02: 0
     2015-03: 0
   parents:
-    - 55252bc877c7b0c6117a2937
-    - 55252bc877c7b0c6117a2936
+  - 55252bc877c7b0c6117a2937
+  - 55252bc877c7b0c6117a2936
   proprietaire_proche_famille: true
   rsa:
     2014-04: 0
@@ -323,19 +323,19 @@ familles:
     2015-03: 0
 foyers_fiscaux:
   declarants:
-    - 55252bc877c7b0c6117a2937
-    - 55252bc877c7b0c6117a2936
+  - 55252bc877c7b0c6117a2937
+  - 55252bc877c7b0c6117a2936
   personnes_a_charge:
-    - 55252bc877c7b0c6117a2935
-    - 55252bc877c7b0c6117a2934
-    - 55252bc877c7b0c6117a2933
+  - 55252bc877c7b0c6117a2935
+  - 55252bc877c7b0c6117a2934
+  - 55252bc877c7b0c6117a2933
 menages:
   conjoint: 55252bc877c7b0c6117a2936
   depcom: 76540
   enfants:
-    - 55252bc877c7b0c6117a2935
-    - 55252bc877c7b0c6117a2934
-    - 55252bc877c7b0c6117a2933
+  - 55252bc877c7b0c6117a2935
+  - 55252bc877c7b0c6117a2934
+  - 55252bc877c7b0c6117a2933
   loyer: 600
   personne_de_reference: 55252bc877c7b0c6117a2937
   statut_occupation_logement: locataire_vide

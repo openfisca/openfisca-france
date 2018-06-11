@@ -1,16 +1,16 @@
 name: Personne seule 1 enfant chômage indemnisé
 keywords:
-  - recette
-  - rsa
+- recette
+- rsa
 description: "Test créé à partir d'un dossier de demande de (RSA, APL…) :"
-period: "month:2015-07"
+period: month:2015-07
 relative_error_margin: 0.02
 individus:
   activite: chomeur
   age: 59
   age_en_mois: 708
   ass_precondition_remplie: false
-  date_naissance: "1956-06-26"
+  date_naissance: '1956-06-26'
   chomage_brut:
     2013: 3716.731637740055
     2014-07: 309.7276364783379
@@ -266,7 +266,7 @@ familles:
     2015-04: 0
     2015-05: 0
     2015-06: 0
-  enfants:
+  enfants: null
   paje_base:
     2014-07: 0
     2014-08: 0
@@ -297,10 +297,10 @@ familles:
     2015-06: 0
 foyers_fiscaux:
   declarants: 559fc21bf394e1a7011b57a5
-  personnes_a_charge:
+  personnes_a_charge: null
 menages:
   depcom: 77373
-  enfants:
+  enfants: null
   loyer: 225
   personne_de_reference: 559fc21bf394e1a7011b57a5
   statut_occupation_logement: locataire_vide

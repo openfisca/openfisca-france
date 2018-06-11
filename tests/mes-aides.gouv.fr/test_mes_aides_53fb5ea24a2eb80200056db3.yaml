@@ -1,7 +1,7 @@
 name: Bénéficiaire AAH isolé
 keywords: rsa
 description: L'AAH doit être prise en compte dans le calcul
-period: "month:2014-08"
+period: month:2014-08
 relative_error_margin: 0.02
 individus:
   aah:
@@ -12,7 +12,7 @@ individus:
     2014-08: 790
   age: 33
   age_en_mois: 407
-  date_naissance: "1980-09-14"
+  date_naissance: '1980-09-14'
   enceinte: false
   etudiant: 0
   id: 53fb5e674a2eb80200056daf
@@ -192,7 +192,7 @@ familles:
     2014-05: 0
     2014-06: 0
     2014-07: 0
-  enfants:
+  enfants: null
   paje_base:
     2013-08: 0
     2013-09: 0
@@ -223,9 +223,9 @@ familles:
     2014-07: 0
 foyers_fiscaux:
   declarants: 53fb5e674a2eb80200056daf
-  personnes_a_charge:
+  personnes_a_charge: null
 menages:
-  enfants:
+  enfants: null
   loyer: 123
   personne_de_reference: 53fb5e674a2eb80200056daf
   statut_occupation_logement: locataire_vide
