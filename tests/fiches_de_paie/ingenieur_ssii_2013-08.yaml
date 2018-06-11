@@ -3,8 +3,8 @@ period: "2013-08"
 absolute_error_margin: 0.005
 input_variables:
   allegement_fillon_mode_recouvrement: fin_d_annee  #Indiqué: index 0 --> "fin d'année" et non "anticipé"# "anticipe_regularisation_fin_de_periode"
-  arrco_tranche_a_taux_employeur: .04539
-  arrco_tranche_a_taux_salarie: .03024
+  arrco_tranche_a_taux_employeur: 0.04539
+  arrco_tranche_a_taux_salarie: 0.03024
   assujettie_taxe_salaires: False
   avantage_en_nature_valeur_reelle: 0
   contrat_de_travail: temps_plein
@@ -16,7 +16,7 @@ input_variables:
   # exposition_accident: tres_eleve
   code_postal_entreprise: "77023"
   nombre_tickets_restaurant: 0
-  prevoyance_obligatoire_cadre_taux_employeur: .015  # 1.5% est le minimum
+  prevoyance_obligatoire_cadre_taux_employeur: 0.015  # 1.5% est le minimum
   primes_salaires: 24.88
   prise_en_charge_employeur_retraite_complementaire: 0
   prise_en_charge_employeur_prevoyance_complementaire: 0

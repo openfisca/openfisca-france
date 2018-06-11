@@ -15,6 +15,6 @@
     categorie_salarie: prive_non_cadre
   output_variables:
     exoneration_cotisations_employeur_zfu:
-      "2015-01": 35 * 52 * 9.61 * .307 * .6 / 12
+      "2015-01": 35 * 52 * 9.61 * 0.307 * 0.6 / 12
     exoneration_cotisations_employeur_geographiques:
-       "2015-01": 35 * 52 * 9.61 * .307 * .6 / 12
+       "2015-01": 35 * 52 * 9.61 * 0.307 * 0.6 / 12

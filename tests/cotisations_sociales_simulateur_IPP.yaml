@@ -238,7 +238,7 @@
     csg_imposable_salaire: [-62.09, 0, 0, 0]
     indemnite_residence: [60, 0, 0, 0]
                 # salaire_net = 2213.83,
-    salaire_super_brut: [4401.44 + 2000 * (.0175 - .026), 0, 0, 0]
+    salaire_super_brut: [4401.44 + 2000 * (.0175 - 0.026), 0, 0, 0]
     supplement_familial_traitement: [73.04, 0, 0, 0]
 
 - name: "Cotisations sociales - Couple 2 public titulaire etat deux enfants"

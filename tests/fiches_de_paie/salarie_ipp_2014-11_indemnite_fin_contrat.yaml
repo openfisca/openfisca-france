@@ -9,11 +9,11 @@ input_variables:
   # exposition_accident: tres_eleve
   code_postal_entreprise: "75014"
   depcom_entreprise: "75114"
-  prevoyance_obligatoire_cadre_taux_employeur: .0157
+  prevoyance_obligatoire_cadre_taux_employeur: 0.0157
   ratio_alternants: 0
   redevable_taxe_apprentissage: 0
   salaire_de_base: 4600
-  taux_accident_travail: .015
+  taux_accident_travail: 0.015
   titre_restaurant_valeur_unitaire: 9
   titre_restaurant_volume: 19
   categorie_salarie: prive_cadre

@@ -43,8 +43,8 @@
     allocations_temporaires_invalidite: 0
     accident_du_travail: -33
     famille: -157.5
-    # Permière ligne 12.8 = 12.8 + 1.75 + .3 (maldie + vieillesse_deplaf + csa )
-    mmid_employeur: -3000 * .128  # est aggrégé avec vieillesse deplaf et csa
+    # Permière ligne 12.8 = 12.8 + 1.75 + 0.3 (maldie + vieillesse_deplaf + csa )
+    mmid_employeur: -3000 * 0.128  # est aggrégé avec vieillesse deplaf et csa
     taxe_salaires: 0
     conge_individuel_formation_cdd: 0
     contribution_solidarite_autonomie: -3000 * 0.003  #  est aggrégé avec vieillesse deplaf et maladie
@@ -67,7 +67,7 @@
     participation_effort_construction: -13.5
     prevoyance_obligatoire_cadre: -59.02
     taxe_apprentissage: -3000 * 0.0068  # aggrégé avec contribution supplémentaire apprentissage
-    taux_versement_transport: .027
+    taux_versement_transport: 0.027
     versement_transport: -81
 
     allegement_fillon: 0
@@ -87,24 +87,24 @@
     arrco_salarie: -91.5
     chomage_salarie: -72
     cotisation_exceptionnelle_temporaire_salarie: -3.9
-    vieillesse_deplafonnee_salarie: -3000 * .0025  # est agrégée avec maladie sur la fiche de paie
+    vieillesse_deplafonnee_salarie: -3000 * 0.0025  # est agrégée avec maladie sur la fiche de paie
     vieillesse_plafonnee_salarie: -204
     ircantec_salarie: 0
     pension_civile_salarie: 0
     rafp_salarie: 0
 
     # cotisations_salariales_non_contributives: 0
-    mmid_salarie: -3000 * .0075  # est agrégée avec vieillesse déplaf. sur la fiche de paie
+    mmid_salarie: -3000 * 0.0075  # est agrégée avec vieillesse déplaf. sur la fiche de paie
     contribution_exceptionnelle_solidarite: 0
     csg_deductible_salaire: -150.32 - 3.01
     mhsup: 0
-    salaire_net: 3000 - (722.46 - 30.82) - .17 # moitié de la mutuelle et erreur de .17 gmp
+    salaire_net: 3000 - (722.46 - 30.82) - 0.17 # moitié de la mutuelle et erreur de 0.17 gmp
 
 
     # salaire imposable
     csg_imposable_salaire: -0.024 * (.9825 * 3000 + 59.02)
-    crds_salaire: -0.005 * (3000 * .9825 + 59.02)  # = - 14.74 (attention dans fiche taux csg/crds aggrégé)
+    crds_salaire: -0.005 * (3000 * 0.9825 + 59.02)  # = - 14.74 (attention dans fiche taux csg/crds aggrégé)
     hsup: 0
-    salaire_imposable: 2395.55 -.17 #  .17 due à l'erreur sur gmp salaire imposable
+    salaire_imposable: 2395.55 -.17 #  0.17 due à l'erreur sur gmp salaire imposable
     depense_cantine_titre_restaurant_employe: 0
-    salaire_net_a_payer: 2478.49 + 30.82 -.17  # moitié de la mutuelle et erreur de .17 gmp
+    salaire_net_a_payer: 2478.49 + 30.82 -.17  # moitié de la mutuelle et erreur de 0.17 gmp

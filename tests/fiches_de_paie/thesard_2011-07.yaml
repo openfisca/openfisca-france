@@ -14,7 +14,7 @@ input_variables:
   indemnite_residence: 0  # WARNING
   code_postal_entreprise: "21000"
   nombre_tickets_restaurant: 0
-  prevoyance_obligatoire_cadre_taux_employeur: .015  # 1.5% est le minimum
+  prevoyance_obligatoire_cadre_taux_employeur: 0.015  # 1.5% est le minimum
   prise_en_charge_employeur_retraite_complementaire: 0
   prise_en_charge_employeur_prevoyance_complementaire: 0
   prise_en_charge_employeur_retraite_supplementaire: 0
@@ -23,7 +23,7 @@ input_variables:
   remboursement_transport_base: 0
   salaire_de_base: 1900
   taux_accident_travail: 0
-  taux_versement_transport: .026
+  taux_versement_transport: 0.026
   titre_restaurant_valeur_unitaire: 0
   titre_restaurant_volume: 0
   categorie_salarie: public_non_titulaire

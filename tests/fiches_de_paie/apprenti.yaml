@@ -20,7 +20,7 @@ input_variables:
   indemnites_compensatrices_conges_payes: 0
   code_postal_entreprise: "75014"
   nombre_tickets_restaurant: 0
-  prevoyance_obligatoire_cadre_taux_employeur: .015  # 1.5% est le minimum
+  prevoyance_obligatoire_cadre_taux_employeur: 0.015  # 1.5% est le minimum
   primes_salaires: 0
   prise_en_charge_employeur_retraite_complementaire: 0
   prise_en_charge_employeur_prevoyance_complementaire: 0
@@ -67,7 +67,7 @@ output_variables:
   contribution_developpement_apprentissage: 0
   contribution_solidarite_autonomie: -2.14
   contribution_supplementaire_apprentissage: 0
-  financement_organisations_syndicales: -.11  # -35 * 52 * 9.61 * .49 / 12 * 0.00016
+  financement_organisations_syndicales: -.11  # -35 * 52 * 9.61 * 0.49 / 12 * 0.00016
   formation_professionnelle: -3.93
   fnal: -.71
   participation_effort_construction: 0 # was incorrectly : -3.21
@@ -79,7 +79,7 @@ output_variables:
   credit_impot_competitivite_emploi: 42.85
   forfait_social: 0
   tehr: {'2014': 0}
-  assiette_cotisations_sociales: 35 * 52 * 9.61 * .49 / 12
+  assiette_cotisations_sociales: 35 * 52 * 9.61 * 0.49 / 12
   cotisations_employeur: -2.14 -8.57 -33.21 -28.57 -12.86 -60.71 -10.71 -37.49 -91.42 -2.14 -3.93 -.71 -.11
   exoneration_cotisations_employeur_apprenti: 281.86
 
@@ -116,6 +116,6 @@ output_variables:
   hsup: 0
   # salaire_imposable: 0  # salaire imposable
   depense_cantine_titre_restaurant_employe: 0
-  salaire_net_a_payer: 35 * 52 * 9.61 * .49 / 12
+  salaire_net_a_payer: 35 * 52 * 9.61 * 0.49 / 12
   apprenti: 1
-  remuneration_apprenti: 35 * 52 * 9.61 * .49 / 12
+  remuneration_apprenti: 35 * 52 * 9.61 * 0.49 / 12

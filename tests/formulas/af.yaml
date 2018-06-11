@@ -22,7 +22,7 @@
     - id: "enfant2"
       age: 9
   output_variables:
-    af: 399 * .32  # Changement de BMAF en cours d'année
+    af: 399 * 0.32  # Changement de BMAF en cours d'année
 
 
 - name: "Allocations familiales - Couple, 2 enfants de moins de 11 ans"

@@ -11,7 +11,7 @@
   output_variables:
     salaire_de_base: 1467
     assiette_cotisations_sociales: 1467
-    participation_effort_construction: -1467 * .0045
+    participation_effort_construction: -1467 * 0.0045
 
 - period: "2016-03"
   name: CDD, prime de 10% non activée
@@ -27,7 +27,7 @@
     salaire_de_base: 1467
     assiette_cotisations_sociales: 1467
     indemnite_fin_contrat: 0
-    participation_effort_construction: -1467 * .0045
+    participation_effort_construction: -1467 * 0.0045
 
 - period: "2016-03"
   name: CDD, prime de 10% activée
@@ -42,6 +42,6 @@
     indemnite_fin_contrat_due: 1
   output_variables:
     salaire_de_base: 1467
-    assiette_cotisations_sociales: 1467 + .1 * 1467
-    indemnite_fin_contrat: .1 * 1467
-    participation_effort_construction: -1467 * 1.1 * .0045
+    assiette_cotisations_sociales: 1467 + 0.1 * 1467
+    indemnite_fin_contrat: 0.1 * 1467
+    participation_effort_construction: -1467 * 1.1 * 0.0045

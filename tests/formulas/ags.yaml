@@ -4,7 +4,7 @@
   input_variables:
     salaire_de_base: 1500
   output_variables:
-    ags: -1500 * .25 / 100
+    ags: -1500 * 0.25 / 100
 
 - period: "2017-01"
   name: AGS 2017
@@ -12,7 +12,7 @@
   input_variables:
     salaire_de_base: 1500
   output_variables:
-    ags: -1500 * .2 / 100
+    ags: -1500 * 0.2 / 100
 
 - period: "2017-07"
   name: AGS Juillet 2017
@@ -20,4 +20,4 @@
   input_variables:
     salaire_de_base: 1500
   output_variables:
-    ags: -1500 * .15 / 100
+    ags: -1500 * 0.15 / 100
