@@ -228,7 +228,7 @@ class asi(Variable):
         maries = individu.famille('maries', period)
         en_couple = individu.famille('en_couple', period)
         asi_aspa_nb_alloc = individu.famille('asi_aspa_nb_alloc', period)
-        base_ressources = individu.famille('asi_aspa_base_ressources', period)
+        base_ressources = individu.famille('asi_aspa_base_ressources', period, max_nb_cycles = 0)
         P = parameters(period).prestations.minima_sociaux
 
         demandeur_eligible_asi = individu.famille.demandeur('asi_eligibilite', period)
