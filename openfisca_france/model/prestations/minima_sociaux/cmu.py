@@ -217,6 +217,7 @@ class cmu_base_ressources_individu(Variable):
 
         ressources_a_inclure = [
             'aah',
+            'asi',
             'allocation_securisation_professionnelle',
             'asi',
             'bourse_enseignement_sup',

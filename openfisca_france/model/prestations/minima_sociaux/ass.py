@@ -212,7 +212,7 @@ class ass_eligibilite_individu(Variable):
         return and_(demandeur_emploi_non_indemnise, ass_precondition_remplie)
 
     def formula_2017_01_01(individu, period):
-        aah_eligible = individu('aah', period) > 0
+        aah_eligible = individu('aah', period.offset(-1)) > 0
 
         demandeur_emploi_non_indemnise = and_(individu('activite', period) == TypesActivite.chomeur, individu('chomage_net', period) == 0)
 
