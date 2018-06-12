@@ -4,8 +4,8 @@
 
 * Changement mineur.
 * Détails :
-  - Ajoute un test de performance sur les tests
-  - Ce test peut être lancé avec la commande make performance
+  - Ajoute un test de performance sur les tests YAML
+  - Ce test peut être lancé avec la commande `make performance`
 
 ### 21.10.7 [#986](https://github.com/openfisca/openfisca-france/pull/986)
 

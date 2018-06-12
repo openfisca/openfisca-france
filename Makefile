@@ -22,4 +22,4 @@ test: check-syntax-errors check-no-prints
 	openfisca-run-test --country-package openfisca_france tests
 
 performance:
-	python openfisca_france/scripts/performance_tests/test_perf_tests.py
+	python openfisca_france/scripts/performance_tests/test_tests.py
