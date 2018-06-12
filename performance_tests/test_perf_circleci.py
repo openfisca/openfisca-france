@@ -1,7 +1,7 @@
 """
 This script takes in two CircleCI build numbers
 (usually the `build_python2` and `build_python2` of the same workflow)
-and outputs if their runtime in in the same ball park as the master branche's
+and outputs if their runtime is in the same ball park as the master branche's
 """
 
 import sys
@@ -16,7 +16,7 @@ python3_build_number = sys.argv[2]
 def get_master_branch_performance():
     """
     Accesses the CircleCI API and gets the info for all available master branch builds.
-    :return: an Dict with the master branch build time statistics
+    :return: a Dict with the master branch build time statistics
     """
     def mean(numbers):
         return sum(numbers, 0.0) / len(numbers)
@@ -46,7 +46,7 @@ def get_master_branch_performance():
             builds.append(response['build_time_millis'])
 
     if len(builds) < 5:
-        logging.warning('two few master branch builds')
+        logging.warning('too few master branch builds')
         exit(1)
 
     results = dict()
