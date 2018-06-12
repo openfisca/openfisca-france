@@ -196,7 +196,7 @@ class aah_base_non_cumulable(Variable):
     definition_period = MONTH
 
     def formula(individu, period):
-        return individu('pensions_invalidite', period) + individu('asi', period)
+        return individu('pensions_invalidite', period) + individu('asi', period.last_month)
 
 
 class aah_base(Variable):
