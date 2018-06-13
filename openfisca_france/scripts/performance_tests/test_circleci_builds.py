@@ -10,6 +10,8 @@ import json
 import logging
 
 
+logging.basicConfig(level=logging.INFO)
+
 if len(sys.argv) < 2:
     raise AttributeError(
         """
@@ -20,6 +22,10 @@ if len(sys.argv) < 2:
 
 python2_build_number = sys.argv[1]
 python3_build_number = sys.argv[2]
+
+
+MAX_RATIO_STANDARD_DEVIATION = 10
+MIN_NUMBER_OF_MASTER_BUILDS = 5
 
 
 def get_master_branch_performance():
@@ -47,22 +53,23 @@ def get_master_branch_performance():
     builds = []
 
     for response in response_python:
-        if not response['status'] == "success":
-            pass
-        elif response['workflows']['job_name'] == 'build_python2':
-            builds.append(response['build_time_millis'])
-        elif response['workflows']['job_name'] == 'build_python3':
+        job_name = response['workflows']['job_name']
+        job_status = response['status']
+
+        if job_status == "success" and (job_name == 'build_python2' or job_name == 'build_python3'):
             builds.append(response['build_time_millis'])
 
-    if len(builds) < 5:
+    if len(builds) < MIN_NUMBER_OF_MASTER_BUILDS:
         logging.warning('Too few circle builds on master branch : {} builds'.format(len(builds)))
         exit(1)
+    else:
+        logging.info('The master branch has {} builds available for analysis.'.format(len(builds)))
 
     results = dict()
     results['mean'] = mean(builds)
     results['standard_deviation'] = standard_deviation(builds)
     ratio_sd = round(results['standard_deviation'] / results['mean'] * 100, 2)
-    if ratio_sd > 10:
+    if ratio_sd > MAX_RATIO_STANDARD_DEVIATION:
         logging.warning('The standard deviation is unsound : {}'.format(ratio_sd))
         exit(1)
     return results
@@ -92,10 +99,10 @@ def get_current_build_performance(python2_build_number, python3_build_number):
 
 master_branch = get_master_branch_performance()
 current_build = get_current_build_performance(python2_build_number, python3_build_number)
-
 current_master_ratio = abs(master_branch['mean'] - current_build) / master_branch['mean'] * 100
-if current_build > master_branch['mean'] * 1.10:
-    sys.exit('This build makes the test performance more than 10% worst : {}%'.format(current_master_ratio))
+
+if current_build > master_branch['mean'] * (1. + (MAX_RATIO_STANDARD_DEVIATION / 100.)):
+    sys.exit('This build makes the test performance more than {}% worst : {}%'.format(MAX_RATIO_STANDARD_DEVIATION, current_master_ratio))
 
 elif current_build > master_branch['mean'] + master_branch['standard_deviation']:
     sys.exit('This build may be making the test performance worst : {}%'.format(current_master_ratio))
