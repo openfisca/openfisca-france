@@ -1,7 +1,8 @@
 """
 This script takes in two CircleCI build numbers
-(usually the `build_python2` and `build_python3` of the same workflow)
-and outputs if their runtime is in the same ball park as the master branche's
+(should be the `build_python2` and `build_python3` of the same workflow)
+and outputs if their mean runtime is in the same ball park 
+as the master branch's mean runtime for the same builds.
 """
 
 import sys
@@ -15,7 +16,7 @@ logging.basicConfig(level=logging.INFO)
 if len(sys.argv) < 2:
     raise AttributeError(
         """
-        This script needs two build numbers to work,
+        This script needs two CircleCI build numbers to work,
         e.g. python openfisca_france/scripts/performance_tests/test_circleci_builds.py 1717 1716
         """
     )
