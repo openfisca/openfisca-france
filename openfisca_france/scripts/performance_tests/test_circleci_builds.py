@@ -1,6 +1,6 @@
 """
 This script takes in two CircleCI build numbers
-(usually the `build_python2` and `build_python2` of the same workflow)
+(usually the `build_python2` and `build_python3` of the same workflow)
 and outputs if their runtime is in the same ball park as the master branche's
 """
 
@@ -8,6 +8,15 @@ import sys
 import requests
 import json
 import logging
+
+
+if len(sys.argv) < 2:
+    raise AttributeError(
+        """
+        This script needs two build numbers to work,
+        e.g. python openfisca_france/scripts/performance_tests/test_circleci_builds.py 1717 1716
+        """
+    )
 
 python2_build_number = sys.argv[1]
 python3_build_number = sys.argv[2]
@@ -46,15 +55,15 @@ def get_master_branch_performance():
             builds.append(response['build_time_millis'])
 
     if len(builds) < 5:
-        logging.warning('too few master branch builds')
+        logging.warning('Too few circle builds on master branch : {} builds'.format(len(builds)))
         exit(1)
 
     results = dict()
     results['mean'] = mean(builds)
     results['standard_deviation'] = standard_deviation(builds)
-
-    if round(results['standard_deviation']/results['mean'] * 100, 2) > 10:
-        logging.warning('The standard deviation is unsound')
+    ratio_sd = round(results['standard_deviation'] / results['mean'] * 100, 2)
+    if ratio_sd > 10:
+        logging.warning('The standard deviation is unsound : {}'.format(ratio_sd))
         exit(1)
     return results
 
@@ -78,21 +87,19 @@ def get_current_build_performance(python2_build_number, python3_build_number):
             exit(1)
         current_build_performance += response_python['build_time_millis']
 
-    return current_build_performance
+    return current_build_performance / 2
 
 
 master_branch = get_master_branch_performance()
-
 current_build = get_current_build_performance(python2_build_number, python3_build_number)
 
-
+current_master_ratio = abs(master_branch['mean'] - current_build) / master_branch['mean'] * 100
 if current_build > master_branch['mean'] * 1.10:
-    sys.exit('This build makes the test performance more than 10% worst')
+    sys.exit('This build makes the test performance more than 10% worst : {}%'.format(current_master_ratio))
 
 elif current_build > master_branch['mean'] + master_branch['standard_deviation']:
-    sys.exit('This build may be making the test performance worst')
+    sys.exit('This build may be making the test performance worst : {}%'.format(current_master_ratio))
 
 elif current_build < master_branch['mean'] + master_branch['standard_deviation']:
-    print('Performances are good')
+    logging.info('Performances are good : {}%'.format(current_master_ratio))
     sys.exit(0)
-
