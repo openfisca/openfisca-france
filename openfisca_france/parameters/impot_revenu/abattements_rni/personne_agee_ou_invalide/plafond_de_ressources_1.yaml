@@ -1,5 +1,5 @@
 description: Âgé ou invalide - 1er cas limite
-reference: ipp
+reference: ipp - http://bofip.impots.gouv.fr/bofip/2036-PGP.html
 unit: currency
 values:
   1977-01-01:
@@ -72,3 +72,7 @@ values:
     value: 14710.0
   2015-01-01:
     value: 14730.0
+  2016-01-01:
+    value: 14751.0
+  2017-01-01:
+    value: 14900.0

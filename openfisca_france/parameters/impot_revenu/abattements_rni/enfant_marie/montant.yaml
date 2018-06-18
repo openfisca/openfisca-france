@@ -1,5 +1,5 @@
 description: Enfants à charge (par personne rattachée)
-reference: ipp
+reference: ipp - http://bofip.impots.gouv.fr/bofip/2036-PGP.html
 unit: currency
 values:
   1977-01-01:
@@ -76,3 +76,7 @@ values:
     value: 5726.0
   2015-01-01:
     value: 5732.0
+  2016-01-01:
+    value: 5738.0
+  2017-01-01:
+    value: 5795.0
