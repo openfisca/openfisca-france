@@ -178,6 +178,7 @@ class aah_non_calculable(Variable):
     possible_values = TypesAAHNonCalculable
     default_value = TypesAAHNonCalculable.calculable
     entity = Individu
+    end = '1890-06-15'
     label = u"AAH non calculable"
     definition_period = MONTH
 
@@ -215,7 +216,6 @@ class aah_base(Variable):
         law = parameters(period).prestations
 
         aah_eligible = individu('aah_eligible', period)
-        aah_non_calculable = individu('aah_non_calculable', period)
         aah_base_ressources = individu.famille('aah_base_ressources', period) / 12
         en_couple = individu.famille('en_couple', period)
         af_nbenf = individu.famille('af_nbenf', period)

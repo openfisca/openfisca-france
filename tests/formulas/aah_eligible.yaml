@@ -52,15 +52,4 @@
     taux_incapacite: 0.4
   output_variables:
     aah_eligible: false
-    aah_non_calculable: calculable #Used to be false
-
-
-- name: "Indetermination de l'éligibilité à l'AAH : taux d'incapacité entre 50% et 80%"
-  description: Eligible à AAH
-  period: 2013-07
-  input_variables:
-    age: 50
-    handicap: true
-    taux_incapacite: 0.7
-  output_variables:
-    aah_non_calculable: intervention_CDAPH_necessaire #Used to be true
+    aah_non_calculable: calculable
