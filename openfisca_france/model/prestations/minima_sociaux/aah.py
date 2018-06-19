@@ -19,7 +19,7 @@ class aah_base_ressources(Variable):
         def assiette_conjoint(revenus_conjoint):
             return 0.9 * (1 - 0.2) * revenus_conjoint
 
-        def assiette_demandeur(revenus_demandeur):
+        def assiette_revenu_activite_demandeur(revenus_demandeur):
             smic_brut_annuel = 12 * law.cotsoc.gen.smic_h_b * law.cotsoc.gen.nb_heure_travail_mensuel
             tranche1 = min_(0.3 * smic_brut_annuel, revenus_demandeur)
             tranche2 = revenus_demandeur - tranche1
@@ -27,15 +27,16 @@ class aah_base_ressources(Variable):
 
         def base_ressource_eval_trim():
             base_ressource_demandeur = famille.demandeur('aah_base_ressources_eval_trimestrielle', period)
+            base_ressource_demandeur = famille.demandeur('aah_base_ressources_eval_trimestrielle', period)
             base_ressource_conjoint = famille.conjoint('aah_base_ressources_eval_trimestrielle', period)
 
-            return assiette_demandeur(base_ressource_demandeur) + assiette_conjoint(base_ressource_conjoint)
+            return assiette_revenu_activite_demandeur(base_ressource_demandeur) + assiette_conjoint(base_ressource_conjoint)
 
         def base_ressource_eval_annuelle():
-            base_ressource_demandeur = famille.demandeur('aah_base_ressources_eval_annuelle', period)
+            base_ressource_demandeur = assiette_revenu_activite_demandeur(famille.demandeur('revenu_activite', period.n_2)) + famille.demandeur('revenu_assimile_pension', period.n_2)
             base_ressource_conjoint = famille.conjoint('aah_base_ressources_eval_annuelle', period)
 
-            return assiette_demandeur(base_ressource_demandeur) + assiette_conjoint(base_ressource_conjoint)
+            return base_ressource_demandeur + assiette_conjoint(base_ressource_conjoint)
 
         return where(
             demandeur_en_activite,
