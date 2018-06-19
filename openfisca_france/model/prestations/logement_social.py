@@ -108,12 +108,11 @@ class logement_social_categorie_menage(Variable):
         nb_personnes = famille.nb_persons()
         personnes_a_charge = famille('al_nb_personnes_a_charge', period)
 
-        # Le couple dont la somme des âges révolus des deux conjoints le composant
-        # est au plus égale à cinquante-cinq ans constitue un jeune ménage
-        # au sens du présent arrêté.
+        # Jeune ménage : Couple marié, concubins ou pacsés, sans personne à charge,
+        # dont la somme des âges des deux conjoints est inférieure ou égale à 55 ans
         age = famille.members('age', period)
-        sum_age = famille.sum(age)
-        jeune_menage = (not_(personne_seule) * (sum_age <= 55))
+        sum_age = famille.sum(age, role = Famille.PARENT)
+        jeune_menage = (not_(personne_seule) * (sum_age <= 55) * (personnes_a_charge == 0))
 
         return select(
             [
