@@ -45,6 +45,9 @@ setup(
             'flake8 == 3.4.1',
             'scipy >= 0.17', # Only used to test de_net_a_brut reform
             ],
+        'profile': [
+            'snakeviz', # For make profile
+            ],
         },
     include_package_data = True,  # Will read MANIFEST.in
     install_requires = [

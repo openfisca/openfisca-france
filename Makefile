@@ -1,3 +1,7 @@
+#!/bin/bash
+
+TO_PROFILE=openfisca_france/scripts/performance_tests/test_tests.py
+
 all: test
 
 check-no-prints:
@@ -23,3 +27,8 @@ test: check-syntax-errors check-no-prints
 
 performance:
 	python openfisca_france/scripts/performance_tests/test_tests.py
+
+profile:
+	@echo "> Profiling $(TO_PROFILE)..."
+	python -m cProfile -o results.prof $(TO_PROFILE)
+	snakeviz results.prof
