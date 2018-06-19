@@ -1,3 +1,4 @@
+
 # -*- coding: utf-8 -*-
 from __future__ import division
 
@@ -166,32 +167,6 @@ class aah_eligible(Variable):
     # TODO: dated_function : avant 2008, il fallait ne pas avoir travaillé pendant les 12 mois précédant la demande.
 
 
-class TypesAAHNonCalculable(Enum):
-    # Needed to preserve the enum order in Python 2
-    __order__ = 'calculable intervention_CDAPH_necessaire'
-    calculable = u"Calculable"
-    intervention_CDAPH_necessaire = u"intervention_CDAPH_necessaire"
-
-
-class aah_non_calculable(Variable):
-    value_type = Enum
-    possible_values = TypesAAHNonCalculable
-    default_value = TypesAAHNonCalculable.calculable
-    entity = Individu
-    label = u"AAH non calculable"
-    definition_period = MONTH
-
-    def formula(individu, period):
-        taux_incapacite = individu('taux_incapacite', period)  # noqa F841
-        aah_eligible = individu('aah_eligible', period)
-
-        return where(
-            individu('aah_eligible', period),
-            TypesAAHNonCalculable.intervention_CDAPH_necessaire,
-            TypesAAHNonCalculable.calculable
-            )
-
-
 class aah_base_non_cumulable(Variable):
     value_type = float
     label = u"Montant de l'Allocation adulte handicapé (hors complément) pour un individu, mensualisée"
@@ -217,7 +192,6 @@ class aah_base(Variable):
         law = parameters(period).prestations
 
         aah_eligible = individu('aah_eligible', period)
-        aah_non_calculable = individu('aah_non_calculable', period)
         aah_base_ressources = individu.famille('aah_base_ressources', period) / 12
         en_couple = individu.famille('en_couple', period)
         af_nbenf = individu.famille('af_nbenf', period)
