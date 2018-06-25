@@ -27,11 +27,13 @@ class aah_base_ressources(Variable):
             return (1 - 0.8) * tranche1 + (1 - 0.4) * tranche2
 
         def base_ressource_eval_trim():
-            base_ressource_demandeur = famille.demandeur('aah_base_ressources_eval_trimestrielle', period)
-            base_ressource_demandeur = famille.demandeur('aah_base_ressources_eval_trimestrielle', period)
-            base_ressource_conjoint = famille.conjoint('aah_base_ressources_eval_trimestrielle', period)
+            three_previous_months = period.first_month.start.period('month', 3).offset(-3)
+            base_ressource_activite_demandeur = famille.demandeur('aah_base_ressources_activite_eval_trimestrielle', period) - famille.demandeur('aah_base_ressources_activite_milieu_protege', three_previous_months, options = [ADD])
+            base_ressource_hors_activite_demandeur = famille.demandeur('aah_base_ressources_hors_activite_eval_trimestrielle', period) + famille.demandeur('aah_base_ressources_activite_milieu_protege', three_previous_months, options = [ADD])
+            base_ressource_demandeur = assiette_revenu_activite_demandeur(base_ressource_activite_demandeur) + base_ressource_hors_activite_demandeur
 
-            return assiette_revenu_activite_demandeur(base_ressource_demandeur) + assiette_conjoint(base_ressource_conjoint)
+            base_ressource_conjoint = famille.conjoint('aah_base_ressources_activite_eval_trimestrielle', period) + famille.conjoint('aah_base_ressources_hors_activite_eval_trimestrielle', period)
+            return base_ressource_demandeur + assiette_conjoint(base_ressource_conjoint)
 
         def base_ressource_eval_annuelle():
             base_ressource_demandeur = assiette_revenu_activite_demandeur(famille.demandeur('revenu_activite', period.n_2)) + famille.demandeur('revenu_assimile_pension', period.n_2)
@@ -46,9 +48,66 @@ class aah_base_ressources(Variable):
             )
 
 
-class aah_base_ressources_eval_trimestrielle(Variable):
+class aah_base_ressources_activite_eval_trimestrielle(Variable):
     value_type = float
-    label = u"Base de ressources de l'ASS pour un individu, évaluation trimestrielle"
+    label = u"Base de ressources des revenus d'activité de l'AAH pour un individu, évaluation trimestrielle"
+    entity = Individu
+    definition_period = MONTH
+
+    '''
+        N'entrent pas en compte dans les ressources :
+        L'allocation compensatrice tierce personne, les allocations familiales,
+        l'allocation de logement, la retraite du combattant, les rentes viagères
+        constituées en faveur d'une personne handicapée ou dans la limite d'un
+        montant fixé à l'article D.821-6 du code de la sécurité sociale (1 830 €/an),
+        lorsqu'elles ont été constituées par une personne handicapée pour elle-même.
+        Le RMI (article R 531-10 du code de la sécurité sociale).
+        A partir du 1er juillet 2007, votre Caf, pour le calcul de votre Aah,
+        continue à prendre en compte les ressources de votre foyer diminuées de 20%.
+        Notez, dans certaines situations, la Caf évalue forfaitairement vos
+        ressources à partir de votre revenu mensuel.
+    '''
+
+    def formula(individu, period):
+        period = period.first_month
+        three_previous_months = period.start.period('month', 3).offset(-3)
+        last_year = period.last_year
+
+        ressources_a_inclure = [
+            'chomage_net',
+            'indemnites_chomage_partiel',
+            'indemnites_journalieres_imposables',
+            'indemnites_stage',
+            'revenus_stage_formation_pro',
+            'salaire_net',
+            ]
+
+        ressources = sum(
+            [individu(ressource, three_previous_months, options = [ADD]) for ressource in ressources_a_inclure]
+            )
+
+        def revenus_tns():
+            revenus_auto_entrepreneur = individu('tns_auto_entrepreneur_benefice', three_previous_months, options = [ADD])
+
+            # Les revenus TNS hors AE sont estimés en se basant sur le revenu N-1
+            tns_micro_entreprise_benefice = individu('tns_micro_entreprise_benefice', last_year) * 3 / 12
+            tns_benefice_exploitant_agricole = individu('tns_benefice_exploitant_agricole', last_year) * 3 / 12
+            tns_autres_revenus = individu('tns_autres_revenus', last_year) * 3 / 12
+
+            return revenus_auto_entrepreneur + tns_micro_entreprise_benefice + tns_benefice_exploitant_agricole + tns_autres_revenus
+
+        return (ressources + revenus_tns()) * 4
+
+class aah_base_ressources_activite_milieu_protege(Variable):
+    value_type = float
+    label = u"Base de ressources de l'AAH des revenus d'activité en milieu protégé pour un individu"
+    entity = Individu
+    definition_period = MONTH
+
+
+class aah_base_ressources_hors_activite_eval_trimestrielle(Variable):
+    value_type = float
+    label = u"Base de ressources hors revenus d'activité de l'AAH pour un individu, évaluation trimestrielle"
     entity = Individu
     definition_period = MONTH
 
@@ -75,36 +134,20 @@ class aah_base_ressources_eval_trimestrielle(Variable):
             'asi',
             'allocation_securisation_professionnelle',
             'bourse_recherche',
-            'chomage_net',
             'gains_exceptionnels',
-            'indemnites_chomage_partiel',
-            'indemnites_journalieres_imposables',
-            'indemnites_stage',
             'pensions_alimentaires_percues',
             'pensions_alimentaires_versees_individu',
             'pensions_invalidite',
             'prestation_compensatoire',
             'retraite_nette',
-            'revenus_stage_formation_pro',
             'rsa_base_ressources_patrimoine_individu',
-            'salaire_net',
             ]
 
         ressources = sum(
             [individu(ressource, three_previous_months, options = [ADD]) for ressource in ressources_a_inclure]
             )
 
-        def revenus_tns():
-            revenus_auto_entrepreneur = individu('tns_auto_entrepreneur_benefice', three_previous_months, options = [ADD])
-
-            # Les revenus TNS hors AE sont estimés en se basant sur le revenu N-1
-            tns_micro_entreprise_benefice = individu('tns_micro_entreprise_benefice', last_year) * 3 / 12
-            tns_benefice_exploitant_agricole = individu('tns_benefice_exploitant_agricole', last_year) * 3 / 12
-            tns_autres_revenus = individu('tns_autres_revenus', last_year) * 3 / 12
-
-            return revenus_auto_entrepreneur + tns_micro_entreprise_benefice + tns_benefice_exploitant_agricole + tns_autres_revenus
-
-        return (ressources + revenus_tns()) * 4
+        return ressources * 4
 
 
 class aah_base_ressources_eval_annuelle(Variable):
