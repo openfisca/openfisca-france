@@ -3,3 +3,5 @@ unit: currency
 values:
   2016-01-01:
     value: 3700.0
+  2017-01-01:
+    value: 3737.0
