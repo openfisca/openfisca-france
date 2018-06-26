@@ -65,6 +65,8 @@ pvce:
   values:
     2002-01-01:
       value: 0.16
+    2017-01-01:
+      value: 0.128
 seuil_d_imposition:
   reference: ipp
   unit: currency

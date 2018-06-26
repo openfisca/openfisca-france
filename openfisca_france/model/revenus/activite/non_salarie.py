@@ -885,7 +885,7 @@ class frag_pvce(Variable):
     value_type = int
     unit = 'currency'
     entity = Individu
-    label = u"Plus-values agricoles de cession taxables à 16% (régime du forfait)"
+    label = u"Plus-values agricoles de cession (régime du forfait)"
     # start_date = date(2007, 1, 1)
     definition_period = YEAR
 
