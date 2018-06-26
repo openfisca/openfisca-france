@@ -42,6 +42,7 @@ class f1tx(Variable):
     unit = 'currency'
     entity = Individu
     label = u"Gains de levée d'options sur titres en cas de cession ou de conversion au porteur dans le délai d'indisponibilité: entre 3 et 4 ans"
+    end = '2016-12-31'
     definition_period = YEAR
 
   # (f1tx,f1ux))
