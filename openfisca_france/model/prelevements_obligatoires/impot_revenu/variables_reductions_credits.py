@@ -3690,6 +3690,7 @@ class f7xp(Variable):
     entity = FoyerFiscal
     label = u"Investissements locatifs dans une résidence hôtelière à vocation sociale: report des dépenses d'investissement des années antérieures"
 #    start_date = date(2011, 1, 1)
+    end = '2016-12-31'
     definition_period = YEAR
 
 
@@ -3700,6 +3701,7 @@ class f7xq(Variable):
     entity = FoyerFiscal
     label = u"Investissements locatifs dans une résidence hôtelière à vocation sociale: report des dépenses d'investissement des années antérieures"
 #    start_date = date(2011, 1, 1)
+    end = '2016-12-31'
     definition_period = YEAR
 
 

@@ -2777,7 +2777,6 @@ class invlst(Variable):
     label = u"Réduction d'impôt en faveur des investissements dans le secteur touristique"
     reference = "http://bofip.impots.gouv.fr/bofip/6265-PGP"
     definition_period = YEAR
-    end = '2016-12-31'
 
     def formula_2004_01_01(foyer_fiscal, period, parameters):
         '''
@@ -3068,6 +3067,29 @@ class invlst(Variable):
             )
         reduction_rehabilitation = P.taux_xj * (
             report_rehabilitation_2010 + 
+            report_rehabilitation_2011 +
+            report_rehabilitation_2012
+            )
+
+        return around(reduction_logement_neuf + reduction_rehabilitation)
+
+    def formula_2017_01_01(foyer_fiscal, period, parameters):
+        '''
+        Investissements locatifs dans le secteur touristique
+        2017
+        '''
+        maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
+        report_logement_neuf_2011 = foyer_fiscal('f7xn', period)
+        report_logement_neuf_2012 = foyer_fiscal('f7uy', period)
+        report_rehabilitation_2011 = foyer_fiscal('f7xv', period)
+        report_rehabilitation_2012 = foyer_fiscal('f7uz', period)
+        P = parameters(period).impot_revenu.reductions_impots.invlst
+
+        reduction_logement_neuf = P.taux_xi * (
+            report_logement_neuf_2011 + 
+            report_logement_neuf_2012
+            )
+        reduction_rehabilitation = P.taux_xj * (
             report_rehabilitation_2011 +
             report_rehabilitation_2012
             )
