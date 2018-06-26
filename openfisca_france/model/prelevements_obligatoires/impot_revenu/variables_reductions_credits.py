@@ -5195,6 +5195,7 @@ class f7kb(Variable):
     entity = FoyerFiscal
     label = u"Dépenses de protection du patrimoine naturel (excédent de réduction d’impôt d’années antérieures qui n’a pu être imputé)"
 #    start_date = date(2011, 1, 1)
+    end = '2016-12-31'
     definition_period = YEAR
 
 

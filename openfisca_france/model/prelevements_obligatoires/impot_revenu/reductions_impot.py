@@ -3628,7 +3628,7 @@ class patnat(Variable):
     def formula_2014_01_01(foyer_fiscal, period, parameters):
         '''
         Dépenses de protections du patrimoine naturel (case 7KB, 7KC, 7KD, 7KE)
-        2014-
+        2014-2016
         '''
         f7kb = foyer_fiscal('f7kb', period)
         f7kc = foyer_fiscal('f7kc', period)
@@ -3636,6 +3636,17 @@ class patnat(Variable):
         f7ke = foyer_fiscal('f7ke', period)
         
         return f7kb + f7kc + f7kd + f7ke
+
+    def formula_2017_01_01(foyer_fiscal, period, parameters):
+        '''
+        Dépenses de protections du patrimoine naturel (case 7KC, 7KD, 7KE)
+        2017
+        '''
+        f7kc = foyer_fiscal('f7kc', period)
+        f7kd = foyer_fiscal('f7kd', period)
+        f7ke = foyer_fiscal('f7ke', period)
+        
+        return f7kc + f7kd + f7ke
 
 
 class prcomp(Variable):
