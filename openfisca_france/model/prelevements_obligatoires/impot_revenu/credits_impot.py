@@ -193,7 +193,7 @@ class credits_impot(Variable):
                 preetu + prlire + quaenv + saldom2)
 
     def formula_2014_01_01(foyer_fiscal, period, parameters):
-        """ Crédits d'impôt crédités l'impôt sur les revenus de 2014 et + (non vérifié)"""
+        """ Crédits d'impôt crédités l'impôt sur les revenus de 2014 à 2016"""
         aidper = foyer_fiscal('aidper', period)
         assloy = foyer_fiscal('assloy', period)
         autent = foyer_fiscal('autent', period)
@@ -209,6 +209,24 @@ class credits_impot(Variable):
         saldom2 = foyer_fiscal('saldom2', period)
 
         return (aidper + assloy + autent + ci_garext + cotsyn + creimp + direpa + drbail + inthab +
+                preetu + prlire + quaenv + saldom2)
+
+    def formula_2017_01_01(foyer_fiscal, period, parameters):
+        """ Crédits d'impôt crédités l'impôt sur les revenus de 2014 et + (non vérifié)"""
+        aidper = foyer_fiscal('aidper', period)
+        autent = foyer_fiscal('autent', period)
+        ci_garext = foyer_fiscal('ci_garext', period)
+        cotsyn = foyer_fiscal('cotsyn', period)
+        creimp = foyer_fiscal('creimp', period)
+        direpa = foyer_fiscal('direpa', period)
+        drbail = foyer_fiscal('drbail', period)
+        inthab = foyer_fiscal('inthab', period)
+        preetu = foyer_fiscal('preetu', period)
+        prlire = foyer_fiscal('prlire', period)
+        quaenv = foyer_fiscal('quaenv', period)
+        saldom2 = foyer_fiscal('saldom2', period)
+
+        return (aidper +  autent + ci_garext + cotsyn + creimp + direpa + drbail + inthab +
                 preetu + prlire + quaenv + saldom2)
 
 
