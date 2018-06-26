@@ -465,6 +465,7 @@ class f7we(Variable):
     entity = FoyerFiscal
     label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: éco-prêt à taux zéro avec offre de prêt émise l'année de perception des revenus déclarés"
 #    start_date = date(2009, 1, 1)
+    end = '2016-12-31'
     definition_period = YEAR
 
 
@@ -475,6 +476,7 @@ class f7wg(Variable):
     entity = FoyerFiscal
     label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: éco-prêt à taux zéro avec offre de prêt émise l'année de perception des revenus déclarés -1"
 #    start_date = date(2012, 1, 1)
+    end = '2016-12-31'
     definition_period = YEAR
 
 
@@ -832,6 +834,7 @@ class f7bm(Variable):
     entity = FoyerFiscal
     label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale : Systèmes de production d'électricité utilisant une source d'énergie renouvelable (éolien, hydraulique) avec signature d'un devis et versement d'un acompte avant le 1.1.2016"
 #    start_date = date(2016, 1, 1)
+    end = '2016-12-31'
     definition_period = YEAR
 
 
@@ -7052,6 +7055,7 @@ class f7aa(Variable):
     entity = FoyerFiscal
     label = u"Dépenses en faveur de la qualité environnementale des logements donnés en location en 2015 (hors bouquet sur 2 ans) : chaudières à condensation "
 #    start_date = date(2015, 1, 1)
+    end = '2016-12-31'
     definition_period = YEAR
 
 class f7ad(Variable):
