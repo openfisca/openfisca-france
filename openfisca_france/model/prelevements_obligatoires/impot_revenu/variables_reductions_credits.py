@@ -194,6 +194,7 @@ class f7vz(Variable):
     entity = FoyerFiscal
     label = u"Intérêt des emprunts contractés pour l'acquisition ou la construction de l'habitation principale: logements anciens (acquis entre le 06/05/2007 et le 30/09/2011) ou neufs (acquis entre le 06/05/2007 et le 31/12/2009): annuités suivantes"
 #    start_date = date(2008, 1, 1)
+    end = '2016-12-31'
     definition_period = YEAR
 
 
@@ -224,7 +225,6 @@ class f7vv(Variable):
     entity = FoyerFiscal
     label = u"Intérêt des emprunts contractés pour l'acquisition ou la construction de l'habitation principale: logements neufs non-BBC acquis ou construits du 01/01/2010 au 31/12/2010: annuités suivantes"
 #    start_date = date(2011, 1, 1)
-    end = '2015-12-31'
     definition_period = YEAR
 
   # TODO: variable non présente dans OF, à intégrer partout où c'est nécessaire

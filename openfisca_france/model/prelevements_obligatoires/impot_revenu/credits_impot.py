@@ -933,7 +933,6 @@ class inthab(Variable):
     label = u"Crédit d’impôt intérêts des emprunts pour l’habitation principale"
     reference = u"http://bofip.impots.gouv.fr/bofip/3863-PGP.html?identifiant=BOI-IR-RICI-350-20120912"
     definition_period = YEAR
-    end = '2016-12-31'
 
     def formula_2007_01_01(foyer_fiscal, period, parameters):
         '''
@@ -1203,6 +1202,35 @@ class inthab(Variable):
         return (
             P.taux1 * min_(f7vx, max0) +
             P.taux4 * min_(f7vz, max1) +
+            P.taux6 * min_(f7vt, max2)
+            )
+    
+    def formula_2017_01_01(foyer_fiscal, period, parameters):
+        '''
+        Crédit d’impôt intérêts des emprunts pour l’habitation principale
+        2017
+        '''
+        maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
+        nb_pac_majoration_plafond = foyer_fiscal('nb_pac2', period)
+        invalidite_decl = foyer_fiscal('caseP', period)
+        invalidite_conj = foyer_fiscal('caseF', period)
+        nbpac_invalideG = foyer_fiscal('nbG', period)
+        nbpac_invalideR = foyer_fiscal('nbR', period)
+        nbpac_invalideI = foyer_fiscal('nbI', period)
+        f7vt = foyer_fiscal('f7vt', period)
+        f7vv = foyer_fiscal('f7vv', period)
+        f7vx = foyer_fiscal('f7vx', period)
+        P = parameters(period).impot_revenu.credits_impot.inthab
+
+        invalide = invalidite_decl | invalidite_conj | (nbpac_invalideG != 0) | (nbpac_invalideR != 0) | (nbpac_invalideI != 0)
+        # NB : max0 = plafond initial du montant d'intérêts retenus pour calculer le crédit
+        #      max1..max4 = plafonds après imputations successives (dans l'ordre décrit dans la législation) des intérêts éligibles au crédit d'impôt
+        max0 = P.max * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac_majoration_plafond * P.add
+        max1 = max_(max0 - f7vx, 0)
+        max2 = max_(max1 - f7vv, 0)
+        return (
+            P.taux1 * min_(f7vx, max0) +
+            P.taux5 * min_(f7vv, max1) +
             P.taux6 * min_(f7vt, max2)
             )
             
