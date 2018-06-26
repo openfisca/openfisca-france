@@ -532,7 +532,6 @@ class creimp(Variable):
     entity = FoyerFiscal
     label = u"Avoirs fiscaux et crédits d'impôt"
     definition_period = YEAR
-    end = '2016-12-31'
 
     def formula_2002_01_01(foyer_fiscal, period, parameters):
         f2ab = foyer_fiscal('f2ab', period)
@@ -819,6 +818,37 @@ class creimp(Variable):
         f8vm = foyer_fiscal.sum(f8vm_i)
 
         return (f2ab + f2ck + f8ta + f8tb + f8tc + f8te - f8tf + f8tg + f8th + f8to - f8tp + f8tl + f8ts + f8tz + f8uw +
+                f8uz + f8vm + f8wa + f8wb + f8wc + f8wd + f8we + f8wr + f8wt + f8wu)
+
+    def formula_2017_01_01(foyer_fiscal, period, parameters):
+        f2ab = foyer_fiscal('f2ab', period)
+        f2ck = foyer_fiscal('f2ck', period)
+        f8ta = foyer_fiscal('f8ta', period)
+        f8tb = foyer_fiscal('f8tb', period)
+        f8tc = foyer_fiscal('f8tc', period)
+        f8te = foyer_fiscal('f8te', period)
+        f8tf = foyer_fiscal('f8tf', period)
+        f8tg = foyer_fiscal('f8tg', period)
+        f8tl = foyer_fiscal('f8tl', period)
+        f8to = foyer_fiscal('f8to', period)
+        f8tp = foyer_fiscal('f8tp', period)
+        f8ts = foyer_fiscal('f8ts', period)
+        f8tz = foyer_fiscal('f8tz', period)
+        f8uw = foyer_fiscal('f8uw', period)
+        f8uz = foyer_fiscal('f8uz', period)
+        f8wa = foyer_fiscal('f8wa', period)
+        f8wb = foyer_fiscal('f8wb', period)
+        f8wc = foyer_fiscal('f8wc', period)
+        f8wd = foyer_fiscal('f8wd', period)
+        f8we = foyer_fiscal('f8we', period)
+        f8wr = foyer_fiscal('f8wr', period)
+        f8wt = foyer_fiscal('f8wt', period)
+        f8wu = foyer_fiscal('f8wu', period)
+
+        f8vm_i = foyer_fiscal.members('f8vm', period)
+        f8vm = foyer_fiscal.sum(f8vm_i)
+
+        return (f2ab + f2ck + f8ta + f8tb + f8tc + f8te - f8tf + f8tg + f8to - f8tp + f8tl + f8ts + f8tz + f8uw +
                 f8uz + f8vm + f8wa + f8wb + f8wc + f8wd + f8we + f8wr + f8wt + f8wu)
   
     # TODO : add tax credit 8VM and 8VL (2016) 
