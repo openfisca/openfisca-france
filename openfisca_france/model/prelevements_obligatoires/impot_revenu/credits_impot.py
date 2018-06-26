@@ -2150,7 +2150,6 @@ class saldom2(Variable):
     entity = FoyerFiscal
     label = u"Crédit d’impôt emploi d’un salarié à domicile"
     definition_period = YEAR
-    end = '2016-12-31'
 
     def formula_2007_01_01(foyer_fiscal, period, parameters):
         '''

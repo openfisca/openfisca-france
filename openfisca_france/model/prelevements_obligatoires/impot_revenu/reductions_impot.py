@@ -4017,7 +4017,7 @@ class saldom(Variable):
     def formula_2011_01_01(foyer_fiscal, period, parameters):
         '''
         Sommes versées pour l'emploi d'un salariés à domicile
-        2011 -
+        2011 - 2016
         '''
         nb_pac_majoration_plafond = foyer_fiscal('nb_pac2', period)
         f7db = foyer_fiscal('f7db', period)

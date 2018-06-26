@@ -125,6 +125,7 @@ class f7dd(Variable):
     entity = FoyerFiscal
     label = u"Sommes versées pour l'emploi d'un salarié à domicile pour un ascendant bénéficiaire de l'APA "
 #    start_date = date(2011, 1, 1)
+    end = '2016-12-31'
     definition_period = YEAR
 
 
@@ -134,6 +135,7 @@ class f7df(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     label = u"Sommes versées pour l'emploi d'un salarié à domicile par les personnes retraités, ou inactives l'année de perception des revenus déclarés"
+    end = '2016-12-31'
     definition_period = YEAR
 
 
@@ -5109,7 +5111,7 @@ class f7en(Variable):
 #    start_date = date(2017, 1, 1)
     definition_period = YEAR
 
-    
+
 class f7gn(Variable):
     cerfa_field = u"7GN"
     value_type = int
