@@ -1142,7 +1142,7 @@ class f7pz(Variable):
     definition_period = YEAR
 
 
-class f7qz(Variable):
+class f7qz_2012(Variable):
     cerfa_field = u"7QZ"
     value_type = int
     unit = 'currency'
@@ -1172,13 +1172,14 @@ class f7rz_2010(Variable):
     definition_period = YEAR
 
 
-class f7rz(Variable):
+class f7rz_2015(Variable):
     cerfa_field = u"7RZ"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = u"Dépenses en faveur de la qualité environnementale des logements donnés en location : Dans les logements situés dans les départements d’outre-mer : équipements de raccordement à un réseau de froid ;  équipements ou matériaux de protection des parois vitrées ou opaques contre les rayonnements solaires ;  équipements visant à l’optimisation de la ventilation naturelle "
 #    start_date = date(2014, 1, 1)
+    end = '2015-12-31'
     definition_period = YEAR
 
 
@@ -1201,7 +1202,7 @@ class fhqv(Variable):
     definition_period = YEAR
 
 
-class f7qo(Variable):
+class f7qo_2012(Variable):
     cerfa_field = u"7QO"
     value_type = int
     unit = 'currency'
@@ -1211,7 +1212,7 @@ class f7qo(Variable):
     definition_period = YEAR
 
 
-class f7qp(Variable):
+class f7qp_2012(Variable):
     cerfa_field = u"7QP"
     value_type = int
     unit = 'currency'
@@ -2341,15 +2342,25 @@ class fhku(Variable):
     definition_period = YEAR
 
 
-# TODO: 7sz se rapporte à des choses différentes en 2012 et 2013 par rapport aux années précédentes, cf pour les années antérieures
+class f7sz_2009(Variable):
+    cerfa_field = u"7SZ"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements Outre-Mer; Report de la réduction N-1"
+#    start_date = date(2006, 1, 1)
+    end = '2009-12-31'
+    definition_period = YEAR
 
-class f7sz(Variable):
+
+class f7sz_2015(Variable):
     cerfa_field = u"7SZ"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = u"Dépenses en faveur de la qualité environnementale des logements donnés en location"
-#    start_date = date(2006, 1, 1) # disparait en 2010-2011, en 2014 et en 2016
+#    start_date = date(2012, 1, 1) # disparait provisoirement en 2014
+    end = '2015-12-31'
     definition_period = YEAR
 
 
@@ -3987,12 +3998,12 @@ class f7qk(Variable):
     definition_period = YEAR
 
 
-class f7qn(Variable):
+class f7qn_2012(Variable):
     cerfa_field = u"7QN"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    end = '2010-12-31'
+    end = '2012-12-31'
     definition_period = YEAR
 
 
@@ -4031,7 +4042,7 @@ class f7qt(Variable):
     definition_period = YEAR
 
 
-class f7qm(Variable):
+class f7qm_2012(Variable):
     cerfa_field = u"7QM"
     value_type = int
     unit = 'currency'
