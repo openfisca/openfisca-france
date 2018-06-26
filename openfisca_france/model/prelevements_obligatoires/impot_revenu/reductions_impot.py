@@ -4825,8 +4825,29 @@ class sofica(Variable):
 
         max0 = min_(P.taux_plafond * max_(rng, 0), P.max)
         max1 = max_(0, max0 - f7gn)
-        
+
         return P.taux36 * min_(f7gn, max0) + P.taux30 * min_(f7fn, max1)
+
+    def formula_2017_01_01(foyer_fiscal, period, parameters):
+        '''
+        Souscriptions au capital de SOFICA
+        2017-
+        '''
+        f7gn = foyer_fiscal('f7gn', period)
+        f7fn = foyer_fiscal('f7fn', period)
+        f7en = foyer_fiscal('f7en', period)
+        rng = foyer_fiscal('rng', period)
+        P = parameters(period).impot_revenu.reductions_impots.sofica
+
+        max0 = min_(P.taux_plafond * max_(rng, 0), P.max)
+        max1 = max_(0, max0 - f7en)
+        max2 = max_(0, max0 - f7gn)
+        
+        return (
+            P.taux48 * min_(f7en, max0) 
+            + P.taux36 * min_(f7gn, max1) 
+            + P.taux30 * min_(f7fn, max2)
+            )
 
 
 class sofipe(Variable):

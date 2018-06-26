@@ -5099,6 +5099,17 @@ class f7fl(Variable):
 
 
 # Souscriptions au capital de SOFICA
+
+class f7en(Variable):
+    cerfa_field = u"7EN"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Souscriptions au capital de SOFICA 48 %"
+#    start_date = date(2017, 1, 1)
+    definition_period = YEAR
+
+    
 class f7gn(Variable):
     cerfa_field = u"7GN"
     value_type = int
