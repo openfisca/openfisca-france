@@ -1843,17 +1843,26 @@ class glo(Variable):
 
         return f1tv + f1tw + f1tx + f3vf + f3vi + f3vj
 
-    def formula_2017_01_01(individu, period, parameters):
+    def formula_2016_01_01(individu, period, parameters):
         '''
         Gains de levée d'option
         '''
-        f1tv = individu('f1tv', period)
-        f1tw = individu('f1tw', period)
+        f1tx = individu('f1tx', period)
         f3vf = individu('f3vf', period)
         f3vi = individu('f3vi', period)
         f3vj = individu('f3vj', period)
 
-        return f1tv + f1tw + f3vf + f3vi + f3vj
+        return f1tx + f3vf + f3vi + f3vj
+
+    def formula_2017_01_01(individu, period, parameters):
+        '''
+        Gains de levée d'option
+        '''
+        f3vf = individu('f3vf', period)
+        f3vi = individu('f3vi', period)
+        f3vj = individu('f3vj', period)
+
+        return f3vf + f3vi + f3vj
 
 
 class rev_cap_bar(Variable):
