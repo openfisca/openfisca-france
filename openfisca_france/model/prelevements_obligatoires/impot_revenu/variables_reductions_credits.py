@@ -7386,6 +7386,15 @@ class f7fr(Variable):
 #    start_date = date(2016, 1, 1)
     definition_period = YEAR
 
+class f7fv(Variable):
+    cerfa_field = u"7FV"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Report concernant les investissements réalisés et achevés en 2016 en métropole et outre-mer"
+#    start_date = date(2017, 1, 1)
+    definition_period = YEAR
+
 # Réduction d'impôts sur les investissements locatifs intermédiaires (loi Pinel)
 
 class f7qa(Variable):
