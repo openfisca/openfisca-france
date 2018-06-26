@@ -3521,6 +3521,7 @@ class f7gw(Variable):
     entity = FoyerFiscal
     label = u"Investissements achevés en n-2 en Polynésie française, Nouvelle Calédonie, dans les îles Walllis et Futuna : report de 1/5 de la réduction d'impôt"
 #    start_date = date(2013, 1, 1)
+    end = '2016-12-31'
     definition_period = YEAR
 
 
@@ -3530,6 +3531,7 @@ class f7gx(Variable):
     entity = FoyerFiscal
     label = u"Investissements achevés en n-2 avec promesse d'achat en n-3 en Polynésie française, Nouvelle Calédonie, dans les îles Walllis et Futuna : report de 1/5 de la réduction d'impôt"
 #    start_date = date(2013, 1, 1)
+    end = '2016-12-31'
     definition_period = YEAR
 
 
@@ -5438,6 +5440,7 @@ class f7hj(Variable):
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier: investissements réalisés en 2010 en métropole"
 #    start_date = date(2009, 1, 1)
+    end = '2016-12-31'
     definition_period = YEAR
 
 
@@ -5448,6 +5451,7 @@ class f7hk(Variable):
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier: investissements réalisés en 2010 dans les DOM-COM"
 #    start_date = date(2009, 1, 1)
+    end = '2016-12-31'
     definition_period = YEAR
 
 
@@ -5458,6 +5462,7 @@ class f7hn(Variable):
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier: investissements réalisés en 2010 en métropole avec promesse d'achat avant le 1er janvier 2010"
 #    start_date = date(2010, 1, 1)
+    end = '2016-12-31'
     definition_period = YEAR
 
 
@@ -5468,6 +5473,7 @@ class f7ho(Variable):
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier: investissements réalisés en 2010 dans les DOM-COM avec promesse d'achat avant le 1er janvier 2010"
 #    start_date = date(2010, 1, 1)
+    end = '2016-12-31'
     definition_period = YEAR
 
 
@@ -5528,6 +5534,7 @@ class f7lb(Variable):
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Investissements réalisés et achevés en 2009 ou 2010 ou réalisés et achevés en 2010 avec engagement avant le 1.1.2010, Report de l'année 2010"
 #    start_date = date(2011, 1, 1)
+    end = '2016-12-31'
     definition_period = YEAR
 
 
@@ -5538,6 +5545,7 @@ class f7lc(Variable):
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Investissements réalisés et achevés en 2010 ; réalisés en 2010 et achevés en 2011 ; réalisés et achevés en 2011 avec engagement en 2010, Report de l'année 2010"
 #    start_date = date(2011, 1, 1)
+    end = '2016-12-31'
     definition_period = YEAR
 
 
@@ -5685,6 +5693,7 @@ class f7nb(Variable):
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier : investissements engagés en 2010, réalisés en 2011, "
 #    start_date = date(2011, 1, 1)
+    end = '2016-12-31'
     definition_period = YEAR
 
 
@@ -5735,6 +5744,7 @@ class f7ng(Variable):
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier : investissements engagés en 2010, réalisés en 2011, "
 #    start_date = date(2011, 1, 1)
+    end = '2016-12-31'
     definition_period = YEAR
 
 
@@ -5785,6 +5795,7 @@ class f7nl(Variable):
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier : investissements engagés en 2010, réalisés en 2011, DOM, Saint-Barthélémy, Saint-Martin, Saint-Pierre-et-Miquelon"
 #    start_date = date(2011, 1, 1)
+    end = '2016-12-31'
     definition_period = YEAR
 
 
@@ -5835,6 +5846,7 @@ class f7nq(Variable):
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier : investissements engagés en 2010, réalisés en 2011, Polynésie Française, Nouvelle Calédonie, Wallis et Futuna"
 #    start_date = date(2011, 1, 1)
+    end = '2016-12-31'
     definition_period = YEAR
 
 
@@ -6015,6 +6027,7 @@ class f7jb(Variable):
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier : investissements engagés en 2011, réalisés en 2012, métropole, BBC"
 #    start_date = date(2012, 1, 1)
+    end = '2016-12-31'
     definition_period = YEAR
 
 
@@ -6055,6 +6068,7 @@ class f7jg(Variable):
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier : investissements engagés en 2011, réalisés en 2012, métropole, non-BBC"
 #    start_date = date(2012, 1, 1)
+    end = '2016-12-31'
     definition_period = YEAR
 
 
@@ -6095,6 +6109,7 @@ class f7jl(Variable):
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier : investissements engagés en 2011, réalisés en 2012, DOM, Saint-Barthélémy, Saint-Martin, Saint-Pierre-et-Miquelon"
 #    start_date = date(2012, 1, 1)
+    end = '2016-12-31'
     definition_period = YEAR
 
 
@@ -6135,6 +6150,7 @@ class f7jp(Variable):
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier : investissements engagés en 2011, réalisés en 2012, Polynésie Française, Nouvelle Calédonie, Wallis et Futuna"
 #    start_date = date(2012, 1, 1)
+    end = '2016-12-31'
     definition_period = YEAR
 
 
@@ -6931,6 +6947,7 @@ class f7gv(Variable):
     entity = FoyerFiscal
     label = u"Scellier: report de 1/5 de la réduction d'impôt des investissements réalisés et achevés en 2012 en Polynésie, en Nouvelle Calédonie et à Wallis et Futuna "
 #    start_date = date(2013, 1, 1)
+    end = '2016-12-31'
     definition_period = YEAR
 
   # vérif <=2012
