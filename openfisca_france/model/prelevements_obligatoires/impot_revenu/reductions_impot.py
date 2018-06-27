@@ -4002,10 +4002,14 @@ class resimm(Variable):
         max3 = max_(P.max2 - depenses_PSMV_2017, 0)
 
         return (
-            P.taux_sy * min_(depenses_secteur_degrade, P.max) 
-            + P.taux_sx * min_(depenses_secteur_patrimoine_remarquable, max1)
-            + P.taux_sy * min_(depenses_PSMV_2017, P.max2)
-            + P.taux_sx * min_(depenses_non_PSMV_2017, max3)
+            P.taux_30 * (
+                min_(depenses_secteur_degrade, P.max) +
+                min_(depenses_PSMV_2017, P.max2)
+                )
+            + P.taux_22 * (
+                min_(depenses_secteur_patrimoine_remarquable, max1) +
+                min_(depenses_non_PSMV_2017, max3)
+                )
             )
 
 
