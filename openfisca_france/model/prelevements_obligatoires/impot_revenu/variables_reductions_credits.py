@@ -3515,7 +3515,26 @@ class f7sy(Variable):
 #    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
- # 2012 et 2013 ok
+
+class f7tx(Variable):
+    cerfa_field = u"7TX"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Travaux de restauration immobilière dans un secteur sauvegardé ou assimilé"
+#    start_date = date(2017, 1, 1)
+    definition_period = YEAR
+
+
+class f7ty(Variable):
+    cerfa_field = u"7TY"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Travaux de restauration immobilière dans un secteur sauvegardé ou assimilé"
+#    start_date = date(2017, 1, 1)
+    definition_period = YEAR
+
 
 class f7gw(Variable):
     cerfa_field = u"7GW"
