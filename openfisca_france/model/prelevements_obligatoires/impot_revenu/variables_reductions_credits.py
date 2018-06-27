@@ -7430,25 +7430,47 @@ class f7tv(Variable):
     definition_period = YEAR
 
 
-class f7tx(Variable):
+class f7tx_2012(Variable):
     cerfa_field = u"7TX"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Dépenses de travaux dans l'habitation principale"
+    label = u"Dépenses de travaux dans l'habitation principale ouvrant droit au crédit d'impôt de 26%"
 #    start_date = date(2012, 1, 1)
     end = '2012-12-31'
     definition_period = YEAR
 
 
-class f7ty(Variable):
+class f7ty_2012(Variable):
     cerfa_field = u"7TY"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Dépenses de travaux dans l'habitation principale"
+    label = u"Dépenses de travaux dans l'habitation principale ouvrant droit au crédit d'impôt de 32%"
 #    start_date = date(2012, 1, 1)
     end = '2012-12-31'
+    definition_period = YEAR
+    
+
+class f7tx_2015(Variable):
+    cerfa_field = u"7TX"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Dépenses de travaux dans l'habitation principale : dépenses de diagnostic de performance énergétique effectuées en 2015"
+#    start_date = date(2015, 1, 1)
+    end = '2015-12-31'
+    definition_period = YEAR
+
+
+class f7ty_2015(Variable):
+    cerfa_field = u"7TY"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Dépenses de travaux dans l'habitation principale : dépenses d'équipements de raccordement à un réseau de chaleur effectuées en 2015"
+#    start_date = date(2015, 1, 1)
+    end = '2015-12-31'
     definition_period = YEAR
 
 
