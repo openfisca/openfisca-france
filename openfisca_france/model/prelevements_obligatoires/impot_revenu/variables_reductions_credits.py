@@ -4569,6 +4569,17 @@ class f7ow(Variable):
 #    start_date = date(2012, 1, 1) + changes meaning in 2016
     definition_period = YEAR
 
+
+class f7ox(Variable):
+    cerfa_field = u"7OX"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés en 2017"
+#    start_date = date(2017, 1, 1)
+    definition_period = YEAR
+
+
 class fhoa(Variable):
     cerfa_field = u"HOA"
     value_type = int
@@ -6896,6 +6907,57 @@ class f7oj(Variable):
 #    start_date = date(2015, 1, 1)
     definition_period = YEAR
 
+
+class f7op(Variable):
+    cerfa_field = u"7OP"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements destinés à la location meublée non professionnelle : Report de 1/9 de la réduction d'impôt. Investissements réalisés en 2013 ou 2014 et achevés en 2016"
+#    start_date = date(2017, 1, 1)
+    definition_period = YEAR
+
+
+class f7oq(Variable):
+    cerfa_field = u"7OQ"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements destinés à la location meublée non professionnelle : Report de 1/9 de la réduction d'impôt. Investissements achevés en 2016 et réalisés en 2012 ou réalisés en 2013 avec promesse d'achat en 2012"
+#    start_date = date(2017, 1, 1)
+    definition_period = YEAR
+
+
+class f7or(Variable):
+    cerfa_field = u"7OR"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements destinés à la location meublée non professionnelle : Report de 1/9 de la réduction d'impôt. Investissements achevés en 2016 et réalisés en 2011 ou réalisés en 2012 avec promesse d'achat en 2011"
+#    start_date = date(2017, 1, 1)
+    definition_period = YEAR
+
+
+class f7os(Variable):
+    cerfa_field = u"7OS"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements destinés à la location meublée non professionnelle : Report de 1/9 de la réduction d'impôt. Investissements achevés en 2016 et réalisés en 2010 ou réalisés en 2011 avec promesse d'achat en 2010"
+#    start_date = date(2017, 1, 1)
+    definition_period = YEAR
+
+
+class f7ot(Variable):
+    cerfa_field = u"7OT"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements destinés à la location meublée non professionnelle : Report de 1/9 de la réduction d'impôt. Investissements achevés en 2016 et réalisés en 2009 ou réalisés en 2010 avec promesse d'achat en 2009"
+#    start_date = date(2017, 1, 1)
+    definition_period = YEAR
+
+
 class f7jc(Variable):
     cerfa_field = u"7JC"
     value_type = int
@@ -6923,6 +6985,56 @@ class f7js(Variable):
     entity = FoyerFiscal
     label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2011 ; réalisés en 2011 et achevés en 2011 ou 2012 ; réalisés en 2012 avec promesse d'achat en 2011 et achevés en 2012, Report du solde de réduction d’impôt de l’année 2012"
 #    start_date = date(2013, 1, 1)
+    definition_period = YEAR
+
+
+class f7pp(Variable):
+    cerfa_field = u"7PP"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements destinés à la location meublée non professionnelle : Report du solde de réduction d’impôt non imputé de 2016"
+#    start_date = date(2017, 1, 1)
+    definition_period = YEAR
+
+
+class f7pq(Variable):
+    cerfa_field = u"7PQ"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements destinés à la location meublée non professionnelle : Report du solde de réduction d’impôt non imputé de 2016"
+#    start_date = date(2017, 1, 1)
+    definition_period = YEAR
+
+
+class f7pr(Variable):
+    cerfa_field = u"7PR"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements destinés à la location meublée non professionnelle : Report du solde de réduction d’impôt non imputé de 2016"
+#    start_date = date(2017, 1, 1)
+    definition_period = YEAR
+
+
+class f7ps(Variable):
+    cerfa_field = u"7PS"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements destinés à la location meublée non professionnelle : Report du solde de réduction d’impôt non imputé de 2016"
+#    start_date = date(2017, 1, 1)
+    definition_period = YEAR
+
+
+class f7pt(Variable):
+    cerfa_field = u"7PT"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements destinés à la location meublée non professionnelle : Report du solde de réduction d’impôt non imputé de 2016"
+#    start_date = date(2017, 1, 1)
     definition_period = YEAR
 
 
