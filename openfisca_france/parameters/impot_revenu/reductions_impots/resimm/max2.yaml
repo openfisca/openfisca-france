@@ -1,0 +1,6 @@
+description: Plafond pluri-annuel sur 4 ans
+reference: openfisca
+unit: currency
+values:
+  2017-01-01:
+    value: 400000.0

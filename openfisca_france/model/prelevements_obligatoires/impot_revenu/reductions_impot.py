@@ -3980,6 +3980,34 @@ class resimm(Variable):
         return (P.taux_rc * min_(f7sy + f7rf + f7nx, max1) 
             + P.taux_re * min_(f7re + f7sx + f7ny, max2))
 
+    def formula_2017_01_01(foyer_fiscal, period, parameters):
+        '''
+        Travaux de restauration immobilière
+        2017
+        '''
+        f7nx = foyer_fiscal('f7nx', period)
+        f7ny = foyer_fiscal('f7ny', period)
+        f7sx = foyer_fiscal('f7sx', period)
+        f7sy = foyer_fiscal('f7sy', period)
+        f7tx = foyer_fiscal('f7tx', period)
+        f7ty = foyer_fiscal('f7ty', period)
+        P = parameters(period).impot_revenu.reductions_impots.resimm
+
+        depenses_secteur_degrade = f7sy + f7nx
+        depenses_secteur_patrimoine_remarquable = f7sx + f7ny
+        depenses_PSMV_2017 = f7tx
+        depenses_non_PSMV_2017 = f7ty
+
+        max1 = max_(P.max - depenses_secteur_degrade, 0)
+        max3 = max_(P.max2 - depenses_PSMV_2017, 0)
+
+        return (
+            P.taux_sy * min_(depenses_secteur_degrade, P.max) 
+            + P.taux_sx * min_(depenses_secteur_patrimoine_remarquable, max1)
+            + P.taux_sy * min_(depenses_PSMV_2017, P.max2)
+            + P.taux_sx * min_(depenses_non_PSMV_2017, max3)
+            )
+
 
 class rpinel(Variable):
     value_type = float
