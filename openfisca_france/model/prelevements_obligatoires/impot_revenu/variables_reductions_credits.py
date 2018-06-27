@@ -3481,6 +3481,7 @@ class f7re(Variable):
     entity = FoyerFiscal
     label = u"Travaux de restauration immobilière dans un secteur sauvegardé ou assimilé"
 #    start_date = date(2012, 1, 1)
+    end = '2016-12-31'
     definition_period = YEAR
 
 
@@ -3491,6 +3492,7 @@ class f7rf(Variable):
     entity = FoyerFiscal
     label = u"Travaux de restauration immobilière dans un secteur sauvegardé ou assimilé"
 #    start_date = date(2012, 1, 1)
+    end = '2016-12-31'
     definition_period = YEAR
 
 
