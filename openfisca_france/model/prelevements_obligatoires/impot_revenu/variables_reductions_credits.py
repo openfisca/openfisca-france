@@ -3759,7 +3759,7 @@ class f7xv(Variable):
     definition_period = YEAR
 
 
-class f7xx(Variable):
+class f7xx_2012(Variable):
     cerfa_field = u"7XX"
     value_type = int
     unit = 'currency'
@@ -3767,6 +3767,16 @@ class f7xx(Variable):
     label = u"Investissements locatifs dans le secteur de touristique: travaux engagés après 2012 dans un village résidentiel de tourisme"
 #    start_date = date(2012, 1, 1)
     end = '2012-12-31'
+    definition_period = YEAR
+
+
+class f7xx(Variable):
+    cerfa_field = u"7XX"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Travaux de réhabilitation des résidences de tourisme : dépenses payées en 2017"
+#    start_date = date(2017, 1, 1)
     definition_period = YEAR
 
 

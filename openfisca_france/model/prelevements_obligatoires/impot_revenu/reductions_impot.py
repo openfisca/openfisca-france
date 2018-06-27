@@ -2954,7 +2954,7 @@ class invlst(Variable):
         f7xq = foyer_fiscal('f7xq', period)
         f7xr = foyer_fiscal('f7xr', period)
         f7xv = foyer_fiscal('f7xv', period)
-        f7xx = foyer_fiscal('f7xx', period)
+        f7xx = foyer_fiscal('f7xx_2012', period)
         f7xz = foyer_fiscal('f7xz', period)
         P = parameters(period).impot_revenu.reductions_impots.invlst
 
