@@ -6488,8 +6488,9 @@ class f7il(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Investissement destinés à la location meublée non professionnelle: Investissements réalisés en 2011 et achevés en 2012, promesse d'achat en 2010"
+    label = u"Investissement destinés à la location meublée non professionnelle: Investissements réalisés en 2011 avec promesse d'achat en 2010"
 #    start_date = date(2010, 1, 1)
+    end = '2016-12-31'
     definition_period = YEAR
 
 
@@ -6498,8 +6499,9 @@ class f7im(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Investissement destinés à la location meublée non professionnelle: Investissements réalisés en 2010 et achevés en 2012 avec promesse d'achat en 2009"
+    label = u"Investissement destinés à la location meublée non professionnelle: Investissements réalisés en 2010 avec promesse d'achat en 2010"
 #    start_date = date(2010, 1, 1)
+    end = '2016-12-31'
     definition_period = YEAR
 
 
@@ -6520,6 +6522,7 @@ class f7in(Variable):
     entity = FoyerFiscal
     label = u"Investissements destinés à la location meublée non professionnelle : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2010, investissement réalisé du 1.1.2011 au 31.3.2011"
 #    start_date = date(2011, 1, 1)
+    end = '2016-12-31'
     definition_period = YEAR
 
 
@@ -6530,6 +6533,7 @@ class f7iv(Variable):
     entity = FoyerFiscal
     label = u"Investissements destinés à la location meublée non professionnelle : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2010, investissement réalisé du 1.4.2011 au 31.12.2011"
 #    start_date = date(2011, 1, 1)
+    end = '2016-12-31'
     definition_period = YEAR
 
 
@@ -6538,8 +6542,9 @@ class f7iw(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés en 2010 et achevés en 2012"
+    label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés en 2010 avec promesse d'achat en 2009"
 #    start_date = date(2011, 1, 1)
+    end = '2016-12-31'
     definition_period = YEAR
 
 
@@ -6588,8 +6593,9 @@ class f7iu(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Investissements destinés à la location meublée non professionnelle : "
+    label = u"Investissements destinés à la location meublée non professionnelle : Report du solde de réduction d’impôt non encore imputé"
 #    start_date = date(2011, 1, 1)
+    end = '2016-12-31'
     definition_period = YEAR
 
 
@@ -6598,8 +6604,9 @@ class f7it(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Investissements destinés à la location meublée non professionnelle : "
+    label = u"Investissements destinés à la location meublée non professionnelle : Report du solde de réduction d’impôt non encore imputé"
 #    start_date = date(2011, 1, 1)
+    end = '2016-12-31'
     definition_period = YEAR
 
 
@@ -6648,7 +6655,7 @@ class f7id(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2012, Engagement de réalisation de l'investissement en 2012"
+    label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés en 2012, Engagement de réalisation de l'investissement en 2012"
 #    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
@@ -6658,8 +6665,9 @@ class f7ie(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2012, Promesse d'achat en 2011"
+    label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés en 2012 avec promesse d'achat en 2011"
 #    start_date = date(2012, 1, 1)
+    end = '2016-12-31'
     definition_period = YEAR
 
 
@@ -6668,8 +6676,9 @@ class f7if(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2012, Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2011, investissement réalisé du 1.1.2012 au 31.3.2012, investissement réalisé du 1.1.2012 au 31.3.2012"
+    label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés en 2012, Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2011, investissement réalisé du 1.1.2012 au 31.3.2012"
 #    start_date = date(2012, 1, 1)
+    end = '2016-12-31'
     definition_period = YEAR
 
 
@@ -6678,8 +6687,9 @@ class f7ig(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2012, Investissements destinés à la location meublée non professionnelle : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2011, investissement réalisé du 1.4.2012 au 31.12.2012"
+    label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés en 2012, Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2011, investissement réalisé du 1.4.2012 au 31.12.2012"
 #    start_date = date(2012, 1, 1)
+    end = '2016-12-31'
     definition_period = YEAR
 
 
@@ -6728,8 +6738,9 @@ class f7ju(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés en 2013, Engagement de réalisation de l'investissement en 2012"
+    label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés en 2013 avec promesse d'achat en 2012"
 #    start_date = date(2013, 1, 1)
+    end = '2016-12-31'
     definition_period = YEAR
 
 
