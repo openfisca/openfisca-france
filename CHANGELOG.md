@@ -4,7 +4,7 @@
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 01/01/2015.
-* Zones impactées : `parameters\impot_revenu`
+* Zones impactées : `prelevements_obligatoires/impot_revenu`
 * Détails :
   - Ajoute les paramètres de l'impôt sur les revenus 2017
   - Mets à jour les paramètres non actualisés de l'impôt sur les revenus 2015-2016
