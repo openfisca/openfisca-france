@@ -1577,7 +1577,7 @@ class doment(Variable):
         fhtd = foyer_fiscal('fhtd', period)
 
         return (fhaa + fhab + fhac + fhae + fhaf + fhag + fhah + fhaj + fhak + fhal + fham + fhao + fhap + fhaq + fhar + 
-                    fhat + fhau + fhav + fhaw + fhba + fhbb + fhbe + fhbg +
+                    fhat + fhau + fhav + fhaw + fhay + fhba + fhbb + fhbe + fhbg +
                     fhsa + fhsb + fhsf + fhsg + fhsc + fhsh + fhse + fhsj + fhsk + fhsl + fhsp + fhsq + fhsm + fhsr + fhso +
                     fhst + fhsu + fhsv + fhsw + fhsz + fhta + fhtb + fhtd + fhks + fhkt + fhku + fhlg + fhlh + fhli + fhma +
                     fhmb + fhmc + fhmm + fhmn + fhnu + fhnv + fhnw + fhny + fhpa + fhpb + fhpd + fhpe + fhpf + fhph + fhpi +
@@ -1714,7 +1714,7 @@ class doment(Variable):
         return (fhbi + fhbj + fhbk + fhbm + fhbn + fhbo + fhbp + fhbr + fhbs + fhbt + fhbu + fhbw + fhbx + fhby + fhbz +
                     fhcb + fhcc + fhcd + fhce + fhcg +
                     fhaa + fhab + fhac + fhae + fhaf + fhag + fhah + fhaj + fhak + fhal + fham + fhao + fhap + fhaq + fhar + 
-                    fhat + fhau + fhav + fhaw + fhba + fhbb + fhbe + fhbg +
+                    fhat + fhau + fhav + fhaw + fhay + fhba + fhbb + fhbe + fhbg +
                     fhsa + fhsb + fhsf + fhsg + fhsc + fhsh + fhse + fhsj + fhsk + fhsl + fhsp + fhsq + fhsm + fhsr + fhso +
                     fhst + fhsu + fhsv + fhsw + fhsz + fhta + fhtb + fhtd + fhkt + fhku + fhlh + fhli + 
                     fhmb + fhmc + fhmn + fhnu + fhnv + fhnw + fhny + fhpa + fhpb + fhpd + fhpe + fhpf + fhph + fhpi +
@@ -1857,7 +1857,7 @@ class doment(Variable):
                     fhbi + fhbj + fhbk + fhbm + fhbn + fhbo + fhbp + fhbr + fhbs + fhbt + fhbu + fhbw + fhbx + fhby + fhbz +
                     fhcb + fhcc + fhcd + fhce + fhcg +
                     fhaa + fhab + fhac + fhae + fhaf + fhag + fhah + fhaj + fhak + fhal + fham + fhao + fhap + fhaq + fhar + 
-                    fhat + fhau + fhav + fhaw + fhba + fhbb + fhbe + fhbg +
+                    fhat + fhau + fhav + fhaw + fhay + fhba + fhbb + fhbe + fhbg +
                     fhsa + fhsb + fhsf + fhsg + fhsc + fhsh + fhse + fhsj + fhsk + fhsl + fhsp + fhsq + fhsm + fhsr + fhso +
                     fhst + fhsu + fhsv + fhsw + fhsz + fhta + fhtb + fhtd + 
                     fhnu + fhnv + fhnw + fhny + fhpa + fhpb + fhpd + fhpe + fhpf + fhph + fhpi +
@@ -1996,7 +1996,7 @@ class doment(Variable):
 
         report_reduction_2012 = fhnu + fhnv + fhnw + fhny + fhpm + fhpn + fhpo + fhpp + fhpr + fhps + fhpt + fhpu + fhpw + fhpx + fhpy + fhrg + fhri + fhrj + fhrk + fhrl + fhrm + fhro + fhrp + fhrq + fhrr + fhrt + fhru + fhrv + fhrw + fhry
         report_reduction_2013 = fhsa + fhsb + fhsf + fhsg + fhsc + fhsh + fhse + fhsj + fhsk + fhsl + fhsp + fhsq + fhsm + fhsr + fhso + fhst + fhsu + fhsv + fhsw + fhsz + fhta + fhtb + fhtd 
-        report_reduction_2014 = fhaa + fhab + fhac + fhae + fhaf + fhag + fhah + fhaj + fhak + fhal + fham + fhao + fhap + fhaq + fhar + fhat + fhau + fhav + fhaw + fhba + fhbb + fhbe + fhbg
+        report_reduction_2014 = fhaa + fhab + fhac + fhae + fhaf + fhag + fhah + fhaj + fhak + fhal + fham + fhao + fhap + fhaq + fhar + fhat + fhau + fhav + fhaw + fhay + fhba + fhbb + fhbe + fhbg
         report_reduction_2015 = fhbi + fhbj + fhbk + fhbm + fhbn + fhbo + fhbp + fhbr + fhbs + fhbt + fhbu + fhbw + fhbx + fhby + fhbz + fhcb + fhcc + fhcd + fhce + fhcg
         report_reduction_2016 = fhci + fhcj + fhck + fhcm + fhcn + fhco + fhcp + fhcr + fhcs + fhct + fhcu + fhcw
         reduction_invest_2017 = fhdi + fhdj + fhdk + fhdl + fhdm + fhdn + fhdo + fhdp + fhdq + fhdr + fhds + fhdt + fhdu + fhdv + fhdw
