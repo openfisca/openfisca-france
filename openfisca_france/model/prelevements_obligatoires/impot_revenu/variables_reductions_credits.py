@@ -5353,7 +5353,7 @@ class fhkg(Variable):
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le logement social : Investissements réalisés en 2009"
 #    start_date = date(2013, 1, 1)
-    eend = '2014-12-31'
+    end = '2014-12-31'
     definition_period = YEAR
 
 
@@ -5364,6 +5364,7 @@ class fhkh(Variable):
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le logement social : Investissements réalisés en 2010"
 #    start_date = date(2013, 1, 1)
+    end = '2015-12-31'
     definition_period = YEAR
 
 
@@ -5374,6 +5375,7 @@ class fhki(Variable):
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le logement social : Investissements réalisés en 2010"
 #    start_date = date(2013, 1, 1)
+    end = '2015-12-31'
     definition_period = YEAR
 
 
@@ -5534,6 +5536,55 @@ class fhxk(Variable):
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le logement social : Investissements réalisés en 2015"
 #    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+
+class fhxl(Variable):
+    cerfa_field = u"HXL"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le logement social : Investissements réalisés en 2016"
+#    start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+
+class fhxm(Variable):
+    cerfa_field = u"HXM"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le logement social : Investissements réalisés en 2016"
+#    start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+
+class fhxn(Variable):
+    cerfa_field = u"HXN"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le logement social : Investissements réalisés en 2016"
+#    start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+class fhxo(Variable):
+    cerfa_field = u"HXO"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le logement social : Investissements réalisés en 2016"
+#    start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+
+class fhxp(Variable):
+    cerfa_field = u"HXP"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le logement social : Investissements réalisés en 2016"
+#    start_date = date(2016, 1, 1)
     definition_period = YEAR
 
 
