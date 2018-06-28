@@ -554,7 +554,6 @@ class cappme(Variable):
     label = u"Réduction d'impôt au titre des souscriptions en numéraire au capital de PME non côtées"
     reference = "http://bofip.impots.gouv.fr/bofip/4374-PGP"
     definition_period = YEAR
-    end = '2016-12-31'
 
     def formula_2002_01_01(foyer_fiscal, period, parameters):
         '''
@@ -838,6 +837,63 @@ class cappme(Variable):
                 base_report_cappme_2012_PME + base_report_cappme_2013_PME + base_report_cappme_2014_PME + base_report_cappme_2015_PME + base_cappme_2016_PME + 
                 base_report_cappme_2012_TPE + base_report_cappme_2013_TPE + base_report_cappme_2014_TPE + base_report_cappme_2015_TPE + base_cappme_2016_TPE)
             )
+
+    def formula_2017_01_01(foyer_fiscal, period, parameters):
+        '''
+        Souscriptions au capital des PME
+        2017
+        '''
+        maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
+        f7cc = foyer_fiscal('f7cc', period)
+        f7cf = foyer_fiscal('f7cf', period)
+        f7cl = foyer_fiscal('f7cl', period)
+        f7cm = foyer_fiscal('f7cm', period)
+        f7cn = foyer_fiscal('f7cn', period)
+        f7cq = foyer_fiscal('f7cq', period)
+        f7cr = foyer_fiscal('f7cr', period)
+        f7cv = foyer_fiscal('f7cv', period)
+        f7cx = foyer_fiscal('f7cx', period)
+        f7cy = foyer_fiscal('f7cy', period)
+        f7dy = foyer_fiscal('f7dy', period)
+        f7ey = foyer_fiscal('f7ey', period)
+        f7fy = foyer_fiscal('f7fy', period)
+        P = parameters(period).impot_revenu.reductions_impots.cappme
+        
+        seuil1 = P.seuil * (maries_ou_pacses + 1) 
+        seuil2 = P.seuil_tpe * (maries_ou_pacses + 1)
+        
+        # Réduction investissement PME (souscription avant 2012) : imputation du plus ancien au plus récent
+        base_report_cappme_2013_PME = min_(f7cl, seuil1)
+        base_report_cappme_2014_PME = max_(0, min_(f7cm, seuil1) - base_report_cappme_2013_PME)
+        base_report_cappme_2015_PME = max_(0, min_(f7cn, seuil1 - base_report_cappme_2013_PME - base_report_cappme_2014_PME)) 
+        base_report_cappme_2016_PME = max_(0, min_(f7cc, seuil1 - base_report_cappme_2013_PME - base_report_cappme_2014_PME - base_report_cappme_2015_PME ))
+        
+        # Réduction investissement TPE (souscription à partir de 2012) : imputation du plus ancien au plus récent
+        base_report_cappme_2013_TPE = min_(f7cq, seuil2)
+        base_report_cappme_2014_TPE = max_(0, min_(f7cr, seuil2 - base_report_cappme_2013_TPE))
+        base_report_cappme_2015_TPE = max_(0, min_(f7cv, seuil2 - base_report_cappme_2013_TPE - base_report_cappme_2014_TPE))
+        base_report_cappme_2016_TPE = max_(0, min_(f7cx, seuil2 - base_report_cappme_2013_TPE - base_report_cappme_2014_TPE - base_report_cappme_2015_TPE))
+        
+        # Réduction investissements de l'année courante
+        base_cappme_2017 = max_(0, min_(f7cf, seuil2 - base_report_cappme_2013_TPE - base_report_cappme_2014_TPE - base_report_cappme_2015_TPE - base_report_cappme_2016_TPE))
+
+        report_cappme_2013_plaf_general = f7cy
+        report_cappme_2014_plaf_general = f7dy
+        report_cappme_2015_plaf_general = f7ey
+        report_cappme_2016_plaf_general = f7fy
+
+        return (
+            report_cappme_2013_plaf_general
+            + report_cappme_2014_plaf_general
+            + report_cappme_2015_plaf_general
+            + report_cappme_2016_plaf_general 
+            + P.taux18 * min_(seuil2, 
+                base_cappme_2017
+                + base_report_cappme_2013_PME + base_report_cappme_2014_PME + base_report_cappme_2015_PME + base_report_cappme_2016_PME
+                + base_report_cappme_2013_TPE + base_report_cappme_2014_TPE + base_report_cappme_2015_TPE + base_report_cappme_2016_TPE
+                )
+            )
+
 
 class cotsyn(Variable):
     value_type = float
