@@ -2480,7 +2480,6 @@ class domsoc(Variable):
         '''
         Investissements outre-mer dans le logement social (déclaration n°2042 IOM)
         2010
-        TODO plafonnement à 15% f7qa / liens avec autres investissments ?
         '''
         f7qn = foyer_fiscal('f7qn_2012', period)
         f7qk = foyer_fiscal('f7qk', period)
@@ -2492,7 +2491,6 @@ class domsoc(Variable):
         '''
         Investissements outre-mer dans le logement social (déclaration n°2042 IOM)
         2011
-        TODO plafonnement à 15% f7qa / liens avec autres investissments ?
         '''
         f7qn = foyer_fiscal('f7qn_2012', period)
         f7qk = foyer_fiscal('f7qk', period)
@@ -2507,7 +2505,6 @@ class domsoc(Variable):
         '''
         Investissements outre-mer dans le logement social (déclaration n°2042 IOM)
         2012
-        TODO plafonnement à 15% f7qa / liens avec autres investissments ?
         '''
         f7qn = foyer_fiscal('f7qn_2012', period)
         f7qk = foyer_fiscal('f7qk', period)
@@ -2526,7 +2523,6 @@ class domsoc(Variable):
         '''
         Investissements outre-mer dans le logement social (déclaration n°2042 IOM)
         2013
-        TODO plafonnement à 15% f7qa / liens avec autres investissments ?
         '''
         fhra = foyer_fiscal('fhra', period)
         fhrb = foyer_fiscal('fhrb', period)
@@ -2546,6 +2542,7 @@ class domsoc(Variable):
         return  fhra + fhrb + fhrc + fhrd + f7qn + f7qk + f7qu + f7kg + f7kh + f7ki + f7qj + f7qs + f7qw + f7qx
 
     # Outre-mer : TODO: plafonnement, cf. 2041-GE 2042-IOM
+    # TODO plafonnement à 15% f7qa / liens avec autres investissments ?
 
 
 class donapd(Variable):
