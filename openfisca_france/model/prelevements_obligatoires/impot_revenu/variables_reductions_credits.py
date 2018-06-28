@@ -3873,6 +3873,7 @@ class f7cu(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     label = u"Souscriptions au capital des PME non cotées, montant versé au titre de souscriptions antérieures"
+    end = '2016-12-31'
     definition_period = YEAR
 
 
