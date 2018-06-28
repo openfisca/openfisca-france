@@ -5446,7 +5446,44 @@ class fhqx(Variable):
     definition_period = YEAR
 
 
+class fhxa(Variable):
+    cerfa_field = u"HXA"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le logement social : Investissements réalisés en 2014"
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
 
+
+class fhxb(Variable):
+    cerfa_field = u"HXB"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le logement social : Investissements réalisés en 2014"
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+
+class fhxc(Variable):
+    cerfa_field = u"HXC"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le logement social : Investissements réalisés en 2014"
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+
+class fhxe(Variable):
+    cerfa_field = u"HXE"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le logement social : Investissements réalisés en 2014"
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
 
 
 # Souscription de parts de fonds communs de placement dans l'innovation,

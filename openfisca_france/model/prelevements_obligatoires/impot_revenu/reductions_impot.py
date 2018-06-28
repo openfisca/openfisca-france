@@ -2473,8 +2473,6 @@ class domsoc(Variable):
     label = u"Réduction d'impôt au titre de l'acquisition ou de la souscription de logements sociaux outre-mer"
     reference = "http://bofip.impots.gouv.fr/bofip/9398-PGP"
     definition_period = YEAR
-    end = '2013-12-31'
-
 
     def formula_2010_01_01(foyer_fiscal, period, parameters):
         '''
@@ -2553,6 +2551,46 @@ class domsoc(Variable):
             + reduc_invest_2013
             )
 
+    def formula_2014_01_01(foyer_fiscal, period, parameters):
+        '''
+        Investissements outre-mer dans le logement social (déclaration n°2042 IOM)
+        2014
+        '''
+        fhkg = foyer_fiscal('fhkg', period)
+        fhkh = foyer_fiscal('fhkh', period)
+        fhki = foyer_fiscal('fhki', period)
+        fhqj = foyer_fiscal('fhqj', period)
+        fhqk = foyer_fiscal('fhqk', period)
+        fhqn = foyer_fiscal('fhqn', period)
+        fhqs = foyer_fiscal('fhqs', period)
+        fhqu = foyer_fiscal('fhqu', period)
+        fhqw = foyer_fiscal('fhqw', period)
+        fhqx = foyer_fiscal('fhqx', period) 
+        fhra = foyer_fiscal('fhra', period)
+        fhrb = foyer_fiscal('fhrb', period)
+        fhrc = foyer_fiscal('fhrc', period)
+        fhrd = foyer_fiscal('fhrd', period)
+        fhxa = foyer_fiscal('fhxa', period)
+        fhxb = foyer_fiscal('fhxb', period)
+        fhxc = foyer_fiscal('fhxc', period)
+        fhxe = foyer_fiscal('fhxe', period)
+
+        report_reduc_2009 = fhkg
+        report_reduc_2010 = fhkh + fhki
+        report_reduc_2011 = fhqn + fhqu + fhqk
+        report_reduc_2012 = fhqj + fhqs + fhqw + fhqx
+        report_reduc_2013 = fhra + fhrb + fhrc + fhrd
+        reduc_invest_2014 = fhxa + fhxb + fhxc + fhxe
+
+        return (
+            report_reduc_2009
+            + report_reduc_2010
+            + report_reduc_2011
+            + report_reduc_2012
+            + report_reduc_2013
+            + reduc_invest_2014
+            )
+            
     # Outre-mer : TODO: plafonnement, cf. 2041-GE 2042-IOM
     # TODO plafonnement à 15% f7qa / liens avec autres investissments ?
 
