@@ -1,5 +1,14 @@
 # Changelog
 
+### 21.10.10 [#1017](https://github.com/openfisca/openfisca-france/pull/1017)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2015.
+* Zones impactées : `prelevements_obligatoires/impot_revenu`
+* Détails :
+  - Ajoute les paramètres de l'impôt sur les revenus 2017
+  - Mets à jour les paramètres non actualisés de l'impôt sur les revenus 2015-2016
+
 ### 21.10.9 [#1012](https://github.com/openfisca/openfisca-france/pull/1012)
 
 * Changement mineur.
