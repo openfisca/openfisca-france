@@ -2022,7 +2022,6 @@ class domlog(Variable):
     label = u"Réduction d'impôt au titre des investissements outre-mer réalisés par des personnes physiques"
     reference = "http://bofip.impots.gouv.fr/bofip/6716-PGP"
     definition_period = YEAR
-    end = '2016-12-31'
 
     def formula_2002_01_01(foyer_fiscal, period, parameters):
         '''
@@ -2372,6 +2371,96 @@ class domlog(Variable):
                     fhof + fhog + fhox + fhoy + fhoz + fhua + fhub + fhuc + fhud + fhue + fhuf + fhug +
                     fhuh + fhui + fhuj + fhuk + fhul + fhum + fhun + fhuo + fhup + fhuq + fhur + fhus +
                     fhut + fhuu)
+    
+    def formula_2017_01_01(foyer_fiscal, period, parameters):
+        '''
+        Investissements OUTRE-MER dans le secteur du logement et autres secteurs d’activité
+        2017
+        '''
+        fhod = foyer_fiscal('fhod', period)
+        fhoe = foyer_fiscal('fhoe', period)
+        fhof = foyer_fiscal('fhof', period)
+        fhog = foyer_fiscal('fhog', period)
+        fhox = foyer_fiscal('fhox', period)
+        fhoy = foyer_fiscal('fhoy', period)
+        fhoz = foyer_fiscal('fhoz', period)
+        fhqb = foyer_fiscal('fhqb', period)
+        fhqc = foyer_fiscal('fhqc', period)
+        fhqd = foyer_fiscal('fhqd', period)
+        fhql = foyer_fiscal('fhql', period)
+        fhqm = foyer_fiscal('fhqm', period)
+        fhqt = foyer_fiscal('fhqt', period)
+        fhoa = foyer_fiscal('fhoa', period)
+        fhob = foyer_fiscal('fhob', period)
+        fhoc = foyer_fiscal('fhoc', period)
+        fhoh = foyer_fiscal('fhoh', period)
+        fhoi = foyer_fiscal('fhoi', period)
+        fhoj = foyer_fiscal('fhoj', period)
+        fhok = foyer_fiscal('fhok', period)
+        fhol = foyer_fiscal('fhol', period)
+        fhom = foyer_fiscal('fhom', period)
+        fhon = foyer_fiscal('fhon', period)
+        fhoo = foyer_fiscal('fhoo', period)
+        fhop = foyer_fiscal('fhop', period)
+        fhoq = foyer_fiscal('fhoq', period)
+        fhor = foyer_fiscal('fhor', period)
+        fhos = foyer_fiscal('fhos', period)
+        fhot = foyer_fiscal('fhot', period)
+        fhou = foyer_fiscal('fhou', period)
+        fhov = foyer_fiscal('fhov', period)
+        fhow = foyer_fiscal('fhow', period)
+        fhua = foyer_fiscal('fhua', period)
+        fhub = foyer_fiscal('fhub', period)
+        fhuc = foyer_fiscal('fhuc', period)
+        fhud = foyer_fiscal('fhud', period)
+        fhue = foyer_fiscal('fhue', period)
+        fhuf = foyer_fiscal('fhuf', period)
+        fhug = foyer_fiscal('fhug', period)
+        fhuh = foyer_fiscal('fhuh', period)
+        fhui = foyer_fiscal('fhui', period)
+        fhuj = foyer_fiscal('fhuj', period)
+        fhuk = foyer_fiscal('fhuk', period)
+        fhul = foyer_fiscal('fhul', period)
+        fhum = foyer_fiscal('fhum', period)
+        fhun = foyer_fiscal('fhun', period)
+        fhuo = foyer_fiscal('fhuo', period)
+        fhup = foyer_fiscal('fhup', period)
+        fhuq = foyer_fiscal('fhuq', period)
+        fhur = foyer_fiscal('fhur', period)
+        fhus = foyer_fiscal('fhus', period)
+        fhut = foyer_fiscal('fhut', period)
+        fhuu = foyer_fiscal('fhuu', period)
+        fhva = foyer_fiscal('fhva', period)
+        fhvb = foyer_fiscal('fhvb', period)
+        fhvc = foyer_fiscal('fhvc', period)
+        fhvd = foyer_fiscal('fhvd', period)
+        fhve = foyer_fiscal('fhve', period)
+        fhvf = foyer_fiscal('fhvf', period)
+        fhvg = foyer_fiscal('fhvg', period)
+
+        reduction_invest_2009 = fhqc + fhql
+        reduction_invest_2010 = fhqd + fhqm + fhqt
+        reduction_invest_2011 = fhoa + fhob + fhoc + fhoh + fhoi + fhoj + fhok
+        reduction_invest_2012 = fhol + fhom + fhon + fhoo + fhop + fhoq + fhor + fhos + fhot + fhou + fhov + fhow
+        reduction_invest_2013 = fhod + fhoe + fhof + fhog + fhox + fhoy + fhoz 
+        reduction_invest_2014 = fhua + fhub + fhuc + fhud + fhue + fhuf + fhug
+        reduction_invest_2015 = fhuh + fhui + fhuj + fhuk + fhul + fhum + fhun 
+        reduction_invest_2016 = fhuo + fhup + fhuq + fhur + fhus + fhut + fhuu
+        reduction_invest_2017 = fhva + fhvb + fhvc + fhvd + fhve + fhvf + fhvg
+        reduction_invest_2018 = fhqb
+
+        return (
+            reduction_invest_2009
+            + reduction_invest_2010
+            + reduction_invest_2011
+            + reduction_invest_2012
+            + reduction_invest_2013
+            + reduction_invest_2014
+            + reduction_invest_2015
+            + reduction_invest_2016
+            + reduction_invest_2017
+            + reduction_invest_2018
+            )
 
     #En accord avec la DGFiP mais pas de 7ub et 7uj dans la notice
 
