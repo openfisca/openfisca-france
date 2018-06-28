@@ -875,7 +875,7 @@ class creaen(Variable):
         Aide aux créateurs et repreneurs d'entreprises
         2006-2008
         '''
-        f7fy = foyer_fiscal('f7fy', period)
+        f7fy = foyer_fiscal('f7fy_2011', period)
         f7gy = foyer_fiscal('f7gy', period)
         P = parameters(period).impot_revenu.reductions_impots.creaen
 
@@ -886,7 +886,7 @@ class creaen(Variable):
         Aide aux créateurs et repreneurs d'entreprises
         2009
         '''
-        f7fy = foyer_fiscal('f7fy', period)
+        f7fy = foyer_fiscal('f7fy_2011', period)
         f7gy = foyer_fiscal('f7gy', period)
         f7jy = foyer_fiscal('f7jy', period)
         f7hy = foyer_fiscal('f7hy', period)
@@ -903,7 +903,7 @@ class creaen(Variable):
         Aide aux créateurs et repreneurs d'entreprises
         2010-2011
         '''
-        f7fy = foyer_fiscal('f7fy', period)
+        f7fy = foyer_fiscal('f7fy_2011', period)
         f7gy = foyer_fiscal('f7gy', period)
         f7jy = foyer_fiscal('f7jy', period)
         f7hy = foyer_fiscal('f7hy', period)

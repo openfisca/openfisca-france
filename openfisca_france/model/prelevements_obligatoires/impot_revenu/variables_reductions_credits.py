@@ -3365,7 +3365,7 @@ class fhcw(Variable):
 
 
 # Aide aux créateurs et repreneurs d'entreprises
-class f7fy(Variable):
+class f7fy_2011(Variable):
     cerfa_field = u"7FY"
     value_type = int
     entity = FoyerFiscal
