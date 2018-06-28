@@ -1189,7 +1189,6 @@ class doment(Variable):
     entity = FoyerFiscal
     label = u"doment"
     definition_period = YEAR
-    end = '2016-12-31'
 
     def formula_2005_01_01(foyer_fiscal, period, parameters):
         '''
