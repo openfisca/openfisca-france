@@ -2590,6 +2590,50 @@ class domsoc(Variable):
             + report_reduc_2013
             + reduc_invest_2014
             )
+
+    def formula_2015_01_01(foyer_fiscal, period, parameters):
+        '''
+        Investissements outre-mer dans le logement social (déclaration n°2042 IOM)
+        2015
+        '''
+        fhkh = foyer_fiscal('fhkh', period)
+        fhki = foyer_fiscal('fhki', period)
+        fhqj = foyer_fiscal('fhqj', period)
+        fhqk = foyer_fiscal('fhqk', period)
+        fhqn = foyer_fiscal('fhqn', period)
+        fhqs = foyer_fiscal('fhqs', period)
+        fhqu = foyer_fiscal('fhqu', period)
+        fhqw = foyer_fiscal('fhqw', period)
+        fhqx = foyer_fiscal('fhqx', period) 
+        fhra = foyer_fiscal('fhra', period)
+        fhrb = foyer_fiscal('fhrb', period)
+        fhrc = foyer_fiscal('fhrc', period)
+        fhrd = foyer_fiscal('fhrd', period)
+        fhxa = foyer_fiscal('fhxa', period)
+        fhxb = foyer_fiscal('fhxb', period)
+        fhxc = foyer_fiscal('fhxc', period)
+        fhxe = foyer_fiscal('fhxe', period)
+        fhxf = foyer_fiscal('fhxf', period)
+        fhxg = foyer_fiscal('fhxg', period)
+        fhxh = foyer_fiscal('fhxh', period)
+        fhxi = foyer_fiscal('fhxi', period)
+        fhxk = foyer_fiscal('fhxk', period)
+
+        report_reduc_2010 = fhkh + fhki
+        report_reduc_2011 = fhqn + fhqu + fhqk
+        report_reduc_2012 = fhqj + fhqs + fhqw + fhqx
+        report_reduc_2013 = fhra + fhrb + fhrc + fhrd
+        report_reduc_2014 = fhxa + fhxb + fhxc + fhxe
+        reduc_invest_2015 = fhxf + fhxg + fhxh + fhxi + fhk
+
+        return (
+            report_reduc_2010
+            + report_reduc_2011
+            + report_reduc_2012
+            + report_reduc_2013
+            + report_reduc_2014
+            + reduc_invest_2015
+            )
             
     # Outre-mer : TODO: plafonnement, cf. 2041-GE 2042-IOM
     # TODO plafonnement à 15% f7qa / liens avec autres investissments ?
