@@ -3860,6 +3860,24 @@ class reduction_impot_exceptionnelle(Variable):
         return min_(max_(plafond + montant - rfr, 0), montant)
 
 
+class rehab(Variable):
+    value_type = float
+    entity = FoyerFiscal
+    label = u"Réduction d'impôt pour travaux de réhabilitation des résidences de tourisme"
+    reference = "https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000033781921&cidTexte=LEGITEXT000006069577&categorieLien=id&dateTexte=20170101"
+    definition_period = YEAR
+
+    def formula_2017_01_01(foyer_fiscal, period, parameters):
+        '''
+        Travaux de réhabilitation des résidences de tourisme
+        2017
+        '''
+        depenses_2017 = foyer_fiscal('f7xx', period) # déjà plafonnées
+        P = parameters(period).impot_revenu.reductions_impots.rehab
+
+        return (P.taux * depenses_2017)
+
+
 class repsoc(Variable):
     value_type = float
     entity = FoyerFiscal
