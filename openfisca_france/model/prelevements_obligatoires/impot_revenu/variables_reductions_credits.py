@@ -4447,12 +4447,13 @@ class f7ey(Variable):
     definition_period = YEAR
 
 
-class f7cu(Variable):
-    cerfa_field = u"7CU"
+class f7fy(Variable):
+    cerfa_field = u"7FY"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Souscriptions au capital des PME non cotées, montant versé au titre de souscriptions antérieures"
+    label = u"Souscriptions au capital des PME non cotées, report de réduction d'impôt au titre du plafonnement global de l'année 2016"
+#    start_date = date(2017, 1, 1)
     definition_period = YEAR
 
 
