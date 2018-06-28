@@ -12,3 +12,4 @@ brackets:
     2011-01-01:
       value: 500000.0
 reference: ipp
+unit: currency

@@ -83,3 +83,4 @@ brackets:
       value: 152122.0
 description: 'Taxes sur les salaires : taux majorés (France métropolitaine seulement)'
 reference: openfisca
+unit: currency

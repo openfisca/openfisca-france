@@ -24,3 +24,4 @@ brackets:
     2007-07-01:
       value: 4095.05
 description: Loyer minimun lo
+unit: currency
