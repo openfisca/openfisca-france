@@ -1,5 +1,14 @@
 # Changelog
 
+### 21.10.12 [](https://github.com/openfisca/openfisca-france/pull/)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : toutes.
+* Zones impactées :
+  - `prestations/minima_sociaux/aah`
+* Détails :
+  - Prend en compte le taux d'incapacité dans le calcul de l'éligibilité au CAAH.
+
 ### 21.10.11 [#1020](https://github.com/openfisca/openfisca-france/pull/1020)
 
 * Changement mineur.
