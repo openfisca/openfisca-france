@@ -1,6 +1,6 @@
 # Changelog
 
-### 21.10.11 [#XXX](https://github.com/openfisca/openfisca-france/pull/XXX)
+### 21.10.11 [#1020](https://github.com/openfisca/openfisca-france/pull/1020)
 
 * Changement mineur.
 * Détails :
