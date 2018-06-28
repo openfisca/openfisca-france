@@ -1,6 +1,7 @@
 reference: ipp
 age_limite_pour_les_enfants_a_charge:
   reference: ipp
+  unit: year
   values:
     1991-11-11:
       value: 18.0
@@ -10,11 +11,13 @@ age_minimal:
   reference: ipp
   pour_les_ascendants_et_leur_conjoint:
     reference: ipp
+    unit: year
     values:
       1991-11-11:
         value: 65.0
   pour_les_ascendants_et_leur_conjoints_qui_sont_invalides_ou_anciens_deportes_ou_internes:
     reference: ipp
+    unit: year
     values:
       1991-11-11:
         value: 60.0

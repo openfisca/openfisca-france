@@ -4,3 +4,4 @@ values:
     value: 20.0
   2006-01-01:
     value: null
+unit: year
