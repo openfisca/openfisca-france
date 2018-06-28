@@ -2914,6 +2914,156 @@ class fhcr(Variable):
     definition_period = YEAR
 
 
+class fhdi(Variable):
+    cerfa_field = u"HDI"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise"
+#    start_date = date(2017, 1, 1)
+    definition_period = YEAR
+
+
+class fhdj(Variable):
+    cerfa_field = u"HDJ"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise"
+#    start_date = date(2017, 1, 1)
+    definition_period = YEAR
+
+
+class fhdk(Variable):
+    cerfa_field = u"HDK"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise"
+#    start_date = date(2017, 1, 1)
+    definition_period = YEAR
+
+
+class fhdl(Variable):
+    cerfa_field = u"HDL"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise"
+#    start_date = date(2017, 1, 1)
+    definition_period = YEAR
+
+
+class fhdm(Variable):
+    cerfa_field = u"HDM"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise"
+#    start_date = date(2017, 1, 1)
+    definition_period = YEAR
+
+
+class fhdn(Variable):
+    cerfa_field = u"HDN"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise"
+#    start_date = date(2017, 1, 1)
+    definition_period = YEAR
+
+
+class fhdo(Variable):
+    cerfa_field = u"HDO"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise"
+#    start_date = date(2017, 1, 1)
+    definition_period = YEAR
+
+
+class fhdp(Variable):
+    cerfa_field = u"HDP"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise"
+#    start_date = date(2017, 1, 1)
+    definition_period = YEAR
+
+
+class fhdq(Variable):
+    cerfa_field = u"HDQ"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise"
+#    start_date = date(2017, 1, 1)
+    definition_period = YEAR
+
+    
+class fhdr(Variable):
+    cerfa_field = u"HDR"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise"
+#    start_date = date(2017, 1, 1)
+    definition_period = YEAR
+
+
+class fhds(Variable):
+    cerfa_field = u"HDS"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise"
+#    start_date = date(2017, 1, 1)
+    definition_period = YEAR
+
+
+class fhdt(Variable):
+    cerfa_field = u"HDT"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise"
+#    start_date = date(2017, 1, 1)
+    definition_period = YEAR
+
+
+class fhdu(Variable):
+    cerfa_field = u"HDU"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise"
+#    start_date = date(2017, 1, 1)
+    definition_period = YEAR
+
+
+class fhdv(Variable):
+    cerfa_field = u"HDV"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise"
+#    start_date = date(2017, 1, 1)
+    definition_period = YEAR
+
+
+class fhdw(Variable):
+    cerfa_field = u"HDW"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise"
+#    start_date = date(2017, 1, 1)
+    definition_period = YEAR
+
+
 class fhsa(Variable):
     cerfa_field = u"HSA"
     value_type = int
