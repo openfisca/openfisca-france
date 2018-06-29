@@ -86,6 +86,7 @@ def create_all_scenarios_to_test(directory, years):
             'charges_deduc_non_plafonnees_deddiv': define_single_worker_scenario(year, {'salaire_imposable': fixed_wage_amount, 'f6dd': tested_reduction_amount}),
             #'charges_deduc_non_plafonnees_eparet': TODO
             'charges_deduc_non_plafonnees_reparations': define_single_worker_scenario(year, {'salaire_imposable': fixed_wage_amount, 'f6cb': 25000, 'f6hj': 10000 , 'f6hk': 10000}),
+            'charges_deduc_non_plafonnees_pens_alim': define_single_worker_scenario(year, {'salaire_imposable': fixed_wage_amount, 'f6gi': tested_reduction_amount, 'f6gj': tested_reduction_amount, 'f6el': tested_reduction_amount, 'f6em': tested_reduction_amount, 'f6gp': tested_reduction_amount, 'f6gu': tested_reduction_amount}),
             'credit_preetu': define_single_worker_scenario(year, {'salaire_imposable': fixed_wage_amount, 'f7uk': 1000, 'f7vo': 2, 'f7td': 3000}, date_naissance = year - 25),
             'credit_saldom': define_single_worker_scenario(year, {'salaire_imposable': fixed_wage_amount, 'f7db': tested_income_amount, 'f7dq': 1, 'f7dg': 1}),
             'decote': define_family_scenario(year, income_amount1 = 25000, income_amount2 = 20000),
