@@ -405,7 +405,6 @@ class reductions(Variable):
         spfcpi)
         return min_(impot_net, total_reductions)
 
-    # Start date not checked
     def formula_2014(foyer_fiscal, period, parameters):
         '''
         Renvoie la somme des réductions d'impôt à intégrer pour l'année 2014
@@ -448,7 +447,7 @@ class reductions(Variable):
 
     def formula_2015_01_01(foyer_fiscal, period, parameters):
         '''
-        Renvoie la somme des réductions d'impôt à intégrer pour l'année 2015 et aprés
+        Renvoie la somme des réductions d'impôt à intégrer pour l'année 2015 et 2016
         '''
         accult = foyer_fiscal('accult', period)
         adhcga = foyer_fiscal('adhcga', period)
@@ -483,6 +482,44 @@ class reductions(Variable):
         duflot + ecpess + intagr + invfor + invlst + locmeu + mecena + mohist +
         patnat + prcomp + repsoc + resimm + rpinel + rsceha + saldom + scelli + sofica +
         spfcpi)
+        return min_(impot_net, total_reductions)
+
+    def formula_2017_01_01(foyer_fiscal, period, parameters):
+        '''
+        Renvoie la somme des réductions d'impôt à intégrer pour l'année 2017
+        '''
+        accult = foyer_fiscal('accult', period)
+        adhcga = foyer_fiscal('adhcga', period)
+        cappme = foyer_fiscal('cappme', period)
+        daepad = foyer_fiscal('daepad', period)
+        deffor = foyer_fiscal('deffor', period)
+        dfppce = foyer_fiscal('dfppce', period)
+        doment = foyer_fiscal('doment', period)
+        domlog = foyer_fiscal('domlog', period)
+        donapd = foyer_fiscal('donapd', period)
+        duflot = foyer_fiscal('duflot', period)
+        ecpess = foyer_fiscal('ecpess', period)
+        intagr = foyer_fiscal('intagr', period)
+        invfor = foyer_fiscal('invfor', period)
+        invlst = foyer_fiscal('invlst', period)
+        impot_net = foyer_fiscal('ip_net', period)
+        locmeu = foyer_fiscal('locmeu', period)
+        mecena = foyer_fiscal('mecena', period)
+        mohist = foyer_fiscal('mohist', period)
+        patnat = foyer_fiscal('patnat', period)
+        prcomp = foyer_fiscal('prcomp', period)
+        rehab = foyer_fiscal('rehab', period)
+        repsoc = foyer_fiscal('repsoc', period)
+        resimm = foyer_fiscal('resimm', period)
+        rpinel = foyer_fiscal('rpinel', period)
+        rsceha = foyer_fiscal('rsceha', period)
+        scelli = foyer_fiscal('scelli', period)
+        sofica = foyer_fiscal('sofica', period)
+        spfcpi = foyer_fiscal('spfcpi', period)
+
+        total_reductions = (accult + adhcga + cappme + daepad + deffor + dfppce + doment + domlog + donapd +
+        duflot + ecpess + intagr + invfor + invlst + locmeu + mecena + mohist +
+        patnat + prcomp + rehab + repsoc + resimm + rpinel + rsceha + scelli + sofica + spfcpi)
         return min_(impot_net, total_reductions)
 
 
