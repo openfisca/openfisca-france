@@ -48,25 +48,25 @@ def create_all_scenarios_to_test(directory, years):
         
         # TYPE 1 SCENARIOS
 
-        for variable in base.individual_income_variables_to_test + base.household_income_variables_to_test :
-            if variable not in base.tax_benefit_system.variables:
-                log.info("Variable {} does not exist in the tax_benefit system, no scenarios to test were created".format(variable))
-                continue
-            if base.tax_benefit_system.variables[variable].end != None: 
-                if (periods.period(str(base.tax_benefit_system.variables[variable].end)[:-3]) < periods.period('{}-01'.format(year))):
-                    log.info("Variable {} is not in effect in year {}, no scenarios to tests were created for this year".format(variable, year))
-                    continue
-            if variable in base.start_date_by_name.keys(): 
-                if (periods.period(str(base.start_date_by_name[variable])[:-3]) > periods.period('{}-01'.format(year))):
-                    log.info("Variable {} is not in effect in year {}, no scenarios to tests were created for this year".format(variable, year))
-                    continue
+        # for variable in base.individual_income_variables_to_test + base.household_income_variables_to_test :
+        #     if variable not in base.tax_benefit_system.variables:
+        #         log.info("Variable {} does not exist in the tax_benefit system, no scenarios to test were created".format(variable))
+        #         continue
+        #     if base.tax_benefit_system.variables[variable].end != None: 
+        #         if (periods.period(str(base.tax_benefit_system.variables[variable].end)[:-3]) < periods.period('{}-01'.format(year))):
+        #             log.info("Variable {} is not in effect in year {}, no scenarios to tests were created for this year".format(variable, year))
+        #             continue
+        #     if variable in base.start_date_by_name.keys(): 
+        #         if (periods.period(str(base.start_date_by_name[variable])[:-3]) > periods.period('{}-01'.format(year))):
+        #             log.info("Variable {} is not in effect in year {}, no scenarios to tests were created for this year".format(variable, year))
+        #             continue
 
-            scenario = define_single_worker_scenario(year, {'salaire_imposable': fixed_wage_amount, variable: tested_income_amount})
-            json_filename = "test" + '-' + variable + '-' + str(scenario.period.date.year)
-            if os.path.isfile(os.path.join(directory, json_filename)):
-                log.debug("File {} already exists".format(json_filename))
-            with codecs.open(os.path.join(directory, json_filename + '.json'), 'w', encoding = 'utf-8') as fichier:
-                json.dump(add_scenario(scenario), fichier, encoding='utf-8', ensure_ascii=False, indent=2, sort_keys=True)
+        #     scenario = define_single_worker_scenario(year, {'salaire_imposable': fixed_wage_amount, variable: tested_income_amount})
+        #     json_filename = "test" + '-' + variable + '-' + str(scenario.period.date.year)
+        #     if os.path.isfile(os.path.join(directory, json_filename)):
+        #         log.debug("File {} already exists".format(json_filename))
+        #     with codecs.open(os.path.join(directory, json_filename + '.json'), 'w', encoding = 'utf-8') as fichier:
+        #         json.dump(add_scenario(scenario), fichier, encoding='utf-8', ensure_ascii=False, indent=2, sort_keys=True)
 
 
         # TYPE 2 SCENARIOS
@@ -76,7 +76,7 @@ def create_all_scenarios_to_test(directory, years):
             # 'reduc_doment': TODO,
             'abat_65_or_invalid': define_single_worker_scenario(year, {'salaire_imposable': 20000},  caseP = 1, date_naissance = year - 80),
             'caseF': define_family_scenario(year, caseF = 1),
-            'caseG': define_single_worker_scenario(year, {'salaire_imposable': 50000}, caseG = 1, statut_marital = u'Veuf', date_naissance = year - 80),
+            'caseG': define_single_worker_scenario(year, {'salaire_imposable': 50000}, caseG = 1, statut_marital = u'veuf', date_naissance = year - 80),
             'caseL': define_single_worker_scenario(year, {'salaire_imposable': 50000}, caseL = 1),
             'caseP': define_family_scenario(year, caseP = 1),
             'caseS': define_family_scenario(year, caseS = 1, date_naissance1 = year - 80),
@@ -92,7 +92,7 @@ def create_all_scenarios_to_test(directory, years):
             'plaf_qf_caseL': define_single_worker_scenario(year, {'salaire_imposable': 150000}, caseL = 1),
             'plaf_qf_casePF_nbGI': define_family_scenario(year, income_amount1 = 150000, income_amount2 = 100000, caseP = 1, caseF = 1, nbF = 2, nbG = 1, nbH = 1, nbI = 1),
             'plaf_qf_caseT': define_single_worker_scenario(year,  {'salaire_imposable': 150000}, nb_enfants = 1, nbF = 1, caseT = 1),
-            'plaf_qf_caseWG': define_single_worker_scenario(year, {'salaire_imposable': 150000}, statut_marital = u'Veuf', caseG = 1, caseW = 1),
+            'plaf_qf_caseWG': define_single_worker_scenario(year, {'salaire_imposable': 150000}, statut_marital = u'veuf', caseG = 1, caseW = 1),
             'plaf_qf_family': define_family_scenario(year, income_amount1 = 150000, income_amount2 = 100000),
             'ppe': define_family_scenario(year, income_amount1 = 15000, income_amount2 = 10000), 
             'reduc_adhcga': define_single_worker_scenario(year, {'salaire_imposable': fixed_wage_amount, 'abic_impn': fixed_wage_amount, 'f7ff': tested_reduction_amount, 'f7fg': 2}),
@@ -118,7 +118,7 @@ def create_all_scenarios_to_test(directory, years):
 
 
 def define_single_worker_scenario(year, value_by_variable, 
-    date_naissance = 1970, statut_marital = u'Célibataire', nb_enfants = 0,
+    date_naissance = 1970, statut_marital = u'celibataire', nb_enfants = 0,
     nbF = 0, nbG = 0, nbR = 0, nbH = 0, nbI = 0, nbJ = 0, caseL = 0, caseP = 0, caseF = 0, caseW = 0, caseS = 0, caseG = 0, caseT = 0):
     """
         Function that creates a scenario from the base tax & benefits system for one entity (a single working person)
@@ -133,11 +133,11 @@ def define_single_worker_scenario(year, value_by_variable,
         List of income variables and associated amounts
 
     """
-    assert statut_marital in [u'Célibataire', u'Veuf', u'Divorcé']
+    assert statut_marital in [u'celibataire', u'veuf', u'divorce']
     scenario = base.tax_benefit_system.new_scenario() 
     
     parent1 = {
-        "activite": u'Actif occupé',
+        "activite": u'actif',
         "date_naissance": date_naissance,
         "statut_marital": statut_marital,
         }
@@ -145,7 +145,7 @@ def define_single_worker_scenario(year, value_by_variable,
     enfants = []
     while (len(enfants) < nb_enfants):
         enfants.append(dict(
-                    activite = u'Étudiant, élève',
+                    activite = u'etudiant',
                     date_naissance = str(year - 10) + '-01-01',
                     ))
 
@@ -218,29 +218,29 @@ def define_family_scenario(year, date_naissance1 = 1970, date_naissance2 = 1970,
     scenario = base.tax_benefit_system.new_scenario()
 
     parent1 = {
-        "activite": u'Actif occupé',
+        "activite": u'actif',
         "date_naissance": date_naissance1,
-        "statut_marital": u'Marié',
+        "statut_marital": u'marie',
         "salaire_imposable": income_amount1,
         }
     parent2 = {
-        "activite": u'Actif occupé',
+        "activite": u'actif',
         "date_naissance": date_naissance2,
-        "statut_marital": u'Marié',
+        "statut_marital": u'marie',
         "salaire_imposable": income_amount2,
         }
 
     enfants = [
         dict(
-            activite = u'Étudiant, élève',
+            activite = u'etudiant',
             date_naissance = str(year - 20) + '-01-01',
             ),
         dict(
-            activite = u'Étudiant, élève',
+            activite = u'etudiant',
             date_naissance = str(year - 15) + '-01-01',
             ),
         dict(
-            activite = u'Étudiant, élève',
+            activite = u'etudiant',
             date_naissance = str(year - 4) + '-01-01',
             ),
         ]
