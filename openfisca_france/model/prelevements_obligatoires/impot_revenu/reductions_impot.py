@@ -3311,6 +3311,40 @@ class invfor(Variable):
             + P.report12 * min_(report_depenses_2012 + report_depenses_2013, max2)
             )
 
+    def formula_2017_01_01(foyer_fiscal, period, parameters):
+        '''
+        Investissements forestiers pour 2017
+        '''
+        maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
+        f7te = foyer_fiscal('f7te', period)
+        f7tf = foyer_fiscal('f7tf', period)
+        f7tg = foyer_fiscal('f7tg', period)
+        f7th = foyer_fiscal('f7th', period)
+        f7ti = foyer_fiscal('f7ti', period)
+        f7ul = foyer_fiscal('f7ul', period)
+        f7un = foyer_fiscal('f7un', period)
+        f7uu = foyer_fiscal('f7uu', period)
+        f7uv = foyer_fiscal('f7uv', period)
+        P = parameters(period).impot_revenu.reductions_impots.invfor
+
+        report_depenses_2009 = f7te
+        report_depenses_2010 = f7tf
+        report_depenses_2011 = f7tg
+        report_depenses_2012 = f7th
+        report_depenses_2013 = f7uu + f7ti
+
+        max0 = max_(0, P.plafond_travaux * (maries_ou_pacses + 1) - f7ul)
+        max1 = max_(0, max0 - report_depenses_2009 - report_depenses_2010)
+        max2 = max_(0, max1 - report_depenses_2011)
+
+        return (
+            P.taux * min_(f7un, P.plafond * (maries_ou_pacses + 1))
+            + P.taux_assurance * min_(f7ul, P.plafond_travaux * (maries_ou_pacses + 1))
+            + P.report10 * min_(report_depenses_2009 + report_depenses_2010, max0)
+            + P.report11 * min_(report_depenses_2011, max1)
+            + P.report12 * min_(report_depenses_2012 + report_depenses_2013, max2)
+            )
+
 
 class invlst(Variable):
     value_type = float
