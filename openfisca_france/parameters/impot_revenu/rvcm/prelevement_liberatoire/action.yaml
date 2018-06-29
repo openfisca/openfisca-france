@@ -1,6 +1,7 @@
 description: Revenus des actions et parts soumis au prélèvement libératoire de 18%
   (case DA)
 reference: openfisca
+unit: /1
 values:
   2004-01-01:
     value: 0.16
