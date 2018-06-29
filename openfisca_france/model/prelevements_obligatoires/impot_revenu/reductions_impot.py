@@ -3056,7 +3056,7 @@ class invfor(Variable):
         f7un = foyer_fiscal('f7un', period)
         P = parameters(period).impot_revenu.reductions_impots.invfor
 
-        seuil = P.seuil * (maries_ou_pacses + 1)
+        seuil = P.plafond * (maries_ou_pacses + 1)
         return P.taux * min_(f7un, seuil)
 
     def formula_2006_01_01(foyer_fiscal, period, parameters):
@@ -3078,8 +3078,11 @@ class invfor(Variable):
         f7uq = foyer_fiscal('f7uq', period)
         P = parameters(period).impot_revenu.reductions_impots.invfor
 
-        return P.taux * (min_(f7un, P.seuil * (maries_ou_pacses + 1)) + min_(f7up, P.ifortra_seuil * (maries_ou_pacses + 1)) +
-                min_(f7uq, P.iforges_seuil * (maries_ou_pacses + 1)))
+        return P.taux * (
+            min_(f7un, P.plafond * (maries_ou_pacses + 1)) 
+            + min_(f7up, P.plafond_travaux * (maries_ou_pacses + 1)) 
+            + min_(f7uq, P.plafond_cga * (maries_ou_pacses + 1))
+            )
 
     def formula_2010_01_01(foyer_fiscal, period, parameters):
         '''
@@ -3093,10 +3096,11 @@ class invfor(Variable):
         f7uu = foyer_fiscal('f7uu', period)
         P = parameters(period).impot_revenu.reductions_impots.invfor
 
-        return (P.taux * (
-            min_(f7un, P.seuil * (maries_ou_pacses + 1)) +
-            min_(f7up + f7uu + f7te, P.ifortra_seuil * (maries_ou_pacses + 1)) +
-            min_(f7uq, P.iforges_seuil * (maries_ou_pacses + 1))))
+        return P.taux * (
+            min_(f7un, P.plafond * (maries_ou_pacses + 1)) 
+            + min_(f7up + f7uu + f7te, P.plafond_travaux * (maries_ou_pacses + 1)) 
+            + min_(f7uq, P.plafond_cga * (maries_ou_pacses + 1))
+            )
 
     def formula_2011_01_01(foyer_fiscal, period, parameters):
         '''
@@ -3113,20 +3117,20 @@ class invfor(Variable):
         f7uv = foyer_fiscal('f7uv', period)
         P = parameters(period).impot_revenu.reductions_impots.invfor
 
-        max0 = max_(0, P.ifortra_seuil * (maries_ou_pacses + 1) - f7ul)
+        max0 = max_(0, P.plafond_travaux * (maries_ou_pacses + 1) - f7ul)
         max1 = max_(0, max0 - f7uu - f7te - f7uv - f7tf)
         return (
             P.taux * (
-                min_(f7un, P.seuil * (maries_ou_pacses + 1))
+                min_(f7un, P.plafond * (maries_ou_pacses + 1))
                 + min_(f7up, max1)
-                + min_(f7uq, P.iforges_seuil * (maries_ou_pacses + 1)))
+                + min_(f7uq, P.plafond_cga * (maries_ou_pacses + 1)))
             + P.report10 * min_(f7uu + f7te + f7uv + f7tf, max0)
-            + P.taux_ass * min_(f7ul, P.ifortra_seuil * (maries_ou_pacses + 1))
+            + P.taux_assurance * min_(f7ul, P.plafond_travaux * (maries_ou_pacses + 1))
             )
 
     def formula_2012_01_01(foyer_fiscal, period, parameters):
         '''
-        Investissements forestiers pour 2012 cf. 2041 GK
+        Investissements forestiers pour 2012
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         f7te = foyer_fiscal('f7te', period)
@@ -3141,22 +3145,28 @@ class invfor(Variable):
         f7uw = foyer_fiscal('f7uw', period)
         P = parameters(period).impot_revenu.reductions_impots.invfor
 
-        max0 = max_(0, P.ifortra_seuil * (maries_ou_pacses + 1) - f7ul)
-        max1 = max_(0, max0 - f7uu - f7te - f7uv - f7tf)
-        max2 = max_(0, max1 - f7tg - f7uw)
+        report_depenses_2009 = f7uu + f7te
+        report_depenses_2010 = f7uv + f7tf
+        report_depenses_2011 = f7uw + f7tg
+
+        max0 = max_(0, P.plafond_travaux * (maries_ou_pacses + 1) - f7ul)
+        max1 = max_(0, max0 - report_depenses_2009 - report_depenses_2010)
+        max2 = max_(0, max1 - report_depenses_2011)
+
         return (
             P.taux * (
-                min_(f7un, P.seuil * (maries_ou_pacses + 1))
+                min_(f7un, P.plafond * (maries_ou_pacses + 1))
+                + min_(f7uq, P.plafond_cga * (maries_ou_pacses + 1))
                 + min_(f7up, max2)
-                + min_(f7uq, P.iforges_seuil * (maries_ou_pacses + 1)))
-            + P.report10 * min_(f7uu + f7te + f7uv + f7tf, max0) +
-            + P.report11 * min_(f7tg + f7uw, max1) +
-            + P.taux_ass * min_(f7ul, P.ifortra_seuil * (maries_ou_pacses + 1))
+                )
+            + P.taux_assurance * min_(f7ul, P.plafond_travaux * (maries_ou_pacses + 1))
+            + P.report10 * min_(report_depenses_2009 + report_depenses_2010, max0) +
+            + P.report11 * min_(report_depenses_2011, max1)        
             )
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
         '''
-        Investissements forestiers pour 2013 cf. 2041 GK
+        Investissements forestiers pour 2013
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         f7te = foyer_fiscal('f7te', period)
@@ -3173,24 +3183,32 @@ class invfor(Variable):
         f7ux = foyer_fiscal('f7ux', period)
         P = parameters(period).impot_revenu.reductions_impots.invfor
 
-        max0 = max_(0, P.ifortra_seuil * (maries_ou_pacses + 1) - f7ul)
-        max1 = max_(0, max0 - f7uu - f7te - f7uv - f7tf)
-        max2 = max_(0, max1 - f7tg - f7uw)
-        max3 = max_(0, max2 - f7th - f7ux)
+        report_depenses_2009 = f7uu + f7te
+        report_depenses_2010 = f7uv + f7tf
+        report_depenses_2011 = f7uw + f7tg
+        report_depenses_2012 = f7ux + f7th
+
+        max0 = max_(0, P.plafond_travaux * (maries_ou_pacses + 1) - f7ul)
+        max1 = max_(0, max0 - report_depenses_2009 - report_depenses_2010)
+        max2 = max_(0, max1 - report_depenses_2011)
+        max3 = max_(0, max2 - report_depenses_2012)
+
         return (
             P.taux * (
-                min_(f7un, P.seuil * (maries_ou_pacses + 1))
+                min_(f7un, P.plafond * (maries_ou_pacses + 1))
+                + min_(f7uq, P.plafond_cga* (maries_ou_pacses + 1))
                 + min_(f7up, max3)
-                + min_(f7uq, P.iforges_seuil * (maries_ou_pacses + 1))) 
-            + P.report10 * min_(f7uu + f7te + f7uv + f7tf, max0)
-            + P.report11 * min_(f7tg + f7uw, max1)
-            + P.report12 * min_(f7th + f7ux, max2)
-            + P.taux_ass * min_(f7ul, P.ifortra_seuil * (maries_ou_pacses + 1))
+                )
+            + P.taux_assurance * min_(f7ul, P.plafond_travaux * (maries_ou_pacses + 1))
+            + P.report10 * min_(report_depenses_2009 + report_depenses_2010, max0)
+            + P.report11 * min_(report_depenses_2011, max1)
+            + P.report12 * min_(report_depenses_2012, max2)
             )
 
     def formula_2014_01_01(foyer_fiscal, period, parameters):
         '''
-        Investissements forestiers pour 2014 cf. 2041 GK
+        Investissements forestiers pour 2014
+        NB : une partie de ces investissements ouvrent désormais droit à un crédit d'impôt
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         f7te = foyer_fiscal('f7te', period)
@@ -3206,21 +3224,27 @@ class invfor(Variable):
         f7ux = foyer_fiscal('f7ux', period)
         P = parameters(period).impot_revenu.reductions_impots.invfor
 
-        max0 = max_(0, P.ifortra_seuil * (maries_ou_pacses + 1) - f7ul)
-        max1 = max_(0, max0 - f7uu - f7te - f7tf)
-        max2 = max_(0, max1 - f7tg - f7uv)
-        max3 = max_(0, max2 - f7th - f7uw - f7ux - f7ti)
+        report_depenses_2009 = f7te
+        report_depenses_2010 = f7uu + f7tf
+        report_depenses_2011 = f7uv + f7tg
+        report_depenses_2012 = f7uw + f7th
+        report_depenses_2013 = f7ux + f7ti
+
+        max0 = max_(0, P.plafond_travaux * (maries_ou_pacses + 1) - f7ul)
+        max1 = max_(0, max0 - report_depenses_2009 - report_depenses_2010)
+        max2 = max_(0, max1 - report_depenses_2011)
+
         return (
-            P.taux * min_(f7un, P.seuil * (maries_ou_pacses + 1))
-            + P.taux_ass * min_(f7ul, P.ifortra_seuil * (maries_ou_pacses + 1))
-            + P.report10 * min_(f7uu + f7te + f7tf, max0)
-            + P.report11 * min_(f7tg + f7uv, max1)
-            + P.report12 * min_(f7th + f7uw + f7ux + f7ti, max2)
+            P.taux * min_(f7un, P.plafond * (maries_ou_pacses + 1))
+            + P.taux_assurance * min_(f7ul, P.plafond_travaux * (maries_ou_pacses + 1))
+            + P.report10 * min_(report_depenses_2009 + report_depenses_2010, max0)
+            + P.report11 * min_(report_depenses_2011, max1)
+            + P.report12 * min_(report_depenses_2012 + report_depenses_2013, max2)
             )
 
     def formula_2015_01_01(foyer_fiscal, period, parameters):
         '''
-        Investissements forestiers pour 2015 cf. 2041 GK
+        Investissements forestiers pour 2015
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         f7te = foyer_fiscal('f7te', period)
@@ -3235,20 +3259,27 @@ class invfor(Variable):
         f7uw = foyer_fiscal('f7uw', period)
         P = parameters(period).impot_revenu.reductions_impots.invfor
 
-        max0 = max_(0, P.ifortra_seuil * (maries_ou_pacses + 1) - f7ul)
-        max1 = max_(0, max0 - f7te - f7tf)
-        max2 = max_(0, max1 - f7tg - f7uu)
-        max3 = max_(0, max2 - f7th - f7uv - f7uw - f7ti)
+        report_depenses_2009 = f7te
+        report_depenses_2010 = f7tf
+        report_depenses_2011 = f7uu + f7tg
+        report_depenses_2012 = f7uv + f7th
+        report_depenses_2013 = f7uw + f7ti
+
+        max0 = max_(0, P.plafond_travaux * (maries_ou_pacses + 1) - f7ul)
+        max1 = max_(0, max0 - report_depenses_2009 - report_depenses_2010)
+        max2 = max_(0, max1 - report_depenses_2011)
+
         return (
-            P.taux * min_(f7un, P.seuil * (maries_ou_pacses + 1))
-            + P.taux_ass * min_(f7ul, P.ifortra_seuil * (maries_ou_pacses + 1))
-            + P.report10 * min_(f7te + f7tf, max0)
-            + P.report11 * min_(f7tg + f7uu, max1)
-            + P.report12 * min_(f7th + f7uv + f7uw + f7ti, max2))
+            P.taux * min_(f7un, P.plafond * (maries_ou_pacses + 1))
+            + P.taux_assurance * min_(f7ul, P.plafond_travaux * (maries_ou_pacses + 1))
+            + P.report10 * min_(report_depenses_2009 + report_depenses_2010, max0)
+            + P.report11 * min_(report_depenses_2011, max1)
+            + P.report12 * min_(report_depenses_2012 + report_depenses_2013, max2)
+            )
 
     def formula_2016_01_01(foyer_fiscal, period, parameters):
         '''
-        Investissements forestiers pour 2016 cf. 2041 GK
+        Investissements forestiers pour 2016
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         f7te = foyer_fiscal('f7te', period)
@@ -3262,16 +3293,22 @@ class invfor(Variable):
         f7uv = foyer_fiscal('f7uv', period)
         P = parameters(period).impot_revenu.reductions_impots.invfor
 
-        max0 = max_(0, P.ifortra_seuil * (maries_ou_pacses + 1) - f7ul)
-        max1 = max_(0, max0 - f7te - f7tf)
-        max2 = max_(0, max1 - f7tg)
-        max3 = max_(0, max2 - f7th - f7uu - f7uv - f7ti)
+        report_depenses_2009 = f7te
+        report_depenses_2010 = f7tf
+        report_depenses_2011 =  f7tg
+        report_depenses_2012 = f7uu + f7th
+        report_depenses_2013 = f7uv + f7ti
+
+        max0 = max_(0, P.plafond_travaux * (maries_ou_pacses + 1) - f7ul)
+        max1 = max_(0, max0 - report_depenses_2009 - report_depenses_2010)
+        max2 = max_(0, max1 - report_depenses_2011)
+
         return (
-            P.taux * min_(f7un, P.seuil * (maries_ou_pacses + 1))
-            + P.taux_ass * min_(f7ul, P.ifortra_seuil * (maries_ou_pacses + 1))
-            + P.report10 * min_(f7te + f7tf, max0)
-            + P.report11 * min_(f7tg, max1)
-            + P.report12 * min_(f7th + f7uu + f7uv + f7ti, max2)
+            P.taux * min_(f7un, P.plafond * (maries_ou_pacses + 1))
+            + P.taux_assurance * min_(f7ul, P.plafond_travaux * (maries_ou_pacses + 1))
+            + P.report10 * min_(report_depenses_2009 + report_depenses_2010, max0)
+            + P.report11 * min_(report_depenses_2011, max1)
+            + P.report12 * min_(report_depenses_2012 + report_depenses_2013, max2)
             )
 
 
