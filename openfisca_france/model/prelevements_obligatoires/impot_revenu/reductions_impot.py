@@ -2683,6 +2683,57 @@ class domsoc(Variable):
             + report_reduc_2015
             + reduc_invest_2016
             )
+
+    def formula_2017_01_01(foyer_fiscal, period, parameters):
+        '''
+        Investissements outre-mer dans le logement social (déclaration n°2042 IOM)
+        2017
+        '''
+        fhkh = foyer_fiscal('fhkh', period)
+        fhki = foyer_fiscal('fhki', period)
+        fhqj = foyer_fiscal('fhqj', period)
+        fhqs = foyer_fiscal('fhqs', period)
+        fhqw = foyer_fiscal('fhqw', period)
+        fhqx = foyer_fiscal('fhqx', period) 
+        fhra = foyer_fiscal('fhra', period)
+        fhrb = foyer_fiscal('fhrb', period)
+        fhrc = foyer_fiscal('fhrc', period)
+        fhrd = foyer_fiscal('fhrd', period)
+        fhxa = foyer_fiscal('fhxa', period)
+        fhxb = foyer_fiscal('fhxb', period)
+        fhxc = foyer_fiscal('fhxc', period)
+        fhxe = foyer_fiscal('fhxe', period)
+        fhxf = foyer_fiscal('fhxf', period)
+        fhxg = foyer_fiscal('fhxg', period)
+        fhxh = foyer_fiscal('fhxh', period)
+        fhxi = foyer_fiscal('fhxi', period)
+        fhxk = foyer_fiscal('fhxk', period)
+        fhxl = foyer_fiscal('fhxl', period)
+        fhxm = foyer_fiscal('fhxm', period)
+        fhxn = foyer_fiscal('fhxn', period)
+        fhxo = foyer_fiscal('fhxo', period)
+        fhxp = foyer_fiscal('fhxp', period)
+        fhxq = foyer_fiscal('fhxq', period)
+        fhxr = foyer_fiscal('fhxr', period)
+        fhxs = foyer_fiscal('fhxs', period)
+        fhxt = foyer_fiscal('fhxt', period)
+        fhxu = foyer_fiscal('fhxu', period)
+
+        report_reduc_2012 = fhqj + fhqs + fhqw + fhqx
+        report_reduc_2013 = fhra + fhrb + fhrc + fhrd
+        report_reduc_2014 = fhxa + fhxb + fhxc + fhxe
+        report_reduc_2015 = fhxf + fhxg + fhxh + fhxi + fhk
+        report_reduc_2016 = fhxl + fhxm + fhxn + fhxo + fhxp
+        reduc_invest_2017 = fhxq + fhxr + fhxs + fhxt + fhxu
+
+        return (
+            report_reduc_2012
+            + report_reduc_2013
+            + report_reduc_2014
+            + report_reduc_2015
+            + report_reduc_2016
+            + reduc_invest_2017
+            )
             
     # Outre-mer : TODO: plafonnement, cf. 2041-GE 2042-IOM
     # TODO plafonnement à 15% f7qa / liens avec autres investissments ?

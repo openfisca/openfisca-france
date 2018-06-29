@@ -5386,6 +5386,7 @@ class fhqn(Variable):
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le logement social : Investissements réalisés en 2011"
 #    start_date = date(2013, 1, 1)
+    end = '2016-12-31'
     definition_period = YEAR
 
 
@@ -5396,6 +5397,7 @@ class fhqu(Variable):
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le logement social : Investissements réalisés en 2011"
 #    start_date = date(2013, 1, 1)
+    end = '2016-12-31'
     definition_period = YEAR
 
 
@@ -5406,6 +5408,7 @@ class fhqk(Variable):
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le logement social : Investissements réalisés en 2011"
 #    start_date = date(2013, 1, 1)
+    end = '2016-12-31'
     definition_period = YEAR
 
 
@@ -5586,6 +5589,56 @@ class fhxp(Variable):
     label = u"Investissements outre-mer dans le logement social : Investissements réalisés en 2016"
 #    start_date = date(2016, 1, 1)
     definition_period = YEAR
+
+
+class fhxq(Variable):
+    cerfa_field = u"HXQ"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le logement social : Investissements réalisés en 2017"
+#    start_date = date(2017, 1, 1)
+    definition_period = YEAR
+
+
+class fhxr(Variable):
+    cerfa_field = u"HXR"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le logement social : Investissements réalisés en 2017"
+#    start_date = date(2017, 1, 1)
+    definition_period = YEAR
+
+
+class fhxs(Variable):
+    cerfa_field = u"HXS"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le logement social : Investissements réalisés en 2017"
+#    start_date = date(2017, 1, 1)
+    definition_period = YEAR
+
+
+class fhxt(Variable):
+    cerfa_field = u"HXT"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le logement social : Investissements réalisés en 2017"
+#    start_date = date(2017, 1, 1)
+    definition_period = YEAR
+
+
+class fhxu(Variable):
+    cerfa_field = u"HXU"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le logement social : Investissements réalisés en 2017"
+#    start_date = date(2017, 1, 1)
+    definition_period = YEAR 
 
 
 # Souscription de parts de fonds communs de placement dans l'innovation,
