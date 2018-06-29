@@ -1,3 +1,6 @@
+description: "Contribution exceptionnelle sur les hauts revenus"
+reference: ipp -  http://bofip.impots.gouv.fr/bofip/7804-PGP.html?identifiant=BOI-IR-CHR-20170711
+unit: currency
 brackets:
 - rate:
     2011-01-01:
@@ -11,5 +14,3 @@ brackets:
   threshold:
     2011-01-01:
       value: 500000.0
-reference: ipp
-unit: currency
