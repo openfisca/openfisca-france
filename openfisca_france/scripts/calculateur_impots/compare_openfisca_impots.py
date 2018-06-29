@@ -114,14 +114,13 @@ def compare_variable(field, openfisca_variable_name, simulation, verbose = False
     openfisca_variable_name = field['openfisca_name']
     assert len(openfisca_value) == 1
     if verbose: 
+        print(u'Comparaison DGFiP vs OpenFisca')
         if (openfisca_variable_name == 'nbptr'):
             print(u'{} ({}) = {}'.format(code, name, openfisca_variable_name).encode('utf-8'))
             print(u'{} vs {}'.format(dgfip_value, openfisca_value[0]).encode('utf-8'))
         else:
             print(u'{} ({}) = {}'.format(code, name, openfisca_variable_name).encode('utf-8'))
             print(u'{} vs {}'.format(round(dgfip_value), round(openfisca_value[0])).encode('utf-8'))
-
-
 
 
 def compare_variables(fields, simulation, verbose = True):
@@ -187,7 +186,7 @@ def main():
     args = parser.parse_args()
     logging.basicConfig(level = logging.DEBUG if args.verbose else logging.WARNING, stream = sys.stdout)
 
-    year = 2013
+    year = 2017 # Année de revenus
     scenario = define_scenario(year)
     compare(scenario, tested = True, verbose = True)
     return 0

@@ -1060,14 +1060,9 @@ def transform_scenario_to_tax_calculator_inputs(scenario):
                         'id',
                         ):
                     continue
-                print column_code, value
                 column = tax_benefit_system.variables[column_code]
                 cerfa_field = column.cerfa_field
-                print cerfa_field
                 assert cerfa_field is not None and isinstance(cerfa_field, dict), column_code
-                print declarant_index
-                print cerfa_field.keys()
-                print cerfa_field[QUIFOY.vous : 0]
                 impots_arguments[cerfa_field[declarant_index]] = int(value) if isinstance(value, float) else value
 
         impots_arguments['0CF'] = len(foyer_fiscal['personnes_a_charge'])
