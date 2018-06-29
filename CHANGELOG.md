@@ -1,5 +1,11 @@
 # Changelog
 
+### 21.10.11 [#1020](https://github.com/openfisca/openfisca-france/pull/1020)
+
+* Changement mineur.
+* Détails :
+  - Ajoute l'unité manquante à certains barèmes libellés en euros ou francs.
+
 ### 21.10.10 [#1017](https://github.com/openfisca/openfisca-france/pull/1017)
 
 * Évolution du système socio-fiscal.
@@ -14,7 +20,7 @@
 * Changement mineur.
 * Détails :
   - Ajoute un test de performance sur les tests de CircleCI
-  - Ce test peut être lancé avec la commande: 
+  - Ce test peut être lancé avec la commande :
     `python openfisca_france/scripts/performance_tests/test_circleci_builds.py 1717 1716`
 
 ### 21.10.8 [#1010](https://github.com/openfisca/openfisca-france/pull/1010)

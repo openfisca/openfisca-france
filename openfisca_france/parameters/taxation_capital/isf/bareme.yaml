@@ -287,3 +287,4 @@ brackets:
       value: null
 description: Impôt de solidarité
 reference: ipp
+unit: currency

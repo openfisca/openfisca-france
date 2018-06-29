@@ -1,3 +1,6 @@
+description: 'Taxes sur les salaires : taux majorés (France métropolitaine seulement)'
+reference: openfisca
+unit: currency
 brackets:
 - rate:
     2001-01-01:
@@ -81,5 +84,3 @@ brackets:
       value: 151965.0
     2016-01-01:
       value: 152122.0
-description: 'Taxes sur les salaires : taux majorés (France métropolitaine seulement)'
-reference: openfisca
