@@ -465,7 +465,7 @@ class abattement_salaires_pensions(Variable):
         return min_(abatsalpen.taux * max_(revenu_assimile_salaire_apres_abattements + revenu_assimile_pension_apres_abattements, 0), abatsalpen.max)
 
 
-class retraite_titre_onereux(Variable):
+class rente_viagere_titre_onereux(Variable):
     """Rentes viagères à titre onéreux (avant abattements)
 
     Annuel pour les impôts mais mensuel pour la base ressource des minimas sociaux donc mensuel.
@@ -488,7 +488,7 @@ class retraite_titre_onereux(Variable):
         return (f1aw + f1bw + f1cw + f1dw) / 12
 
 
-class retraite_titre_onereux_net(Variable):
+class rente_viagere_titre_onereux_net(Variable):
     value_type = float
     entity = FoyerFiscal
     label = u"Rentes viagères après abattements"
@@ -521,15 +521,15 @@ class traitements_salaires_pensions_rentes(Variable):
         revenu_assimile_pension_apres_abattements = individu('revenu_assimile_pension_apres_abattements', period)
         abattement_salaires_pensions = individu('abattement_salaires_pensions', period)
 
-        # Quand tspr est calculé sur une année glissante, retraite_titre_onereux_net est calculé sur l'année légale
+        # Quand tspr est calculé sur une année glissante, rente_viagere_titre_onereux_net est calculé sur l'année légale
         # correspondante.
-        retraite_titre_onereux_net = individu.foyer_fiscal('retraite_titre_onereux_net', period.offset('first-of'))
-        retraite_titre_onereux_net_declarant1 = retraite_titre_onereux_net * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
+        rente_viagere_titre_onereux_net = individu.foyer_fiscal('rente_viagere_titre_onereux_net', period.offset('first-of'))
+        rente_viagere_titre_onereux_net_declarant1 = rente_viagere_titre_onereux_net * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
 
         return (
             + revenu_assimile_salaire_apres_abattements
             + revenu_assimile_pension_apres_abattements
-            + retraite_titre_onereux_net_declarant1
+            + rente_viagere_titre_onereux_net_declarant1
             - abattement_salaires_pensions
             )
 
@@ -940,10 +940,10 @@ class csg_deduc_patrimoine_simulated(Variable):
         '''
         rev_cat_rfon = foyer_fiscal('rev_cat_rfon', period)
         revenus_capitaux_prelevement_bareme = foyer_fiscal('revenus_capitaux_prelevement_bareme', period)
-        retraite_titre_onereux = foyer_fiscal('retraite_titre_onereux', period)
+        rente_viagere_titre_onereux = foyer_fiscal('rente_viagere_titre_onereux', period)
         taux = parameters(period).csg.capital.deduc
 
-        patrimoine_deduc = rev_cat_rfon + revenus_capitaux_prelevement_bareme + retraite_titre_onereux
+        patrimoine_deduc = rev_cat_rfon + revenus_capitaux_prelevement_bareme + rente_viagere_titre_onereux
         return taux * patrimoine_deduc
 
 
