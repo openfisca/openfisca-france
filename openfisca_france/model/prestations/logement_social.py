@@ -147,7 +147,7 @@ class logement_social_plafond_ressources(Variable):
     label = u"Plafonds de ressources des bénéficiaires de la législation sur les habitations à loyer modéré et des nouvelles aides de l'Etat en secteur locatif"
     reference = [
         u"Arrêté du 22 décembre 2016 modifiant l'arrêté du 29 juillet 1987 relatif aux plafonds de ressources des bénéficiaires de la législation sur les habitations à loyer modéré et des nouvelles aides de l'Etat en secteur locatif ",
-        u"https://www.legifrance.gouv.fr/affichTexte.do;jsessionid=186AC8F0B7590C42DAA390BA6C89612B.tpdila11v_1?cidTexte=JORFTEXT000033681769&dateTexte=&oldAction=rechJO&categorieLien=id&idJO=JORFCONT000033680662",
+        u"https://www.legifrance.gouv.fr/eli/arrete/2016/12/22/LHAL1629455A/jo/texte",
     ]
 
     def formula(famille, period, parameters):
