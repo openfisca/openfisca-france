@@ -1,13 +1,15 @@
 # Changelog
 
-### 21.12.3 [](https://github.com/openfisca/openfisca-france/pull/)
+### 22.0.0 [#102](https://github.com/openfisca/openfisca-france/pull/1026)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : toutes.
 * Zones impactées :
   - `prestations/minima_sociaux/aah`
 * Détails :
-  - Prend en compte le taux d'incapacité dans le calcul de l'éligibilité au CAAH.
+  - [Prise en compte du taux d'incapacité dans l'éligibilité au CAAH #1021](https://github.com/openfisca/openfisca-france/pull/1021)
+    - Renomme le paramètre `prestations.minima_sociaux.aah.taux_d_incapcite` en `prestations.minima_sociaux.aah.taux_incapacite`
+    - Prend en compte le taux d'incapacité dans le calcul de l'éligibilité au CAAH.
 
 ### 21.12.2 [#1032](https://github.com/openfisca/openfisca-france/pull/1032)
 

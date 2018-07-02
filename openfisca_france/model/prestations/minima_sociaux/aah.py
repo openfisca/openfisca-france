@@ -295,6 +295,7 @@ class caah(Variable):
     def formula_2005_07_01(individu, period, parameters):
         law = parameters(period).prestations
 
+
         garantie_ressources = law.minima_sociaux.caah.garantie_ressources
         aah_montant = law.minima_sociaux.aah.montant
 
@@ -305,7 +306,7 @@ class caah(Variable):
         al = individu.famille('aide_logement_montant', period) # montant allocs logement de la famille
         taux_incapacite = individu('taux_incapacite', period)
 
-        elig_cpl = ((aah > 0) | (benef_asi > 0)) * (taux_incapacite >= 0.8)
+        elig_cpl = ((aah > 0) | (benef_asi > 0)) * (taux_incapacite >= law.minima_sociaux.aah.taux_incapacite)
         # TODO: & logement indépendant & inactif 12 derniers mois
         # & capa de travail < 5%
         compl_ress = elig_cpl * max_(garantie_ressources - aah_montant, 0)
@@ -331,7 +332,7 @@ class caah(Variable):
         al = individu.famille('aide_logement_montant', period) # montant allocs logement de la famille
         taux_incapacite = individu('taux_incapacite', period)
 
-        elig_ancien_caah = (al > 0) * ((aah > 0) | (benef_asi > 0)) * (taux_incapacite >= 0.8)  # TODO: & logement indépendant
+        elig_ancien_caah = (al > 0) * ((aah > 0) | (benef_asi > 0)) * (taux_incapacite >= law.minima_sociaux.aah.taux_incapacite)  # TODO: & logement indépendant
         ancien_caah = cpltx * aah_montant * elig_ancien_caah
         # En fait le taux cpltx perdure jusqu'en 2008
 
