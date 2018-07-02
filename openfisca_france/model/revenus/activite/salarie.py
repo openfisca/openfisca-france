@@ -826,7 +826,7 @@ class supplement_familial_traitement(Variable):
 
         fonc_nbenf = individu.famille('af_nbenf_fonc', period) * individu.has_role(Famille.DEMANDEUR)
 
-        P = _P.fonc.supp_fam
+        P = _P.fonc.supplement_familial
         part_fixe_1 = P.fixe.enf1
         part_fixe_2 = P.fixe.enf2
         part_fixe_supp = P.fixe.enfsupp
