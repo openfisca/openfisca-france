@@ -104,38 +104,34 @@ class logement_social_categorie_menage(Variable):
     ]
     def formula(famille, period, parameters):
 
-        personne_seule = (famille.nb_persons(Famille.PARENT) == 1)
         nb_personnes = famille.nb_persons()
         personnes_a_charge = famille('al_nb_personnes_a_charge', period)
+        personne_seule = (famille.nb_persons(Famille.PARENT) == 1) * (personnes_a_charge == 0)
 
         # Jeune ménage : Couple marié, concubins ou pacsés, sans personne à charge,
         # dont la somme des âges des deux conjoints est inférieure ou égale à 55 ans
         age = famille.members('age', period)
         sum_age = famille.sum(age, role = Famille.PARENT)
-        jeune_menage = (not_(personne_seule) * (sum_age <= 55) * (personnes_a_charge == 0))
+        jeune_menage = (not_(personne_seule) * (sum_age <= 55))
 
         return select(
             [
-                # Six personnes, ou une personne seule avec quatre personnes à charge.
-                (nb_personnes >= 6) + (personne_seule * (personnes_a_charge >= 4)),
-                # Cinq personnes, ou une personne seule avec trois personnes à charge.
-                (nb_personnes == 5) + (personne_seule * (personnes_a_charge == 3)),
-                # Quatre personnes, ou une personne seule avec deux personnes à charge.
-                (nb_personnes == 4) + (personne_seule * (personnes_a_charge == 2)),
-                # Trois personnes, ou une personne seule avec une personne à charge, ou jeune ménage sans personne à charge.
-                (nb_personnes == 3) + (personne_seule * (personnes_a_charge == 1)) + (jeune_menage * (personnes_a_charge == 0)),
+                personne_seule,
                 # Deux personnes ne comportant aucune personne à charge, à l'exclusion des jeunes ménages.
                 ((nb_personnes == 2) * (personnes_a_charge == 0) * not_(jeune_menage)),
-                # Une personne seule.
-                personne_seule,
+                # Trois personnes, ou une personne seule avec une personne à charge, ou jeune ménage sans personne à charge.
+                (personnes_a_charge == 1) + (jeune_menage * (personnes_a_charge == 0)),
+                # Quatre personnes, ou une personne seule avec deux personnes à charge.
+                (personnes_a_charge == 2),
+                # Cinq personnes, ou une personne seule avec trois personnes à charge.
+                (personnes_a_charge == 3)
             ],
             [
-                CategorieMenageLogementSocial.categorie_6,
-                CategorieMenageLogementSocial.categorie_5,
-                CategorieMenageLogementSocial.categorie_4,
-                CategorieMenageLogementSocial.categorie_3,
-                CategorieMenageLogementSocial.categorie_2,
                 CategorieMenageLogementSocial.categorie_1,
+                CategorieMenageLogementSocial.categorie_2,
+                CategorieMenageLogementSocial.categorie_3,
+                CategorieMenageLogementSocial.categorie_4,
+                CategorieMenageLogementSocial.categorie_5
             ],
             default = CategorieMenageLogementSocial.categorie_6
         )
