@@ -38,10 +38,10 @@ class csg_cap_bar(Variable):
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
-        rev_cap_bar = foyer_fiscal('rev_cap_bar', period, options = [ADD])
+        revenus_capitaux_prelevement_bareme = foyer_fiscal('revenus_capitaux_prelevement_bareme', period, options = [ADD])
         _P = parameters(period)
 
-        return -rev_cap_bar * _P.prelevements_sociaux.contributions.csg.capital.glob
+        return -revenus_capitaux_prelevement_bareme * _P.prelevements_sociaux.contributions.csg.capital.glob
 
 
 class crds_cap_bar(Variable):
@@ -53,10 +53,10 @@ class crds_cap_bar(Variable):
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
-        rev_cap_bar = foyer_fiscal('rev_cap_bar', period, options = [ADD])
+        revenus_capitaux_prelevement_bareme = foyer_fiscal('revenus_capitaux_prelevement_bareme', period, options = [ADD])
         _P = parameters(period).taxation_capital.prelevements_sociaux
 
-        return -rev_cap_bar * _P.crds.revenus_du_patrimoine
+        return -revenus_capitaux_prelevement_bareme * _P.crds.revenus_du_patrimoine
 
 
 class prelsoc_cap_bar(Variable):
@@ -68,45 +68,45 @@ class prelsoc_cap_bar(Variable):
     definition_period = YEAR
 
     def formula_2002_01_01(foyer_fiscal, period, parameters):
-        rev_cap_bar = foyer_fiscal('rev_cap_bar', period, options = [ADD])
+        revenus_capitaux_prelevement_bareme = foyer_fiscal('revenus_capitaux_prelevement_bareme', period, options = [ADD])
         P = parameters(period).taxation_capital.prelevements_sociaux
 
         total = P.prelevement_social.revenus_du_patrimoine
-        return -rev_cap_bar * total
+        return -revenus_capitaux_prelevement_bareme * total
 
     def formula_2006_01_01(foyer_fiscal, period, parameters):
-        rev_cap_bar = foyer_fiscal('rev_cap_bar', period, options = [ADD])
+        revenus_capitaux_prelevement_bareme = foyer_fiscal('revenus_capitaux_prelevement_bareme', period, options = [ADD])
         P = parameters(period).taxation_capital.prelevements_sociaux
 
         total = P.prelevement_social.revenus_du_patrimoine + P.caps.revenus_du_patrimoine
-        return -rev_cap_bar * total
+        return -revenus_capitaux_prelevement_bareme * total
 
     def formula_2009_01_01(foyer_fiscal, period, parameters):
-        rev_cap_bar = foyer_fiscal('rev_cap_bar', period, options = [ADD])
+        revenus_capitaux_prelevement_bareme = foyer_fiscal('revenus_capitaux_prelevement_bareme', period, options = [ADD])
         P = parameters(period).taxation_capital.prelevements_sociaux
 
         total = P.prelevement_social.revenus_du_patrimoine + P.caps.revenus_du_patrimoine + P.caps.rsa
-        return -rev_cap_bar * total
+        return -revenus_capitaux_prelevement_bareme * total
 
     def formula_2012_01_01(foyer_fiscal, period, parameters):
-        rev_cap_bar = foyer_fiscal('rev_cap_bar', period, options = [ADD])
+        revenus_capitaux_prelevement_bareme = foyer_fiscal('revenus_capitaux_prelevement_bareme', period, options = [ADD])
         P = parameters(period).taxation_capital.prelevements_sociaux
 
         total = (
             P.prelevement_social.revenus_du_patrimoine + P.caps.revenus_du_patrimoine + P.caps.rsa +
             P.prelevements_solidarite.revenus_du_patrimoine
             )
-        return -rev_cap_bar * total
+        return -revenus_capitaux_prelevement_bareme * total
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
-        rev_cap_bar = foyer_fiscal('rev_cap_bar', period, options = [ADD])
+        revenus_capitaux_prelevement_bareme = foyer_fiscal('revenus_capitaux_prelevement_bareme', period, options = [ADD])
         P = parameters(period).taxation_capital.prelevements_sociaux
 
         total = (
             P.prelevement_social.revenus_du_patrimoine + P.caps.revenus_du_patrimoine +
             P.prelevements_solidarite.revenus_du_patrimoine
             )
-        return -rev_cap_bar * total
+        return -revenus_capitaux_prelevement_bareme * total
 
 
 class csg_pv_mo(Variable):

@@ -57,7 +57,7 @@
         <NODE code="fon" color="255,245,155" desc="Revenus fonciers" shortname="Rev. fonciers" />
         <NODE code="f3vg" color="255,245,155" desc="Plus-values de cessions de valeurs mobilières" shortname="Plus.-values mo." />
         <NODE code="f3vz" color="255,245,155" desc="Plus-values immobilières" shortname="Plus.-values immo." />
-        <NODE code="rev_cap_bar" color="255,239,103" desc="Revenus du capital soumis au barème" shortname="Rev cap bar" />
+        <NODE code="revenus_capitaux_prelevement_bareme" color="255,239,103" desc="Revenus du capital soumis au barème" shortname="Rev cap bar" />
         <NODE code="revenus_capitaux_prelevement_liberatoire" color="255,233,28" desc="Revenus du capital soumis au prélèvement libératoire" shortname="Rev cap lib" />
         <NODE code="rac" color="247,221,0" desc="Revenus accessoires" shortname="Rev. accesoires" />
       </NODE>
