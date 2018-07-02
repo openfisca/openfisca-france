@@ -56,7 +56,7 @@ class allocations_familiales_imposables(Reform):
             rni = foyer_fiscal('rni')
             rpns_exon_holder = foyer_fiscal.members('rpns_exon')
             rpns_pvce_holder = foyer_fiscal.members('rpns_pvce')
-            rev_cap_lib = simulation.calculate_add('rev_cap_lib')
+            revenus_capitaux_prelevement_liberatoire = simulation.calculate_add('revenus_capitaux_prelevement_liberatoire')
             microentreprise = foyer_fiscal('microentreprise')
 
             f3vi = foyer_fiscal.sum(f3vi_holder)
@@ -65,7 +65,7 @@ class allocations_familiales_imposables(Reform):
 
             return (
                 max_(0, rni - allocations_familiales_imposables) +
-                rfr_cd + rfr_rvcm + rev_cap_lib + f3vi + rpns_exon + rpns_pvce + abattement_net_retraite_dirigeant_pme + f3vz + microentreprise
+                rfr_cd + rfr_rvcm + revenus_capitaux_prelevement_liberatoire + f3vi + rpns_exon + rpns_pvce + abattement_net_retraite_dirigeant_pme + f3vz + microentreprise
                 )
 
             # TO CHECK : f3vb after 2015 (abattements sur moins-values = interdits)

@@ -281,11 +281,11 @@ class revenus_du_capital(Variable):
         fon = foyer_fiscal('fon', period)
         rev_cap_bar = foyer_fiscal('rev_cap_bar', period, options = [ADD])
         cotsoc_lib = foyer_fiscal('cotsoc_lib', period)
-        rev_cap_lib = foyer_fiscal('rev_cap_lib', period, options = [ADD])
+        revenus_capitaux_prelevement_liberatoire = foyer_fiscal('revenus_capitaux_prelevement_liberatoire', period, options = [ADD])
         imp_lib = foyer_fiscal('imp_lib', period)
         cotsoc_bar = foyer_fiscal('cotsoc_bar', period)
 
-        revenus_foyer_fiscal = fon + rev_cap_bar + cotsoc_lib + rev_cap_lib + imp_lib + cotsoc_bar
+        revenus_foyer_fiscal = fon + rev_cap_bar + cotsoc_lib + revenus_capitaux_prelevement_liberatoire + imp_lib + cotsoc_bar
         revenus_foyer_fiscal_projetes = revenus_foyer_fiscal * individu.has_role(foyer_fiscal.DECLARANT_PRINCIPAL)
 
         rac = individu('rac', period)

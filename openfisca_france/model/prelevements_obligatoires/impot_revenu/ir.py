@@ -1801,7 +1801,7 @@ class rfr(Variable):
         abattement_net_duree_detention = foyer_fiscal('abattement_net_duree_detention', period)
         f2dm = foyer_fiscal('f2dm', period)
         microentreprise = foyer_fiscal('microentreprise', period)
-        rev_cap_lib = foyer_fiscal('rev_cap_lib', period, options = [ADD])
+        revenus_capitaux_prelevement_liberatoire = foyer_fiscal('revenus_capitaux_prelevement_liberatoire', period, options = [ADD])
         rfr_charges_deductibles = foyer_fiscal('rfr_cd', period)
         rfr_plus_values = foyer_fiscal('rfr_plus_values', period)
         rfr_rev_capitaux_mobiliers = foyer_fiscal('rfr_rvcm', period)
@@ -1814,7 +1814,7 @@ class rfr(Variable):
 
         return (
             max_(0, rni)
-            + rfr_charges_deductibles + rfr_plus_values + rfr_rev_capitaux_mobiliers + rev_cap_lib
+            + rfr_charges_deductibles + rfr_plus_values + rfr_rev_capitaux_mobiliers + revenus_capitaux_prelevement_liberatoire
             + rpns_exon + rpns_pvce
             + abattement_net_retraite_dirigeant_pme
             + abattement_net_duree_detention
@@ -1881,7 +1881,7 @@ class rev_cap_bar(Variable):
         # We add f2da an f2ee to allow for comparaison between years
 
 
-class rev_cap_lib(Variable):
+class revenus_capitaux_prelevement_liberatoire(Variable):
     '''Revenu du capital imposé au prélèvement libératoire
 
     Annuel pour les impôts mais mensuel pour la base ressource des minimas sociaux donc mensuel.

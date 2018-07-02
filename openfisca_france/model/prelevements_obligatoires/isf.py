@@ -515,7 +515,7 @@ class revetproduits(Variable):
         rag_i = foyer_fiscal.members('rag', period)
         rpns_exon_i = foyer_fiscal.members('rpns_exon', period)
         rpns_pvct_i = foyer_fiscal.members('rpns_pvct', period)
-        rev_cap_lib = foyer_fiscal('rev_cap_lib', period, options = [ADD])
+        revenus_capitaux_prelevement_liberatoire = foyer_fiscal('revenus_capitaux_prelevement_liberatoire', period, options = [ADD])
         imp_lib = foyer_fiscal('imp_lib', period)
         P = parameters(period).taxation_capital.isf.plafonnement
 
@@ -530,7 +530,7 @@ class revetproduits(Variable):
         # # def rev_exon et rev_etranger dans data? ##
         pt = max_(
             0,
-            revenu_assimile_salaire_apres_abattements + revenu_assimile_pension_apres_abattements + retraite_titre_onereux_net + rev_cap_bar + rev_cap_lib + ric + rag + rpns_exon +
+            revenu_assimile_salaire_apres_abattements + revenu_assimile_pension_apres_abattements + retraite_titre_onereux_net + rev_cap_bar + revenus_capitaux_prelevement_liberatoire + ric + rag + rpns_exon +
             rpns_pvct + imp_lib + fon
             )
         return pt * P.plafonnement_taux_d_imposition_isf
@@ -687,7 +687,7 @@ class bouclier_rev(Variable):
         rbg = foyer_fiscal('rbg', period)
         csg_deduc = foyer_fiscal('csg_deduc', period)
         rvcm_plus_abat = foyer_fiscal('rvcm_plus_abat', period)
-        rev_cap_lib = foyer_fiscal('rev_cap_lib', period)
+        revenus_capitaux_prelevement_liberatoire = foyer_fiscal('revenus_capitaux_prelevement_liberatoire', period)
         rev_exo = foyer_fiscal('rev_exo', period)
         rev_or = foyer_fiscal('rev_or', period)
         pensions_alimentaires_deduites = foyer_fiscal('pensions_alimentaires_deduites', period)
@@ -711,7 +711,7 @@ class bouclier_rev(Variable):
     # # TODO: AJOUTER : indemnités de fonction percus par les élus- revenus soumis à régimes spéciaux
 
         # Revenu soumis à l'impôt sur le revenu forfaitaire
-        rev_lib = rev_cap_lib
+        rev_lib = revenus_capitaux_prelevement_liberatoire
         # # AJOUTER plus-values immo et moins values?
 
         # #Revenus exonérés d'IR réalisés en France et à l'étranger##
