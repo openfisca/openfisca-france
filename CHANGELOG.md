@@ -16,10 +16,12 @@
   - [Amélioration de la lisibilité du supplément familial de traitement](https://github.com/openfisca/openfisca-france/pull/1025)
     - Renomme la variable `supp_familial_traitement` en `supplement_familial_traitement`
     - Renomme le noeud de l'arbre des paramètres `fonc.supp_fam` en `fonc.supplement_familial`
-  - [Amélioration de la lisibilité de variables de la fiscalité du capital]()
+  - [Amélioration de la lisibilité de variables de la fiscalité](https://github.com/openfisca/openfisca-france/pull/1027)
     - Renomme les variables
       - `rev_cap_lib` en `revenus_capitaux_prelevement_liberatoire`
       - `rev_cap_bar` en `revenus_capitaux_prelevement_bareme`
+      - `rev_cap_bar` en `revenus_capitaux_prelevement_bareme`
+      - `retraite_titre_onereux` en `rente_viagere_titre_onereux`
 
 ### 21.12.2 [#1032](https://github.com/openfisca/openfisca-france/pull/1032)
 
@@ -1524,8 +1526,8 @@ These changes are low impact since the two deprecated variables were not used.
 	* `pensions_alimentaires_versees_declarant1`
 	* `prelsoc_cap_bar_declarant1`
 	* `prelsoc_cap_lib_declarant1`
-	* `retraite_titre_onereux_declarant1`
-	* `retraite_titre_onereux_net_declarant1`
+	* `rente_viagere_titre_onereux_declarant1`
+	* `rente_viagere_titre_onereux_net_declarant1`
 	* `rev_microsocial_declarant1`
 	* `statut_occupation_famille`
 	* `statut_occupation_logement_individu`
@@ -1860,9 +1862,9 @@ It is included in the bases of the following variables.
 	* `rsa_forfait_asf_i` -> `rsa_forfait_asf_individu`
 	* `rsa_non_calculable_tns_i` -> `rsa_non_calculable_tns_individu`
 	* `rsa_revenu_activite_i` -> `rsa_revenu_activite_individu`
-	* `rto_declarant1` -> `retraite_titre_onereux_declarant1`
-	* `rto_net_declarant1` -> `retraite_titre_onereux_net_declarant1`
-	* `rto_net` -> `retraite_titre_onereux_net`
+	* `rto_declarant1` -> `rente_viagere_titre_onereux_declarant1`
+	* `rto_net_declarant1` -> `rente_viagere_titre_onereux_net_declarant1`
+	* `rto_net` -> `rente_viagere_titre_onereux_net`
 	* `salcho_imp` -> `revenu_assimile_salaire_apres_abattements`
 	* `smic55` -> `autonomie_financiere`
 	* `statut_occupation_famille` -> `statut_occupation_logement_famille`

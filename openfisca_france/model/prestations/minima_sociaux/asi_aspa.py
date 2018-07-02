@@ -71,8 +71,8 @@ class asi_aspa_base_ressources_individu(Variable):
         # Revenus du foyer fiscal que l'on projette sur le premier invidividus
         revenus_capitaux_prelevement_bareme_foyer_fiscal = max_(0, individu.foyer_fiscal('revenus_capitaux_prelevement_bareme', three_previous_months, options = [ADD]))
         revenus_capitaux_prelevement_liberatoire_foyer_fiscal = max_(0, individu.foyer_fiscal('revenus_capitaux_prelevement_liberatoire', three_previous_months, options = [ADD]))
-        retraite_titre_onereux_foyer_fiscal = individu.foyer_fiscal('retraite_titre_onereux', three_previous_months, options = [ADD])
-        revenus_foyer_fiscal = revenus_capitaux_prelevement_bareme_foyer_fiscal + revenus_capitaux_prelevement_liberatoire_foyer_fiscal + retraite_titre_onereux_foyer_fiscal
+        rente_viagere_titre_onereux_foyer_fiscal = individu.foyer_fiscal('rente_viagere_titre_onereux', three_previous_months, options = [ADD])
+        revenus_foyer_fiscal = revenus_capitaux_prelevement_bareme_foyer_fiscal + revenus_capitaux_prelevement_liberatoire_foyer_fiscal + rente_viagere_titre_onereux_foyer_fiscal
         revenus_foyer_fiscal_individu = revenus_foyer_fiscal * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
 
         def revenus_tns():
