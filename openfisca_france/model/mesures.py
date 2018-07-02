@@ -226,8 +226,8 @@ class pensions(Variable):
         # Revenus du foyer fiscal, que l'on projette uniquement sur le 1er déclarant
         foyer_fiscal = individu.foyer_fiscal
         pensions_alimentaires_versees = foyer_fiscal('pensions_alimentaires_versees', period)
-        retraite_titre_onereux = foyer_fiscal('retraite_titre_onereux', period, options = [ADD])
-        pen_foyer_fiscal = pensions_alimentaires_versees + retraite_titre_onereux
+        rente_viagere_titre_onereux = foyer_fiscal('rente_viagere_titre_onereux', period, options = [ADD])
+        pen_foyer_fiscal = pensions_alimentaires_versees + rente_viagere_titre_onereux
         pen_foyer_fiscal_projetees = pen_foyer_fiscal * (individu.has_role(foyer_fiscal.DECLARANT_PRINCIPAL))
 
         return (
