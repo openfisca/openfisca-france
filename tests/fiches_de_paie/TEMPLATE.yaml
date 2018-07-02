@@ -60,7 +60,7 @@ output_variables:
   # cotisations_employeur_non_contributives: 0
   allocations_temporaires_invalidite: 0
   accident_du_travail: 0
-  famille: 0
+  cotisation_employeur_allocations_familiales: 0
   mmid_employeur: 0
   taxe_salaires: 0
 

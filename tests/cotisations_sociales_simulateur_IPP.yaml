@@ -20,7 +20,7 @@
     cotisations_employeur_main_d_oeuvre: -45
     allocations_temporaires_invalidite: -6.6
     mmid_employeur: -194
-    famille: -108
+    cotisation_employeur_allocations_familiales: -108
     contribution_solidarite_autonomie: -6
     cotisations_employeur_non_contributives: -314.6
                 # mmid_employeur, famille, fnal, versement_transport,
@@ -70,7 +70,7 @@
     cotisations_employeur_main_d_oeuvre: -45
     allocations_temporaires_invalidite: -10
     mmid_employeur: -230
-    famille: -108
+    cotisation_employeur_allocations_familiales: -108
     contribution_solidarite_autonomie: -6
     cotisations_employeur_non_contributives: -(230 + 108 + 10 + 6)
     rafp_employeur: -20
@@ -116,7 +116,7 @@
     cotisations_employeur_main_d_oeuvre: -45
     allocations_temporaires_invalidite: -10
     mmid_employeur: -230
-    famille: -108
+    cotisation_employeur_allocations_familiales: -108
     contribution_solidarite_autonomie: -6
 # cotisations_employeur_non_contributives = -(10 + 230 + 108 + 2 + 8 + 2000 * 0.0175 + 6),
 # pension,  ati, rafp, maladie, famille, feh, fnal1, fnal2, transport, csa
@@ -222,7 +222,7 @@
     cotisations_employeur_main_d_oeuvre: [-45, 0, 0, 0]
     allocations_temporaires_invalidite: [-6.6, 0, 0, 0]
     mmid_employeur: [-194, 0, 0, 0]
-    famille: [-108, 0, 0, 0]
+    cotisation_employeur_allocations_familiales: [-108, 0, 0, 0]
     contribution_solidarite_autonomie: [-6, 0, 0, 0]
     cotisations_employeur_non_contributives: [-314.6, 0, 0, 0]
     pension_civile_employeur: [-1371.80, 0, 0, 0]
@@ -288,7 +288,7 @@
     cotisations_employeur_contributives: [-1391.8, -1391.8, 0, 0]
     allocations_temporaires_invalidite: [-6.6, -6.6, 0, 0]
     mmid_employeur: [-194, -194, 0, 0]
-    famille: [-108, -108, 0, 0]
+    cotisation_employeur_allocations_familiales: [-108, -108, 0, 0]
     contribution_solidarite_autonomie: [-6, -6, 0, 0]
     cotisations_employeur_non_contributives: [-314.6, -314.6, 0, 0]
     cotisations_employeur: [-(1371.80 + 6.6 + 20 + 194 + 108 + 2 + 8 + 2000 * 0.0175 + 6), -(1371.80 + 6.6 + 20 + 194 + 108 + 2 + 8 + 2000 * 0.0175 + 6), 0, 0]

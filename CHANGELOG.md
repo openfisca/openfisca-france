@@ -9,6 +9,7 @@
   - `revenus/activite/salarie`
   - `fonc.supp_fam`
   - `prelevements_obligatoires/impot_revenu/ir`
+  - `prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/travail_prive`
 * Détails :
   - [Prise en compte du taux d'incapacité dans l'éligibilité au CAAH #1021](https://github.com/openfisca/openfisca-france/pull/1021)
     - Renomme le paramètre `prestations.minima_sociaux.aah.taux_d_incapcite` en `prestations.minima_sociaux.aah.taux_incapacite`
@@ -22,6 +23,7 @@
       - `rev_cap_bar` en `revenus_capitaux_prelevement_bareme`
       - `rev_cap_bar` en `revenus_capitaux_prelevement_bareme`
       - `retraite_titre_onereux` en `rente_viagere_titre_onereux`
+  - [Renomme la variable `famille` en `cotisation_employeur_allocations_familiales`](https://github.com/openfisca/openfisca-france/pull/1028)
 
 ### 21.10.11 [#1020](https://github.com/openfisca/openfisca-france/pull/1020)
 

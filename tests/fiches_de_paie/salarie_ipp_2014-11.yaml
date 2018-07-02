@@ -42,7 +42,7 @@ output_variables:
   # cotisations_employeur_contributives:
 
   accident_du_travail: -69
-  famille: -241.5
+  cotisation_employeur_allocations_familiales: -241.5
   mmid_employeur: -588.80
   # cotisations_employeur: - 2836.38 + 19 * 4.5  # montant juste TODO: A compléter avec presta manquantes
   taxe_salaires: -197.52 - 27.07 - 315.27

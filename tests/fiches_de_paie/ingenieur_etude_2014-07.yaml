@@ -42,7 +42,7 @@
     rafp_employeur: 0
     allocations_temporaires_invalidite: 0
     accident_du_travail: -33
-    famille: -157.5
+    cotisation_employeur_allocations_familiales: -157.5
     # Permière ligne 12.8 = 12.8 + 1.75 + .3 (maldie + vieillesse_deplaf + csa )
     mmid_employeur: -3000 * .128  # est aggrégé avec vieillesse deplaf et csa
     taxe_salaires: 0

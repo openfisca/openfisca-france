@@ -22,7 +22,7 @@ output_variables:
   agirc_gmp_employeur: -41.16 -.01  # manque .01 dans la  fiche de paie
   chomage_employeur: -86.92
   cotisation_exceptionnelle_temporaire_employeur: -4.78
-  famille: -2172.9 * .0525 # = -153.74 = -74.97-78.77
+  cotisation_employeur_allocations_familiales: -2172.9 * .0525 # = -153.74 = -74.97-78.77
   mmid_employeur: -2172.9 * .128  # -6.52
   vieillesse_deplafonnee_employeur: -2172.9 * .018
   vieillesse_plafonnee_employeur: -2172.9 * .0850   # -2.17

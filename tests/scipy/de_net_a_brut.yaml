@@ -16,7 +16,7 @@
     arrco_salarie: -71.30000305175781
     agirc_gmp_employeur: -0
     agirc_salarie: 0
-    famille: -120.75
+    cotisation_employeur_allocations_familiales: -120.75
     csg_imposable_salaire: -54.23400115966797
     contribution_solidarite_autonomie: -6.900000095367432
     vieillesse_plafonnee_employeur: -196.64999389648438

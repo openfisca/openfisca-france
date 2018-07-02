@@ -50,7 +50,7 @@ output_variables:
   # cotisations_employeur_non_contributives
   allocations_temporaires_invalidite: 0
   accident_du_travail: 0
-  famille: -102.6
+  cotisation_employeur_allocations_familiales: -102.6
   mmid_employeur: -243.20  # problème d'assiette
   taxe_salaires: 0
 

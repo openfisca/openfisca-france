@@ -4,7 +4,7 @@
     effectif_entreprise: 30
     salaire_de_base: 2500
   output_variables:
-    famille: -131.25
+    cotisation_employeur_allocations_familiales: -131.25
     mmid_employeur: -320
     vieillesse_deplafonnee_employeur: -45
     vieillesse_plafonnee_employeur: -212.5
