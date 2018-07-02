@@ -317,6 +317,19 @@ class revenus_capitaux_prelevement_bareme(Variable):
         return (f2dc + f2gr + f2ch + f2ts + f2go * majGO + f2tr + f2fu - avf + (f2da + f2ee) * finpfl) / 12
         # We add f2da an f2ee to allow for comparaison between years
 
+    def formula_2013_01_01(foyer_fiscal, period, parameters):
+        year = period.this_year
+        f2dc = foyer_fiscal('f2dc', year)
+        f2ch = foyer_fiscal('f2ch', year)
+        f2ts = foyer_fiscal('f2ts', year)
+        f2go = foyer_fiscal('f2go', year)
+        f2tr = foyer_fiscal('f2tr', year)
+        f2fu = foyer_fiscal('f2fu', year)
+        avf = foyer_fiscal('avf', year)
+        majGO = parameters(period).impot_revenu.rvcm.majGO
+
+        return (f2dc + f2ch + f2ts + f2go * majGO + f2tr + f2fu - avf) / 12
+
 
 class revenus_capitaux_prelevement_liberatoire(Variable):
     value_type = float
