@@ -1947,8 +1947,9 @@ class revenus_capitaux_prelevement_liberatoire(Variable):
         year = period.this_year
         f2dh = foyer_fiscal('f2dh', year)
         f2ee = foyer_fiscal('f2ee', year)
+        f2fa = foyer_fiscal('f2fa', year)
 
-        return (f2dh + f2ee) / 12
+        return (f2dh + f2ee + f2fa) / 12
 
 
 class avf(Variable):
