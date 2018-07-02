@@ -88,6 +88,15 @@ class f2tr(Variable):
 
 
 # Autres revenus des valeurs et capitaux mobiliers
+class f2fa(Variable):
+    cerfa_field = u"2FA"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Intérêts et autres produits de placement à revenu fixe n'excédant pas 2000 euros, taxables sur option à 24%"
+    # start_date = date(2013, 1, 1)
+    definition_period = YEAR
+
 class f2cg(Variable):
     cerfa_field = u"2CG"
     value_type = int
