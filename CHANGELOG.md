@@ -8,6 +8,7 @@
   - `prestations/minima_sociaux/aah`
   - `revenus/activite/salarie`
   - `fonc.supp_fam`
+  - `prelevements_obligatoires/impot_revenu/ir`
 * Détails :
   - [Prise en compte du taux d'incapacité dans l'éligibilité au CAAH #1021](https://github.com/openfisca/openfisca-france/pull/1021)
     - Renomme le paramètre `prestations.minima_sociaux.aah.taux_d_incapcite` en `prestations.minima_sociaux.aah.taux_incapacite`
