@@ -148,7 +148,7 @@ class logement_social_plafond_ressources(Variable):
 
     def formula(famille, period, parameters):
 
-        logement_social = parameters(period).prestations.logement_social
+        logement_social = parameters(period).logement_social.plai
 
         categorie_menage = famille('logement_social_categorie_menage', period)
         zone_logement_social = famille.demandeur.menage('zone_logement_social', period)
