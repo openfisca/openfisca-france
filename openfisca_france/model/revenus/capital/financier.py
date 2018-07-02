@@ -286,6 +286,74 @@ class epargne_revenus_imposables(Variable):
     definition_period = MONTH
 
 
+class revenus_capitaux_prelevement_bareme(Variable):
+    value_type = float
+    entity = FoyerFiscal
+    label = u"Revenus du capital imposés au barème (montants bruts)"
+    set_input = set_input_divide_by_period
+    reference = "http://bofip.impots.gouv.fr/bofip/3775-PGP"
+    definition_period = MONTH
+
+    def formula(foyer_fiscal, period, parameters):
+        year = period.this_year
+        f2dc = foyer_fiscal('f2dc', year)
+        f2gr = foyer_fiscal('f2gr', year)
+        f2ch = foyer_fiscal('f2ch', year)
+        f2ts = foyer_fiscal('f2ts', year)
+        f2go = foyer_fiscal('f2go', year)
+        f2tr = foyer_fiscal('f2tr', year)
+        f2fu = foyer_fiscal('f2fu', year)
+        avf = foyer_fiscal('avf', year)
+        f2da = foyer_fiscal('f2da', year)
+        f2ee = foyer_fiscal('f2ee', year)
+        finpfl = parameters(period).impot_revenu.autre.finpfl  # TODO remove ad check case
+        majGO = parameters(period).impot_revenu.rvcm.majGO
+
+        # year = period.start.year
+        # if year <= 2011:
+        #     return f2dc + f2gr + f2ch + f2ts + f2go + f2tr + f2fu - avf
+        # elif year > 2011:
+        #     return f2dc + f2gr + f2ch + f2ts + f2go + f2tr + f2fu - avf + (f2da + f2ee)
+        return (f2dc + f2gr + f2ch + f2ts + f2go * majGO + f2tr + f2fu - avf + (f2da + f2ee) * finpfl) / 12
+        # We add f2da an f2ee to allow for comparaison between years
+
+
+class revenus_capitaux_prelevement_liberatoire(Variable):
+    value_type = float
+    entity = FoyerFiscal
+    label = u"Revenu du capital imposé au prélèvement libératoire (montants bruts)"
+    set_input = set_input_divide_by_period
+    reference = "http://bofip.impots.gouv.fr/bofip/3817-PGP"
+    definition_period = MONTH
+
+    def formula_2002_01_01(foyer_fiscal, period, parameters):
+        year = period.this_year
+        f2dh = foyer_fiscal('f2dh', year)
+        f2ee = foyer_fiscal('f2ee', year)
+        finpfl = parameters(period).impot_revenu.autre.finpfl
+
+        out = f2dh + f2ee
+        return out * not_(finpfl) / 12
+
+    def formula_2008_01_01(foyer_fiscal, period, parameters):
+        year = period.this_year
+        f2da = foyer_fiscal('f2da', year)
+        f2dh = foyer_fiscal('f2dh', year)
+        f2ee = foyer_fiscal('f2ee', year)
+        finpfl = parameters(period).impot_revenu.autre.finpfl
+
+        out = f2da + f2dh + f2ee
+        return out * not_(finpfl) / 12
+
+    def formula_2013_01_01(foyer_fiscal, period, parameters):
+        year = period.this_year
+        f2dh = foyer_fiscal('f2dh', year)
+        f2ee = foyer_fiscal('f2ee', year)
+        f2fa = foyer_fiscal('f2fa', year)
+
+        return (f2dh + f2ee + f2fa) / 12
+
+
 class revenus_capital(Variable):
     value_type = float
     entity = Individu
