@@ -95,6 +95,24 @@ class f2fa(Variable):
     # start_date = date(2013, 1, 1)
     definition_period = YEAR
 
+class f2tt(Variable):
+    cerfa_field = u"2TT"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Intérêts des prêts participatifs"
+    # start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+class f2tu(Variable):
+    cerfa_field = u"2TU"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Pertes en capital sur prêts participatifs"
+    # start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
 class f2cg(Variable):
     cerfa_field = u"2CG"
     value_type = int
