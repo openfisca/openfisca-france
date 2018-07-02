@@ -90,7 +90,7 @@
     pensions:
       2012: 0
     # start revenus_du_capital
-    rev_cap_bar:
+    revenus_capitaux_prelevement_bareme:
       2012-01: 0
     revenus_capitaux_prelevement_liberatoire:
       2012-01: 1500
@@ -141,7 +141,7 @@
     pensions:
       2012: 0
     # start revenus_du_capital
-    rev_cap_bar:
+    revenus_capitaux_prelevement_bareme:
       2012-01: 2500
     revenus_capitaux_prelevement_liberatoire:
       2012-01: 0

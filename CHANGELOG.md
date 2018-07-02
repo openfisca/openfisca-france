@@ -17,7 +17,9 @@
     - Renomme la variable `supp_familial_traitement` en `supplement_familial_traitement`
     - Renomme le noeud de l'arbre des paramètres `fonc.supp_fam` en `fonc.supplement_familial`
   - [Amélioration de la lisibilité de variables de la fiscalité du capital]()
-    - Renomme la variable `rev_cap_lib` en `revenus_capitaux_prelevement_liberatoire`
+    - Renomme les variables
+      - `rev_cap_lib` en `revenus_capitaux_prelevement_liberatoire`
+      - `rev_cap_bar` en `revenus_capitaux_prelevement_bareme`
 
 ### 21.10.11 [#1020](https://github.com/openfisca/openfisca-france/pull/1020)
 

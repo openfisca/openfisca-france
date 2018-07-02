@@ -939,11 +939,11 @@ class csg_deduc_patrimoine_simulated(Variable):
         http://bofip.impots.gouv.fr/bofip/887-PGP
         '''
         rev_cat_rfon = foyer_fiscal('rev_cat_rfon', period)
-        rev_cap_bar = foyer_fiscal('rev_cap_bar', period)
+        revenus_capitaux_prelevement_bareme = foyer_fiscal('revenus_capitaux_prelevement_bareme', period)
         retraite_titre_onereux = foyer_fiscal('retraite_titre_onereux', period)
         taux = parameters(period).csg.capital.deduc
 
-        patrimoine_deduc = rev_cat_rfon + rev_cap_bar + retraite_titre_onereux
+        patrimoine_deduc = rev_cat_rfon + revenus_capitaux_prelevement_bareme + retraite_titre_onereux
         return taux * patrimoine_deduc
 
 
@@ -1844,7 +1844,7 @@ class glo(Variable):
         return f1tv + f1tw + f1tx + f3vf + f3vi + f3vj
 
 
-class rev_cap_bar(Variable):
+class revenus_capitaux_prelevement_bareme(Variable):
     """Revenus du capital imposés au barème
 
     Annuel pour les impôts mais mensuel pour la base ressource des minimas sociaux donc mensuel.

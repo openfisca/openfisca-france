@@ -509,7 +509,7 @@ class revetproduits(Variable):
         salcho_imp_i = foyer_fiscal.members('revenu_assimile_salaire_apres_abattements', period)
         pen_net_i = foyer_fiscal.members('revenu_assimile_pension_apres_abattements', period)
         retraite_titre_onereux_net = foyer_fiscal('retraite_titre_onereux_net', period)
-        rev_cap_bar = foyer_fiscal('rev_cap_bar', period, options = [ADD])
+        revenus_capitaux_prelevement_bareme = foyer_fiscal('revenus_capitaux_prelevement_bareme', period, options = [ADD])
         fon = foyer_fiscal('fon', period)
         ric_i = foyer_fiscal.members('ric', period)
         rag_i = foyer_fiscal.members('rag', period)
@@ -530,7 +530,7 @@ class revetproduits(Variable):
         # # def rev_exon et rev_etranger dans data? ##
         pt = max_(
             0,
-            revenu_assimile_salaire_apres_abattements + revenu_assimile_pension_apres_abattements + retraite_titre_onereux_net + rev_cap_bar + revenus_capitaux_prelevement_liberatoire + ric + rag + rpns_exon +
+            revenu_assimile_salaire_apres_abattements + revenu_assimile_pension_apres_abattements + retraite_titre_onereux_net + revenus_capitaux_prelevement_bareme + revenus_capitaux_prelevement_liberatoire + ric + rag + rpns_exon +
             rpns_pvct + imp_lib + fon
             )
         return pt * P.plafonnement_taux_d_imposition_isf
