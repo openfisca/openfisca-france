@@ -155,7 +155,7 @@ def build_reform(tax_benefit_system):
     #        etat = public_etat.inverse()
     #
     #        # TODO: complete this to deal with the fonctionnaire
-    #        # supp_familial_traitement = 0  # TODO: dépend de salbrut
+    #        # supplement_familial_traitement = 0  # TODO: dépend de salbrut
     #        # indemnite_residence = 0  # TODO: fix bug
     #
     #        # print 'salaire_imposable_pour_inversion', salaire_imposable_pour_inversion
@@ -168,7 +168,7 @@ def build_reform(tax_benefit_system):
     #        # print 'salbrut_etat', salbrut_etat
     #        salbrut += salbrut_etat * (categorie_salarie == TypesCategorieSalarie['public_titulaire_etat'])
     #
-    #        #<NODE desc= "Supplément familial de traitement " shortname="Supp. fam." code= "supp_familial_traitement"/>
+    #        #<NODE desc= "Supplément familial de traitement " shortname="Supp. fam." code= "supplement_familial_traitement"/>
     #        #<NODE desc= "Indemnité de résidence" shortname="Ind. rés." code= "indemenite_residence"/>
     #        return salbrut + hsup
 
