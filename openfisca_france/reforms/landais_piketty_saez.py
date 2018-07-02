@@ -26,9 +26,9 @@ class assiette_csg(Variable):
         salaire_de_base = individu('salaire_de_base', period, options = [ADD])
         chomage_brut = individu('chomage_brut', period, options = [ADD])
         retraite_brute = individu('retraite_brute', period, options = [ADD])
-        rev_cap_bar = individu.foyer_fiscal('rev_cap_bar', period, options = [ADD]) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
+        revenus_capitaux_prelevement_bareme = individu.foyer_fiscal('revenus_capitaux_prelevement_bareme', period, options = [ADD]) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
         revenus_capitaux_prelevement_liberatoire = individu.foyer_fiscal('revenus_capitaux_prelevement_liberatoire', period, options = [ADD]) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
-        return salaire_de_base + chomage_brut + retraite_brute + rev_cap_bar + revenus_capitaux_prelevement_liberatoire
+        return salaire_de_base + chomage_brut + retraite_brute + revenus_capitaux_prelevement_bareme + revenus_capitaux_prelevement_liberatoire
 
 
 class impot_revenu_lps(Variable):
