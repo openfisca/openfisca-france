@@ -717,6 +717,37 @@ class rev_cat_rvcm(Variable):
 
         return rvcm_net
 
+    def formula_2016_01_01(foyer_fiscal, period, parameters):
+        """
+        Revenus des valeurs et capitaux mobiliers
+        """
+        maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
+        deficit_rcm = foyer_fiscal('deficit_rcm', period)
+        f2ca = foyer_fiscal('f2ca', period)
+        f2ch = foyer_fiscal('f2ch', period)
+        f2dc = foyer_fiscal('f2dc', period)
+        f2fu = foyer_fiscal('f2fu', period)
+        f2go = foyer_fiscal('f2go', period)
+        f2tr = foyer_fiscal('f2tr', period)
+        f2ts = foyer_fiscal('f2ts', period)
+        f2tt = foyer_fiscal('f2tt', period)
+        f2tu = foyer_fiscal('f2tu', period)
+        P = parameters(period).impot_revenu.rvcm
+
+        # Revenus après abatemment
+        abattement_dividende = (f2fu + f2dc) * P.taux_abattement_capitaux_mobiliers
+        abattement_assurance_vie =  P.abat_assvie * (1 + maries_ou_pacses)
+        rvcm_apres_abattement = (
+            f2fu + f2dc - abattement_dividende
+            + f2ch - min_(f2ch, abattement_assurance_vie)
+            + f2ts + f2tr + max_(0, f2tt - f2tu) + f2go * P.majGO
+        )
+
+        # Revenus après déductions des frais (année courante et reports)
+        rvcm_net = max_(0, rvcm_apres_abattement - f2ca - deficit_rcm)
+
+        return rvcm_net
+
 
 class rfr_rvcm(Variable):
     value_type = float
