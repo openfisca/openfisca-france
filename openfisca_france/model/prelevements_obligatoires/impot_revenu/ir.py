@@ -1904,7 +1904,6 @@ class revenus_capitaux_prelevement_liberatoire(Variable):
         out = f2dh + f2ee
         return out * not_(finpfl) / 12
 
-    # Cette formule a seulement été vérifiée jusqu'au 2015-12-31
     def formula_2008_01_01(foyer_fiscal, period, parameters):
         year = period.this_year
         f2da = foyer_fiscal('f2da', year)
@@ -1914,6 +1913,13 @@ class revenus_capitaux_prelevement_liberatoire(Variable):
 
         out = f2da + f2dh + f2ee
         return out * not_(finpfl) / 12
+
+    def formula_2013_01_01(foyer_fiscal, period, parameters):
+        year = period.this_year
+        f2dh = foyer_fiscal('f2dh', year)
+        f2ee = foyer_fiscal('f2ee', year)
+
+        return (f2dh + f2ee) / 12
 
 
 class avf(Variable):
