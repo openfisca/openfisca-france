@@ -1892,7 +1892,7 @@ class revenus_capitaux_prelevement_liberatoire(Variable):
     entity = FoyerFiscal
     label = u"Revenu du capital imposé au prélèvement libératoire"
     set_input = set_input_divide_by_period
-    reference = "http://fr.wikipedia.org/wiki/Revenu#Revenu_du_Capital"
+    reference = "http://bofip.impots.gouv.fr/bofip/3817-PGP"
     definition_period = MONTH
 
     def formula_2002_01_01(foyer_fiscal, period, parameters):
