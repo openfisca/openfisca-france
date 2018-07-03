@@ -335,8 +335,9 @@ class revenu_assimile_salaire(Variable):
     def formula(individu, period, parameters):
         salaire_imposable = individu('salaire_imposable', period, options = [ADD])
         chomage_imposable = individu('chomage_imposable', period, options = [ADD])
+        f3vj = individu('f3vj', period)
 
-        return salaire_imposable + chomage_imposable
+        return salaire_imposable + chomage_imposable + f3vj
 
 
 class revenu_assimile_salaire_apres_abattements(Variable):
