@@ -791,6 +791,20 @@ class rfr_rvcm(Variable):
         i121 = - min_(0, rev - h12)
         return max_((rvcm.taux_abattement_capitaux_mobiliers) * (f2dc_bis + f2fu) - i121, 0)
 
+    def formula_2013_01_01(foyer_fiscal, period, parameters):
+        '''
+        Abattements sur rvcm à réintégrer dans le revenu fiscal de référence
+        '''
+        maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
+        f2dc = foyer_fiscal('f2dc', period)
+        f2ch = foyer_fiscal('f2ch', period)
+        f2fu = foyer_fiscal('f2fu', period)
+        P = parameters(period).impot_revenu.rvcm
+
+        abattement_dividende = (f2fu + f2dc) * P.taux_abattement_capitaux_mobiliers
+        abattement_assurance_vie =  min_(f2ch, P.abat_assvie * (1 + maries_ou_pacses))
+        
+        return abattement_dividende + abattement_assurance_vie
 
 class rev_cat_rfon(Variable):
     value_type = float
