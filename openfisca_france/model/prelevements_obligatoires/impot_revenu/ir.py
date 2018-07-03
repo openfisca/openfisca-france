@@ -542,15 +542,19 @@ class rev_cat_pv(Variable):
     definition_period = YEAR
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
+        f3sb = foyer_fiscal('f3sb', period)
         f3vg = foyer_fiscal('f3vg', period)
         f3vl = foyer_fiscal('f3vl', period)
+        f3wb = foyer_fiscal('f3wb', period)
 
-        return f3vg + f3vl
+        return f3sb + f3vg + f3vl + f3wb
 
     def formula_2014_01_01(foyer_fiscal, period, parameters):
+        f3sb = foyer_fiscal('f3sb', period)
         f3vg = foyer_fiscal('f3vg', period)
+        f3wb = foyer_fiscal('f3wb', period)
 
-        return f3vg
+        return f3sb + f3vg + f3wb
 
 
 class rev_cat_tspr(Variable):

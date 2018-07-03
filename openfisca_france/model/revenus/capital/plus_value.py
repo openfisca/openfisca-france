@@ -385,4 +385,24 @@ class f3vz(Variable):
     # start_date = date(2011, 1, 1)
     definition_period = YEAR
 
+
+class f3sb(Variable):
+    cerfa_field = u"3SB"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Plus-values en report d'imposition, dont le report a expiré cette année"
+    # start_date = date(2013, 1, 1)
+    definition_period = YEAR
+
+
+class f3wb(Variable):
+    cerfa_field = u"3WB"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Plus-values des individus transférant leur domicile fiscal hors de France; plus-values et créances ne bénéficiant pas du sursis de paiement; plus-values nettes imposables au barème"
+    # start_date = date(2013, 1, 1)
+    definition_period = YEAR
+
   # TODO: vérifier avant 2012
