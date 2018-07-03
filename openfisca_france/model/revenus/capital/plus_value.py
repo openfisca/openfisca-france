@@ -385,6 +385,24 @@ class f3sa(Variable):
     definition_period = YEAR
 
 
+class f3sj(Variable):
+    cerfa_field = u"3SJ"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Gains de cession de bons de souscription de parts de créateur d'entreprise : gains taxables à 19%"
+    definition_period = YEAR
+
+
+class f3sk(Variable):
+    cerfa_field = u"3SK"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Gains de cession de bons de souscription de parts de créateur d'entreprise : gains taxables à 30%"
+    definition_period = YEAR
+
+
 # Autres variables
 
 class f3vv_end_2010(Variable):
