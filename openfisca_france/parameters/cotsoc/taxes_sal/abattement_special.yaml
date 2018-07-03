@@ -1,5 +1,6 @@
 description: Abattement notamment pour les associations à but non lucratif
 reference: openfisca
+unit: currency
 values:
   2002-01-01:
     value: 5185.0
