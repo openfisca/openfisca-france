@@ -127,6 +127,24 @@ class f3vp(Variable):
     definition_period = YEAR
 
 
+class f3vq(Variable):
+    cerfa_field = u"3VQ"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Cessions de titres détenus à l'étranger par les impatriés : plus-values exonérées (50%)"
+    definition_period = YEAR
+
+
+class f3vr(Variable):
+    cerfa_field = u"3VR"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Cessions de titres détenus à l'étranger par les impatriés : moins-values non imputables (50%)"
+    definition_period = YEAR
+
+
 class f3vy(Variable):
     cerfa_field = u"3VY"
     value_type = int
