@@ -1705,12 +1705,13 @@ class rfr_plus_values(Variable):
         f3vt = foyer_fiscal('f3vt', period)
         f3vy = foyer_fiscal('f3vy', period)
         f3vz = foyer_fiscal('f3vz', period)
+        f3we = foyer_fiscal('f3we', period)
 
         f3vi = foyer_fiscal.sum(f3vi_i)
         f3vd = foyer_fiscal.sum(f3vd_i)
         f3vf = foyer_fiscal.sum(f3vf_i)
 
-        return f3sa + f3vc + f3vd + f3vf + f3vg + f3vi + f3vl + f3vm + f3vp + f3vt + f3vy + f3vz
+        return f3sa + f3vc + f3vd + f3vf + f3vg + f3vi + f3vl + f3vm + f3vp + f3vt + f3vy + f3vz + f3we
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
         """
@@ -1727,12 +1728,13 @@ class rfr_plus_values(Variable):
         f3vt = foyer_fiscal('f3vt', period)
         f3vy = foyer_fiscal('f3vy', period)
         f3vz = foyer_fiscal('f3vz', period)
+        f3we = foyer_fiscal('f3we', period)
 
         f3vi = foyer_fiscal.sum(f3vi_i)
         f3vd = foyer_fiscal.sum(f3vd_i)
         f3vf = foyer_fiscal.sum(f3vf_i)
 
-        return f3vc + f3vd + f3vf + f3vi + f3vm + f3vp + (f3vq - f3vr) + f3vt + f3vy + f3vz
+        return f3vc + f3vd + f3vf + f3vi + f3vm + f3vp + (f3vq - f3vr) + f3vt + f3vy + f3vz + f3we
 
 
 class iai(Variable):
