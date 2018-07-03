@@ -251,7 +251,7 @@ class abattement_net_retraite_dirigeant_pme(Variable):
 
     def formula_2006_01_01(foyer_fiscal, period):
         f3va = foyer_fiscal('f3va', period)
-        f3vb = foyer_fiscal('f3va', period)
+        f3vb = foyer_fiscal('f3vb', period)
 
         return f3va - f3vb
 
