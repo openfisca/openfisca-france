@@ -405,4 +405,15 @@ class f3wb(Variable):
     # start_date = date(2013, 1, 1)
     definition_period = YEAR
 
+
+class f3wd(Variable):
+    cerfa_field = u"3WD"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Plus-values des individus transférant leur domicile fiscal hors de France; plus-values et créances ne bénéficiant pas du sursis de paiement; plus-values de base soumise aux prélèvements sociaux"
+    # start_date = date(2013, 1, 1)
+    definition_period = YEAR
+
+
   # TODO: vérifier avant 2012
