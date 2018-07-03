@@ -1609,6 +1609,8 @@ class plus_values(Variable):
         Taxation des plus values
         """
         f3sa = foyer_fiscal('f3sa', period)
+        f3sj = foyer_fiscal('f3sj', period)
+        f3sk = foyer_fiscal('f3sk', period)
         f3vg = foyer_fiscal('f3vg', period)
         f3vh = foyer_fiscal('f3vh', period)
         f3vl = foyer_fiscal('f3vl', period)
@@ -1634,13 +1636,17 @@ class plus_values(Variable):
             plus_values.pea.taux_posterieur * f3vt +
             plus_values.taux_pv_entrep * f3sa +
             plus_values.taux3 * f3vi +
-            plus_values.taux4 * f3vf
+            plus_values.taux4 * f3vf +
+            plus_values.taux_pv_bspce1 * f3sj +
+            plus_values.taux_pv_bspce2 * f3sk
             )
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
         """
         Taxation des plus values (hors bareme)
         """
+        f3sj = foyer_fiscal('f3sj', period)
+        f3sk = foyer_fiscal('f3sk', period)
         f3vm = foyer_fiscal('f3vm', period)
         f3vt = foyer_fiscal('f3vt', period)
         f3vd_i = foyer_fiscal.members('f3vd', period)
@@ -1660,7 +1666,9 @@ class plus_values(Variable):
             plus_values.pea.taux_posterieur * f3vt +
             plus_values.taux2 * f3vd +
             plus_values.taux3 * f3vi +
-            plus_values.taux4 * f3vf
+            plus_values.taux4 * f3vf +
+            plus_values.taux_pv_bspce1 * f3sj +
+            plus_values.taux_pv_bspce2 * f3sk
             )
 
 
