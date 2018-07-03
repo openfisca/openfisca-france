@@ -191,3 +191,17 @@ taux_pv_entrep:
       value: 0.19
     2013-01-01:
       value: null
+taux_pv_bspce1:
+  description: Cessions de bons de souscription de parts de créateur d'entreprise (BSPCE)
+  reference: openfisca
+  unit: /1
+  values:
+    2002-01-01:
+      value: 0.19
+taux_pv_bspce2:
+  description: Cessions de bons de souscription de parts de créateur d'entreprise (BSPCE)
+  reference: openfisca
+  unit: /1
+  values:
+    2002-01-01:
+      value: 0.30
