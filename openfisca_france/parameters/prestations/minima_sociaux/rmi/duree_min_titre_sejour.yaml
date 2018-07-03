@@ -1,5 +1,6 @@
 description: Durée minimale de titre du séjour permettant de bénéficier du RSA
 reference: openfisca
+unit: year
 values:
   2002-01-01:
     value: 5.0

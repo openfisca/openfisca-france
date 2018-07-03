@@ -23,6 +23,7 @@ age_minimal:
         value: 60.0
 plafonds_de_ressources_que_les_potentiels_personnes_a_charge_autre_que_les_enfants_doivent_respecter_1:
   reference: ipp
+  unit: currency
   values:
     1991-11-11:
       value: 6997.0

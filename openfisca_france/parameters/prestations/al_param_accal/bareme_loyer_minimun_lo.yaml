@@ -1,3 +1,5 @@
+description: Loyer minimun lo
+unit: currency
 brackets:
 - rate:
     2007-07-01:
@@ -23,5 +25,3 @@ brackets:
   threshold:
     2007-07-01:
       value: 4095.05
-description: Loyer minimun lo
-unit: currency
