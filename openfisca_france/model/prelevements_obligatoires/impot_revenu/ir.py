@@ -1722,6 +1722,8 @@ class rfr_plus_values(Variable):
         f3vi_i = foyer_fiscal.members('f3vi', period)
         f3vm = foyer_fiscal('f3vm', period)
         f3vp = foyer_fiscal('f3vp', period)
+        f3vq = foyer_fiscal('f3vq', period)
+        f3vr = foyer_fiscal('f3vr', period)
         f3vt = foyer_fiscal('f3vt', period)
         f3vy = foyer_fiscal('f3vy', period)
         f3vz = foyer_fiscal('f3vz', period)
@@ -1730,7 +1732,7 @@ class rfr_plus_values(Variable):
         f3vd = foyer_fiscal.sum(f3vd_i)
         f3vf = foyer_fiscal.sum(f3vf_i)
 
-        return f3vc + f3vd + f3vf + f3vi + f3vm + f3vp + f3vt + f3vy + f3vz
+        return f3vc + f3vd + f3vf + f3vi + f3vm + f3vp + (f3vq - f3vr) + f3vt + f3vy + f3vz
 
 
 class iai(Variable):
