@@ -1,4 +1,5 @@
 reference: ipp
+unit: year
 values:
   2004-01-01:
     value: 3.0
