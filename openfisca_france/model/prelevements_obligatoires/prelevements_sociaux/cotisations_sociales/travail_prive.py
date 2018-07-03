@@ -267,13 +267,14 @@ class agirc_gmp_assiette(Variable):
         assiette_cotisations_sociales = individu('assiette_cotisations_sociales', period)
         gmp = parameters(period).prelevements_sociaux.gmp
         salaire_charniere = gmp.salaire_charniere_annuel / 12
+        plafond_securite_sociale = individu('plafond_securite_sociale', period)
 
         assiette = max_(
-            (salaire_charniere - assiette_cotisations_sociales) * (assiette_cotisations_sociales > 0),
+            salaire_charniere - max_(assiette_cotisations_sociales, plafond_securite_sociale),
             0,
             )
 
-        return assiette
+        return assiette * (assiette_cotisations_sociales > 0)
 
 
 class agirc_gmp_salarie(Variable):
@@ -285,23 +286,23 @@ class agirc_gmp_salarie(Variable):
 
     def formula(individu, period, parameters):
         agirc_gmp_assiette = individu('agirc_gmp_assiette', period)
-        agirc_salarie = individu('agirc_salarie', period)
-        assiette_cotisations_sociales = individu('assiette_cotisations_sociales', period)
+        # agirc_salarie = individu('agirc_salarie', period)
+        # assiette_cotisations_sociales = individu('assiette_cotisations_sociales', period)
         categorie_salarie = individu('categorie_salarie', period)
-        plafond_securite_sociale = individu('plafond_securite_sociale', period)
-
-        gmp = parameters(period).prelevements_sociaux.gmp
-        cotisation_forfaitaire = gmp.cotisation_forfaitaire_mensuelle_en_euros.part_salariale
-
+        # plafond_securite_sociale = individu('plafond_securite_sociale', period)
+        # gmp = parameters(period).prelevements_sociaux.gmp
+        # cotisation_forfaitaire = gmp.cotisation_forfaitaire_mensuelle_en_euros.part_salariale
         taux = parameters(period).cotsoc.cotisations_salarie.prive_cadre.agirc.rates[1]
-        sous_plafond_securite_sociale = (
-            (assiette_cotisations_sociales <= plafond_securite_sociale) & (assiette_cotisations_sociales > 0)
-            )
-        cotisation = - (
-            sous_plafond_securite_sociale * cotisation_forfaitaire +
-            not_(sous_plafond_securite_sociale) * agirc_gmp_assiette * taux
-            )
-        return min_((cotisation - agirc_salarie) * (categorie_salarie == TypesCategorieSalarie.prive_cadre), 0)  # cotisation are negative
+        # sous_plafond_securite_sociale = (
+        #     (assiette_cotisations_sociales <= plafond_securite_sociale) & (assiette_cotisations_sociales > 0)
+        #     )
+        # cotisation = - (
+        #     sous_plafond_securite_sociale * cotisation_forfaitaire +
+        #     not_(sous_plafond_securite_sociale) * assiette_cotisations_sociales * taux
+        #     )
+        # return min_((cotisation - agirc_salarie) * (categorie_salarie == TypesCategorieSalarie.prive_cadre), 0)  # cotisation are negative
+
+        return min_(- agirc_gmp_assiette * taux * (categorie_salarie == TypesCategorieSalarie.prive_cadre), 0)  # cotisation are negative
 
 
 class agirc_gmp_employeur(Variable):
@@ -312,24 +313,25 @@ class agirc_gmp_employeur(Variable):
     # TODO: gestion annuel/mensuel
 
     def formula(individu, period, parameters):
-        agirc_employeur = individu('agirc_employeur', period)
+        # agirc_employeur = individu('agirc_employeur', period)
         agirc_gmp_assiette = individu('agirc_gmp_assiette', period)
-        assiette_cotisations_sociales = individu('assiette_cotisations_sociales', period)
+        # assiette_cotisations_sociales = individu('assiette_cotisations_sociales', period)
         categorie_salarie = individu('categorie_salarie', period)
-        plafond_securite_sociale = individu('plafond_securite_sociale', period)
+        # plafond_securite_sociale = individu('plafond_securite_sociale', period)
 
-        gmp = parameters(period).prelevements_sociaux.gmp
-        cotisation_forfaitaire = gmp.cotisation_forfaitaire_mensuelle_en_euros.part_patronale
-        taux = parameters(period).cotsoc.cotisations_employeur['prive_cadre']['agirc'].rates[1]
+        # gmp = parameters(period).prelevements_sociaux.gmp
+        # cotisation_forfaitaire = gmp.cotisation_forfaitaire_mensuelle_en_euros.part_patronale
+        taux = parameters(period).cotsoc.cotisations_employeur.prive_cadre.agirc.rates[1]
 
-        sous_plafond_securite_sociale = (
-            (assiette_cotisations_sociales <= plafond_securite_sociale) & (assiette_cotisations_sociales > 0)
-            )
-        cotisation = - (
-            sous_plafond_securite_sociale * cotisation_forfaitaire +
-            not_(sous_plafond_securite_sociale) * agirc_gmp_assiette * taux
-            )
-        return min_((cotisation - agirc_employeur) * (categorie_salarie == TypesCategorieSalarie.prive_cadre), 0)  # cotisation are negative
+        # sous_plafond_securite_sociale = (
+        #     (assiette_cotisations_sociales <= plafond_securite_sociale) & (assiette_cotisations_sociales > 0)
+        #     )
+        # cotisation = - (
+        #     sous_plafond_securite_sociale * cotisation_forfaitaire +
+        #     not_(sous_plafond_securite_sociale) * agirc_gmp_assiette * taux
+        #     )
+        # return min_((cotisation - agirc_employeur) * (categorie_salarie == TypesCategorieSalarie.prive_cadre), 0)  # cotisation are negative
+        return min_(- agirc_gmp_assiette * taux * (categorie_salarie == TypesCategorieSalarie.prive_cadre), 0)  # cotisation are negative
 
 
 class agirc_salarie(Variable):
