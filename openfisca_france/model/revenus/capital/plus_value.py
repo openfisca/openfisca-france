@@ -195,6 +195,15 @@ class f3wd(Variable):
     definition_period = YEAR
 
 
+class f3we(Variable):
+    cerfa_field = u"3WE"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Plus-values en report d'imposition : complément de prix perçu cette année"
+    definition_period = YEAR
+
+
 # Abattements sur plus-values
 
 class f3va(Variable):
