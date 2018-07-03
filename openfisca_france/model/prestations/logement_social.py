@@ -1,0 +1,176 @@
+# -*- coding: utf-8 -*-
+
+from openfisca_france.model.base import *  # noqa analysis:ignore
+
+paris_communes_limitrophes = [
+    75056, # Paris
+    93001, # Bagnolet
+    93006, # Boulogne-Billancourt
+    94018, # Charenton-le-Pont
+    92024, # Clichy-la-Garenne
+    94033, # Fontenay-sous-Bois
+    94037, # Gentilly
+    92040, # Issy-les-Moulineaux
+    94041, # Ivry-sur-Seine
+    94042, # Joinville-le-Pont
+    94043, # Le Kremlin-Bicêtre
+    93045, # Les Lilas
+    93061, # Le Pré-Saint-Gervais
+    92044, # Levallois-Perret
+    92046, # Malakoff
+    93048, # Montreuil
+    92049, # Montrouge
+    92051, # Neuilly-sur-Seine
+    94052, # Nogent-sur-Marne
+    93055, # Pantin
+    92062, # Puteaux
+    92064, # Saint-Cloud
+    93066, # Saint-Denis
+    94067, # Saint-Mandé
+    94069, # Saint-Maurice
+    93070, # Saint-Ouen
+    92073, # Suresnes
+    92075, # Vanves
+    94080, # Vincennes
+]
+
+departements_idf = [
+    75,
+    77,
+    78,
+    91,
+    92,
+    93,
+    94,
+    95,
+]
+
+class ZoneLogementSocial(Enum):
+    __order__ = 'paris_communes_limitrophes ile_de_france autres_regions'
+    paris_communes_limitrophes = u"Paris et communes limitrophes"
+    ile_de_france = u"Île-de-France hors Paris et communes limitrophes"
+    autres_regions = u"Autres régions"
+
+
+class zone_logement_social(Variable):
+    value_type = Enum
+    possible_values = ZoneLogementSocial
+    default_value = ZoneLogementSocial.autres_regions
+    entity = Menage
+    definition_period = MONTH
+    label = u"Zone logement social"
+    def formula(menage, period):
+
+        depcom = menage('depcom', period).astype(int)
+
+        # Extraction du département
+        # Exemple : 75056 → 75
+        departement = (depcom.astype(int) / 1000).astype(int)
+
+        in_paris_communes_limitrophes = sum([depcom == dep for dep in paris_communes_limitrophes])
+        in_idf = sum([departement == dep for dep in departements_idf])
+
+        return select(
+            [
+                in_paris_communes_limitrophes,
+                in_idf
+            ],
+            [
+                ZoneLogementSocial.paris_communes_limitrophes,
+                ZoneLogementSocial.ile_de_france,
+            ],
+            default = ZoneLogementSocial.autres_regions
+        )
+
+class CategorieMenageLogementSocial(Enum):
+    __order__ = 'categorie_1 categorie_2 categorie_3 categorie_4 categorie_5 categorie_6'
+    categorie_1 = u"Une personne seule"
+    categorie_2 = u"Deux personnes ne comportant aucune pers. à charge à l'exclusion des jeunes ménages"
+    categorie_3 = u"Trois personnes ou une pers. seule avec une pers. à charge ou jeune ménage sans personne à charge"
+    categorie_4 = u"Quatre personnes ou une pers. seule avec deux pers. à charge"
+    categorie_5 = u"Cinq personnes ou une pers. seule avec trois pers. à charge"
+    categorie_6 = u"Six personnes ou une pers. seule avec quatre pers. à charge"
+
+class logement_social_categorie_menage(Variable):
+    entity = Famille
+    value_type = Enum
+    possible_values = CategorieMenageLogementSocial
+    default_value = CategorieMenageLogementSocial.categorie_1
+    definition_period = MONTH
+    label = u"Catégorie de ménage pour déterminer le plafond de ressources"
+    reference = [
+        u"Arrêté du 29 juillet 1987 relatif aux plafonds de ressources des bénéficiaires de la législation sur les habitations à loyer modéré et des nouvelles aides de l'Etat en secteur locatif",
+        u"https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000294318"
+    ]
+    def formula(famille, period, parameters):
+
+        nb_personnes = famille.nb_persons()
+        personnes_a_charge = famille('al_nb_personnes_a_charge', period)
+        personne_seule = (famille.nb_persons(Famille.PARENT) == 1) * (personnes_a_charge == 0)
+
+        # Jeune ménage : Couple marié, concubins ou pacsés, sans personne à charge,
+        # dont la somme des âges des deux conjoints est inférieure ou égale à 55 ans
+        age = famille.members('age', period)
+        sum_age = famille.sum(age, role = Famille.PARENT)
+        jeune_menage = (not_(personne_seule) * (sum_age <= 55))
+
+        return select(
+            [
+                personne_seule,
+                # Deux personnes ne comportant aucune personne à charge, à l'exclusion des jeunes ménages.
+                ((nb_personnes == 2) * (personnes_a_charge == 0) * not_(jeune_menage)),
+                # Trois personnes, ou une personne seule avec une personne à charge, ou jeune ménage sans personne à charge.
+                (personnes_a_charge == 1) + (jeune_menage * (personnes_a_charge == 0)),
+                # Quatre personnes, ou une personne seule avec deux personnes à charge.
+                (personnes_a_charge == 2),
+                # Cinq personnes, ou une personne seule avec trois personnes à charge.
+                (personnes_a_charge == 3)
+            ],
+            [
+                CategorieMenageLogementSocial.categorie_1,
+                CategorieMenageLogementSocial.categorie_2,
+                CategorieMenageLogementSocial.categorie_3,
+                CategorieMenageLogementSocial.categorie_4,
+                CategorieMenageLogementSocial.categorie_5
+            ],
+            default = CategorieMenageLogementSocial.categorie_6
+        )
+
+class logement_social_plafond_ressources(Variable):
+    entity = Famille
+    value_type = float
+    definition_period = MONTH
+    label = u"Plafonds de ressources des bénéficiaires de la législation sur les habitations à loyer modéré et des nouvelles aides de l'Etat en secteur locatif"
+    reference = [
+        u"Arrêté du 22 décembre 2016 modifiant l'arrêté du 29 juillet 1987 relatif aux plafonds de ressources des bénéficiaires de la législation sur les habitations à loyer modéré et des nouvelles aides de l'Etat en secteur locatif ",
+        u"https://www.legifrance.gouv.fr/eli/arrete/2016/12/22/LHAL1629455A/jo/texte",
+    ]
+
+    def formula(famille, period, parameters):
+
+        logement_social = parameters(period).logement_social.plai
+
+        categorie_menage = famille('logement_social_categorie_menage', period)
+        zone_logement_social = famille.demandeur.menage('zone_logement_social', period)
+        personnes_a_charge = famille('al_nb_personnes_a_charge', period)
+
+        # On détermine le nombre de personnes à charge supplémentaires au-dessus de 4
+        personnes_a_charge_supplementaires = (personnes_a_charge > 4) * (personnes_a_charge - 4)
+
+        plafond_ressources_par_categorie = logement_social.plafond_ressources.par_categorie_de_menage[categorie_menage]
+        par_personne_supplementaire = logement_social.plafond_ressources.par_personne_supplementaire[zone_logement_social]
+
+        return plafond_ressources_par_categorie[zone_logement_social] + (personnes_a_charge_supplementaires * par_personne_supplementaire)
+
+class logement_social_eligible(Variable):
+    entity = Famille
+    value_type = bool
+    definition_period = MONTH
+    label = u"Logement social - Éligibilité"
+
+    def formula(famille, period, parameters):
+
+        logement_social_plafond_ressources = famille('logement_social_plafond_ressources', period)
+        revenu_fiscal_de_reference = famille.demandeur.foyer_fiscal('rfr', period.n_2)
+
+        return revenu_fiscal_de_reference <= logement_social_plafond_ressources
