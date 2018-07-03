@@ -1625,17 +1625,17 @@ class plus_values(Variable):
         f3vi = foyer_fiscal.sum(f3vi_i)
         f3vf = foyer_fiscal.sum(f3vf_i)
 
-        out = (plus_values.pvce * rpns_pvce +
-               plus_values.taux1 * max_(0, f3vg - f3vh) +
-               plus_values.taux2 * f3vd +
-               plus_values.taux_pv_mob_pro * f3vl +
-               plus_values.pea.taux_avant_2_ans * f3vm +
-               plus_values.pea.taux_posterieur * f3vt +
-               plus_values.taux_pv_entrep * f3sa +
-               plus_values.taux3 * f3vi +
-               plus_values.taux4 * f3vf)
-
-        return round_(out)
+        return round_(
+            plus_values.pvce * rpns_pvce +
+            plus_values.taux1 * max_(0, f3vg - f3vh) +
+            plus_values.taux2 * f3vd +
+            plus_values.taux_pv_mob_pro * f3vl +
+            plus_values.pea.taux_avant_2_ans * f3vm +
+            plus_values.pea.taux_posterieur * f3vt +
+            plus_values.taux_pv_entrep * f3sa +
+            plus_values.taux3 * f3vi +
+            plus_values.taux4 * f3vf
+            )
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
         """
@@ -1654,14 +1654,15 @@ class plus_values(Variable):
         f3vf = foyer_fiscal.sum(f3vf_i)
         plus_values = parameters(period).impot_revenu.plus_values
 
-        out = (plus_values.pvce * rpns_pvce +
-               plus_values.pea.taux_avant_2_ans * f3vm +
-               plus_values.pea.taux_posterieur * f3vt +
-               plus_values.taux2 * f3vd +
-               plus_values.taux3 * f3vi +
-               plus_values.taux4 * f3vf)
+        return round_(
+            plus_values.pvce * rpns_pvce +
+            plus_values.pea.taux_avant_2_ans * f3vm +
+            plus_values.pea.taux_posterieur * f3vt +
+            plus_values.taux2 * f3vd +
+            plus_values.taux3 * f3vi +
+            plus_values.taux4 * f3vf
+            )
 
-        return round_(out)
 
 class rfr_plus_values(Variable):
     value_type = float
