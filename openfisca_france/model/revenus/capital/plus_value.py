@@ -227,6 +227,46 @@ class f3we(Variable):
     definition_period = YEAR
 
 
+class f3wn(Variable):
+    cerfa_field = u"3WN"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Plus-values en report d'imposition dont le report a expiré cette année, réalisées à compter du 1.1.2013 : plus-values avant abattement"
+    # start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+
+class f3wp(Variable):
+    cerfa_field = u"3WP"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal    
+    label = u"Plus-values en report d'imposition dont le report a expiré cette année, réalisées à compter du 1.1.2013 : plus-values après abattement"
+    # start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+
+class f3wr(Variable):
+    cerfa_field = u"3WR"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Plus-values en report d'imposition dont le report a expiré cette année, réalisées à compter du 1.1.2013 : impôt sur le revenu"
+    # start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+
+class f3wt(Variable):
+    cerfa_field = u"3WT"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Plus-values en report d'imposition dont le report a expiré cette année, réalisées à compter du 1.1.2013 : contribution exceptionnelle sur les hauts revenus"
+    # start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+
 # Abattements sur plus-values
 
 class f3va_2014(Variable):
