@@ -1671,6 +1671,40 @@ class plus_values(Variable):
             plus_values.taux_pv_bspce1 * f3sj +
             plus_values.taux_pv_bspce2 * f3sk
             )
+    
+    def formula_2016_01_01(foyer_fiscal, period, parameters):
+        """
+        Taxation des plus values (hors bareme)
+        """
+        f3sj = foyer_fiscal('f3sj', period)
+        f3sk = foyer_fiscal('f3sk', period)
+        f3vm = foyer_fiscal('f3vm', period)
+        f3vt = foyer_fiscal('f3vt', period)
+        f3vd_i = foyer_fiscal.members('f3vd', period)
+        f3vi_i = foyer_fiscal.members('f3vi', period)
+        f3vf_i = foyer_fiscal.members('f3vf', period)
+        f3wi = foyer_fiscal('f3wi', period)
+        f3wj = foyer_fiscal('f3wj', period)
+        rpns_pvce_i = foyer_fiscal.members('rpns_pvce', period)
+
+        rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
+        f3vd = foyer_fiscal.sum(f3vd_i)
+        f3vi = foyer_fiscal.sum(f3vi_i)
+        f3vf = foyer_fiscal.sum(f3vf_i)
+        plus_values = parameters(period).impot_revenu.plus_values
+
+        return round_(
+            plus_values.pvce * rpns_pvce +
+            plus_values.pea.taux_avant_2_ans * f3vm +
+            plus_values.pea.taux_posterieur * f3vt +
+            plus_values.taux2 * f3vd +
+            plus_values.taux3 * f3vi +
+            plus_values.taux4 * f3vf +
+            plus_values.taux_pv_bspce1 * f3sj +
+            plus_values.taux_pv_bspce2 * f3sk + 
+            plus_values.taux_pv_report1 * f3wj +
+            plus_values.taux_pv_report2 * f3wi
+            )
 
 
 class rfr_plus_values(Variable):

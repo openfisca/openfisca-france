@@ -205,3 +205,17 @@ taux_pv_bspce2:
   values:
     2002-01-01:
       value: 0.30
+taux_pv_report1:
+  description: Plus-values en report d'imposition dont le report a expiré, taxé forfaitairement
+  reference: openfisca
+  unit: /1
+  values:
+    2016-01-01:
+      value: 0.19
+taux_pv_report2:
+  description: Plus-values en report d'imposition dont le report a expiré, taxé forfaitairement
+  reference: openfisca
+  unit: /1
+  values:
+    2016-01-01:
+      value: 0.24
