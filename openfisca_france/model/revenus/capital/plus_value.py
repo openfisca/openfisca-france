@@ -14,6 +14,19 @@ from openfisca_france.model.base import *  # noqa analysis:ignore
 
 # Gains taxés comme des salaires
 
+class f1tt(Variable):
+    cerfa_field = {
+        0: u"1TT",
+        1: u"1UT",
+        }
+    value_type = int
+    unit = 'currency'
+    entity = Individu
+    label = u"Gains de levée d'options sur titres et gains d'acquisition d'actions gratuites attribuées à compter du 28.9.2012"
+    # start_date = date(2012, 1, 1)
+    definition_period = YEAR
+
+
 class f1tv(Variable):
     cerfa_field = {
         0: u"1TV",
@@ -50,6 +63,16 @@ class f1tx(Variable):
     entity = Individu
     label = u"Gains de levée d'options sur titres en cas de cession ou de conversion au porteur dans le délai d'indisponibilité: entre 3 et 4 ans"
     end = '2016-12-31'
+    definition_period = YEAR
+
+
+class f1tz(Variable):
+    cerfa_field = u"1TZ"
+    value_type = int
+    unit = 'currency'
+    entity = Individu
+    label = u"Gains d'acquisition d'actions gratuites attribuées sur décision prise à compter du 8.8.2015"
+    # start_date = date(2015, 1, 1)
     definition_period = YEAR
 
 
