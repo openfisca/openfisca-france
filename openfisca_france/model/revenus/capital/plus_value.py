@@ -206,13 +206,29 @@ class f3we(Variable):
 
 # Abattements sur plus-values
 
-class f3va(Variable):
+class f3va_2014(Variable):
     cerfa_field = u"3VA"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = u"Abattements nets (abattement pour durée de détention renforcé et abattement fixe spécial) appliqués sur des plus-values réalisées par les dirigeants de PME lors de leur départ à la retraite"
     # start_date = date(2006, 1, 1)
+    end = '2014-12-31'
+    definition_period = YEAR
+
+
+class f3va(Variable):
+    cerfa_field = {
+        0: u"3VA",
+        1: u"3VB",
+        2: u"3VO",
+        3: u"3VP",
+        }
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Abattements nets (abattement pour durée de détention renforcé et abattement fixe spécial) appliqués sur des plus-values réalisées par les dirigeants de PME lors de leur départ à la retraite"
+    # start_date = date(2015, 1, 1)
     definition_period = YEAR
 
 
@@ -223,6 +239,7 @@ class f3vb(Variable):
     entity = FoyerFiscal
     label = u"Abattements nets (abattement pour durée de détention renforcé et abattement fixe spécial) appliqués sur des moins-values réalisées par les dirigeants de PME lors de leur départ à la retraite"
     # start_date = date(2006, 1, 1)
+    end = '2014-12-31'
     definition_period = YEAR
 
 
@@ -277,11 +294,15 @@ class abattement_net_retraite_dirigeant_pme(Variable):
     definition_period = YEAR
 
     def formula_2006_01_01(foyer_fiscal, period):
-        f3va = foyer_fiscal('f3va', period)
+        f3va = foyer_fiscal('f3va_2014', period)
         f3vb = foyer_fiscal('f3vb', period)
 
         return f3va - f3vb
 
+    def formula_2015_01_01(foyer_fiscal, period):
+        f3va = foyer_fiscal('f3va', period)
+
+        return f3va
 
 class abattement_net_duree_detention(Variable):
     value_type = int
