@@ -188,6 +188,16 @@ class f3ve(Variable):
     definition_period = YEAR
 
 
+class f3tz(Variable):
+    cerfa_field = u"3TZ"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Plus-values de cession de titres d'OPC monétaires en report d'imposition, plus-values réalisées du 1.1 au 31.3.2017, plus-values en report d'imposition"
+    # start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+
 class f3sb(Variable):
     cerfa_field = u"3SB"
     value_type = int
