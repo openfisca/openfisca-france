@@ -249,7 +249,7 @@ class f3va(Variable):
         }
     value_type = int
     unit = 'currency'
-    entity = FoyerFiscal
+    entity = Individu
     label = u"Abattements nets (abattement pour durée de détention renforcé et abattement fixe spécial) appliqués sur des plus-values réalisées par les dirigeants de PME lors de leur départ à la retraite"
     # start_date = date(2015, 1, 1)
     definition_period = YEAR
@@ -323,7 +323,8 @@ class abattement_net_retraite_dirigeant_pme(Variable):
         return f3va - f3vb
 
     def formula_2015_01_01(foyer_fiscal, period):
-        f3va = foyer_fiscal('f3va', period)
+        f3va_i = foyer_fiscal.members('f3va', period)
+        f3va = foyer_fiscal.sum(f3va_i)
 
         return f3va
 
