@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+
+  python:
+    build:
+      dockerfile: './docker/python/Dockerfile'
+      context: '.'
+    volumes:
+      - './:/usr/src/app'
+    ports:
+      - '6000:6000'
+    # http://docs.gunicorn.org/en/stable/faq.html#how-do-i-avoid-gunicorn-excessively-blocking-in-os-fchmod
+    tmpfs:
+      - /mem:defaults,size=64m,mode=1777,noatime
