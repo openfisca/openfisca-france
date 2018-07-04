@@ -1761,7 +1761,7 @@ class rfr_plus_values(Variable):
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
         """
-        Plus-values 2013 et + entrant dans le calcul du revenu fiscal de référence
+        Plus-values 2013-2016 entrant dans le calcul du revenu fiscal de référence
         """
         f3sj = foyer_fiscal('f3sj', period)
         f3sk = foyer_fiscal('f3sk', period)
@@ -1783,6 +1783,33 @@ class rfr_plus_values(Variable):
         f3vf = foyer_fiscal.sum(f3vf_i)
 
         return f3sj + f3sk + f3vc + f3vd + f3vf + f3vi + f3vm + f3vp + (f3vq - f3vr) + f3vt + f3vy + f3vz + f3we
+
+    def formula_2016_01_01(foyer_fiscal, period, parameters):
+        """
+        Plus-values 2016 et + entrant dans le calcul du revenu fiscal de référence
+        """
+        f3sj = foyer_fiscal('f3sj', period)
+        f3sk = foyer_fiscal('f3sk', period)
+        f3vc = foyer_fiscal('f3vc', period)
+        f3vd_i = foyer_fiscal.members('f3vd', period)
+        f3vf_i = foyer_fiscal.members('f3vf', period)
+        f3vi_i = foyer_fiscal.members('f3vi', period)
+        f3vm = foyer_fiscal('f3vm', period)
+        f3vp = foyer_fiscal('f3vp', period)
+        f3vq = foyer_fiscal('f3vq', period)
+        f3vr = foyer_fiscal('f3vr', period)
+        f3vt = foyer_fiscal('f3vt', period)
+        f3vy = foyer_fiscal('f3vy', period)
+        f3vz = foyer_fiscal('f3vz', period)
+        f3we = foyer_fiscal('f3we', period)
+        f3wi = foyer_fiscal('f3wi', period)
+        f3wj = foyer_fiscal('f3wj', period)
+
+        f3vi = foyer_fiscal.sum(f3vi_i)
+        f3vd = foyer_fiscal.sum(f3vd_i)
+        f3vf = foyer_fiscal.sum(f3vf_i)
+
+        return f3sj + f3sk + f3vc + f3vd + f3vf + f3vi + f3vm + f3vp + (f3vq - f3vr) + f3vt + f3vy + f3vz + f3we + f3wi + f3wj
 
 
 class iai(Variable):
