@@ -2007,7 +2007,7 @@ class quaenv(Variable):
         f7cb = foyer_fiscal('f7cb', period)
        
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
-        nb_pac2 = foyer_fiscal('nb_pac2', period)
+        personnes_a_charge = foyer_fiscal('nb_pac2', period)
         rfr = foyer_fiscal('rfr', period)
         P = parameters(period).impot_revenu.credits_impot.quaenv
 
@@ -2016,9 +2016,9 @@ class quaenv(Variable):
             f7ay + f7az + f7bb + f7bc + f7bd + f7be + f7bf + f7bh + f7bk + f7bl + f7cb
             )    
 
-        max0 = P.max * (1 + maries_ou_pacses) + P.pac1 * nb_pac2
+        plafond_depenses_energetiques = P.max * (1 + maries_ou_pacses) + P.pac1 * personnes_a_charge
         
-        return P.taux30 * min_(max0, depenses_transition_energetique)
+        return P.taux30 * min_(plafond_depenses_energetiques, depenses_transition_energetique)
 
 class quaenv_bouquet(Variable):
     value_type = bool
