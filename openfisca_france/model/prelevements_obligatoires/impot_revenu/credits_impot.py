@@ -18,7 +18,9 @@ class credits_impot(Variable):
     definition_period = YEAR
 
     def formula_2002_01_01(foyer_fiscal, period, parameters):
-        """ Crédits d'impôt pour l'impôt sur les revenus de 2002 """
+        """ 
+        Crédits d'impôt pour l'impôt sur les revenus de 2002 
+        """
         acqgpl = foyer_fiscal('acqgpl', period)
         aidper = foyer_fiscal('aidper', period)
         creimp = foyer_fiscal('creimp', period)
@@ -28,7 +30,9 @@ class credits_impot(Variable):
         return acqgpl + aidper + creimp + drbail + prlire
 
     def formula_2003_01_01(foyer_fiscal, period, parameters):
-        """ Crédits d'impôt pour l'impôt sur les revenus de 2003 et 2004 """
+        """ 
+        Crédits d'impôt pour l'impôt sur les revenus de 2003 et 2004 
+        """
         acqgpl = foyer_fiscal('acqgpl', period)
         aidper = foyer_fiscal('aidper', period)
         creimp = foyer_fiscal('creimp', period)
@@ -38,7 +42,9 @@ class credits_impot(Variable):
         return acqgpl + aidper + creimp + drbail + prlire
 
     def formula_2005_01_01(foyer_fiscal, period, parameters):
-        """ Crédits d'impôt pour l'impôt sur les revenus de 2005 et 2006 """
+        """ 
+        Crédits d'impôt pour l'impôt sur les revenus de 2005 et 2006 
+        """
         acqgpl = foyer_fiscal('acqgpl', period)
         aidmob = foyer_fiscal('aidmob', period)
         aidper = foyer_fiscal('aidper', period)
@@ -57,7 +63,9 @@ class credits_impot(Variable):
                 preetu + prlire + quaenv)
 
     def formula_2007_01_01(foyer_fiscal, period, parameters):
-        """ Crédits d'impôt pour l'impôt sur les revenus de 2007 """
+        """ 
+        Crédits d'impôt pour l'impôt sur les revenus de 2007 
+        """
         acqgpl = foyer_fiscal('acqgpl', period)
         aidmob = foyer_fiscal('aidmob', period)
         aidper = foyer_fiscal('aidper', period)
@@ -78,7 +86,9 @@ class credits_impot(Variable):
                 jeunes + preetu + prlire + quaenv + saldom2)
 
     def formula_2008_01_01(foyer_fiscal, period, parameters):
-        """ Crédits d'impôt pour l'impôt sur les revenus de 2008 """
+        """ 
+        Crédits d'impôt pour l'impôt sur les revenus de 2008 
+        """
         aidmob = foyer_fiscal('aidmob', period)
         aidper = foyer_fiscal('aidper', period)
         assloy = foyer_fiscal('assloy', period)
@@ -99,7 +109,9 @@ class credits_impot(Variable):
                 inthab + jeunes + preetu + prlire + quaenv + saldom2)
 
     def formula_2009_01_01(foyer_fiscal, period, parameters):
-        """ Crédits d'impôt pour l'impôt sur les revenus de 2009 """
+        """ 
+        Crédits d'impôt pour l'impôt sur les revenus de 2009 
+        """
         aidper = foyer_fiscal('aidper', period)
         assloy = foyer_fiscal('assloy', period)
         ci_garext = foyer_fiscal('ci_garext', period)
@@ -117,7 +129,9 @@ class credits_impot(Variable):
                 prlire + quaenv + saldom2)
 
     def formula_2010_01_01(foyer_fiscal, period, parameters):
-        """ Crédits d'impôt pour l'impôt sur les revenus de 2010 """
+        """ 
+        Crédits d'impôt pour l'impôt sur les revenus de 2010 
+        """
         aidper = foyer_fiscal('aidper', period)
         assloy = foyer_fiscal('assloy', period)
         autent = foyer_fiscal('autent', period)
@@ -137,7 +151,9 @@ class credits_impot(Variable):
                 preetu + prlire + quaenv + saldom2)
 
     def formula_2011_01_01(foyer_fiscal, period, parameters):
-        """ Crédits d'impôt pour l'impôt sur les revenus de 2011 """
+        """ 
+        Crédits d'impôt pour l'impôt sur les revenus de 2011 
+        """
         aidper = foyer_fiscal('aidper', period)
         assloy = foyer_fiscal('assloy', period)
         autent = foyer_fiscal('autent', period)
@@ -155,7 +171,9 @@ class credits_impot(Variable):
                 prlire + quaenv + saldom2)
 
     def formula_2012_01_01(foyer_fiscal, period, parameters):
-        """ Crédits d'impôt pour l'impôt sur les revenus de 2012 """
+        """ 
+        Crédits d'impôt pour l'impôt sur les revenus de 2012 
+        """
         aidper = foyer_fiscal('aidper', period)
         assloy = foyer_fiscal('assloy', period)
         autent = foyer_fiscal('autent', period)
@@ -174,7 +192,9 @@ class credits_impot(Variable):
                 preetu + prlire + quaenv + saldom2)
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
-        """ Crédits d'impôt crédités l'impôt sur les revenus de 2013 """
+        """ 
+        Crédits d'impôt pour l'impôt sur les revenus de 2013 
+        """
         aidper = foyer_fiscal('aidper', period)
         assloy = foyer_fiscal('assloy', period)
         autent = foyer_fiscal('autent', period)
@@ -193,7 +213,9 @@ class credits_impot(Variable):
                 preetu + prlire + quaenv + saldom2)
 
     def formula_2014_01_01(foyer_fiscal, period, parameters):
-        """ Crédits d'impôt crédités l'impôt sur les revenus de 2014 et + (non vérifié)"""
+        """ 
+        Crédits d'impôt pour l'impôt sur les revenus de 2014 à 2016
+        """
         aidper = foyer_fiscal('aidper', period)
         assloy = foyer_fiscal('assloy', period)
         autent = foyer_fiscal('autent', period)
@@ -210,6 +232,29 @@ class credits_impot(Variable):
 
         return (aidper + assloy + autent + ci_garext + cotsyn + creimp + direpa + drbail + inthab +
                 preetu + prlire + quaenv + saldom2)
+
+    def formula_2017_01_01(foyer_fiscal, period, parameters):
+        """ 
+        Crédits d'impôt pour l'impôt sur les revenus depuis 2017
+        """
+        aidper = foyer_fiscal('aidper', period)
+        autent = foyer_fiscal('autent', period)
+        ci_garext = foyer_fiscal('ci_garext', period)
+        cotsyn = foyer_fiscal('cotsyn', period)
+        creimp = foyer_fiscal('creimp', period)
+        direpa = foyer_fiscal('direpa', period)
+        drbail = foyer_fiscal('drbail', period)
+        inthab = foyer_fiscal('inthab', period)
+        preetu = foyer_fiscal('preetu', period)
+        prlire = foyer_fiscal('prlire', period)
+        quaenv = foyer_fiscal('quaenv', period)
+        saldom2 = foyer_fiscal('saldom2', period)
+
+        return (
+            aidper +  autent + ci_garext + cotsyn 
+            + creimp + direpa + drbail + inthab 
+            + preetu + prlire + quaenv + saldom2
+            )
 
 
 class nb_pac2(Variable):
@@ -446,11 +491,12 @@ class assloy(Variable):
     label = u"Crédit d’impôt primes d’assurance pour loyers impayés"
     reference = "http://bofip.impots.gouv.fr/bofip/844-PGP.html?identifiant=BOI-IR-RICI-320-20120912"
     definition_period = YEAR
+    end = '2016-12-31'
 
     def formula_2005(foyer_fiscal, period, parameters):
         '''
         Crédit d’impôt primes d’assurance pour loyers impayés (case 4BF)
-        2005-
+        2005-2016
         '''
         f4bf = foyer_fiscal('f4bf', period)
         P = parameters(period).impot_revenu.credits_impot.assloy
@@ -531,7 +577,6 @@ class creimp(Variable):
     entity = FoyerFiscal
     label = u"Avoirs fiscaux et crédits d'impôt"
     definition_period = YEAR
-    end = '2016-12-31'
 
     def formula_2002_01_01(foyer_fiscal, period, parameters):
         f2ab = foyer_fiscal('f2ab', period)
@@ -819,6 +864,42 @@ class creimp(Variable):
 
         return (f2ab + f2ck + f8ta + f8tb + f8tc + f8te - f8tf + f8tg + f8th + f8to - f8tp + f8tl + f8ts + f8tz + f8uw +
                 f8uz + f8vm + f8wa + f8wb + f8wc + f8wd + f8we + f8wr + f8wt + f8wu)
+
+    def formula_2017_01_01(foyer_fiscal, period, parameters):
+        f2ab = foyer_fiscal('f2ab', period)
+        f2ck = foyer_fiscal('f2ck', period)
+        f8ta = foyer_fiscal('f8ta', period)
+        f8tb = foyer_fiscal('f8tb', period)
+        f8tc = foyer_fiscal('f8tc', period)
+        f8te = foyer_fiscal('f8te', period)
+        f8tf = foyer_fiscal('f8tf', period)
+        f8tg = foyer_fiscal('f8tg', period)
+        f8tl = foyer_fiscal('f8tl', period)
+        f8to = foyer_fiscal('f8to', period)
+        f8tp = foyer_fiscal('f8tp', period)
+        f8ts = foyer_fiscal('f8ts', period)
+        f8tz = foyer_fiscal('f8tz', period)
+        f8uw = foyer_fiscal('f8uw', period)
+        f8uz = foyer_fiscal('f8uz', period)
+        f8wa = foyer_fiscal('f8wa', period)
+        f8wb = foyer_fiscal('f8wb', period)
+        f8wc = foyer_fiscal('f8wc', period)
+        f8wd = foyer_fiscal('f8wd', period)
+        f8we = foyer_fiscal('f8we', period)
+        f8wr = foyer_fiscal('f8wr', period)
+        f8wt = foyer_fiscal('f8wt', period)
+        f8wu = foyer_fiscal('f8wu', period)
+
+        f8vm_i = foyer_fiscal.members('f8vm', period)
+        f8vm = foyer_fiscal.sum(f8vm_i)
+
+        return (
+            f2ab + f2ck + f8ta + f8tb + f8tc 
+            + f8te - f8tf + f8tg + f8to - f8tp 
+            + f8tl + f8ts + f8tz + f8uw + f8uz 
+            + f8vm + f8wa + f8wb + f8wc + f8wd 
+            + f8we + f8wr + f8wt + f8wu
+            )
   
     # TODO : add tax credit 8VM and 8VL (2016) 
     # TODO: add tax credit 8TK for all years ?
@@ -884,7 +965,6 @@ class inthab(Variable):
     label = u"Crédit d’impôt intérêts des emprunts pour l’habitation principale"
     reference = u"http://bofip.impots.gouv.fr/bofip/3863-PGP.html?identifiant=BOI-IR-RICI-350-20120912"
     definition_period = YEAR
-    end = '2016-12-31'
 
     def formula_2007_01_01(foyer_fiscal, period, parameters):
         '''
@@ -921,11 +1001,11 @@ class inthab(Variable):
 
         invalide = invalidite_decl | invalidite_conj | (nbpac_invalideG != 0) | (nbpac_invalideR != 0)
         max0 = P.max * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac_majoration_plafond * P.add
-
         max1 = max_(max0 - f7vy, 0)
+
         return (
-            P.taux1 * min_(f7vy, max0) +
-            P.taux3 * min_(f7vz, max1)
+            P.taux1 * min_(f7vy, max0)
+            + P.taux3 * min_(f7vz, max1)
             )
 
     def formula_2009_01_01(foyer_fiscal, period, parameters):
@@ -949,10 +1029,11 @@ class inthab(Variable):
 
         max1 = max_(max0 - f7vx, 0)
         max2 = max_(max1 - f7vy, 0)
+
         return (
-            P.taux1 * min_(f7vx, max0) +
-            P.taux1 * min_(f7vy, max1) +
-            P.taux3 * min_(f7vz, max2)
+            P.taux1 * min_(f7vx, max0)
+            + P.taux1 * min_(f7vy, max1)
+            + P.taux3 * min_(f7vz, max2)
             )
 
     def formula_2010_01_01(foyer_fiscal, period, parameters):
@@ -978,11 +1059,12 @@ class inthab(Variable):
         max1 = max_(max0 - f7vx, 0)
         max2 = max_(max1 - f7vy, 0)
         max3 = max_(max2 - f7vw, 0)
+
         return (
-            P.taux1 * min_(f7vx, max0) +
-            P.taux1 * min_(f7vy, max1) +
-            P.taux2 * min_(f7vw, max2) +
-            P.taux3 * min_(f7vz, max3)
+            P.taux1 * min_(f7vx, max0)
+            + P.taux1 * min_(f7vy, max1)
+            + P.taux2 * min_(f7vw, max2)
+            + P.taux3 * min_(f7vz, max3)
             )
 
     def formula_2011_01_01(foyer_fiscal, period, parameters):
@@ -1012,13 +1094,14 @@ class inthab(Variable):
         max3 = max_(max2 - f7vw, 0)
         max4 = max_(max3 - f7vu, 0)
         max5 = max_(max4 - f7vz, 0)
+
         return (
-            P.taux1 * min_(f7vx, max0) +
-            P.taux1 * min_(f7vy, max1) +
-            P.taux2 * min_(f7vw, max2) +
-            P.taux3 * min_(f7vu, max3) +
-            P.taux4 * min_(f7vz, max4) +
-            P.taux5 * min_(f7vv, max5)
+            P.taux1 * min_(f7vx, max0)
+            + P.taux1 * min_(f7vy, max1)
+            + P.taux2 * min_(f7vw, max2)
+            + P.taux3 * min_(f7vu, max3)
+            + P.taux4 * min_(f7vz, max4)
+            + P.taux5 * min_(f7vv, max5)
             )
 
     def formula_2012_01_01(foyer_fiscal, period, parameters):
@@ -1051,14 +1134,15 @@ class inthab(Variable):
         max4 = max_(max3 - f7vu, 0)
         max5 = max_(max4 - f7vz, 0)
         max6 = max_(max5 - f7vv, 0)
+
         return (
-            P.taux1 * min_(f7vx, max0) +
-            P.taux1 * min_(f7vy, max1) +
-            P.taux2 * min_(f7vw, max2) +
-            P.taux3 * min_(f7vu, max3) +
-            P.taux4 * min_(f7vz, max4) +
-            P.taux5 * min_(f7vv, max5) +
-            P.taux6 * min_(f7vt, max6)
+            P.taux1 * min_(f7vx, max0)
+            + P.taux1 * min_(f7vy, max1)
+            + P.taux2 * min_(f7vw, max2)
+            + P.taux3 * min_(f7vu, max3)
+            + P.taux4 * min_(f7vz, max4)
+            + P.taux5 * min_(f7vv, max5)
+            + P.taux6 * min_(f7vt, max6)
             )
 
     def formula_2014_01_01(foyer_fiscal, period, parameters):
@@ -1088,12 +1172,13 @@ class inthab(Variable):
         max2 = max_(max1 - f7vu, 0)
         max3 = max_(max2 - f7vz, 0)
         max4 = max_(max3 - f7vv, 0)
+
         return (
-            P.taux1 * min_(f7vx, max0) +
-            P.taux3 * min_(f7vu, max1) +
-            P.taux4 * min_(f7vz, max2) +
-            P.taux5 * min_(f7vv, max3) +
-            P.taux6 * min_(f7vt, max4)
+            P.taux1 * min_(f7vx, max0)
+            + P.taux3 * min_(f7vu, max1)
+            + P.taux4 * min_(f7vz, max2)
+            + P.taux5 * min_(f7vv, max3)
+            + P.taux6 * min_(f7vt, max4)
             )
 
     def formula_2015_01_01(foyer_fiscal, period, parameters):
@@ -1121,11 +1206,12 @@ class inthab(Variable):
         max1 = max_(max0 - f7vx, 0)
         max2 = max_(max1 - f7vz, 0)
         max3 = max_(max2 - f7vv, 0)
+
         return (
-            P.taux1 * min_(f7vx, max0) +
-            P.taux4 * min_(f7vz, max1) +
-            P.taux5 * min_(f7vv, max2) +
-            P.taux6 * min_(f7vt, max3)
+            P.taux1 * min_(f7vx, max0)
+            + P.taux4 * min_(f7vz, max1)
+            + P.taux5 * min_(f7vv, max2)
+            + P.taux6 * min_(f7vt, max3)
             )
 
     def formula_2016_01_01(foyer_fiscal, period, parameters):
@@ -1151,51 +1237,17 @@ class inthab(Variable):
         max0 = P.max * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac_majoration_plafond * P.add
         max1 = max_(max0 - f7vx, 0)
         max2 = max_(max1 - f7vz, 0)
+
         return (
-            P.taux1 * min_(f7vx, max0) +
-            P.taux4 * min_(f7vz, max1) +
-            P.taux6 * min_(f7vt, max2)
+            P.taux1 * min_(f7vx, max0)
+            + P.taux4 * min_(f7vz, max1)
+            + P.taux6 * min_(f7vt, max2)
             )
-
-    def formula_2014_01_01(foyer_fiscal, period, parameters):
+    
+    def formula_2017_01_01(foyer_fiscal, period, parameters):
         '''
-        Crédit d’impôt intérêts des emprunts pour l’habitation principale (cases 7VW, 7VX, 7VY et 7VZ)
-        2014 
-        '''
-        maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
-        nb_pac_majoration_plafond = foyer_fiscal('nb_pac2', period)
-        invalidite_decl = foyer_fiscal('caseP', period)
-        invalidite_conj = foyer_fiscal('caseF', period)
-        nbpac_invalideG = foyer_fiscal('nbG', period)
-        nbpac_invalideR = foyer_fiscal('nbR', period)
-        nbpac_invalideI = foyer_fiscal('nbI', period)
-        f7vt = foyer_fiscal('f7vt', period)
-        f7vu = foyer_fiscal('f7vu', period)
-        f7vv = foyer_fiscal('f7vv', period)
-        f7vx = foyer_fiscal('f7vx', period)
-        f7vz = foyer_fiscal('f7vz', period)
-        P = parameters(period).impot_revenu.credits_impot.inthab
-
-        invalide = invalidite_decl | invalidite_conj | (nbpac_invalideG != 0) | (nbpac_invalideR != 0) | (nbpac_invalideI != 0)
-        # NB : max0 = plafond initial du montant d'intérêts retenus pour calculer le crédit
-        #      max1..max4 = plafonds après imputations successives (dans l'ordre décrit dans la législation) des intérêts éligibles au crédit d'impôt
-        max0 = P.max * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac_majoration_plafond * P.add
-        max1 = max_(max0 - f7vx, 0)
-        max2 = max_(max1 - f7vu, 0)
-        max3 = max_(max2 - f7vz, 0)
-        max4 = max_(max3 - f7vv, 0)
-        return (
-            P.taux1 * min_(f7vx, max0) +
-            P.taux3 * min_(f7vu, max1) +
-            P.taux4 * min_(f7vz, max2) +
-            P.taux5 * min_(f7vv, max3) +
-            P.taux6 * min_(f7vt, max4)
-            )
-
-    def formula_2015_01_01(foyer_fiscal, period, parameters):
-        '''
-        Crédit d’impôt intérêts des emprunts pour l’habitation principale (cases 7VW, 7VX, 7VY et 7VZ)
-        2015
+        Crédit d’impôt intérêts des emprunts pour l’habitation principale
+        2017
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         nb_pac_majoration_plafond = foyer_fiscal('nb_pac2', period)
@@ -1207,7 +1259,6 @@ class inthab(Variable):
         f7vt = foyer_fiscal('f7vt', period)
         f7vv = foyer_fiscal('f7vv', period)
         f7vx = foyer_fiscal('f7vx', period)
-        f7vz = foyer_fiscal('f7vz', period)
         P = parameters(period).impot_revenu.credits_impot.inthab
 
         invalide = invalidite_decl | invalidite_conj | (nbpac_invalideG != 0) | (nbpac_invalideR != 0) | (nbpac_invalideI != 0)
@@ -1215,44 +1266,14 @@ class inthab(Variable):
         #      max1..max4 = plafonds après imputations successives (dans l'ordre décrit dans la législation) des intérêts éligibles au crédit d'impôt
         max0 = P.max * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac_majoration_plafond * P.add
         max1 = max_(max0 - f7vx, 0)
-        max2 = max_(max1 - f7vz, 0)
-        max3 = max_(max2 - f7vv, 0)
+        max2 = max_(max1 - f7vv, 0)
+
         return (
-            P.taux1 * min_(f7vx, max0) +
-            P.taux4 * min_(f7vz, max1) +
-            P.taux5 * min_(f7vv, max2) +
-            P.taux6 * min_(f7vt, max3)
+            P.taux1 * min_(f7vx, max0)
+            + P.taux5 * min_(f7vv, max1)
+            + P.taux6 * min_(f7vt, max2)
             )
-
-    def formula_2016_01_01(foyer_fiscal, period, parameters):
-        '''
-        Crédit d’impôt intérêts des emprunts pour l’habitation principale (cases 7VW, 7VX, 7VY et 7VZ)
-        2016
-        '''
-        maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
-        nb_pac_majoration_plafond = foyer_fiscal('nb_pac2', period)
-        invalidite_decl = foyer_fiscal('caseP', period)
-        invalidite_conj = foyer_fiscal('caseF', period)
-        nbpac_invalideG = foyer_fiscal('nbG', period)
-        nbpac_invalideR = foyer_fiscal('nbR', period)
-        nbpac_invalideI = foyer_fiscal('nbI', period)
-        f7vt = foyer_fiscal('f7vt', period)
-        f7vx = foyer_fiscal('f7vx', period)
-        f7vz = foyer_fiscal('f7vz', period)
-        P = parameters(period).impot_revenu.credits_impot.inthab
-
-        invalide = invalidite_decl | invalidite_conj | (nbpac_invalideG != 0) | (nbpac_invalideR != 0) | (nbpac_invalideI != 0)
-        # NB : max0 = plafond initial du montant d'intérêts retenus pour calculer le crédit
-        #      max1..max4 = plafonds après imputations successives (dans l'ordre décrit dans la législation) des intérêts éligibles au crédit d'impôt
-        max0 = P.max * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac_majoration_plafond * P.add
-        max1 = max_(max0 - f7vx, 0)
-        max2 = max_(max1 - f7vz, 0)
-        return (
-            P.taux1 * min_(f7vx, max0) +
-            P.taux4 * min_(f7vz, max1) +
-            P.taux6 * min_(f7vt, max2)
-            )
-
+            
 
 class jeunes(Variable):
     value_type = float
@@ -1393,7 +1414,6 @@ class quaenv(Variable):
     entity = FoyerFiscal
     label = u"Crédits d’impôt pour dépenses en faveur de la qualité environnementale (2005 - 2014) / de la transition energétique (2014 - ) "
     definition_period = YEAR
-    end = '2016-12-31'
 
     def formula_2005_01_01(foyer_fiscal, period, parameters):
         '''
@@ -1555,13 +1575,13 @@ class quaenv(Variable):
         f7tu = foyer_fiscal('f7tu', period)
         f7tv = foyer_fiscal('f7tv', period)
         f7tw = foyer_fiscal('f7tw', period)
-        f7tx = foyer_fiscal('f7tx', period)
-        f7ty = foyer_fiscal('f7ty', period)
+        f7tx = foyer_fiscal('f7tx_2012', period)
+        f7ty = foyer_fiscal('f7ty_2012', period)
         f7st = foyer_fiscal('f7st', period)
         f7su = foyer_fiscal('f7su', period)
         f7sv = foyer_fiscal('f7sv', period)
         f7sw = foyer_fiscal('f7sw', period)
-        f7sz = foyer_fiscal('f7sz', period)
+        f7sz = foyer_fiscal('f7sz_2015', period)
         f7wc = foyer_fiscal('f7wc', period)
         f7we = foyer_fiscal('f7we', period)
         f7wg = foyer_fiscal('f7wg', period)
@@ -1642,7 +1662,7 @@ class quaenv(Variable):
         f7su = foyer_fiscal('f7su', period)
         f7sv = foyer_fiscal('f7sv', period)
         f7sw = foyer_fiscal('f7sw', period)
-        f7sz = foyer_fiscal('f7sz', period)
+        f7sz = foyer_fiscal('f7sz_2015', period)
         f7wc = foyer_fiscal('f7wc', period)
         f7we = foyer_fiscal('f7we', period)
         f7wg = foyer_fiscal('f7wg', period)
@@ -1704,7 +1724,7 @@ class quaenv(Variable):
         f7rt = foyer_fiscal('f7rt', period)
         f7rv = foyer_fiscal('f7rv', period)
         f7rw = foyer_fiscal('f7rw', period)
-        f7rz = foyer_fiscal('f7rz', period)
+        f7rz = foyer_fiscal('f7rz_2015', period)
         f7sa = foyer_fiscal('f7sa', period)
         f7sb = foyer_fiscal('f7sb', period)
         f7sc = foyer_fiscal('f7sc', period)
@@ -1812,7 +1832,7 @@ class quaenv(Variable):
         f7ru = foyer_fiscal('f7ru', period)
         f7rv = foyer_fiscal('f7rv', period)
         f7rw = foyer_fiscal('f7rw', period)
-        f7rz = foyer_fiscal('f7rz', period)
+        f7rz = foyer_fiscal('f7rz_2015', period)
         f7sa = foyer_fiscal('f7sa', period)
         f7sb = foyer_fiscal('f7sb', period)
         f7sc = foyer_fiscal('f7sc', period)
@@ -1837,7 +1857,7 @@ class quaenv(Variable):
         f7su = foyer_fiscal('f7su', period)
         f7sv = foyer_fiscal('f7sv', period)
         f7sw = foyer_fiscal('f7sw', period)
-        f7sz = foyer_fiscal('f7sz', period)
+        f7sz = foyer_fiscal('f7sz_2015', period)
         f7ta = foyer_fiscal('f7ta', period)
         f7tb = foyer_fiscal('f7tb', period)
         f7tc = foyer_fiscal('f7tc', period)
@@ -1849,8 +1869,8 @@ class quaenv(Variable):
         f7tt = foyer_fiscal('f7tt', period)
         f7tv = foyer_fiscal('f7tv', period)
         f7tw = foyer_fiscal('f7tw', period)
-        f7tx = foyer_fiscal('f7tx', period)
-        f7ty = foyer_fiscal('f7ty', period)
+        f7tx = foyer_fiscal('f7tx_2015', period)
+        f7ty = foyer_fiscal('f7ty_2015', period)
         f7vg = foyer_fiscal('f7vg', period)
         f7vh = foyer_fiscal('f7vh', period)
         f7vi = foyer_fiscal('f7vi', period)
@@ -1957,6 +1977,48 @@ class quaenv(Variable):
         # TODO: inclure la condition de non cumul éco-prêt / crédit quaenv si RFR > ... (condition complexifiée à partir de 2014)
 
         return P.taux30 * min_(max0, depenses_transition_energetique)
+
+    def formula_2017_01_01(foyer_fiscal, period, parameters):
+        '''
+        Crédits d’impôt pour dépenses en faveur de la transition energétique
+        2017
+        '''
+        f7ad = foyer_fiscal('f7ad', period)
+        f7af = foyer_fiscal('f7af', period)
+        f7ah = foyer_fiscal('f7ah', period)
+        f7ak = foyer_fiscal('f7ak', period)
+        f7al = foyer_fiscal('f7al', period)
+        f7am = foyer_fiscal('f7am', period)
+        f7an = foyer_fiscal('f7an', period)
+        f7aq = foyer_fiscal('f7aq', period)
+        f7ar = foyer_fiscal('f7ar', period)
+        f7av = foyer_fiscal('f7av', period)
+        f7ax = foyer_fiscal('f7ax', period)
+        f7ay = foyer_fiscal('f7ay', period)
+        f7az = foyer_fiscal('f7az', period)
+        f7bb = foyer_fiscal('f7bb', period)
+        f7bc = foyer_fiscal('f7bc', period)
+        f7bd = foyer_fiscal('f7bd', period)
+        f7be = foyer_fiscal('f7be', period)
+        f7bf = foyer_fiscal('f7bf', period)
+        f7bh = foyer_fiscal('f7bh', period)
+        f7bk = foyer_fiscal('f7bk', period)
+        f7bl = foyer_fiscal('f7bl', period)
+        f7cb = foyer_fiscal('f7cb', period)
+       
+        maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
+        personnes_a_charge = foyer_fiscal('nb_pac2', period)
+        rfr = foyer_fiscal('rfr', period)
+        P = parameters(period).impot_revenu.credits_impot.quaenv
+
+        depenses_transition_energetique = (
+            f7ad + f7af + f7ah + f7ak + f7al + f7am + f7an + f7aq + f7ar + f7av + f7ax +
+            f7ay + f7az + f7bb + f7bc + f7bd + f7be + f7bf + f7bh + f7bk + f7bl + f7cb
+            )    
+
+        plafond_depenses_energetiques = P.max * (1 + maries_ou_pacses) + P.pac1 * personnes_a_charge
+        
+        return P.taux30 * min_(plafond_depenses_energetiques, depenses_transition_energetique)
 
 class quaenv_bouquet(Variable):
     value_type = bool
@@ -2150,7 +2212,6 @@ class saldom2(Variable):
     entity = FoyerFiscal
     label = u"Crédit d’impôt emploi d’un salarié à domicile"
     definition_period = YEAR
-    end = '2016-12-31'
 
     def formula_2007_01_01(foyer_fiscal, period, parameters):
         '''

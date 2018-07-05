@@ -1843,6 +1843,27 @@ class glo(Variable):
 
         return f1tv + f1tw + f1tx + f3vf + f3vi + f3vj
 
+    def formula_2016_01_01(individu, period, parameters):
+        '''
+        Gains de levée d'option
+        '''
+        f1tx = individu('f1tx', period)
+        f3vf = individu('f3vf', period)
+        f3vi = individu('f3vi', period)
+        f3vj = individu('f3vj', period)
+
+        return f1tx + f3vf + f3vi + f3vj
+
+    def formula_2017_01_01(individu, period, parameters):
+        '''
+        Gains de levée d'option
+        '''
+        f3vf = individu('f3vf', period)
+        f3vi = individu('f3vi', period)
+        f3vj = individu('f3vj', period)
+
+        return f3vf + f3vi + f3vj
+
 
 class rev_cap_bar(Variable):
     """Revenus du capital imposés au barème
@@ -1994,17 +2015,6 @@ class rpns_pvce(Variable):
     def formula(individu, period, parameters):
         '''
         Plus values de cession
-        'ind'
-        frag_pvce (f5hx, f5ix, f5jx)
-        arag_pvce (f5he, f5ie, f5je)
-        mbic_pvce (f5kq, f5lq, f5mq)
-        abic_pvce (f5ke, f5le, f5me)
-        macc_pvce (f5nq, f5oq, f5pq)
-        aacc_pvce (f5ne, f5oe, f5pe)
-        mncn_pvce (f5kv, f5lv, f5mv)
-        cncn_pvce (f5so, f5nt, f5ot)
-        mbnc_pvce (f5hr, f5ir, f5jr)
-        abnc_pvce (f5qd, f5rd, f5sd)
         '''
         frag_pvce = individu('frag_pvce', period)
         arag_pvce = individu('arag_pvce', period)
@@ -2030,20 +2040,6 @@ class rpns_exon(Variable):
     def formula(individu, period, parameters):
         '''
         Plus values de cession
-        'ind'
-        frag_exon (f5hn, f5in, f5jn)
-        arag_exon (f5hb, f5ib, f5jb)
-        nrag_exon (f5hh, f5ih, f5jh)
-        mbic_exon (f5kn, f5ln, f5mn)
-        abic_exon (f5kb, f5lb, f5mb)
-        nbic_exon (f5kh, f5lh, f5mh)
-        macc_exon (f5nn, f5on, f5pn)
-        aacc_exon (f5nb, f5ob, f5pb)
-        nacc_exon (f5nh, f5oh, f5ph)
-        mbnc_exon (f5hp, f5ip, f5jp)
-        abnc_exon (f5qb, f5rb, f5sb)
-        nbnc_exon (f5qh, f5rh, f5sh)
-        nbnc_pvce (f5qj, f5rj, f5sj)
         '''
         frag_exon = individu('frag_exon', period)
         arag_exon = individu('arag_exon', period)
@@ -2203,16 +2199,6 @@ class rag(Variable):
     def formula(individu, period, parameters):
         '''
         Revenus agricoles
-        'ind'
-        frag_exon (f5hn, f5in, f5jn)
-        frag_impo (f5ho, f5io, f5jo)
-        arag_exon (f5hb, f5ib, f5jb)
-        arag_impg (f5hc, f5ic, f5jc)
-        arag_defi (f5hf, f5if, f5jf)
-        nrag_exon (f5hh, f5ih, f5jh)
-        nrag_impg (f5hi, f5ii, f5ji)
-        nrag_defi (f5hl, f5il, f5jl)
-        nrag_ajag (f5hm, f5im, f5jm)
         '''
         frag_exon = individu('frag_exon', period)
         frag_impo = individu('frag_impo', period)
@@ -2240,21 +2226,6 @@ class ric(Variable):
     def formula(individu, period, parameters):
         '''
         Bénéfices industriels et commerciaux
-        'ind'
-        mbic_exon (f5kn, f5ln, f5mn)
-        abic_exon (f5kb, f5lb, f5mb)
-        nbic_exon (f5kh, f5lh, f5mh)
-        mbic_impv (f5ko, f5lo, f5mo)
-        mbic_imps (f5kp, f5lp, f5mp)
-        abic_impn (f5kc, f5lc, f5mc)
-        abic_imps (f5kd, f5ld, f5md)
-        nbic_impn (f5ki, f5li, f5mi)
-        nbic_imps (f5kj, f5lj, f5mj)
-        abic_defn (f5kf, f5lf, f5mf)
-        abic_defs (f5kg, f5lg, f5mg)
-        nbic_defn (f5kl, f5ll, f5ml)
-        nbic_defs (f5km, f5lm, f5mm)
-        nbic_apch (f5ks, f5ls, f5ms)
         '''
         mbic_exon = individu('mbic_exon', period)
         mbic_impv = individu('mbic_impv', period)
@@ -2306,23 +2277,6 @@ class rac(Variable):
     def formula(individu, period, parameters):
         '''
         Revenus accessoires individuels
-        'ind'
-        macc_exon (f5nn, f5on, f5pn)
-        aacc_exon (f5nb, f5ob, f5pb)
-        nacc_exon (f5nh, f5oh, f5ph)
-        macc_impv (f5no, f5oo, f5po)
-        macc_imps (f5np, f5op, f5pp)
-        aacc_impn (f5nc, f5oc, f5pc)
-        aacc_imps (f5nd, f5od, f5pd)
-        aacc_defn (f5nf, f5of, f5pf)
-        aacc_defs (f5ng, f5og, f5pg)
-        nacc_impn (f5ni, f5oi, f5pi)
-        nacc_defn (f5nl, f5ol, f5pl)
-        nacc_defs (f5nm, f5om, f5pm)
-        mncn_impo (f5ku, f5lu, f5mu)
-        cncn_bene (f5sn, f5ns, f5os)
-        cncn_defi (f5sp, f5nu, f5ou, f5sr)
-        f5sv????
         '''
         macc_exon = individu('macc_exon', period)
         macc_impv = individu('macc_impv', period)
@@ -2367,16 +2321,6 @@ class rnc(Variable):
     def formula(individu, period, parameters):
         '''
         Revenus non commerciaux individuels
-        'ind'
-        mbnc_exon (f5hp, f5ip, f5jp)
-        abnc_exon (f5qb, f5rb, f5sb)
-        nbnc_exon (f5qh, f5rh, f5sh)
-        mbnc_impo (f5hq, f5iq, f5jq)
-        abnc_impo (f5qc, f5rc, f5sc)
-        abnc_defi (f5qe, f5re, f5se)
-        nbnc_impo (f5qi, f5ri, f5si)
-        nbnc_defi (f5qk, f5rk, f5sk)
-        f5ql, f5qm????
         '''
         mbnc_exon = individu('mbnc_exon', period)
         mbnc_impo = individu('mbnc_impo', period)
@@ -2429,12 +2373,6 @@ class rpns_pvct(Variable):
     def formula(individu, period, parameters):
         '''
         Plus values de court terme
-        'ind'
-        frag_pvct (f5hw, f5iw, f5jw)
-        mbic_pvct (f5kx, f5lx, f5mx)
-        macc_pvct (f5nx, f5ox, f5px)
-        mbnc_pvct (f5hv, f5iv, f5jv)
-        mncn_pvct (f5ky, f5ly, f5my)
         '''
         frag_pvct = individu('frag_pvct', period)
         mbic_pvct = individu('mbic_pvct', period)

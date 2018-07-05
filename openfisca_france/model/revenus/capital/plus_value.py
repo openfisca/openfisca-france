@@ -18,6 +18,7 @@ class f1tv(Variable):
     unit = 'currency'
     entity = Individu
     label = u"Gains de levée d'options sur titres en cas de cession ou de conversion au porteur dans le délai d'indisponibilité: entre 1 et 2 ans"
+    end = '2015-12-31'
     definition_period = YEAR
 
   # (f1tv,f1uv))
@@ -30,6 +31,7 @@ class f1tw(Variable):
     unit = 'currency'
     entity = Individu
     label = u"Gains de levée d'options sur titres en cas de cession ou de conversion au porteur dans le délai d'indisponibilité: entre 2 et 3 ans"
+    end = '2015-12-31'
     definition_period = YEAR
 
   # (f1tw,f1uw))
@@ -42,6 +44,7 @@ class f1tx(Variable):
     unit = 'currency'
     entity = Individu
     label = u"Gains de levée d'options sur titres en cas de cession ou de conversion au porteur dans le délai d'indisponibilité: entre 3 et 4 ans"
+    end = '2016-12-31'
     definition_period = YEAR
 
   # (f1tx,f1ux))

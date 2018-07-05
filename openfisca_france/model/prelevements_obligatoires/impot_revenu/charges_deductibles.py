@@ -274,6 +274,15 @@ class f6hp(Variable):
     # start_date = date(2016, 1, 1)
     definition_period = YEAR
 
+class f6hq(Variable):
+    cerfa_field = u"6HQ"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses de l'année 2016"
+    # start_date = date(2017, 1, 1)
+    definition_period = YEAR
+
 
 # Sommes à rajouter au revenu imposable
 class f6gh(Variable):
@@ -722,7 +731,10 @@ class grosses_reparations(Variable):
         report_2009 = foyer_fiscal('f6hj', period)
         plafond_grosses_reparations = parameters(period).impot_revenu.charges_deductibles.grosses_reparations.plafond
 
-        return min_(f6cb + report_2009, plafond_grosses_reparations)
+        depenses_courantes = f6cb
+        report_depenses = report_2009
+
+        return min_(depenses_courantes + report_depenses , plafond_grosses_reparations)
 
     def formula_2011(foyer_fiscal, period, parameters):
         '''
@@ -732,8 +744,11 @@ class grosses_reparations(Variable):
         report_2009 = foyer_fiscal('f6hj', period)
         report_2010 = foyer_fiscal('f6hk', period)
         plafond_grosses_reparations = parameters(period).impot_revenu.charges_deductibles.grosses_reparations.plafond
+        
+        depenses_courantes = f6cb
+        report_depenses = report_2009 + report_2010
 
-        return min_(f6cb + report_2009 + report_2010, plafond_grosses_reparations)
+        return min_(depenses_courantes + report_depenses , plafond_grosses_reparations)
 
     def formula_2012(foyer_fiscal, period, parameters):
         '''
@@ -745,7 +760,10 @@ class grosses_reparations(Variable):
         report_2011 = foyer_fiscal('f6hl', period)
         plafond_grosses_reparations = parameters(period).impot_revenu.charges_deductibles.grosses_reparations.plafond
 
-        return min_(f6cb + report_2009 + report_2010 + report_2011, plafond_grosses_reparations)
+        depenses_courantes = f6cb
+        report_depenses = report_2009 + report_2010 + report_2011
+
+        return min_(depenses_courantes + report_depenses , plafond_grosses_reparations)
 
     def formula_2013(foyer_fiscal, period, parameters):
         '''
@@ -758,8 +776,10 @@ class grosses_reparations(Variable):
         report_2012 = foyer_fiscal('f6hm', period)
         plafond_grosses_reparations = parameters(period).impot_revenu.charges_deductibles.grosses_reparations.plafond
 
-        return min_(f6cb + report_2009 + report_2010 + report_2011 + report_2012, plafond_grosses_reparations)
+        depenses_courantes = f6cb
+        report_depenses = report_2009 + report_2010 + report_2011 + report_2012
 
+        return min_(depenses_courantes + report_depenses , plafond_grosses_reparations)
 
     def formula_2014(foyer_fiscal, period, parameters):
         '''
@@ -773,7 +793,10 @@ class grosses_reparations(Variable):
         report_2013 = foyer_fiscal('f6hn', period)
         plafond_grosses_reparations = parameters(period).impot_revenu.charges_deductibles.grosses_reparations.plafond
 
-        return min_(f6cb + report_2009 + report_2010 + report_2011 + report_2012 + report_2013, plafond_grosses_reparations)
+        depenses_courantes = f6cb
+        report_depenses = report_2009 + report_2010 + report_2011 + report_2012 + report_2013
+
+        return min_(depenses_courantes + report_depenses , plafond_grosses_reparations)
 
     def formula_2015(foyer_fiscal, period, parameters):
         '''
@@ -788,7 +811,10 @@ class grosses_reparations(Variable):
         report_2014 = foyer_fiscal('f6ho', period)
         plafond_grosses_reparations = parameters(period).impot_revenu.charges_deductibles.grosses_reparations.plafond
 
-        return min_(f6cb + report_2009 + report_2010 + report_2011 + report_2012 + report_2013 + report_2014, plafond_grosses_reparations)
+        depenses_courantes = f6cb
+        report_depenses = report_2009 + report_2010 + report_2011 + report_2012 + report_2013 + report_2014
+
+        return min_(depenses_courantes + report_depenses , plafond_grosses_reparations)
 
     def formula_2016(foyer_fiscal, period, parameters):
         '''
@@ -804,4 +830,27 @@ class grosses_reparations(Variable):
         report_2015 = foyer_fiscal('f6hp', period)
         plafond_grosses_reparations = parameters(period).impot_revenu.charges_deductibles.grosses_reparations.plafond
 
-        return min_(f6cb + report_2009 + report_2010 + report_2011 + report_2012 + report_2013 + report_2014 + report_2015, plafond_grosses_reparations)
+        depenses_courantes = f6cb
+        report_depenses = report_2009 + report_2010 + report_2011 + report_2012 + report_2013 + report_2014 + report_2015
+
+        return min_(depenses_courantes + report_depenses , plafond_grosses_reparations)
+
+    def formula_2017(foyer_fiscal, period, parameters):
+        '''
+        Dépenses de grosses réparations des nus-propriétaires
+        '''
+        f6cb = foyer_fiscal('f6cb', period)
+        report_2009 = foyer_fiscal('f6hj', period)
+        report_2010 = foyer_fiscal('f6hk', period)
+        report_2011 = foyer_fiscal('f6hl', period)
+        report_2012 = foyer_fiscal('f6hm', period)
+        report_2013 = foyer_fiscal('f6hn', period)
+        report_2014 = foyer_fiscal('f6ho', period)
+        report_2015 = foyer_fiscal('f6hp', period)
+        report_2016 = foyer_fiscal('f6hq', period)
+        plafond_grosses_reparations = parameters(period).impot_revenu.charges_deductibles.grosses_reparations.plafond
+
+        depenses_courantes = f6cb
+        report_depenses = report_2009 + report_2010 + report_2011 + report_2012 + report_2013 + report_2014 + report_2015 + report_2016
+
+        return min_(depenses_courantes + report_depenses , plafond_grosses_reparations)

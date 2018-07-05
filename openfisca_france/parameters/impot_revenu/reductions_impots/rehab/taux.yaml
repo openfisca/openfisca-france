@@ -1,0 +1,6 @@
+description: Taux de la réduction
+reference: openfisca
+unit: /1
+values:
+  2017-01-01:
+    value: 0.2

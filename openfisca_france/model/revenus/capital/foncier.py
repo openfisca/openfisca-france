@@ -97,6 +97,7 @@ class f4bf(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     label = u"Primes d'assurance pour loyers impayés des locations conventionnées"
+    end = '2016-12-31'
     definition_period = YEAR
 
 

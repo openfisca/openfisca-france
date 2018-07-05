@@ -1,5 +1,16 @@
 # Changelog
 
+## 21.12.0 [#1018](https://github.com/openfisca/openfisca-france/pull/1018)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2017.
+* Zones impactées :
+  - `model\prelevements_obligatoires\impot_revenu`
+  - `parameters\impot_revenu`
+  - `parameters\prelevements_sociaux\contributions`
+* Détails :
+  - Mis à jour du calcul de l'impôt sur les revenus 2017
+
 ## 21.11.0 [#1008](https://github.com/openfisca/openfisca-france/pull/1008)
 
 * Évolution du système socio-fiscal.

@@ -125,6 +125,7 @@ class f7dd(Variable):
     entity = FoyerFiscal
     label = u"Sommes versées pour l'emploi d'un salarié à domicile pour un ascendant bénéficiaire de l'APA "
 #    start_date = date(2011, 1, 1)
+    end = '2016-12-31'
     definition_period = YEAR
 
 
@@ -134,6 +135,7 @@ class f7df(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     label = u"Sommes versées pour l'emploi d'un salarié à domicile par les personnes retraités, ou inactives l'année de perception des revenus déclarés"
+    end = '2016-12-31'
     definition_period = YEAR
 
 
@@ -192,6 +194,7 @@ class f7vz(Variable):
     entity = FoyerFiscal
     label = u"Intérêt des emprunts contractés pour l'acquisition ou la construction de l'habitation principale: logements anciens (acquis entre le 06/05/2007 et le 30/09/2011) ou neufs (acquis entre le 06/05/2007 et le 31/12/2009): annuités suivantes"
 #    start_date = date(2008, 1, 1)
+    end = '2016-12-31'
     definition_period = YEAR
 
 
@@ -222,7 +225,6 @@ class f7vv(Variable):
     entity = FoyerFiscal
     label = u"Intérêt des emprunts contractés pour l'acquisition ou la construction de l'habitation principale: logements neufs non-BBC acquis ou construits du 01/01/2010 au 31/12/2010: annuités suivantes"
 #    start_date = date(2011, 1, 1)
-    end = '2015-12-31'
     definition_period = YEAR
 
   # TODO: variable non présente dans OF, à intégrer partout où c'est nécessaire
@@ -463,6 +465,7 @@ class f7we(Variable):
     entity = FoyerFiscal
     label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: éco-prêt à taux zéro avec offre de prêt émise l'année de perception des revenus déclarés"
 #    start_date = date(2009, 1, 1)
+    end = '2016-12-31'
     definition_period = YEAR
 
 
@@ -473,6 +476,7 @@ class f7wg(Variable):
     entity = FoyerFiscal
     label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale: éco-prêt à taux zéro avec offre de prêt émise l'année de perception des revenus déclarés -1"
 #    start_date = date(2012, 1, 1)
+    end = '2016-12-31'
     definition_period = YEAR
 
 
@@ -830,6 +834,7 @@ class f7bm(Variable):
     entity = FoyerFiscal
     label = u"Dépenses en faveur de la qualité environnementale de l'habitation principale : Systèmes de production d'électricité utilisant une source d'énergie renouvelable (éolien, hydraulique) avec signature d'un devis et versement d'un acompte avant le 1.1.2016"
 #    start_date = date(2016, 1, 1)
+    end = '2016-12-31'
     definition_period = YEAR
 
 
@@ -1137,7 +1142,7 @@ class f7pz(Variable):
     definition_period = YEAR
 
 
-class f7qz(Variable):
+class f7qz_2012(Variable):
     cerfa_field = u"7QZ"
     value_type = int
     unit = 'currency'
@@ -1167,13 +1172,14 @@ class f7rz_2010(Variable):
     definition_period = YEAR
 
 
-class f7rz(Variable):
+class f7rz_2015(Variable):
     cerfa_field = u"7RZ"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = u"Dépenses en faveur de la qualité environnementale des logements donnés en location : Dans les logements situés dans les départements d’outre-mer : équipements de raccordement à un réseau de froid ;  équipements ou matériaux de protection des parois vitrées ou opaques contre les rayonnements solaires ;  équipements visant à l’optimisation de la ventilation naturelle "
 #    start_date = date(2014, 1, 1)
+    end = '2015-12-31'
     definition_period = YEAR
 
 
@@ -1196,7 +1202,7 @@ class fhqv(Variable):
     definition_period = YEAR
 
 
-class f7qo(Variable):
+class f7qo_2012(Variable):
     cerfa_field = u"7QO"
     value_type = int
     unit = 'currency'
@@ -1206,7 +1212,7 @@ class f7qo(Variable):
     definition_period = YEAR
 
 
-class f7qp(Variable):
+class f7qp_2012(Variable):
     cerfa_field = u"7QP"
     value_type = int
     unit = 'currency'
@@ -1583,48 +1589,48 @@ class fhpo(Variable):
     definition_period = YEAR
 
 
-class f7pp(Variable):
+class f7pp_2012(Variable):
     cerfa_field = u"7PP"
     value_type = int
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements dans votre entreprise"
-    end = '2013-12-31'
+    end = '2012-12-31'
     definition_period = YEAR
 
 
-class f7pq(Variable):
+class f7pq_2012(Variable):
     cerfa_field = u"7PQ"
     value_type = int
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt calculée"
-    end = '2013-12-31'
+    end = '2012-12-31'
     definition_period = YEAR
 
 
-class f7pr(Variable):
+class f7pr_2012(Variable):
     cerfa_field = u"7PR"
     value_type = int
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt dont vous demandez l'imputation en 2012"
-    end = '2013-12-31'
+    end = '2012-12-31'
     definition_period = YEAR
 
 
-class f7ps(Variable):
+class f7ps_2012(Variable):
     cerfa_field = u"7PS"
     value_type = int
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 50 %"
-    end = '2013-12-31'
+    end = '2012-12-31'
     definition_period = YEAR
 
 
-class f7pt(Variable):
+class f7pt_2012(Variable):
     cerfa_field = u"7PT"
     value_type = int
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 60 %"
-    end = '2013-12-31'
+    end = '2012-12-31'
     definition_period = YEAR
 
 
@@ -2336,15 +2342,25 @@ class fhku(Variable):
     definition_period = YEAR
 
 
-# TODO: 7sz se rapporte à des choses différentes en 2012 et 2013 par rapport aux années précédentes, cf pour les années antérieures
+class f7sz_2009(Variable):
+    cerfa_field = u"7SZ"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements Outre-Mer; Report de la réduction N-1"
+#    start_date = date(2006, 1, 1)
+    end = '2009-12-31'
+    definition_period = YEAR
 
-class f7sz(Variable):
+
+class f7sz_2015(Variable):
     cerfa_field = u"7SZ"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = u"Dépenses en faveur de la qualité environnementale des logements donnés en location"
-#    start_date = date(2006, 1, 1) # disparait en 2010-2011, en 2014 et en 2016
+#    start_date = date(2012, 1, 1) # disparait provisoirement en 2014
+    end = '2015-12-31'
     definition_period = YEAR
 
 
@@ -2898,6 +2914,156 @@ class fhcr(Variable):
     definition_period = YEAR
 
 
+class fhdi(Variable):
+    cerfa_field = u"HDI"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise"
+#    start_date = date(2017, 1, 1)
+    definition_period = YEAR
+
+
+class fhdj(Variable):
+    cerfa_field = u"HDJ"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise"
+#    start_date = date(2017, 1, 1)
+    definition_period = YEAR
+
+
+class fhdk(Variable):
+    cerfa_field = u"HDK"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise"
+#    start_date = date(2017, 1, 1)
+    definition_period = YEAR
+
+
+class fhdl(Variable):
+    cerfa_field = u"HDL"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise"
+#    start_date = date(2017, 1, 1)
+    definition_period = YEAR
+
+
+class fhdm(Variable):
+    cerfa_field = u"HDM"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise"
+#    start_date = date(2017, 1, 1)
+    definition_period = YEAR
+
+
+class fhdn(Variable):
+    cerfa_field = u"HDN"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise"
+#    start_date = date(2017, 1, 1)
+    definition_period = YEAR
+
+
+class fhdo(Variable):
+    cerfa_field = u"HDO"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise"
+#    start_date = date(2017, 1, 1)
+    definition_period = YEAR
+
+
+class fhdp(Variable):
+    cerfa_field = u"HDP"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise"
+#    start_date = date(2017, 1, 1)
+    definition_period = YEAR
+
+
+class fhdq(Variable):
+    cerfa_field = u"HDQ"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise"
+#    start_date = date(2017, 1, 1)
+    definition_period = YEAR
+
+    
+class fhdr(Variable):
+    cerfa_field = u"HDR"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise"
+#    start_date = date(2017, 1, 1)
+    definition_period = YEAR
+
+
+class fhds(Variable):
+    cerfa_field = u"HDS"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise"
+#    start_date = date(2017, 1, 1)
+    definition_period = YEAR
+
+
+class fhdt(Variable):
+    cerfa_field = u"HDT"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise"
+#    start_date = date(2017, 1, 1)
+    definition_period = YEAR
+
+
+class fhdu(Variable):
+    cerfa_field = u"HDU"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise"
+#    start_date = date(2017, 1, 1)
+    definition_period = YEAR
+
+
+class fhdv(Variable):
+    cerfa_field = u"HDV"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise"
+#    start_date = date(2017, 1, 1)
+    definition_period = YEAR
+
+
+class fhdw(Variable):
+    cerfa_field = u"HDW"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le cadre de l'entreprise"
+#    start_date = date(2017, 1, 1)
+    definition_period = YEAR
+
+
 class fhsa(Variable):
     cerfa_field = u"HSA"
     value_type = int
@@ -3349,7 +3515,7 @@ class fhcw(Variable):
 
 
 # Aide aux créateurs et repreneurs d'entreprises
-class f7fy(Variable):
+class f7fy_2011(Variable):
     cerfa_field = u"7FY"
     value_type = int
     entity = FoyerFiscal
@@ -3465,6 +3631,7 @@ class f7re(Variable):
     entity = FoyerFiscal
     label = u"Travaux de restauration immobilière dans un secteur sauvegardé ou assimilé"
 #    start_date = date(2012, 1, 1)
+    end = '2016-12-31'
     definition_period = YEAR
 
 
@@ -3475,6 +3642,7 @@ class f7rf(Variable):
     entity = FoyerFiscal
     label = u"Travaux de restauration immobilière dans un secteur sauvegardé ou assimilé"
 #    start_date = date(2012, 1, 1)
+    end = '2016-12-31'
     definition_period = YEAR
 
 
@@ -3497,7 +3665,26 @@ class f7sy(Variable):
 #    start_date = date(2013, 1, 1)
     definition_period = YEAR
 
- # 2012 et 2013 ok
+
+class f7tx(Variable):
+    cerfa_field = u"7TX"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Travaux de restauration immobilière dans un secteur sauvegardé ou assimilé; Opérations engagées en 2017 dans un site patrimonial remarquable couvert par un PSMV"
+#    start_date = date(2017, 1, 1)
+    definition_period = YEAR
+
+
+class f7ty(Variable):
+    cerfa_field = u"7TY"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Travaux de restauration immobilière dans un secteur sauvegardé ou assimilé; Opérations engagées en 2017 dans un site patrimonial remarquable non couvert par un PSMV"
+#    start_date = date(2017, 1, 1)
+    definition_period = YEAR
+
 
 class f7gw(Variable):
     cerfa_field = u"7GW"
@@ -3505,6 +3692,7 @@ class f7gw(Variable):
     entity = FoyerFiscal
     label = u"Investissements achevés en n-2 en Polynésie française, Nouvelle Calédonie, dans les îles Walllis et Futuna : report de 1/5 de la réduction d'impôt"
 #    start_date = date(2013, 1, 1)
+    end = '2016-12-31'
     definition_period = YEAR
 
 
@@ -3514,6 +3702,7 @@ class f7gx(Variable):
     entity = FoyerFiscal
     label = u"Investissements achevés en n-2 avec promesse d'achat en n-3 en Polynésie française, Nouvelle Calédonie, dans les îles Walllis et Futuna : report de 1/5 de la réduction d'impôt"
 #    start_date = date(2013, 1, 1)
+    end = '2016-12-31'
     definition_period = YEAR
 
 
@@ -3685,6 +3874,7 @@ class f7xp(Variable):
     entity = FoyerFiscal
     label = u"Investissements locatifs dans une résidence hôtelière à vocation sociale: report des dépenses d'investissement des années antérieures"
 #    start_date = date(2011, 1, 1)
+    end = '2016-12-31'
     definition_period = YEAR
 
 
@@ -3695,6 +3885,7 @@ class f7xq(Variable):
     entity = FoyerFiscal
     label = u"Investissements locatifs dans une résidence hôtelière à vocation sociale: report des dépenses d'investissement des années antérieures"
 #    start_date = date(2011, 1, 1)
+    end = '2016-12-31'
     definition_period = YEAR
 
 
@@ -3718,7 +3909,7 @@ class f7xv(Variable):
     definition_period = YEAR
 
 
-class f7xx(Variable):
+class f7xx_2012(Variable):
     cerfa_field = u"7XX"
     value_type = int
     unit = 'currency'
@@ -3726,6 +3917,16 @@ class f7xx(Variable):
     label = u"Investissements locatifs dans le secteur de touristique: travaux engagés après 2012 dans un village résidentiel de tourisme"
 #    start_date = date(2012, 1, 1)
     end = '2012-12-31'
+    definition_period = YEAR
+
+
+class f7xx(Variable):
+    cerfa_field = u"7XX"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Travaux de réhabilitation des résidences de tourisme : dépenses payées en 2017"
+#    start_date = date(2017, 1, 1)
     definition_period = YEAR
 
 
@@ -3822,6 +4023,7 @@ class f7cu(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     label = u"Souscriptions au capital des PME non cotées, montant versé au titre de souscriptions antérieures"
+    end = '2016-12-31'
     definition_period = YEAR
 
 
@@ -3980,12 +4182,12 @@ class f7qk(Variable):
     definition_period = YEAR
 
 
-class f7qn(Variable):
+class f7qn_2012(Variable):
     cerfa_field = u"7QN"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    end = '2010-12-31'
+    end = '2012-12-31'
     definition_period = YEAR
 
 
@@ -4024,7 +4226,7 @@ class f7qt(Variable):
     definition_period = YEAR
 
 
-class f7qm(Variable):
+class f7qm_2012(Variable):
     cerfa_field = u"7QM"
     value_type = int
     unit = 'currency'
@@ -4395,12 +4597,13 @@ class f7ey(Variable):
     definition_period = YEAR
 
 
-class f7cu(Variable):
-    cerfa_field = u"7CU"
+class f7fy(Variable):
+    cerfa_field = u"7FY"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Souscriptions au capital des PME non cotées, montant versé au titre de souscriptions antérieures"
+    label = u"Souscriptions au capital des PME non cotées, report de réduction d'impôt au titre du plafonnement global de l'année 2016"
+#    start_date = date(2017, 1, 1)
     definition_period = YEAR
 
 
@@ -4466,43 +4669,47 @@ class f7oo(Variable):
     definition_period = YEAR
 
 
-class f7op(Variable):
+class f7op_2012(Variable):
     cerfa_field = u"7OP"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2012, Investissements immobiliers  que vous avez engagé en 2011, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 % en 2009"
 #    start_date = date(2012, 1, 1)
+    end = '2012-12-31'
     definition_period = YEAR
 
 
-class f7oq(Variable):
+class f7oq_2012(Variable):
     cerfa_field = u"7OQ"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2012, Investissements immobiliers  que vous avez engagé en 2011, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 % en 2010"
 #    start_date = date(2012, 1, 1)
+    end = '2012-12-31'
     definition_period = YEAR
 
 
-class f7or(Variable):
+class f7or_2012(Variable):
     cerfa_field = u"7OR"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2012, Investissements immobiliers  que vous avez engagé en 2011, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 % en 2011"
 #    start_date = date(2012, 1, 1)
+    end = '2012-12-31'
     definition_period = YEAR
 
 
-class f7os(Variable):
+class f7os_2012(Variable):
     cerfa_field = u"7OS"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2012, Investissements immobiliers  que vous avez engagé en 2012, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 % avant 2009"
 #    start_date = date(2012, 1, 1)
+    end = '2012-12-31'
     definition_period = YEAR
 
 
@@ -4544,6 +4751,17 @@ class f7ow(Variable):
     label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2012, "
 #    start_date = date(2012, 1, 1) + changes meaning in 2016
     definition_period = YEAR
+
+
+class f7ox(Variable):
+    cerfa_field = u"7OX"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés en 2017"
+#    start_date = date(2017, 1, 1)
+    definition_period = YEAR
+
 
 class fhoa(Variable):
     cerfa_field = u"HOA"
@@ -5016,6 +5234,76 @@ class fhuu(Variable):
     definition_period = YEAR
 
 
+class fhva(Variable):
+    cerfa_field = u"HVA"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2017, Investissements immobiliers engagés avant le 1.1.2011"
+#    start_date = date(2017, 1, 1)
+    definition_period = YEAR
+
+
+class fhvb(Variable):
+    cerfa_field = u"HVB"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2017, Investissements immobiliers  que vous avez engagé en 2012, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 % en 2010"
+#    start_date = date(2017, 1, 1)
+    definition_period = YEAR
+
+
+class fhvc(Variable):
+    cerfa_field = u"HVC"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2017, Investissements immobiliers  que vous avez engagé en 2012, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 % en 2011"
+#    start_date = date(2017, 1, 1)
+    definition_period = YEAR
+
+
+class fhvd(Variable):
+    cerfa_field = u"HVD"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2017, Investissements immobiliers engagés en 2012 ou 2013, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50% en 2010"
+#    start_date = date(2017, 1, 1)
+    definition_period = YEAR
+
+
+class fhve(Variable):
+    cerfa_field = u"HVE"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2017, Investissements immobiliers engagés en 2012 ou 2013, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50% en 2011"
+#    start_date = date(2017, 1, 1)
+    definition_period = YEAR
+
+
+class fhvf(Variable):
+    cerfa_field = u"HVF"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2017, Investissements immobiliers engagés en 2012 ou 2013, ayant fait l'objet d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50% en 2012"
+#    start_date = date(2017, 1, 1)
+    definition_period = YEAR
+
+
+class fhvg(Variable):
+    cerfa_field = u"HVG"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le logement : Investissements réalisés en 2017, Autres investissements"
+#    start_date = date(2017, 1, 1)
+    definition_period = YEAR
+
+
 # Investissements outre-mer dans le logement social
 
 class fhra(Variable):
@@ -5058,8 +5346,304 @@ class fhrd(Variable):
     definition_period = YEAR
 
 
+class fhkg(Variable):
+    cerfa_field = u"HKG"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le logement social : Investissements réalisés en 2009"
+#    start_date = date(2013, 1, 1)
+    end = '2014-12-31'
+    definition_period = YEAR
+
+
+class fhkh(Variable):
+    cerfa_field = u"HKH"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le logement social : Investissements réalisés en 2010"
+#    start_date = date(2013, 1, 1)
+    end = '2015-12-31'
+    definition_period = YEAR
+
+
+class fhki(Variable):
+    cerfa_field = u"HKI"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le logement social : Investissements réalisés en 2010"
+#    start_date = date(2013, 1, 1)
+    end = '2015-12-31'
+    definition_period = YEAR
+
+
+class fhqn(Variable):
+    cerfa_field = u"HQN"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le logement social : Investissements réalisés en 2011"
+#    start_date = date(2013, 1, 1)
+    end = '2016-12-31'
+    definition_period = YEAR
+
+
+class fhqu(Variable):
+    cerfa_field = u"HQU"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le logement social : Investissements réalisés en 2011"
+#    start_date = date(2013, 1, 1)
+    end = '2016-12-31'
+    definition_period = YEAR
+
+
+class fhqk(Variable):
+    cerfa_field = u"HQK"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le logement social : Investissements réalisés en 2011"
+#    start_date = date(2013, 1, 1)
+    end = '2016-12-31'
+    definition_period = YEAR
+
+
+class fhqj(Variable):
+    cerfa_field = u"HQJ"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le logement social : Investissements réalisés en 2012"
+#    start_date = date(2013, 1, 1)
+    definition_period = YEAR
+
+
+class fhqs(Variable):
+    cerfa_field = u"HQS"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le logement social : Investissements réalisés en 2012"
+#    start_date = date(2013, 1, 1)
+    definition_period = YEAR
+
+
+class fhqw(Variable):
+    cerfa_field = u"HQW"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le logement social : Investissements réalisés en 2012"
+#    start_date = date(2013, 1, 1)
+    definition_period = YEAR
+
+
+class fhqx(Variable):
+    cerfa_field = u"HQX"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le logement social : Investissements réalisés en 2012"
+#    start_date = date(2013, 1, 1)
+    definition_period = YEAR
+
+
+class fhxa(Variable):
+    cerfa_field = u"HXA"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le logement social : Investissements réalisés en 2014"
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+
+class fhxb(Variable):
+    cerfa_field = u"HXB"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le logement social : Investissements réalisés en 2014"
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+
+class fhxc(Variable):
+    cerfa_field = u"HXC"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le logement social : Investissements réalisés en 2014"
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+
+class fhxe(Variable):
+    cerfa_field = u"HXE"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le logement social : Investissements réalisés en 2014"
+#    start_date = date(2014, 1, 1)
+    definition_period = YEAR
+
+
+class fhxf(Variable):
+    cerfa_field = u"HXF"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le logement social : Investissements réalisés en 2015"
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+
+class fhxg(Variable):
+    cerfa_field = u"HXG"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le logement social : Investissements réalisés en 2015"
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+
+class fhxh(Variable):
+    cerfa_field = u"HXH"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le logement social : Investissements réalisés en 2015"
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+
+class fhxi(Variable):
+    cerfa_field = u"HXI"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le logement social : Investissements réalisés en 2015"
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+
+class fhxk(Variable):
+    cerfa_field = u"HXK"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le logement social : Investissements réalisés en 2015"
+#    start_date = date(2015, 1, 1)
+    definition_period = YEAR
+
+
+class fhxl(Variable):
+    cerfa_field = u"HXL"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le logement social : Investissements réalisés en 2016"
+#    start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+
+class fhxm(Variable):
+    cerfa_field = u"HXM"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le logement social : Investissements réalisés en 2016"
+#    start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+
+class fhxn(Variable):
+    cerfa_field = u"HXN"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le logement social : Investissements réalisés en 2016"
+#    start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+class fhxo(Variable):
+    cerfa_field = u"HXO"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le logement social : Investissements réalisés en 2016"
+#    start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+
+class fhxp(Variable):
+    cerfa_field = u"HXP"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le logement social : Investissements réalisés en 2016"
+#    start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+
+class fhxq(Variable):
+    cerfa_field = u"HXQ"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le logement social : Investissements réalisés en 2017"
+#    start_date = date(2017, 1, 1)
+    definition_period = YEAR
+
+
+class fhxr(Variable):
+    cerfa_field = u"HXR"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le logement social : Investissements réalisés en 2017"
+#    start_date = date(2017, 1, 1)
+    definition_period = YEAR
+
+
+class fhxs(Variable):
+    cerfa_field = u"HXS"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le logement social : Investissements réalisés en 2017"
+#    start_date = date(2017, 1, 1)
+    definition_period = YEAR
+
+
+class fhxt(Variable):
+    cerfa_field = u"HXT"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le logement social : Investissements réalisés en 2017"
+#    start_date = date(2017, 1, 1)
+    definition_period = YEAR
+
+
+class fhxu(Variable):
+    cerfa_field = u"HXU"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements outre-mer dans le logement social : Investissements réalisés en 2017"
+#    start_date = date(2017, 1, 1)
+    definition_period = YEAR 
+
+
 # Souscription de parts de fonds communs de placement dans l'innovation,
 # de fonds d'investissement de proximité
+
 class f7gq(Variable):
     cerfa_field = u"7GQ"
     value_type = int
@@ -5099,6 +5683,17 @@ class f7fl(Variable):
 
 
 # Souscriptions au capital de SOFICA
+
+class f7en(Variable):
+    cerfa_field = u"7EN"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Souscriptions au capital de SOFICA 48 %"
+#    start_date = date(2017, 1, 1)
+    definition_period = YEAR
+
+
 class f7gn(Variable):
     cerfa_field = u"7GN"
     value_type = int
@@ -5177,6 +5772,7 @@ class f7kb(Variable):
     entity = FoyerFiscal
     label = u"Dépenses de protection du patrimoine naturel (excédent de réduction d’impôt d’années antérieures qui n’a pu être imputé)"
 #    start_date = date(2011, 1, 1)
+    end = '2016-12-31'
     definition_period = YEAR
 
 
@@ -5408,6 +6004,7 @@ class f7hj(Variable):
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier: investissements réalisés en 2010 en métropole"
 #    start_date = date(2009, 1, 1)
+    end = '2016-12-31'
     definition_period = YEAR
 
 
@@ -5418,6 +6015,7 @@ class f7hk(Variable):
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier: investissements réalisés en 2010 dans les DOM-COM"
 #    start_date = date(2009, 1, 1)
+    end = '2016-12-31'
     definition_period = YEAR
 
 
@@ -5428,6 +6026,7 @@ class f7hn(Variable):
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier: investissements réalisés en 2010 en métropole avec promesse d'achat avant le 1er janvier 2010"
 #    start_date = date(2010, 1, 1)
+    end = '2016-12-31'
     definition_period = YEAR
 
 
@@ -5438,6 +6037,7 @@ class f7ho(Variable):
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier: investissements réalisés en 2010 dans les DOM-COM avec promesse d'achat avant le 1er janvier 2010"
 #    start_date = date(2010, 1, 1)
+    end = '2016-12-31'
     definition_period = YEAR
 
 
@@ -5498,6 +6098,7 @@ class f7lb(Variable):
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Investissements réalisés et achevés en 2009 ou 2010 ou réalisés et achevés en 2010 avec engagement avant le 1.1.2010, Report de l'année 2010"
 #    start_date = date(2011, 1, 1)
+    end = '2016-12-31'
     definition_period = YEAR
 
 
@@ -5508,6 +6109,7 @@ class f7lc(Variable):
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Investissements réalisés et achevés en 2010 ; réalisés en 2010 et achevés en 2011 ; réalisés et achevés en 2011 avec engagement en 2010, Report de l'année 2010"
 #    start_date = date(2011, 1, 1)
+    end = '2016-12-31'
     definition_period = YEAR
 
 
@@ -5655,6 +6257,7 @@ class f7nb(Variable):
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier : investissements engagés en 2010, réalisés en 2011, "
 #    start_date = date(2011, 1, 1)
+    end = '2016-12-31'
     definition_period = YEAR
 
 
@@ -5705,6 +6308,7 @@ class f7ng(Variable):
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier : investissements engagés en 2010, réalisés en 2011, "
 #    start_date = date(2011, 1, 1)
+    end = '2016-12-31'
     definition_period = YEAR
 
 
@@ -5755,6 +6359,7 @@ class f7nl(Variable):
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier : investissements engagés en 2010, réalisés en 2011, DOM, Saint-Barthélémy, Saint-Martin, Saint-Pierre-et-Miquelon"
 #    start_date = date(2011, 1, 1)
+    end = '2016-12-31'
     definition_period = YEAR
 
 
@@ -5805,6 +6410,7 @@ class f7nq(Variable):
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier : investissements engagés en 2010, réalisés en 2011, Polynésie Française, Nouvelle Calédonie, Wallis et Futuna"
 #    start_date = date(2011, 1, 1)
+    end = '2016-12-31'
     definition_period = YEAR
 
 
@@ -5985,6 +6591,7 @@ class f7jb(Variable):
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier : investissements engagés en 2011, réalisés en 2012, métropole, BBC"
 #    start_date = date(2012, 1, 1)
+    end = '2016-12-31'
     definition_period = YEAR
 
 
@@ -6025,6 +6632,7 @@ class f7jg(Variable):
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier : investissements engagés en 2011, réalisés en 2012, métropole, non-BBC"
 #    start_date = date(2012, 1, 1)
+    end = '2016-12-31'
     definition_period = YEAR
 
 
@@ -6065,6 +6673,7 @@ class f7jl(Variable):
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier : investissements engagés en 2011, réalisés en 2012, DOM, Saint-Barthélémy, Saint-Martin, Saint-Pierre-et-Miquelon"
 #    start_date = date(2012, 1, 1)
+    end = '2016-12-31'
     definition_period = YEAR
 
 
@@ -6105,6 +6714,7 @@ class f7jp(Variable):
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier : investissements engagés en 2011, réalisés en 2012, Polynésie Française, Nouvelle Calédonie, Wallis et Futuna"
 #    start_date = date(2012, 1, 1)
+    end = '2016-12-31'
     definition_period = YEAR
 
 
@@ -6442,8 +7052,9 @@ class f7il(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Investissement destinés à la location meublée non professionnelle: Investissements réalisés en 2011 et achevés en 2012, promesse d'achat en 2010"
+    label = u"Investissement destinés à la location meublée non professionnelle: Investissements réalisés en 2011 avec promesse d'achat en 2010"
 #    start_date = date(2010, 1, 1)
+    end = '2016-12-31'
     definition_period = YEAR
 
 
@@ -6452,8 +7063,9 @@ class f7im(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Investissement destinés à la location meublée non professionnelle: Investissements réalisés en 2010 et achevés en 2012 avec promesse d'achat en 2009"
+    label = u"Investissement destinés à la location meublée non professionnelle: Investissements réalisés en 2010 avec promesse d'achat en 2010"
 #    start_date = date(2010, 1, 1)
+    end = '2016-12-31'
     definition_period = YEAR
 
 
@@ -6474,6 +7086,7 @@ class f7in(Variable):
     entity = FoyerFiscal
     label = u"Investissements destinés à la location meublée non professionnelle : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2010, investissement réalisé du 1.1.2011 au 31.3.2011"
 #    start_date = date(2011, 1, 1)
+    end = '2016-12-31'
     definition_period = YEAR
 
 
@@ -6484,6 +7097,7 @@ class f7iv(Variable):
     entity = FoyerFiscal
     label = u"Investissements destinés à la location meublée non professionnelle : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2010, investissement réalisé du 1.4.2011 au 31.12.2011"
 #    start_date = date(2011, 1, 1)
+    end = '2016-12-31'
     definition_period = YEAR
 
 
@@ -6492,8 +7106,9 @@ class f7iw(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés en 2010 et achevés en 2012"
+    label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés en 2010 avec promesse d'achat en 2009"
 #    start_date = date(2011, 1, 1)
+    end = '2016-12-31'
     definition_period = YEAR
 
 
@@ -6542,8 +7157,9 @@ class f7iu(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Investissements destinés à la location meublée non professionnelle : "
+    label = u"Investissements destinés à la location meublée non professionnelle : Report du solde de réduction d’impôt non encore imputé"
 #    start_date = date(2011, 1, 1)
+    end = '2016-12-31'
     definition_period = YEAR
 
 
@@ -6552,8 +7168,9 @@ class f7it(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Investissements destinés à la location meublée non professionnelle : "
+    label = u"Investissements destinés à la location meublée non professionnelle : Report du solde de réduction d’impôt non encore imputé"
 #    start_date = date(2011, 1, 1)
+    end = '2016-12-31'
     definition_period = YEAR
 
 
@@ -6602,7 +7219,7 @@ class f7id(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2012, Engagement de réalisation de l'investissement en 2012"
+    label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés en 2012, Engagement de réalisation de l'investissement en 2012"
 #    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
@@ -6612,8 +7229,9 @@ class f7ie(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2012, Promesse d'achat en 2011"
+    label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés en 2012 avec promesse d'achat en 2011"
 #    start_date = date(2012, 1, 1)
+    end = '2016-12-31'
     definition_period = YEAR
 
 
@@ -6622,8 +7240,9 @@ class f7if(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2012, Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2011, investissement réalisé du 1.1.2012 au 31.3.2012, investissement réalisé du 1.1.2012 au 31.3.2012"
+    label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés en 2012, Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2011, investissement réalisé du 1.1.2012 au 31.3.2012"
 #    start_date = date(2012, 1, 1)
+    end = '2016-12-31'
     definition_period = YEAR
 
 
@@ -6632,8 +7251,9 @@ class f7ig(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2012, Investissements destinés à la location meublée non professionnelle : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2011, investissement réalisé du 1.4.2012 au 31.12.2012"
+    label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés en 2012, Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2011, investissement réalisé du 1.4.2012 au 31.12.2012"
 #    start_date = date(2012, 1, 1)
+    end = '2016-12-31'
     definition_period = YEAR
 
 
@@ -6682,8 +7302,9 @@ class f7ju(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés en 2013, Engagement de réalisation de l'investissement en 2012"
+    label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés en 2013 avec promesse d'achat en 2012"
 #    start_date = date(2013, 1, 1)
+    end = '2016-12-31'
     definition_period = YEAR
 
 
@@ -6835,6 +7456,57 @@ class f7oj(Variable):
 #    start_date = date(2015, 1, 1)
     definition_period = YEAR
 
+
+class f7op(Variable):
+    cerfa_field = u"7OP"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements destinés à la location meublée non professionnelle : Report de 1/9 de la réduction d'impôt. Investissements réalisés en 2013 ou 2014 et achevés en 2016"
+#    start_date = date(2017, 1, 1)
+    definition_period = YEAR
+
+
+class f7oq(Variable):
+    cerfa_field = u"7OQ"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements destinés à la location meublée non professionnelle : Report de 1/9 de la réduction d'impôt. Investissements achevés en 2016 et réalisés en 2012 ou réalisés en 2013 avec promesse d'achat en 2012"
+#    start_date = date(2017, 1, 1)
+    definition_period = YEAR
+
+
+class f7or(Variable):
+    cerfa_field = u"7OR"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements destinés à la location meublée non professionnelle : Report de 1/9 de la réduction d'impôt. Investissements achevés en 2016 et réalisés en 2011 ou réalisés en 2012 avec promesse d'achat en 2011"
+#    start_date = date(2017, 1, 1)
+    definition_period = YEAR
+
+
+class f7os(Variable):
+    cerfa_field = u"7OS"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements destinés à la location meublée non professionnelle : Report de 1/9 de la réduction d'impôt. Investissements achevés en 2016 et réalisés en 2010 ou réalisés en 2011 avec promesse d'achat en 2010"
+#    start_date = date(2017, 1, 1)
+    definition_period = YEAR
+
+
+class f7ot(Variable):
+    cerfa_field = u"7OT"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements destinés à la location meublée non professionnelle : Report de 1/9 de la réduction d'impôt. Investissements achevés en 2016 et réalisés en 2009 ou réalisés en 2010 avec promesse d'achat en 2009"
+#    start_date = date(2017, 1, 1)
+    definition_period = YEAR
+
+
 class f7jc(Variable):
     cerfa_field = u"7JC"
     value_type = int
@@ -6862,6 +7534,56 @@ class f7js(Variable):
     entity = FoyerFiscal
     label = u"Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2011 ; réalisés en 2011 et achevés en 2011 ou 2012 ; réalisés en 2012 avec promesse d'achat en 2011 et achevés en 2012, Report du solde de réduction d’impôt de l’année 2012"
 #    start_date = date(2013, 1, 1)
+    definition_period = YEAR
+
+
+class f7pp(Variable):
+    cerfa_field = u"7PP"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements destinés à la location meublée non professionnelle : Report du solde de réduction d’impôt non imputé de 2016"
+#    start_date = date(2017, 1, 1)
+    definition_period = YEAR
+
+
+class f7pq(Variable):
+    cerfa_field = u"7PQ"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements destinés à la location meublée non professionnelle : Report du solde de réduction d’impôt non imputé de 2016"
+#    start_date = date(2017, 1, 1)
+    definition_period = YEAR
+
+
+class f7pr(Variable):
+    cerfa_field = u"7PR"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements destinés à la location meublée non professionnelle : Report du solde de réduction d’impôt non imputé de 2016"
+#    start_date = date(2017, 1, 1)
+    definition_period = YEAR
+
+
+class f7ps(Variable):
+    cerfa_field = u"7PS"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements destinés à la location meublée non professionnelle : Report du solde de réduction d’impôt non imputé de 2016"
+#    start_date = date(2017, 1, 1)
+    definition_period = YEAR
+
+
+class f7pt(Variable):
+    cerfa_field = u"7PT"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements destinés à la location meublée non professionnelle : Report du solde de réduction d’impôt non imputé de 2016"
+#    start_date = date(2017, 1, 1)
     definition_period = YEAR
 
 
@@ -6901,6 +7623,7 @@ class f7gv(Variable):
     entity = FoyerFiscal
     label = u"Scellier: report de 1/5 de la réduction d'impôt des investissements réalisés et achevés en 2012 en Polynésie, en Nouvelle Calédonie et à Wallis et Futuna "
 #    start_date = date(2013, 1, 1)
+    end = '2016-12-31'
     definition_period = YEAR
 
   # vérif <=2012
@@ -7039,6 +7762,7 @@ class f7aa(Variable):
     entity = FoyerFiscal
     label = u"Dépenses en faveur de la qualité environnementale des logements donnés en location en 2015 (hors bouquet sur 2 ans) : chaudières à condensation "
 #    start_date = date(2015, 1, 1)
+    end = '2016-12-31'
     definition_period = YEAR
 
 class f7ad(Variable):
@@ -7253,25 +7977,47 @@ class f7tv(Variable):
     definition_period = YEAR
 
 
-class f7tx(Variable):
+class f7tx_2012(Variable):
     cerfa_field = u"7TX"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Dépenses de travaux dans l'habitation principale"
+    label = u"Dépenses de travaux dans l'habitation principale ouvrant droit au crédit d'impôt de 26%"
 #    start_date = date(2012, 1, 1)
     end = '2012-12-31'
     definition_period = YEAR
 
 
-class f7ty(Variable):
+class f7ty_2012(Variable):
     cerfa_field = u"7TY"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Dépenses de travaux dans l'habitation principale"
+    label = u"Dépenses de travaux dans l'habitation principale ouvrant droit au crédit d'impôt de 32%"
 #    start_date = date(2012, 1, 1)
     end = '2012-12-31'
+    definition_period = YEAR
+    
+
+class f7tx_2015(Variable):
+    cerfa_field = u"7TX"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Dépenses de travaux dans l'habitation principale : dépenses de diagnostic de performance énergétique effectuées en 2015"
+#    start_date = date(2015, 1, 1)
+    end = '2015-12-31'
+    definition_period = YEAR
+
+
+class f7ty_2015(Variable):
+    cerfa_field = u"7TY"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Dépenses de travaux dans l'habitation principale : dépenses d'équipements de raccordement à un réseau de chaleur effectuées en 2015"
+#    start_date = date(2015, 1, 1)
+    end = '2015-12-31'
     definition_period = YEAR
 
 
@@ -7353,6 +8099,15 @@ class f7fr(Variable):
     entity = FoyerFiscal
     label = u"Report concernant les investissements rÃ©alisÃ©s et achevÃ©s en 2015 en mÃ©tropole et outre-mer"
 #    start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+class f7fv(Variable):
+    cerfa_field = u"7FV"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Report concernant les investissements réalisés et achevés en 2016 en métropole et outre-mer"
+#    start_date = date(2017, 1, 1)
     definition_period = YEAR
 
 # Réduction d'impôts sur les investissements locatifs intermédiaires (loi Pinel)
@@ -7446,6 +8201,77 @@ class f7ez(Variable):
 #    start_date = date(2016, 1, 1)
     definition_period = YEAR
 
+class f7qm(Variable):
+    cerfa_field = u"7QM"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements locatifs intermédiaires en métropole réalisés en 2017 avec engagement de location 6 ans"
+#    start_date = date(2017, 1, 1)
+    definition_period = YEAR
+
+class f7qn(Variable):
+    cerfa_field = u"7QN"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements locatifs intermédiaires en métropole réalisés en 2017 avec engagement de location 9 ans"
+#    start_date = date(2017, 1, 1)
+    definition_period = YEAR
+
+class f7qo(Variable):
+    cerfa_field = u"7QO"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements locatifs intermédiaires en outre-mer réalisés en 2017 avec engagement de location 6 ans"
+#    start_date = date(2017, 1, 1)
+    definition_period = YEAR
+
+class f7qp(Variable):
+    cerfa_field = u"7QP"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Investissements locatifs intermédiaires en outre-mer réalisés en 2017 avec engagement de location 9 ans"
+#    start_date = date(2017, 1, 1)
+    definition_period = YEAR
+
+class f7qz(Variable):
+    cerfa_field = u"7QZ"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Report concernant les investissements locatifs intermédiaires en métropole en 2016 avec engagement de location 6 ans"
+#    start_date = date(2017, 1, 1)
+    definition_period = YEAR
+
+class f7rz(Variable):
+    cerfa_field = u"7RZ"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Report concernant les investissements locatifs intermédiaires en métropole en 2016 avec engagement de location 9 ans"
+#    start_date = date(2017, 1, 1)
+    definition_period = YEAR
+
+class f7sz(Variable):
+    cerfa_field = u"7SZ"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Report concernant les investissements locatifs intermédiaires en outre-mer en 2016 avec engagement de location 6 ans"
+#    start_date = date(2017, 1, 1)
+    definition_period = YEAR
+
+class f7tz(Variable):
+    cerfa_field = u"7TZ"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Report concernant les investissements locatifs intermédiaires en outre-mer en 2016 avec engagement de location 9 ans"
+#    start_date = date(2017, 1, 1)
+    definition_period = YEAR
 
 # section 8
 
