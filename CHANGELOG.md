@@ -1,5 +1,14 @@
 # Changelog
 
+### 21.12.1 [#1030](https://github.com/openfisca/openfisca-france/pull/1030)
+
+* Correction d'un bug
+* Périodes concernées : à partir du 01/01/2017.
+* Zones impactées :
+  - `prestations/logement_social`
+* Détails :
+  - Corrige le calcul du logement social pour la Corse dont le code INSEE n'est pas un nombre
+
 ## 21.12.0 [#1018](https://github.com/openfisca/openfisca-france/pull/1018)
 
 * Évolution du système socio-fiscal.
