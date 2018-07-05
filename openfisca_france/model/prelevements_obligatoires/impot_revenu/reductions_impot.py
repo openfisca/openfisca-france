@@ -77,8 +77,12 @@ class reductions(Variable):
         spfcpi = foyer_fiscal('spfcpi', period)
 
         total_reductions = (
-            accult + adhcga + assvie + cappme + cotsyn + dfppce + daepad + doment + domlog + donapd + ecpess +
-            garext + intemp + invfor + invrev + mecena + prcomp + repsoc + rsceha + saldom + spfcpi
+            accult + adhcga + assvie + cappme 
+            + cotsyn + dfppce + daepad + doment 
+            + domlog + donapd + ecpess + garext 
+            + intemp + invfor + invrev + mecena 
+            + prcomp + repsoc + rsceha + saldom 
+            + spfcpi
             )
         return min_(impot_net, total_reductions)
 
@@ -109,8 +113,10 @@ class reductions(Variable):
         spfcpi = foyer_fiscal('spfcpi', period)
 
         total_reductions = (
-            accult + adhcga + cappme + cotsyn + daepad + dfppce + doment + domlog + donapd + ecpess + 
-            intagr + intcon + invfor + invlst + mecena + prcomp + repsoc + rsceha + saldom + spfcpi
+            accult + adhcga + cappme + cotsyn + daepad 
+            + dfppce + doment + domlog + donapd + ecpess 
+            + intagr + intcon + invfor + invlst + mecena 
+            + prcomp + repsoc + rsceha + saldom + spfcpi
             )
         return min_(impot_net, total_reductions)
 
@@ -143,8 +149,11 @@ class reductions(Variable):
         spfcpi = foyer_fiscal('spfcpi', period)
 
         total_reductions = (
-            accult + adhcga + cappme + cotsyn + creaen + daepad + deffor + dfppce + doment + domlog + donapd +
-            ecpess + intagr + invfor + invlst + mecena + prcomp + repsoc + rsceha + saldom + sofica + spfcpi
+            accult + adhcga + cappme + cotsyn + creaen 
+            + daepad + deffor + dfppce + doment + domlog 
+            + donapd + ecpess + intagr + invfor + invlst 
+            + mecena + prcomp + repsoc + rsceha + saldom 
+            + sofica + spfcpi
             )
         return min_(impot_net, total_reductions)
 
@@ -177,8 +186,11 @@ class reductions(Variable):
         spfcpi = foyer_fiscal('spfcpi', period)
 
         total_reductions = (
-            accult + adhcga + cappme + cotsyn + creaen + daepad + deffor + dfppce + doment + domlog + donapd +
-            ecpess + intagr + invfor + invlst + mecena + prcomp + repsoc + rsceha + saldom + sofica + spfcpi
+            accult + adhcga + cappme + cotsyn + creaen 
+            + daepad + deffor + dfppce + doment + domlog 
+            + donapd + ecpess + intagr + invfor + invlst 
+            + mecena + prcomp + repsoc + rsceha + saldom 
+            + sofica + spfcpi
             )
         return min_(impot_net, total_reductions)
 
@@ -212,8 +224,11 @@ class reductions(Variable):
         spfcpi = foyer_fiscal('spfcpi', period)
 
         total_reductions = (
-            accult + adhcga + cappme + cotsyn + creaen + daepad + deffor + dfppce + doment + domlog + donapd +
-            ecpess + intagr + invfor + invlst + mohist + mecena + prcomp + repsoc + rsceha + saldom + sofica + spfcpi
+            accult + adhcga + cappme + cotsyn + creaen 
+            + daepad + deffor + dfppce + doment + domlog 
+            + donapd + ecpess + intagr + invfor + invlst 
+            + mohist + mecena + prcomp + repsoc + rsceha 
+            + saldom + sofica + spfcpi
             )
         return min_(impot_net, total_reductions)
 
@@ -253,9 +268,12 @@ class reductions(Variable):
         spfcpi = foyer_fiscal('spfcpi', period)
 
         total_reductions = (
-            accult + adhcga + cappme + cotsyn + creaen + daepad + deffor + dfppce + doment + domlog + domsoc + donapd + 
-            ecodev + ecpess + intagr + invfor + invlst + locmeu + mecena + mohist + prcomp + repsoc + resimm + rsceha +
-            saldom + scelli + sofica + sofipe + spfcpi
+            accult + adhcga + cappme + cotsyn + creaen 
+            + daepad + deffor + dfppce + doment + domlog 
+            + domsoc + donapd + ecodev + ecpess + intagr 
+            + invfor + invlst + locmeu + mecena + mohist 
+            + prcomp + repsoc + resimm + rsceha + saldom 
+            + scelli + sofica + sofipe + spfcpi
             )
         return min_(impot_net, total_reductions)
 
@@ -295,10 +313,13 @@ class reductions(Variable):
         spfcpi = foyer_fiscal('spfcpi', period)
 
         total_reductions = (
-            accult + adhcga + cappme + cotsyn + creaen + daepad + deffor + dfppce + doment + domlog + domsoc + donapd + 
-            ecpess + intagr + invfor + invlst + locmeu + mecena + mohist + patnat + prcomp + repsoc + resimm + rsceha +
-            saldom + scelli + sofica + sofipe + spfcpi
-            )  # TODO: check (sees checked) and report in Niches.xls
+            accult + adhcga + cappme + cotsyn + creaen 
+            + daepad + deffor + dfppce + doment + domlog 
+            + domsoc + donapd + ecpess + intagr + invfor 
+            + invlst + locmeu + mecena + mohist + patnat 
+            + prcomp + repsoc + resimm + rsceha + saldom 
+            + scelli + sofica + sofipe + spfcpi
+            )
         return min_(impot_net, total_reductions)
 
     def formula_2011_01_01(foyer_fiscal, period, parameters):
@@ -337,9 +358,12 @@ class reductions(Variable):
         spfcpi = foyer_fiscal('spfcpi', period)
 
         total_reductions = (
-            accult + adhcga + cappme + cotsyn + creaen + daepad + deffor + dfppce + doment + domlog + domsoc + donapd + 
-            ecpess + intagr + invfor + invlst + locmeu + mecena + mohist + patnat + prcomp + repsoc + resimm + rsceha +
-            saldom + scelli + sofica + sofipe + spfcpi
+            accult + adhcga + cappme + cotsyn + creaen 
+            + daepad + deffor + dfppce + doment + domlog 
+            + domsoc + donapd + ecpess + intagr + invfor 
+            + invlst + locmeu + mecena + mohist + patnat 
+            + prcomp + repsoc + resimm + rsceha + saldom 
+            + scelli + sofica + sofipe + spfcpi
             )
         return min_(impot_net, total_reductions)
 
@@ -377,9 +401,12 @@ class reductions(Variable):
         spfcpi = foyer_fiscal('spfcpi', period)
 
         total_reductions = (
-            accult + adhcga + cappme + creaen + daepad + deffor + dfppce + doment + domlog + domsoc + donapd + 
-            ecpess + intagr + invfor + invlst + locmeu + mecena + mohist + patnat + prcomp + repsoc + resimm + rsceha +
-            saldom + scelli + sofica + spfcpi
+            accult + adhcga + cappme + creaen + daepad 
+            + deffor + dfppce + doment + domlog + domsoc 
+            + donapd + ecpess + intagr + invfor + invlst 
+            + locmeu + mecena + mohist + patnat + prcomp 
+            + repsoc + resimm + rsceha + saldom + scelli 
+            + sofica + spfcpi
             )
         return min_(impot_net, total_reductions)
 
@@ -418,9 +445,12 @@ class reductions(Variable):
         spfcpi = foyer_fiscal('spfcpi', period)
 
         total_reductions = (
-            accult + adhcga + cappme + creaen + daepad + deffor + dfppce + doment + domlog + donapd +
-            duflot + ecpess + intagr + invfor + invlst + locmeu + mecena + mohist + patnat + prcomp + 
-            reduction_impot_exceptionnelle + repsoc + resimm + rsceha + saldom + scelli + sofica + spfcpi
+            accult + adhcga + cappme + creaen + daepad 
+            + deffor + dfppce + doment + domlog + donapd 
+            + duflot + ecpess + intagr + invfor + invlst 
+            + locmeu + mecena + mohist + patnat + prcomp 
+            + reduction_impot_exceptionnelle + repsoc + resimm 
+            + rsceha + saldom + scelli + sofica + spfcpi
             )
         return min_(impot_net, total_reductions)
 
@@ -459,9 +489,12 @@ class reductions(Variable):
         spfcpi = foyer_fiscal('spfcpi', period)
 
         total_reductions = (
-            accult + adhcga + cappme + daepad + deffor + dfppce + doment + domlog + donapd +
-            duflot + ecpess + intagr + invfor + invlst + locmeu + mecena + mohist + patnat + 
-            prcomp + repsoc + resimm + rpinel + rsceha + saldom + scelli + sofica + spfcpi
+            accult + adhcga + cappme + daepad + deffor 
+            + dfppce + doment + domlog + donapd + duflot 
+            + ecpess + intagr + invfor + invlst + locmeu 
+            + mecena + mohist + patnat + prcomp + repsoc 
+            + resimm + rpinel + rsceha + saldom + scelli 
+            + sofica + spfcpi
             )
         return min_(impot_net, total_reductions)
 
@@ -499,9 +532,12 @@ class reductions(Variable):
         spfcpi = foyer_fiscal('spfcpi', period)
 
         total_reductions = (
-            accult + adhcga + cappme + daepad + deffor + dfppce + doment + domlog + donapd +
-            duflot + ecpess + intagr + invfor + invlst + locmeu + mecena + mohist + patnat + 
-            prcomp + repsoc + resimm + rpinel + rsceha + saldom + scelli + sofica + spfcpi
+            accult + adhcga + cappme + daepad + deffor 
+            + dfppce + doment + domlog + donapd + duflot 
+            + ecpess + intagr + invfor + invlst + locmeu 
+            + mecena + mohist + patnat + prcomp + repsoc 
+            + resimm + rpinel + rsceha + saldom + scelli 
+            + sofica + spfcpi
             )
         return min_(impot_net, total_reductions)
 
@@ -539,9 +575,12 @@ class reductions(Variable):
         spfcpi = foyer_fiscal('spfcpi', period)
 
         total_reductions = (
-            accult + adhcga + cappme + daepad + deffor + dfppce + doment + domlog + donapd +
-            duflot + ecpess + intagr + invfor + invlst + locmeu + mecena + mohist + patnat + 
-            prcomp + rehab + repsoc + resimm + rpinel + rsceha + scelli + sofica + spfcpi
+            accult + adhcga + cappme + daepad + deffor 
+            + dfppce + doment + domlog + donapd + duflot 
+            + ecpess + intagr + invfor + invlst + locmeu 
+            + mecena + mohist + patnat + prcomp + rehab 
+            + repsoc + resimm + rpinel + rsceha + scelli 
+            + sofica + spfcpi
             )
         return min_(impot_net, total_reductions)
 
