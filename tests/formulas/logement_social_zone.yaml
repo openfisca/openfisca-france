@@ -25,3 +25,10 @@
     depcom: 13055
   output_variables:
     zone_logement_social: autres_regions
+
+- name: Logement social - Corse
+  period: 2018-01
+  input_variables:
+    depcom: 2A004
+  output_variables:
+    zone_logement_social: autres_regions
