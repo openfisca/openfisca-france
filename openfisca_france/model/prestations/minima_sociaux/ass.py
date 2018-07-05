@@ -12,6 +12,7 @@ class ass_precondition_remplie(Variable):
     entity = Individu
     label = u"Éligible à l'ASS"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class ass(Variable):
