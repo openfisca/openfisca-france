@@ -15,7 +15,7 @@ log = logging.getLogger(__name__)
 class reductions(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = u"reductions"
+    label = u"Réductions d'impôt sur le revenu"
     definition_period = YEAR
 
     def formula_2002_01_01(foyer_fiscal, period, parameters):
@@ -44,8 +44,10 @@ class reductions(Variable):
         spfcpi = foyer_fiscal('spfcpi', period)
 
         total_reductions = (
-            accult + adhcga + assvie + cappme + cotsyn + dfppce + daepad + doment + domlog + donapd +
-            ecpess + garext + intemp + invfor + invrev + prcomp + rsceha + saldom + spfcpi
+            accult + adhcga + assvie + cappme + cotsyn 
+            + dfppce + daepad + doment + domlog + donapd
+            + ecpess + garext + intemp + invfor + invrev 
+            + prcomp + rsceha + saldom + spfcpi
             )
         return min_(impot_net, total_reductions)
 
