@@ -226,8 +226,11 @@ class credits_impot(Variable):
         quaenv = foyer_fiscal('quaenv', period)
         saldom2 = foyer_fiscal('saldom2', period)
 
-        return (aidper +  autent + ci_garext + cotsyn + creimp + direpa + drbail + inthab +
-                preetu + prlire + quaenv + saldom2)
+        return (
+            aidper +  autent + ci_garext + cotsyn 
+            + creimp + direpa + drbail + inthab 
+            + preetu + prlire + quaenv + saldom2
+            )
 
 
 class nb_pac2(Variable):
@@ -866,8 +869,13 @@ class creimp(Variable):
         f8vm_i = foyer_fiscal.members('f8vm', period)
         f8vm = foyer_fiscal.sum(f8vm_i)
 
-        return (f2ab + f2ck + f8ta + f8tb + f8tc + f8te - f8tf + f8tg + f8to - f8tp + f8tl + f8ts + f8tz + f8uw +
-                f8uz + f8vm + f8wa + f8wb + f8wc + f8wd + f8we + f8wr + f8wt + f8wu)
+        return (
+            f2ab + f2ck + f8ta + f8tb + f8tc 
+            + f8te - f8tf + f8tg + f8to - f8tp 
+            + f8tl + f8ts + f8tz + f8uw + f8uz 
+            + f8vm + f8wa + f8wb + f8wc + f8wd 
+            + f8we + f8wr + f8wt + f8wu
+            )
   
     # TODO : add tax credit 8VM and 8VL (2016) 
     # TODO: add tax credit 8TK for all years ?
