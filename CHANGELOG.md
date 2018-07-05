@@ -1,5 +1,14 @@
 # Changelog
 
+## 21.12.0 [#1008](https://github.com/openfisca/openfisca-france/pull/1008)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2017.
+* Zones impactées :
+  - `prestations/logement_social`
+* Détails :
+  - Ajoute le calcul de l'éligibilité au logement social dans le cadre du prêt locatif aidé d’intégration (PLAI)
+
 ## 21.11.0 [#1008](https://github.com/openfisca/openfisca-france/pull/1008)
 
 * Évolution du système socio-fiscal.
