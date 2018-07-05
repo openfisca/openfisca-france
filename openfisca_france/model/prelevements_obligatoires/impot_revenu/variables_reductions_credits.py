@@ -3671,7 +3671,7 @@ class f7tx(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Travaux de restauration immobilière dans un secteur sauvegardé ou assimilé"
+    label = u"Travaux de restauration immobilière dans un secteur sauvegardé ou assimilé; Opérations engagées en 2017 dans un site patrimonial remarquable couvert par un PSMV"
 #    start_date = date(2017, 1, 1)
     definition_period = YEAR
 
@@ -3681,7 +3681,7 @@ class f7ty(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Travaux de restauration immobilière dans un secteur sauvegardé ou assimilé"
+    label = u"Travaux de restauration immobilière dans un secteur sauvegardé ou assimilé; Opérations engagées en 2017 dans un site patrimonial remarquable non couvert par un PSMV"
 #    start_date = date(2017, 1, 1)
     definition_period = YEAR
 
