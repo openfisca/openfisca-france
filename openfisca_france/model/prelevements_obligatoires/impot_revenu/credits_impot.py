@@ -18,7 +18,9 @@ class credits_impot(Variable):
     definition_period = YEAR
 
     def formula_2002_01_01(foyer_fiscal, period, parameters):
-        """ Crédits d'impôt pour l'impôt sur les revenus de 2002 """
+        """ 
+        Crédits d'impôt pour l'impôt sur les revenus de 2002 
+        """
         acqgpl = foyer_fiscal('acqgpl', period)
         aidper = foyer_fiscal('aidper', period)
         creimp = foyer_fiscal('creimp', period)
@@ -28,7 +30,9 @@ class credits_impot(Variable):
         return acqgpl + aidper + creimp + drbail + prlire
 
     def formula_2003_01_01(foyer_fiscal, period, parameters):
-        """ Crédits d'impôt pour l'impôt sur les revenus de 2003 et 2004 """
+        """ 
+        Crédits d'impôt pour l'impôt sur les revenus de 2003 et 2004 
+        """
         acqgpl = foyer_fiscal('acqgpl', period)
         aidper = foyer_fiscal('aidper', period)
         creimp = foyer_fiscal('creimp', period)
@@ -38,7 +42,9 @@ class credits_impot(Variable):
         return acqgpl + aidper + creimp + drbail + prlire
 
     def formula_2005_01_01(foyer_fiscal, period, parameters):
-        """ Crédits d'impôt pour l'impôt sur les revenus de 2005 et 2006 """
+        """ 
+        Crédits d'impôt pour l'impôt sur les revenus de 2005 et 2006 
+        """
         acqgpl = foyer_fiscal('acqgpl', period)
         aidmob = foyer_fiscal('aidmob', period)
         aidper = foyer_fiscal('aidper', period)
@@ -57,7 +63,9 @@ class credits_impot(Variable):
                 preetu + prlire + quaenv)
 
     def formula_2007_01_01(foyer_fiscal, period, parameters):
-        """ Crédits d'impôt pour l'impôt sur les revenus de 2007 """
+        """ 
+        Crédits d'impôt pour l'impôt sur les revenus de 2007 
+        """
         acqgpl = foyer_fiscal('acqgpl', period)
         aidmob = foyer_fiscal('aidmob', period)
         aidper = foyer_fiscal('aidper', period)
@@ -78,7 +86,9 @@ class credits_impot(Variable):
                 jeunes + preetu + prlire + quaenv + saldom2)
 
     def formula_2008_01_01(foyer_fiscal, period, parameters):
-        """ Crédits d'impôt pour l'impôt sur les revenus de 2008 """
+        """ 
+        Crédits d'impôt pour l'impôt sur les revenus de 2008 
+        """
         aidmob = foyer_fiscal('aidmob', period)
         aidper = foyer_fiscal('aidper', period)
         assloy = foyer_fiscal('assloy', period)
@@ -99,7 +109,9 @@ class credits_impot(Variable):
                 inthab + jeunes + preetu + prlire + quaenv + saldom2)
 
     def formula_2009_01_01(foyer_fiscal, period, parameters):
-        """ Crédits d'impôt pour l'impôt sur les revenus de 2009 """
+        """ 
+        Crédits d'impôt pour l'impôt sur les revenus de 2009 
+        """
         aidper = foyer_fiscal('aidper', period)
         assloy = foyer_fiscal('assloy', period)
         ci_garext = foyer_fiscal('ci_garext', period)
@@ -117,7 +129,9 @@ class credits_impot(Variable):
                 prlire + quaenv + saldom2)
 
     def formula_2010_01_01(foyer_fiscal, period, parameters):
-        """ Crédits d'impôt pour l'impôt sur les revenus de 2010 """
+        """ 
+        Crédits d'impôt pour l'impôt sur les revenus de 2010 
+        """
         aidper = foyer_fiscal('aidper', period)
         assloy = foyer_fiscal('assloy', period)
         autent = foyer_fiscal('autent', period)
@@ -137,7 +151,9 @@ class credits_impot(Variable):
                 preetu + prlire + quaenv + saldom2)
 
     def formula_2011_01_01(foyer_fiscal, period, parameters):
-        """ Crédits d'impôt pour l'impôt sur les revenus de 2011 """
+        """ 
+        Crédits d'impôt pour l'impôt sur les revenus de 2011 
+        """
         aidper = foyer_fiscal('aidper', period)
         assloy = foyer_fiscal('assloy', period)
         autent = foyer_fiscal('autent', period)
@@ -155,7 +171,9 @@ class credits_impot(Variable):
                 prlire + quaenv + saldom2)
 
     def formula_2012_01_01(foyer_fiscal, period, parameters):
-        """ Crédits d'impôt pour l'impôt sur les revenus de 2012 """
+        """ 
+        Crédits d'impôt pour l'impôt sur les revenus de 2012 
+        """
         aidper = foyer_fiscal('aidper', period)
         assloy = foyer_fiscal('assloy', period)
         autent = foyer_fiscal('autent', period)
@@ -174,7 +192,9 @@ class credits_impot(Variable):
                 preetu + prlire + quaenv + saldom2)
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
-        """ Crédits d'impôt crédités l'impôt sur les revenus de 2013 """
+        """ 
+        Crédits d'impôt pour l'impôt sur les revenus de 2013 
+        """
         aidper = foyer_fiscal('aidper', period)
         assloy = foyer_fiscal('assloy', period)
         autent = foyer_fiscal('autent', period)
@@ -193,7 +213,9 @@ class credits_impot(Variable):
                 preetu + prlire + quaenv + saldom2)
 
     def formula_2014_01_01(foyer_fiscal, period, parameters):
-        """ Crédits d'impôt crédités l'impôt sur les revenus de 2014 à 2016"""
+        """ 
+        Crédits d'impôt pour l'impôt sur les revenus de 2014 à 2016
+        """
         aidper = foyer_fiscal('aidper', period)
         assloy = foyer_fiscal('assloy', period)
         autent = foyer_fiscal('autent', period)
@@ -212,7 +234,9 @@ class credits_impot(Variable):
                 preetu + prlire + quaenv + saldom2)
 
     def formula_2017_01_01(foyer_fiscal, period, parameters):
-        """ Crédits d'impôt crédités l'impôt sur les revenus depuis 2017"""
+        """ 
+        Crédits d'impôt pour l'impôt sur les revenus depuis 2017
+        """
         aidper = foyer_fiscal('aidper', period)
         autent = foyer_fiscal('autent', period)
         ci_garext = foyer_fiscal('ci_garext', period)
