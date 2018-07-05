@@ -2981,12 +2981,12 @@ class duflot(Variable):
 
         return (
             P.taux_m * (
-                min_(P.plafond - invest_domtom_2013, invest_metropole_2013) + 
-                min_(P.plafond - invest_domtom_2014, invest_metropole_2014)
-                ) + 
-            P.taux_om * (
-                min_(P.plafond, invest_domtom_2013) + 
-                min_(P.plafond, invest_domtom_2014)
+                min_(P.plafond - invest_domtom_2013, invest_metropole_2013)
+                + min_(P.plafond - invest_domtom_2014, invest_metropole_2014)
+                ) 
+            + P.taux_om * (
+                min_(P.plafond, invest_domtom_2013)
+                + min_(P.plafond, invest_domtom_2014)
                 )
             ) / 9 + report_reduc_2013 + report_reduc_2014 + report_reduc_2015 + report_reduc_2016
 
