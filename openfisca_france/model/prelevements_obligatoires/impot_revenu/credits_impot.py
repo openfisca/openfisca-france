@@ -212,7 +212,7 @@ class credits_impot(Variable):
                 preetu + prlire + quaenv + saldom2)
 
     def formula_2017_01_01(foyer_fiscal, period, parameters):
-        """ Crédits d'impôt crédités l'impôt sur les revenus de 2014 et + (non vérifié)"""
+        """ Crédits d'impôt crédités l'impôt sur les revenus depuis 2017"""
         aidper = foyer_fiscal('aidper', period)
         autent = foyer_fiscal('autent', period)
         ci_garext = foyer_fiscal('ci_garext', period)
