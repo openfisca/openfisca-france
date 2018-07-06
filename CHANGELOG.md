@@ -1,5 +1,14 @@
 # Changelog
 
+### 21.12.2 [#1030](https://github.com/openfisca/openfisca-france/pull/1031)
+
+* Correction d'un bug
+* Périodes concernées : toutes.
+* Zones impactées :
+  - `prelevements_obligatoires/impot_revenu/reductions_impot`
+* Détails :
+  - Corrige une erreur dans le nom de variable utilisée
+
 ### 21.12.1 [#1030](https://github.com/openfisca/openfisca-france/pull/1030)
 
 * Correction d'un bug
