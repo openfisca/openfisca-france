@@ -6,7 +6,7 @@ then
     exit 0
 fi
 
-if ! $(dirname "$BASH_SOURCE")/detect-functional-changes.sh
+if ! $(dirname "$BASH_SOURCE")/has-functional-changes.sh
 then
     echo "No need for a version update."
     exit 0
@@ -24,7 +24,7 @@ then
     exit 1
 fi
 
-if ! $(dirname "$BASH_SOURCE")/detect-functional-changes.sh | grep --quiet CHANGELOG.md
+if ! $(dirname "$BASH_SOURCE")/has-functional-changes.sh | grep --quiet CHANGELOG.md
 then
     echo "CHANGELOG.md has not been modified, while functional changes were made."
     echo "Explain what you changed before merging this branch into master."
