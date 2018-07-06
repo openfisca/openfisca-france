@@ -2725,7 +2725,7 @@ class domsoc(Variable):
         report_reduc_2012 = fhqj + fhqs + fhqw + fhqx
         report_reduc_2013 = fhra + fhrb + fhrc + fhrd
         report_reduc_2014 = fhxa + fhxb + fhxc + fhxe
-        reduc_invest_2015 = fhxf + fhxg + fhxh + fhxi + fhk
+        reduc_invest_2015 = fhxf + fhxg + fhxh + fhxi + fhxk
 
         return (
             report_reduc_2010
@@ -2773,7 +2773,7 @@ class domsoc(Variable):
         report_reduc_2012 = fhqj + fhqs + fhqw + fhqx
         report_reduc_2013 = fhra + fhrb + fhrc + fhrd
         report_reduc_2014 = fhxa + fhxb + fhxc + fhxe
-        report_reduc_2015 = fhxf + fhxg + fhxh + fhxi + fhk
+        report_reduc_2015 = fhxf + fhxg + fhxh + fhxi + fhxk
         reduc_invest_2016 = fhxl + fhxm + fhxn + fhxo + fhxp
 
         return (
@@ -2823,7 +2823,7 @@ class domsoc(Variable):
         report_reduc_2012 = fhqj + fhqs + fhqw + fhqx
         report_reduc_2013 = fhra + fhrb + fhrc + fhrd
         report_reduc_2014 = fhxa + fhxb + fhxc + fhxe
-        report_reduc_2015 = fhxf + fhxg + fhxh + fhxi + fhk
+        report_reduc_2015 = fhxf + fhxg + fhxh + fhxi + fhxk
         report_reduc_2016 = fhxl + fhxm + fhxn + fhxo + fhxp
         reduc_invest_2017 = fhxq + fhxr + fhxs + fhxt + fhxu
 
