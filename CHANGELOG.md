@@ -1,5 +1,22 @@
 # Changelog
 
+### 21.12.2 [#1032](https://github.com/openfisca/openfisca-france/pull/1032)
+
+* Correction d'un bug dans le script qui détermine le besoin d'un bump de version
+* Zones impactées : .circleci/is-version-number-acceptable.sh b/.circleci/is-version-number-acceptable.sh.
+* Détails :
+  - Le script faisait référence a un autre script qui a été renommé
+  - Changement du path du script pour qu'il soit bien exécuté
+
+### 21.12.2 [#1031](https://github.com/openfisca/openfisca-france/pull/1031)
+
+* Correction d'un bug
+* Périodes concernées : toutes.
+* Zones impactées :
+  - `prelevements_obligatoires/impot_revenu/reductions_impot`
+* Détails :
+  - Corrige une erreur dans le nom de variable utilisée
+
 ### 21.12.1 [#1030](https://github.com/openfisca/openfisca-france/pull/1030)
 
 * Correction d'un bug
