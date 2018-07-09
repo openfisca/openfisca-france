@@ -2,14 +2,12 @@
 
 from openfisca_france.model.base import *  # noqa analysis:ignore
 
-###################################################
 ## PLAN :
 # 1) Gains taxés comme des salaires
 # 2) Autres plus-values (exonérées, au barème, ...)
 # 3) Abattements sur plus-values
 # 4) Plus-values taxées forfaitairement
 # 5) Autres variables
-###################################################
 
 
 # Gains taxés comme des salaires
