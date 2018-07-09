@@ -1,5 +1,6 @@
 # Changelog
 
+
 ## 22.1.0 [#1037](https://github.com/openfisca/openfisca-france/pull/1037)
 
 * Amélioration fonctionnelle
