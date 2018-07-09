@@ -465,7 +465,7 @@ class abattement_salaires_pensions(Variable):
         return min_(abatsalpen.taux * max_(revenu_assimile_salaire_apres_abattements + revenu_assimile_pension_apres_abattements, 0), abatsalpen.max)
 
 
-class retraite_titre_onereux(Variable):
+class rente_viagere_titre_onereux(Variable):
     """Rentes viagères à titre onéreux (avant abattements)
 
     Annuel pour les impôts mais mensuel pour la base ressource des minimas sociaux donc mensuel.
@@ -488,7 +488,7 @@ class retraite_titre_onereux(Variable):
         return (f1aw + f1bw + f1cw + f1dw) / 12
 
 
-class retraite_titre_onereux_net(Variable):
+class rente_viagere_titre_onereux_net(Variable):
     value_type = float
     entity = FoyerFiscal
     label = u"Rentes viagères après abattements"
@@ -521,15 +521,15 @@ class traitements_salaires_pensions_rentes(Variable):
         revenu_assimile_pension_apres_abattements = individu('revenu_assimile_pension_apres_abattements', period)
         abattement_salaires_pensions = individu('abattement_salaires_pensions', period)
 
-        # Quand tspr est calculé sur une année glissante, retraite_titre_onereux_net est calculé sur l'année légale
+        # Quand tspr est calculé sur une année glissante, rente_viagere_titre_onereux_net est calculé sur l'année légale
         # correspondante.
-        retraite_titre_onereux_net = individu.foyer_fiscal('retraite_titre_onereux_net', period.offset('first-of'))
-        retraite_titre_onereux_net_declarant1 = retraite_titre_onereux_net * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
+        rente_viagere_titre_onereux_net = individu.foyer_fiscal('rente_viagere_titre_onereux_net', period.offset('first-of'))
+        rente_viagere_titre_onereux_net_declarant1 = rente_viagere_titre_onereux_net * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
 
         return (
             + revenu_assimile_salaire_apres_abattements
             + revenu_assimile_pension_apres_abattements
-            + retraite_titre_onereux_net_declarant1
+            + rente_viagere_titre_onereux_net_declarant1
             - abattement_salaires_pensions
             )
 
@@ -939,11 +939,11 @@ class csg_deduc_patrimoine_simulated(Variable):
         http://bofip.impots.gouv.fr/bofip/887-PGP
         '''
         rev_cat_rfon = foyer_fiscal('rev_cat_rfon', period)
-        rev_cap_bar = foyer_fiscal('rev_cap_bar', period)
-        retraite_titre_onereux = foyer_fiscal('retraite_titre_onereux', period)
+        revenus_capitaux_prelevement_bareme = foyer_fiscal('revenus_capitaux_prelevement_bareme', period)
+        rente_viagere_titre_onereux = foyer_fiscal('rente_viagere_titre_onereux', period)
         taux = parameters(period).csg.capital.deduc
 
-        patrimoine_deduc = rev_cat_rfon + rev_cap_bar + retraite_titre_onereux
+        patrimoine_deduc = rev_cat_rfon + revenus_capitaux_prelevement_bareme + rente_viagere_titre_onereux
         return taux * patrimoine_deduc
 
 
@@ -1801,7 +1801,7 @@ class rfr(Variable):
         abattement_net_duree_detention = foyer_fiscal('abattement_net_duree_detention', period)
         f2dm = foyer_fiscal('f2dm', period)
         microentreprise = foyer_fiscal('microentreprise', period)
-        rev_cap_lib = foyer_fiscal('rev_cap_lib', period, options = [ADD])
+        revenus_capitaux_prelevement_liberatoire = foyer_fiscal('revenus_capitaux_prelevement_liberatoire', period, options = [ADD])
         rfr_charges_deductibles = foyer_fiscal('rfr_cd', period)
         rfr_plus_values = foyer_fiscal('rfr_plus_values', period)
         rfr_rev_capitaux_mobiliers = foyer_fiscal('rfr_rvcm', period)
@@ -1814,7 +1814,7 @@ class rfr(Variable):
 
         return (
             max_(0, rni)
-            + rfr_charges_deductibles + rfr_plus_values + rfr_rev_capitaux_mobiliers + rev_cap_lib
+            + rfr_charges_deductibles + rfr_plus_values + rfr_rev_capitaux_mobiliers + revenus_capitaux_prelevement_liberatoire
             + rpns_exon + rpns_pvce
             + abattement_net_retraite_dirigeant_pme
             + abattement_net_duree_detention
@@ -1844,7 +1844,7 @@ class glo(Variable):
         return f1tv + f1tw + f1tx + f3vf + f3vi + f3vj
 
 
-class rev_cap_bar(Variable):
+class revenus_capitaux_prelevement_bareme(Variable):
     """Revenus du capital imposés au barème
 
     Annuel pour les impôts mais mensuel pour la base ressource des minimas sociaux donc mensuel.
@@ -1881,7 +1881,7 @@ class rev_cap_bar(Variable):
         # We add f2da an f2ee to allow for comparaison between years
 
 
-class rev_cap_lib(Variable):
+class revenus_capitaux_prelevement_liberatoire(Variable):
     '''Revenu du capital imposé au prélèvement libératoire
 
     Annuel pour les impôts mais mensuel pour la base ressource des minimas sociaux donc mensuel.

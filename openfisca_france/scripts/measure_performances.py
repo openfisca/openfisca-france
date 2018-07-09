@@ -92,7 +92,7 @@ tax_benefit_system = FranceTaxBenefitSystem()
 def test_irpp(year, irpp, **variables_value_by_name):
     simulation = simulations.Simulation(period = periods.period(year), tax_benefit_system = tax_benefit_system,
         debug = args.verbose)
-    famille = simulation.entity_by_key_singular['famille']
+    famille = simulation.entity_by_key_singular['cotisation_employeur_allocations_familiales']
     foyer_fiscal = simulation.entity_by_key_singular['foyer_fiscal']
     individu = simulation.entity_by_key_singular['individu']
     menage = simulation.entity_by_key_singular['menage']

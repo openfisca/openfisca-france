@@ -90,7 +90,7 @@ class cotisations_employeur_non_contributives(Variable):
         accident_du_travail = individu('accident_du_travail', period, options = [ADD])
         allocations_temporaires_invalidite = individu('allocations_temporaires_invalidite', period, options = [ADD])
         contribution_solidarite_autonomie = individu('contribution_solidarite_autonomie', period)
-        famille = individu('famille', period)
+        famille = individu('cotisation_employeur_allocations_familiales', period)
         mmid_employeur = individu('mmid_employeur', period, options = [ADD])
         taxe_salaires = individu('taxe_salaires', period, options = [ADD])
         forfait_social = individu('forfait_social', period, options = [ADD])

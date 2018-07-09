@@ -26,7 +26,7 @@
             <NODE code="penibilite" color="249,208,211" desc="Cotisations de pénibilité du travail" shortname="Pénibilité" />
             <NODE code="accident_du_travail" color="249,208,211" desc="Accident du travail" shortname="Acc. travail" />
             <NODE code="contribution_solidarite_autonomie" color="249,208,211" desc="Contribution solidarite autonomie" shortname="CSA" />
-            <NODE code="famille" color="249,208,211" desc="Famille" shortname="Famille" />
+            <NODE code="cotisation_employeur_allocations_familiales" color="249,208,211" desc="Famille" shortname="Famille" />
             <NODE code="mmid_employeur" color="249,208,211" desc="Maladie (employeur)" shortname="Maladie" />
             <NODE code="taxe_salaires" color="249,208,211" desc="Taxes sur les salaires" shortname="Taxe salaires" />
           </NODE>

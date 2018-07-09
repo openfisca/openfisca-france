@@ -588,10 +588,10 @@ class cotisation_exceptionnelle_temporaire_employeur(Variable):
         return cotisation
 
 
-class famille(Variable):
+class cotisation_employeur_allocations_familiales(Variable):
     value_type = float
     entity = Individu
-    label = u"Cotisation famille (employeur)"
+    label = u"Cotisation employeur pour les allocations familiales (sans contribution des salariés)"
     definition_period = MONTH
 
     def formula(individu, period, parameters):
@@ -601,7 +601,7 @@ class famille(Variable):
             parameters,
             cotisation_type = 'employeur',
             bareme_name = 'famille',
-            variable_name = 'famille',
+            variable_name = 'cotisation_employeur_allocations_familiales',
             )
         return cotisation
 
