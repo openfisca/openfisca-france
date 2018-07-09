@@ -29,6 +29,8 @@ plafonds_de_ressources_que_les_potentiels_personnes_a_charge_autre_que_les_enfan
       value: 6997.0
     2007-07-01:
       value: 9600.0
+    2018-01-01:
+      value: 9609.6
 pourcentage_minimal_de_handicap_pour_les_ascendants_ou_descendants_du_3eme_degre_maximum:
   reference: ipp
   unit: /1
