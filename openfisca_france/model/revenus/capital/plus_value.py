@@ -498,6 +498,26 @@ class f3sk(Variable):
     definition_period = YEAR
 
 
+class f3wi(Variable):
+    cerfa_field = u"3WI"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Plus-values en report d'imposition dont le report a expiré cette année : réalisées du 14.11.2012 au 31.12.2012 et taxables à 24%"
+    # start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+
+class f3wj(Variable):
+    cerfa_field = u"3WJ"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Plus-values en report d'imposition dont le report a expiré cette année : réalisées du 14.11.2012 au 31.12.2012 et taxables à 19%"
+    # start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+
 # Autres variables
 
 class f3vv_end_2010(Variable):
