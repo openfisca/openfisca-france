@@ -128,7 +128,7 @@ class traitement_indiciaire_brut(Variable):
             public_titulaire_etat.inverse().calc(salaire_imposable_pour_inversion)
             )
         # TODO: complete this to deal with the fonctionnaire
-        # supp_familial_traitement = 0  # TODO: dépend de salbrut
+        # supplement_familial_traitement = 0  # TODO: dépend de salbrut
         # indemnite_residence = 0  # TODO: fix bug
         return traitement_indiciaire_brut
 

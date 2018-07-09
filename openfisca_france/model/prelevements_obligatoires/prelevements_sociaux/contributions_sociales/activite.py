@@ -27,7 +27,7 @@ class assiette_csg_abattue(Variable):
         # indemnites_journalieres_maladie = individu('indemnites_journalieres_maladie', period)
         # TODO: mettre à part ?
         indemnite_residence = individu('indemnite_residence', period)
-        supp_familial_traitement = individu('supp_familial_traitement', period)
+        supplement_familial_traitement = individu('supplement_familial_traitement', period)
         hsup = individu('hsup', period)
         remuneration_principale = individu('remuneration_principale', period)
         stage_gratification_reintegration = individu('stage_gratification_reintegration', period)
@@ -41,7 +41,7 @@ class assiette_csg_abattue(Variable):
             + remuneration_principale
             + salaire_de_base
             + stage_gratification_reintegration
-            + supp_familial_traitement
+            + supplement_familial_traitement
             - hsup
             )
 
@@ -198,7 +198,7 @@ class salaire_imposable(Variable):
         primes_salaires = individu('primes_salaires', period)
         primes_fonction_publique = individu('primes_fonction_publique', period)
         indemnite_residence = individu('indemnite_residence', period)
-        supp_familial_traitement = individu('supp_familial_traitement', period)
+        supplement_familial_traitement = individu('supplement_familial_traitement', period)
         csg_deductible_salaire = individu('csg_deductible_salaire', period)
         cotisations_salariales = individu('cotisations_salariales', period)
         remuneration_principale = individu('remuneration_principale', period)
@@ -212,7 +212,7 @@ class salaire_imposable(Variable):
 
         return (
             salaire_de_base + primes_salaires + remuneration_principale +
-            primes_fonction_publique + indemnite_residence + supp_familial_traitement + csg_deductible_salaire +
+            primes_fonction_publique + indemnite_residence + supplement_familial_traitement + csg_deductible_salaire +
             cotisations_salariales - hsup + rev_microsocial_declarant1 + indemnite_fin_contrat + complementaire_sante_salarie
             )
 

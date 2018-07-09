@@ -6,10 +6,15 @@
 * Périodes concernées : toutes.
 * Zones impactées :
   - `prestations/minima_sociaux/aah`
+  - `revenus/activite/salarie`
+  - `fonc.supp_fam`
 * Détails :
   - [Prise en compte du taux d'incapacité dans l'éligibilité au CAAH #1021](https://github.com/openfisca/openfisca-france/pull/1021)
     - Renomme le paramètre `prestations.minima_sociaux.aah.taux_d_incapcite` en `prestations.minima_sociaux.aah.taux_incapacite`
     - Prend en compte le taux d'incapacité dans le calcul de l'éligibilité au CAAH.
+  - [Amélioration de la lisibilité du supplément familial de traitement](https://github.com/openfisca/openfisca-france/pull/1025)
+    - Renomme la variable `supp_familial_traitement` en `supplement_familial_traitement`
+    - Renomme le noeud de l'arbre des paramètres `fonc.supp_fam` en `fonc.supplement_familial`
 
 ### 21.10.11 [#1020](https://github.com/openfisca/openfisca-france/pull/1020)
 

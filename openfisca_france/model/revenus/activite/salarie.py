@@ -790,7 +790,7 @@ class af_nbenf_fonc(Variable):
     def formula(famille, period, parameters):
         """
             Cette variable est une version légèrement modifiée de `af_nbenf`. Elle se base sur le salaire de base, tandis que `af_nbenf` se base sur le salaire net.
-            On ne peut pas utiliser la variable `af_nbenf` dans le calcul de `supp_familial_traitement` (ci-dessous) car `af_nbenf` dépend du `salaire_net`, et `salaire_net` dépends de `supp_familial_traitement`. Cela créerait une boucle infinie.
+            On ne peut pas utiliser la variable `af_nbenf` dans le calcul de `supplement_familial_traitement` (ci-dessous) car `af_nbenf` dépend du `salaire_net`, et `salaire_net` dépends de `supplement_familial_traitement`. Cela créerait une boucle infinie.
             D'où l'introduction de cette variable alternative.
         """
 
@@ -811,7 +811,7 @@ class af_nbenf_fonc(Variable):
         return famille.sum(condition_enfant, role = Famille.ENFANT)
 
 
-class supp_familial_traitement(Variable):
+class supplement_familial_traitement(Variable):
     value_type = float
     entity = Individu
     label = u"Supplément familial de traitement"
@@ -826,7 +826,7 @@ class supp_familial_traitement(Variable):
 
         fonc_nbenf = individu.famille('af_nbenf_fonc', period) * individu.has_role(Famille.DEMANDEUR)
 
-        P = _P.fonc.supp_fam
+        P = _P.fonc.supplement_familial
         part_fixe_1 = P.fixe.enf1
         part_fixe_2 = P.fixe.enf2
         part_fixe_supp = P.fixe.enfsupp
@@ -963,7 +963,7 @@ class salaire_super_brut_hors_allegements(Variable):
 
         primes_fonction_publique = individu('primes_fonction_publique', period, options = [ADD])
         indemnite_residence = individu('indemnite_residence', period, options = [ADD])
-        supp_familial_traitement = individu('supp_familial_traitement', period, options = [ADD])
+        supplement_familial_traitement = individu('supplement_familial_traitement', period, options = [ADD])
         cotisations_employeur = individu('cotisations_employeur', period)
         depense_cantine_titre_restaurant_employeur = individu(
             'depense_cantine_titre_restaurant_employeur', period)
@@ -972,7 +972,7 @@ class salaire_super_brut_hors_allegements(Variable):
         indemnite_fin_contrat = individu('indemnite_fin_contrat', period)
         salaire_super_brut_hors_allegements = (
             salaire_de_base + remuneration_principale + remuneration_apprenti +
-            primes_fonction_publique + indemnite_residence + supp_familial_traitement + indemnite_fin_contrat +
+            primes_fonction_publique + indemnite_residence + supplement_familial_traitement + indemnite_fin_contrat +
             depense_cantine_titre_restaurant_employeur - reintegration_titre_restaurant_employeur -
             cotisations_employeur
             )
