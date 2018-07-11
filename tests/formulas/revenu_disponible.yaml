@@ -90,9 +90,9 @@
     pensions:
       2012: 0
     # start revenus_du_capital
-    rev_cap_bar:
+    revenus_capitaux_prelevement_bareme:
       2012-01: 0
-    rev_cap_lib:
+    revenus_capitaux_prelevement_liberatoire:
       2012-01: 1500
     cotsoc_lib:
     # TODO si haut je pensais plutôt à 15.5 ?
@@ -141,9 +141,9 @@
     pensions:
       2012: 0
     # start revenus_du_capital
-    rev_cap_bar:
+    revenus_capitaux_prelevement_bareme:
       2012-01: 2500
-    rev_cap_lib:
+    revenus_capitaux_prelevement_liberatoire:
       2012-01: 0
     cotsoc_lib:
       2012: 0
