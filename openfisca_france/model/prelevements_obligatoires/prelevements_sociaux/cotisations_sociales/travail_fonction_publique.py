@@ -253,7 +253,7 @@ class rafp_salarie(Variable):
         traitement_indiciaire_brut = individu('traitement_indiciaire_brut', period)
         categorie_salarie = individu('categorie_salarie', period)
         primes_fonction_publique = individu('primes_fonction_publique', period)
-        supp_familial_traitement = individu('supp_familial_traitement', period)
+        supplement_familial_traitement = individu('supplement_familial_traitement', period)
         indemnite_residence = individu('indemnite_residence', period)
         _P = parameters(period)
 
@@ -262,7 +262,7 @@ class rafp_salarie(Variable):
                      + (categorie_salarie == TypesCategorieSalarie.public_titulaire_hospitaliere))
 
         plaf_ass = _P.cotsoc.sal.fonc.etat.rafp_plaf_assiette
-        base_imposable = primes_fonction_publique + supp_familial_traitement + indemnite_residence
+        base_imposable = primes_fonction_publique + supplement_familial_traitement + indemnite_residence
         assiette = min_(base_imposable, plaf_ass * traitement_indiciaire_brut * eligible)
         # Même régime pour les fonctions publiques d'Etat et des collectivité locales
         rafp_salarie = eligible * _P.cotsoc.cotisations_salarie.public_titulaire_etat['rafp'].calc(assiette)
@@ -280,7 +280,7 @@ class rafp_employeur(Variable):
         traitement_indiciaire_brut = individu('traitement_indiciaire_brut', period)
         categorie_salarie = individu('categorie_salarie', period)
         primes_fonction_publique = individu('primes_fonction_publique', period)
-        supp_familial_traitement = individu('supp_familial_traitement', period)
+        supplement_familial_traitement = individu('supplement_familial_traitement', period)
         indemnite_residence = individu('indemnite_residence', period)
         _P = parameters(period)
 
@@ -290,7 +290,7 @@ class rafp_employeur(Variable):
             (categorie_salarie == TypesCategorieSalarie.public_titulaire_hospitaliere)
             )
         plaf_ass = _P.cotsoc.sal.fonc.etat.rafp_plaf_assiette
-        base_imposable = primes_fonction_publique + supp_familial_traitement + indemnite_residence
+        base_imposable = primes_fonction_publique + supplement_familial_traitement + indemnite_residence
         assiette = min_(base_imposable, plaf_ass * traitement_indiciaire_brut * eligible)
         bareme_rafp = _P.cotsoc.cotisations_employeur.public_titulaire_etat['rafp']
         rafp_employeur = eligible * bareme_rafp.calc(assiette)

@@ -122,10 +122,10 @@ class rev_coll(Variable):
     definition_period = YEAR
 
     def formula(foyer_fiscal, period):
-        # Quand rev_coll est calculé sur une année glissante, retraite_titre_onereux_net et pensions_alimentaires_versees sont calculés sur l'année légale correspondante.
-        retraite_titre_onereux_net = foyer_fiscal('retraite_titre_onereux_net', period)
+        # Quand rev_coll est calculé sur une année glissante, rente_viagere_titre_onereux_net et pensions_alimentaires_versees sont calculés sur l'année légale correspondante.
+        rente_viagere_titre_onereux_net = foyer_fiscal('rente_viagere_titre_onereux_net', period)
         pensions_alimentaires_versees = foyer_fiscal('pensions_alimentaires_versees', period)
-        rev_cap_lib = foyer_fiscal('rev_cap_lib', period, options = [ADD])
+        revenus_capitaux_prelevement_liberatoire = foyer_fiscal('revenus_capitaux_prelevement_liberatoire', period, options = [ADD])
         rev_cat_rvcm = foyer_fiscal('rev_cat_rvcm', period)
         abat_spe = foyer_fiscal('abat_spe', period)
         fon = foyer_fiscal('fon', period)
@@ -138,8 +138,8 @@ class rev_coll(Variable):
         return (
             + fon
             + pensions_alimentaires_versees  # négatif
-            + retraite_titre_onereux_net
-            + rev_cap_lib
+            + rente_viagere_titre_onereux_net
+            + revenus_capitaux_prelevement_liberatoire
             + rev_cat_pv
             + rev_cat_rvcm
             - abat_spe
