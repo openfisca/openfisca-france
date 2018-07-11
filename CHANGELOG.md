@@ -1,5 +1,14 @@
 # Changelog
 
+### 22.0.1 [#1036](https://github.com/openfisca/openfisca-france/pull/1036)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2017.
+* Zones impactées :
+  - `prestations/logement_social`
+* Détails :
+  - Fait commencer la variable `logement_social_eligible` au 01/01/2017
+
 ### 22.0.0 [#102](https://github.com/openfisca/openfisca-france/pull/1026)
 
 * Évolution du système socio-fiscal.
