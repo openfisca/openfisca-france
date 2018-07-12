@@ -334,29 +334,22 @@ class revenus_capitaux_prelevement_liberatoire(Variable):
     definition_period = MONTH
 
     def formula_2002_01_01(foyer_fiscal, period, parameters):
-        year = period.this_year
-        f2dh = foyer_fiscal('f2dh', year)
-        f2ee = foyer_fiscal('f2ee', year)
-        finpfl = parameters(period).impot_revenu.autre.finpfl
+        f2dh = foyer_fiscal('f2dh', period.this_year)
+        f2ee = foyer_fiscal('f2ee', period.this_year)
 
-        out = f2dh + f2ee
-        return out * not_(finpfl) / 12
+        return (f2dh + f2ee) / 12
 
     def formula_2008_01_01(foyer_fiscal, period, parameters):
-        year = period.this_year
-        f2da = foyer_fiscal('f2da', year)
-        f2dh = foyer_fiscal('f2dh', year)
-        f2ee = foyer_fiscal('f2ee', year)
-        finpfl = parameters(period).impot_revenu.autre.finpfl
-
-        out = f2da + f2dh + f2ee
-        return out * not_(finpfl) / 12
+        f2da = foyer_fiscal('f2da', period.this_year)
+        f2dh = foyer_fiscal('f2dh', period.this_year)
+        f2ee = foyer_fiscal('f2ee', period.this_year)
+        
+        return (f2da + f2dh + f2ee) / 12
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
-        year = period.this_year
-        f2dh = foyer_fiscal('f2dh', year)
-        f2ee = foyer_fiscal('f2ee', year)
-        f2fa = foyer_fiscal('f2fa', year)
+        f2dh = foyer_fiscal('f2dh', period.this_year)
+        f2ee = foyer_fiscal('f2ee', period.this_year)
+        f2fa = foyer_fiscal('f2fa', period.this_year)
 
         return (f2dh + f2ee + f2fa) / 12
 
