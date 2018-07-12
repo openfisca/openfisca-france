@@ -1,5 +1,22 @@
 # Changelog
 
+## 22.1.0 [#1037](https://github.com/openfisca/openfisca-france/pull/1037)
+
+* Amélioration fonctionnelle
+* Périodes concernées : toutes.
+* Zones impactées : `chemin/vers/le/fichier/contenant/les/variables/impactées`.
+* Détails :
+  - Création d'une réforme qui adapte la législation pour les simulateurs
+
+### 22.0.1 [#1036](https://github.com/openfisca/openfisca-france/pull/1036)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2017.
+* Zones impactées :
+  - `prestations/logement_social`
+* Détails :
+  - Fait commencer la variable `logement_social_eligible` au 01/01/2017
+
 ### 22.0.0 [#102](https://github.com/openfisca/openfisca-france/pull/1026)
 
 * Évolution du système socio-fiscal.

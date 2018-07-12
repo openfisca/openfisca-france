@@ -164,7 +164,7 @@ class logement_social_eligible(Variable):
     definition_period = MONTH
     label = u"Logement social - Éligibilité"
 
-    def formula(famille, period, parameters):
+    def formula_2017(famille, period, parameters):
 
         logement_social_plafond_ressources = famille('logement_social_plafond_ressources', period)
         revenu_fiscal_de_reference = famille.demandeur.foyer_fiscal('rfr', period.n_2)
