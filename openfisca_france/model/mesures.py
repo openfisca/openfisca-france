@@ -147,7 +147,7 @@ class revenu_primaire(Variable):
         cotisations_employeur = individu('cotisations_employeur', period)
         cotisations_salariales = individu('cotisations_salariales', period)
 
-        return revenus_nets_du_travail + revenus_nets_du_capital - cotisations_employeur - cotisations_salariales - chomage_imposable
+        return revenus_nets_du_travail + revenus_nets_du_capital - cotisations_employeur - cotisations_salariales
 
 
 class revenus_nets_du_travail(Variable):
