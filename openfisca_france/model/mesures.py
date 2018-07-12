@@ -135,52 +135,6 @@ class niveau_de_vie_net(Variable):
         return revenu_net / uc
 
 
-class revenu_initial_individu(Variable):
-    value_type = float
-    entity = Individu
-    label = u"Revenu initial de l'individu"
-    definition_period = YEAR
-
-    def formula(individu, period):
-        cotisations_employeur_contributives = individu('cotisations_employeur_contributives', period)
-        cotisations_salariales_contributives = individu('cotisations_salariales_contributives', period)
-        pensions_nettes = individu('pensions_nettes', period)
-        revenus_nets_du_capital = individu('revenus_nets_du_capital', period)
-        revenus_nets_du_travail = individu('revenus_nets_du_travail', period)
-
-        return (
-            revenus_nets_du_travail
-            + pensions_nettes
-            + revenus_nets_du_capital
-            - cotisations_employeur_contributives
-            - cotisations_salariales_contributives
-            )
-
-
-class revenu_initial(Variable):
-    entity = Menage
-    label = u"Revenu initial du ménage"
-    value_type = float
-    definition_period = YEAR
-
-    def formula(menage, period):
-        revenu_initial_individus = menage.members('revenu_initial_individu', period)
-        return menage.sum(revenu_initial_individus)
-
-
-class niveau_de_vie_initial(Variable):
-    value_type = float
-    entity = Menage
-    label = u"Niveau de vie initial du ménage"
-    definition_period = YEAR
-
-    def formula(menage, period):
-        revenu_initial = menage('revenu_initial', period)
-        uc = menage('unites_consommation', period)
-
-        return revenu_initial / uc
-
-
 class revenu_primaire(Variable):
     value_type = float
     entity = Menage
