@@ -28,7 +28,7 @@
     gar_dom: 0
   foyers_fiscaux:
     declarants: ["parent1"]
-    personnes_a_charge: ["enfant1"]  
+    personnes_a_charge: ["enfant1"]
   menages:
     personne_de_reference: "parent1"
     enfants: ["enfant1"]

@@ -1,187 +1,187 @@
 description: Projet de loi de financement de la sécurité sociale rectificative 2014
-exonerations_bas_salaires: 
+exonerations_bas_salaires:
   description: Exonérations de cotisations salariées sur les bas salaires
-  prive: 
+  prive:
     description: Salariés du secteur privé
-    taux: 
+    taux:
       description: Taux
       unit: /1
-      values: 
+      values:
         '2015-01-01':
           value: null
         '2014-01-01':
           value: 0.03
-    seuil: 
+    seuil:
       description: Seuil (en SMIC)
       unit: /1
-      values: 
+      values:
         '2015-01-01':
           value: null
         '2014-01-01':
           value: 1.3
-  public: 
+  public:
     description: Salariés du secteur public
-    taux_1: 
+    taux_1:
       description: Taux
       unit: /1
-      values: 
+      values:
         '2015-01-01':
           value: null
         '2014-01-01':
           value: 0.02
-    seuil_1: 
+    seuil_1:
       description: Indice majoré plafond
-      values: 
+      values:
         '2015-01-01':
           value: null
         '2014-01-01':
           value: 312
-    taux_2: 
+    taux_2:
       description: Taux
       unit: /1
-      values: 
+      values:
         '2015-01-01':
           value: null
         '2014-01-01':
           value: 0.018
-    seuil_2: 
+    seuil_2:
       description: Indice majoré plafond
-      values: 
+      values:
         '2015-01-01':
           value: null
         '2014-01-01':
           value: 328
-    taux_3: 
+    taux_3:
       description: Taux
       unit: /1
-      values: 
+      values:
         '2015-01-01':
           value: null
         '2014-01-01':
           value: 0.016
-    seuil_3: 
+    seuil_3:
       description: Indice majoré plafond
-      values: 
+      values:
         '2015-01-01':
           value: null
         '2014-01-01':
           value: 343
-    taux_4: 
+    taux_4:
       description: Taux
       unit: /1
-      values: 
+      values:
         '2015-01-01':
           value: null
         '2014-01-01':
           value: 0.014
-    seuil_4: 
+    seuil_4:
       description: Indice majoré plafond
-      values: 
+      values:
         '2015-01-01':
           value: null
         '2014-01-01':
           value: 359
-    taux_5: 
+    taux_5:
       description: Taux
       unit: /1
-      values: 
+      values:
         '2015-01-01':
           value: null
         '2014-01-01':
           value: 0.012
-    seuil_5: 
+    seuil_5:
       description: Indice majoré plafond
-      values: 
+      values:
         '2015-01-01':
           value: null
         '2014-01-01':
           value: 375
-    taux_6: 
+    taux_6:
       description: Taux
       unit: /1
-      values: 
+      values:
         '2015-01-01':
           value: null
         '2014-01-01':
           value: 0.01
-    seuil_6: 
+    seuil_6:
       description: Indice majoré plafond
-      values: 
+      values:
         '2015-01-01':
           value: null
         '2014-01-01':
           value: 390
-    taux_7: 
+    taux_7:
       description: Taux
       unit: /1
-      values: 
+      values:
         '2015-01-01':
           value: null
         '2014-01-01':
           value: 0.008
-    seuil_7: 
+    seuil_7:
       description: Indice majoré plafond
-      values: 
+      values:
         '2015-01-01':
           value: null
         '2014-01-01':
           value: 406
-    taux_8: 
+    taux_8:
       description: Taux
       unit: /1
-      values: 
+      values:
         '2015-01-01':
           value: null
         '2014-01-01':
           value: 0.007
-    seuil_8: 
+    seuil_8:
       description: Indice majoré plafond
-      values: 
+      values:
         '2015-01-01':
           value: null
         '2014-01-01':
           value: 421
-    taux_9: 
+    taux_9:
       description: Taux
       unit: /1
-      values: 
+      values:
         '2015-01-01':
           value: null
         '2014-01-01':
           value: 0.006
-    seuil_9: 
+    seuil_9:
       description: Indice majoré plafond
-      values: 
+      values:
         '2015-01-01':
           value: null
         '2014-01-01':
           value: 437
-    taux_10: 
+    taux_10:
       description: Taux
       unit: /1
-      values: 
+      values:
         '2015-01-01':
           value: null
         '2014-01-01':
           value: 0.005
-    seuil_10: 
+    seuil_10:
       description: Indice majoré plafond
-      values: 
+      values:
         '2015-01-01':
           value: null
         '2014-01-01':
           value: 453
-    taux_11: 
+    taux_11:
       description: Taux
       unit: /1
-      values: 
+      values:
         '2015-01-01':
           value: null
         '2014-01-01':
           value: 0.002
-    seuil_11: 
+    seuil_11:
       description: Indice majoré plafond
-      values: 
+      values:
         '2015-01-01':
           value: null
         '2014-01-01':

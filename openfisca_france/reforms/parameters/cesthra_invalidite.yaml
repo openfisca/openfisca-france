@@ -1,14 +1,14 @@
 description: Contribution execptionnelle sur les très hauts revenus d'activité
 seuil:
   description: Seuil
-  values: 
+  values:
     '2014-01-01':
       value: null
     '2012-01-01':
       value: 1000000
-taux: 
+taux:
   description: Taux
-  values: 
+  values:
     '2014-01-01':
       value: null
     '2012-01-01':

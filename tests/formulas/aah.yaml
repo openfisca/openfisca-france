@@ -303,7 +303,7 @@
       2018-02: 2000
       2018-01: 2000
       2017-12: 2000
-    tns_autres_revenus: 
+    tns_autres_revenus:
       year:2018: 200
   output_variables:
     aah: 0

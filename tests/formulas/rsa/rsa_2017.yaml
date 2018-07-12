@@ -58,7 +58,7 @@
   relative_error_margin: 0.01
   individus:
     - id: 1
-      age: 
+      age:
         2017-01: 40
         2016-12: 40
         2016-11: 40
