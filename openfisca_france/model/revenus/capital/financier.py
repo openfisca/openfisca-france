@@ -307,9 +307,9 @@ class revenus_capitaux_prelevement_bareme(Variable):
         f2da = foyer_fiscal('f2da', year)
         f2ee = foyer_fiscal('f2ee', year)
         finpfl = parameters(period).impot_revenu.autre.finpfl  # TODO remove ad check case
-        majGO = parameters(period).impot_revenu.rvcm.majGO
+        majoration_revenus_reputes_distribues = parameters(period).impot_revenu.rvcm.majoration_revenus_reputes_distribues
 
-        return (f2dc + f2gr + f2ch + f2ts + f2go * majGO + f2tr + f2fu - avf + (f2da + f2ee) * finpfl) / 12
+        return (f2dc + f2gr + f2ch + f2ts + f2go * majoration_revenus_reputes_distribues + f2tr + f2fu - avf + (f2da + f2ee) * finpfl) / 12
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
         year = period.this_year
@@ -320,9 +320,9 @@ class revenus_capitaux_prelevement_bareme(Variable):
         f2tr = foyer_fiscal('f2tr', year)
         f2fu = foyer_fiscal('f2fu', year)
         avf = foyer_fiscal('avf', year)
-        majGO = parameters(period).impot_revenu.rvcm.majGO
+        majoration_revenus_reputes_distribues = parameters(period).impot_revenu.rvcm.majoration_revenus_reputes_distribues
 
-        return (f2dc + f2ch + f2ts + f2go * majGO + f2tr + f2fu - avf) / 12
+        return (f2dc + f2ch + f2ts + f2go * majoration_revenus_reputes_distribues + f2tr + f2fu - avf) / 12
 
 
 class revenus_capitaux_prelevement_liberatoire(Variable):

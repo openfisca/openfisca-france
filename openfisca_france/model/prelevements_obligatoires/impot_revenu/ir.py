@@ -640,7 +640,7 @@ class rev_cat_rvcm(Variable):
 
         # Part des frais s'imputant sur les revenus déclarés ligne TS
         F2 = f2ca - F1
-        TOT3 = (f2ts - F2) + f2go * rvcm.majGO + f2tr_bis - g12a
+        TOT3 = (f2ts - F2) + f2go * rvcm.majoration_revenus_reputes_distribues + f2tr_bis - g12a
 
         DEF = deficit_rcm
         return max_(TOT1 + TOT2 + TOT3 - DEF, 0)
@@ -689,7 +689,7 @@ class rev_cat_rvcm(Variable):
 
         # Part des frais s'imputant sur les revenus déclarés ligne TS
         F2 = f2ca - F1
-        TOT3 = (f2ts - F2) + f2go * rvcm.majGO + f2tr_bis - g12a
+        TOT3 = (f2ts - F2) + f2go * rvcm.majoration_revenus_reputes_distribues + f2tr_bis - g12a
 
         DEF = deficit_rcm
         return max_(TOT1 + TOT2 + TOT3 - DEF, 0)
@@ -715,7 +715,7 @@ class rev_cat_rvcm(Variable):
         rvcm_apres_abattement = (
             f2fu + f2dc - abattement_dividende
             + f2ch - min_(f2ch, abattement_assurance_vie)
-            + f2ts + f2tr + f2go * P.majGO
+            + f2ts + f2tr + f2go * P.majoration_revenus_reputes_distribues
         )
 
         # Revenus après déductions des frais (année courante et reports)
@@ -746,7 +746,7 @@ class rev_cat_rvcm(Variable):
         rvcm_apres_abattement = (
             f2fu + f2dc - abattement_dividende
             + f2ch - min_(f2ch, abattement_assurance_vie)
-            + f2ts + f2tr + max_(0, f2tt - f2tu) + f2go * P.majGO
+            + f2ts + f2tr + max_(0, f2tt - f2tu) + f2go * P.majoration_revenus_reputes_distribues
         )
 
         # Revenus après déductions des frais (année courante et reports)
