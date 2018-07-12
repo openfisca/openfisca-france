@@ -309,13 +309,7 @@ class revenus_capitaux_prelevement_bareme(Variable):
         finpfl = parameters(period).impot_revenu.autre.finpfl  # TODO remove ad check case
         majGO = parameters(period).impot_revenu.rvcm.majGO
 
-        # year = period.start.year
-        # if year <= 2011:
-        #     return f2dc + f2gr + f2ch + f2ts + f2go + f2tr + f2fu - avf
-        # elif year > 2011:
-        #     return f2dc + f2gr + f2ch + f2ts + f2go + f2tr + f2fu - avf + (f2da + f2ee)
         return (f2dc + f2gr + f2ch + f2ts + f2go * majGO + f2tr + f2fu - avf + (f2da + f2ee) * finpfl) / 12
-        # We add f2da an f2ee to allow for comparaison between years
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
         year = period.this_year
