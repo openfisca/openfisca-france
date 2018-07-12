@@ -857,7 +857,7 @@ class rfr_rvcm(Variable):
 
         abattement_dividende = (f2fu + f2dc) * P.taux_abattement_capitaux_mobiliers
         abattement_assurance_vie =  min_(f2ch, P.abat_assvie * (1 + maries_ou_pacses))
-        
+
         return abattement_dividende + abattement_assurance_vie
 
 class rev_cat_rfon(Variable):
@@ -1654,7 +1654,7 @@ class plus_values(Variable):
         f3sf = foyer_fiscal.conjoint('f3vf', period)
         #  TODO: remove this todo use sum for all fields after checking
             # revenus taxés à un taux proportionnel
-        
+
         return round_(
             plus_values.pvce * rpns_pvce
             + plus_values.taux1 * max_(0, f3vg - f3vh)
@@ -1731,7 +1731,7 @@ class plus_values(Variable):
             + plus_values.taux_plus_values_bspce * f3sj
             + plus_values.taux_plus_values_bspce_conditionnel * f3sk
             )
-    
+
     def formula_2016_01_01(foyer_fiscal, period, parameters):
         """
         Taxation des plus values (hors bareme)
@@ -1927,20 +1927,25 @@ class cehr(Variable):
 class irpp(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = u"Impôt sur le revenu des personnes physiques"
+    label = u"Impôt sur le revenu des personnes physiques restant à payer, après prise en compte des éventuels acomptes"
     reference = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_impot_revenu&espId=1&impot=IR&sfid=50"
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
         '''
         Montant après seuil de recouvrement (hors ppe)
+        NB : ce montant l'impôt correspond à une notion administrative :
+        dans certains cas, il existe des prélèvements à la source faisant
+        office d'acomptes d'impôt sur le revenu (cf. variable acomptes_irpp). Ces acomptes sont comptabilisés
+        dans la feuille d'impôt comme des crédits d'impôt, mais correspondent économiquement à des montants d'impôt dus.
         '''
         iai = foyer_fiscal('iai', period)
         credits_impot = foyer_fiscal('credits_impot', period)
+        acomptes_irpp = foyer_fiscal('acomptes_irpp', period)
         cehr = foyer_fiscal('cehr', period)
         P = parameters(period).impot_revenu.recouvrement
 
-        pre_result = iai - credits_impot + cehr
+        pre_result = iai - credits_impot - acomptes_irpp + cehr
 
         return (
             (iai > P.seuil) * (
@@ -1950,6 +1955,23 @@ class irpp(Variable):
             (iai <= P.seuil) * (
                 (pre_result < 0) * (-pre_result) + (pre_result >= 0) * 0 * iai)
             )
+
+class irpp_eco(Variable):
+    value_type = float
+    entity = FoyerFiscal
+    label = u"Notion économique de l'IRPP"
+    definition_period = YEAR
+
+    def formula(foyer_fiscal, period, parameters):
+        '''
+        Cette variable d'IRPP comptabilise dans les montants
+        d'imposition les acomptes considérés comme des crédits
+        d'impôt sur la déclaration fiscale
+        '''
+        irpp = foyer_fiscal('irpp', period)
+        acomptes_irpp = foyer_fiscal('acomptes_irpp', period)
+
+        return irpp - acomptes_irpp # Car par convention, irpp est un montant négatif et acomptes_irpp un montant positif
 
 
 class foyer_impose(Variable):
@@ -2082,8 +2104,8 @@ class avoirs_credits_fiscaux(Variable):
 class imp_lib(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = u"Prelèvement libératoire sur les revenus du capital"
-    reference = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&paf_dm=popup&paf_gm=content&typePage=cpr02&sfid=501&espId=1&impot=CS"
+    label = u"Prelèvement forfaitaire libératoire sur les revenus du capital"
+    reference = "https://fr.wikipedia.org/wiki/Pr%C3%A9l%C3%A8vement_forfaitaire_lib%C3%A9ratoire"
     definition_period = YEAR
     end = '2012-12-31'
 
