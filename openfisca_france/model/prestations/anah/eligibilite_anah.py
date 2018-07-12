@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+from numpy.core.defchararray import startswith
 from openfisca_france.model.base import *  # noqa analysis:ignore
 
 
@@ -19,12 +20,10 @@ class eligibilite_anah(Variable):
     definition_period = YEAR
 
     def formula(menage, period):
-        # depcom est le code INSEE de la localité, les deux premiers chiffres sont le département
-        # le reste de la division entière par 1000 donne ces deux chiffres sans manipulation de chaînes
-        departement = menage('depcom', period.first_month).astype(int) / 1000
+        depcom = menage('depcom', period.first_month)
 
-        departements_idf = [75, 77, 78, 91, 92, 93, 94, 95]
-        in_idf = sum([departement == departement_idf for departement_idf in departements_idf])
+        departements_idf = [b'75', b'77', b'78', b'91', b'92', b'93', b'94', b'95']
+        in_idf = sum([startswith(depcom, departement_idf) for departement_idf in departements_idf])
 
         rfr_declarants_principaux_du_menage = menage.members.has_role(FoyerFiscal.DECLARANT_PRINCIPAL) * menage.members.foyer_fiscal('rfr', period.n_2)
         rfr = menage.sum(rfr_declarants_principaux_du_menage)
