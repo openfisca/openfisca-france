@@ -4295,7 +4295,7 @@ class locmeu(Variable):
         report_reduc_invest_2016 = f7op + f7oq + f7or + f7os + f7ot
 
         report_reduc_invest_anterieur = (
-            report_reduc_invest_2010_2011
+            report_reduc_invest_2009_2010
             + report_reduc_invest_2011
             + report_reduc_invest_2012
             + report_reduc_invest_2013
@@ -4834,6 +4834,11 @@ class rpinel(Variable):
         f7qn = foyer_fiscal('f7qn', period)
         f7qo = foyer_fiscal('f7qo', period)
         f7qp = foyer_fiscal('f7qp', period)
+        f7qz = foyer_fiscal('f7qz', period)
+        f7rz = foyer_fiscal('f7rz', period)
+        f7sz = foyer_fiscal('f7sz', period)
+        f7tz = foyer_fiscal('f7tz', period)
+
         P = parameters(period).impot_revenu.reductions_impots.rpinel
 
         max1 = max_(0, P.seuil - invest_domtom_2014 - f7qd) # 2014 : plafond commun 'duflot' et 'rpinel'
@@ -4862,9 +4867,9 @@ class rpinel(Variable):
                 P.taux23 * min_(max_(0, P.seuil - f7qp), f7qo) / 6 +
                 P.taux18 * min_(max_(0, P.seuil - f7qp - f7qo), f7qn) / 9 +
                 P.taux12 * min_(max_(0, P.seuil - f7qp - f7qo - f7qn), f7qm) / 6)
-    
+
         report = f7ai + f7bi + f7ci + f7di + f7bz + f7cz + f7dz + f7ez + f7qz + f7rz + f7sz + f7tz
-        
+
         return (
             reduc_invest_real_2014 
             + reduc_invest_real_2015 
