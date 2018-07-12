@@ -34,8 +34,8 @@ jobs:
       - run:
           name: Run tests
           command: |
-            nosetests `circleci tests glob tests/**/*.py | circleci tests split`
-            openfisca-run-test `circleci tests glob tests/**/*.{yaml,yml} | circleci tests split`
+            nosetests `circleci tests glob "tests/**/*.py" | circleci tests split`
+            openfisca-run-test `circleci tests glob "tests/**/*.{yaml,yml}" | circleci tests split`
 
       - run:
           name: Check version number has been properly updated
@@ -107,8 +107,8 @@ jobs:
       - run:
           name: Run tests
           command: |
-            nosetests `circleci tests glob tests/**/*.py | circleci tests split`
-            openfisca-run-test `circleci tests glob tests/**/*.{yaml,yml} | circleci tests split`
+            nosetests `circleci tests glob "tests/**/*.py" | circleci tests split`
+            openfisca-run-test `circleci tests glob "tests/**/*.{yaml,yml}" | circleci tests split`
 
       - run:
           name: Check version number has been properly updated
