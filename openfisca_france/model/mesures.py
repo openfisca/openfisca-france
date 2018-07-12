@@ -330,15 +330,14 @@ class impots_directs(Variable):
         taxe_habitation = menage('taxe_habitation', period)
 
         # On projette comme pour PPE dans revenu_disponible
-        irpp_i = menage.members.foyer_fiscal('irpp', period)
-        irpp = menage.sum(irpp_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
+        irpp_eco_i = menage.members.foyer_fiscal('irpp_eco', period)
+        irpp_eco = menage.sum(irpp_eco_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
 
         # On projette comme pour PPE dans revenu_disponible
         imp_lib_i = menage.members.foyer_fiscal('imp_lib', period)
         imp_lib = menage.sum(imp_lib_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
 
         return irpp + taxe_habitation +  imp_lib
-
 
 class crds(Variable):
     value_type = float
