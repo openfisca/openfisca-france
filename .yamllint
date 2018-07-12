@@ -1,3 +1,5 @@
 ---
+extends: relaxed
+
 rules:
-  new-line-at-end-of-file: enable
+  truthy: enable
