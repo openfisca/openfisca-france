@@ -2004,7 +2004,7 @@ class glo(Variable):
         return f3vf + f3vi + f3vj
 
 
-class avf(Variable):
+class avoirs_credits_fiscaux(Variable):
     value_type = float
     entity = FoyerFiscal
     label = u"Avoir fiscal et crédits d'impôt"
