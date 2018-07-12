@@ -109,7 +109,7 @@ class f2tu(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Pertes en capital sur prêts participatifs"
+    label = u"Pertes en capital sur prêts participatifs en 2016"
     # start_date = date(2016, 1, 1)
     definition_period = YEAR
 
@@ -118,7 +118,7 @@ class f2tv(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Pertes en capital sur prêts participatifs"
+    label = u"Pertes en capital sur prêts participatifs en 2017"
     # start_date = date(2017, 1, 1)
     definition_period = YEAR
 
