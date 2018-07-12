@@ -57,12 +57,12 @@ class revenu_disponible(Variable):
     definition_period = YEAR
 
     def formula(menage, period, parameters):
-        pensions_i = menage.members('pensions', period)
-        revenus_du_capital_i = menage.members('revenus_du_capital', period)
-        revenus_du_travail_i = menage.members('revenus_du_travail', period)
-        pensions = menage.sum(pensions_i)
-        revenus_du_capital = menage.sum(revenus_du_capital_i)
-        revenus_du_travail = menage.sum(revenus_du_travail_i)
+        pensions_nettes_i = menage.members('pensions_nettes', period)
+        revenus_nets_du_capital_i = menage.members('revenus_nets_du_capital', period)
+        revenus_nets_du_travail_i = menage.members('revenus_nets_du_travail', period)
+        pensions_nettes = menage.sum(pensions_nettes_i)
+        revenus_nets_du_capital = menage.sum(revenus_nets_du_capital_i)
+        revenus_nets_du_travail = menage.sum(revenus_nets_du_travail_i)
 
         impots_directs = menage('impots_directs', period)
 
@@ -75,12 +75,12 @@ class revenu_disponible(Variable):
         prestations_sociales = menage.sum(prestations_sociales_i, role = Famille.DEMANDEUR)  # On somme seulement pour les demandeurs
 
         return (
-            revenus_du_travail
+            revenus_nets_du_travail
             + impots_directs
-            + pensions
+            + pensions_nettes
             + ppe
             + prestations_sociales
-            + revenus_du_capital
+            + revenus_nets_du_capital
             )
 
 
@@ -103,11 +103,11 @@ class revenu_net_individu(Variable):
     definition_period = YEAR
 
     def formula(individu, period):
-        pensions = individu('pensions', period)
-        revenus_du_capital = individu('revenus_du_capital', period)
-        revenus_du_travail = individu('revenus_du_travail', period)
+        pensions_nettes = individu('pensions_nettes', period)
+        revenus_nets_du_capital = individu('revenus_nets_du_capital', period)
+        revenus_nets_du_travail = individu('revenus_nets_du_travail', period)
 
-        return pensions + revenus_du_capital + revenus_du_travail
+        return pensions_nettes + revenus_nets_du_capital + revenus_nets_du_travail
 
 
 class revenu_net(Variable):
@@ -144,14 +144,14 @@ class revenu_initial_individu(Variable):
     def formula(individu, period):
         cotisations_employeur_contributives = individu('cotisations_employeur_contributives', period)
         cotisations_salariales_contributives = individu('cotisations_salariales_contributives', period)
-        pensions = individu('pensions', period)
-        revenus_du_capital = individu('revenus_du_capital', period)
-        revenus_du_travail = individu('revenus_du_travail', period)
+        pensions_nettes = individu('pensions_nettes', period)
+        revenus_nets_du_capital = individu('revenus_nets_du_capital', period)
+        revenus_nets_du_travail = individu('revenus_nets_du_travail', period)
 
         return (
-            revenus_du_travail
-            + pensions
-            + revenus_du_capital
+            revenus_nets_du_travail
+            + pensions_nettes
+            + revenus_nets_du_capital
             - cotisations_employeur_contributives
             - cotisations_salariales_contributives
             )
@@ -188,18 +188,18 @@ class revenu_primaire(Variable):
     definition_period = YEAR
 
     def formula(individu, period):
-        revenus_du_travail = individu('revenus_du_travail', period)
-        revenus_du_capital = individu('revenus_du_capital', period)
+        revenus_nets_du_travail = individu('revenus_nets_du_travail', period)
+        revenus_nets_du_capital = individu('revenus_nets_du_capital', period)
         cotisations_employeur = individu('cotisations_employeur', period)
         cotisations_salariales = individu('cotisations_salariales', period)
 
-        return revenus_du_travail + revenus_du_capital - cotisations_employeur - cotisations_salariales - chomage_imposable
+        return revenus_nets_du_travail + revenus_nets_du_capital - cotisations_employeur - cotisations_salariales - chomage_imposable
 
 
-class revenus_du_travail(Variable):
+class revenus_nets_du_travail(Variable):
     value_type = float
     entity = Individu
-    label = u"Revenus du travail (salariés et non salariés)"
+    label = u"Revenus nets du travail (salariés et non salariés)"
     reference = "http://fr.wikipedia.org/wiki/Revenu_du_travail"
     definition_period = YEAR
 
@@ -210,7 +210,7 @@ class revenus_du_travail(Variable):
         return salaire_net + revenus_non_salaries
 
 
-class pensions(Variable):
+class pensions_nettes(Variable):
     value_type = float
     entity = Individu
     label = u"Pensions et revenus de remplacement"
@@ -267,7 +267,7 @@ class cotsoc_lib(Variable):
         return csg_cap_lib + prelsoc_cap_lib + crds_cap_lib
 
 
-class revenus_du_capital(Variable):
+class revenus_nets_du_capital(Variable):
     value_type = float
     entity = Individu
     label = u"Revenus du patrimoine"
