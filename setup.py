@@ -37,6 +37,9 @@ setup(
         'de_net_a_brut': [
             'scipy >= 0.17',
             ],
+        'lint': [
+            'yamllint >= 1.11.1, < 1.12',
+        ],
         'taxipp': [
             'pandas >= 0.13',
             ],
