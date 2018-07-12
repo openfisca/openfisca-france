@@ -5,9 +5,9 @@
 #       age: 40
 #     - id: "enfant1"
 #       age: 12
-#       garde_alternee: True
+#       garde_alternee: true
 #   output_variables:
-#     enfant_a_charge: [False, True]
+#     enfant_a_charge: [false, true]
 
 - name: "Un enfant de moins de 18 ans"
   period: 2015
@@ -17,7 +17,7 @@
     - id: "enfant1"
       age: 12
   output_variables:
-    enfant_a_charge: [False, True]
+    enfant_a_charge: [false, true]
     nbF: 1
     nbG: 0
     nbH: 0
@@ -30,9 +30,9 @@
       age: 40
     - id: "enfant1"
       age: 12
-      invalidite: True
+      invalidite: true
   output_variables:
-    enfant_a_charge: [False, True]
+    enfant_a_charge: [false, true]
     nbF: 1
     nbG: 1
     nbH: 0
@@ -45,9 +45,9 @@
       age: 40
     - id: "enfant1"
       age: 12
-      garde_alternee: True
+      garde_alternee: true
   output_variables:
-    enfant_a_charge: [False, True]
+    enfant_a_charge: [false, true]
     nbF: 0
     nbG: 0
     nbH: 1
@@ -60,10 +60,10 @@
       age: 40
     - id: "enfant1"
       age: 12
-      garde_alternee: True
-      invalidite: True
+      garde_alternee: true
+      invalidite: true
   output_variables:
-    enfant_a_charge: [False, True]
+    enfant_a_charge: [false, true]
     nbF: 0
     nbG: 0
     nbH: 1
@@ -78,18 +78,18 @@
       age: 40
     - id: "enfant1"
       age: 12
-      invalidite: True
+      invalidite: true
     - id: "enfant2"
       age: 14
     - id: "enfant3"
       age: 15
     - id: "enfant4"
       age: 16
-      garde_alternee: True
+      garde_alternee: true
     - id: "enfant5"
       age: 16
-      invalidite: True
-      garde_alternee: True
+      invalidite: true
+      garde_alternee: true
   foyers_fiscaux:
   - declarants:
     - parent1
@@ -103,7 +103,7 @@
     - enfant4
     - enfant5
   output_variables:
-    enfant_a_charge: [False, False, True, True, True, True, True]
+    enfant_a_charge: [false, false, true, true, true, true, true]
     nbF: [1, 2] # 1 enfant dans le 1er foyer, 2 qui ne sont pas en garde alternée dans le 2e
     nbG: [1, 0] # 1 enfant invalide dans le 1er foyer
     nbH: [0, 2] # 2 enfants en garde alternée dans le 2e foyer

@@ -10,8 +10,8 @@
     salaire_de_base:
       "2015": 35 * 52 * 9.61
     zone_franche_urbaine:
-      "2014": True
-      "2015": True
+      "2014": true
+      "2015": true
     categorie_salarie: prive_non_cadre
   output_variables:
     exoneration_cotisations_employeur_zfu:

@@ -5,7 +5,7 @@ active:
     '2014-01-01':
       value: null
     '2002-01-01':
-      value: True
+      value: true
 plaf: 
   description: Plafond mensuel
   unit: currency
@@ -20,4 +20,4 @@ plaf_nbp:
     '2014-01-01':
       value: null
     '2002-01-01':
-      value: False
+      value: false

@@ -20,7 +20,7 @@
     enfants: ["enfant1"]
     en_couple:
     inactif:
-    partiel1: False
+    partiel1: false
     af_nbenf: 1
     prestations_familiales_base_ressources: 20000
     empl_dir: 0
@@ -63,7 +63,7 @@
     enfants: ["enfant1"]
     en_couple:
     inactif:
-    partiel1: False
+    partiel1: false
     af_nbenf: 1
     prestations_familiales_base_ressources: 20000
     empl_dir: 0
@@ -108,7 +108,7 @@
     enfants: ["enfant1"]
     en_couple:
     inactif:
-    partiel1: True
+    partiel1: true
     af_nbenf: 1
     prestations_familiales_base_ressources: 10000
     empl_dir: 0
@@ -151,7 +151,7 @@
     enfants: ["enfant1"]
     en_couple:
     inactif:
-    partiel1: True
+    partiel1: true
     af_nbenf: 1
     prestations_familiales_base_ressources: 10000
     empl_dir: 0

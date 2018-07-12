@@ -5,7 +5,7 @@
   familles:
     parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2", "enfant3"]
-    asile_demandeur : True
+    asile_demandeur : true
   foyers_fiscaux:
     declarants: ["parent1", "parent2"]
     personnes_a_charge: ["enfant1", "enfant2", "enfant3"]
@@ -30,8 +30,8 @@
   input_variables:
     nb_parents: 1
     af_nbenf: 1
-    asile_demandeur: True
-    place_hebergement: False
+    asile_demandeur: true
+    place_hebergement: false
   output_variables:
     ada: 432.0 # (10.2 + 4.20) * 30
 
@@ -42,8 +42,8 @@
   input_variables:
     nb_parents: 2
     af_nbenf: 2
-    asile_demandeur: True
-    place_hebergement: True
+    asile_demandeur: true
+    place_hebergement: true
   output_variables:
     ada: 527 # 17.0 * 31
 
@@ -54,7 +54,7 @@
   input_variables:
     nb_parents: 1
     af_nbenf: 0
-    asile_demandeur: False
-    place_hebergement: False
+    asile_demandeur: false
+    place_hebergement: false
   output_variables:
     ada: 0

@@ -5,4 +5,4 @@ imposition:
     '2015-01-01':
       value: null
     '2000-01-01':
-      value: True
+      value: true

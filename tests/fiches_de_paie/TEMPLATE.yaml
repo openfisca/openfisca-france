@@ -2,7 +2,7 @@ name: "TEMPLATE"  # TODO: Mettre ici un nom explicite de la fiche de paie tout e
 period: "2014-01"  # TODO: Mettre ici le mois de la fiche de paie.
 input_variables:
   allegement_fillon_mode_recouvrement: anticipe  # "anticipe_regularisation_fin_de_periode"
-  assujettie_taxe_salaires: False
+  assujettie_taxe_salaires: false
   avantage_en_nature_valeur_reelle: 0
   contrat_de_travail: temps_plein
   contrat_de_travail_debut: "2014-01-01"

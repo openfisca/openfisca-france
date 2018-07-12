@@ -1586,7 +1586,7 @@
       date_naissance: "1966-01-01"
     - id: "enfant1"
       date_naissance: "2000-01-01"
-      garde_alternee: True
+      garde_alternee: true
     - id: "enfant2"
       date_naissance: "2010-01-01"
     - id: "enfant3"

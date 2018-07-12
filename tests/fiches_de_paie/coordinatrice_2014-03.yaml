@@ -3,7 +3,7 @@ period: "2014-03"
 absolute_error_margin: 0.005
 input_variables:
   allegement_fillon_mode_recouvrement: anticipe  # "anticipe_regularisation_fin_de_periode"
-  assujettie_taxe_salaires: True
+  assujettie_taxe_salaires: true
   avantage_en_nature_valeur_reelle: 0
   contrat_de_travail: temps_plein
   contrat_de_travail_debut: "2013-07-02"

@@ -25,10 +25,10 @@
   input_variables:
     date_naissance: '1994-01-01' # 22 ans
     enfant_a_charge:
-      2016: True
+      2016: true
   output_variables:
-    cmu_acs_eligibilite: False
-    cmu_c: False
+    cmu_acs_eligibilite: false
+    cmu_c: false
 
 - name: "CMU-C: Pas de CMU si demandeur moins de 25 ans et habite chez ses parents"
   period: 2016-01
@@ -36,10 +36,10 @@
   input_variables:
     date_naissance: '1994-01-01' # 22 ans
     enfant_a_charge:
-      2016: True
+      2016: true
   output_variables:
-    cmu_acs_eligibilite: False
-    cmu_c: False
+    cmu_acs_eligibilite: false
+    cmu_c: false
 
 - name: "CMU-C: Pas de CMU si demandeur moins de 25 ans et reçoit une pension alimentaire"
   period: 2016-01
@@ -49,8 +49,8 @@
     pensions_alimentaires_percues:
       year:2015-01: 4000
   output_variables:
-    cmu_acs_eligibilite: False
-    cmu_c: False
+    cmu_acs_eligibilite: false
+    cmu_c: false
 
 - name: "CMU-C: CMU ok si demandeur moins de 25 ans et indépendant fiscalement, géographiquement, et financièrement"
   period: 2016-01
@@ -58,17 +58,17 @@
   input_variables:
     date_naissance: '1994-01-01' # 22 ans
   output_variables:
-    cmu_acs_eligibilite: True
-    cmu_c: True
+    cmu_acs_eligibilite: true
+    cmu_c: true
 
 - name: "ACS: Pas d'ACS si les conditions d'indépendance ne sont pas remplies"
   period: 2016-01
   relative_error_margin: 0.05
   input_variables:
     date_naissance: '1994-01-01' # 22 ans
-    cmu_c: False
+    cmu_c: false
     enfant_a_charge:
-      2016: True
+      2016: true
   output_variables:
     acs: 0
 
@@ -77,7 +77,7 @@
   relative_error_margin: 0.05
   input_variables:
     date_naissance: '1994-01-01' # 22 ans
-    cmu_c: False
+    cmu_c: false
   output_variables:
     acs: 200
 
@@ -100,16 +100,16 @@
     - id: 1
     - id: 2
       date_naissance: '2010-01-01'
-      garde_alternee: True
+      garde_alternee: true
     - id: 3
       date_naissance: '2010-10-01'
-      garde_alternee: True
+      garde_alternee: true
     - id: 4
       date_naissance: '2011-08-01'
-      garde_alternee: False
+      garde_alternee: false
     - id: 5
       date_naissance: '2012-04-01'
-      garde_alternee: True
+      garde_alternee: true
   familles:
     parents: [1]
     enfants: [2, 3, 4, 5]

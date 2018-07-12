@@ -9,7 +9,7 @@
     salaire_de_base:
       "2014": 35 * 52 * 9.53 * 2.5
       "2015": 35 * 52 * 9.61 * 2.5
-    zone_revitalisation_rurale: True
+    zone_revitalisation_rurale: true
     categorie_salarie: prive_non_cadre
   output_variables:
     exoneration_is_creation_zrr:

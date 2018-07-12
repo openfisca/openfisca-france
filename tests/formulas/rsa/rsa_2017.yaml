@@ -15,7 +15,7 @@
   input_variables:
     age: 40
     statut_occupation_logement: loge_gratuitement
-    participation_frais: True
+    participation_frais: true
   output_variables:
     rsa:
       2017-01: 535
@@ -31,7 +31,7 @@
       2016-10: 200
     age: 40
     statut_occupation_logement: loge_gratuitement
-    participation_frais: True
+    participation_frais: true
   output_variables:
     rsa:
       2017-01: 535 - 200
@@ -47,7 +47,7 @@
       2016-10: 200
     age: 40
     statut_occupation_logement: loge_gratuitement
-    participation_frais: True
+    participation_frais: true
   output_variables:
     rsa:
       2017-01: 535
@@ -222,7 +222,7 @@
   familles:
     parents: [1]
     enfants: [2, 3]
-    rsa_isolement_recent: True
+    rsa_isolement_recent: true
     rsa_nb_enfants:
       2016-12: 2
       2016-11: 2

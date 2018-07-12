@@ -2,7 +2,7 @@ name: "Salarié IPP"
 period: "2014-11"
 absolute_error_margin: 0.005
 input_variables:
-  assujettie_taxe_salaires: True
+  assujettie_taxe_salaires: true
   contrat_de_travail_duree: cdd
   contrat_de_travail_debut: "2014-11-02"
   effectif_entreprise: 3000

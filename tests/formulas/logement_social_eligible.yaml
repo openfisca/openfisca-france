@@ -8,7 +8,7 @@
       2017: 12733
       2018: 12733
   output_variables:
-    logement_social_eligible: True
+    logement_social_eligible: true
 
 - name: "Logement social - Paris et communes limitrophes - Non éligible"
   period: 2018-01
@@ -20,4 +20,4 @@
       2017: 12700
       2018: 12700
   output_variables:
-    logement_social_eligible: False
+    logement_social_eligible: false

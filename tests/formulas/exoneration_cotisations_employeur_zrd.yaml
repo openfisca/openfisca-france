@@ -15,7 +15,7 @@
       "2016": 35 * 52 * 9.67
       "2017": 35 * 52 * 9.67
     zone_restructuration_defense:
-      "year:2014:15": True
+      "year:2014:15": true
     categorie_salarie: prive_non_cadre
   output_variables:
     exoneration_cotisations_employeur_zrd:

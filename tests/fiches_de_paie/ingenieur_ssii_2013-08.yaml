@@ -5,7 +5,7 @@ input_variables:
   allegement_fillon_mode_recouvrement: fin_d_annee  #Indiqué: index 0 --> "fin d'année" et non "anticipé"# "anticipe_regularisation_fin_de_periode"
   arrco_tranche_a_taux_employeur: 0.04539
   arrco_tranche_a_taux_salarie: 0.03024
-  assujettie_taxe_salaires: False
+  assujettie_taxe_salaires: false
   avantage_en_nature_valeur_reelle: 0
   contrat_de_travail: temps_plein
   contrat_de_travail_debut: "2013-01-01"

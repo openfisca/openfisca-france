@@ -4,7 +4,7 @@
   input_variables:
     allegement_fillon_mode_recouvrement: anticipe  # "anticipe_regularisation_fin_de_periode"
     allegement_cotisation_allocations_familiales_mode_recouvrement: anticipe
-    assujettie_taxe_salaires: False
+    assujettie_taxe_salaires: false
     avantage_en_nature_valeur_reelle: 0
     date_naissance: "1974-01-01"
     contrat_de_travail: temps_plein

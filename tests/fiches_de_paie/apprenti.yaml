@@ -4,7 +4,7 @@ absolute_error_margin: 0.005
 input_variables:
   apprentissage_contrat_debut: "2013-01-01"
   allegement_fillon_mode_recouvrement: anticipe  # "anticipe_regularisation_fin_de_periode"
-  assujettie_taxe_salaires: False
+  assujettie_taxe_salaires: false
   avantage_en_nature_valeur_reelle: 0
   date_naissance: "1996-01-01"
   contrat_de_travail: temps_plein
