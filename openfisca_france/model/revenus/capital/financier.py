@@ -14,8 +14,6 @@ class f2da(Variable):
     # start_date = date(2008, 1, 1)
     end = '2012-12-31'
     definition_period = YEAR
-    # à vérifier sur la nouvelle déclaration des revenus 2013
-
 
 class f2dh(Variable):
     cerfa_field = u"2DH"
@@ -88,6 +86,42 @@ class f2tr(Variable):
 
 
 # Autres revenus des valeurs et capitaux mobiliers
+class f2fa(Variable):
+    cerfa_field = u"2FA"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Intérêts et autres produits de placement à revenu fixe n'excédant pas 2000 euros, taxables sur option à 24%"
+    # start_date = date(2013, 1, 1)
+    definition_period = YEAR
+
+class f2tt(Variable):
+    cerfa_field = u"2TT"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Intérêts des prêts participatifs"
+    # start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+class f2tu(Variable):
+    cerfa_field = u"2TU"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Pertes en capital sur prêts participatifs en 2016"
+    # start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+class f2tv(Variable):
+    cerfa_field = u"2TV"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Pertes en capital sur prêts participatifs en 2017"
+    # start_date = date(2017, 1, 1)
+    definition_period = YEAR
+
 class f2cg(Variable):
     cerfa_field = u"2CG"
     value_type = int
@@ -250,6 +284,73 @@ class epargne_revenus_imposables(Variable):
     base_function = requested_period_last_value
     label = u"Épargne générant des revenus imposables"
     definition_period = MONTH
+
+
+class revenus_capitaux_prelevement_bareme(Variable):
+    value_type = float
+    entity = FoyerFiscal
+    label = u"Revenus du capital imposés au barème (montants bruts)"
+    set_input = set_input_divide_by_period
+    reference = "http://bofip.impots.gouv.fr/bofip/3775-PGP"
+    definition_period = MONTH
+
+    def formula(foyer_fiscal, period, parameters):
+        year = period.this_year
+        f2dc = foyer_fiscal('f2dc', year)
+        f2gr = foyer_fiscal('f2gr', year)
+        f2ch = foyer_fiscal('f2ch', year)
+        f2ts = foyer_fiscal('f2ts', year)
+        f2go = foyer_fiscal('f2go', year)
+        f2tr = foyer_fiscal('f2tr', year)
+        f2fu = foyer_fiscal('f2fu', year)
+        avoirs_credits_fiscaux = foyer_fiscal('avoirs_credits_fiscaux', year)
+        f2da = foyer_fiscal('f2da', year)
+        f2ee = foyer_fiscal('f2ee', year)
+        majoration_revenus_reputes_distribues = parameters(period).impot_revenu.rvcm.majoration_revenus_reputes_distribues
+
+        return (f2dc + f2gr + f2ch + f2ts + f2go * majoration_revenus_reputes_distribues + f2tr + f2fu - avoirs_credits_fiscaux) / 12
+
+    def formula_2013_01_01(foyer_fiscal, period, parameters):
+        year = period.this_year
+        f2dc = foyer_fiscal('f2dc', year)
+        f2ch = foyer_fiscal('f2ch', year)
+        f2ts = foyer_fiscal('f2ts', year)
+        f2go = foyer_fiscal('f2go', year)
+        f2tr = foyer_fiscal('f2tr', year)
+        f2fu = foyer_fiscal('f2fu', year)
+        avoirs_credits_fiscaux = foyer_fiscal('avoirs_credits_fiscaux', year)
+        majoration_revenus_reputes_distribues = parameters(period).impot_revenu.rvcm.majoration_revenus_reputes_distribues
+
+        return (f2dc + f2ch + f2ts + f2go * majoration_revenus_reputes_distribues + f2tr + f2fu - avoirs_credits_fiscaux) / 12
+
+
+class revenus_capitaux_prelevement_liberatoire(Variable):
+    value_type = float
+    entity = FoyerFiscal
+    label = u"Revenu du capital imposé au prélèvement libératoire (montants bruts)"
+    set_input = set_input_divide_by_period
+    reference = "http://bofip.impots.gouv.fr/bofip/3817-PGP"
+    definition_period = MONTH
+
+    def formula_2002_01_01(foyer_fiscal, period, parameters):
+        f2dh = foyer_fiscal('f2dh', period.this_year)
+        f2ee = foyer_fiscal('f2ee', period.this_year)
+
+        return (f2dh + f2ee) / 12
+
+    def formula_2008_01_01(foyer_fiscal, period, parameters):
+        f2da = foyer_fiscal('f2da', period.this_year)
+        f2dh = foyer_fiscal('f2dh', period.this_year)
+        f2ee = foyer_fiscal('f2ee', period.this_year)
+        
+        return (f2da + f2dh + f2ee) / 12
+
+    def formula_2013_01_01(foyer_fiscal, period, parameters):
+        f2dh = foyer_fiscal('f2dh', period.this_year)
+        f2ee = foyer_fiscal('f2ee', period.this_year)
+        f2fa = foyer_fiscal('f2fa', period.this_year)
+
+        return (f2dh + f2ee + f2fa) / 12
 
 
 class revenus_capital(Variable):
