@@ -23,6 +23,13 @@ class f2dh(Variable):
     label = u"Produits d’assurance-vie et de capitalisation soumis au prélèvement libératoire de 7.5 %"
     definition_period = YEAR
 
+    def formula_2013_01_01(foyer_fiscal, period):
+        assurance_vie_pl_non_anonyme_plus8ans_depuis1990 = foyer_fiscal('assurance_vie_pl_non_anonyme_plus8ans_depuis1990', period)
+        assurance_vie_pl_non_anonyme_plus6ans_avant1990 = foyer_fiscal('assurance_vie_pl_non_anonyme_plus6ans_avant1990', period)
+
+        return assurance_vie_pl_non_anonyme_plus8ans_depuis1990 + assurance_vie_pl_non_anonyme_plus6ans_avant1990
+
+
 class f2ee(Variable):
     cerfa_field = u"2EE"
     value_type = int
@@ -30,6 +37,20 @@ class f2ee(Variable):
     entity = FoyerFiscal
     label = u"Autres produits de placement soumis aux prélèvements libératoires"
     definition_period = YEAR
+
+    def formula_2013_01_01(foyer_fiscal, period):
+        assurance_vie_pl_non_anonyme_moins4ans_depuis1990 = foyer_fiscal('assurance_vie_pl_non_anonyme_moins4ans_depuis1990', period)
+        assurance_vie_pl_non_anonyme_4_8_ans_depuis1990 = foyer_fiscal('assurance_vie_pl_non_anonyme_4_8_ans_depuis1990', period)
+        assurance_vie_pl_anonyme = foyer_fiscal('assurance_vie_pl_anonyme', period)
+        produit_epargne_solidaire = foyer_fiscal('produit_epargne_solidaire', period)
+        produit_etats_non_cooperatif = foyer_fiscal('produit_etats_non_cooperatif', period)
+
+        return assurance_vie_pl_non_anonyme_moins4ans_depuis1990
+            + assurance_vie_pl_non_anonyme_4_8_ans_depuis1990
+            + assurance_vie_pl_anonyme
+            + produit_epargne_solidaire
+            + produit_etats_non_cooperatif
+
 
 # revenus des valeurs et capitaux mobiliers ouvrant droit à abattement
 class f2dc(Variable):
