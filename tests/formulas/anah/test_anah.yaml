@@ -102,7 +102,7 @@
     - id: "toi"
     - id: "papa"
   foyers_fiscaux:
-    - declarants: ["toi","moi"]
+    - declarants: ["toi", "moi"]
       rfr:
         2015: 16000
     - declarants: ["papa"]

@@ -92,7 +92,7 @@
   menages:
     personne_de_reference: 1
     conjoint: 2
-    enfants: [3,4]
+    enfants: [3, 4]
     statut_occupation_logement: locataire_vide
     loyer: 400
   output_variables:
@@ -118,7 +118,7 @@
     # asf: 210.54
   menages:
     personne_de_reference: 1
-    enfants: [3,4]
+    enfants: [3, 4]
     statut_occupation_logement: locataire_vide
     loyer: 400
   output_variables:
