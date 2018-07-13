@@ -34,7 +34,7 @@ jobs:
       - run:
           name: Lint YAML files
           command: |
-            yamllint `circleci tests glob "**/*.yaml"`
+            yamllint `circleci tests glob "**/*.yaml" | circleci tests split`
 
       - run:
           name: Run tests
@@ -112,7 +112,7 @@ jobs:
       - run:
           name: Lint YAML files
           command: |
-            yamllint `circleci tests glob "**/*.yaml"`
+            yamllint `circleci tests glob "**/*.yaml" | circleci tests split`
 
       - run:
           name: Run tests
