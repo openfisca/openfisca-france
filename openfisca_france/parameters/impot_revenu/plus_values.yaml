@@ -198,24 +198,24 @@ taux_plus_values_bspce:
   values:
     2012-01-01:
       value: 0.19
- taux_plus_values_bspce_conditionnel:
+taux_plus_values_bspce_conditionnel:
   description: Taux spécial de taxation des cessions de bons de souscription de parts de créateur d'entreprise (BSPCE). Ce taux est applicable si, à la date de cession des titres, vous exercez votre activité dans la société depuis moins de trois ans ou si, n’étant plus salarié de la société à la même date, vous y avez exercé votre activité pendant moins de trois ans.
   reference: openfisca
   unit: /1
   values:
     2018-01-01:
       value: 0.30
-taux_pv_report1:
-  description: Plus-values en report d'imposition dont le report a expiré, taxé forfaitairement
-  reference: openfisca
-  unit: /1
-  values:
-    2016-01-01:
-      value: 0.19
-taux_pv_report2:
-  description: Plus-values en report d'imposition dont le report a expiré, taxé forfaitairement
+taux_plus_values_report:
+  description: Taux forfaitaire général appliqué aux plus-values en report d'imposition et dont le report a expiré.
   reference: openfisca
   unit: /1
   values:
     2016-01-01:
       value: 0.24
+taux_plus_values_report_conditionnel:
+  description: Taux forfaitaire spécial appliqué sous conditions (article 200 A, 2bis, du CGI) aux plus-values en report d'imposition et dont le report a expiré. 
+  reference: https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006069577&idArticle=LEGIARTI000026946928&dateTexte=&categorieLien=id
+  unit: /1
+  values:
+    2016-01-01:
+      value: 0.19

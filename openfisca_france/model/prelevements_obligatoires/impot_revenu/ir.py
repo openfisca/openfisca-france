@@ -1690,8 +1690,8 @@ class plus_values(Variable):
             + plus_values.taux4 * f3vf
             + plus_values.taux_plus_values_bspce * f3sj
             + plus_values.taux_plus_values_bspce_conditionnel * f3sk
-            + plus_values.taux_pv_report1 * f3wj
-            + plus_values.taux_pv_report2 * f3wi
+            + plus_values.taux_plus_values_report * f3wi
+            + plus_values.taux_plus_values_report_conditionnel * f3wj
             )
 
 
