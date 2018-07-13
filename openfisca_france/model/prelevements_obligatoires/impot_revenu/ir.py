@@ -2023,8 +2023,7 @@ class imp_lib(Variable):
         f2ee = foyer_fiscal('f2ee', period)
         prelevement_liberatoire = parameters(period).impot_revenu.rvcm.prelevement_liberatoire
 
-        out = -(prelevement_liberatoire.assvie * f2dh + prelevement_liberatoire.autre * f2ee)
-        return out
+        return -(prelevement_liberatoire.assvie * f2dh + prelevement_liberatoire.autre * f2ee)
 
     def formula_2008_01_01(foyer_fiscal, period, parameters):
         '''
@@ -2035,9 +2034,10 @@ class imp_lib(Variable):
         f2ee = foyer_fiscal('f2ee', period)
         prelevement_liberatoire = parameters(period).impot_revenu.rvcm.prelevement_liberatoire
 
-        out = -(prelevement_liberatoire.action * f2da + prelevement_liberatoire.autre * f2ee) \
+        return (
+            -(prelevement_liberatoire.action * f2da + prelevement_liberatoire.autre * f2ee) \
             - prelevement_liberatoire.assvie * f2dh
-        return out
+            )
 
 
 class fon(Variable):
