@@ -514,7 +514,7 @@ def find_age(individu, date, default = None):
 
     age = individu.get('age')
     if isinstance(age, dict):
-        age = age.values()[0] if age else None
+        age = next(iter(age.values())) if age else None
     if age is not None:
         return age
 
