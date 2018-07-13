@@ -2,24 +2,25 @@
 
 ### 22.2.1 [#1038](https://github.com/openfisca/openfisca-france/pull/1038)
 
-* Amélioration technique.
+* Correction d'un crash
 * Zones impactées :
   - `prelevements_obligatoires/impot_revenu/reductions_impot`
   - `prestations/anah/eligibilite_anah`
-  - `scenarios`.
 * Détails :
-  - Corrige les appels `circleci tests glob` pour que `**` soit récursif et que tous les tests soient lancés
-  - Corrections pour que tous les tests passent
+  - Corrige la formule de `locmeu` (Réduction d'impôt en faveur de l'acquisition de logements destinés à la location meublée non professionnelle), qui crashait pour 2017.
+  - Corrige la formule de `eligibilite_anah`, qui crashait pour les départements de Corse. 
+  - Corrige la configuration des tests pour qu'ils soient tous executés:
+    - Corrige les appels `circleci tests glob` pour que `**` soit récursif.
 
-### 22.2.0 [#1032](https://github.com/openfisca/openfisca-france/pull/1034)
+## 22.2.0 [#1032](https://github.com/openfisca/openfisca-france/pull/1034)
 
-* Correction et mise à jour de la taxation des revenus du capital dans l'IRPP
+* Évolution du système socio-fiscal.
 * Zones impactées : 
-  - `model/prelevements_obligatoires/impot_revenu/ir`
-  - `model/revenus/capital/financier`
-  - `model/revenus/capital/plus_value`
-  - `parameters/impot_revenu/plus_values`
+  - `prelevements_obligatoires/impot_revenu/ir`
+  - `revenus/capital/financier`
+  - `revenus/capital/plus_value`
 * Détails :
+  - Mise à jour de la taxation des revenus du capital dans l'IRPP
   - Ajout de nouvelles cases de l'impôt (2013-2017) relatives aux plus-values ou aux revenus financiers
   - Réorganise le fichier plus_value.py afin de le rendre plus lisible
   - Corrige le calcul du RFR (afin de prendre en compte les revenus financiers et les plus-values qui sont éxonérés ou imposés forfaitairement)
@@ -28,9 +29,7 @@
 
 ## 22.1.0 [#1037](https://github.com/openfisca/openfisca-france/pull/1037)
 
-* Amélioration fonctionnelle
-* Périodes concernées : toutes.
-* Zones impactées : `chemin/vers/le/fichier/contenant/les/variables/impactées`.
+* Amélioration technique
 * Détails :
   - Création d'une réforme qui adapte la législation pour les simulateurs
 
@@ -43,7 +42,7 @@
 * Détails :
   - Fait commencer la variable `logement_social_eligible` au 01/01/2017
 
-### 22.0.0 [#102](https://github.com/openfisca/openfisca-france/pull/1026)
+# 22.0.0 [#102](https://github.com/openfisca/openfisca-france/pull/1026)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : toutes.
