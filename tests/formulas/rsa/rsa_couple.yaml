@@ -357,8 +357,6 @@
     rsa:
       "2014-01": 750.46
 
-
-
 - name: "Seules les AF réellements perçues doivent être prises en compte dans le RSA"
   period: 2016-01
   relative_error_margin: 0.05
