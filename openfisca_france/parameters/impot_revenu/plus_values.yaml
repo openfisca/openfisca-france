@@ -191,19 +191,19 @@ taux_pv_entrep:
       value: 0.19
     2013-01-01:
       value: null
-taux_pv_bspce1:
-  description: Cessions de bons de souscription de parts de créateur d'entreprise (BSPCE)
+taux_plus_values_bspce:
+  description: Taux général de taxation des cessions de bons de souscription de parts de créateur d'entreprise (BSPCE).
   reference: openfisca
   unit: /1
   values:
-    2002-01-01:
+    2012-01-01:
       value: 0.19
-taux_pv_bspce2:
-  description: Cessions de bons de souscription de parts de créateur d'entreprise (BSPCE)
+ taux_plus_values_bspce_conditionnel:
+  description: Taux spécial de taxation des cessions de bons de souscription de parts de créateur d'entreprise (BSPCE). Ce taux est applicable si, à la date de cession des titres, vous exercez votre activité dans la société depuis moins de trois ans ou si, n’étant plus salarié de la société à la même date, vous y avez exercé votre activité pendant moins de trois ans.
   reference: openfisca
   unit: /1
   values:
-    2002-01-01:
+    2018-01-01:
       value: 0.30
 taux_pv_report1:
   description: Plus-values en report d'imposition dont le report a expiré, taxé forfaitairement

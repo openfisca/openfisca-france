@@ -1626,8 +1626,8 @@ class plus_values(Variable):
             + plus_values.taux_pv_entrep * f3sa
             + plus_values.taux3 * f3vi
             + plus_values.taux4 * f3vf
-            + plus_values.taux_pv_bspce1 * f3sj
-            + plus_values.taux_pv_bspce2 * f3sk
+            + plus_values.taux_plus_values_bspce * f3sj
+            + plus_values.taux_plus_values_bspce_conditionnel * f3sk
             )
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
@@ -1656,8 +1656,8 @@ class plus_values(Variable):
             + plus_values.taux2 * f3vd
             + plus_values.taux3 * f3vi
             + plus_values.taux4 * f3vf
-            + plus_values.taux_pv_bspce1 * f3sj
-            + plus_values.taux_pv_bspce2 * f3sk
+            + plus_values.taux_plus_values_bspce * f3sj
+            + plus_values.taux_plus_values_bspce_conditionnel * f3sk
             )
     
     def formula_2016_01_01(foyer_fiscal, period, parameters):
@@ -1688,8 +1688,8 @@ class plus_values(Variable):
             + plus_values.taux2 * f3vd
             + plus_values.taux3 * f3vi
             + plus_values.taux4 * f3vf
-            + plus_values.taux_pv_bspce1 * f3sj
-            + plus_values.taux_pv_bspce2 * f3sk 
+            + plus_values.taux_plus_values_bspce * f3sj
+            + plus_values.taux_plus_values_bspce_conditionnel * f3sk
             + plus_values.taux_pv_report1 * f3wj
             + plus_values.taux_pv_report2 * f3wi
             )
