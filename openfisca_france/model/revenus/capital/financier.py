@@ -306,10 +306,9 @@ class revenus_capitaux_prelevement_bareme(Variable):
         avoirs_credits_fiscaux = foyer_fiscal('avoirs_credits_fiscaux', year)
         f2da = foyer_fiscal('f2da', year)
         f2ee = foyer_fiscal('f2ee', year)
-        finpfl = parameters(period).impot_revenu.autre.finpfl  # TODO remove ad check case
         majoration_revenus_reputes_distribues = parameters(period).impot_revenu.rvcm.majoration_revenus_reputes_distribues
 
-        return (f2dc + f2gr + f2ch + f2ts + f2go * majoration_revenus_reputes_distribues + f2tr + f2fu - avoirs_credits_fiscaux + (f2da + f2ee) * finpfl) / 12
+        return (f2dc + f2gr + f2ch + f2ts + f2go * majoration_revenus_reputes_distribues + f2tr + f2fu - avoirs_credits_fiscaux) / 12
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
         year = period.this_year

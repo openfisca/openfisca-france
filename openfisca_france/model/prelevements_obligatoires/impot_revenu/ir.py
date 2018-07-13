@@ -614,7 +614,6 @@ class rev_cat_rvcm(Variable):
         f2go = foyer_fiscal('f2go', period)
         f2gr = foyer_fiscal('f2gr', period)
         f2tr = foyer_fiscal('f2tr', period)
-        finpfl = parameters(period).impot_revenu.autre.finpfl
         rvcm = parameters(period).impot_revenu.rvcm
 
         f2dc_bis = f2dc
@@ -659,7 +658,6 @@ class rev_cat_rvcm(Variable):
         f2go = foyer_fiscal('f2go', period)
         f2gr = foyer_fiscal('f2gr', period)
         f2tr = foyer_fiscal('f2tr', period)
-        finpfl = parameters(period).impot_revenu.autre.finpfl
         rvcm = parameters(period).impot_revenu.rvcm
 
         # Add f2da to f2dc and f2ee to f2tr when no PFL
@@ -772,21 +770,15 @@ class rfr_rvcm(Variable):
         f2gr = foyer_fiscal('f2gr', period)
         f2fu = foyer_fiscal('f2fu', period)
         f2da = foyer_fiscal('f2da', period)
-        finpfl = parameters(period).impot_revenu.autre.finpfl
         rvcm = parameters(period).impot_revenu.rvcm
-
-        if finpfl:
-            f2dc_bis = f2dc + f2da
-        else:
-            f2dc_bis = f2dc
 
         # Calcul de i121
         # Part des frais s'imputant sur les revenus déclarés case DC
-        den = ((f2dc_bis + f2ts) != 0) * (f2dc_bis + f2ts) + ((f2dc_bis + f2ts) == 0)
-        F1 = f2ca / den * f2dc_bis  # f12
+        den = ((f2dc + f2ts) != 0) * (f2dc + f2ts) + ((f2dc + f2ts) == 0)
+        F1 = f2ca / den * f2dc  # f12
         # Revenus de capitaux mobiliers nets de frais, ouvrant droit à abattement
         # partie positive
-        g12b = max_(f2dc_bis * (1 - rvcm.taux_abattement_capitaux_mobiliers) - F1, 0)
+        g12b = max_(f2dc * (1 - rvcm.taux_abattement_capitaux_mobiliers) - F1, 0)
         rev = g12b + f2gr + f2fu * (1 - rvcm.taux_abattement_capitaux_mobiliers)
 
         # Abattements, limité au revenu
@@ -795,7 +787,7 @@ class rfr_rvcm(Variable):
         else:
             h12 = rvcm.abatmob * (1 + maries_ou_pacses)
         i121 = - min_(0, rev - h12)
-        return max_((rvcm.taux_abattement_capitaux_mobiliers) * (f2dc_bis + f2fu) - i121, 0)
+        return max_((rvcm.taux_abattement_capitaux_mobiliers) * (f2dc + f2fu) - i121, 0)
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
         '''
@@ -2045,10 +2037,9 @@ class imp_lib(Variable):
         f2da = foyer_fiscal('f2da', period)
         f2dh = foyer_fiscal('f2dh', period)
         f2ee = foyer_fiscal('f2ee', period)
-        finpfl = parameters(period).impot_revenu.autre.finpfl
         prelevement_liberatoire = parameters(period).impot_revenu.rvcm.prelevement_liberatoire
 
-        out = -(prelevement_liberatoire.action * f2da + prelevement_liberatoire.autre * f2ee) * not_(finpfl) \
+        out = -(prelevement_liberatoire.action * f2da + prelevement_liberatoire.autre * f2ee) \
             - prelevement_liberatoire.assvie * f2dh
         return out
 
