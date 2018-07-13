@@ -10,16 +10,10 @@
   - `model/revenus/capital/plus_value`
   - `parameters/impot_revenu/plus_values`
 * Détails :
-  - Ajout de nouvelles cases de l'impôt (2013-2017) relatives aux plus-values ou aux revenus 
-
-financiers
+  - Ajout de nouvelles cases de l'impôt (2013-2017) relatives aux plus-values ou aux revenus financiers
   - Réorganise le fichier plus_value.py afin de le rendre plus lisible
-  - Corrige le calcul du RFR (afin de prendre en compte les revenus financiers et les plus-
-
-values qui sont éxonérés ou imposés forfaitairement)
-  - Corrige et mets à jour le calcul des RVCM et plus-value taxés au barème, et de ceux taxés 
-
-forfaitairement
+  - Corrige le calcul du RFR (afin de prendre en compte les revenus financiers et les plus-values qui sont éxonérés ou imposés forfaitairement)
+  - Corrige et mets à jour le calcul des revenus des capitaux et valeurs mobilières (RVCM) et plus-value taxés au barème, et de ceux taxés forfaitairement
   - Déplace des variables de revenus qui étaient dans le fichier de calcul de l'IR
 
 ## 22.1.0 [#1037](https://github.com/openfisca/openfisca-france/pull/1037)
