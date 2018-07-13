@@ -203,7 +203,7 @@ taux_plus_values_bspce_conditionnel:
   reference: openfisca
   unit: /1
   values:
-    2018-01-01:
+    2012-01-01:
       value: 0.30
 taux_plus_values_report:
   description: Taux forfaitaire général appliqué aux plus-values en report d'imposition et dont le report a expiré.
