@@ -716,10 +716,7 @@ class rev_cat_rvcm(Variable):
             + f2ts + f2tr + f2go * P.majoration_revenus_reputes_distribues
         )
 
-        # Revenus après déductions des frais (année courante et reports)
-        rvcm_net = max_(0, rvcm_apres_abattement - f2ca - deficit_rcm)
-
-        return rvcm_net
+        return max_(0, rvcm_apres_abattement - f2ca - deficit_rcm)
 
     def formula_2016_01_01(foyer_fiscal, period, parameters):
         """
@@ -747,10 +744,7 @@ class rev_cat_rvcm(Variable):
             + f2ts + f2tr + max_(0, f2tt - f2tu) + f2go * P.majoration_revenus_reputes_distribues
         )
 
-        # Revenus après déductions des frais (année courante et reports)
-        rvcm_net = max_(0, rvcm_apres_abattement - f2ca - deficit_rcm)
-
-        return rvcm_net
+        return max_(0, rvcm_apres_abattement - f2ca - deficit_rcm)
 
 
 class rfr_rvcm(Variable):
