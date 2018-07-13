@@ -79,7 +79,7 @@
             <NODE code="crds_cap_lib" color="229,48,56" desc="CRDS (revenus du capital soumis au prélèvement libératoire)" shortname="CRDS cap. lib." />
           </NODE>
         </NODE>
-        <NODE code="imp_lib" color="232,79,95" desc="Prélèvement libératoire sur les revenus du patrimoine" shortname="Prél. libérat." />
+        <NODE code="prelevement_forfaitaire_liberatoire" color="232,79,95" desc="Prélèvement libératoire sur les revenus du patrimoine" shortname="Prél. libérat." />
       </NODE>
     </NODE>
     <NODE code="ir_lps" color="232,79,95" desc="Impôt sur le revenu (Landais, Piketty, Saez)" shortname="IR (LPS)" />
@@ -240,7 +240,7 @@
           <NODE code="crds_cap_lib" color="229,48,56" desc="CRDS (revenus du capital soumis au prélèvement libératoire)" shortname="CRDS cap. lib." />
         </NODE>
       </NODE>
-      <NODE code="imp_lib" color="232,79,95" desc="Prélèvement libératoire sur les revenus du patrimoine" shortname="Prél. libérat." />
+      <NODE code="prelevement_forfaitaire_liberatoire" color="232,79,95" desc="Prélèvement libératoire sur les revenus du patrimoine" shortname="Prél. libérat." />
     </NODE>
   </NODE>
 </NODE>

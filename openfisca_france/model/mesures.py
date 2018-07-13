@@ -334,10 +334,10 @@ class impots_directs(Variable):
         irpp_eco = menage.sum(irpp_eco_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
 
         # On projette comme pour PPE dans revenu_disponible
-        imp_lib_i = menage.members.foyer_fiscal('imp_lib', period)
-        imp_lib = menage.sum(imp_lib_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
+        prelevement_forfaitaire_liberatoire_i = menage.members.foyer_fiscal('prelevement_forfaitaire_liberatoire', period)
+        prelevement_forfaitaire_liberatoire = menage.sum(prelevement_forfaitaire_liberatoire_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
 
-        return irpp + taxe_habitation +  imp_lib
+        return irpp_eco + taxe_habitation + prelevement_forfaitaire_liberatoire
 
 class crds(Variable):
     value_type = float

@@ -99,7 +99,7 @@
       2012: -12 * 1500 * 0.175
     cotsoc_bar:
       2012: 0
-    imp_lib:
+    prelevement_forfaitaire_liberatoire:
       2012: -12 * 1500 * 0.24
     revenus_du_capital:
       2012: 10530
@@ -150,7 +150,7 @@
     # TODO si haut je pensais plutôt à 15.5 ?
     cotsoc_bar:
       2012: -12 * 2500 * 0.175
-    imp_lib:
+    prelevement_forfaitaire_liberatoire:
       2012: 0
     revenus_du_capital:
       2012: 2500 * 12 * (1 - 0.175)

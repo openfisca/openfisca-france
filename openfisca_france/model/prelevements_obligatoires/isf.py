@@ -516,7 +516,7 @@ class revetproduits(Variable):
         rpns_exon_i = foyer_fiscal.members('rpns_exon', period)
         rpns_pvct_i = foyer_fiscal.members('rpns_pvct', period)
         revenus_capitaux_prelevement_liberatoire = foyer_fiscal('revenus_capitaux_prelevement_liberatoire', period, options = [ADD])
-        imp_lib = foyer_fiscal('imp_lib', period)
+        prelevement_forfaitaire_liberatoire = foyer_fiscal('prelevement_forfaitaire_liberatoire', period)
         P = parameters(period).taxation_capital.isf.plafonnement
 
         revenu_assimile_pension_apres_abattements = foyer_fiscal.sum(pen_net_i)
@@ -526,12 +526,12 @@ class revetproduits(Variable):
         rpns_pvct = foyer_fiscal.sum(rpns_pvct_i)
         revenu_assimile_salaire_apres_abattements = foyer_fiscal.sum(salcho_imp_i)
 
-        # rev_cap et imp_lib pour produits soumis à prel libératoire- check TODO:
+        # rev_cap et prelevement_forfaitaire_liberatoire pour produits soumis à prel libératoire- check TODO:
         # # def rev_exon et rev_etranger dans data? ##
         pt = max_(
             0,
             revenu_assimile_salaire_apres_abattements + revenu_assimile_pension_apres_abattements + rente_viagere_titre_onereux_net + revenus_capitaux_prelevement_bareme + revenus_capitaux_prelevement_liberatoire + ric + rag + rpns_exon +
-            rpns_pvct + imp_lib + fon
+            rpns_pvct + prelevement_forfaitaire_liberatoire + fon
             )
         return pt * P.plafonnement_taux_d_imposition_isf
 
@@ -751,7 +751,7 @@ class bouclier_imp_gen(Variable):  # # ajouter CSG- CRDS
         csg_deductible_chomage_i = foyer_fiscal.members('csg_deductible_chomage', period)
         csg_deductible_retraite_i = foyer_fiscal.members('csg_deductible_retraite', period)
         csg_imposable_retraite_i = foyer_fiscal.members('csg_imposable_retraite', period)
-        imp_lib = foyer_fiscal('imp_lib', period)
+        prelevement_forfaitaire_liberatoire = foyer_fiscal('prelevement_forfaitaire_liberatoire', period)
 
         cotsoc_bar = foyer_fiscal('cotsoc_bar', period)
         cotsoc_lib = foyer_fiscal('cotsoc_lib', period)
@@ -769,7 +769,7 @@ class bouclier_imp_gen(Variable):  # # ajouter CSG- CRDS
         # # ajouter Prelèvements sources/ libé
         # # ajouter crds rstd
         # # impôt sur les plus-values immo et cession de fonds de commerce
-        imp1 = cotsoc_lib + cotsoc_bar + csg_deductible_salaire + csg_deductible_chomage + crds_salaire + csg_deductible_retraite + imp_lib
+        imp1 = cotsoc_lib + cotsoc_bar + csg_deductible_salaire + csg_deductible_chomage + crds_salaire + csg_deductible_retraite + prelevement_forfaitaire_liberatoire
         '''
         Impôts payés en l'année 'n' au titre des revenus réalisés sur l'année 'n'
         '''
