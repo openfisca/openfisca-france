@@ -1552,14 +1552,15 @@ class plus_values(Variable):
         f3sf = foyer_fiscal.conjoint('f3vf', period)
         #  TODO: remove this todo use sum for all fields after checking
             # revenus taxés à un taux proportionnel
-        out = (plus_values.pvce * rpns_pvce +
-               plus_values.taux1 * max_(0, f3vg - f3vh) +
-               plus_values.taux_pv_mob_pro * f3vl +
-               plus_values.pea.taux_avant_2_ans * f3vm +
-               plus_values.taux3 * f3vi +
-               plus_values.taux4 * f3vf)
 
-        return round_(out)
+        return round_(
+            plus_values.pvce * rpns_pvce
+            + plus_values.taux1 * max_(0, f3vg - f3vh)
+            + plus_values.taux_pv_mob_pro * f3vl
+            + plus_values.pea.taux_avant_2_ans * f3vm
+            + plus_values.taux3 * f3vi
+            + plus_values.taux4 * f3vf
+            )
 
     def formula_2008_01_01(foyer_fiscal, period, parameters):  # f3sd is in f3vd holder
         """
@@ -1581,15 +1582,16 @@ class plus_values(Variable):
         f3sf = foyer_fiscal.conjoint('f3vf', period)
         #  TODO: remove this todo use sum for all fields after checking
             # revenus taxés à un taux proportionnel
-        out = (plus_values.pvce * rpns_pvce +
-               plus_values.taux1 * max_(0, f3vg - f3vh) +
-               plus_values.taux_pv_mob_pro * f3vl +
-               plus_values.pea.taux_avant_2_ans * f3vm +
-               plus_values.taux3 * f3vi +
-               plus_values.taux4 * f3vf +
-               plus_values.taux2 * f3vd)
-
-        return round_(out)
+        
+        return round_(
+            plus_values.pvce * rpns_pvce
+            + plus_values.taux1 * max_(0, f3vg - f3vh)
+            + plus_values.taux_pv_mob_pro * f3vl
+            + plus_values.pea.taux_avant_2_ans * f3vm
+            + plus_values.taux3 * f3vi
+            + plus_values.taux4 * f3vf
+            + plus_values.taux2 * f3vd
+            )
 
     def formula_2012_01_01(foyer_fiscal, period, parameters):
         """
@@ -1615,17 +1617,17 @@ class plus_values(Variable):
         f3vf = foyer_fiscal.sum(f3vf_i)
 
         return round_(
-            plus_values.pvce * rpns_pvce +
-            plus_values.taux1 * max_(0, f3vg - f3vh) +
-            plus_values.taux2 * f3vd +
-            plus_values.taux_pv_mob_pro * f3vl +
-            plus_values.pea.taux_avant_2_ans * f3vm +
-            plus_values.pea.taux_posterieur * f3vt +
-            plus_values.taux_pv_entrep * f3sa +
-            plus_values.taux3 * f3vi +
-            plus_values.taux4 * f3vf +
-            plus_values.taux_pv_bspce1 * f3sj +
-            plus_values.taux_pv_bspce2 * f3sk
+            plus_values.pvce * rpns_pvce
+            + plus_values.taux1 * max_(0, f3vg - f3vh)
+            + plus_values.taux2 * f3vd
+            + plus_values.taux_pv_mob_pro * f3vl
+            + plus_values.pea.taux_avant_2_ans * f3vm
+            + plus_values.pea.taux_posterieur * f3vt
+            + plus_values.taux_pv_entrep * f3sa
+            + plus_values.taux3 * f3vi
+            + plus_values.taux4 * f3vf
+            + plus_values.taux_pv_bspce1 * f3sj
+            + plus_values.taux_pv_bspce2 * f3sk
             )
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
@@ -1648,14 +1650,14 @@ class plus_values(Variable):
         plus_values = parameters(period).impot_revenu.plus_values
 
         return round_(
-            plus_values.pvce * rpns_pvce +
-            plus_values.pea.taux_avant_2_ans * f3vm +
-            plus_values.pea.taux_posterieur * f3vt +
-            plus_values.taux2 * f3vd +
-            plus_values.taux3 * f3vi +
-            plus_values.taux4 * f3vf +
-            plus_values.taux_pv_bspce1 * f3sj +
-            plus_values.taux_pv_bspce2 * f3sk
+            plus_values.pvce * rpns_pvce
+            + plus_values.pea.taux_avant_2_ans * f3vm
+            + plus_values.pea.taux_posterieur * f3vt
+            + plus_values.taux2 * f3vd
+            + plus_values.taux3 * f3vi
+            + plus_values.taux4 * f3vf
+            + plus_values.taux_pv_bspce1 * f3sj
+            + plus_values.taux_pv_bspce2 * f3sk
             )
     
     def formula_2016_01_01(foyer_fiscal, period, parameters):
@@ -1680,16 +1682,16 @@ class plus_values(Variable):
         plus_values = parameters(period).impot_revenu.plus_values
 
         return round_(
-            plus_values.pvce * rpns_pvce +
-            plus_values.pea.taux_avant_2_ans * f3vm +
-            plus_values.pea.taux_posterieur * f3vt +
-            plus_values.taux2 * f3vd +
-            plus_values.taux3 * f3vi +
-            plus_values.taux4 * f3vf +
-            plus_values.taux_pv_bspce1 * f3sj +
-            plus_values.taux_pv_bspce2 * f3sk + 
-            plus_values.taux_pv_report1 * f3wj +
-            plus_values.taux_pv_report2 * f3wi
+            plus_values.pvce * rpns_pvce
+            + plus_values.pea.taux_avant_2_ans * f3vm
+            + plus_values.pea.taux_posterieur * f3vt
+            + plus_values.taux2 * f3vd
+            + plus_values.taux3 * f3vi
+            + plus_values.taux4 * f3vf
+            + plus_values.taux_pv_bspce1 * f3sj
+            + plus_values.taux_pv_bspce2 * f3sk 
+            + plus_values.taux_pv_report1 * f3wj
+            + plus_values.taux_pv_report2 * f3wi
             )
 
 
