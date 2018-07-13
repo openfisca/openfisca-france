@@ -2101,39 +2101,6 @@ class avoirs_credits_fiscaux(Variable):
         return f2ab
 
 
-class imp_lib(Variable):
-    value_type = float
-    entity = FoyerFiscal
-    label = u"Prelèvement forfaitaire libératoire sur les revenus du capital"
-    reference = "https://fr.wikipedia.org/wiki/Pr%C3%A9l%C3%A8vement_forfaitaire_lib%C3%A9ratoire"
-    definition_period = YEAR
-    end = '2012-12-31'
-
-    def formula_2002_01_01(foyer_fiscal, period, parameters):
-        '''
-        Prelèvement libératoire sur les revenus du capital
-        '''
-        f2dh = foyer_fiscal('f2dh', period)
-        f2ee = foyer_fiscal('f2ee', period)
-        prelevement_liberatoire = parameters(period).impot_revenu.rvcm.prelevement_liberatoire
-
-        return -(prelevement_liberatoire.assvie * f2dh + prelevement_liberatoire.autre * f2ee)
-
-    def formula_2008_01_01(foyer_fiscal, period, parameters):
-        '''
-        Prelèvement libératoire sur les revenus du capital
-        '''
-        f2da = foyer_fiscal('f2da', period)
-        f2dh = foyer_fiscal('f2dh', period)
-        f2ee = foyer_fiscal('f2ee', period)
-        prelevement_liberatoire = parameters(period).impot_revenu.rvcm.prelevement_liberatoire
-
-        return (
-            -(prelevement_liberatoire.action * f2da + prelevement_liberatoire.autre * f2ee) \
-            - prelevement_liberatoire.assvie * f2dh
-            )
-
-
 class fon(Variable):
     value_type = float
     entity = FoyerFiscal
