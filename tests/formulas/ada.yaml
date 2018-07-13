@@ -5,7 +5,7 @@
   familles:
     parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2", "enfant3"]
-    asile_demandeur : true
+    asile_demandeur: true
   foyers_fiscaux:
     declarants: ["parent1", "parent2"]
     personnes_a_charge: ["enfant1", "enfant2", "enfant3"]

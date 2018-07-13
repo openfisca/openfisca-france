@@ -155,7 +155,7 @@
   output_variables:
     fnal: -10.24 - 2.56
     versement_transport: -2560 * 0.0175
-    cotisations_employeur_main_d_oeuvre:  -10.24 - 2.56 - 2560 * 0.0175
+    cotisations_employeur_main_d_oeuvre: -10.24 - 2.56 - 2560 * 0.0175
     vieillesse_deplafonnee_employeur: -40.96
     vieillesse_plafonnee_employeur: -212.48
     pension_civile_employeur: 0

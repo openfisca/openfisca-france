@@ -237,7 +237,7 @@
   output_variables:
     ppa: 786.24 - 0.38 * 600 - (786.24 - 600)
     ppa_montant_forfaitaire_familial_non_majore:
-      2015-12:  524.16 * 1.5 # =786.24
+      2015-12: 524.16 * 1.5 # =786.24
     rsa_majore_eligibilite: false
     rsa_revenu_activite: 600
     rsa: 786.24 - 600
@@ -517,7 +517,7 @@
   period: 2016-01
   familles:
     parents: ["parent1", "parent2"]
-    enfants:  ["enfant1"]
+    enfants: ["enfant1"]
   individus:
     - id: "parent1"
       age: 40

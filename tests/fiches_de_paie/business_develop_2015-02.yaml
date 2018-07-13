@@ -64,8 +64,8 @@ output_variables:
   arrco_salarie: -67.36
   chomage_salarie: -52.15
   cotisation_exceptionnelle_temporaire_salarie: -2.82
-  vieillesse_deplafonnee_salarie:  -22.82 * 0.003/.0105 # -2172.9 * 0.003
-  vieillesse_plafonnee_salarie:  -148.84
+  vieillesse_deplafonnee_salarie: -22.82 * 0.003/.0105 # -2172.9 * 0.003
+  vieillesse_plafonnee_salarie: -148.84
   ircantec_salarie: 0
   pension_civile_salarie: 0
   rafp_salarie: 0

@@ -9,7 +9,7 @@
     contrat_de_travail: temps_partiel
     contrat_de_travail_debut: 2016-01-25
   output_variables:
-    aide_embauche_pme:  (130 / 151.67) * (500 / 3)
+    aide_embauche_pme: (130 / 151.67) * (500 / 3)
 
 - period: "2016-02"
   name: Equivalent temps plein supérieur à 1.3 x SMIC, pas d'aide
@@ -22,4 +22,4 @@
     contrat_de_travail: temps_partiel
     contrat_de_travail_debut: 2016-01-25
   output_variables:
-    aide_embauche_pme:  0
+    aide_embauche_pme: 0
