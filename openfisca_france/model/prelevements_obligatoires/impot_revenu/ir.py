@@ -993,24 +993,7 @@ class rbg(Variable):
                     rev_cat + f6gh + (foyer_fiscal.sum(nbic_impm_i) + nacc_pvce) * (1 + cga) - deficit_ante)
 
 
-class csg_deduc_patrimoine(Variable):
-    value_type = float
-    entity = FoyerFiscal
-    label = u"Csg déductible sur le patrimoine"
-    reference = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&typePage=cpr02&sfid=503&espId=1&communaute=1&impot=CS"
-    definition_period = YEAR
-
-    def formula(foyer_fiscal, period, parameters):
-        '''
-        CSG déductible sur les revenus du patrimoine
-        http://bofip.impots.gouv.fr/bofip/887-PGP
-        '''
-        f6de = foyer_fiscal('f6de', period)
-
-        return max_(f6de, 0)
-
-
-class csg_deduc(Variable):  # f6de
+class csg_deduc(Variable):
     value_type = float
     entity = FoyerFiscal
     label = u"Csg déductible sur le patrimoine"
@@ -1019,8 +1002,11 @@ class csg_deduc(Variable):  # f6de
 
     def formula(foyer_fiscal, period, parameters):
         ''' CSG déductible '''
+        P = parameters(period).prelevements_sociaux.contributions.csg.capital
         rbg = foyer_fiscal('rbg', period)
-        csg_deduc_patrimoine = foyer_fiscal('csg_deduc_patrimoine', period)
+        f6de = foyer_fiscal('f6de', period)
+        f2bh = foyer_fiscal('f2bh', period)
+        csg_deduc_patrimoine = max_(f6de, 0) + max_(P.deduc * f2bh, 0)
 
         # min_(f6de, max_(rbg, 0))
         return min_(csg_deduc_patrimoine, max_(rbg, 0))
