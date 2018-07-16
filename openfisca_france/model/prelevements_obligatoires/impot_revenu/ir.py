@@ -1010,27 +1010,6 @@ class csg_deduc_patrimoine(Variable):
         return max_(f6de, 0)
 
 
-class csg_deduc_patrimoine_simulated(Variable):
-    value_type = float
-    entity = FoyerFiscal
-    label = u"Csg déductible sur le patrimoine simulée"
-    reference = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&typePage=cpr02&sfid=503&espId=1&communaute=1&impot=CS"
-    definition_period = YEAR
-
-    def formula(foyer_fiscal, period, parameters):
-        '''
-        Cette fonction simule le montant mentionné dans la case f6de de la déclaration 2042
-        http://bofip.impots.gouv.fr/bofip/887-PGP
-        '''
-        rev_cat_rfon = foyer_fiscal('rev_cat_rfon', period)
-        revenus_capitaux_prelevement_bareme = foyer_fiscal('revenus_capitaux_prelevement_bareme', period)
-        rente_viagere_titre_onereux = foyer_fiscal('rente_viagere_titre_onereux', period)
-        taux = parameters(period).csg.capital.deduc
-
-        patrimoine_deduc = rev_cat_rfon + revenus_capitaux_prelevement_bareme + rente_viagere_titre_onereux
-        return taux * patrimoine_deduc
-
-
 class csg_deduc(Variable):  # f6de
     value_type = float
     entity = FoyerFiscal
@@ -1289,7 +1268,7 @@ class ir_plaf_qf(Variable):
         residence_guadeloupe_martinique_reunion = (residence_fiscale_guadeloupe | residence_fiscale_martinique | residence_fiscale_reunion)
         residence_guyane_mayotte = (residence_fiscale_guyane | residence_fiscale_mayotte)
         residence_dom = (residence_guadeloupe_martinique_reunion | residence_guyane_mayotte)
-        
+
         abattement_dom = (
             residence_guadeloupe_martinique_reunion * min_(plafond_qf.abat_dom.plaf_GuadMarReu, plafond_qf.abat_dom.taux_GuadMarReu * impot_apres_reduction_complementaire)
             + residence_guyane_mayotte * min_(plafond_qf.abat_dom.plaf_GuyMay, plafond_qf.abat_dom.taux_GuyMay * impot_apres_reduction_complementaire)
