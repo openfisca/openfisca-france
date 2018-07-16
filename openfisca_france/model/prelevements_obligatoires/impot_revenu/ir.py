@@ -993,7 +993,7 @@ class rbg(Variable):
                     rev_cat + f6gh + (foyer_fiscal.sum(nbic_impm_i) + nacc_pvce) * (1 + cga) - deficit_ante)
 
 
-class csg_deduc(Variable):
+class csg_deductible_patrimoine_irpp(Variable):
     value_type = float
     entity = FoyerFiscal
     label = u"Csg déductible sur le patrimoine"
@@ -1022,10 +1022,10 @@ class rng(Variable):
     def formula(foyer_fiscal, period, parameters):
         ''' Revenu net global (total 20) '''
         rbg = foyer_fiscal('rbg', period)
-        csg_deduc = foyer_fiscal('csg_deduc', period)
+        csg_deductible_patrimoine_irpp = foyer_fiscal('csg_deductible_patrimoine_irpp', period)
         charges_deduc = foyer_fiscal('charges_deduc', period)
 
-        return max_(0, rbg - csg_deduc - charges_deduc)
+        return max_(0, rbg - csg_deductible_patrimoine_irpp - charges_deduc)
 
 
 class rni(Variable):
