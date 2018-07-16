@@ -560,6 +560,11 @@ class rente_viagere_titre_onereux_net(Variable):
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
+        '''
+        Selon la législation, le taux d'abattement appliqué dépend de l'âge du bénéficiaire lors du premier versement
+        de la rente. Il y a quatre taux possibles. On suppoose que la case 1aw bénéficie du taux associé à l'âge le
+        moins élevé, et ainsi de suite jusqu'à la case 1dw qui bénéficie du taux associé à l'âge le plus élevé.
+        '''
         f1aw = foyer_fiscal('f1aw', period)
         f1bw = foyer_fiscal('f1bw', period)
         f1cw = foyer_fiscal('f1cw', period)
