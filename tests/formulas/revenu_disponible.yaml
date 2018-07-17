@@ -94,11 +94,9 @@
       2012-01: 0
     revenus_capitaux_prelevement_liberatoire:
       2012-01: 1500
-    cotsoc_lib:
+    prelevements_sociaux_revenus_capital:
     # TODO si haut je pensais plutôt à 15.5 ?
       2012: -12 * 1500 * 0.175
-    cotsoc_bar:
-      2012: 0
     prelevement_forfaitaire_liberatoire:
       2012: -12 * 1500 * 0.24
     revenus_du_capital:
@@ -145,10 +143,8 @@
       2012-01: 2500
     revenus_capitaux_prelevement_liberatoire:
       2012-01: 0
-    cotsoc_lib:
-      2012: 0
+    prelevements_sociaux_revenus_capital:
     # TODO si haut je pensais plutôt à 15.5 ?
-    cotsoc_bar:
       2012: -12 * 2500 * 0.175
     prelevement_forfaitaire_liberatoire:
       2012: 0

@@ -476,18 +476,18 @@ class tot_impot(Variable):
         isf_avant_plaf = foyer_fiscal('isf_avant_plaf', period)
         crds_i = foyer_fiscal.members('crds', period)
         csg_i = foyer_fiscal.members('csg', period)
-        prelsoc_cap_i = foyer_fiscal.members('prelsoc_cap', period)
+        prelevements_sociaux_revenus_capital_hors_csg_crds_i = foyer_fiscal.members('prelevements_sociaux_revenus_capital_hors_csg_crds', period)
 
         crds = foyer_fiscal.sum(crds_i, role = FoyerFiscal.DECLARANT)
         csg = foyer_fiscal.sum(csg_i, role = FoyerFiscal.DECLARANT)
-        prelsoc_cap = foyer_fiscal.sum(prelsoc_cap_i, role = FoyerFiscal.DECLARANT)
+        prelevements_sociaux_revenus_capital_hors_csg_crds = foyer_fiscal.sum(prelevements_sociaux_revenus_capital_hors_csg_crds_i, role = FoyerFiscal.DECLARANT)
 
         return (
             - irpp
             + isf_avant_plaf
             - crds
             - csg
-            - prelsoc_cap
+            - prelevements_sociaux_revenus_capital_hors_csg_crds
             )
 
         # TODO: irpp n'est pas suffisant : ajouter ir soumis à taux propor + impôt acquitté à l'étranger

@@ -95,7 +95,6 @@ class assiette_csg_revenus_capital(Variable):
             + assurance_vie_ps_exoneree_irpp_pl
             )
 
-
 class csg_revenus_capital(Variable):
     value_type = float
     entity = FoyerFiscal
@@ -134,7 +133,7 @@ class crds_revenus_capital(Variable):
 
 # revenus du capital soumis au barème
 
-class prelsoc_revenus_capital(Variable):
+class prelevements_sociaux_revenus_capital_hors_csg_crds(Variable):
     value_type = float
     entity = FoyerFiscal
     label = u"Prélèvements sociaux (hors CSG et CRDS) sur les revenus du capital"
@@ -155,6 +154,24 @@ class prelsoc_revenus_capital(Variable):
             )
 
         return -assiette_csg_revenus_capital * total
+
+class prelevements_sociaux_revenus_capital(Variable):
+    value_type = float
+    entity = FoyerFiscal
+    label = u"Prélèvements sociaux sur les revenus du capital"
+    reference = u"https://www.service-public.fr/particuliers/vosdroits/F2329"
+    definition_period = YEAR
+
+    def formula_2013_01_01(foyer_fiscal, period, parameters):
+        '''
+        Cette formule n'est définie qu'à partir de 2013 : cf. docstring de la variable
+        assiette_csg_revenus_capital pour une explication
+        '''
+        csg_revenus_capital = foyer_fiscal('csg_revenus_capital', period)
+        crds_revenus_capital = foyer_fiscal('crds_revenus_capital', period)
+        prelevements_sociaux_revenus_capital_hors_csg_crds = foyer_fiscal('prelevements_sociaux_revenus_capital_hors_csg_crds', period)
+
+        return csg_revenus_capital + crds_revenus_capital + prelevements_sociaux_revenus_capital_hors_csg_crds
 
 
 # TODO: non_imposabilité pour les revenus au barème

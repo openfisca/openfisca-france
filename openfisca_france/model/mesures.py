@@ -178,52 +178,51 @@ class pensions_nettes(Variable):
             )
 
 
-class cotsoc_bar(Variable):
-    value_type = float
-    entity = FoyerFiscal
-    label = u"Cotisations sociales sur les revenus du capital imposés au barème"
-    definition_period = YEAR
-
-    def formula(foyer_fiscal, period):
-        csg_cap_bar = foyer_fiscal('csg_cap_bar', period)
-        prelsoc_cap_bar = foyer_fiscal('prelsoc_cap_bar', period)
-        crds_cap_bar = foyer_fiscal('crds_cap_bar', period)
-
-        return csg_cap_bar + prelsoc_cap_bar + crds_cap_bar
-
-
-class cotsoc_lib(Variable):
-    value_type = float
-    entity = FoyerFiscal
-    label = u"Cotisations sociales sur les revenus du capital soumis au prélèvement libératoire"
-    definition_period = YEAR
-
-    def formula(foyer_fiscal, period):
-        csg_cap_lib = foyer_fiscal('csg_cap_lib', period)
-        prelsoc_cap_lib = foyer_fiscal('prelsoc_cap_lib', period)
-        crds_cap_lib = foyer_fiscal('crds_cap_lib', period)
-
-        return csg_cap_lib + prelsoc_cap_lib + crds_cap_lib
-
-
 class revenus_nets_du_capital(Variable):
     value_type = float
     entity = Individu
-    label = u"Revenus du patrimoine"
+    label = u"Revenus du capital nets de prélèvements sociaux"
     reference = "http://fr.wikipedia.org/wiki/Revenu#Revenu_du_Capital"
     definition_period = YEAR
 
-    def formula(individu, period):
+    def formula_2013_01_01(individu, period):
+        '''
+        Cette formule n'est définie qu'à partir de 2013 du fait de la définition
+        des prélèvements sociaux sur les revenus du capital depuis 2013 seulement
+        Note : On part de l'assiette CSG sur les revenus du capital, à partir de
+        laquelle on fait les deux modifications ci-dessous :
+            (1) On enlève les rentes viagères à titre onéreux, qui sont dans cette
+                assiette CSG, mais sont déjà dans la variable pensions_nettes pour
+                le calcul du revenu disponible. De plus, le concept de rente foncière
+                retenu dans cette assiette était le montant après abattement, n'ayant
+                pas de fondement économique
+                Par conséquent, vu qu'on retranche la CSG sur les revenus du capital,
+                qui contient dans sa base les rentes viagèes à titre onéreux, cette variable
+                peut être négative
+            (2) On change de concept de revenu fonciers (pas le même traitement des abattements)
+        Cette variable est définie au niveau individuel : on projette les revenus du foyer fiscal
+        sur le déclarant principal
+        '''
 
-        # Revenus du foyer fiscal, que l'on projette uniquement sur le 1er déclarant
         foyer_fiscal = individu.foyer_fiscal
+        assiette_csg_revenus_capital = foyer_fiscal('assiette_csg_revenus_capital', period)
+        rev_cat_rfon = foyer_fiscal('rev_cat_rfon', period)
+        retraite_titre_onereux_net = foyer_fiscal('retraite_titre_onereux_net', period)
         fon = foyer_fiscal('fon', period)
-        revenus_capitaux_prelevement_bareme = foyer_fiscal('revenus_capitaux_prelevement_bareme', period, options = [ADD])
-        cotsoc_lib = foyer_fiscal('cotsoc_lib', period)
-        revenus_capitaux_prelevement_liberatoire = foyer_fiscal('revenus_capitaux_prelevement_liberatoire', period, options = [ADD])
-        cotsoc_bar = foyer_fiscal('cotsoc_bar', period)
 
-        revenus_foyer_fiscal = fon + revenus_capitaux_prelevement_bareme + cotsoc_lib + revenus_capitaux_prelevement_liberatoire + cotsoc_bar
+        revenus_du_capital_cap_avant_prelevements_sociaux = (
+            assiette_csg_revenus_capital
+            - rev_cat_rfon
+            + fon
+            - retraite_titre_onereux_net
+            )
+
+        prelevements_sociaux_revenus_capital = foyer_fiscal('prelevements_sociaux_revenus_capital', period)
+
+        revenus_foyer_fiscal = (
+            revenus_du_capital_cap_avant_prelevements_sociaux
+            + prelevements_sociaux_revenus_capital
+            )
         revenus_foyer_fiscal_projetes = revenus_foyer_fiscal * individu.has_role(foyer_fiscal.DECLARANT_PRINCIPAL)
 
         rac = individu('rac', period)
@@ -357,15 +356,10 @@ class crds(Variable):
         crds_mini = individu.famille('crds_mini', period, options = [ADD])
         crds_famille = crds_pfam + crds_logement + crds_mini
         crds_famille_projetes = crds_famille * individu.has_role(Famille.DEMANDEUR)
-        # CRDS sur revenus du foyer fiscal, projetés seulement sur la première personne
-        crds_fon = individu.foyer_fiscal('crds_fon', period)
-        crds_pv_mo = individu.foyer_fiscal('crds_pv_mo', period)
-        crds_pv_immo = individu.foyer_fiscal('crds_pv_immo', period)
-        crds_cap_bar = individu.foyer_fiscal('crds_cap_bar', period)
-        crds_cap_lib = individu.foyer_fiscal('crds_cap_lib', period)
-        crds_foyer_fiscal = crds_fon + crds_pv_mo + crds_pv_immo + crds_cap_bar + crds_cap_lib
-        crds_foyer_fiscal_projetee = crds_foyer_fiscal * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
-        return crds_individu + crds_famille_projetes + crds_foyer_fiscal_projetee
+        # CRDS sur revenus du capital, définie à l'échelle du foyer fiscal, mais projetée sur le déclarant principal
+        crds_revenus_capital = individu.foyer_fiscal('crds_revenus_capital', period)
+        crds_revenus_capital_projetee = crds_revenus_capital * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
+        return crds_individu + crds_famille_projetes + crds_revenus_capital_projetee
 
 
 class csg(Variable):
@@ -381,14 +375,9 @@ class csg(Variable):
         csg_deductible_chomage = individu('csg_deductible_chomage', period, options = [ADD])
         csg_imposable_retraite = individu('csg_imposable_retraite', period, options = [ADD])
         csg_deductible_retraite = individu('csg_deductible_retraite', period, options = [ADD])
-        # CSG prélevée sur les revenus du foyer fiscal, projetés seulement sur la première personne
-        csg_fon = individu.foyer_fiscal('csg_fon', period)
-        csg_cap_lib = individu.foyer_fiscal('csg_cap_lib', period)
-        csg_cap_bar = individu.foyer_fiscal('csg_cap_bar', period)
-        csg_pv_mo = individu.foyer_fiscal('csg_pv_mo', period)
-        csg_pv_immo = individu.foyer_fiscal('csg_pv_immo', period)
-        csg_foyer_fiscal = csg_fon + csg_cap_lib + csg_cap_bar + csg_pv_mo + csg_pv_immo
-        csg_foyer_fiscal_projetee = csg_foyer_fiscal * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
+        # CSG sur revenus du capital, définie à l'échelle du foyer fiscal, mais projetée sur le déclarant principal
+        csg_revenus_capital = individu.foyer_fiscal('csg_revenus_capital', period)
+        csg_revenus_capital_projetee = csg_revenus_capital * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
 
         return (
             csg_imposable_salaire
@@ -397,25 +386,6 @@ class csg(Variable):
             + csg_deductible_chomage
             + csg_imposable_retraite
             + csg_deductible_retraite
-            + csg_foyer_fiscal_projetee
+            + csg_revenus_capital_projetee
             )
-
-
-class prelsoc_cap(Variable):
-    value_type = float
-    entity = Individu
-    label = u"Prélèvements sociaux sur les revenus du capital"
-    reference = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&paf_dm=popup&paf_gm=content&typePage=cpr02&sfid=501&espId=1&impot=CS"
-    definition_period = YEAR
-
-    def formula(individu, period):
-        # Prélevements effectués sur les revenus du foyer fiscal
-        prelsoc_fon = individu.foyer_fiscal('prelsoc_fon', period)
-        prelsoc_cap_lib = individu.foyer_fiscal('prelsoc_cap_lib', period)
-        prelsoc_cap_bar = individu.foyer_fiscal('prelsoc_cap_bar', period)
-        prelsoc_pv_mo = individu.foyer_fiscal('prelsoc_pv_mo', period)
-        prelsoc_pv_immo = individu.foyer_fiscal('prelsoc_pv_immo', period)
-        prel_foyer_fiscal = prelsoc_fon + prelsoc_cap_lib + prelsoc_cap_bar + prelsoc_pv_mo + prelsoc_pv_immo
-
-        return prel_foyer_fiscal * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
 

@@ -61,28 +61,10 @@
         <NODE code="revenus_capitaux_prelevement_liberatoire" color="255,233,28" desc="Revenus du capital soumis au prélèvement libératoire" shortname="Rev cap lib" />
         <NODE code="rac" color="247,221,0" desc="Revenus accessoires" shortname="Rev. accesoires" />
       </NODE>
-      <NODE code="cotsoc_cap" color="243,166,171" desc="Cotisations sociales sur les revenus du capital" shortname="Cotsoc. capital">
-        <NODE code="prelsoc_cap" color="243,166,171" desc="Prélèvement social sur les revenus du capital" shortname="Pr. s. cap.">
-          <NODE code="prelsoc_fon" color="243,166,171" desc="Prélèvement social sur les revenus fonciers" shortname="Pr. s. foncier" />
-          <NODE code="prelsoc_pv_mo" color="243,166,171" desc="Prélèvement social sur les plus-values de cessions de valeurs mobilières" shortname="Prel. soc. p.-v. mo." />
-          <NODE code="prelsoc_pv_immo" color="243,166,171" desc="Prélèvement social sur les plus-values immobilières" shortname="Prel. soc. p.-v." />
-          <NODE code="prelsoc_cap_bar" color="243,166,171" desc="Prélèvement social sur les revenus du capital soumis au barème" shortname="Pr. s. cap. bar." />
-          <NODE code="prelsoc_cap_lib" color="243,166,171" desc="Prélèvement social sur les revenus du capital soumis au prélèvement libératoire" shortname="Prel. soc. lib." />
-        </NODE>
-        <NODE code="csg_cap" color="235,114,118" desc="CSG des revenus du capital" shortname="CSG cap.">
-          <NODE code="csg_fon" color="235,114,118" desc="CSG (revenus fonciers)" shortname="CSG foncier" />
-          <NODE code="csg_pv_mo" color="235,114,118" desc="CSG (plus-values de cessions de valeurs mobilières)" shortname="CSG p.-v. mo." />
-          <NODE code="csg_pv_immo" color="235,114,118" desc="CSG (plus-values immobilières)" shortname="CSG p.-v. immo." />
-          <NODE code="csg_cap_bar" color="235,114,118" desc="CSG (revenus du capital au barème)" shortname="CSG cap. bar." />
-          <NODE code="csg_cap_lib" color="235,114,118" desc="CSG (revenus du capital soumis au prélèvement libératoire)" shortname="CSG cap. lib." />
-        </NODE>
-        <NODE code="crds_cap" color="229,48,56" desc="CRDS" shortname="CRDS cap.">
-          <NODE code="crds_fon" color="229,48,56" desc="CRDS (revenus fonciers)" shortname="CRDS foncier" />
-          <NODE code="crds_pv_mo" color="229,48,56" desc="CRDS (plus-values de cessions de valeurs mobilières)" shortname="CRDS p.-v. mo." />
-          <NODE code="crds_pv_immo" color="229,48,56" desc="CRDS (plus-values immobilières)" shortname="CRDS p.-v. immo." />
-          <NODE code="crds_cap_bar" color="229,48,56" desc="CRDS (revenus du capital au barème)" shortname="CRDS cap. bar." />
-          <NODE code="crds_cap_lib" color="229,48,56" desc="CRDS (revenus du capital soumis au prélèvement libératoire)" shortname="CRDS cap. lib." />
-        </NODE>
+      <NODE code="prelevements_sociaux_revenus_capital" color="243,166,171" desc="Prélèvements sociaux sur les revenus du capital" shortname="Prelsoc. capital">
+        <NODE code="csg_revenus_capital" color="243,166,171" desc="CSG sur les revenus du capital" shortname="CSG cap.">
+        <NODE code="crds_revenus_capital" color="243,166,171" desc="CRDS sur les revenus du capital" shortname="CRDS cap.">
+        <NODE code="prelevements_sociaux_revenus_capital_hors_csg_crds" color="229,48,56" desc="Prélèvements sociaux sur les revenus du capital hors CSG et CRDS" shortname="Prelsoc cap. hors CSG et CRDS">
       </NODE>
       <NODE code="prelevement_forfaitaire_liberatoire" color="232,79,95" desc="Prélèvement libératoire sur les revenus du patrimoine" shortname="Prél. libérat." />
     </NODE>
