@@ -40,6 +40,61 @@ class assurance_vie_ps_exoneree_irpp_pl(Variable):
     definition_period = YEAR
 
 
+class assiette_csg_revenus_capital(Variable):
+    value_type = float
+    entity = FoyerFiscal
+    label = u"Assiette des revenus du capital soumis à la CSG"
+    definition_period = YEAR
+
+    def formula_2013_01_01(foyer_fiscal, period, parameters):
+        '''
+        Hypothèses dérrière ce calcul :
+            (1) On ne distingue pas la CSG sur les revenus du patrimoine (art. L136-6 du CSS)
+                de celle sur les revenus de placement (art. L136-6 du CSS)
+                Les taux de la CSG et de l'ensemble des prélèvements sociaux sont identiques pour
+                ces deux types de revenu depuis 2013 seulement, d'où le fait qu'on ne définit cette variable
+                qu'à partir de 2013.
+            (2) Le timing de la soumission des intérêts des PEL et CEL aux prélèvements sociaux
+                est complexe. Cette soumission peut se faire annuellement, ou en cumulé, et ce
+                en fonction de différents paramètres. Mais on ne prend pas en compte cette fonctionnalité.
+        '''
+
+        # Revenus du capital présents dans la section 2 de la déclaration de revenus
+        rev_cap_bar = foyer_fiscal('rev_cap_bar', period, options = [ADD])
+        rev_cap_lib = foyer_fiscal('rev_cap_bar', period, options = [ADD])
+
+        # Rentes viagères à titre onéreux
+        retraite_titre_onereux_net = foyer_fiscal('retraite_titre_onereux_net', period)
+
+        # Revenus des produits d'épargne logement
+        interets_plan_epargne_logement_i = foyer_fiscal.members('interets_plan_epargne_logement', period)
+        interets_plan_epargne_logement = foyer_fiscal.sum(interets_plan_epargne_logement_i)
+        interets_compte_epargne_logement_i = foyer_fiscal.members('interets_compte_epargne_logement', period)
+        interets_compte_epargne_logement = foyer_fiscal.sum(interets_compte_epargne_logement_i)
+
+        # Revenus fonciers
+        rev_cat_rfon = foyer_fiscal('rev_cat_rfon', period)
+
+        # Plus-values
+        f3vg = foyer_fiscal('f3vg', period)
+        f3vz = foyer_fiscal('f3vz', period)
+
+        # produits d'assurance-vie exonérés d'impôt sur le revenu et de prélèvement forfaitaire libératoire (et donc non présents dans rev_cap_bar et rev_cap_lib)
+        assurance_vie_ps_exoneree_irpp_pl = foyer_fiscal('assurance_vie_ps_exoneree_irpp_pl', period)
+
+
+        return (
+            rev_cap_bar
+            + rev_cap_lib
+            + retraite_titre_onereux_net
+            + interets_plan_epargne_logement
+            + interets_compte_epargne_logement
+            + rev_cat_rfon
+            + f3vg
+            + f3vz
+            + assurance_vie_ps_exoneree_irpp_pl
+            )
+
 
 # revenus du capital soumis au barème
 
