@@ -15,12 +15,6 @@ log = logging.getLogger(__name__)
 #        en CG et BH en 2010
 
 
-def _mhsup(hsup):
-    """
-    Heures supplémentaires comptées négativement
-    """
-    return -hsup
-
 ############################################################################
 # # Revenus du capital
 ############################################################################
