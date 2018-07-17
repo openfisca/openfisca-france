@@ -1,23 +1,24 @@
 # -*- coding: utf-8 -*-
 
 from __future__ import division
-
 import logging
-
 from openfisca_france.model.base import *  # noqa analysis:ignore
-
 
 log = logging.getLogger(__name__)
 
 
-# TODO: CHECK la csg déductible en 2006 est case GH
-# TODO:  la revenus soumis aux csg déductible et imposable sont
-#        en CG et BH en 2010
+########################################################################################################################
+########################################################################################################################
+########## Prélèvements sociaux sur les revenus du capital                                                   ###########
+########## (dispositifs codés à partir de 2013 : cf. doctring de la variable assiette_csg_revenus_capital)   ###########
+########################################################################################################################
+########################################################################################################################
 
-
-############################################################################
-# # Revenus du capital
-############################################################################
+#################################################################################################################
+##### 1. Définition de variables associées aux revenus du capital soumis aux prélèvements sociaux mais    #######
+#####    ni au barème de l'impôt sur le revenu, ni au prélèvement forfaitaire libératoire                 #######
+#####    (et donc non présents sur les déclarations de revenu)                                            #######
+#################################################################################################################
 
 class interets_plan_epargne_logement(Variable):
     """ NB : Cette variable est définie indépendemment de epargne_revenus_non_imposables """
@@ -39,6 +40,10 @@ class assurance_vie_ps_exoneree_irpp_pl(Variable):
     label = u"Produits d'assurance-vie exonérés d'impôt sur le revenu et de prélèvement libératoire mais soumis aux prélèvements sociaux"
     definition_period = YEAR
 
+
+#################################################################################################################
+##### 2. Assiette des revenus du capital soumis à la CSG (valable pour les autres prélèvements sociaux)   #######
+#################################################################################################################
 
 class assiette_csg_revenus_capital(Variable):
     value_type = float
@@ -95,6 +100,9 @@ class assiette_csg_revenus_capital(Variable):
             + assurance_vie_ps_exoneree_irpp_pl
             )
 
+#################################################################################################################
+##### 3. Variables de prélèvements sociaux sur les revenus du capital  ##########################################
+#################################################################################################################
 class csg_revenus_capital(Variable):
     value_type = float
     entity = FoyerFiscal
@@ -130,8 +138,6 @@ class crds_revenus_capital(Variable):
 
         return -assiette_csg_revenus_capital * _P.crds.revenus_du_patrimoine
 
-
-# revenus du capital soumis au barème
 
 class prelevements_sociaux_revenus_capital_hors_csg_crds(Variable):
     value_type = float
@@ -173,12 +179,3 @@ class prelevements_sociaux_revenus_capital(Variable):
 
         return csg_revenus_capital + crds_revenus_capital + prelevements_sociaux_revenus_capital_hors_csg_crds
 
-
-# TODO: non_imposabilité pour les revenus au barème
-#        verse = (-csgcap_bar - crdscap_bar - prelsoccap_bar) > bareme.prelevements_sociaux.contributions.csg.capital.nonimp
-# #        verse=1
-#        # CSG sur les revenus du patrimoine non imposés au barême (contributions sociales déjà prélevées)
-#
-#        table.setIndiv('csgcap_bar', csgcap_bar*verse)
-#        table.setIndiv('prelsoccap_bar', prelsoccap_bar*verse)
-#        table.setIndiv('crdscap_bar', crdscap_bar*verse)
