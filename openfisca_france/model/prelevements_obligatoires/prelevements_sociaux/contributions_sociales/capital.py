@@ -103,7 +103,11 @@ class csg_revenus_capital(Variable):
     label = u"CSG sur les revenus du capital"
     definition_period = YEAR
 
-    def formula(foyer_fiscal, period, parameters):
+    def formula_2013_01_01(foyer_fiscal, period, parameters):
+        '''
+        Cette formule n'est définie qu'à partir de 2013 : cf. docstring de la variable
+        assiette_csg_revenus_capital pour une explication
+        '''
         assiette_csg_revenus_capital = foyer_fiscal('assiette_csg_revenus_capital', period)
         _P = parameters(period)
 
