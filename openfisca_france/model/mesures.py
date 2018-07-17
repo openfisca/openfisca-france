@@ -135,21 +135,6 @@ class niveau_de_vie_net(Variable):
         return revenu_net / uc
 
 
-class revenu_primaire(Variable):
-    value_type = float
-    entity = Menage
-    label = u"Revenu primaire du ménage (revenus superbruts avant tout prélèvement). Il est égal à la valeur ajoutée produite par les résidents."
-    definition_period = YEAR
-
-    def formula(individu, period):
-        revenus_nets_du_travail = individu('revenus_nets_du_travail', period)
-        revenus_nets_du_capital = individu('revenus_nets_du_capital', period)
-        cotisations_employeur = individu('cotisations_employeur', period)
-        cotisations_salariales = individu('cotisations_salariales', period)
-
-        return revenus_nets_du_travail + revenus_nets_du_capital - cotisations_employeur - cotisations_salariales
-
-
 class revenus_nets_du_travail(Variable):
     value_type = float
     entity = Individu
