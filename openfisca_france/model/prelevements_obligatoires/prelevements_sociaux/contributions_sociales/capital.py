@@ -19,6 +19,27 @@ log = logging.getLogger(__name__)
 # # Revenus du capital
 ############################################################################
 
+class interets_plan_epargne_logement(Variable):
+    """ NB : Cette variable est définie indépendemment de epargne_revenus_non_imposables """
+    value_type = float
+    entity = Individu
+    label = u"Intérêts des plans épargne logement (PEL)"
+    definition_period = YEAR
+
+class interets_compte_epargne_logement(Variable):
+    """ NB : Cette variable est définie indépendemment de epargne_revenus_non_imposables """
+    value_type = float
+    entity = Individu
+    label = u"Intérêts des comptes épargne logement (CEL)"
+    definition_period = YEAR
+
+class assurance_vie_ps_exoneree_irpp_pl(Variable):
+    value_type = float
+    entity = FoyerFiscal
+    label = u"Produits d'assurance-vie exonérés d'impôt sur le revenu et de prélèvement libératoire mais soumis aux prélèvements sociaux"
+    definition_period = YEAR
+
+
 
 # revenus du capital soumis au barème
 
