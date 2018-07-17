@@ -292,6 +292,7 @@ class livret_a(Variable):
 
 
 class epargne_revenus_non_imposables(Variable):
+    """ NB : cette variable est définie indépendemment de interets_plan_epargne_logement et de interets_compte_epargne_logement """
     value_type = float
     entity = Individu
     base_function = requested_period_last_value
@@ -363,7 +364,7 @@ class revenus_capitaux_prelevement_liberatoire(Variable):
         f2da = foyer_fiscal('f2da', period.this_year)
         f2dh = foyer_fiscal('f2dh', period.this_year)
         f2ee = foyer_fiscal('f2ee', period.this_year)
-        
+
         return (f2da + f2dh + f2ee) / 12
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
