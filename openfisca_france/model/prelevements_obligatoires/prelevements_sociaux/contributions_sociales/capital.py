@@ -61,7 +61,7 @@ class assiette_csg_revenus_capital(Variable):
 
         # Revenus du capital présents dans la section 2 de la déclaration de revenus
         rev_cap_bar = foyer_fiscal('rev_cap_bar', period, options = [ADD])
-        rev_cap_lib = foyer_fiscal('rev_cap_bar', period, options = [ADD])
+        rev_cap_lib = foyer_fiscal('rev_cap_lib', period, options = [ADD])
 
         # Rentes viagères à titre onéreux
         retraite_titre_onereux_net = foyer_fiscal('retraite_titre_onereux_net', period)
