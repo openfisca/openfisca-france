@@ -1149,6 +1149,7 @@ class ir_plaf_qf(Variable):
         Impôt après plafonnement du quotient familial et réduction complémentaire (cf. fiche calcul IR)
         '''
         celibataire_ou_divorce = foyer_fiscal('celibataire_ou_divorce', period)
+        depcom_foyer = foyer_fiscal('depcom_foyer', period)
         ir_brut = foyer_fiscal('ir_brut', period)
         ir_ss_qf = foyer_fiscal('ir_ss_qf', period)
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
@@ -1219,10 +1220,12 @@ class ir_plaf_qf(Variable):
         H = F * (F <= G) + G * (G < F)
         IP1 = IP0 - H
 
-         # PART3 - ABATTEMENT PARTICULIE DOM
+        # PART3 - ABATTEMENT PARTICULIE DOM
+        
+        departement_domicile = depcom_foyer[:3]
 
-        conditionGuadMarReu = 0 # faire une condition avec département + code commune (Depcom qui est pour l'instant une variable ménage)
-        conditionGuyMay = 0 # provisoire
+        conditionGuadMarReu = (departement_domicile == "971" | departement_domicile == "972" | departement_domicile == "974") 
+        conditionGuyMay = (departement_domicile == "973" | departement_domicile == "976")
         conditionDOM = conditionGuadMarReu | conditionGuyMay
 
         abat_dom = (conditionGuadMarReu * min_(plafond_qf.abat_dom.plaf_GuadMarReu, plafond_qf.abat_dom.taux_GuadMarReu * IP1) +
