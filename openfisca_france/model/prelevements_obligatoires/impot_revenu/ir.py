@@ -121,6 +121,13 @@ class age_en_mois(Variable):
         return (datetime64(period.start) - date_naissance).astype('timedelta64[M]')
 
 
+class depcom_foyer(Variable):
+    value_type = str
+    entity = FoyerFiscal
+    label = u"Code AFT du lieu de domicile fiscal"
+    definition_period = YEAR
+
+
 class nb_adult(Variable):
     value_type = float
     entity = FoyerFiscal
