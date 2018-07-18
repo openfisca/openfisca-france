@@ -753,8 +753,7 @@ class bouclier_imp_gen(Variable):  # # ajouter CSG- CRDS
         csg_imposable_retraite_i = foyer_fiscal.members('csg_imposable_retraite', period)
         prelevement_forfaitaire_liberatoire = foyer_fiscal('prelevement_forfaitaire_liberatoire', period)
 
-        cotsoc_bar = foyer_fiscal('cotsoc_bar', period)
-        cotsoc_lib = foyer_fiscal('cotsoc_lib', period)
+        prelevements_sociaux_revenus_capital = foyer_fiscal('prelevements_sociaux_revenus_capital', period)
         crds_salaire = foyer_fiscal.sum(crds_salaire_i)
         csg_deductible_chomage = foyer_fiscal.sum(csg_deductible_chomage_i)
         csg_imposable_chomage = foyer_fiscal.sum(csg_imposable_chomage_i)
@@ -769,7 +768,7 @@ class bouclier_imp_gen(Variable):  # # ajouter CSG- CRDS
         # # ajouter Prelèvements sources/ libé
         # # ajouter crds rstd
         # # impôt sur les plus-values immo et cession de fonds de commerce
-        imp1 = cotsoc_lib + cotsoc_bar + csg_deductible_salaire + csg_deductible_chomage + crds_salaire + csg_deductible_retraite + prelevement_forfaitaire_liberatoire
+        imp1 = prelevements_sociaux_revenus_capital + csg_deductible_salaire + csg_deductible_chomage + crds_salaire + csg_deductible_retraite + prelevement_forfaitaire_liberatoire
         '''
         Impôts payés en l'année 'n' au titre des revenus réalisés sur l'année 'n'
         '''
