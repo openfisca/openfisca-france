@@ -123,6 +123,7 @@ class age_en_mois(Variable):
 
 class depcom_foyer(Variable):
     value_type = str
+    default_value = "00000"
     entity = FoyerFiscal
     label = u"Code AFT du lieu de domicile fiscal"
     definition_period = YEAR
