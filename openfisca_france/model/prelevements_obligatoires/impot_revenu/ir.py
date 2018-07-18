@@ -6,6 +6,7 @@ from __future__ import division
 import logging
 
 from numpy import datetime64, logical_and as and_, logical_or as or_, logical_xor as xor_, round as round_
+from numpy.core.defchararray import startswith
 
 from openfisca_core.model_api import *
 from openfisca_core import periods
@@ -127,6 +128,56 @@ class depcom_foyer(Variable):
     entity = FoyerFiscal
     label = u"Code AFT du lieu de domicile fiscal"
     definition_period = YEAR
+
+
+class residence_fiscale_guadeloupe(Variable):
+    value_type = bool
+    entity = FoyerFiscal
+    definition_period = YEAR
+
+    def formula(foyer_fiscal, period, parameters):
+        depcom_foyer = foyer_fiscal('depcom_foyer', period)
+        return startswith(depcom_foyer, b'971')
+
+
+class residence_fiscale_martinique(Variable):
+    value_type = bool
+    entity = FoyerFiscal
+    definition_period = YEAR
+
+    def formula(foyer_fiscal, period, parameters):
+        depcom_foyer = foyer_fiscal('depcom_foyer', period)
+        return startswith(depcom_foyer, b'972')
+
+
+class residence_fiscale_guyane(Variable):
+    value_type = bool
+    entity = FoyerFiscal
+    definition_period = YEAR
+
+    def formula(foyer_fiscal, period, parameters):
+        depcom_foyer = foyer_fiscal('depcom_foyer', period)
+        return startswith(depcom_foyer, b'973')
+
+
+class residence_fiscale_reunion(Variable):
+    value_type = bool
+    entity = FoyerFiscal
+    definition_period = YEAR
+
+    def formula(foyer_fiscal, period, parameters):
+        depcom_foyer = foyer_fiscal('depcom_foyer', period)
+        return startswith(depcom_foyer, b'974')
+
+
+class residence_fiscale_mayotte(Variable):
+    value_type = bool
+    entity = FoyerFiscal
+    definition_period = YEAR
+
+    def formula(foyer_fiscal, period, parameters):
+        depcom_foyer = foyer_fiscal('depcom_foyer', period)
+        return startswith(depcom_foyer, b'976')
 
 
 class nb_adult(Variable):
@@ -1150,13 +1201,17 @@ class ir_plaf_qf(Variable):
         Impôt après plafonnement du quotient familial et réduction complémentaire (cf. fiche calcul IR)
         '''
         celibataire_ou_divorce = foyer_fiscal('celibataire_ou_divorce', period)
-        depcom_foyer = foyer_fiscal('depcom_foyer', period)
         ir_brut = foyer_fiscal('ir_brut', period)
         ir_ss_qf = foyer_fiscal('ir_ss_qf', period)
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         nb_adult = foyer_fiscal('nb_adult', period)
         nb_pac = foyer_fiscal('nb_pac', period)
         nb_parts = foyer_fiscal('nbptr', period)
+        residence_fiscale_guadeloupe = foyer_fiscal('residence_fiscale_guadeloupe', period)
+        residence_fiscale_martinique = foyer_fiscal('residence_fiscale_martinique', period)
+        residence_fiscale_guyane = foyer_fiscal('residence_fiscale_guyane', period)
+        residence_fiscale_mayotte = foyer_fiscal('residence_fiscale_mayotte', period)
+        residence_fiscale_reunion = foyer_fiscal('residence_fiscale_reunion', period)
         veuf = foyer_fiscal('veuf', period)
 
         caseF = foyer_fiscal('caseF', period)
@@ -1222,12 +1277,11 @@ class ir_plaf_qf(Variable):
         IP1 = IP0 - H
 
         # PART3 - ABATTEMENT PARTICULIE DOM
-        
-        departement_domicile = depcom_foyer[:3]
 
-        conditionGuadMarReu = (departement_domicile == "971" | departement_domicile == "972" | departement_domicile == "974") 
-        conditionGuyMay = (departement_domicile == "973" | departement_domicile == "976")
-        conditionDOM = conditionGuadMarReu | conditionGuyMay
+        conditionGuadMarReu = (residence_fiscale_guadeloupe | residence_fiscale_martinique | residence_fiscale_reunion)
+        conditionGuyMay = (residence_fiscale_guyane | residence_fiscale_mayotte)
+        conditionDOM = (conditionGuadMarReu | conditionGuyMay)
+        
         abattement_dom = (
             conditionGuadMarReu * min_(plafond_qf.abat_dom.plaf_GuadMarReu, plafond_qf.abat_dom.taux_GuadMarReu * IP1)
             + conditionGuyMay * min_(plafond_qf.abat_dom.plaf_GuyMay, plafond_qf.abat_dom.taux_GuyMay * IP1)
