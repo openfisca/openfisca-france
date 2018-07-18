@@ -1227,13 +1227,14 @@ class ir_plaf_qf(Variable):
         conditionGuadMarReu = (departement_domicile == "971" | departement_domicile == "972" | departement_domicile == "974") 
         conditionGuyMay = (departement_domicile == "973" | departement_domicile == "976")
         conditionDOM = conditionGuadMarReu | conditionGuyMay
+        abat_dom = (
+            conditionGuadMarReu * min_(plafond_qf.abat_dom.plaf_GuadMarReu, plafond_qf.abat_dom.taux_GuadMarReu * IP1)
+            + conditionGuyMay * min_(plafond_qf.abat_dom.plaf_GuyMay, plafond_qf.abat_dom.taux_GuyMay * IP1)
+            )
 
-        abat_dom = (conditionGuadMarReu * min_(plafond_qf.abat_dom.plaf_GuadMarReu, plafond_qf.abat_dom.taux_GuadMarReu * IP1) +
-                   conditionGuyMay * min_(plafond_qf.abat_dom.plaf_GuyMay, plafond_qf.abat_dom.taux_GuyMay * IP1))
         IP2 = IP1 - abat_dom
 
-        return (not_(conditionDOM) * (condition62a * IP0 + condition62b * IP1) +
-                conditionDOM * IP2)
+        return (not_(conditionDOM) * (condition62a * IP0 + condition62b * IP1) + conditionDOM * IP2)
 
 
 class avantage_qf(Variable):
