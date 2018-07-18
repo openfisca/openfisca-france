@@ -345,6 +345,20 @@ class revenus_capitaux_prelevement_bareme(Variable):
 
         return (f2dc + f2ch + f2ts + f2go * majoration_revenus_reputes_distribues + f2tr + f2fu - avoirs_credits_fiscaux) / 12
 
+    def formula_2016_01_01(foyer_fiscal, period, parameters):
+        year = period.this_year
+        f2dc = foyer_fiscal('f2dc', year)
+        f2ch = foyer_fiscal('f2ch', year)
+        f2ts = foyer_fiscal('f2ts', year)
+        f2go = foyer_fiscal('f2go', year)
+        f2tr = foyer_fiscal('f2tr', year)
+        f2fu = foyer_fiscal('f2fu', year)
+        f2tt = foyer_fiscal('f2tt', year)
+        avoirs_credits_fiscaux = foyer_fiscal('avoirs_credits_fiscaux', year)
+        majoration_revenus_reputes_distribues = parameters(period).impot_revenu.rvcm.majoration_revenus_reputes_distribues
+
+        return (f2dc + f2ch + f2ts + f2go * majoration_revenus_reputes_distribues + f2tr + f2fu + f2tt - avoirs_credits_fiscaux) / 12
+
 
 class revenus_capitaux_prelevement_liberatoire(Variable):
     value_type = float
