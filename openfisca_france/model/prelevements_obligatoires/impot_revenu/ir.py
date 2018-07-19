@@ -1251,7 +1251,7 @@ class ir_plaf_qf(Variable):
 
         C = max_(0, A - B)
 
-        IP0 = max_(I, C)
+        impot_apres_plaf_qf = max_(I, C)
 
         # PART2 - REDUCTION IR APRES PLAFONNEMENT
 
@@ -1274,7 +1274,7 @@ class ir_plaf_qf(Variable):
         F = D + E
         G = max_(0, A - I - B)
         H = F * (F <= G) + G * (G < F)
-        IP1 = IP0 - H
+        impot_apres_reduction_complementaire = impot_apres_plaf_qf - H
 
         # PART3 - ABATTEMENT PARTICULIE DOM
 
@@ -1287,11 +1287,11 @@ class ir_plaf_qf(Variable):
             + residence_guyane_mayotte * min_(plafond_qf.abat_dom.plaf_GuyMay, plafond_qf.abat_dom.taux_GuyMay * IP1)
             )
 
-        IP2 = max_(0, IP1 - abattement_dom)
+        impot_apres_abattement_dom = max_(0, impot_apres_reduction_complementaire - abattement_dom)
 
         return (
-            not_(residence_dom) * (condition62a * IP0 + condition62b * IP1)
-            + residence_dom * IP2
+            not_(residence_dom) * (condition62a * impot_apres_plaf_qf + condition62b * impot_apres_reduction_complementaire)
+            + residence_dom * impot_apres_abattement_dom
             )
 
 
