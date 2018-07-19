@@ -5,7 +5,7 @@
 * Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 01/01/2013.
 * Zones impactées :
-  - `model\prelevements_obligatoires\impot_revenu\ir`
+  - `model/prelevements_obligatoires/impot_revenu/ir`
 * Détails :
   - Ajoute une variable "depcom_foyer" donnant le lieu de résidence fiscale du foyer.
   - Utilise cette variable pour calculer l'abattement d'impôt spécial DOM
