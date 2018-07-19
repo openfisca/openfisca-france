@@ -1289,7 +1289,10 @@ class ir_plaf_qf(Variable):
 
         IP2 = max_(0, IP1 - abattement_dom)
 
-        return (not_(residence_dom) * (condition62a * IP0 + condition62b * IP1) + residence_dom * IP2)
+        return (
+            not_(residence_dom) * (condition62a * IP0 + condition62b * IP1)
+            + residence_dom * IP2
+            )
 
 
 class avantage_qf(Variable):
