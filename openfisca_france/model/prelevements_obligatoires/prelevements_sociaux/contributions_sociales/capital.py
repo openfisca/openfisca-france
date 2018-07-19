@@ -54,33 +54,36 @@ class assiette_csg_plus_values(Variable):
     def formula_2013_01_01(foyer_fiscal, period):
         '''
         Cette formule n'est définie qu'à partir de 2013 : cf. docstring de la variable
-        assiette_csg_revenus_capital pour une explication
+        assiette_csg_revenus_capital pour une explication.
 
         Notes sur le champ de cette variable :
             Cette assiette de plus-values est partielle. De nombreux types de plus-values sont
-            manquants, rien que parmi les plus-values déclarées dans la déclaration de refenus
-            au titre de l'imôt sur le revenu. Ceci s'explique par la complexité de la législation sur
+            manquants, rien que parmi les plus-values déclarées dans la déclaration de revenus
+            au titre de l'ipmôt sur le revenu. Ceci s'explique par la complexité de la législation sur
             la prise en compte des plus-values dans le calcul des prélèvements sociaux (exemple : plus-values
             réalisées sur PEA taxables selon les règles en vigueur l'année de réalisation et non l'année de retrait,
-            plus-values taxées après report, et taxable selon la législation en vigueur au moment du report et non
+            plus-values taxées après report, et taxables parfois selon la législation en vigueur au moment du report et non
             pas au moment de la taxation, etc.).
             Critère de choix : on part des dénombrements fiscaux de la déclaration 2042 des revenus 2016
-            (sommes déclarées au niveau national pour chaque case), et on constate que les cases 3VH, 3VG,
+            (montants totaux déclarés au niveau national pour chaque case), et on constate que les cases 3VH, 3VG,
             3SG, 3SL, 3VA, 3VB, 3VO, 3VP, 3VZ, 3VW, 3WG, 3WH et 3WM représentent à elles seules 88% de
             l'ensemble des cases associées aux plus-values (cases de classe 3). On se limite donc aux
             plus-values associées à ces cases. Parmi ces cases, certaines ne donnent pas lieu à une imposition
             pendant l'année courante du fait d'un report ou sursis d'imposition (3WG, 3WH, 3WM), ou ne sont
-            tout simplement pas comptabilisées dans l'assiette CSG (3VH, 3WM). Au total, le nombre de cases
+            tout simplement pas comptabilisées dans l'assiette CSG (3VH, 3VW). Au total, le nombre de cases
             est fortement réduit, mais en ne perdant potentiellement qu'une faible partie des plus-values présentes
-            dans l'assiette CSG.
+            dans l'assiette CSG (même en excluant ces cases importantes mais non sujettes à imposition, les cases
+            restantes représentent 82% des montants de l'ensemble des cases de classe 3 (hors cases supprimées).
+            NB : en plus des cases les plus importantes, on inclut aussi 3WE, car les abattements
+            renseignés dans les cases 3SG et 3SL peuvent aussi être associés à des montants nets renseignés en 3WE.
 
         Notes concernant les plus-values immobilières :
             (1) Les plus-values immobilières déclarées en 3VZ sont les plus-values nettes sousmises à
                 l'impôt sur le revenu. Or, les prélèvements sociaux sont appliqués aussi sur une valeure
-                nette, mais déterminée via des abattements différents de ceux de l'impît sur le revenu
+                nette, mais déterminée via des abattements différents de ceux de l'impôt sur le revenu
                 (cf. formulaire 2048-IMM de 2018 par exemple pour une explication). On ignore ces
                 différences d'abattement, et on suppose que la valeur nette au sens des prélèvements
-                sociaux est la même que celle de l'impôt sur le revenu
+                sociaux est la même que celle au sens de l'impôt sur le revenu.
             (2) On ne compte pas la case 3VW dans la base soumise aux prélèvements sociaux. Ce montant,
                 exonéré de l'impôt sur le revenu, semble être exonéré aussi des prélèvements sociaux,
                 même s'il est déclaré dans la déclaration de revenus : cf. art. L136-7 du CSS, qui
