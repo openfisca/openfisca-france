@@ -45,6 +45,96 @@ class assurance_vie_ps_exoneree_irpp_pl(Variable):
 ##### 2. Assiette des revenus du capital soumis à la CSG (valable pour les autres prélèvements sociaux)   #######
 #################################################################################################################
 
+class assiette_csg_plus_values(Variable):
+    value_type = float
+    entity = FoyerFiscal
+    label = u"Assiette des plus-values soumis à la CSG"
+    definition_period = YEAR
+
+    def formula_2013_01_01(foyer_fiscal, period):
+        '''
+        Cette formule n'est définie qu'à partir de 2013 : cf. docstring de la variable
+        assiette_csg_revenus_capital pour une explication
+
+        Notes sur le champ de cette variable :
+            Cette assiette de plus-values est partielle. De nombreux types de plus-values sont
+            manquants, rien que parmi les plus-values déclarées dans la déclaration de refenus
+            au titre de l'imôt sur le revenu. Ceci s'explique par la complexité de la législation sur
+            la prise en compte des plus-values dans le calcul des prélèvements sociaux (exemple : plus-values
+            réalisées sur PEA taxables selon les règles en vigueur l'année de réalisation et non l'année de retrait,
+            plus-values taxées après report, et taxable selon la législation en vigueur au moment du report et non
+            pas au moment de la taxation, etc.).
+            Critère de choix : on part des dénombrements fiscaux de la déclaration 2042 des revenus 2016
+            (sommes déclarées au niveau national pour chaque case), et on constate que les cases 3VH, 3VG,
+            3SG, 3SL, 3VA, 3VB, 3VO, 3VP, 3VZ, 3VW, 3WG, 3WH et 3WM représentent à elles seules 88% de
+            l'ensemble des cases associées aux plus-values (cases de classe 3). On se limite donc aux
+            plus-values associées à ces cases. Parmi ces cases, certaines ne donnent pas lieu à une imposition
+            pendant l'année courante du fait d'un report ou sursis d'imposition (3WG, 3WH, 3WM), ou ne sont
+            tout simplement pas comptabilisées dans l'assiette CSG (3VH, 3WM). Au total, le nombre de cases
+            est fortement réduit, mais en ne perdant potentiellement qu'une faible partie des plus-values présentes
+            dans l'assiette CSG.
+
+        Notes concernant les plus-values immobilières :
+            (1) Les plus-values immobilières déclarées en 3VZ sont les plus-values nettes sousmises à
+                l'impôt sur le revenu. Or, les prélèvements sociaux sont appliqués aussi sur une valeure
+                nette, mais déterminée via des abattements différents de ceux de l'impît sur le revenu
+                (cf. formulaire 2048-IMM de 2018 par exemple pour une explication). On ignore ces
+                différences d'abattement, et on suppose que la valeur nette au sens des prélèvements
+                sociaux est la même que celle de l'impôt sur le revenu
+            (2) On ne compte pas la case 3VW dans la base soumise aux prélèvements sociaux. Ce montant,
+                exonéré de l'impôt sur le revenu, semble être exonéré aussi des prélèvements sociaux,
+                même s'il est déclaré dans la déclaration de revenus : cf. art. L136-7 du CSS, qui
+                cite l'art. 150 U du CGI.
+        '''
+
+        # Plus-values mobilières brutes (avant abattement)
+        f3vg = foyer_fiscal('f3vg', period)
+        f3sg = foyer_fiscal('f3sg', period)
+        f3sl = foyer_fiscal('f3sl', period)
+        f3va_2014 = foyer_fiscal('f3va_2014', period)
+        f3we = foyer_fiscal('f3we', period)
+
+        # Plus-values immobilières
+        f3vz = foyer_fiscal('f3vz', period)
+
+        return f3vg + f3sg + f3sl + f3va_2014 + f3vz + f3we
+
+    def formula_2015_01_01(foyer_fiscal, period, parameters):
+        '''
+        Notes concernant les plus-values immobilières : cf. formule commençant en 2013
+        '''
+
+        # Plus-values mobilières brutes (avant abattement)
+        f3vg = foyer_fiscal('f3vg', period)
+        f3sg = foyer_fiscal('f3sg', period)
+        f3sl = foyer_fiscal('f3sl', period)
+        f3va = foyer_fiscal('f3va', period)
+        f3we = foyer_fiscal('f3we', period)
+
+        # Plus-values immobilières
+        f3vz = foyer_fiscal('f3vz', period)
+
+        return f3vg + f3sg + f3sl + f3va + f3vz + f3we
+
+    def formula_2017_01_01(foyer_fiscal, period, parameters):
+        '''
+        Notes concernant les plus-values immobilières : cf. formule commençant en 2013
+        '''
+
+        # Plus-values mobilières brutes (avant abattement)
+        f3vg = foyer_fiscal('f3vg', period)
+        f3sg = foyer_fiscal('f3sg', period)
+        f3sl = foyer_fiscal('f3sl', period)
+        f3va = foyer_fiscal('f3va', period)
+        f3we = foyer_fiscal('f3we', period)
+        f3ua = foyer_fiscal('f3ua', period)
+
+        # Plus-values immobilières
+        f3vz = foyer_fiscal('f3vz', period)
+
+        return f3vg + f3sg + f3sl + f3va + f3ua + f3vz + f3we
+
+
 class assiette_csg_revenus_capital(Variable):
     value_type = float
     entity = FoyerFiscal
@@ -81,8 +171,7 @@ class assiette_csg_revenus_capital(Variable):
         rev_cat_rfon = foyer_fiscal('rev_cat_rfon', period)
 
         # Plus-values
-        f3vg = foyer_fiscal('f3vg', period)
-        f3vz = foyer_fiscal('f3vz', period)
+        assiette_csg_plus_values = foyer_fiscal('assiette_csg_plus_values', period)
 
         # produits d'assurance-vie exonérés d'impôt sur le revenu et de prélèvement forfaitaire libératoire (et donc non présents dans rev_cap_bar et rev_cap_lib)
         assurance_vie_ps_exoneree_irpp_pl = foyer_fiscal('assurance_vie_ps_exoneree_irpp_pl', period)
@@ -95,8 +184,7 @@ class assiette_csg_revenus_capital(Variable):
             + interets_plan_epargne_logement
             + interets_compte_epargne_logement
             + rev_cat_rfon
-            + f3vg
-            + f3vz
+            + assiette_csg_plus_values
             + assurance_vie_ps_exoneree_irpp_pl
             )
 

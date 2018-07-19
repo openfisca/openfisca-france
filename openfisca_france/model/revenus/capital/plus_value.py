@@ -227,11 +227,17 @@ class f3wd(Variable):
 
 
 class f3we(Variable):
+        '''
+        Plus-values en report d'imposition au sens de l'art. 150-0 D bis du CGI :
+            Jusqu'aux revenus de 2013 : montants nets réalisés pendant l'année
+            Pour les revenus 2014 : complément net de prix perçu pendant l'année (car fin du dispositif)
+            Depuis les revenus 2015 : complément brut de prix perçu pendant l'année (l'abattement n'est plus recensé dans les cases 3SG et 3SL)
+        '''
     cerfa_field = u"3WE"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Plus-values en report d'imposition : complément de prix perçu cette année"
+    label = u"Plus-values en report d'imposition au sens de l'art. 150-0 D bis du CGI"
     definition_period = YEAR
 
 
@@ -249,7 +255,7 @@ class f3wp(Variable):
     cerfa_field = u"3WP"
     value_type = int
     unit = 'currency'
-    entity = FoyerFiscal    
+    entity = FoyerFiscal
     label = u"Plus-values en report d'imposition dont le report a expiré cette année, réalisées à compter du 1.1.2013 : plus-values après abattement"
     # start_date = date(2016, 1, 1)
     definition_period = YEAR
@@ -299,7 +305,7 @@ class f3va(Variable):
     unit = 'currency'
     entity = Individu
     label = u"Abattements nets (abattement pour durée de détention renforcé et abattement fixe spécial) appliqués sur des plus-values réalisées par les dirigeants de PME lors de leur départ à la retraite"
-    # start_date = date(2015, 1, 1)
+    start_date = date(2015, 1, 1)
     definition_period = YEAR
 
 
@@ -314,12 +320,13 @@ class f3vb(Variable):
     definition_period = YEAR
 
 
+
 class f3sg(Variable):
     cerfa_field = u"3SG"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Abattement net pour durée de détention : appliqué sur des plus-values"
+    label = u"Abattement net pour durée de détention (détention de droit commun à partir de 2015) : appliqué sur des plus-values"
     # start_date = date(2013, 1, 1)
     definition_period = YEAR
 
@@ -533,4 +540,11 @@ class f3vu(Variable):
     value_type = int
     entity = FoyerFiscal
     end = '2009-12-31'
+    definition_period = YEAR
+
+class f3ua(Variable):
+    """ Cette case existait avant 2017, mais les montants qui y étaient indiqués étaient également indiqués case 3VG """
+    value_type = float
+    entity = FoyerFiscal
+    start_date = date(2017, 1, 1)
     definition_period = YEAR
