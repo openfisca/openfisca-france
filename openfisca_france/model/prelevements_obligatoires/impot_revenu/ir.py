@@ -1988,8 +1988,7 @@ class rfr(Variable):
         '''
         Revenu fiscal de référence
         '''
-        abattement_net_retraite_dirigeant_pme = foyer_fiscal('abattement_net_retraite_dirigeant_pme', period)
-        abattement_net_duree_detention = foyer_fiscal('abattement_net_duree_detention', period)
+        abattement_net_duree_detention_retraite_dirigeant_pme = foyer_fiscal('abattement_net_duree_detention_retraite_dirigeant_pme', period)
         f2dm = foyer_fiscal('f2dm', period)
         microentreprise = foyer_fiscal('microentreprise', period)
         revenus_capitaux_prelevement_liberatoire = foyer_fiscal('revenus_capitaux_prelevement_liberatoire', period, options = [ADD])
@@ -2007,8 +2006,7 @@ class rfr(Variable):
             max_(0, rni)
             + rfr_charges_deductibles + rfr_plus_values + rfr_rev_capitaux_mobiliers + revenus_capitaux_prelevement_liberatoire
             + rpns_exon + rpns_pvce
-            + abattement_net_retraite_dirigeant_pme
-            + abattement_net_duree_detention
+            + abattement_net_duree_detention_retraite_dirigeant_pme
             + f2dm + microentreprise
             )
 

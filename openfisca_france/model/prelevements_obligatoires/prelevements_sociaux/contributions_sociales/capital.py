@@ -108,13 +108,14 @@ class assiette_csg_plus_values(Variable):
         f3vg = foyer_fiscal('f3vg', period)
         f3sg = foyer_fiscal('f3sg', period)
         f3sl = foyer_fiscal('f3sl', period)
-        f3va = foyer_fiscal('f3va', period)
+        f3va_2016_i = foyer_fiscal.members('f3va_2016', period)
+        f3va_2016 = foyer_fiscal.sum(f3va_2016_i)
         f3we = foyer_fiscal('f3we', period)
 
         # Plus-values immobilières
         f3vz = foyer_fiscal('f3vz', period)
 
-        return f3vg + f3sg + f3sl + f3va + f3vz + f3we
+        return f3vg + f3sg + f3sl + f3va_2016 + f3vz + f3we
 
     def formula_2017_01_01(foyer_fiscal, period, parameters):
         '''
