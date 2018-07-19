@@ -1278,18 +1278,18 @@ class ir_plaf_qf(Variable):
 
         # PART3 - ABATTEMENT PARTICULIE DOM
 
-        conditionGuadMarReu = (residence_fiscale_guadeloupe | residence_fiscale_martinique | residence_fiscale_reunion)
-        conditionGuyMay = (residence_fiscale_guyane | residence_fiscale_mayotte)
-        conditionDOM = (conditionGuadMarReu | conditionGuyMay)
+        residence_guadeloupe_martinique_reunion = (residence_fiscale_guadeloupe | residence_fiscale_martinique | residence_fiscale_reunion)
+        residence_guyane_mayotte = (residence_fiscale_guyane | residence_fiscale_mayotte)
+        residence_dom = (residence_guadeloupe_martinique_reunion | residence_guyane_mayotte)
         
         abattement_dom = (
-            conditionGuadMarReu * min_(plafond_qf.abat_dom.plaf_GuadMarReu, plafond_qf.abat_dom.taux_GuadMarReu * IP1)
-            + conditionGuyMay * min_(plafond_qf.abat_dom.plaf_GuyMay, plafond_qf.abat_dom.taux_GuyMay * IP1)
+            residence_guadeloupe_martinique_reunion * min_(plafond_qf.abat_dom.plaf_GuadMarReu, plafond_qf.abat_dom.taux_GuadMarReu * IP1)
+            + residence_guyane_mayotte * min_(plafond_qf.abat_dom.plaf_GuyMay, plafond_qf.abat_dom.taux_GuyMay * IP1)
             )
 
         IP2 = max_(0, IP1 - abattement_dom)
 
-        return (not_(conditionDOM) * (condition62a * IP0 + condition62b * IP1) + conditionDOM * IP2)
+        return (not_(residence_dom) * (condition62a * IP0 + condition62b * IP1) + residence_dom * IP2)
 
 
 class avantage_qf(Variable):
