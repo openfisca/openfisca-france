@@ -1567,7 +1567,7 @@ class tax_rvcm_forfaitaire(Variable):
         return f2fa * P.taux_forfaitaire
 
 
-class plus_values(Variable):
+class taxation_plus_values_hors_bareme(Variable):
     value_type = float
     entity = FoyerFiscal
     label = u"Taxation forfaitaire des plus-values"
@@ -1855,23 +1855,23 @@ class iai(Variable):
         impôt avant imputation de l'irpp
         '''
         iaidrdi = foyer_fiscal('iaidrdi', period)
-        plus_values = foyer_fiscal('plus_values', period)
+        taxation_plus_values_hors_bareme = foyer_fiscal('taxation_plus_values_hors_bareme', period)
         cont_rev_loc = foyer_fiscal('cont_rev_loc', period)
         teicaa = foyer_fiscal('teicaa', period)
 
-        return iaidrdi + plus_values + cont_rev_loc + teicaa
+        return iaidrdi + taxation_plus_values_hors_bareme + cont_rev_loc + teicaa
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
         '''
         impôt avant imputation de l'irpp
         '''
         iaidrdi = foyer_fiscal('iaidrdi', period)
-        plus_values = foyer_fiscal('plus_values', period)
+        taxation_plus_values_hors_bareme = foyer_fiscal('taxation_plus_values_hors_bareme', period)
         cont_rev_loc = foyer_fiscal('cont_rev_loc', period)
         tax_rvcm_forfaitaire = foyer_fiscal('tax_rvcm_forfaitaire', period)
         teicaa = foyer_fiscal('teicaa', period)
 
-        return iaidrdi + plus_values + cont_rev_loc + tax_rvcm_forfaitaire + teicaa
+        return iaidrdi + taxation_plus_values_hors_bareme + cont_rev_loc + tax_rvcm_forfaitaire + teicaa
 
 
 class cehr(Variable):
