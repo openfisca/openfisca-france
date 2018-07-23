@@ -1,4 +1,4 @@
-- name: "Famille ayant droit à l'ASF"
+- name: "Famille ayant droit à l'ASF - 2015"
   period: 2015-01
   relative_error_margin: 0.01
   familles:
@@ -9,8 +9,40 @@
       age: 40
     - id: "enfant1"
       age: 9
+      garde_alternee: false
   output_variables:
     asf: 96
+
+- name: "Famille ayant droit à l'ASF - 2018"
+  period: 2018-05
+  relative_error_margin: 0.01
+  familles:
+    parents: ["parent1"]
+    enfants: ["enfant1"]
+  individus:
+    - id: "parent1"
+      age: 40
+    - id: "enfant1"
+      age: 9
+      garde_alternee: false
+  output_variables:
+    asf: 115.87
+
+- name: "Famille ayant droit à l'ASF - avec pension alimentaire - 2018"
+  period: 2018-05
+  relative_error_margin: 0.01
+  familles:
+    parents: ["parent1"]
+    enfants: ["enfant1"]
+  individus:
+    - id: "parent1"
+      age: 40
+      pensions_alimentaires_percues: 50
+    - id: "enfant1"
+      age: 9
+      garde_alternee: true
+  output_variables:
+    asf: 65.87
 
 - name: "Limite d'âge : 20 ans"
   period: 2015-01
