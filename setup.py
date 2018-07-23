@@ -37,9 +37,6 @@ setup(
         'de_net_a_brut': [
             'scipy >= 0.17',
             ],
-        'lint': [
-            'yamllint >= 1.11.1, < 1.12',
-        ],
         'taxipp': [
             'pandas >= 0.13',
             ],
@@ -47,6 +44,7 @@ setup(
             'nose',
             'flake8 == 3.4.1',
             'scipy >= 0.17', # Only used to test de_net_a_brut reform
+            'yamllint >= 1.11.1, < 1.12',
             ],
         },
     include_package_data = True,  # Will read MANIFEST.in

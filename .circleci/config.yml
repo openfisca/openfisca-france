@@ -23,7 +23,7 @@ jobs:
           name: Install dependencies
           command: |
             pip install --upgrade pip twine wheel
-            pip install --editable .[test,lint] --upgrade
+            pip install --editable .[test] --upgrade
           #  pip install --editable git+https://github.com/openfisca/openfisca-core.git@BRANCH_NAME#egg=OpenFisca-Core  # use a specific branch of OpenFisca-Core
 
       - save_cache:
@@ -34,13 +34,13 @@ jobs:
       - run:
           name: Lint YAML files
           command: |
-            yamllint `circleci tests glob "**/*.yaml" | circleci tests split`
+            yamllint `circleci tests glob "**/*.{yaml,yml}" | circleci tests split`
 
       - run:
           name: Run tests
           command: |
             nosetests `circleci tests glob "tests/**/*.py" | circleci tests split`
-            openfisca-run-test `circleci tests glob "tests/**/*.yaml" | circleci tests split`
+            openfisca-run-test `circleci tests glob "tests/**/*.{yaml,yml}" | circleci tests split`
 
       - run:
           name: Check version number has been properly updated
@@ -101,7 +101,7 @@ jobs:
           name: Install dependencies
           command: |
             pip install --upgrade pip twine wheel
-            pip install --editable .[test,lint] --upgrade
+            pip install --editable .[test] --upgrade
           #  pip install --editable git+https://github.com/openfisca/openfisca-core.git@BRANCH_NAME#egg=OpenFisca-Core  # use a specific branch of OpenFisca-Core
 
       - save_cache:
@@ -112,13 +112,13 @@ jobs:
       - run:
           name: Lint YAML files
           command: |
-            yamllint `circleci tests glob "**/*.yaml" | circleci tests split`
+            yamllint `circleci tests glob "**/*.{yaml,yml}" | circleci tests split`
 
       - run:
           name: Run tests
           command: |
             nosetests `circleci tests glob "tests/**/*.py" | circleci tests split`
-            openfisca-run-test `circleci tests glob "tests/**/*.yaml" | circleci tests split`
+            openfisca-run-test `circleci tests glob "tests/**/*.{yaml,yml}" | circleci tests split`
 
       - run:
           name: Check version number has been properly updated
