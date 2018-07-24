@@ -4,4 +4,4 @@
     depcom: 97801
     statut_occupation_logement: proprietaire
   output_variables:
-    cheque_energie_eligibilite_logement: False
+    cheque_energie_eligibilite_logement: false

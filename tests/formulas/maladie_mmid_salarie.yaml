@@ -15,7 +15,7 @@
     salaire_de_base: 1467
     salarie_regime_alsace_moselle: 1
   output_variables:
-    mmid_salarie: -( .0075 + .015 ) * 1467
+    mmid_salarie: -( 0.0075 + 0.015 ) * 1467
 
 
 - period: "2018-01"
@@ -35,4 +35,4 @@
     salaire_de_base: 1500
     salarie_regime_alsace_moselle: 1
   output_variables:
-    mmid_salarie: -( 0 + .015 ) * 1500
+    mmid_salarie: -( 0 + 0.015 ) * 1500

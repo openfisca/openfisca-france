@@ -59,31 +59,31 @@
         2019-08: 700
         2019-09: 700
       ass_precondition_remplie: # A travaillé 5 ans sur les 10 dernières années
-        2017-10: True
-        2017-11: True
-        2017-12: True
-        2018-01: True
-        2018-02: True
-        2018-03: True
-        2018-04: True
-        2018-05: True
-        2018-06: True
-        2018-07: True
-        2018-08: True
-        2018-09: True
+        2017-10: true
+        2017-11: true
+        2017-12: true
+        2018-01: true
+        2018-02: true
+        2018-03: true
+        2018-04: true
+        2018-05: true
+        2018-06: true
+        2018-07: true
+        2018-08: true
+        2018-09: true
         # mois de resultats
-        2018-10: True
-        2018-11: True
-        2018-12: True
-        2019-01: True
-        2019-02: True
-        2019-03: True
-        2019-04: True
-        2019-05: True
-        2019-06: True
-        2019-07: True
-        2019-08: True
-        2019-09: True
+        2018-10: true
+        2018-11: true
+        2018-12: true
+        2019-01: true
+        2019-02: true
+        2019-03: true
+        2019-04: true
+        2019-05: true
+        2019-06: true
+        2019-07: true
+        2019-08: true
+        2019-09: true
   familles:
     parents: ["personne1"]
   foyers_fiscaux:
@@ -92,18 +92,18 @@
     personne_de_reference: "personne1"
   output_variables:
     ass_eligibilite_individu:
-      2018-10: True
-      2018-11: True
-      2018-12: True
-      2019-01: False
-      2019-02: False
-      2019-03: False
-      2019-04: False
-      2019-05: False
-      2019-06: False
-      2019-07: False
-      2019-08: False
-      2019-09: False
+      2018-10: true
+      2018-11: true
+      2018-12: true
+      2019-01: false
+      2019-02: false
+      2019-03: false
+      2019-04: false
+      2019-05: false
+      2019-06: false
+      2019-07: false
+      2019-08: false
+      2019-09: false
     ass:
       2018-10: 494.40
       2018-11: 494.40
@@ -180,31 +180,31 @@
         2019-08: 700
         2019-09: 700
       ass_precondition_remplie: # A travaillé 5 ans sur les 10 dernières années
-        2017-10: True
-        2017-11: True
-        2017-12: True
-        2018-01: True
-        2018-02: True
-        2018-03: True
-        2018-04: True
-        2018-05: True
-        2018-06: True
-        2018-07: True
-        2018-08: True
-        2018-09: True
+        2017-10: true
+        2017-11: true
+        2017-12: true
+        2018-01: true
+        2018-02: true
+        2018-03: true
+        2018-04: true
+        2018-05: true
+        2018-06: true
+        2018-07: true
+        2018-08: true
+        2018-09: true
         # mois de resultats
-        2018-10: True
-        2018-11: True
-        2018-12: True
-        2019-01: True
-        2019-02: True
-        2019-03: True
-        2019-04: True
-        2019-05: True
-        2019-06: True
-        2019-07: True
-        2019-08: True
-        2019-09: True
+        2018-10: true
+        2018-11: true
+        2018-12: true
+        2019-01: true
+        2019-02: true
+        2019-03: true
+        2019-04: true
+        2019-05: true
+        2019-06: true
+        2019-07: true
+        2019-08: true
+        2019-09: true
   familles:
     parents: ["personne1"]
   foyers_fiscaux:
@@ -213,18 +213,18 @@
     personne_de_reference: "personne1"
   output_variables:
     ass_eligibilite_individu:
-      2018-10: True
-      2018-11: True
-      2018-12: True
-      2019-01: True
-      2019-02: False
-      2019-03: False
-      2019-04: False
-      2019-05: False
-      2019-06: False
-      2019-07: False
-      2019-08: False
-      2019-09: False
+      2018-10: true
+      2018-11: true
+      2018-12: true
+      2019-01: true
+      2019-02: false
+      2019-03: false
+      2019-04: false
+      2019-05: false
+      2019-06: false
+      2019-07: false
+      2019-08: false
+      2019-09: false
     ass:
       2018-10: 494.40
       2018-11: 494.40
@@ -300,31 +300,31 @@
         2019-08: 700
         2019-09: 700
       ass_precondition_remplie: # A travaillé 5 ans sur les 10 dernières années
-        2017-10: True
-        2017-11: True
-        2017-12: True
-        2018-01: True
-        2018-02: True
-        2018-03: True
-        2018-04: True
-        2018-05: True
-        2018-06: True
-        2018-07: True
-        2018-08: True
-        2018-09: True
+        2017-10: true
+        2017-11: true
+        2017-12: true
+        2018-01: true
+        2018-02: true
+        2018-03: true
+        2018-04: true
+        2018-05: true
+        2018-06: true
+        2018-07: true
+        2018-08: true
+        2018-09: true
         # mois de resultats
-        2018-10: True
-        2018-11: True
-        2018-12: True
-        2019-01: True
-        2019-02: True
-        2019-03: True
-        2019-04: True
-        2019-05: True
-        2019-06: True
-        2019-07: True
-        2019-08: True
-        2019-09: True
+        2018-10: true
+        2018-11: true
+        2018-12: true
+        2019-01: true
+        2019-02: true
+        2019-03: true
+        2019-04: true
+        2019-05: true
+        2019-06: true
+        2019-07: true
+        2019-08: true
+        2019-09: true
   familles:
     parents: ["personne1"]
   foyers_fiscaux:
@@ -333,18 +333,18 @@
     personne_de_reference: "personne1"
   output_variables:
     ass_eligibilite_individu:
-      2018-10: True
-      2018-11: True
-      2018-12: True
-      2019-01: True
-      2019-02: True
-      2019-03: True
-      2019-04: True
-      2019-05: True
-      2019-06: True
-      2019-07: False
-      2019-08: False
-      2019-09: False
+      2018-10: true
+      2018-11: true
+      2018-12: true
+      2019-01: true
+      2019-02: true
+      2019-03: true
+      2019-04: true
+      2019-05: true
+      2019-06: true
+      2019-07: false
+      2019-08: false
+      2019-09: false
     ass:
       2018-10: 494.40
       2018-11: 494.40

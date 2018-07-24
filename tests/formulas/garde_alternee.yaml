@@ -2,15 +2,15 @@
   period: "month:2015-04"
   input_variables:
     garde_alternee:
-      2016-01: True
+      2016-01: true
   output_variables:
-    garde_alternee: True
+    garde_alternee: true
 
 - name: "Prefer past values"
   period: "month:2015-04"
   input_variables:
     garde_alternee:
-      2016-01: True
-      2015-02: False
+      2016-01: true
+      2015-02: false
   output_variables:
-    garde_alternee: False
+    garde_alternee: false

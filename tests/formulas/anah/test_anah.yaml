@@ -16,7 +16,6 @@
   period: 2017
   individus:
     - id: "moi"
-  menages:
   foyers_fiscaux:
     - declarants: ["moi"]
       rfr:
@@ -31,7 +30,6 @@
   period: 2017
   individus:
     - id: "moi"
-  menages:
   foyers_fiscaux:
     - declarants: ["moi"]
       rfr:
@@ -104,7 +102,7 @@
     - id: "toi"
     - id: "papa"
   foyers_fiscaux:
-    - declarants: ["toi","moi"]
+    - declarants: ["toi", "moi"]
       rfr:
         2015: 16000
     - declarants: ["papa"]

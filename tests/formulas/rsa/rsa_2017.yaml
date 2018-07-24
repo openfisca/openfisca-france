@@ -15,7 +15,7 @@
   input_variables:
     age: 40
     statut_occupation_logement: loge_gratuitement
-    participation_frais: True
+    participation_frais: true
   output_variables:
     rsa:
       2017-01: 535
@@ -31,7 +31,7 @@
       2016-10: 200
     age: 40
     statut_occupation_logement: loge_gratuitement
-    participation_frais: True
+    participation_frais: true
   output_variables:
     rsa:
       2017-01: 535 - 200
@@ -47,7 +47,7 @@
       2016-10: 200
     age: 40
     statut_occupation_logement: loge_gratuitement
-    participation_frais: True
+    participation_frais: true
   output_variables:
     rsa:
       2017-01: 535
@@ -58,7 +58,7 @@
   relative_error_margin: 0.01
   individus:
     - id: 1
-      age: 
+      age:
         2017-01: 40
         2016-12: 40
         2016-11: 40
@@ -92,7 +92,7 @@
   menages:
     personne_de_reference: 1
     conjoint: 2
-    enfants: [3,4]
+    enfants: [3, 4]
     statut_occupation_logement: locataire_vide
     loyer: 400
   output_variables:
@@ -118,7 +118,7 @@
     # asf: 210.54
   menages:
     personne_de_reference: 1
-    enfants: [3,4]
+    enfants: [3, 4]
     statut_occupation_logement: locataire_vide
     loyer: 400
   output_variables:
@@ -222,7 +222,7 @@
   familles:
     parents: [1]
     enfants: [2, 3]
-    rsa_isolement_recent: True
+    rsa_isolement_recent: true
     rsa_nb_enfants:
       2016-12: 2
       2016-11: 2

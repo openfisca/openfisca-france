@@ -1,5 +1,12 @@
 # Changelog
 
+### 22.2.2 [#1039](https://github.com/openfisca/openfisca-france/pull/1039)
+
+* Amélioration technique.
+* Détails :
+  - Ajout d'un linter pour les fichiers YAML
+  - Validation en CI du format des fichiers YAML
+
 ### 22.2.1 [#1038](https://github.com/openfisca/openfisca-france/pull/1038)
 
 * Correction d'un crash

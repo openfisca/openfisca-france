@@ -23,5 +23,5 @@
     categorie_salarie: prive_non_cadre
     indemnite_fin_contrat_due: 1
   output_variables:
-    indemnite_fin_contrat: .1 * 1467
+    indemnite_fin_contrat: 0.1 * 1467
     conge_individuel_formation_cdd: -(1467 * 1.1) * 0.01

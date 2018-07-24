@@ -63,7 +63,7 @@
   individus:
     - id: parent
     - id: Mila
-      garde_alternee: True
+      garde_alternee: true
   output_variables:
     cheque_energie_unites_consommation:
       2018: 1.25

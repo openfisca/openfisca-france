@@ -83,7 +83,7 @@
   input_variables:
     cheque_energie_unites_consommation: 2
     rfr:
-     2016: 5599 
+     2016: 5599
   output_variables:
     cheque_energie_montant:
       2018: 227

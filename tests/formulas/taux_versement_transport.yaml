@@ -20,7 +20,7 @@
     depcom_entreprise: "75101"
     effectif_entreprise: 10
   output_variables:
-    taux_versement_transport: .027
+    taux_versement_transport: 0.027
 
 - period: "month:2016-03"
   name: "Le seuil est passé à 11 en 2016"
@@ -38,7 +38,7 @@
     depcom_entreprise: "75101"
     effectif_entreprise: 11
   output_variables:
-    taux_versement_transport: .0285
+    taux_versement_transport: 0.0285
 
 - period: "month:2015-03"
   absolute_error_margin: 0.00001
@@ -46,7 +46,7 @@
     depcom_entreprise: "34108"
     effectif_entreprise: 13
   output_variables:
-    taux_versement_transport: .012
+    taux_versement_transport: 0.012
 
 - period: "month:2015-03"
   absolute_error_margin: 0.00001

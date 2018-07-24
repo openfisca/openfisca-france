@@ -1,5 +1,5 @@
 description: Forfait logement
-reference: 
+reference:
   - ipp
   # Montant RSA
   - https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=6B08B0D4840174E5F3C0A1EE5FFACB5F.tplgfr41s_3?idArticle=LEGIARTI000031694445&cidTexte=LEGITEXT000006074069&dateTexte=20171206

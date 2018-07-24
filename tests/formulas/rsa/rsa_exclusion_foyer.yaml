@@ -101,8 +101,8 @@
     enfants: ["enfant1"]
     rsa_base_ressources_prestations_familiales: 0
     rsa_base_ressources_minima_sociaux: 0
-    en_couple: False
-    rsa_isolement_recent: True
+    en_couple: false
+    rsa_isolement_recent: true
   individus:
     - id: "parent1"
       age: 40
@@ -126,8 +126,8 @@
     enfants: ["enfant1"]
     rsa_base_ressources_prestations_familiales: 0
     rsa_base_ressources_minima_sociaux: 0
-    en_couple: False
-    rsa_isolement_recent: True
+    en_couple: false
+    rsa_isolement_recent: true
   individus:
     - id: "parent1"
       age: 40
@@ -151,8 +151,8 @@
     enfants: ["enfant1", "enfant2"]
     rsa_base_ressources_prestations_familiales: 0
     rsa_base_ressources_minima_sociaux: 0
-    en_couple: False
-    rsa_isolement_recent: True
+    en_couple: false
+    rsa_isolement_recent: true
   individus:
     - id: "parent1"
       age: 40
@@ -177,8 +177,8 @@
     enfants: ["enfant1", "enfant2"]
     rsa_base_ressources_prestations_familiales: 0
     rsa_base_ressources_minima_sociaux: 0
-    en_couple: False
-    rsa_isolement_recent: True
+    en_couple: false
+    rsa_isolement_recent: true
   individus:
     - id: "parent1"
       age: 40

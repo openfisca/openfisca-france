@@ -2,33 +2,33 @@
   description: "Eligible à AAH"
   period: 2015-01
   input_variables:
-    handicap: True
+    handicap: true
     taux_incapacite: 0.9
     age: 50
   output_variables:
-    aah_eligible: True
-    # aah_non_calculable: False
+    aah_eligible: true
+    # aah_non_calculable: false
 
 - name: "Eligibilité AAH - Handicap, âge inférieur à retraite, pas de AEEH - 2"
   description: "Eligible à AAH"
   period: 2013-12
   input_variables:
     age: 28
-    handicap: True
+    handicap: true
     taux_incapacite: 0.9
   output_variables:
-    aah_eligible: True
+    aah_eligible: true
 
 - name: "Eligibilité AAH - Handicap, âge inférieur à l'âge limite AEEH, pas d'autonomie financière vàv des prestations familiales"
   description: "Eligible à AEEH, mais pas à l'AAH"
   period: 2012-06
   input_variables:
     age: 19
-    handicap: True
+    handicap: true
     taux_incapacite: 0.9
-    autonomie_financiere: False
+    autonomie_financiere: false
   output_variables:
-    aah_eligible: False
+    aah_eligible: false
 
 
 - name: "Eligibilité AAH -Handicap, âge inférieur à l'âge limite AEEH, autonomie financière vàv des prestations familiales"
@@ -36,11 +36,11 @@
   period: 2013-07
   input_variables:
     age: 18
-    handicap: True
+    handicap: true
     taux_incapacite: 0.9
-    autonomie_financiere: True
+    autonomie_financiere: true
   output_variables:
-    aah_eligible: True
+    aah_eligible: true
 
 
 - name: "Ineligibilité à l'AAH: taux d'incapacité inférieur à 50%"
@@ -48,11 +48,11 @@
   period: 2013-07
   input_variables:
     age: 50
-    handicap: True
+    handicap: true
     taux_incapacite: 0.4
   output_variables:
-    aah_eligible: False
-    aah_non_calculable: calculable #Used to be False
+    aah_eligible: false
+    aah_non_calculable: calculable #Used to be false
 
 
 - name: "Indetermination de l'éligibilité à l'AAH : taux d'incapacité entre 50% et 80%"
@@ -60,7 +60,7 @@
   period: 2013-07
   input_variables:
     age: 50
-    handicap: True
+    handicap: true
     taux_incapacite: 0.7
   output_variables:
-    aah_non_calculable: intervention_CDAPH_necessaire #Used to be True
+    aah_non_calculable: intervention_CDAPH_necessaire #Used to be true

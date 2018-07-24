@@ -7,7 +7,7 @@ from setuptools import setup, find_packages
 
 setup(
     name = 'OpenFisca-France',
-    version = '22.2.1',
+    version = '22.2.2',
     author = 'OpenFisca Team',
     author_email = 'contact@openfisca.fr',
     classifiers = [
@@ -44,6 +44,7 @@ setup(
             'nose',
             'flake8 == 3.4.1',
             'scipy >= 0.17', # Only used to test de_net_a_brut reform
+            'yamllint >= 1.11.1, < 1.12',
             ],
         },
     include_package_data = True,  # Will read MANIFEST.in
