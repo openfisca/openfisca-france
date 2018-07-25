@@ -1,5 +1,13 @@
 # Changelog
 
+### 22.3.0 [#998](https://github.com/openfisca/openfisca-france/pull/998)
+
+* Évolution du système socio-fiscal.
+* Zones impactées :
+  - `prestations/reduction_loyer_solidarite`
+* Détails :
+  - Ajoute le calcul de la réduction du loyer de solidarité.
+
 ### 22.2.2 [#1039](https://github.com/openfisca/openfisca-france/pull/1039)
 
 * Amélioration technique.
@@ -15,14 +23,14 @@
   - `prestations/anah/eligibilite_anah`
 * Détails :
   - Corrige la formule de `locmeu` (Réduction d'impôt en faveur de l'acquisition de logements destinés à la location meublée non professionnelle), qui crashait pour 2017.
-  - Corrige la formule de `eligibilite_anah`, qui crashait pour les départements de Corse. 
+  - Corrige la formule de `eligibilite_anah`, qui crashait pour les départements de Corse.
   - Corrige la configuration des tests pour qu'ils soient tous executés:
     - Corrige les appels `circleci tests glob` pour que `**` soit récursif.
 
 ## 22.2.0 [#1032](https://github.com/openfisca/openfisca-france/pull/1034)
 
 * Évolution du système socio-fiscal.
-* Zones impactées : 
+* Zones impactées :
   - `prelevements_obligatoires/impot_revenu/ir`
   - `revenus/capital/financier`
   - `revenus/capital/plus_value`
