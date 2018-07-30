@@ -124,10 +124,13 @@ class age_en_mois(Variable):
 
 class depcom_foyer(Variable):
     value_type = str
-    default_value = "00000"
+    max_length = 5
     entity = FoyerFiscal
+    default_value = "00000"
     label = u"Code AFT du lieu de domicile fiscal"
     definition_period = YEAR
+    set_input = set_input_dispatch_by_period
+    # Cette variable est similaire à la variable "depcom" qui est le lieu de domicile du ménage tandis que "depcom_foyer" est le lieu de résidence fiscale du foyer fiscal.
 
 
 class residence_fiscale_guadeloupe(Variable):
