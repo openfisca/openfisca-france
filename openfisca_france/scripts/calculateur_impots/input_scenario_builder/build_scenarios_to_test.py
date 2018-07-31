@@ -34,8 +34,6 @@ def create_all_scenarios_to_test(directory, years):
     for year in years:
         
         scenario_by_variable = {
-            # 'plaf_qf_domtom': TODO,
-            # 'reduc_doment': TODO,
             'abat_65_or_invalid': define_single_worker_scenario(year, {'salaire_imposable': 20000},  caseP = 1, date_naissance = year - 80),
             'caseF': define_family_scenario(year, caseF = 1),
             'caseG': define_single_worker_scenario(year, {'salaire_imposable': 50000}, caseG = 1, statut_marital = u'veuf', date_naissance = year - 80),
