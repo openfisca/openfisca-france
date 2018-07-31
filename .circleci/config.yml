@@ -40,7 +40,11 @@ jobs:
       - run:
           name: Run YAML formatter and check for changes
           command: |
-            .circleci/are-yaml-files-properly-formatted.sh `circleci tests glob **/*.yaml`
+            mkdir -p /tmp/artifacts
+            .circleci/are-yaml-files-properly-formatted.sh `circleci tests glob **/*.{yaml} | circleci tests split` 2> /tmp/artifacts/yaml.diff
+
+      - store_artifacts:
+          path: /tmp/artifacts
 
       - run:
           name: Run tests
@@ -124,7 +128,11 @@ jobs:
       - run:
           name: Run YAML formatter and check for changes
           command: |
-            .circleci/are-yaml-files-properly-formatted.sh `circleci tests glob **/*.yaml`
+            mkdir -p /tmp/artifacts
+            .circleci/are-yaml-files-properly-formatted.sh `circleci tests glob **/*.{yaml} | circleci tests split` 2> /tmp/artifacts/yaml.diff
+
+      - store_artifacts:
+          path: /tmp/artifacts
 
       - run:
           name: Run tests
