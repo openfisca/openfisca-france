@@ -1,9 +1,6 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 
-""" Generates a list of test cases scenarios (year of legislation, household composition, individual incomes) specifically designed to test
-    the income tax legislation coded in OpenFisca. The test case scenarios are stored in JSON format. """
-
 
 import codecs
 import json
@@ -24,21 +21,11 @@ def add_scenario(scenario):
 
 def create_all_scenarios_to_test(directory, years):
     """
-    Main function that generates a serie of test-case scenarios that can be used to construct tests of income tax simulation.
-    The output scenarios are stored in separate JSON files in the directory given as argument.
-
-    - TYPE 1 scenarios
-    Description : A single childless worker + a fixed amount of wage + a fixed amount of another type of income/tax reduction
-    Goal : Test that OpenFisca does takes into account rightfully each of the variables from the income tax forms (decl. 2042...)
-
-    - TYPE 2 scenario
-    Description : Scenarios with various family and income situation to test various things
-    Goal : Test that OpenFisca rightfully compute the income tax, taking into account all the complex features of the legislation
-    like decote, quotient familial, PPE etc.
-
+    Fopnction qui génère une série de scénarios cas-types, chacun permettant de tester un dispositif de l'impôt en particulier.
+    Les scénarios créés sont stockés sous format JSON dans le dossier 'directory'.
     """
+    
     assert os.path.isdir(os.path.join(directory)), 'ERROR : directory {} does not exist'.format(directory)
-
 
     fixed_wage_amount = 50000
     tested_income_amount = 20000
@@ -46,31 +33,6 @@ def create_all_scenarios_to_test(directory, years):
 
     for year in years:
         
-        # TYPE 1 SCENARIOS
-
-        # for variable in base.individual_income_variables_to_test + base.household_income_variables_to_test :
-        #     if variable not in base.tax_benefit_system.variables:
-        #         log.info("Variable {} does not exist in the tax_benefit system, no scenarios to test were created".format(variable))
-        #         continue
-        #     if base.tax_benefit_system.variables[variable].end != None: 
-        #         if (periods.period(str(base.tax_benefit_system.variables[variable].end)[:-3]) < periods.period('{}-01'.format(year))):
-        #             log.info("Variable {} is not in effect in year {}, no scenarios to tests were created for this year".format(variable, year))
-        #             continue
-        #     if variable in base.start_date_by_name.keys(): 
-        #         if (periods.period(str(base.start_date_by_name[variable])[:-3]) > periods.period('{}-01'.format(year))):
-        #             log.info("Variable {} is not in effect in year {}, no scenarios to tests were created for this year".format(variable, year))
-        #             continue
-
-        #     scenario = define_single_worker_scenario(year, {'salaire_imposable': fixed_wage_amount, variable: tested_income_amount})
-        #     json_filename = "test" + '-' + variable + '-' + str(scenario.period.date.year)
-        #     if os.path.isfile(os.path.join(directory, json_filename)):
-        #         log.debug("File {} already exists".format(json_filename))
-        #     with codecs.open(os.path.join(directory, json_filename + '.json'), 'w', encoding = 'utf-8') as fichier:
-        #         json.dump(add_scenario(scenario), fichier, encoding='utf-8', ensure_ascii=False, indent=2, sort_keys=True)
-
-
-        # TYPE 2 SCENARIOS
-
         scenario_by_variable = {
             # 'plaf_qf_domtom': TODO,
             # 'reduc_doment': TODO,
@@ -87,6 +49,7 @@ def create_all_scenarios_to_test(directory, years):
             #'charges_deduc_non_plafonnees_eparet': TODO
             'charges_deduc_non_plafonnees_reparations': define_single_worker_scenario(year, {'salaire_imposable': fixed_wage_amount, 'f6cb': 25000, 'f6hj': 10000 , 'f6hk': 10000}),
             'charges_deduc_non_plafonnees_pens_alim': define_single_worker_scenario(year, {'salaire_imposable': fixed_wage_amount, 'f6gi': tested_reduction_amount, 'f6gj': tested_reduction_amount, 'f6el': tested_reduction_amount, 'f6em': tested_reduction_amount, 'f6gp': tested_reduction_amount, 'f6gu': tested_reduction_amount}),
+            'credit_assloy': define_single_worker_scenario(year, {'salaire_imposable': fixed_wage_amount, 'f4ba': tested_income_amount, 'f4bf': tested_reduction_amount}),
             'credit_garext': define_family_scenario(year, value_by_variable = {'f7ga': 3000, 'f7ge': 2000}, nb_enfants = 2, nbF = 1, nbH = 1),
             'credit_preetu': define_single_worker_scenario(year, {'salaire_imposable': fixed_wage_amount, 'f7uk': 1000, 'f7vo': 2, 'f7td': 3000}, date_naissance = year - 25),
             'credit_saldom': define_single_worker_scenario(year, {'salaire_imposable': fixed_wage_amount, 'f7db': tested_income_amount, 'f7dq': 1, 'f7dg': 1}),
@@ -133,17 +96,7 @@ def define_single_worker_scenario(year, value_by_variable,
     date_naissance = 1970, statut_marital = u'celibataire', nb_enfants = 0,
     nbF = 0, nbG = 0, nbR = 0, nbH = 0, nbI = 0, nbJ = 0, caseL = 0, caseP = 0, caseF = 0, caseW = 0, caseS = 0, caseG = 0, caseT = 0):
     """
-        Function that creates a scenario from the base tax & benefits system for one entity (a single working person)
-        and credit him with some incomes given in argument.
-
-        Parameters
-        ---------
-        year:
-        Year of income
-
-        value_by_variable:
-        List of income variables and associated amounts
-
+    Crée un scénario cas-type d'un célibataire sans enfants avec un certain montant de revenus
     """
     assert statut_marital in [u'celibataire', u'veuf', u'divorce']
     scenario = base.tax_benefit_system.new_scenario() 
@@ -214,14 +167,7 @@ def define_family_scenario(year, value_by_variable = {},
     date_naissance1 = 1970, date_naissance2 = 1970, income_amount1 = 50000, income_amount2 = 50000, nb_enfants = 3,
     nbF = 3, nbG = 0, nbR = 0, nbH = 0, nbI = 0, nbJ = 0, nbN = 0, caseP = 0, caseF = 0, caseW = 0, caseS = 0, caseG = 0):
     """
-        Function that creates a scenario from the base tax & benefits system for one entity (a family with 3 children)
-        and credit the parents with a given amount of wage.
-
-        Parameters
-        ---------
-        year:
-        Year of income
-
+    Crée un scénario cas-type d'une famille avec enfants avec un certain montant de revenus
     """
     
     assert nbF + nbH + nbJ + nbN <= nb_enfants
