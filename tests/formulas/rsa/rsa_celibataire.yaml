@@ -179,7 +179,7 @@
     rsa_majore_eligibilite:
       2014-01: false
     rsa:
-      2014-01: 0 
+      2014-01: 0
 
 - period: '2014'
   absolute_error_margin: 0.005
@@ -210,7 +210,7 @@
     rsa_majore_eligibilite:
       2014-01: false
     rsa:
-      2014-01: 0 
+      2014-01: 0
 
 - period: '2014'
   absolute_error_margin: 0.005
@@ -241,7 +241,7 @@
     rsa_majore_eligibilite:
       2014-01: false
     rsa:
-      2014-01: 0 
+      2014-01: 0
 
 - period: 2015-01
   name: Pas de RSA si âge < 25

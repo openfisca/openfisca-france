@@ -169,7 +169,7 @@
     rsa_fictif:
       2016-12: 535.17 - 300
       2016-11: 535.17 - 300
-      2016-10: 0 
+      2016-10: 0
 
 - name: Les derniers benefices agricoles et autres TNS sont pris en compte dans la BR du RSA
   period: 2017-01

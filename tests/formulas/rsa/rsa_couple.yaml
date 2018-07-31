@@ -285,7 +285,7 @@
     date_naissance: '1985-01-01'
   output_variables:
     rsa:
-      2014-01: 0 
+      2014-01: 0
 
 - period: '2014'
   name: RSA couple, age = [< 25, < 25], salaire_net = [400 * 12, 3000 * 12]
@@ -311,7 +311,7 @@
       2014: 3000 * 12
   output_variables:
     rsa:
-      2014-01: 0 
+      2014-01: 0
 
 - period: '2014'
   name: RSA couple avec enfant < 3 ans, salaire_net = [0, 0]

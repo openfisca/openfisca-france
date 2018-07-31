@@ -32,7 +32,7 @@
       2014-06: 35 * 52 * 9.53 * 1.4 * 0.281 / 12
       2015-01: 35 * 52 * 9.61 * 1.4 * 0.2655 / 12
       2015-09: 0
-      2016-01: 0 
+      2016-01: 0
 
 - name: Exonération cotisations employeur zone de revitalisation rurale (ZRR) - 2.5 SMIC
   period: '2014'
