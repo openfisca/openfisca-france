@@ -116,6 +116,8 @@ def create_all_scenarios_to_test(directory, years):
             'reduc_malraux': define_single_worker_scenario(year, {'salaire_imposable': fixed_wage_amount, 'f7ny': tested_reduction_amount, 'f7nx': tested_reduction_amount, 'f7re': tested_reduction_amount, 'f7rf': tested_reduction_amount, 'f7sy': tested_reduction_amount, 'f7sx': tested_reduction_amount}),
             'reduc_saldom' : define_single_worker_scenario(year, {'salaire_imposable': fixed_wage_amount, 'f7df': tested_income_amount, 'f7dq': 0, 'f7dg': 0}),
             'reduc_saldom2': define_single_worker_scenario(year, {'salaire_imposable': fixed_wage_amount, 'f7dd': tested_income_amount, 'f7dl': 1}),
+            'reduc_spfscpi': define_single_worker_scenario(year, {'salaire_imposable': fixed_wage_amount, 'f7gq': tested_reduction_amount, 'f7fq': tested_reduction_amount * 2, 'f7fm': tested_reduction_amount * 3}),
+            'reduc_spfscpi2': define_single_worker_scenario(year, {'salaire_imposable': fixed_wage_amount, 'f7gq': tested_reduction_amount}),
         }
         
         for variable in scenario_by_variable :
