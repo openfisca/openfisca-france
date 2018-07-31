@@ -160,6 +160,18 @@ class aah_base_ressources_eval_annuelle(Variable):
         return individu('revenu_activite', period.n_2) + individu('revenu_assimile_pension', period.n_2)
 
 
+class aah_restriction_substantielle_durable_acces_emploi(Variable):
+    value_type = bool
+    default_value = True
+    entity = Individu
+    label = u"Restriction substantielle et durable pour l'accès à l'emploi reconnue par la commission des droits et de l'autonomie des personnes handicapées"
+    reference = [
+        u"Article L821-2 du Code de la sécurité sociale",
+        u"https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=17BE3036A19374AA1C8C7A4169702CD7.tplgfr24s_2?idArticle=LEGIARTI000020039305&cidTexte=LEGITEXT000006073189&dateTexte=20180731"
+    ]
+    definition_period = MONTH
+
+
 class aah_eligible(Variable):
     value_type = bool
     label = u"Eligibilité à l'Allocation adulte handicapé"
@@ -196,14 +208,16 @@ class aah_eligible(Variable):
     '''
 
     def formula(individu, period, parameters):
-        law = parameters(period).prestations
+        law = parameters(period).prestations.minima_sociaux.aah
         taux_incapacite = individu('taux_incapacite', period)
+        rsdae = individu('aah_restriction_substantielle_durable_acces_emploi', period)
+
         age = individu('age', period)
         autonomie_financiere = individu('autonomie_financiere', period)
         eligible_aah = (
-            (taux_incapacite >= 0.5) *
-            (age <= law.minima_sociaux.aah.age_legal_retraite) *
-            ((age >= law.minima_sociaux.aah.age_minimal) + ((age >= 16) * (autonomie_financiere)))
+            ((taux_incapacite >= law.taux_incapacite) + (taux_incapacite >= 0.5) * rsdae) *
+            (age <= law.age_legal_retraite) *
+            ((age >= law.age_minimal) + ((age >= 16) * (autonomie_financiere)))
             )
 
         return eligible_aah
