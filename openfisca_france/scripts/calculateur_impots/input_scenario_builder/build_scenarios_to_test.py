@@ -110,6 +110,8 @@ def create_all_scenarios_to_test(directory, years):
             'reduc_donapd' : define_single_worker_scenario(year, {'salaire_imposable': fixed_wage_amount, 'f7ud': 100, 'f7va': 100}),
             'reduc_ecpess': define_single_worker_scenario(year, {'salaire_imposable': fixed_wage_amount,'f7ea': 1, 'f7eb': 1, 'f7ec': 0, 'f7ef': 0, 'f7eg': 0, 'f7ed': 1}, nb_enfants = 3, nbF = 1, nbH = 2),
             'reduc_intagr': define_single_worker_scenario(year,  {'salaire_imposable': fixed_wage_amount, 'f7um': tested_income_amount, 'f2tr': tested_income_amount}),
+            'reduc_invlst1': define_single_worker_scenario(year, {'salaire_imposable': fixed_wage_amount, 'f7uy': 5000}),
+            'reduc_invlst2': define_single_worker_scenario(year, {'salaire_imposable': fixed_wage_amount, 'f7uz': 5000}),
             'reduc_malraux': define_single_worker_scenario(year, {'salaire_imposable': fixed_wage_amount, 'f7ny': tested_reduction_amount, 'f7nx': tested_reduction_amount, 'f7re': tested_reduction_amount, 'f7rf': tested_reduction_amount, 'f7sy': tested_reduction_amount, 'f7sx': tested_reduction_amount}),
             'reduc_saldom' : define_single_worker_scenario(year, {'salaire_imposable': fixed_wage_amount, 'f7df': tested_income_amount, 'f7dq': 0, 'f7dg': 0}),
             'reduc_saldom2': define_single_worker_scenario(year, {'salaire_imposable': fixed_wage_amount, 'f7dd': tested_income_amount, 'f7dl': 1}),
