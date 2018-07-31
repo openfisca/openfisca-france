@@ -1,0 +1,70 @@
+
+- name: Résidence fiscale Guadeloupe
+  period: "year:2018"
+  individus:
+    id: "parent"
+  foyers_fiscaux:
+    depcom_foyer: 97105
+    declarants: "parent"
+  output_variables:
+    residence_fiscale_guadeloupe: true
+    residence_fiscale_guyane: false
+    residence_fiscale_martinique: false
+    residence_fiscale_mayotte: false
+    residence_fiscale_reunion: false
+
+- name: Résidence fiscale Guyane
+  period: "year:2018"
+  individus:
+    id: "parent"
+  foyers_fiscaux:
+    depcom_foyer: 97302
+    declarants: "parent"
+  output_variables:
+    residence_fiscale_guadeloupe: false
+    residence_fiscale_guyane: true
+    residence_fiscale_martinique: false
+    residence_fiscale_mayotte: false
+    residence_fiscale_reunion: false
+
+- name: Résidence fiscale Martinique
+  period: "year:2018"
+  individus:
+    id: "parent"
+  foyers_fiscaux:
+    depcom_foyer: 97209
+    declarants: "parent"
+  output_variables:
+    residence_fiscale_guadeloupe: false
+    residence_fiscale_guyane: false
+    residence_fiscale_martinique: true
+    residence_fiscale_mayotte: false
+    residence_fiscale_reunion: false
+
+- name: Résidence fiscale Mayotte
+  period: "year:2018"
+  individus:
+    id: "parent"
+  foyers_fiscaux:
+    depcom_foyer: 97611
+    declarants: "parent"
+  output_variables:
+    residence_fiscale_guadeloupe: false
+    residence_fiscale_guyane: false
+    residence_fiscale_martinique: false
+    residence_fiscale_mayotte: true
+    residence_fiscale_reunion: false
+
+- name: Résidence fiscale Réunion
+  period: "year:2018"
+  individus:
+    id: "parent"
+  foyers_fiscaux:
+    depcom_foyer: 97411
+    declarants: "parent"
+  output_variables:
+    residence_fiscale_guadeloupe: false
+    residence_fiscale_guyane: false
+    residence_fiscale_martinique: false
+    residence_fiscale_mayotte: false
+    residence_fiscale_reunion: true
