@@ -138,7 +138,7 @@ def define_scenario(year, tax_benefit_system = tax_benefit_system):
         parent1 = dict(
             activite = u'actif',
             date_naissance = 1970,
-            salaire_imposable = 200000,
+            salaire_imposable = 100000,
             #retraite_imposable = 0,
             #chomage_imposable = 0,
             #nbic_mvct = 20000,
@@ -150,7 +150,7 @@ def define_scenario(year, tax_benefit_system = tax_benefit_system):
         parent2 = dict(
              activite = u'actif',
              date_naissance = 1973,
-             salaire_imposable = 15000,
+             salaire_imposable = 35000,
              statut_marital = u'marie',
              ),
         # enfants = [
@@ -164,8 +164,10 @@ def define_scenario(year, tax_benefit_system = tax_benefit_system):
         #         ),
         #      ],
         foyer_fiscal = dict(
-            #f8ta = 20000,
-            #f6ps = 10000,
+            f7gq = 0,
+            f7fq = 0,
+            f4ba = 23000,
+            f4bf = 1000,
             # f2ch = 100,
             # f2dc = 500,
             # f2fu = 1000,
@@ -186,7 +188,7 @@ def main():
     args = parser.parse_args()
     logging.basicConfig(level = logging.DEBUG if args.verbose else logging.WARNING, stream = sys.stdout)
 
-    year = 2017 # Année de revenus
+    year = 2016 # Année de revenus
     scenario = define_scenario(year)
     compare(scenario, tested = True, verbose = True)
     return 0
