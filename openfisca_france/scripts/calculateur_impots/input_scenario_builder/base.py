@@ -29,6 +29,7 @@ scenario_by_variable_2014 = {
     'credit_inthab': define_single_worker_scenario(2014, {'salaire_imposable': fixed_wage_amount, 'f7vt': tested_reduction_amount, 'f7vx': tested_reduction_amount * 2, 'f7vz': tested_reduction_amount * 3, 'f7vv': tested_reduction_amount * 4, 'f7vu': tested_reduction_amount}),
     'credit_preetu': define_single_worker_scenario(2014, {'salaire_imposable': fixed_wage_amount, 'f7uk': tested_reduction_amount, 'f7vo': 2, 'f7td': 3000}, date_naissance = 2014 - 25),
     'credit_saldom': define_single_worker_scenario(2014, {'salaire_imposable': fixed_wage_amount, 'f7db': tested_income_amount, 'f7dq': 1, 'f7dg': 1}),
+    'credit_saldom2': define_single_worker_scenario(2014, {'salaire_imposable': fixed_wage_amount, 'f7db': tested_income_amount, 'f7dq': 0, 'f7dg': 0}),
     'decote': define_family_scenario(2014, income_amount1 = 25000, income_amount2 = 20000),
     'f4be': define_single_worker_scenario(2014, {'salaire_imposable': fixed_wage_amount, 'f4be': tested_income_amount}), # régime micro-foncier
     'maj_nbp': define_family_scenario(2014, nbF = 1, nbG = 1, nbH = 1, nbI = 1, nbR = 1, nbJ = 1),
@@ -78,6 +79,7 @@ scenario_by_variable_2015 = {
     'credit_inthab': define_single_worker_scenario(2015, {'salaire_imposable': fixed_wage_amount, 'f7vt': tested_reduction_amount, 'f7vx': tested_reduction_amount * 2, 'f7vz': tested_reduction_amount * 3, 'f7vv': tested_reduction_amount * 4}),
     'credit_preetu': define_single_worker_scenario(2015, {'salaire_imposable': fixed_wage_amount, 'f7uk': 1000, 'f7vo': 2, 'f7td': 3000}, date_naissance = 2015 - 25),
     'credit_saldom': define_single_worker_scenario(2015, {'salaire_imposable': fixed_wage_amount, 'f7db': tested_income_amount, 'f7dq': 1, 'f7dg': 1}),
+    'credit_saldom2': define_single_worker_scenario(2014, {'salaire_imposable': fixed_wage_amount, 'f7db': tested_income_amount, 'f7dq': 0, 'f7dg': 0}),
     'decote': define_family_scenario(2015, income_amount1 = 25000, income_amount2 = 20000),
     'f4be': define_single_worker_scenario(2015, {'salaire_imposable': fixed_wage_amount, 'f4be': tested_income_amount}), # régime micro-foncier
     'maj_nbp': define_family_scenario(2015, nbF = 1, nbG = 1, nbH = 1, nbI = 1, nbR = 1, nbJ = 1),
@@ -127,6 +129,7 @@ scenario_by_variable_2016 = {
     'credit_inthab': define_single_worker_scenario(2016, {'salaire_imposable': fixed_wage_amount, 'f7vt': tested_reduction_amount, 'f7vx': tested_reduction_amount * 2, 'f7vz': tested_reduction_amount * 3}),
     'credit_preetu': define_single_worker_scenario(2016, {'salaire_imposable': fixed_wage_amount, 'f7uk': 1000, 'f7vo': 2, 'f7td': 3000}, date_naissance = 2016 - 25),
     'credit_saldom': define_single_worker_scenario(2016, {'salaire_imposable': fixed_wage_amount, 'f7db': tested_income_amount, 'f7dq': 1, 'f7dg': 1}),
+    'credit_saldom2': define_single_worker_scenario(2014, {'salaire_imposable': fixed_wage_amount, 'f7db': tested_income_amount, 'f7dq': 0, 'f7dg': 0}),
     'decote': define_family_scenario(2016, income_amount1 = 25000, income_amount2 = 20000),
     'f4be': define_single_worker_scenario(2016, {'salaire_imposable': fixed_wage_amount, 'f4be': tested_income_amount}), # régime micro-foncier
     'maj_nbp': define_family_scenario(2016, nbF = 1, nbG = 1, nbH = 1, nbI = 1, nbR = 1, nbJ = 1),
@@ -175,6 +178,7 @@ scenario_by_variable_2017 = {
     'credit_inthab': define_single_worker_scenario(2017, {'salaire_imposable': fixed_wage_amount, 'f7vt': tested_reduction_amount, 'f7vx': tested_reduction_amount * 2, 'f7vz': tested_reduction_amount * 3}),
     'credit_preetu': define_single_worker_scenario(2017, {'salaire_imposable': fixed_wage_amount, 'f7uk': 1000, 'f7vo': 2, 'f7td': 3000}, date_naissance = 2017 - 25),
     'credit_saldom': define_single_worker_scenario(2017, {'salaire_imposable': fixed_wage_amount, 'f7db': tested_income_amount, 'f7dq': 1, 'f7dg': 1}),
+    'credit_saldom2': define_single_worker_scenario(2014, {'salaire_imposable': fixed_wage_amount, 'f7db': tested_income_amount, 'f7dq': 0, 'f7dg': 0}),
     'decote': define_family_scenario(2017, income_amount1 = 25000, income_amount2 = 20000),
     'f4be': define_single_worker_scenario(2017, {'salaire_imposable': fixed_wage_amount, 'f4be': tested_income_amount}), # régime micro-foncier
     'maj_nbp': define_family_scenario(2017, nbF = 1, nbG = 1, nbH = 1, nbI = 1, nbR = 1, nbJ = 1),
@@ -199,8 +203,6 @@ scenario_by_variable_2017 = {
     'reduc_invlst2': define_single_worker_scenario(2017, {'salaire_imposable': fixed_wage_amount, 'f7uz': 5000}),
     'reduc_patnat': define_single_worker_scenario(2017, {'salaire_imposable': fixed_wage_amount, 'f7kb': tested_reduction_amount, 'f7kc': tested_reduction_amount, 'f7kd': tested_reduction_amount, 'f7ke': tested_reduction_amount}),
     'reduc_malraux': define_single_worker_scenario(2017, {'salaire_imposable': fixed_wage_amount, 'f7ny': tested_reduction_amount, 'f7nx': tested_reduction_amount, 'f7re': tested_reduction_amount, 'f7rf': tested_reduction_amount, 'f7sy': tested_reduction_amount, 'f7sx': tested_reduction_amount}),
-    'reduc_saldom' : define_single_worker_scenario(2017, {'salaire_imposable': fixed_wage_amount, 'f7df': tested_income_amount, 'f7dq': 0, 'f7dg': 0}),
-    'reduc_saldom2': define_single_worker_scenario(2017, {'salaire_imposable': fixed_wage_amount, 'f7dd': tested_income_amount, 'f7dl': 1}),
     'reduc_spfscpi': define_single_worker_scenario(2017, {'salaire_imposable': fixed_wage_amount, 'f7gq': tested_reduction_amount, 'f7fq': tested_reduction_amount * 2, 'f7fm': tested_reduction_amount * 3}),
     'reduc_spfscpi2': define_single_worker_scenario(2017, {'salaire_imposable': fixed_wage_amount, 'f7gq': tested_reduction_amount}),
 }
