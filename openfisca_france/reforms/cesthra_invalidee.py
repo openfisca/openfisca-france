@@ -10,13 +10,13 @@ from .. import entities
 from ..model.prelevements_obligatoires.impot_revenu import ir
 
 
-dir_path = os.path.join(os.path.dirname(__file__), 'parameters')
+dir_path = os.path.join(os.path.dirname(__file__), "parameters")
 
 
 def modify_parameters(parameters):
-    file_path = os.path.join(dir_path, 'cesthra_invalidite.yaml')
-    reform_parameters_subtree = load_parameter_file(name='cesthra', file_path=file_path)
-    parameters.add_child('cesthra', reform_parameters_subtree)
+    file_path = os.path.join(dir_path, "cesthra_invalidite.yaml")
+    reform_parameters_subtree = load_parameter_file(name="cesthra", file_path=file_path)
+    parameters.add_child("cesthra", reform_parameters_subtree)
     return parameters
 
 
@@ -28,7 +28,9 @@ class cesthra(Variable):
     # PLF 2013 (rejeté) : 'taxe à 75%'
 
     def formula(foyer_fiscal, period, parameters):
-        salaire_imposable_i = foyer_fiscal.members("salaire_imposable", period, options = [ADD])
+        salaire_imposable_i = foyer_fiscal.members(
+            "salaire_imposable", period, options=[ADD]
+        )
         law_cesthra = parameters(period).cesthra
 
         cesthra_i = max_(salaire_imposable_i - law_cesthra.seuil, 0) * law_cesthra.taux
@@ -41,21 +43,22 @@ class irpp(Variable):
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
-        '''
+        """
         Montant après seuil de recouvrement (hors ppe)
-        '''
-        iai = foyer_fiscal('iai', period)
-        credits_impot = foyer_fiscal('credits_impot', period)
-        cehr = foyer_fiscal('cehr', period)
-        cesthra = foyer_fiscal('cesthra', period = period)
+        """
+        iai = foyer_fiscal("iai", period)
+        credits_impot = foyer_fiscal("credits_impot", period)
+        cehr = foyer_fiscal("cehr", period)
+        cesthra = foyer_fiscal("cesthra", period=period)
         P = parameters(period).impot_revenu.recouvrement
 
         pre_result = iai - credits_impot + cehr + cesthra
-        return ((iai > P.seuil) *
-            ((pre_result < P.min) * (pre_result > 0) * iai * 0 +
-            ((pre_result <= 0) + (pre_result >= P.min)) * (- pre_result)) +
-            (iai <= P.seuil) * ((pre_result < 0) * (-pre_result) +
-            (pre_result >= 0) * 0 * iai))
+        return (iai > P.seuil) * (
+            (pre_result < P.min) * (pre_result > 0) * iai * 0
+            + ((pre_result <= 0) + (pre_result >= P.min)) * (-pre_result)
+        ) + (iai <= P.seuil) * (
+            (pre_result < 0) * (-pre_result) + (pre_result >= 0) * 0 * iai
+        )
 
 
 class cesthra_invalidee(Reform):
@@ -64,4 +67,4 @@ class cesthra_invalidee(Reform):
     def apply(self):
         self.add_variable(cesthra)
         self.update_variable(irpp)
-        self.modify_parameters(modifier_function = modify_parameters)
+        self.modify_parameters(modifier_function=modify_parameters)

@@ -28,7 +28,11 @@ footer = """
 with open("../assets/holidays.py", "w") as text_file:
     text_file.write(header)
     for holiday_date, holiday_name in OrderedDict(holidays).items():
-        text_file.write("""
-    datetime.strptime("{}", "%Y-%m-%d").date(), # {}""".format(holiday_date, holiday_name))
+        text_file.write(
+            """
+    datetime.strptime("{}", "%Y-%m-%d").date(), # {}""".format(
+                holiday_date, holiday_name
+            )
+        )
 
     text_file.write(footer)

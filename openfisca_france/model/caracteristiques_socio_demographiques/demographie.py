@@ -2,6 +2,7 @@
 
 from openfisca_france.model.base import *  # noqa
 
+
 class date_naissance(Variable):
     value_type = date
     default_value = date(1970, 1, 1)
@@ -20,7 +21,7 @@ class adoption(Variable):
 class garde_alternee(Variable):
     value_type = bool
     entity = Individu
-    label = u'Enfant en garde alternée'
+    label = u"Enfant en garde alternée"
     base_function = requested_period_last_or_next_value
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
@@ -76,7 +77,7 @@ class caseE(Variable):
     value_type = bool
     entity = FoyerFiscal
     label = u"Situation pouvant donner droit à une demi-part supplémentaire : vous vivez seul au 1er janvier de l'année de perception des revenus et vous avez élevé un enfant pendant moins de 5 ans durant la période où vous viviez seul"
-    end = '2012-12-31'
+    end = "2012-12-31"
     definition_period = YEAR
 
 
@@ -118,7 +119,7 @@ class caseK(Variable):
     value_type = bool
     entity = FoyerFiscal
     label = u"Situation pouvant donner droit à une demi-part supplémentaire: vous avez eu un enfant décédé après l’âge de 16 ans ou par suite de faits de guerre"
-    end = '2011-12-31'
+    end = "2011-12-31"
     definition_period = YEAR
 
 
@@ -134,7 +135,9 @@ class caseN(Variable):
     cerfa_field = u"N"
     value_type = bool
     entity = FoyerFiscal
-    label = u"Vous ne viviez pas seul au 1er janvier de l'année de perception des revenus"
+    label = (
+        u"Vous ne viviez pas seul au 1er janvier de l'année de perception des revenus"
+    )
     definition_period = YEAR
 
 
@@ -158,7 +161,9 @@ class caseT(Variable):
     cerfa_field = u"T"
     value_type = bool
     entity = FoyerFiscal
-    label = u"Vous êtes parent isolé au 1er janvier de l'année de perception des revenus"
+    label = (
+        u"Vous êtes parent isolé au 1er janvier de l'année de perception des revenus"
+    )
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
     # TODO: Set definition_period as YEAR and change the suggestion process (scenarios.py)
@@ -198,7 +203,7 @@ class nb_parents(Variable):
         # Note : Cette variable est "instantanée" : quelque soit la période demandée, elle retourne la valeur au premier
         # jour, sans changer la période.
 
-        return famille.nb_persons(role = famille.PARENT)
+        return famille.nb_persons(role=famille.PARENT)
 
 
 class maries(Variable):
@@ -210,10 +215,10 @@ class maries(Variable):
     def formula(famille, period):
         # Note : Cette variable est "instantanée" : quelque soit la période demandée, elle retourne la valeur au premier
         # jour, sans changer la période.
-        statut_marital = famille.members('statut_marital', period)
-        individu_marie = (statut_marital == TypesStatutMarital.marie)
+        statut_marital = famille.members("statut_marital", period)
+        individu_marie = statut_marital == TypesStatutMarital.marie
 
-        return famille.any(individu_marie, role = famille.PARENT)
+        return famille.any(individu_marie, role=famille.PARENT)
 
 
 class en_couple(Variable):
@@ -225,7 +230,7 @@ class en_couple(Variable):
     def formula(famille, period, parameters):
         # Note : Cette variable est "instantanée" : quelque soit la période demandée, elle retourne la valeur au premier
         # jour, sans changer la période.
-        nb_parents = famille('nb_parents', period)
+        nb_parents = famille("nb_parents", period)
 
         return nb_parents == 2
 
@@ -249,7 +254,7 @@ class etudiant(Variable):
     def formula(individu, period, parameters):
         # Note : Cette variable est "instantanée" : quelque soit la période demandée, elle retourne la valeur au premier
         # jour, sans changer la période.
-        activite = individu('activite', period)
+        activite = individu("activite", period)
 
         return activite == TypesActivite.etudiant
 

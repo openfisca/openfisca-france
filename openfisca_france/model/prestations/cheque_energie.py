@@ -4,11 +4,14 @@ from __future__ import division
 
 from openfisca_france.model.base import *  # noqa analysis:ignore
 
+
 class UCChequeEnergie(Enum):
-    __order__ = 'une_uc une_uc_a_deux_uc plus_de_deux_uc'  # Needed to preserve the enum order in Python 2
-    une_uc = u'Une unité de consommation (UC)'
-    une_uc_a_deux_uc = u'Une UC à deux UC'
-    plus_de_deux_uc = u'Plus de deux UC'
+    __order__ = (
+        "une_uc une_uc_a_deux_uc plus_de_deux_uc"
+    )  # Needed to preserve the enum order in Python 2
+    une_uc = u"Une unité de consommation (UC)"
+    une_uc_a_deux_uc = u"Une UC à deux UC"
+    plus_de_deux_uc = u"Plus de deux UC"
 
 
 class cheque_energie_unites_consommation(Variable):
@@ -21,13 +24,19 @@ class cheque_energie_unites_consommation(Variable):
     def formula_2018(menage, period, parameters):
         uc = parameters(period).cheque_energie.unites_consommation
         nb_personnes = menage.nb_persons()
-        gardes_alternees = menage.sum(menage.members('garde_alternee', period.first_month))
+        gardes_alternees = menage.sum(
+            menage.members("garde_alternee", period.first_month)
+        )
 
         nb_personnes_ajuste = nb_personnes - 0.5 * gardes_alternees
         return (
             uc.premiere_personne
-            + uc.deuxieme_personne * (nb_personnes_ajuste > 1) * (min_(nb_personnes_ajuste, 2) - 1)
-            + uc.autres_personnes * (nb_personnes_ajuste > 2) * (nb_personnes_ajuste - 2)
+            + uc.deuxieme_personne
+            * (nb_personnes_ajuste > 1)
+            * (min_(nb_personnes_ajuste, 2) - 1)
+            + uc.autres_personnes
+            * (nb_personnes_ajuste > 2)
+            * (nb_personnes_ajuste - 2)
         )
 
 
@@ -44,16 +53,26 @@ class cheque_energie_eligibilite_logement(Variable):
     definition_period = MONTH
 
     def formula_2018(menage, period, parameters):
-        statut_occupation_logement = menage('statut_occupation_logement', period)
-        residence_saint_martin = menage('residence_saint_martin', period)
+        statut_occupation_logement = menage("statut_occupation_logement", period)
+        residence_saint_martin = menage("residence_saint_martin", period)
 
-        return (
-            not_(residence_saint_martin) * (
-            + (statut_occupation_logement == TypesStatutOccupationLogement.primo_accedant)
+        return not_(residence_saint_martin) * (
+            +(
+                statut_occupation_logement
+                == TypesStatutOccupationLogement.primo_accedant
+            )
             + (statut_occupation_logement == TypesStatutOccupationLogement.proprietaire)
-            + (statut_occupation_logement == TypesStatutOccupationLogement.locataire_hlm)
-            + (statut_occupation_logement == TypesStatutOccupationLogement.locataire_vide)
-            + (statut_occupation_logement == TypesStatutOccupationLogement.locataire_meuble)
+            + (
+                statut_occupation_logement
+                == TypesStatutOccupationLogement.locataire_hlm
+            )
+            + (
+                statut_occupation_logement
+                == TypesStatutOccupationLogement.locataire_vide
+            )
+            + (
+                statut_occupation_logement
+                == TypesStatutOccupationLogement.locataire_meuble
             )
         )
 
@@ -70,21 +89,27 @@ class cheque_energie_montant(Variable):
         seuils = baremes.thresholds
         montants = baremes.montants
 
-        uc_menage = menage('cheque_energie_unites_consommation', period)
-        rfr = menage.personne_de_reference.foyer_fiscal('rfr', period.n_2)
+        uc_menage = menage("cheque_energie_unites_consommation", period)
+        rfr = menage.personne_de_reference.foyer_fiscal("rfr", period.n_2)
 
         ressources_par_uc = rfr / uc_menage
 
         uc = select(
             [uc_menage <= 1, uc_menage < 2, 2 <= uc_menage],
-            [UCChequeEnergie.une_uc, UCChequeEnergie.une_uc_a_deux_uc, UCChequeEnergie.plus_de_deux_uc]
-            )
+            [
+                UCChequeEnergie.une_uc,
+                UCChequeEnergie.une_uc_a_deux_uc,
+                UCChequeEnergie.plus_de_deux_uc,
+            ],
+        )
 
         return (
-            + (ressources_par_uc < seuils.tranche_une) * montants[uc].tranche_une
-            + (seuils.tranche_une <= ressources_par_uc < seuils.tranche_deux) * montants[uc].tranche_deux
-            + (seuils.tranche_deux <= ressources_par_uc < seuils.tranche_trois) * montants[uc].tranche_trois
-            )
+            +(ressources_par_uc < seuils.tranche_une) * montants[uc].tranche_une
+            + (seuils.tranche_une <= ressources_par_uc < seuils.tranche_deux)
+            * montants[uc].tranche_deux
+            + (seuils.tranche_deux <= ressources_par_uc < seuils.tranche_trois)
+            * montants[uc].tranche_trois
+        )
 
 
 class cheque_energie(Variable):
@@ -95,4 +120,6 @@ class cheque_energie(Variable):
     definition_period = MONTH
 
     def formula_2018(menage, period, parameters):
-        return menage('cheque_energie_montant', period.this_year) * menage('cheque_energie_eligibilite_logement', period)
+        return menage("cheque_energie_montant", period.this_year) * menage(
+            "cheque_energie_eligibilite_logement", period
+        )

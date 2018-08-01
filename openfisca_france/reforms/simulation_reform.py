@@ -3,6 +3,7 @@ import openfisca_france
 from openfisca_france.model.base import *
 from openfisca_core import reforms
 
+
 class date_simulation(Variable):
     value_type = date
     entity = Individu
@@ -23,15 +24,15 @@ class aah(Variable):
         # utilise, si possible, le montant de la période de simulation
         #
         # Permet une meilleure évaluation du RSA lorsque l'AAH n'est pas connue.
-        known_periods = individu.get_holder('date_simulation').get_known_periods()
+        known_periods = individu.get_holder("date_simulation").get_known_periods()
         if known_periods:
-            date_demande = sorted(known_periods, reverse = True)[0]
-            return individu('aah_base', date_demande)
+            date_demande = sorted(known_periods, reverse=True)[0]
+            return individu("aah_base", date_demande)
 
-        return individu('aah_base', period)
+        return individu("aah_base", period)
+
 
 class simulation_reform(reforms.Reform):
-
     def apply(self):
         self.add_variable(date_simulation)
         self.update_variable(aah)

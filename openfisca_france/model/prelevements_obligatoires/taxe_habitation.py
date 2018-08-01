@@ -4,6 +4,7 @@ from __future__ import division
 
 from openfisca_france.model.base import *  # noqa analysis:ignore
 
+
 class exonere_taxe_habitation(Variable):
     value_type = bool
     default_value = True
@@ -25,28 +26,34 @@ class exonere_taxe_habitation(Variable):
 
         P = parameters(period).cotsoc.gen
 
-        age = menage.personne_de_reference('age', janvier)
-        statut_marital = menage.personne_de_reference('statut_marital', janvier)
+        age = menage.personne_de_reference("age", janvier)
+        statut_marital = menage.personne_de_reference("statut_marital", janvier)
 
-        aah_i = menage.members('aah', period, options = [ADD])
-        asi_i = menage.members.famille('asi', period, options = [ADD])
-        aspa_i = menage.members.famille('aspa', period, options = [ADD])
+        aah_i = menage.members("aah", period, options=[ADD])
+        asi_i = menage.members.famille("asi", period, options=[ADD])
+        aspa_i = menage.members.famille("aspa", period, options=[ADD])
         aah = menage.sum(aah_i)
         asi = menage.sum(asi_i)
         aspa = menage.sum(aspa_i)
 
-        isf_tot_i = menage.members.foyer_fiscal('isf_tot', period)
-        isf_tot = menage.sum(isf_tot_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
+        isf_tot_i = menage.members.foyer_fiscal("isf_tot", period)
+        isf_tot = menage.sum(isf_tot_i, role=FoyerFiscal.DECLARANT_PRINCIPAL)
 
-        nbptr_i = menage.members.foyer_fiscal('nbptr', period)
-        nbptr = menage.sum(nbptr_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)  # TODO: Beurk
+        nbptr_i = menage.members.foyer_fiscal("nbptr", period)
+        nbptr = menage.sum(nbptr_i, role=FoyerFiscal.DECLARANT_PRINCIPAL)  # TODO: Beurk
 
-        rfr_i = menage.members.foyer_fiscal('rfr', period)
-        rfr = menage.sum(rfr_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
-
+        rfr_i = menage.members.foyer_fiscal("rfr", period)
+        rfr = menage.sum(rfr_i, role=FoyerFiscal.DECLARANT_PRINCIPAL)
 
         seuil_th = P.plaf_th_1 + P.plaf_th_supp * (max_(0, (nbptr - 1) / 2))
-        elig = ((age >= 60) + (statut_marital == TypesStatutMarital.veuf)) * (isf_tot <= 0) * (rfr < seuil_th) + (asi > 0) + (aspa > 0) + (aah > 0)
+        elig = (
+            ((age >= 60) + (statut_marital == TypesStatutMarital.veuf))
+            * (isf_tot <= 0)
+            * (rfr < seuil_th)
+            + (asi > 0)
+            + (aspa > 0)
+            + (aah > 0)
+        )
         return not_(elig)
 
 
@@ -60,13 +67,15 @@ class taxe_habitation(Variable):
     def formula(menage, period, parameters):
         last_year = period.last_year
 
-        exonere_taxe_habitation = menage('exonere_taxe_habitation', period)
-        enfant_a_charge_i = menage.members('enfant_a_charge', period)
+        exonere_taxe_habitation = menage("exonere_taxe_habitation", period)
+        enfant_a_charge_i = menage.members("enfant_a_charge", period)
         nombre_enfants_a_charge_menage = menage.sum(enfant_a_charge_i)
-        nombre_enfants_majeurs_celibataires_sans_enfant = menage('nombre_enfants_majeurs_celibataires_sans_enfant', period)
+        nombre_enfants_majeurs_celibataires_sans_enfant = menage(
+            "nombre_enfants_majeurs_celibataires_sans_enfant", period
+        )
 
-        rfr_i = menage.members.foyer_fiscal('rfr', last_year)
-        rfr = menage.sum(rfr_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
+        rfr_i = menage.members.foyer_fiscal("rfr", last_year)
+        rfr = menage.sum(rfr_i, role=FoyerFiscal.DECLARANT_PRINCIPAL)
 
         # Variables TODO: à inclure dans la fonction
         valeur_locative_brute = 0
@@ -83,7 +92,9 @@ class taxe_habitation(Variable):
 
         taux_special_modeste = 0
         seuil_elig_special_modeste = 1.3  # 130 % de la valeur locative moyenne
-        seuil_elig_special_modeste_add = .1  # 10% par personne à charge en garde exclusive et 5% en garde altennée
+        seuil_elig_special_modeste_add = (
+            .1
+        )  # 10% par personne à charge en garde exclusive et 5% en garde altennée
 
         taux_special_invalide = .1  # 10% si l'abattement est voté est en vigueur
 
@@ -96,7 +107,10 @@ class taxe_habitation(Variable):
         # * les enfants du contribuable, de son conjoint ou les enfants recueillis qui sont pris en compte pour le
         # calcul de l’impôt sur le revenu (2). Ne sont pas concernés ceux pour lesquels le redevable déduit de ses
         # revenus imposables une pension alimentaire ;
-        pac_enf = nombre_enfants_a_charge_menage + nombre_enfants_majeurs_celibataires_sans_enfant  # TODO: inclure ceux du conjoint non présent sur la feuille d'impôt ? gestion des gardes alternées
+        pac_enf = (
+            nombre_enfants_a_charge_menage
+            + nombre_enfants_majeurs_celibataires_sans_enfant
+        )  # TODO: inclure ceux du conjoint non présent sur la feuille d'impôt ? gestion des gardes alternées
 
         # * les ascendants du contribuable et ceux de son conjoint remplissant les 3 conditions suivantes :
         # – être âgés de plus de 70 ans ou infirmes (c’est-à-dire ne pouvant subvenir par leur travail aux nécessités
@@ -110,13 +124,18 @@ class taxe_habitation(Variable):
         taux_2_premiers = taux_minimal_2_premiers + majoration_2_premiers
         taux_3_et_plus = taux_minimal_3_et_plus + majoration_3_et_plus
 
-        abattement_obligatoire = (min_(pac_enf + pac_asc, 2) * taux_2_premiers
-           + max_(pac_enf + pac_asc - 2, 0) * taux_3_et_plus) * valeur_locative_moyenne
+        abattement_obligatoire = (
+            min_(pac_enf + pac_asc, 2) * taux_2_premiers
+            + max_(pac_enf + pac_asc - 2, 0) * taux_3_et_plus
+        ) * valeur_locative_moyenne
 
         #   abattements facultatifs à la base :
         #     abattement faculattif général
 
-        abattement_general = abattement_general_base_forfaitaire + taux_abattement_general_base * valeur_locative_moyenne
+        abattement_general = (
+            abattement_general_base_forfaitaire
+            + taux_abattement_general_base * valeur_locative_moyenne
+        )
 
         #     abattement facultatif dit spécial en faveur des personnes dont le « revenu fiscal de référence » n’excède pas certaines limites
 
@@ -128,15 +147,33 @@ class taxe_habitation(Variable):
         #
         # Pour bénéficier de cet abattement, les contribuables doivent remplir deux conditions :
 
-        abattement_special_modeste = (valeur_locative_brute <= ((seuil_elig_special_modeste + seuil_elig_special_modeste_add * (pac_enf + pac_asc)) * valeur_locative_moyenne)
-     #       ) * (rfr <= 100  # TODO
-            ) * taux_special_modeste * valeur_locative_moyenne
+        abattement_special_modeste = (
+            (
+                valeur_locative_brute
+                <= (
+                    (
+                        seuil_elig_special_modeste
+                        + seuil_elig_special_modeste_add * (pac_enf + pac_asc)
+                    )
+                    * valeur_locative_moyenne
+                )
+                #       ) * (rfr <= 100  # TODO
+            )
+            * taux_special_modeste
+            * valeur_locative_moyenne
+        )
 
         #     abattement facultatif en faveur des personnes handicapées ou invalides.
-        abattement_special_invalide = 0 * taux_special_invalide  # Tous les habitants doivent êtres invalides
+        abattement_special_invalide = (
+            0 * taux_special_invalide
+        )  # Tous les habitants doivent êtres invalides
 
         base_nette = valeur_locative_brute - (
-            abattement_obligatoire + abattement_general + abattement_special_modeste + abattement_special_invalide)
+            abattement_obligatoire
+            + abattement_general
+            + abattement_special_modeste
+            + abattement_special_invalide
+        )
 
         cotisation_brute = base_nette * taux_imposition
 
@@ -163,5 +200,4 @@ class taxe_habitation(Variable):
         # Prélèvement pour base élevée et sur les résidences secondaires
         prelevement_residence_secondaire = 0  # TODO
 
-
-        return - 0 * not_(exonere_taxe_habitation)
+        return -0 * not_(exonere_taxe_habitation)

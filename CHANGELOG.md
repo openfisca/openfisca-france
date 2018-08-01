@@ -1,5 +1,11 @@
 # Changelog
 
+### 22.3.1 [#998](https://github.com/openfisca/openfisca-france/pull/1053)
+
+* Amélioration technique.
+* Détails :
+  - Compatibilité python2 et python3
+
 ### 22.3.0 [#998](https://github.com/openfisca/openfisca-france/pull/998)
 
 * Évolution du système socio-fiscal.

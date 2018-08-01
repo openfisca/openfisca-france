@@ -20,6 +20,7 @@ import urllib2
 from lxml import etree
 
 import openfisca_france
+
 tax_benefit_system = openfisca_france.FranceTaxBenefitSystem()
 
 
@@ -38,24 +39,41 @@ def main():
         def requete(p, i, year, var):
             global t, dates, j
             j = min(i, 8 - 1 * p * (year < 2010))
-            path = 'http://www3.finances.gouv.fr/calcul_impot/' + str(year + 1) + '/complet/calc_c_p' + str(p) + str(j) + '_data.htm'
-            request = urllib2.Request(path, headers = {
-                'User-Agent': 'OpenFisca-Script',
-                })
+            path = (
+                "http://www3.finances.gouv.fr/calcul_impot/"
+                + str(year + 1)
+                + "/complet/calc_c_p"
+                + str(p)
+                + str(j)
+                + "_data.htm"
+            )
+            request = urllib2.Request(path, headers={"User-Agent": "OpenFisca-Script"})
             response = urllib2.urlopen(request)
             response_html = response.read()
-            if 'Erreur' in response_html:
-                raise Exception(u"Erreur : {}".format(response_html.decode('iso-8859-1')).encode('utf-8'))
-            page_doc = etree.parse(cStringIO.StringIO(response_html), etree.HTMLParser())
-            for element in page_doc.xpath('//input[@name]'):
-                code = element.get('name')
+            if "Erreur" in response_html:
+                raise Exception(
+                    u"Erreur : {}".format(response_html.decode("iso-8859-1")).encode(
+                        "utf-8"
+                    )
+                )
+            page_doc = etree.parse(
+                cStringIO.StringIO(response_html), etree.HTMLParser()
+            )
+            for element in page_doc.xpath("//input[@name]"):
+                code = element.get("name")
                 if code == var:
                     t = 1
                     j = i
-                    dates[var].append(year) # Si la case existe pour l'année, on rajoute l'année dans le fichier résultat
+                    dates[var].append(
+                        year
+                    )  # Si la case existe pour l'année, on rajoute l'année dans le fichier résultat
 
-        for year in range(2005,2014): # On teste toutes les pages du simulateur pour trouver la variable
-            requete(p, j, year, var) # Pour accélérer le programme, on cherche d'abord à la même page pour l'année suivante
+        for year in range(
+            2005, 2014
+        ):  # On teste toutes les pages du simulateur pour trouver la variable
+            requete(
+                p, j, year, var
+            )  # Pour accélérer le programme, on cherche d'abord à la même page pour l'année suivante
             for i in range(1, 10):
                 if not t:
                     p = 0
@@ -67,18 +85,31 @@ def main():
                     requete(1, i, year, var)
             t = 0
 
-    for column in tax_benefit_system.variables.itervalues(): # On teste les variables une par une
+    for (
+        column
+    ) in (
+        tax_benefit_system.variables.itervalues()
+    ):  # On teste les variables une par une
         var = column.cerfa_field
         if isinstance(var, dict):
-            for k,v in var.items():
-                if len('_' + v) > 2:
-                    test('_' + v)
+            for k, v in var.items():
+                if len("_" + v) > 2:
+                    test("_" + v)
         elif var is not None:
             if len(var) > 1:
-                test('_' + var)
+                test("_" + var)
 
-        with codecs.open(os.path.join('dates_variables.json'),'w', encoding='utf-8') as fichier:
-            json.dump(dates, fichier, encoding='utf-8', ensure_ascii=False, indent=2,
-                sort_keys=True)
+        with codecs.open(
+            os.path.join("dates_variables.json"), "w", encoding="utf-8"
+        ) as fichier:
+            json.dump(
+                dates,
+                fichier,
+                encoding="utf-8",
+                ensure_ascii=False,
+                indent=2,
+                sort_keys=True,
+            )
+
 
 main()
