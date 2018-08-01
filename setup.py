@@ -2,7 +2,17 @@
 # -*- coding: utf-8 -*-
 
 
+import sys
 from setuptools import setup, find_packages
+
+
+EXTRAS_TEST_REQUIRES = [
+    "nose",
+    "scipy >= 0.17",  # Only used to test de_net_a_brut reform
+    "yamllint >= 1.11.1, < 1.12",
+]
+if sys.version_info[0] >= 3:
+    EXTRAS_TEST_REQUIRES += ["black >= 18.6b4"]
 
 
 setup(
@@ -36,12 +46,7 @@ setup(
         "inversion_revenus": ["scipy >= 0.17"],
         "de_net_a_brut": ["scipy >= 0.17"],
         "taxipp": ["pandas >= 0.13"],
-        "test": [
-            "nose",
-            "black >= 18.6b4",
-            "scipy >= 0.17",  # Only used to test de_net_a_brut reform
-            "yamllint >= 1.11.1, < 1.12",
-        ],
+        "test": EXTRAS_TEST_REQUIRES,
     },
     include_package_data=True,  # Will read MANIFEST.in
     install_requires=["OpenFisca-Core >= 23.1.2, < 24", "requests >= 2.8"],

@@ -47,7 +47,6 @@ jobs:
           command: |
             make check-no-prints
             make check-syntax-errors
-            make formatting
 
       - run:
           name: Check version number has been properly updated
