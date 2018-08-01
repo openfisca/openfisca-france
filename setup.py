@@ -42,7 +42,7 @@ setup(
             ],
         'test': [
             'nose',
-            'flake8 == 3.4.1',
+            'black >= 18.6b4',
             'scipy >= 0.17', # Only used to test de_net_a_brut reform
             'yamllint >= 1.11.1, < 1.12',
             ],
