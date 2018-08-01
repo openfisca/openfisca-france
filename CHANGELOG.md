@@ -1,5 +1,17 @@
 # Changelog
 
+# 24.0.0 [#1062](https://github.com/openfisca/openfisca-france/pull/1062)
+
+* Amélioration technique **non rétro-compatibles**.
+* Détails :
+  - Aucun impact pour les **clients** de l'API.
+  - Rend optionnelle l'installation de la Web API
+    - `pip install OpenFisca-France` n'installera _plus_ l'API.
+    - `pip install OpenFisca-France[api]` permet d'inclure l'API.
+  - Sert l'API Web sur le port 5000 par défault (à la place de 6000, considéré non-sûr)
+  - Renomme le groupe des dépendances optionnelles de développement:
+    - `pip install --editable .[dev]` permet de les installer (à la place de of `pip install --editable .[test]`).
+
 ### 23.1.1 [#1077](https://github.com/openfisca/openfisca-france/pull/1077)
 
 * Correction d'un crash
