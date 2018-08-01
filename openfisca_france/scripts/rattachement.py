@@ -69,7 +69,7 @@ def split(scenario):
             min_ = [i, irpp]
         impots.append(irpp)
 
-    print "Le plus avantageux pour votre famille est que les jeunes rattachés à votre foyer fiscal soient : {}. Vous paierez alors {}€ d'impôts. (Seuls les jeunes éligibles au rattachement sont indiqués (18 <= age < 21 si pas étudiant / 25 sinon. Le calculateur a émis l'hypothèse qu'il n'y avait qu'un seul foyer fiscal au départ, auquel tous les jeunes éligibles étaient rattachés.)".format(foyers_possibles[min_[0]],min_[1])
+    print("Le plus avantageux pour votre famille est que les jeunes rattachés à votre foyer fiscal soient : {}. Vous paierez alors {}€ d'impôts. (Seuls les jeunes éligibles au rattachement sont indiqués (18 <= age < 21 si pas étudiant / 25 sinon. Le calculateur a émis l'hypothèse qu'il n'y avait qu'un seul foyer fiscal au départ, auquel tous les jeunes éligibles étaient rattachés.)".format(foyers_possibles[min_[0]],min_[1]))
     return impots
 
 

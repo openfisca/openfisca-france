@@ -36,7 +36,7 @@ def main():
                 commune_depcom = row['POLE']
                 commune_depcom_by_subcommune_depcom[subcommune_depcom] = commune_depcom
 
-    print json.dumps(commune_depcom_by_subcommune_depcom, encoding = 'utf-8', ensure_ascii = False, indent = 2)
+    print(json.dumps(commune_depcom_by_subcommune_depcom, encoding = 'utf-8', ensure_ascii = False, indent = 2))
     return 0
 
 

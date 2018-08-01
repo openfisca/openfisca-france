@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+from __future__ import unicode_literals
+
 
 """Clean up YAML files extracted from IPP's tax and benefit tables."""
 
@@ -17,12 +19,12 @@ import yaml
 
 enable_warnings = True
 
-aad_re = re.compile(ur'AAD(\s+[-+]\s+\d+\s+ans?)?$')
-ans_et_mois_re = re.compile(ur"\d+ ans( \d+ mois)?$")
+aad_re = re.compile(r'AAD(\s+[-+]\s+\d+\s+ans?)?$')
+ans_et_mois_re = re.compile(r"\d+ ans( \d+ mois)?$")
 app_name = u"cleanup_yaml"
-apres_le_re = re.compile(ur'après le (?P<day>0?[1-9]|[12]\d|3[01])/(?P<month>0?[1-9]|1[0-2])/(?P<year>[12]\d{3})$')
+apres_le_re = re.compile(r'après le (?P<day>0?[1-9]|[12]\d|3[01])/(?P<month>0?[1-9]|1[0-2])/(?P<year>[12]\d{3})$')
 conv = custom_conv(baseconv, datetimeconv, states)
-french_date_re = re.compile(ur'(?P<day>0?[1-9]|[12]\d|3[01])/(?P<month>0?[1-9]|1[0-2])/(?P<year>[12]\d{3})$')
+french_date_re = re.compile(r'(?P<day>0?[1-9]|[12]\d|3[01])/(?P<month>0?[1-9]|1[0-2])/(?P<year>[12]\d{3})$')
 label_by_alias = {
     u"Commentaires": u"Notes",
     u"Date d'entrée en vigueur": u"Date d'effet",
@@ -46,10 +48,10 @@ label_by_alias = {
     u"Références législatives ou BOI": u"Références législatives",
     u"Remarques": u"Notes",
     }
-limite_age_re = re.compile(ur"limite d'âge( - \d+ trimestres?)?$")
+limite_age_re = re.compile(r"limite d'âge( - \d+ trimestres?)?$")
 log = logging.getLogger(app_name)
-trimestres_re = re.compile(ur"\d+ trimestres?$")
-year_re = re.compile(ur'[12]\d{3}$')
+trimestres_re = re.compile(r"\d+ trimestres?$")
+year_re = re.compile(r'[12]\d{3}$')
 
 
 def N_(message):
