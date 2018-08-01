@@ -47,7 +47,7 @@ openfisca_variable_name_by_tax_calculator_code = dict(
     IAVF2 = None,
     IAVIM = u'iai',
     IDEC = u'decote_gain_fiscal',
-    IDRS2 = u'ir_plaf_qf',
+    IDRS2 = None, # correspond au montant d'mpôt aprés plafonnement du QF mais avant application des réductions complémentaires 
     IINET = None,
     IINETIR = u'irpp',
     IPROP = None,
@@ -135,6 +135,7 @@ openfisca_variable_name_by_tax_calculator_code = dict(
     RDIFAGRI = u'intagr',
     RDONS = None,
     RDUFLOGIH = None,
+    RECOMP = None, #réductions complémentaires
     REI = None,
     REVKIRE = u'rfr',
     RFCPI = None,
@@ -201,7 +202,7 @@ openfisca_variable_name_by_tax_calculator_code = dict(
     RTOURREP = None,
     RTOURTRA = None,
     TEFF = None,
-    TOTPAC = u'nb_pac',
+    TOTPAC = None, # dans Openfisca, 'nb_pac', c'est seulement le nombre de pac pas en résidence alternée contrairement à la définition DGFiP
     TXMARJ = None,
     TXMOYIMP = None,
     )
@@ -234,7 +235,7 @@ general_variable_name_by_tax_calculator_code = {
     'IAVF2': u'?',#TODO (f8th)
     'IAVIM': u'Impôt avant imputations',
     'IDEC': u'Décote',
-    'IDRS2': u'Droits simples',
+    'IDRS2': u'?', # correspond au montant d'mpôt aprés plafonnement du QF mais avant application des réductions complémentaires 
     'IINET': u'Montant net à payer',
     'IINETIR': u'Impôt sur le revenu net',
     'IPROP': u'Impôt proportionnel',
@@ -326,6 +327,7 @@ general_variable_name_by_tax_calculator_code = {
     'RDUFREPFK': u'Réduction d\'impôt Duflot : case 7FK',
     'RDUFREPFR': u'Réduction d\'impôt Duflot : case 7FR',
     'REI': u'Reprise de réductions ou de crédits d\'impôt : cases 8TF, 8TP',
+    'RECOMP': u'?', # réduction complémentaire
     'REVKIRE': u'Revenu fiscal de référence',
     'RFCPI': u'?',
     'RFIPC': u'Réduction d\'impôt pour souscription au capital de FCPI en Corse',
@@ -390,7 +392,7 @@ general_variable_name_by_tax_calculator_code = {
     'RTOURREP': u'Réduction d\'impôt pour investissements locatifs dans le secteur touristique : reports (case 7XF à 7XN)',
     'RTOURTRA': u'Réduction d\'impôt pour investissements locatifs dans le secteur touristique : ',
     'TEFF': u'?',#TODO (ebnc_impo)
-    'TOTPAC': u'Nombre de personnes à charge',
+    'TOTPAC': u'?', # dans Openfisca, 'nb_pac', c'est seulement le nombre de pac pas en résidence alternée contrairement à la définition DGFiP
     'TXMARJ': u'Taux marginal d\'imposition',
     'TXMOYIMP': u'Taux moyen d\'imposition',
 }
