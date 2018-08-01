@@ -1,6 +1,8 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 
+from __future__ import unicode_literals
+
 
 """Convert IPP's tax and benefit tables from XLS format to YAML, trying to preserve its content as much as possible."""
 
@@ -19,14 +21,14 @@ import xlrd
 import yaml
 
 
-aad_re = re.compile(ur'AAD(\s+[-+]\s+\d+\s+ans?)?$')
+aad_re = re.compile(r'AAD(\s+[-+]\s+\d+\s+ans?)?$')
 app_name = os.path.splitext(os.path.basename(__file__))[0]
 conv = custom_conv(baseconv, datetimeconv, states)
-french_date_re = re.compile(ur'(?P<day>0?[1-9]|[12]\d|3[01])/(?P<month>0?[1-9]|1[0-2])/(?P<year>[12]\d{3})$')
+french_date_re = re.compile(r'(?P<day>0?[1-9]|[12]\d|3[01])/(?P<month>0?[1-9]|1[0-2])/(?P<year>[12]\d{3})$')
 log = logging.getLogger(app_name)
 number_re = re.compile(u'\d+\.?$')
 parameters = []
-year_re = re.compile(ur'[12]\d{3}$')
+year_re = re.compile(r'[12]\d{3}$')
 
 
 # YAML configuration
@@ -164,7 +166,7 @@ def transform_xls_cell_to_json(book, sheet, merged_cells_tree, row_index, column
             return value
         if u'€' in format_str:
             return (value, u'EUR')
-        if u'FRF' in format_str or ur'\F\R\F' in format_str or format_str.endswith(ur'\ "F"'):
+        if u'FRF' in format_str or u'\F\R\F' in format_str or format_str.endswith(u'\ "F"'):
             return (value, u'FRF')
         assert format_str.endswith(u'%'), 'Unexpected format "{}" for value: {}'.format(format_str, value)
         return (value, u'%')

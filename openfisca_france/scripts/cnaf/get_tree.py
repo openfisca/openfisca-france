@@ -32,7 +32,7 @@ def _get_inputs(browser):
     inputs = [input for input in inputs
               if input.get_attribute('name') not in input_pas_interessant]
     for input in inputs:
-        print input.get_attribute('name'), input.get_attribute('type')
+        print(input.get_attribute('name'), input.get_attribute('type'))
     return inputs
 
 def continuer(browser):
@@ -83,27 +83,27 @@ def create_page_from_inputs(browser):
                 else:  # if 'RessFR' in name or 'RessIJ' in name:
                     values = ['0']
             if values == []:
-                print name
+                print(name)
                 pdb.set_trace()
             page_question += [Question(name, values, 'text')]
         elif input.get_attribute('type') == 'checkbox':
             page_question += [Question(name, ['false', 'true'], 'text')]
         else:
-            print 'type non rencontré encore'
-            print input.get_attribute('type')
+            print('type non rencontré encore')
+            print(input.get_attribute('type'))
             pdb.set_trace()
 
     if name_page not in page_collection.keys():
         page_collection[name_page] = page_question
 
-    print name_page
+    print(name_page)
     return name_page
 
 def fill_page(browser, name_page):
     questions = page_collection[name_page]
     for question in questions:
         try:
-            print 'question', question.name
+            print('question', question.name)
             champs = browser.find_elements_by_name(question.name)
             if question.type == 'text':
                 assert len(champs) == 1
