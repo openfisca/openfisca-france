@@ -200,7 +200,7 @@ scenario_by_variable_2017 = {
     'reduc_intagr': define_single_worker_scenario(2017, {'salaire_imposable': fixed_wage_amount, 'f7um': tested_income_amount, 'f2tr': tested_income_amount}),
     'reduc_invlst1': define_single_worker_scenario(2017, {'salaire_imposable': fixed_wage_amount, 'f7uy': tested_investment}),
     'reduc_invlst2': define_single_worker_scenario(2017, {'salaire_imposable': fixed_wage_amount, 'f7uz': tested_investment}),
-    'reduc_patnat': define_single_worker_scenario(2017, {'salaire_imposable': fixed_wage_amount, 'f7kb': tested_reduction_amount, 'f7kc': tested_reduction_amount, 'f7kd': tested_reduction_amount, 'f7ke': tested_reduction_amount}),
+    'reduc_patnat': define_single_worker_scenario(2017, {'salaire_imposable': fixed_wage_amount, 'f7kc': tested_reduction_amount, 'f7kd': tested_reduction_amount, 'f7ke': tested_reduction_amount}),
     'reduc_malraux': define_single_worker_scenario(2017, {'salaire_imposable': fixed_wage_amount, 'f7ny': tested_reduction_amount, 'f7nx': tested_reduction_amount, 'f7re': tested_reduction_amount, 'f7rf': tested_reduction_amount, 'f7sy': tested_reduction_amount, 'f7sx': tested_reduction_amount}),
     'reduc_spfscpi': define_single_worker_scenario(2017, {'salaire_imposable': fixed_wage_amount, 'f7gq': tested_reduction_amount, 'f7fq': tested_reduction_amount * 2, 'f7fm': tested_reduction_amount * 3}),
     'reduc_spfscpi2': define_single_worker_scenario(2017, {'salaire_imposable': fixed_wage_amount, 'f7gq': tested_reduction_amount}),
