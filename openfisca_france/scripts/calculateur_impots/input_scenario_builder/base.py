@@ -21,7 +21,7 @@ scenario_by_variable_2014 = {
     'charges_deduc_non_plafonnees_acc75a': define_single_worker_scenario(2014, {'salaire_imposable': fixed_wage_amount, 'f6ev': 2, 'f6eu': 1000}),
     'charges_deduc_non_plafonnees_deddiv': define_single_worker_scenario(2014, {'salaire_imposable': fixed_wage_amount, 'f6dd': tested_reduction_amount}),
     #'charges_deduc_non_plafonnees_eparet': TODO
-    'charges_deduc_non_plafonnees_reparations': define_single_worker_scenario(2014, {'salaire_imposable': fixed_wage_amount, 'f6cb': 25000, 'f6hj': 10000 , 'f6hk': 10000}),
+    'charges_deduc_non_plafonnees_reparations': define_single_worker_scenario(2014, {'salaire_imposable': fixed_wage_amount, 'f6cb': 25000, 'f6hj': 1000 , 'f6hk': 1000, 'f6hl': 1000, 'f6hm': 1000, 'f6hn': 1000}),
     'charges_deduc_non_plafonnees_pens_alim': define_single_worker_scenario(2014, {'salaire_imposable': fixed_wage_amount, 'f6gi': tested_reduction_amount, 'f6gj': tested_reduction_amount, 'f6el': tested_reduction_amount, 'f6em': tested_reduction_amount, 'f6gp': tested_reduction_amount, 'f6gu': tested_reduction_amount}),
     'credit_assloy': define_single_worker_scenario(2014, {'salaire_imposable': fixed_wage_amount, 'f4ba': tested_income_amount, 'f4bf': tested_reduction_amount}),
     'credit_garext': define_family_scenario(2014, value_by_variable = {'f7ga': 3000, 'f7ge': 2000}, nb_enfants = 2, nbF = 1, nbH = 1),
@@ -70,7 +70,7 @@ scenario_by_variable_2015 = {
     'charges_deduc_non_plafonnees_acc75a': define_single_worker_scenario(2015, {'salaire_imposable': fixed_wage_amount, 'f6ev': 2, 'f6eu': 1000}),
     'charges_deduc_non_plafonnees_deddiv': define_single_worker_scenario(2015, {'salaire_imposable': fixed_wage_amount, 'f6dd': tested_reduction_amount}),
     #'charges_deduc_non_plafonnees_eparet': TODO
-    'charges_deduc_non_plafonnees_reparations': define_single_worker_scenario(2015, {'salaire_imposable': fixed_wage_amount, 'f6cb': 25000, 'f6hj': 10000 , 'f6hk': 10000}),
+    'charges_deduc_non_plafonnees_reparations': define_single_worker_scenario(2015, {'salaire_imposable': fixed_wage_amount, 'f6cb': 25000, 'f6hj': 1000 , 'f6hk': 1000, 'f6hl': 1000, 'f6hm': 1000, 'f6hn': 1000, 'f6ho': 1000}),
     'charges_deduc_non_plafonnees_pens_alim': define_single_worker_scenario(2015, {'salaire_imposable': fixed_wage_amount, 'f6gi': tested_reduction_amount, 'f6gj': tested_reduction_amount, 'f6el': tested_reduction_amount, 'f6em': tested_reduction_amount, 'f6gp': tested_reduction_amount, 'f6gu': tested_reduction_amount}),
     'credit_assloy': define_single_worker_scenario(2015, {'salaire_imposable': fixed_wage_amount, 'f4ba': tested_income_amount, 'f4bf': tested_reduction_amount}),
     'credit_garext': define_family_scenario(2015, value_by_variable = {'f7ga': 3000, 'f7ge': 2000}, nb_enfants = 2, nbF = 1, nbH = 1),
@@ -119,7 +119,7 @@ scenario_by_variable_2016 = {
     'charges_deduc_non_plafonnees_acc75a': define_single_worker_scenario(2016, {'salaire_imposable': fixed_wage_amount, 'f6ev': 2, 'f6eu': 1000}),
     'charges_deduc_non_plafonnees_deddiv': define_single_worker_scenario(2016, {'salaire_imposable': fixed_wage_amount, 'f6dd': tested_reduction_amount}),
     #'charges_deduc_non_plafonnees_eparet': TODO
-    'charges_deduc_non_plafonnees_reparations': define_single_worker_scenario(2016, {'salaire_imposable': fixed_wage_amount, 'f6cb': 25000, 'f6hj': 10000 , 'f6hk': 10000}),
+    'charges_deduc_non_plafonnees_reparations': define_single_worker_scenario(2016, {'salaire_imposable': fixed_wage_amount, 'f6cb': 25000, 'f6hj': 1000 , 'f6hk': 1000, 'f6hl': 1000, 'f6hm': 1000, 'f6hn': 1000, 'f6ho': 1000, 'f6hp': 1000}),
     'charges_deduc_non_plafonnees_pens_alim': define_single_worker_scenario(2016, {'salaire_imposable': fixed_wage_amount, 'f6gi': tested_reduction_amount, 'f6gj': tested_reduction_amount, 'f6el': tested_reduction_amount, 'f6em': tested_reduction_amount, 'f6gp': tested_reduction_amount, 'f6gu': tested_reduction_amount}),
     'credit_assloy': define_single_worker_scenario(2016, {'salaire_imposable': fixed_wage_amount, 'f4ba': tested_income_amount, 'f4bf': tested_reduction_amount}),
     'credit_garext': define_family_scenario(2016, value_by_variable = {'f7ga': 3000, 'f7ge': 2000}, nb_enfants = 2, nbF = 1, nbH = 1),
@@ -168,7 +168,7 @@ scenario_by_variable_2017 = {
     'charges_deduc_non_plafonnees_acc75a': define_single_worker_scenario(2017, {'salaire_imposable': fixed_wage_amount, 'f6ev': 2, 'f6eu': 1000}),
     'charges_deduc_non_plafonnees_deddiv': define_single_worker_scenario(2017, {'salaire_imposable': fixed_wage_amount, 'f6dd': tested_reduction_amount}),
     #'charges_deduc_non_plafonnees_eparet': TODO
-    'charges_deduc_non_plafonnees_reparations': define_single_worker_scenario(2017, {'salaire_imposable': fixed_wage_amount, 'f6cb': 25000, 'f6hj': 10000 , 'f6hk': 10000}),
+    'charges_deduc_non_plafonnees_reparations': define_single_worker_scenario(2017, {'salaire_imposable': fixed_wage_amount, 'f6cb': 25000, 'f6hj': 1000 , 'f6hk': 1000, 'f6hl': 1000, 'f6hm': 1000, 'f6hn': 1000, 'f6ho': 1000, 'f6hp': 1000, 'f6hq': 1000}),
     'charges_deduc_non_plafonnees_pens_alim': define_single_worker_scenario(2017, {'salaire_imposable': fixed_wage_amount, 'f6gi': tested_reduction_amount, 'f6gj': tested_reduction_amount, 'f6el': tested_reduction_amount, 'f6em': tested_reduction_amount, 'f6gp': tested_reduction_amount, 'f6gu': tested_reduction_amount}),
     'credit_assloy': define_single_worker_scenario(2017, {'salaire_imposable': fixed_wage_amount, 'f4ba': tested_income_amount, 'f4bf': tested_reduction_amount}),
     'credit_garext': define_family_scenario(2017, value_by_variable = {'f7ga': 3000, 'f7ge': 2000}, nb_enfants = 2, nbF = 1, nbH = 1),
