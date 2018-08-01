@@ -128,6 +128,9 @@ def compare_variables(fields, simulation, verbose = True):
     for code, field in fields.iteritems():
         openfisca_variable_name = field['openfisca_name']
         if openfisca_variable_name is not None:
+            # En 2017, le simulateur DGFiP ne simule plus le revenu net imposable..
+            if openfisca_variable_name == u'rni' & year == 2017:
+                continue
             compare_variable(field, openfisca_variable_name, simulation, verbose)
 
 

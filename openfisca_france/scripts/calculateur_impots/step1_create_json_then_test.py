@@ -19,6 +19,9 @@ def add_official(scenario, tested = False):
     fields.pop("Annee", None)
     fields.pop("Type", None)
     fields.pop("blanc", None)
+    if scenario.period.date.year == 2017:
+        if "RNICOL" in fields.keys():
+            fields.pop("RNICOL")
     return {'scenario': json_scenario, 'resultat_officiel': fields}
 
 
