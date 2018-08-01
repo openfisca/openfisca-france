@@ -61,6 +61,9 @@ scenario_by_variable_2014 = {
     'reduc_saldom2': define_single_worker_scenario(2014, {'salaire_imposable': fixed_wage_amount, 'f7dd': tested_income_amount, 'f7dl': 1}),
     'reduc_spfscpi': define_single_worker_scenario(2014, {'salaire_imposable': fixed_wage_amount, 'f7gq': tested_reduction_amount, 'f7fq': tested_reduction_amount * 2, 'f7fm': tested_reduction_amount * 3}),
     'reduc_spfscpi2': define_single_worker_scenario(2014, {'salaire_imposable': fixed_wage_amount, 'f7gq': tested_reduction_amount}),
+    'regime_forfait_agricole': define_single_worker_scenario(2014, {'frag_impo': fixed_wage_amount, 'frag_fore': tested_reduction_amount, 'frag_pvct': tested_reduction_amount}),
+    'regime_benef_reel_agricole_sans_cga': define_single_worker_scenario(2014, {'nrag_impg': fixed_wage_amount/2, 'nrag_defi': tested_reduction_amount, 'f5qf': tested_reduction_amount, 'f5qg': tested_reduction_amount, 'f5qn': tested_reduction_amount}),
+    'regime_benef_reel_agricole_avec_cga': define_single_worker_scenario(2014, {'arag_impg': fixed_wage_amount/2, 'arag_defi': tested_reduction_amount, 'arag_pvce': tested_reduction_amount*2, 'f5qo': tested_reduction_amount, 'f5qp': tested_reduction_amount, 'f5qq': tested_reduction_amount}),
 }
 
 scenario_by_variable_2015 = {
@@ -113,6 +116,9 @@ scenario_by_variable_2015 = {
     'reduc_saldom2': define_single_worker_scenario(2015, {'salaire_imposable': fixed_wage_amount, 'f7dd': tested_income_amount, 'f7dl': 1}),
     'reduc_spfscpi': define_single_worker_scenario(2015, {'salaire_imposable': fixed_wage_amount, 'f7gq': tested_reduction_amount, 'f7fq': tested_reduction_amount * 2, 'f7fm': tested_reduction_amount * 3}),
     'reduc_spfscpi2': define_single_worker_scenario(2015, {'salaire_imposable': fixed_wage_amount, 'f7gq': tested_reduction_amount}),
+    'regime_forfait_agricole': define_single_worker_scenario(2015, {'frag_impo': fixed_wage_amount, 'frag_fore': tested_reduction_amount, 'frag_pvct': tested_reduction_amount}),
+    'regime_benef_reel_agricole_sans_cga': define_single_worker_scenario(2015, {'nrag_impg': fixed_wage_amount/2, 'nrag_defi': tested_reduction_amount, 'f5qf': tested_reduction_amount, 'f5qg': tested_reduction_amount, 'f5qn': tested_reduction_amount}),
+    'regime_benef_reel_agricole_avec_cga': define_single_worker_scenario(2015, {'arag_impg': fixed_wage_amount/2, 'arag_defi': tested_reduction_amount, 'arag_pvce': tested_reduction_amount*2, 'f5qo': tested_reduction_amount, 'f5qp': tested_reduction_amount, 'f5qq': tested_reduction_amount}),
 }
 
 scenario_by_variable_2016 = {
@@ -164,6 +170,8 @@ scenario_by_variable_2016 = {
     'reduc_saldom2': define_single_worker_scenario(2016, {'salaire_imposable': fixed_wage_amount, 'f7dd': tested_income_amount, 'f7dl': 1}),
     'reduc_spfscpi': define_single_worker_scenario(2016, {'salaire_imposable': fixed_wage_amount, 'f7gq': tested_reduction_amount, 'f7fq': tested_reduction_amount * 2, 'f7fm': tested_reduction_amount * 3}),
     'reduc_spfscpi2': define_single_worker_scenario(2016, {'salaire_imposable': fixed_wage_amount, 'f7gq': tested_reduction_amount}),
+    'regime_benef_reel_agricole_sans_cga': define_single_worker_scenario(2016, {'nrag_impg': fixed_wage_amount/2, 'nrag_defi': tested_reduction_amount, 'f5qf': tested_reduction_amount, 'f5qg': tested_reduction_amount, 'f5qn': tested_reduction_amount}),
+    'regime_benef_reel_agricole_avec_cga': define_single_worker_scenario(2016, {'arag_impg': fixed_wage_amount/2, 'arag_defi': tested_reduction_amount, 'arag_pvce': tested_reduction_amount*2, 'f5qo': tested_reduction_amount, 'f5qp': tested_reduction_amount, 'f5qq': tested_reduction_amount}),
 }
 
 scenario_by_variable_2017 = {
@@ -212,6 +220,8 @@ scenario_by_variable_2017 = {
     'reduc_malraux': define_single_worker_scenario(2017, {'salaire_imposable': fixed_wage_amount, 'f7ny': tested_reduction_amount, 'f7nx': tested_reduction_amount, 'f7sy': tested_reduction_amount, 'f7sx': tested_reduction_amount, 'f7ty': tested_reduction_amount, 'f7tx': tested_reduction_amount}),
     'reduc_spfscpi': define_single_worker_scenario(2017, {'salaire_imposable': fixed_wage_amount, 'f7gq': tested_reduction_amount, 'f7fq': tested_reduction_amount * 2, 'f7fm': tested_reduction_amount * 3}),
     'reduc_spfscpi2': define_single_worker_scenario(2017, {'salaire_imposable': fixed_wage_amount, 'f7gq': tested_reduction_amount}),
+    'regime_benef_reel_agricole_sans_cga': define_single_worker_scenario(2017, {'nrag_impg': fixed_wage_amount/2, 'nrag_defi': tested_reduction_amount, 'f5qf': tested_reduction_amount, 'f5qg': tested_reduction_amount, 'f5qn': tested_reduction_amount}),
+    'regime_benef_reel_agricole_avec_cga': define_single_worker_scenario(2017, {'arag_impg': fixed_wage_amount/2, 'arag_defi': tested_reduction_amount, 'arag_pvce': tested_reduction_amount*2, 'f5qo': tested_reduction_amount, 'f5qp': tested_reduction_amount, 'f5qq': tested_reduction_amount}),
 }
 
 scenario_by_variable = {
