@@ -43,6 +43,13 @@ jobs:
             openfisca-run-test `circleci tests glob "tests/**/*.{yaml,yml}" | circleci tests split`
 
       - run:
+          name: Run linting
+          command: |
+            make check-no-prints
+            make check-syntax-errors
+            make flake8
+
+      - run:
           name: Check version number has been properly updated
           command: |
             git fetch
@@ -119,6 +126,13 @@ jobs:
           command: |
             nosetests `circleci tests glob "tests/**/*.py" | circleci tests split`
             openfisca-run-test `circleci tests glob "tests/**/*.{yaml,yml}" | circleci tests split`
+
+      - run:
+          name: Run linting
+          command: |
+            make check-no-prints
+            make check-syntax-errors
+            make flake8
 
       - run:
           name: Check version number has been properly updated
