@@ -25,6 +25,7 @@ scenario_by_variable_2014 = {
     #'charges_deduc_non_plafonnees_eparet': TODO
     'charges_deduc_non_plafonnees_reparations': define_single_worker_scenario(2014, {'salaire_imposable': fixed_wage_amount, 'f6cb': 25000, 'f6hj': tested_reduction_amount , 'f6hk': tested_reduction_amount, 'f6hl': tested_reduction_amount, 'f6hm': tested_reduction_amount, 'f6hn': tested_reduction_amount}),
     'charges_deduc_non_plafonnees_pens_alim': define_single_worker_scenario(2014, {'salaire_imposable': fixed_wage_amount, 'f6gi': tested_reduction_amount, 'f6gj': tested_reduction_amount, 'f6el': tested_reduction_amount, 'f6em': tested_reduction_amount, 'f6gp': tested_reduction_amount, 'f6gu': tested_reduction_amount}),
+    'credit_aidper': define_single_worker_scenario(2014, {'salaire_imposable': fixed_wage_amount, 'f7wj': tested_reduction_amount, 'f7wl': tested_reduction_amount, 'f7wr': tested_reduction_amount}),
     'credit_assloy': define_single_worker_scenario(2014, {'salaire_imposable': fixed_wage_amount, 'f4ba': tested_income_amount, 'f4bf': tested_reduction_amount}),
     'credit_garext': define_family_scenario(2014, value_by_variable = {'f7ga': 3000, 'f7ge': 2000}, nb_enfants = 2, nbF = 1, nbH = 1),
     'credit_inthab': define_single_worker_scenario(2014, {'salaire_imposable': fixed_wage_amount, 'f7vt': tested_reduction_amount, 'f7vx': tested_reduction_amount * 2, 'f7vz': tested_reduction_amount * 3, 'f7vv': tested_reduction_amount * 4, 'f7vu': tested_reduction_amount}),
@@ -75,12 +76,13 @@ scenario_by_variable_2015 = {
     #'charges_deduc_non_plafonnees_eparet': TODO
     'charges_deduc_non_plafonnees_reparations': define_single_worker_scenario(2015, {'salaire_imposable': fixed_wage_amount, 'f6cb': 25000, 'f6hj': 1000 , 'f6hk': 1000, 'f6hl': 1000, 'f6hm': 1000, 'f6hn': 1000, 'f6ho': 1000}),
     'charges_deduc_non_plafonnees_pens_alim': define_single_worker_scenario(2015, {'salaire_imposable': fixed_wage_amount, 'f6gi': tested_reduction_amount, 'f6gj': tested_reduction_amount, 'f6el': tested_reduction_amount, 'f6em': tested_reduction_amount, 'f6gp': tested_reduction_amount, 'f6gu': tested_reduction_amount}),
+    'credit_aidper': define_single_worker_scenario(2015, {'salaire_imposable': fixed_wage_amount, 'f7wj': tested_reduction_amount, 'f7wl': tested_reduction_amount, 'f7wr': tested_reduction_amount}),
     'credit_assloy': define_single_worker_scenario(2015, {'salaire_imposable': fixed_wage_amount, 'f4ba': tested_income_amount, 'f4bf': tested_reduction_amount}),
     'credit_garext': define_family_scenario(2015, value_by_variable = {'f7ga': 3000, 'f7ge': 2000}, nb_enfants = 2, nbF = 1, nbH = 1),
     'credit_inthab': define_single_worker_scenario(2015, {'salaire_imposable': fixed_wage_amount, 'f7vt': tested_reduction_amount, 'f7vx': tested_reduction_amount * 2, 'f7vz': tested_reduction_amount * 3, 'f7vv': tested_reduction_amount * 4}),
     'credit_preetu': define_single_worker_scenario(2015, {'salaire_imposable': fixed_wage_amount, 'f7uk': 1000, 'f7vo': 2, 'f7td': 3000}, date_naissance = 2015 - 25),
     'credit_saldom': define_single_worker_scenario(2015, {'salaire_imposable': fixed_wage_amount, 'f7db': tested_income_amount, 'f7dq': 1, 'f7dg': 1}),
-    'credit_saldom2': define_single_worker_scenario(2014, {'salaire_imposable': fixed_wage_amount, 'f7db': tested_income_amount, 'f7dq': 0, 'f7dg': 0}),
+    'credit_saldom2': define_single_worker_scenario(2015, {'salaire_imposable': fixed_wage_amount, 'f7db': tested_income_amount, 'f7dq': 0, 'f7dg': 0}),
     'decote': define_family_scenario(2015, income_amount1 = 25000, income_amount2 = 20000),
     'f4be': define_single_worker_scenario(2015, {'salaire_imposable': fixed_wage_amount, 'f4be': tested_income_amount}), # régime micro-foncier
     'maj_nbp': define_family_scenario(2015, nbF = 1, nbG = 1, nbH = 1, nbI = 1, nbR = 1, nbJ = 1),
@@ -125,12 +127,13 @@ scenario_by_variable_2016 = {
     #'charges_deduc_non_plafonnees_eparet': TODO
     'charges_deduc_non_plafonnees_reparations': define_single_worker_scenario(2016, {'salaire_imposable': fixed_wage_amount, 'f6cb': 25000, 'f6hj': 1000 , 'f6hk': 1000, 'f6hl': 1000, 'f6hm': 1000, 'f6hn': 1000, 'f6ho': 1000, 'f6hp': 1000}),
     'charges_deduc_non_plafonnees_pens_alim': define_single_worker_scenario(2016, {'salaire_imposable': fixed_wage_amount, 'f6gi': tested_reduction_amount, 'f6gj': tested_reduction_amount, 'f6el': tested_reduction_amount, 'f6em': tested_reduction_amount, 'f6gp': tested_reduction_amount, 'f6gu': tested_reduction_amount}),
+    'credit_aidper': define_single_worker_scenario(2016, {'salaire_imposable': fixed_wage_amount, 'f7wj': tested_reduction_amount, 'f7wl': tested_reduction_amount, 'f7wr': tested_reduction_amount}),
     'credit_assloy': define_single_worker_scenario(2016, {'salaire_imposable': fixed_wage_amount, 'f4ba': tested_income_amount, 'f4bf': tested_reduction_amount}),
     'credit_garext': define_family_scenario(2016, value_by_variable = {'f7ga': 3000, 'f7ge': 2000}, nb_enfants = 2, nbF = 1, nbH = 1),
     'credit_inthab': define_single_worker_scenario(2016, {'salaire_imposable': fixed_wage_amount, 'f7vt': tested_reduction_amount, 'f7vx': tested_reduction_amount * 2, 'f7vz': tested_reduction_amount * 3}),
     'credit_preetu': define_single_worker_scenario(2016, {'salaire_imposable': fixed_wage_amount, 'f7uk': 1000, 'f7vo': 2, 'f7td': 3000}, date_naissance = 2016 - 25),
     'credit_saldom': define_single_worker_scenario(2016, {'salaire_imposable': fixed_wage_amount, 'f7db': tested_income_amount, 'f7dq': 1, 'f7dg': 1}),
-    'credit_saldom2': define_single_worker_scenario(2014, {'salaire_imposable': fixed_wage_amount, 'f7db': tested_income_amount, 'f7dq': 0, 'f7dg': 0}),
+    'credit_saldom2': define_single_worker_scenario(2016, {'salaire_imposable': fixed_wage_amount, 'f7db': tested_income_amount, 'f7dq': 0, 'f7dg': 0}),
     'decote': define_family_scenario(2016, income_amount1 = 25000, income_amount2 = 20000),
     'f4be': define_single_worker_scenario(2016, {'salaire_imposable': fixed_wage_amount, 'f4be': tested_income_amount}), # régime micro-foncier
     'maj_nbp': define_family_scenario(2016, nbF = 1, nbG = 1, nbH = 1, nbI = 1, nbR = 1, nbJ = 1),
@@ -174,11 +177,12 @@ scenario_by_variable_2017 = {
     #'charges_deduc_non_plafonnees_eparet': TODO
     'charges_deduc_non_plafonnees_reparations': define_single_worker_scenario(2017, {'salaire_imposable': fixed_wage_amount, 'f6cb': 25000, 'f6hj': 1000 , 'f6hk': 1000, 'f6hl': 1000, 'f6hm': 1000, 'f6hn': 1000, 'f6ho': 1000, 'f6hp': 1000, 'f6hq': 1000}),
     'charges_deduc_non_plafonnees_pens_alim': define_single_worker_scenario(2017, {'salaire_imposable': fixed_wage_amount, 'f6gi': tested_reduction_amount, 'f6gj': tested_reduction_amount, 'f6el': tested_reduction_amount, 'f6em': tested_reduction_amount, 'f6gp': tested_reduction_amount, 'f6gu': tested_reduction_amount}),
+    'credit_aidper': define_single_worker_scenario(2017, {'salaire_imposable': fixed_wage_amount, 'f7wj': tested_reduction_amount, 'f7wl': tested_reduction_amount, 'f7wr': tested_reduction_amount}),
     'credit_garext': define_family_scenario(2017, value_by_variable = {'f7ga': 3000, 'f7ge': 2000}, nb_enfants = 2, nbF = 1, nbH = 1),
     'credit_inthab': define_single_worker_scenario(2017, {'salaire_imposable': fixed_wage_amount, 'f7vt': tested_reduction_amount, 'f7vx': tested_reduction_amount * 2, 'f7vz': tested_reduction_amount * 3}),
     'credit_preetu': define_single_worker_scenario(2017, {'salaire_imposable': fixed_wage_amount, 'f7uk': 1000, 'f7vo': 2, 'f7td': 3000}, date_naissance = 2017 - 25),
     'credit_saldom': define_single_worker_scenario(2017, {'salaire_imposable': fixed_wage_amount, 'f7db': tested_income_amount, 'f7dq': 1, 'f7dg': 1}),
-    'credit_saldom2': define_single_worker_scenario(2014, {'salaire_imposable': fixed_wage_amount, 'f7db': tested_income_amount, 'f7dq': 0, 'f7dg': 0}),
+    'credit_saldom2': define_single_worker_scenario(2017, {'salaire_imposable': fixed_wage_amount, 'f7db': tested_income_amount, 'f7dq': 0, 'f7dg': 0}),
     'decote': define_family_scenario(2017, income_amount1 = 25000, income_amount2 = 20000),
     'f4be': define_single_worker_scenario(2017, {'salaire_imposable': fixed_wage_amount, 'f4be': tested_income_amount}), # régime micro-foncier
     'maj_nbp': define_family_scenario(2017, nbF = 1, nbG = 1, nbH = 1, nbI = 1, nbR = 1, nbJ = 1),
