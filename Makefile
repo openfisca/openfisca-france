@@ -18,7 +18,7 @@ flake8:
 test: check-syntax-errors check-no-prints
 	@# Launch tests from openfisca_france/tests directory (and not .) because TaxBenefitSystem must be initialized
 	@# before parsing source files containing formulas.
-	nosetests tests --exe --with-doctest
+	nosetests
 	openfisca-run-test --country-package openfisca_france tests
 
 performance:
