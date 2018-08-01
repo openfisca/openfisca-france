@@ -26,6 +26,9 @@ setup(
         ('share/openfisca/openfisca-france', ['CHANGELOG.md', 'LICENSE.AGPL.txt', 'README.md']),
         ],
     extras_require = {
+        'api': [
+            'OpenFisca-Core[api]'
+        ],
         'baremes_ipp': [
             'xlrd >= 1.0.0',
             'lxml >= 3.8.0, < 4.0',
