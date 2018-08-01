@@ -3,11 +3,13 @@
 from __future__ import division
 
 from openfisca_france.model.base import *  # noqa analysis:ignore
-from openfisca_france.model.prestations.prestations_familiales.base_ressource import nb_enf
+from openfisca_france.model.prestations.prestations_familiales.base_ressource import (
+    nb_enf
+)
 
 
 class aefa(Variable):
-    '''
+    """
     Aide exceptionelle de fin d'année (prime de Noël)
     Instituée en 1998
     Apparaît sous le nom de complément de rmi dans les ERF
@@ -21,43 +23,49 @@ class aefa(Variable):
     de reprise d'activité, de l'allocation équivalent retraite (allocataire AER), du revenu de solidarité active
     (Bénéficiaires RSA), de l'allocation de parent isolé (API), du revenu minimum d'insertion (RMI), de l’Allocation
     pour la Création ou la Reprise d'Entreprise (ACCRE-ASS) ou encore allocation chômage.
-    '''
+    """
+
     value_type = float
     entity = Famille
     label = u"Aide exceptionelle de fin d'année (prime de Noël)"
     reference = u"http://www.pole-emploi.fr/candidat/aide-exceptionnelle-de-fin-d-annee-dite-prime-de-noel--@/suarticle.jspz?id=70996"  # noqa
     definition_period = YEAR
-    end = '2015-12-31'
+    end = "2015-12-31"
 
     def formula_2009_01_01(famille, period, parameters):
         janvier = period.first_month
 
-        af_nbenf = famille('af_nbenf', janvier)
-        nb_parents = famille('nb_parents', janvier)
-        ass = famille('ass', period, options = [ADD])
-        api = famille('api', period, options = [ADD])
-        rsa = famille('rsa', period, options = [ADD])
+        af_nbenf = famille("af_nbenf", janvier)
+        nb_parents = famille("nb_parents", janvier)
+        ass = famille("ass", period, options=[ADD])
+        api = famille("api", period, options=[ADD])
+        rsa = famille("rsa", period, options=[ADD])
         P = parameters(period).prestations.minima_sociaux.aefa
         af = parameters(period).prestations.prestations_familiales.af
 
-        aer_i = famille.members('aer', period, options = [ADD])
+        aer_i = famille.members("aer", period, options=[ADD])
         aer = famille.sum(aer_i)
         dummy_ass = ass > 0
         dummy_aer = aer > 0
         dummy_api = api > 0
         dummy_rmi = rsa > 0
         maj = 0  # TODO
-        condition = (dummy_ass + dummy_aer + dummy_api + dummy_rmi > 0)
+        condition = dummy_ass + dummy_aer + dummy_api + dummy_rmi > 0
         if hasattr(af, "age3"):
             nbPAC = nb_enf(famille, janvier, af.age1, af.age3)
         else:
             nbPAC = af_nbenf
         # TODO check nombre de PAC pour une famille
-        aefa = condition * P.mon_seul * (
-            1 + (nb_parents == 2) * P.tx_2p +
-            nbPAC * P.tx_supp * (nb_parents <= 2) +
-            nbPAC * P.tx_3pac * max_(nbPAC - 2, 0)
+        aefa = (
+            condition
+            * P.mon_seul
+            * (
+                1
+                + (nb_parents == 2) * P.tx_2p
+                + nbPAC * P.tx_supp * (nb_parents <= 2)
+                + nbPAC * P.tx_3pac * max_(nbPAC - 2, 0)
             )
+        )
         aefa_maj = P.mon_seul * maj
         aefa = max_(aefa_maj, aefa)
         return aefa
@@ -65,32 +73,37 @@ class aefa(Variable):
     def formula_2008_01_01(famille, period, parameters):
         janvier = period.first_month
 
-        af_nbenf = famille('af_nbenf', janvier)
-        nb_parents = famille('nb_parents', janvier)
-        ass = famille('ass', period, options = [ADD])
-        api = famille('api', period, options = [ADD])
-        rsa = famille('rsa', period, options = [ADD])
+        af_nbenf = famille("af_nbenf", janvier)
+        nb_parents = famille("nb_parents", janvier)
+        ass = famille("ass", period, options=[ADD])
+        api = famille("api", period, options=[ADD])
+        rsa = famille("rsa", period, options=[ADD])
         P = parameters(period).prestations.minima_sociaux.aefa
         af = parameters(period).prestations.prestations_familiales.af
 
-        aer_i = famille.members('aer', period, options = [ADD])
+        aer_i = famille.members("aer", period, options=[ADD])
         aer = famille.sum(aer_i)
         dummy_ass = ass > 0
         dummy_aer = aer > 0
         dummy_api = api > 0
         dummy_rmi = rsa > 0
         maj = 0  # TODO
-        condition = (dummy_ass + dummy_aer + dummy_api + dummy_rmi > 0)
+        condition = dummy_ass + dummy_aer + dummy_api + dummy_rmi > 0
         if hasattr(af, "age3"):
             nbPAC = nb_enf(famille, janvier, af.age1, af.age3)
         else:
             nbPAC = af_nbenf
         # TODO check nombre de PAC pour une famille
-        aefa = condition * P.mon_seul * (
-            1 + (nb_parents == 2) * P.tx_2p +
-            nbPAC * P.tx_supp * (nb_parents <= 2) +
-            nbPAC * P.tx_3pac * max_(nbPAC - 2, 0)
+        aefa = (
+            condition
+            * P.mon_seul
+            * (
+                1
+                + (nb_parents == 2) * P.tx_2p
+                + nbPAC * P.tx_supp * (nb_parents <= 2)
+                + nbPAC * P.tx_3pac * max_(nbPAC - 2, 0)
             )
+        )
         aefa += condition * P.forf2008
         aefa_maj = P.mon_seul * maj
         aefa = max_(aefa_maj, aefa)
@@ -99,32 +112,37 @@ class aefa(Variable):
     def formula_2002_01_01(famille, period, parameters):
         janvier = period.first_month
 
-        af_nbenf = famille('af_nbenf', janvier)
-        nb_parents = famille('nb_parents', janvier)
-        ass = famille('ass', period, options = [ADD])
-        api = famille('api', period, options = [ADD])
-        rsa = famille('rsa', period, options = [ADD])
+        af_nbenf = famille("af_nbenf", janvier)
+        nb_parents = famille("nb_parents", janvier)
+        ass = famille("ass", period, options=[ADD])
+        api = famille("api", period, options=[ADD])
+        rsa = famille("rsa", period, options=[ADD])
         P = parameters(period).prestations.minima_sociaux.aefa
         af = parameters(period).prestations.prestations_familiales.af
 
-        aer_i = famille.members('aer', period, options = [ADD])
+        aer_i = famille.members("aer", period, options=[ADD])
         aer = famille.sum(aer_i)
         dummy_ass = ass > 0
         dummy_aer = aer > 0
         dummy_api = api > 0
         dummy_rmi = rsa > 0
         maj = 0  # TODO
-        condition = (dummy_ass + dummy_aer + dummy_api + dummy_rmi > 0)
+        condition = dummy_ass + dummy_aer + dummy_api + dummy_rmi > 0
         if hasattr(af, "age3"):
             nbPAC = nb_enf(famille, janvier, af.age1, af.age3)
         else:
             nbPAC = af_nbenf
         # TODO check nombre de PAC pour une famille
-        aefa = condition * P.mon_seul * (
-            1 + (nb_parents == 2) * P.tx_2p +
-            nbPAC * P.tx_supp * (nb_parents <= 2) +
-            nbPAC * P.tx_3pac * max_(nbPAC - 2, 0)
+        aefa = (
+            condition
+            * P.mon_seul
+            * (
+                1
+                + (nb_parents == 2) * P.tx_2p
+                + nbPAC * P.tx_supp * (nb_parents <= 2)
+                + nbPAC * P.tx_3pac * max_(nbPAC - 2, 0)
             )
+        )
         aefa_maj = P.mon_seul * maj
         aefa = max_(aefa_maj, aefa)
         return aefa

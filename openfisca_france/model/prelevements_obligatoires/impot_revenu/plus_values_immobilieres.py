@@ -11,7 +11,7 @@ from openfisca_france.model.base import *  # noqa analysis:ignore
 # Taxe sur la cession à titre onéreux de terrains nus rendus constructibles (CGI, art.1605 nonies)
 # 2048-IMM-SD
 ########################################################################
-#TODO: create new function for f3VV (new legislation : non-resident_45%)
+# TODO: create new function for f3VV (new legislation : non-resident_45%)
 
 # def _plus_value_brute(prix_pv_immo, charges_pv_immo, frais_pv_immo, prix_acqu_immo,
 #                       charges_aqu_immo, frais_acqu_immo, const_acqu_immo, voirie_acqu_immo):
@@ -81,21 +81,21 @@ class ir_pv_immo(Variable):
         """
         Impôt sur le revenu afférent à la plus-value immobilière (CGI, art. 150 U, 150 UC-I et 150 UD)
         """
-        f3vz = foyer_fiscal('f3vz', period)
+        f3vz = foyer_fiscal("f3vz", period)
         pv_immo = parameters(period).impot_revenu.pv_immo
 
         # 61. MONTANT DU PAR LES PERSONNES PHYSIQUES RESIDENTES DE FRANCE OU D’UN AUTRE ETAT MEMBRE DE L’EEE(1)
         # (VOIR TABLEAU PAGE 3).
         # if resident
-        impo = pv_immo.taux*f3vz
-    #    62. MONTANT DU PAR LES AUTRES NON-RESIDENTS (VOIR TABLEAU PAGE 3 ET REMPLIR PAGE 4 SI NECESSAIRE)
-    #    IMPOSITION A 33,1/3% DES PERSONNES PHYSIQUES [(LIGNE 50 OU LIGNE 53) X 33,1/3%] = = €
-    #    IMPOSITION A 15% OU 19% OU 33,1/3% DES PERSONNES MORALES NON ASSUJETTIES A L’IR, ETABLIES DANS UN ETAT
-    #    MEMBRE DE L’EEE(1) (LIGNE 300 X 15% OU 19% OU 33,1/3%) = = €
-    #IMPOSITION A 50% DES PERSONNES PHYSIQUES OU MORALES RESIDENTES D’UN ETNC(2)
-    #[(LIGNE 50 OU (LIGNE 54 + LIGNE 300)) X 50%] = = €
+        impo = pv_immo.taux * f3vz
+        #    62. MONTANT DU PAR LES AUTRES NON-RESIDENTS (VOIR TABLEAU PAGE 3 ET REMPLIR PAGE 4 SI NECESSAIRE)
+        #    IMPOSITION A 33,1/3% DES PERSONNES PHYSIQUES [(LIGNE 50 OU LIGNE 53) X 33,1/3%] = = €
+        #    IMPOSITION A 15% OU 19% OU 33,1/3% DES PERSONNES MORALES NON ASSUJETTIES A L’IR, ETABLIES DANS UN ETAT
+        #    MEMBRE DE L’EEE(1) (LIGNE 300 X 15% OU 19% OU 33,1/3%) = = €
+        # IMPOSITION A 50% DES PERSONNES PHYSIQUES OU MORALES RESIDENTES D’UN ETNC(2)
+        # [(LIGNE 50 OU (LIGNE 54 + LIGNE 300)) X 50%] = = €
 
-    #63. ABATTEMENT REPRESENTATIF DU FORFAIT FORESTIER (SI LE CEDANT EST UNE PERSONNE PHYSIQUE RESIDENTE) - €
-    #64. MONTANT DE L’IMPOT DU APRES ABATTEMENT [(LIGNE 61 + LIGNE 62) – LIGNE 63] = = €
-    #(POUR L’APPLICATION DES PRELEVEMENTS SOCIAUX CI-DESSOUS, CF. TABLEAU « RAPPEL DES TAUX D’IMPOSITION » PAGE 5) :
+        # 63. ABATTEMENT REPRESENTATIF DU FORFAIT FORESTIER (SI LE CEDANT EST UNE PERSONNE PHYSIQUE RESIDENTE) - €
+        # 64. MONTANT DE L’IMPOT DU APRES ABATTEMENT [(LIGNE 61 + LIGNE 62) – LIGNE 63] = = €
+        # (POUR L’APPLICATION DES PRELEVEMENTS SOCIAUX CI-DESSOUS, CF. TABLEAU « RAPPEL DES TAUX D’IMPOSITION » PAGE 5) :
         return -impo

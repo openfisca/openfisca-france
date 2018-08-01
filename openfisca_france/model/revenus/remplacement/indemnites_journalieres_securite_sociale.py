@@ -59,13 +59,13 @@ class indemnites_journalieres(Variable):
 
     def formula(individu, period, parameters):
         ressources = [
-            'indemnites_journalieres_maternite',
-            'indemnites_journalieres_paternite',
-            'indemnites_journalieres_adoption',
-            'indemnites_journalieres_maladie',
-            'indemnites_journalieres_accident_travail',
-            'indemnites_journalieres_maladie_professionnelle',
-            ]
+            "indemnites_journalieres_maternite",
+            "indemnites_journalieres_paternite",
+            "indemnites_journalieres_adoption",
+            "indemnites_journalieres_maladie",
+            "indemnites_journalieres_accident_travail",
+            "indemnites_journalieres_maladie_professionnelle",
+        ]
         total = sum(individu(ressource, period) for ressource in ressources)
 
         return total
@@ -79,14 +79,20 @@ class indemnites_journalieres_imposables(Variable):
     definition_period = MONTH
 
     def formula(individu, period, parameters):
-        indemnites_journalieres = individu('indemnites_journalieres', period)
-        indemnites_journalieres_accident_travail = individu('indemnites_journalieres_accident_travail', period)
-        indemnites_journalieres_maladie_professionnelle = individu('indemnites_journalieres_accident_travail', period)
+        indemnites_journalieres = individu("indemnites_journalieres", period)
+        indemnites_journalieres_accident_travail = individu(
+            "indemnites_journalieres_accident_travail", period
+        )
+        indemnites_journalieres_maladie_professionnelle = individu(
+            "indemnites_journalieres_accident_travail", period
+        )
         result = indemnites_journalieres - 0.5 * (
-            indemnites_journalieres_accident_travail + indemnites_journalieres_maladie_professionnelle
+            indemnites_journalieres_accident_travail
+            + indemnites_journalieres_maladie_professionnelle
         )
 
         return result
+
 
 class date_arret_de_travail(Variable):
     value_type = date

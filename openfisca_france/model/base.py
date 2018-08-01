@@ -5,40 +5,45 @@ from openfisca_france.entities import Famille, FoyerFiscal, Individu, Menage
 
 # Enums commonly used through the legislation
 
+
 class TypesActivite(Enum):
-    __order__ = 'actif chomeur etudiant retraite inactif'  # Needed to preserve the enum order in Python 2
-    actif = u'Actif occupé'
-    chomeur = u'Chômeur'
-    etudiant = u'Étudiant, élève'
-    retraite = u'Retraité'
-    inactif = u'Autre, inactif'
+    __order__ = (
+        "actif chomeur etudiant retraite inactif"
+    )  # Needed to preserve the enum order in Python 2
+    actif = u"Actif occupé"
+    chomeur = u"Chômeur"
+    etudiant = u"Étudiant, élève"
+    retraite = u"Retraité"
+    inactif = u"Autre, inactif"
 
 
 class TypesCategorieSalarie(Enum):
-    __order__ = 'prive_non_cadre prive_cadre public_titulaire_etat public_titulaire_militaire public_titulaire_territoriale public_titulaire_hospitaliere public_non_titulaire non_pertinent'  # Needed to preserve the enum order in Python 2
-    prive_non_cadre = u'prive_non_cadre'
-    prive_cadre = u'prive_cadre'
-    public_titulaire_etat = u'public_titulaire_etat'
-    public_titulaire_militaire = u'public_titulaire_militaire'
-    public_titulaire_territoriale = u'public_titulaire_territoriale'
-    public_titulaire_hospitaliere = u'public_titulaire_hospitaliere'
-    public_non_titulaire = u'public_non_titulaire'
-    non_pertinent = u'non_pertinent'
+    __order__ = "prive_non_cadre prive_cadre public_titulaire_etat public_titulaire_militaire public_titulaire_territoriale public_titulaire_hospitaliere public_non_titulaire non_pertinent"  # Needed to preserve the enum order in Python 2
+    prive_non_cadre = u"prive_non_cadre"
+    prive_cadre = u"prive_cadre"
+    public_titulaire_etat = u"public_titulaire_etat"
+    public_titulaire_militaire = u"public_titulaire_militaire"
+    public_titulaire_territoriale = u"public_titulaire_territoriale"
+    public_titulaire_hospitaliere = u"public_titulaire_hospitaliere"
+    public_non_titulaire = u"public_non_titulaire"
+    non_pertinent = u"non_pertinent"
 
 
 class TypesStatutMarital(Enum):
-    __order__ = 'non_renseigne marie celibataire divorce veuf pacse jeune_veuf'  # Needed to preserve the enum order in Python 2
-    non_renseigne = u'Non renseigné'
-    marie = u'Marié'
-    celibataire = u'Celibataire'
-    divorce = u'Divorcé'
-    veuf = u'Veuf'
-    pacse = u'Pacsé'
-    jeune_veuf = u'Jeune veuf'
+    __order__ = (
+        "non_renseigne marie celibataire divorce veuf pacse jeune_veuf"
+    )  # Needed to preserve the enum order in Python 2
+    non_renseigne = u"Non renseigné"
+    marie = u"Marié"
+    celibataire = u"Celibataire"
+    divorce = u"Divorcé"
+    veuf = u"Veuf"
+    pacse = u"Pacsé"
+    jeune_veuf = u"Jeune veuf"
 
 
 class TypesStatutOccupationLogement(Enum):
-    __order__ = 'non_renseigne primo_accedant proprietaire locataire_hlm locataire_vide locataire_meuble loge_gratuitement locataire_foyer sans_domicile'  # Needed to preserve the enum order in Python 2
+    __order__ = "non_renseigne primo_accedant proprietaire locataire_hlm locataire_vide locataire_meuble loge_gratuitement locataire_foyer sans_domicile"  # Needed to preserve the enum order in Python 2
     non_renseigne = u"Non renseigné"
     primo_accedant = u"Accédant à la propriété"
     proprietaire = u"Propriétaire (non accédant) du logement"
@@ -50,4 +55,6 @@ class TypesStatutOccupationLogement(Enum):
     sans_domicile = u"Sans domicile stable"
 
 
-TAUX_DE_PRIME = 1 / 4  # primes_fonction_publique (hors suppl. familial et indemnité de résidence)/rémunération brute
+TAUX_DE_PRIME = (
+    1 / 4
+)  # primes_fonction_publique (hors suppl. familial et indemnité de résidence)/rémunération brute

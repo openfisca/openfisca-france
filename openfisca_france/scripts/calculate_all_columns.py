@@ -9,22 +9,23 @@ import openfisca_france
 tax_benefit_system = openfisca_france.FranceTaxBenefitSystem()
 
 
-def check_1_parent(year = 2013):
-    simulation = tax_benefit_system.new_scenario().init_single_entity(
-        axes = [
-            dict(
-                count = 3,
-                name = 'salaire_imposable',
-                max = 100000,
-                min = 0,
-                ),
-            ],
-        period = year,
-        parent1 = dict(date_naissance = datetime.date(year - 40, 1, 1)),
-        ).new_simulation(debug = True)
-    simulation.calculate('revenu_disponible')
-    salaire_imposable = simulation.get_holder('salaire_imposable').new_test_case_array(simulation.period)
-    assert (salaire_imposable - np.linspace(0, 100000, 3) == 0).all(), 'salaire_imposable: {}'.format(salaire_imposable)
+def check_1_parent(year=2013):
+    simulation = (
+        tax_benefit_system.new_scenario()
+        .init_single_entity(
+            axes=[dict(count=3, name="salaire_imposable", max=100000, min=0)],
+            period=year,
+            parent1=dict(date_naissance=datetime.date(year - 40, 1, 1)),
+        )
+        .new_simulation(debug=True)
+    )
+    simulation.calculate("revenu_disponible")
+    salaire_imposable = simulation.get_holder("salaire_imposable").new_test_case_array(
+        simulation.period
+    )
+    assert (
+        salaire_imposable - np.linspace(0, 100000, 3) == 0
+    ).all(), "salaire_imposable: {}".format(salaire_imposable)
 
 
 def test_1_parent():
@@ -33,35 +34,30 @@ def test_1_parent():
 
 
 def check_1_parent_2_enfants(year):
-    simulation = tax_benefit_system.new_scenario().init_single_entity(
-        axes = [
-            dict(
-                count = 3,
-                name = 'salaire_imposable',
-                max = 24000,
-                min = 0,
-                ),
-            ],
-        period = year,
-        parent1 = dict(
-            activite = u'Actif occupé',
-            date_naissance = 1970,
-            statut_marital = u'Célibataire',
+    simulation = (
+        tax_benefit_system.new_scenario()
+        .init_single_entity(
+            axes=[dict(count=3, name="salaire_imposable", max=24000, min=0)],
+            period=year,
+            parent1=dict(
+                activite=u"Actif occupé",
+                date_naissance=1970,
+                statut_marital=u"Célibataire",
             ),
-        enfants = [
-            dict(
-                activite = u'Étudiant, élève',
-                date_naissance = '1992-02-01',
-                ),
-            dict(
-                activite = u'Étudiant, élève',
-                date_naissance = '1990-04-17',
-                ),
+            enfants=[
+                dict(activite=u"Étudiant, élève", date_naissance="1992-02-01"),
+                dict(activite=u"Étudiant, élève", date_naissance="1990-04-17"),
             ],
-        ).new_simulation(debug = True)
-    salaire_imposable = simulation.get_holder('salaire_imposable').new_test_case_array(simulation.period)
-    assert (salaire_imposable - np.linspace(0, 24000, 3) == 0).all(), 'salaire_imposable: {}'.format(salaire_imposable)
-    simulation.calculate('revenu_disponible')
+        )
+        .new_simulation(debug=True)
+    )
+    salaire_imposable = simulation.get_holder("salaire_imposable").new_test_case_array(
+        simulation.period
+    )
+    assert (
+        salaire_imposable - np.linspace(0, 24000, 3) == 0
+    ).all(), "salaire_imposable: {}".format(salaire_imposable)
+    simulation.calculate("revenu_disponible")
 
 
 def test_1_parent_2_enfants():
@@ -70,32 +66,23 @@ def test_1_parent_2_enfants():
 
 
 def check_1_parent_2_enfants_1_column(column_name, year):
-    simulation = tax_benefit_system.new_scenario().init_single_entity(
-        axes = [
-            dict(
-                count = 3,
-                name = 'salaire_imposable',
-                max = 24000,
-                min = 0,
-                ),
-            ],
-        period = year,
-        parent1 = dict(
-            activite = u'Actif occupé',
-            date_naissance = 1970,
-            statut_marital = u'Célibataire',
+    simulation = (
+        tax_benefit_system.new_scenario()
+        .init_single_entity(
+            axes=[dict(count=3, name="salaire_imposable", max=24000, min=0)],
+            period=year,
+            parent1=dict(
+                activite=u"Actif occupé",
+                date_naissance=1970,
+                statut_marital=u"Célibataire",
             ),
-        enfants = [
-            dict(
-                activite = u'Étudiant, élève',
-                date_naissance = '1992-02-01',
-                ),
-            dict(
-                activite = u'Étudiant, élève',
-                date_naissance = '1990-04-17',
-                ),
+            enfants=[
+                dict(activite=u"Étudiant, élève", date_naissance="1992-02-01"),
+                dict(activite=u"Étudiant, élève", date_naissance="1990-04-17"),
             ],
-        ).new_simulation(debug = True)
+        )
+        .new_simulation(debug=True)
+    )
     simulation.calculate(column_name)
 
 
@@ -106,11 +93,11 @@ def test_1_parent_2_enfants_1_column():
                 yield check_1_parent_2_enfants_1_column, column_name, year
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     import logging
     import sys
 
-    logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
+    logging.basicConfig(level=logging.ERROR, stream=sys.stdout)
     check_1_parent()
     test_1_parent()
     test_1_parent_2_enfants()

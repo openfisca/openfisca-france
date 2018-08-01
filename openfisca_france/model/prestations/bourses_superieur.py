@@ -4,6 +4,7 @@ from __future__ import division
 
 from openfisca_france.model.base import *  # noqa analysis:ignore
 
+
 class echelon_bourse(Variable):
     entity = Individu
     value_type = int

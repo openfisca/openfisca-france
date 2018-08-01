@@ -12,13 +12,11 @@ from openfisca_france.model.base import *  # noqa analysis:ignore
 
 # Gains taxés comme des salaires
 
+
 class f1tt(Variable):
-    cerfa_field = {
-        0: u"1TT",
-        1: u"1UT",
-        }
+    cerfa_field = {0: u"1TT", 1: u"1UT"}
     value_type = int
-    unit = 'currency'
+    unit = "currency"
     entity = Individu
     label = u"Gains de levée d'options sur titres et gains d'acquisition d'actions gratuites attribuées à compter du 28.9.2012"
     # start_date = date(2012, 1, 1)
@@ -26,48 +24,39 @@ class f1tt(Variable):
 
 
 class f1tv(Variable):
-    cerfa_field = {
-        0: u"1TV",
-        1: u"1UV",
-        }
+    cerfa_field = {0: u"1TV", 1: u"1UV"}
     value_type = int
-    unit = 'currency'
+    unit = "currency"
     entity = Individu
     label = u"Gains de levée d'options sur titres en cas de cession ou de conversion au porteur dans le délai d'indisponibilité: entre 1 et 2 ans"
-    end = '2015-12-31'
+    end = "2015-12-31"
     definition_period = YEAR
 
 
 class f1tw(Variable):
-    cerfa_field = {
-        0: u"1TW",
-        1: u"1UW",
-        }
+    cerfa_field = {0: u"1TW", 1: u"1UW"}
     value_type = int
-    unit = 'currency'
+    unit = "currency"
     entity = Individu
     label = u"Gains de levée d'options sur titres en cas de cession ou de conversion au porteur dans le délai d'indisponibilité: entre 2 et 3 ans"
-    end = '2015-12-31'
+    end = "2015-12-31"
     definition_period = YEAR
 
 
 class f1tx(Variable):
-    cerfa_field = {
-        0: u"1TX",
-        1: u"1UX",
-        }
+    cerfa_field = {0: u"1TX", 1: u"1UX"}
     value_type = int
-    unit = 'currency'
+    unit = "currency"
     entity = Individu
     label = u"Gains de levée d'options sur titres en cas de cession ou de conversion au porteur dans le délai d'indisponibilité: entre 3 et 4 ans"
-    end = '2016-12-31'
+    end = "2016-12-31"
     definition_period = YEAR
 
 
 class f1tz(Variable):
     cerfa_field = u"1TZ"
     value_type = int
-    unit = 'currency'
+    unit = "currency"
     entity = Individu
     label = u"Gains d'acquisition d'actions gratuites attribuées sur décision prise à compter du 8.8.2015"
     # start_date = date(2015, 1, 1)
@@ -75,12 +64,9 @@ class f1tz(Variable):
 
 
 class f3vj(Variable):
-    cerfa_field = {
-        0: u"3VJ",
-        1: u"3VK",
-        }
+    cerfa_field = {0: u"3VJ", 1: u"3VK"}
     value_type = int
-    unit = 'currency'
+    unit = "currency"
     entity = Individu
     label = u"Gains imposables sur option dans la catégorie des salaires"
     definition_period = YEAR
@@ -88,10 +74,11 @@ class f3vj(Variable):
 
 # Autres plus-values
 
+
 class f3vg(Variable):
     cerfa_field = u"3VG"
     value_type = int
-    unit = 'currency'
+    unit = "currency"
     entity = FoyerFiscal
     label = u"Plus-value imposable sur gains de cession de valeurs mobilières, de droits sociaux et gains assimilés"
     definition_period = YEAR
@@ -100,7 +87,7 @@ class f3vg(Variable):
 class f3vh(Variable):
     cerfa_field = u"3VH"
     value_type = int
-    unit = 'currency'
+    unit = "currency"
     entity = FoyerFiscal
     label = u"Moins-value imposable su gains de cession de valeurs mobilières, de droits sociaux et gains assimilés"
     definition_period = YEAR
@@ -109,18 +96,18 @@ class f3vh(Variable):
 class f3vv(Variable):
     cerfa_field = u"3VV"
     value_type = int
-    unit = 'currency'
+    unit = "currency"
     entity = FoyerFiscal
     label = u"Plus-values réalisées par les non-résidents: montant du prélèvement de 45 % déjà versé"
     # start_date = date(2013, 1, 1)
-    end = '2013-12-31'
+    end = "2013-12-31"
     definition_period = YEAR
 
 
 class f3vz(Variable):
     cerfa_field = u"3VZ"
     value_type = int
-    unit = 'currency'
+    unit = "currency"
     entity = FoyerFiscal
     label = u"Plus-values imposables sur cessions d’immeubles ou de biens meubles"
     # start_date = date(2011, 1, 1)
@@ -130,7 +117,7 @@ class f3vz(Variable):
 class f3vc(Variable):
     cerfa_field = u"3VC"
     value_type = int
-    unit = 'currency'
+    unit = "currency"
     entity = FoyerFiscal
     label = u"Produits et plus-values exonérés provenant de structure de capital-risque"
     # start_date = date(2006, 1, 1)
@@ -140,18 +127,20 @@ class f3vc(Variable):
 class f3vp(Variable):
     cerfa_field = u"3VP"
     value_type = int
-    unit = 'currency'
+    unit = "currency"
     entity = FoyerFiscal
-    label = u"Plus-values exonérées de cessions de titres de jeunes entreprises innovantes"
+    label = (
+        u"Plus-values exonérées de cessions de titres de jeunes entreprises innovantes"
+    )
     # start_date = date(2007, 1, 1)
-    end = '2013-12-31'
+    end = "2013-12-31"
     definition_period = YEAR
 
 
 class f3vq(Variable):
     cerfa_field = u"3VQ"
     value_type = int
-    unit = 'currency'
+    unit = "currency"
     entity = FoyerFiscal
     label = u"Cessions de titres détenus à l'étranger par les impatriés : plus-values exonérées (50%)"
     definition_period = YEAR
@@ -160,7 +149,7 @@ class f3vq(Variable):
 class f3vr(Variable):
     cerfa_field = u"3VR"
     value_type = int
-    unit = 'currency'
+    unit = "currency"
     entity = FoyerFiscal
     label = u"Cessions de titres détenus à l'étranger par les impatriés : moins-values non imputables (50%)"
     definition_period = YEAR
@@ -169,18 +158,18 @@ class f3vr(Variable):
 class f3vy(Variable):
     cerfa_field = u"3VY"
     value_type = int
-    unit = 'currency'
+    unit = "currency"
     entity = FoyerFiscal
     label = u"Plus-values exonérées de cessions de participations supérieures à 25% au sein du groupe familial"
     # start_date = date(2011, 1, 1)
-    end = '2013-12-31'
+    end = "2013-12-31"
     definition_period = YEAR
 
 
 class f3ve(Variable):
     cerfa_field = u"3VE"
     value_type = int
-    unit = 'currency'
+    unit = "currency"
     entity = FoyerFiscal
     label = u"Plus-values réalisées par les non-résidents pour lesquelles vous demandez le remboursement de l'excédent du prélèvement de 45 %"
     definition_period = YEAR
@@ -189,7 +178,7 @@ class f3ve(Variable):
 class f3tz(Variable):
     cerfa_field = u"3TZ"
     value_type = int
-    unit = 'currency'
+    unit = "currency"
     entity = FoyerFiscal
     label = u"Plus-values de cession de titres d'OPC monétaires en report d'imposition, plus-values réalisées du 1.1 au 31.3.2017, plus-values en report d'imposition"
     # start_date = date(2016, 1, 1)
@@ -199,7 +188,7 @@ class f3tz(Variable):
 class f3sb(Variable):
     cerfa_field = u"3SB"
     value_type = int
-    unit = 'currency'
+    unit = "currency"
     entity = FoyerFiscal
     label = u"Plus-values en report d'imposition, dont le report a expiré cette année"
     # start_date = date(2013, 1, 1)
@@ -209,7 +198,7 @@ class f3sb(Variable):
 class f3wb(Variable):
     cerfa_field = u"3WB"
     value_type = int
-    unit = 'currency'
+    unit = "currency"
     entity = FoyerFiscal
     label = u"Plus-values des individus transférant leur domicile fiscal hors de France; plus-values et créances ne bénéficiant pas du sursis de paiement; plus-values nettes imposables au barème"
     # start_date = date(2013, 1, 1)
@@ -219,7 +208,7 @@ class f3wb(Variable):
 class f3wd(Variable):
     cerfa_field = u"3WD"
     value_type = int
-    unit = 'currency'
+    unit = "currency"
     entity = FoyerFiscal
     label = u"Plus-values des individus transférant leur domicile fiscal hors de France; plus-values et créances ne bénéficiant pas du sursis de paiement; plus-values de base soumise aux prélèvements sociaux"
     # start_date = date(2013, 1, 1)
@@ -229,7 +218,7 @@ class f3wd(Variable):
 class f3we(Variable):
     cerfa_field = u"3WE"
     value_type = int
-    unit = 'currency'
+    unit = "currency"
     entity = FoyerFiscal
     label = u"Plus-values en report d'imposition : complément de prix perçu cette année"
     definition_period = YEAR
@@ -238,7 +227,7 @@ class f3we(Variable):
 class f3wn(Variable):
     cerfa_field = u"3WN"
     value_type = int
-    unit = 'currency'
+    unit = "currency"
     entity = FoyerFiscal
     label = u"Plus-values en report d'imposition dont le report a expiré cette année, réalisées à compter du 1.1.2013 : plus-values avant abattement"
     # start_date = date(2016, 1, 1)
@@ -248,8 +237,8 @@ class f3wn(Variable):
 class f3wp(Variable):
     cerfa_field = u"3WP"
     value_type = int
-    unit = 'currency'
-    entity = FoyerFiscal    
+    unit = "currency"
+    entity = FoyerFiscal
     label = u"Plus-values en report d'imposition dont le report a expiré cette année, réalisées à compter du 1.1.2013 : plus-values après abattement"
     # start_date = date(2016, 1, 1)
     definition_period = YEAR
@@ -258,7 +247,7 @@ class f3wp(Variable):
 class f3wr(Variable):
     cerfa_field = u"3WR"
     value_type = int
-    unit = 'currency'
+    unit = "currency"
     entity = FoyerFiscal
     label = u"Plus-values en report d'imposition dont le report a expiré cette année, réalisées à compter du 1.1.2013 : impôt sur le revenu"
     # start_date = date(2016, 1, 1)
@@ -268,7 +257,7 @@ class f3wr(Variable):
 class f3wt(Variable):
     cerfa_field = u"3WT"
     value_type = int
-    unit = 'currency'
+    unit = "currency"
     entity = FoyerFiscal
     label = u"Plus-values en report d'imposition dont le report a expiré cette année, réalisées à compter du 1.1.2013 : contribution exceptionnelle sur les hauts revenus"
     # start_date = date(2016, 1, 1)
@@ -277,26 +266,22 @@ class f3wt(Variable):
 
 # Abattements sur plus-values
 
+
 class f3va_2014(Variable):
     cerfa_field = u"3VA"
     value_type = int
-    unit = 'currency'
+    unit = "currency"
     entity = FoyerFiscal
     label = u"Abattements nets (abattement pour durée de détention renforcé et abattement fixe spécial) appliqués sur des plus-values réalisées par les dirigeants de PME lors de leur départ à la retraite"
     # start_date = date(2006, 1, 1)
-    end = '2014-12-31'
+    end = "2014-12-31"
     definition_period = YEAR
 
 
 class f3va(Variable):
-    cerfa_field = {
-        0: u"3VA",
-        1: u"3VB",
-        2: u"3VO",
-        3: u"3VP",
-        }
+    cerfa_field = {0: u"3VA", 1: u"3VB", 2: u"3VO", 3: u"3VP"}
     value_type = int
-    unit = 'currency'
+    unit = "currency"
     entity = Individu
     label = u"Abattements nets (abattement pour durée de détention renforcé et abattement fixe spécial) appliqués sur des plus-values réalisées par les dirigeants de PME lors de leur départ à la retraite"
     # start_date = date(2015, 1, 1)
@@ -306,18 +291,18 @@ class f3va(Variable):
 class f3vb(Variable):
     cerfa_field = u"3VB"
     value_type = int
-    unit = 'currency'
+    unit = "currency"
     entity = FoyerFiscal
     label = u"Abattements nets (abattement pour durée de détention renforcé et abattement fixe spécial) appliqués sur des moins-values réalisées par les dirigeants de PME lors de leur départ à la retraite"
     # start_date = date(2006, 1, 1)
-    end = '2014-12-31'
+    end = "2014-12-31"
     definition_period = YEAR
 
 
 class f3sg(Variable):
     cerfa_field = u"3SG"
     value_type = int
-    unit = 'currency'
+    unit = "currency"
     entity = FoyerFiscal
     label = u"Abattement net pour durée de détention : appliqué sur des plus-values"
     # start_date = date(2013, 1, 1)
@@ -327,18 +312,18 @@ class f3sg(Variable):
 class f3sh(Variable):
     cerfa_field = u"3SH"
     value_type = int
-    unit = 'currency'
+    unit = "currency"
     entity = FoyerFiscal
     label = u"Abattement net pour durée de détention : appliqué sur des moins-values"
     # start_date = date(2013, 1, 1)
-    end = '2014-12-31'
+    end = "2014-12-31"
     definition_period = YEAR
 
 
 class f3sl(Variable):
     cerfa_field = u"3SL"
     value_type = int
-    unit = 'currency'
+    unit = "currency"
     entity = FoyerFiscal
     label = u"Abattement net pour durée de détention renforcée : appliqué sur des plus-values"
     # start_date = date(2013, 1, 1)
@@ -348,66 +333,65 @@ class f3sl(Variable):
 class f3sm(Variable):
     cerfa_field = u"3SM"
     value_type = int
-    unit = 'currency'
+    unit = "currency"
     entity = FoyerFiscal
     label = u"Abattement net pour durée de détention renforcée : appliqué sur des moins-values"
     # start_date = date(2013, 1, 1)
-    end = '2014-12-31'
+    end = "2014-12-31"
     definition_period = YEAR
 
 
 class abattement_net_retraite_dirigeant_pme(Variable):
     value_type = int
-    unit = 'currency'
+    unit = "currency"
     entity = FoyerFiscal
     reference = u"http://bofip.impots.gouv.fr/bofip/2894-PGP"
     label = u"Abattement net pour durée de détention des titres en cas de départ à la retraite d'un dirigeant"
     definition_period = YEAR
 
     def formula_2006_01_01(foyer_fiscal, period):
-        f3va = foyer_fiscal('f3va_2014', period)
-        f3vb = foyer_fiscal('f3vb', period)
+        f3va = foyer_fiscal("f3va_2014", period)
+        f3vb = foyer_fiscal("f3vb", period)
 
         return f3va - f3vb
 
     def formula_2015_01_01(foyer_fiscal, period):
-        f3va_i = foyer_fiscal.members('f3va', period)
+        f3va_i = foyer_fiscal.members("f3va", period)
         f3va = foyer_fiscal.sum(f3va_i)
 
         return f3va
 
+
 class abattement_net_duree_detention(Variable):
     value_type = int
-    unit = 'currency'
+    unit = "currency"
     entity = FoyerFiscal
     reference = u"http://bofip.impots.gouv.fr/bofip/9540-PGP"
     label = u"Abattement net pour durée de détention (de droit commun et renforcé)"
     definition_period = YEAR
 
     def formula_2013_01_01(foyer_fiscal, period):
-        f3sg = foyer_fiscal('f3sg', period)
-        f3sh = foyer_fiscal('f3sh', period)
-        f3sl = foyer_fiscal('f3sl', period)
-        f3sm = foyer_fiscal('f3sm', period)
+        f3sg = foyer_fiscal("f3sg", period)
+        f3sh = foyer_fiscal("f3sh", period)
+        f3sl = foyer_fiscal("f3sl", period)
+        f3sm = foyer_fiscal("f3sm", period)
 
         return max_(0, f3sg - f3sh) + max_(0, f3sl - f3sm)
 
     def formula_2015_01_01(foyer_fiscal, period):
-        f3sg = foyer_fiscal('f3sg', period)
-        f3sl = foyer_fiscal('f3sl', period)
+        f3sg = foyer_fiscal("f3sg", period)
+        f3sl = foyer_fiscal("f3sl", period)
 
         return f3sg + f3sl
 
 
 # Plus values et gains taxables à des taux forfaitaires
 
+
 class f3vd(Variable):
-    cerfa_field = {
-        0: u"3VD",
-        1: u"3SD",
-        }
+    cerfa_field = {0: u"3VD", 1: u"3SD"}
     value_type = int
-    unit = 'currency'
+    unit = "currency"
     entity = Individu
     label = u"Gains de levée d'options sur titres et gains d'acquisition d'actions taxables à 18 %"
     # start_date = date(2008, 1, 1)
@@ -415,24 +399,18 @@ class f3vd(Variable):
 
 
 class f3vi(Variable):
-    cerfa_field = {
-        0: u"3VI",
-        1: u"3SI",
-        }
+    cerfa_field = {0: u"3VI", 1: u"3SI"}
     value_type = int
-    unit = 'currency'
+    unit = "currency"
     entity = Individu
     label = u"Gains de levée d'options sur titres et gains d'acquisition d'actions taxables à 30 %"
     definition_period = YEAR
 
 
 class f3vf(Variable):
-    cerfa_field = {
-        0: u"3VF",
-        1: u"3SF",
-        }
+    cerfa_field = {0: u"3VF", 1: u"3SF"}
     value_type = int
-    unit = 'currency'
+    unit = "currency"
     entity = Individu
     label = u"Gains de levée d'options sur titres et gains d'acquisition d'actions taxables à 41 %"
     definition_period = YEAR
@@ -441,7 +419,7 @@ class f3vf(Variable):
 class f3vm(Variable):
     cerfa_field = u"3VM"
     value_type = int
-    unit = 'currency'
+    unit = "currency"
     entity = FoyerFiscal
     label = u"Clôture du PEA avant l'expiration de la 2e année: gains taxables à 22.5 %"
     # start_date = date(2012, 1, 1)
@@ -451,7 +429,7 @@ class f3vm(Variable):
 class f3vt(Variable):
     cerfa_field = u"3VT"
     value_type = int
-    unit = 'currency'
+    unit = "currency"
     entity = FoyerFiscal
     label = u"Clôture du PEA  entre la 2e et la 5e année: gains taxables à 19 %"
     # start_date = date(2012, 1, 1)
@@ -461,10 +439,10 @@ class f3vt(Variable):
 class f3vl(Variable):
     cerfa_field = u"3VL"
     value_type = int
-    unit = 'currency'
+    unit = "currency"
     entity = FoyerFiscal
     label = u"Distributions par des sociétés de capital-risque taxables à 19 %"
-    end = '2013-12-31'
+    end = "2013-12-31"
     definition_period = YEAR
 
 
@@ -474,14 +452,14 @@ class f3sa(Variable):
     entity = FoyerFiscal
     label = u"Plus-values de cessions de titres réalisées par un entrepreneur, taxables à 19%"
     # start_date = date(2012, 1, 1)
-    end = '2012-12-31'
+    end = "2012-12-31"
     definition_period = YEAR
 
 
 class f3sj(Variable):
     cerfa_field = u"3SJ"
     value_type = int
-    unit = 'currency'
+    unit = "currency"
     entity = FoyerFiscal
     label = u"Gains de cession de bons de souscription de parts de créateur d'entreprise : gains taxables à 19%"
     definition_period = YEAR
@@ -490,7 +468,7 @@ class f3sj(Variable):
 class f3sk(Variable):
     cerfa_field = u"3SK"
     value_type = int
-    unit = 'currency'
+    unit = "currency"
     entity = FoyerFiscal
     label = u"Gains de cession de bons de souscription de parts de créateur d'entreprise : gains taxables à 30%"
     definition_period = YEAR
@@ -499,7 +477,7 @@ class f3sk(Variable):
 class f3wi(Variable):
     cerfa_field = u"3WI"
     value_type = int
-    unit = 'currency'
+    unit = "currency"
     entity = FoyerFiscal
     label = u"Plus-values en report d'imposition dont le report a expiré cette année : réalisées du 14.11.2012 au 31.12.2012 et taxables à 24%"
     # start_date = date(2016, 1, 1)
@@ -509,7 +487,7 @@ class f3wi(Variable):
 class f3wj(Variable):
     cerfa_field = u"3WJ"
     value_type = int
-    unit = 'currency'
+    unit = "currency"
     entity = FoyerFiscal
     label = u"Plus-values en report d'imposition dont le report a expiré cette année : réalisées du 14.11.2012 au 31.12.2012 et taxables à 19%"
     # start_date = date(2016, 1, 1)
@@ -518,19 +496,20 @@ class f3wj(Variable):
 
 # Autres variables
 
+
 class f3vv_end_2010(Variable):
     cerfa_field = u"3VV"
     value_type = int
-    unit = 'currency'
+    unit = "currency"
     entity = FoyerFiscal
     label = u"Pertes ouvrant droit au crédit d’impôt de 19 % "
     # start_date = date(2010, 1, 1)
-    end = '2010-12-31'
+    end = "2010-12-31"
     definition_period = YEAR
 
 
 class f3vu(Variable):
     value_type = int
     entity = FoyerFiscal
-    end = '2009-12-31'
+    end = "2009-12-31"
     definition_period = YEAR

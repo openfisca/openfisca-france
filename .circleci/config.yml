@@ -47,7 +47,7 @@ jobs:
           command: |
             make check-no-prints
             make check-syntax-errors
-            # make flake8
+            make formatting
 
       - run:
           name: Check version number has been properly updated
@@ -132,7 +132,7 @@ jobs:
           command: |
             make check-no-prints
             make check-syntax-errors
-            # make flake8
+            make formatting
 
       - run:
           name: Check version number has been properly updated

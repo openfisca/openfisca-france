@@ -21,6 +21,7 @@ def _mhsup(hsup):
     """
     return -hsup
 
+
 ############################################################################
 # # Revenus du capital
 ############################################################################
@@ -31,6 +32,7 @@ def _mhsup(hsup):
 
 class csg_cap_bar(Variable):
     """Calcule la CSG sur les revenus du capital soumis au barème."""
+
     value_type = float
     entity = FoyerFiscal
     label = u"CSG sur les revenus du capital soumis au barème"
@@ -38,14 +40,20 @@ class csg_cap_bar(Variable):
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
-        revenus_capitaux_prelevement_bareme = foyer_fiscal('revenus_capitaux_prelevement_bareme', period, options = [ADD])
+        revenus_capitaux_prelevement_bareme = foyer_fiscal(
+            "revenus_capitaux_prelevement_bareme", period, options=[ADD]
+        )
         _P = parameters(period)
 
-        return -revenus_capitaux_prelevement_bareme * _P.prelevements_sociaux.contributions.csg.capital.glob
+        return (
+            -revenus_capitaux_prelevement_bareme
+            * _P.prelevements_sociaux.contributions.csg.capital.glob
+        )
 
 
 class crds_cap_bar(Variable):
     """Calcule la CRDS sur les revenus du capital soumis au barème."""
+
     value_type = float
     entity = FoyerFiscal
     label = u"CRDS sur les revenus du capital soumis au barème"
@@ -53,7 +61,9 @@ class crds_cap_bar(Variable):
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
-        revenus_capitaux_prelevement_bareme = foyer_fiscal('revenus_capitaux_prelevement_bareme', period, options = [ADD])
+        revenus_capitaux_prelevement_bareme = foyer_fiscal(
+            "revenus_capitaux_prelevement_bareme", period, options=[ADD]
+        )
         _P = parameters(period).taxation_capital.prelevements_sociaux
 
         return -revenus_capitaux_prelevement_bareme * _P.crds.revenus_du_patrimoine
@@ -61,6 +71,7 @@ class crds_cap_bar(Variable):
 
 class prelsoc_cap_bar(Variable):
     """Calcule le prélèvement social sur les revenus du capital soumis au barème"""
+
     value_type = float
     entity = FoyerFiscal
     label = u"Prélèvements sociaux sur les revenus du capital soumis au barème"
@@ -68,44 +79,63 @@ class prelsoc_cap_bar(Variable):
     definition_period = YEAR
 
     def formula_2002_01_01(foyer_fiscal, period, parameters):
-        revenus_capitaux_prelevement_bareme = foyer_fiscal('revenus_capitaux_prelevement_bareme', period, options = [ADD])
+        revenus_capitaux_prelevement_bareme = foyer_fiscal(
+            "revenus_capitaux_prelevement_bareme", period, options=[ADD]
+        )
         P = parameters(period).taxation_capital.prelevements_sociaux
 
         total = P.prelevement_social.revenus_du_patrimoine
         return -revenus_capitaux_prelevement_bareme * total
 
     def formula_2006_01_01(foyer_fiscal, period, parameters):
-        revenus_capitaux_prelevement_bareme = foyer_fiscal('revenus_capitaux_prelevement_bareme', period, options = [ADD])
+        revenus_capitaux_prelevement_bareme = foyer_fiscal(
+            "revenus_capitaux_prelevement_bareme", period, options=[ADD]
+        )
         P = parameters(period).taxation_capital.prelevements_sociaux
 
-        total = P.prelevement_social.revenus_du_patrimoine + P.caps.revenus_du_patrimoine
+        total = (
+            P.prelevement_social.revenus_du_patrimoine + P.caps.revenus_du_patrimoine
+        )
         return -revenus_capitaux_prelevement_bareme * total
 
     def formula_2009_01_01(foyer_fiscal, period, parameters):
-        revenus_capitaux_prelevement_bareme = foyer_fiscal('revenus_capitaux_prelevement_bareme', period, options = [ADD])
+        revenus_capitaux_prelevement_bareme = foyer_fiscal(
+            "revenus_capitaux_prelevement_bareme", period, options=[ADD]
+        )
         P = parameters(period).taxation_capital.prelevements_sociaux
 
-        total = P.prelevement_social.revenus_du_patrimoine + P.caps.revenus_du_patrimoine + P.caps.rsa
+        total = (
+            P.prelevement_social.revenus_du_patrimoine
+            + P.caps.revenus_du_patrimoine
+            + P.caps.rsa
+        )
         return -revenus_capitaux_prelevement_bareme * total
 
     def formula_2012_01_01(foyer_fiscal, period, parameters):
-        revenus_capitaux_prelevement_bareme = foyer_fiscal('revenus_capitaux_prelevement_bareme', period, options = [ADD])
+        revenus_capitaux_prelevement_bareme = foyer_fiscal(
+            "revenus_capitaux_prelevement_bareme", period, options=[ADD]
+        )
         P = parameters(period).taxation_capital.prelevements_sociaux
 
         total = (
-            P.prelevement_social.revenus_du_patrimoine + P.caps.revenus_du_patrimoine + P.caps.rsa +
-            P.prelevements_solidarite.revenus_du_patrimoine
-            )
+            P.prelevement_social.revenus_du_patrimoine
+            + P.caps.revenus_du_patrimoine
+            + P.caps.rsa
+            + P.prelevements_solidarite.revenus_du_patrimoine
+        )
         return -revenus_capitaux_prelevement_bareme * total
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
-        revenus_capitaux_prelevement_bareme = foyer_fiscal('revenus_capitaux_prelevement_bareme', period, options = [ADD])
+        revenus_capitaux_prelevement_bareme = foyer_fiscal(
+            "revenus_capitaux_prelevement_bareme", period, options=[ADD]
+        )
         P = parameters(period).taxation_capital.prelevements_sociaux
 
         total = (
-            P.prelevement_social.revenus_du_patrimoine + P.caps.revenus_du_patrimoine +
-            P.prelevements_solidarite.revenus_du_patrimoine
-            )
+            P.prelevement_social.revenus_du_patrimoine
+            + P.caps.revenus_du_patrimoine
+            + P.prelevements_solidarite.revenus_du_patrimoine
+        )
         return -revenus_capitaux_prelevement_bareme * total
 
 
@@ -120,7 +150,7 @@ class csg_pv_mo(Variable):
         """
         Calcule la CSG sur les plus-values de cession mobilière
         """
-        f3vg = foyer_fiscal('f3vg', period)
+        f3vg = foyer_fiscal("f3vg", period)
         _P = parameters(period)
 
         return -f3vg * _P.prelevements_sociaux.contributions.csg.capital.glob
@@ -137,7 +167,7 @@ class crds_pv_mo(Variable):
         """
         Calcule la CRDS sur les plus-values de cession mobilière
         """
-        f3vg = foyer_fiscal('f3vg', period)
+        f3vg = foyer_fiscal("f3vg", period)
         _P = parameters(period).taxation_capital.prelevements_sociaux
 
         return -f3vg * _P.crds.revenus_du_patrimoine
@@ -155,7 +185,7 @@ class prelsoc_pv_mo(Variable):
         Calcule le prélèvement social sur les plus-values
         de cession de valeurs mobilières
         """
-        f3vg = foyer_fiscal('f3vg', period)
+        f3vg = foyer_fiscal("f3vg", period)
         _P = parameters(period)
 
         P = _P.taxation_capital.prelevements_sociaux
@@ -167,50 +197,61 @@ class prelsoc_pv_mo(Variable):
         Calcule le prélèvement social sur les plus-values
         de cession de valeurs mobilières
         """
-        f3vg = foyer_fiscal('f3vg', period)
+        f3vg = foyer_fiscal("f3vg", period)
         _P = parameters(period)
 
         P = _P.taxation_capital.prelevements_sociaux
-        total = P.prelevement_social.revenus_du_patrimoine + P.caps.revenus_du_patrimoine
+        total = (
+            P.prelevement_social.revenus_du_patrimoine + P.caps.revenus_du_patrimoine
+        )
         return -f3vg * total
 
     def formula_2009_01_01(foyer_fiscal, period, parameters):
         """
         Calcule le prélèvement social sur les plus-values de cession de valeurs mobilières
         """
-        f3vg = foyer_fiscal('f3vg', period)
+        f3vg = foyer_fiscal("f3vg", period)
         _P = parameters(period)
 
         P = _P.taxation_capital.prelevements_sociaux
-        total = P.prelevement_social.revenus_du_patrimoine + P.caps.revenus_du_patrimoine + P.caps.rsa
+        total = (
+            P.prelevement_social.revenus_du_patrimoine
+            + P.caps.revenus_du_patrimoine
+            + P.caps.rsa
+        )
         return -f3vg * total
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
         """
         Calcule le prélèvement social sur les plus-values de cession de valeurs mobilières
         """
-        f3vg = foyer_fiscal('f3vg', period)
+        f3vg = foyer_fiscal("f3vg", period)
         _P = parameters(period)
 
         P = _P.taxation_capital.prelevements_sociaux
-        total = P.prelevement_social.revenus_du_patrimoine + P.caps.revenus_du_patrimoine
+        total = (
+            P.prelevement_social.revenus_du_patrimoine + P.caps.revenus_du_patrimoine
+        )
         return -f3vg * total
 
 
 # Plus-values immobilières
 
+
 class csg_pv_immo(Variable):
     value_type = float
     entity = FoyerFiscal
     label = u"CSG sur les plus-values immobilières"
-    reference = "http://fr.wikipedia.org/wiki/Contribution_sociale_g%C3%A9n%C3%A9ralis%C3%A9e"
+    reference = (
+        "http://fr.wikipedia.org/wiki/Contribution_sociale_g%C3%A9n%C3%A9ralis%C3%A9e"
+    )
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
         """
         Calcule la CSG sur les plus-values de cession immobilière
         """
-        f3vz = foyer_fiscal('f3vz', period)
+        f3vz = foyer_fiscal("f3vz", period)
         _P = parameters(period)
 
         return -f3vz * _P.prelevements_sociaux.contributions.csg.capital.glob
@@ -227,7 +268,7 @@ class crds_pv_immo(Variable):
         """
         Calcule la CRDS sur les plus-values de cession immobilière
         """
-        f3vz = foyer_fiscal('f3vz', period)
+        f3vz = foyer_fiscal("f3vz", period)
         _P = parameters(period).taxation_capital.prelevements_sociaux
 
         return -f3vz * _P.crds.revenus_du_patrimoine
@@ -244,7 +285,7 @@ class prelsoc_pv_immo(Variable):
         """
         Calcule le prélèvement social sur les plus-values de cession immobilière
         """
-        f3vz = foyer_fiscal('f3vz', period)
+        f3vz = foyer_fiscal("f3vz", period)
         _P = parameters(period)
 
         P = _P.taxation_capital.prelevements_sociaux
@@ -256,11 +297,13 @@ class prelsoc_pv_immo(Variable):
         """
         Calcule le prélèvement social sur les plus-values de cession immobilière
         """
-        f3vz = foyer_fiscal('f3vz', period)
+        f3vz = foyer_fiscal("f3vz", period)
         _P = parameters(period)
 
         P = _P.taxation_capital.prelevements_sociaux
-        total = P.prelevement_social.revenus_du_patrimoine + P.caps.revenus_du_patrimoine
+        total = (
+            P.prelevement_social.revenus_du_patrimoine + P.caps.revenus_du_patrimoine
+        )
 
         return -f3vz * total
 
@@ -268,40 +311,49 @@ class prelsoc_pv_immo(Variable):
         """
         Calcule le prélèvement social sur les plus-values de cession immobilière
         """
-        f3vz = foyer_fiscal('f3vz', period)
+        f3vz = foyer_fiscal("f3vz", period)
         _P = parameters(period)
 
         P = _P.taxation_capital.prelevements_sociaux
-        total = P.prelevement_social.revenus_du_patrimoine + P.caps.revenus_du_patrimoine + P.caps.rsa
+        total = (
+            P.prelevement_social.revenus_du_patrimoine
+            + P.caps.revenus_du_patrimoine
+            + P.caps.rsa
+        )
         return -f3vz * total
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
         """
         Calcule le prélèvement social sur les plus-values de cession immobilière
         """
-        f3vz = foyer_fiscal('f3vz', period)
+        f3vz = foyer_fiscal("f3vz", period)
         _P = parameters(period)
 
         P = _P.taxation_capital.prelevements_sociaux
-        total = P.prelevement_social.revenus_du_patrimoine + P.caps.revenus_du_patrimoine
+        total = (
+            P.prelevement_social.revenus_du_patrimoine + P.caps.revenus_du_patrimoine
+        )
         return -f3vz * total
 
 
 # Revenus fonciers
 
+
 class csg_fon(Variable):
     value_type = float
     entity = FoyerFiscal
     label = u"CSG sur les revenus fonciers"
-    reference = "http://fr.wikipedia.org/wiki/Contribution_sociale_g%C3%A9n%C3%A9ralis%C3%A9e"
+    reference = (
+        "http://fr.wikipedia.org/wiki/Contribution_sociale_g%C3%A9n%C3%A9ralis%C3%A9e"
+    )
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
-        '''
+        """
         Calcule la CSG sur les revenus fonciers
         Attention : assiette CSG = asiette IR valable 2006-2014 mais pourrait changer
-        '''
-        rev_cat_rfon = foyer_fiscal('rev_cat_rfon', period)
+        """
+        rev_cat_rfon = foyer_fiscal("rev_cat_rfon", period)
         _P = parameters(period)
 
         return -rev_cat_rfon * _P.prelevements_sociaux.contributions.csg.capital.glob
@@ -315,11 +367,11 @@ class crds_fon(Variable):
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
-        '''
+        """
         Calcule la CRDS sur les revenus fonciers
         Attention : assiette CSG = asiette IR valable 2006-2014 mais pourrait changer
-        '''
-        rev_cat_rfon = foyer_fiscal('rev_cat_rfon', period)
+        """
+        rev_cat_rfon = foyer_fiscal("rev_cat_rfon", period)
         _P = parameters(period).taxation_capital.prelevements_sociaux
 
         return -rev_cat_rfon * _P.crds.revenus_du_patrimoine
@@ -333,11 +385,11 @@ class prelsoc_fon(Variable):
     definition_period = YEAR
 
     def formula_2002_01_01(foyer_fiscal, period, parameters):
-        '''
+        """
         Calcule le prélèvement social sur les revenus fonciers
         TODO : assiette CSG = asiette IR valable 2006-2014 mais pourrait changer
-        '''
-        rev_cat_rfon = foyer_fiscal('rev_cat_rfon', period)
+        """
+        rev_cat_rfon = foyer_fiscal("rev_cat_rfon", period)
         _P = parameters(period)
 
         P = _P.taxation_capital.prelevements_sociaux
@@ -346,40 +398,48 @@ class prelsoc_fon(Variable):
         return -rev_cat_rfon * total
 
     def formula_2006_01_01(foyer_fiscal, period, parameters):
-        '''
+        """
         Calcule le prélèvement social sur les revenus fonciers
         Attention : assiette CSG = asiette IR valable 2006-2014 mais pourrait changer
-        '''
-        rev_cat_rfon = foyer_fiscal('rev_cat_rfon', period)
+        """
+        rev_cat_rfon = foyer_fiscal("rev_cat_rfon", period)
         _P = parameters(period)
 
         P = _P.taxation_capital.prelevements_sociaux
-        total = P.prelevement_social.revenus_du_patrimoine + P.caps.revenus_du_patrimoine
+        total = (
+            P.prelevement_social.revenus_du_patrimoine + P.caps.revenus_du_patrimoine
+        )
 
         return -rev_cat_rfon * total
 
     def formula_2009_01_01(foyer_fiscal, period, parameters):
-        '''
+        """
         Calcule le prélèvement social sur les revenus fonciers
         Attention : assiette CSG = assiette IR valable 2006-2014 mais pourrait changer
-        '''
-        rev_cat_rfon = foyer_fiscal('rev_cat_rfon', period)
+        """
+        rev_cat_rfon = foyer_fiscal("rev_cat_rfon", period)
         _P = parameters(period)
 
         P = _P.taxation_capital.prelevements_sociaux
-        total = P.prelevement_social.revenus_du_patrimoine + P.caps.revenus_du_patrimoine + P.caps.rsa
+        total = (
+            P.prelevement_social.revenus_du_patrimoine
+            + P.caps.revenus_du_patrimoine
+            + P.caps.rsa
+        )
         return -rev_cat_rfon * total
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
-        '''
+        """
         Calcule le prélèvement social sur les revenus fonciers
         Attention : assiette CSG = assiette IR valable 2006-2014 mais pourrait changer
-        '''
-        rev_cat_rfon = foyer_fiscal('rev_cat_rfon', period)
+        """
+        rev_cat_rfon = foyer_fiscal("rev_cat_rfon", period)
         _P = parameters(period)
 
         P = _P.taxation_capital.prelevements_sociaux
-        total = P.prelevement_social.revenus_du_patrimoine + P.caps.revenus_du_patrimoine
+        total = (
+            P.prelevement_social.revenus_du_patrimoine + P.caps.revenus_du_patrimoine
+        )
         return -rev_cat_rfon * total
 
 
@@ -388,6 +448,7 @@ class prelsoc_fon(Variable):
 
 class csg_cap_lib(Variable):
     """Calcule la CSG sur les revenus du capital soumis au prélèvement libératoire."""
+
     value_type = float
     entity = FoyerFiscal
     label = u"CSG sur les revenus du capital soumis au prélèvement libératoire"
@@ -395,14 +456,20 @@ class csg_cap_lib(Variable):
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
-        revenus_capitaux_prelevement_liberatoire = foyer_fiscal('revenus_capitaux_prelevement_liberatoire', period, options = [ADD])
+        revenus_capitaux_prelevement_liberatoire = foyer_fiscal(
+            "revenus_capitaux_prelevement_liberatoire", period, options=[ADD]
+        )
         _P = parameters(period)
 
-        return -revenus_capitaux_prelevement_liberatoire * _P.prelevements_sociaux.contributions.csg.capital.glob
+        return (
+            -revenus_capitaux_prelevement_liberatoire
+            * _P.prelevements_sociaux.contributions.csg.capital.glob
+        )
 
 
 class crds_cap_lib(Variable):
     """Calcule la CRDS sur les revenus du capital soumis au prélèvement libératoire."""
+
     value_type = float
     entity = FoyerFiscal
     label = u"CRDS sur les revenus du capital soumis au prélèvement libératoire"
@@ -410,7 +477,9 @@ class crds_cap_lib(Variable):
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
-        revenus_capitaux_prelevement_liberatoire = foyer_fiscal('revenus_capitaux_prelevement_liberatoire', period, options = [ADD])
+        revenus_capitaux_prelevement_liberatoire = foyer_fiscal(
+            "revenus_capitaux_prelevement_liberatoire", period, options=[ADD]
+        )
         _P = parameters(period).taxation_capital.prelevements_sociaux
 
         return -revenus_capitaux_prelevement_liberatoire * _P.crds.revenus_du_patrimoine
@@ -418,6 +487,7 @@ class crds_cap_lib(Variable):
 
 class prelsoc_cap_lib(Variable):
     """Calcule le prélèvement social sur les revenus du capital soumis au prélèvement libératoire."""
+
     value_type = float
     entity = FoyerFiscal
     label = u"Prélèvements sociaux sur les revenus du capital soumis au prélèvement libératoire"
@@ -425,29 +495,40 @@ class prelsoc_cap_lib(Variable):
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
-        revenus_capitaux_prelevement_liberatoire = foyer_fiscal('revenus_capitaux_prelevement_liberatoire', period, options = [ADD])
+        revenus_capitaux_prelevement_liberatoire = foyer_fiscal(
+            "revenus_capitaux_prelevement_liberatoire", period, options=[ADD]
+        )
         prelsoc = parameters(period).taxation_capital.prelevements_sociaux
 
         start_year = period.start.year
         if start_year < 2006:
             total = prelsoc.prelevement_social.revenus_du_patrimoine
         elif start_year < 2009:
-            total = prelsoc.prelevement_social.revenus_du_patrimoine + prelsoc.caps.revenus_du_patrimoine
+            total = (
+                prelsoc.prelevement_social.revenus_du_patrimoine
+                + prelsoc.caps.revenus_du_patrimoine
+            )
         elif start_year < 2012:
             total = (
-                prelsoc.prelevement_social.revenus_du_patrimoine + prelsoc.caps.revenus_du_patrimoine + prelsoc.caps.rsa
-                )
+                prelsoc.prelevement_social.revenus_du_patrimoine
+                + prelsoc.caps.revenus_du_patrimoine
+                + prelsoc.caps.rsa
+            )
         elif start_year < 2013:
             total = (
-                prelsoc.prelevement_social.revenus_du_patrimoine + prelsoc.caps.revenus_du_patrimoine +
-                prelsoc.caps.rsa + prelsoc.prelevements_solidarite.revenus_du_patrimoine
-                )
+                prelsoc.prelevement_social.revenus_du_patrimoine
+                + prelsoc.caps.revenus_du_patrimoine
+                + prelsoc.caps.rsa
+                + prelsoc.prelevements_solidarite.revenus_du_patrimoine
+            )
         else:
             total = (
-                prelsoc.prelevement_social.revenus_du_patrimoine + prelsoc.caps.revenus_du_patrimoine +
-                prelsoc.prelevements_solidarite.revenus_du_patrimoine
-                )
+                prelsoc.prelevement_social.revenus_du_patrimoine
+                + prelsoc.caps.revenus_du_patrimoine
+                + prelsoc.prelevements_solidarite.revenus_du_patrimoine
+            )
         return -revenus_capitaux_prelevement_liberatoire * total
+
 
 # TODO: non_imposabilité pour les revenus au barème
 #        verse = (-csgcap_bar - crdscap_bar - prelsoccap_bar) > bareme.prelevements_sociaux.contributions.csg.capital.nonimp

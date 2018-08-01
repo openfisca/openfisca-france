@@ -13,14 +13,16 @@ class professionnalisation(Variable):
     value_type = bool
     entity = Individu
     label = u"L'individu est en contrat de professionnalisation"
-    reference = "http://www.apce.com/pid879/contrat-de-professionnalisation.html?espace=1&tp=1"
+    reference = (
+        "http://www.apce.com/pid879/contrat-de-professionnalisation.html?espace=1&tp=1"
+    )
     definition_period = MONTH
 
     def formula(individu, period, parameters):
-        age = individu('age', period)
-        ass = individu('ass', period, options = [ADD])
-        rsa = individu('rsa', period)
-        aah = individu('aah', period)
+        age = individu("age", period)
+        ass = individu("ass", period, options=[ADD])
+        rsa = individu("rsa", period)
+        aah = individu("aah", period)
 
         age_condition = (16 <= age) * (age < 25)
         dummy_ass = ass > 0
@@ -56,42 +58,33 @@ class remuneration_professionnalisation(Variable):
     #  l'entreprise.
 
     def formula(individu, period, parameters):
-        age = individu('age', period)
+        age = individu("age", period)
         smic = parameters(period).cotsoc.gen.smic_h_b * 52 * 35 / 12
-        professionnalisation = individu('professionnalisation', period)
-        qualifie = individu('qualifie')
+        professionnalisation = individu("professionnalisation", period)
+        qualifie = individu("qualifie")
         salaire_en_smic = [
             dict(
-                part_de_smic_by_qualification = {
-                    'non_qualifie': .55,
-                    'qualifie': .65
-                    },
-                age_min = 16,
-                age_max = 21,
-                ),
-            dict(
-                part_de_smic_by_qualification = {
-                    1: .70,
-                    },
-                age_min = 21,
-                age_max = 25,
-                ),
-            dict(
-                part_de_smic_by_qualification = {
-                    1: 1.0,
-                    },
-                age_min = 26,
-                age_max = 99
-                )
-            ]
+                part_de_smic_by_qualification={"non_qualifie": .55, "qualifie": .65},
+                age_min=16,
+                age_max=21,
+            ),
+            dict(part_de_smic_by_qualification={1: .70}, age_min=21, age_max=25),
+            dict(part_de_smic_by_qualification={1: 1.0}, age_min=26, age_max=99),
+        ]
 
         taux_smic = age * 0.0
         for age_interval in salaire_en_smic:
-            age_condition = (age_interval['age_min'] <= age) * (age <= age_interval['age_max'])
-            taux_smic[age_condition] = sum([
-                (qualifie[age_condition] == qualification) * part_de_smic
-                for qualification, part_de_smic in age_interval['part_de_smic_by_qualification'].items()
-                ])
+            age_condition = (age_interval["age_min"] <= age) * (
+                age <= age_interval["age_max"]
+            )
+            taux_smic[age_condition] = sum(
+                [
+                    (qualifie[age_condition] == qualification) * part_de_smic
+                    for qualification, part_de_smic in age_interval[
+                        "part_de_smic_by_qualification"
+                    ].items()
+                ]
+            )
         return taux_smic * smic * professionnalisation
 
 
@@ -118,15 +111,20 @@ class exoneration_cotisations_employeur_professionnalisation(Variable):
     #  aux groupements d'employeurs qui organisent dans le cadre des contrats de professionnalisation
 
     def formula(individu, period, parameters):
-        age = individu('age', period)
-        mmid_employeur = individu('mmid_employeur', period)
-        famille = individu('famille', period)
-        vieillesse_plafonnee_employeur = individu('vieillesse_plafonnee_employeur', period)
+        age = individu("age", period)
+        mmid_employeur = individu("mmid_employeur", period)
+        famille = individu("famille", period)
+        vieillesse_plafonnee_employeur = individu(
+            "vieillesse_plafonnee_employeur", period
+        )
         # FIXME: correspond bien à vieillesse de base ?
-        cotisations_exonerees = mmid_employeur + famille + vieillesse_plafonnee_employeur
+        cotisations_exonerees = (
+            mmid_employeur + famille + vieillesse_plafonnee_employeur
+        )
 
         return cotisations_exonerees * (age > 45)
         # FIXME: On est bien d'accord qu'il y a les exos uniquement pour les
         # plus de 45 ans?
+
 
 # TODO: vérifier aucun avantage pour l'employé ??

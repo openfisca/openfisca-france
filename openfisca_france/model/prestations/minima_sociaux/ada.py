@@ -10,17 +10,18 @@ class ada(Variable):
     definition_period = MONTH
 
     def formula_2015_11(famille, period, parameters):
-        nb_parents = famille('nb_parents', period)
-        af_nbenf = famille('af_nbenf', period)
-        place_hebergement = famille('place_hebergement', period)
-        asile_demandeur = famille('asile_demandeur', period)
+        nb_parents = famille("nb_parents", period)
+        af_nbenf = famille("af_nbenf", period)
+        place_hebergement = famille("place_hebergement", period)
+        asile_demandeur = famille("asile_demandeur", period)
         ada = parameters(period).prestations.minima_sociaux.ada
 
         nb_pers = af_nbenf + nb_parents
-        ada_par_jour = (ada.montant_journalier_pour_une_personne +
-            (nb_pers - 1) * ada.majoration_pers_supp +
-            ada.supplement_non_hebergement * (not place_hebergement)
-            )
+        ada_par_jour = (
+            ada.montant_journalier_pour_une_personne
+            + (nb_pers - 1) * ada.majoration_pers_supp
+            + ada.supplement_non_hebergement * (not place_hebergement)
+        )
 
         montant_ada = period.days * ada_par_jour * asile_demandeur
         return montant_ada

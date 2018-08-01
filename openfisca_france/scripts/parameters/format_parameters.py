@@ -19,7 +19,7 @@ from openfisca_core import legislationsxml
 from openfisca_france.france_taxbenefitsystem import FranceTaxBenefitSystem, COUNTRY_DIR
 
 
-parameters_dir_path = os.path.join(COUNTRY_DIR, 'parameters')
+parameters_dir_path = os.path.join(COUNTRY_DIR, "parameters")
 
 
 def main():
@@ -27,7 +27,7 @@ def main():
     france_tax_benefit_system = FranceTaxBenefitSystem()
 
     for file_path, _ in france_tax_benefit_system.legislation_xml_info_list:
-        with open(file_path, 'r') as f:
+        with open(file_path, "r") as f:
             tree = etree.parse(f)
 
         if not xmlschema.validate(tree):
@@ -36,7 +36,7 @@ def main():
         root_element = tree.getroot()
         output_tree = etree.ElementTree(root_element)
 
-        output_tree.write(file_path, encoding='utf-8', pretty_print=True)
+        output_tree.write(file_path, encoding="utf-8", pretty_print=True)
 
     return 0
 
