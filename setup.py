@@ -44,13 +44,13 @@ setup(
             'nose',
             'flake8 == 3.4.1',
             'scipy >= 0.17',  # Only used to test de_net_a_brut reform
+            'requests >= 2.8',
             'yamllint >= 1.11.1, < 1.12',
             ],
         },
     include_package_data = True,  # Will read MANIFEST.in
     install_requires = [
         'OpenFisca-Core >= 23.1.2, < 24',
-        'requests >= 2.8',
         ],
     message_extractors = {'openfisca_france': [
         ('**.py', 'python', None),
