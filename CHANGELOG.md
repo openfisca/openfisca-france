@@ -7,7 +7,7 @@
   - Aucun impact pour les **clients** de l'API.
   - Rend optionnelle l'installation de la Web API
     - `pip install OpenFisca-France` n'installera _plus_ l'API.
-    - `pip install OpenFisca-France[api]` permet d'inclure l'API.
+    - `pip install openfisca-france && pip install openfisca-core[web-api]` permet d'inclure l'API.
   - Sert l'API Web sur le port 5000 par défault (à la place de 6000, considéré non-sûr)
   - Renomme le groupe des dépendances optionnelles de développement:
     - `pip install --editable .[dev]` permet de les installer (à la place de of `pip install --editable .[test]`).
