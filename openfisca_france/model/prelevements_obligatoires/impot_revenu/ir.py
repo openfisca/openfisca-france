@@ -6,6 +6,7 @@ from __future__ import division
 import logging
 
 from numpy import datetime64, logical_and as and_, logical_or as or_, logical_xor as xor_, round as round_
+from numpy.core.defchararray import startswith
 
 from openfisca_core.model_api import *
 from openfisca_core import periods
@@ -119,6 +120,67 @@ class age_en_mois(Variable):
                 return individu('age', period) * 12
         date_naissance = individu('date_naissance', period)
         return (datetime64(period.start) - date_naissance).astype('timedelta64[M]')
+
+
+class depcom_foyer(Variable):
+    value_type = str
+    max_length = 5
+    entity = FoyerFiscal
+    default_value = "00000"
+    label = u"Code AFT du lieu de domicile fiscal"
+    definition_period = YEAR
+    set_input = set_input_dispatch_by_period
+    # Cette variable est similaire à la variable "depcom" qui est le lieu de domicile du ménage tandis que "depcom_foyer" est le lieu de résidence fiscale du foyer fiscal.
+
+
+class residence_fiscale_guadeloupe(Variable):
+    value_type = bool
+    entity = FoyerFiscal
+    definition_period = YEAR
+
+    def formula(foyer_fiscal, period, parameters):
+        depcom_foyer = foyer_fiscal('depcom_foyer', period)
+        return startswith(depcom_foyer, b'971')
+
+
+class residence_fiscale_martinique(Variable):
+    value_type = bool
+    entity = FoyerFiscal
+    definition_period = YEAR
+
+    def formula(foyer_fiscal, period, parameters):
+        depcom_foyer = foyer_fiscal('depcom_foyer', period)
+        return startswith(depcom_foyer, b'972')
+
+
+class residence_fiscale_guyane(Variable):
+    value_type = bool
+    entity = FoyerFiscal
+    definition_period = YEAR
+
+    def formula(foyer_fiscal, period, parameters):
+        depcom_foyer = foyer_fiscal('depcom_foyer', period)
+        return startswith(depcom_foyer, b'973')
+
+
+class residence_fiscale_reunion(Variable):
+    value_type = bool
+    entity = FoyerFiscal
+    definition_period = YEAR
+
+    def formula(foyer_fiscal, period, parameters):
+        depcom_foyer = foyer_fiscal('depcom_foyer', period)
+        return startswith(depcom_foyer, b'974')
+
+
+class residence_fiscale_mayotte(Variable):
+    value_type = bool
+    entity = FoyerFiscal
+    definition_period = YEAR
+
+    def formula(foyer_fiscal, period, parameters):
+        depcom_foyer = foyer_fiscal('depcom_foyer', period)
+        return startswith(depcom_foyer, b'976')
 
 
 class nb_adult(Variable):
@@ -1148,6 +1210,11 @@ class ir_plaf_qf(Variable):
         nb_adult = foyer_fiscal('nb_adult', period)
         nb_pac = foyer_fiscal('nb_pac', period)
         nb_parts = foyer_fiscal('nbptr', period)
+        residence_fiscale_guadeloupe = foyer_fiscal('residence_fiscale_guadeloupe', period)
+        residence_fiscale_martinique = foyer_fiscal('residence_fiscale_martinique', period)
+        residence_fiscale_guyane = foyer_fiscal('residence_fiscale_guyane', period)
+        residence_fiscale_mayotte = foyer_fiscal('residence_fiscale_mayotte', period)
+        residence_fiscale_reunion = foyer_fiscal('residence_fiscale_reunion', period)
         veuf = foyer_fiscal('veuf', period)
 
         caseF = foyer_fiscal('caseF', period)
@@ -1187,7 +1254,7 @@ class ir_plaf_qf(Variable):
 
         C = max_(0, A - B)
 
-        IP0 = max_(I, C)
+        impot_apres_plaf_qf = max_(I, C)
 
         # PART2 - REDUCTION IR APRES PLAFONNEMENT
 
@@ -1210,20 +1277,25 @@ class ir_plaf_qf(Variable):
         F = D + E
         G = max_(0, A - I - B)
         H = F * (F <= G) + G * (G < F)
-        IP1 = IP0 - H
+        impot_apres_reduction_complementaire = impot_apres_plaf_qf - H
 
-         # PART3 - ABATTEMENT PARTICULIE DOM
+        # PART3 - ABATTEMENT PARTICULIE DOM
 
-        conditionGuadMarReu = 0 # faire une condition avec département + code commune (Depcom qui est pour l'instant une variable ménage)
-        conditionGuyMay = 0 # provisoire
-        conditionDOM = conditionGuadMarReu | conditionGuyMay
+        residence_guadeloupe_martinique_reunion = (residence_fiscale_guadeloupe | residence_fiscale_martinique | residence_fiscale_reunion)
+        residence_guyane_mayotte = (residence_fiscale_guyane | residence_fiscale_mayotte)
+        residence_dom = (residence_guadeloupe_martinique_reunion | residence_guyane_mayotte)
+        
+        abattement_dom = (
+            residence_guadeloupe_martinique_reunion * min_(plafond_qf.abat_dom.plaf_GuadMarReu, plafond_qf.abat_dom.taux_GuadMarReu * impot_apres_reduction_complementaire)
+            + residence_guyane_mayotte * min_(plafond_qf.abat_dom.plaf_GuyMay, plafond_qf.abat_dom.taux_GuyMay * impot_apres_reduction_complementaire)
+            )
 
-        abat_dom = (conditionGuadMarReu * min_(plafond_qf.abat_dom.plaf_GuadMarReu, plafond_qf.abat_dom.taux_GuadMarReu * IP1) +
-                   conditionGuyMay * min_(plafond_qf.abat_dom.plaf_GuyMay, plafond_qf.abat_dom.taux_GuyMay * IP1))
-        IP2 = IP1 - abat_dom
+        impot_apres_abattement_dom = max_(0, impot_apres_reduction_complementaire - abattement_dom)
 
-        return (not_(conditionDOM) * (condition62a * IP0 + condition62b * IP1) +
-                conditionDOM * IP2)
+        return (
+            not_(residence_dom) * (condition62a * impot_apres_plaf_qf + condition62b * impot_apres_reduction_complementaire)
+            + residence_dom * impot_apres_abattement_dom
+            )
 
 
 class avantage_qf(Variable):
