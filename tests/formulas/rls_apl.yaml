@@ -1,0 +1,35 @@
+- name: 1- Zone 1 isolé
+  period: 2018-01
+  relative_error_margin: 0.01
+  input_variables:
+    zone_apl: zone_1
+    aide_logement_montant_brut: 27
+    statut_occupation_logement: locataire_hlm
+    aide_logement_base_ressources: 900
+  output_variables:
+    apl: 0
+    reduction_loyer_solidarite: 31.83
+
+- name: 2- Zone 1 isolé
+  period: 2018-01
+  relative_error_margin: 0.01
+  input_variables:
+    zone_apl: zone_1
+    aide_logement_montant_brut: 0
+    statut_occupation_logement: locataire_hlm
+    aide_logement_base_ressources: 900
+  output_variables:
+    apl: 0
+    reduction_loyer_solidarite: 31.83
+
+- name: 3- Zone 1 isolé
+  period: 2018-01
+  relative_error_margin: 0.01
+  input_variables:
+    zone_apl: zone_1
+    aide_logement_montant_brut: 100
+    statut_occupation_logement: locataire_hlm
+    aide_logement_base_ressources: 900
+  output_variables:
+    apl: 68.45
+    reduction_loyer_solidarite: 31.83

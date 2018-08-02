@@ -704,6 +704,7 @@ class aide_logement_participation_personnelle(Variable):
 class aide_logement_montant_brut_avant_degressivite(Variable):
     value_type = float
     label = u"Montant des aides aux logements en secteur locatif avant degressivité et brut de CRDS"
+    reference = u"https://www.legifrance.gouv.fr/eli/arrete/2018/2/27/TERL1801552A/jo/article_1"
     entity = Famille
     definition_period = MONTH
 
@@ -728,6 +729,31 @@ class aide_logement_montant_brut_avant_degressivite(Variable):
         montant = select([locataire, accedant], [montant_locataire, montant_accedants])
 
         montant = montant * (montant >= al.al_min.montant_min_mensuel.montant_min_apl_al)  # Montant minimal de versement
+
+        return montant
+
+    def formula_2018_03_01(famille, period, parameters):
+        al = parameters(period).prestations.aides_logement
+        statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
+        locataire = (
+                    (statut_occupation_logement == TypesStatutOccupationLogement.locataire_hlm)
+                    + (statut_occupation_logement == TypesStatutOccupationLogement.locataire_vide)
+                    + (statut_occupation_logement == TypesStatutOccupationLogement.locataire_meuble)
+                    + (statut_occupation_logement == TypesStatutOccupationLogement.locataire_foyer)
+        )
+        accedant = (statut_occupation_logement == TypesStatutOccupationLogement.primo_accedant)
+
+        loyer_retenu = famille('aide_logement_loyer_retenu', period)
+        charges_retenues = famille('aide_logement_charges', period)
+        participation_personnelle = famille('aide_logement_participation_personnelle', period)
+
+        montant_locataire = max_(0, loyer_retenu + charges_retenues - participation_personnelle)
+        montant_accedants = famille('aides_logement_primo_accedant', period)
+
+        montant = select([locataire, accedant], [montant_locataire, montant_accedants])
+
+        # Montant minimal de versement il s'applique sur l'ALS et l'ALF et non pas sur l'APL
+        montant = (montant * (montant >= al.al_min.montant_min_mensuel.montant_min_apl_al) * ( statut_occupation_logement != TypesStatutOccupationLogement.locataire_hlm)) + (montant * (statut_occupation_logement == TypesStatutOccupationLogement.locataire_hlm)) # Montant minimal de versement
 
         return montant
 
@@ -792,6 +818,28 @@ class aide_logement_montant_brut(Variable):
 
         return aide_logement_apres_abattement_forfaitaire
 
+class aide_logement_montant_brut_crds(Variable):
+    value_type = float
+    entity = Famille
+    label = u"Montant des aides au logement brut de CRDS"
+    reference = u"https://www.legifrance.gouv.fr/eli/decret/2018/2/27/2018-136/jo/article_1"
+    definition_period = MONTH
+
+    def formula(famille, period, parameters):
+        return famille('aide_logement_montant_brut', period)
+
+    def formula_2018(famille, period, parameters):
+        rls = parameters(period).prestations.reduction_loyer_solidarite
+        aide_logement_montant_brut = famille('aide_logement_montant_brut', period)
+        reduction_loyer_solidarite = famille('reduction_loyer_solidarite', period)
+        statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
+
+        taux_rls = rls.fraction_baisse_aide_logement
+        rls_apl = reduction_loyer_solidarite * taux_rls * (
+                statut_occupation_logement == TypesStatutOccupationLogement.locataire_hlm)
+        montant = max_(0, (aide_logement_montant_brut - rls_apl))
+        return montant
+
 class aide_logement_montant(Variable):
     value_type = float
     entity = Famille
@@ -799,7 +847,7 @@ class aide_logement_montant(Variable):
     definition_period = MONTH
 
     def formula(famille, period):
-        aide_logement_montant_brut = famille('aide_logement_montant_brut', period)
+        aide_logement_montant_brut = famille('aide_logement_montant_brut_crds', period)
         crds_logement = famille('crds_logement', period)
         montant = round_(aide_logement_montant_brut + crds_logement, 2)
 
@@ -949,7 +997,7 @@ class crds_logement(Variable):
     definition_period = MONTH
 
     def formula(famille, period, parameters):
-        aide_logement_montant_brut = famille('aide_logement_montant_brut', period)
+        aide_logement_montant_brut = famille('aide_logement_montant_brut_crds', period)
         crds = parameters(period).prestations.prestations_familiales.af.crds
         return -aide_logement_montant_brut * crds
 

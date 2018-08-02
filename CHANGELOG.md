@@ -1,5 +1,14 @@
 # Changelog
 
+## 23.1.0 [#1058](https://github.com/openfisca/openfisca-france/pull/1058)
+
+* Évolution du système socio-fiscal.
+* Zones impactées :
+  - `model\prestations\aides_logement`
+  - `parameters\prestations\reduction_loyer_solidarite`
+* Détails :
+  - Integration de la réduction du loyer de solidarité dans la formule de calcul de l'APL.
+
 # 23.0.0 [#1069](https://github.com/openfisca/openfisca-france/pull/1069)
 
 * Changement majeur
