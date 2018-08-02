@@ -353,16 +353,19 @@ class rfr_cd(Variable):
     value_type = float
     entity = FoyerFiscal
     label = u"Charges déductibles entrant dans le revenus fiscal de référence"
-    reference = "http://impotsurlerevenu.org/definitions/215-charge-deductible.php"
+    reference = "Article 1417 du Code Général des Impôts - IV-1°-a)"
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
-        cd_acc75a = foyer_fiscal('cd_acc75a', period)
-        cd_doment = foyer_fiscal('cd_doment', period)
         cd_eparet = foyer_fiscal('cd_eparet', period)
         cd_sofipe = foyer_fiscal('cd_sofipe', period)
 
-        return cd_acc75a + cd_doment + cd_eparet + cd_sofipe
+        return cd_eparet + cd_sofipe
+
+    def formula_2007_01_01(foyer_fiscal, period, parameters):
+        cd_eparet = foyer_fiscal('cd_eparet', period)
+        
+        return cd_eparet
 
 
 class cd1(Variable):
