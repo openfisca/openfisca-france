@@ -43,7 +43,7 @@ setup(
         'taxipp': [
             'pandas >= 0.13',
             ],
-        'test': [
+        'dev': [
             'nose',
             'flake8 == 3.4.1',
             'scipy >= 0.17',  # Only used to test de_net_a_brut reform
