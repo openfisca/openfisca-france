@@ -1,5 +1,13 @@
 # Changelog
 
+### 22.4.0 [#1059](https://github.com/openfisca/openfisca-france/pull/1059)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2017
+* Zones impactées : openfisca_france/parameters/impot_revenu/bareme.yaml
+* Détails :
+  - Mets à jour le barème de l'impôt pour les revenus 2017
+
 ### 22.3.0 [#998](https://github.com/openfisca/openfisca-france/pull/998)
 
 * Évolution du système socio-fiscal.
