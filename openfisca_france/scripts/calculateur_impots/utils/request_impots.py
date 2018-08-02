@@ -20,18 +20,15 @@ from openfisca_france.scripts.calculateur_impots.base import general_variable_na
 
 def main():
 
-    year = 2013
+    year = 2017
     impots_arguments = {
         'pre_situation_residence': 'M',  # Métropole
         '0DA': 1970,
-#        '0DB': 1970,
-        'pre_situation_famille': 'C',
-#        '0CF': 2, # nombre de personnes à charge
-#        '0F1': 1990, # âge de la première personne à charge
-#        '0BT': 1, # case T
-        '1AJ': 48000,
-#        '5HO': 10000,
-        '5NK': 5000
+        '0DB': 1970,
+        'pre_situation_famille': 'M', # situation maritale
+        '0CF': 2, # nombre de personnes à charge
+        '1AJ': 150000,
+        '1BJ': 100000,
     }
 
     request = urllib2.Request('https://www3.impots.gouv.fr/simulateur/cgi-bin/calc-{}.cgi'.format(year + 1), headers = {
@@ -51,7 +48,7 @@ def main():
         fields[code] = {
             'code' : code,
             'name' : names[code] if (code in names) else u'nom inconnu',
-            'value' : float(element.get('value').replace(" ","")),
+            'value' : element.get('value').replace(" ",""),
             }
 #    for code in ('ITRED',):
         print u'{} : {} ({})'.format(code, fields[code]['value'], fields[code]['name']).encode('utf-8')
