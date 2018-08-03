@@ -75,6 +75,15 @@ scenario_by_variable_2014 = {
     'regime_forfait_agricole': define_single_worker_scenario(2014, {'frag_impo': fixed_wage_amount, 'frag_fore': tested_reduction_amount, 'frag_pvct': tested_reduction_amount}),
     'regime_benef_reel_agricole_sans_cga': define_single_worker_scenario(2014, {'nrag_impg': fixed_wage_amount/2, 'nrag_defi': tested_reduction_amount, 'f5qf': tested_reduction_amount, 'f5qg': tested_reduction_amount, 'f5qn': tested_reduction_amount}),
     'regime_benef_reel_agricole_avec_cga': define_single_worker_scenario(2014, {'arag_impg': fixed_wage_amount/2, 'arag_defi': tested_reduction_amount, 'arag_pvce': tested_reduction_amount*2, 'f5qo': tested_reduction_amount, 'f5qp': tested_reduction_amount, 'f5qq': tested_reduction_amount}),
+    'regime_benef_reel_BIC_location_avec_cga': define_single_worker_scenario(2014, {'alnp_imps': tested_income_amount * 3, 'nacc_defs': tested_income_amount, 'alnp_defs': tested_reduction_amount}),
+    'regime_benef_reel_BIC_location_sans_cga': define_single_worker_scenario(2014, {'nacc_pvce': tested_income_amount * 3, 'nbic_defs': tested_income_amount, 'nlnp_defs': tested_income_amount}),
+    'regime_benef_reel_BIC_nonpro_avec_cga': define_single_worker_scenario(2014, {'aacc_exon': tested_income_amount, 'aacc_impn': tested_income_amount * 3, 'aacc_defn': tested_income_amount, 'aacc_pvce': tested_income_amount}),
+    'regime_benef_reel_BIC_nonpro_sans_cga': define_single_worker_scenario(2014, {'nacc_exon': tested_income_amount, 'nacc_impn': tested_income_amount * 3, 'nacc_defn': tested_income_amount}),
+    'regime_benef_reel_BIC_pro_avec_cga': define_single_worker_scenario(2014, {'abic_impn': tested_income_amount * 3, 'abic_impm': tested_income_amount, 'abic_exon': tested_income_amount, 'abic_defn': tested_reduction_amount, 'abic_defm': tested_reduction_amount, 'abic_pvce': tested_reduction_amount / 2}),
+    'regime_benef_reel_BIC_pro_sans_cga': define_single_worker_scenario(2014, {'nbic_impn': tested_income_amount * 3, 'nbic_impm': tested_income_amount, 'nbic_exon': tested_income_amount, 'nbic_defn': tested_reduction_amount, 'nbnc_pvce': tested_reduction_amount}),
+    'regime_micro_BIC_location': define_single_worker_scenario(2014, {'salaire_imposable': fixed_wage_amount, 'aacc_imps' : tested_income_amount / 2, 'aacc_gits': tested_income_amount / 2, 'nacc_meup': tested_income_amount / 2}),
+    'regime_micro_BIC_non_pro': define_single_worker_scenario(2014, {'salaire_imposable': fixed_wage_amount, 'macc_exon': tested_income_amount / 3, 'macc_impv': tested_income_amount/2, 'macc_imps': tested_income_amount / 2, 'macc_pvct': tested_reduction_amount, 'macc_pvce': tested_reduction_amount}),
+    'regime_micro_BIC_pro': define_single_worker_scenario(2014, {'salaire_imposable': fixed_wage_amount, 'mbic_impv': tested_income_amount/2, 'mbic_imps': tested_income_amount / 3, 'mbic_exon': tested_income_amount / 3, 'mbic_pvct': tested_reduction_amount, 'mbic_pvce': tested_reduction_amount}),
 }
 
 scenario_by_variable_2015 = {
@@ -141,7 +150,16 @@ scenario_by_variable_2015 = {
     'regime_forfait_agricole': define_single_worker_scenario(2015, {'frag_impo': fixed_wage_amount, 'frag_fore': tested_reduction_amount, 'frag_pvct': tested_reduction_amount}),
     'regime_benef_reel_agricole_sans_cga': define_single_worker_scenario(2015, {'nrag_impg': fixed_wage_amount/2, 'nrag_defi': tested_reduction_amount, 'f5qf': tested_reduction_amount, 'f5qg': tested_reduction_amount, 'f5qn': tested_reduction_amount}),
     'regime_benef_reel_agricole_avec_cga': define_single_worker_scenario(2015, {'arag_impg': fixed_wage_amount/2, 'arag_defi': tested_reduction_amount, 'arag_pvce': tested_reduction_amount*2, 'f5qo': tested_reduction_amount, 'f5qp': tested_reduction_amount, 'f5qq': tested_reduction_amount}),
-}
+    'regime_benef_reel_BIC_location_avec_cga': define_single_worker_scenario(2015, {'alnp_imps': tested_income_amount * 3, 'nacc_defs': tested_income_amount, 'alnp_defs': tested_reduction_amount}),
+    'regime_benef_reel_BIC_location_sans_cga': define_single_worker_scenario(2015, {'nacc_pvce': tested_income_amount * 3, 'nbic_defs': tested_income_amount, 'nlnp_defs': tested_income_amount}),
+    'regime_benef_reel_BIC_nonpro_avec_cga': define_single_worker_scenario(2015, {'aacc_exon': tested_income_amount, 'aacc_impn': tested_income_amount * 3, 'aacc_defn': tested_income_amount, 'aacc_pvce': tested_income_amount}),
+    'regime_benef_reel_BIC_nonpro_sans_cga': define_single_worker_scenario(2015, {'nacc_exon': tested_income_amount, 'nacc_impn': tested_income_amount * 3, 'nacc_defn': tested_income_amount}),
+    'regime_benef_reel_BIC_pro_avec_cga': define_single_worker_scenario(2015, {'abic_impn': tested_income_amount * 3, 'abic_impm': tested_income_amount, 'abic_exon': tested_income_amount, 'abic_defn': tested_reduction_amount, 'abic_defm': tested_reduction_amount, 'abic_pvce': tested_reduction_amount / 2}),
+    'regime_benef_reel_BIC_pro_sans_cga': define_single_worker_scenario(2015, {'nbic_impn': tested_income_amount * 3, 'nbic_impm': tested_income_amount, 'nbic_exon': tested_income_amount, 'nbic_defn': tested_reduction_amount, 'nbnc_pvce': tested_reduction_amount}),
+    'regime_micro_BIC_location': define_single_worker_scenario(2015, {'salaire_imposable': fixed_wage_amount, 'aacc_imps' : tested_income_amount / 2, 'aacc_gits': tested_income_amount / 2, 'nacc_meup': tested_income_amount / 2}),
+    'regime_micro_BIC_non_pro': define_single_worker_scenario(2015, {'salaire_imposable': fixed_wage_amount, 'macc_exon': tested_income_amount / 3, 'macc_impv': tested_income_amount/2, 'macc_imps': tested_income_amount / 2, 'macc_pvct': tested_reduction_amount, 'macc_pvce': tested_reduction_amount}),
+    'regime_micro_BIC_pro': define_single_worker_scenario(2015, {'salaire_imposable': fixed_wage_amount, 'mbic_impv': tested_income_amount/2, 'mbic_imps': tested_income_amount / 3, 'mbic_exon': tested_income_amount / 3, 'mbic_pvct': tested_reduction_amount, 'mbic_pvce': tested_reduction_amount}),
+   }
 
 scenario_by_variable_2016 = {
     'abat_65_or_invalid': define_single_worker_scenario(2016, {'salaire_imposable': 20000},  caseP = 1, date_naissance = 2016 - 80),
@@ -205,6 +223,15 @@ scenario_by_variable_2016 = {
     'reduc_spfscpi2': define_single_worker_scenario(2016, {'salaire_imposable': fixed_wage_amount, 'f7gq': tested_reduction_amount}),
     'regime_benef_reel_agricole_sans_cga': define_single_worker_scenario(2016, {'nrag_impg': fixed_wage_amount/2, 'nrag_defi': tested_reduction_amount, 'f5qf': tested_reduction_amount, 'f5qg': tested_reduction_amount, 'f5qn': tested_reduction_amount}),
     'regime_benef_reel_agricole_avec_cga': define_single_worker_scenario(2016, {'arag_impg': fixed_wage_amount/2, 'arag_defi': tested_reduction_amount, 'arag_pvce': tested_reduction_amount*2, 'f5qo': tested_reduction_amount, 'f5qp': tested_reduction_amount, 'f5qq': tested_reduction_amount}),
+    'regime_benef_reel_BIC_location_avec_cga': define_single_worker_scenario(2016, {'alnp_imps': tested_income_amount * 3, 'nacc_defs': tested_income_amount, 'alnp_defs': tested_reduction_amount}),
+    'regime_benef_reel_BIC_location_sans_cga': define_single_worker_scenario(2016, {'nacc_pvce': tested_income_amount * 3, 'nbic_defs': tested_income_amount, 'nlnp_defs': tested_income_amount}),
+    'regime_benef_reel_BIC_nonpro_avec_cga': define_single_worker_scenario(2016, {'aacc_exon': tested_income_amount, 'aacc_impn': tested_income_amount * 3, 'aacc_defn': tested_income_amount, 'aacc_pvce': tested_income_amount}),
+    'regime_benef_reel_BIC_nonpro_sans_cga': define_single_worker_scenario(2016, {'nacc_exon': tested_income_amount, 'nacc_impn': tested_income_amount * 3, 'nacc_defn': tested_income_amount}),
+    'regime_benef_reel_BIC_pro_avec_cga': define_single_worker_scenario(2016, {'abic_impn': tested_income_amount * 3, 'abic_exon': tested_income_amount, 'abic_defn': tested_reduction_amount, 'abic_pvce': tested_reduction_amount / 2}),
+    'regime_benef_reel_BIC_pro_sans_cga': define_single_worker_scenario(2016, {'nbic_impn': tested_income_amount * 3, 'nbic_impm': tested_income_amount, 'nbic_exon': tested_income_amount, 'nbic_defn': tested_reduction_amount, 'nbnc_pvce': tested_reduction_amount}),
+    'regime_micro_BIC_location': define_single_worker_scenario(2016, {'salaire_imposable': fixed_wage_amount, 'aacc_imps' : tested_income_amount / 2, 'aacc_gits': tested_income_amount / 2, 'nacc_meup': tested_income_amount / 2}),
+    'regime_micro_BIC_non_pro': define_single_worker_scenario(2016, {'salaire_imposable': fixed_wage_amount, 'macc_exon': tested_income_amount / 3, 'macc_impv': tested_income_amount/2, 'macc_imps': tested_income_amount / 2, 'macc_pvct': tested_reduction_amount, 'macc_pvce': tested_reduction_amount}),
+    'regime_micro_BIC_pro': define_single_worker_scenario(2016, {'salaire_imposable': fixed_wage_amount, 'mbic_impv': tested_income_amount/2, 'mbic_imps': tested_income_amount / 3, 'mbic_exon': tested_income_amount / 3, 'mbic_pvct': tested_reduction_amount, 'mbic_pvce': tested_reduction_amount}),
 }
 
 scenario_by_variable_2017 = {
@@ -266,6 +293,15 @@ scenario_by_variable_2017 = {
     'reduc_spfscpi2': define_single_worker_scenario(2017, {'salaire_imposable': fixed_wage_amount, 'f7gq': tested_reduction_amount}),
     'regime_benef_reel_agricole_sans_cga': define_single_worker_scenario(2017, {'nrag_impg': fixed_wage_amount/2, 'nrag_defi': tested_reduction_amount, 'f5qf': tested_reduction_amount, 'f5qg': tested_reduction_amount, 'f5qn': tested_reduction_amount}),
     'regime_benef_reel_agricole_avec_cga': define_single_worker_scenario(2017, {'arag_impg': fixed_wage_amount/2, 'arag_defi': tested_reduction_amount, 'arag_pvce': tested_reduction_amount*2, 'f5qo': tested_reduction_amount, 'f5qp': tested_reduction_amount, 'f5qq': tested_reduction_amount}),
+    # 'regime_benef_reel_BIC_location_avec_cga': define_single_worker_scenario(2017, {'alnp_imps': tested_income_amount * 3, 'nacc_defs': tested_income_amount, 'alnp_defs': tested_reduction_amount}),
+    # 'regime_benef_reel_BIC_location_sans_cga': define_single_worker_scenario(2017, {'nacc_pvce': tested_income_amount * 3, 'nbic_defs': tested_income_amount, 'nlnp_defs': tested_income_amount}),
+    # 'regime_benef_reel_BIC_nonpro_avec_cga': define_single_worker_scenario(2017, {'aacc_exon': tested_income_amount, 'aacc_impn': tested_income_amount * 3, 'aacc_defn': tested_income_amount, 'aacc_pvce': tested_income_amount}),
+    # 'regime_benef_reel_BIC_nonpro_sans_cga': define_single_worker_scenario(2017, {'nacc_exon': tested_income_amount, 'nacc_impn': tested_income_amount * 3, 'nacc_defn': tested_income_amount}),
+    # 'regime_benef_reel_BIC_pro_avec_cga': define_single_worker_scenario(2017, {'abic_impn': tested_income_amount * 3, 'abic_exon': tested_income_amount, 'abic_defn': tested_reduction_amount, 'abic_pvce': tested_reduction_amount / 2}),
+    # 'regime_benef_reel_BIC_pro_sans_cga': define_single_worker_scenario(2017, {'nbic_impn': tested_income_amount * 3, 'nbic_impm': tested_income_amount, 'nbic_exon': tested_income_amount, 'nbic_defn': tested_reduction_amount, 'nbnc_pvce': tested_reduction_amount}),
+    # 'regime_micro_BIC_location': define_single_worker_scenario(2017, {'salaire_imposable': fixed_wage_amount, 'aacc_imps' : tested_income_amount / 2, 'aacc_gits': tested_income_amount / 2, 'nacc_meup': tested_income_amount / 2}),
+    # 'regime_micro_BIC_non_pro': define_single_worker_scenario(2017, {'salaire_imposable': fixed_wage_amount, 'macc_exon': tested_income_amount / 3, 'macc_impv': tested_income_amount/2, 'macc_imps': tested_income_amount / 2, 'macc_pvct': tested_reduction_amount, 'macc_pvce': tested_reduction_amount}),
+    # 'regime_micro_BIC_pro': define_single_worker_scenario(2017, {'salaire_imposable': fixed_wage_amount, 'mbic_impv': tested_income_amount/2, 'mbic_imps': tested_income_amount / 3, 'mbic_exon': tested_income_amount / 3, 'mbic_pvct': tested_reduction_amount, 'mbic_pvce': tested_reduction_amount}),
 }
 
 scenario_by_variable = {
