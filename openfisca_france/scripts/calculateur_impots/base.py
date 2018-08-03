@@ -168,7 +168,7 @@ openfisca_variable_name_by_tax_calculator_code = dict(
     RMEUBLE = None,
     RNI = None,
     RNICOL = u'rni',
-    RNOUV = u'cappme',
+    RNOUV = None, # correspond à la réduction 'cappme' mais hors reports
     RPATNAT = u'patnat',
     RPATNATOT = u'patnat',
     RPECHE = None,
@@ -359,7 +359,7 @@ general_variable_name_by_tax_calculator_code = {
     'RMEUBLE': u'Réduction d\'impôt Censi-Bouvard : case 7IK',
     'RNI': u'?',
     'RNICOL': u'Revenu net imposable ou déficit à reporter',
-    'RNOUV': u'Réduction d\'impôt pour souscription au capital de PME',
+    'RNOUV': u'?', # correspond à la réduction 'cappme' mais hors reports
     'RPATNAT': u'Réduction d\'impôt pour dépenses de protection du patrimoine naturel',
     'RPATNATOT': u'Réduction d\'impôt pour dépenses de protection du patrimoine naturel',
     'RPRESCOMPREP': u'Prestation compensatoire : report de l\'année précédente : case 7wp',
