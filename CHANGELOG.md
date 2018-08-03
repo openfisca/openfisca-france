@@ -1,5 +1,14 @@
 # Changelog
 
+## 22.6.0 [#1064](https://github.com/openfisca/openfisca-france/pull/1064)
+
+* Évolution du système socio-fiscal | Changements mineurs
+* Périodes concernées : toutes.
+* Zones impactées : openfisca_france/model/prelevements_obligatoires/impot_revenu/charges_deductibles.
+* Détails : 
+  - Corrige une erreur dans le calcul du revenu fiscal de référence à propos des charges déductibles
+
+
 ## 22.5.0 [#1040](https://github.com/openfisca/openfisca-france/pull/1040)
 
 * Évolution du système socio-fiscal.
