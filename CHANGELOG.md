@@ -130,7 +130,6 @@
     - Renomme les variables
       - `rev_cap_lib` en `revenus_capitaux_prelevement_liberatoire`
       - `rev_cap_bar` en `revenus_capitaux_prelevement_bareme`
-      - `rev_cap_bar` en `revenus_capitaux_prelevement_bareme`
       - `retraite_titre_onereux` en `rente_viagere_titre_onereux`
 
 ### 21.12.2 [#1032](https://github.com/openfisca/openfisca-france/pull/1032)
