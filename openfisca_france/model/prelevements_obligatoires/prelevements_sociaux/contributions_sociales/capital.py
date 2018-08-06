@@ -159,8 +159,8 @@ class assiette_csg_revenus_capital(Variable):
         '''
 
         # Revenus du capital présents dans la section 2 de la déclaration de revenus
-        rev_cap_bar = foyer_fiscal('rev_cap_bar', period, options = [ADD])
-        rev_cap_lib = foyer_fiscal('rev_cap_lib', period, options = [ADD])
+        revenus_capitaux_prelevement_bareme = foyer_fiscal('revenus_capitaux_prelevement_bareme', period, options = [ADD])
+        revenus_capitaux_prelevement_liberatoire = foyer_fiscal('revenus_capitaux_prelevement_liberatoire', period, options = [ADD])
 
         # Rentes viagères à titre onéreux
         retraite_titre_onereux_net = foyer_fiscal('retraite_titre_onereux_net', period)
@@ -177,13 +177,13 @@ class assiette_csg_revenus_capital(Variable):
         # Plus-values
         assiette_csg_plus_values = foyer_fiscal('assiette_csg_plus_values', period)
 
-        # produits d'assurance-vie exonérés d'impôt sur le revenu et de prélèvement forfaitaire libératoire (et donc non présents dans rev_cap_bar et rev_cap_lib)
+        # produits d'assurance-vie exonérés d'impôt sur le revenu et de prélèvement forfaitaire libératoire (et donc non présents dans revenus_capitaux_prelevement_bareme et revenus_capitaux_prelevement_liberatoire)
         assurance_vie_ps_exoneree_irpp_pl = foyer_fiscal('assurance_vie_ps_exoneree_irpp_pl', period)
 
 
         return (
-            rev_cap_bar
-            + rev_cap_lib
+            revenus_capitaux_prelevement_bareme
+            + revenus_capitaux_prelevement_liberatoire
             + retraite_titre_onereux_net
             + interets_plan_epargne_logement
             + interets_compte_epargne_logement
