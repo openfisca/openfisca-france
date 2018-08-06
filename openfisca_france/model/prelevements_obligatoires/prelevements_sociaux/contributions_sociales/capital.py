@@ -163,7 +163,7 @@ class assiette_csg_revenus_capital(Variable):
         revenus_capitaux_prelevement_liberatoire = foyer_fiscal('revenus_capitaux_prelevement_liberatoire', period, options = [ADD])
 
         # Rentes viagères à titre onéreux
-        retraite_titre_onereux_net = foyer_fiscal('retraite_titre_onereux_net', period)
+        rente_viagere_titre_onereux_net = foyer_fiscal('rente_viagere_titre_onereux_net', period)
 
         # Revenus des produits d'épargne logement
         interets_plan_epargne_logement_i = foyer_fiscal.members('interets_plan_epargne_logement', period)
@@ -184,7 +184,7 @@ class assiette_csg_revenus_capital(Variable):
         return (
             revenus_capitaux_prelevement_bareme
             + revenus_capitaux_prelevement_liberatoire
-            + retraite_titre_onereux_net
+            + rente_viagere_titre_onereux_net
             + interets_plan_epargne_logement
             + interets_compte_epargne_logement
             + rev_cat_rfon

@@ -207,14 +207,14 @@ class revenus_nets_du_capital(Variable):
         foyer_fiscal = individu.foyer_fiscal
         assiette_csg_revenus_capital = foyer_fiscal('assiette_csg_revenus_capital', period)
         rev_cat_rfon = foyer_fiscal('rev_cat_rfon', period)
-        retraite_titre_onereux_net = foyer_fiscal('retraite_titre_onereux_net', period)
+        rente_viagere_titre_onereux_net = foyer_fiscal('rente_viagere_titre_onereux_net', period)
         fon = foyer_fiscal('fon', period)
 
         revenus_du_capital_cap_avant_prelevements_sociaux = (
             assiette_csg_revenus_capital
             - rev_cat_rfon
             + fon
-            - retraite_titre_onereux_net
+            - rente_viagere_titre_onereux_net
             )
 
         prelevements_sociaux_revenus_capital = foyer_fiscal('prelevements_sociaux_revenus_capital', period)
