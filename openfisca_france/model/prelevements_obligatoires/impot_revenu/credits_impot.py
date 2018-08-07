@@ -904,9 +904,9 @@ class acompte_ir_elus_locaux(Variable):
         Cf. document 2041 GI. Pour l'année 2016 :
         https://www.impots.gouv.fr/portail/files/formulaires/2041-gi/2017/2041-gi_1936.pdf
         '''
-        f2th = foyer_fiscal('f2th', period)
+        f8th = foyer_fiscal('f8th', period)
 
-        return f2th
+        return f8th
 
 class prelevement_forfaitaire_non_liberatoire(Variable):
     value_type = float
