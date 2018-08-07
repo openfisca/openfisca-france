@@ -1,3 +1,12 @@
+# -*- coding: utf-8 -*-
+
+from __future__ import division
+import logging
+from openfisca_france.model.base import *  # noqa analysis:ignore
+
+log = logging.getLogger(__name__)
+
+
 class assurance_vie_pl_non_anonyme_plus8ans_depuis1990(Variable):
     value_type = float
     entity = FoyerFiscal
@@ -60,7 +69,6 @@ class prelevement_forfaitaire_liberatoire(Variable):
               mais apparemment pas à la source. Elle serait calculée au moment de l'irpp,
               d'où mle fait de l'inclure dans la variable IRPP.
         '''
-        ... Doit-on donner une date de fin à cette formule, en fonction de la nature de la réforme du PFU ?
 
         assurance_vie_pl_non_anonyme_plus8ans_depuis1990 = foyer_fiscal('assurance_vie_pl_non_anonyme_plus8ans_depuis1990', period)
         assurance_vie_pl_non_anonyme_plus6ans_avant1990 = foyer_fiscal('assurance_vie_pl_non_anonyme_plus6ans_avant1990', period)
