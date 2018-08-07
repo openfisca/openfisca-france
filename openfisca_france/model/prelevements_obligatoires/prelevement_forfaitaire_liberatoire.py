@@ -78,7 +78,7 @@ class prelevement_forfaitaire_liberatoire(Variable):
         produit_epargne_solidaire = foyer_fiscal('produit_epargne_solidaire', period)
         produit_etats_non_cooperatif = foyer_fiscal('produit_etats_non_cooperatif', period)
 
-        param_pfl_av = parameters(period).taxation_capital.pfl_av
+        param_pfl_av = parameters(period).taxation_capital.pfl_av.bons_ou_contrats_de_capitalisation_et_placements_de_meme_nature_assurance_vie_lors_du_denouement_du_contrat
         param_pfl = parameters(period).taxation_capital.pfl
 
         pfl = (
