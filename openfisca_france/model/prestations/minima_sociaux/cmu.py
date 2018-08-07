@@ -273,11 +273,11 @@ class cmu_base_ressources_individu(Variable):
             condition_ass = ass > 0
             condition_revenus_formation_pro = revenus_stage_formation_pro > 0
 
-            condition = or_(condition_ij_maladie, or_(condition_chomage, or_(condition_ass, condition_revenus_formation_pro)))
+            eligibilite_abattement_chomage = or_(condition_ij_maladie, or_(condition_chomage, or_(condition_ass, condition_revenus_formation_pro)))
 
             salaire_net = individu('salaire_net', previous_year, options=[ADD])
 
-            return condition * salaire_net * P.abattement_chomage
+            return eligibilite_abattement_chomage * salaire_net * P.abattement_chomage
 
         # Revenus de stage de formation professionnelle exclus si plus perçus depuis 1 mois
         def neutralisation_stage_formation_pro():

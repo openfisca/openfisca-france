@@ -293,12 +293,12 @@ class caah(Variable):
     '''
     def formula_2015_07_01(individu, period, parameters):
         # Rolling year
-        previous_year = period.start.period('year').offset(-1)
-        law = parameters(period).prestations
+        annee_precedente = period.start.period('year').offset(-1)
+        prestations = parameters(period).prestations
 
-        garantie_ressources = law.minima_sociaux.caah.garantie_ressources
-        aah_montant = law.minima_sociaux.aah.montant
-        mva_montant = law.minima_sociaux.aah.mva
+        garantie_ressources = prestations.minima_sociaux.caah.garantie_ressources
+        aah_montant = prestations.minima_sociaux.aah.montant
+        mva_montant = prestations.minima_sociaux.aah.mva
 
         aah = individu('aah', period)
         asi_eligibilite = individu('asi_eligibilite', period)
@@ -309,8 +309,8 @@ class caah(Variable):
         locataire_foyer = (individu.menage('statut_occupation_logement', period) == TypesStatutOccupationLogement.locataire_foyer)
         salaire_net = individu('salaire_net', annee_precedente, options=[ADD])
 
-        eligible_cr = (taux_incapacite > 0.8) * ((aah > 0) | (benef_asi > 0)) * not_(locataire_foyer) * (salaire_net == 0)
-        complement_ressources = eligible_cr * max_(garantie_ressources - aah_montant, 0)
+        eligible_complement_ressources = (taux_incapacite > 0.8) * ((aah > 0) | (benef_asi > 0)) * not_(locataire_foyer) * (salaire_net == 0)
+        complement_ressources = eligible_complement_ressources * max_(garantie_ressources - aah_montant, 0)
 
         eligible_mva = (al > 0) * (taux_incapacite > 0.8) * ((aah > 0) | (benef_asi > 0)) * not_(locataire_foyer)* (salaire_net == 0)
         mva = mva_montant * eligible_mva
