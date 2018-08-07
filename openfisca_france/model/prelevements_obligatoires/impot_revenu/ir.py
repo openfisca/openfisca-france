@@ -1856,11 +1856,10 @@ class iai(Variable):
         '''
         iaidrdi = foyer_fiscal('iaidrdi', period)
         taxation_plus_values_hors_bareme = foyer_fiscal('taxation_plus_values_hors_bareme', period)
-        ir_pv_immo = foyer_fiscal('ir_pv_immo', period)
         cont_rev_loc = foyer_fiscal('cont_rev_loc', period)
         teicaa = foyer_fiscal('teicaa', period)
 
-        return iaidrdi + taxation_plus_values_hors_bareme + ir_pv_immo + cont_rev_loc + teicaa
+        return iaidrdi + taxation_plus_values_hors_bareme + cont_rev_loc + teicaa
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
         '''
@@ -1868,12 +1867,11 @@ class iai(Variable):
         '''
         iaidrdi = foyer_fiscal('iaidrdi', period)
         taxation_plus_values_hors_bareme = foyer_fiscal('taxation_plus_values_hors_bareme', period)
-        ir_pv_immo = foyer_fiscal('ir_pv_immo', period)
         cont_rev_loc = foyer_fiscal('cont_rev_loc', period)
         tax_rvcm_forfaitaire = foyer_fiscal('tax_rvcm_forfaitaire', period)
         teicaa = foyer_fiscal('teicaa', period)
 
-        return iaidrdi + taxation_plus_values_hors_bareme + ir_pv_immo + cont_rev_loc + tax_rvcm_forfaitaire + teicaa
+        return iaidrdi + taxation_plus_values_hors_bareme + cont_rev_loc + tax_rvcm_forfaitaire + teicaa
 
 
 class cehr(Variable):
