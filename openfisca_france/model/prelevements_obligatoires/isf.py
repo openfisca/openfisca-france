@@ -685,7 +685,7 @@ class bouclier_rev(Variable):
         Total des revenus sur l'année 'n' net de charges
         '''
         rbg = foyer_fiscal('rbg', period)
-        csg_deductible_patrimoine_irpp = foyer_fiscal('csg_deductible_patrimoine_irpp', period)
+        csg_patrimoine_deductible_ir = foyer_fiscal('csg_patrimoine_deductible_ir', period)
         rvcm_plus_abat = foyer_fiscal('rvcm_plus_abat', period)
         revenus_capitaux_prelevement_liberatoire = foyer_fiscal('revenus_capitaux_prelevement_liberatoire', period)
         rev_exo = foyer_fiscal('rev_exo', period)
@@ -705,8 +705,8 @@ class bouclier_rev(Variable):
         # # revenus distribués?
         # # A majorer de l'abatt de 40% - montant brut en cas de PFL
         # # pour le calcul de droit à restitution : prendre 0.7*montant_brut_rev_dist_soumis_au_barème
-        # rev_bar = rbg - maj_cga - csg_deductible_patrimoine_irpp - deficit_ante
-        rev_bar = rbg - maj_cga - csg_deductible_patrimoine_irpp
+        # rev_bar = rbg - maj_cga - csg_patrimoine_deductible_ir - deficit_ante
+        rev_bar = rbg - maj_cga - csg_patrimoine_deductible_ir
 
     # # TODO: AJOUTER : indemnités de fonction percus par les élus- revenus soumis à régimes spéciaux
 

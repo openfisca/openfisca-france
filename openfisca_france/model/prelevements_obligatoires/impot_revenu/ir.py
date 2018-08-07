@@ -993,7 +993,7 @@ class rbg(Variable):
                     rev_cat + f6gh + (foyer_fiscal.sum(nbic_impm_i) + nacc_pvce) * (1 + cga) - deficit_ante)
 
 
-class csg_deductible_patrimoine_irpp(Variable):
+class csg_patrimoine_deductible_ir(Variable):
     value_type = float
     entity = FoyerFiscal
     label = u"Csg déductible sur le patrimoine"
@@ -1022,10 +1022,10 @@ class rng(Variable):
     def formula(foyer_fiscal, period, parameters):
         ''' Revenu net global (total 20) '''
         rbg = foyer_fiscal('rbg', period)
-        csg_deductible_patrimoine_irpp = foyer_fiscal('csg_deductible_patrimoine_irpp', period)
+        csg_patrimoine_deductible_ir = foyer_fiscal('csg_patrimoine_deductible_ir', period)
         charges_deduc = foyer_fiscal('charges_deduc', period)
 
-        return max_(0, rbg - csg_deductible_patrimoine_irpp - charges_deduc)
+        return max_(0, rbg - csg_patrimoine_deductible_ir - charges_deduc)
 
 
 class rni(Variable):
@@ -1908,16 +1908,16 @@ class irpp(Variable):
         Montant après seuil de recouvrement (hors ppe)
         NB : ce montant l'impôt correspond à une notion administrative :
         dans certains cas, il existe des prélèvements à la source faisant
-        office d'acomptes d'impôt sur le revenu (cf. variable acomptes_irpp). Ces acomptes sont comptabilisés
+        office d'acomptes d'impôt sur le revenu (cf. variable acomptes_ir). Ces acomptes sont comptabilisés
         dans la feuille d'impôt comme des crédits d'impôt, mais correspondent économiquement à des montants d'impôt dus.
         '''
         iai = foyer_fiscal('iai', period)
         credits_impot = foyer_fiscal('credits_impot', period)
-        acomptes_irpp = foyer_fiscal('acomptes_irpp', period)
+        acomptes_ir = foyer_fiscal('acomptes_ir', period)
         cehr = foyer_fiscal('cehr', period)
         P = parameters(period).impot_revenu.recouvrement
 
-        pre_result = iai - credits_impot - acomptes_irpp + cehr
+        pre_result = iai - credits_impot - acomptes_ir + cehr
 
         return (
             (iai > P.seuil) * (
@@ -1941,9 +1941,9 @@ class irpp_eco(Variable):
         d'impôt sur la déclaration fiscale
         '''
         irpp = foyer_fiscal('irpp', period)
-        acomptes_irpp = foyer_fiscal('acomptes_irpp', period)
+        acomptes_ir = foyer_fiscal('acomptes_ir', period)
 
-        return irpp - acomptes_irpp # Car par convention, irpp est un montant négatif et acomptes_irpp un montant positif
+        return irpp - acomptes_ir # Car par convention, irpp est un montant négatif et acomptes_ir un montant positif
 
 
 class foyer_impose(Variable):

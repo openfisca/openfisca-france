@@ -890,7 +890,7 @@ class creimp(Variable):
     # TODO: add tax credit 8TK for all years ?
 
 
-class acompte_irpp_elus_locaux(Variable):
+class acompte_ir_elus_locaux(Variable):
     value_type = float
     entity = FoyerFiscal
     label = u"Acompte d'impôt associé au prélèvement à la source des indemnités des élus locaux"
@@ -927,10 +927,10 @@ class prelevement_forfaitaire_non_liberatoire(Variable):
 
         return f2ck
 
-class acomptes_irpp(Variable):
+class acomptes_ir(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = u"Ensemble des acomptes de l'IRPP"
+    label = u"Ensemble des acomptes de l'IR"
     definition_period = YEAR
 
     def formula_2013_01_01(foyer_fiscal, period):
@@ -941,10 +941,10 @@ class acomptes_irpp(Variable):
         La variable irpp correspond à l'impôt après prise en compte de cette déduction
         '''
 
-        acompte_irpp_elus_locaux = foyer_fiscal('acompte_irpp_elus_locaux', period)
+        acompte_ir_elus_locaux = foyer_fiscal('acompte_ir_elus_locaux', period)
         prelevement_forfaitaire_non_liberatoire = foyer_fiscal('prelevement_forfaitaire_non_liberatoire', period)
 
-        return acompte_irpp_elus_locaux + prelevement_forfaitaire_non_liberatoire
+        return acompte_ir_elus_locaux + prelevement_forfaitaire_non_liberatoire
 
 
 class direpa(Variable):
