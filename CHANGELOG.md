@@ -1,5 +1,19 @@
 # Changelog
 
+## 22.7.0 [#992](https://github.com/openfisca/openfisca-france/pull/992)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/04/2018.
+* Zones impactées :
+  - `prestations/minima_sociaux/cmu`
+  - `parameters/cmu`
+  - `prestations/minima_sociaux/rsa`
+  - `prestations/minima_sociaux/aah`
+* Détails :
+  - Revalorise les plafonds de ressources pour bénéficier des aides CMU-c et ACS en date du 01/04/2018.
+  - Fiabilise le calcul de la CMUc-ACS en complétant les ressources prises en compte
+  - Complete le calcul du CAAH avec la MVA
+
 ### 22.6.1 [#998](https://github.com/openfisca/openfisca-france/pull/1053)
 
 * Amélioration technique.
@@ -13,7 +27,6 @@
 * Zones impactées : openfisca_france/model/prelevements_obligatoires/impot_revenu/charges_deductibles.
 * Détails : 
   - Corrige une erreur dans le calcul du revenu fiscal de référence à propos des charges déductibles
-
 
 ## 22.5.0 [#1040](https://github.com/openfisca/openfisca-france/pull/1040)
 
@@ -200,7 +213,7 @@
   - Ajoute la possibilité de cumuler l'ASS avec un revenu d'activité.
   - Ajoute une variable calculée ass_eligibilite_cumul_individu qui permet de déterminer le droit à ce cumul.
 
-## 21.10.6 [#993](https://github.com/openfisca/openfisca-france/pull/993)
+### 21.10.6 [#993](https://github.com/openfisca/openfisca-france/pull/993)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 01/04/2018.
@@ -209,7 +222,7 @@
   - `parameters/minima_sociaux/caah`
 * Détails :
   - Met à jour le montant maximum de l'AAH en date du 01/04/2018
-
+  
 ### 21.10.5 [#997](https://github.com/openfisca/openfisca-france/pull/997)
 
 * Correction d'une erreur
