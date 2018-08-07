@@ -156,6 +156,7 @@ class assiette_csg_revenus_capital(Variable):
             (2) Le timing de la soumission des intérêts des PEL et CEL aux prélèvements sociaux
                 est complexe. Cette soumission peut se faire annuellement, ou en cumulé, et ce
                 en fonction de différents paramètres. Mais on ne prend pas en compte cette fonctionnalité.
+        NB : catégorie(s) de revenu non encore incluse(s) dans cette assiette : épargne salariale
         '''
 
         # Revenus du capital présents dans la section 2 de la déclaration de revenus
