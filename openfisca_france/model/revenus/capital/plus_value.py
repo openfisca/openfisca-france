@@ -305,8 +305,8 @@ class f3va_2016(Variable):
     unit = 'currency'
     entity = Individu
     label = u"Abattements nets (abattement pour durée de détention renforcé et abattement fixe spécial) appliqués sur des plus-values réalisées par les dirigeants de PME lors de leur départ à la retraite"
-    start_date = date(2015, 1, 1)
-    end_date = date(2016, 12, 31)
+    # start_date = date(2015, 1, 1)
+    end = '2016-12-31'
     definition_period = YEAR
 
 class f3va(Variable):
@@ -314,7 +314,7 @@ class f3va(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     label = u"Abattement fixe spécial appliqué sur des plus-values réalisées par les dirigeants de PME lors de leur départ à la retraite"
-    start_date = date(2015, 1, 1)
+    # start_date = date(2017, 1, 1)
     definition_period = YEAR
 
 
