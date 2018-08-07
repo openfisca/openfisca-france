@@ -546,5 +546,5 @@ class f3ua(Variable):
     """ Cette case existait avant 2017, mais les montants qui y étaient indiqués étaient également indiqués case 3VG """
     value_type = float
     entity = FoyerFiscal
-    start_date = date(2017, 1, 1)
+    # start_date = date(2017, 1, 1)
     definition_period = YEAR
