@@ -102,7 +102,7 @@
       date_naissance: 1998-01-01
     - id: "enfant3"
       date_naissance: 2001-06-05
-      garde_alternee: True
+      garde_alternee: true
   familles:
     parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2", "enfant3"]
@@ -156,11 +156,11 @@
     declarants: ["parent1", "parent2"]
     personnes_a_charge: ["enfant1", "enfant2", "enfant3"]
   output_variables:
-    cmu_acs_eligibilite: True
+    cmu_acs_eligibilite: true
     cmu_c_plafond: 20704
     acs_plafond: 27950.40
     cmu_base_ressources: 20709.40 #cas de test fourni : 21655.78, ecart de 946.39, soit exactement la PAJE Naissance qui devrait être exclu
-    cmu_c: False
+    cmu_c: false
 
 - name: "CMU-C: N°2 refus CMUC, accord ACS"
   period: 2018-05
@@ -314,11 +314,11 @@
     declarants: ["parent1", "parent2"]
     personnes_a_charge: ["enfant1", "enfant2", "enfant3", "enfant4"]
   output_variables:
-    cmu_acs_eligibilite: True
+    cmu_acs_eligibilite: true
     cmu_c_plafond: 25550
     acs_plafond: 34492.5
     cmu_base_ressources: 29140.64 #cas de test fourni : 29510.21, ecart de 369.57, soit exactement l'ARS qui devrait être exclu
-    cmu_c: False
+    cmu_c: false
 
 - name: "CMU-C: N°3 accord CMUC"
   period: 2018-05
@@ -427,11 +427,11 @@
     declarants: ["parent1", "parent2"]
     personnes_a_charge: ["enfant1", "enfant2", "enfant3"]
   output_variables:
-    cmu_acs_eligibilite: True
+    cmu_acs_eligibilite: true
     cmu_c_plafond: 22026
     acs_plafond: 29735.10
     cmu_base_ressources: 19323
-    cmu_c: True
+    cmu_c: true
 
 - name: "CMU-C: N°4 refus CMUC, accord ACS"
   period: 2018-05
@@ -522,11 +522,11 @@
   foyers_fiscaux:
     declarants: ["parent1", "parent2"]
   output_variables:
-    cmu_acs_eligibilite: True
+    cmu_acs_eligibilite: true
     cmu_c_plafond: 13215
     acs_plafond: 17840.25
     cmu_base_ressources: 14615
-    cmu_c: False
+    cmu_c: false
 
 - name: "CMU-C: N°5 accord CMUC"
   period: 2018-05
@@ -574,7 +574,7 @@
         2017-05: 0
     - id: "enfant1"
       date_naissance: 2009-01-01
-      garde_alternee: True
+      garde_alternee: true
     - id: "enfant2"
       date_naissance: 2011-01-01
     - id: "enfant3"
@@ -647,8 +647,8 @@
     declarants: ["parent1"]
     personnes_a_charge: ["enfant1", "enfant2", "enfant3", "enfant4"]
   output_variables:
-    cmu_acs_eligibilite: True
+    cmu_acs_eligibilite: true
     cmu_c_plafond: 19823
     acs_plafond: 26761
     cmu_base_ressources: 18403.76
-    cmu_c: True
+    cmu_c: true

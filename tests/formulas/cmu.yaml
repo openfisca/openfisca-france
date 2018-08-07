@@ -136,10 +136,10 @@
       2017-06: 1500
       2017-05: 810
   output_variables:
-    cmu_acs_eligibilite: True
+    cmu_acs_eligibilite: true
     cmu_c_plafond: 8810
     acs_plafond: 11894
-    cmu_c: True
+    cmu_c: true
 
 # msa_reval_cmuc_acs_lot1 : Cas 2
 - name: "ACS: ACS Ok demandeur plus de 25 avec droits ouverts, percevant des salaires pour un montant supérieur à 8810 euros et inférieur à 11894, résident métropole"
@@ -182,10 +182,10 @@
     personne_de_reference: "parent1"
     statut_occupation_logement: locataire_meuble
   output_variables:
-    cmu_acs_eligibilite: True
+    cmu_acs_eligibilite: true
     cmu_c_plafond: 8810
     acs_plafond: 11894
-    cmu_c: False
+    cmu_c: false
 
 # msa_reval_cmuc_acs_lot1 : Cas 3
 - name: "CMU-C: CMU-C Ok demandeur plus de 25 avec droits ouverts, percevant des salaires pour un montant maximum de 18501 euros
@@ -259,10 +259,10 @@ Foyer composé de 3 personnes (enfant -20 ans et conjoint sans activité), locat
       2017-05: 0
     rsa: 0
   output_variables:
-    cmu_acs_eligibilite: True
+    cmu_acs_eligibilite: true
     cmu_c_plafond: 18501
     acs_plafond: 24976
-    cmu_c: True
+    cmu_c: true
 
 # msa_reval_cmuc_acs_lot1 : Cas 4
 - name: "CMU-C: CMU-C Ok demandeur plus de 25 avec droits ouverts, percevant des salaires + indemnités journalières
@@ -339,13 +339,13 @@ Foyer composé de 4 personnes (2 enfants + 20 ans et conjoint avec activité per
   foyers_fiscaux:
     declarants: ["parent1", "parent2"]
     maries_ou_pacses:
-      year:2018-01: True
+      year:2018-01: true
     personnes_a_charge: ["enfant1", "enfant2"]
   output_variables:
-    cmu_acs_eligibilite: True
+    cmu_acs_eligibilite: true
     cmu_c_plafond: 18501
     acs_plafond: 24976
-    cmu_c: True
+    cmu_c: true
 
 # msa_reval_cmuc_acs_lot1 : Cas 5
 - name: "ACS: ACS Ok demandeur plus de 25 Assuré + de 25 ans avec droits ouverts, percevant des salaires + indemnités chômages
@@ -467,7 +467,7 @@ Foyer composé de 6 personnes (3 enfants - 20 ans, 1 enfant +20ans et conjoint a
   foyers_fiscaux:
     declarants: ["parent1", "parent2"]
     maries_ou_pacses:
-      year:2018-01: True
+      year:2018-01: true
     personnes_a_charge: ["enfant1", "enfant2", "enfant3", "enfant4"]
   menages:
     personne_de_reference: "parent1"
@@ -475,10 +475,10 @@ Foyer composé de 6 personnes (3 enfants - 20 ans, 1 enfant +20ans et conjoint a
     enfants: ["enfant1", "enfant2", "enfant3", "enfant4"]
     statut_occupation_logement: proprietaire
   output_variables:
-    cmu_acs_eligibilite: True
+    cmu_acs_eligibilite: true
     cmu_c_plafond: 25550
     acs_plafond: 34492.5
-    cmu_c: False
+    cmu_c: false
 
 # msa_reval_cmuc_acs_lot1 : Cas 6
 - name: "CMU-C: CMU-C Ok demandeur assuré au RSA ayant perçu des ressources au cours des 12 derniers mois"
@@ -529,10 +529,10 @@ Foyer composé de 6 personnes (3 enfants - 20 ans, 1 enfant +20ans et conjoint a
       2017-05: 0
     rsa: 450
   output_variables:
-    cmu_acs_eligibilite: True
+    cmu_acs_eligibilite: true
     cmu_c_plafond: 8810
     acs_plafond: 11894
-    cmu_c: True
+    cmu_c: true
 
 # msa_reval_cmuc_acs_lot1 : Cas 7
 - name: "ACS: ACS non eligible Foyer recomposé de deux adultes avec 3 enfants moins de 20 ans
@@ -604,7 +604,7 @@ Les enfants ne sont pas en garde alternée"
       valeur_terrains_non_loues: 625
     - id: "enfant1"
       age: 15
-      garde_alternee: True
+      garde_alternee: true
     - id: "enfant2"
       age: 12
     - id: "enfant3"
@@ -644,8 +644,8 @@ Les enfants ne sont pas en garde alternée"
     declarants: ["parent1", "parent2"]
     personnes_a_charge: ["enfant1", "enfant2", "enfant3"]
   output_variables:
-    cmu_acs_eligibilite: True
+    cmu_acs_eligibilite: true
     cmu_c_plafond: 20704
     acs_plafond: 27950
-    cmu_c: False
+    cmu_c: false
     acs: 0
