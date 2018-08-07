@@ -225,9 +225,7 @@ class revenus_nets_du_capital(Variable):
             )
         revenus_foyer_fiscal_projetes = revenus_foyer_fiscal * individu.has_role(foyer_fiscal.DECLARANT_PRINCIPAL)
 
-        rac = individu('rac', period)
-
-        return revenus_foyer_fiscal_projetes + rac
+        return revenus_foyer_fiscal_projetes
 
 
 class prestations_sociales(Variable):
