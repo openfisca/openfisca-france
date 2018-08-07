@@ -476,11 +476,9 @@ class tot_impot(Variable):
         isf_avant_plaf = foyer_fiscal('isf_avant_plaf', period)
         crds_i = foyer_fiscal.members('crds', period)
         csg_i = foyer_fiscal.members('csg', period)
-        prelevements_sociaux_revenus_capital_hors_csg_crds_i = foyer_fiscal.members('prelevements_sociaux_revenus_capital_hors_csg_crds', period)
-
         crds = foyer_fiscal.sum(crds_i, role = FoyerFiscal.DECLARANT)
         csg = foyer_fiscal.sum(csg_i, role = FoyerFiscal.DECLARANT)
-        prelevements_sociaux_revenus_capital_hors_csg_crds = foyer_fiscal.sum(prelevements_sociaux_revenus_capital_hors_csg_crds_i, role = FoyerFiscal.DECLARANT)
+        prelevements_sociaux_revenus_capital_hors_csg_crds = foyer_fiscal('prelevements_sociaux_revenus_capital_hors_csg_crds', period)
 
         return (
             - irpp

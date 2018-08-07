@@ -65,16 +65,16 @@ class revenu_disponible(Variable):
     def formula(menage, period, parameters):
         impot_revenu_lps_i = menage.members('impot_revenu_lps', period)
         impot_revenu_lps = menage.sum(impot_revenu_lps_i)
-        pen_i = menage.members('pensions', period)
-        pen = menage.sum(pen_i)
+        pensions_nettes_i = menage.members('pensions_nettes', period)
+        pensions_nettes = menage.sum(pensions_nettes_i)
         prestations_sociales_i = menage.members.famille('prestations_sociales', period) * menage.members.has_role(Famille.DEMANDEUR)
         prestations_sociales = menage.sum(prestations_sociales_i)
-        revenus_du_capital_i = menage.members('revenus_du_capital', period)
-        revenus_du_capital = menage.sum(revenus_du_capital_i)
-        revenus_du_travail_i = menage.members('revenus_du_travail', period)
-        revenus_du_travail = menage.sum(revenus_du_travail_i)
+        revenus_nets_du_capital_i = menage.members('revenus_nets_du_capital', period)
+        revenus_nets_du_capital = menage.sum(revenus_nets_du_capital_i)
+        revenus_nets_du_travail_i = menage.members('revenus_nets_du_travail', period)
+        revenus_nets_du_travail = menage.sum(revenus_nets_du_travail_i)
 
-        return revenus_du_travail + pen + revenus_du_capital + impot_revenu_lps + prestations_sociales
+        return revenus_nets_du_travail + pensions_nettes + revenus_nets_du_capital + impot_revenu_lps + prestations_sociales
 
 
 def modify_parameters(parameters):
