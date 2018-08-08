@@ -1,6 +1,6 @@
 # Changelog
 
-## 22.8.0 [#1022](https://github.com/openfisca/openfisca-france/pull/1022)
+## 22.7.1 [#1022](https://github.com/openfisca/openfisca-france/pull/1022)
 
 * Amélioration technique
 * Périodes concernées : toutes.
