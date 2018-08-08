@@ -1,5 +1,34 @@
 # Changelog
 
+## 22.8.0 [#1065](https://github.com/openfisca/openfisca-france/pull/1065)
+
+* Evolution du système socio-fiscal
+* Périodes concernées : toutes
+* Zones impactées :
+  - `openfisca_france/model/prelevements_obligatoires/impot_revenu/ir`
+  - `openfisca_france/model/prelevements_obligatoires/impot_revenu/plus_values_immobilieres`
+  - `openfisca_france/model/prelevements_obligatoires/prelevement_forfaitaire_liberatoire` (nouveau fichier)
+  - `openfisca_france/model/prelevements_obligatoires/prelevements_sociaux/contributions_sociales/capital`
+  - `openfisca_france/model/revenus/capital/financier`
+  - `openfisca_france/model/revenus/capital/plus_value`
+  - `openfisca_france/model/prelevements_obligatoires/impot_revenu/credits_impot`
+  - `openfisca_france/model/mesures`
+* Détails :
+  - Recodage du prélèvement forfaitaire libératoire (PFL), pour les revenus du 01/01/2013 au 31/12/2017 : suppression de la variable `imp_lib` et remplaceent par la variable `prelevement_forfaitaire_liberatoire` (créée dans un nouveau fichier). Suppression du calcul de ce prélèvement pour les revenus avant le 01/01/2013.
+  - Recodage des prélèvements sociaux sur les revenus du capital, pour les revenus du 01/01/2013 au 31/12/2017 : changement du calcul, de la structure, et des noms de variables associées à ces prélèvements. Suppression de calcul de ces prélèvements pour les revenus avant le 01/01/2013.
+  - Définition de la notion d'acomptes sur IR (`acomptes_ir`) et distinction d'une notion adminitrative (`irpp`, identique à auparavant) et d'une notion économique de l'IR (`irpp_eco`)
+  - Corrections mineures :
+     - Correction de la CSG déductible du RBG pour le calcul de l'IR : la variable `csg_deduc` prenait en compte seulement la case 6DE, et non pas les revenus de la case 2BH.
+     - Renommage de `csg_deduc` par `csg_patrimoine_deductible_ir`.
+     - Renommage de `plus_values` par `taxation_plus_values_hors_bareme`
+     - Regroupe les variables `abattement_net_retraite_dirigeant_pme` et `abattement_net_duree_detention` en `abattement_net_duree_detention_retraite_dirigeant_pme`
+     - Nettoyage du fichier `openfisca_france/model/mesures` :
+        - Inclusion des acomptes de l'IR dans la variable `impots_directs`
+        - Déplacement de `prelevement_forfaitaire_liberatoire` de `revenus_nets_du_capital` à `impots_directs`
+        - Suppression et renommage de variables
+        - Inclusion de l'impôt sur les plus-values immobilières (`ir_pv_immo`) dans `impots_directs`
+        - Suppression de `rac` de la variable `revenus_nets_du_capital` (car déjà compté dans `rpns`)
+
 ## 22.7.1 [#1022](https://github.com/openfisca/openfisca-france/pull/1022)
 
 * Changement mineur
