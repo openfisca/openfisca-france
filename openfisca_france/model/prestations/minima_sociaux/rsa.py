@@ -149,7 +149,7 @@ class rsa_base_ressources_individu(Variable):
                 + max_(0, individu.foyer_fiscal('revenus_capitaux_prelevement_liberatoire', period.last_3_months, options = [ADD]))
         )
 
-        rentes_viageres = individu.foyer_fiscal('retraite_titre_onereux', period.last_3_months, options = [ADD])
+        rentes_viageres = individu.foyer_fiscal('rente_viagere_titre_onereux', period.last_3_months, options = [ADD])
         revenus_foyer_fiscal = revenus_capitaux + rentes_viageres
         revenus_foyer_fiscal_projetes = revenus_foyer_fiscal * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
 
