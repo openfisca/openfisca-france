@@ -227,18 +227,18 @@ class f3wd(Variable):
 
 
 class f3we(Variable):
+    """
+    Plus-values en report d'imposition au sens de l'art. 150-0 D bis du CGI :
+    Jusqu'aux revenus de 2013 : montants nets réalisés pendant l'année
+    Pour les revenus 2014 : complément net de prix perçu pendant l'année (car fin du dispositif)
+    Depuis les revenus 2015 : complément brut de prix perçu pendant l'année (l'abattement n'est plus recensé dans les cases 3SG et 3SL)
+    """
     cerfa_field = u"3WE"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = u"Plus-values en report d'imposition au sens de l'art. 150-0 D bis du CGI"
     definition_period = YEAR
-#    '''
-#    Plus-values en report d'imposition au sens de l'art. 150-0 D bis du CGI :
-#    Jusqu'aux revenus de 2013 : montants nets réalisés pendant l'année
-#    Pour les revenus 2014 : complément net de prix perçu pendant l'année (car fin du dispositif)
-#    Depuis les revenus 2015 : complément brut de prix perçu pendant l'année (l'abattement n'est plus recensé dans les cases 3SG et 3SL)
-#    '''
 
 
 class f3wn(Variable):
