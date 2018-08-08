@@ -1,4 +1,3 @@
-# Les tests sont en erreurs car la PR concernant les revalorisation CMUC-ACS n'est pas encore mergée.
 - name: "CMU-C: N°1 refus CMUC, accord ACS"
   period: 2018-05
   absolute_error_margin: 0.05

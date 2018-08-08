@@ -145,8 +145,8 @@ class rsa_base_ressources_individu(Variable):
 
         # Revenus du foyer fiscal que l'on projette sur le premier invidividus
         revenus_capitaux = (
-                max_(0, individu.foyer_fiscal('rev_cap_bar', period.last_3_months, options = [ADD]))
-                + max_(0, individu.foyer_fiscal('rev_cap_lib', period.last_3_months, options = [ADD]))
+                max_(0, individu.foyer_fiscal('revenus_capitaux_prelevement_bareme', period.last_3_months, options = [ADD]))
+                + max_(0, individu.foyer_fiscal('revenus_capitaux_prelevement_liberatoire', period.last_3_months, options = [ADD]))
         )
 
         rentes_viageres = individu.foyer_fiscal('retraite_titre_onereux', period.last_3_months, options = [ADD])
