@@ -20,11 +20,15 @@ log = logging.getLogger(__name__)
 #####    (et donc non présents sur les déclarations de revenu)                                            #######
 #################################################################################################################
 
-class interets_plan_epargne_logement(Variable):
-    """ NB : Cette variable est définie indépendemment de epargne_revenus_non_imposables """
+class interets_plan_epargne_logement_moins_de_12_ans(Variable):
+    """
+    NB :
+    (1) Cette variable est définie indépendemment de epargne_revenus_non_imposables
+    (2) Les intérêts des PEL de plus de 12 ans sont imposables à l'impôt sur le revenu, et donc déjà présents dans les cases 2TR ou 2FA
+    """
     value_type = float
     entity = Individu
-    label = u"Intérêts des plans épargne logement (PEL)"
+    label = u"Intérêts des plans épargne logement (PEL) de moins de 12 ans"
     definition_period = YEAR
 
 class interets_compte_epargne_logement(Variable):
@@ -165,8 +169,8 @@ class assiette_csg_revenus_capital(Variable):
         rente_viagere_titre_onereux_net = foyer_fiscal('rente_viagere_titre_onereux_net', period)
 
         # Revenus des produits d'épargne logement
-        interets_plan_epargne_logement_i = foyer_fiscal.members('interets_plan_epargne_logement', period)
-        interets_plan_epargne_logement = foyer_fiscal.sum(interets_plan_epargne_logement_i)
+        interets_plan_epargne_logement_moins_de_12_ans_i = foyer_fiscal.members('interets_plan_epargne_logement_moins_de_12_ans', period)
+        interets_plan_epargne_logement_moins_de_12_ans = foyer_fiscal.sum(interets_plan_epargne_logement_moins_de_12_ans_i)
         interets_compte_epargne_logement_i = foyer_fiscal.members('interets_compte_epargne_logement', period)
         interets_compte_epargne_logement = foyer_fiscal.sum(interets_compte_epargne_logement_i)
 
@@ -183,7 +187,7 @@ class assiette_csg_revenus_capital(Variable):
             revenus_capitaux_prelevement_bareme
             + revenus_capitaux_prelevement_liberatoire
             + rente_viagere_titre_onereux_net
-            + interets_plan_epargne_logement
+            + interets_plan_epargne_logement_moins_de_12_ans
             + interets_compte_epargne_logement
             + rev_cat_rfon
             + assiette_csg_plus_values
