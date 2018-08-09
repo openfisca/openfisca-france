@@ -2,12 +2,9 @@
 
 ## 22.7.1 [#1022](https://github.com/openfisca/openfisca-france/pull/1022)
 
-* Amélioration technique
-* Périodes concernées : toutes.
-* Zones impactées :
-  - Quasiment tous les paramètres législatifs sans unité
+* Changement mineur
 * Détails :
-  - Renseigne les unités manquantes
+  - Renseigne les unités manquantes dans les paramètres législatifs
 
 ## 22.7.0 [#992](https://github.com/openfisca/openfisca-france/pull/992)
 
