@@ -125,6 +125,7 @@
 - name: "f3vz_2012"
   description: Montant des cotisations sociales sur des plus-values imposables sur cessions d’immeubles ou de biens meubles de 20000 euros en 2012
   period: 2012
+  absolute_error_margin: 1
   input_variables:
     f3vz: 20000
   output_variables:
@@ -135,6 +136,7 @@
 - name: "f3vz_2010"
   description: Montant des cotisations sociales sur des plus-values imposables sur cessions d’immeubles ou de biens meubles de 20000 euros en 2010
   period: 2010
+  absolute_error_margin: 1
   input_variables:
     f3vz: 20000
   output_variables:
