@@ -66,14 +66,14 @@
     ir_plaf_qf: 1450
     irpp: -1450
 
-- name: "f4ba_2012"
+- name: "f4ba_2011"
   description: Montant des cotisations sociales sur des revenus fonciers imposables de 20000 euros en 2012
-  period: 2012
+  period: 2011
   absolute_error_margin: 1
   input_variables:
     f4ba: 20000
   output_variables:
-    prelevements_sociaux_revenus_capital_hors_csg_crds: -(4.5 + 2 + 0.3) * 0.01 * 20000
+    prelevements_sociaux_revenus_capital_hors_csg_crds: -(2.2 + 1.1 + 0.3) * 0.01 * 20000
     csg_revenus_capital: -.082 * 20000
     crds_revenus_capital: -.005 * 20000
     irpp: -1461
@@ -89,14 +89,14 @@
     csg_revenus_capital: -.082 * 20000
     crds_revenus_capital: -.005 * 20000
 
-- name: "f3vg _2012"
+- name: "f3vg _2011"
   description: Montant des cotisations sociales sur des plus-value imposable sur gains de cession de valeurs mobilières, de droits sociaux et gains assimilés de 20000 euros en 2012
-  period: 2012
+  period: 2011
   absolute_error_margin: 1
   input_variables:
     f3vg: 20000
   output_variables:
-    prelevements_sociaux_revenus_capital_hors_csg_crds: -(4.5 + 2 + 0.3) * 0.01 * 20000
+    prelevements_sociaux_revenus_capital_hors_csg_crds: -(2.2 + 1.1 + 0.3) * 0.01 * 20000
     csg_revenus_capital: -.082 * 20000
     crds_revenus_capital: -.005 * 20000
 
@@ -122,14 +122,14 @@
     csg_revenus_capital: -1640
     crds_revenus_capital: -100
 
-- name: "f3vz_2012"
+- name: "f3vz_2011"
   description: Montant des cotisations sociales sur des plus-values imposables sur cessions d’immeubles ou de biens meubles de 20000 euros en 2012
-  period: 2012
+  period: 2011
   absolute_error_margin: 1
   input_variables:
     f3vz: 20000
   output_variables:
-    prelevements_sociaux_revenus_capital_hors_csg_crds: -(4.5 + 2 + 0.3) * 0.01 * 20000
+    prelevements_sociaux_revenus_capital_hors_csg_crds: -(2.2 + 1.1 + 0.3) * 0.01 * 20000
     csg_revenus_capital: -.082 * 20000
     crds_revenus_capital: -.005 * 20000
 
