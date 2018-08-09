@@ -260,7 +260,7 @@ class prelevements_sociaux_revenus_capital_hors_csg_crds(Variable):
 
         total = (
             P.prelevement_social.revenus_du_patrimoine + P.caps.revenus_du_patrimoine +
-            P.prelevements_solidarite.revenus_du_patrimoine + P.caps.revenus_du_patrimoine.rsa
+            P.prelevements_solidarite.revenus_du_patrimoine + P.caps.rsa
             )
 
         return -assiette_csg_revenus_capital * total
