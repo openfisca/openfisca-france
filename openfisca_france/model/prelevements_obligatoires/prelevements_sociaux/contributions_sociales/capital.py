@@ -221,15 +221,14 @@ class crds_revenus_capital(Variable):
     label = u"CRDS sur les revenus du capital"
     definition_period = YEAR
 
-    def formula_2013_01_01(foyer_fiscal, period, parameters):
+    def formula(foyer_fiscal, period, parameters):
         '''
-        Cette formule n'est définie qu'à partir de 2013 : cf. docstring de la variable
-        assiette_csg_revenus_capital pour une explication
+        Attention : Pour les années avant 2013, cette formule n'est pas entièrement correcte car le taux de la CSG n'était pas unique (distinction revenus du patrimoine et revenus de placement)
         '''
         assiette_csg_revenus_capital = foyer_fiscal('assiette_csg_revenus_capital', period)
-        _P = parameters(period).taxation_capital.prelevements_sociaux
+        P = parameters(period).taxation_capital.prelevements_sociaux
 
-        return -assiette_csg_revenus_capital * _P.crds.revenus_du_patrimoine
+        return -assiette_csg_revenus_capital * P.crds.revenus_du_patrimoine
 
 
 class prelevements_sociaux_revenus_capital_hors_csg_crds(Variable):
