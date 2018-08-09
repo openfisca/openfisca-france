@@ -251,6 +251,35 @@ class prelevements_sociaux_revenus_capital_hors_csg_crds(Variable):
 
         return -assiette_csg_revenus_capital * total
 
+    def formula_2009_01_01(foyer_fiscal, period, parameters):
+        '''
+        Attention : Pour les années avant 2013, cette formule n'est pas entièrement correcte car le taux de la CSG n'était pas unique (distinction revenus du patrimoine et revenus de placement)
+        '''
+        assiette_csg_revenus_capital = foyer_fiscal('assiette_csg_revenus_capital', period)
+        P = parameters(period).taxation_capital.prelevements_sociaux
+
+        total = (
+            P.prelevement_social.revenus_du_patrimoine + P.caps.revenus_du_patrimoine +
+            P.prelevements_solidarite.revenus_du_patrimoine + P.caps.revenus_du_patrimoine.rsa
+            )
+
+        return -assiette_csg_revenus_capital * total
+
+    def formula_2013_01_01(foyer_fiscal, period, parameters):
+        '''
+        Attention : Pour les années avant 2013, cette formule n'est pas entièrement correcte car le taux de la CSG n'était pas unique (distinction revenus du patrimoine et revenus de placement)
+        '''
+        assiette_csg_revenus_capital = foyer_fiscal('assiette_csg_revenus_capital', period)
+        P = parameters(period).taxation_capital.prelevements_sociaux
+
+        total = (
+            P.prelevement_social.revenus_du_patrimoine + P.caps.revenus_du_patrimoine +
+            P.prelevements_solidarite.revenus_du_patrimoine
+            )
+
+        return -assiette_csg_revenus_capital * total
+
+
 class prelevements_sociaux_revenus_capital(Variable):
     value_type = float
     entity = FoyerFiscal
