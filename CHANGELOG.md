@@ -1,5 +1,13 @@
 # Changelog
 
+## 22.9.0 [#1066](https://github.com/openfisca/openfisca-france/pull/1066)
+
+* Évolution du système socio-fiscal | Changements mineurs
+* Périodes concernées : à partir du 01/04/2018 essentiellement
+* Zones impactées : `openfisca_france/parameters/prestations/minima_sociaux`.
+* Détails :
+   - Mise à jour des paramètres de l'ADA, de l'ASI et de l'ASPA
+
 ## 22.8.0 [#1065](https://github.com/openfisca/openfisca-france/pull/1065)
 
 * Evolution du système socio-fiscal
