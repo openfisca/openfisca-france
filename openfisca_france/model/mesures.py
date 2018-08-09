@@ -326,7 +326,7 @@ class impots_directs(Variable):
         taxe_habitation = menage('taxe_habitation', period)
 
         # On prend en compte l'IR des foyers fiscaux dont le déclarant principal est dans le ménage
-        irpp_eco_i = menage.members.foyer_fiscal('irpp_eco', period)
+        irpp_eco_i = menage.members.foyer_fiscal('irpp_economique', period)
         irpp_eco = menage.sum(irpp_eco_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
 
         # On prend en compte le PFL des foyers fiscaux dont le déclarant principal est dans le ménage

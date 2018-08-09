@@ -1926,7 +1926,7 @@ class irpp(Variable):
                 (pre_result < 0) * (-pre_result) + (pre_result >= 0) * 0 * iai)
             )
 
-class irpp_eco(Variable):
+class irpp_economique(Variable):
     value_type = float
     entity = FoyerFiscal
     label = u"Notion économique de l'IRPP"
