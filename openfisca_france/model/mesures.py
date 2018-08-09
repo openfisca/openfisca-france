@@ -185,10 +185,9 @@ class revenus_nets_du_capital(Variable):
     reference = "http://fr.wikipedia.org/wiki/Revenu#Revenu_du_Capital"
     definition_period = YEAR
 
-    def formula_2013_01_01(individu, period):
+    def formula(individu, period):
         '''
-        Cette formule n'est définie qu'à partir de 2013 du fait de la définition
-        des prélèvements sociaux sur les revenus du capital depuis 2013 seulement
+        Attention : les formules des calculs des prélèvements sociaux sur revenus du capital avant 2013 n'ont pas été verrifiées et sont susceptibles de contenir des erreurs
         Note : On part de l'assiette CSG sur les revenus du capital, à partir de
         laquelle on fait les deux modifications ci-dessous :
             (1) On enlève les rentes viagères à titre onéreux, qui sont dans cette
