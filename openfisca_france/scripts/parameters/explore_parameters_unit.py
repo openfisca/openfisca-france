@@ -10,6 +10,9 @@ parameters = tax_benefit_system.parameters
 
 
 def get_parameters_by_unit(parameter, parameters_by_unit = None):
+    """
+    Build a dictionnary collectiing the legislation aprameters according to their units 
+    """
     if parameters_by_unit is None:
         parameters_by_unit = dict(
             scale = list(),
@@ -49,5 +52,5 @@ if __name__ == '__main__':
     print('List of parameters with no units')
 
     for param in parameters_by_unit['none']:
-        print (param.name)
+        print(param.name)
 
