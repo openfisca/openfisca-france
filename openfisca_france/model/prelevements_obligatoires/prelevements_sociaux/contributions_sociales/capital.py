@@ -145,14 +145,13 @@ class assiette_csg_revenus_capital(Variable):
     label = u"Assiette des revenus du capital soumis à la CSG"
     definition_period = YEAR
 
-    def formula_2013_01_01(foyer_fiscal, period, parameters):
+    def formula(foyer_fiscal, period, parameters):
         '''
         Hypothèses dérrière ce calcul :
             (1) On ne distingue pas la CSG sur les revenus du patrimoine (art. L136-6 du CSS)
                 de celle sur les revenus de placement (art. L136-6 du CSS)
-                Les taux de la CSG et de l'ensemble des prélèvements sociaux sont identiques pour
-                ces deux types de revenu depuis 2013 seulement, d'où le fait qu'on ne définit cette variable
-                qu'à partir de 2013.
+                ATTENTION : Les taux de la CSG et de l'ensemble des prélèvements sociaux sont identiques pour
+                ces deux types de revenu depuis 2013 seulement, la formule devrait donc être corrigée pour les années avant 2013.
             (2) Le timing de la soumission des intérêts des PEL et CEL aux prélèvements sociaux
                 est complexe. Cette soumission peut se faire annuellement, ou en cumulé, et ce
                 en fonction de différents paramètres. Mais on ne prend pas en compte cette fonctionnalité.
@@ -193,24 +192,25 @@ class assiette_csg_revenus_capital(Variable):
             + assurance_vie_ps_exoneree_irpp_pl
             )
 
+
 #################################################################################################################
 ##### 3. Variables de prélèvements sociaux sur les revenus du capital  ##########################################
 #################################################################################################################
+
 class csg_revenus_capital(Variable):
     value_type = float
     entity = FoyerFiscal
     label = u"CSG sur les revenus du capital"
     definition_period = YEAR
 
-    def formula_2013_01_01(foyer_fiscal, period, parameters):
+    def formula(foyer_fiscal, period, parameters):
         '''
-        Cette formule n'est définie qu'à partir de 2013 : cf. docstring de la variable
-        assiette_csg_revenus_capital pour une explication
+        Attention : Pour les années avant 2013, cette formule n'est pas entièrement correcte car le taux de la CSG n'était pas unique (distinction revenus du patrimoine et revenus de placement)
         '''
         assiette_csg_revenus_capital = foyer_fiscal('assiette_csg_revenus_capital', period)
-        _P = parameters(period)
+        P = parameters(period)
 
-        return -assiette_csg_revenus_capital * _P.prelevements_sociaux.contributions.csg.capital.glob
+        return -assiette_csg_revenus_capital * P.prelevements_sociaux.contributions.csg.capital.glob
 
 # revenus du capital soumis au barème
 
