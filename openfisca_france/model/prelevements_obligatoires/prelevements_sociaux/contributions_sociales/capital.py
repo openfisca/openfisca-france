@@ -51,10 +51,9 @@ class assiette_csg_plus_values(Variable):
     label = u"Assiette des plus-values soumis à la CSG"
     definition_period = YEAR
 
-    def formula_2013_01_01(foyer_fiscal, period):
+    def formula(foyer_fiscal, period):
         '''
-        Cette formule n'est définie qu'à partir de 2013 : cf. docstring de la variable
-        assiette_csg_revenus_capital pour une explication.
+        Attention : cette formule est susceptible de contenir des erreurs pour les années avant 2013 (cf. commentaires sur assiette_csg_revenus_capital)
 
         Notes sur le champ de cette variable :
             Cette assiette de plus-values est partielle. De nombreux types de plus-values sont
