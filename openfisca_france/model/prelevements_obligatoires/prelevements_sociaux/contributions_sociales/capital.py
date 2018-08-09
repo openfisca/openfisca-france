@@ -238,10 +238,9 @@ class prelevements_sociaux_revenus_capital_hors_csg_crds(Variable):
     reference = u"https://www.service-public.fr/particuliers/vosdroits/F2329"
     definition_period = YEAR
 
-    def formula_2013_01_01(foyer_fiscal, period, parameters):
+    def formula(foyer_fiscal, period, parameters):
         '''
-        Cette formule n'est définie qu'à partir de 2013 : cf. docstring de la variable
-        assiette_csg_revenus_capital pour une explication
+        Attention : Pour les années avant 2013, cette formule n'est pas entièrement correcte car le taux de la CSG n'était pas unique (distinction revenus du patrimoine et revenus de placement)
         '''
         assiette_csg_revenus_capital = foyer_fiscal('assiette_csg_revenus_capital', period)
         P = parameters(period).taxation_capital.prelevements_sociaux
@@ -260,10 +259,9 @@ class prelevements_sociaux_revenus_capital(Variable):
     reference = u"https://www.service-public.fr/particuliers/vosdroits/F2329"
     definition_period = YEAR
 
-    def formula_2013_01_01(foyer_fiscal, period, parameters):
+    def formula(foyer_fiscal, period, parameters):
         '''
-        Cette formule n'est définie qu'à partir de 2013 : cf. docstring de la variable
-        assiette_csg_revenus_capital pour une explication
+        Attention : Pour les années avant 2013, cette formule n'est pas entièrement correcte car le taux de la CSG n'était pas unique (distinction revenus du patrimoine et revenus de placement)
         '''
         csg_revenus_capital = foyer_fiscal('csg_revenus_capital', period)
         crds_revenus_capital = foyer_fiscal('crds_revenus_capital', period)
