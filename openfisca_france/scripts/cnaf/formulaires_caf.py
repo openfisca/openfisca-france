@@ -25,8 +25,8 @@ def go_to_next_page(parameters, response, form_element, form_to_take=1):
     try:
         response = url_opener.open(request, urllib.urlencode(parameters, doseq = True))
     except urllib2.HTTPError as response:
-        print "Erreur", response.code
-        print response.read()
+        print("Erreur", response.code)
+        print(response.read())
         raise
     html_page = response.read()
     tree = etree.parse(StringIO(html_page), parser)
@@ -101,7 +101,7 @@ def _get_a_page(form_element):
                 else:  # if 'RessFR' in name or 'RessIJ' in name:
                     values = ['0']
             if values == []:
-                print name
+                print(name)
                 pdb.set_trace()
             page_question += [Question(name, values, 'text')]
         elif input.attrib['type'] == 'checkbox':
@@ -109,8 +109,8 @@ def _get_a_page(form_element):
         elif input.attrib['type'] == 'submit':
             page_question += [Question(name, [name[2:]], 'submit')]
         else:
-            print 'type non rencontré encore'
-            print input.attrib['type']
+            print('type non rencontré encore')
+            print(input.attrib['type'])
             pdb.set_trace()
 
     return Page(page_question)
@@ -169,7 +169,7 @@ class Formulaire(object):
             # on cherche la page, ou bien on la crée
             name_page = _get_page_name(form_element)
             if 'otre conjoint'  in html.title():
-                print 'Votre conjoint'
+                print('Votre conjoint')
                 import pdb
                 pdb.set_trace()
             if name_page not in self.pages_collections:
@@ -179,7 +179,7 @@ class Formulaire(object):
 
             else:
                 page_question = self.pages_collections[name_page]
-                print name_page
+                print(name_page)
                 page_question.set_next_choices()
 
 
@@ -192,9 +192,9 @@ class Formulaire(object):
         montant = re.findall("\d+.\d+", look[-10:])[0]
         montant = montant.replace(',', '.')
         montant = float(montant)
-        print montant
+        print(montant)
 
-        print ('fin de boucle')
+        print('fin de boucle')
         import pdb
         pdb.set_trace()
 
@@ -207,7 +207,7 @@ class Formulaire(object):
         response, form_element = self.init()
         parameters_serie = self.get_parameters_serie()
         for parameters in parameters_serie:
-            print parameters
+            print(parameters)
             response, form_element, html = go_to_next_page(parameters, response, form_element)
 
         if '&euro' in html and "loyer" not in html:
@@ -218,7 +218,7 @@ class Formulaire(object):
             return montant
 
         for input_element in form_element.xpath('.//input'):
-            print etree.tostring(input_element)
+            print(etree.tostring(input_element))
 
 
 
