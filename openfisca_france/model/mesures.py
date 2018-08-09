@@ -315,6 +315,25 @@ class aides_logement(Variable):
         return apl + als + alf + crds_logement
 
 
+class irpp_economique(Variable):
+    value_type = float
+    entity = FoyerFiscal
+    label = u"Notion économique de l'IRPP"
+    definition_period = YEAR
+
+    def formula(foyer_fiscal, period, parameters):
+        '''
+        Cette variable d'IRPP comptabilise dans les montants
+        d'imposition les acomptes considérés comme des crédits
+        d'impôt sur la déclaration fiscale
+        '''
+        irpp = foyer_fiscal('irpp', period)
+        acomptes_ir = foyer_fiscal('acomptes_ir', period)
+
+        return irpp - acomptes_ir # Car par convention, irpp est un montant négatif et acomptes_ir un montant positif
+
+
+
 class impots_directs(Variable):
     value_type = float
     entity = Menage

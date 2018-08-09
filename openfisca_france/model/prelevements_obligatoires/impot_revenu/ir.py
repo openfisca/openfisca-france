@@ -1925,24 +1925,7 @@ class irpp(Variable):
             (iai <= P.seuil) * (
                 (pre_result < 0) * (-pre_result) + (pre_result >= 0) * 0 * iai)
             )
-
-class irpp_economique(Variable):
-    value_type = float
-    entity = FoyerFiscal
-    label = u"Notion économique de l'IRPP"
-    definition_period = YEAR
-
-    def formula(foyer_fiscal, period, parameters):
-        '''
-        Cette variable d'IRPP comptabilise dans les montants
-        d'imposition les acomptes considérés comme des crédits
-        d'impôt sur la déclaration fiscale
-        '''
-        irpp = foyer_fiscal('irpp', period)
-        acomptes_ir = foyer_fiscal('acomptes_ir', period)
-
-        return irpp - acomptes_ir # Car par convention, irpp est un montant négatif et acomptes_ir un montant positif
-
+            
 
 class foyer_impose(Variable):
     value_type = bool
