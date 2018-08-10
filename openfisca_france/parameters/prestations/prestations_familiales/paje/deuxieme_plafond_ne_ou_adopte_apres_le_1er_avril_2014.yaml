@@ -1,6 +1,15 @@
 reference: ipp
+un_enfant:
+  reference: ipp
+  unit: currency
+  values:
+    2015-01-01:
+      value: 45393.0
+    2016-01-01:
+      value: 45575.0
 deux_enfants:
   reference: ipp
+  unit: currency
   values:
     2015-01-01:
       value: 51836.0
@@ -8,15 +17,9 @@ deux_enfants:
       value: 52044.0
 majoration_pour_un_enfant_supplementaire:
   reference: ipp
+  unit: currency
   values:
     2015-01-01:
       value: 6443.0
     2016-01-01:
       value: 6469.0
-un_enfant:
-  reference: ipp
-  values:
-    2015-01-01:
-      value: 45393.0
-    2016-01-01:
-      value: 45575.0

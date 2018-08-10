@@ -1,5 +1,11 @@
 # Changelog
 
+## 22.7.1 [#1022](https://github.com/openfisca/openfisca-france/pull/1022)
+
+* Changement mineur
+* Détails :
+  - Renseigne les unités manquantes dans les paramètres législatifs
+
 ## 22.7.0 [#992](https://github.com/openfisca/openfisca-france/pull/992)
 
 * Évolution du système socio-fiscal.
@@ -25,7 +31,7 @@
 * Évolution du système socio-fiscal | Changements mineurs
 * Périodes concernées : toutes.
 * Zones impactées : openfisca_france/model/prelevements_obligatoires/impot_revenu/charges_deductibles.
-* Détails : 
+* Détails :
   - Corrige une erreur dans le calcul du revenu fiscal de référence à propos des charges déductibles
 
 ## 22.5.0 [#1040](https://github.com/openfisca/openfisca-france/pull/1040)
@@ -222,7 +228,7 @@
   - `parameters/minima_sociaux/caah`
 * Détails :
   - Met à jour le montant maximum de l'AAH en date du 01/04/2018
-  
+
 ### 21.10.5 [#997](https://github.com/openfisca/openfisca-france/pull/997)
 
 * Correction d'une erreur

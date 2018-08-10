@@ -2,6 +2,7 @@ reference: ipp
 age_1er_enf_tranche_1_dom:
   description: Âge de début de la 1ere majoration
   reference: ipp
+  unit: year
   values:
     1991-08-06:
       value: 10.0
@@ -10,6 +11,7 @@ age_1er_enf_tranche_1_dom:
 age_1er_enf_tranche_2_dom:
   description: Âge de début de la 2ème majoration
   reference: ipp
+  unit: year
   values:
     1991-08-06:
       value: 15.0

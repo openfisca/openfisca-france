@@ -64,12 +64,14 @@ majoration_du_plafond_pour_une_personne_isolee:
       value: 0.4
 remuneration_brute_maximale_de_l_assistante_maternelle_par_jour_et_par_enfant_en_multiple_du_smic_horaire:
   reference: ipp
+  unit: /1
   values:
     2004-01-01:
       value: 5.0
 seuil11:
   description: Premier plafond de ressources pour un enfant
   reference: ipp
+  unit: currency
   values:
     2004-01-01:
       value: 14349.0
@@ -100,6 +102,7 @@ seuil11:
 seuil12:
   description: Premier plafond de ressources pour deux enfants
   reference: ipp
+  unit: currency
   values:
     2004-01-01:
       value: 16521.0
@@ -130,6 +133,7 @@ seuil12:
 seuil1sup:
   description: 'Premier plafond de ressources: maj. enfant suppl.'
   reference: ipp
+  unit: currency
   values:
     2004-01-01:
       value: 2626.0
@@ -160,6 +164,7 @@ seuil1sup:
 seuil21:
   description: Second plafond de ressources pour un enfant
   reference: ipp
+  unit: currency
   values:
     2004-01-01:
       value: 31887.0
@@ -190,6 +195,7 @@ seuil21:
 seuil22:
   description: Second plafond de ressources pour deux enfants
   reference: ipp
+  unit: currency
   values:
     2004-01-01:
       value: 36713.0
@@ -220,6 +226,7 @@ seuil22:
 seuil2sup:
   description: 'Second plafond de ressources: maj. enfant suppl.'
   reference: ipp
+  unit: currency
   values:
     2004-01-01:
       value: 5791.0

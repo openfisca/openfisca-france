@@ -3,6 +3,7 @@ reference: ipp
 age_max_enfant:
   description: Limite d'âge (stricte) pour bénéficier de l'APE
   reference: ipp
+  unit: year
   values:
     1985-01-01:
       value: 3.0

@@ -1,5 +1,6 @@
 description: La décote se fait à ce taux
 reference: openfisca
+unit: /1
 values:
   2001-01-01:
     value: 0.75

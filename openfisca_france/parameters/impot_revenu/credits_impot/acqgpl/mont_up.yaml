@@ -1,5 +1,6 @@
 description: Case UP
 reference: openfisca
+unit: currency
 values:
   2002-01-01:
     value: 1525.0
