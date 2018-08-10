@@ -125,8 +125,9 @@ class rev_coll(Variable):
         # Quand rev_coll est calculé sur une année glissante, rente_viagere_titre_onereux_net et pensions_alimentaires_versees sont calculés sur l'année légale correspondante.
         rente_viagere_titre_onereux_net = foyer_fiscal('rente_viagere_titre_onereux_net', period)
         pensions_alimentaires_versees = foyer_fiscal('pensions_alimentaires_versees', period)
-        revenus_capitaux_prelevement_liberatoire = foyer_fiscal('revenus_capitaux_prelevement_liberatoire', period, options = [ADD])
-        rev_cat_rvcm = foyer_fiscal('rev_cat_rvcm', period)
+        rev_cat_rvcm = foyer_fiscal('rev_cat_rvcm', period) # Supprimée en 2018
+        revenus_capitaux_prelevement_liberatoire = foyer_fiscal('revenus_capitaux_prelevement_liberatoire', period, options = [ADD]) # Supprimée en 2018
+        revenus_capitaux_prelevement_forfaitaire_unique_ir = foyer_fiscal('revenus_capitaux_prelevement_forfaitaire_unique_ir', period) # Existe à partir de 2018
         abat_spe = foyer_fiscal('abat_spe', period)
         fon = foyer_fiscal('fon', period)
         f7ga = foyer_fiscal('f7ga', period)
@@ -139,9 +140,10 @@ class rev_coll(Variable):
             + fon
             + pensions_alimentaires_versees  # négatif
             + rente_viagere_titre_onereux_net
-            + revenus_capitaux_prelevement_liberatoire
-            + rev_cat_pv
             + rev_cat_rvcm
+            + revenus_capitaux_prelevement_liberatoire
+            + revenus_capitaux_prelevement_forfaitaire_unique_ir
+            + rev_cat_pv
             - abat_spe
             - f7ga
             - f7gb

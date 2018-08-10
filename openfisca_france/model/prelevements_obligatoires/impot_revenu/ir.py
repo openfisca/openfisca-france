@@ -666,6 +666,7 @@ class rev_cat_rvcm(Variable):
     label = u"Revenu catégoriel - Capitaux"
     reference = "http://www.insee.fr/fr/methodes/default.asp?page=definitions/revenus-categoriesl.htm"
     definition_period = YEAR
+    end = '2017-31-12'
 
     def formula_2002_01_01(foyer_fiscal, period, parameters):
         """
@@ -819,6 +820,7 @@ class rfr_rvcm(Variable):
     entity = FoyerFiscal
     label = u"rfr_rvcm"
     definition_period = YEAR
+    end = '2017-12-31'
 
     def formula(foyer_fiscal, period, parameters):
         '''
@@ -941,6 +943,17 @@ class rev_cat(Variable):
         rev_cat_pv = foyer_fiscal('rev_cat_pv', period)
 
         return rev_cat_tspr + rev_cat_rvcm + rev_cat_rfon + rev_cat_rpns + rev_cat_pv
+
+    def formula_2018_01_01(foyer_fiscal, period, parameters):
+        '''
+        Revenus Categoriels
+        '''
+        rev_cat_tspr = foyer_fiscal('rev_cat_tspr', period)
+        rev_cat_rfon = foyer_fiscal('rev_cat_rfon', period)
+        rev_cat_rpns = foyer_fiscal('rev_cat_rpns', period)
+        rev_cat_pv = foyer_fiscal('rev_cat_pv', period)
+
+        return rev_cat_tspr + rev_cat_rfon + rev_cat_rpns + rev_cat_pv
 
 
 ###############################################################################
@@ -1925,6 +1938,26 @@ class irpp(Variable):
                 (pre_result < 0) * (-pre_result) + (pre_result >= 0) * 0 * iai)
             )
 
+    def formula_2018_01_01(foyer_fiscal, period, parameters):
+        '''
+        Seule différence avec la formule avant 2018 : suppression de 'acomptes_ir'
+        '''
+        iai = foyer_fiscal('iai', period)
+        credits_impot = foyer_fiscal('credits_impot', period)
+        cehr = foyer_fiscal('cehr', period)
+        P = parameters(period).impot_revenu.recouvrement
+
+        pre_result = iai - credits_impot + cehr
+
+        return (
+            (iai > P.seuil) * (
+                (pre_result < P.min) * (pre_result > 0) * iai * 0 +
+                ((pre_result <= 0) + (pre_result >= P.min)) * (- pre_result)
+                ) +
+            (iai <= P.seuil) * (
+                (pre_result < 0) * (-pre_result) + (pre_result >= 0) * 0 * iai)
+            )
+
 
 class foyer_impose(Variable):
     value_type = bool
@@ -1973,10 +2006,11 @@ class rfr(Variable):
         abattement_net_duree_detention_retraite_dirigeant_pme = foyer_fiscal('abattement_net_duree_detention_retraite_dirigeant_pme', period)
         f2dm = foyer_fiscal('f2dm', period)
         microentreprise = foyer_fiscal('microentreprise', period)
-        revenus_capitaux_prelevement_liberatoire = foyer_fiscal('revenus_capitaux_prelevement_liberatoire', period, options = [ADD])
+        rfr_rev_capitaux_mobiliers = foyer_fiscal('rfr_rvcm', period) # Supprimée à partir de 2018
+        revenus_capitaux_prelevement_liberatoire = foyer_fiscal('revenus_capitaux_prelevement_liberatoire', period, options = [ADD]) # Supprimée à partir de 2018
+        revenus_capitaux_prelevement_forfaitaire_unique_ir = foyer_fiscal('revenus_capitaux_prelevement_forfaitaire_unique_ir') # Existe à partir de 2018
         rfr_charges_deductibles = foyer_fiscal('rfr_cd', period)
         rfr_plus_values = foyer_fiscal('rfr_plus_values', period)
-        rfr_rev_capitaux_mobiliers = foyer_fiscal('rfr_rvcm', period)
         rni = foyer_fiscal('rni', period)
         rpns_exon_i = foyer_fiscal.members('rpns_exon', period)
         rpns_pvce_i = foyer_fiscal.members('rpns_pvce', period)
@@ -1986,13 +2020,14 @@ class rfr(Variable):
 
         return (
             max_(0, rni)
-            + rfr_charges_deductibles + rfr_plus_values + rfr_rev_capitaux_mobiliers + revenus_capitaux_prelevement_liberatoire
+            + rfr_charges_deductibles + rfr_plus_values + rfr_rev_capitaux_mobiliers + revenus_capitaux_prelevement_liberatoire + revenus_capitaux_prelevement_forfaitaire_unique_ir
             + rpns_exon + rpns_pvce
             + abattement_net_duree_detention_retraite_dirigeant_pme
             + f2dm + microentreprise
             )
 
         # TO CHECK : f3vb after 2015 (abattements sur moins-values = interdits)
+
 
 class glo(Variable):
     value_type = float
