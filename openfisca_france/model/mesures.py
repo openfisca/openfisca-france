@@ -324,8 +324,15 @@ class irpp_economique(Variable):
     def formula(foyer_fiscal, period, parameters):
         '''
         Cette variable d'IRPP comptabilise dans les montants
-        d'imposition les acomptes considérés comme des crédits
-        d'impôt sur la déclaration fiscale
+        d'imposition les acomptes qui, dans la déclaration fiscale, sont considérés comme des crédits
+        d'impôt. Ajouter ces acomptes au montant "administratif" d'impôt correspond donc au "véritable impôt"
+        payé en totalité, alors que la variable 'irpp' correspond à une notion administrative.
+        Exemple :
+        Certains revenus du capital sont soumis à un prélèvement forfaitaire à la source non libératoire,
+        faisant office d'acompte. Puis, l'impôt au barème sur ces revenus est calculé, et confronté à l'acompte.
+        Cet acompte, est en case 2CK, et considéré comme un crédit d'impôt. Retrancher de l'impôt au barème ce
+        crédit permet d'obtenir l'impôt dû suite à la déclaration de revenus, qui correspond à la variable 'irpp'.
+        Cette notion est administrative. L'impît total payé correspond à cette notion administrative, augmentée des acomptes.
         '''
         irpp = foyer_fiscal('irpp', period)
         acomptes_ir = foyer_fiscal('acomptes_ir', period)
