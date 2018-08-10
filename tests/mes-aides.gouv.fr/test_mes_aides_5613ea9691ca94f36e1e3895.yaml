@@ -1,7 +1,7 @@
-name: 'CMUC/ACS : abattement 30% appliqué à tort'
+name: 'CMUC/ACS : abattement 30% appliqué en cas de perception des IJ maladie'
 keywords: []
-description: La personne est demandeur d'emploi mais n'est pas indemnisée. L'abattement de 30% ne doit pas être appliqué.
-  Le montant de ses ressources ne lui ouvre aucun droit CMUC/ACS
+description: La personne est demandeur d'emploi et perçoit des indemnités journalières de maladie. L'abattement de 30% doit être appliqué.
+  Le montant de ses ressources avec abattement lui ouvre un droit ACS.
 period: month:2015-10
 relative_error_margin: 0.02
 individus:
@@ -289,5 +289,5 @@ menages:
   personne_de_reference: 5613ea8a9c6bb8f86e34da3a
   statut_occupation_logement: locataire_vide
 output_variables:
-  acs: 0
+  acs: 350
   cmu_c: false
