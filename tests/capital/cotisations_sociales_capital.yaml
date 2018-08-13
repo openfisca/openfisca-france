@@ -173,3 +173,15 @@
     prelevements_sociaux_revenus_capital_hors_csg_crds: -391
     rev_cat_rfon: 17000
     irpp: -1119
+
+
+- name: "ps_rev_exon_ir_2016"
+  description: Montant de prélèvements sociaux sur revenus exonérés d'impôt sur le revenus
+  period: 2016
+  absolute_error_margin: 0.5
+  input_variables:
+    interets_plan_epargne_logement: 10000
+    interets_compte_epargne_logement: 10000
+    assurance_vie_ps_exoneree_irpp_pl: 10000
+  output_variables:
+    prelevements_sociaux_revenus_capital: - (10000 + 10000 + 10000) * (0.045 + 0.02 + 0.003 + 0.005 + 0.082)
