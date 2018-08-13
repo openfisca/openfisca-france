@@ -66,11 +66,11 @@ class prelevement_forfaitaire_liberatoire(Variable):
         param_pfl_av = parameters(period).taxation_capital.pfl_av.bons_ou_contrats_de_capitalisation_et_placements_de_meme_nature_assurance_vie_lors_du_denouement_du_contrat
         param_pfl = parameters(period).taxation_capital.pfl
 
-        return (
+        return -(
             f2dh * param_pfl_av.souscrits_apres_le_1_1_90_et_le_pour_une_duree_de.duree_8_ans_et_plus_pour_les_produits_acquis_apres_le_01_01_1998_avec_abattement_sur_l_ir_5
             + f2ee * param_pfl.autres_produits_de_placement_a_revenu_fixe_comptes_sur_livrets_creances_depots_cautionnement_et_comptes_courants.courus_entre_le_1_1_95_et_apres
             )
-    
+
     def formula_2008_01_01(foyer_fiscal, period, parameters):
         '''
         Prelèvement libératoire sur les revenus du capital
@@ -81,7 +81,7 @@ class prelevement_forfaitaire_liberatoire(Variable):
         param_pfl_av = parameters(period).taxation_capital.pfl_av.bons_ou_contrats_de_capitalisation_et_placements_de_meme_nature_assurance_vie_lors_du_denouement_du_contrat
         param_pfl = parameters(period).taxation_capital.pfl
 
-        return (
+        return -(
             f2da * param_pfl.dividendes
             + f2ee * param_pfl.autres_produits_de_placement_a_revenu_fixe_comptes_sur_livrets_creances_depots_cautionnement_et_comptes_courants.courus_entre_le_1_1_95_et_apres
             + f2dh * param_pfl_av.souscrits_apres_le_1_1_90_et_le_pour_une_duree_de.duree_8_ans_et_plus_pour_les_produits_acquis_apres_le_01_01_1998_avec_abattement_sur_l_ir_5
@@ -111,7 +111,7 @@ class prelevement_forfaitaire_liberatoire(Variable):
         param_pfl_av = parameters(period).taxation_capital.pfl_av.bons_ou_contrats_de_capitalisation_et_placements_de_meme_nature_assurance_vie_lors_du_denouement_du_contrat
         param_pfl = parameters(period).taxation_capital.pfl
 
-        pfl = (
+        pfl = -(
             (param_pfl_av.souscrits_apres_le_1_1_90_et_le_pour_une_duree_de.duree_8_ans_et_plus_pour_les_produits_acquis_apres_le_01_01_1998_avec_abattement_sur_l_ir_5
             * assurance_vie_pl_non_anonyme_plus8ans_depuis1990)
             + (param_pfl_av.souscrits_entre_le_1_1_83_et_le_31_12_89_pour_une_duree_de.duree_6_ans_et_plus_pour_les_produits_acquis_apres_le_01_01_1998_avec_abattement_sur_l_ir_5
