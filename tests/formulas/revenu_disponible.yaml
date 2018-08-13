@@ -47,11 +47,11 @@
     statut_occupation_logement:
       "2012-01": proprietaire  # Propriétaire (non accédant) du logement
   output_variables:
-    revenus_du_travail:
+    revenus_nets_du_travail:
       2012: 0
-    pensions:
+    pensions_nettes:
       2012: 16812
-    revenus_du_capital:
+    revenus_nets_du_capital:
       2012: 0
     # start prestations_sociales
     aspa:
@@ -87,7 +87,7 @@
   output_variables:
     revenus_du_travail:
       2012: 0
-    pensions:
+    pensions_nettes:
       2012: 0
     # start revenus_du_capital
     revenus_capitaux_prelevement_bareme:
@@ -99,7 +99,7 @@
       2012: -12 * 1500 * 0.175
     prelevement_forfaitaire_liberatoire:
       2012: -12 * 1500 * 0.24
-    revenus_du_capital:
+    revenus_nets_du_capital:
       2012: 10530
     # start prestations_sociales
     aspa:
@@ -134,9 +134,9 @@
     statut_occupation_logement:
       "2012-01": proprietaire
   output_variables:
-    revenus_du_travail:
+    revenus_nets_du_travail:
       2012: 0
-    pensions:
+    pensions_nettes:
       2012: 0
     # start revenus_du_capital
     revenus_capitaux_prelevement_bareme:
