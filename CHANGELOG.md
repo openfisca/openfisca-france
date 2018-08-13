@@ -14,8 +14,8 @@
   - `openfisca_france/model/prelevements_obligatoires/impot_revenu/credits_impot`
   - `openfisca_france/model/mesures`
 * Détails :
-  - Recodage du prélèvement forfaitaire libératoire (PFL), pour les revenus du 01/01/2013 au 31/12/2017 : suppression de la variable `imp_lib` et remplaceent par la variable `prelevement_forfaitaire_liberatoire` (créée dans un nouveau fichier). Suppression du calcul de ce prélèvement pour les revenus avant le 01/01/2013.
-  - Recodage des prélèvements sociaux sur les revenus du capital, pour les revenus du 01/01/2013 au 31/12/2017 : changement du calcul, de la structure, et des noms de variables associées à ces prélèvements. Suppression de calcul de ces prélèvements pour les revenus avant le 01/01/2013.
+  - Recodage du prélèvement forfaitaire libératoire (PFL), pour les revenus du 01/01/2013 au 31/12/2017 : suppression de la variable `imp_lib` et remplaceent par la variable `prelevement_forfaitaire_liberatoire` (créée dans un nouveau fichier).
+  - Recodage des prélèvements sociaux sur les revenus du capital, pour les revenus du 01/01/2013 au 31/12/2017 : changement du calcul, de la structure, et des noms de variables associées à ces prélèvements.
   - Définition de la notion d'acomptes sur IR (`acomptes_ir`) et distinction d'une notion adminitrative (`irpp`, identique à auparavant) et d'une notion économique de l'IR (`irpp_eco`)
   - Corrections mineures :
      - Correction de la CSG déductible du RBG pour le calcul de l'IR : la variable `csg_deduc` prenait en compte seulement la case 6DE, et non pas les revenus de la case 2BH.
