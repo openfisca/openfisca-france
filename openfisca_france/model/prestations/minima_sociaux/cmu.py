@@ -204,6 +204,7 @@ class acs_plafond(Variable):
 class cmu_base_ressources_individu(Variable):
     value_type = float
     label = u"Base de ressources de l'individu prise en compte pour l'éligibilité à la CMU-C / ACS"
+    reference = u"https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006745374&dateTexte=&categorieLien=cid",
     entity = Individu
     definition_period = MONTH
 
@@ -237,6 +238,7 @@ class cmu_base_ressources_individu(Variable):
             'revenus_stage_formation_pro',
             'rsa_base_ressources_patrimoine_individu',
             'salaire_net',
+            'rente_accident_travail',
         ]
 
         ressources = sum([
