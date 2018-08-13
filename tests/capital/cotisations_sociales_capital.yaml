@@ -184,4 +184,5 @@
     interets_compte_epargne_logement: 10000
     assurance_vie_ps_exoneree_irpp_pl: 10000
   output_variables:
-    prelevements_sociaux_revenus_capital: - (10000 + 10000 + 10000) * (0.045 + 0.02 + 0.003 + 0.005 + 0.082)
+    prelevements_sociaux_revenus_capital: -(10000 + 10000 + 10000) * (0.045 + 0.02 + 0.003 + 0.005 + 0.082)
+
