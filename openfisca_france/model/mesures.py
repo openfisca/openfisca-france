@@ -332,7 +332,7 @@ class irpp_economique(Variable):
         faisant office d'acompte. Puis, l'impôt au barème sur ces revenus est calculé, et confronté à l'acompte.
         Cet acompte, est en case 2CK, et considéré comme un crédit d'impôt. Retrancher de l'impôt au barème ce
         crédit permet d'obtenir l'impôt dû suite à la déclaration de revenus, qui correspond à la variable 'irpp'.
-        Cette notion est administrative. L'impît total payé correspond à cette notion administrative, augmentée des acomptes.
+        Cette notion est administrative. L'impôt total payé correspond à cette notion administrative, augmentée des acomptes.
         '''
         irpp = foyer_fiscal('irpp', period)
         acomptes_ir = foyer_fiscal('acomptes_ir', period)
