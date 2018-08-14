@@ -176,7 +176,7 @@
 
 
 - name: "ps_rev_exon_ir_2016"
-  description: Montant de prélèvements sociaux sur revenus exonérés d'impôt sur le revenus
+  description: Montant de prélèvements sociaux sur revenus exonérés d'impôt sur le revenus en 2016
   period: 2016
   absolute_error_margin: 0.5
   input_variables:
@@ -185,4 +185,76 @@
     assurance_vie_ps_exoneree_irpp_pl: 10000
   output_variables:
     prelevements_sociaux_revenus_capital: -(10000 + 10000 + 10000) * (0.045 + 0.02 + 0.003 + 0.005 + 0.082)
+
+- name: "ps_plus_values_f3vg_2013"
+  description: Montant de prélèvements sociaux sur plus-values (3VG) en 2013
+  period: 2013
+  absolute_error_margin: 0.5
+  input_variables:
+    f3vg: 10000
+  output_variables:
+    prelevements_sociaux_revenus_capital: -10000 * (0.045 + 0.02 + 0.003 + 0.005 + 0.082)
+
+- name: "ps_plus_values_f3vg_2015"
+  description: Montant de prélèvements sociaux sur plus-values (3VG) en 2015
+  period: 2015
+  absolute_error_margin: 0.5
+  input_variables:
+    f3vg: 10000
+  output_variables:
+    prelevements_sociaux_revenus_capital: -10000 * (0.045 + 0.02 + 0.003 + 0.005 + 0.082)
+
+- name: "ps_plus_values_f3vg_2017"
+  description: Montant de prélèvements sociaux sur plus-values (3VG) en 2017
+  period: 2017
+  absolute_error_margin: 0.5
+  input_variables:
+    f3vg: 10000
+  output_variables:
+    prelevements_sociaux_revenus_capital: -10000 * (0.045 + 0.02 + 0.003 + 0.005 + 0.099)
+
+- name: "ps_revcap_bareme_f2dc_2013"
+  description: Montant de prélèvements sociaux sur revenus du capital soumis au barème (2DC) en 2013
+  period: 2013
+  absolute_error_margin: 0.5
+  input_variables:
+    f2dc: 10000
+  output_variables:
+    prelevements_sociaux_revenus_capital: -10000 * (0.045 + 0.02 + 0.003 + 0.005 + 0.082)
+
+- name: "ps_revcap_bareme_f2dc_2016"
+  description: Montant de prélèvements sociaux sur revenus du capital soumis au barème (2DC) en 2016
+  period: 2016
+  absolute_error_margin: 0.5
+  input_variables:
+    f2dc: 10000
+  output_variables:
+    prelevements_sociaux_revenus_capital: -10000 * (0.045 + 0.02 + 0.003 + 0.005 + 0.082)
+
+- name: "ps_revcap_bareme_f2dh_2013"
+  description: Montant de prélèvements sociaux sur revenus du capital soumis au prélèvement forfaitaire libératoire (2DH) en 2013
+  period: 2013
+  absolute_error_margin: 1
+  input_variables:
+    f2dh: 10000
+  output_variables:
+    prelevements_sociaux_revenus_capital: -10000 * (0.045 + 0.02 + 0.003 + 0.005 + 0.082)
+
+- name: "ps_f1aw_2013"
+  description: Montant de prélèvements sociaux sur rentes viagères à titre onéreux (1AW) en 2013
+  period: 2013
+  absolute_error_margin: 1
+  input_variables:
+    f1aw: 10000
+  output_variables:
+    prelevements_sociaux_revenus_capital: -10000 * 0.7 * (0.045 + 0.02 + 0.003 + 0.005 + 0.082)
+
+- name: "ps_f4ba_2013"
+  description: Montant de prélèvements sociaux sur revenus fonciers (4BA) en 2013
+  period: 2013
+  absolute_error_margin: 1
+  input_variables:
+    f4ba: 10000
+  output_variables:
+    prelevements_sociaux_revenus_capital: -10000 * (0.045 + 0.02 + 0.003 + 0.005 + 0.082)
 
