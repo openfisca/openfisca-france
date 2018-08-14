@@ -969,3 +969,13 @@
   output_variables:
     decote_gain_fiscal: 803
     irpp: -264
+
+- name: "Test de la CSG déductible sur revenus du patrimoine (2017)"
+  period: "2017"
+  absolute_error_margin: 0.5
+  input_variables:
+    f6de: 1000
+    f2dc: 50000
+    f2bh: 50000
+  output_variables:
+    irpp: -2330
