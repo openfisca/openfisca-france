@@ -7,6 +7,8 @@
 * Zones impactées : `openfisca_france/parameters/prestations/minima_sociaux`.
 * Détails :
    - Mise à jour des paramètres de l'ADA, de l'ASI et de l'ASPA
+   - Suppression de `openfisca_france/parameters/prestations/minima_sociaux/aspa/personnes_seules.yaml`
+     (car inutilisé et redondant avec `openfisca_france/parameters/prestations/minima_sociaux/aspa/plafond_ressources_seul.yaml`)
 
 ## 22.8.0 [#1065](https://github.com/openfisca/openfisca-france/pull/1065)
 
