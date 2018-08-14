@@ -1925,7 +1925,7 @@ class irpp(Variable):
             (iai <= P.seuil) * (
                 (pre_result < 0) * (-pre_result) + (pre_result >= 0) * 0 * iai)
             )
-            
+
 
 class foyer_impose(Variable):
     value_type = bool

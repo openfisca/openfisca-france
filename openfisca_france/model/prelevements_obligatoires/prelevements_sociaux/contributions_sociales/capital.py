@@ -179,7 +179,6 @@ class assiette_csg_revenus_capital(Variable):
         # produits d'assurance-vie exonérés d'impôt sur le revenu et de prélèvement forfaitaire libératoire (et donc non présents dans revenus_capitaux_prelevement_bareme et revenus_capitaux_prelevement_liberatoire)
         assurance_vie_ps_exoneree_irpp_pl = foyer_fiscal('assurance_vie_ps_exoneree_irpp_pl', period)
 
-
         return (
             revenus_capitaux_prelevement_bareme
             + revenus_capitaux_prelevement_liberatoire
