@@ -1,0 +1,30 @@
+- name: "pfl_2017"
+  description: Montant du prélèvement forfaitaire libératoire en 2017
+  period: 2017
+  absolute_error_margin: 1
+  input_variables:
+    assurance_vie_pl_non_anonyme_plus8ans_depuis1990: 1000
+    assurance_vie_pl_non_anonyme_plus6ans_avant1990: 2000
+    assurance_vie_pl_non_anonyme_moins4ans_depuis1990: 3000
+    assurance_vie_pl_non_anonyme_4_8_ans_depuis1990: 4000
+    assurance_vie_pl_anonyme: 5000
+    produit_epargne_solidaire: 6000
+    produit_etats_non_cooperatif: 7000
+  output_variables:
+    prelevement_forfaitaire_liberatoire: -(0.075*(1000+2000)+0.35*3000+0.15*4000+0.6*5000+0.05*6000+0.75*7000)
+
+- name: "transmission_variables_av_cases_2017"
+  description: Transmission des variables d'assurance-vie aux cases de la déclaration de revenus 2017
+  period: 2017
+  absolute_error_margin: 1
+  input_variables:
+    assurance_vie_pl_non_anonyme_plus8ans_depuis1990: 1000
+    assurance_vie_pl_non_anonyme_plus6ans_avant1990: 2000
+    assurance_vie_pl_non_anonyme_moins4ans_depuis1990: 15000
+    assurance_vie_pl_non_anonyme_4_8_ans_depuis1990: 7000
+    assurance_vie_pl_anonyme: 4000
+    produit_epargne_solidaire: 4000
+    produit_etats_non_cooperatif: 4000
+  output_variables:
+    f2dh: 3000
+    f2ee: 34000
