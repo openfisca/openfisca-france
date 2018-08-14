@@ -560,6 +560,11 @@ class rente_viagere_titre_onereux_net(Variable):
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
+        '''
+        Selon la législation, le taux d'abattement appliqué dépend de l'âge du bénéficiaire lors du premier versement
+        de la rente. Il y a quatre taux possibles. On suppoose que la case 1aw bénéficie du taux associé à l'âge le
+        moins élevé, et ainsi de suite jusqu'à la case 1dw qui bénéficie du taux associé à l'âge le plus élevé.
+        '''
         f1aw = foyer_fiscal('f1aw', period)
         f1bw = foyer_fiscal('f1bw', period)
         f1cw = foyer_fiscal('f1cw', period)
@@ -857,7 +862,7 @@ class rfr_rvcm(Variable):
 
         abattement_dividende = (f2fu + f2dc) * P.taux_abattement_capitaux_mobiliers
         abattement_assurance_vie =  min_(f2ch, P.abat_assvie * (1 + maries_ou_pacses))
-        
+
         return abattement_dividende + abattement_assurance_vie
 
 class rev_cat_rfon(Variable):
@@ -988,45 +993,7 @@ class rbg(Variable):
                     rev_cat + f6gh + (foyer_fiscal.sum(nbic_impm_i) + nacc_pvce) * (1 + cga) - deficit_ante)
 
 
-class csg_deduc_patrimoine(Variable):
-    value_type = float
-    entity = FoyerFiscal
-    label = u"Csg déductible sur le patrimoine"
-    reference = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&typePage=cpr02&sfid=503&espId=1&communaute=1&impot=CS"
-    definition_period = YEAR
-
-    def formula(foyer_fiscal, period, parameters):
-        '''
-        CSG déductible sur les revenus du patrimoine
-        http://bofip.impots.gouv.fr/bofip/887-PGP
-        '''
-        f6de = foyer_fiscal('f6de', period)
-
-        return max_(f6de, 0)
-
-
-class csg_deduc_patrimoine_simulated(Variable):
-    value_type = float
-    entity = FoyerFiscal
-    label = u"Csg déductible sur le patrimoine simulée"
-    reference = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&typePage=cpr02&sfid=503&espId=1&communaute=1&impot=CS"
-    definition_period = YEAR
-
-    def formula(foyer_fiscal, period, parameters):
-        '''
-        Cette fonction simule le montant mentionné dans la case f6de de la déclaration 2042
-        http://bofip.impots.gouv.fr/bofip/887-PGP
-        '''
-        rev_cat_rfon = foyer_fiscal('rev_cat_rfon', period)
-        revenus_capitaux_prelevement_bareme = foyer_fiscal('revenus_capitaux_prelevement_bareme', period)
-        rente_viagere_titre_onereux = foyer_fiscal('rente_viagere_titre_onereux', period)
-        taux = parameters(period).csg.capital.deduc
-
-        patrimoine_deduc = rev_cat_rfon + revenus_capitaux_prelevement_bareme + rente_viagere_titre_onereux
-        return taux * patrimoine_deduc
-
-
-class csg_deduc(Variable):  # f6de
+class csg_patrimoine_deductible_ir(Variable):
     value_type = float
     entity = FoyerFiscal
     label = u"Csg déductible sur le patrimoine"
@@ -1035,8 +1002,11 @@ class csg_deduc(Variable):  # f6de
 
     def formula(foyer_fiscal, period, parameters):
         ''' CSG déductible '''
+        P = parameters(period).prelevements_sociaux.contributions.csg.capital
         rbg = foyer_fiscal('rbg', period)
-        csg_deduc_patrimoine = foyer_fiscal('csg_deduc_patrimoine', period)
+        f6de = foyer_fiscal('f6de', period)
+        f2bh = foyer_fiscal('f2bh', period)
+        csg_deduc_patrimoine = max_(f6de, 0) + max_(P.deduc * f2bh, 0)
 
         # min_(f6de, max_(rbg, 0))
         return min_(csg_deduc_patrimoine, max_(rbg, 0))
@@ -1052,10 +1022,10 @@ class rng(Variable):
     def formula(foyer_fiscal, period, parameters):
         ''' Revenu net global (total 20) '''
         rbg = foyer_fiscal('rbg', period)
-        csg_deduc = foyer_fiscal('csg_deduc', period)
+        csg_patrimoine_deductible_ir = foyer_fiscal('csg_patrimoine_deductible_ir', period)
         charges_deduc = foyer_fiscal('charges_deduc', period)
 
-        return max_(0, rbg - csg_deduc - charges_deduc)
+        return max_(0, rbg - csg_patrimoine_deductible_ir - charges_deduc)
 
 
 class rni(Variable):
@@ -1284,7 +1254,7 @@ class ir_plaf_qf(Variable):
         residence_guadeloupe_martinique_reunion = (residence_fiscale_guadeloupe | residence_fiscale_martinique | residence_fiscale_reunion)
         residence_guyane_mayotte = (residence_fiscale_guyane | residence_fiscale_mayotte)
         residence_dom = (residence_guadeloupe_martinique_reunion | residence_guyane_mayotte)
-        
+
         abattement_dom = (
             residence_guadeloupe_martinique_reunion * min_(plafond_qf.abat_dom.plaf_GuadMarReu, plafond_qf.abat_dom.taux_GuadMarReu * impot_apres_reduction_complementaire)
             + residence_guyane_mayotte * min_(plafond_qf.abat_dom.plaf_GuyMay, plafond_qf.abat_dom.taux_GuyMay * impot_apres_reduction_complementaire)
@@ -1597,7 +1567,7 @@ class tax_rvcm_forfaitaire(Variable):
         return f2fa * P.taux_forfaitaire
 
 
-class plus_values(Variable):
+class taxation_plus_values_hors_bareme(Variable):
     value_type = float
     entity = FoyerFiscal
     label = u"Taxation forfaitaire des plus-values"
@@ -1654,7 +1624,7 @@ class plus_values(Variable):
         f3sf = foyer_fiscal.conjoint('f3vf', period)
         #  TODO: remove this todo use sum for all fields after checking
             # revenus taxés à un taux proportionnel
-        
+
         return round_(
             plus_values.pvce * rpns_pvce
             + plus_values.taux1 * max_(0, f3vg - f3vh)
@@ -1731,7 +1701,7 @@ class plus_values(Variable):
             + plus_values.taux_plus_values_bspce * f3sj
             + plus_values.taux_plus_values_bspce_conditionnel * f3sk
             )
-    
+
     def formula_2016_01_01(foyer_fiscal, period, parameters):
         """
         Taxation des plus values (hors bareme)
@@ -1885,23 +1855,23 @@ class iai(Variable):
         impôt avant imputation de l'irpp
         '''
         iaidrdi = foyer_fiscal('iaidrdi', period)
-        plus_values = foyer_fiscal('plus_values', period)
+        taxation_plus_values_hors_bareme = foyer_fiscal('taxation_plus_values_hors_bareme', period)
         cont_rev_loc = foyer_fiscal('cont_rev_loc', period)
         teicaa = foyer_fiscal('teicaa', period)
 
-        return iaidrdi + plus_values + cont_rev_loc + teicaa
+        return iaidrdi + taxation_plus_values_hors_bareme + cont_rev_loc + teicaa
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
         '''
         impôt avant imputation de l'irpp
         '''
         iaidrdi = foyer_fiscal('iaidrdi', period)
-        plus_values = foyer_fiscal('plus_values', period)
+        taxation_plus_values_hors_bareme = foyer_fiscal('taxation_plus_values_hors_bareme', period)
         cont_rev_loc = foyer_fiscal('cont_rev_loc', period)
         tax_rvcm_forfaitaire = foyer_fiscal('tax_rvcm_forfaitaire', period)
         teicaa = foyer_fiscal('teicaa', period)
 
-        return iaidrdi + plus_values + cont_rev_loc + tax_rvcm_forfaitaire + teicaa
+        return iaidrdi + taxation_plus_values_hors_bareme + cont_rev_loc + tax_rvcm_forfaitaire + teicaa
 
 
 class cehr(Variable):
@@ -1927,20 +1897,25 @@ class cehr(Variable):
 class irpp(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = u"Impôt sur le revenu des personnes physiques"
+    label = u"Impôt sur le revenu des personnes physiques restant à payer, après prise en compte des éventuels acomptes"
     reference = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_impot_revenu&espId=1&impot=IR&sfid=50"
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
         '''
         Montant après seuil de recouvrement (hors ppe)
+        NB : ce montant l'impôt correspond à une notion administrative :
+        dans certains cas, il existe des prélèvements à la source faisant
+        office d'acomptes d'impôt sur le revenu (cf. variable acomptes_ir). Ces acomptes sont comptabilisés
+        dans la feuille d'impôt comme des crédits d'impôt, mais correspondent économiquement à des montants d'impôt dus.
         '''
         iai = foyer_fiscal('iai', period)
         credits_impot = foyer_fiscal('credits_impot', period)
+        acomptes_ir = foyer_fiscal('acomptes_ir', period)
         cehr = foyer_fiscal('cehr', period)
         P = parameters(period).impot_revenu.recouvrement
 
-        pre_result = iai - credits_impot + cehr
+        pre_result = iai - credits_impot - acomptes_ir + cehr
 
         return (
             (iai > P.seuil) * (
@@ -1996,8 +1971,7 @@ class rfr(Variable):
         '''
         Revenu fiscal de référence
         '''
-        abattement_net_retraite_dirigeant_pme = foyer_fiscal('abattement_net_retraite_dirigeant_pme', period)
-        abattement_net_duree_detention = foyer_fiscal('abattement_net_duree_detention', period)
+        abattement_net_duree_detention_retraite_dirigeant_pme = foyer_fiscal('abattement_net_duree_detention_retraite_dirigeant_pme', period)
         f2dm = foyer_fiscal('f2dm', period)
         microentreprise = foyer_fiscal('microentreprise', period)
         revenus_capitaux_prelevement_liberatoire = foyer_fiscal('revenus_capitaux_prelevement_liberatoire', period, options = [ADD])
@@ -2015,8 +1989,7 @@ class rfr(Variable):
             max_(0, rni)
             + rfr_charges_deductibles + rfr_plus_values + rfr_rev_capitaux_mobiliers + revenus_capitaux_prelevement_liberatoire
             + rpns_exon + rpns_pvce
-            + abattement_net_retraite_dirigeant_pme
-            + abattement_net_duree_detention
+            + abattement_net_duree_detention_retraite_dirigeant_pme
             + f2dm + microentreprise
             )
 
@@ -2077,39 +2050,6 @@ class avoirs_credits_fiscaux(Variable):
         f2ab = foyer_fiscal('f2ab', period)
 
         return f2ab
-
-
-class imp_lib(Variable):
-    value_type = float
-    entity = FoyerFiscal
-    label = u"Prelèvement libératoire sur les revenus du capital"
-    reference = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&paf_dm=popup&paf_gm=content&typePage=cpr02&sfid=501&espId=1&impot=CS"
-    definition_period = YEAR
-    end = '2012-12-31'
-
-    def formula_2002_01_01(foyer_fiscal, period, parameters):
-        '''
-        Prelèvement libératoire sur les revenus du capital
-        '''
-        f2dh = foyer_fiscal('f2dh', period)
-        f2ee = foyer_fiscal('f2ee', period)
-        prelevement_liberatoire = parameters(period).impot_revenu.rvcm.prelevement_liberatoire
-
-        return -(prelevement_liberatoire.assvie * f2dh + prelevement_liberatoire.autre * f2ee)
-
-    def formula_2008_01_01(foyer_fiscal, period, parameters):
-        '''
-        Prelèvement libératoire sur les revenus du capital
-        '''
-        f2da = foyer_fiscal('f2da', period)
-        f2dh = foyer_fiscal('f2dh', period)
-        f2ee = foyer_fiscal('f2ee', period)
-        prelevement_liberatoire = parameters(period).impot_revenu.rvcm.prelevement_liberatoire
-
-        return (
-            -(prelevement_liberatoire.action * f2da + prelevement_liberatoire.autre * f2ee) \
-            - prelevement_liberatoire.assvie * f2dh
-            )
 
 
 class fon(Variable):

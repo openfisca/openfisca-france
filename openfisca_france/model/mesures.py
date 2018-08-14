@@ -57,12 +57,12 @@ class revenu_disponible(Variable):
     definition_period = YEAR
 
     def formula(menage, period, parameters):
-        pensions_i = menage.members('pensions', period)
-        revenus_du_capital_i = menage.members('revenus_du_capital', period)
-        revenus_du_travail_i = menage.members('revenus_du_travail', period)
-        pensions = menage.sum(pensions_i)
-        revenus_du_capital = menage.sum(revenus_du_capital_i)
-        revenus_du_travail = menage.sum(revenus_du_travail_i)
+        pensions_nettes_i = menage.members('pensions_nettes', period)
+        revenus_nets_du_capital_i = menage.members('revenus_nets_du_capital', period)
+        revenus_nets_du_travail_i = menage.members('revenus_nets_du_travail', period)
+        pensions_nettes = menage.sum(pensions_nettes_i)
+        revenus_nets_du_capital = menage.sum(revenus_nets_du_capital_i)
+        revenus_nets_du_travail = menage.sum(revenus_nets_du_travail_i)
 
         impots_directs = menage('impots_directs', period)
 
@@ -75,12 +75,12 @@ class revenu_disponible(Variable):
         prestations_sociales = menage.sum(prestations_sociales_i, role = Famille.DEMANDEUR)  # On somme seulement pour les demandeurs
 
         return (
-            revenus_du_travail
+            revenus_nets_du_travail
             + impots_directs
-            + pensions
+            + pensions_nettes
             + ppe
             + prestations_sociales
-            + revenus_du_capital
+            + revenus_nets_du_capital
             )
 
 
@@ -103,11 +103,11 @@ class revenu_net_individu(Variable):
     definition_period = YEAR
 
     def formula(individu, period):
-        pensions = individu('pensions', period)
-        revenus_du_capital = individu('revenus_du_capital', period)
-        revenus_du_travail = individu('revenus_du_travail', period)
+        pensions_nettes = individu('pensions_nettes', period)
+        revenus_nets_du_capital = individu('revenus_nets_du_capital', period)
+        revenus_nets_du_travail = individu('revenus_nets_du_travail', period)
 
-        return pensions + revenus_du_capital + revenus_du_travail
+        return pensions_nettes + revenus_nets_du_capital + revenus_nets_du_travail
 
 
 class revenu_net(Variable):
@@ -135,71 +135,10 @@ class niveau_de_vie_net(Variable):
         return revenu_net / uc
 
 
-class revenu_initial_individu(Variable):
+class revenus_nets_du_travail(Variable):
     value_type = float
     entity = Individu
-    label = u"Revenu initial de l'individu"
-    definition_period = YEAR
-
-    def formula(individu, period):
-        cotisations_employeur_contributives = individu('cotisations_employeur_contributives', period)
-        cotisations_salariales_contributives = individu('cotisations_salariales_contributives', period)
-        pensions = individu('pensions', period)
-        revenus_du_capital = individu('revenus_du_capital', period)
-        revenus_du_travail = individu('revenus_du_travail', period)
-
-        return (
-            revenus_du_travail
-            + pensions
-            + revenus_du_capital
-            - cotisations_employeur_contributives
-            - cotisations_salariales_contributives
-            )
-
-
-class revenu_initial(Variable):
-    entity = Menage
-    label = u"Revenu initial du ménage"
-    value_type = float
-    definition_period = YEAR
-
-    def formula(menage, period):
-        revenu_initial_individus = menage.members('revenu_initial_individu', period)
-        return menage.sum(revenu_initial_individus)
-
-
-class niveau_de_vie_initial(Variable):
-    value_type = float
-    entity = Menage
-    label = u"Niveau de vie initial du ménage"
-    definition_period = YEAR
-
-    def formula(menage, period):
-        revenu_initial = menage('revenu_initial', period)
-        uc = menage('unites_consommation', period)
-
-        return revenu_initial / uc
-
-
-class revenu_primaire(Variable):
-    value_type = float
-    entity = Menage
-    label = u"Revenu primaire du ménage (revenus superbruts avant tout prélèvement). Il est égal à la valeur ajoutée produite par les résidents."
-    definition_period = YEAR
-
-    def formula(individu, period):
-        revenus_du_travail = individu('revenus_du_travail', period)
-        revenus_du_capital = individu('revenus_du_capital', period)
-        cotisations_employeur = individu('cotisations_employeur', period)
-        cotisations_salariales = individu('cotisations_salariales', period)
-
-        return revenus_du_travail + revenus_du_capital - cotisations_employeur - cotisations_salariales - chomage_imposable
-
-
-class revenus_du_travail(Variable):
-    value_type = float
-    entity = Individu
-    label = u"Revenus du travail (salariés et non salariés)"
+    label = u"Revenus nets du travail (salariés et non salariés)"
     reference = "http://fr.wikipedia.org/wiki/Revenu_du_travail"
     definition_period = YEAR
 
@@ -210,7 +149,7 @@ class revenus_du_travail(Variable):
         return salaire_net + revenus_non_salaries
 
 
-class pensions(Variable):
+class pensions_nettes(Variable):
     value_type = float
     entity = Individu
     label = u"Pensions et revenus de remplacement"
@@ -239,58 +178,53 @@ class pensions(Variable):
             )
 
 
-class cotsoc_bar(Variable):
-    value_type = float
-    entity = FoyerFiscal
-    label = u"Cotisations sociales sur les revenus du capital imposés au barème"
-    definition_period = YEAR
-
-    def formula(foyer_fiscal, period):
-        csg_cap_bar = foyer_fiscal('csg_cap_bar', period)
-        prelsoc_cap_bar = foyer_fiscal('prelsoc_cap_bar', period)
-        crds_cap_bar = foyer_fiscal('crds_cap_bar', period)
-
-        return csg_cap_bar + prelsoc_cap_bar + crds_cap_bar
-
-
-class cotsoc_lib(Variable):
-    value_type = float
-    entity = FoyerFiscal
-    label = u"Cotisations sociales sur les revenus du capital soumis au prélèvement libératoire"
-    definition_period = YEAR
-
-    def formula(foyer_fiscal, period):
-        csg_cap_lib = foyer_fiscal('csg_cap_lib', period)
-        prelsoc_cap_lib = foyer_fiscal('prelsoc_cap_lib', period)
-        crds_cap_lib = foyer_fiscal('crds_cap_lib', period)
-
-        return csg_cap_lib + prelsoc_cap_lib + crds_cap_lib
-
-
-class revenus_du_capital(Variable):
+class revenus_nets_du_capital(Variable):
     value_type = float
     entity = Individu
-    label = u"Revenus du patrimoine"
+    label = u"Revenus du capital nets de prélèvements sociaux"
     reference = "http://fr.wikipedia.org/wiki/Revenu#Revenu_du_Capital"
     definition_period = YEAR
 
     def formula(individu, period):
+        '''
+        Attention : les formules des calculs des prélèvements sociaux sur revenus du capital avant 2013 n'ont pas été verrifiées et sont susceptibles de contenir des erreurs
+        Note : On part de l'assiette CSG sur les revenus du capital, à partir de
+        laquelle on fait les deux modifications ci-dessous :
+            (1) On enlève les rentes viagères à titre onéreux, qui sont dans cette
+                assiette CSG, mais sont déjà dans la variable pensions_nettes pour
+                le calcul du revenu disponible. De plus, le concept de rente foncière
+                retenu dans cette assiette était le montant après abattement, n'ayant
+                pas de fondement économique
+                Par conséquent, vu qu'on retranche la CSG sur les revenus du capital,
+                qui contient dans sa base les rentes viagèes à titre onéreux, cette variable
+                peut être négative
+            (2) On change de concept de revenu fonciers (pas le même traitement des abattements)
+        Cette variable est définie au niveau individuel : on projette les revenus du foyer fiscal
+        sur le déclarant principal
+        '''
 
-        # Revenus du foyer fiscal, que l'on projette uniquement sur le 1er déclarant
         foyer_fiscal = individu.foyer_fiscal
+        assiette_csg_revenus_capital = foyer_fiscal('assiette_csg_revenus_capital', period)
+        rev_cat_rfon = foyer_fiscal('rev_cat_rfon', period)
+        rente_viagere_titre_onereux_net = foyer_fiscal('rente_viagere_titre_onereux_net', period)
         fon = foyer_fiscal('fon', period)
-        revenus_capitaux_prelevement_bareme = foyer_fiscal('revenus_capitaux_prelevement_bareme', period, options = [ADD])
-        cotsoc_lib = foyer_fiscal('cotsoc_lib', period)
-        revenus_capitaux_prelevement_liberatoire = foyer_fiscal('revenus_capitaux_prelevement_liberatoire', period, options = [ADD])
-        imp_lib = foyer_fiscal('imp_lib', period)
-        cotsoc_bar = foyer_fiscal('cotsoc_bar', period)
 
-        revenus_foyer_fiscal = fon + revenus_capitaux_prelevement_bareme + cotsoc_lib + revenus_capitaux_prelevement_liberatoire + imp_lib + cotsoc_bar
+        revenus_du_capital_cap_avant_prelevements_sociaux = (
+            assiette_csg_revenus_capital
+            - rev_cat_rfon
+            + fon
+            - rente_viagere_titre_onereux_net
+            )
+
+        prelevements_sociaux_revenus_capital = foyer_fiscal('prelevements_sociaux_revenus_capital', period)
+
+        revenus_foyer_fiscal = (
+            revenus_du_capital_cap_avant_prelevements_sociaux
+            + prelevements_sociaux_revenus_capital
+            )
         revenus_foyer_fiscal_projetes = revenus_foyer_fiscal * individu.has_role(foyer_fiscal.DECLARANT_PRINCIPAL)
 
-        rac = individu('rac', period)
-
-        return revenus_foyer_fiscal_projetes + rac
+        return revenus_foyer_fiscal_projetes
 
 
 class prestations_sociales(Variable):
@@ -381,6 +315,32 @@ class aides_logement(Variable):
         return apl + als + alf + crds_logement
 
 
+class irpp_economique(Variable):
+    value_type = float
+    entity = FoyerFiscal
+    label = u"Notion économique de l'IRPP"
+    definition_period = YEAR
+
+    def formula(foyer_fiscal, period, parameters):
+        '''
+        Cette variable d'IRPP comptabilise dans les montants
+        d'imposition les acomptes qui, dans la déclaration fiscale, sont considérés comme des crédits
+        d'impôt. Ajouter ces acomptes au montant "administratif" d'impôt correspond donc au "véritable impôt"
+        payé en totalité, alors que la variable 'irpp' correspond à une notion administrative.
+        Exemple :
+        Certains revenus du capital sont soumis à un prélèvement forfaitaire à la source non libératoire,
+        faisant office d'acompte. Puis, l'impôt au barème sur ces revenus est calculé, et confronté à l'acompte.
+        Cet acompte, est en case 2CK, et considéré comme un crédit d'impôt. Retrancher de l'impôt au barème ce
+        crédit permet d'obtenir l'impôt dû suite à la déclaration de revenus, qui correspond à la variable 'irpp'.
+        Cette notion est administrative. L'impôt total payé correspond à cette notion administrative, augmentée des acomptes.
+        '''
+        irpp = foyer_fiscal('irpp', period)
+        acomptes_ir = foyer_fiscal('acomptes_ir', period)
+
+        return irpp - acomptes_ir # Car par convention, irpp est un montant négatif et acomptes_ir un montant positif
+
+
+
 class impots_directs(Variable):
     value_type = float
     entity = Menage
@@ -391,157 +351,18 @@ class impots_directs(Variable):
     def formula(menage, period, parameters):
         taxe_habitation = menage('taxe_habitation', period)
 
-        # On projette comme pour PPE dans revenu_disponible
-        irpp_i = menage.members.foyer_fiscal('irpp', period)
-        irpp = menage.sum(irpp_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
+        # On prend en compte l'IR des foyers fiscaux dont le déclarant principal est dans le ménage
+        irpp_eco_i = menage.members.foyer_fiscal('irpp_economique', period)
+        irpp_eco = menage.sum(irpp_eco_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
 
-        return irpp + taxe_habitation
+        # On prend en compte le PFL des foyers fiscaux dont le déclarant principal est dans le ménage
+        prelevement_forfaitaire_liberatoire_i = menage.members.foyer_fiscal('prelevement_forfaitaire_liberatoire', period)
+        prelevement_forfaitaire_liberatoire = menage.sum(prelevement_forfaitaire_liberatoire_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
 
+        # On comptabilise ir_pv_immo ici directement, et non pas dans la variable 'irpp', car administrativement, cet impôt n'est pas dans l'irpp, et n'est déclaré dans le formulaire 2042C que pour calculer le revenu fiscal de référence. On colle à la définition administrative, afin d'avoir une variable 'irpp' qui soit comparable à l'IR du simulateur en ligne de la DGFiP
+        # On prend en compte l'IR sur PV immobilières des foyers fiscaux dont le déclarant principal est dans le ménage
+        ir_pv_immo_i = menage.members.foyer_fiscal('ir_pv_immo', period)
+        ir_pv_immo = menage.sum(ir_pv_immo_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
 
-class crds(Variable):
-    value_type = float
-    entity = Individu
-    label = u"Contributions au remboursement de la dette sociale"
-    definition_period = YEAR
+        return irpp_eco + taxe_habitation + prelevement_forfaitaire_liberatoire + ir_pv_immo
 
-    def formula(individu, period):
-        # CRDS sur revenus individuels
-        crds_salaire = individu('crds_salaire', period, options = [ADD])
-        crds_retraite = individu('crds_retraite', period, options = [ADD])
-        crds_chomage = individu('crds_chomage', period, options = [ADD])
-        crds_individu = crds_salaire + crds_retraite + crds_chomage
-        # CRDS sur revenus de la famille, projetés seulement sur la première personne
-        crds_pfam = individu.famille('crds_pfam', period)
-        crds_logement = individu.famille('crds_logement', period, options = [ADD])
-        crds_mini = individu.famille('crds_mini', period, options = [ADD])
-        crds_famille = crds_pfam + crds_logement + crds_mini
-        crds_famille_projetes = crds_famille * individu.has_role(Famille.DEMANDEUR)
-        # CRDS sur revenus du foyer fiscal, projetés seulement sur la première personne
-        crds_fon = individu.foyer_fiscal('crds_fon', period)
-        crds_pv_mo = individu.foyer_fiscal('crds_pv_mo', period)
-        crds_pv_immo = individu.foyer_fiscal('crds_pv_immo', period)
-        crds_cap_bar = individu.foyer_fiscal('crds_cap_bar', period)
-        crds_cap_lib = individu.foyer_fiscal('crds_cap_lib', period)
-        crds_foyer_fiscal = crds_fon + crds_pv_mo + crds_pv_immo + crds_cap_bar + crds_cap_lib
-        crds_foyer_fiscal_projetee = crds_foyer_fiscal * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
-        return crds_individu + crds_famille_projetes + crds_foyer_fiscal_projetee
-
-
-class csg(Variable):
-    value_type = float
-    entity = Individu
-    label = u"Contribution sociale généralisée"
-    definition_period = YEAR
-
-    def formula(individu, period):
-        csg_imposable_salaire = individu('csg_imposable_salaire', period, options = [ADD])
-        csg_deductible_salaire = individu('csg_deductible_salaire', period, options = [ADD])
-        csg_imposable_chomage = individu('csg_imposable_chomage', period, options = [ADD])
-        csg_deductible_chomage = individu('csg_deductible_chomage', period, options = [ADD])
-        csg_imposable_retraite = individu('csg_imposable_retraite', period, options = [ADD])
-        csg_deductible_retraite = individu('csg_deductible_retraite', period, options = [ADD])
-        # CSG prélevée sur les revenus du foyer fiscal, projetés seulement sur la première personne
-        csg_fon = individu.foyer_fiscal('csg_fon', period)
-        csg_cap_lib = individu.foyer_fiscal('csg_cap_lib', period)
-        csg_cap_bar = individu.foyer_fiscal('csg_cap_bar', period)
-        csg_pv_mo = individu.foyer_fiscal('csg_pv_mo', period)
-        csg_pv_immo = individu.foyer_fiscal('csg_pv_immo', period)
-        csg_foyer_fiscal = csg_fon + csg_cap_lib + csg_cap_bar + csg_pv_mo + csg_pv_immo
-        csg_foyer_fiscal_projetee = csg_foyer_fiscal * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
-
-        return (
-            csg_imposable_salaire
-            + csg_deductible_salaire
-            + csg_imposable_chomage
-            + csg_deductible_chomage
-            + csg_imposable_retraite
-            + csg_deductible_retraite
-            + csg_foyer_fiscal_projetee
-            )
-
-
-class cotisations_non_contributives(Variable):
-    value_type = float
-    entity = Individu
-    label = u"Cotisations sociales non contributives"
-    definition_period = YEAR
-
-    def formula(individu, period):
-        cotisations_employeur_non_contributives = individu('cotisations_employeur_non_contributives',
-            period, options = [ADD])
-        cotisations_salariales_non_contributives = individu('cotisations_salariales_non_contributives',
-            period, options = [ADD])
-
-        return cotisations_employeur_non_contributives + cotisations_salariales_non_contributives
-
-
-class prelsoc_cap(Variable):
-    value_type = float
-    entity = Individu
-    label = u"Prélèvements sociaux sur les revenus du capital"
-    reference = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&paf_dm=popup&paf_gm=content&typePage=cpr02&sfid=501&espId=1&impot=CS"
-    definition_period = YEAR
-
-    def formula(individu, period):
-        # Prélevements effectués sur les revenus du foyer fiscal
-        prelsoc_fon = individu.foyer_fiscal('prelsoc_fon', period)
-        prelsoc_cap_lib = individu.foyer_fiscal('prelsoc_cap_lib', period)
-        prelsoc_cap_bar = individu.foyer_fiscal('prelsoc_cap_bar', period)
-        prelsoc_pv_mo = individu.foyer_fiscal('prelsoc_pv_mo', period)
-        prelsoc_pv_immo = individu.foyer_fiscal('prelsoc_pv_immo', period)
-        prel_foyer_fiscal = prelsoc_fon + prelsoc_cap_lib + prelsoc_cap_bar + prelsoc_pv_mo + prelsoc_pv_immo
-
-        return prel_foyer_fiscal * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
-
-
-class check_csk(Variable):
-    value_type = float
-    entity = Menage
-    label = u"check_csk"
-    definition_period = YEAR
-
-    def formula(menage, period):
-
-        # Prélevements effectués sur les revenus des foyers fiscaux, projetés sur les déclarants principaux
-        prelsoc_cap_bar = menage.members.foyer_fiscal('prelsoc_cap_bar', period)
-        prelsoc_pv_mo = menage.members.foyer_fiscal('prelsoc_pv_mo', period)
-        prelsoc_fon = menage.members.foyer_fiscal('prelsoc_fon', period)
-
-        prel_foyer_fiscal_i = (prelsoc_cap_bar + prelsoc_pv_mo + prelsoc_fon) * menage.members.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
-
-        return menage.sum(prel_foyer_fiscal_i)
-
-
-class check_csg(Variable):
-    value_type = float
-    entity = Menage
-    label = u"check_csg"
-    definition_period = YEAR
-
-    def formula(menage, period):
-
-        # CSG prélevée sur les revenus des foyers fiscaux, projetée sur les déclarants principaux
-        csg_cap_bar = menage.members.foyer_fiscal('csg_cap_bar', periop)
-        csg_pv_mo = menage.members.foyer_fiscal('csg_pv_mo', periop)
-        csg_fon = menage.members.foyer_fiscal('csg_fon', periop)
-
-        csg_foyer_fiscal_i = (csg_cap_bar + csg_pv_mo + csg_fon) * menage.members.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
-
-        return menage.sum(csg_foyer_fiscal_i)
-
-
-class check_crds(Variable):
-    value_type = float
-    entity = Menage
-    label = u"check_crds"
-    definition_period = YEAR
-
-    def formula(menage, period):
-        # CRDS prélevée sur les revenus des foyers fiscaux, projetée sur les déclarants principaux
-        crds_pv_mo = menage.members.foyer_fiscal('crds_pv_mo', period)
-        crds_fon = menage.members.foyer_fiscal('crds_fon', period)
-        crds_cap_bar = menage.members.foyer_fiscal('crds_cap_bar', period)
-
-        crds_foyer_fiscal_i = (crds_pv_mo + crds_fon + crds_cap_bar) * menage.members.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
-
-        return menage.sum(crds_foyer_fiscal_i)

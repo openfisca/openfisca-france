@@ -23,6 +23,13 @@ class f2dh(Variable):
     label = u"Produits d’assurance-vie et de capitalisation soumis au prélèvement libératoire de 7.5 %"
     definition_period = YEAR
 
+    def formula_2013_01_01(foyer_fiscal, period):
+        assurance_vie_pl_non_anonyme_plus8ans_depuis1990 = foyer_fiscal('assurance_vie_pl_non_anonyme_plus8ans_depuis1990', period)
+        assurance_vie_pl_non_anonyme_plus6ans_avant1990 = foyer_fiscal('assurance_vie_pl_non_anonyme_plus6ans_avant1990', period)
+
+        return assurance_vie_pl_non_anonyme_plus8ans_depuis1990 + assurance_vie_pl_non_anonyme_plus6ans_avant1990
+
+
 class f2ee(Variable):
     cerfa_field = u"2EE"
     value_type = int
@@ -30,6 +37,22 @@ class f2ee(Variable):
     entity = FoyerFiscal
     label = u"Autres produits de placement soumis aux prélèvements libératoires"
     definition_period = YEAR
+
+    def formula_2013_01_01(foyer_fiscal, period):
+        assurance_vie_pl_non_anonyme_moins4ans_depuis1990 = foyer_fiscal('assurance_vie_pl_non_anonyme_moins4ans_depuis1990', period)
+        assurance_vie_pl_non_anonyme_4_8_ans_depuis1990 = foyer_fiscal('assurance_vie_pl_non_anonyme_4_8_ans_depuis1990', period)
+        assurance_vie_pl_anonyme = foyer_fiscal('assurance_vie_pl_anonyme', period)
+        produit_epargne_solidaire = foyer_fiscal('produit_epargne_solidaire', period)
+        produit_etats_non_cooperatif = foyer_fiscal('produit_etats_non_cooperatif', period)
+
+        return (
+            assurance_vie_pl_non_anonyme_moins4ans_depuis1990
+            + assurance_vie_pl_non_anonyme_4_8_ans_depuis1990
+            + assurance_vie_pl_anonyme
+            + produit_epargne_solidaire
+            + produit_etats_non_cooperatif
+            )
+
 
 # revenus des valeurs et capitaux mobiliers ouvrant droit à abattement
 class f2dc(Variable):
@@ -271,6 +294,7 @@ class livret_a(Variable):
 
 
 class epargne_revenus_non_imposables(Variable):
+    """ NB : cette variable est définie indépendemment de interets_plan_epargne_logement et de interets_compte_epargne_logement """
     value_type = float
     entity = Individu
     base_function = requested_period_last_value
@@ -323,6 +347,20 @@ class revenus_capitaux_prelevement_bareme(Variable):
 
         return (f2dc + f2ch + f2ts + f2go * majoration_revenus_reputes_distribues + f2tr + f2fu - avoirs_credits_fiscaux) / 12
 
+    def formula_2016_01_01(foyer_fiscal, period, parameters):
+        year = period.this_year
+        f2dc = foyer_fiscal('f2dc', year)
+        f2ch = foyer_fiscal('f2ch', year)
+        f2ts = foyer_fiscal('f2ts', year)
+        f2go = foyer_fiscal('f2go', year)
+        f2tr = foyer_fiscal('f2tr', year)
+        f2fu = foyer_fiscal('f2fu', year)
+        f2tt = foyer_fiscal('f2tt', year)
+        avoirs_credits_fiscaux = foyer_fiscal('avoirs_credits_fiscaux', year)
+        majoration_revenus_reputes_distribues = parameters(period).impot_revenu.rvcm.majoration_revenus_reputes_distribues
+
+        return (f2dc + f2ch + f2ts + f2go * majoration_revenus_reputes_distribues + f2tr + f2fu + f2tt - avoirs_credits_fiscaux) / 12
+
 
 class revenus_capitaux_prelevement_liberatoire(Variable):
     value_type = float
@@ -342,7 +380,7 @@ class revenus_capitaux_prelevement_liberatoire(Variable):
         f2da = foyer_fiscal('f2da', period.this_year)
         f2dh = foyer_fiscal('f2dh', period.this_year)
         f2ee = foyer_fiscal('f2ee', period.this_year)
-        
+
         return (f2da + f2dh + f2ee) / 12
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):

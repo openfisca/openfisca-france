@@ -5,9 +5,9 @@
   input_variables:
     f2dc: 20000
   output_variables:
-    prelsoc_cap_bar: -1360
-    csg_cap_bar: -1640
-    crds_cap_bar: -100
+    prelevements_sociaux_revenus_capital_hors_csg_crds: -1360
+    csg_revenus_capital: -1640
+    crds_revenus_capital: -100
     ir_plaf_qf: 330
     irpp: -0
 
@@ -18,9 +18,9 @@
   input_variables:
     f2fu: 20000
   output_variables:
-    prelsoc_cap_bar: -1360
-    csg_cap_bar: -1640
-    crds_cap_bar: -100
+    prelevements_sociaux_revenus_capital_hors_csg_crds: -1360
+    csg_revenus_capital: -1640
+    crds_revenus_capital: -100
     ir_plaf_qf: 330
     irpp: -0
 
@@ -32,9 +32,9 @@
     f2go: 20000
   output_variables:
     rev_cat_rvcm: 25000
-    prelsoc_cap_bar: -1700
-    csg_cap_bar: -2050
-    crds_cap_bar: -125
+    prelevements_sociaux_revenus_capital_hors_csg_crds: -1700
+    csg_revenus_capital: -2050
+    crds_revenus_capital: -125
     ir_plaf_qf: 2150
     irpp: -2150
 
@@ -46,9 +46,9 @@
     f2ts: 20000
   output_variables:
     rev_cat_rvcm: 20000
-    prelsoc_cap_bar: -1360
-    csg_cap_bar: -1640
-    crds_cap_bar: -100
+    prelevements_sociaux_revenus_capital_hors_csg_crds: -1360
+    csg_revenus_capital: -1640
+    crds_revenus_capital: -100
     ir_plaf_qf: 1450
     irpp: -1450
 
@@ -60,22 +60,22 @@
     f2tr: 20000
   output_variables:
     rev_cat_rvcm: 20000
-    prelsoc_cap_bar: -1360
-    csg_cap_bar: -1640
-    crds_cap_bar: -100
+    prelevements_sociaux_revenus_capital_hors_csg_crds: -1360
+    csg_revenus_capital: -1640
+    crds_revenus_capital: -100
     ir_plaf_qf: 1450
     irpp: -1450
 
-- name: "f4ba_2012"
+- name: "f4ba_2011"
   description: Montant des cotisations sociales sur des revenus fonciers imposables de 20000 euros en 2012
-  period: 2012
+  period: 2011
   absolute_error_margin: 1
   input_variables:
     f4ba: 20000
   output_variables:
-    prelsoc_fon: -(4.5 + 2 + 0.3) * 0.01 * 20000
-    csg_fon: -.082 * 20000
-    crds_fon: -.005 * 20000
+    prelevements_sociaux_revenus_capital_hors_csg_crds: -(2.2 + 1.1 + 0.3) * 0.01 * 20000
+    csg_revenus_capital: -.082 * 20000
+    crds_revenus_capital: -.005 * 20000
     irpp: -1461
 
 - name: "f4ba_2010"
@@ -85,20 +85,20 @@
   input_variables:
     f4ba: 20000
   output_variables:
-    prelsoc_fon: -(2.2 + 1.1 + 0.3) * 0.01 * 20000
-    csg_fon: -.082 * 20000
-    crds_fon: -.005 * 20000
+    prelevements_sociaux_revenus_capital_hors_csg_crds: -(2.2 + 1.1 + 0.3) * 0.01 * 20000
+    csg_revenus_capital: -.082 * 20000
+    crds_revenus_capital: -.005 * 20000
 
-- name: "f3vg _2012"
+- name: "f3vg _2011"
   description: Montant des cotisations sociales sur des plus-value imposable sur gains de cession de valeurs mobilières, de droits sociaux et gains assimilés de 20000 euros en 2012
-  period: 2012
+  period: 2011
   absolute_error_margin: 1
   input_variables:
     f3vg: 20000
   output_variables:
-    prelsoc_pv_mo: -(4.5 + 2 + 0.3) * 0.01 * 20000
-    csg_pv_mo: -.082 * 20000
-    crds_pv_mo: -.005 * 20000
+    prelevements_sociaux_revenus_capital_hors_csg_crds: -(2.2 + 1.1 + 0.3) * 0.01 * 20000
+    csg_revenus_capital: -.082 * 20000
+    crds_revenus_capital: -.005 * 20000
 
 - name: "f3vg _2010"
   description: Montant des cotisations sociales sur des plus-value imposable sur gains de cession de valeurs mobilières, de droits sociaux et gains assimilés de 20000 euros en 2010
@@ -107,9 +107,9 @@
   input_variables:
     f3vg: 20000
   output_variables:
-    prelsoc_pv_mo: -(2.2 + 1.1 + 0.3) * 0.01 * 20000
-    csg_pv_mo: -.082 * 20000
-    crds_pv_mo: -.005 * 20000
+    prelevements_sociaux_revenus_capital_hors_csg_crds: -(2.2 + 1.1 + 0.3) * 0.01 * 20000
+    csg_revenus_capital: -.082 * 20000
+    crds_revenus_capital: -.005 * 20000
 
 - name: "f3vg _2006"
   description: Montant des cotisations sociales sur des plus-value imposable sur gains de cession de valeurs mobilières, de droits sociaux et gains assimilés de 20000 euros en 2006
@@ -118,29 +118,31 @@
   input_variables:
     f3vg: 20000
   output_variables:
-    prelsoc_pv_mo: -460
-    csg_pv_mo: -1640
-    crds_pv_mo: -100
+    prelevements_sociaux_revenus_capital_hors_csg_crds: -460
+    csg_revenus_capital: -1640
+    crds_revenus_capital: -100
 
-- name: "f3vz_2012"
+- name: "f3vz_2011"
   description: Montant des cotisations sociales sur des plus-values imposables sur cessions d’immeubles ou de biens meubles de 20000 euros en 2012
-  period: 2012
+  period: 2011
+  absolute_error_margin: 1
   input_variables:
     f3vz: 20000
   output_variables:
-    prelsoc_pv_immo: -(4.5 + 2 + 0.3) * 0.01 * 20000
-    csg_pv_immo: -.082 * 20000
-    crds_pv_immo: -.005 * 20000
+    prelevements_sociaux_revenus_capital_hors_csg_crds: -(2.2 + 1.1 + 0.3) * 0.01 * 20000
+    csg_revenus_capital: -.082 * 20000
+    crds_revenus_capital: -.005 * 20000
 
 - name: "f3vz_2010"
   description: Montant des cotisations sociales sur des plus-values imposables sur cessions d’immeubles ou de biens meubles de 20000 euros en 2010
   period: 2010
+  absolute_error_margin: 1
   input_variables:
     f3vz: 20000
   output_variables:
-    prelsoc_pv_immo: -(2.2 + 1.1 + 0.3) * 0.01 * 20000
-    csg_pv_immo: -.082 * 20000
-    crds_pv_immo: -.005 * 20000
+    prelevements_sociaux_revenus_capital_hors_csg_crds: -(2.2 + 1.1 + 0.3) * 0.01 * 20000
+    csg_revenus_capital: -.082 * 20000
+    crds_revenus_capital: -.005 * 20000
 
 - name: "f2dc_f2ca_2013"
   description: Montant des cotisations sociales sur des revenus des actions et parts donnant droit à abattement de 20000 euros et des frais et charges déductibles de 5000 euros en 2013
@@ -150,9 +152,9 @@
     f2dc: 20000
     f2ca: 5000
   output_variables:
-    csg_cap_bar: -1640
-    crds_cap_bar: -100
-    prelsoc_cap_bar: -1360
+    csg_revenus_capital: -1640
+    crds_revenus_capital: -100
+    prelevements_sociaux_revenus_capital_hors_csg_crds: -1360
     rev_cat_rvcm: 7000
     irpp: -0
 
@@ -166,8 +168,93 @@
     f4bc: 1000
     f4bd: 1000
   output_variables:
-    csg_fon: -1394
-    crds_fon: -85
-    prelsoc_fon: -391
+    csg_revenus_capital: -1394
+    crds_revenus_capital: -85
+    prelevements_sociaux_revenus_capital_hors_csg_crds: -391
     rev_cat_rfon: 17000
     irpp: -1119
+
+
+- name: "ps_rev_exon_ir_2016"
+  description: Montant de prélèvements sociaux sur revenus exonérés d'impôt sur le revenus en 2016
+  period: 2016
+  absolute_error_margin: 0.5
+  input_variables:
+    interets_plan_epargne_logement: 10000
+    interets_compte_epargne_logement: 10000
+    assurance_vie_ps_exoneree_irpp_pl: 10000
+  output_variables:
+    prelevements_sociaux_revenus_capital: -(10000 + 10000 + 10000) * (0.045 + 0.02 + 0.003 + 0.005 + 0.082)
+
+- name: "ps_plus_values_f3vg_2013"
+  description: Montant de prélèvements sociaux sur plus-values (3VG) en 2013
+  period: 2013
+  absolute_error_margin: 0.5
+  input_variables:
+    f3vg: 10000
+  output_variables:
+    prelevements_sociaux_revenus_capital: -10000 * (0.045 + 0.02 + 0.003 + 0.005 + 0.082)
+
+- name: "ps_plus_values_f3vg_2015"
+  description: Montant de prélèvements sociaux sur plus-values (3VG) en 2015
+  period: 2015
+  absolute_error_margin: 0.5
+  input_variables:
+    f3vg: 10000
+  output_variables:
+    prelevements_sociaux_revenus_capital: -10000 * (0.045 + 0.02 + 0.003 + 0.005 + 0.082)
+
+- name: "ps_plus_values_f3vg_2017"
+  description: Montant de prélèvements sociaux sur plus-values (3VG) en 2017
+  period: 2017
+  absolute_error_margin: 0.5
+  input_variables:
+    f3vg: 10000
+  output_variables:
+    prelevements_sociaux_revenus_capital: -10000 * (0.045 + 0.02 + 0.003 + 0.005 + 0.099)
+
+- name: "ps_revcap_bareme_f2dc_2013"
+  description: Montant de prélèvements sociaux sur revenus du capital soumis au barème (2DC) en 2013
+  period: 2013
+  absolute_error_margin: 0.5
+  input_variables:
+    f2dc: 10000
+  output_variables:
+    prelevements_sociaux_revenus_capital: -10000 * (0.045 + 0.02 + 0.003 + 0.005 + 0.082)
+
+- name: "ps_revcap_bareme_f2dc_2016"
+  description: Montant de prélèvements sociaux sur revenus du capital soumis au barème (2DC) en 2016
+  period: 2016
+  absolute_error_margin: 0.5
+  input_variables:
+    f2dc: 10000
+  output_variables:
+    prelevements_sociaux_revenus_capital: -10000 * (0.045 + 0.02 + 0.003 + 0.005 + 0.082)
+
+- name: "ps_revcap_bareme_f2dh_2013"
+  description: Montant de prélèvements sociaux sur revenus du capital soumis au prélèvement forfaitaire libératoire (2DH) en 2013
+  period: 2013
+  absolute_error_margin: 1
+  input_variables:
+    f2dh: 10000
+  output_variables:
+    prelevements_sociaux_revenus_capital: -10000 * (0.045 + 0.02 + 0.003 + 0.005 + 0.082)
+
+- name: "ps_f1aw_2013"
+  description: Montant de prélèvements sociaux sur rentes viagères à titre onéreux (1AW) en 2013
+  period: 2013
+  absolute_error_margin: 1
+  input_variables:
+    f1aw: 10000
+  output_variables:
+    prelevements_sociaux_revenus_capital: -10000 * 0.7 * (0.045 + 0.02 + 0.003 + 0.005 + 0.082)
+
+- name: "ps_f4ba_2013"
+  description: Montant de prélèvements sociaux sur revenus fonciers (4BA) en 2013
+  period: 2013
+  absolute_error_margin: 1
+  input_variables:
+    f4ba: 10000
+  output_variables:
+    prelevements_sociaux_revenus_capital: -10000 * (0.045 + 0.02 + 0.003 + 0.005 + 0.082)
+

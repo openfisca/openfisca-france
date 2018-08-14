@@ -209,3 +209,17 @@ titres_de_creances_negociables_billets_de_tresorerie_certificats_de_depots_negoc
       value: 0.19
     2012-01-01:
       value: 0.24
+produits_epargne_solidaire_partage:
+  reference: ipp
+  unit: /1
+  values:
+    2008-01-01:
+      value: 0.05
+produits_vers_etats_non_cooperatifs:
+  reference: ipp
+  unit: /1
+  values:
+    2010-01-01:
+      value: 0.5
+    2013-01-01:
+      value: 0.75

@@ -1,5 +1,7 @@
 reference: ipp
 unit: /1
 values:
+  1945-01-01:
+    value: 0.0
   2012-01-01:
     value: 0.02

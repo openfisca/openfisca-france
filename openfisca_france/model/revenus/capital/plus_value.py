@@ -231,8 +231,14 @@ class f3we(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Plus-values en report d'imposition : complément de prix perçu cette année"
+    label = u"Plus-values en report d'imposition au sens de l'art. 150-0 D bis du CGI"
     definition_period = YEAR
+#    '''
+#    Plus-values en report d'imposition au sens de l'art. 150-0 D bis du CGI :
+#    Jusqu'aux revenus de 2013 : montants nets réalisés pendant l'année
+#    Pour les revenus 2014 : complément net de prix perçu pendant l'année (car fin du dispositif)
+#    Depuis les revenus 2015 : complément brut de prix perçu pendant l'année (l'abattement n'est plus recensé dans les cases 3SG et 3SL)
+#    '''
 
 
 class f3wn(Variable):
@@ -249,7 +255,7 @@ class f3wp(Variable):
     cerfa_field = u"3WP"
     value_type = int
     unit = 'currency'
-    entity = FoyerFiscal    
+    entity = FoyerFiscal
     label = u"Plus-values en report d'imposition dont le report a expiré cette année, réalisées à compter du 1.1.2013 : plus-values après abattement"
     # start_date = date(2016, 1, 1)
     definition_period = YEAR
@@ -288,7 +294,7 @@ class f3va_2014(Variable):
     definition_period = YEAR
 
 
-class f3va(Variable):
+class f3va_2016(Variable):
     cerfa_field = {
         0: u"3VA",
         1: u"3VB",
@@ -300,6 +306,15 @@ class f3va(Variable):
     entity = Individu
     label = u"Abattements nets (abattement pour durée de détention renforcé et abattement fixe spécial) appliqués sur des plus-values réalisées par les dirigeants de PME lors de leur départ à la retraite"
     # start_date = date(2015, 1, 1)
+    end = '2016-12-31'
+    definition_period = YEAR
+
+class f3va(Variable):
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Abattement fixe spécial appliqué sur des plus-values réalisées par les dirigeants de PME lors de leur départ à la retraite"
+    # start_date = date(2017, 1, 1)
     definition_period = YEAR
 
 
@@ -314,12 +329,13 @@ class f3vb(Variable):
     definition_period = YEAR
 
 
+
 class f3sg(Variable):
     cerfa_field = u"3SG"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Abattement net pour durée de détention : appliqué sur des plus-values"
+    label = u"Abattement net pour durée de détention (détention de droit commun à partir de 2015) : appliqué sur des plus-values"
     # start_date = date(2013, 1, 1)
     definition_period = YEAR
 
@@ -356,32 +372,12 @@ class f3sm(Variable):
     definition_period = YEAR
 
 
-class abattement_net_retraite_dirigeant_pme(Variable):
-    value_type = int
-    unit = 'currency'
-    entity = FoyerFiscal
-    reference = u"http://bofip.impots.gouv.fr/bofip/2894-PGP"
-    label = u"Abattement net pour durée de détention des titres en cas de départ à la retraite d'un dirigeant"
-    definition_period = YEAR
-
-    def formula_2006_01_01(foyer_fiscal, period):
-        f3va = foyer_fiscal('f3va_2014', period)
-        f3vb = foyer_fiscal('f3vb', period)
-
-        return f3va - f3vb
-
-    def formula_2015_01_01(foyer_fiscal, period):
-        f3va_i = foyer_fiscal.members('f3va', period)
-        f3va = foyer_fiscal.sum(f3va_i)
-
-        return f3va
-
-class abattement_net_duree_detention(Variable):
+class abattement_net_duree_detention_retraite_dirigeant_pme(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     reference = u"http://bofip.impots.gouv.fr/bofip/9540-PGP"
-    label = u"Abattement net pour durée de détention (de droit commun et renforcé)"
+    label = u"Abattement net pour durée de détention de droit commun, renforcé, et abattement en cas de départ à la retraite d'un dirigeant de PME (abattement fixe et pour durée de détention)"
     definition_period = YEAR
 
     def formula_2013_01_01(foyer_fiscal, period):
@@ -389,14 +385,25 @@ class abattement_net_duree_detention(Variable):
         f3sh = foyer_fiscal('f3sh', period)
         f3sl = foyer_fiscal('f3sl', period)
         f3sm = foyer_fiscal('f3sm', period)
+        f3va = foyer_fiscal('f3va_2014', period)
+        f3vb = foyer_fiscal('f3vb', period)
 
-        return max_(0, f3sg - f3sh) + max_(0, f3sl - f3sm)
+        return max_(0, f3sg - f3sh) + max_(0, f3sl - f3sm) + f3va - f3vb
 
     def formula_2015_01_01(foyer_fiscal, period):
         f3sg = foyer_fiscal('f3sg', period)
         f3sl = foyer_fiscal('f3sl', period)
+        f3va_i = foyer_fiscal.members('f3va_2016', period)
+        f3va = foyer_fiscal.sum(f3va_i)
 
-        return f3sg + f3sl
+        return f3sg + f3sl + f3va
+
+    def formula_2017_01_01(foyer_fiscal, period):
+        f3sg = foyer_fiscal('f3sg', period)
+        f3sl = foyer_fiscal('f3sl', period)
+        f3va = foyer_fiscal('f3va', period)
+
+        return f3sg + f3sl + f3va
 
 
 # Plus values et gains taxables à des taux forfaitaires
@@ -533,4 +540,11 @@ class f3vu(Variable):
     value_type = int
     entity = FoyerFiscal
     end = '2009-12-31'
+    definition_period = YEAR
+
+class f3ua(Variable):
+    """ Cette case existait avant 2017, mais les montants qui y étaient indiqués étaient également indiqués case 3VG """
+    value_type = float
+    entity = FoyerFiscal
+    # start_date = date(2017, 1, 1)
     definition_period = YEAR

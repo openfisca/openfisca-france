@@ -476,18 +476,16 @@ class tot_impot(Variable):
         isf_avant_plaf = foyer_fiscal('isf_avant_plaf', period)
         crds_i = foyer_fiscal.members('crds', period)
         csg_i = foyer_fiscal.members('csg', period)
-        prelsoc_cap_i = foyer_fiscal.members('prelsoc_cap', period)
-
         crds = foyer_fiscal.sum(crds_i, role = FoyerFiscal.DECLARANT)
         csg = foyer_fiscal.sum(csg_i, role = FoyerFiscal.DECLARANT)
-        prelsoc_cap = foyer_fiscal.sum(prelsoc_cap_i, role = FoyerFiscal.DECLARANT)
+        prelevements_sociaux_revenus_capital_hors_csg_crds = foyer_fiscal('prelevements_sociaux_revenus_capital_hors_csg_crds', period)
 
         return (
             - irpp
             + isf_avant_plaf
             - crds
             - csg
-            - prelsoc_cap
+            - prelevements_sociaux_revenus_capital_hors_csg_crds
             )
 
         # TODO: irpp n'est pas suffisant : ajouter ir soumis à taux propor + impôt acquitté à l'étranger
@@ -516,7 +514,7 @@ class revetproduits(Variable):
         rpns_exon_i = foyer_fiscal.members('rpns_exon', period)
         rpns_pvct_i = foyer_fiscal.members('rpns_pvct', period)
         revenus_capitaux_prelevement_liberatoire = foyer_fiscal('revenus_capitaux_prelevement_liberatoire', period, options = [ADD])
-        imp_lib = foyer_fiscal('imp_lib', period)
+        prelevement_forfaitaire_liberatoire = foyer_fiscal('prelevement_forfaitaire_liberatoire', period)
         P = parameters(period).taxation_capital.isf.plafonnement
 
         revenu_assimile_pension_apres_abattements = foyer_fiscal.sum(pen_net_i)
@@ -526,12 +524,12 @@ class revetproduits(Variable):
         rpns_pvct = foyer_fiscal.sum(rpns_pvct_i)
         revenu_assimile_salaire_apres_abattements = foyer_fiscal.sum(salcho_imp_i)
 
-        # rev_cap et imp_lib pour produits soumis à prel libératoire- check TODO:
+        # rev_cap et prelevement_forfaitaire_liberatoire pour produits soumis à prel libératoire- check TODO:
         # # def rev_exon et rev_etranger dans data? ##
         pt = max_(
             0,
             revenu_assimile_salaire_apres_abattements + revenu_assimile_pension_apres_abattements + rente_viagere_titre_onereux_net + revenus_capitaux_prelevement_bareme + revenus_capitaux_prelevement_liberatoire + ric + rag + rpns_exon +
-            rpns_pvct + imp_lib + fon
+            rpns_pvct + prelevement_forfaitaire_liberatoire + fon
             )
         return pt * P.plafonnement_taux_d_imposition_isf
 
@@ -685,7 +683,7 @@ class bouclier_rev(Variable):
         Total des revenus sur l'année 'n' net de charges
         '''
         rbg = foyer_fiscal('rbg', period)
-        csg_deduc = foyer_fiscal('csg_deduc', period)
+        csg_patrimoine_deductible_ir = foyer_fiscal('csg_patrimoine_deductible_ir', period)
         rvcm_plus_abat = foyer_fiscal('rvcm_plus_abat', period)
         revenus_capitaux_prelevement_liberatoire = foyer_fiscal('revenus_capitaux_prelevement_liberatoire', period)
         rev_exo = foyer_fiscal('rev_exo', period)
@@ -705,8 +703,8 @@ class bouclier_rev(Variable):
         # # revenus distribués?
         # # A majorer de l'abatt de 40% - montant brut en cas de PFL
         # # pour le calcul de droit à restitution : prendre 0.7*montant_brut_rev_dist_soumis_au_barème
-        # rev_bar = rbg - maj_cga - csg_deduc - deficit_ante
-        rev_bar = rbg - maj_cga - csg_deduc
+        # rev_bar = rbg - maj_cga - csg_patrimoine_deductible_ir - deficit_ante
+        rev_bar = rbg - maj_cga - csg_patrimoine_deductible_ir
 
     # # TODO: AJOUTER : indemnités de fonction percus par les élus- revenus soumis à régimes spéciaux
 
@@ -751,10 +749,9 @@ class bouclier_imp_gen(Variable):  # # ajouter CSG- CRDS
         csg_deductible_chomage_i = foyer_fiscal.members('csg_deductible_chomage', period)
         csg_deductible_retraite_i = foyer_fiscal.members('csg_deductible_retraite', period)
         csg_imposable_retraite_i = foyer_fiscal.members('csg_imposable_retraite', period)
-        imp_lib = foyer_fiscal('imp_lib', period)
+        prelevement_forfaitaire_liberatoire = foyer_fiscal('prelevement_forfaitaire_liberatoire', period)
 
-        cotsoc_bar = foyer_fiscal('cotsoc_bar', period)
-        cotsoc_lib = foyer_fiscal('cotsoc_lib', period)
+        prelevements_sociaux_revenus_capital = foyer_fiscal('prelevements_sociaux_revenus_capital', period)
         crds_salaire = foyer_fiscal.sum(crds_salaire_i)
         csg_deductible_chomage = foyer_fiscal.sum(csg_deductible_chomage_i)
         csg_imposable_chomage = foyer_fiscal.sum(csg_imposable_chomage_i)
@@ -769,7 +766,7 @@ class bouclier_imp_gen(Variable):  # # ajouter CSG- CRDS
         # # ajouter Prelèvements sources/ libé
         # # ajouter crds rstd
         # # impôt sur les plus-values immo et cession de fonds de commerce
-        imp1 = cotsoc_lib + cotsoc_bar + csg_deductible_salaire + csg_deductible_chomage + crds_salaire + csg_deductible_retraite + imp_lib
+        imp1 = prelevements_sociaux_revenus_capital + csg_deductible_salaire + csg_deductible_chomage + crds_salaire + csg_deductible_retraite + prelevement_forfaitaire_liberatoire
         '''
         Impôts payés en l'année 'n' au titre des revenus réalisés sur l'année 'n'
         '''
