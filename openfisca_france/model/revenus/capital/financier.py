@@ -29,6 +29,26 @@ class f2dh(Variable):
 
         return assurance_vie_pl_non_anonyme_plus8ans_depuis1990 + assurance_vie_pl_non_anonyme_plus6ans_avant1990
 
+    def formula_2018_01_01(foyer_fiscal, period):
+        '''
+        Même si le formulaire 2042 de l'impôt 2019 au titre des revenus 2018 n'est toujours pas publié, on remplie cette case
+        quand même, en essayant de garder un périmètre similaire. On fait ceci afin de ne pas modifier la structure des cases,
+        ce qui pourrait avoir des impacts assez large dans le simulateur.
+        Ce que l'on fait : on a toute une série de variables d'assurance-vie désagrégées, que l'on injecte en f2dh ou f2ee.
+        En revanche, on neutralise les variables f2ch et f2ts
+        '''
+        assurance_vie_pfu_ir_plus8ans_1990_19970926 = foyer_fiscal('assurance_vie_pfu_ir_plus8ans_1990_19970926', period)
+        assurance_vie_pfu_ir_plus6ans_avant1990 = foyer_fiscal('assurance_vie_pfu_ir_plus6ans_avant1990', period)
+        assurance_vie_pfu_ir_plus8ans_19970926_primes_avant_20170927 = foyer_fiscal('assurance_vie_pfu_ir_plus8ans_19970926_primes_avant_20170927', period)
+        assurance_vie_pfu_ir_plus8ans_19970926_primes_apres_20170927 = foyer_fiscal('assurance_vie_pfu_ir_plus8ans_19970926_primes_apres_20170927', period)
+
+        return (
+            assurance_vie_pfu_ir_plus8ans_1990_19970926
+            + assurance_vie_pfu_ir_plus6ans_avant1990
+            + assurance_vie_pfu_ir_plus8ans_19970926_primes_avant_20170927
+            + assurance_vie_pfu_ir_plus8ans_19970926_primes_apres_20170927
+            )
+
 
 class f2ee(Variable):
     cerfa_field = u"2EE"
@@ -49,6 +69,32 @@ class f2ee(Variable):
             assurance_vie_pl_non_anonyme_moins4ans_depuis1990
             + assurance_vie_pl_non_anonyme_4_8_ans_depuis1990
             + assurance_vie_pl_anonyme
+            + produit_epargne_solidaire
+            + produit_etats_non_cooperatif
+            )
+
+    def formula_2018_01_01(foyer_fiscal, period):
+        '''
+        Même si le formulaire 2042 de l'impôt 2019 au titre des revenus 2018 n'est toujours pas publié, on remplie cette case
+        quand même, en essayant de garder un périmètre similaire. On fait ceci afin de ne pas modifier la structure des cases,
+        ce qui pourrait avoir des impacts assez large dans le simulateur.
+        Ce que l'on fait : on a toute une série de variables d'assurance-vie désagrégées, que l'on injecte en f2dh ou f2ee.
+        En revanche, on neutralise les variables f2ch et f2ts
+        '''
+        assurance_vie_pfu_ir_moins4ans_1990_19970926 = foyer_fiscal('assurance_vie_pfu_ir_moins4ans_1990_19970926', period)
+        assurance_vie_pfu_ir_4_8_ans_1990_19970926 = foyer_fiscal('assurance_vie_pfu_ir_4_8_ans_1990_19970926', period)
+        assurance_vie_pfu_ir_4_8_ans_19970926_primes_avant_20170927 = foyer_fiscal('assurance_vie_pfu_ir_4_8_ans_19970926_primes_avant_20170927', period)
+        assurance_vie_pfu_ir_moins4ans_19970926_primes_avant_20170927 = foyer_fiscal('assurance_vie_pfu_ir_moins4ans_19970926_primes_avant_20170927', period)
+        assurance_vie_pfu_ir_moins8ans_19970926_primes_apres_20170927 = foyer_fiscal('assurance_vie_pfu_ir_moins8ans_19970926_primes_apres_20170927', period)
+        produit_epargne_solidaire = foyer_fiscal('produit_epargne_solidaire', period)
+        produit_etats_non_cooperatif = foyer_fiscal('produit_etats_non_cooperatif', period)
+
+        return (
+            assurance_vie_pfu_ir_moins4ans_1990_19970926
+            + assurance_vie_pfu_ir_4_8_ans_1990_19970926
+            + assurance_vie_pfu_ir_4_8_ans_19970926_primes_avant_20170927
+            + assurance_vie_pfu_ir_moins4ans_19970926_primes_avant_20170927
+            + assurance_vie_pfu_ir_moins8ans_19970926_primes_apres_20170927
             + produit_epargne_solidaire
             + produit_etats_non_cooperatif
             )
@@ -79,6 +125,7 @@ class f2ch(Variable):
     entity = FoyerFiscal
     label = u"Produits des contrats d'assurance-vie et de capitalisation d'une durée d'au moins 6 ou 8 ans donnant droit à abattement"
     definition_period = YEAR
+    end = '2017-12-31' # On neutralise cette variable par hypothèse à partir de 2018 : tous les produits d'assurance vie sont mis en f2dh et f2ee. Cf. docstring de ces deux cases
 
 #  Revenus des valeurs et capitaux mobiliers n'ouvrant pas droit à abattement
 class f2ts(Variable):
@@ -88,6 +135,7 @@ class f2ts(Variable):
     entity = FoyerFiscal
     label = u"Revenus de valeurs mobilières, produits des contrats d'assurance-vie d'une durée inférieure à 8 ans et distributions (n'ouvrant pas droit à abattement)"
     definition_period = YEAR
+    end = '2017-12-31' # On neutralise cette variable par hypothèse à partir de 2018 : tous les produits d'assurance vie sont mis en f2dh et f2ee. Cf. docstring de ces deux cases
 
 
 class f2go(Variable):
