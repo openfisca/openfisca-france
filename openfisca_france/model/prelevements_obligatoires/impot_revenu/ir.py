@@ -666,7 +666,7 @@ class rev_cat_rvcm(Variable):
     label = u"Revenu catégoriel - Capitaux"
     reference = "http://www.insee.fr/fr/methodes/default.asp?page=definitions/revenus-categoriesl.htm"
     definition_period = YEAR
-    end = '2017-31-12'
+    end = '2017-12-31'
 
     def formula_2002_01_01(foyer_fiscal, period, parameters):
         """
