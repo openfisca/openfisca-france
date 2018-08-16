@@ -1,5 +1,17 @@
 # Changelog
 
+### 23.1.1 [#1077](https://github.com/openfisca/openfisca-france/pull/1077)
+
+* Correction d'un crash
+* Périodes concernées : toutes
+* Zones impactées:
+   - `openfisca_france\model\prestations\minima_sociaux\rsa.py`
+   - `openfisca_france\model\prestations\minima_sociaux\asi_aspa.py`
+   - `openfisca_france\model\revenus\capital\financier.py`
+* Détails :
+  - Supprime les doubles comptes de certains revenus du capital dans les bases ressources du RSA et de l'ASI-ASPA
+  - Exemple : les revenus de `f2ee` étaient injectés deux fois via `rsa_base_ressources_patrimoine_individu` et via les variables `revenus_capitaux_prelevement_bareme` et `revenus_capitaux_prelevement_liberatoire`
+
 ## 23.1.0 [#1058](https://github.com/openfisca/openfisca-france/pull/1058)
 
 * Évolution du système socio-fiscal.
