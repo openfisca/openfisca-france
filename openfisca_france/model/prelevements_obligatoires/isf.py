@@ -516,6 +516,7 @@ class revetproduits(Variable):
         revenus_capitaux_prelevement_liberatoire = foyer_fiscal('revenus_capitaux_prelevement_liberatoire', period, options = [ADD]) # Supprimée à partir de 2018
         revenus_capitaux_prelevement_forfaitaire_unique_ir = foyer_fiscal('revenus_capitaux_prelevement_forfaitaire_unique_ir', period) # Existe à partir de 2018
         prelevement_forfaitaire_liberatoire = foyer_fiscal('prelevement_forfaitaire_liberatoire', period)
+        prelevement_forfaitaire_unique_ir = foyer_fiscal('prelevement_forfaitaire_unique_ir', period)
         P = parameters(period).taxation_capital.isf.plafonnement
 
         revenu_assimile_pension_apres_abattements = foyer_fiscal.sum(pen_net_i)
@@ -530,7 +531,7 @@ class revetproduits(Variable):
         pt = max_(
             0,
             revenu_assimile_salaire_apres_abattements + revenu_assimile_pension_apres_abattements + rente_viagere_titre_onereux_net + revenus_capitaux_prelevement_bareme + revenus_capitaux_prelevement_liberatoire + revenus_capitaux_prelevement_forfaitaire_unique_ir + ric + rag + rpns_exon +
-            rpns_pvct + prelevement_forfaitaire_liberatoire + fon
+            rpns_pvct + prelevement_forfaitaire_liberatoire + prelevement_forfaitaire_unique_ir + fon
             )
         return pt * P.plafonnement_taux_d_imposition_isf
 

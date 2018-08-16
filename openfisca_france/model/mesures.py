@@ -355,14 +355,18 @@ class impots_directs(Variable):
         irpp_eco_i = menage.members.foyer_fiscal('irpp_economique', period)
         irpp_eco = menage.sum(irpp_eco_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
 
-        # On prend en compte le PFL des foyers fiscaux dont le déclarant principal est dans le ménage
+        # On prend en compte le PFL des foyers fiscaux dont le déclarant principal est dans le ménage : variable existant jusqu'en 2017
         prelevement_forfaitaire_liberatoire_i = menage.members.foyer_fiscal('prelevement_forfaitaire_liberatoire', period)
         prelevement_forfaitaire_liberatoire = menage.sum(prelevement_forfaitaire_liberatoire_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
+
+        # On prend en compte le PFU (partie au titre de l'IR) des foyers fiscaux dont le déclarant principal est dans le ménage : variable existant à partir de 2018
+        prelevement_forfaitaire_unique_ir_i = menage.members.foyer_fiscal('prelevement_forfaitaire_unique_ir', period)
+        prelevement_forfaitaire_unique_ir = menage.sum(prelevement_forfaitaire_unique_ir_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
 
         # On comptabilise ir_pv_immo ici directement, et non pas dans la variable 'irpp', car administrativement, cet impôt n'est pas dans l'irpp, et n'est déclaré dans le formulaire 2042C que pour calculer le revenu fiscal de référence. On colle à la définition administrative, afin d'avoir une variable 'irpp' qui soit comparable à l'IR du simulateur en ligne de la DGFiP
         # On prend en compte l'IR sur PV immobilières des foyers fiscaux dont le déclarant principal est dans le ménage
         ir_pv_immo_i = menage.members.foyer_fiscal('ir_pv_immo', period)
         ir_pv_immo = menage.sum(ir_pv_immo_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
 
-        return irpp_eco + taxe_habitation + prelevement_forfaitaire_liberatoire + ir_pv_immo
+        return irpp_eco + taxe_habitation + prelevement_forfaitaire_liberatoire + prelevement_forfaitaire_unique_ir + ir_pv_immo
 
