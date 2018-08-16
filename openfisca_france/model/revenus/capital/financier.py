@@ -294,7 +294,7 @@ class livret_a(Variable):
 
 
 class epargne_revenus_non_imposables(Variable):
-    """ NB : cette variable est définie indépendemment de interets_plan_epargne_logement et de interets_compte_epargne_logement """
+    """ NB : cette variable est définie indépendemment des variables commençant par interets_plan_epargne_logement et interets_compte_epargne_logement """
     value_type = float
     entity = Individu
     base_function = requested_period_last_value
