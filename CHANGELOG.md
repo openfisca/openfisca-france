@@ -5,9 +5,9 @@
 * Correction d'un crash
 * Périodes concernées : toutes
 * Zones impactées:
-   - `openfisca_france\model\prestations\minima_sociaux\rsa.py`
-   - `openfisca_france\model\prestations\minima_sociaux\asi_aspa.py`
-   - `openfisca_france\model\revenus\capital\financier.py`
+   - `prestations/minima_sociaux/rsa`
+   - `prestations/minima_sociaux/asi_aspa`
+   - `modelrevenus/capital/financier`
 * Détails :
   - Supprime les doubles comptes de certains revenus du capital dans les bases ressources du RSA et de l'ASI-ASPA
   - Exemple : les revenus de `f2ee` étaient injectés deux fois via `rsa_base_ressources_patrimoine_individu` et via les variables `revenus_capitaux_prelevement_bareme` et `revenus_capitaux_prelevement_liberatoire`
