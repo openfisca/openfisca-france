@@ -80,7 +80,7 @@ class assiette_csg_plus_values(Variable):
         Notes sur le champ de cette variable :
             Cette assiette de plus-values est partielle. De nombreux types de plus-values sont
             manquants, rien que parmi les plus-values déclarées dans la déclaration de revenus
-            au titre de l'ipmôt sur le revenu. Ceci s'explique par la complexité de la législation sur
+            au titre de l'impôt sur le revenu. Ceci s'explique par la complexité de la législation sur
             la prise en compte des plus-values dans le calcul des prélèvements sociaux (exemple : plus-values
             réalisées sur PEA taxables selon les règles en vigueur l'année de réalisation et non l'année de retrait,
             plus-values taxées après report, et taxables parfois selon la législation en vigueur au moment du report et non

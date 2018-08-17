@@ -101,7 +101,7 @@ class plus_values_prelevement_forfaitaire_unique_ir(Variable):
     value_type = float
     entity = FoyerFiscal
     label = u"Revenus des valeurs et capitaux mobiliers soumis au prélèvement forfaitaire unique (partie impôt sur le revenu)"
-    definition_period = MONTH
+    definition_period = YEAR
 
     def formula_2018_01_01(foyer_fiscal, period, parameters):
         '''
