@@ -217,11 +217,16 @@ class assiette_csg_revenus_capital(Variable):
         Cf. docstring de la formule précédente
         Différence par rapport à la formule précédente :
            - Ajout des intérêts de PEL et CEL ouverts à partir du 1er janvier 2018
+           - On remplace les variables revenus_capitaux_prelevement_bareme et revenus_capitaux_prelevement_liberatoire
+             par revenus_capitaux_prelevement_forfaitaire_unique_ir
+             Note : du fait du PFU, la base des revenus du capital au titre de l'impôt sur le revenu se rapproche de la base au titre des prélèvements sociaux,
+                    d'où le fait qu'on utilise cette variable. En revanche, concernant les prêts participatifs, le montant au titre de l'impôt sur le revenu
+                    forfaitaire est le montant net des pertes, alors que celui soumis au titre des prélèvements sociaux est le montant brut. Cependant,
+                    la case 2TT contient le montant des intérêts de ces prêts après déduction de ces pertes. Donc, on est contraint de prendre un montant net.
         '''
 
         # Revenus du capital présents dans la section 2 de la déclaration de revenus
-        revenus_capitaux_prelevement_bareme = foyer_fiscal('revenus_capitaux_prelevement_bareme', period, options = [ADD])
-        revenus_capitaux_prelevement_liberatoire = foyer_fiscal('revenus_capitaux_prelevement_liberatoire', period, options = [ADD])
+        revenus_capitaux_prelevement_forfaitaire_unique_ir = foyer_fiscal('revenus_capitaux_prelevement_forfaitaire_unique_ir', period, options = [ADD])
 
         # Rentes viagères à titre onéreux
         rente_viagere_titre_onereux_net = foyer_fiscal('rente_viagere_titre_onereux_net', period)
@@ -246,8 +251,7 @@ class assiette_csg_revenus_capital(Variable):
         assurance_vie_ps_exoneree_irpp_pl = foyer_fiscal('assurance_vie_ps_exoneree_irpp_pl', period)
 
         return (
-            revenus_capitaux_prelevement_bareme
-            + revenus_capitaux_prelevement_liberatoire
+            revenus_capitaux_prelevement_forfaitaire_unique_ir
             + rente_viagere_titre_onereux_net
             + interets_plan_epargne_logement_moins_de_12_ans_ouvert_avant_2018
             + interets_compte_epargne_logement_ouvert_avant_2018
