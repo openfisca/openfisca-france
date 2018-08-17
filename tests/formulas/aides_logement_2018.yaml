@@ -1,0 +1,32 @@
+- name: Montant d'aide au logement classique
+  period: 2018-04
+  relative_error_margin: 0.001
+  input_variables:
+    statut_occupation_logement: locataire_vide
+    aide_logement_loyer_retenu: 400
+    aide_logement_charges: 100
+    aide_logement_participation_personnelle: 200
+  output_variables:
+    aide_logement_montant_brut_avant_degressivite: 300
+
+- name: Conservation du montant minimal de versement pour les AL
+  period: 2018-04
+  relative_error_margin: 0.001
+  input_variables:
+    statut_occupation_logement: locataire_vide
+    aide_logement_loyer_retenu: 100
+    aide_logement_charges: 0
+    aide_logement_participation_personnelle: 95
+  output_variables:
+    aide_logement_montant_brut_avant_degressivite: 0
+
+- name: Pris en compte de la suppression du montant minimal de versement des APL
+  period: 2018-04
+  relative_error_margin: 0.001
+  input_variables:
+    statut_occupation_logement: locataire_hlm
+    aide_logement_loyer_retenu: 100
+    aide_logement_charges: 0
+    aide_logement_participation_personnelle: 95
+  output_variables:
+    aide_logement_montant_brut_avant_degressivite: 5
