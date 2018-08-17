@@ -1605,6 +1605,7 @@ class tax_rvcm_forfaitaire(Variable):
     label = u"Taxation forfaitaire des revenus des valeurs et capitaux mobiliers"
     reference = "http://bofip.impots.gouv.fr/bofip/3727-PGP.html"
     definition_period = YEAR
+    end = '2017-12-31'
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
         """
@@ -1926,16 +1927,15 @@ class iai(Variable):
     def formula_2018_01_01(foyer_fiscal, period, parameters):
         '''
         impôt avant imputation de l'irpp
-        Seule différence par rapport à la formule précédente : on supprime taxation_plus_values_hors_bareme,
-        suite à passage au prelevement forfaitaire unique. La taxation des plus-values se trouve maintenant
-        dans plus_values_prelevement_forfaitaire_unique_ir
+        Seule différence par rapport à la formule précédente : on supprime taxation_plus_values_hors_bareme
+        et tax_rvcm_forfaitaire, suite à passage au prelevement forfaitaire unique. La taxation de ces revenus
+        se trouve maintenant dans plus_values_prelevement_forfaitaire_unique_ir
         '''
         iaidrdi = foyer_fiscal('iaidrdi', period)
         cont_rev_loc = foyer_fiscal('cont_rev_loc', period)
-        tax_rvcm_forfaitaire = foyer_fiscal('tax_rvcm_forfaitaire', period)
         teicaa = foyer_fiscal('teicaa', period)
 
-        return iaidrdi + cont_rev_loc + tax_rvcm_forfaitaire + teicaa
+        return iaidrdi + cont_rev_loc + teicaa
 
 
 class cehr(Variable):
