@@ -609,6 +609,7 @@ class rev_cat_pv(Variable):
     label = u"Revenu catégoriel - Plus-values"
     reference = "http://www.insee.fr/fr/methodes/default.asp?page=definitions/revenus-categoriesl.htm"
     definition_period = YEAR
+    end = '2017-12-31'
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
         f3sb = foyer_fiscal('f3sb', period)
@@ -982,13 +983,14 @@ class rev_cat(Variable):
     def formula_2018_01_01(foyer_fiscal, period, parameters):
         '''
         Revenus Categoriels
+        Différence par rapport à la formule précédente : on enlève rev_cat_rvcm et rev_cat_pv (suite à la création du prélèvement forfaitaire unique)
+        Hypothèse : les contribuables choisissent toujours le prélèvement forfaitaire unique par rapport au barème pour ces revenus
         '''
         rev_cat_tspr = foyer_fiscal('rev_cat_tspr', period)
         rev_cat_rfon = foyer_fiscal('rev_cat_rfon', period)
         rev_cat_rpns = foyer_fiscal('rev_cat_rpns', period)
-        rev_cat_pv = foyer_fiscal('rev_cat_pv', period)
 
-        return rev_cat_tspr + rev_cat_rfon + rev_cat_rpns + rev_cat_pv
+        return rev_cat_tspr + rev_cat_rfon + rev_cat_rpns
 
 
 ###############################################################################
@@ -1620,6 +1622,7 @@ class taxation_plus_values_hors_bareme(Variable):
     label = u"Taxation forfaitaire des plus-values"
     reference = "http://bofip.impots.gouv.fr/bofip/6957-PGP"
     definition_period = YEAR
+    end = '2017-12-31'
 
     def formula_2007_01_01(foyer_fiscal, period, parameters):  # f3sd is in f3vd holder
         """
@@ -1919,6 +1922,20 @@ class iai(Variable):
         teicaa = foyer_fiscal('teicaa', period)
 
         return iaidrdi + taxation_plus_values_hors_bareme + cont_rev_loc + tax_rvcm_forfaitaire + teicaa
+
+    def formula_2018_01_01(foyer_fiscal, period, parameters):
+        '''
+        impôt avant imputation de l'irpp
+        Seule différence par rapport à la formule précédente : on supprime taxation_plus_values_hors_bareme,
+        suite à passage au prelevement forfaitaire unique. La taxation des plus-values se trouve maintenant
+        dans plus_values_prelevement_forfaitaire_unique_ir
+        '''
+        iaidrdi = foyer_fiscal('iaidrdi', period)
+        cont_rev_loc = foyer_fiscal('cont_rev_loc', period)
+        tax_rvcm_forfaitaire = foyer_fiscal('tax_rvcm_forfaitaire', period)
+        teicaa = foyer_fiscal('teicaa', period)
+
+        return iaidrdi + cont_rev_loc + tax_rvcm_forfaitaire + teicaa
 
 
 class cehr(Variable):

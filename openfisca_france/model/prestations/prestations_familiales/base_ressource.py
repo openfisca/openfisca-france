@@ -133,7 +133,8 @@ class rev_coll(Variable):
         f7ga = foyer_fiscal('f7ga', period)
         f7gb = foyer_fiscal('f7gb', period)
         f7gc = foyer_fiscal('f7gc', period)
-        rev_cat_pv = foyer_fiscal('rev_cat_pv', period)
+        rev_cat_pv = foyer_fiscal('rev_cat_pv', period) # est supprimée à partir de 2018
+        plus_values_prelevement_forfaitaire_unique_ir = foyer_fiscal('plus_values_prelevement_forfaitaire_unique_ir', period) # Apparait à partir de 2018
 
         # TODO: ajouter les revenus de l'étranger etr*0.9
         return (
@@ -144,6 +145,7 @@ class rev_coll(Variable):
             + revenus_capitaux_prelevement_liberatoire
             + revenus_capitaux_prelevement_forfaitaire_unique_ir
             + rev_cat_pv
+            + plus_values_prelevement_forfaitaire_unique_ir
             - abat_spe
             - f7ga
             - f7gb

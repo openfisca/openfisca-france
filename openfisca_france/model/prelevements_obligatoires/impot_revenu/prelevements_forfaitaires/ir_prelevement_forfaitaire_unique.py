@@ -97,6 +97,21 @@ class revenus_capitaux_prelevement_forfaitaire_unique_ir(Variable):
 
         return (f2dh + f2ee + f2dc + f2fu + f2ch + f2ts + f2tr + f2tt + f2fa + f2go * majoration_revenus_reputes_distribues) / 12
 
+class plus_values_prelevement_forfaitaire_unique_ir(Variable):
+    value_type = float
+    entity = FoyerFiscal
+    label = u"Revenus des valeurs et capitaux mobiliers soumis au prélèvement forfaitaire unique (partie impôt sur le revenu)"
+    definition_period = MONTH
+
+    def formula_2018_01_01(foyer_fiscal, period, parameters):
+        '''
+        Cette variable fusionne le périmètre des plus-values des anciennes variables de plus_values-values présentes
+        dans taxation_plus_values_hors_bareme et dans rev_cat_pv, mais en adaptant les assiettes au PFU
+        (notamment, pour les revenus de rev_cat_pv, passage des montants nets à bruts)
+        '''
+        f3sa = foyer_fiscal('f3sa', period)
+
+
 
 class prelevement_forfaitaire_unique_ir_hors_assurance_vie_epargne_solidaire_etats_non_cooperatifs(Variable):
     value_type = float
@@ -185,6 +200,19 @@ class prelevement_forfaitaire_unique_ir_epargne_solidaire_etats_non_cooperatifs(
 
         return montant
 
+class prelevement_forfaitaire_unique_ir_plus_values(Variable):
+    value_type = float
+    entity = FoyerFiscal
+    label = u"Partie du prélèvement forfaitaire unique associée à l'impôt sur le revenu sur les plus-values"
+    definition_period = YEAR
+
+    def formula_2018_01_01(foyer_fiscal, period, parameters):
+        plus_values_prelevement_forfaitaire_unique_ir = foyer_fiscal('plus_values_prelevement_forfaitaire_unique_ir', period)
+        P = parameters(period).impot_revenu.prelevement_forfaitaire_unique_ir
+
+        return plus_values_prelevement_forfaitaire_unique_ir * P.taux
+
+
 
 class prelevement_forfaitaire_unique_ir(Variable):
     value_type = float
@@ -196,11 +224,13 @@ class prelevement_forfaitaire_unique_ir(Variable):
         prelevement_forfaitaire_unique_ir_hors_assurance_vie_epargne_solidaire_etats_non_cooperatifs = foyer_fiscal('prelevement_forfaitaire_unique_ir_hors_assurance_vie_epargne_solidaire_etats_non_cooperatifs', period)
         prelevement_forfaitaire_unique_ir_sur_assurance_vie = foyer_fiscal('prelevement_forfaitaire_unique_ir_sur_assurance_vie', period)
         prelevement_forfaitaire_unique_ir_epargne_solidaire_etats_non_cooperatifs = foyer_fiscal('prelevement_forfaitaire_unique_ir_epargne_solidaire_etats_non_cooperatifs', period)
+        prelevement_forfaitaire_unique_ir_plus_values = foyer_fiscal('prelevement_forfaitaire_unique_ir_plus_values', period)
 
         return (
             prelevement_forfaitaire_unique_ir_hors_assurance_vie_epargne_solidaire_etats_non_cooperatifs
             + prelevement_forfaitaire_unique_ir_sur_assurance_vie
             + prelevement_forfaitaire_unique_ir_epargne_solidaire_etats_non_cooperatifs
+            + prelevement_forfaitaire_unique_ir_plus_values
             )
 
 
