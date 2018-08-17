@@ -1,5 +1,13 @@
 # Changelog
 
+# 23.0.0 [#1069](https://github.com/openfisca/openfisca-france/pull/1069)
+
+* Changement majeur
+* Détails :
+  - Supprime deux paramètres obsolètes :
+    - `prestations.minima_sociaux.rmi.RMI_fixe`
+    - `prestations.minima_sociaux.rsa.RMI_fixe`
+
 ## 22.9.0 [#1066](https://github.com/openfisca/openfisca-france/pull/1066)
 
 * Évolution du système socio-fiscal | Changements mineurs
