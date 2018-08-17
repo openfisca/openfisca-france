@@ -56,7 +56,7 @@ class allocations_familiales_imposables(Reform):
             rpns_exon_holder = foyer_fiscal.members('rpns_exon')
             rpns_pvce_holder = foyer_fiscal.members('rpns_pvce')
             rfr_rvcm = foyer_fiscal('rfr_rvcm') # Supprimée en 2018
-            revenus_capitaux_prelevement_liberatoire = simulation.calculate_add('revenus_capitaux_prelevement_liberatoire') # Supprimée en 2018
+            revenus_capitaux_prelevement_liberatoire = foyer_fiscal('revenus_capitaux_prelevement_liberatoire', period, options = [ADD]) # Supprimée en 2018
             revenus_capitaux_prelevement_forfaitaire_unique_ir = foyer_fiscal('revenus_capitaux_prelevement_forfaitaire_unique_ir', period, options = [ADD]) # Existe à partir de 2018
             microentreprise = foyer_fiscal('microentreprise')
 
