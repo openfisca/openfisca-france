@@ -514,7 +514,7 @@ class revetproduits(Variable):
         rpns_pvct_i = foyer_fiscal.members('rpns_pvct', period)
         revenus_capitaux_prelevement_bareme = foyer_fiscal('revenus_capitaux_prelevement_bareme', period, options = [ADD]) # Supprimée à partir de 2018
         revenus_capitaux_prelevement_liberatoire = foyer_fiscal('revenus_capitaux_prelevement_liberatoire', period, options = [ADD]) # Supprimée à partir de 2018
-        revenus_capitaux_prelevement_forfaitaire_unique_ir = foyer_fiscal('revenus_capitaux_prelevement_forfaitaire_unique_ir', period) # Existe à partir de 2018
+        revenus_capitaux_prelevement_forfaitaire_unique_ir = foyer_fiscal('revenus_capitaux_prelevement_forfaitaire_unique_ir', period, options = [ADD]) # Existe à partir de 2018
         prelevement_forfaitaire_liberatoire = foyer_fiscal('prelevement_forfaitaire_liberatoire', period)
         prelevement_forfaitaire_unique_ir = foyer_fiscal('prelevement_forfaitaire_unique_ir', period)
         P = parameters(period).taxation_capital.isf.plafonnement

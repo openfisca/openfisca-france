@@ -28,7 +28,7 @@ class assiette_csg(Variable):
         retraite_brute = individu('retraite_brute', period, options = [ADD])
         revenus_capitaux_prelevement_bareme = individu.foyer_fiscal('revenus_capitaux_prelevement_bareme', period, options = [ADD]) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL) # Supprimée à partir de 2018
         revenus_capitaux_prelevement_liberatoire = individu.foyer_fiscal('revenus_capitaux_prelevement_liberatoire', period, options = [ADD]) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL) # Supprimée à partir de 2018
-        revenus_capitaux_prelevement_forfaitaire_unique_ir = individu.foyer_fiscal('revenus_capitaux_prelevement_forfaitaire_unique_ir', period) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL) # Existe à partir de 2018
+        revenus_capitaux_prelevement_forfaitaire_unique_ir = individu.foyer_fiscal('revenus_capitaux_prelevement_forfaitaire_unique_ir', period, options = [ADD]) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL) # Existe à partir de 2018
         return salaire_de_base + chomage_brut + retraite_brute + revenus_capitaux_prelevement_bareme + revenus_capitaux_prelevement_liberatoire
 
 

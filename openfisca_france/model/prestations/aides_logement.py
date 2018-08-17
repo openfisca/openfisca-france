@@ -340,7 +340,7 @@ class aide_logement_base_revenus_fiscaux(Variable):
         pensions_alimentaires_versees = foyer_fiscal('pensions_alimentaires_versees', period)
         rev_cat_rvcm = foyer_fiscal('rev_cat_rvcm', period) # Supprimée à partir de 2018
         revenus_capitaux_prelevement_liberatoire = foyer_fiscal('revenus_capitaux_prelevement_liberatoire', period, options = [ADD]) # Supprimée à partir de 2018
-        revenus_capitaux_prelevement_forfaitaire_unique_ir = foyer_fiscal('revenus_capitaux_prelevement_forfaitaire_unique_ir', period) # Existe à partir de 2018
+        revenus_capitaux_prelevement_forfaitaire_unique_ir = foyer_fiscal('revenus_capitaux_prelevement_forfaitaire_unique_ir', period, options = [ADD]) # Existe à partir de 2018
         fon = foyer_fiscal('fon', period)
         f7ga = foyer_fiscal('f7ga', period)
         f7gb = foyer_fiscal('f7gb', period)

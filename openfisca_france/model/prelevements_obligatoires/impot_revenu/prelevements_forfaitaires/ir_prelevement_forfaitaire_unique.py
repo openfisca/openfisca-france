@@ -71,7 +71,7 @@ class revenus_capitaux_prelevement_forfaitaire_unique_ir(Variable):
     value_type = float
     entity = FoyerFiscal
     label = u"Revenus des valeurs et capitaux mobiliers soumis au prélèvement forfaitaire unique (partie impôt sur le revenu)"
-    definition_period = YEAR
+    definition_period = MONTH
 
     def formula_2018_01_01(foyer_fiscal, period, parameters):
         '''
@@ -79,6 +79,8 @@ class revenus_capitaux_prelevement_forfaitaire_unique_ir(Variable):
         Cf. https://www.impots.gouv.fr/portail/particulier/questions/les-frais-engages-sur-mes-valeurs-mobilieres-sont-ils-deductibles
         Note : on laisse les cases de la déclaration 2042 associées à l'assurance-vie, car en attendant d'avoir le formulaire de l'impôt 2019 sur revenus 2018,
         on réinjecte les montants des variables désaggrégées d'assurance-vie dans ces cases, afin de garder constante la structure des cases
+        Note : cette variable est définie à l'échelle du mois pour être en cohérence avec les variables qu'elle remplace
+               (à savoir revenus_capitaux_prelevement_bareme et revenus_capitaux_prelevement_liberatoire)
         '''
         f2dh = foyer_fiscal('f2dh', period)
         f2ee = foyer_fiscal('f2ee', period)
@@ -93,7 +95,7 @@ class revenus_capitaux_prelevement_forfaitaire_unique_ir(Variable):
         f2tu = foyer_fiscal('f2tu', period)
         majoration_revenus_reputes_distribues = parameters(period).impot_revenu.rvcm.majoration_revenus_reputes_distribues
 
-        return f2dh + f2ee + f2dc + f2fu + f2ch + f2ts + f2tr + max_(0, f2tt - f2tu) + f2fa + f2go * majoration_revenus_reputes_distribues
+        return (f2dh + f2ee + f2dc + f2fu + f2ch + f2ts + f2tr + max_(0, f2tt - f2tu) + f2fa + f2go * majoration_revenus_reputes_distribues) / 12
 
 
 class prelevement_forfaitaire_unique_ir_hors_assurance_vie_epargne_solidaire_etats_non_cooperatifs(Variable):
@@ -105,7 +107,7 @@ class prelevement_forfaitaire_unique_ir_hors_assurance_vie_epargne_solidaire_eta
     def formula_2018_01_01(foyer_fiscal, period, parameters):
         P = parameters(period).impot_revenu.prelevement_forfaitaire_unique_ir
 
-        revenus_capitaux_prelevement_forfaitaire_unique_ir = foyer_fiscal('revenus_capitaux_prelevement_forfaitaire_unique_ir', period)
+        revenus_capitaux_prelevement_forfaitaire_unique_ir = foyer_fiscal('revenus_capitaux_prelevement_forfaitaire_unique_ir', period, options = [ADD])
 
         # Intérêts des PEL et CEL, hors intérêts des PEL de plus de 12 ans, qui sont déclarés dans la déclaration de revenus (attention, on ne connait pas le formulaire 2019 des revenus 2018 au moment de faire ce code)
         interets_plan_epargne_logement_moins_de_12_ans_ouvert_a_partir_de_2018_i = foyer_fiscal.members('interets_plan_epargne_logement_moins_de_12_ans_ouvert_a_partir_de_2018', period)
