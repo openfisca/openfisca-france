@@ -143,15 +143,8 @@ class rsa_base_ressources_individu(Variable):
             for type_revenu in types_revenus_non_pros
             )
 
-        # Revenus du foyer fiscal que l'on projette sur le premier invidividus
-        revenus_capitaux = (
-                max_(0, individu.foyer_fiscal('revenus_capitaux_prelevement_bareme', period.last_3_months, options = [ADD]))
-                + max_(0, individu.foyer_fiscal('revenus_capitaux_prelevement_liberatoire', period.last_3_months, options = [ADD]))
-        )
-
         rentes_viageres = individu.foyer_fiscal('rente_viagere_titre_onereux', period.last_3_months, options = [ADD])
-        revenus_foyer_fiscal = revenus_capitaux + rentes_viageres
-        revenus_foyer_fiscal_projetes = revenus_foyer_fiscal * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
+        revenus_foyer_fiscal_projetes = rentes_viageres * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
 
         return (revenus_pro + revenus_non_pros + revenus_foyer_fiscal_projetes) / 3
 
@@ -200,11 +193,8 @@ class rsa_base_ressources_individu(Variable):
             )
 
         # Revenus du foyer fiscal que l'on projette sur le premier invidividus
-        revenus_capitaux_prelevement_bareme = max_(0, individu.foyer_fiscal('revenus_capitaux_prelevement_bareme', period.last_3_months, options = [ADD]))
-        revenus_capitaux_prelevement_liberatoire = max_(0, individu.foyer_fiscal('revenus_capitaux_prelevement_liberatoire', period.last_3_months, options = [ADD]))
         rente_viagere_titre_onereux = individu.foyer_fiscal('rente_viagere_titre_onereux', period.last_3_months, options = [ADD])
-        revenus_foyer_fiscal = revenus_capitaux_prelevement_bareme + revenus_capitaux_prelevement_liberatoire + rente_viagere_titre_onereux
-        revenus_foyer_fiscal_projetes = revenus_foyer_fiscal * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
+        revenus_foyer_fiscal_projetes = rente_viagere_titre_onereux * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
 
         return (revenus_pro + revenus_non_pros + revenus_foyer_fiscal_projetes) / 3
 

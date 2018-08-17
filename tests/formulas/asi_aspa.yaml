@@ -1,0 +1,10 @@
+- name: Absence de double compte des revenus du capital des cases 2EE et 2DC dans la base ressource de l'ASI et de l'ASPA (2016)
+  period: 2016-10
+  absolute_error_margin: 1
+  input_variables:
+    f2ee:
+      2016: 12000
+    f2dc:
+      2016: 12000
+  output_variables:
+    asi_aspa_base_ressources: 2000
