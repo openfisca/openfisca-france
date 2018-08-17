@@ -2008,7 +2008,7 @@ class rfr(Variable):
         microentreprise = foyer_fiscal('microentreprise', period)
         rfr_rev_capitaux_mobiliers = foyer_fiscal('rfr_rvcm', period) # Supprimée à partir de 2018
         revenus_capitaux_prelevement_liberatoire = foyer_fiscal('revenus_capitaux_prelevement_liberatoire', period, options = [ADD]) # Supprimée à partir de 2018
-        revenus_capitaux_prelevement_forfaitaire_unique_ir = foyer_fiscal('revenus_capitaux_prelevement_forfaitaire_unique_ir') # Existe à partir de 2018
+        revenus_capitaux_prelevement_forfaitaire_unique_ir = foyer_fiscal('revenus_capitaux_prelevement_forfaitaire_unique_ir', period) # Existe à partir de 2018
         rfr_charges_deductibles = foyer_fiscal('rfr_cd', period)
         rfr_plus_values = foyer_fiscal('rfr_plus_values', period)
         rni = foyer_fiscal('rni', period)
