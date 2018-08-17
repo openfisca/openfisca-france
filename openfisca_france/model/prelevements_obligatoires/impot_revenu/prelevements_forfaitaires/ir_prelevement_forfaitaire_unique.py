@@ -82,17 +82,18 @@ class revenus_capitaux_prelevement_forfaitaire_unique_ir(Variable):
         Note : cette variable est définie à l'échelle du mois pour être en cohérence avec les variables qu'elle remplace
                (à savoir revenus_capitaux_prelevement_bareme et revenus_capitaux_prelevement_liberatoire)
         '''
-        f2dh = foyer_fiscal('f2dh', period)
-        f2ee = foyer_fiscal('f2ee', period)
-        f2dc = foyer_fiscal('f2dc', period)
-        f2fu = foyer_fiscal('f2fu', period)
-        f2ch = foyer_fiscal('f2ch', period)
-        f2ts = foyer_fiscal('f2ts', period)
-        f2tr = foyer_fiscal('f2tr', period)
-        f2tt = foyer_fiscal('f2tt', period)
-        f2fa = foyer_fiscal('f2fa', period)
-        f2go = foyer_fiscal('f2go', period)
-        f2tu = foyer_fiscal('f2tu', period)
+        year = period.this_year
+        f2dh = foyer_fiscal('f2dh', year)
+        f2ee = foyer_fiscal('f2ee', year)
+        f2dc = foyer_fiscal('f2dc', year)
+        f2fu = foyer_fiscal('f2fu', year)
+        f2ch = foyer_fiscal('f2ch', year)
+        f2ts = foyer_fiscal('f2ts', year)
+        f2tr = foyer_fiscal('f2tr', year)
+        f2tt = foyer_fiscal('f2tt', year)
+        f2fa = foyer_fiscal('f2fa', year)
+        f2go = foyer_fiscal('f2go', year)
+        f2tu = foyer_fiscal('f2tu', year)
         majoration_revenus_reputes_distribues = parameters(period).impot_revenu.rvcm.majoration_revenus_reputes_distribues
 
         return (f2dh + f2ee + f2dc + f2fu + f2ch + f2ts + f2tr + max_(0, f2tt - f2tu) + f2fa + f2go * majoration_revenus_reputes_distribues) / 12
