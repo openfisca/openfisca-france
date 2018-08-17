@@ -626,6 +626,14 @@ class rev_cat_pv(Variable):
 
         return f3sb + f3vg + f3wb
 
+    def formula_2017_01_01(foyer_fiscal, period, parameters):
+        f3sb = foyer_fiscal('f3sb', period)
+        f3vg = foyer_fiscal('f3vg', period)
+        f3wb = foyer_fiscal('f3wb', period)
+        f3ua = foyer_fiscal('f3ua', period) # Cette case existant avant, mais ses montants étaient inclus dans 3vg.
+
+        return f3sb + f3vg + f3wb + f3ua
+
 
 class rev_cat_tspr(Variable):
     value_type = float
