@@ -79,8 +79,8 @@ class revenus_capitaux_prelevement_forfaitaire_unique_ir(Variable):
         Cf. https://www.impots.gouv.fr/portail/particulier/questions/les-frais-engages-sur-mes-valeurs-mobilieres-sont-ils-deductibles
         Note : on laisse les cases de la déclaration 2042 associées à l'assurance-vie, car en attendant d'avoir le formulaire de l'impôt 2019 sur revenus 2018,
         on réinjecte les montants des variables désaggrégées d'assurance-vie dans ces cases, afin de garder constante la structure des cases
-        Note : cette variable est définie à l'échelle du mois pour être en cohérence avec les variables qu'elle remplace
-               (à savoir revenus_capitaux_prelevement_bareme et revenus_capitaux_prelevement_liberatoire)
+        Notes : cette variable est définie à l'échelle du mois pour être en cohérence avec les variables qu'elle remplace
+                (à savoir revenus_capitaux_prelevement_bareme et revenus_capitaux_prelevement_liberatoire)
         '''
         year = period.this_year
         f2dh = foyer_fiscal('f2dh', year)
@@ -93,10 +93,9 @@ class revenus_capitaux_prelevement_forfaitaire_unique_ir(Variable):
         f2tt = foyer_fiscal('f2tt', year)
         f2fa = foyer_fiscal('f2fa', year)
         f2go = foyer_fiscal('f2go', year)
-        f2tu = foyer_fiscal('f2tu', year)
         majoration_revenus_reputes_distribues = parameters(period).impot_revenu.rvcm.majoration_revenus_reputes_distribues
 
-        return (f2dh + f2ee + f2dc + f2fu + f2ch + f2ts + f2tr + max_(0, f2tt - f2tu) + f2fa + f2go * majoration_revenus_reputes_distribues) / 12
+        return (f2dh + f2ee + f2dc + f2fu + f2ch + f2ts + f2tr + f2tt + f2fa + f2go * majoration_revenus_reputes_distribues) / 12
 
 
 class prelevement_forfaitaire_unique_ir_hors_assurance_vie_epargne_solidaire_etats_non_cooperatifs(Variable):

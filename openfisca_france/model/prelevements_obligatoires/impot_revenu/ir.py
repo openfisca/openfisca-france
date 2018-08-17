@@ -799,8 +799,8 @@ class rev_cat_rvcm(Variable):
         f2go = foyer_fiscal('f2go', period)
         f2tr = foyer_fiscal('f2tr', period)
         f2ts = foyer_fiscal('f2ts', period)
-        f2tt = foyer_fiscal('f2tt', period)
-        f2tu = foyer_fiscal('f2tu', period)
+        f2tt_2016 = foyer_fiscal('f2tt_2016', period)
+        f2tu_2016 = foyer_fiscal('f2tu_2016', period)
         P = parameters(period).impot_revenu.rvcm
 
         # Revenus après abatemment
@@ -809,7 +809,42 @@ class rev_cat_rvcm(Variable):
         rvcm_apres_abattement = (
             f2fu + f2dc - abattement_dividende
             + f2ch - min_(f2ch, abattement_assurance_vie)
-            + f2ts + f2tr + max_(0, f2tt - f2tu) + f2go * P.majoration_revenus_reputes_distribues
+            + f2ts + f2tr + max_(0, f2tt_2016 - f2tu_2016) + f2go * P.majoration_revenus_reputes_distribues
+        )
+
+        return max_(0, rvcm_apres_abattement - f2ca - deficit_rcm)
+
+    def formula_2017_01_01(foyer_fiscal, period, parameters):
+        """
+        Revenus des valeurs et capitaux mobiliers
+        Seule différence avec la formule précédente :
+            On enlève la case 2TU. En 2016, 2TT contient les intérêts avant pertes
+            et 2TU les pertes déductibles des intérêts inscrits en 2TT (si le montant en 2TU est > à celui en 2TT,
+            la perte excédentaire est reportable sur les cinq années suivantes). En 2017, 2TT contient les intérêts
+            après déduction des pertes. 2TU, et aussi 2TV, contiennent des pertes excéndentaires à reporter.
+            Sources :
+              - Brochure pratique de l'IR 2018 sur revenus 2017 : https://www.impots.gouv.fr/portail/www2/fichiers/documentation/brochure/ir_2018/files/assets/common/downloads/Brochure%20IR%202018.pdf
+              - Brochure pratique de l'IR 2017 sur revenus 2016 : https://www.impots.gouv.fr/portail/www2/fichiers/documentation/brochure/ir_2017/files/assets/common/downloads/publication.pdf
+        """
+        maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
+        deficit_rcm = foyer_fiscal('deficit_rcm', period)
+        f2ca = foyer_fiscal('f2ca', period)
+        f2ch = foyer_fiscal('f2ch', period)
+        f2dc = foyer_fiscal('f2dc', period)
+        f2fu = foyer_fiscal('f2fu', period)
+        f2go = foyer_fiscal('f2go', period)
+        f2tr = foyer_fiscal('f2tr', period)
+        f2ts = foyer_fiscal('f2ts', period)
+        f2tt = foyer_fiscal('f2tt', period)
+        P = parameters(period).impot_revenu.rvcm
+
+        # Revenus après abatemment
+        abattement_dividende = (f2fu + f2dc) * P.taux_abattement_capitaux_mobiliers
+        abattement_assurance_vie =  P.abat_assvie * (1 + maries_ou_pacses)
+        rvcm_apres_abattement = (
+            f2fu + f2dc - abattement_dividende
+            + f2ch - min_(f2ch, abattement_assurance_vie)
+            + f2ts + f2tr + f2tt + f2go * P.majoration_revenus_reputes_distribues
         )
 
         return max_(0, rvcm_apres_abattement - f2ca - deficit_rcm)

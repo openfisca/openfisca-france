@@ -166,13 +166,33 @@ class f2fa(Variable):
     # start_date = date(2013, 1, 1)
     definition_period = YEAR
 
-class f2tt(Variable):
+class f2tt_2016(Variable):
     cerfa_field = u"2TT"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = u"Intérêts des prêts participatifs"
     # start_date = date(2016, 1, 1)
+    end = '2016-12-31'
+    definition_period = YEAR
+
+class f2tt(Variable):
+    cerfa_field = u"2TT"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Intérêts des prêts participatifs nettes des pertes à imputer au titre de l'impôt sur le revenu"
+    # start_date = date(2017, 1, 1)
+    definition_period = YEAR
+
+class f2tu_2016(Variable):
+    cerfa_field = u"2TU"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Pertes en capital sur prêts participatifs en 2016"
+    # start_date = date(2016, 1, 1)
+    end = '2016-12-31'
     definition_period = YEAR
 
 class f2tu(Variable):
@@ -180,8 +200,8 @@ class f2tu(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Pertes en capital sur prêts participatifs en 2016"
-    # start_date = date(2016, 1, 1)
+    label = u"Pertes en capital sur prêts participatifs en 2016 à reporter sur l'année 2018"
+    # start_date = date(2017, 1, 1)
     definition_period = YEAR
 
 class f2tv(Variable):
@@ -189,7 +209,7 @@ class f2tv(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Pertes en capital sur prêts participatifs en 2017"
+    label = u"Pertes en capital sur prêts participatifs en 2017 à reporter sur l'année 2018"
     # start_date = date(2017, 1, 1)
     definition_period = YEAR
 
@@ -397,6 +417,25 @@ class revenus_capitaux_prelevement_bareme(Variable):
         return (f2dc + f2ch + f2ts + f2go * majoration_revenus_reputes_distribues + f2tr + f2fu - avoirs_credits_fiscaux) / 12
 
     def formula_2016_01_01(foyer_fiscal, period, parameters):
+        year = period.this_year
+        f2dc = foyer_fiscal('f2dc', year)
+        f2ch = foyer_fiscal('f2ch', year)
+        f2ts = foyer_fiscal('f2ts', year)
+        f2go = foyer_fiscal('f2go', year)
+        f2tr = foyer_fiscal('f2tr', year)
+        f2fu = foyer_fiscal('f2fu', year)
+        f2tt_2016 = foyer_fiscal('f2tt_2016', year)
+        avoirs_credits_fiscaux = foyer_fiscal('avoirs_credits_fiscaux', year)
+        majoration_revenus_reputes_distribues = parameters(period).impot_revenu.rvcm.majoration_revenus_reputes_distribues
+
+        return (f2dc + f2ch + f2ts + f2go * majoration_revenus_reputes_distribues + f2tr + f2fu + f2tt_2016 - avoirs_credits_fiscaux) / 12
+
+    def formula_2017_01_01(foyer_fiscal, period, parameters):
+        '''
+        Note : à partir des revenus 2017, la case 2TT représente les intérêts des prêts participatifs nets des pertes à imputer,
+        contrairement à avant où il s'agissait des intérêts avant déduction des pertes. Donc, à partir de 2017, on a ici,
+        par contrainte de la structure des cases de la déclaration des revenus, le montant net au lieu du montant brut.
+        '''
         year = period.this_year
         f2dc = foyer_fiscal('f2dc', year)
         f2ch = foyer_fiscal('f2ch', year)
