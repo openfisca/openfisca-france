@@ -1796,7 +1796,7 @@ class taxation_plus_values_hors_bareme(Variable):
             )
 
 
-class rfr_plus_values(Variable):
+class rfr_plus_values_hors_rni(Variable):
     value_type = float
     entity = FoyerFiscal
     label = u"Plus-values hors RNI entrant dans le calcul du revenu fiscal de référence (PV au barème, PV éxonérées ..)"
@@ -2078,7 +2078,7 @@ class rfr(Variable):
         revenus_capitaux_prelevement_liberatoire = foyer_fiscal('revenus_capitaux_prelevement_liberatoire', period, options = [ADD]) # Supprimée à partir de 2018
         revenus_capitaux_prelevement_forfaitaire_unique_ir = foyer_fiscal('revenus_capitaux_prelevement_forfaitaire_unique_ir', period, options = [ADD]) # Existe à partir de 2018
         rfr_charges_deductibles = foyer_fiscal('rfr_cd', period)
-        rfr_plus_values = foyer_fiscal('rfr_plus_values', period)
+        rfr_plus_values_hors_rni = foyer_fiscal('rfr_plus_values_hors_rni', period)
         rni = foyer_fiscal('rni', period)
         rpns_exon_i = foyer_fiscal.members('rpns_exon', period)
         rpns_pvce_i = foyer_fiscal.members('rpns_pvce', period)
@@ -2088,7 +2088,7 @@ class rfr(Variable):
 
         return (
             max_(0, rni)
-            + rfr_charges_deductibles + rfr_plus_values + rfr_rev_capitaux_mobiliers + revenus_capitaux_prelevement_liberatoire + revenus_capitaux_prelevement_forfaitaire_unique_ir
+            + rfr_charges_deductibles + rfr_plus_values_hors_rni + rfr_rev_capitaux_mobiliers + revenus_capitaux_prelevement_liberatoire + revenus_capitaux_prelevement_forfaitaire_unique_ir
             + rpns_exon + rpns_pvce
             + abattement_net_duree_detention_retraite_dirigeant_pme
             + f2dm + microentreprise
