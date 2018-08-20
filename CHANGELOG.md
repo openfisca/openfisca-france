@@ -36,7 +36,6 @@
   - Note : pour les revenus 2018, on ne dispose pas du formulaire de déclaration des revenus.
     Hypothèse : la structure des cases du formulaire 2042 et 2042C est identique entre 2018 et 2019 (i.e. entre les revenus 2017 et 2018). Les assiettes du PFU sont donc définies avec les cases des formulaires de l'IR 2018 sur revenus 2017. Et on neutralise les variables d'acomptes d'impôt.
   - Changements mineurs concernant les années antérieures à 2018 :
-      - Renomme `interets_plan_epargne_logement` par `interets_plan_epargne_logement_moins_de_12_ans` (ceux de plus de 12 ans étant déjà dans la déclaration des revenus)
       - Actualise certaines variables fiscales pour 2017 : cases 2TT, 2TU et 2TV, variable `rev_cat_pv`.
       - Renomme `rfr_plus_values` en `rfr_plus_values_hors_rni`.
 
