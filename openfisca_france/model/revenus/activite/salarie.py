@@ -727,7 +727,6 @@ class indemnite_residence(Variable):
             + (categorie_salarie == TypesCategorieSalarie.public_titulaire_territoriale)
             + (categorie_salarie == TypesCategorieSalarie.public_titulaire_hospitaliere)
             + (categorie_salarie == TypesCategorieSalarie.public_non_titulaire)
-            + (categorie_salarie == TypesCategorieSalarie.non_pertinent)
         )
         return max_(
             plancher,
