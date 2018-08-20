@@ -209,9 +209,9 @@ class prelevement_forfaitaire_unique_ir_sur_assurance_vie(Variable):
         p_contrat_age_mid = assurance_vie_pfu_ir_4_8_ans_1990_19970926 + assurance_vie_pfu_ir_4_8_ans_19970926_primes_avant_20170927
         p_contrat_age_low = assurance_vie_pfu_ir_moins4ans_1990_19970926 + assurance_vie_pfu_ir_moins4ans_19970926_primes_avant_20170927
         pfu_ir_av_ancien_regime = -(
-            (p_contrat_age_low * param_pfl_av.souscrits_apres_le_1_1_90_et_le_pour_une_duree_de.duree_moins_de_4_ans)
-            + (p_contrat_age_mid * param_pfl_av.souscrits_apres_le_1_1_90_et_le_pour_une_duree_de.duree_4_a_8_ans)
-            + (max_(p_contrat_age_sup - rvcm.abat_assvie * (1 + maries_ou_pacses), 0) * param_pfl_av.souscrits_apres_le_1_1_90_et_le_pour_une_duree_de.duree_8_ans_et_plus_pour_les_produits_acquis_apres_le_01_01_1998_avec_abattement_sur_l_ir_5)
+            (p_contrat_age_low * P2.souscrits_apres_le_1_1_90_et_le_pour_une_duree_de.duree_moins_de_4_ans)
+            + (p_contrat_age_mid * P2.souscrits_apres_le_1_1_90_et_le_pour_une_duree_de.duree_4_a_8_ans)
+            + (max_(p_contrat_age_sup - rvcm.abat_assvie * (1 + maries_ou_pacses), 0) * P2.souscrits_apres_le_1_1_90_et_le_pour_une_duree_de.duree_8_ans_et_plus_pour_les_produits_acquis_apres_le_01_01_1998_avec_abattement_sur_l_ir_5)
             )
 
         return pfu_ir_av_nouveau_regime + pfu_ir_av_ancien_regime
