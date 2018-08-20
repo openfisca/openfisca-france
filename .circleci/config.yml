@@ -2,7 +2,7 @@
 version: 2
 jobs:
   build_python2:
-    parallelism: 3  # Speed up the tests, while letting a container available for other builds.
+    parallelism: 2  # Speed up the tests, while letting two containers available for other builds.
     docker:
       - image: python:2.7.14
 
@@ -80,7 +80,7 @@ jobs:
           command: ssh -o StrictHostKeyChecking=no deploy-api@fr.openfisca.org
 
   build_python3:
-    parallelism: 3  # Speed up the tests, while letting a container available for other builds.
+    parallelism: 2  # Speed up the tests, while letting two containers available for other builds.
     docker:
       - image: python:3.6
 
