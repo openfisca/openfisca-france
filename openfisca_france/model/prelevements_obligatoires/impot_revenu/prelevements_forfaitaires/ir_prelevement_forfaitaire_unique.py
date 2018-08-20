@@ -110,6 +110,29 @@ class plus_values_prelevement_forfaitaire_unique_ir(Variable):
         (notamment, pour les revenus de rev_cat_pv, passage des montants nets à bruts)
         '''
         f3sa = foyer_fiscal('f3sa', period)
+        f3vg = foyer_fiscal('f3vg', period)
+        f3sg = foyer_fiscal('f3sg', period)
+        f3ua = foyer_fiscal('f3ua', period)
+        f3sl = foyer_fiscal('f3sl', period)
+        f3wb = foyer_fiscal('f3wb', period)
+
+        # Ici, on reprend le champ des plus-values de la variable taxation_plus_values_hors_bareme
+        f3sj = foyer_fiscal('f3sj', period)
+        f3sk = foyer_fiscal('f3sk', period)
+        f3vm = foyer_fiscal('f3vm', period)
+        f3vt = foyer_fiscal('f3vt', period)
+
+
+        # Notes :
+            # 3sg + 3sl : correspodond aux abbattements associées aux cases 3vg et 3ua (donc, on considère les montants bruts)
+            # On n'enlève pas l'abbattement fixe de 3va, car il est maintenu, y compris si le contribuable choisit le PFU. Les conditions on été légèrement modifiées, mais on ne va pas dans ce détail-là. Cf par exemple https://taj-strategie.fr/plf-2018-lecture-definitive-fiscalite-personnes
+            # 3WE n'est pas compté, car normalement, il n'est pas dans la base du PFU... A checker ?
+            # 3WB : il s'agit des plus-values et créances sans sursis de paiement (pour transfert du domicile fiscal à l'atranger)
+            #       après abattements. Normalement, il faudrait prendre la mesure avant abbattement. Ces montants sont case 3WD. Mais cette case
+            #       comprend, en plus des plus-values imposables avant abbattement, celles bénéficiant d'un report d'imposition. HYP : on prend les montants nets.
+
+        return f3sa + f3vg + f3ua + f3sg + f3sl + f3wb + f3sj + f3sk + f3vm
+
 
 
 
