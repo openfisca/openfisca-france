@@ -1901,6 +1901,14 @@ class rfr_plus_values(Variable):
 
         return f3sj + f3sk + f3tz + f3vc + f3vd + f3vf + f3vi + f3vm + f3vp + (f3vq - f3vr) + f3vt + f3vy + f3vz + f3we + f3wi + f3wj
 
+    def formula_2018_01_01(foyer_fiscal, period, parameters):
+        """
+        Plus-values 2018 et + entrant dans le calcul du revenu fiscal de référence
+        """
+        plus_values_prelevement_forfaitaire_unique_ir = foyer_fiscal('plus_values_prelevement_forfaitaire_unique_ir', period)
+
+        return plus_values_prelevement_forfaitaire_unique_ir
+
 
 class iai(Variable):
     value_type = float
