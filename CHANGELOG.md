@@ -1,5 +1,13 @@
 # Changelog
 
+## 24.1.0 [#1079](https://github.com/openfisca/openfisca-france/pull/1079)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : model/base.
+* Détails :
+  - Modifie le taux de primes pour qu'il soit égal à 19,5 % au lieu de 25 %
+
 # 24.0.0 [#1062](https://github.com/openfisca/openfisca-france/pull/1062)
 
 * Amélioration technique **non rétro-compatibles**.
