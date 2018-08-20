@@ -100,8 +100,10 @@ pip --version  # Devrait afficher au moins 9.0.x
 Installez OpenFisca-France :
 
 ```sh
-pip install openfisca-france
+pip install openfisca-france && pip install openfisca-core[web-api]
 ```
+> _Note: La deuxième partie de la commande, à partir du `&&`, est optionnelle. Elle vous permet d'installer l'API Web d'OpenFisca._
+
 Félicitations :tada: OpenFisca-France est prêt à être utilisé !
 
 #### Prochaines étapes
@@ -143,13 +145,12 @@ Clonez OpenFisca-France sur votre machine :
 ```sh
 git clone https://github.com/openfisca/openfisca-france.git
 cd openfisca-france
-pip install -e .
+pip install --editable .[dev] && pip install openfisca-core[web-api]
 ```
 
 Vous pouvez vous assurer que votre installation s'est bien passée en exécutant :
 
 ```sh
-pip install -e ".[test]"
 nosetests tests/test_basics.py # Ces test peuvent prendre jusqu'à 60 secondes.
 ```
 :tada: OpenFisca-France est prêt à être utilisé !
@@ -172,7 +173,7 @@ Pour en savoir plus sur la commande `openfisca serve` et ses options, consultez 
 Testez votre installation en requêtant la commande suivante :
 
 ```sh
-curl "http://localhost:6000/parameter/cotsoc.gen.smic_h_b"
+curl "http://localhost:5000/parameter/cotsoc.gen.smic_h_b"
 ```
 Vous devriez avoir le resultat suivant :
 ```JSON

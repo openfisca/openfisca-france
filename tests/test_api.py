@@ -16,9 +16,9 @@ class TestNewApi(TestCase):
 
     def test_response(self):
         try:
-            subprocess.check_call(['wget', '--quiet',  '--retry-connrefused', '--waitretry=1', '--tries=10', 'http://localhost:6000/parameters', '--output-document=/dev/null'])
+            subprocess.check_call(['wget', '--quiet',  '--retry-connrefused', '--waitretry=1', '--tries=10', 'http://localhost:5000/parameters', '--output-document=/dev/null'])
         except subprocess.CalledProcessError:
-            raise subprocess.CalledProcessError("Could not reach OpenFisca Web API at localhost:6000 after 10s")
+            raise subprocess.CalledProcessError("Could not reach OpenFisca Web API at localhost:5000 after 10s")
         except OSError:
             try:
                 subprocess.check_call(['wget', '--version'])
