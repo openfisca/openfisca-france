@@ -1,6 +1,6 @@
 - period: "2015-11"
   name: Base
-  description: >
+  description: |
     Aide à l'embauche d'un premier salarié.
     Le montant total de l’aide est égal à 4 000 €,
     réparti sur 24 mois maximum, à raison de 500 €
@@ -72,7 +72,7 @@
 
 - period: "2015-11"
   name: Temps partiel
-  description: >
+  description: |
     Si le salarié est embauché à temps partiel, l’aide est proratisée
     en fonction de sa durée de travail.
     TODO : ajouter une input_variable temps partiel et changer l'output_variable en conséquence
