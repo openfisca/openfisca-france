@@ -130,10 +130,6 @@ individus:
       2017-12: false
       2017-11: false
       2017-10: false
-    apa_eligibilite:
-      2018-01: null
-    aah_non_calculable:
-      2018-01: null
     id: demandeur
 familles:
   - parents:
@@ -308,12 +304,6 @@ familles:
       2017-03: 0
       2017-02: 0
       2017-01: 0
-    aide_logement_non_calculable:
-      2018-01: null
-    rsa_non_calculable:
-      2018-01: null
-    cmu_c:
-      2018-01: null
 foyers_fiscaux:
   - declarants:
       - demandeur
