@@ -7,7 +7,7 @@
 * Zones impactées : model/base/TAUX_DE_PRIME, revenus/activite/salarie.
 * Détails :
   - Corrige le type des salariés éligibles à l'indemnité de résidence
-  - Modifie le taux de primes pour qu'il soit égal à 19,5 % au lieu de 25 %
+  - Modifie le taux moyen de primes dans la fonction publique pour qu'il soit égal à 19,5 % au lieu de 25 %
 
 # 24.0.0 [#1062](https://github.com/openfisca/openfisca-france/pull/1062)
 
