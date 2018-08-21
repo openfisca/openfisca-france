@@ -164,7 +164,7 @@
     f6gi: 1800
     f6gj: 6000
   output_variables:
-    irpp: -0
+    irpp: 0
 
 - name: "IRPP - Niches fiscales - Charges déductibles : CSG déductible connue, calculée sur les revenus du patrimoine (f6de)"
   period: 2012
@@ -685,7 +685,7 @@
     salaire_imposable: 14000
     age: 66
   output_variables:
-    irpp: -0
+    irpp: 0
 - name: "IRPP - Niches fiscales - Abattement accordé aux personnes âgées ou invalides -- 14 000 €"
   period: 2011
   absolute_error_margin: 0.5
@@ -693,7 +693,7 @@
     salaire_imposable: 14000
     age: 66
   output_variables:
-    irpp: -0
+    irpp: 0
 - name: "IRPP - Niches fiscales - Abattement accordé aux personnes âgées ou invalides -- 14 000 €"
   period: 2010
   absolute_error_margin: 0.5
@@ -701,7 +701,7 @@
     salaire_imposable: 14000
     age: 66
   output_variables:
-    irpp: -0
+    irpp: 0
 
 - name: "IRPP - Niches fiscales - Abattement accordé aux personnes âgées ou invalides -- 18 000 €"
   period: 2012
@@ -785,7 +785,7 @@
     salaire_imposable: 14000
     caseP: 1
   output_variables:
-    irpp: -0
+    irpp: 0
 - name: "IRPP - Niches fiscales - Abattement accordé aux invalides -- 14 000 €"
   period: 2011
   absolute_error_margin: 0.5
@@ -793,7 +793,7 @@
     salaire_imposable: 14000
     caseP: 1
   output_variables:
-    irpp: -0
+    irpp: 0
 - name: "IRPP - Niches fiscales - Abattement accordé aux invalides -- 14 000 €"
   period: 2010
   absolute_error_margin: 0.5
@@ -801,7 +801,7 @@
     salaire_imposable: 14000
     caseP: 1
   output_variables:
-    irpp: -0
+    irpp: 0
 
 - name: "IRPP - Niches fiscales - Abattement accordé aux invalides -- 25 000 €"
   period: 2012

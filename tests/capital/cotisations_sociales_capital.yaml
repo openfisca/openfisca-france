@@ -9,7 +9,7 @@
     csg_revenus_capital: -1640
     crds_revenus_capital: -100
     ir_plaf_qf: 330
-    irpp: -0
+    irpp: 0
 
 - name: "f2fu_2013"
   description: Montant des cotisations sociales sur des revenus imposables des titres non côtés détenus dans le PEA et distributions perçues via entreprise donnant droit à abattement (2fu) de 20000 euros en 2013
@@ -22,7 +22,7 @@
     csg_revenus_capital: -1640
     crds_revenus_capital: -100
     ir_plaf_qf: 330
-    irpp: -0
+    irpp: 0
 
 - name: "f2go_2013"
   description: Montant des cotisations sociales sur d autres revenus distribués et revenus des structures soumises hors de France à un régime fiscal privilégié n ouvrant pas droit à abattement de 20000 euros en 2013
@@ -156,7 +156,7 @@
     crds_revenus_capital: -100
     prelevements_sociaux_revenus_capital_hors_csg_crds: -1360
     rev_cat_rvcm: 7000
-    irpp: -0
+    irpp: 0
 
 - name: "f4babbbcbd_2006"
   description: Montant des cotisations sociales sur des revenus fonciers imposables de 20000 euros, un déficit imputable sur les revenus fonciers de 1000 euros,  un déficit imputable sur le revenu global de 1000 euros, des déficits antérieurs non encore imputés de 1000 euros en 2006
