@@ -1,8 +1,8 @@
 name: Les personnes inaptes au travail sont éligibles à partir de 62 ans
 keywords:
-  - age
-  - aspa
-  - eligibilité
+- age
+- aspa
+- eligibilité
 description: La personne a 62 ans et a coché la case "inapte au travail", elle est donc éligible.
 period: "month:2014-11"
 relative_error_margin: 0.02

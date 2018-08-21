@@ -1,8 +1,8 @@
 name: Pas d'acs si revenus du capital font dépasser le plafond
 keywords:
-  - base ressources
-  - "cmu-c/acs"
-  - patrimoine
+- base ressources
+- "cmu-c/acs"
+- patrimoine
 description: |
   Ressources d'activité + aide au logement = droit ACS
   Existence de revenus du capital : dépassement seuil

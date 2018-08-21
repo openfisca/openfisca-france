@@ -1,8 +1,8 @@
 name: "ALS - apprenti - evaluation forfaitaire"
 keywords:
-  - base ressources
-  - eval forfaitaire
-  - recette
+- base ressources
+- eval forfaitaire
+- recette
 description: |
   Test créé à partir d'un dossier de demande de ALS :
   Ces paramètres (ressources non déclarables, situation personnelle…) n'ont pas pu être capturés : salaire de novembre 2014 pour renouvellement droit à janvier 2015

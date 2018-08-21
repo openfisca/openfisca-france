@@ -1,8 +1,8 @@
 name: Ressources exclues
 keywords:
-  - al
-  - base ressources
-  - projection année glissante
+- al
+- base ressources
+- projection année glissante
 description: L'AAH est exclue de la base ressource des allocations logement
 period: "month:2014-10"
 relative_error_margin: 0.02

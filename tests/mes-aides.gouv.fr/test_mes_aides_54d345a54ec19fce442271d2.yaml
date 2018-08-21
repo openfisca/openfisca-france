@@ -1,8 +1,8 @@
 name: Plancher de ressources pour les étudiants non boursiers en locatif
 keywords:
-  - al
-  - base ressources
-  - étudiants
+- al
+- base ressources
+- étudiants
 description: |
   Les étudiants non boursiers en locatif ont un plancher de ressources de 7500 euros.
   cf. http://www.territoires.gouv.fr/IMG/pdf/MEDDAT_Plaq_logement_2013_bd.pdf page 24.

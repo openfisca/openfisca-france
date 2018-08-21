@@ -1,6 +1,5 @@
 - period: "2016-06"
-  name:
-    Taxe d'apprentissage / Contribution supplémentaire à l'apprentissage
+  name: Taxe d'apprentissage / Contribution supplémentaire à l'apprentissage
   relative_error_margin: 0.001
   input_variables:
     salaire_de_base: 1467
@@ -16,8 +15,7 @@
     contribution_supplementaire_apprentissage: 0 # parce que < 250 employés -> non applicable
 
 - period: "2016-06"
-  name:
-    Taxe d'apprentissage / CSA non applicable car ratio 0.05
+  name: Taxe d'apprentissage / CSA non applicable car ratio 0.05
   relative_error_margin: 0.001
   input_variables:
     salaire_de_base: 1467
@@ -34,8 +32,7 @@
 
 
 - period: "2016-06"
-  name:
-    Taxe d'apprentissage / CSA ratio 0.036
+  name: Taxe d'apprentissage / CSA ratio 0.036
   relative_error_margin: 0.001
   input_variables:
     salaire_de_base: 1467
@@ -52,8 +49,7 @@
 
 
 - period: "2016-06"
-  name:
-    Taxe d'apprentissage / CSA. Grosse entreprise, faible ratio alternants
+  name: Taxe d'apprentissage / CSA. Grosse entreprise, faible ratio alternants
   relative_error_margin: 0.001
   input_variables:
     salaire_de_base: 1467
@@ -69,8 +65,7 @@
 
 
 - period: "2016-06"
-  name:
-    Taxe d'apprentissage / CSA pour une association
+  name: Taxe d'apprentissage / CSA pour une association
   relative_error_margin: 0.001
   input_variables:
     salaire_de_base: 1467
@@ -87,8 +82,7 @@
 
 
 - period: "2016-06"
-  description:
-    Taxe d'apprentissage / CSA A-M
+  description: Taxe d'apprentissage / CSA A-M
   relative_error_margin: 0.001
   input_variables:
     salaire_de_base: 1467

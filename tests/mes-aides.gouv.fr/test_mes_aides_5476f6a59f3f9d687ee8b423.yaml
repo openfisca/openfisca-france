@@ -1,7 +1,7 @@
 name: Pas d'APL dans les DOM
 keywords:
-  - al
-  - dom
+- al
+- dom
 description: Il n'y a pas d'APL dans les DOM, on ne peut que toucher l'ALS ou l'ALF.
 period: "month:2014-11"
 relative_error_margin: 0.02

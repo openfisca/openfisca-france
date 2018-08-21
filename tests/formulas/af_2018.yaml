@@ -13,24 +13,24 @@
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2"]
   individus:
-    - id: "parent1"
-      age: 38
-      revenu_assimile_salaire:
-        2015: 40000
-        2016: 40000
-        2017: 40000
-        2018: 40000
-    - id: "parent2"
-      age: 35
-      revenu_assimile_salaire:
-        2015: 20000
-        2016: 20000
-        2017: 20000
-        2018: 20000
-    - id: "enfant1"
-      age: 12
-    - id: "enfant2"
-      age: 10
+  - id: "parent1"
+    age: 38
+    revenu_assimile_salaire:
+      2015: 40000
+      2016: 40000
+      2017: 40000
+      2018: 40000
+  - id: "parent2"
+    age: 35
+    revenu_assimile_salaire:
+      2015: 20000
+      2016: 20000
+      2017: 20000
+      2018: 20000
+  - id: "enfant1"
+    age: 12
+  - id: "enfant2"
+    age: 10
   output_variables:
     af: 129.86 / (1 - 0.005)
     # af nette - crds
@@ -50,26 +50,26 @@
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2", "enfant3"]
   individus:
-    - id: "parent1"
-      age: 38
-      revenu_assimile_salaire:
-        2015: 40000
-        2016: 40000
-        2017: 40000
-        2018: 40000
-    - id: "parent2"
-      age: 35
-      revenu_assimile_salaire:
-        2015: 20000
-        2016: 20000
-        2017: 20000
-        2018: 20000
-    - id: "enfant1"
-      age: 12
-    - id: "enfant2"
-      age: 10
-    - id: "enfant3"
-      age: 7
+  - id: "parent1"
+    age: 38
+    revenu_assimile_salaire:
+      2015: 40000
+      2016: 40000
+      2017: 40000
+      2018: 40000
+  - id: "parent2"
+    age: 35
+    revenu_assimile_salaire:
+      2015: 20000
+      2016: 20000
+      2017: 20000
+      2018: 20000
+  - id: "enfant1"
+    age: 12
+  - id: "enfant2"
+    age: 10
+  - id: "enfant3"
+    age: 7
   output_variables:
     af: 296.24 / (1 - 0.005)
     # af nette - crds
@@ -89,28 +89,28 @@
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2", "enfant3", "enfant4"]
   individus:
-    - id: "parent1"
-      age: 38
-      revenu_assimile_salaire:
-        2015: 40000
-        2016: 40000
-        2017: 40000
-        2018: 40000
-    - id: "parent2"
-      age: 35
-      revenu_assimile_salaire:
-        2015: 20000
-        2016: 20000
-        2017: 20000
-        2018: 20000
-    - id: "enfant1"
-      age: 12
-    - id: "enfant2"
-      age: 10
-    - id: "enfant3"
-      age: 7
-    - id: "enfant4"
-      age: 5
+  - id: "parent1"
+    age: 38
+    revenu_assimile_salaire:
+      2015: 40000
+      2016: 40000
+      2017: 40000
+      2018: 40000
+  - id: "parent2"
+    age: 35
+    revenu_assimile_salaire:
+      2015: 20000
+      2016: 20000
+      2017: 20000
+      2018: 20000
+  - id: "enfant1"
+    age: 12
+  - id: "enfant2"
+    age: 10
+  - id: "enfant3"
+    age: 7
+  - id: "enfant4"
+    age: 5
   output_variables:
     af: 462.62 / (1 - 0.005)
     # af nette - crds
@@ -130,30 +130,30 @@
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2", "enfant3", "enfant4", "enfant5"]
   individus:
-    - id: "parent1"
-      age: 38
-      revenu_assimile_salaire:
-        2015: 40000
-        2016: 40000
-        2017: 40000
-        2018: 40000
-    - id: "parent2"
-      age: 35
-      revenu_assimile_salaire:
-        2015: 20000
-        2016: 20000
-        2017: 20000
-        2018: 20000
-    - id: "enfant1"
-      age: 12
-    - id: "enfant2"
-      age: 10
-    - id: "enfant3"
-      age: 7
-    - id: "enfant4"
-      age: 5
-    - id: "enfant5"
-      age: 3
+  - id: "parent1"
+    age: 38
+    revenu_assimile_salaire:
+      2015: 40000
+      2016: 40000
+      2017: 40000
+      2018: 40000
+  - id: "parent2"
+    age: 35
+    revenu_assimile_salaire:
+      2015: 20000
+      2016: 20000
+      2017: 20000
+      2018: 20000
+  - id: "enfant1"
+    age: 12
+  - id: "enfant2"
+    age: 10
+  - id: "enfant3"
+    age: 7
+  - id: "enfant4"
+    age: 5
+  - id: "enfant5"
+    age: 3
   output_variables:
     af: 628.99 / (1 - 0.005)
     # af nette - crds
@@ -173,34 +173,34 @@
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2", "enfant3", "enfant4", "enfant5", "enfant6", "enfant7"]
   individus:
-    - id: "parent1"
-      age: 38
-      revenu_assimile_salaire:
-        2015: 40000
-        2016: 40000
-        2017: 40000
-        2018: 40000
-    - id: "parent2"
-      age: 35
-      revenu_assimile_salaire:
-        2015: 20000
-        2016: 20000
-        2017: 20000
-        2018: 20000
-    - id: "enfant1"
-      age: 12
-    - id: "enfant2"
-      age: 10
-    - id: "enfant3"
-      age: 7
-    - id: "enfant4"
-      age: 5
-    - id: "enfant5"
-      age: 3
-    - id: "enfant6"
-      age: 1
-    - id: "enfant7"
-      age: 1
+  - id: "parent1"
+    age: 38
+    revenu_assimile_salaire:
+      2015: 40000
+      2016: 40000
+      2017: 40000
+      2018: 40000
+  - id: "parent2"
+    age: 35
+    revenu_assimile_salaire:
+      2015: 20000
+      2016: 20000
+      2017: 20000
+      2018: 20000
+  - id: "enfant1"
+    age: 12
+  - id: "enfant2"
+    age: 10
+  - id: "enfant3"
+    age: 7
+  - id: "enfant4"
+    age: 5
+  - id: "enfant5"
+    age: 3
+  - id: "enfant6"
+    age: 1
+  - id: "enfant7"
+    age: 1
   output_variables:
     af: 961.75 / (1 - 0.005)
     # af nette - crds
@@ -220,26 +220,26 @@
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2", "enfant3"]
   individus:
-    - id: "parent1"
-      age: 38
-      revenu_assimile_salaire:
-        2015: 40000
-        2016: 40000
-        2017: 40000
-        2018: 40000
-    - id: "parent2"
-      age: 35
-      revenu_assimile_salaire:
-        2015: 20000
-        2016: 20000
-        2017: 20000
-        2018: 20000
-    - id: "enfant1"
-      age: 14
-    - id: "enfant2"
-      age: 10
-    - id: "enfant3"
-      age: 7
+  - id: "parent1"
+    age: 38
+    revenu_assimile_salaire:
+      2015: 40000
+      2016: 40000
+      2017: 40000
+      2018: 40000
+  - id: "parent2"
+    age: 35
+    revenu_assimile_salaire:
+      2015: 20000
+      2016: 20000
+      2017: 20000
+      2018: 20000
+  - id: "enfant1"
+    age: 14
+  - id: "enfant2"
+    age: 10
+  - id: "enfant3"
+    age: 7
   output_variables:
     af: 361.17 / (1 - 0.005)
     # af nette - crds
@@ -259,26 +259,26 @@
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2", "enfant3"]
   individus:
-    - id: "parent1"
-      age: 38
-      revenu_assimile_salaire:
-        2015: 40000
-        2016: 40000
-        2017: 40000
-        2018: 40000
-    - id: "parent2"
-      age: 35
-      revenu_assimile_salaire:
-        2015: 20000
-        2016: 20000
-        2017: 20000
-        2018: 20000
-    - id: "enfant1"
-      age: 20
-    - id: "enfant2"
-      age: 10
-    - id: "enfant3"
-      age: 7
+  - id: "parent1"
+    age: 38
+    revenu_assimile_salaire:
+      2015: 40000
+      2016: 40000
+      2017: 40000
+      2018: 40000
+  - id: "parent2"
+    age: 35
+    revenu_assimile_salaire:
+      2015: 20000
+      2016: 20000
+      2017: 20000
+      2018: 20000
+  - id: "enfant1"
+    age: 20
+  - id: "enfant2"
+    age: 10
+  - id: "enfant3"
+    age: 7
   output_variables:
     af: 211.97 / (1 - 0.005)
     # af nette - crds
@@ -298,24 +298,24 @@
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2"]
   individus:
-    - id: "parent1"
-      age: 38
-      revenu_assimile_salaire:
-        2015: 55000
-        2016: 55000
-        2017: 55000
-        2018: 55000
-    - id: "parent2"
-      age: 35
-      revenu_assimile_salaire:
-        2015: 35000
-        2016: 35000
-        2017: 35000
-        2018: 35000
-    - id: "enfant1"
-      age: 12
-    - id: "enfant2"
-      age: 10
+  - id: "parent1"
+    age: 38
+    revenu_assimile_salaire:
+      2015: 55000
+      2016: 55000
+      2017: 55000
+      2018: 55000
+  - id: "parent2"
+    age: 35
+    revenu_assimile_salaire:
+      2015: 35000
+      2016: 35000
+      2017: 35000
+      2018: 35000
+  - id: "enfant1"
+    age: 12
+  - id: "enfant2"
+    age: 10
   output_variables:
     af: 64.93 / (1 - 0.005)
     # af nette - crds
@@ -335,26 +335,26 @@
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2", "enfant3"]
   individus:
-    - id: "parent1"
-      age: 38
-      revenu_assimile_salaire:
-        2015: 55000
-        2016: 55000
-        2017: 55000
-        2018: 55000
-    - id: "parent2"
-      age: 35
-      revenu_assimile_salaire:
-        2015: 35000
-        2016: 35000
-        2017: 35000
-        2018: 35000
-    - id: "enfant1"
-      age: 12
-    - id: "enfant2"
-      age: 10
-    - id: "enfant3"
-      age: 7
+  - id: "parent1"
+    age: 38
+    revenu_assimile_salaire:
+      2015: 55000
+      2016: 55000
+      2017: 55000
+      2018: 55000
+  - id: "parent2"
+    age: 35
+    revenu_assimile_salaire:
+      2015: 35000
+      2016: 35000
+      2017: 35000
+      2018: 35000
+  - id: "enfant1"
+    age: 12
+  - id: "enfant2"
+    age: 10
+  - id: "enfant3"
+    age: 7
   output_variables:
     af: 148.12 / (1 - 0.005)
     # af nette - crds
@@ -374,28 +374,28 @@
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2", "enfant3", "enfant4"]
   individus:
-    - id: "parent1"
-      age: 38
-      revenu_assimile_salaire:
-        2015: 55000
-        2016: 55000
-        2017: 55000
-        2018: 55000
-    - id: "parent2"
-      age: 35
-      revenu_assimile_salaire:
-        2015: 35000
-        2016: 35000
-        2017: 35000
-        2018: 35000
-    - id: "enfant1"
-      age: 12
-    - id: "enfant2"
-      age: 10
-    - id: "enfant3"
-      age: 7
-    - id: "enfant4"
-      age: 5
+  - id: "parent1"
+    age: 38
+    revenu_assimile_salaire:
+      2015: 55000
+      2016: 55000
+      2017: 55000
+      2018: 55000
+  - id: "parent2"
+    age: 35
+    revenu_assimile_salaire:
+      2015: 35000
+      2016: 35000
+      2017: 35000
+      2018: 35000
+  - id: "enfant1"
+    age: 12
+  - id: "enfant2"
+    age: 10
+  - id: "enfant3"
+    age: 7
+  - id: "enfant4"
+    age: 5
   output_variables:
     af: 231.31 / (1 - 0.005) + 48.97
     # af nette - crds + complement dégressif
@@ -415,37 +415,37 @@
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2", "enfant3", "enfant4", "enfant5"]
   individus:
-    - id: "parent1"
-      date_naissance: 1980-01-01
-      age: 38
-      revenu_assimile_salaire:
-        2015: 55000
-        2016: 55000
-        2017: 55000
-        2018: 55000
-    - id: "parent2"
-      date_naissance: 1982-02-02
-      age: 35
-      revenu_assimile_salaire:
-        2015: 35000
-        2016: 35000
-        2017: 35000
-        2018: 35000
-    - id: "enfant1"
-      date_naissance: 2005-03-10
-      age: 12
-    - id: "enfant2"
-      date_naissance: 2008-01-04
-      age: 10
-    - id: "enfant3"
-      date_naissance: 2010-10-15
-      age: 7
-    - id: "enfant4"
-      date_naissance: 2012-08-02
-      age: 5
-    - id: "enfant5"
-      date_naissance: 2014-12-20
-      age: 3
+  - id: "parent1"
+    date_naissance: 1980-01-01
+    age: 38
+    revenu_assimile_salaire:
+      2015: 55000
+      2016: 55000
+      2017: 55000
+      2018: 55000
+  - id: "parent2"
+    date_naissance: 1982-02-02
+    age: 35
+    revenu_assimile_salaire:
+      2015: 35000
+      2016: 35000
+      2017: 35000
+      2018: 35000
+  - id: "enfant1"
+    date_naissance: 2005-03-10
+    age: 12
+  - id: "enfant2"
+    date_naissance: 2008-01-04
+    age: 10
+  - id: "enfant3"
+    date_naissance: 2010-10-15
+    age: 7
+  - id: "enfant4"
+    date_naissance: 2012-08-02
+    age: 5
+  - id: "enfant5"
+    date_naissance: 2014-12-20
+    age: 3
   output_variables:
     af: 628.99 / (1 - 0.005)
     # af nette - crds
@@ -465,34 +465,34 @@
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2", "enfant3", "enfant4", "enfant5", "enfant6", "enfant7"]
   individus:
-    - id: "parent1"
-      age: 38
-      revenu_assimile_salaire:
-        2015: 55000
-        2016: 55000
-        2017: 55000
-        2018: 55000
-    - id: "parent2"
-      age: 35
-      revenu_assimile_salaire:
-        2015: 35000
-        2016: 35000
-        2017: 35000
-        2018: 35000
-    - id: "enfant1"
-      age: 12
-    - id: "enfant2"
-      age: 10
-    - id: "enfant3"
-      age: 7
-    - id: "enfant4"
-      age: 5
-    - id: "enfant5"
-      age: 3
-    - id: "enfant6"
-      age: 1
-    - id: "enfant7"
-      age: 1
+  - id: "parent1"
+    age: 38
+    revenu_assimile_salaire:
+      2015: 55000
+      2016: 55000
+      2017: 55000
+      2018: 55000
+  - id: "parent2"
+    age: 35
+    revenu_assimile_salaire:
+      2015: 35000
+      2016: 35000
+      2017: 35000
+      2018: 35000
+  - id: "enfant1"
+    age: 12
+  - id: "enfant2"
+    age: 10
+  - id: "enfant3"
+    age: 7
+  - id: "enfant4"
+    age: 5
+  - id: "enfant5"
+    age: 3
+  - id: "enfant6"
+    age: 1
+  - id: "enfant7"
+    age: 1
   output_variables:
     af: 961.75 / (1 - 0.005)
     # af nette - crds
@@ -512,26 +512,26 @@
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2", "enfant3"]
   individus:
-    - id: "parent1"
-      age: 38
-      revenu_assimile_salaire:
-        2015: 55000
-        2016: 55000
-        2017: 55000
-        2018: 55000
-    - id: "parent2"
-      age: 35
-      revenu_assimile_salaire:
-        2015: 35000
-        2016: 35000
-        2017: 35000
-        2018: 35000
-    - id: "enfant1"
-      age: 14
-    - id: "enfant2"
-      age: 10
-    - id: "enfant3"
-      age: 7
+  - id: "parent1"
+    age: 38
+    revenu_assimile_salaire:
+      2015: 55000
+      2016: 55000
+      2017: 55000
+      2018: 55000
+  - id: "parent2"
+    age: 35
+    revenu_assimile_salaire:
+      2015: 35000
+      2016: 35000
+      2017: 35000
+      2018: 35000
+  - id: "enfant1"
+    age: 14
+  - id: "enfant2"
+    age: 10
+  - id: "enfant3"
+    age: 7
   output_variables:
     af: 180.59 / (1 - 0.005)
     # af nette - crds
@@ -551,26 +551,26 @@
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2", "enfant3"]
   individus:
-    - id: "parent1"
-      age: 38
-      revenu_assimile_salaire:
-        2015: 55000
-        2016: 55000
-        2017: 55000
-        2018: 55000
-    - id: "parent2"
-      age: 35
-      revenu_assimile_salaire:
-        2015: 35000
-        2016: 35000
-        2017: 35000
-        2018: 35000
-    - id: "enfant1"
-      age: 20
-    - id: "enfant2"
-      age: 10
-    - id: "enfant3"
-      age: 7
+  - id: "parent1"
+    age: 38
+    revenu_assimile_salaire:
+      2015: 55000
+      2016: 55000
+      2017: 55000
+      2018: 55000
+  - id: "parent2"
+    age: 35
+    revenu_assimile_salaire:
+      2015: 35000
+      2016: 35000
+      2017: 35000
+      2018: 35000
+  - id: "enfant1"
+    age: 20
+  - id: "enfant2"
+    age: 10
+  - id: "enfant3"
+    age: 7
   output_variables:
     af: 105.99 / (1 - 0.005)
     # af nette - crds
@@ -590,24 +590,24 @@
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2"]
   individus:
-    - id: "parent1"
-      age: 38
-      revenu_assimile_salaire:
-        2015: 85000
-        2016: 85000
-        2017: 85000
-        2018: 85000
-    - id: "parent2"
-      age: 35
-      revenu_assimile_salaire:
-        2015: 65000
-        2016: 65000
-        2017: 65000
-        2018: 65000
-    - id: "enfant1"
-      age: 12
-    - id: "enfant2"
-      age: 10
+  - id: "parent1"
+    age: 38
+    revenu_assimile_salaire:
+      2015: 85000
+      2016: 85000
+      2017: 85000
+      2018: 85000
+  - id: "parent2"
+    age: 35
+    revenu_assimile_salaire:
+      2015: 65000
+      2016: 65000
+      2017: 65000
+      2018: 65000
+  - id: "enfant1"
+    age: 12
+  - id: "enfant2"
+    age: 10
   output_variables:
     af: 32.47 / (1 - 0.005)
     # af nette - crds
@@ -627,26 +627,26 @@
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2", "enfant3"]
   individus:
-    - id: "parent1"
-      age: 38
-      revenu_assimile_salaire:
-        2015: 85000
-        2016: 85000
-        2017: 85000
-        2018: 85000
-    - id: "parent2"
-      age: 35
-      revenu_assimile_salaire:
-        2015: 65000
-        2016: 65000
-        2017: 65000
-        2018: 65000
-    - id: "enfant1"
-      age: 12
-    - id: "enfant2"
-      age: 10
-    - id: "enfant3"
-      age: 7
+  - id: "parent1"
+    age: 38
+    revenu_assimile_salaire:
+      2015: 85000
+      2016: 85000
+      2017: 85000
+      2018: 85000
+  - id: "parent2"
+    age: 35
+    revenu_assimile_salaire:
+      2015: 65000
+      2016: 65000
+      2017: 65000
+      2018: 65000
+  - id: "enfant1"
+    age: 12
+  - id: "enfant2"
+    age: 10
+  - id: "enfant3"
+    age: 7
   output_variables:
     af: 74.06 / (1 - 0.005)
     # af nette - crds
@@ -666,28 +666,28 @@
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2", "enfant3", "enfant4"]
   individus:
-    - id: "parent1"
-      age: 38
-      revenu_assimile_salaire:
-        2015: 85000
-        2016: 85000
-        2017: 85000
-        2018: 85000
-    - id: "parent2"
-      age: 35
-      revenu_assimile_salaire:
-        2015: 65000
-        2016: 65000
-        2017: 65000
-        2018: 65000
-    - id: "enfant1"
-      age: 12
-    - id: "enfant2"
-      age: 10
-    - id: "enfant3"
-      age: 7
-    - id: "enfant4"
-      age: 5
+  - id: "parent1"
+    age: 38
+    revenu_assimile_salaire:
+      2015: 85000
+      2016: 85000
+      2017: 85000
+      2018: 85000
+  - id: "parent2"
+    age: 35
+    revenu_assimile_salaire:
+      2015: 65000
+      2016: 65000
+      2017: 65000
+      2018: 65000
+  - id: "enfant1"
+    age: 12
+  - id: "enfant2"
+    age: 10
+  - id: "enfant3"
+    age: 7
+  - id: "enfant4"
+    age: 5
   output_variables:
     af: 115.65 / (1 - 0.005)
     # af nette - crds
@@ -707,30 +707,30 @@
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2", "enfant3", "enfant4", "enfant5"]
   individus:
-    - id: "parent1"
-      age: 38
-      revenu_assimile_salaire:
-        2015: 85000
-        2016: 85000
-        2017: 85000
-        2018: 85000
-    - id: "parent2"
-      age: 35
-      revenu_assimile_salaire:
-        2015: 65000
-        2016: 65000
-        2017: 65000
-        2018: 65000
-    - id: "enfant1"
-      age: 12
-    - id: "enfant2"
-      age: 10
-    - id: "enfant3"
-      age: 7
-    - id: "enfant4"
-      age: 5
-    - id: "enfant5"
-      age: 3
+  - id: "parent1"
+    age: 38
+    revenu_assimile_salaire:
+      2015: 85000
+      2016: 85000
+      2017: 85000
+      2018: 85000
+  - id: "parent2"
+    age: 35
+    revenu_assimile_salaire:
+      2015: 65000
+      2016: 65000
+      2017: 65000
+      2018: 65000
+  - id: "enfant1"
+    age: 12
+  - id: "enfant2"
+    age: 10
+  - id: "enfant3"
+    age: 7
+  - id: "enfant4"
+    age: 5
+  - id: "enfant5"
+    age: 3
   output_variables:
     af: 157.25 / (1 - 0.005)
     # af nette - crds
@@ -750,34 +750,34 @@
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2", "enfant3", "enfant4", "enfant5", "enfant6", "enfant7"]
   individus:
-    - id: "parent1"
-      age: 38
-      revenu_assimile_salaire:
-        2015: 85000
-        2016: 85000
-        2017: 85000
-        2018: 85000
-    - id: "parent2"
-      age: 35
-      revenu_assimile_salaire:
-        2015: 65000
-        2016: 65000
-        2017: 65000
-        2018: 65000
-    - id: "enfant1"
-      age: 12
-    - id: "enfant2"
-      age: 10
-    - id: "enfant3"
-      age: 7
-    - id: "enfant4"
-      age: 5
-    - id: "enfant5"
-      age: 3
-    - id: "enfant6"
-      age: 1
-    - id: "enfant7"
-      age: 1
+  - id: "parent1"
+    age: 38
+    revenu_assimile_salaire:
+      2015: 85000
+      2016: 85000
+      2017: 85000
+      2018: 85000
+  - id: "parent2"
+    age: 35
+    revenu_assimile_salaire:
+      2015: 65000
+      2016: 65000
+      2017: 65000
+      2018: 65000
+  - id: "enfant1"
+    age: 12
+  - id: "enfant2"
+    age: 10
+  - id: "enfant3"
+    age: 7
+  - id: "enfant4"
+    age: 5
+  - id: "enfant5"
+    age: 3
+  - id: "enfant6"
+    age: 1
+  - id: "enfant7"
+    age: 1
   output_variables:
     af: 240.45 / (1 - 0.005)
     # af nette - crds
@@ -797,26 +797,26 @@
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2", "enfant3"]
   individus:
-    - id: "parent1"
-      age: 38
-      revenu_assimile_salaire:
-        2015: 85000
-        2016: 85000
-        2017: 85000
-        2018: 85000
-    - id: "parent2"
-      age: 35
-      revenu_assimile_salaire:
-        2015: 65000
-        2016: 65000
-        2017: 65000
-        2018: 65000
-    - id: "enfant1"
-      age: 14
-    - id: "enfant2"
-      age: 10
-    - id: "enfant3"
-      age: 7
+  - id: "parent1"
+    age: 38
+    revenu_assimile_salaire:
+      2015: 85000
+      2016: 85000
+      2017: 85000
+      2018: 85000
+  - id: "parent2"
+    age: 35
+    revenu_assimile_salaire:
+      2015: 65000
+      2016: 65000
+      2017: 65000
+      2018: 65000
+  - id: "enfant1"
+    age: 14
+  - id: "enfant2"
+    age: 10
+  - id: "enfant3"
+    age: 7
   output_variables:
     af: 90.29 / (1 - 0.005)
     # af nette - crds
@@ -836,26 +836,26 @@
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2", "enfant3"]
   individus:
-    - id: "parent1"
-      age: 38
-      revenu_assimile_salaire:
-        2015: 85000
-        2016: 85000
-        2017: 85000
-        2018: 85000
-    - id: "parent2"
-      age: 35
-      revenu_assimile_salaire:
-        2015: 65000
-        2016: 65000
-        2017: 65000
-        2018: 65000
-    - id: "enfant1"
-      age: 20
-    - id: "enfant2"
-      age: 10
-    - id: "enfant3"
-      age: 7
+  - id: "parent1"
+    age: 38
+    revenu_assimile_salaire:
+      2015: 85000
+      2016: 85000
+      2017: 85000
+      2018: 85000
+  - id: "parent2"
+    age: 35
+    revenu_assimile_salaire:
+      2015: 65000
+      2016: 65000
+      2017: 65000
+      2018: 65000
+  - id: "enfant1"
+    age: 20
+  - id: "enfant2"
+    age: 10
+  - id: "enfant3"
+    age: 7
   output_variables:
     af: 53 / (1 - 0.005)
     # af nette - crds
@@ -875,22 +875,22 @@
     conjoint: "parent2"
     enfants: ["enfant1"]
   individus:
-    - id: "parent1"
-      age: 38
-      revenu_assimile_salaire:
-        2015: 40000
-        2016: 40000
-        2017: 40000
-        2018: 40000
-    - id: "parent2"
-      age: 35
-      revenu_assimile_salaire:
-        2015: 20000
-        2016: 20000
-        2017: 20000
-        2018: 20000
-    - id: "enfant1"
-      age: 12
+  - id: "parent1"
+    age: 38
+    revenu_assimile_salaire:
+      2015: 40000
+      2016: 40000
+      2017: 40000
+      2018: 40000
+  - id: "parent2"
+    age: 35
+    revenu_assimile_salaire:
+      2015: 20000
+      2016: 20000
+      2017: 20000
+      2018: 20000
+  - id: "enfant1"
+    age: 12
   output_variables:
     af: 0
 
@@ -909,22 +909,22 @@
     conjoint: "parent2"
     enfants: ["enfant1"]
   individus:
-    - id: "parent1"
-      age: 38
-      revenu_assimile_salaire:
-        2015: 55000
-        2016: 55000
-        2017: 55000
-        2018: 55000
-    - id: "parent2"
-      age: 35
-      revenu_assimile_salaire:
-        2015: 35000
-        2016: 35000
-        2017: 35000
-        2018: 35000
-    - id: "enfant1"
-      age: 12
+  - id: "parent1"
+    age: 38
+    revenu_assimile_salaire:
+      2015: 55000
+      2016: 55000
+      2017: 55000
+      2018: 55000
+  - id: "parent2"
+    age: 35
+    revenu_assimile_salaire:
+      2015: 35000
+      2016: 35000
+      2017: 35000
+      2018: 35000
+  - id: "enfant1"
+    age: 12
   output_variables:
     af: 0
 
@@ -943,22 +943,22 @@
     conjoint: "parent2"
     enfants: ["enfant1"]
   individus:
-    - id: "parent1"
-      age: 38
-      revenu_assimile_salaire:
-        2015: 85000
-        2016: 85000
-        2017: 85000
-        2018: 85000
-    - id: "parent2"
-      age: 35
-      revenu_assimile_salaire:
-        2015: 65000
-        2016: 65000
-        2017: 65000
-        2018: 65000
-    - id: "enfant1"
-      age: 12
+  - id: "parent1"
+    age: 38
+    revenu_assimile_salaire:
+      2015: 85000
+      2016: 85000
+      2017: 85000
+      2018: 85000
+  - id: "parent2"
+    age: 35
+    revenu_assimile_salaire:
+      2015: 65000
+      2016: 65000
+      2017: 65000
+      2018: 65000
+  - id: "enfant1"
+    age: 12
   output_variables:
     af: 0
 
@@ -977,24 +977,24 @@
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2"]
   individus:
-    - id: "parent1"
-      age: 38
-      revenu_assimile_salaire:
-        2015: 40000
-        2016: 40000
-        2017: 40000
-        2018: 40000
-    - id: "parent2"
-      age: 35
-      revenu_assimile_salaire:
-        2015: 20000
-        2016: 20000
-        2017: 20000
-        2018: 20000
-    - id: "enfant1"
-      age: 21
-    - id: "enfant2"
-      age: 13
+  - id: "parent1"
+    age: 38
+    revenu_assimile_salaire:
+      2015: 40000
+      2016: 40000
+      2017: 40000
+      2018: 40000
+  - id: "parent2"
+    age: 35
+    revenu_assimile_salaire:
+      2015: 20000
+      2016: 20000
+      2017: 20000
+      2018: 20000
+  - id: "enfant1"
+    age: 21
+  - id: "enfant2"
+    age: 13
   output_variables:
     af: 0
 
@@ -1013,24 +1013,24 @@
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2"]
   individus:
-    - id: "parent1"
-      age: 38
-      revenu_assimile_salaire:
-        2015: 55000
-        2016: 55000
-        2017: 55000
-        2018: 55000
-    - id: "parent2"
-      age: 35
-      revenu_assimile_salaire:
-        2015: 35000
-        2016: 35000
-        2017: 35000
-        2018: 35000
-    - id: "enfant1"
-      age: 21
-    - id: "enfant2"
-      age: 13
+  - id: "parent1"
+    age: 38
+    revenu_assimile_salaire:
+      2015: 55000
+      2016: 55000
+      2017: 55000
+      2018: 55000
+  - id: "parent2"
+    age: 35
+    revenu_assimile_salaire:
+      2015: 35000
+      2016: 35000
+      2017: 35000
+      2018: 35000
+  - id: "enfant1"
+    age: 21
+  - id: "enfant2"
+    age: 13
   output_variables:
     af: 0
 
@@ -1049,23 +1049,23 @@
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2"]
   individus:
-    - id: "parent1"
-      age: 38
-      revenu_assimile_salaire:
-        2015: 85000
-        2016: 85000
-        2017: 85000
-        2018: 85000
-    - id: "parent2"
-      age: 35
-      revenu_assimile_salaire:
-        2015: 65000
-        2016: 65000
-        2017: 65000
-        2018: 65000
-    - id: "enfant1"
-      age: 21
-    - id: "enfant2"
-      age: 13
+  - id: "parent1"
+    age: 38
+    revenu_assimile_salaire:
+      2015: 85000
+      2016: 85000
+      2017: 85000
+      2018: 85000
+  - id: "parent2"
+    age: 35
+    revenu_assimile_salaire:
+      2015: 65000
+      2016: 65000
+      2017: 65000
+      2018: 65000
+  - id: "enfant1"
+    age: 21
+  - id: "enfant2"
+    age: 13
   output_variables:
     af: 0

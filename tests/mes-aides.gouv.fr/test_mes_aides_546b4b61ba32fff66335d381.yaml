@@ -1,7 +1,7 @@
 name: 32_Personne > 25 ans, enceinte sans enfant (RSA majoré)
 keywords:
-  - majoration
-  - rsa
+- majoration
+- rsa
 period: "month:2014-11"
 relative_error_margin: 0.02
 individus:

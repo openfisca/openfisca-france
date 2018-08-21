@@ -1,7 +1,7 @@
 name: "Pas de neutralisation des ressources non perçues en m-1"
 keywords:
-  - base ressources
-  - rsa
+- base ressources
+- rsa
 description: |
   M-3 et M-2: salaires de 300€
   Plus de ressources en M-1 et ne percevra plus cette ressource au mois M

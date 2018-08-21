@@ -3,15 +3,15 @@
   familles:
     parents: ["parent1"]
   individus:
-    - id: "parent1"
-      age: 40
-      ass_precondition_remplie: true
-      activite: chomeur
-      chomage_net:
-        2015-01: 200
-        2015-02: 200
-        2015-03: 200
-        year:2014-04: 2000
+  - id: "parent1"
+    age: 40
+    ass_precondition_remplie: true
+    activite: chomeur
+    chomage_net:
+      2015-01: 200
+      2015-02: 200
+      2015-03: 200
+      year:2014-04: 2000
   output_variables:
     ass_base_ressources_individu: 0
     ass_base_ressources: 0
@@ -21,15 +21,15 @@
   familles:
     parents: ["parent1"]
   individus:
-    - id: "parent1"
-      age: 40
-      ass_precondition_remplie: true
-      activite: chomeur
-      salaire_imposable:
-        2015-01: 400
-        2015-02: 400
-        2015-03: 0
-        year:2014-04: 4000
+  - id: "parent1"
+    age: 40
+    ass_precondition_remplie: true
+    activite: chomeur
+    salaire_imposable:
+      2015-01: 400
+      2015-02: 400
+      2015-03: 0
+      year:2014-04: 4000
   output_variables:
     ass_base_ressources_individu: 0
 
@@ -38,20 +38,20 @@
   familles:
     parents: ["parent1"]
   individus:
-    - id: "parent1"
-      age: 40
-      ass_precondition_remplie: true
-      activite: chomeur
-      salaire_imposable:
-        2015-01: 400
-        2015-02: 400
-        2015-03: 0
-        year:2014-04: 4000
-      chomage_net:
-        2015-01: 200
-        2015-02: 200
-        2015-03: 200
-        year:2014-04: 2000
+  - id: "parent1"
+    age: 40
+    ass_precondition_remplie: true
+    activite: chomeur
+    salaire_imposable:
+      2015-01: 400
+      2015-02: 400
+      2015-03: 0
+      year:2014-04: 4000
+    chomage_net:
+      2015-01: 200
+      2015-02: 200
+      2015-03: 200
+      year:2014-04: 2000
   output_variables:
     ass_eligibilite_individu: true
     ass_base_ressources_conjoint: 4800
@@ -62,20 +62,20 @@
   familles:
     parents: ["parent1", "parent2"]
   individus:
-    - id: "parent1"
-      age: 40
-      ass_precondition_remplie: true
-      activite: chomeur
-    - id: "parent2"
-      age: 40
-      salaire_imposable:
-        2015-01: 1000
-        2015-02: 1000
-        2015-03: 0
-        year:2014-04: 10000
-      retraite_nette:
-        2015-03: 1000
-        year:2014-04: 1000
+  - id: "parent1"
+    age: 40
+    ass_precondition_remplie: true
+    activite: chomeur
+  - id: "parent2"
+    age: 40
+    salaire_imposable:
+      2015-01: 1000
+      2015-02: 1000
+      2015-03: 0
+      year:2014-04: 10000
+    retraite_nette:
+      2015-03: 1000
+      year:2014-04: 1000
   output_variables:
     ass_eligibilite_individu: [true, false]
     ass_base_ressources_individu: [0, 1000]

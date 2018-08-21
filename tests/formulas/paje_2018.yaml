@@ -13,25 +13,25 @@
     conjoint: "parent2"
     enfants: ["enfant1"]
   individus:
-    - id: "parent1"
-      date_naissance: 1980-01-01
-      age: 38
-      revenu_assimile_salaire:
-        2015: 10000
-        2016: 10000
-        2017: 10000
-        2018: 10000
-    - id: "parent2"
-      date_naissance: 1982-02-02
-      age: 35
-      revenu_assimile_salaire:
-        2015: 5000
-        2016: 5000
-        2017: 5000
-        2018: 5000
-    - id: "enfant1"
-      date_naissance: 2016-03-10
-      age: 1
+  - id: "parent1"
+    date_naissance: 1980-01-01
+    age: 38
+    revenu_assimile_salaire:
+      2015: 10000
+      2016: 10000
+      2017: 10000
+      2018: 10000
+  - id: "parent2"
+    date_naissance: 1982-02-02
+    age: 35
+    revenu_assimile_salaire:
+      2015: 5000
+      2016: 5000
+      2017: 5000
+      2018: 5000
+  - id: "enfant1"
+    date_naissance: 2016-03-10
+    age: 1
   output_variables:
     paje: 184.62 / (1 - 0.005)
     # paje base nette - crds
@@ -51,28 +51,28 @@
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2"]
   individus:
-    - id: "parent1"
-      date_naissance: 1980-01-01
-      age: 38
-      revenu_assimile_salaire:
-        2015: 10000
-        2016: 10000
-        2017: 10000
-        2018: 10000
-    - id: "parent2"
-      date_naissance: 1982-02-02
-      age: 35
-      revenu_assimile_salaire:
-        2015: 5000
-        2016: 5000
-        2017: 5000
-        2018: 5000
-    - id: "enfant1"
-      date_naissance: 2014-08-05
-      age: 3
-    - id: "enfant2"
-      date_naissance: 2016-03-10
-      age: 1
+  - id: "parent1"
+    date_naissance: 1980-01-01
+    age: 38
+    revenu_assimile_salaire:
+      2015: 10000
+      2016: 10000
+      2017: 10000
+      2018: 10000
+  - id: "parent2"
+    date_naissance: 1982-02-02
+    age: 35
+    revenu_assimile_salaire:
+      2015: 5000
+      2016: 5000
+      2017: 5000
+      2018: 5000
+  - id: "enfant1"
+    date_naissance: 2014-08-05
+    age: 3
+  - id: "enfant2"
+    date_naissance: 2016-03-10
+    age: 1
   output_variables:
     paje: 184.62 / (1 - 0.005)
     # paje base nette - crds
@@ -92,31 +92,31 @@
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2", "enfant3"]
   individus:
-    - id: "parent1"
-      date_naissance: 1980-01-01
-      age: 38
-      revenu_assimile_salaire:
-        2015: 10000
-        2016: 10000
-        2017: 10000
-        2018: 10000
-    - id: "parent2"
-      date_naissance: 1982-02-02
-      age: 35
-      revenu_assimile_salaire:
-        2015: 5000
-        2016: 5000
-        2017: 5000
-        2018: 5000
-    - id: "enfant1"
-      date_naissance: 2012-01-01
-      age: 6
-    - id: "enfant2"
-      date_naissance: 2014-08-05
-      age: 3
-    - id: "enfant3"
-      date_naissance: 2016-03-10
-      age: 1
+  - id: "parent1"
+    date_naissance: 1980-01-01
+    age: 38
+    revenu_assimile_salaire:
+      2015: 10000
+      2016: 10000
+      2017: 10000
+      2018: 10000
+  - id: "parent2"
+    date_naissance: 1982-02-02
+    age: 35
+    revenu_assimile_salaire:
+      2015: 5000
+      2016: 5000
+      2017: 5000
+      2018: 5000
+  - id: "enfant1"
+    date_naissance: 2012-01-01
+    age: 6
+  - id: "enfant2"
+    date_naissance: 2014-08-05
+    age: 3
+  - id: "enfant3"
+    date_naissance: 2016-03-10
+    age: 1
   output_variables:
     paje: 184.62 / (1 - 0.005)
     # paje base nette - crds
@@ -136,25 +136,25 @@
     conjoint: "parent2"
     enfants: ["enfant1"]
   individus:
-    - id: "parent1"
-      date_naissance: 1980-01-01
-      age: 38
-      revenu_assimile_salaire:
-        2015: 28000
-        2016: 28000
-        2017: 28000
-        2018: 28000
-    - id: "parent2"
-      date_naissance: 1982-02-02
-      age: 35
-      revenu_assimile_salaire:
-        2015: 20000
-        2016: 20000
-        2017: 20000
-        2018: 20000
-    - id: "enfant1"
-      date_naissance: 2016-10-03
-      age: 1
+  - id: "parent1"
+    date_naissance: 1980-01-01
+    age: 38
+    revenu_assimile_salaire:
+      2015: 28000
+      2016: 28000
+      2017: 28000
+      2018: 28000
+  - id: "parent2"
+    date_naissance: 1982-02-02
+    age: 35
+    revenu_assimile_salaire:
+      2015: 20000
+      2016: 20000
+      2017: 20000
+      2018: 20000
+  - id: "enfant1"
+    date_naissance: 2016-10-03
+    age: 1
   output_variables:
     paje: 92.31 / (1 - 0.005)
     # paje base nette - crds
@@ -174,28 +174,28 @@
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2"]
   individus:
-    - id: "parent1"
-      date_naissance: 1980-01-01
-      age: 38
-      revenu_assimile_salaire:
-        2015: 28000
-        2016: 28000
-        2017: 28000
-        2018: 28000
-    - id: "parent2"
-      date_naissance: 1982-02-02
-      age: 35
-      revenu_assimile_salaire:
-        2015: 25000
-        2016: 25000
-        2017: 25000
-        2018: 25000
-    - id: "enfant1"
-      date_naissance: 2014-08-05
-      age: 3
-    - id: "enfant2"
-      date_naissance: 2016-10-03
-      age: 1
+  - id: "parent1"
+    date_naissance: 1980-01-01
+    age: 38
+    revenu_assimile_salaire:
+      2015: 28000
+      2016: 28000
+      2017: 28000
+      2018: 28000
+  - id: "parent2"
+    date_naissance: 1982-02-02
+    age: 35
+    revenu_assimile_salaire:
+      2015: 25000
+      2016: 25000
+      2017: 25000
+      2018: 25000
+  - id: "enfant1"
+    date_naissance: 2014-08-05
+    age: 3
+  - id: "enfant2"
+    date_naissance: 2016-10-03
+    age: 1
   output_variables:
     paje: 92.31 / (1 - 0.005)
     # paje base nette - crds
@@ -215,31 +215,31 @@
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2", "enfant3"]
   individus:
-    - id: "parent1"
-      date_naissance: 1980-01-01
-      age: 38
-      revenu_assimile_salaire:
-        2015: 28000
-        2016: 28000
-        2017: 28000
-        2018: 28000
-    - id: "parent2"
-      date_naissance: 1982-02-02
-      age: 35
-      revenu_assimile_salaire:
-        2015: 28000
-        2016: 28000
-        2017: 28000
-        2018: 28000
-    - id: "enfant1"
-      date_naissance: 2014-08-05
-      age: 6
-    - id: "enfant2"
-      date_naissance: 2014-08-05
-      age: 3
-    - id: "enfant3"
-      date_naissance: 2016-10-03
-      age: 1
+  - id: "parent1"
+    date_naissance: 1980-01-01
+    age: 38
+    revenu_assimile_salaire:
+      2015: 28000
+      2016: 28000
+      2017: 28000
+      2018: 28000
+  - id: "parent2"
+    date_naissance: 1982-02-02
+    age: 35
+    revenu_assimile_salaire:
+      2015: 28000
+      2016: 28000
+      2017: 28000
+      2018: 28000
+  - id: "enfant1"
+    date_naissance: 2014-08-05
+    age: 6
+  - id: "enfant2"
+    date_naissance: 2014-08-05
+    age: 3
+  - id: "enfant3"
+    date_naissance: 2016-10-03
+    age: 1
   output_variables:
     paje: 92.31 / (1 - 0.005)
     # paje base nette - crds
@@ -259,25 +259,25 @@
     conjoint: "parent2"
     enfants: ["enfant1"]
   individus:
-    - id: "parent1"
-      date_naissance: 1980-01-01
-      age: 38
-      revenu_assimile_salaire:
-        2015: 30000
-        2016: 30000
-        2017: 30000
-        2018: 30000
-    - id: "parent2"
-      date_naissance: 1982-02-02
-      age: 35
-      revenu_assimile_salaire:
-        2015: 25000
-        2016: 25000
-        2017: 25000
-        2018: 25000
-    - id: "enfant1"
-      date_naissance: 2016-10-03
-      age: 1
+  - id: "parent1"
+    date_naissance: 1980-01-01
+    age: 38
+    revenu_assimile_salaire:
+      2015: 30000
+      2016: 30000
+      2017: 30000
+      2018: 30000
+  - id: "parent2"
+    date_naissance: 1982-02-02
+    age: 35
+    revenu_assimile_salaire:
+      2015: 25000
+      2016: 25000
+      2017: 25000
+      2018: 25000
+  - id: "enfant1"
+    date_naissance: 2016-10-03
+    age: 1
   output_variables:
     paje: 0
 
@@ -296,28 +296,28 @@
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2"]
   individus:
-    - id: "parent1"
-      date_naissance: 1980-01-01
-      age: 38
-      revenu_assimile_salaire:
-        2015: 35000
-        2016: 35000
-        2017: 35000
-        2018: 35000
-    - id: "parent2"
-      date_naissance: 1982-02-02
-      age: 35
-      revenu_assimile_salaire:
-        2015: 30000
-        2016: 30000
-        2017: 30000
-        2018: 30000
-    - id: "enfant1"
-      date_naissance: 2014-08-05
-      age: 3
-    - id: "enfant2"
-      date_naissance: 2016-10-03
-      age: 1
+  - id: "parent1"
+    date_naissance: 1980-01-01
+    age: 38
+    revenu_assimile_salaire:
+      2015: 35000
+      2016: 35000
+      2017: 35000
+      2018: 35000
+  - id: "parent2"
+    date_naissance: 1982-02-02
+    age: 35
+    revenu_assimile_salaire:
+      2015: 30000
+      2016: 30000
+      2017: 30000
+      2018: 30000
+  - id: "enfant1"
+    date_naissance: 2014-08-05
+    age: 3
+  - id: "enfant2"
+    date_naissance: 2016-10-03
+    age: 1
   output_variables:
     paje: 0
 
@@ -336,31 +336,31 @@
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2", "enfant3"]
   individus:
-    - id: "parent1"
-      date_naissance: 1980-01-01
-      age: 38
-      revenu_assimile_salaire:
-        2015: 30000
-        2016: 30000
-        2017: 30000
-        2018: 30000
-    - id: "parent2"
-      date_naissance: 1982-02-02
-      age: 35
-      revenu_assimile_salaire:
-        2015: 40000
-        2016: 40000
-        2017: 40000
-        2018: 40000
-    - id: "enfant1"
-      date_naissance: 2012-01-01
-      age: 6
-    - id: "enfant2"
-      date_naissance: 2014-08-05
-      age: 3
-    - id: "enfant3"
-      date_naissance: 2016-10-03
-      age: 1
+  - id: "parent1"
+    date_naissance: 1980-01-01
+    age: 38
+    revenu_assimile_salaire:
+      2015: 30000
+      2016: 30000
+      2017: 30000
+      2018: 30000
+  - id: "parent2"
+    date_naissance: 1982-02-02
+    age: 35
+    revenu_assimile_salaire:
+      2015: 40000
+      2016: 40000
+      2017: 40000
+      2018: 40000
+  - id: "enfant1"
+    date_naissance: 2012-01-01
+    age: 6
+  - id: "enfant2"
+    date_naissance: 2014-08-05
+    age: 3
+  - id: "enfant3"
+    date_naissance: 2016-10-03
+    age: 1
   output_variables:
     paje: 0
 
@@ -379,25 +379,25 @@
     conjoint: "parent2"
     enfants: ["enfant1"]
   individus:
-    - id: "parent1"
-      date_naissance: 1980-01-01
-      age: 38
-      revenu_assimile_salaire:
-        2015: 10000
-        2016: 10000
-        2017: 10000
-        2018: 10000
-    - id: "parent2"
-      date_naissance: 1982-02-02
-      age: 35
-      revenu_assimile_salaire:
-        2015: 5000
-        2016: 5000
-        2017: 5000
-        2018: 5000
-    - id: "enfant1"
-      date_naissance: 2013-06-30
-      age: 4
+  - id: "parent1"
+    date_naissance: 1980-01-01
+    age: 38
+    revenu_assimile_salaire:
+      2015: 10000
+      2016: 10000
+      2017: 10000
+      2018: 10000
+  - id: "parent2"
+    date_naissance: 1982-02-02
+    age: 35
+    revenu_assimile_salaire:
+      2015: 5000
+      2016: 5000
+      2017: 5000
+      2018: 5000
+  - id: "enfant1"
+    date_naissance: 2013-06-30
+    age: 4
   output_variables:
     paje: 0
 
@@ -416,22 +416,22 @@
     conjoint: "parent2"
     enfants: ["enfant1"]
   individus:
-    - id: "parent1"
-      age: 38
-      revenu_assimile_salaire:
-        2015: 28000
-        2016: 28000
-        2017: 28000
-        2018: 28000
-    - id: "parent2"
-      age: 35
-      revenu_assimile_salaire:
-        2015: 15000
-        2016: 15000
-        2017: 15000
-        2018: 15000
-    - id: "enfant1"
-      date_naissance: 2018-01-01
+  - id: "parent1"
+    age: 38
+    revenu_assimile_salaire:
+      2015: 28000
+      2016: 28000
+      2017: 28000
+      2018: 28000
+  - id: "parent2"
+    age: 35
+    revenu_assimile_salaire:
+      2015: 15000
+      2016: 15000
+      2017: 15000
+      2018: 15000
+  - id: "enfant1"
+    date_naissance: 2018-01-01
   output_variables:
     paje: 923.08 / (1 - 0.005) + 92.31 / (1 - 0.005)
     # (prime naissance nette - crds) + (paje base nette - crds)
@@ -451,24 +451,24 @@
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2"]
   individus:
-    - id: "parent1"
-      age: 38
-      revenu_assimile_salaire:
-        2015: 28000
-        2016: 28000
-        2017: 28000
-        2018: 28000
-    - id: "parent2"
-      age: 35
-      revenu_assimile_salaire:
-        2015: 15000
-        2016: 15000
-        2017: 15000
-        2018: 15000
-    - id: "enfant1"
-      date_naissance: 2018-01-01
-    - id: "enfant2"
-      date_naissance: 2018-01-01
+  - id: "parent1"
+    age: 38
+    revenu_assimile_salaire:
+      2015: 28000
+      2016: 28000
+      2017: 28000
+      2018: 28000
+  - id: "parent2"
+    age: 35
+    revenu_assimile_salaire:
+      2015: 15000
+      2016: 15000
+      2017: 15000
+      2018: 15000
+  - id: "enfant1"
+    date_naissance: 2018-01-01
+  - id: "enfant2"
+    date_naissance: 2018-01-01
   output_variables:
     paje: 1846.16 / (1 - 0.005) + 92.31 / (1 - 0.005)
     # (prime naissance nette - crds) + (paje base nette - crds)
@@ -488,26 +488,26 @@
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2", "enfant3"]
   individus:
-    - id: "parent1"
-      age: 38
-      revenu_assimile_salaire:
-        2015: 28000
-        2016: 28000
-        2017: 28000
-        2018: 28000
-    - id: "parent2"
-      age: 35
-      revenu_assimile_salaire:
-        2015: 15000
-        2016: 15000
-        2017: 15000
-        2018: 15000
-    - id: "enfant1"
-      date_naissance: 2018-01-01
-    - id: "enfant2"
-      date_naissance: 2018-01-01
-    - id: "enfant3"
-      date_naissance: 2018-01-01
+  - id: "parent1"
+    age: 38
+    revenu_assimile_salaire:
+      2015: 28000
+      2016: 28000
+      2017: 28000
+      2018: 28000
+  - id: "parent2"
+    age: 35
+    revenu_assimile_salaire:
+      2015: 15000
+      2016: 15000
+      2017: 15000
+      2018: 15000
+  - id: "enfant1"
+    date_naissance: 2018-01-01
+  - id: "enfant2"
+    date_naissance: 2018-01-01
+  - id: "enfant3"
+    date_naissance: 2018-01-01
   output_variables:
     paje: 2769.24 / (1 - 0.005) + 92.31 / (1 - 0.005)
     # (prime naissance nette - crds) + (paje base nette - crds)
@@ -527,22 +527,22 @@
     conjoint: "parent2"
     enfants: ["enfant1"]
   individus:
-    - id: "parent1"
-      age: 38
-      revenu_assimile_salaire:
-        2015: 35000
-        2016: 35000
-        2017: 35000
-        2018: 35000
-    - id: "parent2"
-      age: 35
-      revenu_assimile_salaire:
-        2015: 20000
-        2016: 20000
-        2017: 20000
-        2018: 20000
-    - id: "enfant1"
-      date_naissance: 2018-01-01
+  - id: "parent1"
+    age: 38
+    revenu_assimile_salaire:
+      2015: 35000
+      2016: 35000
+      2017: 35000
+      2018: 35000
+  - id: "parent2"
+    age: 35
+    revenu_assimile_salaire:
+      2015: 20000
+      2016: 20000
+      2017: 20000
+      2018: 20000
+  - id: "enfant1"
+    date_naissance: 2018-01-01
   output_variables:
     paje: 0
 
@@ -561,23 +561,23 @@
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2"]
   individus:
-    - id: "parent1"
-      age: 38
-      revenu_assimile_salaire:
-        2015: 25000
-        2016: 25000
-        2017: 25000
-        2018: 25000
-    - id: "parent2"
-      age: 35
-      revenu_assimile_salaire:
-        2015: 35000
-        2016: 35000
-        2017: 35000
-        2018: 35000
-    - id: "enfant1"
-      age: 1
-    - id: "enfant2"
-      date_naissance: 2018-01-01
+  - id: "parent1"
+    age: 38
+    revenu_assimile_salaire:
+      2015: 25000
+      2016: 25000
+      2017: 25000
+      2018: 25000
+  - id: "parent2"
+    age: 35
+    revenu_assimile_salaire:
+      2015: 35000
+      2016: 35000
+      2017: 35000
+      2018: 35000
+  - id: "enfant1"
+    age: 1
+  - id: "enfant2"
+    date_naissance: 2018-01-01
   output_variables:
     paje: 0

@@ -3,8 +3,7 @@ keywords:
 - abattements
 - base ressources
 - cmu-c/acs
-description: Un demandeur d'emploi touchant une ARE dans la limite de 30% au-dessus du plafond de la CMU-C doit pouvoir en
-  bénéficier
+description: Un demandeur d'emploi touchant une ARE dans la limite de 30% au-dessus du plafond de la CMU-C doit pouvoir en bénéficier
 period: month:2015-01
 relative_error_margin: 0.02
 individus:

@@ -1,7 +1,7 @@
 name: Montant mensuel minimal = 16.25
 keywords:
-  - ass
-  - montant
+- ass
+- montant
 description: Si le montant calculé est < à 16.25, le montant réel est 0
 period: "month:2014-09"
 relative_error_margin: 0.02

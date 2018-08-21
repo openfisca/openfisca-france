@@ -1,8 +1,8 @@
 name: Abattement pour personnes de plus de 65 ans, cas revenu < 14630 €
 keywords:
-  - abattements
-  - al
-  - base ressources
+- abattements
+- al
+- base ressources
 description: |
   Article 157 bis du code général des impôts
   http://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000029042269&cidTexte=LEGITEXT000006069577&dateTexte=20150112

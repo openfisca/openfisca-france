@@ -1,7 +1,7 @@
 name: Personne seule touchant une AL
 keywords:
-  - "cmu-c/acs"
-  - forfait logement
+- "cmu-c/acs"
+- forfait logement
 description: Si l'APL est inférieure au forfait logement alors c'est l'APL qui est prise en compte
 period: "month:2015-07"
 relative_error_margin: 0.02

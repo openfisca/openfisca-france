@@ -12,13 +12,13 @@
     personne_de_reference: "parent1"
     enfants: ["enfant1", "enfant2"]
   individus:
-    - id: "parent1"
-      age: 40
-    - id: "enfant1"
-      age: 10
-    - id: "enfant2"
-      age: 11
-      scolarite: college
+  - id: "parent1"
+    age: 40
+  - id: "enfant1"
+    age: 10
+  - id: "enfant2"
+    age: 11
+    scolarite: college
   output_variables:
     bourse_college_echelon: 0 # non boursier
     bourse_college: 0
@@ -37,13 +37,13 @@
     personne_de_reference: "parent1"
     enfants: ["enfant1", "enfant2"]
   individus:
-    - id: "parent1"
-      age: 40
-    - id: "enfant1"
-      age: 10
-    - id: "enfant2"
-      age: 11
-      scolarite: college
+  - id: "parent1"
+    age: 40
+  - id: "enfant1"
+    age: 10
+  - id: "enfant2"
+    age: 11
+    scolarite: college
   output_variables:
     bourse_college_echelon: 1
     bourse_college: 84
@@ -62,15 +62,15 @@
     personne_de_reference: "parent1"
     enfants: ["enfant1", "enfant2", "enfant3"]
   individus:
-    - id: "parent1"
-      age: 40
-    - id: "enfant1"
-      age: 10
-    - id: "enfant3"
-      age: 10
-    - id: "enfant2"
-      age: 11
-      scolarite: college
+  - id: "parent1"
+    age: 40
+  - id: "enfant1"
+    age: 10
+  - id: "enfant3"
+    age: 10
+  - id: "enfant2"
+    age: 11
+    scolarite: college
   output_variables:
     bourse_college_echelon: 2
     bourse_college: 231
@@ -89,15 +89,15 @@
     personne_de_reference: "parent1"
     enfants: ["enfant1", "enfant2", "enfant3"]
   individus:
-    - id: "parent1"
-      age: 40
-    - id: "enfant1"
-      age: 10
-    - id: "enfant3"
-      age: 10
-    - id: "enfant2"
-      age: 11
-      scolarite: college
+  - id: "parent1"
+    age: 40
+  - id: "enfant1"
+    age: 10
+  - id: "enfant3"
+    age: 10
+  - id: "enfant2"
+    age: 11
+    scolarite: college
   output_variables:
     bourse_college_echelon: 1
     bourse_college: 84
@@ -116,16 +116,16 @@
     personne_de_reference: "parent1"
     enfants: ["enfant1", "enfant2", "enfant3"]
   individus:
-    - id: "parent1"
-      age: 40
-    - id: "enfant1"
-      age: 10
-    - id: "enfant3"
-      age: 10
-      scolarite: college
-    - id: "enfant2"
-      age: 11
-      scolarite: college
+  - id: "parent1"
+    age: 40
+  - id: "enfant1"
+    age: 10
+  - id: "enfant3"
+    age: 10
+    scolarite: college
+  - id: "enfant2"
+    age: 11
+    scolarite: college
   output_variables:
     bourse_college_echelon: 1
     bourse_college: 84 * 2
@@ -145,15 +145,15 @@
     personne_de_reference: "parent1"
     enfants: ["enfant1", "enfant2", "enfant3"]
   individus:
-    - id: "parent1"
-      age: 40
-    - id: "enfant1"
-      age: 10
-    - id: "enfant3"
-      age: 10
-    - id: "enfant2"
-      age: 11
-      scolarite: lycee
+  - id: "parent1"
+    age: 40
+  - id: "enfant1"
+    age: 10
+  - id: "enfant3"
+    age: 10
+  - id: "enfant2"
+    age: 11
+    scolarite: lycee
   output_variables:
     bourse_lycee_echelon: 2
     bourse_lycee: 531
@@ -172,17 +172,17 @@
     personne_de_reference: "parent1"
     enfants: ["enfant1", "enfant2", "enfant3", "enfant4"]
   individus:
-    - id: "parent1"
-      age: 40
-    - id: "enfant1"
-      age: 10
-    - id: "enfant3"
-      age: 10
-    - id: "enfant4"
-      age: 10
-    - id: "enfant2"
-      age: 11
-      scolarite: lycee
+  - id: "parent1"
+    age: 40
+  - id: "enfant1"
+    age: 10
+  - id: "enfant3"
+    age: 10
+  - id: "enfant4"
+    age: 10
+  - id: "enfant2"
+    age: 11
+    scolarite: lycee
   output_variables:
     bourse_lycee_echelon: 4
     bourse_lycee: 723
@@ -202,13 +202,13 @@
     personne_de_reference: "parent1"
     enfants: ["enfant1", "enfant2"]
   individus:
-    - id: "parent1"
-      age: 40
-    - id: "enfant1"
-      age: 10
-    - id: "enfant2"
-      age: 11
-      scolarite: lycee
+  - id: "parent1"
+    age: 40
+  - id: "enfant1"
+    age: 10
+  - id: "enfant2"
+    age: 11
+    scolarite: lycee
   output_variables:
     bourse_lycee_echelon: 2
     bourse_lycee: 531
@@ -227,17 +227,17 @@
     personne_de_reference: "parent1"
     enfants: ["enfant1", "enfant2", "enfant3", "enfant4"]
   individus:
-    - id: "parent1"
-      age: 40
-    - id: "enfant1"
-      age: 10
-    - id: "enfant3"
-      age: 10
-    - id: "enfant4"
-      age: 10
-    - id: "enfant2"
-      age: 11
-      scolarite: lycee
+  - id: "parent1"
+    age: 40
+  - id: "enfant1"
+    age: 10
+  - id: "enfant3"
+    age: 10
+  - id: "enfant4"
+    age: 10
+  - id: "enfant2"
+    age: 11
+    scolarite: lycee
   output_variables:
     bourse_lycee_echelon: 6
     bourse_lycee: 918
@@ -256,17 +256,17 @@
     personne_de_reference: "parent1"
     enfants: ["enfant1", "enfant2", "enfant3", "enfant4"]
   individus:
-    - id: "parent1"
-      age: 40
-    - id: "enfant1"
-      age: 10
-    - id: "enfant3"
-      age: 10
-    - id: "enfant4"
-      age: 10
-    - id: "enfant2"
-      age: 11
-      scolarite: lycee
+  - id: "parent1"
+    age: 40
+  - id: "enfant1"
+    age: 10
+  - id: "enfant3"
+    age: 10
+  - id: "enfant4"
+    age: 10
+  - id: "enfant2"
+    age: 11
+    scolarite: lycee
   output_variables:
     bourse_lycee_echelon: 5
     bourse_lycee: 819
@@ -286,13 +286,13 @@
     personne_de_reference: "parent1"
     enfants: ["enfant1", "enfant2"]
   individus:
-    - id: "parent1"
-      age: 40
-    - id: "enfant1"
-      age: 10
-    - id: "enfant2"
-      age: 11
-      scolarite: college
+  - id: "parent1"
+    age: 40
+  - id: "enfant1"
+    age: 10
+  - id: "enfant2"
+    age: 11
+    scolarite: college
   output_variables:
     bourse_college_echelon: 3
     bourse_college: 360
@@ -311,13 +311,13 @@
     personne_de_reference: "parent1"
     enfants: ["enfant1", "enfant2"]
   individus:
-    - id: "parent1"
-      age: 40
-    - id: "enfant1"
-      age: 10
-    - id: "enfant2"
-      age: 11
-      scolarite: college
+  - id: "parent1"
+    age: 40
+  - id: "enfant1"
+    age: 10
+  - id: "enfant2"
+    age: 11
+    scolarite: college
   output_variables:
     bourse_college:
       2015-09: 231
@@ -336,13 +336,13 @@
     personne_de_reference: "parent1"
     enfants: ["enfant1", "enfant2"]
   individus:
-    - id: "parent1"
-      age: 40
-    - id: "enfant1"
-      age: 10
-    - id: "enfant2"
-      age: 11
-      scolarite: college
+  - id: "parent1"
+    age: 40
+  - id: "enfant1"
+    age: 10
+  - id: "enfant2"
+    age: 11
+    scolarite: college
   output_variables:
     bourse_college:
       2015-09: 84
@@ -362,13 +362,13 @@
     personne_de_reference: "parent1"
     enfants: ["enfant1", "enfant2"]
   individus:
-    - id: "parent1"
-      age: 40
-    - id: "enfant1"
-      age: 10
-    - id: "enfant2"
-      age: 11
-      scolarite: college
+  - id: "parent1"
+    age: 40
+  - id: "enfant1"
+    age: 10
+  - id: "enfant2"
+    age: 11
+    scolarite: college
   output_variables:
     bourse_college:
       2015-09: 0
@@ -387,11 +387,11 @@
     personne_de_reference: "parent1"
     enfants: ["enfant1"]
   individus:
-    - id: "parent1"
-      age: 40
-    - id: "enfant1"
-      age: 10
-      scolarite: college
+  - id: "parent1"
+    age: 40
+  - id: "enfant1"
+    age: 10
+    scolarite: college
   output_variables:
     bourse_college_echelon:
       2017-09: 1
@@ -412,11 +412,11 @@
     personne_de_reference: "parent1"
     enfants: ["enfant1"]
   individus:
-    - id: "parent1"
-      age: 40
-    - id: "enfant1"
-      age: 10
-      scolarite: college
+  - id: "parent1"
+    age: 40
+  - id: "enfant1"
+    age: 10
+    scolarite: college
   output_variables:
     bourse_college:
       2017-09: 0
@@ -435,13 +435,13 @@
     personne_de_reference: "parent1"
     enfants: ["enfant1", "enfant2"]
   individus:
-    - id: "parent1"
-      age: 40
-    - id: "enfant1"
-      age: 10
-      scolarite: college
-    - id: "enfant2"
-      age: 3
+  - id: "parent1"
+    age: 40
+  - id: "enfant1"
+    age: 10
+    scolarite: college
+  - id: "enfant2"
+    age: 3
   output_variables:
     bourse_college_echelon:
       2017-09: 2
@@ -462,11 +462,11 @@
     personne_de_reference: "parent1"
     enfants: ["enfant1"]
   individus:
-    - id: "parent1"
-      age: 40
-    - id: "enfant1"
-      age: 10
-      scolarite: college
+  - id: "parent1"
+    age: 40
+  - id: "enfant1"
+    age: 10
+    scolarite: college
   output_variables:
     bourse_college_echelon:
       2017-09: 2
@@ -487,11 +487,11 @@
     personne_de_reference: "parent1"
     enfants: ["enfant1"]
   individus:
-    - id: "parent1"
-      age: 40
-    - id: "enfant1"
-      age: 10
-      scolarite: college
+  - id: "parent1"
+    age: 40
+  - id: "enfant1"
+    age: 10
+    scolarite: college
   output_variables:
     bourse_college_echelon:
       2017-09: 1
@@ -512,11 +512,11 @@
     personne_de_reference: "parent1"
     enfants: ["enfant1"]
   individus:
-    - id: "parent1"
-      age: 40
-    - id: "enfant1"
-      age: 10
-      scolarite: college
+  - id: "parent1"
+    age: 40
+  - id: "enfant1"
+    age: 10
+    scolarite: college
   output_variables:
     bourse_college:
       2017-09: 450

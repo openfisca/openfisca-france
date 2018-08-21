@@ -1,8 +1,8 @@
 name: Abattement de 30% pour chômeur indemnisé
 keywords:
-  - abattements
-  - al
-  - base ressources
+- abattements
+- al
+- base ressources
 description: |
   cf. R351-13 du CCH : http://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006074096&idArticle=LEGIARTI000006898889
   Abattement de 30% sur les revenus d'activité professionnelle dans le cas d'un chômage indemnisé.

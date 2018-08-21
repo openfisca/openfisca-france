@@ -19,12 +19,12 @@
   familles:
     parents: ["parent1", "parent2"]
   individus:
-    - id: "parent1"
-      tns_benefice_exploitant_agricole:
-        2014: 11500
-      age: 40
-    - id: "parent2"
-      age: 40
+  - id: "parent1"
+    tns_benefice_exploitant_agricole:
+      2014: 11500
+    age: 40
+  - id: "parent2"
+    age: 40
   output_variables:
     rsa_eligibilite: true
 
@@ -33,12 +33,12 @@
   familles:
     parents: ["parent1", "parent2"]
   individus:
-    - id: "parent1"
-      tns_benefice_exploitant_agricole:
-        2014: 11600
-      age: 40
-    - id: "parent2"
-      age: 40
+  - id: "parent1"
+    tns_benefice_exploitant_agricole:
+      2014: 11600
+    age: 40
+  - id: "parent2"
+    age: 40
   output_variables:
     rsa_eligibilite: false
 
@@ -48,14 +48,14 @@
     parents: ["parent1"]
     enfants: ["enfant1", "enfant2"]
   individus:
-    - id: "parent1"
-      tns_benefice_exploitant_agricole:
-        2014: 14600
-      age: 40
-    - id: "enfant1"
-      age: 10
-    - id: "enfant2"
-      age: 5
+  - id: "parent1"
+    tns_benefice_exploitant_agricole:
+      2014: 14600
+    age: 40
+  - id: "enfant1"
+    age: 10
+  - id: "enfant2"
+    age: 5
   output_variables:
     rsa_eligibilite: true
 
@@ -65,14 +65,14 @@
     parents: ["parent1"]
     enfants: ["enfant1", "enfant2"]
   individus:
-    - id: "parent1"
-      tns_benefice_exploitant_agricole:
-        2014: 14700
-      age: 40
-    - id: "enfant1"
-      age: 10
-    - id: "enfant2"
-      age: 5
+  - id: "parent1"
+    tns_benefice_exploitant_agricole:
+      2014: 14700
+    age: 40
+  - id: "enfant1"
+    age: 10
+  - id: "enfant2"
+    age: 5
   output_variables:
     rsa_eligibilite: false
 
@@ -145,12 +145,12 @@
   familles:
     parents: ["parent1", "parent2"]
   individus:
-    - id: "parent1"
-      age: 40
-    - id: "parent2"
-      age: 40
-      tns_benefice_exploitant_agricole:
-        2014: 8000
+  - id: "parent1"
+    age: 40
+  - id: "parent2"
+    age: 40
+    tns_benefice_exploitant_agricole:
+      2014: 8000
   output_variables:
     rsa_non_calculable: conjoint_tns
 
@@ -176,14 +176,14 @@
   familles:
     parents: ["parent1"]
   individus:
-    - id: "parent1"
-      tns_benefice_exploitant_agricole:
-        2014: 100000
-      tns_autres_revenus_chiffre_affaires:
-        2014: 100000
-      tns_micro_entreprise_chiffre_affaires:
-        2014: 100000
-      age: 40
-      tns_avec_employe: true
+  - id: "parent1"
+    tns_benefice_exploitant_agricole:
+      2014: 100000
+    tns_autres_revenus_chiffre_affaires:
+      2014: 100000
+    tns_micro_entreprise_chiffre_affaires:
+      2014: 100000
+    age: 40
+    tns_avec_employe: true
   output_variables:
     rsa_eligibilite: true

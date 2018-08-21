@@ -1,8 +1,8 @@
 name: "Personne seule, montant fixe en-dessous de 644,40 € de ressources par mois"
 keywords:
-  - ass
-  - base ressources
-  - montant
+- ass
+- base ressources
+- montant
 description: |
   Revenu = 600 < 644.4
   donc ASS complète = 487,50
