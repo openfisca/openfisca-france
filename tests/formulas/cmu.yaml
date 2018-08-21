@@ -187,8 +187,11 @@
     cmu_c: false
 
 # msa_reval_cmuc_acs_lot1 : Cas 3
-- name: "CMU-C: CMU-C Ok demandeur plus de 25 avec droits ouverts, percevant des salaires pour un montant maximum de 18501 euros
-Foyer composé de 3 personnes (enfant -20 ans et conjoint sans activité), locataire avec aide au logement (2000 euros), résident métropole"
+- name: |
+    CMU-C Ok demandeur plus de 25 avec droits ouverts,
+    percevant des salaires pour un montant maximum de 18501 euros
+    Foyer composé de 3 personnes (enfant -20 ans et conjoint sans activité),
+    locataire avec aide au logement (2000 euros), résident métropole
   period: 2018-04
   absolute_error_margin: 0.5
   individus:
@@ -264,8 +267,11 @@ Foyer composé de 3 personnes (enfant -20 ans et conjoint sans activité), locat
     cmu_c: true
 
 # msa_reval_cmuc_acs_lot1 : Cas 4
-- name: "CMU-C: CMU-C Ok demandeur plus de 25 avec droits ouverts, percevant des salaires + indemnités journalières
-Foyer composé de 4 personnes (2 enfants + 20 ans et conjoint avec activité percevant des revenus), locataire avec aide au logement (2000 euros), résident métropole"
+- name: |
+    CMU-C: CMU-C Ok demandeur plus de 25 avec droits ouverts,
+    percevant des salaires + indemnités journalières
+    Foyer composé de 4 personnes (2 enfants + 20 ans et conjoint avec activité percevant des revenus),
+    locataire avec aide au logement (2000 euros), résident métropole
   period: 2018-04
   absolute_error_margin: 0.5
   individus:
@@ -347,8 +353,12 @@ Foyer composé de 4 personnes (2 enfants + 20 ans et conjoint avec activité per
     cmu_c: true
 
 # msa_reval_cmuc_acs_lot1 : Cas 5
-- name: "ACS: ACS Ok demandeur plus de 25 Assuré + de 25 ans avec droits ouverts, percevant des salaires + indemnités chômages
-Foyer composé de 6 personnes (3 enfants - 20 ans, 1 enfant +20ans et conjoint avec activité percevant des revenus et du chômage), propriétaire avec aide au logement (2000 euros), résident métropole"
+- name: |
+    ACS Ok demandeur plus de 25 Assuré + de 25 ans avec droits ouverts,
+    percevant des salaires + indemnités chômages
+
+    Foyer composé de 6 personnes (3 enfants - 20 ans, 1 enfant +20ans et conjoint avec activité percevant des revenus et du chômage),
+    propriétaire avec aide au logement (2000 euros), résident métropole
   period: 2018-04
   absolute_error_margin: 0.05
   individus:
@@ -480,7 +490,7 @@ Foyer composé de 6 personnes (3 enfants - 20 ans, 1 enfant +20ans et conjoint a
     cmu_c: false
 
 # msa_reval_cmuc_acs_lot1 : Cas 6
-- name: "CMU-C: CMU-C Ok demandeur assuré au RSA ayant perçu des ressources au cours des 12 derniers mois"
+- name: CMU-C Ok demandeur assuré au RSA ayant perçu des ressources au cours des 12 derniers mois
   period: 2018-04
   absolute_error_margin: 0.5
   input_variables:
@@ -534,10 +544,11 @@ Foyer composé de 6 personnes (3 enfants - 20 ans, 1 enfant +20ans et conjoint a
     cmu_c: true
 
 # msa_reval_cmuc_acs_lot1 : Cas 7
-- name: "ACS: ACS non eligible Foyer recomposé de deux adultes avec 3 enfants moins de 20 ans
-Mr est séparé de son ex conjointe et verse une pension alimentaire de 1235 euros
-Mme est séparée et reçoit une pension alimentaire de son ex conjoint pour ces trois enfants, elle perçoit des revenus non salariés
-Les enfants ne sont pas en garde alternée"
+- name: |
+    ACS non eligible Foyer recomposé de deux adultes avec 3 enfants moins de 20 ans
+    Mr est séparé de son ex conjointe et verse une pension alimentaire de 1235 euros
+    Mme est séparée et reçoit une pension alimentaire de son ex conjoint pour ces trois enfants, elle perçoit des revenus non salariés
+    Les enfants ne sont pas en garde alternée
   period: 2018-04
   relative_error_margin: 0.05
   individus:

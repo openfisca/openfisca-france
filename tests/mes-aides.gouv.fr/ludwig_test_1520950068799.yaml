@@ -1,5 +1,5 @@
 name: 'Personnes non éligible à l''abattement fiscal, cas revenu < 14000 €'
-description: >-
+description: |
   L'abattement mentionné à l'article 157 bis du code général des impôts n'est
   pertinent que pour les personnes nées avant le 1er janvier 1931 et pour les
   personnes invalides.

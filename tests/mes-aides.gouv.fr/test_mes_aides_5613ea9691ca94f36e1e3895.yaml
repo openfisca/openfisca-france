@@ -1,6 +1,9 @@
 name: 'CMUC/ACS : abattement 30% appliqué en cas de perception des IJ maladie'
 keywords: []
-description: La personne est demandeur d'emploi et perçoit des indemnités journalières de maladie. L'abattement de 30% doit être appliqué.
+description: |
+  La personne est demandeur d'emploi et
+  perçoit des indemnités journalières de maladie.
+  L'abattement de 30% doit être appliqué.
   Le montant de ses ressources avec abattement lui ouvre un droit ACS.
 period: month:2015-10
 relative_error_margin: 0.02
