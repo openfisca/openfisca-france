@@ -311,7 +311,6 @@ familles:
     2014-11: 0
     2014-12: 0
     2015-01: 0
-  enfants:
   paje_base:
     2014-02: 0
     2014-03: 0
@@ -345,11 +344,9 @@ foyers_fiscaux:
   declarants:
     - 54e223cbfe7cc56a2d0dc062
     - 54e223cbfe7cc56a2d0dc054
-  personnes_a_charge:
 menages:
   conjoint: 54e223cbfe7cc56a2d0dc054
   depcom: 76540
-  enfants:
   personne_de_reference: 54e223cbfe7cc56a2d0dc062
   statut_occupation_logement: proprietaire
 output_variables:

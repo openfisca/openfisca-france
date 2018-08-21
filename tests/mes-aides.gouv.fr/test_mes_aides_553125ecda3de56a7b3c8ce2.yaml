@@ -2,7 +2,6 @@ name: Foyer 5 enfants ressources comprises entre CF majoré et CF
 keywords:
   - cf
   - dom
-description:
 period: "month:2015-04"
 relative_error_margin: 0.02
 individus:
@@ -333,7 +332,6 @@ foyers_fiscaux:
     - 553125bada3de56a7b3c8cd2
     - 553125bada3de56a7b3c8cd1
     - 553125bada3de56a7b3c8cd0
-  rfr:
 menages:
   depcom: 97419
   enfants:

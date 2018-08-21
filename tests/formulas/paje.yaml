@@ -18,8 +18,6 @@
   familles:
     parents: ["parent1"]
     enfants: ["enfant1"]
-    en_couple:
-    inactif:
     partiel1: false
     af_nbenf: 1
     prestations_familiales_base_ressources: 20000
@@ -61,8 +59,6 @@
   familles:
     parents: ["parent1"]
     enfants: ["enfant1"]
-    en_couple:
-    inactif:
     partiel1: false
     af_nbenf: 1
     prestations_familiales_base_ressources: 20000
@@ -106,8 +102,6 @@
   familles:
     parents: ["parent1"]
     enfants: ["enfant1"]
-    en_couple:
-    inactif:
     partiel1: true
     af_nbenf: 1
     prestations_familiales_base_ressources: 10000
@@ -149,8 +143,6 @@
   familles:
     parents: ["parent1"]
     enfants: ["enfant1"]
-    en_couple:
-    inactif:
     partiel1: true
     af_nbenf: 1
     prestations_familiales_base_ressources: 10000

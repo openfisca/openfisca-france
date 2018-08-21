@@ -278,7 +278,6 @@ familles:
 foyers_fiscaux:
   declarants: 55edabffbd7b102a0438a5a4
   personnes_a_charge: 55edabffbd7b102a0438a5a3
-  rfr:
 menages:
   depcom: 78646
   enfants: 55edabffbd7b102a0438a5a3

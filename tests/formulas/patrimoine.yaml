@@ -1,7 +1,6 @@
 - name: 1. Montant soustrait de 3% des revenus théoriques de l'épargne ne générant pas de revenus
   keywords:
     - patrimoine
-  description:
   period: "2016-10"
   relative_error_margin: 0.02
   individus:
@@ -32,7 +31,6 @@
 - name: 2. Montant soustrait de 3% des revenus théoriques de l'épargne ne générant pas de revenus
   keywords:
     - patrimoine
-  description:
   period: "2016-10"
   relative_error_margin: 0.02
   individus:
@@ -64,7 +62,6 @@
 - name: 3. Montant soustrait de 3% des revenus théoriques de l'épargne ne générant pas de revenus
   keywords:
     - patrimoine
-  description:
   period: "2016-10"
   relative_error_margin: 0.02
   individus:
@@ -102,7 +99,6 @@
 - name: 4. Montant soustrait de 3% des revenus théoriques de l'épargne ne générant pas de revenus
   keywords:
     - patrimoine
-  description:
   period: "2016-10"
   relative_error_margin: 0.02
   individus:
@@ -133,7 +129,6 @@
 - name: 5. Personne Résidant en EHPAD
   keywords:
     - patrimoine
-  description:
   period: "2016-10"
   relative_error_margin: 0.02
   individus:
@@ -157,7 +152,6 @@
 - name: 6. Personne residant en Logement-foyer
   keywords:
     - patrimoine
-  description:
   period: "2016-10"
   relative_error_margin: 0.02
   individus:
@@ -181,7 +175,6 @@
 - name: 7. Personne résidant en Maison de retraite
   keywords:
     - patrimoine
-  description:
   period: "2016-10"
   relative_error_margin: 0.02
   individus:
@@ -205,7 +198,6 @@
 - name: 8. Foyer avec un membre bénéficiaire d'AAH
   keywords:
     - patrimoine
-  description:
   period: "2016-10"
   relative_error_margin: 0.02
   individus:
@@ -242,7 +234,6 @@
 - name: 9. Foyer avec un membre bénéficiaire d'AEEH
   keywords:
     - patrimoine
-  description:
   period: "2016-10"
   relative_error_margin: 0.02
   individus:

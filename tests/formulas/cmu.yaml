@@ -145,7 +145,6 @@
 - name: "ACS: ACS Ok demandeur plus de 25 avec droits ouverts, percevant des salaires pour un montant supérieur à 8810 euros et inférieur à 11894, résident métropole"
   period: 2018-04
   absolute_error_margin: 0.5
-  input_variables:
   individus:
   - id: "parent1"
     age: 26

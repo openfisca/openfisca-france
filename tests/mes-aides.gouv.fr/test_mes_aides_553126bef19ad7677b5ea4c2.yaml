@@ -2,7 +2,6 @@ name: Foyer 5 enfants > plafond CF
 keywords:
   - cf
   - dom
-description:
 period: "month:2015-04"
 relative_error_margin: 0.02
 individus:
@@ -333,7 +332,6 @@ foyers_fiscaux:
     - 553126b19f971f707bd7e925
     - 553126b19f971f707bd7e924
     - 553126b19f971f707bd7e923
-  rfr:
 menages:
   depcom: 97419
   enfants:

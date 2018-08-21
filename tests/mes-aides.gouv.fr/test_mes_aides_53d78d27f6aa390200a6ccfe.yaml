@@ -1,6 +1,5 @@
 name: Le montant de base est multiplié par le nombre d'enfants
 keywords: asf
-description:
 period: "month:2014-07"
 relative_error_margin: 0.02
 individus:

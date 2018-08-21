@@ -285,7 +285,6 @@ foyers_fiscaux:
   pensions_alimentaires_versees:
     2013: 0
   personnes_a_charge: 54eca9e37bcef51072ca0902
-  rfr:
 menages:
   depcom: 97105
   enfants: 54eca9e37bcef51072ca0902

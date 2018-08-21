@@ -26,7 +26,6 @@
     enfants: [2]
   menages:
     personne_de_reference: 1
-    statut_occupation_logement:
   individus:
     - id: 1
       date_naissance: "1985-01-01"
