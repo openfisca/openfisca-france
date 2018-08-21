@@ -352,8 +352,8 @@ class impots_directs(Variable):
         taxe_habitation = menage('taxe_habitation', period)
 
         # On prend en compte l'IR des foyers fiscaux dont le déclarant principal est dans le ménage
-        irpp_eco_i = menage.members.foyer_fiscal('irpp_economique', period)
-        irpp_eco = menage.sum(irpp_eco_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
+        irpp_economique_i = menage.members.foyer_fiscal('irpp_economique', period)
+        irpp_economique = menage.sum(irpp_economique_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
 
         # On prend en compte le PFL des foyers fiscaux dont le déclarant principal est dans le ménage : variable existant jusqu'en 2017
         prelevement_forfaitaire_liberatoire_i = menage.members.foyer_fiscal('prelevement_forfaitaire_liberatoire', period)
@@ -368,5 +368,5 @@ class impots_directs(Variable):
         ir_pv_immo_i = menage.members.foyer_fiscal('ir_pv_immo', period)
         ir_pv_immo = menage.sum(ir_pv_immo_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
 
-        return irpp_eco + taxe_habitation + prelevement_forfaitaire_liberatoire + prelevement_forfaitaire_unique_ir + ir_pv_immo
+        return irpp_economique + taxe_habitation + prelevement_forfaitaire_liberatoire + prelevement_forfaitaire_unique_ir + ir_pv_immo
 
