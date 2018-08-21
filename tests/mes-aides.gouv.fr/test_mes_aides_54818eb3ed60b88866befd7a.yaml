@@ -256,3 +256,4 @@ menages:
   personne_de_reference: 54818e8de061e493666d52b1
   statut_occupation_logement: loge_gratuitement
 output_variables:
+  rsa: 0

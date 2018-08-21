@@ -355,7 +355,6 @@ foyers_fiscaux:
   personnes_a_charge:
     - 55eeaadcbb8d0c3804776417
     - 55eeaadcbb8d0c3804776416
-  rfr:
 menages:
   conjoint: 55eeaadcbb8d0c3804776418
   depcom: 78646
@@ -365,3 +364,4 @@ menages:
   loyer: 0
   personne_de_reference: 55eeaadcbb8d0c3804776425
 output_variables:
+  paje_base: 0

@@ -1,6 +1,5 @@
 - name: UC base
   period: 2018
-  input_variables:
   output_variables:
     cheque_energie_unites_consommation:
       2018: 1

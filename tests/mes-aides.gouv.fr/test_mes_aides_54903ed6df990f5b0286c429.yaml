@@ -247,7 +247,6 @@ familles:
     2014-09: 0
     2014-10: 0
     2014-11: 0
-  enfants:
   paje_base:
     2013-12: 0
     2014-01: 0
@@ -282,11 +281,9 @@ foyers_fiscaux:
   declarants:
     - 54903ea07b85005902283c59
     - 54903ea07b85005902283c4c
-  personnes_a_charge:
 menages:
   conjoint: 54903ea07b85005902283c4c
   depcom: 92035
-  enfants:
   loyer: 100
   personne_de_reference: 54903ea07b85005902283c59
   statut_occupation_logement: locataire_vide

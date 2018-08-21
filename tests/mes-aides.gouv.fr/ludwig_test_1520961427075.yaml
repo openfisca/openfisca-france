@@ -89,10 +89,6 @@ individus:
       2016-05: 0
       2016-04: 0
       2016-03: 0
-    apa_eligibilite:
-      2017-03: null
-    aah_non_calculable:
-      2017-03: null
     id: 58ca8cc4a441f10627673604
     epargne_revenus_imposables:
       2017-03: 80000
@@ -178,10 +174,6 @@ individus:
       2016-05: 0
       2016-04: 0
       2016-03: 0
-    apa_eligibilite:
-      2017-03: null
-    aah_non_calculable:
-      2017-03: null
     id: 58ca8cc4a441f10627673603
   - boursier:
       2017-03: false
@@ -258,10 +250,6 @@ individus:
       2016-05: 0
       2016-04: 0
       2016-03: 0
-    apa_eligibilite:
-      2017-03: null
-    aah_non_calculable:
-      2017-03: null
     id: 58ca8cc4a441f10627673602
   - boursier:
       2017-03: false
@@ -343,10 +331,6 @@ individus:
       2016-05: 0
       2016-04: 0
       2016-03: 0
-    apa_eligibilite:
-      2017-03: null
-    aah_non_calculable:
-      2017-03: null
     id: 58ca8cc4a441f10627673601
 familles:
   - proprietaire_proche_famille:
@@ -529,12 +513,6 @@ familles:
       2016-05: 0
       2016-04: 0
       2016-03: 0
-    aide_logement_non_calculable:
-      2017-03: null
-    rsa_non_calculable:
-      2017-03: null
-    cmu_c:
-      2017-03: null
 foyers_fiscaux:
   - rfr:
       '2015': 14000

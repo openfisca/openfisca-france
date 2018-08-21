@@ -231,7 +231,6 @@ familles:
     2014-08: 0
     2014-09: 0
     2014-10: 0
-  enfants:
   paje_base:
     2013-11: 0
     2013-12: 0
@@ -261,10 +260,8 @@ familles:
     2014-10: 0
 foyers_fiscaux:
   declarants: 545a38fa462d93232aac08be
-  personnes_a_charge:
 menages:
   depcom: 21032
-  enfants:
   personne_de_reference: 545a38fa462d93232aac08be
   statut_occupation_logement: loge_gratuitement
 output_variables:

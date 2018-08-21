@@ -257,7 +257,6 @@ familles:
     2014-11: 0
     2014-12: 0
     2015-01: 0
-  enfants:
   paje_base:
     2014-02: 0
     2014-03: 0
@@ -290,11 +289,8 @@ foyers_fiscaux:
   declarants: 54e4cd8f70a3f65f40b60d48
   pensions_alimentaires_versees:
     2013: 0
-  personnes_a_charge:
-  rfr:
 menages:
   depcom: 75120
-  enfants:
   loyer: 540
   personne_de_reference: 54e4cd8f70a3f65f40b60d48
   statut_occupation_logement: locataire_vide

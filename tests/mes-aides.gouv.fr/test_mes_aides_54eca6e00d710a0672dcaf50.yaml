@@ -297,7 +297,6 @@ foyers_fiscaux:
   personnes_a_charge:
     - 54eca6747537bc0e72b05721
     - 54eca6747537bc0e72b05720
-  rfr:
 menages:
   depcom: 97105
   enfants:

@@ -316,7 +316,6 @@ foyers_fiscaux:
   personnes_a_charge:
     - 55edb3ffbd7b102a0438a5c4
     - 55edb3ffbd7b102a0438a5c3
-  rfr:
 menages:
   conjoint: 55edb3ffbd7b102a0438a5c5
   depcom: 78646

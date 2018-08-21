@@ -2,7 +2,6 @@ name: Revalorisation montant CF majoré = 115,40 euros
 keywords:
   - cf
   - dom
-description:
 period: "month:2015-04"
 relative_error_margin: 0.02
 individus:
@@ -279,7 +278,6 @@ foyers_fiscaux:
   pensions_alimentaires_versees:
     2013: 0
   personnes_a_charge: 55311bf2d4217171166024dc
-  rfr:
 menages:
   logement_chambre: 1
   depcom: 97419

@@ -290,7 +290,6 @@ foyers_fiscaux:
     - 55688f3d2617041246ef4bc8
     - 55688f3d2617041246ef4bc7
   personnes_a_charge: 55688f3d2617041246ef4bc6
-  rfr:
 menages:
   conjoint: 55688f3d2617041246ef4bc7
   depcom: 76540

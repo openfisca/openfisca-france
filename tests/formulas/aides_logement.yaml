@@ -363,7 +363,6 @@
   relative_error_margin: 0.01
   familles:
     parents: ["parent1"]
-  menages:
   individus:
     - id: "parent1"
       epargne_revenus_imposables: 35000
@@ -375,7 +374,6 @@
   relative_error_margin: 0.01
   familles:
     parents: ["parent1"]
-  menages:
   individus:
     - id: "parent1"
       epargne_revenus_imposables: 25000
@@ -389,7 +387,6 @@
   relative_error_margin: 0.01
   familles:
     parents: ["parent1"]
-  menages:
   individus:
     - id: "parent1"
       epargne_revenus_imposables: 20000
@@ -403,7 +400,6 @@
   relative_error_margin: 0.01
   familles:
     parents: ["parent1"]
-  menages:
   individus:
     - id: "parent1"
       epargne_revenus_imposables: 15000

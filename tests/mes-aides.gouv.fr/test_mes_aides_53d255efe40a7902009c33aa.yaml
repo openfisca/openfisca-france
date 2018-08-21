@@ -2,7 +2,6 @@ name: Couple, les 2 éligibles, ressources > plafond
 keywords:
   - aspa
   - plafonds
-description:
 period: "month:2014-07"
 relative_error_margin: 0.02
 individus:
@@ -212,7 +211,6 @@ familles:
     2014-04: 0
     2014-05: 0
     2014-06: 0
-  enfants:
   paje_base:
     2013-07: 0
     2013-08: 0
@@ -247,10 +245,8 @@ foyers_fiscaux:
   declarants:
     - 53d255dae40a7902009c33a6
     - 53d255dae40a7902009c33a5
-  personnes_a_charge:
 menages:
   conjoint: 53d255dae40a7902009c33a5
-  enfants:
   loyer: 123
   personne_de_reference: 53d255dae40a7902009c33a6
   statut_occupation_logement: locataire_vide

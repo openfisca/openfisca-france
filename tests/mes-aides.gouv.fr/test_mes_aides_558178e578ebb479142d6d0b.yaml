@@ -300,7 +300,6 @@ familles:
     2015-03: 0
     2015-04: 0
     2015-05: 0
-  enfants:
   paje_base:
     2014-06: 0
     2014-07: 0
@@ -336,12 +335,9 @@ foyers_fiscaux:
     - 558178aa78ebb479142d6cef
   pensions_alimentaires_versees:
     2013: 0
-  personnes_a_charge:
-  rfr:
 menages:
   conjoint: 558178aa78ebb479142d6cef
   depcom: 77004
-  enfants:
   personne_de_reference: 558178aa78ebb479142d6cfd
   statut_occupation_logement: proprietaire
 output_variables:

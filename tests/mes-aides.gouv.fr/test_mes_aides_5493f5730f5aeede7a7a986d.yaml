@@ -209,7 +209,6 @@ familles:
     2014-09: 0
     2014-10: 0
     2014-11: 0
-  enfants:
   paje_base:
     2013-12: 0
     2014-01: 0
@@ -244,11 +243,9 @@ foyers_fiscaux:
   declarants:
     - 5493f3ddf170fae47a4bfc17
     - 5493f3ddf170fae47a4bfc15
-  personnes_a_charge:
 menages:
   conjoint: 5493f3ddf170fae47a4bfc15
   depcom: 13209
-  enfants:
   loyer: 400
   personne_de_reference: 5493f3ddf170fae47a4bfc17
   statut_occupation_logement: locataire_meuble

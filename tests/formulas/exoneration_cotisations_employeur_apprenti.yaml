@@ -16,5 +16,4 @@
     effectif_entreprise: 1
     salaire_de_base: 1445.38
   output_variables:
-    remuneration_apprenti:
     exoneration_cotisations_employeur_apprenti: 0

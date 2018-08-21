@@ -2,7 +2,6 @@ name: Pas d'ASPA si ressources > plafond
 keywords:
   - aspa
   - plafonds
-description:
 period: "month:2014-07"
 relative_error_margin: 0.02
 individus:
@@ -200,7 +199,6 @@ familles:
     2014-04: 0
     2014-05: 0
     2014-06: 0
-  enfants:
   paje_base:
     2013-07: 0
     2013-08: 0
@@ -231,9 +229,7 @@ familles:
     2014-06: 0
 foyers_fiscaux:
   declarants: 53d24d39e40a7902009c3379
-  personnes_a_charge:
 menages:
-  enfants:
   loyer: 123
   personne_de_reference: 53d24d39e40a7902009c3379
   statut_occupation_logement: locataire_vide
