@@ -1,6 +1,6 @@
 - period: "2015-11"
   name: Cout du travail
-  description: >
+  description: |
     Dans le cas d'une première embauche (effectif = 1) et en CDI,
     le coût du travail final est plus faible que le salaire super brut,
     grâce à l'aide à la première embauche mensuelle de 167 € et
