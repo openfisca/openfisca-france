@@ -240,3 +240,4 @@ menages:
   personne_de_reference: 546b31eb5d4a0b016431dbb6
   statut_occupation_logement: loge_gratuitement
 output_variables:
+  rsa: 0

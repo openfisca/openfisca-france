@@ -328,3 +328,4 @@ menages:
   personne_de_reference: 55eea674dbd69f2b04f565fc
   statut_occupation_logement: locataire_vide
 output_variables:
+  paje_base: 0
