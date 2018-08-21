@@ -264,9 +264,24 @@ class agirc_gmp_assiette(Variable):
     # TODO: gestion annuel/mensuel
 
     def formula(individu, period, parameters):
+
         assiette_cotisations_sociales = individu('assiette_cotisations_sociales', period)
+        contrat_de_travail = individu('contrat_de_travail', period)
+        heures_remunerees_volume = individu('heures_remunerees_volume', period)
+        forfait_jours_remuneres_volume = individu('forfait_jours_remuneres_volume', period)
         gmp = parameters(period).prelevements_sociaux.gmp
-        salaire_charniere = gmp.salaire_charniere_annuel / 12
+        # TODO : handle contrat_de_travail > 1 voir plafond_securite_sociale
+        # proratisation pour temps partiel
+        heures_temps_plein = 35 * 52 / 12  # ~151,67 (durée légale mensuelle)
+        TypesContratDeTravail = contrat_de_travail.possible_values
+        salaire_charniere = switch(
+            contrat_de_travail,
+            {
+                TypesContratDeTravail.temps_plein: gmp.salaire_charniere_annuel / 12,
+                TypesContratDeTravail.temps_partiel: gmp.salaire_charniere_annuel / 12 * (heures_remunerees_volume / heures_temps_plein),
+                TypesContratDeTravail.forfait_jours_annee: gmp.salaire_charniere_annuel / 12 * (forfait_jours_remuneres_volume / 218),
+                }
+            )
         plafond_securite_sociale = individu('plafond_securite_sociale', period)
 
         assiette = max_(
