@@ -1819,8 +1819,10 @@ class rfr_plus_values_hors_rni(Variable):
         f3vi = foyer_fiscal.sum(f3vi_i)
         f3vd = foyer_fiscal.sum(f3vd_i)
         f3vf = foyer_fiscal.sum(f3vf_i)
+        rpns_pvce_i = foyer_fiscal.members('rpns_pvce', period)
+        rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
 
-        return f3vc + f3vd + f3vf + f3vg + f3vi + f3vl + f3vm + f3vp + f3vy + f3vz
+        return f3vc + f3vd + f3vf + f3vg + f3vi + f3vl + f3vm + f3vp + f3vy + f3vz + rpns_pvce
 
     def formula_2012_01_01(foyer_fiscal, period, parameters):
         """
@@ -1846,7 +1848,10 @@ class rfr_plus_values_hors_rni(Variable):
         f3vd = foyer_fiscal.sum(f3vd_i)
         f3vf = foyer_fiscal.sum(f3vf_i)
 
-        return f3sa + f3sj + f3sk + f3vc + f3vd + f3vf + f3vg + f3vi + f3vl + f3vm + f3vp + f3vt + f3vy + f3vz + f3we
+        rpns_pvce_i = foyer_fiscal.members('rpns_pvce', period)
+        rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
+
+        return f3sa + f3sj + f3sk + f3vc + f3vd + f3vf + f3vg + f3vi + f3vl + f3vm + f3vp + f3vt + f3vy + f3vz + f3we + rpns_pvce
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
         """
@@ -1871,7 +1876,10 @@ class rfr_plus_values_hors_rni(Variable):
         f3vd = foyer_fiscal.sum(f3vd_i)
         f3vf = foyer_fiscal.sum(f3vf_i)
 
-        return f3sj + f3sk + f3vc + f3vd + f3vf + f3vi + f3vm + f3vp + (f3vq - f3vr) + f3vt + f3vy + f3vz + f3we
+        rpns_pvce_i = foyer_fiscal.members('rpns_pvce', period)
+        rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
+
+        return f3sj + f3sk + f3vc + f3vd + f3vf + f3vi + f3vm + f3vp + (f3vq - f3vr) + f3vt + f3vy + f3vz + f3we + rpns_pvce
 
     def formula_2016_01_01(foyer_fiscal, period, parameters):
         """
@@ -1899,7 +1907,10 @@ class rfr_plus_values_hors_rni(Variable):
         f3vd = foyer_fiscal.sum(f3vd_i)
         f3vf = foyer_fiscal.sum(f3vf_i)
 
-        return f3sj + f3sk + f3tz + f3vc + f3vd + f3vf + f3vi + f3vm + f3vp + (f3vq - f3vr) + f3vt + f3vy + f3vz + f3we + f3wi + f3wj
+        rpns_pvce_i = foyer_fiscal.members('rpns_pvce', period)
+        rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
+
+        return f3sj + f3sk + f3tz + f3vc + f3vd + f3vf + f3vi + f3vm + f3vp + (f3vq - f3vr) + f3vt + f3vy + f3vz + f3we + f3wi + f3wj + rpns_pvce
 
     def formula_2018_01_01(foyer_fiscal, period, parameters):
         """
@@ -2081,15 +2092,13 @@ class rfr(Variable):
         rfr_plus_values_hors_rni = foyer_fiscal('rfr_plus_values_hors_rni', period)
         rni = foyer_fiscal('rni', period)
         rpns_exon_i = foyer_fiscal.members('rpns_exon', period)
-        rpns_pvce_i = foyer_fiscal.members('rpns_pvce', period)
 
         rpns_exon = foyer_fiscal.sum(rpns_exon_i)
-        rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
 
         return (
             max_(0, rni)
             + rfr_charges_deductibles + rfr_plus_values_hors_rni + rfr_rev_capitaux_mobiliers + revenus_capitaux_prelevement_liberatoire + revenus_capitaux_prelevement_forfaitaire_unique_ir
-            + rpns_exon + rpns_pvce
+            + rpns_exon
             + abattement_net_duree_detention_retraite_dirigeant_pme
             + f2dm + microentreprise
             )

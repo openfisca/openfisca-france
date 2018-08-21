@@ -54,7 +54,6 @@ class allocations_familiales_imposables(Reform):
             rfr_cd = foyer_fiscal('rfr_cd')
             rni = foyer_fiscal('rni')
             rpns_exon_holder = foyer_fiscal.members('rpns_exon')
-            rpns_pvce_holder = foyer_fiscal.members('rpns_pvce')
             rfr_rvcm = foyer_fiscal('rfr_rvcm') # Supprimée en 2018
             revenus_capitaux_prelevement_liberatoire = foyer_fiscal('revenus_capitaux_prelevement_liberatoire', period, options = [ADD]) # Supprimée en 2018
             revenus_capitaux_prelevement_forfaitaire_unique_ir = foyer_fiscal('revenus_capitaux_prelevement_forfaitaire_unique_ir', period, options = [ADD]) # Existe à partir de 2018
@@ -62,11 +61,10 @@ class allocations_familiales_imposables(Reform):
 
             f3vi = foyer_fiscal.sum(f3vi_holder)
             rpns_exon = foyer_fiscal.sum(rpns_exon_holder)
-            rpns_pvce = foyer_fiscal.sum(rpns_pvce_holder)
 
             return (
                 max_(0, rni - allocations_familiales_imposables) +
-                rfr_cd + rfr_rvcm + revenus_capitaux_prelevement_liberatoire + revenus_capitaux_prelevement_forfaitaire_unique_ir + f3vi + rpns_exon + rpns_pvce + abattement_net_duree_detention_retraite_dirigeant_pme + f3vz + microentreprise
+                rfr_cd + rfr_rvcm + revenus_capitaux_prelevement_liberatoire + revenus_capitaux_prelevement_forfaitaire_unique_ir + f3vi + rpns_exon + abattement_net_duree_detention_retraite_dirigeant_pme + f3vz + microentreprise
                 )
 
             # TO CHECK : f3vb after 2015 (abattements sur moins-values = interdits)
