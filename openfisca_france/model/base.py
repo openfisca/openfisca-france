@@ -49,5 +49,5 @@ class TypesStatutOccupationLogement(Enum):
     locataire_foyer = u"Locataire d'un foyer (résidence universitaire, maison de retraite, foyer de jeune travailleur, résidence sociale...)"
     sans_domicile = u"Sans domicile stable"
 
-
-TAUX_DE_PRIME = 1 / 4  # primes_fonction_publique (hors suppl. familial et indemnité de résidence)/rémunération brute
+# Taux de prime moyen de la fonction publique
+TAUX_DE_PRIME = 0.195  # primes_fonction_publique (hors suppl. familial et indemnité de résidence)/rémunération brute
