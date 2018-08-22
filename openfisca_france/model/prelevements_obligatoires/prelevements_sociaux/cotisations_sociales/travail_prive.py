@@ -612,6 +612,7 @@ class mmid_salarie(Variable):
     entity = Individu
     label = u"Cotisation maladie (salarié)"
     definition_period = MONTH
+    end = '2017-12-31'
 
     def formula(individu, period, parameters):
         salarie_regime_alsace_moselle = individu('salarie_regime_alsace_moselle', period)

@@ -6,6 +6,8 @@ brackets:
       value: 0.1284
     2017-01-01:
       value: 0.1289
+    2018-01-01:
+      value: 0.13
   threshold:
     1992-07-01:
       value: 0.0

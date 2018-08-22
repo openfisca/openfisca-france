@@ -18,7 +18,11 @@ brackets:
       value: 0.055
     1998-01-01:
       value: 0.0075
+    2018-01-01:
+      value: null
   threshold:
     1967-10-01:
       value: 0.0
+    2018-01-01:
+      value: null
 reference: ipp
