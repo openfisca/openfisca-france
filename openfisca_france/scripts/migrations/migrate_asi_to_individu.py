@@ -13,6 +13,7 @@ RoundTripRepresenter.add_representer(type(None), my_represent_none)
 
 yaml = YAML()
 yaml.default_flow_style = False
+yaml.preserve_quotes = True
 yaml.width = 1000
 
 def migrate(path):
