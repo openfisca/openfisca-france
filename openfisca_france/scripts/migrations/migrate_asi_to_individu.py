@@ -23,7 +23,6 @@ def migrate(path):
             tests = tests if isinstance(tests, list) else [ tests ]
 
             for test in tests:
-                print(test['name'])
                 if 'familles' not in test:
                     continue
 
