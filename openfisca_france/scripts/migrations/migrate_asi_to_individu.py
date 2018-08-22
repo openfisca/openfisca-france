@@ -19,31 +19,34 @@ yaml.width = 1000
 def migrate(path):
     with io.open(path, 'r', encoding='utf8') as f:
         try:
-            data = yaml.load(f)
+            tests = yaml.load(f)
+            tests = tests if isinstance(tests, list) else [ tests ]
 
-            if 'familles' not in data:
-                return
+            for test in tests:
+                print(test['name'])
+                if 'familles' not in test:
+                    continue
 
-            familles = data['familles']
-            familles = familles if isinstance(familles, list) else [ familles ]
+                familles = test['familles']
+                familles = familles if isinstance(familles, list) else [ familles ]
 
-            asi = None
-            for f in familles:
-                if 'asi' in f:
-                    asi = f['asi']
-                    del f['asi']
+                asi = None
+                for f in familles:
+                    if 'asi' in f:
+                        asi = f['asi']
+                        del f['asi']
 
-            if not asi:
-                return
+                if not asi:
+                    continue
 
-            if sum([abs(v) for v in asi.values()]):
-                individus = data['individus']
-                individus = individus if isinstance(individus, list) else [ individus ]
-                for i in individus:
-                    i['asi'] = copy.deepcopy(asi)
+                if sum([abs(v) for v in asi.values()]):
+                    individus = test['individus']
+                    individus = individus if isinstance(individus, list) else [ individus ]
+                    for i in individus:
+                        i['asi'] = copy.deepcopy(asi)
 
             with io.open(path, 'w', encoding='utf8') as f:
-                yaml.dump(data, f)
+                yaml.dump(tests, f)
         except Exception as e:
             print (path)
             raise e
