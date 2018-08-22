@@ -24,14 +24,22 @@ brackets:
       value: 0.024
     2018-01-01:
       value: 0.0095
-  threshold:
+    2018-10-01:
+      value: null
+    threshold:
     1993-07-01:
       value: 0.0
-- rate:
+    2018-10-01:
+      value: null
+  - rate:
     2003-01-01:
       value: 0.0
+    2018-10-01:
+      value: null
   threshold:
     2003-01-01:
       value: 4.0
+    2018-10-01:
+      value: null
 description: Chômage-emploi ASSEDIC
 reference: openfisca
