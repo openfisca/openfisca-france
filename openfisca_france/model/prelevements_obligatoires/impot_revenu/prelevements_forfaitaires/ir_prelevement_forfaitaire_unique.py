@@ -164,7 +164,7 @@ class plus_values_prelevement_forfaitaire_unique_ir(Variable):
 
 
         # Notes :
-            # 3sg + 3sl : correspodond aux abattements associés aux cases 3vg et 3ua (donc, on considère les montants bruts).
+            # 3sg + 3sl : correspond aux abattements associés aux cases 3vg et 3ua (donc, on considère les montants bruts).
             #             En revanche, on n'enlève pas l'abattement fixe en 3va, car il est maintenu, y compris si le contribuable
             #             choisit le PFU. Les conditions on été légèrement modifiées, mais on ne va pas dans ce détail-là. Cf par exemple https://taj-strategie.fr/plf-2018-lecture-definitive-fiscalite-personnes
             # 3WE n'est pas compté, car normalement, il n'est pas dans la base du PFU... A checker ?

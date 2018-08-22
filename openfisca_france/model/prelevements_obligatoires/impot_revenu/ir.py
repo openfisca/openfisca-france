@@ -1951,19 +1951,6 @@ class iai(Variable):
 
         return iaidrdi + taxation_plus_values_hors_bareme + cont_rev_loc + tax_rvcm_forfaitaire + teicaa
 
-    def formula_2018_01_01(foyer_fiscal, period, parameters):
-        '''
-        impôt avant imputation de l'irpp
-        Seule différence par rapport à la formule précédente : on supprime taxation_plus_values_hors_bareme
-        et tax_rvcm_forfaitaire, suite à passage au prelevement forfaitaire unique. La taxation de ces revenus
-        se trouve maintenant dans plus_values_prelevement_forfaitaire_unique_ir
-        '''
-        iaidrdi = foyer_fiscal('iaidrdi', period)
-        cont_rev_loc = foyer_fiscal('cont_rev_loc', period)
-        teicaa = foyer_fiscal('teicaa', period)
-
-        return iaidrdi + cont_rev_loc + teicaa
-
 
 class cehr(Variable):
     value_type = float
@@ -2007,26 +1994,6 @@ class irpp(Variable):
         P = parameters(period).impot_revenu.recouvrement
 
         pre_result = iai - credits_impot - acomptes_ir + cehr
-
-        return (
-            (iai > P.seuil) * (
-                (pre_result < P.min) * (pre_result > 0) * iai * 0 +
-                ((pre_result <= 0) + (pre_result >= P.min)) * (- pre_result)
-                ) +
-            (iai <= P.seuil) * (
-                (pre_result < 0) * (-pre_result) + (pre_result >= 0) * 0 * iai)
-            )
-
-    def formula_2018_01_01(foyer_fiscal, period, parameters):
-        '''
-        Seule différence avec la formule avant 2018 : suppression de 'acomptes_ir'
-        '''
-        iai = foyer_fiscal('iai', period)
-        credits_impot = foyer_fiscal('credits_impot', period)
-        cehr = foyer_fiscal('cehr', period)
-        P = parameters(period).impot_revenu.recouvrement
-
-        pre_result = iai - credits_impot + cehr
 
         return (
             (iai > P.seuil) * (
