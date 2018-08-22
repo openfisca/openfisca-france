@@ -1,0 +1,21 @@
+### Ces deux tests vérifient que pour la variable rfr, le passage à l'utilisation de la variable revenus_capitaux_prelevement_forfaitaire_unique_ir en 2018,
+### tout en gardant dans la formule les variables neutralisées à partir de 2018 (rfr_rvcm et revenus_capitaux_prelevement_liberatoire)
+### marche correctement (afin de n'avoir qu'une seule formule)
+
+- name: rfr_f2dc_2017
+  description: "Montant de rfr en 2017 via la case 2DC (injectée dans rni, et rfr_rvcm pour les abattements réinjectés)"
+  period: 2017
+  absolute_error_margin: 1
+  input_variables:
+    f2dc: 100000
+  output_variables:
+    rfr: 100000
+
+- name: rfr_f2dc_2018
+  description: "Montant de rfr en 2018 via la case 2DC (injectée dans revenus_capitaux_prelevement_forfaitaire_unique_ir)"
+  period: 2018
+  absolute_error_margin: 1
+  input_variables:
+    f2dc: 100000
+  output_variables:
+    rfr: 100000
