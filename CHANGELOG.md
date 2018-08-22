@@ -31,7 +31,7 @@
           - Définition de nouvelles assiettes `revenus_capitaux_prelevement_forfaitaire_unique_ir` et `plus_values_prelevement_forfaitaire_unique_ir`, en remplacement des anciennes variables d'assiettes injectées dans les différents dispositifs et bases ressources (`revenus_capitaux_prelevement_bareme`, `revenus_capitaux_prelevement_liberatoire`, `rev_cat_rvcm`, `rev_cat_pv`, `rfr_rvcm`, etc.).
           - Ensemble des variables neutralisées à partir de 2018 : `rev_cat_pv` `rev_cat_rvcm` `rfr_rvcm` `tax_rvcm_forfaitaire` `taxation_plus_values_hors_bareme`,
           `revenus_capitaux_prelevement_bareme`, `revenus_capitaux_prelevement_liberatoire`, `prelevement_forfaitaire_liberatoire`,
-          , `f2ch`, `f2ts`,
+          , `f2ch`, `f2ts`, `prlire`,
           `acompte_ir_elus_locaux`, `prelevement_forfaitaire_non_liberatoire`, `acomptes_ir`, variables commençant par `assurance_vie_pl_non_anonyme`, `assurance_vie_pl_anonyme`.
   - Note : pour les revenus 2018, on ne dispose pas du formulaire de déclaration des revenus.
     Hypothèse : la structure des cases du formulaire 2042 et 2042C est identique entre 2018 et 2019 (i.e. entre les revenus 2017 et 2018). Les assiettes du PFU sont donc définies avec les cases des formulaires de l'IR 2018 sur revenus 2017. Et on neutralise les variables d'acomptes d'impôt.
