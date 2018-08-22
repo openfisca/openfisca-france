@@ -16,16 +16,6 @@ yaml.default_flow_style = False
 yaml.width = 1000
 
 def migrate(path):
-    excluded = [
-        'tests/cotisations_sociales_simulateur_IPP.yaml',
-        'tests/fiches_de_paie/apprenti.yaml',
-        'tests/formulas/anah/test_anah.yaml',
-        'tests/formulas/financement_organisations_syndicales.yaml'
-    ]
-
-    if path in excluded:
-        return
-
     with io.open(path, 'r', encoding='utf8') as f:
         try:
             data = yaml.load(f)
@@ -45,10 +35,12 @@ def migrate(path):
             if not asi:
                 return
 
-            individus = data['individus']
-            individus = individus if isinstance(individus, list) else [ individus ]
-            for i in individus:
-                i['asi'] = copy.deepcopy(asi)
+            if sum([abs(v) for v in asi.values()]):
+                individus = data['individus']
+                individus = individus if isinstance(individus, list) else [ individus ]
+                for i in individus:
+                    i['asi'] = copy.deepcopy(asi)
+
             with io.open(path, 'w', encoding='utf8') as f:
                 yaml.dump(data, f)
         except Exception as e:
