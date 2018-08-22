@@ -44,7 +44,7 @@ def migrate(path):
 
             if not asi:
                 return
-            
+
             individus = data['individus']
             individus = individus if isinstance(individus, list) else [ individus ]
             for i in individus:
