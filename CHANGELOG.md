@@ -38,6 +38,7 @@
   - Changements mineurs concernant les années antérieures à 2018 :
       - Actualise certaines variables fiscales pour 2017 : cases 2TT, 2TU et 2TV, variable `rev_cat_pv`.
       - Renomme `rfr_plus_values` en `rfr_plus_values_hors_rni`.
+      - Renomme `rfr_rvcm` par `rfr_rvcm_abattements_a_reintegrer`
 
 ## 24.4.0 [#1081](https://github.com/openfisca/openfisca-france/pull/1081)
 

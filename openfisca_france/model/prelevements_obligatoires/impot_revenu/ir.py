@@ -859,10 +859,10 @@ class rev_cat_rvcm(Variable):
         return max_(0, rvcm_apres_abattement - f2ca - deficit_rcm)
 
 
-class rfr_rvcm(Variable):
+class rfr_rvcm_abattements_a_reintegrer(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = u"rfr_rvcm"
+    label = u"rfr_rvcm_abattements_a_reintegrer"
     definition_period = YEAR
     end = '2017-12-31'
 
@@ -2085,7 +2085,7 @@ class rfr(Variable):
         abattement_net_duree_detention_retraite_dirigeant_pme = foyer_fiscal('abattement_net_duree_detention_retraite_dirigeant_pme', period)
         f2dm = foyer_fiscal('f2dm', period)
         microentreprise = foyer_fiscal('microentreprise', period)
-        rfr_rev_capitaux_mobiliers = foyer_fiscal('rfr_rvcm', period) # Supprimée à partir de 2018
+        rfr_rev_capitaux_mobiliers = foyer_fiscal('rfr_rvcm_abattements_a_reintegrer', period) # Supprimée à partir de 2018
         revenus_capitaux_prelevement_liberatoire = foyer_fiscal('revenus_capitaux_prelevement_liberatoire', period, options = [ADD]) # Supprimée à partir de 2018
         revenus_capitaux_prelevement_forfaitaire_unique_ir = foyer_fiscal('revenus_capitaux_prelevement_forfaitaire_unique_ir', period, options = [ADD]) # Existe à partir de 2018
         rfr_charges_deductibles = foyer_fiscal('rfr_cd', period)
