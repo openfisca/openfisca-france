@@ -19,8 +19,8 @@ yaml.width = 1000
 def migrate(path):
     with io.open(path, 'r', encoding='utf8') as f:
         try:
-            tests = yaml.load(f)
-            tests = tests if isinstance(tests, list) else [ tests ]
+            data = yaml.load(f)
+            tests = data if isinstance(data, list) else [ data ]
 
             for test in tests:
                 if 'familles' not in test:
@@ -45,7 +45,7 @@ def migrate(path):
                         i['asi'] = copy.deepcopy(asi)
 
             with io.open(path, 'w', encoding='utf8') as f:
-                yaml.dump(tests, f)
+                yaml.dump(data, f)
         except Exception as e:
             print (path)
             raise e
