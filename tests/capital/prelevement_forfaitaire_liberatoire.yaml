@@ -14,7 +14,7 @@
     prelevement_forfaitaire_liberatoire: -(0.075*(1000+2000)+0.35*3000+0.15*4000+0.6*5000+0.05*6000+0.75*7000)
 
 - name: "transmission_variables_av_cases_2017"
-  description: Transmission des variables d'assurance-vie aux cases de la déclaration de revenus 2017
+  description: Transmission des variables d'assurance-vie, d'épargne solidaire et des produits des états non-coopératifs aux cases de la déclaration de revenus 2017
   period: 2017
   absolute_error_margin: 1
   input_variables:
