@@ -1,7 +1,7 @@
 name: Montant soustrait de 80% de la valeur locative des terrains non loués
 keywords:
-  - patrimoine
-  - rsa
+- patrimoine
+- rsa
 period: "month:2014-09"
 relative_error_margin: 0.02
 individus:
@@ -97,19 +97,6 @@ familles:
     2014-07: 0
     2014-08: 0
   asf:
-    2013-09: 0
-    2013-10: 0
-    2013-11: 0
-    2013-12: 0
-    2014-01: 0
-    2014-02: 0
-    2014-03: 0
-    2014-04: 0
-    2014-05: 0
-    2014-06: 0
-    2014-07: 0
-    2014-08: 0
-  asi:
     2013-09: 0
     2013-10: 0
     2013-11: 0

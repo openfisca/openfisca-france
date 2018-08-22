@@ -1,45 +1,45 @@
 name: Couple, 1 enfant
 keywords:
-  - foyer
-  - rsa
+- foyer
+- rsa
 period: "month:2014-07"
 relative_error_margin: 0.02
 individus:
-  - age: 34
-    age_en_mois: 414
-    date_naissance: "1980-01-01"
-    enceinte: false
-    etudiant: 0
-    id: 53d79dd4f6aa390200a6cd30
-    inapte_travail: 0
-    handicap: 0
-    statut_marital: celibataire
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 34
-    age_en_mois: 414
-    date_naissance: "1980-01-01"
-    etudiant: 0
-    id: 53d79dd4f6aa390200a6cd2f
-    inapte_travail: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 4
-    age_en_mois: 54
-    date_naissance: "2010-01-01"
-    etudiant: 0
-    id: 53d79dd4f6aa390200a6cd2e
-    inapte_travail: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
+- age: 34
+  age_en_mois: 414
+  date_naissance: "1980-01-01"
+  enceinte: false
+  etudiant: 0
+  id: 53d79dd4f6aa390200a6cd30
+  inapte_travail: 0
+  handicap: 0
+  statut_marital: celibataire
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 34
+  age_en_mois: 414
+  date_naissance: "1980-01-01"
+  etudiant: 0
+  id: 53d79dd4f6aa390200a6cd2f
+  inapte_travail: 0
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 4
+  age_en_mois: 54
+  date_naissance: "2010-01-01"
+  etudiant: 0
+  id: 53d79dd4f6aa390200a6cd2e
+  inapte_travail: 0
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
 familles:
   acs:
     2013-07: 0
@@ -132,19 +132,6 @@ familles:
     2014-04: 0
     2014-05: 0
     2014-06: 0
-  asi:
-    2013-07: 0
-    2013-08: 0
-    2013-09: 0
-    2013-10: 0
-    2013-11: 0
-    2013-12: 0
-    2014-01: 0
-    2014-02: 0
-    2014-03: 0
-    2014-04: 0
-    2014-05: 0
-    2014-06: 0
   aspa:
     2013-07: 0
     2013-08: 0
@@ -225,8 +212,8 @@ familles:
     2014-05: 0
     2014-06: 0
   parents:
-    - 53d79dd4f6aa390200a6cd30
-    - 53d79dd4f6aa390200a6cd2f
+  - 53d79dd4f6aa390200a6cd30
+  - 53d79dd4f6aa390200a6cd2f
   rsa:
     2013-07: 0
     2013-08: 0
@@ -242,8 +229,8 @@ familles:
     2014-06: 0
 foyers_fiscaux:
   declarants:
-    - 53d79dd4f6aa390200a6cd30
-    - 53d79dd4f6aa390200a6cd2f
+  - 53d79dd4f6aa390200a6cd30
+  - 53d79dd4f6aa390200a6cd2f
   personnes_a_charge: 53d79dd4f6aa390200a6cd2e
 menages:
   conjoint: 53d79dd4f6aa390200a6cd2f

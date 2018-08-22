@@ -14,11 +14,11 @@
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2", "enfant3"]
   individus:
-    - id: "parent1"
-    - id: "parent2"
-    - id: "enfant1"
-    - id: "enfant2"
-    - id: "enfant3"
+  - id: "parent1"
+  - id: "parent2"
+  - id: "enfant1"
+  - id: "enfant2"
+  - id: "enfant3"
   output_variables:
     ada: 632.4 # 20.4 * 31
 

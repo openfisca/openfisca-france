@@ -24,7 +24,7 @@
   output_variables:
     aah: 2846.88 / 12  # (743.62 * 24 (17846.88) - 12000)  / 12
 
-- name: "AAH Eligibilité personne seule sans revenus"# plafond aah = 12 x 807.65 (montant mensuel de l'AAH)
+- name: "AAH Eligibilité personne seule sans revenus" # plafond aah = 12 x 807.65 (montant mensuel de l'AAH)
   period: 2015-11
   absolute_error_margin: 1
   input_variables:
@@ -108,13 +108,13 @@
   familles:
     parents: ["parent1", "parent2"]
   individus:
-    - id: "parent1"
-      age: 40
-      taux_incapacite: 0.9
-    - id: "parent2"
-      age: 40
-      salaire_imposable:
-        2013: 1128.70 * 12
+  - id: "parent1"
+    age: 40
+    taux_incapacite: 0.9
+  - id: "parent2"
+    age: 40
+    salaire_imposable:
+      2013: 1128.70 * 12
   output_variables:
     aah_base_ressources:
       2015-11: (1128.70 * 12) * 0.9 * 0.8
@@ -125,28 +125,28 @@
   familles:
     parents: ["parent1", "parent2"]
   individus:
-    - id: "parent1"
-      age: 40
-      taux_incapacite: 0.9
-      salaire_imposable:
-        2015-11: 1471
-        2015-10: 1471
-        2015-09: 1471
-        2015-08: 1471
-    - id: "parent2"
-      age: 40
-      salaire_imposable:
-        2015-11: 1000
-        2015-10: 1000
-        2015-09: 1000
-        2015-08: 1000
+  - id: "parent1"
+    age: 40
+    taux_incapacite: 0.9
+    salaire_imposable:
+      2015-11: 1471
+      2015-10: 1471
+      2015-09: 1471
+      2015-08: 1471
+  - id: "parent2"
+    age: 40
+    salaire_imposable:
+      2015-11: 1000
+      2015-10: 1000
+      2015-09: 1000
+      2015-08: 1000
   output_variables:
-        aah_base_ressources:
-          2015-11: (1000 * 12) * 0.9 * 0.8 + 8494
-        aah_base:
-          2015-11: [187, 0]
-        aah:
-          2015-11: [187, 0]
+    aah_base_ressources:
+      2015-11: (1000 * 12) * 0.9 * 0.8 + 8494
+    aah_base:
+      2015-11: [187, 0]
+    aah:
+      2015-11: [187, 0]
 
 - name: "Revalorisation 01-04-2018, Cas Passant 1 : AAH personne seule de 50 ans avec un taux d'incapacité entre 50% et 79% et un revenu de 5400€"
   period: 2018-05
@@ -159,7 +159,7 @@
       2018-04: 1500
       2018-03: 1500
   output_variables:
-      aah: 398.81
+    aah: 398.81
 
 - name: "Revalorisation 01-04-2018, Cas Passant 2 : AAH personne de 42 ans avec un taux d'incapacité entre 50% et 79% et un revenu de 12500€ ainsi qu'1 enfant à charge"
   period: 2018-05
@@ -168,18 +168,18 @@
     parents: ["parent1"]
     enfants: ["enfant1"]
   individus:
-    - id: "parent1"
-      age: 42
-      taux_incapacite: 0.55
-      salaire_imposable:
-        2018-05: 2250
-        2018-04: 2250
-        2018-03: 2000
-        2018-02: 2000
-        2018-01: 2000
-        2017-12: 2000
-    - id: "enfant1"
-      age: 15
+  - id: "parent1"
+    age: 42
+    taux_incapacite: 0.55
+    salaire_imposable:
+      2018-05: 2250
+      2018-04: 2250
+      2018-03: 2000
+      2018-02: 2000
+      2018-01: 2000
+      2017-12: 2000
+  - id: "enfant1"
+    age: 15
   output_variables:
     aah: [158.31, 0]
 
@@ -189,26 +189,26 @@
   familles:
     parents: ["parent1", "parent2"]
   individus:
-    - id: "parent1"
-      age: 38
-      taux_incapacite: 0.81
-      salaire_imposable:
-        2018-05: 500
-        2018-04: 500
-        2018-03: 500
-        2018-02: 500
-        2018-01: 500
-    - id: "parent2"
-      age: 36
-      salaire_imposable:
-        2018-05: 4000
-        2018-04: 3000
-        2018-03: 3000
-        2018-02: 3000
-        2018-01: 3000
-        2017-12: 3000
+  - id: "parent1"
+    age: 38
+    taux_incapacite: 0.81
+    salaire_imposable:
+      2018-05: 500
+      2018-04: 500
+      2018-03: 500
+      2018-02: 500
+      2018-01: 500
+  - id: "parent2"
+    age: 36
+    salaire_imposable:
+      2018-05: 4000
+      2018-04: 3000
+      2018-03: 3000
+      2018-02: 3000
+      2018-01: 3000
+      2017-12: 3000
   output_variables:
-      aah: [0, 0]
+    aah: [0, 0]
 
 - name: "Revalorisation 01-04-2018, Cas Passant 4 : AAH personne de 38 ans avec un taux d'incapacité entre 50% et 79% et un revenu de 12000€ avec 1 personne de 36 ans avec un revenu de 15000€ ainsi qu'un enfant de 7 ans"
   period: 2018-05
@@ -217,27 +217,27 @@
     parents: ["parent1", "parent2"]
     enfants: ["enfant1"]
   individus:
-    - id: "parent1"
-      age: 38
-      taux_incapacite: 0.55
-      salaire_imposable:
-        2018-05: 2000
-        2018-04: 2000
-        2018-03: 2000
-        2018-02: 2000
-        2018-01: 2000
-        2017-12: 2000
-    - id: "parent2"
-      age: 36
-      salaire_imposable:
-        2018-05: 2000
-        2018-04: 2000
-        2018-03: 2000
-        2018-02: 3000
-        2018-01: 3000
-        2017-12: 3000
-    - id: "enfant1"
-      age: 7
+  - id: "parent1"
+    age: 38
+    taux_incapacite: 0.55
+    salaire_imposable:
+      2018-05: 2000
+      2018-04: 2000
+      2018-03: 2000
+      2018-02: 2000
+      2018-01: 2000
+      2017-12: 2000
+  - id: "parent2"
+    age: 36
+    salaire_imposable:
+      2018-05: 2000
+      2018-04: 2000
+      2018-03: 2000
+      2018-02: 3000
+      2018-01: 3000
+      2017-12: 3000
+  - id: "enfant1"
+    age: 7
   output_variables:
     aah: [0, 0, 0]
 
@@ -248,29 +248,29 @@
     parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2"]
   individus:
-    - id: "parent1"
-      age: 38
-      taux_incapacite: 0.55
-      salaire_imposable:
-        2018-05: 2000
-        2018-04: 2000
-        2018-03: 2000
-        2018-02: 2000
-        2018-01: 2000
-        2017-12: 2000
-    - id: "parent2"
-      age: 36
-      salaire_imposable:
-        2018-05: 4000
-        2018-04: 4000
-        2018-03: 3000
-        2018-02: 3000
-        2018-01: 3000
-        2017-12: 3000
-    - id: "enfant1"
-      age: 7
-    - id: "enfant2"
-      age: 5
+  - id: "parent1"
+    age: 38
+    taux_incapacite: 0.55
+    salaire_imposable:
+      2018-05: 2000
+      2018-04: 2000
+      2018-03: 2000
+      2018-02: 2000
+      2018-01: 2000
+      2017-12: 2000
+  - id: "parent2"
+    age: 36
+    salaire_imposable:
+      2018-05: 4000
+      2018-04: 4000
+      2018-03: 3000
+      2018-02: 3000
+      2018-01: 3000
+      2017-12: 3000
+  - id: "enfant1"
+    age: 7
+  - id: "enfant2"
+    age: 5
   output_variables:
     aah: [0, 0, 0, 0]
 
@@ -315,18 +315,18 @@
     parents: ["parent1"]
     enfants: ["enfant1"]
   individus:
-    - id: "parent1"
-      age: 42
-      taux_incapacite: 0.55
-      salaire_imposable:
-        2018-05: 4000
-        2018-04: 4000
-        2018-03: 3000
-        2018-02: 3000
-        2018-01: 3000
-        2017-12: 3000
-    - id: "enfant1"
-      age: 15
+  - id: "parent1"
+    age: 42
+    taux_incapacite: 0.55
+    salaire_imposable:
+      2018-05: 4000
+      2018-04: 4000
+      2018-03: 3000
+      2018-02: 3000
+      2018-01: 3000
+      2017-12: 3000
+  - id: "enfant1"
+    age: 15
   output_variables:
     aah: 0
 
@@ -336,23 +336,23 @@
   familles:
     parents: ["parent1", "parent2"]
   individus:
-    - id: "parent1"
-      age: 38
-      taux_incapacite: 0.81
-      salaire_imposable:
-        2018-05: 500
-        2018-04: 500
-        2018-03: 500
-        2018-02: 500
-    - id: "parent2"
-      age: 36
-      salaire_imposable:
-        2018-05: 5000
-        2018-04: 4000
-        2018-03: 4000
-        2018-02: 4000
-        2018-01: 4000
-        2017-12: 4000
+  - id: "parent1"
+    age: 38
+    taux_incapacite: 0.81
+    salaire_imposable:
+      2018-05: 500
+      2018-04: 500
+      2018-03: 500
+      2018-02: 500
+  - id: "parent2"
+    age: 36
+    salaire_imposable:
+      2018-05: 5000
+      2018-04: 4000
+      2018-03: 4000
+      2018-02: 4000
+      2018-01: 4000
+      2017-12: 4000
   output_variables:
     aah: 0
 
@@ -363,27 +363,27 @@
     parents: ["parent1", "parent2"]
     enfants: ["enfant1"]
   individus:
-    - id: "parent1"
-      age: 38
-      taux_incapacite: 0.55
-      salaire_imposable:
-        2018-05: 3000
-        2018-04: 3000
-        2018-03: 3000
-        2018-02: 2000
-        2018-01: 2000
-        2017-12: 2000
-    - id: "parent2"
-      age: 36
-      salaire_imposable:
-        2018-05: 5000
-        2018-04: 4000
-        2018-03: 4000
-        2018-02: 4000
-        2018-01: 4000
-        2017-12: 4000
-    - id: "enfant1"
-      age: 7
+  - id: "parent1"
+    age: 38
+    taux_incapacite: 0.55
+    salaire_imposable:
+      2018-05: 3000
+      2018-04: 3000
+      2018-03: 3000
+      2018-02: 2000
+      2018-01: 2000
+      2017-12: 2000
+  - id: "parent2"
+    age: 36
+    salaire_imposable:
+      2018-05: 5000
+      2018-04: 4000
+      2018-03: 4000
+      2018-02: 4000
+      2018-01: 4000
+      2017-12: 4000
+  - id: "enfant1"
+    age: 7
   output_variables:
     aah: 0
 
@@ -394,28 +394,28 @@
     parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2"]
   individus:
-    - id: "parent1"
-      age: 38
-      taux_incapacite: 0.55
-      salaire_imposable:
-        2018-05: 4000
-        2018-04: 4000
-        2018-03: 4000
-        2018-02: 4000
-        2018-01: 3000
-        2017-12: 3000
-    - id: "parent2"
-      age: 36
-      salaire_imposable:
-        2018-05: 5000
-        2018-04: 5000
-        2018-03: 5000
-        2018-02: 5000
-        2018-01: 5000
-        2017-12: 5000
-    - id: "enfant1"
-      age: 7
-    - id: "enfant2"
-      age: 5
+  - id: "parent1"
+    age: 38
+    taux_incapacite: 0.55
+    salaire_imposable:
+      2018-05: 4000
+      2018-04: 4000
+      2018-03: 4000
+      2018-02: 4000
+      2018-01: 3000
+      2017-12: 3000
+  - id: "parent2"
+    age: 36
+    salaire_imposable:
+      2018-05: 5000
+      2018-04: 5000
+      2018-03: 5000
+      2018-02: 5000
+      2018-01: 5000
+      2017-12: 5000
+  - id: "enfant1"
+    age: 7
+  - id: "enfant2"
+    age: 5
   output_variables:
     aah: 0

@@ -9,12 +9,12 @@
     statut_occupation_logement:
       "2012": proprietaire
   individus:
-    - id: 1
-      date_naissance: "1985-01-01"
-    - id: 2
-      date_naissance: "1985-01-01"
-    - id: 3
-      date_naissance: "2004-01-01"
+  - id: 1
+    date_naissance: "1985-01-01"
+  - id: 2
+    date_naissance: "1985-01-01"
+  - id: 3
+    date_naissance: "2004-01-01"
   output_variables:
     unites_consommation:
       "2012": 1.8
@@ -30,12 +30,12 @@
     statut_occupation_logement:
       "2012": proprietaire
   individus:
-    - id: 1
-      date_naissance: "1985-01-01"
-    - id: 2
-      date_naissance: "1985-01-01"
-    - id: 3
-      date_naissance: "1996-01-01"
+  - id: 1
+    date_naissance: "1985-01-01"
+  - id: 2
+    date_naissance: "1985-01-01"
+  - id: 3
+    date_naissance: "1996-01-01"
   output_variables:
     unites_consommation:
       "2012": 2
@@ -50,10 +50,10 @@
     statut_occupation_logement:
       "2012": proprietaire
   individus:
-    - id: 1
-      date_naissance: "1985-01-01"
-    - id: 2
-      date_naissance: "2004-01-01"
+  - id: 1
+    date_naissance: "1985-01-01"
+  - id: 2
+    date_naissance: "2004-01-01"
   output_variables:
     unites_consommation:
       "2012": 1.3

@@ -271,7 +271,7 @@
     valeur_locative_terrains_non_loues: 250
     aide_logement_montant: 500
   output_variables:
-   base_ressources_apa: 4000
+    base_ressources_apa: 4000
 
 
 - name: "Test plafond taux participation APA domicile"
@@ -282,4 +282,4 @@
     dependance_plan_aide_domicile_accepte: 100
     base_ressources_apa: 3000
   output_variables:
-   apa_domicile_taux_participation: 0.9
+    apa_domicile_taux_participation: 0.9

@@ -1,7 +1,7 @@
 name: Pas de RSA pour un entrepreneur qui a au moins un employé
 keywords:
-  - rsa
-  - tns
+- rsa
+- tns
 description: Case "J'ai au moins un employé" cochée => RSA = 0, même si on est en dessous des plafonds de CA.
 period: "month:2015-05"
 relative_error_margin: 0.02
@@ -99,19 +99,6 @@ familles:
     2015-03: 0
     2015-04: 0
   asf:
-    2014-05: 0
-    2014-06: 0
-    2014-07: 0
-    2014-08: 0
-    2014-09: 0
-    2014-10: 0
-    2014-11: 0
-    2014-12: 0
-    2015-01: 0
-    2015-02: 0
-    2015-03: 0
-    2015-04: 0
-  asi:
     2014-05: 0
     2014-06: 0
     2014-07: 0

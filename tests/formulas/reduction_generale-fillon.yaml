@@ -6,7 +6,7 @@
     effectif_entreprise: 1
     salaire_de_base: 1500
   output_variables:
-    allegement_fillon: >
+    allegement_fillon: |
       1500 *
       (
         (.2809 / 0.6)

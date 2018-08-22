@@ -8,13 +8,13 @@
     personne_de_reference: "personne1"
     statut_occupation_logement: locataire_vide
   individus:
-    - id: "personne1"
-      date_naissance: 1980-01-01
-      salaire_net:
-        2018-05: 134
-        2018-04: 134
-        2018-03: 134
-        2018-02: 134
+  - id: "personne1"
+    date_naissance: 1980-01-01
+    salaire_net:
+      2018-05: 134
+      2018-04: 134
+      2018-03: 134
+      2018-02: 134
   output_variables:
     ppa: 83.08
 
@@ -38,15 +38,15 @@
     enfants: ["enfant1"]
     statut_occupation_logement: locataire_vide
   individus:
-    - id: "personne1"
-      date_naissance: 1980-01-01
-      salaire_net:
-        2018-05: 134
-        2018-04: 134
-        2018-03: 134
-        2018-02: 134
-    - id: "enfant1"
-      date_naissance: 2005-03-10
+  - id: "personne1"
+    date_naissance: 1980-01-01
+    salaire_net:
+      2018-05: 134
+      2018-04: 134
+      2018-03: 134
+      2018-02: 134
+  - id: "enfant1"
+    date_naissance: 2005-03-10
   output_variables:
     ppa: 83.08
 
@@ -75,17 +75,17 @@
     enfants: ["enfant1", "enfant2"]
     statut_occupation_logement: locataire_vide
   individus:
-    - id: "personne1"
-      date_naissance: 1980-01-01
-      salaire_net:
-        2018-05: 134
-        2018-04: 134
-        2018-03: 134
-        2018-02: 134
-    - id: "enfant1"
-      date_naissance: 2005-03-10
-    - id: "enfant2"
-      date_naissance: 2008-01-04
+  - id: "personne1"
+    date_naissance: 1980-01-01
+    salaire_net:
+      2018-05: 134
+      2018-04: 134
+      2018-03: 134
+      2018-02: 134
+  - id: "enfant1"
+    date_naissance: 2005-03-10
+  - id: "enfant2"
+    date_naissance: 2008-01-04
   output_variables:
     ppa: 83.08
 
@@ -102,20 +102,20 @@
     conjoint: "personne2"
     statut_occupation_logement: locataire_vide
   individus:
-    - id: "personne1"
-      date_naissance: 1980-01-01
-      salaire_net:
-        2018-05: 100
-        2018-04: 100
-        2018-03: 100
-        2018-02: 100
-    - id: "personne2"
-      date_naissance: 1982-02-02
-      salaire_net:
-        2018-05: 67
-        2018-04: 67
-        2018-03: 67
-        2018-02: 67
+  - id: "personne1"
+    date_naissance: 1980-01-01
+    salaire_net:
+      2018-05: 100
+      2018-04: 100
+      2018-03: 100
+      2018-02: 100
+  - id: "personne2"
+    date_naissance: 1982-02-02
+    salaire_net:
+      2018-05: 67
+      2018-04: 67
+      2018-03: 67
+      2018-02: 67
   output_variables:
     ppa: 103.54
 
@@ -135,22 +135,22 @@
     enfants: ["enfant1"]
     statut_occupation_logement: locataire_vide
   individus:
-    - id: "personne1"
-      date_naissance: 1980-01-01
-      salaire_net:
-        2018-05: 250
-        2018-04: 250
-        2018-03: 250
-        2018-02: 250
-    - id: "personne2"
-      date_naissance: 1982-02-02
-      salaire_net:
-        2018-05: 400
-        2018-04: 400
-        2018-03: 400
-        2018-02: 400
-    - id: "enfant1"
-      date_naissance: 2005-03-10
+  - id: "personne1"
+    date_naissance: 1980-01-01
+    salaire_net:
+      2018-05: 250
+      2018-04: 250
+      2018-03: 250
+      2018-02: 250
+  - id: "personne2"
+    date_naissance: 1982-02-02
+    salaire_net:
+      2018-05: 400
+      2018-04: 400
+      2018-03: 400
+      2018-02: 400
+  - id: "enfant1"
+    date_naissance: 2005-03-10
   output_variables:
     ppa: 403.00
 
@@ -175,24 +175,24 @@
     enfants: ["enfant1", "enfant2"]
     statut_occupation_logement: locataire_vide
   individus:
-    - id: "personne1"
-      date_naissance: 1980-01-01
-      salaire_net:
-        2018-05: 250
-        2018-04: 250
-        2018-03: 250
-        2018-02: 250
-    - id: "personne2"
-      date_naissance: 1982-02-02
-      salaire_net:
-        2018-05: 400
-        2018-04: 400
-        2018-03: 400
-        2018-02: 400
-    - id: "enfant1"
-      date_naissance: 2005-03-10
-    - id: "enfant2"
-      date_naissance: 2008-01-04
+  - id: "personne1"
+    date_naissance: 1980-01-01
+    salaire_net:
+      2018-05: 250
+      2018-04: 250
+      2018-03: 250
+      2018-02: 250
+  - id: "personne2"
+    date_naissance: 1982-02-02
+    salaire_net:
+      2018-05: 400
+      2018-04: 400
+      2018-03: 400
+      2018-02: 400
+  - id: "enfant1"
+    date_naissance: 2005-03-10
+  - id: "enfant2"
+    date_naissance: 2008-01-04
   output_variables:
     ppa: 403.00
 
@@ -209,20 +209,20 @@
     conjoint: "personne2"
     statut_occupation_logement: locataire_vide
   individus:
-    - id: "personne1"
-      date_naissance: 1980-01-01
-      salaire_net:
-        2018-05: 1200
-        2018-04: 1200
-        2018-03: 1200
-        2018-02: 1200
-    - id: "personne2"
-      date_naissance: 1982-02-02
-      salaire_net:
-        2018-05: 1000
-        2018-04: 1000
-        2018-03: 1000
-        2018-02: 1000
+  - id: "personne1"
+    date_naissance: 1980-01-01
+    salaire_net:
+      2018-05: 1200
+      2018-04: 1200
+      2018-03: 1200
+      2018-02: 1200
+  - id: "personne2"
+    date_naissance: 1982-02-02
+    salaire_net:
+      2018-05: 1000
+      2018-04: 1000
+      2018-03: 1000
+      2018-02: 1000
   output_variables:
     ppa: 0
 
@@ -242,22 +242,22 @@
     enfants: ["enfant1"]
     statut_occupation_logement: locataire_vide
   individus:
-    - id: "personne1"
-      date_naissance: 1980-01-01
-      salaire_net:
-        2018-05: 1200
-        2018-04: 1200
-        2018-03: 1200
-        2018-02: 1200
-    - id: "personne2"
-      date_naissance: 1982-02-02
-      salaire_net:
-        2018-05: 1500
-        2018-04: 1500
-        2018-03: 1500
-        2018-02: 1500
-    - id: "enfant1"
-      date_naissance: 2005-03-10
+  - id: "personne1"
+    date_naissance: 1980-01-01
+    salaire_net:
+      2018-05: 1200
+      2018-04: 1200
+      2018-03: 1200
+      2018-02: 1200
+  - id: "personne2"
+    date_naissance: 1982-02-02
+    salaire_net:
+      2018-05: 1500
+      2018-04: 1500
+      2018-03: 1500
+      2018-02: 1500
+  - id: "enfant1"
+    date_naissance: 2005-03-10
   output_variables:
     ppa: 0
 
@@ -282,29 +282,29 @@
     enfants: ["enfant1", "enfant2"]
     statut_occupation_logement: locataire_vide
   individus:
-    - id: "personne1"
-      date_naissance: 1980-01-01
-      salaire_net:
-        2018-05: 1200
-        2018-04: 1200
-        2018-03: 1200
-        2018-02: 1200
-    - id: "personne2"
-      date_naissance: 1982-02-02
-      salaire_net:
-        2018-05: 1450
-        2018-04: 1450
-        2018-03: 1450
-        2018-02: 1450
-    - id: "enfant1"
-      date_naissance: 2000-01-10
-      salaire_net:
-        2018-05: 400
-        2018-04: 400
-        2018-03: 400
-        2018-02: 400
-    - id: "enfant2"
-      date_naissance: 2005-03-10
+  - id: "personne1"
+    date_naissance: 1980-01-01
+    salaire_net:
+      2018-05: 1200
+      2018-04: 1200
+      2018-03: 1200
+      2018-02: 1200
+  - id: "personne2"
+    date_naissance: 1982-02-02
+    salaire_net:
+      2018-05: 1450
+      2018-04: 1450
+      2018-03: 1450
+      2018-02: 1450
+  - id: "enfant1"
+    date_naissance: 2000-01-10
+    salaire_net:
+      2018-05: 400
+      2018-04: 400
+      2018-03: 400
+      2018-02: 400
+  - id: "enfant2"
+    date_naissance: 2005-03-10
   output_variables:
     ppa: 0
 
@@ -320,13 +320,13 @@
     personne_de_reference: "personne1"
     statut_occupation_logement: locataire_vide
   individus:
-    - id: "personne1"
-      date_naissance: 1980-01-01
-      salaire_net:
-        2018-05: 1450
-        2018-04: 1450
-        2018-03: 1450
-        2018-02: 1450
+  - id: "personne1"
+    date_naissance: 1980-01-01
+    salaire_net:
+      2018-05: 1450
+      2018-04: 1450
+      2018-03: 1450
+      2018-02: 1450
   output_variables:
     ppa: 0
 
@@ -350,14 +350,14 @@
     enfants: ["enfant1"]
     statut_occupation_logement: locataire_vide
   individus:
-    - id: "personne1"
-      date_naissance: 1980-01-01
-      salaire_net:
-        2018-05: 2000
-        2018-04: 2000
-        2018-03: 2000
-        2018-02: 2000
-    - id: "enfant1"
-      date_naissance: 2005-03-10
+  - id: "personne1"
+    date_naissance: 1980-01-01
+    salaire_net:
+      2018-05: 2000
+      2018-04: 2000
+      2018-03: 2000
+      2018-02: 2000
+  - id: "enfant1"
+    date_naissance: 2005-03-10
   output_variables:
     ppa: 0

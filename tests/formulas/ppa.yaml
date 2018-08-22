@@ -84,15 +84,15 @@
   familles:
     parents: ["parent1", "parent2"]
   individus:
-    - id: "parent1"
-      age: 40
-    - id: "parent2"
-      age: 40
-      salaire_net:
-        2016-01: 500
-        2015-12: 500
-        2015-11: 500
-        2015-10: 500
+  - id: "parent1"
+    age: 40
+  - id: "parent2"
+    age: 40
+    salaire_net:
+      2016-01: 500
+      2015-12: 500
+      2015-11: 500
+      2015-10: 500
   output_variables:
     ppa: 786.24 - 0.38 * 500 - (786.24 - 500)
     ppa_montant_forfaitaire_familial_non_majore:
@@ -107,17 +107,17 @@
     parents: ["parent1", "parent2"]
     enfants: ["enfant1"]
   individus:
-    - id: "parent1"
-      age: 40
-      salaire_net:
-        2016-01: 500
-        2015-12: 500
-        2015-11: 500
-        2015-10: 500
-    - id: "parent2"
-      age: 40
-    - id: "enfant1"
-      age: 10
+  - id: "parent1"
+    age: 40
+    salaire_net:
+      2016-01: 500
+      2015-12: 500
+      2015-11: 500
+      2015-10: 500
+  - id: "parent2"
+    age: 40
+  - id: "enfant1"
+    age: 10
   output_variables:
     ppa: 943.49 - 0.38 * 500 - (943.49 - 500)
     ppa_montant_forfaitaire_familial_non_majore:
@@ -132,21 +132,21 @@
     enfants: ["enfant1", "enfant2", "enfant3"]
     rsa_base_ressources_prestations_familiales: 0 # On ne prend pas en comptes les prestations CAF pour ce test
   individus:
-    - id: "parent1"
-      age: 40
-    - id: "parent2"
-      age: 40
-      salaire_net:
-        2016-01: 500
-        2015-12: 500
-        2015-11: 500
-        2015-10: 500
-    - id: "enfant1"
-      age: 10
-    - id: "enfant2"
-      age: 11
-    - id: "enfant3"
-      age: 12
+  - id: "parent1"
+    age: 40
+  - id: "parent2"
+    age: 40
+    salaire_net:
+      2016-01: 500
+      2015-12: 500
+      2015-11: 500
+      2015-10: 500
+  - id: "enfant1"
+    age: 10
+  - id: "enfant2"
+    age: 11
+  - id: "enfant3"
+    age: 12
   output_variables:
     ppa: 1310.40 - 0.38 * 500 - (1310.40 - 500)
     ppa_montant_forfaitaire_familial_non_majore:
@@ -162,15 +162,15 @@
     enfants: ["enfant1"]
     rsa_base_ressources_prestations_familiales: 0 # On ne prend pas en comptes les prestations CAF pour ce test
   individus:
-    - id: "parent1"
-      age: 40
-      salaire_net:
-        2016-01: 500
-        2015-12: 500
-        2015-11: 500
-        2015-10: 500
-    - id: "enfant1"
-      age: 2
+  - id: "parent1"
+    age: 40
+    salaire_net:
+      2016-01: 500
+      2015-12: 500
+      2015-11: 500
+      2015-10: 500
+  - id: "enfant1"
+    age: 2
   output_variables:
     ppa: 897.45 - 0.38 * 500 - (897.45 - 500)
     ppa_montant_forfaitaire_familial_majore:
@@ -220,20 +220,20 @@
     aides_logement:
       2016: 0
   individus:
-    - id: "parent1"
-      age: 40
-      salaire_net:
-        2016-01: 300
-        2015-12: 300
-        2015-11: 300
-        2015-10: 300
-    - id: "parent2"
-      age: 40
-      salaire_net:
-        2016-01: 300
-        2015-12: 300
-        2015-11: 300
-        2015-10: 300
+  - id: "parent1"
+    age: 40
+    salaire_net:
+      2016-01: 300
+      2015-12: 300
+      2015-11: 300
+      2015-10: 300
+  - id: "parent2"
+    age: 40
+    salaire_net:
+      2016-01: 300
+      2015-12: 300
+      2015-11: 300
+      2015-10: 300
   output_variables:
     ppa: 786.24 - 0.38 * 600 - (786.24 - 600)
     ppa_montant_forfaitaire_familial_non_majore:
@@ -287,20 +287,20 @@
     aides_logement:
       2016: 0
   individus:
-    - id: "parent1"
-      age: 40
-      salaire_net:
-        2016-01: 918
-        2015-12: 918
-        2015-11: 918
-        2015-10: 918
-    - id: "parent2"
-      age: 40
-      salaire_net:
-        2016-01: 800
-        2015-12: 800
-        2015-11: 800
-        2015-10: 800
+  - id: "parent1"
+    age: 40
+    salaire_net:
+      2016-01: 918
+      2015-12: 918
+      2015-11: 918
+      2015-10: 918
+  - id: "parent2"
+    age: 40
+    salaire_net:
+      2016-01: 800
+      2015-12: 800
+      2015-11: 800
+      2015-10: 800
   output_variables:
     ppa: 786.24 - 0.38 * (800 + 918) + 67 + 44
     ppa_montant_forfaitaire_familial_non_majore:
@@ -328,10 +328,10 @@
     conjoint: parent2
     statut_occupation_logement: proprietaire
   individus:
-    - id: "parent1"
-      age: 40
-    - id: "parent2"
-      age: 40
+  - id: "parent1"
+    age: 40
+  - id: "parent2"
+    age: 40
   output_variables:
     ppa_forfait_logement:
       2016-01: 125.80
@@ -348,12 +348,12 @@
     enfants: ["enfant1"]
     statut_occupation_logement: proprietaire
   individus:
-    - id: "parent1"
-      age: 40
-    - id: "parent2"
-      age: 40
-    - id: "enfant1"
-      age: 15
+  - id: "parent1"
+    age: 40
+  - id: "parent2"
+    age: 40
+  - id: "enfant1"
+    age: 15
   output_variables:
     ppa_forfait_logement:
       2016-01: 155.68
@@ -429,11 +429,11 @@
       2016-02: 91.40
     ass:
       2016-02: 100
-    asi:
-      2016-02: 100
     aspa:
       2016-02: 100
     # Autres ressources, on utilise le mois M-1
+    asi:
+      2016-01: 100
     paje_clca:
       2016-01: 100
     paje_prepare:
@@ -460,7 +460,7 @@
     ppa:
       2016-02: 0
     ppa_ressources_hors_activite_individu:
-      2016-01: 800
+      2016-01: 900
     ppa_ressources_hors_activite:
       2016-01: 1691.40
 
@@ -519,21 +519,21 @@
     parents: ["parent1", "parent2"]
     enfants: ["enfant1"]
   individus:
-    - id: "parent1"
-      age: 40
-      etudiant: true
-      salaire_net:
-        2015-12: 800
-        2015-11: 800
-        2015-10: 800
-    - id: "parent2"
-      age: 40
-      etudiant: true
-      salaire_net:
-        2015-12: 800
-        2015-11: 800
-        2015-10: 800
-    - id: "enfant1"
+  - id: "parent1"
+    age: 40
+    etudiant: true
+    salaire_net:
+      2015-12: 800
+      2015-11: 800
+      2015-10: 800
+  - id: "parent2"
+    age: 40
+    etudiant: true
+    salaire_net:
+      2015-12: 800
+      2015-11: 800
+      2015-10: 800
+  - id: "enfant1"
   output_variables:
     ppa: 0
 

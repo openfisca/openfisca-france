@@ -3,51 +3,51 @@ keywords: asf
 period: "month:2014-07"
 relative_error_margin: 0.02
 individus:
-  - age: 24
-    age_en_mois: 298
-    date_naissance: "1989-09-14"
-    enceinte: false
-    etudiant: 0
-    id: 53d78cf4f6aa390200a6ccfd
-    inapte_travail: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 6
-    age_en_mois: 82
-    date_naissance: "2007-09-14"
-    etudiant: 0
-    id: 53d78cf4f6aa390200a6ccfc
-    inapte_travail: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 6
-    age_en_mois: 82
-    date_naissance: "2007-09-14"
-    etudiant: 0
-    id: 53d78cf4f6aa390200a6ccfb
-    inapte_travail: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 6
-    age_en_mois: 82
-    date_naissance: "2007-09-14"
-    etudiant: 0
-    id: 53d78cf4f6aa390200a6ccfa
-    inapte_travail: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
+- age: 24
+  age_en_mois: 298
+  date_naissance: "1989-09-14"
+  enceinte: false
+  etudiant: 0
+  id: 53d78cf4f6aa390200a6ccfd
+  inapte_travail: 0
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 6
+  age_en_mois: 82
+  date_naissance: "2007-09-14"
+  etudiant: 0
+  id: 53d78cf4f6aa390200a6ccfc
+  inapte_travail: 0
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 6
+  age_en_mois: 82
+  date_naissance: "2007-09-14"
+  etudiant: 0
+  id: 53d78cf4f6aa390200a6ccfb
+  inapte_travail: 0
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 6
+  age_en_mois: 82
+  date_naissance: "2007-09-14"
+  etudiant: 0
+  id: 53d78cf4f6aa390200a6ccfa
+  inapte_travail: 0
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
 familles:
   acs:
     2013-07: 0
@@ -140,19 +140,6 @@ familles:
     2014-04: 0
     2014-05: 0
     2014-06: 0
-  asi:
-    2013-07: 0
-    2013-08: 0
-    2013-09: 0
-    2013-10: 0
-    2013-11: 0
-    2013-12: 0
-    2014-01: 0
-    2014-02: 0
-    2014-03: 0
-    2014-04: 0
-    2014-05: 0
-    2014-06: 0
   aspa:
     2013-07: 0
     2013-08: 0
@@ -219,9 +206,9 @@ familles:
     2014-05: 0
     2014-06: 0
   enfants:
-    - 53d78cf4f6aa390200a6ccfc
-    - 53d78cf4f6aa390200a6ccfb
-    - 53d78cf4f6aa390200a6ccfa
+  - 53d78cf4f6aa390200a6ccfc
+  - 53d78cf4f6aa390200a6ccfb
+  - 53d78cf4f6aa390200a6ccfa
   paje_base:
     2013-07: 0
     2013-08: 0
@@ -254,14 +241,14 @@ familles:
 foyers_fiscaux:
   declarants: 53d78cf4f6aa390200a6ccfd
   personnes_a_charge:
-    - 53d78cf4f6aa390200a6ccfc
-    - 53d78cf4f6aa390200a6ccfb
-    - 53d78cf4f6aa390200a6ccfa
+  - 53d78cf4f6aa390200a6ccfc
+  - 53d78cf4f6aa390200a6ccfb
+  - 53d78cf4f6aa390200a6ccfa
 menages:
   enfants:
-    - 53d78cf4f6aa390200a6ccfc
-    - 53d78cf4f6aa390200a6ccfb
-    - 53d78cf4f6aa390200a6ccfa
+  - 53d78cf4f6aa390200a6ccfc
+  - 53d78cf4f6aa390200a6ccfb
+  - 53d78cf4f6aa390200a6ccfa
   loyer: 123
   personne_de_reference: 53d78cf4f6aa390200a6ccfd
   statut_occupation_logement: locataire_vide

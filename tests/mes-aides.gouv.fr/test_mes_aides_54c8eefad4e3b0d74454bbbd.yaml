@@ -1,7 +1,7 @@
 name: "Ressources exclues - RSA"
 keywords:
-  - base ressources
-  - "cmu-c/acs"
+- base ressources
+- "cmu-c/acs"
 description: |
   Le RSA n'est pas inclus dans la base ressource de la CMU-C/ACS.
   Les montants simulés des prestations familiales étant inclus dans la base ressource, on vérifie ici que ce mécanisme de montant simulé de RSA n'est pas effectué pour la CMU-C/ACS.
@@ -143,19 +143,6 @@ familles:
     2014-11: 0
     2014-12: 0
   asf:
-    2014-01: 0
-    2014-02: 0
-    2014-03: 0
-    2014-04: 0
-    2014-05: 0
-    2014-06: 0
-    2014-07: 0
-    2014-08: 0
-    2014-09: 0
-    2014-10: 0
-    2014-11: 0
-    2014-12: 0
-  asi:
     2014-01: 0
     2014-02: 0
     2014-03: 0

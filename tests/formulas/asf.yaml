@@ -5,10 +5,10 @@
     parents: ["parent1"]
     enfants: ["enfant1"]
   individus:
-    - id: "parent1"
-      age: 40
-    - id: "enfant1"
-      age: 9
+  - id: "parent1"
+    age: 40
+  - id: "enfant1"
+    age: 9
   output_variables:
     asf: 96
 
@@ -19,9 +19,9 @@
     parents: ["parent1"]
     enfants: ["enfant1"]
   individus:
-    - id: "parent1"
-      age: 40
-    - id: "enfant1"
-      age: 20
+  - id: "parent1"
+    age: 40
+  - id: "enfant1"
+    age: 20
   output_variables:
     asf: 0

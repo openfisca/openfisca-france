@@ -60,9 +60,9 @@
 - period: "month:2015-02"
   input_variables:
     contrat_de_travail_debut:
-      - "2014-01-01"
-      - "2015-02-02"
+    - "2014-01-01"
+    - "2015-02-02"
   output_variables:
     nombre_jours_calendaires:
-      - 28
-      - 27
+    - 28
+    - 27

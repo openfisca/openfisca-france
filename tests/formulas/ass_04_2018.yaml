@@ -10,11 +10,11 @@
   menages:
     personne_de_reference: "parent1"
   individus:
-    - id: "parent1"
-      ass_precondition_remplie: true
-      activite: "chomeur"
-      chomage_net: 0
-      aah: 0
+  - id: "parent1"
+    ass_precondition_remplie: true
+    activite: "chomeur"
+    chomage_net: 0
+    aah: 0
   output_variables:
     ass: 494.40
 
@@ -30,11 +30,11 @@
   menages:
     personne_de_reference: "parent1"
   individus:
-    - id: "parent1"
-      ass_precondition_remplie: true
-      activite: "chomeur"
-      chomage_net: 0
-      aah: 0
+  - id: "parent1"
+    ass_precondition_remplie: true
+    activite: "chomeur"
+    chomage_net: 0
+    aah: 0
   output_variables:
     ass: 494.40
 
@@ -51,12 +51,12 @@
     personne_de_reference: "parent1"
     conjoint: "parent2"
   individus:
-    - id: "parent1"
-      ass_precondition_remplie: true
-      activite: "chomeur"
-      chomage_net: 0
-      aah: 0
-    - id: "parent2"
+  - id: "parent1"
+    ass_precondition_remplie: true
+    activite: "chomeur"
+    chomage_net: 0
+    aah: 0
+  - id: "parent2"
   output_variables:
     ass: 494.40
 
@@ -72,11 +72,11 @@
   menages:
     personne_de_reference: "parent1"
   individus:
-    - id: "parent1"
-      ass_precondition_remplie: true
-      activite: "chomeur"
-      chomage_net: 0
-      aah: 0
+  - id: "parent1"
+    ass_precondition_remplie: true
+    activite: "chomeur"
+    chomage_net: 0
+    aah: 0
   output_variables:
     ass: 253.60
 
@@ -93,12 +93,12 @@
     personne_de_reference: "parent1"
     conjoint: "parent2"
   individus:
-    - id: "parent1"
-      ass_precondition_remplie: true
-      activite: "chomeur"
-      chomage_net: 0
-      aah: 0
-    - id: "parent2"
+  - id: "parent1"
+    ass_precondition_remplie: true
+    activite: "chomeur"
+    chomage_net: 0
+    aah: 0
+  - id: "parent2"
   output_variables:
     ass: 312.80
 
@@ -114,11 +114,11 @@
   menages:
     personne_de_reference: "parent1"
   individus:
-    - id: "parent1"
-      ass_precondition_remplie: true
-      activite: "chomeur"
-      chomage_net: 0
-      aah: 0
+  - id: "parent1"
+    ass_precondition_remplie: true
+    activite: "chomeur"
+    chomage_net: 0
+    aah: 0
   output_variables:
     ass: 0
 
@@ -135,11 +135,11 @@
     personne_de_reference: "parent1"
     conjoint: "parent2"
   individus:
-    - id: "parent1"
-      ass_precondition_remplie: true
-      activite: "chomeur"
-      chomage_net: 0
-      aah: 0
-    - id: "parent2"
+  - id: "parent1"
+    ass_precondition_remplie: true
+    activite: "chomeur"
+    chomage_net: 0
+    aah: 0
+  - id: "parent2"
   output_variables:
     ass: 0

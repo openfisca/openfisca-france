@@ -12,10 +12,10 @@
 - name: "Un enfant de moins de 18 ans"
   period: 2015
   individus:
-    - id: "parent1"
-      age: 40
-    - id: "enfant1"
-      age: 12
+  - id: "parent1"
+    age: 40
+  - id: "enfant1"
+    age: 12
   output_variables:
     enfant_a_charge: [false, true]
     nbF: 1
@@ -26,11 +26,11 @@
 - name: "Un enfant de moins de 18 ans titulaire d'une carte d'invalidité"
   period: 2015
   individus:
-    - id: "parent1"
-      age: 40
-    - id: "enfant1"
-      age: 12
-      invalidite: true
+  - id: "parent1"
+    age: 40
+  - id: "enfant1"
+    age: 12
+    invalidite: true
   output_variables:
     enfant_a_charge: [false, true]
     nbF: 1
@@ -41,11 +41,11 @@
 - name: "Un enfant de moins de 18 ans en garde alternée"
   period: 2015
   individus:
-    - id: "parent1"
-      age: 40
-    - id: "enfant1"
-      age: 12
-      garde_alternee: true
+  - id: "parent1"
+    age: 40
+  - id: "enfant1"
+    age: 12
+    garde_alternee: true
   output_variables:
     enfant_a_charge: [false, true]
     nbF: 0
@@ -56,12 +56,12 @@
 - name: "Un enfant de moins de 18 ans en garde alternée titulaire d'une carte d'invalidité"
   period: 2015
   individus:
-    - id: "parent1"
-      age: 40
-    - id: "enfant1"
-      age: 12
-      garde_alternee: true
-      invalidite: true
+  - id: "parent1"
+    age: 40
+  - id: "enfant1"
+    age: 12
+    garde_alternee: true
+    invalidite: true
   output_variables:
     enfant_a_charge: [false, true]
     nbF: 0
@@ -72,24 +72,24 @@
 - name: "Une famille avec deux foyers fiscaux"
   period: 2015
   individus:
-    - id: "parent1"
-      age: 40
-    - id: "parent2"
-      age: 40
-    - id: "enfant1"
-      age: 12
-      invalidite: true
-    - id: "enfant2"
-      age: 14
-    - id: "enfant3"
-      age: 15
-    - id: "enfant4"
-      age: 16
-      garde_alternee: true
-    - id: "enfant5"
-      age: 16
-      invalidite: true
-      garde_alternee: true
+  - id: "parent1"
+    age: 40
+  - id: "parent2"
+    age: 40
+  - id: "enfant1"
+    age: 12
+    invalidite: true
+  - id: "enfant2"
+    age: 14
+  - id: "enfant3"
+    age: 15
+  - id: "enfant4"
+    age: 16
+    garde_alternee: true
+  - id: "enfant5"
+    age: 16
+    invalidite: true
+    garde_alternee: true
   foyers_fiscaux:
   - declarants:
     - parent1

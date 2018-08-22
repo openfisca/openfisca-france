@@ -1,8 +1,8 @@
 name: Cas RL < 45
 keywords:
-  - al
-  - location
-  - taux loyer
+- al
+- location
+- taux loyer
 description: |
   Attention test peu robuste à cause d'un opérateur ceil (dans aide_logement_base_ressources)
   On veut rentrer dans ce test dans le cas où RL est inférieur à 45
@@ -125,19 +125,6 @@ familles:
     2014-11: 0
     2014-12: 0
   asf:
-    2014-01: 0
-    2014-02: 0
-    2014-03: 0
-    2014-04: 0
-    2014-05: 0
-    2014-06: 0
-    2014-07: 0
-    2014-08: 0
-    2014-09: 0
-    2014-10: 0
-    2014-11: 0
-    2014-12: 0
-  asi:
     2014-01: 0
     2014-02: 0
     2014-03: 0

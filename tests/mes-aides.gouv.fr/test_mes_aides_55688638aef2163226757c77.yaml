@@ -1,7 +1,7 @@
 name: Personne de plus de 62 ans handicapé à 50%
 keywords:
-  - age
-  - aspa
+- age
+- aspa
 description: |
   Test créé à partir d'un dossier de demande de (RSA, APL…) :
   Ces paramètres (ressources non déclarables, situation personnelle…) n'ont pas pu être capturés :
@@ -101,19 +101,6 @@ familles:
     2015-03: 0
     2015-04: 0
   asf:
-    2014-05: 0
-    2014-06: 0
-    2014-07: 0
-    2014-08: 0
-    2014-09: 0
-    2014-10: 0
-    2014-11: 0
-    2014-12: 0
-    2015-01: 0
-    2015-02: 0
-    2015-03: 0
-    2015-04: 0
-  asi:
     2014-05: 0
     2014-06: 0
     2014-07: 0

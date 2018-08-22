@@ -1,7 +1,7 @@
 name: Eligibilité si chômeur indemnisé en fin de droit
 keywords:
-  - ass
-  - eligibilité
+- ass
+- eligibilité
 description: "Le demandeur a perçu une ARE jusqu'au mois précédent mais est en fin de droit, il a décoché la case \"je continuerai à percevoir cette ressource\" : éligible à l'ASS"
 period: "month:2015-03"
 relative_error_margin: 0.02
@@ -127,19 +127,6 @@ familles:
     2015-01: 0
     2015-02: 0
   asf:
-    2014-03: 0
-    2014-04: 0
-    2014-05: 0
-    2014-06: 0
-    2014-07: 0
-    2014-08: 0
-    2014-09: 0
-    2014-10: 0
-    2014-11: 0
-    2014-12: 0
-    2015-01: 0
-    2015-02: 0
-  asi:
     2014-03: 0
     2014-04: 0
     2014-05: 0

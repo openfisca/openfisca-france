@@ -1,8 +1,8 @@
 name: Personne seule, revenus > plafond
 keywords:
-  - "cmu-c"
-  - "cmu-c/acs"
-  - plafonds
+- "cmu-c"
+- "cmu-c/acs"
+- plafonds
 description: |
   Plafond de référence = 8645 € (au 1er juillet 2014) = 720 € / mois (en métropole)
   http://www.cmu.fr/cmu-complementaire.php
@@ -145,19 +145,6 @@ familles:
     2014-08: 0
     2014-09: 0
   asf:
-    2013-10: 0
-    2013-11: 0
-    2013-12: 0
-    2014-01: 0
-    2014-02: 0
-    2014-03: 0
-    2014-04: 0
-    2014-05: 0
-    2014-06: 0
-    2014-07: 0
-    2014-08: 0
-    2014-09: 0
-  asi:
     2013-10: 0
     2013-11: 0
     2013-12: 0

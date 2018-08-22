@@ -1,8 +1,8 @@
 name: Pas d'eval forfaitaire pour les moins de 25 ans si salaire mensuel < plafond
 keywords:
-  - al
-  - base ressources
-  - eval forfaitaire
+- al
+- base ressources
+- eval forfaitaire
 description: |
   cf. R351-7 du CCH : l'eval forfaitaire n'est pas appliquée pour les personnes de moins de 25 ans et dont le salaire mensuel est < à 1273 euros.
   Ici, RNC N-2 = 0, salaire m-1 = 1200 euros => pas d'eval forfaitaire donc R = 0.
@@ -167,19 +167,6 @@ familles:
     2014-12: 0
     2015-01: 0
   asf:
-    2014-02: 0
-    2014-03: 0
-    2014-04: 0
-    2014-05: 0
-    2014-06: 0
-    2014-07: 0
-    2014-08: 0
-    2014-09: 0
-    2014-10: 0
-    2014-11: 0
-    2014-12: 0
-    2015-01: 0
-  asi:
     2014-02: 0
     2014-03: 0
     2014-04: 0

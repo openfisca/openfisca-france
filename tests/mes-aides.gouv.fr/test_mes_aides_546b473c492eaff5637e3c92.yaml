@@ -1,7 +1,7 @@
 name: "Personne éligible au RSA socle : éligibiité sans condition de ressources"
 keywords:
-  - "cmu-c"
-  - "cmu-c/acs"
+- "cmu-c"
+- "cmu-c/acs"
 description: |
   Le bénéficiaire du RSA socle a droit à la CMU-C peu importe ses ressources déclarées en année glissante.
   Cf. L861-2 du CSS : http://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006745379
@@ -149,19 +149,6 @@ familles:
     2014-09: 0
     2014-10: 0
   asf:
-    2013-11: 0
-    2013-12: 0
-    2014-01: 0
-    2014-02: 0
-    2014-03: 0
-    2014-04: 0
-    2014-05: 0
-    2014-06: 0
-    2014-07: 0
-    2014-08: 0
-    2014-09: 0
-    2014-10: 0
-  asi:
     2013-11: 0
     2013-12: 0
     2014-01: 0

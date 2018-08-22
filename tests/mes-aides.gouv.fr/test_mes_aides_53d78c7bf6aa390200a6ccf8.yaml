@@ -3,29 +3,29 @@ keywords: asf
 period: "month:2014-07"
 relative_error_margin: 0.02
 individus:
-  - age: 24
-    age_en_mois: 298
-    date_naissance: "1989-09-14"
-    enceinte: false
-    etudiant: 0
-    id: 53d78aebf6aa390200a6ccf7
-    inapte_travail: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 6
-    age_en_mois: 82
-    date_naissance: "2007-09-14"
-    etudiant: 0
-    id: 53d78aebf6aa390200a6ccf6
-    inapte_travail: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
+- age: 24
+  age_en_mois: 298
+  date_naissance: "1989-09-14"
+  enceinte: false
+  etudiant: 0
+  id: 53d78aebf6aa390200a6ccf7
+  inapte_travail: 0
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 6
+  age_en_mois: 82
+  date_naissance: "2007-09-14"
+  etudiant: 0
+  id: 53d78aebf6aa390200a6ccf6
+  inapte_travail: 0
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
 familles:
   acs:
     2013-07: 0
@@ -106,19 +106,6 @@ familles:
     2014-05: 0
     2014-06: 0
   asf:
-    2013-07: 0
-    2013-08: 0
-    2013-09: 0
-    2013-10: 0
-    2013-11: 0
-    2013-12: 0
-    2014-01: 0
-    2014-02: 0
-    2014-03: 0
-    2014-04: 0
-    2014-05: 0
-    2014-06: 0
-  asi:
     2013-07: 0
     2013-08: 0
     2013-09: 0
