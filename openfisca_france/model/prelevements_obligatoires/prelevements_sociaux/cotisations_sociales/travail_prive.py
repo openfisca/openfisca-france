@@ -503,6 +503,7 @@ class chomage_salarie(Variable):
     entity = Individu
     label = u"Cotisation chômage tranche A (salarié)"
     definition_period = MONTH
+    end = '2018-09-30'
 
     def formula(individu, period, parameters):
         cotisation = apply_bareme(
