@@ -23,23 +23,28 @@ brackets:
     2007-01-01:
       value: 0.024
     2018-01-01:
+      reference: https://www.legifrance.gouv.fr/eli/loi/2017/12/30/CPAX1725580L/jo/article_8
       value: 0.0095
     2018-10-01:
+      reference: https://www.legifrance.gouv.fr/eli/loi/2017/12/30/CPAX1725580L/jo/article_8
       value: null
   threshold:
     1993-07-01:
       value: 0.0
     2018-10-01:
+      reference: https://www.legifrance.gouv.fr/eli/loi/2017/12/30/CPAX1725580L/jo/article_8
       value: null
 - rate:
     2003-01-01:
       value: 0.0
     2018-10-01:
+      reference: https://www.legifrance.gouv.fr/eli/loi/2017/12/30/CPAX1725580L/jo/article_8
       value: null
   threshold:
     2003-01-01:
       value: 4.0
     2018-10-01:
+      reference: https://www.legifrance.gouv.fr/eli/loi/2017/12/30/CPAX1725580L/jo/article_8
       value: null
 description: Chômage-emploi ASSEDIC
 reference: openfisca
