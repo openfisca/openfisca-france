@@ -613,6 +613,24 @@ class mmid_salarie(Variable):
     label = u"Cotisation maladie (salarié)"
     definition_period = MONTH
 
+    def formula_2018(individu, period, parameters):
+        """
+        La cotisation maladie (hors Alsace-Moselle) disparaît à partir du 1er janvier 2018
+        """
+        salarie_regime_alsace_moselle = individu('salarie_regime_alsace_moselle', period)
+        cotisation_regime_alsace_moselle = apply_bareme(
+            individu,
+            period,
+            parameters,
+            cotisation_type = 'salarie',
+            bareme_name = 'maladie_alsace_moselle',
+            variable_name = 'mmid_salarie',
+            )
+
+        cotisation = salarie_regime_alsace_moselle * cotisation_regime_alsace_moselle
+
+        return cotisation
+
     def formula(individu, period, parameters):
         salarie_regime_alsace_moselle = individu('salarie_regime_alsace_moselle', period)
 
@@ -635,22 +653,6 @@ class mmid_salarie(Variable):
             )
 
         cotisation = cotisation_regime_general + salarie_regime_alsace_moselle * cotisation_regime_alsace_moselle
-
-        return cotisation
-
-    def formula_2018(individu, period, parameters):
-        salarie_regime_alsace_moselle = individu('salarie_regime_alsace_moselle', period)
-
-        cotisation_regime_alsace_moselle = apply_bareme(
-            individu,
-            period,
-            parameters,
-            cotisation_type = 'salarie',
-            bareme_name = 'maladie_alsace_moselle',
-            variable_name = 'mmid_salarie',
-            )
-
-        cotisation = salarie_regime_alsace_moselle * cotisation_regime_alsace_moselle
 
         return cotisation
 
