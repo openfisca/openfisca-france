@@ -338,13 +338,15 @@ class aide_logement_base_revenus_fiscaux(Variable):
     def formula(foyer_fiscal, period):
         rente_viagere_titre_onereux_net = foyer_fiscal('rente_viagere_titre_onereux_net', period)
         pensions_alimentaires_versees = foyer_fiscal('pensions_alimentaires_versees', period)
-        revenus_capitaux_prelevement_liberatoire = foyer_fiscal('revenus_capitaux_prelevement_liberatoire', period, options = [ADD])
-        rev_cat_rvcm = foyer_fiscal('rev_cat_rvcm', period)
+        rev_cat_rvcm = foyer_fiscal('rev_cat_rvcm', period) # Supprimée à partir de 2018
+        revenus_capitaux_prelevement_liberatoire = foyer_fiscal('revenus_capitaux_prelevement_liberatoire', period, options = [ADD]) # Supprimée à partir de 2018
+        revenus_capitaux_prelevement_forfaitaire_unique_ir = foyer_fiscal('revenus_capitaux_prelevement_forfaitaire_unique_ir', period, options = [ADD]) # Existe à partir de 2018
         fon = foyer_fiscal('fon', period)
         f7ga = foyer_fiscal('f7ga', period)
         f7gb = foyer_fiscal('f7gb', period)
         f7gc = foyer_fiscal('f7gc', period)
-        rev_cat_pv = foyer_fiscal('rev_cat_pv', period)
+        rev_cat_pv = foyer_fiscal('rev_cat_pv', period) # est supprimée à partir de 2018
+        plus_values_prelevement_forfaitaire_unique_ir = foyer_fiscal('plus_values_prelevement_forfaitaire_unique_ir', period) # Apparait à partir de 2018
 
         abat_spe = foyer_fiscal('abat_spe', period)
         caseP = foyer_fiscal('caseP', period)
@@ -359,9 +361,11 @@ class aide_logement_base_revenus_fiscaux(Variable):
             + fon
             + pensions_alimentaires_versees
             + rente_viagere_titre_onereux_net
-            + revenus_capitaux_prelevement_liberatoire
-            + rev_cat_pv
             + rev_cat_rvcm
+            + revenus_capitaux_prelevement_liberatoire
+            + revenus_capitaux_prelevement_forfaitaire_unique_ir
+            + rev_cat_pv
+            + plus_values_prelevement_forfaitaire_unique_ir
             - abat_spe * apply_abat_spe
             - f7ga
             - f7gb

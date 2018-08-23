@@ -507,14 +507,16 @@ class revetproduits(Variable):
         salcho_imp_i = foyer_fiscal.members('revenu_assimile_salaire_apres_abattements', period)
         pen_net_i = foyer_fiscal.members('revenu_assimile_pension_apres_abattements', period)
         rente_viagere_titre_onereux_net = foyer_fiscal('rente_viagere_titre_onereux_net', period)
-        revenus_capitaux_prelevement_bareme = foyer_fiscal('revenus_capitaux_prelevement_bareme', period, options = [ADD])
         fon = foyer_fiscal('fon', period)
         ric_i = foyer_fiscal.members('ric', period)
         rag_i = foyer_fiscal.members('rag', period)
         rpns_exon_i = foyer_fiscal.members('rpns_exon', period)
         rpns_pvct_i = foyer_fiscal.members('rpns_pvct', period)
-        revenus_capitaux_prelevement_liberatoire = foyer_fiscal('revenus_capitaux_prelevement_liberatoire', period, options = [ADD])
+        revenus_capitaux_prelevement_bareme = foyer_fiscal('revenus_capitaux_prelevement_bareme', period, options = [ADD]) # Supprimée à partir de 2018
+        revenus_capitaux_prelevement_liberatoire = foyer_fiscal('revenus_capitaux_prelevement_liberatoire', period, options = [ADD]) # Supprimée à partir de 2018
+        revenus_capitaux_prelevement_forfaitaire_unique_ir = foyer_fiscal('revenus_capitaux_prelevement_forfaitaire_unique_ir', period, options = [ADD]) # Existe à partir de 2018
         prelevement_forfaitaire_liberatoire = foyer_fiscal('prelevement_forfaitaire_liberatoire', period)
+        prelevement_forfaitaire_unique_ir = foyer_fiscal('prelevement_forfaitaire_unique_ir', period)
         P = parameters(period).taxation_capital.isf.plafonnement
 
         revenu_assimile_pension_apres_abattements = foyer_fiscal.sum(pen_net_i)
@@ -528,8 +530,8 @@ class revetproduits(Variable):
         # # def rev_exon et rev_etranger dans data? ##
         pt = max_(
             0,
-            revenu_assimile_salaire_apres_abattements + revenu_assimile_pension_apres_abattements + rente_viagere_titre_onereux_net + revenus_capitaux_prelevement_bareme + revenus_capitaux_prelevement_liberatoire + ric + rag + rpns_exon +
-            rpns_pvct + prelevement_forfaitaire_liberatoire + fon
+            revenu_assimile_salaire_apres_abattements + revenu_assimile_pension_apres_abattements + rente_viagere_titre_onereux_net + revenus_capitaux_prelevement_bareme + revenus_capitaux_prelevement_liberatoire + revenus_capitaux_prelevement_forfaitaire_unique_ir + ric + rag + rpns_exon +
+            rpns_pvct + prelevement_forfaitaire_liberatoire + prelevement_forfaitaire_unique_ir + fon
             )
         return pt * P.plafonnement_taux_d_imposition_isf
 
@@ -623,15 +625,16 @@ class rvcm_plus_abat(Variable):
     entity = FoyerFiscal
     label = u"rvcm_plus_abat"
     definition_period = YEAR
+    end = '2010-12-31'
 
     def formula(foyer_fiscal, period, parameters):
         '''
         Revenu catégoriel avec abattement de 40% réintégré.
         '''
         rev_cat_rvcm = foyer_fiscal('rev_cat_rvcm', period)
-        rfr_rvcm = foyer_fiscal('rfr_rvcm', period)
+        rfr_rvcm_abattements_a_reintegrer = foyer_fiscal('rfr_rvcm_abattements_a_reintegrer', period)
 
-        return rev_cat_rvcm + rfr_rvcm
+        return rev_cat_rvcm + rfr_rvcm_abattements_a_reintegrer
 
 
 class maj_cga(Variable):

@@ -227,18 +227,18 @@ class f3wd(Variable):
 
 
 class f3we(Variable):
+    """
+    Plus-values en report d'imposition au sens de l'art. 150-0 D bis du CGI :
+    Jusqu'aux revenus de 2013 : montants nets réalisés pendant l'année
+    Pour les revenus 2014 : complément net de prix perçu pendant l'année (car fin du dispositif)
+    Depuis les revenus 2015 : complément brut de prix perçu pendant l'année (l'abattement n'est plus recensé dans les cases 3SG et 3SL)
+    """
     cerfa_field = u"3WE"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = u"Plus-values en report d'imposition au sens de l'art. 150-0 D bis du CGI"
     definition_period = YEAR
-#    '''
-#    Plus-values en report d'imposition au sens de l'art. 150-0 D bis du CGI :
-#    Jusqu'aux revenus de 2013 : montants nets réalisés pendant l'année
-#    Pour les revenus 2014 : complément net de prix perçu pendant l'année (car fin du dispositif)
-#    Depuis les revenus 2015 : complément brut de prix perçu pendant l'année (l'abattement n'est plus recensé dans les cases 3SG et 3SL)
-#    '''
 
 
 class f3wn(Variable):
@@ -409,6 +409,7 @@ class abattement_net_duree_detention_retraite_dirigeant_pme(Variable):
 # Plus values et gains taxables à des taux forfaitaires
 
 class f3vd(Variable):
+    """ ATTENTION : à partir des revenus 2015, la case 3SD est supprimée : seule la case 3VD reste et recense les montants à l'échelle du foyer fiscal. Avec le code actuel, le seul problème serait si la case 3SD était réutilisée un jour pour autre chose dans le formulaire, ce qui n'est pas le cas aujourd'hui """
     cerfa_field = {
         0: u"3VD",
         1: u"3SD",
@@ -422,6 +423,7 @@ class f3vd(Variable):
 
 
 class f3vi(Variable):
+    """ ATTENTION : à partir des revenus 2015, la case 3SI est supprimée : seule la case 3VI reste et recense les montants à l'échelle du foyer fiscal. Avec le code actuel, le seul problème serait si la case 3SI était réutilisée un jour pour autre chose dans le formulaire, ce qui n'est pas le cas aujourd'hui """
     cerfa_field = {
         0: u"3VI",
         1: u"3SI",
@@ -434,6 +436,7 @@ class f3vi(Variable):
 
 
 class f3vf(Variable):
+    """ ATTENTION : à partir des revenus 2015, la case 3SF est supprimée : seule la case 3VF reste et recense les montants à l'échelle du foyer fiscal. Avec le code actuel, le seul problème serait si la case 3SF était réutilisée un jour pour autre chose dans le formulaire, ce qui n'est pas le cas aujourd'hui """
     cerfa_field = {
         0: u"3VF",
         1: u"3SF",

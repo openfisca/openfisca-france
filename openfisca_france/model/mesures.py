@@ -178,6 +178,88 @@ class pensions_nettes(Variable):
             )
 
 
+class plus_values_revenus_nets_du_capital(Variable):
+    value_type = float
+    entity = FoyerFiscal
+    label = u"Montant des plus-values utilisé pour le montant total de revenus du capital"
+    definition_period = YEAR
+
+    def formula(foyer_fiscal, period):
+        '''
+        La CSG sur plus-values n'est pas calculée sur toutes les plus-values : cf. docstring de la variable v1_assiette_csg_plus_values
+        Donc, il existe certaines plus-values pour lesquelles on calcul l'impôt sur le revenu (imposition au barème ou forfaitaire),
+        mais pour lesquelles on n'a pas de prélèvements sociaux
+        Cette variable est l'assiette de plus-values pour lesquelles au moins un prélèvement est calculé. On l'utilise dans le
+        calcul du revenu disponible, afin de n'oublier aucun revenu. Elle vaut la somme de assiette_csg_plus_values et rfr_plus_values_hors_rni,
+        où l'on enlève les cases communes entre ces deux variables, et où l'on ajoute les variables présentes dans rev_cat_pv, mais pas présente
+        dans assiette_csg_plus_values
+        Attention : pour les variables de rev_cat_pv ajoutées, elles peuvent représenter des montants nets, alors qu'il faudrait le brut. Améliorer ce point
+        '''
+
+        v1_assiette_csg_plus_values = foyer_fiscal('assiette_csg_plus_values', period)
+        v2_rfr_plus_values_hors_rni = foyer_fiscal('rfr_plus_values_hors_rni', period)
+
+        f3vg = foyer_fiscal('f3vg', period)
+        f3we = foyer_fiscal('f3we', period)
+        f3vz = foyer_fiscal('f3vz', period)
+
+        intersection_v1_v2 = f3vg + f3we + f3vz
+
+        return v1_assiette_csg_plus_values + v2_rfr_plus_values_hors_rni - intersection_v1_v2  # Pas d'item supplémentaire dans rev_cat_pv avant 2013
+
+    def formula_2013_01_01(foyer_fiscal, period):
+        '''
+        Cf. docstring période précédente
+        '''
+
+        v1_assiette_csg_plus_values = foyer_fiscal('assiette_csg_plus_values', period)
+        v2_rfr_plus_values_hors_rni = foyer_fiscal('rfr_plus_values_hors_rni', period)
+
+        f3we = foyer_fiscal('f3we', period)
+        f3vz = foyer_fiscal('f3vz', period)
+        f3sb = foyer_fiscal('f3sb', period)
+        f3vl = foyer_fiscal('f3vl', period)
+        f3wb = foyer_fiscal('f3wb', period)
+
+        intersection_v1_v2 = f3we + f3vz
+        ajouts_de_rev_cat_pv = f3sb + f3vl + f3wb
+
+        return v1_assiette_csg_plus_values + v2_rfr_plus_values_hors_rni - intersection_v1_v2 + ajouts_de_rev_cat_pv
+
+    def formula_2014_01_01(foyer_fiscal, period):
+        '''
+        Cf. docstring période précédente
+        '''
+
+        v1_assiette_csg_plus_values = foyer_fiscal('assiette_csg_plus_values', period)
+        v2_rfr_plus_values_hors_rni = foyer_fiscal('rfr_plus_values_hors_rni', period)
+
+        f3we = foyer_fiscal('f3we', period)
+        f3vz = foyer_fiscal('f3vz', period)
+        f3sb = foyer_fiscal('f3sb', period)
+        f3wb = foyer_fiscal('f3wb', period)
+
+        intersection_v1_v2 = f3we + f3vz
+        ajouts_de_rev_cat_pv = f3sb + f3wb
+
+        return v1_assiette_csg_plus_values + v2_rfr_plus_values_hors_rni - intersection_v1_v2 + ajouts_de_rev_cat_pv
+
+    def formula_2018_01_01(foyer_fiscal, period):
+        '''
+        Cf. docstring période précédente
+        '''
+
+        v1_assiette_csg_plus_values = foyer_fiscal('assiette_csg_plus_values', period)
+        v2_rfr_plus_values_hors_rni = foyer_fiscal('rfr_plus_values_hors_rni', period)
+
+        f3vg = foyer_fiscal('f3vg', period)
+        f3ua = foyer_fiscal('f3ua', period)
+
+        intersection_v1_v2 = f3vg + f3ua
+
+        return v1_assiette_csg_plus_values + v2_rfr_plus_values_hors_rni - intersection_v1_v2  # Pas d'item supplémentaire dans rev_cat_pv avant 2013
+
+
 class revenus_nets_du_capital(Variable):
     value_type = float
     entity = Individu
@@ -187,8 +269,8 @@ class revenus_nets_du_capital(Variable):
 
     def formula(individu, period):
         '''
-        Attention : les formules des calculs des prélèvements sociaux sur revenus du capital avant 2013 n'ont pas été verrifiées et sont susceptibles de contenir des erreurs
-        Note : On part de l'assiette CSG sur les revenus du capital, à partir de
+        Attention : les formules des calculs des prélèvements sociaux sur revenus du capital avant 2013 n'ont pas été verifiées et sont susceptibles de contenir des erreurs
+        Note : On part de l'assiette CSG sur les revenus du capital (avec base élargie pour les plus-values), à partir de
         laquelle on fait les deux modifications ci-dessous :
             (1) On enlève les rentes viagères à titre onéreux, qui sont dans cette
                 assiette CSG, mais sont déjà dans la variable pensions_nettes pour
@@ -205,12 +287,16 @@ class revenus_nets_du_capital(Variable):
 
         foyer_fiscal = individu.foyer_fiscal
         assiette_csg_revenus_capital = foyer_fiscal('assiette_csg_revenus_capital', period)
+        assiette_csg_plus_values = foyer_fiscal('assiette_csg_plus_values', period)
+        plus_values_revenus_nets_du_capital = foyer_fiscal('plus_values_revenus_nets_du_capital', period)
         rev_cat_rfon = foyer_fiscal('rev_cat_rfon', period)
         rente_viagere_titre_onereux_net = foyer_fiscal('rente_viagere_titre_onereux_net', period)
         fon = foyer_fiscal('fon', period)
 
         revenus_du_capital_cap_avant_prelevements_sociaux = (
             assiette_csg_revenus_capital
+            - assiette_csg_plus_values
+            + plus_values_revenus_nets_du_capital
             - rev_cat_rfon
             + fon
             - rente_viagere_titre_onereux_net
@@ -352,17 +438,21 @@ class impots_directs(Variable):
         taxe_habitation = menage('taxe_habitation', period)
 
         # On prend en compte l'IR des foyers fiscaux dont le déclarant principal est dans le ménage
-        irpp_eco_i = menage.members.foyer_fiscal('irpp_economique', period)
-        irpp_eco = menage.sum(irpp_eco_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
+        irpp_economique_i = menage.members.foyer_fiscal('irpp_economique', period)
+        irpp_economique = menage.sum(irpp_economique_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
 
-        # On prend en compte le PFL des foyers fiscaux dont le déclarant principal est dans le ménage
+        # On prend en compte le PFL des foyers fiscaux dont le déclarant principal est dans le ménage : variable existant jusqu'en 2017
         prelevement_forfaitaire_liberatoire_i = menage.members.foyer_fiscal('prelevement_forfaitaire_liberatoire', period)
         prelevement_forfaitaire_liberatoire = menage.sum(prelevement_forfaitaire_liberatoire_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
+
+        # On prend en compte le PFU (partie au titre de l'IR) des foyers fiscaux dont le déclarant principal est dans le ménage : variable existant à partir de 2018
+        prelevement_forfaitaire_unique_ir_i = menage.members.foyer_fiscal('prelevement_forfaitaire_unique_ir', period)
+        prelevement_forfaitaire_unique_ir = menage.sum(prelevement_forfaitaire_unique_ir_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
 
         # On comptabilise ir_pv_immo ici directement, et non pas dans la variable 'irpp', car administrativement, cet impôt n'est pas dans l'irpp, et n'est déclaré dans le formulaire 2042C que pour calculer le revenu fiscal de référence. On colle à la définition administrative, afin d'avoir une variable 'irpp' qui soit comparable à l'IR du simulateur en ligne de la DGFiP
         # On prend en compte l'IR sur PV immobilières des foyers fiscaux dont le déclarant principal est dans le ménage
         ir_pv_immo_i = menage.members.foyer_fiscal('ir_pv_immo', period)
         ir_pv_immo = menage.sum(ir_pv_immo_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
 
-        return irpp_eco + taxe_habitation + prelevement_forfaitaire_liberatoire + ir_pv_immo
+        return irpp_economique + taxe_habitation + prelevement_forfaitaire_liberatoire + prelevement_forfaitaire_unique_ir + ir_pv_immo
 
