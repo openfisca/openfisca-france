@@ -5,7 +5,7 @@ input_variables:
   contrat_de_travail: forfait_jours_annee
   depcom_entreprise: "75102"
   effectif_entreprise: 5
-  forfait_jours_remuneres_volume: 217
+  forfait_jours_remuneres_volume: 218
   jeune_entreprise_innovante: 1
   prevoyance_obligatoire_cadre_taux_employeur: 0.0074
   primes_salaires: 172.9
