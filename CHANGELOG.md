@@ -4,7 +4,7 @@
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 01/01/2018.
-* Zones impactées : `parameters/prelevements_sociaux/gmp/`.
+* Zones impactées : `prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/travail_prive`.
 * Détails :
   - Mise à jour des paramètres de la garantie minimale de points de l'AGIRC (GMP)
 
