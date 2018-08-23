@@ -1,12 +1,20 @@
 # Changelog
 
-## 24.3.0 [#1081](https://github.com/openfisca/openfisca-france/pull/1081)
+## 24.4.0 [#1081](https://github.com/openfisca/openfisca-france/pull/1081)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : toutes.
 * Zones impactées : `prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/travail_prive`.
 * Détails :
   - Corrige le calcul de la cotisation  agirc gmp
+
+##  24.3.0 [#1092](https://github.com/openfisca/openfisca-france/pull/1092)
+
+* Évolution du système socio-fiscal
+* Périodes concernées : à partir du 01/10/2018
+* Zones impactées : prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/travail_prive
+* Détails :
+  - Annule la cotisation chomage à partir du 01/10/2018
 
 ## 24.2.1 [#1090](https://github.com/openfisca/openfisca-france/pull/1090)
 
@@ -16,6 +24,10 @@
 * Détails :
   - Corrige la cotisation patronale maladie (mmida) à partir de 2018.
   - Annule la cotisation salariale maladie (mmid) à partir de 2018.
+
+## 24.2.0
+
+ * Il n'y a pas de version 24.2.0
 
 ### 24.1.1 [#1085](https://github.com/openfisca/openfisca-france/pull/1085)
 
