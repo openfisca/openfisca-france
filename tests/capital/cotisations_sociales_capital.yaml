@@ -180,8 +180,8 @@
   period: 2016
   absolute_error_margin: 0.5
   input_variables:
-    interets_plan_epargne_logement: 10000
-    interets_compte_epargne_logement: 10000
+    interets_plan_epargne_logement_moins_de_12_ans_ouvert_avant_2018: 10000
+    interets_compte_epargne_logement_ouvert_avant_2018: 10000
     assurance_vie_ps_exoneree_irpp_pl: 10000
   output_variables:
     prelevements_sociaux_revenus_capital: -(10000 + 10000 + 10000) * (0.045 + 0.02 + 0.003 + 0.005 + 0.082)

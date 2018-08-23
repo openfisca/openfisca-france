@@ -20,18 +20,40 @@ log = logging.getLogger(__name__)
 #####    (et donc non présents sur les déclarations de revenu)                                            #######
 #################################################################################################################
 
-class interets_plan_epargne_logement(Variable):
-    """ NB : Cette variable est définie indépendemment de epargne_revenus_non_imposables """
+class interets_plan_epargne_logement_moins_de_12_ans_ouvert_avant_2018(Variable):
+    """
+    NB :
+    (1) Cette variable est définie indépendemment de epargne_revenus_non_imposables
+    (2) Les intérêts des PEL de plus de 12 ans sont imposables à l'impôt sur le revenu, et donc déjà présents dans les cases 2TR ou 2FA (attention: formulaire IR 2019 sur revenus 2018 non connu au moment de coder cette variable)
+    """
     value_type = float
     entity = Individu
-    label = u"Intérêts des plans épargne logement (PEL)"
+    label = u"Intérêts des plans épargne logement (PEL) de moins de 12 ans ouverts avant le 1er janvier 2018"
     definition_period = YEAR
 
-class interets_compte_epargne_logement(Variable):
+class interets_plan_epargne_logement_moins_de_12_ans_ouvert_a_partir_de_2018(Variable):
+    """
+    NB :
+    (1) Cette variable est définie indépendemment de epargne_revenus_non_imposables
+    (2) Les intérêts des PEL de plus de 12 ans sont imposables à l'impôt sur le revenu, et donc déjà présents dans les cases 2TR ou 2FA (attention: formulaire IR 2019 sur revenus 2018 non connu au moment de coder cette variable)
+    """
+    value_type = float
+    entity = Individu
+    label = u"Intérêts des plans épargne logement (PEL) de moins de 12 ans ouverts à partir du 1er janvier 2018"
+    definition_period = YEAR
+
+class interets_compte_epargne_logement_ouvert_avant_2018(Variable):
     """ NB : Cette variable est définie indépendemment de epargne_revenus_non_imposables """
     value_type = float
     entity = Individu
-    label = u"Intérêts des comptes épargne logement (CEL)"
+    label = u"Intérêts des comptes épargne logement (CEL) ouverts avant le 1er janvier 2018"
+    definition_period = YEAR
+
+class interets_compte_epargne_logement_ouvert_a_partir_de_2018(Variable):
+    """ NB : Cette variable est définie indépendemment de epargne_revenus_non_imposables """
+    value_type = float
+    entity = Individu
+    label = u"Intérêts des comptes épargne logement (CEL) ouverts à partir du 1er janvier 2018"
     definition_period = YEAR
 
 class assurance_vie_ps_exoneree_irpp_pl(Variable):
@@ -58,7 +80,7 @@ class assiette_csg_plus_values(Variable):
         Notes sur le champ de cette variable :
             Cette assiette de plus-values est partielle. De nombreux types de plus-values sont
             manquants, rien que parmi les plus-values déclarées dans la déclaration de revenus
-            au titre de l'ipmôt sur le revenu. Ceci s'explique par la complexité de la législation sur
+            au titre de l'impôt sur le revenu. Ceci s'explique par la complexité de la législation sur
             la prise en compte des plus-values dans le calcul des prélèvements sociaux (exemple : plus-values
             réalisées sur PEA taxables selon les règles en vigueur l'année de réalisation et non l'année de retrait,
             plus-values taxées après report, et taxables parfois selon la législation en vigueur au moment du report et non
@@ -165,10 +187,10 @@ class assiette_csg_revenus_capital(Variable):
         rente_viagere_titre_onereux_net = foyer_fiscal('rente_viagere_titre_onereux_net', period)
 
         # Revenus des produits d'épargne logement
-        interets_plan_epargne_logement_i = foyer_fiscal.members('interets_plan_epargne_logement', period)
-        interets_plan_epargne_logement = foyer_fiscal.sum(interets_plan_epargne_logement_i)
-        interets_compte_epargne_logement_i = foyer_fiscal.members('interets_compte_epargne_logement', period)
-        interets_compte_epargne_logement = foyer_fiscal.sum(interets_compte_epargne_logement_i)
+        interets_plan_epargne_logement_moins_de_12_ans_ouvert_avant_2018_i = foyer_fiscal.members('interets_plan_epargne_logement_moins_de_12_ans_ouvert_avant_2018', period)
+        interets_plan_epargne_logement_moins_de_12_ans_ouvert_avant_2018 = foyer_fiscal.sum(interets_plan_epargne_logement_moins_de_12_ans_ouvert_avant_2018_i)
+        interets_compte_epargne_logement_ouvert_avant_2018_i = foyer_fiscal.members('interets_compte_epargne_logement_ouvert_avant_2018', period)
+        interets_compte_epargne_logement_ouvert_avant_2018 = foyer_fiscal.sum(interets_compte_epargne_logement_ouvert_avant_2018_i)
 
         # Revenus fonciers
         rev_cat_rfon = foyer_fiscal('rev_cat_rfon', period)
@@ -183,12 +205,64 @@ class assiette_csg_revenus_capital(Variable):
             revenus_capitaux_prelevement_bareme
             + revenus_capitaux_prelevement_liberatoire
             + rente_viagere_titre_onereux_net
-            + interets_plan_epargne_logement
-            + interets_compte_epargne_logement
+            + interets_plan_epargne_logement_moins_de_12_ans_ouvert_avant_2018
+            + interets_compte_epargne_logement_ouvert_avant_2018
             + rev_cat_rfon
             + assiette_csg_plus_values
             + assurance_vie_ps_exoneree_irpp_pl
             )
+
+    def formula_2018_01_01(foyer_fiscal, period, parameters):
+        '''
+        Cf. docstring de la formule précédente
+        Différence par rapport à la formule précédente :
+           - Ajout des intérêts de PEL et CEL ouverts à partir du 1er janvier 2018
+           - On remplace les variables revenus_capitaux_prelevement_bareme et revenus_capitaux_prelevement_liberatoire
+             par revenus_capitaux_prelevement_forfaitaire_unique_ir
+             Note : du fait du PFU, la base des revenus du capital au titre de l'impôt sur le revenu se rapproche de la base au titre des prélèvements sociaux,
+                    d'où le fait qu'on utilise cette variable. En revanche, concernant les prêts participatifs, le montant au titre de l'impôt sur le revenu
+                    forfaitaire est le montant net des pertes, alors que celui soumis au titre des prélèvements sociaux est le montant brut. Cependant,
+                    la case 2TT contient le montant des intérêts de ces prêts après déduction de ces pertes. Donc, on est contraint de prendre un montant net.
+        '''
+
+        # Revenus du capital présents dans la section 2 de la déclaration de revenus
+        revenus_capitaux_prelevement_forfaitaire_unique_ir = foyer_fiscal('revenus_capitaux_prelevement_forfaitaire_unique_ir', period, options = [ADD])
+
+        # Rentes viagères à titre onéreux
+        rente_viagere_titre_onereux_net = foyer_fiscal('rente_viagere_titre_onereux_net', period)
+
+        # Revenus des produits d'épargne logement
+        interets_plan_epargne_logement_moins_de_12_ans_ouvert_avant_2018_i = foyer_fiscal.members('interets_plan_epargne_logement_moins_de_12_ans_ouvert_avant_2018', period)
+        interets_plan_epargne_logement_moins_de_12_ans_ouvert_avant_2018 = foyer_fiscal.sum(interets_plan_epargne_logement_moins_de_12_ans_ouvert_avant_2018_i)
+        interets_compte_epargne_logement_ouvert_avant_2018_i = foyer_fiscal.members('interets_compte_epargne_logement_ouvert_avant_2018', period)
+        interets_compte_epargne_logement_ouvert_avant_2018 = foyer_fiscal.sum(interets_compte_epargne_logement_ouvert_avant_2018_i)
+        interets_plan_epargne_logement_moins_de_12_ans_ouvert_a_partir_de_2018_i = foyer_fiscal.members('interets_plan_epargne_logement_moins_de_12_ans_ouvert_a_partir_de_2018', period)
+        interets_plan_epargne_logement_moins_de_12_ans_ouvert_a_partir_de_2018 = foyer_fiscal.sum(interets_plan_epargne_logement_moins_de_12_ans_ouvert_a_partir_de_2018_i)
+        interets_compte_epargne_logement_ouvert_a_partir_de_2018_i = foyer_fiscal.members('interets_compte_epargne_logement_ouvert_a_partir_de_2018', period)
+        interets_compte_epargne_logement_ouvert_a_partir_de_2018 = foyer_fiscal.sum(interets_compte_epargne_logement_ouvert_a_partir_de_2018_i)
+
+        # Revenus fonciers
+        rev_cat_rfon = foyer_fiscal('rev_cat_rfon', period)
+
+        # Plus-values
+        assiette_csg_plus_values = foyer_fiscal('assiette_csg_plus_values', period)
+
+        # produits d'assurance-vie exonérés d'impôt sur le revenu et de prélèvement forfaitaire libératoire (et donc non présents dans revenus_capitaux_prelevement_bareme et revenus_capitaux_prelevement_liberatoire)
+        assurance_vie_ps_exoneree_irpp_pl = foyer_fiscal('assurance_vie_ps_exoneree_irpp_pl', period)
+
+        return (
+            revenus_capitaux_prelevement_forfaitaire_unique_ir
+            + rente_viagere_titre_onereux_net
+            + interets_plan_epargne_logement_moins_de_12_ans_ouvert_avant_2018
+            + interets_compte_epargne_logement_ouvert_avant_2018
+            + interets_plan_epargne_logement_moins_de_12_ans_ouvert_a_partir_de_2018
+            + interets_compte_epargne_logement_ouvert_a_partir_de_2018
+            + rev_cat_rfon
+            + assiette_csg_plus_values
+            + assurance_vie_ps_exoneree_irpp_pl
+            )
+
+
 
 
 #################################################################################################################

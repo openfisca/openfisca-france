@@ -52,23 +52,23 @@ class allocations_familiales_imposables(Reform):
             f3vi_holder = foyer_fiscal.members('f3vi')
             f3vz = foyer_fiscal('f3vz')
             rfr_cd = foyer_fiscal('rfr_cd')
-            rfr_rvcm = foyer_fiscal('rfr_rvcm')
             rni = foyer_fiscal('rni')
             rpns_exon_holder = foyer_fiscal.members('rpns_exon')
-            rpns_pvce_holder = foyer_fiscal.members('rpns_pvce')
-            revenus_capitaux_prelevement_liberatoire = simulation.calculate_add('revenus_capitaux_prelevement_liberatoire')
+            rfr_rvcm_abattements_a_reintegrer = foyer_fiscal('rfr_rvcm_abattements_a_reintegrer') # Supprimée en 2018
+            revenus_capitaux_prelevement_liberatoire = foyer_fiscal('revenus_capitaux_prelevement_liberatoire', period, options = [ADD]) # Supprimée en 2018
+            revenus_capitaux_prelevement_forfaitaire_unique_ir = foyer_fiscal('revenus_capitaux_prelevement_forfaitaire_unique_ir', period, options = [ADD]) # Existe à partir de 2018
             microentreprise = foyer_fiscal('microentreprise')
 
             f3vi = foyer_fiscal.sum(f3vi_holder)
             rpns_exon = foyer_fiscal.sum(rpns_exon_holder)
-            rpns_pvce = foyer_fiscal.sum(rpns_pvce_holder)
 
             return (
                 max_(0, rni - allocations_familiales_imposables) +
-                rfr_cd + rfr_rvcm + revenus_capitaux_prelevement_liberatoire + f3vi + rpns_exon + rpns_pvce + abattement_net_duree_detention_retraite_dirigeant_pme + f3vz + microentreprise
+                rfr_cd + rfr_rvcm_abattements_a_reintegrer + revenus_capitaux_prelevement_liberatoire + revenus_capitaux_prelevement_forfaitaire_unique_ir + f3vi + rpns_exon + abattement_net_duree_detention_retraite_dirigeant_pme + f3vz + microentreprise
                 )
 
             # TO CHECK : f3vb after 2015 (abattements sur moins-values = interdits)
+
 
     class allocations_familiales_imposables(Variable):
         value_type = float

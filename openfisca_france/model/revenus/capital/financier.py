@@ -29,6 +29,26 @@ class f2dh(Variable):
 
         return assurance_vie_pl_non_anonyme_plus8ans_depuis1990 + assurance_vie_pl_non_anonyme_plus6ans_avant1990
 
+    def formula_2018_01_01(foyer_fiscal, period):
+        '''
+        Même si le formulaire 2042 de l'impôt 2019 au titre des revenus 2018 n'est toujours pas publié, on remplie cette case
+        quand même, en essayant de garder un périmètre similaire. On fait ceci afin de ne pas modifier la structure des cases,
+        ce qui pourrait avoir des impacts assez large dans le simulateur.
+        Ce que l'on fait : on a toute une série de variables d'assurance-vie désagrégées, que l'on injecte en f2dh ou f2ee.
+        En revanche, on neutralise les variables f2ch et f2ts
+        '''
+        assurance_vie_pfu_ir_plus8ans_1990_19970926 = foyer_fiscal('assurance_vie_pfu_ir_plus8ans_1990_19970926', period)
+        assurance_vie_pfu_ir_plus6ans_avant1990 = foyer_fiscal('assurance_vie_pfu_ir_plus6ans_avant1990', period)
+        assurance_vie_pfu_ir_plus8ans_19970926_primes_avant_20170927 = foyer_fiscal('assurance_vie_pfu_ir_plus8ans_19970926_primes_avant_20170927', period)
+        assurance_vie_pfu_ir_plus8ans_19970926_primes_apres_20170927 = foyer_fiscal('assurance_vie_pfu_ir_plus8ans_19970926_primes_apres_20170927', period)
+
+        return (
+            assurance_vie_pfu_ir_plus8ans_1990_19970926
+            + assurance_vie_pfu_ir_plus6ans_avant1990
+            + assurance_vie_pfu_ir_plus8ans_19970926_primes_avant_20170927
+            + assurance_vie_pfu_ir_plus8ans_19970926_primes_apres_20170927
+            )
+
 
 class f2ee(Variable):
     cerfa_field = u"2EE"
@@ -49,6 +69,32 @@ class f2ee(Variable):
             assurance_vie_pl_non_anonyme_moins4ans_depuis1990
             + assurance_vie_pl_non_anonyme_4_8_ans_depuis1990
             + assurance_vie_pl_anonyme
+            + produit_epargne_solidaire
+            + produit_etats_non_cooperatif
+            )
+
+    def formula_2018_01_01(foyer_fiscal, period):
+        '''
+        Même si le formulaire 2042 de l'impôt 2019 au titre des revenus 2018 n'est toujours pas publié, on remplie cette case
+        quand même, en essayant de garder un périmètre similaire. On fait ceci afin de ne pas modifier la structure des cases,
+        ce qui pourrait avoir des impacts assez large dans le simulateur.
+        Ce que l'on fait : on a toute une série de variables d'assurance-vie désagrégées, que l'on injecte en f2dh ou f2ee.
+        En revanche, on neutralise les variables f2ch et f2ts
+        '''
+        assurance_vie_pfu_ir_moins4ans_1990_19970926 = foyer_fiscal('assurance_vie_pfu_ir_moins4ans_1990_19970926', period)
+        assurance_vie_pfu_ir_4_8_ans_1990_19970926 = foyer_fiscal('assurance_vie_pfu_ir_4_8_ans_1990_19970926', period)
+        assurance_vie_pfu_ir_4_8_ans_19970926_primes_avant_20170927 = foyer_fiscal('assurance_vie_pfu_ir_4_8_ans_19970926_primes_avant_20170927', period)
+        assurance_vie_pfu_ir_moins4ans_19970926_primes_avant_20170927 = foyer_fiscal('assurance_vie_pfu_ir_moins4ans_19970926_primes_avant_20170927', period)
+        assurance_vie_pfu_ir_moins8ans_19970926_primes_apres_20170927 = foyer_fiscal('assurance_vie_pfu_ir_moins8ans_19970926_primes_apres_20170927', period)
+        produit_epargne_solidaire = foyer_fiscal('produit_epargne_solidaire', period)
+        produit_etats_non_cooperatif = foyer_fiscal('produit_etats_non_cooperatif', period)
+
+        return (
+            assurance_vie_pfu_ir_moins4ans_1990_19970926
+            + assurance_vie_pfu_ir_4_8_ans_1990_19970926
+            + assurance_vie_pfu_ir_4_8_ans_19970926_primes_avant_20170927
+            + assurance_vie_pfu_ir_moins4ans_19970926_primes_avant_20170927
+            + assurance_vie_pfu_ir_moins8ans_19970926_primes_apres_20170927
             + produit_epargne_solidaire
             + produit_etats_non_cooperatif
             )
@@ -79,6 +125,7 @@ class f2ch(Variable):
     entity = FoyerFiscal
     label = u"Produits des contrats d'assurance-vie et de capitalisation d'une durée d'au moins 6 ou 8 ans donnant droit à abattement"
     definition_period = YEAR
+    end = '2017-12-31' # On neutralise cette variable par hypothèse à partir de 2018 : tous les produits d'assurance vie sont mis en f2dh et f2ee. Cf. docstring de ces deux cases
 
 #  Revenus des valeurs et capitaux mobiliers n'ouvrant pas droit à abattement
 class f2ts(Variable):
@@ -88,6 +135,7 @@ class f2ts(Variable):
     entity = FoyerFiscal
     label = u"Revenus de valeurs mobilières, produits des contrats d'assurance-vie d'une durée inférieure à 8 ans et distributions (n'ouvrant pas droit à abattement)"
     definition_period = YEAR
+    end = '2017-12-31' # On neutralise cette variable par hypothèse à partir de 2018 : tous les produits d'assurance vie sont mis en f2dh et f2ee. Cf. docstring de ces deux cases
 
 
 class f2go(Variable):
@@ -118,13 +166,33 @@ class f2fa(Variable):
     # start_date = date(2013, 1, 1)
     definition_period = YEAR
 
-class f2tt(Variable):
+class f2tt_2016(Variable):
     cerfa_field = u"2TT"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = u"Intérêts des prêts participatifs"
     # start_date = date(2016, 1, 1)
+    end = '2016-12-31'
+    definition_period = YEAR
+
+class f2tt(Variable):
+    cerfa_field = u"2TT"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Intérêts des prêts participatifs nettes des pertes à imputer au titre de l'impôt sur le revenu"
+    # start_date = date(2017, 1, 1)
+    definition_period = YEAR
+
+class f2tu_2016(Variable):
+    cerfa_field = u"2TU"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Pertes en capital sur prêts participatifs en 2016"
+    # start_date = date(2016, 1, 1)
+    end = '2016-12-31'
     definition_period = YEAR
 
 class f2tu(Variable):
@@ -132,8 +200,8 @@ class f2tu(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Pertes en capital sur prêts participatifs en 2016"
-    # start_date = date(2016, 1, 1)
+    label = u"Pertes en capital sur prêts participatifs en 2016 à reporter sur l'année 2018"
+    # start_date = date(2017, 1, 1)
     definition_period = YEAR
 
 class f2tv(Variable):
@@ -141,7 +209,7 @@ class f2tv(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Pertes en capital sur prêts participatifs en 2017"
+    label = u"Pertes en capital sur prêts participatifs en 2017 à reporter sur l'année 2018"
     # start_date = date(2017, 1, 1)
     definition_period = YEAR
 
@@ -294,7 +362,7 @@ class livret_a(Variable):
 
 
 class epargne_revenus_non_imposables(Variable):
-    """ NB : cette variable est définie indépendemment de interets_plan_epargne_logement et de interets_compte_epargne_logement """
+    """ NB : cette variable est définie indépendemment des variables commençant par interets_plan_epargne_logement et interets_compte_epargne_logement """
     value_type = float
     entity = Individu
     base_function = requested_period_last_value
@@ -317,6 +385,7 @@ class revenus_capitaux_prelevement_bareme(Variable):
     set_input = set_input_divide_by_period
     reference = "http://bofip.impots.gouv.fr/bofip/3775-PGP"
     definition_period = MONTH
+    end = '2017-12-31'
 
     def formula(foyer_fiscal, period, parameters):
         year = period.this_year
@@ -355,6 +424,25 @@ class revenus_capitaux_prelevement_bareme(Variable):
         f2go = foyer_fiscal('f2go', year)
         f2tr = foyer_fiscal('f2tr', year)
         f2fu = foyer_fiscal('f2fu', year)
+        f2tt_2016 = foyer_fiscal('f2tt_2016', year)
+        avoirs_credits_fiscaux = foyer_fiscal('avoirs_credits_fiscaux', year)
+        majoration_revenus_reputes_distribues = parameters(period).impot_revenu.rvcm.majoration_revenus_reputes_distribues
+
+        return (f2dc + f2ch + f2ts + f2go * majoration_revenus_reputes_distribues + f2tr + f2fu + f2tt_2016 - avoirs_credits_fiscaux) / 12
+
+    def formula_2017_01_01(foyer_fiscal, period, parameters):
+        '''
+        Note : à partir des revenus 2017, la case 2TT représente les intérêts des prêts participatifs nets des pertes à imputer,
+        contrairement à avant où il s'agissait des intérêts avant déduction des pertes. Donc, à partir de 2017, on a ici,
+        par contrainte de la structure des cases de la déclaration des revenus, le montant net au lieu du montant brut.
+        '''
+        year = period.this_year
+        f2dc = foyer_fiscal('f2dc', year)
+        f2ch = foyer_fiscal('f2ch', year)
+        f2ts = foyer_fiscal('f2ts', year)
+        f2go = foyer_fiscal('f2go', year)
+        f2tr = foyer_fiscal('f2tr', year)
+        f2fu = foyer_fiscal('f2fu', year)
         f2tt = foyer_fiscal('f2tt', year)
         avoirs_credits_fiscaux = foyer_fiscal('avoirs_credits_fiscaux', year)
         majoration_revenus_reputes_distribues = parameters(period).impot_revenu.rvcm.majoration_revenus_reputes_distribues
@@ -369,6 +457,7 @@ class revenus_capitaux_prelevement_liberatoire(Variable):
     set_input = set_input_divide_by_period
     reference = "http://bofip.impots.gouv.fr/bofip/3817-PGP"
     definition_period = MONTH
+    end = '2017-12-31'
 
     def formula_2002_01_01(foyer_fiscal, period, parameters):
         f2dh = foyer_fiscal('f2dh', period.this_year)
@@ -402,6 +491,7 @@ class revenus_capital(Variable):
         revenus_capitaux = (
             max_(0, individu.foyer_fiscal('revenus_capitaux_prelevement_bareme', period))
             + max_(0, individu.foyer_fiscal('revenus_capitaux_prelevement_liberatoire', period))
+            + max_(0, individu.foyer_fiscal('revenus_capitaux_prelevement_forfaitaire_unique_ir', period))
             )
 
         return revenus_capitaux

@@ -609,6 +609,7 @@ class rev_cat_pv(Variable):
     label = u"Revenu catégoriel - Plus-values"
     reference = "http://www.insee.fr/fr/methodes/default.asp?page=definitions/revenus-categoriesl.htm"
     definition_period = YEAR
+    end = '2017-12-31'
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
         f3sb = foyer_fiscal('f3sb', period)
@@ -624,6 +625,14 @@ class rev_cat_pv(Variable):
         f3wb = foyer_fiscal('f3wb', period)
 
         return f3sb + f3vg + f3wb
+
+    def formula_2017_01_01(foyer_fiscal, period, parameters):
+        f3sb = foyer_fiscal('f3sb', period)
+        f3vg = foyer_fiscal('f3vg', period)
+        f3wb = foyer_fiscal('f3wb', period)
+        f3ua = foyer_fiscal('f3ua', period) # Cette case existant avant, mais ses montants étaient inclus dans 3vg.
+
+        return f3sb + f3vg + f3wb + f3ua
 
 
 class rev_cat_tspr(Variable):
@@ -666,6 +675,7 @@ class rev_cat_rvcm(Variable):
     label = u"Revenu catégoriel - Capitaux"
     reference = "http://www.insee.fr/fr/methodes/default.asp?page=definitions/revenus-categoriesl.htm"
     definition_period = YEAR
+    end = '2017-12-31'
 
     def formula_2002_01_01(foyer_fiscal, period, parameters):
         """
@@ -798,8 +808,8 @@ class rev_cat_rvcm(Variable):
         f2go = foyer_fiscal('f2go', period)
         f2tr = foyer_fiscal('f2tr', period)
         f2ts = foyer_fiscal('f2ts', period)
-        f2tt = foyer_fiscal('f2tt', period)
-        f2tu = foyer_fiscal('f2tu', period)
+        f2tt_2016 = foyer_fiscal('f2tt_2016', period)
+        f2tu_2016 = foyer_fiscal('f2tu_2016', period)
         P = parameters(period).impot_revenu.rvcm
 
         # Revenus après abatemment
@@ -808,17 +818,53 @@ class rev_cat_rvcm(Variable):
         rvcm_apres_abattement = (
             f2fu + f2dc - abattement_dividende
             + f2ch - min_(f2ch, abattement_assurance_vie)
-            + f2ts + f2tr + max_(0, f2tt - f2tu) + f2go * P.majoration_revenus_reputes_distribues
+            + f2ts + f2tr + max_(0, f2tt_2016 - f2tu_2016) + f2go * P.majoration_revenus_reputes_distribues
+        )
+
+        return max_(0, rvcm_apres_abattement - f2ca - deficit_rcm)
+
+    def formula_2017_01_01(foyer_fiscal, period, parameters):
+        """
+        Revenus des valeurs et capitaux mobiliers
+        Seule différence avec la formule précédente :
+            On enlève la case 2TU. En 2016, 2TT contient les intérêts avant pertes
+            et 2TU les pertes déductibles des intérêts inscrits en 2TT (si le montant en 2TU est > à celui en 2TT,
+            la perte excédentaire est reportable sur les cinq années suivantes). En 2017, 2TT contient les intérêts
+            après déduction des pertes. 2TU, et aussi 2TV, contiennent des pertes excéndentaires à reporter.
+            Sources :
+              - Brochure pratique de l'IR 2018 sur revenus 2017 : https://www.impots.gouv.fr/portail/www2/fichiers/documentation/brochure/ir_2018/files/assets/common/downloads/Brochure%20IR%202018.pdf
+              - Brochure pratique de l'IR 2017 sur revenus 2016 : https://www.impots.gouv.fr/portail/www2/fichiers/documentation/brochure/ir_2017/files/assets/common/downloads/publication.pdf
+        """
+        maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
+        deficit_rcm = foyer_fiscal('deficit_rcm', period)
+        f2ca = foyer_fiscal('f2ca', period)
+        f2ch = foyer_fiscal('f2ch', period)
+        f2dc = foyer_fiscal('f2dc', period)
+        f2fu = foyer_fiscal('f2fu', period)
+        f2go = foyer_fiscal('f2go', period)
+        f2tr = foyer_fiscal('f2tr', period)
+        f2ts = foyer_fiscal('f2ts', period)
+        f2tt = foyer_fiscal('f2tt', period)
+        P = parameters(period).impot_revenu.rvcm
+
+        # Revenus après abatemment
+        abattement_dividende = (f2fu + f2dc) * P.taux_abattement_capitaux_mobiliers
+        abattement_assurance_vie =  P.abat_assvie * (1 + maries_ou_pacses)
+        rvcm_apres_abattement = (
+            f2fu + f2dc - abattement_dividende
+            + f2ch - min_(f2ch, abattement_assurance_vie)
+            + f2ts + f2tr + f2tt + f2go * P.majoration_revenus_reputes_distribues
         )
 
         return max_(0, rvcm_apres_abattement - f2ca - deficit_rcm)
 
 
-class rfr_rvcm(Variable):
+class rfr_rvcm_abattements_a_reintegrer(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = u"rfr_rvcm"
+    label = u"rfr_rvcm_abattements_a_reintegrer"
     definition_period = YEAR
+    end = '2017-12-31'
 
     def formula(foyer_fiscal, period, parameters):
         '''
@@ -941,6 +987,18 @@ class rev_cat(Variable):
         rev_cat_pv = foyer_fiscal('rev_cat_pv', period)
 
         return rev_cat_tspr + rev_cat_rvcm + rev_cat_rfon + rev_cat_rpns + rev_cat_pv
+
+    def formula_2018_01_01(foyer_fiscal, period, parameters):
+        '''
+        Revenus Categoriels
+        Différence par rapport à la formule précédente : on enlève rev_cat_rvcm et rev_cat_pv (suite à la création du prélèvement forfaitaire unique)
+        Hypothèse : les contribuables choisissent toujours le prélèvement forfaitaire unique par rapport au barème pour ces revenus
+        '''
+        rev_cat_tspr = foyer_fiscal('rev_cat_tspr', period)
+        rev_cat_rfon = foyer_fiscal('rev_cat_rfon', period)
+        rev_cat_rpns = foyer_fiscal('rev_cat_rpns', period)
+
+        return rev_cat_tspr + rev_cat_rfon + rev_cat_rpns
 
 
 ###############################################################################
@@ -1555,6 +1613,7 @@ class tax_rvcm_forfaitaire(Variable):
     label = u"Taxation forfaitaire des revenus des valeurs et capitaux mobiliers"
     reference = "http://bofip.impots.gouv.fr/bofip/3727-PGP.html"
     definition_period = YEAR
+    end = '2017-12-31'
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
         """
@@ -1572,6 +1631,7 @@ class taxation_plus_values_hors_bareme(Variable):
     label = u"Taxation forfaitaire des plus-values"
     reference = "http://bofip.impots.gouv.fr/bofip/6957-PGP"
     definition_period = YEAR
+    end = '2017-12-31'
 
     def formula_2007_01_01(foyer_fiscal, period, parameters):  # f3sd is in f3vd holder
         """
@@ -1736,7 +1796,7 @@ class taxation_plus_values_hors_bareme(Variable):
             )
 
 
-class rfr_plus_values(Variable):
+class rfr_plus_values_hors_rni(Variable):
     value_type = float
     entity = FoyerFiscal
     label = u"Plus-values hors RNI entrant dans le calcul du revenu fiscal de référence (PV au barème, PV éxonérées ..)"
@@ -1759,8 +1819,10 @@ class rfr_plus_values(Variable):
         f3vi = foyer_fiscal.sum(f3vi_i)
         f3vd = foyer_fiscal.sum(f3vd_i)
         f3vf = foyer_fiscal.sum(f3vf_i)
+        rpns_pvce_i = foyer_fiscal.members('rpns_pvce', period)
+        rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
 
-        return f3vc + f3vd + f3vf + f3vg + f3vi + f3vl + f3vm + f3vp + f3vy + f3vz
+        return f3vc + f3vd + f3vf + f3vg + f3vi + f3vl + f3vm + f3vp + f3vy + f3vz + rpns_pvce
 
     def formula_2012_01_01(foyer_fiscal, period, parameters):
         """
@@ -1786,7 +1848,10 @@ class rfr_plus_values(Variable):
         f3vd = foyer_fiscal.sum(f3vd_i)
         f3vf = foyer_fiscal.sum(f3vf_i)
 
-        return f3sa + f3sj + f3sk + f3vc + f3vd + f3vf + f3vg + f3vi + f3vl + f3vm + f3vp + f3vt + f3vy + f3vz + f3we
+        rpns_pvce_i = foyer_fiscal.members('rpns_pvce', period)
+        rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
+
+        return f3sa + f3sj + f3sk + f3vc + f3vd + f3vf + f3vg + f3vi + f3vl + f3vm + f3vp + f3vt + f3vy + f3vz + f3we + rpns_pvce
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
         """
@@ -1811,7 +1876,10 @@ class rfr_plus_values(Variable):
         f3vd = foyer_fiscal.sum(f3vd_i)
         f3vf = foyer_fiscal.sum(f3vf_i)
 
-        return f3sj + f3sk + f3vc + f3vd + f3vf + f3vi + f3vm + f3vp + (f3vq - f3vr) + f3vt + f3vy + f3vz + f3we
+        rpns_pvce_i = foyer_fiscal.members('rpns_pvce', period)
+        rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
+
+        return f3sj + f3sk + f3vc + f3vd + f3vf + f3vi + f3vm + f3vp + (f3vq - f3vr) + f3vt + f3vy + f3vz + f3we + rpns_pvce
 
     def formula_2016_01_01(foyer_fiscal, period, parameters):
         """
@@ -1839,7 +1907,18 @@ class rfr_plus_values(Variable):
         f3vd = foyer_fiscal.sum(f3vd_i)
         f3vf = foyer_fiscal.sum(f3vf_i)
 
-        return f3sj + f3sk + f3tz + f3vc + f3vd + f3vf + f3vi + f3vm + f3vp + (f3vq - f3vr) + f3vt + f3vy + f3vz + f3we + f3wi + f3wj
+        rpns_pvce_i = foyer_fiscal.members('rpns_pvce', period)
+        rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
+
+        return f3sj + f3sk + f3tz + f3vc + f3vd + f3vf + f3vi + f3vm + f3vp + (f3vq - f3vr) + f3vt + f3vy + f3vz + f3we + f3wi + f3wj + rpns_pvce
+
+    def formula_2018_01_01(foyer_fiscal, period, parameters):
+        """
+        Plus-values 2018 et + entrant dans le calcul du revenu fiscal de référence
+        """
+        plus_values_prelevement_forfaitaire_unique_ir = foyer_fiscal('plus_values_prelevement_forfaitaire_unique_ir', period)
+
+        return plus_values_prelevement_forfaitaire_unique_ir
 
 
 class iai(Variable):
@@ -1973,26 +2052,26 @@ class rfr(Variable):
         abattement_net_duree_detention_retraite_dirigeant_pme = foyer_fiscal('abattement_net_duree_detention_retraite_dirigeant_pme', period)
         f2dm = foyer_fiscal('f2dm', period)
         microentreprise = foyer_fiscal('microentreprise', period)
-        revenus_capitaux_prelevement_liberatoire = foyer_fiscal('revenus_capitaux_prelevement_liberatoire', period, options = [ADD])
+        rfr_rev_capitaux_mobiliers = foyer_fiscal('rfr_rvcm_abattements_a_reintegrer', period) # Supprimée à partir de 2018
+        revenus_capitaux_prelevement_liberatoire = foyer_fiscal('revenus_capitaux_prelevement_liberatoire', period, options = [ADD]) # Supprimée à partir de 2018
+        revenus_capitaux_prelevement_forfaitaire_unique_ir = foyer_fiscal('revenus_capitaux_prelevement_forfaitaire_unique_ir', period, options = [ADD]) # Existe à partir de 2018
         rfr_charges_deductibles = foyer_fiscal('rfr_cd', period)
-        rfr_plus_values = foyer_fiscal('rfr_plus_values', period)
-        rfr_rev_capitaux_mobiliers = foyer_fiscal('rfr_rvcm', period)
+        rfr_plus_values_hors_rni = foyer_fiscal('rfr_plus_values_hors_rni', period)
         rni = foyer_fiscal('rni', period)
         rpns_exon_i = foyer_fiscal.members('rpns_exon', period)
-        rpns_pvce_i = foyer_fiscal.members('rpns_pvce', period)
 
         rpns_exon = foyer_fiscal.sum(rpns_exon_i)
-        rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
 
         return (
             max_(0, rni)
-            + rfr_charges_deductibles + rfr_plus_values + rfr_rev_capitaux_mobiliers + revenus_capitaux_prelevement_liberatoire
-            + rpns_exon + rpns_pvce
+            + rfr_charges_deductibles + rfr_plus_values_hors_rni + rfr_rev_capitaux_mobiliers + revenus_capitaux_prelevement_liberatoire + revenus_capitaux_prelevement_forfaitaire_unique_ir
+            + rpns_exon
             + abattement_net_duree_detention_retraite_dirigeant_pme
             + f2dm + microentreprise
             )
 
         # TO CHECK : f3vb after 2015 (abattements sur moins-values = interdits)
+
 
 class glo(Variable):
     value_type = float

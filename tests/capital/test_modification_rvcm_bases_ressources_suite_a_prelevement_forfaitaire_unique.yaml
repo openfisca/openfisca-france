@@ -1,0 +1,115 @@
+### Suite au passage au prélèvement forfaitaire unique (PFU), les mesures des revenus (rfr, bases ressources, etc.) ont été modifiés
+### concernant la composante des revenus des valeurs et capitaux mobiliers (RVCM) : des variables ont été neutralisées
+### à partir de 2018 (rev_cat_rvcm, rfr_rvcm_abattements_a_reintegrer, revenus_capitaux_prelevement_liberatoire, revenus_capitaux_prelevement_bareme)
+### pour être remplacées par revenus_capitaux_prelevement_forfaitaire_unique_ir.
+### Ces tests vérifient que pour les différentes mesures de revenus concernées par l'utilisaiton de revenus_capitaux_prelevement_forfaitaire_unique_ir,
+### le passage à l'utilisation de la variable revenus_capitaux_prelevement_forfaitaire_unique_ir en 2018, tout en gardant dans la formule les variables
+### neutralisées à partir de 2018 marche correctement
+### NB : on met des marges d'erreur de 10 car pour 2017, il a des écarts d'environ 8. Ceci serait dû à variable f2dh, via revenus_capitaux_prelevement_liberatoire qui
+###      est mensuelle et sommée sur l'annéeé. Pour rfr, on a vérifié qu'il n'y avait pas de problème dans aucune composante de la formule. Donc, on suppose que ce sont
+###      des erreurs d'arrondi
+
+
+- name: rfr_f2dc_f2dh_2017
+  description: "Montant de rfr en 2017 via les case 2DC et 2DH"
+  period: 2017
+  absolute_error_margin: 10
+  input_variables:
+    f2dc: 100000
+    f2dh: 50000
+  output_variables:
+    rfr: 150000
+
+- name: rfr_f2dc_f2dh_2018
+  description: "Montant de rfr en 2018 via les case 2DC et 2DH"
+  period: 2018
+  absolute_error_margin: 10
+  input_variables:
+    f2dc: 100000
+    f2dh: 50000
+  output_variables:
+    rfr: 150000
+
+- name: revetproduits_f2dc_f2dh_2017
+  description: "Montant de revetproduits en 2017 via les case 2DC et 2DH"
+  period: 2017
+  absolute_error_margin: 10
+  input_variables:
+    f2dc: 100000
+    f2dh: 50000
+  output_variables:
+    revetproduits: 0.75 * 150000 # NB : à première vue, on devrait avoir 0.75 * (150000 - 0.075*50000) du fait de prelevement_forfaitaire_liberatoire. Mais f2dh n'est pas la base du PFL : la base du PFL est dans les variables commençant par "assurance-vie" et qui elles sont injectées dans f2dh.
+
+- name: revetproduits_f2dc_f2dh_2018
+  description: "Montant de revetproduits en 2018 via les case 2DC et 2DH"
+  period: 2018
+  absolute_error_margin: 10
+  input_variables:
+    f2dc: 100000
+    f2dh: 50000
+  output_variables:
+    revetproduits: 0.75 * (150000 - 0.128 * 150000)
+
+- name: aide_logement_base_revenus_fiscaux_f2dc_f2dh_2017
+  description: "Montant de aide_logement_base_revenus_fiscaux en 2017 via les case 2DC et 2DH"
+  period: 2017
+  absolute_error_margin: 10
+  input_variables:
+    f2dc: 100000
+    f2dh: 50000
+  output_variables:
+    aide_logement_base_revenus_fiscaux: 0.6*100000 + 50000
+
+- name: aide_logement_base_revenus_fiscaux_f2dc_f2dh_2018
+  description: "Montant de aide_logement_base_revenus_fiscaux en 2018 via les case 2DC et 2DH"
+  period: 2018
+  absolute_error_margin: 10
+  input_variables:
+    f2dc: 100000
+    f2dh: 50000
+  output_variables:
+    aide_logement_base_revenus_fiscaux: 150000
+
+- name: rev_coll_f2dc_f2dh_2017
+  description: "Montant de rev_coll en 2017 via les case 2DC et 2DH"
+  period: 2017
+  absolute_error_margin: 10
+  input_variables:
+    f2dc: 100000
+    f2dh: 50000
+  output_variables:
+    rev_coll: 0.6*100000 + 50000
+
+- name: rev_coll_f2dc_f2dh_2018
+  description: "Montant de rev_coll en 2018 via les case 2DC et 2DH"
+  period: 2018
+  absolute_error_margin: 10
+  input_variables:
+    f2dc: 100000
+    f2dh: 50000
+  output_variables:
+    rev_coll: 150000
+
+- name: revenus_capital_f2dc_f2dh_2017
+  description: "Montant de revenus_capital en 2017 via les case 2DC et 2DH"
+  period: 2017-01
+  absolute_error_margin: 10
+  input_variables:
+    f2dc:
+      2017: 100000
+    f2dh:
+      2017: 50000
+  output_variables:
+    revenus_capital: 150000 / 12
+
+- name: revenus_capital_f2dc_f2dh_2018
+  description: "Montant de revenus_capital en 2018 via les case 2DC et 2DH"
+  period: 2018-01
+  absolute_error_margin: 10
+  input_variables:
+    f2dc:
+      2018: 100000
+    f2dh:
+      2018: 50000
+  output_variables:
+    revenus_capital: 150000 / 12

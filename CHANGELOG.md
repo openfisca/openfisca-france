@@ -1,5 +1,45 @@
 # Changelog
 
+## 24.5.0 [#1075](https://github.com/openfisca/openfisca-france/pull/1075)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : toutes
+* Zones impactées:
+   - `model/mesures`
+   - `model/prelevements_obligatoires/impot_revenu/credits_impot`
+   - `model/prelevements_obligatoires/impot_revenu/ir`
+   - `model/prelevements_obligatoires/prelevement_forfaitaire_liberatoire` : déplacé dans
+     `model/prelevements_obligatoires/impot_revenu/prelevements_forfaitaires/prelevement_forfaitaire_liberatoire`
+   - `model/prelevements_obligatoires/impot_revenu/prelevements_forfaitaires/__init__` (création)
+   - `model/prelevements_obligatoires/impot_revenu/prelevements_forfaitaires/variables_communes` (création)
+   - `model/prelevements_obligatoires/impot_revenu/prelevements_forfaitaires/ir_prelevement_forfaitaire_unique` (création)
+   - `model/prelevements_obligatoires/isf`
+   - `model/prelevements_obligatoires/prelevements_obligatoires/prelevements_sociaux/contributions_sociales/capital`
+   - `model/prestations/aides_logement`
+   - `model/prestations/prestations_familiales/base_ressource`
+   - `model/revenus/capital/financier`
+   - `model/revenus/capital/plus_value`
+   - `reforms/allocations_familiales_imposables`
+   - `reforms/landais_piketty_saez`
+* Détails :
+  - Code le prélèvement forfaitaire unique (PFU) instauré dans la loi de finances 2018.
+    Cette "flat tax" à 30 % se décompose en :
+      - Une hausse des prélèvements sociaux (17,2%)
+      - Un prélèvement forfaitaire au titre de l'impôt sur le revenu (12,8%). Pour coder cette partie, création d'une nouvelle variable d'impôt `prelevement_forfaitaire_unique_ir`, calculée dans `model/prelevements_obligatoires/impot_revenu/prelevements_forfaitaires/ir_prelevement_forfaitaire_unique`.
+      Pour cela :
+          - Redéfinition ou création des variables d'assurance-vie et des variables d'épargne logement (PEL, CEL) pour s'adapter aux nouvelles assiettes
+          - Définition de nouvelles assiettes `revenus_capitaux_prelevement_forfaitaire_unique_ir` et `plus_values_prelevement_forfaitaire_unique_ir`, en remplacement des anciennes variables d'assiettes injectées dans les différents dispositifs et bases ressources (`revenus_capitaux_prelevement_bareme`, `revenus_capitaux_prelevement_liberatoire`, `rev_cat_rvcm`, `rev_cat_pv`, `rfr_rvcm`, etc.).
+          - Ensemble des variables neutralisées à partir de 2018 : `rev_cat_pv` `rev_cat_rvcm` `rfr_rvcm` `tax_rvcm_forfaitaire` `taxation_plus_values_hors_bareme`,
+          `revenus_capitaux_prelevement_bareme`, `revenus_capitaux_prelevement_liberatoire`, `prelevement_forfaitaire_liberatoire`,
+          , `f2ch`, `f2ts`, `prlire`,
+          `acompte_ir_elus_locaux`, `prelevement_forfaitaire_non_liberatoire`, `acomptes_ir`, variables commençant par `assurance_vie_pl_non_anonyme`, `assurance_vie_pl_anonyme`.
+  - Note : pour les revenus 2018, on ne dispose pas du formulaire de déclaration des revenus.
+    Hypothèse : la structure des cases du formulaire 2042 et 2042C est identique entre 2018 et 2019 (i.e. entre les revenus 2017 et 2018). Les assiettes du PFU sont donc définies avec les cases des formulaires de l'IR 2018 sur revenus 2017. Et on neutralise les variables d'acomptes d'impôt.
+  - Changements mineurs concernant les années antérieures à 2018 :
+      - Actualise certaines variables fiscales pour 2017 : cases 2TT, 2TU et 2TV, variable `rev_cat_pv`.
+      - Renomme `rfr_plus_values` en `rfr_plus_values_hors_rni`.
+      - Renomme `rfr_rvcm` par `rfr_rvcm_abattements_a_reintegrer`
+
 ## 24.4.0 [#1081](https://github.com/openfisca/openfisca-france/pull/1081)
 
 * Évolution du système socio-fiscal.
@@ -63,7 +103,7 @@
 * Zones impactées:
    - `prestations/minima_sociaux/rsa`
    - `prestations/minima_sociaux/asi_aspa`
-   - `modelrevenus/capital/financier`
+   - `model/revenus/capital/financier`
 * Détails :
   - Supprime les doubles comptes de certains revenus du capital dans les bases ressources du RSA et de l'ASI-ASPA
   - Exemple : les revenus de `f2ee` étaient injectés deux fois via `rsa_base_ressources_patrimoine_individu` et via les variables `revenus_capitaux_prelevement_bareme` et `revenus_capitaux_prelevement_liberatoire`
