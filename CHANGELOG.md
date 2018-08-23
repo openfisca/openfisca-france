@@ -1,6 +1,6 @@
 # Changelog
 
-##  24.4.0 [#1094](https://github.com/openfisca/openfisca-france/pull/1094)
+###  24.4.1 [#1094](https://github.com/openfisca/openfisca-france/pull/1094)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 01/01/2018.
@@ -8,6 +8,13 @@
 * Détails :
   - Mise à jour des paramètres de la garantie minimale de points de l'AGIRC (GMP)
 
+## 24.4.0 [#1081](https://github.com/openfisca/openfisca-france/pull/1081)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : toutes.
+* Zones impactées : `prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/travail_prive`.
+* Détails :
+  - Corrige le calcul de la cotisation  agirc gmp
 
 ##  24.3.0 [#1092](https://github.com/openfisca/openfisca-france/pull/1092)
 
