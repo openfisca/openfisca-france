@@ -1,5 +1,5 @@
 description: Majoration pour biactifs et isolés
-reference: ipp
+reference: openfisca
 unit: currency
 values:
   2016-01-01:
