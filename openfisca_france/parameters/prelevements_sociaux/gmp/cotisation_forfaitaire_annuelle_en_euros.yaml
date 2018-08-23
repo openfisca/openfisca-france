@@ -56,4 +56,7 @@ values:
   2016-01-01:
     value: 816.84
   2017-01-01:
+    value: 844.56
+  2018-01-01:
+    reference: https://www.agirc-arrco.fr/fileadmin/agircarrco/documents/circulaires/agirc_arrco/2017/201710dt_parametres_Agirc-Arrco.pdf
     value: 872.52
