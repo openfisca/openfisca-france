@@ -1,7 +1,7 @@
 name: "RSA - PERSONNE ISOLEE SANS ENFANT"
 keywords:
-  - base ressources
-  - recette
+- base ressources
+- recette
 description: |
   Test créé à partir d'un dossier de demande de RSA :
   Ces paramètres (ressources non déclarables, situation personnelle…) n'ont pas pu être capturés : aucune

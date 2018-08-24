@@ -13,14 +13,14 @@
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2"]
   individus:
-    - id: "parent1"
-      age: 40
-    - id: "parent2"
-      age: 40
-    - id: "enfant1"
-      age: 9
-    - id: "enfant2"
-      age: 9
+  - id: "parent1"
+    age: 40
+  - id: "parent2"
+    age: 40
+  - id: "enfant1"
+    age: 9
+  - id: "enfant2"
+    age: 9
   output_variables:
     af: 399 * 0.32  # Changement de BMAF en cours d'année
 
@@ -40,14 +40,14 @@
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2"]
   individus:
-    - id: "parent1"
-      age: 40
-    - id: "parent2"
-      age: 40
-    - id: "enfant1"
-      age: 9
-    - id: "enfant2"
-      age: 9
+  - id: "parent1"
+    age: 40
+  - id: "parent2"
+    age: 40
+  - id: "enfant1"
+    age: 9
+  - id: "enfant2"
+    age: 9
   output_variables:
     af: 1412.64 / 12
 
@@ -66,14 +66,14 @@
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2"]
   individus:
-    - id: "parent1"
-      age: 40
-    - id: "parent2"
-      age: 40
-    - id: "enfant1"
-      age: 9
-    - id: "enfant2"
-      age: 9
+  - id: "parent1"
+    age: 40
+  - id: "parent2"
+    age: 40
+  - id: "enfant1"
+    age: 9
+  - id: "enfant2"
+    age: 9
   output_variables:
     af: 1436.64 / 12
 
@@ -92,14 +92,14 @@
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2"]
   individus:
-    - id: "parent1"
-      age: 40
-    - id: "parent2"
-      age: 40
-    - id: "enfant1"
-      age: 9
-    - id: "enfant2"
-      age: 9
+  - id: "parent1"
+    age: 40
+  - id: "parent2"
+    age: 40
+  - id: "enfant1"
+    age: 9
+  - id: "enfant2"
+    age: 9
   output_variables:
     af: 1451.04 / 12
 
@@ -118,14 +118,14 @@
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2"]
   individus:
-    - id: "parent1"
-      age: 40
-    - id: "parent2"
-      age: 40
-    - id: "enfant1"
-      age: 9
-    - id: "enfant2"
-      age: 9
+  - id: "parent1"
+    age: 40
+  - id: "parent2"
+    age: 40
+  - id: "enfant1"
+    age: 9
+  - id: "enfant2"
+    age: 9
   output_variables:
     af: 1494.48 / 12
 
@@ -145,14 +145,14 @@
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2"]
   individus:
-    - id: "parent1"
-      date_naissance: "1966-01-01"
-    - id: "parent2"
-      date_naissance: "1966-01-01"
-    - id: "enfant1"
-      date_naissance: "1990-01-01"
-    - id: "enfant2"
-      date_naissance: "1992-01-01"
+  - id: "parent1"
+    date_naissance: "1966-01-01"
+  - id: "parent2"
+    date_naissance: "1966-01-01"
+  - id: "enfant1"
+    date_naissance: "1990-01-01"
+  - id: "enfant2"
+    date_naissance: "1992-01-01"
   output_variables:
     af: 1809.96 / 12
 
@@ -171,14 +171,14 @@
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2"]
   individus:
-    - id: "parent1"
-      date_naissance: "1966-01-01"
-    - id: "parent2"
-      date_naissance: "1966-01-01"
-    - id: "enfant1"
-      date_naissance: "1990-01-01"
-    - id: "enfant2"
-      date_naissance: "1992-01-01"
+  - id: "parent1"
+    date_naissance: "1966-01-01"
+  - id: "parent2"
+    date_naissance: "1966-01-01"
+  - id: "enfant1"
+    date_naissance: "1990-01-01"
+  - id: "enfant2"
+    date_naissance: "1992-01-01"
   output_variables:
     af: 1840.68 / 12
 
@@ -197,14 +197,14 @@
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2"]
   individus:
-    - id: "parent1"
-      date_naissance: "1966-01-01"
-    - id: "parent2"
-      date_naissance: "1966-01-01"
-    - id: "enfant1"
-      date_naissance: "1990-01-01"
-    - id: "enfant2"
-      date_naissance: "1992-01-01"
+  - id: "parent1"
+    date_naissance: "1966-01-01"
+  - id: "parent2"
+    date_naissance: "1966-01-01"
+  - id: "enfant1"
+    date_naissance: "1990-01-01"
+  - id: "enfant2"
+    date_naissance: "1992-01-01"
   output_variables:
     af: 2176.56 / 12
 
@@ -223,14 +223,14 @@
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2"]
   individus:
-    - id: "parent1"
-      date_naissance: "1966-01-01"
-    - id: "parent2"
-      date_naissance: "1966-01-01"
-    - id: "enfant1"
-      date_naissance: "1990-01-01"
-    - id: "enfant2"
-      date_naissance: "1992-01-01"
+  - id: "parent1"
+    date_naissance: "1966-01-01"
+  - id: "parent2"
+    date_naissance: "1966-01-01"
+  - id: "enfant1"
+    date_naissance: "1990-01-01"
+  - id: "enfant2"
+    date_naissance: "1992-01-01"
   output_variables:
     af: 2241.72 / 12
 
@@ -250,14 +250,14 @@
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2"]
   individus:
-    - id: "parent1"
-      date_naissance: "1966-01-01"
-    - id: "parent2"
-      date_naissance: "1966-01-01"
-    - id: "enfant1"
-      date_naissance: "1988-01-01"
-    - id: "enfant2"
-      date_naissance: "1991-01-01"
+  - id: "parent1"
+    date_naissance: "1966-01-01"
+  - id: "parent2"
+    date_naissance: "1966-01-01"
+  - id: "enfant1"
+    date_naissance: "1988-01-01"
+  - id: "enfant2"
+    date_naissance: "1991-01-01"
   output_variables:
     af: 1809.96 / 12
 
@@ -276,14 +276,14 @@
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2"]
   individus:
-    - id: "parent1"
-      date_naissance: "1966-01-01"
-    - id: "parent2"
-      date_naissance: "1966-01-01"
-    - id: "enfant1"
-      date_naissance: "1988-01-01"
-    - id: "enfant2"
-      date_naissance: "1991-01-01"
+  - id: "parent1"
+    date_naissance: "1966-01-01"
+  - id: "parent2"
+    date_naissance: "1966-01-01"
+  - id: "enfant1"
+    date_naissance: "1988-01-01"
+  - id: "enfant2"
+    date_naissance: "1991-01-01"
   output_variables:
     af: 2154.96 / 12
 
@@ -302,14 +302,14 @@
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2"]
   individus:
-    - id: "parent1"
-      date_naissance: "1966-01-01"
-    - id: "parent2"
-      date_naissance: "1966-01-01"
-    - id: "enfant1"
-      date_naissance: "1988-01-01"
-    - id: "enfant2"
-      date_naissance: "1991-01-01"
+  - id: "parent1"
+    date_naissance: "1966-01-01"
+  - id: "parent2"
+    date_naissance: "1966-01-01"
+  - id: "enfant1"
+    date_naissance: "1988-01-01"
+  - id: "enfant2"
+    date_naissance: "1991-01-01"
   output_variables:
     af: 0 / 12
 
@@ -328,14 +328,14 @@
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2"]
   individus:
-    - id: "parent1"
-      date_naissance: "1966-01-01"
-    - id: "parent2"
-      date_naissance: "1966-01-01"
-    - id: "enfant1"
-      date_naissance: "1988-01-01"
-    - id: "enfant2"
-      date_naissance: "1991-01-01"
+  - id: "parent1"
+    date_naissance: "1966-01-01"
+  - id: "parent2"
+    date_naissance: "1966-01-01"
+  - id: "enfant1"
+    date_naissance: "1988-01-01"
+  - id: "enfant2"
+    date_naissance: "1991-01-01"
   output_variables:
     af: 0 / 12
 
@@ -355,16 +355,16 @@
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2", "enfant3"]
   individus:
-    - id: "parent1"
-      date_naissance: "1966-01-01"
-    - id: "parent2"
-      date_naissance: "1966-01-01"
-    - id: "enfant1"
-      date_naissance: "2003-01-01"
-    - id: "enfant2"
-      date_naissance: "2004-01-01"
-    - id: "enfant3"
-      date_naissance: "2005-01-01"
+  - id: "parent1"
+    date_naissance: "1966-01-01"
+  - id: "parent2"
+    date_naissance: "1966-01-01"
+  - id: "enfant1"
+    date_naissance: "2003-01-01"
+  - id: "enfant2"
+    date_naissance: "2004-01-01"
+  - id: "enfant3"
+    date_naissance: "2005-01-01"
   output_variables:
     af: 3222.60 / 12
 
@@ -383,16 +383,16 @@
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2", "enfant3"]
   individus:
-    - id: "parent1"
-      date_naissance: "1966-01-01"
-    - id: "parent2"
-      date_naissance: "1966-01-01"
-    - id: "enfant1"
-      date_naissance: "2003-01-01"
-    - id: "enfant2"
-      date_naissance: "2004-01-01"
-    - id: "enfant3"
-      date_naissance: "2005-01-01"
+  - id: "parent1"
+    date_naissance: "1966-01-01"
+  - id: "parent2"
+    date_naissance: "1966-01-01"
+  - id: "enfant1"
+    date_naissance: "2003-01-01"
+  - id: "enfant2"
+    date_naissance: "2004-01-01"
+  - id: "enfant3"
+    date_naissance: "2005-01-01"
   output_variables:
     af: 3277.32 / 12
 
@@ -411,16 +411,16 @@
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2", "enfant3"]
   individus:
-    - id: "parent1"
-      date_naissance: "1966-01-01"
-    - id: "parent2"
-      date_naissance: "1966-01-01"
-    - id: "enfant1"
-      date_naissance: "2003-01-01"
-    - id: "enfant2"
-      date_naissance: "2004-01-01"
-    - id: "enfant3"
-      date_naissance: "2005-01-01"
+  - id: "parent1"
+    date_naissance: "1966-01-01"
+  - id: "parent2"
+    date_naissance: "1966-01-01"
+  - id: "enfant1"
+    date_naissance: "2003-01-01"
+  - id: "enfant2"
+    date_naissance: "2004-01-01"
+  - id: "enfant3"
+    date_naissance: "2005-01-01"
   output_variables:
     af: 3310.08 / 12
 
@@ -439,16 +439,16 @@
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2", "enfant3"]
   individus:
-    - id: "parent1"
-      date_naissance: "1966-01-01"
-    - id: "parent2"
-      date_naissance: "1966-01-01"
-    - id: "enfant1"
-      date_naissance: "2003-01-01"
-    - id: "enfant2"
-      date_naissance: "2004-01-01"
-    - id: "enfant3"
-      date_naissance: "2005-01-01"
+  - id: "parent1"
+    date_naissance: "1966-01-01"
+  - id: "parent2"
+    date_naissance: "1966-01-01"
+  - id: "enfant1"
+    date_naissance: "2003-01-01"
+  - id: "enfant2"
+    date_naissance: "2004-01-01"
+  - id: "enfant3"
+    date_naissance: "2005-01-01"
   output_variables:
     af: 3409.32 / 12
 
@@ -468,16 +468,16 @@
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2", "enfant3"]
   individus:
-    - id: "parent1"
-      date_naissance: "1966-01-01"
-    - id: "parent2"
-      date_naissance: "1966-01-01"
-    - id: "enfant1"
-      date_naissance: "1990-01-01"
-    - id: "enfant2"
-      date_naissance: "1990-01-01"
-    - id: "enfant3"
-      date_naissance: "1990-01-01"
+  - id: "parent1"
+    date_naissance: "1966-01-01"
+  - id: "parent2"
+    date_naissance: "1966-01-01"
+  - id: "enfant1"
+    date_naissance: "1990-01-01"
+  - id: "enfant2"
+    date_naissance: "1990-01-01"
+  - id: "enfant3"
+    date_naissance: "1990-01-01"
   output_variables:
     af: 5341.56 / 12
 
@@ -496,16 +496,16 @@
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2", "enfant3"]
   individus:
-    - id: "parent1"
-      date_naissance: "1966-01-01"
-    - id: "parent2"
-      date_naissance: "1966-01-01"
-    - id: "enfant1"
-      date_naissance: "1990-01-01"
-    - id: "enfant2"
-      date_naissance: "1990-01-01"
-    - id: "enfant3"
-      date_naissance: "1990-01-01"
+  - id: "parent1"
+    date_naissance: "1966-01-01"
+  - id: "parent2"
+    date_naissance: "1966-01-01"
+  - id: "enfant1"
+    date_naissance: "1990-01-01"
+  - id: "enfant2"
+    date_naissance: "1990-01-01"
+  - id: "enfant3"
+    date_naissance: "1990-01-01"
   output_variables:
     af: 5432.28 / 12
 
@@ -524,16 +524,16 @@
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2", "enfant3"]
   individus:
-    - id: "parent1"
-      date_naissance: "1966-01-01"
-    - id: "parent2"
-      date_naissance: "1966-01-01"
-    - id: "enfant1"
-      date_naissance: "1990-01-01"
-    - id: "enfant2"
-      date_naissance: "1990-01-01"
-    - id: "enfant3"
-      date_naissance: "1990-01-01"
+  - id: "parent1"
+    date_naissance: "1966-01-01"
+  - id: "parent2"
+    date_naissance: "1966-01-01"
+  - id: "enfant1"
+    date_naissance: "1990-01-01"
+  - id: "enfant2"
+    date_naissance: "1990-01-01"
+  - id: "enfant3"
+    date_naissance: "1990-01-01"
   output_variables:
     af: 5486.64 / 12
 
@@ -552,16 +552,16 @@
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2", "enfant3"]
   individus:
-    - id: "parent1"
-      date_naissance: "1966-01-01"
-    - id: "parent2"
-      date_naissance: "1966-01-01"
-    - id: "enfant1"
-      date_naissance: "1990-01-01"
-    - id: "enfant2"
-      date_naissance: "1990-01-01"
-    - id: "enfant3"
-      date_naissance: "1990-01-01"
+  - id: "parent1"
+    date_naissance: "1966-01-01"
+  - id: "parent2"
+    date_naissance: "1966-01-01"
+  - id: "enfant1"
+    date_naissance: "1990-01-01"
+  - id: "enfant2"
+    date_naissance: "1990-01-01"
+  - id: "enfant3"
+    date_naissance: "1990-01-01"
   output_variables:
     af: 5651.04 / 12
 
@@ -581,16 +581,16 @@
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2", "enfant3"]
   individus:
-    - id: "parent1"
-      date_naissance: "1966-01-01"
-    - id: "parent2"
-      date_naissance: "1966-01-01"
-    - id: "enfant1"
-      date_naissance: "1990-01-01"
-    - id: "enfant2"
-      date_naissance: "2005-01-01"
-    - id: "enfant3"
-      date_naissance: "2005-01-01"
+  - id: "parent1"
+    date_naissance: "1966-01-01"
+  - id: "parent2"
+    date_naissance: "1966-01-01"
+  - id: "enfant1"
+    date_naissance: "1990-01-01"
+  - id: "enfant2"
+    date_naissance: "2005-01-01"
+  - id: "enfant3"
+    date_naissance: "2005-01-01"
   output_variables:
     af: 3928.92 / 12
 
@@ -609,16 +609,16 @@
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2", "enfant3"]
   individus:
-    - id: "parent1"
-      date_naissance: "1966-01-01"
-    - id: "parent2"
-      date_naissance: "1966-01-01"
-    - id: "enfant1"
-      date_naissance: "1990-01-01"
-    - id: "enfant2"
-      date_naissance: "2005-01-01"
-    - id: "enfant3"
-      date_naissance: "2005-01-01"
+  - id: "parent1"
+    date_naissance: "1966-01-01"
+  - id: "parent2"
+    date_naissance: "1966-01-01"
+  - id: "enfant1"
+    date_naissance: "1990-01-01"
+  - id: "enfant2"
+    date_naissance: "2005-01-01"
+  - id: "enfant3"
+    date_naissance: "2005-01-01"
   output_variables:
     af: 3995.64 / 12
 
@@ -637,16 +637,16 @@
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2", "enfant3"]
   individus:
-    - id: "parent1"
-      date_naissance: "1966-01-01"
-    - id: "parent2"
-      date_naissance: "1966-01-01"
-    - id: "enfant1"
-      date_naissance: "1990-01-01"
-    - id: "enfant2"
-      date_naissance: "2005-01-01"
-    - id: "enfant3"
-      date_naissance: "2005-01-01"
+  - id: "parent1"
+    date_naissance: "1966-01-01"
+  - id: "parent2"
+    date_naissance: "1966-01-01"
+  - id: "enfant1"
+    date_naissance: "1990-01-01"
+  - id: "enfant2"
+    date_naissance: "2005-01-01"
+  - id: "enfant3"
+    date_naissance: "2005-01-01"
   output_variables:
     af: 4035.60 / 12
 
@@ -665,16 +665,16 @@
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2", "enfant3"]
   individus:
-    - id: "parent1"
-      date_naissance: "1966-01-01"
-    - id: "parent2"
-      date_naissance: "1966-01-01"
-    - id: "enfant1"
-      date_naissance: "1990-01-01"
-    - id: "enfant2"
-      date_naissance: "2005-01-01"
-    - id: "enfant3"
-      date_naissance: "2005-01-01"
+  - id: "parent1"
+    date_naissance: "1966-01-01"
+  - id: "parent2"
+    date_naissance: "1966-01-01"
+  - id: "enfant1"
+    date_naissance: "1990-01-01"
+  - id: "enfant2"
+    date_naissance: "2005-01-01"
+  - id: "enfant3"
+    date_naissance: "2005-01-01"
   output_variables:
     af: 4156.56 / 12
 
@@ -694,16 +694,16 @@
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2", "enfant3"]
   individus:
-    - id: "parent1"
-      date_naissance: "1966-01-01"
-    - id: "parent2"
-      date_naissance: "1966-01-01"
-    - id: "enfant1"
-      date_naissance: "1985-12-31"
-    - id: "enfant2"
-      date_naissance: "2005-01-01"
-    - id: "enfant3"
-      date_naissance: "2005-01-01"
+  - id: "parent1"
+    date_naissance: "1966-01-01"
+  - id: "parent2"
+    date_naissance: "1966-01-01"
+  - id: "enfant1"
+    date_naissance: "1985-12-31"
+  - id: "enfant2"
+    date_naissance: "2005-01-01"
+  - id: "enfant3"
+    date_naissance: "2005-01-01"
   output_variables:
     af: 2305.80 / 12
 
@@ -722,16 +722,16 @@
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2", "enfant3"]
   individus:
-    - id: "parent1"
-      date_naissance: "1966-01-01"
-    - id: "parent2"
-      date_naissance: "1966-01-01"
-    - id: "enfant1"
-      date_naissance: "1985-12-31"
-    - id: "enfant2"
-      date_naissance: "2005-01-01"
-    - id: "enfant3"
-      date_naissance: "2005-01-01"
+  - id: "parent1"
+    date_naissance: "1966-01-01"
+  - id: "parent2"
+    date_naissance: "1966-01-01"
+  - id: "enfant1"
+    date_naissance: "1985-12-31"
+  - id: "enfant2"
+    date_naissance: "2005-01-01"
+  - id: "enfant3"
+    date_naissance: "2005-01-01"
   output_variables:
     af: 1436.64 / 12
 
@@ -750,16 +750,16 @@
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2", "enfant3"]
   individus:
-    - id: "parent1"
-      date_naissance: "1966-01-01"
-    - id: "parent2"
-      date_naissance: "1966-01-01"
-    - id: "enfant1"
-      date_naissance: "1985-12-31"
-    - id: "enfant2"
-      date_naissance: "2005-01-01"
-    - id: "enfant3"
-      date_naissance: "2005-01-01"
+  - id: "parent1"
+    date_naissance: "1966-01-01"
+  - id: "parent2"
+    date_naissance: "1966-01-01"
+  - id: "enfant1"
+    date_naissance: "1985-12-31"
+  - id: "enfant2"
+    date_naissance: "2005-01-01"
+  - id: "enfant3"
+    date_naissance: "2005-01-01"
   output_variables:
     af: 1451.04 / 12
 
@@ -778,16 +778,16 @@
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2", "enfant3"]
   individus:
-    - id: "parent1"
-      date_naissance: "1966-01-01"
-    - id: "parent2"
-      date_naissance: "1966-01-01"
-    - id: "enfant1"
-      date_naissance: "1985-12-31"
-    - id: "enfant2"
-      date_naissance: "2005-01-01"
-    - id: "enfant3"
-      date_naissance: "2005-01-01"
+  - id: "parent1"
+    date_naissance: "1966-01-01"
+  - id: "parent2"
+    date_naissance: "1966-01-01"
+  - id: "enfant1"
+    date_naissance: "1985-12-31"
+  - id: "enfant2"
+    date_naissance: "2005-01-01"
+  - id: "enfant3"
+    date_naissance: "2005-01-01"
   output_variables:
     af: 1494.48 / 12
 
@@ -807,16 +807,16 @@
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2", "enfant3"]
   individus:
-    - id: "parent1"
-      date_naissance: "1966-01-01"
-    - id: "parent2"
-      date_naissance: "1966-01-01"
-    - id: "enfant1"
-      date_naissance: "1988-01-01"
-    - id: "enfant2"
-      date_naissance: "2005-01-01"
-    - id: "enfant3"
-      date_naissance: "2005-01-01"
+  - id: "parent1"
+    date_naissance: "1966-01-01"
+  - id: "parent2"
+    date_naissance: "1966-01-01"
+  - id: "enfant1"
+    date_naissance: "1988-01-01"
+  - id: "enfant2"
+    date_naissance: "2005-01-01"
+  - id: "enfant3"
+    date_naissance: "2005-01-01"
   output_variables:
     af: 3928.92 / 12
 
@@ -835,16 +835,16 @@
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2", "enfant3"]
   individus:
-    - id: "parent1"
-      date_naissance: "1966-01-01"
-    - id: "parent2"
-      date_naissance: "1966-01-01"
-    - id: "enfant1"
-      date_naissance: "1988-01-01"
-    - id: "enfant2"
-      date_naissance: "2005-01-01"
-    - id: "enfant3"
-      date_naissance: "2005-01-01"
+  - id: "parent1"
+    date_naissance: "1966-01-01"
+  - id: "parent2"
+    date_naissance: "1966-01-01"
+  - id: "enfant1"
+    date_naissance: "1988-01-01"
+  - id: "enfant2"
+    date_naissance: "2005-01-01"
+  - id: "enfant3"
+    date_naissance: "2005-01-01"
   output_variables:
     af: 3995.64 / 12
 
@@ -863,16 +863,16 @@
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2", "enfant3"]
   individus:
-    - id: "parent1"
-      date_naissance: "1966-01-01"
-    - id: "parent2"
-      date_naissance: "1966-01-01"
-    - id: "enfant1"
-      date_naissance: "1988-01-01"
-    - id: "enfant2"
-      date_naissance: "2005-01-01"
-    - id: "enfant3"
-      date_naissance: "2005-01-01"
+  - id: "parent1"
+    date_naissance: "1966-01-01"
+  - id: "parent2"
+    date_naissance: "1966-01-01"
+  - id: "enfant1"
+    date_naissance: "1988-01-01"
+  - id: "enfant2"
+    date_naissance: "2005-01-01"
+  - id: "enfant3"
+    date_naissance: "2005-01-01"
   output_variables:
     af: 2368.56 / 12
 
@@ -891,16 +891,16 @@
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2", "enfant3"]
   individus:
-    - id: "parent1"
-      date_naissance: "1966-01-01"
-    - id: "parent2"
-      date_naissance: "1966-01-01"
-    - id: "enfant1"
-      date_naissance: "1988-01-01"
-    - id: "enfant2"
-      date_naissance: "2005-01-01"
-    - id: "enfant3"
-      date_naissance: "2005-01-01"
+  - id: "parent1"
+    date_naissance: "1966-01-01"
+  - id: "parent2"
+    date_naissance: "1966-01-01"
+  - id: "enfant1"
+    date_naissance: "1988-01-01"
+  - id: "enfant2"
+    date_naissance: "2005-01-01"
+  - id: "enfant3"
+    date_naissance: "2005-01-01"
   output_variables:
     af: 1494.48 / 12
 
@@ -920,16 +920,16 @@
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2", "enfant3"]
   individus:
-    - id: "parent1"
-      date_naissance: "1966-01-01"
-    - id: "parent2"
-      date_naissance: "1966-01-01"
-    - id: "enfant1"
-      date_naissance: "1989-01-01"
-    - id: "enfant2"
-      date_naissance: "2005-01-01"
-    - id: "enfant3"
-      date_naissance: "2005-01-01"
+  - id: "parent1"
+    date_naissance: "1966-01-01"
+  - id: "parent2"
+    date_naissance: "1966-01-01"
+  - id: "enfant1"
+    date_naissance: "1989-01-01"
+  - id: "enfant2"
+    date_naissance: "2005-01-01"
+  - id: "enfant3"
+    date_naissance: "2005-01-01"
   output_variables:
     af: 3928.92 / 12
 
@@ -948,16 +948,16 @@
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2", "enfant3"]
   individus:
-    - id: "parent1"
-      date_naissance: "1966-01-01"
-    - id: "parent2"
-      date_naissance: "1966-01-01"
-    - id: "enfant1"
-      date_naissance: "1989-01-01"
-    - id: "enfant2"
-      date_naissance: "2005-01-01"
-    - id: "enfant3"
-      date_naissance: "2005-01-01"
+  - id: "parent1"
+    date_naissance: "1966-01-01"
+  - id: "parent2"
+    date_naissance: "1966-01-01"
+  - id: "enfant1"
+    date_naissance: "1989-01-01"
+  - id: "enfant2"
+    date_naissance: "2005-01-01"
+  - id: "enfant3"
+    date_naissance: "2005-01-01"
   output_variables:
     af: 3995.64 / 12
 
@@ -976,16 +976,16 @@
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2", "enfant3"]
   individus:
-    - id: "parent1"
-      date_naissance: "1966-01-01"
-    - id: "parent2"
-      date_naissance: "1966-01-01"
-    - id: "enfant1"
-      date_naissance: "1989-01-01"
-    - id: "enfant2"
-      date_naissance: "2005-01-01"
-    - id: "enfant3"
-      date_naissance: "2005-01-01"
+  - id: "parent1"
+    date_naissance: "1966-01-01"
+  - id: "parent2"
+    date_naissance: "1966-01-01"
+  - id: "enfant1"
+    date_naissance: "1989-01-01"
+  - id: "enfant2"
+    date_naissance: "2005-01-01"
+  - id: "enfant3"
+    date_naissance: "2005-01-01"
   output_variables:
     af: 4035.60 / 12
 
@@ -1004,16 +1004,16 @@
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2", "enfant3"]
   individus:
-    - id: "parent1"
-      date_naissance: "1966-01-01"
-    - id: "parent2"
-      date_naissance: "1966-01-01"
-    - id: "enfant1"
-      date_naissance: "1989-01-01"
-    - id: "enfant2"
-      date_naissance: "2005-01-01"
-    - id: "enfant3"
-      date_naissance: "2005-01-01"
+  - id: "parent1"
+    date_naissance: "1966-01-01"
+  - id: "parent2"
+    date_naissance: "1966-01-01"
+  - id: "enfant1"
+    date_naissance: "1989-01-01"
+  - id: "enfant2"
+    date_naissance: "2005-01-01"
+  - id: "enfant3"
+    date_naissance: "2005-01-01"
   output_variables:
     af: 2439.48 / 12
 
@@ -1033,16 +1033,16 @@
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2", "enfant3"]
   individus:
-    - id: "parent1"
-      date_naissance: "1966-01-01"
-    - id: "parent2"
-      date_naissance: "1966-01-01"
-    - id: "enfant1"
-      date_naissance: "1988-01-01"
-    - id: "enfant2"
-      date_naissance: "1993-01-01"
-    - id: "enfant3"
-      date_naissance: "2005-01-01"
+  - id: "parent1"
+    date_naissance: "1966-01-01"
+  - id: "parent2"
+    date_naissance: "1966-01-01"
+  - id: "enfant1"
+    date_naissance: "1988-01-01"
+  - id: "enfant2"
+    date_naissance: "1993-01-01"
+  - id: "enfant3"
+    date_naissance: "2005-01-01"
   output_variables:
     af: 4326.24 / 12
 
@@ -1061,16 +1061,16 @@
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2", "enfant3"]
   individus:
-    - id: "parent1"
-      date_naissance: "1966-01-01"
-    - id: "parent2"
-      date_naissance: "1966-01-01"
-    - id: "enfant1"
-      date_naissance: "1988-01-01"
-    - id: "enfant2"
-      date_naissance: "1993-01-01"
-    - id: "enfant3"
-      date_naissance: "2005-01-01"
+  - id: "parent1"
+    date_naissance: "1966-01-01"
+  - id: "parent2"
+    date_naissance: "1966-01-01"
+  - id: "enfant1"
+    date_naissance: "1988-01-01"
+  - id: "enfant2"
+    date_naissance: "1993-01-01"
+  - id: "enfant3"
+    date_naissance: "2005-01-01"
   output_variables:
     af: 4399.68 / 12
 
@@ -1089,16 +1089,16 @@
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2", "enfant3"]
   individus:
-    - id: "parent1"
-      date_naissance: "1966-01-01"
-    - id: "parent2"
-      date_naissance: "1966-01-01"
-    - id: "enfant1"
-      date_naissance: "1988-01-01"
-    - id: "enfant2"
-      date_naissance: "1993-01-01"
-    - id: "enfant3"
-      date_naissance: "2005-01-01"
+  - id: "parent1"
+    date_naissance: "1966-01-01"
+  - id: "parent2"
+    date_naissance: "1966-01-01"
+  - id: "enfant1"
+    date_naissance: "1988-01-01"
+  - id: "enfant2"
+    date_naissance: "1993-01-01"
+  - id: "enfant3"
+    date_naissance: "2005-01-01"
   output_variables:
     af: 2368.56 / 12
 
@@ -1117,16 +1117,16 @@
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2", "enfant3"]
   individus:
-    - id: "parent1"
-      date_naissance: "1966-01-01"
-    - id: "parent2"
-      date_naissance: "1966-01-01"
-    - id: "enfant1"
-      date_naissance: "1988-01-01"
-    - id: "enfant2"
-      date_naissance: "1993-01-01"
-    - id: "enfant3"
-      date_naissance: "2005-01-01"
+  - id: "parent1"
+    date_naissance: "1966-01-01"
+  - id: "parent2"
+    date_naissance: "1966-01-01"
+  - id: "enfant1"
+    date_naissance: "1988-01-01"
+  - id: "enfant2"
+    date_naissance: "1993-01-01"
+  - id: "enfant3"
+    date_naissance: "2005-01-01"
   output_variables:
     af: 1494.48 / 12
 
@@ -1146,16 +1146,16 @@
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2", "enfant3"]
   individus:
-    - id: "parent1"
-      date_naissance: "1966-01-01"
-    - id: "parent2"
-      date_naissance: "1966-01-01"
-    - id: "enfant1"
-      date_naissance: "1987-01-01"
-    - id: "enfant2"
-      date_naissance: "1988-01-01"
-    - id: "enfant3"
-      date_naissance: "2005-01-01"
+  - id: "parent1"
+    date_naissance: "1966-01-01"
+  - id: "parent2"
+    date_naissance: "1966-01-01"
+  - id: "enfant1"
+    date_naissance: "1987-01-01"
+  - id: "enfant2"
+    date_naissance: "1988-01-01"
+  - id: "enfant3"
+    date_naissance: "2005-01-01"
   output_variables:
     af: 4635.24 / 12
 
@@ -1174,16 +1174,16 @@
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2", "enfant3"]
   individus:
-    - id: "parent1"
-      date_naissance: "1966-01-01"
-    - id: "parent2"
-      date_naissance: "1966-01-01"
-    - id: "enfant1"
-      date_naissance: "1987-01-01"
-    - id: "enfant2"
-      date_naissance: "1988-01-01"
-    - id: "enfant3"
-      date_naissance: "2005-01-01"
+  - id: "parent1"
+    date_naissance: "1966-01-01"
+  - id: "parent2"
+    date_naissance: "1966-01-01"
+  - id: "enfant1"
+    date_naissance: "1987-01-01"
+  - id: "enfant2"
+    date_naissance: "1988-01-01"
+  - id: "enfant3"
+    date_naissance: "2005-01-01"
   output_variables:
     af: 2345.04 / 12
 
@@ -1202,16 +1202,16 @@
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2", "enfant3"]
   individus:
-    - id: "parent1"
-      date_naissance: "1966-01-01"
-    - id: "parent2"
-      date_naissance: "1966-01-01"
-    - id: "enfant1"
-      date_naissance: "1987-01-01"
-    - id: "enfant2"
-      date_naissance: "1988-01-01"
-    - id: "enfant3"
-      date_naissance: "2005-01-01"
+  - id: "parent1"
+    date_naissance: "1966-01-01"
+  - id: "parent2"
+    date_naissance: "1966-01-01"
+  - id: "enfant1"
+    date_naissance: "1987-01-01"
+  - id: "enfant2"
+    date_naissance: "1988-01-01"
+  - id: "enfant3"
+    date_naissance: "2005-01-01"
   output_variables:
     af: 0 / 12
 
@@ -1230,16 +1230,16 @@
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2", "enfant3"]
   individus:
-    - id: "parent1"
-      date_naissance: "1966-01-01"
-    - id: "parent2"
-      date_naissance: "1966-01-01"
-    - id: "enfant1"
-      date_naissance: "1987-01-01"
-    - id: "enfant2"
-      date_naissance: "1988-01-01"
-    - id: "enfant3"
-      date_naissance: "2005-01-01"
+  - id: "parent1"
+    date_naissance: "1966-01-01"
+  - id: "parent2"
+    date_naissance: "1966-01-01"
+  - id: "enfant1"
+    date_naissance: "1987-01-01"
+  - id: "enfant2"
+    date_naissance: "1988-01-01"
+  - id: "enfant3"
+    date_naissance: "2005-01-01"
   output_variables:
     af: 0 / 12
 
@@ -1259,16 +1259,16 @@
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2", "enfant3"]
   individus:
-    - id: "parent1"
-      date_naissance: "1966-01-01"
-    - id: "parent2"
-      date_naissance: "1966-01-01"
-    - id: "enfant1"
-      date_naissance: "1988-01-01"
-    - id: "enfant2"
-      date_naissance: "1991-01-01"
-    - id: "enfant3"
-      date_naissance: "2005-01-01"
+  - id: "parent1"
+    date_naissance: "1966-01-01"
+  - id: "parent2"
+    date_naissance: "1966-01-01"
+  - id: "enfant1"
+    date_naissance: "1988-01-01"
+  - id: "enfant2"
+    date_naissance: "1991-01-01"
+  - id: "enfant3"
+    date_naissance: "2005-01-01"
   output_variables:
     af: 4326.24 / 12
 
@@ -1287,16 +1287,16 @@
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2", "enfant3"]
   individus:
-    - id: "parent1"
-      date_naissance: "1966-01-01"
-    - id: "parent2"
-      date_naissance: "1966-01-01"
-    - id: "enfant1"
-      date_naissance: "1988-01-01"
-    - id: "enfant2"
-      date_naissance: "1991-01-01"
-    - id: "enfant3"
-      date_naissance: "2005-01-01"
+  - id: "parent1"
+    date_naissance: "1966-01-01"
+  - id: "parent2"
+    date_naissance: "1966-01-01"
+  - id: "enfant1"
+    date_naissance: "1988-01-01"
+  - id: "enfant2"
+    date_naissance: "1991-01-01"
+  - id: "enfant3"
+    date_naissance: "2005-01-01"
   output_variables:
     af: 4713.96 / 12
 
@@ -1315,16 +1315,16 @@
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2", "enfant3"]
   individus:
-    - id: "parent1"
-      date_naissance: "1966-01-01"
-    - id: "parent2"
-      date_naissance: "1966-01-01"
-    - id: "enfant1"
-      date_naissance: "1988-01-01"
-    - id: "enfant2"
-      date_naissance: "1991-01-01"
-    - id: "enfant3"
-      date_naissance: "2005-01-01"
+  - id: "parent1"
+    date_naissance: "1966-01-01"
+  - id: "parent2"
+    date_naissance: "1966-01-01"
+  - id: "enfant1"
+    date_naissance: "1988-01-01"
+  - id: "enfant2"
+    date_naissance: "1991-01-01"
+  - id: "enfant3"
+    date_naissance: "2005-01-01"
   output_variables:
     af: 2368.56 / 12
 
@@ -1343,16 +1343,16 @@
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2", "enfant3"]
   individus:
-    - id: "parent1"
-      date_naissance: "1966-01-01"
-    - id: "parent2"
-      date_naissance: "1966-01-01"
-    - id: "enfant1"
-      date_naissance: "1988-01-01"
-    - id: "enfant2"
-      date_naissance: "1991-01-01"
-    - id: "enfant3"
-      date_naissance: "2005-01-01"
+  - id: "parent1"
+    date_naissance: "1966-01-01"
+  - id: "parent2"
+    date_naissance: "1966-01-01"
+  - id: "enfant1"
+    date_naissance: "1988-01-01"
+  - id: "enfant2"
+    date_naissance: "1991-01-01"
+  - id: "enfant3"
+    date_naissance: "2005-01-01"
   output_variables:
     af: 1494.48 / 12
 
@@ -1372,20 +1372,20 @@
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2", "enfant3", "enfant4", "enfant5"]
   individus:
-    - id: "parent1"
-      date_naissance: "1966-01-01"
-    - id: "parent2"
-      date_naissance: "1966-01-01"
-    - id: "enfant1"
-      date_naissance: "2000-01-01"
-    - id: "enfant2"
-      date_naissance: "2001-01-01"
-    - id: "enfant3"
-      date_naissance: "2002-01-01"
-    - id: "enfant4"
-      date_naissance: "2003-01-01"
-    - id: "enfant5"
-      date_naissance: "2004-01-01"
+  - id: "parent1"
+    date_naissance: "1966-01-01"
+  - id: "parent2"
+    date_naissance: "1966-01-01"
+  - id: "enfant1"
+    date_naissance: "2000-01-01"
+  - id: "enfant2"
+    date_naissance: "2001-01-01"
+  - id: "enfant3"
+    date_naissance: "2002-01-01"
+  - id: "enfant4"
+    date_naissance: "2003-01-01"
+  - id: "enfant5"
+    date_naissance: "2004-01-01"
   output_variables:
     af: 6842.40 / 12
 
@@ -1405,20 +1405,20 @@
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2", "enfant3", "enfant4", "enfant5"]
   individus:
-    - id: "parent1"
-      date_naissance: "1966-01-01"
-    - id: "parent2"
-      date_naissance: "1966-01-01"
-    - id: "enfant1"
-      date_naissance: "2000-01-01"
-    - id: "enfant2"
-      date_naissance: "2001-01-01"
-    - id: "enfant3"
-      date_naissance: "2002-01-01"
-    - id: "enfant4"
-      date_naissance: "2003-01-01"
-    - id: "enfant5"
-      date_naissance: "2004-01-01"
+  - id: "parent1"
+    date_naissance: "1966-01-01"
+  - id: "parent2"
+    date_naissance: "1966-01-01"
+  - id: "enfant1"
+    date_naissance: "2000-01-01"
+  - id: "enfant2"
+    date_naissance: "2001-01-01"
+  - id: "enfant3"
+    date_naissance: "2002-01-01"
+  - id: "enfant4"
+    date_naissance: "2003-01-01"
+  - id: "enfant5"
+    date_naissance: "2004-01-01"
   output_variables:
     af: 6958.68 / 12
 
@@ -1438,20 +1438,20 @@
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2", "enfant3", "enfant4", "enfant5"]
   individus:
-    - id: "parent1"
-      date_naissance: "1966-01-01"
-    - id: "parent2"
-      date_naissance: "1966-01-01"
-    - id: "enfant1"
-      date_naissance: "2000-01-01"
-    - id: "enfant2"
-      date_naissance: "2001-01-01"
-    - id: "enfant3"
-      date_naissance: "2002-01-01"
-    - id: "enfant4"
-      date_naissance: "2003-01-01"
-    - id: "enfant5"
-      date_naissance: "2004-01-01"
+  - id: "parent1"
+    date_naissance: "1966-01-01"
+  - id: "parent2"
+    date_naissance: "1966-01-01"
+  - id: "enfant1"
+    date_naissance: "2000-01-01"
+  - id: "enfant2"
+    date_naissance: "2001-01-01"
+  - id: "enfant3"
+    date_naissance: "2002-01-01"
+  - id: "enfant4"
+    date_naissance: "2003-01-01"
+  - id: "enfant5"
+    date_naissance: "2004-01-01"
   output_variables:
     af: 7028.16 / 12
 
@@ -1471,20 +1471,20 @@
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2", "enfant3", "enfant4", "enfant5"]
   individus:
-    - id: "parent1"
-      date_naissance: "1966-01-01"
-    - id: "parent2"
-      date_naissance: "1966-01-01"
-    - id: "enfant1"
-      date_naissance: "2000-01-01"
-    - id: "enfant2"
-      date_naissance: "2001-01-01"
-    - id: "enfant3"
-      date_naissance: "2002-01-01"
-    - id: "enfant4"
-      date_naissance: "2003-01-01"
-    - id: "enfant5"
-      date_naissance: "2004-01-01"
+  - id: "parent1"
+    date_naissance: "1966-01-01"
+  - id: "parent2"
+    date_naissance: "1966-01-01"
+  - id: "enfant1"
+    date_naissance: "2000-01-01"
+  - id: "enfant2"
+    date_naissance: "2001-01-01"
+  - id: "enfant3"
+    date_naissance: "2002-01-01"
+  - id: "enfant4"
+    date_naissance: "2003-01-01"
+  - id: "enfant5"
+    date_naissance: "2004-01-01"
   output_variables:
     af: 7239.12 / 12
 
@@ -1499,10 +1499,10 @@
     personne_de_reference: "parent1"
     conjoint: "parent2"
   individus:
-    - id: "parent1"
-      age: 40
-    - id: "parent2"
-      age: 40
+  - id: "parent1"
+    age: 40
+  - id: "parent2"
+    age: 40
   output_variables:
     af: 0
 
@@ -1521,17 +1521,17 @@
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2", "enfant3"]
   individus:
-    - id: "parent1"
-      date_naissance: "1966-01-01"
-    - id: "parent2"
-      date_naissance: "1966-01-01"
-    - id: "enfant1"
-      date_naissance: "2010-01-01"
-    - id: "enfant2"
-      date_naissance: "2011-01-01"
-    - id: "enfant3"
-      date_naissance: "2012-01-01"
-      garde_alternee: true
+  - id: "parent1"
+    date_naissance: "1966-01-01"
+  - id: "parent2"
+    date_naissance: "1966-01-01"
+  - id: "enfant1"
+    date_naissance: "2010-01-01"
+  - id: "enfant2"
+    date_naissance: "2011-01-01"
+  - id: "enfant3"
+    date_naissance: "2012-01-01"
+    garde_alternee: true
   output_variables:
     af_coeff_garde_alternee: 0.8333
     af: (296.53 * 0.8333)
@@ -1551,17 +1551,17 @@
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2", "enfant3"]
   individus:
-    - id: "parent1"
-      date_naissance: "1966-01-01"
-    - id: "parent2"
-      date_naissance: "1966-01-01"
-    - id: "enfant1"
-      date_naissance: "2000-01-01"
-    - id: "enfant2"
-      date_naissance: "2001-01-01"
-    - id: "enfant3"
-      date_naissance: "2002-01-01"
-      garde_alternee: true
+  - id: "parent1"
+    date_naissance: "1966-01-01"
+  - id: "parent2"
+    date_naissance: "1966-01-01"
+  - id: "enfant1"
+    date_naissance: "2000-01-01"
+  - id: "enfant2"
+    date_naissance: "2001-01-01"
+  - id: "enfant3"
+    date_naissance: "2002-01-01"
+    garde_alternee: true
   output_variables:
     af_coeff_garde_alternee: 1
     af: 268.55
@@ -1580,17 +1580,17 @@
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2", "enfant3"]
   individus:
-    - id: "parent1"
-      date_naissance: "1966-01-01"
-    - id: "parent2"
-      date_naissance: "1966-01-01"
-    - id: "enfant1"
-      date_naissance: "2000-01-01"
-      garde_alternee: true
-    - id: "enfant2"
-      date_naissance: "2010-01-01"
-    - id: "enfant3"
-      date_naissance: "2011-01-01"
+  - id: "parent1"
+    date_naissance: "1966-01-01"
+  - id: "parent2"
+    date_naissance: "1966-01-01"
+  - id: "enfant1"
+    date_naissance: "2000-01-01"
+    garde_alternee: true
+  - id: "enfant2"
+    date_naissance: "2010-01-01"
+  - id: "enfant3"
+    date_naissance: "2011-01-01"
   output_variables:
     af_majoration: 65 / 2
 
@@ -1608,16 +1608,16 @@
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2", "enfant3"]
   individus:
-    - id: "parent1"
-      date_naissance: "1956-01-01"
-    - id: "parent2"
-      date_naissance: "1956-01-01"
-    - id: "enfant1"
-      date_naissance: "1990-01-01"
-      garde_alternee: true
-    - id: "enfant2"
-      date_naissance: "2000-01-01"
-    - id: "enfant3"
-      date_naissance: "2001-01-01"
+  - id: "parent1"
+    date_naissance: "1956-01-01"
+  - id: "parent2"
+    date_naissance: "1956-01-01"
+  - id: "enfant1"
+    date_naissance: "1990-01-01"
+    garde_alternee: true
+  - id: "enfant2"
+    date_naissance: "2000-01-01"
+  - id: "enfant3"
+    date_naissance: "2001-01-01"
   output_variables:
     af_majoration: 60

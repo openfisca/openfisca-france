@@ -6,36 +6,36 @@ description: |
 period: "month:2014-08"
 relative_error_margin: 0.02
 individus:
-  - age: 33
-    age_en_mois: 407
-    date_naissance: "1980-09-14"
-    enceinte: true
-    etudiant: 0
-    id: 53fb5f942f1265020080b6ac
-    inapte_travail: 0
-    handicap: 0
-    statut_marital: marie
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - aah:
-      2012: 2370
-      2014-05: 790
-      2014-06: 790
-      2014-07: 790
-      2014-08: 790
-    age: 33
-    age_en_mois: 407
-    date_naissance: "1980-09-14"
-    etudiant: 0
-    id: 53fb5f942f1265020080b6a8
-    inapte_travail: 0
-    handicap: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
+- age: 33
+  age_en_mois: 407
+  date_naissance: "1980-09-14"
+  enceinte: true
+  etudiant: 0
+  id: 53fb5f942f1265020080b6ac
+  inapte_travail: 0
+  handicap: 0
+  statut_marital: marie
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- aah:
+    2012: 2370
+    2014-05: 790
+    2014-06: 790
+    2014-07: 790
+    2014-08: 790
+  age: 33
+  age_en_mois: 407
+  date_naissance: "1980-09-14"
+  etudiant: 0
+  id: 53fb5f942f1265020080b6a8
+  inapte_travail: 0
+  handicap: 0
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
 familles:
   acs:
     2013-08: 0
@@ -220,8 +220,8 @@ familles:
     2014-06: 0
     2014-07: 0
   parents:
-    - 53fb5f942f1265020080b6ac
-    - 53fb5f942f1265020080b6a8
+  - 53fb5f942f1265020080b6ac
+  - 53fb5f942f1265020080b6a8
   proprietaire_proche_famille: true
   rsa:
     2013-08: 0
@@ -238,8 +238,8 @@ familles:
     2014-07: 0
 foyers_fiscaux:
   declarants:
-    - 53fb5f942f1265020080b6ac
-    - 53fb5f942f1265020080b6a8
+  - 53fb5f942f1265020080b6ac
+  - 53fb5f942f1265020080b6a8
 menages:
   conjoint: 53fb5f942f1265020080b6a8
   loyer: 123

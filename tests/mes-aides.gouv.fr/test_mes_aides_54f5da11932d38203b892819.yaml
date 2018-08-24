@@ -1,7 +1,7 @@
 name: Déduction des pensions alimentaires versées
 keywords:
-  - al
-  - base ressources
+- al
+- base ressources
 description: |
   Ce test vérifie que les pensions alimentaires versées sont bien prises en compte dans le calcul de la base ressources.
   cf. article 156 du CGI

@@ -2,8 +2,7 @@ name: TNS - Entrepreneur CA > 82 200€
 keywords:
 - rsa
 - tns
-description: Cas d'un TNS en activité commerciale dont le CA est supérieur au seuil micro-entreprise. Pas d'éligibilité au
-  RSA.
+description: Cas d'un TNS en activité commerciale dont le CA est supérieur au seuil micro-entreprise. Pas d'éligibilité au RSA.
 period: month:2015-04
 relative_error_margin: 0.02
 individus:

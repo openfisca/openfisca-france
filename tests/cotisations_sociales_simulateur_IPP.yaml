@@ -164,9 +164,7 @@
     contribution_solidarite_autonomie: -7.68
     cotisations_employeur_contributives: -343.68 # -40.96 -212.48 -90.24 - 7.68
     cotisations_employeur_non_contributives: -465.92 - 7.68
-    cotisations_employeur: -(
-                    212.48 + 40.96 + 90.24 + 327.68 + 138.24 + 2.56 + 10.24 + 2560 * 0.0175 + 7.68
-                    )
+    cotisations_employeur: -( 212.48 + 40.96 + 90.24 + 327.68 + 138.24 + 2.56 + 10.24 + 2560 * 0.0175 + 7.68 )
     pension_civile_salarie: 0
     rafp_salarie: 0
     ircantec_salarie: -60.16  # TODO: Trouver source extérieur site IPP buggé
@@ -201,19 +199,19 @@
     enfants: ["enfant1", "enfant2"]
     zone_apl: zone_1
   individus:
-    - id: "parent1"
-      date_naissance: 1972-01-01
-      depcom_entreprise: "69381"
-      primes_fonction_publique: 500
-      traitement_indiciaire_brut: 2000
-      taille_entreprise: de_20_a_249   # TODO fix this
-      categorie_salarie: 'public_titulaire_etat'
-    - id: "parent2"
-      date_naissance: 1972-01-01
-    - id: "enfant1"
-      date_naissance: 2000-01-01
-    - id: "enfant2"
-      date_naissance: 2009-01-01
+  - id: "parent1"
+    date_naissance: 1972-01-01
+    depcom_entreprise: "69381"
+    primes_fonction_publique: 500
+    traitement_indiciaire_brut: 2000
+    taille_entreprise: de_20_a_249     # TODO fix this
+    categorie_salarie: 'public_titulaire_etat'
+  - id: "parent2"
+    date_naissance: 1972-01-01
+  - id: "enfant1"
+    date_naissance: 2000-01-01
+  - id: "enfant2"
+    date_naissance: 2009-01-01
   output_variables:
     fnal: [-8 - 2, 0, 0, 0]
     versement_transport: [-2000 * 0.0175, 0, 0, 0]  # = 35
@@ -257,24 +255,24 @@
     enfants: ["enfant1", "enfant2"]
     zone_apl: zone_2
   individus:
-    - id: "parent1"
-      date_naissance: 1972-01-01
-      depcom_entreprise: "69381"
-      primes_fonction_publique: 500
-      traitement_indiciaire_brut: 2000
-      taille_entreprise: de_20_a_249   # TODO fix this
-      categorie_salarie: 'public_titulaire_etat'
-    - id: "parent2"
-      date_naissance: 1972-01-01
-      depcom_entreprise: "69381"
-      primes_fonction_publique: 500
-      traitement_indiciaire_brut: 2000
-      taille_entreprise: de_20_a_249   # TODO fix this
-      categorie_salarie: 'public_titulaire_etat'
-    - id: "enfant1"
-      date_naissance: 2000-01-01
-    - id: "enfant2"
-      date_naissance: 2009-01-01
+  - id: "parent1"
+    date_naissance: 1972-01-01
+    depcom_entreprise: "69381"
+    primes_fonction_publique: 500
+    traitement_indiciaire_brut: 2000
+    taille_entreprise: de_20_a_249     # TODO fix this
+    categorie_salarie: 'public_titulaire_etat'
+  - id: "parent2"
+    date_naissance: 1972-01-01
+    depcom_entreprise: "69381"
+    primes_fonction_publique: 500
+    traitement_indiciaire_brut: 2000
+    taille_entreprise: de_20_a_249     # TODO fix this
+    categorie_salarie: 'public_titulaire_etat'
+  - id: "enfant1"
+    date_naissance: 2000-01-01
+  - id: "enfant2"
+    date_naissance: 2009-01-01
 #    error_margin: 2
   output_variables:
     fnal: [-10, -10, 0, 0]

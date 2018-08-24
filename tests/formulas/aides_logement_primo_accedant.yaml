@@ -42,8 +42,8 @@
     zone_apl: zone_1
     loyer: 5172
   individus:
-    - id: "parent1"
-      age: 40
+  - id: "parent1"
+    age: 40
   output_variables:
     aides_logement_primo_accedant: 0
 
@@ -51,23 +51,23 @@
   absolute_error_margin: 0.01
   period: 2018-01
   individus:
-    - date_naissance:
-        2018-01: '1985-03-21'
-      id: demandeur
+  - date_naissance:
+      2018-01: '1985-03-21'
+    id: demandeur
   familles:
-    - parents:
-        - demandeur
+  - parents:
+    - demandeur
   foyers_fiscaux:
-    - declarants:
-        - demandeur
+  - declarants:
+    - demandeur
   menages:
-    - loyer:
-        2018-01: 0
-      depcom:
-        2018-01: '55039'
-      statut_occupation_logement:
-        2018-01: primo_accedant
-      personne_de_reference: demandeur
-      enfants: []
+  - loyer:
+      2018-01: 0
+    depcom:
+      2018-01: '55039'
+    statut_occupation_logement:
+      2018-01: primo_accedant
+    personne_de_reference: demandeur
+    enfants: []
   output_variables:
     aide_logement: 0

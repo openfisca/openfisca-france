@@ -1,8 +1,8 @@
 name: Plancher de ressources pour les étudiants boursiers en locatif
 keywords:
-  - al
-  - base ressources
-  - étudiants
+- al
+- base ressources
+- étudiants
 description: |
   Les étudiants boursiers en locatif ont un plancher de ressources de 6000 euros.
   cf. http://www.territoires.gouv.fr/IMG/pdf/MEDDAT_Plaq_logement_2013_bd.pdf page 24.

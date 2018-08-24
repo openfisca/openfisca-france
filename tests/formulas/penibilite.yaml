@@ -1,6 +1,5 @@
 - period: "2017-02"
-  name:
-    Cotisation pénibilité de base
+  name: Cotisation pénibilité de base
   relative_error_margin: 0.02
   input_variables:
     salaire_de_base: 1480
@@ -8,8 +7,7 @@
     penibilite: -0.148
 
 - period: "2017-02"
-  name:
-    Cotisation pénibilité additionnelle
+  name: Cotisation pénibilité additionnelle
   relative_error_margin: 0.001
   input_variables:
     salaire_de_base: 1480
@@ -18,8 +16,7 @@
     penibilite: -3.108
 
 - period: "2017-02"
-  name:
-    Cotisation pénibilité additionnelle à multiples facteurs
+  name: Cotisation pénibilité additionnelle à multiples facteurs
   relative_error_margin: 0.001
   input_variables:
     salaire_de_base: 1480
@@ -29,8 +26,7 @@
 
 
 - period: "2018-01"
-  name:
-    Cotisation pénibilité supprimée
+  name: Cotisation pénibilité supprimée
   relative_error_margin: 0.001
   input_variables:
     salaire_de_base: 1500

@@ -1,8 +1,8 @@
 name: "Personne seule, ressources > plafond de 644,40 €, montant = plafond haut - ressources"
 keywords:
-  - ass
-  - base ressources
-  - montant
+- ass
+- base ressources
+- montant
 description: |
   BR = 640 en salaires nets
   Conversion en salaire imposable : 640 + (0,029 X 0,9825 X 640 : 0,78) = 663.38

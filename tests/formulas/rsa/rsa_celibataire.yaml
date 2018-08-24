@@ -258,12 +258,12 @@
     enfants: ["enfant1", "enfant2"]
     asf: 100
   individus:
-    - id: "parent1"
-      age: 40
-    - id: "enfant1"
-      age: 6
-    - id: "enfant2"
-      age: 8
+  - id: "parent1"
+    age: 40
+  - id: "enfant1"
+    age: 6
+  - id: "enfant2"
+    age: 8
   output_variables:
     rsa_forfait_asf: 91.38
 

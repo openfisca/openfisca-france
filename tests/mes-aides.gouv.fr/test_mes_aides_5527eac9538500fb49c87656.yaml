@@ -1,7 +1,7 @@
 name: Abattement de 30% pour un chômeur indemnisé
 keywords:
-  - abattements
-  - "cmu-c/acs"
+- abattements
+- "cmu-c/acs"
 period: "month:2015-04"
 relative_error_margin: 0.02
 individus:

@@ -2,19 +2,19 @@
   period: 2018-02
   relative_error_margin: 0.01
   individus:
-    - id: "parent1"
-      age: 40
-      salaire_imposable: 20000
-      aah: 0
-      etudiant: 0
-      hsup: 0
-    - id: "enfant1"
-      date_naissance: 2017-01-01
-      age: 1
-      salaire_imposable: 0
-      aah: 0
-      etudiant: 0
-      hsup: 0
+  - id: "parent1"
+    age: 40
+    salaire_imposable: 20000
+    aah: 0
+    etudiant: 0
+    hsup: 0
+  - id: "enfant1"
+    date_naissance: 2017-01-01
+    age: 1
+    salaire_imposable: 0
+    aah: 0
+    etudiant: 0
+    hsup: 0
   familles:
     parents: ["parent1"]
     enfants: ["enfant1"]
@@ -43,19 +43,19 @@
   period: 2017-02
   relative_error_margin: 0.01
   individus:
-    - id: "parent1"
-      age: 40
-      salaire_imposable: 20000
-      aah: 0
-      etudiant: 0
-      hsup: 0
-    - id: "enfant1"
-      date_naissance: 2017-01-01
-      age: 1
-      salaire_imposable: 0
-      aah: 0
-      etudiant: 0
-      hsup: 0
+  - id: "parent1"
+    age: 40
+    salaire_imposable: 20000
+    aah: 0
+    etudiant: 0
+    hsup: 0
+  - id: "enfant1"
+    date_naissance: 2017-01-01
+    age: 1
+    salaire_imposable: 0
+    aah: 0
+    etudiant: 0
+    hsup: 0
   familles:
     parents: ["parent1"]
     enfants: ["enfant1"]
@@ -86,19 +86,19 @@
   period: 2018-02
   relative_error_margin: 0.01
   individus:
-    - id: "parent1"
-      age: 40
-      salaire_imposable: 10000
-      aah: 0
-      etudiant: 0
-      hsup: 0
-    - id: "enfant1"
-      date_naissance: 2017-01-01
-      age: 1
-      salaire_imposable: 0
-      aah: 0
-      etudiant: 0
-      hsup: 0
+  - id: "parent1"
+    age: 40
+    salaire_imposable: 10000
+    aah: 0
+    etudiant: 0
+    hsup: 0
+  - id: "enfant1"
+    date_naissance: 2017-01-01
+    age: 1
+    salaire_imposable: 0
+    aah: 0
+    etudiant: 0
+    hsup: 0
   familles:
     parents: ["parent1"]
     enfants: ["enfant1"]
@@ -127,19 +127,19 @@
   period: 2017-02
   relative_error_margin: 0.01
   individus:
-    - id: "parent1"
-      age: 40
-      salaire_imposable: 20000
-      aah: 0
-      etudiant: 0
-      hsup: 0
-    - id: "enfant1"
-      date_naissance: 2017-01-01
-      age: 1
-      salaire_imposable: 0
-      aah: 0
-      etudiant: 0
-      hsup: 0
+  - id: "parent1"
+    age: 40
+    salaire_imposable: 20000
+    aah: 0
+    etudiant: 0
+    hsup: 0
+  - id: "enfant1"
+    date_naissance: 2017-01-01
+    age: 1
+    salaire_imposable: 0
+    aah: 0
+    etudiant: 0
+    hsup: 0
   familles:
     parents: ["parent1"]
     enfants: ["enfant1"]
@@ -178,12 +178,12 @@
     conjoint: "parent2"
     enfants: ["enfant1"]
   individus:
-    - id: "parent1"
-      age: 40
-    - id: "parent2"
-      age: 40
-    - id: "enfant1"
-      age: 2
+  - id: "parent1"
+    age: 40
+  - id: "parent2"
+    age: 40
+  - id: "enfant1"
+    age: 2
   output_variables:
     # BMAF 2012 = 399
     paje_base: 0.45950 * 399
@@ -201,12 +201,12 @@
     conjoint: "parent2"
     enfants: ["enfant1"]
   individus:
-    - id: "parent1"
-      age: 40
-    - id: "parent2"
-      age: 40
-    - id: "enfant1"
-      age: 2
+  - id: "parent1"
+    age: 40
+  - id: "parent2"
+    age: 40
+  - id: "enfant1"
+    age: 2
   output_variables:
     # BMAF 2013 = 403.79
     # BMAF 2016 = 406.62

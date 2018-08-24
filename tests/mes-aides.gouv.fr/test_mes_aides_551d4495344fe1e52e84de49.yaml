@@ -1,7 +1,7 @@
 name: Abattement de 30% pour le chômage indemnisé
 keywords:
-  - abattements
-  - "cmu-c/acs"
+- abattements
+- "cmu-c/acs"
 description: |
   Une personne qui a eu une période de travail (9 mois de salaires = 8897 euros) puis a touché une allocation chômage = 1800/mois au cours des 3 derniers mois devrait se voir appliquer 30% d'abattement sur ses salaires
   30% de 8897 = 6228

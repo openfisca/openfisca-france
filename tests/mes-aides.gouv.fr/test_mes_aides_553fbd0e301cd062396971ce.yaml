@@ -1,7 +1,7 @@
 name: "TNS Auto-entrepreneur (vente de marchandise)"
 keywords:
-  - rsa
-  - tns
+- rsa
+- tns
 description: |
   (1400+500+150)/3 = 683,3*(1-0,71)= 198,16
   (MF + 62%198,16) - (198,16 + FL)

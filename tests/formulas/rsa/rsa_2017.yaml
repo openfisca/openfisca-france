@@ -57,35 +57,35 @@
   period: 2017-01
   relative_error_margin: 0.01
   individus:
-    - id: 1
-      age:
-        2017-01: 40
-        2016-12: 40
-        2016-11: 40
-        2016-10: 40
-      salaire_net:
-        2017-01: 400
-        2016-12: 400
-        2016-11: 400
-        2016-10: 400
-    - id: 2
-      age:
-        2017-01: 40
-        2016-12: 40
-        2016-11: 40
-        2016-10: 40
-    - id: 3
-      age:
-        2017-01: 4
-        2016-12: 4
-        2016-11: 4
-        2016-10: 4
-    - id: 4
-      age:
-        2017-01: 5
-        2016-12: 5
-        2016-11: 5
-        2016-10: 5
+  - id: 1
+    age:
+      2017-01: 40
+      2016-12: 40
+      2016-11: 40
+      2016-10: 40
+    salaire_net:
+      2017-01: 400
+      2016-12: 400
+      2016-11: 400
+      2016-10: 400
+  - id: 2
+    age:
+      2017-01: 40
+      2016-12: 40
+      2016-11: 40
+      2016-10: 40
+  - id: 3
+    age:
+      2017-01: 4
+      2016-12: 4
+      2016-11: 4
+      2016-10: 4
+  - id: 4
+    age:
+      2017-01: 5
+      2016-12: 5
+      2016-11: 5
+      2016-10: 5
   familles:
     parents: [1, 2]
     enfants: [3, 4]
@@ -104,12 +104,12 @@
   period: 2017-01
   relative_error_margin: 0.01
   individus:
-    - id: 1
-      age: 40
-    - id: 3
-      age: 4
-    - id: 4
-      age: 5
+  - id: 1
+    age: 40
+  - id: 3
+    age: 4
+  - id: 4
+    age: 5
   familles:
     rsa_isolement_recent: true
     parents: [1]
@@ -131,94 +131,94 @@
   period: 2017-01
   relative_error_margin: 0.01
   individus:
-    - id: 1
-      salaire_net:
-        2017-01: 200
-        2016-12: 700
-        2016-11: 200
-        2016-10: 200
-      primes_salaires_net:
-        2016-12: 500
-        2016-11: 0
-        2016-10: 0
+  - id: 1
+    salaire_net:
+      2017-01: 200
+      2016-12: 700
+      2016-11: 200
+      2016-10: 200
+    primes_salaires_net:
+      2016-12: 500
+      2016-11: 0
+      2016-10: 0
   output_variables:
     rsa:
       2017-01: 223
     rsa_fictif:
-        2016-12: 0
-        2016-11: 535.17 - 200
-        2016-10: 535.17 - 200
+      2016-12: 0
+      2016-11: 535.17 - 200
+      2016-10: 535.17 - 200
 
 - name: "Les indemnités de licenciement sur un mois ne sont pas moyennées"
   period: 2017-01
   relative_error_margin: 0.01
   individus:
-    - id: 1
-      salaire_net:
-        2017-01: 400
-        2016-12: 400
-        2016-11: 0
-        2016-10: 2000
-      indemnite_fin_contrat_net:
-        2016-12: 0
-        2016-11: 0
-        2016-10: 1500
+  - id: 1
+    salaire_net:
+      2017-01: 400
+      2016-12: 400
+      2016-11: 0
+      2016-10: 2000
+    indemnite_fin_contrat_net:
+      2016-12: 0
+      2016-11: 0
+      2016-10: 1500
   output_variables:
     rsa:
       2017-01: 156.8
     rsa_fictif:
-        2016-12: 535.17 - 300
-        2016-11: 535.17 - 300
-        2016-10: 0
+      2016-12: 535.17 - 300
+      2016-11: 535.17 - 300
+      2016-10: 0
 
 - name: "Les derniers benefices agricoles et autres TNS sont pris en compte dans la BR du RSA"
   period: 2017-01
   relative_error_margin: 0.01
   individus:
-    - id: 1
-      tns_benefice_exploitant_agricole:
-        2016: 2400
+  - id: 1
+    tns_benefice_exploitant_agricole:
+      2016: 2400
   output_variables:
     rsa:
       2017-01: 535.17 - 200
     rsa_montant:
       2017-01: 535.17 - 200
     rsa_fictif:
-        2016-12: 535.17 - 200
-        2016-11: 535.17 - 200
-        2016-10: 535.17 - 200
+      2016-12: 535.17 - 200
+      2016-11: 535.17 - 200
+      2016-10: 535.17 - 200
 
 - name: "Les derniers benefices TNS sont pris en compte dans la BR du RSA"
   period: 2017-01
   relative_error_margin: 0.01
   individus:
-    - id: 1
-      tns_autres_revenus:
-        2016: 2400
-      tns_micro_entreprise_benefice:
-        2016: 2400
+  - id: 1
+    tns_autres_revenus:
+      2016: 2400
+    tns_micro_entreprise_benefice:
+      2016: 2400
   output_variables:
     rsa:
       2017-01: 535.17 - 400
     rsa_montant:
       2017-01: 535.17 - 400
     rsa_fictif:
-        2016-12: 535.17 - 400
-        2016-11: 535.17 - 400
-        2016-10: 535.17 - 400
+      2016-12: 535.17 - 400
+      2016-11: 535.17 - 400
+      2016-10: 535.17 - 400
 
 - name: "Effets figés introduits en 2017 (exemple inspiré du suivi législatif)"
   period: 2017-01
   relative_error_margin: 0.02
   individus:
-    - id: 1
-      salaire_net:
-        2017-01: 1000
-        2016-12: 1000
-        2016-11: 500
-        2016-10: 0
-    - id: 2
-    - id: 3
+  - id: 1
+    salaire_net:
+      2017-01: 1000
+      2016-12: 1000
+      2016-11: 500
+      2016-10: 0
+  - id: 2
+  - id: 3
   familles:
     parents: [1]
     enfants: [2, 3]

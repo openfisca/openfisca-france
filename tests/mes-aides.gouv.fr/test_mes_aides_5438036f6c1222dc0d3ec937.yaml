@@ -1,7 +1,7 @@
 name: Pas d'éligibilité si on n'a pas travaillé 5 ans au cours des 10 dernières années
 keywords:
-  - ass
-  - eligibilité
+- ass
+- eligibilité
 period: "month:2014-10"
 relative_error_margin: 0.02
 individus:

@@ -1,7 +1,7 @@
 name: "Ressources < plafond, montant = différence plafond - ressources"
 keywords:
-  - aspa
-  - montant
+- aspa
+- montant
 period: "month:2014-07"
 relative_error_margin: 0.02
 individus:

@@ -957,15 +957,15 @@
   foyers_fiscaux:
     declarants: [1, 2]
   individus:
-    - id: 1
-      date_naissance: "1985-01-01"
-      salaire_imposable: 30000
-      statut_marital: pacse
+  - id: 1
+    date_naissance: "1985-01-01"
+    salaire_imposable: 30000
+    statut_marital: pacse
 
-    - id: 2
-      date_naissance: "1985-01-01"
-      salaire_imposable: 0
-      statut_marital: pacse
+  - id: 2
+    date_naissance: "1985-01-01"
+    salaire_imposable: 0
+    statut_marital: pacse
   output_variables:
     decote_gain_fiscal: 803
     irpp: -264

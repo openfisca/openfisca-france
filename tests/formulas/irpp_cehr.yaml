@@ -11,11 +11,11 @@
   foyers_fiscaux:
     declarants: ["parent1", "parent2"]
   individus:
-    - id: "parent1"
-      age: 40
-      salaire_imposable: 500000
-    - id: "parent2"
-      age: 40
+  - id: "parent1"
+    age: 40
+    salaire_imposable: 500000
+  - id: "parent2"
+    age: 40
   output_variables:
     cehr: 0
 
@@ -33,11 +33,11 @@
   foyers_fiscaux:
     declarants: ["parent1", "parent2"]
   individus:
-    - id: "parent1"
-      age: 40
-      salaire_imposable: 1500000
-    - id: "parent2"
-      age: 40
+  - id: "parent1"
+    age: 40
+    salaire_imposable: 1500000
+  - id: "parent2"
+    age: 40
   output_variables:
     irpp: -616914
 
@@ -47,12 +47,12 @@
   foyers_fiscaux:
     declarants: ["parent1", "parent2"]
   individus:
-    - id: "parent1"
-      age: 40
-      salaire_imposable: 750000
-    - id: "parent2"
-      age: 40
-      salaire_imposable: 750000
+  - id: "parent1"
+    age: 40
+    salaire_imposable: 750000
+  - id: "parent2"
+    age: 40
+    salaire_imposable: 750000
   output_variables:
     irpp: -610543
 
