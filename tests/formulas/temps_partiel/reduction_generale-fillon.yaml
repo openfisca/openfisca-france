@@ -8,7 +8,7 @@
     salaire_de_base: 1257.4 # ~ équivalent SMIC
     contrat_de_travail: temps_partiel
   output_variables:
-    allegement_fillon: |
+    allegement_fillon: >
       1257.4 *
       (
         (.2802 / 0.6)

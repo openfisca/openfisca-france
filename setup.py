@@ -44,7 +44,7 @@ setup(
             'nose',
             'flake8 == 3.4.1',
             'requests >= 2.8',
-            'ruamel.yaml == 0.15.58',
+            'ruamel.yaml >= 0.15.61, < 0.16',
             'scipy >= 0.17', # Only used to test de_net_a_brut reform
             'yamllint >= 1.11.1, < 1.12',
             ],
