@@ -9,6 +9,13 @@ from openfisca_france.model.base import *  # noqa analysis:ignore
 from openfisca_france.model.prestations.prestations_familiales.base_ressource import nb_enf
 
 
+class rsa_condition_heures_travail_remplie(Variable):
+    value_type = bool
+    entity = Famille
+    label = u"Éligible à la RSA si la perssone est moins de vingt-cinq ans et avoir travaillé deux ans sur les 3 dernières années"
+    definition_period = MONTH
+
+
 class rsa_base_ressources(Variable):
     value_type = float
     label = u"Base ressources du Rmi ou du Rsa"
@@ -760,8 +767,9 @@ class rsa_eligibilite(Variable):
 
         etudiant_i = famille.members('etudiant', period)
 
+        rsa_condition_heures_travail_remplie = famille("rsa_condition_heures_travail_remplie", period)
         # rsa_nb_enfants est à valeur pour une famille, il faut le projeter sur les individus avant de faire une opération avec age_i
-        condition_age_i = famille.project(rsa_nb_enfants > 0) + (age_i > rsa.age_pac)
+        condition_age_i = famille.project(rsa_nb_enfants > 0) + (age_i > rsa.age_pac) + rsa_condition_heures_travail_remplie
 
         return (
             famille.any(condition_age_i * not_(etudiant_i), role = Famille.PARENT)

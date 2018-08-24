@@ -180,12 +180,12 @@
       2018-04: 50
       2018-03: 50
       2018-02: 50
-#    rsa_condition_heures_travail_remplie:
-#      2018-05: true
-#      2018-04: true
-#      2018-03: true
-#      2018-02: true
-#      2018-01: true
+    rsa_condition_heures_travail_remplie:
+      2018-05: true
+      2018-04: true
+      2018-03: true
+      2018-02: true
+      2018-01: true
   foyers_fiscaux:
     declarants: ["personne1"]
   menages:
@@ -460,7 +460,6 @@
         2018-02: 134
   output_variables:
     rsa: 0
-    # absence de données permettant de representer le nombre d'heures de travail dans les 3 ans précédants la demande
 
 - name: "RSA Cas Non Passant N°5"
   period: 2018-05
@@ -487,7 +486,6 @@
         2018-02: 510
   output_variables:
     rsa: 0
-    # absence de données permettant de representer le nombre d'heures de travail dans les 3 ans précédants la demande
 
 - name: "RSA Cas Non Passant N°6"
   period: 2018-05

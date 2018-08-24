@@ -1,5 +1,6 @@
 # Changelog
 
+<<<<<<< HEAD
 ### 24.10.0 [#994](https://github.com/openfisca/openfisca-france/pull/994)
 
 * Évolution du système socio-fiscal.
