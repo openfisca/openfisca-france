@@ -83,6 +83,7 @@ class contribution_exceptionnelle_solidarite(Variable):
     entity = Individu
     label = u"Cotisation exceptionnelle au fonds de solidarité (salarié)"
     definition_period = MONTH
+    end = '2018-01-01'
 
     def formula(individu, period, parameters):
         traitement_indiciaire_brut = individu('traitement_indiciaire_brut', period)

@@ -257,7 +257,7 @@ class formation_professionnelle(Variable):
         cotisation_0_9 = (taille_entreprise == TypesTailleEntreprise.moins_de_10) * apply_bareme(
             individu,
             period,
-            parameters, 
+            parameters,
             cotisation_type = 'employeur',
             bareme_name = 'formprof_09',
             variable_name = 'formation_professionnelle',
@@ -350,8 +350,6 @@ class taxe_apprentissage(Variable):
             cotisation_regime_general,
         )
 
-        # cotisation = salarie_regime_alsace_moselle * cotisation_regime_alsace_moselle + (1 - salarie_regime_alsace_moselle) * cotisation_regime_general
-
         return cotisation * redevable_taxe_apprentissage
 
 
@@ -371,16 +369,14 @@ class taxe_salaires(Variable):
         prise_en_charge_employeur_prevoyance_complementaire = individu(
             'prise_en_charge_employeur_prevoyance_complementaire', period, options = [ADD])
 
-        law = parameters(period)
-        entreprise_est_association_non_lucrative = \
-            individu('entreprise_est_association_non_lucrative', period)
+        entreprise_est_association_non_lucrative = individu('entreprise_est_association_non_lucrative', period)
         effectif_entreprise = individu('effectif_entreprise', period)
 
         # impots.gouv.fr
         # La taxe est due notamment par les : [...] organismes sans but lucratif
         assujettissement = assujettie_taxe_salaires + entreprise_est_association_non_lucrative
 
-        parametres = law.cotsoc.taxes_sal
+        parametres = parameters(period).cotsoc.taxes_sal
         bareme = parametres.taux_maj
         base = assiette_cotisations_sociales + (
                 - prevoyance_obligatoire_cadre + prise_en_charge_employeur_prevoyance_complementaire
