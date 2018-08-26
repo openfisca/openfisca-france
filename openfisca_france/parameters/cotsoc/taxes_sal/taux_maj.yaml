@@ -83,7 +83,7 @@ brackets:
 - rate:
     2013-01-01:
       value: 0.1575
-    2018-01-01
+    2018-01-01:
       value: null
   threshold:
     2013-01-01:
