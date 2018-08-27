@@ -24,8 +24,6 @@ brackets:
       value: 0.1083
     2020-01-01:
       value: 0.1110
-    2021-01-01:
-      value: 0.1055
   threshold:
     1984-01-01:
       value: 0.0

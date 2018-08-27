@@ -56,15 +56,7 @@ class assiette_cotisations_sociales_public(Variable):
             + (categorie_salarie == TypesCategorieSalarie.public_titulaire_militaire)
             + (categorie_salarie == TypesCategorieSalarie.public_titulaire_territoriale)
             + (categorie_salarie == TypesCategorieSalarie.public_titulaire_hospitaliere)
-            + (categorie_salarie == TypesCategorieSalarie.public_non_titulaire)
-            + (categorie_salarie == TypesCategorieSalarie.non_pertinent)
-        )
-        # titulaire = public =(
-        #     (categorie_salarie == TypesCategorieSalarie.public_titulaire_etat)
-        #     + (categorie_salarie == TypesCategorieSalarie.public_titulaire_militaire)
-        #     + (categorie_salarie == TypesCategorieSalarie.public_titulaire_territoriale)
-        #     + (categorie_salarie == TypesCategorieSalarie.public_titulaire_hospitaliere)
-        # )
+            )
 
         assiette = public * (
             remuneration_principale
@@ -83,6 +75,7 @@ class contribution_exceptionnelle_solidarite(Variable):
     entity = Individu
     label = u"Cotisation exceptionnelle au fonds de solidarité (salarié)"
     definition_period = MONTH
+    end = '2018-01-01'
 
     def formula(individu, period, parameters):
         traitement_indiciaire_brut = individu('traitement_indiciaire_brut', period)
@@ -96,9 +89,9 @@ class contribution_exceptionnelle_solidarite(Variable):
         plafond_securite_sociale = individu('plafond_securite_sociale', period)
         salaire_de_base = individu('salaire_de_base', period)
 
-        _P = parameters(period)
+        parameters = parameters(period)
 
-        seuil_assuj_fds = seuil_fds(_P)
+        seuil_assujetissement_fds = compute_seuil_fds(parameters)
 
         assujettis = (
             (categorie_salarie == TypesCategorieSalarie.public_titulaire_etat) +
@@ -106,12 +99,12 @@ class contribution_exceptionnelle_solidarite(Variable):
             (categorie_salarie == TypesCategorieSalarie.public_titulaire_hospitaliere) +
             (categorie_salarie == TypesCategorieSalarie.public_non_titulaire)
             ) * (
-            (traitement_indiciaire_brut + salaire_de_base - hsup) > seuil_assuj_fds
+            (traitement_indiciaire_brut + salaire_de_base - hsup) > seuil_assujetissement_fds
             )
 
         # TODO: check assiette voir IPP
         cotisation = apply_bareme_for_relevant_type_sal(
-            bareme_by_type_sal_name = _P.cotsoc.cotisations_salarie,
+            bareme_by_type_sal_name = parameters.cotsoc.cotisations_salarie,
             bareme_name = "excep_solidarite",
             base = assujettis * min_(
                 (
@@ -120,7 +113,7 @@ class contribution_exceptionnelle_solidarite(Variable):
                     primes_fonction_publique +
                     (categorie_salarie == TypesCategorieSalarie.public_non_titulaire) * cotisations_salariales_contributives
                     ),
-                _P.prelevements_sociaux.cotisations_sociales.fds.plafond_base_solidarite,
+                parameters.prelevements_sociaux.cotisations_sociales.fds.plafond_base_solidarite,
                 ),
             plafond_securite_sociale = plafond_securite_sociale,
             categorie_salarie = categorie_salarie,
@@ -297,11 +290,11 @@ class rafp_employeur(Variable):
         return - rafp_employeur
 
 
-def seuil_fds(law):
+def compute_seuil_fds(parameters):
     '''
-    Calcul du seuil mensuel d'assujetissement à la contribution au fond de solidarité
+    Calcule le seuil mensuel d'assujetissement à la contribution au fond de solidarité
     '''
-    fds = law.prelevements_sociaux.cotisations_sociales.fds
-    pt_ind_mensuel = law.cotsoc.sal.fonc.commun.pt_ind / 12
+    fds = parameters.prelevements_sociaux.cotisations_sociales.fds
+    pt_ind_mensuel = fds.valeur_annuelle_point_fp / 12
     seuil_mensuel = math.floor((pt_ind_mensuel * fds.indice_majore_de_reference))  # TODO improve
     return seuil_mensuel

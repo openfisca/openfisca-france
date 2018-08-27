@@ -1,12 +1,31 @@
 # Changelog
 
-###  24.6.0 [#1101](https://github.com/openfisca/openfisca-france/pull/1101)
+##  24.6.0 [#1101](https://github.com/openfisca/openfisca-france/pull/1101)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : toutes.
 * Zones impactées : `prelevements_obligatoires/prelevements_sociaux/contributions_sociales/remplacement`.
 * Détails :
   - Ajout d'une formule pour calculer les taux de CSG sur les revenus de remplacement
+ 
+ ###  24.5.3 [#1097](https://github.com/openfisca/openfisca-france/pull/1097)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2014.
+* Zones impactées :
+  - `prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/travail_fonction_publique`.
+  - `prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/travail_prive`.
+
+* Détails :
+  - Fin de la cotisation exceptionnelle au fonds de solidarité en 2018.
+  - Mise à jour taux de cotisation CNRACL depuis 2014.
+  - Mise à jour taux de cotisation FEH depuis 2017.
+  - Mise à jour assiette AGFF depuis 2016.
+  - Correction taux assurance maladie collectivités locales depuis 2018
+  - Correction taux de cotisation au fonds de pension de l'Etat depuis 2014
+  - Mise à jour barèmes taxes sur les salaires depuis 2017
+  - Mise à jour allègement Fillon pour 2018
+  - Mise à jour des paramètres du seuil d'assujettissement au FDS depuis 2016
 
 ###  24.5.2 [#1094](https://github.com/openfisca/openfisca-france/pull/1094)
 
