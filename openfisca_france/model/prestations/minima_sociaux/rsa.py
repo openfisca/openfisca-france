@@ -300,6 +300,34 @@ class rsa_base_ressources_prestations_familiales(Variable):
     def formula_2017_01_01(famille, mois_demande, parameters, mois_courant):
         # TODO : Neutraliser les ressources de type prestations familiales quand elles sont interrompues
         prestations_calculees = [
+            'rsa_forfait_asf',
+            'paje_base',
+        ]
+        prestations_autres = [
+            'paje_clca',
+            'paje_prepare',
+            'paje_colca',
+        ]
+
+        # On réinjecte le montant des prestations calculées
+        result = sum(famille(prestation, mois_demande) for prestation in prestations_calculees)
+
+        result += sum(famille(prestation, mois_courant) for prestation in prestations_autres)
+
+        cf_non_majore_avant_cumul = famille('cf_non_majore_avant_cumul', mois_demande)
+        cf = famille('cf', mois_demande)
+        # Seul le montant non majoré est pris en compte dans la base de ressources du RSA
+        cf_non_majore = (cf > 0) * cf_non_majore_avant_cumul
+
+        af_base = famille('af_base', mois_demande)
+        af = famille('af', mois_demande)
+
+        result = result + cf_non_majore + min_(af_base, af)  # Si des AF on été injectées et sont plus faibles que le cf
+
+        return result
+
+    def formula_2018_01_01(famille, mois_demande, parameters, mois_courant):
+        prestations_calculees = [
             'paje_base',
         ]
         prestations_autres = [
@@ -636,6 +664,19 @@ class rsa_fictif(Variable):
         rsa_socle_majore = famille('rsa_socle_majore', mois_courant)
         rsa_socle = max_(rsa_socle_non_majore, rsa_socle_majore)
 
+        rsa_forfait_logement = famille('rsa_forfait_logement', mois_demande)
+        rsa_base_ressources = famille('rsa_base_ressources', mois_demande, extra_params = [mois_courant])
+
+        montant = rsa_socle - rsa_forfait_logement - rsa_base_ressources
+        montant = max_(montant, 0)
+
+        return montant
+
+    def formula_2018_01_01(famille, mois_courant, parameters, mois_demande):
+        rsa_socle_non_majore = famille('rsa_socle', mois_courant)
+        rsa_socle_majore = famille('rsa_socle_majore', mois_courant)
+        rsa_socle = max_(rsa_socle_non_majore, rsa_socle_majore)
+
         rsa_forfait_logement = famille('rsa_forfait_logement', mois_courant)
         rsa_base_ressources = famille('rsa_base_ressources', mois_demande, extra_params = [mois_courant])
 
@@ -755,6 +796,28 @@ class rsa_eligibilite(Variable):
     definition_period = MONTH
 
     def formula(famille, period, parameters):
+        rsa_nb_enfants = famille('rsa_nb_enfants', period)
+        rsa_eligibilite_tns = famille('rsa_eligibilite_tns', period)
+        condition_nationalite_i = famille.members('rsa_condition_nationalite', period)
+        condition_nationalite = famille.any(condition_nationalite_i, role = Famille.PARENT)
+
+        rmi = parameters(period).prestations.minima_sociaux.rmi
+        rsa = parameters(period).prestations.minima_sociaux.rsa
+
+        age_i = famille.members('age', period)
+
+        etudiant_i = famille.members('etudiant', period)
+
+        # rsa_nb_enfants est à valeur pour une famille, il faut le projeter sur les individus avant de faire une opération avec age_i
+        condition_age_i = famille.project(rsa_nb_enfants > 0) + (age_i > rsa.age_pac)
+
+        return (
+            famille.any(condition_age_i * not_(etudiant_i), role = Famille.PARENT)
+            * condition_nationalite
+            * rsa_eligibilite_tns
+            )
+
+    def formula_2018_01_01(famille, period, parameters):
         rsa_nb_enfants = famille('rsa_nb_enfants', period)
         rsa_eligibilite_tns = famille('rsa_eligibilite_tns', period)
         condition_nationalite_i = famille.members('rsa_condition_nationalite', period)
