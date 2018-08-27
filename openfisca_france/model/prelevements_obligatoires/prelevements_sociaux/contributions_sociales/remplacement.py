@@ -45,12 +45,15 @@ class taux_csg_remplacement(Variable):
         return taux_csg_remplacement
 
     def formula_1991_02_01(individu, period, parameters):
-        irpp = individu.foyer_fiscal('irpp', period = period.n_2, max_nb_cycles = 1)
-        taux_csg_remplacement = where(
-            irpp <= parameters(period.start).prelevements_sociaux.contributions.csg.remplacement.pensions_de_retraite_et_d_invalidite.seuil_d_ir,
-            TypesTauxCSGRemplacement.exonere,
-            TypesTauxCSGRemplacement.taux_plein,
-            )
+        if period.start >= 2005:
+            irpp = individu.foyer_fiscal('irpp', period = period.n_2)
+            taux_csg_remplacement = where(
+                irpp <= parameters(period.start).prelevements_sociaux.contributions.csg.remplacement.pensions_de_retraite_et_d_invalidite.seuil_d_ir,
+                TypesTauxCSGRemplacement.exonere,
+                TypesTauxCSGRemplacement.taux_plein,
+                )
+        else:
+            taux_csg_remplacement = TypesTauxCSGRemplacement.taux_plein
         return taux_csg_remplacement
 
 
