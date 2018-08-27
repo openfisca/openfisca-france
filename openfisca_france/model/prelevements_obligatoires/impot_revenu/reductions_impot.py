@@ -3775,6 +3775,35 @@ class invlst(Variable):
     # TODO : verrifier la formule de cette réduction pour les années 2004-2013, les cases changent de signification d'une année à l'autre, cela ne semble pas pris en compte dans le calcul (ex: f7xd)
 
 
+class invrev(Variable):
+    value_type = float
+    entity = FoyerFiscal
+    label = u"Réduction d'impôt en faveur des investissements dans les résidences de tourisme"
+    reference = "http://bofip.impots.gouv.fr/bofip/6266-PGP"
+    end = '2003-12-31'
+    definition_period = YEAR
+
+    def formula_2002_01_01(foyer_fiscal, period, parameters):
+        '''
+        Investissements locatifs dans les résidences de tourisme situées dans une zone de
+        revitalisation rurale (cases GS, GT, XG, GU et GV)
+        2002-2003
+        TODO 1/4 codé en dur
+        '''
+        maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
+        f7gs = foyer_fiscal('f7gs', period)
+        f7gt = foyer_fiscal('f7gt', period)
+        f7xg = foyer_fiscal('f7xg', period)
+        f7gu = foyer_fiscal('f7gu', period)
+        f7gv = foyer_fiscal('f7gv', period)
+        P = parameters(period).impot_revenu.reductions_impots.invrev
+
+        return (P.taux_gs * min_(f7gs, P.seuil_gs * (1 + maries_ou_pacses)) / 4 +
+                 P.taux_gu * min_(f7gu, P.seuil_gu * (1 + maries_ou_pacses)) / 4 +
+                 P.taux_xg * min_(f7xg, P.seuil_xg * (1 + maries_ou_pacses)) / 4 +
+P.taux_gt * f7gt + P.taux_gt * f7gv)
+
+
 class locmeu(Variable):
     value_type = float
     entity = FoyerFiscal
