@@ -1,5 +1,13 @@
 # Changelog
 
+###  24.6.0 [#1101](https://github.com/openfisca/openfisca-france/pull/1101)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : toutes.
+* Zones impactées : `prelevements_obligatoires/prelevements_sociaux/contributions_sociales/remplacement`.
+* Détails :
+  - Ajout d'une formule pour calculer les taux de CSG sur les revenus de remplacement
+
 ###  24.5.2 [#1094](https://github.com/openfisca/openfisca-france/pull/1094)
 
 * Évolution du système socio-fiscal.
