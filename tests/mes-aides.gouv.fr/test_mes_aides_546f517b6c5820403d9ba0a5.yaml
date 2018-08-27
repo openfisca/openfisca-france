@@ -1,7 +1,7 @@
 name: Personne seule, ressources > plafond de 1137,50 euros
 keywords:
-  - ass
-  - plafonds
+- ass
+- plafonds
 period: "month:2014-11"
 relative_error_margin: 0.02
 individus:

@@ -1,7 +1,7 @@
 name: "Femme enceinte isolée : calcul sur base couple"
 keywords:
-  - al
-  - location
+- al
+- location
 description: |
   Pour une femme enceinte isolée sans enfants, on fait comme si elle était en couple. cf. D542-6 du CSS : http://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000006737370&cidTexte=LEGITEXT000006073189
 

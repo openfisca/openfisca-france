@@ -1,7 +1,7 @@
 name: Les aides au logement ne sont pas à prendre en compte
 keywords:
-  - aspa
-  - base ressources
+- aspa
+- base ressources
 description: "L'aide au logement est exclue des ressources (conformément à l'art. 15 de la loi n°77-1 du 03/01/1977 et à l'annexe de la circulaire Cnav n) 2007-15 du 01/02/2007)"
 period: "month:2014-11"
 relative_error_margin: 0.02

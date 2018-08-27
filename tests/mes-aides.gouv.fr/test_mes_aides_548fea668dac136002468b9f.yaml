@@ -1,7 +1,7 @@
 name: Pas d'éligibilité si chômeur indemnisé
 keywords:
-  - ass
-  - eligibilité
+- ass
+- eligibilité
 description: |
   L'intéressé doit être en fin de droit ARE pour bénéficier de l'ASS, ici il n'a pas décoché la case "je continuerai à percevoir cette ressource", donc pas droit à l'ASS.
 

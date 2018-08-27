@@ -1,7 +1,7 @@
 name: Les ressources du conjoint doivent être ajoutées à la base ressources
 keywords:
-  - al
-  - base ressources
+- al
+- base ressources
 description: |
   Ce test vérifie simplement que les ressources n-2 déclarées par le conjoint sont bien intégrées dans la base de ressources.
   Ici il déclare 3597 * 4 = 14388 euros de revenus et 3000 euros de pensions alimentaires versées donc R = (14388 * 0.9) - 3000 ~= 10000
@@ -24,45 +24,45 @@ description: |
 period: "month:2015-01"
 relative_error_margin: 0.02
 individus:
-  - age: 34
-    age_en_mois: 413
-    date_naissance: "1980-08-12"
-    chomage_imposable:
-      2013: 0
-    etudiant: 0
-    id: 54c61ba694cccbb0584256c1
-    inapte_travail: 0
-    handicap: 0
-    pensions_alimentaires_percues:
-      2013: 0
-    retraite_imposable:
-      2013: 0
-    salaire_imposable:
-      2013: 0
-    statut_marital: marie
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 34
-    age_en_mois: 413
-    date_naissance: "1980-08-12"
-    chomage_imposable:
-      2013: 3597
-    etudiant: 0
-    id: 54c61ba694cccbb0584256b4
-    inapte_travail: 0
-    handicap: 0
-    pensions_alimentaires_percues:
-      2013: 3597
-    retraite_imposable:
-      2013: 3597
-    salaire_imposable:
-      2013: 3597
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
+- age: 34
+  age_en_mois: 413
+  date_naissance: "1980-08-12"
+  chomage_imposable:
+    2013: 0
+  etudiant: 0
+  id: 54c61ba694cccbb0584256c1
+  inapte_travail: 0
+  handicap: 0
+  pensions_alimentaires_percues:
+    2013: 0
+  retraite_imposable:
+    2013: 0
+  salaire_imposable:
+    2013: 0
+  statut_marital: marie
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- age: 34
+  age_en_mois: 413
+  date_naissance: "1980-08-12"
+  chomage_imposable:
+    2013: 3597
+  etudiant: 0
+  id: 54c61ba694cccbb0584256b4
+  inapte_travail: 0
+  handicap: 0
+  pensions_alimentaires_percues:
+    2013: 3597
+  retraite_imposable:
+    2013: 3597
+  salaire_imposable:
+    2013: 3597
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
 familles:
   acs:
     2014-01: 0
@@ -247,8 +247,8 @@ familles:
     2014-11: 0
     2014-12: 0
   parents:
-    - 54c61ba694cccbb0584256c1
-    - 54c61ba694cccbb0584256b4
+  - 54c61ba694cccbb0584256c1
+  - 54c61ba694cccbb0584256b4
   proprietaire_proche_famille: false
   rsa:
     2014-01: 0
@@ -265,8 +265,8 @@ familles:
     2014-12: 0
 foyers_fiscaux:
   declarants:
-    - 54c61ba694cccbb0584256c1
-    - 54c61ba694cccbb0584256b4
+  - 54c61ba694cccbb0584256c1
+  - 54c61ba694cccbb0584256b4
   pensions_alimentaires_versees:
     2013: -3000
 menages:

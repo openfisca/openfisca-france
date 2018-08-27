@@ -1,7 +1,7 @@
 name: L'AAH du demandeur est exclue de la base ressource
 keywords:
-  - aspa
-  - base ressources
+- aspa
+- base ressources
 description: "L' AAH du demandeur doit être exclue : application lettre ministérielle n°558 G/79 du 19/03/1982 et annexe circulaire Cnav n°2007/15 du 01/02/2007"
 period: "month:2014-11"
 relative_error_margin: 0.02

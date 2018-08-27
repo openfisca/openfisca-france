@@ -1,8 +1,8 @@
 name: "RSA - PERSONNE ISOLEE SANS ENFANT AVEC NEUTRALISATION"
 keywords:
-  - abattements
-  - base ressources
-  - recette
+- abattements
+- base ressources
+- recette
 description: |
   Test créé à partir d'un dossier de demande de RSA :
   Ces paramètres (ressources non déclarables, situation personnelle…) n'ont pas pu être capturés : aucune

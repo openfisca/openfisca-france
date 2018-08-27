@@ -4,7 +4,7 @@
     declarants: ["declarant1"]
     personnes_a_charge: []
   individus:
-    - id: "declarant1"
+  - id: "declarant1"
   output_variables:
     logement_social_categorie_menage: categorie_1
 
@@ -14,10 +14,10 @@
     declarants: ["declarant1", "declarant2"]
     personnes_a_charge: []
   individus:
-    - id: "declarant1"
-      age: 30
-    - id: "declarant2"
-      age: 26
+  - id: "declarant1"
+    age: 30
+  - id: "declarant2"
+    age: 26
   output_variables:
     logement_social_categorie_menage: categorie_2
 
@@ -31,12 +31,12 @@
     conjoint: "declarant2"
     enfants: ["enfant1"]
   individus:
-    - id: "declarant1"
-      age: 30
-    - id: "declarant2"
-      age: 26
-    - id: "enfant1"
-      age: 12
+  - id: "declarant1"
+    age: 30
+  - id: "declarant2"
+    age: 26
+  - id: "enfant1"
+    age: 12
   output_variables:
     logement_social_categorie_menage: categorie_3
 
@@ -49,10 +49,10 @@
     personne_de_reference: "declarant1"
     enfants: ["enfant1"]
   individus:
-    - id: "declarant1"
-      age: 30
-    - id: "enfant1"
-      age: 12
+  - id: "declarant1"
+    age: 30
+  - id: "enfant1"
+    age: 12
   output_variables:
     logement_social_categorie_menage: categorie_3
 
@@ -62,10 +62,10 @@
     declarants: ["declarant1", "declarant2"]
     personnes_a_charge: []
   individus:
-    - id: "declarant1"
-      age: 30
-    - id: "declarant2"
-      age: 25
+  - id: "declarant1"
+    age: 30
+  - id: "declarant2"
+    age: 25
   output_variables:
     logement_social_categorie_menage: categorie_3
 
@@ -79,14 +79,14 @@
     conjoint: "declarant2"
     enfants: ["enfant1", "enfant2"]
   individus:
-    - id: "declarant1"
-      age: 30
-    - id: "declarant2"
-      age: 26
-    - id: "enfant1"
-      age: 12
-    - id: "enfant2"
-      age: 10
+  - id: "declarant1"
+    age: 30
+  - id: "declarant2"
+    age: 26
+  - id: "enfant1"
+    age: 12
+  - id: "enfant2"
+    age: 10
   output_variables:
     logement_social_categorie_menage: categorie_4
 
@@ -99,12 +99,12 @@
     personne_de_reference: "declarant1"
     enfants: ["enfant1", "enfant2"]
   individus:
-    - id: "declarant1"
-      age: 30
-    - id: "enfant1"
-      age: 12
-    - id: "enfant2"
-      age: 10
+  - id: "declarant1"
+    age: 30
+  - id: "enfant1"
+    age: 12
+  - id: "enfant2"
+    age: 10
   output_variables:
     logement_social_categorie_menage: categorie_4
 
@@ -118,16 +118,16 @@
     conjoint: "declarant2"
     enfants: ["enfant1", "enfant2", "enfant3"]
   individus:
-    - id: "declarant1"
-      age: 30
-    - id: "declarant2"
-      age: 30
-    - id: "enfant1"
-      age: 12
-    - id: "enfant2"
-      age: 10
-    - id: "enfant3"
-      age: 8
+  - id: "declarant1"
+    age: 30
+  - id: "declarant2"
+    age: 30
+  - id: "enfant1"
+    age: 12
+  - id: "enfant2"
+    age: 10
+  - id: "enfant3"
+    age: 8
   output_variables:
     logement_social_categorie_menage: categorie_5
 
@@ -140,14 +140,14 @@
     personne_de_reference: "declarant1"
     enfants: ["enfant1", "enfant2", "enfant3"]
   individus:
-    - id: "declarant1"
-      age: 30
-    - id: "enfant1"
-      age: 12
-    - id: "enfant2"
-      age: 10
-    - id: "enfant3"
-      age: 8
+  - id: "declarant1"
+    age: 30
+  - id: "enfant1"
+    age: 12
+  - id: "enfant2"
+    age: 10
+  - id: "enfant3"
+    age: 8
   output_variables:
     logement_social_categorie_menage: categorie_5
 
@@ -161,18 +161,18 @@
     conjoint: "declarant2"
     enfants: ["enfant1", "enfant2", "enfant3", "enfant4"]
   individus:
-    - id: "declarant1"
-      age: 30
-    - id: "declarant2"
-      age: 30
-    - id: "enfant1"
-      age: 12
-    - id: "enfant2"
-      age: 10
-    - id: "enfant3"
-      age: 8
-    - id: "enfant4"
-      age: 8
+  - id: "declarant1"
+    age: 30
+  - id: "declarant2"
+    age: 30
+  - id: "enfant1"
+    age: 12
+  - id: "enfant2"
+    age: 10
+  - id: "enfant3"
+    age: 8
+  - id: "enfant4"
+    age: 8
   output_variables:
     logement_social_categorie_menage: categorie_6
 
@@ -185,36 +185,36 @@
     personne_de_reference: "declarant1"
     enfants: ["enfant1", "enfant2", "enfant3", "enfant4"]
   individus:
-    - id: "declarant1"
-      age: 30
-    - id: "enfant1"
-      age: 12
-    - id: "enfant2"
-      age: 10
-    - id: "enfant3"
-      age: 8
-    - id: "enfant4"
-      age: 8
+  - id: "declarant1"
+    age: 30
+  - id: "enfant1"
+    age: 12
+  - id: "enfant2"
+    age: 10
+  - id: "enfant3"
+    age: 8
+  - id: "enfant4"
+    age: 8
   familles:
-    - parents: ["declarant1"]
+  - parents: ["declarant1"]
   output_variables:
     logement_social_categorie_menage: categorie_6
 
 - name: "Logement social - Catégorie de ménage - 2 familles"
   period: 2018-01
   foyers_fiscaux:
-    - declarants: ["declarant1", "declarant2"]
-      personnes_a_charge: []
+  - declarants: ["declarant1", "declarant2"]
+    personnes_a_charge: []
   menages:
     personne_de_reference: "declarant1"
     conjoint: "declarant2"
   individus:
-    - id: "declarant1"
-    - id: "declarant2"
+  - id: "declarant1"
+  - id: "declarant2"
   familles:
-    - parents: ["declarant1"]
-    - parents: ["declarant2"]
+  - parents: ["declarant1"]
+  - parents: ["declarant2"]
   output_variables:
     logement_social_categorie_menage:
-      - "categorie_1"
-      - "categorie_1"
+    - "categorie_1"
+    - "categorie_1"

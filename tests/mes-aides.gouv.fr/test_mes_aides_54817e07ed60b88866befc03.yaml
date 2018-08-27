@@ -1,7 +1,7 @@
 name: 84_Revenus professionnels
 keywords:
-  - base ressources
-  - rsa
+- base ressources
+- rsa
 description: Application de la pente sur ces revenus
 period: "month:2014-12"
 relative_error_margin: 0.02

@@ -1,8 +1,8 @@
 name: "RSA - COUPLE - SRS"
 keywords:
-  - base ressources
-  - forfait logement
-  - recette
+- base ressources
+- forfait logement
+- recette
 description: |
   Test créé à partir d'un dossier de demande de (RSA, APL…) :
   Ces paramètres (ressources non déclarables, situation personnelle…) n'ont pas pu être capturés :
@@ -10,120 +10,120 @@ description: |
 period: "month:2015-09"
 relative_error_margin: 0.02
 individus:
-  - enfant_a_charge:
-      2015: true
-    age: 26
-    age_en_mois: 319
-    date_naissance: "1989-02-08"
-    enfant_place: false
-    etudiant: 0
-    id: 55f02eae0df1c6360477f8bc
-    inapte_travail: 0
-    handicap: 0
-    salaire_de_base:
-      2013: 0
-      2014-09: 0
-      2014-10: 0
-      2014-11: 0
-      2014-12: 0
-      2015-01: 0
-      2015-02: 0
-      2015-03: 0
-      2015-04: 0
-      2015-05: 0
-      2015-06: 0
-      2015-07: 0
-      2015-08: 0
-    salaire_imposable:
-      2013: 0
-      2014-09: 0
-      2014-10: 0
-      2014-11: 0
-      2014-12: 0
-      2015-01: 0
-      2015-02: 0
-      2015-03: 0
-      2015-04: 0
-      2015-05: 0
-      2015-06: 0
-      2015-07: 0
-      2015-08: 0
-    salaire_net:
-      2013: 0
-      2014-09: 0
-      2014-10: 0
-      2014-11: 0
-      2014-12: 0
-      2015-01: 0
-      2015-02: 0
-      2015-03: 0
-      2015-04: 0
-      2015-05: 0
-      2015-06: 0
-      2015-07: 0
-      2015-08: 0
-    statut_marital: celibataire
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - enfant_a_charge:
-      2015: true
-    age: 23
-    age_en_mois: 276
-    date_naissance: "1992-08-22"
-    enfant_place: false
-    etudiant: 0
-    id: 55f02eae0df1c6360477f8ae
-    inapte_travail: 0
-    handicap: 0
-    salaire_de_base:
-      2013: 0
-      2014-09: 0
-      2014-10: 0
-      2014-11: 0
-      2014-12: 0
-      2015-01: 0
-      2015-02: 0
-      2015-03: 0
-      2015-04: 0
-      2015-05: 0
-      2015-06: 0
-      2015-07: 0
-      2015-08: 0
-    salaire_imposable:
-      2013: 0
-      2014-09: 0
-      2014-10: 0
-      2014-11: 0
-      2014-12: 0
-      2015-01: 0
-      2015-02: 0
-      2015-03: 0
-      2015-04: 0
-      2015-05: 0
-      2015-06: 0
-      2015-07: 0
-      2015-08: 0
-    salaire_net:
-      2013: 0
-      2014-09: 0
-      2014-10: 0
-      2014-11: 0
-      2014-12: 0
-      2015-01: 0
-      2015-02: 0
-      2015-03: 0
-      2015-04: 0
-      2015-05: 0
-      2015-06: 0
-      2015-07: 0
-      2015-08: 0
-    statut_marital: celibataire
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
+- enfant_a_charge:
+    2015: true
+  age: 26
+  age_en_mois: 319
+  date_naissance: "1989-02-08"
+  enfant_place: false
+  etudiant: 0
+  id: 55f02eae0df1c6360477f8bc
+  inapte_travail: 0
+  handicap: 0
+  salaire_de_base:
+    2013: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    2015-07: 0
+    2015-08: 0
+  salaire_imposable:
+    2013: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    2015-07: 0
+    2015-08: 0
+  salaire_net:
+    2013: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    2015-07: 0
+    2015-08: 0
+  statut_marital: celibataire
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
+- enfant_a_charge:
+    2015: true
+  age: 23
+  age_en_mois: 276
+  date_naissance: "1992-08-22"
+  enfant_place: false
+  etudiant: 0
+  id: 55f02eae0df1c6360477f8ae
+  inapte_travail: 0
+  handicap: 0
+  salaire_de_base:
+    2013: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    2015-07: 0
+    2015-08: 0
+  salaire_imposable:
+    2013: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    2015-07: 0
+    2015-08: 0
+  salaire_net:
+    2013: 0
+    2014-09: 0
+    2014-10: 0
+    2014-11: 0
+    2014-12: 0
+    2015-01: 0
+    2015-02: 0
+    2015-03: 0
+    2015-04: 0
+    2015-05: 0
+    2015-06: 0
+    2015-07: 0
+    2015-08: 0
+  statut_marital: celibataire
+  valeur_locative_immo_non_loue:
+    2012-01: 0
+  valeur_locative_terrains_non_loues:
+    2012-01: 0
 familles:
   acs:
     2014-09: 0
@@ -308,8 +308,8 @@ familles:
     2015-07: 0
     2015-08: 0
   parents:
-    - 55f02eae0df1c6360477f8bc
-    - 55f02eae0df1c6360477f8ae
+  - 55f02eae0df1c6360477f8bc
+  - 55f02eae0df1c6360477f8ae
   rsa:
     2014-09: 0
     2014-10: 0
@@ -325,8 +325,8 @@ familles:
     2015-08: 0
 foyers_fiscaux:
   declarants:
-    - 55f02eae0df1c6360477f8bc
-    - 55f02eae0df1c6360477f8ae
+  - 55f02eae0df1c6360477f8bc
+  - 55f02eae0df1c6360477f8ae
 menages:
   conjoint: 55f02eae0df1c6360477f8ae
   depcom: 44109

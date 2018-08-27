@@ -1,8 +1,8 @@
 name: Pas droit à l'ACS si le montant des revenus locatifs est supérieur au plafond
 keywords:
-  - base ressources
-  - "cmu-c/acs"
-  - patrimoine
+- base ressources
+- "cmu-c/acs"
+- patrimoine
 period: "month:2014-10"
 relative_error_margin: 0.02
 individus:

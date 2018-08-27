@@ -10,15 +10,15 @@
     rsa_base_ressources_prestations_familiales: 0
     rsa_base_ressources_minima_sociaux: 0
   individus:
-    - id: "parent1"
-      age: 40
-    - id: "enfant1"
-      age: 17
-      salaire_net:
-        2015-11: 524 * 0.55 # 288
-        2015-12: 524 * 0.55
-        2016-01: 524 * 0.55
-        2016-02: 524 * 0.55
+  - id: "parent1"
+    age: 40
+  - id: "enfant1"
+    age: 17
+    salaire_net:
+      2015-11: 524 * 0.55   # 288
+      2015-12: 524 * 0.55
+      2016-01: 524 * 0.55
+      2016-02: 524 * 0.55
   output_variables:
     rsa_enfant_a_charge: [0, 0]
     rsa_nb_enfants: 0
@@ -35,15 +35,15 @@
     rsa_base_ressources_prestations_familiales: 0
     rsa_base_ressources_minima_sociaux: 0
   individus:
-    - id: "parent1"
-      age: 40
-    - id: "enfant1"
-      age: 17
-      salaire_net:
-        2015-11: 524 * 0.38 # 199
-        2015-12: 524 * 0.38
-        2016-01: 524 * 0.38
-        2016-02: 524 * 0.38
+  - id: "parent1"
+    age: 40
+  - id: "enfant1"
+    age: 17
+    salaire_net:
+      2015-11: 524 * 0.38   # 199
+      2015-12: 524 * 0.38
+      2016-01: 524 * 0.38
+      2016-02: 524 * 0.38
   output_variables:
     rsa_nb_enfants: 1
     rsa_base_ressources: 524 * 0.38
@@ -58,15 +58,15 @@
     rsa_base_ressources_prestations_familiales: 0
     rsa_base_ressources_minima_sociaux: 0
   individus:
-    - id: "parent1"
-      age: 40
-    - id: "enfant1"
-      age: 17
-      salaire_net:
-        2015-11: 524 * 0.45 # 236
-        2015-12: 524 * 0.45
-        2016-01: 524 * 0.45
-        2016-02: 524 * 0.45
+  - id: "parent1"
+    age: 40
+  - id: "enfant1"
+    age: 17
+    salaire_net:
+      2015-11: 524 * 0.45   # 236
+      2015-12: 524 * 0.45
+      2016-01: 524 * 0.45
+      2016-02: 524 * 0.45
   output_variables:
     rsa: 551 # Résultat réel: 524 < 551.
 
@@ -79,17 +79,17 @@
     rsa_base_ressources_prestations_familiales: 0
     rsa_base_ressources_minima_sociaux: 0
   individus:
-    - id: "parent1"
-      age: 40
-    - id: "enfant1"
-      age: 15
-    - id: "enfant2"
-      age: 17
-      salaire_net:
-        2015-11: 524 * 0.38 # 199
-        2015-12: 524 * 0.38
-        2016-01: 524 * 0.38
-        2016-02: 524 * 0.38
+  - id: "parent1"
+    age: 40
+  - id: "enfant1"
+    age: 15
+  - id: "enfant2"
+    age: 17
+    salaire_net:
+      2015-11: 524 * 0.38   # 199
+      2015-12: 524 * 0.38
+      2016-01: 524 * 0.38
+      2016-02: 524 * 0.38
   output_variables:
     rsa: 786 # = 524 * 1.5 > Résultat réel: 524 * 1.8 - 200 = 744
 
@@ -104,15 +104,15 @@
     en_couple: false
     rsa_isolement_recent: true
   individus:
-    - id: "parent1"
-      age: 40
-    - id: "enfant1"
-      age: 17
-      salaire_net:
-        2015-11: 524 * 0.50 # 262
-        2015-12: 524 * 0.50
-        2016-01: 524 * 0.50
-        2016-02: 524 * 0.50
+  - id: "parent1"
+    age: 40
+  - id: "enfant1"
+    age: 17
+    salaire_net:
+      2015-11: 524 * 0.50   # 262
+      2015-12: 524 * 0.50
+      2016-01: 524 * 0.50
+      2016-02: 524 * 0.50
   output_variables:
     rsa_nb_enfants: 1
     rsa_base_ressources: 524 * 0.50
@@ -129,15 +129,15 @@
     en_couple: false
     rsa_isolement_recent: true
   individus:
-    - id: "parent1"
-      age: 40
-    - id: "enfant1"
-      age: 17
-      salaire_net:
-        2015-11: 524 * 0.85 # 445
-        2015-12: 524 * 0.85
-        2016-01: 524 * 0.85
-        2016-02: 524 * 0.85
+  - id: "parent1"
+    age: 40
+  - id: "enfant1"
+    age: 17
+    salaire_net:
+      2015-11: 524 * 0.85   # 445
+      2015-12: 524 * 0.85
+      2016-01: 524 * 0.85
+      2016-02: 524 * 0.85
   output_variables:
     rsa_nb_enfants: 0
     rsa_base_ressources: 0
@@ -154,17 +154,17 @@
     en_couple: false
     rsa_isolement_recent: true
   individus:
-    - id: "parent1"
-      age: 40
-    - id: "enfant2"
-      age: 16
-    - id: "enfant1"
-      age: 17
-      salaire_net:
-        2015-11: 524 * 0.60 # 314
-        2015-12: 524 * 0.60
-        2016-01: 524 * 0.60
-        2016-02: 524 * 0.60
+  - id: "parent1"
+    age: 40
+  - id: "enfant2"
+    age: 16
+  - id: "enfant1"
+    age: 17
+    salaire_net:
+      2015-11: 524 * 0.60   # 314
+      2015-12: 524 * 0.60
+      2016-01: 524 * 0.60
+      2016-02: 524 * 0.60
   output_variables:
     rsa_base_ressources: 0
     rsa: 896 # = 524 * (1.28 + 0.43)
@@ -180,22 +180,22 @@
     en_couple: false
     rsa_isolement_recent: true
   individus:
-    - id: "parent1"
-      age: 40
-    - id: "enfant2"
-      age: 16
-      salaire_net:
-        2015-11: 524 * 0.60 # 314
-        2015-12: 524 * 0.60
-        2016-01: 524 * 0.60
-        2016-02: 524 * 0.60
-    - id: "enfant1"
-      age: 17
-      salaire_net:
-        2015-11: 524 * 0.60 # 314
-        2015-12: 524 * 0.60
-        2016-01: 524 * 0.60
-        2016-02: 524 * 0.60
+  - id: "parent1"
+    age: 40
+  - id: "enfant2"
+    age: 16
+    salaire_net:
+      2015-11: 524 * 0.60   # 314
+      2015-12: 524 * 0.60
+      2016-01: 524 * 0.60
+      2016-02: 524 * 0.60
+  - id: "enfant1"
+    age: 17
+    salaire_net:
+      2015-11: 524 * 0.60   # 314
+      2015-12: 524 * 0.60
+      2016-01: 524 * 0.60
+      2016-02: 524 * 0.60
   output_variables:
     rsa_base_ressources: 0
     # rsa calculé = 524
@@ -210,15 +210,15 @@
     rsa_base_ressources_prestations_familiales: 0
     rsa_base_ressources_minima_sociaux: 0
   individus:
-    - id: "parent1"
-      age: 40
-    - id: "enfant1"
-      age: 17
-      salaire_net:
-        2014-11: 524 * 0.55 # 288 -> 109 après pente < 40% du RSA
-        2014-12: 524 * 0.55
-        2015-01: 524 * 0.55
-        2015-02: 524 * 0.55
+  - id: "parent1"
+    age: 40
+  - id: "enfant1"
+    age: 17
+    salaire_net:
+      2014-11: 524 * 0.55   # 288 -> 109 après pente < 40% du RSA
+      2014-12: 524 * 0.55
+      2015-01: 524 * 0.55
+      2015-02: 524 * 0.55
   output_variables:
     rsa_nb_enfants: 1
     rsa_base_ressources: 288
@@ -233,15 +233,15 @@
     rsa_base_ressources_prestations_familiales: 0
     rsa_base_ressources_minima_sociaux: 0
   individus:
-    - id: "parent1"
-      age: 40
-    - id: "enfant1"
-      age: 17
-      salaire_net:
-        2014-11: 1000 # 380 après pente > 40% du RSA
-        2014-12: 1000
-        2015-01: 1000
-        2015-02: 1000
+  - id: "parent1"
+    age: 40
+  - id: "enfant1"
+    age: 17
+    salaire_net:
+      2014-11: 1000   # 380 après pente > 40% du RSA
+      2014-12: 1000
+      2015-01: 1000
+      2015-02: 1000
   output_variables:
     rsa_nb_enfants: 0
     rsa_base_ressources: 0

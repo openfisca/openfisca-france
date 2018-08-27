@@ -1,7 +1,7 @@
 name: ISOLEE SANS ENFANT SALARIEE
 keywords:
-  - recette
-  - rsa
+- recette
+- rsa
 description: Test créé à partir d'un dossier de demande de RSA
 period: "month:2015-07"
 relative_error_margin: 0.02

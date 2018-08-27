@@ -12,10 +12,10 @@
     personne_de_reference: "parent1"
     enfants: ["enfant1"]
   individus:
-    - id: "parent1"
-      age: 40
-    - id: "enfant1"
-      age: 5
+  - id: "parent1"
+    age: 40
+  - id: "enfant1"
+    age: 5
   output_variables:
     rsa_majore_eligibilite: false
 
@@ -34,10 +34,10 @@
     personne_de_reference: "parent1"
     enfants: ["enfant1"]
   individus:
-    - id: "parent1"
-      age: 40
-    - id: "enfant1"
-      age: 5
+  - id: "parent1"
+    age: 40
+  - id: "enfant1"
+    age: 5
   output_variables:
     rsa_majore_eligibilite: true
 
@@ -55,10 +55,10 @@
     personne_de_reference: "parent1"
     enfants: ["enfant1"]
   individus:
-    - id: "parent1"
-      age: 40
-    - id: "enfant1"
-      age: 2
+  - id: "parent1"
+    age: 40
+  - id: "enfant1"
+    age: 2
   output_variables:
     rsa_majore_eligibilite: true
 
@@ -76,8 +76,8 @@
     personne_de_reference: "parent1"
     enfants: []
   individus:
-    - id: "parent1"
-      age: 40
-      enceinte: true
+  - id: "parent1"
+    age: 40
+    enceinte: true
   output_variables:
     rsa_majore_eligibilite: true

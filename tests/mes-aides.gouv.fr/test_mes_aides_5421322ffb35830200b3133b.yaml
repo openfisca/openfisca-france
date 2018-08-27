@@ -1,7 +1,7 @@
 name: Montant soustrait de la moyenne des revenus locatifs des 3 derniers mois
 keywords:
-  - patrimoine
-  - rsa
+- patrimoine
+- rsa
 period: "month:2014-09"
 relative_error_margin: 0.02
 individus:

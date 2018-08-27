@@ -7,7 +7,7 @@ from setuptools import setup, find_packages
 
 setup(
     name = 'OpenFisca-France',
-    version = '24.5.2',
+    version = '24.5.3',
     author = 'OpenFisca Team',
     author_email = 'contact@openfisca.fr',
     classifiers = [
@@ -43,8 +43,9 @@ setup(
         'dev': [
             'nose',
             'flake8 == 3.4.1',
-            'scipy >= 0.17',  # Only used to test de_net_a_brut reform
             'requests >= 2.8',
+            'ruamel.yaml >= 0.15.61, < 0.16',
+            'scipy >= 0.17', # Only used to test de_net_a_brut reform
             'yamllint >= 1.11.1, < 1.12',
             ],
         },

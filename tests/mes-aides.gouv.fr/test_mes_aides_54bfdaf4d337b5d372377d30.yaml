@@ -1,7 +1,7 @@
 name: 119_Immeuble non loué
 keywords:
-  - patrimoine
-  - rsa
+- patrimoine
+- rsa
 description: |
   Prise en compte de 50% de la valeur
 

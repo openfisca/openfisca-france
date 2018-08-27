@@ -1,7 +1,7 @@
 name: "TNS Auto-entrepreneur (BIC)"
 keywords:
-  - rsa
-  - tns
+- rsa
+- tns
 description: |
   ((1000+300+100)/3)*50% = 233,33
   (513,88 + 62%*233,33) - (233,33 + 61,67)
