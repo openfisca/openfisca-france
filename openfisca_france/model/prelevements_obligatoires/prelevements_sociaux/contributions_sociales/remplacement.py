@@ -27,7 +27,7 @@ class taux_csg_remplacement(Variable):
     label = u"Taux retenu sur la CSG des revenus de remplacment"
     definition_period = MONTH
 
-    def formula(individu, period, parameters):
+    def formula_2015(individu, period, parameters):
         rfr = individu.foyer_fiscal('rfr', period = period.n_2)
         nbptr = individu.foyer_fiscal('nbptr', period = period.n_2)
         seuils = parameters(period.start).prelevements_sociaux.contributions.csg.remplacement.pensions_de_retraite_et_d_invalidite
@@ -43,6 +43,17 @@ class taux_csg_remplacement(Variable):
                 )
             )
         return taux_csg_remplacement
+
+    def formula_1991_02_01(individu, period, parameters):
+        irpp = individu.foyer_fiscal('irpp', period = period.n_2)
+        taux_csg_remplacement = where(
+            irpp <= parameters(period.start).prelevements_sociaux.contributions.csg.remplacement.pensions_de_retraite_et_d_invalidite.seuil_d_ir,
+            TypesTauxCSGRemplacement.exonere,
+            TypesTauxCSGRemplacement.taux_plein,
+            )
+        return taux_csg_remplacement
+
+
 
 
 # Allocations chômage
