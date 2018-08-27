@@ -2870,8 +2870,8 @@ class nbptr(Variable):
 
     def formula(foyer_fiscal, period, parameters):
         '''
-        Nombre de parts du foyer
-        'foy'
+        Nombre de parts du foyer fiscal
+
         note 1 enfants et résidence alternée (formulaire 2041 GV page 10)
 
         quotient_familial.conj : nb part associées au conjoint d'un couple marié ou pacsé
