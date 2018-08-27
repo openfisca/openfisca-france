@@ -28,7 +28,6 @@ class taux_csg_remplacement(Variable):
     definition_period = MONTH
 
     def formula(individu, period, parameters):
-
         rfr = individu.foyer_fiscal('rfr', period = period.n_2)
         nbptr = individu.foyer_fiscal('nbptr', period = period.n_2)
         seuils = parameters(period.start).prelevements_sociaux.contributions.csg.remplacement.pensions_de_retraite_et_d_invalidite
@@ -59,7 +58,7 @@ class csg_deductible_chomage(Variable):
     def formula(individu, period, parameters):
         chomage_brut = individu('chomage_brut', period)
         csg_imposable_chomage = individu('csg_imposable_chomage', period)
-        taux_csg_remplacement = individu('taux_csg_remplacement', period)
+        taux_csg_remplacement = individu('taux_csg_remplacement', period,  max_nb_cycles = 1)
         parameters = parameters(period.start)
         montant_csg = montant_csg_crds(
             base_avec_abattement = chomage_brut,
@@ -118,7 +117,7 @@ class crds_chomage(Variable):
         chomage_brut = individu('chomage_brut', period)
         csg_deductible_chomage = individu('csg_deductible_chomage', period)
         csg_imposable_chomage = individu('csg_imposable_chomage', period)
-        taux_csg_remplacement = individu('taux_csg_remplacement', period)
+        taux_csg_remplacement = individu('taux_csg_remplacement', period, max_nb_cycles = 1)
         law = parameters(period.start)
         smic_h_b = law.cotsoc.gen.smic_h_b
         # salaire_mensuel_reference = chomage_brut / .7
@@ -194,7 +193,7 @@ class csg_deductible_retraite(Variable):
 
     def formula(individu, period, parameters):
         retraite_brute = individu('retraite_brute', period)
-        taux_csg_remplacement = individu('taux_csg_remplacement', period)
+        taux_csg_remplacement = individu('taux_csg_remplacement', period, max_nb_cycles = 1)
         law = parameters(period.start)
 
         montant_csg = montant_csg_crds(
@@ -237,7 +236,7 @@ class crds_retraite(Variable):
 
     def formula(individu, period, parameters):
         retraite_brute = individu('retraite_brute', period)
-        taux_csg_remplacement = individu('taux_csg_remplacement', period)
+        taux_csg_remplacement = individu('taux_csg_remplacement', period, max_nb_cycles = 1)
         law = parameters(period.start)
 
         montant_crds = montant_csg_crds(
@@ -257,7 +256,7 @@ class casa(Variable):
 
     def formula_2013_04_01(individu, period, parameters):
         retraite_brute = individu('retraite_brute', period = period)
-        taux_csg_remplacement = individu('taux_csg_remplacement', period)
+        taux_csg_remplacement = individu('taux_csg_remplacement', period, max_nb_cycles = 1)
         contributions = parameters(period.start).prelevements_sociaux.contributions
         casa = (
             (taux_csg_remplacement == TypesTauxCSGRemplacement.taux_plein)
