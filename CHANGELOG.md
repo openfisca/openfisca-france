@@ -17,6 +17,7 @@
   - Correction taux de cotisation au fonds de pension de l'Etat depuis 2014
   - Mise à jour barèmes taxes sur les salaires depuis 2017
   - Mise à jour allègement Fillon pour 2018
+  - Mise à jour des paramètres du seuil d'assujettissement au FDS depuis 2016
 
 ###  24.5.2 [#1094](https://github.com/openfisca/openfisca-france/pull/1094)
 
