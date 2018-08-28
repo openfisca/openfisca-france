@@ -255,7 +255,7 @@ def build_reform(tax_benefit_system):
                     'retraite_imposable_pour_inversion', period, options = [DIVIDE])
 
             # Calcule les pensions de retraite brutes à partir des pensions imposables.
-            taux_csg_remplacement = individu('taux_csg_remplacement', period, max_nb_cycles = 1)
+            taux_csg_remplacement = individu('taux_csg_remplacement', period)
             if (retraite_imposable_pour_inversion == 0).all():
                 # Quick path to avoid fsolve when using default value of input variables.
                 return retraite_imposable_pour_inversion
