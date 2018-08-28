@@ -7,7 +7,7 @@
 * Zones impactées : `prelevements_obligatoires/prelevements_sociaux/contributions_sociales/remplacement`.
 * Détails :
   - Ajoute une formule pour calculer les taux de CSG sur les revenus de remplacement
-  - Ré-ajoute `invret` qui avait été malencontreusement retirée dans le passé
+  - Ré-ajoute `invrev` qui avait été malencontreusement retirée dans le passé
 
 ###  24.5.4 [#1103](https://github.com/openfisca/openfisca-france/pull/1103)
 
