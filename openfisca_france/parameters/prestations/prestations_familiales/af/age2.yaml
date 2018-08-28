@@ -2,5 +2,9 @@ description: Âge maximal pour toucher les AF (hors forfait)
 reference: openfisca
 unit: year
 values:
-  2002-01-01:
+  1985-12-22:
+    value: 17.0
+  1990-07-01:
+    value: 18.0
+  1998-01-01:
     value: 19.0
