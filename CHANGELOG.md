@@ -1,5 +1,14 @@
 # Changelog
 
+## 24.7.0 [#1070](https://github.com/openfisca/openfisca-france/pull/1070)
+ * Évolution du système socio-fiscal.
+* Périodes concernées : toutes.
+* Zones impactées :
+  - `revenus/remplacement/rente_accident_travail`
+  - `prestations/minima_sociaux/cmu`
+* Détails :
+  - Intégration de la ressource rente d'accident du travail dans le calcul des aides en santé CMU-c et ACS.
+
 ##  24.6.0 [#1101](https://github.com/openfisca/openfisca-france/pull/1101)
 
 * Évolution du système socio-fiscal.
