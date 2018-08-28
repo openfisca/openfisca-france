@@ -9,7 +9,15 @@
   - Ajoute une formule pour calculer les taux de CSG sur les revenus de remplacement
   - Ré-ajoute `invret` qui avait été malencontreusement retirée dans le passé
 
- ###  24.5.3 [#1097](https://github.com/openfisca/openfisca-france/pull/1097)
+###  24.5.4 [#1103](https://github.com/openfisca/openfisca-france/pull/1103)
+
+* Changement mineur.
+* Périodes concernées : à partir du 01/04/2018.
+* Zones impactées : `tests/formulas/aspa`.
+* Détails :
+  - Ajoute des tests pour la revalorisation de l'ASPA (voir [#1066](https://github.com/openfisca/openfisca-france/pull/1066))
+
+###  24.5.3 [#1097](https://github.com/openfisca/openfisca-france/pull/1097)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 01/01/2014.
