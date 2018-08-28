@@ -3798,10 +3798,12 @@ class invrev(Variable):
         f7gv = foyer_fiscal('f7gv', period)
         P = parameters(period).impot_revenu.reductions_impots.invrev
 
-        return (P.taux_gs * min_(f7gs, P.seuil_gs * (1 + maries_ou_pacses)) / 4 +
-                 P.taux_gu * min_(f7gu, P.seuil_gu * (1 + maries_ou_pacses)) / 4 +
-                 P.taux_xg * min_(f7xg, P.seuil_xg * (1 + maries_ou_pacses)) / 4 +
-P.taux_gt * f7gt + P.taux_gt * f7gv)
+        return (
+            P.taux_gs * min_(f7gs, P.seuil_gs * (1 + maries_ou_pacses)) / 4 
+            + P.taux_gu * min_(f7gu, P.seuil_gu * (1 + maries_ou_pacses)) / 4 
+            + P.taux_xg * min_(f7xg, P.seuil_xg * (1 + maries_ou_pacses)) / 4 
+            + P.taux_gt * f7gt + P.taux_gt * f7gv
+            )
 
 
 class locmeu(Variable):
