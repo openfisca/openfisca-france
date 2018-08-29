@@ -708,6 +708,7 @@ class indemnite_residence(Variable):
     entity = Individu
     label = u"Indemnité de résidence des fonctionnaires"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
         traitement_indiciaire_brut = individu('traitement_indiciaire_brut', period)
@@ -815,6 +816,7 @@ class supplement_familial_traitement(Variable):
     entity = Individu
     label = u"Supplément familial de traitement"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
     # Attention : par hypothèse ne peut êre attribué qu'à la tête du ménage
     # TODO: gérer le cas encore problématique du conjoint fonctionnaire
 
@@ -875,17 +877,6 @@ class supplement_familial_traitement(Variable):
             max_(part_fixe + pct_variable * traitement_indiciaire_brut, plancher),
             plafond
             )
-        # Nota Bene:
-        # categorie_salarie is an enum :
-        # class TypesCategorieSalarie(Enum):
-        #   prive_non_cadre = u'prive_non_cadre'
-        #   prive_cadre = u'prive_cadre'
-        #   public_titulaire_etat = u'public_titulaire_etat'
-        #   public_titulaire_militaire = u'public_titulaire_militaire'
-        #   public_titulaire_territoriale = u'public_titulaire_territoriale'
-        #   public_titulaire_hospitaliere = u'public_titulaire_hospitaliere'
-        #   public_non_titulaire = u'public_non_titulaire'
-        #   non_pertinent = u'non_pertinent'
         return sft
 
 
