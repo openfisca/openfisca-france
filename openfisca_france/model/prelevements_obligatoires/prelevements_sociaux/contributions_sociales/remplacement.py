@@ -27,11 +27,37 @@ class taux_csg_remplacement(Variable):
     label = u"Taux retenu sur la CSG des revenus de remplacment"
     definition_period = MONTH
 
+    def formula_2015(individu, period, parameters):
+        rfr = individu.foyer_fiscal('rfr', period = period.n_2, max_nb_cycles = 1)
+        nbptr = individu.foyer_fiscal('nbptr', period = period.n_2)
+        seuils = parameters(period.start).prelevements_sociaux.contributions.csg.remplacement.pensions_de_retraite_et_d_invalidite
+        seuil_exoneration = seuils.seuil_de_rfr_1 + (nbptr - 1) * seuils.demi_part_suppl
+        seuil_reduction = seuils.seuil_de_rfr_2 + (nbptr - 1) * seuils.demi_part_suppl
+        taux_csg_remplacement = where(
+            rfr <= seuil_exoneration,
+            TypesTauxCSGRemplacement.exonere,
+            where(
+                rfr <= seuil_reduction,
+                TypesTauxCSGRemplacement.taux_reduit,
+                TypesTauxCSGRemplacement.taux_plein,
+                )
+            )
+        return taux_csg_remplacement
 
-############################################################################
-# # Allocations chômage
-############################################################################
+    # def formula_1991_02_01(individu, period, parameters):
+        # Hack because it goes too far in the past
+        # irpp = individu.foyer_fiscal('irpp', period = period.n_2, max_nb_cycles = 1)
+        # taux_csg_remplacement = where(
+        #     irpp <= parameters(period.start).prelevements_sociaux.contributions.csg.remplacement.pensions_de_retraite_et_d_invalidite.seuil_d_ir,
+        #     TypesTauxCSGRemplacement.exonere,
+        #     TypesTauxCSGRemplacement.taux_plein,
+        #     )
+        # return taux_csg_remplacement
 
+
+
+
+# Allocations chômage
 
 class csg_deductible_chomage(Variable):
     calculate_output = calculate_output_add
@@ -167,9 +193,7 @@ class chomage_net(Variable):
         return chomage_imposable + csg_imposable_chomage + crds_chomage
 
 
-############################################################################
-# # Pensions
-############################################################################
+# Pensions
 
 class csg_deductible_retraite(Variable):
     calculate_output = calculate_output_add
@@ -242,28 +266,15 @@ class casa(Variable):
     reference = u"http://www.service-public.fr/actualites/002691.html"
     definition_period = MONTH
 
-    def formula_2015_01_01(individu, period, parameters):
-        retraite_brute = individu('retraite_brute', period = period)
-        rfr = individu.foyer_fiscal('rfr', period = period.n_2)
-        taux_csg_remplacement = individu('taux_csg_remplacement', period)
-        contributions = parameters(period.start).prelevements_sociaux.contributions
-        casa = (
-            (taux_csg_remplacement == TypesTauxCSGRemplacement.taux_plein) *
-            (rfr > contributions.csg.remplacement.pensions_de_retraite_et_d_invalidite.seuil_de_rfr_2) *
-            contributions.casa.calc(retraite_brute)
-            )
-        return - casa
-
     def formula_2013_04_01(individu, period, parameters):
         retraite_brute = individu('retraite_brute', period = period)
         taux_csg_remplacement = individu('taux_csg_remplacement', period)
         contributions = parameters(period.start).prelevements_sociaux.contributions
         casa = (
-            (taux_csg_remplacement == TypesTauxCSGRemplacement.taux_plein) *
-            contributions.casa.calc(retraite_brute)
+            (taux_csg_remplacement == TypesTauxCSGRemplacement.taux_plein)
+            * contributions.casa.calc(retraite_brute)
             )
         return - casa
-
 
 class retraite_imposable(Variable):
     unit = 'currency'
