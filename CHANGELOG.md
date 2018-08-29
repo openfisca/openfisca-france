@@ -1,5 +1,14 @@
 # Changelog
 
+# 24.8.0 [#1082](https://github.com/openfisca/openfisca-france/pull/1082)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/10/2017.
+* Zones impactées : `parameters/prestations/aides_logement`.
+* Détails :
+  - Mise à jour des paramètres utilisés dans le calcul de l'aide au logement.
+  - Correction mineure pour éviter un montant d'aide au logement négatif.
+
 ## 24.7.2 [#1104](https://github.com/openfisca/openfisca-france/pull/#1104)
 
 * Amélioration technique.
