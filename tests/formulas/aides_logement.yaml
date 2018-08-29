@@ -321,8 +321,8 @@
     - id: "enfant2"
       age: 7
   output_variables:
-    aide_logement_montant_brut: 213.22
-    aide_logement_montant: 212.13
+    aide_logement_montant_brut: 230.76
+    aide_logement_montant: 230.76
 
 - name: "Personne isolée, avec suppression avec abattement forfaitaire"
   period: 2017-10
@@ -355,8 +355,8 @@
     - id: "parent1"
       age: 40
   output_variables:
-    aide_logement_montant_brut: 42.27
-    aide_logement_montant: 42.02
+    aide_logement_montant_brut: 47.08
+    aide_logement_montant: 46.84
 
 - name: "Le patrimoine composé uniquement d'épargne générant des revenus imposables n'augmente pas la base ressources des ALs"
   period: 2017-10
