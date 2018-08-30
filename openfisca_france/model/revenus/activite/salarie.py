@@ -951,20 +951,24 @@ class salaire_super_brut_hors_allegements(Variable):
         remuneration_principale = individu('remuneration_principale', period)
         remuneration_apprenti = individu('remuneration_apprenti', period)
 
-        primes_fonction_publique = individu('primes_fonction_publique',)
+        primes_fonction_publique = individu('primes_fonction_publique', period)
         indemnite_residence = individu('indemnite_residence', period)
-        supplement_familial_traitement = individu('supplement_familial_traitement')
+        supplement_familial_traitement = individu('supplement_familial_traitement', period)
         cotisations_employeur = individu('cotisations_employeur', period)
-        depense_cantine_titre_restaurant_employeur = individu(
-            'depense_cantine_titre_restaurant_employeur', period)
-        reintegration_titre_restaurant_employeur = individu(
-            'reintegration_titre_restaurant_employeur', period)
+        depense_cantine_titre_restaurant_employeur = individu('depense_cantine_titre_restaurant_employeur', period)
+        reintegration_titre_restaurant_employeur = individu('reintegration_titre_restaurant_employeur', period)
         indemnite_fin_contrat = individu('indemnite_fin_contrat', period)
         salaire_super_brut_hors_allegements = (
-            salaire_de_base + remuneration_principale + remuneration_apprenti +
-            primes_fonction_publique + indemnite_residence + supplement_familial_traitement + indemnite_fin_contrat +
-            depense_cantine_titre_restaurant_employeur - reintegration_titre_restaurant_employeur -
-            cotisations_employeur
+            salaire_de_base
+            + remuneration_apprenti
+            + indemnite_fin_contrat
+            + remuneration_principale
+            + primes_fonction_publique
+            + indemnite_residence
+            + supplement_familial_traitement
+            + depense_cantine_titre_restaurant_employeur
+            - reintegration_titre_restaurant_employeur
+            - cotisations_employeur
             )
 
         return salaire_super_brut_hors_allegements
