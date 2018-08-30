@@ -11,10 +11,10 @@ from openfisca_france.model.prestations.prestations_familiales.base_ressource im
 
 class rsa_condition_heures_travail_remplie(Variable):
     value_type = bool
-    entity = Famille
-    label = u"Éligible à la RSA si la perssone est moins de vingt-cinq ans et avoir travaillé deux ans sur les 3 dernières années"
+    entity = Individu
+    label = u"Éligible au RSA si la personne a moins de vingt-cinq ans et a travaillé deux ans sur les trois dernières années"
+    reference = u"https://www.legifrance.gouv.fr/affichCode.do?idSectionTA=LEGISCTA000022743616&cidTexte=LEGITEXT000006074069"
     definition_period = MONTH
-
 
 class rsa_base_ressources(Variable):
     value_type = float
@@ -238,6 +238,7 @@ class rsa_base_ressources_prestations_familiales(Variable):
     value_type = float
     entity = Famille
     label = u"Prestations familiales inclues dans la base ressource RSA/RMI"
+    reference = u"https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=DA7C73D70BE5D3C7BE36D690E75FDC83.tplgfr38s_3?idArticle=LEGIARTI000020526199&cidTexte=LEGITEXT000006074069&categorieLien=id&dateTexte=20161231"
     definition_period = MONTH
 
     def formula_2002_01_01(famille, period):
@@ -689,6 +690,7 @@ class rsa_fictif(Variable):
 class rsa_montant(Variable):
     value_type = float
     label = u"Revenu de solidarité active, avant prise en compte de la non-calculabilité."
+    reference = u"https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=C0E3FD6701B46D63786815D26ADEAD58.tplgfr35s_2?idArticle=LEGIARTI000033979143&cidTexte=LEGITEXT000006074069&dateTexte=20180830"
     entity = Famille
     definition_period = MONTH
 
@@ -830,12 +832,13 @@ class rsa_eligibilite(Variable):
 
         etudiant_i = famille.members('etudiant', period)
 
-        rsa_condition_heures_travail_remplie = famille("rsa_condition_heures_travail_remplie", period)
+        rsa_condition_heures_travail_remplie_i = famille.members("rsa_condition_heures_travail_remplie", period)
         # rsa_nb_enfants est à valeur pour une famille, il faut le projeter sur les individus avant de faire une opération avec age_i
-        condition_age_i = famille.project(rsa_nb_enfants > 0) + (age_i > rsa.age_pac) + rsa_condition_heures_travail_remplie
+        condition_age_i = famille.project(rsa_nb_enfants > 0) + (age_i > rsa.age_pac)
+        rsa_jeune_condition_i = (age_i > rsa.age_min_rsa_jeune) * (age_i < rsa.age_max_rsa_jeune) * rsa_condition_heures_travail_remplie_i
 
         return (
-            famille.any(condition_age_i * not_(etudiant_i), role = Famille.PARENT)
+            famille.any((condition_age_i | rsa_jeune_condition_i) * not_(etudiant_i), role = Famille.PARENT)
             * condition_nationalite
             * rsa_eligibilite_tns
             )

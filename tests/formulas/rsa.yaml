@@ -180,12 +180,6 @@
       2018-04: 50
       2018-03: 50
       2018-02: 50
-    rsa_condition_heures_travail_remplie:
-      2018-05: true
-      2018-04: true
-      2018-03: true
-      2018-02: true
-      2018-01: true
   foyers_fiscaux:
     declarants: ["personne1"]
   menages:
@@ -199,6 +193,12 @@
         2018-04: 134
         2018-03: 134
         2018-02: 134
+      rsa_condition_heures_travail_remplie:
+        2018-05: true
+        2018-04: true
+        2018-03: true
+        2018-02: true
+        2018-01: true
   output_variables:
     rsa: 363.30
 
