@@ -949,11 +949,11 @@ class salaire_super_brut_hors_allegements(Variable):
     def formula(individu, period, parameters):
         salaire_de_base = individu('salaire_de_base', period)
         remuneration_principale = individu('remuneration_principale', period)
-        remuneration_apprenti = individu('remuneration_apprenti', period, options = [ADD])
+        remuneration_apprenti = individu('remuneration_apprenti', period)
 
-        primes_fonction_publique = individu('primes_fonction_publique', period, options = [ADD])
-        indemnite_residence = individu('indemnite_residence', period, options = [ADD])
-        supplement_familial_traitement = individu('supplement_familial_traitement', period, options = [ADD])
+        primes_fonction_publique = individu('primes_fonction_publique',)
+        indemnite_residence = individu('indemnite_residence', period)
+        supplement_familial_traitement = individu('supplement_familial_traitement')
         cotisations_employeur = individu('cotisations_employeur', period)
         depense_cantine_titre_restaurant_employeur = individu(
             'depense_cantine_titre_restaurant_employeur', period)

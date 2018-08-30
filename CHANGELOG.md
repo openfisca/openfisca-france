@@ -7,6 +7,7 @@
 * Zones impactées : `revenus/activite/salarie.py`.
 * Détails :
   - Fixe l'attribut set_input = set_input_divide_by_period pour les variables `supplement_familial_traitement` et `indemnite_residence`
+  - Efface les options `ADD` superflues lors du calcul de `salaire_super_brut_hors_allegements`
 
 ## 24.7.1 [#1105](https://github.com/openfisca/openfisca-france/pull/1105)
 * Changement mineur.
