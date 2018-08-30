@@ -708,6 +708,7 @@ class indemnite_residence(Variable):
     entity = Individu
     label = u"Indemnité de résidence des fonctionnaires"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
         traitement_indiciaire_brut = individu('traitement_indiciaire_brut', period)
@@ -815,6 +816,7 @@ class supplement_familial_traitement(Variable):
     entity = Individu
     label = u"Supplément familial de traitement"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
     # Attention : par hypothèse ne peut êre attribué qu'à la tête du ménage
     # TODO: gérer le cas encore problématique du conjoint fonctionnaire
 
@@ -875,17 +877,6 @@ class supplement_familial_traitement(Variable):
             max_(part_fixe + pct_variable * traitement_indiciaire_brut, plancher),
             plafond
             )
-        # Nota Bene:
-        # categorie_salarie is an enum :
-        # class TypesCategorieSalarie(Enum):
-        #   prive_non_cadre = u'prive_non_cadre'
-        #   prive_cadre = u'prive_cadre'
-        #   public_titulaire_etat = u'public_titulaire_etat'
-        #   public_titulaire_militaire = u'public_titulaire_militaire'
-        #   public_titulaire_territoriale = u'public_titulaire_territoriale'
-        #   public_titulaire_hospitaliere = u'public_titulaire_hospitaliere'
-        #   public_non_titulaire = u'public_non_titulaire'
-        #   non_pertinent = u'non_pertinent'
         return sft
 
 
@@ -958,22 +949,26 @@ class salaire_super_brut_hors_allegements(Variable):
     def formula(individu, period, parameters):
         salaire_de_base = individu('salaire_de_base', period)
         remuneration_principale = individu('remuneration_principale', period)
-        remuneration_apprenti = individu('remuneration_apprenti', period, options = [ADD])
+        remuneration_apprenti = individu('remuneration_apprenti', period)
 
-        primes_fonction_publique = individu('primes_fonction_publique', period, options = [ADD])
-        indemnite_residence = individu('indemnite_residence', period, options = [ADD])
-        supplement_familial_traitement = individu('supplement_familial_traitement', period, options = [ADD])
+        primes_fonction_publique = individu('primes_fonction_publique', period)
+        indemnite_residence = individu('indemnite_residence', period)
+        supplement_familial_traitement = individu('supplement_familial_traitement', period)
         cotisations_employeur = individu('cotisations_employeur', period)
-        depense_cantine_titre_restaurant_employeur = individu(
-            'depense_cantine_titre_restaurant_employeur', period)
-        reintegration_titre_restaurant_employeur = individu(
-            'reintegration_titre_restaurant_employeur', period)
+        depense_cantine_titre_restaurant_employeur = individu('depense_cantine_titre_restaurant_employeur', period)
+        reintegration_titre_restaurant_employeur = individu('reintegration_titre_restaurant_employeur', period)
         indemnite_fin_contrat = individu('indemnite_fin_contrat', period)
         salaire_super_brut_hors_allegements = (
-            salaire_de_base + remuneration_principale + remuneration_apprenti +
-            primes_fonction_publique + indemnite_residence + supplement_familial_traitement + indemnite_fin_contrat +
-            depense_cantine_titre_restaurant_employeur - reintegration_titre_restaurant_employeur -
-            cotisations_employeur
+            salaire_de_base
+            + remuneration_apprenti
+            + indemnite_fin_contrat
+            + remuneration_principale
+            + primes_fonction_publique
+            + indemnite_residence
+            + supplement_familial_traitement
+            + depense_cantine_titre_restaurant_employeur
+            - reintegration_titre_restaurant_employeur
+            - cotisations_employeur
             )
 
         return salaire_super_brut_hors_allegements
