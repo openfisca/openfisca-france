@@ -1,5 +1,12 @@
 # Changelog
 
+## 24.7.1 [#1105](https://github.com/openfisca/openfisca-france/pull/1105)
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `model/prestations/minima_sociaux/asi_aspa`.
+* Détails :
+  - Suppression de `revenus_fonciers_minima_sociaux`
+
 ## 24.7.0 [#1070](https://github.com/openfisca/openfisca-france/pull/1070)
  * Évolution du système socio-fiscal.
 * Périodes concernées : toutes.
