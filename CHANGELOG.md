@@ -1,6 +1,6 @@
 # Changelog
 
-## 24.7.1 [#1104](https://github.com/openfisca/openfisca-france/pull/#1104)
+## 24.7.2 [#1104](https://github.com/openfisca/openfisca-france/pull/#1104)
 
 * Amélioration technique.
 * Périodes concernées : toutes.
@@ -8,6 +8,12 @@
 * Détails :
   - Fixe l'attribut set_input = set_input_divide_by_period pour les variables `supplement_familial_traitement` et `indemnite_residence`
 
+## 24.7.1 [#1105](https://github.com/openfisca/openfisca-france/pull/1105)
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `model/prestations/minima_sociaux/asi_aspa`.
+* Détails :
+  - Suppression de `revenus_fonciers_minima_sociaux`
 
 ## 24.7.0 [#1070](https://github.com/openfisca/openfisca-france/pull/1070)
  * Évolution du système socio-fiscal.
