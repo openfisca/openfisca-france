@@ -331,6 +331,7 @@ class rsa_base_ressources_prestations_familiales(Variable):
         prestations_calculees = [
             'paje_base',
         ]
+        # La période de calcul du 'rsa_forfait_asf' correspond au mois_courant et pas au mois_demande.
         prestations_autres = [
             'rsa_forfait_asf',
             'paje_clca',
@@ -343,12 +344,14 @@ class rsa_base_ressources_prestations_familiales(Variable):
 
         result += sum(famille(prestation, mois_courant) for prestation in prestations_autres)
 
+        # La période de calcul du 'cf_non_majore_avant_cumul' correspond au mois_courant et pas au mois_demande.
         cf_non_majore_avant_cumul = famille('cf_non_majore_avant_cumul', mois_courant)
         cf = famille('cf', mois_demande)
         # Seul le montant non majoré est pris en compte dans la base de ressources du RSA
         cf_non_majore = (cf > 0) * cf_non_majore_avant_cumul
 
         af_base = famille('af_base', mois_demande)
+        # La période de calcul du 'af' correspond au mois_courant et pas au mois_demande.
         af = famille('af', mois_courant)
 
         result = result + cf_non_majore + min_(af_base, af)  # Si des AF on été injectées et sont plus faibles que le cf
@@ -678,6 +681,7 @@ class rsa_fictif(Variable):
         rsa_socle_majore = famille('rsa_socle_majore', mois_courant)
         rsa_socle = max_(rsa_socle_non_majore, rsa_socle_majore)
 
+        # La période de calcul  rsa_deforfait_logement correspond au mois_courant et pas au mois_demande.
         rsa_forfait_logement = famille('rsa_forfait_logement', mois_courant)
         rsa_base_ressources = famille('rsa_base_ressources', mois_demande, extra_params = [mois_courant])
 
@@ -802,8 +806,6 @@ class rsa_eligibilite(Variable):
         rsa_eligibilite_tns = famille('rsa_eligibilite_tns', period)
         condition_nationalite_i = famille.members('rsa_condition_nationalite', period)
         condition_nationalite = famille.any(condition_nationalite_i, role = Famille.PARENT)
-
-        rmi = parameters(period).prestations.minima_sociaux.rmi
         rsa = parameters(period).prestations.minima_sociaux.rsa
 
         age_i = famille.members('age', period)
@@ -814,35 +816,32 @@ class rsa_eligibilite(Variable):
         condition_age_i = famille.project(rsa_nb_enfants > 0) + (age_i > rsa.age_pac)
 
         return (
-            famille.any(condition_age_i * not_(etudiant_i), role = Famille.PARENT)
+            famille.any((condition_age_i ) * not_(etudiant_i), role = Famille.PARENT)
             * condition_nationalite
             * rsa_eligibilite_tns
             )
 
-    def formula_2018_01_01(famille, period, parameters):
+    def formula_2010_01_01(famille, period, parameters):
         rsa_nb_enfants = famille('rsa_nb_enfants', period)
         rsa_eligibilite_tns = famille('rsa_eligibilite_tns', period)
         condition_nationalite_i = famille.members('rsa_condition_nationalite', period)
         condition_nationalite = famille.any(condition_nationalite_i, role = Famille.PARENT)
-
-        rmi = parameters(period).prestations.minima_sociaux.rmi
+        rsa_condition_heures_travail_remplie_i = famille.members("rsa_condition_heures_travail_remplie", period)
         rsa = parameters(period).prestations.minima_sociaux.rsa
 
         age_i = famille.members('age', period)
 
         etudiant_i = famille.members('etudiant', period)
 
-        rsa_condition_heures_travail_remplie_i = famille.members("rsa_condition_heures_travail_remplie", period)
+        rsa_jeune_condition_i = (age_i > rsa.age_min_rsa_jeune) * (age_i < rsa.age_max_rsa_jeune) * rsa_condition_heures_travail_remplie_i
         # rsa_nb_enfants est à valeur pour une famille, il faut le projeter sur les individus avant de faire une opération avec age_i
         condition_age_i = famille.project(rsa_nb_enfants > 0) + (age_i > rsa.age_pac)
-        rsa_jeune_condition_i = (age_i > rsa.age_min_rsa_jeune) * (age_i < rsa.age_max_rsa_jeune) * rsa_condition_heures_travail_remplie_i
 
         return (
             famille.any((condition_age_i | rsa_jeune_condition_i) * not_(etudiant_i), role = Famille.PARENT)
             * condition_nationalite
             * rsa_eligibilite_tns
             )
-
 
 class rsa_eligibilite_tns(Variable):
     value_type = bool
