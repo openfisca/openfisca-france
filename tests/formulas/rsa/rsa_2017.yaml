@@ -3,8 +3,16 @@
   relative_error_margin: 0.01
   input_variables:
     age: 40
-    statut_occupation_logement: locataire_vide
-    loyer: 400
+    statut_occupation_logement:
+      2017-01: locataire_vide
+      2016-12: locataire_vide
+      2016-11: locataire_vide
+      2016-10: locataire_vide
+    loyer:
+      2017-01: 400
+      2016-12: 400
+      2016-11: 400
+      2016-10: 400
   output_variables:
     rsa:
       2017-01: 471 # forfait logement appliqué car AL
@@ -14,8 +22,16 @@
   relative_error_margin: 0.01
   input_variables:
     age: 40
-    statut_occupation_logement: loge_gratuitement
-    participation_frais: true
+    statut_occupation_logement:
+      2017-01: loge_gratuitement
+      2016-12: loge_gratuitement
+      2016-11: loge_gratuitement
+      2016-10: loge_gratuitement
+    participation_frais:
+      2017-01: true
+      2016-12: true
+      2016-11: true
+      2016-10: true
   output_variables:
     rsa:
       2017-01: 535
@@ -30,8 +46,16 @@
       2016-11: 200
       2016-10: 200
     age: 40
-    statut_occupation_logement: loge_gratuitement
-    participation_frais: true
+    statut_occupation_logement:
+      2017-01: loge_gratuitement
+      2016-12: loge_gratuitement
+      2016-11: loge_gratuitement
+      2016-10: loge_gratuitement
+    participation_frais:
+      2017-01: true
+      2016-12: true
+      2016-11: true
+      2016-10: true
   output_variables:
     rsa:
       2017-01: 535 - 200
@@ -46,12 +70,19 @@
       2016-11: 200
       2016-10: 200
     age: 40
-    statut_occupation_logement: loge_gratuitement
-    participation_frais: true
+    statut_occupation_logement:
+      2017-01: loge_gratuitement
+      2016-12: loge_gratuitement
+      2016-11: loge_gratuitement
+      2016-10: loge_gratuitement
+    participation_frais:
+      2017-01: true
+      2016-12: true
+      2016-11: true
+      2016-10: true
   output_variables:
     rsa:
       2017-01: 535
-
 
 - name: "Famille avec enfants et un parent en activité, déduction des AF"
   period: 2017-01
@@ -93,12 +124,19 @@
     personne_de_reference: 1
     conjoint: 2
     enfants: [3, 4]
-    statut_occupation_logement: locataire_vide
-    loyer: 400
+    statut_occupation_logement:
+      2017-01: locataire_vide
+      2016-12: locataire_vide
+      2016-11: locataire_vide
+      2016-10: locataire_vide
+    loyer:
+      2017-01: 400
+      2016-12: 400
+      2016-11: 400
+      2016-10: 400
   output_variables:
     af_base: 130
     rsa: 964.91 - 400 - 130
-
 
 - name: "Parent isolé, majoration et déduction de l'ASF"
   period: 2017-01
@@ -119,8 +157,16 @@
   menages:
     personne_de_reference: 1
     enfants: [3, 4]
-    statut_occupation_logement: locataire_vide
-    loyer: 400
+    statut_occupation_logement:
+      2017-01: locataire_vide
+      2016-12: locataire_vide
+      2016-11: locataire_vide
+      2016-10: locataire_vide
+    loyer:
+      2017-01: 400
+      2016-12: 400
+      2016-11: 400
+      2016-10: 400
   output_variables:
     af_base: 130.12
     asf: 210.54
@@ -248,12 +294,12 @@
       2016-11: 250
       2016-10: 250
   output_variables:
-    rsa: 369
+    rsa: 376.9
     rsa_socle_majore:
-      2016-12: 1145
-      2016-11: 1145
-      2016-10: 916
+      2016-12: 1145.37 # (Montant Forfaitaire MF)
+      2016-11: 1145.37 # MF
+      2016-10: 916.29 # MF
     rsa_fictif:
-      2016-12: 1145 - 156 - 500 - 130 # 359
-      2016-11: 1145 - 156 - 500 # 489
-      2016-10: 916 - 156 - 500 # 260
+      2016-12: 1145.37 - 158.94 - (500 + 130)  # (Montant Forfaitaire MF -  Forfait logement FL - Prestations familiales PF)
+      2016-11: 1145.37 - 158.94 - 500  # (MF - FL - PF)
+      2016-10: 916.29 - 128.44 - 500  # (MF - FL - PF)
