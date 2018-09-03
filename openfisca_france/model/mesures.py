@@ -187,7 +187,7 @@ class pensions_nettes(Variable):
             )
 
 
-class plus_values_revenus_nets_du_capital(Variable):
+class plus_values_base_large(Variable):
     value_type = float
     entity = FoyerFiscal
     label = u"Montant des plus-values utilisé pour le montant total de revenus du capital"
@@ -300,7 +300,7 @@ class revenus_nets_du_capital(Variable):
         foyer_fiscal = individu.foyer_fiscal
         assiette_csg_revenus_capital = foyer_fiscal('assiette_csg_revenus_capital', period)
         assiette_csg_plus_values = foyer_fiscal('assiette_csg_plus_values', period)
-        plus_values_revenus_nets_du_capital = foyer_fiscal('plus_values_revenus_nets_du_capital', period)
+        plus_values_base_large = foyer_fiscal('plus_values_base_large', period)
         rev_cat_rfon = foyer_fiscal('revenu_categoriel_foncier', period)
         rente_viagere_titre_onereux_net = foyer_fiscal('rente_viagere_titre_onereux_net', period)
         fon = foyer_fiscal('fon', period)
@@ -308,7 +308,7 @@ class revenus_nets_du_capital(Variable):
         revenus_du_capital_cap_avant_prelevements_sociaux = (
             assiette_csg_revenus_capital
             - assiette_csg_plus_values
-            + plus_values_revenus_nets_du_capital
+            + plus_values_base_large
             - rev_cat_rfon
             + fon
             - rente_viagere_titre_onereux_net
@@ -454,8 +454,8 @@ class revenus_capitaux_mobiliers_plus_values_bruts(Variable):
         assurance_vie_ps_exoneree_irpp_pl_i = menage.members.foyer_fiscal('assurance_vie_ps_exoneree_irpp_pl', period)
         assurance_vie_ps_exoneree_irpp_pl = menage.sum(assurance_vie_ps_exoneree_irpp_pl_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
 
-        plus_values_revenus_nets_du_capital_i = menage.members.foyer_fiscal('plus_values_revenus_nets_du_capital', period)
-        plus_values_revenus_nets_du_capital = menage.sum(plus_values_revenus_nets_du_capital_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
+        plus_values_base_large_i = menage.members.foyer_fiscal('plus_values_base_large', period)
+        plus_values_base_large = menage.sum(plus_values_base_large_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
 
         return (
             + revenus_capitaux_prelevement_forfaitaire_unique_ir
@@ -466,7 +466,7 @@ class revenus_capitaux_mobiliers_plus_values_bruts(Variable):
             + interets_compte_epargne_logement_ouvert_avant_de_2018
             + interets_compte_epargne_logement_ouvert_a_partir_de_2018
             + assurance_vie_ps_exoneree_irpp_pl
-            + plus_values_revenus_nets_du_capital
+            + plus_values_base_large
             )
 
 class revenus_super_bruts(Variable):
