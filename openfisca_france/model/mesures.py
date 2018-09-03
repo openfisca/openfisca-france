@@ -356,7 +356,7 @@ class revenus_fonciers_bruts(Variable):
 
 class revenus_travail_super_bruts(Variable):
     value_type = float
-    entity = FoyerFiscal
+    entity = Menage
     label = u"Revenus du travail super bruts du ménage"
     definition_period = YEAR
 
