@@ -145,7 +145,7 @@ class revenus_nets_du_travail(Variable):
         # Salariés
         salaire_net = individu('salaire_net', period, options = [ADD])
         # Non salariés
-        revenu_non_salarie = individu('rpns', period)  # TODO ou rpns_individu
+        revenu_non_salarie = individu('rpns', period, options = [ADD])  # TODO ou rpns_individu
         cotisations_non_salarie = individu('cotisations_non_salarie', period)
         csg_non_salarie = individu('csg_non_salarie', period)
         crds_non_salarie = individu('crds_non_salarie', period)
@@ -461,9 +461,9 @@ class revenus_capitaux_mobiliers_plus_values_bruts(Variable):
             + revenus_capitaux_prelevement_forfaitaire_unique_ir
             + revenus_capitaux_prelevement_bareme
             + revenus_capitaux_prelevement_liberatoire
-            + interets_plan_epargne_logement_moins_de_12_ans_ouvert_avant_de_2018
+            + interets_plan_epargne_logement_moins_de_12_ans_ouvert_avant_2018
             + interets_plan_epargne_logement_moins_de_12_ans_ouvert_a_partir_de_2018
-            + interets_compte_epargne_logement_ouvert_avant_de_2018
+            + interets_compte_epargne_logement_ouvert_avant_2018
             + interets_compte_epargne_logement_ouvert_a_partir_de_2018
             + assurance_vie_ps_exoneree_irpp_pl
             + plus_values_base_large
