@@ -325,6 +325,170 @@ class revenus_nets_du_capital(Variable):
         return revenus_foyer_fiscal_projetes
 
 
+class revenus_fonciers_bruts(Variable):
+    value_type = float
+    entity = Menage
+    label = u"Revenus fonciers du ménage après déficits mais avant abattements"
+    definition_period = YEAR
+
+    def formula_2013_01_01(menage, period):
+        '''
+        Il s'agit des bénéfices (ou déficits) fonciers de l'année courante,
+        sans abattement. Il s'agit d'une notion davantage économique.
+        Cette variable n'est relative qu'à l'activité foncière de l'année.
+        C'est pourquoi on ne prend pas en compte la case 4BD, qui
+        correspond à des déficits des années antérieures non encore imputés
+        au titre de l'impôt sur le revenu
+        Formule vérifiée pour les feuilles d'impôts à partir des revenus 2013,
+        d'où le fait que la formule commence à cette date-là
+        '''
+        f4ba_i = menage.members.foyer_fiscal('f4ba', period)
+        f4be_i = menage.members.foyer_fiscal('f4be', period)
+        f4bb_i = menage.members.foyer_fiscal('f4bb', period)
+        f4bc_i = menage.members.foyer_fiscal('f4bc', period)
+
+        f4ba = menage.sum(f4ba_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
+        f4be = menage.sum(f4be_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
+        f4bb = menage.sum(f4bb_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
+        f4bc = menage.sum(f4bc_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
+
+        return f4ba + f4be - f4bb - f4bc
+
+class revenus_travail_super_bruts(Variable):
+    value_type = float
+    entity = FoyerFiscal
+    label = u"Revenus du travail super bruts du ménage"
+    definition_period = YEAR
+
+    def formula(menage, period):
+        '''
+        Revenus du travail super bruts du ménage :
+        avant CSG-CRDS, cotisations salariales et patronales
+        '''
+        salaire_net_i = menage.members('salaire_net', period, options = [ADD])
+        cotisations_employeur_i = menage.members('cotisations_employeur', period, options = [ADD])
+        cotisations_salariales_i = menage.members('cotisations_salariales', period, options = [ADD])
+        csg_imposable_salaire_i = menage.members('csg_imposable_salaire', period, options = [ADD])
+        csg_deductible_salaire_i = menage.members('csg_deductible_salaire', period, options = [ADD])
+        crds_salaire_i = menage.members('crds_salaire', period, options = [ADD])
+
+        salaire_net = menage.sum(salaire_net_i)
+        cotisations_employeur = menage.sum(cotisations_employeur_i)
+        cotisations_salariales = menage.sum(cotisations_salariales_i)
+        csg_imposable_salaire = menage.sum(csg_imposable_salaire_i)
+        csg_deductible_salaire = menage.sum(csg_deductible_salaire_i)
+        crds_salaire = menage.sum(crds_salaire_i)
+
+        return (
+            salaire_net
+            + cotisations_employeur
+            + cotisations_salariales
+            + csg_imposable_salaire
+            + csg_deductible_salaire
+            + crds_salaire
+            )
+
+class revenus_remplacement_pensions_bruts(Variable):
+    value_type = float
+    entity = Menage
+    label = u"Revenus de remplacement et pensions bruts du ménage"
+    definition_period = YEAR
+
+    def formula(menage, period):
+        '''
+        Revenus de remplacement et pensions bruts du ménage : avant CSG et CRDS
+        '''
+        pensions_nettes_i = menage.members('pensions_nettes', period)
+        csg_imposable_chomage_i = menage.members('csg_imposable_chomage', period, options = [ADD])
+        csg_deductible_chomage_i = menage.members('csg_deductible_chomage', period, options = [ADD])
+        csg_imposable_retraite_i = menage.members('csg_imposable_retraite', period, options = [ADD])
+        csg_deductible_retraite_i = menage.members('csg_deductible_retraite', period, options = [ADD])
+        crds_chomage_i = menage.members('crds_chomage', period, options = [ADD])
+        crds_retraite_i = menage.members('crds_retraite', period, options = [ADD])
+
+        pensions_nettes = menage.sum(pensions_nettes_i)
+        csg_imposable_chomage = menage.sum(csg_imposable_chomage_i)
+        csg_deductible_chomage = menage.sum(csg_deductible_chomage_i)
+        csg_imposable_retraite = menage.sum(csg_imposable_retraite_i)
+        csg_deductible_retraite = menage.sum(csg_deductible_retraite_i)
+        crds_chomage = menage.sum(crds_chomage_i)
+        crds_retraite = menage.sum(crds_retraite_i)
+
+        return (
+            + pensions_nettes
+            + csg_imposable_chomage
+            + csg_deductible_chomage
+            + csg_imposable_retraite
+            + csg_deductible_retraite
+            + crds_chomage
+            + crds_retraite
+            )
+
+class revenus_capitaux_mobiliers_plus_values_bruts(Variable):
+    value_type = float
+    entity = Menage
+    label = u"Revenus bruts des capitaux mobiliers et plus-values du ménage"
+    definition_period = YEAR
+
+    def formula(menage, period):
+        '''
+        Revenus bruts des capitaux mobiliers et plus-values du ménage :
+        avant tout abattement et prélèvement social
+        '''
+
+        revenus_capitaux_prelevement_forfaitaire_unique_ir_i = menage.members.foyer_fiscal('revenus_capitaux_prelevement_forfaitaire_unique_ir', period)
+        revenus_capitaux_prelevement_forfaitaire_unique_ir = menage.sum(revenus_capitaux_prelevement_forfaitaire_unique_ir_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
+        revenus_capitaux_prelevement_bareme_i = menage.members.foyer_fiscal('revenus_capitaux_prelevement_bareme', period)
+        revenus_capitaux_prelevement_bareme = menage.sum(revenus_capitaux_prelevement_bareme_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
+        revenus_capitaux_prelevement_liberatoire_i = menage.members.foyer_fiscal('revenus_capitaux_prelevement_liberatoire', period)
+        revenus_capitaux_prelevement_liberatoire = menage.sum(revenus_capitaux_prelevement_liberatoire_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
+
+        interets_plan_epargne_logement_moins_de_12_ans_ouvert_avant_2018_i = menage.members('interets_plan_epargne_logement_moins_de_12_ans_ouvert_avant_2018', period)
+        interets_plan_epargne_logement_moins_de_12_ans_ouvert_avant_2018 = menage.sum(interets_plan_epargne_logement_moins_de_12_ans_ouvert_avant_2018_i)
+        interets_plan_epargne_logement_moins_de_12_ans_ouvert_a_partir_de_2018_i = menage.members('interets_plan_epargne_logement_moins_de_12_ans_ouvert_a_partir_de_2018', period)
+        interets_plan_epargne_logement_moins_de_12_ans_ouvert_a_partir_de_2018 = menage.sum(interets_plan_epargne_logement_moins_de_12_ans_ouvert_a_partir_de_2018_i)
+        interets_compte_epargne_logement_ouvert_avant_2018_i = menage.members('interets_compte_epargne_logement_ouvert_avant_2018', period)
+        interets_compte_epargne_logement_ouvert_avant_2018 = menage.sum(interets_compte_epargne_logement_ouvert_avant_2018_i)
+        interets_compte_epargne_logement_ouvert_a_partir_de_2018_i = menage.members('interets_compte_epargne_logement_ouvert_a_partir_de_2018', period)
+        interets_compte_epargne_logement_ouvert_a_partir_de_2018 = menage.sum(interets_compte_epargne_logement_ouvert_a_partir_de_2018_i)
+        assurance_vie_ps_exoneree_irpp_pl_i = menage.members.foyer_fiscal('assurance_vie_ps_exoneree_irpp_pl', period)
+        assurance_vie_ps_exoneree_irpp_pl = menage.sum(assurance_vie_ps_exoneree_irpp_pl_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
+
+        plus_values_revenus_nets_du_capital_i = menage.members.foyer_fiscal('plus_values_revenus_nets_du_capital', period)
+        plus_values_revenus_nets_du_capital = menage.sum(plus_values_revenus_nets_du_capital_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
+
+        return (
+            + revenus_capitaux_prelevement_forfaitaire_unique_ir
+            + revenus_capitaux_prelevement_bareme
+            + revenus_capitaux_prelevement_liberatoire
+            + interets_plan_epargne_logement_moins_de_12_ans_ouvert_avant_de_2018
+            + interets_plan_epargne_logement_moins_de_12_ans_ouvert_a_partir_de_2018
+            + interets_compte_epargne_logement_ouvert_avant_de_2018
+            + interets_compte_epargne_logement_ouvert_a_partir_de_2018
+            + assurance_vie_ps_exoneree_irpp_pl
+            + plus_values_revenus_nets_du_capital
+            )
+
+class revenus_super_bruts(Variable):
+    value_type = float
+    entity = Menage
+    label = u"Revenus super bruts du ménage"
+    definition_period = YEAR
+
+    def formula(menage, period):
+
+        revenus_travail_super_bruts = menage('revenus_travail_super_bruts', period)
+        revenus_remplacement_pensions_bruts = menage('revenus_remplacement_pensions_bruts', period)
+        revenus_fonciers_bruts = menage('revenus_fonciers_bruts', period)
+        revenus_capitaux_mobiliers_plus_values_bruts = menage('revenus_capitaux_mobiliers_plus_values_bruts', period)
+
+        return (revenus_travail_super_bruts
+            + revenus_remplacement_pensions_bruts
+            + revenus_fonciers_bruts
+            + revenus_capitaux_mobiliers_plus_values_bruts
+            )
+
+
 class prestations_sociales(Variable):
     value_type = float
     entity = Famille
