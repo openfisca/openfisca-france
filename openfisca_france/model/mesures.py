@@ -325,7 +325,7 @@ class revenus_nets_du_capital(Variable):
         return revenus_foyer_fiscal_projetes
 
 
-class revenus_fonciers_bruts(Variable):
+class revenus_fonciers_bruts_menage(Variable):
     value_type = float
     entity = Menage
     label = u"Revenus fonciers du ménage après déficits mais avant abattements"
@@ -354,7 +354,7 @@ class revenus_fonciers_bruts(Variable):
 
         return f4ba + f4be - f4bb - f4bc
 
-class revenus_travail_super_bruts(Variable):
+class revenus_travail_super_bruts_menage(Variable):
     value_type = float
     entity = Menage
     label = u"Revenus du travail super bruts du ménage"
@@ -388,7 +388,7 @@ class revenus_travail_super_bruts(Variable):
             + crds_salaire
             )
 
-class revenus_remplacement_pensions_bruts(Variable):
+class revenus_remplacement_pensions_bruts_menage(Variable):
     value_type = float
     entity = Menage
     label = u"Revenus de remplacement et pensions bruts du ménage"
@@ -424,7 +424,7 @@ class revenus_remplacement_pensions_bruts(Variable):
             + crds_retraite
             )
 
-class revenus_capitaux_mobiliers_plus_values_bruts(Variable):
+class revenus_capitaux_mobiliers_plus_values_bruts_menage(Variable):
     value_type = float
     entity = Menage
     label = u"Revenus bruts des capitaux mobiliers et plus-values du ménage"
@@ -469,7 +469,7 @@ class revenus_capitaux_mobiliers_plus_values_bruts(Variable):
             + plus_values_base_large
             )
 
-class revenus_super_bruts(Variable):
+class revenus_super_bruts_menage(Variable):
     value_type = float
     entity = Menage
     label = u"Revenus super bruts du ménage"
@@ -477,15 +477,15 @@ class revenus_super_bruts(Variable):
 
     def formula(menage, period):
 
-        revenus_travail_super_bruts = menage('revenus_travail_super_bruts', period)
-        revenus_remplacement_pensions_bruts = menage('revenus_remplacement_pensions_bruts', period)
-        revenus_fonciers_bruts = menage('revenus_fonciers_bruts', period)
-        revenus_capitaux_mobiliers_plus_values_bruts = menage('revenus_capitaux_mobiliers_plus_values_bruts', period)
+        revenus_travail_super_bruts_menage = menage('revenus_travail_super_bruts_menage', period)
+        revenus_remplacement_pensions_bruts_menage = menage('revenus_remplacement_pensions_bruts_menage', period)
+        revenus_fonciers_bruts_menage = menage('revenus_fonciers_bruts_menage', period)
+        revenus_capitaux_mobiliers_plus_values_bruts_menage = menage('revenus_capitaux_mobiliers_plus_values_bruts_menage', period)
 
-        return (revenus_travail_super_bruts
-            + revenus_remplacement_pensions_bruts
-            + revenus_fonciers_bruts
-            + revenus_capitaux_mobiliers_plus_values_bruts
+        return (revenus_travail_super_bruts_menage
+            + revenus_remplacement_pensions_bruts_menage
+            + revenus_fonciers_bruts_menage
+            + revenus_capitaux_mobiliers_plus_values_bruts_menage
             )
 
 
