@@ -26,6 +26,7 @@ class taux_csg_remplacement(Variable):
     entity = Individu
     label = u"Taux retenu sur la CSG des revenus de remplacment"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula_2015(individu, period, parameters):
         rfr = individu.foyer_fiscal('rfr', period = period.n_2, max_nb_cycles = 1)
