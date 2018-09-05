@@ -31,14 +31,14 @@ def test_cesthra_invalidee():
         )
 
     reference_simulation = scenario.new_simulation(use_baseline = True)
-    reference_impo = reference_simulation.calculate('impots_directs', period = period)
+    reference_impo = reference_simulation.calculate('impots_directs_menage', period = period)
     assert reference_impo is not None
     reference_revenu_disponible = reference_simulation.calculate('revenu_disponible', period = period)
     assert reference_revenu_disponible is not None
 
     reform_simulation = scenario.new_simulation()
-    reform_impots_directs = reform_simulation.calculate('impots_directs', period = period)
-    assert reform_impots_directs is not None
+    reform_impots_directs_menage = reform_simulation.calculate('impots_directs_menage', period = period)
+    assert reform_impots_directs_menage is not None
     reform_revenu_disponible = reform_simulation.calculate('revenu_disponible', period = period)
     assert reform_revenu_disponible is not None
 

@@ -63,7 +63,7 @@
     # end prestations_sociales
     ppe:
       2012: 0
-    impots_directs:
+    impots_directs_menage:
       2012: -528
     revenu_disponible:
       2012: 16812 - 528
@@ -111,7 +111,7 @@
     # end prestations_sociales
     ppe:
       2012: 0
-    impots_directs:
+    impots_directs_menage:
       2012: -4320
     revenu_disponible:
       2012: 10530
@@ -160,7 +160,7 @@
     # end prestations_sociales
     ppe:
       2012: 0
-    impots_directs:
+    impots_directs_menage:
       2012: -1019
     revenu_disponible:
       2012: 2500 * 12 * (1 - 0.175) - 1019
@@ -179,7 +179,7 @@
     revenus_nets_du_capital: (20000 - 7052)
     pensions_nettes: 30000
     irpp: -6593 # Montant calculé sur le simulateur de la DGFiP
-    impots_directs: -6593 # Montant calculé sur le simulateur de la DGFiP
+    impots_directs_menage: -6593 # Montant calculé sur le simulateur de la DGFiP
     revenu_disponible: (20000 - 7052) + 30000 - 6593
 
 - name: acomptes_ir_2016
@@ -195,7 +195,7 @@
     acomptes_ir: 13000
     revenus_nets_du_capital: 100000*(1-(0.045+0.02+0.003+0.005+0.082))
     irpp: -7266 # Montant calculé sur le simulateur de la DGFiP
-    impots_directs: -7266-13000
+    impots_directs_menage: -7266-13000
     #revenu_disponible: ???
 
 - name: acomptes_ir_2017
@@ -210,7 +210,7 @@
     acomptes_ir: 10000
     revenus_nets_du_capital: 100000*(1-(0.045+0.02+0.003+0.005+0.099))
     irpp: -2293 # Montant calculé sur le simulateur de la DGFiP
-    impots_directs: -(2293+10000)
+    impots_directs_menage: -(2293+10000)
     revenu_disponible: 100000*(1-(0.045+0.02+0.003+0.005+0.099))-(2293+10000)
 
 - name: plus_values_immobilières_2017
@@ -224,7 +224,7 @@
     revenus_nets_du_capital: 100000*(1-(0.045+0.02+0.003+0.005+0.099))
     ir_pv_immo: -0.19*100000
     irpp: 0
-    impots_directs: -0.19*100000
+    impots_directs_menage: -0.19*100000
     #revenu_disponible: 100000*(1-(0.19+0.045+0.02+0.003+0.005+0.099))
 
 ###########################################################################
@@ -249,7 +249,7 @@
     prelevements_sociaux_revenus_capital: -774000 # -4500000*(0.045+0.02+0.003+0.005+0.099)
     revenus_nets_du_capital: 4500000 - 774000
     prelevement_forfaitaire_unique_ir_sur_assurance_vie: -768026.2 # =0,075*(MAX(100000-4600;0)+MAX(200000-4600;0)+MAX(500000-4600;0))+0,15*(400000+600000)+0,35*(300000+700000)+0,128*800000+0,075*150000+0,128*(MAX(900000-4600;0)-150000)
-    impots_directs: -768026.2
+    impots_directs_menage: -768026.2
     revenu_disponible: 4500000 - 774000 - 768026.2
 
 - name: pfu_epargne_non_solidaire_etats_non_cooperatifs_2018
@@ -263,7 +263,7 @@
     prelevements_sociaux_revenus_capital: -8600 # -50000*(0.045+0.02+0.003+0.005+0.099)
     revenus_nets_du_capital: 50000 - 8600
     prelevement_forfaitaire_unique_ir_epargne_solidaire_etats_non_cooperatifs: -23500 #-(20000*0.05 + 30000*0.75)
-    impots_directs: -23500
+    impots_directs_menage: -23500
     revenu_disponible: 50000 - 8600 - 23500
 
 - name: pfu_hors_av_epargne_non_solidaire_etats_non_cooperatifs_2018
@@ -281,7 +281,7 @@
     prelevements_sociaux_revenus_capital: -32680 # ATTENTION : f3sa et f3vd sont hors du champ des prélèvements sociaux par hypothèse du simulateur (cf. docstring de la variable assiette_csg_plus_values pour une explication). Donc : -190000*(0.045+0.02+0.003+0.005+0.099)
     revenus_nets_du_capital: 270000 - 32680
     prelevement_forfaitaire_unique_ir_hors_assurance_vie_epargne_solidaire_etats_non_cooperatifs: -34560 #-(27000*0.128)
-    impots_directs: -34560
+    impots_directs_menage: -34560
     revenu_disponible: 270000 - 32680 - 34560
 
 - name: plus_values_immobilières_2018
@@ -295,5 +295,5 @@
     revenus_nets_du_capital: 100000*(1-(0.045+0.02+0.003+0.005+0.099))
     ir_pv_immo: -0.19*100000
     irpp: 0
-    impots_directs: -0.19*100000
+    impots_directs_menage: -0.19*100000
     # revenu_disponible: 100000*(1-(0.19+0.045+0.02+0.003+0.005+0.099))

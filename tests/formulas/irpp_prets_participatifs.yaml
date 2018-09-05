@@ -13,7 +13,7 @@
     f2tu_2016: 30000
   output_variables:
     irpp: -15350 # Montant obtenu sur le simulateur de la DGFiP
-    impots_directs: -15350
+    impots_directs_menage: -15350
 
 - name: ir_prets_participatifs_2017
   description: "Montant d'impôt sur le revenu si prêts participatifs - 2017"
@@ -24,7 +24,7 @@
     #f2tu: 30000 # Sur le simulateur de la DGFiP, pas possible de rentrer un montant >0 en 3tu si le montant en 3tt est >0. Cohérent.
   output_variables:
     irpp: -27305 # Montant obtenu sur le simulateur de la DGFiP
-    impots_directs: -27305
+    impots_directs_menage: -27305
 
 - name: ir_prets_participatifs_2018
   description: "Montant d'impôt sur le revenu (via prelevement_forfaitaire_unique_ir) si prêts participatifs - 2018"
@@ -36,4 +36,4 @@
   output_variables:
     irpp: 0
     prelevement_forfaitaire_unique_ir: -0.128*100000
-    impots_directs: -0.128*100000
+    impots_directs_menage: -0.128*100000

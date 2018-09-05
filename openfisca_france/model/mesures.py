@@ -63,7 +63,7 @@ class revenu_disponible(Variable):
         revenus_nets_du_capital = menage.sum(revenus_nets_du_capital_i)
         revenus_nets_du_travail = menage.sum(revenus_nets_du_travail_i)
 
-        impots_directs = menage('impots_directs', period)
+        impots_directs_menage = menage('impots_directs_menage', period)
 
         # On prend en compte les PPE touchés par un foyer fiscal dont le déclarant principal est dans le ménage
         ppe_i = menage.members.foyer_fiscal('ppe', period)  # PPE du foyer fiscal auquel appartient chaque membre du ménage
@@ -75,7 +75,7 @@ class revenu_disponible(Variable):
 
         return (
             revenus_nets_du_travail
-            + impots_directs
+            + impots_directs_menage
             + pensions_nettes
             + ppe
             + prestations_sociales
@@ -611,7 +611,7 @@ class irpp_economique(Variable):
         return irpp - acomptes_ir  # Car par convention, irpp est un montant négatif et acomptes_ir un montant positif
 
 
-class impots_directs(Variable):
+class impots_directs_menage(Variable):
     value_type = float
     entity = Menage
     label = u"Impôts directs"
