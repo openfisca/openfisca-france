@@ -1,5 +1,7 @@
 description: 'Taxes sur les salaires : taux majorés (France métropolitaine seulement)'
-unit: currency
+metadata:
+  threshold_unit: currency
+  rate_unit: /1
 brackets:
 - rate:
     2001-01-01:

@@ -6,4 +6,6 @@ brackets:
     2013-01-01:
       value: 1000000.0
 description: Taxes exceptionnelles sur les hauts revenus
-unit: currency
+metadata:
+  threshold_unit: currency
+  rate_unit: /1

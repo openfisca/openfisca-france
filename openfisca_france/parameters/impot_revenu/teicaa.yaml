@@ -18,4 +18,6 @@ brackets:
     2001-01-01:
       value: 107000.0
 description: Taxe exceptionnelle sur l'indemnité compensatrice des agents d'assurance
-unit: currency
+metadata:
+  threshold_unit: currency
+  rate_unit: /1

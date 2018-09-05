@@ -1,5 +1,7 @@
 description: Loyer minimun lo
-unit: currency
+metadata:
+  threshold_unit: currency
+  rate_unit: /1
 brackets:
 - rate:
     2007-07-01:
