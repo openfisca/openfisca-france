@@ -488,19 +488,6 @@ class revenus_super_bruts_menage(Variable):
             + revenus_capitaux_mobiliers_plus_values_bruts_menage
             )
 
-class revenus_super_bruts_menage_par_uc(Variable):
-    value_type = float
-    entity = Menage
-    label = u"Revenus super bruts du ménage par unité de consommation"
-    definition_period = YEAR
-
-    def formula(menage, period):
-
-        revenus_super_bruts_menage = menage('revenus_super_bruts_menage', period)
-        uc = menage('unites_consommation', period)
-
-        return revenus_super_bruts_menage / uc
-
 
 class prestations_sociales(Variable):
     value_type = float
