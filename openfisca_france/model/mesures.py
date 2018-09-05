@@ -109,7 +109,7 @@ class revenu_net_individu(Variable):
         return pensions_nettes + revenus_nets_du_capital + revenus_nets_du_travail
 
 
-class revenu_net(Variable):
+class revenu_net_menage(Variable):
     entity = Menage
     label = u"Revenu net du ménage"
     value_type = float
@@ -128,10 +128,10 @@ class niveau_de_vie_net(Variable):
     definition_period = YEAR
 
     def formula(menage, period):
-        revenu_net = menage('revenu_net', period)
+        revenu_net_menage = menage('revenu_net_menage', period)
         uc = menage('unites_consommation', period)
 
-        return revenu_net / uc
+        return revenu_net_menage / uc
 
 
 class revenus_nets_du_travail(Variable):
