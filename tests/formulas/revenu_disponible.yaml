@@ -65,7 +65,7 @@
       2012: 0
     impots_directs_menage:
       2012: -528
-    revenu_disponible:
+    revenu_disponible_menage:
       2012: 16812 - 528
     aides_logement:
       "2012": 0
@@ -113,7 +113,7 @@
       2012: 0
     impots_directs_menage:
       2012: -4320
-    revenu_disponible:
+    revenu_disponible_menage:
       2012: 10530
     aides_logement:
       "2012": 0
@@ -162,7 +162,7 @@
       2012: 0
     impots_directs_menage:
       2012: -1019
-    revenu_disponible:
+    revenu_disponible_menage:
       2012: 2500 * 12 * (1 - 0.175) - 1019
     aides_logement:
       "2012": 0
@@ -180,10 +180,10 @@
     pensions_nettes: 30000
     irpp: -6593 # Montant calculé sur le simulateur de la DGFiP
     impots_directs_menage: -6593 # Montant calculé sur le simulateur de la DGFiP
-    revenu_disponible: (20000 - 7052) + 30000 - 6593
+    revenu_disponible_menage: (20000 - 7052) + 30000 - 6593
 
 - name: acomptes_ir_2016
-  description: "Montant d'impôt et revenu disponible en cas d'acomptes pour l'IR en 2016 (prélèvement forfaitaire non libératoire et acomptes pour élus locaux). Attention, on n'a pas regardé les cotisations sociales et donc, on ne teste pas revenu_disponible ici...'"
+  description: "Montant d'impôt et revenu disponible en cas d'acomptes pour l'IR en 2016 (prélèvement forfaitaire non libératoire et acomptes pour élus locaux). Attention, on n'a pas regardé les cotisations sociales et donc, on ne teste pas revenu_disponible_menage ici...'"
   period: 2016
   absolute_error_margin: 1
   input_variables:
@@ -196,7 +196,7 @@
     revenus_nets_du_capital: 100000*(1-(0.045+0.02+0.003+0.005+0.082))
     irpp: -7266 # Montant calculé sur le simulateur de la DGFiP
     impots_directs_menage: -7266-13000
-    #revenu_disponible: ???
+    #revenu_disponible_menage: ???
 
 - name: acomptes_ir_2017
   description: "Montant d'impôt et revenu disponible en cas d'acomptes pour l'IR en 2017 (prélèvement forfaitaire non libératoire)"
@@ -211,7 +211,7 @@
     revenus_nets_du_capital: 100000*(1-(0.045+0.02+0.003+0.005+0.099))
     irpp: -2293 # Montant calculé sur le simulateur de la DGFiP
     impots_directs_menage: -(2293+10000)
-    revenu_disponible: 100000*(1-(0.045+0.02+0.003+0.005+0.099))-(2293+10000)
+    revenu_disponible_menage: 100000*(1-(0.045+0.02+0.003+0.005+0.099))-(2293+10000)
 
 - name: plus_values_immobilières_2017
   description: "Montant d'impôt et revenu disponible pour les plus-values immobilières (3VZ)"
@@ -225,7 +225,7 @@
     ir_pv_immo: -0.19*100000
     irpp: 0
     impots_directs_menage: -0.19*100000
-    #revenu_disponible: 100000*(1-(0.19+0.045+0.02+0.003+0.005+0.099))
+    #revenu_disponible_menage: 100000*(1-(0.19+0.045+0.02+0.003+0.005+0.099))
 
 ###########################################################################
 ######### Tests associés au prélèvement forfaitaire unique en 2018 ########
@@ -250,7 +250,7 @@
     revenus_nets_du_capital: 4500000 - 774000
     prelevement_forfaitaire_unique_ir_sur_assurance_vie: -768026.2 # =0,075*(MAX(100000-4600;0)+MAX(200000-4600;0)+MAX(500000-4600;0))+0,15*(400000+600000)+0,35*(300000+700000)+0,128*800000+0,075*150000+0,128*(MAX(900000-4600;0)-150000)
     impots_directs_menage: -768026.2
-    revenu_disponible: 4500000 - 774000 - 768026.2
+    revenu_disponible_menage: 4500000 - 774000 - 768026.2
 
 - name: pfu_epargne_non_solidaire_etats_non_cooperatifs_2018
   description: "Test du prélèvement forfaitaire unique en 2018 pour les produits d'épargne solidaire et les produits des états non-coopératifs'"
@@ -264,7 +264,7 @@
     revenus_nets_du_capital: 50000 - 8600
     prelevement_forfaitaire_unique_ir_epargne_solidaire_etats_non_cooperatifs: -23500 #-(20000*0.05 + 30000*0.75)
     impots_directs_menage: -23500
-    revenu_disponible: 50000 - 8600 - 23500
+    revenu_disponible_menage: 50000 - 8600 - 23500
 
 - name: pfu_hors_av_epargne_non_solidaire_etats_non_cooperatifs_2018
   description: "Test du prélèvement forfaitaire unique en 2018 hors assurance-vie, produits d'épargne solidaire et produits des états non-coopératifs'"
@@ -282,7 +282,7 @@
     revenus_nets_du_capital: 270000 - 32680
     prelevement_forfaitaire_unique_ir_hors_assurance_vie_epargne_solidaire_etats_non_cooperatifs: -34560 #-(27000*0.128)
     impots_directs_menage: -34560
-    revenu_disponible: 270000 - 32680 - 34560
+    revenu_disponible_menage: 270000 - 32680 - 34560
 
 - name: plus_values_immobilières_2018
   description: "Montant d'impôt et revenu disponible pour les plus-values immobilières (3VZ)"
@@ -296,4 +296,4 @@
     ir_pv_immo: -0.19*100000
     irpp: 0
     impots_directs_menage: -0.19*100000
-    # revenu_disponible: 100000*(1-(0.19+0.045+0.02+0.003+0.005+0.099))
+    # revenu_disponible_menage: 100000*(1-(0.19+0.045+0.02+0.003+0.005+0.099))

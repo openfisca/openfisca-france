@@ -41,4 +41,4 @@ def test():
         ((reform_assiette_csg - 10000) * .25 / 30000 + .25) * reform_assiette_csg,
         absolute_error_margin = 0.01,
         )
-    reform_simulation.calculate('revenu_disponible', period = year)
+    reform_simulation.calculate('revenu_disponible_menage', period = year)

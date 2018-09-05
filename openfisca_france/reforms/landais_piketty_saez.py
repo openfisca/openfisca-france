@@ -56,7 +56,7 @@ class impot_revenu_lps(Variable):
         return -max_(0, lps.bareme.calc(max_(assiette_csg - ae - ac, 0)) - re - rc) + ce
 
 
-class revenu_disponible(Variable):
+class revenu_disponible_menage(Variable):
     value_type = float
     entity = Menage
     label = u"Revenu disponible du ménage"
@@ -89,6 +89,6 @@ class landais_piketty_saez(Reform):
     name = u'Landais Piketty Saez'
 
     def apply(self):
-        for variable in [assiette_csg, impot_revenu_lps, revenu_disponible]:
+        for variable in [assiette_csg, impot_revenu_lps, revenu_disponible_menage]:
             self.update_variable(variable)
         self.modify_parameters(modifier_function = modify_parameters)

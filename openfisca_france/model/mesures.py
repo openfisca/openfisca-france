@@ -48,7 +48,7 @@ class type_menage(Variable):
             )  # Famille monoparentale trois enfants et plus
 
 
-class revenu_disponible(Variable):
+class revenu_disponible_menage(Variable):
     value_type = float
     entity = Menage
     label = u"Revenu disponible du ménage"
@@ -90,9 +90,9 @@ class niveau_de_vie(Variable):
     definition_period = YEAR
 
     def formula(menage, period):
-        revenu_disponible = menage('revenu_disponible', period)
+        revenu_disponible_menage = menage('revenu_disponible_menage', period)
         uc = menage('unites_consommation', period)
-        return revenu_disponible / uc
+        return revenu_disponible_menage / uc
 
 
 class revenu_net_individu(Variable):

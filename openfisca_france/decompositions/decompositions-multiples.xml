@@ -1,5 +1,5 @@
 <NODE code="root" color="0,0,255" desc="Racine" shortname="root" typevar="2">
-  <NODE code="revenu_disponible" color="0,0,255" desc="Revenu disponible" shortname="Rev. disp."> # TODO: missing indemnite_residence and sft
+  <NODE code="revenu_disponible_menage" color="0,0,255" desc="Revenu disponible" shortname="Rev. disp."> # TODO: missing indemnite_residence and sft
       <NODE code="rev_net" color="0,155,204" desc="Revenus nets" shortname="Rev. nets">  # TODO: change color
         <NODE code="revenus_du_travail" color="0,155,204" desc="Revenu du travail" shortname="Rev. travail">
         <NODE code="salaire_net" color="0,138,201" desc="Salaires nets" shortname="Sal. nets">
