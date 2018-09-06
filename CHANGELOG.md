@@ -1,5 +1,14 @@
 # Changelog
 
+### 29.3.6 [#1107](https://github.com/openfisca/openfisca-france/pull/1107)
+
+* Amélioration technique.
+* Périodes concernées : toutes.
+* Zones impactées : certains barèmes dont les seuils sont en unité monétaire dans les paramètres de la législation.
+* Détails :
+  - Utilisation des champs `rate_unit` et `threshold_unit` dans les méta-données (champ `metadata`) des paramètres qui sont des barèmes.
+  - Correction du script d'investigation des unités
+
 ### 29.2.6 [#1154](https://github.com/openfisca/openfisca-france/pull/1154)
 
 * Changement mineur.
