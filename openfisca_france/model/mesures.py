@@ -381,11 +381,11 @@ class revenus_travail_super_bruts_menage(Variable):
 
         return (
             salaire_net
-            + cotisations_employeur
-            + cotisations_salariales
-            + csg_imposable_salaire
-            + csg_deductible_salaire
-            + crds_salaire
+            - cotisations_employeur # On veut ajouter le montant de cotisations. Vu que ce montant est négatif, on met un "moins". Idem pour les autres items ci-dessous
+            - cotisations_salariales
+            - csg_imposable_salaire
+            - csg_deductible_salaire
+            - crds_salaire
             )
 
 class revenus_remplacement_pensions_bruts_menage(Variable):
@@ -416,12 +416,12 @@ class revenus_remplacement_pensions_bruts_menage(Variable):
 
         return (
             + pensions_nettes
-            + csg_imposable_chomage
-            + csg_deductible_chomage
-            + csg_imposable_retraite
-            + csg_deductible_retraite
-            + crds_chomage
-            + crds_retraite
+            - csg_imposable_chomage # On veut ajouter le montant de cotisations. Vu que ce montant est négatif, on met un "moins". Idem pour les autres items ci-dessous
+            - csg_deductible_chomage
+            - csg_imposable_retraite
+            - csg_deductible_retraite
+            - crds_chomage
+            - crds_retraite
             )
 
 class revenus_capitaux_mobiliers_plus_values_bruts_menage(Variable):
