@@ -1,3 +1,7 @@
+description: Taxe exceptionnelle sur l'indemnité compensatrice des agents d'assurance
+metadata:
+  threshold_unit: currency
+  rate_unit: /1
 brackets:
 - rate:
     2001-01-01:
@@ -17,7 +21,3 @@ brackets:
   threshold:
     2001-01-01:
       value: 107000.0
-description: Taxe exceptionnelle sur l'indemnité compensatrice des agents d'assurance
-metadata:
-  threshold_unit: currency
-  rate_unit: /1
