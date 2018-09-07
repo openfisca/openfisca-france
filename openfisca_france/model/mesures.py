@@ -121,19 +121,6 @@ class revenu_net_menage(Variable):
         return menage.sum(revenu_net_individus)
 
 
-class niveau_de_vie_net(Variable):
-    value_type = float
-    entity = Menage
-    label = u"Niveau de vie net du ménage"
-    definition_period = YEAR
-
-    def formula(menage, period):
-        revenu_net_menage = menage('revenu_net_menage', period)
-        uc = menage('unites_consommation', period)
-
-        return revenu_net_menage / uc
-
-
 class revenus_nets_du_travail(Variable):
     value_type = float
     entity = Individu
