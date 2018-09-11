@@ -1,0 +1,8 @@
+- name: "Artisan"
+  description: "Artisan"
+  period: 2017
+  input_variables:
+    rpns_individu: 10000
+    categorie_non_salarie: artisan
+  output_variables:
+    deces_artisan_commercant: -130

@@ -13,6 +13,7 @@ log = logging.getLogger(__name__)
 
 # TODO: prise_en_charge_employeur_retraite_supplementaire à la CSG/CRDS et au forfait social
 
+# Salariés
 
 class assiette_csg_abattue(Variable):
     value_type = float
@@ -246,16 +247,11 @@ class tehr(Variable):
 
     def formula(individu, period, parameters):
         salaire_de_base = individu('salaire_de_base', period, options = [ADD])  # TODO: check base
-        law = parameters(period)
-
-        bar = law.cotsoc.tehr
-        return -bar.calc(salaire_de_base)
+        bareme_tehr = parameters(period).cotsoc.tehr
+        return -bareme_tehr.calc(salaire_de_base)
 
 
-############################################################################
-# # Non salariés
-############################################################################
-
+# Non salariés
 
 class rev_microsocial(Variable):
     """Revenu net des cotisations sociales sous régime microsocial (auto-entrepreneur)"""
@@ -275,3 +271,15 @@ class rev_microsocial(Variable):
         total = assiette_service + assiette_vente + assiette_proflib
         prelsoc_ms = assiette_service * P.servi + assiette_vente * P.vente + assiette_proflib * P.rsi
         return total - prelsoc_ms
+
+
+class assiette_csg_non_salarie(Variable):
+    """Assiette CSG des personnes non salariées"""
+    value_type = float
+    entity = Individu
+    label = u"Assiette CSG des personnes non salariées"
+    definition_period = YEAR
+
+    def formula(individu, period, parameters):
+        rpns_individu = individu('rpns_individu', period)
+        cotisations_contributives_non_salarie = individu('cotisations_contributives_non_salarie', period)
