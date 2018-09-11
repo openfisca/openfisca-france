@@ -1,11 +1,234 @@
 # -*- coding: utf-8 -*-
 
-from openfisca_france.model.base import *  # noqa
+from openfisca_france.model.base import *
 
-class rente_accident_travail_salaire(Variable):
+
+class TypesSexe(Enum):
+    __order__ = 'masculin feminin'
+    masculin = u'Masculin'
+    feminin = u'Féminin'
+
+
+class sexe(Variable):
+    value_type = Enum
+    possible_values = TypesSexe
+    default_value = TypesSexe.masculin
+    entity = Individu
+    label = u"Type sexe"
+    definition_period = ETERNITY
+
+
+class cotisant_solidaire(Variable):
+    value_type = bool
+    entity = Individu
+    label = u""
+    reference = u""
+    definition_period = MONTH
+
+
+class rente_accident_travail(Variable):
     value_type = float
     entity = Individu
-    label = u"Salaire annuel pour calculer la rente d’accident du travail"
+    label = u"Montant mensuel ou tremestriel de la rente d’accident du travail"
+    reference = u"https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006743072&dateTexte=&categorieLien=cid"
+    definition_period = MONTH
+
+    def formula(individu, period, parameters):
+        rente_accident_travail_salarie = individu('rente_accident_travail_salarie', period)
+        rente_accident_travail_non_salarie_agricole = individu('rente_accident_travail_non_salarie_agricole', period)
+        rente_accident_travail_cotisant_solidaire = individu('rente_accident_travail_cotisant_solidaire', period)
+
+        return max_(rente_accident_travail_salarie, max_(rente_accident_travail_non_salarie_agricole, rente_accident_travail_cotisant_solidaire))
+
+
+class rente_accident_travail_salarie(Variable):
+    value_type = float
+    entity = Individu
+    label = u"Montant mensuel ou tremestriel de la rente d’accident du travail"
+    reference = u"https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006743072&dateTexte=&categorieLien=cid"
+    definition_period = MONTH
+
+    def formula(individu, period, parameters):
+        previous_year = period.start.period('year').offset(-1)
+        salairie = individu('salaire_net', previous_year, options=[ADD]) != 0
+        rente_accident_travail_rachat = individu('rente_accident_travail_rachat', period)
+        taux_incapacite = individu('taux_accident_travail', period)
+        rente_accident_travail_base = individu('rente_accident_travail_base', period) * salairie
+        rente_accident_travail_apres_rachat = individu('rente_accident_travail_apres_rachat', period)
+
+        montant_rente_accident_travail = where(rente_accident_travail_rachat != 0, rente_accident_travail_apres_rachat,
+                                               rente_accident_travail_base)
+        rente_accident_travail_verse = select([taux_incapacite < 0.1, taux_incapacite < 0.5, taux_incapacite >= 0.5],
+                                  [0, montant_rente_accident_travail / 4, montant_rente_accident_travail / 12]
+                                  )
+        return rente_accident_travail_verse
+
+
+class rente_accident_travail_non_salarie_agricole(Variable):
+    value_type = float
+    entity = Individu
+    label = u"Montant mensuel ou tremestriel de la rente d’accident du travail"
+    reference = u"https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006743072&dateTexte=&categorieLien=cid"
+    definition_period = MONTH
+
+    def formula(individu, period, parameters):
+        previous_year = period.start.period('year').offset(-1)
+        non_salarie_agricole = individu('tns_benefice_exploitant_agricole', previous_year,options=[ADD]) != 0
+        cotisant_solidaire = individu('cotisant_solidaire', period)
+        rente_accident_travail_rachat = individu('rente_accident_travail_rachat', period)
+        taux_incapacite = individu('taux_accident_travail', period)
+        rente_accident_travail_base = individu('rente_accident_travail_base', period) * non_salarie_agricole * not_(cotisant_solidaire)
+        rente_accident_travail_apres_rachat = individu('rente_accident_travail_apres_rachat', period)
+
+        montant_rente_accident_travail = where(rente_accident_travail_rachat != 0, rente_accident_travail_apres_rachat,
+                                               rente_accident_travail_base)
+        rente_accident_travail_verse = select([taux_incapacite < 0.3, taux_incapacite >= 0.3],
+                                              [0, montant_rente_accident_travail / 12]
+                                              )
+        return rente_accident_travail_verse
+
+
+class rente_accident_travail_cotisant_solidaire(Variable):
+    value_type = float
+    entity = Individu
+    label = u"Montant mensuel ou tremestriel de la rente d’accident du travail"
+    reference = u"https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006743072&dateTexte=&categorieLien=cid"
+    definition_period = MONTH
+
+    def formula(individu, period, parameters):
+        previous_year = period.start.period('year').offset(-1)
+        non_salarie_agricole = individu('tns_benefice_exploitant_agricole', previous_year,options=[ADD]) != 0
+        cotisant_solidaire = individu('cotisant_solidaire', period)
+        rente_accident_travail_rachat = individu('rente_accident_travail_rachat', period)
+        taux_incapacite = individu('taux_accident_travail', period)
+
+        rente_accident_travail_base = individu('rente_accident_travail_base', period) * cotisant_solidaire * non_salarie_agricole
+        rente_accident_travail_apres_rachat = individu('rente_accident_travail_apres_rachat', period)
+
+        montant_rente_accident_travail = where(rente_accident_travail_rachat != 0, rente_accident_travail_apres_rachat,
+                                               rente_accident_travail_base)
+        rente_accident_travail_verse = select([taux_incapacite < 1, taux_incapacite == 1],
+                                              [0, montant_rente_accident_travail / 12]
+                                              )
+        return rente_accident_travail_verse
+
+
+
+class indemnite_accident_travail(Variable):
+    value_type = float
+    entity = Individu
+    label = u"Indimnite selon taux d'incapacite"
+    reference = u"https://www.legifrance.gouv.fr/affichCode.do?idSectionTA=LEGISCTA000006172216&cidTexte=LEGITEXT000006073189"
+    definition_period = MONTH
+
+    def formula(individu, period, parameters):
+        indem_at = parameters(period).accident_travail.rente.taux
+        taux_incapacite = individu('taux_accident_travail', period)
+        return select(
+            [taux_incapacite == 0.01, taux_incapacite == 0.02, taux_incapacite == 0.03, taux_incapacite == 0.04,
+             taux_incapacite == 0.05, taux_incapacite == 0.06, taux_incapacite == 0.07, taux_incapacite == 0.08,
+             taux_incapacite == 0.09],
+            [indem_at.indemnite_accident_travail['taux_1'], indem_at.indemnite_accident_travail['taux_2'],
+             indem_at.indemnite_accident_travail['taux_3'], indem_at.indemnite_accident_travail['taux_4'],
+             indem_at.indemnite_accident_travail['taux_5'], indem_at.indemnite_accident_travail['taux_6'],
+             indem_at.indemnite_accident_travail['taux_7'], indem_at.indemnite_accident_travail['taux_8'],
+             indem_at.indemnite_accident_travail['taux_9']],
+        )
+
+
+class rente_accident_travail_base(Variable):
+    value_type = float
+    entity = Individu
+    label = u"Montant anuel de la rente d’accident du travail"
+    reference = u"https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006743072&dateTexte=&categorieLien=cid"
+    definition_period = MONTH
+
+    def formula(individu,  period, parameters):
+        param_rente_at = parameters(period).accident_travail.rente.taux
+        taux_incapacite = individu('taux_accident_travail', period)
+        taux = param_rente_at.bareme.calc(taux_incapacite)
+        taux_rente_accident_travail = select(
+            [taux_incapacite < param_rente_at.taux_minimum],
+            [0], default=taux
+        )
+        rente_accident_travail_base = individu('rente_accident_travail_salaire_utile', period) * taux_rente_accident_travail
+
+        return rente_accident_travail_base
+
+
+class rente_accident_travail_apres_rachat(Variable):
+    value_type = float
+    entity = Individu
+    label = u"Rachat de la rente d’accident du travail"
+    reference = u""
+    definition_period = MONTH
+
+    def formula(individu, period, parameters):
+        rente_at = parameters(period).accident_travail.rente.taux
+        age = individu('age', period)
+        sexe = individu('sexe', period)
+        rente_accident_travail_rachat = individu('rente_accident_travail_rachat', period)
+        conversion_rente_capetal = rente_at.conversion_rente_capital[sexe][age]
+        rente_accident_travail_base = individu('rente_accident_travail_base', period)
+        rente_apres_rachat = rente_accident_travail_base - (rente_accident_travail_rachat / conversion_rente_capetal)
+
+        return rente_apres_rachat
+
+
+class rente_accident_travail_rachat(Variable):
+    value_type = float
+    entity = Individu
+    label = u"Rachat de la rente d’accident du travail"
+    reference = u""
+    definition_period = MONTH
+
+    def formula(individu, period, parameters):
+        rente_at = parameters(period).accident_travail.rente.taux
+        demande_rachat = individu('demande_rachat', period)
+        age = individu('age', period)
+        sexe = individu('sexe', period)
+        conversion_rente_capetal = rente_at.conversion_rente_capital[sexe][age]
+        rente_accident_travail_base = individu('rente_accident_travail_base', period)
+        rachat = (rente_accident_travail_base * conversion_rente_capetal) / 4
+
+        return rachat * demande_rachat
+
+
+class demande_rachat(Variable):
+    value_type = bool
+    entity = Individu
+    label = u""
+    reference = u""
+    definition_period = MONTH
+
+
+class pcrtp(Variable):
+    value_type = float
+    entity = Individu
+    label = u"Prestation complémentaire pour recours à tierce personne (PCRTP)"
+    reference = u"https://www.legifrance.gouv.fr/affichCode.do?idSectionTA=LEGISCTA000006172216&cidTexte=LEGITEXT000006073189"
+    definition_period = MONTH
+
+    def formula(individu, period, parameters):
+        rente_at = parameters(period).accident_travail.rente.taux
+        taux_incapacite = individu('taux_accident_travail', period)
+        pcrtp_nombre_actes__assistance = individu('pcrtp_nombre_actes_assistance', period)
+        montant_pcrp = rente_at.pcrtp[pcrtp_nombre_actes__assistance]
+
+        return montant_pcrp * (taux_incapacite >= 0.8)
+
+
+class pcrtp_nombre_actes_assistance(Variable):
+    value_type = int
+    entity = Individu
+    label = u"Nombre d'actes nécessitant l'assistance d'une tierce personne"
+    definition_period = MONTH
+
+
+class rente_accident_travail_salaire_utile(Variable):
+    value_type = float
+    entity = Individu
+    label = u"Salaire utile pour calculer la rente d’accident du travail"
     reference = u"https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=7392B9902E4B974EAE8783FAF2D69849.tplgfr30s_1?idArticle=LEGIARTI000006750376&cidTexte=LEGITEXT000006073189&dateTexte=20180823"
     definition_period = MONTH
 
@@ -15,28 +238,11 @@ class rente_accident_travail_salaire(Variable):
         rente_at = parameters(period).accident_travail.rente
 
         salaire_net = individu('salaire_net', previous_year, options=[ADD])
-        salaire_net_base = max_(rente_at.salaire_net.salaire_minimum, salaire_net)
+        tns_benefice_exploitant_agricole = individu(
+            'tns_benefice_exploitant_agricole', previous_year, options=[ADD])
+        salaire = max_(salaire_net, tns_benefice_exploitant_agricole)
+        salaire_net_base = max_(rente_at.salaire_net.salaire_minimum, salaire)
+
 
         return rente_at.salaire_net.salaire_minimum * rente_at.salaire_net.bareme.calc(
             salaire_net_base / rente_at.salaire_net.salaire_minimum)
-
-
-class rente_accident_travail(Variable):
-    value_type = float
-    entity = Individu
-    label = u"Montant mensuel de la rente d’accident du travail"
-    reference = u"https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006743072&dateTexte=&categorieLien=cid"
-    definition_period = MONTH
-
-    def formula(individu, period, parameters):
-        rente_at = parameters(period).accident_travail.rente
-        taux_incapacite = individu('taux_accident_travail', period)
-
-        taux = rente_at.taux.bareme.calc(taux_incapacite)
-        taux_rente_accident_travail = select(
-            [taux_incapacite < rente_at.taux.taux_minimum],
-            [0], default=taux
-        )
-        rente_accident_travail_salaire = individu('rente_accident_travail_salaire', period)
-
-        return rente_accident_travail_salaire * taux_rente_accident_travail

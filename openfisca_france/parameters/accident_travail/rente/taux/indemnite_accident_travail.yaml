@@ -1,0 +1,30 @@
+description: Taux d'incapacité minimum
+reference: "https://www.legifrance.gouv.fr/affichCode.do?idSectionTA=LEGISCTA000006173455&cidTexte=LEGITEXT000006073189"
+unit: currency
+taux_1:
+  1985-12-21:
+    value: 416.47
+taux_2:
+  1985-12-21:
+    value: 676.90
+taux_3:
+  1985-12-21:
+    value: 989.15
+taux_4:
+  1985-12-21:
+    value: 1561.20
+taux_5:
+  1985-12-21:
+    value: 	1977.76
+taux_6:
+  1985-12-21:
+    value: 2446.16
+taux_7:
+  1985-12-21:
+    value: 2966.40
+taux_8:
+  1985-12-21:
+    value: 3539.11
+taux_9:
+  1985-12-21:
+    value: 4163.61
