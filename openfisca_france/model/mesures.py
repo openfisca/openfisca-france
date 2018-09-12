@@ -353,7 +353,7 @@ class revenus_travail_super_bruts_menage(Variable):
         avant CSG-CRDS, cotisations salariales et patronales
         '''
         salaire_net_i = menage.members('salaire_net', period, options = [ADD])
-        rpns_i = menage.members('rpns', period, options = [ADD])
+        rpns_i = menage.members('rpns', period)
         cotisations_employeur_i = menage.members('cotisations_employeur', period, options = [ADD])
         cotisations_salariales_i = menage.members('cotisations_salariales', period, options = [ADD])
         csg_imposable_salaire_i = menage.members('csg_imposable_salaire', period, options = [ADD])
