@@ -298,27 +298,6 @@ class caah(Variable):
 
         garantie_ressources = prestations.minima_sociaux.caah.garantie_ressources
         aah_montant = prestations.minima_sociaux.aah.montant
-
-        aah = individu('aah_base', period)status
-        asi_eligibilite = individu('asi_eligibilite', period)
-        asi = individu.famille('asi', period)  # montant asi de la famille
-        benef_asi = (asi_eligibilite * (asi > 0))
-        taux_incapacite = individu('taux_incapacite', period)
-        locataire_foyer = (individu.menage('statut_occupation_logement', period) == TypesStatutOccupationLogement.locataire_foyer)
-        salaire_net = individu('salaire_net', annee_precedente, options=[ADD])
-
-        eligible_complement_ressources = (taux_incapacite > 0.8) * ((aah > 0) | (benef_asi > 0)) * not_(locataire_foyer) * (salaire_net == 0)
-        complement_ressources = eligible_complement_ressources * max_(garantie_ressources - aah_montant, 0)
-
-        return max_(complement_ressources, mva)
-
-    def formula_2015_07_01(individu, period, parameters):
-        # Rolling year
-        annee_precedente = period.start.period('year').offset(-1)
-        prestations = parameters(period).prestations
-
-        garantie_ressources = prestations.minima_sociaux.caah.garantie_ressources
-        aah_montant = prestations.minima_sociaux.aah.montant
         mva_montant = prestations.minima_sociaux.aah.mva
 
         aah = individu('aah', period)
@@ -390,24 +369,6 @@ class mva(Variable):
     label = u"Majoration pour la vie autonome"
     definition_period = MONTH
 
-    def formula_2015_05_01(individu, period, parameters):
-        # Rolling year
-        annee_precedente = period.start.period('year').offset(-1)
-        prestations = parameters(period).prestations
-        aah = individu('aah', period)
-        taux_incapacite = individu('taux_incapacite', period)
-        asi_eligibilite = individu('asi_eligibilite', period)
-        asi = individu.famille('asi', period)  # montant asi de la famille
-        al = individu.famille('aide_logement_montant', period)  # montant allocs logement de la famille
-        locataire_foyer = (individu.menage('statut_occupation_logement', period) == TypesStatutOccupationLogement.locataire_foyer)
-        salaire_net = individu('salaire_net', annee_precedente, options=[ADD])
-
-
-        benef_asi = (asi_eligibilite * (asi > 0))
-        eligible_mva = (al > 0) * (taux_incapacite > 0.8) * ((aah > 0) | (benef_asi > 0)) * not_(locataire_foyer) * (salaire_net == 0)
-        mva_montant = prestations.minima_sociaux.aah.mva
-
-        return mva_montant * eligible_mva
 
 class pch(Variable):
     entity = Individu
