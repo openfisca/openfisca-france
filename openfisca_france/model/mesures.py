@@ -156,7 +156,6 @@ class revenus_nets_du_travail(Variable):
             + csg_non_salarie
             + crds_non_salarie
             )
-        print revenu_non_salarie, cotisations_non_salarie, csg_non_salarie, crds_non_salarie
         return salaire_net + revenu_non_salarie_net
 
 
