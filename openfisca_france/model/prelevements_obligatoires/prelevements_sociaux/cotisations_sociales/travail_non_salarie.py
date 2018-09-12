@@ -10,16 +10,14 @@ from openfisca_core.taxscales import MarginalRateTaxScale
 from openfisca_france.model.base import *  # noqa analysis:ignore
 
 
+# TODO:
+# Manquent:
+# - les agriculteurs
+# - les cotisations minimales
+# - la gestion de la temporatité
+
+
 log = logging.getLogger(__name__)
-
-
-class TypesCategorieNonSalarie(Enum):
-    __order__ = 'non_pertinent artisan commercant profession_liberale'  # Needed to preserve the enum order in Python 2
-    non_pertinent = u"Non pertinent (l'individu n'est pas un travailleur indépendant)"
-    artisan = u'Artisant'
-    commercant = u'Commercant'
-    profession_liberale = u'Profession libérale'
-
 
 class categorie_non_salarie(Variable):
     value_type = Enum
@@ -29,8 +27,7 @@ class categorie_non_salarie(Variable):
     label = u"Type du travailleur salarié (artisant, commercant, profession libérale, etc)"
     definition_period = YEAR
 
-
-class cotisations_contributives_non_salarie(Variable):
+class cotisations_non_salarie(Variable):
     value_type = float
     entity = Individu
     label = u"Cotisations sociales contributives des travailleurs non salaries"
@@ -38,35 +35,40 @@ class cotisations_contributives_non_salarie(Variable):
     calculate_output = calculate_output_add
 
     def formula(individu, period, parameters):
-        return (
-            # individu('cotisations_contributives_agriculteur', period) +
-            individu('cotisations_contributives_artisan_commercant', period) +
-            individu('cotisations_contributives_profession_liberale', period)
+        categorie_non_salarie = individu('categorie_non_salarie', period)
+        artisan  = (categorie_non_salarie == TypesCategorieNonSalarie.artisan)
+        commercant = (categorie_non_salarie == TypesCategorieNonSalarie.commercant)
+        profession_liberale = (categorie_non_salarie == TypesCategorieNonSalarie.profession_liberale)
+
+        deces_artisan_commercant = individu('deces_artisan_commercant', period)
+        famille_independant = individu('famille_independant', period)
+        formation_artisan_commercant = individu('formation_artisan_commercant', period)
+        retraite_complementaire_artisan_commercant = individu('retraite_complementaire_artisan_commercant', period)
+        maladie_maternite_artisan_commercant = individu('maladie_maternite_artisan_commercant', period)
+        vieillesse_artisan_commercant = individu('vieillesse_artisan_commercant', period)
+        formation_profession_liberale = individu('formation_profession_liberale', period)
+        maladie_maternite_profession_liberale = individu('maladie_maternite_profession_liberale', period)
+        vieillesse_profession_liberale = individu('vieillesse_profession_liberale', period)
+        retraite_complementaire_profession_liberale = individu('retraite_complementaire_profession_liberale', period)
+
+        cotisations_non_salarie = (
+            (artisan + commercant) * (
+                deces_artisan_commercant
+                + famille_independant
+                + formation_artisan_commercant
+                + retraite_complementaire_artisan_commercant
+                + maladie_maternite_artisan_commercant
+                + vieillesse_artisan_commercant
+                )
+            + profession_liberale * (
+                famille_independant
+                + formation_profession_liberale
+                + maladie_maternite_profession_liberale
+                + vieillesse_profession_liberale
+                + retraite_complementaire_profession_liberale
+                )
             )
-
-
-# class cotisations_contributives_agriculteur(Variable):
-#     value_type = float
-#     entity = Individu
-#     label = u"Cotisations sociales contributives des agriculteurs"
-#     definition_period = YEAR
-#     calculate_output = calculate_output_add
-
-
-class cotisations_contributives_artisan_commercant(Variable):
-    value_type = float
-    entity = Individu
-    label = u"Cotisations sociales contributives des artisants et commerçants"
-    definition_period = YEAR
-    calculate_output = calculate_output_add
-
-
-class cotisations_contributives_profession_liberale(Variable):
-    value_type = float
-    entity = Individu
-    label = u"Cotisations sociales contributives des professions libérales"
-    definition_period = YEAR
-    calculate_output = calculate_output_add
+        return cotisations_non_salarie
 
 
 class deces_artisan_commercant(Variable):
@@ -144,12 +146,12 @@ class maladie_maternite_artisan_commercant(Variable):
             * (
                 (.072 - .022) * assiette / (1.1 * plafond_securite_sociale_annuel) + .022
                 )
-            (assiette <= .4 * plafond_securite_sociale_annuel)
+            + (assiette <= .4 * plafond_securite_sociale_annuel)
             * (
                 (.022 - .085) * assiette / (0.4 * plafond_securite_sociale_annuel) + .085
                 )
             )
-        return -(cotisation_sous_1_1_pss + bareme.calc(assiette))
+        return - (cotisation_sous_1_1_pss + bareme.calc(assiette))
 
     def formula_2017(individu, period, parameters):
         plafond_securite_sociale_annuel = parameters(period).cotsoc.gen.plafond_securite_sociale * 12

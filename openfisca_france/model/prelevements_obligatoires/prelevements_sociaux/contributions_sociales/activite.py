@@ -273,13 +273,67 @@ class rev_microsocial(Variable):
         return total - prelsoc_ms
 
 
-class assiette_csg_non_salarie(Variable):
+class assiette_csg_crds_non_salarie(Variable):
     """Assiette CSG des personnes non salariées"""
     value_type = float
     entity = Individu
     label = u"Assiette CSG des personnes non salariées"
     definition_period = YEAR
 
-    def formula(individu, period, parameters):
+    def formula(individu, period):
         rpns_individu = individu('rpns_individu', period)
-        cotisations_contributives_non_salarie = individu('cotisations_contributives_non_salarie', period)
+        categorie_non_salarie = individu('categorie_non_salarie', period)
+        artisan = (categorie_non_salarie == TypesCategorieNonSalarie.artisan)
+        commercant = (categorie_non_salarie == TypesCategorieNonSalarie.commercant)
+        profession_liberale = (categorie_non_salarie == TypesCategorieNonSalarie.profession_liberale)
+        famille_independant = individu('famille_independant', period)
+        retraite_complementaire_artisan_commercant = individu('retraite_complementaire_artisan_commercant', period)
+        maladie_maternite_artisan_commercant = individu('maladie_maternite_artisan_commercant', period)
+        vieillesse_artisan_commercant = individu('vieillesse_artisan_commercant', period)
+        maladie_maternite_profession_liberale = individu('maladie_maternite_profession_liberale', period)
+        vieillesse_profession_liberale = individu('vieillesse_profession_liberale', period)
+        retraite_complementaire_profession_liberale = individu('retraite_complementaire_profession_liberale', period)
+
+        assiette_cotisation = (
+            (artisan + commercant + profession_liberale) * rpns_individu
+            - (  # cotisations are négative
+                (artisan + commercant) * (
+                    famille_independant
+                    + vieillesse_artisan_commercant
+                    + maladie_maternite_artisan_commercant
+                    + retraite_complementaire_artisan_commercant
+                    )
+                + profession_liberale * (
+                    famille_independant
+                    + maladie_maternite_profession_liberale
+                    + vieillesse_profession_liberale
+                    )
+                )
+            )
+        return assiette_cotisation
+
+
+class csg_non_salarie(Variable):
+    value_type = float
+    entity = Individu
+    label = u"Assiette CSG des personnes non salariées"
+    definition_period = YEAR
+
+    def formula(individu, period, parameters):
+        assiette_csg_crds_non_salarie = individu('assiette_csg_crds_non_salarie', period)
+        csg = parameters(period).prelevements_sociaux.contributions.csg.activite
+        taux = csg.deductible.taux + csg.imposable.taux
+        return - taux * assiette_csg_crds_non_salarie
+
+
+
+class crds_non_salarie(Variable):
+    value_type = float
+    entity = Individu
+    label = u"Assiette CSG des personnes non salariées"
+    definition_period = YEAR
+
+    def formula(individu, period, parameters):
+        assiette_csg_crds_non_salarie = individu('assiette_csg_crds_non_salarie', period)
+        taux = parameters(period).prelevements_sociaux.contributions.crds.activite.taux
+        return - taux * assiette_csg_crds_non_salarie

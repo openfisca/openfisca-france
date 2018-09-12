@@ -143,10 +143,21 @@ class revenus_nets_du_travail(Variable):
     definition_period = YEAR
 
     def formula(individu, period):
+        # Salariés
         salaire_net = individu('salaire_net', period, options = [ADD])
-        revenus_non_salaries = individu('rpns', period, options = [ADD])  # TODO ou rpns_individu
-
-        return salaire_net + revenus_non_salaries
+        # Non salariés
+        revenu_non_salarie = individu('rpns', period)  # TODO ou rpns_individu
+        cotisations_non_salarie = individu('cotisations_non_salarie', period)
+        csg_non_salarie = individu('csg_non_salarie', period)
+        crds_non_salarie = individu('crds_non_salarie', period)
+        revenu_non_salarie_net = (
+            revenu_non_salarie
+            + cotisations_non_salarie
+            + csg_non_salarie
+            + crds_non_salarie
+            )
+        print revenu_non_salarie, cotisations_non_salarie, csg_non_salarie, crds_non_salarie
+        return salaire_net + revenu_non_salarie_net
 
 
 class pensions_nettes(Variable):
@@ -455,4 +466,3 @@ class impots_directs(Variable):
         ir_pv_immo = menage.sum(ir_pv_immo_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
 
         return irpp_economique + taxe_habitation + prelevement_forfaitaire_liberatoire + prelevement_forfaitaire_unique_ir + ir_pv_immo
-
