@@ -1,0 +1,55 @@
+- name: "Artisan"
+  description: "Artisan sous PSS"
+  absolute_error_margin: 1
+  period: 2017
+  input_variables:
+    rpns_individu: 10000
+    categorie_non_salarie: artisan
+  output_variables:
+    deces_artisan_commercant: -130
+    formation_artisan_commercant: -29
+    retraite_complementaire_artisan_commercant: -700
+    maladie_maternite_artisan_commercant: -459
+    vieillesse_artisan_commercant: -.1775 * 10000
+    famille_independant: 0
+    formation_profession_liberale: 0
+    maladie_maternite_profession_liberale: 0
+    vieillesse_profession_liberale: 0
+
+
+- name: "Commerçant"
+  description: "Commerçant sous PSS"
+  absolute_error_margin: 1
+  period: 2017
+  input_variables:
+    rpns_individu: 10000
+    categorie_non_salarie: commercant
+  output_variables:
+    deces_artisan_commercant: -130
+    formation_artisan_commercant: -25
+    retraite_complementaire_artisan_commercant: -700
+    maladie_maternite_artisan_commercant: -459
+    vieillesse_artisan_commercant: -.1775 * 10000
+    famille_independant: 0
+    formation_profession_liberale: 0
+    maladie_maternite_profession_liberale: 0
+    vieillesse_profession_liberale: 0
+
+
+- name: "Profession libérale"
+  description: "Profession libérale sous PSS"
+  absolute_error_margin: 1
+  period: 2017
+  input_variables:
+    rpns_individu: 10000
+    categorie_non_salarie: profession_liberale
+  output_variables:
+    famille_independant: 0
+    deces_artisan_commercant: 0
+    formation_artisan_commercant: 0
+    retraite_complementaire_artisan_commercant: 0
+    maladie_maternite_artisan_commercant: 0
+    vieillesse_artisan_commercant: 0
+    formation_profession_liberale: -25
+    maladie_maternite_profession_liberale: -266
+    vieillesse_profession_liberale: -823
