@@ -2,7 +2,6 @@
 
 from __future__ import division
 
-from numpy import floor
 
 from openfisca_france.model.base import *  # noqa analysis:ignore
 
@@ -143,7 +142,7 @@ class revenus_nets_du_travail(Variable):
     definition_period = YEAR
 
     def formula(individu, period):
-        # Salariés
+        # Salariés
         salaire_net = individu('salaire_net', period, options = [ADD])
         # Non salariés
         revenu_non_salarie = individu('rpns', period)  # TODO ou rpns_individu
@@ -433,8 +432,7 @@ class irpp_economique(Variable):
         irpp = foyer_fiscal('irpp', period)
         acomptes_ir = foyer_fiscal('acomptes_ir', period)
 
-        return irpp - acomptes_ir # Car par convention, irpp est un montant négatif et acomptes_ir un montant positif
-
+        return irpp - acomptes_ir  # Car par convention, irpp est un montant négatif et acomptes_ir un montant positif
 
 
 class impots_directs(Variable):

@@ -1,8 +1,28 @@
 # Changelog
 
 
-# 24.9.0 [#XXX](https://github.com/openfisca/openfisca-france/pull/XXX)
+# 24.9.0 [#1111](https://github.com/openfisca/openfisca-france/pull/1111)
 
+* Évolution du système socio-fiscal.
+* Périodes concernées : toutes.
+* Zones impactées :
+  - `prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/travail_non_salarie`
+  - `mesures`
+* Détails :
+  - Ajout sommaire des contributions et cotisations sociales des non salariés artisan, commeçcant ou profession libérale
+  - Ajout des variables
+    - `assiette_csg_crds_non_salarie`
+    - `categorie_non_salarie`
+    - `crds_non_salarie`
+    - `csg_non_salarie`
+    - `famille_independant`
+    - `formation_artisan_commercant`
+    - `formation_profession_liberale`
+    - `maladie_maternite_artisan_commercant`
+    - `maladie_maternite_profession_liberale`
+    - `retraite_complementaire_artisan_commercant`
+    - `vieillesse_artisan_commercant`
+    - `vieillesse_profession_liberale`
 
 # 24.8.0 [#1082](https://github.com/openfisca/openfisca-france/pull/1082)
 

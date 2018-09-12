@@ -19,6 +19,7 @@ from openfisca_france.model.base import *  # noqa analysis:ignore
 
 log = logging.getLogger(__name__)
 
+
 class categorie_non_salarie(Variable):
     value_type = Enum
     possible_values = TypesCategorieNonSalarie
@@ -26,6 +27,7 @@ class categorie_non_salarie(Variable):
     entity = Individu
     label = u"Type du travailleur salarié (artisant, commercant, profession libérale, etc)"
     definition_period = YEAR
+
 
 class cotisations_non_salarie(Variable):
     value_type = float
@@ -36,7 +38,7 @@ class cotisations_non_salarie(Variable):
 
     def formula(individu, period, parameters):
         categorie_non_salarie = individu('categorie_non_salarie', period)
-        artisan  = (categorie_non_salarie == TypesCategorieNonSalarie.artisan)
+        artisan = (categorie_non_salarie == TypesCategorieNonSalarie.artisan)
         commercant = (categorie_non_salarie == TypesCategorieNonSalarie.commercant)
         profession_liberale = (categorie_non_salarie == TypesCategorieNonSalarie.profession_liberale)
 
@@ -121,7 +123,6 @@ class formation_artisan_commercant(Variable):
         return -bareme_artisan.calc(assiette * artisan) - bareme_commercant.calc(assiette * commercant)
 
 
-
 class maladie_maternite_artisan_commercant(Variable):
     value_type = float
     entity = Individu
@@ -167,7 +168,7 @@ class maladie_maternite_artisan_commercant(Variable):
         cotisation_sous_1_1_pss = assiette * (
             (assiette < .7 * plafond_securite_sociale_annuel)
             * (
-                (.065 - .035) * assiette / (.7 * plafond_securite_sociale_annuel) + .035  # TODO check taux non nul à assiette quasi nulle
+                (.065 - .035) * assiette / (.7 * plafond_securite_sociale_annuel) + .035  # TODO check taux non nul à assiette quasi nulle
                 )
             )
         return -(cotisation_sous_1_1_pss + bareme.calc(assiette))
@@ -229,7 +230,7 @@ class famille_independant(Variable):
         plafond_securite_sociale_annuel = parameters(period).cotsoc.gen.plafond_securite_sociale * 12
         bareme = MarginalRateTaxScale(name = 'famille')
         bareme.add_bracket(0, 0)
-        bareme.add_bracket(1.4, .031)  # TODO parsing des paramèters pas à jour
+        bareme.add_bracket(1.4, .031)  # TODO parsing des paramèters pas à jour
         bareme.multiply_thresholds(plafond_securite_sociale_annuel)
         categorie_non_salarie = individu('categorie_non_salarie', period)
         assiette = (
@@ -251,6 +252,7 @@ class famille_independant(Variable):
             taux * assiette * (assiette < 1.4 * plafond_securite_sociale_annuel)
             + bareme.calc(assiette)
             )
+
 
 class formation_profession_liberale(Variable):
     value_type = float
@@ -284,7 +286,7 @@ class maladie_maternite_profession_liberale(Variable):
         plafond_securite_sociale_annuel = parameters(period).cotsoc.gen.plafond_securite_sociale * 12
         bareme = MarginalRateTaxScale(name = 'maladie_maternite')
         bareme.add_bracket(0, 0)
-        bareme.add_bracket(1.1, .065)  # TODO parsing des paramèters IPP pas à jour
+        bareme.add_bracket(1.1, .065)  # TODO parsing des paramèters IPP pas à jour
         bareme.multiply_thresholds(plafond_securite_sociale_annuel)
         categorie_non_salarie = individu('categorie_non_salarie', period)
         assiette = (
@@ -317,7 +319,7 @@ class retraite_complementaire_profession_liberale(Variable):
     def formula_2013(individu, period, parameters):
         plafond_securite_sociale_annuel = parameters(period).cotsoc.gen.plafond_securite_sociale * 12
         bareme = MarginalRateTaxScale(name = 'retraite_complementaire')
-        bareme.add_bracket(0, .09)  # TODO taux à la louche car hétérogène
+        bareme.add_bracket(0, .09)  # TODO taux à la louche car hétérogène
         bareme.add_bracket(5, 0)
         bareme.multiply_thresholds(plafond_securite_sociale_annuel)
         categorie_non_salarie = individu('categorie_non_salarie', period)
