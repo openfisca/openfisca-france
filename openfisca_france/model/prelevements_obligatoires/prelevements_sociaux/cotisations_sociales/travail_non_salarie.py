@@ -203,7 +203,7 @@ class vieillesse_artisan_commercant(Variable):
     definition_period = YEAR
     calculate_output = calculate_output_add
 
-    def formula(individu, period, parameters):
+    def formula_2014(individu, period, parameters):
         plafond_securite_sociale_annuel = parameters(period).cotsoc.gen.plafond_securite_sociale * 12
         vieillesse_artisan_commercant = parameters(period).prelevements_sociaux.ret_ac
         bareme = MarginalRateTaxScale(name = 'vieillesse')
@@ -334,7 +334,7 @@ class vieillesse_profession_liberale(Variable):
     definition_period = YEAR
     calculate_output = calculate_output_add
 
-    def formula(individu, period, parameters):
+    def formula_2015(individu, period, parameters):
         plafond_securite_sociale_annuel = parameters(period).cotsoc.gen.plafond_securite_sociale * 12
         bareme = MarginalRateTaxScale(name = 'vieillesse')
         assurance_vieillesse = parameters(period).prelevements_sociaux.ret_pl.assurance_vieillesse
