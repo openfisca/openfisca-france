@@ -1,5 +1,14 @@
 # Changelog
 
+### 24.10.0 [#994](https://github.com/openfisca/openfisca-france/pull/994)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/04/2018.
+* Zones impactées :
+  - `parameters/prestations/prestations_familiales/af`
+  - `parameters/prestations/prestations_familiales/paje`
+* Détails :
+  - Revalorise les plafonds de ressources et les montants de la PAJE en date du 01/04/2018.
 
 # 24.9.0 [#1111](https://github.com/openfisca/openfisca-france/pull/1111)
 
@@ -494,7 +503,6 @@
   - Ajoute une variable calculée ass_eligibilite_cumul_individu qui permet de déterminer le droit à ce cumul.
 
 ### 21.10.6 [#993](https://github.com/openfisca/openfisca-france/pull/993)
-
 * Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 01/04/2018.
 * Zones impactées :
