@@ -1,15 +1,15 @@
 # BMAF 2016-04-01 = 406.62
 # BMAF 2017-04-01 = 407.84
 # BMAF 2018-04-01 = 411.92
+# ASS_MAT1 2004-01-01 = 1.7257
 
-
-- name: "Au 1er avril 2017, avec un temps plein la paje_clca et la paje_colca sont supprimées au profit de la paje_prepare"
+- name: "Au 1er avril 2017, avec un temps partiel la paje_clca et la paje_colca sont supprimées au profit de la paje_prepare"
   period: 2018-01
   relative_error_margin: 0.01
   individus:
     - id: "parent1"
       age: 40
-      salaire_imposable: 20000
+      salaire_imposable: 10000
       aah: 0
       etudiant: 0
       hsup: 0
@@ -22,7 +22,7 @@
       hsup: 0
     - id: "parent2"
       age: 40
-      salaire_imposable: 20000
+      salaire_imposable: 10000
       aah: 0
       etudiant: 0
       hsup: 0
@@ -37,21 +37,19 @@
     -
       parents: ["parent1"]
       enfants: ["enfant1"]
-      partiel1: false
+      partiel1: 1
       af_nbenf: 1
-      prestations_familiales_base_ressources: 20000
-      empl_dir: 0
+      prestations_familiales_base_ressources: 10000
       ass_mat: 1
-      gar_dom: 0
+      paje_prepare: 0.3603 * 407.84
     -
       parents: ["parent2"]
       enfants: ["enfant2"]
-      partiel1: false
+      partiel1: 1
       af_nbenf: 1
-      prestations_familiales_base_ressources: 20000
-      empl_dir: 0
+      prestations_familiales_base_ressources: 10000
       ass_mat: 1
-      gar_dom: 0
+      paje_prepare: 0.3603 * 407.84
   foyers_fiscaux:
     declarants: ["parent1"]
     personnes_a_charge: ["enfant1"]
@@ -60,15 +58,15 @@
     enfants: ["enfant1"]
   output_variables:
     paje_base: 0.45950 * 407.84
-    paje_cmg: 703.81
+    paje_cmg: 1.7257 * 407.84
     paje_clca: 0
     paje_colca: 0
-    paje_prepare: 0
+    paje_prepare: 0.3603 * 407.84
     paje_naissance: 0
-    paje: (0.45950 * 407.84) + 703.81
+    paje: (0.45950 * 407.84) + 703.81 + (0.3603 * 407.84)
 
 
-- name: "Avant 1er avril 2017, avec un temps plein et donc avant que paje_clca et la paje_colca soient supprimées au profit de la paje_prepare"
+- name: "Avant 1er avril 2017, avec un temps partiel et donc avant que paje_clca et la paje_colca soient supprimées au profit de la paje_prepare"
   period: 2017-01
   relative_error_margin: 0.01
   individus:
@@ -102,21 +100,17 @@
     -
       parents: ["parent1"]
       enfants: ["enfant1"]
-      partiel1: false
+      partiel1: 1
       af_nbenf: 1
-      prestations_familiales_base_ressources: 20000
-      empl_dir: 0
+      prestations_familiales_base_ressources: 10000
       ass_mat: 1
-      gar_dom: 0
     -
       parents: ["parent2"]
       enfants: ["enfant2"]
-      partiel1: false
+      partiel1: 1
       af_nbenf: 1
-      prestations_familiales_base_ressources: 20000
-      empl_dir: 0
+      prestations_familiales_base_ressources: 10000
       ass_mat: 1
-      gar_dom: 0
   foyers_fiscaux:
     declarants: ["parent1"]
     personnes_a_charge: ["enfant1"]
@@ -124,10 +118,10 @@
     personne_de_reference: "parent1"
     enfants: ["enfant1"]
   output_variables:
-    paje_base: 0.45950 * 406.62
-    paje_cmg: 703.81
-    paje_clca: 0
+    # paje_base: 0.45950 * 406.62
+    paje_cmg:  1.7257 * 406.62
+    paje_clca: 0.6246 * 406.62
     paje_colca: 0
-    paje_prepare: 0
-    paje_naissance: 0
-    paje: (0.45950 * 406.62) + 703.81
+#    paje_prepare: 0
+#    paje_naissance: 0
+#    paje: 703.81 + 0.45950 * 406.62
