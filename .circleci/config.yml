@@ -49,12 +49,6 @@ jobs:
             make check-syntax-errors
             # make flake8
 
-      - run:
-          name: Check version number has been properly updated
-          command: |
-            git fetch
-            .circleci/is-version-number-acceptable.sh
-
   deploy_python2:
     docker:
       - image: python:2.7.14
@@ -134,12 +128,6 @@ jobs:
             make check-syntax-errors
             # make flake8
 
-      - run:
-          name: Check version number has been properly updated
-          command: |
-            git fetch
-            .circleci/is-version-number-acceptable.sh
-
   deploy_python3:
     docker:
       - image: python:3.6
@@ -163,16 +151,30 @@ jobs:
             source /tmp/venv/openfisca_france/bin/activate
             .circleci/publish-python-package.sh
 
+  check_version_and_changelog:
+    docker:
+      - image: python:3.6
+    steps:
+      - checkout
+
+      - run:
+          name: Check version number has been properly updated
+          command: |
+            git fetch
+            .circleci/is-version-number-acceptable.sh
+
 workflows:
   version: 2
   build_and_deploy:
     jobs:
       - build_python2
       - build_python3
+      - check_version_and_changelog
       - deploy_python2:
           requires:
             - build_python2
             - build_python3
+            - check_version_and_changelog
           filters:
             branches:
               only: master
@@ -180,6 +182,7 @@ workflows:
           requires:
             - build_python2
             - build_python3
+            - check_version_and_changelog
           filters:
             branches:
               only: master
