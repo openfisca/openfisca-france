@@ -1,5 +1,25 @@
 # Changelog
 
+### 24.10.1 [#1115](https://github.com/openfisca/openfisca-france/pull/1115)
+
+* Correction d'un bug.
+* Périodes concernées : à partir du 01/04/2017.
+* Zones impactées : `prestations/prestations_familiales/paje.py`.
+* Détails :
+  - Corrige le calcul de la PAJE de base :
+    - le calcul utilisait `min` (scalar) ;
+    - lorsqu'on l'évalue pour un vecteur de familles, seulement le premier valeur de base était calculé ;
+    - corrigé avec l'utilisation d'`Entity::min`
+  - Enrichit la base de tests de la PAJE pour augmenter la coverture
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/04/2018.
+* Zones impactées :
+  - `parameters/prestations/prestations_familiales/af`
+  - `parameters/prestations/prestations_familiales/paje`
+* Détails :
+  - Revalorise les plafonds de ressources et les montants de la PAJE en date du 01/04/2018.
+
 ### 24.10.0 [#994](https://github.com/openfisca/openfisca-france/pull/994)
 
 * Évolution du système socio-fiscal.
