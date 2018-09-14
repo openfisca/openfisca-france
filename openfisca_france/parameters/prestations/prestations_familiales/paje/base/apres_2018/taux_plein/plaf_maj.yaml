@@ -2,5 +2,7 @@ description: Majoration pour biactifs et isolés, pour plafond taux plein
 reference: openfisca
 unit: currency
 values:
+  2004-01-01:
+    value: 0.0
   2018-04-01:
     value: 8437
