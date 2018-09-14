@@ -135,7 +135,7 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-            pip install --editable [dev]
+            pip install yamllint flake8
       - run:
           name: Lint YAML files
           command: |
