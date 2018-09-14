@@ -221,7 +221,7 @@ class paje_base(Variable):
             )
             return montant
 
-        age_plus_jeune_enfant = min(famille.members('age', period))
+        age_plus_jeune_enfant = famille.min(famille.members('age', period))
         est_plus_jeune_enfant = famille.members('age', period) == age_plus_jeune_enfant
 
         # Eligibilité avant le 1er avril 2014
@@ -231,18 +231,25 @@ class paje_base(Variable):
         # Eligibilité après le 1er avril 2014
         # Enfants nés après le 1er avril 2014 mais avant le 1er avril 2018
         enfant_eligible_ne_apres_avril_2014_avant_avril_2018 = famille.any(
-            enfant_eligible_ne_apres_avril_2014_avant_avril_2018() * est_plus_jeune_enfant)
+            enfant_eligible_ne_apres_avril_2014_avant_avril_2018()
+        )
         montant_elig_apres_avril_2014_avant_avril_2018 = montant_enfant_ne_apres_avril_2014_avant_avril_2018()
+
         # Enfants nés après le 1er avril 2018
-        enfant_eligible_ne_apres_avril_2018 = famille.any(enfant_eligible_ne_apres_avril_2018() * est_plus_jeune_enfant)
+        enfant_eligible_ne_apres_avril_2018 = famille.any(enfant_eligible_ne_apres_avril_2018())
         montant_elig_apres_avril_2018 = montant_enfant_ne_apres_avril_2018()
 
         montant = (
-                enfant_elig_avant_avril_2014 * montant_elig_avant_avril_2014 +
-                not_(enfant_elig_avant_avril_2014) * not_(
-            enfant_eligible_ne_apres_avril_2018) * enfant_eligible_ne_apres_avril_2014_avant_avril_2018 * montant_elig_apres_avril_2014_avant_avril_2018 +
-                not_(enfant_elig_avant_avril_2014) * not_(
-            enfant_eligible_ne_apres_avril_2014_avant_avril_2018) * enfant_eligible_ne_apres_avril_2018 * montant_elig_apres_avril_2018
+            enfant_elig_avant_avril_2014 *
+            montant_elig_avant_avril_2014 +
+            not_(enfant_elig_avant_avril_2014) *
+            not_(enfant_eligible_ne_apres_avril_2018) *
+            enfant_eligible_ne_apres_avril_2014_avant_avril_2018 *
+            montant_elig_apres_avril_2014_avant_avril_2018 +
+            not_(enfant_elig_avant_avril_2014) *
+            not_(enfant_eligible_ne_apres_avril_2014_avant_avril_2018) *
+            enfant_eligible_ne_apres_avril_2018 *
+            montant_elig_apres_avril_2018
         )
 
         return montant
@@ -322,18 +329,13 @@ class paje_base(Variable):
                 )
             return montant
 
-        age_plus_jeune_enfant = min(famille.members('age', period))
-        est_plus_jeune_enfant = famille.members('age', period) == age_plus_jeune_enfant
-
-        enfant_elig_avant_avril_2014 = famille.any(enfant_eligible_ne_avant_avril_2014() * est_plus_jeune_enfant)
-        montant_elig_avant_avril_2014 = montant_enfant_ne_avant_avril_2014()
-        enfant_elig_apres_avril_2014 = famille.any(enfant_eligible_ne_apres_avril_2014() * est_plus_jeune_enfant)
-        montant_elig_apres_avril_2014 = montant_enfant_ne_apres_avril_2014()
-
         montant = (
-            enfant_elig_avant_avril_2014 * montant_elig_avant_avril_2014 +
-            not_(enfant_elig_avant_avril_2014) * enfant_elig_apres_avril_2014 * montant_elig_apres_avril_2014
-            )
+            famille.any(enfant_eligible_ne_avant_avril_2014()) *
+            montant_enfant_ne_avant_avril_2014() +
+            not_(famille.any(enfant_eligible_ne_avant_avril_2014())) *
+            famille.any(enfant_eligible_ne_apres_avril_2014()) *
+            montant_enfant_ne_apres_avril_2014()
+        )
 
         return montant
 

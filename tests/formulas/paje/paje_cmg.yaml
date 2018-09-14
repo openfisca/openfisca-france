@@ -1,0 +1,111 @@
+# bmaf 2017-04-01 = 407.84
+# bmaf 2018-04-01 = 411.92
+# page jusqu'à 2018-03 = 184.62
+# crds 2018 = 0.005
+# cmg ass_mat taux 0-3 ans 2004-01-01 = 1.7257
+# cmg ass_mat montant 3-6 ans 2017-04-1 = 351.91
+# cmg ass_mat montant 3-6 ans 2018-04-1 = 355.43
+
+
+- name: "Après avril 2017, complément du mode de garde couple deux enfants avec assistante maternelle"
+  period: 2017-04
+  relative_error_margin: 0.01
+  individus:
+    - id: "parent1"
+      age: 40
+      salaire_imposable: 20000
+    - id: "parent2"
+      age: 40
+      salaire_imposable: 20000
+    - id: "enfant1"
+      date_naissance: 2017-01-01
+      age: 0
+    - id: "enfant2"
+      date_naissance: 2014-01-01
+      age: 3
+    - id: "parent3"
+      age: 40
+      salaire_imposable: 20000
+    - id: "parent4"
+      age: 40
+      salaire_imposable: 20000
+    - id: "enfant3"
+      date_naissance: 2016-01-01
+      age: 1
+    - id: "enfant4"
+      date_naissance: 2013-01-01
+      age: 4
+  familles:
+    -
+      parents: ["parent1","parent2"]
+      enfants: ["enfant1","enfant2"]
+      af_nbenf: 2
+      ass_mat: 1
+    -
+      parents: ["parent3","parent4"]
+      enfants: ["enfant3","enfant4"]
+      af_nbenf: 2
+      ass_mat: 1
+  foyers_fiscaux:
+    declarants: ["parent1", "parent2"]
+    personnes_a_charge: ["enfant1","enfant2"]
+  menages:
+    personne_de_reference: "parent1"
+    conjoint: "parent2"
+    enfants: ["enfant1","enfant2"]
+  output_variables:
+    paje_base: 0.4595 * 407.84
+    paje_cmg: 1.7257 * 407.84 + 351.91
+    paje: (0.4595 * 407.84) + (1.7257 * 407.84 + 351.91)
+
+
+- name: "Après avril 2018, complément du mode de garde couple deux enfants avec assistante maternelle"
+  period: 2018-04
+  relative_error_margin: 0.01
+  individus:
+    - id: "parent1"
+      age: 40
+      salaire_imposable: 20000
+    - id: "parent2"
+      age: 40
+      salaire_imposable: 20000
+    - id: "enfant1"
+      date_naissance: 2018-01-01
+      age: 0
+    - id: "enfant2"
+      date_naissance: 2015-01-01
+      age: 3
+    - id: "parent3"
+      age: 40
+      salaire_imposable: 20000
+    - id: "parent4"
+      age: 40
+      salaire_imposable: 20000
+    - id: "enfant3"
+      date_naissance: 2017-01-01
+      age: 1
+    - id: "enfant4"
+      date_naissance: 2014-01-01
+      age: 4
+  familles:
+    -
+      parents: ["parent1","parent2"]
+      enfants: ["enfant1","enfant2"]
+      af_nbenf: 2
+      ass_mat: 1
+    -
+      parents: ["parent3","parent4"]
+      enfants: ["enfant3","enfant4"]
+      af_nbenf: 2
+      ass_mat: 1
+  foyers_fiscaux:
+    declarants: ["parent1", "parent2"]
+    personnes_a_charge: ["enfant1","enfant2"]
+  menages:
+    personne_de_reference: "parent1"
+    conjoint: "parent2"
+    enfants: ["enfant1","enfant2"]
+  output_variables:
+    paje_base: 0.4165 * 411.92
+    paje_cmg: 1.7257 * 411.92 + 355.43
+    paje: (0.4165 * 411.92) + (1.7257 * 411.92 + 355.43)
