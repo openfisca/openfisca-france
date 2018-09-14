@@ -10,7 +10,7 @@
     - le calcul utilisait `min` (scalar) ;
     - lorsqu'on l'évalue pour un vecteur de familles, seulement le premier valeur de base était calculé ;
     - corrigé avec l'utilisation d'`Entity::min`
-  - Enrichit la base de tests de la PAJE pour augmenter la coverture
+  - Enrichit la base de tests de la PAJE pour augmenter la couverture
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 01/04/2018.
