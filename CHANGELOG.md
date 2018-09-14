@@ -1,5 +1,20 @@
 # Changelog
 
+###  24.11.0 [#1049](https://github.com/openfisca/openfisca-france/pull/1049)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2018.
+* Zones impactées : 
+  - `prestations/minima_sociaux/rsa`
+  - `parameters/prestations/prestations_familiales/af/bmaf`
+  - `parameters/prestations/minima_sociaux/rsa/age_min_rsa_jeune`
+  - `parameters/prestations/minima_sociaux/rsa/age_max_rsa_jeune`
+  - `parameters/prestations/minima_sociaux/rsa/rsa_jeune`
+* Détails :
+  - Fiabilisation du calcul du revenu de solidarité active (RSA) au 1er avril 2018.
+    A partir du 1er janvier 2017, Le rsa_forfait_logement et Le rsa_base_ressources sont prises en compte sur le mois_courant (et pas sur le mois_demande),
+     car les prestations sont prises en compte sur les 3 derniers mois précédant l'examen ou le réexamen périodique du droit au RSA.
+
 ### 24.10.0 [#994](https://github.com/openfisca/openfisca-france/pull/994)
 
 * Évolution du système socio-fiscal.
