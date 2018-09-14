@@ -98,7 +98,7 @@
     # paje: (0.45950 * 407.84) + (0.3603 * 407.84) # TODO: implémenter
 
 
-- name: "Au 1er avril 2017, sans interruption d'activité (la paje_clca et la paje_colca sont supprimées au profit de la paje_prepare)"
+- name: "Au 1er avril 2017, avec un taux partiel entre 50 et 80 % (la paje_clca et la paje_colca sont supprimées au profit de la paje_prepare)"
   period: 2018-01
   relative_error_margin: 0.01
   individus:
