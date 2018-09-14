@@ -106,7 +106,7 @@ class paje_base(Variable):
         pfam = parameters(period).prestations.prestations_familiales
 
         # Le montant, précédemment indexé sur la BMAF, est gelé en 2013, et dégelé en 2018
-        date_gel_paje = Instant((2013, 4, 1))  
+        date_gel_paje = Instant((2013, 4, 1))
         date_degel_paje = Instant((2018, 4, 1))
         periode_de_gel = date_degel_paje > period.start > date_gel_paje
         indice = parameters(date_gel_paje).prestations.prestations_familiales.af.bmaf if periode_de_gel else pfam.af.bmaf
