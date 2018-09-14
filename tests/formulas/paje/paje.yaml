@@ -1,9 +1,9 @@
-# BMAF 2012-01-01 = 399.0
-# BMAF 2013-04-01 = 403.79
-# BMAF 2014-04-01 = 406.21
+# bmaf 2012-01-01 = 399.0
+# bmaf 2013-04-01 = 403.79
+# bmaf 2014-04-01 = 406.21
 
 
-- name: "Avant le 1er avril 2014, le montant de la PAJE est proprotionnel à la BMAF"
+- name: "Avant le 1er avril 2014, le montant de base de la PAJE est proprotionnel à la BMAF"
   period: 2013-01
   relative_error_margin: 0.01
   individus:
@@ -37,7 +37,7 @@
     paje_base: 0.4595 * 399.0
 
 
-- name: "À partir du 1er avril 2013, le montant est gelé"
+- name: "À partir du 1er avril 2013, le montant de base de la PAJE est gelé"
   period: 2015-01
   relative_error_margin: 0.01
   individus:
