@@ -298,8 +298,9 @@ class rsa_base_ressources_prestations_familiales(Variable):
 
         return result
 
-    # u"https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=BAC96F4D0B5DD1B24170D2B57E1A0AE7.tplgfr38s_3?idArticle=LEGIARTI000033979130&cidTexte=LEGITEXT000006074069&categorieLien=id&dateTexte="
+
     def formula_2017_01_01(famille, mois_demande, parameters, mois_courant):
+        # Les prestations famillales sont prises en compte sur le mois_courant
         prestations_calculees = [
             'paje_base',
             'paje_clca',
@@ -308,7 +309,6 @@ class rsa_base_ressources_prestations_familiales(Variable):
             'rsa_forfait_asf',
         ]
 
-        # On réinjecte le montant des prestations calculées
         result = sum(famille(prestation, mois_courant) for prestation in prestations_calculees)
 
         cf_non_majore_avant_cumul = famille('cf_non_majore_avant_cumul', mois_courant)
@@ -632,6 +632,7 @@ class rsa_fictif(Variable):
         rsa_socle_majore = famille('rsa_socle_majore', mois_courant)
         rsa_socle = max_(rsa_socle_non_majore, rsa_socle_majore)
 
+        # Le rsa_forfait_logement et le rsa_base_ressources sont prises en compte sur le mois_courant(et pas sur le mois_demande)
         rsa_forfait_logement = famille('rsa_forfait_logement', mois_courant)
         rsa_base_ressources = famille('rsa_base_ressources', mois_demande, extra_params = [mois_courant])
 
