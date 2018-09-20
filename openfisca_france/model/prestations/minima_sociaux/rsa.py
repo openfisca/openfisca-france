@@ -9,6 +9,13 @@ from openfisca_france.model.base import *  # noqa analysis:ignore
 from openfisca_france.model.prestations.prestations_familiales.base_ressource import nb_enf
 
 
+class rsa_jeune_condition_heures_travail_remplie(Variable):
+    value_type = bool
+    entity = Individu
+    label = u"Éligible au RSA si la personne a moins de vingt-cinq ans et a travaillé deux ans sur les trois dernières années"
+    reference = u"https://www.legifrance.gouv.fr/affichCode.do?idSectionTA=LEGISCTA000022743616&cidTexte=LEGITEXT000006074069"
+    definition_period = MONTH
+
 class rsa_base_ressources(Variable):
     value_type = float
     label = u"Base ressources du Rmi ou du Rsa"
@@ -231,6 +238,7 @@ class rsa_base_ressources_prestations_familiales(Variable):
     value_type = float
     entity = Famille
     label = u"Prestations familiales inclues dans la base ressource RSA/RMI"
+    reference = u"https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=DA7C73D70BE5D3C7BE36D690E75FDC83.tplgfr38s_3?idArticle=LEGIARTI000020526199&cidTexte=LEGITEXT000006074069&categorieLien=id&dateTexte=20161231"
     definition_period = MONTH
 
     def formula_2002_01_01(famille, period):
@@ -290,30 +298,25 @@ class rsa_base_ressources_prestations_familiales(Variable):
 
         return result
 
+
     def formula_2017_01_01(famille, mois_demande, parameters, mois_courant):
-        # TODO : Neutraliser les ressources de type prestations familiales quand elles sont interrompues
+        # Les prestations famillales sont prises en compte sur le mois_courant
         prestations_calculees = [
-            'rsa_forfait_asf',
             'paje_base',
-        ]
-        prestations_autres = [
             'paje_clca',
-            'paje_prepare',
             'paje_colca',
+            'paje_prepare',
+            'rsa_forfait_asf',
         ]
 
-        # On réinjecte le montant des prestations calculées
-        result = sum(famille(prestation, mois_demande) for prestation in prestations_calculees)
+        result = sum(famille(prestation, mois_courant) for prestation in prestations_calculees)
 
-        result += sum(famille(prestation, mois_courant) for prestation in prestations_autres)
-
-        cf_non_majore_avant_cumul = famille('cf_non_majore_avant_cumul', mois_demande)
-        cf = famille('cf', mois_demande)
-        # Seul le montant non majoré est pris en compte dans la base de ressources du RSA
+        cf_non_majore_avant_cumul = famille('cf_non_majore_avant_cumul', mois_courant)
+        cf = famille('cf', mois_courant)
         cf_non_majore = (cf > 0) * cf_non_majore_avant_cumul
 
-        af_base = famille('af_base', mois_demande)
-        af = famille('af', mois_demande)
+        af_base = famille('af_base', mois_courant)
+        af = famille('af', mois_courant)
 
         result = result + cf_non_majore + min_(af_base, af)  # Si des AF on été injectées et sont plus faibles que le cf
 
@@ -629,7 +632,8 @@ class rsa_fictif(Variable):
         rsa_socle_majore = famille('rsa_socle_majore', mois_courant)
         rsa_socle = max_(rsa_socle_non_majore, rsa_socle_majore)
 
-        rsa_forfait_logement = famille('rsa_forfait_logement', mois_demande)
+        # Le rsa_forfait_logement et le rsa_base_ressources sont prises en compte sur le mois_courant(et pas sur le mois_demande)
+        rsa_forfait_logement = famille('rsa_forfait_logement', mois_courant)
         rsa_base_ressources = famille('rsa_base_ressources', mois_demande, extra_params = [mois_courant])
 
         montant = rsa_socle - rsa_forfait_logement - rsa_base_ressources
@@ -641,12 +645,12 @@ class rsa_fictif(Variable):
 class rsa_montant(Variable):
     value_type = float
     label = u"Revenu de solidarité active, avant prise en compte de la non-calculabilité."
+    reference = u"https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=C0E3FD6701B46D63786815D26ADEAD58.tplgfr35s_2?idArticle=LEGIARTI000033979143&cidTexte=LEGITEXT000006074069&dateTexte=20180830"
     entity = Famille
     definition_period = MONTH
 
     def formula_2017_01_01(famille, period, parameters):
         seuil_non_versement = parameters(period).prestations.minima_sociaux.rsa.rsa_nv
-
         rsa = famille('rsa_fictif', period.last_3_months, extra_params = [period], options = [ADD]) / 3
         rsa = rsa * (rsa >= seuil_non_versement)
 
@@ -752,23 +756,22 @@ class rsa_eligibilite(Variable):
         rsa_eligibilite_tns = famille('rsa_eligibilite_tns', period)
         condition_nationalite_i = famille.members('rsa_condition_nationalite', period)
         condition_nationalite = famille.any(condition_nationalite_i, role = Famille.PARENT)
-
-        rmi = parameters(period).prestations.minima_sociaux.rmi
+        rsa_jeune_condition_heures_travail_remplie_i = famille.members("rsa_jeune_condition_heures_travail_remplie", period)
         rsa = parameters(period).prestations.minima_sociaux.rsa
 
         age_i = famille.members('age', period)
 
         etudiant_i = famille.members('etudiant', period)
 
+        rsa_jeune_condition_i = rsa.rsa_jeune * (age_i > rsa.age_min_rsa_jeune) * (age_i < rsa.age_max_rsa_jeune) * rsa_jeune_condition_heures_travail_remplie_i
         # rsa_nb_enfants est à valeur pour une famille, il faut le projeter sur les individus avant de faire une opération avec age_i
         condition_age_i = famille.project(rsa_nb_enfants > 0) + (age_i > rsa.age_pac)
 
         return (
-            famille.any(condition_age_i * not_(etudiant_i), role = Famille.PARENT)
+            famille.any((condition_age_i | rsa_jeune_condition_i) * not_(etudiant_i), role = Famille.PARENT)
             * condition_nationalite
             * rsa_eligibilite_tns
             )
-
 
 class rsa_eligibilite_tns(Variable):
     value_type = bool

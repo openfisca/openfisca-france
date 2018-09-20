@@ -1,0 +1,550 @@
+- name: "RSA Cas N°1"
+  period: 2018-05
+  absolute_error_margin: 0.03
+  familles:
+    parents: ["personne1", "personne2"]
+    aide_logement:
+      2018-05: 200
+      2018-04: 200
+      2018-03: 200
+      2018-02: 200
+  foyers_fiscaux:
+    declarants: ["personne1", "personne2"]
+  menages:
+    personne_de_reference: "personne1"
+    conjoint: "personne2"
+    statut_occupation_logement: locataire_vide
+  individus:
+    - id: "personne1"
+      date_naissance: 1980-01-01
+      salaire_net:
+        2018-05: 100
+        2018-04: 100
+        2018-03: 100
+        2018-02: 100
+    - id: "personne2"
+      date_naissance: 1982-02-02
+      salaire_net:
+        2018-05: 67
+        2018-04: 67
+        2018-03: 67
+        2018-02: 67
+  output_variables:
+    rsa: 522.59
+
+- name: "RSA Cas N°2"
+  period: 2018-05
+  absolute_error_margin: 0.03
+  familles:
+    parents: ["personne1", "personne2"]
+    enfants: ["enfant1"]
+    aide_logement:
+      2018-05: 250
+      2018-04: 250
+      2018-03: 250
+      2018-02: 250
+  foyers_fiscaux:
+    declarants: ["personne1", "personne2"]
+    personnes_a_charge: ["enfant1"]
+  menages:
+    personne_de_reference: "personne1"
+    conjoint: "personne2"
+    enfants: ["enfant1"]
+    statut_occupation_logement: locataire_vide
+  individus:
+    - id: "personne1"
+      date_naissance: 1980-01-01
+      salaire_net:
+        2018-05: 100
+        2018-04: 100
+        2018-03: 100
+        2018-02: 100
+    - id: "personne2"
+      date_naissance: 1982-02-02
+      salaire_net:
+        2018-05: 67
+        2018-04: 67
+        2018-03: 67
+        2018-02: 67
+    - id: "enfant1"
+      date_naissance: 2005-03-10
+  output_variables:
+    rsa: 655.58
+
+- name: "RSA Cas N°3"
+  period: 2018-05
+  absolute_error_margin: 0.03
+  familles:
+    parents: ["personne1", "personne2"]
+    enfants: ["enfant1", "enfant2"]
+    aide_logement:
+      2018-05: 300
+      2018-04: 300
+      2018-03: 300
+      2018-02: 300
+    af:
+      2018-05: 131.16
+      2018-04: 131.16
+      2018-03: 129.86
+      2018-02: 129.86
+  foyers_fiscaux:
+    declarants: ["personne1", "personne2"]
+    personnes_a_charge: ["enfant1", "enfant2"]
+  menages:
+    personne_de_reference: "personne1"
+    conjoint: "personne2"
+    enfants: ["enfant1", "enfant2"]
+    statut_occupation_logement: locataire_vide
+  individus:
+    - id: "personne1"
+      date_naissance: 1980-01-01
+      salaire_net:
+        2018-05: 100
+        2018-04: 100
+        2018-03: 100
+        2018-02: 100
+    - id: "personne2"
+      date_naissance: 1982-02-02
+      salaire_net:
+        2018-05: 67
+        2018-04: 67
+        2018-03: 67
+        2018-02: 67
+    - id: "enfant1"
+      date_naissance: 2005-03-10
+    - id: "enfant2"
+      date_naissance: 2008-01-08
+  output_variables:
+    rsa: 689.48
+
+- name: "RSA Cas N°4"
+  period: 2018-05
+  absolute_error_margin: 0.03
+  familles:
+    parents: ["personne1", "personne2"]
+    enfants: ["enfant1", "enfant2", "enfant3"]
+    aide_logement:
+      2018-05: 320
+      2018-04: 320
+      2018-03: 320
+      2018-02: 320
+    af:
+      2018-05: 299.20
+      2018-04: 299.20
+      2018-03: 296.24
+      2018-02: 296.24
+    cf_non_majore_avant_cumul:
+      2018-05: 170.71
+      2018-04: 170.71
+      2018-03: 169.03
+      2018-02: 169.03
+  foyers_fiscaux:
+    declarants: ["personne1", "personne2"]
+    personnes_a_charge: ["enfant1", "enfant2", "enfant3"]
+  menages:
+    personne_de_reference: "personne1"
+    conjoint: "personne2"
+    enfants: ["enfant1", "enfant2", "enfant3"]
+    statut_occupation_logement: locataire_vide
+  individus:
+    - id: "personne1"
+      date_naissance: 1980-01-01
+      salaire_net:
+        2018-05: 100
+        2018-04: 100
+        2018-03: 100
+        2018-02: 100
+    - id: "personne2"
+      date_naissance: 1982-02-02
+      salaire_net:
+        2018-05: 67
+        2018-04: 67
+        2018-03: 67
+        2018-02: 67
+    - id: "enfant1"
+      date_naissance: 2005-03-10
+    - id: "enfant2"
+      date_naissance: 2008-01-08
+    - id: "enfant3"
+      date_naissance: 2010-10-15
+  output_variables:
+    rsa: 571.87
+
+- name: "RSA Cas N°5"
+  period: 2018-05
+  absolute_error_margin: 0.03
+  familles:
+    parents: ["personne1"]
+    aide_logement:
+      2018-05: 50
+      2018-04: 50
+      2018-03: 50
+      2018-02: 50
+  foyers_fiscaux:
+    declarants: ["personne1"]
+  menages:
+    personne_de_reference: "personne1"
+    statut_occupation_logement: locataire_vide
+  individus:
+    - id: "personne1"
+      date_naissance: 1995-01-10
+      salaire_net:
+        2018-05: 134
+        2018-04: 134
+        2018-03: 134
+        2018-02: 134
+      rsa_jeune_condition_heures_travail_remplie:
+        2018-05: true
+        2018-04: true
+        2018-03: true
+        2018-02: true
+        2018-01: true
+  output_variables:
+    rsa: 363.30
+
+- name: "RSA Cas N°6"
+  period: 2018-05
+  absolute_error_margin: 0.03
+  familles:
+    parents: ["personne1"]
+    aide_logement:
+      2018-05: 80
+      2018-04: 80
+      2018-03: 80
+      2018-02: 80
+  foyers_fiscaux:
+    declarants: ["personne1"]
+  menages:
+    personne_de_reference: "personne1"
+    statut_occupation_logement: locataire_vide
+  individus:
+    - id: "personne1"
+      date_naissance: 1980-01-10
+      salaire_net:
+        2018-05: 134
+        2018-04: 134
+        2018-03: 134
+        2018-02: 134
+  output_variables:
+    rsa: 347.62
+
+- name: "RSA Cas N°7"
+  period: 2018-05
+  absolute_error_margin: 0.03
+  familles:
+    parents: ["personne1"]
+    enfants: ["enfant1"]
+    aide_logement:
+      2018-05: 150
+      2018-04: 150
+      2018-03: 150
+      2018-02: 150
+    rsa_forfait_asf:
+      2018-05: 115.30
+      2018-04: 115.30
+      2018-03: 109.65
+      2018-02: 109.65
+    paje_base: 0
+    rsa_isolement_recent: 1
+  foyers_fiscaux:
+    declarants: ["personne1"]
+    personnes_a_charge: ["enfant1"]
+  menages:
+    personne_de_reference: "personne1"
+    enfants: ["enfant1"]
+    statut_occupation_logement: locataire_vide
+  individus:
+    - id: "personne1"
+      date_naissance: 1980-01-01
+      salaire_net:
+        2018-05: 134
+        2018-04: 134
+        2018-03: 134
+        2018-02: 134
+    - id: "enfant1"
+      date_naissance: 2005-03-10
+  output_variables:
+    rsa: 560.17
+
+- name: "RSA Cas N°8"
+  period: 2018-05
+  absolute_error_margin: 0.03
+  familles:
+    parents: ["personne1"]
+    enfants: ["enfant1", "enfant2"]
+    aide_logement:
+      2018-05: 200
+      2018-04: 200
+      2018-03: 200
+      2018-02: 200
+    rsa_forfait_asf:
+      2018-05: 230.60
+      2018-04: 230.60
+      2018-03: 219.30
+      2018-02: 219.30
+    af:
+      2018-05: 131.16
+      2018-04: 131.16
+      2018-03: 129.86
+      2018-02: 129.86
+    paje_base: 0
+    rsa_isolement_recent: 1
+  foyers_fiscaux:
+    declarants: ["personne1"]
+    personnes_a_charge: ["enfant1", "enfant2"]
+  menages:
+    personne_de_reference: "personne1"
+    enfants: ["enfant1", "enfant2"]
+    statut_occupation_logement: locataire_vide
+  individus:
+    - id: "personne1"
+      date_naissance: 1980-01-01
+      salaire_net:
+        2018-05: 134
+        2018-04: 134
+        2018-03: 134
+        2018-02: 134
+    - id: "enfant1"
+      date_naissance: 2005-03-10
+    - id: "enfant2"
+      date_naissance: 2008-01-04
+  output_variables:
+    rsa: 521.42
+
+- name: "RSA Cas Non Passant N°1"
+  period: 2018-05
+  absolute_error_margin: 0.03
+  familles:
+    parents: ["personne1", "personne2"]
+    aide_logement:
+        2018-05: 340
+        2018-04: 340
+        2018-03: 340
+        2018-02: 340
+  foyers_fiscaux:
+    declarants: ["personne1", "personne2"]
+  menages:
+    personne_de_reference: "personne1"
+    conjoint: "personne2"
+    statut_occupation_logement: locataire_vide
+  individus:
+    - id: "personne1"
+      date_naissance: 1980-01-01
+      salaire_net:
+        2018-05: 340
+        2018-04: 340
+        2018-03: 340
+        2018-02: 340
+    - id: "personne2"
+      date_naissance: 1982-02-02
+      salaire_net:
+        2018-05: 360
+        2018-04: 360
+        2018-03: 360
+        2018-02: 360
+  output_variables:
+    rsa: 0
+
+- name: "RSA Cas Non Passant N°2"
+  period: 2018-05
+  absolute_error_margin: 0.03
+  familles:
+    parents: ["personne1", "personne2"]
+    enfants: ["enfant1"]
+    aide_logement:
+        2018-05: 200
+        2018-04: 200
+        2018-03: 200
+        2018-02: 200
+  foyers_fiscaux:
+    declarants: ["personne1", "personne2"]
+    personnes_a_charge: ["enfant1"]
+  menages:
+    personne_de_reference: "personne1"
+    conjoint: "personne2"
+    enfants: ["enfant1"]
+    statut_occupation_logement: locataire_vide
+  individus:
+    - id: "personne1"
+      date_naissance: 1980-01-01
+      salaire_net:
+        2018-05: 600
+        2018-04: 600
+        2018-03: 600
+        2018-02: 600
+    - id: "personne2"
+      date_naissance: 1982-02-02
+      salaire_net:
+        2018-05: 400
+        2018-04: 400
+        2018-03: 400
+        2018-02: 400
+    - id: "enfant1"
+      date_naissance: 2005-03-10
+  output_variables:
+    rsa: 0
+
+- name: "RSA Cas Non Passant N°3"
+  period: 2018-05
+  absolute_error_margin: 0.03
+  familles:
+    parents: ["personne1", "personne2"]
+    enfants: ["enfant1", "enfant2"]
+    aide_logement:
+      2018-05: 300
+      2018-04: 300
+      2018-03: 300
+      2018-02: 300
+    af:
+      2018-05: 131.16
+      2018-04: 131.16
+      2018-03: 129.86
+      2018-02: 129.86
+  foyers_fiscaux:
+    declarants: ["personne1", "personne2"]
+    personnes_a_charge: ["enfant1", "enfant2"]
+  menages:
+    personne_de_reference: "personne1"
+    conjoint: "personne2"
+    enfants: ["enfant1", "enfant2"]
+    statut_occupation_logement: locataire_vide
+  individus:
+    - id: "personne1"
+      date_naissance: 1980-01-01
+      salaire_net:
+        2018-05: 400
+        2018-04: 400
+        2018-03: 400
+        2018-02: 400
+    - id: "personne2"
+      date_naissance: 1982-02-02
+      salaire_net:
+        2018-05: 200
+        2018-04: 200
+        2018-03: 200
+        2018-02: 200
+    - id: "enfant1"
+      date_naissance: 2000-01-10
+      salaire_net:
+        2018-05: 300
+        2018-04: 300
+        2018-03: 300
+        2018-02: 300
+    - id: "enfant2"
+      date_naissance: 2005-03-10
+  output_variables:
+    rsa: 0
+
+- name: "RSA Cas Non Passant N°4"
+  period: 2018-05
+  absolute_error_margin: 0.03
+  familles:
+    parents: ["personne1"]
+    aide_logement:
+      2018-05: 50
+      2018-04: 50
+      2018-03: 50
+      2018-02: 50
+  foyers_fiscaux:
+    declarants: ["personne1"]
+  menages:
+    personne_de_reference: "personne1"
+    statut_occupation_logement: locataire_vide
+  individus:
+    - id: "personne1"
+      date_naissance: 1995-01-10
+      salaire_net:
+        2018-05: 134
+        2018-04: 134
+        2018-03: 134
+        2018-02: 134
+  output_variables:
+    rsa: 0
+
+- name: "RSA Cas Non Passant N°5"
+  period: 2018-05
+  absolute_error_margin: 0.03
+  familles:
+    parents: ["personne1"]
+    aide_logement:
+      2018-05: 50
+      2018-04: 50
+      2018-03: 50
+      2018-02: 50
+  foyers_fiscaux:
+    declarants: ["personne1"]
+  menages:
+    personne_de_reference: "personne1"
+    statut_occupation_logement: locataire_vide
+  individus:
+    - id: "personne1"
+      date_naissance: 1995-01-10
+      salaire_net:
+        2018-05: 510
+        2018-04: 510
+        2018-03: 510
+        2018-02: 510
+  output_variables:
+    rsa: 0
+
+- name: "RSA Cas Non Passant N°6"
+  period: 2018-05
+  absolute_error_margin: 0.03
+  familles:
+    parents: ["personne1"]
+    aide_logement:
+      2018-05: 40
+      2018-04: 40
+      2018-03: 40
+      2018-02: 40
+  foyers_fiscaux:
+    declarants: ["personne1"]
+  menages:
+    personne_de_reference: "personne1"
+    statut_occupation_logement: locataire_vide
+  individus:
+    - id: "personne1"
+      date_naissance: 1980-01-10
+      salaire_net:
+        2018-05: 800
+        2018-04: 800
+        2018-03: 800
+        2018-02: 800
+  output_variables:
+    rsa: 0
+
+- name: "RSA Cas Non Passant N°7"
+  period: 2018-05
+  absolute_error_margin: 0.03
+  familles:
+    parents: ["personne1"]
+    enfants: ["enfant1"]
+    aide_logement:
+      2018-05: 80
+      2018-04: 80
+      2018-03: 80
+      2018-02: 80
+    af:
+      2018-05: 115.30
+      2018-04: 115.30
+      2018-03: 109.65
+      2018-02: 109.65
+  foyers_fiscaux:
+    declarants: ["personne1"]
+    personnes_a_charge: ["enfant1"]
+  menages:
+    personne_de_reference: "personne1"
+    enfants: ["enfant1"]
+    statut_occupation_logement: locataire_vide
+  individus:
+    - id: "personne1"
+      date_naissance: 1980-01-01
+      salaire_net:
+        2018-05: 800
+        2018-04: 800
+        2018-03: 800
+        2018-02: 800
+    - id: "enfant1"
+      date_naissance: 2005-03-10
+  output_variables:
+    rsa: 0
