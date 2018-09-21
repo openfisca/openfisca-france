@@ -32,22 +32,22 @@ jobs:
             - /tmp/venv/openfisca_france
 
       - run:
-          name: Lint YAML files
-          command: |
-            yamllint `circleci tests glob "**/*.{yaml,yml}" | circleci tests split`
-
-      - run:
-          name: Run tests
-          command: |
-            nosetests `circleci tests glob "tests/**/*.py" | circleci tests split`
-            openfisca-run-test `circleci tests glob "tests/**/*.{yaml,yml}" | circleci tests split`
-
-      - run:
-          name: Run linting
+          name: Lint Python files
           command: |
             make check-no-prints
             make check-syntax-errors
             # make flake8
+
+      - run:
+          name: Lint YAML files
+          command: |
+            yamllint $(circleci tests glob "tests/**/*.{yaml,yml}" | circleci tests split)
+
+      - run:
+          name: Run tests
+          command: |
+            circleci tests glob "tests/**/*.py" | circleci tests split | nosetests
+            cd tests && circleci tests glob "tests/**/*.{yaml,yml}" | circleci tests split | xargs openfisca-run-test
 
   deploy_python2:
     docker:
@@ -111,22 +111,22 @@ jobs:
             - /tmp/venv/openfisca_france
 
       - run:
-          name: Lint YAML files
-          command: |
-            yamllint `circleci tests glob "**/*.{yaml,yml}" | circleci tests split`
-
-      - run:
-          name: Run tests
-          command: |
-            nosetests `circleci tests glob "tests/**/*.py" | circleci tests split`
-            openfisca-run-test `circleci tests glob "tests/**/*.{yaml,yml}" | circleci tests split`
-
-      - run:
-          name: Run linting
+          name: Lint Python files
           command: |
             make check-no-prints
             make check-syntax-errors
             # make flake8
+
+      - run:
+          name: Lint YAML files
+          command: |
+            yamllint $(circleci tests glob "tests/**/*.{yaml,yml}" | circleci tests split)
+
+      - run:
+          name: Run tests
+          command: |
+            circleci tests glob "tests/**/*.py" | circleci tests split | nosetests
+            cd tests && circleci tests glob "tests/**/*.{yaml,yml}" | circleci tests split | xargs openfisca-run-test
 
   deploy_python3:
     docker:
