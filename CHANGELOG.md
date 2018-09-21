@@ -1,6 +1,16 @@
 # Changelog
 
-###  24.11.0 [#1049](https://github.com/openfisca/openfisca-france/pull/1049)
+### 24.11.1 [#1110](https://github.com/openfisca/openfisca-france/pull/1110)
+
+* Correction d'un bug.
+* Périodes concernées : à partir du 01/01/2004.
+* Zones impactées :
+  - `prestations/prestations_familiales/paje`
+* Détails :
+  - Corrige le calcul de la PAJE lorsqu'on l'évalue pour un vecteur de familles.
+  - Simplifie et uniformise la formule de calcul pour toutes les périodes.
+
+###  24.11.0 [#1049](https://github.com/openfisca/openfisca-france/pull/1098)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 01/01/2018.
