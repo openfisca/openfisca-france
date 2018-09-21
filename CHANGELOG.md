@@ -1,5 +1,12 @@
 # Changelog
 
+### 24.11.2 [#1132](https://github.com/openfisca/openfisca-france/pull/1132)
+
+* Changement mineur.
+* Zones impactées : `__init__.py`.
+* Détails :
+  - Efface __init.py__ de la racine.
+
 ### 24.11.1 [#1110](https://github.com/openfisca/openfisca-france/pull/1110)
 
 * Correction d'un bug.
@@ -14,7 +21,7 @@
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 01/01/2018.
-* Zones impactées : 
+* Zones impactées :
   - `prestations/minima_sociaux/rsa`
   - `parameters/prestations/prestations_familiales/af/bmaf`
   - `parameters/prestations/minima_sociaux/rsa/age_min_rsa_jeune`
