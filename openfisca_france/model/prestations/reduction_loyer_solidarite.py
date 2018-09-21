@@ -95,7 +95,7 @@ class reduction_loyer_solidarite_montant(Variable):
 class reduction_loyer_solidarite(Variable):
     value_type = float
     entity = Famille
-    label = u"Éligibilibité à la réduction du loyer de solidarité"
+    label = u"Réduction du loyer de solidarité effectivement versée"
     reference = [
         u"https://www.anil.org/aj-reduction-loyer-solidarite-rls-apl/",
         u"https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000036650010&dateTexte=&categorieLien=id",
@@ -108,6 +108,8 @@ class reduction_loyer_solidarite(Variable):
         # necessité de diviser par 12 pour comparer au plafond mensuel
         ressources = famille('aide_logement_base_ressources', period) / 12
         plafond = famille('reduction_loyer_solidarite_plafond_ressources', period)
+        statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period) 
+        
 
         montant = famille('reduction_loyer_solidarite_montant', period)
-        return (ressources < plafond) * montant
+        return (ressources < plafond) * montant * (statut_occupation_logement == TypesStatutOccupationLogement.locataire_hlm)
