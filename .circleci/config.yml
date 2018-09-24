@@ -32,22 +32,10 @@ jobs:
             - /tmp/venv/openfisca_france
 
       - run:
-          name: Lint YAML files
-          command: |
-            yamllint `circleci tests glob "**/*.{yaml,yml}" | circleci tests split`
-
-      - run:
           name: Run tests
           command: |
             nosetests `circleci tests glob "tests/**/*.py" | circleci tests split`
             openfisca-run-test `circleci tests glob "tests/**/*.{yaml,yml}" | circleci tests split`
-
-      - run:
-          name: Run linting
-          command: |
-            make check-no-prints
-            make check-syntax-errors
-            # make flake8
 
   deploy_python2:
     docker:
@@ -111,22 +99,10 @@ jobs:
             - /tmp/venv/openfisca_france
 
       - run:
-          name: Lint YAML files
-          command: |
-            yamllint `circleci tests glob "**/*.{yaml,yml}" | circleci tests split`
-
-      - run:
           name: Run tests
           command: |
             nosetests `circleci tests glob "tests/**/*.py" | circleci tests split`
             openfisca-run-test `circleci tests glob "tests/**/*.{yaml,yml}" | circleci tests split`
-
-      - run:
-          name: Run linting
-          command: |
-            make check-no-prints
-            make check-syntax-errors
-            # make flake8
 
   deploy_python3:
     docker:
@@ -151,6 +127,26 @@ jobs:
             source /tmp/venv/openfisca_france/bin/activate
             .circleci/publish-python-package.sh
 
+  check_static_errors:
+    docker:
+      - image: python:3.6
+    steps:
+      - checkout
+      - run:
+          name: Install dependencies
+          command: |
+            pip install yamllint flake8
+      - run:
+          name: Lint YAML files
+          command: |
+            yamllint `circleci tests glob "**/*.{yaml,yml}" | circleci tests split`
+      - run:
+          name: Run linting
+          command: |
+            make check-no-prints
+            make check-syntax-errors
+            # additional linting goes here
+
   check_version_and_changelog:
     docker:
       - image: python:3.6
@@ -169,11 +165,13 @@ workflows:
     jobs:
       - build_python2
       - build_python3
+      - check_static_errors
       - check_version_and_changelog
       - deploy_python2:
           requires:
             - build_python2
             - build_python3
+            - check_static_errors
             - check_version_and_changelog
           filters:
             branches:
@@ -182,6 +180,7 @@ workflows:
           requires:
             - build_python2
             - build_python3
+            - check_static_errors
             - check_version_and_changelog
           filters:
             branches:
