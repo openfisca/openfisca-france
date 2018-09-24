@@ -110,16 +110,16 @@ class contribution_exceptionnelle_solidarite(Variable):
         cotisation = apply_bareme_for_relevant_type_sal(
             bareme_by_type_sal_name = parameters.cotsoc.cotisations_salarie,
             bareme_name = "excep_solidarite",
-            base = assujettis * min_(
+            base = assujettis * max_(
                 (
-                    traitement_indiciaire_brut 
-                    + salaire_de_base 
-                    - hsup 
-                    + indemnite_residence 
-                    + rafp_salarie 
-                    + pension_civile_salarie 
-                    + primes_fonction_publique 
-                    - (categorie_salarie == TypesCategorieSalarie.public_non_titulaire) * cotisations_salariales_contributives
+                    traitement_indiciaire_brut
+                    + salaire_de_base
+                    - hsup
+                    + indemnite_residence
+                    + rafp_salarie
+                    + pension_civile_salarie
+                    + primes_fonction_publique
+                    + (categorie_salarie == TypesCategorieSalarie.public_non_titulaire) * cotisations_salariales_contributives
                     ),
                 parameters.prelevements_sociaux.cotisations_sociales.fds.plafond_base_solidarite,
                 ),
