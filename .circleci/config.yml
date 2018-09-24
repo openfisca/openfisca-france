@@ -1,19 +1,6 @@
 # CircleCI 2.0 configuration file. See <https://circleci.com/docs/2.0/language-python/>.
 version: 2
 jobs:
-  check_version_and_changelog:
-    docker:
-      - image: python:3.7
-
-    steps:
-      - checkout
-
-      - run:
-          name: Check version number has been properly updated
-          command: |
-            git fetch
-            .circleci/is-version-number-acceptable.sh
-
   build_python2:
     parallelism: 2  # Speed up the tests, while letting two containers available for other builds.
     docker:
@@ -86,7 +73,7 @@ jobs:
             nosetests `circleci tests glob "tests/**/*.py" | circleci tests split`
             openfisca-run-test `circleci tests glob "tests/**/*.{yaml,yml}" | circleci tests split`
 
-  check_static_errors:
+  lint_yaml_files:
     docker:
       - image: python:3.7
 
@@ -102,16 +89,44 @@ jobs:
             echo "source /tmp/venv/openfisca_france/bin/activate" >> $BASH_ENV
 
       - run:
-          name: Lint YAML files
+          name: Lint files
           command: |
-            yamllint `circleci tests glob "**/*.{yaml,yml}" | circleci tests split`
+            .circleci/lint-changed-yaml-tests.sh
+
+  lint_python_files:
+    docker:
+      - image: python:3.7
+
+    steps:
+      - checkout
+
+      - restore_cache:
+          key: v1-py3-{{ checksum "setup.py" }}
 
       - run:
-          name: Run Python linting
+          name: Activate virtualenv
+          command: |
+            echo "source /tmp/venv/openfisca_france/bin/activate" >> $BASH_ENV
+
+      - run:
+          name: Lint files
           command: |
             make check-no-prints
             make check-syntax-errors
-            # additional linting goes here
+            .circleci/lint-changed-python-files.sh
+
+  check_version_and_changelog:
+    docker:
+      - image: python:3.7
+
+    steps:
+      - checkout
+
+      - run:
+          name: Check version number has been properly updated
+          command: |
+            git fetch
+            .circleci/is-version-number-acceptable.sh
 
   deploy_python2:
     docker:
@@ -172,25 +187,31 @@ workflows:
   build_and_deploy:
     jobs:
       - check_version_and_changelog
-      - build_python2:
+      - build_python2
+      - build_python3
+      - lint_yaml_files:
           requires:
-            - check_version_and_changelog
-      - build_python3:
+            - build_python3
+      - lint_python_files:
           requires:
-            - check_version_and_changelog
-      - check_static_errors:
-          requires:
-            - build_python2
             - build_python3
       - deploy_python2:
           requires:
-            - check_static_errors
+            - check_version_and_changelog
+            - build_python2
+            - build_python3
+            - lint_yaml_files
+            - lint_python_files
           filters:
             branches:
               only: master
       - deploy_python3:
           requires:
-            - check_static_errors
+            - check_version_and_changelog
+            - build_python2
+            - build_python3
+            - lint_yaml_files
+            - lint_python_files
           filters:
             branches:
               only: master
