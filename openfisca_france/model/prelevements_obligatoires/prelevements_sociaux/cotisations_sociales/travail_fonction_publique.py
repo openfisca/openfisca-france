@@ -75,7 +75,7 @@ class contribution_exceptionnelle_solidarite(Variable):
     entity = Individu
     label = u"Cotisation exceptionnelle au fonds de solidarité (salarié)"
     definition_period = MONTH
-    end = '2018-01-01'
+    end = '2017-12-31'
 
     def formula(individu, period, parameters):
         traitement_indiciaire_brut = individu('traitement_indiciaire_brut', period)
@@ -112,15 +112,14 @@ class contribution_exceptionnelle_solidarite(Variable):
             bareme_name = "excep_solidarite",
             base = assujettis * min_(
                 (
-                    traitement_indiciaire_brut
-                    + salaire_de_base
-                    - hsup
-                    + indemnite_residence
-                    + rafp_salarie
-                    + pension_civile_salarie
-                    + primes_fonction_publique
-                    + (categorie_salarie == TypesCategorieSalarie.public_non_titulaire)
-                    * cotisations_salariales_contributives
+                    traitement_indiciaire_brut 
+                    + salaire_de_base 
+                    - hsup 
+                    + indemnite_residence 
+                    + rafp_salarie 
+                    + pension_civile_salarie 
+                    + primes_fonction_publique 
+                    - (categorie_salarie == TypesCategorieSalarie.public_non_titulaire) * cotisations_salariales_contributives
                     ),
                 parameters.prelevements_sociaux.cotisations_sociales.fds.plafond_base_solidarite,
                 ),
