@@ -145,7 +145,7 @@ jobs:
           command: |
             make check-no-prints
             make check-syntax-errors
-            git diff --cached -U0 | flake8 --diff
+            # additional linting goes here
 
   check_version_and_changelog:
     docker:
