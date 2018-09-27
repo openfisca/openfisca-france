@@ -196,6 +196,54 @@
   output_variables:
     ppa: 403.00
 
+- name: "PPA Cas N°7"
+  period: 2018-05
+  absolute_error_margin: 0.03
+  familles:
+    parents: ["personne1", "personne2"]
+    enfants: ["enfant1", "enfant2", "enfant3"]
+    aide_logement: 280
+    af:
+      2018-04: 299.20
+      2018-03: 296.24
+      2018-02: 296.24
+    cf:
+      2018-04: 256.09
+      2018-03: 236.71
+      2018-02: 236.71
+  foyers_fiscaux:
+    declarants: ["personne1", "personne2"]
+    personnes_a_charge: ["enfant1", "enfant2", "enfant3"]
+  menages:
+    personne_de_reference: "personne1"
+    conjoint: "personne2"
+    enfants: ["enfant1", "enfant2", "enfant3"]
+    statut_occupation_logement:
+      2018-04: locataire_vide
+      2018-03: locataire_vide
+      2018-02: locataire_vide
+  individus:
+    - id: "personne1"
+      date_naissance: 1980-01-01
+      salaire_net:
+        2018-04: 250
+        2018-03: 250
+        2018-02: 250
+    - id: "personne2"
+      date_naissance: 1982-02-02
+      salaire_net:
+        2018-04: 400
+        2018-03: 400
+        2018-02: 400
+    - id: "enfant1"
+      date_naissance: 2005-03-10
+    - id: "enfant2"
+      date_naissance: 2008-01-04
+    - id: "enfant3"
+      date_naissance: 2010-10-15
+  output_variables:
+    ppa: 403.00
+
 - name: "PPA Cas Non Passant N°1"
   period: 2018-05
   absolute_error_margin: 0.03

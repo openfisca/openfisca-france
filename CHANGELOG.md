@@ -1,5 +1,14 @@
 # Changelog
 
+### 24.12.0 [#1047](https://github.com/openfisca/openfisca-france/pull/1047)
+ * Évolution du système socio-fiscal.
+* Périodes concernées : toutes.
+* Zones impactées :
+  - `model\prestations\minima_sociaux\ppa`
+* Détails :
+  - Correction de la formule de calcul du forfait logement en fonction du nombre de personnes au foyer.
+  - Correction des tests de revalorisation de la prime d'activité.
+
 ### 24.11.2 [#1132](https://github.com/openfisca/openfisca-france/pull/1132)
 
 * Changement mineur.

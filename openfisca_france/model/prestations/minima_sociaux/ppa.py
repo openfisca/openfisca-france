@@ -67,6 +67,7 @@ class ppa_montant_forfaitaire_familial_non_majore(Variable):
 
         nb_personnes = nb_parents + nb_enfants
 
+        # Dans la formule "ppa_forfait_logement", le montant forfaitaire se calcule pour trois personnes dans le cas où le foyer se compose de trois personnes ou plus.
         taux_non_majore = (
             1 +
             (nb_personnes >= 2) * ppa.taux_deuxieme_personne +
@@ -311,7 +312,16 @@ class ppa_forfait_logement(Variable):
         avantage_al = aide_logement > 0
 
         params = parameters(period).prestations.minima_sociaux.rsa
-        montant_base = famille('ppa_montant_forfaitaire_familial_non_majore', period, extra_params = [period])
+        ppa = parameters(period).prestations.minima_sociaux.ppa
+
+        # Le montant forfaitaire se calcule de la même manière que celle de la formule 'ppa_montant_forfaitaire_familial_non_majore',
+        # sauf dans le cas où le foyer se compose de trois personnes ou plus, où le montant forfaitaire se calcule pour trois personnes seulement.
+        taux_non_majore = (
+                1 +
+                (np_pers >= 2) * ppa.taux_deuxieme_personne +
+                (np_pers >= 3) * ppa.taux_troisieme_personne
+        )
+        montant_base = ppa.montant_de_base * taux_non_majore
         montant_forfait = montant_base * (
             (np_pers == 1) * params.forfait_logement.taux_1_personne +
             (np_pers == 2) * params.forfait_logement.taux_2_personnes +
