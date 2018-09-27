@@ -452,6 +452,33 @@ class revenus_super_bruts_menage(Variable):
             + revenus_capitaux_mobiliers_plus_values_bruts_menage
             )
 
+class cotisations_et_prelevements_sociaux_menage(Variable):
+    value_type = float
+    entity = Menage
+    label = u"Cotisations sociales et prélèvement sociaux (tous revenus)"
+    definition_period = YEAR
+
+    def formula(menage, period):
+        cotisations_employeur_i = menage.members('cotisations_employeur', period, options = [ADD])
+        cotisations_employeur = menage.sum(cotisations_employeur_i)
+        cotisations_salariales_i = menage.members('cotisations_salariales', period, options = [ADD])
+        cotisations_salariales = menage.sum(cotisations_salariales_i)
+        cotisations_non_salarie_i = menage.members('cotisations_non_salarie', period, options = [ADD])
+        cotisations_non_salarie = menage.sum(cotisations_non_salarie_i)
+
+        csg_i = menage.members('csg', period, options = [ADD])
+        csg = menage.sum(csg_i)
+        crds_i = menage.members('crds', period, options = [ADD])
+        crds = menage.sum(crds_i)
+
+        return (
+            cotisations_employeur
+            + cotisations_salariales
+            + cotisations_non_salarie
+            + csg
+            + crds
+            )
+
 
 class prestations_sociales(Variable):
     value_type = float
@@ -485,9 +512,8 @@ class prestations_familiales(Variable):
         aeeh = famille('aeeh', period, options = [ADD])
         paje = famille('paje', period, options = [ADD])
         asf = famille('asf', period, options = [ADD])
-        crds_pfam = famille('crds_pfam', period)
 
-        return af + cf + ars + aeeh + paje + asf + crds_pfam
+        return af + cf + ars + aeeh + paje + asf
 
 
 class minimum_vieillesse(Variable):

@@ -20,6 +20,7 @@ class csg(Variable):
         csg_deductible_chomage = individu('csg_deductible_chomage', period, options = [ADD])
         csg_imposable_retraite = individu('csg_imposable_retraite', period, options = [ADD])
         csg_deductible_retraite = individu('csg_deductible_retraite', period, options = [ADD])
+        csg_non_salarie = individu('csg_non_salarie', period, options = [ADD])
         # CSG sur revenus du capital, définie à l'échelle du foyer fiscal, mais projetée sur le déclarant principal
         csg_revenus_capital = individu.foyer_fiscal('csg_revenus_capital', period)
         csg_revenus_capital_projetee = csg_revenus_capital * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
@@ -31,6 +32,7 @@ class csg(Variable):
             + csg_deductible_chomage
             + csg_imposable_retraite
             + csg_deductible_retraite
+            + csg_non_salarie
             + csg_revenus_capital_projetee
             )
 
@@ -46,7 +48,8 @@ class crds(Variable):
         crds_salaire = individu('crds_salaire', period, options = [ADD])
         crds_retraite = individu('crds_retraite', period, options = [ADD])
         crds_chomage = individu('crds_chomage', period, options = [ADD])
-        crds_individu = crds_salaire + crds_retraite + crds_chomage
+        crds_non_salarie = individu('crds_non_salarie', period, options = [ADD])
+        crds_individu = crds_salaire + crds_retraite + crds_chomage+ crds_non_salarie
         # CRDS sur revenus de la famille, projetés seulement sur la première personne
         crds_pfam = individu.famille('crds_pfam', period)
         crds_logement = individu.famille('crds_logement', period, options = [ADD])
