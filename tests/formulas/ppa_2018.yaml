@@ -204,12 +204,10 @@
     enfants: ["enfant1", "enfant2", "enfant3"]
     aide_logement: 280
     af:
-      2018-05: 299.20
       2018-04: 299.20
       2018-03: 296.24
       2018-02: 296.24
     cf:
-      2018-05: 256.09
       2018-04: 256.09
       2018-03: 236.71
       2018-02: 236.71
@@ -221,7 +219,6 @@
     conjoint: "personne2"
     enfants: ["enfant1", "enfant2", "enfant3"]
     statut_occupation_logement:
-      2018-05: locataire_vide
       2018-04: locataire_vide
       2018-03: locataire_vide
       2018-02: locataire_vide
@@ -229,14 +226,12 @@
     - id: "personne1"
       date_naissance: 1980-01-01
       salaire_net:
-        2018-05: 250
         2018-04: 250
         2018-03: 250
         2018-02: 250
     - id: "personne2"
       date_naissance: 1982-02-02
       salaire_net:
-        2018-05: 400
         2018-04: 400
         2018-03: 400
         2018-02: 400
