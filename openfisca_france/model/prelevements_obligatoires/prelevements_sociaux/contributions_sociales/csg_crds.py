@@ -60,3 +60,24 @@ class crds(Variable):
         crds_revenus_capital = individu.foyer_fiscal('crds_revenus_capital', period)
         crds_revenus_capital_projetee = crds_revenus_capital * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
         return crds_individu + crds_famille_projetes + crds_revenus_capital_projetee
+
+
+class crds_hors_prestations(Variable):
+    value_type = float
+    entity = Individu
+    label = u"Contributions au remboursement de la dette sociale (hors celles portant sur les prestations sociales)"
+    definition_period = YEAR
+
+    def formula(individu, period):
+        # CRDS sur revenus individuels
+        crds_salaire = individu('crds_salaire', period, options = [ADD])
+        crds_retraite = individu('crds_retraite', period, options = [ADD])
+        crds_chomage = individu('crds_chomage', period, options = [ADD])
+        crds_non_salarie = individu('crds_non_salarie', period, options = [ADD])
+        crds_individu = crds_salaire + crds_retraite + crds_chomage+ crds_non_salarie
+        # CRDS sur revenus du capital, définie à l'échelle du foyer fiscal, mais projetée sur le déclarant principal
+        crds_revenus_capital = individu.foyer_fiscal('crds_revenus_capital', period)
+        crds_revenus_capital_projetee = crds_revenus_capital * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
+
+        return crds_individu + crds_revenus_capital_projetee
+

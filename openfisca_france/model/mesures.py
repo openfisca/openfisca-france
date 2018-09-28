@@ -468,15 +468,15 @@ class cotisations_et_prelevements_sociaux_menage(Variable):
 
         csg_i = menage.members('csg', period, options = [ADD])
         csg = menage.sum(csg_i)
-        crds_i = menage.members('crds', period, options = [ADD])
-        crds = menage.sum(crds_i)
+        crds_hors_presta_i = menage.members('crds_hors_presta', period, options = [ADD])
+        crds_hors_prestations = menage.sum(crds_hors_presta_i)
 
         return (
             cotisations_employeur
             + cotisations_salariales
             + cotisations_non_salarie
             + csg
-            + crds
+            + crds_hors_prestations
             )
 
 
