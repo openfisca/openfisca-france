@@ -452,10 +452,11 @@ class revenus_super_bruts_menage(Variable):
             + revenus_capitaux_mobiliers_plus_values_bruts_menage
             )
 
-class cotisations_et_prelevements_sociaux_menage(Variable):
+
+class cotisations_sociales_menage(Variable):
     value_type = float
     entity = Menage
-    label = u"Cotisations sociales et prélèvement sociaux (tous revenus)"
+    label = u"Cotisations sociales du ménage (tous revenus)"
     definition_period = YEAR
 
     def formula(menage, period):
@@ -466,17 +467,32 @@ class cotisations_et_prelevements_sociaux_menage(Variable):
         cotisations_non_salarie_i = menage.members('cotisations_non_salarie', period, options = [ADD])
         cotisations_non_salarie = menage.sum(cotisations_non_salarie_i)
 
-        csg_i = menage.members('csg', period, options = [ADD])
-        csg = menage.sum(csg_i)
-        crds_hors_presta_i = menage.members('crds_hors_presta', period, options = [ADD])
-        crds_hors_prestations = menage.sum(crds_hors_presta_i)
-
         return (
             cotisations_employeur
             + cotisations_salariales
             + cotisations_non_salarie
+            )
+
+
+class prelevements_sociaux_menage(Variable):
+    value_type = float
+    entity = Menage
+    label = u"Prélèvements sociaux du ménage (tous revenus, hors prestations)"
+    definition_period = YEAR
+
+    def formula(menage, period):
+        csg_i = menage.members('csg', period, options = [ADD])
+        csg = menage.sum(csg_i)
+        crds_hors_presta_i = menage.members('crds_hors_presta', period, options = [ADD])
+        crds_hors_prestations = menage.sum(crds_hors_presta_i)
+        
+        prelevements_sociaux_revenus_capital_hors_csg_crds_i = menage.members.foyer_fiscal('prelevements_sociaux_revenus_capital_hors_csg_crds', period, options = [ADD])
+        prelevements_sociaux_revenus_capital_hors_csg_crds = menage.sum(prelevements_sociaux_revenus_capital_hors_csg_crds_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
+
+        return (
             + csg
             + crds_hors_prestations
+            + prelevements_sociaux_revenus_capital_hors_csg_crds
             )
 
 
