@@ -483,7 +483,7 @@ class prelevements_sociaux_menage(Variable):
     def formula(menage, period):
         csg_i = menage.members('csg', period, options = [ADD])
         csg = menage.sum(csg_i)
-        crds_hors_presta_i = menage.members('crds_hors_presta', period, options = [ADD])
+        crds_hors_presta_i = menage.members('crds_hors_prestations', period, options = [ADD])
         crds_hors_prestations = menage.sum(crds_hors_presta_i)
         
         prelevements_sociaux_revenus_capital_hors_csg_crds_i = menage.members.foyer_fiscal('prelevements_sociaux_revenus_capital_hors_csg_crds', period, options = [ADD])
