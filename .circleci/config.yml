@@ -4,7 +4,7 @@ jobs:
   build_python2:
     parallelism: 2  # Speed up the tests, while letting two containers available for other builds.
     docker:
-      - image: python:2.7.14
+      - image: python:2.7.15
 
     steps:
       - checkout
@@ -36,37 +36,6 @@ jobs:
           command: |
             nosetests `circleci tests glob "tests/**/*.py" | circleci tests split`
             openfisca-run-test `circleci tests glob "tests/**/*.{yaml,yml}" | circleci tests split`
-
-  deploy_python2:
-    docker:
-      - image: python:2.7.14
-    environment:
-      PYPI_USERNAME: openfisca-bot
-      # PYPI_PASSWORD: this value is set in CircleCI's web interface; do not set it here, it is a secret!
-
-    steps:
-      - checkout
-
-      - restore_cache:
-          key: v1-py2-{{ checksum "setup.py" }}
-
-      - run:
-          name: Check for functional changes
-          command: if ! .circleci/has-functional-changes.sh ; then circleci step halt ; fi
-
-      - run:
-          name: Upload a Python package to Pypi
-          command: |
-            source /tmp/venv/openfisca_france/bin/activate
-            .circleci/publish-python-package.sh
-
-      - run:
-          name: Publish a git tag
-          command: .circleci/publish-git-tag.sh
-
-      - run:
-          name: Deploy the Web API
-          command: ssh -o StrictHostKeyChecking=no deploy-api@fr.openfisca.org
 
   build_python3:
     parallelism: 2  # Speed up the tests, while letting two containers available for other builds.
@@ -104,6 +73,92 @@ jobs:
             nosetests `circleci tests glob "tests/**/*.py" | circleci tests split`
             openfisca-run-test `circleci tests glob "tests/**/*.{yaml,yml}" | circleci tests split`
 
+  lint_yaml_files:
+    docker:
+      - image: python:3.7
+
+    steps:
+      - checkout
+
+      - restore_cache:
+          key: v1-py3-{{ checksum "setup.py" }}
+
+      - run:
+          name: Activate virtualenv
+          command: |
+            echo "source /tmp/venv/openfisca_france/bin/activate" >> $BASH_ENV
+
+      - run:
+          name: Lint files
+          command: |
+            .circleci/lint-changed-yaml-tests.sh
+
+  lint_python_files:
+    docker:
+      - image: python:3.7
+
+    steps:
+      - checkout
+
+      - restore_cache:
+          key: v1-py3-{{ checksum "setup.py" }}
+
+      - run:
+          name: Activate virtualenv
+          command: |
+            echo "source /tmp/venv/openfisca_france/bin/activate" >> $BASH_ENV
+
+      - run:
+          name: Lint files
+          command: |
+            make check-no-prints
+            make check-syntax-errors
+            .circleci/lint-changed-python-files.sh
+
+  check_version_and_changelog:
+    docker:
+      - image: python:3.7
+
+    steps:
+      - checkout
+
+      - run:
+          name: Check version number has been properly updated
+          command: |
+            git fetch
+            .circleci/is-version-number-acceptable.sh
+
+  deploy_python2:
+    docker:
+      - image: python:2.7.15
+    environment:
+      PYPI_USERNAME: openfisca-bot
+      # PYPI_PASSWORD: this value is set in CircleCI's web interface; do not set it here, it is a secret!
+
+    steps:
+      - checkout
+
+      - restore_cache:
+          key: v1-py2-{{ checksum "setup.py" }}
+
+      - run:
+          name: Check for functional changes
+          command: if ! .circleci/has-functional-changes.sh ; then circleci step halt ; fi
+
+      - run:
+          name: Upload a Python package to Pypi
+          command: |
+            source /tmp/venv/openfisca_france/bin/activate
+            .circleci/publish-python-package.sh
+
+      - run:
+          name: Publish a git tag
+          command: .circleci/publish-git-tag.sh
+
+      - run:
+          name: Deploy the Web API
+          command: ssh -o StrictHostKeyChecking=no deploy-api@fr.openfisca.org
+
   deploy_python3:
     docker:
       - image: python:3.7
@@ -127,61 +182,36 @@ jobs:
             source /tmp/venv/openfisca_france/bin/activate
             .circleci/publish-python-package.sh
 
-  check_static_errors:
-    docker:
-      - image: python:3.7
-    steps:
-      - checkout
-      - run:
-          name: Install dependencies
-          command: |
-            pip install yamllint flake8
-      - run:
-          name: Lint YAML files
-          command: |
-            yamllint `circleci tests glob "**/*.{yaml,yml}" | circleci tests split`
-      - run:
-          name: Run linting
-          command: |
-            make check-no-prints
-            make check-syntax-errors
-            # additional linting goes here
-
-  check_version_and_changelog:
-    docker:
-      - image: python:3.7
-    steps:
-      - checkout
-
-      - run:
-          name: Check version number has been properly updated
-          command: |
-            git fetch
-            .circleci/is-version-number-acceptable.sh
-
 workflows:
   version: 2
   build_and_deploy:
     jobs:
+      - check_version_and_changelog
       - build_python2
       - build_python3
-      - check_static_errors
-      - check_version_and_changelog
+      - lint_yaml_files:
+          requires:
+            - build_python3
+      - lint_python_files:
+          requires:
+            - build_python3
       - deploy_python2:
           requires:
+            - check_version_and_changelog
             - build_python2
             - build_python3
-            - check_static_errors
-            - check_version_and_changelog
+            - lint_yaml_files
+            - lint_python_files
           filters:
             branches:
               only: master
       - deploy_python3:
           requires:
+            - check_version_and_changelog
             - build_python2
             - build_python3
-            - check_static_errors
-            - check_version_and_changelog
+            - lint_yaml_files
+            - lint_python_files
           filters:
             branches:
               only: master

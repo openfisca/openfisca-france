@@ -1,6 +1,14 @@
 # Changelog
 
-### 24.12.1 [#1132](https://github.com/openfisca/openfisca-france/pull/1043)
+### 24.12.2 [#1135](https://github.com/openfisca/openfisca-france/pull/1135)
+
+* Changement mineur.
+* Zones impactées : `.circleci`.
+* Détails :
+  - Lint des test YAML en incrémental (`yamllint`).
+  - Lint des fichiers Python en incrémental (`flake8`).
+
+### 24.12.1 [#1043](https://github.com/openfisca/openfisca-france/pull/1043)
 
 * Changement mineur.
 * Zones impactées : `openfisca_france/parameters/prestations/prestations_familiales/af/bmaf.yaml`
@@ -8,7 +16,7 @@
   - Correction du calcul de l'ASF, en cas de pension alimentaire.
   - Prise en compte de la revalorisation 2018.
 
-### 24.12.0 [#1047](https://github.com/openfisca/openfisca-france/pull/1047)
+## 24.12.0 [#1047](https://github.com/openfisca/openfisca-france/pull/1047)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : toutes.
@@ -35,7 +43,7 @@
   - Corrige le calcul de la PAJE lorsqu'on l'évalue pour un vecteur de familles.
   - Simplifie et uniformise la formule de calcul pour toutes les périodes.
 
-###  24.11.0 [#1049](https://github.com/openfisca/openfisca-france/pull/1098)
+##  24.11.0 [#1049](https://github.com/openfisca/openfisca-france/pull/1098)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 01/01/2018.
@@ -47,10 +55,9 @@
   - `parameters/prestations/minima_sociaux/rsa/rsa_jeune`
 * Détails :
   - Fiabilisation du calcul du revenu de solidarité active (RSA) au 1er avril 2018.
-    A partir du 1er janvier 2017, Le rsa_forfait_logement et Le rsa_base_ressources sont prises en compte sur le mois_courant (et pas sur le mois_demande),
-     car les prestations sont prises en compte sur les 3 derniers mois précédant l'examen ou le réexamen périodique du droit au RSA.
+    A partir du 1er janvier 2017, Le rsa_forfait_logement et le rsa_base_ressources sont prises en compte sur le mois_courant (et pas sur le mois_demande), car les prestations sont prises en compte sur les 3 derniers mois précédant l'examen ou le réexamen périodique du droit au RSA.
 
-### 24.10.0 [#994](https://github.com/openfisca/openfisca-france/pull/994)
+## 24.10.0 [#994](https://github.com/openfisca/openfisca-france/pull/994)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 01/04/2018.
@@ -60,7 +67,7 @@
 * Détails :
   - Revalorise les plafonds de ressources et les montants de la PAJE en date du 01/04/2018.
 
-# 24.9.0 [#1111](https://github.com/openfisca/openfisca-france/pull/1111)
+## 24.9.0 [#1111](https://github.com/openfisca/openfisca-france/pull/1111)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : toutes.
@@ -83,7 +90,7 @@
     - `vieillesse_artisan_commercant`
     - `vieillesse_profession_liberale`
 
-# 24.8.0 [#1082](https://github.com/openfisca/openfisca-france/pull/1082)
+## 24.8.0 [#1082](https://github.com/openfisca/openfisca-france/pull/1082)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 01/10/2017.
@@ -92,7 +99,7 @@
   - Mise à jour des paramètres utilisés dans le calcul de l'aide au logement.
   - Correction mineure pour éviter un montant d'aide au logement négatif.
 
-## 24.7.2 [#1104](https://github.com/openfisca/openfisca-france/pull/#1104)
+### 24.7.2 [#1104](https://github.com/openfisca/openfisca-france/pull/#1104)
 
 * Amélioration technique.
 * Périodes concernées : toutes.
@@ -101,7 +108,8 @@
   - Fixe l'attribut set_input = set_input_divide_by_period pour les variables `supplement_familial_traitement` et `indemnite_residence`
   - Efface les options `ADD` superflues lors du calcul de `salaire_super_brut_hors_allegements`
 
-## 24.7.1 [#1105](https://github.com/openfisca/openfisca-france/pull/1105)
+### 24.7.1 [#1105](https://github.com/openfisca/openfisca-france/pull/1105)
+
 * Changement mineur.
 * Périodes concernées : toutes.
 * Zones impactées : `model/prestations/minima_sociaux/asi_aspa`.
@@ -109,7 +117,8 @@
   - Suppression de `revenus_fonciers_minima_sociaux`
 
 ## 24.7.0 [#1070](https://github.com/openfisca/openfisca-france/pull/1070)
- * Évolution du système socio-fiscal.
+
+* Évolution du système socio-fiscal.
 * Périodes concernées : toutes.
 * Zones impactées :
   - `revenus/remplacement/rente_accident_travail`
@@ -226,7 +235,7 @@
 * Détails :
   - Annule la cotisation chomage à partir du 01/10/2018
 
-## 24.2.1 [#1090](https://github.com/openfisca/openfisca-france/pull/1090)
+### 24.2.1 [#1090](https://github.com/openfisca/openfisca-france/pull/1090)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 01/01/2018.
@@ -237,7 +246,7 @@
 
 ## 24.2.0
 
- * Il n'y a pas de version 24.2.0
+* Il n'y a pas de version 24.2.0
 
 ### 24.1.1 [#1085](https://github.com/openfisca/openfisca-france/pull/1085)
 
@@ -271,9 +280,9 @@
 * Correction d'un crash
 * Périodes concernées : toutes
 * Zones impactées:
-   - `prestations/minima_sociaux/rsa`
-   - `prestations/minima_sociaux/asi_aspa`
-   - `model/revenus/capital/financier`
+  - `prestations/minima_sociaux/rsa`
+  - `prestations/minima_sociaux/asi_aspa`
+  - `model/revenus/capital/financier`
 * Détails :
   - Supprime les doubles comptes de certains revenus du capital dans les bases ressources du RSA et de l'ASI-ASPA
   - Exemple : les revenus de `f2ee` étaient injectés deux fois via `rsa_base_ressources_patrimoine_individu` et via les variables `revenus_capitaux_prelevement_bareme` et `revenus_capitaux_prelevement_liberatoire`
@@ -334,7 +343,7 @@
         - Inclusion de l'impôt sur les plus-values immobilières (`ir_pv_immo`) dans `impots_directs`
         - Suppression de `rac` de la variable `revenus_nets_du_capital` (car déjà compté dans `rpns`)
 
-## 22.7.1 [#1022](https://github.com/openfisca/openfisca-france/pull/1022)
+### 22.7.1 [#1022](https://github.com/openfisca/openfisca-france/pull/1022)
 
 * Changement mineur
 * Détails :
@@ -379,7 +388,7 @@
   - Utilise cette variable pour calculer l'abattement d'impôt spécial DOM
   - Ajoute des tests correspondants
 
-### 22.4.0 [#1059](https://github.com/openfisca/openfisca-france/pull/1059)
+## 22.4.0 [#1059](https://github.com/openfisca/openfisca-france/pull/1059)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 01/01/2017
@@ -387,7 +396,7 @@
 * Détails :
   - Mets à jour le barème de l'impôt pour les revenus 2017
 
-### 22.3.0 [#998](https://github.com/openfisca/openfisca-france/pull/998)
+## 22.3.0 [#998](https://github.com/openfisca/openfisca-france/pull/998)
 
 * Évolution du système socio-fiscal.
 * Zones impactées :
@@ -414,7 +423,7 @@
   - Corrige la configuration des tests pour qu'ils soient tous executés:
     - Corrige les appels `circleci tests glob` pour que `**` soit récursif.
 
-## 22.2.0 [#1032](https://github.com/openfisca/openfisca-france/pull/1034)
+## 22.2.0 [#1034](https://github.com/openfisca/openfisca-france/pull/1034)
 
 * Évolution du système socio-fiscal.
 * Zones impactées :
@@ -444,7 +453,7 @@
 * Détails :
   - Fait commencer la variable `logement_social_eligible` au 01/01/2017
 
-# 22.0.0 [#102](https://github.com/openfisca/openfisca-france/pull/1026)
+# 22.0.0 [#1026](https://github.com/openfisca/openfisca-france/pull/1026)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : toutes.
@@ -466,7 +475,7 @@
       - `rev_cap_bar` en `revenus_capitaux_prelevement_bareme`
       - `retraite_titre_onereux` en `rente_viagere_titre_onereux`
 
-### 21.12.2 [#1032](https://github.com/openfisca/openfisca-france/pull/1032)
+### 21.12.3 [#1032](https://github.com/openfisca/openfisca-france/pull/1032)
 
 * Correction d'un bug dans le script qui détermine le besoin d'un bump de version
 * Zones impactées : .circleci/is-version-number-acceptable.sh b/.circleci/is-version-number-acceptable.sh.
@@ -733,7 +742,6 @@
   - `openfisca_france/model/prelevements_obligatoires/impot_revenu/credits_impots`
   - `openfisca_france/parameters/impot_revenu/credits_impot/aidper/max_wl`
 * Périodes concernées : à partir du 01/01/2012
-
 * Détails :
   - Mise à jour de la formule (2014-2016) du crédit d'impôt 'aidper'
   - Correction de la formule du crédit d'impôt en 2012 et 2013
@@ -760,9 +768,9 @@
   - `prelevements_obligatoires/impot_revenu/variables_reductions_credits`
 * Périodes concernées : 2005 - 2016
 * Détails :
-- Mise à jour des formules (2014-2016) du crédit d'impôt 'saldom2' et de la réduction d'impôt 'saldom'
-- Correction de la formule du crédit d'IR (sur la majoration pour nombre d'ascendants sd eplus de 65 bénéficiaires de l'APA et pour lesquels des dépenses d'emploi à domicile ont été engagées - case 7DL)
-- Ajout de la case 7DD dans les inputs variables
+  - Mise à jour des formules (2014-2016) du crédit d'impôt 'saldom2' et de la réduction d'impôt 'saldom'
+  - Correction de la formule du crédit d'IR (sur la majoration pour nombre d'ascendants sd eplus de 65 bénéficiaires de l'APA et pour lesquels des dépenses d'emploi à domicile ont été engagées - case 7DL)
+  - Ajout de la case 7DD dans les inputs variables
 
 ### 21.2.1 [#956](https://github.com/openfisca/openfisca-france/pull/956)
 
@@ -778,10 +786,10 @@
   - `prelevements_obligatoires/impot_revenu/reductions_impot`
 * Périodes concernées : 2005 - 2016
 * Détails :
-- Mise à jour des formules (2014-2016) du crédit d'impôt 'quaenv' (et de la condition de bouquet : variables 'quaenv_bouquet')
-- Ajout des "inputs variables" (cases de la déclaration fiscales) associées
-- Création de paramètres YAML associés (notamment pour éviter de rentrer "en dur" les plafonds de RFR)
-- Correction de la formule (à partir de 2012) : le plafonnement s'applique aux dépenses et non à la réduction.
+  - Mise à jour des formules (2014-2016) du crédit d'impôt 'quaenv' (et de la condition de bouquet : variables 'quaenv_bouquet')
+  - Ajout des "inputs variables" (cases de la déclaration fiscales) associées
+  - Création de paramètres YAML associés (notamment pour éviter de rentrer "en dur" les plafonds de RFR)
+  - Correction de la formule (à partir de 2012) : le plafonnement s'applique aux dépenses et non à la réduction.
 
 ## 21.1.0 [#949](https://github.com/openfisca/openfisca-france/pull/949)
 
@@ -789,7 +797,7 @@
 * Zones impactées : `prestations/cheque_energie`
 * Périodes concernées : À partir de 2018
 * Détails :
-- Suppression de l'éligibilité des foyers de Saint Martin au chèque énergie
+  - Suppression de l'éligibilité des foyers de Saint Martin au chèque énergie
 
 # 21.0.0 [#902](https://github.com/openfisca/openfisca-france/pull/902)
 
@@ -819,9 +827,9 @@
 * Évolution du système socio-fiscal.
 * Périodes concernées : 2005 - 2016
 * Détails :
-- Mise à jour des formules (2014-2016) des réductions 'doment', 'domlog', 'domsoc'
-- Correction de la formule de 'doment' en 2013 (les cases de la déclaration correspondant à cette réduction sont dans le nouveau formulaire 2042 IOM et commencent toutes par "fh" et non "f7")
-- Ajout des inputs variables associées à ces réductions (nouvelles cases de la déclaration IOM à partir de 2014)
+  - Mise à jour des formules (2014-2016) des réductions 'doment', 'domlog', 'domsoc'
+  - Correction de la formule de 'doment' en 2013 (les cases de la déclaration correspondant à cette réduction sont dans le nouveau formulaire 2042 IOM et commencent toutes par "fh" et non "f7")
+  - Ajout des inputs variables associées à ces réductions (nouvelles cases de la déclaration IOM à partir de 2014)
 
 
 ## 20.8.0 [#911](https://github.com/openfisca/openfisca-france/pull/911)
@@ -829,8 +837,8 @@
 * Évolution du système socio-fiscal.
 * Périodes concernées : 2002 - 2016
 * Détails :
-- Mise à jour des formules (2014-2016) de la réduction d'impôt 'invfor'
-- Correction d'une erreur dans la formule précédente : les reports de dépenses entrent dans le plafonnement de la réduction
+  - Mise à jour des formules (2014-2016) de la réduction d'impôt 'invfor'
+  - Correction d'une erreur dans la formule précédente : les reports de dépenses entrent dans le plafonnement de la réduction
 
 ## 20.7.0 [#895](https://github.com/openfisca/openfisca-france/pull/895)
 
@@ -856,10 +864,10 @@
 * Évolution du système socio-fiscal.
 * Périodes concernées : 2014 - 2016
 * Détails :
-- Correction de la formule de la réduction Duflot en 2013 (plafonnement)
-- Mise à jour des formules (2014-2016) des réductions d'impôts : 'resimm' (réduction d'impot Malraux), 'locmeu' (réduction d'impôt Censi-Bouvard), 'scelli' (réduction d'impôt Scellier) et 'duflot (réduction d'impôt Duflot) qui sont toutes des réductions d'impôts portant sur les investissements immobiliers
-- Ajout de la réduction d'impôt Pinel crée en 2014
-- Ajout d'inputs variables associées à ces réductions
+  - Correction de la formule de la réduction Duflot en 2013 (plafonnement)
+  - Mise à jour des formules (2014-2016) des réductions d'impôts : 'resimm' (réduction d'impot Malraux), 'locmeu' (réduction d'impôt Censi-Bouvard), 'scelli' (réduction d'impôt Scellier) et 'duflot (réduction d'impôt Duflot) qui sont toutes des réductions d'impôts portant sur les investissements immobiliers
+  - Ajout de la réduction d'impôt Pinel crée en 2014
+  - Ajout d'inputs variables associées à ces réductions
 
 ### 20.5.1 [#925](https://github.com/openfisca/openfisca-france/pull/925)
 
@@ -874,9 +882,9 @@
 * Évolution du système socio-fiscal.
 * Périodes concernées : 2004 - 2016
 * Détails :
-- Correction des formules de certaines réductions et certains crédits d'impôts
-- Mise à jour des formules pour la période 2014 - 2016
-- Ajout de nouvelles inputs variables associées
+  - Correction des formules de certaines réductions et certains crédits d'impôts
+  - Mise à jour des formules pour la période 2014 - 2016
+  - Ajout de nouvelles inputs variables associées
 
 ### 20.4.1 [#948](https://github.com/openfisca/openfisca-france/pull/948)
 
@@ -899,11 +907,11 @@
 * Évolution du système socio-fiscal.
 * Périodes concernées : 2009 - 2016
 * Détails :
-- Correction de la formule de l'IR : A partir de 2013, une partie des plus-values est taxé au barème alors qu'avant elles étaient taxées forfaitairement.
-- Correction de la formule du RFR : Les plus-values et revenus du capital (taxées forfaitairement ou au barème ou éxonérées) doivent entrer en compte dans le calcul du RFR
-- Création de la variable 'rfr_pv' qui regroupe l'ensemble des plus-values entrant dans le calcul du RFR, hormis celles taxées au barème (qui entrent dans le RFR également mais via le revenu net imposable 'rni')
-- Correction d'un des taux forfaitaires
-- Ajout de nouvelles inputs variables associées aux nouvelles cases des déclarations fiscales se rapportant aux plus-values
+  - Correction de la formule de l'IR : A partir de 2013, une partie des plus-values est taxé au barème alors qu'avant elles étaient taxées forfaitairement.
+  - Correction de la formule du RFR : Les plus-values et revenus du capital (taxées forfaitairement ou au barème ou éxonérées) doivent entrer en compte dans le calcul du RFR
+  - Création de la variable 'rfr_pv' qui regroupe l'ensemble des plus-values entrant dans le calcul du RFR, hormis celles taxées au barème (qui entrent dans le RFR également mais via le revenu net imposable 'rni')
+  - Correction d'un des taux forfaitaires
+  - Ajout de nouvelles inputs variables associées aux nouvelles cases des déclarations fiscales se rapportant aux plus-values
 
 ## 20.2.0 [#907](https://github.com/openfisca/openfisca-france/pull/907)
 
@@ -991,13 +999,13 @@
 * Détails :
   - Garantie que l'aide au logement pour un foyer primo-accédant est nulle si le prêt est déjà remboursé.
 
-# 20.0.0 - [#846](https://github.com/openfisca/openfisca-france/pull/846)
+# 20.0.0 [#846](https://github.com/openfisca/openfisca-france/pull/846)
 
 * Amélioration technique
 * Détails :
-- Modifie la façon dont les Enumerations sont définies et appelées.
-- Renomme des fichiers de parametres pour pouvoir simplifier des formules dont le resultat dépend de `TypesZoneAPL` (Fancy indexing).
-- Certains Enums étaient utilisées comme booléens. La valeur 0/1 a été remplacée par le membre d'Enum correspondant.
+  - Modifie la façon dont les Enumerations sont définies et appelées.
+  - Renomme des fichiers de parametres pour pouvoir simplifier des formules dont le resultat dépend de `TypesZoneAPL` (Fancy indexing).
+  - Certains Enums étaient utilisées comme booléens. La valeur 0/1 a été remplacée par le membre d'Enum correspondant.
 
 Par exemple pour :
 
@@ -1105,7 +1113,7 @@ Lors du calcul d'une variable Enum en Python, l'output est un array de membres E
 * Périodes concernées : toutes.
 * Zones impactées : `prestations/minima_sociaux/cmu`
 * Détails :
-- Ajout du CAAH à la liste des ressources prises en compte pour le calcul de la CMU-C / ACS
+  - Ajout du CAAH à la liste des ressources prises en compte pour le calcul de la CMU-C / ACS
 
 ### 19.0.2
 
@@ -1126,7 +1134,7 @@ Lors du calcul d'une variable Enum en Python, l'output est un array de membres E
 * Détails :
   - Ajout de l'abattement forfaitaire de 5€ dans le calcul des aides au logement à partir du 01/10/2017.
 
-# 19.0.0 - [#858](https://github.com/openfisca/openfisca-france/pull/858)
+# 19.0.0 [#858](https://github.com/openfisca/openfisca-france/pull/858)
 
 * Améliorations techniques **non rétro-compatibles**
 * Détails :
@@ -1210,7 +1218,7 @@ Lors du calcul d'une variable Enum en Python, l'output est un array de membres E
 * Détails :
   - Implémente l'Allocation Personnalisée d'Autonomie.
 
-### 18.9.10 - [#829](https://github.com/openfisca/openfisca-france/pull/829)
+### 18.9.10 [#829](https://github.com/openfisca/openfisca-france/pull/829)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : toutes.
@@ -1218,44 +1226,44 @@ Lors du calcul d'une variable Enum en Python, l'output est un array de membres E
 * Détails :
   - Corrige les aides au logement pour les primo-accédants ayant une importante base ressources.
 
-### 18.9.9 - [#803](https://github.com/openfisca/openfisca-france/pull/803)
+### 18.9.9 [#803](https://github.com/openfisca/openfisca-france/pull/803)
 
 * Changement mineur
 * Détails :
   - Simplifie le calcul des aides au logement en utilisant le calcul de législation dynamique (nouvelle feature de OpenFisca)
 
-### 18.9.8 - [#825](https://github.com/openfisca/openfisca-france/pull/825)
+### 18.9.8 [#825](https://github.com/openfisca/openfisca-france/pull/825)
 
 * Correction d'un crash sous Windows
 * Détails :
   - Corrige l'erreur WindowsError: `[Error 206] Nom de fichier ou extension trop long` qui interrompt le clone d'OpenFisca-France sous Windows.
   - Dans `parameters`, assemble dans un nouveau YAML le contenu d'un sous-répertoire lorsque le chemin vers celui-ci ou l'un de ses fichiers est trop long.
 
-### 18.9.7 - [#811](https://github.com/openfisca/openfisca-france/pull/811)
+### 18.9.7 [#811](https://github.com/openfisca/openfisca-france/pull/811)
 
 * Changement mineur
 * Détails :
   - Documente les entités `FoyerFiscal` et `Menage`
 
-### 18.9.6 - [#815](https://github.com/openfisca/openfisca-france/pull/815)
+### 18.9.6 [#815](https://github.com/openfisca/openfisca-france/pull/815)
 
 * Changement mineur
 * Détails :
   - Corrige une typo dans la description de `credit_impot_competitivite_emploi`
 
-### 18.9.5 - [#814](https://github.com/openfisca/openfisca-france/pull/814)
+### 18.9.5 [#814](https://github.com/openfisca/openfisca-france/pull/814)
 
 * Changement mineur
 * Détails :
   - Rajout des références législatives sur la baisse de la cotisation AGS au 1er juillet 2017.
 
-### 18.9.4 - [#809](https://github.com/openfisca/openfisca-france/pull/809)
+### 18.9.4 [#809](https://github.com/openfisca/openfisca-france/pull/809)
 
 * Changement mineur.
 * Détails :
   - Référence la nouvelle adresse de la documentation technique
 
-### 18.9.3 - [#817](https://github.com/openfisca/openfisca-france/pull/817)
+### 18.9.3 [#817](https://github.com/openfisca/openfisca-france/pull/817)
 
 * Changement mineur.
 * Périodes concernées : à partir du 07/05/2017.
@@ -1263,7 +1271,7 @@ Lors du calcul d'une variable Enum en Python, l'output est un array de membres E
 * Détails :
   - Mise à jour des montant des bourses des collèges conformément au [décret du 5 mai 2017](https://www.legifrance.gouv.fr/eli/decret/2017/5/5/MENE1711101D/jo/texte).
 
-### 18.9.2 - [#812](https://github.com/openfisca/openfisca-france/pull/812)
+### 18.9.2 [#812](https://github.com/openfisca/openfisca-france/pull/812)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : toutes.
@@ -1271,7 +1279,7 @@ Lors du calcul d'une variable Enum en Python, l'output est un array de membres E
 * Détails :
   - Suppresion de la notification de non-calculabilité des aides au logement pour les primo-accédants.
 
-### 18.9.1 - [#583](https://github.com/openfisca/openfisca-france/pull/583)
+### 18.9.1 [#583](https://github.com/openfisca/openfisca-france/pull/583)
 
 * Changement mineur.
 * Périodes concernées : à partir du 01/11/2014.
@@ -1279,7 +1287,7 @@ Lors du calcul d'une variable Enum en Python, l'output est un array de membres E
 * Détails :
   - Extraction du taux de gratification minimum des stagiaires vers le fichier de paramètres.
 
-## 18.9.0 - [#798](https://github.com/openfisca/openfisca-france/pull/798)
+## 18.9.0 [#798](https://github.com/openfisca/openfisca-france/pull/798)
 
 * Amélioration technique
 * Détails :
@@ -1287,7 +1295,7 @@ Lors du calcul d'une variable Enum en Python, l'output est un array de membres E
   - Transformation des paramètres depuis XML vers YAML.
   - Ajout d'un sous-répertoire `migrations` dans le répertoire `scripts`.
 
-### 18.8.2 - [#806](https://github.com/openfisca/openfisca-france/pull/788)
+### 18.8.2 [#806](https://github.com/openfisca/openfisca-france/pull/788)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 01/07/2017
@@ -1296,7 +1304,7 @@ Lors du calcul d'une variable Enum en Python, l'output est un array de membres E
   - Mise à jour conformément à [la circulaire du 31 mai](https://www.urssaf.fr/portail/files/live/sites/urssaf/files/Lettres_circulaires/2017/ref_LCIRC-2017-0000019.pdf)
   - données extraites via l'API de l'URSSAF, cf. https://github.com/sgmap/taux-versement-transport
 
-## 18.8.1 - [#789](https://github.com/openfisca/openfisca-france/pull/789)
+### 18.8.1 [#789](https://github.com/openfisca/openfisca-france/pull/789)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 01/07/2017
@@ -1304,7 +1312,7 @@ Lors du calcul d'une variable Enum en Python, l'output est un array de membres E
 * Détails :
   - Prise en compte de la baisse de la cotisation AGS au 1er juillet.
 
-## 18.8.0 - [#801](https://github.com/openfisca/openfisca-france/pull/801)
+## 18.8.0 [#801](https://github.com/openfisca/openfisca-france/pull/801)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : toutes.
@@ -1313,19 +1321,19 @@ Lors du calcul d'une variable Enum en Python, l'output est un array de membres E
   - Calcul des aides au logement pour les primo-accédants.
   - Marge d'erreur (~5% sur les tests) voir avec un expert métier pour rectifier le calcul.
 
-## 18.7.0 - [#797](https://github.com/openfisca/openfisca-france/pull/797)
+## 18.7.0 [#797](https://github.com/openfisca/openfisca-france/pull/797)
 
 * Amélioration technique
 * Détails :
   - Déclare OpenFisca-France compatible avec OpenFisca-Core 16
 
-### 18.6.6 - [#781](https://github.com/openfisca/openfisca-france/pull/781)
+### 18.6.6 [#781](https://github.com/openfisca/openfisca-france/pull/781)
 
 * Changement mineur.
 * Détails :
   - Mise à jour du `label` de `age` pour expliciter qu'il s'agit de l'âge en début de mois
 
-### 18.6.5 - [#785](https://github.com/openfisca/openfisca-france/pull/785)
+### 18.6.5 [#785](https://github.com/openfisca/openfisca-france/pull/785)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 01/04/2017.
@@ -1340,7 +1348,7 @@ Lors du calcul d'une variable Enum en Python, l'output est un array de membres E
     - Le montant de la garantie de revenus est calculé à partir du montant précédent, plus un montant fixe défini dans [cet article](https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000019505277)
     - [Circulaire indiquant le coefficient de revalorisation](http://circulaire.legifrance.gouv.fr/pdf/2017/03/cir_41966.pdf)
 
-### 18.6.4 - [#784](https://github.com/openfisca/openfisca-france/pull/784)
+### 18.6.4 [#784](https://github.com/openfisca/openfisca-france/pull/784)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 01/01/2017
@@ -1350,7 +1358,7 @@ Lors du calcul d'une variable Enum en Python, l'output est un array de membres E
     - [article 87 loi n° 2016-1917 du 29 décembre 2016 de finances pour 2017](https://www.legifrance.gouv.fr/affichTexteArticle.do;jsessionid=49AD9A92D43F6C7A085F8E1D669AEFC2.tpdila18v_2?cidTexte=JORFTEXT000033734169&idArticle=LEGIARTI000033760616&dateTexte=20170622&categorieLien=id#LEGIARTI000033760616)
     - [article L. 5423-7 du code du travail](https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=49AD9A92D43F6C7A085F8E1D669AEFC2.tpdila18v_2?idArticle=LEGIARTI000033813814&cidTexte=LEGITEXT000006072050&dateTexte=20170622)
 
-### 18.6.3 - [#787](https://github.com/openfisca/openfisca-france/pull/787)
+### 18.6.3 [#787](https://github.com/openfisca/openfisca-france/pull/787)
 
 * Amélioration technique
 * Détails :
@@ -1361,20 +1369,20 @@ Lors du calcul d'une variable Enum en Python, l'output est un array de membres E
     - `prelevements_obligatoires/taxe_habitation.py`
     - `reforms/landais_piketty_saez.py`
 
-### 18.6.2 - [#794](https://github.com/openfisca/openfisca-france/pull/794)
+### 18.6.2 [#794](https://github.com/openfisca/openfisca-france/pull/794)
 
 * Correction d'un crash
 + Détails :
   - Mets à jour la version d'OpenFisca-Web-API requise pour qu'elle soit compatible avec la version d'OpenFisca-Core requise.
   - Les deux versions référencées dans le `setup.py` étaient incompatibles, provoquant une erreur au démarrage de l'API avec `gunicorn` ou `paster`.
 
-### 18.6.1 - [#793](https://github.com/openfisca/openfisca-france/pull/793)
+### 18.6.1 [#793](https://github.com/openfisca/openfisca-france/pull/793)
 
 * Changement mineur
 * Détails :
   - Répare la déclaration de l'URL du dépôt, endomagée dans la version `18.6.0`
 
-## 18.6.0 - [#775](https://github.com/openfisca/openfisca-france/pull/775)
+## 18.6.0 [#775](https://github.com/openfisca/openfisca-france/pull/775)
 
 * Amélioration technique
 * Détails :
@@ -1382,13 +1390,13 @@ Lors du calcul d'une variable Enum en Python, l'output est un array de membres E
   - Applique le renommage de l'attribut de `Variable` `url` en `reference`.
   - Pour les variables réformées, ne définis plus l'attribut `reference`.
 
-### 18.5.3 - [#786](https://github.com/openfisca/openfisca-france/pull/786)
+### 18.5.3 [#786](https://github.com/openfisca/openfisca-france/pull/786)
 
 * Changement mineur
 * Détails
   - Répare la réforme `de_net_a_brut`.
 
-### 18.5.2 - [#778](https://github.com/openfisca/openfisca-france/pull/778)
+### 18.5.2 [#778](https://github.com/openfisca/openfisca-france/pull/778)
 
 * Amélioration technique
 * Détails :
@@ -1396,13 +1404,13 @@ Lors du calcul d'une variable Enum en Python, l'output est un array de membres E
   - Reformate les paramètres XML en utilisant le script décrit plus haut.
   - Ajoute un script de merge des paramètres XML avec les paramètres de l'IPP (Institut des Politiques Publiques). Ce script réécrit les paramètres XML en laissant un diff le plus lisible possible.
 
-### 18.5.1 - [#780](https://github.com/openfisca/openfisca-france/pull/780)
+### 18.5.1 [#780](https://github.com/openfisca/openfisca-france/pull/780)
 
 * Amélioration technique
 * Détails :
   - Migre les formules liées aux prestations sociales vers la syntaxe introduite par OpenFisca-Core 4
 
-## 18.5.0 - [#704](https://github.com/openfisca/openfisca-france/pull/685)
+## 18.5.0 [#704](https://github.com/openfisca/openfisca-france/pull/685)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 01/01/2017
@@ -1410,7 +1418,7 @@ Lors du calcul d'une variable Enum en Python, l'output est un array de membres E
 * Détails :
   - Estimation de [l'éligibilité aux aides de l'ANAH](http://www.anah.fr/proprietaires/proprietaires-occupants/les-conditions-de-ressources/)
 
-### 18.4.2 - [#770](https://github.com/openfisca/openfisca-france/pull/770)
+### 18.4.2 [#770](https://github.com/openfisca/openfisca-france/pull/770)
 
 * Amélioration technique
 * Détails :
@@ -1419,21 +1427,21 @@ Lors du calcul d'une variable Enum en Python, l'output est un array de membres E
     - Modifie les conventions de nommages des formules des variables.
     - Pour plus d'information, voir le [Changelog d'OpenFisca-Core](https://github.com/openfisca/openfisca-core/blob/master/CHANGELOG.md#1400---522) correspondant.
 
-### 18.4.1 - [#776](https://github.com/openfisca/openfisca-france/pull/776)
+### 18.4.1 [#776](https://github.com/openfisca/openfisca-france/pull/776)
 
 * Correction d'un crash
 * Détails :
   - Openfisca n'est pas compatible avec la nouvelle version de numpy 1.13.
   - Requiert numpy < 1.13
 
-### 18.4.0 - [#772](https://github.com/openfisca/openfisca-france/pull/772)
+## 18.4.0 [#772](https://github.com/openfisca/openfisca-france/pull/772)
 
 * Amélioration technique
 * Détails :
   - Permet d'ajouter une référence aux paramètres XML.
   - Supprime les commentaires des XML (Compatibilité avec core 13.0.0).
 
-### 18.3.1 - [#767](https://github.com/openfisca/openfisca-france/pull/767)
+### 18.3.1 [#767](https://github.com/openfisca/openfisca-france/pull/767)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 01/04/2017.
@@ -1448,7 +1456,7 @@ Lors du calcul d'une variable Enum en Python, l'output est un array de membres E
   - Correction mineure du taux de la BMAF au 1er avril 2015
     - [Source](http://circulaire.legifrance.gouv.fr/pdf/2016/03/cir_40664.pdf) cf. valeur initiale (valeur erronée 406.21274, valeur corrigée 406.21)
 
-### 18.3.0 - [#746](https://github.com/openfisca/openfisca-france/pull/746)
+## 18.3.0 [#746](https://github.com/openfisca/openfisca-france/pull/746)
 
 * Amélioration technique
 * Détails :
@@ -1459,19 +1467,19 @@ Lors du calcul d'une variable Enum en Python, l'output est un array de membres E
   - Désormais le seul lieu de contribution pour les paramètres est `openfisca_france/parameters`.
     - Disparition de `param.xml`.
 
-### 18.2.9 - [#763]
+### 18.2.9 [#763]
 
 * Changement mineur
 * Détails :
   - Introduit la réforme `smic_h_b_9_euros`
 
-### 18.2.8 - [#762](https://github.com/openfisca/openfisca-france/pull/762)
+### 18.2.8 [#762](https://github.com/openfisca/openfisca-france/pull/762)
 
 * Changement mineur
 * Détails :
   - Fait passer les tests en parallèle
 
-### 18.2.7 - [#728](https://github.com/openfisca/openfisca-france/pull/728)
+### 18.2.7 [#728](https://github.com/openfisca/openfisca-france/pull/728)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 01/04/2016.
@@ -1495,7 +1503,7 @@ Lors du calcul d'une variable Enum en Python, l'output est un array de membres E
     - [Source pour 2016](https://www.legifrance.gouv.fr/eli/decret/2016/5/3/2016-540/jo/texte)
     - [Source pour 2017](https://www.legifrance.gouv.fr/eli/decret/2017/5/10/2017-1022/jo/texte)
 
-### 18.2.6 - [#747](https://github.com/openfisca/openfisca-france/pull/747)
+### 18.2.6 [#747](https://github.com/openfisca/openfisca-france/pull/747)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 01/04/2017.
@@ -1504,31 +1512,31 @@ Lors du calcul d'une variable Enum en Python, l'output est un array de membres E
   - Mise à jour des plafonds et montants de l'ASI et de l'ASPA
   - Source: http://www.legislation.cnav.fr/Documents/circulaire_cnav_2017_13_04042017.pdf
 
-### 18.2.5 - [#760](https://github.com/openfisca/openfisca-france/pull/760)
+### 18.2.5 [#760](https://github.com/openfisca/openfisca-france/pull/760)
 
 * Changement mineur
 * Détails :
   - Supprime le système de chargement automatique des extensions via le dossier `extensions` . Les extensions sont maintenant installées sous la forme de packages indépendants.
 
-### 18.2.4 - [#759](https://github.com/openfisca/openfisca-france/pull/759)
+### 18.2.4 [#759](https://github.com/openfisca/openfisca-france/pull/759)
 
 * Changement mineur
 * Détails :
   - Suppression de l'internationalisation (traductions des messages d'erreurs). Cette fonctionnalité n'était pas utilisée.
 
-### 18.2.3 - [#757](https://github.com/openfisca/openfisca-france/pull/757)
+### 18.2.3 [#757](https://github.com/openfisca/openfisca-france/pull/757)
 
 * Changement mineur
 * Détails :
   - Retirer le fichier model/datatrees, le script de génération et les références aux date-trees présentes dans france_taxbenefitsystem.py
 
-### 18.2.2 - [#742](https://github.com/openfisca/openfisca-france/pull/742)
+### 18.2.2 [#742](https://github.com/openfisca/openfisca-france/pull/742)
 
 * Amélioration technique
 * Détails :
   - Amélioration des messages d'erreur en cas d'erreur dans la législation
 
-### 18.2.1 - [#708](https://github.com/openfisca/openfisca-france/pull/708)
+### 18.2.1 [#708](https://github.com/openfisca/openfisca-france/pull/708)
 
 * Évolution du système socio-fiscal
 * Périodes concernées : toutes
@@ -1547,19 +1555,20 @@ Lors du calcul d'une variable Enum en Python, l'output est un array de membres E
 * Détails :
   - Migre toutes les formules de `prestations/aides_logement` vers la syntaxe `v4`
 
-## 18.2.0 - [#731](https://github.com/openfisca/openfisca-france/pull/731)
+## 18.2.0 [#731](https://github.com/openfisca/openfisca-france/pull/731)
+
 * Amélioration technique
 * Détails :
   - Adapte `france` à  la version `12.0.0` de `core`.
   - Enlève les attributs `fuzzy` des paramètres, qui devient le comportement par défaut. Enlève les attributs `fin`.
 
-## 18.1.0 - [#739](https://github.com/openfisca/openfisca-france/pull/739)
+## 18.1.0 [#739](https://github.com/openfisca/openfisca-france/pull/739)
 
 * Changement mineur
 * Détails:
   - Rends OpenFisca-France compatible avec la version `11.0` d'OpenFisca-Core
 
-# 18.0.0 - [#718](https://github.com/openfisca/openfisca-france/pull/718)
+# 18.0.0 [#718](https://github.com/openfisca/openfisca-france/pull/718)
 
 * Évolution du système socio-fiscal
 * Périodes concernées : toutes
@@ -1567,7 +1576,7 @@ Lors du calcul d'une variable Enum en Python, l'output est un array de membres E
 * Détails :
     - Corrige l'erreur de frappe sur le nom de la variable `aide_logement_participation_personelle` qui devient donc `aide_logement_participation_personnelle`
 
-## 17.2.0 - [#726](https://github.com/openfisca/openfisca-france/pull/726)
+## 17.2.0 [#726](https://github.com/openfisca/openfisca-france/pull/726)
 
 * Évolution du système socio-fiscal
 * Périodes concernées : à partir du 01/04/2017.
@@ -1580,14 +1589,14 @@ Lors du calcul d'une variable Enum en Python, l'output est un array de membres E
 * Détails :
     - Suppression de fichiers inutilisés (quelques mégas)
 
-## 17.1.0 - [#724](https://github.com/openfisca/openfisca-france/pull/724)
+## 17.1.0 [#724](https://github.com/openfisca/openfisca-france/pull/724)
 
 * Amélioration technique.
 * Détails :
   - Permet d'installer OpenFisca-France avec une API web compatible via `pip install openfisca_france[api]`
   - Redéploie `api.openfisca.fr` à chaque publication de version
 
-### 17.0.1 - [#730](https://github.com/openfisca/openfisca-france/pull/730)
+### 17.0.1 [#730](https://github.com/openfisca/openfisca-france/pull/730)
 
 * Amélioration technique
 * Détails :
@@ -1607,13 +1616,13 @@ Lors du calcul d'une variable Enum en Python, l'output est un array de membres E
 * Détails :
   - Retourne pour `aeeh` un montant mensuel et non annuel
 
-### 16.1.1 - [#632](https://github.com/openfisca/openfisca-france/pull/632)
+### 16.1.1 [#632](https://github.com/openfisca/openfisca-france/pull/632)
 
 * Changement mineur
 * Détails :
     - Arrête d'importer de numpy des fonctions qui sont déjà fournies par `openfisca_core.model_api`
 
-## 16.1.0 - [#707](https://github.com/openfisca/openfisca-france/pull/707))
+## 16.1.0 [#707](https://github.com/openfisca/openfisca-france/pull/707))
 
 * Évolution du système socio-fiscal
 * Périodes concernées : à partir du 01/07/2016.
@@ -1623,7 +1632,7 @@ Lors du calcul d'une variable Enum en Python, l'output est un array de membres E
     - Met à jour le mode de calcul des bourses de collège et lycée, entré en vigueur à la rentrée 2016.
     - Introduit les variables `bourse_college_echelon` et `bourse_lycee_echelon`
 
-# 16.0.0 - [#710](https://github.com/openfisca/openfisca-france/pull/710)
+# 16.0.0 [#710](https://github.com/openfisca/openfisca-france/pull/710)
 * Amélioration technique **non-rétrocompatible**
 * Détails :
     - Restreint les périodes acceptées par OpenFisca
@@ -1635,7 +1644,7 @@ Lors du calcul d'une variable Enum en Python, l'output est un array de membres E
 * Détails :
   - Adapte `france` à  la version `9.0.0` de `core`.
 
-## 15.1.0 - [#699](https://github.com/openfisca/openfisca-france/pull/699)
+## 15.1.0 [#699](https://github.com/openfisca/openfisca-france/pull/699)
 
 > Version précédemment publiée à tort en tant que 14.2.0
 
@@ -1653,7 +1662,7 @@ Lors du calcul d'une variable Enum en Python, l'output est un array de membres E
   - Corrige le calcul de `salaire_net_a_payer`
   - Dans certains cas, on utilisait la valeur de `depense_cantine_titre_restaurant_employe` pour une autre période que celle demandée.
 
-### 15.0.1 - [#697](https://github.com/openfisca/openfisca-france/pull/697)
+### 15.0.1 [#697](https://github.com/openfisca/openfisca-france/pull/697)
 
 > Version précédemment publiée à tort en tant que 14.1.1
 
@@ -1661,7 +1670,7 @@ Lors du calcul d'une variable Enum en Python, l'output est un array de membres E
 * Utilise le module `core.model_api` plutôt que de réimporter un par un tous les objets Python nécessaires pour écrire une formule
     - Aucun impact pour les ré-utilisateurs
 
-# 15.0.0 - [#685](https://github.com/openfisca/openfisca-france/pull/685)
+# 15.0.0 [#685](https://github.com/openfisca/openfisca-france/pull/685)
 
 > Version précédemment publiée à tort en tant que 14.1.0
 
@@ -1680,7 +1689,7 @@ Lors du calcul d'une variable Enum en Python, l'output est un array de membres E
   - Évolution du format de retour des formules : `return result` à la place de `return period, result`.
   - Ajout d'un attribut `definition_period` pour toutes les variables.
 
-# 14.0.0 - [#690](https://github.com/openfisca/openfisca-france/pull/690)
+# 14.0.0 [#690](https://github.com/openfisca/openfisca-france/pull/690)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : toutes.
@@ -1689,7 +1698,7 @@ Lors du calcul d'une variable Enum en Python, l'output est un array de membres E
   - Retire la variable  `nbptr_n_2`. Elle est inutilisée et obsolète depuis l'introduction des `period`.
   - Cette variable n'intervenant dans aucune formule, elle n'a donc aucun impact.
 
-### 13.2.2 - [#695](https://github.com/openfisca/openfisca-france/pull/695)
+### 13.2.2 [#695](https://github.com/openfisca/openfisca-france/pull/695)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : toutes.
@@ -1699,7 +1708,7 @@ Lors du calcul d'une variable Enum en Python, l'output est un array de membres E
   - Des erreurs peuvent subsister quand ménage et famille ne coincide pas (cas des ménages complexes).
   - Cette variable est utilisée à des fins statistiques et n'entre dans le calcul d'aucune prestation.
 
-### 13.2.1 — [#687](https://github.com/openfisca/openfisca-france/pull/687)
+### 13.2.1 [#687](https://github.com/openfisca/openfisca-france/pull/687)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : Jusqu'au 31/12/2015.
@@ -1708,7 +1717,7 @@ Lors du calcul d'une variable Enum en Python, l'output est un array de membres E
   - Corrige la valeur erronnée retournée par `ppe_tp_sa`.
   - Le calcul de l'indicatrice de travail à temps plein `ppe_tp_sa` renvoyait une valeur érronée, provoquant des erreurs dans le calcul de la prime pour l'emploi `ppe`.
 
-## 13.2.0 - [#676](https://github.com/openfisca/openfisca-france/pull/676)
+## 13.2.0 [#676](https://github.com/openfisca/openfisca-france/pull/676)
 
 * Amélioration technique
 * Détails :
@@ -1716,7 +1725,7 @@ Lors du calcul d'une variable Enum en Python, l'output est un array de membres E
   - Déplace la transformation du JSON en test case du module `scenarios` de `france` vers `core`
   - Adapte `france` à  la version `5.0.0` de `core`.
 
-### 13.1.5 - [#684](https://github.com/openfisca/openfisca-france/pull/684)
+### 13.1.5 [#684](https://github.com/openfisca/openfisca-france/pull/684)
 
 * Évolution du système socio-fiscal
 * Périodes concernées : à partir du 01/01/2017.
@@ -1725,7 +1734,7 @@ Lors du calcul d'une variable Enum en Python, l'output est un array de membres E
   - Corrige le taux de la réduction générale sur les bas salaires (Fillon) au 01/01/2017.
   - Corrige le taux de la cotisation maladie MMID employeur au 01/01/2017.
 
-### 13.1.4 - [#682](https://github.com/openfisca/openfisca-france/pull/682)
+### 13.1.4 [#682](https://github.com/openfisca/openfisca-france/pull/682)
 
 * Évolution du système socio-fiscal
 * Périodes concernées : à partir du 01/01/2017.
@@ -1767,31 +1776,31 @@ This may change any variable related to impot sur le revenu if `revenus_locatifs
 
 These changes are low impact since the two deprecated variables were not used.
 
-## 12.0.6
+### 12.0.6
 
 * Fix `rsa_activite`
 
-## 12.0.5
+### 12.0.5
 
 * Change `af` to DatedVariable to take into account the introduction of degressivite
 
-## 12.0.4
+### 12.0.4
 
 * Change `aige_aine` column from IntCol to AgeCol.
 
-## 12.0.3
+### 12.0.3
 
 * Rename `CAT` to `CATEGORIE_SALARIE` to be more explicit.
 
-## 12.0.2
+### 12.0.2
 
 * Don't consider handicaped demandeur/conjoint as personne à charge in aides logement.
 
-## 12.0.1
+### 12.0.1
 
 * Fix `aide_logement_montant_brut_avant_degressivite` returned `period` to month.
 
-## 12.0.0
+# 12.0.0
 
 * Use core `test_runner` for yaml tests
 * Return yearly amount for `acs`, `bourse_college`, `bourse_lycee` instead of artificially divide it by 12 (breaking change).
@@ -1800,19 +1809,19 @@ These changes are low impact since the two deprecated variables were not used.
 
  * Implement "Aides au logement" degression when rent is above a threshold.
 
-## 11.0.2
+### 11.0.2
 
 * Fix typo in `casa` variable label
 
-## 11.0.1
+### 11.0.1
 
 * Add a `sans_objet` level to variable `contrat_de_travail`
 
-## 11.0.0
+# 11.0.0
 
 * Rename `cotsoc_noncontrib` to `cotisations_non_contibutives`
 
-## 10.1.1
+### 10.1.1
 
 * Fix combination rule for aide 1er salarié / aide PME
 
@@ -1820,11 +1829,11 @@ These changes are low impact since the two deprecated variables were not used.
 
 * Add cotisation pénibilité
 
-## 10.0.2
+### 10.0.2
 
 * Fix csg legislation link in `inversion_directe_salaires` reform.
 
-## 10.0.1
+### 10.0.1
 
 * Update the following rates that changed on the first of january 2017:
 	- SMIC
@@ -1833,7 +1842,7 @@ These changes are low impact since the two deprecated variables were not used.
 	- Taux AGS
 	- Prolongation Aide embauche PME 2017
 
-## 10.0.0
+# 10.0.0
 
 * From 2017, for RSA, remove CA and number of employees conditions.
 * Calculate RSA for Travailleurs Non Salariés
@@ -1845,11 +1854,11 @@ These changes are low impact since the two deprecated variables were not used.
 	- `primes_salaires_net`
 	- `indemnite_fin_contrat_net`
 
-## 9.0.1
+### 9.0.1
 
 * Add `fuzzy` in some `ppa` parameters, needed to run calculations in 2017
 
-## 9.0.0
+# 9.0.0
 
 * Continue mesures migration
 * Complete remplacement migration
@@ -1857,19 +1866,19 @@ These changes are low impact since the two deprecated variables were not used.
 * Rename `revnet` to `revenu_net`
 * Rename `revini` to `revenu_initial`
 
-## 8.0.1
+### 8.0.1
 
 * Introduce echelon_bourse
 
-## 8.0.0
+# 8.0.0
 
 * Rename `paje_clmg` to `paje_cmg`
 
-## 7.0.1
+### 7.0.1
 
 * Improving CASA
 
-## 7.0.0
+# 7.0.0
 
 * Introduce minimum_vieillesse
 * Rename `mini` to `minima_sociaux`
@@ -1884,9 +1893,9 @@ These changes are low impact since the two deprecated variables were not used.
 * Rename `revdisp` to `revenu_disponible`
 * Rename `typ_men` to `type_menage`
 * Cleaning:
-   * remove superfluous `default = 0` in `FloatCol` and `IntCol`
-   * remove superfluous comments
-   * migrate some formulas
+  * remove superfluous `default = 0` in `FloatCol` and `IntCol`
+  * remove superfluous comments
+  * migrate some formulas
 
 ## 6.1.0
 
@@ -1896,45 +1905,45 @@ These changes are low impact since the two deprecated variables were not used.
 	* Taxe apprentissage
 	* Contribution supplémentaire à l'apprentissage.
 
-## 6.0.7
+### 6.0.7
 
 * Remove wrong max numbers of enfants in entities
 
-## 6.0.6
+### 6.0.6
 
 * Deprecate `entreprise_assujettie_tva`
 
-## 6.0.5
+### 6.0.5
 
 * Add effectif_entreprise exclusion condition to Contribution Supplémentaire Apprentissage
 
-## 6.0.4
+### 6.0.4
 
 * Fix some regressions in parameters introcduced by 6.0.0
-    * Re-apply RSA revalorisation from september
-    * Correct bonification rate for PPA
+  * Re-apply RSA revalorisation from september
+  * Correct bonification rate for PPA
 
-## 6.0.3
+### 6.0.3
 
 * Migrate some formulas to new syntax
-    * `aefa.py`
-    * `af.py`
-    * `anciens_ms.py`
-    * `ars.py`
-    * `base_ressource.py`
-    * `cf.py`
-    * `paje.py`
-    * `rsa.py`
+  * `aefa.py`
+  * `af.py`
+  * `anciens_ms.py`
+  * `ars.py`
+  * `base_ressource.py`
+  * `cf.py`
+  * `paje.py`
+  * `rsa.py`
 
-## 6.0.2
+### 6.0.2
 
 * Fix legislation parameter call for RMI-RSA transition
 
-## 6.0.1
+### 6.0.1
 
 * Fix packaging of 6.0.0
 
-## 6.0.0
+# 6.0.0
 
 * Use legislation parameters from IPP
 
@@ -2006,28 +2015,28 @@ These changes are low impact since the two deprecated variables were not used.
     * `cotsoc_bar`
     * `cotsoc_lib`
 
-## 4.1.20
+### 4.1.20
 
- * Set `set_input` attribute to `set_input_divide_by_period` for variables `heures_remunerees_volume` et `heures_non_remunerees_volume`.
+* Set `set_input` attribute to `set_input_divide_by_period` for variables `heures_remunerees_volume` et `heures_non_remunerees_volume`.
 
-## 4.1.19
+### 4.1.19
 
 * Introduce MVA
 
-## 4.1.18
+### 4.1.18
 
 * Introduce PCH
 
-## 4.1.17
+### 4.1.17
 
 * Reimplement `rsa_indemnites_journalieres_activite` and `date_arret_de_travail` using `datetime.date.min`.
 
-## 4.1.16
+### 4.1.16
 
 * Correct wrong behaviour in the combination of exemptions with the dispositif Jeune Entreprise Innovante (JEI)
 
 
-## 4.1.15
+### 4.1.15
 
 * Consider some indemnités journalieres as revenus de remplacement in PPA (and RSA), according to the date of the arret de travail.
 * Introduce
@@ -2035,23 +2044,23 @@ These changes are low impact since the two deprecated variables were not used.
 	* `rsa_indemnites_journalieres_activite`
 	* `date_arret_de_travail`
 
-## 4.1.14
+### 4.1.14
 
 * Add cerfa boxe : 3vt (PEA)
 
-## 4.1.13
+### 4.1.13
 
 * Increase RSA base amount to 535.17 from September 2016
 
-## 4.1.12
+### 4.1.12
 
 * Fix links in README
 
-## 4.1.11
+### 4.1.11
 
 * Remove end dates where not necessary
 
-## 4.1.10
+### 4.1.10
 
 * Refactor asi_aspa.py
 * Fix abattement for conjoint salary
@@ -2059,46 +2068,46 @@ These changes are low impact since the two deprecated variables were not used.
 * Small fix on RSA: don't use euclidian division because of rounding issues
 * Small fix on PPA: don't take into acccount more AF that it have been declared (see 4.1.8)
 
-## 4.1.9
+### 4.1.9
 
 * Tighten CMU/ACS eligibility conditions when when person is less than 25
 * Introduce `cmu_acs_eligibilite`, `habite_chez_parents`
 
-## 4.1.8
+### 4.1.8
 
 * Refactor rsa.py
 * Do not take stages gratification into account
 * Do not take into acccount more AF that it have been declared
 
-## 4.1.7
+### 4.1.7
 
 * Fix bug in CMU forfait_logement
 * Refactor CMU computation
 
-## 4.1.6
+### 4.1.6
 
 * Fix bugs in RSA:
   * One need to be **strictly** more that 25 to benefit it.
   * Apply rsa_forfait_asf accordingly to the asf actually being paid.
 * Deprecate rsa_forfait_asf_individu
 
-## 4.1.5
+### 4.1.5
 
 * Follow OpenFisca-Core major release
 
-## 4.1.4
+### 4.1.4
 
 * Update travis procedures
 
-## 4.1.3
+### 4.1.3
 
 * Delete rfr_n_1
 
-## 4.1.2
+### 4.1.2
 
 * Use "python -m compileall" to check for syntax errors, not flake8
 
-## 4.1.1
+### 4.1.1
 
 * Add labels to several variables
 
@@ -2107,39 +2116,39 @@ These changes are low impact since the two deprecated variables were not used.
 * Run yaml tests from CLI
 	* Exemple: `openfisca-run-test my_test.yaml`
 
-## 4.0.11
+### 4.0.11
 
 * Enhance and move getting-started notebook
 
-## 4.0.10 - [diff](https://github.com/openfisca/openfisca-france/compare/4.0.9..4.0.10)
+### 4.0.10 [diff](https://github.com/openfisca/openfisca-france/compare/4.0.9..4.0.10)
 
 * Fix Landais, Piketty, Saez reform
 
-## 4.0.9 - [diff](https://github.com/openfisca/openfisca-france/compare/4.0.8..4.0.9)
+### 4.0.9 [diff](https://github.com/openfisca/openfisca-france/compare/4.0.8..4.0.9)
 
 * Adapt plfr2014 reform to new Reform API
 
-## 4.0.8 - [diff](https://github.com/openfisca/openfisca-france/compare/4.0.7..4.0.8)
+### 4.0.8 [diff](https://github.com/openfisca/openfisca-france/compare/4.0.7..4.0.8)
 
 * Adapt PPA to avoid antedating paramameters of 3 months.
 
-## 4.0.7 - [diff](https://github.com/openfisca/openfisca-france/compare/4.0.6..4.0.7)
+### 4.0.7 [diff](https://github.com/openfisca/openfisca-france/compare/4.0.6..4.0.7)
 
 * Include ppa in minimas sociaux (mini) and update decompositions accordingly
 
-## 4.0.6 - [diff](https://github.com/openfisca/openfisca-france/compare/4.0.5..4.0.6)
+### 4.0.6 [diff](https://github.com/openfisca/openfisca-france/compare/4.0.5..4.0.6)
 
 * Add back extensions folder and README
 
-## 4.0.5 - [diff](https://github.com/openfisca/openfisca-france/compare/4.0.4..4.0.5)
+### 4.0.5 [diff](https://github.com/openfisca/openfisca-france/compare/4.0.4..4.0.5)
 
 * Fix inversion-directe-salaires reform
 
-## 4.0.4 - [diff](https://github.com/openfisca/openfisca-france/compare/4.0.3..4.0.4)
+### 4.0.4 [diff](https://github.com/openfisca/openfisca-france/compare/4.0.3..4.0.4)
 
 * Fix plf2016 and ayrault_muet reforms
 
-## 4.0.3 - [diff](https://github.com/openfisca/openfisca-france/compare/4.0.2..4.0.3)
+### 4.0.3 [diff](https://github.com/openfisca/openfisca-france/compare/4.0.2..4.0.3)
 
 * Update numpy dependency to 1.11
 * Upgrade pip to >= 8.0 in travis
@@ -2147,15 +2156,15 @@ These changes are low impact since the two deprecated variables were not used.
 * Install scipy by wheels
 * Fix semver version number towards OpenFisca-Core
 
-## 4.0.2 - [diff](https://github.com/openfisca/openfisca-france/compare/4.0.1..4.0.2)
+### 4.0.2 [diff](https://github.com/openfisca/openfisca-france/compare/4.0.1..4.0.2)
 
 * Remove wrong stop date of `aeeh`
 
-## 4.0.1 - [diff](https://github.com/openfisca/openfisca-france/compare/4.0.0..4.0.1)
+### 4.0.1 [diff](https://github.com/openfisca/openfisca-france/compare/4.0.0..4.0.1)
 
 * Correct bug in `switch_on_allegement_mode`
 
-## 4.0.0 - [diff](https://github.com/openfisca/openfisca-france/compare/3.4.1..4.0.0)
+# 4.0.0 [diff](https://github.com/openfisca/openfisca-france/compare/3.4.1..4.0.0)
 
 * Apply core API changes introduced by [openfisca-core 2.0](https://github.com/openfisca/openfisca-core/pull/388)
 * Change the way the France tax benefit system is built
@@ -2163,18 +2172,18 @@ These changes are low impact since the two deprecated variables were not used.
 * Move extensions from `./model/extensions` to `./extensions`
 * Warning : relatives imports are now impossible in model files.
 
-## 3.4.1 - [diff](https://github.com/openfisca/openfisca-france/compare/3.4.1..3.4.0)
+### 3.4.1 [diff](https://github.com/openfisca/openfisca-france/compare/3.4.1..3.4.0)
 
 * Only enforce version and changelog update in CI when PR target is master.
 
-## 3.4.0 - [diff](https://github.com/openfisca/openfisca-france/compare/3.4.0..3.3.0)
+## 3.4.0 [diff](https://github.com/openfisca/openfisca-france/compare/3.4.0..3.3.0)
 
 * Introduce the `entreprise_est_association_non_lucrative` boolean input variable
 * Null the CICE and taxe d'apprentissage (taxe + contribution supplémentaire) when this input is True
 * Force the computing of taxe sur les salaires when this input is True
 * Implement franchise, décôte and abattement associations non lucratives in Taxe sur les salaires
 
-## 3.3.0 - [diff](https://github.com/openfisca/openfisca-france/compare/3.3.0..3.2.0)
+## 3.3.0 [diff](https://github.com/openfisca/openfisca-france/compare/3.3.0..3.2.0)
 
 * Add variables for `complémentaire santé`, compulsory in 2016 :
 	* `complementaire_sante_taux_employeur`
@@ -2186,19 +2195,19 @@ It is included in the bases of the following variables.
 * Correct `taxe_salaires` and update its rates
 * Test CSG-CRDS
 
-## 3.2.0 - [diff](https://github.com/openfisca/openfisca-france/compare/3.2.0..3.1.0)
+## 3.2.0 [diff](https://github.com/openfisca/openfisca-france/compare/3.2.0..3.1.0)
 
 * Consolidate the case of `temps partiel` for the input of a number of hours per month, based on the legal duration of 151.67 per month
 * Specifically, correct the proratisation of `plafond de la sécurité sociale` and `coefficient de proratisation`.
 * See issue #496 for details
 
-## 3.1.0 - [diff](https://github.com/openfisca/openfisca-france/compare/3.1.0..3.0.0)
+## 3.1.0 [diff](https://github.com/openfisca/openfisca-france/compare/3.1.0..3.0.0)
 
 * Update the rates of the versement transport contribution
 * Introduce an history of rates
 * Move its code to a new file (~ 5 functions)
 
-## 3.0.0 - [diff](https://github.com/openfisca/openfisca-france/compare/3.0.0..2.0.0)
+# 3.0.0 [diff](https://github.com/openfisca/openfisca-france/compare/3.0.0..2.0.0)
 
 * Make `enfant_a_charge` usable in monthly mode so that we can re-use it in mes-aides, and broaden its definition so that in includes children in `garde_alternee`.
 * Refactor and test nbF, nbG, nbH, nbI.
@@ -2208,25 +2217,25 @@ It is included in the bases of the following variables.
 	* `enfant_a_charge_garde_alternee`
 	* `enfant_a_charge_garde_alternee_invalide`
 * Rename:
-    * `statmarit` -> `statut_marital`
-    * `marpac` -> `maries_ou_pacses`
-    * `celdiv` -> `celibataire_ou_divorce`
-    * `jveuf` -> `jeune_veuf`
+  * `statmarit` -> `statut_marital`
+  * `marpac` -> `maries_ou_pacses`
+  * `celdiv` -> `celibataire_ou_divorce`
+  * `jveuf` -> `jeune_veuf`
 
-## 2.0.0 - [diff](https://github.com/openfisca/openfisca-france/compare/1.3.1..2.0.0)
+# 2.0.0 [diff](https://github.com/openfisca/openfisca-france/compare/1.3.1..2.0.0)
 
 * Deprecate Paris reform
 * Introduce enfant_place
 
-## 1.3.1 – [diff](https://github.com/openfisca/openfisca-france/compare/1.3.1rc0...1.3.1)
+### 1.3.1 [diff](https://github.com/openfisca/openfisca-france/compare/1.3.1rc0...1.3.1)
 
 * Adjust ppa computation
 
-## 1.3.1rc0 – [diff](https://github.com/openfisca/openfisca-france/compare/1.3.0..1.3.1rc0)
+### 1.3.1rc0 [diff](https://github.com/openfisca/openfisca-france/compare/1.3.0..1.3.1rc0)
 
 * Fix versioning enforcement
 
-## 1.3.0 – [diff](https://github.com/openfisca/openfisca-france/compare/1.2.0...1.3.0)
+## 1.3.0 [diff](https://github.com/openfisca/openfisca-france/compare/1.2.0...1.3.0)
 
 * Introduce mechanism to blacklist variables so that they are not cached
 * Refactor AL computation, and implement special DOM rules
@@ -2239,18 +2248,18 @@ It is included in the bases of the following variables.
 	* `aide_logement_taux_loyer`
 	* `aide_logement_participation_personnelle`
 
-## 1.2.0 – [diff](https://github.com/openfisca/openfisca-france/compare/1.1.0...1.2.0)
+## 1.2.0 [diff](https://github.com/openfisca/openfisca-france/compare/1.1.0...1.2.0)
 
 * Force version number incrementation through CI
 * Force changelog editing through CI
 * Publish tag after merging
 * Publish on pypi after tagging
 
-## 1.1.0 – [diff](https://github.com/openfisca/openfisca-france/compare/1.0...1.1.0)
+## 1.1.0 [diff](https://github.com/openfisca/openfisca-france/compare/1.0...1.1.0)
 
 * Replace `build_column` function calls by `Variable` classes (see [#384](https://github.com/openfisca/openfisca-core/pull/384))
 
-## 1.0 – [diff](https://github.com/openfisca/openfisca-france/compare/0.5.5...1.0)
+# 1.0.0 [diff](https://github.com/openfisca/openfisca-france/compare/0.5.5...1.0)
 
 * Add tests yaml for cotisations sociales
 * Introduction of `invalidite`
@@ -2317,7 +2326,7 @@ It is included in the bases of the following variables.
 	* `tspr` -> `traitements_salaires_pensions_rentes`
 	* `type_sal` -> `categorie_salarie`
 
-## 0.5.5 – [diff](https://github.com/openfisca/openfisca-france/compare/0.5.4.3...0.5.5)
+### 0.5.5 [diff](https://github.com/openfisca/openfisca-france/compare/0.5.4.3...0.5.5)
 
 * Prime d'activité fiabilization
 * Implementation of Indemnite de fin de contrat
@@ -2326,19 +2335,19 @@ It is included in the bases of the following variables.
 * Update prestations parameters (2016/04/01 revalorisation)
 * Add net -> brut reform
 
-## 0.5.4.2, 0.5.4.3 – [diff](https://github.com/openfisca/openfisca-france/compare/0.5.4.1...0.5.4.3)
+#### 0.5.4.2, 0.5.4.3 [diff](https://github.com/openfisca/openfisca-france/compare/0.5.4.1...0.5.4.3)
 
 * Update OpenFisca-Core requirement version
 
-## 0.5.4.1 – [diff](https://github.com/openfisca/openfisca-france/compare/0.5.4...0.5.4.1)
+#### 0.5.4.1 [diff](https://github.com/openfisca/openfisca-france/compare/0.5.4...0.5.4.1)
 
 * Add missing assets for versement_transport
 
-## 0.5.4 – [diff](https://github.com/openfisca/openfisca-france/compare/0.5.3...0.5.4)
+### 0.5.4 [diff](https://github.com/openfisca/openfisca-france/compare/0.5.3...0.5.4)
 
 * Many updates
 
-## 0.5.3 – [diff](https://github.com/openfisca/openfisca-france/compare/0.5.2...0.5.3)
+### 0.5.3 [diff](https://github.com/openfisca/openfisca-france/compare/0.5.2...0.5.3)
 
 * Fix vieillesse deplafonnee baremes
 * Fix some dates in arrco and formation prof. baremes
@@ -2394,7 +2403,7 @@ It is included in the bases of the following variables.
 * Remove nose section from setup.cfg
 * Add CONTRIBUTING.md file
 
-## 0.5.2 – [diff](https://github.com/openfisca/openfisca-france/compare/0.5.1...0.5.2)
+### 0.5.2 [diff](https://github.com/openfisca/openfisca-france/compare/0.5.1...0.5.2)
 
 * Merge pull request #304 from sgmap/taille_entreprise
 * Remove unmaintainable tests
@@ -2424,7 +2433,7 @@ It is included in the bases of the following variables.
 * Do not use relative import in script (__main__)
 * Add biryani extra require
 
-## 0.5.1 – [diff](https://github.com/openfisca/openfisca-france/compare/0.5.0...0.5.1)
+### 0.5.1 [diff](https://github.com/openfisca/openfisca-france/compare/0.5.0...0.5.1)
 
 * Remove scipy by default
 
