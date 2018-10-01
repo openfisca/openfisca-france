@@ -323,4 +323,4 @@ menages:
   statut_occupation_logement: locataire_vide
 output_variables:
   acs: 400
-  asf: 0
+  asf: 98.15

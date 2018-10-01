@@ -30,16 +30,17 @@ class asf_elig(Variable):
     value_type = bool
     entity = Famille
     label = u"Éligibilité à l'ASF"
+    reference = [
+        'https://www.aide-sociale.fr/allocation-soutien-familial/'
+    ]
     definition_period = MONTH
 
     def formula(famille, period):
-        pensions_alimentaires_percues = famille.members('pensions_alimentaires_percues', period)
-        pas_de_pensions = not_(famille.sum(pensions_alimentaires_percues))
-
         isole = not_(famille('en_couple', period))
         residence_mayotte = famille.demandeur.menage('residence_mayotte', period)
 
-        return not_(residence_mayotte) * isole * pas_de_pensions  # Parent isolé et ne résident pas à Mayotte
+        # Parent isolé et ne résident pas à Mayotte
+        return not_(residence_mayotte) * isole
 
 
 class asf(Variable):
@@ -52,8 +53,10 @@ class asf(Variable):
 
     def formula(famille, period, parameters):
         pfam = parameters(period).prestations.prestations_familiales
+
         asf_elig = famille('asf_elig', period)
         asf_par_enfant = famille.members('asf_elig_enfant', period) * pfam.af.bmaf * pfam.asf.taux_1_parent
         montant = famille.sum(asf_par_enfant, role = Famille.ENFANT)
+        pensions_alimentaires_percues = famille.sum(famille.members('pensions_alimentaires_percues', period))
 
-        return asf_elig * montant
+        return asf_elig * max_(montant - pensions_alimentaires_percues, 0)

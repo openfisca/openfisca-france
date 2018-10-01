@@ -1,7 +1,16 @@
 # Changelog
 
+### 24.12.1 [#1132](https://github.com/openfisca/openfisca-france/pull/1043)
+
+* Changement mineur.
+* Zones impactées : `openfisca_france/parameters/prestations/prestations_familiales/af/bmaf.yaml`
+* Détails :
+  - Correction du calcul de l'ASF, en cas de pension alimentaire.
+  - Prise en compte de la revalorisation 2018.
+
 ### 24.12.0 [#1047](https://github.com/openfisca/openfisca-france/pull/1047)
- * Évolution du système socio-fiscal.
+
+* Évolution du système socio-fiscal.
 * Périodes concernées : toutes.
 * Zones impactées :
   - `model\prestations\minima_sociaux\ppa`
