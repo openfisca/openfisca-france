@@ -26,7 +26,10 @@ L'ensembles des endpoints sont décrits dans la [documentation Swagger](https://
 
 ## Installation
 
-Ce paquet requiert [Python 2.7](https://www.python.org/downloads/) et [pip](https://pip.pypa.io/en/stable/installing/).
+Ce paquet requiert [Python 3.7](https://www.python.org/downloads/release/python-370/) et [pip](https://pip.pypa.io/en/stable/installing/).
+
+> La rétro-compatibilité avec Python 2.7 est maintenue pour le moment, mais cessera le 1er janvier 2019.
+
 
 Plateformes supportées :
 - distributions GNU/Linux (en particulier Debian and Ubuntu) ;
@@ -45,7 +48,7 @@ Nous recommandons l'utilisation d'un [environnement virtuel](https://virtualenv.
 Pour installer Pew, lancez une fenêtre de terminal et suivez ces instructions :
 
 ```sh
-python --version # Python 2.7.9 ou plus récent devrait être installé sur votre ordinateur.
+python --version # Python 3.7.0 ou plus récent devrait être installé sur votre ordinateur.
 # Si non, téléchargez-le sur http://www.python.org et téléchargez pip.
 ```
 
@@ -53,10 +56,10 @@ python --version # Python 2.7.9 ou plus récent devrait être installé sur votr
 pip install --upgrade pip
 pip install pew
 ```
-Créez un nouveau _virtualenv_ nommé **openfisca** et configurez-le avec python2.7 :
+Créez un nouveau _virtualenv_ nommé **openfisca** et configurez-le avec python 3.7 :
 
 ```sh
-pew new openfisca --python=python2.7
+pew new openfisca --python=python3.7
 # Si demandé, répondez "Y" à la question sur la modification du fichier de configuration de votre shell
 ```
 Le  _virtualenv_  **openfisca** sera alors activé, c'est-à-dire que les commandes suivantes s'exécuteront directement dans l'environnement virtuel. Vous verrez dans votre terminal :
@@ -89,8 +92,8 @@ Pour pouvoir modifier OpenFisca-France, consultez l'[Installation avancée](#b-i
 Dans votre _virtualenv_, vérifiez les pré-requis :
 
 ```sh
-python --version  # Devrait afficher "Python 2.7.xx".
-#Si non, vérifiez que vous passez --python=python2.7 lors de la création de votre environnement virtuel.
+python --version  # Devrait afficher "Python 3.7.xx".
+#Si non, vérifiez que vous passez --python=python3.7 lors de la création de votre environnement virtuel.
 ```
 
 ```sh
@@ -131,8 +134,8 @@ Dans votre _virtualenv_, assurez-vous que vous êtes dans le répertoire où vou
 Vérifiez les pré-requis :
 
 ```sh
-python --version  # Devrait afficher "Python 2.7.xx".
-#Si non, vérifiez que vous passez --python=python2.7 lors de la création de votre environnement virtuel.
+python --version  # Devrait afficher "Python 3.7.xx".
+#Si non, vérifiez que vous passez --python=python3.7 lors de la création de votre environnement virtuel.
 ```
 
 ```sh
