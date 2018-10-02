@@ -1,5 +1,13 @@
 # Changelog
 
+### 24.12.3 [#1137](https://github.com/openfisca/openfisca-france/pull/1137)
+
+* Changement mineur.
+* Périodes concernées : n/a
+* Zones impactées : n/a
+* Détails :
+  - Supprime le fichier `openfisca-run-test` à la racine
+
 ### 24.12.2 [#1135](https://github.com/openfisca/openfisca-france/pull/1135)
 
 * Changement mineur.
