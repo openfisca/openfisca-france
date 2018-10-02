@@ -23,6 +23,64 @@ log = logging.getLogger(__name__)
 zone_apl_by_depcom = None
 
 
+class TypeEtatLogement(Enum):
+    order__ = ' non_renseigne construction_acquisition_logement_neuf travaux_amelioration_residence_principale agrandissement_amenagement acquisition_amelioration acquisition_sans_amelioration_logement_existant amelioration'  # Needed to preserve the enum order in Python 2
+    non_renseigne = u"Non renseigné"
+     # Logement neuf
+    construction_acquisition_logement_neuf = u"Construction Acquisition d'un logement NEUF"
+    # Logement ancien
+    acquisition_amelioration = u"Acquisition Amélioration"
+    acquisition_sans_amelioration_logement_existant = u"Acquisition sans amélioration d'un logement existant"
+    amelioration = u"Amélioration"
+    agrandissement_amenagement = u"Agrandissement Aménagement"
+
+
+class etat_logement(Variable):
+    value_type = Enum
+    possible_values = TypeEtatLogement  # defined in model/base.py
+    entity = Menage
+    default_value = TypeEtatLogement.non_renseigne
+    label = u"Etat du logement"
+    reference = u"http://www.msa.fr/lfy/documents/11566/48471/Certificat+de+pret+pour+APL.pdf"
+    set_input = set_input_dispatch_by_period
+    definition_period = MONTH
+
+
+class aide_logement_date_pret_conventionne(Variable):
+    value_type = date
+    default_value = date.min
+    entity = Menage
+    label = u"Date de contraction du prêt conventionné "
+    definition_period = ETERNITY
+
+
+class aides_logement_primo_accedant_eligibilite(Variable):
+    value_type = bool
+    default_value = False
+    entity = Menage
+    reference = u"https://www.legifrance.gouv.fr/eli/loi/2017/12/30/CPAX1723900L/jo/article_126"
+    definition_period = MONTH
+    def formula(menage, period):
+        zone_apl = menage('zone_apl', period)
+        aide_logement_etat_logement = menage('etat_logement', period)
+        aide_logement_date_pret_conventionne = menage('aide_logement_date_pret_conventionne', period)
+        est_logement_ancien = (
+                (aide_logement_etat_logement == TypeEtatLogement.acquisition_amelioration)
+                + (aide_logement_etat_logement == TypeEtatLogement.acquisition_sans_amelioration_logement_existant)
+                + (aide_logement_etat_logement == TypeEtatLogement.amelioration)
+                + (aide_logement_etat_logement == TypeEtatLogement.agrandissement_amenagement)
+        )
+
+        est_zone_3 = (zone_apl == TypesZoneApl.zone_3)
+        date_pret_conventionne_avant_2018_01 = (aide_logement_date_pret_conventionne < date(2018, 1, 1))
+        date_pret_conventionne_avant_2020_01 = (aide_logement_date_pret_conventionne < date(2020, 1, 1))
+
+        return select(
+            [date_pret_conventionne_avant_2018_01, date_pret_conventionne_avant_2020_01],
+            [True, (est_logement_ancien * est_zone_3)], default=False
+            )
+
+
 class al_nb_personnes_a_charge(Variable):
     value_type = int
     entity = Famille
@@ -1080,6 +1138,7 @@ class aides_logement_primo_accedant(Variable):
     definition_period = MONTH
 
     def formula_2007_07(famille, period, parameters):
+        aides_logement_primo_accedant_eligibilite = famille.demandeur.menage('aides_logement_primo_accedant_eligibilite', period)
         loyer = famille.demandeur.menage('loyer', period)
         plafond_mensualite = famille('aides_logement_primo_accedant_plafond_mensualite', period)
         L = min_(loyer, plafond_mensualite)
@@ -1087,7 +1146,7 @@ class aides_logement_primo_accedant(Variable):
         K = famille('aides_logement_primo_accedant_k', period)
         Lo = famille('aides_logement_primo_accedant_loyer_minimal', period)
 
-        return (L > 0) * K * max_(0, (L + C - Lo))
+        return aides_logement_primo_accedant_eligibilite * ((L > 0) * K * max_(0, (L + C - Lo)))
 
 class aides_logement_primo_accedant_k(Variable):
     value_type = float
