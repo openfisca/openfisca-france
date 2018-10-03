@@ -2,7 +2,7 @@
 
 from openfisca_france.model.base import *  # noqa analysis:ignore
 
-## PLAN :
+# PLAN :
 # 1) Gains taxés comme des salaires
 # 2) Autres plus-values (exonérées, au barème, ...)
 # 3) Abattements sur plus-values
@@ -309,6 +309,7 @@ class f3va_2016(Variable):
     end = '2016-12-31'
     definition_period = YEAR
 
+
 class f3va(Variable):
     value_type = int
     unit = 'currency'
@@ -327,7 +328,6 @@ class f3vb(Variable):
     # start_date = date(2006, 1, 1)
     end = '2014-12-31'
     definition_period = YEAR
-
 
 
 class f3sg(Variable):
@@ -544,6 +544,7 @@ class f3vu(Variable):
     entity = FoyerFiscal
     end = '2009-12-31'
     definition_period = YEAR
+
 
 class f3ua(Variable):
     """ Cette case existait avant 2017, mais les montants qui y étaient indiqués étaient également indiqués case 3VG """

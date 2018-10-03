@@ -15,6 +15,7 @@ class f2da(Variable):
     end = '2012-12-31'
     definition_period = YEAR
 
+
 class f2dh(Variable):
     cerfa_field = u"2DH"
     value_type = int
@@ -109,6 +110,7 @@ class f2dc(Variable):
     label = u"Revenus des actions et parts donnant droit à abattement"
     definition_period = YEAR
 
+
 class f2fu(Variable):
     cerfa_field = u"2FU"
     value_type = int
@@ -125,9 +127,11 @@ class f2ch(Variable):
     entity = FoyerFiscal
     label = u"Produits des contrats d'assurance-vie et de capitalisation d'une durée d'au moins 6 ou 8 ans donnant droit à abattement"
     definition_period = YEAR
-    end = '2017-12-31' # On neutralise cette variable par hypothèse à partir de 2018 : tous les produits d'assurance vie sont mis en f2dh et f2ee. Cf. docstring de ces deux cases
+    end = '2017-12-31'  # On neutralise cette variable par hypothèse à partir de 2018 : tous les produits d'assurance vie sont mis en f2dh et f2ee. Cf. docstring de ces deux cases
 
 #  Revenus des valeurs et capitaux mobiliers n'ouvrant pas droit à abattement
+
+
 class f2ts(Variable):
     cerfa_field = u"2TS"
     value_type = int
@@ -135,7 +139,7 @@ class f2ts(Variable):
     entity = FoyerFiscal
     label = u"Revenus de valeurs mobilières, produits des contrats d'assurance-vie d'une durée inférieure à 8 ans et distributions (n'ouvrant pas droit à abattement)"
     definition_period = YEAR
-    end = '2017-12-31' # On neutralise cette variable par hypothèse à partir de 2018 : tous les produits d'assurance vie sont mis en f2dh et f2ee. Cf. docstring de ces deux cases
+    end = '2017-12-31'  # On neutralise cette variable par hypothèse à partir de 2018 : tous les produits d'assurance vie sont mis en f2dh et f2ee. Cf. docstring de ces deux cases
 
 
 class f2go(Variable):
@@ -166,6 +170,7 @@ class f2fa(Variable):
     # start_date = date(2013, 1, 1)
     definition_period = YEAR
 
+
 class f2tt_2016(Variable):
     cerfa_field = u"2TT"
     value_type = int
@@ -176,6 +181,7 @@ class f2tt_2016(Variable):
     end = '2016-12-31'
     definition_period = YEAR
 
+
 class f2tt(Variable):
     cerfa_field = u"2TT"
     value_type = int
@@ -184,6 +190,7 @@ class f2tt(Variable):
     label = u"Intérêts des prêts participatifs nettes des pertes à imputer au titre de l'impôt sur le revenu"
     # start_date = date(2017, 1, 1)
     definition_period = YEAR
+
 
 class f2tu_2016(Variable):
     cerfa_field = u"2TU"
@@ -195,6 +202,7 @@ class f2tu_2016(Variable):
     end = '2016-12-31'
     definition_period = YEAR
 
+
 class f2tu(Variable):
     cerfa_field = u"2TU"
     value_type = int
@@ -203,6 +211,7 @@ class f2tu(Variable):
     label = u"Pertes en capital sur prêts participatifs en 2016 à reporter sur l'année 2018"
     # start_date = date(2017, 1, 1)
     definition_period = YEAR
+
 
 class f2tv(Variable):
     cerfa_field = u"2TV"
@@ -213,6 +222,7 @@ class f2tv(Variable):
     # start_date = date(2017, 1, 1)
     definition_period = YEAR
 
+
 class f2cg(Variable):
     cerfa_field = u"2CG"
     value_type = int
@@ -220,6 +230,7 @@ class f2cg(Variable):
     entity = FoyerFiscal
     label = u"Revenus des lignes 2DC, 2CH, 2TS, 2TR déjà soumis au prélèvement sociaux sans CSG déductible"
     definition_period = YEAR
+
 
 class f2bh(Variable):
     cerfa_field = u"2BH"
@@ -230,6 +241,7 @@ class f2bh(Variable):
     # start_date = date(2007, 1, 1)
     definition_period = YEAR
 
+
 class f2ca(Variable):
     cerfa_field = u"2CA"
     value_type = int
@@ -237,6 +249,7 @@ class f2ca(Variable):
     entity = FoyerFiscal
     label = u"Frais et charges déductibles"
     definition_period = YEAR
+
 
 class f2ck(Variable):
     cerfa_field = u"2CK"
@@ -257,6 +270,7 @@ class f2ab(Variable):
     label = u"Crédits d'impôt sur valeurs étrangères"
     definition_period = YEAR
 
+
 class f2bg(Variable):
     cerfa_field = u"2BG"
     value_type = int
@@ -264,6 +278,7 @@ class f2bg(Variable):
     entity = FoyerFiscal
     label = u"Crédits d'impôt 'directive épargne' et autres crédits d'impôt restituables"
     definition_period = YEAR
+
 
 class f2aa(Variable):
     cerfa_field = u"2AA"
@@ -274,6 +289,7 @@ class f2aa(Variable):
     # start_date = date(2007, 1, 1)
     definition_period = YEAR
 
+
 class f2al(Variable):
     cerfa_field = u"2AL"
     value_type = int
@@ -282,6 +298,7 @@ class f2al(Variable):
     label = u"Déficits des années antérieures non encore déduits"
     # start_date = date(2008, 1, 1)
     definition_period = YEAR
+
 
 class f2am(Variable):
     cerfa_field = u"2AM"
@@ -292,6 +309,7 @@ class f2am(Variable):
     # start_date = date(2009, 1, 1)
     definition_period = YEAR
 
+
 class f2an(Variable):
     cerfa_field = u"2AN"
     value_type = int
@@ -301,6 +319,7 @@ class f2an(Variable):
     # start_date = date(2010, 1, 1)
     definition_period = YEAR
 
+
 class f2aq(Variable):
     cerfa_field = u"2AQ"
     value_type = int
@@ -309,6 +328,7 @@ class f2aq(Variable):
     label = u"Déficits des années antérieures non encore déduits"
     # start_date = date(2011, 1, 1)
     definition_period = YEAR
+
 
 class f2ar(Variable):
     cerfa_field = u"2AR"
@@ -321,6 +341,8 @@ class f2ar(Variable):
 
 # je ne sais pas d'ou sort f2as...! probablement une ancienne année à laquelle je ne suis pas encore arrivé
 # TODO: vérifier existence <=2011
+
+
 class f2as(Variable):
     value_type = int
     unit = 'currency'
@@ -397,8 +419,8 @@ class revenus_capitaux_prelevement_bareme(Variable):
         f2tr = foyer_fiscal('f2tr', year)
         f2fu = foyer_fiscal('f2fu', year)
         avoirs_credits_fiscaux = foyer_fiscal('avoirs_credits_fiscaux', year)
-        f2da = foyer_fiscal('f2da', year)
-        f2ee = foyer_fiscal('f2ee', year)
+        f2da = foyer_fiscal('f2da', year)  # noqa: F841
+        f2ee = foyer_fiscal('f2ee', year)  # noqa: F841
         majoration_revenus_reputes_distribues = parameters(period).impot_revenu.rvcm.majoration_revenus_reputes_distribues
 
         return (f2dc + f2gr + f2ch + f2ts + f2go * majoration_revenus_reputes_distribues + f2tr + f2fu - avoirs_credits_fiscaux) / 12

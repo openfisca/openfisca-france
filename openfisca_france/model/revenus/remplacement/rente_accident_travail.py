@@ -2,6 +2,7 @@
 
 from openfisca_france.model.base import *  # noqa
 
+
 class rente_accident_travail(Variable):
     value_type = float
     entity = Individu

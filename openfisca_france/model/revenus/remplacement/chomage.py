@@ -4,7 +4,8 @@ from openfisca_france.model.base import *  # noqa analysis:ignore
 
 
 class chomeur_longue_duree(Variable):
-    cerfa_field = {0: u"1AI",
+    cerfa_field = {
+        0: u"1AI",
         1: u"1BI",
         2: u"1CI",
         3: u"1DI",

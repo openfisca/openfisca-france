@@ -22,45 +22,49 @@ from openfisca_france.model.base import *  # noqa
 #    ncn : non commercial non pro
 # après l'underscore : abbréviation du label de la case
 
+# (f5qm, f5rm )
 class f5qm(Variable):
     cerfa_field = {0: u"5QM",
         1: u"5RM",
-        }
+                   }
     value_type = int
     unit = 'currency'
     entity = Individu
     label = u"Agents généraux d’assurances: indemnités de cessation d’activité"
     definition_period = YEAR
 
-  # (f5qm, f5rm )
 
+# """
 # Revenus des professions non salariées
+# """
+
+# (f5nv, f5ov, f5pv)
 class ppe_du_ns(Variable):
     cerfa_field = {0: u"5NV",
         1: u"5OV",
         2: u"5PV",
-        }
+                   }
     value_type = int
     entity = Individu
     label = u"Prime pour l'emploi des non-salariés: nombre de jours travaillés dans l'année"
     end = '2014-12-31'
     definition_period = YEAR
 
-  # (f5nv, f5ov, f5pv)
 
+# (f5nw, f5ow, f5pw)
 class ppe_tp_ns(Variable):
     cerfa_field = {0: u"5NW",
         1: u"5OW",
         2: u"5PW",
-        }
+                   }
     value_type = bool
     entity = Individu
     label = u"Prime pour l'emploi des non-salariés: indicateur de travail à temps plein sur l'année entière"
     end = '2014-12-31'
     definition_period = YEAR
 
-  # (f5nw, f5ow, f5pw)
 
+# (f5hn, f5in, f5jn))
 class frag_exon(Variable):
     cerfa_field = {0: u"5HN",
         1: u"5IN",
@@ -73,8 +77,8 @@ class frag_exon(Variable):
     end = '2015-12-31'
     definition_period = YEAR
 
-  # (f5hn, f5in, f5jn))
 
+# (f5ho, f5io, f5jo))
 class frag_impo(Variable):
     cerfa_field = {0: u"5HO",
         1: u"5IO",
@@ -87,8 +91,8 @@ class frag_impo(Variable):
     end = '2015-12-31'
     definition_period = YEAR
 
-  # (f5ho, f5io, f5jo))
 
+# (f5hb, f5ib, f5jb))
 class arag_exon(Variable):
     cerfa_field = {0: u"5HB",
         1: u"5IB",
@@ -100,8 +104,8 @@ class arag_exon(Variable):
     # start_date = date(2007, 1, 1)
     definition_period = YEAR
 
-  # (f5hb, f5ib, f5jb))
 
+# (f5hc, f5ic, f5jc))
 class arag_impg(Variable):
     cerfa_field = {0: u"5HC",
         1: u"5IC",
@@ -113,8 +117,8 @@ class arag_impg(Variable):
     # start_date = date(2007, 1, 1)
     definition_period = YEAR
 
-  # (f5hc, f5ic, f5jc))
 
+# (f5hf, f5if, f5jf))
 class arag_defi(Variable):
     cerfa_field = {0: u"5HF",
         1: u"5IF",
@@ -126,8 +130,8 @@ class arag_defi(Variable):
     # start_date = date(2007, 1, 1)
     definition_period = YEAR
 
-  # (f5hf, f5if, f5jf))
 
+# (f5hh, f5ih, f5jh))
 class nrag_exon(Variable):
     cerfa_field = {0: u"5HH",
         1: u"5IH",
@@ -139,8 +143,8 @@ class nrag_exon(Variable):
     # start_date = date(2007, 1, 1)
     definition_period = YEAR
 
-  # (f5hh, f5ih, f5jh))
 
+# (f5hi, f5ii, f5ji))
 class nrag_impg(Variable):
     cerfa_field = {0: u"5HI",
         1: u"5II",
@@ -152,8 +156,8 @@ class nrag_impg(Variable):
     # start_date = date(2007, 1, 1)
     definition_period = YEAR
 
-  # (f5hi, f5ii, f5ji))
 
+# (f5hl, f5il, f5jl))
 class nrag_defi(Variable):
     cerfa_field = {0: u"5HL",
         1: u"5IL",
@@ -165,8 +169,8 @@ class nrag_defi(Variable):
     # start_date = date(2007, 1, 1)
     definition_period = YEAR
 
-  # (f5hl, f5il, f5jl))
 
+# (f5hm, f5im, f5jm))
 class nrag_ajag(Variable):
     cerfa_field = {0: u"5HM",
         1: u"5IM",
@@ -178,9 +182,13 @@ class nrag_ajag(Variable):
     # start_date = date(2007, 1, 1)
     definition_period = YEAR
 
-  # (f5hm, f5im, f5jm))
 
+# """
 # Autoentrepreneur
+# """
+
+
+# (f5ta, f5ua, f5va))
 class ebic_impv(Variable):
     cerfa_field = {0: u"5TA",
         1: u"5UA",
@@ -193,8 +201,8 @@ class ebic_impv(Variable):
     # end = '2016-12-31'
     definition_period = YEAR
 
-  # (f5ta, f5ua, f5va))
 
+# (f5tb, f5ub, f5vb))
 class ebic_imps(Variable):
     cerfa_field = {0: u"5TB",
         1: u"5UB",
@@ -207,8 +215,8 @@ class ebic_imps(Variable):
     # end = '2016-12-31'
     definition_period = YEAR
 
-  # (f5tb, f5ub, f5vb))
 
+# (f5te, f5ue, f5ve))
 class ebnc_impo(Variable):
     cerfa_field = {0: u"5TE",
         1: u"5UE",
@@ -221,8 +229,8 @@ class ebnc_impo(Variable):
     # end = '2016-12-31'
     definition_period = YEAR
 
-  # (f5te, f5ue, f5ve))
 
+# (f5kn, f5ln, f5mn))
 class mbic_exon(Variable):
     cerfa_field = {0: u"5KN",
         1: u"5LN",
@@ -233,8 +241,8 @@ class mbic_exon(Variable):
     label = u"Revenus industriels et commerciaux professionnels nets exonérés (régime micro entreprise)"
     definition_period = YEAR
 
-  # (f5kn, f5ln, f5mn))
 
+# (f5kb, f5lb, f5mb))
 class abic_exon(Variable):
     cerfa_field = {0: u"5KB",
         1: u"5LB",
@@ -245,8 +253,8 @@ class abic_exon(Variable):
     label = u"Revenus industriels et commerciaux nets exonérés yc plus-values avec CGA ou viseur (régime du bénéfice réel)"
     definition_period = YEAR
 
-  # (f5kb, f5lb, f5mb))
 
+# (f5kh, f5lh, f5mh))
 class nbic_exon(Variable):
     cerfa_field = {0: u"5KH",
         1: u"5LH",
@@ -257,8 +265,8 @@ class nbic_exon(Variable):
     label = u"Revenus industriels et commerciaux nets exonérés yc plus-values sans CGA (régime du bénéfice réel)"
     definition_period = YEAR
 
-  # (f5kh, f5lh, f5mh))
 
+# (f5ko, f5lo, f5mo))
 class mbic_impv(Variable):
     cerfa_field = {0: u"5KO",
         1: u"5LO",
@@ -269,8 +277,8 @@ class mbic_impv(Variable):
     label = u"Revenus industriels et commerciaux professionnels imposables: vente de marchandises (régime micro entreprise)"
     definition_period = YEAR
 
-  # (f5ko, f5lo, f5mo))
 
+# (f5kp, f5lp, f5mp))
 class mbic_imps(Variable):
     cerfa_field = {0: u"5KP",
         1: u"5LP",
@@ -281,8 +289,8 @@ class mbic_imps(Variable):
     label = u"Revenus industriels et commerciaux professionnels imposables: prestations de services et locations meublées (régime micro entreprise)"
     definition_period = YEAR
 
-  # (f5kp, f5lp, f5mp))
 
+# (f5kc, f5lc, f5mc))
 class abic_impn(Variable):
     cerfa_field = {0: u"5KC",
         1: u"5LC",
@@ -293,8 +301,8 @@ class abic_impn(Variable):
     label = u"Revenus industriels et commerciaux imposables: régime normal ou simplifié avec CGA ou viseur (régime du bénéfice réel)"
     definition_period = YEAR
 
-  # (f5kc, f5lc, f5mc))
 
+# (f5kd, f5ld, f5md))
 class abic_imps(Variable):
     cerfa_field = {0: u"5KD",
         1: u"5LD",
@@ -306,9 +314,8 @@ class abic_imps(Variable):
     end = '2009-12-31'
     definition_period = YEAR
 
-  # (f5kd, f5ld, f5md))
 
-
+# (f5ki, f5li, f5mi))
 class nbic_impn(Variable):
     cerfa_field = {0: u"5KI",
         1: u"5LI",
@@ -320,11 +327,13 @@ class nbic_impn(Variable):
     label = u"Revenus industriels et commerciaux professionnels imposables: régime normal ou simplifié sans CGA (régime du bénéfice réel)"
     definition_period = YEAR
 
-  # (f5ki, f5li, f5mi))
 
 # """
-# réutilisation cases 2013
+# Réutilisation cases 2013
 # """
+
+
+# (f5kj, f5lj, f5mj))
 class nbic_imps(Variable):
     cerfa_field = {0: u"5KJ",
         1: u"5LJ",
@@ -337,6 +346,9 @@ class nbic_imps(Variable):
     definition_period = YEAR
 
 
+# (f5kj, f5lj, f5mj))
+# NB cette variable devrait s'appeler 'mbic_mvct' comme c'est une variable de régime micro (mais il
+# existe déjà une variable mbic_mvct avec un autre cerfa_fiel (5HU) corresponsant à avant 2012...)
 class nbic_mvct(Variable):
     cerfa_field = {0: u"5KJ",
         1: u"5LJ",
@@ -348,10 +360,8 @@ class nbic_mvct(Variable):
     # start_date = date(2012, 1, 1)
     definition_period = YEAR
 
-  # (f5kj, f5lj, f5mj))
-  # NB cette variable devrait s'appeler 'mbic_mvct' comme c'est une variable de régime micro (mais il
-  # existe déjà une variable mbic_mvct avec un autre cerfa_fiel (5HU) corresponsant à avant 2012...)
 
+# (f5kf, f5lf, f5mf))
 class abic_defn(Variable):
     cerfa_field = {0: u"5KF",
         1: u"5LF",
@@ -362,8 +372,9 @@ class abic_defn(Variable):
     label = u"Déficits industriels et commerciaux: régime normal ou simplifié avec CGA ou viseur (régime du bénéfice réel)"
     definition_period = YEAR
 
-  # (f5kf, f5lf, f5mf))
 
+# (f5kg, f5lg, f5mg))
+# vérif <=2012
 class abic_defs(Variable):
     cerfa_field = {0: u"5KG",
         1: u"5LG",
@@ -375,9 +386,8 @@ class abic_defs(Variable):
     end = '2009-12-01'
     definition_period = YEAR
 
-  # (f5kg, f5lg, f5mg))
-                                                          # vérif <=2012
 
+# (f5kl, f5ll, f5ml))
 class nbic_defn(Variable):
     cerfa_field = {0: u"5KL",
         1: u"5LL",
@@ -388,8 +398,8 @@ class nbic_defn(Variable):
     label = u"Déficits industriels et commerciaux: régime normal ou simplifié sans CGA (régime du bénéfice réel)"
     definition_period = YEAR
 
-  # (f5kl, f5ll, f5ml))
 
+# (f5km, f5lm, f5mm))
 class nbic_defs(Variable):
     cerfa_field = {0: u"5KM",
         1: u"5LM",
@@ -401,8 +411,8 @@ class nbic_defs(Variable):
     end = '2009-12-31'
     definition_period = YEAR
 
-  # (f5km, f5lm, f5mm))
 
+# (f5ks, f5ls, f5ms))
 class nbic_apch(Variable):
     cerfa_field = {0: u"5KS",
         1: u"5LS",
@@ -413,8 +423,8 @@ class nbic_apch(Variable):
     label = u"Artisans pêcheurs : abattement 50% avec CGA ou viseur (régime du bénéfice réel)"
     definition_period = YEAR
 
-  # (f5ks, f5ls, f5ms))
 
+# (f5nn, f5on, f5pn))
 class macc_exon(Variable):
     cerfa_field = {0: u"5NN",
         1: u"5ON",
@@ -425,8 +435,8 @@ class macc_exon(Variable):
     label = u"Revenus industriels et commerciaux non professionnels nets exonérés (régime micro entreprise)"
     definition_period = YEAR
 
-  # (f5nn, f5on, f5pn))
 
+# (f5nb, f5ob, f5pb))
 class aacc_exon(Variable):
     cerfa_field = {0: u"5NB",
         1: u"5OB",
@@ -437,8 +447,8 @@ class aacc_exon(Variable):
     label = u"Revenus industriels et commerciaux non professionnels exonérés yc plus-values avec CGA ou viseur (régime du bénéfice réel)"
     definition_period = YEAR
 
-  # (f5nb, f5ob, f5pb))
 
+# (f5nh, f5oh, f5ph))
 class nacc_exon(Variable):
     cerfa_field = {0: u"5NH",
         1: u"5OH",
@@ -449,8 +459,8 @@ class nacc_exon(Variable):
     label = u"Revenus industriels et commerciaux non professionnels exonérés yc plus-values sans CGA (régime du bénéfice réel)"
     definition_period = YEAR
 
-  # (f5nh, f5oh, f5ph))
 
+# (f5no, f5oo, f5po))
 class macc_impv(Variable):
     cerfa_field = {0: u"5NO",
         1: u"5OO",
@@ -461,8 +471,8 @@ class macc_impv(Variable):
     label = u"Revenus industriels et commerciaux non professionnels imposables: vente de marchandises et assimilées (régime micro entreprise)"
     definition_period = YEAR
 
-  # (f5no, f5oo, f5po))
 
+# (f5np, f5op, f5pp))
 class macc_imps(Variable):
     cerfa_field = {0: u"5NP",
         1: u"5OP",
@@ -473,8 +483,8 @@ class macc_imps(Variable):
     label = u"Revenus industriels et commerciaux non professionnels imposables: prestations de services (régime micro entreprise)"
     definition_period = YEAR
 
-  # (f5np, f5op, f5pp))
 
+# (f5nc, f5oc, f5pc))
 class aacc_impn(Variable):
     cerfa_field = {0: u"5NC",
         1: u"5OC",
@@ -485,8 +495,8 @@ class aacc_impn(Variable):
     label = u"Revenus industriels et commerciaux non professionnels imposables: régime normal ou simplifié avec CGA ou viseur (régime du bénéfice réel)"
     definition_period = YEAR
 
-  # (f5nc, f5oc, f5pc))
 
+# (f5nd, f5od, f5pd)) #TODO: avant 2010
 class aacc_imps(Variable):
     cerfa_field = {0: u"5ND",
         1: u"5OD",
@@ -498,8 +508,8 @@ class aacc_imps(Variable):
     # start_date = date(2011, 1, 1)
     definition_period = YEAR
 
-  # (f5nd, f5od, f5pd)) #TODO: avant 2010
 
+# (f5nf, f5of, f5pf))
 class aacc_defn(Variable):
     cerfa_field = {0: u"5NF",
         1: u"5OF",
@@ -510,8 +520,8 @@ class aacc_defn(Variable):
     label = u"Déficits industriels et commerciaux non professionnels: régime normal ou simplifié avec CGA ou viseur (régime du bénéfice réel)"
     definition_period = YEAR
 
-  # (f5nf, f5of, f5pf))
 
+# (f5ng, f5og, f5pg))
 class aacc_gits(Variable):
     cerfa_field = {0: u"5NG",
         1: u"5OG",
@@ -523,8 +533,8 @@ class aacc_gits(Variable):
     # start_date = date(2011, 1, 1)
     definition_period = YEAR
 
-  # (f5ng, f5og, f5pg))
 
+# (f5ni, f5oi, f5pi))
 class nacc_impn(Variable):
     cerfa_field = {0: u"5NI",
         1: u"5OI",
@@ -535,8 +545,8 @@ class nacc_impn(Variable):
     label = u"Revenus industriels et commerciaux non professionnels imposables: régime normal ou simplifié sans CGA (régime du bénéfice réel)"
     definition_period = YEAR
 
-  # (f5ni, f5oi, f5pi))
 
+# (f5ng, f5og, f5pg))
 class aacc_defs(Variable):
     cerfa_field = {0: u"5NG",
         1: u"5OG",
@@ -549,7 +559,7 @@ class aacc_defs(Variable):
     definition_period = YEAR
 
 
-
+# (f5nj, f5oj, f5pj)) #TODO: dates 5PJ, 5PG, 5PD, 5OM
 class nacc_meup(Variable):
     cerfa_field = {0: u"5NJ",
         1: u"5OJ",
@@ -561,8 +571,8 @@ class nacc_meup(Variable):
     # start_date = date(2012, 1, 1)
     definition_period = YEAR
 
-  # (f5nj, f5oj, f5pj)) #TODO: dates 5PJ, 5PG, 5PD, 5OM
 
+# (f5nl, f5ol, f5pl))
 class nacc_defn(Variable):
     cerfa_field = {0: u"5NL",
         1: u"5OL",
@@ -573,8 +583,8 @@ class nacc_defn(Variable):
     label = u"Déficits industriels et commerciaux non professionnels: régime normal ou simplifié sans CGA (régime du bénéfice réel)"
     definition_period = YEAR
 
-  # (f5nl, f5ol, f5pl))
 
+# (f5nm, f5om, f5pm)) #TODO autres 5NM
 class nacc_defs(Variable):
     cerfa_field = {0: u"5NM",
         1: u"5OM",
@@ -586,8 +596,8 @@ class nacc_defs(Variable):
     # start_date = date(2012, 1, 1)
     definition_period = YEAR
 
-  # (f5nm, f5om, f5pm)) #TODO autres 5NM
 
+# (f5ku, f5lu, f5mu))
 class mncn_impo(Variable):
     cerfa_field = {0: u"5KU",
         1: u"5LU",
@@ -598,8 +608,8 @@ class mncn_impo(Variable):
     label = u"Revenus non commerciaux non professionnels imposables (régime déclaratif spécial ou micro BNC)"
     definition_period = YEAR
 
-  # (f5ku, f5lu, f5mu))
 
+# (f5sn, f5ns, f5os))
 class cncn_bene(Variable):
     cerfa_field = {0: u"5SN",
         1: u"5NS",
@@ -611,8 +621,9 @@ class cncn_bene(Variable):
     # start_date = date(2006, 1, 1)
     definition_period = YEAR
 
-  # (f5sn, f5ns, f5os))
 
+# (f5sp, f5nu, f5ou, f5sr))
+# pas de f5sr en 2013
 class cncn_defi(Variable):
     cerfa_field = {0: u"5SP",
         1: u"5NU",
@@ -624,9 +635,8 @@ class cncn_defi(Variable):
     # start_date = date(2006, 1, 1)
     definition_period = YEAR
 
-  # (f5sp, f5nu, f5ou, f5sr))
-                                                                  # pas de f5sr en 2013
 
+# (f5hp, f5ip, f5jp))
 class mbnc_exon(Variable):
     cerfa_field = {0: u"5HP",
         1: u"5IP",
@@ -637,8 +647,8 @@ class mbnc_exon(Variable):
     label = u"Revenus non commerciaux professionnels nets exonérés (régime déclaratif spécial ou micro BNC)"
     definition_period = YEAR
 
-  # (f5hp, f5ip, f5jp))
 
+# (f5qb, f5rb, f5sb))
 class abnc_exon(Variable):
     cerfa_field = {0: u"5QB",
         1: u"5RB",
@@ -649,8 +659,8 @@ class abnc_exon(Variable):
     label = u"Revenus non commerciaux professionnels exonérés (yc compris plus-values) (régime de la déclaration controlée, revenus bénéficiant de l'abattement association agrée ou viseur)"
     definition_period = YEAR
 
-  # (f5qb, f5rb, f5sb))
 
+# (f5qh, f5rh, f5sh))
 class nbnc_exon(Variable):
     cerfa_field = {0: u"5QH",
         1: u"5RH",
@@ -661,8 +671,8 @@ class nbnc_exon(Variable):
     label = u"Revenus non commerciaux professionnels exonérés (yc compris plus-values) (régime de la déclaration controlée, revenus ne bénéficiant pas de l'abattement association agrée)"
     definition_period = YEAR
 
-  # (f5qh, f5rh, f5sh))
 
+# (f5hq, f5iq, f5jq))
 class mbnc_impo(Variable):
     cerfa_field = {0: u"5HQ",
         1: u"5IQ",
@@ -673,8 +683,8 @@ class mbnc_impo(Variable):
     label = u"Revenus non commerciaux professionnels imposables (régime déclaratif spécial ou micro BNC)"
     definition_period = YEAR
 
-  # (f5hq, f5iq, f5jq))
 
+# (f5qc, f5rc, f5sc))
 class abnc_impo(Variable):
     cerfa_field = {0: u"5QC",
         1: u"5RC",
@@ -685,8 +695,8 @@ class abnc_impo(Variable):
     label = u"Revenus non commerciaux professionnels imposables (régime de la déclaration controlée, revenus bénéficiant de l'abattement association agrée ou viseur)"
     definition_period = YEAR
 
-  # (f5qc, f5rc, f5sc))
 
+# (f5qe, f5re, f5se))
 class abnc_defi(Variable):
     cerfa_field = {0: u"5QE",
         1: u"5RE",
@@ -697,8 +707,8 @@ class abnc_defi(Variable):
     label = u"Déficits non commerciaux professionnels (régime de la déclaration controlée, revenus bénéficiant de l'abattement association agrée ou viseur)"
     definition_period = YEAR
 
-  # (f5qe, f5re, f5se))
 
+# (f5qi, f5ri, f5si))
 class nbnc_impo(Variable):
     cerfa_field = {0: u"5QI",
         1: u"5RI",
@@ -709,8 +719,8 @@ class nbnc_impo(Variable):
     label = u"Revenus non commerciaux professionnels imposables (régime de la déclaration controlée, revenus ne bénéficiant pas de l'abattement association agrée)"
     definition_period = YEAR
 
-  # (f5qi, f5ri, f5si))
 
+# (f5qk, f5rk, f5sk))
 class nbnc_defi(Variable):
     cerfa_field = {0: u"5QK",
         1: u"5RK",
@@ -721,8 +731,9 @@ class nbnc_defi(Variable):
     label = u"Déficits non commerciaux professionnels (régime de la déclaration controlée, revenus ne bénéficiant pas de l'abattement association agrée)"
     definition_period = YEAR
 
-  # (f5qk, f5rk, f5sk))
 
+# (f5hu))
+# vérif <=2012
 class mbic_mvct(Variable):
     cerfa_field = u"5HU"
     value_type = int
@@ -732,9 +743,8 @@ class mbic_mvct(Variable):
     end = '2011-12-31'
     definition_period = YEAR
 
-  # (f5hu))
-                                                          # vérif <=2012
 
+# (f5iu))
 class macc_mvct(Variable):
     cerfa_field = u"5IU"
     value_type = int
@@ -743,8 +753,8 @@ class macc_mvct(Variable):
     label = u"Moins-values industrielles et commerciales non professionnelles nettes à court terme du foyer (régime micro entreprise)"
     definition_period = YEAR
 
-  # (f5iu))
 
+# (f5ju))
 class mncn_mvct(Variable):
     cerfa_field = u"5JU"
     value_type = int
@@ -753,10 +763,10 @@ class mncn_mvct(Variable):
     label = u"Moins-values non commerciales non professionnelles nettes à court terme du foyer (régime déclaratif spécial ou micro BNC)"
     definition_period = YEAR
 
-  # (f5ju))
 
+# (f5kz, f5lz , f5mz), f5lz , f5mz sont présentent en 2013
 class mbnc_mvct(Variable):
-    cerfa_field = {0: u"5KZ", #TODO: pb cerfa field
+    cerfa_field = {0: u"5KZ",  # TODO: pb cerfa field
         1: u"5LZ",
         2: u"5MZ", }
     value_type = int
@@ -766,9 +776,8 @@ class mbnc_mvct(Variable):
     # start_date = date(2012, 1, 1)
     definition_period = YEAR
 
-  # (f5kz, f5lz , f5mz), f5lz , f5mz sont présentent en 2013
 
-
+# (f5hw, f5iw, f5jw))
 class frag_pvct(Variable):
     cerfa_field = {0: u"5HW",
         1: u"5IW",
@@ -780,8 +789,8 @@ class frag_pvct(Variable):
     # start_date = date(2007, 1, 1)
     definition_period = YEAR
 
-  # (f5hw, f5iw, f5jw))
 
+# (f5kx, f5lx, f5mx))
 class mbic_pvct(Variable):
     cerfa_field = {0: u"5KX",
         1: u"5LX",
@@ -792,8 +801,8 @@ class mbic_pvct(Variable):
     label = u"Plus-values industrielles et commerciales professionnels imposables: plus-values nettes à court terme (régime micro entreprise)"
     definition_period = YEAR
 
-  # (f5kx, f5lx, f5mx))
 
+# (f5nx, f5ox, f5px))
 class macc_pvct(Variable):
     cerfa_field = {0: u"5NX",
         1: u"5OX",
@@ -804,8 +813,8 @@ class macc_pvct(Variable):
     label = u"Plus-values industrielles et commerciales non professionnelles imposables: plus-values nettes à court terme (régime micro entreprise)"
     definition_period = YEAR
 
-  # (f5nx, f5ox, f5px))
 
+# (f5hv, f5iv, f5jv))
 class mbnc_pvct(Variable):
     cerfa_field = {0: u"5HV",
         1: u"5IV",
@@ -816,8 +825,8 @@ class mbnc_pvct(Variable):
     label = u"Plus-values non commerciales professionnelles imposables et Plus-values nettes à court terme (régime déclaratif spécial ou micro BNC)"
     definition_period = YEAR
 
-  # (f5hv, f5iv, f5jv))
 
+# (f5ky, f5ly, f5my))
 class mncn_pvct(Variable):
     cerfa_field = {0: u"5KY",
         1: u"5LY",
@@ -828,8 +837,8 @@ class mncn_pvct(Variable):
     label = u"Plus-values non commerciales non professionnelles imposables et plus-values nettes à court terme (régime déclaratif spécial ou micro BNC)"
     definition_period = YEAR
 
-  # (f5ky, f5ly, f5my))
 
+# (f5kr, f5lr, f5mr))
 class mbic_mvlt(Variable):
     cerfa_field = {0: u"5KR",
         1: u"5LR",
@@ -840,8 +849,8 @@ class mbic_mvlt(Variable):
     label = u"Moins-values industrielles et commerciales professionnels à long terme (régime micro entreprise)"
     definition_period = YEAR
 
-  # (f5kr, f5lr, f5mr))
 
+# (f5nr, f5or, f5pr))
 class macc_mvlt(Variable):
     cerfa_field = {0: u"5NR",
         1: u"5OR",
@@ -852,8 +861,8 @@ class macc_mvlt(Variable):
     label = u"Moins-values industrielles et commerciales non professionnelles à long terme (régime micro entreprise)"
     definition_period = YEAR
 
-  # (f5nr, f5or, f5pr))
 
+# (f5kw, f5lw, f5mw))
 class mncn_mvlt(Variable):
     cerfa_field = {0: u"5KW",
         1: u"5LW",
@@ -864,8 +873,8 @@ class mncn_mvlt(Variable):
     label = u"Moins-values non commerciales non professionnelles à long terme (régime déclaratif spécial ou micro BNC)"
     definition_period = YEAR
 
-  # (f5kw, f5lw, f5mw))
 
+# (f5hs, f5is, f5js))
 class mbnc_mvlt(Variable):
     cerfa_field = {0: u"5HS",
         1: u"5IS",
@@ -876,8 +885,8 @@ class mbnc_mvlt(Variable):
     label = u"Moins-values non commerciales professionnelles à long terme (régime déclaratif spécial ou micro BNC)"
     definition_period = YEAR
 
-  # (f5hs, f5is, f5js))
 
+# (f5hx, f5ix, f5jx))
 class frag_pvce(Variable):
     cerfa_field = {0: u"5HX",
         1: u"5IX",
@@ -889,8 +898,8 @@ class frag_pvce(Variable):
     # start_date = date(2007, 1, 1)
     definition_period = YEAR
 
-  # (f5hx, f5ix, f5jx))
 
+# (f5he, f5ie, f5je))
 class arag_pvce(Variable):
     cerfa_field = {0: u"5HE",
         1: u"5IE",
@@ -902,8 +911,8 @@ class arag_pvce(Variable):
     # start_date = date(2007, 1, 1)
     definition_period = YEAR
 
-  # (f5he, f5ie, f5je))
 
+# TODO: vérif <=2012))  # (f5hk, f5lk, f5jk) codent autre chose sur d'autres années),
 class nrag_pvce(Variable):
     cerfa_field = {0: u"5HK",
         1: u"5LK",
@@ -915,8 +924,8 @@ class nrag_pvce(Variable):
     end = '2006-12-31'
     definition_period = YEAR
 
-  # TODO: vérif <=2012))  # (f5hk, f5lk, f5jk) codent autre chose sur d'autres années),
 
+# (f5kq, f5lq, f5mq))
 class mbic_pvce(Variable):
     cerfa_field = {0: u"5KQ",
         1: u"5LQ",
@@ -927,8 +936,8 @@ class mbic_pvce(Variable):
     label = u"Plus-values industrielles et commerciales professionnelles imposables: plus-values de cession taxables à 16% (régime micro entreprise)"
     definition_period = YEAR
 
-  # (f5kq, f5lq, f5mq))
 
+# (f5ke, f5le, f5me))
 class abic_pvce(Variable):
     cerfa_field = {0: u"5KE",
         1: u"5LE",
@@ -939,8 +948,8 @@ class abic_pvce(Variable):
     label = u"Plus-values industrielles et commerciales de cession taxables à 16% avec CGA ou viseur (régime du bénéfice réel)"
     definition_period = YEAR
 
-  # (f5ke, f5le, f5me))
 
+# (f5kk, f5ik, f5mk)) TODO: autre 5KK 2005/20006
 class nbic_pvce(Variable):
     cerfa_field = {0: u"5IK",
         1: u"5KK",
@@ -952,8 +961,8 @@ class nbic_pvce(Variable):
     # start_date = date(2008, 1, 1)
     definition_period = YEAR
 
-  # (f5kk, f5ik, f5mk)) TODO: autre 5KK 2005/20006
 
+# (f5nq, f5oq, f5pq))
 class macc_pvce(Variable):
     cerfa_field = {0: u"5NQ",
         1: u"5OQ",
@@ -964,8 +973,8 @@ class macc_pvce(Variable):
     label = u"Plus-values industrielles et commerciales non professionnelles imposables: plus-values de cession taxables à 16% (régime micro entreprise)"
     definition_period = YEAR
 
-  # (f5nq, f5oq, f5pq))
 
+# (f5ne, f5oe, f5pe))
 class aacc_pvce(Variable):
     cerfa_field = {0: u"5NE",
         1: u"5OE",
@@ -976,8 +985,8 @@ class aacc_pvce(Variable):
     label = u"Plus-values industrielles et commerciales non professionnelles de cession taxables à 16% avec CGA ou viseur (régime du bénéfice réel)"
     definition_period = YEAR
 
-  # (f5ne, f5oe, f5pe))
 
+# (f5nk, f5ok, f5pk)) TODO: 5NK 2005/2006
 class nacc_pvce(Variable):
     cerfa_field = {0: u"5NK",
         1: u"5OK",
@@ -989,8 +998,8 @@ class nacc_pvce(Variable):
     # start_date = date(2009, 1, 1)
     definition_period = YEAR
 
-  # (f5nk, f5ok, f5pk)) TODO: 5NK 2005/2006
 
+# (f5kv, f5lv, f5mv))
 class mncn_pvce(Variable):
     cerfa_field = {0: u"5KV",
         1: u"5LV",
@@ -1001,8 +1010,8 @@ class mncn_pvce(Variable):
     label = u"Plus-values non commerciales non professionnelles de cession taxables à 16% (régime déclaratif spécial ou micro BNC)"
     definition_period = YEAR
 
-  # (f5kv, f5lv, f5mv))
 
+# (f5so, f5nt, f5ot))
 class cncn_pvce(Variable):
     cerfa_field = {0: u"5SO",
         1: u"5NT",
@@ -1014,8 +1023,8 @@ class cncn_pvce(Variable):
     # start_date = date(2006, 1, 1)
     definition_period = YEAR
 
-  # (f5so, f5nt, f5ot))
 
+# (f5hr, f5ir, f5jr))
 class mbnc_pvce(Variable):
     cerfa_field = {0: u"5HR",
         1: u"5IR",
@@ -1026,8 +1035,8 @@ class mbnc_pvce(Variable):
     label = u"Plus-values non commerciales professionnelles de cession taxables à 16% (régime déclaratif spécial ou micro BNC)"
     definition_period = YEAR
 
-  # (f5hr, f5ir, f5jr))
 
+# (f5qd, f5rd, f5sd))
 class abnc_pvce(Variable):
     cerfa_field = {0: u"5QD",
         1: u"5RD",
@@ -1038,8 +1047,8 @@ class abnc_pvce(Variable):
     label = u"Plus-values non commerciaux professionnels de cession taxables à 16% (régime de la déclaration controlée, revenus bénéficiant de l'abattement association agrée ou viseur)"
     definition_period = YEAR
 
-  # (f5qd, f5rd, f5sd))
 
+# (f5qj, f5rj, f5sj)) #TODO 5*J 2005/2006 (qui se transforme en 5*D...)
 class nbnc_pvce(Variable):
     cerfa_field = {0: u"5QJ",
         1: u"5RJ",
@@ -1052,7 +1061,6 @@ class nbnc_pvce(Variable):
     end = '2015-12-31'
     definition_period = YEAR
 
-  # (f5qj, f5rj, f5sj)) #TODO 5*J 2005/2006 (qui se transforme en 5*D...)
 
 class frag_fore(Variable):
     cerfa_field = {0: u"5HD",
@@ -1588,9 +1596,14 @@ class f5sq(Variable):
 
 # TODO: Introduit par mes aides à consolider
 
+# """
 # Input variables
+# """
+
 
 # Input mensuel
+
+
 class tns_auto_entrepreneur_chiffre_affaires(Variable):
     value_type = float
     entity = Individu
@@ -1598,7 +1611,10 @@ class tns_auto_entrepreneur_chiffre_affaires(Variable):
     label = u"Chiffre d'affaires en tant qu'auto-entrepreneur"
     definition_period = MONTH
 
+
 # Input annuel
+
+
 class tns_micro_entreprise_chiffre_affaires(Variable):
     value_type = float
     entity = Individu
@@ -1667,6 +1683,8 @@ class tns_avec_employe(Variable):
 
 
 # Input annuel
+
+
 class tns_benefice_exploitant_agricole(Variable):
     value_type = float
     entity = Individu
@@ -1675,6 +1693,7 @@ class tns_benefice_exploitant_agricole(Variable):
 
 
 # Computed variables
+
 
 class travailleur_non_salarie(Variable):
     label = u"L'individu a une activité professionnelle non salariée"
@@ -1693,7 +1712,7 @@ class travailleur_non_salarie(Variable):
         result = (
             tns_auto_entrepreneur_chiffre_affaires + tns_micro_entreprise_chiffre_affaires +
             tns_autres_revenus + tns_benefice_exploitant_agricole + tns_autres_revenus_chiffre_affaires
-        )
+            )
 
         return result
 
@@ -1741,11 +1760,14 @@ class tns_micro_entreprise_benefice(Variable):
             bareme, tns_micro_entreprise_type_activite, tns_micro_entreprise_chiffre_affaires)
         return benefice
 
+
 # The following formulas take into account 'cotisation sociales'. However, it seems that for all prestations,
-# the 'base ressources' are only using the 'benefice', without deducting the 'cotisation sociales'.
-# Although this rule seems unfair towards independent workers, we are now applying it for all presations and therefore
-# we are not using the following formulas for calculating prestations.
-class tns_auto_entrepreneur_revenus_net(Variable) :
+# the 'base ressources' are only using the 'benefice', without deducting the 'cotisation sociales'.
+# Although this rule seems unfair towards independent workers, we are now applying it for all presations and therefore
+# we are not using the following formulas for calculating prestations.
+
+
+class tns_auto_entrepreneur_revenus_net(Variable):
     value_type = float
     label = u"Revenu d'un auto-entrepreneur"
     entity = Individu
@@ -1766,7 +1788,7 @@ class tns_auto_entrepreneur_revenus_net(Variable) :
         return revenus
 
 
-class tns_micro_entreprise_revenus_net(Variable) :
+class tns_micro_entreprise_revenus_net(Variable):
     value_type = float
     label = u"Revenu d'un TNS dans une micro-entreprise"
     entity = Individu

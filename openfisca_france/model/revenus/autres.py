@@ -4,7 +4,8 @@ from openfisca_france.model.base import *  # noqa analysis:ignore
 
 
 class pensions_alimentaires_percues(Variable):
-    cerfa_field = {0: u"1AO",
+    cerfa_field = {
+        0: u"1AO",
         1: u"1BO",
         2: u"1CO",
         3: u"1DO",
@@ -26,6 +27,7 @@ class pensions_alimentaires_percues_decl(Variable):
     label = u"Pension déclarée"
     definition_period = YEAR
 
+
 class pensions_alimentaires_versees_individu(Variable):
     value_type = float
     entity = Individu
@@ -33,12 +35,14 @@ class pensions_alimentaires_versees_individu(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
+
 class gains_exceptionnels(Variable):
     value_type = float
     entity = Individu
     label = u"Gains exceptionnels"
     definition_period = MONTH
     set_input = set_input_divide_by_period
+
 
 class allocation_aide_retour_emploi(Variable):
     value_type = float
@@ -135,7 +139,8 @@ class f8vl(Variable):
 
 
 class f8vm(Variable):
-    cerfa_field = {0: u"8VM",
+    cerfa_field = {
+        0: u"8VM",
         1: u"8WM",
         2: u"8UM",
         }
