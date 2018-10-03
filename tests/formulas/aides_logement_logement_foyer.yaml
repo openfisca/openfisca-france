@@ -1,0 +1,8 @@
+- name: "cas 1 "
+  period: 2017-10
+  input_variables:
+    etudiant: true
+    loyer: 200
+    zone_apl: zone_2
+
+  output_variables:
