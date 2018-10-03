@@ -14,6 +14,7 @@ class taux_versement_transport(Variable):
     entity = Individu
     label = u""
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula(individu, period, parameters):
         depcom_entreprise = individu('depcom_entreprise', period)
