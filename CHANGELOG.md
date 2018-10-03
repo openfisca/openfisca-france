@@ -1,7 +1,16 @@
 # Changelog
 
+## 24.14.0
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2018.
+* Zones impactées : prestations/reduction_loyer_solidarite.
+* Détails :
+  - Corrige la prise en compte des ressources dans le calcul de la RLS
+  - Un nouveau cas de test était en erreur suite à l'utilisation de ressources recombinée en annuel comparées à un plafond mensuel.
+
 ## 24.13.0 [#1138](https://github.com/openfisca/openfisca-france/pull/1138)
- * Évolution du système socio-fiscal.
+* Évolution du système socio-fiscal.
 * Périodes concernées : toutes.
 * Zones impactées :
   - `model\prestations\aides_logement`
