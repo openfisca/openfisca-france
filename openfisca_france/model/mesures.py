@@ -328,25 +328,22 @@ class revenus_travail_super_bruts_menage(Variable):
         '''
         salaire_net_i = menage.members('salaire_net', period, options = [ADD])
         rpns_i = menage.members('rpns', period)
-        cotisations_employeur_i = menage.members('cotisations_employeur', period, options = [ADD])
-        cotisations_salariales_i = menage.members('cotisations_salariales', period, options = [ADD])
         csg_imposable_salaire_i = menage.members('csg_imposable_salaire', period, options = [ADD])
         csg_deductible_salaire_i = menage.members('csg_deductible_salaire', period, options = [ADD])
         crds_salaire_i = menage.members('crds_salaire', period, options = [ADD])
 
         salaire_net = menage.sum(salaire_net_i)
         rpns = menage.sum(rpns_i)
-        cotisations_employeur = menage.sum(cotisations_employeur_i)
-        cotisations_salariales = menage.sum(cotisations_salariales_i)
         csg_imposable_salaire = menage.sum(csg_imposable_salaire_i)
         csg_deductible_salaire = menage.sum(csg_deductible_salaire_i)
         crds_salaire = menage.sum(crds_salaire_i)
 
+        cotisations_sociales_menage = menage('cotisations_sociales_menage', period)
+
         return (
             salaire_net
             + rpns
-            - cotisations_employeur # On veut ajouter le montant de cotisations. Vu que ce montant est négatif, on met un "moins". Idem pour les autres items ci-dessous
-            - cotisations_salariales
+            - cotisations_sociales_menage # On veut ajouter le montant de cotisations. Vu que ce montant est négatif, on met un "moins". Idem pour les autres items ci-dessous
             - csg_imposable_salaire
             - csg_deductible_salaire
             - crds_salaire
