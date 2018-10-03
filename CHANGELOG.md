@@ -1,5 +1,18 @@
 # Changelog
 
+## 24.13.0 [#1138](https://github.com/openfisca/openfisca-france/pull/1138)
+ * Évolution du système socio-fiscal.
+* Périodes concernées : toutes.
+* Zones impactées :
+  - `model\prestations\aides_logement`
+* Détails :
+  - Suppression des aides au logement dans le cadre de l'accession à la propriété, sauf exception.
+  - Ajout des variables:
+   - `TypeEtatLogement`
+   - `etat_logement`
+   - `aide_logement_date_pret_conventionne`
+   - `aides_logement_primo_accedant_eligibilite`
+
 ### 24.12.3 [#1137](https://github.com/openfisca/openfisca-france/pull/1137)
 
 * Changement mineur.

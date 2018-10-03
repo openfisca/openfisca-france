@@ -9,7 +9,7 @@ import logging
 import pkg_resources
 import sys
 
-from numpy import ceil, datetime64, fromiter, int16, logical_or as or_, logical_and as and_, nditer
+from numpy import ceil, datetime64, fromiter, int16, logical_or as or_, logical_and as and_, logical_not as not_
 
 import openfisca_france
 from openfisca_core.periods import Instant
@@ -20,7 +20,67 @@ from openfisca_france.model.prestations.prestations_familiales.base_ressource im
 
 log = logging.getLogger(__name__)
 
+
 zone_apl_by_depcom = None
+
+
+class TypeEtatLogement(Enum):
+    order__ = ' non_renseigne construction_acquisition_logement_neuf travaux_amelioration_residence_principale agrandissement_amenagement acquisition_amelioration acquisition_sans_amelioration_logement_existant amelioration'  # Needed to preserve the enum order in Python 2
+    non_renseigne = u"Non renseigné"
+    # Logement neuf
+    construction_acquisition_logement_neuf = u"Construction Acquisition d'un logement NEUF"
+    # Logement ancien
+    acquisition_amelioration = u"Acquisition Amélioration"
+    acquisition_sans_amelioration_logement_existant = u"Acquisition sans amélioration d'un logement existant"
+    amelioration = u"Amélioration"
+    agrandissement_amenagement = u"Agrandissement Aménagement"
+
+
+class etat_logement(Variable):
+    value_type = Enum
+    possible_values = TypeEtatLogement  # defined in model/base.py
+    entity = Menage
+    default_value = TypeEtatLogement.non_renseigne
+    label = u"Etat du logement"
+    reference = u"http://www.msa.fr/lfy/documents/11566/48471/Certificat+de+pret+pour+APL.pdf"
+    set_input = set_input_dispatch_by_period
+    definition_period = MONTH
+
+
+class aide_logement_date_pret_conventionne(Variable):
+    value_type = date
+    default_value = date.min
+    entity = Menage
+    label = u"Date de contraction du prêt conventionné "
+    definition_period = ETERNITY
+
+
+class aides_logement_primo_accedant_eligibilite(Variable):
+    value_type = bool
+    default_value = False
+    entity = Menage
+    reference = u"https://www.legifrance.gouv.fr/eli/loi/2017/12/30/CPAX1723900L/jo/article_126"
+    definition_period = MONTH
+
+    def formula(menage, period):
+        zone_apl = menage('zone_apl', period)
+        aide_logement_etat_logement = menage('etat_logement', period)
+        aide_logement_date_pret_conventionne = menage('aide_logement_date_pret_conventionne', period)
+        est_logement_ancien = (
+            (aide_logement_etat_logement == TypeEtatLogement.acquisition_amelioration)
+            + (aide_logement_etat_logement == TypeEtatLogement.acquisition_sans_amelioration_logement_existant)
+            + (aide_logement_etat_logement == TypeEtatLogement.amelioration)
+            + (aide_logement_etat_logement == TypeEtatLogement.agrandissement_amenagement)
+            )
+
+        est_zone_3 = (zone_apl == TypesZoneApl.zone_3)
+        date_pret_conventionne_avant_2018_01 = (aide_logement_date_pret_conventionne < date(2018, 1, 1))
+        date_pret_conventionne_avant_2020_01 = (aide_logement_date_pret_conventionne < date(2020, 1, 1))
+
+        return select(
+            [date_pret_conventionne_avant_2018_01, date_pret_conventionne_avant_2020_01],
+            [True, (est_logement_ancien * est_zone_3)], default=False
+            )
 
 
 class al_nb_personnes_a_charge(Variable):
@@ -102,7 +162,6 @@ class aide_logement_base_ressources_patrimoine(Variable):
         '''
         livret_a_i = famille.members('livret_a', period)
         livret_a = famille.sum(livret_a_i)
-        taux_livret_a = parameters(period).epargne.livret_a.taux
         epargne_revenus_non_imposables_i = famille.members('epargne_revenus_non_imposables', period)
         epargne_revenus_non_imposables = famille.sum(epargne_revenus_non_imposables_i)
         epargne_revenus_imposables_i = famille.members('epargne_revenus_imposables', period)
@@ -137,10 +196,10 @@ class aide_logement_base_ressources_patrimoine(Variable):
         seuil_valorisation = parameters(period).prestations.aides_logement.patrimoine.seuil_valorisation
 
         return not_(est_locataire_foyer) * not_(famille_percoit_aah) * not_(famille_percoit_aeeh) * (
-                (patrimoine > seuil_valorisation) * (
-                    + capitaux_non_productifs * abattements.taux_interet_forfaitaire_epargne_non_imposable
-                    + valeur_locative_immo_non_loue * abattements.abattement_valeur_locative_immo_non_loue
-                    + valeur_locative_terrains_non_loues * abattements.abattement_valeur_locative_terrains_non_loues
+            (patrimoine > seuil_valorisation) * (
+                + capitaux_non_productifs * abattements.taux_interet_forfaitaire_epargne_non_imposable
+                + valeur_locative_immo_non_loue * abattements.abattement_valeur_locative_immo_non_loue
+                + valeur_locative_terrains_non_loues * abattements.abattement_valeur_locative_terrains_non_loues
                 )
             )
 
@@ -303,7 +362,7 @@ class aide_logement_base_ressources_defaut(Variable):
 
         # Revenus du foyer fiscal
         aide_logement_base_revenus_fiscaux = (
-            famille.demandeur.foyer_fiscal('aide_logement_base_revenus_fiscaux', period.n_2) *  demandeur_declarant_principal +
+            famille.demandeur.foyer_fiscal('aide_logement_base_revenus_fiscaux', period.n_2) * demandeur_declarant_principal +
             famille.conjoint.foyer_fiscal('aide_logement_base_revenus_fiscaux', period.n_2) * conjoint_declarant_principal
             )
 
@@ -332,21 +391,26 @@ class aide_logement_base_revenus_fiscaux(Variable):
         u"https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=9A3FFF4142B563EB5510DDE9F2870BF4.tplgfr41s_2?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000020080073&dateTexte=20171222&categorieLien=cid#LEGIARTI000020080073",
         u"Code de la sécurité sociale - Article D542-10",
         u"https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=F1CF3B807CE064C9F518B442EF8C856F.tpdila22v_1?idArticle=LEGIARTI000020986758&cidTexte=LEGITEXT000006073189&dateTexte=20170803&categorieLien=id&oldAction=&nbResultRech="
-    ]
+        ]
     definition_period = YEAR
 
     def formula(foyer_fiscal, period):
         rente_viagere_titre_onereux_net = foyer_fiscal('rente_viagere_titre_onereux_net', period)
         pensions_alimentaires_versees = foyer_fiscal('pensions_alimentaires_versees', period)
-        rev_cat_rvcm = foyer_fiscal('rev_cat_rvcm', period) # Supprimée à partir de 2018
-        revenus_capitaux_prelevement_liberatoire = foyer_fiscal('revenus_capitaux_prelevement_liberatoire', period, options = [ADD]) # Supprimée à partir de 2018
-        revenus_capitaux_prelevement_forfaitaire_unique_ir = foyer_fiscal('revenus_capitaux_prelevement_forfaitaire_unique_ir', period, options = [ADD]) # Existe à partir de 2018
+        # Supprimée à partir de 2018
+        rev_cat_rvcm = foyer_fiscal('rev_cat_rvcm', period)
+        # Supprimée à partir de 2018
+        revenus_capitaux_prelevement_liberatoire = foyer_fiscal('revenus_capitaux_prelevement_liberatoire', period, options = [ADD])
+        # Apparait à partir de 2018
+        revenus_capitaux_prelevement_forfaitaire_unique_ir = foyer_fiscal('revenus_capitaux_prelevement_forfaitaire_unique_ir', period, options = [ADD])
         fon = foyer_fiscal('fon', period)
         f7ga = foyer_fiscal('f7ga', period)
         f7gb = foyer_fiscal('f7gb', period)
         f7gc = foyer_fiscal('f7gc', period)
-        rev_cat_pv = foyer_fiscal('rev_cat_pv', period) # est supprimée à partir de 2018
-        plus_values_prelevement_forfaitaire_unique_ir = foyer_fiscal('plus_values_prelevement_forfaitaire_unique_ir', period) # Apparait à partir de 2018
+        # Supprimée à partir de 2018
+        rev_cat_pv = foyer_fiscal('rev_cat_pv', period)
+        # Apparait à partir de 2018
+        plus_values_prelevement_forfaitaire_unique_ir = foyer_fiscal('plus_values_prelevement_forfaitaire_unique_ir', period)
 
         abat_spe = foyer_fiscal('abat_spe', period)
         caseP = foyer_fiscal('caseP', period)
@@ -528,7 +592,6 @@ class aide_logement_loyer_retenu(Variable):
     definition_period = MONTH
 
     def formula(famille, period, parameters):
-        al = parameters(period).prestations.aides_logement
         loyer_plafond = famille('aide_logement_loyer_plafond', period)
         loyer_reel = famille('aide_logement_loyer_reel', period)
 
@@ -740,11 +803,11 @@ class aide_logement_montant_brut_avant_degressivite(Variable):
         al = parameters(period).prestations.aides_logement
         statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
         locataire = (
-                    (statut_occupation_logement == TypesStatutOccupationLogement.locataire_hlm)
-                    + (statut_occupation_logement == TypesStatutOccupationLogement.locataire_vide)
-                    + (statut_occupation_logement == TypesStatutOccupationLogement.locataire_meuble)
-                    + (statut_occupation_logement == TypesStatutOccupationLogement.locataire_foyer)
-        )
+            (statut_occupation_logement == TypesStatutOccupationLogement.locataire_hlm)
+            + (statut_occupation_logement == TypesStatutOccupationLogement.locataire_vide)
+            + (statut_occupation_logement == TypesStatutOccupationLogement.locataire_meuble)
+            + (statut_occupation_logement == TypesStatutOccupationLogement.locataire_foyer)
+            )
         accedant = (statut_occupation_logement == TypesStatutOccupationLogement.primo_accedant)
 
         loyer_retenu = famille('aide_logement_loyer_retenu', period)
@@ -757,7 +820,9 @@ class aide_logement_montant_brut_avant_degressivite(Variable):
         montant = select([locataire, accedant], [montant_locataire, montant_accedants])
 
         # Montant minimal de versement il s'applique sur l'ALS et l'ALF et non pas sur l'APL
-        montant = (montant * (montant >= al.al_min.montant_min_mensuel.montant_min_apl_al) * ( statut_occupation_logement != TypesStatutOccupationLogement.locataire_hlm)) + (montant * (statut_occupation_logement == TypesStatutOccupationLogement.locataire_hlm)) # Montant minimal de versement
+        locataire_hlm = statut_occupation_logement == TypesStatutOccupationLogement.locataire_hlm
+        minimum_atteint = montant >= al.al_min.montant_min_mensuel.montant_min_apl_al
+        montant = (montant * minimum_atteint * not_(locataire_hlm)) + (montant * locataire_hlm)
 
         return montant
 
@@ -822,6 +887,7 @@ class aide_logement_montant_brut(Variable):
 
         return aide_logement_apres_abattement_forfaitaire
 
+
 class aide_logement_montant_brut_crds(Variable):
     value_type = float
     entity = Famille
@@ -839,10 +905,11 @@ class aide_logement_montant_brut_crds(Variable):
         statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
 
         taux_rls = rls.fraction_baisse_aide_logement
-        rls_apl = reduction_loyer_solidarite * taux_rls * (
-                statut_occupation_logement == TypesStatutOccupationLogement.locataire_hlm)
+        locataire_hlm = statut_occupation_logement == TypesStatutOccupationLogement.locataire_hlm
+        rls_apl = reduction_loyer_solidarite * taux_rls * locataire_hlm
         montant = max_(0, (aide_logement_montant_brut - rls_apl))
         return montant
+
 
 class aide_logement_montant(Variable):
     value_type = float
@@ -897,6 +964,7 @@ class als_non_etudiant(Variable):
             no_parent_etudiant * aide_logement_montant
             )
 
+
 class als_etudiant(Variable):
     calculate_output = calculate_output_add
     value_type = float
@@ -917,7 +985,8 @@ class als_etudiant(Variable):
         return (
             (al_nb_pac == 0) * (statut_occupation_logement != 3) * not_(proprietaire_proche_famille) *
             parent_etudiant * aide_logement_montant
-        )
+            )
+
 
 class als(Variable):
     calculate_output = calculate_output_add
@@ -1043,7 +1112,7 @@ class zone_apl(Variable):
             (zone == 1, zone == 2, zone == 3),
             # The .index is not striclty necessary, but it improves perfomances by avoiding a later encoding
             (TypesZoneApl.zone_1.index, TypesZoneApl.zone_2.index, TypesZoneApl.zone_3.index)
-        )
+            )
 
 
 def preload_zone_apl():
@@ -1072,6 +1141,7 @@ def preload_zone_apl():
             for subcommune_depcom, commune_depcom in commune_depcom_by_subcommune_depcom.items():
                 zone_apl_by_depcom[subcommune_depcom] = zone_apl_by_depcom[commune_depcom]
 
+
 class aides_logement_primo_accedant(Variable):
     value_type = float
     entity = Famille
@@ -1080,6 +1150,7 @@ class aides_logement_primo_accedant(Variable):
     definition_period = MONTH
 
     def formula_2007_07(famille, period, parameters):
+        aides_logement_primo_accedant_eligibilite = famille.demandeur.menage('aides_logement_primo_accedant_eligibilite', period)
         loyer = famille.demandeur.menage('loyer', period)
         plafond_mensualite = famille('aides_logement_primo_accedant_plafond_mensualite', period)
         L = min_(loyer, plafond_mensualite)
@@ -1087,7 +1158,8 @@ class aides_logement_primo_accedant(Variable):
         K = famille('aides_logement_primo_accedant_k', period)
         Lo = famille('aides_logement_primo_accedant_loyer_minimal', period)
 
-        return (L > 0) * K * max_(0, (L + C - Lo))
+        return aides_logement_primo_accedant_eligibilite * ((L > 0) * K * max_(0, (L + C - Lo)))
+
 
 class aides_logement_primo_accedant_k(Variable):
     value_type = float
@@ -1102,9 +1174,10 @@ class aides_logement_primo_accedant_k(Variable):
         R = famille('aides_logement_primo_accedant_ressources', period)
         N = famille('aides_logement_primo_accedant_nb_part', period)
 
-        return coef_k - ( R / (multi_n * N))
+        return coef_k - (R / (multi_n * N))
 
-class  aides_logement_primo_accedant_nb_part(Variable):
+
+class aides_logement_primo_accedant_nb_part(Variable):
     value_type = float
     entity = Famille
     label = u"Allocation logement pour les primo-accédants nombre de part"
@@ -1117,16 +1190,17 @@ class  aides_logement_primo_accedant_nb_part(Variable):
         couple = famille('al_couple', period)
 
         return (
-           prestations.al_param_accal.n_0_personnes_a_charge.isole * not_(couple) * (al_nb_pac == 0) +
-           prestations.al_param_accal.n_0_personnes_a_charge.menage * couple * (al_nb_pac == 0) +
-           prestations.al_param.parametre_n['1_personne_a_charge'] * (al_nb_pac == 1) +
-           prestations.al_param.parametre_n['2_personnes_a_charge'] * (al_nb_pac == 2) +
-           prestations.al_param.parametre_n['3_personnes_a_charge'] * (al_nb_pac == 3) +
-           prestations.al_param.parametre_n['4_personnes_a_charge'] * (al_nb_pac >= 4) +
-           prestations.al_param.majoration_n_par_personne_a_charge_supplementaire * (al_nb_pac > 4) * (al_nb_pac - 4)
-         )
+            prestations.al_param_accal.n_0_personnes_a_charge.isole * not_(couple) * (al_nb_pac == 0) +
+            prestations.al_param_accal.n_0_personnes_a_charge.menage * couple * (al_nb_pac == 0) +
+            prestations.al_param.parametre_n['1_personne_a_charge'] * (al_nb_pac == 1) +
+            prestations.al_param.parametre_n['2_personnes_a_charge'] * (al_nb_pac == 2) +
+            prestations.al_param.parametre_n['3_personnes_a_charge'] * (al_nb_pac == 3) +
+            prestations.al_param.parametre_n['4_personnes_a_charge'] * (al_nb_pac >= 4) +
+            prestations.al_param.majoration_n_par_personne_a_charge_supplementaire * (al_nb_pac > 4) * (al_nb_pac - 4)
+            )
 
-class  aides_logement_primo_accedant_loyer_minimal(Variable):
+
+class aides_logement_primo_accedant_loyer_minimal(Variable):
     value_type = float
     entity = Famille
     label = u"Allocation logement pour les primo-accédants loyer minimal"
@@ -1141,6 +1215,7 @@ class  aides_logement_primo_accedant_loyer_minimal(Variable):
         N = famille('aides_logement_primo_accedant_nb_part', period)
 
         return (bareme.calc(baseRessource / N) * N + majoration_loyer) / 12
+
 
 class aides_logement_primo_accedant_plafond_mensualite(Variable):
     value_type = float
@@ -1159,17 +1234,18 @@ class aides_logement_primo_accedant_plafond_mensualite(Variable):
         couple = famille('al_couple', period)
 
         return (
-           plafonds.personne_isolee_sans_enfant * not_(couple) * (al_nb_pac == 0) +
-           plafonds.menage_seul * couple * (al_nb_pac == 0) +
-           plafonds.menage_ou_isole_avec_1_enfant * (al_nb_pac == 1) +
-           plafonds.menage_ou_isole_avec_2_enfants * (al_nb_pac == 2) +
-           plafonds.menage_ou_isole_avec_3_enfants * (al_nb_pac == 3) +
-           plafonds.menage_ou_isole_avec_4_enfants * (al_nb_pac == 4) +
-           plafonds.menage_ou_isole_avec_5_enfants * (al_nb_pac >= 5) +
-           plafonds.menage_ou_isole_par_enfant_en_plus * (al_nb_pac > 5) * (al_nb_pac - 5)
-         )
+            plafonds.personne_isolee_sans_enfant * not_(couple) * (al_nb_pac == 0) +
+            plafonds.menage_seul * couple * (al_nb_pac == 0) +
+            plafonds.menage_ou_isole_avec_1_enfant * (al_nb_pac == 1) +
+            plafonds.menage_ou_isole_avec_2_enfants * (al_nb_pac == 2) +
+            plafonds.menage_ou_isole_avec_3_enfants * (al_nb_pac == 3) +
+            plafonds.menage_ou_isole_avec_4_enfants * (al_nb_pac == 4) +
+            plafonds.menage_ou_isole_avec_5_enfants * (al_nb_pac >= 5) +
+            plafonds.menage_ou_isole_par_enfant_en_plus * (al_nb_pac > 5) * (al_nb_pac - 5)
+            )
 
-class  aides_logement_primo_accedant_ressources(Variable):
+
+class aides_logement_primo_accedant_ressources(Variable):
     value_type = float
     entity = Famille
     label = u"Allocation logement pour les primo-accédants ressources"
