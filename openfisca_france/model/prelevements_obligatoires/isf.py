@@ -2,11 +2,13 @@
 
 from __future__ import division
 
-from openfisca_france.model.base import *  # noqa analysis:ignore
+from openfisca_france.model.base import *
 
 # Variables apparaissant dans la feuille de déclaration de patrimoine soumis à l'ISF
 
-## Immeubles bâtis
+# Immeubles bâtis
+
+
 class b1ab(Variable):
     value_type = int
     unit = 'currency'
@@ -23,7 +25,7 @@ class b1ac(Variable):
     definition_period = YEAR
 
 
-## non bâtis
+# non bâtis
 class b1bc(Variable):
     value_type = int
     unit = 'currency'
@@ -56,7 +58,7 @@ class b1bk(Variable):
     definition_period = YEAR
 
 
-## droits sociaux- valeurs mobilières-liquidités- autres meubles
+# droits sociaux- valeurs mobilières-liquidités- autres meubles
 class b1cl(Variable):
     value_type = int
     unit = 'currency'
@@ -119,7 +121,7 @@ class b1co(Variable):
 #    b1ck
 
 
-## passifs et autres réductions
+# passifs et autres réductions
 class b2gh(Variable):
     value_type = int
     unit = 'currency'
@@ -128,7 +130,7 @@ class b2gh(Variable):
     definition_period = YEAR
 
 
-## réductions
+# réductions
 class b2mt(Variable):
     value_type = int
     unit = 'currency'
@@ -185,7 +187,7 @@ class b2nc(Variable):
     definition_period = YEAR
 
 
-##  montant impôt acquitté hors de France
+# montant impôt acquitté hors de France
 class b4rs(Variable):
     value_type = int
     unit = 'currency'
@@ -194,7 +196,7 @@ class b4rs(Variable):
     definition_period = YEAR
 
 
-## BOUCLIER FISCAL
+# BOUCLIER FISCAL
 
 class rev_or(Variable):
     value_type = int
@@ -230,7 +232,6 @@ class etr(Variable):
     entity = Individu
     definition_period = MONTH
     set_input = set_input_divide_by_period
-
 
 
 # Calcul de l'impôt de solidarité sur la fortune
@@ -297,7 +298,7 @@ class isf_actions_sal(Variable):  # # non présent en 2005##
         b1cl = foyer_fiscal('b1cl', period)
         P = parameters(period).taxation_capital.isf.droits_soc
 
-        return  b1cl * P.taux1
+        return b1cl * P.taux1
 
 
 class isf_droits_sociaux(Variable):
@@ -393,7 +394,6 @@ class isf_reduc_pac(Variable):
         return P.reduc_enf_garde * nb_pac + (P.reduc_enf_garde / 2) * nbH
 
 
-
 class isf_inv_pme(Variable):
     value_type = float
     entity = FoyerFiscal
@@ -418,7 +418,6 @@ class isf_inv_pme(Variable):
         fip = b2mx * P.taux_invest_direct_soc_holding
         fcpi = b2na * P.taux_invest_direct_soc_holding
 
-
         return holdings + fip + fcpi + inv_dir_soc
 
 
@@ -433,6 +432,7 @@ class isf_org_int_gen(Variable):
         P = parameters(period).taxation_capital.isf.reduc_invest_don
 
         return b2nc * P.taux_don_interet_general
+
 
 class isf_avant_plaf(Variable):
     value_type = float
@@ -512,9 +512,9 @@ class revetproduits(Variable):
         rag_i = foyer_fiscal.members('rag', period)
         rpns_exon_i = foyer_fiscal.members('rpns_exon', period)
         rpns_pvct_i = foyer_fiscal.members('rpns_pvct', period)
-        revenus_capitaux_prelevement_bareme = foyer_fiscal('revenus_capitaux_prelevement_bareme', period, options = [ADD]) # Supprimée à partir de 2018
-        revenus_capitaux_prelevement_liberatoire = foyer_fiscal('revenus_capitaux_prelevement_liberatoire', period, options = [ADD]) # Supprimée à partir de 2018
-        revenus_capitaux_prelevement_forfaitaire_unique_ir = foyer_fiscal('revenus_capitaux_prelevement_forfaitaire_unique_ir', period, options = [ADD]) # Existe à partir de 2018
+        revenus_capitaux_prelevement_bareme = foyer_fiscal('revenus_capitaux_prelevement_bareme', period, options = [ADD])  # Supprimée à partir de 2018
+        revenus_capitaux_prelevement_liberatoire = foyer_fiscal('revenus_capitaux_prelevement_liberatoire', period, options = [ADD])  # Supprimée à partir de 2018
+        revenus_capitaux_prelevement_forfaitaire_unique_ir = foyer_fiscal('revenus_capitaux_prelevement_forfaitaire_unique_ir', period, options = [ADD])  # Existe à partir de 2018
         prelevement_forfaitaire_liberatoire = foyer_fiscal('prelevement_forfaitaire_liberatoire', period)
         prelevement_forfaitaire_unique_ir = foyer_fiscal('prelevement_forfaitaire_unique_ir', period)
         P = parameters(period).taxation_capital.isf.plafonnement
@@ -689,20 +689,21 @@ class bouclier_rev(Variable):
         csg_patrimoine_deductible_ir = foyer_fiscal('csg_patrimoine_deductible_ir', period)
         rvcm_plus_abat = foyer_fiscal('rvcm_plus_abat', period)
         revenus_capitaux_prelevement_liberatoire = foyer_fiscal('revenus_capitaux_prelevement_liberatoire', period)
-        rev_exo = foyer_fiscal('rev_exo', period)
+        rev_exo = foyer_fiscal('rev_exo', period)  # noqa F841
         rev_or = foyer_fiscal('rev_or', period)
         pensions_alimentaires_deduites = foyer_fiscal('pensions_alimentaires_deduites', period)
         cd_eparet = foyer_fiscal('cd_eparet', period)
 
-        maj_cga_i = foyer_fiscal.members('maj_cga', period)
-        maj_cga = foyer_fiscal.sum(maj_cga)
+        maj_cga_i = foyer_fiscal.members('maj_cga', period)  # noqa F841
+        maj_cga = foyer_fiscal.sum(maj_cga)  # noqa F841
 
         # TODO: réintégrer les déficits antérieur
         # TODO: intégrer les revenus soumis au prélèvement libératoire
         # deficit_ante =
 
         # # Revenus
-        frac_rvcm_rfr = 0.7 * rvcm_plus_abat  # TODO: UNUSED ?
+        # TODO: UNUSED ?
+        frac_rvcm_rfr = 0.7 * rvcm_plus_abat  # noqa F841
         # # revenus distribués?
         # # A majorer de l'abatt de 40% - montant brut en cas de PFL
         # # pour le calcul de droit à restitution : prendre 0.7*montant_brut_rev_dist_soumis_au_barème
@@ -763,7 +764,7 @@ class bouclier_imp_gen(Variable):  # # ajouter CSG- CRDS
         csg_deductible_retraite = foyer_fiscal.sum(csg_deductible_retraite_i)
         csg_imposable_retraite = foyer_fiscal.sum(csg_imposable_retraite_i)
 
-        taxe_habitation_i = foyer_fiscal.members.menage('taxe_habitation', period)
+        taxe_habitation_i = foyer_fiscal.members.menage('taxe_habitation', period)  # noqa F841
         taxe_habitation = foyer_fiscal.sum(taxe_habitation, role = Menage.PERSONNE_DE_REFERENCE)
 
         # # ajouter Prelèvements sources/ libé

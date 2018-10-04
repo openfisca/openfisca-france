@@ -6,7 +6,7 @@ from __future__ import division
 import logging
 
 
-from openfisca_france.model.base import *  # noqa analysis:ignore
+from openfisca_france.model.base import *
 
 
 log = logging.getLogger(__name__)

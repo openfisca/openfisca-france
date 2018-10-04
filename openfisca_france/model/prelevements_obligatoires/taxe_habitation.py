@@ -2,7 +2,8 @@
 
 from __future__ import division
 
-from openfisca_france.model.base import *  # noqa analysis:ignore
+from openfisca_france.model.base import *
+
 
 class exonere_taxe_habitation(Variable):
     value_type = bool
@@ -44,7 +45,6 @@ class exonere_taxe_habitation(Variable):
         rfr_i = menage.members.foyer_fiscal('rfr', period)
         rfr = menage.sum(rfr_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
 
-
         seuil_th = P.plaf_th_1 + P.plaf_th_supp * (max_(0, (nbptr - 1) / 2))
         elig = ((age >= 60) + (statut_marital == TypesStatutMarital.veuf)) * (isf_tot <= 0) * (rfr < seuil_th) + (asi > 0) + (aspa > 0) + (aah > 0)
         return not_(elig)
@@ -66,7 +66,7 @@ class taxe_habitation(Variable):
         nombre_enfants_majeurs_celibataires_sans_enfant = menage('nombre_enfants_majeurs_celibataires_sans_enfant', period)
 
         rfr_i = menage.members.foyer_fiscal('rfr', last_year)
-        rfr = menage.sum(rfr_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
+        rfr = menage.sum(rfr_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)  # noqa F841
 
         # Variables TODO: à inclure dans la fonction
         valeur_locative_brute = 0
@@ -110,8 +110,12 @@ class taxe_habitation(Variable):
         taux_2_premiers = taux_minimal_2_premiers + majoration_2_premiers
         taux_3_et_plus = taux_minimal_3_et_plus + majoration_3_et_plus
 
-        abattement_obligatoire = (min_(pac_enf + pac_asc, 2) * taux_2_premiers
-           + max_(pac_enf + pac_asc - 2, 0) * taux_3_et_plus) * valeur_locative_moyenne
+        abattement_obligatoire = (
+            min_(pac_enf + pac_asc, 2)
+            * taux_2_premiers
+            + max_(pac_enf + pac_asc - 2, 0)
+            * taux_3_et_plus
+            ) * valeur_locative_moyenne
 
         #   abattements facultatifs à la base :
         #     abattement faculattif général
@@ -128,17 +132,17 @@ class taxe_habitation(Variable):
         #
         # Pour bénéficier de cet abattement, les contribuables doivent remplir deux conditions :
 
-        abattement_special_modeste = (valeur_locative_brute <= ((seuil_elig_special_modeste + seuil_elig_special_modeste_add * (pac_enf + pac_asc)) * valeur_locative_moyenne)
-     #       ) * (rfr <= 100  # TODO
+        abattement_special_modeste = (
+            valeur_locative_brute <= ((seuil_elig_special_modeste + seuil_elig_special_modeste_add * (pac_enf + pac_asc)) * valeur_locative_moyenne)
+            #       ) * (rfr <= 100  # TODO
             ) * taux_special_modeste * valeur_locative_moyenne
 
         #     abattement facultatif en faveur des personnes handicapées ou invalides.
         abattement_special_invalide = 0 * taux_special_invalide  # Tous les habitants doivent êtres invalides
 
-        base_nette = valeur_locative_brute - (
-            abattement_obligatoire + abattement_general + abattement_special_modeste + abattement_special_invalide)
+        base_nette = valeur_locative_brute - (abattement_obligatoire + abattement_general + abattement_special_modeste + abattement_special_invalide)
 
-        cotisation_brute = base_nette * taux_imposition
+        cotisation_brute = base_nette * taux_imposition  # noqa F841
 
         # Frais de gestion
         #     FRAIS DE GESTION DE LA
@@ -158,10 +162,10 @@ class taxe_habitation(Variable):
         # taxes spéciales d’équipement (TSE).
         # (1) Dont frais de dégrèvement et de non-valeurs : 2 %.
         # (2) Dont frais de dégrèvement et de non-valeurs : 3,6 %.
-        frais_gestion = 0
+        frais_gestion = 0  # noqa F841
 
         # Prélèvement pour base élevée et sur les résidences secondaires
-        prelevement_residence_secondaire = 0  # TODO
-
+        # TODO
+        prelevement_residence_secondaire = 0  # noqa F841
 
         return - 0 * not_(exonere_taxe_habitation)

@@ -2,7 +2,7 @@
 
 from __future__ import division
 import logging
-from openfisca_france.model.base import *  # noqa analysis:ignore
+from openfisca_france.model.base import *
 
 log = logging.getLogger(__name__)
 
@@ -34,6 +34,7 @@ class csg(Variable):
             + csg_revenus_capital_projetee
             )
 
+
 class crds(Variable):
     value_type = float
     entity = Individu
@@ -56,4 +57,3 @@ class crds(Variable):
         crds_revenus_capital = individu.foyer_fiscal('crds_revenus_capital', period)
         crds_revenus_capital_projetee = crds_revenus_capital * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
         return crds_individu + crds_famille_projetes + crds_revenus_capital_projetee
-

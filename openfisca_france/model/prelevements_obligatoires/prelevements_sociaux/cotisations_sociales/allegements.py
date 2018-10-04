@@ -9,11 +9,8 @@ from numpy import (
     busday_count as original_busday_count, datetime64, logical_or as or_, logical_and as and_, timedelta64
     )
 
-from openfisca_core import periods
-
-from openfisca_france.model.base import *  # noqa analysis:ignore
+from openfisca_france.model.base import *
 from openfisca_france.assets.holidays import holidays
-
 
 log = logging.getLogger(__name__)
 
@@ -56,7 +53,7 @@ class coefficient_proratisation(Variable):
         contrat_de_travail_fin = individu('contrat_de_travail_fin', period)
 
         # Volume des heures rémunérées à un forfait heures
-        forfait_heures_remunerees_volume = individu('forfait_heures_remunerees_volume', period)
+        forfait_heures_remunerees_volume = individu('forfait_heures_remunerees_volume', period)  # noqa F841
         # Volume des heures rémunérées à forfait jours
         forfait_jours_remuneres_volume = individu('forfait_jours_remuneres_volume', period)
         heures_duree_collective_entreprise = individu('heures_duree_collective_entreprise', period)
@@ -81,7 +78,7 @@ class coefficient_proratisation(Variable):
             weekmask='1111100'
             )
 
-        mois_incomplet = or_(contrat_de_travail_debut > debut_mois, contrat_de_travail_fin < fin_mois)
+        mois_incomplet = or_(contrat_de_travail_debut > debut_mois, contrat_de_travail_fin < fin_mois)  # noqa F841
         # jours travaillables sur l'intersection du contrat de travail et du mois en cours
         jours_ouvres_ce_mois_incomplet = busday_count(
             max_(contrat_de_travail_debut, debut_mois),
@@ -105,7 +102,7 @@ class coefficient_proratisation(Variable):
             {  # temps plein
                 TypesContratDeTravail.temps_plein: ((jours_ouvres_ce_mois_incomplet - jours_absence) /
                     jours_ouvres_ce_mois
-                    ),
+                                                    ),
                 # temps partiel
                 # (en l'absence du détail pour chaque jour de la semaine ou chaque semaine du mois)
                 TypesContratDeTravail.temps_partiel: coefficient_proratisation_temps_partiel * (
@@ -135,7 +132,7 @@ class credit_impot_competitivite_emploi(Variable):
 
     def formula_2013_01_01(individu, period, parameters):
         assiette_allegement = individu('assiette_allegement', period)
-        jeune_entreprise_innovante = individu('jeune_entreprise_innovante', period)
+        jeune_entreprise_innovante = individu('jeune_entreprise_innovante', period)  # noqa F841
         smic_proratise = individu('smic_proratise', period)
         stagiaire = individu('stagiaire', period)
         parameters = parameters(period)
@@ -439,7 +436,8 @@ def switch_on_allegement_mode(individu, period, parameters, mode_recouvrement, v
         (recouvrement_fin_annee * compute_allegement_annuel(individu, period, parameters, variable_name, compute_function))
         + (recouvrement_anticipe * compute_allegement_anticipe(individu, period, parameters, variable_name, compute_function))
         + (recouvrement_progressif * compute_allegement_progressif(individu, period, parameters, variable_name, compute_function))
-    )
+        )
+
 
 def compute_allegement_annuel(individu, period, parameters, variable_name, compute_function):
     if period.start.month < 12:

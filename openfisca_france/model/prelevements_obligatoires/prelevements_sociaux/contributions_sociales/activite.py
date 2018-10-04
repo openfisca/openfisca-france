@@ -4,7 +4,7 @@ from __future__ import division
 
 import logging
 
-from openfisca_france.model.base import *  # noqa analysis:ignore
+from openfisca_france.model.base import *
 from openfisca_france.model.prelevements_obligatoires.prelevements_sociaux.contributions_sociales.base import montant_csg_crds
 
 
@@ -13,7 +13,8 @@ log = logging.getLogger(__name__)
 
 # TODO: prise_en_charge_employeur_retraite_supplementaire à la CSG/CRDS et au forfait social
 
-# Salariés
+# Salariés
+
 
 class assiette_csg_abattue(Variable):
     value_type = float
@@ -292,7 +293,7 @@ class assiette_csg_crds_non_salarie(Variable):
         vieillesse_artisan_commercant = individu('vieillesse_artisan_commercant', period)
         maladie_maternite_profession_liberale = individu('maladie_maternite_profession_liberale', period)
         vieillesse_profession_liberale = individu('vieillesse_profession_liberale', period)
-        retraite_complementaire_profession_liberale = individu('retraite_complementaire_profession_liberale', period)
+        retraite_complementaire_profession_liberale = individu('retraite_complementaire_profession_liberale', period)   # noqa F841
 
         assiette_cotisation = (
             (artisan + commercant + profession_liberale) * rpns_individu
@@ -324,7 +325,6 @@ class csg_non_salarie(Variable):
         csg = parameters(period).prelevements_sociaux.contributions.csg.activite
         taux = csg.deductible.taux + csg.imposable.taux
         return - taux * assiette_csg_crds_non_salarie
-
 
 
 class crds_non_salarie(Variable):

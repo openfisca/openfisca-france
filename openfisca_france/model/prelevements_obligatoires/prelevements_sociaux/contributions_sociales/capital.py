@@ -2,23 +2,19 @@
 
 from __future__ import division
 import logging
-from openfisca_france.model.base import *  # noqa analysis:ignore
+from openfisca_france.model.base import *
 
 log = logging.getLogger(__name__)
 
 
-########################################################################################################################
-########################################################################################################################
-########## Prélèvements sociaux sur les revenus du capital                                                   ###########
-########## (dispositifs codés à partir de 2013 : cf. doctring de la variable assiette_csg_revenus_capital)   ###########
-########################################################################################################################
-########################################################################################################################
+# Prélèvements sociaux sur les revenus du capital
+# (dispositifs codés à partir de 2013 : cf. doctring de la variable assiette_csg_revenus_capital)
 
-#################################################################################################################
-##### 1. Définition de variables associées aux revenus du capital soumis aux prélèvements sociaux mais    #######
-#####    ni au barème de l'impôt sur le revenu, ni au prélèvement forfaitaire libératoire                 #######
-#####    (et donc non présents sur les déclarations de revenu)                                            #######
-#################################################################################################################
+
+# 1. Définition de variables associées aux revenus du capital soumis aux prélèvements sociaux mais
+#    ni au barème de l'impôt sur le revenu, ni au prélèvement forfaitaire libératoire
+#    (et donc non présents sur les déclarations de revenu)
+
 
 class interets_plan_epargne_logement_moins_de_12_ans_ouvert_avant_2018(Variable):
     """
@@ -31,6 +27,7 @@ class interets_plan_epargne_logement_moins_de_12_ans_ouvert_avant_2018(Variable)
     label = u"Intérêts des plans épargne logement (PEL) de moins de 12 ans ouverts avant le 1er janvier 2018"
     definition_period = YEAR
 
+
 class interets_plan_epargne_logement_moins_de_12_ans_ouvert_a_partir_de_2018(Variable):
     """
     NB :
@@ -42,12 +39,14 @@ class interets_plan_epargne_logement_moins_de_12_ans_ouvert_a_partir_de_2018(Var
     label = u"Intérêts des plans épargne logement (PEL) de moins de 12 ans ouverts à partir du 1er janvier 2018"
     definition_period = YEAR
 
+
 class interets_compte_epargne_logement_ouvert_avant_2018(Variable):
     """ NB : Cette variable est définie indépendemment de epargne_revenus_non_imposables """
     value_type = float
     entity = Individu
     label = u"Intérêts des comptes épargne logement (CEL) ouverts avant le 1er janvier 2018"
     definition_period = YEAR
+
 
 class interets_compte_epargne_logement_ouvert_a_partir_de_2018(Variable):
     """ NB : Cette variable est définie indépendemment de epargne_revenus_non_imposables """
@@ -56,6 +55,7 @@ class interets_compte_epargne_logement_ouvert_a_partir_de_2018(Variable):
     label = u"Intérêts des comptes épargne logement (CEL) ouverts à partir du 1er janvier 2018"
     definition_period = YEAR
 
+
 class assurance_vie_ps_exoneree_irpp_pl(Variable):
     value_type = float
     entity = FoyerFiscal
@@ -63,9 +63,7 @@ class assurance_vie_ps_exoneree_irpp_pl(Variable):
     definition_period = YEAR
 
 
-#################################################################################################################
-##### 2. Assiette des revenus du capital soumis à la CSG (valable pour les autres prélèvements sociaux)   #######
-#################################################################################################################
+# 2. Assiette des revenus du capital soumis à la CSG (valable pour les autres prélèvements sociaux)
 
 class assiette_csg_plus_values(Variable):
     value_type = float
@@ -263,11 +261,7 @@ class assiette_csg_revenus_capital(Variable):
             )
 
 
-
-
-#################################################################################################################
-##### 3. Variables de prélèvements sociaux sur les revenus du capital  ##########################################
-#################################################################################################################
+# 3. Variables de prélèvements sociaux sur les revenus du capital
 
 class csg_revenus_capital(Variable):
     value_type = float
@@ -369,4 +363,3 @@ class prelevements_sociaux_revenus_capital(Variable):
         prelevements_sociaux_revenus_capital_hors_csg_crds = foyer_fiscal('prelevements_sociaux_revenus_capital_hors_csg_crds', period)
 
         return csg_revenus_capital + crds_revenus_capital + prelevements_sociaux_revenus_capital_hors_csg_crds
-

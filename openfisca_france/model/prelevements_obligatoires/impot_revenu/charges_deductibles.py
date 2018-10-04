@@ -4,7 +4,7 @@ from __future__ import division
 
 import logging
 
-from openfisca_france.model.base import *  # noqa analysis:ignore
+from openfisca_france.model.base import *
 
 
 log = logging.getLogger(__name__)
@@ -109,7 +109,8 @@ class f6dd(Variable):
 
 # Épargne retraite - PERP, PRÉFON, COREM et CGOS
 class f6ps(Variable):
-    cerfa_field = {0: u"6PS",
+    cerfa_field = {
+        0: u"6PS",
         1: u"6PT",
         2: u"6PU",
         }
@@ -121,7 +122,8 @@ class f6ps(Variable):
 
 
 class f6rs(Variable):
-    cerfa_field = {0: u"6RS",
+    cerfa_field = {
+        0: u"6RS",
         1: u"6RT",
         2: u"6RU",
         }
@@ -133,7 +135,8 @@ class f6rs(Variable):
 
 
 class f6ss(Variable):
-    cerfa_field = {0: u"6SS",
+    cerfa_field = {
+        0: u"6SS",
         1: u"6ST",
         2: u"6SU",
         }
@@ -145,6 +148,7 @@ class f6ss(Variable):
 
 
 # Souscriptions en faveur du cinéma ou de l’audiovisuel
+# TODO: ancien numéro de case, antérieur à 2008 ....au moins! vérifier pour 07-06-05 ect...probablement avant 2005 (autre nom en 12 et 13)
 class f6aa(Variable):
     cerfa_field = u"6AA"
     value_type = int
@@ -155,9 +159,11 @@ class f6aa(Variable):
     end = '2006-12-31'
     definition_period = YEAR
 
-  # TODO: ancien numéro de case, antérieur à 2008 ....au moins! vérifier pour 07-06-05 ect...probablement avant 2005 (autre nom en 12 et 13)
 
 # Souscriptions au capital des SOFIPÊCHE
+
+
+# ancien numéro de case, antérieur à 2008 ....au moins vérifier pour 07-06-05 ect...probablement avant 2005 (autre nom en  12 et13)
 class f6cc(Variable):
     cerfa_field = u"CC"
     value_type = int
@@ -167,8 +173,6 @@ class f6cc(Variable):
     # start_date = date(2005, 1, 1)
     end = '2005-12-31'
     definition_period = YEAR
-
-  # ancien numéro de case, antérieur à 2008 ....au moins vérifier pour 07-06-05 ect...probablement avant 2005 (autre nom en  12 et13)
 
 
 # Investissements DOM-TOM dans le cadre d’une entreprise < = 2005
@@ -247,6 +251,7 @@ class f6hm(Variable):
     # start_date = date(2013, 1, 1)
     definition_period = YEAR
 
+
 class f6hn(Variable):
     cerfa_field = u"6HN"
     value_type = int
@@ -255,6 +260,7 @@ class f6hn(Variable):
     label = u"Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses de l'année 2013"
     # start_date = date(2014, 1, 1)
     definition_period = YEAR
+
 
 class f6ho(Variable):
     cerfa_field = u"6HO"
@@ -265,6 +271,7 @@ class f6ho(Variable):
     # start_date = date(2015, 1, 1)
     definition_period = YEAR
 
+
 class f6hp(Variable):
     cerfa_field = u"6HP"
     value_type = int
@@ -273,6 +280,7 @@ class f6hp(Variable):
     label = u"Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses de l'année 2015"
     # start_date = date(2016, 1, 1)
     definition_period = YEAR
+
 
 class f6hq(Variable):
     cerfa_field = u"6HQ"
@@ -364,7 +372,7 @@ class rfr_cd(Variable):
 
     def formula_2007_01_01(foyer_fiscal, period, parameters):
         cd_eparet = foyer_fiscal('cd_eparet', period)
-        
+
         return cd_eparet
 
 
@@ -542,11 +550,14 @@ class pensions_alimentaires_deduites(Variable):
         # pacsé ou chargé de famille, quel que soit le nmbre d'enfants du jeune
         # foyer, la déduction est limitée à 2*max
         # S'il habite chez ses parents, max 3359, sinon 5698
-        return (min_(f6gi * (1 + taux_jgt_2006), max1) +
-                    min_(f6gj * (1 + taux_jgt_2006), max1) +
-                    min_(f6el, max1) +
-                    min_(f6em, max1) +
-                    f6gp * (1 + taux_jgt_2006) + f6gu)
+        return (
+            min_(f6gi * (1 + taux_jgt_2006), max1)
+            + min_(f6gj * (1 + taux_jgt_2006), max1)
+            + min_(f6el, max1)
+            + min_(f6em, max1)
+            + f6gp
+            * (1 + taux_jgt_2006) + f6gu
+            )
 
 
 class cd_acc75a(Variable):
@@ -737,7 +748,7 @@ class grosses_reparations(Variable):
         depenses_courantes = f6cb
         report_depenses = report_2009
 
-        return min_(depenses_courantes + report_depenses , plafond_grosses_reparations)
+        return min_(depenses_courantes + report_depenses, plafond_grosses_reparations)
 
     def formula_2011(foyer_fiscal, period, parameters):
         '''
@@ -747,11 +758,11 @@ class grosses_reparations(Variable):
         report_2009 = foyer_fiscal('f6hj', period)
         report_2010 = foyer_fiscal('f6hk', period)
         plafond_grosses_reparations = parameters(period).impot_revenu.charges_deductibles.grosses_reparations.plafond
-        
+
         depenses_courantes = f6cb
         report_depenses = report_2009 + report_2010
 
-        return min_(depenses_courantes + report_depenses , plafond_grosses_reparations)
+        return min_(depenses_courantes + report_depenses, plafond_grosses_reparations)
 
     def formula_2012(foyer_fiscal, period, parameters):
         '''
@@ -766,7 +777,7 @@ class grosses_reparations(Variable):
         depenses_courantes = f6cb
         report_depenses = report_2009 + report_2010 + report_2011
 
-        return min_(depenses_courantes + report_depenses , plafond_grosses_reparations)
+        return min_(depenses_courantes + report_depenses, plafond_grosses_reparations)
 
     def formula_2013(foyer_fiscal, period, parameters):
         '''
@@ -782,7 +793,7 @@ class grosses_reparations(Variable):
         depenses_courantes = f6cb
         report_depenses = report_2009 + report_2010 + report_2011 + report_2012
 
-        return min_(depenses_courantes + report_depenses , plafond_grosses_reparations)
+        return min_(depenses_courantes + report_depenses, plafond_grosses_reparations)
 
     def formula_2014(foyer_fiscal, period, parameters):
         '''
@@ -799,7 +810,7 @@ class grosses_reparations(Variable):
         depenses_courantes = f6cb
         report_depenses = report_2009 + report_2010 + report_2011 + report_2012 + report_2013
 
-        return min_(depenses_courantes + report_depenses , plafond_grosses_reparations)
+        return min_(depenses_courantes + report_depenses, plafond_grosses_reparations)
 
     def formula_2015(foyer_fiscal, period, parameters):
         '''
@@ -817,7 +828,7 @@ class grosses_reparations(Variable):
         depenses_courantes = f6cb
         report_depenses = report_2009 + report_2010 + report_2011 + report_2012 + report_2013 + report_2014
 
-        return min_(depenses_courantes + report_depenses , plafond_grosses_reparations)
+        return min_(depenses_courantes + report_depenses, plafond_grosses_reparations)
 
     def formula_2016(foyer_fiscal, period, parameters):
         '''
@@ -836,7 +847,7 @@ class grosses_reparations(Variable):
         depenses_courantes = f6cb
         report_depenses = report_2009 + report_2010 + report_2011 + report_2012 + report_2013 + report_2014 + report_2015
 
-        return min_(depenses_courantes + report_depenses , plafond_grosses_reparations)
+        return min_(depenses_courantes + report_depenses, plafond_grosses_reparations)
 
     def formula_2017(foyer_fiscal, period, parameters):
         '''
@@ -856,4 +867,4 @@ class grosses_reparations(Variable):
         depenses_courantes = f6cb
         report_depenses = report_2009 + report_2010 + report_2011 + report_2012 + report_2013 + report_2014 + report_2015 + report_2016
 
-        return min_(depenses_courantes + report_depenses , plafond_grosses_reparations)
+        return min_(depenses_courantes + report_depenses, plafond_grosses_reparations)

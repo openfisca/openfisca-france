@@ -4,9 +4,7 @@ from __future__ import division
 
 import logging
 
-from numpy import int16
-
-from openfisca_france.model.base import *  # noqa analysis:ignore
+from openfisca_france.model.base import *
 from openfisca_france.model.prelevements_obligatoires.prelevements_sociaux.cotisations_sociales.base import (
     apply_bareme, apply_bareme_for_relevant_type_sal)
 
@@ -117,7 +115,7 @@ class indemnite_fin_contrat_net(Variable):
 class reintegration_titre_restaurant_employeur(Variable):
     value_type = float
     entity = Individu
-    label = u"Prise en charge de l'employeur des dépenses de cantine et des titres restaurants non exonérés de charges sociales"  # noqa
+    label = u"Prise en charge de l'employeur des dépenses de cantine et des titres restaurants non exonérés de charges sociales"
     definition_period = MONTH
 
     def formula(individu, period, parameters):
@@ -152,7 +150,7 @@ class penibilite(Variable):
     def formula_2015_01_01(individu, period, parameters):
         exposition_penibilite = individu('exposition_penibilite', period)
         TypesExpositionPenibilite = exposition_penibilite.possible_values
-        multiplicateur =  parameters(period).cotsoc.cotisations_employeur.prive_cadre.penibilite_multiplicateur_exposition_multiple
+        multiplicateur = parameters(period).cotsoc.cotisations_employeur.prive_cadre.penibilite_multiplicateur_exposition_multiple
 
         cotisation_base = apply_bareme(
             individu,
@@ -185,6 +183,7 @@ class penibilite(Variable):
     def formula_2018(individu, period, parameters):
         return individu.empty_array()
 
+
 class accident_du_travail(Variable):
     value_type = float
     entity = Individu
@@ -199,8 +198,8 @@ class accident_du_travail(Variable):
         assujetti = (
             (categorie_salarie == TypesCategorieSalarie.prive_non_cadre)
             + (categorie_salarie == TypesCategorieSalarie.prive_cadre)
-        )
-            # TODO: ajouter contractuel du public salarié de moins d'un an ou à temps partiel
+            )
+        # TODO: ajouter contractuel du public salarié de moins d'un an ou à temps partiel
         return - assiette_cotisations_sociales * taux_accident_travail * assujetti
 
 
@@ -372,7 +371,6 @@ class agirc_gmp_employeur(Variable):
         return - max_(cotisation_forfaitaire + agirc_employeur, 0) * cadre_cotisant
 
 
-
 class agirc_salarie(Variable):
     value_type = float
     entity = Individu
@@ -414,7 +412,7 @@ class agirc_employeur(Variable):
 class ags(Variable):
     value_type = float
     entity = Individu
-    label = u"Contribution à l'association pour la gestion du régime de garantie des créances des salariés (AGS, employeur)"  # noqa analysis:ignore
+    label = u"Contribution à l'association pour la gestion du régime de garantie des créances des salariés (AGS, employeur)"
     definition_period = MONTH
 
     def formula(individu, period, parameters):
@@ -496,7 +494,7 @@ class arrco_salarie(Variable):
         public = (
             (categorie_salarie == TypesCategorieSalarie.prive_non_cadre)
             + (categorie_salarie == TypesCategorieSalarie.prive_cadre)
-        )
+            )
 
         return (
             cotisation_minimale * (arrco_tranche_a_taux_salarie == 0) + cotisation_entreprise
@@ -533,7 +531,7 @@ class arrco_employeur(Variable):
         public = (
             (categorie_salarie == TypesCategorieSalarie.prive_non_cadre)
             + (categorie_salarie == TypesCategorieSalarie.prive_cadre)
-        )
+            )
         return (
             cotisation_minimale * (arrco_tranche_a_taux_employeur == 0) + cotisation_entreprise
             ) * public
@@ -646,7 +644,6 @@ class famille(Variable):
             variable_name = 'famille',
             )
         return cotisation
-
 
 
 class mmid_salarie(Variable):
@@ -762,7 +759,7 @@ class plafond_securite_sociale(Variable):
         TypesContratDeTravail = contrat_de_travail.possible_values
         heures_remunerees_volume = individu('heures_remunerees_volume', period)
         forfait_jours_remuneres_volume = individu('forfait_jours_remuneres_volume', period)
-        heures_duree_collective_entreprise = individu('heures_duree_collective_entreprise', period)
+        heures_duree_collective_entreprise = individu('heures_duree_collective_entreprise', period)  # noqa F841
 
         # TODO : handle contrat_de_travail > 1
 
@@ -871,15 +868,15 @@ class taille_entreprise(Variable):
                 (effectif_entreprise <= 19),
                 (effectif_entreprise <= 249),
                 (effectif_entreprise >= 250)
-            ],
+                ],
             [
                 TypesTailleEntreprise.non_pertinent,
                 TypesTailleEntreprise.moins_de_10,
                 TypesTailleEntreprise.de_10_a_19,
                 TypesTailleEntreprise.de_20_a_249,
                 TypesTailleEntreprise.plus_de_250
-            ]
-        )
+                ]
+            )
         return taille_entreprise
 
 
