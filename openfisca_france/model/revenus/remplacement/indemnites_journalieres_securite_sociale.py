@@ -84,9 +84,10 @@ class indemnites_journalieres_imposables(Variable):
         indemnites_journalieres_maladie_professionnelle = individu('indemnites_journalieres_accident_travail', period)
         result = indemnites_journalieres - 0.5 * (
             indemnites_journalieres_accident_travail + indemnites_journalieres_maladie_professionnelle
-        )
+            )
 
         return result
+
 
 class date_arret_de_travail(Variable):
     value_type = date

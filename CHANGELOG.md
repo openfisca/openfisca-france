@@ -1,5 +1,12 @@
 # Changelog
 
+### 24.14.1 [#1139](https://github.com/openfisca/openfisca-france/pull/1139)
+
+* Amélioration technique
+* Zones impactées : `openfisca_france/model/revenus/**/*`.
+* Détails :
+  - Corrige et uniformise le style des fichiers
+
 ## 24.14.0
 
 * Évolution du système socio-fiscal.
@@ -10,6 +17,7 @@
   - Un nouveau cas de test était en erreur suite à l'utilisation de ressources recombinée en annuel comparées à un plafond mensuel.
 
 ## 24.13.0 [#1138](https://github.com/openfisca/openfisca-france/pull/1138)
+
 * Évolution du système socio-fiscal.
 * Périodes concernées : toutes.
 * Zones impactées :

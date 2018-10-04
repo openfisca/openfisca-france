@@ -28,6 +28,7 @@ class bourse_recherche(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
+
 class sal_pen_exo_etr(Variable):
     cerfa_field = {
         0: u"1AC",
@@ -44,7 +45,8 @@ class sal_pen_exo_etr(Variable):
 
 
 class frais_reels(Variable):
-    cerfa_field = {0: u"1AK",
+    cerfa_field = {
+        0: u"1AK",
         1: u"1BK",
         2: u"1CK",
         3: u"1DK",
@@ -76,7 +78,8 @@ class hsup(Variable):
 
 
 class ppe_du_sa(Variable):
-    cerfa_field = {0: u"1AV",
+    cerfa_field = {
+        0: u"1AV",
         1: u"1BV",
         2: u"1CV",
         3: u"1DV",
@@ -97,7 +100,7 @@ class ppe_du_sa(Variable):
             + (contrat_travail == TypesContratDeTravail.forfait_heures_mois)
             + (contrat_travail == TypesContratDeTravail.forfait_heures_annee)
             + (contrat_travail == TypesContratDeTravail.forfait_jours_annee)
-        )
+            )
 
         return heures_remunerees_volume * travail_temps_decompte_en_heures
 
@@ -118,12 +121,13 @@ class ppe_tp_sa(Variable):
     def formula(individu, period):
         mois = period.first_month
         indicateur = individu('contrat_de_travail', mois) == 0
-        # On parcours tous les mois de l'année pour s'assurer que l'individu était employé à temps plein
-        # durant toute l'année.
+        # On parcours tous les mois de l'année pour s'assurer que l'individu était employé à temps plein
+        # durant toute l'année.
         while mois.start.month < 12:
             mois = mois.offset(1)
             indicateur = indicateur & (individu('contrat_de_travail', mois) == 0)
         return indicateur
+
 
 class TypesExpositionAccident(Enum):
     __order__ = 'faible moyen eleve tres_eleve'  # Needed to preserve the enum order in Python 2
@@ -141,6 +145,7 @@ class exposition_accident(Variable):
     label = u"Exposition au risque pour les accidents du travail"
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
+
 
 class TypesExpositionPenibilite(Enum):
     __order__ = 'nulle simple multiple'  # Needed to preserve the enum order in Python 2
@@ -538,6 +543,7 @@ class traitement_indiciaire_brut(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
+
 class categorie_salarie(Variable):
     value_type = Enum
     possible_values = TypesCategorieSalarie  # defined in model/base.py
@@ -728,7 +734,7 @@ class indemnite_residence(Variable):
             + (categorie_salarie == TypesCategorieSalarie.public_titulaire_territoriale)
             + (categorie_salarie == TypesCategorieSalarie.public_titulaire_hospitaliere)
             + (categorie_salarie == TypesCategorieSalarie.public_non_titulaire)
-        )
+            )
         return max_(
             plancher,
             taux * (traitement_indiciaire_brut + salaire_de_base)
@@ -755,7 +761,7 @@ class indice_majore(Variable):
             + (categorie_salarie == TypesCategorieSalarie.public_titulaire_hospitaliere)
             + (categorie_salarie == TypesCategorieSalarie.public_non_titulaire)
             + (categorie_salarie == TypesCategorieSalarie.non_pertinent)
-        )
+            )
 
         return (traitement_indiciaire_brut * 100 * 12 / traitement_annuel_brut) * public
 
