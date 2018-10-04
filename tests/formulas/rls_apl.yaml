@@ -54,7 +54,6 @@
     aide_logement_base_ressources: 10100.0
     reduction_loyer_solidarite_plafond_ressources: 846.0
     reduction_loyer_solidarite: 27.74
-    aide_logement: 69.65
 
 - name: "Base ressources de la RLS, ramenée en mensuel, supérieure au plafond"
   period: 2018-09
@@ -76,4 +75,3 @@
     aide_logement_base_ressources: 10200.0
     reduction_loyer_solidarite_plafond_ressources: 846.0
     reduction_loyer_solidarite: 0.0
-    aide_logement: 93.55
