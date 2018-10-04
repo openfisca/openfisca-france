@@ -33,3 +33,45 @@
   output_variables:
     apl: 68.45
     reduction_loyer_solidarite: 31.83
+
+- name: "Base ressources de la RLS, ramenée en mensuel, inférieure au plafond"
+  period: 2018-09
+  relative_error_margin: 0.001
+  familles:
+    parents: ["parent1"]
+  individus:
+    - id: "parent1"
+      date_naissance: 1980-05-29
+      salaire_de_base:
+        2018: 1150 * 12
+  menages:
+    personne_de_reference: "parent1"
+    depcom: 31555
+    statut_occupation_logement: locataire_hlm
+    loyer: 500
+    charges_locatives: 50
+  output_variables:
+    aide_logement_base_ressources: 10100.0
+    reduction_loyer_solidarite_plafond_ressources: 846.0
+    reduction_loyer_solidarite: 27.74
+
+- name: "Base ressources de la RLS, ramenée en mensuel, supérieure au plafond"
+  period: 2018-09
+  relative_error_margin: 0.001
+  familles:
+    parents: ["parent1"]
+  individus:
+    - id: "parent1"
+      date_naissance: 1980-05-29
+      salaire_de_base:
+        2018: 1160 * 12
+  menages:
+    personne_de_reference: "parent1"
+    depcom: 31555
+    statut_occupation_logement: locataire_hlm
+    loyer: 500
+    charges_locatives: 50
+  output_variables:
+    aide_logement_base_ressources: 10200.0
+    reduction_loyer_solidarite_plafond_ressources: 846.0
+    reduction_loyer_solidarite: 0.0

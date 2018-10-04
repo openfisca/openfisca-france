@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 
-import openfisca_france
 from openfisca_france.model.base import *  # noqa  analysis:ignore
-from openfisca_france.model.prestations.prestations_familiales.base_ressource import nb_enf
+
 
 class reduction_loyer_solidarite_plafond_ressources(Variable):
     value_type = float
@@ -12,7 +11,7 @@ class reduction_loyer_solidarite_plafond_ressources(Variable):
         u"https://www.anil.org/aj-reduction-loyer-solidarite-rls-apl/",
         u"https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000036650010&dateTexte=&categorieLien=id",
         u"https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000036650026&dateTexte=&categorieLien=id"
-    ]
+        ]
     definition_period = MONTH
 
     def formula(famille, period, parameters):
@@ -43,7 +42,7 @@ class reduction_loyer_solidarite_plafond_ressources(Variable):
                 personnes_a_charge_al == 4,
                 personnes_a_charge_al == 5,
                 personnes_a_charge_al == 6,
-            ],
+                ],
             [
                 plafond_personne_seule,
                 plafond_couple,
@@ -53,7 +52,7 @@ class reduction_loyer_solidarite_plafond_ressources(Variable):
                 plafond_4pac,
                 plafond_5pac,
                 plafond_6pac
-            ],
+                ],
             default = plafond_famille
             )
 
@@ -83,12 +82,12 @@ class reduction_loyer_solidarite_montant(Variable):
                 not_(couple) * (personnes_a_charge_al == 0),
                 couple * (personnes_a_charge_al == 0),
                 personnes_a_charge_al == 1
-            ],
+                ],
             [
                 montant_personne_seule,
                 montant_couple,
                 montant_1pac
-            ],
+                ],
             default = montant_famille
             )
 
@@ -101,11 +100,13 @@ class reduction_loyer_solidarite(Variable):
         u"https://www.anil.org/aj-reduction-loyer-solidarite-rls-apl/",
         u"https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000036650010&dateTexte=&categorieLien=id",
         u"https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000036650026&dateTexte=&categorieLien=id"
-    ]
+        ]
     definition_period = MONTH
 
     def formula(famille, period):
-        ressources = famille('aide_logement_base_ressources', period)
+        # les ressources renvoyés sont recombiné pour donner une valeur annuelle
+        # necessité de diviser par 12 pour comparer au plafond mensuel
+        ressources = famille('aide_logement_base_ressources', period) / 12
         plafond = famille('reduction_loyer_solidarite_plafond_ressources', period)
 
         montant = famille('reduction_loyer_solidarite_montant', period)
