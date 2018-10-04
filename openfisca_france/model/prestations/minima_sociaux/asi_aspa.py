@@ -4,7 +4,7 @@ from __future__ import division
 
 from numpy import abs as abs_, logical_or as or_
 
-from openfisca_france.model.base import *  # noqa analysis:ignore
+from openfisca_france.model.base import *
 
 
 class inapte_travail(Variable):
@@ -12,6 +12,7 @@ class inapte_travail(Variable):
     entity = Individu
     label = u"Reconnu inapte au travail"
     definition_period = MONTH
+
 
 class taux_incapacite(Variable):
     value_type = float
@@ -229,25 +230,29 @@ class asi(Variable):
 
         elig = elig1 | elig2 | elig3 | elig4 | elig5
 
-        montant_max = (elig1 * P.asi.montant_seul +
-            elig2 * P.asi.montant_couple +
-            elig3 * 2 * P.asi.montant_seul +
-            elig4 * (P.asi.montant_couple / 2 + P.aspa.montant_annuel_couple / 2) +
-            elig5 * (P.asi.montant_seul + P.aspa.montant_annuel_couple / 2)) / 12
+        montant_max = (
+            elig1 * P.asi.montant_seul
+            + elig2 * P.asi.montant_couple
+            + elig3 * 2 * P.asi.montant_seul
+            + elig4 * (P.asi.montant_couple / 2 + P.aspa.montant_annuel_couple / 2)
+            + elig5 * (P.asi.montant_seul + P.aspa.montant_annuel_couple / 2)) / 12
 
         ressources = base_ressources + montant_max
 
-        plafond_ressources = (elig1 * (P.asi.plafond_ressource_seul * not_(en_couple) + P.asi.plafond_ressource_couple * en_couple) +
-            elig2 * P.asi.plafond_ressource_couple +
-            elig3 * P.asi.plafond_ressource_couple +
-            elig4 * P.aspa.plafond_ressources_couple +
-            elig5 * P.aspa.plafond_ressources_couple) / 12
+        plafond_ressources = (
+            elig1 * (P.asi.plafond_ressource_seul * not_(en_couple) + P.asi.plafond_ressource_couple * en_couple)
+            + elig2 * P.asi.plafond_ressource_couple
+            + elig3 * P.asi.plafond_ressource_couple
+            + elig4 * P.aspa.plafond_ressources_couple
+            + elig5 * P.aspa.plafond_ressources_couple) / 12
 
         depassement = max_(ressources - plafond_ressources, 0)
 
-        diff = ((elig1 | elig2 | elig3) * (montant_max - depassement) +
-            elig4 * (P.asi.montant_couple / 12 / 2 - depassement / 2) +
-            elig5 * (P.asi.montant_seul / 12 - depassement / 2))
+        diff = (
+            (elig1 | elig2 | elig3) * (montant_max - depassement)
+            + elig4 * (P.asi.montant_couple / 12 / 2 - depassement / 2)
+            + elig5 * (P.asi.montant_seul / 12 - depassement / 2)
+            )
 
         # Montant mensuel servi (sous réserve d'éligibilité)
         montant_servi_asi = max_(diff, 0)
@@ -308,21 +313,27 @@ class aspa(Variable):
         elig = elig1 | elig2 | elig3 | elig4
 
         montant_max = (
-            elig1 * P.aspa.montant_annuel_seul +
-            elig2 * P.aspa.montant_annuel_couple +
-            elig3 * (P.asi.montant_couple / 2 + P.aspa.montant_annuel_couple / 2) +
-            elig4 * (P.asi.montant_seul + P.aspa.montant_annuel_couple / 2)
+            elig1 * P.aspa.montant_annuel_seul
+            + elig2 * P.aspa.montant_annuel_couple
+            + elig3 * (P.asi.montant_couple / 2 + P.aspa.montant_annuel_couple / 2)
+            + elig4 * (P.asi.montant_seul + P.aspa.montant_annuel_couple / 2)
             ) / 12
 
         ressources = base_ressources + montant_max
 
-        plafond_ressources = (elig1 * (P.aspa.plafond_ressources_seul * not_(en_couple) + P.aspa.plafond_ressources_couple * en_couple) +
-            (elig2 | elig3 | elig4) * P.aspa.plafond_ressources_couple) / 12
+        plafond_ressources = (
+            elig1
+            * (P.aspa.plafond_ressources_seul * not_(en_couple) + P.aspa.plafond_ressources_couple * en_couple)
+            + (elig2 | elig3 | elig4)
+            * P.aspa.plafond_ressources_couple
+            ) / 12
 
         depassement = max_(ressources - plafond_ressources, 0)
 
-        diff = ((elig1 | elig2) * (montant_max - depassement) +
-            (elig3 | elig4) * (P.aspa.montant_annuel_couple / 12 / 2 - depassement / 2))
+        diff = (
+            (elig1 | elig2) * (montant_max - depassement)
+            + (elig3 | elig4) * (P.aspa.montant_annuel_couple / 12 / 2 - depassement / 2)
+            )
 
         # Montant mensuel servi (sous réserve d'éligibilité)
         montant_servi_aspa = max_(diff, 0)

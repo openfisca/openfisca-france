@@ -4,7 +4,7 @@ from __future__ import division
 
 from numpy import round, logical_or as or_
 
-from openfisca_france.model.base import *  # noqa analysis:ignore
+from openfisca_france.model.base import *
 
 
 class cf_enfant_a_charge(Variable):
@@ -39,8 +39,12 @@ class cf_enfant_eligible(Variable):
 
         pfam = parameters(period).prestations.prestations_familiales
 
-        condition_enfant = ((age >= pfam.cf.age_min) * (age < pfam.enfants.age_intermediaire) *
-            rempli_obligation_scolaire)
+        condition_enfant = (
+            (age >= pfam.cf.age_min)
+            * (age < pfam.enfants.age_intermediaire)
+            * rempli_obligation_scolaire
+            )
+
         condition_jeune = (age >= pfam.enfants.age_intermediaire) * (age < pfam.cf.age_max)
 
         return or_(condition_enfant, condition_jeune) * cf_enfant_a_charge
@@ -115,13 +119,24 @@ class cf_plafond(Variable):
         cf_nbenf = famille.sum(cf_enfant_a_charge_i)
 
         # Calcul du taux à appliquer au plafond de base pour la France métropolitaine
-        taux_plafond_metropole = 1 + pfam.cf.majoration_plafond_2_premiers_enf * min_(cf_nbenf, 2) + pfam.cf.majoration_plafond_3eme_enf_et_plus * max_(cf_nbenf - 2, 0)
+        taux_plafond_metropole = (
+            1
+            + pfam.cf.majoration_plafond_2_premiers_enf
+            * min_(cf_nbenf, 2)
+            + pfam.cf.majoration_plafond_3eme_enf_et_plus
+            * max_(cf_nbenf - 2, 0)
+            )
 
         # Majoration du plafond pour biactivité ou isolement (France métropolitaine)
         majoration_plafond = (isole | biactivite)
 
         # Calcul du plafond pour la France métropolitaine
-        plafond_metropole = pfam.cf.plafond_de_ressources_0_enfant * taux_plafond_metropole + pfam.cf.majoration_plafond_biact_isole * majoration_plafond
+        plafond_metropole = (
+            pfam.cf.plafond_de_ressources_0_enfant
+            * taux_plafond_metropole
+            + pfam.cf.majoration_plafond_biact_isole
+            * majoration_plafond
+            )
 
         # Calcul du taux à appliquer au plafond de base pour les DOM
         taux_plafond_dom = 1 + cf_nbenf * pfam.ars.majoration_par_enf_supp
@@ -129,7 +144,12 @@ class cf_plafond(Variable):
         # Calcul du plafond pour les DOM
         plafond_dom = pfam.ars.plafond_ressources * taux_plafond_dom
 
-        plafond = (eligibilite_base * plafond_metropole + eligibilite_dom * plafond_dom)
+        plafond = (
+            eligibilite_base
+            * plafond_metropole
+            + eligibilite_dom
+            * plafond_dom
+            )
 
         return plafond
 
@@ -179,7 +199,6 @@ class cf_eligibilite_dom(Variable):
     label = u"Éligibilité au complément familial pour les DOM sous condition de ressources et avant cumul"
     definition_period = MONTH
 
-
     def formula(famille, period, parameters):
         residence_dom = famille.demandeur.menage('residence_dom', period)
         residence_mayotte = famille.demandeur.menage('residence_mayotte', period)
@@ -213,15 +232,25 @@ class cf_non_majore_avant_cumul(Variable):
         eligibilite_sous_condition = or_(eligibilite_base, eligibilite_dom)
 
         # Montant
-        montant = pfam.af.bmaf * (pfam.cf.taux_cf_base * eligibilite_base + pfam.cf.taux_base_dom * eligibilite_dom)
+        montant = (
+            pfam.af.bmaf * (
+                pfam.cf.taux_cf_base * eligibilite_base
+                + pfam.cf.taux_base_dom * eligibilite_dom
+                )
+            )
 
         # Complément familial
         eligibilite = eligibilite_sous_condition * (ressources <= plafond)
 
         # Complément familial différentiel
         plafond_diff = plafond + 12 * montant
-        eligibilite_diff = not_(eligibilite) * eligibilite_sous_condition * (
-            ressources <= plafond_diff)
+
+        eligibilite_diff = (
+            not_(eligibilite)
+            * eligibilite_sous_condition
+            * (ressources <= plafond_diff)
+            )
+
         montant_diff = (plafond_diff - ressources) / 12
 
         return max_(eligibilite * montant, eligibilite_diff * montant_diff)
@@ -244,7 +273,12 @@ class cf_majore_avant_cumul(Variable):
         eligibilite_sous_condition = or_(eligibilite_base, eligibilite_dom)
 
         # Montant
-        montant = pfam.af.bmaf * (pfam.cf.taux_cf_majore * eligibilite_base + pfam.cf.taux_majore_dom * eligibilite_dom)
+        montant = (
+            pfam.af.bmaf * (
+                pfam.cf.taux_cf_majore * eligibilite_base
+                + pfam.cf.taux_majore_dom * eligibilite_dom
+                )
+            )
 
         eligibilite = eligibilite_sous_condition * (ressources <= plafond_majore)
 
@@ -283,5 +317,11 @@ class cf(Variable):
         cf_montant = famille('cf_montant', period)
         residence_mayotte = famille.demandeur.menage('residence_mayotte', period)
 
-        cf_brut = not_(paje_base) * (apje_avant_cumul <= cf_montant) * (ape_avant_cumul <= cf_montant) * cf_montant
+        cf_brut = (
+            not_(paje_base)
+            * (apje_avant_cumul <= cf_montant)
+            * (ape_avant_cumul <= cf_montant)
+            * cf_montant
+            )
+
         return not_(residence_mayotte) * round(cf_brut, 2)

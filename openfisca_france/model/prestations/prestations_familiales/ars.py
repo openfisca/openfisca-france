@@ -2,7 +2,7 @@
 
 from __future__ import division
 
-from openfisca_france.model.base import *  # noqa analysis:ignore
+from openfisca_france.model.base import *
 from openfisca_france.model.prestations.prestations_familiales.base_ressource import nb_enf
 
 
@@ -26,7 +26,6 @@ class ars(Variable):
         # On tient compte du fait qu'en cas de léger dépassement du plafond, une allocation dégressive
         # (appelée allocation différentielle), calculée en fonction des revenus, peut être versée.
 
-
         bmaf = P.af.bmaf
         # On doit prendre l'âge en septembre
         enf_05 = nb_enf(famille, septembre, P.ars.age_entree_primaire - 1, P.ars.age_entree_primaire - 1)  # 5 ans et 6 ans avant le 31 décembre
@@ -43,11 +42,13 @@ class ars(Variable):
 
         # Plafond en fonction du nb d'enfants A CHARGE (Cf. article R543)
         ars_plaf_res = P.ars.plafond_ressources * (1 + af_nbenf * P.ars.majoration_par_enf_supp)
+
         arsbase = bmaf * (
-            P.ars.taux_primaire * enf_primaire +
-            P.ars.taux_college * enf_college +
-            P.ars.taux_lycee * enf_lycee
+            P.ars.taux_primaire * enf_primaire
+            + P.ars.taux_college * enf_college
+            + P.ars.taux_lycee * enf_lycee
             )
+
         # Forme de l'ARS  en fonction des enfants a*n - (rev-plaf)/n
         # ars_diff = (ars_plaf_res + arsbase - base_ressources) / arsnbenf
         ars = (arsnbenf > 0) * max_(0, arsbase - max_(0, (base_ressources - ars_plaf_res) / max_(1, arsnbenf)))

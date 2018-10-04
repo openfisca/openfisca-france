@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from openfisca_france.model.base import *  # noqa
+from openfisca_france.model.base import *
 
 
 # Rentes viagères

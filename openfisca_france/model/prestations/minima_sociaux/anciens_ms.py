@@ -4,7 +4,7 @@ from __future__ import division
 
 from numpy import floor, logical_and as and_, logical_or as or_
 
-from openfisca_france.model.base import *  # noqa analysis:ignore
+from openfisca_france.model.base import *
 from openfisca_france.model.prestations.prestations_familiales.base_ressource import nb_enf
 
 
@@ -29,7 +29,6 @@ class api(Variable):
         af = parameters(period).prestations.prestations_familiales.af
         api = parameters(period).prestations.minima_sociaux.api
 
-
         # TODO:
         #    Majoration pour isolement
         #    Si vous êtes parent isolé, c’est-à-dire célibataire, divorcé(e), séparé(e) ou veuf(ve) avec des enfants
@@ -47,8 +46,8 @@ class api(Variable):
         #    Si votre plus jeune enfant à charge a moins de 3 ans, le montant forfaitaire majoré vous est accordé
         #    jusqu'à ses 3 ans.
         age_en_mois_i = famille.members('age_en_mois', period)
-        age_en_mois_benjamin = famille.min(age_en_mois_i, role = Famille.ENFANT)
-        enceinte = (age_en_mois_benjamin < 0) * (age_en_mois_benjamin > -6)
+        age_en_mois_enfant = famille.min(age_en_mois_i, role = Famille.ENFANT)
+        enceinte = (age_en_mois_enfant < 0) * (age_en_mois_enfant > -6)
         # TODO: quel mois mettre ?
         # TODO: pas complètement exact
         # L'allocataire perçoit l'API :
@@ -60,7 +59,7 @@ class api(Variable):
         # Le droit à l'allocation est réétudié tous les 3 mois.
         # # Calcul de l'année et mois de naissance du benjamin
 
-        condition = (floor(age_en_mois_benjamin / 12) <= api.age_limite - 1)
+        condition = (floor(age_en_mois_enfant / 12) <= api.age_limite - 1)
         eligib = isole * ((enceinte != 0) | (nb_enf(famille, period, 0, api.age_limite - 1) > 0)) * condition
 
         # moins de 20 ans avant inclusion dans rsa

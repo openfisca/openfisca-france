@@ -2,9 +2,7 @@
 
 from __future__ import division
 
-from openfisca_france.model.base import *  # noqa analysis:ignore
-
-from openfisca_france.model.prestations.prestations_familiales.base_ressource import nb_enf
+from openfisca_france.model.base import *
 
 
 class asf_elig_enfant(Variable):
@@ -20,8 +18,11 @@ class asf_elig_enfant(Variable):
         pfam = parameters(period).prestations.prestations_familiales
 
         eligibilite = (
-            (age >= pfam.af.age1) * (age < pfam.af.age3) *  # Âge compatible avec les prestations familiales
-            not_(autonomie_financiere))  # Ne perçoit pas plus de ressources que "55% du SMIC" au sens CAF
+            # Âge compatible avec les prestations familiales
+            (age >= pfam.af.age1)
+            * (age < pfam.af.age3)
+            * not_(autonomie_financiere)  # Ne perçoit pas plus de ressources que "55% du SMIC" au sens CAF
+            )
 
         return eligibilite
 
@@ -30,9 +31,7 @@ class asf_elig(Variable):
     value_type = bool
     entity = Famille
     label = u"Éligibilité à l'ASF"
-    reference = [
-        'https://www.aide-sociale.fr/allocation-soutien-familial/'
-    ]
+    reference = ['https://www.aide-sociale.fr/allocation-soutien-familial/']
     definition_period = MONTH
 
     def formula(famille, period):
@@ -55,7 +54,13 @@ class asf(Variable):
         pfam = parameters(period).prestations.prestations_familiales
 
         asf_elig = famille('asf_elig', period)
-        asf_par_enfant = famille.members('asf_elig_enfant', period) * pfam.af.bmaf * pfam.asf.taux_1_parent
+
+        asf_par_enfant = (
+            famille.members('asf_elig_enfant', period)
+            * pfam.af.bmaf
+            * pfam.asf.taux_1_parent
+            )
+
         montant = famille.sum(asf_par_enfant, role = Famille.ENFANT)
         pensions_alimentaires_percues = famille.sum(famille.members('pensions_alimentaires_percues', period))
 

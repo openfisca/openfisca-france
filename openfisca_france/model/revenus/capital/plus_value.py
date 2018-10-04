@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from openfisca_france.model.base import *  # noqa analysis:ignore
+from openfisca_france.model.base import *
 
 # PLAN :
 # 1) Gains taxés comme des salaires

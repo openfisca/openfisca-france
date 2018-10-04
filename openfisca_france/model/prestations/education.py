@@ -2,9 +2,8 @@
 
 from __future__ import division
 
-from numpy import logical_or as or_
+from openfisca_france.model.base import *
 
-from openfisca_france.model.base import *  # noqa analysis:ignore
 
 class bourse_college_echelon(Variable):
     value_type = int
@@ -129,11 +128,11 @@ class bourse_lycee_points_de_charge(Variable):
         nb_enfants = famille.sum(age_i >= 0, role = Famille.ENFANT)
 
         points_de_charge = (
-            11 * (nb_enfants >= 1) +
-            1 * (nb_enfants >= 2) + # 1 point de charge pour le 2ème enfant
-            2 * (nb_enfants >= 3) + 2 * (nb_enfants >= 4) + # 2 points de charge pour les 3ème et 4ème enfants
-            3 * (nb_enfants >= 5) * (nb_enfants - 4) + # 3 points de charge pour chaque enfant au-dessus de 4 enfants
-            3 * isole # 3 points de charge en plus si parent isolé
+            11 * (nb_enfants >= 1)
+            + 1 * (nb_enfants >= 2)  # 1 point de charge pour le 2ème enfant
+            + 2 * (nb_enfants >= 3) + 2 * (nb_enfants >= 4)  # 2 points de charge pour les 3ème et 4ème enfants
+            + 3 * (nb_enfants >= 5) * (nb_enfants - 4)  # 3 points de charge pour chaque enfant au-dessus de 4 enfants
+            + 3 * isole  # 3 points de charge en plus si parent isolé
             )
 
         return points_de_charge
@@ -280,7 +279,6 @@ class bourse_lycee(Variable):
         montant_par_enfant = round_(montant_par_enfant_en_pourcent_bmaf * bmaf_1er_janvier / 3) * 3
 
         return nb_enfants_lycee * montant_par_enfant
-
 
     def formula(famille, period, parameters):
         nombre_parts = famille('bourse_lycee_nombre_parts', period)
