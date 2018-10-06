@@ -2,10 +2,9 @@
 
 from __future__ import division
 
-from numpy import int32, logical_or as or_
+from numpy import logical_or as or_
 
-
-from openfisca_france.model.base import *  # noqa analysis:ignore
+from openfisca_france.model.base import *
 
 
 class autonomie_financiere(Variable):
@@ -20,9 +19,7 @@ class autonomie_financiere(Variable):
 
     def formula(individu, period, parameters):
         # D'après service-public.fr, la condition de dépassement du salaire plafonds n'est pas évalué de la même manière suivant si l'enfant est étudiant ou salarié/apprenti/stagiaire.
-        salaire_net_mensualise = individu(
-            'salaire_net', period.start.period('month', 6).offset(-6), options = [ADD]
-            ) / 6
+        salaire_net_mensualise = individu('salaire_net', period.start.period('month', 6).offset(-6), options = [ADD]) / 6
 
         _P = parameters(period)
 
@@ -46,9 +43,17 @@ class prestations_familiales_enfant_a_charge(Variable):
 
         pfam = parameters(period).prestations.prestations_familiales
 
-        condition_enfant = ((age >= pfam.enfants.age_minimal) * (age < pfam.enfants.age_intermediaire) *
-            rempli_obligation_scolaire)
-        condition_jeune = (age >= pfam.enfants.age_intermediaire) * (age < pfam.enfants.age_limite) * not_(autonomie_financiere)
+        condition_enfant = (
+            (age >= pfam.enfants.age_minimal)
+            * (age < pfam.enfants.age_intermediaire)
+            * rempli_obligation_scolaire
+            )
+
+        condition_jeune = (
+            (age >= pfam.enfants.age_intermediaire)
+            * (age < pfam.enfants.age_limite)
+            * not_(autonomie_financiere)
+            )
 
         return or_(condition_enfant, condition_jeune) * est_enfant_dans_famille
 
@@ -125,16 +130,17 @@ class rev_coll(Variable):
         # Quand rev_coll est calculé sur une année glissante, rente_viagere_titre_onereux_net et pensions_alimentaires_versees sont calculés sur l'année légale correspondante.
         rente_viagere_titre_onereux_net = foyer_fiscal('rente_viagere_titre_onereux_net', period)
         pensions_alimentaires_versees = foyer_fiscal('pensions_alimentaires_versees', period)
-        rev_cat_rvcm = foyer_fiscal('rev_cat_rvcm', period) # Supprimée en 2018
-        revenus_capitaux_prelevement_liberatoire = foyer_fiscal('revenus_capitaux_prelevement_liberatoire', period, options = [ADD]) # Supprimée en 2018
-        revenus_capitaux_prelevement_forfaitaire_unique_ir = foyer_fiscal('revenus_capitaux_prelevement_forfaitaire_unique_ir', period, options = [ADD]) # Existe à partir de 2018
+        rev_cat_rvcm = foyer_fiscal('rev_cat_rvcm', period)  # Supprimée en 2018
+        revenus_capitaux_prelevement_liberatoire = foyer_fiscal('revenus_capitaux_prelevement_liberatoire', period, options = [ADD])  # Supprimée en 2018
+        revenus_capitaux_prelevement_forfaitaire_unique_ir = foyer_fiscal('revenus_capitaux_prelevement_forfaitaire_unique_ir', period, options = [ADD])  # Existe à partir de 2018
         abat_spe = foyer_fiscal('abat_spe', period)
         fon = foyer_fiscal('fon', period)
         f7ga = foyer_fiscal('f7ga', period)
         f7gb = foyer_fiscal('f7gb', period)
         f7gc = foyer_fiscal('f7gc', period)
-        rev_cat_pv = foyer_fiscal('rev_cat_pv', period) # est supprimée à partir de 2018
-        plus_values_prelevement_forfaitaire_unique_ir = foyer_fiscal('plus_values_prelevement_forfaitaire_unique_ir', period) # Apparait à partir de 2018
+        # est supprimée à partir de 2018
+        rev_cat_pv = foyer_fiscal('rev_cat_pv', period)
+        plus_values_prelevement_forfaitaire_unique_ir = foyer_fiscal('plus_values_prelevement_forfaitaire_unique_ir', period)  # Apparait à partir de 2018
 
         # TODO: ajouter les revenus de l'étranger etr*0.9
         return (
@@ -160,7 +166,7 @@ class prestations_familiales_base_ressources(Variable):
     reference = [
         u"Article D521-4 du Code de la sécurité sociale",
         u"https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000030678081&cidTexte=LEGITEXT000006073189&categorieLien=id"
-    ]
+        ]
     definition_period = MONTH
 
     def formula(famille, period):
@@ -182,8 +188,10 @@ class prestations_familiales_base_ressources(Variable):
 
         # Revenus du foyer fiscal
         rev_coll = (
-            famille.demandeur.foyer_fiscal('rev_coll', annee_fiscale_n_2) *  demandeur_declarant_principal +
-            famille.conjoint.foyer_fiscal('rev_coll', annee_fiscale_n_2) * conjoint_declarant_principal
+            famille.demandeur.foyer_fiscal('rev_coll', annee_fiscale_n_2)
+            * demandeur_declarant_principal
+            + famille.conjoint.foyer_fiscal('rev_coll', annee_fiscale_n_2)
+            * conjoint_declarant_principal
             )
 
         base_ressources = base_ressources_i_total + rev_coll
@@ -211,6 +219,10 @@ def nb_enf(famille, period, age_min, age_max):
 #        Un enfant est reconnu à charge pour le versement des prestations
 #        jusqu'au mois précédant son age limite supérieur (ag2 + 1) mais
 #        le versement à lieu en début de mois suivant
-    condition = (age >= age_min) * (age <= age_max) * not_(autonomie_financiere)
+    condition = (
+        (age >= age_min)
+        * (age <= age_max)
+        * not_(autonomie_financiere)
+        )
 
     return famille.sum(condition, role = Famille.ENFANT)

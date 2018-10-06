@@ -4,7 +4,7 @@ from __future__ import division
 
 from numpy import absolute as abs_, logical_and as and_, logical_or as or_
 
-from openfisca_france.model.base import *  # noqa analysis:ignore
+from openfisca_france.model.base import *
 
 
 class ass_precondition_remplie(Variable):
@@ -32,13 +32,19 @@ class ass(Variable):
 
         montant_journalier = ass_params.montant_plein
         montant_mensuel = 30 * montant_journalier
-        plafond_mensuel = montant_journalier * (ass_params.plaf_seul * not_(en_couple) + ass_params.plaf_coup * en_couple)
+        plafond_mensuel = montant_journalier * (
+            ass_params.plaf_seul
+            * not_(en_couple)
+            + ass_params.plaf_coup
+            * en_couple
+            )
         revenus = ass_base_ressources / 12
 
         ass = min_(montant_mensuel, plafond_mensuel - revenus)
         ass = max_(ass, 0)
         ass = ass * elig
-        ass = ass * not_(ass < ass_params.montant_plein)  # pas d'ASS si montant mensuel < montant journalier de base
+        # pas d'ASS si montant mensuel < montant journalier de base
+        ass = ass * not_(ass < ass_params.montant_plein)
 
         return ass
 
@@ -87,18 +93,22 @@ class ass_base_ressources_individu(Variable):
             return revenus_auto_entrepreneur + tns_micro_entreprise_benefice + tns_benefice_exploitant_agricole + tns_autres_revenus
 
         pensions_alimentaires_percues = individu('pensions_alimentaires_percues', previous_year, options = [ADD])
-        pensions_alimentaires_versees_individu = individu(
-            'pensions_alimentaires_versees_individu', previous_year, options = [ADD]
-            )
+        pensions_alimentaires_versees_individu = individu('pensions_alimentaires_versees_individu', previous_year, options = [ADD])
 
         aah = individu('aah', previous_year, options = [ADD])
         indemnites_stage = individu('indemnites_stage', previous_year, options = [ADD])
         revenus_stage_formation_pro = individu('revenus_stage_formation_pro', previous_year, options = [ADD])
 
         return (
-            salaire_imposable + retraite_nette + pensions_alimentaires_percues - abs_(pensions_alimentaires_versees_individu) +
-            aah + indemnites_stage + revenus_stage_formation_pro + revenus_tns()
-        )
+            salaire_imposable
+            + retraite_nette
+            + pensions_alimentaires_percues
+            - abs_(pensions_alimentaires_versees_individu)
+            + aah
+            + indemnites_stage
+            + revenus_stage_formation_pro
+            + revenus_tns()
+            )
 
 
 class ass_base_ressources_conjoint(Variable):
@@ -115,10 +125,10 @@ class ass_base_ressources_conjoint(Variable):
         last_year = period.last_year
 
         has_ressources_substitution = (
-            individu('chomage_net', last_month) +
-            individu('indemnites_journalieres', last_month) +
-            individu('retraite_nette', last_month)
-        ) > 0
+            individu('chomage_net', last_month)
+            + individu('indemnites_journalieres', last_month)
+            + individu('retraite_nette', last_month)
+            ) > 0
 
         def calculateWithAbatement(ressourceName, neutral_totale = False):
             ressource_year = individu(ressourceName, previous_year, options = [ADD])
@@ -161,12 +171,20 @@ class ass_base_ressources_conjoint(Variable):
         pensions_alimentaires_versees_individu = individu('pensions_alimentaires_versees_individu', previous_year, options = [ADD])
 
         result = (
-            salaire_imposable + pensions_alimentaires_percues - abs_(pensions_alimentaires_versees_individu) +
-            aah + indemnites_stage + revenus_stage_formation_pro + retraite_nette + chomage_net +
-            indemnites_journalieres + revenus_tns()
-        )
+            salaire_imposable
+            + pensions_alimentaires_percues
+            - abs_(pensions_alimentaires_versees_individu)
+            + aah
+            + indemnites_stage
+            + revenus_stage_formation_pro
+            + retraite_nette
+            + chomage_net
+            + indemnites_journalieres
+            + revenus_tns()
+            )
 
         return result
+
 
 class ass_eligibilite_cumul_individu(Variable):
     value_type = bool
@@ -189,14 +207,20 @@ class ass_eligibilite_cumul_individu(Variable):
 
             # reinitialisation du nombre de mois de cumul après 3 mois consécutif sans activité
             nb_mois_cumul = nb_mois_cumul * (nb_mois_consecutif_sans_activite < 3)
-            nb_mois_consecutif_sans_activite = where(absence_ressources_activite * chomeur,
-                                                     nb_mois_consecutif_sans_activite + 1, 0)
+            nb_mois_consecutif_sans_activite = where(absence_ressources_activite * chomeur, nb_mois_consecutif_sans_activite + 1, 0)
 
-            nb_mois_cumul = nb_mois_cumul + 1 * presence_ressources_activite * not_(
-                chomeur) * ass_precondition_remplie * absence_aah
+            nb_mois_cumul = (
+                nb_mois_cumul
+                + 1
+                * presence_ressources_activite
+                * not_(chomeur)
+                * ass_precondition_remplie
+                * absence_aah
+                )
 
         # si 3 mois de cumul ou moins en comptant le mois courant, droit au cumul au moins courant
         return nb_mois_cumul <= 3
+
 
 class ass_eligibilite_individu(Variable):
     value_type = bool

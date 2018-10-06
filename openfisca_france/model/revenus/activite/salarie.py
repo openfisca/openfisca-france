@@ -2,7 +2,7 @@
 
 from functools import partial
 from numpy import busday_count as original_busday_count, datetime64, timedelta64
-from openfisca_france.model.base import *  # noqa analysis:ignore
+from openfisca_france.model.base import *
 
 
 class indemnites_stage(Variable):

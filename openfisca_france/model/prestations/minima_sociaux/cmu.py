@@ -4,7 +4,8 @@ from __future__ import division
 
 from numpy import absolute as abs_, logical_or as or_
 
-from openfisca_france.model.base import *  # noqa analysis:ignore
+from openfisca_france.model.base import *
+
 
 class cmu_acs_eligibilite(Variable):
     value_type = bool
@@ -26,7 +27,6 @@ class cmu_acs_eligibilite(Variable):
 
         age = famille.members('age', period)
         condition_age = (age >= age_min)
-
 
         eligibilite_famille = (
             (nb_enfants > 0)
@@ -51,7 +51,7 @@ class acs_montant_i(Variable):
             [P.acs_moins_16_ans, P.acs_16_49_ans]
             )
         montant_si_parent = select(
-            [age <=15, age <= 49, age <= 59, age >= 60],
+            [age <= 15, age <= 49, age <= 59, age >= 60],
             [P.acs_moins_16_ans, P.acs_16_49_ans, P.acs_50_59_ans, P.acs_plus_60_ans],
             )
         return where(
@@ -155,7 +155,8 @@ class cmu_c_plafond(Variable):
         cmu_eligible_majoration_dom = famille('cmu_eligible_majoration_dom', period)
         coeff_garde_alt_i = where(famille.members('garde_alternee', period), 0.5, 1)
 
-        rang_dans_fratrie = famille.members.get_rank(famille, - age_i, condition = is_enfant)  # 0 pour l'aîné, 1 pour le cadet, etc.
+        # 0 pour l'aîné, 1 pour le cadet, etc.
+        rang_dans_fratrie = famille.members.get_rank(famille, - age_i, condition = is_enfant)
 
         # Famille monoparentale
 
@@ -165,7 +166,6 @@ class cmu_c_plafond(Variable):
             ) * coeff_garde_alt_i
 
         coeff_monoparental = 1 + famille.sum(coeff_enfant_i, role = famille.ENFANT)
-
 
         # Couple
 
@@ -181,8 +181,8 @@ class cmu_c_plafond(Variable):
 
         plafonds = (
             cmu.plafond_base
-            *  coefficient_dom
-            *  coefficient_famille
+            * coefficient_dom
+            * coefficient_famille
             )
 
         return round_(plafonds)
@@ -211,7 +211,7 @@ class cmu_base_ressources_individu(Variable):
         u"https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=DEA53FDC793298CE041862E42D999E84.tplgfr43s_1?idArticle=LEGIARTI000030055485&cidTexte=LEGITEXT000006073189&dateTexte=20180829&categorieLien=id&oldAction=&nbResultRech=",
         u"Circulaire N°DSS/2A/2002/110 du 22 février 2002 relative à la notion de ressources à prendre en compte pour l'appréciation du droit à la protection complémentaire en matière de santé",
         u"http://circulaire.legifrance.gouv.fr/pdf/2009/04/cir_6430.pdf"
-    ]
+        ]
     entity = Individu
     definition_period = MONTH
 
@@ -246,7 +246,7 @@ class cmu_base_ressources_individu(Variable):
             'rsa_base_ressources_patrimoine_individu',
             'salaire_net',
             'rente_accident_travail',
-        ]
+            ]
 
         ressources = sum([
             individu(ressource, previous_year, options = [ADD])
@@ -256,7 +256,7 @@ class cmu_base_ressources_individu(Variable):
         pensions_alim_versees = abs_(individu(
             'pensions_alimentaires_versees_individu',
             previous_year, options = [ADD])
-        )
+            )
 
         revenus_stage_formation_pro_last_month = individu('revenus_stage_formation_pro', last_month)
 
@@ -284,7 +284,7 @@ class cmu_base_ressources_individu(Variable):
 
             eligibilite_abattement_chomage = or_(condition_ij_maladie, or_(condition_chomage, or_(condition_ass, condition_revenus_formation_pro)))
 
-            salaire_net = individu('salaire_net', previous_year, options=[ADD])
+            salaire_net = individu('salaire_net', previous_year, options = [ADD])
 
             return eligibilite_abattement_chomage * salaire_net * P.abattement_chomage
 
@@ -305,7 +305,14 @@ class cmu_base_ressources_individu(Variable):
 
             return revenus_auto_entrepreneur + tns_micro_entreprise_benefice + tns_benefice_exploitant_agricole + tns_autres_revenus
 
-        return ressources + revenus_tns() - pensions_alim_versees - abbattement_chomage() - neutralisation_stage_formation_pro()
+        return (
+            ressources
+            + revenus_tns()
+            - pensions_alim_versees
+            - abbattement_chomage()
+            - neutralisation_stage_formation_pro()
+            )
+
 
 class cmu_base_ressources(Variable):
     value_type = float
@@ -325,11 +332,12 @@ class cmu_base_ressources(Variable):
             'cf',
             'paje_clca',
             'paje_prepare',
-        ]
+            ]
 
-        ressources_famille = sum(
-            [famille(ressource, previous_year, options = [ADD]) for ressource in ressources_a_inclure]
-            )
+        ressources_famille = sum([
+            famille(ressource, previous_year, options = [ADD])
+            for ressource in ressources_a_inclure
+            ])
 
         statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
         cmu_forfait_logement_base = famille('cmu_forfait_logement_base', period)
@@ -339,8 +347,12 @@ class cmu_base_ressources(Variable):
 
         proprietaire = (statut_occupation_logement == TypesStatutOccupationLogement.proprietaire)
         heberge_titre_gratuit = (statut_occupation_logement == TypesStatutOccupationLogement.loge_gratuitement)
-        forfait_logement = ((proprietaire + heberge_titre_gratuit) * cmu_forfait_logement_base +
-            cmu_forfait_logement_al)
+
+        forfait_logement = (
+            (proprietaire + heberge_titre_gratuit)
+            * cmu_forfait_logement_base
+            + cmu_forfait_logement_al
+            )
 
         ressources_individuelles = famille.members('cmu_base_ressources_individu', period)
         ressources_parents = famille.sum(ressources_individuelles, role = Famille.PARENT)
@@ -391,7 +403,11 @@ class cmu_c(Variable):
 
         eligibilite_basique = cmu_base_ressources <= cmu_c_plafond
 
-        return cmu_acs_eligibilite * not_(residence_mayotte) * or_(eligibilite_basique, eligibilite_rsa)
+        return (
+            cmu_acs_eligibilite
+            * not_(residence_mayotte)
+            * or_(eligibilite_basique, eligibilite_rsa)
+            )
 
 
 class acs(Variable):
@@ -410,28 +426,28 @@ class acs(Variable):
         cmu_acs_eligibilite = famille('cmu_acs_eligibilite', period)
 
         return (
-            cmu_acs_eligibilite *
-            not_(residence_mayotte) * not_(cmu_c) *
-            (cmu_base_ressources <= acs_plafond) *
-            acs_montant)
+            cmu_acs_eligibilite
+            * not_(residence_mayotte)
+            * not_(cmu_c)
+            * (cmu_base_ressources <= acs_plafond)
+            * acs_montant
+            )
 
 
-############################################################################
 # Helper functions
-############################################################################
 
 
 def forfait_logement(nbp_foyer, P, law_rsa):
     '''
     Calcule le forfait logement en fonction du nombre de personnes dans le "foyer CMU" et d'un jeu de taux
     '''
-    montant_rsa_socle = law_rsa.rmi * (1 +
-        law_rsa.txp2 * (nbp_foyer >= 2) +
-        law_rsa.txp3 * (nbp_foyer >= 3)
+    montant_rsa_socle = law_rsa.rmi * (
+        1
+        + law_rsa.txp2 * (nbp_foyer >= 2)
+        + law_rsa.txp3 * (nbp_foyer >= 3)
         )
 
     return 12 * montant_rsa_socle * select(
-            [nbp_foyer == 1, nbp_foyer == 2, nbp_foyer > 2],
-            [P.taux_1p, P.taux_2p, P.taux_3p_plus]
-            )
-
+        [nbp_foyer == 1, nbp_foyer == 2, nbp_foyer > 2],
+        [P.taux_1p, P.taux_2p, P.taux_3p_plus]
+        )

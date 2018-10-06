@@ -2,7 +2,7 @@
 
 from __future__ import division
 
-from openfisca_france.model.base import *  # noqa analysis:ignore
+from openfisca_france.model.base import *
 
 
 class base_ressources_apa(Variable):
@@ -28,7 +28,6 @@ class apa_domicile_participation(Variable):
     label = u"Participation du bénéficiaire de l'APA à domicile en euros"
     entity = Individu
     definition_period = MONTH
-
 
     def formula_2002(individu, period, parameters):
         # Les départements doivent appliquer la nouvelle formule
@@ -60,7 +59,6 @@ class apa_domicile_participation(Variable):
             ]
         return select(condition_ressources_domicile, taux_participation) * dependance_plan_aide_domicile_accepte
 
-
     def formula_2016_03_01(individu, period, parameters):
         # Les départements doivent appliquer la nouvelle formule
         # entre le 1er mars 2016 et le 28 février 2017
@@ -74,7 +72,6 @@ class apa_domicile_participation(Variable):
             en_couple * (parameters.apa_domicile.divison_des_ressources_du_menage_pour_les_couples - 1)
             )
         base_ressources_apa_domicile = base_ressources_apa / proratisation_couple
-
 
         premier_seuil = 0.317 * majoration_tierce_personne
         second_seuil = 0.498 * majoration_tierce_personne
@@ -190,7 +187,7 @@ class apa_etablissement(Variable):
 
         en_couple = individu.famille('en_couple', period)
         apa_eligibilite = individu('apa_eligibilite', period)
-        gir = individu('gir', period)
+        gir = individu('gir', period)  # noqa F841
         base_ressources_apa = individu('base_ressources_apa', period)
         proratisation_couple_etablissement = (
             1 +
@@ -313,7 +310,7 @@ class dependance_plan_aide_domicile_accepte(Variable):
     reference = [
         # Code de l'action sociale et des familles - Article R232-10-1
         'https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=4D213136F764CDAC77B33F705B4DE178.tplgfr41s_1?idArticle=LEGIARTI000032133764&cidTexte=LEGITEXT000006074069&dateTexte=20170929&categorieLien=id&oldAction=&nbResultRech='
-    ]
+        ]
 
     def formula(individu, period, parameters):
         gir = individu('gir', period)

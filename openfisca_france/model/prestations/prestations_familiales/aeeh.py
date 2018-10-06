@@ -2,7 +2,7 @@
 
 from __future__ import division
 
-from openfisca_france.model.base import *  # noqa
+from openfisca_france.model.base import *
 
 
 class aeeh_niveau_handicap(Variable):
@@ -35,7 +35,6 @@ class aeeh(Variable):
         isole = not_(famille('en_couple', janvier))
         prestations_familiales = parameters(period).prestations.prestations_familiales
 
-
         if period.start.year >= 2006:
             base = prestations_familiales.aeeh.base
             cpl = prestations_familiales.aeeh.complement_d_allocation
@@ -48,28 +47,25 @@ class aeeh(Variable):
             for categorie in range(2, 7):
                 maj['{}e_categorie'.format(categorie)] = 0
 
-
-
         age = famille.members('age', janvier)
         handicap = famille.members('handicap', janvier)
         niveau_handicap = famille.members('aeeh_niveau_handicap', period)
-        isole = famille.project(isole)  # Indicatrice d'isolement pour les indidivus
+        # Indicatrice d'isolement pour les indidivus
+        isole = famille.project(isole)
 
         enfant_handicape = handicap * (age < prestations_familiales.aeeh.age)
 
         montant_par_enfant = enfant_handicape * (
             prestations_familiales.af.bmaf * (
-                base +
-                (niveau_handicap == 1) * cpl['1ere_categorie'] +
-                (niveau_handicap == 2) * (cpl['1ere_categorie'] + maj['2e_categorie'] * isole) +
-                (niveau_handicap == 3) * (cpl['2e_categorie'] + maj['3e_categorie'] * isole) +
-                (niveau_handicap == 4) * (cpl['3e_categorie'] + maj['4e_categorie'] * isole) +
-                (niveau_handicap == 5) * (cpl['4e_categorie'] + maj['5e_categorie'] * isole) +
-                (niveau_handicap == 6) * (maj['6e_categorie'] * isole)
-                ) +
-            (niveau_handicap == 6) * cpl['6e_categorie_1']
+                base
+                + (niveau_handicap == 1) * cpl['1ere_categorie']
+                + (niveau_handicap == 2) * (cpl['1ere_categorie'] + maj['2e_categorie'] * isole)
+                + (niveau_handicap == 3) * (cpl['2e_categorie'] + maj['3e_categorie'] * isole)
+                + (niveau_handicap == 4) * (cpl['3e_categorie'] + maj['4e_categorie'] * isole)
+                + (niveau_handicap == 5) * (cpl['4e_categorie'] + maj['5e_categorie'] * isole)
+                + (niveau_handicap == 6) * (maj['6e_categorie'] * isole)
+                ) + (niveau_handicap == 6) * cpl['6e_categorie_1']
             ) / 12
-
 
         montant_total = famille.sum(montant_par_enfant, role = Famille.ENFANT)
 

@@ -1,39 +1,39 @@
 # -*- coding: utf-8 -*-
 
 from numpy.core.defchararray import startswith
-from openfisca_france.model.base import *  # noqa analysis:ignore
+from openfisca_france.model.base import *
 
 paris_communes_limitrophes = [
-    b'75056', # Paris
-    b'93001', # Bagnolet
-    b'93006', # Boulogne-Billancourt
-    b'94018', # Charenton-le-Pont
-    b'92024', # Clichy-la-Garenne
-    b'94033', # Fontenay-sous-Bois
-    b'94037', # Gentilly
-    b'92040', # Issy-les-Moulineaux
-    b'94041', # Ivry-sur-Seine
-    b'94042', # Joinville-le-Pont
-    b'94043', # Le Kremlin-Bicêtre
-    b'93045', # Les Lilas
-    b'93061', # Le Pré-Saint-Gervais
-    b'92044', # Levallois-Perret
-    b'92046', # Malakoff
-    b'93048', # Montreuil
-    b'92049', # Montrouge
-    b'92051', # Neuilly-sur-Seine
-    b'94052', # Nogent-sur-Marne
-    b'93055', # Pantin
-    b'92062', # Puteaux
-    b'92064', # Saint-Cloud
-    b'93066', # Saint-Denis
-    b'94067', # Saint-Mandé
-    b'94069', # Saint-Maurice
-    b'93070', # Saint-Ouen
-    b'92073', # Suresnes
-    b'92075', # Vanves
-    b'94080', # Vincennes
-]
+    b'75056',  # Paris
+    b'93001',  # Bagnolet
+    b'93006',  # Boulogne-Billancourt
+    b'94018',  # Charenton-le-Pont
+    b'92024',  # Clichy-la-Garenne
+    b'94033',  # Fontenay-sous-Bois
+    b'94037',  # Gentilly
+    b'92040',  # Issy-les-Moulineaux
+    b'94041',  # Ivry-sur-Seine
+    b'94042',  # Joinville-le-Pont
+    b'94043',  # Le Kremlin-Bicêtre
+    b'93045',  # Les Lilas
+    b'93061',  # Le Pré-Saint-Gervais
+    b'92044',  # Levallois-Perret
+    b'92046',  # Malakoff
+    b'93048',  # Montreuil
+    b'92049',  # Montrouge
+    b'92051',  # Neuilly-sur-Seine
+    b'94052',  # Nogent-sur-Marne
+    b'93055',  # Pantin
+    b'92062',  # Puteaux
+    b'92064',  # Saint-Cloud
+    b'93066',  # Saint-Denis
+    b'94067',  # Saint-Mandé
+    b'94069',  # Saint-Maurice
+    b'93070',  # Saint-Ouen
+    b'92073',  # Suresnes
+    b'92075',  # Vanves
+    b'94080',  # Vincennes
+    ]
 
 departements_idf = [
     b'75',
@@ -44,7 +44,8 @@ departements_idf = [
     b'93',
     b'94',
     b'95',
-]
+    ]
+
 
 class ZoneLogementSocial(Enum):
     __order__ = 'paris_communes_limitrophes ile_de_france autres_regions'
@@ -60,6 +61,7 @@ class zone_logement_social(Variable):
     entity = Menage
     definition_period = MONTH
     label = u"Zone logement social"
+
     def formula(menage, period):
         depcom = menage('depcom', period)
 
@@ -70,13 +72,14 @@ class zone_logement_social(Variable):
             [
                 in_paris_communes_limitrophes,
                 in_idf
-            ],
+                ],
             [
                 ZoneLogementSocial.paris_communes_limitrophes,
                 ZoneLogementSocial.ile_de_france,
-            ],
+                ],
             default = ZoneLogementSocial.autres_regions
-        )
+            )
+
 
 class CategorieMenageLogementSocial(Enum):
     __order__ = 'categorie_1 categorie_2 categorie_3 categorie_4 categorie_5 categorie_6'
@@ -86,6 +89,7 @@ class CategorieMenageLogementSocial(Enum):
     categorie_4 = u"Quatre personnes ou une pers. seule avec deux pers. à charge"
     categorie_5 = u"Cinq personnes ou une pers. seule avec trois pers. à charge"
     categorie_6 = u"Six personnes ou une pers. seule avec quatre pers. à charge"
+
 
 class logement_social_categorie_menage(Variable):
     entity = Famille
@@ -97,7 +101,8 @@ class logement_social_categorie_menage(Variable):
     reference = [
         u"Arrêté du 29 juillet 1987 relatif aux plafonds de ressources des bénéficiaires de la législation sur les habitations à loyer modéré et des nouvelles aides de l'Etat en secteur locatif",
         u"https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000294318"
-    ]
+        ]
+
     def formula(famille, period, parameters):
 
         nb_personnes = famille.nb_persons()
@@ -121,16 +126,17 @@ class logement_social_categorie_menage(Variable):
                 (personnes_a_charge == 2),
                 # Cinq personnes, ou une personne seule avec trois personnes à charge.
                 (personnes_a_charge == 3)
-            ],
+                ],
             [
                 CategorieMenageLogementSocial.categorie_1,
                 CategorieMenageLogementSocial.categorie_2,
                 CategorieMenageLogementSocial.categorie_3,
                 CategorieMenageLogementSocial.categorie_4,
                 CategorieMenageLogementSocial.categorie_5
-            ],
+                ],
             default = CategorieMenageLogementSocial.categorie_6
-        )
+            )
+
 
 class logement_social_plafond_ressources(Variable):
     entity = Famille
@@ -140,10 +146,9 @@ class logement_social_plafond_ressources(Variable):
     reference = [
         u"Arrêté du 22 décembre 2016 modifiant l'arrêté du 29 juillet 1987 relatif aux plafonds de ressources des bénéficiaires de la législation sur les habitations à loyer modéré et des nouvelles aides de l'Etat en secteur locatif ",
         u"https://www.legifrance.gouv.fr/eli/arrete/2016/12/22/LHAL1629455A/jo/texte",
-    ]
+        ]
 
     def formula(famille, period, parameters):
-
         logement_social = parameters(period).logement_social.plai
 
         categorie_menage = famille('logement_social_categorie_menage', period)
@@ -157,6 +162,7 @@ class logement_social_plafond_ressources(Variable):
         par_personne_supplementaire = logement_social.plafond_ressources.par_personne_supplementaire[zone_logement_social]
 
         return plafond_ressources_par_categorie[zone_logement_social] + (personnes_a_charge_supplementaires * par_personne_supplementaire)
+
 
 class logement_social_eligible(Variable):
     entity = Famille

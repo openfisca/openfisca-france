@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from openfisca_france.model.base import *  # noqa  analysis:ignore
+from openfisca_france.model.base import *
 
 
 class reduction_loyer_solidarite_plafond_ressources(Variable):

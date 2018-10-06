@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-import numpy as np
-from openfisca_france.model.base import *  # noqa analysis:ignore
+
+from openfisca_france.model.base import *
 
 
 class ada(Variable):
@@ -17,9 +17,11 @@ class ada(Variable):
         ada = parameters(period).prestations.minima_sociaux.ada
 
         nb_pers = af_nbenf + nb_parents
-        ada_par_jour = (ada.montant_journalier_pour_une_personne +
-            (nb_pers - 1) * ada.majoration_pers_supp +
-            ada.supplement_non_hebergement * (not place_hebergement)
+        ada_par_jour = (
+            ada.montant_journalier_pour_une_personne
+            + (nb_pers - 1) * ada.majoration_pers_supp
+            + ada.supplement_non_hebergement
+            * (not place_hebergement)
             )
 
         montant_ada = period.days * ada_par_jour * asile_demandeur

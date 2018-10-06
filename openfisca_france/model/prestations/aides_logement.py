@@ -14,7 +14,7 @@ from numpy import ceil, datetime64, fromiter, int16, logical_or as or_, logical_
 import openfisca_france
 from openfisca_core.periods import Instant
 
-from openfisca_france.model.base import *  # noqa  analysis:ignore
+from openfisca_france.model.base import *
 from openfisca_france.model.prestations.prestations_familiales.base_ressource import nb_enf
 
 

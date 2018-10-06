@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from openfisca_france.model.base import *  # noqa
+from openfisca_france.model.base import *
 
 
 class rente_accident_travail(Variable):

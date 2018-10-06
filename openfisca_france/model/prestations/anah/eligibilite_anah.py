@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
 
 from numpy.core.defchararray import startswith
-from openfisca_france.model.base import *  # noqa analysis:ignore
+from openfisca_france.model.base import *
 
 
 class TypesEligibiliteANAH(Enum):
-    __order__ = 'a_verifier modestes tres_modeste'  # Needed to preserve the enum order in Python 2
+    # Needed to preserve the enum order in Python 2
+    __order__ = 'a_verifier modestes tres_modeste'
     a_verifier = u"A vérifier"
     modestes = u"Modestes"
     tres_modeste = u"Très modestes"
