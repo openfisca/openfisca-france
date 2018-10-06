@@ -29,9 +29,11 @@ class assiette_cotisations_sociales(Variable):
         assiette_cotisations_sociales_public = individu('assiette_cotisations_sociales_public', period)
         categorie_salarie = individu('categorie_salarie', period)
         stage_gratification_reintegration = individu('stage_gratification_reintegration', period)
-        return (categorie_salarie != TypesCategorieSalarie.non_pertinent) * (
-            assiette_cotisations_sociales_prive +
-            assiette_cotisations_sociales_public) + stage_gratification_reintegration
+        return (
+            (categorie_salarie != TypesCategorieSalarie.non_pertinent)
+            * (assiette_cotisations_sociales_prive + assiette_cotisations_sociales_public)
+            + stage_gratification_reintegration
+            )
 
 
 class assiette_cotisations_sociales_prive(Variable):
@@ -56,14 +58,16 @@ class assiette_cotisations_sociales_prive(Variable):
         categorie_salarie = individu('categorie_salarie', period)
 
         assiette = (
-            salaire_de_base +
-            primes_salaires +
-            avantage_en_nature +
-            hsup +
-            indemnites_compensatrices_conges_payes +
-            remuneration_apprenti +
-            (categorie_salarie == TypesCategorieSalarie.public_non_titulaire) * (indemnite_residence + primes_fonction_publique) +
-            reintegration_titre_restaurant_employeur + indemnite_fin_contrat
+            salaire_de_base
+            + primes_salaires
+            + avantage_en_nature
+            + hsup
+            + indemnites_compensatrices_conges_payes
+            + remuneration_apprenti
+            + (categorie_salarie == TypesCategorieSalarie.public_non_titulaire)
+            * (indemnite_residence + primes_fonction_publique)
+            + reintegration_titre_restaurant_employeur
+            + indemnite_fin_contrat
             )
 
         return assiette
@@ -89,19 +93,22 @@ class indemnite_fin_contrat(Variable):
         # Elle est cependant fixée à False par défaut
         indemnite_fin_contrat_due = individu('indemnite_fin_contrat_due', period)
         taux = parameters(period).cotsoc.indemnite_fin_contrat.taux
+
         result = (
             # CDD
-            (contrat_de_travail_duree == TypesContratDeTravailDuree.cdd) *
+            (contrat_de_travail_duree == TypesContratDeTravailDuree.cdd)
             # non fonction publique
-            (
-                (categorie_salarie == TypesCategorieSalarie.prive_non_cadre) +
-                (categorie_salarie == TypesCategorieSalarie.prive_cadre)
-                ) *
-            not_(apprenti) *
-            indemnite_fin_contrat_due *
+            * (
+                (categorie_salarie == TypesCategorieSalarie.prive_non_cadre)
+                + (categorie_salarie == TypesCategorieSalarie.prive_cadre)
+                )
+            * not_(apprenti)
+            * indemnite_fin_contrat_due
             # 10% du brut
-            taux * salaire_de_base
+            * taux
+            * salaire_de_base
             )
+
         return result
 
 
@@ -127,14 +134,20 @@ class reintegration_titre_restaurant_employeur(Variable):
         taux_minimum_exoneration = cantines_titres_restaurants.taux_minimum_exoneration
         taux_maximum_exoneration = cantines_titres_restaurants.taux_maximum_exoneration
         seuil_prix_titre = cantines_titres_restaurants.seuil_prix_titre
+
         condition_exoneration_taux = (
-            (taux_minimum_exoneration <= taux_employeur) *
-            (taux_maximum_exoneration >= taux_employeur)
+            (taux_minimum_exoneration <= taux_employeur)
+            * (taux_maximum_exoneration >= taux_employeur)
             )
+
         montant_reintegration = volume * (
-            condition_exoneration_taux * max_(valeur_unitaire * taux_employeur - seuil_prix_titre, 0) +
-            not_(condition_exoneration_taux) * valeur_unitaire * taux_employeur
+            condition_exoneration_taux
+            * max_(valeur_unitaire * taux_employeur - seuil_prix_titre, 0)
+            + not_(condition_exoneration_taux)
+            * valeur_unitaire
+            * taux_employeur
             )
+
         return montant_reintegration
 
 
@@ -487,8 +500,8 @@ class arrco_salarie(Variable):
 
         # cas où l'entreprise applique un taux spécifique
         cotisation_entreprise = - (
-            min_(max_(assiette_cotisations_sociales, 0), plafond_securite_sociale) *
-            arrco_tranche_a_taux_salarie
+            min_(max_(assiette_cotisations_sociales, 0), plafond_securite_sociale)
+            * arrco_tranche_a_taux_salarie
             )
 
         public = (
@@ -497,7 +510,9 @@ class arrco_salarie(Variable):
             )
 
         return (
-            cotisation_minimale * (arrco_tranche_a_taux_salarie == 0) + cotisation_entreprise
+            cotisation_minimale
+            * (arrco_tranche_a_taux_salarie == 0)
+            + cotisation_entreprise
             ) * public
 
 
@@ -524,8 +539,8 @@ class arrco_employeur(Variable):
 
         # cas où l'entreprise applique un taux spécifique
         cotisation_entreprise = - (
-            min_(max_(assiette_cotisations_sociales, 0), plafond_securite_sociale) *
-            arrco_tranche_a_taux_employeur
+            min_(max_(assiette_cotisations_sociales, 0), plafond_securite_sociale)
+            * arrco_tranche_a_taux_employeur
             )
 
         public = (
@@ -803,9 +818,9 @@ class prevoyance_obligatoire_cadre(Variable):
             'prevoyance_obligatoire_cadre_taux_employeur', period)
 
         cotisation = - (
-            (categorie_salarie == TypesCategorieSalarie.prive_cadre) *
-            min_(assiette_cotisations_sociales, plafond_securite_sociale) *
-            prevoyance_obligatoire_cadre_taux_employeur
+            (categorie_salarie == TypesCategorieSalarie.prive_cadre)
+            * min_(assiette_cotisations_sociales, plafond_securite_sociale)
+            * prevoyance_obligatoire_cadre_taux_employeur
             )
         return cotisation
 

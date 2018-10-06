@@ -127,13 +127,20 @@ class exoneration_cotisations_employeur_apprenti(Variable):
         cotisations_non_exonerees = accident_du_travail
         exoneration_moins_11 = cotisations_non_exonerees - cotisations_employeur
 
-        cotisations_exonerees = (famille + mmid_employeur + vieillesse_plafonnee_employeur +
-            vieillesse_deplafonnee_employeur)
+        cotisations_exonerees = (
+            famille
+            + mmid_employeur
+            + vieillesse_plafonnee_employeur
+            + vieillesse_deplafonnee_employeur
+            )
+
         exoneration_plus_11 = -cotisations_exonerees
 
         return (
-            exoneration_plus_11 * (effectif_entreprise >= 11) +
-            exoneration_moins_11 * (effectif_entreprise < 11)
+            exoneration_plus_11
+            * (effectif_entreprise >= 11)
+            + exoneration_moins_11
+            * (effectif_entreprise < 11)
             ) * apprenti
 
 

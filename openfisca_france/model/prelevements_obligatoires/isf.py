@@ -530,9 +530,21 @@ class revetproduits(Variable):
         # # def rev_exon et rev_etranger dans data? ##
         pt = max_(
             0,
-            revenu_assimile_salaire_apres_abattements + revenu_assimile_pension_apres_abattements + rente_viagere_titre_onereux_net + revenus_capitaux_prelevement_bareme + revenus_capitaux_prelevement_liberatoire + revenus_capitaux_prelevement_forfaitaire_unique_ir + ric + rag + rpns_exon +
-            rpns_pvct + prelevement_forfaitaire_liberatoire + prelevement_forfaitaire_unique_ir + fon
+            revenu_assimile_salaire_apres_abattements
+            + revenu_assimile_pension_apres_abattements
+            + rente_viagere_titre_onereux_net
+            + revenus_capitaux_prelevement_bareme
+            + revenus_capitaux_prelevement_liberatoire
+            + revenus_capitaux_prelevement_forfaitaire_unique_ir
+            + ric
+            + rag
+            + rpns_exon
+            + rpns_pvct
+            + prelevement_forfaitaire_liberatoire
+            + prelevement_forfaitaire_unique_ir
+            + fon
             )
+
         return pt * P.plafonnement_taux_d_imposition_isf
 
 
@@ -570,9 +582,9 @@ class isf_apres_plaf(Variable):
         #    est limité à 50% de l'ISF
         plafonnement = max_(tot_impot - revetproduits, 0)
         limitationplaf = (
-            (isf_avant_plaf <= P.seuil1) * plafonnement +
-            (P.seuil1 <= isf_avant_plaf) * (isf_avant_plaf <= P.seuil2) * min_(plafonnement, P.seuil1) +
-            (isf_avant_plaf >= P.seuil2) * min_(isf_avant_plaf * P.taux, plafonnement)
+            (isf_avant_plaf <= P.seuil1) * plafonnement
+            + (P.seuil1 <= isf_avant_plaf) * (isf_avant_plaf <= P.seuil2) * min_(plafonnement, P.seuil1)
+            + (isf_avant_plaf >= P.seuil2) * min_(isf_avant_plaf * P.taux, plafonnement)
             )
         return max_(isf_avant_plaf - limitationplaf, 0)
 

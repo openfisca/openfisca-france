@@ -100,18 +100,21 @@ class coefficient_proratisation(Variable):
         coefficient = switch(
             contrat_de_travail,
             {  # temps plein
-                TypesContratDeTravail.temps_plein: ((jours_ouvres_ce_mois_incomplet - jours_absence) /
-                    jours_ouvres_ce_mois
-                                                    ),
+                TypesContratDeTravail.temps_plein: (
+                    (jours_ouvres_ce_mois_incomplet - jours_absence)
+                    / jours_ouvres_ce_mois
+                    ),
+
                 # temps partiel
                 # (en l'absence du détail pour chaque jour de la semaine ou chaque semaine du mois)
                 TypesContratDeTravail.temps_partiel: coefficient_proratisation_temps_partiel * (
-                    (jours_ouvres_ce_mois_incomplet * coefficient_proratisation_temps_partiel - jours_absence) /
-                    (jours_ouvres_ce_mois * coefficient_proratisation_temps_partiel + 1e-16)
+                    (jours_ouvres_ce_mois_incomplet * coefficient_proratisation_temps_partiel - jours_absence)
+                    / (jours_ouvres_ce_mois * coefficient_proratisation_temps_partiel + 1e-16)
                     ),
+
                 TypesContratDeTravail.forfait_jours_annee: coefficient_proratisation_forfait_jours * (
-                    (jours_ouvres_ce_mois_incomplet * coefficient_proratisation_forfait_jours - jours_absence) /
-                    (jours_ouvres_ce_mois * coefficient_proratisation_forfait_jours + 1e-16)
+                    (jours_ouvres_ce_mois_incomplet * coefficient_proratisation_forfait_jours - jours_absence)
+                    / (jours_ouvres_ce_mois * coefficient_proratisation_forfait_jours + 1e-16)
                     )
                 }
             )
@@ -268,9 +271,15 @@ class aide_embauche_pme(Variable):
         eligible_date = datetime64(period.offset(-24, 'month').start) < contrat_de_travail_debut
 
         eligible = (
-            eligible_salaire * eligible_effectif * non_cumulee * eligible_contrat * eligible_duree *
-            eligible_date * not_(apprenti)
+            eligible_salaire
+            * eligible_effectif
+            * non_cumulee
+            * eligible_contrat
+            * eligible_duree
+            * eligible_date
+            * not_(apprenti)
             )
+
         # somme sur 24 mois, à raison de 500 € maximum par trimestre
         montant_max = 4000
 
@@ -359,17 +368,24 @@ def compute_allegement_fillon(individu, period, parameters):
         seuil = fillon.entreprises_ayant_signe_un_accord_de_rtt_avant_le_30_06_2003.plafond
         tx_max = fillon.entreprises_ayant_signe_un_accord_de_rtt_avant_le_30_06_2003.reduction_maximale
     # Après le 2005-07-01
+
     else:
         seuil = fillon.ensemble_des_entreprises.plafond
         tx_max = (
-            fillon.ensemble_des_entreprises.reduction_maximale.entreprises_de_20_salaries_et_plus * not_(majoration) +
-            fillon.ensemble_des_entreprises.reduction_maximale.entreprises_de_moins_de_20_salaries * majoration
+            fillon.ensemble_des_entreprises.reduction_maximale.entreprises_de_20_salaries_et_plus
+            * not_(majoration)
+            + fillon.ensemble_des_entreprises.reduction_maximale.entreprises_de_moins_de_20_salaries
+            * majoration
             )
+
     if seuil <= 1:
         return 0
+
     ratio_smic_salaire = smic_proratise / (assiette + 1e-16)
+
     # règle d'arrondi: 4 décimales au dix-millième le plus proche
     taux_fillon = round_(tx_max * min_(1, max_(seuil * ratio_smic_salaire - 1, 0) / (seuil - 1)), 4)
+
     # Montant de l'allegment
     return taux_fillon * assiette
 

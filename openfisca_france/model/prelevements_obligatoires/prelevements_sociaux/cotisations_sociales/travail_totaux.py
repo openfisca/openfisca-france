@@ -27,9 +27,9 @@ class cotisations_employeur(Variable):
         cotisations_employeur_main_d_oeuvre = individu('cotisations_employeur_main_d_oeuvre', period)
 
         return (
-            cotisations_employeur_contributives +
-            cotisations_employeur_non_contributives +
-            cotisations_employeur_main_d_oeuvre
+            cotisations_employeur_contributives
+            + cotisations_employeur_non_contributives
+            + cotisations_employeur_main_d_oeuvre
             )
 
 
@@ -59,22 +59,23 @@ class cotisations_employeur_contributives(Variable):
 
         cotisations = (
             # prive
-            ags +
-            agff_employeur +
-            agirc_employeur +
-            agirc_gmp_employeur +
-            apec_employeur +
-            arrco_employeur +
-            chomage_employeur +
-            cotisation_exceptionnelle_temporaire_employeur +
-            vieillesse_deplafonnee_employeur +
-            vieillesse_plafonnee_employeur +
+            ags
+            + agff_employeur
+            + agirc_employeur
+            + agirc_gmp_employeur
+            + apec_employeur
+            + arrco_employeur
+            + chomage_employeur
+            + cotisation_exceptionnelle_temporaire_employeur
+            + vieillesse_deplafonnee_employeur
+            + vieillesse_plafonnee_employeur
             # public
-            fonds_emploi_hospitalier +
-            ircantec_employeur +
-            pension_civile_employeur +
-            rafp_employeur
+            + fonds_emploi_hospitalier
+            + ircantec_employeur
+            + pension_civile_employeur
+            + rafp_employeur
             )
+
         return cotisations
 
 
@@ -96,15 +97,16 @@ class cotisations_employeur_non_contributives(Variable):
         forfait_social = individu('forfait_social', period, options = [ADD])
 
         cotisations_employeur_non_contributives = (
-            allocations_temporaires_invalidite +
-            penibilite +
-            accident_du_travail +
-            contribution_solidarite_autonomie +
-            famille +
-            mmid_employeur +
-            taxe_salaires +
-            forfait_social
+            allocations_temporaires_invalidite
+            + penibilite
+            + accident_du_travail
+            + contribution_solidarite_autonomie
+            + famille
+            + mmid_employeur
+            + taxe_salaires
+            + forfait_social
             )
+
         return cotisations_employeur_non_contributives
 
 
@@ -131,19 +133,19 @@ class cotisations_salariales_contributives(Variable):
 
         cotisations_salariales_contributives = (
             # prive
-            agff_salarie +
-            agirc_salarie +
-            agirc_gmp_salarie +
-            apec_salarie +
-            arrco_salarie +
-            chomage_salarie +
-            cotisation_exceptionnelle_temporaire_salarie +
-            vieillesse_deplafonnee_salarie +
-            vieillesse_plafonnee_salarie +
+            agff_salarie
+            + agirc_salarie
+            + agirc_gmp_salarie
+            + apec_salarie
+            + arrco_salarie
+            + chomage_salarie
+            + cotisation_exceptionnelle_temporaire_salarie
+            + vieillesse_deplafonnee_salarie
+            + vieillesse_plafonnee_salarie
             # public
-            ircantec_salarie +
-            pension_civile_salarie +
-            rafp_salarie
+            + ircantec_salarie
+            + pension_civile_salarie
+            + rafp_salarie
             )
 
         return cotisations_salariales_contributives
@@ -162,9 +164,9 @@ class cotisations_salariales_non_contributives(Variable):
 
         cotisations_salariales_non_contributives = (
             # prive
-            mmid_salarie +
+            mmid_salarie
             # public
-            contribution_exceptionnelle_solidarite
+            + contribution_exceptionnelle_solidarite
             )
 
         return cotisations_salariales_non_contributives
@@ -186,8 +188,8 @@ class cotisations_salariales(Variable):
         exoneration_cotisations_salarie_stagiaire = individu('exoneration_cotisations_salarie_stagiaire', period, options = [ADD])
 
         return (
-            cotisations_salariales_contributives +
-            cotisations_salariales_non_contributives +
-            exoneration_cotisations_salariales_apprenti +
-            exoneration_cotisations_salarie_stagiaire
+            cotisations_salariales_contributives
+            + cotisations_salariales_non_contributives
+            + exoneration_cotisations_salariales_apprenti
+            + exoneration_cotisations_salarie_stagiaire
             )

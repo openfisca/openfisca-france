@@ -312,8 +312,9 @@ class prelevements_sociaux_revenus_capital_hors_csg_crds(Variable):
         P = parameters(period).taxation_capital.prelevements_sociaux
 
         total = (
-            P.prelevement_social.revenus_du_patrimoine + P.caps.revenus_du_patrimoine +
-            P.prelevements_solidarite.revenus_du_patrimoine
+            P.prelevement_social.revenus_du_patrimoine
+            + P.caps.revenus_du_patrimoine
+            + P.prelevements_solidarite.revenus_du_patrimoine
             )
 
         return -assiette_csg_revenus_capital * total
@@ -326,8 +327,10 @@ class prelevements_sociaux_revenus_capital_hors_csg_crds(Variable):
         P = parameters(period).taxation_capital.prelevements_sociaux
 
         total = (
-            P.prelevement_social.revenus_du_patrimoine + P.caps.revenus_du_patrimoine +
-            P.prelevements_solidarite.revenus_du_patrimoine + P.caps.rsa
+            P.prelevement_social.revenus_du_patrimoine
+            + P.caps.revenus_du_patrimoine
+            + P.prelevements_solidarite.revenus_du_patrimoine
+            + P.caps.rsa
             )
 
         return -assiette_csg_revenus_capital * total
@@ -340,8 +343,9 @@ class prelevements_sociaux_revenus_capital_hors_csg_crds(Variable):
         P = parameters(period).taxation_capital.prelevements_sociaux
 
         total = (
-            P.prelevement_social.revenus_du_patrimoine + P.caps.revenus_du_patrimoine +
-            P.prelevements_solidarite.revenus_du_patrimoine
+            P.prelevement_social.revenus_du_patrimoine
+            + P.caps.revenus_du_patrimoine
+            + P.prelevements_solidarite.revenus_du_patrimoine
             )
 
         return -assiette_csg_revenus_capital * total

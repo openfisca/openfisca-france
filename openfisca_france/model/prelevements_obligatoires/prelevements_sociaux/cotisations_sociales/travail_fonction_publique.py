@@ -94,12 +94,16 @@ class contribution_exceptionnelle_solidarite(Variable):
         seuil_assujetissement_fds = compute_seuil_fds(parameters)
 
         assujettis = (
-            (categorie_salarie == TypesCategorieSalarie.public_titulaire_etat) +
-            (categorie_salarie == TypesCategorieSalarie.public_titulaire_territoriale) +
-            (categorie_salarie == TypesCategorieSalarie.public_titulaire_hospitaliere) +
-            (categorie_salarie == TypesCategorieSalarie.public_non_titulaire)
+            (categorie_salarie == TypesCategorieSalarie.public_titulaire_etat)
+            + (categorie_salarie == TypesCategorieSalarie.public_titulaire_territoriale)
+            + (categorie_salarie == TypesCategorieSalarie.public_titulaire_hospitaliere)
+            + (categorie_salarie == TypesCategorieSalarie.public_non_titulaire)
             ) * (
-            (traitement_indiciaire_brut + salaire_de_base - hsup) > seuil_assujetissement_fds
+            (
+                traitement_indiciaire_brut
+                + salaire_de_base
+                - hsup
+                ) > seuil_assujetissement_fds
             )
 
         # TODO: check assiette voir IPP
@@ -108,10 +112,15 @@ class contribution_exceptionnelle_solidarite(Variable):
             bareme_name = "excep_solidarite",
             base = assujettis * min_(
                 (
-                    traitement_indiciaire_brut + salaire_de_base - hsup + indemnite_residence + rafp_salarie +
-                    pension_civile_salarie +
-                    primes_fonction_publique +
-                    (categorie_salarie == TypesCategorieSalarie.public_non_titulaire) * cotisations_salariales_contributives
+                    traitement_indiciaire_brut
+                    + salaire_de_base
+                    - hsup
+                    + indemnite_residence
+                    + rafp_salarie
+                    + pension_civile_salarie
+                    + primes_fonction_publique
+                    + (categorie_salarie == TypesCategorieSalarie.public_non_titulaire)
+                    * cotisations_salariales_contributives
                     ),
                 parameters.prelevements_sociaux.cotisations_sociales.fds.plafond_base_solidarite,
                 ),
@@ -201,11 +210,13 @@ class pension_civile_salarie(Variable):
         sal = _P.cotsoc.cotisations_salarie
         terr_or_hosp = (
             categorie_salarie == TypesCategorieSalarie.public_titulaire_territoriale) | (categorie_salarie == TypesCategorieSalarie.public_titulaire_hospitaliere)
+
         pension_civile_salarie = (
-            (categorie_salarie == TypesCategorieSalarie.public_titulaire_etat) *
-            sal['public_titulaire_etat']['pension'].calc(traitement_indiciaire_brut) +
-            terr_or_hosp * sal['public_titulaire_territoriale']['cnracl1'].calc(traitement_indiciaire_brut)
+            (categorie_salarie == TypesCategorieSalarie.public_titulaire_etat)
+            * sal['public_titulaire_etat']['pension'].calc(traitement_indiciaire_brut)
+            + terr_or_hosp * sal['public_titulaire_territoriale']['cnracl1'].calc(traitement_indiciaire_brut)
             )
+
         return - pension_civile_salarie
 
 
@@ -223,15 +234,20 @@ class pension_civile_employeur(Variable):
         _P = parameters(period)
 
         pat = _P.cotsoc.cotisations_employeur
+
         terr_or_hosp = (
-            (categorie_salarie == TypesCategorieSalarie.public_titulaire_territoriale) | (categorie_salarie == TypesCategorieSalarie.public_titulaire_hospitaliere)
+            (categorie_salarie == TypesCategorieSalarie.public_titulaire_territoriale)
+            | (categorie_salarie == TypesCategorieSalarie.public_titulaire_hospitaliere)
             )
+
         cot_pat_pension_civile = (
-            (categorie_salarie == TypesCategorieSalarie.public_titulaire_etat) * pat['public_titulaire_etat']['pension'].calc(
-                assiette_cotisations_sociales_public) +
-            terr_or_hosp * pat['public_titulaire_territoriale']['cnracl'].calc(assiette_cotisations_sociales_public)
+            (categorie_salarie == TypesCategorieSalarie.public_titulaire_etat)
+            * pat['public_titulaire_etat']['pension'].calc(assiette_cotisations_sociales_public)
+            + terr_or_hosp
+            * pat['public_titulaire_territoriale']['cnracl'].calc(assiette_cotisations_sociales_public)
             )
-        return -cot_pat_pension_civile
+
+        return - cot_pat_pension_civile
 
 
 class rafp_salarie(Variable):
@@ -280,10 +296,11 @@ class rafp_employeur(Variable):
         _P = parameters(period)
 
         eligible = (
-            (categorie_salarie == TypesCategorieSalarie.public_titulaire_etat) +
-            (categorie_salarie == TypesCategorieSalarie.public_titulaire_territoriale) +
-            (categorie_salarie == TypesCategorieSalarie.public_titulaire_hospitaliere)
+            (categorie_salarie == TypesCategorieSalarie.public_titulaire_etat)
+            + (categorie_salarie == TypesCategorieSalarie.public_titulaire_territoriale)
+            + (categorie_salarie == TypesCategorieSalarie.public_titulaire_hospitaliere)
             )
+
         plaf_ass = _P.cotsoc.sal.fonc.etat.rafp_plaf_assiette
         base_imposable = primes_fonction_publique + supplement_familial_traitement + indemnite_residence
         assiette = min_(base_imposable, plaf_ass * traitement_indiciaire_brut * eligible)

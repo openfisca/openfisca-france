@@ -99,12 +99,12 @@ class contribution_supplementaire_apprentissage(Variable):
 
             taxe_due = (effectif_entreprise >= 250) * (ratio_alternants < .05)
             taux_conditionnel = (
-                (effectif_entreprise < 2000) * (ratio_alternants < .01) * csa_params.moins_2000_moins_1pc_alternants +
-                (effectif_entreprise >= 2000) * (ratio_alternants < .01) * csa_params.plus_2000_moins_1pc_alternants +
-                (.01 <= ratio_alternants) * (ratio_alternants < .02) * csa_params.entre_1_2_pc_alternants +
-                (.02 <= ratio_alternants) * (ratio_alternants < .03) * csa_params.entre_2_3_pc_alternants +
-                (.03 <= ratio_alternants) * (ratio_alternants < .04) * csa_params.entre_3_4_pc_alternants +
-                (.04 <= ratio_alternants) * (ratio_alternants < .05) * csa_params.entre_4_5_pc_alternants
+                (effectif_entreprise < 2000) * (ratio_alternants < .01) * csa_params.moins_2000_moins_1pc_alternants
+                + (effectif_entreprise >= 2000) * (ratio_alternants < .01) * csa_params.plus_2000_moins_1pc_alternants
+                + (.01 <= ratio_alternants) * (ratio_alternants < .02) * csa_params.entre_1_2_pc_alternants
+                + (.02 <= ratio_alternants) * (ratio_alternants < .03) * csa_params.entre_2_3_pc_alternants
+                + (.03 <= ratio_alternants) * (ratio_alternants < .04) * csa_params.entre_3_4_pc_alternants
+                + (.04 <= ratio_alternants) * (ratio_alternants < .05) * csa_params.entre_4_5_pc_alternants
                 )
             taux_contribution = taxe_due * taux_conditionnel * multiplier
         else:
@@ -136,18 +136,19 @@ class cotisations_employeur_main_d_oeuvre(Variable):
         versement_transport = individu('versement_transport', period, options = [ADD])
 
         cotisations_employeur_main_d_oeuvre = (
-            conge_individuel_formation_cdd +
-            contribution_developpement_apprentissage +
-            contribution_supplementaire_apprentissage +
-            financement_organisations_syndicales +
-            fnal +
-            formation_professionnelle +
-            participation_effort_construction +
-            prevoyance_obligatoire_cadre +
-            complementaire_sante_employeur +
-            taxe_apprentissage +
-            versement_transport
+            conge_individuel_formation_cdd
+            + contribution_developpement_apprentissage
+            + contribution_supplementaire_apprentissage
+            + financement_organisations_syndicales
+            + fnal
+            + formation_professionnelle
+            + participation_effort_construction
+            + prevoyance_obligatoire_cadre
+            + complementaire_sante_employeur
+            + taxe_apprentissage
+            + versement_transport
             )
+
         return cotisations_employeur_main_d_oeuvre
 
 
@@ -304,8 +305,8 @@ class participation_effort_construction(Variable):
         # TODO : seuil passé de 10 à 20 avec l'Ordonnance n° 2005-895 du 2 août 2005
 
         cotisation = (
-            bareme * (effectif_entreprise >= 20) +
-            individu.filled_array(0) * (effectif_entreprise < 20)
+            bareme * (effectif_entreprise >= 20)
+            + individu.filled_array(0) * (effectif_entreprise < 20)
             )
 
         return cotisation
@@ -387,8 +388,8 @@ class taxe_salaires(Variable):
                 base,
                 factor = 1 / 12,
                 round_base_decimals = 2
-                ) +
-            round_(parametres.taux.metro * base, 2)
+                )
+            + round_(parametres.taux.metro * base, 2)
             )
 
         # Une franchise et une décôte s'appliquent à cette taxe
