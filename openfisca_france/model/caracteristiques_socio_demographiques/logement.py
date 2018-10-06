@@ -5,6 +5,7 @@ from numpy.core.defchararray import startswith
 
 from openfisca_france.model.base import *
 
+
 class coloc(Variable):
     value_type = bool
     entity = Menage
@@ -34,6 +35,7 @@ class depcom(Variable):
     label = u"Code INSEE (depcom) du lieu de résidence"
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
+
 
 class charges_locatives(Variable):
     value_type = float

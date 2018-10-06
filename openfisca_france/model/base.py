@@ -5,6 +5,7 @@ from openfisca_france.entities import Famille, FoyerFiscal, Individu, Menage
 
 # Enums commonly used through the legislation
 
+
 class TypesActivite(Enum):
     __order__ = 'actif chomeur etudiant retraite inactif'  # Needed to preserve the enum order in Python 2
     actif = u'Actif occupé'

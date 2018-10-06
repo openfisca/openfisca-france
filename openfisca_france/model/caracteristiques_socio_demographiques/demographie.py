@@ -2,6 +2,7 @@
 
 from openfisca_france.model.base import *
 
+
 class date_naissance(Variable):
     value_type = date
     default_value = date(1970, 1, 1)
