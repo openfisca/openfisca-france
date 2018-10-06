@@ -4,7 +4,7 @@ from __future__ import division
 
 import math
 
-from openfisca_france.model.base import *  # noqa analysis:ignore
+from openfisca_france.model.base import *
 from openfisca_france.model.prelevements_obligatoires.prelevements_sociaux.cotisations_sociales.base import apply_bareme_for_relevant_type_sal
 
 
@@ -250,9 +250,11 @@ class rafp_salarie(Variable):
         indemnite_residence = individu('indemnite_residence', period)
         _P = parameters(period)
 
-        eligible = ((categorie_salarie == TypesCategorieSalarie.public_titulaire_etat)
-                     + (categorie_salarie == TypesCategorieSalarie.public_titulaire_territoriale)
-                     + (categorie_salarie == TypesCategorieSalarie.public_titulaire_hospitaliere))
+        eligible = (
+            (categorie_salarie == TypesCategorieSalarie.public_titulaire_etat)
+            + (categorie_salarie == TypesCategorieSalarie.public_titulaire_territoriale)
+            + (categorie_salarie == TypesCategorieSalarie.public_titulaire_hospitaliere)
+            )
 
         plaf_ass = _P.cotsoc.sal.fonc.etat.rafp_plaf_assiette
         base_imposable = primes_fonction_publique + supplement_familial_traitement + indemnite_residence

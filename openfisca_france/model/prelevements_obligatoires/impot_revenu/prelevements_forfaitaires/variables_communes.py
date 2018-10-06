@@ -2,21 +2,19 @@
 
 from __future__ import division
 import logging
-from openfisca_france.model.base import *  # noqa analysis:ignore
+from openfisca_france.model.base import *
 
 log = logging.getLogger(__name__)
 
-########################################################################################################################
-########################################################################################################################
-########## Variables utilisées à la fois pour le PFL et pour la partie IR du PFU #######################################
-########################################################################################################################
-########################################################################################################################
+# Variables utilisées à la fois pour le PFL et pour la partie IR du PFU
+
 
 class produit_epargne_solidaire(Variable):
     value_type = float
     entity = FoyerFiscal
     label = u"Produit d'épargne solidaire"
     definition_period = YEAR
+
 
 class produit_etats_non_cooperatif(Variable):
     value_type = float

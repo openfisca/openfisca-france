@@ -4,19 +4,9 @@ from __future__ import division
 
 import logging
 
-from numpy import logical_or as or_, logical_and as and_
-
 import numpy as np
 
-import openfisca_france
-from openfisca_france.model.base import *  # noqa analysis:ignore
-
-
-log = logging.getLogger(__name__)
-
-taux_aot_by_depcom = None
-taux_smt_by_depcom = None
-
+from openfisca_france.model.base import *
 
 # TODO:
 # check hsup everywhere !
@@ -24,6 +14,12 @@ taux_smt_by_depcom = None
 # Helpers
 
 from openfisca_france.model.prelevements_obligatoires.prelevements_sociaux.cotisations_sociales.base import apply_bareme
+
+log = logging.getLogger(__name__)
+
+taux_aot_by_depcom = None
+taux_smt_by_depcom = None
+
 
 # Cotisations proprement dites
 
@@ -189,7 +185,7 @@ class fnal_tranche_a(Variable):
             (taille_entreprise == TypesTailleEntreprise.non_pertinent)
             + (taille_entreprise == TypesTailleEntreprise.moins_de_10)
             + (taille_entreprise == TypesTailleEntreprise.de_10_a_19)
-        )
+            )
         return cotisation * entreprise_eligible
 
 
@@ -214,7 +210,7 @@ class fnal_tranche_a_plus_20(Variable):
         entreprise_eligible = (
             (taille_entreprise == TypesTailleEntreprise.de_20_a_249)
             + (taille_entreprise == TypesTailleEntreprise.plus_de_250)
-        )
+            )
         return cotisation * entreprise_eligible
 
 
@@ -275,7 +271,7 @@ class formation_professionnelle(Variable):
         entreprise_eligible = (
             (taille_entreprise == TypesTailleEntreprise.de_20_a_249)
             + (taille_entreprise == TypesTailleEntreprise.plus_de_250)
-        )
+            )
         cotisation_20 = entreprise_eligible * apply_bareme(
             individu,
             period,
@@ -348,7 +344,7 @@ class taxe_apprentissage(Variable):
             salarie_regime_alsace_moselle,
             cotisation_regime_alsace_moselle,
             cotisation_regime_general,
-        )
+            )
 
         return cotisation * redevable_taxe_apprentissage
 
@@ -379,9 +375,9 @@ class taxe_salaires(Variable):
         parametres = parameters(period).cotsoc.taxes_sal
         bareme = parametres.taux_maj
         base = assiette_cotisations_sociales + (
-                - prevoyance_obligatoire_cadre + prise_en_charge_employeur_prevoyance_complementaire
-                - complementaire_sante_employeur
-                )
+            - prevoyance_obligatoire_cadre + prise_en_charge_employeur_prevoyance_complementaire
+            - complementaire_sante_employeur
+            )
 
         # TODO: exonérations apprentis
         # TODO: modify if DOM

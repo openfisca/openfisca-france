@@ -2,7 +2,7 @@
 
 from __future__ import division
 import logging
-from openfisca_france.model.base import *  # noqa analysis:ignore
+from openfisca_france.model.base import *
 
 log = logging.getLogger(__name__)
 
@@ -14,12 +14,14 @@ class assurance_vie_pl_non_anonyme_plus8ans_depuis1990(Variable):
     definition_period = YEAR
     end = '2017-12-31'
 
+
 class assurance_vie_pl_non_anonyme_plus6ans_avant1990(Variable):
     value_type = float
     entity = FoyerFiscal
     label = u"Produits des bons ou contrats de capitalisation et d'assurance vie d'une durée d'au moins 6 ans pour les contrats souscrits précédemment, et que le bénéficiaire décide de soumettre au prélèvement libératoire"
     definition_period = YEAR
     end = '2017-12-31'
+
 
 class assurance_vie_pl_non_anonyme_moins4ans_depuis1990(Variable):
     value_type = float
@@ -28,12 +30,14 @@ class assurance_vie_pl_non_anonyme_moins4ans_depuis1990(Variable):
     definition_period = YEAR
     end = '2017-12-31'
 
+
 class assurance_vie_pl_non_anonyme_4_8_ans_depuis1990(Variable):
     value_type = float
     entity = FoyerFiscal
     label = u"Produits des bons ou contrats de capitalisation et d'assurance vie d'une durée de 4 à 8 ans, pour les contrats souscrits depuis le 1er janvier 1990, et que le bénéficiaire décide de soumettre au prélèvement libératoire"
     definition_period = YEAR
     end = '2017-12-31'
+
 
 class assurance_vie_pl_anonyme(Variable):
     value_type = float
@@ -123,5 +127,3 @@ class prelevement_forfaitaire_liberatoire(Variable):
             )
 
         return pfl
-
-

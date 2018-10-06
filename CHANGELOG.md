@@ -1,5 +1,12 @@
 # Changelog
 
+### 24.14.2 [#1143](https://github.com/openfisca/openfisca-france/pull/1143)
+
+* Amélioration technique
+* Zones impactées : `openfisca_france/model/prelevements_obligatoires/**/*`.
+* Détails :
+  - Corrige et uniformise le style des fichiers
+
 ### 24.14.1 [#1139](https://github.com/openfisca/openfisca-france/pull/1139)
 
 * Amélioration technique

@@ -2,11 +2,10 @@
 
 from __future__ import division
 
-import collections
 import copy
 import logging
 
-from openfisca_france.model.base import *  # noqa
+from openfisca_france.model.base import *
 from openfisca_france.model.revenus.activite.salarie import TypesCategorieSalarie
 
 DEBUG_SAL_TYPE = 'public_titulaire_etat'
@@ -98,11 +97,11 @@ def build_sal(node_json):
     sal.children['public_non_titulaire'] = sal.children['fonc'].children['contract']
 
     for type_sal_category in [
-        'public_titulaire_etat',
-        'public_titulaire_territoriale',
-        'public_titulaire_hospitaliere',
-        'public_non_titulaire',
-        ]:
+            'public_titulaire_etat',
+            'public_titulaire_territoriale',
+            'public_titulaire_hospitaliere',
+            'public_non_titulaire',
+            ]:
         sal.children[type_sal_category].children['excep_solidarite'] = sal.children['fonc'].children['commun'].children['solidarite']
 
     # Ajoute le RAFP (Régime additionnel de la fonction publique) pour 'public_titulaire_territoriale' et 'public_titulaire_hospitaliere'

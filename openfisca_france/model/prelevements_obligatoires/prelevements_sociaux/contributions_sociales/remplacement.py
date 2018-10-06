@@ -4,7 +4,7 @@ from __future__ import division
 
 import logging
 
-from openfisca_france.model.base import *  # noqa analysis:ignore
+from openfisca_france.model.base import *
 from openfisca_france.model.prelevements_obligatoires.prelevements_sociaux.contributions_sociales.base import (
     montant_csg_crds
     )
@@ -53,8 +53,6 @@ class taux_csg_remplacement(Variable):
         #     TypesTauxCSGRemplacement.taux_plein,
         #     )
         # return taux_csg_remplacement
-
-
 
 
 # Allocations chômage
@@ -200,7 +198,7 @@ class csg_deductible_retraite(Variable):
     value_type = float
     entity = Individu
     label = u"CSG déductible sur les pensions de retraite"
-    reference = u"https://www.lassuranceretraite.fr/cs/Satellite/PUBPrincipale/Retraites/Paiement-Votre-Retraite/Prelevements-Sociaux?packedargs=null"  # noqa
+    reference = u"https://www.lassuranceretraite.fr/cs/Satellite/PUBPrincipale/Retraites/Paiement-Votre-Retraite/Prelevements-Sociaux?packedargs=null"
     definition_period = MONTH
 
     def formula(individu, period, parameters):
@@ -223,7 +221,7 @@ class csg_imposable_retraite(Variable):
     value_type = float
     entity = Individu
     label = u"CSG imposable sur les pensions de retraite"
-    reference = u"https://www.lassuranceretraite.fr/cs/Satellite/PUBPrincipale/Retraites/Paiement-Votre-Retraite/Prelevements-Sociaux?packedargs=null"  # noqa
+    reference = u"https://www.lassuranceretraite.fr/cs/Satellite/PUBPrincipale/Retraites/Paiement-Votre-Retraite/Prelevements-Sociaux?packedargs=null"
     definition_period = MONTH
 
     def formula(individu, period, parameters):
@@ -243,7 +241,7 @@ class crds_retraite(Variable):
     value_type = float
     entity = Individu
     label = u"CRDS sur les pensions de retraite"
-    reference = u"http://www.pensions.bercy.gouv.fr/vous-%C3%AAtes-retrait%C3%A9-ou-pensionn%C3%A9/le-calcul-de-ma-pension/les-pr%C3%A9l%C3%A8vements-effectu%C3%A9s-sur-ma-pension"  # noqa
+    reference = u"http://www.pensions.bercy.gouv.fr/vous-%C3%AAtes-retrait%C3%A9-ou-pensionn%C3%A9/le-calcul-de-ma-pension/les-pr%C3%A9l%C3%A8vements-effectu%C3%A9s-sur-ma-pension"
     definition_period = MONTH
 
     def formula(individu, period, parameters):
@@ -275,6 +273,7 @@ class casa(Variable):
             * contributions.casa.calc(retraite_brute)
             )
         return - casa
+
 
 class retraite_imposable(Variable):
     unit = 'currency'

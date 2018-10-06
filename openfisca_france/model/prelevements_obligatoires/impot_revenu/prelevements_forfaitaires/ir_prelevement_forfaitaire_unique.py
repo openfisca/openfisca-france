@@ -2,16 +2,13 @@
 
 from __future__ import division
 import logging
-from openfisca_france.model.base import *  # noqa analysis:ignore
+from openfisca_france.model.base import *
 
 log = logging.getLogger(__name__)
 
-########################################################################################################################
-########################################################################################################################
-########## Calcul de la partie du prélèvement forfaitaire unique (PFU) associé à l'impôt sur le revenu       ###########
-########## (le reste étant associé aux prélèvements sociaux) ###########################################################
-########################################################################################################################
-########################################################################################################################
+# Calcul de la partie du prélèvement forfaitaire unique (PFU) associé à l'impôt sur le revenu
+# (le reste étant associé aux prélèvements sociaux)
+
 
 class assurance_vie_pfu_ir_plus8ans_1990_19970926(Variable):
     value_type = float
@@ -19,11 +16,13 @@ class assurance_vie_pfu_ir_plus8ans_1990_19970926(Variable):
     label = u"Produits des bons ou contrats de capitalisation et d'assurance vie d'une durée d'au moins 8 ans pour les contrats souscrits entre le 1er janvier 1990 et le 26 septembre 1997, et que le bénéficiaire décide de soumettre au prélèvement forfaitaire unique au titre de l'impôt sur le revenu"
     definition_period = YEAR
 
+
 class assurance_vie_pfu_ir_plus6ans_avant1990(Variable):
     value_type = float
     entity = FoyerFiscal
     label = u"Produits des bons ou contrats de capitalisation et d'assurance vie d'une durée d'au moins 6 ans pour les contrats souscrits avant le 1er janvier 1990, et que le bénéficiaire décide de soumettre au prélèvement forfaitaire unique au titre de l'impôt sur le revenu"
     definition_period = YEAR
+
 
 class assurance_vie_pfu_ir_moins4ans_1990_19970926(Variable):
     value_type = float
@@ -31,11 +30,13 @@ class assurance_vie_pfu_ir_moins4ans_1990_19970926(Variable):
     label = u"Produits des bons ou contrats de capitalisation et d'assurance vie d'une durée de moins de 4 ans pour les contrats souscrits entre le 1er janvier 1990 et le 26 septembre 1997, et que le bénéficiaire décide de soumettre au prélèvement forfaitaire unique au titre de l'impôt sur le revenu"
     definition_period = YEAR
 
+
 class assurance_vie_pfu_ir_4_8_ans_1990_19970926(Variable):
     value_type = float
     entity = FoyerFiscal
     label = u"Produits des bons ou contrats de capitalisation et d'assurance vie d'une durée entre 4 et 8 ans pour les contrats souscrits entre le 1er janvier 1990 et le 26 septembre 1997, et que le bénéficiaire décide de soumettre au prélèvement forfaitaire unique au titre de l'impôt sur le revenu"
     definition_period = YEAR
+
 
 class assurance_vie_pfu_ir_plus8ans_19970926_primes_avant_20170927(Variable):
     value_type = float
@@ -43,11 +44,13 @@ class assurance_vie_pfu_ir_plus8ans_19970926_primes_avant_20170927(Variable):
     label = u"Produits des bons ou contrats de capitalisation et d'assurance vie de plus de 8 ans pour les contrats souscrits après le 26 septembre 1997, dont le produits sont associés aux primes versées avant le 27 septembre 2017, et que le bénéficiaire décide de soumettre au prélèvement forfaitaire unique au titre de l'impôt sur le revenu"
     definition_period = YEAR
 
+
 class assurance_vie_pfu_ir_4_8_ans_19970926_primes_avant_20170927(Variable):
     value_type = float
     entity = FoyerFiscal
     label = u"Produits des bons ou contrats de capitalisation et d'assurance vie entre 4 et 8 ans pour les contrats souscrits après le 26 septembre 1997, dont le produits sont associés aux primes versées avant le 27 septembre 2017, et que le bénéficiaire décide de soumettre au prélèvement forfaitaire unique au titre de l'impôt sur le revenu"
     definition_period = YEAR
+
 
 class assurance_vie_pfu_ir_moins4ans_19970926_primes_avant_20170927(Variable):
     value_type = float
@@ -55,17 +58,20 @@ class assurance_vie_pfu_ir_moins4ans_19970926_primes_avant_20170927(Variable):
     label = u"Produits des bons ou contrats de capitalisation et d'assurance vie de moins de 4 ans pour les contrats souscrits après le 26 septembre 1997, dont le produits sont associés aux primes versées avant le 27 septembre 2017, et que le bénéficiaire décide de soumettre au prélèvement forfaitaire unique au titre de l'impôt sur le revenu"
     definition_period = YEAR
 
+
 class assurance_vie_pfu_ir_moins8ans_19970926_primes_apres_20170927(Variable):
     value_type = float
     entity = FoyerFiscal
     label = u"Produits des bons ou contrats de capitalisation et d'assurance vie de moins de 8 ans pour les contrats souscrits après le 26 septembre 1997, dont le produits sont associés aux primes versées après le 27 septembre 2017, et que le bénéficiaire décide de soumettre au prélèvement forfaitaire unique au titre de l'impôt sur le revenu"
     definition_period = YEAR
 
+
 class assurance_vie_pfu_ir_plus8ans_19970926_primes_apres_20170927(Variable):
     value_type = float
     entity = FoyerFiscal
     label = u"Produits des bons ou contrats de capitalisation et d'assurance vie de plus de 8 ans pour les contrats souscrits après le 26 septembre 1997, dont le produits sont associés aux primes versées après le 27 septembre 2017, et que le bénéficiaire décide de soumettre au prélèvement forfaitaire unique au titre de l'impôt sur le revenu"
     definition_period = YEAR
+
 
 class assurance_vie_pfu_ir(Variable):
     value_type = float
@@ -97,6 +103,7 @@ class assurance_vie_pfu_ir(Variable):
             + assurance_vie_pfu_ir_plus8ans_19970926_primes_apres_20170927
             )
 
+
 class revenus_capitaux_prelevement_forfaitaire_unique_ir(Variable):
     value_type = float
     entity = FoyerFiscal
@@ -126,6 +133,7 @@ class revenus_capitaux_prelevement_forfaitaire_unique_ir(Variable):
         majoration_revenus_reputes_distribues = parameters(period).impot_revenu.rvcm.majoration_revenus_reputes_distribues
 
         return (f2dh + f2ee + f2dc + f2fu + f2ch + f2ts + f2tr + f2tt + f2fa + f2go * majoration_revenus_reputes_distribues) / 12
+
 
 class plus_values_prelevement_forfaitaire_unique_ir(Variable):
     value_type = float
@@ -162,20 +170,17 @@ class plus_values_prelevement_forfaitaire_unique_ir(Variable):
         rpns_pvce_i = foyer_fiscal.members('rpns_pvce', period)
         rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
 
-
         # Notes :
-            # 3sg + 3sl : correspond aux abattements associés aux cases 3vg et 3ua (donc, on considère les montants bruts).
-            #             En revanche, on n'enlève pas l'abattement fixe en 3va, car il est maintenu, y compris si le contribuable
-            #             choisit le PFU. Les conditions on été légèrement modifiées, mais on ne va pas dans ce détail-là. Cf par exemple https://taj-strategie.fr/plf-2018-lecture-definitive-fiscalite-personnes
-            # 3WE n'est pas compté, car normalement, il n'est pas dans la base du PFU... A checker ?
-            # 3WB : il s'agit des plus-values et créances sans sursis de paiement (pour transfert du domicile fiscal hors de France)
-            #       après abattements. Normalement, il faudrait prendre la mesure avant abattement. Les montants avant abattements sont case 3WD. Mais cette case
-            #       comprend, en plus des plus-values imposables avant abbattement, celles bénéficiant d'un report d'imposition. HYP : on prend les montants nets.
-            # 3WI et 3WJ : les conditions liées au report d'imposition de l'art. 150-0 B ter du CGI ont été remaniées à la marge.
-            #              On ne prend pas en compte ces remaniements. Situation résumée dans https://taj-strategie.fr/plf-2018-lecture-definitive-fiscalite-personnes
+        # 3sg + 3sl : correspond aux abattements associés aux cases 3vg et 3ua (donc, on considère les montants bruts).
+        #             En revanche, on n'enlève pas l'abattement fixe en 3va, car il est maintenu, y compris si le contribuable
+        #             choisit le PFU. Les conditions on été légèrement modifiées, mais on ne va pas dans ce détail-là. Cf par exemple https://taj-strategie.fr/plf-2018-lecture-definitive-fiscalite-personnes
+        # 3WE n'est pas compté, car normalement, il n'est pas dans la base du PFU... A checker ?
+        # 3WB : il s'agit des plus-values et créances sans sursis de paiement (pour transfert du domicile fiscal hors de France)
+        #       après abattements. Normalement, il faudrait prendre la mesure avant abattement. Les montants avant abattements sont case 3WD. Mais cette case
+        #       comprend, en plus des plus-values imposables avant abbattement, celles bénéficiant d'un report d'imposition. HYP : on prend les montants nets.
+        # 3WI et 3WJ : les conditions liées au report d'imposition de l'art. 150-0 B ter du CGI ont été remaniées à la marge.
+        #              On ne prend pas en compte ces remaniements. Situation résumée dans https://taj-strategie.fr/plf-2018-lecture-definitive-fiscalite-personnes
         return f3sa + f3vg + f3ua + f3sg + f3sl + f3wb + f3sj + f3sk + f3vm + f3vt + f3vd + f3vi + f3vf + f3wi + f3wj + rpns_pvce
-
-
 
 
 class prelevement_forfaitaire_unique_ir_hors_assurance_vie_epargne_solidaire_etats_non_cooperatifs(Variable):
@@ -218,6 +223,7 @@ class prelevement_forfaitaire_unique_ir_hors_assurance_vie_epargne_solidaire_eta
 
         return -assiette_pfu_hors_assurance_vie * P.taux
 
+
 class prelevement_forfaitaire_unique_ir_sur_assurance_vie(Variable):
     value_type = float
     entity = FoyerFiscal
@@ -254,7 +260,7 @@ class prelevement_forfaitaire_unique_ir_sur_assurance_vie(Variable):
             max_(assurance_vie_pfu_ir_plus8ans_1990_19970926 - rvcm.abat_assvie * (1 + maries_ou_pacses), 0)
             + max_(assurance_vie_pfu_ir_plus6ans_avant1990 - rvcm.abat_assvie * (1 + maries_ou_pacses), 0)
             + max_(assurance_vie_pfu_ir_plus8ans_19970926_primes_avant_20170927 - rvcm.abat_assvie * (1 + maries_ou_pacses), 0)
-        )
+            )
         p_contrat_age_mid = assurance_vie_pfu_ir_4_8_ans_1990_19970926 + assurance_vie_pfu_ir_4_8_ans_19970926_primes_avant_20170927
         p_contrat_age_low = assurance_vie_pfu_ir_moins4ans_1990_19970926 + assurance_vie_pfu_ir_moins4ans_19970926_primes_avant_20170927
         pfu_ir_av_ancien_regime = -(
@@ -264,6 +270,7 @@ class prelevement_forfaitaire_unique_ir_sur_assurance_vie(Variable):
             )
 
         return pfu_ir_av_nouveau_regime + pfu_ir_av_ancien_regime
+
 
 class prelevement_forfaitaire_unique_ir_epargne_solidaire_etats_non_cooperatifs(Variable):
     value_type = float
@@ -301,4 +308,3 @@ class prelevement_forfaitaire_unique_ir(Variable):
             + prelevement_forfaitaire_unique_ir_sur_assurance_vie
             + prelevement_forfaitaire_unique_ir_epargne_solidaire_etats_non_cooperatifs
             )
-

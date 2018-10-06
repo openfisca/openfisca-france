@@ -5,7 +5,7 @@ import json
 
 from numpy import logical_or as or_, fromiter
 
-from openfisca_france.model.base import *  # noqa analysis:ignore
+from openfisca_france.model.base import *
 from openfisca_france.france_taxbenefitsystem import COUNTRY_DIR
 
 
@@ -30,7 +30,7 @@ class taux_versement_transport(Variable):
             + (categorie_salarie == TypesCategorieSalarie.public_titulaire_hospitaliere)
             + (categorie_salarie == TypesCategorieSalarie.public_non_titulaire)
             + (categorie_salarie == TypesCategorieSalarie.non_pertinent)
-        )
+            )
         taux_versement_transport = fromiter(
             (
                 get_taux_versement_transport(code_commune, period)
@@ -56,11 +56,10 @@ class versement_transport(Variable):
         return cotisation
 
 
-
 # File loading and parsing -> global table_versement_transport
 
 def preload_taux_versement_transport():
-    if not 'table_versement_transport' in globals():
+    if 'table_versement_transport' not in globals():
         global table_versement_transport
         with open(COUNTRY_DIR + '/assets/versement_transport/taux.json') as data_file:
             table_versement_transport = json.load(data_file)
@@ -81,11 +80,11 @@ def get_taux_versement_transport(code_commune, period):
 
 def select_temporal_taux_versement_transport(rates, instant):
 
-        if rates is None:
-            return 0.0
-
-        taux = rates.get('taux')
-        for date in sorted(taux, reverse=True):
-            if str(instant) >= date:
-                return float(taux[date])
+    if rates is None:
         return 0.0
+
+    taux = rates.get('taux')
+    for date in sorted(taux, reverse=True):
+        if str(instant) >= date:
+            return float(taux[date])
+    return 0.0
