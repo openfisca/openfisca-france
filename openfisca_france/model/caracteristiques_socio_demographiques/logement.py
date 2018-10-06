@@ -79,7 +79,7 @@ class residence_dom(Variable):
         residence_reunion = menage('residence_reunion', period)
         residence_mayotte = menage('residence_mayotte', period)
 
-        return residence_guadeloupe + residence_martinique + residence_reunion +residence_guyane + residence_mayotte
+        return residence_guadeloupe + residence_martinique + residence_reunion + residence_guyane + residence_mayotte
 
 
 class residence_guadeloupe(Variable):
