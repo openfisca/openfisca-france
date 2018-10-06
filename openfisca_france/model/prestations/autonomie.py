@@ -40,10 +40,13 @@ class apa_domicile_participation(Variable):
         majoration_tierce_personne = parameters.mtp.mtp
         taux_min_participation = parameters.apa_domicile.taux_de_participation_minimum
         taux_max_participation = parameters.apa_domicile.taux_de_participation_maximum
+
         proratisation_couple = (
-            1 +
-            en_couple * (parameters.apa_domicile.divison_des_ressources_du_menage_pour_les_couples - 1)
+            1
+            + en_couple
+            * (parameters.apa_domicile.divison_des_ressources_du_menage_pour_les_couples - 1)
             )
+
         dependance_plan_aide_domicile_accepte = individu('dependance_plan_aide_domicile_accepte', period)
         base_ressources_apa_domicile = base_ressources_apa / proratisation_couple
 
@@ -52,11 +55,13 @@ class apa_domicile_participation(Variable):
             (seuil_inf * majoration_tierce_personne) < base_ressources_apa_domicile <= (seuil_sup * majoration_tierce_personne),
             base_ressources_apa_domicile > (seuil_sup * majoration_tierce_personne),
             ]
+
         taux_participation = [
             taux_min_participation,
             (base_ressources_apa_domicile - seuil_inf * majoration_tierce_personne) / ((seuil_sup - seuil_inf) * majoration_tierce_personne) * taux_max_participation,
             taux_max_participation,
             ]
+
         return select(condition_ressources_domicile, taux_participation) * dependance_plan_aide_domicile_accepte
 
     def formula_2016_03_01(individu, period, parameters):
@@ -67,10 +72,13 @@ class apa_domicile_participation(Variable):
         dependance_plan_aide_domicile_accepte = individu('dependance_plan_aide_domicile_accepte', period)
         parameters = parameters(period.start).autonomie
         majoration_tierce_personne = parameters.mtp.mtp
+
         proratisation_couple = (
-            1 +
-            en_couple * (parameters.apa_domicile.divison_des_ressources_du_menage_pour_les_couples - 1)
+            1
+            + en_couple
+            * (parameters.apa_domicile.divison_des_ressources_du_menage_pour_les_couples - 1)
             )
+
         base_ressources_apa_domicile = base_ressources_apa / proratisation_couple
 
         premier_seuil = 0.317 * majoration_tierce_personne
@@ -99,18 +107,20 @@ class apa_domicile_participation(Variable):
         A_2 = select(condlist, choicelist_2)
         A_3 = select(condlist, choicelist_3)
 
-        apa_domicile_participation = min_(0.9 * dependance_plan_aide_domicile_accepte,
-            0.9 *
-            max_(0, base_ressources_apa_domicile - 0.725 * majoration_tierce_personne) / (1.945 * majoration_tierce_personne) *
-            (
-                A_1 +
-                A_2 * (
-                    (1 - 0.4) * base_ressources_apa_domicile / (1.945 * majoration_tierce_personne) +
-                    (0.4 * 2.67 * majoration_tierce_personne - 0.725 * majoration_tierce_personne) / (1.945 * majoration_tierce_personne)
-                    ) +
-                A_3 * (
-                    (1 - 0.2) * base_ressources_apa_domicile / (1.945 * majoration_tierce_personne) +
-                    (0.2 * 2.67 * majoration_tierce_personne - 0.725 * majoration_tierce_personne) / (1.945 * majoration_tierce_personne)
+        apa_domicile_participation = min_(
+            0.9 * dependance_plan_aide_domicile_accepte,
+            0.9
+            * max_(0, base_ressources_apa_domicile - 0.725 * majoration_tierce_personne)
+            / (1.945 * majoration_tierce_personne)
+            * (
+                A_1
+                + A_2 * (
+                    (1 - 0.4) * base_ressources_apa_domicile / (1.945 * majoration_tierce_personne)
+                    + (0.4 * 2.67 * majoration_tierce_personne - 0.725 * majoration_tierce_personne) / (1.945 * majoration_tierce_personne)
+                    )
+                + A_3 * (
+                    (1 - 0.2) * base_ressources_apa_domicile / (1.945 * majoration_tierce_personne)
+                    + (0.2 * 2.67 * majoration_tierce_personne - 0.725 * majoration_tierce_personne) / (1.945 * majoration_tierce_personne)
                     )
                 )
             )
@@ -132,10 +142,10 @@ class apa_eligibilite(Variable):
 
         gir = individu('gir', period)
         eligibilite_gir = (
-            (gir == TypesGir.gir_1) +
-            (gir == TypesGir.gir_2) +
-            (gir == TypesGir.gir_3) +
-            (gir == TypesGir.gir_4)
+            (gir == TypesGir.gir_1)
+            + (gir == TypesGir.gir_2)
+            + (gir == TypesGir.gir_3)
+            + (gir == TypesGir.gir_4)
             )
 
         return (age >= apa_age_min) * eligibilite_gir
@@ -189,10 +199,13 @@ class apa_etablissement(Variable):
         apa_eligibilite = individu('apa_eligibilite', period)
         gir = individu('gir', period)  # noqa F841
         base_ressources_apa = individu('base_ressources_apa', period)
+
         proratisation_couple_etablissement = (
-            1 +
-            en_couple * (parameters.apa_institution.divison_des_ressources_du_menage_pour_les_couples - 1)
+            1
+            + en_couple
+            * (parameters.apa_institution.divison_des_ressources_du_menage_pour_les_couples - 1)
             )
+
         base_ressources_apa_etablissement = base_ressources_apa / proratisation_couple_etablissement
         dependance_tarif_etablissement_gir_5_6 = individu('dependance_tarif_etablissement_gir_5_6', period)
         dependance_tarif_etablissement_gir_dependant = individu('dependance_tarif_etablissement_gir_dependant', period)
@@ -205,18 +218,23 @@ class apa_etablissement(Variable):
             seuil_inf_inst * majoration_tierce_personne < base_ressources_apa_etablissement <= seuil_sup_inst * majoration_tierce_personne,
             base_ressources_apa > seuil_sup_inst * majoration_tierce_personne
             ]
+
         participations = [
             dependance_tarif_etablissement_gir_5_6,
             (
-                dependance_tarif_etablissement_gir_5_6 +
-                (dependance_tarif_etablissement_gir_dependant - dependance_tarif_etablissement_gir_5_6) * (
-                    (base_ressources_apa - seuil_inf_inst * majoration_tierce_personne) /
-                    ((seuil_sup_inst - seuil_inf_inst) * majoration_tierce_personne) * 0.80
+                dependance_tarif_etablissement_gir_5_6
+                + (dependance_tarif_etablissement_gir_dependant - dependance_tarif_etablissement_gir_5_6)
+                * (
+                    (base_ressources_apa - seuil_inf_inst * majoration_tierce_personne)
+                    / ((seuil_sup_inst - seuil_inf_inst) * majoration_tierce_personne)
+                    * 0.80
                     )
                 ),
-            dependance_tarif_etablissement_gir_5_6 + (
-                dependance_tarif_etablissement_gir_dependant - dependance_tarif_etablissement_gir_5_6) * 0.80
+            dependance_tarif_etablissement_gir_5_6
+            + (dependance_tarif_etablissement_gir_dependant - dependance_tarif_etablissement_gir_5_6)
+            * 0.80
             ]
+
         participation_beneficiaire = select(conditions_ressources, participations)
         taux_reste_a_vivre = parameters.apa_institution.taux_reste_a_vivre
         participation_beneficiaire = min_(

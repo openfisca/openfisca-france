@@ -77,12 +77,12 @@ class ppa_montant_forfaitaire_familial_non_majore(Variable):
 
         # Dans la formule "ppa_forfait_logement", le montant forfaitaire se calcule pour trois personnes dans le cas où le foyer se compose de trois personnes ou plus.
         taux_non_majore = (
-            1 +
-            (nb_personnes >= 2) * ppa.taux_deuxieme_personne +
-            (nb_personnes >= 3) * ppa.taux_troisieme_personne +
-            (nb_personnes >= 4) * where(nb_parents == 1, ppa.taux_personne_supp, ppa.taux_troisieme_personne) +
+            1
+            + (nb_personnes >= 2) * ppa.taux_deuxieme_personne
+            + (nb_personnes >= 3) * ppa.taux_troisieme_personne
+            + (nb_personnes >= 4) * where(nb_parents == 1, ppa.taux_personne_supp, ppa.taux_troisieme_personne)
             # Si nb_parents == 1, pas de conjoint, la 4e personne est un enfant, donc le taux est de 40%.
-            max_(nb_personnes - 4, 0) * ppa.taux_personne_supp
+            + max_(nb_personnes - 4, 0) * ppa.taux_personne_supp
             )
 
         return ppa.montant_de_base * taux_non_majore
@@ -171,9 +171,9 @@ class ppa_rsa_derniers_revenus_tns_annuels_connus(Variable):
                 ) / 12.
 
         return (
-            get_last_known('tns_benefice_exploitant_agricole') +
-            get_last_known('tns_autres_revenus') +
-            get_last_known('tns_micro_entreprise_benefice')
+            get_last_known('tns_benefice_exploitant_agricole')
+            + get_last_known('tns_autres_revenus')
+            + get_last_known('tns_micro_entreprise_benefice')
             )
 
 

@@ -225,13 +225,19 @@ class af_majoration_enfant(Variable):
         pfam = parameters(period).prestations.prestations_familiales
 
         montant_enfant_seul = pfam.af.bmaf * (
-            (pfam.af.af_dom.age_1er_enf_tranche_1_dom <= age) * (age < pfam.af.af_dom.age_1er_enf_tranche_2_dom) * pfam.af.af_dom.taux_1er_enf_tranche_1_dom +
-            (pfam.af.af_dom.age_1er_enf_tranche_2_dom <= age) * pfam.af.af_dom.taux_1er_enf_tranche_2_dom
+            (pfam.af.af_dom.age_1er_enf_tranche_1_dom <= age)
+            * (age < pfam.af.af_dom.age_1er_enf_tranche_2_dom)
+            * pfam.af.af_dom.taux_1er_enf_tranche_1_dom
+            + (pfam.af.af_dom.age_1er_enf_tranche_2_dom <= age)
+            * pfam.af.af_dom.taux_1er_enf_tranche_2_dom
             )
 
         montant_plusieurs_enfants = pfam.af.bmaf * (
-            (pfam.af.maj_age_deux_enfants.age1 <= age) * (age < pfam.af.maj_age_deux_enfants.age2) * pfam.af.maj_age_deux_enfants.taux1 +
-            (pfam.af.maj_age_deux_enfants.age2 <= age) * pfam.af.maj_age_deux_enfants.taux2
+            (pfam.af.maj_age_deux_enfants.age1 <= age)
+            * (age < pfam.af.maj_age_deux_enfants.age2)
+            * pfam.af.maj_age_deux_enfants.taux1
+            + (pfam.af.maj_age_deux_enfants.age2 <= age)
+            * pfam.af.maj_age_deux_enfants.taux2
             )
 
         montant = (af_nbenf == 1) * montant_enfant_seul + (af_nbenf > 1) * montant_plusieurs_enfants

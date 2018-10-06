@@ -130,9 +130,9 @@ class al_nb_personnes_a_charge(Variable):
             taux_incapacite_minimum = 0.8
 
             adulte_handicape = (
-                ((taux_incapacite > taux_incapacite_minimum) + inapte_travail) *
-                (age >= age_max_enfant) *
-                (base_ressources_i <= plafond_ressource)
+                ((taux_incapacite > taux_incapacite_minimum) + inapte_travail)
+                * (age >= age_max_enfant)
+                * (base_ressources_i <= plafond_ressource)
                 )
 
             # Par convention les adultes handicapé à charge de la famille ont le role ENFANT dans la famille
@@ -362,13 +362,16 @@ class aide_logement_base_ressources_defaut(Variable):
 
         # Revenus du foyer fiscal
         aide_logement_base_revenus_fiscaux = (
-            famille.demandeur.foyer_fiscal('aide_logement_base_revenus_fiscaux', period.n_2) * demandeur_declarant_principal +
-            famille.conjoint.foyer_fiscal('aide_logement_base_revenus_fiscaux', period.n_2) * conjoint_declarant_principal
+            famille.demandeur.foyer_fiscal('aide_logement_base_revenus_fiscaux', period.n_2) * demandeur_declarant_principal
+            + famille.conjoint.foyer_fiscal('aide_logement_base_revenus_fiscaux', period.n_2) * conjoint_declarant_principal
             )
 
         ressources = (
-            base_ressources_parents + base_ressources_enfants + ressources_patrimoine + aide_logement_base_revenus_fiscaux -
-            (abattement_chomage_indemnise + abattement_depart_retraite + neutralisation_rsa)
+            base_ressources_parents
+            + base_ressources_enfants
+            + ressources_patrimoine
+            + aide_logement_base_revenus_fiscaux
+            - (abattement_chomage_indemnise + abattement_depart_retraite + neutralisation_rsa)
             )
 
         # Abattement forfaitaire pour double activité
@@ -637,17 +640,17 @@ class aide_logement_R0(Variable):
             montant_de_base = minim_n_2.rmi.montant_de_base_du_rmi
 
         R1 = montant_de_base * (
-            al.r1.personne_isolee * not_(couple) * (al_nb_pac == 0) +
-            al.r1.couple_sans_enf * couple * (al_nb_pac == 0) +
-            al.r1.personne_isolee_ou_couple_avec_1_enf * (al_nb_pac == 1) +
-            al.r1.personne_isolee_ou_couple_avec_2_enf * (al_nb_pac >= 2) +
-            al.r1.majoration_enfant_a_charge_supp * (al_nb_pac > 2) * (al_nb_pac - 2)
+            al.r1.personne_isolee * not_(couple) * (al_nb_pac == 0)
+            + al.r1.couple_sans_enf * couple * (al_nb_pac == 0)
+            + al.r1.personne_isolee_ou_couple_avec_1_enf * (al_nb_pac == 1)
+            + al.r1.personne_isolee_ou_couple_avec_2_enf * (al_nb_pac >= 2)
+            + al.r1.majoration_enfant_a_charge_supp * (al_nb_pac > 2) * (al_nb_pac - 2)
             )
 
         R2 = pfam_n_2.af.bmaf * (
-            al.r2.taux3_dom * residence_dom * (al_nb_pac == 1) +
-            al.r2.personnes_isolees_ou_couples_avec_2_enf * (al_nb_pac >= 2) +
-            al.r2.majoration_par_enf_supp_a_charge * (al_nb_pac > 2) * (al_nb_pac - 2)
+            al.r2.taux3_dom * residence_dom * (al_nb_pac == 1)
+            + al.r2.personnes_isolees_ou_couples_avec_2_enf * (al_nb_pac >= 2)
+            + al.r2.majoration_par_enf_supp_a_charge * (al_nb_pac > 2) * (al_nb_pac - 2)
             )
 
         R0 = round_(12 * (R1 - R2) * (1 - al.autres.abat_sal))
@@ -661,15 +664,15 @@ class aide_logement_R0(Variable):
         al_nb_pac = famille('al_nb_personnes_a_charge', period)
 
         R0 = (
-            al.R0.taux_seul * not_(couple) * (al_nb_pac == 0) +
-            al.R0.taux_couple * couple * (al_nb_pac == 0) +
-            al.R0.taux1pac * (al_nb_pac == 1) +
-            al.R0.taux2pac * (al_nb_pac == 2) +
-            al.R0.taux3pac * (al_nb_pac == 3) +
-            al.R0.taux4pac * (al_nb_pac == 4) +
-            al.R0.taux5pac * (al_nb_pac == 5) +
-            al.R0.taux6pac * (al_nb_pac == 6) +
-            al.R0.taux_pac_supp * (al_nb_pac > 6) * (al_nb_pac - 6)
+            al.R0.taux_seul * not_(couple) * (al_nb_pac == 0)
+            + al.R0.taux_couple * couple * (al_nb_pac == 0)
+            + al.R0.taux1pac * (al_nb_pac == 1)
+            + al.R0.taux2pac * (al_nb_pac == 2)
+            + al.R0.taux3pac * (al_nb_pac == 3)
+            + al.R0.taux4pac * (al_nb_pac == 4)
+            + al.R0.taux5pac * (al_nb_pac == 5)
+            + al.R0.taux6pac * (al_nb_pac == 6)
+            + al.R0.taux_pac_supp * (al_nb_pac > 6) * (al_nb_pac - 6)
             )
 
         return R0
@@ -688,24 +691,24 @@ class aide_logement_taux_famille(Variable):
         residence_dom = famille.demandeur.menage('residence_dom', period)
 
         TF_metropole = (
-            al.taux_participation_fam.taux_1_adulte * (not_(couple)) * (al_nb_pac == 0) +
-            al.taux_participation_fam.taux_2_adulte * (couple) * (al_nb_pac == 0) +
-            al.taux_participation_fam.taux_1_enf * (al_nb_pac == 1) +
-            al.taux_participation_fam.taux_2_enf * (al_nb_pac == 2) +
-            al.taux_participation_fam.taux_3_enf * (al_nb_pac == 3) +
-            al.taux_participation_fam.taux_4_enf * (al_nb_pac >= 4) +
-            al.taux_participation_fam.taux_enf_supp * (al_nb_pac > 4) * (al_nb_pac - 4)
+            al.taux_participation_fam.taux_1_adulte * (not_(couple)) * (al_nb_pac == 0)
+            + al.taux_participation_fam.taux_2_adulte * (couple) * (al_nb_pac == 0)
+            + al.taux_participation_fam.taux_1_enf * (al_nb_pac == 1)
+            + al.taux_participation_fam.taux_2_enf * (al_nb_pac == 2)
+            + al.taux_participation_fam.taux_3_enf * (al_nb_pac == 3)
+            + al.taux_participation_fam.taux_4_enf * (al_nb_pac >= 4)
+            + al.taux_participation_fam.taux_enf_supp * (al_nb_pac > 4) * (al_nb_pac - 4)
             )
 
         TF_dom = (
-            al.taux_participation_fam.dom.taux1 * (not_(couple)) * (al_nb_pac == 0) +
-            al.taux_participation_fam.dom.taux2 * (couple) * (al_nb_pac == 0) +
-            al.taux_participation_fam.dom.taux3 * (al_nb_pac == 1) +
-            al.taux_participation_fam.dom.taux4 * (al_nb_pac == 2) +
-            al.taux_participation_fam.dom.taux5 * (al_nb_pac == 3) +
-            al.taux_participation_fam.dom.taux6 * (al_nb_pac == 4) +
-            al.taux_participation_fam.dom.taux7 * (al_nb_pac == 5) +
-            al.taux_participation_fam.dom.taux8 * (al_nb_pac >= 6)
+            al.taux_participation_fam.dom.taux1 * (not_(couple)) * (al_nb_pac == 0)
+            + al.taux_participation_fam.dom.taux2 * (couple) * (al_nb_pac == 0)
+            + al.taux_participation_fam.dom.taux3 * (al_nb_pac == 1)
+            + al.taux_participation_fam.dom.taux4 * (al_nb_pac == 2)
+            + al.taux_participation_fam.dom.taux5 * (al_nb_pac == 3)
+            + al.taux_participation_fam.dom.taux6 * (al_nb_pac == 4)
+            + al.taux_participation_fam.dom.taux7 * (al_nb_pac == 5)
+            + al.taux_participation_fam.dom.taux8 * (al_nb_pac >= 6)
             )
 
         return where(residence_dom, TF_dom, TF_metropole)
@@ -726,10 +729,10 @@ class aide_logement_taux_loyer(Variable):
         al_nb_pac = famille('al_nb_personnes_a_charge', period)
 
         loyer_reference = (
-            z2.personnes_seules * (not_(couple)) * (al_nb_pac == 0) +
-            z2.couples * (couple) * (al_nb_pac == 0) +
-            z2.un_enfant * (al_nb_pac >= 1) +
-            z2.majoration_par_enf_supp * (al_nb_pac > 1) * (al_nb_pac - 1)
+            z2.personnes_seules * (not_(couple)) * (al_nb_pac == 0)
+            + z2.couples * (couple) * (al_nb_pac == 0)
+            + z2.un_enfant * (al_nb_pac >= 1)
+            + z2.majoration_par_enf_supp * (al_nb_pac > 1) * (al_nb_pac - 1)
             )
 
         RL = L / loyer_reference
@@ -960,8 +963,11 @@ class als_non_etudiant(Variable):
         no_parent_etudiant = not_(famille.any(etudiant, role = Famille.PARENT))
 
         return (
-            (al_nb_pac == 0) * (statut_occupation_logement != 3) * not_(proprietaire_proche_famille) *
-            no_parent_etudiant * aide_logement_montant
+            (al_nb_pac == 0)
+            * (statut_occupation_logement != 3)
+            * not_(proprietaire_proche_famille)
+            * no_parent_etudiant
+            * aide_logement_montant
             )
 
 
@@ -983,8 +989,11 @@ class als_etudiant(Variable):
         parent_etudiant = famille.any(etudiant, role = Famille.PARENT)
 
         return (
-            (al_nb_pac == 0) * (statut_occupation_logement != 3) * not_(proprietaire_proche_famille) *
-            parent_etudiant * aide_logement_montant
+            (al_nb_pac == 0)
+            * (statut_occupation_logement != 3)
+            * not_(proprietaire_proche_famille)
+            * parent_etudiant
+            * aide_logement_montant
             )
 
 
@@ -1190,13 +1199,13 @@ class aides_logement_primo_accedant_nb_part(Variable):
         couple = famille('al_couple', period)
 
         return (
-            prestations.al_param_accal.n_0_personnes_a_charge.isole * not_(couple) * (al_nb_pac == 0) +
-            prestations.al_param_accal.n_0_personnes_a_charge.menage * couple * (al_nb_pac == 0) +
-            prestations.al_param.parametre_n['1_personne_a_charge'] * (al_nb_pac == 1) +
-            prestations.al_param.parametre_n['2_personnes_a_charge'] * (al_nb_pac == 2) +
-            prestations.al_param.parametre_n['3_personnes_a_charge'] * (al_nb_pac == 3) +
-            prestations.al_param.parametre_n['4_personnes_a_charge'] * (al_nb_pac >= 4) +
-            prestations.al_param.majoration_n_par_personne_a_charge_supplementaire * (al_nb_pac > 4) * (al_nb_pac - 4)
+            prestations.al_param_accal.n_0_personnes_a_charge.isole * not_(couple) * (al_nb_pac == 0)
+            + prestations.al_param_accal.n_0_personnes_a_charge.menage * couple * (al_nb_pac == 0)
+            + prestations.al_param.parametre_n['1_personne_a_charge'] * (al_nb_pac == 1)
+            + prestations.al_param.parametre_n['2_personnes_a_charge'] * (al_nb_pac == 2)
+            + prestations.al_param.parametre_n['3_personnes_a_charge'] * (al_nb_pac == 3)
+            + prestations.al_param.parametre_n['4_personnes_a_charge'] * (al_nb_pac >= 4)
+            + prestations.al_param.majoration_n_par_personne_a_charge_supplementaire * (al_nb_pac > 4) * (al_nb_pac - 4)
             )
 
 
@@ -1234,14 +1243,14 @@ class aides_logement_primo_accedant_plafond_mensualite(Variable):
         couple = famille('al_couple', period)
 
         return (
-            plafonds.personne_isolee_sans_enfant * not_(couple) * (al_nb_pac == 0) +
-            plafonds.menage_seul * couple * (al_nb_pac == 0) +
-            plafonds.menage_ou_isole_avec_1_enfant * (al_nb_pac == 1) +
-            plafonds.menage_ou_isole_avec_2_enfants * (al_nb_pac == 2) +
-            plafonds.menage_ou_isole_avec_3_enfants * (al_nb_pac == 3) +
-            plafonds.menage_ou_isole_avec_4_enfants * (al_nb_pac == 4) +
-            plafonds.menage_ou_isole_avec_5_enfants * (al_nb_pac >= 5) +
-            plafonds.menage_ou_isole_par_enfant_en_plus * (al_nb_pac > 5) * (al_nb_pac - 5)
+            plafonds.personne_isolee_sans_enfant * not_(couple) * (al_nb_pac == 0)
+            + plafonds.menage_seul * couple * (al_nb_pac == 0)
+            + plafonds.menage_ou_isole_avec_1_enfant * (al_nb_pac == 1)
+            + plafonds.menage_ou_isole_avec_2_enfants * (al_nb_pac == 2)
+            + plafonds.menage_ou_isole_avec_3_enfants * (al_nb_pac == 3)
+            + plafonds.menage_ou_isole_avec_4_enfants * (al_nb_pac == 4)
+            + plafonds.menage_ou_isole_avec_5_enfants * (al_nb_pac >= 5)
+            + plafonds.menage_ou_isole_par_enfant_en_plus * (al_nb_pac > 5) * (al_nb_pac - 5)
             )
 
 

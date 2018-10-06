@@ -52,14 +52,18 @@ class aefa(Variable):
             nbPAC = nb_enf(famille, janvier, af.age1, af.age3)
         else:
             nbPAC = af_nbenf
+
         # TODO check nombre de PAC pour une famille
         aefa = condition * P.mon_seul * (
-            1 + (nb_parents == 2) * P.tx_2p +
-            nbPAC * P.tx_supp * (nb_parents <= 2) +
-            nbPAC * P.tx_3pac * max_(nbPAC - 2, 0)
+            1
+            + (nb_parents == 2) * P.tx_2p
+            + nbPAC * P.tx_supp * (nb_parents <= 2)
+            + nbPAC * P.tx_3pac * max_(nbPAC - 2, 0)
             )
+
         aefa_maj = P.mon_seul * maj
         aefa = max_(aefa_maj, aefa)
+
         return aefa
 
     def formula_2008_01_01(famille, period, parameters):
@@ -85,12 +89,15 @@ class aefa(Variable):
             nbPAC = nb_enf(famille, janvier, af.age1, af.age3)
         else:
             nbPAC = af_nbenf
+
         # TODO check nombre de PAC pour une famille
         aefa = condition * P.mon_seul * (
-            1 + (nb_parents == 2) * P.tx_2p +
-            nbPAC * P.tx_supp * (nb_parents <= 2) +
-            nbPAC * P.tx_3pac * max_(nbPAC - 2, 0)
+            1
+            + (nb_parents == 2) * P.tx_2p
+            + nbPAC * P.tx_supp * (nb_parents <= 2)
+            + nbPAC * P.tx_3pac * max_(nbPAC - 2, 0)
             )
+
         aefa += condition * P.forf2008
         aefa_maj = P.mon_seul * maj
         aefa = max_(aefa_maj, aefa)
@@ -121,9 +128,10 @@ class aefa(Variable):
             nbPAC = af_nbenf
         # TODO check nombre de PAC pour une famille
         aefa = condition * P.mon_seul * (
-            1 + (nb_parents == 2) * P.tx_2p +
-            nbPAC * P.tx_supp * (nb_parents <= 2) +
-            nbPAC * P.tx_3pac * max_(nbPAC - 2, 0)
+            1
+            + (nb_parents == 2) * P.tx_2p
+            + nbPAC * P.tx_supp * (nb_parents <= 2)
+            + nbPAC * P.tx_3pac * max_(nbPAC - 2, 0)
             )
         aefa_maj = P.mon_seul * maj
         aefa = max_(aefa_maj, aefa)
