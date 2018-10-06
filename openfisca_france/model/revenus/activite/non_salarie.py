@@ -1710,8 +1710,11 @@ class travailleur_non_salarie(Variable):
         tns_autres_revenus_chiffre_affaires = individu('tns_autres_revenus_chiffre_affaires', this_year_and_last_year, options = [ADD]) != 0
 
         result = (
-            tns_auto_entrepreneur_chiffre_affaires + tns_micro_entreprise_chiffre_affaires +
-            tns_autres_revenus + tns_benefice_exploitant_agricole + tns_autres_revenus_chiffre_affaires
+            tns_auto_entrepreneur_chiffre_affaires
+            + tns_micro_entreprise_chiffre_affaires
+            + tns_autres_revenus
+            + tns_benefice_exploitant_agricole
+            + tns_autres_revenus_chiffre_affaires
             )
 
         return result
@@ -1721,10 +1724,11 @@ class travailleur_non_salarie(Variable):
 def compute_benefice_auto_entrepreneur_micro_entreprise(bareme, type_activite, chiffre_affaire):
     abatt_fp_me = bareme.micro_entreprise.abattement_forfaitaire_fp
     benefice = chiffre_affaire * (
-        1 -
-        (type_activite == TypesTnsTypeActivite.achat_revente) * abatt_fp_me.achat_revente -
-        (type_activite == TypesTnsTypeActivite.bic) * abatt_fp_me.bic -
-        (type_activite == TypesTnsTypeActivite.bnc) * abatt_fp_me.bnc)
+        1
+        - (type_activite == TypesTnsTypeActivite.achat_revente) * abatt_fp_me.achat_revente
+        - (type_activite == TypesTnsTypeActivite.bic) * abatt_fp_me.bic
+        - (type_activite == TypesTnsTypeActivite.bnc) * abatt_fp_me.bnc
+        )
 
     return benefice
 
@@ -1779,9 +1783,10 @@ class tns_auto_entrepreneur_revenus_net(Variable):
         tns_auto_entrepreneur_chiffre_affaires = individu('tns_auto_entrepreneur_chiffre_affaires', period)
         bareme_cs_ae = parameters(period).tns.auto_entrepreneur
         taux_cotisations_sociales_sur_CA = (
-            (tns_auto_entrepreneur_type_activite == TypesTnsTypeActivite.achat_revente) * bareme_cs_ae.achat_revente +
-            (tns_auto_entrepreneur_type_activite == TypesTnsTypeActivite.bic) * bareme_cs_ae.bic +
-            (tns_auto_entrepreneur_type_activite == TypesTnsTypeActivite.bnc) * bareme_cs_ae.bnc)
+            (tns_auto_entrepreneur_type_activite == TypesTnsTypeActivite.achat_revente) * bareme_cs_ae.achat_revente
+            + (tns_auto_entrepreneur_type_activite == TypesTnsTypeActivite.bic) * bareme_cs_ae.bic
+            + (tns_auto_entrepreneur_type_activite == TypesTnsTypeActivite.bnc) * bareme_cs_ae.bnc
+            )
         tns_auto_entrepreneur_charges_sociales = taux_cotisations_sociales_sur_CA * tns_auto_entrepreneur_chiffre_affaires
         revenus = tns_auto_entrepreneur_benefice - tns_auto_entrepreneur_charges_sociales
 
