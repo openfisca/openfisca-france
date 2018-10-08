@@ -302,11 +302,10 @@ class participation_effort_construction(Variable):
             variable_name = 'participation_effort_construction',
             )
 
-        # TODO : seuil passé de 10 à 20 avec l'Ordonnance n° 2005-895 du 2 août 2005
-
+        seuil = parameters(period).cotsoc.pat.commun.construction_node.seuil
         cotisation = (
-            bareme * (effectif_entreprise >= 20)
-            + individu.filled_array(0) * (effectif_entreprise < 20)
+            bareme * (effectif_entreprise >= seuil)
+            + individu.filled_array(0) * (effectif_entreprise < seuil)
             )
 
         return cotisation
