@@ -120,7 +120,6 @@ class rsa_base_ressources_individu(Variable):
             )
 
         types_revenus_non_pros = [
-            'allocation_aide_retour_emploi',
             'allocation_securisation_professionnelle',
             'dedommagement_victime_amiante',
             'div_ms',
@@ -175,7 +174,6 @@ class rsa_base_ressources_individu(Variable):
             )
 
         types_revenus_non_pros = [
-            'allocation_aide_retour_emploi',
             'allocation_securisation_professionnelle',
             'dedommagement_victime_amiante',
             'div_ms',
