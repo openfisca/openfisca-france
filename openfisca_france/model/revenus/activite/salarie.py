@@ -780,10 +780,11 @@ class primes_fonction_publique(Variable):
         traitement_indiciaire_brut = individu('traitement_indiciaire_brut', period)
 
         public = (
-            (categorie_salarie == TypesCategorieSalarie.public_titulaire_etat) +
-            (categorie_salarie == TypesCategorieSalarie.public_titulaire_territoriale) +
-            (categorie_salarie == TypesCategorieSalarie.public_titulaire_hospitaliere)
+            (categorie_salarie == TypesCategorieSalarie.public_titulaire_etat)
+            + (categorie_salarie == TypesCategorieSalarie.public_titulaire_territoriale)
+            + (categorie_salarie == TypesCategorieSalarie.public_titulaire_hospitaliere)
             )
+
         return TAUX_DE_PRIME * traitement_indiciaire_brut * public
 
 
@@ -804,16 +805,20 @@ class af_nbenf_fonc(Variable):
         law = parameters(period)
         nbh_travaillees = 169
         smic_mensuel_brut = law.cotsoc.gen.smic_h_b * nbh_travaillees
-        autonomie_financiere = (
-            salaire_de_base_mensualise >=
-            (law.prestations.prestations_familiales.af.seuil_rev_taux * smic_mensuel_brut)
-            )
+
+        autonomie_financiere = (salaire_de_base_mensualise >= (
+            law.prestations.prestations_familiales.af.seuil_rev_taux
+            * smic_mensuel_brut
+            ))
+
         age = famille.members('age', period)
+
         condition_enfant = (
-            (age >= law.prestations.prestations_familiales.af.age1) *
-            (age <= law.prestations.prestations_familiales.af.age2) *
-            not_(autonomie_financiere)
+            (age >= law.prestations.prestations_familiales.af.age1)
+            * (age <= law.prestations.prestations_familiales.af.age2)
+            * not_(autonomie_financiere)
             )
+
         return famille.sum(condition_enfant, role = Famille.ENFANT)
 
 
@@ -837,17 +842,23 @@ class supplement_familial_traitement(Variable):
         part_fixe_1 = P.fixe.enf1
         part_fixe_2 = P.fixe.enf2
         part_fixe_supp = P.fixe.enfsupp
+
         part_fixe = (
-            part_fixe_1 * (fonc_nbenf == 1) + part_fixe_2 * (fonc_nbenf == 2) +
-            part_fixe_supp * max_(0, fonc_nbenf - 2)
+            part_fixe_1 * (fonc_nbenf == 1)
+            + part_fixe_2 * (fonc_nbenf == 2)
+            + part_fixe_supp * max_(0, fonc_nbenf - 2)
             )
+
         # pct_variable_1 = 0
         pct_variable_2 = P.prop.enf2
         pct_variable_3 = P.prop.enf3
         pct_variable_supp = P.prop.enfsupp
+
         pct_variable = (
-            pct_variable_2 * (fonc_nbenf == 2) + (pct_variable_3) * (fonc_nbenf == 3) +
-            pct_variable_supp * max_(0, fonc_nbenf - 3))
+            pct_variable_2 * (fonc_nbenf == 2)
+            + (pct_variable_3) * (fonc_nbenf == 3)
+            + pct_variable_supp * max_(0, fonc_nbenf - 3)
+            )
 
         indice_maj_min = P.IM_min
         indice_maj_max = P.IM_max
@@ -858,10 +869,12 @@ class supplement_familial_traitement(Variable):
         plancher_mensuel_3 = part_fixe + traitement_brut_mensuel_min * pct_variable_3
         plancher_mensuel_supp = traitement_brut_mensuel_min * pct_variable_supp
 
-        plancher = (plancher_mensuel_1 * (fonc_nbenf == 1) +
-                    plancher_mensuel_2 * (fonc_nbenf == 2) +
-                    plancher_mensuel_3 * (fonc_nbenf >= 3) +
-                    plancher_mensuel_supp * max_(0, fonc_nbenf - 3))
+        plancher = (
+            plancher_mensuel_1 * (fonc_nbenf == 1)
+            + plancher_mensuel_2 * (fonc_nbenf == 2)
+            + plancher_mensuel_3 * (fonc_nbenf >= 3)
+            + plancher_mensuel_supp * max_(0, fonc_nbenf - 3)
+            )
 
         traitement_brut_mensuel_max = _traitement_brut_mensuel(indice_maj_max, _P)
         plafond_mensuel_1 = part_fixe
@@ -869,9 +882,13 @@ class supplement_familial_traitement(Variable):
         plafond_mensuel_3 = part_fixe + traitement_brut_mensuel_max * pct_variable_3
         plafond_mensuel_supp = traitement_brut_mensuel_max * pct_variable_supp
 
-        plafond = (plafond_mensuel_1 * (fonc_nbenf == 1) + plafond_mensuel_2 * (fonc_nbenf == 2) +
-                   plafond_mensuel_3 * (fonc_nbenf == 3) +
-                   plafond_mensuel_supp * max_(0, fonc_nbenf - 3))
+        plafond = (
+            plafond_mensuel_1 * (fonc_nbenf == 1)
+            + plafond_mensuel_2 * (fonc_nbenf == 2)
+            + plafond_mensuel_3 * (fonc_nbenf == 3)
+            + plafond_mensuel_supp * max_(0, fonc_nbenf - 3)
+            )
+
         public = (
             (categorie_salarie == TypesCategorieSalarie.public_titulaire_etat)
             + (categorie_salarie == TypesCategorieSalarie.public_titulaire_militaire)
@@ -879,10 +896,12 @@ class supplement_familial_traitement(Variable):
             + (categorie_salarie == TypesCategorieSalarie.public_titulaire_hospitaliere)
             + (categorie_salarie == TypesCategorieSalarie.public_non_titulaire)
             )
+
         sft = public * min_(
             max_(part_fixe + pct_variable * traitement_indiciaire_brut, plancher),
             plafond
             )
+
         return sft
 
 
@@ -936,11 +955,11 @@ class salaire_net_a_payer(Variable):
         remuneration_apprenti = individu('remuneration_apprenti', period)
         stage_gratification = individu('stage_gratification', period)
         salaire_net_a_payer = (
-            salaire_net +
-            remuneration_apprenti +
-            stage_gratification +
-            depense_cantine_titre_restaurant_employe +
-            indemnites_forfaitaires
+            salaire_net
+            + remuneration_apprenti
+            + stage_gratification
+            + depense_cantine_titre_restaurant_employe
+            + indemnites_forfaitaires
             )
         return salaire_net_a_payer
 
@@ -1015,12 +1034,12 @@ class exonerations_et_allegements(Variable):
         allegement_cot_alloc_fam = individu('allegement_cotisation_allocations_familiales', period, options = [ADD])
 
         return (
-            allegement_fillon +
-            allegement_cot_alloc_fam +
-            exoneration_cotisations_employeur_geographiques +
-            exoneration_cotisations_employeur_jei +
-            exoneration_cotisations_employeur_apprenti +
-            exoneration_cotisations_employeur_stagiaire
+            allegement_fillon
+            + allegement_cot_alloc_fam
+            + exoneration_cotisations_employeur_geographiques
+            + exoneration_cotisations_employeur_jei
+            + exoneration_cotisations_employeur_apprenti
+            + exoneration_cotisations_employeur_stagiaire
             )
 
 
