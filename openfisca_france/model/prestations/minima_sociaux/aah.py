@@ -98,12 +98,22 @@ class aah_base_ressources_eval_trimestrielle(Variable):
             return revenus_auto_entrepreneur + tns_micro_entreprise_benefice + tns_benefice_exploitant_agricole + tns_autres_revenus
 
         result = (
-            salaire_net + indemnites_chomage_partiel + indemnites_stage + chomage_net + retraite_nette +
-            pensions_alimentaires_percues - abs_(pensions_alimentaires_versees_individu) +
-            rsa_base_ressources_patrimoine_i + allocation_securisation_professionnelle +
-            indemnites_journalieres_imposables + prestation_compensatoire +
-            pensions_invalidite + bourse_recherche + gains_exceptionnels + revenus_tns() +
-            revenus_stage_formation_pro
+            salaire_net
+            + indemnites_chomage_partiel
+            + indemnites_stage
+            + chomage_net
+            + retraite_nette
+            + pensions_alimentaires_percues
+            - abs_(pensions_alimentaires_versees_individu)
+            + rsa_base_ressources_patrimoine_i
+            + allocation_securisation_professionnelle
+            + indemnites_journalieres_imposables
+            + prestation_compensatoire
+            + pensions_invalidite
+            + bourse_recherche
+            + gains_exceptionnels
+            + revenus_tns()
+            + revenus_stage_formation_pro
             )
 
         return result * 4
@@ -160,9 +170,9 @@ class aah_eligible(Variable):
         age = individu('age', period)
         autonomie_financiere = individu('autonomie_financiere', period)
         eligible_aah = (
-            (taux_incapacite >= 0.5) *
-            (age <= law.minima_sociaux.aah.age_legal_retraite) *
-            ((age >= law.minima_sociaux.aah.age_minimal) + ((age >= 16) * (autonomie_financiere)))
+            (taux_incapacite >= 0.5)
+            * (age <= law.minima_sociaux.aah.age_legal_retraite)
+            * ((age >= law.minima_sociaux.aah.age_minimal) + ((age >= 16) * (autonomie_financiere)))
             )
 
         return eligible_aah

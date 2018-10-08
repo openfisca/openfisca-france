@@ -65,8 +65,10 @@ class asi_aspa_base_ressources_individu(Variable):
             tns_autres_revenus = individu('tns_autres_revenus', last_year) * (3 / 12)
 
             return (
-                revenus_auto_entrepreneur + tns_micro_entreprise_benefice + tns_benefice_exploitant_agricole +
-                tns_autres_revenus
+                revenus_auto_entrepreneur
+                + tns_micro_entreprise_benefice
+                + tns_benefice_exploitant_agricole
+                + tns_autres_revenus
                 )
 
         pension_invalidite = (individu('pensions_invalidite', period) > 0)
@@ -157,9 +159,9 @@ class asi_eligibilite(Variable):
         condition_nationalite = individu('asi_aspa_condition_nationalite', period)
 
         eligible = (
-            non_eligible_aspa *
-            condition_nationalite *
-            (handicap * touche_retraite + touche_pension_invalidite)
+            non_eligible_aspa
+            * condition_nationalite
+            * (handicap * touche_retraite + touche_pension_invalidite)
             )
 
         return eligible

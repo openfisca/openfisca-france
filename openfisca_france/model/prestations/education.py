@@ -156,8 +156,8 @@ class bourse_lycee_nombre_parts(Variable):
             rfr,
             thresholds = [
                 round_(
-                    plafonds_reference['{}_parts'.format(index)] +
-                    ((points_de_charge - 9) * increments_par_point_de_charge['{}_parts'.format(index)])
+                    plafonds_reference['{}_parts'.format(index)]
+                    + ((points_de_charge - 9) * increments_par_point_de_charge['{}_parts'.format(index)])
                     )
                 for index in choices
                 ],
