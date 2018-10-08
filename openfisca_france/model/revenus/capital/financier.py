@@ -418,12 +418,11 @@ class revenus_capitaux_prelevement_bareme(Variable):
         f2go = foyer_fiscal('f2go', year)
         f2tr = foyer_fiscal('f2tr', year)
         f2fu = foyer_fiscal('f2fu', year)
-        avoirs_credits_fiscaux = foyer_fiscal('avoirs_credits_fiscaux', year)
-        f2da = foyer_fiscal('f2da', year)  # noqa: F841
-        f2ee = foyer_fiscal('f2ee', year)  # noqa: F841
+        f2da = foyer_fiscal('f2da', year)
+        f2ee = foyer_fiscal('f2ee', year)
         majoration_revenus_reputes_distribues = parameters(period).impot_revenu.rvcm.majoration_revenus_reputes_distribues
 
-        return (f2dc + f2gr + f2ch + f2ts + f2go * majoration_revenus_reputes_distribues + f2tr + f2fu - avoirs_credits_fiscaux) / 12
+        return (f2dc + f2gr + f2ch + f2ts + f2go * majoration_revenus_reputes_distribues + f2tr + f2fu) / 12
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
         year = period.this_year
@@ -433,10 +432,9 @@ class revenus_capitaux_prelevement_bareme(Variable):
         f2go = foyer_fiscal('f2go', year)
         f2tr = foyer_fiscal('f2tr', year)
         f2fu = foyer_fiscal('f2fu', year)
-        avoirs_credits_fiscaux = foyer_fiscal('avoirs_credits_fiscaux', year)
         majoration_revenus_reputes_distribues = parameters(period).impot_revenu.rvcm.majoration_revenus_reputes_distribues
 
-        return (f2dc + f2ch + f2ts + f2go * majoration_revenus_reputes_distribues + f2tr + f2fu - avoirs_credits_fiscaux) / 12
+        return (f2dc + f2ch + f2ts + f2go * majoration_revenus_reputes_distribues + f2tr + f2fu) / 12
 
     def formula_2016_01_01(foyer_fiscal, period, parameters):
         year = period.this_year
@@ -447,10 +445,9 @@ class revenus_capitaux_prelevement_bareme(Variable):
         f2tr = foyer_fiscal('f2tr', year)
         f2fu = foyer_fiscal('f2fu', year)
         f2tt_2016 = foyer_fiscal('f2tt_2016', year)
-        avoirs_credits_fiscaux = foyer_fiscal('avoirs_credits_fiscaux', year)
         majoration_revenus_reputes_distribues = parameters(period).impot_revenu.rvcm.majoration_revenus_reputes_distribues
 
-        return (f2dc + f2ch + f2ts + f2go * majoration_revenus_reputes_distribues + f2tr + f2fu + f2tt_2016 - avoirs_credits_fiscaux) / 12
+        return (f2dc + f2ch + f2ts + f2go * majoration_revenus_reputes_distribues + f2tr + f2fu + f2tt_2016) / 12
 
     def formula_2017_01_01(foyer_fiscal, period, parameters):
         '''
@@ -466,10 +463,9 @@ class revenus_capitaux_prelevement_bareme(Variable):
         f2tr = foyer_fiscal('f2tr', year)
         f2fu = foyer_fiscal('f2fu', year)
         f2tt = foyer_fiscal('f2tt', year)
-        avoirs_credits_fiscaux = foyer_fiscal('avoirs_credits_fiscaux', year)
         majoration_revenus_reputes_distribues = parameters(period).impot_revenu.rvcm.majoration_revenus_reputes_distribues
 
-        return (f2dc + f2ch + f2ts + f2go * majoration_revenus_reputes_distribues + f2tr + f2fu + f2tt - avoirs_credits_fiscaux) / 12
+        return (f2dc + f2ch + f2ts + f2go * majoration_revenus_reputes_distribues + f2tr + f2fu + f2tt) / 12
 
 
 class revenus_capitaux_prelevement_liberatoire(Variable):
