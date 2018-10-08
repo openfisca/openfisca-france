@@ -1,5 +1,13 @@
 # Changelog
 
+### 24.14.7 [#1147](https://github.com/openfisca/openfisca-france/pull/1147)
+
+* Amélioration technique
+* Zones impactées : `openfisca_france/model/revenus/**/*`.
+* Détails :
+  - Corrige et uniformise le style des fichiers
+  - Règle W504 : saut de ligne avant opérateur binaire
+
 ### 24.14.6 [#1146](https://github.com/openfisca/openfisca-france/pull/1146)
 
 * Amélioration technique
