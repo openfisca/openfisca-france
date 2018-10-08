@@ -1,5 +1,13 @@
 # Changelog
 
+### 24.14.5 [#1145](https://github.com/openfisca/openfisca-france/pull/1145)
+
+* Amélioration technique
+* Zones impactées : `openfisca_france/model/prelevements_obligatoires/**/*`.
+* Détails :
+  - Corrige et uniformise le style des fichiers
+  - Règle W504 : saut de ligne avant opérateur binaire
+
 ### 24.14.4 [#1144](https://github.com/openfisca/openfisca-france/pull/1144)
 
 * Amélioration technique
