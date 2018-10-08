@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 
 from openfisca_core.model_api import *
-from openfisca_france.entities import Famille, FoyerFiscal, Individu, Menage
+from openfisca_france.entities import Famille, FoyerFiscal, Individu, Menage  # noqa F401
 
 # Enums commonly used through the legislation
+
 
 class TypesActivite(Enum):
     __order__ = 'actif chomeur etudiant retraite inactif'  # Needed to preserve the enum order in Python 2
@@ -56,6 +57,7 @@ class TypesStatutOccupationLogement(Enum):
     loge_gratuitement = u"Logé gratuitement par des parents, des amis ou l'employeur"
     locataire_foyer = u"Locataire d'un foyer (résidence universitaire, maison de retraite, foyer de jeune travailleur, résidence sociale...)"
     sans_domicile = u"Sans domicile stable"
+
 
 # Taux de prime moyen de la fonction publique
 TAUX_DE_PRIME = 0.195  # primes_fonction_publique (hors suppl. familial et indemnité de résidence)/rémunération brute

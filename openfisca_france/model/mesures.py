@@ -3,7 +3,7 @@
 from __future__ import division
 
 
-from openfisca_france.model.base import *  # noqa analysis:ignore
+from openfisca_france.model.base import *
 
 
 class unites_consommation(Variable):
@@ -37,14 +37,14 @@ class type_menage(Variable):
         isole = not_(menage.personne_de_reference.famille('en_couple', period.first_month))
 
         return (
-            0 * (isole * (af_nbenf == 0)) +  # Célibataire
-            1 * (not_(isole) * (af_nbenf == 0)) +  # Couple sans enfants
-            2 * (not_(isole) * (af_nbenf == 1)) +  # Couple un enfant
-            3 * (not_(isole) * (af_nbenf == 2)) +  # Couple deux enfants
-            4 * (not_(isole) * (af_nbenf == 3)) +  # Couple trois enfants et plus
-            5 * (isole * (af_nbenf == 1)) +  # Famille monoparentale un enfant
-            6 * (isole * (af_nbenf == 2)) +  # Famille monoparentale deux enfants
-            7 * (isole * (af_nbenf == 3))
+            0 * (isole * (af_nbenf == 0))  # Célibataire
+            + 1 * (not_(isole) * (af_nbenf == 0))  # Couple sans enfants
+            + 2 * (not_(isole) * (af_nbenf == 1))  # Couple un enfant
+            + 3 * (not_(isole) * (af_nbenf == 2))  # Couple deux enfants
+            + 4 * (not_(isole) * (af_nbenf == 3))  # Couple trois enfants et plus
+            + 5 * (isole * (af_nbenf == 1))  # Famille monoparentale un enfant
+            + 6 * (isole * (af_nbenf == 2))  # Famille monoparentale deux enfants
+            + 7 * (isole * (af_nbenf == 3))
             )  # Famille monoparentale trois enfants et plus
 
 

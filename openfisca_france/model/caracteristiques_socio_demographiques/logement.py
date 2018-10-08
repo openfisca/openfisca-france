@@ -3,7 +3,8 @@
 from numpy.core.defchararray import startswith
 
 
-from openfisca_france.model.base import *  # noqa analysis:ignore
+from openfisca_france.model.base import *
+
 
 class coloc(Variable):
     value_type = bool
@@ -34,6 +35,7 @@ class depcom(Variable):
     label = u"Code INSEE (depcom) du lieu de résidence"
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
+
 
 class charges_locatives(Variable):
     value_type = float
@@ -79,7 +81,7 @@ class residence_dom(Variable):
         residence_reunion = menage('residence_reunion', period)
         residence_mayotte = menage('residence_mayotte', period)
 
-        return residence_guadeloupe + residence_martinique + residence_reunion +residence_guyane + residence_mayotte
+        return residence_guadeloupe + residence_martinique + residence_reunion + residence_guyane + residence_mayotte
 
 
 class residence_guadeloupe(Variable):
