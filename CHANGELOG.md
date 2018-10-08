@@ -1,5 +1,12 @@
 # Changelog
 
+### 24.14.4 [#1144](https://github.com/openfisca/openfisca-france/pull/1144)
+
+* Amélioration technique
+* Zones impactées : `openfisca_france/model/**/*`.
+* Détails :
+  - Corrige et uniformise le style des fichiers
+
 ### 24.14.3 [#1142](https://github.com/openfisca/openfisca-france/pull/1142)
 
 * Amélioration technique
