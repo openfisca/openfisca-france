@@ -769,8 +769,12 @@ class cappme(Variable):
         seuil1 = P.seuil * (maries_ou_pacses + 1)
         seuil2 = max_(0, P.seuil_tpe * (maries_ou_pacses + 1) - min_(base, seuil1) - min_(f7cq, seuil1) - min_(f7cu, seuil1))
         seuil3 = min_(P.seuil_tpe * (maries_ou_pacses + 1) - min_(base, seuil1) - min_(f7cq, seuil1), seuil1)
-        return P.taux25 * min_(base, seuil1) + P.taux * min_(f7cq, seuil1) + P.taux18 * (min_(f7cf, seuil3) +
-                mini(f7cu, seuil2, seuil1))
+
+        return (
+            P.taux25 * min_(base, seuil1)
+            + P.taux * min_(f7cq, seuil1)
+            + P.taux18 * (min_(f7cf, seuil3) + mini(f7cu, seuil2, seuil1))
+            )
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
         '''
@@ -791,8 +795,12 @@ class cappme(Variable):
         seuil1 = P.seuil * (maries_ou_pacses + 1)
         seuil2 = max_(0, P.seuil_tpe * (maries_ou_pacses + 1) - min_(base, seuil1) - min_(f7cn, seuil1) - min_(f7cu, seuil1))
         seuil3 = min_(P.seuil_tpe * (maries_ou_pacses + 1) - min_(base, seuil1) - min_(f7cq, seuil1), seuil1)
-        return P.taux25 * min_(base, seuil1) + P.taux22 * min_(f7cn, seuil1) + P.taux18 * (min_(f7cf + f7cc, seuil3) +
-                min_(f7cu + f7cq, seuil2))
+
+        return (
+            P.taux25 * min_(base, seuil1)
+            + P.taux22 * min_(f7cn, seuil1)
+            + P.taux18 * (min_(f7cf + f7cc, seuil3) + min_(f7cu + f7cq, seuil2))
+            )
 
     def formula_2014_01_01(foyer_fiscal, period, parameters):
         '''
@@ -833,8 +841,15 @@ class cappme(Variable):
             report_cappme_2013_plaf_general
             + min_(seuil2, base_report_cappme_2010_PME) * P.taux25
             + min_(seuil3, base_report_cappme_2011_PME) * P.taux22
-            + min_(seuil4, base_report_cappme_2012_PME + base_report_cappme_2013_PME + base_cappme_2014_PME +
-                base_report_cappme_2012_TPE + base_report_cappme_2013_TPE + base_cappme_2014_TPE) * P.taux18
+            + min_(
+                seuil4,
+                base_report_cappme_2012_PME
+                + base_report_cappme_2013_PME
+                + base_cappme_2014_PME
+                + base_report_cappme_2012_TPE
+                + base_report_cappme_2013_TPE
+                + base_cappme_2014_TPE
+                ) * P.taux18
             )
 
     def formula_2015_01_01(foyer_fiscal, period, parameters):
@@ -880,11 +895,18 @@ class cappme(Variable):
         return (
             report_cappme_2013_plaf_general
             + report_cappme_2014_plaf_general
-            + P.taux22 * min_(seuil2,
-                base_report_cappme_2011_PME)
-            + P.taux18 * min_(seuil3,
-                base_report_cappme_2012_PME + base_report_cappme_2013_PME + base_report_cappme_2014_PME + base_cappme_2015_PME +
-                base_report_cappme_2012_TPE + base_report_cappme_2013_TPE + base_report_cappme_2014_TPE + base_cappme_2015_TPE)
+            + P.taux22 * min_(seuil2, base_report_cappme_2011_PME)
+            + P.taux18 * min_(
+                seuil3,
+                base_report_cappme_2012_PME
+                + base_report_cappme_2013_PME
+                + base_report_cappme_2014_PME
+                + base_cappme_2015_PME
+                + base_report_cappme_2012_TPE
+                + base_report_cappme_2013_TPE
+                + base_report_cappme_2014_TPE
+                + base_cappme_2015_TPE
+                )
             )
 
     def formula_2016_01_01(foyer_fiscal, period, parameters):
@@ -933,9 +955,19 @@ class cappme(Variable):
             report_cappme_2013_plaf_general
             + report_cappme_2014_plaf_general
             + report_cappme_2015_plaf_general
-            + P.taux18 * min_(seuil2,
-                base_report_cappme_2012_PME + base_report_cappme_2013_PME + base_report_cappme_2014_PME + base_report_cappme_2015_PME + base_cappme_2016_PME +
-                base_report_cappme_2012_TPE + base_report_cappme_2013_TPE + base_report_cappme_2014_TPE + base_report_cappme_2015_TPE + base_cappme_2016_TPE)
+            + P.taux18 * min_(
+                seuil2,
+                base_report_cappme_2012_PME
+                + base_report_cappme_2013_PME
+                + base_report_cappme_2014_PME
+                + base_report_cappme_2015_PME
+                + base_cappme_2016_PME
+                + base_report_cappme_2012_TPE
+                + base_report_cappme_2013_TPE
+                + base_report_cappme_2014_TPE
+                + base_report_cappme_2015_TPE
+                + base_cappme_2016_TPE
+                )
             )
 
     def formula_2017_01_01(foyer_fiscal, period, parameters):
@@ -1047,8 +1079,10 @@ class creaen(Variable):
         f7iy = foyer_fiscal('f7iy', period)
         P = parameters(period).impot_revenu.reductions_impots.creaen
 
-        return (P.base * ((f7jy + f7fy) + f7hy / 2) +
-                P.hand * ((f7ky + f7gy) + f7iy / 2))
+        return (
+            P.base * ((f7jy + f7fy) + f7hy / 2)
+            + P.hand * ((f7ky + f7gy) + f7iy / 2)
+            )
 
     def formula_2010_01_01(foyer_fiscal, period, parameters):
         '''
@@ -1065,8 +1099,10 @@ class creaen(Variable):
         f7my = foyer_fiscal('f7my', period)
         P = parameters(period).impot_revenu.reductions_impots.creaen
 
-        return (P.base * ((f7jy + f7fy) + (f7hy + f7ly) / 2) +
-                P.hand * ((f7ky + f7gy) + (f7iy + f7my) / 2))
+        return (
+            P.base * ((f7jy + f7fy) + (f7hy + f7ly) / 2)
+            + P.hand * ((f7ky + f7gy) + (f7iy + f7my) / 2)
+            )
 
     def formula_2012_01_01(foyer_fiscal, period, parameters):
         '''
@@ -1077,8 +1113,10 @@ class creaen(Variable):
         f7my = foyer_fiscal('f7my', period)
         P = parameters(period).impot_revenu.reductions_impots.creaen
 
-        return (P.base * (f7ly / 2) +
-                P.hand * (f7my / 2))
+        return (
+            P.base * (f7ly / 2)
+            + P.hand * (f7my / 2)
+            )
 
 
 class deffor(Variable):
@@ -1356,8 +1394,15 @@ class doment(Variable):
         f7ks = foyer_fiscal('f7ks', period)
         f7ls = foyer_fiscal('f7ls', period)
 
-        return (f7oz + f7pz + f7qz + f7rz + f7qe + f7qf + f7qg + f7qh + f7qi + f7qj + f7qo + f7qp + f7qq + f7qr + f7qs +
-                f7mm + f7ma + f7lg + f7ks + f7ls)
+        return (
+            f7ks
+            + f7lg + f7ls
+            + f7ma + f7mm
+            + f7oz
+            + f7pz
+            + f7qe + f7qf + f7qg + f7qh + f7qi + f7qj + f7qo + f7qp + f7qq + f7qr + f7qs + f7qz
+            + f7rz
+            )
 
     def formula_2011_01_01(foyer_fiscal, period, parameters):
         '''
@@ -1395,9 +1440,14 @@ class doment(Variable):
         f7qr = foyer_fiscal('f7qr', period)
         f7qv = foyer_fiscal('f7qv', period)
 
-        return (f7ks + f7kt + f7ku + f7lg + f7lh + f7li + f7mb + f7mn + f7mc + f7mm + f7ma + f7oz + f7pa + f7pb + f7pd +
-                f7pe + f7pf + f7ph + f7pi + f7pj + f7pl + f7pz + f7qz + f7qf + f7qg + f7qi + f7qo +
-                f7qp + f7qr + f7qe + f7qv)
+        return (
+            f7ks + f7kt + f7ku
+            + f7lg + f7lh + f7li
+            + f7mb + f7mn + f7mc + f7mm + f7ma
+            + f7oz
+            + f7pa + f7pb + f7pd + f7pe + f7pf + f7ph + f7pi + f7pj + f7pl + f7pz
+            + f7qz + f7qf + f7qg + f7qi + f7qo + f7qp + f7qr + f7qe + f7qv
+            )
 
     def formula_2012_01_01(foyer_fiscal, period, parameters):
         '''
@@ -1464,10 +1514,17 @@ class doment(Variable):
         f7rw = foyer_fiscal('f7rw', period)
         f7ry = foyer_fiscal('f7ry', period)
 
-        return (f7ks + f7kt + f7ku + f7lg + f7lh + f7li + f7ma + f7mb + f7mc + f7mm + f7mn + f7pz + f7nu + f7nv + f7nw +
-                f7ny + f7pa + f7pb + f7pd + f7pe + f7pf + f7ph + f7pi + f7pj + f7pl + f7pm + f7pn + f7po + f7pp + f7pr +
-                f7ps + f7pt + f7pu + f7pw + f7px + f7py + f7qe + f7qf + f7qg + f7qi + f7qo + f7qp + f7qr + f7qv + f7qz +
-                f7rg + f7ri + f7rj + f7rk + f7rl + f7rm + f7ro + f7rp + f7rq + f7rr + f7rt + f7ru + f7rv + f7rw + f7ry)
+        return (
+            f7ks + f7kt + f7ku
+            + f7lg + f7lh + f7li
+            + f7ma + f7mb + f7mc + f7mm + f7mn
+            + f7pz
+            + f7nu + f7nv + f7nw + f7ny
+            + f7pa + f7pb + f7pd + f7pe + f7pf + f7ph + f7pi + f7pj + f7pl + f7pm + f7pn + f7po + f7pp + f7pr + f7ps
+            + f7pt + f7pu + f7pw + f7px + f7py
+            + f7qe + f7qf + f7qg + f7qi + f7qo + f7qp + f7qr + f7qv + f7qz
+            + f7rg + f7ri + f7rj + f7rk + f7rl + f7rm + f7ro + f7rp + f7rq + f7rr + f7rt + f7ru + f7rv + f7rw + f7ry
+            )
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
         '''
@@ -1556,12 +1613,14 @@ class doment(Variable):
         fhrw = foyer_fiscal('fhrw', period)
         fhry = foyer_fiscal('fhry', period)
 
-        return (fhsa + fhsb + fhsf + fhsg + fhsc + fhsh + fhse + fhsj + fhsk + fhsl + fhsp + fhsq + fhsm + fhsr + fhso +
-                fhst + fhsu + fhsv + fhsw + fhsz + fhta + fhtb + fhtd + fhks + fhkt + fhku + fhlg + fhlh + fhli + fhma +
-                fhmb + fhmc + fhmm + fhmn + fhnu + fhnv + fhnw + fhny + fhpa + fhpb + fhpd + fhpe + fhpf + fhph + fhpi +
-                fhpj + fhpl + fhpm + fhpn + fhpo + fhpp + fhpr + fhps + fhpt + fhpu + fhpw + fhpx + fhpy + fhqe + fhqf +
-                fhqg + fhqi + fhqo + fhqp + fhqr + fhqv + fhqz + fhrg + fhri + fhrj + fhrk + fhrl + fhrm + fhro + fhrp +
-                fhrq + fhrr + fhrt + fhru + fhrv + fhrw + fhry)
+        return (
+            fhsa + fhsb + fhsf + fhsg + fhsc + fhsh + fhse + fhsj + fhsk + fhsl + fhsp + fhsq + fhsm + fhsr + fhso
+            + fhst + fhsu + fhsv + fhsw + fhsz + fhta + fhtb + fhtd + fhks + fhkt + fhku + fhlg + fhlh + fhli + fhma
+            + fhmb + fhmc + fhmm + fhmn + fhnu + fhnv + fhnw + fhny + fhpa + fhpb + fhpd + fhpe + fhpf + fhph + fhpi
+            + fhpj + fhpl + fhpm + fhpn + fhpo + fhpp + fhpr + fhps + fhpt + fhpu + fhpw + fhpx + fhpy + fhqe + fhqf
+            + fhqg + fhqi + fhqo + fhqp + fhqr + fhqv + fhqz + fhrg + fhri + fhrj + fhrk + fhrl + fhrm + fhro + fhrp
+            + fhrq + fhrr + fhrt + fhru + fhrv + fhrw + fhry
+            )
 
     def formula_2014_01_01(foyer_fiscal, period, parameters):
         '''
@@ -1673,14 +1732,16 @@ class doment(Variable):
         fhtb = foyer_fiscal('fhtb', period)
         fhtd = foyer_fiscal('fhtd', period)
 
-        return (fhaa + fhab + fhac + fhae + fhaf + fhag + fhah + fhaj + fhak + fhal + fham + fhao + fhap + fhaq + fhar +
-                fhat + fhau + fhav + fhaw + fhay + fhba + fhbb + fhbe + fhbg +
-                fhsa + fhsb + fhsf + fhsg + fhsc + fhsh + fhse + fhsj + fhsk + fhsl + fhsp + fhsq + fhsm + fhsr + fhso +
-                fhst + fhsu + fhsv + fhsw + fhsz + fhta + fhtb + fhtd + fhks + fhkt + fhku + fhlg + fhlh + fhli + fhma +
-                fhmb + fhmc + fhmm + fhmn + fhnu + fhnv + fhnw + fhny + fhpa + fhpb + fhpd + fhpe + fhpf + fhph + fhpi +
-                fhpj + fhpl + fhpm + fhpn + fhpo + fhpp + fhpr + fhps + fhpt + fhpu + fhpw + fhpx + fhpy + fhqe + fhqf +
-                fhqg + fhqi + fhqo + fhqp + fhqr + fhqv + fhrg + fhri + fhrj + fhrk + fhrl + fhrm + fhro + fhrp +
-                fhrq + fhrr + fhrt + fhru + fhrv + fhrw + fhry)
+        return (
+            fhaa + fhab + fhac + fhae + fhaf + fhag + fhah + fhaj + fhak + fhal + fham + fhao + fhap + fhaq + fhar
+            + fhat + fhau + fhav + fhaw + fhay + fhba + fhbb + fhbe + fhbg
+            + fhsa + fhsb + fhsf + fhsg + fhsc + fhsh + fhse + fhsj + fhsk + fhsl + fhsp + fhsq + fhsm + fhsr + fhso
+            + fhst + fhsu + fhsv + fhsw + fhsz + fhta + fhtb + fhtd + fhks + fhkt + fhku + fhlg + fhlh + fhli + fhma
+            + fhmb + fhmc + fhmm + fhmn + fhnu + fhnv + fhnw + fhny + fhpa + fhpb + fhpd + fhpe + fhpf + fhph + fhpi
+            + fhpj + fhpl + fhpm + fhpn + fhpo + fhpp + fhpr + fhps + fhpt + fhpu + fhpw + fhpx + fhpy + fhqe + fhqf
+            + fhqg + fhqi + fhqo + fhqp + fhqr + fhqv + fhrg + fhri + fhrj + fhrk + fhrl + fhrm + fhro + fhrp
+            + fhrq + fhrr + fhrt + fhru + fhrv + fhrw + fhry
+            )
 
     def formula_2015_01_01(foyer_fiscal, period, parameters):
         '''
@@ -1808,16 +1869,18 @@ class doment(Variable):
         fhtb = foyer_fiscal('fhtb', period)
         fhtd = foyer_fiscal('fhtd', period)
 
-        return (fhbi + fhbj + fhbk + fhbm + fhbn + fhbo + fhbp + fhbr + fhbs + fhbt + fhbu + fhbw + fhbx + fhby + fhbz +
-                fhcb + fhcc + fhcd + fhce + fhcg +
-                fhaa + fhab + fhac + fhae + fhaf + fhag + fhah + fhaj + fhak + fhal + fham + fhao + fhap + fhaq + fhar +
-                fhat + fhau + fhav + fhaw + fhay + fhba + fhbb + fhbe + fhbg +
-                fhsa + fhsb + fhsf + fhsg + fhsc + fhsh + fhse + fhsj + fhsk + fhsl + fhsp + fhsq + fhsm + fhsr + fhso +
-                fhst + fhsu + fhsv + fhsw + fhsz + fhta + fhtb + fhtd + fhkt + fhku + fhlh + fhli +
-                fhmb + fhmc + fhmn + fhnu + fhnv + fhnw + fhny + fhpa + fhpb + fhpd + fhpe + fhpf + fhph + fhpi +
-                fhpj + fhpl + fhpm + fhpn + fhpo + fhpp + fhpr + fhps + fhpt + fhpu + fhpw + fhpx + fhpy + fhqe + fhqf +
-                fhqg + fhqi + fhqo + fhqp + fhqr + fhqv + fhrg + fhri + fhrj + fhrk + fhrl + fhrm + fhro + fhrp +
-                fhrq + fhrr + fhrt + fhru + fhrv + fhrw + fhry)
+        return (
+            fhbi + fhbj + fhbk + fhbm + fhbn + fhbo + fhbp + fhbr + fhbs + fhbt + fhbu + fhbw + fhbx + fhby + fhbz
+            + fhcb + fhcc + fhcd + fhce + fhcg
+            + fhaa + fhab + fhac + fhae + fhaf + fhag + fhah + fhaj + fhak + fhal + fham + fhao + fhap + fhaq + fhar
+            + fhat + fhau + fhav + fhaw + fhay + fhba + fhbb + fhbe + fhbg
+            + fhsa + fhsb + fhsf + fhsg + fhsc + fhsh + fhse + fhsj + fhsk + fhsl + fhsp + fhsq + fhsm + fhsr + fhso
+            + fhst + fhsu + fhsv + fhsw + fhsz + fhta + fhtb + fhtd + fhkt + fhku + fhlh + fhli
+            + fhmb + fhmc + fhmn + fhnu + fhnv + fhnw + fhny + fhpa + fhpb + fhpd + fhpe + fhpf + fhph + fhpi
+            + fhpj + fhpl + fhpm + fhpn + fhpo + fhpp + fhpr + fhps + fhpt + fhpu + fhpw + fhpx + fhpy + fhqe + fhqf
+            + fhqg + fhqi + fhqo + fhqp + fhqr + fhqv + fhrg + fhri + fhrj + fhrk + fhrl + fhrm + fhro + fhrp
+            + fhrq + fhrr + fhrt + fhru + fhrv + fhrw + fhry
+            )
 
     def formula_2016_01_01(foyer_fiscal, period, parameters):
         '''
@@ -1950,17 +2013,19 @@ class doment(Variable):
         fhtb = foyer_fiscal('fhtb', period)
         fhtd = foyer_fiscal('fhtd', period)
 
-        return (fhci + fhcj + fhck + fhcm + fhcn + fhco + fhcp + fhcr + fhcs + fhct + fhcu + fhcw +
-                fhbi + fhbj + fhbk + fhbm + fhbn + fhbo + fhbp + fhbr + fhbs + fhbt + fhbu + fhbw + fhbx + fhby + fhbz +
-                fhcb + fhcc + fhcd + fhce + fhcg +
-                fhaa + fhab + fhac + fhae + fhaf + fhag + fhah + fhaj + fhak + fhal + fham + fhao + fhap + fhaq + fhar +
-                fhat + fhau + fhav + fhaw + fhay + fhba + fhbb + fhbe + fhbg +
-                fhsa + fhsb + fhsf + fhsg + fhsc + fhsh + fhse + fhsj + fhsk + fhsl + fhsp + fhsq + fhsm + fhsr + fhso +
-                fhst + fhsu + fhsv + fhsw + fhsz + fhta + fhtb + fhtd +
-                fhnu + fhnv + fhnw + fhny + fhpa + fhpb + fhpd + fhpe + fhpf + fhph + fhpi +
-                fhpj + fhpl + fhpm + fhpn + fhpo + fhpp + fhpr + fhps + fhpt + fhpu + fhpw + fhpx + fhpy + fhqe + fhqf +
-                fhqg + fhqi + fhqo + fhqp + fhqr + fhqv + fhrg + fhri + fhrj + fhrk + fhrl + fhrm + fhro + fhrp +
-                fhrq + fhrr + fhrt + fhru + fhrv + fhrw + fhry)
+        return (
+            fhci + fhcj + fhck + fhcm + fhcn + fhco + fhcp + fhcr + fhcs + fhct + fhcu + fhcw
+            + fhbi + fhbj + fhbk + fhbm + fhbn + fhbo + fhbp + fhbr + fhbs + fhbt + fhbu + fhbw + fhbx + fhby + fhbz
+            + fhcb + fhcc + fhcd + fhce + fhcg
+            + fhaa + fhab + fhac + fhae + fhaf + fhag + fhah + fhaj + fhak + fhal + fham + fhao + fhap + fhaq + fhar
+            + fhat + fhau + fhav + fhaw + fhay + fhba + fhbb + fhbe + fhbg
+            + fhsa + fhsb + fhsf + fhsg + fhsc + fhsh + fhse + fhsj + fhsk + fhsl + fhsp + fhsq + fhsm + fhsr + fhso
+            + fhst + fhsu + fhsv + fhsw + fhsz + fhta + fhtb + fhtd
+            + fhnu + fhnv + fhnw + fhny + fhpa + fhpb + fhpd + fhpe + fhpf + fhph + fhpi
+            + fhpj + fhpl + fhpm + fhpn + fhpo + fhpp + fhpr + fhps + fhpt + fhpu + fhpw + fhpx + fhpy + fhqe + fhqf
+            + fhqg + fhqi + fhqo + fhqp + fhqr + fhqv + fhrg + fhri + fhrj + fhrk + fhrl + fhrm + fhro + fhrp
+            + fhrq + fhrr + fhrt + fhru + fhrv + fhrw + fhry
+            )
 
     def formula_2017_01_01(foyer_fiscal, period, parameters):
         '''
@@ -2253,8 +2318,11 @@ class domlog(Variable):
         f7ov = foyer_fiscal('f7ov', period)
         f7ow = foyer_fiscal('f7ow', period)
 
-        return (f7qb + f7qc + f7qd + f7ql + f7qm + f7qt + f7oa + f7ob + f7oc + f7oh + f7oi + f7oj + f7ok + f7ol + f7om +
-                f7on + f7oo + f7op + f7oq + f7or + f7os + f7ot + f7ou + f7ov + f7ow)
+        return (
+            f7qb + f7qc + f7qd + f7ql + f7qm + f7qt
+            + f7oa + f7ob + f7oc + f7oh + f7oi + f7oj + f7ok + f7ol + f7om + f7on
+            + f7oo + f7op + f7oq + f7or + f7os + f7ot + f7ou + f7ov + f7ow
+            )
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
         '''
@@ -2295,9 +2363,12 @@ class domlog(Variable):
         fhov = foyer_fiscal('fhov', period)
         fhow = foyer_fiscal('fhow', period)
 
-        return (fhqb + fhqc + fhqd + fhql + fhqm + fhqt + fhoa + fhob + fhoc + fhoh + fhoi + fhoj + fhok + fhol + fhom +
-                fhon + fhoo + fhop + fhoq + fhor + fhos + fhot + fhou + fhov + fhow + fhod + fhoe +
-                fhof + fhog + fhox + fhoy + fhoz)
+        return (
+            fhqb + fhqc + fhqd + fhql + fhqm + fhqt
+            + fhoa + fhob + fhoc + fhoh + fhoi + fhoj + fhok + fhol + fhom + fhon + fhoo + fhop
+            + fhoq + fhor + fhos + fhot + fhou + fhov + fhow + fhod + fhoe + fhof + fhog + fhox
+            + fhoy + fhoz
+            )
 
     def formula_2014_01_01(foyer_fiscal, period, parameters):
         '''
@@ -2344,9 +2415,12 @@ class domlog(Variable):
         fhuf = foyer_fiscal('fhuf', period)
         fhug = foyer_fiscal('fhug', period)
 
-        return (fhqb + fhqc + fhqd + fhql + fhqm + fhqt + fhoa + fhob + fhoc + fhoh + fhoi + fhoj + fhok + fhol + fhom +
-                fhon + fhoo + fhop + fhoq + fhor + fhos + fhot + fhou + fhov + fhow + fhod + fhoe +
-                fhof + fhog + fhox + fhoy + fhoz + fhua + fhub + fhuc + fhud + fhue + fhuf + fhug)
+        return (
+            fhqb + fhqc + fhqd + fhql + fhqm + fhqt
+            + fhoa + fhob + fhoc + fhoh + fhoi + fhoj + fhok + fhol + fhom
+            + fhon + fhoo + fhop + fhoq + fhor + fhos + fhot + fhou + fhov + fhow + fhod + fhoe
+            + fhof + fhog + fhox + fhoy + fhoz + fhua + fhub + fhuc + fhud + fhue + fhuf + fhug
+            )
 
     def formula_2015_01_01(foyer_fiscal, period, parameters):
         '''
@@ -2400,10 +2474,14 @@ class domlog(Variable):
         fhum = foyer_fiscal('fhum', period)
         fhun = foyer_fiscal('fhun', period)
 
-        return (fhqb + fhqc + fhqd + fhql + fhqm + fhqt + fhoa + fhob + fhoc + fhoh + fhoi + fhoj + fhok + fhol + fhom +
-                fhon + fhoo + fhop + fhoq + fhor + fhos + fhot + fhou + fhov + fhow + fhod + fhoe +
-                fhof + fhog + fhox + fhoy + fhoz + fhua + fhub + fhuc + fhud + fhue + fhuf + fhug +
-                fhuh + fhui + fhuj + fhuk + fhul + fhum + fhun)
+        return (
+            fhqb + fhqc + fhqd + fhql + fhqm + fhqt
+            + fhoa + fhob + fhoc + fhoh + fhoi + fhoj + fhok + fhol + fhom + fhon + fhoo + fhop
+            + fhoq + fhor + fhos + fhot + fhou + fhov + fhow + fhod + fhoe + fhof + fhog + fhox
+            + fhoy + fhoz
+            + fhua + fhub + fhuc + fhud + fhue + fhuf + fhug + fhuh + fhui + fhuj + fhuk + fhul
+            + fhum + fhun
+            )
 
     def formula_2016_01_01(foyer_fiscal, period, parameters):
         '''
@@ -2464,11 +2542,13 @@ class domlog(Variable):
         fhut = foyer_fiscal('fhut', period)
         fhuu = foyer_fiscal('fhuu', period)
 
-        return (fhqb + fhqc + fhqd + fhql + fhqm + fhqt + fhoa + fhob + fhoc + fhoh + fhoi + fhoj + fhok + fhol + fhom +
-                fhon + fhoo + fhop + fhoq + fhor + fhos + fhot + fhou + fhov + fhow + fhod + fhoe +
-                fhof + fhog + fhox + fhoy + fhoz + fhua + fhub + fhuc + fhud + fhue + fhuf + fhug +
-                fhuh + fhui + fhuj + fhuk + fhul + fhum + fhun + fhuo + fhup + fhuq + fhur + fhus +
-                fhut + fhuu)
+        return (
+            fhqb + fhqc + fhqd + fhql + fhqm + fhqt + fhoa + fhob + fhoc + fhoh + fhoi + fhoj
+            + fhok + fhol + fhom + fhon + fhoo + fhop + fhoq + fhor + fhos + fhot + fhou + fhov
+            + fhow + fhod + fhoe + fhof + fhog + fhox + fhoy + fhoz
+            + fhua + fhub + fhuc + fhud + fhue + fhuf + fhug + fhuh + fhui + fhuj + fhuk + fhul
+            + fhum + fhun + fhuo + fhup + fhuq + fhur + fhus + fhut + fhuu
+            )
 
     def formula_2017_01_01(foyer_fiscal, period, parameters):
         '''
@@ -2881,8 +2961,11 @@ class duflot(Variable):
         P = parameters(period).impot_revenu.reductions_impots.duflot
 
         return (
-            min_(P.plafond - invest_domtom_2013, invest_metropole_2013) * P.taux_m +
-            min_(P.plafond, invest_domtom_2013) * P.taux_om) / 9
+            min_(P.plafond - invest_domtom_2013, invest_metropole_2013)
+            * P.taux_m
+            + min_(P.plafond, invest_domtom_2013)
+            * P.taux_om
+            ) / 9
 
     def formula_2014_01_01(foyer_fiscal, period, parameters):
         '''
@@ -2905,12 +2988,12 @@ class duflot(Variable):
 
         return (
             P.taux_m * (
-                min_(max_(0, P.plafond - invest_domtom_2013), invest_metropole_2013) +
-                min_(max_(0, max2 - invest_domtom_2014), invest_metropole_2014)
-                ) +
-            P.taux_om * (
-                min_(P.plafond, invest_domtom_2013) +
-                min_(P.plafond, invest_domtom_2014)
+                min_(max_(0, P.plafond - invest_domtom_2013), invest_metropole_2013)
+                + min_(max_(0, max2 - invest_domtom_2014), invest_metropole_2014)
+                )
+            + P.taux_om * (
+                min_(P.plafond, invest_domtom_2013)
+                + min_(P.plafond, invest_domtom_2014)
                 )
             ) / 9 + report_reduc_2013
 
@@ -2929,12 +3012,12 @@ class duflot(Variable):
 
         return (
             P.taux_m * (
-                min_(P.plafond - invest_domtom_2013, invest_metropole_2013) +
-                min_(P.plafond - invest_domtom_2014, invest_metropole_2014)
-                ) +
-            P.taux_om * (
-                min_(P.plafond, invest_domtom_2013) +
-                min_(P.plafond, invest_domtom_2014)
+                min_(P.plafond - invest_domtom_2013, invest_metropole_2013)
+                + min_(P.plafond - invest_domtom_2014, invest_metropole_2014)
+                )
+            + P.taux_om * (
+                min_(P.plafond, invest_domtom_2013)
+                + min_(P.plafond, invest_domtom_2014)
                 )
             ) / 9 + report_reduc_2013 + report_reduc_2014
 
@@ -2954,12 +3037,12 @@ class duflot(Variable):
 
         return (
             P.taux_m * (
-                min_(P.plafond - invest_domtom_2013, invest_metropole_2013) +
-                min_(P.plafond - invest_domtom_2014, invest_metropole_2014)
-                ) +
-            P.taux_om * (
-                min_(P.plafond, invest_domtom_2013) +
-                min_(P.plafond, invest_domtom_2014)
+                min_(P.plafond - invest_domtom_2013, invest_metropole_2013)
+                + min_(P.plafond - invest_domtom_2014, invest_metropole_2014)
+                )
+            + P.taux_om * (
+                min_(P.plafond, invest_domtom_2013)
+                + min_(P.plafond, invest_domtom_2014)
                 )
             ) / 9 + report_reduc_2013 + report_reduc_2014 + report_reduc_2015
 
@@ -3029,9 +3112,11 @@ class ecpess(Variable):
         f7eg = foyer_fiscal('f7eg', period)
         P = parameters(period).impot_revenu.reductions_impots.ecpess
 
-        return (P.col * (f7ea + f7eb / 2) +
-                P.lyc * (f7ec + f7ed / 2) +
-                P.sup * (f7ef + f7eg / 2))
+        return (
+            P.col * (f7ea + f7eb / 2)
+            + P.lyc * (f7ec + f7ed / 2)
+            + P.sup * (f7ef + f7eg / 2)
+            )
 
 
 class garext(Variable):
@@ -3072,12 +3157,15 @@ class garext(Variable):
 
         max1 = P.plafond
         max2 = P.plafond / 2
-        return P.taux * (min_(f7ga, max1) +
-                         min_(f7gb, max1) +
-                         min_(f7gc, max1) +
-                         min_(f7ge, max2) +
-                         min_(f7gf, max2) +
-                         min_(f7gg, max2))
+
+        return P.taux * (
+            min_(f7ga, max1)
+            + min_(f7gb, max1)
+            + min_(f7gc, max1)
+            + min_(f7ge, max2)
+            + min_(f7gf, max2)
+            + min_(f7gg, max2)
+            )
 
 
 class intagr(Variable):
@@ -3220,7 +3308,8 @@ class invfor(Variable):
             P.taux * (
                 min_(f7un, P.plafond * (maries_ou_pacses + 1))
                 + min_(f7up, max1)
-                + min_(f7uq, P.plafond_cga * (maries_ou_pacses + 1)))
+                + min_(f7uq, P.plafond_cga * (maries_ou_pacses + 1))
+                )
             + P.report10 * min_(f7uu + f7te + f7uv + f7tf, max0)
             + P.taux_assurance * min_(f7ul, P.plafond_travaux * (maries_ou_pacses + 1))
             )
@@ -3667,20 +3756,22 @@ class invlst(Variable):
         P = parameters(period).impot_revenu.reductions_impots.invlst
 
         reduction_logement_neuf = P.taux_xi * (
-            report_logement_neuf_2009 +
-            report_logement_neuf_2010 +
-            report_logement_neuf_2011 +
-            report_logement_neuf_2012
+            report_logement_neuf_2009
+            + report_logement_neuf_2010
+            + report_logement_neuf_2011
+            + report_logement_neuf_2012
             )
+
         reduction_rehabilitation = P.taux_xj * (
-            report_rehabilitation_2009 +
-            report_rehabilitation_2010 +
-            report_rehabilitation_2011 +
-            report_rehabilitation_2012
+            report_rehabilitation_2009
+            + report_rehabilitation_2010
+            + report_rehabilitation_2011
+            + report_rehabilitation_2012
             )
+
         reduction_residence_sociale = P.taux_xo * (
-            report_residence_sociale_2009 +
-            report_residence_sociale_2010
+            report_residence_sociale_2009
+            + report_residence_sociale_2010
             )
 
         return around(reduction_logement_neuf + reduction_rehabilitation + reduction_residence_sociale)
@@ -3703,17 +3794,19 @@ class invlst(Variable):
         P = parameters(period).impot_revenu.reductions_impots.invlst
 
         reduction_logement_neuf = P.taux_xi * (
-            report_logement_neuf_2009 +
-            report_logement_neuf_2010 +
-            report_logement_neuf_2011 +
-            report_logement_neuf_2012
+            report_logement_neuf_2009
+            + report_logement_neuf_2010
+            + report_logement_neuf_2011
+            + report_logement_neuf_2012
             )
+
         reduction_rehabilitation = P.taux_xj * (
-            report_rehabilitation_2009 +
-            report_rehabilitation_2010 +
-            report_rehabilitation_2011 +
-            report_rehabilitation_2012
+            report_rehabilitation_2009
+            + report_rehabilitation_2010
+            + report_rehabilitation_2011
+            + report_rehabilitation_2012
             )
+
         reduction_residence_sociale = P.taux_xo * report_residence_sociale_2010
 
         return around(reduction_logement_neuf + reduction_rehabilitation + reduction_residence_sociale)
@@ -3733,14 +3826,15 @@ class invlst(Variable):
         P = parameters(period).impot_revenu.reductions_impots.invlst
 
         reduction_logement_neuf = P.taux_xi * (
-            report_logement_neuf_2010 +
-            report_logement_neuf_2011 +
-            report_logement_neuf_2012
+            report_logement_neuf_2010
+            + report_logement_neuf_2011
+            + report_logement_neuf_2012
             )
+
         reduction_rehabilitation = P.taux_xj * (
-            report_rehabilitation_2010 +
-            report_rehabilitation_2011 +
-            report_rehabilitation_2012
+            report_rehabilitation_2010
+            + report_rehabilitation_2011
+            + report_rehabilitation_2012
             )
 
         return around(reduction_logement_neuf + reduction_rehabilitation)
@@ -3758,12 +3852,13 @@ class invlst(Variable):
         P = parameters(period).impot_revenu.reductions_impots.invlst
 
         reduction_logement_neuf = P.taux_xi * (
-            report_logement_neuf_2011 +
-            report_logement_neuf_2012
+            report_logement_neuf_2011
+            + report_logement_neuf_2012
             )
+
         reduction_rehabilitation = P.taux_xj * (
-            report_rehabilitation_2011 +
-            report_rehabilitation_2012
+            report_rehabilitation_2011
+            + report_rehabilitation_2012
             )
 
         return around(reduction_logement_neuf + reduction_rehabilitation)
@@ -3859,11 +3954,13 @@ class locmeu(Variable):
         taux_reduc_2011 = P.taux20 * majoration_taux_invest_2011 + P.taux18 * not_(majoration_taux_invest_2011)
         report = P.taux * max_(f7ik, f7ip + f7ir + f7iq) + f7is + f7iu + f7it
 
-        return ((
-                (min_(P.max, max_(f7im, f7iw)) + min_(P.max, f7io)) * taux_reduc_2009_2010 +
-                min_(P.max, maxi(f7ij, f7il, f7in, f7iv)) * taux_reduc_2011
-                ) / 9 + report
-                )
+        return (
+            (
+                (min_(P.max, max_(f7im, f7iw)) + min_(P.max, f7io)) * taux_reduc_2009_2010
+                + min_(P.max, maxi(f7ij, f7il, f7in, f7iv)) * taux_reduc_2011
+                ) / 9
+            + report
+            )
 
     def formula_2012_01_01(foyer_fiscal, period, parameters):
         '''
@@ -3902,12 +3999,15 @@ class locmeu(Variable):
         taux_reduc_2011 = P.taux20 * majoration_taux_invest_2011 + P.taux18 * not_(majoration_taux_invest_2011)
         taux_reduc_2012 = P.taux18 * majoration_taux_invest_2012 + P.taux11 * not_(majoration_taux_invest_2012)
         report = P.taux * max_(f7ik + f7ip, f7ir + f7iq) + f7ia + f7ib + f7ic + f7ih + f7is + f7iu + f7it + f7ix + f7iz
-        return ((
-                (min_(P.max, max_(f7im, f7iw)) + min_(P.max, f7io)) * taux_reduc_2009_2010 +
-                min_(P.max, maxi(f7ij, f7il, f7in, f7iv)) * taux_reduc_2011 +
-                min_(P.max, maxi(f7id, f7ie, f7if, f7ig)) * taux_reduc_2012
-                ) / 9 + report
-                )
+
+        return (
+            (
+                (min_(P.max, max_(f7im, f7iw)) + min_(P.max, f7io)) * taux_reduc_2009_2010
+                + min_(P.max, maxi(f7ij, f7il, f7in, f7iv)) * taux_reduc_2011
+                + min_(P.max, maxi(f7id, f7ie, f7if, f7ig)) * taux_reduc_2012
+                ) / 9
+            + report
+            )
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
         '''
@@ -3956,16 +4056,22 @@ class locmeu(Variable):
         taux_reduc_2011 = P.taux20 * majoration_taux_invest_2011 + P.taux18 * not_(majoration_taux_invest_2011)
         taux_reduc_2012 = P.taux18 * majoration_taux_invest_2012 + P.taux11 * not_(majoration_taux_invest_2012)
         taux_reduc_2013 = P.taux11
-        report = (P.taux * max_(f7ik + f7ip, f7ir + f7iq) + f7ia + f7ib + f7ic + f7ih + f7is + f7iu +
-            f7it + f7ix + f7iy + f7iz + f7jv + f7jw + f7jx + f7jy + f7jc + f7ji + f7js)
 
-        return ((
-                (min_(P.max, max_(f7im, f7iw)) + min_(P.max, f7io)) * taux_reduc_2009_2010 +
-                min_(P.max, maxi(f7ij, f7il, f7in, f7iv)) * taux_reduc_2011 +
-                min_(P.max, maxi(f7id, f7ie, f7if, f7ig)) * taux_reduc_2012 +
-                min_(P.max, f7jt + f7ju) * taux_reduc_2013
-                ) / 9 + report
-                )
+        report = (
+            P.taux * max_(f7ik + f7ip, f7ir + f7iq)
+            + f7ia + f7ib + f7ic + f7ih + f7is + f7iu + f7it + f7ix + f7iy + f7iz
+            + f7jv + f7jw + f7jx + f7jy + f7jc + f7ji + f7js
+            )
+
+        return (
+            (
+                (min_(P.max, max_(f7im, f7iw)) + min_(P.max, f7io)) * taux_reduc_2009_2010
+                + min_(P.max, maxi(f7ij, f7il, f7in, f7iv)) * taux_reduc_2011
+                + min_(P.max, maxi(f7id, f7ie, f7if, f7ig)) * taux_reduc_2012
+                + min_(P.max, f7jt + f7ju) * taux_reduc_2013
+                ) / 9
+            + report
+            )
 
     def formula_2014_01_01(foyer_fiscal, period, parameters):
         '''
@@ -4027,23 +4133,31 @@ class locmeu(Variable):
         taux_reduc_2012 = P.taux18 * majoration_taux_invest_2012 + P.taux11 * not_(majoration_taux_invest_2012)
         taux_reduc_2013 = P.taux11
 
-        report_invest_anterieur = (P.taux * max_(f7ik + f7ip, f7ir + f7iq)
+        report_invest_anterieur = (
+            P.taux * max_(f7ik + f7ip, f7ir + f7iq)
             + f7ia + f7ib + f7ic
             + f7jv + f7jw + f7jx + f7jy
-            + f7oa + f7ob + f7oc + f7od + f7oe)
-        report_non_impute = (f7is + f7iu + f7ix + f7iy + f7pa
+            + f7oa + f7ob + f7oc + f7od + f7oe
+            )
+
+        report_non_impute = (
+            f7is + f7iu + f7ix + f7iy + f7pa
             + f7it + f7ih + f7jc + f7pb
             + f7iz + f7ji + f7pc
             + f7js + f7pd
-            + f7pe)
+            + f7pe
+            )
 
-        return ((
-                (min_(P.max, max_(f7im, f7iw)) + min_(P.max, f7io)) * taux_reduc_2009_2010 +
-                min_(P.max, maxi(f7ij, f7il, f7in, f7iv)) * taux_reduc_2011 +  # to check : impossible de remplir à la fois f7ij et f7il par exemple ?
-                min_(P.max, maxi(f7id, f7ie, f7if, f7ig)) * taux_reduc_2012 +
-                (min_(P.max, f7jt + f7ju) + min_(P.max, f7ou)) * taux_reduc_2013
-                ) / 9 + report_invest_anterieur + report_non_impute
-                )
+        return (
+            (
+                (min_(P.max, max_(f7im, f7iw)) + min_(P.max, f7io)) * taux_reduc_2009_2010
+                + min_(P.max, maxi(f7ij, f7il, f7in, f7iv)) * taux_reduc_2011  # to check : impossible de remplir à la fois f7ij et f7il par exemple ?
+                + min_(P.max, maxi(f7id, f7ie, f7if, f7ig)) * taux_reduc_2012
+                + (min_(P.max, f7jt + f7ju) + min_(P.max, f7ou)) * taux_reduc_2013
+                ) / 9
+            + report_invest_anterieur
+            + report_non_impute
+            )
 
     def formula_2015_01_01(foyer_fiscal, period, parameters):
         '''
@@ -4116,24 +4230,33 @@ class locmeu(Variable):
         taux_reduc_2012 = P.taux18 * majoration_taux_invest_2012 + P.taux11 * not_(majoration_taux_invest_2012)
         taux_reduc_2013 = P.taux11
 
-        report_invest_anterieur = (P.taux * max_(f7ik + f7ip, f7ir + f7iq)
+        report_invest_anterieur = (
+            P.taux
+            * max_(f7ik + f7ip, f7ir + f7iq)
             + f7ia + f7ib + f7ic
             + f7jv + f7jw + f7jx + f7jy
             + f7oa + f7ob + f7oc + f7od + f7oe
-            + f7of + f7og + f7oh + f7oi + f7oj)
-        report_non_impute = (f7is + f7iu + f7ix + f7iy + f7pa + f7pf
+            + f7of + f7og + f7oh + f7oi + f7oj
+            )
+
+        report_non_impute = (
+            f7is + f7iu + f7ix + f7iy + f7pa + f7pf
             + f7it + f7ih + f7jc + f7pb + f7pg
             + f7iz + f7ji + f7pc + f7ph
             + f7js + f7pd + f7pi
-            + f7pe + f7pj)
+            + f7pe + f7pj
+            )
 
-        return ((
-                (min_(P.max, max_(f7im, f7iw)) + min_(P.max, f7io)) * taux_reduc_2009_2010 +
-                min_(P.max, maxi(f7ij, f7il, f7in, f7iv)) * taux_reduc_2011 +  # to check : impossible de remplir à la fois f7ij et f7il par exemple ?
-                min_(P.max, maxi(f7id, f7ie, f7if, f7ig)) * taux_reduc_2012 +
-                (min_(P.max, f7jt + f7ju) + min_(P.max, f7ou) + min_(P.max, f7ov)) * taux_reduc_2013
-                ) / 9 + report_invest_anterieur + report_non_impute
-                )
+        return (
+            (
+                (min_(P.max, max_(f7im, f7iw) + min_(P.max, f7io))) * taux_reduc_2009_2010
+                + min_(P.max, maxi(f7ij, f7il, f7in, f7iv)) * taux_reduc_2011  # to check : impossible de remplir à la fois f7ij et f7il par exemple ?
+                + min_(P.max, maxi(f7id, f7ie, f7if, f7ig)) * taux_reduc_2012
+                + (min_(P.max, f7jt + f7ju) + min_(P.max, f7ou) + min_(P.max, f7ov)) * taux_reduc_2013
+                ) / 9
+            + report_invest_anterieur
+            + report_non_impute
+            )
 
     def formula_2016_01_01(foyer_fiscal, period, parameters):
         '''
@@ -4215,26 +4338,34 @@ class locmeu(Variable):
         taux_reduc_2012 = P.taux18 * majoration_taux_invest_2012 + P.taux11 * not_(majoration_taux_invest_2012)
         taux_reduc_2013 = P.taux11
 
-        report_invest_anterieur = (P.taux * max_(f7ik + f7ip, f7ir + f7iq)
+        report_invest_anterieur = (
+            P.taux
+            * max_(f7ik + f7ip, f7ir + f7iq)
             + f7ia + f7ib + f7ic
             + f7jv + f7jw + f7jx + f7jy
             + f7oa + f7ob + f7oc + f7od + f7oe
             + f7of + f7og + f7oh + f7oi + f7oj
-            + f7ok + f7ol + f7om + f7on + f7oo)
-        report_non_impute = (f7iu + f7ix + f7iy + f7pa + f7pf + f7pk
+            + f7ok + f7ol + f7om + f7on + f7oo
+            )
+
+        report_non_impute = (
+            f7iu + f7ix + f7iy + f7pa + f7pf + f7pk
             + f7it + f7ih + f7jc + f7pb + f7pg + f7pl
             + f7iz + f7ji + f7pc + f7ph + f7pm
             + f7js + f7pd + f7pi + f7pn
-            + f7pe + f7pj + f7po)
+            + f7pe + f7pj + f7po
+            )
 
-        return ((
-                min_(P.max, max_(f7im, f7iw)) * taux_reduc_2009_2010 +
-                min_(P.max, maxi(f7ij, f7il, f7in, f7iv)) * taux_reduc_2011 +  # to check : impossible de remplir à la fois f7ij et f7il par exemple ?
-                min_(P.max, maxi(f7id, f7ie, f7if, f7ig)) * taux_reduc_2012 +
-                (min_(P.max, f7jt + f7ju) + min_(P.max, f7ou) + min_(P.max, f7ov) + min_(P.max, f7ow)) * taux_reduc_2013
-                ) / 9 +
-                report_invest_anterieur + report_non_impute
-                )
+        return (
+            (
+                min_(P.max, max_(f7im, f7iw)) * taux_reduc_2009_2010
+                + min_(P.max, maxi(f7ij, f7il, f7in, f7iv)) * taux_reduc_2011  # to check : impossible de remplir à la fois f7ij et f7il par exemple ?
+                + min_(P.max, maxi(f7id, f7ie, f7if, f7ig)) * taux_reduc_2012
+                + (min_(P.max, f7jt + f7ju) + min_(P.max, f7ou) + min_(P.max, f7ov) + min_(P.max, f7ow)) * taux_reduc_2013
+                ) / 9
+            + report_invest_anterieur
+            + report_non_impute
+            )
 
     def formula_2017_01_01(foyer_fiscal, period, parameters):
         '''
@@ -4504,17 +4635,17 @@ class prcomp(Variable):
 
         return (
             (f7wm == 0) * (
-                (f7wn == f7wo) * P.taux * min_(f7wn, P.seuil) +
-                (f7wn < f7wo) * (f7wo <= P.seuil) * P.taux * f7wn +
-                max_(0, (f7wn < f7wo) * (f7wo > P.seuil) * P.taux * P.seuil * f7wn / div)
-                ) +
-            (f7wm != 0) * (
-                (f7wn == f7wm) * (f7wo <= P.seuil) * P.taux * f7wm +
-                max_(0, (f7wn == f7wm) * (f7wo >= P.seuil) * P.taux * f7wm / div) +
-                (f7wn > f7wm) * (f7wo <= P.seuil) * P.taux * f7wn +
-                max_(0, (f7wn > f7wm) * (f7wo >= P.seuil) * P.taux * f7wn / div)
-                ) +
-            P.taux * f7wp
+                (f7wn == f7wo) * P.taux * min_(f7wn, P.seuil)
+                + (f7wn < f7wo) * (f7wo <= P.seuil) * P.taux * f7wn
+                + max_(0, (f7wn < f7wo) * (f7wo > P.seuil) * P.taux * P.seuil * f7wn / div)
+                )
+            + (f7wm != 0) * (
+                (f7wn == f7wm) * (f7wo <= P.seuil) * P.taux * f7wm
+                + max_(0, (f7wn == f7wm) * (f7wo >= P.seuil) * P.taux * f7wm / div)
+                + (f7wn > f7wm) * (f7wo <= P.seuil) * P.taux * f7wn
+                + max_(0, (f7wn > f7wm) * (f7wo >= P.seuil) * P.taux * f7wn / div)
+                )
+            + P.taux * f7wp
             )
 
 
@@ -4607,8 +4738,13 @@ class resimm(Variable):
         max2 = max_(max1 - f7rd, 0)
         max3 = max_(max2 - f7rb, 0)
         max4 = max_(max3 - f7rc, 0)
-        return (P.taux_rd * min_(f7rd, max1) + P.taux_rb * min_(f7rb, max2) + P.taux_rc * min_(f7rc, max3)
-            + P.taux_ra * min_(f7ra, max4))
+
+        return (
+            P.taux_rd * min_(f7rd, max1)
+            + P.taux_rb * min_(f7rb, max2)
+            + P.taux_rc * min_(f7rc, max3)
+            + P.taux_ra * min_(f7ra, max4)
+            )
 
     def formula_2012_01_01(foyer_fiscal, period, parameters):
         '''
@@ -4628,8 +4764,14 @@ class resimm(Variable):
         max3 = max_(max2 - f7rb, 0)
         max4 = max_(max3 - f7rc - f7rf, 0)
         max5 = max_(max4 - f7ra, 0)
-        return (P.taux_rd * min_(f7rd, max1) + P.taux_rb * min_(f7rb, max2) + P.taux_rc * min_(f7rc + f7rf, max3)
-            + P.taux_ra * min_(f7ra, max4) + P.taux_re * min_(f7re, max5))
+
+        return (
+            P.taux_rd * min_(f7rd, max1)
+            + P.taux_rb * min_(f7rb, max2)
+            + P.taux_rc * min_(f7rc + f7rf, max3)
+            + P.taux_ra * min_(f7ra, max4)
+            + P.taux_re * min_(f7re, max5)
+            )
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
         '''
@@ -4651,8 +4793,13 @@ class resimm(Variable):
         max3 = max_(max2 - f7rb, 0)
         max4 = max_(max3 - f7rc - f7sy - f7rf, 0)
         max5 = max_(max4 - f7ra, 0)
-        return (P.taux_rd * min_(f7rd, max1) + P.taux_rb * min_(f7rb, max2) + P.taux_rc * min_(f7sy + f7rf + f7rc, max3) +
-                P.taux_ra * min_(f7ra, max4) + P.taux_re * min_(f7re + f7sx, max5))
+
+        return (
+            P.taux_rd * min_(f7rd, max1)
+            + P.taux_rb * min_(f7rb, max2)
+            + P.taux_rc * min_(f7sy + f7rf + f7rc, max3)
+            + P.taux_ra * min_(f7ra, max4) + P.taux_re * min_(f7re + f7sx, max5)
+            )
 
     def formula_2016_01_01(foyer_fiscal, period, parameters):
         '''
@@ -4669,8 +4816,11 @@ class resimm(Variable):
 
         max1 = P.max
         max2 = max_(max1 - f7nx - f7sy - f7rf, 0)
-        return (P.taux_rc * min_(f7sy + f7rf + f7nx, max1)
-            + P.taux_re * min_(f7re + f7sx + f7ny, max2))
+
+        return (
+            P.taux_rc * min_(f7sy + f7rf + f7nx, max1)
+            + P.taux_re * min_(f7re + f7sx + f7ny, max2)
+            )
 
     def formula_2017_01_01(foyer_fiscal, period, parameters):
         '''
@@ -4695,12 +4845,12 @@ class resimm(Variable):
 
         return (
             P.taux_30 * (
-                min_(depenses_secteur_degrade, P.max) +
-                min_(depenses_PSMV_2017, P.max2)
+                min_(depenses_secteur_degrade, P.max)
+                + min_(depenses_PSMV_2017, P.max2)
                 )
             + P.taux_22 * (
-                min_(depenses_secteur_patrimoine_remarquable, max1) +
-                min_(depenses_non_PSMV_2017, max3)
+                min_(depenses_secteur_patrimoine_remarquable, max1)
+                + min_(depenses_non_PSMV_2017, max3)
                 )
             )
 
@@ -4729,10 +4879,12 @@ class rpinel(Variable):
         max2 = max_(0, max1 - f7qc)
         max3 = max_(0, max2 - invest_metropole_2014 - f7qb)
 
-        return (P.taux29 * min_(max_(0, P.seuil - invest_domtom_2014), f7qd) / 9 +
-                P.taux23 * min_(max1, f7qc) / 6 +
-                P.taux18 * min_(max_(0, max2 - invest_metropole_2014), f7qb) / 9 +
-                P.taux12 * min_(max3, f7qa) / 6)
+        return (
+            P.taux29 * min_(max_(0, P.seuil - invest_domtom_2014), f7qd) / 9
+            + P.taux23 * min_(max1, f7qc) / 6
+            + P.taux18 * min_(max_(0, max2 - invest_metropole_2014), f7qb) / 9
+            + P.taux12 * min_(max3, f7qa) / 6
+            )
 
     def formula_2015_01_01(foyer_fiscal, period, parameters):
         '''
@@ -4759,16 +4911,19 @@ class rpinel(Variable):
         max2 = max_(0, max1 - f7qc)
         max3 = max_(0, max2 - invest_metropole_2014 - f7qb)
 
-        reduc_invest_real_2014 = (P.taux29 * min_(max_(0, P.seuil - invest_domtom_2014), f7qd) / 9 +
-                P.taux23 * min_(max1, f7qc) / 6 +
-            P.taux18 * min_(max_(0, max2 - invest_metropole_2014), f7qb) / 9 +
-            P.taux12 * min_(max3, f7qa) / 6)
+        reduc_invest_real_2014 = (
+            P.taux29 * min_(max_(0, P.seuil - invest_domtom_2014), f7qd) / 9
+            + P.taux23 * min_(max1, f7qc) / 6
+            + P.taux18 * min_(max_(0, max2 - invest_metropole_2014), f7qb) / 9
+            + P.taux12 * min_(max3, f7qa) / 6
+            )
 
         reduc_invest_real_2015 = (
-            P.taux29 * min_(P.seuil, f7qh) / 9 +
-            P.taux23 * min_(max_(0, P.seuil - f7qh), f7qg) / 6 +
-            P.taux18 * min_(max_(0, P.seuil - f7qh - f7qg), f7qf) / 9 +
-            P.taux12 * min_(max_(0, P.seuil - f7qh - f7qg - f7qf), f7qe) / 6)
+            P.taux29 * min_(P.seuil, f7qh) / 9
+            + P.taux23 * min_(max_(0, P.seuil - f7qh), f7qg) / 6
+            + P.taux18 * min_(max_(0, P.seuil - f7qh - f7qg), f7qf) / 9
+            + P.taux12 * min_(max_(0, P.seuil - f7qh - f7qg - f7qf), f7qe) / 6
+            )
 
         report = f7ai + f7bi + f7ci + f7di
 
@@ -4807,22 +4962,26 @@ class rpinel(Variable):
         max2 = max_(0, max1 - f7qc)
         max3 = max_(0, max2 - invest_metropole_2014 - f7qb)
 
-        reduc_invest_real_2014 = (P.taux29 * min_(max_(0, P.seuil - invest_domtom_2014), f7qd) / 9 +
-                P.taux23 * min_(max1, f7qc) / 6 +
-            P.taux18 * min_(max_(0, max2 - invest_metropole_2014), f7qb) / 9 +
-            P.taux12 * min_(max3, f7qa) / 6)
+        reduc_invest_real_2014 = (
+            P.taux29 * min_(max_(0, P.seuil - invest_domtom_2014), f7qd) / 9
+            + P.taux23 * min_(max1, f7qc) / 6
+            + P.taux18 * min_(max_(0, max2 - invest_metropole_2014), f7qb) / 9
+            + P.taux12 * min_(max3, f7qa) / 6
+            )
 
         reduc_invest_real_2015 = (
-            P.taux29 * min_(P.seuil, f7qh) / 9 +
-            P.taux23 * min_(max_(0, P.seuil - f7qh), f7qg) / 6 +
-            P.taux18 * min_(max_(0, P.seuil - f7qh - f7qg), f7qf) / 9 +
-            P.taux12 * min_(max_(0, P.seuil - f7qh - f7qg - f7qf), f7qe) / 6)
+            P.taux29 * min_(P.seuil, f7qh) / 9
+            + P.taux23 * min_(max_(0, P.seuil - f7qh), f7qg) / 6
+            + P.taux18 * min_(max_(0, P.seuil - f7qh - f7qg), f7qf) / 9
+            + P.taux12 * min_(max_(0, P.seuil - f7qh - f7qg - f7qf), f7qe) / 6
+            )
 
         reduc_invest_real_2016 = (
-            P.taux29 * min_(P.seuil, f7ql) / 9 +
-            P.taux23 * min_(max_(0, P.seuil - f7ql), f7qk) / 6 +
-            P.taux18 * min_(max_(0, P.seuil - f7ql - f7qk), f7qj) / 9 +
-            P.taux12 * min_(max_(0, P.seuil - f7ql - f7qk - f7qj), f7qi) / 6)
+            P.taux29 * min_(P.seuil, f7ql) / 9
+            + P.taux23 * min_(max_(0, P.seuil - f7ql), f7qk) / 6
+            + P.taux18 * min_(max_(0, P.seuil - f7ql - f7qk), f7qj) / 9
+            + P.taux12 * min_(max_(0, P.seuil - f7ql - f7qk - f7qj), f7qi) / 6
+            )
 
         report = f7ai + f7bi + f7ci + f7di + f7bz + f7cz + f7dz + f7ez
 
@@ -4870,28 +5029,33 @@ class rpinel(Variable):
         max2 = max_(0, max1 - f7qc)
         max3 = max_(0, max2 - invest_metropole_2014 - f7qb)
 
-        reduc_invest_real_2014 = (P.taux29 * min_(max_(0, P.seuil - invest_domtom_2014), f7qd) / 9 +
-                P.taux23 * min_(max1, f7qc) / 6 +
-            P.taux18 * min_(max_(0, max2 - invest_metropole_2014), f7qb) / 9 +
-            P.taux12 * min_(max3, f7qa) / 6)
+        reduc_invest_real_2014 = (
+            P.taux29 * min_(max_(0, P.seuil - invest_domtom_2014), f7qd) / 9
+            + P.taux23 * min_(max1, f7qc) / 6
+            + P.taux18 * min_(max_(0, max2 - invest_metropole_2014), f7qb) / 9
+            + P.taux12 * min_(max3, f7qa) / 6
+            )
 
         reduc_invest_real_2015 = (
-            P.taux29 * min_(P.seuil, f7qh) / 9 +
-            P.taux23 * min_(max_(0, P.seuil - f7qh), f7qg) / 6 +
-            P.taux18 * min_(max_(0, P.seuil - f7qh - f7qg), f7qf) / 9 +
-            P.taux12 * min_(max_(0, P.seuil - f7qh - f7qg - f7qf), f7qe) / 6)
+            P.taux29 * min_(P.seuil, f7qh) / 9
+            + P.taux23 * min_(max_(0, P.seuil - f7qh), f7qg) / 6
+            + P.taux18 * min_(max_(0, P.seuil - f7qh - f7qg), f7qf) / 9
+            + P.taux12 * min_(max_(0, P.seuil - f7qh - f7qg - f7qf), f7qe) / 6
+            )
 
         reduc_invest_real_2016 = (
-            P.taux29 * min_(P.seuil, f7ql) / 9 +
-            P.taux23 * min_(max_(0, P.seuil - f7ql), f7qk) / 6 +
-            P.taux18 * min_(max_(0, P.seuil - f7ql - f7qk), f7qj) / 9 +
-            P.taux12 * min_(max_(0, P.seuil - f7ql - f7qk - f7qj), f7qi) / 6)
+            P.taux29 * min_(P.seuil, f7ql) / 9
+            + P.taux23 * min_(max_(0, P.seuil - f7ql), f7qk) / 6
+            + P.taux18 * min_(max_(0, P.seuil - f7ql - f7qk), f7qj) / 9
+            + P.taux12 * min_(max_(0, P.seuil - f7ql - f7qk - f7qj), f7qi) / 6
+            )
 
         reduc_invest_real_2017 = (
-            P.taux29 * min_(P.seuil, f7qp) / 9 +
-            P.taux23 * min_(max_(0, P.seuil - f7qp), f7qo) / 6 +
-            P.taux18 * min_(max_(0, P.seuil - f7qp - f7qo), f7qn) / 9 +
-            P.taux12 * min_(max_(0, P.seuil - f7qp - f7qo - f7qn), f7qm) / 6)
+            P.taux29 * min_(P.seuil, f7qp) / 9
+            + P.taux23 * min_(max_(0, P.seuil - f7qp), f7qo) / 6
+            + P.taux18 * min_(max_(0, P.seuil - f7qp - f7qo), f7qn) / 9
+            + P.taux12 * min_(max_(0, P.seuil - f7qp - f7qo - f7qn), f7qm) / 6
+            )
 
         report = f7ai + f7bi + f7ci + f7di + f7bz + f7cz + f7dz + f7ez + f7qz + f7rz + f7sz + f7tz
 
@@ -5064,16 +5228,18 @@ class scelli(Variable):
         f7la = foyer_fiscal('f7la', period)
         P = parameters(period).impot_revenu.reductions_impots.scelli
 
-        return (max_(
-            max_(P.taux25 * min_(P.max, f7hj),
-                 P.taux40 * min_(P.max, f7hk)),
-            max_(P.taux25 * min_(P.max, f7hn),
-                 P.taux40 * min_(P.max, f7ho))) / 9 +
-                max_(
-                    P.taux25 * min_(P.max, f7hl),
-                    P.taux40 * min_(P.max, f7hm)) / 9 +
-                max_(P.taux25 * f7hr, P.taux40 * f7hs) +
-                f7la)
+        return (
+            max_(
+                max_(P.taux25 * min_(P.max, f7hj), P.taux40 * min_(P.max, f7hk)),
+                max_(P.taux25 * min_(P.max, f7hn), P.taux40 * min_(P.max, f7ho))
+                ) / 9
+            + max_(
+                P.taux25 * min_(P.max, f7hl),
+                P.taux40 * min_(P.max, f7hm)
+                ) / 9
+            + max_(P.taux25 * f7hr, P.taux40 * f7hs)
+            + f7la
+            )
 
     def formula_2011_01_01(foyer_fiscal, period, parameters):
         '''
@@ -5119,21 +5285,21 @@ class scelli(Variable):
         f7nt = foyer_fiscal('f7nt', period)
         P = parameters(period).impot_revenu.reductions_impots.scelli
 
-        return (min_(P.max, maxi(
-            P.taux13 * max_(f7nf, f7nj) / 9,
-            P.taux15 * max_(f7ng, f7ni) / 9,
-            P.taux22 * max_(f7na, f7ne) / 9,
-            P.taux25 * maxi(f7nb, f7nc, f7nd, f7nh) / 9,
-            P.taux36 * maxi(f7nk / 9, f7no / 9, f7np / 5, f7nt / 5),
-            P.taux40 * maxi(f7nl / 9, f7nm / 9, f7nn / 9, f7nq / 5, f7nr / 5, f7ns / 5))) +
+        return (
             min_(P.max, maxi(
-                P.taux25 * max_(f7hj, f7hn),
-                P.taux40 * max_(f7hk, f7ho))) / 9 +
-            min_(P.max, max_(P.taux25 * f7hl, P.taux40 * f7hm)) / 9 +
-            min_(P.max, maxi(P.taux25 * f7hv, P.taux25 * f7hx, P.taux40 * f7hw, P.taux40 * f7hz)) +
-            min_(P.max, max_(P.taux25 * f7ht, P.taux40 * f7hu)) +
-            min_(P.max, max_(P.taux25 * f7hr, P.taux40 * f7hs)) +
-            f7la + f7lb + f7lc
+                P.taux13 * max_(f7nf, f7nj) / 9,
+                P.taux15 * max_(f7ng, f7ni) / 9,
+                P.taux22 * max_(f7na, f7ne) / 9,
+                P.taux25 * maxi(f7nb, f7nc, f7nd, f7nh) / 9,
+                P.taux36 * maxi(f7nk / 9, f7no / 9, f7np / 5, f7nt / 5),
+                P.taux40 * maxi(f7nl / 9, f7nm / 9, f7nn / 9, f7nq / 5, f7nr / 5, f7ns / 5)
+                ))
+            + min_(P.max, maxi(P.taux25 * max_(f7hj, f7hn), P.taux40 * max_(f7hk, f7ho))) / 9
+            + min_(P.max, max_(P.taux25 * f7hl, P.taux40 * f7hm)) / 9
+            + min_(P.max, maxi(P.taux25 * f7hv, P.taux25 * f7hx, P.taux40 * f7hw, P.taux40 * f7hz))
+            + min_(P.max, max_(P.taux25 * f7ht, P.taux40 * f7hu))
+            + min_(P.max, max_(P.taux25 * f7hr, P.taux40 * f7hs))
+            + f7la + f7lb + f7lc
             )
 
     def formula_2012_01_01(foyer_fiscal, period, parameters):
@@ -5206,28 +5372,29 @@ class scelli(Variable):
         f7nt = foyer_fiscal('f7nt', period)
         P = parameters(period).impot_revenu.reductions_impots.scelli
 
-        return (min_(P.max, maxi(
-            P.taux13 * max_(f7nf, f7nj) / 9,
-            P.taux15 * max_(f7ng, f7ni) / 9,
-            P.taux22 * max_(f7na, f7ne) / 9,
-            P.taux25 * maxi(f7nb, f7nc, f7nd, f7nh) / 9,
-            P.taux36 * maxi(f7nk / 9, f7no / 9, f7np / 5, f7nt / 5),
-            P.taux40 * maxi(f7nl / 9, f7nm / 9, f7nn / 9, f7nq / 5, f7nr / 5, f7ns / 5))) +
+        return (
             min_(P.max, maxi(
-                P.taux25 * max_(f7hj, f7hn),
-                P.taux40 * max_(f7hk, f7ho))) / 9 +
-            min_(P.max, max_(P.taux25 * f7hl, P.taux40 * f7hm)) / 9 +
-            min_(P.max, maxi(P.taux25 * f7hv, P.taux25 * f7hx, P.taux40 * f7hw, P.taux40 * f7hz)) +
-            min_(P.max, max_(P.taux25 * f7ht, P.taux40 * f7hu)) +
-            min_(P.max, max_(P.taux25 * f7hr, P.taux40 * f7hs)) +
-            f7la + f7lb + f7lc + f7ld + f7le + f7lf +
-            f7ha + f7hb + f7hg + f7hh + f7hd + f7he + f7hf +
-            min_(P.max, maxi(
+                P.taux13 * max_(f7nf, f7nj) / 9,
+                P.taux15 * max_(f7ng, f7ni) / 9,
+                P.taux22 * max_(f7na, f7ne) / 9,
+                P.taux25 * maxi(f7nb, f7nc, f7nd, f7nh) / 9,
+                P.taux36 * maxi(f7nk / 9, f7no / 9, f7np / 5, f7nt / 5),
+                P.taux40 * maxi(f7nl / 9, f7nm / 9, f7nn / 9, f7nq / 5, f7nr / 5, f7ns / 5)
+                ))
+            + min_(P.max, maxi(P.taux25 * max_(f7hj, f7hn), P.taux40 * max_(f7hk, f7ho))) / 9
+            + min_(P.max, max_(P.taux25 * f7hl, P.taux40 * f7hm)) / 9
+            + min_(P.max, maxi(P.taux25 * f7hv, P.taux25 * f7hx, P.taux40 * f7hw, P.taux40 * f7hz))
+            + min_(P.max, max_(P.taux25 * f7ht, P.taux40 * f7hu))
+            + min_(P.max, max_(P.taux25 * f7hr, P.taux40 * f7hs))
+            + f7la + f7lb + f7lc + f7ld + f7le + f7lf
+            + f7ha + f7hb + f7hg + f7hh + f7hd + f7he + f7hf
+            + min_(P.max, maxi(
                 P.taux6 * max_(f7jf, f7jj) / 9,
                 P.taux13 * maxi(f7ja, f7je, f7jg, f7jh) / 9,
                 P.taux22 * maxi(f7jb, f7jd) / 9,
                 P.taux24 * maxi(f7jk / 9, f7jn / 9, f7jo / 5, f7jr / 5),
-                P.taux36 * maxi(f7jl / 9, f7jm / 9, f7jp / 5, f7jq / 5)))
+                P.taux36 * maxi(f7jl / 9, f7jm / 9, f7jp / 5, f7jq / 5)
+                ))
             )
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
@@ -5318,29 +5485,31 @@ class scelli(Variable):
         f7nt = foyer_fiscal('f7nt', period)
         P = parameters(period).impot_revenu.reductions_impots.scelli
 
-        return (min_(P.max, maxi(
-            P.taux13 * max_(f7nf, f7nj) / 9,
-            P.taux15 * max_(f7ng, f7ni) / 9,
-            P.taux22 * max_(f7na, f7ne) / 9,
-            P.taux25 * maxi(f7nb, f7nc, f7nd, f7nh) / 9,
-            P.taux36 * maxi(f7nk / 9, f7no / 9, f7np / 5, f7nt / 5),
-            P.taux40 * maxi(f7nl / 9, f7nm / 9, f7nn / 9, f7nq / 5, f7nr / 5, f7ns / 5))) +
+        return (
             min_(P.max, maxi(
-                P.taux25 * max_(f7hj, f7hn),
-                P.taux40 * max_(f7hk, f7ho))) / 9 +
-            min_(P.max, max_(P.taux25 * f7hl, P.taux40 * f7hm)) / 9 +
-            min_(P.max, maxi(P.taux25 * f7hv, P.taux25 * f7hx, P.taux40 * f7hw, P.taux40 * f7hz)) +
-            min_(P.max, max_(P.taux25 * f7ht, P.taux40 * f7hu)) +
-            min_(P.max, max_(P.taux25 * f7hr, P.taux40 * f7hs)) +
-            min_(P.max, maxi(
+                P.taux13 * max_(f7nf, f7nj) / 9,
+                P.taux15 * max_(f7ng, f7ni) / 9,
+                P.taux22 * max_(f7na, f7ne) / 9,
+                P.taux25 * maxi(f7nb, f7nc, f7nd, f7nh) / 9,
+                P.taux36 * maxi(f7nk / 9, f7no / 9, f7np / 5, f7nt / 5),
+                P.taux40 * maxi(f7nl / 9, f7nm / 9, f7nn / 9, f7nq / 5, f7nr / 5, f7ns / 5)
+                ))
+            + min_(P.max, maxi(P.taux25 * max_(f7hj, f7hn), P.taux40 * max_(f7hk, f7ho))) / 9
+            + min_(P.max, max_(P.taux25 * f7hl, P.taux40 * f7hm)) / 9
+            + min_(P.max, maxi(P.taux25 * f7hv, P.taux25 * f7hx, P.taux40 * f7hw, P.taux40 * f7hz))
+            + min_(P.max, max_(P.taux25 * f7ht, P.taux40 * f7hu))
+            + min_(P.max, max_(P.taux25 * f7hr, P.taux40 * f7hs))
+            + min_(P.max, maxi(
                 P.taux6 * maxi(f7jf, f7jj, f7fb) / 9,
                 P.taux13 * maxi(f7ja, f7je, f7jg, f7jh, f7fa) / 9,
                 P.taux22 * maxi(f7jb, f7jd) / 9,
                 P.taux24 * maxi(f7jk / 9, f7jn / 9, f7jo / 5, f7jr / 5, f7fc / 9, f7fd / 5),
-                P.taux36 * maxi(f7jl / 9, f7jm / 9, f7jp / 5, f7jq / 5))) +
-            f7la + f7lb + f7lc + f7ld + f7le + f7lf + f7lm + f7ls + f7lz + f7mg +
-            f7ha + f7hb + f7hg + f7hh + f7hd + f7he + f7hf +
-            f7gj + f7gk + f7gl + f7gp + f7gs + f7gt + f7gu + f7gv + f7gx + f7gw
+                P.taux36 * maxi(f7jl / 9, f7jm / 9, f7jp / 5, f7jq / 5)
+                ))
+            + f7la + f7lb + f7lc + f7ld + f7le + f7lf + f7lm + f7ls + f7lz
+            + f7mg
+            + f7ha + f7hb + f7hg + f7hh + f7hd + f7he + f7hf
+            + f7gj + f7gk + f7gl + f7gp + f7gs + f7gt + f7gu + f7gv + f7gx + f7gw
             )
 
     def formula_2014_01_01(foyer_fiscal, period, parameters):
@@ -5478,16 +5647,16 @@ class scelli(Variable):
             P.taux36 * maxi(f7jl / 9, f7jm / 9, f7jp / 5, f7jq / 5)))
 
         return (
-            reduc_scelli_2014_invest_2009 +
-            reduc_scelli_2014_invest_2010 +
-            reduc_scelli_2014_invest_2011 +
-            reduc_scelli_2014_invest_2012_mars_2013 +
-            report_reduc_scelli_non_impute +
-            report_scelli_2009 +
-            report_scelli_2010 +
-            report_scelli_2011 +
-            report_scelli_2012 +
-            report_scelli_2013
+            reduc_scelli_2014_invest_2009
+            + reduc_scelli_2014_invest_2010
+            + reduc_scelli_2014_invest_2011
+            + reduc_scelli_2014_invest_2012_mars_2013
+            + report_reduc_scelli_non_impute
+            + report_scelli_2009
+            + report_scelli_2010
+            + report_scelli_2011
+            + report_scelli_2012
+            + report_scelli_2013
             )
 
     def formula_2015_01_01(foyer_fiscal, period, parameters):
@@ -5628,17 +5797,17 @@ class scelli(Variable):
             P.taux36 * maxi(f7jl / 9, f7jm / 9, f7jp / 5, f7jq / 5)))
 
         return (
-            reduc_scelli_2015_invest_2009 +
-            reduc_scelli_2015_invest_2010 +
-            reduc_scelli_2015_invest_2011 +
-            reduc_scelli_2015_invest_2012_mars_2013 +
-            report_reduc_scelli_non_impute +
-            report_scelli_2009 +
-            report_scelli_2010 +
-            report_scelli_2011 +
-            report_scelli_2012 +
-            report_scelli_2013 +
-            report_scelli_2014
+            reduc_scelli_2015_invest_2009
+            + reduc_scelli_2015_invest_2010
+            + reduc_scelli_2015_invest_2011
+            + reduc_scelli_2015_invest_2012_mars_2013
+            + report_reduc_scelli_non_impute
+            + report_scelli_2009
+            + report_scelli_2010
+            + report_scelli_2011
+            + report_scelli_2012
+            + report_scelli_2013
+            + report_scelli_2014
             )
 
     def formula_2016_01_01(foyer_fiscal, period, parameters):
@@ -5784,17 +5953,17 @@ class scelli(Variable):
             P.taux36 * maxi(f7jl / 9, f7jm / 9, f7jp / 5, f7jq / 5)))
 
         return (
-            reduc_scelli_2016_invest_2010 +
-            reduc_scelli_2016_invest_2011 +
-            reduc_scelli_2016_invest_2012_mars_2013 +
-            report_reduc_scelli_non_impute +
-            report_scelli_2009 +
-            report_scelli_2010 +
-            report_scelli_2011 +
-            report_scelli_2012 +
-            report_scelli_2013 +
-            report_scelli_2014 +
-            report_scelli_2015
+            reduc_scelli_2016_invest_2010
+            + reduc_scelli_2016_invest_2011
+            + reduc_scelli_2016_invest_2012_mars_2013
+            + report_reduc_scelli_non_impute
+            + report_scelli_2009
+            + report_scelli_2010
+            + report_scelli_2011
+            + report_scelli_2012
+            + report_scelli_2013
+            + report_scelli_2014
+            + report_scelli_2015
             )
 
 
@@ -5909,9 +6078,12 @@ class spfcpi(Variable):
         P = parameters(period).impot_revenu.reductions_impots.spfcpi
 
         max1 = P.plafond_celibataire * (maries_ou_pacses + 1)
-        return (P.taux1 * min_(f7gq, max1) +
-                P.taux1 * min_(f7fq, max1) +
-                P.taux2 * min_(f7fm, max1))
+
+        return (
+            P.taux1 * min_(f7gq, max1)
+            + P.taux1 * min_(f7fq, max1)
+            + P.taux2 * min_(f7fm, max1)
+            )
 
     def formula_2011_01_01(foyer_fiscal, period, parameters):
         '''
@@ -5927,8 +6099,13 @@ class spfcpi(Variable):
         P = parameters(period).impot_revenu.reductions_impots.spfcpi
 
         max1 = P.plafond_celibataire * (maries_ou_pacses + 1)
-        return (P.taux1 * min_(f7gq, max1) + P.taux1 * min_(f7fq, max1) + P.taux2 * min_(f7fm, max1) +
-                P.taux3 * min_(f7fl, max1))
+
+        return (
+            P.taux1
+            * min_(f7gq, max1) + P.taux1
+            * min_(f7fq, max1) + P.taux2
+            * min_(f7fm, max1) + P.taux3 * min_(f7fl, max1)
+            )
 
 
 def mini(a, b, *args):

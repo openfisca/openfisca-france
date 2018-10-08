@@ -407,8 +407,15 @@ class cd1(Variable):
         cd_doment = foyer_fiscal('cd_doment', period)
         cd_eparet = foyer_fiscal('cd_eparet', period)
 
-        niches1 = (pensions_alimentaires_deduites + cd_acc75a + pertes_capital_societes_nouvelles +
-                   cd_deddiv + cd_doment + cd_eparet)
+        niches1 = (
+            pensions_alimentaires_deduites
+            + cd_acc75a
+            + pertes_capital_societes_nouvelles
+            + cd_deddiv
+            + cd_doment
+            + cd_eparet
+            )
+
         return niches1
 
     def formula_2006_01_01(foyer_fiscal, period, parameters):

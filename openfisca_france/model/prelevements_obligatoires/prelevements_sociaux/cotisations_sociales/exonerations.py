@@ -29,8 +29,11 @@ class exoneration_cotisations_employeur_geographiques(Variable):
         exoneration_cotisations_employeur_zrd = individu('exoneration_cotisations_employeur_zrd', period, options = [ADD])
         exoneration_cotisations_employeur_zrr = individu('exoneration_cotisations_employeur_zrr', period, options = [ADD])
 
-        exonerations_geographiques = (exoneration_cotisations_employeur_zfu + exoneration_cotisations_employeur_zrd +
-            exoneration_cotisations_employeur_zrr)
+        exonerations_geographiques = (
+            exoneration_cotisations_employeur_zfu
+            + exoneration_cotisations_employeur_zrd
+            + exoneration_cotisations_employeur_zrr
+            )
 
         return exonerations_geographiques
 
@@ -169,27 +172,31 @@ class exoneration_cotisations_employeur_zfu(Variable):
         # TODO: move to parameters file
 
         eligible = (
-            contrat_de_travail_eligible *
-            (effectif_entreprise <= 50) *
-            zone_franche_urbaine *
-            entreprise_eligible
+            contrat_de_travail_eligible
+            * (effectif_entreprise <= 50)
+            * zone_franche_urbaine
+            * entreprise_eligible
             )
+
         bareme_by_name = parameters(period).cotsoc.cotisations_employeur['prive_non_cadre']
+
         taux_max = (
-            bareme_by_name['vieillesse_deplafonnee'].rates[0] +
-            bareme_by_name['vieillesse_plafonnee'].rates[0] +
-            bareme_by_name['maladie'].rates[0] +
-            bareme_by_name['famille'].rates[0] +
-            bareme_by_name['fnal1'].rates[0] +
-            bareme_by_name['fnal2'].rates[0] * (effectif_entreprise >= 20) +
-            taux_versement_transport
+            bareme_by_name['vieillesse_deplafonnee'].rates[0]
+            + bareme_by_name['vieillesse_plafonnee'].rates[0]
+            + bareme_by_name['maladie'].rates[0]
+            + bareme_by_name['famille'].rates[0]
+            + bareme_by_name['fnal1'].rates[0]
+            + bareme_by_name['fnal2'].rates[0] * (effectif_entreprise >= 20)
+            + taux_versement_transport
             )
+
         # TODO: move to parameters file : voir http://www.urssaf.fr/images/ref_lc2009-077.pdf
         seuil_max = 2
         seuil_min = 1.4
 
         taux_exoneration = compute_taux_exoneration(assiette_allegement, smic_proratise, taux_max, seuil_max, seuil_min)
         exoneration_relative_year_passed = exoneration_relative_year(period, contrat_de_travail_debut)
+
         large_rate_by_year_passed = {
             0: 1,
             1: 1,
@@ -200,6 +207,7 @@ class exoneration_cotisations_employeur_zfu(Variable):
             6: .40,
             7: .20,
             }  # TODO: move to parameters file
+
         small_rate_by_year_passed = {
             0: 1,
             1: 1,
@@ -216,8 +224,10 @@ class exoneration_cotisations_employeur_zfu(Variable):
             12: .20,
             13: .20,
             }  # TODO: move to parameters file
+
         large_taux_exoneration = eligible * 0.0
         small_taux_exoneration = eligible * 0.0
+
         for year_passed, rate in large_rate_by_year_passed.items():
             condition_on_year_passed = exoneration_relative_year_passed == timedelta64(year_passed, 'Y')
             if condition_on_year_passed.any():
@@ -227,10 +237,17 @@ class exoneration_cotisations_employeur_zfu(Variable):
             if condition_on_year_passed.any():
                 small_taux_exoneration[condition_on_year_passed] = rate * taux_exoneration
 
-        exoneration_cotisations_zfu = eligible * assiette_allegement * (
-            small_taux_exoneration * (effectif_entreprise <= 5) +
-            large_taux_exoneration * (effectif_entreprise > 5)
+        exoneration_cotisations_zfu = (
+            eligible
+            * assiette_allegement
+            * (
+                small_taux_exoneration
+                * (effectif_entreprise <= 5)
+                + large_taux_exoneration
+                * (effectif_entreprise > 5)
+                )
             )
+
         return exoneration_cotisations_zfu
         # TODO: propager dans le temps
 
@@ -315,11 +332,12 @@ class exoneration_cotisations_employeur_zrr(Variable):
             ).astype('timedelta64[Y]') < timedelta64(1, 'Y')
 
         eligible = (
-            contrat_de_travail_eligible *
-            (effectif_entreprise <= 50) *
-            zone_revitalisation_rurale *
-            duree_validite
+            contrat_de_travail_eligible
+            * (effectif_entreprise <= 50)
+            * zone_revitalisation_rurale
+            * duree_validite
             )
+
         taux_max = .281 if period.start.year < 2015 else .2655  # TODO: move to parameters file
         seuil_max = 2.4
         seuil_min = 1.5
@@ -355,12 +373,15 @@ class exoneration_is_creation_zrr(Variable):
             (contrat_de_travail_duree == TypesContratDeTravailDuree.cdd) * (duree_eligible)
             )
         zone_revitalisation_rurale = individu('zone_revitalisation_rurale', decembre)
+
         eligible = (
-            contrat_de_travail_eligible *
-            (effectif_entreprise <= 50) *
-            zone_revitalisation_rurale
+            contrat_de_travail_eligible
+            * (effectif_entreprise <= 50)
+            * zone_revitalisation_rurale
             )
+
         exoneration_relative_year_passed = exoneration_relative_year(period, contrat_de_travail_debut)
+
         rate_by_year_passed = {
             0: 1,
             1: 1,
@@ -372,6 +393,7 @@ class exoneration_is_creation_zrr(Variable):
             7: .25,
             }  # TODO: move to parameters file
         taux_exoneraion = eligible * 0.0
+
         for year_passed, rate in rate_by_year_passed.items():
             condition_on_year_passed = exoneration_relative_year_passed == timedelta64(year_passed, 'Y')
             taux_exoneraion[condition_on_year_passed] = rate
@@ -440,17 +462,16 @@ class jeune_entreprise_innovante(Variable):
         # TODO: move to parameters file
         # entreprise_depenses_rd > .15 TODO
         independance = True
+
         jeune_entreprise_innovante = (
-            independance *
-            (effectif_entreprise < 250) *
-            (entreprise_creation <= datetime64("2016-12-31")) *
-            (
-                (jei_date_demande + timedelta64(1, 'D') - entreprise_creation).astype('timedelta64[Y]') <
-                timedelta64(8, 'Y')
-                ) *
-            (entreprise_chiffre_affaire < 50e6) *
-            (entreprise_bilan < 43e6)
+            independance
+            * (effectif_entreprise < 250)
+            * (entreprise_creation <= datetime64("2016-12-31"))
+            * ((jei_date_demande + timedelta64(1, 'D') - entreprise_creation).astype('timedelta64[Y]') < timedelta64(8, 'Y'))
+            * (entreprise_chiffre_affaire < 50e6)
+            * (entreprise_bilan < 43e6)
             )
+
         return jeune_entreprise_innovante
 
 

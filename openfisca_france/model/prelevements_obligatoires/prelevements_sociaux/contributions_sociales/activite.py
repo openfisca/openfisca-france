@@ -213,9 +213,18 @@ class salaire_imposable(Variable):
         rev_microsocial_declarant1 = rev_microsocial * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
 
         return (
-            salaire_de_base + primes_salaires + remuneration_principale +
-            primes_fonction_publique + indemnite_residence + supplement_familial_traitement + csg_deductible_salaire +
-            cotisations_salariales - hsup + rev_microsocial_declarant1 + indemnite_fin_contrat + complementaire_sante_salarie
+            salaire_de_base
+            + primes_salaires
+            + remuneration_principale
+            + primes_fonction_publique
+            + indemnite_residence
+            + supplement_familial_traitement
+            + csg_deductible_salaire
+            + cotisations_salariales
+            - hsup
+            + rev_microsocial_declarant1
+            + indemnite_fin_contrat
+            + complementaire_sante_salarie
             )
 
 

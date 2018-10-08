@@ -83,8 +83,14 @@ class age(Variable):
                     last_start = last_period.start
                     if last_start.day == start.day:
                         last_array = holder.get_array(last_period)
-                        return last_array + int((start.year - last_start.year) +
-                            (start.month - last_start.month) / 12)
+                        return (
+                            last_array
+                            + int(
+                                start.year
+                                - last_start.year
+                                + (start.month - last_start.month) / 12
+                                )
+                            )
 
         date_naissance = individu('date_naissance', period)
         return (datetime64(period.start) - date_naissance).astype('timedelta64[Y]')
@@ -418,8 +424,10 @@ class revenu_assimile_salaire_apres_abattements(Variable):
         abattement_minimum = where(chomeur_longue_duree, abatpro.min2, abatpro.min)
         abatfor = round_(min_(max_(abatpro.taux * revenu_assimile_salaire, abattement_minimum), abatpro.max))
         return (
-            (frais_reels > abatfor) * (revenu_assimile_salaire - frais_reels) +
-            (frais_reels <= abatfor) * max_(0, revenu_assimile_salaire - abatfor)
+            (frais_reels > abatfor)
+            * (revenu_assimile_salaire - frais_reels)
+            + (frais_reels <= abatfor)
+            * max_(0, revenu_assimile_salaire - abatfor)
             )
 
 
@@ -1299,9 +1307,10 @@ class ir_plaf_qf(Variable):
         condition62d = (nb_pac > 0) & (veuf)
 
         E = condition62b * condition62c * (
-            plafond_qf.reduc_postplafond * condition62c0 * not_(condition62c1) +
-            plafond_qf.reduc_postplafond * 2 * condition62c1 +
-            plafond_qf.reduc_postplafond * (nbG + nbI / 2 + nbR) * condition62c2)
+            plafond_qf.reduc_postplafond * condition62c0 * not_(condition62c1)
+            + plafond_qf.reduc_postplafond * 2 * condition62c1
+            + plafond_qf.reduc_postplafond * (nbG + nbI / 2 + nbR) * condition62c2
+            )
 
         D = condition62b * condition62d * plafond_qf.reduc_postplafond_veuf
 
@@ -1588,8 +1597,9 @@ class microsocial(Variable):
         microsocial = parameters(period).impot_revenu.rpns.microsocial
 
         return (
-            assiette_service * microsocial.servi +
-            assiette_vente * microsocial.vente + assiette_proflib * microsocial.bnc
+            assiette_service * microsocial.servi
+            + assiette_vente * microsocial.vente
+            + assiette_proflib * microsocial.bnc
             )
 
 
@@ -1608,9 +1618,9 @@ class microentreprise(Variable):
         ebic_imps = foyer_fiscal.sum(ebic_imps_i)
         ebic_impv = foyer_fiscal.sum(ebic_impv_i)
         return (
-            ebnc_impo * (1 - micro.specialbnc.taux) +
-            ebic_imps * (1 - micro.microentreprise.taux_prestations_de_services) +
-            ebic_impv * (1 - micro.microentreprise.taux_ventes_de_marchandises)
+            ebnc_impo * (1 - micro.specialbnc.taux)
+            + ebic_imps * (1 - micro.microentreprise.taux_prestations_de_services)
+            + ebic_impv * (1 - micro.microentreprise.taux_ventes_de_marchandises)
             )
 
 
@@ -2004,11 +2014,20 @@ class irpp(Variable):
 
         return (
             (iai > P.seuil) * (
-                (pre_result < P.min) * (pre_result > 0) * iai * 0 +
-                ((pre_result <= 0) + (pre_result >= P.min)) * (- pre_result)
-                ) +
-            (iai <= P.seuil) * (
-                (pre_result < 0) * (-pre_result) + (pre_result >= 0) * 0 * iai)
+                (pre_result < P.min)
+                * (pre_result > 0)
+                * iai
+                * 0
+                + ((pre_result <= 0) + (pre_result >= P.min))
+                * (- pre_result)
+                )
+            + (iai <= P.seuil) * (
+                (pre_result < 0)
+                * (-pre_result)
+                + (pre_result >= 0)
+                * 0
+                * iai
+                )
             )
 
 
@@ -2179,8 +2198,18 @@ class rpns_pvce(Variable):
         mncn_pvce = individu('mncn_pvce', period)
         cncn_pvce = individu('cncn_pvce', period)
 
-        return (frag_pvce + arag_pvce + mbic_pvce + abic_pvce + macc_pvce + aacc_pvce + mbnc_pvce +
-                abnc_pvce + mncn_pvce + cncn_pvce)
+        return (
+            frag_pvce
+            + arag_pvce
+            + mbic_pvce
+            + abic_pvce
+            + macc_pvce
+            + aacc_pvce
+            + mbnc_pvce
+            + abnc_pvce
+            + mncn_pvce
+            + cncn_pvce
+            )
 
 
 class rpns_exon(Variable):
@@ -2215,9 +2244,11 @@ class rpns_exon(Variable):
         nbic_pvce = individu('nbic_pvce', period)
         cga = parameters(period).impot_revenu.rpns.cga_taux2
 
-        return (frag_exon + arag_exon + nrag_exon + mbic_exon + abic_exon + nbnc_proc * (1 + cga) +
-                nbic_exon + macc_exon + aacc_exon + nacc_exon + mbnc_exon + abnc_proc +
-                abnc_exon + nbnc_exon + mncn_exon + cncn_exon + cncn_jcre + cncn_info + nbic_pvce + nrag_pvce)
+        return (
+            frag_exon + arag_exon + nrag_exon + mbic_exon + abic_exon + nbnc_proc * (1 + cga)
+            + nbic_exon + macc_exon + aacc_exon + nacc_exon + mbnc_exon + abnc_proc
+            + abnc_exon + nbnc_exon + mncn_exon + cncn_exon + cncn_jcre + cncn_info + nbic_pvce + nrag_pvce
+            )
 
 
 class defrag(Variable):
@@ -2362,10 +2393,12 @@ class rag(Variable):
         nrag_defi = individu('nrag_defi', period)
         nrag_ajag = individu('nrag_ajag', period)
 
-        return (frag_exon + frag_impo +
-                arag_exon + arag_impg - arag_defi +
-                nrag_exon + nrag_impg - nrag_defi +
-                nrag_ajag)
+        return (
+            frag_exon + frag_impo
+            + arag_exon + arag_impg - arag_defi
+            + nrag_exon + nrag_impg - nrag_defi
+            + nrag_ajag
+            )
 
 
 class ric(Variable):
@@ -2396,13 +2429,14 @@ class ric(Variable):
         micro = parameters(period).impot_revenu.rpns.micro
 
         zbic = (
-            mbic_exon + mbic_impv + mbic_imps +
-            abic_exon + nbic_exon +
-            abic_impn + nbic_impn +
-            abic_imps + nbic_imps +
-            abic_defn - nbic_defn +
-            abic_defs - nbic_defs +
-            nbic_apch)
+            mbic_exon + mbic_impv + mbic_imps
+            + abic_exon + nbic_exon
+            + abic_impn + nbic_impn
+            + abic_imps + nbic_imps
+            + abic_defn - nbic_defn
+            + abic_defs - nbic_defs
+            + nbic_apch
+            )
 
         cond = (mbic_impv > 0) & (mbic_imps == 0)
         taux = micro.specialbnc.marchandises.taux * cond + micro.specialbnc.services.taux * not_(cond)
@@ -2447,10 +2481,13 @@ class rac(Variable):
         cncn_defi = individu('cncn_defi', period)
         micro = parameters(period).impot_revenu.rpns.micro
 
-        zacc = (macc_exon + macc_impv + macc_imps
-                + aacc_exon + aacc_impn + aacc_imps - aacc_defn - aacc_defs
-                + nacc_exon + nacc_impn - nacc_defn - nacc_defs
-                + mncn_impo + cncn_bene - cncn_defi)
+        zacc = (
+            macc_exon + macc_impv + macc_imps
+            + aacc_exon + aacc_impn + aacc_imps - aacc_defn - aacc_defs
+            + nacc_exon + nacc_impn - nacc_defn - nacc_defs
+            + mncn_impo + cncn_bene - cncn_defi
+            )
+
     # TODO: aacc_imps aacc_defs
         cond = (macc_impv > 0) & (macc_imps == 0)
         taux = micro.specialbnc.marchandises.taux * cond + micro.specialbnc.services.taux * not_(cond)
@@ -2485,9 +2522,10 @@ class rnc(Variable):
         specialbnc = parameters(period).impot_revenu.rpns.micro.specialbnc
 
         zbnc = (
-            mbnc_exon + mbnc_impo +
-            abnc_exon + nbnc_exon +
-            abnc_impo + nbnc_impo - abnc_defi - nbnc_defi
+            mbnc_exon + mbnc_impo
+            + abnc_exon + nbnc_exon
+            + abnc_impo + nbnc_impo
+            - abnc_defi - nbnc_defi
             )
 
         cbnc = min_(
@@ -2720,16 +2758,16 @@ class rpns_individu(Variable):
                 (aacc_impn + (aacc_gits > 0) * max_(
                     micro.specialbnc.services.min,
                     aacc_gits * (1 - micro.specialbnc.marchandises.taux)
-                    )) +
-                (aacc_imps > 0) * max_(
+                    ))
+                + (aacc_imps > 0) * max_(
                     micro.specialbnc.marchandises.min,
                     aacc_imps * (1 - micro.specialbnc.services.taux)
-                    ) +
-                (nacc_meup > 0) * max_(
+                    )
+                + (nacc_meup > 0) * max_(
                     micro.specialbnc.services.min,
                     nacc_meup * (1 - micro.specialbnc.marchandises.taux)
-                    ) +
-                nacc_defs - aacc_defn
+                    )
+                + nacc_defs - aacc_defn
                 )
             )
         # Régime du bénéfice réel ne bénéficiant pas de l'abattement CGA
@@ -2812,14 +2850,15 @@ class abat_spe(Variable):
         ageC = foyer_fiscal.conjoint('age', period.first_month)
 
         invV, invC = caseP, caseF
-        nb_elig_as = (1 * (((ageV >= 65) | invV) & (ageV > 0)) +
-                      1 * (((ageC >= 65) | invC) & (ageC > 0))
-                      )
+        nb_elig_as = (
+            1 * (((ageV >= 65) | invV) & (ageV > 0))
+            + 1 * (((ageC >= 65) | invC) & (ageC > 0))
+            )
         as_inv = nb_elig_as * abattements_personne_agee_ou_invalide.montant * (
-            (rng <= abattements_personne_agee_ou_invalide.plafond_de_ressources_1) +
-            ((rng > abattements_personne_agee_ou_invalide.plafond_de_ressources_1) &
-                (rng <= abattements_personne_agee_ou_invalide.plafond_de_ressources_2)
-             ) * 0.5
+            (rng <= abattements_personne_agee_ou_invalide.plafond_de_ressources_1)
+            + ((rng > abattements_personne_agee_ou_invalide.plafond_de_ressources_1)
+                & (rng <= abattements_personne_agee_ou_invalide.plafond_de_ressources_2)
+               ) * 0.5
             )
 
         as_enf = nbN * abattements_rni.enfant_marie.montant
@@ -3156,9 +3195,9 @@ class ppe_brute(Variable):
             #     (cond2 & (base > ppe.seuil2) & (base <= ppe.seuil3)) * ((ppe.seuil3 - base) * ppe.taux2) +
             #     (cond2 & (base > ppe.seuil4) & (base <= ppe.seuil5)) * (ppe.seuil5 - base) * ppe.taux3)
             return (
-                (base <= ppe.seuil2) * (base) * ppe.taux1 +
-                (base > ppe.seuil2) * (base <= ppe.seuil3) * (ppe.seuil3 - base) * ppe.taux2 +
-                ligne2 * (base > ppe.seuil4) * (base <= ppe.seuil5) * (ppe.seuil5 - base) * ppe.taux3
+                (base <= ppe.seuil2) * (base) * ppe.taux1
+                + (base > ppe.seuil2) * (base <= ppe.seuil3) * (ppe.seuil3 - base) * ppe.taux2
+                + ligne2 * (base > ppe.seuil4) * (base <= ppe.seuil5) * (ppe.seuil5 - base) * ppe.taux3
                 )
 
         def ppe_bar2(base):
