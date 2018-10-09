@@ -21,4 +21,4 @@ cache_blacklist = set([
     'montant_cheque_energie',
     'ppa_forfait_logement',
     'unites_consommation_cheque_energie',
-])
+    ])

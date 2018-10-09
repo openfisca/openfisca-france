@@ -1,15 +1,13 @@
 # -*- coding: utf-8 -*-
 
-import collections
 import datetime
-import itertools
 import logging
 import re
 import uuid
 
 from openfisca_core import conv, scenarios
 from openfisca_core.commons import to_unicode
-from openfisca_france.entities import Individu, Famille, FoyerFiscal, Menage
+from openfisca_france.entities import Individu, Famille, FoyerFiscal, Menage  # noqa F401
 
 from openfisca_france.model.base import *
 
@@ -63,7 +61,6 @@ class Scenario(scenarios.AbstractScenario):
             ))
         return self
 
-
     def post_process_test_case(self, test_case, period, state):
 
         individu_by_id = {
@@ -71,7 +68,7 @@ class Scenario(scenarios.AbstractScenario):
             for individu in test_case['individus']
             }
 
-        parents_id = set(
+        parents_id = set(  # noqa F841
             parent_id
             for famille in test_case['familles']
             for parent_id in famille['parents']
@@ -153,7 +150,6 @@ class Scenario(scenarios.AbstractScenario):
             )(test_case, state = state)
 
         return test_case, error
-
 
     def attribute_groupless_persons_to_entities(self, test_case, period, groupless_individus):
         individus_without_famille = groupless_individus['familles']
@@ -442,7 +438,6 @@ class Scenario(scenarios.AbstractScenario):
                 individus_without_menage.remove(individu_id)
 
         return test_case
-
 
     def suggest(self):
         """Returns a dict of suggestions and modifies self.test_case applying those suggestions."""

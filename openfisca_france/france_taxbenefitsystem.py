@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 import os
-import glob
 
 from openfisca_core.taxbenefitsystems import TaxBenefitSystem
 
