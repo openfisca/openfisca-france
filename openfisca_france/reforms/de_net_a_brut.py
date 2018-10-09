@@ -2,8 +2,8 @@
 
 from __future__ import division
 
-from openfisca_core import columns
 from openfisca_core.reforms import Reform
+
 try:
     from scipy.optimize import fsolve
 except ImportError:
@@ -11,6 +11,7 @@ except ImportError:
 
 from .. import entities
 from ..model.base import *
+
 
 def calculate_net_from(salaire_de_base, individu, period, requested_variable_names):
 
@@ -32,6 +33,7 @@ def calculate_net_from(salaire_de_base, individu, period, requested_variable_nam
     net = temp_individu('salaire_net_a_payer', period)[0]
 
     return net
+
 
 class salaire_de_base(Variable):
     value_type = float
@@ -72,6 +74,7 @@ class salaire_de_base(Variable):
             )
 
         return brut_calcule
+
 
 class de_net_a_brut(Reform):
     name = u'Inversion du calcul brut -> net'

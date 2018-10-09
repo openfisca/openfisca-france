@@ -7,7 +7,6 @@ import os
 from openfisca_france.model.base import *
 
 from .. import entities
-from ..model.prelevements_obligatoires.impot_revenu import ir
 
 
 dir_path = os.path.join(os.path.dirname(__file__), 'parameters')
@@ -52,11 +51,14 @@ class irpp(Variable):
         P = parameters(period).impot_revenu.recouvrement
 
         pre_result = iai - credits_impot - acomptes_ir + cehr + cesthra
-        return ((iai > P.seuil) *
-            ((pre_result < P.min) * (pre_result > 0) * iai * 0 +
-            ((pre_result <= 0) + (pre_result >= P.min)) * (- pre_result)) +
-            (iai <= P.seuil) * ((pre_result < 0) * (-pre_result) +
-            (pre_result >= 0) * 0 * iai))
+
+        return (
+            (iai > P.seuil)
+            * ((pre_result < P.min) * (pre_result > 0) * iai * 0
+            + ((pre_result <= 0) + (pre_result >= P.min)) * (- pre_result))
+            + (iai <= P.seuil) * ((pre_result < 0) * (-pre_result)
+            + (pre_result >= 0) * 0 * iai)
+            )
 
 
 class cesthra_invalidee(Reform):

@@ -3,8 +3,9 @@
 from __future__ import division
 
 
-from openfisca_core import columns, reforms
+from openfisca_core import reforms
 from openfisca_core.columns import MONTH, YEAR
+from openfisca_core.entities import ADD, DIVIDE
 
 from .. import entities
 

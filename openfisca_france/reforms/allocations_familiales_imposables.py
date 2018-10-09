@@ -38,8 +38,12 @@ class allocations_familiales_imposables(Reform):
             nacc_pvce = foyer_fiscal.sum(nacc_pvce_i)
             return max_(
                 0,
-                allocations_familiales_imposables + rev_cat + f6gh +
-                (foyer_fiscal.sum(nbic_impm_i) + nacc_pvce) * (1 + cga) - deficit_ante
+                allocations_familiales_imposables
+                + rev_cat
+                + f6gh
+                + (foyer_fiscal.sum(nbic_impm_i) + nacc_pvce)
+                * (1 + cga)
+                - deficit_ante
                 )
 
     class rfr(Variable):
@@ -54,21 +58,28 @@ class allocations_familiales_imposables(Reform):
             rfr_cd = foyer_fiscal('rfr_cd')
             rni = foyer_fiscal('rni')
             rpns_exon_holder = foyer_fiscal.members('rpns_exon')
-            rfr_rvcm_abattements_a_reintegrer = foyer_fiscal('rfr_rvcm_abattements_a_reintegrer') # Supprimée en 2018
-            revenus_capitaux_prelevement_liberatoire = foyer_fiscal('revenus_capitaux_prelevement_liberatoire', period, options = [ADD]) # Supprimée en 2018
-            revenus_capitaux_prelevement_forfaitaire_unique_ir = foyer_fiscal('revenus_capitaux_prelevement_forfaitaire_unique_ir', period, options = [ADD]) # Existe à partir de 2018
+            rfr_rvcm_abattements_a_reintegrer = foyer_fiscal('rfr_rvcm_abattements_a_reintegrer')  # Supprimée en 2018
+            revenus_capitaux_prelevement_liberatoire = foyer_fiscal('revenus_capitaux_prelevement_liberatoire', period, options = [ADD])  # Supprimée en 2018
+            revenus_capitaux_prelevement_forfaitaire_unique_ir = foyer_fiscal('revenus_capitaux_prelevement_forfaitaire_unique_ir', period, options = [ADD])  # Existe à partir de 2018
             microentreprise = foyer_fiscal('microentreprise')
 
             f3vi = foyer_fiscal.sum(f3vi_holder)
             rpns_exon = foyer_fiscal.sum(rpns_exon_holder)
 
             return (
-                max_(0, rni - allocations_familiales_imposables) +
-                rfr_cd + rfr_rvcm_abattements_a_reintegrer + revenus_capitaux_prelevement_liberatoire + revenus_capitaux_prelevement_forfaitaire_unique_ir + f3vi + rpns_exon + abattement_net_duree_detention_retraite_dirigeant_pme + f3vz + microentreprise
+                max_(0, rni - allocations_familiales_imposables)
+                + rfr_cd
+                + rfr_rvcm_abattements_a_reintegrer
+                + revenus_capitaux_prelevement_liberatoire
+                + revenus_capitaux_prelevement_forfaitaire_unique_ir
+                + f3vi
+                + rpns_exon
+                + abattement_net_duree_detention_retraite_dirigeant_pme
+                + f3vz
+                + microentreprise
                 )
 
             # TO CHECK : f3vb after 2015 (abattements sur moins-values = interdits)
-
 
     class allocations_familiales_imposables(Variable):
         value_type = float

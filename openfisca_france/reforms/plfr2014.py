@@ -2,11 +2,9 @@
 
 from __future__ import division
 
-from datetime import date
 import os
 
 from ..model.base import *
-from ..model.prelevements_obligatoires.impot_revenu import reductions_impot
 
 
 dir_path = os.path.join(os.path.dirname(__file__), 'parameters')

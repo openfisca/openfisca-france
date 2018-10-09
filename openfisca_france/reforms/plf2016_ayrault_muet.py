@@ -49,8 +49,8 @@ class reduction_csg(Variable):
         seuil = 1.34
         coefficient_correctif = .9
         taux_csg = (
-            parameters(period).csg.activite.imposable.taux +
-            parameters(period).csg.activite.deductible.taux
+            parameters(period).csg.activite.imposable.taux
+            + parameters(period).csg.activite.deductible.taux
             )
         tx_max = coefficient_correctif * taux_csg
         ratio_smic_salaire = smic_proratise / (assiette_csg_abattue + 1e-16)
@@ -125,12 +125,12 @@ class ayrault_muet(Reform):
 
     def apply(self):
         for variable in [
-            reduction_csg,
-            regularisation_reduction_csg,
-            reduction_csg_foyer_fiscal,
-            reduction_csg_nette,
-            ppe_elig_bis,
-            variator,
-            ]:
+                reduction_csg,
+                regularisation_reduction_csg,
+                reduction_csg_foyer_fiscal,
+                reduction_csg_nette,
+                ppe_elig_bis,
+                variator,
+                ]:
             self.update_variable(variable)
         self.modify_parameters(modifier_function = ayrault_muet_modify_parameters)

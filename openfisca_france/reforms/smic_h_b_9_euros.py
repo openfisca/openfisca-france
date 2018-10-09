@@ -13,4 +13,3 @@ class smic_h_b_9_euros(Reform):
 
     def apply(self):
         self.modify_parameters(modifier_function = modify_parameters)
-
