@@ -1,5 +1,15 @@
 # Changelog
 
+### 24.14.8 [#1148](https://github.com/openfisca/openfisca-france/pull/1148)
+
+* Changement mineur.
+* Périodes concernées : à partir du 01/01/1943
+* Zones impactées:
+- `openfisca_france/model/prelevements_obligatoires/prelevements_sociaux/taxes_salaires_main_oeuvre.py`
+- `openfisca_france/parameters/cotsoc/pat/commun/construction_node/seuil.yaml`
+* Détails :
+  - Extrait vers un paramètre le nombre de salariés au-delà duquel le prélèvement s'applique.
+
 ### 24.14.7 [#1147](https://github.com/openfisca/openfisca-france/pull/1147)
 
 * Amélioration technique
