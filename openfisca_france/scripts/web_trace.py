@@ -28,15 +28,15 @@ def trace(scenario, variables, period = None, browser_name = 'chromium',
         "variables": variables,
         }
     trace_base_url = u"http://www.openfisca.fr/outils/trace"
-    reference = trace_base_url + "?" + urllib.urlencode({
+    reference = trace_base_url + "?" + urllib.urlencode({  # noqa F841
         "simulation": json.dumps(simulation_json),
         "api_url": api_url,
         })
     browser = webbrowser.get(browser_name)
-    browser.open_new_tab(url)
+    browser.open_new_tab(url)  # noqa F821
     if json_dumped_file:
         with io.open(json_dumped_file, 'w', encoding='utf-8') as f:
-            f.write(unicode(json.dumps(scenario_json, ensure_ascii=False, encoding='utf-8', indent = 2)))
+            f.write(unicode(json.dumps(scenario_json, ensure_ascii=False, encoding='utf-8', indent = 2)))  # noqa F821
 
 
 if __name__ == '__main__':

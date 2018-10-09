@@ -34,11 +34,11 @@ year_re = re.compile(r'[12]\d{3}$')
 # YAML configuration
 
 
-class folded_unicode(unicode):
+class folded_unicode(unicode):  # noqa F821
     pass
 
 
-class literal_unicode(unicode):
+class literal_unicode(unicode):  # noqa F821
     pass
 
 
@@ -51,7 +51,7 @@ yaml.add_representer(folded_unicode, lambda dumper, data: dumper.represent_scala
 yaml.add_representer(literal_unicode, lambda dumper, data: dumper.represent_scalar(u'tag:yaml.org,2002:str',
     data, style='|'))
 yaml.add_representer(collections.OrderedDict, dict_representer)
-yaml.add_representer(unicode, lambda dumper, data: dumper.represent_scalar(u'tag:yaml.org,2002:str', data))
+yaml.add_representer(unicode, lambda dumper, data: dumper.represent_scalar(u'tag:yaml.org,2002:str', data))  # noqa F821
 
 
 # Converters
@@ -75,7 +75,7 @@ cell_to_row_first_cell = conv.condition(
         conv.function(lambda year: datetime.date(year, 1, 1)),
         ),
     conv.pipe(
-        conv.test_isinstance(basestring),
+        conv.test_isinstance(basestring),  # noqa F821
         conv.first_match(
             conv.pipe(
                 conv.test(lambda date: year_re.match(date), error = u'Not a valid year'),
@@ -207,10 +207,10 @@ def transform_xls_cell_to_str(book, sheet, merged_cells_tree, row_index, column_
         empty_white_value = empty_white_value)
     if isinstance(cell, int):
         # Convert integer (a date) to a string.
-        cell = unicode(cell)
+        cell = unicode(cell)  # noqa F821
     if isinstance(cell, tuple):
         cell = transform_amount_tuple_to_str(cell)
-    assert cell is None or isinstance(cell, basestring), u'Expected a string. Got: {}'.format(cell).encode('utf-8')
+    assert cell is None or isinstance(cell, basestring), u'Expected a string. Got: {}'.format(cell).encode('utf-8')  # noqa F821
     return cell
 
 
@@ -271,7 +271,7 @@ def transform(xls_dir, yaml_raw_dir):
                         sheet_title_by_slug_by_heading = collections.OrderedDict()
                         for row_index in range(sheet.nrows):
                             heading = transform_xls_cell_to_json(book, sheet, merged_cells_tree, row_index, 1)
-                            if isinstance(heading, basestring):
+                            if isinstance(heading, basestring):  # noqa F821
                                 heading = heading.strip()
                                 if not heading:
                                     continue
@@ -282,8 +282,7 @@ def transform(xls_dir, yaml_raw_dir):
                                     continue
                             linked_sheet_number = transform_xls_cell_to_json(book, sheet, merged_cells_tree, row_index,
                                 column_index)
-                            if isinstance(linked_sheet_number, int) or (isinstance(linked_sheet_number, basestring) and
-                                    number_re.match(linked_sheet_number) is not None):
+                            if isinstance(linked_sheet_number, int) or (isinstance(linked_sheet_number, basestring) and number_re.match(linked_sheet_number) is not None):  # noqa F821
                                 linked_sheet_title = transform_xls_cell_to_str(book, sheet, merged_cells_tree,
                                     row_index, column_index + 1)
                                 if linked_sheet_title is not None:
@@ -435,7 +434,7 @@ def transform(xls_dir, yaml_raw_dir):
                             if error is None:
                                 # First cell of row is a valid date or year.
                                 values_row = [
-                                    value.strip() if isinstance(value, basestring) else value
+                                    value.strip() if isinstance(value, basestring) else value  # noqa F821
                                     for value in (
                                         transform_xls_cell_to_json(book, sheet, merged_cells_tree, row_index,
                                             column_index, empty_white_value = u'nc')
@@ -447,8 +446,7 @@ def transform(xls_dir, yaml_raw_dir):
                                         first_cell_value, sheet_name, row_index + 1)
                                     values_rows.append(values_row)
                                     continue
-                                if isinstance(first_cell_value, basestring) \
-                                        and aad_re.match(first_cell_value) is not None:
+                                if isinstance(first_cell_value, basestring) and aad_re.match(first_cell_value) is not None:  # noqa F821
                                     values_rows.append(values_row)
                                     continue
                                 if all(value in (None, u'', u'nc') for value in values_row):
@@ -459,7 +457,7 @@ def transform(xls_dir, yaml_raw_dir):
                             state = 'notes'
                         if state == 'notes':
                             first_cell_value = transform_xls_cell_to_json(book, sheet, merged_cells_tree, row_index, 0)
-                            if isinstance(first_cell_value, basestring) and first_cell_value.strip().lower() == 'notes':
+                            if isinstance(first_cell_value, basestring) and first_cell_value.strip().lower() == 'notes':  # noqa F821
                                 notes_rows.append([
                                     (line or u'').rstrip()
                                     for line in (
@@ -538,7 +536,7 @@ def transform(xls_dir, yaml_raw_dir):
                             # Merge (amount, unit) couples to a string to simplify YAML.
                             if isinstance(cell, tuple):
                                 cell = transform_amount_tuple_to_str(cell)
-                            if isinstance(cell, basestring) and u'\n' in cell:
+                            if isinstance(cell, basestring) and u'\n' in cell:  # noqa F821
                                 cell = literal_unicode(cell)
                             cell_by_column_label[column_labels[-1]] = cell
                         sheet_values.append(cell_by_column_labels)
@@ -578,23 +576,21 @@ def transform(xls_dir, yaml_raw_dir):
 
                 if sheet_error:
                     sheet_node[u'ERRORS'] = literal_unicode(sheet_error) \
-                        if isinstance(sheet_error, basestring) and u'\n' in sheet_error \
-                        else sheet_error
+                        if isinstance(sheet_error, basestring) and u'\n' in sheet_error else sheet_error  # noqa F821
                 if sheet_warning:
                     sheet_node[u'WARNINGS'] = literal_unicode(sheet_warning) \
-                        if isinstance(sheet_warning, basestring) and u'\n' in sheet_warning \
-                        else sheet_warning
+                        if isinstance(sheet_warning, basestring) and u'\n' in sheet_warning else sheet_warning  # noqa F821
                 with open(yaml_file_path_encoded, 'w') as yaml_file:
                     yaml.dump(sheet_node, yaml_file, allow_unicode = True, default_flow_style = False, indent = 2,
                         width = 120)
-            except:
+            except:  # noqa E722
                 message = u'An exception occurred when parsing sheet "{}" of XLS file "{}".'.format(sheet_name,
                     filename)
                 log.exception(u'    {}'.format(message))
                 sheet_error = literal_unicode(u'\n\n'.join(
                     fragment
                     for fragment in (
-                        unicode(sheet_error) if sheet_error is not None else None,
+                        unicode(sheet_error) if sheet_error is not None else None,  # noqa F821
                         message,
                         traceback.format_exc().decode('utf-8'),
                         )

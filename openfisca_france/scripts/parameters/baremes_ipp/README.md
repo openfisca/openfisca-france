@@ -16,7 +16,7 @@ Les scripts décrits ici permettent d'importer les barèmes IPP (fournis sous fo
 
 ### En local
 
->**Attention, ce script ne semble fonctionner que sous Linux, et pas sous macOS. Voir la [discussion](https://github.com/openfisca/openfisca-france/pull/746#issuecomment-305123915) sur le sujet.**  
+>**Attention, ce script ne semble fonctionner que sous Linux, et pas sous macOS. Voir la [discussion](https://github.com/openfisca/openfisca-france/pull/746#issuecomment-305123915) sur le sujet.**
 > **Si vous avez accès au serveur OpenFisca-France, vous pouvez [executer le script sur ce-dernier](#sur-le-serveur-openfisca)**
 
 #### Installation
@@ -99,10 +99,10 @@ Le script [`merge_ipp_xml_files_with_openfisca_parameters.py`](./merge_ipp_xml_f
 >Exemple : si le dossier temporaire qui contient les `XML` produits par le script de conversion précédent est `/tmp/baremes-ipp-v3SAEz/xml`, exécuter :
 >
 >```sh
->./openfisca_france/scripts/parameters/baremes_ipp/merge_ipp_xml_files_with_openfisca_parameters.py /tmp/baremes-ipp-v3SAEz/xml 
+>./openfisca_france/scripts/parameters/baremes_ipp/merge_ipp_xml_files_with_openfisca_parameters.py /tmp/baremes-ipp-v3SAEz/xml
 >```
 
-Plus précisément, il réécrit les fichiers de paramètres d'OpenFisca-France en conservant leur structure, tout en remplaçant les valeurs par celles provenant de l'IPP. 
+Plus précisément, il réécrit les fichiers de paramètres d'OpenFisca-France en conservant leur structure, tout en remplaçant les valeurs par celles provenant de l'IPP.
 
 ### Gestion des erreurs
 

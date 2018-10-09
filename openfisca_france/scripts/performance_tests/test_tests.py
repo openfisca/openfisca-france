@@ -37,7 +37,7 @@ time_spent_tests = time.time() - start_time_tests
 
 def compare_performance(baseline, test_result):
     delta = (test_result - baseline) * 100 / baseline
-    
+
     if test_result > baseline * 1.2:
         logging.warning("The perfomance seems to have worsen by {} %.".format(delta))
     elif test_result < baseline * 0.8:

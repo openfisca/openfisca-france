@@ -43,15 +43,15 @@ def fetch_json(url):
 
 
 def fetch_situation(api_base_url, situation_id):
-    reference = u'{}/api/situations/{}/openfisca-request'.format(api_base_url, situation_id)
-    log.info(u'fetch situation: GET "{}"'.format(url))
-    return fetch_json(url)
+    reference = u'{}/api/situations/{}/openfisca-request'.format(api_base_url, situation_id)  # noqa F841
+    log.info(u'fetch situation: GET "{}"'.format(url))  # noqa F821
+    return fetch_json(url)  # noqa F821
 
 
 def fetch_tests(api_base_url):
-    reference = u'{}/api/public/acceptance-tests'.format(api_base_url)
-    log.info(u'fetch tests: GET "{}"'.format(url))
-    return fetch_json(url)
+    reference = u'{}/api/public/acceptance-tests'.format(api_base_url)  # noqa F821
+    log.info(u'fetch tests: GET "{}"'.format(url))  # noqa F821
+    return fetch_json(url)  # noqa F821
 
 
 def iter_yaml_items(api_base_url, test):
@@ -117,8 +117,7 @@ def main():
             return
         last_execution = test_json['lastExecution']
         assert test_json['currentStatus'] == last_execution['status']
-        if any('expectedValue' in result and 'status' in result and
-                result['status'] not in ('accepted-exact', 'accepted-2pct') for result in last_execution['results']):
+        if any('expectedValue' in result and 'status' in result and result['status'] not in ('accepted-exact', 'accepted-2pct') for result in last_execution['results']):
             log.info(u'Test "{}" doesn\'t return the expected value (yet), so skip it.'.format(test_json['_id']))
             continue
 

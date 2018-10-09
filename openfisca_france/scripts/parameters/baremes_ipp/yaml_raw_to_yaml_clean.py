@@ -61,11 +61,11 @@ def N_(message):
 # YAML configuration
 
 
-class folded_unicode(unicode):
+class folded_unicode(unicode):  # noqa F821
     pass
 
 
-class literal_unicode(unicode):
+class literal_unicode(unicode):  # noqa F821
     pass
 
 
@@ -84,7 +84,7 @@ yaml.add_representer(folded_unicode, lambda dumper, data: dumper.represent_scala
 yaml.add_representer(literal_unicode, lambda dumper, data: dumper.represent_scalar(u'tag:yaml.org,2002:str',
     data, style='|'))
 yaml.add_representer(collections.OrderedDict, dict_representer)
-yaml.add_representer(unicode, lambda dumper, data: dumper.represent_scalar(u'tag:yaml.org,2002:str', data))
+yaml.add_representer(unicode, lambda dumper, data: dumper.represent_scalar(u'tag:yaml.org,2002:str', data))  # noqa F821
 
 
 # Converters
@@ -106,7 +106,7 @@ def convert_amount_or_number_tree(value, state = None):
         conv.test_isinstance(dict),
         conv.pipe(
             conv.uniform_mapping(
-                conv.test_isinstance(basestring),
+                conv.test_isinstance(basestring),  # noqa F821
                 convert_amount_or_number_tree,
                 drop_none_values = True,
                 ),
@@ -117,7 +117,7 @@ def convert_amount_or_number_tree(value, state = None):
             conv.test_isinstance(float),
             conv.test_conv(
                 conv.pipe(
-                    conv.test_isinstance(basestring),
+                    conv.test_isinstance(basestring),  # noqa F821
                     conv.function(lambda value: value.lower()),
                     conv.first_match(
                         conv.test_in([
@@ -142,7 +142,7 @@ def convert_amount_or_number_tree(value, state = None):
                     ),
                 ),
             conv.pipe(
-                conv.test_isinstance(basestring),
+                conv.test_isinstance(basestring),  # noqa F821
                 conv.function(lambda value: value.rstrip(u'*')),
                 conv.function(lambda value: value.rsplit(None, 1)),
                 conv.test(lambda couple: len(couple) == 2, error = N_(u"Invalid (amount, unit) couple")),
@@ -169,7 +169,7 @@ def convert_amount_or_number_tree(value, state = None):
                             ),
                         ),
                     ),
-                conv.function(lambda couple: u' '.join([unicode(couple[0]), couple[1]])),
+                conv.function(lambda couple: u' '.join([unicode(couple[0]), couple[1]])),  # noqa F821
                 ),
             conv.fail(error = N_(u'Value is neither a number nor an amount (with a unit)')),
             ),
@@ -181,7 +181,7 @@ def convert_date_tree(value, state = None):
         conv.test_isinstance(dict),
         conv.pipe(
             conv.uniform_mapping(
-                conv.test_isinstance(basestring),
+                conv.test_isinstance(basestring),  # noqa F821
                 convert_date_tree,
                 drop_none_values = True,
                 ),
@@ -194,7 +194,7 @@ def convert_date_tree(value, state = None):
                 conv.function(lambda year: datetime.date(year, 1, 1)),
                 ),
             conv.pipe(
-                conv.test_isinstance(basestring),
+                conv.test_isinstance(basestring),  # noqa F821
                 conv.translate({u'nc': None}),
                 conv.first_match(
                     conv.pipe(
@@ -215,14 +215,14 @@ def convert_line_tree(value, state = None):
         conv.test_isinstance(dict),
         conv.pipe(
             conv.uniform_mapping(
-                conv.test_isinstance(basestring),
+                conv.test_isinstance(basestring),  # noqa F821
                 convert_line_tree,
                 drop_none_values = True,
                 ),
             conv.empty_to_none,
             ),
         conv.condition(
-            conv.test_isinstance(basestring),
+            conv.test_isinstance(basestring),  # noqa F821
             conv.pipe(
                 conv.translate({u'nc': None}),
                 conv.cleanup_line,
@@ -236,13 +236,13 @@ def convert_taxipp_name_tree(value, state = None):
         conv.test_isinstance(dict),
         conv.pipe(
             conv.uniform_mapping(
-                conv.test_isinstance(basestring),
+                conv.test_isinstance(basestring),  # noqa F821
                 convert_taxipp_name_tree,
                 ),
             conv.empty_to_none,
             ),
         conv.pipe(
-            conv.test_isinstance(basestring),
+            conv.test_isinstance(basestring),  # noqa F821
             conv.translate({u'nc': None}),
             conv.test(lambda taxipp_name: strings.slugify(taxipp_name, separator = u'_') == taxipp_name.strip(u'_'),
                 error = N_(u'Invalid TaxIPP name')),
@@ -318,7 +318,7 @@ convert_values_row = conv.pipe(
     conv.struct(
         collections.OrderedDict((
             (u"Age de départ (AAD=Age d'annulation de la décôte)", conv.pipe(
-                conv.test_isinstance(basestring),
+                conv.test_isinstance(basestring),  # noqa F821
                 conv.translate({u'nc': None}),
                 conv.test(lambda value: aad_re.match(value) is not None, error = N_(u'Not a valid "AAD"')),
                 )),
@@ -328,43 +328,43 @@ convert_values_row = conv.pipe(
             (u"Date ISF", convert_date_tree),
             (u"Références législatives", convert_line_tree),
             (u"Parution au JO", conv.pipe(
-                conv.test_isinstance(basestring),
+                conv.test_isinstance(basestring),  # noqa F821
                 conv.translate({u'nc': None}),
                 conv.iso8601_input_to_date,
                 conv.date_to_iso8601_str,
                 )),
             (u"Références BOI", conv.pipe(
-                conv.test_isinstance(basestring),
+                conv.test_isinstance(basestring),  # noqa F821
                 conv.translate({u'nc': None}),
                 conv.cleanup_line,
                 )),
             (u"Références législatives - définition des ressources et plafonds", conv.pipe(
-                conv.test_isinstance(basestring),
+                conv.test_isinstance(basestring),  # noqa F821
                 conv.translate({u'nc': None}),
                 conv.cleanup_line,
                 )),
             (u"Références législatives - revalorisation des plafonds", conv.pipe(
-                conv.test_isinstance(basestring),
+                conv.test_isinstance(basestring),  # noqa F821
                 conv.translate({u'nc': None}),
                 conv.cleanup_line,
                 )),
             (u"Références législatives des règles de calcul et du paramètre Po", conv.pipe(
-                conv.test_isinstance(basestring),
+                conv.test_isinstance(basestring),  # noqa F821
                 conv.translate({u'nc': None}),
                 conv.cleanup_line,
                 )),
             (u"Références législatives de tous les autres paramètres", conv.pipe(
-                conv.test_isinstance(basestring),
+                conv.test_isinstance(basestring),  # noqa F821
                 conv.translate({u'nc': None}),
                 conv.cleanup_line,
                 )),
             (u"Notes", conv.pipe(
-                conv.test_isinstance(basestring),
+                conv.test_isinstance(basestring),  # noqa F821
                 conv.translate({u'nc': None}),
                 conv.cleanup_line,
                 )),
             (u"Notes bis", conv.pipe(
-                conv.test_isinstance(basestring),
+                conv.test_isinstance(basestring),  # noqa F821
                 conv.translate({u'nc': None}),
                 conv.cleanup_line,
                 )),
@@ -431,7 +431,7 @@ warn_sheet = conv.pipe(
 def encapsulate_yaml(value):
     if value is None:
         return value
-    if isinstance(value, basestring):
+    if isinstance(value, basestring):  # noqa F821
         return literal_unicode(value) if u'\n' in value else value
     if isinstance(value, dict):
         return type(value)(
@@ -493,7 +493,7 @@ def clean(yaml_raw_dir, yaml_clean_dir):
                     warning = None
                 clean_data = encapsulate_yaml(data)
                 if error:
-                    if isinstance(error, basestring) and u'\n' in error:
+                    if isinstance(error, basestring) and u'\n' in error:  # noqa F821
                         error = literal_unicode(error)
                     data_errors = clean_data.get(u'ERRORS')
                     if data_errors is None:
@@ -504,7 +504,7 @@ def clean(yaml_raw_dir, yaml_clean_dir):
                                 data_errors[item_name] = item_value
                     error_by_sheet_name[sheet_name] = error
                 if warning:
-                    if isinstance(warning, basestring) and u'\n' in warning:
+                    if isinstance(warning, basestring) and u'\n' in warning:  # noqa F821
                         warning = literal_unicode(warning)
                     if enable_warnings:
                         data_warnings = clean_data.get(u'WARNINGS')
@@ -536,8 +536,8 @@ def clean(yaml_raw_dir, yaml_clean_dir):
                 for directory_name in relative_dir_encoded_split[:-1]:
                     error_by_child_directory_name = error_by_child_directory_name.setdefault(
                         directory_name.decode(file_system_encoding), collections.OrderedDict())
-                target_file_path_encoded = os.path.join(*([yaml_clean_dir] + relative_dir_encoded_split +
-                    [u'ERRORS.yaml'.encode(file_system_encoding)]))
+                target_file_path_encoded = os.path.join(*([yaml_clean_dir] + relative_dir_encoded_split
+                    + [u'ERRORS.yaml'.encode(file_system_encoding)]))
                 with open(target_file_path_encoded, 'w') as target_file:
                     yaml.dump(error_by_sheet_name, target_file, allow_unicode = True, default_flow_style = False,
                         indent = 2, width = 120)
@@ -549,8 +549,8 @@ def clean(yaml_raw_dir, yaml_clean_dir):
                     warning_by_child_directory_name = warning_by_child_directory_name.setdefault(
                         directory_name.decode(file_system_encoding), collections.OrderedDict())
                 if enable_warnings:
-                    target_file_path_encoded = os.path.join(*([yaml_clean_dir] + relative_dir_encoded_split +
-                        [u'WARNINGS.yaml'.encode(file_system_encoding)]))
+                    target_file_path_encoded = os.path.join(*([yaml_clean_dir] + relative_dir_encoded_split
+                        + [u'WARNINGS.yaml'.encode(file_system_encoding)]))
                     with open(target_file_path_encoded, 'w') as target_file:
                         yaml.dump(warning_by_sheet_name, target_file, allow_unicode = True, default_flow_style = False,
                             indent = 2, width = 120)

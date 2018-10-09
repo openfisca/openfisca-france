@@ -62,7 +62,7 @@ def merge_elements(openfisca_element, ipp_element, path = []):
         ipp_children_by_code = {
             child.attrib['code']: child
             for child in ipp_element
-        }
+            }
         for openfisca_child in openfisca_element:
             code = openfisca_child.attrib['code']
             if code in ipp_children_by_code.keys():
@@ -84,7 +84,7 @@ def merge_elements(openfisca_element, ipp_element, path = []):
             ipp_tranche_children_by_tag = {
                 child.tag: child
                 for child in ipp_tranche
-            }
+                }
 
             for openfisca_tranche_child in openfisca_tranche:
                 tag = openfisca_tranche_child.tag
@@ -110,7 +110,7 @@ def get_xml_tree_by_file_name(xmlschema, file_paths):
     return xml_tree_by_file_name
 
 
-def merge_ipp_xml_files_with_openfisca_parameters(ipp_xml_dir):
+def merge_ipp_xml_files_with_openfisca_parameters(ipp_xml_dir, parser):
     if not os.path.isdir(ipp_xml_dir):
         parser.error(u'Path {!r} does not exist.'.format(ipp_xml_dir))
 
@@ -151,7 +151,8 @@ def main():
     parser.add_argument('ipp_xml_dir', help = "Directory of XML files converted from IPP")
     args = parser.parse_args()
 
-    merge_ipp_xml_files_with_openfisca_parameters(args.ipp_xml_dir)
+    merge_ipp_xml_files_with_openfisca_parameters(args.ipp_xml_dir, parser)
+
 
 if __name__ == "__main__":
     sys.exit(main())
