@@ -1,5 +1,21 @@
 # Changelog
 
+# 25.0.0 [#1156](https://github.com/openfisca/openfisca-france/pull/1156)
+
+* Évolution du système socio-fiscal **non rétro-compatibles**
+* Périodes concernées : toutes
+* Zones impactées:
+- `model/mesures`
+- `model/prelevements_obligatoires/taxe_habitation`
+- `model/prestations/minima_sociaux/aah`
+- `model/prestations/minima_sociaux/asi_aspa`
+- `model/prestations/minima_sociaux/cmu`
+- `model/prestations/minima_sociaux/ppa`
+- `model/prestations/minima_sociaux/rsa`
+- `tests/**/*`
+* Détails :
+  - Déplace la variable ASI de la famille vers l'individu
+
 ### 24.14.9 [#1153](https://github.com/openfisca/openfisca-france/pull/1153)
 
 * Amélioration technique
