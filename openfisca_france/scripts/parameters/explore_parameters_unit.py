@@ -27,13 +27,13 @@ def get_parameters_by_unit(parameter, parameters_by_unit = None):
         else:
             if isinstance(sub_parameter, Scale):
                 parameters_by_unit['scale'].append(sub_parameter)
-            elif sub_parameter.unit is None:
+            elif 'unit' not in sub_parameter.metadata:
                 parameters_by_unit['none'].append(sub_parameter)
-            elif sub_parameter.unit == "/1":
+            elif sub_parameter.metadata['unit'] == "/1":
                 parameters_by_unit['rate'].append(sub_parameter)
-            elif sub_parameter.unit == "currency":
+            elif sub_parameter.metadata['unit'] == "currency":
                 parameters_by_unit['currency'].append(sub_parameter)
-            elif sub_parameter.unit == "year":
+            elif sub_parameter.metadata['unit'] == "year":
                 parameters_by_unit['year'].append(sub_parameter)
             else:
                 raise ValueError("Parameter {} has a stange unit {}".format(
