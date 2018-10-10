@@ -47,17 +47,15 @@ class aefa(Variable):
             nbPAC = af_nbenf
 
         aefa = parameters(period).prestations.minima_sociaux.aefa
-        montant_seul = aefa.mon_seul
-        aide_exceptionnelle = aefa.forf2008
 
         # TODO check nombre de PAC pour une famille
-        montant_aefa = condition * montant_seul * (
+        montant_aefa = condition * aefa.mon_seul * (
             1
             + (nb_parents == 2) * aefa.tx_2p
             + nbPAC * aefa.tx_supp * (nb_parents <= 2)
             + nbPAC * aefa.tx_3pac * max_(nbPAC - 2, 0)
             )
 
-        montant_aefa += condition * aide_exceptionnelle
+        montant_aefa += condition * aefa.prime_exceptionnelle
 
         return montant_aefa
