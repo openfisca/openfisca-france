@@ -1,7 +1,13 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 
-"""Measure performances of formulas calculations to compare to other OpenFisca implementations."""
+"""
+Measure performance of formula calculations to compare to other OpenFisca implementations.
+
+Usage example:
+
+    python openfisca_france/scripts/performance/measure_calculations_performance.py
+"""
 
 
 import argparse

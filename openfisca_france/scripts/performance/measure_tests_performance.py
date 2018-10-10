@@ -3,6 +3,10 @@
 """
 This files tests the performance of the test runner of openfisca-run-test on a subset of YAML tests.
 It is placed in openfisca-france because it is the largest set we currently have.
+
+Usage example:
+
+    python openfisca_france/scripts/performance/measure_tests_performance.py
 """
 
 import os
