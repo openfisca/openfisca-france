@@ -37,7 +37,6 @@ class aefa(Variable):
         ass = famille('ass', period, options = [ADD])
         api = famille('api', period, options = [ADD])
         rsa = famille('rsa', period, options = [ADD])
-        P = parameters(period).prestations.minima_sociaux.aefa
         af = parameters(period).prestations.prestations_familiales.af
 
         aer_i = famille.members('aer', period, options = [ADD])
@@ -46,23 +45,24 @@ class aefa(Variable):
         dummy_aer = aer > 0
         dummy_api = api > 0
         dummy_rmi = rsa > 0
-        maj = 0  # TODO
         condition = (dummy_ass + dummy_aer + dummy_api + dummy_rmi > 0)
         if hasattr(af, "age3"):
             nbPAC = nb_enf(famille, janvier, af.age1, af.age3)
         else:
             nbPAC = af_nbenf
 
+        aefa = parameters(period).prestations.minima_sociaux.aefa
+        montant_seul = aefa.mon_seul
+        aide_exceptionnelle = aefa.forf2008
+
         # TODO check nombre de PAC pour une famille
-        aefa = condition * P.mon_seul * (
+        montant_aefa = condition * montant_seul * (
             1
-            + (nb_parents == 2) * P.tx_2p
-            + nbPAC * P.tx_supp * (nb_parents <= 2)
-            + nbPAC * P.tx_3pac * max_(nbPAC - 2, 0)
+            + (nb_parents == 2) * aefa.tx_2p
+            + nbPAC * aefa.tx_supp * (nb_parents <= 2)
+            + nbPAC * aefa.tx_3pac * max_(nbPAC - 2, 0)
             )
 
-        aefa += condition * P.forf2008
-        aefa_maj = P.mon_seul * maj
-        aefa = max_(aefa_maj, aefa)
+        montant_aefa += condition * aide_exceptionnelle
 
-        return aefa
+        return montant_aefa
