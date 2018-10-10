@@ -166,6 +166,19 @@
   absolute_error_margin: 0.05
   individus:
     - id: "parent1"
+      asi:
+        2018-04: 0
+        2018-03: 0
+        2018-02: 0
+        2018-01: 0
+        2017-12: 0
+        2017-11: 0
+        2017-10: 0
+        2017-09: 0
+        2017-08: 0
+        2017-07: 0
+        2017-06: 0
+        2017-05: 0
       tns_autres_revenus:
         2017: 1925
       pensions_invalidite:
