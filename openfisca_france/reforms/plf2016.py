@@ -171,14 +171,14 @@ def counterfactual_2014_modify_parameters(parameters):
     # parameters.ir.reductions_impots.reduction_impot_exceptionnelle.montant_plafond.update(period=reform_period, value=350*inflator)
     # parameters.ir.reductions_impots.reduction_impot_exceptionnelle.seuil.update(period=reform_period, value=13795*inflator)
     # parameters.ir.reductions_impots.reduction_impot_exceptionnelle.majoration_seuil.update(period=reform_period, value=3536*inflator)
-    parameters.impot_revenu.bareme[1].threshold.update(period=reform_period, value=6011*inflator)
-    parameters.impot_revenu.bareme[1].rate.update(period=reform_period, value=.055*inflator)
-    parameters.impot_revenu.bareme[2].threshold.update(period=reform_period, value=11991*inflator)
-    parameters.impot_revenu.bareme[2].rate.update(period=reform_period, value=.14*inflator)
-    parameters.impot_revenu.bareme[3].threshold.update(period=reform_period, value=26631*inflator)
-    parameters.impot_revenu.bareme[3].rate.update(period=reform_period, value=.30*inflator)
-    parameters.impot_revenu.bareme[4].threshold.update(period=reform_period, value=71397*inflator)
-    parameters.impot_revenu.bareme[4].rate.update(period=reform_period, value=.40*inflator)
+    parameters.impot_revenu.bareme[1].threshold.update(period = reform_period, value = 6011 * inflator)
+    parameters.impot_revenu.bareme[1].rate.update(period = reform_period, value = .055 * inflator)
+    parameters.impot_revenu.bareme[2].threshold.update(period = reform_period, value = 11991 * inflator)
+    parameters.impot_revenu.bareme[2].rate.update(period = reform_period, value = .14 * inflator)
+    parameters.impot_revenu.bareme[3].threshold.update(period = reform_period, value = 26631 * inflator)
+    parameters.impot_revenu.bareme[3].rate.update(period = reform_period, value = .30 * inflator)
+    parameters.impot_revenu.bareme[4].threshold.update(period = reform_period, value = 71397 * inflator)
+    parameters.impot_revenu.bareme[4].rate.update(period = reform_period, value = .40 * inflator)
 
     return parameters
 

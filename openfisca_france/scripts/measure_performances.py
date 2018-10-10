@@ -28,7 +28,7 @@ def add_member(entity, **variables_value_by_name):
     # Add a cell to all arrays of all variables of entity.
     for variable_name, variable_holder in entity.holder_by_name.items():
         column = variable_holder.variable
-        if column.definition_period is ETERNITY:
+        if column.definition_period is ETERNITY:   # noqa F821
             variable_holder._array = np.hstack((variable_holder._array, [column.default_value]))
         else:
             array_by_period = variable_holder._array_by_period
@@ -120,18 +120,18 @@ def main():
 
     print('salaire_imposable')
 
-    test_irpp(2010, -1181, salaire_imposable =  20000)
-    test_irpp(2010, -7934, salaire_imposable =  50000)
-    test_irpp(2010, -42338, salaire_imposable =  150000)
-    test_irpp(2011, -1181, salaire_imposable =  20000)
-    test_irpp(2011, -7934, salaire_imposable =  50000)
-    test_irpp(2011, -42338, salaire_imposable =  150000)
-    test_irpp(2012, -1181, salaire_imposable =  20000)
-    test_irpp(2012, -7934, salaire_imposable =  50000)
-    test_irpp(2012, -43222, salaire_imposable =  150000)
-    test_irpp(2013, -1170, salaire_imposable =  20000)
-    test_irpp(2013, -7889, salaire_imposable =  50000)
-    test_irpp(2013, -43076, salaire_imposable =  150000)
+    test_irpp(2010, -1181, salaire_imposable = 20000)
+    test_irpp(2010, -7934, salaire_imposable = 50000)
+    test_irpp(2010, -42338, salaire_imposable = 150000)
+    test_irpp(2011, -1181, salaire_imposable = 20000)
+    test_irpp(2011, -7934, salaire_imposable = 50000)
+    test_irpp(2011, -42338, salaire_imposable = 150000)
+    test_irpp(2012, -1181, salaire_imposable = 20000)
+    test_irpp(2012, -7934, salaire_imposable = 50000)
+    test_irpp(2012, -43222, salaire_imposable = 150000)
+    test_irpp(2013, -1170, salaire_imposable = 20000)
+    test_irpp(2013, -7889, salaire_imposable = 50000)
+    test_irpp(2013, -43076, salaire_imposable = 150000)
 
     print('retraite_imposable')
 

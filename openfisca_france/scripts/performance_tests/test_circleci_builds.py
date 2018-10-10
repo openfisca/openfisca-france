@@ -1,7 +1,7 @@
 """
 This script takes in two CircleCI build numbers
 (should be the `build_python2` and `build_python3` of the same workflow)
-and outputs if their mean runtime is in the same ball park 
+and outputs if their mean runtime is in the same ball park
 as the master branch's mean runtime for the same builds.
 """
 
@@ -19,7 +19,7 @@ if len(sys.argv) < 2:
         This script needs two CircleCI build numbers to work,
         e.g. python openfisca_france/scripts/performance_tests/test_circleci_builds.py 1717 1716
         """
-    )
+        )
 
 python2_build_number = sys.argv[1]
 python3_build_number = sys.argv[2]

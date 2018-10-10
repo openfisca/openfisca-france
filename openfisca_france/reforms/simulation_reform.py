@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
-import openfisca_france
+
 from openfisca_france.model.base import *
 from openfisca_core import reforms
+
 
 class date_simulation(Variable):
     value_type = date
@@ -29,6 +30,7 @@ class aah(Variable):
             return individu('aah_base', date_demande)
 
         return individu('aah_base', period)
+
 
 class simulation_reform(reforms.Reform):
 

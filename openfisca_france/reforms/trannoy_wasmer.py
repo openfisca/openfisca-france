@@ -5,7 +5,6 @@ from __future__ import division
 import os
 
 from ..model.base import *
-from ..model.prelevements_obligatoires.impot_revenu import charges_deductibles
 
 
 dir_path = os.path.join(os.path.dirname(__file__), 'parameters')
@@ -18,6 +17,7 @@ def modify_parameters(parameters):
     parameters.add_child('charge_loyer', reform_parameters_subtree)
     return parameters
 
+
 class charges_deduc(Variable):
     label = u"Charge déductibles intégrant la charge pour loyer (Trannoy-Wasmer)"
     definition_period = YEAR
@@ -28,6 +28,7 @@ class charges_deduc(Variable):
         charge_loyer = foyer_fiscal('charge_loyer', period)
 
         return cd1 + cd2 + charge_loyer
+
 
 class charge_loyer(Variable):
     value_type = float

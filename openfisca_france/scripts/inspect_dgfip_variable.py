@@ -25,7 +25,7 @@ def inspect_dgfip_variable(variable, year, browser_name):
     section_number = variable[1]
     case = variable[2:4].upper()
     log.info(u"section %s, case %s", section_number, case)
-    url_base = u"http://www3.finances.gouv.fr/calcul_impot/" + unicode(year + 1) + "/aides/"
+    url_base = u"http://www3.finances.gouv.fr/calcul_impot/" + unicode(year + 1) + "/aides/"  # noqa F821
     url_section = {
         '2': u"capitaux_mobiliers.htm",
         '3': u"gains_c.htm",
@@ -36,9 +36,9 @@ def inspect_dgfip_variable(variable, year, browser_name):
         '8': u"autres_imputations.htm",
         }.get(section_number)
     assert url_section is not None, 'Unhandled section number: {}'.format(section_number)
-    reference = url_base + url_section
+    reference = url_base + url_section  # noqa F841
     if section_number not in ('3', '4'):
-        url += u'#' + case
+        url += u'#' + case  # noqa F821
 
     browser = webbrowser.get(browser_name)
     browser.open_new_tab(url)

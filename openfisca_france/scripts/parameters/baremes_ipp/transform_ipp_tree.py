@@ -158,14 +158,14 @@ def transform_ipp_tree(root):
     impot_revenu['rvcm'] = rvcm = impot_revenu.pop('rcm')
     rvcm = impot_revenu['rvcm']
     produits_des_assurances_vies_et_assimiles = rvcm['produits_des_assurances_vies_et_assimiles']
-    rvcm['abat_assvie'] = abat_assvie = produits_des_assurances_vies_et_assimiles.pop('abattement')
+    rvcm['abat_assvie'] = abat_assvie = produits_des_assurances_vies_et_assimiles.pop('abattement')  # noqa F841
     revenus_de_capitaux_mobiliers_dividendes = rvcm['revenus_de_capitaux_mobiliers_dividendes']
-    rvcm['abatmob'] = abatmob = revenus_de_capitaux_mobiliers_dividendes.pop('abattement_forfaitaire')
+    rvcm['abatmob'] = abatmob = revenus_de_capitaux_mobiliers_dividendes.pop('abattement_forfaitaire')  # noqa F841
     impot_revenu['rvcm'].update(rvcm.pop('revenus_de_capitaux_mobiliers_dividendes'))
-    rvcm['taux_abattement_capitaux_mobiliers'] = taux_abattement_capitaux_mobiliers = rvcm.pop('taux_de_l_abattement')
+    rvcm['taux_abattement_capitaux_mobiliers'] = taux_abattement_capitaux_mobiliers = rvcm.pop('taux_de_l_abattement')  # noqa F841
     impot_revenu['reductions_impots'] = reductions_impots = dict()
     reductions_impots = impot_revenu['reductions_impots']
-    reductions_impots['salarie_domicile'] = salarie_domicile = impot_revenu.pop('sal_dom')
+    reductions_impots['salarie_domicile'] = salarie_domicile = impot_revenu.pop('sal_dom')  # noqa F841
     # Plus-values
     impot_revenu['plus_values'] = plus_values = impot_revenu.pop('pv')
     impot_revenu['plus_values'].update(plus_values.pop(
@@ -174,9 +174,9 @@ def transform_ipp_tree(root):
 
     reductions_impots['dons'] = dons = impot_revenu.pop('dons')
     dons_aux_oeuvres = dons['dons_aux_oeuvres']
-    dons['taux_dons_oeuvres'] = taux_dons_oeuvres = dons_aux_oeuvres.pop('taux')
+    dons['taux_dons_oeuvres'] = taux_dons_oeuvres = dons_aux_oeuvres.pop('taux')  # noqa F841
     dons_aux_partis_politiques = dons['dons_aux_partis_politiques']
-    dons['taux_max_dons_partipo'] = taux_max_dons_partipo = dons_aux_partis_politiques.pop('plafond')
+    dons['taux_max_dons_partipo'] = taux_max_dons_partipo = dons_aux_partis_politiques.pop('plafond')  # noqa F841
     reductions_impots['spfcpi'] = spfcpi = impot_revenu.pop('fcp')
     reductions_impots['spfcpi'].update(spfcpi.pop('reduction_d_impot_pour_souscriptions_de_parts_de_fcpi_ou_fip'))
     spfcpi['taux1'] = taux1 = spfcpi.pop('taux')
@@ -184,23 +184,23 @@ def transform_ipp_tree(root):
     impot_revenu['credits_impot'] = credits_impot = dict()
     credits_impot['ppe'] = ppe = impot_revenu.pop('ppe')
     credits_impot['ppe'].update(ppe.pop('seuil_de_rfr_pour_etre_eligibilite_a_la_ppe'))
-    ppe['eligi1'] = eligi1 = ppe.pop('personne_seule')
-    ppe['eligi2'] = eligi2 = ppe.pop('couple_marie_ou_pacse')
-    ppe['eligi3'] = eligi3 = ppe.pop('increment_par_demi_part_de_qf_au_dela_de_1_ou_2')
-    ppe['seuil1'] = seuil1 = ppe.pop('revenu_d_activite_individuel_minimum')
-    ppe['seuil2'] = seuil2 = ppe.pop('revenu_d_activite_individuel_permettant_d_obtenir_la_ppe_a_taux_plein_cas_general')
-    ppe['seuil3'] = seuil3 = ppe.pop('revenu_d_activite_individuel_maximum_cas_general')
-    ppe['seuil4'] = seuil4 = ppe.pop('revenu_d_activite_individuel_permettant_d_obtenir_la_ppe_a_taux_plein_couples_mono_revenus')
-    ppe['seuil5'] = seuil5 = ppe.pop('revenu_d_activite_individuel_maximum_couples_mono_emploi_et_parents_isoles')
+    ppe['eligi1'] = eligi1 = ppe.pop('personne_seule')  # noqa F841
+    ppe['eligi2'] = eligi2 = ppe.pop('couple_marie_ou_pacse')  # noqa F841
+    ppe['eligi3'] = eligi3 = ppe.pop('increment_par_demi_part_de_qf_au_dela_de_1_ou_2')  # noqa F841
+    ppe['seuil1'] = seuil1 = ppe.pop('revenu_d_activite_individuel_minimum')  # noqa F841
+    ppe['seuil2'] = seuil2 = ppe.pop('revenu_d_activite_individuel_permettant_d_obtenir_la_ppe_a_taux_plein_cas_general')  # noqa F841
+    ppe['seuil3'] = seuil3 = ppe.pop('revenu_d_activite_individuel_maximum_cas_general')  # noqa F841
+    ppe['seuil4'] = seuil4 = ppe.pop('revenu_d_activite_individuel_permettant_d_obtenir_la_ppe_a_taux_plein_couples_mono_revenus')  # noqa F841
+    ppe['seuil5'] = seuil5 = ppe.pop('revenu_d_activite_individuel_maximum_couples_mono_emploi_et_parents_isoles')  # noqa F841
     credits_impot['ppe'].update(ppe.pop('supplements'))
-    ppe['monact'] = monact = ppe.pop('couples_mono_emploi')
-    ppe['pac'] = pac = ppe.pop('par_personne_a_charge')
+    ppe['monact'] = monact = ppe.pop('couples_mono_emploi')  # noqa F841
+    ppe['pac'] = pac = ppe.pop('par_personne_a_charge')  # noqa F841
     credits_impot['ppe'].update(ppe.pop('taux_de_la_ppe'))
-    ppe['taux1'] = taux1 = ppe.pop('phase_in')
-    ppe['taux2'] = taux2 = ppe.pop('phase_out_cas_general')
-    ppe['taux3'] = taux3 = ppe.pop('phase_out_couples_mono_emploi')
+    ppe['taux1'] = taux1 = ppe.pop('phase_in')  # noqa F841
+    ppe['taux2'] = taux2 = ppe.pop('phase_out_cas_general')  # noqa F841
+    ppe['taux3'] = taux3 = ppe.pop('phase_out_couples_mono_emploi')  # noqa F841
     minimun_de_ppe = ppe['minimun_de_ppe']
-    ppe['versmin'] = versmin = minimun_de_ppe.pop('montant')
+    ppe['versmin'] = versmin = minimun_de_ppe.pop('montant')  # noqa F841
 
     impot_revenu['plafond_qf'] = plafond_qf = impot_revenu.pop('plaf_qf')
     impot_revenu['plafond_qf'].update(plafond_qf.pop('plafond_des_avantages_procures_par_demi_part_de_qf'))
@@ -211,7 +211,7 @@ def transform_ipp_tree(root):
 
     # garde enfant
     credits_impot['garext'] = garext = impot_revenu.pop('gardenf')
-    credit_d_impot_pour_frais_de_garde_d_enfants = garext['credit_d_impot_pour_frais_de_garde_d_enfants']
+    credit_d_impot_pour_frais_de_garde_d_enfants = garext['credit_d_impot_pour_frais_de_garde_d_enfants']  # noqa F841
     credits_impot['garext'].update(garext.pop('credit_d_impot_pour_frais_de_garde_d_enfants'))
 
     # contribution haut revenus
@@ -231,9 +231,9 @@ def transform_ipp_tree(root):
         )
 
     reductions_impots['ecodev'] = ecodev = impot_revenu.pop('codev')
-    compte_epargne_co_developpement = ecodev['compte_epargne_co_developpement']
+    compte_epargne_co_developpement = ecodev['compte_epargne_co_developpement']  # noqa F841
     reductions_impots['ecodev'].update(ecodev.pop('compte_epargne_co_developpement'))
-    ecodev['taux_plafond'] = taux_plafond = ecodev.pop('plafond_en_du_revenu_net_global')
+    ecodev['taux_plafond'] = taux_plafond = ecodev.pop('plafond_en_du_revenu_net_global')  # noqa F841
 
     # reduction impot emprunt
     reductions_impots['intemp'] = intemp = impot_revenu.pop('habitat_princ_reduc')
@@ -681,9 +681,9 @@ def transform_ipp_tree(root):
     csg_activite_deductible['taux'] = csg_activite.pop('taux_csg_deductible')
     csg_activite['taux_global'] = csg_activite.pop('taux_global_csg')
 
-    csg['remplacement'] = csg_remplacement = prelevements_sociaux.pop('csg_remplacement')
+    csg['remplacement'] = csg_remplacement = prelevements_sociaux.pop('csg_remplacement')  # noqa F841
 
-    contributions['crds'] = crds = prelevements_sociaux.pop('crds')
+    contributions['crds'] = crds = prelevements_sociaux.pop('crds')  # noqa F841
 
     #
     deces_ac = prelevements_sociaux['deces_ac']
@@ -891,7 +891,7 @@ def transform_ipp_tree(root):
     modulation['plafond_tranche_1'] = modulation_ipp.pop('plafond_de_ressources_tranche_1')
     modulation['plafond_tranche_2'] = modulation_ipp.pop('plafond_de_ressources_tranche_2')
     af['majoration'] = prestations.pop('af_maj')
-    af['plafond_1998'] = af_plaf = prestations.pop('af_plaf')
+    af['plafond_1998'] = af_plaf = prestations.pop('af_plaf')  # noqa F841
     af['taux'] = taux = dict()
     taux['enf3'] = af.pop('par_enfant_supplementaire')
     af = prestations_familiales['af']
@@ -899,20 +899,20 @@ def transform_ipp_tree(root):
     af_dom = af['af_dom']
     majoration_pour_le_premier_enfant_en_de_la_bmaf_dom = af_dom['majoration_pour_le_premier_enfant_en_de_la_bmaf_dom']
     tranches_d_age = af_dom['tranches_d_age']
-    af_dom['taux_1er_enf_tranche_2_dom'] = taux_1er_enf_tranche_2_dom = majoration_pour_le_premier_enfant_en_de_la_bmaf_dom.pop('taux_de_la_tranche_2')
-    af_dom['taux_1er_enf_tranche_1_dom'] = taux_1er_enf_tranche_1_dom = majoration_pour_le_premier_enfant_en_de_la_bmaf_dom.pop('taux_de_la_tranche_1')
-    af_dom['age_1er_enf_tranche_1_dom'] = age_1er_enf_tranche_1_dom = tranches_d_age.pop(
+    af_dom['taux_1er_enf_tranche_2_dom'] = taux_1er_enf_tranche_2_dom = majoration_pour_le_premier_enfant_en_de_la_bmaf_dom.pop('taux_de_la_tranche_2')  # noqa F841
+    af_dom['taux_1er_enf_tranche_1_dom'] = taux_1er_enf_tranche_1_dom = majoration_pour_le_premier_enfant_en_de_la_bmaf_dom.pop('taux_de_la_tranche_1')  # noqa F841
+    af_dom['age_1er_enf_tranche_1_dom'] = age_1er_enf_tranche_1_dom = tranches_d_age.pop(  # noqa F841
         'age_debut_de_la_premiere_tranche')
-    af_dom['age_1er_enf_tranche_2_dom'] = age_1er_enf_tranche_2_dom = tranches_d_age.pop(
+    af_dom['age_1er_enf_tranche_2_dom'] = age_1er_enf_tranche_2_dom = tranches_d_age.pop(  # noqa F841
         'age_debut_de_la_deuxieme_tranche')
-    af_dom['taux_enfant_seul'] = taux_enfant_seul = af_dom.pop(
+    af_dom['taux_enfant_seul'] = taux_enfant_seul = af_dom.pop(  # noqa F841
         'les_allocations_familiales_pour_un_enfant_en_de_la_bmaf')
     prestations_familiales['af'].update(af.pop('majoration'))
     af['majoration_enfants'] = majoration_enfants = af.pop('majoration_pour_les_enfants_en_de_la_bmaf')
     majoration_enfants = af['majoration_enfants']
     af['majoration_enfants'].update(majoration_enfants.pop('allocation_forfaitaire'))
-    majoration_enfants['age_minimal_forfait'] = age_minimal_forfait = majoration_enfants.pop('age_minimum')
-    majoration_enfants['taux_allocation_forfaitaire'] = taux_allocation_forfaitaire = majoration_enfants.pop('taux')
+    majoration_enfants['age_minimal_forfait'] = age_minimal_forfait = majoration_enfants.pop('age_minimum')  # noqa F841
+    majoration_enfants['taux_allocation_forfaitaire'] = taux_allocation_forfaitaire = majoration_enfants.pop('taux')  # noqa F841
 
     del prestations['aa_plaf']
     #   aa_plaf:
@@ -939,7 +939,7 @@ def transform_ipp_tree(root):
     #     Cas des colocataires ou des propriétaires (1):
     #       Isolé ou couple avec un enfant ou une personne à charge: null  # Value must be a float
     #       Majoration par enfant de la majoration pour charges: null  # Value must be a float
-    aides_logement['al_pac'] = al_pac = prestations.pop('al_pac')
+    aides_logement['al_pac'] = al_pac = prestations.pop('al_pac')  # noqa F841
     # prestations['al_pac']
     #   al_pac:
     #     Âge limite pour les enfants à charge: null  # Value must be a float
@@ -954,49 +954,49 @@ def transform_ipp_tree(root):
     aides_logement['al_param2'] = al_param2 = prestations.pop('al_param2')
     al_param2['r1_en_du_rsa_socle'] = r1_en_du_rsa_socle = al_param2.pop('r1_en_du_rsa_socle_1')
     r1_en_du_rsa_socle = al_param2['r1_en_du_rsa_socle']
-    r1_en_du_rsa_socle['personne_isolee'] = personnes_isolees = r1_en_du_rsa_socle.pop(
+    r1_en_du_rsa_socle['personne_isolee'] = personnes_isolees = r1_en_du_rsa_socle.pop(  # noqa F841
         'personnes_isolees_en_du_rmi_de_base')
-    r1_en_du_rsa_socle['majoration_enfant_a_charge_supp'] = majoration_enfant_a_charge_supp = r1_en_du_rsa_socle.pop(
+    r1_en_du_rsa_socle['majoration_enfant_a_charge_supp'] = majoration_enfant_a_charge_supp = r1_en_du_rsa_socle.pop(  # noqa F841
         'majoration_par_enfant_a_charge_supplementaire_en_du_rmi_de_base')
-    r1_en_du_rsa_socle['couple_sans_enf'] = couple_sans_enf = r1_en_du_rsa_socle.pop('couples_en_du_rmi_de_base')
-    r1_en_du_rsa_socle['personne_isolee_ou_couple_avec_1_enf'] = personne_isolee_ou_couple_avec_1_enf = r1_en_du_rsa_socle.pop('personnes_isolees_ou_couples_avec_1_enfant_en_du_rmi_de_base')
-    r1_en_du_rsa_socle['personne_isolee_ou_couple_avec_2_enf'] = personne_isolee_ou_couple_avec_2_enf = r1_en_du_rsa_socle.pop('personnes_isolees_ou_couples_avec_2_enfants_en_du_rmi_de_base')
-    aides_logement['r1'] = r1 = al_param2.pop('r1_en_du_rsa_socle')
+    r1_en_du_rsa_socle['couple_sans_enf'] = couple_sans_enf = r1_en_du_rsa_socle.pop('couples_en_du_rmi_de_base')  # noqa F841
+    r1_en_du_rsa_socle['personne_isolee_ou_couple_avec_1_enf'] = personne_isolee_ou_couple_avec_1_enf = r1_en_du_rsa_socle.pop('personnes_isolees_ou_couples_avec_1_enfant_en_du_rmi_de_base')  # noqa F841
+    r1_en_du_rsa_socle['personne_isolee_ou_couple_avec_2_enf'] = personne_isolee_ou_couple_avec_2_enf = r1_en_du_rsa_socle.pop('personnes_isolees_ou_couples_avec_2_enfants_en_du_rmi_de_base')  # noqa F841
+    aides_logement['r1'] = r1 = al_param2.pop('r1_en_du_rsa_socle')  # noqa F841
 
     al_param2['r2_ipp'] = r2_ipp = al_param2.pop('r2_en_de_la_bmaf_1')
-    r2_ipp['majoration_par_enf_supp_a_charge'] = majoration_par_enf_supp_a_charge = r2_ipp.pop(
+    r2_ipp['majoration_par_enf_supp_a_charge'] = majoration_par_enf_supp_a_charge = r2_ipp.pop(  # noqa F841
         'majoration_par_enfant_a_charge_supplementaire_en_de_la_bmaf_au_01_01_n_2')
-    r2_ipp['personnes_isolees_ou_couples_avec_2_enf'] = personnes_isolees_ou_couples_avec_2_enf = r2_ipp.pop(
+    r2_ipp['personnes_isolees_ou_couples_avec_2_enf'] = personnes_isolees_ou_couples_avec_2_enf = r2_ipp.pop(  # noqa F841
         'personnes_isolees_ou_couples_avec_2_enfants_en_de_la_bmaf_au_01_01_n_2')
-    aides_logement['r2'] = r2 = al_param2.pop('r2_ipp')
+    aides_logement['r2'] = r2 = al_param2.pop('r2_ipp')  # noqa F841
 
     del prestations['al_plaf_loc2']['loyer_de_reference']
 
     aides_logement['al_plaf_loc2'] = al_plaf_loc2 = prestations.pop('al_plaf_loc2')
     al_plaf_loc2['taux_participation_fam_ipp'] = taux_participation_fam_ipp = al_plaf_loc2.pop('tf')
     taux_participation_fam_ipp = al_plaf_loc2['taux_participation_fam_ipp']
-    taux_participation_fam_ipp['taux_1_adulte'] = taux_1_adulte = taux_participation_fam_ipp.pop('personnes_isolees')
-    taux_participation_fam_ipp['taux_2_adulte'] = taux_2_adulte = taux_participation_fam_ipp.pop('couples_sans_enfant')
-    taux_participation_fam_ipp['taux_1_enf'] = taux_1_enf = taux_participation_fam_ipp.pop(
+    taux_participation_fam_ipp['taux_1_adulte'] = taux_1_adulte = taux_participation_fam_ipp.pop('personnes_isolees')  # noqa F841
+    taux_participation_fam_ipp['taux_2_adulte'] = taux_2_adulte = taux_participation_fam_ipp.pop('couples_sans_enfant')  # noqa F841
+    taux_participation_fam_ipp['taux_1_enf'] = taux_1_enf = taux_participation_fam_ipp.pop(  # noqa F841
         'personnes_seules_et_couples_avec_1_enfant')
-    taux_participation_fam_ipp['taux_2_enf'] = taux_2_enf = taux_participation_fam_ipp.pop(
+    taux_participation_fam_ipp['taux_2_enf'] = taux_2_enf = taux_participation_fam_ipp.pop(  # noqa F841
         'personnes_seules_et_couples_avec_2_enfants')
-    taux_participation_fam_ipp['taux_3_enf'] = taux_3_enf = taux_participation_fam_ipp.pop(
+    taux_participation_fam_ipp['taux_3_enf'] = taux_3_enf = taux_participation_fam_ipp.pop(  # noqa F841
         'personnes_seules_et_couples_avec_3_enfants')
-    taux_participation_fam_ipp['taux_4_enf'] = taux_4_enf = taux_participation_fam_ipp.pop(
+    taux_participation_fam_ipp['taux_4_enf'] = taux_4_enf = taux_participation_fam_ipp.pop(  # noqa F841
         'personnes_seules_et_couples_avec_4_enfants')
-    taux_participation_fam_ipp['taux_enf_supp'] = taux_enf_supp = taux_participation_fam_ipp.pop(
+    taux_participation_fam_ipp['taux_enf_supp'] = taux_enf_supp = taux_participation_fam_ipp.pop(  # noqa F841
         'variation_de_tf_par_enfant_supplementaire')
-    aides_logement['taux_participation_fam'] = taux_participation_fam = al_plaf_loc2.pop('taux_participation_fam_ipp')
+    aides_logement['taux_participation_fam'] = taux_participation_fam = al_plaf_loc2.pop('taux_participation_fam_ipp')  # noqa F841
     del taux_participation_fam_ipp
     al_plaf_loc2['taux_participation_loyer_ipp'] = taux_participation_loyer_ipp = al_plaf_loc2.pop('tl')
-    taux_participation_loyer_ipp['taux_tranche_1'] = taux_tranche_1 = taux_participation_loyer_ipp.pop(
+    taux_participation_loyer_ipp['taux_tranche_1'] = taux_tranche_1 = taux_participation_loyer_ipp.pop(  # noqa F841
         'tl_pour_la_1ere_tranche')
-    taux_participation_loyer_ipp['taux_tranche_2'] = taux_tranche_2 = taux_participation_loyer_ipp.pop(
+    taux_participation_loyer_ipp['taux_tranche_2'] = taux_tranche_2 = taux_participation_loyer_ipp.pop(  # noqa F841
         'tl_pour_la_2eme_tranche')
-    taux_participation_loyer_ipp['taux_tranche_3'] = taux_tranche_3 = taux_participation_loyer_ipp.pop(
+    taux_participation_loyer_ipp['taux_tranche_3'] = taux_tranche_3 = taux_participation_loyer_ipp.pop(  # noqa F841
         'tl_pour_la_3eme_tranche')
-    aides_logement['taux_participation_loyer'] = taux_participation_loyer = al_plaf_loc2.pop(
+    aides_logement['taux_participation_loyer'] = taux_participation_loyer = al_plaf_loc2.pop(  # noqa F841
         'taux_participation_loyer_ipp')
     # par zone
     aides_logement['loyers_plafond'] = loyers_plafond = dict()
@@ -1024,10 +1024,10 @@ def transform_ipp_tree(root):
     del taux_participation_loyer_ipp
     aides_logement['al_min'] = al_min = prestations.pop('al_min')
     al_min['montant_min_mensuel'] = montant_min_mensuel = al_min.pop('montant_minimal_mensuel')
-    montant_min_mensuel['montant_min_apl_al'] = montant_min_apl_al = montant_min_mensuel.pop('apl_ou_al')
+    montant_min_mensuel['montant_min_apl_al'] = montant_min_apl_al = montant_min_mensuel.pop('apl_ou_al')  # noqa F841
 
     aides_logement['participation_min'] = participation_min = dict()
-    aides_logement['montant_forfaitaire'] = montant_forfaitaire = al_plaf_loc2.pop(
+    aides_logement['montant_forfaitaire'] = montant_forfaitaire = al_plaf_loc2.pop(  # noqa F841
         'montant_forfaitaire_de_la_participation_minimale_po')
     aides_logement['taux'] = taux = al_plaf_loc2.pop('montant_proportionnel_de_la_participation_minimale_po')
     participation_min['montant_forfaitaire'] = aides_logement.pop('montant_forfaitaire')
@@ -1042,68 +1042,68 @@ def transform_ipp_tree(root):
     prestations_familiales['ars'] = ars = dict()
     ars['ars_cond'] = ars_cond = prestations.pop('ars_cond')
     ars_m = prestations.pop('ars_m')
-    ars_maj = prestations.pop('ars_maj')
+    ars_maj = prestations.pop('ars_maj')  # noqa F841
     ars_min = prestations.pop('ars_min')
     ars_plaf = prestations.pop('ars_plaf')
     ars_cond['age_entree_primaire'] = age_entree_primaire = ars_cond.pop('age_minimal_de_l_enfant_1')
     ars_cond['age_sortie_lycee'] = age_sortie_lycee = ars_cond.pop('age_maximal_de_l_enfant_2')
-    ars['age_entree_primaire'] = age_entree_primaire = ars_cond.pop('age_entree_primaire')
-    ars['age_sortie_lycee'] = age_sortie_lycee = ars_cond.pop('age_sortie_lycee')
-    ars['majoration_par_enf_supp'] = majoration_par_enf_supp = ars_plaf.pop(
+    ars['age_entree_primaire'] = age_entree_primaire = ars_cond.pop('age_entree_primaire')  # noqa F841
+    ars['age_sortie_lycee'] = age_sortie_lycee = ars_cond.pop('age_sortie_lycee')  # noqa F841
+    ars['majoration_par_enf_supp'] = majoration_par_enf_supp = ars_plaf.pop(  # noqa F841
         'majoration_par_enfant_en_du_plafond_de_ressources_avec_0_enfant')
-    ars['montant_seuil_non_versement'] = montant_seuil_non_versement = ars_min.pop('montant_minimum_verse')
-    ars['plafond_ressources'] = plafond_ressources = ars_plaf.pop('plafond_de_ressources_0_enfant')
-    ars['taux_primaire'] = taux_primaire = ars_m.pop('enfants_entre_6_et_10_ans_en_de_la_bmaf_1')
-    ars['taux_college'] = taux_college = ars_m.pop('enfants_entre_11_et_14_ans_en_de_la_bmaf_2')
-    ars['taux_lycee'] = taux_lycee = ars_m.pop('enfants_15_ans_et_en_de_la_bmaf_3')
+    ars['montant_seuil_non_versement'] = montant_seuil_non_versement = ars_min.pop('montant_minimum_verse')  # noqa F841
+    ars['plafond_ressources'] = plafond_ressources = ars_plaf.pop('plafond_de_ressources_0_enfant')  # noqa F841
+    ars['taux_primaire'] = taux_primaire = ars_m.pop('enfants_entre_6_et_10_ans_en_de_la_bmaf_1')  # noqa F841
+    ars['taux_college'] = taux_college = ars_m.pop('enfants_entre_11_et_14_ans_en_de_la_bmaf_2')  # noqa F841
+    ars['taux_lycee'] = taux_lycee = ars_m.pop('enfants_15_ans_et_en_de_la_bmaf_3')  # noqa F841
 
     prestations_familiales['cf'] = cf = dict()
     cf = prestations_familiales['cf']
     prestations_familiales['cf'].update(prestations.pop('cf_maj'))
     prestations_familiales['cf'].update(prestations.pop('cf_plaf'))
     prestations_familiales['cf'].update(prestations.pop('cf_cm'))
-    cf['age_min'] = age_min = cf.pop('age_minimal_des_enfants_pris_en_compte')
-    cf['age_max'] = age_max = cf.pop('age_maximal_des_enfants_pris_en_compte')
+    cf['age_min'] = age_min = cf.pop('age_minimal_des_enfants_pris_en_compte')  # noqa F841
+    cf['age_max'] = age_max = cf.pop('age_maximal_des_enfants_pris_en_compte')  # noqa F841
     majoration = cf['majoration']
-    cf['majoration_plafond_biact_isole'] = majoration_plafond_biact_isole = majoration.pop(
+    cf['majoration_plafond_biact_isole'] = majoration_plafond_biact_isole = majoration.pop(  # noqa F841
         'biactifs_et_parents_isoles')
-    cf['majoration_plafond_2_premiers_enf'] = majoration_plafond_2_premiers_enf = majoration.pop(
+    cf['majoration_plafond_2_premiers_enf'] = majoration_plafond_2_premiers_enf = majoration.pop(  # noqa F841
         '1er_et_2eme_enfants_en_du_plafond_de_ressources_avec_0_enfant')
-    cf['majoration_plafond_3eme_enf_et_plus'] = majoration_plafond_3eme_enf_et_plus = majoration.pop(
+    cf['majoration_plafond_3eme_enf_et_plus'] = majoration_plafond_3eme_enf_et_plus = majoration.pop(  # noqa F841
         '3eme_enfant_et_plus_en_du_plafond_de_ressources_avec_0_enfant')
     complement_familial_en_de_la_bmaf_en_de_la_bmaf = cf['complement_familial_en_de_la_bmaf_en_de_la_bmaf']
-    cf['taux_cf_base'] = taux_cf_base = complement_familial_en_de_la_bmaf_en_de_la_bmaf.pop('montant_de_base')
-    cf['taux_cf_majore'] = taux_cf_majore = complement_familial_en_de_la_bmaf_en_de_la_bmaf.pop('montant_majore')
+    cf['taux_cf_base'] = taux_cf_base = complement_familial_en_de_la_bmaf_en_de_la_bmaf.pop('montant_de_base')  # noqa F841
+    cf['taux_cf_majore'] = taux_cf_majore = complement_familial_en_de_la_bmaf_en_de_la_bmaf.pop('montant_majore')  # noqa F841
     prestations_familiales['cf'].update(prestations.pop('cf_cm_dom'))
-    cf['age_maximal_dom'] = age_maximal_dom = cf.pop('age_maximal')
-    cf['age_minimal_dom'] = age_minimal_dom = cf.pop('age_minimal')
+    cf['age_maximal_dom'] = age_maximal_dom = cf.pop('age_maximal')  # noqa F841
+    cf['age_minimal_dom'] = age_minimal_dom = cf.pop('age_minimal')  # noqa F841
     complement_familial_en_de_la_bmaf_dom = cf['complement_familial_en_de_la_bmaf_dom']
-    cf['taux_base_dom'] = taux_base_dom = complement_familial_en_de_la_bmaf_dom.pop('montant_de_base')
-    cf['taux_majore_dom'] = taux_majore_dom = complement_familial_en_de_la_bmaf_dom.pop('montant_majore')
-    cf['nombre_enfant_minimum_dom'] = nombre_enfant_minimum_dom = cf.pop('nombre_d_enfant_minimum')
-    cf['age_en_dessous_duquel_l_enfant_prive_la_famille_du_cf_dom'] = age_en_dessous_duquel_l_enfant_prive_la_famille_du_cf_dom = cf.pop('age_en_dessous_duquel_l_enfant_prive_la_famille_du_complement_familiale')
+    cf['taux_base_dom'] = taux_base_dom = complement_familial_en_de_la_bmaf_dom.pop('montant_de_base')  # noqa F841
+    cf['taux_majore_dom'] = taux_majore_dom = complement_familial_en_de_la_bmaf_dom.pop('montant_majore')  # noqa F841
+    cf['nombre_enfant_minimum_dom'] = nombre_enfant_minimum_dom = cf.pop('nombre_d_enfant_minimum')  # noqa F841
+    cf['age_en_dessous_duquel_l_enfant_prive_la_famille_du_cf_dom'] = age_en_dessous_duquel_l_enfant_prive_la_famille_du_cf_dom = cf.pop('age_en_dessous_duquel_l_enfant_prive_la_famille_du_complement_familiale')  # noqa F841
 
     # ape
     prestations_familiales['ape'] = ape = dict()
     prestations_familiales['ape'] = ape = prestations.pop('ape')
     ape = prestations_familiales['ape']
-    ape['age_max_enfant'] = age_max_enfant = ape.pop('age_maximal_de_l_enfant_1')
+    ape['age_max_enfant'] = age_max_enfant = ape.pop('age_maximal_de_l_enfant_1')  # noqa F841
     montant_mensuel_en_de_la_base_de_calcul = ape['montant_mensuel_en_de_la_base_de_calcul']
-    ape['taux_activite_sup_50'] = taux_activite_sup_50 = montant_mensuel_en_de_la_base_de_calcul.pop(
+    ape['taux_activite_sup_50'] = taux_activite_sup_50 = montant_mensuel_en_de_la_base_de_calcul.pop(  # noqa F841
         'pour_une_activite_de_plus_de_85h_mois_50_duree_legale')
-    ape['taux_activite_sup_80'] = taux_activite_sup_80 = montant_mensuel_en_de_la_base_de_calcul.pop(
+    ape['taux_activite_sup_80'] = taux_activite_sup_80 = montant_mensuel_en_de_la_base_de_calcul.pop(  # noqa F841
         'pour_une_activite_ou_formation_comprise_entre_50_et_80_de_la_duree_legale')
-    ape['taux_inactivite'] = taux_inactivite = montant_mensuel_en_de_la_base_de_calcul.pop('a_taux_plein')
+    ape['taux_inactivite'] = taux_inactivite = montant_mensuel_en_de_la_base_de_calcul.pop('a_taux_plein')  # noqa F841
     # apje
     prestations_familiales['apje'] = apje = dict()
     prestations_familiales['apje'].update(prestations.pop('apje_cm'))
     prestations_familiales['apje'].update(prestations.pop('apje_plaf'))
     apje = prestations_familiales['apje']
-    apje['age_max_dernier_enf'] = age_max_dernier_enf = apje.pop('age_limite_des_enfants_ouvrant_droit_a_l_apje_2')
+    apje['age_max_dernier_enf'] = age_max_dernier_enf = apje.pop('age_limite_des_enfants_ouvrant_droit_a_l_apje_2')  # noqa F841
     majoration_en_ou_en_en_du_plafond_de_ressources_avec_0_enfant = apje[
         'majoration_en_ou_en_en_du_plafond_de_ressources_avec_0_enfant']
-    apje['taux_enfant_1_et_2'] = taux_enfant_1_et_2 = majoration_en_ou_en_en_du_plafond_de_ressources_avec_0_enfant.pop('1er_et_2eme_enfant')
-    apje['taux_enfant_3_et_plus'] = taux_enfant_3_et_plus = majoration_en_ou_en_en_du_plafond_de_ressources_avec_0_enfant.pop('3eme_enfant_et_plus')
+    apje['taux_enfant_1_et_2'] = taux_enfant_1_et_2 = majoration_en_ou_en_en_du_plafond_de_ressources_avec_0_enfant.pop('1er_et_2eme_enfant')  # noqa F841
+    apje['taux_enfant_3_et_plus'] = taux_enfant_3_et_plus = majoration_en_ou_en_en_du_plafond_de_ressources_avec_0_enfant.pop('3eme_enfant_et_plus')  # noqa F841
     apje['taux'] = taux = apje.pop('montant_de_l_apje_en_de_la_bmaf')
 
     del prestations['paje_cm2']['conditions_pour_qu_un_enfant_adopte_ouvre_droit_a_la_prime_a_son_arrivee']
@@ -1187,11 +1187,11 @@ def transform_ipp_tree(root):
     montant_en_de_la_bmaf = paje['montant_en_de_la_bmaf']
     prime_naissance['prime_tx'] = montant_en_de_la_bmaf.pop('prime_a_la_naissance_de_la_paje_1')
 
-    #autres
+    # autres
     def_pac = prestations['def_pac']
     af['seuil_rev_taux'] = def_pac.pop('revenu_plafond_pour_les_personnes_a_charge_n_etant_plus_sous_l_obligation_scolaire_en_du_smic_2')
-    bmaf = prestations['bmaf']
-    af['bmaf_ipp'] = bmaf_ipp =prestations.pop('bmaf')
+    bmaf = prestations['bmaf']  # noqa F841
+    af['bmaf_ipp'] = bmaf_ipp = prestations.pop('bmaf')
     af['bmaf'] = bmaf_ipp.pop('base_mensuelle_de_calcul_des_allocations_familiales_bmaf')
     af['taux'] = taux = dict()
     taux['enf2'] = af.pop('2_enfants')
@@ -1199,9 +1199,9 @@ def transform_ipp_tree(root):
     prestations['minima_sociaux'] = minima_sociaux = dict()
     minima_sociaux['ada'] = ada = dict()
     minima_sociaux['ada'].update(prestations.pop('ada'))
-    ada['majoration_pers_supp'] = majoration_pers_supp = ada.pop(
+    ada['majoration_pers_supp'] = majoration_pers_supp = ada.pop(  # noqa F841
         'majoration_par_personne_supplementaire_maximum_10_par_famille')
-    ada['supplement_non_hebergement'] = supplement_non_hebergement = ada.pop(
+    ada['supplement_non_hebergement'] = supplement_non_hebergement = ada.pop(  # noqa F841
         'supplement_si_non_heberge_dans_centres_d_accueil_ou_hebergement_d_urgence')
 
     del prestations['asi_cond']['condition_d_age_et_de_ressources']
@@ -1211,24 +1211,23 @@ def transform_ipp_tree(root):
     asi = minima_sociaux['asi']
     montant = asi['montant']
     plafond_de_ressources = asi['plafond_de_ressources']
-    asi['plafond_ressource_seul'] = plafond_ressource_seul = plafond_de_ressources.pop('personnes_seules')
-    asi['plafond_ressource_couple'] = plafond_ressource_couple = plafond_de_ressources.pop('couples')
-    asi['montant_seul'] = montant_seul = montant.pop('1_allocataire')
-    asi['montant_couple'] = montant_couple = montant.pop('2_allocataires')
+    asi['plafond_ressource_seul'] = plafond_ressource_seul = plafond_de_ressources.pop('personnes_seules')  # noqa F841
+    asi['plafond_ressource_couple'] = plafond_ressource_couple = plafond_de_ressources.pop('couples')  # noqa F841
+    asi['montant_seul'] = montant_seul = montant.pop('1_allocataire')  # noqa F841
+    asi['montant_couple'] = montant_couple = montant.pop('2_allocataires')  # noqa F841
 
     prestations_familiales['asf'] = prestations.pop('asf')
     asf = prestations_familiales['asf']
     montant_de_l_asf_en_de_la_bmaf = asf['montant_de_l_asf_en_de_la_bmaf']
-    asf['taux_1_parent'] = taux_1_parent = montant_de_l_asf_en_de_la_bmaf.pop('orphelin_ou_assimile_d_un_seul_parent')
-    asf['taux_2_parents'] = taux_2_parents = montant_de_l_asf_en_de_la_bmaf.pop('orphelin_ou_assimile_des_deux_parents')
+    asf['taux_1_parent'] = taux_1_parent = montant_de_l_asf_en_de_la_bmaf.pop('orphelin_ou_assimile_d_un_seul_parent')  # noqa F841
+    asf['taux_2_parents'] = taux_2_parents = montant_de_l_asf_en_de_la_bmaf.pop('orphelin_ou_assimile_des_deux_parents')  # noqa F841
 
     minima_sociaux['rmi'] = rmi = dict()
-    rmi = minima_sociaux['rmi']
+    rmi = minima_sociaux['rmi']  # noqa F841
     minima_sociaux['rmi'].update(prestations.pop('rmi_cond'))
     minima_sociaux['rmi'].update(prestations.pop('rmi_fl'))
     minima_sociaux['rmi'].update(prestations.pop('rmi_m'))
     minima_sociaux['rmi'].update(prestations.pop('rmi_maj'))
-
 
     minima_sociaux['rsa'] = rsa = dict()
     rsa = minima_sociaux['rsa']
@@ -1236,10 +1235,10 @@ def transform_ipp_tree(root):
     minima_sociaux['rsa'].update(prestations.pop('rsa_maj'))
     minima_sociaux['rsa'].update(prestations.pop('rsa_fl'))
     minima_sociaux['rsa'].update(prestations.pop('rsa_cond'))
-    rsa['duree_min_titre_sejour'] = duree_min_titre_sejour = rsa.pop('duree_minimum_du_titre_de_sejour_annee')
+    rsa['duree_min_titre_sejour'] = duree_min_titre_sejour = rsa.pop('duree_minimum_du_titre_de_sejour_annee')  # noqa F841
     rsa['majoration_parent_isole'] = majoration_parent_isole = rsa.pop('majoration_pour_isolement_en_mois')
     majoration_parent_isole = rsa['majoration_parent_isole']
-    majoration_parent_isole['age_limite_enfant'] = age_limite_enfant = majoration_parent_isole.pop(
+    majoration_parent_isole['age_limite_enfant'] = age_limite_enfant = majoration_parent_isole.pop(  # noqa F841
         'age_limite_de_l_enfant_3_en_annee')
     rsa['majoration_rsa'] = majoration_rsa = rsa.pop('majoration_montant_maximal_en_de_la_base_rsa')
     majoration_rsa['taux_deuxieme_personne'] = taux_deuxieme_personne = majoration_rsa.pop(
@@ -1249,16 +1248,16 @@ def transform_ipp_tree(root):
     majoration_rsa['taux_personne_supp'] = taux_personne_supp = majoration_rsa.pop('par_enfant_supplementaire')
     rsa['forfait_logement'] = forfait_logement = rsa.pop('forfait_logement_en_du_montant_forfaitaire_du_rsa')
     forfait_logement = rsa['forfait_logement']
-    forfait_logement['taux_1_personne'] = taux_1_personne = forfait_logement.pop('1_personne')
-    forfait_logement['taux_2_personnes'] = taux_2_personnes = forfait_logement.pop('2_personnes')
-    forfait_logement['taux_3_personnes_ou_plus'] = taux_3_personnes_ou_plus = forfait_logement.pop(
+    forfait_logement['taux_1_personne'] = taux_1_personne = forfait_logement.pop('1_personne')  # noqa F841
+    forfait_logement['taux_2_personnes'] = taux_2_personnes = forfait_logement.pop('2_personnes')  # noqa F841
+    forfait_logement['taux_3_personnes_ou_plus'] = taux_3_personnes_ou_plus = forfait_logement.pop(  # noqa F841
         '3_personnes_ou_plus')
 
     minima_sociaux['api'] = api = dict()
     minima_sociaux['api'].update(prestations.pop('api_cond'))
     minima_sociaux['api'].update(prestations.pop('api_m'))
     api = minima_sociaux['api']
-    api['age_limite'] = age_limite = api.pop('age_limite_de_l_enfant_en_annee_2')
+    api['age_limite'] = age_limite = api.pop('age_limite_de_l_enfant_en_annee_2')  # noqa F841
     montant_en_de_la_bmaf = api['montant_en_de_la_bmaf']
     minima_sociaux['api'].update(api.pop('montant_en_de_la_bmaf'))
 
@@ -1266,37 +1265,37 @@ def transform_ipp_tree(root):
     ppa = minima_sociaux['ppa']
     minima_sociaux['ppa'].update(prestations.pop('pa_fl'))
     minima_sociaux['ppa'].update(prestations.pop('pa_m'))
-    ppa['pente'] = pente = ppa.pop('majoration_des_ressources_sur_les_revenus_d_activite')
+    ppa['pente'] = pente = ppa.pop('majoration_des_ressources_sur_les_revenus_d_activite')  # noqa F841
     majoration_isolement_en_de_la_base_rsa = ppa['majoration_isolement_en_de_la_base_rsa']
-    ppa['majoration_isolement_femme_enceinte'] = majoration_isolement_femme_enceinte = majoration_isolement_en_de_la_base_rsa.pop(
+    ppa['majoration_isolement_femme_enceinte'] = majoration_isolement_femme_enceinte = majoration_isolement_en_de_la_base_rsa.pop(  # noqa F841
         'femmes_enceintes')
-    ppa['majoration_isolement_enf_charge'] = majoration_isolement_enf_charge = majoration_isolement_en_de_la_base_rsa.pop(
+    ppa['majoration_isolement_enf_charge'] = majoration_isolement_enf_charge = majoration_isolement_en_de_la_base_rsa.pop(  # noqa F841
         'par_enfant_a_charge')
     bonification = ppa['bonification']
-    bonification['seuil_bonification'] = seuil_bonification = bonification.pop(
+    bonification['seuil_bonification'] = seuil_bonification = bonification.pop(  # noqa F841
         'seuil_de_salaire_minimum_pour_beneficier_de_la_bonification_en_multiple_du_smic_horaire_brut')
-    bonification['seuil_max_bonification'] = seuil_max_bonification = bonification.pop(
+    bonification['seuil_max_bonification'] = seuil_max_bonification = bonification.pop(  # noqa F841
         'seuil_de_salaire_pour_beneficier_de_la_bonification_maximale_en_multiple_du_smic_horaire_brut')
-    bonification['taux_bonification_max'] = taux_bonification_max = bonification.pop(
+    bonification['taux_bonification_max'] = taux_bonification_max = bonification.pop(  # noqa F841
         'montant_maximal_de_la_bonification_en_de_la_base_rsa')
-    ppa['seuil_non_versement'] = seuil_non_versement = ppa.pop('montant_minimum_verse')
+    ppa['seuil_non_versement'] = seuil_non_versement = ppa.pop('montant_minimum_verse')  # noqa F841
     minima_sociaux['ppa'].update(ppa.pop('majoration_montant_maximal_en_de_la_base_rsa'))
-    ppa['taux_deuxieme_personne'] = taux_deuxieme_personne = ppa.pop('couples_ou_seul_avec_un_enfant')
-    ppa['taux_troisieme_personne'] = taux_troisieme_personne = ppa.pop('couple_1_enfant_ou_pour_le_deuxieme_enfant_1')
-    ppa['taux_personne_supp'] = taux_personne_supp = ppa.pop('par_enfant_supplementaire')
+    ppa['taux_deuxieme_personne'] = taux_deuxieme_personne = ppa.pop('couples_ou_seul_avec_un_enfant')  # noqa F841
+    ppa['taux_troisieme_personne'] = taux_troisieme_personne = ppa.pop('couple_1_enfant_ou_pour_le_deuxieme_enfant_1')  # noqa F841
+    ppa['taux_personne_supp'] = taux_personne_supp = ppa.pop('par_enfant_supplementaire')  # noqa F841
 
     minima_sociaux['aah'] = aah = dict()
     aah = minima_sociaux['aah']
     minima_sociaux['aah'].update(prestations.pop('aah'))
-    aah['tx_plaf_supp'] = tx_plaf_supp = aah.pop('majoration_par_enfant_supplementaire')
+    aah['tx_plaf_supp'] = tx_plaf_supp = aah.pop('majoration_par_enfant_supplementaire')  # noqa F841
 
     minima_sociaux['caah'] = caah = dict()
     caah = minima_sociaux['caah']
     minima_sociaux['caah'].update(prestations.pop('caah'))
-    caah['garantie_ressources'] = garantie_ressources = caah.pop(
+    caah['garantie_ressources'] = garantie_ressources = caah.pop(  # noqa F841
         'montant_mensuel_de_la_garantie_de_ressources_pour_les_personnes_handicapees')
-    caah['majoration_vie_autonome'] = majoration_vie_autonome = caah.pop('majoration_pour_la_vie_autonome')
-    caah['montant_complement_ressources'] = montant_complement_ressources = caah.pop(
+    caah['majoration_vie_autonome'] = majoration_vie_autonome = caah.pop('majoration_pour_la_vie_autonome')  # noqa F841
+    caah['montant_complement_ressources'] = montant_complement_ressources = caah.pop(  # noqa F841
         'montant_mensuel_du_complement_de_ressources_aux_adultes_handicapes_1')
 
     # Aefa
@@ -1331,12 +1330,12 @@ def transform_ipp_tree(root):
     minima_sociaux['aspa'].update(prestations.pop('aspa'))
     aspa = minima_sociaux['aspa']
     minima_sociaux['aspa'].update(aspa.pop('montant_maximum_annuel'))
-    aspa['montant_annuel_couple'] = montant_annuel_couple = aspa.pop(
+    aspa['montant_annuel_couple'] = montant_annuel_couple = aspa.pop(  # noqa F841
         'couple_ou_lorsqu_un_seul_conjoint_est_beneficiaire_de_l_aspa_et_l_autre_de_l_allocation_supplementaire_d_invalidite')
-    aspa['montant_annuel_seul'] = montant_annuel_seul = aspa.pop(
+    aspa['montant_annuel_seul'] = montant_annuel_seul = aspa.pop(  # noqa F841
         'personnes_seules_ou_lorsque_un_seul_des_conjoints_beneficie_de_l_aspa')
     minima_sociaux['aspa'].update(aspa.pop('plafond_de_ressources'))
-    aspa['plafond_ressources_couple'] = plafond_ressources_couple = aspa.pop('couples')
+    aspa['plafond_ressources_couple'] = plafond_ressources_couple = aspa.pop('couples')  # noqa F841
     # aspa['plafond_ressources_seul'] = plafond_ressources_seul = aspa.pop('personnes_seules') TODO: modifier aspa.py pour que ça passe en 2005 avec le merge
 
     # root['retraites'] = root.pop('baremes_ipp_retraites_pensions')
@@ -1366,39 +1365,39 @@ def transform_ipp_tree(root):
 
     root['taxation_capital'] = taxation_capital = root.pop('baremes_ipp_taxation_capital')
     taxation_capital['isf'] = isf = taxation_capital.pop('bareme_isf')
-    seuils_des_tranches_du_bareme_de_l_isf = isf['seuils_des_tranches_du_bareme_de_l_isf']
-    taux_marginaux_des_tranches_du_bareme_de_l_isf = isf['taux_marginaux_des_tranches_du_bareme_de_l_isf']
+    seuils_des_tranches_du_bareme_de_l_isf = isf['seuils_des_tranches_du_bareme_de_l_isf']  # noqa F841
+    taux_marginaux_des_tranches_du_bareme_de_l_isf = isf['taux_marginaux_des_tranches_du_bareme_de_l_isf']  # noqa F841
     isf['seuils_des_tranches_du_bareme_de_l_isf'] = tax_scale(
         bases_tree = isf.pop('seuils_des_tranches_du_bareme_de_l_isf'),
         rates_tree = isf.pop('taux_marginaux_des_tranches_du_bareme_de_l_isf'),
         )
 
-    isf['bareme'] = bareme = isf.pop('seuils_des_tranches_du_bareme_de_l_isf')
+    isf['bareme'] = bareme = isf.pop('seuils_des_tranches_du_bareme_de_l_isf')  # noqa F841
     isf['decote'] = decote = taxation_capital.pop('decote')
     decote = isf['decote']
-    decote['isf_taux_decote'] = isf_taux_decote = decote.pop('taux_de_la_decote_isf')
-    decote['isf_base_decote'] = isf_base_decote = decote.pop('parametre_de_calcul_de_la_decote_isf')
-    decote['isf_borne_sup_decote'] = isf_borne_sup_decote = decote.pop('borne_superieure_de_la_decote')
-    decote['isf_borne_min_decote'] = isf_borne_min_decote = decote.pop('borne_inferieure_de_la_decote')
+    decote['isf_taux_decote'] = isf_taux_decote = decote.pop('taux_de_la_decote_isf')  # noqa F841
+    decote['isf_base_decote'] = isf_base_decote = decote.pop('parametre_de_calcul_de_la_decote_isf')  # noqa F841
+    decote['isf_borne_sup_decote'] = isf_borne_sup_decote = decote.pop('borne_superieure_de_la_decote')  # noqa F841
+    decote['isf_borne_min_decote'] = isf_borne_min_decote = decote.pop('borne_inferieure_de_la_decote')  # noqa F841
 
     taxation_capital['isf'].update(taxation_capital.pop('plaf'))
     taxation_capital['isf'].update(taxation_capital.pop('reduc_exo'))
     taxation_capital['isf'].update(taxation_capital.pop('isf_reduc_impot'))
     isf['reduc_invest_don'] = reduc_invest_don = isf.pop('reduction_pour_investissements_au_capital_de_pme')
     reduc_invest_don = isf['reduc_invest_don']
-    reduc_invest_don['plafond_invest_pme'] = plafond_invest_pme = reduc_invest_don.pop(
+    reduc_invest_don['plafond_invest_pme'] = plafond_invest_pme = reduc_invest_don.pop(  # noqa F841
         'plafond_pour_investissement_dans_les_pme')
-    reduc_invest_don['taux_invest_direct_soc_holding'] = taux_invest_direct_soc_holding = reduc_invest_don.pop(
+    reduc_invest_don['taux_invest_direct_soc_holding'] = taux_invest_direct_soc_holding = reduc_invest_don.pop(  # noqa F841
         'taux_pour_investissement_direct_soc_holdings_fip_fcpi')
     isf['reduc_invest_don'].update(isf.pop('reduction_pour_dons_a_certains_organismes_d_interet_general'))
-    reduc_invest_don['taux_don_interet_general'] = taux_don_interet_general = reduc_invest_don.pop(
+    reduc_invest_don['taux_don_interet_general'] = taux_don_interet_general = reduc_invest_don.pop(  # noqa F841
         'taux_pour_dons_a_certains_organismes_d_interet_general')
     isf['reduc_pac'] = reduc_pac = dict()
     reduc_pac = isf['reduc_pac']
-    reduc_pac['reduc_enf_garde'] = reduc_enf_garde = isf.pop('reduction_isf_enfant_a_charge')
+    reduc_pac['reduc_enf_garde'] = reduc_enf_garde = isf.pop('reduction_isf_enfant_a_charge')  # noqa F841
     isf['res_princ'] = res_princ = dict()
     res_princ = isf['res_princ']
-    res_princ['abattement_sur_residence_principale'] = abattement_sur_residence_principale = isf.pop(
+    res_princ['abattement_sur_residence_principale'] = abattement_sur_residence_principale = isf.pop(  # noqa F841
         'abattement_sur_residence_principale')
     #
     taxation_capital['prelevements_sociaux'] = prelevements_sociaux = taxation_capital.pop('ps')

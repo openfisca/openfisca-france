@@ -31,11 +31,11 @@ param_files = [
     'prelevements_sociaux.xml',
     'prestations.xml',
     'taxation_capital.xml',
-    'tns.xml'
+    'tns.xml',
     ]
 legislation_xml_info_list = [
     (os.path.join(param_dir, param_file), [])
     for param_file in param_files
-]
+    ]
 
 xml_to_yaml.write_parameters(legislation_xml_info_list, target_path)

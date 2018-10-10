@@ -109,7 +109,7 @@ def build_tree_from_yaml_clean(yaml_dir):
                     return 0
                 for relative_ipp_paths in relative_ipp_paths_by_start.itervalues():
                     try:
-                        return cmp(relative_ipp_paths.index(x), relative_ipp_paths.index(y))
+                        return cmp(relative_ipp_paths.index(x), relative_ipp_paths.index(y))  # noqa F821
                     except ValueError:
                         # Either x or y paths are missing in relative_ipp_paths => Their order can't be compared.
                         continue
@@ -176,7 +176,7 @@ def prepare_xml_values(name, leafs):
     type = None
     for leaf in leafs:
         value = leaf['value']
-        if isinstance(value, basestring):
+        if isinstance(value, basestring):  # noqa F821
             split_value = value.split()
             if len(split_value) == 2 and split_value[1] in (
                     u'%',
@@ -283,7 +283,7 @@ def transform_values_to_element_children(values, element):
     element.extend(map(
         lambda value: etree.Element('VALUE', attrib = dict(
             deb = value['start'].isoformat(),
-            valeur = unicode(value['value']),
+            valeur = unicode(value['value']),  # noqa F821
             )),
         values,
         ))

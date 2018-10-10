@@ -2,7 +2,6 @@
 
 from __future__ import division
 
-from datetime import date
 import os
 
 from ..model.base import *
