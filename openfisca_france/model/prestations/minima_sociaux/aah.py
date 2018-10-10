@@ -2,9 +2,8 @@
 # -*- coding: utf-8 -*-
 from __future__ import division
 
-from numpy import absolute as abs_
-
 from openfisca_france.model.base import *
+
 
 class aah_base_ressources(Variable):
     value_type = float
@@ -98,6 +97,7 @@ class aah_base_ressources_activite_eval_trimestrielle(Variable):
 
         return (ressources + revenus_tns()) * 4
 
+
 class aah_base_ressources_activite_milieu_protege(Variable):
     value_type = float
     label = u"Base de ressources de l'AAH des revenus d'activité en milieu protégé pour un individu"
@@ -128,7 +128,6 @@ class aah_base_ressources_hors_activite_eval_trimestrielle(Variable):
     def formula(individu, period):
         period = period.first_month
         three_previous_months = period.start.period('month', 3).offset(-3)
-        last_year = period.last_year
 
         ressources_a_inclure = [
             'asi',
@@ -168,7 +167,7 @@ class aah_restriction_substantielle_durable_acces_emploi(Variable):
     reference = [
         u"Article L821-2 du Code de la sécurité sociale",
         u"https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=17BE3036A19374AA1C8C7A4169702CD7.tplgfr24s_2?idArticle=LEGIARTI000020039305&cidTexte=LEGITEXT000006073189&dateTexte=20180731"
-    ]
+        ]
     definition_period = MONTH
 
 
@@ -242,7 +241,7 @@ class aah_base(Variable):
     reference = [
         u"Article L821-1 du Code de la sécurité sociale",
         u"https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=53AFF5AA4010B01F0539052A33180B39.tplgfr35s_1?idArticle=LEGIARTI000033813790&cidTexte=LEGITEXT000006073189&dateTexte=20180412"
-    ]
+        ]
     definition_period = MONTH
 
     def formula(individu, period, parameters):
@@ -254,7 +253,8 @@ class aah_base(Variable):
         af_nbenf = individu.famille('af_nbenf', period)
         montant_max = law.minima_sociaux.aah.montant
         plaf_ress_aah = montant_max * (1 + en_couple + law.minima_sociaux.aah.tx_plaf_supp * af_nbenf)
-        montant_aah = min_(montant_max, max_(0, plaf_ress_aah - aah_base_ressources)) # Le montant de l'AAH est plafonné au montant de base.
+        # Le montant de l'AAH est plafonné au montant de base.
+        montant_aah = min_(montant_max, max_(0, plaf_ress_aah - aah_base_ressources))
 
         aah_base_non_cumulable = individu('aah_base_non_cumulable', period)
 
