@@ -30,22 +30,17 @@ class aefa(Variable):
     end = '2015-12-31'
 
     def formula_2002_01_01(famille, period, parameters):
-        janvier = period.first_month
-
-        af_nbenf = famille('af_nbenf', janvier)
-        nb_parents = famille('nb_parents', janvier)
         ass = famille('ass', period, options = [ADD])
         api = famille('api', period, options = [ADD])
         rsa = famille('rsa', period, options = [ADD])
-        af = parameters(period).prestations.prestations_familiales.af
-
         aer_i = famille.members('aer', period, options = [ADD])
         aer = famille.sum(aer_i)
-        dummy_ass = ass > 0
-        dummy_aer = aer > 0
-        dummy_api = api > 0
-        dummy_rmi = rsa > 0
-        condition = (dummy_ass + dummy_aer + dummy_api + dummy_rmi > 0)
+        condition = (ass > 0) + (aer > 0) + (api > 0) + (rsa > 0)
+
+        af = parameters(period).prestations.prestations_familiales.af
+        janvier = period.first_month
+        af_nbenf = famille('af_nbenf', janvier)
+        nb_parents = famille('nb_parents', janvier)
         if hasattr(af, "age3"):
             nbPAC = nb_enf(famille, janvier, af.age1, af.age3)
         else:
