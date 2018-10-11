@@ -141,7 +141,7 @@ class residence_saint_bartelemy(Variable):
 
     def formula(menage, period, parameters):
         depcom = menage('depcom', period)
-        return startswith(depcom, b'977')
+        return startswith(depcom, '977')
 
 
 class residence_saint_martin(Variable):
@@ -151,4 +151,4 @@ class residence_saint_martin(Variable):
 
     def formula(menage, period, parameters):
         depcom = menage('depcom', period)
-        return startswith(depcom, b'978')
+        return startswith(depcom, '978')
