@@ -268,40 +268,28 @@ class agff_employeur(Variable):
         return cotisation_cadre + cotisation_non_cadre
 
 
-# class agirc_gmp_assiette(Variable):
-#     value_type = float
-#     entity = Individu
-#     label = u"Assiette de la cotisation AGIRC pour la garantie minimale de points (GMP,  salarié)"
-#     definition_period = MONTH
-#     # TODO: gestion annuel/mensuel
+class quotite_de_travail(Variable):
+    value_type = float
+    entity = Individu
+    label = u"Quotité de travail"
+    definition_period = MONTH
+    # TODO: gestion annuel/mensuel
 
-#     def formula(individu, period, parameters):
-
-#         assiette_cotisations_sociales = individu('assiette_cotisations_sociales', period)
-#         contrat_de_travail = individu('contrat_de_travail', period)
-#         heures_remunerees_volume = individu('heures_remunerees_volume', period)
-#         forfait_jours_remuneres_volume = individu('forfait_jours_remuneres_volume', period)
-#         gmp = parameters(period).prelevements_sociaux.gmp
-#         # TODO : handle contrat_de_travail > 1 voir plafond_securite_sociale
-#         # proratisation pour temps partiel
-#         heures_temps_plein = 35 * 52 / 12  # ~151,67 (durée légale mensuelle)
-#         TypesContratDeTravail = contrat_de_travail.possible_values
-#         salaire_charniere = switch(
-#             contrat_de_travail,
-#             {
-#                 TypesContratDeTravail.temps_plein: gmp.salaire_charniere_annuel / 12,
-#                 TypesContratDeTravail.temps_partiel: gmp.salaire_charniere_annuel / 12 * (heures_remunerees_volume / heures_temps_plein),
-#                 TypesContratDeTravail.forfait_jours_annee: gmp.salaire_charniere_annuel / 12 * (forfait_jours_remuneres_volume / 218),
-#                 }
-#             )
-#         plafond_securite_sociale = individu('plafond_securite_sociale', period)
-
-#         assiette = max_(
-#             salaire_charniere - max_(assiette_cotisations_sociales, plafond_securite_sociale),
-#             0,
-#             )
-
-#         return assiette * (assiette_cotisations_sociales > 0)
+    def formula(individu, period, parameters):
+        contrat_de_travail = individu('contrat_de_travail', period)
+        TypesContratDeTravail = contrat_de_travail.possible_values
+        heures_temps_plein = 35 * 52 / 12  # ~151,67 (durée légale mensuelle)
+        forfait_jours_remuneres_volume = individu('forfait_jours_remuneres_volume', period)
+        heures_remunerees_volume = individu('heures_remunerees_volume', period)
+        return switch(
+            contrat_de_travail,
+            {
+                TypesContratDeTravail.temps_plein: 1,
+                TypesContratDeTravail.temps_partiel: (heures_remunerees_volume / heures_temps_plein),
+                TypesContratDeTravail.forfait_jours_annee: (forfait_jours_remuneres_volume / 218),
+                TypesContratDeTravail.sans_objet: 0
+                }
+            )
 
 
 class agirc_gmp_salarie(Variable):
@@ -315,9 +303,7 @@ class agirc_gmp_salarie(Variable):
         agirc_salarie = individu('agirc_salarie', period)
         assiette_cotisations_sociales = individu('assiette_cotisations_sociales', period)
         categorie_salarie = individu('categorie_salarie', period)
-        contrat_de_travail = individu('contrat_de_travail', period)
-        forfait_jours_remuneres_volume = individu('forfait_jours_remuneres_volume', period)
-        heures_remunerees_volume = individu('heures_remunerees_volume', period)
+        quotite = individu('quotite_de_travail', period)
 
         cadre_cotisant = (
             (categorie_salarie == TypesCategorieSalarie.prive_cadre)
@@ -325,17 +311,9 @@ class agirc_gmp_salarie(Variable):
             )
 
         gmp = parameters(period).prelevements_sociaux.gmp
-        TypesContratDeTravail = contrat_de_travail.possible_values
         cotisation_forfaitaire_temps_plein = gmp.cotisation_forfaitaire_mensuelle_en_euros.part_salariale
-        heures_temps_plein = 35 * 52 / 12  # ~151,67 (durée légale mensuelle)
-        cotisation_forfaitaire = switch(
-            contrat_de_travail,
-            {
-                TypesContratDeTravail.temps_plein: cotisation_forfaitaire_temps_plein,
-                TypesContratDeTravail.temps_partiel: cotisation_forfaitaire_temps_plein * (heures_remunerees_volume / heures_temps_plein),
-                TypesContratDeTravail.forfait_jours_annee: cotisation_forfaitaire_temps_plein * (forfait_jours_remuneres_volume / 218),
-                }
-            )
+        cotisation_forfaitaire = cotisation_forfaitaire_temps_plein * quotite
+
         # Sachant:
         # - qu'il faut retourner un nombre négatif car c'est un prélèvement,
         # - que la cotisation agirc_salarie est négative car c'est un prélèvement,
@@ -355,9 +333,7 @@ class agirc_gmp_employeur(Variable):
         agirc_employeur = individu('agirc_employeur', period)
         assiette_cotisations_sociales = individu('assiette_cotisations_sociales', period)
         categorie_salarie = individu('categorie_salarie', period)
-        contrat_de_travail = individu('contrat_de_travail', period)
-        forfait_jours_remuneres_volume = individu('forfait_jours_remuneres_volume', period)
-        heures_remunerees_volume = individu('heures_remunerees_volume', period)
+        quotite = individu('quotite_de_travail', period)
 
         cadre_cotisant = (
             (categorie_salarie == TypesCategorieSalarie.prive_cadre)
@@ -365,17 +341,9 @@ class agirc_gmp_employeur(Variable):
             )
 
         gmp = parameters(period).prelevements_sociaux.gmp
-        TypesContratDeTravail = contrat_de_travail.possible_values
         cotisation_forfaitaire_temps_plein = gmp.cotisation_forfaitaire_mensuelle_en_euros.part_patronale
-        heures_temps_plein = 35 * 52 / 12  # ~151,67 (durée légale mensuelle)
-        cotisation_forfaitaire = switch(
-            contrat_de_travail,
-            {
-                TypesContratDeTravail.temps_plein: cotisation_forfaitaire_temps_plein,
-                TypesContratDeTravail.temps_partiel: cotisation_forfaitaire_temps_plein * (heures_remunerees_volume / heures_temps_plein),
-                TypesContratDeTravail.forfait_jours_annee: cotisation_forfaitaire_temps_plein * (forfait_jours_remuneres_volume / 218),
-                }
-            )
+        cotisation_forfaitaire = cotisation_forfaitaire_temps_plein * quotite
+
         # Sachant:
         # - qu'il faut retourner un nombre négatif car c'est un prélèvement,
         # - que la cotisation agirc_salarie est négative car c'est un prélèvement,
@@ -770,26 +738,9 @@ class plafond_securite_sociale(Variable):
 
     def formula(individu, period, parameters):
         plafond_temps_plein = parameters(period).cotsoc.gen.plafond_securite_sociale
-        contrat_de_travail = individu('contrat_de_travail', period)
-        TypesContratDeTravail = contrat_de_travail.possible_values
-        heures_remunerees_volume = individu('heures_remunerees_volume', period)
-        forfait_jours_remuneres_volume = individu('forfait_jours_remuneres_volume', period)
-        heures_duree_collective_entreprise = individu('heures_duree_collective_entreprise', period)  # noqa F841
+        quotite = individu('quotite_de_travail', period)
 
-        # TODO : handle contrat_de_travail > 1
-
-        # 1) Proratisation pour temps partiel
-        heures_temps_plein = 35 * 52 / 12  # ~151,67 (durée légale mensuelle)
-
-        plafond = switch(
-            contrat_de_travail,
-            {
-                TypesContratDeTravail.temps_plein: plafond_temps_plein,
-                TypesContratDeTravail.temps_partiel: plafond_temps_plein * (heures_remunerees_volume / heures_temps_plein),
-                TypesContratDeTravail.forfait_jours_annee: plafond_temps_plein * (forfait_jours_remuneres_volume / 218),
-                TypesContratDeTravail.sans_objet: plafond_temps_plein  # sans objet (non travailleur)
-                }
-            )
+        plafond = plafond_temps_plein * quotite
 
         # 2) Proratisation pour mois incomplet selon la méthode des 30èmes
 
