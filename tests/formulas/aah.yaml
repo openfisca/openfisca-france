@@ -37,25 +37,71 @@
   description: Montant AAH pour un couple sans revenus
   period: 2015-11
   absolute_error_margin: 1
-  input_variables:
-    taux_incapacite: 0.9
-    en_couple: 1
-    af_nbenf: 0
+  familles:
+    parents: [parent1, parent2]
+  individus:
+    - id: parent1
+      age: 40
+      taux_incapacite: 0.9
+    - id: parent2
+      age: 40
   # plafond aah = 24 x 807.65 (montant mensuel de l'AAH)
   output_variables:
-    aah_base: 1615.3
+    af_nbenf: 0
+    en_couple: 1
+    aah_base:
+      - 807.65
+      - 0
 
 - name: "AAH Eligibilité couple sans ressource avec enfant"
   description: Montant AAH pour un couple avec enfant sans revenus
   period: 2015-11
   absolute_error_margin: 1
-  input_variables:
-    taux_incapacite: 0.9
-    en_couple: 1
-    af_nbenf: 1
+  familles:
+    parents: [parent1, parent2]
+    enfants: [enfant1]
+  individus:
+    - id: parent1
+      age: 40
+      taux_incapacite: 0.9
+    - id: parent2
+      age: 40
+      taux_incapacite: 0.9
+    - id: enfant1
+      age: 12
   # plafond aah = 807.65 * (24 + 1/2)
   output_variables:
-    aah_base: 807.65 * (2 + 1/2)
+    en_couple: 1
+    af_nbenf: 1
+    aah_base:
+      - 807.65
+      - 807.65
+      - 0
+
+
+- name: "AAH Eligibilité couple sans ressource avec enfant"
+  description: Montant AAH pour un couple avec enfant sans revenus
+  period: 2015-11
+  absolute_error_margin: 1
+  familles:
+    parents: [parent1, parent2]
+    enfants: [enfant1]
+  individus:
+    - id: parent1
+      age: 40
+      taux_incapacite: 0.9
+    - id: parent2
+      age: 40
+    - id: enfant1
+      age: 12
+  # plafond aah = 807.65 * (24 + 1/2)
+  output_variables:
+    en_couple: 1
+    af_nbenf: 1
+    aah_base:
+      - 807.65
+      - 0
+      - 0
 
 - name: "AAH salarié célibataire (K.P.), moins de 30% du SMIC"
   period: 2015-11
@@ -148,7 +194,56 @@
         aah:
           2015-11: [187, 0]
 
-- name: "Revalorisation 01-04-2018, Cas Passant 1 : AAH personne seule de 50 ans avec un taux d'incapacité entre 50% et 79% et un revenu de 5400€"
+- name: |
+    Revalorisation 01-04-2018, Cas Non Passant
+    AAH personne seule de 50 ans avec
+    un taux d'incapacité entre 50% et 79% et
+    un revenu de 5400€
+    sans restriction substantielle et durable pour l'accès à l'emploi
+      reconnue par la commission des droits et
+      de l'autonomie des personnes handicapées
+  period: 2018-05
+  absolute_error_margin: 1
+  input_variables:
+    age: 50
+    taux_incapacite: 0.55
+    aah_restriction_substantielle_durable_acces_emploi: false
+    salaire_imposable:
+      2018-05: 2400
+      2018-04: 1500
+      2018-03: 1500
+  output_variables:
+    aah: 0
+
+- name: |
+    Revalorisation 01-04-2018
+    Cas Passant 1 AAH personne seule de 50 ans avec
+    un taux d'incapacité entre 50% et 79% et
+    un revenu de 5400€ et
+    une estriction substantielle et durable pour l'accès à l'emploi
+      reconnue par la commission des droits et
+      de l'autonomie des personnes handicapées
+  period: 2018-05
+  absolute_error_margin: 1
+  input_variables:
+    age: 50
+    taux_incapacite: 0.55
+    aah_restriction_substantielle_durable_acces_emploi: true
+    salaire_imposable:
+      2018-05: 2400
+      2018-04: 1500
+      2018-03: 1500
+  output_variables:
+      aah: 398.81
+
+- name: |
+    Revalorisation 01-04-2018, Cas Passant 1
+    AAH personne seule de 50 ans avec
+    un taux d'incapacité entre 50% et 79% et
+    un revenu de 5400€ et
+    une estriction substantielle et durable pour l'accès à l'emploi
+      reconnue par la commission des droits et
+      de l'autonomie des personnes handicapées
   period: 2018-05
   absolute_error_margin: 1
   input_variables:
@@ -159,7 +254,8 @@
       2018-04: 1500
       2018-03: 1500
   output_variables:
-      aah: 398.81
+    aah: 398.81
+
 
 - name: "Revalorisation 01-04-2018, Cas Passant 2 : AAH personne de 42 ans avec un taux d'incapacité entre 50% et 79% et un revenu de 12500€ ainsi qu'1 enfant à charge"
   period: 2018-05

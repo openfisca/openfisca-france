@@ -1,5 +1,18 @@
 # Changelog
 
+# 26.0.0 [#1157](https://github.com/openfisca/openfisca-france/pull/1157)
+
+* Évolution du système socio-fiscal **non rétro-compatibles**
+* Périodes concernées : toutes
+* Zones impactées:
+- `model/prestations/minima_sociaux/aah`
+* Détails :
+  - Fiabilise l'évaluation de l'AAH
+    - Prise en compte particulière des revenus d'activité en milieu ordinaire
+    - Prise en compte de la Réduction Substantielle et Durable d'Accès à l'Emploi
+  - Renomme aah_base_ressources_eval_trimestrielle en aah_base_ressources_activite_eval_trimestrielle
+  - Supprime la variable aah_non_calculable
+
 # 25.0.0 [#1156](https://github.com/openfisca/openfisca-france/pull/1156)
 
 * Évolution du système socio-fiscal **non rétro-compatibles**

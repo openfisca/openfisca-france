@@ -76,7 +76,7 @@ class asi_aspa_base_ressources_individu(Variable):
         asi_eligibilite = individu('asi_eligibilite', period)
 
         # Inclus l'AAH si conjoint non éligible ASPA, retraite et pension invalidité
-        aah = individu('aah', three_previous_months, options = [ADD])
+        aah = individu('aah', three_previous_months, options = [ADD], max_nb_cycles = 0)
         aah = aah * not_(aspa_eligibilite) * not_(asi_eligibilite) * not_(pension_invalidite)
 
         pensions_alimentaires_versees = individu(
@@ -118,7 +118,7 @@ class asi_aspa_base_ressources(Variable):
 
     def formula(famille, period):
         base_ressources_i = famille.members('asi_aspa_base_ressources_individu', period)
-        ass = famille('ass', period)
+        ass = famille('ass', period, max_nb_cycles = 0)
 
         return ass + famille.sum(base_ressources_i, role = Famille.PARENT)
 
@@ -211,7 +211,7 @@ class asi(Variable):
         maries = individu.famille('maries', period)
         en_couple = individu.famille('en_couple', period)
         asi_aspa_nb_alloc = individu.famille('asi_aspa_nb_alloc', period)
-        base_ressources = individu.famille('asi_aspa_base_ressources', period)
+        base_ressources = individu.famille('asi_aspa_base_ressources', period, max_nb_cycles = 0)
         P = parameters(period).prestations.minima_sociaux
 
         demandeur_eligible_asi = individu.famille.demandeur('asi_eligibilite', period)
