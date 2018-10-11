@@ -233,6 +233,25 @@ class aah_base_non_cumulable(Variable):
         return individu('pensions_invalidite', period) + individu('asi', period.last_month)
 
 
+class aah_plafond_ressources(Variable):
+    value_type = float
+    label = u"Montant plafond des ressources pour bénéficier de l'Allocation adulte handicapé (hors complément)"
+    entity = Individu
+    reference = [
+        u"Article D821-2 du Code de la sécurité sociale",
+        u"https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=4B54EC7065520E4812F84677B918A48E.tplgfr28s_2?idArticle=LEGIARTI000019077584&cidTexte=LEGITEXT000006073189&dateTexte=20081218"
+        ]
+    definition_period = MONTH
+
+    def formula(individu, period, parameters):
+        law = parameters(period).prestations
+
+        en_couple = individu.famille('en_couple', period)
+        af_nbenf = individu.famille('af_nbenf', period)
+        montant_max = law.minima_sociaux.aah.montant
+        return montant_max * (1 + en_couple + law.minima_sociaux.aah.tx_plaf_supp * af_nbenf)
+
+
 class aah_base(Variable):
     calculate_output = calculate_output_add
     value_type = float
@@ -249,11 +268,9 @@ class aah_base(Variable):
 
         aah_eligible = individu('aah_eligible', period)
         aah_base_ressources = individu.famille('aah_base_ressources', period) / 12
-        en_couple = individu.famille('en_couple', period)
-        af_nbenf = individu.famille('af_nbenf', period)
-        montant_max = law.minima_sociaux.aah.montant
-        plaf_ress_aah = montant_max * (1 + en_couple + law.minima_sociaux.aah.tx_plaf_supp * af_nbenf)
+        plaf_ress_aah = individu('aah_plafond_ressources', period)
         # Le montant de l'AAH est plafonné au montant de base.
+        montant_max = law.minima_sociaux.aah.montant
         montant_aah = min_(montant_max, max_(0, plaf_ress_aah - aah_base_ressources))
 
         aah_base_non_cumulable = individu('aah_base_non_cumulable', period)
