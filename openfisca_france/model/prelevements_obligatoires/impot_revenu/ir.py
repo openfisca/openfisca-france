@@ -145,7 +145,7 @@ class residence_fiscale_guadeloupe(Variable):
 
     def formula(foyer_fiscal, period, parameters):
         depcom_foyer = foyer_fiscal('depcom_foyer', period)
-        return startswith(depcom_foyer, b'971')
+        return startswith(depcom_foyer, '971')
 
 
 class residence_fiscale_martinique(Variable):
@@ -155,7 +155,7 @@ class residence_fiscale_martinique(Variable):
 
     def formula(foyer_fiscal, period, parameters):
         depcom_foyer = foyer_fiscal('depcom_foyer', period)
-        return startswith(depcom_foyer, b'972')
+        return startswith(depcom_foyer, '972')
 
 
 class residence_fiscale_guyane(Variable):
@@ -165,7 +165,7 @@ class residence_fiscale_guyane(Variable):
 
     def formula(foyer_fiscal, period, parameters):
         depcom_foyer = foyer_fiscal('depcom_foyer', period)
-        return startswith(depcom_foyer, b'973')
+        return startswith(depcom_foyer, '973')
 
 
 class residence_fiscale_reunion(Variable):
@@ -175,7 +175,7 @@ class residence_fiscale_reunion(Variable):
 
     def formula(foyer_fiscal, period, parameters):
         depcom_foyer = foyer_fiscal('depcom_foyer', period)
-        return startswith(depcom_foyer, b'974')
+        return startswith(depcom_foyer, '974')
 
 
 class residence_fiscale_mayotte(Variable):
@@ -185,7 +185,7 @@ class residence_fiscale_mayotte(Variable):
 
     def formula(foyer_fiscal, period, parameters):
         depcom_foyer = foyer_fiscal('depcom_foyer', period)
-        return startswith(depcom_foyer, b'976')
+        return startswith(depcom_foyer, '976')
 
 
 class nb_adult(Variable):
