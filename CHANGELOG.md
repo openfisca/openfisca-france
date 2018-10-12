@@ -1,7 +1,6 @@
 # Changelog
 
-
-### 26.1.1 [#1159](https://github.com/openfisca/openfisca-france/pull/1159)
+### 26.1.2 [#1159](https://github.com/openfisca/openfisca-france/pull/1159) [#1158](https://github.com/openfisca/openfisca-france/pull/1158)
 
 * Évolution du système socio-fiscal
 * Périodes concernées : toutes
@@ -10,8 +9,6 @@
 * Détails :
   - Ajoute la variable plafond de ressources pour l'AAH
 
-## 26.1.0 [#1158](https://github.com/openfisca/openfisca-france/pull/1158)
-
 * Évolution du système socio-fiscal.
 * Périodes concernées : toutes.
 * Zones impactées : `openfisca_france/model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/travail_prive.py`.
@@ -19,18 +16,9 @@
   - Extrait par factorisation une nouvelle variable `quotite_de_travail`.
   - Assied le calcul de `agirc_gmp_[employeur,salarie]` et `plafond_securite_sociale` sur la quotité.
 
-### 26.0.1 [#1160](https://github.com/openfisca/openfisca-france/pull/1160)
 
-* Correction d'un crash.
-* Périodes concernées : toutes.
-* Zones impactées :
-  - `model/caracteristiques_socio_demographiques/logement`
-  - `model/prelevements_obligatoires/impot_revenu/ir`
-  - `model/prestations/anah/eligibilite_anah`
-  - `model/prestations/logement_social`
-* Détails :
-  - Traite les codes postaux comme chaînes et non tableaux d'octets
-  - Corrige une différence d'encoding entre Python 2 et Python 3 pour les variables de type str
+> Les versions `26.0.1`, `26.1.0` et `26.1.1` ont été dépubliées, car basée sur une version de Core depuis dépubliée. Merci d'utiliser la version `26.1.2` (ou plus récente).
+
 
 # 26.0.0 [#1157](https://github.com/openfisca/openfisca-france/pull/1157)
 

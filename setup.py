@@ -7,7 +7,7 @@ from setuptools import setup, find_packages
 
 setup(
     name = 'OpenFisca-France',
-    version = '26.1.1',
+    version = '26.1.2',
     author = 'OpenFisca Team',
     author_email = 'contact@openfisca.fr',
     classifiers = [
@@ -52,7 +52,7 @@ setup(
         },
     include_package_data = True,  # Will read MANIFEST.in
     install_requires = [
-        'OpenFisca-Core >= 24.5.4, < 25',
+        'OpenFisca-Core >= 24.0.0, < 25',
         ],
     message_extractors = {'openfisca_france': [
         ('**.py', 'python', None),
