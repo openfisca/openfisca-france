@@ -12,6 +12,11 @@ class coloc(Variable):
     label = u"Vie en colocation"
     definition_period = MONTH
 
+class logement_crous(Variable):
+    value_type = bool
+    entity = Menage
+    label = u"Le logement est gérée par les CROUS "
+    definition_period = MONTH
 
 class logement_chambre(Variable):
     value_type = bool

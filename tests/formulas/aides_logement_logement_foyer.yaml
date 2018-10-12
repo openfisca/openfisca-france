@@ -1,8 +1,89 @@
-- name: "cas 1 "
+- name: "Cas 1: Étudiant réside dans un studio réhabilité en logement foyer géré par le CROUS, zone 2"
   period: 2017-10
+  relative_error_margin: 0.02
   input_variables:
     etudiant: true
     loyer: 200
     zone_apl: zone_2
-
+    statut_occupation_logement: locataire_foyer
+    etat_logement_foyer: logement_rehabilitee
+    aides_logement_foyer_ressources: 5900
+    logement_crous: true
   output_variables:
+    aide_logement_charges: 53.67 # C
+    aides_logement_foyer_k: 0.67 # K
+    aides_logement_foyer_plafond_mensualite: 168.39 # L
+    aides_logement_foyer_loyer_minimal: 80.90 # L0
+    montant_locataire_logement_foyer: 94.57 # rls = k*(L+C-L0)
+
+- name: "Cas 2: Étudiant réside dans une chambre réhabilitée en logement foyer géré par le CROUS, zone 3"
+  period: 2017-10
+  relative_error_margin: 0.02
+  input_variables:
+    etudiant: true
+    logement_crous: true
+    loyer: 150
+    zone_apl: zone_3
+    statut_occupation_logement: locataire_foyer
+    logement_chambre: 1
+    etat_logement_foyer: logement_rehabilitee
+    aides_logement_foyer_ressources: 4900
+  output_variables:
+    aide_logement_charges: 53.67 # C
+    aides_logement_foyer_k: 0.7 # K
+    aides_logement_foyer_plafond_mensualite: 168.39 # L
+    aides_logement_foyer_loyer_minimal: 53.68 # L0
+    montant_locataire_logement_foyer: 106.39 # rls = k*(L+C-L0)
+
+- name: "Cas 3: Étudiant réside dans une chambre conventionnée en logement foyer, zone 3"
+  period: 2017-10
+  relative_error_margin: 0.02
+  input_variables:
+    etudiant: true
+    logement_crous: true
+    loyer: 150
+    zone_apl: zone_3
+    statut_occupation_logement: locataire_foyer
+    logement_chambre: 1
+    logement_conventionne: 1
+    aides_logement_foyer_ressources: 4900
+  output_variables:
+    aide_logement_charges: 53.67 # C
+    aides_logement_foyer_k: 0.77 # K
+    aides_logement_foyer_plafond_mensualite: 383.47 # L.PLA
+    aides_logement_foyer_loyer_minimal: 43.96 # L0
+    aide_logement_montant_brut_avant_degressivite: 81.65
+
+- name: "Cas 4: Personne agée réside dans un studio en logement foyer , zone 2"
+  period: 2017-10
+  relative_error_margin: 0.02
+  input_variables:
+    age: 71
+    loyer: 900
+    zone_apl: zone_2
+    statut_occupation_logement: locataire_foyer
+    aides_logement_foyer_ressources: 8100
+  output_variables:
+    aide_logement_charges: 53.67 # C
+    aides_logement_foyer_k: 0.58 # K
+    aides_logement_foyer_plafond_mensualite: 204.32 # L.PLA
+    aides_logement_foyer_loyer_minimal: 141.04 # L0
+    aide_logement_montant_brut_avant_degressivite: 67.83
+
+- name: "Cas 5: Personne agée réside dans une chambre conventionnée en logement foyer , zone 3"
+  period: 2017-10
+  relative_error_margin: 0.02
+  input_variables:
+    age: 71
+    loyer: 900
+    zone_apl: zone_3
+    statut_occupation_logement: locataire_foyer
+    aides_logement_foyer_ressources: 8100
+    logement_conventionne: 1
+    logement_chambre: 1
+  output_variables:
+    aide_logement_charges: 53.67 # C
+    aides_logement_foyer_k: 0.6 # K
+    aides_logement_foyer_plafond_mensualite: 383.47 # L.PLA
+    aides_logement_foyer_loyer_minimal: 114.94 # L0
+    aide_logement_montant_brut_avant_degressivite: 161.11
