@@ -1,6 +1,16 @@
 # Changelog
 
-### 26.1.0 [#1158](https://github.com/openfisca/openfisca-france/pull/1158)
+
+### 26.1.1 [#1159](https://github.com/openfisca/openfisca-france/pull/1159)
+
+* Évolution du système socio-fiscal
+* Périodes concernées : toutes
+* Zones impactées:
+- `model/prestations/minima_sociaux/aah`
+* Détails :
+  - Ajoute la variable plafond de ressources pour l'AAH
+
+## 26.1.0 [#1158](https://github.com/openfisca/openfisca-france/pull/1158)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : toutes.
