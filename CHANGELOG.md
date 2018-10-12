@@ -5,7 +5,7 @@
 * Évolution du système socio-fiscal
 * Périodes concernées : toutes
 * Zones impactées:
-- `prestations/minima_sociaux/aah`
+  - `prestations/minima_sociaux/aah`
 * Détails :
   - Ajoute la variable plafond de ressources pour l'AAH
 
