@@ -4,6 +4,17 @@ from __future__ import division
 
 from openfisca_france.model.base import *
 
+# Références juridiques - Code de la sécurité sociale
+#
+# Article L821-1 / 821-8
+# https://www.legifrance.gouv.fr/affichCode.do;jsessionid=0E604431776A4B1ED8D2F8EB55A1A99C.tplgfr35s_1?idSectionTA=LEGISCTA000006141693&cidTexte=LEGITEXT000006073189&dateTexte=20180412
+#
+# Article R821-1 / 821-9
+# https://www.legifrance.gouv.fr/affichCode.do;jsessionid=0E604431776A4B1ED8D2F8EB55A1A99C.tplgfr35s_1?idSectionTA=LEGISCTA000006142017&cidTexte=LEGITEXT000006073189&dateTexte=20181010
+#
+# Article D821-1 / 821-11
+# https://www.legifrance.gouv.fr/affichCode.do;jsessionid=157287C570B3AE9450A0BD88AA902970.tplgfr38s_1?idSectionTA=LEGISCTA000006141593&cidTexte=LEGITEXT000006073189&dateTexte=20180731
+
 
 class aah_base_ressources(Variable):
     value_type = float
