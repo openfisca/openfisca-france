@@ -1,5 +1,14 @@
 # Changelog
 
+### 26.1.0 [#1158](https://github.com/openfisca/openfisca-france/pull/1158)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : toutes.
+* Zones impactées : `openfisca_france/model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/travail_prive.py`.
+* Détails :
+  - Extrait par factorisation une nouvelle variable `quotite_de_travail`.
+  - Assied le calcul de `agirc_gmp_[employeur,salarie]` et `plafond_securite_sociale` sur la quotité.
+
 ### 26.0.1 [#1160](https://github.com/openfisca/openfisca-france/pull/1160)
 
 * Correction d'un crash.
