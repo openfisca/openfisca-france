@@ -5,13 +5,15 @@
 * Évolution du système socio-fiscal
 * Périodes concernées : toutes
 * Zones impactées:
-- `model/prestations/minima_sociaux/aah`
+- `prestations/minima_sociaux/aah`
 * Détails :
   - Ajoute la variable plafond de ressources pour l'AAH
 
+<!-- -->
+
 * Évolution du système socio-fiscal.
 * Périodes concernées : toutes.
-* Zones impactées : `openfisca_france/model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/travail_prive.py`.
+* Zones impactées : `prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/travail_prive.py`.
 * Détails :
   - Extrait par factorisation une nouvelle variable `quotite_de_travail`.
   - Assied le calcul de `agirc_gmp_[employeur,salarie]` et `plafond_securite_sociale` sur la quotité.
