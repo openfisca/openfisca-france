@@ -29,12 +29,13 @@ class aefa(Variable):
     definition_period = YEAR
 
     def formula_2002_01_01(famille, period, parameters):
+        rsa = famille('rsa', period, options = [ADD])
         ass = famille('ass', period, options = [ADD])
         api = famille('api', period, options = [ADD])
-        rsa = famille('rsa', period, options = [ADD])
         aer_i = famille.members('aer', period, options = [ADD])
         aer = famille.sum(aer_i)
         condition = (ass > 0) + (aer > 0) + (api > 0) + (rsa > 0)
+        condition_majoration = rsa > 0
 
         af = parameters(period).prestations.prestations_familiales.af
         janvier = period.first_month
@@ -48,13 +49,13 @@ class aefa(Variable):
         aefa = parameters(period).prestations.minima_sociaux.aefa
 
         # TODO check nombre de PAC pour une famille
-        montant_aefa = condition * aefa.mon_seul * (
-            1
-            + (nb_parents == 2) * aefa.tx_2p
+        majoration = 1 + (condition_majoration * (
+            (nb_parents == 2) * aefa.tx_2p
             + nbPAC * aefa.tx_supp * (nb_parents <= 2)
             + nbPAC * aefa.tx_3pac * max_(nbPAC - 2, 0)
-            )
+            ))
 
-        montant_aefa += condition * aefa.prime_exceptionnelle
+        montant_aefa = aefa.mon_seul * majoration
+        montant_aefa += aefa.prime_exceptionnelle
 
-        return montant_aefa
+        return condition * montant_aefa
