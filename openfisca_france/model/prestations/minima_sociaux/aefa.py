@@ -27,7 +27,6 @@ class aefa(Variable):
     label = u"Aide exceptionelle de fin d'année (prime de Noël)"
     reference = u"http://www.pole-emploi.fr/candidat/aide-exceptionnelle-de-fin-d-annee-dite-prime-de-noel--@/suarticle.jspz?id=70996"
     definition_period = YEAR
-    end = '2015-12-31'
 
     def formula_2002_01_01(famille, period, parameters):
         ass = famille('ass', period, options = [ADD])
