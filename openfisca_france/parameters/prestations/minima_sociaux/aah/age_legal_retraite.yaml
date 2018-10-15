@@ -1,5 +1,4 @@
 description: Âge légal de départ à la retraite
-reference: openfisca
 unit: year
 values:
   1983-07-01:

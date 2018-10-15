@@ -1,5 +1,4 @@
 description: Majoration du revenu fiscal de référence plafond (par demi-part supplémentaire)
-reference: openfisca
 unit: currency
 values:
   2005-01-01:

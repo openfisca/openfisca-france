@@ -1,5 +1,5 @@
 description: "Contribution exceptionnelle sur les hauts revenus"
-reference: ipp -  http://bofip.impots.gouv.fr/bofip/7804-PGP.html?identifiant=BOI-IR-CHR-20170711
+reference: https://www.ipp.eu/outils/baremes-ipp/ -  http://bofip.impots.gouv.fr/bofip/7804-PGP.html?identifiant=BOI-IR-CHR-20170711
 unit: currency
 brackets:
 - rate:

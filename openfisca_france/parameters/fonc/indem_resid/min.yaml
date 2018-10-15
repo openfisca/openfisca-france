@@ -1,5 +1,4 @@
 description: 'Indemnité de résidence : plancher (en indice majoré)'
-reference: openfisca
 values:
   1999-06-13:
     value: 294.0

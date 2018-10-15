@@ -1,5 +1,5 @@
 description: Taux de l'APJE
-reference: ipp
+reference: https://www.ipp.eu/outils/baremes-ipp/
 unit: /1
 values:
   1985-01-01:

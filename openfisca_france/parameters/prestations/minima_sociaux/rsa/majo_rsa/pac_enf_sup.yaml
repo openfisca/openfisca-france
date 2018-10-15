@@ -1,6 +1,5 @@
 description: Majoration du RSA socle par enfant supplémentaire (en pourcentage du
   rsa de base)
-reference: openfisca
 unit: /1
 values:
   1997-01-01:

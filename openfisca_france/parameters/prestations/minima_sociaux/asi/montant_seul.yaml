@@ -1,5 +1,5 @@
 description: Montant annuel maximal de l'ASI pour une personne seule
-reference: ipp
+reference: https://www.ipp.eu/outils/baremes-ipp/
 unit: currency
 values:
   2006-01-01:

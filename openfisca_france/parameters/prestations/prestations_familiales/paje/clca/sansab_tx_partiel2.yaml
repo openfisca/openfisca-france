@@ -1,6 +1,6 @@
 description: Taux pour les personnes à temps partiel 50%-80% ne percevant pas l'allocation
   de base de la PAJE
-reference: ipp
+reference: https://www.ipp.eu/outils/baremes-ipp/
 unit: /1
 values:
   2004-01-01:

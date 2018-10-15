@@ -1,5 +1,5 @@
 description: Limite de y euros par personne
-reference: ipp
+reference: https://www.ipp.eu/outils/baremes-ipp/
 unit: currency
 values:
   2007-01-01:

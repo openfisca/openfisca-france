@@ -1,5 +1,5 @@
 description: Âge limite inférieur
-reference: ipp
+reference: https://www.ipp.eu/outils/baremes-ipp/
 unit: year
 values:
   1985-01-01:

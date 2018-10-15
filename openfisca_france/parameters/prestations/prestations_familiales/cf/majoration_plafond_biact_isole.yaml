@@ -1,5 +1,5 @@
 description: Majoration du plafond pour biactifs ou isolé
-reference: ipp
+reference: https://www.ipp.eu/outils/baremes-ipp/
 unit: currency
 values:
   1986-01-01:

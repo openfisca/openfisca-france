@@ -1,5 +1,5 @@
 description: Base mensuelle des allocations familiales
-reference: ipp
+reference: https://www.ipp.eu/outils/baremes-ipp/
 unit: currency
 values:
   1961-01-01:

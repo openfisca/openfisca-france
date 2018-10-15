@@ -1,5 +1,5 @@
 description: Seuil de non versement
-reference: ipp
+reference: https://www.ipp.eu/outils/baremes-ipp/
 unit: currency
 values:
   1989-11-12:

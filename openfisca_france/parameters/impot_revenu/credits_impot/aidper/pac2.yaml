@@ -1,5 +1,4 @@
 description: Majoration du plafond pour le 2eme enfant
-reference: openfisca
 unit: currency
 values:
   2002-01-01:

@@ -1,5 +1,4 @@
 description: Plafond de référence pour le taux 1
-reference: openfisca
 unit: currency
 values:
   2014-01-01:

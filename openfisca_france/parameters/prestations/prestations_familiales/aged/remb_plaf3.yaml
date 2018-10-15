@@ -1,6 +1,5 @@
 description: Plafond des remboursements trimestriels (entre les deux limites d'âge
   ou APE taux partiel)
-reference: openfisca
 unit: currency
 values:
   2001-07-01:

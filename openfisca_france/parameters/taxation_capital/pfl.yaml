@@ -1,8 +1,8 @@
-reference: ipp
+reference: https://www.ipp.eu/outils/baremes-ipp/
 autres_produits_de_placement_a_revenu_fixe_comptes_sur_livrets_creances_depots_cautionnement_et_comptes_courants:
-  reference: ipp
+  reference: https://www.ipp.eu/outils/baremes-ipp/
   courus_entre_le_16_7_78_et_31_12_79:
-    reference: ipp
+    reference: https://www.ipp.eu/outils/baremes-ipp/
     unit: /1
     values:
       1974-01-01:
@@ -12,7 +12,7 @@ autres_produits_de_placement_a_revenu_fixe_comptes_sur_livrets_creances_depots_c
       2013-01-01:
         value: 0.24
   courus_entre_le_1_1_80_et_31_12_82:
-    reference: ipp
+    reference: https://www.ipp.eu/outils/baremes-ipp/
     unit: /1
     values:
       1980-01-01:
@@ -20,7 +20,7 @@ autres_produits_de_placement_a_revenu_fixe_comptes_sur_livrets_creances_depots_c
       2013-01-01:
         value: 0.24
   courus_entre_le_1_1_83_et_31_12_89:
-    reference: ipp
+    reference: https://www.ipp.eu/outils/baremes-ipp/
     unit: /1
     values:
       1983-01-01:
@@ -28,7 +28,7 @@ autres_produits_de_placement_a_revenu_fixe_comptes_sur_livrets_creances_depots_c
       2013-01-01:
         value: 0.24
   courus_entre_le_1_1_90_et_31_12_94:
-    reference: ipp
+    reference: https://www.ipp.eu/outils/baremes-ipp/
     unit: /1
     values:
       1990-06-15:
@@ -36,7 +36,7 @@ autres_produits_de_placement_a_revenu_fixe_comptes_sur_livrets_creances_depots_c
       2013-01-01:
         value: 0.24
   courus_entre_le_1_1_95_et_apres:
-    reference: ipp
+    reference: https://www.ipp.eu/outils/baremes-ipp/
     unit: /1
     values:
       1995-01-01:
@@ -50,9 +50,9 @@ autres_produits_de_placement_a_revenu_fixe_comptes_sur_livrets_creances_depots_c
       2012-01-01:
         value: 0.24
 bons_de_caisse_des_banque_bons_du_tresor_sur_formules_bons_d_epargne_des_ptt:
-  reference: ipp
+  reference: https://www.ipp.eu/outils/baremes-ipp/
   emis_a_partir_du_1_1_95_et_sans_anonymat:
-    reference: ipp
+    reference: https://www.ipp.eu/outils/baremes-ipp/
     unit: /1
     values:
       1995-01-01:
@@ -66,7 +66,7 @@ bons_de_caisse_des_banque_bons_du_tresor_sur_formules_bons_d_epargne_des_ptt:
       2012-01-01:
         value: 0.24
   emis_avant_1_6_78:
-    reference: ipp
+    reference: https://www.ipp.eu/outils/baremes-ipp/
     unit: /1
     values:
       1974-01-01:
@@ -74,7 +74,7 @@ bons_de_caisse_des_banque_bons_du_tresor_sur_formules_bons_d_epargne_des_ptt:
       2013-01-01:
         value: 0.24
   emis_entre_1_1_83_et_1_1_1998_avec_anonymat:
-    reference: ipp
+    reference: https://www.ipp.eu/outils/baremes-ipp/
     unit: /1
     values:
       1983-01-01:
@@ -84,7 +84,7 @@ bons_de_caisse_des_banque_bons_du_tresor_sur_formules_bons_d_epargne_des_ptt:
       2013-01-01:
         value: 0.42
   emis_entre_1_1_83_et_31_12_89_sans_anonymat:
-    reference: ipp
+    reference: https://www.ipp.eu/outils/baremes-ipp/
     unit: /1
     values:
       1983-01-01:
@@ -92,7 +92,7 @@ bons_de_caisse_des_banque_bons_du_tresor_sur_formules_bons_d_epargne_des_ptt:
       2013-01-01:
         value: 0.24
   emis_entre_1_1_90_et_31_12_94_sans_anonymat:
-    reference: ipp
+    reference: https://www.ipp.eu/outils/baremes-ipp/
     unit: /1
     values:
       1990-06-15:
@@ -100,7 +100,7 @@ bons_de_caisse_des_banque_bons_du_tresor_sur_formules_bons_d_epargne_des_ptt:
       2013-01-01:
         value: 0.24
   emis_entre_1_6_78_et_20_1_80:
-    reference: ipp
+    reference: https://www.ipp.eu/outils/baremes-ipp/
     unit: /1
     values:
       1979-07-01:
@@ -108,13 +108,13 @@ bons_de_caisse_des_banque_bons_du_tresor_sur_formules_bons_d_epargne_des_ptt:
       2013-01-01:
         value: 0.24
   emis_entre_21_1_80_et_31_12_82_avec_anonymat:
-    reference: ipp
+    reference: https://www.ipp.eu/outils/baremes-ipp/
     unit: /1
     values:
       1980-01-01:
         value: 0.42
   emis_entre_21_1_80_et_31_12_82_sans_anonymat:
-    reference: ipp
+    reference: https://www.ipp.eu/outils/baremes-ipp/
     unit: /1
     values:
       1980-01-01:
@@ -122,7 +122,7 @@ bons_de_caisse_des_banque_bons_du_tresor_sur_formules_bons_d_epargne_des_ptt:
       2013-01-01:
         value: 0.24
 dividendes:
-  reference: ipp
+  reference: https://www.ipp.eu/outils/baremes-ipp/
   unit: /1
   values:
     2008-01-01:
@@ -132,7 +132,7 @@ dividendes:
     2012-01-01:
       value: 0.21
 emis_a_partir_de_1_1_1998_avec_anonymat:
-  reference: ipp
+  reference: https://www.ipp.eu/outils/baremes-ipp/
   unit: /1
   values:
     1997-04-01:
@@ -140,7 +140,7 @@ emis_a_partir_de_1_1_1998_avec_anonymat:
     1999-04-01:
       value: 0.6
 obligations_titres_participatifs_fonds_salariaux:
-  reference: ipp
+  reference: https://www.ipp.eu/outils/baremes-ipp/
   unit: /1
   values:
     1965-01-01:
@@ -156,9 +156,9 @@ obligations_titres_participatifs_fonds_salariaux:
     2012-01-01:
       value: 0.24
 plan_d_epargne_populaire:
-  reference: ipp
+  reference: https://www.ipp.eu/outils/baremes-ipp/
   retrait_apres_8_ans:
-    reference: ipp
+    reference: https://www.ipp.eu/outils/baremes-ipp/
     unit: /1
     values:
       1990-06-15:
@@ -166,7 +166,7 @@ plan_d_epargne_populaire:
       2013-01-01:
         value: null
   retrait_avant_4_ans:
-    reference: ipp
+    reference: https://www.ipp.eu/outils/baremes-ipp/
     unit: /1
     values:
       1994-01-01:
@@ -174,7 +174,7 @@ plan_d_epargne_populaire:
       2008-01-01:
         value: null
   retrait_entre_4_et_8_ans:
-    reference: ipp
+    reference: https://www.ipp.eu/outils/baremes-ipp/
     unit: /1
     values:
       1990-06-15:
@@ -190,7 +190,7 @@ plan_d_epargne_populaire:
       2013-01-01:
         value: null
 titres_de_creances_negociables_billets_de_tresorerie_certificats_de_depots_negociables_bons_du_tresor_negociables_et_bons_des_institutions_financieres_specialisees:
-  reference: ipp
+  reference: https://www.ipp.eu/outils/baremes-ipp/
   unit: /1
   values:
     1974-01-01:
@@ -210,13 +210,13 @@ titres_de_creances_negociables_billets_de_tresorerie_certificats_de_depots_negoc
     2012-01-01:
       value: 0.24
 produits_epargne_solidaire_partage:
-  reference: ipp
+  reference: https://www.ipp.eu/outils/baremes-ipp/
   unit: /1
   values:
     2008-01-01:
       value: 0.05
 produits_vers_etats_non_cooperatifs:
-  reference: ipp
+  reference: https://www.ipp.eu/outils/baremes-ipp/
   unit: /1
   values:
     2010-01-01:

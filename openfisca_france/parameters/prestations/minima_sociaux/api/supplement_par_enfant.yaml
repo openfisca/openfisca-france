@@ -1,5 +1,5 @@
 description: Majoration de taux par enfant supplémentaire (en pourcentage de la BMAF)
-reference: ipp
+reference: https://www.ipp.eu/outils/baremes-ipp/
 unit: /1
 values:
   1976-10-01:

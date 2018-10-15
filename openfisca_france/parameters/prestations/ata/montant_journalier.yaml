@@ -1,5 +1,5 @@
 description: Montant journalier de l'ATA
-reference: ipp
+reference: https://www.ipp.eu/outils/baremes-ipp/
 unit: currency
 values:
   2006-11-16:

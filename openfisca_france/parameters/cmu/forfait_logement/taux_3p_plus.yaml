@@ -1,5 +1,4 @@
 description: Pourcentage du RSA socle pour trois personnes (pour trois et plus personnes)
-reference: openfisca
 unit: /1
 values:
   2000-01-01:

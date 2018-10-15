@@ -1,6 +1,5 @@
 description: 'Plafond d''exonération de la taxe d''habitation: 1ère demi-part supplémentaire
   DOM'
-reference: openfisca
 unit: currency
 values:
   2002-01-01:

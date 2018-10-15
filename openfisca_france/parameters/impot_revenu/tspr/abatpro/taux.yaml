@@ -1,5 +1,5 @@
 description: Taux de l'abattement
-reference: ipp
+reference: https://www.ipp.eu/outils/baremes-ipp/
 unit: /1
 values:
   1943-01-01:

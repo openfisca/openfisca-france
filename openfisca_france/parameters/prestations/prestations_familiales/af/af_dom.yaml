@@ -1,7 +1,7 @@
-reference: ipp
+reference: https://www.ipp.eu/outils/baremes-ipp/
 age_1er_enf_tranche_1_dom:
   description: Âge de début de la 1ere majoration
-  reference: ipp
+  reference: https://www.ipp.eu/outils/baremes-ipp/
   unit: year
   values:
     1991-08-06:
@@ -10,7 +10,7 @@ age_1er_enf_tranche_1_dom:
       value: 11.0
 age_1er_enf_tranche_2_dom:
   description: Âge de début de la 2ème majoration
-  reference: ipp
+  reference: https://www.ipp.eu/outils/baremes-ipp/
   unit: year
   values:
     1991-08-06:
@@ -18,14 +18,14 @@ age_1er_enf_tranche_2_dom:
     1999-01-01:
       value: 16.0
 duree_pendant_laquelle_la_majoration_pour_les_plus_de_20_ans_est_versee_en_annee:
-  reference: ipp
+  reference: https://www.ipp.eu/outils/baremes-ipp/
   values:
     1991-08-06:
       value: 1.0
 majoration_a_partir_du_deuxieme_enfant_en_de_la_bmaf_dom:
-  reference: ipp
+  reference: https://www.ipp.eu/outils/baremes-ipp/
   taux_2eme_enfant:
-    reference: ipp
+    reference: https://www.ipp.eu/outils/baremes-ipp/
     unit: /1
     values:
       1991-08-06:
@@ -39,7 +39,7 @@ majoration_a_partir_du_deuxieme_enfant_en_de_la_bmaf_dom:
       1999-01-01:
         value: null
   taux_3eme_enfant:
-    reference: ipp
+    reference: https://www.ipp.eu/outils/baremes-ipp/
     unit: /1
     values:
       1991-08-06:
@@ -53,7 +53,7 @@ majoration_a_partir_du_deuxieme_enfant_en_de_la_bmaf_dom:
       1999-01-01:
         value: null
   taux_4eme_enfant:
-    reference: ipp
+    reference: https://www.ipp.eu/outils/baremes-ipp/
     unit: /1
     values:
       1991-08-06:
@@ -67,7 +67,7 @@ majoration_a_partir_du_deuxieme_enfant_en_de_la_bmaf_dom:
       1999-01-01:
         value: null
   taux_5eme_enfant:
-    reference: ipp
+    reference: https://www.ipp.eu/outils/baremes-ipp/
     unit: /1
     values:
       1991-08-06:
@@ -81,7 +81,7 @@ majoration_a_partir_du_deuxieme_enfant_en_de_la_bmaf_dom:
       1999-01-01:
         value: null
   taux_6eme_enfant_et_plus:
-    reference: ipp
+    reference: https://www.ipp.eu/outils/baremes-ipp/
     unit: /1
     values:
       1991-08-06:
@@ -95,7 +95,7 @@ majoration_a_partir_du_deuxieme_enfant_en_de_la_bmaf_dom:
       1999-01-01:
         value: null
   taux_de_majoration_de_la_1ere_tranche_d_age:
-    reference: ipp
+    reference: https://www.ipp.eu/outils/baremes-ipp/
     unit: /1
     values:
       1991-08-06:
@@ -109,7 +109,7 @@ majoration_a_partir_du_deuxieme_enfant_en_de_la_bmaf_dom:
       1999-01-01:
         value: null
   taux_de_majoration_de_la_2eme_tranche_d_age:
-    reference: ipp
+    reference: https://www.ipp.eu/outils/baremes-ipp/
     unit: /1
     values:
       1991-08-06:
@@ -123,32 +123,32 @@ majoration_a_partir_du_deuxieme_enfant_en_de_la_bmaf_dom:
       1999-01-01:
         value: null
 nombre_d_enfant_a_partir_duquel_l_aine_donne_droit_a_majoration:
-  reference: ipp
+  reference: https://www.ipp.eu/outils/baremes-ipp/
   values:
     1991-08-06:
       value: 3.0
 nombre_minimal_d_enfant_pour_avoir_droit_a_la_majoration_forfaitaire_pour_les_plus_de_20_ans:
-  reference: ipp
+  reference: https://www.ipp.eu/outils/baremes-ipp/
   values:
     1991-08-06:
       value: 3.0
 taux_1er_enf_tranche_1_dom:
   description: 1ère majoration pour âge
-  reference: ipp
+  reference: https://www.ipp.eu/outils/baremes-ipp/
   unit: /1
   values:
     1991-08-06:
       value: 0.0369
 taux_1er_enf_tranche_2_dom:
   description: 2ème majoration pour âge
-  reference: ipp
+  reference: https://www.ipp.eu/outils/baremes-ipp/
   unit: /1
   values:
     1991-08-06:
       value: 0.0567
 taux_enfant_seul:
   description: Un seul enfant à charge (DOM)
-  reference: ipp
+  reference: https://www.ipp.eu/outils/baremes-ipp/
   unit: /1
   values:
     1991-08-06:

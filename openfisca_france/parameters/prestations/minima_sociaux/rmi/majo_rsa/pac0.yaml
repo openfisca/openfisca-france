@@ -1,6 +1,5 @@
 description: Taux de la majoration du RSA socle pour une femme enceinte sans enfant
   (en pourcentage du rsa de base pour un célibataire sans personne à charge)
-reference: openfisca
 unit: /1
 values:
   1997-01-01:

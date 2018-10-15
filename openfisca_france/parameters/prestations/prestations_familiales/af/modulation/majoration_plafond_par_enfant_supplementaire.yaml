@@ -1,6 +1,6 @@
 description: Majoration du plafond annuel de ressources par enfant supplémentaire
   (à partir du 3e enfant)
-reference: ipp
+reference: https://www.ipp.eu/outils/baremes-ipp/
 unit: currency
 values:
   2015-07-01:

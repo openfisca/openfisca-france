@@ -1,5 +1,4 @@
 description: Pourcentage du salaire de base
-reference: openfisca
 unit: /1
 values:
   1990-01-01:

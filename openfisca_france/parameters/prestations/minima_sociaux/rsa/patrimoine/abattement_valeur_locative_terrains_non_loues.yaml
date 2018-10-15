@@ -1,5 +1,4 @@
 description: Abattement appliqué sur la valeur locative des terrains non loués
-reference: openfisca
 unit: /1
 values:
   2009-01-01:

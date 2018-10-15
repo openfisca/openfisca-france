@@ -1,6 +1,5 @@
 description: Taux pour les entreprises de moins de 2000 salariés et avec moins de
   1% d'atlernants
-reference: openfisca
 unit: /1
 values:
   2013-01-01:
