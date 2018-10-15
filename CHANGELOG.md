@@ -1,5 +1,13 @@
 # Changelog
 
+### 26.1.4 [#1151](https://github.com/openfisca/openfisca-france/pull/1159) [#1158](https://github.com/openfisca/openfisca-france/pull/1151)
+
+* Changement mineur.
+* Périodes concernées : 2013
+* Zones impactées : `tests/formulas/irpp.yaml`.
+* Détails :
+  - Ajoute des tests couvrant le calcul de la décote de l'IR en 2013
+
 ### 26.1.3 [#1155](https://github.com/openfisca/openfisca-france/pull/1159) [#1158](https://github.com/openfisca/openfisca-france/pull/1155)
 
 * Amélioration technique.
