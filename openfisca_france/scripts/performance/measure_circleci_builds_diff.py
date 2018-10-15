@@ -3,6 +3,10 @@ This script takes in two CircleCI build numbers
 (should be the `build_python2` and `build_python3` of the same workflow)
 and outputs if their mean runtime is in the same ball park
 as the master branch's mean runtime for the same builds.
+
+Usage example:
+
+    python openfisca_france/scripts/performance/measure_circleci_builds_diff.py 1717 1716
 """
 
 import sys
@@ -17,7 +21,7 @@ if len(sys.argv) < 2:
     raise AttributeError(
         """
         This script needs two CircleCI build numbers to work,
-        e.g. python openfisca_france/scripts/performance_tests/test_circleci_builds.py 1717 1716
+        e.g. python openfisca_france/scripts/performance/measure_circleci_builds_diff.py 1717 1716
         """
         )
 

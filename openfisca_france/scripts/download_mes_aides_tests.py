@@ -43,30 +43,25 @@ def fetch_json(url):
 
 
 def fetch_situation(api_base_url, situation_id):
-    reference = u'{}/api/situations/{}/openfisca-request'.format(api_base_url, situation_id)  # noqa F841
-    log.info(u'fetch situation: GET "{}"'.format(url))  # noqa F821
-    return fetch_json(url)  # noqa F821
+    url = u'{}/api/situations/{}/openfisca-request'.format(api_base_url, situation_id)
+    log.info(u'fetch situation: GET "{}"'.format(url))
+    return fetch_json(url)
 
 
 def fetch_tests(api_base_url):
-    reference = u'{}/api/public/acceptance-tests'.format(api_base_url)  # noqa F821
-    log.info(u'fetch tests: GET "{}"'.format(url))  # noqa F821
-    return fetch_json(url)  # noqa F821
+    url = u'{}/api/public/acceptance-tests'.format(api_base_url)
+    log.info(u'fetch tests: GET "{}"'.format(url))
+    return fetch_json(url)
 
 
 def iter_yaml_items(api_base_url, test):
-    situation_json = fetch_situation(api_base_url = api_base_url, situation_id = test['scenario']['situationId'])
+    test_case = fetch_situation(api_base_url = api_base_url, situation_id = test['scenario']['situationId'])
     log.info(u'ID: {} [{}] {}'.format(test['_id'], u', '.join(sorted(test['keywords'])), test['name']))
-    scenarios = situation_json['scenarios']
-    assert len(scenarios) == 1, scenarios
-    scenario = scenarios[0]
-    test_case = scenario['test_case']
     yield 'name', test['name'], None
     yield 'keywords', sorted(test['keywords']), None
     description = test.get('description', None)
     description_style = '|' if description is not None and len(description.split('\n')) > 1 else None
     yield 'description', description, description_style
-    yield 'period', scenario['period'], None
     relative_error_margin = {
         'accepted-exact': 0.,
         'accepted-2pct': 0.02,
