@@ -25,7 +25,7 @@ def inspect_dgfip_variable(variable, year, browser_name):
     section_number = variable[1]
     case = variable[2:4].upper()
     log.info(u"section %s, case %s", section_number, case)
-    url_base = u"http://www3.impots.gouv.fr/simulateur/calcul_impot/" + unicode(year + 1) + "/aides/"
+    url_base = u"http://www3.impots.gouv.fr/simulateur/calcul_impot/" + str(year + 1) + "/aides/"
     url_section = {
         '2': u"capitaux_mobiliers.htm",
         '3': u"gains_c.htm",
