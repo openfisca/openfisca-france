@@ -1,0 +1,12 @@
+description: Plancher de ressources pour les étudiants boursiers résidant dans un logement foyer.
+reference: openfisca
+unit: currency
+values:
+  2009-01-01:
+    value: 800.0
+  2012-01-01:
+    value: 900.0
+  2014-01-01:
+    value: 1000.0
+  2018-01-01:
+    value: 1100.0

@@ -504,8 +504,10 @@ class aide_logement_base_ressources(Variable):
         Pr = parameters(period).prestations.aides_logement.ressources
         demandeur_etudiant = famille.demandeur('etudiant', period)
         demandeur_boursier = famille.demandeur('boursier', period)
-        montant_plancher_ressources = max_(0, demandeur_etudiant * Pr.dar_4 - demandeur_boursier * Pr.dar_5)
-        ressources = max_(ressources, montant_plancher_ressources)
+        statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
+        montant_plancher_ressources = (statut_occupation_logement != TypesStatutOccupationLogement.locataire_foyer) * max_(0, demandeur_etudiant * Pr.dar_4 - demandeur_boursier * Pr.dar_5)
+        montant_plancher_ressources_logement_foyer = (statut_occupation_logement == TypesStatutOccupationLogement.locataire_foyer) * max_(0, demandeur_etudiant * Pr.dar_11 - demandeur_boursier * Pr.dar_12)
+        ressources = max_(ressources, max_(montant_plancher_ressources, montant_plancher_ressources_logement_foyer))
 
         # Arrondi au centime, pour éviter qu'une petite imprécision liée à la recombinaison d'une valeur annuelle éclatée ne fasse monter d'un cran l'arrondi au 100€ supérieur.
 
@@ -1328,7 +1330,7 @@ class aides_logement_foyer_k(Variable):
         coef_k = param.constante_du_coefficient_k
 
         logement_conventionne = famille.demandeur.menage('logement_conventionne', period)
-        R = famille('aides_logement_foyer_ressources', period)
+        R = famille('aide_logement_base_ressources', period)
         N = famille('aides_logement_foyer_nb_part', period)
 
         return (
@@ -1376,7 +1378,7 @@ class aides_logement_foyer_loyer_minimal(Variable):
         majoration_loyer = prestations.al_param.majoration_du_loyer_minimum_lo
 
         logement_conventionne = famille.demandeur.menage('logement_conventionne', period)
-        baseRessource = famille('aides_logement_foyer_ressources', period)
+        baseRessource = famille('aide_logement_base_ressources', period)
         N = famille('aides_logement_foyer_nb_part', period)
         majoration_loyer_apl1 = prestations.al_param_accal.majoration_du_loyer_minimum_lo_apl1 * N
 
@@ -1416,20 +1418,6 @@ class aides_logement_foyer_plafond_mensualite(Variable):
             [aides_logement_foyer_crous_plafond, aides_logement_foyer_personne_agee_plafond],
             default=aides_logement_foyer_plafond
         )
-
-
-class aides_logement_foyer_ressources(Variable):
-    value_type = float
-    entity = Famille
-    label = u"Allocation logement pour les logements foyers ressources"
-    reference = u"https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000035665875&dateTexte=&categorieLien=id"
-    definition_period = MONTH
-
-    def formula(famille, period, parameters):
-        baseRessource = famille('aide_logement_base_ressources', period)
-        loyer = famille.demandeur.menage('loyer', period)
-        coef_plancher_ressources = parameters(period).prestations.aides_logement.ressources.dar_3
-        return max_(baseRessource, loyer * coef_plancher_ressources)
 
 
 class aides_logement_foyer_crous_plafond(Variable):
