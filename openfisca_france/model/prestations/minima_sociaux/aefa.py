@@ -25,114 +25,37 @@ class aefa(Variable):
     value_type = float
     entity = Famille
     label = u"Aide exceptionelle de fin d'année (prime de Noël)"
-    reference = u"http://www.pole-emploi.fr/candidat/aide-exceptionnelle-de-fin-d-annee-dite-prime-de-noel--@/suarticle.jspz?id=70996"
+    reference = u"https://www.service-public.fr/particuliers/vosdroits/F1325"
     definition_period = YEAR
-    end = '2015-12-31'
-
-    def formula_2009_01_01(famille, period, parameters):
-        janvier = period.first_month
-
-        af_nbenf = famille('af_nbenf', janvier)
-        nb_parents = famille('nb_parents', janvier)
-        ass = famille('ass', period, options = [ADD])
-        api = famille('api', period, options = [ADD])
-        rsa = famille('rsa', period, options = [ADD])
-        P = parameters(period).prestations.minima_sociaux.aefa
-        af = parameters(period).prestations.prestations_familiales.af
-
-        aer_i = famille.members('aer', period, options = [ADD])
-        aer = famille.sum(aer_i)
-        dummy_ass = ass > 0
-        dummy_aer = aer > 0
-        dummy_api = api > 0
-        dummy_rmi = rsa > 0
-        maj = 0  # TODO
-        condition = (dummy_ass + dummy_aer + dummy_api + dummy_rmi > 0)
-        if hasattr(af, "age3"):
-            nbPAC = nb_enf(famille, janvier, af.age1, af.age3)
-        else:
-            nbPAC = af_nbenf
-
-        # TODO check nombre de PAC pour une famille
-        aefa = condition * P.mon_seul * (
-            1
-            + (nb_parents == 2) * P.tx_2p
-            + nbPAC * P.tx_supp * (nb_parents <= 2)
-            + nbPAC * P.tx_3pac * max_(nbPAC - 2, 0)
-            )
-
-        aefa_maj = P.mon_seul * maj
-        aefa = max_(aefa_maj, aefa)
-
-        return aefa
-
-    def formula_2008_01_01(famille, period, parameters):
-        janvier = period.first_month
-
-        af_nbenf = famille('af_nbenf', janvier)
-        nb_parents = famille('nb_parents', janvier)
-        ass = famille('ass', period, options = [ADD])
-        api = famille('api', period, options = [ADD])
-        rsa = famille('rsa', period, options = [ADD])
-        P = parameters(period).prestations.minima_sociaux.aefa
-        af = parameters(period).prestations.prestations_familiales.af
-
-        aer_i = famille.members('aer', period, options = [ADD])
-        aer = famille.sum(aer_i)
-        dummy_ass = ass > 0
-        dummy_aer = aer > 0
-        dummy_api = api > 0
-        dummy_rmi = rsa > 0
-        maj = 0  # TODO
-        condition = (dummy_ass + dummy_aer + dummy_api + dummy_rmi > 0)
-        if hasattr(af, "age3"):
-            nbPAC = nb_enf(famille, janvier, af.age1, af.age3)
-        else:
-            nbPAC = af_nbenf
-
-        # TODO check nombre de PAC pour une famille
-        aefa = condition * P.mon_seul * (
-            1
-            + (nb_parents == 2) * P.tx_2p
-            + nbPAC * P.tx_supp * (nb_parents <= 2)
-            + nbPAC * P.tx_3pac * max_(nbPAC - 2, 0)
-            )
-
-        aefa += condition * P.forf2008
-        aefa_maj = P.mon_seul * maj
-        aefa = max_(aefa_maj, aefa)
-        return aefa
 
     def formula_2002_01_01(famille, period, parameters):
-        janvier = period.first_month
-
-        af_nbenf = famille('af_nbenf', janvier)
-        nb_parents = famille('nb_parents', janvier)
+        rsa = famille('rsa', period, options = [ADD])
         ass = famille('ass', period, options = [ADD])
         api = famille('api', period, options = [ADD])
-        rsa = famille('rsa', period, options = [ADD])
-        P = parameters(period).prestations.minima_sociaux.aefa
-        af = parameters(period).prestations.prestations_familiales.af
-
         aer_i = famille.members('aer', period, options = [ADD])
         aer = famille.sum(aer_i)
-        dummy_ass = ass > 0
-        dummy_aer = aer > 0
-        dummy_api = api > 0
-        dummy_rmi = rsa > 0
-        maj = 0  # TODO
-        condition = (dummy_ass + dummy_aer + dummy_api + dummy_rmi > 0)
+        condition = (ass > 0) + (aer > 0) + (api > 0) + (rsa > 0)
+        condition_majoration = rsa > 0
+
+        af = parameters(period).prestations.prestations_familiales.af
+        janvier = period.first_month
+        af_nbenf = famille('af_nbenf', janvier)
+        nb_parents = famille('nb_parents', janvier)
         if hasattr(af, "age3"):
             nbPAC = nb_enf(famille, janvier, af.age1, af.age3)
         else:
             nbPAC = af_nbenf
+
+        aefa = parameters(period).prestations.minima_sociaux.aefa
+
         # TODO check nombre de PAC pour une famille
-        aefa = condition * P.mon_seul * (
-            1
-            + (nb_parents == 2) * P.tx_2p
-            + nbPAC * P.tx_supp * (nb_parents <= 2)
-            + nbPAC * P.tx_3pac * max_(nbPAC - 2, 0)
-            )
-        aefa_maj = P.mon_seul * maj
-        aefa = max_(aefa_maj, aefa)
-        return aefa
+        majoration = 1 + (condition_majoration * (
+            (nb_parents == 2) * aefa.tx_2p
+            + nbPAC * aefa.tx_supp * (nb_parents <= 2)
+            + nbPAC * aefa.tx_3pac * max_(nbPAC - 2, 0)
+            ))
+
+        montant_aefa = aefa.mon_seul * majoration
+        montant_aefa += aefa.prime_exceptionnelle
+
+        return condition * montant_aefa
