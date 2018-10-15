@@ -1,6 +1,16 @@
 # Changelog
 
-### 26.1.2 [#1159](https://github.com/openfisca/openfisca-france/pull/1159) [#1158](https://github.com/openfisca/openfisca-france/pull/1158)
+### 26.1.3 [#1155](https://github.com/openfisca/openfisca-france/pull/1159) [#1158](https://github.com/openfisca/openfisca-france/pull/1155)
+
+* Amélioration technique.
+* Périodes concernées : NA
+* Zones impactées : `openfisca_france/scripts`.
+* Détails :
+  - Correction de scripts qui ne marchaient plus.
+  - Documentation de scripts.
+  - Suppression de scripts.
+
+### 26.1.2 [#1159](https://github.com/openfisca/openfisca-france/pull/1159) [#1159](https://github.com/openfisca/openfisca-france/pull/1158)
 
 * Évolution du système socio-fiscal
 * Périodes concernées : toutes
