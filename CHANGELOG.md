@@ -1,6 +1,17 @@
 # Changelog
 
-### 26.1.4 [#1151](https://github.com/openfisca/openfisca-france/pull/1159) [#1158](https://github.com/openfisca/openfisca-france/pull/1151)
+## 26.2.0 [#1149](https://github.com/openfisca/openfisca-france/pull/1149)
+
+* Évolution du système socio-fiscal
+* Périodes concernées : à partir du 01/01/2003.
+* Zones impactées : `openfisca_france/model/prestations/minima_sociaux/aefa.py`.
+* Détails :
+  - Fiabilise, unifie et simplifie le calcul de l'aide exceptionnelle de fin d'année.
+  - Corrige le montant de base de l'AEFA de 125,45€ à 152,45€
+  - Prolonge l'AEFA au-delà de 2015 car elle a été reconduite
+  - N'applique la majoration familiale que pour les bénéficiaires du RSA
+
+### 26.1.4 [#1151](https://github.com/openfisca/openfisca-france/pull/1151)
 
 * Changement mineur.
 * Périodes concernées : 2013
@@ -8,7 +19,7 @@
 * Détails :
   - Ajoute des tests couvrant le calcul de la décote de l'IR en 2013
 
-### 26.1.3 [#1155](https://github.com/openfisca/openfisca-france/pull/1159) [#1158](https://github.com/openfisca/openfisca-france/pull/1155)
+### 26.1.3 [#1155](https://github.com/openfisca/openfisca-france/pull/1155)
 
 * Amélioration technique.
 * Périodes concernées : NA
@@ -18,7 +29,7 @@
   - Documentation de scripts.
   - Suppression de scripts.
 
-### 26.1.2 [#1159](https://github.com/openfisca/openfisca-france/pull/1159) [#1159](https://github.com/openfisca/openfisca-france/pull/1158)
+### 26.1.2 [#1159](https://github.com/openfisca/openfisca-france/pull/1159) [#1158](https://github.com/openfisca/openfisca-france/pull/1158)
 
 * Évolution du système socio-fiscal
 * Périodes concernées : toutes
