@@ -1,5 +1,15 @@
 # Changelog
 
+# 27.0.0 [#1150](https://github.com/openfisca/openfisca-france/pull/1150)
+
+* Évolution du système socio-fiscal **non rétro-compatible**
+* Périodes concernées : toutes.
+* Zones impactées :
+- `openfisca_france/model/prestations/minima_sociaux/[cmu,rsa].py`.
+- `openfisca_france/model/revenus/autres.py`
+* Détails :
+  - Supprime la variable allocation_aide_retour_emploi, inutilisée
+
 ## 26.2.0 [#1149](https://github.com/openfisca/openfisca-france/pull/1149)
 
 * Évolution du système socio-fiscal
