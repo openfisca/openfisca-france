@@ -44,14 +44,6 @@ class gains_exceptionnels(Variable):
     set_input = set_input_divide_by_period
 
 
-class allocation_aide_retour_emploi(Variable):
-    value_type = float
-    entity = Individu
-    label = u"Allocation d'aide au retour à l'emploi"
-    definition_period = MONTH
-    set_input = set_input_divide_by_period
-
-
 class allocation_securisation_professionnelle(Variable):
     value_type = float
     entity = Individu

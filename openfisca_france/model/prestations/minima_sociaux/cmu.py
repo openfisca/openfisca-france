@@ -272,14 +272,13 @@ class cmu_base_ressources_individu(Variable):
             chomage = individu('activite', period) == TypesActivite.chomeur
             indemnites_chomage_partiel = individu('indemnites_chomage_partiel', period)
             chomage_net = individu('chomage_net', period)
-            allocation_aide_retour_emploi = individu('allocation_aide_retour_emploi', period)
 
             ass = individu.famille('ass', period)
 
             revenus_stage_formation_pro = individu('revenus_stage_formation_pro', period)
 
             condition_ij_maladie = indemnites_journalieres_maladie > 0
-            condition_chomage = chomage * ((indemnites_chomage_partiel + chomage_net + allocation_aide_retour_emploi) > 0)
+            condition_chomage = chomage * ((indemnites_chomage_partiel + chomage_net) > 0)
             condition_ass = ass > 0
             condition_revenus_formation_pro = revenus_stage_formation_pro > 0
 
