@@ -6,3 +6,74 @@
     pensions_invalidite: 200
   output_variables:
     asi: 404
+
+
+- name: "Cas test de l'ASI pour vérifier que dégressivité est bien codée (1)"
+  period: 2018-10
+  absolute_error_margin: 1
+  input_variables:
+    asi_aspa_nb_alloc: 1
+    age: 35
+    asi_eligibilite: True
+    asi_aspa_base_ressources_individu: 0
+  output_variables:
+    asi: 409.43
+
+
+- name: "Cas test de l'ASI pour vérifier que dégressivité est bien codée (2)"
+  period: 2018-10
+  absolute_error_margin: 1
+  input_variables:
+    asi_aspa_nb_alloc: 1
+    age: 35
+    asi_eligibilite: True
+    asi_aspa_base_ressources_individu: 400
+  output_variables:
+    asi: 311.9
+
+
+- name: "Cas test de l'ASI pour vérifier que dégressivité est bien codée (3)"
+  period: 2018-10
+  absolute_error_margin: 1
+  input_variables:
+    asi_aspa_nb_alloc: 1
+    age: 35
+    en_couple: True
+    maries: False
+    asi_eligibilite: True
+    asi_aspa_base_ressources: 1000
+  output_variables:
+    asi: 246.9
+
+
+- name: "Cas test de l'ASI pour vérifier que dégressivité est bien codée (4)"
+  period: 2018-10
+  absolute_error_margin: 1
+  input_variables:
+    asi_aspa_nb_alloc: 1
+    age: 35
+    en_couple: True
+    maries: True
+    asi_eligibilite: True
+    asi_aspa_base_ressources: 1000
+  output_variables:
+    asi: 246.9
+
+
+- name: "Cas test de l'ASI pour vérifier que dégressivité est bien codée (5)"
+  period: 2018-10
+  absolute_error_margin: 1
+  familles:
+    parents: ["parent1", "parent2"]
+    maries: True
+  individus:
+    - id: "parent1"
+      age: 54
+      asi_aspa_base_ressources_individu: 400
+      asi_eligibilite: True
+    - id: "parent2"
+      age: 60
+      asi_aspa_base_ressources_individu: 400
+      asi_eligibilite: True
+  output_variables:
+    asi: [223.4, 223.4]
