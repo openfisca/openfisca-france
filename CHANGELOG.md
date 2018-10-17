@@ -1,5 +1,14 @@
 # Changelog
 
+# 27.0.1 [#1168](https://github.com/openfisca/openfisca-france/pull/1168)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées :
+  - `tests/formulas/asi.yaml`
+* Détails :
+  - Ajout de tests pour l'ASI afin de vérifier que la formule prend bien en compte la dégressivité au delà d'un seuil.
+
 # 27.0.0 [#1150](https://github.com/openfisca/openfisca-france/pull/1150)
 
 * Évolution du système socio-fiscal **non rétro-compatible**
