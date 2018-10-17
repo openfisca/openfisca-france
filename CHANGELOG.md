@@ -1,5 +1,13 @@
 # Changelog
 
+## 27.1.0 [#1152](https://github.com/openfisca/openfisca-france/pull/1152)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/07/2018
+* Zones impactées : `openfisca_france/assets/versement_transport`.
+* Détails :
+  - Mise à jour des taux de versement transport conformément à [la circulaire du 31 mai 2018](https://www.urssaf.fr/portail/files/live/sites/urssaf/files/Lettres_circulaires/2018/ref_LCIRC-2018-0000018.pdf)
+
 ### 27.0.5 [#1173](https://github.com/openfisca/openfisca-france/pull/1173)
 
 * Amélioration technique
