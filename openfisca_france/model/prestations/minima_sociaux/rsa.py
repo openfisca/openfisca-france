@@ -730,7 +730,7 @@ class rsa_base_ressources_patrimoine_individu(Variable):
         livret_a = individu('livret_a', period)
         taux_livret_a = parameters(period).epargne.livret_a.taux
         epargne_revenus_non_imposables = individu('epargne_revenus_non_imposables', period)
-        revenus_capital = individu('revenus_capital', period)
+        revenus_capital = individu('revenus_capital', period) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
         valeur_locative_immo_non_loue = individu('valeur_locative_immo_non_loue', period)
         valeur_locative_terrains_non_loues = individu('valeur_locative_terrains_non_loues', period)
         revenus_locatifs = individu('revenus_locatifs', period)

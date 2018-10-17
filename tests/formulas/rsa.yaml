@@ -548,3 +548,25 @@
       date_naissance: 2005-03-10
   output_variables:
     rsa: 0
+
+
+- name: "RSA avec revenus du capital"
+  description: Calcule le RSA avec revenus du capital (et vérifie notamment l'absence de double compte via revenus_capital)
+  period: 2018-09
+  absolute_error_margin: 0.02
+  familles:
+    parents: ["parent1", "parent2"]
+  foyers_fiscaux:
+    declarants: ["parent1", "parent2"]
+    f2dh:
+      2018: 200 * 12
+  menages:
+    personne_de_reference: "parent1"
+    conjoint: "parent2"
+  individus:
+    - id: "parent1"
+      age: 38
+    - id: "parent2"
+      age: 35
+  output_variables:
+    rsa: 826.40 - 200
