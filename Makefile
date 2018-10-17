@@ -1,5 +1,8 @@
 all: test
 
+uninstall:
+	pip freeze | grep -v "^-e" | xargs pip uninstall -y
+
 install:
 	pip install --upgrade pip twine wheel
 	pip install --editable .[dev] --upgrade && pip install openfisca-core[web-api]

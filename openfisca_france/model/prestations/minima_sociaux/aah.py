@@ -225,13 +225,14 @@ class aah_eligible(Variable):
         age = individu('age', period)
         autonomie_financiere = individu('autonomie_financiere', period)
         eligible_aah = (
-            ((taux_incapacite >= law.taux_incapacite) + (taux_incapacite >= 0.5) * rsdae) *
-            (age <= law.age_legal_retraite) *
-            ((age >= law.age_minimal) + ((age >= 16) * (autonomie_financiere)))
+            ((taux_incapacite >= law.taux_incapacite) + (taux_incapacite >= 0.5) * rsdae)
+            * (age <= law.age_legal_retraite)
+            * ((age >= law.age_minimal) + ((age >= 16) * (autonomie_financiere)))
             )
 
         return eligible_aah
-    # TODO: dated_function : avant 2008, il fallait ne pas avoir travaillé pendant les 12 mois précédant la demande.
+
+        # TODO: dated_function : avant 2008, il fallait ne pas avoir travaillé pendant les 12 mois précédant la demande.
 
 
 class aah_base_non_cumulable(Variable):

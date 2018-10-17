@@ -39,8 +39,8 @@ def run(reform_class, year):
     reform_simulation = scenario.new_simulation()
 #    error_margin = 1
 
-    impo = reference_simulation.calculate('impots_directs', period = year)
-    reform_impo = reform_simulation.calculate('impots_directs', period = year)
+    impo = reference_simulation.calculate('impots_directs', period = year)  # noqa F841
+    reform_impo = reform_simulation.calculate('impots_directs', period = year)  # noqa F841
 
 
 if __name__ == '__main__':

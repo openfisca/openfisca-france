@@ -6,6 +6,7 @@ from openfisca_core import periods
 from openfisca_france.reforms.plfr2014 import plfr2014
 from ..cache import tax_benefit_system
 
+
 def test(year = 2013):
     max_sal = 18000
     count = 2
@@ -32,5 +33,5 @@ def test(year = 2013):
     reference_simulation = scenario.new_simulation(use_baseline = True)
     reform_simulation = scenario.new_simulation()
     # error_margin = 1
-    impots_directs = reference_simulation.calculate('impots_directs', period = year)
-    reform_impots_directs = reform_simulation.calculate('impots_directs', period = year)
+    impots_directs = reference_simulation.calculate('impots_directs', period = year)  # noqa F841
+    reform_impots_directs = reform_simulation.calculate('impots_directs', period = year)  # noqa F841

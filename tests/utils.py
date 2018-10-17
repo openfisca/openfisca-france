@@ -12,6 +12,7 @@ from .cache import tax_benefit_system
 def check_calculation(variable, calculated_value, expected_value, error_margin):
     assert_near(calculated_value, expected_value, absolute_error_margin = error_margin)
 
+
 @nottest  # this function should not be considered as a test by nosetests
 def process_tests_list(tests_list, monthly_amount = False, default_error_margin = 1, forced_error_margin = None):
     for test in tests_list:
@@ -20,6 +21,7 @@ def process_tests_list(tests_list, monthly_amount = False, default_error_margin 
         for variable, expected_value in test['output_vars'].items():
             calculated_value = simulation.calculate(variable).sum() / (1 * (not monthly_amount) + 12 * monthly_amount)
             yield check_calculation, variable, calculated_value, expected_value, error_margin
+
 
 @nottest  # this function should not be considered as a test by nosetests
 def simulation_from_test(test, monthly_amount = False, default_error_margin = 1, forced_error_margin = None):

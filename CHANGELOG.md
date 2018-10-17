@@ -1,5 +1,12 @@
 # Changelog
 
+### 27.0.5 [#1173](https://github.com/openfisca/openfisca-france/pull/1173)
+
+* Amélioration technique
+* Zones impactées : `**/*`.
+* Détails :
+  - Corrige et uniformise le style des fichiers
+
 ### 27.0.4 [#1176](https://github.com/openfisca/openfisca-france/pull/1176)
 
 * Amélioration d'un calcul existant

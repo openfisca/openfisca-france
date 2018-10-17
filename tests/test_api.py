@@ -1,9 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import subprocess
-import time
 from unittest import TestCase
-from nose.tools import assert_equal
 
 
 class TestNewApi(TestCase):
@@ -16,7 +14,7 @@ class TestNewApi(TestCase):
 
     def test_response(self):
         try:
-            subprocess.check_call(['wget', '--quiet',  '--retry-connrefused', '--waitretry=1', '--tries=10', 'http://localhost:5000/parameters', '--output-document=/dev/null'])
+            subprocess.check_call(['wget', '--quiet', '--retry-connrefused', '--waitretry=1', '--tries=10', 'http://localhost:5000/parameters', '--output-document=/dev/null'])
         except subprocess.CalledProcessError:
             raise subprocess.CalledProcessError("Could not reach OpenFisca Web API at localhost:5000 after 10s")
         except OSError:

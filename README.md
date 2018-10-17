@@ -163,6 +163,44 @@ nosetests tests/test_basics.py # Ces test peuvent prendre jusqu'à 60 secondes.
 - Pour enrichir ou faire évoluer la législation d'OpenFisca-France, lisez _[Coding the Legislation](http://openfisca.org/doc/coding-the-legislation/index.html)_ (en anglais).
 - Pour contribuer au code, lisez le _[Contribution Guidebook](http://openfisca.org/doc/contribute/index.html)_ (en anglais).
 
+## Testing
+
+Pour faire tourner les tests d'OpenFisca-France, exécutez la commande suivante :
+
+```sh
+make test
+```
+
+## Style
+
+Ce dépôt adhère à un style de code précis, et on vous invite à le suivre pour que vos contributions soient intégrées au plus vite.
+
+L'analyse de style est déjà exécutée avec `make test`. Pour le faire tourner de façon indépendante :
+
+```sh
+make check-style
+```
+
+Pour corriger les erreurs de style de façon automatique:
+
+```sh
+make format-style
+```
+
+Pour corriger les erreurs de style de façon automatique à chaque fois que vous faites un _commit_ :
+
+```sh
+touch .git/hooks/pre-commit
+chmod +x .git/hooks/pre-commit
+
+tee -a .git/hooks/pre-commit << END
+#!/bin/sh
+#
+# Automatically format your code before committing.
+exec make format-style
+END
+```
+
 ## Servez OpenFisca-France avec l'API Web OpenFisca
 
 Il est possible de servir l'API Web d'OpenFisca-France sur votre propre serveur :
