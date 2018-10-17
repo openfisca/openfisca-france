@@ -39,7 +39,7 @@
     asi_aspa_nb_alloc: 1
     age: 35
     en_couple: true
-    maries: False
+    maries: false
     asi_eligibilite: true
     asi_aspa_base_ressources: 1000
   output_variables:
