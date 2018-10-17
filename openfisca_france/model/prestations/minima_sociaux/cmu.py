@@ -273,7 +273,7 @@ class cmu_base_ressources_individu(Variable):
             indemnites_chomage_partiel = individu('indemnites_chomage_partiel', period)
             chomage_net = individu('chomage_net', period)
 
-            ass = individu.famille('ass', period)
+            ass = individu('ass', period)
 
             revenus_stage_formation_pro = individu('revenus_stage_formation_pro', period)
 

@@ -184,19 +184,14 @@ class ppa_ressources_hors_activite(Variable):
     definition_period = MONTH
 
     def formula(famille, period, parameters, mois_demande):
+        aspa = famille('aspa', mois_demande)
+        ass_i = famille.members('ass', mois_demande)
         pf = famille(
             'ppa_base_ressources_prestations_familiales', period, extra_params = [mois_demande])
         ressources_hors_activite_i = famille.members(
             'ppa_ressources_hors_activite_individu', period, extra_params = [mois_demande])
-        ressources = [
-            'ass',
-            'aspa'
-            ]
 
-        ressources_hors_activite = famille.sum(ressources_hors_activite_i) + pf + sum(
-            famille(ressource, mois_demande) for ressource in ressources)
-
-        return ressources_hors_activite
+        return aspa + famille.sum(ass_i + ressources_hors_activite_i) + pf
 
 
 class ppa_ressources_hors_activite_individu(Variable):

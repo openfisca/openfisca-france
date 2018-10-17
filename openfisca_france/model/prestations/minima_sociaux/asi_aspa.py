@@ -118,9 +118,8 @@ class asi_aspa_base_ressources(Variable):
 
     def formula(famille, period):
         base_ressources_i = famille.members('asi_aspa_base_ressources_individu', period)
-        ass = famille('ass', period, max_nb_cycles = 0)
-
-        return ass + famille.sum(base_ressources_i, role = Famille.PARENT)
+        ass_i = famille.members('ass', period, max_nb_cycles = 0)
+        return famille.sum(base_ressources_i + ass_i, role = Famille.PARENT)
 
 
 class aspa_eligibilite(Variable):
