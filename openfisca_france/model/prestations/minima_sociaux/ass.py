@@ -18,17 +18,16 @@ class ass_precondition_remplie(Variable):
 class ass(Variable):
     value_type = float
     label = u"Montant de l'ASS pour une famille"
-    entity = Famille
+    entity = Individu
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
-    def formula(famille, period, parameters):
-        ass_base_ressources = famille('ass_base_ressources', period)
-        en_couple = famille('en_couple', period)
+    def formula(individu, period, parameters):
+        ass_base_ressources = individu('ass_base_ressources', period)
+        en_couple = individu('en_couple', period)
         ass_params = parameters(period).prestations.minima_sociaux.ass
 
-        ass_eligibilite_i = famille.members('ass_eligibilite_individu', period)
-        elig = famille.any(ass_eligibilite_i, role = Famille.PARENT)
+        elig = individu('ass_eligibilite_individu', period)
 
         montant_journalier = ass_params.montant_plein
         montant_mensuel = 30 * montant_journalier
@@ -162,7 +161,6 @@ class ass_base_ressources_conjoint(Variable):
         aah = calculateWithAbatement('aah')
         retraite_nette = calculateWithAbatement('retraite_nette')
         pensions_alimentaires_percues = calculateWithAbatement('pensions_alimentaires_percues')
-        revenus_capital = individu('revenus_capital', period)
 
         def revenus_tns():
             revenus_auto_entrepreneur = individu('tns_auto_entrepreneur_benefice', previous_year, options = [ADD])
@@ -187,7 +185,6 @@ class ass_base_ressources_conjoint(Variable):
             + chomage_net
             + indemnites_journalieres
             + revenus_tns()
-            + revenus_capital
             )
 
         return result
