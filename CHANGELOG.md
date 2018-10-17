@@ -1,6 +1,6 @@
 # Changelog
 
-### 27.0.3 [#1170](https://github.com/openfisca/openfisca-france/pull/1170) [#1174](https://github.com/openfisca/openfisca-france/pull/1174)
+### 27.0.3 [#1174](https://github.com/openfisca/openfisca-france/pull/1174) [#1170](https://github.com/openfisca/openfisca-france/pull/1170)
 
 * Amélioration technique.
 * Détails :
