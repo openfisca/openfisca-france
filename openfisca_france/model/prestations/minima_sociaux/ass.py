@@ -81,6 +81,7 @@ class ass_base_ressources_individu(Variable):
         # Le Salaire d'une activité partielle est neutralisé en cas d'interruption
         salaire_imposable = (1 - salaire_imposable_interrompu) * salaire_imposable
         retraite_nette = individu('retraite_nette', previous_year, options = [ADD])
+        revenus_capital = individu('revenus_capital', period)
 
         def revenus_tns():
             revenus_auto_entrepreneur = individu('tns_auto_entrepreneur_benefice', previous_year, options = [ADD])
@@ -108,6 +109,7 @@ class ass_base_ressources_individu(Variable):
             + indemnites_stage
             + revenus_stage_formation_pro
             + revenus_tns()
+            + revenus_capital
             )
 
 
@@ -118,6 +120,9 @@ class ass_base_ressources_conjoint(Variable):
     definition_period = MONTH
 
     def formula(individu, period, parameters):
+        '''
+        N'intègre pas l'exception citée à l'article R5423-2 du Code du Travail sur les conjoints chefs d'entreprises entrant dans le champ d'application de l'article 50-0 du CGI
+        '''
         last_month = period.start.period('month').offset(-1)
         # Rolling year
         previous_year = period.start.period('year').offset(-1)
@@ -157,6 +162,7 @@ class ass_base_ressources_conjoint(Variable):
         aah = calculateWithAbatement('aah')
         retraite_nette = calculateWithAbatement('retraite_nette')
         pensions_alimentaires_percues = calculateWithAbatement('pensions_alimentaires_percues')
+        revenus_capital = individu('revenus_capital', period)
 
         def revenus_tns():
             revenus_auto_entrepreneur = individu('tns_auto_entrepreneur_benefice', previous_year, options = [ADD])
@@ -181,6 +187,7 @@ class ass_base_ressources_conjoint(Variable):
             + chomage_net
             + indemnites_journalieres
             + revenus_tns()
+            + revenus_capital
             )
 
         return result
