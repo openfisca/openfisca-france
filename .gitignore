@@ -5,6 +5,7 @@
 *.pickle
 *.pyc
 *.pyo
+.DS_Store
 .pydevproject
 .spyderproject
 .ipynb_checkpoints
