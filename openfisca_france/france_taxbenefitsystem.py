@@ -4,11 +4,11 @@ import os
 
 from openfisca_core.taxbenefitsystems import TaxBenefitSystem
 
-from .entities import entities
-from . import decompositions, scenarios
-
-from .model.prelevements_obligatoires.prelevements_sociaux.cotisations_sociales import preprocessing
-from .conf.cache_blacklist import cache_blacklist as conf_cache_blacklist
+from openfisca_france.entities import entities
+from openfisca_france import decompositions, scenarios
+from openfisca_france.model.prelevements_obligatoires.prelevements_sociaux.cotisations_sociales import preprocessing
+from openfisca_france.conf.cache_blacklist import cache_blacklist as conf_cache_blacklist
+from openfisca_france.situation_examples import couple
 
 
 COUNTRY_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -40,6 +40,12 @@ class FranceTaxBenefitSystem(TaxBenefitSystem):
 
         self.add_variables_from_directory(os.path.join(COUNTRY_DIR, 'model'))
         self.cache_blacklist = conf_cache_blacklist
+
+        self.open_api_config = {
+            "variable_example": "rsa_montant",
+            "parameter_example": "cotsoc.gen.smic_h_b",
+            "simulation_example": couple,
+            }
 
     def prefill_cache(self):
         # Compute one "zone APL" variable, to pre-load CSV of "code INSEE commune" to "Zone APL".

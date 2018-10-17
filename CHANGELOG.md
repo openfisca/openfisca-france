@@ -1,11 +1,16 @@
 # Changelog
 
-# 27.0.1 [#1168](https://github.com/openfisca/openfisca-france/pull/1168)
+### 27.0.2 [#1170](https://github.com/openfisca/openfisca-france/pull/1170)
+
+* Amélioration technique.
+* Détails :
+  - Dans la route `/spec` de la Web API:
+    - Introduit un exemple de simulation à utiliser pour `/calculate` et `/trace`
+    - Définit les exemples de variables et paramètres à utliser
+
+### 27.0.1 [#1168](https://github.com/openfisca/openfisca-france/pull/1168)
 
 * Changement mineur.
-* Périodes concernées : toutes.
-* Zones impactées :
-  - `tests/formulas/asi.yaml`
 * Détails :
   - Ajout de tests pour l'ASI afin de vérifier que la formule prend bien en compte la dégressivité au delà d'un seuil.
 
@@ -14,16 +19,17 @@
 * Évolution du système socio-fiscal **non rétro-compatible**
 * Périodes concernées : toutes.
 * Zones impactées :
-- `openfisca_france/model/prestations/minima_sociaux/[cmu,rsa].py`.
-- `openfisca_france/model/revenus/autres.py`
+- `prestations/minima_sociaux/cmu`.
+- `prestations/minima_sociaux/rsa`.
+- `revenus/autres`
 * Détails :
-  - Supprime la variable allocation_aide_retour_emploi, inutilisée
+  - Supprime la variable `allocation_aide_retour_emploi`, inutilisée
 
 ## 26.2.0 [#1149](https://github.com/openfisca/openfisca-france/pull/1149)
 
 * Évolution du système socio-fiscal
 * Périodes concernées : à partir du 01/01/2003.
-* Zones impactées : `openfisca_france/model/prestations/minima_sociaux/aefa.py`.
+* Zones impactées : `prestations/minima_sociaux/aefa`.
 * Détails :
   - Fiabilise, unifie et simplifie le calcul de l'aide exceptionnelle de fin d'année.
   - Corrige le montant de base de l'AEFA de 125,45€ à 152,45€
@@ -41,8 +47,6 @@
 ### 26.1.3 [#1155](https://github.com/openfisca/openfisca-france/pull/1155)
 
 * Amélioration technique.
-* Périodes concernées : NA
-* Zones impactées : `openfisca_france/scripts`.
 * Détails :
   - Correction de scripts qui ne marchaient plus.
   - Documentation de scripts.
