@@ -2,7 +2,7 @@
 
 import datetime
 
-from openfisca_core import periods, reforms
+from openfisca_core import periods
 from openfisca_core.reforms import Reform
 from openfisca_core.tools import assert_near
 

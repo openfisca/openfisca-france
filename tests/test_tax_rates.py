@@ -3,6 +3,7 @@
 from openfisca_core.rates import average_rate, marginal_rate
 from .cache import tax_benefit_system
 
+
 def test_average_tax_rate():
     year = 2013
     simulation = tax_benefit_system.new_scenario().init_single_entity(
