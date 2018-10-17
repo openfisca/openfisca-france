@@ -1,5 +1,13 @@
 # Changelog
 
+### 27.0.4 [#1176](https://github.com/openfisca/openfisca-france/pull/1176)
+
+* Amélioration d'un calcul existant
+* Périodes concernées : toutes
+* Zones impactées : `prestations/minima_sociaux/rsa`.
+* Détails :
+  - Corrige un double compte de revenus du capital
+
 ### 27.0.3 [#1174](https://github.com/openfisca/openfisca-france/pull/1174) [#1170](https://github.com/openfisca/openfisca-france/pull/1170)
 
 * Amélioration technique.
