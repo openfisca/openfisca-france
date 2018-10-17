@@ -7,6 +7,10 @@ install:
 	pip install --upgrade pip twine wheel
 	pip install --editable .[dev] --upgrade && pip install openfisca-core[web-api]
 
+build:
+	python setup.py bdist_wheel
+	find dist/*.whl | xargs pip install --upgrade
+
 clean:
 	rm -rf build dist
 	find . -name '*.pyc' -exec rm \{\} \;

@@ -23,6 +23,7 @@ jobs:
           name: Install dependencies
           command: |
             make install
+            make build
             # pip install --editable git+https://github.com/openfisca/openfisca-core.git@BRANCH_NAME#egg=OpenFisca-Core  # use a specific branch of OpenFisca-Core
 
       - save_cache:
@@ -58,6 +59,7 @@ jobs:
           name: Install dependencies
           command: |
             make install
+            make build
             # pip install --editable git+https://github.com/openfisca/openfisca-core.git@BRANCH_NAME#egg=OpenFisca-Core  # use a specific branch of OpenFisca-Core
 
       - save_cache:
