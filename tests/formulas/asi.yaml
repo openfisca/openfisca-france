@@ -14,7 +14,7 @@
   input_variables:
     asi_aspa_nb_alloc: 1
     age: 35
-    asi_eligibilite: True
+    asi_eligibilite: true
     asi_aspa_base_ressources_individu: 0
   output_variables:
     asi: 409.43
@@ -26,7 +26,7 @@
   input_variables:
     asi_aspa_nb_alloc: 1
     age: 35
-    asi_eligibilite: True
+    asi_eligibilite: true
     asi_aspa_base_ressources_individu: 400
   output_variables:
     asi: 311.9
@@ -38,9 +38,9 @@
   input_variables:
     asi_aspa_nb_alloc: 1
     age: 35
-    en_couple: True
+    en_couple: true
     maries: False
-    asi_eligibilite: True
+    asi_eligibilite: true
     asi_aspa_base_ressources: 1000
   output_variables:
     asi: 246.9
@@ -52,9 +52,9 @@
   input_variables:
     asi_aspa_nb_alloc: 1
     age: 35
-    en_couple: True
-    maries: True
-    asi_eligibilite: True
+    en_couple: true
+    maries: true
+    asi_eligibilite: true
     asi_aspa_base_ressources: 1000
   output_variables:
     asi: 246.9
@@ -65,15 +65,15 @@
   absolute_error_margin: 1
   familles:
     parents: ["parent1", "parent2"]
-    maries: True
+    maries: true
   individus:
     - id: "parent1"
       age: 54
       asi_aspa_base_ressources_individu: 400
-      asi_eligibilite: True
+      asi_eligibilite: true
     - id: "parent2"
       age: 60
       asi_aspa_base_ressources_individu: 400
-      asi_eligibilite: True
+      asi_eligibilite: true
   output_variables:
     asi: [223.4, 223.4]
