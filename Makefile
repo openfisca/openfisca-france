@@ -3,17 +3,23 @@ all: test
 uninstall:
 	pip freeze | grep -v "^-e" | xargs pip uninstall -y
 
-install:
-	pip install --upgrade pip twine wheel
-	pip install --editable .[dev] --upgrade && pip install openfisca-core[web-api]
-
-build:
-	python setup.py bdist_wheel
-	find dist/*.whl | xargs pip install --upgrade
-
 clean:
 	rm -rf build dist
 	find . -name '*.pyc' -exec rm \{\} \;
+
+deps:
+	@# Install common library dependencies.
+	pip install --upgrade pip twine wheel
+	pip install --upgrade openfisca-core[web-api]
+
+install: deps
+	@# Install library and dependencies in editable mode, for development.
+	pip install --editable --upgrade .[dev]
+
+build: clean deps
+	@# Build and install library and dependencies, for CI and CD.
+	python setup.py bdist_wheel
+	find dist -name "*.whl" -exec pip install --upgrade {}[dev] \;
 
 check-no-prints:
 	@test -z "`git grep -w print openfisca_france/model`"
