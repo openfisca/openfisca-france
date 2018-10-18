@@ -219,10 +219,10 @@ class rsa_base_ressources_minima_sociaux(Variable):
         # Prestations calculées que l'on réinjecte dans la BR du RSA
         aspa = famille('aspa', mois_demande)
 
+        ass_i = famille.members('ass', mois_demande)
         aah_i = famille.members('aah', mois_courant)
         asi_i = famille.members('asi', mois_courant)
         caah_i = famille.members('caah', mois_courant)
-        ass_i = famille.members('ass', period)
 
         return aspa + famille.sum(ass_i) + famille.sum(aah_i + asi_i + caah_i)
 
@@ -230,9 +230,9 @@ class rsa_base_ressources_minima_sociaux(Variable):
         three_previous_months = period.last_3_months
         aspa = famille('aspa', period)
 
+        ass_i = famille.members('ass', period)
         aah_i = famille.members('aah', three_previous_months, options = [ADD])
         asi_i = famille.members('asi', three_previous_months, options = [ADD])
-        ass_i = famille.members('ass', period)
         caah_i = famille.members('caah', three_previous_months, options = [ADD])
         return aspa + famille.sum(ass_i) + famille.sum(aah_i + asi_i + caah_i) / 3
 
