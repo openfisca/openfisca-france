@@ -4,9 +4,9 @@
 
 * Changement majeur.
 * Zones impactées :
-  - `model\prestations\minima_sociaux\ass.py`.
-  - `tests\formulas\ass.yaml`
+  - `prestations/minima_sociaux/ass`
   - `prestations/minima_sociaux/rsa`
+  - `tests/formulas/ass.yaml`
 * Détails :
   - Passe à une définition de l'ASS au niveau "Individu" au lieu de "Famille"
   - Ajoute les revenus du capital au calcul de la base revenu de l'individu demandeur de l'ASS et de son conjoint éventuel
