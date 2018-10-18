@@ -1,0 +1,87 @@
+{
+  "scenario": {
+    "period": "2017", 
+    "test_case": {
+      "familles": [
+        {
+          "enfants": [
+            "ind2", 
+            "ind3", 
+            "ind4"
+          ], 
+          "id": 0, 
+          "parents": [
+            "ind0"
+          ]
+        }
+      ], 
+      "foyers_fiscaux": [
+        {
+          "caseF": false, 
+          "caseG": false, 
+          "caseL": false, 
+          "caseP": false, 
+          "caseS": false, 
+          "caseT": false, 
+          "caseW": false, 
+          "declarants": [
+            "ind0"
+          ], 
+          "f7ea": 1, 
+          "f7eb": 1, 
+          "f7ec": 0, 
+          "f7ed": 1, 
+          "f7ef": 0, 
+          "f7eg": 0, 
+          "id": 0, 
+          "nbF": 1.0, 
+          "nbG": 0.0, 
+          "nbH": 2.0, 
+          "nbI": 0.0, 
+          "nbJ": 0, 
+          "nbR": 0, 
+          "personnes_a_charge": [
+            "ind2", 
+            "ind3", 
+            "ind4"
+          ]
+        }
+      ], 
+      "individus": [
+        {
+          "activite": "actif", 
+          "date_naissance": "1970-01-01", 
+          "id": "ind0", 
+          "salaire_imposable": 50000.0, 
+          "statut_marital": "celibataire"
+        }, 
+        {
+          "activite": "etudiant", 
+          "date_naissance": "2007-01-01", 
+          "id": "ind2"
+        }, 
+        {
+          "activite": "etudiant", 
+          "date_naissance": "2007-01-01", 
+          "id": "ind3"
+        }, 
+        {
+          "activite": "etudiant", 
+          "date_naissance": "2007-01-01", 
+          "id": "ind4"
+        }
+      ], 
+      "menages": [
+        {
+          "enfants": [
+            "ind2", 
+            "ind3", 
+            "ind4"
+          ], 
+          "id": 0, 
+          "personne_de_reference": "ind0"
+        }
+      ]
+    }
+  }
+}

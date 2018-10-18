@@ -1,0 +1,455 @@
+{
+  "resultat_officiel": {
+    "IAVIM": {
+      "code": "IAVIM", 
+      "name": "Impôt avant imputations", 
+      "openfisca_name": "iai", 
+      "value": 33312.0
+    }, 
+    "IDRS2": {
+      "code": "IDRS2", 
+      "name": "?", 
+      "openfisca_name": null, 
+      "value": 42946.0
+    }, 
+    "IINET": {
+      "code": "IINET", 
+      "name": "Montant net à payer", 
+      "openfisca_name": null, 
+      "value": -33312.0
+    }, 
+    "IINETIR": {
+      "code": "IINETIR", 
+      "name": "Impôt sur le revenu net", 
+      "openfisca_name": "irpp", 
+      "value": -33312.0
+    }, 
+    "IREST": {
+      "code": "IREST", 
+      "name": "Montant net à restituer", 
+      "openfisca_name": null, 
+      "value": 0.0
+    }, 
+    "ITRED": {
+      "code": "ITRED", 
+      "name": "Total des réductions d'impôt", 
+      "openfisca_name": "reductions", 
+      "value": 9634.0
+    }, 
+    "NAPCRP": {
+      "code": "NAPCRP", 
+      "name": "Montant net des prélèvements sociaux (sur revenu du patrimoine et revenus d'activité et de remplacement", 
+      "openfisca_name": null, 
+      "value": 0.0
+    }, 
+    "NBPT": {
+      "code": "NBPT", 
+      "name": "Nombre de parts", 
+      "openfisca_name": "nbptr", 
+      "value": 1.0
+    }, 
+    "PERPPLAFTV": {
+      "code": "PERPPLAFTV", 
+      "name": "Plafond de déduction pour les revenus 2014 au titre de l'épargne retraite, pour déclarant 1", 
+      "openfisca_name": null, 
+      "value": 13782.0
+    }, 
+    "RCODJTJU": {
+      "code": "RCODJTJU", 
+      "name": "Réduction d'impôt Censi-Bouvard : case 7JT, 7JU", 
+      "openfisca_name": null, 
+      "value": 244.0
+    }, 
+    "RCODOU": {
+      "code": "RCODOU", 
+      "name": "nom inconnu", 
+      "openfisca_name": null, 
+      "value": 122.0
+    }, 
+    "RCODOV": {
+      "code": "RCODOV", 
+      "name": "nom inconnu", 
+      "openfisca_name": null, 
+      "value": 122.0
+    }, 
+    "RCODOW": {
+      "code": "RCODOW", 
+      "name": "nom inconnu", 
+      "openfisca_name": null, 
+      "value": 122.0
+    }, 
+    "REVKIRE": {
+      "code": "REVKIRE", 
+      "name": "Revenu fiscal de référence", 
+      "openfisca_name": "rfr", 
+      "value": 137817.0
+    }, 
+    "RILMIA": {
+      "code": "RILMIA", 
+      "name": "Réduction d'impôt Censi-Bouvard : case 7IA", 
+      "openfisca_name": null, 
+      "value": 500.0
+    }, 
+    "RILMIC": {
+      "code": "RILMIC", 
+      "name": "Réduction d'impôt Censi-Bouvard : case 7IC", 
+      "openfisca_name": null, 
+      "value": 500.0
+    }, 
+    "RILMIH": {
+      "code": "RILMIH", 
+      "name": "Réduction d'impôt Censi-Bouvard : case 7IH", 
+      "openfisca_name": null, 
+      "value": 10.0
+    }, 
+    "RILMIX": {
+      "code": "RILMIX", 
+      "name": "Réduction d'impôt Censi-Bouvard : case 7IX", 
+      "openfisca_name": null, 
+      "value": 10.0
+    }, 
+    "RILMIY": {
+      "code": "RILMIY", 
+      "name": "nom inconnu", 
+      "openfisca_name": null, 
+      "value": 10.0
+    }, 
+    "RILMIZ": {
+      "code": "RILMIZ", 
+      "name": "Réduction d'impôt Censi-Bouvard : case 7IZ", 
+      "openfisca_name": null, 
+      "value": 10.0
+    }, 
+    "RILMJC": {
+      "code": "RILMJC", 
+      "name": "nom inconnu", 
+      "openfisca_name": null, 
+      "value": 10.0
+    }, 
+    "RILMJI": {
+      "code": "RILMJI", 
+      "name": "Réduction d'impôt Censi-Bouvard : case 7JI", 
+      "openfisca_name": null, 
+      "value": 10.0
+    }, 
+    "RILMJS": {
+      "code": "RILMJS", 
+      "name": "Réduction d'impôt Censi-Bouvard : case 7JS", 
+      "openfisca_name": null, 
+      "value": 10.0
+    }, 
+    "RILMJV": {
+      "code": "RILMJV", 
+      "name": "Réduction d'impôt Censi-Bouvard : case 7JV", 
+      "openfisca_name": null, 
+      "value": 500.0
+    }, 
+    "RILMJX": {
+      "code": "RILMJX", 
+      "name": "Réduction d'impôt Censi-Bouvard : case 7JX", 
+      "openfisca_name": null, 
+      "value": 500.0
+    }, 
+    "RILMOA": {
+      "code": "RILMOA", 
+      "name": "nom inconnu", 
+      "openfisca_name": null, 
+      "value": 500.0
+    }, 
+    "RILMOC": {
+      "code": "RILMOC", 
+      "name": "nom inconnu", 
+      "openfisca_name": null, 
+      "value": 500.0
+    }, 
+    "RILMOE": {
+      "code": "RILMOE", 
+      "name": "nom inconnu", 
+      "openfisca_name": null, 
+      "value": 500.0
+    }, 
+    "RILMOF": {
+      "code": "RILMOF", 
+      "name": "nom inconnu", 
+      "openfisca_name": null, 
+      "value": 500.0
+    }, 
+    "RILMOH": {
+      "code": "RILMOH", 
+      "name": "nom inconnu", 
+      "openfisca_name": null, 
+      "value": 500.0
+    }, 
+    "RILMOJ": {
+      "code": "RILMOJ", 
+      "name": "nom inconnu", 
+      "openfisca_name": null, 
+      "value": 500.0
+    }, 
+    "RILMOK": {
+      "code": "RILMOK", 
+      "name": "nom inconnu", 
+      "openfisca_name": null, 
+      "value": 500.0
+    }, 
+    "RILMOM": {
+      "code": "RILMOM", 
+      "name": "nom inconnu", 
+      "openfisca_name": null, 
+      "value": 500.0
+    }, 
+    "RILMOO": {
+      "code": "RILMOO", 
+      "name": "nom inconnu", 
+      "openfisca_name": null, 
+      "value": 500.0
+    }, 
+    "RILMPA": {
+      "code": "RILMPA", 
+      "name": "nom inconnu", 
+      "openfisca_name": null, 
+      "value": 10.0
+    }, 
+    "RILMPB": {
+      "code": "RILMPB", 
+      "name": "nom inconnu", 
+      "openfisca_name": null, 
+      "value": 10.0
+    }, 
+    "RILMPC": {
+      "code": "RILMPC", 
+      "name": "nom inconnu", 
+      "openfisca_name": null, 
+      "value": 10.0
+    }, 
+    "RILMPD": {
+      "code": "RILMPD", 
+      "name": "nom inconnu", 
+      "openfisca_name": null, 
+      "value": 10.0
+    }, 
+    "RILMPE": {
+      "code": "RILMPE", 
+      "name": "nom inconnu", 
+      "openfisca_name": null, 
+      "value": 10.0
+    }, 
+    "RILMPF": {
+      "code": "RILMPF", 
+      "name": "nom inconnu", 
+      "openfisca_name": null, 
+      "value": 10.0
+    }, 
+    "RILMPG": {
+      "code": "RILMPG", 
+      "name": "nom inconnu", 
+      "openfisca_name": null, 
+      "value": 10.0
+    }, 
+    "RILMPH": {
+      "code": "RILMPH", 
+      "name": "nom inconnu", 
+      "openfisca_name": null, 
+      "value": 10.0
+    }, 
+    "RILMPI": {
+      "code": "RILMPI", 
+      "name": "nom inconnu", 
+      "openfisca_name": null, 
+      "value": 10.0
+    }, 
+    "RILMPJ": {
+      "code": "RILMPJ", 
+      "name": "nom inconnu", 
+      "openfisca_name": null, 
+      "value": 10.0
+    }, 
+    "RILMPK": {
+      "code": "RILMPK", 
+      "name": "nom inconnu", 
+      "openfisca_name": null, 
+      "value": 10.0
+    }, 
+    "RILMPL": {
+      "code": "RILMPL", 
+      "name": "nom inconnu", 
+      "openfisca_name": null, 
+      "value": 10.0
+    }, 
+    "RILMPM": {
+      "code": "RILMPM", 
+      "name": "nom inconnu", 
+      "openfisca_name": null, 
+      "value": 10.0
+    }, 
+    "RILMPN": {
+      "code": "RILMPN", 
+      "name": "nom inconnu", 
+      "openfisca_name": null, 
+      "value": 10.0
+    }, 
+    "RINVRED": {
+      "code": "RINVRED", 
+      "name": "Réduction d'impôt Censi-Bouvard : case 7IT", 
+      "openfisca_name": null, 
+      "value": 10.0
+    }, 
+    "RLOCIDEFG": {
+      "code": "RLOCIDEFG", 
+      "name": "Réduction d'impôt Censi-Bouvard : cases 7ID, 7IE, 7IF, 7IG", 
+      "openfisca_name": null, 
+      "value": 644.0
+    }, 
+    "RNICOL": {
+      "code": "RNICOL", 
+      "name": "Revenu net imposable ou déficit à reporter", 
+      "openfisca_name": "rni", 
+      "value": 137817.0
+    }, 
+    "RPROREP": {
+      "code": "RPROREP", 
+      "name": "?", 
+      "openfisca_name": null, 
+      "value": 125.0
+    }, 
+    "RRBG": {
+      "code": "RRBG", 
+      "name": "Revenu brut global ou déficit", 
+      "openfisca_name": "rbg", 
+      "value": 137817.0
+    }, 
+    "RREDREP": {
+      "code": "RREDREP", 
+      "name": "?", 
+      "openfisca_name": null, 
+      "value": 10.0
+    }, 
+    "RREPMEU": {
+      "code": "RREPMEU", 
+      "name": "Réduction d'impôt Censi-Bouvard : case 7IP", 
+      "openfisca_name": null, 
+      "value": 125.0
+    }, 
+    "RRESINEUV": {
+      "code": "RRESINEUV", 
+      "name": "?", 
+      "openfisca_name": null, 
+      "value": 844.0
+    }, 
+    "RRESIVIEU": {
+      "code": "RRESIVIEU", 
+      "name": "?", 
+      "openfisca_name": null, 
+      "value": 556.0
+    }, 
+    "TXMARJ": {
+      "code": "TXMARJ", 
+      "name": "Taux marginal d'imposition", 
+      "openfisca_name": null, 
+      "value": 41.0
+    }
+  }, 
+  "scenario": {
+    "period": "2016", 
+    "test_case": {
+      "familles": [
+        {
+          "id": 0, 
+          "parents": [
+            "ind0"
+          ]
+        }
+      ], 
+      "foyers_fiscaux": [
+        {
+          "caseF": false, 
+          "caseG": false, 
+          "caseL": false, 
+          "caseP": false, 
+          "caseS": false, 
+          "caseT": false, 
+          "caseW": false, 
+          "declarants": [
+            "ind0"
+          ], 
+          "f7ia": 500, 
+          "f7ic": 500, 
+          "f7id": 10000, 
+          "f7ie": 10000, 
+          "f7if": 10000, 
+          "f7ig": 10000, 
+          "f7ih": 10, 
+          "f7ij": 10000, 
+          "f7il": 10000, 
+          "f7im": 10000, 
+          "f7in": 10000, 
+          "f7ip": 500, 
+          "f7ir": 500, 
+          "f7it": 10, 
+          "f7iu": 10, 
+          "f7iv": 10000, 
+          "f7iw": 10000, 
+          "f7ix": 10, 
+          "f7iy": 10, 
+          "f7iz": 10, 
+          "f7jc": 10, 
+          "f7ji": 10, 
+          "f7js": 10, 
+          "f7jt": 10000, 
+          "f7ju": 10000, 
+          "f7jv": 500, 
+          "f7jx": 500, 
+          "f7oa": 500, 
+          "f7oc": 500, 
+          "f7oe": 500, 
+          "f7of": 500, 
+          "f7oh": 500, 
+          "f7oj": 500, 
+          "f7ok": 500, 
+          "f7om": 500, 
+          "f7oo": 500, 
+          "f7ou": 10000, 
+          "f7ov": 10000, 
+          "f7ow": 10000, 
+          "f7pa": 10, 
+          "f7pb": 10, 
+          "f7pc": 10, 
+          "f7pd": 10, 
+          "f7pe": 10, 
+          "f7pf": 10, 
+          "f7pg": 10, 
+          "f7ph": 10, 
+          "f7pi": 10, 
+          "f7pj": 10, 
+          "f7pk": 10, 
+          "f7pl": 10, 
+          "f7pm": 10, 
+          "f7pn": 10, 
+          "f7po": 0, 
+          "id": 0, 
+          "nbF": 0.0, 
+          "nbG": 0.0, 
+          "nbH": 0.0, 
+          "nbI": 0.0, 
+          "nbJ": 0, 
+          "nbR": 0
+        }
+      ], 
+      "individus": [
+        {
+          "activite": "actif", 
+          "date_naissance": "1970-01-01", 
+          "id": "ind0", 
+          "salaire_imposable": 150000.0, 
+          "statut_marital": "celibataire"
+        }
+      ], 
+      "menages": [
+        {
+          "id": 0, 
+          "personne_de_reference": "ind0"
+        }
+      ]
+    }
+  }
+}

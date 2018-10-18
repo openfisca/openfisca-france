@@ -1,0 +1,285 @@
+- name: credit_garext
+  period: 2014
+  absolute_error_margin: 1
+  foyers_fiscaux:
+  - caseF: false
+    caseG: false
+    caseP: false
+    caseS: false
+    caseW: false
+    declarants:
+    - ind0
+    - ind1
+    f7ga: 3000
+    f7ge: 2000
+    id: 0
+    nbF: 1.0
+    nbG: 0.0
+    nbH: 1.0
+    nbI: 0.0
+    nbJ: 0
+    nbN: 0
+    nbR: 0
+    personnes_a_charge:
+    - ind2
+    - ind3
+    - ind4
+  individus:
+  - activite: actif
+    date_naissance: '1970-01-01'
+    id: ind0
+    salaire_imposable: 50000.0
+    statut_marital: marie
+  - activite: actif
+    date_naissance: '1970-01-01'
+    id: ind1
+    salaire_imposable: 50000.0
+    statut_marital: marie
+  - activite: etudiant
+    date_naissance: '1994-01-01'
+    id: ind2
+  - activite: etudiant
+    date_naissance: '1999-01-01'
+    id: ind3
+  - activite: etudiant
+    date_naissance: '2010-01-01'
+    id: ind4
+  familles:
+  - enfants:
+    - ind2
+    - ind3
+    - ind4
+    id: 0
+    parents:
+    - ind0
+    - ind1
+  menages:
+  - conjoint: ind1
+    enfants:
+    - ind2
+    - ind3
+    - ind4
+    id: 0
+    personne_de_reference: ind0
+  output_variables:
+    ci_garext: 1725.0
+    iai: 13460.0
+    irpp: -11735.0
+    nbptr: 2.75
+    ppe: 0.0
+    rbg: 90000.0
+    rfr: 90000.0
+    rni: 90000.0
+- name: credit_garext
+  period: 2015
+  absolute_error_margin: 1
+  foyers_fiscaux:
+  - caseF: false
+    caseG: false
+    caseP: false
+    caseS: false
+    caseW: false
+    declarants:
+    - ind0
+    - ind1
+    f7ga: 3000
+    f7ge: 2000
+    id: 0
+    nbF: 1.0
+    nbG: 0.0
+    nbH: 1.0
+    nbI: 0.0
+    nbJ: 0
+    nbN: 0
+    nbR: 0
+    personnes_a_charge:
+    - ind2
+    - ind3
+    - ind4
+  individus:
+  - activite: actif
+    date_naissance: '1970-01-01'
+    id: ind0
+    salaire_imposable: 50000.0
+    statut_marital: marie
+  - activite: actif
+    date_naissance: '1970-01-01'
+    id: ind1
+    salaire_imposable: 50000.0
+    statut_marital: marie
+  - activite: etudiant
+    date_naissance: '1995-01-01'
+    id: ind2
+  - activite: etudiant
+    date_naissance: '2000-01-01'
+    id: ind3
+  - activite: etudiant
+    date_naissance: '2011-01-01'
+    id: ind4
+  familles:
+  - enfants:
+    - ind2
+    - ind3
+    - ind4
+    id: 0
+    parents:
+    - ind0
+    - ind1
+  menages:
+  - conjoint: ind1
+    enfants:
+    - ind2
+    - ind3
+    - ind4
+    id: 0
+    personne_de_reference: ind0
+  output_variables:
+    ci_garext: 1725.0
+    iai: 13446.0
+    irpp: -11721.0
+    nbptr: 2.75
+    rbg: 90000.0
+    rfr: 90000.0
+    rni: 90000.0
+- name: credit_garext
+  period: 2016
+  absolute_error_margin: 1
+  foyers_fiscaux:
+  - caseF: false
+    caseG: false
+    caseP: false
+    caseS: false
+    caseW: false
+    declarants:
+    - ind0
+    - ind1
+    f7ga: 3000
+    f7ge: 2000
+    id: 0
+    nbF: 1.0
+    nbG: 0.0
+    nbH: 1.0
+    nbI: 0.0
+    nbJ: 0
+    nbN: 0
+    nbR: 0
+    personnes_a_charge:
+    - ind2
+    - ind3
+    - ind4
+  individus:
+  - activite: actif
+    date_naissance: '1970-01-01'
+    id: ind0
+    salaire_imposable: 50000.0
+    statut_marital: marie
+  - activite: actif
+    date_naissance: '1970-01-01'
+    id: ind1
+    salaire_imposable: 50000.0
+    statut_marital: marie
+  - activite: etudiant
+    date_naissance: '1996-01-01'
+    id: ind2
+  - activite: etudiant
+    date_naissance: '2001-01-01'
+    id: ind3
+  - activite: etudiant
+    date_naissance: '2012-01-01'
+    id: ind4
+  familles:
+  - enfants:
+    - ind2
+    - ind3
+    - ind4
+    id: 0
+    parents:
+    - ind0
+    - ind1
+  menages:
+  - conjoint: ind1
+    enfants:
+    - ind2
+    - ind3
+    - ind4
+    id: 0
+    personne_de_reference: ind0
+  output_variables:
+    ci_garext: 1725.0
+    iai: 13431.0
+    irpp: -11706.0
+    nbptr: 2.75
+    rbg: 90000.0
+    rfr: 90000.0
+    rni: 90000.0
+- name: credit_garext
+  period: 2017
+  absolute_error_margin: 1
+  foyers_fiscaux:
+  - caseF: false
+    caseG: false
+    caseP: false
+    caseS: false
+    caseW: false
+    declarants:
+    - ind0
+    - ind1
+    f7ga: 3000
+    f7ge: 2000
+    id: 0
+    nbF: 1.0
+    nbG: 0.0
+    nbH: 1.0
+    nbI: 0.0
+    nbJ: 0
+    nbN: 0
+    nbR: 0
+    personnes_a_charge:
+    - ind2
+    - ind3
+    - ind4
+  individus:
+  - activite: actif
+    date_naissance: '1970-01-01'
+    id: ind0
+    salaire_imposable: 50000.0
+    statut_marital: marie
+  - activite: actif
+    date_naissance: '1970-01-01'
+    id: ind1
+    salaire_imposable: 50000.0
+    statut_marital: marie
+  - activite: etudiant
+    date_naissance: '1997-01-01'
+    id: ind2
+  - activite: etudiant
+    date_naissance: '2002-01-01'
+    id: ind3
+  - activite: etudiant
+    date_naissance: '2013-01-01'
+    id: ind4
+  familles:
+  - enfants:
+    - ind2
+    - ind3
+    - ind4
+    id: 0
+    parents:
+    - ind0
+    - ind1
+  menages:
+  - conjoint: ind1
+    enfants:
+    - ind2
+    - ind3
+    - ind4
+    id: 0
+    personne_de_reference: ind0
+  output_variables:
+    ci_garext: 1725.0
+    iai: 13296.0
+    irpp: -11571.0
+    nbptr: 2.75
+    patnat: 0.0
+    rbg: 90000.0
+    rfr: 90000.0

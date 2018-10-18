@@ -1,0 +1,216 @@
+- name: reduc_locmeu
+  period: 2014
+  absolute_error_margin: 1
+  foyers_fiscaux:
+  - caseF: false
+    caseG: false
+    caseL: false
+    caseP: false
+    caseS: false
+    caseT: false
+    caseW: false
+    declarants:
+    - ind0
+    f7id: 10000
+    f7ie: 10000
+    f7if: 10000
+    f7ig: 10000
+    f7ij: 10000
+    f7il: 10000
+    f7im: 10000
+    f7in: 10000
+    f7io: 10000
+    f7iv: 10000
+    f7iw: 10000
+    f7jt: 10000
+    f7ju: 10000
+    f7ou: 10000
+    id: 0
+    nbF: 0.0
+    nbG: 0.0
+    nbH: 0.0
+    nbI: 0.0
+    nbJ: 0
+    nbR: 0
+  individus:
+  - activite: actif
+    date_naissance: '1970-01-01'
+    id: ind0
+    salaire_imposable: 150000.0
+    statut_marital: celibataire
+  familles:
+  - id: 0
+    parents:
+    - ind0
+  menages:
+  - id: 0
+    personne_de_reference: ind0
+  output_variables:
+    iai: 40296.0
+    irpp: -40296.0
+    nbptr: 1.0
+    ppe: 0.0
+    rbg: 137843.0
+    reductions: 2688.0
+    rfr: 137843.0
+    rni: 137843.0
+- name: reduc_locmeu
+  period: 2015
+  absolute_error_margin: 1
+  foyers_fiscaux:
+  - caseF: false
+    caseG: false
+    caseL: false
+    caseP: false
+    caseS: false
+    caseT: false
+    caseW: false
+    declarants:
+    - ind0
+    f7id: 10000
+    f7ie: 10000
+    f7if: 10000
+    f7ig: 10000
+    f7ij: 10000
+    f7il: 10000
+    f7im: 10000
+    f7in: 10000
+    f7io: 10000
+    f7iv: 10000
+    f7iw: 10000
+    f7jt: 10000
+    f7ju: 10000
+    f7ou: 10000
+    f7ov: 10000
+    id: 0
+    nbF: 0.0
+    nbG: 0.0
+    nbH: 0.0
+    nbI: 0.0
+    nbJ: 0
+    nbR: 0
+  individus:
+  - activite: actif
+    date_naissance: '1970-01-01'
+    id: ind0
+    salaire_imposable: 150000.0
+    statut_marital: celibataire
+  familles:
+  - id: 0
+    parents:
+    - ind0
+  menages:
+  - id: 0
+    personne_de_reference: ind0
+  output_variables:
+    iai: 40155.0
+    irpp: -40155.0
+    nbptr: 1.0
+    rbg: 137830.0
+    reductions: 2810.0
+    rfr: 137830.0
+    rni: 137830.0
+- name: reduc_locmeu
+  period: 2016
+  absolute_error_margin: 1
+  foyers_fiscaux:
+  - caseF: false
+    caseG: false
+    caseL: false
+    caseP: false
+    caseS: false
+    caseT: false
+    caseW: false
+    declarants:
+    - ind0
+    f7id: 10000
+    f7ie: 10000
+    f7if: 10000
+    f7ig: 10000
+    f7ij: 10000
+    f7il: 10000
+    f7im: 10000
+    f7in: 10000
+    f7iv: 10000
+    f7iw: 10000
+    f7jt: 10000
+    f7ju: 10000
+    f7ou: 10000
+    f7ov: 10000
+    f7ow: 10000
+    id: 0
+    nbF: 0.0
+    nbG: 0.0
+    nbH: 0.0
+    nbI: 0.0
+    nbJ: 0
+    nbR: 0
+  individus:
+  - activite: actif
+    date_naissance: '1970-01-01'
+    id: ind0
+    salaire_imposable: 150000.0
+    statut_marital: celibataire
+  familles:
+  - id: 0
+    parents:
+    - ind0
+  menages:
+  - id: 0
+    personne_de_reference: ind0
+  output_variables:
+    iai: 40292.0
+    irpp: -40292.0
+    nbptr: 1.0
+    rbg: 137817.0
+    reductions: 2654.0
+    rfr: 137817.0
+    rni: 137817.0
+- name: reduc_locmeu
+  period: 2017
+  absolute_error_margin: 1
+  foyers_fiscaux:
+  - caseF: false
+    caseG: false
+    caseL: false
+    caseP: false
+    caseS: false
+    caseT: false
+    caseW: false
+    declarants:
+    - ind0
+    f7id: 10000
+    f7ij: 10000
+    f7jt: 10000
+    f7ou: 10000
+    f7ov: 10000
+    f7ow: 10000
+    f7ox: 10000
+    id: 0
+    nbF: 0.0
+    nbG: 0.0
+    nbH: 0.0
+    nbI: 0.0
+    nbJ: 0
+    nbR: 0
+  individus:
+  - activite: actif
+    date_naissance: '1970-01-01'
+    id: ind0
+    salaire_imposable: 150000.0
+    statut_marital: celibataire
+  familles:
+  - id: 0
+    parents:
+    - ind0
+  menages:
+  - id: 0
+    personne_de_reference: ind0
+  output_variables:
+    iai: 41828.0
+    irpp: -41828.0
+    nbptr: 1.0
+    patnat: 0.0
+    rbg: 137695.0
+    reductions: 932.0
+    rfr: 137695.0
