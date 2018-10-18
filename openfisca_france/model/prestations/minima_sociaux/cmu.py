@@ -227,6 +227,7 @@ class cmu_base_ressources_individu(Variable):
             'aah',
             'allocation_securisation_professionnelle',
             'asi',
+            'ass',
             'bourse_enseignement_sup',
             'bourse_recherche',
             'caah',
@@ -323,11 +324,10 @@ class cmu_base_ressources(Variable):
     def formula(famille, period, parameters):
         previous_year = period.start.period('year').offset(-1)
 
-        ressources_a_inclure = [
+        ressources_famille_a_inclure = [
             'af',
             'asf',
             'aspa',
-            'ass',
             'cf',
             'paje_clca',
             'paje_prepare',
@@ -335,7 +335,7 @@ class cmu_base_ressources(Variable):
 
         ressources_famille = sum([
             famille(ressource, previous_year, options = [ADD])
-            for ressource in ressources_a_inclure
+            for ressource in ressources_famille_a_inclure
             ])
 
         statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
