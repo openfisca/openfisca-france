@@ -17,7 +17,7 @@ class ass_precondition_remplie(Variable):
 
 class ass(Variable):
     value_type = float
-    label = u"Montant de l'ASS pour une famille"
+    label = u"Montant de l'ASS pour un individu"
     entity = Individu
     definition_period = MONTH
     set_input = set_input_divide_by_period
