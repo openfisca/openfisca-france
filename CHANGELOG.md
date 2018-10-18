@@ -1,5 +1,13 @@
 # Changelog
 
+### 29.2.1 [#1178](https://github.com/openfisca/openfisca-france/pull/1178)
+
+* Changement mineur
+* Périodes concernées : toutes
+* Détails :
+  - Lors de l'ajout d'un fichier statique requis pour le fonctionnement de la librairie, nous devons le rendre découvrable par `wheel`
+  - Pour éviter des soucis involontaires de packaging, on _build_ désormais la librairie, et on exécute les tests contre la version qui sera mise à disposition des usagers
+
 ## 29.2.0 [#1189](https://github.com/openfisca/openfisca-france/pull/1189)
 
 * Évolution du système socio-fiscal.
@@ -113,7 +121,6 @@
 ### 27.0.5 [#1173](https://github.com/openfisca/openfisca-france/pull/1173)
 
 * Amélioration technique
-* Zones impactées : `**/*`.
 * Détails :
   - Corrige et uniformise le style des fichiers
 
@@ -229,7 +236,6 @@
 ### 24.14.9 [#1153](https://github.com/openfisca/openfisca-france/pull/1153)
 
 * Amélioration technique
-* Zones impactées : `openfisca_france/**/*`
 * Détails :
   - Corrige et uniformise le style des fichiers
 
@@ -246,7 +252,6 @@
 ### 24.14.7 [#1147](https://github.com/openfisca/openfisca-france/pull/1147)
 
 * Amélioration technique
-* Zones impactées : `openfisca_france/model/revenus/**/*`
 * Détails :
   - Corrige et uniformise le style des fichiers
   - Règle W504 : saut de ligne avant opérateur binaire
@@ -254,7 +259,6 @@
 ### 24.14.6 [#1146](https://github.com/openfisca/openfisca-france/pull/1146)
 
 * Amélioration technique
-* Zones impactées : `openfisca_france/model/prestations/**/*`
 * Détails :
   - Corrige et uniformise le style des fichiers
   - Règle W504 : saut de ligne avant opérateur binaire
@@ -262,7 +266,6 @@
 ### 24.14.5 [#1145](https://github.com/openfisca/openfisca-france/pull/1145)
 
 * Amélioration technique
-* Zones impactées : `openfisca_france/model/prelevements_obligatoires/**/*`
 * Détails :
   - Corrige et uniformise le style des fichiers
   - Règle W504 : saut de ligne avant opérateur binaire
@@ -270,28 +273,24 @@
 ### 24.14.4 [#1144](https://github.com/openfisca/openfisca-france/pull/1144)
 
 * Amélioration technique
-* Zones impactées : `openfisca_france/model/**/*`
 * Détails :
   - Corrige et uniformise le style des fichiers
 
 ### 24.14.3 [#1142](https://github.com/openfisca/openfisca-france/pull/1142)
 
 * Amélioration technique
-* Zones impactées : `openfisca_france/model/prestations/**/*`
 * Détails :
   - Corrige et uniformise le style des fichiers
 
 ### 24.14.2 [#1143](https://github.com/openfisca/openfisca-france/pull/1143)
 
 * Amélioration technique
-* Zones impactées : `openfisca_france/model/prelevements_obligatoires/**/*`
 * Détails :
   - Corrige et uniformise le style des fichiers
 
 ### 24.14.1 [#1139](https://github.com/openfisca/openfisca-france/pull/1139)
 
 * Amélioration technique
-* Zones impactées : `openfisca_france/model/revenus/**/*`
 * Détails :
   - Corrige et uniformise le style des fichiers
 
