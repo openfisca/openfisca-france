@@ -23,8 +23,8 @@ class ass(Variable):
     set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
-        ass_base_ressources = individu('ass_base_ressources', period)
-        en_couple = individu('en_couple', period)
+        ass_base_ressources = individu.famille('ass_base_ressources', period)
+        en_couple = individu.famille('en_couple', period)
         ass_params = parameters(period).prestations.minima_sociaux.ass
 
         elig = individu('ass_eligibilite_individu', period)

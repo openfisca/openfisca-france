@@ -229,12 +229,12 @@ class rsa_base_ressources_minima_sociaux(Variable):
     def formula(famille, period):
         three_previous_months = period.last_3_months
         aspa = famille('aspa', period)
-        ass = famille('ass', period)
 
         aah_i = famille.members('aah', three_previous_months, options = [ADD])
         asi_i = famille.members('asi', three_previous_months, options = [ADD])
+        ass_i = famille.members('ass', period)
         caah_i = famille.members('caah', three_previous_months, options = [ADD])
-        return aspa + ass + famille.sum(aah_i + asi_i + caah_i) / 3
+        return aspa + famille.sum(ass_i) + famille.sum(aah_i + asi_i + caah_i) / 3
 
 
 class rsa_base_ressources_prestations_familiales(Variable):
