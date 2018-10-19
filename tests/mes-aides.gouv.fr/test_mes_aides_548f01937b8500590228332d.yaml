@@ -344,4 +344,4 @@ menages:
   personne_de_reference: 548efdbe40562f54026ef19a
   statut_occupation_logement: locataire_vide
 output_variables:
-  ass: 408.3
+  ass: [408.3 , 0]

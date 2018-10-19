@@ -58,7 +58,7 @@
       aah: 0
     - id: "parent2"
   output_variables:
-    ass: 494.40
+    ass: [494.40 , 0]
 
 - name: "Allocation de solidarité spécifique - Cas N°4"
   description: Montant ASS pour personne seule avec ressources mensuelles égale à 900
@@ -100,7 +100,7 @@
       aah: 0
     - id: "parent2"
   output_variables:
-    ass: 312.80
+    ass: [312.80 , 0]
 
 - name: "Allocation de solidarité spécifique - Cas N°6"
   description: Montant ASS pour 2 personnes en couple éligibles toutes deux avec ressources mensuelles inferieures à 1318.40
