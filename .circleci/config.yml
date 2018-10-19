@@ -10,7 +10,8 @@ jobs:
       - checkout
 
       - restore_cache:
-          key: v1-py2-{{ checksum "setup.py" }}
+          keys:
+            - v1-py2-deps-{{ checksum "setup.py" }}
 
       - run:
           name: Create a virtualenv
@@ -22,14 +23,19 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-            make install
             make build
             # pip install --editable git+https://github.com/openfisca/openfisca-core.git@BRANCH_NAME#egg=OpenFisca-Core  # use a specific branch of OpenFisca-Core
 
       - save_cache:
-          key: v1-py2-{{ checksum "setup.py" }}
+          key: v1-py2-deps-{{ checksum "setup.py" }}
           paths:
             - /tmp/venv/openfisca_france
+            - dist
+
+      - save_cache:
+          key: v1-py2-build-{{ .Revision }}
+          paths:
+            - dist
 
       - run:
           name: Run tests
@@ -46,7 +52,8 @@ jobs:
       - checkout
 
       - restore_cache:
-          key: v1-py3-{{ checksum "setup.py" }}
+          keys:
+            - v1-py3-deps-{{ checksum "setup.py" }}
 
       - run:
           name: Create a virtualenv
@@ -58,14 +65,18 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-            make install
             make build
             # pip install --editable git+https://github.com/openfisca/openfisca-core.git@BRANCH_NAME#egg=OpenFisca-Core  # use a specific branch of OpenFisca-Core
 
       - save_cache:
-          key: v1-py3-{{ checksum "setup.py" }}
+          key: v1-py3-deps-{{ checksum "setup.py" }}
           paths:
             - /tmp/venv/openfisca_france
+
+      - save_cache:
+          key: v1-py3-build-{{ .Revision }}
+          paths:
+            - dist
 
       - run:
           name: Run tests
@@ -81,7 +92,8 @@ jobs:
       - checkout
 
       - restore_cache:
-          key: v1-py3-{{ checksum "setup.py" }}
+          keys:
+            - v1-py3-deps-{{ checksum "setup.py" }}
 
       - run:
           name: Activate virtualenv
@@ -101,7 +113,8 @@ jobs:
       - checkout
 
       - restore_cache:
-          key: v1-py3-{{ checksum "setup.py" }}
+          keys:
+            - v1-py3-deps-{{ checksum "setup.py" }}
 
       - run:
           name: Activate virtualenv
@@ -111,7 +124,6 @@ jobs:
       - run:
           name: Lint files
           command: |
-            make check-no-prints
             make check-syntax-errors
             .circleci/lint-changed-python-files.sh
 
@@ -139,7 +151,9 @@ jobs:
       - checkout
 
       - restore_cache:
-          key: v1-py2-{{ checksum "setup.py" }}
+          keys:
+            - v1-py2-deps-{{ checksum "setup.py" }}
+            - v1-py2-build-{{ .Revision }}
 
       - run:
           name: Check for functional changes
@@ -149,7 +163,7 @@ jobs:
           name: Upload a Python package to Pypi
           command: |
             source /tmp/venv/openfisca_france/bin/activate
-            .circleci/publish-python-package.sh
+            twine upload dist/* --username $PYPI_USERNAME --password $PYPI_PASSWORD
 
       - run:
           name: Publish a git tag
@@ -170,7 +184,9 @@ jobs:
       - checkout
 
       - restore_cache:
-          key: v1-py3-{{ checksum "setup.py" }}
+          keys:
+            - v1-py3-deps-{{ checksum "setup.py" }}
+            - v1-py3-build-{{ .Revision }}
 
       - run:
           name: Check for functional changes
@@ -180,7 +196,7 @@ jobs:
           name: Upload a Python package to Pypi
           command: |
             source /tmp/venv/openfisca_france/bin/activate
-            .circleci/publish-python-package.sh
+            twine upload dist/* --username $PYPI_USERNAME --password $PYPI_PASSWORD
 
 workflows:
   version: 2
