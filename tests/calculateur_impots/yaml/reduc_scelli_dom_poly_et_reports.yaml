@@ -1,0 +1,175 @@
+- name: reduc_scelli_dom_poly_et_reports
+  period: 2014
+  absolute_error_margin: 1
+  foyers_fiscaux:
+  - caseF: false
+    caseG: false
+    caseL: false
+    caseP: false
+    caseS: false
+    caseT: false
+    caseW: false
+    declarants:
+    - ind0
+    f7fc: 100000
+    f7gv: 500
+    f7gw: 500
+    f7gx: 500
+    f7hg: 500
+    f7hh: 500
+    f7hs: 500
+    f7hu: 500
+    f7hz: 500
+    f7ln: 500
+    f7yi: 500
+    f7yj: 500
+    f7yk: 500
+    f7yl: 500
+    id: 0
+    nbF: 0.0
+    nbG: 0.0
+    nbH: 0.0
+    nbI: 0.0
+    nbJ: 0
+    nbR: 0
+  individus:
+  - activite: actif
+    date_naissance: '1970-01-01'
+    id: ind0
+    salaire_imposable: 150000.0
+    statut_marital: celibataire
+  familles:
+  - id: 0
+    parents:
+    - ind0
+  menages:
+  - id: 0
+    personne_de_reference: ind0
+  output_variables:
+    iai: 34717.0
+    irpp: -34717.0
+    nbptr: 1.0
+    ppe: 0.0
+    rbg: 137843.0
+    reductions: 8267.0
+    rfr: 137843.0
+    rni: 137843.0
+- name: reduc_scelli_dom_poly_et_reports
+  period: 2015
+  absolute_error_margin: 1
+  foyers_fiscaux:
+  - caseF: false
+    caseG: false
+    caseL: false
+    caseP: false
+    caseS: false
+    caseT: false
+    caseW: false
+    declarants:
+    - ind0
+    f7fc: 100000
+    f7gv: 500
+    f7gw: 500
+    f7gx: 500
+    f7hg: 500
+    f7hh: 500
+    f7hm: 500
+    f7hs: 500
+    f7hu: 500
+    f7hw: 500
+    f7lg: 500
+    f7yj: 500
+    f7yk: 500
+    f7yl: 500
+    f7yq: 500
+    f7yr: 500
+    f7ys: 500
+    id: 0
+    nbF: 0.0
+    nbG: 0.0
+    nbH: 0.0
+    nbI: 0.0
+    nbJ: 0
+    nbR: 0
+  individus:
+  - activite: actif
+    date_naissance: '1970-01-01'
+    id: ind0
+    salaire_imposable: 150000.0
+    statut_marital: celibataire
+  familles:
+  - id: 0
+    parents:
+    - ind0
+  menages:
+  - id: 0
+    personne_de_reference: ind0
+  output_variables:
+    iai: 33676.0
+    irpp: -33676.0
+    nbptr: 1.0
+    rbg: 137830.0
+    reductions: 9289.0
+    rfr: 137830.0
+    rni: 137830.0
+- name: reduc_scelli_dom_poly_et_reports
+  period: 2016
+  absolute_error_margin: 1
+  foyers_fiscaux:
+  - caseF: false
+    caseG: false
+    caseL: false
+    caseP: false
+    caseS: false
+    caseT: false
+    caseW: false
+    declarants:
+    - ind0
+    f7fc: 100000
+    f7gv: 500
+    f7gw: 500
+    f7gx: 500
+    f7hg: 500
+    f7hh: 500
+    f7hs: 500
+    f7hu: 500
+    f7hw: 500
+    f7hz: 500
+    f7lk: 500
+    f7yj: 500
+    f7yk: 500
+    f7yl: 500
+    f7yq: 500
+    f7yr: 500
+    f7ys: 500
+    f7yx: 500
+    f7yy: 500
+    f7yz: 500
+    id: 0
+    nbF: 0.0
+    nbG: 0.0
+    nbH: 0.0
+    nbI: 0.0
+    nbJ: 0
+    nbR: 0
+  individus:
+  - activite: actif
+    date_naissance: '1970-01-01'
+    id: ind0
+    salaire_imposable: 150000.0
+    statut_marital: celibataire
+  familles:
+  - id: 0
+    parents:
+    - ind0
+  menages:
+  - id: 0
+    personne_de_reference: ind0
+  output_variables:
+    iai: 32979.0
+    irpp: -32979.0
+    nbptr: 1.0
+    rbg: 137817.0
+    reductions: 9967.0
+    rfr: 137817.0
+    rni: 137817.0
