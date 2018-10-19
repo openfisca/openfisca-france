@@ -1,6 +1,6 @@
 # Changelog
 
-# 27.1.1 [#](https://github.com/openfisca/openfisca-france/pull/)
+### 27.1.1 [#1171](https://github.com/openfisca/openfisca-france/pull/1171)
 
 * Changement mineur.
 * Périodes concernées : à partir du 01/04/2018.
