@@ -7,7 +7,7 @@ from openfisca_france.reforms.plf2016 import plf2016, plf2016_counterfactual, pl
 from ..cache import tax_benefit_system
 
 
-def test(year = 2015):
+def test_plf2016(year = 2015):
     for reform in [plf2016, plf2016_counterfactual, plf2016_counterfactual_2014]:
         yield run, reform, year
 
@@ -41,8 +41,3 @@ def run(reform_class, year):
 
     impo = reference_simulation.calculate('impots_directs', period = year)  # noqa F841
     reform_impo = reform_simulation.calculate('impots_directs', period = year)  # noqa F841
-
-
-if __name__ == '__main__':
-    import nose
-    nose.runmodule()

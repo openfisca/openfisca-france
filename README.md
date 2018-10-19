@@ -154,7 +154,7 @@ pip install --editable .[dev] && pip install openfisca-core[web-api]
 Vous pouvez vous assurer que votre installation s'est bien passée en exécutant :
 
 ```sh
-nosetests tests/test_basics.py # Ces test peuvent prendre jusqu'à 60 secondes.
+pytest tests/test_basics.py # Ces test peuvent prendre jusqu'à 60 secondes.
 ```
 :tada: OpenFisca-France est prêt à être utilisé !
 
