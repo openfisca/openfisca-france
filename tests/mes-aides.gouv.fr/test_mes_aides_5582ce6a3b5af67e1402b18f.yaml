@@ -320,4 +320,4 @@ menages:
   personne_de_reference: 5582ce61433935771434ce8c
   statut_occupation_logement: proprietaire
 output_variables:
-  ass: 239
+  ass: [239.6, 0]

@@ -265,4 +265,4 @@ menages:
   personne_de_reference: 553647ce88bcee752ddf9414
   statut_occupation_logement: loge_gratuitement
 output_variables:
-  ass: 450.38
+  ass: [450.38, 0]

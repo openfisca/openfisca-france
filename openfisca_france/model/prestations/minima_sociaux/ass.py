@@ -32,10 +32,8 @@ class ass(Variable):
         montant_journalier = ass_params.montant_plein
         montant_mensuel = 30 * montant_journalier
         plafond_mensuel = montant_journalier * (
-            ass_params.plaf_seul
-            * not_(en_couple)
-            + ass_params.plaf_coup
-            * en_couple
+            not_(en_couple) * ass_params.plaf_seul
+            + en_couple * ass_params.plaf_coup
             )
         revenus = ass_base_ressources / 12
 
