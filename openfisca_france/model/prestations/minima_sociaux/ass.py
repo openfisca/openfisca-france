@@ -240,7 +240,7 @@ class ass_eligibilite_individu(Variable):
         # Indique que l'individu a travaillé 5 ans au cours des 10 dernieres années.
         ass_precondition_remplie = individu('ass_precondition_remplie', period)
 
-        return and_(demandeur_emploi_non_indemnise, ass_precondition_remplie, sous_age_limite)
+        return demandeur_emploi_non_indemnise * ass_precondition_remplie * sous_age_limite
 
     def formula_2017_01_01(individu, period):
         sous_age_limite = individu('age_en_mois', period) <= 789
@@ -252,7 +252,7 @@ class ass_eligibilite_individu(Variable):
         # Indique que l'individu a travaillé 5 ans au cours des 10 dernieres années.
         ass_precondition_remplie = individu('ass_precondition_remplie', period)
 
-        return and_(not_(aah_eligible), and_(demandeur_emploi_non_indemnise, ass_precondition_remplie), sous_age_limite)
+        return not_(aah_eligible) * demandeur_emploi_non_indemnise * ass_precondition_remplie * sous_age_limite
 
     def formula_2017_09_01(individu, period):
         '''
@@ -271,4 +271,4 @@ class ass_eligibilite_individu(Variable):
         # Indique que l'individu a travaillé 5 ans au cours des 10 dernieres années.
         ass_precondition_remplie = individu('ass_precondition_remplie', period)
 
-        return and_(not_(aah_eligible), and_(demandeur_emploi_non_indemnise_et_cumul_accepte, ass_precondition_remplie), sous_age_limite)
+        return not_(aah_eligible) * demandeur_emploi_non_indemnise_et_cumul_accepte * ass_precondition_remplie * sous_age_limite
