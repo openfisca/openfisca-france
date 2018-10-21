@@ -75,7 +75,10 @@ class asi_aspa_base_ressources_individu(Variable):
         aspa_eligibilite = individu('aspa_eligibilite', period)
         asi_eligibilite = individu('asi_eligibilite', period)
 
+        # Exclut l'AAH si éligible ASPA, retraite ou pension invalidité
+        # en application du II.B. de http://www.legislation.cnav.fr/Pages/texte.aspx?Nom=LE_MIN_19031982
         aah = individu('aah', three_previous_months, options = [ADD], max_nb_cycles = 0)
+        aah = aah * not_(aspa_eligibilite) * not_(asi_eligibilite) * not_(pension_invalidite)
 
         pensions_alimentaires_versees = individu(
             'pensions_alimentaires_versees_individu', three_previous_months, options = [ADD]
