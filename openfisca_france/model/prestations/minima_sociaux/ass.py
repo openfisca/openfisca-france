@@ -233,7 +233,8 @@ class ass_eligibilite_individu(Variable):
     definition_period = MONTH
 
     def formula(individu, period):
-        sous_age_limite = individu('age_en_mois', period) <= 789
+        age_max = parameters(period).prestations.minima_sociaux.ass.age_max
+        sous_age_limite = individu('age_en_mois', period) <= age_max
 
         demandeur_emploi_non_indemnise = and_(individu('activite', period) == TypesActivite.chomeur, individu('chomage_net', period) == 0)
 
@@ -243,7 +244,8 @@ class ass_eligibilite_individu(Variable):
         return demandeur_emploi_non_indemnise * ass_precondition_remplie * sous_age_limite
 
     def formula_2017_01_01(individu, period):
-        sous_age_limite = individu('age_en_mois', period) <= 789
+        age_max = parameters(period).prestations.minima_sociaux.ass.age_max
+        sous_age_limite = individu('age_en_mois', period) <= age_max
 
         aah_eligible = individu('aah', period.offset(-1)) > 0
 
@@ -258,7 +260,8 @@ class ass_eligibilite_individu(Variable):
         '''
         Reference : https://www.legifrance.gouv.fr/eli/decret/2017/5/5/ETSD1708117D/jo/article_2
         '''
-        sous_age_limite = individu('age_en_mois', period) <= 789
+        age_max = parameters(period).prestations.minima_sociaux.ass.age_max
+        sous_age_limite = individu('age_en_mois', period) <= age_max
 
         aah_eligible = individu('aah', period) > 0
 
