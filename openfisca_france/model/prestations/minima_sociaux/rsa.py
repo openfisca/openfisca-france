@@ -733,7 +733,7 @@ class rsa_base_ressources_patrimoine_individu(Variable):
         valeur_locative_terrains_non_loues = individu('valeur_locative_terrains_non_loues', period)
         revenus_locatifs = individu('revenus_locatifs', period)
         rsa = parameters(period).prestations.minima_sociaux.rsa
-        plus_values = FoyerFiscal('assiette_csg_plus_values', period.this_year) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
+        plus_values = individu.foyer_fiscal('assiette_csg_plus_values', period.this_year) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
 
         return (
             + livret_a * taux_livret_a / 12
