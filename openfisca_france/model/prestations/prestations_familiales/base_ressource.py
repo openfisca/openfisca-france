@@ -71,7 +71,6 @@ class prestations_familiales_base_ressources_individu(Variable):
         traitements_salaires_pensions_rentes = individu('traitements_salaires_pensions_rentes', annee_fiscale_n_2)
         hsup = individu('hsup', annee_fiscale_n_2, options = [ADD])
         glo = individu('glo', annee_fiscale_n_2)
-        #div = individu('div', annee_fiscale_n_2)
         plus_values = individu.foyer_fiscal('assiette_csg_plus_values', annee_fiscale_n_2) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
         rpns = individu('rpns', annee_fiscale_n_2)
         rpns_pvce = individu('rpns_pvce', annee_fiscale_n_2)
@@ -98,31 +97,6 @@ class biactivite(Variable):
         deux_parents = famille.nb_persons(role = famille.PARENT) == 2
 
         return deux_parents * famille.all(condition_ressource, role = famille.PARENT)
-
-
-class div(Variable):
-    value_type = float
-    entity = Individu
-    label = u"Dividendes imposés"
-    definition_period = YEAR
-
-    def formula(individu, period):
-        rpns_pvce = individu('rpns_pvce', period)
-        rpns_pvct = individu('rpns_pvct', period)
-        rpns_mvct = individu('moins_values_court_terme_non_salaries', period)
-        rpns_mvlt = individu('moins_values_long_terme_non_salaries', period)
-        f3vc = individu.foyer_fiscal('f3vc', period)
-        f3ve = individu.foyer_fiscal('f3ve', period)
-        f3vg = individu.foyer_fiscal('f3vg', period)
-        f3vh = individu.foyer_fiscal('f3vh', period)
-        f3vl = individu.foyer_fiscal('f3vl', period)
-        f3vm = individu.foyer_fiscal('f3vm', period)
-        f3vt = individu.foyer_fiscal('f3vt', period)
-
-        # Revenus du foyer fiscal, projetés seulement sur la première personne
-        revenus_foyer_fiscal = (f3vc + f3ve + f3vg - f3vh + f3vl + f3vm + f3vt) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
-
-        return revenus_foyer_fiscal + rpns_pvce + rpns_pvct - rpns_mvct - rpns_mvlt
 
 
 class rev_coll(Variable):
