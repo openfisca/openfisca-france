@@ -70,11 +70,16 @@ class prestations_familiales_base_ressources_individu(Variable):
 
         traitements_salaires_pensions_rentes = individu('traitements_salaires_pensions_rentes', annee_fiscale_n_2)
         hsup = individu('hsup', annee_fiscale_n_2, options = [ADD])
-        rpns = individu('rpns', annee_fiscale_n_2)
         glo = individu('glo', annee_fiscale_n_2)
-        div = individu('div', annee_fiscale_n_2)
+        #div = individu('div', annee_fiscale_n_2)
+        plus_values = individu.foyer_fiscal('assiette_csg_plus_values', annee_fiscale_n_2) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
+        rpns = individu('rpns', annee_fiscale_n_2)
+        rpns_pvce = individu('rpns_pvce', annee_fiscale_n_2)
+        rpns_pvct = individu('rpns_pvct', annee_fiscale_n_2)
+        rpns_mvct = individu('moins_values_court_terme_non_salaries', annee_fiscale_n_2)
+        rpns_mvlt = individu('moins_values_long_terme_non_salaries', annee_fiscale_n_2)
 
-        return traitements_salaires_pensions_rentes + hsup + rpns + glo + div
+        return traitements_salaires_pensions_rentes + hsup + glo + plus_values + rpns + rpns_pvce + rpns_pvct - rpns_mvct - rpns_mvlt
 
 
 class biactivite(Variable):

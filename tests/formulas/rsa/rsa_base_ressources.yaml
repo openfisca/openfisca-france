@@ -22,3 +22,4 @@
       2016: 120000
   output_variables:
     rsa_base_ressources: 12000
+    rsa: 0
