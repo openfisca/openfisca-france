@@ -14,7 +14,7 @@ class professionnalisation(Variable):
 
     def formula(individu, period, parameters):
         age = individu('age', period)
-        ass = individu('ass', period, options = [ADD])
+        ass = individu('ass', period)
         rsa = individu('rsa', period)
         aah = individu('aah', period)
 

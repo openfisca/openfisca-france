@@ -30,7 +30,8 @@ class aefa(Variable):
 
     def formula_2002_01_01(famille, period, parameters):
         rsa = famille('rsa', period, options = [ADD])
-        ass = famille('ass', period, options = [ADD])
+        ass_i = famille.members('ass', period, options = [ADD])
+        ass = famille.sum(ass_i)
         api = famille('api', period, options = [ADD])
         aer_i = famille.members('aer', period, options = [ADD])
         aer = famille.sum(aer_i)

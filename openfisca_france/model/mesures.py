@@ -384,7 +384,8 @@ class minima_sociaux(Variable):
         caah = famille.sum(caah_i)
         aefa = famille('aefa', period)
         api = famille('api', period, options = [ADD])
-        ass = famille('ass', period, options = [ADD])
+        ass_i = famille.members('ass', period, options = [ADD])
+        ass = famille.sum(ass_i)
         minimum_vieillesse = famille('minimum_vieillesse', period, options = [ADD])
         # Certaines réformes ayant des effets de bords nécessitent que le rsa soit calculé avant la ppa
         rsa = famille('rsa', period, options = [ADD])

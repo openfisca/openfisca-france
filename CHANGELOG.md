@@ -1,5 +1,17 @@
 # Changelog
 
+# 28.0.0 [#1172](https://github.com/openfisca/openfisca-france/pull/1172)
+
+* Changement majeur.
+* Zones impactées :
+  - `prestations/minima_sociaux/ass`
+  - `prestations/minima_sociaux/rsa`
+  - `tests/formulas/ass.yaml`
+* Détails :
+  - Passe à une définition de l'ASS au niveau "Individu" au lieu de "Famille"
+  - Ajoute les revenus du capital au calcul de la base revenu de l'individu demandeur de l'ASS et de son conjoint éventuel
+  - Ajoute un test d'un ménage avec individus tous deux éligibles à l'ASS.
+
 ### 27.1.1 [#1171](https://github.com/openfisca/openfisca-france/pull/1171)
 
 * Changement mineur.

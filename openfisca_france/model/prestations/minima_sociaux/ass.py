@@ -17,26 +17,23 @@ class ass_precondition_remplie(Variable):
 
 class ass(Variable):
     value_type = float
-    label = u"Montant de l'ASS pour une famille"
-    entity = Famille
+    label = u"Montant de l'ASS pour un individu"
+    entity = Individu
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
-    def formula(famille, period, parameters):
-        ass_base_ressources = famille('ass_base_ressources', period)
-        en_couple = famille('en_couple', period)
+    def formula(individu, period, parameters):
+        ass_base_ressources = individu.famille('ass_base_ressources', period)
+        en_couple = individu.famille('en_couple', period)
         ass_params = parameters(period).prestations.minima_sociaux.ass
 
-        ass_eligibilite_i = famille.members('ass_eligibilite_individu', period)
-        elig = famille.any(ass_eligibilite_i, role = Famille.PARENT)
+        elig = individu('ass_eligibilite_individu', period)
 
         montant_journalier = ass_params.montant_plein
         montant_mensuel = 30 * montant_journalier
         plafond_mensuel = montant_journalier * (
-            ass_params.plaf_seul
-            * not_(en_couple)
-            + ass_params.plaf_coup
-            * en_couple
+            not_(en_couple) * ass_params.plaf_seul
+            + en_couple * ass_params.plaf_coup
             )
         revenus = ass_base_ressources / 12
 
@@ -81,6 +78,7 @@ class ass_base_ressources_individu(Variable):
         # Le Salaire d'une activité partielle est neutralisé en cas d'interruption
         salaire_imposable = (1 - salaire_imposable_interrompu) * salaire_imposable
         retraite_nette = individu('retraite_nette', previous_year, options = [ADD])
+        revenus_capital = individu('revenus_capital', period) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
 
         def revenus_tns():
             revenus_auto_entrepreneur = individu('tns_auto_entrepreneur_benefice', previous_year, options = [ADD])
@@ -108,6 +106,7 @@ class ass_base_ressources_individu(Variable):
             + indemnites_stage
             + revenus_stage_formation_pro
             + revenus_tns()
+            + revenus_capital
             )
 
 
@@ -118,6 +117,9 @@ class ass_base_ressources_conjoint(Variable):
     definition_period = MONTH
 
     def formula(individu, period, parameters):
+        '''
+        N'intègre pas l'exception citée à l'article R5423-2 du Code du Travail sur les conjoints chefs d'entreprises entrant dans le champ d'application de l'article 50-0 du CGI
+        '''
         last_month = period.start.period('month').offset(-1)
         # Rolling year
         previous_year = period.start.period('year').offset(-1)
@@ -157,6 +159,7 @@ class ass_base_ressources_conjoint(Variable):
         aah = calculateWithAbatement('aah')
         retraite_nette = calculateWithAbatement('retraite_nette')
         pensions_alimentaires_percues = calculateWithAbatement('pensions_alimentaires_percues')
+        revenus_capital = individu('revenus_capital', period) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
 
         def revenus_tns():
             revenus_auto_entrepreneur = individu('tns_auto_entrepreneur_benefice', previous_year, options = [ADD])
@@ -181,6 +184,7 @@ class ass_base_ressources_conjoint(Variable):
             + chomage_net
             + indemnites_journalieres
             + revenus_tns()
+            + revenus_capital
             )
 
         return result
