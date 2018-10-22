@@ -12,6 +12,14 @@
   - Ajoute les revenus du capital au calcul de la base revenu de l'individu demandeur de l'ASS et de son conjoint éventuel
   - Ajoute un test d'un ménage avec individus tous deux éligibles à l'ASS.
 
+### 27.1.1 [#1171](https://github.com/openfisca/openfisca-france/pull/1171)
+
+* Changement mineur.
+* Périodes concernées : à partir du 01/04/2018.
+* Zones impactées : `tests/formulas/cf_2018_04`.
+* Détails :
+  - Ajoute des tests pour la revalorisation du complément familial (CF) au 1er avril 2018.
+
 ## 27.1.0 [#1152](https://github.com/openfisca/openfisca-france/pull/1152)
 
 * Évolution du système socio-fiscal.
@@ -95,8 +103,6 @@
   - `prestations/minima_sociaux/aah`
 * Détails :
   - Ajoute la variable plafond de ressources pour l'AAH
-
-<!-- -->
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : toutes.
