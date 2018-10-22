@@ -338,26 +338,6 @@ class crds_mini(Variable):
 
         return - taux_crds * rsa_activite
 
-
-class div_ms(Variable):
-    value_type = float
-    entity = Individu
-    label = u"Dividende entrant en compte dans le calcul des minimas sociaux"
-    definition_period = MONTH
-
-    def formula(individu, period):
-        period_declaration = period.this_year
-        f3vc = individu.foyer_fiscal('f3vc', period_declaration)
-        f3ve = individu.foyer_fiscal('f3ve', period_declaration)
-        f3vg = individu.foyer_fiscal('f3vg', period_declaration)
-        f3vl = individu.foyer_fiscal('f3vl', period_declaration)
-        f3vm = individu.foyer_fiscal('f3vm', period_declaration)
-        f3vt = individu.foyer_fiscal('f3vt', period_declaration)
-
-        # On projette les revenus du foyer fiscal seulement sur le déclarant principal
-        return (f3vc + f3ve + f3vg + f3vl + f3vm + f3vt) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL) / 12
-
-
 class enceinte_fam(Variable):
     value_type = bool
     entity = Famille
