@@ -641,8 +641,7 @@ class rev_cat_pv(Variable):
         f3vo = foyer_fiscal('f3vo', period)
         f3vp = foyer_fiscal('f3vp', period)
 
-        return f3sb + f3vg + f3vl + f3wb + f3vc + f3vz + f3sg + f3sl
-                + f3va + f3vo + f3vp
+        return f3sb + f3vg + f3vl + f3wb + f3vc + f3vz + f3sg + f3sl + f3va + f3vo + f3vp
 
     def formula_2014_01_01(foyer_fiscal, period, parameters):
         f3sb = foyer_fiscal('f3sb', period)
@@ -656,8 +655,7 @@ class rev_cat_pv(Variable):
         f3vo = foyer_fiscal('f3vo', period)
         f3vp = foyer_fiscal('f3vp', period)
 
-        return f3sb + f3vg + f3wb + f3vc + f3vz + f3sg + f3sl
-                + f3va + f3vo + f3vp
+        return f3sb + f3vg + f3wb + f3vc + f3vz + f3sg + f3sl + f3va + f3vo + f3vp
 
     def formula_2017_01_01(foyer_fiscal, period, parameters):
         f3sb = foyer_fiscal('f3sb', period)
@@ -671,8 +669,7 @@ class rev_cat_pv(Variable):
         f3va = foyer_fiscal('f3va', period)
         f3vo = foyer_fiscal('f3vo', period)
 
-        return f3sb + f3vg + f3wb + f3ua + f3vc + f3vz + f3sg + f3sl
-                + f3va  + f3vo
+        return f3sb + f3vg + f3wb + f3ua + f3vc + f3vz + f3sg + f3sl + f3va  + f3vo
 
 
 class rev_cat_tspr(Variable):
