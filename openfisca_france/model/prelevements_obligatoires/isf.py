@@ -643,7 +643,7 @@ class rvcm_plus_abat(Variable):
         '''
         Revenu catégoriel avec abattement de 40% réintégré.
         '''
-        rev_cat_rvcm = foyer_fiscal('rev_cat_rvcm', period)
+        rev_cat_rvcm = foyer_fiscal('revenu_categoriel_capital', period)
         rfr_rvcm_abattements_a_reintegrer = foyer_fiscal('rfr_rvcm_abattements_a_reintegrer', period)
 
         return rev_cat_rvcm + rfr_rvcm_abattements_a_reintegrer

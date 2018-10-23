@@ -706,7 +706,7 @@ class deficit_rcm(Variable):
         return f2aa + f2al + f2am + f2an + f2aq + f2ar
 
 
-class rev_cat_rvcm(Variable):
+class revenu_categoriel_capital(Variable):
     value_type = float
     entity = FoyerFiscal
     label = u"Revenu catégoriel - Capitaux"
@@ -1019,7 +1019,7 @@ class rev_cat(Variable):
         Revenus Categoriels
         '''
         rev_cat_tspr = foyer_fiscal('revenu_categoriel_tspr', period)
-        rev_cat_rvcm = foyer_fiscal('rev_cat_rvcm', period)
+        rev_cat_rvcm = foyer_fiscal('revenu_categoriel_capital', period)
         rev_cat_rfon = foyer_fiscal('rev_cat_rfon', period)
         rev_cat_rpns = foyer_fiscal('rev_cat_rpns', period)
         rev_cat_pv = foyer_fiscal('revenu_categoriel_plus_values', period)
