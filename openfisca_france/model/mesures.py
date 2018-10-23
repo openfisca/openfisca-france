@@ -298,7 +298,7 @@ class revenus_nets_du_capital(Variable):
         assiette_csg_revenus_capital = foyer_fiscal('assiette_csg_revenus_capital', period)
         assiette_csg_plus_values = foyer_fiscal('assiette_csg_plus_values', period)
         plus_values_revenus_nets_du_capital = foyer_fiscal('plus_values_revenus_nets_du_capital', period)
-        rev_cat_rfon = foyer_fiscal('rev_cat_rfon', period)
+        rev_cat_rfon = foyer_fiscal('revenu_categoriel_foncier', period)
         rente_viagere_titre_onereux_net = foyer_fiscal('rente_viagere_titre_onereux_net', period)
         fon = foyer_fiscal('fon', period)
 

@@ -191,7 +191,7 @@ class assiette_csg_revenus_capital(Variable):
         interets_compte_epargne_logement_ouvert_avant_2018 = foyer_fiscal.sum(interets_compte_epargne_logement_ouvert_avant_2018_i)
 
         # Revenus fonciers
-        rev_cat_rfon = foyer_fiscal('rev_cat_rfon', period)
+        rev_cat_rfon = foyer_fiscal('revenu_categoriel_foncier', period)
 
         # Plus-values
         assiette_csg_plus_values = foyer_fiscal('assiette_csg_plus_values', period)
@@ -240,7 +240,7 @@ class assiette_csg_revenus_capital(Variable):
         interets_compte_epargne_logement_ouvert_a_partir_de_2018 = foyer_fiscal.sum(interets_compte_epargne_logement_ouvert_a_partir_de_2018_i)
 
         # Revenus fonciers
-        rev_cat_rfon = foyer_fiscal('rev_cat_rfon', period)
+        rev_cat_rfon = foyer_fiscal('revenu_categoriel_foncier', period)
 
         # Plus-values
         assiette_csg_plus_values = foyer_fiscal('assiette_csg_plus_values', period)

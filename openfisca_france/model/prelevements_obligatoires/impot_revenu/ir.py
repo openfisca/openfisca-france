@@ -949,7 +949,7 @@ class rfr_rvcm_abattements_a_reintegrer(Variable):
         return abattement_dividende + abattement_assurance_vie
 
 
-class rev_cat_rfon(Variable):
+class revenu_categoriel_foncier(Variable):
     value_type = float
     entity = FoyerFiscal
     label = u"Revenu catégoriel - Foncier"
@@ -1020,7 +1020,7 @@ class rev_cat(Variable):
         '''
         rev_cat_tspr = foyer_fiscal('revenu_categoriel_tspr', period)
         rev_cat_rvcm = foyer_fiscal('revenu_categoriel_capital', period)
-        rev_cat_rfon = foyer_fiscal('rev_cat_rfon', period)
+        rev_cat_rfon = foyer_fiscal('revenu_categoriel_foncier', period)
         rev_cat_rpns = foyer_fiscal('rev_cat_rpns', period)
         rev_cat_pv = foyer_fiscal('revenu_categoriel_plus_values', period)
 
@@ -1033,7 +1033,7 @@ class rev_cat(Variable):
         Hypothèse : les contribuables choisissent toujours le prélèvement forfaitaire unique par rapport au barème pour ces revenus
         '''
         rev_cat_tspr = foyer_fiscal('revenu_categoriel_tspr', period)
-        rev_cat_rfon = foyer_fiscal('rev_cat_rfon', period)
+        rev_cat_rfon = foyer_fiscal('revenu_categoriel_foncier', period)
         rev_cat_rpns = foyer_fiscal('rev_cat_rpns', period)
 
         return rev_cat_tspr + rev_cat_rfon + rev_cat_rpns
