@@ -982,7 +982,7 @@ class revenu_categoriel_foncier(Variable):
         return rev_cat_rfon
 
 
-class rev_cat_rpns(Variable):
+class revenu_categoriel_non_salarial(Variable):
     value_type = float
     entity = FoyerFiscal
     label = u"Revenu catégoriel - Revenus personnels non salariés"
@@ -1021,7 +1021,7 @@ class rev_cat(Variable):
         rev_cat_tspr = foyer_fiscal('revenu_categoriel_tspr', period)
         rev_cat_rvcm = foyer_fiscal('revenu_categoriel_capital', period)
         rev_cat_rfon = foyer_fiscal('revenu_categoriel_foncier', period)
-        rev_cat_rpns = foyer_fiscal('rev_cat_rpns', period)
+        rev_cat_rpns = foyer_fiscal('revenu_categoriel_non_salarial', period)
         rev_cat_pv = foyer_fiscal('revenu_categoriel_plus_values', period)
 
         return rev_cat_tspr + rev_cat_rvcm + rev_cat_rfon + rev_cat_rpns + rev_cat_pv
@@ -1034,7 +1034,7 @@ class rev_cat(Variable):
         '''
         rev_cat_tspr = foyer_fiscal('revenu_categoriel_tspr', period)
         rev_cat_rfon = foyer_fiscal('revenu_categoriel_foncier', period)
-        rev_cat_rpns = foyer_fiscal('rev_cat_rpns', period)
+        rev_cat_rpns = foyer_fiscal('revenu_categoriel_non_salarial', period)
 
         return rev_cat_tspr + rev_cat_rfon + rev_cat_rpns
 
