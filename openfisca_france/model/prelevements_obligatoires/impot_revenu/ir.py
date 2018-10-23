@@ -619,28 +619,60 @@ class rev_cat_pv(Variable):
     definition_period = YEAR
     end = '2017-12-31'
 
+    '''
+    Attention : cette formule est susceptible de contenir des erreurs pour les années avant 2013 (cf. commentaires sur assiette_csg_revenus_capital)
+
+    Cette variable comprend les abattements comptant dans le rfr mais pas dans l'ir.
+    Elle se base sur les principales cases de plus-values telles que définies dans la variable 'assiette_csg_plus_values'.
+    Elle ignore encore à ce stade les moins-values.
+    Nota : 3VP était une case pour pv sur jeunes entreprises innovantes et est supprimée d'où sa disparition après 2014.
+    '''
+
     def formula_2013_01_01(foyer_fiscal, period, parameters):
         f3sb = foyer_fiscal('f3sb', period)
         f3vg = foyer_fiscal('f3vg', period)
         f3vl = foyer_fiscal('f3vl', period)
         f3wb = foyer_fiscal('f3wb', period)
+        f3vc = foyer_fiscal('f3vc', period)
+        f3vz = foyer_fiscal('f3vz', period)
+        f3sg = foyer_fiscal('f3sg', period)
+        f3sl = foyer_fiscal('f3sl', period)
+        f3va = foyer_fiscal('f3va', period)
+        f3vo = foyer_fiscal('f3vo', period)
+        f3vp = foyer_fiscal('f3vp', period)
 
-        return f3sb + f3vg + f3vl + f3wb
+        return f3sb + f3vg + f3vl + f3wb + f3vc + f3vz + f3sg + f3sl
+                + f3va + f3vo + f3vp
 
     def formula_2014_01_01(foyer_fiscal, period, parameters):
         f3sb = foyer_fiscal('f3sb', period)
         f3vg = foyer_fiscal('f3vg', period)
         f3wb = foyer_fiscal('f3wb', period)
+        f3vc = foyer_fiscal('f3vc', period)
+        f3vz = foyer_fiscal('f3vz', period)
+        f3sg = foyer_fiscal('f3sg', period)
+        f3sl = foyer_fiscal('f3sl', period)
+        f3va = foyer_fiscal('f3va', period)
+        f3vo = foyer_fiscal('f3vo', period)
+        f3vp = foyer_fiscal('f3vp', period)
 
-        return f3sb + f3vg + f3wb
+        return f3sb + f3vg + f3wb + f3vc + f3vz + f3sg + f3sl
+                + f3va + f3vo + f3vp
 
     def formula_2017_01_01(foyer_fiscal, period, parameters):
         f3sb = foyer_fiscal('f3sb', period)
         f3vg = foyer_fiscal('f3vg', period)
         f3wb = foyer_fiscal('f3wb', period)
         f3ua = foyer_fiscal('f3ua', period)  # Cette case existant avant, mais ses montants étaient inclus dans 3vg.
+        f3vc = foyer_fiscal('f3vc', period)
+        f3vz = foyer_fiscal('f3vz', period)
+        f3sg = foyer_fiscal('f3sg', period)
+        f3sl = foyer_fiscal('f3sl', period)
+        f3va = foyer_fiscal('f3va', period)
+        f3vo = foyer_fiscal('f3vo', period)
 
-        return f3sb + f3vg + f3wb + f3ua
+        return f3sb + f3vg + f3wb + f3ua + f3vc + f3vz + f3sg + f3sl
+                + f3va  + f3vo
 
 
 class rev_cat_tspr(Variable):

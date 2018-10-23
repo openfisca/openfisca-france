@@ -85,8 +85,8 @@ class assiette_csg_plus_values(Variable):
             pas au moment de la taxation, etc.).
             Critère de choix : on part des dénombrements fiscaux de la déclaration 2042 des revenus 2016
             (montants totaux déclarés au niveau national pour chaque case), et on constate que les cases 3VH, 3VG,
-            3SG, 3SL, 3VA, 3VB, 3VO, 3VP, 3VZ, 3VW, 3WG, 3WH et 3WM représentent à elles seules 88% de
-            l'ensemble des cases associées aux plus-values (cases de classe 3). On se limite donc aux
+            3SG, 3SL, 3VA, 3VB, 3VO, 3VP, 3VZ, 3VW, 3WG, 3WH et 3WM représentent à elles seules 88% des
+            montants associés aux plus-values (cases de classe 3). On se limite donc aux
             plus-values associées à ces cases. Parmi ces cases, certaines ne donnent pas lieu à une imposition
             pendant l'année courante du fait d'un report ou sursis d'imposition (3WG, 3WH, 3WM), ou ne sont
             tout simplement pas comptabilisées dans l'assiette CSG (3VH, 3VW). Au total, le nombre de cases
