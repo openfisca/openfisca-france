@@ -672,7 +672,7 @@ class revenu_categoriel_plus_values(Variable):
         return f3sb + f3vg + f3wb + f3ua + f3vc + f3vz + f3sg + f3sl + f3va  + f3vo
 
 
-class rev_cat_tspr(Variable):
+class revenu_categoriel_tspr(Variable):
     value_type = float
     entity = FoyerFiscal
     label = u"Revenu catégoriel - Traitements, salaires, pensions et rentes"
@@ -1018,7 +1018,7 @@ class rev_cat(Variable):
         '''
         Revenus Categoriels
         '''
-        rev_cat_tspr = foyer_fiscal('rev_cat_tspr', period)
+        rev_cat_tspr = foyer_fiscal('revenu_categoriel_tspr', period)
         rev_cat_rvcm = foyer_fiscal('rev_cat_rvcm', period)
         rev_cat_rfon = foyer_fiscal('rev_cat_rfon', period)
         rev_cat_rpns = foyer_fiscal('rev_cat_rpns', period)
@@ -1032,7 +1032,7 @@ class rev_cat(Variable):
         Différence par rapport à la formule précédente : on enlève rev_cat_rvcm et rev_cat_pv (suite à la création du prélèvement forfaitaire unique)
         Hypothèse : les contribuables choisissent toujours le prélèvement forfaitaire unique par rapport au barème pour ces revenus
         '''
-        rev_cat_tspr = foyer_fiscal('rev_cat_tspr', period)
+        rev_cat_tspr = foyer_fiscal('revenu_categoriel_tspr', period)
         rev_cat_rfon = foyer_fiscal('rev_cat_rfon', period)
         rev_cat_rpns = foyer_fiscal('rev_cat_rpns', period)
 
