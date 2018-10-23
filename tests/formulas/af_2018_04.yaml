@@ -74,7 +74,7 @@
     af: 364.79 / (1 - 0.005)
     # af nette - crds
 
-- name: "Cas N°3 Allocations familiales - Cas N°2 Allocations familiales - Couple, 2 enfants de moins de 14 ans et un enfant de 20 ans"
+- name: "Cas N°3 Allocations familiales - Couple, 2 enfants de moins de 14 ans et un enfant de 20 ans"
   description: Montant AF + forfait
   period: 2018-04
   absolute_error_margin: 0.02
