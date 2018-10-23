@@ -611,7 +611,7 @@ class traitements_salaires_pensions_rentes(Variable):
             )
 
 
-class rev_cat_pv(Variable):
+class revenu_categoriel_plus_values(Variable):
     value_type = float
     entity = FoyerFiscal
     label = u"Revenu catégoriel - Plus-values"
@@ -1022,7 +1022,7 @@ class rev_cat(Variable):
         rev_cat_rvcm = foyer_fiscal('rev_cat_rvcm', period)
         rev_cat_rfon = foyer_fiscal('rev_cat_rfon', period)
         rev_cat_rpns = foyer_fiscal('rev_cat_rpns', period)
-        rev_cat_pv = foyer_fiscal('rev_cat_pv', period)
+        rev_cat_pv = foyer_fiscal('revenu_categoriel_plus_values', period)
 
         return rev_cat_tspr + rev_cat_rvcm + rev_cat_rfon + rev_cat_rpns + rev_cat_pv
 
