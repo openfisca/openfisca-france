@@ -1007,7 +1007,7 @@ class revenu_categoriel_non_salarial(Variable):
             )
 
 
-class rev_cat(Variable):
+class revenu_categoriel(Variable):
     value_type = float
     entity = FoyerFiscal
     label = u"Revenus catégoriels"
@@ -1075,7 +1075,7 @@ class rbg(Variable):
     def formula(foyer_fiscal, period, parameters):
         '''Revenu brut global
         '''
-        rev_cat = foyer_fiscal('rev_cat', period)
+        revenu_categoriel = foyer_fiscal('revenu_categoriel', period)
         deficit_ante = foyer_fiscal('deficit_ante', period)
         f6gh = foyer_fiscal('f6gh', period)
         nbic_impm_i = foyer_fiscal.members('nbic_impm', period)
@@ -1086,7 +1086,7 @@ class rbg(Variable):
         # sans les revenus au quotient
         nacc_pvce = foyer_fiscal.sum(nacc_pvce_i)
         return max_(0,
-                    rev_cat + f6gh + (foyer_fiscal.sum(nbic_impm_i) + nacc_pvce) * (1 + cga) - deficit_ante)
+                    revenu_categoriel + f6gh + (foyer_fiscal.sum(nbic_impm_i) + nacc_pvce) * (1 + cga) - deficit_ante)
 
 
 class csg_patrimoine_deductible_ir(Variable):
