@@ -50,3 +50,9 @@ values:
     value: 810.89
   2018-04-01:
     value: 819
+  2018-11-01:
+    value: 860
+    reference: https://www.service-public.fr/particuliers/vosdroits/F12242
+  2019-11-01:
+    value: 900
+    reference: https://www.service-public.fr/particuliers/vosdroits/F12242
