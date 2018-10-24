@@ -541,7 +541,7 @@ class f3vv_end_2010(Variable):
 
 class f3ua(Variable):
     cerfa_field = u"3UA"
-    label = u"Plus-values bénéficiant de l'abattement pour durée de détention renforcé et plus-values réalisées par les dirigeants de PME lors de leur départ à la retraite : plus-values après abattements" 
+    label = u"Plus-values bénéficiant de l'abattement pour durée de détention renforcé et plus-values réalisées par les dirigeants de PME lors de leur départ à la retraite : plus-values après abattements"
     value_type = float
     entity = FoyerFiscal
     # start_date = date(2017, 1, 1) NB : Cette case existait avant 2017, mais les montants qui y étaient indiqués étaient également indiqués case 3VG
