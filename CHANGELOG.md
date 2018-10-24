@@ -1,25 +1,33 @@
 # Changelog
 
-### 28.1.0 [#1184](https://github.com/openfisca/openfisca-france/pull/1190)
+# 29.0.0 [#1190](https://github.com/openfisca/openfisca-france/pull/1190)[#1191](https://github.com/openfisca/openfisca-france/pull/1191)
 
-* Amélioration technique.
+* Évolution de la législation **non rétrocompatible**
 * Périodes concernées : à partir du 01/01/2013.
 * Zones impactées : 
   - `prestations/minima_sociaux`
-  - `prestations/aides_logement.py`
-  - `prestations/prestations_familiales/base_ressources.py`
-  - `revenus/capital/plus_value.py`
-  - `reforms/allocations_familiales_imposables.py`
+  - `prestations/aides_logement`
+  - `prestations/prestations_familiales/base_ressources`
+  - `revenus/capital/plus_value`
+  - `reforms/allocations_familiales_imposables`
   - `prelevements_obligatoires`
-  - `model/mesures.py`
-  - `tests/formulas`
-  - `tests/capital`
+  - `mesures`
   
 * Détails :
-  - Corrige la définition des plus-values prises en compte dans les minima sociaux.
-  - Supprime les variables `div` et `div_ms`.
-  - Modifie le calcul des plus-values entrant dans le calcul du RFR à parti de 2018 (cf. variable `rfr_plus_values_hors_rni`)
-  - Renomme les variables de revenus catégoriels
+  - Supprime les variables:
+    - `div`
+    - `div_ms`
+    - `f3vu`
+  - Renomme les variables:
+    - `rev_cat_rfon` en `revenu_categoriel_foncier`
+    - `rev_cat_pv` en `revenu_categoriel_plus_values`
+    - `rev_cat_tspr` en `revenu_categoriel_tspr`
+    - `rev_cat_rvcm` en `revenu_categoriel_capital`
+    - `rev_cat_rpns` en `revenu_categoriel_non_salarial`
+    - `rev_cat` en `revenu_categoriel`
+    - `abattement_net_duree_detention_retraite_dirigeant_pme` en `abattements_plus_values`
+- Corrige la définition des plus-values prises en compte dans les minima sociaux.
+  - Modifie le calcul des plus-values entrant dans le calcul du RFR à partir de 2018 (cf. variable `rfr_plus_values_hors_rni`)
 
 
 ### 28.0.1 [#1184](https://github.com/openfisca/openfisca-france/pull/1184)
