@@ -1,6 +1,12 @@
 # Changelog
 
-### 28.1.0 [#1184](https://github.com/openfisca/openfisca-france/pull/1190)
+### 29.0.0 [#1191](https://github.com/openfisca/openfisca-france/pull/1191)
+
+* Changement majeur
+* Détails :
+  - La PR précédente instaure un changement majeur, cette PR change le numéro de version.
+
+### 28.1.0 [#1190](https://github.com/openfisca/openfisca-france/pull/1190)
 
 * Amélioration technique.
 * Périodes concernées : à partir du 01/01/2013.
