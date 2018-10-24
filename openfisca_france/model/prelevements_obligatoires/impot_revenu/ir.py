@@ -1932,7 +1932,7 @@ class rfr_plus_values_hors_rni(Variable):
     def formula_2018_01_01(foyer_fiscal, period, parameters):
         """
         Plus-values 2018 et + entrant dans le calcul du revenu fiscal de référence.
-        A partir de l'imposition des revenus 2018, il est supposé qu'aucune plus-values n'est taxé au barème.
+        A partir de l'imposition des revenus 2018, il est supposé qu'aucune plus-values n'est taxée au barème.
         Toutes les plus-values entrant dans le calcul du RFR se retrouvent ici dans la variable 'rfr_plus_values_hors_rni'
         """
         # Ici, plus-values spécifiques au PFU
