@@ -1000,7 +1000,7 @@ class revenu_categoriel(Variable):
     def formula_2018_01_01(foyer_fiscal, period, parameters):
         '''
         Revenus Categoriels
-        Différence par rapport à la formule précédente : on enlève rev_cat_rvcm et rev_cat_pv (suite à la création du prélèvement forfaitaire unique)
+        Différence par rapport à la formule précédente : on enlève revenu_categoriel_capital et revenu_categoriel_plus_values (suite à la création du prélèvement forfaitaire unique)
         Hypothèse : les contribuables choisissent toujours le prélèvement forfaitaire unique par rapport au barème pour ces revenus
         '''
         rev_cat_tspr = foyer_fiscal('revenu_categoriel_tspr', period)

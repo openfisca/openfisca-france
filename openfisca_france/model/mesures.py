@@ -200,9 +200,9 @@ class plus_values_revenus_nets_du_capital(Variable):
         mais pour lesquelles on n'a pas de prélèvements sociaux
         Cette variable est l'assiette de plus-values pour lesquelles au moins un prélèvement est calculé. On l'utilise dans le
         calcul du revenu disponible, afin de n'oublier aucun revenu. Elle vaut la somme de assiette_csg_plus_values et rfr_plus_values_hors_rni,
-        où l'on enlève les cases communes entre ces deux variables, et où l'on ajoute les variables présentes dans rev_cat_pv, mais pas présente
+        où l'on enlève les cases communes entre ces deux variables, et où l'on ajoute les variables présentes dans 'revenu_categoriel_plus_values', mais pas présente
         dans assiette_csg_plus_values
-        Attention : pour les variables de rev_cat_pv ajoutées, elles peuvent représenter des montants nets, alors qu'il faudrait le brut. Améliorer ce point
+        Attention : pour les variables de 'revenu_categoriel_plus_values' ajoutées, elles peuvent représenter des montants nets, alors qu'il faudrait le brut. Améliorer ce point
         '''
 
         v1_assiette_csg_plus_values = foyer_fiscal('assiette_csg_plus_values', period)
