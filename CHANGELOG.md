@@ -1,5 +1,13 @@
 # Changelog
 
+### 28.0.1 [#1184](https://github.com/openfisca/openfisca-france/pull/1184)
+
+* Changement mineur.
+* Périodes concernées : à partir du 01/04/2018.
+* Zones impactées : `tests/formulas/af_2018_04`.
+* Détails :
+  - Ajoute des tests pour la revalorisation des allocations familiales (AF) au 1er avril 2018.
+
 # 28.0.0 [#1172](https://github.com/openfisca/openfisca-france/pull/1172)
 
 * Changement majeur.

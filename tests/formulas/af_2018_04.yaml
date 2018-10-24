@@ -1,0 +1,114 @@
+- name: "Cas N°1 Allocations familiales - Couple, 2 enfants de moins de 14 ans"
+  description: Montant AF
+  period: 2018-04
+  absolute_error_margin: 0.02
+  familles:
+    parents: ["parent1", "parent2"]
+    enfants: ["enfant1", "enfant2"]
+  foyers_fiscaux:
+    declarants: ["parent1", "parent2"]
+    personnes_a_charge: ["enfant1", "enfant2"]
+  menages:
+    personne_de_reference: "parent1"
+    conjoint: "parent2"
+    enfants: ["enfant1", "enfant2"]
+  individus:
+    - id: "parent1"
+      age: 38
+      revenu_assimile_salaire:
+        2015: 40000
+        2016: 40000
+        2017: 40000
+        2018: 40000
+    - id: "parent2"
+      age: 35
+      revenu_assimile_salaire:
+        2015: 20000
+        2016: 20000
+        2017: 20000
+        2018: 20000
+    - id: "enfant1"
+      age: 12
+    - id: "enfant2"
+      age: 10
+  output_variables:
+    af: 131.16 / (1 - 0.005)
+    # af nette - crds
+
+- name: "Cas N°2 Allocations familiales - Couple, 2 enfants de moins de 14 ans et un enfant de 14 ans"
+  description: Montant AF + majoration
+  period: 2018-04
+  absolute_error_margin: 0.02
+  familles:
+    parents: ["parent1", "parent2"]
+    enfants: ["enfant1", "enfant2", "enfant3"]
+  foyers_fiscaux:
+    declarants: ["parent1", "parent2"]
+    personnes_a_charge: ["enfant1", "enfant2", "enfant3"]
+  menages:
+    personne_de_reference: "parent1"
+    conjoint: "parent2"
+    enfants: ["enfant1", "enfant2", "enfant3"]
+  individus:
+    - id: "parent1"
+      age: 38
+      revenu_assimile_salaire:
+        2015: 40000
+        2016: 40000
+        2017: 40000
+        2018: 40000
+    - id: "parent2"
+      age: 35
+      revenu_assimile_salaire:
+        2015: 20000
+        2016: 20000
+        2017: 20000
+        2018: 20000
+    - id: "enfant1"
+      age: 14
+    - id: "enfant2"
+      age: 10
+    - id: "enfant3"
+      age: 7
+  output_variables:
+    af: 364.79 / (1 - 0.005)
+    # af nette - crds
+
+- name: "Cas N°3 Allocations familiales - Couple, 2 enfants de moins de 14 ans et un enfant de 20 ans"
+  description: Montant AF + forfait
+  period: 2018-04
+  absolute_error_margin: 0.02
+  familles:
+    parents: ["parent1", "parent2"]
+    enfants: ["enfant1", "enfant2", "enfant3"]
+  foyers_fiscaux:
+    declarants: ["parent1", "parent2"]
+    personnes_a_charge: ["enfant1", "enfant2", "enfant3"]
+  menages:
+    personne_de_reference: "parent1"
+    conjoint: "parent2"
+    enfants: ["enfant1", "enfant2", "enfant3"]
+  individus:
+    - id: "parent1"
+      age: 38
+      revenu_assimile_salaire:
+        2015: 40000
+        2016: 40000
+        2017: 40000
+        2018: 40000
+    - id: "parent2"
+      age: 35
+      revenu_assimile_salaire:
+        2015: 20000
+        2016: 20000
+        2017: 20000
+        2018: 20000
+    - id: "enfant1"
+      age: 20
+    - id: "enfant2"
+      age: 10
+    - id: "enfant3"
+      age: 7
+  output_variables:
+    af: 214.10 / (1 - 0.005)
+    # af nette - crds
