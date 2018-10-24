@@ -1933,7 +1933,16 @@ class rfr_plus_values_hors_rni(Variable):
         """
         Plus-values 2018 et + entrant dans le calcul du revenu fiscal de référence
         """
+        # Ici, plus-values spécifiques au PFU
+        f3sa = foyer_fiscal('f3sa', period)
+        f3vg = foyer_fiscal('f3vg', period)
+        f3ua = foyer_fiscal('f3ua', period)
+        f3sg = foyer_fiscal('f3sg', period)
+        f3sl = foyer_fiscal('f3sl', period)
+        f3wb = foyer_fiscal('f3wb', period)
         f3sj = foyer_fiscal('f3sj', period)
+        #
+
         f3sk = foyer_fiscal('f3sk', period)
         f3tz = foyer_fiscal('f3tz', period)
         f3vc = foyer_fiscal('f3vc', period)
@@ -1956,7 +1965,7 @@ class rfr_plus_values_hors_rni(Variable):
         rpns_pvce_i = foyer_fiscal.members('rpns_pvce', period)
         rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
 
-        return f3sj + f3sk + f3tz + f3vc + f3vd + f3vf + f3vi + f3vm + (f3vq - f3vr) + f3vt + f3vz + f3we + f3wi + f3wj + rpns_pvce
+        return f3sa + f3vg + f3ua + f3sg + f3sl + f3wb + f3sj + f3sk + f3tz + f3vc + f3vd + f3vf + f3vi + f3vm + (f3vq - f3vr) + f3vt + f3vz + f3we + f3wi + f3wj + rpns_pvce
 
 
 class iai(Variable):
