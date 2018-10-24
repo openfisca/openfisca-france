@@ -174,7 +174,6 @@
     revenu_categoriel_foncier: 17000
     irpp: -1119
 
-
 - name: "ps_rev_exon_ir_2016"
   description: Montant de prélèvements sociaux sur revenus exonérés d'impôt sur le revenus en 2016
   period: 2016
