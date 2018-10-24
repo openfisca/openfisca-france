@@ -263,8 +263,9 @@ class plus_values_revenus_nets_du_capital(Variable):
 
         f3vg = foyer_fiscal('f3vg', period)
         f3ua = foyer_fiscal('f3ua', period)
+        f3vz = foyer_fiscal('f3vz', period)
 
-        intersection_v1_v2 = f3vg + f3ua
+        intersection_v1_v2 = f3vg + f3ua + f3vz
 
         return v1_assiette_csg_plus_values + v2_rfr_plus_values_hors_rni - intersection_v1_v2  # Pas d'item supplémentaire dans rev_cat_pv avant 2013
 
