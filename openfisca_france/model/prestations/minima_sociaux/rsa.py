@@ -338,6 +338,7 @@ class crds_mini(Variable):
 
         return - taux_crds * rsa_activite
 
+
 class enceinte_fam(Variable):
     value_type = bool
     entity = Famille
