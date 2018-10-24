@@ -122,7 +122,6 @@ class rsa_base_ressources_individu(Variable):
         types_revenus_non_pros = [
             'allocation_securisation_professionnelle',
             'dedommagement_victime_amiante',
-            'div_ms',
             'gains_exceptionnels',
             'pensions_alimentaires_percues',
             'pensions_invalidite',
@@ -176,7 +175,6 @@ class rsa_base_ressources_individu(Variable):
         types_revenus_non_pros = [
             'allocation_securisation_professionnelle',
             'dedommagement_victime_amiante',
-            'div_ms',
             'gains_exceptionnels',
             'pensions_alimentaires_percues',
             'pensions_invalidite',
@@ -339,25 +337,6 @@ class crds_mini(Variable):
         taux_crds = parameters(period).prelevements_sociaux.contributions.crds.taux
 
         return - taux_crds * rsa_activite
-
-
-class div_ms(Variable):
-    value_type = float
-    entity = Individu
-    label = u"Dividende entrant en compte dans le calcul des minimas sociaux"
-    definition_period = MONTH
-
-    def formula(individu, period):
-        period_declaration = period.this_year
-        f3vc = individu.foyer_fiscal('f3vc', period_declaration)
-        f3ve = individu.foyer_fiscal('f3ve', period_declaration)
-        f3vg = individu.foyer_fiscal('f3vg', period_declaration)
-        f3vl = individu.foyer_fiscal('f3vl', period_declaration)
-        f3vm = individu.foyer_fiscal('f3vm', period_declaration)
-        f3vt = individu.foyer_fiscal('f3vt', period_declaration)
-
-        # On projette les revenus du foyer fiscal seulement sur le déclarant principal
-        return (f3vc + f3ve + f3vg + f3vl + f3vm + f3vt) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL) / 12
 
 
 class enceinte_fam(Variable):
@@ -735,17 +714,16 @@ class rsa_base_ressources_patrimoine_individu(Variable):
         valeur_locative_terrains_non_loues = individu('valeur_locative_terrains_non_loues', period)
         revenus_locatifs = individu('revenus_locatifs', period)
         rsa = parameters(period).prestations.minima_sociaux.rsa
+        plus_values = individu.foyer_fiscal('assiette_csg_plus_values', period.this_year) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
 
         return (
             + livret_a * taux_livret_a / 12
-            + epargne_revenus_non_imposables
-            * rsa.patrimoine.taux_interet_forfaitaire_epargne_non_imposable / 12
+            + epargne_revenus_non_imposables * rsa.patrimoine.taux_interet_forfaitaire_epargne_non_imposable / 12
             + revenus_capital
             + revenus_locatifs
-            + valeur_locative_immo_non_loue
-            * rsa.patrimoine.abattement_valeur_locative_immo_non_loue
-            + valeur_locative_terrains_non_loues
-            * rsa.patrimoine.abattement_valeur_locative_terrains_non_loues
+            + valeur_locative_immo_non_loue * rsa.patrimoine.abattement_valeur_locative_immo_non_loue
+            + valeur_locative_terrains_non_loues * rsa.patrimoine.abattement_valeur_locative_terrains_non_loues
+            + plus_values / 12
             )
 
 

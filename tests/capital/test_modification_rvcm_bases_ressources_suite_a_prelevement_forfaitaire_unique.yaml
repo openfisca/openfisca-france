@@ -1,6 +1,6 @@
 ### Suite au passage au prélèvement forfaitaire unique (PFU), les mesures des revenus (rfr, bases ressources, etc.) ont été modifiés
 ### concernant la composante des revenus des valeurs et capitaux mobiliers (RVCM) : des variables ont été neutralisées
-### à partir de 2018 (rev_cat_rvcm, rfr_rvcm_abattements_a_reintegrer, revenus_capitaux_prelevement_liberatoire, revenus_capitaux_prelevement_bareme)
+### à partir de 2018 (revenu_categoriel_capital, rfr_rvcm_abattements_a_reintegrer, revenus_capitaux_prelevement_liberatoire, revenus_capitaux_prelevement_bareme)
 ### pour être remplacées par revenus_capitaux_prelevement_forfaitaire_unique_ir.
 ### Ces tests vérifient que pour les différentes mesures de revenus concernées par l'utilisaiton de revenus_capitaux_prelevement_forfaitaire_unique_ir,
 ### le passage à l'utilisation de la variable revenus_capitaux_prelevement_forfaitaire_unique_ir en 2018, tout en gardant dans la formule les variables

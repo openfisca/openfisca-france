@@ -372,12 +372,12 @@ class f3sm(Variable):
     definition_period = YEAR
 
 
-class abattement_net_duree_detention_retraite_dirigeant_pme(Variable):
+class abattements_plus_values(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     reference = u"http://bofip.impots.gouv.fr/bofip/9540-PGP"
-    label = u"Abattement net pour durée de détention de droit commun, renforcé, et abattement en cas de départ à la retraite d'un dirigeant de PME (abattement fixe et pour durée de détention)"
+    label = u"Abattements sur plus-values notamment pour durée de détention de droit commun, renforcé, et abattement en cas de départ à la retraite d'un dirigeant de PME (abattement fixe et pour durée de détention)"
     definition_period = YEAR
 
     def formula_2013_01_01(foyer_fiscal, period):
@@ -539,16 +539,10 @@ class f3vv_end_2010(Variable):
     definition_period = YEAR
 
 
-class f3vu(Variable):
-    value_type = int
-    entity = FoyerFiscal
-    end = '2009-12-31'
-    definition_period = YEAR
-
-
 class f3ua(Variable):
-    """ Cette case existait avant 2017, mais les montants qui y étaient indiqués étaient également indiqués case 3VG """
+    cerfa_field = u"3UA"
+    label = u"Plus-values bénéficiant de l'abattement pour durée de détention renforcé et plus-values réalisées par les dirigeants de PME lors de leur départ à la retraite : plus-values après abattements"
     value_type = float
     entity = FoyerFiscal
-    # start_date = date(2017, 1, 1)
+    # start_date = date(2017, 1, 1) NB : Cette case existait avant 2017, mais les montants qui y étaient indiqués étaient également indiqués case 3VG
     definition_period = YEAR

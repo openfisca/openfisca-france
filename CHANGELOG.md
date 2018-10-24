@@ -1,5 +1,27 @@
 # Changelog
 
+### 28.1.0 [#1184](https://github.com/openfisca/openfisca-france/pull/1190)
+
+* Amélioration technique.
+* Périodes concernées : à partir du 01/01/2013.
+* Zones impactées : 
+  - `prestations/minima_sociaux`
+  - `prestations/aides_logement.py`
+  - `prestations/prestations_familiales/base_ressources.py`
+  - `revenus/capital/plus_value.py`
+  - `reforms/allocations_familiales_imposables.py`
+  - `prelevements_obligatoires`
+  - `model/mesures.py`
+  - `tests/formulas`
+  - `tests/capital`
+  
+* Détails :
+  - Corrige la définition des plus-values prises en compte dans les minima sociaux.
+  - Supprime les variables `div` et `div_ms`.
+  - Modifie le calcul des plus-values entrant dans le calcul du RFR à parti de 2018 (cf. variable `rfr_plus_values_hors_rni`)
+  - Renomme les variables de revenus catégoriels
+
+
 ### 28.0.1 [#1184](https://github.com/openfisca/openfisca-france/pull/1184)
 
 * Changement mineur.

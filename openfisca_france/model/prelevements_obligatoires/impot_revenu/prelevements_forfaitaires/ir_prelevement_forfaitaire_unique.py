@@ -144,8 +144,8 @@ class plus_values_prelevement_forfaitaire_unique_ir(Variable):
     def formula_2018_01_01(foyer_fiscal, period, parameters):
         '''
         Cette variable fusionne le périmètre des plus-values des anciennes variables de plus_values-values présentes
-        dans taxation_plus_values_hors_bareme et dans rev_cat_pv, mais en adaptant les assiettes au PFU
-        (notamment, pour les revenus de rev_cat_pv, passage des montants nets à bruts)
+        dans taxation_plus_values_hors_bareme et dans 'revenu_categoriel_plus_values', mais en adaptant les assiettes au PFU
+        (notamment, pour les revenus de 'revenu_categoriel_plus_values', passage des montants nets à bruts)
         '''
         f3sa = foyer_fiscal('f3sa', period)
         f3vg = foyer_fiscal('f3vg', period)

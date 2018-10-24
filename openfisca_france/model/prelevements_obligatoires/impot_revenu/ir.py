@@ -611,7 +611,7 @@ class traitements_salaires_pensions_rentes(Variable):
             )
 
 
-class rev_cat_pv(Variable):
+class revenu_categoriel_plus_values(Variable):
     value_type = float
     entity = FoyerFiscal
     label = u"Revenu catégoriel - Plus-values"
@@ -643,7 +643,7 @@ class rev_cat_pv(Variable):
         return f3sb + f3vg + f3wb + f3ua
 
 
-class rev_cat_tspr(Variable):
+class revenu_categoriel_tspr(Variable):
     value_type = float
     entity = FoyerFiscal
     label = u"Revenu catégoriel - Traitements, salaires, pensions et rentes"
@@ -677,7 +677,7 @@ class deficit_rcm(Variable):
         return f2aa + f2al + f2am + f2an + f2aq + f2ar
 
 
-class rev_cat_rvcm(Variable):
+class revenu_categoriel_capital(Variable):
     value_type = float
     entity = FoyerFiscal
     label = u"Revenu catégoriel - Capitaux"
@@ -920,7 +920,7 @@ class rfr_rvcm_abattements_a_reintegrer(Variable):
         return abattement_dividende + abattement_assurance_vie
 
 
-class rev_cat_rfon(Variable):
+class revenu_categoriel_foncier(Variable):
     value_type = float
     entity = FoyerFiscal
     label = u"Revenu catégoriel - Foncier"
@@ -953,7 +953,7 @@ class rev_cat_rfon(Variable):
         return rev_cat_rfon
 
 
-class rev_cat_rpns(Variable):
+class revenu_categoriel_non_salarial(Variable):
     value_type = float
     entity = FoyerFiscal
     label = u"Revenu catégoriel - Revenus personnels non salariés"
@@ -978,7 +978,7 @@ class rev_cat_rpns(Variable):
             )
 
 
-class rev_cat(Variable):
+class revenu_categoriel(Variable):
     value_type = float
     entity = FoyerFiscal
     label = u"Revenus catégoriels"
@@ -989,23 +989,23 @@ class rev_cat(Variable):
         '''
         Revenus Categoriels
         '''
-        rev_cat_tspr = foyer_fiscal('rev_cat_tspr', period)
-        rev_cat_rvcm = foyer_fiscal('rev_cat_rvcm', period)
-        rev_cat_rfon = foyer_fiscal('rev_cat_rfon', period)
-        rev_cat_rpns = foyer_fiscal('rev_cat_rpns', period)
-        rev_cat_pv = foyer_fiscal('rev_cat_pv', period)
+        rev_cat_tspr = foyer_fiscal('revenu_categoriel_tspr', period)
+        rev_cat_rvcm = foyer_fiscal('revenu_categoriel_capital', period)
+        rev_cat_rfon = foyer_fiscal('revenu_categoriel_foncier', period)
+        rev_cat_rpns = foyer_fiscal('revenu_categoriel_non_salarial', period)
+        rev_cat_pv = foyer_fiscal('revenu_categoriel_plus_values', period)
 
         return rev_cat_tspr + rev_cat_rvcm + rev_cat_rfon + rev_cat_rpns + rev_cat_pv
 
     def formula_2018_01_01(foyer_fiscal, period, parameters):
         '''
         Revenus Categoriels
-        Différence par rapport à la formule précédente : on enlève rev_cat_rvcm et rev_cat_pv (suite à la création du prélèvement forfaitaire unique)
+        Différence par rapport à la formule précédente : on enlève revenu_categoriel_capital et revenu_categoriel_plus_values (suite à la création du prélèvement forfaitaire unique)
         Hypothèse : les contribuables choisissent toujours le prélèvement forfaitaire unique par rapport au barème pour ces revenus
         '''
-        rev_cat_tspr = foyer_fiscal('rev_cat_tspr', period)
-        rev_cat_rfon = foyer_fiscal('rev_cat_rfon', period)
-        rev_cat_rpns = foyer_fiscal('rev_cat_rpns', period)
+        rev_cat_tspr = foyer_fiscal('revenu_categoriel_tspr', period)
+        rev_cat_rfon = foyer_fiscal('revenu_categoriel_foncier', period)
+        rev_cat_rpns = foyer_fiscal('revenu_categoriel_non_salarial', period)
 
         return rev_cat_tspr + rev_cat_rfon + rev_cat_rpns
 
@@ -1046,7 +1046,7 @@ class rbg(Variable):
     def formula(foyer_fiscal, period, parameters):
         '''Revenu brut global
         '''
-        rev_cat = foyer_fiscal('rev_cat', period)
+        revenu_categoriel = foyer_fiscal('revenu_categoriel', period)
         deficit_ante = foyer_fiscal('deficit_ante', period)
         f6gh = foyer_fiscal('f6gh', period)
         nbic_impm_i = foyer_fiscal.members('nbic_impm', period)
@@ -1057,7 +1057,7 @@ class rbg(Variable):
         # sans les revenus au quotient
         nacc_pvce = foyer_fiscal.sum(nacc_pvce_i)
         return max_(0,
-                    rev_cat + f6gh + (foyer_fiscal.sum(nbic_impm_i) + nacc_pvce) * (1 + cga) - deficit_ante)
+                    revenu_categoriel + f6gh + (foyer_fiscal.sum(nbic_impm_i) + nacc_pvce) * (1 + cga) - deficit_ante)
 
 
 class csg_patrimoine_deductible_ir(Variable):
@@ -1931,11 +1931,43 @@ class rfr_plus_values_hors_rni(Variable):
 
     def formula_2018_01_01(foyer_fiscal, period, parameters):
         """
-        Plus-values 2018 et + entrant dans le calcul du revenu fiscal de référence
+        Plus-values 2018 et + entrant dans le calcul du revenu fiscal de référence.
+        A partir de l'imposition des revenus 2018, il est supposé qu'aucune plus-values n'est taxée au barème.
+        Toutes les plus-values entrant dans le calcul du RFR se retrouvent ici dans la variable 'rfr_plus_values_hors_rni'
         """
-        plus_values_prelevement_forfaitaire_unique_ir = foyer_fiscal('plus_values_prelevement_forfaitaire_unique_ir', period)
+        # Ici, plus-values spécifiques au PFU
+        f3sa = foyer_fiscal('f3sa', period)
+        f3vg = foyer_fiscal('f3vg', period)
+        f3ua = foyer_fiscal('f3ua', period)
+        f3sg = foyer_fiscal('f3sg', period)
+        f3sl = foyer_fiscal('f3sl', period)
+        f3wb = foyer_fiscal('f3wb', period)
+        f3sj = foyer_fiscal('f3sj', period)
+        #
 
-        return plus_values_prelevement_forfaitaire_unique_ir
+        f3sk = foyer_fiscal('f3sk', period)
+        f3tz = foyer_fiscal('f3tz', period)
+        f3vc = foyer_fiscal('f3vc', period)
+        f3vd_i = foyer_fiscal.members('f3vd', period)
+        f3vf_i = foyer_fiscal.members('f3vf', period)
+        f3vi_i = foyer_fiscal.members('f3vi', period)
+        f3vm = foyer_fiscal('f3vm', period)
+        f3vq = foyer_fiscal('f3vq', period)
+        f3vr = foyer_fiscal('f3vr', period)
+        f3vt = foyer_fiscal('f3vt', period)
+        f3vz = foyer_fiscal('f3vz', period)
+        f3we = foyer_fiscal('f3we', period)
+        f3wi = foyer_fiscal('f3wi', period)
+        f3wj = foyer_fiscal('f3wj', period)
+
+        f3vi = foyer_fiscal.sum(f3vi_i)
+        f3vd = foyer_fiscal.sum(f3vd_i)
+        f3vf = foyer_fiscal.sum(f3vf_i)
+
+        rpns_pvce_i = foyer_fiscal.members('rpns_pvce', period)
+        rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
+
+        return f3sa + f3vg + f3ua + f3sg + f3sl + f3wb + f3sj + f3sk + f3tz + f3vc + f3vd + f3vf + f3vi + f3vm + (f3vq - f3vr) + f3vt + f3vz + f3we + f3wi + f3wj + rpns_pvce
 
 
 class iai(Variable):
@@ -2075,7 +2107,7 @@ class rfr(Variable):
         '''
         Revenu fiscal de référence
         '''
-        abattement_net_duree_detention_retraite_dirigeant_pme = foyer_fiscal('abattement_net_duree_detention_retraite_dirigeant_pme', period)
+        abattements_plus_values = foyer_fiscal('abattements_plus_values', period)
         f2dm = foyer_fiscal('f2dm', period)
         microentreprise = foyer_fiscal('microentreprise', period)
         rfr_rev_capitaux_mobiliers = foyer_fiscal('rfr_rvcm_abattements_a_reintegrer', period)  # Supprimée à partir de 2018
@@ -2092,7 +2124,7 @@ class rfr(Variable):
             max_(0, rni)
             + rfr_charges_deductibles + rfr_plus_values_hors_rni + rfr_rev_capitaux_mobiliers + revenus_capitaux_prelevement_liberatoire + revenus_capitaux_prelevement_forfaitaire_unique_ir
             + rpns_exon
-            + abattement_net_duree_detention_retraite_dirigeant_pme
+            + abattements_plus_values
             + f2dm + microentreprise
             )
 

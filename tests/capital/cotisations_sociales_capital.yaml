@@ -31,7 +31,7 @@
   input_variables:
     f2go: 20000
   output_variables:
-    rev_cat_rvcm: 25000
+    revenu_categoriel_capital: 25000
     prelevements_sociaux_revenus_capital_hors_csg_crds: -1700
     csg_revenus_capital: -2050
     crds_revenus_capital: -125
@@ -45,7 +45,7 @@
   input_variables:
     f2ts: 20000
   output_variables:
-    rev_cat_rvcm: 20000
+    revenu_categoriel_capital: 20000
     prelevements_sociaux_revenus_capital_hors_csg_crds: -1360
     csg_revenus_capital: -1640
     crds_revenus_capital: -100
@@ -59,7 +59,7 @@
   input_variables:
     f2tr: 20000
   output_variables:
-    rev_cat_rvcm: 20000
+    revenu_categoriel_capital: 20000
     prelevements_sociaux_revenus_capital_hors_csg_crds: -1360
     csg_revenus_capital: -1640
     crds_revenus_capital: -100
@@ -155,7 +155,7 @@
     csg_revenus_capital: -1640
     crds_revenus_capital: -100
     prelevements_sociaux_revenus_capital_hors_csg_crds: -1360
-    rev_cat_rvcm: 7000
+    revenu_categoriel_capital: 7000
     irpp: 0
 
 - name: "f4babbbcbd_2006"
@@ -171,9 +171,8 @@
     csg_revenus_capital: -1394
     crds_revenus_capital: -85
     prelevements_sociaux_revenus_capital_hors_csg_crds: -391
-    rev_cat_rfon: 17000
+    revenu_categoriel_foncier: 17000
     irpp: -1119
-
 
 - name: "ps_rev_exon_ir_2016"
   description: Montant de prélèvements sociaux sur revenus exonérés d'impôt sur le revenus en 2016

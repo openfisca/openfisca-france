@@ -70,11 +70,15 @@ class prestations_familiales_base_ressources_individu(Variable):
 
         traitements_salaires_pensions_rentes = individu('traitements_salaires_pensions_rentes', annee_fiscale_n_2)
         hsup = individu('hsup', annee_fiscale_n_2, options = [ADD])
-        rpns = individu('rpns', annee_fiscale_n_2)
         glo = individu('glo', annee_fiscale_n_2)
-        div = individu('div', annee_fiscale_n_2)
+        plus_values = individu.foyer_fiscal('assiette_csg_plus_values', annee_fiscale_n_2) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
+        rpns = individu('rpns', annee_fiscale_n_2)
+        rpns_pvce = individu('rpns_pvce', annee_fiscale_n_2)
+        rpns_pvct = individu('rpns_pvct', annee_fiscale_n_2)
+        rpns_mvct = individu('moins_values_court_terme_non_salaries', annee_fiscale_n_2)
+        rpns_mvlt = individu('moins_values_long_terme_non_salaries', annee_fiscale_n_2)
 
-        return traitements_salaires_pensions_rentes + hsup + rpns + glo + div
+        return traitements_salaires_pensions_rentes + hsup + glo + plus_values + rpns + rpns_pvce + rpns_pvct - rpns_mvct - rpns_mvlt
 
 
 class biactivite(Variable):
@@ -95,31 +99,6 @@ class biactivite(Variable):
         return deux_parents * famille.all(condition_ressource, role = famille.PARENT)
 
 
-class div(Variable):
-    value_type = float
-    entity = Individu
-    label = u"Dividendes imposés"
-    definition_period = YEAR
-
-    def formula(individu, period):
-        rpns_pvce = individu('rpns_pvce', period)
-        rpns_pvct = individu('rpns_pvct', period)
-        rpns_mvct = individu('moins_values_court_terme_non_salaries', period)
-        rpns_mvlt = individu('moins_values_long_terme_non_salaries', period)
-        f3vc = individu.foyer_fiscal('f3vc', period)
-        f3ve = individu.foyer_fiscal('f3ve', period)
-        f3vg = individu.foyer_fiscal('f3vg', period)
-        f3vh = individu.foyer_fiscal('f3vh', period)
-        f3vl = individu.foyer_fiscal('f3vl', period)
-        f3vm = individu.foyer_fiscal('f3vm', period)
-        f3vt = individu.foyer_fiscal('f3vt', period)
-
-        # Revenus du foyer fiscal, projetés seulement sur la première personne
-        revenus_foyer_fiscal = (f3vc + f3ve + f3vg - f3vh + f3vl + f3vm + f3vt) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
-
-        return revenus_foyer_fiscal + rpns_pvce + rpns_pvct - rpns_mvct - rpns_mvlt
-
-
 class rev_coll(Variable):
     value_type = float
     entity = FoyerFiscal
@@ -130,7 +109,7 @@ class rev_coll(Variable):
         # Quand rev_coll est calculé sur une année glissante, rente_viagere_titre_onereux_net et pensions_alimentaires_versees sont calculés sur l'année légale correspondante.
         rente_viagere_titre_onereux_net = foyer_fiscal('rente_viagere_titre_onereux_net', period)
         pensions_alimentaires_versees = foyer_fiscal('pensions_alimentaires_versees', period)
-        rev_cat_rvcm = foyer_fiscal('rev_cat_rvcm', period)  # Supprimée en 2018
+        rev_cat_rvcm = foyer_fiscal('revenu_categoriel_capital', period)  # Supprimée en 2018
         revenus_capitaux_prelevement_liberatoire = foyer_fiscal('revenus_capitaux_prelevement_liberatoire', period, options = [ADD])  # Supprimée en 2018
         revenus_capitaux_prelevement_forfaitaire_unique_ir = foyer_fiscal('revenus_capitaux_prelevement_forfaitaire_unique_ir', period, options = [ADD])  # Existe à partir de 2018
         abat_spe = foyer_fiscal('abat_spe', period)
@@ -139,7 +118,7 @@ class rev_coll(Variable):
         f7gb = foyer_fiscal('f7gb', period)
         f7gc = foyer_fiscal('f7gc', period)
         # est supprimée à partir de 2018
-        rev_cat_pv = foyer_fiscal('rev_cat_pv', period)
+        rev_cat_pv = foyer_fiscal('revenu_categoriel_plus_values', period)
         plus_values_prelevement_forfaitaire_unique_ir = foyer_fiscal('plus_values_prelevement_forfaitaire_unique_ir', period)  # Apparait à partir de 2018
 
         # TODO: ajouter les revenus de l'étranger etr*0.9

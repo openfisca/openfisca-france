@@ -32,14 +32,14 @@ class allocations_familiales_imposables(Reform):
             nacc_pvce_i = foyer_fiscal.members('nacc_pvce', period)
             nbic_impm_i = foyer_fiscal.members('nbic_impm', period)
 
-            rev_cat = foyer_fiscal('rev_cat', period)
+            revenu_categoriel = foyer_fiscal('revenu_categoriel', period)
             cga = parameters(period).impot_revenu.rpns.cga_taux2
 
             nacc_pvce = foyer_fiscal.sum(nacc_pvce_i)
             return max_(
                 0,
                 allocations_familiales_imposables
-                + rev_cat
+                + revenu_categoriel
                 + f6gh
                 + (foyer_fiscal.sum(nbic_impm_i) + nacc_pvce)
                 * (1 + cga)
@@ -52,7 +52,7 @@ class allocations_familiales_imposables(Reform):
 
         def formula(foyer_fiscal, period, parameters):
             allocations_familiales_imposables = foyer_fiscal('allocations_familiales_imposables')
-            abattement_net_duree_detention_retraite_dirigeant_pme = foyer_fiscal('abattement_net_duree_detention_retraite_dirigeant_pme')
+            abattements_plus_values = foyer_fiscal('abattements_plus_values')
             f3vi_holder = foyer_fiscal.members('f3vi')
             f3vz = foyer_fiscal('f3vz')
             rfr_cd = foyer_fiscal('rfr_cd')
@@ -74,7 +74,7 @@ class allocations_familiales_imposables(Reform):
                 + revenus_capitaux_prelevement_forfaitaire_unique_ir
                 + f3vi
                 + rpns_exon
-                + abattement_net_duree_detention_retraite_dirigeant_pme
+                + abattements_plus_values
                 + f3vz
                 + microentreprise
                 )
