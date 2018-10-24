@@ -214,7 +214,7 @@ class plus_values_revenus_nets_du_capital(Variable):
 
         intersection_v1_v2 = f3vg + f3we + f3vz
 
-        return v1_assiette_csg_plus_values + v2_rfr_plus_values_hors_rni - intersection_v1_v2  # Pas d'item supplémentaire dans rev_cat_pv avant 2013
+        return v1_assiette_csg_plus_values + v2_rfr_plus_values_hors_rni - intersection_v1_v2
 
     def formula_2013_01_01(foyer_fiscal, period):
         '''
@@ -261,13 +261,15 @@ class plus_values_revenus_nets_du_capital(Variable):
         v1_assiette_csg_plus_values = foyer_fiscal('assiette_csg_plus_values', period)
         v2_rfr_plus_values_hors_rni = foyer_fiscal('rfr_plus_values_hors_rni', period)
 
-        f3vg = foyer_fiscal('f3vg', period)
+        f3sg = foyer_fiscal('f3sg', period)
+        f3sl = foyer_fiscal('f3sl', period)
         f3ua = foyer_fiscal('f3ua', period)
+        f3vg = foyer_fiscal('f3vg', period)
         f3vz = foyer_fiscal('f3vz', period)
 
-        intersection_v1_v2 = f3vg + f3ua + f3vz
+        intersection_v1_v2 = f3vg + f3ua + f3vz + f3sg + f3sl
 
-        return v1_assiette_csg_plus_values + v2_rfr_plus_values_hors_rni - intersection_v1_v2  # Pas d'item supplémentaire dans rev_cat_pv avant 2013
+        return v1_assiette_csg_plus_values + v2_rfr_plus_values_hors_rni - intersection_v1_v2
 
 
 class revenus_nets_du_capital(Variable):
