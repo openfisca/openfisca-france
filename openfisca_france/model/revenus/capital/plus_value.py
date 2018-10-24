@@ -539,13 +539,6 @@ class f3vv_end_2010(Variable):
     definition_period = YEAR
 
 
-class f3vu(Variable):
-    value_type = int
-    entity = FoyerFiscal
-    end = '2009-12-31'
-    definition_period = YEAR
-
-
 class f3ua(Variable):
     """ Cette case existait avant 2017, mais les montants qui y étaient indiqués étaient également indiqués case 3VG """
     value_type = float
