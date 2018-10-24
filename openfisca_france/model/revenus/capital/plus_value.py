@@ -372,12 +372,12 @@ class f3sm(Variable):
     definition_period = YEAR
 
 
-class abattement_net_duree_detention_retraite_dirigeant_pme(Variable):
+class abattements_plus_values(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     reference = u"http://bofip.impots.gouv.fr/bofip/9540-PGP"
-    label = u"Abattement net pour durée de détention de droit commun, renforcé, et abattement en cas de départ à la retraite d'un dirigeant de PME (abattement fixe et pour durée de détention)"
+    label = u"Abattements sur plus-values notamment pour durée de détention de droit commun, renforcé, et abattement en cas de départ à la retraite d'un dirigeant de PME (abattement fixe et pour durée de détention)"
     definition_period = YEAR
 
     def formula_2013_01_01(foyer_fiscal, period):

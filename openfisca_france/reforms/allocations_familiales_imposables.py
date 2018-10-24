@@ -52,7 +52,7 @@ class allocations_familiales_imposables(Reform):
 
         def formula(foyer_fiscal, period, parameters):
             allocations_familiales_imposables = foyer_fiscal('allocations_familiales_imposables')
-            abattement_net_duree_detention_retraite_dirigeant_pme = foyer_fiscal('abattement_net_duree_detention_retraite_dirigeant_pme')
+            abattements_plus_values = foyer_fiscal('abattements_plus_values')
             f3vi_holder = foyer_fiscal.members('f3vi')
             f3vz = foyer_fiscal('f3vz')
             rfr_cd = foyer_fiscal('rfr_cd')
@@ -74,7 +74,7 @@ class allocations_familiales_imposables(Reform):
                 + revenus_capitaux_prelevement_forfaitaire_unique_ir
                 + f3vi
                 + rpns_exon
-                + abattement_net_duree_detention_retraite_dirigeant_pme
+                + abattements_plus_values
                 + f3vz
                 + microentreprise
                 )

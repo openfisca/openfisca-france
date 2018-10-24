@@ -619,57 +619,27 @@ class revenu_categoriel_plus_values(Variable):
     definition_period = YEAR
     end = '2017-12-31'
 
-    '''
-    Attention : cette formule est susceptible de contenir des erreurs pour les années avant 2013 (cf. commentaires sur assiette_csg_revenus_capital)
-
-    Cette variable comprend les abattements comptant dans le rfr mais pas dans l'ir.
-    Elle se base sur les principales cases de plus-values telles que définies dans la variable 'assiette_csg_plus_values'.
-    Elle ignore encore à ce stade les moins-values.
-    Nota : 3VP était une case pour pv sur jeunes entreprises innovantes et est supprimée d'où sa disparition après 2014.
-    '''
-
     def formula_2013_01_01(foyer_fiscal, period, parameters):
         f3sb = foyer_fiscal('f3sb', period)
         f3vg = foyer_fiscal('f3vg', period)
         f3vl = foyer_fiscal('f3vl', period)
-        f3wb = foyer_fiscal('f3wb', period)
-        f3vc = foyer_fiscal('f3vc', period)
-        f3vz = foyer_fiscal('f3vz', period)
-        f3sg = foyer_fiscal('f3sg', period)
-        f3sl = foyer_fiscal('f3sl', period)
-        f3va = foyer_fiscal('f3va', period)
-        f3vo = foyer_fiscal('f3vo', period)
-        f3vp = foyer_fiscal('f3vp', period)
 
-        return f3sb + f3vg + f3vl + f3wb + f3vc + f3vz + f3sg + f3sl + f3va + f3vo + f3vp
+        return f3sb + f3vg + f3vl + f3wb
 
     def formula_2014_01_01(foyer_fiscal, period, parameters):
         f3sb = foyer_fiscal('f3sb', period)
         f3vg = foyer_fiscal('f3vg', period)
         f3wb = foyer_fiscal('f3wb', period)
-        f3vc = foyer_fiscal('f3vc', period)
-        f3vz = foyer_fiscal('f3vz', period)
-        f3sg = foyer_fiscal('f3sg', period)
-        f3sl = foyer_fiscal('f3sl', period)
-        f3va = foyer_fiscal('f3va', period)
-        f3vo = foyer_fiscal('f3vo', period)
-        f3vp = foyer_fiscal('f3vp', period)
 
-        return f3sb + f3vg + f3wb + f3vc + f3vz + f3sg + f3sl + f3va + f3vo + f3vp
+        return f3sb + f3vg + f3wb
 
     def formula_2017_01_01(foyer_fiscal, period, parameters):
         f3sb = foyer_fiscal('f3sb', period)
         f3vg = foyer_fiscal('f3vg', period)
         f3wb = foyer_fiscal('f3wb', period)
         f3ua = foyer_fiscal('f3ua', period)  # Cette case existant avant, mais ses montants étaient inclus dans 3vg.
-        f3vc = foyer_fiscal('f3vc', period)
-        f3vz = foyer_fiscal('f3vz', period)
-        f3sg = foyer_fiscal('f3sg', period)
-        f3sl = foyer_fiscal('f3sl', period)
-        f3va = foyer_fiscal('f3va', period)
-        f3vo = foyer_fiscal('f3vo', period)
 
-        return f3sb + f3vg + f3wb + f3ua + f3vc + f3vz + f3sg + f3sl + f3va  + f3vo
+        return f3sb + f3vg + f3wb
 
 
 class revenu_categoriel_tspr(Variable):
@@ -1962,9 +1932,30 @@ class rfr_plus_values_hors_rni(Variable):
         """
         Plus-values 2018 et + entrant dans le calcul du revenu fiscal de référence
         """
-        plus_values_prelevement_forfaitaire_unique_ir = foyer_fiscal('plus_values_prelevement_forfaitaire_unique_ir', period)
+        f3sj = foyer_fiscal('f3sj', period)
+        f3sk = foyer_fiscal('f3sk', period)
+        f3tz = foyer_fiscal('f3tz', period)
+        f3vc = foyer_fiscal('f3vc', period)
+        f3vd_i = foyer_fiscal.members('f3vd', period)
+        f3vf_i = foyer_fiscal.members('f3vf', period)
+        f3vi_i = foyer_fiscal.members('f3vi', period)
+        f3vm = foyer_fiscal('f3vm', period)
+        f3vq = foyer_fiscal('f3vq', period)
+        f3vr = foyer_fiscal('f3vr', period)
+        f3vt = foyer_fiscal('f3vt', period)
+        f3vz = foyer_fiscal('f3vz', period)
+        f3we = foyer_fiscal('f3we', period)
+        f3wi = foyer_fiscal('f3wi', period)
+        f3wj = foyer_fiscal('f3wj', period)
 
-        return plus_values_prelevement_forfaitaire_unique_ir
+        f3vi = foyer_fiscal.sum(f3vi_i)
+        f3vd = foyer_fiscal.sum(f3vd_i)
+        f3vf = foyer_fiscal.sum(f3vf_i)
+
+        rpns_pvce_i = foyer_fiscal.members('rpns_pvce', period)
+        rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
+
+        return f3sj + f3sk + f3tz + f3vc + f3vd + f3vf + f3vi + f3vm + (f3vq - f3vr) + f3vt + f3vz + f3we + f3wi + f3wj + rpns_pvce
 
 
 class iai(Variable):
@@ -2104,7 +2095,7 @@ class rfr(Variable):
         '''
         Revenu fiscal de référence
         '''
-        abattement_net_duree_detention_retraite_dirigeant_pme = foyer_fiscal('abattement_net_duree_detention_retraite_dirigeant_pme', period)
+        abattements_plus_values = foyer_fiscal('abattements_plus_values', period)
         f2dm = foyer_fiscal('f2dm', period)
         microentreprise = foyer_fiscal('microentreprise', period)
         rfr_rev_capitaux_mobiliers = foyer_fiscal('rfr_rvcm_abattements_a_reintegrer', period)  # Supprimée à partir de 2018
@@ -2121,7 +2112,7 @@ class rfr(Variable):
             max_(0, rni)
             + rfr_charges_deductibles + rfr_plus_values_hors_rni + rfr_rev_capitaux_mobiliers + revenus_capitaux_prelevement_liberatoire + revenus_capitaux_prelevement_forfaitaire_unique_ir
             + rpns_exon
-            + abattement_net_duree_detention_retraite_dirigeant_pme
+            + abattements_plus_values
             + f2dm + microentreprise
             )
 
