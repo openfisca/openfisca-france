@@ -1,0 +1,29 @@
+- name: "Cas N°1 famille ayant droit à l'ASF - Parent isolé avec un enfant"
+  period: 2018-04
+  relative_error_margin: 0.01
+  familles:
+    parents: ["parent1"]
+    enfants: ["enfant1"]
+  individus:
+    - id: "parent1"
+      age: 47
+    - id: "enfant1"
+      age: 14
+  output_variables:
+    asf: 115.30
+
+- name: "Cas N°2 famille ayant droit à l'ASF - Parent isolé avec deux enfant"
+  period: 2018-04
+  relative_error_margin: 0.01
+  familles:
+    parents: ["parent1"]
+    enfants: ["enfant1", "enfant2"]
+  individus:
+    - id: "parent1"
+      age: 47
+    - id: "enfant1"
+      age: 14
+    - id: "enfant2"
+      age: 12
+  output_variables:
+    asf: 230.60
