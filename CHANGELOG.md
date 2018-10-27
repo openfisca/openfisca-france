@@ -1,5 +1,14 @@
 # Changelog
 
+### 29.0.1 [#1181](https://github.com/openfisca/openfisca-france/pull/1181)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : toutes.
+* Zones impactées : `prestations_sociales/ass`.
+* Détails :
+  - Ajoute une condition d'âge sur l'ASS.
+  - Ajoute un test.
+
 # 29.0.0 [#1190](https://github.com/openfisca/openfisca-france/pull/1190)[#1191](https://github.com/openfisca/openfisca-france/pull/1191)
 
 * Évolution de la législation **non rétrocompatible**

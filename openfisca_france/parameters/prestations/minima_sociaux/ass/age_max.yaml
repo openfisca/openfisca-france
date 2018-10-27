@@ -1,0 +1,6 @@
+description: Age limite (en mois) pour bénéficier de l'ASS
+reference: https://www.service-public.fr/particuliers/vosdroits/F12484
+unit: /1
+values:
+  1984-01-01:
+    value: 789

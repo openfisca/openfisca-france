@@ -232,15 +232,21 @@ class ass_eligibilite_individu(Variable):
     entity = Individu
     definition_period = MONTH
 
-    def formula(individu, period):
+    def formula(individu, period, parameters):
+        age_max = parameters(period).prestations.minima_sociaux.ass.age_max
+        sous_age_limite = individu('age_en_mois', period) <= age_max
+
         demandeur_emploi_non_indemnise = and_(individu('activite', period) == TypesActivite.chomeur, individu('chomage_net', period) == 0)
 
         # Indique que l'individu a travaillé 5 ans au cours des 10 dernieres années.
         ass_precondition_remplie = individu('ass_precondition_remplie', period)
 
-        return and_(demandeur_emploi_non_indemnise, ass_precondition_remplie)
+        return demandeur_emploi_non_indemnise * ass_precondition_remplie * sous_age_limite
 
-    def formula_2017_01_01(individu, period):
+    def formula_2017_01_01(individu, period, parameters):
+        age_max = parameters(period).prestations.minima_sociaux.ass.age_max
+        sous_age_limite = individu('age_en_mois', period) <= age_max
+
         aah_eligible = individu('aah', period.offset(-1)) > 0
 
         demandeur_emploi_non_indemnise = and_(individu('activite', period) == TypesActivite.chomeur, individu('chomage_net', period) == 0)
@@ -248,12 +254,15 @@ class ass_eligibilite_individu(Variable):
         # Indique que l'individu a travaillé 5 ans au cours des 10 dernieres années.
         ass_precondition_remplie = individu('ass_precondition_remplie', period)
 
-        return and_(not_(aah_eligible), and_(demandeur_emploi_non_indemnise, ass_precondition_remplie))
+        return not_(aah_eligible) * demandeur_emploi_non_indemnise * ass_precondition_remplie * sous_age_limite
 
-    def formula_2017_09_01(individu, period):
+    def formula_2017_09_01(individu, period, parameters):
         '''
         Reference : https://www.legifrance.gouv.fr/eli/decret/2017/5/5/ETSD1708117D/jo/article_2
         '''
+        age_max = parameters(period).prestations.minima_sociaux.ass.age_max
+        sous_age_limite = individu('age_en_mois', period) <= age_max
+
         aah_eligible = individu('aah', period) > 0
 
         demandeur_emploi_non_indemnise = and_(individu('activite', period) == TypesActivite.chomeur, individu('chomage_net', period) == 0)
@@ -265,4 +274,4 @@ class ass_eligibilite_individu(Variable):
         # Indique que l'individu a travaillé 5 ans au cours des 10 dernieres années.
         ass_precondition_remplie = individu('ass_precondition_remplie', period)
 
-        return and_(not_(aah_eligible), and_(demandeur_emploi_non_indemnise_et_cumul_accepte, ass_precondition_remplie))
+        return not_(aah_eligible) * demandeur_emploi_non_indemnise_et_cumul_accepte * ass_precondition_remplie * sous_age_limite
