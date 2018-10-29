@@ -1,6 +1,14 @@
 # Changelog
 
-### 29.1.1 [#1192](https://github.com/openfisca/openfisca-france/pull/1192)
+### 29.1.2 [#1194](https://github.com/openfisca/openfisca-france/pull/1194)
+
+* Changement mineur.
+* Périodes concernées : à partir du 01/04/2018.
+* Zones impactées : `tests/formulas/asf*`.
+* Détails :
+  - Ajoute des tests pour la revalorisation de l'allocation de soutien familial (ASF) au 1er avril 2018.
+
+## 29.1.1 [#1192](https://github.com/openfisca/openfisca-france/pull/1192)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 01/10/2018.
@@ -22,7 +30,7 @@
 
 * Évolution de la législation **non rétrocompatible**
 * Périodes concernées : à partir du 01/01/2013.
-* Zones impactées : 
+* Zones impactées :
   - `prestations/minima_sociaux`
   - `prestations/aides_logement`
   - `prestations/prestations_familiales/base_ressources`
@@ -30,7 +38,7 @@
   - `reforms/allocations_familiales_imposables`
   - `prelevements_obligatoires`
   - `mesures`
-  
+
 * Détails :
   - Supprime les variables:
     - `div`
