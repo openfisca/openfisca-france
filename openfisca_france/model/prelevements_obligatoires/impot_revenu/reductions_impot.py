@@ -4151,7 +4151,7 @@ class locmeu(Variable):
         return (
             (
                 (min_(P.max, max_(f7im, f7iw)) + min_(P.max, f7io)) * taux_reduc_2009_2010
-                + min_(P.max, maxi(f7ij, f7il, f7in, f7iv)) * taux_reduc_2011  # to check : impossible de remplir à la fois f7ij et f7il par exemple ?
+                + min_(P.max, maxi(f7ij, f7il, f7in, f7iv)) * taux_reduc_2011
                 + min_(P.max, maxi(f7id, f7ie, f7if, f7ig)) * taux_reduc_2012
                 + (min_(P.max, f7jt + f7ju) + min_(P.max, f7ou)) * taux_reduc_2013
                 ) / 9
@@ -4250,7 +4250,7 @@ class locmeu(Variable):
         return (
             (
                 (min_(P.max, max_(f7im, f7iw) + min_(P.max, f7io))) * taux_reduc_2009_2010
-                + min_(P.max, maxi(f7ij, f7il, f7in, f7iv)) * taux_reduc_2011  # to check : impossible de remplir à la fois f7ij et f7il par exemple ?
+                + min_(P.max, maxi(f7ij, f7il, f7in, f7iv)) * taux_reduc_2011
                 + min_(P.max, maxi(f7id, f7ie, f7if, f7ig)) * taux_reduc_2012
                 + (min_(P.max, f7jt + f7ju) + min_(P.max, f7ou) + min_(P.max, f7ov)) * taux_reduc_2013
                 ) / 9
@@ -4359,7 +4359,7 @@ class locmeu(Variable):
         return (
             (
                 min_(P.max, max_(f7im, f7iw)) * taux_reduc_2009_2010
-                + min_(P.max, maxi(f7ij, f7il, f7in, f7iv)) * taux_reduc_2011  # to check : impossible de remplir à la fois f7ij et f7il par exemple ?
+                + min_(P.max, maxi(f7ij, f7il, f7in, f7iv)) * taux_reduc_2011
                 + min_(P.max, maxi(f7id, f7ie, f7if, f7ig)) * taux_reduc_2012
                 + (min_(P.max, f7jt + f7ju) + min_(P.max, f7ou) + min_(P.max, f7ov) + min_(P.max, f7ow)) * taux_reduc_2013
                 ) / 9
