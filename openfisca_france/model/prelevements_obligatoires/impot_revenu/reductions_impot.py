@@ -4420,7 +4420,6 @@ class locmeu(Variable):
         f7or = foyer_fiscal('f7or', period)
         f7os = foyer_fiscal('f7os', period)
         f7ot = foyer_fiscal('f7ot', period)
-        f7ox = foyer_fiscal('f7ox', period)  # noqa F841
         f7pa = foyer_fiscal('f7pa', period)
         f7pb = foyer_fiscal('f7pb', period)
         f7pc = foyer_fiscal('f7pc', period)
@@ -4447,7 +4446,7 @@ class locmeu(Variable):
         invest_2014_acheves_2017 = foyer_fiscal('f7ou', period)
         invest_2015_acheves_2017 = foyer_fiscal('f7ov', period)
         invest_2016_acheves_2017 = foyer_fiscal('f7ow', period)
-        invest_2017_acheves_2017 = foyer_fiscal('f7ow', period)
+        invest_2017_acheves_2017 = foyer_fiscal('f7ox', period)
 
         P = parameters(period).impot_revenu.reductions_impots.locmeu
 
