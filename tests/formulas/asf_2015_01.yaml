@@ -1,0 +1,28 @@
+- name: "Famille ayant droit à l'ASF - 2015"
+  period: 2015-01
+  relative_error_margin: 0.01
+  familles:
+    parents: ["parent1"]
+    enfants: ["enfant1"]
+  individus:
+    - id: "parent1"
+      age: 40
+    - id: "enfant1"
+      age: 9
+      garde_alternee: false
+  output_variables:
+    asf: 96
+
+- name: "Limite d'âge : 20 ans"
+  period: 2015-01
+  relative_error_margin: 0.01
+  familles:
+    parents: ["parent1"]
+    enfants: ["enfant1"]
+  individus:
+    - id: "parent1"
+      age: 40
+    - id: "enfant1"
+      age: 20
+  output_variables:
+    asf: 0
