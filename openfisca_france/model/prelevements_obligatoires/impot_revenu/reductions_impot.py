@@ -5757,7 +5757,6 @@ class scelli(Variable):
         f7yb = foyer_fiscal('f7yb', period)
         f7yd = foyer_fiscal('f7yd', period)
         f7yf = foyer_fiscal('f7yf', period)
-        f7yg = foyer_fiscal('f7yg', period)  # noqa F841
         f7yh = foyer_fiscal('f7yh', period)
         f7yj = foyer_fiscal('f7yj', period)
         f7yk = foyer_fiscal('f7yk', period)
@@ -5907,7 +5906,6 @@ class scelli(Variable):
         f7yb = foyer_fiscal('f7yb', period)
         f7yd = foyer_fiscal('f7yd', period)
         f7yf = foyer_fiscal('f7yf', period)
-        f7yg = foyer_fiscal('f7yg', period)  # noqa F841
         f7yh = foyer_fiscal('f7yh', period)
         f7yj = foyer_fiscal('f7yj', period)
         f7yk = foyer_fiscal('f7yk', period)

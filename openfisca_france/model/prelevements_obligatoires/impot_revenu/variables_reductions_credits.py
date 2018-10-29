@@ -6930,6 +6930,7 @@ class f7yg(Variable):
     entity = FoyerFiscal
     label = u"Investissements locatifs neufs dispositif Scellier : Reports concernant les investissements achevés ou acquis au cours des années antérieures, Investissements achevés en 2013 et réalisés en 2010 avec promesse d'achat avant le 1.1.2010, en métropole, dans les DOM, à Saint-Barthélemy, Saint-Martin, Saint-Pierre-et-Miquelon"
     # start_date = date(2014, 1, 1)
+    end = '2014-12-31'
     definition_period = YEAR
 
 
