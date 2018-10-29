@@ -4126,12 +4126,12 @@ class locmeu(Variable):
 
         P = parameters(period).impot_revenu.reductions_impots.locmeu
 
-        majoration_taux_invest_2011 = (maxi(f7ij, f7il, f7in, f7iv) == max_(f7il, f7in))
-        majoration_taux_invest_2012 = (maxi(f7id, f7ie, f7if, f7ig) == max_(f7ie, f7if))
-        taux_reduc_2009_2010 = P.taux
-        taux_reduc_2011 = P.taux20 * majoration_taux_invest_2011 + P.taux18 * not_(majoration_taux_invest_2011)
-        taux_reduc_2012 = P.taux18 * majoration_taux_invest_2012 + P.taux11 * not_(majoration_taux_invest_2012)
-        taux_reduc_2013 = P.taux11
+        reduction_investissements_acheve_2014_realise_2009 = P.taux * min_(P.max, f7io)
+        reduction_investissements_acheve_2014_realise_2010 = P.taux * min_(P.max, f7im + f7iw)
+        reduction_investissements_acheve_2014_realise_2011 = P.taux20 * min_(P.max, f7il + f7in) + P.taux18 * min_(max_(0, P.max - f7il - f7in), f7ij + f7iv)
+        reduction_investissements_acheve_2014_realise_2012 = P.taux18 * min_(P.max, f7ie + f7if) + P.taux11 * min_(max_(0, P.max - f7ie - f7if), f7id + f7ig)
+        reduction_investissements_acheve_2014_realise_2013 = P.taux11 * min_(P.max, f7jt + f7ju)
+        reduction_investissements_acheve_2014_realise_2014 = P.taux11 * min_(P.max, f7ou)
 
         report_invest_anterieur = (
             P.taux * max_(f7ik + f7ip, f7ir + f7iq)
@@ -4150,10 +4150,12 @@ class locmeu(Variable):
 
         return (
             (
-                (min_(P.max, max_(f7im, f7iw)) + min_(P.max, f7io)) * taux_reduc_2009_2010
-                + min_(P.max, maxi(f7ij, f7il, f7in, f7iv)) * taux_reduc_2011
-                + min_(P.max, maxi(f7id, f7ie, f7if, f7ig)) * taux_reduc_2012
-                + (min_(P.max, f7jt + f7ju) + min_(P.max, f7ou)) * taux_reduc_2013
+                reduction_investissements_acheve_2014_realise_2009
+                + reduction_investissements_acheve_2014_realise_2010
+                + reduction_investissements_acheve_2014_realise_2011
+                + reduction_investissements_acheve_2014_realise_2012
+                + reduction_investissements_acheve_2014_realise_2013
+                + reduction_investissements_acheve_2014_realise_2014
                 ) / 9
             + report_invest_anterieur
             + report_non_impute
@@ -4223,12 +4225,13 @@ class locmeu(Variable):
 
         P = parameters(period).impot_revenu.reductions_impots.locmeu
 
-        majoration_taux_invest_2011 = (maxi(f7ij, f7il, f7in, f7iv) == max_(f7il, f7in))
-        majoration_taux_invest_2012 = (maxi(f7id, f7ie, f7if, f7ig) == max_(f7ie, f7if))
-        taux_reduc_2009_2010 = P.taux
-        taux_reduc_2011 = P.taux20 * majoration_taux_invest_2011 + P.taux18 * not_(majoration_taux_invest_2011)
-        taux_reduc_2012 = P.taux18 * majoration_taux_invest_2012 + P.taux11 * not_(majoration_taux_invest_2012)
-        taux_reduc_2013 = P.taux11
+        reduction_investissements_acheve_2015_realise_2009 = P.taux * min_(P.max, f7io)
+        reduction_investissements_acheve_2015_realise_2010 = P.taux * min_(P.max, f7im + f7iw)
+        reduction_investissements_acheve_2015_realise_2011 = P.taux20 * min_(P.max, f7il + f7in) + P.taux18 * min_(max_(0, P.max - f7il - f7in), f7ij + f7iv)
+        reduction_investissements_acheve_2015_realise_2012 = P.taux18 * min_(P.max, f7ie + f7if) + P.taux11 * min_(max_(0, P.max - f7ie - f7if), f7id + f7ig)
+        reduction_investissements_acheve_2015_realise_2013 = P.taux11 * min_(P.max, f7jt + f7ju)
+        reduction_investissements_acheve_2015_realise_2014 = P.taux11 * min_(P.max, f7ou)
+        reduction_investissements_acheve_2015_realise_2015 = P.taux11 * min_(P.max, f7ov)
 
         report_invest_anterieur = (
             P.taux
@@ -4249,10 +4252,13 @@ class locmeu(Variable):
 
         return (
             (
-                (min_(P.max, max_(f7im, f7iw) + min_(P.max, f7io))) * taux_reduc_2009_2010
-                + min_(P.max, maxi(f7ij, f7il, f7in, f7iv)) * taux_reduc_2011
-                + min_(P.max, maxi(f7id, f7ie, f7if, f7ig)) * taux_reduc_2012
-                + (min_(P.max, f7jt + f7ju) + min_(P.max, f7ou) + min_(P.max, f7ov)) * taux_reduc_2013
+                reduction_investissements_acheve_2015_realise_2009
+                + reduction_investissements_acheve_2015_realise_2010
+                + reduction_investissements_acheve_2015_realise_2011
+                + reduction_investissements_acheve_2015_realise_2012
+                + reduction_investissements_acheve_2015_realise_2013
+                + reduction_investissements_acheve_2015_realise_2014
+                + reduction_investissements_acheve_2015_realise_2015
                 ) / 9
             + report_invest_anterieur
             + report_non_impute
@@ -4331,12 +4337,13 @@ class locmeu(Variable):
 
         P = parameters(period).impot_revenu.reductions_impots.locmeu
 
-        majoration_taux_invest_2011 = (maxi(f7ij, f7il, f7in, f7iv) == max_(f7il, f7in))
-        majoration_taux_invest_2012 = (maxi(f7id, f7ie, f7if, f7ig) == max_(f7ie, f7if))
-        taux_reduc_2009_2010 = P.taux
-        taux_reduc_2011 = P.taux20 * majoration_taux_invest_2011 + P.taux18 * not_(majoration_taux_invest_2011)
-        taux_reduc_2012 = P.taux18 * majoration_taux_invest_2012 + P.taux11 * not_(majoration_taux_invest_2012)
-        taux_reduc_2013 = P.taux11
+        reduction_investissements_acheve_2016_realise_2010 = P.taux * min_(P.max, f7im + f7iw)
+        reduction_investissements_acheve_2016_realise_2011 = P.taux20 * min_(P.max, f7il + f7in) + P.taux18 * min_(max_(0, P.max - f7il - f7in), f7ij + f7iv)
+        reduction_investissements_acheve_2016_realise_2012 = P.taux18 * min_(P.max, f7ie + f7if) + P.taux11 * min_(max_(0, P.max - f7ie - f7if), f7id + f7ig)
+        reduction_investissements_acheve_2016_realise_2013 = P.taux11 * min_(P.max, f7jt + f7ju)
+        reduction_investissements_acheve_2016_realise_2014 = P.taux11 * min_(P.max, f7ou)
+        reduction_investissements_acheve_2016_realise_2015 = P.taux11 * min_(P.max, f7ov)
+        reduction_investissements_acheve_2016_realise_2016 = P.taux11 * min_(P.max, f7ow)
 
         report_invest_anterieur = (
             P.taux
@@ -4358,10 +4365,13 @@ class locmeu(Variable):
 
         return (
             (
-                min_(P.max, max_(f7im, f7iw)) * taux_reduc_2009_2010
-                + min_(P.max, maxi(f7ij, f7il, f7in, f7iv)) * taux_reduc_2011
-                + min_(P.max, maxi(f7id, f7ie, f7if, f7ig)) * taux_reduc_2012
-                + (min_(P.max, f7jt + f7ju) + min_(P.max, f7ou) + min_(P.max, f7ov) + min_(P.max, f7ow)) * taux_reduc_2013
+                reduction_investissements_acheve_2016_realise_2010
+                + reduction_investissements_acheve_2016_realise_2011
+                + reduction_investissements_acheve_2016_realise_2012
+                + reduction_investissements_acheve_2016_realise_2013
+                + reduction_investissements_acheve_2016_realise_2014
+                + reduction_investissements_acheve_2016_realise_2015
+                + reduction_investissements_acheve_2016_realise_2016
                 ) / 9
             + report_invest_anterieur
             + report_non_impute
