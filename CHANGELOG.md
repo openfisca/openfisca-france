@@ -1,5 +1,14 @@
 # Changelog
 
+### 29.1.1 [#1192](https://github.com/openfisca/openfisca-france/pull/1192)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/10/2018.
+* Zones impactées : `parameters/prestations/minima_sociaux/ppa`.
+* Détails :
+  - Intègre la revalorisation exceptionnelle de la prime d'activité (+20 euros en octobre 2018)
+  - Intègre la hausse du taux de dégressivité de la prime d'activité (octobre 2018)
+
 ### 29.0.1 [#1181](https://github.com/openfisca/openfisca-france/pull/1181)
 
 * Évolution du système socio-fiscal.
