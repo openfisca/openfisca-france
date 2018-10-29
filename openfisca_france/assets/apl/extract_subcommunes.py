@@ -16,7 +16,7 @@ import sys
 
 
 app_name = os.path.splitext(os.path.basename(__file__))[0]
-log = logging.getLogger(app_name)
+logger = logging.getLogger(app_name)
 
 
 def main():
@@ -36,7 +36,7 @@ def main():
                 commune_depcom = row['POLE']
                 commune_depcom_by_subcommune_depcom[subcommune_depcom] = commune_depcom
 
-    print(json.dumps(commune_depcom_by_subcommune_depcom, encoding = 'utf-8', ensure_ascii = False, indent = 2))
+    logger.debug(json.dumps(commune_depcom_by_subcommune_depcom, encoding = 'utf-8', ensure_ascii = False, indent = 2))
     return 0
 
 

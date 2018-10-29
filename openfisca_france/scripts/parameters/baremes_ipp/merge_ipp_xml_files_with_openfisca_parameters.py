@@ -12,6 +12,7 @@ Let the user commit or not the diff using git. The script `../format_parameters.
 
 
 import argparse
+import logging
 import os
 import sys
 
@@ -20,8 +21,11 @@ from openfisca_core import legislationsxml
 
 from openfisca_france.france_taxbenefitsystem import FranceTaxBenefitSystem, COUNTRY_DIR
 
-
 parameters_dir_path = os.path.join(COUNTRY_DIR, 'parameters')
+
+# Create logger
+logging.basicConfig(level = logging.INFO)
+logger = logging.getLogger(__name__)
 
 
 def replace_children(element, children):
@@ -129,14 +133,14 @@ def merge_ipp_xml_files_with_openfisca_parameters(ipp_xml_dir, parser):
         if file_name.endswith('.xml')
         ]
     if not ipp_file_paths:
-        print("Warning : no IPP XML found.")
+        logger.warning("Warning : no IPP XML found.")
     ipp_xml_tree_by_file_name = get_xml_tree_by_file_name(xmlschema, ipp_file_paths)
 
     for openfisca_file_name, openfisca_xml_tree in openfisca_xml_tree_by_file_name.items():
         openfisca_xml_root_element = openfisca_xml_tree.getroot()
         ipp_xml_tree = ipp_xml_tree_by_file_name.get(openfisca_file_name)
         if ipp_xml_tree is not None:
-            print('Processing {}...'.format(openfisca_file_name))
+            logger.info('Processing {}...'.format(openfisca_file_name))
             ipp_xml_root_element = ipp_xml_tree.getroot()
             merge_elements(openfisca_xml_root_element, ipp_xml_root_element)  # Mutates `openfisca_xml_root_element`
         output_tree = etree.ElementTree(openfisca_xml_root_element)
