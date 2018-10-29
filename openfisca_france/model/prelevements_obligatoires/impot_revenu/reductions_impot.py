@@ -4490,17 +4490,14 @@ class locmeu(Variable):
 
         # Calcul de la réduction concernant les investissements achevés ou réalisés l'année courante
 
-        max0 = P.max - min_(P.max, invest_2011_acheves_2017)
         reduc_invest_acheves_2017 = (
             P.taux18 * min_(P.max, invest_2011_acheves_2017)
-            + P.taux11 * min_(max0,
-                invest_2012_acheves_2017
-                + invest_2013_acheves_2017
-                + invest_2014_acheves_2017
-                + invest_2015_acheves_2017
-                + invest_2016_acheves_2017
-                + invest_2017_acheves_2017
-                              )
+            + P.taux11 * min_(P.max, invest_2012_acheves_2017)
+            + P.taux11 * min_(P.max, invest_2013_acheves_2017)
+            + P.taux11 * min_(P.max, invest_2014_acheves_2017)
+            + P.taux11 * min_(P.max, invest_2015_acheves_2017)
+            + P.taux11 * min_(P.max, invest_2016_acheves_2017)
+            + P.taux11 * min_(P.max, invest_2017_acheves_2017)
             )
 
         return (
