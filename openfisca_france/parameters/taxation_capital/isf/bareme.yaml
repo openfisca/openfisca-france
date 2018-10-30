@@ -286,5 +286,5 @@ brackets:
     2013-01-01:
       value: null
 description: Impôt de solidarité
-reference: ipp
+reference: https://www.ipp.eu/outils/baremes-ipp/
 unit: currency

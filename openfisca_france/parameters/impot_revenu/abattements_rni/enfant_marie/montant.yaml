@@ -1,5 +1,5 @@
 description: Enfants à charge (par personne rattachée)
-reference: ipp - http://bofip.impots.gouv.fr/bofip/2036-PGP.html
+reference: https://www.ipp.eu/outils/baremes-ipp/ - http://bofip.impots.gouv.fr/bofip/2036-PGP.html
 unit: currency
 values:
   1977-01-01:

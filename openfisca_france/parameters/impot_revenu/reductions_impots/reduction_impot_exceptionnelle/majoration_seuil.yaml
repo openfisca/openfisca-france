@@ -1,5 +1,4 @@
 description: Majoration du seuil par demi-part supplémentaire
-reference: openfisca
 unit: currency
 values:
   2013-01-01:

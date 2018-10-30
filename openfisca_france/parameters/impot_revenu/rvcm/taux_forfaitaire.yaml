@@ -1,5 +1,5 @@
 description: Taux de taxation forfaitaire pour les intérêts et produits de placement à revenu fixe n'excédant pas 2000 euros
-reference: ipp
+reference: https://www.ipp.eu/outils/baremes-ipp/
 unit: /1
 values:
   2013-01-01:

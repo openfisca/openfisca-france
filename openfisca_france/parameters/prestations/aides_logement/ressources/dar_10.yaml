@@ -1,5 +1,4 @@
 description: Abattement forfaitaire R351-11
-reference: openfisca
 unit: currency
 values:
   2002-01-01:

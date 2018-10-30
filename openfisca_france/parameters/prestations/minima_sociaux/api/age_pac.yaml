@@ -1,5 +1,4 @@
 description: Limite d'âge des enfants comptés à charge
-reference: openfisca
 unit: year
 values:
   1977-10-01:

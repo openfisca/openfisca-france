@@ -1,5 +1,4 @@
 description: Âge mininimal pour toucher les AF
-reference: openfisca
 unit: year
 values:
   1985-12-22:

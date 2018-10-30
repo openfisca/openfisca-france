@@ -1,5 +1,4 @@
 description: Taux d'imposition maximal
-reference: openfisca
 unit: /1
 values:
   2006-01-01:

@@ -1,5 +1,5 @@
 description: Complément de libre choix du mode de garde
-reference: ipp
+reference: https://www.ipp.eu/outils/baremes-ipp/
 age1:
   description: Limite d'âge (stricte) pour une prestation pleine
   reference: openfisca
@@ -16,61 +16,61 @@ age2:
       value: 6.0
 ass_mat1:
   description: Taux pour recours à une assistante maternelle, une association, une entreprise ou une microcréche avant le premier plafond
-  reference: ipp
+  reference: https://www.ipp.eu/outils/baremes-ipp/
   unit: /1
   values:
     2004-01-01:
       value: 1.7257
 ass_mat2:
   description: Taux pour recours à une assistante maternelle, une association, une entreprise ou une microcréche avant le second plafond
-  reference: ipp
+  reference: https://www.ipp.eu/outils/baremes-ipp/
   unit: /1
   values:
     2004-01-01:
       value: 1.4381
 ass_mat3:
   description: Taux pour recours à une assistante maternelle, une association, une entreprise ou une microcréche après le second plafond
-  reference: ipp
+  reference: https://www.ipp.eu/outils/baremes-ipp/
   unit: /1
   values:
     2004-01-01:
       value: 1.1505
 domi1:
   description: Taux pour recours à une garde à domicile avant le premier plafond
-  reference: ipp
+  reference: https://www.ipp.eu/outils/baremes-ipp/
   unit: /1
   values:
     2004-01-01:
       value: 2.0853
 domi2:
   description: Taux pour recours à une garde à domicile avant le second plafond
-  reference: ipp
+  reference: https://www.ipp.eu/outils/baremes-ipp/
   unit: /1
   values:
     2004-01-01:
       value: 1.7979
 domi3:
   description: Taux pour recours à une garde à domicile après le second plafond
-  reference: ipp
+  reference: https://www.ipp.eu/outils/baremes-ipp/
   unit: /1
   values:
     2004-01-01:
       value: 1.51
 majoration_du_plafond_pour_une_personne_isolee:
-  reference: ipp
+  reference: https://www.ipp.eu/outils/baremes-ipp/
   unit: /1
   values:
     2008-05-01:
       value: 0.4
 remuneration_brute_maximale_de_l_assistante_maternelle_par_jour_et_par_enfant_en_multiple_du_smic_horaire:
-  reference: ipp
+  reference: https://www.ipp.eu/outils/baremes-ipp/
   unit: /1
   values:
     2004-01-01:
       value: 5.0
 seuil11:
   description: Premier plafond de ressources pour un enfant
-  reference: ipp
+  reference: https://www.ipp.eu/outils/baremes-ipp/
   unit: currency
   values:
     2004-01-01:
@@ -101,7 +101,7 @@ seuil11:
       value: 21332.0
 seuil12:
   description: Premier plafond de ressources pour deux enfants
-  reference: ipp
+  reference: https://www.ipp.eu/outils/baremes-ipp/
   unit: currency
   values:
     2004-01-01:
@@ -132,7 +132,7 @@ seuil12:
       value: 24561.0
 seuil1sup:
   description: 'Premier plafond de ressources: maj. enfant suppl.'
-  reference: ipp
+  reference: https://www.ipp.eu/outils/baremes-ipp/
   unit: currency
   values:
     2004-01-01:
@@ -163,7 +163,7 @@ seuil1sup:
       value: 3874.0
 seuil21:
   description: Second plafond de ressources pour un enfant
-  reference: ipp
+  reference: https://www.ipp.eu/outils/baremes-ipp/
   unit: currency
   values:
     2004-01-01:
@@ -194,7 +194,7 @@ seuil21:
       value: 47405.0
 seuil22:
   description: Second plafond de ressources pour deux enfants
-  reference: ipp
+  reference: https://www.ipp.eu/outils/baremes-ipp/
   unit: currency
   values:
     2004-01-01:
@@ -225,7 +225,7 @@ seuil22:
       value: 54579.0
 seuil2sup:
   description: 'Second plafond de ressources: maj. enfant suppl.'
-  reference: ipp
+  reference: https://www.ipp.eu/outils/baremes-ipp/
   unit: currency
   values:
     2004-01-01:
@@ -256,7 +256,7 @@ seuil2sup:
       value: 8609.0
 taux_recours_emploi_1er_plafond:
   description: Taux pour recours à un emploi direct avant le premier plafond
-  reference: ipp
+  reference: https://www.ipp.eu/outils/baremes-ipp/
   unit: /1
   values:
     2004-01-01:
@@ -267,14 +267,14 @@ taux_recours_emploi_1er_plafond:
       value: 1.0067
 taux_recours_emploi_2e_plafond:
   description: Taux pour recours à un emploi direct avant le second plafond
-  reference: ipp
+  reference: https://www.ipp.eu/outils/baremes-ipp/
   unit: /1
   values:
     2004-01-01:
       value: 0.7191
 taux_recours_emploi_supp_2e_plafond:
   description: Taux pour recours à un emploi direct après le second plafond
-  reference: ipp
+  reference: https://www.ipp.eu/outils/baremes-ipp/
   unit: /1
   values:
     2004-01-01:

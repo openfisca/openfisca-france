@@ -1,5 +1,4 @@
 description: 'Taxes sur les salaires : Guadeloupe, Martinique, Réunion'
-reference: openfisca
 unit: /1
 values:
   2001-01-01:

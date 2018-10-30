@@ -1,5 +1,5 @@
 description: Limite de x % du revenu
-reference: ipp
+reference: https://www.ipp.eu/outils/baremes-ipp/
 unit: /1
 values:
   2009-01-01:

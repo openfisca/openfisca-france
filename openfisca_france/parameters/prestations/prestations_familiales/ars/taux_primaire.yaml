@@ -1,5 +1,5 @@
 description: Taux pour les écoliers (en % de bmaf)
-reference: ipp
+reference: https://www.ipp.eu/outils/baremes-ipp/
 unit: /1
 values:
   1986-08-01:

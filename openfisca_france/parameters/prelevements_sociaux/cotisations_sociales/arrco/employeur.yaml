@@ -55,4 +55,4 @@ brackets:
   threshold:
     1962-01-01:
       value: 3.0
-reference: ipp
+reference: https://www.ipp.eu/outils/baremes-ipp/

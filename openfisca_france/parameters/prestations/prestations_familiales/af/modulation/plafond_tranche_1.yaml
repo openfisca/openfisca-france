@@ -1,5 +1,5 @@
 description: Plafond annuel de ressources n°1
-reference: ipp
+reference: https://www.ipp.eu/outils/baremes-ipp/
 unit: currency
 values:
   2015-07-01:

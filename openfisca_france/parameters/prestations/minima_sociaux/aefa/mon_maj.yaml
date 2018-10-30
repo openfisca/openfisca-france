@@ -1,5 +1,4 @@
 description: Montant majoré
-reference: openfisca
 unit: currency
 values:
   2005-01-01:

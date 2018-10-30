@@ -1,5 +1,5 @@
 description: Abattement minimum par bénéficiaire
-reference: ipp
+reference: https://www.ipp.eu/outils/baremes-ipp/
 unit: currency
 values:
   1978-01-01:

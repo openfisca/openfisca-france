@@ -1,5 +1,4 @@
 description: Taux pour les entreprises comprenant plus de 250 salariés
-reference: openfisca
 unit: /1
 values:
   2010-01-01:

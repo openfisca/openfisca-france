@@ -1,5 +1,4 @@
 description: Plafond annuel pour une personne seule
-reference: openfisca
 unit: currency
 values:
   2003-07-01:

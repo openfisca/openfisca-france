@@ -1,5 +1,5 @@
 description: Abattement produits des contrats d'assurance vie
-reference: ipp
+reference: https://www.ipp.eu/outils/baremes-ipp/
 unit: currency
 values:
   1997-01-01:

@@ -1,5 +1,4 @@
 description: Âge minimal pour bénéficier du revenu de solidarité active Jeune
-reference: openfisca
 unit: year
 values:
   2009-06-01:

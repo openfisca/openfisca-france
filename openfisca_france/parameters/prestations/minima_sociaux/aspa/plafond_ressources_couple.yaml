@@ -1,5 +1,5 @@
 description: Plafond de ressources annuelles pour un couple pour percevoir l'ASPA
-reference: ipp
+reference: https://www.ipp.eu/outils/baremes-ipp/
 unit: currency
 values:
   2006-01-01:

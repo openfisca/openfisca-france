@@ -1,5 +1,5 @@
 description: Montant annuel maximal de l'ASPA pour un couple marié
-reference: ipp
+reference: https://www.ipp.eu/outils/baremes-ipp/
 unit: currency
 values:
   2006-01-01:

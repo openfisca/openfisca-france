@@ -1,5 +1,4 @@
 description: 'Plafond horaire de la sécurité sociale '
-reference: openfisca
 unit: currency
 values:
   2009-01-01:

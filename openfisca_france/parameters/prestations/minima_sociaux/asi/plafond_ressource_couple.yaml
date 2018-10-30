@@ -1,6 +1,6 @@
 description: Plafond de ressources (allocation comprise) pour un couple pour avoir
   droit à l'ASI
-reference: ipp
+reference: https://www.ipp.eu/outils/baremes-ipp/
 unit: currency
 values:
   2006-01-01:

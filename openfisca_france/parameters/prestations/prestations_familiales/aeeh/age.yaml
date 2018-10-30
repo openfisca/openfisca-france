@@ -1,5 +1,4 @@
 description: Limite d'âge
-reference: openfisca
 unit: year
 values:
   1976-08-01:
