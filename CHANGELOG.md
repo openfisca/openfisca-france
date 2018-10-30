@@ -1,5 +1,13 @@
 # Changelog
 
+## 29.2.0 [#1189](https://github.com/openfisca/openfisca-france/pull/1189)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/11/2018.
+* Zones impactées : `parameters/prestations/minima_sociaux/aah/montant`.
+* Détails :
+  - Prends en compte les revalorisations à venir de l'AAH
+
 ### 29.1.3 [#1162](https://github.com/openfisca/openfisca-france/pull/1162)
 
 * Changement mineur.
