@@ -1,6 +1,6 @@
 - name: reduc_locmeu
   period: 2014
-  absolute_error_margin: 1
+  absolute_error_margin: 2
   foyers_fiscaux:
   - caseF: false
     caseG: false
@@ -56,7 +56,7 @@
     rni: 137843.0
 - name: reduc_locmeu
   period: 2015
-  absolute_error_margin: 1
+  absolute_error_margin: 2
   foyers_fiscaux:
   - caseF: false
     caseG: false
@@ -112,7 +112,7 @@
     rni: 137830.0
 - name: reduc_locmeu
   period: 2016
-  absolute_error_margin: 1
+  absolute_error_margin: 2
   foyers_fiscaux:
   - caseF: false
     caseG: false
@@ -168,7 +168,7 @@
     rni: 137817.0
 - name: reduc_locmeu
   period: 2017
-  absolute_error_margin: 1
+  absolute_error_margin: 2
   foyers_fiscaux:
   - caseF: false
     caseG: false
