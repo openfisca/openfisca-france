@@ -969,10 +969,11 @@ class revenu_categoriel_non_salarial(Variable):
         defacc = foyer_fiscal('defacc', period)
         defncn = foyer_fiscal('defncn', period)
         defmeu = foyer_fiscal('defmeu', period)
+        cga = parameters(period).impot_revenu.rpns.cga_taux2
 
         return (
             foyer_fiscal.sum(rpns_i)
-            - foyer_fiscal.sum(nbnc_pvce_i)
+            - (1 + cga) * foyer_fiscal.sum(nbnc_pvce_i)
             - defrag
             - defncn
             - defacc
