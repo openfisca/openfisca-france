@@ -4134,7 +4134,8 @@ class locmeu(Variable):
         reduction_investissements_acheve_2014_realise_2014 = P.taux11 * min_(P.max, f7ou)
 
         report_invest_anterieur = (
-            P.taux * max_(f7ik + f7ip, f7ir + f7iq)
+            P.taux * min_(P.max, f7ik)
+            + P.taux * min_(P.max, f7ip + f7ir + f7iq)
             + f7ia + f7ib + f7ic
             + f7jv + f7jw + f7jx + f7jy
             + f7oa + f7ob + f7oc + f7od + f7oe
@@ -4234,8 +4235,8 @@ class locmeu(Variable):
         reduction_investissements_acheve_2015_realise_2015 = P.taux11 * min_(P.max, f7ov)
 
         report_invest_anterieur = (
-            P.taux
-            * max_(f7ik + f7ip, f7ir + f7iq)
+            P.taux * min_(P.max, f7ik)
+            + P.taux * min_(P.max, f7ip + f7ir + f7iq)
             + f7ia + f7ib + f7ic
             + f7jv + f7jw + f7jx + f7jy
             + f7oa + f7ob + f7oc + f7od + f7oe
@@ -4346,8 +4347,8 @@ class locmeu(Variable):
         reduction_investissements_acheve_2016_realise_2016 = P.taux11 * min_(P.max, f7ow)
 
         report_invest_anterieur = (
-            P.taux
-            * max_(f7ik + f7ip, f7ir + f7iq)
+            P.taux * min_(P.max, f7ik)
+            + P.taux * min_(P.max, f7ip + f7ir + f7iq)
             + f7ia + f7ib + f7ic
             + f7jv + f7jw + f7jx + f7jy
             + f7oa + f7ob + f7oc + f7od + f7oe
@@ -4452,7 +4453,8 @@ class locmeu(Variable):
 
         # Calcul de la réduction sur investissements antérieurs non imputés (si dépassement du plafond de la base)
 
-        report_reduc_invest_2009_2010 = P.taux * max_(f7ik + f7ip, f7ir + f7iq)  # avant 2011, report de l'investissement et non de la réduction
+        report_reduc_invest_2009 = P.taux * min_(P.max, f7ik)  # avant 2011, report de l'investissement et non de la réduction
+        report_reduc_invest_2010 = P.taux * min_(P.max, f7ip + f7ir + f7iq)  # avant 2011, report de l'investissement et non de la réduction
         report_reduc_invest_2011 = f7ia + f7ib + f7ic
         report_reduc_invest_2012 = f7jv + f7jw + f7jx + f7jy
         report_reduc_invest_2013 = f7oa + f7ob + f7oc + f7od + f7oe
@@ -4461,7 +4463,8 @@ class locmeu(Variable):
         report_reduc_invest_2016 = f7op + f7oq + f7or + f7os + f7ot
 
         report_reduc_invest_anterieur = (
-            report_reduc_invest_2009_2010
+            report_reduc_invest_2009
+            + report_reduc_invest_2010
             + report_reduc_invest_2011
             + report_reduc_invest_2012
             + report_reduc_invest_2013
