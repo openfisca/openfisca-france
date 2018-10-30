@@ -23,6 +23,25 @@ log = logging.getLogger(__name__)
 
 zone_apl_by_depcom = None
 
+class TypeEtatLogementFoyer(Enum):
+    non_renseigne = u"non renseigne"
+    logement_rehabilitee = u"Logement rehabilitee"
+    logement_non_rehabilitee = u"Logement non rehabilitee"
+
+class etat_logement_foyer(Variable):
+    value_type = Enum
+    possible_values = TypeEtatLogementFoyer  # defined in model/base.py
+    entity = Menage
+    default_value = TypeEtatLogementFoyer.non_renseigne
+    label = u"Etat du logement crous"
+    set_input = set_input_dispatch_by_period
+    definition_period = MONTH
+
+class logement_conventionne(Variable):
+    value_type = bool
+    entity = Menage
+    label = u"logement conventionne"
+    definition_period = MONTH
 
 class TypeEtatLogement(Enum):
     order__ = ' non_renseigne construction_acquisition_logement_neuf travaux_amelioration_residence_principale agrandissement_amenagement acquisition_amelioration acquisition_sans_amelioration_logement_existant amelioration'  # Needed to preserve the enum order in Python 2
@@ -785,18 +804,17 @@ class aide_logement_montant_brut_avant_degressivite(Variable):
             (statut_occupation_logement == TypesStatutOccupationLogement.locataire_hlm)
             + (statut_occupation_logement == TypesStatutOccupationLogement.locataire_vide)
             + (statut_occupation_logement == TypesStatutOccupationLogement.locataire_meuble)
-            + (statut_occupation_logement == TypesStatutOccupationLogement.locataire_foyer)
-            )
+        )
         accedant = (statut_occupation_logement == TypesStatutOccupationLogement.primo_accedant)
-
+        locataire_logement_foyer = statut_occupation_logement == TypesStatutOccupationLogement.locataire_foyer
         loyer_retenu = famille('aide_logement_loyer_retenu', period)
         charges_retenues = famille('aide_logement_charges', period)
         participation_personnelle = famille('aide_logement_participation_personnelle', period)
-
         montant_locataire = max_(0, loyer_retenu + charges_retenues - participation_personnelle)
         montant_accedants = famille('aides_logement_primo_accedant', period)
-
-        montant = select([locataire, accedant], [montant_locataire, montant_accedants])
+        montant_locataire_logement_foyer = famille('montant_locataire_logement_foyer', period)
+        montant = select([locataire, accedant, locataire_logement_foyer],
+                         [montant_locataire, montant_accedants, montant_locataire_logement_foyer])
 
         montant = montant * (montant >= al.al_min.montant_min_mensuel.montant_min_apl_al)  # Montant minimal de versement
 
@@ -806,12 +824,13 @@ class aide_logement_montant_brut_avant_degressivite(Variable):
         al = parameters(period).prestations.aides_logement
         statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
         locataire = (
-            (statut_occupation_logement == TypesStatutOccupationLogement.locataire_hlm)
-            + (statut_occupation_logement == TypesStatutOccupationLogement.locataire_vide)
-            + (statut_occupation_logement == TypesStatutOccupationLogement.locataire_meuble)
-            + (statut_occupation_logement == TypesStatutOccupationLogement.locataire_foyer)
-            )
+                    (statut_occupation_logement == TypesStatutOccupationLogement.locataire_hlm)
+                    + (statut_occupation_logement == TypesStatutOccupationLogement.locataire_vide)
+                    + (statut_occupation_logement == TypesStatutOccupationLogement.locataire_meuble)
+        )
+
         accedant = (statut_occupation_logement == TypesStatutOccupationLogement.primo_accedant)
+        locataire_logement_foyer = statut_occupation_logement == TypesStatutOccupationLogement.locataire_foyer
 
         loyer_retenu = famille('aide_logement_loyer_retenu', period)
         charges_retenues = famille('aide_logement_charges', period)
@@ -819,8 +838,8 @@ class aide_logement_montant_brut_avant_degressivite(Variable):
 
         montant_locataire = max_(0, loyer_retenu + charges_retenues - participation_personnelle)
         montant_accedants = famille('aides_logement_primo_accedant', period)
-
-        montant = select([locataire, accedant], [montant_locataire, montant_accedants])
+        montant_locataire_logement_foyer = famille('montant_locataire_logement_foyer', period)
+        montant = select([locataire, accedant, locataire_logement_foyer], [montant_locataire, montant_accedants, montant_locataire_logement_foyer])
 
         # Montant minimal de versement il s'applique sur l'ALS et l'ALF et non pas sur l'APL
         locataire_hlm = statut_occupation_logement == TypesStatutOccupationLogement.locataire_hlm
@@ -1011,6 +1030,7 @@ class als(Variable):
         als_etudiant = famille('als_etudiant', period)
         result = (als_non_etudiant + als_etudiant)
 
+
         return result
 
 
@@ -1028,7 +1048,7 @@ class apl(Variable):
         aide_logement_montant = famille('aide_logement_montant', period)
         statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
 
-        return aide_logement_montant * (statut_occupation_logement == TypesStatutOccupationLogement.locataire_hlm)
+        return aide_logement_montant * ((statut_occupation_logement == TypesStatutOccupationLogement.locataire_hlm) + (statut_occupation_logement == TypesStatutOccupationLogement.locataire_foyer))
 
 
 class TypesAideLogementNonCalculable(Enum):
@@ -1266,3 +1286,211 @@ class aides_logement_primo_accedant_ressources(Variable):
         loyer = famille.demandeur.menage('loyer', period)
         coef_plancher_ressources = parameters(period).prestations.aides_logement.ressources.dar_3
         return max_(baseRessource, loyer * coef_plancher_ressources)
+
+
+class montant_locataire_logement_foyer(Variable):
+    value_type = float
+    entity = Famille
+    label = u"Allocation logement pour les logements foyer"
+    reference = u""
+    definition_period = MONTH
+
+    def formula(famille, period, parameters):
+        logement_conventionne = famille.demandeur.menage('logement_conventionne', period)
+        loyer = famille.demandeur.menage('loyer', period)
+        plafond_mensualite = famille('aides_logement_foyer_plafond_mensualite', period)
+        L = min_(plafond_mensualite, loyer)
+        C = famille('aide_logement_charges', period)
+        K = famille('aides_logement_foyer_k', period)
+        Lo = famille('aides_logement_foyer_loyer_minimal', period)
+
+        return (
+                ((K * max_(0, (L - Lo))) * logement_conventionne) +
+                ((K * max_(0, (L + C - Lo))) * not_(logement_conventionne))
+        )
+
+
+class aides_logement_foyer_k(Variable):
+    value_type = float
+    entity = Famille
+    label = u"Allocation logement pour les logements foyers loyer minimal"
+    reference = [u"https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006074096&idArticle=LEGIARTI000006898932&dateTexte=&categorieLien=cid",
+                 u"https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006737341&dateTexte=&categorieLien=cid"]
+    definition_period = MONTH
+
+    def formula(famille, period, parameters):
+        param = parameters(period).prestations.al_param_accal
+        coef_k_apl1 = param.constante_du_coefficient_k_apl1
+        multi_n_apl1 = param.multiplicateur_de_n_apl1
+        r_apl1 = param.r_apl1
+
+        multi_n = param.multiplicateur_de_n
+        coef_k = param.constante_du_coefficient_k
+
+        logement_conventionne = famille.demandeur.menage('logement_conventionne', period)
+        R = famille('aides_logement_foyer_ressources', period)
+        N = famille('aides_logement_foyer_nb_part', period)
+
+        return (
+                (coef_k - (R / (multi_n * N))) * not_(logement_conventionne) +
+                (coef_k_apl1 - (((R-(r_apl1 * N))) / (multi_n_apl1 * N))) * logement_conventionne
+        )
+
+
+class aides_logement_foyer_nb_part(Variable):
+    value_type = float
+    entity = Famille
+    label = u"Allocation logement pour les logement foyers nombre de part"
+    reference = u"https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006737341&dateTexte=&categorieLien=cid"
+    definition_period = MONTH
+
+    def formula(famille, period, parameters):
+        prestations = parameters(period).prestations
+        logement_conventionne = famille.demandeur.menage('logement_conventionne', period)
+        al_nb_pac = famille('al_nb_personnes_a_charge', period)
+        couple = famille('al_couple', period)
+        return (
+                logement_conventionne * (prestations.al_param_accal.n_0_personnes_a_charge.isole_apl1 * not_(couple) * (al_nb_pac == 0) +
+                                          prestations.al_param_accal.n_0_personnes_a_charge.menage_apl1 * couple * (al_nb_pac == 0)) +
+                not_(logement_conventionne) * (prestations.al_param_accal.n_0_personnes_a_charge.isole * not_(couple) * (al_nb_pac == 0) +
+                                               prestations.al_param_accal.n_0_personnes_a_charge.menage * couple * (al_nb_pac == 0)) +
+                prestations.al_param.parametre_n['1_personne_a_charge'] * (al_nb_pac == 1) +
+                prestations.al_param.parametre_n['2_personnes_a_charge'] * (al_nb_pac == 2) +
+                prestations.al_param.parametre_n['3_personnes_a_charge'] * (al_nb_pac == 3) +
+                prestations.al_param.parametre_n['4_personnes_a_charge'] * (al_nb_pac >= 4) +
+                prestations.al_param.majoration_n_par_personne_a_charge_supplementaire * (al_nb_pac > 4) * (al_nb_pac - 4)
+        )
+
+
+class aides_logement_foyer_loyer_minimal(Variable):
+    value_type = float
+    entity = Famille
+    label = u"Allocation logement pour les logements foyers loyer minimal"
+    reference = u"https://www.legifrance.gouv.fr/eli/arrete/2007/11/8/MLVU0759263A/jo/article_2"
+    definition_period = MONTH
+
+    def formula(famille, period, parameters):
+        prestations = parameters(period).prestations
+        bareme = prestations.al_param_accal.bareme_loyer_minimun_lo
+        bareme_apl1 = prestations.al_param_accal.bareme_loyer_minimun_lo_apl1
+        majoration_loyer = prestations.al_param.majoration_du_loyer_minimum_lo
+
+        logement_conventionne = famille.demandeur.menage('logement_conventionne', period)
+        baseRessource = famille('aides_logement_foyer_ressources', period)
+        N = famille('aides_logement_foyer_nb_part', period)
+        majoration_loyer_apl1 = prestations.al_param_accal.majoration_du_loyer_minimum_lo_apl1 * N
+
+        L_plafond1 = ((bareme_apl1.calc(baseRessource / N) * N + majoration_loyer_apl1 ) / 12) * logement_conventionne
+        L_plafond2 = ((bareme.calc(baseRessource / N) * N + majoration_loyer) / 12) * not_(logement_conventionne)
+        return max(L_plafond1, L_plafond2)
+
+
+class aides_logement_foyer_plafond_mensualite(Variable):
+
+    value_type = float
+    entity = Famille
+    label = u"Allocation logement pour les logements foyers plafond mensualité"
+    reference = u"https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000035665875&dateTexte=&categorieLien=id"
+    definition_period = MONTH
+
+    def formula(famille, period, parameters):
+        logement_conventionne = famille.demandeur.menage('logement_conventionne', period)
+        logement_crous = famille.demandeur.menage('logement_crous', period)
+        etat_logement_foyer = famille.demandeur.menage('etat_logement_foyer', period)
+        logement_chambre = famille.demandeur.menage('logement_chambre', period)
+
+        aides_logement_foyer_crous_plafond = famille('aides_logement_foyer_crous_plafond', period)
+        aides_logement_foyer_personne_agee_plafond = famille('aides_logement_foyer_personne_agee_plafond', period)
+        aides_logement_foyer_plafond = famille('aides_logement_foyer_plafond', period)
+
+        aides_logement_foyer_crous_eligibilite = (
+                logement_crous * not_(logement_conventionne) *
+                (logement_chambre * (etat_logement_foyer == TypeEtatLogementFoyer.logement_non_rehabilitee) +
+                 (etat_logement_foyer == TypeEtatLogementFoyer.logement_rehabilitee)
+                 )
+        )
+        aides_logement_foyer_personne_agee_eligibilite = not_(logement_conventionne) * (famille.demandeur('age', period) >= 62)
+
+        return select(
+            [aides_logement_foyer_crous_eligibilite, aides_logement_foyer_personne_agee_eligibilite],
+            [aides_logement_foyer_crous_plafond, aides_logement_foyer_personne_agee_plafond],
+            default=aides_logement_foyer_plafond
+        )
+
+
+class aides_logement_foyer_ressources(Variable):
+    value_type = float
+    entity = Famille
+    label = u"Allocation logement pour les logements foyers ressources"
+    reference = u"https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000035665875&dateTexte=&categorieLien=id"
+    definition_period = MONTH
+
+    def formula(famille, period, parameters):
+        baseRessource = famille('aide_logement_base_ressources', period)
+        loyer = famille.demandeur.menage('loyer', period)
+        coef_plancher_ressources = parameters(period).prestations.aides_logement.ressources.dar_3
+        return max_(baseRessource, loyer * coef_plancher_ressources)
+
+
+class aides_logement_foyer_crous_plafond(Variable):
+
+    value_type = float
+    entity = Famille
+    label = u"Allocation logement pour les logements foyers crous plafond"
+    reference = u"https://www.legifrance.gouv.fr/eli/arrete/2017/9/28/TERL1725443A/jo/article_11"
+    definition_period = MONTH
+
+    def formula(famille, period, parameters):
+        al_crous = parameters(period).prestations.al_plafonds_logement_foyer_crous
+        couple = famille('al_couple', period)
+        etat_logement_foyer = famille.demandeur.menage('etat_logement_foyer', period)
+        logement_chambre = famille.demandeur.menage('logement_chambre', period)
+
+        return ((logement_chambre * (etat_logement_foyer == TypeEtatLogementFoyer.logement_non_rehabilitee)) *
+                (al_crous.non_rehabilitee.personne_isolee * not_(couple) + al_crous.non_rehabilitee.couple * couple) +
+                (etat_logement_foyer == TypeEtatLogementFoyer.logement_rehabilitee) *
+                (al_crous.rehabilitee.personne_isolee * not_(couple) + al_crous.rehabilitee.couple * couple)
+                )
+
+
+class aides_logement_foyer_plafond(Variable):
+
+    value_type = float
+    entity = Famille
+    label = u"Allocation logement pour les logements foyers plafond"
+    reference = u"https://www.legifrance.gouv.fr/eli/arrete/2017/9/28/TERL1725443A/jo/article_11"
+    definition_period = MONTH
+
+    def formula(famille, period, parameters):
+        al_plaf_logement_foyer = parameters(period).prestations.al_plafonds_logement_foyer
+        zone_apl = famille.demandeur.menage('zone_apl', period)
+        plafonds = al_plaf_logement_foyer.conventionne[zone_apl]
+        al_nb_pac = famille('al_nb_personnes_a_charge', period)
+        couple = famille('al_couple', period)
+
+        return (
+                plafonds.personne_isolee_sans_enfant * not_(couple) * (al_nb_pac == 0) +
+                plafonds.menage_seul * couple * (al_nb_pac == 0) +
+                plafonds.menage_ou_isole_avec_1_enfant * (al_nb_pac == 1) +
+                plafonds.menage_ou_isole_avec_2_enfants * (al_nb_pac == 2) +
+                plafonds.menage_ou_isole_avec_3_enfants * (al_nb_pac == 3) +
+                plafonds.menage_ou_isole_avec_4_enfants * (al_nb_pac == 4) +
+                plafonds.menage_ou_isole_par_enfant_en_plus * (al_nb_pac > 4) * (al_nb_pac - 4)
+        )
+
+
+class aides_logement_foyer_personne_agee_plafond(Variable):
+
+    value_type = float
+    entity = Famille
+    label = u"Allocation logement pour les logements foyers pour perssones agées plafond"
+    reference = u"https://www.legifrance.gouv.fr/eli/arrete/2017/9/28/TERL1725443A/jo/article_11"
+    definition_period = MONTH
+
+    def formula(famille, period, parameters):
+        al_plaf_logement_foyer = parameters(period).prestations.al_plafonds_logement_foyer
+        couple = famille('al_couple', period)
+        return (
+                al_plaf_logement_foyer.personne_agee.personne_isolee * not_(couple) +
+                al_plaf_logement_foyer.personne_agee.couple * couple
+        )
