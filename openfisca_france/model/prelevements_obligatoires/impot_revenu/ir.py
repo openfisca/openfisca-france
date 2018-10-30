@@ -2765,7 +2765,7 @@ class rpns_individu(Variable):
     #    # TODO : check 2006 cf art 156 du CGI pour 2006
     #    def_agri_ant    = min_(max_(0,rag_timp - def_agri), f5sq)
 
-        def_agri = f5sq + arag_defi + nrag_defi
+        def_agri = f5sq + arag_defi + (1 + cga_taux2) * nrag_defi
 
         # # B revenus industriels et commerciaux professionnels
         # regime micro entreprise
