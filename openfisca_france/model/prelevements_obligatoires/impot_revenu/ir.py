@@ -2720,7 +2720,6 @@ class rpns_individu(Variable):
         abic_defm = individu('abic_defm', period)
         abnc_impo = individu('abnc_impo', period)
         abnc_defi = individu('abnc_defi', period)
-        nbic_impm = individu('nbic_impm', period)  # noqa F841
         alnp_imps = individu('alnp_imps', period)
         nbnc_impo = individu('nbnc_impo', period)
         nbnc_defi = individu('nbnc_defi', period)
