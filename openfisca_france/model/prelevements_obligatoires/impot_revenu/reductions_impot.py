@@ -5809,7 +5809,7 @@ class scelli(Variable):
             P.taux22 * maxi(f7jb, f7jd) / 9,
             P.taux24 * maxi(f7jk / 9, f7jn / 9, f7jo / 5, f7jr / 5),
             P.taux36 * maxi(f7jl / 9, f7jm / 9, f7jp / 5, f7jq / 5)))
-        
+
         reduc_scelli_2015_invest_mars_2013 = min_(P.max, maxi(
             P.taux6 * f7fb / 9,
             P.taux13 * f7fa / 9,
