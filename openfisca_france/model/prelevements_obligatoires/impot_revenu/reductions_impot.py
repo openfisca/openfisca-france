@@ -5645,18 +5645,24 @@ class scelli(Variable):
             P.taux36 * maxi(f7nk / 9, f7no / 9, f7np / 5, f7nt / 5),
             P.taux40 * maxi(f7nl / 9, f7nm / 9, f7nn / 9, f7nq / 5, f7nr / 5, f7ns / 5)))
 
-        reduc_scelli_2014_invest_2012_mars_2013 = min_(P.max, maxi(
-            P.taux6 * maxi(f7jf, f7jj, f7fb) / 9,
-            P.taux13 * maxi(f7ja, f7je, f7jg, f7jh, f7fa) / 9,
+        reduc_scelli_2014_invest_2012 = min_(P.max, maxi(
+            P.taux6 * maxi(f7jf, f7jj) / 9,
+            P.taux13 * maxi(f7ja, f7je, f7jg, f7jh) / 9,
             P.taux22 * maxi(f7jb, f7jd) / 9,
-            P.taux24 * maxi(f7jk / 9, f7jn / 9, f7jo / 5, f7jr / 5, f7fc / 9, f7fd / 5),
+            P.taux24 * maxi(f7jk / 9, f7jn / 9, f7jo / 5, f7jr / 5),
             P.taux36 * maxi(f7jl / 9, f7jm / 9, f7jp / 5, f7jq / 5)))
+
+        reduc_scelli_2014_invest_mars_2013 = min_(P.max, maxi(
+            P.taux6 * f7fb / 9,
+            P.taux13 * f7fa / 9,
+            P.taux24 * maxi(f7fc / 9, f7fd / 5)))
 
         return (
             reduc_scelli_2014_invest_2009
             + reduc_scelli_2014_invest_2010
             + reduc_scelli_2014_invest_2011
-            + reduc_scelli_2014_invest_2012_mars_2013
+            + reduc_scelli_2014_invest_2012
+            + reduc_scelli_2014_invest_mars_2013
             + report_reduc_scelli_non_impute
             + report_scelli_2009
             + report_scelli_2010
@@ -5794,18 +5800,24 @@ class scelli(Variable):
             P.taux36 * maxi(f7nk / 9, f7no / 9, f7np / 5, f7nt / 5),
             P.taux40 * maxi(f7nl / 9, f7nm / 9, f7nn / 9, f7nq / 5, f7nr / 5, f7ns / 5)))
 
-        reduc_scelli_2015_invest_2012_mars_2013 = min_(P.max, maxi(
-            P.taux6 * maxi(f7jf, f7jj, f7fb) / 9,
-            P.taux13 * maxi(f7ja, f7je, f7jg, f7jh, f7fa) / 9,
+        reduc_scelli_2015_invest_2012 = min_(P.max, maxi(
+            P.taux6 * maxi(f7jf, f7jj) / 9,
+            P.taux13 * maxi(f7ja, f7je, f7jg, f7jh) / 9,
             P.taux22 * maxi(f7jb, f7jd) / 9,
-            P.taux24 * maxi(f7jk / 9, f7jn / 9, f7jo / 5, f7jr / 5, f7fc / 9, f7fd / 5),
+            P.taux24 * maxi(f7jk / 9, f7jn / 9, f7jo / 5, f7jr / 5),
             P.taux36 * maxi(f7jl / 9, f7jm / 9, f7jp / 5, f7jq / 5)))
+        
+        reduc_scelli_2015_invest_mars_2013 = min_(P.max, maxi(
+            P.taux6 * f7fb / 9,
+            P.taux13 * f7fa / 9,
+            P.taux24 * maxi(f7fc / 9, f7fd / 5)))
 
         return (
             reduc_scelli_2015_invest_2009
             + reduc_scelli_2015_invest_2010
             + reduc_scelli_2015_invest_2011
-            + reduc_scelli_2015_invest_2012_mars_2013
+            + reduc_scelli_2015_invest_2012
+            + reduc_scelli_2015_invest_mars_2013
             + report_reduc_scelli_non_impute
             + report_scelli_2009
             + report_scelli_2010
@@ -5949,17 +5961,23 @@ class scelli(Variable):
             P.taux36 * maxi(f7nk / 9, f7no / 9, f7np / 5, f7nt / 5),
             P.taux40 * maxi(f7nl / 9, f7nm / 9, f7nn / 9, f7nq / 5, f7nr / 5, f7ns / 5)))
 
-        reduc_scelli_2016_invest_2012_mars_2013 = min_(P.max, maxi(
-            P.taux6 * maxi(f7jf, f7jj, f7fb) / 9,
-            P.taux13 * maxi(f7ja, f7je, f7jg, f7jh, f7fa) / 9,
+        reduc_scelli_2016_invest_2012 = min_(P.max, maxi(
+            P.taux6 * maxi(f7jf, f7jj) / 9,
+            P.taux13 * maxi(f7ja, f7je, f7jg, f7jh) / 9,
             P.taux22 * maxi(f7jb, f7jd) / 9,
-            P.taux24 * maxi(f7jk / 9, f7jn / 9, f7jo / 5, f7jr / 5, f7fc / 9, f7fd / 5),
+            P.taux24 * maxi(f7jk / 9, f7jn / 9, f7jo / 5, f7jr / 5),
             P.taux36 * maxi(f7jl / 9, f7jm / 9, f7jp / 5, f7jq / 5)))
+
+        reduc_scelli_2016_invest_mars_2013 = min_(P.max, maxi(
+            P.taux6 * f7fb / 9,
+            P.taux13 * f7fa / 9,
+            P.taux24 * maxi(f7fc / 9, f7fd / 5)))
 
         return (
             reduc_scelli_2016_invest_2010
             + reduc_scelli_2016_invest_2011
-            + reduc_scelli_2016_invest_2012_mars_2013
+            + reduc_scelli_2016_invest_2012
+            + reduc_scelli_2016_invest_mars_2013
             + report_reduc_scelli_non_impute
             + report_scelli_2009
             + report_scelli_2010
