@@ -5,7 +5,7 @@ from __future__ import division
 
 import logging
 
-from numpy import datetime64, logical_xor as xor_, round as round_
+from numpy import datetime64, timedelta64, logical_xor as xor_, round as round_
 from numpy.core.defchararray import startswith
 
 from openfisca_core.model_api import *
@@ -93,7 +93,8 @@ class age(Variable):
                             )
 
         date_naissance = individu('date_naissance', period)
-        return (datetime64(period.start) - date_naissance).astype('timedelta64[Y]')
+        epsilon = timedelta64(1)
+        return (datetime64(period.start) - date_naissance + epsilon).astype('timedelta64[Y]')
 
 
 class age_en_mois(Variable):
@@ -124,7 +125,8 @@ class age_en_mois(Variable):
             if has_age:
                 return individu('age', period) * 12
         date_naissance = individu('date_naissance', period)
-        return (datetime64(period.start) - date_naissance).astype('timedelta64[M]')
+        epsilon = timedelta64(1)
+        return (datetime64(period.start) - date_naissance + epsilon).astype('timedelta64[M]')
 
 
 class depcom_foyer(Variable):

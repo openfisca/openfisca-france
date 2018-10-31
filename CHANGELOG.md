@@ -1,5 +1,12 @@
 # Changelog
 
+### 29.2.2 [#1166](https://github.com/openfisca/openfisca-france/pull/1166)
+
+* Amélioration technique.
+* Zones impactées : `prelevements_obligatoires/impot_revenu/ir.py`.
+* Détails :
+  - Fiabilise le calcul de l'âge en années et en mois
+
 ### 29.2.1 [#1178](https://github.com/openfisca/openfisca-france/pull/1178)
 
 * Changement mineur

@@ -19,6 +19,13 @@
   output_variables:
     age: 40
     age_en_mois: 40 * 12
+- name: "Âge d'après la date de naissance (erreur d'arrondi)"
+  period: "2017-06"
+  input_variables:
+    date_naissance: "2000-06-01"
+  output_variables:
+    age: 17
+    age_en_mois: 17 * 12
 - name: "Âge (en mois) d'après l'âge en années"
   period: "2013-01"
   input_variables:
