@@ -1294,14 +1294,21 @@ class montant_locataire_logement_foyer(Variable):
     value_type = float
     entity = Famille
     label = u"Allocation logement pour les logements foyer"
-    reference = u""
+    reference = [u"https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000035671385&dateTexte=&categorieLien=id",
+                 u"https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=8A5E748B84270643BC39A1D691F4FC5C.tplgfr27s_2?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006739837&dateTexte=20181031&categorieLien=cid#LEGIARTI000006739837"
+                 ]
     definition_period = MONTH
 
     def formula(famille, period, parameters):
+        aides_logement_foyer_crous_eligibilite = famille('aides_logement_foyer_crous_eligibilite', period)
+        aides_logement_foyer_personne_agee_eligibilite = famille('aides_logement_foyer_personne_agee_eligibilite', period)
         logement_conventionne = famille.demandeur.menage('logement_conventionne', period)
         loyer = famille.demandeur.menage('loyer', period)
         plafond_mensualite = famille('aides_logement_foyer_plafond_mensualite', period)
-        L = min_(plafond_mensualite, loyer)
+        L = (
+                ((aides_logement_foyer_crous_eligibilite + aides_logement_foyer_personne_agee_eligibilite) * plafond_mensualite) +
+                (not_(aides_logement_foyer_crous_eligibilite + aides_logement_foyer_personne_agee_eligibilite) * min_(plafond_mensualite, loyer))
+        )
         C = famille('aide_logement_charges', period)
         K = famille('aides_logement_foyer_k', period)
         Lo = famille('aides_logement_foyer_loyer_minimal', period)
@@ -1395,23 +1402,13 @@ class aides_logement_foyer_plafond_mensualite(Variable):
     reference = u"https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000035665875&dateTexte=&categorieLien=id"
     definition_period = MONTH
 
-    def formula(famille, period, parameters):
-        logement_conventionne = famille.demandeur.menage('logement_conventionne', period)
-        logement_crous = famille.demandeur.menage('logement_crous', period)
-        etat_logement_foyer = famille.demandeur.menage('etat_logement_foyer', period)
-        logement_chambre = famille.demandeur.menage('logement_chambre', period)
-
+    def formula(famille, period):
         aides_logement_foyer_crous_plafond = famille('aides_logement_foyer_crous_plafond', period)
         aides_logement_foyer_personne_agee_plafond = famille('aides_logement_foyer_personne_agee_plafond', period)
         aides_logement_foyer_plafond = famille('aides_logement_foyer_plafond', period)
 
-        aides_logement_foyer_crous_eligibilite = (
-                logement_crous * not_(logement_conventionne) *
-                (logement_chambre * (etat_logement_foyer == TypeEtatLogementFoyer.logement_non_rehabilitee) +
-                 (etat_logement_foyer == TypeEtatLogementFoyer.logement_rehabilitee)
-                 )
-        )
-        aides_logement_foyer_personne_agee_eligibilite = not_(logement_conventionne) * (famille.demandeur('age', period) >= 62)
+        aides_logement_foyer_crous_eligibilite = famille('aides_logement_foyer_crous_eligibilite', period)
+        aides_logement_foyer_personne_agee_eligibilite = famille('aides_logement_foyer_personne_agee_eligibilite', period)
 
         return select(
             [aides_logement_foyer_crous_eligibilite, aides_logement_foyer_personne_agee_eligibilite],
@@ -1482,3 +1479,33 @@ class aides_logement_foyer_personne_agee_plafond(Variable):
                 al_plaf_logement_foyer.personne_agee.personne_isolee * not_(couple) +
                 al_plaf_logement_foyer.personne_agee.couple * couple
         )
+
+class aides_logement_foyer_crous_eligibilite(Variable):
+    value_type = bool
+    entity = Famille
+    definition_period = MONTH
+    def formula(famille, period):
+        logement_conventionne = famille.demandeur.menage('logement_conventionne', period)
+        logement_crous = famille.demandeur.menage('logement_crous', period)
+        etat_logement_foyer = famille.demandeur.menage('etat_logement_foyer', period)
+        logement_chambre = famille.demandeur.menage('logement_chambre', period)
+
+        aides_logement_foyer_crous_eligibilite = (
+                logement_crous * not_(logement_conventionne) *
+                (logement_chambre * (etat_logement_foyer == TypeEtatLogementFoyer.logement_non_rehabilitee) +
+                 (etat_logement_foyer == TypeEtatLogementFoyer.logement_rehabilitee)
+                 )
+        )
+
+        return aides_logement_foyer_crous_eligibilite
+
+
+class aides_logement_foyer_personne_agee_eligibilite(Variable):
+    value_type = bool
+    entity = Famille
+    definition_period = MONTH
+    def formula(famille, period):
+        logement_conventionne = famille.demandeur.menage('logement_conventionne', period)
+        aides_logement_foyer_personne_agee_eligibilite = not_(logement_conventionne) * (famille.demandeur('age', period) >= 62)
+
+        return aides_logement_foyer_personne_agee_eligibilite

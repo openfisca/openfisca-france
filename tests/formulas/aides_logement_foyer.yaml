@@ -33,8 +33,8 @@
     aides_logement_foyer_k: 0.7 # K
     aides_logement_foyer_plafond_mensualite: 168.39 # L
     aides_logement_foyer_loyer_minimal: 53.68 # L0
-    montant_locataire_logement_foyer: 106.39 # ALS = k*(L+C-L0)
-    aide_logement: 101.09
+    montant_locataire_logement_foyer: 117.86 # ALS = k*(L+C-L0)
+    aide_logement: 112.56
 
 - name: "Cas 3: Étudiant réside dans une chambre conventionnée en logement foyer, zone 3"
   period: 2017-10
