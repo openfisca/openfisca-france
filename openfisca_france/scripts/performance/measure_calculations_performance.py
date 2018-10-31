@@ -22,7 +22,7 @@ from openfisca_france import FranceTaxBenefitSystem
 
 
 args = None
-log = logging.getLogger(__name__)
+logger = logging.getLogger(__name__)
 
 
 def add_member(entity, **variables_value_by_name):
@@ -84,8 +84,8 @@ def timeit(method):
     def timed(*args, **kwargs):
         start_time = time.time()
         result = method(*args, **kwargs)
-        # print '%r (%r, %r) %2.9f s' % (method.__name__, args, kw, time.time() - start_time)
-        print('{:2.6f} s'.format(time.time() - start_time))
+        # logger.debug '%r (%r, %r) %2.9f s' % (method.__name__, args, kw, time.time() - start_time)
+        logger.debug('{:2.6f} s'.format(time.time() - start_time))
         return result
 
     return timed
@@ -124,7 +124,7 @@ def main():
     args = parser.parse_args()
     logging.basicConfig(level = logging.DEBUG if args.verbose else logging.WARNING, stream = sys.stdout)
 
-    print('salaire_imposable')
+    logger.debug('salaire_imposable')
 
     test_irpp(2010, -1181, salaire_imposable = 20000)
     test_irpp(2010, -7934, salaire_imposable = 50000)
@@ -139,7 +139,7 @@ def main():
     test_irpp(2013, -7889, salaire_imposable = 50000)
     test_irpp(2013, -43076, salaire_imposable = 150000)
 
-    print('retraite_imposable')
+    logger.debug('retraite_imposable')
 
     test_irpp(2010, -1181, retraite_imposable = 20000)
     test_irpp(2010, -8336, retraite_imposable = 50000)
@@ -154,7 +154,7 @@ def main():
     test_irpp(2013, -8283, retraite_imposable = 50000)
     test_irpp(2013, -46523, retraite_imposable = 150000)
 
-    print('f2da')
+    logger.debug('f2da')
 
     test_irpp(2010, 0, f2da = 20000)
     test_irpp(2010, 0, f2da = 50000)
@@ -169,7 +169,7 @@ def main():
     # test_irpp(2013, 0, f2da = 50000)
     # test_irpp(2013, 0, f2da = 150000)
 
-    print('f2dc')
+    logger.debug('f2dc')
 
     test_irpp(2010, 0, f2dc = 20000)
     test_irpp(2010, -2976, f2dc = 50000)
@@ -184,7 +184,7 @@ def main():
     # test_irpp(2013, 0, f2dc = 50000)
     # test_irpp(2013, 0, f2dc = 150000)
 
-    print('f2dh')
+    logger.debug('f2dh')
 
     test_irpp(2010, 345, f2dh = 20000)
     test_irpp(2010, 345, f2dh = 50000)
@@ -199,7 +199,7 @@ def main():
     test_irpp(2013, 345, f2dh = 50000)
     test_irpp(2013, 345, f2dh = 150000)
 
-    print('f2tr')
+    logger.debug('f2tr')
 
     test_irpp(2010, -1461, f2tr = 20000)
     test_irpp(2010, -9434, f2tr = 50000)
@@ -214,7 +214,7 @@ def main():
     test_irpp(2013, -9389, f2tr = 50000)
     test_irpp(2013, -48036, f2tr = 150000)
 
-    print('f2ts')
+    logger.debug('f2ts')
 
     test_irpp(2010, -1461, f2ts = 20000)
     test_irpp(2010, -9434, f2ts = 50000)
@@ -229,7 +229,7 @@ def main():
     test_irpp(2013, -9389, f2ts = 50000)
     test_irpp(2013, -48036, f2ts = 150000)
 
-    print('f3vg')
+    logger.debug('f3vg')
 
     test_irpp(2010, -3600, f3vg = 20000)
     test_irpp(2010, -9000, f3vg = 50000)
@@ -244,7 +244,7 @@ def main():
     test_irpp(2013, -9389, f3vg = 50000)
     test_irpp(2013, -48036, f3vg = 150000)
 
-    print('f3vz')
+    logger.debug('f3vz')
 
     # test_irpp(2010, 0, f3vz = 20000)
     # test_irpp(2010, 0, f3vz = 50000)
@@ -259,7 +259,7 @@ def main():
     test_irpp(2013, 0, f3vz = 50000)
     test_irpp(2013, 0, f3vz = 150000)
 
-    print('f4ba')
+    logger.debug('f4ba')
 
     test_irpp(2010, -1461, f4ba = 20000)
     test_irpp(2010, -9434, f4ba = 50000)

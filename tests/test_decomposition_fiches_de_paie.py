@@ -39,7 +39,7 @@ def test_decomposition(print_decomposition = False):
     simulations = [simulation]
     response = decompositions.calculate(simulations, decomposition_json)
     if print_decomposition:
-        print(to_unicode(
+        logger.debug(to_unicode(
             json.dumps(response, encoding = 'utf-8', ensure_ascii = False, indent = 2)
             ))
 
@@ -53,5 +53,6 @@ if __name__ == '__main__':
     parser.add_argument('-v', '--verbose', action = 'store_true', default = False, help = "increase output verbosity")
     args = parser.parse_args()
     logging.basicConfig(level = logging.DEBUG if args.verbose else logging.WARNING, stream = sys.stdout)
+    logger = logging.getLogger(__name__)
 
 #    test_decomposition(print_decomposition = True)

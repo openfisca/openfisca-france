@@ -43,13 +43,20 @@ def get_parameters_by_unit(parameter, parameters_by_unit = None):
 
 
 if __name__ == '__main__':
-    parameters_by_unit = get_parameters_by_unit(parameters)
-    print('Distribution of parameters types:')
-    for type_, sub_parameters in parameters_by_unit.items():
-        print(type_, len(parameters_by_unit[type_]))
+    import logging
 
-    print('\n')
-    print('List of parameters with no units')
+    logging.basicConfig(level = logging.INFO)
+    logger = logging.getLogger(__name__)
+
+    parameters_by_unit = get_parameters_by_unit(parameters)
+
+    logger.info('Distribution of parameters types:')
+
+    for type_, sub_parameters in parameters_by_unit.items():
+        logger.info(type_, len(parameters_by_unit[type_]))
+
+    logger.info('\n')
+    logger.info('List of parameters with no units')
 
     for param in parameters_by_unit['none']:
-        print(param.name)
+        logger.info(param.name)

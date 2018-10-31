@@ -47,6 +47,9 @@ if __name__ == '__main__':
     import sys
 
     logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
+    logger = logging.getLogger(__name__)
+
     for _, simulation, period in test_basics():
         check_run(simulation, period)
-    print(u'OpenFisca-France basic test was executed successfully.'.encode('utf-8'))
+
+    logger.info(u'OpenFisca-France basic test was executed successfully.'.encode('utf-8'))
