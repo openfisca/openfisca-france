@@ -23,10 +23,12 @@ log = logging.getLogger(__name__)
 
 zone_apl_by_depcom = None
 
+
 class TypeEtatLogementFoyer(Enum):
     non_renseigne = u"non renseigne"
     logement_rehabilitee = u"Logement rehabilitee"
     logement_non_rehabilitee = u"Logement non rehabilitee"
+
 
 class etat_logement_foyer(Variable):
     value_type = Enum
@@ -42,6 +44,7 @@ class logement_conventionne(Variable):
     entity = Menage
     label = u"logement conventionne"
     definition_period = MONTH
+
 
 class TypeEtatLogement(Enum):
     order__ = ' non_renseigne construction_acquisition_logement_neuf travaux_amelioration_residence_principale agrandissement_amenagement acquisition_amelioration acquisition_sans_amelioration_logement_existant amelioration'  # Needed to preserve the enum order in Python 2
@@ -803,10 +806,10 @@ class aide_logement_montant_brut_avant_degressivite(Variable):
         al = parameters(period).prestations.aides_logement
         statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
         locataire = (
-            (statut_occupation_logement == TypesStatutOccupationLogement.locataire_hlm)
-            + (statut_occupation_logement == TypesStatutOccupationLogement.locataire_vide)
-            + (statut_occupation_logement == TypesStatutOccupationLogement.locataire_meuble)
-        )
+                (statut_occupation_logement == TypesStatutOccupationLogement.locataire_hlm)
+                + (statut_occupation_logement == TypesStatutOccupationLogement.locataire_vide)
+                + (statut_occupation_logement == TypesStatutOccupationLogement.locataire_meuble)
+                )
         accedant = (statut_occupation_logement == TypesStatutOccupationLogement.primo_accedant)
         locataire_logement_foyer = statut_occupation_logement == TypesStatutOccupationLogement.locataire_foyer
         loyer_retenu = famille('aide_logement_loyer_retenu', period)
@@ -826,10 +829,10 @@ class aide_logement_montant_brut_avant_degressivite(Variable):
         al = parameters(period).prestations.aides_logement
         statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
         locataire = (
-                    (statut_occupation_logement == TypesStatutOccupationLogement.locataire_hlm)
-                    + (statut_occupation_logement == TypesStatutOccupationLogement.locataire_vide)
-                    + (statut_occupation_logement == TypesStatutOccupationLogement.locataire_meuble)
-        )
+                (statut_occupation_logement == TypesStatutOccupationLogement.locataire_hlm)
+                + (statut_occupation_logement == TypesStatutOccupationLogement.locataire_vide)
+                + (statut_occupation_logement == TypesStatutOccupationLogement.locataire_meuble)
+                )
 
         accedant = (statut_occupation_logement == TypesStatutOccupationLogement.primo_accedant)
         locataire_logement_foyer = statut_occupation_logement == TypesStatutOccupationLogement.locataire_foyer
@@ -1031,7 +1034,6 @@ class als(Variable):
         als_non_etudiant = famille('als_non_etudiant', period)
         als_etudiant = famille('als_etudiant', period)
         result = (als_non_etudiant + als_etudiant)
-
 
         return result
 
@@ -1306,17 +1308,17 @@ class montant_locataire_logement_foyer(Variable):
         loyer = famille.demandeur.menage('loyer', period)
         plafond_mensualite = famille('aides_logement_foyer_plafond_mensualite', period)
         L = (
-                ((aides_logement_foyer_crous_eligibilite + aides_logement_foyer_personne_agee_eligibilite) * plafond_mensualite) +
-                (not_(aides_logement_foyer_crous_eligibilite + aides_logement_foyer_personne_agee_eligibilite) * min_(plafond_mensualite, loyer))
-        )
+            ((aides_logement_foyer_crous_eligibilite + aides_logement_foyer_personne_agee_eligibilite) * plafond_mensualite) +
+            (not_(aides_logement_foyer_crous_eligibilite + aides_logement_foyer_personne_agee_eligibilite) * min_(plafond_mensualite, loyer))
+            )
         C = famille('aide_logement_charges', period)
         K = famille('aides_logement_foyer_k', period)
         Lo = famille('aides_logement_foyer_loyer_minimal', period)
 
         return (
-                ((K * max_(0, (L - Lo))) * logement_conventionne) +
-                ((K * max_(0, (L + C - Lo))) * not_(logement_conventionne))
-        )
+            ((K * max_(0, (L - Lo))) * logement_conventionne) +
+            ((K * max_(0, (L + C - Lo))) * not_(logement_conventionne))
+            )
 
 
 class aides_logement_foyer_k(Variable):
@@ -1341,9 +1343,9 @@ class aides_logement_foyer_k(Variable):
         N = famille('aides_logement_foyer_nb_part', period)
 
         return (
-                (coef_k - (R / (multi_n * N))) * not_(logement_conventionne) +
-                (coef_k_apl1 - (((R-(r_apl1 * N))) / (multi_n_apl1 * N))) * logement_conventionne
-        )
+            (coef_k - (R / (multi_n * N))) * not_(logement_conventionne) +
+            (coef_k_apl1 - (((R - (r_apl1 * N))) / (multi_n_apl1 * N))) * logement_conventionne
+            )
 
 
 class aides_logement_foyer_nb_part(Variable):
@@ -1359,16 +1361,16 @@ class aides_logement_foyer_nb_part(Variable):
         al_nb_pac = famille('al_nb_personnes_a_charge', period)
         couple = famille('al_couple', period)
         return (
-                logement_conventionne * (prestations.al_param_accal.n_0_personnes_a_charge.isole_apl1 * not_(couple) * (al_nb_pac == 0) +
-                                          prestations.al_param_accal.n_0_personnes_a_charge.menage_apl1 * couple * (al_nb_pac == 0)) +
-                not_(logement_conventionne) * (prestations.al_param_accal.n_0_personnes_a_charge.isole * not_(couple) * (al_nb_pac == 0) +
-                                               prestations.al_param_accal.n_0_personnes_a_charge.menage * couple * (al_nb_pac == 0)) +
-                prestations.al_param.parametre_n['1_personne_a_charge'] * (al_nb_pac == 1) +
-                prestations.al_param.parametre_n['2_personnes_a_charge'] * (al_nb_pac == 2) +
-                prestations.al_param.parametre_n['3_personnes_a_charge'] * (al_nb_pac == 3) +
-                prestations.al_param.parametre_n['4_personnes_a_charge'] * (al_nb_pac >= 4) +
-                prestations.al_param.majoration_n_par_personne_a_charge_supplementaire * (al_nb_pac > 4) * (al_nb_pac - 4)
-        )
+            logement_conventionne * (prestations.al_param_accal.n_0_personnes_a_charge.isole_apl1 * not_(couple) * (al_nb_pac == 0) +
+                                prestations.al_param_accal.n_0_personnes_a_charge.menage_apl1 * couple * (al_nb_pac == 0)) +
+            not_(logement_conventionne) * (prestations.al_param_accal.n_0_personnes_a_charge.isole * not_(couple) * (al_nb_pac == 0) +
+                                prestations.al_param_accal.n_0_personnes_a_charge.menage * couple * (al_nb_pac == 0)) +
+            prestations.al_param.parametre_n['1_personne_a_charge'] * (al_nb_pac == 1) +
+            prestations.al_param.parametre_n['2_personnes_a_charge'] * (al_nb_pac == 2) +
+            prestations.al_param.parametre_n['3_personnes_a_charge'] * (al_nb_pac == 3) +
+            prestations.al_param.parametre_n['4_personnes_a_charge'] * (al_nb_pac >= 4) +
+            prestations.al_param.majoration_n_par_personne_a_charge_supplementaire * (al_nb_pac > 4) * (al_nb_pac - 4)
+            )
 
 
 class aides_logement_foyer_loyer_minimal(Variable):
@@ -1389,7 +1391,7 @@ class aides_logement_foyer_loyer_minimal(Variable):
         N = famille('aides_logement_foyer_nb_part', period)
         majoration_loyer_apl1 = prestations.al_param_accal.majoration_du_loyer_minimum_lo_apl1 * N
 
-        L_plafond1 = ((bareme_apl1.calc(baseRessource / N) * N + majoration_loyer_apl1 ) / 12) * logement_conventionne
+        L_plafond1 = ((bareme_apl1.calc(baseRessource / N) * N + majoration_loyer_apl1) / 12) * logement_conventionne
         L_plafond2 = ((bareme.calc(baseRessource / N) * N + majoration_loyer) / 12) * not_(logement_conventionne)
         return max(L_plafond1, L_plafond2)
 
@@ -1414,7 +1416,7 @@ class aides_logement_foyer_plafond_mensualite(Variable):
             [aides_logement_foyer_crous_eligibilite, aides_logement_foyer_personne_agee_eligibilite],
             [aides_logement_foyer_crous_plafond, aides_logement_foyer_personne_agee_plafond],
             default=aides_logement_foyer_plafond
-        )
+            )
 
 
 class aides_logement_foyer_crous_plafond(Variable):
@@ -1454,14 +1456,14 @@ class aides_logement_foyer_plafond(Variable):
         couple = famille('al_couple', period)
 
         return (
-                plafonds.personne_isolee_sans_enfant * not_(couple) * (al_nb_pac == 0) +
-                plafonds.menage_seul * couple * (al_nb_pac == 0) +
-                plafonds.menage_ou_isole_avec_1_enfant * (al_nb_pac == 1) +
-                plafonds.menage_ou_isole_avec_2_enfants * (al_nb_pac == 2) +
-                plafonds.menage_ou_isole_avec_3_enfants * (al_nb_pac == 3) +
-                plafonds.menage_ou_isole_avec_4_enfants * (al_nb_pac == 4) +
-                plafonds.menage_ou_isole_par_enfant_en_plus * (al_nb_pac > 4) * (al_nb_pac - 4)
-        )
+            plafonds.personne_isolee_sans_enfant * not_(couple) * (al_nb_pac == 0) +
+            plafonds.menage_seul * couple * (al_nb_pac == 0) +
+            plafonds.menage_ou_isole_avec_1_enfant * (al_nb_pac == 1) +
+            plafonds.menage_ou_isole_avec_2_enfants * (al_nb_pac == 2) +
+            plafonds.menage_ou_isole_avec_3_enfants * (al_nb_pac == 3) +
+            plafonds.menage_ou_isole_avec_4_enfants * (al_nb_pac == 4) +
+            plafonds.menage_ou_isole_par_enfant_en_plus * (al_nb_pac > 4) * (al_nb_pac - 4)
+            )
 
 
 class aides_logement_foyer_personne_agee_plafond(Variable):
@@ -1476,14 +1478,16 @@ class aides_logement_foyer_personne_agee_plafond(Variable):
         al_plaf_logement_foyer = parameters(period).prestations.al_plafonds_logement_foyer
         couple = famille('al_couple', period)
         return (
-                al_plaf_logement_foyer.personne_agee.personne_isolee * not_(couple) +
-                al_plaf_logement_foyer.personne_agee.couple * couple
-        )
+            al_plaf_logement_foyer.personne_agee.personne_isolee * not_(couple) +
+            al_plaf_logement_foyer.personne_agee.couple * couple
+            )
+
 
 class aides_logement_foyer_crous_eligibilite(Variable):
     value_type = bool
     entity = Famille
     definition_period = MONTH
+
     def formula(famille, period):
         logement_conventionne = famille.demandeur.menage('logement_conventionne', period)
         logement_crous = famille.demandeur.menage('logement_crous', period)
@@ -1491,11 +1495,10 @@ class aides_logement_foyer_crous_eligibilite(Variable):
         logement_chambre = famille.demandeur.menage('logement_chambre', period)
 
         aides_logement_foyer_crous_eligibilite = (
-                logement_crous * not_(logement_conventionne) *
-                (logement_chambre * (etat_logement_foyer == TypeEtatLogementFoyer.logement_non_rehabilitee) +
-                 (etat_logement_foyer == TypeEtatLogementFoyer.logement_rehabilitee)
-                 )
-        )
+            logement_crous * not_(logement_conventionne) *
+            (logement_chambre * (etat_logement_foyer == TypeEtatLogementFoyer.logement_non_rehabilitee) +
+            (etat_logement_foyer == TypeEtatLogementFoyer.logement_rehabilitee))
+            )
 
         return aides_logement_foyer_crous_eligibilite
 
@@ -1504,6 +1507,7 @@ class aides_logement_foyer_personne_agee_eligibilite(Variable):
     value_type = bool
     entity = Famille
     definition_period = MONTH
+
     def formula(famille, period):
         logement_conventionne = famille.demandeur.menage('logement_conventionne', period)
         aides_logement_foyer_personne_agee_eligibilite = not_(logement_conventionne) * (famille.demandeur('age', period) >= 62)
