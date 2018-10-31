@@ -1,5 +1,12 @@
 # Changelog
 
+### 29.2.3 [#1180](https://github.com/openfisca/openfisca-france/pull/1180)
+
+* Amélioration technique
+* Détails :
+  - Permet d'utiliser `pytest` pour faire tourner les tests.
+  - La librairie actuelle, `nose`, n'est plus en développement actif.
+
 ### 29.2.2 [#1166](https://github.com/openfisca/openfisca-france/pull/1166)
 
 * Amélioration technique.
