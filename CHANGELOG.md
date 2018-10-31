@@ -1,5 +1,14 @@
 # Changelog
 
+### 29.2.4 [#1193](https://github.com/openfisca/openfisca-france/pull/1193)
+
+* Amélioration de calculs existants.
+* Périodes concernées : toutes.
+* Zones impactées : `impot_revenu`.
+* Détails :
+  - Nouveaux cas de tests faisant apparaitre des divergences entre OpenFisca et le calculateur DGFIP.
+  - Correctifs pour résoudre ces divergences.
+
 ### 29.2.3 [#1180](https://github.com/openfisca/openfisca-france/pull/1180)
 
 * Amélioration technique
