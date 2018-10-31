@@ -3,7 +3,6 @@
 ### 29.2.1 [#1178](https://github.com/openfisca/openfisca-france/pull/1178)
 
 * Changement mineur
-* Périodes concernées : toutes
 * Détails :
   - Lors de l'ajout d'un fichier statique requis pour le fonctionnement de la librairie, nous devons le rendre découvrable par `wheel`
   - Pour éviter des soucis involontaires de packaging, on _build_ désormais la librairie, et on exécute les tests contre la version qui sera mise à disposition des usagers
@@ -19,7 +18,6 @@
 ### 29.1.3 [#1162](https://github.com/openfisca/openfisca-france/pull/1162)
 
 * Changement mineur.
-* Périodes concernées : toutes.
 * Zones impactées : `openfisca_france/parameters/**/*.yaml`.
 * Détails :
   - Unifie les références législatives associées aux paramètres
@@ -105,8 +103,6 @@
 ### 27.1.1 [#1171](https://github.com/openfisca/openfisca-france/pull/1171)
 
 * Changement mineur.
-* Périodes concernées : à partir du 01/04/2018.
-* Zones impactées : `tests/formulas/cf_2018_04`.
 * Détails :
   - Ajoute des tests pour la revalorisation du complément familial (CF) au 1er avril 2018.
 
