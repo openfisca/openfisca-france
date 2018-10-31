@@ -39,6 +39,7 @@ class etat_logement_foyer(Variable):
     set_input = set_input_dispatch_by_period
     definition_period = MONTH
 
+
 class logement_conventionne(Variable):
     value_type = bool
     entity = Menage
@@ -806,10 +807,10 @@ class aide_logement_montant_brut_avant_degressivite(Variable):
         al = parameters(period).prestations.aides_logement
         statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
         locataire = (
-                (statut_occupation_logement == TypesStatutOccupationLogement.locataire_hlm)
-                + (statut_occupation_logement == TypesStatutOccupationLogement.locataire_vide)
-                + (statut_occupation_logement == TypesStatutOccupationLogement.locataire_meuble)
-                )
+                    (statut_occupation_logement == TypesStatutOccupationLogement.locataire_hlm)
+                    + (statut_occupation_logement == TypesStatutOccupationLogement.locataire_vide)
+                    + (statut_occupation_logement == TypesStatutOccupationLogement.locataire_meuble)
+                    )
         accedant = (statut_occupation_logement == TypesStatutOccupationLogement.primo_accedant)
         locataire_logement_foyer = statut_occupation_logement == TypesStatutOccupationLogement.locataire_foyer
         loyer_retenu = famille('aide_logement_loyer_retenu', period)
@@ -829,10 +830,10 @@ class aide_logement_montant_brut_avant_degressivite(Variable):
         al = parameters(period).prestations.aides_logement
         statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
         locataire = (
-                (statut_occupation_logement == TypesStatutOccupationLogement.locataire_hlm)
-                + (statut_occupation_logement == TypesStatutOccupationLogement.locataire_vide)
-                + (statut_occupation_logement == TypesStatutOccupationLogement.locataire_meuble)
-                )
+                    (statut_occupation_logement == TypesStatutOccupationLogement.locataire_hlm)
+                    + (statut_occupation_logement == TypesStatutOccupationLogement.locataire_vide)
+                    + (statut_occupation_logement == TypesStatutOccupationLogement.locataire_meuble)
+                    )
 
         accedant = (statut_occupation_logement == TypesStatutOccupationLogement.primo_accedant)
         locataire_logement_foyer = statut_occupation_logement == TypesStatutOccupationLogement.locataire_foyer
