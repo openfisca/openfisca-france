@@ -401,7 +401,7 @@ class minima_sociaux(Variable):
 class aides_logement(Variable):
     value_type = float
     entity = Famille
-    label = u"Aides logement nets"
+    label = u"Aides logement nettes"
     reference = "http://vosdroits.service-public.fr/particuliers/N20360.xhtml"
     definition_period = YEAR
 
@@ -409,9 +409,8 @@ class aides_logement(Variable):
         apl = famille('apl', period, options = [ADD])
         als = famille('als', period, options = [ADD])
         alf = famille('alf', period, options = [ADD])
-        crds_logement = famille('crds_logement', period, options = [ADD])
 
-        return apl + als + alf + crds_logement
+        return apl + als + alf
 
 
 class irpp_economique(Variable):
