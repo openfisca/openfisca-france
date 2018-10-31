@@ -965,14 +965,17 @@ class revenu_categoriel_non_salarial(Variable):
     def formula(foyer_fiscal, period, parameters):
         nbnc_pvce_i = foyer_fiscal.members('nbnc_pvce', period)
         rpns_i = foyer_fiscal.members('rpns_individu', period)
+        nbnc_pvce = foyer_fiscal.sum(nbnc_pvce_i)
+        rpns = foyer_fiscal.sum(rpns_i)
         defrag = foyer_fiscal('defrag', period)
         defacc = foyer_fiscal('defacc', period)
         defncn = foyer_fiscal('defncn', period)
         defmeu = foyer_fiscal('defmeu', period)
+        cga = parameters(period).impot_revenu.rpns.cga_taux2
 
         return (
-            foyer_fiscal.sum(rpns_i)
-            - foyer_fiscal.sum(nbnc_pvce_i)
+            rpns
+            - (1 + cga) * nbnc_pvce
             - defrag
             - defncn
             - defacc
@@ -2720,7 +2723,6 @@ class rpns_individu(Variable):
         abic_defm = individu('abic_defm', period)
         abnc_impo = individu('abnc_impo', period)
         abnc_defi = individu('abnc_defi', period)
-        nbic_impm = individu('nbic_impm', period)  # noqa F841
         alnp_imps = individu('alnp_imps', period)
         nbnc_impo = individu('nbnc_impo', period)
         nbnc_defi = individu('nbnc_defi', period)
@@ -2765,7 +2767,7 @@ class rpns_individu(Variable):
     #    # TODO : check 2006 cf art 156 du CGI pour 2006
     #    def_agri_ant    = min_(max_(0,rag_timp - def_agri), f5sq)
 
-        def_agri = f5sq + arag_defi + nrag_defi
+        def_agri = f5sq + arag_defi + (1 + cga_taux2) * nrag_defi
 
         # # B revenus industriels et commerciaux professionnels
         # regime micro entreprise

@@ -1589,9 +1589,12 @@ class f5mt(Variable):
 
 
 class f5sq(Variable):
+    cerfa_field = u"5SQ"
     value_type = int
     entity = Individu
     definition_period = YEAR
+    label = u"Déficits des années antérieures non encore déduits"
+    end = '2006-12-31'
 
 
 # TODO: Introduit par mes aides à consolider

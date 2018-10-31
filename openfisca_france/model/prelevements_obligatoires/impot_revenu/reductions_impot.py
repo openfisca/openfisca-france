@@ -4126,15 +4126,16 @@ class locmeu(Variable):
 
         P = parameters(period).impot_revenu.reductions_impots.locmeu
 
-        majoration_taux_invest_2011 = (maxi(f7ij, f7il, f7in, f7iv) == max_(f7il, f7in))
-        majoration_taux_invest_2012 = (maxi(f7id, f7ie, f7if, f7ig) == max_(f7ie, f7if))
-        taux_reduc_2009_2010 = P.taux
-        taux_reduc_2011 = P.taux20 * majoration_taux_invest_2011 + P.taux18 * not_(majoration_taux_invest_2011)
-        taux_reduc_2012 = P.taux18 * majoration_taux_invest_2012 + P.taux11 * not_(majoration_taux_invest_2012)
-        taux_reduc_2013 = P.taux11
+        reduction_investissements_acheve_2014_realise_2009 = P.taux * min_(P.max, f7io)
+        reduction_investissements_acheve_2014_realise_2010 = P.taux * min_(P.max, f7im + f7iw)
+        reduction_investissements_acheve_2014_realise_2011 = P.taux20 * min_(P.max, f7il + f7in) + P.taux18 * min_(max_(0, P.max - f7il - f7in), f7ij + f7iv)
+        reduction_investissements_acheve_2014_realise_2012 = P.taux18 * min_(P.max, f7ie + f7if) + P.taux11 * min_(max_(0, P.max - f7ie - f7if), f7id + f7ig)
+        reduction_investissements_acheve_2014_realise_2013 = P.taux11 * min_(P.max, f7jt + f7ju)
+        reduction_investissements_acheve_2014_realise_2014 = P.taux11 * min_(P.max, f7ou)
 
         report_invest_anterieur = (
-            P.taux * max_(f7ik + f7ip, f7ir + f7iq)
+            P.taux * min_(P.max, f7ik)
+            + P.taux * min_(P.max, f7ip + f7ir + f7iq)
             + f7ia + f7ib + f7ic
             + f7jv + f7jw + f7jx + f7jy
             + f7oa + f7ob + f7oc + f7od + f7oe
@@ -4150,10 +4151,12 @@ class locmeu(Variable):
 
         return (
             (
-                (min_(P.max, max_(f7im, f7iw)) + min_(P.max, f7io)) * taux_reduc_2009_2010
-                + min_(P.max, maxi(f7ij, f7il, f7in, f7iv)) * taux_reduc_2011  # to check : impossible de remplir à la fois f7ij et f7il par exemple ?
-                + min_(P.max, maxi(f7id, f7ie, f7if, f7ig)) * taux_reduc_2012
-                + (min_(P.max, f7jt + f7ju) + min_(P.max, f7ou)) * taux_reduc_2013
+                reduction_investissements_acheve_2014_realise_2009
+                + reduction_investissements_acheve_2014_realise_2010
+                + reduction_investissements_acheve_2014_realise_2011
+                + reduction_investissements_acheve_2014_realise_2012
+                + reduction_investissements_acheve_2014_realise_2013
+                + reduction_investissements_acheve_2014_realise_2014
                 ) / 9
             + report_invest_anterieur
             + report_non_impute
@@ -4223,16 +4226,17 @@ class locmeu(Variable):
 
         P = parameters(period).impot_revenu.reductions_impots.locmeu
 
-        majoration_taux_invest_2011 = (maxi(f7ij, f7il, f7in, f7iv) == max_(f7il, f7in))
-        majoration_taux_invest_2012 = (maxi(f7id, f7ie, f7if, f7ig) == max_(f7ie, f7if))
-        taux_reduc_2009_2010 = P.taux
-        taux_reduc_2011 = P.taux20 * majoration_taux_invest_2011 + P.taux18 * not_(majoration_taux_invest_2011)
-        taux_reduc_2012 = P.taux18 * majoration_taux_invest_2012 + P.taux11 * not_(majoration_taux_invest_2012)
-        taux_reduc_2013 = P.taux11
+        reduction_investissements_acheve_2015_realise_2009 = P.taux * min_(P.max, f7io)
+        reduction_investissements_acheve_2015_realise_2010 = P.taux * min_(P.max, f7im + f7iw)
+        reduction_investissements_acheve_2015_realise_2011 = P.taux20 * min_(P.max, f7il + f7in) + P.taux18 * min_(max_(0, P.max - f7il - f7in), f7ij + f7iv)
+        reduction_investissements_acheve_2015_realise_2012 = P.taux18 * min_(P.max, f7ie + f7if) + P.taux11 * min_(max_(0, P.max - f7ie - f7if), f7id + f7ig)
+        reduction_investissements_acheve_2015_realise_2013 = P.taux11 * min_(P.max, f7jt + f7ju)
+        reduction_investissements_acheve_2015_realise_2014 = P.taux11 * min_(P.max, f7ou)
+        reduction_investissements_acheve_2015_realise_2015 = P.taux11 * min_(P.max, f7ov)
 
         report_invest_anterieur = (
-            P.taux
-            * max_(f7ik + f7ip, f7ir + f7iq)
+            P.taux * min_(P.max, f7ik)
+            + P.taux * min_(P.max, f7ip + f7ir + f7iq)
             + f7ia + f7ib + f7ic
             + f7jv + f7jw + f7jx + f7jy
             + f7oa + f7ob + f7oc + f7od + f7oe
@@ -4249,10 +4253,13 @@ class locmeu(Variable):
 
         return (
             (
-                (min_(P.max, max_(f7im, f7iw) + min_(P.max, f7io))) * taux_reduc_2009_2010
-                + min_(P.max, maxi(f7ij, f7il, f7in, f7iv)) * taux_reduc_2011  # to check : impossible de remplir à la fois f7ij et f7il par exemple ?
-                + min_(P.max, maxi(f7id, f7ie, f7if, f7ig)) * taux_reduc_2012
-                + (min_(P.max, f7jt + f7ju) + min_(P.max, f7ou) + min_(P.max, f7ov)) * taux_reduc_2013
+                reduction_investissements_acheve_2015_realise_2009
+                + reduction_investissements_acheve_2015_realise_2010
+                + reduction_investissements_acheve_2015_realise_2011
+                + reduction_investissements_acheve_2015_realise_2012
+                + reduction_investissements_acheve_2015_realise_2013
+                + reduction_investissements_acheve_2015_realise_2014
+                + reduction_investissements_acheve_2015_realise_2015
                 ) / 9
             + report_invest_anterieur
             + report_non_impute
@@ -4331,16 +4338,17 @@ class locmeu(Variable):
 
         P = parameters(period).impot_revenu.reductions_impots.locmeu
 
-        majoration_taux_invest_2011 = (maxi(f7ij, f7il, f7in, f7iv) == max_(f7il, f7in))
-        majoration_taux_invest_2012 = (maxi(f7id, f7ie, f7if, f7ig) == max_(f7ie, f7if))
-        taux_reduc_2009_2010 = P.taux
-        taux_reduc_2011 = P.taux20 * majoration_taux_invest_2011 + P.taux18 * not_(majoration_taux_invest_2011)
-        taux_reduc_2012 = P.taux18 * majoration_taux_invest_2012 + P.taux11 * not_(majoration_taux_invest_2012)
-        taux_reduc_2013 = P.taux11
+        reduction_investissements_acheve_2016_realise_2010 = P.taux * min_(P.max, f7im + f7iw)
+        reduction_investissements_acheve_2016_realise_2011 = P.taux20 * min_(P.max, f7il + f7in) + P.taux18 * min_(max_(0, P.max - f7il - f7in), f7ij + f7iv)
+        reduction_investissements_acheve_2016_realise_2012 = P.taux18 * min_(P.max, f7ie + f7if) + P.taux11 * min_(max_(0, P.max - f7ie - f7if), f7id + f7ig)
+        reduction_investissements_acheve_2016_realise_2013 = P.taux11 * min_(P.max, f7jt + f7ju)
+        reduction_investissements_acheve_2016_realise_2014 = P.taux11 * min_(P.max, f7ou)
+        reduction_investissements_acheve_2016_realise_2015 = P.taux11 * min_(P.max, f7ov)
+        reduction_investissements_acheve_2016_realise_2016 = P.taux11 * min_(P.max, f7ow)
 
         report_invest_anterieur = (
-            P.taux
-            * max_(f7ik + f7ip, f7ir + f7iq)
+            P.taux * min_(P.max, f7ik)
+            + P.taux * min_(P.max, f7ip + f7ir + f7iq)
             + f7ia + f7ib + f7ic
             + f7jv + f7jw + f7jx + f7jy
             + f7oa + f7ob + f7oc + f7od + f7oe
@@ -4358,10 +4366,13 @@ class locmeu(Variable):
 
         return (
             (
-                min_(P.max, max_(f7im, f7iw)) * taux_reduc_2009_2010
-                + min_(P.max, maxi(f7ij, f7il, f7in, f7iv)) * taux_reduc_2011  # to check : impossible de remplir à la fois f7ij et f7il par exemple ?
-                + min_(P.max, maxi(f7id, f7ie, f7if, f7ig)) * taux_reduc_2012
-                + (min_(P.max, f7jt + f7ju) + min_(P.max, f7ou) + min_(P.max, f7ov) + min_(P.max, f7ow)) * taux_reduc_2013
+                reduction_investissements_acheve_2016_realise_2010
+                + reduction_investissements_acheve_2016_realise_2011
+                + reduction_investissements_acheve_2016_realise_2012
+                + reduction_investissements_acheve_2016_realise_2013
+                + reduction_investissements_acheve_2016_realise_2014
+                + reduction_investissements_acheve_2016_realise_2015
+                + reduction_investissements_acheve_2016_realise_2016
                 ) / 9
             + report_invest_anterieur
             + report_non_impute
@@ -4410,7 +4421,6 @@ class locmeu(Variable):
         f7or = foyer_fiscal('f7or', period)
         f7os = foyer_fiscal('f7os', period)
         f7ot = foyer_fiscal('f7ot', period)
-        f7ox = foyer_fiscal('f7ox', period)  # noqa F841
         f7pa = foyer_fiscal('f7pa', period)
         f7pb = foyer_fiscal('f7pb', period)
         f7pc = foyer_fiscal('f7pc', period)
@@ -4437,13 +4447,14 @@ class locmeu(Variable):
         invest_2014_acheves_2017 = foyer_fiscal('f7ou', period)
         invest_2015_acheves_2017 = foyer_fiscal('f7ov', period)
         invest_2016_acheves_2017 = foyer_fiscal('f7ow', period)
-        invest_2017_acheves_2017 = foyer_fiscal('f7ow', period)
+        invest_2017_acheves_2017 = foyer_fiscal('f7ox', period)
 
         P = parameters(period).impot_revenu.reductions_impots.locmeu
 
         # Calcul de la réduction sur investissements antérieurs non imputés (si dépassement du plafond de la base)
 
-        report_reduc_invest_2009_2010 = P.taux * max_(f7ik + f7ip, f7ir + f7iq)  # avant 2011, report de l'investissement et non de la réduction
+        report_reduc_invest_2009 = P.taux * min_(P.max, f7ik)  # avant 2011, report de l'investissement et non de la réduction
+        report_reduc_invest_2010 = P.taux * min_(P.max, f7ip + f7ir + f7iq)  # avant 2011, report de l'investissement et non de la réduction
         report_reduc_invest_2011 = f7ia + f7ib + f7ic
         report_reduc_invest_2012 = f7jv + f7jw + f7jx + f7jy
         report_reduc_invest_2013 = f7oa + f7ob + f7oc + f7od + f7oe
@@ -4452,7 +4463,8 @@ class locmeu(Variable):
         report_reduc_invest_2016 = f7op + f7oq + f7or + f7os + f7ot
 
         report_reduc_invest_anterieur = (
-            report_reduc_invest_2009_2010
+            report_reduc_invest_2009
+            + report_reduc_invest_2010
             + report_reduc_invest_2011
             + report_reduc_invest_2012
             + report_reduc_invest_2013
@@ -4481,17 +4493,14 @@ class locmeu(Variable):
 
         # Calcul de la réduction concernant les investissements achevés ou réalisés l'année courante
 
-        max0 = P.max - min_(P.max, invest_2011_acheves_2017)
         reduc_invest_acheves_2017 = (
             P.taux18 * min_(P.max, invest_2011_acheves_2017)
-            + P.taux11 * min_(max0,
-                invest_2012_acheves_2017
-                + invest_2013_acheves_2017
-                + invest_2014_acheves_2017
-                + invest_2015_acheves_2017
-                + invest_2016_acheves_2017
-                + invest_2017_acheves_2017
-                              )
+            + P.taux11 * min_(P.max, invest_2012_acheves_2017)
+            + P.taux11 * min_(P.max, invest_2013_acheves_2017)
+            + P.taux11 * min_(P.max, invest_2014_acheves_2017)
+            + P.taux11 * min_(P.max, invest_2015_acheves_2017)
+            + P.taux11 * min_(P.max, invest_2016_acheves_2017)
+            + P.taux11 * min_(P.max, invest_2017_acheves_2017)
             )
 
         return (
@@ -5619,8 +5628,8 @@ class scelli(Variable):
 
         report_reduc_scelli_non_impute = f7la + f7lb + f7lc + f7ld + f7le + f7lf + f7lm + f7ls + f7lz + f7mg + f7mh + f7lx + f7lt + f7ln
 
-        report_scelli_2009 = min_(P.max, max_(P.taux25 * f7hr, P.taux40 * f7hs))  # to check si application plafond
-        report_scelli_2010 = min_(P.max, maxi(P.taux25 * f7hv, P.taux25 * f7hx, P.taux40 * f7hw, P.taux40 * f7hz)) + min_(P.max, max_(P.taux25 * f7ht, P.taux40 * f7hu))  # to check si application plafond
+        report_scelli_2009 = min_(P.max, max_(P.taux25 * f7hr, P.taux40 * f7hs))
+        report_scelli_2010 = min_(P.max, P.taux25 * f7hv + P.taux25 * f7hx + P.taux40 * f7hw + P.taux40 * f7hz) + min_(P.max, P.taux25 * f7ht + P.taux40 * f7hu)
         report_scelli_2011 = f7ha + f7hb + f7hg + f7hh + f7hd + f7he + f7hf
         report_scelli_2012 = f7gj + f7gk + f7gl + f7gp + f7gs + f7gt + f7gu + f7gv + f7gx + f7gw
         report_scelli_2013 = f7ya + f7yb + f7yc + f7yd + f7ye + f7yf + f7yg + f7yh + f7yi + f7yj + f7yk + f7yl
@@ -5639,18 +5648,24 @@ class scelli(Variable):
             P.taux36 * maxi(f7nk / 9, f7no / 9, f7np / 5, f7nt / 5),
             P.taux40 * maxi(f7nl / 9, f7nm / 9, f7nn / 9, f7nq / 5, f7nr / 5, f7ns / 5)))
 
-        reduc_scelli_2014_invest_2012_mars_2013 = min_(P.max, maxi(
-            P.taux6 * maxi(f7jf, f7jj, f7fb) / 9,
-            P.taux13 * maxi(f7ja, f7je, f7jg, f7jh, f7fa) / 9,
+        reduc_scelli_2014_invest_2012 = min_(P.max, maxi(
+            P.taux6 * maxi(f7jf, f7jj) / 9,
+            P.taux13 * maxi(f7ja, f7je, f7jg, f7jh) / 9,
             P.taux22 * maxi(f7jb, f7jd) / 9,
-            P.taux24 * maxi(f7jk / 9, f7jn / 9, f7jo / 5, f7jr / 5, f7fc / 9, f7fd / 5),
+            P.taux24 * maxi(f7jk / 9, f7jn / 9, f7jo / 5, f7jr / 5),
             P.taux36 * maxi(f7jl / 9, f7jm / 9, f7jp / 5, f7jq / 5)))
+
+        reduc_scelli_2014_invest_mars_2013 = min_(P.max, maxi(
+            P.taux6 * f7fb / 9,
+            P.taux13 * f7fa / 9,
+            P.taux24 * maxi(f7fc / 9, f7fd / 5)))
 
         return (
             reduc_scelli_2014_invest_2009
             + reduc_scelli_2014_invest_2010
             + reduc_scelli_2014_invest_2011
-            + reduc_scelli_2014_invest_2012_mars_2013
+            + reduc_scelli_2014_invest_2012
+            + reduc_scelli_2014_invest_mars_2013
             + report_reduc_scelli_non_impute
             + report_scelli_2009
             + report_scelli_2010
@@ -5751,7 +5766,6 @@ class scelli(Variable):
         f7yb = foyer_fiscal('f7yb', period)
         f7yd = foyer_fiscal('f7yd', period)
         f7yf = foyer_fiscal('f7yf', period)
-        f7yg = foyer_fiscal('f7yg', period)  # noqa F841
         f7yh = foyer_fiscal('f7yh', period)
         f7yj = foyer_fiscal('f7yj', period)
         f7yk = foyer_fiscal('f7yk', period)
@@ -5768,8 +5782,8 @@ class scelli(Variable):
 
         report_reduc_scelli_non_impute = f7la + f7lb + f7lc + f7ld + f7le + f7lf + f7lm + f7ls + f7lz + f7mg + f7mh + f7lx + f7lt + f7ln + f7lg + f7lh + f7li + f7lj
 
-        report_scelli_2009 = min_(P.max, max_(P.taux25 * f7hr, P.taux40 * f7hs))  # to check si application plafond
-        report_scelli_2010 = min_(P.max, maxi(P.taux25 * f7hv, P.taux25 * f7hx, P.taux40 * f7hw, P.taux40 * f7hz)) + min_(P.max, max_(P.taux25 * f7ht, P.taux40 * f7hu))  # to check si application plafond
+        report_scelli_2009 = min_(P.max, max_(P.taux25 * f7hr, P.taux40 * f7hs))
+        report_scelli_2010 = min_(P.max, P.taux25 * f7hv + P.taux25 * f7hx + P.taux40 * f7hw + P.taux40 * f7hz) + min_(P.max, P.taux25 * f7ht + P.taux40 * f7hu)
         report_scelli_2011 = f7ha + f7hg + f7hh + f7hd + f7hf
         report_scelli_2012 = f7gj + f7gl + f7gs + f7gu + f7gv + f7gx + f7gw
         report_scelli_2013 = f7yb + f7yd + f7yf + f7yh + f7yj + f7yk + f7yl
@@ -5789,18 +5803,24 @@ class scelli(Variable):
             P.taux36 * maxi(f7nk / 9, f7no / 9, f7np / 5, f7nt / 5),
             P.taux40 * maxi(f7nl / 9, f7nm / 9, f7nn / 9, f7nq / 5, f7nr / 5, f7ns / 5)))
 
-        reduc_scelli_2015_invest_2012_mars_2013 = min_(P.max, maxi(
-            P.taux6 * maxi(f7jf, f7jj, f7fb) / 9,
-            P.taux13 * maxi(f7ja, f7je, f7jg, f7jh, f7fa) / 9,
+        reduc_scelli_2015_invest_2012 = min_(P.max, maxi(
+            P.taux6 * maxi(f7jf, f7jj) / 9,
+            P.taux13 * maxi(f7ja, f7je, f7jg, f7jh) / 9,
             P.taux22 * maxi(f7jb, f7jd) / 9,
-            P.taux24 * maxi(f7jk / 9, f7jn / 9, f7jo / 5, f7jr / 5, f7fc / 9, f7fd / 5),
+            P.taux24 * maxi(f7jk / 9, f7jn / 9, f7jo / 5, f7jr / 5),
             P.taux36 * maxi(f7jl / 9, f7jm / 9, f7jp / 5, f7jq / 5)))
+
+        reduc_scelli_2015_invest_mars_2013 = min_(P.max, maxi(
+            P.taux6 * f7fb / 9,
+            P.taux13 * f7fa / 9,
+            P.taux24 * maxi(f7fc / 9, f7fd / 5)))
 
         return (
             reduc_scelli_2015_invest_2009
             + reduc_scelli_2015_invest_2010
             + reduc_scelli_2015_invest_2011
-            + reduc_scelli_2015_invest_2012_mars_2013
+            + reduc_scelli_2015_invest_2012
+            + reduc_scelli_2015_invest_mars_2013
             + report_reduc_scelli_non_impute
             + report_scelli_2009
             + report_scelli_2010
@@ -5901,7 +5921,6 @@ class scelli(Variable):
         f7yb = foyer_fiscal('f7yb', period)
         f7yd = foyer_fiscal('f7yd', period)
         f7yf = foyer_fiscal('f7yf', period)
-        f7yg = foyer_fiscal('f7yg', period)  # noqa F841
         f7yh = foyer_fiscal('f7yh', period)
         f7yj = foyer_fiscal('f7yj', period)
         f7yk = foyer_fiscal('f7yk', period)
@@ -5925,8 +5944,8 @@ class scelli(Variable):
 
         report_reduc_scelli_non_impute = f7lb + f7lc + f7ld + f7le + f7lf + f7lm + f7ls + f7lz + f7mg + f7mh + f7lx + f7lt + f7ln + f7lg + f7lh + f7li + f7lj + f7lk + f7ll + f7lo + f7lp
 
-        report_scelli_2009 = min_(P.max, max_(P.taux25 * f7hr, P.taux40 * f7hs))  # to check si application plafond
-        report_scelli_2010 = min_(P.max, maxi(P.taux25 * f7hv, P.taux25 * f7hx, P.taux40 * f7hw, P.taux40 * f7hz)) + min_(P.max, max_(P.taux25 * f7ht, P.taux40 * f7hu))  # to check si application plafond
+        report_scelli_2009 = min_(P.max, max_(P.taux25 * f7hr, P.taux40 * f7hs))
+        report_scelli_2010 = min_(P.max, P.taux25 * f7hv + P.taux25 * f7hx + P.taux40 * f7hw + P.taux40 * f7hz) + min_(P.max, P.taux25 * f7ht + P.taux40 * f7hu)
         report_scelli_2011 = f7ha + f7hd + f7hf
         report_scelli_2012 = f7gj + f7gl + f7gs + f7gu + f7gv + f7gx + f7gw
         report_scelli_2013 = f7yb + f7yd + f7yf + f7yh + f7yj + f7yk + f7yl
@@ -5945,17 +5964,23 @@ class scelli(Variable):
             P.taux36 * maxi(f7nk / 9, f7no / 9, f7np / 5, f7nt / 5),
             P.taux40 * maxi(f7nl / 9, f7nm / 9, f7nn / 9, f7nq / 5, f7nr / 5, f7ns / 5)))
 
-        reduc_scelli_2016_invest_2012_mars_2013 = min_(P.max, maxi(
-            P.taux6 * maxi(f7jf, f7jj, f7fb) / 9,
-            P.taux13 * maxi(f7ja, f7je, f7jg, f7jh, f7fa) / 9,
+        reduc_scelli_2016_invest_2012 = min_(P.max, maxi(
+            P.taux6 * maxi(f7jf, f7jj) / 9,
+            P.taux13 * maxi(f7ja, f7je, f7jg, f7jh) / 9,
             P.taux22 * maxi(f7jb, f7jd) / 9,
-            P.taux24 * maxi(f7jk / 9, f7jn / 9, f7jo / 5, f7jr / 5, f7fc / 9, f7fd / 5),
+            P.taux24 * maxi(f7jk / 9, f7jn / 9, f7jo / 5, f7jr / 5),
             P.taux36 * maxi(f7jl / 9, f7jm / 9, f7jp / 5, f7jq / 5)))
+
+        reduc_scelli_2016_invest_mars_2013 = min_(P.max, maxi(
+            P.taux6 * f7fb / 9,
+            P.taux13 * f7fa / 9,
+            P.taux24 * maxi(f7fc / 9, f7fd / 5)))
 
         return (
             reduc_scelli_2016_invest_2010
             + reduc_scelli_2016_invest_2011
-            + reduc_scelli_2016_invest_2012_mars_2013
+            + reduc_scelli_2016_invest_2012
+            + reduc_scelli_2016_invest_mars_2013
             + report_reduc_scelli_non_impute
             + report_scelli_2009
             + report_scelli_2010
