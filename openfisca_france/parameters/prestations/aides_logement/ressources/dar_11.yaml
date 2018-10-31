@@ -2,11 +2,11 @@ description: Plancher de ressources pour les étudiants résidant dans un logeme
 reference: openfisca
 unit: currency
 values:
-  2002_01_01:
+  2002-01-01:
     value: 3658.56
-  2003_01_01:
+  2003-01-01:
     value: 3700.0
-  2007_07_01:
+  2007-07-01:
     value: 4600.0
   2009-01-01:
     value: 5500.0
