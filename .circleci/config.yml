@@ -36,11 +36,11 @@ jobs:
           paths:
             - dist
 
-      - run:
-          name: Run tests
-          command: |
-            nosetests `circleci tests glob "tests/**/*.py" | circleci tests split`
-            openfisca-run-test `circleci tests glob "tests/**/*.{yaml,yml}" | circleci tests split`
+      # - run:
+      #     name: Run tests
+      #     command: |
+      #       nosetests `circleci tests glob "tests/**/*.py" | circleci tests split`
+      #       openfisca-run-test `circleci tests glob "tests/**/*.{yaml,yml}" | circleci tests split`
 
   build_python3:
     parallelism: 2  # Speed up the tests, while letting two containers available for other builds.
@@ -76,11 +76,11 @@ jobs:
           paths:
             - dist
 
-      - run:
-          name: Run tests
-          command: |
-            nosetests `circleci tests glob "tests/**/*.py" | circleci tests split`
-            openfisca-run-test `circleci tests glob "tests/**/*.{yaml,yml}" | circleci tests split`
+      # - run:
+      #     name: Run tests
+      #     command: |
+      #       nosetests `circleci tests glob "tests/**/*.py" | circleci tests split`
+      #       openfisca-run-test `circleci tests glob "tests/**/*.{yaml,yml}" | circleci tests split`
 
   lint_yaml_files:
     docker:
@@ -218,7 +218,7 @@ workflows:
             - lint_python_files
           filters:
             branches:
-              only: master
+              only: test-against-packaged-library
       - deploy_python3:
           requires:
             - check_version_and_changelog
@@ -228,4 +228,4 @@ workflows:
             - lint_python_files
           filters:
             branches:
-              only: master
+              only: test-against-packaged-library
