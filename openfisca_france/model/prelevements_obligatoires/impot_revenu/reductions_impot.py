@@ -31,11 +31,11 @@ class reductions(Variable):
             # Introduites en 2003
             'mecena', 'repsoc',
             # Introduites en 2004
-            'intagr', 'intcon', 'invlst',
+            'intcon', 'invlst',
             # Introduites en 2005
-            'sofica',
+            'intagr',
             # Introduites en 2006
-            'creaen',
+            'creaen', 'deffor', 'sofica',
             # Introduites en 2008
             'mohist',
             # Introduites en 2009
@@ -48,7 +48,7 @@ class reductions(Variable):
             'reduction_impot_exceptionnelle',
             # Introduites en 2014
             'rpinel',
-            # Introduites en 2014
+            # Introduites en 2017
             'rehab'
             ]
 
