@@ -25,7 +25,7 @@ class reductions(Variable):
         reductions = [
             # Depuis 2002
             'accult', 'adhcga', 'assvie', 'cappme', 'cotsyn',
-            'dfppce', 'daepad', 'doment', 'domlog', 'donapd',
+            'daepad', 'dfppce', 'doment', 'domlog', 'donapd',
             'ecpess', 'garext', 'intemp', 'invfor', 'invrev',
             'prcomp', 'rsceha', 'saldom', 'spfcpi',
             # Introduites en 2003
