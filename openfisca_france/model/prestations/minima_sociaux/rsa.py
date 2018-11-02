@@ -24,6 +24,7 @@ class rsa_base_ressources(Variable):
     definition_period = MONTH
 
     def formula_2017_01_01(famille, mois_demande, parameters, mois_courant):
+        # Le paramètre extra_params est déprécié. Ne pas s'inspirer de ce qui suit
         rsa_base_ressources_prestations_familiales = famille('rsa_base_ressources_prestations_familiales', mois_demande, extra_params = [mois_courant])
         rsa_base_ressources_minima_sociaux = famille('rsa_base_ressources_minima_sociaux', mois_demande, extra_params = [mois_courant])
 
@@ -373,6 +374,7 @@ class rsa_enfant_a_charge(Variable):
             m_1 = period.last_month
             m_2 = m_1.last_month
             m_3 = m_2.last_month
+            # Le paramètre extra_params est déprécié. Ne pas s'inspirer de ce qui suit
             ressources = (
                 individu('rsa_base_ressources_individu', period)
                 + individu('rsa_revenu_activite_individu', period, extra_params = [m_1]) / 3
@@ -633,6 +635,7 @@ class rsa_fictif(Variable):
 
         # Le rsa_forfait_logement et le rsa_base_ressources sont prises en compte sur le mois_courant(et pas sur le mois_demande)
         rsa_forfait_logement = famille('rsa_forfait_logement', mois_courant)
+        # Le paramètre extra_params est déprécié. Ne pas s'inspirer de ce qui suit
         rsa_base_ressources = famille('rsa_base_ressources', mois_demande, extra_params = [mois_courant])
 
         montant = rsa_socle - rsa_forfait_logement - rsa_base_ressources
@@ -650,6 +653,7 @@ class rsa_montant(Variable):
 
     def formula_2017_01_01(famille, period, parameters):
         seuil_non_versement = parameters(period).prestations.minima_sociaux.rsa.rsa_nv
+        # Le paramètre extra_params est déprécié. Ne pas s'inspirer de ce qui suit
         rsa = famille('rsa_fictif', period.last_3_months, extra_params = [period], options = [ADD]) / 3
         rsa = rsa * (rsa >= seuil_non_versement)
 

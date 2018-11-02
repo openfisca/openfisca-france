@@ -1,5 +1,13 @@
 # Changelog
 
+### 29.2.6 [#1154](https://github.com/openfisca/openfisca-france/pull/1154)
+
+* Changement mineur.
+* Périodes concernées : toutes
+* Zones impactées : `prestations/minima_sociaux/[rsa,ppa].py`.
+* Détails :
+  - Déprécie explicitement l'usage de extra_params dans France
+
 ### 29.2.5 [#1183](https://github.com/openfisca/openfisca-france/pull/1183)
 
 * Changement mineur.
