@@ -1,5 +1,13 @@
 # Changelog
 
+### 29.2.5 [#1183](https://github.com/openfisca/openfisca-france/pull/1183)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `asi_aspa`.
+* Détails :
+  - Corrige un commentaire avec une référence législative
+
 ### 29.2.4 [#1193](https://github.com/openfisca/openfisca-france/pull/1193)
 
 * Amélioration de calculs existants.
