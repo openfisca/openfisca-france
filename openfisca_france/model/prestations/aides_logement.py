@@ -32,7 +32,7 @@ class TypeEtatLogementFoyer(Enum):
 
 class etat_logement_foyer(Variable):
     value_type = Enum
-    possible_values = TypeEtatLogementFoyer  # defined in model/base.py
+    possible_values = TypeEtatLogementFoyer
     entity = Menage
     default_value = TypeEtatLogementFoyer.non_renseigne
     label = u"Etat du logement crous"
@@ -806,8 +806,7 @@ class aide_logement_montant_brut_avant_degressivite(Variable):
     def formula(famille, period, parameters):
         al = parameters(period).prestations.aides_logement
         statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
-        locataire = (
-                (statut_occupation_logement == TypesStatutOccupationLogement.locataire_hlm)
+        locataire = ((statut_occupation_logement == TypesStatutOccupationLogement.locataire_hlm)
                 + (statut_occupation_logement == TypesStatutOccupationLogement.locataire_vide)
                 + (statut_occupation_logement == TypesStatutOccupationLogement.locataire_meuble)
                 )
@@ -829,8 +828,7 @@ class aide_logement_montant_brut_avant_degressivite(Variable):
     def formula_2018_03_01(famille, period, parameters):
         al = parameters(period).prestations.aides_logement
         statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
-        locataire = (
-                (statut_occupation_logement == TypesStatutOccupationLogement.locataire_hlm)
+        locataire = ((statut_occupation_logement == TypesStatutOccupationLogement.locataire_hlm)
                 + (statut_occupation_logement == TypesStatutOccupationLogement.locataire_vide)
                 + (statut_occupation_logement == TypesStatutOccupationLogement.locataire_meuble)
                 )
