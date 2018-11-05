@@ -2726,7 +2726,7 @@ class rpns_individu(Variable):
         alnp_imps = individu('alnp_imps', period)
         nbnc_impo = individu('nbnc_impo', period)
         nbnc_defi = individu('nbnc_defi', period)
-        alnp_defs = individu('alnp_defs', period)  # noqa F841
+        alnp_defs = individu('alnp_defs', period)
         cbnc_assc = individu('cbnc_assc', period)  # noqa F841
         mncn_impo = individu('mncn_impo', period)
         cncn_bene = individu('cncn_bene', period)
@@ -2803,7 +2803,7 @@ class rpns_individu(Variable):
                     micro.specialbnc.services.min,
                     nacc_meup * (1 - micro.specialbnc.marchandises.taux)
                     )
-                + nacc_defs - aacc_defn
+                + max_(0, nacc_defs - alnp_defs) - aacc_defn
                 )
             )
         # Régime du bénéfice réel ne bénéficiant pas de l'abattement CGA
