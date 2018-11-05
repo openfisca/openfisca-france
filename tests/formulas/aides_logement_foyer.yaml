@@ -6,7 +6,7 @@
     loyer: 200
     zone_apl: zone_2
     statut_occupation_logement: locataire_foyer
-    etat_logement_foyer: logement_rehabilitee
+    etat_logement_foyer: logement_rehabilite
     logement_crous: 1
   output_variables:
     aide_logement_charges: 53.67 # C
@@ -26,7 +26,7 @@
     zone_apl: zone_3
     statut_occupation_logement: locataire_foyer
     logement_chambre: 1
-    etat_logement_foyer: logement_rehabilitee
+    etat_logement_foyer: logement_rehabilite
     boursier: 1
   output_variables:
     aide_logement_charges: 53.67 # C

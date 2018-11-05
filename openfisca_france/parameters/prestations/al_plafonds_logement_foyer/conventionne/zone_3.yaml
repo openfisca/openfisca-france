@@ -1,0 +1,31 @@
+unit: currency
+reference: https://www.legifrance.gouv.fr/eli/arrete/2017/9/28/TERL1725443A/jo/article_6
+
+menage_ou_isole_avec_1_enfant:
+  values:
+    2017-10-01:
+      value: 473.18
+menage_ou_isole_avec_2_enfants:
+  values:
+    2017-10-01:
+      value: 504.40
+menage_ou_isole_avec_3_enfants:
+  values:
+    2017-10-01:
+      value: 535.63
+menage_ou_isole_avec_4_enfants:
+  values:
+    2017-10-01:
+      value: 570.73
+menage_ou_isole_par_enfant_en_plus:
+  values:
+    2017-10-01:
+      value: 59.10
+menage_seul:
+  values:
+    2017-10-01:
+      value: 446.01
+personne_isolee_sans_enfant:
+  values:
+    2017-10-01:
+      value: 383.47
