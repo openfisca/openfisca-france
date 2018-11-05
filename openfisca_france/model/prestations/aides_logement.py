@@ -61,7 +61,7 @@ class TypeEtatLogement(Enum):
 
 class etat_logement(Variable):
     value_type = Enum
-    possible_values = TypeEtatLogement  # defined in model/base.py
+    possible_values = TypeEtatLogement
     entity = Menage
     default_value = TypeEtatLogement.non_renseigne
     label = u"Etat du logement"
