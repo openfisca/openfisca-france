@@ -72,7 +72,7 @@ class etat_logement(Variable):
 
 class aide_logement_date_pret_conventionne(Variable):
     value_type = date
-    default_value = date.min
+    default_value = date.max
     entity = Menage
     label = u"Date de contraction du prêt conventionné "
     definition_period = ETERNITY
@@ -1194,10 +1194,21 @@ class aides_logement_primo_accedant(Variable):
     definition_period = MONTH
 
     def formula(famille, period, parameters):
+        aides_logement_foyer_crous_eligibilite = famille('aides_logement_foyer_crous_eligibilite', period)
+        aides_logement_foyer_personne_agee_eligibilite = famille('aides_logement_foyer_personne_agee_eligibilite', period)
+        forfaitaire = aides_logement_foyer_crous_eligibilite + aides_logement_foyer_personne_agee_eligibilite
+
+        statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
+        accedant = (statut_occupation_logement == TypesStatutOccupationLogement.primo_accedant)
+        locataire_logement_foyer = statut_occupation_logement == TypesStatutOccupationLogement.locataire_foyer
+        logement_conventionne = famille.demandeur.menage('logement_conventionne', period)
+        forfait_charges = accedant + (locataire_logement_foyer * not_(logement_conventionne))
+        print("accedant",accedant)
+
         loyer = famille.demandeur.menage('loyer', period)
         plafond_mensualite = famille('aides_logement_primo_accedant_plafond_mensualite', period)
-        L = min_(loyer, plafond_mensualite)
-        C = famille('aide_logement_charges', period)
+        L = select(forfaitaire, plafond_mensualite, min_(plafond_mensualite, loyer))
+        C = forfait_charges * famille('aide_logement_charges', period)
         K = famille('aides_logement_primo_accedant_k', period)
         Lo = famille('aides_logement_primo_accedant_loyer_minimal', period)
 
@@ -1215,16 +1226,21 @@ class aides_logement_foyer(Variable):
 
     # Temporairement limitée à après 2017 pour pallier des carences de valeurs de paramètres
     def formula_2017_10(famille, period, parameters):
-        loyer = famille.demandeur.menage('loyer', period)
-        plafond_mensualite = famille('aides_logement_foyer_plafond_mensualite', period)
         aides_logement_foyer_crous_eligibilite = famille('aides_logement_foyer_crous_eligibilite', period)
         aides_logement_foyer_personne_agee_eligibilite = famille('aides_logement_foyer_personne_agee_eligibilite', period)
+        forfaitaire = aides_logement_foyer_crous_eligibilite + aides_logement_foyer_personne_agee_eligibilite
+
+        statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
+        accedant = (statut_occupation_logement == TypesStatutOccupationLogement.primo_accedant)
+        locataire_logement_foyer = statut_occupation_logement == TypesStatutOccupationLogement.locataire_foyer
         logement_conventionne = famille.demandeur.menage('logement_conventionne', period)
-        L = (
-            ((aides_logement_foyer_crous_eligibilite + aides_logement_foyer_personne_agee_eligibilite) * plafond_mensualite) +
-            (not_(aides_logement_foyer_crous_eligibilite + aides_logement_foyer_personne_agee_eligibilite) * min_(plafond_mensualite, loyer))
-            )
-        C = not_(logement_conventionne) * famille('aide_logement_charges', period)
+        forfait_charges = accedant + (locataire_logement_foyer * not_(logement_conventionne))
+
+        loyer = famille.demandeur.menage('loyer', period)
+        plafond_mensualite = famille('aides_logement_foyer_plafond_mensualite', period)
+        logement_conventionne = famille.demandeur.menage('logement_conventionne', period)
+        L = select(forfaitaire, plafond_mensualite, min_(plafond_mensualite, loyer))
+        C = forfait_charges * famille('aide_logement_charges', period)
         K = famille('aides_logement_foyer_k', period)
         Lo = famille('aides_logement_foyer_loyer_minimal', period)
 
