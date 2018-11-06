@@ -398,5 +398,6 @@ menages:
     2017-01: primo_accedant
     2017-02: primo_accedant
     2017-03: primo_accedant
+  aide_logement_date_pret_conventionne: 2017-01-01
 output_variables:
     aide_logement: 154

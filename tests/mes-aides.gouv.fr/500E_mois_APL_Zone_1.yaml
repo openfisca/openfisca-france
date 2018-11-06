@@ -312,6 +312,8 @@ menages:
     2017-06: primo_accedant
     2017-07: primo_accedant
     2017-08: primo_accedant
+  aide_logement_date_pret_conventionne: 2017-01-01
 relative_error_margin: 0.05
 output_variables:
+  aides_logement_primo_accedant_eligibilite: True
   aide_logement: 127
