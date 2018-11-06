@@ -1292,6 +1292,20 @@ class aides_logement_foyer_k(Variable):
             )
 
 
+class aides_logement_foyer_nb_part(Variable):
+    value_type = float
+    entity = Famille
+    label = u"Allocation logement pour les logement foyers nombre de part"
+    reference = u"https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006074096&idArticle=LEGIARTI000006899011"
+    definition_period = MONTH
+
+    def formula(famille, period, parameters):
+        logement_conventionne = famille.demandeur.menage('logement_conventionne', period)
+        nb_part_apl = famille('aides_logement_foyer_nb_part_apl', period)
+        nb_part_al = famille('aides_logement_foyer_nb_part_al', period)
+        return where(logement_conventionne, nb_part_apl, nb_part_al)
+
+
 class aides_logement_primo_accedant_nb_part(Variable):
     value_type = float
     entity = Famille
@@ -1315,10 +1329,10 @@ class aides_logement_primo_accedant_nb_part(Variable):
             )
 
 
-class aides_logement_foyer_nb_part(Variable):
+class aides_logement_foyer_nb_part_apl(Variable):
     value_type = float
     entity = Famille
-    label = u"Allocation logement pour les logement foyers nombre de part"
+    label = u"Allocation logement pour les logement foyers en APL nombre de part"
     reference = u"https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006074096&idArticle=LEGIARTI000006899011"
     definition_period = MONTH
 
@@ -1328,15 +1342,35 @@ class aides_logement_foyer_nb_part(Variable):
         al_nb_pac = famille('al_nb_personnes_a_charge', period)
         couple = famille('al_couple', period)
         return (
-            logement_conventionne * (prestations.al_param_accal.n_0_personnes_a_charge.isole_apl1 * not_(couple) * (al_nb_pac == 0) +
-                                prestations.al_param_accal.n_0_personnes_a_charge.menage_apl1 * couple * (al_nb_pac == 0)) +
-            not_(logement_conventionne) * (prestations.al_param_accal.n_0_personnes_a_charge.isole * not_(couple) * (al_nb_pac == 0) +
-                                prestations.al_param_accal.n_0_personnes_a_charge.menage * couple * (al_nb_pac == 0)) +
-            prestations.al_param.parametre_n['1_personne_a_charge'] * (al_nb_pac == 1) +
-            prestations.al_param.parametre_n['2_personnes_a_charge'] * (al_nb_pac == 2) +
-            prestations.al_param.parametre_n['3_personnes_a_charge'] * (al_nb_pac == 3) +
-            prestations.al_param.parametre_n['4_personnes_a_charge'] * (al_nb_pac >= 4) +
-            prestations.al_param.majoration_n_par_personne_a_charge_supplementaire * (al_nb_pac > 4) * (al_nb_pac - 4)
+            prestations.al_param_accal.n_0_personnes_a_charge.isole_apl1 * not_(couple) * (al_nb_pac == 0)
+            + prestations.al_param_accal.n_0_personnes_a_charge.menage_apl1 * couple * (al_nb_pac == 0)
+            + prestations.al_param.parametre_n['1_personne_a_charge'] * (al_nb_pac == 1)
+            + prestations.al_param.parametre_n['2_personnes_a_charge'] * (al_nb_pac == 2)
+            + prestations.al_param.parametre_n['3_personnes_a_charge'] * (al_nb_pac == 3)
+            + prestations.al_param.parametre_n['4_personnes_a_charge'] * (al_nb_pac >= 4)
+            + prestations.al_param.majoration_n_par_personne_a_charge_supplementaire * (al_nb_pac > 4) * (al_nb_pac - 4)
+            )
+
+
+class aides_logement_foyer_nb_part_al(Variable):
+    value_type = float
+    entity = Famille
+    label = u"Allocation logement pour les logement foyers en AL nombre de part"
+    reference = u"https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006074096&idArticle=LEGIARTI000006899011"
+    definition_period = MONTH
+
+    def formula(famille, period, parameters):
+        prestations = parameters(period).prestations
+        al_nb_pac = famille('al_nb_personnes_a_charge', period)
+        couple = famille('al_couple', period)
+        return (
+            prestations.al_param_accal.n_0_personnes_a_charge.isole * not_(couple) * (al_nb_pac == 0)
+            + prestations.al_param_accal.n_0_personnes_a_charge.menage * couple * (al_nb_pac == 0)
+            + prestations.al_param.parametre_n['1_personne_a_charge'] * (al_nb_pac == 1)
+            + prestations.al_param.parametre_n['2_personnes_a_charge'] * (al_nb_pac == 2)
+            + prestations.al_param.parametre_n['3_personnes_a_charge'] * (al_nb_pac == 3)
+            + prestations.al_param.parametre_n['4_personnes_a_charge'] * (al_nb_pac >= 4)
+            + prestations.al_param.majoration_n_par_personne_a_charge_supplementaire * (al_nb_pac > 4) * (al_nb_pac - 4)
             )
 
 
