@@ -1203,7 +1203,6 @@ class aides_logement_primo_accedant(Variable):
         locataire_logement_foyer = statut_occupation_logement == TypesStatutOccupationLogement.locataire_foyer
         logement_conventionne = famille.demandeur.menage('logement_conventionne', period)
         forfait_charges = accedant + (locataire_logement_foyer * not_(logement_conventionne))
-        print("accedant",accedant)
 
         loyer = famille.demandeur.menage('loyer', period)
         plafond_mensualite = famille('aides_logement_primo_accedant_plafond_mensualite', period)
