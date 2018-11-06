@@ -9,7 +9,7 @@ import logging
 import pkg_resources
 import sys
 
-from numpy import ceil, datetime64, fromiter, int16, logical_or as or_, logical_and as and_, logical_not as not_
+from numpy import array, ceil, datetime64, fromiter, int16, logical_or as or_, logical_and as and_, logical_not as not_
 
 import openfisca_france
 from openfisca_core.periods import Instant
@@ -845,45 +845,22 @@ class aide_logement_montant_brut_avant_degressivite(Variable):
                 )
         accedant = (statut_occupation_logement == TypesStatutOccupationLogement.primo_accedant)
         locataire_logement_foyer = statut_occupation_logement == TypesStatutOccupationLogement.locataire_foyer
+
         loyer_retenu = famille('aide_logement_loyer_retenu', period)
         charges_retenues = famille('aide_logement_charges', period)
         participation_personnelle = famille('aide_logement_participation_personnelle', period)
-        montant_locataire = max_(0, loyer_retenu + charges_retenues - participation_personnelle)
         montant_accedants = famille('aides_logement_primo_accedant', period)
         montant_locataire_logement_foyer = famille('montant_locataire_logement_foyer', period)
+
+        montant_locataire = max_(0, loyer_retenu + charges_retenues - participation_personnelle)
         montant = select([locataire, accedant, locataire_logement_foyer],
                          [montant_locataire, montant_accedants, montant_locataire_logement_foyer])
 
-        montant = montant * (montant >= al.al_min.montant_min_mensuel.montant_min_apl_al)  # Montant minimal de versement
+        type_aide = array(['non_apl','apl'])[1 * (statut_occupation_logement == TypesStatutOccupationLogement.locataire_hlm)]
+        seuil_versement = al.al_min.montant_min_mensuel.montant_min_apl_al[type_aide]
+        minimum_atteint = montant >= seuil_versement
 
-        return montant
-
-    def formula_2018_03_01(famille, period, parameters):
-        al = parameters(period).prestations.aides_logement
-        statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
-        locataire = ((statut_occupation_logement == TypesStatutOccupationLogement.locataire_hlm)
-                + (statut_occupation_logement == TypesStatutOccupationLogement.locataire_vide)
-                + (statut_occupation_logement == TypesStatutOccupationLogement.locataire_meuble)
-                )
-
-        accedant = (statut_occupation_logement == TypesStatutOccupationLogement.primo_accedant)
-        locataire_logement_foyer = statut_occupation_logement == TypesStatutOccupationLogement.locataire_foyer
-
-        loyer_retenu = famille('aide_logement_loyer_retenu', period)
-        charges_retenues = famille('aide_logement_charges', period)
-        participation_personnelle = famille('aide_logement_participation_personnelle', period)
-
-        montant_locataire = max_(0, loyer_retenu + charges_retenues - participation_personnelle)
-        montant_accedants = famille('aides_logement_primo_accedant', period)
-        montant_locataire_logement_foyer = famille('montant_locataire_logement_foyer', period)
-        montant = select([locataire, accedant, locataire_logement_foyer], [montant_locataire, montant_accedants, montant_locataire_logement_foyer])
-
-        # Montant minimal de versement il s'applique sur l'ALS et l'ALF et non pas sur l'APL
-        locataire_hlm = statut_occupation_logement == TypesStatutOccupationLogement.locataire_hlm
-        minimum_atteint = montant >= al.al_min.montant_min_mensuel.montant_min_apl_al
-        montant = (montant * minimum_atteint * not_(locataire_hlm)) + (montant * locataire_hlm)
-
-        return montant
+        return minimum_atteint * montant
 
 
 class aide_logement_montant_brut(Variable):
