@@ -1388,10 +1388,8 @@ class aides_logement_primo_accedant_plafond_mensualite(Variable):
     definition_period = MONTH
 
     def formula(famille, period, parameters):
-        al_plaf_acc = parameters(period).prestations.al_plafonds_accession
         zone_apl = famille.demandeur.menage('zone_apl', period)
-
-        plafonds = al_plaf_acc[zone_apl]
+        plafonds = parameters(period).prestations.al_plafonds_accession[zone_apl]
 
         al_nb_pac = famille('al_nb_personnes_a_charge', period)
         couple = famille('al_couple', period)
@@ -1405,6 +1403,32 @@ class aides_logement_primo_accedant_plafond_mensualite(Variable):
             + plafonds.menage_ou_isole_avec_4_enfants * (al_nb_pac == 4)
             + plafonds.menage_ou_isole_avec_5_enfants * (al_nb_pac >= 5)
             + plafonds.menage_ou_isole_par_enfant_en_plus * (al_nb_pac > 5) * (al_nb_pac - 5)
+            )
+
+
+class aides_logement_foyer_plafond(Variable):
+
+    value_type = float
+    entity = Famille
+    label = u"Allocation logement pour les logements foyers plafond"
+    reference = u"https://www.legifrance.gouv.fr/eli/arrete/2017/9/28/TERL1725443A/jo/article_11"
+    definition_period = MONTH
+
+    def formula(famille, period, parameters):
+        zone_apl = famille.demandeur.menage('zone_apl', period)
+        plafonds = parameters(period).prestations.al_plafonds_logement_foyer.conventionne[zone_apl]
+
+        al_nb_pac = famille('al_nb_personnes_a_charge', period)
+        couple = famille('al_couple', period)
+
+        return (
+            plafonds.personne_isolee_sans_enfant * not_(couple) * (al_nb_pac == 0) +
+            plafonds.menage_seul * couple * (al_nb_pac == 0) +
+            plafonds.menage_ou_isole_avec_1_enfant * (al_nb_pac == 1) +
+            plafonds.menage_ou_isole_avec_2_enfants * (al_nb_pac == 2) +
+            plafonds.menage_ou_isole_avec_3_enfants * (al_nb_pac == 3) +
+            plafonds.menage_ou_isole_avec_4_enfants * (al_nb_pac == 4) +
+            plafonds.menage_ou_isole_par_enfant_en_plus * (al_nb_pac > 4) * (al_nb_pac - 4)
             )
 
 
@@ -1464,31 +1488,6 @@ class aides_logement_foyer_crous_plafond(Variable):
                 (etat_logement_foyer == TypeEtatLogementFoyer.logement_rehabilite) *
                 (al_crous.rehabilitee.personne_isolee * not_(couple) + al_crous.rehabilitee.couple * couple)
                 )
-
-
-class aides_logement_foyer_plafond(Variable):
-
-    value_type = float
-    entity = Famille
-    label = u"Allocation logement pour les logements foyers plafond"
-    reference = u"https://www.legifrance.gouv.fr/eli/arrete/2017/9/28/TERL1725443A/jo/article_11"
-    definition_period = MONTH
-
-    def formula(famille, period, parameters):
-        zone_apl = famille.demandeur.menage('zone_apl', period)
-        plafonds = parameters(period).prestations.al_plafonds_logement_foyer.conventionne[zone_apl]
-        al_nb_pac = famille('al_nb_personnes_a_charge', period)
-        couple = famille('al_couple', period)
-
-        return (
-            plafonds.personne_isolee_sans_enfant * not_(couple) * (al_nb_pac == 0) +
-            plafonds.menage_seul * couple * (al_nb_pac == 0) +
-            plafonds.menage_ou_isole_avec_1_enfant * (al_nb_pac == 1) +
-            plafonds.menage_ou_isole_avec_2_enfants * (al_nb_pac == 2) +
-            plafonds.menage_ou_isole_avec_3_enfants * (al_nb_pac == 3) +
-            plafonds.menage_ou_isole_avec_4_enfants * (al_nb_pac == 4) +
-            plafonds.menage_ou_isole_par_enfant_en_plus * (al_nb_pac > 4) * (al_nb_pac - 4)
-            )
 
 
 class aides_logement_foyer_personne_agee_plafond(Variable):
