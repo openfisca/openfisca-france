@@ -1213,7 +1213,8 @@ class aides_logement_foyer(Variable):
                  ]
     definition_period = MONTH
 
-    def formula(famille, period, parameters):
+    # Temporairement limitée à après 2017 pour pallier des carences de valeurs de paramètres
+    def formula_2017_10(famille, period, parameters):
         loyer = famille.demandeur.menage('loyer', period)
         plafond_mensualite = famille('aides_logement_foyer_plafond_mensualite', period)
         aides_logement_foyer_crous_eligibilite = famille('aides_logement_foyer_crous_eligibilite', period)
