@@ -849,8 +849,10 @@ class aide_logement_montant_brut_avant_degressivite(Variable):
         loyer_retenu = famille('aide_logement_loyer_retenu', period)
         charges_retenues = famille('aide_logement_charges', period)
         participation_personnelle = famille('aide_logement_participation_personnelle', period)
-        montant_accedants = famille('aides_logement_primo_accedant', period)
-        montant_locataire_logement_foyer = famille('montant_locataire_logement_foyer', period)
+
+        aides_logement_primo_accedant_eligibilite = famille.demandeur.menage('aides_logement_primo_accedant_eligibilite', period)
+        montant_accedants = aides_logement_primo_accedant_eligibilite * famille('aides_logement_primo_accedant', period)
+        montant_locataire_logement_foyer = famille('aides_logement_foyer', period)
 
         montant_locataire = max_(0, loyer_retenu + charges_retenues - participation_personnelle)
         montant = select([locataire, accedant, locataire_logement_foyer],
@@ -1191,8 +1193,7 @@ class aides_logement_primo_accedant(Variable):
     reference = u"https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006737341&dateTexte=&categorieLien=cid"
     definition_period = MONTH
 
-    def formula_2007_07(famille, period, parameters):
-        aides_logement_primo_accedant_eligibilite = famille.demandeur.menage('aides_logement_primo_accedant_eligibilite', period)
+    def formula(famille, period, parameters):
         loyer = famille.demandeur.menage('loyer', period)
         plafond_mensualite = famille('aides_logement_primo_accedant_plafond_mensualite', period)
         L = min_(loyer, plafond_mensualite)
@@ -1200,10 +1201,10 @@ class aides_logement_primo_accedant(Variable):
         K = famille('aides_logement_primo_accedant_k', period)
         Lo = famille('aides_logement_primo_accedant_loyer_minimal', period)
 
-        return aides_logement_primo_accedant_eligibilite * ((L > 0) * K * max_(0, (L + C - Lo)))
+        return (L > 0) * K * max_(0, (L + C - Lo))
 
 
-class montant_locataire_logement_foyer(Variable):
+class aides_logement_foyer(Variable):
     value_type = float
     entity = Famille
     label = u"Allocation logement pour les logements foyer"
@@ -1212,24 +1213,21 @@ class montant_locataire_logement_foyer(Variable):
                  ]
     definition_period = MONTH
 
-    def formula_2017_10(famille, period, parameters):
+    def formula(famille, period, parameters):
+        loyer = famille.demandeur.menage('loyer', period)
+        plafond_mensualite = famille('aides_logement_foyer_plafond_mensualite', period)
         aides_logement_foyer_crous_eligibilite = famille('aides_logement_foyer_crous_eligibilite', period)
         aides_logement_foyer_personne_agee_eligibilite = famille('aides_logement_foyer_personne_agee_eligibilite', period)
         logement_conventionne = famille.demandeur.menage('logement_conventionne', period)
-        loyer = famille.demandeur.menage('loyer', period)
-        plafond_mensualite = famille('aides_logement_foyer_plafond_mensualite', period)
         L = (
             ((aides_logement_foyer_crous_eligibilite + aides_logement_foyer_personne_agee_eligibilite) * plafond_mensualite) +
             (not_(aides_logement_foyer_crous_eligibilite + aides_logement_foyer_personne_agee_eligibilite) * min_(plafond_mensualite, loyer))
             )
-        C = famille('aide_logement_charges', period)
+        C = not_(logement_conventionne) * famille('aide_logement_charges', period)
         K = famille('aides_logement_foyer_k', period)
         Lo = famille('aides_logement_foyer_loyer_minimal', period)
 
-        return (
-            ((K * max_(0, (L - Lo))) * logement_conventionne) +
-            ((K * max_(0, (L + C - Lo))) * not_(logement_conventionne))
-            )
+        return (L > 0) * K * max_(0, (L + C - Lo))
 
 
 class aides_logement_primo_accedant_k(Variable):
@@ -1461,9 +1459,8 @@ class aides_logement_foyer_plafond(Variable):
     definition_period = MONTH
 
     def formula(famille, period, parameters):
-        al_plaf_logement_foyer = parameters(period).prestations.al_plafonds_logement_foyer
         zone_apl = famille.demandeur.menage('zone_apl', period)
-        plafonds = al_plaf_logement_foyer.conventionne[zone_apl]
+        plafonds = parameters(period).prestations.al_plafonds_logement_foyer.conventionne[zone_apl]
         al_nb_pac = famille('al_nb_personnes_a_charge', period)
         couple = famille('al_couple', period)
 

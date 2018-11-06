@@ -13,7 +13,7 @@
     aides_logement_foyer_k: 0.67 # K
     aides_logement_foyer_plafond_mensualite: 168.39 # L
     aides_logement_foyer_loyer_minimal: 80.90 # L0
-    montant_locataire_logement_foyer: 94.57 # ALS = k*(L+C-L0)
+    aides_logement_foyer: 94.57 # ALS = k*(L+C-L0)
     aide_logement: 89.44
 
 - name: "Cas 2: Étudiant réside dans une chambre réhabilitée en logement foyer géré par le CROUS, zone 3"
@@ -33,7 +33,7 @@
     aides_logement_foyer_k: 0.7 # K
     aides_logement_foyer_plafond_mensualite: 168.39 # L
     aides_logement_foyer_loyer_minimal: 53.68 # L0
-    montant_locataire_logement_foyer: 117.86 # ALS = k*(L+C-L0)
+    aides_logement_foyer: 117.86 # ALS = k*(L+C-L0)
     aide_logement: 112.56
 
 - name: "Cas 3: Étudiant réside dans une chambre conventionnée en logement foyer, zone 3"
