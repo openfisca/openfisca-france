@@ -1193,7 +1193,7 @@ class aides_logement_primo_accedant(Variable):
     reference = u"https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006737341&dateTexte=&categorieLien=cid"
     definition_period = MONTH
 
-    def formula(famille, period, parameters):
+    def formula_2007_07(famille, period, parameters):
         aides_logement_foyer_crous_eligibilite = famille('aides_logement_foyer_crous_eligibilite', period)
         aides_logement_foyer_personne_agee_eligibilite = famille('aides_logement_foyer_personne_agee_eligibilite', period)
         forfaitaire = aides_logement_foyer_crous_eligibilite + aides_logement_foyer_personne_agee_eligibilite
