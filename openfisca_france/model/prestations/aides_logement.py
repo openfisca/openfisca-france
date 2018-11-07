@@ -1338,6 +1338,15 @@ class aides_logement_foyer_nb_part(Variable):
         return where(logement_conventionne, nb_part_apl, nb_part_al)
 
 
+class aides_logement_categorie(Variable):
+    value_type = str
+    entity = Famille
+    definition_period = MONTH
+
+    def formula(famille, period, parameters):
+        categorie_apl = famille.demandeur.menage('logement_conventionne', period)
+        return array(['al','apl'])[1 * categorie_apl]
+
 class aides_logement_primo_accedant_nb_part(Variable):
     value_type = float
     entity = Famille
@@ -1346,18 +1355,20 @@ class aides_logement_primo_accedant_nb_part(Variable):
     definition_period = MONTH
 
     def formula(famille, period, parameters):
-        prestations = parameters(period).prestations
         al_nb_pac = famille('al_nb_personnes_a_charge', period)
         couple = famille('al_couple', period)
 
+        secteur = famille('aides_logement_categorie', period)
+        params = parameters(period).prestations.al_param.parametre_n[secteur]
+
         return (
-            prestations.al_param_accal.n_0_personnes_a_charge.isole * not_(couple) * (al_nb_pac == 0)
-            + prestations.al_param_accal.n_0_personnes_a_charge.menage * couple * (al_nb_pac == 0)
-            + prestations.al_param.parametre_n['1_personne_a_charge'] * (al_nb_pac == 1)
-            + prestations.al_param.parametre_n['2_personnes_a_charge'] * (al_nb_pac == 2)
-            + prestations.al_param.parametre_n['3_personnes_a_charge'] * (al_nb_pac == 3)
-            + prestations.al_param.parametre_n['4_personnes_a_charge'] * (al_nb_pac >= 4)
-            + prestations.al_param.majoration_n_par_personne_a_charge_supplementaire * (al_nb_pac > 4) * (al_nb_pac - 4)
+            params['isole_0_personne_a_charge'] * not_(couple) * (al_nb_pac == 0)
+            + params['menage_0_personnes_a_charge'] * couple * (al_nb_pac == 0)
+            + params['1_personne_a_charge'] * (al_nb_pac == 1)
+            + params['2_personnes_a_charge'] * (al_nb_pac == 2)
+            + params['3_personnes_a_charge'] * (al_nb_pac == 3)
+            + params['4_personnes_a_charge'] * (al_nb_pac >= 4)
+            + params['majoration_n_par_personne_a_charge_supplementaire'] * (al_nb_pac > 4) * (al_nb_pac - 4)
             )
 
 
@@ -1369,18 +1380,20 @@ class aides_logement_foyer_nb_part_apl(Variable):
     definition_period = MONTH
 
     def formula(famille, period, parameters):
-        prestations = parameters(period).prestations
-        logement_conventionne = famille.demandeur.menage('logement_conventionne', period)
         al_nb_pac = famille('al_nb_personnes_a_charge', period)
         couple = famille('al_couple', period)
+
+        secteur = famille('aides_logement_categorie', period)
+        params = parameters(period).prestations.al_param.parametre_n[secteur]
+
         return (
-            prestations.al_param_accal.n_0_personnes_a_charge.isole_apl1 * not_(couple) * (al_nb_pac == 0)
-            + prestations.al_param_accal.n_0_personnes_a_charge.menage_apl1 * couple * (al_nb_pac == 0)
-            + prestations.al_param.parametre_n['1_personne_a_charge'] * (al_nb_pac == 1)
-            + prestations.al_param.parametre_n['2_personnes_a_charge'] * (al_nb_pac == 2)
-            + prestations.al_param.parametre_n['3_personnes_a_charge'] * (al_nb_pac == 3)
-            + prestations.al_param.parametre_n['4_personnes_a_charge'] * (al_nb_pac >= 4)
-            + prestations.al_param.majoration_n_par_personne_a_charge_supplementaire * (al_nb_pac > 4) * (al_nb_pac - 4)
+            params['isole_0_personne_a_charge'] * not_(couple) * (al_nb_pac == 0)
+            + params['menage_0_personnes_a_charge'] * couple * (al_nb_pac == 0)
+            + params['1_personne_a_charge'] * (al_nb_pac == 1)
+            + params['2_personnes_a_charge'] * (al_nb_pac == 2)
+            + params['3_personnes_a_charge'] * (al_nb_pac == 3)
+            + params['4_personnes_a_charge'] * (al_nb_pac >= 4)
+            + params['majoration_n_par_personne_a_charge_supplementaire'] * (al_nb_pac > 4) * (al_nb_pac - 4)
             )
 
 
@@ -1392,17 +1405,20 @@ class aides_logement_foyer_nb_part_al(Variable):
     definition_period = MONTH
 
     def formula(famille, period, parameters):
-        prestations = parameters(period).prestations
         al_nb_pac = famille('al_nb_personnes_a_charge', period)
         couple = famille('al_couple', period)
+
+        secteur = famille('aides_logement_categorie', period)
+        params = parameters(period).prestations.al_param.parametre_n[secteur]
+
         return (
-            prestations.al_param_accal.n_0_personnes_a_charge.isole * not_(couple) * (al_nb_pac == 0)
-            + prestations.al_param_accal.n_0_personnes_a_charge.menage * couple * (al_nb_pac == 0)
-            + prestations.al_param.parametre_n['1_personne_a_charge'] * (al_nb_pac == 1)
-            + prestations.al_param.parametre_n['2_personnes_a_charge'] * (al_nb_pac == 2)
-            + prestations.al_param.parametre_n['3_personnes_a_charge'] * (al_nb_pac == 3)
-            + prestations.al_param.parametre_n['4_personnes_a_charge'] * (al_nb_pac >= 4)
-            + prestations.al_param.majoration_n_par_personne_a_charge_supplementaire * (al_nb_pac > 4) * (al_nb_pac - 4)
+            params['isole_0_personne_a_charge'] * not_(couple) * (al_nb_pac == 0)
+            + params['menage_0_personnes_a_charge'] * couple * (al_nb_pac == 0)
+            + params['1_personne_a_charge'] * (al_nb_pac == 1)
+            + params['2_personnes_a_charge'] * (al_nb_pac == 2)
+            + params['3_personnes_a_charge'] * (al_nb_pac == 3)
+            + params['4_personnes_a_charge'] * (al_nb_pac >= 4)
+            + params['majoration_n_par_personne_a_charge_supplementaire'] * (al_nb_pac > 4) * (al_nb_pac - 4)
             )
 
 
