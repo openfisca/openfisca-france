@@ -1246,6 +1246,21 @@ class aides_logement_foyer(Variable):
         return (L > 0) * K * max_(0, (L + C - Lo))
 
 
+class aides_logement_foyer_k(Variable):
+    value_type = float
+    entity = Famille
+    label = u"Allocation logement pour les logements foyers loyer minimal"
+    reference = [u"https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006074096&idArticle=LEGIARTI000006898932&dateTexte=&categorieLien=cid",
+                 u"https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006737341&dateTexte=&categorieLien=cid"]
+    definition_period = MONTH
+
+    def formula(famille, period, parameters):
+        logement_conventionne = famille.demandeur.menage('logement_conventionne', period)
+        coef_k_apl = famille('aides_logement_foyer_k_apl', period)
+        coef_k_al = famille('aides_logement_foyer_k_al', period)
+        return where(logement_conventionne, coef_k_apl, coef_k_al)
+
+
 class aides_logement_primo_accedant_k(Variable):
     value_type = float
     entity = Famille
@@ -1254,15 +1269,39 @@ class aides_logement_primo_accedant_k(Variable):
     definition_period = MONTH
 
     def formula(famille, period, parameters):
-        coef_k = parameters(period).prestations.al_param_accal.constante_du_coefficient_k
-        multi_n = parameters(period).prestations.al_param_accal.multiplicateur_de_n
+        param = parameters(period).prestations.al_param_accal
+
+        coef_k = param.constante_du_coefficient_k
+        multi_n = param.multiplicateur_de_n
+
         R = famille('aides_logement_primo_accedant_ressources', period)
         N = famille('aides_logement_primo_accedant_nb_part', period)
 
         return coef_k - (R / (multi_n * N))
 
 
-class aides_logement_foyer_k(Variable):
+class aides_logement_foyer_k_al(Variable):
+    value_type = float
+    entity = Famille
+    label = u"Allocation logement pour les logements foyers loyer minimal"
+    reference = [u"https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006074096&idArticle=LEGIARTI000006898932&dateTexte=&categorieLien=cid",
+                 u"https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006737341&dateTexte=&categorieLien=cid"]
+    definition_period = MONTH
+
+    def formula(famille, period, parameters):
+        param = parameters(period).prestations.al_param_accal
+        param2 = parameters(period).prestations.al_param
+
+        coef_k = param.constante_du_coefficient_k
+        multi_n = param2.multiplicateur_de_n_dans_la_formule_de_k
+
+        R = famille('aide_logement_base_ressources', period)
+        N = famille('aides_logement_foyer_nb_part', period)
+
+        return coef_k - (R / (multi_n * N))
+
+
+class aides_logement_foyer_k_apl(Variable):
     value_type = float
     entity = Famille
     label = u"Allocation logement pour les logements foyers loyer minimal"
@@ -1273,23 +1312,16 @@ class aides_logement_foyer_k(Variable):
     def formula(famille, period, parameters):
         param = parameters(period).prestations.al_param_accal
         param1 = parameters(period).prestations.al_param_accapl.multiplicateur_de_n
-        param2 = parameters(period).prestations.al_param
 
-        coef_k_apl1 = param.constante_du_coefficient_k_apl1
-        multi_n_apl1 = param1.dans_la_formule_de_kl
         r_apl1 = param1.dans_la_formule_de_kl_numerateur
 
-        coef_k = param.constante_du_coefficient_k
-        multi_n = param2.multiplicateur_de_n_dans_la_formule_de_k
+        coef_k = param.constante_du_coefficient_k_apl1
+        multi_n = param1.dans_la_formule_de_kl
 
-        logement_conventionne = famille.demandeur.menage('logement_conventionne', period)
         R = famille('aide_logement_base_ressources', period)
         N = famille('aides_logement_foyer_nb_part', period)
 
-        return (
-            (coef_k - (R / (multi_n * N))) * not_(logement_conventionne) +
-            (coef_k_apl1 - (((R - (r_apl1 * N))) / (multi_n_apl1 * N))) * logement_conventionne
-            )
+        return coef_k - (((R - (r_apl1 * N))) / (multi_n * N))
 
 
 class aides_logement_foyer_nb_part(Variable):
