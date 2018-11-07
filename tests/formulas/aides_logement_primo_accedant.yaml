@@ -18,7 +18,7 @@
   output_variables:
     zone_apl: "zone_3"
     aide_logement_charges: 53.27
-    aides_logement_primo_accedant_nb_part: 1.2
+    aides_logement_nb_part: 1.2
     aides_logement_primo_accedant_k: 0.5839
     aides_logement_primo_accedant_plafond_mensualite: 256.14
 

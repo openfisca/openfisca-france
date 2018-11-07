@@ -13,7 +13,7 @@ cache_blacklist = set([
     'aide_logement_montant_brut_avant_degressivite',
     'aides_logement_primo_accedant',
     'aides_logement_primo_accedant_k',
-    'aides_logement_primo_accedant_nb_part',
+    'aides_logement_nb_part',
     'aides_logement_primo_accedant_loyer_minimal',
     'aides_logement_primo_accedant_plafond_mensualite',
     'aides_logement_primo_accedant_ressources',

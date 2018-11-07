@@ -1275,7 +1275,7 @@ class aides_logement_primo_accedant_k(Variable):
         multi_n = param.multiplicateur_de_n
 
         R = famille('aides_logement_primo_accedant_ressources', period)
-        N = famille('aides_logement_primo_accedant_nb_part', period)
+        N = famille('aides_logement_nb_part', period)
 
         return coef_k - (R / (multi_n * N))
 
@@ -1296,7 +1296,7 @@ class aides_logement_foyer_k_al(Variable):
         multi_n = param2.multiplicateur_de_n_dans_la_formule_de_k
 
         R = famille('aide_logement_base_ressources', period)
-        N = famille('aides_logement_foyer_nb_part', period)
+        N = famille('aides_logement_nb_part', period)
 
         return coef_k - (R / (multi_n * N))
 
@@ -1319,23 +1319,9 @@ class aides_logement_foyer_k_apl(Variable):
         multi_n = param1.dans_la_formule_de_kl
 
         R = famille('aide_logement_base_ressources', period)
-        N = famille('aides_logement_foyer_nb_part', period)
+        N = famille('aides_logement_nb_part', period)
 
         return coef_k - (((R - (r_apl1 * N))) / (multi_n * N))
-
-
-class aides_logement_foyer_nb_part(Variable):
-    value_type = float
-    entity = Famille
-    label = u"Allocation logement pour les logement foyers nombre de part"
-    reference = u"https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006074096&idArticle=LEGIARTI000006899011"
-    definition_period = MONTH
-
-    def formula(famille, period, parameters):
-        logement_conventionne = famille.demandeur.menage('logement_conventionne', period)
-        nb_part_apl = famille('aides_logement_foyer_nb_part_apl', period)
-        nb_part_al = famille('aides_logement_foyer_nb_part_al', period)
-        return where(logement_conventionne, nb_part_apl, nb_part_al)
 
 
 class aides_logement_categorie(Variable):
@@ -1347,10 +1333,11 @@ class aides_logement_categorie(Variable):
         categorie_apl = famille.demandeur.menage('logement_conventionne', period)
         return array(['al','apl'])[1 * categorie_apl]
 
-class aides_logement_primo_accedant_nb_part(Variable):
+
+class aides_logement_nb_part(Variable):
     value_type = float
     entity = Famille
-    label = u"Allocation logement pour les primo-accédants nombre de part"
+    label = u"Nombre de parts (paramètre N) pour l'aide au logement"
     reference = u"https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006737341&dateTexte=&categorieLien=cid"
     definition_period = MONTH
 
@@ -1358,58 +1345,8 @@ class aides_logement_primo_accedant_nb_part(Variable):
         al_nb_pac = famille('al_nb_personnes_a_charge', period)
         couple = famille('al_couple', period)
 
-        secteur = famille('aides_logement_categorie', period)
-        params = parameters(period).prestations.al_param.parametre_n[secteur]
-
-        return (
-            params['isole_0_personne_a_charge'] * not_(couple) * (al_nb_pac == 0)
-            + params['menage_0_personnes_a_charge'] * couple * (al_nb_pac == 0)
-            + params['1_personne_a_charge'] * (al_nb_pac == 1)
-            + params['2_personnes_a_charge'] * (al_nb_pac == 2)
-            + params['3_personnes_a_charge'] * (al_nb_pac == 3)
-            + params['4_personnes_a_charge'] * (al_nb_pac >= 4)
-            + params['majoration_n_par_personne_a_charge_supplementaire'] * (al_nb_pac > 4) * (al_nb_pac - 4)
-            )
-
-
-class aides_logement_foyer_nb_part_apl(Variable):
-    value_type = float
-    entity = Famille
-    label = u"Allocation logement pour les logement foyers en APL nombre de part"
-    reference = u"https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006074096&idArticle=LEGIARTI000006899011"
-    definition_period = MONTH
-
-    def formula(famille, period, parameters):
-        al_nb_pac = famille('al_nb_personnes_a_charge', period)
-        couple = famille('al_couple', period)
-
-        secteur = famille('aides_logement_categorie', period)
-        params = parameters(period).prestations.al_param.parametre_n[secteur]
-
-        return (
-            params['isole_0_personne_a_charge'] * not_(couple) * (al_nb_pac == 0)
-            + params['menage_0_personnes_a_charge'] * couple * (al_nb_pac == 0)
-            + params['1_personne_a_charge'] * (al_nb_pac == 1)
-            + params['2_personnes_a_charge'] * (al_nb_pac == 2)
-            + params['3_personnes_a_charge'] * (al_nb_pac == 3)
-            + params['4_personnes_a_charge'] * (al_nb_pac >= 4)
-            + params['majoration_n_par_personne_a_charge_supplementaire'] * (al_nb_pac > 4) * (al_nb_pac - 4)
-            )
-
-
-class aides_logement_foyer_nb_part_al(Variable):
-    value_type = float
-    entity = Famille
-    label = u"Allocation logement pour les logement foyers en AL nombre de part"
-    reference = u"https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006074096&idArticle=LEGIARTI000006899011"
-    definition_period = MONTH
-
-    def formula(famille, period, parameters):
-        al_nb_pac = famille('al_nb_personnes_a_charge', period)
-        couple = famille('al_couple', period)
-
-        secteur = famille('aides_logement_categorie', period)
-        params = parameters(period).prestations.al_param.parametre_n[secteur]
+        categorie = famille('aides_logement_categorie', period)
+        params = parameters(period).prestations.al_param.parametre_n[categorie]
 
         return (
             params['isole_0_personne_a_charge'] * not_(couple) * (al_nb_pac == 0)
@@ -1444,7 +1381,7 @@ class aides_logement_primo_accedant_loyer_minimal(Variable):
     definition_period = MONTH
 
     def formula(famille, period, parameters):
-        N = famille('aides_logement_primo_accedant_nb_part', period)
+        N = famille('aides_logement_nb_part', period)
 
         prestations = parameters(period).prestations
         bareme = prestations.al_param_accal.bareme_loyer_minimum_lo
@@ -1463,7 +1400,7 @@ class aides_logement_foyer_loyer_minimal_apl(Variable):
     definition_period = MONTH
 
     def formula(famille, period, parameters):
-        N = famille('aides_logement_foyer_nb_part', period)
+        N = famille('aides_logement_nb_part', period)
 
         prestations = parameters(period).prestations
         bareme = prestations.al_param_accal.bareme_loyer_minimum_lo_apl1
@@ -1481,7 +1418,7 @@ class aides_logement_foyer_loyer_minimal_al(Variable):
     definition_period = MONTH
 
     def formula(famille, period, parameters):
-        N = famille('aides_logement_foyer_nb_part', period)
+        N = famille('aides_logement_nb_part', period)
 
         prestations = parameters(period).prestations
         bareme = prestations.al_param_accal.bareme_loyer_minimum_lo
