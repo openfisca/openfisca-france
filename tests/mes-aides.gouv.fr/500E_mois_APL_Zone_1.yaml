@@ -315,5 +315,5 @@ menages:
   aide_logement_date_pret_conventionne: 2017-01-01
 relative_error_margin: 0.05
 output_variables:
-  aides_logement_primo_accedant_eligibilite: True
+  aides_logement_primo_accedant_eligibilite: true
   aide_logement: 127

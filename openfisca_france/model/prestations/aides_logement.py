@@ -106,7 +106,6 @@ class aides_logement_primo_accedant_eligibilite(Variable):
             )
 
 
-
 class aides_logement_foyer_crous_eligibilite(Variable):
     value_type = bool
     entity = Famille
@@ -841,9 +840,10 @@ class aide_logement_montant_brut_avant_degressivite(Variable):
         statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
         locataire = ((statut_occupation_logement == TypesStatutOccupationLogement.locataire_hlm)
                 + (statut_occupation_logement == TypesStatutOccupationLogement.locataire_vide)
-                + (statut_occupation_logement == TypesStatutOccupationLogement.locataire_meuble)
-                )
+                + (statut_occupation_logement == TypesStatutOccupationLogement.locataire_meuble))
+
         accedant = (statut_occupation_logement == TypesStatutOccupationLogement.primo_accedant)
+
         locataire_logement_foyer = statut_occupation_logement == TypesStatutOccupationLogement.locataire_foyer
 
         loyer_retenu = famille('aide_logement_loyer_retenu', period)
@@ -858,7 +858,7 @@ class aide_logement_montant_brut_avant_degressivite(Variable):
         montant = select([locataire, accedant, locataire_logement_foyer],
                          [montant_locataire, montant_accedants, montant_locataire_logement_foyer])
 
-        type_aide = array(['non_apl','apl'])[1 * (statut_occupation_logement == TypesStatutOccupationLogement.locataire_hlm)]
+        type_aide = array(['non_apl', 'apl'])[1 * (statut_occupation_logement == TypesStatutOccupationLogement.locataire_hlm)]
         seuil_versement = al.al_min.montant_min_mensuel.montant_min_apl_al[type_aide]
         minimum_atteint = montant >= seuil_versement
 
@@ -1331,7 +1331,7 @@ class aides_logement_categorie(Variable):
 
     def formula(famille, period, parameters):
         categorie_apl = famille.demandeur.menage('logement_conventionne', period)
-        return array(['al','apl'])[1 * categorie_apl]
+        return array(['al', 'apl'])[1 * categorie_apl]
 
 
 class aides_logement_nb_part(Variable):
@@ -1368,8 +1368,8 @@ class aides_logement_foyer_loyer_minimal(Variable):
 
     def formula(famille, period, parameters):
         logement_conventionne = famille.demandeur.menage('logement_conventionne', period)
-        foyer_apl = famille('aides_logement_foyer_loyer_minimal_apl',period)
-        foyer_al = famille('aides_logement_foyer_loyer_minimal_al',period)
+        foyer_apl = famille('aides_logement_foyer_loyer_minimal_apl', period)
+        foyer_al = famille('aides_logement_foyer_loyer_minimal_al', period)
         return where(logement_conventionne, foyer_apl, foyer_al)
 
 
@@ -1409,6 +1409,7 @@ class aides_logement_foyer_loyer_minimal_apl(Variable):
         baseRessource = famille('aide_logement_base_ressources', period)
 
         return (bareme.calc(baseRessource / N) * N + majoration_loyer) / 12
+
 
 class aides_logement_foyer_loyer_minimal_al(Variable):
     value_type = float

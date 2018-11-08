@@ -30,7 +30,7 @@
     loyer: 500
     depcom: 82121
   output_variables:
-    aides_logement_primo_accedant_eligibilite: False
+    aides_logement_primo_accedant_eligibilite: false
 
 - name: "Aides logements - Primo-accédant avec 10000 euros par mois"
   period: 2016-09
