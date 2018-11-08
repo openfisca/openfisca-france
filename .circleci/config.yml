@@ -39,7 +39,7 @@ jobs:
       - run:
           name: Run tests
           command: |
-            pytest `circleci tests glob "tests/**/*.py" | circleci tests split`
+            pytest `circleci tests glob "tests/**/[^_]*.py" | circleci tests split`
             openfisca-run-test `circleci tests glob "tests/**/*.{yaml,yml}" | circleci tests split`
 
   build_python3:
@@ -79,7 +79,7 @@ jobs:
       - run:
           name: Run tests
           command: |
-            pytest `circleci tests glob "tests/**/*.py" | circleci tests split`
+            pytest `circleci tests glob "tests/**/[^_]*.py" | circleci tests split`
             openfisca-run-test `circleci tests glob "tests/**/*.{yaml,yml}" | circleci tests split`
 
   lint_yaml_files:

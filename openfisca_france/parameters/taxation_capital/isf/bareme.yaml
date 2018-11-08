@@ -287,4 +287,6 @@ brackets:
       value: null
 description: Impôt de solidarité
 reference: https://www.ipp.eu/outils/baremes-ipp/
-unit: currency
+metadata:
+  threshold_unit: currency
+  rate_unit: /1
