@@ -76,7 +76,7 @@ if __name__ == '__main__':
 
     for param in parameters_by_unit['none']:
         logger.info(param.name)
-    
+
     logger.info('\n')
     logger.info('List of scale with currency')
 
