@@ -1,5 +1,13 @@
 # Changelog
 
+### 29.3.7 [#1195](https://github.com/openfisca/openfisca-france/pull/1195)
+
+* Amélioration technique.
+* Périodes concernées : toutes.
+* Zones impactées : `prelevements_obligatoires/impot_revenu/reductions_impot.py`.
+* Détails :
+  - Unifie en une seule les formules datées de la variable `reductions`.
+
 ### 29.3.6 [#1107](https://github.com/openfisca/openfisca-france/pull/1107)
 
 * Amélioration technique.
