@@ -53,7 +53,7 @@ class reductions(Variable):
             ]
 
         impot_net = foyer_fiscal('ip_net', period)
-        montants = [foyer_fiscal(reduction, period) for reduction in reductions]
+        montants = [around(foyer_fiscal(reduction, period)) for reduction in reductions]
         total_reductions = sum(montants)
         return min_(impot_net, total_reductions)
 
@@ -3619,13 +3619,13 @@ class locmeu(Variable):
 
         return (
             (
-                reduction_investissements_acheve_2014_realise_2009
-                + reduction_investissements_acheve_2014_realise_2010
-                + reduction_investissements_acheve_2014_realise_2011
-                + reduction_investissements_acheve_2014_realise_2012
-                + reduction_investissements_acheve_2014_realise_2013
-                + reduction_investissements_acheve_2014_realise_2014
-                ) / 9
+                around(reduction_investissements_acheve_2014_realise_2009 / 9)
+                + around(reduction_investissements_acheve_2014_realise_2010 / 9)
+                + around(reduction_investissements_acheve_2014_realise_2011 / 9)
+                + around(reduction_investissements_acheve_2014_realise_2012 / 9)
+                + around(reduction_investissements_acheve_2014_realise_2013 / 9)
+                + around(reduction_investissements_acheve_2014_realise_2014 / 9)
+                ) 
             + report_invest_anterieur
             + report_non_impute
             )
@@ -3721,14 +3721,14 @@ class locmeu(Variable):
 
         return (
             (
-                reduction_investissements_acheve_2015_realise_2009
-                + reduction_investissements_acheve_2015_realise_2010
-                + reduction_investissements_acheve_2015_realise_2011
-                + reduction_investissements_acheve_2015_realise_2012
-                + reduction_investissements_acheve_2015_realise_2013
-                + reduction_investissements_acheve_2015_realise_2014
-                + reduction_investissements_acheve_2015_realise_2015
-                ) / 9
+                around(reduction_investissements_acheve_2015_realise_2009 / 9)
+                + around(reduction_investissements_acheve_2015_realise_2010 / 9)
+                + around(reduction_investissements_acheve_2015_realise_2011 / 9)
+                + around(reduction_investissements_acheve_2015_realise_2012 / 9)
+                + around(reduction_investissements_acheve_2015_realise_2013 / 9)
+                + around(reduction_investissements_acheve_2015_realise_2014 / 9)
+                + around(reduction_investissements_acheve_2015_realise_2015 / 9)
+                ) 
             + report_invest_anterieur
             + report_non_impute
             )
@@ -3834,14 +3834,14 @@ class locmeu(Variable):
 
         return (
             (
-                reduction_investissements_acheve_2016_realise_2010
-                + reduction_investissements_acheve_2016_realise_2011
-                + reduction_investissements_acheve_2016_realise_2012
-                + reduction_investissements_acheve_2016_realise_2013
-                + reduction_investissements_acheve_2016_realise_2014
-                + reduction_investissements_acheve_2016_realise_2015
-                + reduction_investissements_acheve_2016_realise_2016
-                ) / 9
+                around(reduction_investissements_acheve_2016_realise_2010 / 9)
+                + around(reduction_investissements_acheve_2016_realise_2011 / 9)
+                + around(reduction_investissements_acheve_2016_realise_2012 / 9)
+                + around(reduction_investissements_acheve_2016_realise_2013 / 9)
+                + around(reduction_investissements_acheve_2016_realise_2014 / 9)
+                + around(reduction_investissements_acheve_2016_realise_2015 / 9)
+                + around(reduction_investissements_acheve_2016_realise_2016 / 9)
+                )
             + report_invest_anterieur
             + report_non_impute
             )
@@ -3962,17 +3962,17 @@ class locmeu(Variable):
         # Calcul de la réduction concernant les investissements achevés ou réalisés l'année courante
 
         reduc_invest_acheves_2017 = (
-            P.taux18 * min_(P.max, invest_2011_acheves_2017)
-            + P.taux11 * min_(P.max, invest_2012_acheves_2017)
-            + P.taux11 * min_(P.max, invest_2013_acheves_2017)
-            + P.taux11 * min_(P.max, invest_2014_acheves_2017)
-            + P.taux11 * min_(P.max, invest_2015_acheves_2017)
-            + P.taux11 * min_(P.max, invest_2016_acheves_2017)
-            + P.taux11 * min_(P.max, invest_2017_acheves_2017)
+            around(P.taux18 * min_(P.max, invest_2011_acheves_2017) / 9)
+            + around(P.taux11 * min_(P.max, invest_2012_acheves_2017) / 9)
+            + around(P.taux11 * min_(P.max, invest_2013_acheves_2017) / 9)
+            + around(P.taux11 * min_(P.max, invest_2014_acheves_2017) / 9)
+            + around(P.taux11 * min_(P.max, invest_2015_acheves_2017) / 9)
+            + around(P.taux11 * min_(P.max, invest_2016_acheves_2017) / 9)
+            + around(P.taux11 * min_(P.max, invest_2017_acheves_2017) / 9)
             )
 
         return (
-            reduc_invest_acheves_2017 / 9
+            reduc_invest_acheves_2017
             + report_reduc_invest_anterieur
             + report_reduc_non_impute
             )

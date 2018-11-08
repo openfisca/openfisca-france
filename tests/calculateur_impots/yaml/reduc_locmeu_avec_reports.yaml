@@ -1,6 +1,6 @@
 - name: reduc_locmeu_avec_reports
   period: 2014
-  absolute_error_margin: 1
+  absolute_error_margin: .1
   foyers_fiscaux:
   - caseF: false
     caseG: false
@@ -69,17 +69,17 @@
   - id: 0
     personne_de_reference: ind0
   output_variables:
+    reductions: 6578.0
     iai: 36406.0
     irpp: -36406.0
     nbptr: 1.0
     ppe: 0.0
     rbg: 137843.0
-    reductions: 6578.0
     rfr: 137843.0
     rni: 137843.0
 - name: reduc_locmeu_avec_reports
   period: 2015
-  absolute_error_margin: 1
+  absolute_error_margin: .1
   foyers_fiscaux:
   - caseF: false
     caseG: false
@@ -157,16 +157,17 @@
   - id: 0
     personne_de_reference: ind0
   output_variables:
+    locmeu: 8250.0
+    reductions: 8250.0
     iai: 34715.0
     irpp: -34715.0
     nbptr: 1.0
     rbg: 137830.0
-    reductions: 8250.0
     rfr: 137830.0
     rni: 137830.0
 - name: reduc_locmeu_avec_reports
   period: 2016
-  absolute_error_margin: 1
+  absolute_error_margin: .1
   foyers_fiscaux:
   - caseF: false
     caseG: false
@@ -252,16 +253,17 @@
   - id: 0
     personne_de_reference: ind0
   output_variables:
+    locmeu: 9634.0
+    reductions: 9634.0
     iai: 33312.0
     irpp: -33312.0
     nbptr: 1.0
     rbg: 137817.0
-    reductions: 9634.0
     rfr: 137817.0
     rni: 137817.0
 - name: reduc_locmeu_avec_reports
   period: 2017
-  absolute_error_margin: 1
+  absolute_error_margin: .1
   foyers_fiscaux:
   - caseF: false
     caseG: false
@@ -345,10 +347,11 @@
   - id: 0
     personne_de_reference: ind0
   output_variables:
+    locmeu: 9442.0
+    reductions: 9442.0
     iai: 33318.0
     irpp: -33318.0
     nbptr: 1.0
     patnat: 0.0
     rbg: 137695.0
-    reductions: 9442.0
     rfr: 137695.0

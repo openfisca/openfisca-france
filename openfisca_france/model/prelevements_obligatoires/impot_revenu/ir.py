@@ -5,7 +5,7 @@ from __future__ import division
 
 import logging
 
-from numpy import datetime64, timedelta64, logical_xor as xor_, round as round_
+from numpy import datetime64, timedelta64, logical_xor as xor_, round as round_, around
 from numpy.core.defchararray import startswith
 
 from openfisca_core.model_api import *
@@ -1470,7 +1470,7 @@ class ip_net(Variable):
         ir_plaf_qf = foyer_fiscal('ir_plaf_qf', period)
         taux = parameters(period).impot_revenu.rpns.taux16
 
-        return max_(0, ir_plaf_qf + foyer_fiscal.sum(cncn_info_i) * taux - decote)
+        return around(max_(0, ir_plaf_qf + foyer_fiscal.sum(cncn_info_i) * taux - decote))
 
     def formula_2016_01_01(foyer_fiscal, period, parameters):
         '''
@@ -1482,7 +1482,7 @@ class ip_net(Variable):
         reduction_ss_condition_revenus = foyer_fiscal('reduction_ss_condition_revenus', period)
         taux = parameters(period).impot_revenu.rpns.taux16
 
-        return max_(0, ir_plaf_qf + foyer_fiscal.sum(cncn_info_i) * taux - decote - reduction_ss_condition_revenus)
+        return around(max_(0, ir_plaf_qf + foyer_fiscal.sum(cncn_info_i) * taux - decote - reduction_ss_condition_revenus))
 
 
 class iaidrdi(Variable):
