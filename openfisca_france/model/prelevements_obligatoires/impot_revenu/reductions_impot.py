@@ -4440,24 +4440,24 @@ class rpinel(Variable):
         max3 = max_(0, max2 - invest_metropole_2014 - f7qb)
 
         reduc_invest_real_2014 = (
-            P.taux29 * min_(max_(0, P.seuil - invest_domtom_2014), f7qd) / 9
-            + P.taux23 * min_(max1, f7qc) / 6
-            + P.taux18 * min_(max_(0, max2 - invest_metropole_2014), f7qb) / 9
-            + P.taux12 * min_(max3, f7qa) / 6
+            around(P.taux29 * min_(max_(0, P.seuil - invest_domtom_2014), f7qd) / 9)
+            + around(P.taux23 * min_(max1, f7qc) / 6)
+            + around(P.taux18 * min_(max_(0, max2 - invest_metropole_2014), f7qb) / 9)
+            + around(P.taux12 * min_(max3, f7qa) / 6)
             )
 
         reduc_invest_real_2015 = (
-            P.taux29 * min_(P.seuil, f7qh) / 9
-            + P.taux23 * min_(max_(0, P.seuil - f7qh), f7qg) / 6
-            + P.taux18 * min_(max_(0, P.seuil - f7qh - f7qg), f7qf) / 9
-            + P.taux12 * min_(max_(0, P.seuil - f7qh - f7qg - f7qf), f7qe) / 6
+            around(P.taux29 * min_(P.seuil, f7qh) / 9)
+            + around(P.taux23 * min_(max_(0, P.seuil - f7qh), f7qg) / 6)
+            + around(P.taux18 * min_(max_(0, P.seuil - f7qh - f7qg), f7qf) / 9)
+            + around(P.taux12 * min_(max_(0, P.seuil - f7qh - f7qg - f7qf), f7qe) / 6)
             )
 
         reduc_invest_real_2016 = (
-            P.taux29 * min_(P.seuil, f7ql) / 9
-            + P.taux23 * min_(max_(0, P.seuil - f7ql), f7qk) / 6
-            + P.taux18 * min_(max_(0, P.seuil - f7ql - f7qk), f7qj) / 9
-            + P.taux12 * min_(max_(0, P.seuil - f7ql - f7qk - f7qj), f7qi) / 6
+            around(P.taux29 * min_(P.seuil, f7ql) / 9)
+            + around(P.taux23 * min_(max_(0, P.seuil - f7ql), f7qk) / 6)
+            + around(P.taux18 * min_(max_(0, P.seuil - f7ql - f7qk), f7qj) / 9)
+            + around(P.taux12 * min_(max_(0, P.seuil - f7ql - f7qk - f7qj), f7qi) / 6)
             )
 
         report = f7ai + f7bi + f7ci + f7di + f7bz + f7cz + f7dz + f7ez
@@ -4507,31 +4507,31 @@ class rpinel(Variable):
         max3 = max_(0, max2 - invest_metropole_2014 - f7qb)
 
         reduc_invest_real_2014 = (
-            P.taux29 * min_(max_(0, P.seuil - invest_domtom_2014), f7qd) / 9
-            + P.taux23 * min_(max1, f7qc) / 6
-            + P.taux18 * min_(max_(0, max2 - invest_metropole_2014), f7qb) / 9
-            + P.taux12 * min_(max3, f7qa) / 6
+            around(P.taux29 * min_(max_(0, P.seuil - invest_domtom_2014), f7qd) / 9)
+            + around(P.taux23 * min_(max1, f7qc) / 6)
+            + around(P.taux18 * min_(max_(0, max2 - invest_metropole_2014), f7qb) / 9)
+            + around(P.taux12 * min_(max3, f7qa) / 6)
             )
 
         reduc_invest_real_2015 = (
-            P.taux29 * min_(P.seuil, f7qh) / 9
-            + P.taux23 * min_(max_(0, P.seuil - f7qh), f7qg) / 6
-            + P.taux18 * min_(max_(0, P.seuil - f7qh - f7qg), f7qf) / 9
-            + P.taux12 * min_(max_(0, P.seuil - f7qh - f7qg - f7qf), f7qe) / 6
+            around(P.taux29 * min_(P.seuil, f7qh) / 9)
+            + around(P.taux23 * min_(max_(0, P.seuil - f7qh), f7qg) / 6)
+            + around(P.taux18 * min_(max_(0, P.seuil - f7qh - f7qg), f7qf) / 9)
+            + around(P.taux12 * min_(max_(0, P.seuil - f7qh - f7qg - f7qf), f7qe) / 6)
             )
 
         reduc_invest_real_2016 = (
-            P.taux29 * min_(P.seuil, f7ql) / 9
-            + P.taux23 * min_(max_(0, P.seuil - f7ql), f7qk) / 6
-            + P.taux18 * min_(max_(0, P.seuil - f7ql - f7qk), f7qj) / 9
-            + P.taux12 * min_(max_(0, P.seuil - f7ql - f7qk - f7qj), f7qi) / 6
+            around(P.taux29 * min_(P.seuil, f7ql) / 9)
+            + around(P.taux23 * min_(max_(0, P.seuil - f7ql), f7qk) / 6)
+            + around(P.taux18 * min_(max_(0, P.seuil - f7ql - f7qk), f7qj) / 9)
+            + around(P.taux12 * min_(max_(0, P.seuil - f7ql - f7qk - f7qj), f7qi) / 6)
             )
 
         reduc_invest_real_2017 = (
-            P.taux29 * min_(P.seuil, f7qp) / 9
-            + P.taux23 * min_(max_(0, P.seuil - f7qp), f7qo) / 6
-            + P.taux18 * min_(max_(0, P.seuil - f7qp - f7qo), f7qn) / 9
-            + P.taux12 * min_(max_(0, P.seuil - f7qp - f7qo - f7qn), f7qm) / 6
+            around(P.taux29 * min_(P.seuil, f7qp) / 9)
+            + around(P.taux23 * min_(max_(0, P.seuil - f7qp), f7qo) / 6)
+            + around(P.taux18 * min_(max_(0, P.seuil - f7qp - f7qo), f7qn) / 9)
+            + around(P.taux12 * min_(max_(0, P.seuil - f7qp - f7qo - f7qn), f7qm) / 6)
             )
 
         report = f7ai + f7bi + f7ci + f7di + f7bz + f7cz + f7dz + f7ez + f7qz + f7rz + f7sz + f7tz

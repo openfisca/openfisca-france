@@ -1,6 +1,6 @@
 - name: reduc_pinel_dom
   period: 2014
-  absolute_error_margin: 1
+  absolute_error_margin: .1
   foyers_fiscaux:
   - caseF: false
     caseG: false
@@ -44,7 +44,7 @@
     rni: 45000.0
 - name: reduc_pinel_dom
   period: 2015
-  absolute_error_margin: 1
+  absolute_error_margin: .1
   foyers_fiscaux:
   - caseF: false
     caseG: false
@@ -90,7 +90,7 @@
     rni: 45000.0
 - name: reduc_pinel_dom
   period: 2016
-  absolute_error_margin: 1
+  absolute_error_margin: .1
   foyers_fiscaux:
   - caseF: false
     caseG: false
@@ -132,16 +132,16 @@
   - id: 0
     personne_de_reference: ind0
   output_variables:
+    reductions: 3734.0
     iai: 4116.0
     irpp: -4116.0
     nbptr: 1.0
     rbg: 45000.0
-    reductions: 3734.0
     rfr: 45000.0
     rni: 45000.0
 - name: reduc_pinel_dom
   period: 2017
-  absolute_error_margin: 1
+  absolute_error_margin: .1
   foyers_fiscaux:
   - caseF: false
     caseG: false
@@ -187,10 +187,10 @@
   - id: 0
     personne_de_reference: ind0
   output_variables:
+    reductions: 5437.0
     iai: 2356.0
     irpp: -2356.0
     nbptr: 1.0
     patnat: 0.0
     rbg: 45000.0
-    reductions: 5437.0
     rfr: 45000.0
