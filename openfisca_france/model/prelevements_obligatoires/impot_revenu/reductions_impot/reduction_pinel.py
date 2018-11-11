@@ -29,7 +29,10 @@ class rpinel(Variable):
 
         reduc_invest_real_2014 = _reduc_invest_real_2014(foyer_fiscal, parameters, period)
 
-        return reduc_invest_real_2014
+        return (
+            + reduc_invest_real_2014
+            + foyer_fiscal('rpinel_report', period)
+            )
 
     def formula_2015_01_01(foyer_fiscal, period, parameters):
         '''
@@ -41,12 +44,10 @@ class rpinel(Variable):
         reduc_invest_real_2014 = _reduc_invest_real_2014(foyer_fiscal, parameters, period)
         reduc_invest_real_2015 = _reduc_invest_real_2015(foyer_fiscal, parameters, period)
 
-        report_2015 = _report_2015(foyer_fiscal, period)
-
         return (
             + reduc_invest_real_2014
             + reduc_invest_real_2015
-            + report_2015
+            + foyer_fiscal('rpinel_report', period)
             )
 
     def formula_2016_01_01(foyer_fiscal, period, parameters):
@@ -60,15 +61,11 @@ class rpinel(Variable):
         reduc_invest_real_2015 = _reduc_invest_real_2015(foyer_fiscal, parameters, period)
         reduc_invest_real_2016 = _reduc_invest_real_2016(foyer_fiscal, parameters, period)
 
-        report_2015 = _report_2015(foyer_fiscal, period)
-        report_2016 = _report_2016(foyer_fiscal, period)
-
         return (
             + reduc_invest_real_2014
             + reduc_invest_real_2015
             + reduc_invest_real_2016
-            + report_2015
-            + report_2016
+            + foyer_fiscal('rpinel_report', period)
             )
 
     def formula_2017_01_01(foyer_fiscal, period, parameters):
@@ -83,19 +80,33 @@ class rpinel(Variable):
         reduc_invest_real_2016 = _reduc_invest_real_2016(foyer_fiscal, parameters, period)
         reduc_invest_real_2017 = _reduc_invest_real_2017(foyer_fiscal, parameters, period)
 
-        report_2015 = _report_2015(foyer_fiscal, period)
-        report_2016 = _report_2016(foyer_fiscal, period)
-        report_2017 = _report_2017(foyer_fiscal, period)
-
         return (
             + reduc_invest_real_2014
             + reduc_invest_real_2015
             + reduc_invest_real_2016
             + reduc_invest_real_2017
-            + report_2015
-            + report_2016
-            + report_2017
+            + foyer_fiscal('rpinel_report', period)
             )
+
+
+class rpinel_report(Variable):
+    value_type = float
+    entity = FoyerFiscal
+    label = u"asdf1234"
+    reference = "https://asdf1234.lex"
+    definition_period = YEAR
+
+    def formula(foyer_fiscal, period):
+        reports = (
+            # Depuis 2015
+            'f7ai', 'f7bi', 'f7ci', 'f7di',
+            # Depuis 2016
+            'f7bz', 'f7cz', 'f7dz', 'f7ez',
+            # Depuis 2017
+            'f7qz', 'f7rz', 'f7sz', 'f7tz',
+            )
+
+        return sum_(foyer_fiscal(report, period) for report in reports)
 
 
 def _reduc_invest_real_2014(foyer_fiscal, parameters, period):
@@ -170,36 +181,3 @@ def _reduc_invest_real_2017(foyer_fiscal, parameters, period):
         + parameters.taux18 * minimum(maximum(0, parameters.seuil - f7qp - f7qo), f7qn) / 9
         + parameters.taux12 * minimum(maximum(0, parameters.seuil - f7qp - f7qo - f7qn), f7qm) / 6
         )
-
-
-def _report_2015(foyer_fiscal, period):
-    reports = (
-        'f7ai',
-        'f7bi',
-        'f7ci',
-        'f7di',
-        )
-
-    return sum_(foyer_fiscal(report, period) for report in reports)
-
-
-def _report_2016(foyer_fiscal, period):
-    reports = (
-        'f7bz',
-        'f7cz',
-        'f7dz',
-        'f7ez',
-        )
-
-    return sum_(foyer_fiscal(report, period) for report in reports)
-
-
-def _report_2017(foyer_fiscal, period):
-    reports = (
-        'f7qz',
-        'f7rz',
-        'f7sz',
-        'f7tz',
-        )
-
-    return sum_(foyer_fiscal(report, period) for report in reports)
