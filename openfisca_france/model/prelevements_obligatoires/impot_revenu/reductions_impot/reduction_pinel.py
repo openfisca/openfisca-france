@@ -23,69 +23,11 @@ class rpinel(Variable):
     def formula_2014_01_01(foyer_fiscal, period, parameters):
         '''
         Investissement locatif privé - Dispositif Pinel
-        2014
+        Depuis 2014
         '''
-        parameters = parameters(period).impot_revenu.reductions_impots.rpinel
-
-        reduc_invest_real_2014 = _reduc_invest_real_2014(foyer_fiscal, parameters, period)
-
         return (
-            + reduc_invest_real_2014
-            + foyer_fiscal('rpinel_report', period)
-            )
-
-    def formula_2015_01_01(foyer_fiscal, period, parameters):
-        '''
-        Investissement locatif privé - Dispositif Pinel
-        2015
-        '''
-        parameters = parameters(period).impot_revenu.reductions_impots.rpinel
-
-        reduc_invest_real_2014 = _reduc_invest_real_2014(foyer_fiscal, parameters, period)
-        reduc_invest_real_2015 = _reduc_invest_real_2015(foyer_fiscal, parameters, period)
-
-        return (
-            + reduc_invest_real_2014
-            + reduc_invest_real_2015
-            + foyer_fiscal('rpinel_report', period)
-            )
-
-    def formula_2016_01_01(foyer_fiscal, period, parameters):
-        '''
-        Investissement locatif privé - Dispositif Pinel
-        2016
-        '''
-        parameters = parameters(period).impot_revenu.reductions_impots.rpinel
-
-        reduc_invest_real_2014 = _reduc_invest_real_2014(foyer_fiscal, parameters, period)
-        reduc_invest_real_2015 = _reduc_invest_real_2015(foyer_fiscal, parameters, period)
-        reduc_invest_real_2016 = _reduc_invest_real_2016(foyer_fiscal, parameters, period)
-
-        return (
-            + reduc_invest_real_2014
-            + reduc_invest_real_2015
-            + reduc_invest_real_2016
-            + foyer_fiscal('rpinel_report', period)
-            )
-
-    def formula_2017_01_01(foyer_fiscal, period, parameters):
-        '''
-        Investissement locatif privé - Dispositif Pinel
-        2017
-        '''
-        parameters = parameters(period).impot_revenu.reductions_impots.rpinel
-
-        reduc_invest_real_2014 = _reduc_invest_real_2014(foyer_fiscal, parameters, period)
-        reduc_invest_real_2015 = _reduc_invest_real_2015(foyer_fiscal, parameters, period)
-        reduc_invest_real_2016 = _reduc_invest_real_2016(foyer_fiscal, parameters, period)
-        reduc_invest_real_2017 = _reduc_invest_real_2017(foyer_fiscal, parameters, period)
-
-        return (
-            + reduc_invest_real_2014
-            + reduc_invest_real_2015
-            + reduc_invest_real_2016
-            + reduc_invest_real_2017
-            + foyer_fiscal('rpinel_report', period)
+            + foyer_fiscal("rpinel_report", period)
+            + foyer_fiscal("rpinel_reduc_invest_real", period)
             )
 
 
@@ -96,88 +38,196 @@ class rpinel_report(Variable):
     reference = "https://asdf1234.lex"
     definition_period = YEAR
 
-    def formula(foyer_fiscal, period):
+    def formula_2015_01_01(foyer_fiscal, period):
         reports = (
             # Depuis 2015
-            'f7ai', 'f7bi', 'f7ci', 'f7di',
+            "f7ai", "f7bi", "f7ci", "f7di",
             # Depuis 2016
-            'f7bz', 'f7cz', 'f7dz', 'f7ez',
+            "f7bz", "f7cz", "f7dz", "f7ez",
             # Depuis 2017
-            'f7qz', 'f7rz', 'f7sz', 'f7tz',
+            "f7qz", "f7rz", "f7sz", "f7tz",
             )
 
         return sum_(foyer_fiscal(report, period) for report in reports)
 
 
-def _reduc_invest_real_2014(foyer_fiscal, parameters, period):
-    '''
-    TODO: document
-    '''
-    invest_metropole_2014 = foyer_fiscal('f7ek', period)
-    invest_domtom_2014 = foyer_fiscal('f7el', period)
-    f7qa = foyer_fiscal('f7qa', period)
-    f7qb = foyer_fiscal('f7qb', period)
-    f7qc = foyer_fiscal('f7qc', period)
-    f7qd = foyer_fiscal('f7qd', period)
+class rpinel_reduc_invest_real(Variable):
+    value_type = float
+    entity = FoyerFiscal
+    label = u"asdf1234"
+    reference = "https://asdf1234.lex"
+    definition_period = YEAR
 
-    max1 = maximum(0, parameters.seuil - invest_domtom_2014 - f7qd)  # 2014 : plafond commun 'duflot' et 'rpinel'
-    max2 = maximum(0, max1 - f7qc)
-    max3 = maximum(0, max2 - invest_metropole_2014 - f7qb)
+    def formula_2014_01_01(foyer_fiscal, period, parameters):
+        reductions = (
+            "rpinel_reduc_invest_real_taux12",
+            "rpinel_reduc_invest_real_taux18",
+            "rpinel_reduc_invest_real_taux23",
+            "rpinel_reduc_invest_real_taux29",
+            )
 
-    return (
-        + parameters.taux29 * minimum(maximum(0, parameters.seuil - invest_domtom_2014), f7qd) / 9
-        + parameters.taux23 * minimum(max1, f7qc) / 6
-        + parameters.taux18 * minimum(maximum(0, max2 - invest_metropole_2014), f7qb) / 9
-        + parameters.taux12 * minimum(max3, f7qa) / 6
-        )
+        return sum_(foyer_fiscal(reduction, period) for reduction in reductions)
 
 
-def _reduc_invest_real_2015(foyer_fiscal, parameters, period):
-    '''
-    TODO: document
-    '''
-    f7qe = foyer_fiscal('f7qe', period)
-    f7qf = foyer_fiscal('f7qf', period)
-    f7qg = foyer_fiscal('f7qg', period)
-    f7qh = foyer_fiscal('f7qh', period)
+class rpinel_reduc_invest_real_taux12(Variable):
+    value_type = float
+    entity = FoyerFiscal
+    label = u"asdf1234"
+    reference = "https://asdf1234.lex"
+    definition_period = YEAR
 
-    return (
-        + parameters.taux29 * minimum(parameters.seuil, f7qh) / 9
-        + parameters.taux23 * minimum(maximum(0, parameters.seuil - f7qh), f7qg) / 6
-        + parameters.taux18 * minimum(maximum(0, parameters.seuil - f7qh - f7qg), f7qf) / 9
-        + parameters.taux12 * minimum(maximum(0, parameters.seuil - f7qh - f7qg - f7qf), f7qe) / 6
-        )
+    def formula_2014_01_01(foyer_fiscal, period, parameters):
+        rpinel = parameters(period).impot_revenu.reductions_impots.rpinel
+        seuil = rpinel.seuil
+        taux = rpinel.taux12
+        rate = 6
+
+        invest_metropole_2014 = foyer_fiscal("f7ek", period)
+        invest_domtom_2014 = foyer_fiscal("f7el", period)
+        f7qa = foyer_fiscal("f7qa", period)
+        f7qb = foyer_fiscal("f7qb", period)
+        f7qc = foyer_fiscal("f7qc", period)
+        f7qd = foyer_fiscal("f7qd", period)
+        f7qe = foyer_fiscal("f7qe", period)
+        f7qf = foyer_fiscal("f7qf", period)
+        f7qg = foyer_fiscal("f7qg", period)
+        f7qh = foyer_fiscal("f7qh", period)
+        f7qi = foyer_fiscal("f7qi", period)
+        f7qj = foyer_fiscal("f7qj", period)
+        f7qk = foyer_fiscal("f7qk", period)
+        f7ql = foyer_fiscal("f7ql", period)
+        f7qm = foyer_fiscal("f7qm", period)
+        f7qn = foyer_fiscal("f7qn", period)
+        f7qo = foyer_fiscal("f7qo", period)
+        f7qp = foyer_fiscal("f7qp", period)
+
+        max1 = maximum(0, seuil - invest_domtom_2014 - f7qd)
+        max2 = maximum(0, max1 - f7qc)
+
+        reductions = (
+            # Depuis 2014
+            + minimum(maximum(0, max2 - invest_metropole_2014 - f7qb), f7qa)
+            # Depuis 2015
+            + minimum(maximum(0, seuil - f7qh - f7qg - f7qf), f7qe)
+            # Depuis 2016
+            + minimum(maximum(0, seuil - f7ql - f7qk - f7qj), f7qi)
+            # Depuis 2017
+            + minimum(maximum(0, seuil - f7qp - f7qo - f7qn), f7qm)
+            )
+
+        return taux * reductions / rate
 
 
-def _reduc_invest_real_2016(foyer_fiscal, parameters, period):
-    '''
-    TODO: document
-    '''
-    f7qi = foyer_fiscal('f7qi', period)
-    f7qj = foyer_fiscal('f7qj', period)
-    f7qk = foyer_fiscal('f7qk', period)
-    f7ql = foyer_fiscal('f7ql', period)
+class rpinel_reduc_invest_real_taux18(Variable):
+    value_type = float
+    entity = FoyerFiscal
+    label = u"asdf1234"
+    reference = "https://asdf1234.lex"
+    definition_period = YEAR
 
-    return (
-        + parameters.taux29 * minimum(parameters.seuil, f7ql) / 9
-        + parameters.taux23 * minimum(maximum(0, parameters.seuil - f7ql), f7qk) / 6
-        + parameters.taux18 * minimum(maximum(0, parameters.seuil - f7ql - f7qk), f7qj) / 9
-        + parameters.taux12 * minimum(maximum(0, parameters.seuil - f7ql - f7qk - f7qj), f7qi) / 6
-        )
+    def formula_2014_01_01(foyer_fiscal, period, parameters):
+        rpinel = parameters(period).impot_revenu.reductions_impots.rpinel
+        seuil = rpinel.seuil
+        taux = rpinel.taux18
+        rate = 9
+
+        invest_metropole_2014 = foyer_fiscal("f7ek", period)
+        invest_domtom_2014 = foyer_fiscal("f7el", period)
+        f7qb = foyer_fiscal("f7qb", period)
+        f7qc = foyer_fiscal("f7qc", period)
+        f7qd = foyer_fiscal("f7qd", period)
+        f7qf = foyer_fiscal("f7qf", period)
+        f7qg = foyer_fiscal("f7qg", period)
+        f7qh = foyer_fiscal("f7qh", period)
+        f7qj = foyer_fiscal("f7qj", period)
+        f7qk = foyer_fiscal("f7qk", period)
+        f7ql = foyer_fiscal("f7ql", period)
+        f7qn = foyer_fiscal("f7qn", period)
+        f7qo = foyer_fiscal("f7qo", period)
+        f7qp = foyer_fiscal("f7qp", period)
+
+        max1 = maximum(0, seuil - invest_domtom_2014 - f7qd)
+        max2 = maximum(0, max1 - f7qc)
+
+        reductions = (
+            # Depuis 2014
+            + minimum(maximum(0, max2 - invest_metropole_2014), f7qb)  # 2014 : plafond commun 'duflot' et 'rpinel'
+            # Depuis 2015
+            + minimum(maximum(0, seuil - f7qh - f7qg), f7qf)
+            # Depuis 2016
+            + minimum(maximum(0, seuil - f7ql - f7qk), f7qj)
+            # Depuis 2017
+            + minimum(maximum(0, seuil - f7qp - f7qo), f7qn)
+            )
+
+        return taux * reductions / rate
 
 
-def _reduc_invest_real_2017(foyer_fiscal, parameters, period):
-    '''
-    TODO: document
-    '''
-    f7qm = foyer_fiscal('f7qm', period)
-    f7qn = foyer_fiscal('f7qn', period)
-    f7qo = foyer_fiscal('f7qo', period)
-    f7qp = foyer_fiscal('f7qp', period)
+class rpinel_reduc_invest_real_taux23(Variable):
+    value_type = float
+    entity = FoyerFiscal
+    label = u"asdf1234"
+    reference = "https://asdf1234.lex"
+    definition_period = YEAR
 
-    return (
-        + parameters.taux29 * minimum(parameters.seuil, f7qp) / 9
-        + parameters.taux23 * minimum(maximum(0, parameters.seuil - f7qp), f7qo) / 6
-        + parameters.taux18 * minimum(maximum(0, parameters.seuil - f7qp - f7qo), f7qn) / 9
-        + parameters.taux12 * minimum(maximum(0, parameters.seuil - f7qp - f7qo - f7qn), f7qm) / 6
-        )
+    def formula_2014_01_01(foyer_fiscal, period, parameters):
+        rpinel = parameters(period).impot_revenu.reductions_impots.rpinel
+        seuil = rpinel.seuil
+        taux = rpinel.taux23
+        rate = 6
+
+        invest_domtom_2014 = foyer_fiscal("f7el", period)
+        f7qc = foyer_fiscal("f7qc", period)
+        f7qd = foyer_fiscal("f7qd", period)
+        f7qg = foyer_fiscal("f7qg", period)
+        f7qh = foyer_fiscal("f7qh", period)
+        f7qk = foyer_fiscal("f7qk", period)
+        f7ql = foyer_fiscal("f7ql", period)
+        f7qo = foyer_fiscal("f7qo", period)
+        f7qp = foyer_fiscal("f7qp", period)
+
+        reductions = (
+            # Depuis 2014
+            + minimum(maximum(0, seuil - invest_domtom_2014 - f7qd), f7qc)  # 2014 : plafond commun 'duflot' et 'rpinel'
+            # Depuis 2015
+            + minimum(maximum(0, seuil - f7qh), f7qg)
+            # Depuis 2016
+            + minimum(maximum(0, seuil - f7ql), f7qk)
+            # Depuis 2017
+            + minimum(maximum(0, seuil - f7qp), f7qo)
+            )
+
+        return taux * reductions / rate
+
+
+class rpinel_reduc_invest_real_taux29(Variable):
+    value_type = float
+    entity = FoyerFiscal
+    label = u"asdf1234"
+    reference = "https://asdf1234.lex"
+    definition_period = YEAR
+
+    def formula_2014_01_01(foyer_fiscal, period, parameters):
+        rpinel = parameters(period).impot_revenu.reductions_impots.rpinel
+        seuil = rpinel.seuil
+        taux = rpinel.taux29
+        rate = 9
+
+        invest_domtom_2014 = foyer_fiscal("f7el", period)
+        f7qd = foyer_fiscal("f7qd", period)
+        f7qh = foyer_fiscal("f7qh", period)
+        f7ql = foyer_fiscal("f7ql", period)
+        f7qp = foyer_fiscal("f7qp", period)
+
+        reductions = (
+            # Depuis 2014
+            + minimum(maximum(0, seuil - invest_domtom_2014), f7qd)
+            # Depuis 2015
+            + minimum(seuil, f7qh)
+            # Depuis 2016
+            + minimum(seuil, f7ql)
+            # Depuis 2017
+            + minimum(seuil, f7qp)
+            )
+
+        return taux * reductions / rate
