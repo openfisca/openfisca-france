@@ -1402,7 +1402,7 @@ class decote_gain_fiscal(Variable):
         decote = foyer_fiscal('decote', period)
         ir_plaf_qf = foyer_fiscal('ir_plaf_qf', period)
 
-        return min_(decote, ir_plaf_qf)
+        return around(min_(decote, ir_plaf_qf))
 
 
 class reduction_ss_condition_revenus(Variable):
