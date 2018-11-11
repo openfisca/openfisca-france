@@ -3625,7 +3625,7 @@ class locmeu(Variable):
                 + around(reduction_investissements_acheve_2014_realise_2012 / 9)
                 + around(reduction_investissements_acheve_2014_realise_2013 / 9)
                 + around(reduction_investissements_acheve_2014_realise_2014 / 9)
-                ) 
+                )
             + report_invest_anterieur
             + report_non_impute
             )
@@ -3728,7 +3728,7 @@ class locmeu(Variable):
                 + around(reduction_investissements_acheve_2015_realise_2013 / 9)
                 + around(reduction_investissements_acheve_2015_realise_2014 / 9)
                 + around(reduction_investissements_acheve_2015_realise_2015 / 9)
-                ) 
+                )
             + report_invest_anterieur
             + report_non_impute
             )
