@@ -1366,7 +1366,7 @@ class decote(Variable):
         ir_plaf_qf = foyer_fiscal('ir_plaf_qf', period)
         decote = parameters(period).impot_revenu.decote
 
-        return (ir_plaf_qf < decote.seuil) * (decote.seuil - ir_plaf_qf) * 0.5
+        return around((ir_plaf_qf < decote.seuil) * (decote.seuil - ir_plaf_qf) * 0.5)
 
     def formula_2015_01_01(foyer_fiscal, period, parameters):
         ir_plaf_qf = foyer_fiscal('ir_plaf_qf', period)
@@ -1376,7 +1376,7 @@ class decote(Variable):
         decote_celib = (ir_plaf_qf < 4 / 3 * decote_seuil_celib) * (decote_seuil_celib - 3 / 4 * ir_plaf_qf)
         decote_couple = (ir_plaf_qf < 4 / 3 * decote_seuil_couple) * (decote_seuil_couple - 3 / 4 * ir_plaf_qf)
 
-        return (nb_adult == 1) * decote_celib + (nb_adult == 2) * decote_couple
+        return around((nb_adult == 1) * decote_celib + (nb_adult == 2) * decote_couple)
 
     def formula_2014_01_01(foyer_fiscal, period, parameters):
         ir_plaf_qf = foyer_fiscal('ir_plaf_qf', period)
@@ -1386,7 +1386,7 @@ class decote(Variable):
         decote_celib = (ir_plaf_qf < decote_seuil_celib) * (decote_seuil_celib - ir_plaf_qf)
         decote_couple = (ir_plaf_qf < decote_seuil_couple) * (decote_seuil_couple - ir_plaf_qf)
 
-        return (nb_adult == 1) * decote_celib + (nb_adult == 2) * decote_couple
+        return around((nb_adult == 1) * decote_celib + (nb_adult == 2) * decote_couple)
 
 
 class decote_gain_fiscal(Variable):
