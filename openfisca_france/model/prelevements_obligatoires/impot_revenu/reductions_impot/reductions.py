@@ -1,8 +1,15 @@
 # -*- coding: utf-8 -*-
 
-from numpy import minimum as min_
+from numpy import (
+    minimum,
+    sum as sum_,
+    )
 
-from openfisca_france.model.base import FoyerFiscal, Variable, YEAR
+from openfisca_france.model.base import (
+    FoyerFiscal,
+    Variable,
+    YEAR,
+    )
 
 
 class reductions(Variable):
@@ -15,7 +22,9 @@ class reductions(Variable):
         '''
         Renvoie la somme des réductions d'impôt à intégrer pour l'année 2002
         '''
-        reductions = [
+        impot_net = foyer_fiscal('ip_net', period)
+
+        reductions = (
             # Depuis 2002
             'accult', 'adhcga', 'assvie', 'cappme', 'cotsyn',
             'daepad', 'dfppce', 'doment', 'domlog', 'donapd',
@@ -42,10 +51,9 @@ class reductions(Variable):
             # Introduites en 2014
             'rpinel',
             # Introduites en 2017
-            'rehab'
-            ]
+            'rehab',
+            )
 
-        impot_net = foyer_fiscal('ip_net', period)
-        montants = [foyer_fiscal(reduction, period) for reduction in reductions]
-        total_reductions = sum(montants)
-        return min_(impot_net, total_reductions)
+        montant = sum_(foyer_fiscal(reduction, period) for reduction in reductions)
+
+        return minimum(impot_net, montant)
