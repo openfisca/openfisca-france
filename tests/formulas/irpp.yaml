@@ -947,7 +947,7 @@
   input_variables:
     salaire_imposable: 16000
   output_variables:
-    irpp: -184
+    irpp: -183
     decote: 476
 - name: "IRPP - Célibataire ayant des 	Revenu net imposable de 150000 €"
   period: 2014
@@ -971,7 +971,7 @@
   input_variables:
     salaire_imposable: 18000
   output_variables:
-    irpp: -688
+    irpp: -687
     decote_gain_fiscal: 224
 - name: "IRPP - Célibataire ayant des 	Revenu net imposable de 10000 € (teste la décote)"
   period: 2014
