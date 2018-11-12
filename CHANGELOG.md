@@ -1,5 +1,18 @@
 # Changelog
 
+### 29.3.8 [#1198](https://github.com/openfisca/openfisca-france/pull/1198)
+
+* Amélioration technique | Ajout de tests
+* Périodes concernées : toutes.
+* Zones impactées : 
+  - `prelevements_obligatoires/impot_revenu/ir.py`
+  - `prelevements_obligatoires/impot_revenu/reductions_impot.py`
+  - `prelevements_obligatoires/impot_revenu/variables_reductions_credits.py`.
+  - `tests/calculateur_impots`.
+* Détails :
+  - Ajout de tests concernant l'impôt sur le revenu.
+  - Gestion des arrondis dans le calcul de l'impôt.
+
 ### 29.3.7 [#1195](https://github.com/openfisca/openfisca-france/pull/1195)
 
 * Amélioration technique.
