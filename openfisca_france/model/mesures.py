@@ -95,32 +95,6 @@ class niveau_de_vie(Variable):
         return revenu_disponible_menage / uc
 
 
-class revenu_net_individu(Variable):
-    value_type = float
-    entity = Individu
-    label = u"Revenu net de l'individu"
-    definition_period = YEAR
-
-    def formula(individu, period):
-        pensions_nettes = individu('pensions_nettes', period)
-        revenus_nets_du_capital = individu('revenus_nets_du_capital', period)
-        revenus_nets_du_travail = individu('revenus_nets_du_travail', period)
-
-        return pensions_nettes + revenus_nets_du_capital + revenus_nets_du_travail
-
-
-class revenu_net_menage(Variable):
-    entity = Menage
-    label = u"Revenu net du ménage"
-    value_type = float
-    reference = u"http://impotsurlerevenu.org/definitions/115-revenu-net-imposable.php",
-    definition_period = YEAR
-
-    def formula(menage, period):
-        revenu_net_individus = menage.members('revenu_net_individu', period)
-        return menage.sum(revenu_net_individus)
-
-
 class revenus_nets_du_travail(Variable):
     value_type = float
     entity = Individu
