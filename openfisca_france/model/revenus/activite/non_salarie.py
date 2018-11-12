@@ -1134,7 +1134,6 @@ class alnp_imps(Variable):
     entity = Individu
     label = u"Locations meublées non professionnelles imposables avec CGA ou viseur (régime du bénéfice réel)"
     # start_date = date(2009, 1, 1)
-    end = '2010-12-31'
     definition_period = YEAR
 
 

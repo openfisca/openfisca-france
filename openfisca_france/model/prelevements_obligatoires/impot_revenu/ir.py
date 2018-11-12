@@ -5,7 +5,7 @@ from __future__ import division
 
 import logging
 
-from numpy import datetime64, timedelta64, logical_xor as xor_, round as round_
+from numpy import datetime64, timedelta64, logical_xor as xor_, round as round_, around
 from numpy.core.defchararray import startswith
 
 from openfisca_core.model_api import *
@@ -1366,7 +1366,7 @@ class decote(Variable):
         ir_plaf_qf = foyer_fiscal('ir_plaf_qf', period)
         decote = parameters(period).impot_revenu.decote
 
-        return (ir_plaf_qf < decote.seuil) * (decote.seuil - ir_plaf_qf) * 0.5
+        return around((ir_plaf_qf < decote.seuil) * (decote.seuil - ir_plaf_qf) * 0.5)
 
     def formula_2015_01_01(foyer_fiscal, period, parameters):
         ir_plaf_qf = foyer_fiscal('ir_plaf_qf', period)
@@ -1376,7 +1376,7 @@ class decote(Variable):
         decote_celib = (ir_plaf_qf < 4 / 3 * decote_seuil_celib) * (decote_seuil_celib - 3 / 4 * ir_plaf_qf)
         decote_couple = (ir_plaf_qf < 4 / 3 * decote_seuil_couple) * (decote_seuil_couple - 3 / 4 * ir_plaf_qf)
 
-        return (nb_adult == 1) * decote_celib + (nb_adult == 2) * decote_couple
+        return around((nb_adult == 1) * decote_celib + (nb_adult == 2) * decote_couple)
 
     def formula_2014_01_01(foyer_fiscal, period, parameters):
         ir_plaf_qf = foyer_fiscal('ir_plaf_qf', period)
@@ -1386,7 +1386,7 @@ class decote(Variable):
         decote_celib = (ir_plaf_qf < decote_seuil_celib) * (decote_seuil_celib - ir_plaf_qf)
         decote_couple = (ir_plaf_qf < decote_seuil_couple) * (decote_seuil_couple - ir_plaf_qf)
 
-        return (nb_adult == 1) * decote_celib + (nb_adult == 2) * decote_couple
+        return around((nb_adult == 1) * decote_celib + (nb_adult == 2) * decote_couple)
 
 
 class decote_gain_fiscal(Variable):
@@ -1402,7 +1402,7 @@ class decote_gain_fiscal(Variable):
         decote = foyer_fiscal('decote', period)
         ir_plaf_qf = foyer_fiscal('ir_plaf_qf', period)
 
-        return min_(decote, ir_plaf_qf)
+        return around(min_(decote, ir_plaf_qf))
 
 
 class reduction_ss_condition_revenus(Variable):
@@ -1470,7 +1470,7 @@ class ip_net(Variable):
         ir_plaf_qf = foyer_fiscal('ir_plaf_qf', period)
         taux = parameters(period).impot_revenu.rpns.taux16
 
-        return max_(0, ir_plaf_qf + foyer_fiscal.sum(cncn_info_i) * taux - decote)
+        return around(max_(0, ir_plaf_qf + foyer_fiscal.sum(cncn_info_i) * taux - decote))
 
     def formula_2016_01_01(foyer_fiscal, period, parameters):
         '''
@@ -1482,7 +1482,7 @@ class ip_net(Variable):
         reduction_ss_condition_revenus = foyer_fiscal('reduction_ss_condition_revenus', period)
         taux = parameters(period).impot_revenu.rpns.taux16
 
-        return max_(0, ir_plaf_qf + foyer_fiscal.sum(cncn_info_i) * taux - decote - reduction_ss_condition_revenus)
+        return around(max_(0, ir_plaf_qf + foyer_fiscal.sum(cncn_info_i) * taux - decote - reduction_ss_condition_revenus))
 
 
 class iaidrdi(Variable):
@@ -2726,7 +2726,7 @@ class rpns_individu(Variable):
         alnp_imps = individu('alnp_imps', period)
         nbnc_impo = individu('nbnc_impo', period)
         nbnc_defi = individu('nbnc_defi', period)
-        alnp_defs = individu('alnp_defs', period)  # noqa F841
+        alnp_defs = individu('alnp_defs', period)
         cbnc_assc = individu('cbnc_assc', period)  # noqa F841
         mncn_impo = individu('mncn_impo', period)
         cncn_bene = individu('cncn_bene', period)
@@ -2803,7 +2803,7 @@ class rpns_individu(Variable):
                     micro.specialbnc.services.min,
                     nacc_meup * (1 - micro.specialbnc.marchandises.taux)
                     )
-                + nacc_defs - aacc_defn
+                + max_(0, nacc_defs - alnp_defs) - aacc_defn
                 )
             )
         # Régime du bénéfice réel ne bénéficiant pas de l'abattement CGA

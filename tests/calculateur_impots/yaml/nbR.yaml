@@ -1,0 +1,273 @@
+- name: nbR
+  period: 2014
+  absolute_error_margin: 1
+  foyers_fiscaux:
+  - caseF: false
+    caseG: false
+    caseP: false
+    caseS: false
+    caseW: false
+    declarants:
+    - ind0
+    - ind1
+    id: 0
+    nbF: 3.0
+    nbG: 0.0
+    nbH: 0.0
+    nbI: 0.0
+    nbJ: 0
+    nbN: 0
+    nbR: 1
+    personnes_a_charge:
+    - ind2
+    - ind3
+    - ind4
+  individus:
+  - activite: actif
+    date_naissance: '1970-01-01'
+    id: ind0
+    salaire_imposable: 50000.0
+    statut_marital: marie
+  - activite: actif
+    date_naissance: '1970-01-01'
+    id: ind1
+    salaire_imposable: 50000.0
+    statut_marital: marie
+  - activite: etudiant
+    date_naissance: '1994-01-01'
+    id: ind2
+  - activite: etudiant
+    date_naissance: '1999-01-01'
+    id: ind3
+  - activite: etudiant
+    date_naissance: '2010-01-01'
+    id: ind4
+  familles:
+  - enfants:
+    - ind2
+    - ind3
+    - ind4
+    id: 0
+    parents:
+    - ind0
+    - ind1
+  menages:
+  - conjoint: ind1
+    enfants:
+    - ind2
+    - ind3
+    - ind4
+    id: 0
+    personne_de_reference: ind0
+  output_variables:
+    iai: 5139.0
+    irpp: -5139.0
+    nbptr: 5.5
+    ppe: 0.0
+    rbg: 90000.0
+    rfr: 90000.0
+    rni: 90000.0
+- name: nbR
+  period: 2015
+  absolute_error_margin: 1
+  foyers_fiscaux:
+  - caseF: false
+    caseG: false
+    caseP: false
+    caseS: false
+    caseW: false
+    declarants:
+    - ind0
+    - ind1
+    id: 0
+    nbF: 3.0
+    nbG: 0.0
+    nbH: 0.0
+    nbI: 0.0
+    nbJ: 0
+    nbN: 0
+    nbR: 1
+    personnes_a_charge:
+    - ind2
+    - ind3
+    - ind4
+  individus:
+  - activite: actif
+    date_naissance: '1970-01-01'
+    id: ind0
+    salaire_imposable: 50000.0
+    statut_marital: marie
+  - activite: actif
+    date_naissance: '1970-01-01'
+    id: ind1
+    salaire_imposable: 50000.0
+    statut_marital: marie
+  - activite: etudiant
+    date_naissance: '1995-01-01'
+    id: ind2
+  - activite: etudiant
+    date_naissance: '2000-01-01'
+    id: ind3
+  - activite: etudiant
+    date_naissance: '2011-01-01'
+    id: ind4
+  familles:
+  - enfants:
+    - ind2
+    - ind3
+    - ind4
+    id: 0
+    parents:
+    - ind0
+    - ind1
+  menages:
+  - conjoint: ind1
+    enfants:
+    - ind2
+    - ind3
+    - ind4
+    id: 0
+    personne_de_reference: ind0
+  output_variables:
+    iai: 5131.0
+    irpp: -5131.0
+    nbptr: 5.5
+    rbg: 90000.0
+    rfr: 90000.0
+    rni: 90000.0
+- name: nbR
+  period: 2016
+  absolute_error_margin: 1
+  foyers_fiscaux:
+  - caseF: false
+    caseG: false
+    caseP: false
+    caseS: false
+    caseW: false
+    declarants:
+    - ind0
+    - ind1
+    id: 0
+    nbF: 3.0
+    nbG: 0.0
+    nbH: 0.0
+    nbI: 0.0
+    nbJ: 0
+    nbN: 0
+    nbR: 1
+    personnes_a_charge:
+    - ind2
+    - ind3
+    - ind4
+  individus:
+  - activite: actif
+    date_naissance: '1970-01-01'
+    id: ind0
+    salaire_imposable: 50000.0
+    statut_marital: marie
+  - activite: actif
+    date_naissance: '1970-01-01'
+    id: ind1
+    salaire_imposable: 50000.0
+    statut_marital: marie
+  - activite: etudiant
+    date_naissance: '1996-01-01'
+    id: ind2
+  - activite: etudiant
+    date_naissance: '2001-01-01'
+    id: ind3
+  - activite: etudiant
+    date_naissance: '2012-01-01'
+    id: ind4
+  familles:
+  - enfants:
+    - ind2
+    - ind3
+    - ind4
+    id: 0
+    parents:
+    - ind0
+    - ind1
+  menages:
+  - conjoint: ind1
+    enfants:
+    - ind2
+    - ind3
+    - ind4
+    id: 0
+    personne_de_reference: ind0
+  output_variables:
+    iai: 5123.0
+    irpp: -5123.0
+    nbptr: 5.5
+    rbg: 90000.0
+    rfr: 90000.0
+    rni: 90000.0
+- name: nbR
+  period: 2017
+  absolute_error_margin: 1
+  foyers_fiscaux:
+  - caseF: false
+    caseG: false
+    caseP: false
+    caseS: false
+    caseW: false
+    declarants:
+    - ind0
+    - ind1
+    id: 0
+    nbF: 3.0
+    nbG: 0.0
+    nbH: 0.0
+    nbI: 0.0
+    nbJ: 0
+    nbN: 0
+    nbR: 1
+    personnes_a_charge:
+    - ind2
+    - ind3
+    - ind4
+  individus:
+  - activite: actif
+    date_naissance: '1970-01-01'
+    id: ind0
+    salaire_imposable: 50000.0
+    statut_marital: marie
+  - activite: actif
+    date_naissance: '1970-01-01'
+    id: ind1
+    salaire_imposable: 50000.0
+    statut_marital: marie
+  - activite: etudiant
+    date_naissance: '1997-01-01'
+    id: ind2
+  - activite: etudiant
+    date_naissance: '2002-01-01'
+    id: ind3
+  - activite: etudiant
+    date_naissance: '2013-01-01'
+    id: ind4
+  familles:
+  - enfants:
+    - ind2
+    - ind3
+    - ind4
+    id: 0
+    parents:
+    - ind0
+    - ind1
+  menages:
+  - conjoint: ind1
+    enfants:
+    - ind2
+    - ind3
+    - ind4
+    id: 0
+    personne_de_reference: ind0
+  output_variables:
+    iai: 5049.0
+    irpp: -5049.0
+    nbptr: 5.5
+    patnat: 0.0
+    rbg: 90000.0
+    rfr: 90000.0

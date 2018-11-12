@@ -1,0 +1,357 @@
+- name: reduc_locmeu_avec_reports
+  period: 2014
+  absolute_error_margin: .1
+  foyers_fiscaux:
+  - caseF: false
+    caseG: false
+    caseL: false
+    caseP: false
+    caseS: false
+    caseT: false
+    caseW: false
+    declarants:
+    - ind0
+    f7ia: 500
+    f7ic: 500
+    f7id: 10000
+    f7ie: 10000
+    f7if: 10000
+    f7ig: 10000
+    f7ih: 10
+    f7ij: 10000
+    f7il: 10000
+    f7im: 10000
+    f7in: 10000
+    f7io: 10000
+    f7ip: 500
+    f7ir: 500
+    f7it: 10
+    f7iu: 10
+    f7iv: 10000
+    f7iw: 10000
+    f7ix: 10
+    f7iy: 10
+    f7iz: 10
+    f7jc: 10
+    f7ji: 10
+    f7js: 10
+    f7jt: 10000
+    f7ju: 10000
+    f7jv: 500
+    f7jx: 500
+    f7oa: 500
+    f7oc: 500
+    f7oe: 500
+    f7ou: 10000
+    f7pa: 10
+    f7pb: 10
+    f7pc: 10
+    f7pd: 10
+    f7pe: 10
+    id: 0
+    nbF: 0.0
+    nbG: 0.0
+    nbH: 0.0
+    nbI: 0.0
+    nbJ: 0
+    nbR: 0
+  individus:
+  - activite: actif
+    date_naissance: '1970-01-01'
+    id: ind0
+    salaire_imposable: 150000.0
+    statut_marital: celibataire
+  familles:
+  - id: 0
+    parents:
+    - ind0
+  menages:
+  - id: 0
+    personne_de_reference: ind0
+  output_variables:
+    reductions: 6578.0
+    iai: 36406.0
+    irpp: -36406.0
+    nbptr: 1.0
+    ppe: 0.0
+    rbg: 137843.0
+    rfr: 137843.0
+    rni: 137843.0
+- name: reduc_locmeu_avec_reports
+  period: 2015
+  absolute_error_margin: .1
+  foyers_fiscaux:
+  - caseF: false
+    caseG: false
+    caseL: false
+    caseP: false
+    caseS: false
+    caseT: false
+    caseW: false
+    declarants:
+    - ind0
+    f7ia: 500
+    f7ic: 500
+    f7id: 10000
+    f7ie: 10000
+    f7if: 10000
+    f7ig: 10000
+    f7ih: 10
+    f7ij: 10000
+    f7il: 10000
+    f7im: 10000
+    f7in: 10000
+    f7io: 10000
+    f7ip: 500
+    f7ir: 500
+    f7it: 10
+    f7iu: 10
+    f7iv: 10000
+    f7iw: 10000
+    f7ix: 10
+    f7iy: 10
+    f7iz: 10
+    f7jc: 10
+    f7ji: 10
+    f7js: 10
+    f7jt: 10000
+    f7ju: 10000
+    f7jv: 500
+    f7jx: 500
+    f7oa: 500
+    f7oc: 500
+    f7oe: 500
+    f7of: 500
+    f7oh: 500
+    f7oj: 500
+    f7ou: 10000
+    f7ov: 10000
+    f7pa: 10
+    f7pb: 10
+    f7pc: 10
+    f7pd: 10
+    f7pe: 10
+    f7pf: 10
+    f7pg: 10
+    f7ph: 10
+    f7pi: 10
+    f7pj: 10
+    id: 0
+    nbF: 0.0
+    nbG: 0.0
+    nbH: 0.0
+    nbI: 0.0
+    nbJ: 0
+    nbR: 0
+  individus:
+  - activite: actif
+    date_naissance: '1970-01-01'
+    id: ind0
+    salaire_imposable: 150000.0
+    statut_marital: celibataire
+  familles:
+  - id: 0
+    parents:
+    - ind0
+  menages:
+  - id: 0
+    personne_de_reference: ind0
+  output_variables:
+    locmeu: 8250.0
+    reductions: 8250.0
+    iai: 34715.0
+    irpp: -34715.0
+    nbptr: 1.0
+    rbg: 137830.0
+    rfr: 137830.0
+    rni: 137830.0
+- name: reduc_locmeu_avec_reports
+  period: 2016
+  absolute_error_margin: .1
+  foyers_fiscaux:
+  - caseF: false
+    caseG: false
+    caseL: false
+    caseP: false
+    caseS: false
+    caseT: false
+    caseW: false
+    declarants:
+    - ind0
+    f7ia: 500
+    f7ic: 500
+    f7id: 10000
+    f7ie: 10000
+    f7if: 10000
+    f7ig: 10000
+    f7ih: 10
+    f7ij: 10000
+    f7il: 10000
+    f7im: 10000
+    f7in: 10000
+    f7ip: 500
+    f7ir: 500
+    f7it: 10
+    f7iu: 10
+    f7iv: 10000
+    f7iw: 10000
+    f7ix: 10
+    f7iy: 10
+    f7iz: 10
+    f7jc: 10
+    f7ji: 10
+    f7js: 10
+    f7jt: 10000
+    f7ju: 10000
+    f7jv: 500
+    f7jx: 500
+    f7oa: 500
+    f7oc: 500
+    f7oe: 500
+    f7of: 500
+    f7oh: 500
+    f7oj: 500
+    f7ok: 500
+    f7om: 500
+    f7oo: 500
+    f7ou: 10000
+    f7ov: 10000
+    f7ow: 10000
+    f7pa: 10
+    f7pb: 10
+    f7pc: 10
+    f7pd: 10
+    f7pe: 10
+    f7pf: 10
+    f7pg: 10
+    f7ph: 10
+    f7pi: 10
+    f7pj: 10
+    f7pk: 10
+    f7pl: 10
+    f7pm: 10
+    f7pn: 10
+    f7po: 0
+    id: 0
+    nbF: 0.0
+    nbG: 0.0
+    nbH: 0.0
+    nbI: 0.0
+    nbJ: 0
+    nbR: 0
+  individus:
+  - activite: actif
+    date_naissance: '1970-01-01'
+    id: ind0
+    salaire_imposable: 150000.0
+    statut_marital: celibataire
+  familles:
+  - id: 0
+    parents:
+    - ind0
+  menages:
+  - id: 0
+    personne_de_reference: ind0
+  output_variables:
+    locmeu: 9634.0
+    reductions: 9634.0
+    iai: 33312.0
+    irpp: -33312.0
+    nbptr: 1.0
+    rbg: 137817.0
+    rfr: 137817.0
+    rni: 137817.0
+- name: reduc_locmeu_avec_reports
+  period: 2017
+  absolute_error_margin: .1
+  foyers_fiscaux:
+  - caseF: false
+    caseG: false
+    caseL: false
+    caseP: false
+    caseS: false
+    caseT: false
+    caseW: false
+    declarants:
+    - ind0
+    f7ia: 500
+    f7ic: 500
+    f7id: 10000
+    f7ih: 10
+    f7ij: 10000
+    f7ip: 500
+    f7ir: 500
+    f7ix: 10
+    f7iy: 10
+    f7iz: 10
+    f7jc: 10
+    f7ji: 10
+    f7js: 10
+    f7jt: 10000
+    f7jv: 500
+    f7jx: 500
+    f7oa: 500
+    f7oc: 500
+    f7oe: 500
+    f7of: 500
+    f7oh: 500
+    f7oj: 500
+    f7ok: 500
+    f7om: 500
+    f7oo: 500
+    f7op: 500
+    f7or: 500
+    f7ot: 500
+    f7ou: 10000
+    f7ov: 10000
+    f7ow: 10000
+    f7ox: 10000
+    f7pa: 10
+    f7pb: 10
+    f7pc: 10
+    f7pd: 10
+    f7pe: 10
+    f7pf: 10
+    f7pg: 10
+    f7ph: 10
+    f7pi: 10
+    f7pj: 10
+    f7pk: 10
+    f7pl: 10
+    f7pm: 10
+    f7pn: 10
+    f7po: 0
+    f7pp: 10
+    f7pq: 10
+    f7pr: 10
+    f7ps: 10
+    f7pt: 10
+    id: 0
+    nbF: 0.0
+    nbG: 0.0
+    nbH: 0.0
+    nbI: 0.0
+    nbJ: 0
+    nbR: 0
+  individus:
+  - activite: actif
+    date_naissance: '1970-01-01'
+    id: ind0
+    salaire_imposable: 150000.0
+    statut_marital: celibataire
+  familles:
+  - id: 0
+    parents:
+    - ind0
+  menages:
+  - id: 0
+    personne_de_reference: ind0
+  output_variables:
+    locmeu: 9442.0
+    reductions: 9442.0
+    iai: 33318.0
+    irpp: -33318.0
+    nbptr: 1.0
+    patnat: 0.0
+    rbg: 137695.0
+    rfr: 137695.0
