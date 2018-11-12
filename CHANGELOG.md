@@ -1,10 +1,19 @@
 # Changelog
 
+### 29.3.9
+
+* Changement mineur
+* Périodes concernées : toutes.
+* Zones impactées :
+  - `prestations/prestations_familiales/base_ressource.py`
+* Détails :
+  - Corrige la biactivité dans les bases ressources des presrtations sociales
+
 ### 29.3.8 [#1198](https://github.com/openfisca/openfisca-france/pull/1198)
 
 * Amélioration technique | Ajout de tests
 * Périodes concernées : toutes.
-* Zones impactées : 
+* Zones impactées :
   - `prelevements_obligatoires/impot_revenu/ir.py`
   - `prelevements_obligatoires/impot_revenu/reductions_impot.py`
   - `prelevements_obligatoires/impot_revenu/variables_reductions_credits.py`.
