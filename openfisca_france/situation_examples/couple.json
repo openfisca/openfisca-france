@@ -24,10 +24,10 @@
       "enfants": [
         "Camille"
       ],
-      "revenu_disponible": {
+      "revenu_disponible_menage": {
         "2017": null
       },
-      "impots_directs": {
+      "impots_directs_menage": {
         "2017": null
       }
     }

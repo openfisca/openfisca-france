@@ -40,8 +40,8 @@ def test(year = 2013):
     reform_ir_plaf_qf = reform_simulation.calculate('ir_plaf_qf', period = year)
     assert max(abs([0, 918] - ir_plaf_qf)) < error_margin
     assert max(abs([0, 911.4] - reform_ir_plaf_qf)) < error_margin
-    assert max(abs([0, -869] - impots_directs)) < error_margin
-    assert max(abs([0, -911.4 + (1135 - 911.4)] - reform_impots_directs)) < error_margin
+    assert max(abs([0, -869] - impots_directs_menage)) < error_margin
+    assert max(abs([0, -911.4 + (1135 - 911.4)] - reform_impots_directs_menage)) < error_margin
 
 
 if __name__ == '__main__':
