@@ -103,11 +103,16 @@ class revenus_nets_du_travail(Variable):
     definition_period = YEAR
 
     def formula(individu, period):
+        '''
+        Note : pour les revenus non-salariés, on prend rpns_individu, auquel on retranche seulement la CSG-CRDS,
+               mais pas les cotisations sociales. En effet, la variable assiette_csg_crds_non_salarie suggère
+               que rpns_individu est avant application de la CSG-CRDS, mais après cotisations sociales
+               (ou du moins certaines cotisations)
+        '''
         # Salariés
         salaire_net = individu('salaire_net', period, options = [ADD])
         # Non salariés
-        revenu_non_salarie = individu('rpns', period, options = [ADD])  # TODO ou rpns_individu
-        cotisations_non_salarie = individu('cotisations_non_salarie', period)
+        revenu_non_salarie = individu('rpns_individu', period, options = [ADD])  # TODO ou rpns_individu
         csg_non_salarie = individu('csg_non_salarie', period)
         crds_non_salarie = individu('crds_non_salarie', period)
         revenu_non_salarie_net = (
@@ -325,9 +330,13 @@ class revenus_travail_super_bruts_menage(Variable):
         '''
         Revenus du travail super bruts du ménage :
         avant CSG-CRDS, cotisations salariales et patronales
+        Note : pour les revenus non-salariés, on prend rpns_individu, auquel on ajoute seulement les cotisations sociales,
+               mais pas la CSG-CRDS. En effet, la variable assiette_csg_crds_non_salarie suggère
+               que rpns_individu est avant application de la CSG-CRDS, mais après cotisations sociales
+               (ou du moins certaines cotisations)
         '''
         salaire_net_i = menage.members('salaire_net', period, options = [ADD])
-        rpns_i = menage.members('rpns', period)
+        rpns_i = menage.members('rpns_individu', period)
         csg_imposable_salaire_i = menage.members('csg_imposable_salaire', period, options = [ADD])
         csg_deductible_salaire_i = menage.members('csg_deductible_salaire', period, options = [ADD])
         crds_salaire_i = menage.members('crds_salaire', period, options = [ADD])
