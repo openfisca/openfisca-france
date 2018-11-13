@@ -88,12 +88,30 @@ class biactivite(Variable):
     definition_period = MONTH
 
     def formula(famille, period, parameters):
+        '''
+        Hypothèses/points à éclaircir :
+           (1) A partir d'une certaine date sont apparemment pris en compte
+               dans les "revenus professinnels" les indemnités journalières.
+               Cf. circulaire interministérielle DSS/2B n°2011-447 du 01/12/2011
+               Regarder davantage ce point
+           (2) On n'a pas pris en compte les abbattements présents dans la
+               variable abattement_salaires_pensions, car il s'agit d'une
+               variable dépendant conjointement des salaires et des pensions
+               (or, les pensions ne doivent pas être pris en compte ici, et
+               cette variable ne peut pas être décomposée entre une part salaire et
+               une part pensions). Mais cette variable n'existe que jusqu'à 2005
+               inclus.
+        '''
         annee_fiscale_n_2 = period.n_2
 
         pfam = parameters(annee_fiscale_n_2).prestations.prestations_familiales
         seuil_rev = 12 * pfam.af.bmaf
 
-        condition_ressource = famille.members('prestations_familiales_base_ressources_individu', period) >= seuil_rev
+        condition_ressource = (
+            famille.members('rpns_individu', annee_fiscale_n_2)
+            + famille.members('revenu_assimile_salaire_apres_abattements', annee_fiscale_n_2)
+            >= seuil_rev
+            )
         deux_parents = famille.nb_persons(role = famille.PARENT) == 2
 
         return deux_parents * famille.all(condition_ressource, role = famille.PARENT)
