@@ -46,3 +46,6 @@ values:
     value: 18697.0
   2016-01-01:
     value: 18772.0
+  2018-01-01:
+    value: 18810.0
+    reference: https://www.legifrance.gouv.fr/affichTexteArticle.do;jsessionid=166E72095FB02DDEDC8F8437A49B1301.tplgfr43s_1?cidTexte=JORFTEXT000036299559&idArticle=JORFARTI000036299573&dateTexte=20171229&categorieLien=cid#JORFARTI000036299573

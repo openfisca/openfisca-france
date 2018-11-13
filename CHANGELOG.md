@@ -1,5 +1,12 @@
 # Changelog
 
+### 29.3.10 [#1208](https://github.com/openfisca/openfisca-france/pull/1208)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Détails :
+  - Actualise un plafond de ressources de l'ARS
+
 ### 29.3.9 [#1206](https://github.com/openfisca/openfisca-france/pull/1206)
 
 * Changement mineur
