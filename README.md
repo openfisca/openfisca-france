@@ -4,20 +4,20 @@
 
 ## [EN] Introduction
 OpenFisca is a versatile microsimulation free software. This repository contains the OpenFisca model of the French tax and benefit system. Therefore, the working language here is French. You can however check the [general OpenFisca documentation](http://openfisca.org/doc/) in English!
-> We host a public instance of of the [OpenFisca-France Web API](https://fr.openfisca.org/api/v18/). Learn more about its endpoint in the [Swagger documentation](https://fr.openfisca.org/legislation/swagger).
+> We host a public instance of of the [OpenFisca-France Web API](https://fr.openfisca.org/api/v24/). Learn more about its endpoint in the [Swagger documentation](https://fr.openfisca.org/legislation/swagger).
 > If you need to run large amount of calculations, or add extensions, you should [host your own instance](#servez-openfisca-france-avec-l-api-web-openfisca).
 
 ## [FR] Introduction
 [OpenFisca](https://www.openfisca.fr/) est un logiciel libre de micro-simulation. Ce dépôt contient la modélisation du système social et fiscal français. Pour plus d'information sur les fonctionnalités et la manière d'utiliser OpenFisca, vous pouvez consulter la [documentation générale](http://openfisca.org/doc/).
-> Nous mettons à disposition une instance publique de [l'API Web OpenFisca-France](https://fr.openfisca.org/api/v18/). Découvrez ses capacité sur sa [documentation Swagger](https://fr.openfisca.org/legislation/swagger).
+> Nous mettons à disposition une instance publique de [l'API Web OpenFisca-France](https://fr.openfisca.org/api/v24/). Découvrez ses capacité sur sa [documentation Swagger](https://fr.openfisca.org/legislation/swagger).
 > Si vous avez besoin de réaliser un grand nombre de calculs ou d'ajouter des extensions, vous pouvez [servir votre propre instance](#servez-openfisca-france-avec-l-api-web-openfisca).
 
 ## API Web publique : interrogez OpenFisca-France sans installation
 
 OpenFisca met à disposition une [API Web publique](http://openfisca.org/doc/openfisca-web-api/endpoints.html) qui ne demande aucune installation.
 Utilisez l'API publique si vous souhaitez :
-- accéder à un paramètre (Ex : [le montant du SMIC horaire brut](https://fr.openfisca.org/api/v18/parameter/cotsoc.gen.smic_h_b)) ;
-- consulter une formule de calcul (Ex : [le calcul de l'allocation de base des allocations familiales](https://fr.openfisca.org/api/v18/variable/af_base)) ;
+- accéder à un paramètre (Ex : [le montant du SMIC horaire brut](https://fr.openfisca.org/api/v24/parameter/cotsoc.gen.smic_h_b)) ;
+- consulter une formule de calcul (Ex : [le calcul de l'allocation de base des allocations familiales](https://fr.openfisca.org/api/v24/variable/af_base)) ;
 - faire des calculs sur une situation (Ex : le calcul du coût du travail).
 
 L'ensembles des endpoints sont décrits dans la [documentation Swagger](https://fr.openfisca.org/legislation/swagger).
