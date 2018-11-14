@@ -1,5 +1,13 @@
 # Changelog
 
+### 29.3.11 [#1182](https://github.com/openfisca/openfisca-france/pull/1182)
+
+* Changement mineur.
+* Périodes concernées : à partir du 01/10/2017
+* Zones impactées : `parameters/cotsoc/pat/commun/assedic`.
+* Détails :
+  - Intègre la CET de 2017
+
 ### 29.3.10 [#1208](https://github.com/openfisca/openfisca-france/pull/1208)
 
 * Changement mineur.
