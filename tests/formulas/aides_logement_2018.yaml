@@ -47,5 +47,4 @@
     crds_logement: -300 * 0.005
     # AL après déduction de la CRDS
     aide_logement_montant: 295 - 300 * 0.005
-    aides_logement:
-      2018: 295 - 300 * 0.005
+    aide_logement: 295 - 300 * 0.005
