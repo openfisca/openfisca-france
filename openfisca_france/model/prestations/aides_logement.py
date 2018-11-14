@@ -1538,6 +1538,7 @@ class aides_logement_foyer_plafond(Variable):
 
         return al_crous.rehabilitee.personne_isolee * not_(couple) + al_crous.rehabilitee.couple * couple
 
+
 class aides_logement_foyer_personne_agee_plafond(Variable):
 
     value_type = float
