@@ -127,3 +127,24 @@
   output_variables:
     cheque_energie:
       2017-01: 0
+
+- name: Plusieurs foyers
+  period: 2018
+  individus:
+    - id: faustine
+    - id: jocelyne
+  familles:
+    - parents: [faustine]
+    - parents: [jocelyne]
+  menages:
+    - personne_de_reference: faustine
+      cheque_energie_unites_consommation: 1
+    - personne_de_reference: jocelyne
+      cheque_energie_unites_consommation: 2
+  foyers_fiscaux:
+    - declarants: [faustine]
+    - declarants: [jocelyne]
+  output_variables:
+    cheque_energie_montant:
+      - 144
+      - 227

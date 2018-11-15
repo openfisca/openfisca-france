@@ -1,5 +1,12 @@
 # Changelog
 
+### 29.3.12 [#1212](https://github.com/openfisca/openfisca-france/pull/1212)
+
+* Correction d'un crash.
+* Zones impactées : `model/prestations/cheque_energie`.
+* Détails :
+  - Remplace l'utilisation de `a < b < x` par `(a < b) * (b < c)` car la première notion ne fonctionne pas avec des vecteurs `numpy`.
+
 ### 29.3.11 [#1182](https://github.com/openfisca/openfisca-france/pull/1182)
 
 * Changement mineur.
