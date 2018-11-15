@@ -83,8 +83,8 @@ class cheque_energie_montant(Variable):
 
         return (
             + (ressources_par_uc < seuils.tranche_une) * montants[uc].tranche_une
-            + (seuils.tranche_une <= ressources_par_uc < seuils.tranche_deux) * montants[uc].tranche_deux
-            + (seuils.tranche_deux <= ressources_par_uc < seuils.tranche_trois) * montants[uc].tranche_trois
+            + (seuils.tranche_une <= ressources_par_uc) * (ressources_par_uc < seuils.tranche_deux) * montants[uc].tranche_deux
+            + (seuils.tranche_deux <= ressources_par_uc) * (ressources_par_uc < seuils.tranche_trois) * montants[uc].tranche_trois
             )
 
 
