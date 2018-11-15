@@ -4532,12 +4532,23 @@ class rpinel(Variable):
             + around(P.taux12 * min_(max_(0, P.plafond - f7ql - f7qk - f7qj), f7qi) / 6)
             )
 
-        reduc_invest_real_2017 = (
-            around(P.taux29 * min_(P.plafond, f7qp) / 9)
-            + around(P.taux23 * min_(max_(0, P.plafond - f7qp), f7qo) / 6)
-            + around(P.taux18 * min_(max_(0, P.plafond - f7qp - f7qo), f7qn) / 9)
-            + around(P.taux12 * min_(max_(0, P.plafond - f7qp - f7qo - f7qn), f7qm) / 6)
-            )
+        def taux_avec_cumul_vers_plafond_commun(cases):
+            result = foyer_fiscal.empty_array()
+            cumuls = foyer_fiscal.empty_array()
+            for case in cases:
+                variable, duree, zone = case
+                depense = foyer_fiscal(variable, period)
+                bareme = P.taux.metropole if zone == 'metropole' else P.taux.outremer # Bug in Core
+                result += around(bareme.calc(duree) * min_(max_(0, P.plafond - cumuls), depense) / duree)
+                cumuls += depense
+
+        cases_2017 = [
+                ('f7qp', 9, 'metropole'),
+                ('f7qo', 6, 'metropole'),
+                ('f7qn', 9, 'outremer'),
+                ('f7qm', 6, 'outremer')]
+
+        reduc_invest_real_2017 = taux_avec_cumul_vers_plafond_commun(cases_2017)
 
         report = f7ai + f7bi + f7ci + f7di + f7bz + f7cz + f7dz + f7ez + f7qz + f7rz + f7sz + f7tz
 
