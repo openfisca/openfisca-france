@@ -4476,8 +4476,8 @@ class rpinel(Variable):
         f7cz = foyer_fiscal('f7cz', period)
         f7di = foyer_fiscal('f7di', period)
         f7dz = foyer_fiscal('f7dz', period)
-        invest_metropole_2014 = foyer_fiscal('f7ek', period)
-        invest_domtom_2014 = foyer_fiscal('f7el', period)
+        f7ek = foyer_fiscal('f7ek', period)
+        f7el = foyer_fiscal('f7el', period)
         f7ez = foyer_fiscal('f7ez', period)
         f7qa = foyer_fiscal('f7qa', period)
         f7qb = foyer_fiscal('f7qb', period)
@@ -4500,16 +4500,21 @@ class rpinel(Variable):
         f7sz = foyer_fiscal('f7sz', period)
         f7tz = foyer_fiscal('f7tz', period)
 
+        # f7ek et f7el proviennent de la réduction Duflot
+        # ils n'entrent en compte ici que pour l'application du plafond commun
+        # aux investissements 'duflot' et 'rpinel' en 2014, la loi Pinel prenant
+        # le relais à partir de septembre 2014
+
         P = parameters(period).impot_revenu.reductions_impots.rpinel
 
-        max1 = max_(0, P.seuil - invest_domtom_2014 - f7qd)  # 2014 : plafond commun 'duflot' et 'rpinel'
+        max1 = max_(0, P.seuil - f7el - f7qd)
         max2 = max_(0, max1 - f7qc)
-        max3 = max_(0, max2 - invest_metropole_2014 - f7qb)
+        max3 = max_(0, max2 - f7ek - f7qb)
 
         reduc_invest_real_2014 = (
-            around(P.taux29 * min_(max_(0, P.seuil - invest_domtom_2014), f7qd) / 9)
+            around(P.taux29 * min_(max_(0, P.seuil - f7el), f7qd) / 9)
             + around(P.taux23 * min_(max1, f7qc) / 6)
-            + around(P.taux18 * min_(max_(0, max2 - invest_metropole_2014), f7qb) / 9)
+            + around(P.taux18 * min_(max_(0, max2 - f7ek), f7qb) / 9)
             + around(P.taux12 * min_(max3, f7qa) / 6)
             )
 
