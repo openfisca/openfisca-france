@@ -1,5 +1,13 @@
 # Changelog
 
+### 29.3.13 [#1200](https://github.com/openfisca/openfisca-france/pull/1200)
+
+* Changement mineur.
+* Zones impactées : `model/mesures.py`.
+* Détails :
+  - Corrige le double compte de la CRDS logement dans `aides_logement`
+  - Ajoute un test vérifiant l'égalité de `aides_logement` (annuelle) et `aide_logement` (mensuelle)
+
 ### 29.3.12 [#1212](https://github.com/openfisca/openfisca-france/pull/1212)
 
 * Correction d'un crash.
