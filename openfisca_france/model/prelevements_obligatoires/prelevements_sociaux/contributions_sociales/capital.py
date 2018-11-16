@@ -200,7 +200,7 @@ class assiette_csg_revenus_capital(Variable):
         assurance_vie_ps_exoneree_irpp_pl = foyer_fiscal('assurance_vie_ps_exoneree_irpp_pl', period)
 
         # Crédits d'impôt sur valeurs étrangères déduits de la base CSG
-        credits_impot_sur_valeurs_etrangeres = foyer_fiscal('credits_impot_sur_valeurs_etrangeres', year)
+        credits_impot_sur_valeurs_etrangeres = foyer_fiscal('credits_impot_sur_valeurs_etrangeres', period)
 
         return max_(
             revenus_capitaux_prelevement_bareme
@@ -254,7 +254,7 @@ class assiette_csg_revenus_capital(Variable):
         assurance_vie_ps_exoneree_irpp_pl = foyer_fiscal('assurance_vie_ps_exoneree_irpp_pl', period)
 
         # Crédits d'impôt sur valeurs étrangères déduits de la base CSG
-        credits_impot_sur_valeurs_etrangeres = foyer_fiscal('credits_impot_sur_valeurs_etrangeres', year)
+        credits_impot_sur_valeurs_etrangeres = foyer_fiscal('credits_impot_sur_valeurs_etrangeres', period)
 
         return max_(
             revenus_capitaux_prelevement_forfaitaire_unique_ir
