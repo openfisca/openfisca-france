@@ -1414,6 +1414,9 @@ class reduction_ss_condition_revenus(Variable):
     def formula_2016_01_01(foyer_fiscal, period, parameters):
         '''
         Réduction d'impôt sous condition de revenus
+        Cette réduction instaurée en 2016 vise à adoucir un effet de seuil d'assujettissement
+        à l'impôt pour les foyers fiscaux les plus modestes, elle est plus à considérer comme une
+        "décote bis" qu'une réduction fiscale à proprement parler.
         '''
         ir_plaf_qf = foyer_fiscal('ir_plaf_qf', period)
         decote = foyer_fiscal('decote', period)
