@@ -1468,17 +1468,6 @@ class ip_net(Variable):
         cncn_info_i = foyer_fiscal.members('cncn_info', period)
         decote = foyer_fiscal('decote', period)
         ir_plaf_qf = foyer_fiscal('ir_plaf_qf', period)
-        taux = parameters(period).impot_revenu.rpns.taux16
-
-        return around(max_(0, ir_plaf_qf + foyer_fiscal.sum(cncn_info_i) * taux - decote))
-
-    def formula_2016_01_01(foyer_fiscal, period, parameters):
-        '''
-        Impôt net avant réductions
-        '''
-        cncn_info_i = foyer_fiscal.members('cncn_info', period)
-        decote = foyer_fiscal('decote', period)
-        ir_plaf_qf = foyer_fiscal('ir_plaf_qf', period)
         reduction_ss_condition_revenus = foyer_fiscal('reduction_ss_condition_revenus', period)
         taux = parameters(period).impot_revenu.rpns.taux16
 
