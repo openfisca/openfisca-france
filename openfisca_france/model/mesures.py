@@ -406,11 +406,7 @@ class aides_logement(Variable):
     definition_period = YEAR
 
     def formula(famille, period):
-        apl = famille('apl', period, options = [ADD])
-        als = famille('als', period, options = [ADD])
-        alf = famille('alf', period, options = [ADD])
-
-        return apl + als + alf
+        return famille('aide_logement', period, options = [ADD])
 
 
 class irpp_economique(Variable):
