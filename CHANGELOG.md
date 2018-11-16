@@ -1,5 +1,17 @@
 # Changelog
 
+### 29.3.14 [#1209](https://github.com/openfisca/openfisca-france/pull/1209)
+
+* Changement mineur
+* Périodes concernées : toutes.
+* Zones impactées:
+  - `revenus/capital/financier.py`
+  - `prelevements_obligatoires/impot_revenu/ir.py`
+* Détails :
+  - Enlève la variable `avoirs_credits_fiscaux` des variables de mesure de revenus du capital
+  - Renomme `avoirs_credits_fiscaux` en `credits_impot_sur_valeurs_etrangeres`
+  - Déplace l'utilisation de cette variable directement dans `assiette_csg_revenus_capital`
+
 ### 29.3.13 [#1200](https://github.com/openfisca/openfisca-france/pull/1200)
 
 * Changement mineur.
