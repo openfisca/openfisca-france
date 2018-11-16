@@ -199,8 +199,8 @@ class assiette_csg_revenus_capital(Variable):
         # produits d'assurance-vie exonérés d'impôt sur le revenu et de prélèvement forfaitaire libératoire (et donc non présents dans revenus_capitaux_prelevement_bareme et revenus_capitaux_prelevement_liberatoire)
         assurance_vie_ps_exoneree_irpp_pl = foyer_fiscal('assurance_vie_ps_exoneree_irpp_pl', period)
 
-        # Crédit d'impôt sur valeurs étrangères déduits de la base CSG
-        avoirs_credits_fiscaux = foyer_fiscal('avoirs_credits_fiscaux', year)
+        # Crédits d'impôt sur valeurs étrangères déduits de la base CSG
+        credits_impot_sur_valeurs_etrangeres = foyer_fiscal('credits_impot_sur_valeurs_etrangeres', year)
 
         return max_(
             revenus_capitaux_prelevement_bareme
@@ -211,7 +211,7 @@ class assiette_csg_revenus_capital(Variable):
             + rev_cat_rfon
             + assiette_csg_plus_values
             + assurance_vie_ps_exoneree_irpp_pl
-            - avoirs_credits_fiscaux,
+            - credits_impot_sur_valeurs_etrangeres,
             0
             )
 
@@ -253,8 +253,8 @@ class assiette_csg_revenus_capital(Variable):
         # produits d'assurance-vie exonérés d'impôt sur le revenu et de prélèvement forfaitaire libératoire (et donc non présents dans revenus_capitaux_prelevement_bareme et revenus_capitaux_prelevement_liberatoire)
         assurance_vie_ps_exoneree_irpp_pl = foyer_fiscal('assurance_vie_ps_exoneree_irpp_pl', period)
 
-        # Crédit d'impôt sur valeurs étrangères déduits de la base CSG
-        avoirs_credits_fiscaux = foyer_fiscal('avoirs_credits_fiscaux', year)
+        # Crédits d'impôt sur valeurs étrangères déduits de la base CSG
+        credits_impot_sur_valeurs_etrangeres = foyer_fiscal('credits_impot_sur_valeurs_etrangeres', year)
 
         return max_(
             revenus_capitaux_prelevement_forfaitaire_unique_ir
@@ -266,7 +266,7 @@ class assiette_csg_revenus_capital(Variable):
             + rev_cat_rfon
             + assiette_csg_plus_values
             + assurance_vie_ps_exoneree_irpp_pl
-            - avoirs_credits_fiscaux,
+            - credits_impot_sur_valeurs_etrangeres,
             0
             )
 
