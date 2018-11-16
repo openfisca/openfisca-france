@@ -1471,8 +1471,9 @@ class ip_net(Variable):
         cncn_info_i = foyer_fiscal.members('cncn_info', period)
         decote = foyer_fiscal('decote', period)
         ir_plaf_qf = foyer_fiscal('ir_plaf_qf', period)
-        reduction_ss_condition_revenus = foyer_fiscal('reduction_ss_condition_revenus', period)
         taux = parameters(period).impot_revenu.rpns.taux16
+        # N'est pas véritablement une 'réduction', cf. la définition de cette variable
+        reduction_ss_condition_revenus = foyer_fiscal('reduction_ss_condition_revenus', period)
 
         return around(max_(0, ir_plaf_qf + foyer_fiscal.sum(cncn_info_i) * taux - decote - reduction_ss_condition_revenus))
 
