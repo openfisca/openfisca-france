@@ -2,15 +2,11 @@
 
 from __future__ import division
 
-from functools import partial
 import logging
 
-from numpy import (
-    busday_count as original_busday_count, datetime64, logical_or as or_, logical_and as and_, timedelta64
-    )
+from numpy import busday_count, datetime64, logical_or as or_, logical_and as and_, timedelta64
 
 from openfisca_france.model.base import *
-from openfisca_france.assets.holidays import holidays
 
 log = logging.getLogger(__name__)
 
@@ -65,9 +61,6 @@ class coefficient_proratisation(Variable):
         # Décompte des jours en début et fin de contrat
         # http://www.gestiondelapaie.com/flux-paie/?1029-la-bonne-premiere-paye
 
-        # Méthode numpy de calcul des jours travaillés
-        busday_count = partial(original_busday_count, holidays=holidays)  # @holidays : jours feriés français
-
         debut_mois = datetime64(period.start.offset('first-of', 'month'))
         fin_mois = datetime64(period.start.offset('last-of', 'month')) + timedelta64(1,
                                                                                      'D')  # busday ignores the last day
@@ -78,7 +71,6 @@ class coefficient_proratisation(Variable):
             weekmask='1111100'
             )
 
-        mois_incomplet = or_(contrat_de_travail_debut > debut_mois, contrat_de_travail_fin < fin_mois)  # noqa F841
         # jours travaillables sur l'intersection du contrat de travail et du mois en cours
         jours_ouvres_ce_mois_incomplet = busday_count(
             max_(contrat_de_travail_debut, debut_mois),
