@@ -1,5 +1,14 @@
 # Changelog
 
+### 29.4.0 [#1196](https://github.com/openfisca/openfisca-france/pull/1196)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : toutes.
+* Zones impactées : `prestations/minima_sociaux/ass.py`.
+* Détails :
+  - Intègre pensions d'invalidité et revenus locatifs dans la base de ressources de l'ASS.
+  - Ajoute un cas de test issu de Mes Aides.
+
 ### 29.3.14 [#1209](https://github.com/openfisca/openfisca-france/pull/1209)
 
 * Changement mineur

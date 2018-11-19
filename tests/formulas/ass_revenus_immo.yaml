@@ -1,0 +1,284 @@
+- name: "Revenus immobiliers pris en compte pour l'ASS"
+  period: 2018-08
+  individus:
+    - id: demandeur
+      ass_precondition_remplie:
+        2018-07: true
+        2018-06: true
+        2018-05: true
+        2018-04: true
+      echelon_bourse:
+        2018-07: -1
+        2018-06: -1
+        2018-05: -1
+        2018-04: -1
+      enfant_a_charge:
+        '2018': false
+      enfant_place:
+        2018-07: false
+        2018-06: false
+        2018-05: false
+        2018-04: false
+      tns_autres_revenus_type_activite:
+        2018-07: bic
+        2018-06: bic
+        2018-05: bic
+        2018-04: bic
+      tns_micro_entreprise_type_activite:
+        2018-07: bic
+        2018-06: bic
+        2018-05: bic
+        2018-04: bic
+      tns_auto_entrepreneur_type_activite:
+        2018-07: bic
+        2018-06: bic
+        2018-05: bic
+        2018-04: bic
+      date_naissance:
+        2018-07: '1960-08-12'
+        2018-06: '1960-08-12'
+        2018-05: '1960-08-12'
+        2018-04: '1960-08-12'
+      statut_marital:
+        2018-07: marie
+        2018-06: marie
+        2018-05: marie
+        2018-04: marie
+      revenus_locatifs:
+        2017-07: 675
+        2017-08: 675
+        2017-09: 675
+        2017-10: 675
+        2017-11: 675
+        2017-12: 675
+        2018-01: 675
+        2018-02: 675
+        2018-03: 675
+        2018-04: 675
+        2018-05: 675
+        2018-06: 675
+        2018-07: 675
+      chomage_imposable:
+        '2016': 6932
+      retraite_imposable: {}
+      frais_reels: {}
+      pensions_alimentaires_percues: {}
+      valeur_patrimoine_loue:
+        2012-01: 200000
+      livret_a:
+        2012-01: 46000
+      gir:
+        2018-07: gir_6
+        2018-06: gir_6
+        2018-05: gir_6
+        2018-04: gir_6
+      age:
+        2018-07: 57
+        2018-06: 57
+        2018-05: 57
+        2018-04: 57
+      age_en_mois:
+        2018-07: 695
+        2018-06: 695
+        2018-05: 695
+        2018-04: 695
+      date_arret_de_travail:
+        2018-07: '2018-10-26'
+        2018-06: '2018-10-26'
+        2018-05: '2018-10-26'
+        2018-04: '2018-10-26'
+      activite:
+        2018-07: chomeur
+        2018-06: chomeur
+        2018-05: chomeur
+        2018-04: chomeur
+      handicap:
+        2018-07: false
+        2018-06: false
+        2018-05: false
+        2018-04: false
+      taux_incapacite:
+        2018-07: false
+        2018-06: false
+        2018-05: false
+        2018-04: false
+      inapte_travail:
+        2018-07: false
+        2018-06: false
+        2018-05: false
+        2018-04: false
+    - id: conjoint
+      ass_precondition_remplie:
+        2018-07: true
+        2018-06: true
+        2018-05: true
+        2018-04: true
+      echelon_bourse:
+        2018-07: -1
+        2018-06: -1
+        2018-05: -1
+        2018-04: -1
+      enfant_a_charge:
+        '2018': false
+      enfant_place:
+        2018-07: false
+        2018-06: false
+        2018-05: false
+        2018-04: false
+      tns_autres_revenus_type_activite:
+        2018-07: bic
+        2018-06: bic
+        2018-05: bic
+        2018-04: bic
+      tns_micro_entreprise_type_activite:
+        2018-07: bic
+        2018-06: bic
+        2018-05: bic
+        2018-04: bic
+      tns_auto_entrepreneur_type_activite:
+        2018-07: bic
+        2018-06: bic
+        2018-05: bic
+        2018-04: bic
+      statut_marital:
+        2018-07: marie
+        2018-06: marie
+        2018-05: marie
+        2018-04: marie
+      date_naissance:
+        2018-07: '1960-12-06'
+        2018-06: '1960-12-06'
+        2018-05: '1960-12-06'
+        2018-04: '1960-12-06'
+      chomage_net:
+        2017-07: 823
+        2017-08: 823
+        2017-09: 823
+        2017-10: 823
+        2017-11: 823
+        2017-12: 823
+        2018-01: 823
+        2018-02: 823
+        2018-03: 823
+        2018-04: 823
+        2018-05: 823
+        2018-06: 823
+        2018-07: 823
+      pensions_invalidite:
+        2017-07: 1365
+        2017-08: 1365
+        2017-09: 1365
+        2017-10: 1365
+        2017-11: 1365
+        2017-12: 1365
+        2018-01: 1365
+        2018-02: 1365
+        2018-03: 1365
+        2018-04: 1365
+        2018-05: 1365
+        2018-06: 1365
+        2018-07: 1365
+      revenus_locatifs:
+        2017-07: 458
+        2017-08: 458
+        2017-09: 458
+        2017-10: 458
+        2017-11: 458
+        2017-12: 458
+        2018-01: 458
+        2018-02: 458
+        2018-03: 458
+        2018-04: 458
+        2018-05: 458
+        2018-06: 458
+        2018-07: 458
+      salaire_imposable:
+        '2016': 8659
+      chomage_imposable:
+        '2016': 5180
+      retraite_imposable:
+        '2016': 30111
+      frais_reels: {}
+      pensions_alimentaires_percues: {}
+      gir:
+        2018-07: gir_6
+        2018-06: gir_6
+        2018-05: gir_6
+        2018-04: gir_6
+      age:
+        2018-07: 57
+        2018-06: 57
+        2018-05: 57
+        2018-04: 57
+      age_en_mois:
+        2018-07: 691
+        2018-06: 691
+        2018-05: 691
+        2018-04: 691
+      date_arret_de_travail:
+        2018-07: '2018-10-26'
+        2018-06: '2018-10-26'
+        2018-05: '2018-10-26'
+        2018-04: '2018-10-26'
+      activite:
+        2018-07: chomeur
+        2018-06: chomeur
+        2018-05: chomeur
+        2018-04: chomeur
+      handicap:
+        2018-07: false
+        2018-06: false
+        2018-05: false
+        2018-04: false
+      taux_incapacite:
+        2018-07: false
+        2018-06: false
+        2018-05: false
+        2018-04: false
+      inapte_travail:
+        2018-07: false
+        2018-06: false
+        2018-05: false
+        2018-04: false
+      chomage_brut:
+        2017-07: 908.2155991270977
+        2017-08: 908.2155991270977
+        2017-09: 908.2155991270977
+        2017-10: 908.2155991270977
+        2017-11: 908.2155991270977
+        2017-12: 908.2155991270977
+        2018-01: 908.2155991270977
+        2018-02: 908.2155991270977
+        2018-03: 908.2155991270977
+        2018-04: 908.2155991270977
+        2018-05: 908.2155991270977
+        2018-06: 908.2155991270977
+        2018-07: 908.2155991270977
+  familles:
+    - id: famille_1
+      parents:
+      - demandeur
+      - conjoint
+      enfants: []
+  foyers_fiscaux:
+    - id: foyer_1
+      declarants:
+      - demandeur
+      - conjoint
+      personnes_a_charge: []
+  menages:
+    - id: menage_1
+      loyer:
+        2018-07: 697.
+        2018-06: 697.
+        2018-05: 697.
+        2018-04: 697.
+      statut_occupation_logement:
+        2018-07: proprietaire
+        2018-06: proprietaire
+        2018-05: proprietaire
+        2018-04: proprietaire
+  output_variables:
+    ass: 0
+    # telle que calculée par PE, on a un écart (3K/an)
+    # ass_base_ressources: 3034.30 * 12
