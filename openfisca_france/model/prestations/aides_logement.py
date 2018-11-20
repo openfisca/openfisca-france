@@ -1300,7 +1300,8 @@ class aides_logement_loyer_minimal_apl(Variable):
     reference = u"https://www.legifrance.gouv.fr/eli/arrete/2007/11/8/MLVU0759263A/jo/article_2"
     definition_period = MONTH
 
-    def formula(famille, period, parameters):
+    # Temporairement limitée à après 2007-11 pour pallier des carences de valeurs de paramètres
+    def formula_2007_11_01(famille, period, parameters):
         N = famille('aides_logement_nb_part', period)
 
         prestations = parameters(period).prestations
