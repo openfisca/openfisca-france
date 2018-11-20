@@ -199,7 +199,7 @@ class aide_logement_montant_brut_avant_degressivite(Variable):
                 + (statut_occupation_logement == TypesStatutOccupationLogement.locataire_vide)
                 + (statut_occupation_logement == TypesStatutOccupationLogement.locataire_meuble))
 
-        accedant = (statut_occupation_logement == TypesStatutOccupationLogement.primo_accedant)
+        accedant = famille.demandeur.menage('aides_logement_primo_accedant_eligibilite', period)
 
         locataire_logement_foyer = statut_occupation_logement == TypesStatutOccupationLogement.locataire_foyer
 
@@ -207,11 +207,10 @@ class aide_logement_montant_brut_avant_degressivite(Variable):
         charges_retenues = famille('aide_logement_charges', period)
         participation_personnelle = famille('aide_logement_participation_personnelle', period)
 
-        aides_logement_primo_accedant_eligibilite = famille.demandeur.menage('aides_logement_primo_accedant_eligibilite', period)
-        montant_accedants = aides_logement_primo_accedant_eligibilite * famille('aides_logement_primo_accedant', period)
+        montant_accedants = famille('aides_logement_primo_accedant', period)
         montant_locataire_logement_foyer = famille('aides_logement_foyer', period)
-
         montant_locataire = max_(0, loyer_retenu + charges_retenues - participation_personnelle)
+
         montant = select([locataire, accedant, locataire_logement_foyer],
                          [montant_locataire, montant_accedants, montant_locataire_logement_foyer])
 
@@ -284,6 +283,9 @@ class aides_logement_primo_accedant_eligibilite(Variable):
     definition_period = MONTH
 
     def formula(menage, period):
+        statut_occupation_logement = menage('statut_occupation_logement', period)
+        accedant = (statut_occupation_logement == TypesStatutOccupationLogement.primo_accedant)
+
         zone_apl = menage('zone_apl', period)
         aide_logement_etat_logement = menage('etat_logement', period)
         aide_logement_date_pret_conventionne = menage('aide_logement_date_pret_conventionne', period)
@@ -298,10 +300,12 @@ class aides_logement_primo_accedant_eligibilite(Variable):
         date_pret_conventionne_avant_2018_01 = (aide_logement_date_pret_conventionne < date(2018, 1, 1))
         date_pret_conventionne_avant_2020_01 = (aide_logement_date_pret_conventionne < date(2020, 1, 1))
 
-        return select(
+        eligibilite = select(
             [date_pret_conventionne_avant_2018_01, date_pret_conventionne_avant_2020_01],
             [True, (est_logement_ancien * est_zone_3)], default=False
             )
+
+        return accedant * eligibilite
 
 
 class aides_logement_foyer_chambre_non_rehabilite_eligibilite(Variable):
