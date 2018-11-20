@@ -21,7 +21,126 @@ from openfisca_france.model.prestations.prestations_familiales.base_ressource im
 log = logging.getLogger(__name__)
 
 
-zone_apl_by_depcom = None
+class aide_logement(Variable):
+    value_type = float
+    entity = Famille
+    label = u"Aide au logement (tout type)"
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
+
+    def formula(famille, period):
+        apl = famille('apl', period)
+        als = famille('als', period)
+        alf = famille('alf', period)
+
+        return max_(max_(apl, als), alf)
+
+
+class apl(Variable):
+    calculate_output = calculate_output_add
+    value_type = float
+    entity = Famille
+    label = u"Aide personnalisée au logement"
+    # (réservée aux logements conventionné, surtout des HLM, et financé par le fonds national de l'habitation)"
+    reference = u"http://vosdroits.service-public.fr/particuliers/F12006.xhtml",
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
+
+    def formula(famille, period):
+        aide_logement_montant = famille('aide_logement_montant', period)
+        statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
+
+        return aide_logement_montant * ((statut_occupation_logement == TypesStatutOccupationLogement.locataire_hlm) + (statut_occupation_logement == TypesStatutOccupationLogement.locataire_foyer))
+
+
+class als(Variable):
+    calculate_output = calculate_output_add
+    value_type = float
+    entity = Famille
+    label = u"Allocation logement sociale"
+    reference = u"http://vosdroits.service-public.fr/particuliers/F1280.xhtml"
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
+
+    def formula(famille, period):
+        als_non_etudiant = famille('als_non_etudiant', period)
+        als_etudiant = famille('als_etudiant', period)
+        result = (als_non_etudiant + als_etudiant)
+
+        return result
+
+
+class als_non_etudiant(Variable):
+    value_type = float
+    entity = Famille
+    label = u"Allocation logement sociale (non étudiante)"
+    definition_period = MONTH
+
+    def formula(famille, period):
+        aide_logement_montant = famille('aide_logement_montant', period)
+        al_nb_pac = famille('al_nb_personnes_a_charge', period)
+        statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
+        proprietaire_proche_famille = famille('proprietaire_proche_famille', period)
+
+        etudiant = famille.members('etudiant', period)
+        no_parent_etudiant = not_(famille.any(etudiant, role = Famille.PARENT))
+
+        return (
+            (al_nb_pac == 0)
+            * (statut_occupation_logement != 3)
+            * not_(proprietaire_proche_famille)
+            * no_parent_etudiant
+            * aide_logement_montant
+            )
+
+
+class als_etudiant(Variable):
+    calculate_output = calculate_output_add
+    value_type = float
+    entity = Famille
+    label = u"Allocation logement sociale (étudiante)"
+    reference = u"https://www.caf.fr/actualites/2012/etudiants-tout-savoir-sur-les-aides-au-logement"
+    definition_period = MONTH
+
+    def formula(famille, period):
+        aide_logement_montant = famille('aide_logement_montant', period)
+        al_nb_pac = famille('al_nb_personnes_a_charge', period)
+        statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
+        proprietaire_proche_famille = famille('proprietaire_proche_famille', period)
+
+        etudiant = famille.members('etudiant', period)
+        parent_etudiant = famille.any(etudiant, role = Famille.PARENT)
+
+        return (
+            (al_nb_pac == 0)
+            * (statut_occupation_logement != 3)
+            * not_(proprietaire_proche_famille)
+            * parent_etudiant
+            * aide_logement_montant
+            )
+
+
+class alf(Variable):
+    calculate_output = calculate_output_add
+    value_type = float
+    entity = Famille
+    label = u"Allocation logement familiale"
+    reference = u"http://vosdroits.service-public.fr/particuliers/F13132.xhtml"
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
+
+    def formula(famille, period):
+        aide_logement_montant = famille('aide_logement_montant', period)
+        al_nb_pac = famille('al_nb_personnes_a_charge', period)
+        statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
+        proprietaire_proche_famille = famille('proprietaire_proche_famille', period)
+
+        return (
+            (al_nb_pac >= 1)
+            * (statut_occupation_logement != 3)
+            * not_(proprietaire_proche_famille)
+            * aide_logement_montant
+            )
 
 
 class TypeEtatLogementFoyer(Enum):
@@ -960,109 +1079,6 @@ class aide_logement_montant(Variable):
         return montant
 
 
-class alf(Variable):
-    calculate_output = calculate_output_add
-    value_type = float
-    entity = Famille
-    label = u"Allocation logement familiale"
-    reference = u"http://vosdroits.service-public.fr/particuliers/F13132.xhtml"
-    definition_period = MONTH
-    set_input = set_input_divide_by_period
-
-    def formula(famille, period):
-        aide_logement_montant = famille('aide_logement_montant', period)
-        al_nb_pac = famille('al_nb_personnes_a_charge', period)
-        statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
-        proprietaire_proche_famille = famille('proprietaire_proche_famille', period)
-
-        result = (al_nb_pac >= 1) * (statut_occupation_logement != 3) * not_(proprietaire_proche_famille) * aide_logement_montant
-        return result
-
-
-class als_non_etudiant(Variable):
-    value_type = float
-    entity = Famille
-    label = u"Allocation logement sociale (non étudiante)"
-    definition_period = MONTH
-
-    def formula(famille, period):
-        aide_logement_montant = famille('aide_logement_montant', period)
-        al_nb_pac = famille('al_nb_personnes_a_charge', period)
-        statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
-        proprietaire_proche_famille = famille('proprietaire_proche_famille', period)
-
-        etudiant = famille.members('etudiant', period)
-        no_parent_etudiant = not_(famille.any(etudiant, role = Famille.PARENT))
-
-        return (
-            (al_nb_pac == 0)
-            * (statut_occupation_logement != 3)
-            * not_(proprietaire_proche_famille)
-            * no_parent_etudiant
-            * aide_logement_montant
-            )
-
-
-class als_etudiant(Variable):
-    calculate_output = calculate_output_add
-    value_type = float
-    entity = Famille
-    label = u"Allocation logement sociale (étudiante)"
-    reference = u"https://www.caf.fr/actualites/2012/etudiants-tout-savoir-sur-les-aides-au-logement"
-    definition_period = MONTH
-
-    def formula(famille, period):
-        aide_logement_montant = famille('aide_logement_montant', period)
-        al_nb_pac = famille('al_nb_personnes_a_charge', period)
-        statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
-        proprietaire_proche_famille = famille('proprietaire_proche_famille', period)
-
-        etudiant = famille.members('etudiant', period)
-        parent_etudiant = famille.any(etudiant, role = Famille.PARENT)
-
-        return (
-            (al_nb_pac == 0)
-            * (statut_occupation_logement != 3)
-            * not_(proprietaire_proche_famille)
-            * parent_etudiant
-            * aide_logement_montant
-            )
-
-
-class als(Variable):
-    calculate_output = calculate_output_add
-    value_type = float
-    entity = Famille
-    label = u"Allocation logement sociale"
-    reference = u"http://vosdroits.service-public.fr/particuliers/F1280.xhtml"
-    definition_period = MONTH
-    set_input = set_input_divide_by_period
-
-    def formula(famille, period):
-        als_non_etudiant = famille('als_non_etudiant', period)
-        als_etudiant = famille('als_etudiant', period)
-        result = (als_non_etudiant + als_etudiant)
-
-        return result
-
-
-class apl(Variable):
-    calculate_output = calculate_output_add
-    value_type = float
-    entity = Famille
-    label = u"Aide personnalisée au logement"
-    # (réservée aux logements conventionné, surtout des HLM, et financé par le fonds national de l'habitation)"
-    reference = u"http://vosdroits.service-public.fr/particuliers/F12006.xhtml",
-    definition_period = MONTH
-    set_input = set_input_divide_by_period
-
-    def formula(famille, period):
-        aide_logement_montant = famille('aide_logement_montant', period)
-        statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
-
-        return aide_logement_montant * ((statut_occupation_logement == TypesStatutOccupationLogement.locataire_hlm) + (statut_occupation_logement == TypesStatutOccupationLogement.locataire_foyer))
-
-
 class TypesAideLogementNonCalculable(Enum):
     __order__ = 'calculable locataire_foyer'  # Needed to preserve the enum order in Python 2
     calculable = u"Calculable"
@@ -1087,21 +1103,6 @@ class aide_logement_non_calculable(Variable):
             )
 
 
-class aide_logement(Variable):
-    value_type = float
-    entity = Famille
-    label = u"Aide au logement (tout type)"
-    definition_period = MONTH
-    set_input = set_input_divide_by_period
-
-    def formula(famille, period):
-        apl = famille('apl', period)
-        als = famille('als', period)
-        alf = famille('alf', period)
-
-        return max_(max_(apl, als), alf)
-
-
 class crds_logement(Variable):
     calculate_output = calculate_output_add
     value_type = float
@@ -1122,6 +1123,36 @@ class TypesZoneApl(Enum):
     zone_1 = u"Zone 1"
     zone_2 = u"Zone 2"
     zone_3 = u"Zone 3"
+
+
+zone_apl_by_depcom = None
+
+
+def preload_zone_apl():
+    global zone_apl_by_depcom
+    if zone_apl_by_depcom is None:
+        with pkg_resources.resource_stream(
+                openfisca_france.__name__,
+                'assets/apl/20110914_zonage.csv',
+                ) as csv_file:
+            if sys.version_info < (3, 0):
+                csv_reader = csv.DictReader(csv_file)
+            else:
+                utf8_reader = codecs.getreader("utf-8")
+                csv_reader = csv.DictReader(utf8_reader(csv_file))
+            zone_apl_by_depcom = {
+                # Keep only first char of Zonage column because of 1bis value considered equivalent to 1.
+                row['CODGEO']: int(row['Zonage'][0])
+                for row in csv_reader
+                }
+        # Add subcommunes (arrondissements and communes associées), use the same value as their parent commune.
+        with pkg_resources.resource_stream(
+                openfisca_france.__name__,
+                'assets/apl/commune_depcom_by_subcommune_depcom.json',
+                ) as json_file:
+            commune_depcom_by_subcommune_depcom = json.load(json_file)
+            for subcommune_depcom, commune_depcom in commune_depcom_by_subcommune_depcom.items():
+                zone_apl_by_depcom[subcommune_depcom] = zone_apl_by_depcom[commune_depcom]
 
 
 class zone_apl(Variable):
@@ -1154,33 +1185,6 @@ class zone_apl(Variable):
             # The .index is not striclty necessary, but it improves perfomances by avoiding a later encoding
             (TypesZoneApl.zone_1.index, TypesZoneApl.zone_2.index, TypesZoneApl.zone_3.index)
             )
-
-
-def preload_zone_apl():
-    global zone_apl_by_depcom
-    if zone_apl_by_depcom is None:
-        with pkg_resources.resource_stream(
-                openfisca_france.__name__,
-                'assets/apl/20110914_zonage.csv',
-                ) as csv_file:
-            if sys.version_info < (3, 0):
-                csv_reader = csv.DictReader(csv_file)
-            else:
-                utf8_reader = codecs.getreader("utf-8")
-                csv_reader = csv.DictReader(utf8_reader(csv_file))
-            zone_apl_by_depcom = {
-                # Keep only first char of Zonage column because of 1bis value considered equivalent to 1.
-                row['CODGEO']: int(row['Zonage'][0])
-                for row in csv_reader
-                }
-        # Add subcommunes (arrondissements and communes associées), use the same value as their parent commune.
-        with pkg_resources.resource_stream(
-                openfisca_france.__name__,
-                'assets/apl/commune_depcom_by_subcommune_depcom.json',
-                ) as json_file:
-            commune_depcom_by_subcommune_depcom = json.load(json_file)
-            for subcommune_depcom, commune_depcom in commune_depcom_by_subcommune_depcom.items():
-                zone_apl_by_depcom[subcommune_depcom] = zone_apl_by_depcom[commune_depcom]
 
 
 class aides_logement_primo_accedant(Variable):
