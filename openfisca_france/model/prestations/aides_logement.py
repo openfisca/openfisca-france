@@ -207,12 +207,11 @@ class aide_logement_montant_brut_avant_degressivite(Variable):
         charges_retenues = famille('aide_logement_charges', period)
         participation_personnelle = famille('aide_logement_participation_personnelle', period)
 
-        montant_accedants = famille('aides_logement_primo_accedant', period)
-        montant_locataire_logement_foyer = famille('aides_logement_foyer', period)
+        montant_formule_commune = famille('aides_logement_formule_commune', period)
         montant_locataire = max_(0, loyer_retenu + charges_retenues - participation_personnelle)
 
-        montant = select([locataire, accedant, locataire_logement_foyer],
-                         [montant_locataire, montant_accedants, montant_locataire_logement_foyer])
+        montant = select([locataire, accedant + locataire_logement_foyer],
+                         [montant_locataire, montant_formule_commune])
 
         type_aide = array(['non_apl', 'apl'])[1 * (statut_occupation_logement == TypesStatutOccupationLogement.locataire_hlm)]
         seuil_versement = al.al_min.montant_min_mensuel.montant_min_apl_al[type_aide]
@@ -1094,41 +1093,17 @@ class zone_apl(Variable):
             )
 
 
-class aides_logement_primo_accedant(Variable):
+class aides_logement_formule_commune(Variable):
     value_type = float
     entity = Famille
     label = u"Allocation logement pour les primo-accédants"
-    reference = u"https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006737341&dateTexte=&categorieLien=cid"
-    definition_period = MONTH
-
-    def formula_2007_07(famille, period, parameters):
-        statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
-        accedant = (statut_occupation_logement == TypesStatutOccupationLogement.primo_accedant)
-        locataire_logement_foyer = statut_occupation_logement == TypesStatutOccupationLogement.locataire_foyer
-        logement_conventionne = famille.demandeur.menage('logement_conventionne', period)
-        forfait_charges = accedant + (locataire_logement_foyer * not_(logement_conventionne))
-
-        loyer = famille.demandeur.menage('loyer', period)
-        plafond_mensualite = famille('aides_logement_plafond_mensualite', period)
-        L = select(logement_conventionne, min_(plafond_mensualite, loyer), plafond_mensualite)
-        C = forfait_charges * famille('aide_logement_charges', period)
-        K = famille('aides_logement_k', period)
-        Lo = famille('aides_logement_loyer_minimal', period)
-
-        return (L > 0) * K * max_(0, (L + C - Lo))
-
-
-class aides_logement_foyer(Variable):
-    value_type = float
-    entity = Famille
-    label = u"Allocation logement pour les logements foyer"
-    reference = [u"https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000035671385&dateTexte=&categorieLien=id",
+    reference = [u"https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006737341&dateTexte=&categorieLien=cid",
+                 u"https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000035671385&dateTexte=&categorieLien=id",
                  u"https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=8A5E748B84270643BC39A1D691F4FC5C.tplgfr27s_2?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006739837&dateTexte=20181031&categorieLien=cid#LEGIARTI000006739837"
                  ]
     definition_period = MONTH
 
-    # Temporairement limitée à après 2017 pour pallier des carences de valeurs de paramètres
-    def formula_2017_10(famille, period, parameters):
+    def formula_2007_07(famille, period, parameters):
         statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
         accedant = (statut_occupation_logement == TypesStatutOccupationLogement.primo_accedant)
         locataire_logement_foyer = statut_occupation_logement == TypesStatutOccupationLogement.locataire_foyer
