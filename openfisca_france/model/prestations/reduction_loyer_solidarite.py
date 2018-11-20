@@ -109,6 +109,9 @@ class reduction_loyer_solidarite(Variable):
         ressources = famille('aide_logement_base_ressources', period) / 12
         plafond = famille('reduction_loyer_solidarite_plafond_ressources', period)
         statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
+        logement_conventionne = famille.demandeur.menage('logement_conventionne', period)
+        locataire_foyer = statut_occupation_logement == TypesStatutOccupationLogement.locataire_foyer
 
+        eligible = (ressources < plafond) * logement_conventionne * not_(locataire_foyer)
         montant = famille('reduction_loyer_solidarite_montant', period)
-        return (ressources < plafond) * montant * (statut_occupation_logement == TypesStatutOccupationLogement.locataire_hlm)
+        return eligible * montant

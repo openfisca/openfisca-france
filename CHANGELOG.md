@@ -1,5 +1,18 @@
 # Changelog
 
+### 32.0.1 [#1217](https://github.com/openfisca/openfisca-france/pull/1217)
+
+* Correction mineure.
+* Périodes concernées : à partir du 01/01/2018
+* Zones impactées :
+  - `mesures.py`
+  - `prestations/reduction_loyer_solidarite.py`
+* Détails :
+  - Ajoute la RLS au montant des prestations sociales
+  - Ajoute une date d'effet à `reduction_loyer_solidarite` et la limite aux familles éligibles
+  - Affine la condition d'éligibilité en écartant les logements-foyers
+  - Met à jour les tests en ce sens
+
 # 32.0.0 [#1223](https://github.com/openfisca/openfisca-france/pull/1223)
 
 * Évolution de la législation **non rétrocompatible**
