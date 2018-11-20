@@ -63,59 +63,15 @@ class als(Variable):
     set_input = set_input_divide_by_period
 
     def formula(famille, period):
-        als_non_etudiant = famille('als_non_etudiant', period)
-        als_etudiant = famille('als_etudiant', period)
-        result = (als_non_etudiant + als_etudiant)
-
-        return result
-
-
-class als_non_etudiant(Variable):
-    value_type = float
-    entity = Famille
-    label = u"Allocation logement sociale (non étudiante)"
-    definition_period = MONTH
-
-    def formula(famille, period):
         aide_logement_montant = famille('aide_logement_montant', period)
         al_nb_pac = famille('al_nb_personnes_a_charge', period)
         statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
         proprietaire_proche_famille = famille('proprietaire_proche_famille', period)
 
-        etudiant = famille.members('etudiant', period)
-        no_parent_etudiant = not_(famille.any(etudiant, role = Famille.PARENT))
-
         return (
             (al_nb_pac == 0)
             * (statut_occupation_logement != 3)
             * not_(proprietaire_proche_famille)
-            * no_parent_etudiant
-            * aide_logement_montant
-            )
-
-
-class als_etudiant(Variable):
-    calculate_output = calculate_output_add
-    value_type = float
-    entity = Famille
-    label = u"Allocation logement sociale (étudiante)"
-    reference = u"https://www.caf.fr/actualites/2012/etudiants-tout-savoir-sur-les-aides-au-logement"
-    definition_period = MONTH
-
-    def formula(famille, period):
-        aide_logement_montant = famille('aide_logement_montant', period)
-        al_nb_pac = famille('al_nb_personnes_a_charge', period)
-        statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
-        proprietaire_proche_famille = famille('proprietaire_proche_famille', period)
-
-        etudiant = famille.members('etudiant', period)
-        parent_etudiant = famille.any(etudiant, role = Famille.PARENT)
-
-        return (
-            (al_nb_pac == 0)
-            * (statut_occupation_logement != 3)
-            * not_(proprietaire_proche_famille)
-            * parent_etudiant
             * aide_logement_montant
             )
 
