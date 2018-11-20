@@ -184,8 +184,8 @@ class aide_logement_montant_brut(Variable):
             )
 
         statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
-        accedant = (statut_occupation_logement == 1)
-        locataire_foyer = (statut_occupation_logement == 7)
+        accedant = (statut_occupation_logement == TypesStatutOccupationLogement.primo_accedant)
+        locataire_foyer = (statut_occupation_logement == TypesStatutOccupationLogement.locataire_foyer)
         exception = accedant + locataire_foyer + handicap
         coeff = where(exception, 1, coeff)
 
