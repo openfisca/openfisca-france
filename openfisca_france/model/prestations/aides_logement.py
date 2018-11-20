@@ -756,7 +756,6 @@ class aide_logement_base_ressources(Variable):
         return where(accedant, max_(ressources, plancher), ressources)
 
 
-
 class aide_logement_loyer_plafond(Variable):
     value_type = float
     entity = Famille
@@ -1303,6 +1302,7 @@ class aides_logement_plafond_mensualite(Variable):
         aides_foyer = famille('aides_logement_foyer_plafond_mensualite', period)
 
         return select([accedant, locataire_logement_foyer], [aides_accedants, aides_foyer])
+
 
 class aides_logement_primo_accedant_plafond_mensualite(Variable):
     value_type = float
