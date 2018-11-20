@@ -5,6 +5,7 @@
     parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2"]
   menages:
+    statut_occupation_logement: primo_accedant
     aide_logement_date_pret_conventionne: 2017-12-20
     etat_logement: construction_acquisition_logement_neuf
     zone_apl: zone_2
@@ -23,6 +24,7 @@
     parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2"]
   menages:
+    statut_occupation_logement: primo_accedant
     aide_logement_date_pret_conventionne: 2017-12-20
     etat_logement: construction_acquisition_logement_neuf
     zone_apl: zone_2
@@ -41,6 +43,7 @@
     parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2"]
   menages:
+    statut_occupation_logement: primo_accedant
     aide_logement_date_pret_conventionne: 2017-12-20
     etat_logement: acquisition_sans_amelioration_logement_existant
     zone_apl: zone_3
@@ -59,6 +62,7 @@
     parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2"]
   menages:
+    statut_occupation_logement: primo_accedant
     aide_logement_date_pret_conventionne: 2018-02-02
     etat_logement: acquisition_sans_amelioration_logement_existant
     zone_apl: zone_3
@@ -76,6 +80,7 @@
   familles:
     parents: ["parent1", "parent2"]
   menages:
+    statut_occupation_logement: primo_accedant
     aide_logement_date_pret_conventionne: 2017-12-20
     etat_logement: amelioration
     zone_apl: zone_1
@@ -91,6 +96,7 @@
   familles:
     parents: ["parent1", "parent2"]
   menages:
+    statut_occupation_logement: primo_accedant
     aide_logement_date_pret_conventionne: 2017-12-20
     etat_logement: construction_acquisition_logement_neuf
     zone_apl: zone_3
@@ -106,6 +112,7 @@
   familles:
     parents: ["parent1"]
   menages:
+    statut_occupation_logement: primo_accedant
     aide_logement_date_pret_conventionne: 2002-04-10
     etat_logement: construction_acquisition_logement_neuf
     zone_apl: zone_1
@@ -121,6 +128,7 @@
     parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2"]
   menages:
+    statut_occupation_logement: primo_accedant
     aide_logement_date_pret_conventionne: 2018-02-02
     etat_logement: construction_acquisition_logement_neuf
     zone_apl: zone_2
@@ -139,6 +147,7 @@
     parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2"]
   menages:
+    statut_occupation_logement: primo_accedant
     aide_logement_date_pret_conventionne: 2018-02-02
     etat_logement: construction_acquisition_logement_neuf
     zone_apl: zone_2
@@ -156,6 +165,7 @@
   familles:
     parents: ["parent1", "parent2"]
   menages:
+    statut_occupation_logement: primo_accedant
     aide_logement_date_pret_conventionne: 2018-02-02
     etat_logement: amelioration
     zone_apl: zone_1
@@ -171,6 +181,7 @@
   familles:
     parents: ["parent1", "parent2"]
   menages:
+    statut_occupation_logement: primo_accedant
     aide_logement_date_pret_conventionne: 2018-02-02
     etat_logement: construction_acquisition_logement_neuf
     zone_apl: zone_3
@@ -186,6 +197,7 @@
   familles:
     parents: ["parent1"]
   menages:
+    statut_occupation_logement: primo_accedant
     aide_logement_date_pret_conventionne: 2018-02-02
     etat_logement: construction_acquisition_logement_neuf
     zone_apl: zone_1
