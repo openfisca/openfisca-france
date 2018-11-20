@@ -15,6 +15,7 @@
   input_variables:
     loyer: 500
     depcom: 82121
+    aides_logement_primo_accedant_eligibilite: true
   output_variables:
     zone_apl: "zone_3"
     aide_logement_charges: 53.27
@@ -38,6 +39,7 @@
   familles:
     parents: ["parent1"]
     aide_logement_base_ressources: 120000
+    aides_logement_primo_accedant_eligibilite: true
   menages:
     zone_apl: zone_1
     loyer: 5172
