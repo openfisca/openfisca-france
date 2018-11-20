@@ -82,7 +82,7 @@ class ass_base_ressources_individu(Variable):
         # Le Salaire d'une activité partielle est neutralisé en cas d'interruption
         salaire_imposable = (1 - salaire_imposable_interrompu) * salaire_imposable
         retraite_nette = individu('retraite_nette', previous_year, options = [ADD])
-        revenus_locatifs = individu('revenus_locatifs', previous_year, options = [ADD])
+        revenus_fonciers_nets_abattement_microfoncier_individu_mensuel = individu('revenus_fonciers_nets_abattement_microfoncier_individu_mensuel', previous_year, options = [ADD])
         revenus_capital = individu('revenus_capital', period) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
         pensions_invalidite = individu('pensions_invalidite', previous_year, options = [ADD])
 
@@ -114,7 +114,7 @@ class ass_base_ressources_individu(Variable):
             + indemnites_stage
             + revenus_stage_formation_pro
             + revenus_tns()
-            + revenus_locatifs
+            + revenus_fonciers_nets_abattement_microfoncier_individu_mensuel
             + revenus_capital
             )
 
@@ -169,7 +169,7 @@ class ass_base_ressources_conjoint(Variable):
         retraite_nette = calculateWithAbatement('retraite_nette')
         pensions_alimentaires_percues = calculateWithAbatement('pensions_alimentaires_percues')
         pensions_invalidite = individu('pensions_invalidite', previous_year, options = [ADD])
-        revenus_locatifs = individu('revenus_locatifs', previous_year, options = [ADD])
+        revenus_fonciers_nets_abattement_microfoncier_individu_mensuel = individu('revenus_fonciers_nets_abattement_microfoncier_individu_mensuel', previous_year, options = [ADD])
         revenus_capital = individu('revenus_capital', period) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
 
         def revenus_tns():
@@ -196,7 +196,7 @@ class ass_base_ressources_conjoint(Variable):
             + chomage_net
             + indemnites_journalieres
             + revenus_tns()
-            + revenus_locatifs
+            + revenus_fonciers_nets_abattement_microfoncier_individu_mensuel
             + revenus_capital
             )
 

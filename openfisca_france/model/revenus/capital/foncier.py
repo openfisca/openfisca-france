@@ -49,10 +49,6 @@ class f4ba(Variable):
     label = u"Revenus fonciers imposables"
     definition_period = YEAR
 
-    def formula(foyer_fiscal, period):
-        revenus_locatifs = foyer_fiscal.members('revenus_locatifs', period, options = [ADD])
-        return foyer_fiscal.sum(revenus_locatifs)
-
 
 class f4bb(Variable):
     cerfa_field = u"4BB"
@@ -118,12 +114,20 @@ class valeur_patrimoine_loue(Variable):
     definition_period = MONTH
 
 
-class revenus_locatifs(Variable):
+class revenus_fonciers_nets_abattement_microfoncier_individu_mensuel(Variable):
     value_type = float
     entity = Individu
     label = u"Revenus locatifs"
     definition_period = MONTH
     set_input = set_input_divide_by_period
+
+    def formula(individu, period):
+        """
+        Revenus fonciers nets des déficits et après abattement sur microfoncier, au niveau individuel et mensuel
+        """
+        revenus_fonciers_nets_abattement_microfoncier = individu.foyer_fiscal('revenus_fonciers_nets_abattement_microfoncier', period.this_year)
+        montant = revenus_fonciers_nets_abattement_microfoncier * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL) / 12
+        return montant
 
 
 class valeur_immo_non_loue(Variable):
