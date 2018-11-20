@@ -103,7 +103,7 @@ class reduction_loyer_solidarite(Variable):
         ]
     definition_period = MONTH
 
-    def formula(famille, period):
+    def formula_2018_01_01(famille, period):
         # les ressources renvoyés sont recombiné pour donner une valeur annuelle
         # necessité de diviser par 12 pour comparer au plafond mensuel
         ressources = famille('aide_logement_base_ressources', period) / 12
