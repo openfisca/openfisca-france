@@ -2086,7 +2086,7 @@ Lors du calcul d'une variable Enum en Python, l'output est un array de membres E
 * Amélioration technique **non-rétrocompatible**
 * Détails :
     - Restreint les périodes acceptées par OpenFisca
-    - La liste des périodes autorisées est disponible dans la [documentation](http://openfisca.org/doc/periodsinstants.html)
+    - La liste des périodes autorisées est disponible dans la [documentation](https://openfisca.org/doc/key-concepts/periodsinstants.html)
 
 <!-- -->
 

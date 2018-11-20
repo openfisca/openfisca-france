@@ -209,7 +209,7 @@ Il est possible de servir l'API Web d'OpenFisca-France sur votre propre serveur 
 openfisca serve
 ```
 
-Pour en savoir plus sur la commande `openfisca serve` et ses options, consultez la [documentation de référence](https://openfisca.readthedocs.io/en/latest/openfisca_serve.html).
+Pour en savoir plus sur la commande `openfisca serve` et ses options, consultez la [documentation de référence](http://openfisca.org/doc/openfisca-python-api/openfisca_serve.html).
 
 Testez votre installation en requêtant la commande suivante :
 
