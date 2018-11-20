@@ -70,7 +70,7 @@ class als(Variable):
 
         return (
             (al_nb_pac == 0)
-            * (statut_occupation_logement != 3)
+            * (statut_occupation_logement != TypesStatutOccupationLogement.locataire_hlm)
             * not_(proprietaire_proche_famille)
             * aide_logement_montant
             )
@@ -93,7 +93,7 @@ class alf(Variable):
 
         return (
             (al_nb_pac >= 1)
-            * (statut_occupation_logement != 3)
+            * (statut_occupation_logement != TypesStatutOccupationLogement.locataire_hlm)
             * not_(proprietaire_proche_famille)
             * aide_logement_montant
             )
