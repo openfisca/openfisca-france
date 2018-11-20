@@ -1403,7 +1403,8 @@ class aides_logement_foyer_plafond_mensualite(Variable):
     reference = u"https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000035665875&dateTexte=&categorieLien=id"
     definition_period = MONTH
 
-    def formula(famille, period):
+    # Temporairement limitée à après 2017 pour pallier des carences de valeurs de paramètres
+    def formula_2017_10(famille, period, parameters):
         aides_logement_foyer_chambre_non_rehabilite_plafond = famille('aides_logement_foyer_chambre_non_rehabilite_plafond', period)
         aides_logement_foyer_personne_agee_plafond = famille('aides_logement_foyer_personne_agee_plafond', period)
         aides_logement_foyer_conventionne_plafond = famille('aides_logement_foyer_conventionne_plafond', period)
