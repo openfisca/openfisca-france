@@ -143,6 +143,43 @@ class alf(Variable):
             )
 
 
+class aide_logement_montant(Variable):
+    value_type = float
+    entity = Famille
+    label = u"Montant des aides au logement net de CRDS"
+    definition_period = MONTH
+
+    def formula(famille, period):
+        aide_logement_montant_brut = famille('aide_logement_montant_brut_crds', period)
+        crds_logement = famille('crds_logement', period)
+        montant = round_(aide_logement_montant_brut + crds_logement, 2)
+
+        return montant
+
+
+class aide_logement_montant_brut_crds(Variable):
+    value_type = float
+    entity = Famille
+    label = u"Montant des aides au logement brut de CRDS"
+    reference = u"https://www.legifrance.gouv.fr/eli/decret/2018/2/27/2018-136/jo/article_1"
+    definition_period = MONTH
+
+    def formula(famille, period, parameters):
+        return famille('aide_logement_montant_brut', period)
+
+    def formula_2018(famille, period, parameters):
+        rls = parameters(period).prestations.reduction_loyer_solidarite
+        aide_logement_montant_brut = famille('aide_logement_montant_brut', period)
+        reduction_loyer_solidarite = famille('reduction_loyer_solidarite', period)
+        statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
+
+        taux_rls = rls.fraction_baisse_aide_logement
+        locataire_hlm = statut_occupation_logement == TypesStatutOccupationLogement.locataire_hlm
+        rls_apl = reduction_loyer_solidarite * taux_rls * locataire_hlm
+        montant = max_(0, (aide_logement_montant_brut - rls_apl))
+        return montant
+
+
 class TypeEtatLogementFoyer(Enum):
     non_renseigne = u"Non renseigne"
     logement_rehabilite = u"Logement rehabilité"
@@ -1042,41 +1079,7 @@ class aide_logement_montant_brut(Variable):
         return aide_logement_apres_abattement_forfaitaire
 
 
-class aide_logement_montant_brut_crds(Variable):
-    value_type = float
-    entity = Famille
-    label = u"Montant des aides au logement brut de CRDS"
-    reference = u"https://www.legifrance.gouv.fr/eli/decret/2018/2/27/2018-136/jo/article_1"
-    definition_period = MONTH
 
-    def formula(famille, period, parameters):
-        return famille('aide_logement_montant_brut', period)
-
-    def formula_2018(famille, period, parameters):
-        rls = parameters(period).prestations.reduction_loyer_solidarite
-        aide_logement_montant_brut = famille('aide_logement_montant_brut', period)
-        reduction_loyer_solidarite = famille('reduction_loyer_solidarite', period)
-        statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
-
-        taux_rls = rls.fraction_baisse_aide_logement
-        locataire_hlm = statut_occupation_logement == TypesStatutOccupationLogement.locataire_hlm
-        rls_apl = reduction_loyer_solidarite * taux_rls * locataire_hlm
-        montant = max_(0, (aide_logement_montant_brut - rls_apl))
-        return montant
-
-
-class aide_logement_montant(Variable):
-    value_type = float
-    entity = Famille
-    label = u"Montant des aides au logement net de CRDS"
-    definition_period = MONTH
-
-    def formula(famille, period):
-        aide_logement_montant_brut = famille('aide_logement_montant_brut_crds', period)
-        crds_logement = famille('crds_logement', period)
-        montant = round_(aide_logement_montant_brut + crds_logement, 2)
-
-        return montant
 
 
 class TypesAideLogementNonCalculable(Enum):
