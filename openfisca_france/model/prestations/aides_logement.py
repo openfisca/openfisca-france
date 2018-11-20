@@ -185,6 +185,43 @@ class aide_logement_montant_brut(Variable):
         return aide_logement_apres_abattement_forfaitaire
 
 
+class aide_logement_montant_brut_avant_degressivite(Variable):
+    value_type = float
+    label = u"Montant des aides aux logements en secteur locatif avant degressivité et brut de CRDS"
+    reference = u"https://www.legifrance.gouv.fr/eli/arrete/2018/2/27/TERL1801552A/jo/article_1"
+    entity = Famille
+    definition_period = MONTH
+
+    def formula(famille, period, parameters):
+        al = parameters(period).prestations.aides_logement
+        statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
+        locataire = ((statut_occupation_logement == TypesStatutOccupationLogement.locataire_hlm)
+                + (statut_occupation_logement == TypesStatutOccupationLogement.locataire_vide)
+                + (statut_occupation_logement == TypesStatutOccupationLogement.locataire_meuble))
+
+        accedant = (statut_occupation_logement == TypesStatutOccupationLogement.primo_accedant)
+
+        locataire_logement_foyer = statut_occupation_logement == TypesStatutOccupationLogement.locataire_foyer
+
+        loyer_retenu = famille('aide_logement_loyer_retenu', period)
+        charges_retenues = famille('aide_logement_charges', period)
+        participation_personnelle = famille('aide_logement_participation_personnelle', period)
+
+        aides_logement_primo_accedant_eligibilite = famille.demandeur.menage('aides_logement_primo_accedant_eligibilite', period)
+        montant_accedants = aides_logement_primo_accedant_eligibilite * famille('aides_logement_primo_accedant', period)
+        montant_locataire_logement_foyer = famille('aides_logement_foyer', period)
+
+        montant_locataire = max_(0, loyer_retenu + charges_retenues - participation_personnelle)
+        montant = select([locataire, accedant, locataire_logement_foyer],
+                         [montant_locataire, montant_accedants, montant_locataire_logement_foyer])
+
+        type_aide = array(['non_apl', 'apl'])[1 * (statut_occupation_logement == TypesStatutOccupationLogement.locataire_hlm)]
+        seuil_versement = al.al_min.montant_min_mensuel.montant_min_apl_al[type_aide]
+        minimum_atteint = montant >= seuil_versement
+
+        return minimum_atteint * montant
+
+
 class TypeEtatLogementFoyer(Enum):
     non_renseigne = u"Non renseigne"
     logement_rehabilite = u"Logement rehabilité"
@@ -939,43 +976,6 @@ class aide_logement_participation_personnelle(Variable):
         Tp = Tf + Tl  # Taux de participation
 
         return P0 + Tp * Rp
-
-
-class aide_logement_montant_brut_avant_degressivite(Variable):
-    value_type = float
-    label = u"Montant des aides aux logements en secteur locatif avant degressivité et brut de CRDS"
-    reference = u"https://www.legifrance.gouv.fr/eli/arrete/2018/2/27/TERL1801552A/jo/article_1"
-    entity = Famille
-    definition_period = MONTH
-
-    def formula(famille, period, parameters):
-        al = parameters(period).prestations.aides_logement
-        statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
-        locataire = ((statut_occupation_logement == TypesStatutOccupationLogement.locataire_hlm)
-                + (statut_occupation_logement == TypesStatutOccupationLogement.locataire_vide)
-                + (statut_occupation_logement == TypesStatutOccupationLogement.locataire_meuble))
-
-        accedant = (statut_occupation_logement == TypesStatutOccupationLogement.primo_accedant)
-
-        locataire_logement_foyer = statut_occupation_logement == TypesStatutOccupationLogement.locataire_foyer
-
-        loyer_retenu = famille('aide_logement_loyer_retenu', period)
-        charges_retenues = famille('aide_logement_charges', period)
-        participation_personnelle = famille('aide_logement_participation_personnelle', period)
-
-        aides_logement_primo_accedant_eligibilite = famille.demandeur.menage('aides_logement_primo_accedant_eligibilite', period)
-        montant_accedants = aides_logement_primo_accedant_eligibilite * famille('aides_logement_primo_accedant', period)
-        montant_locataire_logement_foyer = famille('aides_logement_foyer', period)
-
-        montant_locataire = max_(0, loyer_retenu + charges_retenues - participation_personnelle)
-        montant = select([locataire, accedant, locataire_logement_foyer],
-                         [montant_locataire, montant_accedants, montant_locataire_logement_foyer])
-
-        type_aide = array(['non_apl', 'apl'])[1 * (statut_occupation_logement == TypesStatutOccupationLogement.locataire_hlm)]
-        seuil_versement = al.al_min.montant_min_mensuel.montant_min_apl_al[type_aide]
-        minimum_atteint = montant >= seuil_versement
-
-        return minimum_atteint * montant
 
 
 class TypesAideLogementNonCalculable(Enum):
