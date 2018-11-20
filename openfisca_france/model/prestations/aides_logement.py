@@ -1105,10 +1105,10 @@ class aides_logement_primo_accedant(Variable):
         forfait_charges = accedant + (locataire_logement_foyer * not_(logement_conventionne))
 
         loyer = famille.demandeur.menage('loyer', period)
-        plafond_mensualite = famille('aides_logement_primo_accedant_plafond_mensualite', period)
+        plafond_mensualite = famille('aides_logement_plafond_mensualite', period)
         L = select(logement_conventionne, min_(plafond_mensualite, loyer), plafond_mensualite)
         C = forfait_charges * famille('aide_logement_charges', period)
-        K = famille('aides_logement_primo_accedant_k', period)
+        K = famille('aides_logement_k', period)
         Lo = famille('aides_logement_primo_accedant_loyer_minimal', period)
 
         return (L > 0) * K * max_(0, (L + C - Lo))
@@ -1132,16 +1132,16 @@ class aides_logement_foyer(Variable):
         forfait_charges = accedant + (locataire_logement_foyer * not_(logement_conventionne))
 
         loyer = famille.demandeur.menage('loyer', period)
-        plafond_mensualite = famille('aides_logement_foyer_plafond_mensualite', period)
+        plafond_mensualite = famille('aides_logement_plafond_mensualite', period)
         L = select(logement_conventionne, min_(plafond_mensualite, loyer), plafond_mensualite)
         C = forfait_charges * famille('aide_logement_charges', period)
-        K = famille('aides_logement_foyer_k', period)
+        K = famille('aides_logement_k', period)
         Lo = famille('aides_logement_foyer_loyer_minimal', period)
 
         return (L > 0) * K * max_(0, (L + C - Lo))
 
 
-class aides_logement_foyer_k(Variable):
+class aides_logement_k(Variable):
     value_type = float
     entity = Famille
     label = u"Allocation logement pour les logements foyers loyer minimal"
@@ -1150,10 +1150,12 @@ class aides_logement_foyer_k(Variable):
     definition_period = MONTH
 
     def formula(famille, period, parameters):
+        accedant = famille.demandeur.menage('aides_logement_primo_accedant_eligibilite', period)
         logement_conventionne = famille.demandeur.menage('logement_conventionne', period)
+        coef_k_accedant = famille('aides_logement_primo_accedant_k', period)
         coef_k_apl = famille('aides_logement_foyer_k_apl', period)
         coef_k_al = famille('aides_logement_foyer_k_al', period)
-        return where(logement_conventionne, coef_k_apl, coef_k_al)
+        return select([accedant, logement_conventionne], [coef_k_accedant, coef_k_apl], coef_k_al)
 
 
 class aides_logement_primo_accedant_k(Variable):
@@ -1324,6 +1326,22 @@ class aides_logement_foyer_loyer_minimal_al(Variable):
 
         return (bareme.calc(baseRessource / N) * N + majoration_loyer) / 12
 
+
+class aides_logement_plafond_mensualite(Variable):
+    value_type = float
+    entity = Famille
+    label = u"Plafond de mensualités (formule commune)"
+    definition_period = MONTH
+
+    def formula(famille, period, parameters):
+        accedant = famille.demandeur.menage('aides_logement_primo_accedant_eligibilite', period)
+        statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
+        locataire_logement_foyer = statut_occupation_logement == TypesStatutOccupationLogement.locataire_foyer
+
+        aides_accedants = famille('aides_logement_primo_accedant_plafond_mensualite', period)
+        aides_foyer = famille('aides_logement_foyer_plafond_mensualite', period)
+
+        return select([accedant, locataire_logement_foyer], [aides_accedants, aides_foyer])
 
 class aides_logement_primo_accedant_plafond_mensualite(Variable):
     value_type = float
