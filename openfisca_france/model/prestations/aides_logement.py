@@ -187,13 +187,13 @@ class aide_logement_loyer_seuil_degressivite(Variable):
         chambre = famille.demandeur.menage('logement_chambre', period)
         coloc = famille.demandeur.menage('coloc', period)
 
-        coeff_degressivite = al.loyers_plafond.par_zone[zone_apl].degressivite
-        loyer_degressivite = loyer_plafond * coeff_degressivite
-        minoration_coloc = loyer_degressivite * 0.25 * coloc
-        minoration_chambre = loyer_degressivite * 0.1 * chambre
-        loyer_degressivite -= minoration_coloc + minoration_chambre
+        coeff = al.loyers_plafond.par_zone[zone_apl].degressivite
+        loyer_seuil = loyer_plafond * coeff
+        minoration_coloc = loyer_seuil * 0.25 * coloc
+        minoration_chambre = loyer_seuil * 0.1 * chambre
+        loyer_seuil -= minoration_coloc + minoration_chambre
 
-        return round_(loyer_degressivite, 2)
+        return round_(loyer_seuil, 2)
 
 
 class aide_logement_loyer_seuil_suppression(Variable):
@@ -209,14 +209,14 @@ class aide_logement_loyer_seuil_suppression(Variable):
         chambre = famille.demandeur.menage('logement_chambre', period)
         coloc = famille.demandeur.menage('coloc', period)
 
-        coeff_suppression = al.loyers_plafond.par_zone[zone_apl].suppression
+        coeff = al.loyers_plafond.par_zone[zone_apl].suppression
 
-        loyer_suppression = loyer_plafond * coeff_suppression
-        minoration_coloc = loyer_suppression * 0.25 * coloc
-        minoration_chambre = loyer_suppression * 0.1 * chambre
-        loyer_suppression -= minoration_coloc + minoration_chambre
+        loyer_seuil = loyer_plafond * coeff
+        minoration_coloc = loyer_seuil * 0.25 * coloc
+        minoration_chambre = loyer_seuil * 0.1 * chambre
+        loyer_seuil -= minoration_coloc + minoration_chambre
 
-        return round_(loyer_suppression, 2)
+        return round_(loyer_seuil, 2)
 
 
 class TypeEtatLogementFoyer(Enum):
