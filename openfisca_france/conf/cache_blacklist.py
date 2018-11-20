@@ -12,7 +12,6 @@ cache_blacklist = set([
     'aides_logement_primo_accedant',
     'aides_logement_primo_accedant_k',
     'aides_logement_nb_part',
-    'aides_logement_primo_accedant_loyer_minimal',
     'aides_logement_primo_accedant_plafond_mensualite',
     'aides_logement_primo_accedant_ressources',
     'cheque_energie',

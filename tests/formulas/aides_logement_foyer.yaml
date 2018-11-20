@@ -11,8 +11,8 @@
   output_variables:
     aide_logement_charges: 53.67 # C
     aides_logement_k: 0.67 # K
+    aides_logement_loyer_minimal: 80.90 # L0
     aides_logement_foyer_plafond_mensualite: 168.39 # L
-    aides_logement_foyer_loyer_minimal: 80.90 # L0
     aides_logement_foyer: 94.57 # ALS = k*(L+C-L0)
     aide_logement: 89.44
 
@@ -31,8 +31,8 @@
   output_variables:
     aide_logement_charges: 53.67 # C
     aides_logement_k: 0.7 # K
+    aides_logement_loyer_minimal: 53.68 # L0
     aides_logement_foyer_plafond_mensualite: 168.39 # L
-    aides_logement_foyer_loyer_minimal: 53.68 # L0
     aides_logement_foyer: 117.86 # ALS = k*(L+C-L0)
     aide_logement: 112.56
 
@@ -51,8 +51,8 @@
   output_variables:
     aide_logement_charges: 53.67 # C
     aides_logement_k: 0.77 # K
+    aides_logement_loyer_minimal: 43.96 # L0
     aides_logement_foyer_plafond_mensualite: 383.47 # L.PLA
-    aides_logement_foyer_loyer_minimal: 43.96 # L0
     aide_logement_montant_brut_avant_degressivite: 81.65 # APL = k*((L+C)-(L0+C))
     aide_logement: 76.38
 
@@ -71,8 +71,8 @@
   output_variables:
     aide_logement_charges: 53.67 # C
     aides_logement_k: 0.58 # K
+    aides_logement_loyer_minimal: 141.04 # L0
     aides_logement_foyer_plafond_mensualite: 204.32 # L.PLA
-    aides_logement_foyer_loyer_minimal: 141.04 # L0
     aide_logement_montant_brut_avant_degressivite: 67.83 # ALS = k*(L+C-L0)
     aide_logement: 62.31
 
@@ -93,7 +93,7 @@
   output_variables:
     aide_logement_charges: 53.67 # C
     aides_logement_k: 0.6 # K
+    aides_logement_loyer_minimal: 114.94 # L0
     aides_logement_foyer_plafond_mensualite: 383.47 # L.PLA
-    aides_logement_foyer_loyer_minimal: 114.94 # L0
     aide_logement_montant_brut_avant_degressivite: 161.11 # APL = k*((L+C)-(L0-C))
     aide_logement: 155.78

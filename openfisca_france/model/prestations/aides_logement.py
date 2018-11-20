@@ -1113,7 +1113,7 @@ class aides_logement_primo_accedant(Variable):
         L = select(logement_conventionne, min_(plafond_mensualite, loyer), plafond_mensualite)
         C = forfait_charges * famille('aide_logement_charges', period)
         K = famille('aides_logement_k', period)
-        Lo = famille('aides_logement_primo_accedant_loyer_minimal', period)
+        Lo = famille('aides_logement_loyer_minimal', period)
 
         return (L > 0) * K * max_(0, (L + C - Lo))
 
@@ -1140,7 +1140,7 @@ class aides_logement_foyer(Variable):
         L = select(logement_conventionne, min_(plafond_mensualite, loyer), plafond_mensualite)
         C = forfait_charges * famille('aide_logement_charges', period)
         K = famille('aides_logement_k', period)
-        Lo = famille('aides_logement_foyer_loyer_minimal', period)
+        Lo = famille('aides_logement_loyer_minimal', period)
 
         return (L > 0) * K * max_(0, (L + C - Lo))
 
@@ -1260,7 +1260,7 @@ class aides_logement_nb_part(Variable):
             )
 
 
-class aides_logement_foyer_loyer_minimal(Variable):
+class aides_logement_loyer_minimal(Variable):
     value_type = float
     entity = Famille
     label = u"Allocation logement pour les logements foyers loyer minimal"
@@ -1269,15 +1269,15 @@ class aides_logement_foyer_loyer_minimal(Variable):
 
     def formula(famille, period, parameters):
         logement_conventionne = famille.demandeur.menage('logement_conventionne', period)
-        foyer_apl = famille('aides_logement_foyer_loyer_minimal_apl', period)
-        foyer_al = famille('aides_logement_foyer_loyer_minimal_al', period)
-        return where(logement_conventionne, foyer_apl, foyer_al)
+        loyer_al = famille('aides_logement_loyer_minimal_al', period)
+        loyer_apl = famille('aides_logement_loyer_minimal_apl', period)
+        return where(logement_conventionne, loyer_apl, loyer_al)
 
 
-class aides_logement_primo_accedant_loyer_minimal(Variable):
+class aides_logement_loyer_minimal_al(Variable):
     value_type = float
     entity = Famille
-    label = u"Allocation logement pour les primo-accédants loyer minimal"
+    label = u"Allocation logement loyer minimal"
     reference = u"https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006737341&dateTexte=&categorieLien=cid"
     definition_period = MONTH
 
@@ -1293,7 +1293,7 @@ class aides_logement_primo_accedant_loyer_minimal(Variable):
         return (bareme.calc(baseRessource / N) * N + majoration_loyer) / 12
 
 
-class aides_logement_foyer_loyer_minimal_apl(Variable):
+class aides_logement_loyer_minimal_apl(Variable):
     value_type = float
     entity = Famille
     label = u"Allocation logement pour les logements foyers loyer minimal"
@@ -1306,25 +1306,6 @@ class aides_logement_foyer_loyer_minimal_apl(Variable):
         prestations = parameters(period).prestations
         bareme = prestations.al_param_accal.bareme_loyer_minimum_lo_apl1
         majoration_loyer = prestations.al_param_accal.majoration_du_loyer_minimum_lo_apl1 * N
-
-        baseRessource = famille('aide_logement_base_ressources', period)
-
-        return (bareme.calc(baseRessource / N) * N + majoration_loyer) / 12
-
-
-class aides_logement_foyer_loyer_minimal_al(Variable):
-    value_type = float
-    entity = Famille
-    label = u"Allocation logement pour les logements foyers loyer minimal"
-    reference = u"https://www.legifrance.gouv.fr/eli/arrete/2007/11/8/MLVU0759263A/jo/article_2"
-    definition_period = MONTH
-
-    def formula(famille, period, parameters):
-        N = famille('aides_logement_nb_part', period)
-
-        prestations = parameters(period).prestations
-        bareme = prestations.al_param_accal.bareme_loyer_minimum_lo
-        majoration_loyer = prestations.al_param.majoration_du_loyer_minimum_lo
 
         baseRessource = famille('aide_logement_base_ressources', period)
 
