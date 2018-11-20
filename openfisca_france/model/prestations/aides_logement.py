@@ -751,7 +751,11 @@ class aide_logement_base_ressources(Variable):
         # Arrondi aux 100 euros supérieurs
         ressources = ceil(ressources / 100) * 100
 
-        return ressources
+        accedant = famille.demandeur.menage('aides_logement_primo_accedant_eligibilite', period)
+        plancher = famille.demandeur.menage('aides_logement_primo_accedant_ressources', period)
+
+        return where(accedant, max_(ressources, plancher), ressources)
+
 
 
 class aide_logement_loyer_plafond(Variable):
@@ -1171,7 +1175,7 @@ class aides_logement_primo_accedant_k(Variable):
         coef_k = param.constante_du_coefficient_k
         multi_n = param.multiplicateur_de_n
 
-        R = famille('aides_logement_primo_accedant_ressources', period)
+        R = famille('aide_logement_base_ressources', period)
         N = famille('aides_logement_nb_part', period)
 
         return coef_k - (R / (multi_n * N))
@@ -1284,7 +1288,7 @@ class aides_logement_primo_accedant_loyer_minimal(Variable):
         bareme = prestations.al_param_accal.bareme_loyer_minimum_lo
         majoration_loyer = prestations.al_param.majoration_du_loyer_minimum_lo
 
-        baseRessource = famille('aides_logement_primo_accedant_ressources', period)
+        baseRessource = famille('aide_logement_base_ressources', period)
 
         return (bareme.calc(baseRessource / N) * N + majoration_loyer) / 12
 
@@ -1423,16 +1427,15 @@ class aides_logement_foyer_plafond_mensualite(Variable):
 
 class aides_logement_primo_accedant_ressources(Variable):
     value_type = float
-    entity = Famille
-    label = u"Allocation logement pour les primo-accédants ressources"
+    entity = Menage
+    label = u"Allocation logement pour les primo-accédants, plancher de ressources"
     reference = u"https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=0E9C46E37CA82EB75BD1482030D54BB5.tpdila18v_2?idArticle=LEGIARTI000021632291&cidTexte=LEGITEXT000006074096&dateTexte=20170623&categorieLien=id&oldAction="
     definition_period = MONTH
 
-    def formula(famille, period, parameters):
-        baseRessource = famille('aide_logement_base_ressources', period)
-        loyer = famille.demandeur.menage('loyer', period)
+    def formula(menage, period, parameters):
+        loyer = menage('loyer', period)
         coef_plancher_ressources = parameters(period).prestations.aides_logement.ressources.dar_3
-        return max_(baseRessource, loyer * coef_plancher_ressources)
+        return loyer * coef_plancher_ressources
 
 
 class aides_logement_foyer_chambre_non_rehabilite_plafond(Variable):
