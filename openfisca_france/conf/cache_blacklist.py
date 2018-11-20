@@ -8,8 +8,6 @@ cache_blacklist = set([
     'aide_logement_taux_famille',
     'aide_logement_taux_loyer',
     'aide_logement_participation_personnelle',
-    'aide_logement_loyer_seuil_degressivite',
-    'aide_logement_loyer_seuil_suppression',
     'aide_logement_montant_brut_avant_degressivite',
     'aides_logement_primo_accedant',
     'aides_logement_primo_accedant_k',
