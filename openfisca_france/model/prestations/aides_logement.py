@@ -147,30 +147,7 @@ class aide_logement_montant_brut(Variable):
         montant_avant_degressivite = famille('aide_logement_montant_brut_avant_degressivite', period)
         return montant_avant_degressivite
 
-    def formula_2016_07_01(famille, period):
-        montant_avant_degressivite = famille('aide_logement_montant_brut_avant_degressivite', period)
-        loyer_reel = famille('aide_logement_loyer_reel', period)
-        loyer_degressivite = famille('aide_logement_loyer_seuil_degressivite', period)
-        loyer_suppression = famille('aide_logement_loyer_seuil_suppression', period)
-        handicap_i = famille.members('handicap', period)
-        handicap = famille.any(handicap_i)
-
-        coeff = select(
-            [loyer_reel <= loyer_degressivite, loyer_reel <= loyer_suppression, loyer_reel > loyer_suppression],
-            [1, 1 - ((loyer_reel - loyer_degressivite) / (loyer_suppression - loyer_degressivite)), 0]
-            )
-
-        statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
-        accedant = (statut_occupation_logement == TypesStatutOccupationLogement.primo_accedant)
-        locataire_foyer = (statut_occupation_logement == TypesStatutOccupationLogement.locataire_foyer)
-        exception = accedant + locataire_foyer + handicap
-        coeff = where(exception, 1, coeff)
-
-        montant = round_(montant_avant_degressivite * coeff, 2)
-
-        return montant
-
-    def formula_2017_10_01(famille, period, parameters):
+    def formula_2016_07_01(famille, period, parameters):
         montant_avant_degressivite = famille('aide_logement_montant_brut_avant_degressivite', period)
         loyer_reel = famille('aide_logement_loyer_reel', period)
         loyer_degressivite = famille('aide_logement_loyer_seuil_degressivite', period)
