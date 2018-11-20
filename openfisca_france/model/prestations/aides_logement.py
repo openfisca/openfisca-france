@@ -174,6 +174,51 @@ class aide_logement_montant_brut(Variable):
         return aide_logement_apres_abattement_forfaitaire
 
 
+class aide_logement_loyer_seuil_degressivite(Variable):
+    value_type = float
+    entity = Famille
+    label = u"Seuil de degressivité dans le calcul des aides au logement"
+    definition_period = MONTH
+
+    def formula_2016_07_01(famille, period, parameters):
+        al = parameters(period).prestations.aides_logement
+        zone_apl = famille.demandeur.menage('zone_apl', period)
+        loyer_plafond = famille('aide_logement_loyer_plafond', period)
+        chambre = famille.demandeur.menage('logement_chambre', period)
+        coloc = famille.demandeur.menage('coloc', period)
+
+        coeff_degressivite = al.loyers_plafond.par_zone[zone_apl].degressivite
+        loyer_degressivite = loyer_plafond * coeff_degressivite
+        minoration_coloc = loyer_degressivite * 0.25 * coloc
+        minoration_chambre = loyer_degressivite * 0.1 * chambre
+        loyer_degressivite -= minoration_coloc + minoration_chambre
+
+        return round_(loyer_degressivite, 2)
+
+
+class aide_logement_loyer_seuil_suppression(Variable):
+    value_type = float
+    entity = Famille
+    label = u"Seuil de suppression dans le calcul des aides au logement"
+    definition_period = MONTH
+
+    def formula_2016_07_01(famille, period, parameters):
+        al = parameters(period).prestations.aides_logement
+        zone_apl = famille.demandeur.menage('zone_apl', period)
+        loyer_plafond = famille('aide_logement_loyer_plafond', period)
+        chambre = famille.demandeur.menage('logement_chambre', period)
+        coloc = famille.demandeur.menage('coloc', period)
+
+        coeff_suppression = al.loyers_plafond.par_zone[zone_apl].suppression
+
+        loyer_suppression = loyer_plafond * coeff_suppression
+        minoration_coloc = loyer_suppression * 0.25 * coloc
+        minoration_chambre = loyer_suppression * 0.1 * chambre
+        loyer_suppression -= minoration_coloc + minoration_chambre
+
+        return round_(loyer_suppression, 2)
+
+
 class TypeEtatLogementFoyer(Enum):
     non_renseigne = u"Non renseigne"
     logement_rehabilite = u"Logement rehabilité"
@@ -732,51 +777,6 @@ class aide_logement_loyer_plafond(Variable):
         coeff_chambre = where(chambre, al.loyers_plafond.chambre, 1)
 
         return round_(plafond * coeff_coloc * coeff_chambre, 2)
-
-
-class aide_logement_loyer_seuil_degressivite(Variable):
-    value_type = float
-    entity = Famille
-    label = u"Seuil de degressivité dans le calcul des aides au logement"
-    definition_period = MONTH
-
-    def formula_2016_07_01(famille, period, parameters):
-        al = parameters(period).prestations.aides_logement
-        zone_apl = famille.demandeur.menage('zone_apl', period)
-        loyer_plafond = famille('aide_logement_loyer_plafond', period)
-        chambre = famille.demandeur.menage('logement_chambre', period)
-        coloc = famille.demandeur.menage('coloc', period)
-
-        coeff_degressivite = al.loyers_plafond.par_zone[zone_apl].degressivite
-        loyer_degressivite = loyer_plafond * coeff_degressivite
-        minoration_coloc = loyer_degressivite * 0.25 * coloc
-        minoration_chambre = loyer_degressivite * 0.1 * chambre
-        loyer_degressivite -= minoration_coloc + minoration_chambre
-
-        return round_(loyer_degressivite, 2)
-
-
-class aide_logement_loyer_seuil_suppression(Variable):
-    value_type = float
-    entity = Famille
-    label = u"Seuil de suppression dans le calcul des aides au logement"
-    definition_period = MONTH
-
-    def formula_2016_07_01(famille, period, parameters):
-        al = parameters(period).prestations.aides_logement
-        zone_apl = famille.demandeur.menage('zone_apl', period)
-        loyer_plafond = famille('aide_logement_loyer_plafond', period)
-        chambre = famille.demandeur.menage('logement_chambre', period)
-        coloc = famille.demandeur.menage('coloc', period)
-
-        coeff_suppression = al.loyers_plafond.par_zone[zone_apl].suppression
-
-        loyer_suppression = loyer_plafond * coeff_suppression
-        minoration_coloc = loyer_suppression * 0.25 * coloc
-        minoration_chambre = loyer_suppression * 0.1 * chambre
-        loyer_suppression -= minoration_coloc + minoration_chambre
-
-        return round_(loyer_suppression, 2)
 
 
 class aide_logement_loyer_reel(Variable):
