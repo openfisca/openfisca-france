@@ -1129,7 +1129,6 @@ class aides_logement_foyer(Variable):
 
         loyer = famille.demandeur.menage('loyer', period)
         plafond_mensualite = famille('aides_logement_foyer_plafond_mensualite', period)
-        logement_conventionne = famille.demandeur.menage('logement_conventionne', period)
         L = select(logement_conventionne, min_(plafond_mensualite, loyer), plafond_mensualite)
         C = forfait_charges * famille('aide_logement_charges', period)
         K = famille('aides_logement_foyer_k', period)
