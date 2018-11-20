@@ -150,15 +150,26 @@ class aide_logement_montant_brut(Variable):
     def formula_2016_07_01(famille, period, parameters):
         montant_avant_degressivite = famille('aide_logement_montant_brut_avant_degressivite', period)
         loyer_reel = famille('aide_logement_loyer_reel', period)
-        loyer_degressivite = famille('aide_logement_loyer_seuil_degressivite', period)
-        loyer_suppression = famille('aide_logement_loyer_seuil_suppression', period)
-        handicap_i = famille.members('handicap', period)
-        handicap = famille.any(handicap_i)
+
+        zone_apl = famille.demandeur.menage('zone_apl', period)
+        loyer_plafond = famille('aide_logement_loyer_plafond', period)
+        chambre = famille.demandeur.menage('logement_chambre', period)
+        coloc = famille.demandeur.menage('coloc', period)
+
+        coefficients = parameters(period).prestations.aides_logement.loyers_plafond.par_zone[zone_apl]
+        minoration_coloc = 0.25 * coloc
+        minoration_chambre = 0.1 * chambre
+        modulation = minoration_coloc + minoration_chambre
+        loyer_degressivite = round_(loyer_plafond * (coefficients.degressivite + modulation), 2)
+        loyer_suppression = round_(loyer_plafond * (coefficients.suppression + modulation), 2)
 
         coeff = select(
             [loyer_reel <= loyer_degressivite, loyer_reel <= loyer_suppression, loyer_reel > loyer_suppression],
             [1, 1 - ((loyer_reel - loyer_degressivite) / (loyer_suppression - loyer_degressivite)), 0]
             )
+
+        handicap_i = famille.members('handicap', period)
+        handicap = famille.any(handicap_i)
 
         statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
         accedant = (statut_occupation_logement == TypesStatutOccupationLogement.primo_accedant)
@@ -172,51 +183,6 @@ class aide_logement_montant_brut(Variable):
         aide_logement_apres_abattement_forfaitaire = (montant_avant_degressivite_et_coeff > 0) * max_(0, montant_avant_degressivite_et_coeff - abattement_forfaitaire)
 
         return aide_logement_apres_abattement_forfaitaire
-
-
-class aide_logement_loyer_seuil_degressivite(Variable):
-    value_type = float
-    entity = Famille
-    label = u"Seuil de degressivité dans le calcul des aides au logement"
-    definition_period = MONTH
-
-    def formula_2016_07_01(famille, period, parameters):
-        al = parameters(period).prestations.aides_logement
-        zone_apl = famille.demandeur.menage('zone_apl', period)
-        loyer_plafond = famille('aide_logement_loyer_plafond', period)
-        chambre = famille.demandeur.menage('logement_chambre', period)
-        coloc = famille.demandeur.menage('coloc', period)
-
-        coeff = al.loyers_plafond.par_zone[zone_apl].degressivite
-        loyer_seuil = loyer_plafond * coeff
-        minoration_coloc = loyer_seuil * 0.25 * coloc
-        minoration_chambre = loyer_seuil * 0.1 * chambre
-        loyer_seuil -= minoration_coloc + minoration_chambre
-
-        return round_(loyer_seuil, 2)
-
-
-class aide_logement_loyer_seuil_suppression(Variable):
-    value_type = float
-    entity = Famille
-    label = u"Seuil de suppression dans le calcul des aides au logement"
-    definition_period = MONTH
-
-    def formula_2016_07_01(famille, period, parameters):
-        al = parameters(period).prestations.aides_logement
-        zone_apl = famille.demandeur.menage('zone_apl', period)
-        loyer_plafond = famille('aide_logement_loyer_plafond', period)
-        chambre = famille.demandeur.menage('logement_chambre', period)
-        coloc = famille.demandeur.menage('coloc', period)
-
-        coeff = al.loyers_plafond.par_zone[zone_apl].suppression
-
-        loyer_seuil = loyer_plafond * coeff
-        minoration_coloc = loyer_seuil * 0.25 * coloc
-        minoration_chambre = loyer_seuil * 0.1 * chambre
-        loyer_seuil -= minoration_coloc + minoration_chambre
-
-        return round_(loyer_seuil, 2)
 
 
 class TypeEtatLogementFoyer(Enum):
