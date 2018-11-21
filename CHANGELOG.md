@@ -6,14 +6,20 @@
 * Évolution du système socio-fiscal.
 * Périodes concernées : toutes.
 * Zones impactées :
-  - `model/prestations/aides_logement`.
-  - `parameters/prestations/aides_logement`.
-  - `parameters/prestations/al_*`.
+  - `prestations/aides_logement`.
 
 * Détails :
   - Ajoute le barème spécifique à certains publics "logements foyers".
   - Ajoute et renomme plusieurs variables liées aux aides au logement.
   - Ajoute des tests correspondants.
+  - Variables supprimées:
+    - `aide_logement_loyer_seuil_degressivite`
+    - `aide_logement_loyer_seuil_suppression`
+    - `aides_logement_primo_accedant`
+    - `aides_logement_primo_accedant_loyer_minimal`
+    - `aides_logement_primo_accedant_nb_part`
+    - `als_etudiant`
+    - `als_non_etudiant`
 
 ### 29.4.1 [#1215](https://github.com/openfisca/openfisca-france/pull/1215)
 
