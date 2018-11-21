@@ -47,7 +47,7 @@
     - id: "parent1"
       age: 40
   output_variables:
-    aides_logement_formule_commune: 0
+    aides_logement_accedant_et_foyer: 0
 
 - name: AL Primo Accédant / Prêt remboursé
   absolute_error_margin: 0.01
