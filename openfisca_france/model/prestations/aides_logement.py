@@ -756,6 +756,19 @@ class aide_logement_base_ressources(Variable):
         return where(accedant, max_(ressources, plancher), ressources)
 
 
+class aides_logement_primo_accedant_ressources(Variable):
+    value_type = float
+    entity = Menage
+    label = u"Allocation logement pour les primo-accédants, plancher de ressources"
+    reference = u"https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=0E9C46E37CA82EB75BD1482030D54BB5.tpdila18v_2?idArticle=LEGIARTI000021632291&cidTexte=LEGITEXT000006074096&dateTexte=20170623&categorieLien=id&oldAction="
+    definition_period = MONTH
+
+    def formula(menage, period, parameters):
+        loyer = menage('loyer', period)
+        coef_plancher_ressources = parameters(period).prestations.aides_logement.ressources.dar_3
+        return loyer * coef_plancher_ressources
+
+
 class aide_logement_loyer_plafond(Variable):
     value_type = float
     entity = Famille
@@ -1361,81 +1374,30 @@ class aides_logement_foyer_plafond_mensualite(Variable):
     value_type = float
     entity = Famille
     label = u"Allocation logement pour les logements foyers plafond mensualité"
-    reference = u"https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000035665875&dateTexte=&categorieLien=id"
+    reference = [u"https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000035665875&dateTexte=&categorieLien=id",
+                 u"https://www.legifrance.gouv.fr/eli/arrete/2017/9/28/TERL1725443A/jo/article_11"
+                ]
     definition_period = MONTH
 
     # Temporairement limitée à après 2017 pour pallier des carences de valeurs de paramètres
     def formula_2017_10(famille, period, parameters):
-        aides_logement_foyer_chambre_non_rehabilite_plafond = famille('aides_logement_foyer_chambre_non_rehabilite_plafond', period)
-        aides_logement_foyer_personne_agee_plafond = famille('aides_logement_foyer_personne_agee_plafond', period)
-        aides_logement_foyer_conventionne_plafond = famille('aides_logement_foyer_conventionne_plafond', period)
-        aides_logement_foyer_plafond = famille('aides_logement_foyer_plafond', period)
+        plafond_crous = parameters(period).prestations.al_plafonds_logement_foyer_crous
+        plafond_foyer = parameters(period).prestations.al_plafonds_logement_foyer
+
+        statut_couple = where(famille('al_couple', period), 'couple', 'personne_isolee')
+
+        foyer_plafond = plafond_crous.rehabilitee[statut_couple]
+        foyer_chambre_non_rehabilite_plafond = plafond_crous.non_rehabilitee[statut_couple]
+        foyer_personne_agee_plafond = plafond_foyer.personne_agee[statut_couple]
+
+        foyer_conventionne_plafond = famille('aides_logement_foyer_conventionne_plafond', period)
 
         logement_conventionne = famille.demandeur.menage('logement_conventionne', period)
-        aides_logement_foyer_chambre_non_rehabilite_eligibilite = famille('aides_logement_foyer_chambre_non_rehabilite_eligibilite', period)
-        aides_logement_foyer_personne_agee_eligibilite = famille('aides_logement_foyer_personne_agee_eligibilite', period)
+        foyer_chambre_non_rehabilite_eligibilite = famille('aides_logement_foyer_chambre_non_rehabilite_eligibilite', period)
+        foyer_personne_agee_eligibilite = famille('aides_logement_foyer_personne_agee_eligibilite', period)
 
         return select(
-            [aides_logement_foyer_personne_agee_eligibilite, aides_logement_foyer_chambre_non_rehabilite_eligibilite, logement_conventionne],
-            [aides_logement_foyer_personne_agee_plafond, aides_logement_foyer_chambre_non_rehabilite_plafond, aides_logement_foyer_conventionne_plafond],
-            default=aides_logement_foyer_plafond
-            )
-
-
-class aides_logement_primo_accedant_ressources(Variable):
-    value_type = float
-    entity = Menage
-    label = u"Allocation logement pour les primo-accédants, plancher de ressources"
-    reference = u"https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=0E9C46E37CA82EB75BD1482030D54BB5.tpdila18v_2?idArticle=LEGIARTI000021632291&cidTexte=LEGITEXT000006074096&dateTexte=20170623&categorieLien=id&oldAction="
-    definition_period = MONTH
-
-    def formula(menage, period, parameters):
-        loyer = menage('loyer', period)
-        coef_plancher_ressources = parameters(period).prestations.aides_logement.ressources.dar_3
-        return loyer * coef_plancher_ressources
-
-
-class aides_logement_foyer_chambre_non_rehabilite_plafond(Variable):
-
-    value_type = float
-    entity = Famille
-    label = u"Allocation logement pour les logements foyers crous plafond"
-    reference = u"https://www.legifrance.gouv.fr/eli/arrete/2017/9/28/TERL1725443A/jo/article_11"
-    definition_period = MONTH
-
-    def formula(famille, period, parameters):
-        al_crous = parameters(period).prestations.al_plafonds_logement_foyer_crous
-        couple = famille('al_couple', period)
-
-        return al_crous.non_rehabilitee.personne_isolee * not_(couple) + al_crous.non_rehabilitee.couple * couple
-
-
-class aides_logement_foyer_plafond(Variable):
-    value_type = float
-    entity = Famille
-    label = u"Allocation logement pour les logements foyers plafond"
-    reference = u"https://www.legifrance.gouv.fr/eli/arrete/2017/9/28/TERL1725443A/jo/article_11"
-    definition_period = MONTH
-
-    def formula(famille, period, parameters):
-        al_crous = parameters(period).prestations.al_plafonds_logement_foyer_crous
-        couple = famille('al_couple', period)
-
-        return al_crous.rehabilitee.personne_isolee * not_(couple) + al_crous.rehabilitee.couple * couple
-
-
-class aides_logement_foyer_personne_agee_plafond(Variable):
-
-    value_type = float
-    entity = Famille
-    label = u"Allocation logement pour les logements foyers pour perssones agées plafond"
-    reference = u"https://www.legifrance.gouv.fr/eli/arrete/2017/9/28/TERL1725443A/jo/article_11"
-    definition_period = MONTH
-
-    def formula(famille, period, parameters):
-        al_plaf_logement_foyer = parameters(period).prestations.al_plafonds_logement_foyer
-        couple = famille('al_couple', period)
-        return (
-            al_plaf_logement_foyer.personne_agee.personne_isolee * not_(couple) +
-            al_plaf_logement_foyer.personne_agee.couple * couple
+            [foyer_personne_agee_eligibilite, foyer_chambre_non_rehabilite_eligibilite, logement_conventionne],
+            [foyer_personne_agee_plafond, foyer_chambre_non_rehabilite_plafond, foyer_conventionne_plafond],
+            default=foyer_plafond
             )
