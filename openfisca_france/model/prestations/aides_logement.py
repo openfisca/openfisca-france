@@ -120,9 +120,6 @@ class aide_logement_montant_brut_crds(Variable):
     reference = u"https://www.legifrance.gouv.fr/eli/decret/2018/2/27/2018-136/jo/article_1"
     definition_period = MONTH
 
-    def formula(famille, period, parameters):
-        return famille('aide_logement_montant_brut', period)
-
     def formula_2018(famille, period, parameters):
         rls = parameters(period).prestations.reduction_loyer_solidarite
         aide_logement_montant_brut = famille('aide_logement_montant_brut', period)
@@ -135,6 +132,9 @@ class aide_logement_montant_brut_crds(Variable):
         montant = max_(0, (aide_logement_montant_brut - rls_apl))
         return montant
 
+    def formula(famille, period, parameters):
+        return famille('aide_logement_montant_brut', period)
+
 
 class aide_logement_montant_brut(Variable):
     value_type = float
@@ -142,10 +142,6 @@ class aide_logement_montant_brut(Variable):
     label = u"Montant des aides au logement après degressivité et abattement forfaitaire, avant CRDS"
     reference = u"https://www.legifrance.gouv.fr/eli/decret/2017/9/28/TERL1721632D/jo/texte"
     definition_period = MONTH
-
-    def formula(famille, period):
-        montant_avant_degressivite = famille('aide_logement_montant_brut_avant_degressivite', period)
-        return montant_avant_degressivite
 
     def formula_2016_07_01(famille, period, parameters):
         montant_avant_degressivite = famille('aide_logement_montant_brut_avant_degressivite', period)
@@ -183,6 +179,10 @@ class aide_logement_montant_brut(Variable):
         aide_logement_apres_abattement_forfaitaire = (montant_avant_degressivite_et_coeff > 0) * max_(0, montant_avant_degressivite_et_coeff - abattement_forfaitaire)
 
         return aide_logement_apres_abattement_forfaitaire
+
+    def formula(famille, period):
+        montant_avant_degressivite = famille('aide_logement_montant_brut_avant_degressivite', period)
+        return montant_avant_degressivite
 
 
 class aide_logement_montant_brut_avant_degressivite(Variable):
