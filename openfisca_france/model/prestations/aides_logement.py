@@ -213,7 +213,8 @@ class aide_logement_montant_brut_avant_degressivite(Variable):
         montant = select([locataire, accedant + locataire_logement_foyer],
                          [montant_locataire, montant_accedant_et_foyer])
 
-        type_aide = array(['non_apl', 'apl'])[1 * (statut_occupation_logement == TypesStatutOccupationLogement.locataire_hlm)]
+        apl = (statut_occupation_logement == TypesStatutOccupationLogement.locataire_hlm)
+        type_aide = where(apl, 'apl', 'non_apl', )
         seuil_versement = al.al_min.montant_min_mensuel.montant_min_apl_al[type_aide]
         minimum_atteint = montant >= seuil_versement
 
