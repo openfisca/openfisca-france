@@ -315,6 +315,7 @@ class revenus_fonciers_bruts_menage(Variable):
 
         return f4ba + f4be - f4bb - f4bc
 
+
 class revenus_travail_super_bruts_menage(Variable):
     value_type = float
     entity = Menage
@@ -347,11 +348,12 @@ class revenus_travail_super_bruts_menage(Variable):
         return (
             salaire_net
             + rpns
-            - cotisations_sociales_menage # On veut ajouter le montant de cotisations. Vu que ce montant est négatif, on met un "moins". Idem pour les autres items ci-dessous
+            - cotisations_sociales_menage  # On veut ajouter le montant de cotisations. Vu que ce montant est négatif, on met un "moins". Idem pour les autres items ci-dessous
             - csg_imposable_salaire
             - csg_deductible_salaire
             - crds_salaire
             )
+
 
 class revenus_remplacement_pensions_bruts_menage(Variable):
     value_type = float
@@ -381,13 +383,14 @@ class revenus_remplacement_pensions_bruts_menage(Variable):
 
         return (
             + pensions_nettes
-            - csg_imposable_chomage # On veut ajouter le montant de cotisations. Vu que ce montant est négatif, on met un "moins". Idem pour les autres items ci-dessous
+            - csg_imposable_chomage  # On veut ajouter le montant de cotisations. Vu que ce montant est négatif, on met un "moins". Idem pour les autres items ci-dessous
             - csg_deductible_chomage
             - csg_imposable_retraite
             - csg_deductible_retraite
             - crds_chomage
             - crds_retraite
             )
+
 
 class revenus_capitaux_mobiliers_plus_values_bruts_menage(Variable):
     value_type = float
@@ -434,6 +437,7 @@ class revenus_capitaux_mobiliers_plus_values_bruts_menage(Variable):
             + plus_values_base_large
             )
 
+
 class revenus_super_bruts_menage(Variable):
     value_type = float
     entity = Menage
@@ -447,7 +451,8 @@ class revenus_super_bruts_menage(Variable):
         revenus_fonciers_bruts_menage = menage('revenus_fonciers_bruts_menage', period)
         revenus_capitaux_mobiliers_plus_values_bruts_menage = menage('revenus_capitaux_mobiliers_plus_values_bruts_menage', period)
 
-        return (revenus_travail_super_bruts_menage
+        return (
+            revenus_travail_super_bruts_menage
             + revenus_remplacement_pensions_bruts_menage
             + revenus_fonciers_bruts_menage
             + revenus_capitaux_mobiliers_plus_values_bruts_menage

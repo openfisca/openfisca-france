@@ -49,7 +49,7 @@ class crds(Variable):
         crds_retraite = individu('crds_retraite', period, options = [ADD])
         crds_chomage = individu('crds_chomage', period, options = [ADD])
         crds_non_salarie = individu('crds_non_salarie', period, options = [ADD])
-        crds_individu = crds_salaire + crds_retraite + crds_chomage+ crds_non_salarie
+        crds_individu = crds_salaire + crds_retraite + crds_chomage + crds_non_salarie
         # CRDS sur revenus de la famille, projetés seulement sur la première personne
         crds_pfam = individu.famille('crds_pfam', period)
         crds_logement = individu.famille('crds_logement', period, options = [ADD])
@@ -74,10 +74,9 @@ class crds_hors_prestations(Variable):
         crds_retraite = individu('crds_retraite', period, options = [ADD])
         crds_chomage = individu('crds_chomage', period, options = [ADD])
         crds_non_salarie = individu('crds_non_salarie', period, options = [ADD])
-        crds_individu = crds_salaire + crds_retraite + crds_chomage+ crds_non_salarie
+        crds_individu = crds_salaire + crds_retraite + crds_chomage + crds_non_salarie
         # CRDS sur revenus du capital, définie à l'échelle du foyer fiscal, mais projetée sur le déclarant principal
         crds_revenus_capital = individu.foyer_fiscal('crds_revenus_capital', period)
         crds_revenus_capital_projetee = crds_revenus_capital * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
 
         return crds_individu + crds_revenus_capital_projetee
-
