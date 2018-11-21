@@ -1374,8 +1374,7 @@ class aides_logement_foyer_plafond_mensualite(Variable):
     entity = Famille
     label = u"Allocation logement pour les logements foyers plafond mensualité"
     reference = [u"https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000035665875&dateTexte=&categorieLien=id",
-                 u"https://www.legifrance.gouv.fr/eli/arrete/2017/9/28/TERL1725443A/jo/article_11"
-                ]
+                 u"https://www.legifrance.gouv.fr/eli/arrete/2017/9/28/TERL1725443A/jo/article_11"]
     definition_period = MONTH
 
     # Temporairement limitée à après 2017 pour pallier des carences de valeurs de paramètres
