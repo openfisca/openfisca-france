@@ -103,20 +103,16 @@ class revenus_nets_du_travail(Variable):
     definition_period = YEAR
 
     def formula(individu, period):
-        '''
-        Note : pour les revenus non-salariés, on prend rpns_individu, auquel on retranche seulement la CSG-CRDS,
-               mais pas les cotisations sociales. En effet, la variable assiette_csg_crds_non_salarie suggère
-               que rpns_individu est avant application de la CSG-CRDS, mais après cotisations sociales
-               (ou du moins certaines cotisations)
-        '''
         # Salariés
         salaire_net = individu('salaire_net', period, options = [ADD])
         # Non salariés
         revenu_non_salarie = individu('rpns_individu', period, options = [ADD])  # TODO ou rpns_individu
+        cotisations_non_salarie = individu('cotisations_non_salarie', period)
         csg_non_salarie = individu('csg_non_salarie', period)
         crds_non_salarie = individu('crds_non_salarie', period)
         revenu_non_salarie_net = (
             revenu_non_salarie
+            + cotisations_non_salarie
             + csg_non_salarie
             + crds_non_salarie
             )
