@@ -37,11 +37,11 @@ class aide_logement(Variable):
 
 
 class apl(Variable):
+    documentation = "Réservée aux logements conventionnés, surtout des HLM, et financée par le fonds national de l'habitation."
     calculate_output = calculate_output_add
     value_type = float
     entity = Famille
     label = u"Aide personnalisée au logement"
-    # (réservée aux logements conventionné, surtout des HLM, et financé par le fonds national de l'habitation)"
     reference = u"http://vosdroits.service-public.fr/particuliers/F12006.xhtml",
     definition_period = MONTH
     set_input = set_input_divide_by_period
