@@ -207,11 +207,11 @@ class aide_logement_montant_brut_avant_degressivite(Variable):
         charges_retenues = famille('aide_logement_charges', period)
         participation_personnelle = famille('aide_logement_participation_personnelle', period)
 
-        montant_formule_commune = famille('aides_logement_formule_commune', period)
+        montant_accedant_et_foyer = famille('aides_logement_accedant_et_foyer', period)
         montant_locataire = max_(0, loyer_retenu + charges_retenues - participation_personnelle)
 
         montant = select([locataire, accedant + locataire_logement_foyer],
-                         [montant_locataire, montant_formule_commune])
+                         [montant_locataire, montant_accedant_et_foyer])
 
         type_aide = array(['non_apl', 'apl'])[1 * (statut_occupation_logement == TypesStatutOccupationLogement.locataire_hlm)]
         seuil_versement = al.al_min.montant_min_mensuel.montant_min_apl_al[type_aide]
@@ -1105,7 +1105,7 @@ class zone_apl(Variable):
             )
 
 
-class aides_logement_formule_commune(Variable):
+class aides_logement_accedant_et_foyer(Variable):
     value_type = float
     entity = Famille
     label = u"Allocation logement pour les primo-accédants"
