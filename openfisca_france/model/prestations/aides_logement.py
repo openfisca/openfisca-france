@@ -301,7 +301,7 @@ class aides_logement_primo_accedant_eligibilite(Variable):
 
         eligibilite = select(
             [date_pret_conventionne_avant_2018_01, date_pret_conventionne_avant_2020_01],
-            [True, (est_logement_ancien * est_zone_3)], default=False
+            [True, (est_logement_ancien * est_zone_3)], default = False
             )
 
         return accedant * eligibilite
@@ -1399,5 +1399,5 @@ class aides_logement_foyer_plafond_mensualite(Variable):
         return select(
             [foyer_personne_agee_eligibilite, foyer_chambre_non_rehabilite_eligibilite, logement_conventionne],
             [foyer_personne_agee_plafond, foyer_chambre_non_rehabilite_plafond, foyer_conventionne_plafond],
-            default=foyer_plafond
+            default = foyer_plafond
             )
