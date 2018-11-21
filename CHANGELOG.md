@@ -1,5 +1,18 @@
 # Changelog
 
+### 30.20 [#1219](https://github.com/openfisca/openfisca-france/pull/1219)
+
+* Changement mineurs.
+* Périodes concernées : toutes.
+* Zones impactées :
+  - prelevements_obligatoires/prelevements_sociaux/contributions_sociales/remplacement
+  - prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/travail_totaux
+  - revenus/activite/salarie
+* Détails :
+  - Corrige les employés de la fonction publique disposant d'un indice majorée
+  - Corrige les employés de la fonction publique disposant d'une prime
+
+
 ## 31.1.0 [#1221](https://github.com/openfisca/openfisca-france/pull/1221)
 
 * Amélioration technique.
