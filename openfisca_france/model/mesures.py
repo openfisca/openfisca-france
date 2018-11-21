@@ -117,7 +117,6 @@ class revenus_nets_du_travail(Variable):
         crds_non_salarie = individu('crds_non_salarie', period)
         revenu_non_salarie_net = (
             revenu_non_salarie
-            + cotisations_non_salarie
             + csg_non_salarie
             + crds_non_salarie
             )
