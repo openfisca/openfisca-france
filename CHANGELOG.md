@@ -12,7 +12,7 @@
   - Ajoute le barème spécifique à certains publics "logements foyers".
   - Ajoute et renomme plusieurs variables liées aux aides au logement.
   - Ajoute des tests correspondants.
-  - Variables supprimées:
+  - Supprime les variables:
     - `aide_logement_loyer_seuil_degressivite`
     - `aide_logement_loyer_seuil_suppression`
     - `aides_logement_primo_accedant`
