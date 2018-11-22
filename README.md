@@ -3,18 +3,18 @@
 [![Build Status](https://travis-ci.org/openfisca/openfisca-france.svg?branch=master)](https://travis-ci.org/openfisca/openfisca-france)
 
 ## [EN] Introduction
-OpenFisca is a versatile microsimulation free software. This repository contains the OpenFisca model of the French tax and benefit system. Therefore, the working language here is French. You can however check the [general OpenFisca documentation](http://openfisca.org/doc/) in English!
+OpenFisca is a versatile microsimulation free software. This repository contains the OpenFisca model of the French tax and benefit system. Therefore, the working language here is French. You can however check the [general OpenFisca documentation](https://openfisca.org/doc/) in English!
 > We host a public instance of of the [OpenFisca-France Web API](https://fr.openfisca.org/api/v24/). Learn more about its endpoint in the [Swagger documentation](https://fr.openfisca.org/legislation/swagger).
 > If you need to run large amount of calculations, or add extensions, you should [host your own instance](#servez-openfisca-france-avec-l-api-web-openfisca).
 
 ## [FR] Introduction
-[OpenFisca](https://www.openfisca.fr/) est un logiciel libre de micro-simulation. Ce dépôt contient la modélisation du système social et fiscal français. Pour plus d'information sur les fonctionnalités et la manière d'utiliser OpenFisca, vous pouvez consulter la [documentation générale](http://openfisca.org/doc/).
+[OpenFisca](https://www.openfisca.fr/) est un logiciel libre de micro-simulation. Ce dépôt contient la modélisation du système social et fiscal français. Pour plus d'information sur les fonctionnalités et la manière d'utiliser OpenFisca, vous pouvez consulter la [documentation générale](https://openfisca.org/doc/).
 > Nous mettons à disposition une instance publique de [l'API Web OpenFisca-France](https://fr.openfisca.org/api/v24/). Découvrez ses capacité sur sa [documentation Swagger](https://fr.openfisca.org/legislation/swagger).
 > Si vous avez besoin de réaliser un grand nombre de calculs ou d'ajouter des extensions, vous pouvez [servir votre propre instance](#servez-openfisca-france-avec-l-api-web-openfisca).
 
 ## API Web publique : interrogez OpenFisca-France sans installation
 
-OpenFisca met à disposition une [API Web publique](http://openfisca.org/doc/openfisca-web-api/endpoints.html) qui ne demande aucune installation.
+OpenFisca met à disposition une [API Web publique](https://openfisca.org/doc/openfisca-web-api/endpoints.html) qui ne demande aucune installation.
 Utilisez l'API publique si vous souhaitez :
 - accéder à un paramètre (Ex : [le montant du SMIC horaire brut](https://fr.openfisca.org/api/v24/parameter/cotsoc.gen.smic_h_b)) ;
 - consulter une formule de calcul (Ex : [le calcul de l'allocation de base des allocations familiales](https://fr.openfisca.org/api/v24/variable/af_base)) ;
@@ -111,11 +111,11 @@ Félicitations :tada: OpenFisca-France est prêt à être utilisé !
 
 #### Prochaines étapes
 
-- Apprenez à utiliser OpenFisca avec nos [tutoriels](http://openfisca.org/doc/) (en anglais).
+- Apprenez à utiliser OpenFisca avec nos [tutoriels](https://openfisca.org/doc/) (en anglais).
 - Hébergez et servez votre instance d'OpenFisca-France avec l'[API Web OpenFisca](#servez-openfisca-france-avec-lapi-web-openfisca).
 
 En fonction de vos projets, vous pourriez bénéficier de l'installation des paquets suivants dans votre _virtualenv_ :
-- pour installer une extension ou écrire une législation au-dessus d'OpenFisca-France, consultez la [documentation sur les extensions](http://openfisca.org/doc/contribute/extensions.html) (en anglais) ;
+- pour installer une extension ou écrire une législation au-dessus d'OpenFisca-France, consultez la [documentation sur les extensions](https://openfisca.org/doc/contribute/extensions.html) (en anglais) ;
 - pour représenter graphiquement vos résultats, essayez la bibliothèque [matplotlib](http://matplotlib.org/) ;
 - pour gérer vos données, découvrez la bibliothèque [pandas](http://pandas.pydata.org/).
 
@@ -160,8 +160,8 @@ pytest tests/test_basics.py # Ces test peuvent prendre jusqu'à 60 secondes.
 
 #### Prochaines étapes
 
-- Pour enrichir ou faire évoluer la législation d'OpenFisca-France, lisez _[Coding the Legislation](http://openfisca.org/doc/coding-the-legislation/index.html)_ (en anglais).
-- Pour contribuer au code, lisez le _[Contribution Guidebook](http://openfisca.org/doc/contribute/index.html)_ (en anglais).
+- Pour enrichir ou faire évoluer la législation d'OpenFisca-France, lisez _[Coding the Legislation](https://openfisca.org/doc/coding-the-legislation/index.html)_ (en anglais).
+- Pour contribuer au code, lisez le _[Contribution Guidebook](https://openfisca.org/doc/contribute/index.html)_ (en anglais).
 
 ## Testing
 
@@ -209,7 +209,7 @@ Il est possible de servir l'API Web d'OpenFisca-France sur votre propre serveur 
 openfisca serve
 ```
 
-Pour en savoir plus sur la commande `openfisca serve` et ses options, consultez la [documentation de référence](http://openfisca.org/doc/openfisca-python-api/openfisca_serve.html).
+Pour en savoir plus sur la commande `openfisca serve` et ses options, consultez la [documentation de référence](https://openfisca.org/doc/openfisca-python-api/openfisca_serve.html).
 
 Testez votre installation en requêtant la commande suivante :
 
