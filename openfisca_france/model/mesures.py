@@ -111,7 +111,7 @@ class revenus_nets_du_travail(Variable):
         # Salariés
         salaire_net = individu('salaire_net', period, options = [ADD])
         # Non salariés
-        revenu_non_salarie = individu('rpns_individu', period, options = [ADD])  # TODO ou rpns_individu
+        revenu_non_salarie = individu('rpns_individu', period, options = [ADD])
         cotisations_non_salarie = individu('cotisations_non_salarie', period)
         csg_non_salarie = individu('csg_non_salarie', period)
         crds_non_salarie = individu('crds_non_salarie', period)
