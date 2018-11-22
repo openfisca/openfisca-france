@@ -4,7 +4,7 @@ Avant tout, merci de votre volonté de contribuer au bien commun qu'est OpenFisc
 
 Afin de faciliter la réutilisation d'OpenFisca et d'améliorer la qualité du code, les contributions à OpenFisca suivent certaines règles.
 
-Certaines règles sont communes à tous les dépôts OpenFisca et sont détaillées dans [la documentation générale](http://openfisca.org/doc/contribute/guidelines.html).
+Certaines règles sont communes à tous les dépôts OpenFisca et sont détaillées dans [la documentation générale](https://openfisca.org/doc/contribute/guidelines.html).
 
 
 ## Format du Changelog
@@ -51,7 +51,7 @@ Chaque évolution sera documentée par les élements suivants :
 >
 > * Détails :
 >   - Déplacement du test runner depuis `france` vers `core`.
->   - _Il devient possible d'exécuter `openfisca-run-test` sur un fichier YAML. [Plus d'informations](https://openfisca.readthedocs.io/en/latest/openfisca-run-test.html)._
+>   - _Il devient possible d'exécuter `openfisca-run-test` sur un fichier YAML. [Plus d'informations](https://openfisca.org/doc/openfisca-python-api/openfisca-run-test.html)._
 
 Dans le cas où une Pull Request contient plusieurs évolutions distinctes, plusieurs paragraphes peuvent être ajoutés au Changelog.
 
