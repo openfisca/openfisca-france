@@ -462,27 +462,6 @@ class revenus_super_bruts_menage(Variable):
             )
 
 
-class cotisations_sociales_menage(Variable):
-    value_type = float
-    entity = Menage
-    label = u"Cotisations sociales du ménage (tous revenus)"
-    definition_period = YEAR
-
-    def formula(menage, period):
-        cotisations_employeur_i = menage.members('cotisations_employeur', period, options = [ADD])
-        cotisations_employeur = menage.sum(cotisations_employeur_i)
-        cotisations_salariales_i = menage.members('cotisations_salariales', period, options = [ADD])
-        cotisations_salariales = menage.sum(cotisations_salariales_i)
-        cotisations_non_salarie_i = menage.members('cotisations_non_salarie', period, options = [ADD])
-        cotisations_non_salarie = menage.sum(cotisations_non_salarie_i)
-
-        return (
-            cotisations_employeur
-            + cotisations_salariales
-            + cotisations_non_salarie
-            )
-
-
 class prelevements_sociaux_menage(Variable):
     value_type = float
     entity = Menage
