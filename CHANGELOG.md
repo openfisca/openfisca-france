@@ -1,5 +1,23 @@
 # Changelog
 
+# 31.0.0 [#1207](https://github.com/openfisca/openfisca-france/pull/1207)
+
+* Évolution du système socio-fiscal **non rétrocompatible**
+* Périodes concernées : toutes.
+* Zones impactées:
+  - `mesures.py`
+  - `prelevements_obligatoires/prelevements_sociaux/contributions_sociales/csg_crds.py`
+* Détails :
+  - Ajoute des mesures de revenu super brut au niveau du ménage
+  - Corrige le calcul de `minima_sociaux` (pour prendre en compte la CRDS sur ces revenus, comme c'est le cas pour `aides_logement` et `prestations_familiales`.
+  - Corrige le calcul de la variable `csg` pour inclure la CSG sur les revenus non salariés
+  - Modifie le calcul de la variable `revenus_nets_du_travail`
+  - Renomme la variable `plus_values_revenus_nets_du_capital` en `plus_values_base_large`
+ - Supprime les variables:
+   - `niveau_de_vie_net`
+   - `revenu_net`
+   - `revenu_net_individu`
+
 # 30.0.0 [#1199](https://github.com/openfisca/openfisca-france/pull/1199)
 
 * Évolution de la législation **non rétrocompatible**
