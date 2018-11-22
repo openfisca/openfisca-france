@@ -1,0 +1,18 @@
+description: Plancher de ressources pour les étudiants boursiers résidant dans un logement foyer.
+reference: https://www.legifrance.gouv.fr/affichTexteArticle.do;jsessionid=B79D0775D8C0BB04C981DA5E02789A79.tplgfr29s_2?idArticle=LEGIARTI000006832000&cidTexte=JORFTEXT000000486568&categorieLien=id&dateTexte=20081231
+unit: currency
+values:
+  2001-08-01:
+    value: 381.1
+  2003-01-01:
+    value: 500.0
+  2007-07-01:
+    value: 700.0
+  2009-01-01:
+    value: 800.0
+  2012-01-01:
+    value: 900.0
+  2014-01-01:
+    value: 1000.0
+  2018-01-01:
+    value: 1100.0

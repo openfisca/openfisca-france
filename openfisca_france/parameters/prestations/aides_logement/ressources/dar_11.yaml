@@ -1,0 +1,22 @@
+description: Plancher de ressources pour les étudiants résidant dans un logement foyer.
+reference: https://www.legifrance.gouv.fr/affichTexteArticle.do;jsessionid=B79D0775D8C0BB04C981DA5E02789A79.tplgfr29s_2?idArticle=LEGIARTI000006832000&cidTexte=JORFTEXT000000486568&categorieLien=id&dateTexte=20081231
+unit: currency
+values:
+  2001-08-01:
+    value: 4039.66
+  2003-01-01:
+    value: 4200.00
+  2007-07-01:
+    value: 5300.0
+  2009-01-01:
+    value: 5500.0
+  2011-01-01:
+    value: 5600.0
+  2012-01-01:
+    value: 5700.0
+  2013-01-01:
+    value: 5800.0
+  2014-01-01:
+    value: 5900.0
+  2018-01-01:
+    value: 6000.0

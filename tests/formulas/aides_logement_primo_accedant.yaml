@@ -15,10 +15,11 @@
   input_variables:
     loyer: 500
     depcom: 82121
+    aides_logement_primo_accedant_eligibilite: true
   output_variables:
     zone_apl: "zone_3"
     aide_logement_charges: 53.27
-    aides_logement_primo_accedant_nb_part: 1.2
+    aides_logement_nb_part: 1.2
     aides_logement_primo_accedant_k: 0.5839
     aides_logement_primo_accedant_plafond_mensualite: 256.14
 
@@ -30,7 +31,7 @@
     loyer: 500
     depcom: 82121
   output_variables:
-    aides_logement_primo_accedant: 95
+    aides_logement_primo_accedant_eligibilite: false
 
 - name: "Aides logements - Primo-accédant avec 10000 euros par mois"
   period: 2016-09
@@ -41,11 +42,12 @@
   menages:
     zone_apl: zone_1
     loyer: 5172
+    aides_logement_primo_accedant_eligibilite: true
   individus:
     - id: "parent1"
       age: 40
   output_variables:
-    aides_logement_primo_accedant: 0
+    aides_logement_accedant_et_foyer: 0
 
 - name: AL Primo Accédant / Prêt remboursé
   absolute_error_margin: 0.01
