@@ -9,7 +9,7 @@ import logging
 import pkg_resources
 import sys
 
-from numpy import array, ceil, datetime64, fromiter, int16, logical_or as or_, logical_and as and_, logical_not as not_
+from numpy import ceil, datetime64, fromiter, int16, logical_or as or_, logical_and as and_, logical_not as not_
 
 import openfisca_france
 from openfisca_core.periods import Instant
