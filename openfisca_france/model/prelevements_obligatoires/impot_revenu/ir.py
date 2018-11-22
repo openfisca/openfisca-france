@@ -1414,6 +1414,9 @@ class reduction_ss_condition_revenus(Variable):
     def formula_2016_01_01(foyer_fiscal, period, parameters):
         '''
         Réduction d'impôt sous condition de revenus
+        Cette réduction instaurée en 2016 vise à adoucir un effet de seuil d'assujettissement
+        à l'impôt pour les foyers fiscaux les plus modestes, elle est plus à considérer comme une
+        "décote bis" qu'une réduction fiscale à proprement parler.
         '''
         ir_plaf_qf = foyer_fiscal('ir_plaf_qf', period)
         decote = foyer_fiscal('decote', period)
@@ -1469,18 +1472,8 @@ class ip_net(Variable):
         decote = foyer_fiscal('decote', period)
         ir_plaf_qf = foyer_fiscal('ir_plaf_qf', period)
         taux = parameters(period).impot_revenu.rpns.taux16
-
-        return around(max_(0, ir_plaf_qf + foyer_fiscal.sum(cncn_info_i) * taux - decote))
-
-    def formula_2016_01_01(foyer_fiscal, period, parameters):
-        '''
-        Impôt net avant réductions
-        '''
-        cncn_info_i = foyer_fiscal.members('cncn_info', period)
-        decote = foyer_fiscal('decote', period)
-        ir_plaf_qf = foyer_fiscal('ir_plaf_qf', period)
+        # N'est pas véritablement une 'réduction', cf. la définition de cette variable
         reduction_ss_condition_revenus = foyer_fiscal('reduction_ss_condition_revenus', period)
-        taux = parameters(period).impot_revenu.rpns.taux16
 
         return around(max_(0, ir_plaf_qf + foyer_fiscal.sum(cncn_info_i) * taux - decote - reduction_ss_condition_revenus))
 

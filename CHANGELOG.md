@@ -1,5 +1,17 @@
 # Changelog
 
+### 29.4.1 [#1215](https://github.com/openfisca/openfisca-france/pull/1215)
+
+* Changement mineur.
+* Périodes concernées : à partir de 2016.
+* Zones impactées : `ir.py`.
+
+* Détails :
+  - Clarifie le statut de reduction_ss_condition_revenus
+    - Cette réduction instaurée en 2016 vise à adoucir un effet de seuil d'assujettissement à l'impôt pour les foyers fiscaux les plus modestes, elle est plus à considérer comme une "décote bis" qu'une réduction fiscale.
+  - Simplifie la formule ip_net qui n'a pas besoin d'être dupliquée, la formule de la réduction étant datée
+
+
 ### 29.4.0 [#1196](https://github.com/openfisca/openfisca-france/pull/1196)
 
 * Évolution du système socio-fiscal.
