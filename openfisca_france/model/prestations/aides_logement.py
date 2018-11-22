@@ -1218,7 +1218,7 @@ class aides_logement_categorie(Variable):
 
     def formula(famille, period, parameters):
         categorie_apl = famille.demandeur.menage('logement_conventionne', period)
-        return array(['al', 'apl'])[1 * categorie_apl]
+        return where(categorie_apl, 'apl', 'al')
 
 
 class aides_logement_nb_part(Variable):
