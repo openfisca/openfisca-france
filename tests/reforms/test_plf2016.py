@@ -40,4 +40,4 @@ def run(reform_class, year):
 #    error_margin = 1
 
     impo = reference_simulation.calculate('impots_directs', period = year)  # noqa F841
-    reform_impo = reform_simulation.calculate('impots_directs', period = year)  # noqa F841
+    reform_impo = reform_simulation.calculate('impots_directs', period = year) # noqa F841

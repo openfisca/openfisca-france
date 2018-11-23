@@ -1,0 +1,46 @@
+- name: composantes_revenus_super_bruts_menage
+  description: "Test des composantes de revenus_super_bruts_menage"
+  period: 2018
+  absolute_error_margin: 1
+  input_variables:
+    revenus_capitaux_prelevement_forfaitaire_unique_ir:
+      2018-01: 1000
+    salaire_net:
+      2018-01: 1000
+    csg_imposable_salaire:
+      2018-01: -10
+    csg_deductible_salaire:
+      2018-01: -10
+    crds_salaire:
+      2018-01: -10
+    cotisations_employeur:
+      2018-01: -10
+    cotisations_salariales:
+      2018-01: -10
+    rpns_individu:
+      2018: 2000
+    pensions_nettes:
+      2018: 3000
+    csg_imposable_chomage:
+      2018-01: -30
+    csg_deductible_chomage:
+      2018-01: -30
+    csg_imposable_retraite:
+      2018-01: -30
+    csg_deductible_retraite:
+      2018-01: -30
+    crds_chomage:
+      2018-01: -30
+    crds_retraite:
+      2018-01: -30
+    f4ba:
+      2018: 20
+    f4be:
+      2018: 40
+    f4bb:
+      2018: 10
+    f4bc:
+      2018: 10
+  output_variables:
+    revenus_super_bruts_menage:
+      2018: 2*1000+5*10+2000+3000+6*30+20+40-2*10

@@ -95,45 +95,6 @@ class niveau_de_vie(Variable):
         return revenu_disponible / uc
 
 
-class revenu_net_individu(Variable):
-    value_type = float
-    entity = Individu
-    label = u"Revenu net de l'individu"
-    definition_period = YEAR
-
-    def formula(individu, period):
-        pensions_nettes = individu('pensions_nettes', period)
-        revenus_nets_du_capital = individu('revenus_nets_du_capital', period)
-        revenus_nets_du_travail = individu('revenus_nets_du_travail', period)
-
-        return pensions_nettes + revenus_nets_du_capital + revenus_nets_du_travail
-
-
-class revenu_net(Variable):
-    entity = Menage
-    label = u"Revenu net du ménage"
-    value_type = float
-    reference = u"http://impotsurlerevenu.org/definitions/115-revenu-net-imposable.php",
-    definition_period = YEAR
-
-    def formula(menage, period):
-        revenu_net_individus = menage.members('revenu_net_individu', period)
-        return menage.sum(revenu_net_individus)
-
-
-class niveau_de_vie_net(Variable):
-    value_type = float
-    entity = Menage
-    label = u"Niveau de vie net du ménage"
-    definition_period = YEAR
-
-    def formula(menage, period):
-        revenu_net = menage('revenu_net', period)
-        uc = menage('unites_consommation', period)
-
-        return revenu_net / uc
-
-
 class revenus_nets_du_travail(Variable):
     value_type = float
     entity = Individu
@@ -142,10 +103,15 @@ class revenus_nets_du_travail(Variable):
     definition_period = YEAR
 
     def formula(individu, period):
+        '''
+        Note : pour les revenus non-salariés, on prend rpns_individu, auquel on enlève les cotisations sociales
+               et la CSG-CRDS. En effet, les variables formant la variable cotisations_non_salarie utilisent
+               comme base rpns_indiviu, ce qui suggère que rpns_individu est avant tout prélèvement
+        '''
         # Salariés
         salaire_net = individu('salaire_net', period, options = [ADD])
         # Non salariés
-        revenu_non_salarie = individu('rpns', period)  # TODO ou rpns_individu
+        revenu_non_salarie = individu('rpns_individu', period, options = [ADD])
         cotisations_non_salarie = individu('cotisations_non_salarie', period)
         csg_non_salarie = individu('csg_non_salarie', period)
         crds_non_salarie = individu('crds_non_salarie', period)
@@ -187,7 +153,7 @@ class pensions_nettes(Variable):
             )
 
 
-class plus_values_revenus_nets_du_capital(Variable):
+class plus_values_base_large(Variable):
     value_type = float
     entity = FoyerFiscal
     label = u"Montant des plus-values utilisé pour le montant total de revenus du capital"
@@ -300,7 +266,7 @@ class revenus_nets_du_capital(Variable):
         foyer_fiscal = individu.foyer_fiscal
         assiette_csg_revenus_capital = foyer_fiscal('assiette_csg_revenus_capital', period)
         assiette_csg_plus_values = foyer_fiscal('assiette_csg_plus_values', period)
-        plus_values_revenus_nets_du_capital = foyer_fiscal('plus_values_revenus_nets_du_capital', period)
+        plus_values_base_large = foyer_fiscal('plus_values_base_large', period)
         rev_cat_rfon = foyer_fiscal('revenu_categoriel_foncier', period)
         rente_viagere_titre_onereux_net = foyer_fiscal('rente_viagere_titre_onereux_net', period)
         fon = foyer_fiscal('fon', period)
@@ -308,7 +274,7 @@ class revenus_nets_du_capital(Variable):
         revenus_du_capital_cap_avant_prelevements_sociaux = (
             assiette_csg_revenus_capital
             - assiette_csg_plus_values
-            + plus_values_revenus_nets_du_capital
+            + plus_values_base_large
             - rev_cat_rfon
             + fon
             - rente_viagere_titre_onereux_net
@@ -323,6 +289,203 @@ class revenus_nets_du_capital(Variable):
         revenus_foyer_fiscal_projetes = revenus_foyer_fiscal * individu.has_role(foyer_fiscal.DECLARANT_PRINCIPAL)
 
         return revenus_foyer_fiscal_projetes
+
+
+class revenus_fonciers_bruts_menage(Variable):
+    value_type = float
+    entity = Menage
+    label = u"Revenus fonciers du ménage après déficits mais avant abattements"
+    definition_period = YEAR
+
+    def formula_2013_01_01(menage, period):
+        '''
+        Il s'agit des bénéfices (ou déficits) fonciers de l'année courante,
+        sans abattement. Il s'agit d'une notion davantage économique.
+        Cette variable n'est relative qu'à l'activité foncière de l'année.
+        C'est pourquoi on ne prend pas en compte la case 4BD, qui
+        correspond à des déficits des années antérieures non encore imputés
+        au titre de l'impôt sur le revenu
+        Formule vérifiée pour les feuilles d'impôts à partir des revenus 2013,
+        d'où le fait que la formule commence à cette date-là
+        '''
+        f4ba_i = menage.members.foyer_fiscal('f4ba', period)
+        f4be_i = menage.members.foyer_fiscal('f4be', period)
+        f4bb_i = menage.members.foyer_fiscal('f4bb', period)
+        f4bc_i = menage.members.foyer_fiscal('f4bc', period)
+
+        f4ba = menage.sum(f4ba_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
+        f4be = menage.sum(f4be_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
+        f4bb = menage.sum(f4bb_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
+        f4bc = menage.sum(f4bc_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
+
+        return f4ba + f4be - f4bb - f4bc
+
+
+class revenus_travail_super_bruts_menage(Variable):
+    value_type = float
+    entity = Menage
+    label = u"Revenus du travail super bruts du ménage"
+    definition_period = YEAR
+
+    def formula(menage, period):
+        '''
+        Revenus du travail super bruts du ménage :
+        avant CSG-CRDS, cotisations salariales et patronales
+        Note : pour les revenus non-salariés, on prend rpns_individu, auquel on n'ajoute ni les cotisations sociales,
+               ni la CSG-CRDS. En effet, les variables formant la variable cotisations_non_salarie utilisent
+               comme base rpns_indiviu, ce qui suggère que rpns_individu est avant tout prélèvement
+        '''
+        salaire_net_i = menage.members('salaire_net', period, options = [ADD])
+        rpns_i = menage.members('rpns_individu', period)
+        csg_imposable_salaire_i = menage.members('csg_imposable_salaire', period, options = [ADD])
+        csg_deductible_salaire_i = menage.members('csg_deductible_salaire', period, options = [ADD])
+        crds_salaire_i = menage.members('crds_salaire', period, options = [ADD])
+        cotisations_employeur_i = menage.members('cotisations_employeur', period, options = [ADD])
+        cotisations_salariales_i = menage.members('cotisations_salariales', period, options = [ADD])
+
+        salaire_net = menage.sum(salaire_net_i)
+        rpns = menage.sum(rpns_i)
+        csg_imposable_salaire = menage.sum(csg_imposable_salaire_i)
+        csg_deductible_salaire = menage.sum(csg_deductible_salaire_i)
+        crds_salaire = menage.sum(crds_salaire_i)
+        cotisations_employeur = menage.sum(cotisations_employeur_i)
+        cotisations_salariales = menage.sum(cotisations_salariales_i)
+
+        return (
+            salaire_net
+            + rpns
+            - cotisations_employeur  # On veut ajouter le montant de cotisations. Vu que ce montant est négatif, on met un "moins". Idem pour les autres items ci-dessous
+            - cotisations_salariales  # On veut ajouter le montant de cotisations. Vu que ce montant est négatif, on met un "moins". Idem pour les autres items ci-dessous
+            - csg_imposable_salaire
+            - csg_deductible_salaire
+            - crds_salaire
+            )
+
+
+class revenus_remplacement_pensions_bruts_menage(Variable):
+    value_type = float
+    entity = Menage
+    label = u"Revenus de remplacement et pensions bruts du ménage"
+    definition_period = YEAR
+
+    def formula(menage, period):
+        '''
+        Revenus de remplacement et pensions bruts du ménage : avant CSG et CRDS
+        '''
+        pensions_nettes_i = menage.members('pensions_nettes', period)
+        csg_imposable_chomage_i = menage.members('csg_imposable_chomage', period, options = [ADD])
+        csg_deductible_chomage_i = menage.members('csg_deductible_chomage', period, options = [ADD])
+        csg_imposable_retraite_i = menage.members('csg_imposable_retraite', period, options = [ADD])
+        csg_deductible_retraite_i = menage.members('csg_deductible_retraite', period, options = [ADD])
+        crds_chomage_i = menage.members('crds_chomage', period, options = [ADD])
+        crds_retraite_i = menage.members('crds_retraite', period, options = [ADD])
+
+        pensions_nettes = menage.sum(pensions_nettes_i)
+        csg_imposable_chomage = menage.sum(csg_imposable_chomage_i)
+        csg_deductible_chomage = menage.sum(csg_deductible_chomage_i)
+        csg_imposable_retraite = menage.sum(csg_imposable_retraite_i)
+        csg_deductible_retraite = menage.sum(csg_deductible_retraite_i)
+        crds_chomage = menage.sum(crds_chomage_i)
+        crds_retraite = menage.sum(crds_retraite_i)
+
+        return (
+            + pensions_nettes
+            - csg_imposable_chomage  # On veut ajouter le montant de cotisations. Vu que ce montant est négatif, on met un "moins". Idem pour les autres items ci-dessous
+            - csg_deductible_chomage
+            - csg_imposable_retraite
+            - csg_deductible_retraite
+            - crds_chomage
+            - crds_retraite
+            )
+
+
+class revenus_capitaux_mobiliers_plus_values_bruts_menage(Variable):
+    value_type = float
+    entity = Menage
+    label = u"Revenus bruts des capitaux mobiliers et plus-values du ménage"
+    definition_period = YEAR
+
+    def formula(menage, period):
+        '''
+        Revenus bruts des capitaux mobiliers et plus-values du ménage :
+        avant tout abattement et prélèvement social
+        '''
+
+        revenus_capitaux_prelevement_forfaitaire_unique_ir_i = menage.members.foyer_fiscal('revenus_capitaux_prelevement_forfaitaire_unique_ir', period, options = [ADD])
+        revenus_capitaux_prelevement_forfaitaire_unique_ir = menage.sum(revenus_capitaux_prelevement_forfaitaire_unique_ir_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
+        revenus_capitaux_prelevement_bareme_i = menage.members.foyer_fiscal('revenus_capitaux_prelevement_bareme', period, options = [ADD])
+        revenus_capitaux_prelevement_bareme = menage.sum(revenus_capitaux_prelevement_bareme_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
+        revenus_capitaux_prelevement_liberatoire_i = menage.members.foyer_fiscal('revenus_capitaux_prelevement_liberatoire', period, options = [ADD])
+        revenus_capitaux_prelevement_liberatoire = menage.sum(revenus_capitaux_prelevement_liberatoire_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
+
+        interets_plan_epargne_logement_moins_de_12_ans_ouvert_avant_2018_i = menage.members('interets_plan_epargne_logement_moins_de_12_ans_ouvert_avant_2018', period)
+        interets_plan_epargne_logement_moins_de_12_ans_ouvert_avant_2018 = menage.sum(interets_plan_epargne_logement_moins_de_12_ans_ouvert_avant_2018_i)
+        interets_plan_epargne_logement_moins_de_12_ans_ouvert_a_partir_de_2018_i = menage.members('interets_plan_epargne_logement_moins_de_12_ans_ouvert_a_partir_de_2018', period)
+        interets_plan_epargne_logement_moins_de_12_ans_ouvert_a_partir_de_2018 = menage.sum(interets_plan_epargne_logement_moins_de_12_ans_ouvert_a_partir_de_2018_i)
+        interets_compte_epargne_logement_ouvert_avant_2018_i = menage.members('interets_compte_epargne_logement_ouvert_avant_2018', period)
+        interets_compte_epargne_logement_ouvert_avant_2018 = menage.sum(interets_compte_epargne_logement_ouvert_avant_2018_i)
+        interets_compte_epargne_logement_ouvert_a_partir_de_2018_i = menage.members('interets_compte_epargne_logement_ouvert_a_partir_de_2018', period)
+        interets_compte_epargne_logement_ouvert_a_partir_de_2018 = menage.sum(interets_compte_epargne_logement_ouvert_a_partir_de_2018_i)
+        assurance_vie_ps_exoneree_irpp_pl_i = menage.members.foyer_fiscal('assurance_vie_ps_exoneree_irpp_pl', period)
+        assurance_vie_ps_exoneree_irpp_pl = menage.sum(assurance_vie_ps_exoneree_irpp_pl_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
+
+        plus_values_base_large_i = menage.members.foyer_fiscal('plus_values_base_large', period)
+        plus_values_base_large = menage.sum(plus_values_base_large_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
+
+        return (
+            + revenus_capitaux_prelevement_forfaitaire_unique_ir
+            + revenus_capitaux_prelevement_bareme
+            + revenus_capitaux_prelevement_liberatoire
+            + interets_plan_epargne_logement_moins_de_12_ans_ouvert_avant_2018
+            + interets_plan_epargne_logement_moins_de_12_ans_ouvert_a_partir_de_2018
+            + interets_compte_epargne_logement_ouvert_avant_2018
+            + interets_compte_epargne_logement_ouvert_a_partir_de_2018
+            + assurance_vie_ps_exoneree_irpp_pl
+            + plus_values_base_large
+            )
+
+
+class revenus_super_bruts_menage(Variable):
+    value_type = float
+    entity = Menage
+    label = u"Revenus super bruts du ménage"
+    definition_period = YEAR
+
+    def formula(menage, period):
+
+        revenus_travail_super_bruts_menage = menage('revenus_travail_super_bruts_menage', period)
+        revenus_remplacement_pensions_bruts_menage = menage('revenus_remplacement_pensions_bruts_menage', period)
+        revenus_fonciers_bruts_menage = menage('revenus_fonciers_bruts_menage', period)
+        revenus_capitaux_mobiliers_plus_values_bruts_menage = menage('revenus_capitaux_mobiliers_plus_values_bruts_menage', period)
+
+        return (
+            revenus_travail_super_bruts_menage
+            + revenus_remplacement_pensions_bruts_menage
+            + revenus_fonciers_bruts_menage
+            + revenus_capitaux_mobiliers_plus_values_bruts_menage
+            )
+
+
+class prelevements_sociaux_menage(Variable):
+    value_type = float
+    entity = Menage
+    label = u"Prélèvements sociaux du ménage (tous revenus, hors prestations)"
+    definition_period = YEAR
+
+    def formula(menage, period):
+        csg_i = menage.members('csg', period, options = [ADD])
+        csg = menage.sum(csg_i)
+        crds_hors_presta_i = menage.members('crds_hors_prestations', period, options = [ADD])
+        crds_hors_prestations = menage.sum(crds_hors_presta_i)
+
+        prelevements_sociaux_revenus_capital_hors_csg_crds_i = menage.members.foyer_fiscal('prelevements_sociaux_revenus_capital_hors_csg_crds', period, options = [ADD])
+        prelevements_sociaux_revenus_capital_hors_csg_crds = menage.sum(prelevements_sociaux_revenus_capital_hors_csg_crds_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
+
+        return (
+            + csg
+            + crds_hors_prestations
+            + prelevements_sociaux_revenus_capital_hors_csg_crds
+            )
 
 
 class prestations_sociales(Variable):
@@ -357,9 +520,8 @@ class prestations_familiales(Variable):
         aeeh = famille('aeeh', period, options = [ADD])
         paje = famille('paje', period, options = [ADD])
         asf = famille('asf', period, options = [ADD])
-        crds_pfam = famille('crds_pfam', period)
 
-        return af + cf + ars + aeeh + paje + asf + crds_pfam
+        return af + cf + ars + aeeh + paje + asf
 
 
 class minimum_vieillesse(Variable):
