@@ -107,9 +107,9 @@ class contribution_exceptionnelle_solidarite(Variable):
             )
         assujettis = concernes * (remuneration_nette > seuil_assujetissement_fds)
         # Assiette:
-        # - toutes les cotisations de sécurité sociale obligatoires
-        # - des prélèvements pour pension
-        # - et, le cas échéant, des prélèvements au profit des régimes de retraite complémentaire obligatoires.
+        #  - toutes les cotisations de sécurité sociale obligatoires
+        #  - des prélèvements pour pension
+        #  - et, le cas échéant, des prélèvements au profit des régimes de retraite complémentaire obligatoires.
         # Soit:
         #  - pour les titutlaires, les pensions
         #  - les non titulaires, les cotisations sociales contributives (pas de non contirbutifs pour les non titualire de la fonction public)
@@ -118,12 +118,12 @@ class contribution_exceptionnelle_solidarite(Variable):
             + pension_civile_salarie
             + (categorie_salarie == TypesCategorieSalarie.public_non_titulaire) * cotisations_salariales_contributives
             )
-
+        # Ces deductions sont négatives
         cotisation = apply_bareme_for_relevant_type_sal(
             bareme_by_type_sal_name = parameters.cotsoc.cotisations_salarie,
             bareme_name = "excep_solidarite",
             base = assujettis * min_(
-                remuneratin_nette + supplement_familial_traitement + primes_fonction_publique - deduction,
+                remuneration_nette + supplement_familial_traitement + primes_fonction_publique + deduction,
                 parameters.prelevements_sociaux.cotisations_sociales.fds.plafond_base_solidarite,
                 ),
             plafond_securite_sociale = plafond_securite_sociale,
