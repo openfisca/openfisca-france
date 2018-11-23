@@ -704,10 +704,6 @@ class gipa(Variable):
     definition_period = MONTH
     # TODO: à coder
 
-    def formula(individu, period, parameters):
-        period = period.start.period(u'year').offset('first-of')
-        return individu.filled_array(0)
-
 
 class indemnite_residence(Variable):
     value_type = float

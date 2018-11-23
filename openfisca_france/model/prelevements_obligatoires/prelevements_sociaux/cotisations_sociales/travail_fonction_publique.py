@@ -76,6 +76,7 @@ class contribution_exceptionnelle_solidarite(Variable):
     label = u"Cotisation exceptionnelle au fonds de solidarité (salarié)"
     definition_period = MONTH
     end = '2017-12-31'
+    reference = "https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006072050&idArticle=LEGIARTI000006903878&dateTexte=&categorieLien=cid"
 
     def formula(individu, period, parameters):
         traitement_indiciaire_brut = individu('traitement_indiciaire_brut', period)
@@ -88,39 +89,41 @@ class contribution_exceptionnelle_solidarite(Variable):
         cotisations_salariales_contributives = individu('cotisations_salariales_contributives', period)
         plafond_securite_sociale = individu('plafond_securite_sociale', period)
         salaire_de_base = individu('salaire_de_base', period)
-
+        supplement_familial_traitement = individu('supplement_familial_traitement', period)
+        # Assujettis
         parameters = parameters(period)
-
         seuil_assujetissement_fds = compute_seuil_fds(parameters)
-
-        assujettis = (
+        concernes = (
             (categorie_salarie == TypesCategorieSalarie.public_titulaire_etat)
             + (categorie_salarie == TypesCategorieSalarie.public_titulaire_territoriale)
             + (categorie_salarie == TypesCategorieSalarie.public_titulaire_hospitaliere)
             + (categorie_salarie == TypesCategorieSalarie.public_non_titulaire)
-            ) * (
-            (
-                traitement_indiciaire_brut
-                + salaire_de_base
-                - hsup
-                ) > seuil_assujetissement_fds
+            )
+        remuneration_nette = (
+            traitement_indiciaire_brut
+            + salaire_de_base
+            + indemnite_residence
+            - hsup
+            )
+        assujettis = concernes * (remuneration_nette > seuil_assujetissement_fds)
+        # Assiette:
+        # - toutes les cotisations de sécurité sociale obligatoires
+        # - des prélèvements pour pension
+        # - et, le cas échéant, des prélèvements au profit des régimes de retraite complémentaire obligatoires.
+        # Soit:
+        #  - pour les titutlaires, les pensions
+        #  - les non titulaires, les cotisations sociales contributives (pas de non contirbutifs pour les non titualire de la fonction public)
+        deduction = assujettis * (
+            + rafp_salarie
+            + pension_civile_salarie
+            + (categorie_salarie == TypesCategorieSalarie.public_non_titulaire) * cotisations_salariales_contributives
             )
 
-        # TODO: check assiette voir IPP
         cotisation = apply_bareme_for_relevant_type_sal(
             bareme_by_type_sal_name = parameters.cotsoc.cotisations_salarie,
             bareme_name = "excep_solidarite",
-            base = assujettis * max_(
-                (
-                    traitement_indiciaire_brut
-                    + salaire_de_base
-                    - hsup
-                    + indemnite_residence
-                    + rafp_salarie
-                    + pension_civile_salarie
-                    + primes_fonction_publique
-                    + (categorie_salarie == TypesCategorieSalarie.public_non_titulaire) * cotisations_salariales_contributives
-                    ),
+            base = assujettis * min_(
+                remuneratin_nette + supplement_familial_traitement + primes_fonction_publique - deduction,
                 parameters.prelevements_sociaux.cotisations_sociales.fds.plafond_base_solidarite,
                 ),
             plafond_securite_sociale = plafond_securite_sociale,
@@ -169,7 +172,7 @@ class ircantec_salarie(Variable):
             plafond_securite_sociale = plafond_securite_sociale,
             categorie_salarie = categorie_salarie,
             )
-        return ircantec * (categorie_salarie == TypesCategorieSalarie.public_non_titulaire)  # agent non titulaire
+        return ircantec * (categorie_salarie == TypesCategorieSalarie.public_non_titulaire)
 
 
 class ircantec_employeur(Variable):
@@ -191,14 +194,13 @@ class ircantec_employeur(Variable):
             plafond_securite_sociale = plafond_securite_sociale,
             categorie_salarie = categorie_salarie,
             )
-        return ircantec * (categorie_salarie == TypesCategorieSalarie.public_non_titulaire)  # agent non titulaire
+        return ircantec * (categorie_salarie == TypesCategorieSalarie.public_non_titulaire)
 
 
 class pension_civile_salarie(Variable):
     value_type = float
     entity = Individu
     label = u"Pension civile salarié"
-    reference = u"http://www.ac-besancon.fr/spip.php?article2662",
     definition_period = MONTH
 
     def formula(individu, period, parameters):
