@@ -118,7 +118,7 @@ class contribution_exceptionnelle_solidarite(Variable):
             + pension_civile_salarie
             + (categorie_salarie == TypesCategorieSalarie.public_non_titulaire) * cotisations_salariales_contributives
             )
-        # Ces deductions sont négatives
+        # Ces déductions sont négatives
         cotisation = apply_bareme_for_relevant_type_sal(
             bareme_by_type_sal_name = parameters.cotsoc.cotisations_salarie,
             bareme_name = "excep_solidarite",
