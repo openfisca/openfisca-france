@@ -1,0 +1,28 @@
+- name: composantes_prelevements_sociaux_menage
+  description: "Test des composantes de prelevements_sociaux_menage (teste notamment que la CRDS sur prestations sociales est bien gérée)"
+  period: 2018
+  absolute_error_margin: 1
+  input_variables:
+    crds_salaire:
+      2018-01: -10
+    crds_retraite:
+      2018-01: -10
+    crds_chomage:
+      2018-01: -10
+    crds_non_salarie:
+      2018: -10
+    crds_pfam:
+      2018: -10
+    crds_logement:
+      2018-01: -10
+    crds_mini:
+      2018-01: -10
+    crds_revenus_capital:
+      2018: -10
+    csg:
+      2018: -10
+    prelevements_sociaux_revenus_capital_hors_csg_crds:
+      2018: -10
+  output_variables:
+      prelevements_sociaux_menage:
+        2018: -7*10
