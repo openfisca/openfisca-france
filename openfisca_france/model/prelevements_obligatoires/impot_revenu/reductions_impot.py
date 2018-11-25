@@ -4538,9 +4538,10 @@ class rpinel(Variable):
             for case in cases:
                 variable, duree, zone = case
                 depense = foyer_fiscal(variable, period)
-                bareme = P.taux.metropole if zone == 'metropole' else P.taux.outremer # Bug in Core
-                result += around(bareme.calc(duree) * min_(max_(0, P.plafond - cumuls), depense) / duree)
+                taux = P.taux[zone][str(duree)]
+                result += around(taux * min_(max_(0, P.plafond - cumuls), depense) / duree)
                 cumuls += depense
+            return result
 
         cases_2017 = [
                 ('f7qp', 9, 'metropole'),
