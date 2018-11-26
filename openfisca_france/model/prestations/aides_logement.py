@@ -48,10 +48,9 @@ class apl(Variable):
 
     def formula(famille, period):
         aide_logement_montant = famille('aide_logement_montant', period)
-        statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
+        logement_conventionne = famille.demandeur.menage('logement_conventionne', period)
 
-        return aide_logement_montant * ((statut_occupation_logement == TypesStatutOccupationLogement.locataire_hlm) + (statut_occupation_logement == TypesStatutOccupationLogement.locataire_foyer))
-
+        return aide_logement_montant * logement_conventionne
 
 class als(Variable):
     calculate_output = calculate_output_add
@@ -65,16 +64,10 @@ class als(Variable):
     def formula(famille, period):
         aide_logement_montant = famille('aide_logement_montant', period)
         al_nb_pac = famille('al_nb_personnes_a_charge', period)
-        statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
         proprietaire_proche_famille = famille('proprietaire_proche_famille', period)
+        logement_conventionne = famille.demandeur.menage('logement_conventionne', period)
 
-        return (
-            (al_nb_pac == 0)
-            * (statut_occupation_logement != TypesStatutOccupationLogement.locataire_hlm)
-            * not_(proprietaire_proche_famille)
-            * aide_logement_montant
-            )
-
+        return (al_nb_pac == 0) * not_(logement_conventionne) * not_(proprietaire_proche_famille) * aide_logement_montant
 
 class alf(Variable):
     calculate_output = calculate_output_add
@@ -88,15 +81,10 @@ class alf(Variable):
     def formula(famille, period):
         aide_logement_montant = famille('aide_logement_montant', period)
         al_nb_pac = famille('al_nb_personnes_a_charge', period)
-        statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
         proprietaire_proche_famille = famille('proprietaire_proche_famille', period)
+        logement_conventionne = famille.demandeur.menage('logement_conventionne', period)
 
-        return (
-            (al_nb_pac >= 1)
-            * (statut_occupation_logement != TypesStatutOccupationLogement.locataire_hlm)
-            * not_(proprietaire_proche_famille)
-            * aide_logement_montant
-            )
+        return (al_nb_pac >= 1) * not_(logement_conventionne) * not_(proprietaire_proche_famille) * aide_logement_montant
 
 
 class aide_logement_montant(Variable):
@@ -124,11 +112,10 @@ class aide_logement_montant_brut_crds(Variable):
         rls = parameters(period).prestations.reduction_loyer_solidarite
         aide_logement_montant_brut = famille('aide_logement_montant_brut', period)
         reduction_loyer_solidarite = famille('reduction_loyer_solidarite', period)
-        statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
+        logement_conventionne = famille.demandeur.menage('logement_conventionne', period)
 
         taux_rls = rls.fraction_baisse_aide_logement
-        locataire_hlm = statut_occupation_logement == TypesStatutOccupationLogement.locataire_hlm
-        rls_apl = reduction_loyer_solidarite * taux_rls * locataire_hlm
+        rls_apl = reduction_loyer_solidarite * taux_rls * logement_conventionne
         montant = max_(0, (aide_logement_montant_brut - rls_apl))
         return montant
 
@@ -211,8 +198,8 @@ class aide_logement_montant_brut_avant_degressivite(Variable):
         montant = select([locataire, accedant + locataire_logement_foyer],
                          [montant_locataire, montant_accedant_et_foyer])
 
-        apl = (statut_occupation_logement == TypesStatutOccupationLogement.locataire_hlm)
-        type_aide = where(apl, 'apl', 'non_apl', )
+        logement_conventionne = famille.demandeur.menage('logement_conventionne', period)
+        type_aide = where(logement_conventionne, 'apl', 'non_apl', )
         seuil_versement = al.al_min.montant_min_mensuel.montant_min_apl_al[type_aide]
         minimum_atteint = montant >= seuil_versement
 
