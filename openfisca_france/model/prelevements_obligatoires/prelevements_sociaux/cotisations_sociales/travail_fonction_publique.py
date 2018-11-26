@@ -105,7 +105,7 @@ class contribution_exceptionnelle_solidarite(Variable):
             + indemnite_residence
             - hsup
             )
-        assujettis = concernes * (remuneration_nette > seuil_assujetissement_fds)
+        assujettis = concernes * (remuneration_brute > seuil_assujetissement_fds)
         # Pour le calcul de l'assiette, on déduit de la rémunaration brute
         #  - toutes les cotisations de sécurité sociale obligatoires
         #  - les prélèvements pour pension
