@@ -4,7 +4,7 @@
   input_variables:
     zone_apl: zone_1
     aide_logement_montant_brut: 27
-    logement_conventionne: 1
+    logement_conventionne: true
     aide_logement_base_ressources: 900
   output_variables:
     apl: 0
@@ -16,7 +16,7 @@
   input_variables:
     zone_apl: zone_1
     aide_logement_montant_brut: 0
-    logement_conventionne: 1
+    logement_conventionne: true
     aide_logement_base_ressources: 900
   output_variables:
     apl: 0
@@ -28,7 +28,7 @@
   input_variables:
     zone_apl: zone_1
     aide_logement_montant_brut: 100
-    logement_conventionne: 1
+    logement_conventionne: true
     aide_logement_base_ressources: 900
   output_variables:
     apl: 68.45
@@ -47,7 +47,7 @@
   menages:
     personne_de_reference: "parent1"
     depcom: 31555
-    logement_conventionne: 1
+    logement_conventionne: true
     loyer: 500
     charges_locatives: 50
   output_variables:
@@ -68,7 +68,7 @@
   menages:
     personne_de_reference: "parent1"
     depcom: 31555
-    logement_conventionne: 1
+    logement_conventionne: true
     loyer: 500
     charges_locatives: 50
   output_variables:
