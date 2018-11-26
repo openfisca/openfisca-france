@@ -52,6 +52,7 @@ class apl(Variable):
 
         return aide_logement_montant * logement_conventionne
 
+
 class als(Variable):
     calculate_output = calculate_output_add
     value_type = float
@@ -68,6 +69,7 @@ class als(Variable):
         logement_conventionne = famille.demandeur.menage('logement_conventionne', period)
 
         return (al_nb_pac == 0) * not_(logement_conventionne) * not_(proprietaire_proche_famille) * aide_logement_montant
+
 
 class alf(Variable):
     calculate_output = calculate_output_add
