@@ -99,20 +99,20 @@ class contribution_exceptionnelle_solidarite(Variable):
             + (categorie_salarie == TypesCategorieSalarie.public_titulaire_hospitaliere)
             + (categorie_salarie == TypesCategorieSalarie.public_non_titulaire)
             )
-        remuneration_nette = (
+        remuneration_brute = (
             traitement_indiciaire_brut
             + salaire_de_base
             + indemnite_residence
             - hsup
             )
         assujettis = concernes * (remuneration_nette > seuil_assujetissement_fds)
-        # Assiette:
+        # Pour le calcul de l'assiette, on déduit de la rémunaration brute
         #  - toutes les cotisations de sécurité sociale obligatoires
-        #  - des prélèvements pour pension
-        #  - et, le cas échéant, des prélèvements au profit des régimes de retraite complémentaire obligatoires.
+        #  - les prélèvements pour pension
+        #  - et, le cas échéant, les prélèvements au profit des régimes de retraite complémentaire obligatoires.
         # Soit:
         #  - pour les titutlaires, les pensions
-        #  - les non titulaires, les cotisations sociales contributives (pas de non contirbutifs pour les non titualire de la fonction public)
+        #  - les non titulaires, les cotisations sociales contributives (car pas de cotisations non contributives pour les non titulaires de la fonction public)
         deduction = assujettis * (
             + rafp_salarie
             + pension_civile_salarie
@@ -123,7 +123,7 @@ class contribution_exceptionnelle_solidarite(Variable):
             bareme_by_type_sal_name = parameters.cotsoc.cotisations_salarie,
             bareme_name = "excep_solidarite",
             base = assujettis * min_(
-                remuneration_nette + supplement_familial_traitement + primes_fonction_publique + deduction,
+                remuneration_brute + supplement_familial_traitement + primes_fonction_publique + deduction,
                 parameters.prelevements_sociaux.cotisations_sociales.fds.plafond_base_solidarite,
                 ),
             plafond_securite_sociale = plafond_securite_sociale,
