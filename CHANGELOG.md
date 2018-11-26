@@ -1,5 +1,12 @@
 # Changelog
 
+## 31.1.0 [#1221](https://github.com/openfisca/openfisca-france/pull/1221)
+
+* Amélioration technique.
+* Périodes concernées : Avant 01/01/2018.
+* Zones impactées : prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/travail_fonction_publique.
+* Détails : Correction et clarification de la cotisation exceptionnelle de solidarité
+
 # 31.0.0 [#1207](https://github.com/openfisca/openfisca-france/pull/1207)
 
 * Évolution du système socio-fiscal **non rétrocompatible**

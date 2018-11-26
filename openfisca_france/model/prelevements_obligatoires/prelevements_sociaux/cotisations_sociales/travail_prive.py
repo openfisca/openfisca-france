@@ -698,12 +698,12 @@ class mmid_employeur(Variable):
         return cotisation
 
 
-# TODO: this formula is used only to check fiche_de_paie from memento
 class mmida_employeur(Variable):
     value_type = float
     entity = Individu
     label = u"Cotisation maladie (employeur)"
     definition_period = MONTH
+    # Note: this formula is used only to check fiche_de_paie from memento
 
     def formula(individu, period, parameters):
         cotisation = apply_bareme(
