@@ -151,6 +151,7 @@
     parents: ["parent1"]
     aide_logement_base_ressources: 12000
   menages:
+    personne_de_reference: parent1
     zone_apl: zone_1
     loyer: 800
     statut_occupation_logement: locataire_vide
@@ -206,6 +207,7 @@
     parents: ["parent1"]
     aide_logement_base_ressources: 12000
   menages:
+    personne_de_reference: parent1
     zone_apl: zone_1
     loyer: 1054.26
     statut_occupation_logement: locataire_vide
@@ -222,6 +224,7 @@
     parents: ["parent1"]
     aide_logement_base_ressources: 12000
   menages:
+    personne_de_reference: parent1
     zone_apl: zone_1
     loyer: 1054.26
     statut_occupation_logement: locataire_vide
@@ -240,6 +243,7 @@
     parents: ["parent1"]
     aide_logement_base_ressources: 12000
   menages:
+    personne_de_reference: parent1
     zone_apl: zone_1
     loyer: 1172
     statut_occupation_logement: locataire_vide
@@ -259,6 +263,9 @@
     enfants: ["enfant1", "enfant2"]
     aide_logement_base_ressources: 13500
   menages:
+    personne_de_reference: parent1
+    conjoint: parent2
+    enfants: [enfant1, enfant2]
     zone_apl: zone_1
     loyer: 1650
     statut_occupation_logement: locataire_vide
@@ -284,6 +291,9 @@
     enfants: ["enfant1", "enfant2"]
     aide_logement_base_ressources: 13500
   menages:
+    personne_de_reference: parent1
+    conjoint: parent2
+    enfants: [enfant1, enfant2]
     zone_apl: zone_1
     loyer: 1650
     statut_occupation_logement: locataire_vide
@@ -308,6 +318,9 @@
     enfants: ["enfant1", "enfant2"]
     aide_logement_base_ressources: 13500
   menages:
+    personne_de_reference: parent1
+    conjoint: parent2
+    enfants: [enfant1, enfant2]
     zone_apl: zone_1
     loyer: 1650
     statut_occupation_logement: locataire_vide
@@ -331,6 +344,7 @@
     parents: ["parent1"]
     aide_logement_base_ressources: 12000
   menages:
+    personne_de_reference: parent1
     zone_apl: zone_1
     loyer: 1172
     statut_occupation_logement: locataire_vide
@@ -348,6 +362,7 @@
     parents: ["parent1"]
     aide_logement_base_ressources: 12000
   menages:
+    personne_de_reference: parent1
     zone_apl: zone_1
     loyer: 1054.26
     statut_occupation_logement: locataire_vide

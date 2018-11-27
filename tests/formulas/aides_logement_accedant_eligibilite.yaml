@@ -5,6 +5,9 @@
     parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2"]
   menages:
+    personne_de_reference: parent1
+    conjoint: parent2
+    enfants: [enfant1, enfant2]
     statut_occupation_logement: primo_accedant
     aide_logement_date_pret_conventionne: 2017-12-20
     etat_logement: construction_acquisition_logement_neuf
@@ -24,6 +27,9 @@
     parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2"]
   menages:
+    personne_de_reference: parent1
+    conjoint: parent2
+    enfants: [enfant1, enfant2]
     statut_occupation_logement: primo_accedant
     aide_logement_date_pret_conventionne: 2017-12-20
     etat_logement: construction_acquisition_logement_neuf
@@ -43,6 +49,9 @@
     parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2"]
   menages:
+    personne_de_reference: parent1
+    conjoint: parent2
+    enfants: [enfant1, enfant2]
     statut_occupation_logement: primo_accedant
     aide_logement_date_pret_conventionne: 2017-12-20
     etat_logement: acquisition_sans_amelioration_logement_existant
@@ -62,6 +71,9 @@
     parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2"]
   menages:
+    personne_de_reference: parent1
+    conjoint: parent2
+    enfants: [enfant1, enfant2]
     statut_occupation_logement: primo_accedant
     aide_logement_date_pret_conventionne: 2018-02-02
     etat_logement: acquisition_sans_amelioration_logement_existant
@@ -80,6 +92,8 @@
   familles:
     parents: ["parent1", "parent2"]
   menages:
+    personne_de_reference: parent1
+    conjoint: parent2
     statut_occupation_logement: primo_accedant
     aide_logement_date_pret_conventionne: 2017-12-20
     etat_logement: amelioration
@@ -96,6 +110,8 @@
   familles:
     parents: ["parent1", "parent2"]
   menages:
+    personne_de_reference: parent1
+    conjoint: parent2
     statut_occupation_logement: primo_accedant
     aide_logement_date_pret_conventionne: 2017-12-20
     etat_logement: construction_acquisition_logement_neuf
@@ -112,6 +128,7 @@
   familles:
     parents: ["parent1"]
   menages:
+    personne_de_reference: parent1
     statut_occupation_logement: primo_accedant
     aide_logement_date_pret_conventionne: 2002-04-10
     etat_logement: construction_acquisition_logement_neuf
@@ -128,6 +145,9 @@
     parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2"]
   menages:
+    personne_de_reference: parent1
+    conjoint: parent2
+    enfants: [enfant1, enfant2]
     statut_occupation_logement: primo_accedant
     aide_logement_date_pret_conventionne: 2018-02-02
     etat_logement: construction_acquisition_logement_neuf
@@ -147,6 +167,9 @@
     parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2"]
   menages:
+    personne_de_reference: parent1
+    conjoint: parent2
+    enfants: [enfant1, enfant2]
     statut_occupation_logement: primo_accedant
     aide_logement_date_pret_conventionne: 2018-02-02
     etat_logement: construction_acquisition_logement_neuf
@@ -165,6 +188,8 @@
   familles:
     parents: ["parent1", "parent2"]
   menages:
+    personne_de_reference: parent1
+    conjoint: parent2
     statut_occupation_logement: primo_accedant
     aide_logement_date_pret_conventionne: 2018-02-02
     etat_logement: amelioration
@@ -181,6 +206,8 @@
   familles:
     parents: ["parent1", "parent2"]
   menages:
+    personne_de_reference: parent1
+    conjoint: parent2
     statut_occupation_logement: primo_accedant
     aide_logement_date_pret_conventionne: 2018-02-02
     etat_logement: construction_acquisition_logement_neuf
@@ -197,6 +224,7 @@
   familles:
     parents: ["parent1"]
   menages:
+    personne_de_reference: parent1
     statut_occupation_logement: primo_accedant
     aide_logement_date_pret_conventionne: 2018-02-02
     etat_logement: construction_acquisition_logement_neuf
