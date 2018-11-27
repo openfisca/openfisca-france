@@ -118,18 +118,18 @@ class cotisations_salariales_contributives(Variable):
     definition_period = MONTH
 
     def formula(individu, period, parameters):
-        agff_salarie = individu('agff_salarie', period, options = [ADD])
-        agirc_salarie = individu('agirc_salarie', period, options = [ADD])
-        agirc_gmp_salarie = individu('agirc_gmp_salarie', period, options = [ADD])
-        apec_salarie = individu('apec_salarie', period, options = [ADD])
-        arrco_salarie = individu('arrco_salarie', period, options = [ADD])
-        chomage_salarie = individu('chomage_salarie', period, options = [ADD])
-        cotisation_exceptionnelle_temporaire_salarie = individu('cotisation_exceptionnelle_temporaire_salarie', period, options = [ADD])
-        ircantec_salarie = individu('ircantec_salarie', period, options = [ADD])
-        pension_civile_salarie = individu('pension_civile_salarie', period, options = [ADD])
-        rafp_salarie = individu('rafp_salarie', period, options = [ADD])
-        vieillesse_deplafonnee_salarie = individu('vieillesse_deplafonnee_salarie', period, options = [ADD])
-        vieillesse_plafonnee_salarie = individu('vieillesse_plafonnee_salarie', period, options = [ADD])
+        agff_salarie = individu('agff_salarie', period)
+        agirc_salarie = individu('agirc_salarie', period)
+        agirc_gmp_salarie = individu('agirc_gmp_salarie', period)
+        apec_salarie = individu('apec_salarie', period)
+        arrco_salarie = individu('arrco_salarie', period)
+        chomage_salarie = individu('chomage_salarie', period)
+        cotisation_exceptionnelle_temporaire_salarie = individu('cotisation_exceptionnelle_temporaire_salarie', period)
+        ircantec_salarie = individu('ircantec_salarie', period)
+        pension_civile_salarie = individu('pension_civile_salarie', period)
+        rafp_salarie = individu('rafp_salarie', period)
+        vieillesse_deplafonnee_salarie = individu('vieillesse_deplafonnee_salarie', period)
+        vieillesse_plafonnee_salarie = individu('vieillesse_plafonnee_salarie', period)
 
         cotisations_salariales_contributives = (
             # prive
@@ -160,7 +160,7 @@ class cotisations_salariales_non_contributives(Variable):
 
     def formula(individu, period, parameters):
         contribution_exceptionnelle_solidarite = individu('contribution_exceptionnelle_solidarite', period, options = [ADD])
-        mmid_salarie = individu('mmid_salarie', period, options = [ADD])
+        mmid_salarie = individu('mmid_salarie', period)
 
         cotisations_salariales_non_contributives = (
             # prive
