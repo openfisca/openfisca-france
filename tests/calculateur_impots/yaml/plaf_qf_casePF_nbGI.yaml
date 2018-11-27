@@ -1,65 +1,63 @@
 - name: plaf_qf_casePF_nbGI
   period: 2014
   absolute_error_margin: 1
-  foyers_fiscaux:
-  - caseF: true
-    caseG: false
-    caseP: true
-    caseS: false
-    caseW: false
-    declarants:
-    - ind0
-    - ind1
-    id: 0
-    nbF: 2.0
-    nbG: 1.0
-    nbH: 1.0
-    nbI: 1.0
-    nbJ: 0
-    nbN: 0
-    nbR: 0
-    personnes_a_charge:
-    - ind2
-    - ind3
-    - ind4
-  individus:
-  - activite: actif
-    date_naissance: '1970-01-01'
-    id: ind0
-    salaire_imposable: 150000.0
-    statut_marital: marie
-  - activite: actif
-    date_naissance: '1970-01-01'
-    id: ind1
-    salaire_imposable: 100000.0
-    statut_marital: marie
-  - activite: etudiant
-    date_naissance: '1994-01-01'
-    id: ind2
-  - activite: etudiant
-    date_naissance: '1999-01-01'
-    id: ind3
-  - activite: etudiant
-    date_naissance: '2010-01-01'
-    id: ind4
-  familles:
-  - enfants:
-    - ind2
-    - ind3
-    - ind4
-    id: 0
-    parents:
-    - ind0
-    - ind1
-  menages:
-  - conjoint: ind1
-    enfants:
-    - ind2
-    - ind3
-    - ind4
-    id: 0
-    personne_de_reference: ind0
-  output_variables:
+  input:
+    foyer_fiscal:
+      caseF: true
+      caseG: false
+      caseP: true
+      caseS: false
+      caseW: false
+      declarants:
+      - ind0
+      - ind1
+      nbF: 2.0
+      nbG: 1.0
+      nbH: 1.0
+      nbI: 1.0
+      nbJ: 0
+      nbN: 0
+      nbR: 0
+      personnes_a_charge:
+      - ind2
+      - ind3
+      - ind4
+    individus:
+      ind0:
+        activite: actif
+        date_naissance: '1970-01-01'
+        salaire_imposable: 150000.0
+        statut_marital: marie
+      ind1:
+        activite: actif
+        date_naissance: '1970-01-01'
+        salaire_imposable: 100000.0
+        statut_marital: marie
+      ind2:
+        activite: etudiant
+        date_naissance: '1994-01-01'
+      ind3:
+        activite: etudiant
+        date_naissance: '1999-01-01'
+      ind4:
+        activite: etudiant
+        date_naissance: '2010-01-01'
+    famille:
+      enfants:
+      - ind2
+      - ind3
+      - ind4
+      parents:
+      - ind0
+      - ind1
+    menage:
+      conjoint: ind1
+      enfants:
+      - ind2
+      - ind3
+      - ind4
+      personne_de_reference: ind0
+  output:
     iai: 51286.0
     irpp: -51286.0
     nbptr: 5.25
@@ -70,65 +68,63 @@
 - name: plaf_qf_casePF_nbGI
   period: 2015
   absolute_error_margin: 1
-  foyers_fiscaux:
-  - caseF: true
-    caseG: false
-    caseP: true
-    caseS: false
-    caseW: false
-    declarants:
-    - ind0
-    - ind1
-    id: 0
-    nbF: 2.0
-    nbG: 1.0
-    nbH: 1.0
-    nbI: 1.0
-    nbJ: 0
-    nbN: 0
-    nbR: 0
-    personnes_a_charge:
-    - ind2
-    - ind3
-    - ind4
-  individus:
-  - activite: actif
-    date_naissance: '1970-01-01'
-    id: ind0
-    salaire_imposable: 150000.0
-    statut_marital: marie
-  - activite: actif
-    date_naissance: '1970-01-01'
-    id: ind1
-    salaire_imposable: 100000.0
-    statut_marital: marie
-  - activite: etudiant
-    date_naissance: '1995-01-01'
-    id: ind2
-  - activite: etudiant
-    date_naissance: '2000-01-01'
-    id: ind3
-  - activite: etudiant
-    date_naissance: '2011-01-01'
-    id: ind4
-  familles:
-  - enfants:
-    - ind2
-    - ind3
-    - ind4
-    id: 0
-    parents:
-    - ind0
-    - ind1
-  menages:
-  - conjoint: ind1
-    enfants:
-    - ind2
-    - ind3
-    - ind4
-    id: 0
-    personne_de_reference: ind0
-  output_variables:
+  input:
+    foyer_fiscal:
+      caseF: true
+      caseG: false
+      caseP: true
+      caseS: false
+      caseW: false
+      declarants:
+      - ind0
+      - ind1
+      nbF: 2.0
+      nbG: 1.0
+      nbH: 1.0
+      nbI: 1.0
+      nbJ: 0
+      nbN: 0
+      nbR: 0
+      personnes_a_charge:
+      - ind2
+      - ind3
+      - ind4
+    individus:
+      ind0:
+        activite: actif
+        date_naissance: '1970-01-01'
+        salaire_imposable: 150000.0
+        statut_marital: marie
+      ind1:
+        activite: actif
+        date_naissance: '1970-01-01'
+        salaire_imposable: 100000.0
+        statut_marital: marie
+      ind2:
+        activite: etudiant
+        date_naissance: '1995-01-01'
+      ind3:
+        activite: etudiant
+        date_naissance: '2000-01-01'
+      ind4:
+        activite: etudiant
+        date_naissance: '2011-01-01'
+    famille:
+      enfants:
+      - ind2
+      - ind3
+      - ind4
+      parents:
+      - ind0
+      - ind1
+    menage:
+      conjoint: ind1
+      enfants:
+      - ind2
+      - ind3
+      - ind4
+      personne_de_reference: ind0
+  output:
     iai: 51233.0
     irpp: -51233.0
     nbptr: 5.25
@@ -138,65 +134,63 @@
 - name: plaf_qf_casePF_nbGI
   period: 2016
   absolute_error_margin: 1
-  foyers_fiscaux:
-  - caseF: true
-    caseG: false
-    caseP: true
-    caseS: false
-    caseW: false
-    declarants:
-    - ind0
-    - ind1
-    id: 0
-    nbF: 2.0
-    nbG: 1.0
-    nbH: 1.0
-    nbI: 1.0
-    nbJ: 0
-    nbN: 0
-    nbR: 0
-    personnes_a_charge:
-    - ind2
-    - ind3
-    - ind4
-  individus:
-  - activite: actif
-    date_naissance: '1970-01-01'
-    id: ind0
-    salaire_imposable: 150000.0
-    statut_marital: marie
-  - activite: actif
-    date_naissance: '1970-01-01'
-    id: ind1
-    salaire_imposable: 100000.0
-    statut_marital: marie
-  - activite: etudiant
-    date_naissance: '1996-01-01'
-    id: ind2
-  - activite: etudiant
-    date_naissance: '2001-01-01'
-    id: ind3
-  - activite: etudiant
-    date_naissance: '2012-01-01'
-    id: ind4
-  familles:
-  - enfants:
-    - ind2
-    - ind3
-    - ind4
-    id: 0
-    parents:
-    - ind0
-    - ind1
-  menages:
-  - conjoint: ind1
-    enfants:
-    - ind2
-    - ind3
-    - ind4
-    id: 0
-    personne_de_reference: ind0
-  output_variables:
+  input:
+    foyer_fiscal:
+      caseF: true
+      caseG: false
+      caseP: true
+      caseS: false
+      caseW: false
+      declarants:
+      - ind0
+      - ind1
+      nbF: 2.0
+      nbG: 1.0
+      nbH: 1.0
+      nbI: 1.0
+      nbJ: 0
+      nbN: 0
+      nbR: 0
+      personnes_a_charge:
+      - ind2
+      - ind3
+      - ind4
+    individus:
+      ind0:
+        activite: actif
+        date_naissance: '1970-01-01'
+        salaire_imposable: 150000.0
+        statut_marital: marie
+      ind1:
+        activite: actif
+        date_naissance: '1970-01-01'
+        salaire_imposable: 100000.0
+        statut_marital: marie
+      ind2:
+        activite: etudiant
+        date_naissance: '1996-01-01'
+      ind3:
+        activite: etudiant
+        date_naissance: '2001-01-01'
+      ind4:
+        activite: etudiant
+        date_naissance: '2012-01-01'
+    famille:
+      enfants:
+      - ind2
+      - ind3
+      - ind4
+      parents:
+      - ind0
+      - ind1
+    menage:
+      conjoint: ind1
+      enfants:
+      - ind2
+      - ind3
+      - ind4
+      personne_de_reference: ind0
+  output:
     iai: 51181.0
     irpp: -51181.0
     nbptr: 5.25
@@ -206,65 +200,63 @@
 - name: plaf_qf_casePF_nbGI
   period: 2017
   absolute_error_margin: 1
-  foyers_fiscaux:
-  - caseF: true
-    caseG: false
-    caseP: true
-    caseS: false
-    caseW: false
-    declarants:
-    - ind0
-    - ind1
-    id: 0
-    nbF: 2.0
-    nbG: 1.0
-    nbH: 1.0
-    nbI: 1.0
-    nbJ: 0
-    nbN: 0
-    nbR: 0
-    personnes_a_charge:
-    - ind2
-    - ind3
-    - ind4
-  individus:
-  - activite: actif
-    date_naissance: '1970-01-01'
-    id: ind0
-    salaire_imposable: 150000.0
-    statut_marital: marie
-  - activite: actif
-    date_naissance: '1970-01-01'
-    id: ind1
-    salaire_imposable: 100000.0
-    statut_marital: marie
-  - activite: etudiant
-    date_naissance: '1997-01-01'
-    id: ind2
-  - activite: etudiant
-    date_naissance: '2002-01-01'
-    id: ind3
-  - activite: etudiant
-    date_naissance: '2013-01-01'
-    id: ind4
-  familles:
-  - enfants:
-    - ind2
-    - ind3
-    - ind4
-    id: 0
-    parents:
-    - ind0
-    - ind1
-  menages:
-  - conjoint: ind1
-    enfants:
-    - ind2
-    - ind3
-    - ind4
-    id: 0
-    personne_de_reference: ind0
-  output_variables:
+  input:
+    foyer_fiscal:
+      caseF: true
+      caseG: false
+      caseP: true
+      caseS: false
+      caseW: false
+      declarants:
+      - ind0
+      - ind1
+      nbF: 2.0
+      nbG: 1.0
+      nbH: 1.0
+      nbI: 1.0
+      nbJ: 0
+      nbN: 0
+      nbR: 0
+      personnes_a_charge:
+      - ind2
+      - ind3
+      - ind4
+    individus:
+      ind0:
+        activite: actif
+        date_naissance: '1970-01-01'
+        salaire_imposable: 150000.0
+        statut_marital: marie
+      ind1:
+        activite: actif
+        date_naissance: '1970-01-01'
+        salaire_imposable: 100000.0
+        statut_marital: marie
+      ind2:
+        activite: etudiant
+        date_naissance: '1997-01-01'
+      ind3:
+        activite: etudiant
+        date_naissance: '2002-01-01'
+      ind4:
+        activite: etudiant
+        date_naissance: '2013-01-01'
+    famille:
+      enfants:
+      - ind2
+      - ind3
+      - ind4
+      parents:
+      - ind0
+      - ind1
+    menage:
+      conjoint: ind1
+      enfants:
+      - ind2
+      - ind3
+      - ind4
+      personne_de_reference: ind0
+  output:
     iai: 50709.0
     irpp: -50709.0
     nbptr: 5.25

@@ -1,40 +1,38 @@
 - name: credit_saldom
   period: 2014
   absolute_error_margin: 1
-  foyers_fiscaux:
-  - caseF: false
-    caseG: false
-    caseL: false
-    caseP: false
-    caseS: false
-    caseT: false
-    caseW: false
-    declarants:
-    - ind0
-    f7db: 20000
-    f7dg: true
-    f7dq: true
-    id: 0
-    nbF: 0.0
-    nbG: 0.0
-    nbH: 0.0
-    nbI: 0.0
-    nbJ: 0
-    nbR: 0
-  individus:
-  - activite: actif
-    date_naissance: '1970-01-01'
-    id: ind0
-    salaire_imposable: 50000.0
-    statut_marital: celibataire
-  familles:
-  - id: 0
-    parents:
-    - ind0
-  menages:
-  - id: 0
-    personne_de_reference: ind0
-  output_variables:
+  input:
+    foyer_fiscal:
+      caseF: false
+      caseG: false
+      caseL: false
+      caseP: false
+      caseS: false
+      caseT: false
+      caseW: false
+      declarants:
+      - ind0
+      f7db: 20000
+      f7dg: true
+      f7dq: true
+      nbF: 0.0
+      nbG: 0.0
+      nbH: 0.0
+      nbI: 0.0
+      nbJ: 0
+      nbR: 0
+    individus:
+      ind0:
+        activite: actif
+        date_naissance: '1970-01-01'
+        salaire_imposable: 50000.0
+        statut_marital: celibataire
+    famille:
+      parents:
+      - ind0
+    menage:
+      personne_de_reference: ind0
+  output:
     iai: 7861.0
     irpp: 2139.0
     nbptr: 1.0
@@ -45,40 +43,38 @@
 - name: credit_saldom
   period: 2015
   absolute_error_margin: 1
-  foyers_fiscaux:
-  - caseF: false
-    caseG: false
-    caseL: false
-    caseP: false
-    caseS: false
-    caseT: false
-    caseW: false
-    declarants:
-    - ind0
-    f7db: 20000
-    f7dg: true
-    f7dq: true
-    id: 0
-    nbF: 0.0
-    nbG: 0.0
-    nbH: 0.0
-    nbI: 0.0
-    nbJ: 0
-    nbR: 0
-  individus:
-  - activite: actif
-    date_naissance: '1970-01-01'
-    id: ind0
-    salaire_imposable: 50000.0
-    statut_marital: celibataire
-  familles:
-  - id: 0
-    parents:
-    - ind0
-  menages:
-  - id: 0
-    personne_de_reference: ind0
-  output_variables:
+  input:
+    foyer_fiscal:
+      caseF: false
+      caseG: false
+      caseL: false
+      caseP: false
+      caseS: false
+      caseT: false
+      caseW: false
+      declarants:
+      - ind0
+      f7db: 20000
+      f7dg: true
+      f7dq: true
+      nbF: 0.0
+      nbG: 0.0
+      nbH: 0.0
+      nbI: 0.0
+      nbJ: 0
+      nbR: 0
+    individus:
+      ind0:
+        activite: actif
+        date_naissance: '1970-01-01'
+        salaire_imposable: 50000.0
+        statut_marital: celibataire
+    famille:
+      parents:
+      - ind0
+    menage:
+      personne_de_reference: ind0
+  output:
     iai: 7855.0
     irpp: 2145.0
     nbptr: 1.0
@@ -88,40 +84,38 @@
 - name: credit_saldom
   period: 2016
   absolute_error_margin: 1
-  foyers_fiscaux:
-  - caseF: false
-    caseG: false
-    caseL: false
-    caseP: false
-    caseS: false
-    caseT: false
-    caseW: false
-    declarants:
-    - ind0
-    f7db: 20000
-    f7dg: true
-    f7dq: true
-    id: 0
-    nbF: 0.0
-    nbG: 0.0
-    nbH: 0.0
-    nbI: 0.0
-    nbJ: 0
-    nbR: 0
-  individus:
-  - activite: actif
-    date_naissance: '1970-01-01'
-    id: ind0
-    salaire_imposable: 50000.0
-    statut_marital: celibataire
-  familles:
-  - id: 0
-    parents:
-    - ind0
-  menages:
-  - id: 0
-    personne_de_reference: ind0
-  output_variables:
+  input:
+    foyer_fiscal:
+      caseF: false
+      caseG: false
+      caseL: false
+      caseP: false
+      caseS: false
+      caseT: false
+      caseW: false
+      declarants:
+      - ind0
+      f7db: 20000
+      f7dg: true
+      f7dq: true
+      nbF: 0.0
+      nbG: 0.0
+      nbH: 0.0
+      nbI: 0.0
+      nbJ: 0
+      nbR: 0
+    individus:
+      ind0:
+        activite: actif
+        date_naissance: '1970-01-01'
+        salaire_imposable: 50000.0
+        statut_marital: celibataire
+    famille:
+      parents:
+      - ind0
+    menage:
+      personne_de_reference: ind0
+  output:
     iai: 7850.0
     irpp: 2150.0
     nbptr: 1.0
@@ -131,40 +125,38 @@
 - name: credit_saldom
   period: 2017
   absolute_error_margin: 1
-  foyers_fiscaux:
-  - caseF: false
-    caseG: false
-    caseL: false
-    caseP: false
-    caseS: false
-    caseT: false
-    caseW: false
-    declarants:
-    - ind0
-    f7db: 20000
-    f7dg: true
-    f7dq: true
-    id: 0
-    nbF: 0.0
-    nbG: 0.0
-    nbH: 0.0
-    nbI: 0.0
-    nbJ: 0
-    nbR: 0
-  individus:
-  - activite: actif
-    date_naissance: '1970-01-01'
-    id: ind0
-    salaire_imposable: 50000.0
-    statut_marital: celibataire
-  familles:
-  - id: 0
-    parents:
-    - ind0
-  menages:
-  - id: 0
-    personne_de_reference: ind0
-  output_variables:
+  input:
+    foyer_fiscal:
+      caseF: false
+      caseG: false
+      caseL: false
+      caseP: false
+      caseS: false
+      caseT: false
+      caseW: false
+      declarants:
+      - ind0
+      f7db: 20000
+      f7dg: true
+      f7dq: true
+      nbF: 0.0
+      nbG: 0.0
+      nbH: 0.0
+      nbI: 0.0
+      nbJ: 0
+      nbR: 0
+    individus:
+      ind0:
+        activite: actif
+        date_naissance: '1970-01-01'
+        salaire_imposable: 50000.0
+        statut_marital: celibataire
+    famille:
+      parents:
+      - ind0
+    menage:
+      personne_de_reference: ind0
+  output:
     iai: 7793.0
     irpp: 2207.0
     nbptr: 1.0

@@ -1,46 +1,44 @@
 - name: caseT
   period: 2014
   absolute_error_margin: 1
-  foyers_fiscaux:
-  - caseF: false
-    caseG: false
-    caseL: false
-    caseP: false
-    caseS: false
-    caseT: true
-    caseW: false
-    declarants:
-    - ind0
-    id: 0
-    nbF: 1.0
-    nbG: 0.0
-    nbH: 0.0
-    nbI: 0.0
-    nbJ: 0
-    nbR: 0
-    personnes_a_charge:
-    - ind2
-  individus:
-  - activite: actif
-    date_naissance: '1970-01-01'
-    id: ind0
-    salaire_imposable: 50000.0
-    statut_marital: celibataire
-  - activite: etudiant
-    date_naissance: '2004-01-01'
-    id: ind2
-  familles:
-  - enfants:
-    - ind2
-    id: 0
-    parents:
-    - ind0
-  menages:
-  - enfants:
-    - ind2
-    id: 0
-    personne_de_reference: ind0
-  output_variables:
+  input:
+    foyer_fiscal:
+      caseF: false
+      caseG: false
+      caseL: false
+      caseP: false
+      caseS: false
+      caseT: true
+      caseW: false
+      declarants:
+      - ind0
+      nbF: 1.0
+      nbG: 0.0
+      nbH: 0.0
+      nbI: 0.0
+      nbJ: 0
+      nbR: 0
+      personnes_a_charge:
+      - ind2
+    individus:
+      ind0:
+        activite: actif
+        date_naissance: '1970-01-01'
+        salaire_imposable: 50000.0
+        statut_marital: celibataire
+      ind2:
+        activite: etudiant
+        date_naissance: '2004-01-01'
+    famille:
+      enfants:
+      - ind2
+      parents:
+      - ind0
+    menage:
+      enfants:
+      - ind2
+      personne_de_reference: ind0
+  output:
     iai: 4303.0
     irpp: -4303.0
     nbptr: 2.0
@@ -51,46 +49,44 @@
 - name: caseT
   period: 2015
   absolute_error_margin: 1
-  foyers_fiscaux:
-  - caseF: false
-    caseG: false
-    caseL: false
-    caseP: false
-    caseS: false
-    caseT: true
-    caseW: false
-    declarants:
-    - ind0
-    id: 0
-    nbF: 1.0
-    nbG: 0.0
-    nbH: 0.0
-    nbI: 0.0
-    nbJ: 0
-    nbR: 0
-    personnes_a_charge:
-    - ind2
-  individus:
-  - activite: actif
-    date_naissance: '1970-01-01'
-    id: ind0
-    salaire_imposable: 50000.0
-    statut_marital: celibataire
-  - activite: etudiant
-    date_naissance: '2005-01-01'
-    id: ind2
-  familles:
-  - enfants:
-    - ind2
-    id: 0
-    parents:
-    - ind0
-  menages:
-  - enfants:
-    - ind2
-    id: 0
-    personne_de_reference: ind0
-  output_variables:
+  input:
+    foyer_fiscal:
+      caseF: false
+      caseG: false
+      caseL: false
+      caseP: false
+      caseS: false
+      caseT: true
+      caseW: false
+      declarants:
+      - ind0
+      nbF: 1.0
+      nbG: 0.0
+      nbH: 0.0
+      nbI: 0.0
+      nbJ: 0
+      nbR: 0
+      personnes_a_charge:
+      - ind2
+    individus:
+      ind0:
+        activite: actif
+        date_naissance: '1970-01-01'
+        salaire_imposable: 50000.0
+        statut_marital: celibataire
+      ind2:
+        activite: etudiant
+        date_naissance: '2005-01-01'
+    famille:
+      enfants:
+      - ind2
+      parents:
+      - ind0
+    menage:
+      enfants:
+      - ind2
+      personne_de_reference: ind0
+  output:
     iai: 4293.0
     irpp: -4293.0
     nbptr: 2.0
@@ -100,46 +96,44 @@
 - name: caseT
   period: 2016
   absolute_error_margin: 1
-  foyers_fiscaux:
-  - caseF: false
-    caseG: false
-    caseL: false
-    caseP: false
-    caseS: false
-    caseT: true
-    caseW: false
-    declarants:
-    - ind0
-    id: 0
-    nbF: 1.0
-    nbG: 0.0
-    nbH: 0.0
-    nbI: 0.0
-    nbJ: 0
-    nbR: 0
-    personnes_a_charge:
-    - ind2
-  individus:
-  - activite: actif
-    date_naissance: '1970-01-01'
-    id: ind0
-    salaire_imposable: 50000.0
-    statut_marital: celibataire
-  - activite: etudiant
-    date_naissance: '2006-01-01'
-    id: ind2
-  familles:
-  - enfants:
-    - ind2
-    id: 0
-    parents:
-    - ind0
-  menages:
-  - enfants:
-    - ind2
-    id: 0
-    personne_de_reference: ind0
-  output_variables:
+  input:
+    foyer_fiscal:
+      caseF: false
+      caseG: false
+      caseL: false
+      caseP: false
+      caseS: false
+      caseT: true
+      caseW: false
+      declarants:
+      - ind0
+      nbF: 1.0
+      nbG: 0.0
+      nbH: 0.0
+      nbI: 0.0
+      nbJ: 0
+      nbR: 0
+      personnes_a_charge:
+      - ind2
+    individus:
+      ind0:
+        activite: actif
+        date_naissance: '1970-01-01'
+        salaire_imposable: 50000.0
+        statut_marital: celibataire
+      ind2:
+        activite: etudiant
+        date_naissance: '2006-01-01'
+    famille:
+      enfants:
+      - ind2
+      parents:
+      - ind0
+    menage:
+      enfants:
+      - ind2
+      personne_de_reference: ind0
+  output:
     iai: 4284.0
     irpp: -4284.0
     nbptr: 2.0
@@ -149,46 +143,44 @@
 - name: caseT
   period: 2017
   absolute_error_margin: 1
-  foyers_fiscaux:
-  - caseF: false
-    caseG: false
-    caseL: false
-    caseP: false
-    caseS: false
-    caseT: true
-    caseW: false
-    declarants:
-    - ind0
-    id: 0
-    nbF: 1.0
-    nbG: 0.0
-    nbH: 0.0
-    nbI: 0.0
-    nbJ: 0
-    nbR: 0
-    personnes_a_charge:
-    - ind2
-  individus:
-  - activite: actif
-    date_naissance: '1970-01-01'
-    id: ind0
-    salaire_imposable: 50000.0
-    statut_marital: celibataire
-  - activite: etudiant
-    date_naissance: '2007-01-01'
-    id: ind2
-  familles:
-  - enfants:
-    - ind2
-    id: 0
-    parents:
-    - ind0
-  menages:
-  - enfants:
-    - ind2
-    id: 0
-    personne_de_reference: ind0
-  output_variables:
+  input:
+    foyer_fiscal:
+      caseF: false
+      caseG: false
+      caseL: false
+      caseP: false
+      caseS: false
+      caseT: true
+      caseW: false
+      declarants:
+      - ind0
+      nbF: 1.0
+      nbG: 0.0
+      nbH: 0.0
+      nbI: 0.0
+      nbJ: 0
+      nbR: 0
+      personnes_a_charge:
+      - ind2
+    individus:
+      ind0:
+        activite: actif
+        date_naissance: '1970-01-01'
+        salaire_imposable: 50000.0
+        statut_marital: celibataire
+      ind2:
+        activite: etudiant
+        date_naissance: '2007-01-01'
+    famille:
+      enfants:
+      - ind2
+      parents:
+      - ind0
+    menage:
+      enfants:
+      - ind2
+      personne_de_reference: ind0
+  output:
     iai: 4191.0
     irpp: -4191.0
     nbptr: 2.0
