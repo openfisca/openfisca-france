@@ -1,6 +1,6 @@
 # Changelog
 
-### 30.20 [#1219](https://github.com/openfisca/openfisca-france/pull/1219)
+### 31.2.0 [#1219](https://github.com/openfisca/openfisca-france/pull/1219)
 
 * Changement mineurs.
 * Périodes concernées : toutes.
