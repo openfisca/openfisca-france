@@ -1,3 +1,4 @@
-- period: "2013-12"
-  output_variables:
+- period: 2013-12
+  input: {}
+  output:
     arrco_employeur: 0

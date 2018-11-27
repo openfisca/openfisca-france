@@ -1,14 +1,14 @@
-- name: "Cas 1: Étudiant réside dans un studio réhabilité en logement foyer géré par le CROUS, zone 2"
+- name: 'Cas 1: Étudiant réside dans un studio réhabilité en logement foyer géré par le CROUS, zone 2'
   period: 2017-10
   relative_error_margin: 0.02
-  input_variables:
+  input:
     etudiant: true
     loyer: 200
     zone_apl: zone_2
     statut_occupation_logement: locataire_foyer
     etat_logement_foyer: logement_rehabilite
     logement_crous: true
-  output_variables:
+  output:
     aide_logement_charges: 53.67 # C
     aides_logement_k: 0.67 # K
     aides_logement_loyer_minimal: 80.90 # L0
@@ -16,10 +16,10 @@
     aides_logement_accedant_et_foyer: 94.57 # ALS = k*(L+C-L0)
     aide_logement: 89.44
 
-- name: "Cas 2: Étudiant réside dans une chambre réhabilitée en logement foyer géré par le CROUS, zone 3"
+- name: 'Cas 2: Étudiant réside dans une chambre réhabilitée en logement foyer géré par le CROUS, zone 3'
   period: 2017-10
   relative_error_margin: 0.02
-  input_variables:
+  input:
     etudiant: true
     logement_crous: true
     loyer: 150
@@ -28,7 +28,7 @@
     logement_chambre: true
     etat_logement_foyer: logement_rehabilite
     boursier: true
-  output_variables:
+  output:
     aide_logement_charges: 53.67 # C
     aides_logement_k: 0.7 # K
     aides_logement_loyer_minimal: 53.68 # L0
@@ -36,10 +36,10 @@
     aides_logement_accedant_et_foyer: 117.86 # ALS = k*(L+C-L0)
     aide_logement: 112.56
 
-- name: "Cas 3: Étudiant réside dans une chambre conventionnée en logement foyer, zone 3"
+- name: 'Cas 3: Étudiant réside dans une chambre conventionnée en logement foyer, zone 3'
   period: 2017-10
   relative_error_margin: 0.02
-  input_variables:
+  input:
     etudiant: true
     logement_crous: true
     loyer: 150
@@ -48,7 +48,7 @@
     logement_chambre: true
     logement_conventionne: true
     boursier: true
-  output_variables:
+  output:
     aide_logement_charges: 53.67 # C
     aides_logement_k: 0.77 # K
     aides_logement_loyer_minimal: 43.96 # L0
@@ -56,10 +56,10 @@
     aide_logement_montant_brut_avant_degressivite: 81.65 # APL = k*((L+C)-(L0+C))
     aide_logement: 76.38
 
-- name: "Cas 4: Personne agée réside dans un studio en logement foyer , zone 2"
+- name: 'Cas 4: Personne agée réside dans un studio en logement foyer , zone 2'
   period: 2017-10
   relative_error_margin: 0.02
-  input_variables:
+  input:
     age: 71
     loyer: 900
     zone_apl: zone_2
@@ -68,7 +68,7 @@
       2017: 9000
       2016: 9000
       2015: 9000
-  output_variables:
+  output:
     aide_logement_charges: 53.67 # C
     aides_logement_k: 0.58 # K
     aides_logement_loyer_minimal: 141.04 # L0
@@ -76,10 +76,10 @@
     aide_logement_montant_brut_avant_degressivite: 67.83 # ALS = k*(L+C-L0)
     aide_logement: 62.31
 
-- name: "Cas 5: Personne agée réside dans une chambre conventionnée en logement foyer , zone 3"
+- name: 'Cas 5: Personne agée réside dans une chambre conventionnée en logement foyer , zone 3'
   period: 2017-10
   relative_error_margin: 0.02
-  input_variables:
+  input:
     age: 71
     loyer: 900
     zone_apl: zone_3
@@ -90,7 +90,7 @@
       2015: 9000
     logement_conventionne: true
     logement_chambre: true
-  output_variables:
+  output:
     aide_logement_charges: 53.67 # C
     aides_logement_k: 0.6 # K
     aides_logement_loyer_minimal: 114.94 # L0

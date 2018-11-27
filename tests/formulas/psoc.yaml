@@ -1,9 +1,19 @@
-- name: "prestations_sociales - Célibataire ayant un salaire de base de 50000€ annuel"
+- name: prestations_sociales - Célibataire ayant un salaire de base de 50000€ annuel
   period: 2014
-  individus:
-  - id: ind0
-    salaire_de_base:
-      2013: 50000
-      2014: 50000
-  output_variables:
+  input:
+    individus:
+      ind0:
+        salaire_de_base:
+          2013: 50000
+          2014: 50000
+    famille:
+      parents:
+      - ind0
+    foyer_fiscal:
+      declarants:
+      - ind0
+    menage:
+      personne_de_reference:
+      - ind0
+  output:
     prestations_sociales: 0

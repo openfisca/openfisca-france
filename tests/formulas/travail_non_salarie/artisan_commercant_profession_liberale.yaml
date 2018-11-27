@@ -1,12 +1,12 @@
-- name: "Artisan"
-  description: "Artisan sous PSS"
+- name: Artisan
+  description: Artisan sous PSS
   absolute_error_margin: 1
   period: 2017
-  input_variables:
+  input:
     rpns_individu: 10000
     rpns: 10000
     categorie_non_salarie: artisan
-  output_variables:
+  output:
     deces_artisan_commercant: -130
     formation_artisan_commercant: -29
     retraite_complementaire_artisan_commercant: -700
@@ -22,15 +22,15 @@
     revenus_nets_du_travail: 10000 - (.075 + .005) * (10000 + 700 + 459 + .1775 * 10000) - (700 + 459 + 0.1775 * 10000 + 130 + 29)
 
 
-- name: "Commerçant sous PSS"
-  description: "Commerçant sous PSS 2017"
+- name: Commerçant sous PSS
+  description: Commerçant sous PSS 2017
   absolute_error_margin: 1
   period: 2017
-  input_variables:
+  input:
     rpns_individu: 10000
     rpns: 10000
     categorie_non_salarie: commercant
-  output_variables:
+  output:
     deces_artisan_commercant: -130
     formation_artisan_commercant: -25
     retraite_complementaire_artisan_commercant: -700
@@ -46,15 +46,15 @@
     revenus_nets_du_travail: 10000 - (.075 + .005) * (10000 + 700 + 459 + .1775 * 10000) - (700 + 459 + 0.1775 * 10000 + 130 + 25)
 
 
-- name: "Commerçant sous PSS"
-  description: "Commerçant sous PSS 2018"
+- name: Commerçant sous PSS
+  description: Commerçant sous PSS 2018
   absolute_error_margin: 1
   period: 2018
-  input_variables:
+  input:
     rpns_individu: 10000
     rpns: 10000
     categorie_non_salarie: commercant
-  output_variables:
+  output:
     deces_artisan_commercant: -130
     formation_artisan_commercant: -25
     retraite_complementaire_artisan_commercant: -700
@@ -70,16 +70,16 @@
     revenus_nets_du_travail: 10000 - (.092 + .005) * (10000 + 700 + 454 + .1775 * 10000) - (700 + 454 + 0.1775 * 10000 + 130 + 25)
 
 
-- name: "Profession libérale"
-  description: "Profession libérale sous PSS"
+- name: Profession libérale
+  description: Profession libérale sous PSS
   absolute_error_margin: 1
   period: 2017
-  input_variables:
+  input:
     rpns_individu: 10000
     rpns: 10000
     retraite_complementaire_profession_liberale: 0  # Forcée à 0
     categorie_non_salarie: profession_liberale
-  output_variables:
+  output:
     famille_independant: 0
     deces_artisan_commercant: 0
     formation_artisan_commercant: 0
@@ -94,16 +94,16 @@
     crds_non_salarie: -.005 * (10000 + 823 + 266 + 0)
     revenus_nets_du_travail: 10000 - (.075 + .005) * (10000 + 823 + 266 + 0) - (823 + 266 + 25)
 
-- name: "Profession libérale"
-  description: "Profession libérale sous PSS"
+- name: Profession libérale
+  description: Profession libérale sous PSS
   absolute_error_margin: 1
   period: 2018
-  input_variables:
+  input:
     rpns_individu: 10000
     rpns: 10000
     retraite_complementaire_profession_liberale: 0  # Forcée à 0
     categorie_non_salarie: profession_liberale
-  output_variables:
+  output:
     famille_independant: 0
     deces_artisan_commercant: 0
     formation_artisan_commercant: 0

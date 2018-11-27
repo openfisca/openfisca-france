@@ -53,6 +53,11 @@ class statut_marital(Variable):
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
+    def formula(individu, period, parameters):
+        # Par défault, on considère que deux adultes dans un foyer fiscal sont PACSÉS
+        deux_adultes = individu.foyer_fiscal.nb_persons(FoyerFiscal.DECLARANT) >= 2
+        return where(deux_adultes, TypesStatutMarital.pacse, TypesStatutMarital.celibataire)
+
 
 class nbN(Variable):
     cerfa_field = u"N"

@@ -1,27 +1,27 @@
-- period: "2015-04"
+- period: 2015-04
   name: Base
   relative_error_margin: 0.001
-  input_variables:
+  input:
     salaire_de_base: 1457.52
     allegement_fillon_mode_recouvrement: anticipe
     effectif_entreprise: 1
     categorie_salarie: prive_non_cadre
-  output_variables:
+  output:
     cotisations_employeur: -601.06
     allegement_fillon: 407
     salaire_super_brut_hors_allegements: 2059
     salaire_super_brut: 1651.3 # fillon
 
-- period: "2015-04"
+- period: 2015-04
   name: JEI -> plus d'allègement général base salaire (fillon)
   relative_error_margin: 0.001
-  input_variables:
+  input:
     salaire_de_base: 1457.52
     allegement_fillon_mode_recouvrement: anticipe
     effectif_entreprise: 1
     categorie_salarie: prive_non_cadre
     jeune_entreprise_innovante: 1
-  output_variables:
+  output:
     cotisations_employeur: -601.2
     allegement_fillon: 0
     exoneration_cotisations_employeur_jei: 413

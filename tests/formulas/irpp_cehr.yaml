@@ -1,65 +1,110 @@
-- name: "IRPP/CEHR - Célibataire ayant des revenus salariaux (1AJ) de 250 000 €"
+- name: IRPP/CEHR - Célibataire ayant des revenus salariaux (1AJ) de 250 000 €
   period: 2011
   absolute_error_margin: 0.5
-  input_variables:
+  input:
     salaire_imposable: 250000
-  output_variables:
+  output:
     cehr: 0
-- name: "IRPP/CEHR - Couple ayant des revenus salariaux (1AJ) de 500 000 €"
+- name: IRPP/CEHR - Couple ayant des revenus salariaux (1AJ) de 500 000 €
   period: 2011
   absolute_error_margin: 0.5
-  foyers_fiscaux:
-    declarants: ["parent1", "parent2"]
-  individus:
-    - id: "parent1"
-      age: 40
-      salaire_imposable: 500000
-    - id: "parent2"
-      age: 40
-  output_variables:
+  input:
+    foyer_fiscal:
+      declarants: [parent1, parent2]
+    individus:
+      parent1:
+        age: 40
+        salaire_imposable: 500000
+      parent2:
+        age: 40
+    familles:
+      famille_0:
+        parents:
+        - parent1
+      famille_1:
+        parents:
+        - parent2
+    menages:
+      menage_0:
+        personne_de_reference:
+        - parent1
+      menage_1:
+        personne_de_reference:
+        - parent2
+  output:
     cehr: 0
 
-- name: "IRPP/CEHR - Célibataire ayant des revenus salariaux (1AJ) de 1 500 000 €"
+- name: IRPP/CEHR - Célibataire ayant des revenus salariaux (1AJ) de 1 500 000 €
   period: 2011
   absolute_error_margin: 0.5
-  input_variables:
+  input:
     salaire_imposable: 1500000
-  output_variables:
+  output:
     irpp: -642772
 
-- name: "IRPP/CEHR - Couple ayant des revenus salariaux (1AJ) de 1 500 000 €"
+- name: IRPP/CEHR - Couple ayant des revenus salariaux (1AJ) de 1 500 000 €
   period: 2011
   absolute_error_margin: 0.5
-  foyers_fiscaux:
-    declarants: ["parent1", "parent2"]
-  individus:
-    - id: "parent1"
-      age: 40
-      salaire_imposable: 1500000
-    - id: "parent2"
-      age: 40
-  output_variables:
+  input:
+    foyer_fiscal:
+      declarants: [parent1, parent2]
+    individus:
+      parent1:
+        age: 40
+        salaire_imposable: 1500000
+      parent2:
+        age: 40
+    familles:
+      famille_0:
+        parents:
+        - parent1
+      famille_1:
+        parents:
+        - parent2
+    menages:
+      menage_0:
+        personne_de_reference:
+        - parent1
+      menage_1:
+        personne_de_reference:
+        - parent2
+  output:
     irpp: -616914
 
-- name: "IRPP/CEHR - Couple ayant des revenus salariaux (1AJ) de 1 500 000 €"
+- name: IRPP/CEHR - Couple ayant des revenus salariaux (1AJ) de 1 500 000 €
   period: 2011
   absolute_error_margin: 0.5
-  foyers_fiscaux:
-    declarants: ["parent1", "parent2"]
-  individus:
-    - id: "parent1"
-      age: 40
-      salaire_imposable: 750000
-    - id: "parent2"
-      age: 40
-      salaire_imposable: 750000
-  output_variables:
+  input:
+    foyer_fiscal:
+      declarants: [parent1, parent2]
+    individus:
+      parent1:
+        age: 40
+        salaire_imposable: 750000
+      parent2:
+        age: 40
+        salaire_imposable: 750000
+    familles:
+      famille_0:
+        parents:
+        - parent1
+      famille_1:
+        parents:
+        - parent2
+    menages:
+      menage_0:
+        personne_de_reference:
+        - parent1
+      menage_1:
+        personne_de_reference:
+        - parent2
+  output:
     irpp: -610543
 
-- name: "IRPP/CEHR - Célibataire ayant des revenus salariaux (1AJ) de 1 500 000 €"
+- name: IRPP/CEHR - Célibataire ayant des revenus salariaux (1AJ) de 1 500 000 €
   period: 2012
   absolute_error_margin: 0.5
-  input_variables:
+  input:
     salaire_imposable: 1500000
-  output_variables:
+  output:
     irpp: -697262

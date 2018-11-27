@@ -1,58 +1,58 @@
-- period: "month:2015-03"
-  input_variables:
+- period: month:2015-03
+  input:
     jeune_entreprise_innovante: 1
     effectif_entreprise: 30
     salaire_de_base: 2500
-  output_variables:
+  output:
     famille: -131.25
     mmid_employeur: -320
     vieillesse_deplafonnee_employeur: -45
     vieillesse_plafonnee_employeur: -212.5
     exoneration_cotisations_employeur_jei: -(-131.25 - 320 - 45 - 212.5)
-- period: "month:2015-03"
-  input_variables:
-    entreprise_creation: "2015-01-01"
-    jei_date_demande: "2015-01-01"
+- period: month:2015-03
+  input:
+    entreprise_creation: '2015-01-01'
+    jei_date_demande: '2015-01-01'
     effectif_entreprise: 430
     salaire_de_base: 2500
-  output_variables:
+  output:
     exoneration_cotisations_employeur_jei: 0
-- period: "month:2015-03"
-  input_variables:
-    entreprise_creation: "2007-03-01"
-    jei_date_demande: "2015-01-01"
+- period: month:2015-03
+  input:
+    entreprise_creation: '2007-03-01'
+    jei_date_demande: '2015-01-01'
     effectif_entreprise: 200
     salaire_de_base: 2500
-  output_variables:
+  output:
     exoneration_cotisations_employeur_jei: -(-131.25 - 320 - 45 - 212.5)
 
-- period: "month:2016-10"
+- period: month:2016-10
   name: Pas de réductions et aides de l'État si JEI
-  input_variables:
-    entreprise_creation: "2015-03-01"
+  input:
+    entreprise_creation: '2015-03-01'
     jeune_entreprise_innovante: true
     effectif_entreprise: 30
     salaire_de_base: 1500
     allegement_cotisation_allocations_familiales_mode_recouvrement: anticipe
     allegement_fillon_mode_recouvrement: anticipe
     contrat_de_travail_debut: 2016-10-01
-  output_variables:
+  output:
     exoneration_cotisations_employeur_jei: 427.3500061
     allegement_fillon: 0
     allegement_cotisation_allocations_familiales: 0
     aide_embauche_pme: 0
 
 
-- period: "month:2016-10"
+- period: month:2016-10
   name: Pas d'aide première embauche si JEI
-  input_variables:
-    entreprise_creation: "2015-03-01"
+  input:
+    entreprise_creation: '2015-03-01'
     jeune_entreprise_innovante: true
     effectif_entreprise: 1
     salaire_de_base: 1500
     allegement_cotisation_allocations_familiales_mode_recouvrement: anticipe
     allegement_fillon_mode_recouvrement: anticipe
     contrat_de_travail_debut: 2016-10-01
-  output_variables:
+  output:
     exoneration_cotisations_employeur_jei: 427.3500061
     aide_premier_salarie: 0

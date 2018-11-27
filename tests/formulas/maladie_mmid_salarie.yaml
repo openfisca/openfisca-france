@@ -1,38 +1,34 @@
-- period: "2016-12"
-  name:
-    Cotisation maladie MMID salarié
+- period: 2016-12
+  name: Cotisation maladie MMID salarié
   relative_error_margin: 0.001
-  input_variables:
+  input:
     salaire_de_base: 1467
-  output_variables:
+  output:
     mmid_salarie: -.0075 * 1467
 
-- period: "2016-12"
-  name:
-    Cotisation maladie MMID salarié Alsace-Moselle
+- period: 2016-12
+  name: Cotisation maladie MMID salarié Alsace-Moselle
   relative_error_margin: 0.001
-  input_variables:
+  input:
     salaire_de_base: 1467
     salarie_regime_alsace_moselle: 1
-  output_variables:
+  output:
     mmid_salarie: -( 0.0075 + 0.015 ) * 1467
 
 
-- period: "2018-01"
-  name:
-    Cotisation maladie MMID supprimée
+- period: 2018-01
+  name: Cotisation maladie MMID supprimée
   relative_error_margin: 0.001
-  input_variables:
+  input:
     salaire_de_base: 1500
-  output_variables:
+  output:
     mmid_salarie: 0
 
-- period: "2018-01"
-  name:
-    Cotisation maladie MMID salarié Alsace-Moselle
+- period: 2018-01
+  name: Cotisation maladie MMID salarié Alsace-Moselle
   relative_error_margin: 0.001
-  input_variables:
+  input:
     salaire_de_base: 1500
     salarie_regime_alsace_moselle: 1
-  output_variables:
+  output:
     mmid_salarie: -( 0 + 0.015 ) * 1500

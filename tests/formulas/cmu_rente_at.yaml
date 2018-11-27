@@ -1,249 +1,333 @@
-- name: "cas 1: passant rente AT  de 66,66% , foyer composé 2  personnes : Mme perçoit des salaires et Mr  perçoit une rente AT avec un tauc IPP de 66,66% et il perçoit des salaires"
+- name: 'cas 1: passant rente AT  de 66,66% , foyer composé 2  personnes : Mme perçoit des salaires et Mr  perçoit une rente AT avec un tauc IPP de 66,66% et il perçoit des salaires'
   period: 2018-07
   absolute_error_margin: 0.75
-  individus:
-    - id: "parent1"
-      age: 36
-      rente_accident_travail:
-        2018-06: 235
-        2018-05: 235
-        2018-04: 235
-        2018-03: 235
-        2018-02: 235
-        2018-01: 235
-        2017-12: 235
-        2017-11: 235
-        2017-10: 235
-        2017-09: 235
-        2017-08: 235
-        2017-07: 235
-      salaire_net:
-        2018-06: 790
-        2018-05: 790
-        2018-04: 0
-        2018-03: 390
-        2018-02: 790
-        2018-01: 790
-        2017-12: 0
-        2017-11: 790
-        2017-10: 250
-        2017-09: 0
-        2017-08: 790
-        2017-07: 650
-    - id: "parent2"
-      age: 36
-      salaire_net:
-        2018-06: 530
-        2018-05: 0
-        2018-04: 530
-        2018-03: 530
-        2018-02: 0
-        2018-01: 530
-        2017-12: 0
-        2017-11: 0
-        2017-10: 0
-        2017-09: 0
-        2017-08: 530
-        2017-07: 0
-  familles:
-    parents: ["parent1", "parent2"]
-    cmu_forfait_logement_al: 1374.39
-  output_variables:
+  input:
+    individus:
+      parent1:
+        age: 36
+        rente_accident_travail:
+          2018-06: 235
+          2018-05: 235
+          2018-04: 235
+          2018-03: 235
+          2018-02: 235
+          2018-01: 235
+          2017-12: 235
+          2017-11: 235
+          2017-10: 235
+          2017-09: 235
+          2017-08: 235
+          2017-07: 235
+        salaire_net:
+          2018-06: 790
+          2018-05: 790
+          2018-04: 0
+          2018-03: 390
+          2018-02: 790
+          2018-01: 790
+          2017-12: 0
+          2017-11: 790
+          2017-10: 250
+          2017-09: 0
+          2017-08: 790
+          2017-07: 650
+      parent2:
+        age: 36
+        salaire_net:
+          2018-06: 530
+          2018-05: 0
+          2018-04: 530
+          2018-03: 530
+          2018-02: 0
+          2018-01: 530
+          2017-12: 0
+          2017-11: 0
+          2017-10: 0
+          2017-09: 0
+          2017-08: 530
+          2017-07: 0
+    famille:
+      parents: [parent1, parent2]
+      cmu_forfait_logement_al: 1374.39
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - parent1
+      foyer_fiscal_1:
+        declarants:
+        - parent2
+    menages:
+      menage_0:
+        personne_de_reference:
+        - parent1
+      menage_1:
+        personne_de_reference:
+        - parent2
+  output:
     cmu_c_plafond: 13215
     acs_plafond: 17841
     cmu_base_ressources: 12874.39
     cmu_acs_eligibilite: true
     cmu_c: true
 
-- name: "cas 2: passant rente AT  taux IPP  à 85%, foyer composé de 3 personnes : Mme Perçoit des salaires, Mr perçoit une rente AT avec un taux IPP à 85% et une prestation complémentaire pour recours à tierce personne (PCRTP), enfant de moins de 18 ans sans revenu"
+- name: 'cas 2: passant rente AT  taux IPP  à 85%, foyer composé de 3 personnes : Mme Perçoit des salaires, Mr perçoit une rente AT avec un taux IPP à 85% et une prestation complémentaire pour recours à tierce personne (PCRTP), enfant de moins de 18 ans sans revenu'
   period: 2018-07
   absolute_error_margin: 0.75
-  individus:
-    - id: "parent1"
-      age: 36
-      rente_accident_travail:
-        2018-06: 700
-        2018-05: 700
-        2018-04: 700
-        2018-03: 700
-        2018-02: 700
-        2018-01: 700
-        2017-12: 700
-        2017-11: 700
-        2017-10: 700
-        2017-09: 700
-        2017-08: 700
-        2017-07: 700
-      prestation_compensatoire:
-        2018-06: 150
-        2018-05: 150
-        2018-04: 150
-        2018-03: 150
-        2018-02: 150
-        2018-01: 150
-        2017-12: 150
-        2017-11: 150
-        2017-10: 150
-        2017-09: 150
-        2017-08: 150
-        2017-07: 150
-    - id: "parent2"
-      age: 36
-      salaire_net:
-        2018-06: 530
-        2018-05: 530
-        2018-04: 530
-        2018-03: 530
-        2018-02: 530
-        2018-01: 530
-        2017-12: 0
-        2017-11: 0
-        2017-10: 0
-        2017-09: 0
-        2017-08: 0
-        2017-07: 0
-    - id: "enfant1"
-      age: 8
-  familles:
-    parents: ["parent1", "parent2"]
-    enfants: ["enfant1"]
-    cmu_forfait_logement_al: 1649.28
-  output_variables:
+  input:
+    individus:
+      parent1:
+        age: 36
+        rente_accident_travail:
+          2018-06: 700
+          2018-05: 700
+          2018-04: 700
+          2018-03: 700
+          2018-02: 700
+          2018-01: 700
+          2017-12: 700
+          2017-11: 700
+          2017-10: 700
+          2017-09: 700
+          2017-08: 700
+          2017-07: 700
+        prestation_compensatoire:
+          2018-06: 150
+          2018-05: 150
+          2018-04: 150
+          2018-03: 150
+          2018-02: 150
+          2018-01: 150
+          2017-12: 150
+          2017-11: 150
+          2017-10: 150
+          2017-09: 150
+          2017-08: 150
+          2017-07: 150
+      parent2:
+        age: 36
+        salaire_net:
+          2018-06: 530
+          2018-05: 530
+          2018-04: 530
+          2018-03: 530
+          2018-02: 530
+          2018-01: 530
+          2017-12: 0
+          2017-11: 0
+          2017-10: 0
+          2017-09: 0
+          2017-08: 0
+          2017-07: 0
+      enfant1:
+        age: 8
+    famille:
+      parents: [parent1, parent2]
+      enfants: [enfant1]
+      cmu_forfait_logement_al: 1649.28
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - parent1
+      foyer_fiscal_1:
+        declarants:
+        - parent2
+      foyer_fiscal_2:
+        declarants:
+        - enfant1
+    menages:
+      menage_0:
+        personne_de_reference:
+        - parent1
+      menage_1:
+        personne_de_reference:
+        - parent2
+      menage_2:
+        personne_de_reference:
+        - enfant1
+  output:
     cmu_c_plafond: 15858
     acs_plafond: 21409
     cmu_base_ressources: 15029.28
     cmu_acs_eligibilite: true
     cmu_c: true
 
-- name: "Cas 3: Cas non passant rente AT avec taux IPP de 25%, foyer composé de 2 personnes : Mme perçoit une rente AT trimestrielle et des salaires, Mr perçoit des salaires"
+- name: 'Cas 3: Cas non passant rente AT avec taux IPP de 25%, foyer composé de 2 personnes : Mme perçoit une rente AT trimestrielle et des salaires, Mr perçoit des salaires'
   period: 2018-07
   absolute_error_margin: 0.75
-  individus:
-    - id: "parent1"
-      age: 36
-      salaire_net:
-        2018-06: 820
-        2018-05: 820
-        2018-04: 820
-        2018-03: 820
-        2018-02: 820
-        2018-01: 820
-        2017-12: 820
-        2017-11: 820
-        2017-10: 820
-        2017-09: 820
-        2017-08: 820
-        2017-07: 820
-      rente_accident_travail:
-        2018-06: 0
-        2018-05: 0
-        2018-04: 1200
-        2018-03: 0
-        2018-02: 0
-        2018-01: 1200
-        2017-12: 0
-        2017-11: 0
-        2017-10: 1200
-        2017-09: 0
-        2017-08: 0
-        2017-07: 1200
-    - id: "parent2"
-      age: 36
-      salaire_net:
-        2018-06: 975
-        2018-05: 975
-        2018-04: 975
-        2018-03: 975
-        2018-02: 975
-        2018-01: 975
-        2017-12: 975
-        2017-11: 975
-        2017-10: 975
-        2017-09: 975
-        2017-08: 975
-        2017-07: 975
-    - id: "enfant1"
-      age: 8
-  familles:
-    parents: ["parent1", "parent2"]
-    enfants: ["enfant1"]
-    rsa: 0
-  output_variables:
+  input:
+    individus:
+      parent1:
+        age: 36
+        salaire_net:
+          2018-06: 820
+          2018-05: 820
+          2018-04: 820
+          2018-03: 820
+          2018-02: 820
+          2018-01: 820
+          2017-12: 820
+          2017-11: 820
+          2017-10: 820
+          2017-09: 820
+          2017-08: 820
+          2017-07: 820
+        rente_accident_travail:
+          2018-06: 0
+          2018-05: 0
+          2018-04: 1200
+          2018-03: 0
+          2018-02: 0
+          2018-01: 1200
+          2017-12: 0
+          2017-11: 0
+          2017-10: 1200
+          2017-09: 0
+          2017-08: 0
+          2017-07: 1200
+      parent2:
+        age: 36
+        salaire_net:
+          2018-06: 975
+          2018-05: 975
+          2018-04: 975
+          2018-03: 975
+          2018-02: 975
+          2018-01: 975
+          2017-12: 975
+          2017-11: 975
+          2017-10: 975
+          2017-09: 975
+          2017-08: 975
+          2017-07: 975
+      enfant1:
+        age: 8
+    famille:
+      parents: [parent1, parent2]
+      enfants: [enfant1]
+      rsa: 0
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - parent1
+      foyer_fiscal_1:
+        declarants:
+        - parent2
+      foyer_fiscal_2:
+        declarants:
+        - enfant1
+    menages:
+      menage_0:
+        personne_de_reference:
+        - parent1
+      menage_1:
+        personne_de_reference:
+        - parent2
+      menage_2:
+        personne_de_reference:
+        - enfant1
+  output:
     cmu_c_plafond: 15858
     acs_plafond: 21409
     cmu_base_ressources: 26340.00
     cmu_c: false
     cmu_acs_eligibilite: true
 
-- name: "Cas 4 passant rente AT avec taux IPP de 45% versée trimestriellement + salaires pour l'assuré bénificiant de la RAT Foyer composé de 4 personnes , Mme perçoit des salaires, les deux enfants ont moins de 18 ans, et n'ont pas de revenu"
+- name: Cas 4 passant rente AT avec taux IPP de 45% versée trimestriellement + salaires pour l'assuré bénificiant de la RAT Foyer composé de 4 personnes , Mme perçoit des salaires, les deux enfants ont moins de 18 ans, et n'ont pas de revenu
   period: 2018-07
   absolute_error_margin: 0.75
-  individus:
-    - id: "parent1"
-      age: 36
-      salaire_net:
-        2018-06: 650
-        2018-05: 650
-        2018-04: 650
-        2018-03: 650
-        2018-02: 650
-        2018-01: 650
-        2017-12: 650
-        2017-11: 650
-        2017-10: 650
-        2017-09: 650
-        2017-08: 650
-        2017-07: 650
-      rente_accident_travail:
+  input:
+    individus:
+      parent1:
+        age: 36
+        salaire_net:
+          2018-06: 650
+          2018-05: 650
+          2018-04: 650
+          2018-03: 650
+          2018-02: 650
+          2018-01: 650
+          2017-12: 650
+          2017-11: 650
+          2017-10: 650
+          2017-09: 650
+          2017-08: 650
+          2017-07: 650
+        rente_accident_travail:
+          2018-06: 0
+          2018-05: 0
+          2018-04: 250
+          2018-03: 0
+          2018-02: 0
+          2018-01: 250
+          2017-12: 0
+          2017-11: 0
+          2017-10: 250
+          2017-09: 0
+          2017-08: 0
+          2017-07: 250
+      parent2:
+        age: 36
+        salaire_net:
+          2018-06: 950
+          2018-05: 950
+          2018-04: 950
+          2018-03: 950
+          2018-02: 950
+          2018-01: 250
+          2017-12: 950
+          2017-11: 950
+          2017-10: 950
+          2017-09: 950
+          2017-08: 645
+          2017-07: 950
+      enfant1:
+        age: 8
+      enfant2:
+        age: 7
+    famille:
+      rsa: 0
+      af:
         2018-06: 0
         2018-05: 0
-        2018-04: 250
+        2018-04: 0
         2018-03: 0
         2018-02: 0
-        2018-01: 250
+        2018-01: 0
         2017-12: 0
         2017-11: 0
-        2017-10: 250
+        2017-10: 0
         2017-09: 0
         2017-08: 0
-        2017-07: 250
-    - id: "parent2"
-      age: 36
-      salaire_net:
-        2018-06: 950
-        2018-05: 950
-        2018-04: 950
-        2018-03: 950
-        2018-02: 950
-        2018-01: 250
-        2017-12: 950
-        2017-11: 950
-        2017-10: 950
-        2017-09: 950
-        2017-08: 645
-        2017-07: 950
-    - id: "enfant1"
-      age: 8
-    - id: "enfant2"
-      age: 7
-  familles:
-    rsa: 0
-    af:
-      2018-06: 0
-      2018-05: 0
-      2018-04: 0
-      2018-03: 0
-      2018-02: 0
-      2018-01: 0
-      2017-12: 0
-      2017-11: 0
-      2017-10: 0
-      2017-09: 0
-      2017-08: 0
-      2017-07: 0
-    parents: ["parent1", "parent2"]
-    enfants: ["enfant1","enfant2"]
-  output_variables:
+        2017-07: 0
+      parents: [parent1, parent2]
+      enfants: [enfant1, enfant2]
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - parent1
+      foyer_fiscal_1:
+        declarants:
+        - parent2
+      foyer_fiscal_2:
+        declarants:
+        - enfant1
+      foyer_fiscal_3:
+        declarants:
+        - enfant2
+    menages:
+      menage_0:
+        personne_de_reference:
+        - parent1
+      menage_1:
+        personne_de_reference:
+        - parent2
+      menage_2:
+        personne_de_reference:
+        - enfant1
+      menage_3:
+        personne_de_reference:
+        - enfant2
+  output:
     cmu_c_plafond: 18501
     acs_plafond: 24977
     cmu_base_ressources: 19195

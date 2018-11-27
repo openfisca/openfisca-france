@@ -1,45 +1,96 @@
-- name: "Cas N°1 famille ayant droit à l'ASF - Parent isolé avec un enfant"
+- name: Cas N°1 famille ayant droit à l'ASF - Parent isolé avec un enfant
   period: 2018-04
   absolute_error_margin: 0.01
-  familles:
-    parents: ["parent1"]
-    enfants: ["enfant1"]
-  individus:
-    - id: "parent1"
-      age: 47
-    - id: "enfant1"
-      age: 14
-  output_variables:
+  input:
+    famille:
+      parents: [parent1]
+      enfants: [enfant1]
+    individus:
+      parent1:
+        age: 47
+      enfant1:
+        age: 14
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - parent1
+      foyer_fiscal_1:
+        declarants:
+        - enfant1
+    menages:
+      menage_0:
+        personne_de_reference:
+        - parent1
+      menage_1:
+        personne_de_reference:
+        - enfant1
+  output:
     asf: 115.87
 
-- name: "Cas N°2 famille ayant droit à l'ASF - Parent isolé avec deux enfant"
+- name: Cas N°2 famille ayant droit à l'ASF - Parent isolé avec deux enfant
   period: 2018-04
   absolute_error_margin: 0.01
-  familles:
-    parents: ["parent1"]
-    enfants: ["enfant1", "enfant2"]
-  individus:
-    - id: "parent1"
-      age: 47
-    - id: "enfant1"
-      age: 14
-    - id: "enfant2"
-      age: 12
-  output_variables:
+  input:
+    famille:
+      parents: [parent1]
+      enfants: [enfant1, enfant2]
+    individus:
+      parent1:
+        age: 47
+      enfant1:
+        age: 14
+      enfant2:
+        age: 12
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - parent1
+      foyer_fiscal_1:
+        declarants:
+        - enfant1
+      foyer_fiscal_2:
+        declarants:
+        - enfant2
+    menages:
+      menage_0:
+        personne_de_reference:
+        - parent1
+      menage_1:
+        personne_de_reference:
+        - enfant1
+      menage_2:
+        personne_de_reference:
+        - enfant2
+  output:
     asf: 231.74
 
-- name: "Cas N°3 famille ayant droit à l'ASF - Parent isolé avec un enfant et une pension alimentaire"
+- name: Cas N°3 famille ayant droit à l'ASF - Parent isolé avec un enfant et une pension alimentaire
   period: 2018-04
   absolute_error_margin: 0.01
-  familles:
-    parents: ["parent1"]
-    enfants: ["enfant1"]
-  individus:
-    - id: "parent1"
-      age: 40
-      pensions_alimentaires_percues: 50
-    - id: "enfant1"
-      age: 9
-      garde_alternee: true
-  output_variables:
+  input:
+    famille:
+      parents: [parent1]
+      enfants: [enfant1]
+    individus:
+      parent1:
+        age: 40
+        pensions_alimentaires_percues: 50
+      enfant1:
+        age: 9
+        garde_alternee: true
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - parent1
+      foyer_fiscal_1:
+        declarants:
+        - enfant1
+    menages:
+      menage_0:
+        personne_de_reference:
+        - parent1
+      menage_1:
+        personne_de_reference:
+        - enfant1
+  output:
     asf: 65.87

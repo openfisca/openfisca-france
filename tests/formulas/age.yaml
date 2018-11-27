@@ -1,96 +1,99 @@
-- name: "Âge (en années) par défaut"
-  period: "2013-01"
-  output_variables:
+- name: Âge (en années) par défaut
+  period: 2013-01
+  input: {}
+  output:
     age: 43
-- name: "Âge (en années) par défaut"
-  period: "2014-01"
-  output_variables:
+- name: Âge (en années) par défaut
+  period: 2014-01
+  input: {}
+  output:
     age: 44
-- name: "Âge (en années) d'après l'âge en mois"
-  period: "2013-05"
-  input_variables:
+- name: Âge (en années) d'après l'âge en mois
+  period: 2013-05
+  input:
     age_en_mois: 40 * 12 + 6
-  output_variables:
+  output:
     age: 40
-- name: "Âge d'après la date de naissance"
-  period: "2013-01"
-  input_variables:
-    date_naissance: "1973-01-01"
-  output_variables:
+- name: Âge d'après la date de naissance
+  period: 2013-01
+  input:
+    date_naissance: '1973-01-01'
+  output:
     age: 40
     age_en_mois: 40 * 12
-- name: "Âge d'après la date de naissance (erreur d'arrondi)"
-  period: "2017-06"
-  input_variables:
-    date_naissance: "2000-06-01"
-  output_variables:
+- name: Âge d'après la date de naissance (erreur d'arrondi)
+  period: 2017-06
+  input:
+    date_naissance: '2000-06-01'
+  output:
     age: 17
     age_en_mois: 17 * 12
-- name: "Âge (en mois) d'après l'âge en années"
-  period: "2013-01"
-  input_variables:
+- name: Âge (en mois) d'après l'âge en années
+  period: 2013-01
+  input:
     age: 40
-  output_variables:
+  output:
     age_en_mois: 40 * 12
-- name: "Âge (en années) d'après l'âge en années, le même jour d'une autre année"
-  period: "2013-01"
-  input_variables:
+- name: Âge (en années) d'après l'âge en années, le même jour d'une autre année
+  period: 2013-01
+  input:
     age:
       2010-01: 30
-  output_variables:
+  output:
     age: 33
-- name: "Âge (en mois) d'après l'âge en mois, le même jour d'un autre mois"
-  period: "2013-01"
-  input_variables:
+- name: Âge (en mois) d'après l'âge en mois, le même jour d'un autre mois
+  period: 2013-01
+  input:
     age_en_mois:
       2010-07: 31 * 12
-  output_variables:
+  output:
     age_en_mois: 33 * 12 + 6
-- name: "Âge (en mois) d'après un âge en mois donné sur une année"
-  period: "2013-01"
-  input_variables:
+- name: Âge (en mois) d'après un âge en mois donné sur une année
+  period: 2013-01
+  input:
     age_en_mois: 33 * 12
-  output_variables:
+  output:
     age_en_mois:
       2012-01: (33 - 1) * 12
       2012-12: 33 * 12 - 1
       2013-01: 33 * 12
       2013-02: 33 * 12 + 1
-- name: "Âge (en années) d'après l'âge en mois, après avoir calculé l'age 6 mois avant"
-  period: "2013-01"
-  input_variables:
+- name: Âge (en années) d'après l'âge en mois, après avoir calculé l'age 6 mois avant
+  period: 2013-01
+  input:
     age_en_mois: 40 * 12 + 6
-  output_variables:
+  output:
     age:
       2012-06: 39
       2013-01: 40
-- name: "Utilisation de l'âge dans les réparations du scénario"
-  period: "2015-01"
+- name: Utilisation de l'âge dans les réparations du scénario
+  period: 2015-01
   absolute_error_margin: 0.005
-  familles:
-    parents: ["parent1", "parent2"]
-    enfants: ["enfant1", "enfant2"]
-  foyers_fiscaux:
-    declarants: ["parent1", "parent2"]
-    personnes_a_charge: ["enfant1", "enfant2"]
-  menages:
-    personne_de_reference: "parent1"
-    conjoint: "parent2"
-    enfants: ["enfant1", "enfant2"]
-  individus:
-    - id: "parent1"
-      age_en_mois:
-        2015-01: 40 * 12
-    - id: "parent2"
-      age_en_mois:
-        2015-01: 40 * 12
-    - id: "enfant1"
-      age_en_mois:
-        2015-01: 9 * 12
-    - id: "enfant2"
-      age_en_mois:
-        2015-01: 9 * 12
-  output_variables:
+  input:
+    famille:
+      parents: [parent1, parent2]
+      enfants: [enfant1, enfant2]
+    foyer_fiscal:
+      declarants: [parent1, parent2]
+      personnes_a_charge: [enfant1, enfant2]
+    menage:
+      personne_de_reference: parent1
+      conjoint: parent2
+      enfants: [enfant1, enfant2]
+    individus:
+      parent1:
+        age_en_mois:
+          2015-01: 40 * 12
+      parent2:
+        age_en_mois:
+          2015-01: 40 * 12
+      enfant1:
+        age_en_mois:
+          2015-01: 9 * 12
+      enfant2:
+        age_en_mois:
+          2015-01: 9 * 12
+  output:
     age_en_mois:
       2015-01:
       - 480 #  40 * 12
@@ -104,12 +107,12 @@
       - 109 #  9 * 12 + 1
     age:
       2015-01:
-        - 40
-        - 40
-        - 9
-        - 9
+      - 40
+      - 40
+      - 9
+      - 9
       2015-02:
-        - 40
-        - 40
-        - 9
-        - 9
+      - 40
+      - 40
+      - 9
+      - 9

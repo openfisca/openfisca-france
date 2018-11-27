@@ -1,71 +1,86 @@
-# bmaf 2012-01-01 = 399.0
-# bmaf 2013-04-01 = 403.79
-# bmaf 2014-04-01 = 406.21
-
-
-- name: "Avant le 1er avril 2014, le montant de base de la PAJE est proprotionnel à la BMAF"
+- name: Avant le 1er avril 2014, le montant de base de la PAJE est proprotionnel à la BMAF
   period: 2013-01
   relative_error_margin: 0.01
-  individus:
-    - id: "parent1"
-      age: 40
-    - id: "parent2"
-      age: 40
-    - id: "enfant1"
-      age: 1
-    - id: "parent3"
-      age: 40
-    - id: "parent4"
-      age: 40
-    - id: "enfant2"
-      age: 2
-  familles:
-    -
-      parents: ["parent1", "parent2"]
-      enfants: ["enfant1"]
-    -
-      parents: ["parent3", "parent4"]
-      enfants: ["enfant2"]
-  foyers_fiscaux:
-    declarants: ["parent1", "parent2"]
-    personnes_a_charge: ["enfant1"]
-  menages:
-    personne_de_reference: "parent1"
-    conjoint: "parent2"
-    enfants: ["enfant1"]
-  output_variables:
+  input:
+    individus:
+      parent1:
+        age: 40
+      parent2:
+        age: 40
+      enfant1:
+        age: 1
+      parent3:
+        age: 40
+      parent4:
+        age: 40
+      enfant2:
+        age: 2
+    familles:
+      famille_0:
+        parents: [parent1, parent2]
+        enfants: [enfant1]
+      famille_1:
+        parents: [parent3, parent4]
+        enfants: [enfant2]
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants: [parent1, parent2]
+        personnes_a_charge: [enfant1]
+      foyer_fiscal_1:
+        declarants: [parent3, parent4]
+        personnes_a_charge: [enfant2]
+    menages:
+      menage_0:
+        personne_de_reference: parent1
+        conjoint: parent2
+        enfants: [enfant1]
+      menage_1:
+        personne_de_reference: parent3
+        conjoint: parent4
+        enfants: [enfant2]
+  output:
     paje_base: 0.4595 * 399.0
 
 
-- name: "À partir du 1er avril 2013, le montant de base de la PAJE est gelé"
+- name: À partir du 1er avril 2013, le montant de base de la PAJE est gelé
   period: 2015-01
   relative_error_margin: 0.01
-  individus:
-    - id: "parent1"
-      age: 40
-    - id: "parent2"
-      age: 40
-    - id: "enfant1"
-      age: 1
-    - id: "parent3"
-      age: 40
-    - id: "parent4"
-      age: 40
-    - id: "enfant2"
-      age: 2
-  familles:
-    -
-      parents: ["parent1", "parent2"]
-      enfants: ["enfant1"]
-    -
-      parents: ["parent3", "parent4"]
-      enfants: ["enfant2"]
-  foyers_fiscaux:
-    declarants: ["parent1", "parent2"]
-    personnes_a_charge: ["enfant1"]
-  menages:
-    personne_de_reference: "parent1"
-    conjoint: "parent2"
-    enfants: ["enfant1"]
-  output_variables:
+  input:
+    individus:
+      parent1:
+        age: 40
+      parent2:
+        age: 40
+      enfant1:
+        age: 1
+      parent3:
+        age: 40
+      parent4:
+        age: 40
+      enfant2:
+        age: 2
+    familles:
+      famille_0:
+        parents: [parent1, parent2]
+        enfants: [enfant1]
+      famille_1:
+        parents: [parent3, parent4]
+        enfants: [enfant2]
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants: [parent1, parent2]
+        personnes_a_charge: [enfant1]
+      foyer_fiscal_1:
+        declarants: [parent3, parent4]
+        personnes_a_charge: [enfant2]
+    menages:
+      menage_0:
+        personne_de_reference: parent1
+        conjoint: parent2
+        enfants: [enfant1]
+      menage_1:
+        personne_de_reference: parent3
+        conjoint: parent4
+        enfants: [enfant2]
+  output:
     paje_base: 0.4595 * 403.79

@@ -1,67 +1,63 @@
-- name: "Complément d'AAH - cas 1"
+- name: Complément d'AAH - cas 1
   description: Montant du complément d AAH au niveau de l individu
   period: 2012-03
   absolute_error_margin: 10
-  input_variables:
+  input:
     asi: 600
-    asi_eligibilite: 'True'
+    asi_eligibilite: true
     aide_logement_montant: 230
     taux_incapacite: 0.8
-  output_variables:
+  output:
     caah: 179.3  # 1 * max(922.93 - 743.62, 0)
-# changer résultat test quand mva intégrée
-
-- name: "Complément d'AAH - cas 2"
+- name: Complément d'AAH - cas 2
   description: Montant du complément d AAH au niveau de l individu
   period: 2008-09
   absolute_error_margin: 10
-  input_variables:
+  input:
     aah: 790
     aide_logement_montant: 190
     taux_incapacite: 0.8
-  output_variables:
+  output:
     caah: 179  # 831.91 - 652.60
-# changer résultat test quand mva intégrée
-
-- name: "Complément d'AAH - cas 3"
+- name: Complément d'AAH - cas 3
   description: Montant du complément d AAH au niveau de l individu
   period: 2004-11
   absolute_error_margin: 10
-  input_variables:
+  input:
     aah: 620
     aide_logement_montant: 0
     taux_incapacite: 0.8
-  output_variables:
+  output:
     caah: 0
 
-- name: "Complément d'AAH - cas 4"
+- name: Complément d'AAH - cas 4
   description: Montant du complément d AAH au niveau de l individu
   period: 2004-11
   absolute_error_margin: 10
-  input_variables:
+  input:
     aah: 620
     aide_logement_montant: 120
     taux_incapacite: 0.8
-  output_variables:
+  output:
     caah: 94  # 16% * 587.74
 
-- name: "Complément d'AAH - cas 5"
+- name: Complément d'AAH - cas 5
   description: Montant du complément d AAH au niveau de l individu
   period: 2005-02
   absolute_error_margin: 10
-  input_variables:
+  input:
     aah: 540
     aide_logement_montant: 310
     taux_incapacite: 0.8
-  output_variables:
+  output:
     caah: 95.9  # 16% * 1 * 599.49
 
 - name: Taux d'incapacité trop faible pour le complément d'AAH
   description: Montant du complément d AAH au niveau de l individu
   period: 2005-02
   absolute_error_margin: 10
-  input_variables:
+  input:
     aah: 540
     taux_incapacite: 0.7
-  output_variables:
+  output:
     caah: 0

@@ -1,39 +1,31 @@
-# En 2016, 2TT contient les intérêts avant pertes
-# et 2TU les pertes déductibles des intérêts inscrits en 2TT (si le montant en 2TU est > à celui en 2TT,
-# la perte excédentaire est reportable sur les cinq années suivantes). En 2017, 2TT contient les intérêts
-# après déduction des pertes. 2TU, et aussi 2TV, contiennent des pertes excéndentaires à reporter
-# La PR #1075 fait cette actualisation pour 2017, et introduit le PFU en 2018. On fait donc des tests pour 2016, 2017 et 2018
-
 - name: ir_prets_participatifs_2016
-  description: "Montant d'impôt sur le revenu si prêts participatifs - 2016"
+  description: Montant d'impôt sur le revenu si prêts participatifs - 2016
   period: 2016
   absolute_error_margin: 1
-  input_variables:
+  input:
     f2tt_2016: 100000
     f2tu_2016: 30000
-  output_variables:
+  output:
     irpp: -15350 # Montant obtenu sur le simulateur de la DGFiP
     impots_directs: -15350
 
 - name: ir_prets_participatifs_2017
-  description: "Montant d'impôt sur le revenu si prêts participatifs - 2017"
+  description: Montant d'impôt sur le revenu si prêts participatifs - 2017
   period: 2017
   absolute_error_margin: 1
-  input_variables:
+  input:
     f2tt: 100000
-    #f2tu: 30000 # Sur le simulateur de la DGFiP, pas possible de rentrer un montant >0 en 3tu si le montant en 3tt est >0. Cohérent.
-  output_variables:
+  output:
     irpp: -27305 # Montant obtenu sur le simulateur de la DGFiP
     impots_directs: -27305
 
 - name: ir_prets_participatifs_2018
-  description: "Montant d'impôt sur le revenu (via prelevement_forfaitaire_unique_ir) si prêts participatifs - 2018"
+  description: Montant d'impôt sur le revenu (via prelevement_forfaitaire_unique_ir) si prêts participatifs - 2018
   period: 2018
   absolute_error_margin: 1
-  input_variables:
+  input:
     f2tt: 100000
-    #f2tu: 30000 # Par définition, si 3tt>0, 3tu ne peut pas être >0
-  output_variables:
+  output:
     irpp: 0
     prelevement_forfaitaire_unique_ir: -0.128*100000
     impots_directs: -0.128*100000

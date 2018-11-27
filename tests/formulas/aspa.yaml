@@ -1,155 +1,157 @@
-- name: "ASPA - Cas N°1"
+- name: ASPA - Cas N°1
   period: 2018-04
   absolute_error_margin: 0.02
-  familles:
-    parents: ["parent1", "parent2"]
-  foyers_fiscaux:
-    declarants: ["parent1", "parent2"]
-  menages:
-    personne_de_reference: "parent1"
-    conjoint: "parent2"
-  individus:
-    - id: "parent1"
-      date_naissance: 1953-03-15
-      #ressources du dernier trimestre / 3
-      asi_aspa_base_ressources_individu: 1173 / 3
-    - id: "parent2"
-      asi_aspa_base_ressources_individu: 0
-  output_variables:
+  input:
+    famille:
+      parents: [parent1, parent2]
+    foyer_fiscal:
+      declarants: [parent1, parent2]
+    menage:
+      personne_de_reference: parent1
+      conjoint: parent2
+    individus:
+      parent1:
+        date_naissance: 1953-03-15
+        asi_aspa_base_ressources_individu: 1173 / 3
+      parent2:
+        asi_aspa_base_ressources_individu: 0
+  output:
     aspa: 833.20
 
-- name: "ASPA - Cas N°2"
+- name: ASPA - Cas N°2
   period: 2018-04
   absolute_error_margin: 0.02
-  familles:
-    parents: ["parent1"]
-  foyers_fiscaux:
-    declarants: ["parent1"]
-  menages:
-    personne_de_reference: "parent1"
-  individus:
-    - id: "parent1"
-      date_naissance: 1953-04-01
-      duree_possession_titre_sejour: 12
-      #ressources du dernier trimestre / 3
-      asi_aspa_base_ressources_individu: 1590 / 3
-  output_variables:
+  input:
+    famille:
+      parents: [parent1]
+    foyer_fiscal:
+      declarants: [parent1]
+    menage:
+      personne_de_reference: parent1
+    individus:
+      parent1:
+        date_naissance: 1953-04-01
+        duree_possession_titre_sejour: 12
+        asi_aspa_base_ressources_individu: 1590 / 3
+  output:
     aspa: 303.20
 
-- name: "ASPA - Cas N°3"
+- name: ASPA - Cas N°3
   period: 2018-04
   absolute_error_margin: 0.02
-  familles:
-    parents: ["parent1", "parent2"]
-  foyers_fiscaux:
-    declarants: ["parent1", "parent2"]
-  menages:
-    personne_de_reference: "parent1"
-    conjoint: "parent2"
-  individus:
-    - id: "parent1"
-      date_naissance: 1958-04-12
-    - id: "parent2"
-  output_variables:
+  input:
+    famille:
+      parents: [parent1, parent2]
+    foyer_fiscal:
+      declarants: [parent1, parent2]
+    menage:
+      personne_de_reference: parent1
+      conjoint: parent2
+    individus:
+      parent1:
+        date_naissance: 1958-04-12
+      parent2: {}
+  output:
     aspa: 0
 
-- name: "ASPA - Cas N°4"
+- name: ASPA - Cas N°4
   period: 2018-04
   absolute_error_margin: 0.02
-  familles:
-    parents: ["parent1", "parent2"]
-  foyers_fiscaux:
-    declarants: ["parent1", "parent2"]
-  menages:
-    personne_de_reference: "parent1"
-    conjoint: "parent2"
-  individus:
-    - id: "parent1"
-      date_naissance: 1950-05-12
-      #ressources du dernier trimestre / 3
-      asi_aspa_base_ressources_individu: 1800 / 3
-    - id: "parent2"
-      asi_aspa_base_ressources_individu: 3000 / 3
-  output_variables:
+  input:
+    famille:
+      parents: [parent1, parent2]
+    foyer_fiscal:
+      declarants: [parent1, parent2]
+    menage:
+      personne_de_reference: parent1
+      conjoint: parent2
+    individus:
+      parent1:
+        date_naissance: 1950-05-12
+        asi_aspa_base_ressources_individu: 1800 / 3
+      parent2:
+        asi_aspa_base_ressources_individu: 3000 / 3
+  output:
     aspa: 0
 
-- name: "ASPA - Cas N°5"
+- name: ASPA - Cas N°5
   period: 2018-04
   absolute_error_margin: 0.02
-  familles:
-    parents: ["parent1"]
-  foyers_fiscaux:
-    declarants: ["parent1"]
-  menages:
-    personne_de_reference: "parent1"
-  individus:
-    - id: "parent1"
-      date_naissance: 1956-03-12
-      duree_possession_titre_sejour: 12
-      inapte_travail: true
-      #ressources du dernier trimestre / 3
-      asi_aspa_base_ressources_individu: 2250 / 3
-  output_variables:
+  input:
+    famille:
+      parents: [parent1]
+    foyer_fiscal:
+      declarants: [parent1]
+    menage:
+      personne_de_reference: parent1
+    individus:
+      parent1:
+        date_naissance: 1956-03-12
+        duree_possession_titre_sejour: 12
+        inapte_travail: true
+        asi_aspa_base_ressources_individu: 2250 / 3
+  output:
     aspa: 83.20
 
-- name: "ASPA - Cas N°6"
+- name: ASPA - Cas N°6
   period: 2018-04
   absolute_error_margin: 0.02
-  familles:
-    parents: ["parent1", "parent2"]
-  foyers_fiscaux:
-    declarants: ["parent1", "parent2"]
-  menages:
-    personne_de_reference: "parent1"
-    conjoint: "parent2"
-  individus:
-    - id: "parent1"
-      date_naissance: 1953-03-12
-      #ressources du dernier trimestre / 3
-      asi_aspa_base_ressources_individu: 2175 / 3
-    - id: "parent2"
-      date_naissance: 1956-01-15
-      inapte_travail: true
-      asi_aspa_base_ressources_individu: 1050 / 3
-  output_variables:
+  input:
+    famille:
+      parents: [parent1, parent2]
+    foyer_fiscal:
+      declarants: [parent1, parent2]
+    menage:
+      personne_de_reference: parent1
+      conjoint: parent2
+    individus:
+      parent1:
+        date_naissance: 1953-03-12
+        asi_aspa_base_ressources_individu: 2175 / 3
+      parent2:
+        date_naissance: 1956-01-15
+        inapte_travail: true
+        asi_aspa_base_ressources_individu: 1050 / 3
+  output:
     #touchée par les deux membres du couple
     aspa: 109.27 * 2
 
-- name: "ASPA - Cas N°7"
+- name: ASPA - Cas N°7
   period: 2018-04
   absolute_error_margin: 0.02
-  familles:
-    parents: ["parent1", "parent2"]
-  foyers_fiscaux:
-    declarants: ["parent1", "parent2"]
-  menages:
-    personne_de_reference: "parent1"
-    conjoint: "parent2"
-  individus:
-    - id: "parent1"
-      date_naissance: 1953-03-12
-      #ressources du dernier trimestre / 3
-      asi_aspa_base_ressources_individu: 60 / 3
-    - id: "parent2"
-      date_naissance: 1953-01-15
-      asi_aspa_base_ressources_individu: 60 / 3
-  output_variables:
+  input:
+    famille:
+      parents: [parent1, parent2]
+    foyer_fiscal:
+      declarants: [parent1, parent2]
+    menage:
+      personne_de_reference: parent1
+      conjoint: parent2
+    individus:
+      parent1:
+        date_naissance: 1953-03-12
+        asi_aspa_base_ressources_individu: 60 / 3
+      parent2:
+        date_naissance: 1953-01-15
+        asi_aspa_base_ressources_individu: 60 / 3
+  output:
     #touchée par les deux membres du couple
     aspa: 626.77 * 2
 
-- name: "ASPA - Cas N°2"
+- name: ASPA - Cas N°2
   period: 2018-04
   absolute_error_margin: 0.02
-  familles:
-    parents: ["parent1"]
-  foyers_fiscaux:
-    declarants: ["parent1"]
-  menages:
-    personne_de_reference: "parent1"
-  individus:
-    - id: "parent1"
-      date_naissance: 1953-05-12
-      ressortissant_eee: false
-      duree_possession_titre_sejour: 0
-  output_variables:
+  input:
+    famille:
+      parents: [parent1]
+    foyer_fiscal:
+      declarants: [parent1]
+    menage:
+      personne_de_reference: parent1
+    individus:
+      parent1:
+        date_naissance: 1953-05-12
+        ressortissant_eee: false
+        duree_possession_titre_sejour: 0
+  output:
     aspa: 0

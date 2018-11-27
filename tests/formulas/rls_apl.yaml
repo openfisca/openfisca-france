@@ -1,77 +1,85 @@
 - name: 1- Zone 1 isolé
   period: 2018-01
   relative_error_margin: 0.01
-  input_variables:
+  input:
     zone_apl: zone_1
     aide_logement_montant_brut: 27
     logement_conventionne: true
     aide_logement_base_ressources: 900
-  output_variables:
+  output:
     apl: 0
     reduction_loyer_solidarite: 31.83
 
 - name: 2- Zone 1 isolé
   period: 2018-01
   relative_error_margin: 0.01
-  input_variables:
+  input:
     zone_apl: zone_1
     aide_logement_montant_brut: 0
     logement_conventionne: true
     aide_logement_base_ressources: 900
-  output_variables:
+  output:
     apl: 0
     reduction_loyer_solidarite: 31.83
 
 - name: 3- Zone 1 isolé
   period: 2018-01
   relative_error_margin: 0.01
-  input_variables:
+  input:
     zone_apl: zone_1
     aide_logement_montant_brut: 100
     logement_conventionne: true
     aide_logement_base_ressources: 900
-  output_variables:
+  output:
     apl: 68.45
     reduction_loyer_solidarite: 31.83
 
-- name: "Base ressources de la RLS, ramenée en mensuel, inférieure au plafond"
+- name: Base ressources de la RLS, ramenée en mensuel, inférieure au plafond
   period: 2018-09
   relative_error_margin: 0.001
-  familles:
-    parents: ["parent1"]
-  individus:
-    - id: "parent1"
-      date_naissance: 1980-05-29
-      salaire_de_base:
-        2018: 1150 * 12
-  menages:
-    personne_de_reference: "parent1"
-    depcom: 31555
-    logement_conventionne: true
-    loyer: 500
-    charges_locatives: 50
-  output_variables:
+  input:
+    famille:
+      parents: [parent1]
+    individus:
+      parent1:
+        date_naissance: 1980-05-29
+        salaire_de_base:
+          2018: 1150 * 12
+    menage:
+      personne_de_reference: parent1
+      depcom: 31555
+      logement_conventionne: true
+      loyer: 500
+      charges_locatives: 50
+    foyer_fiscal:
+      declarants:
+      - parent1
+  output:
     aide_logement_base_ressources: 10100.0
     reduction_loyer_solidarite_plafond_ressources: 846.0
     reduction_loyer_solidarite: 27.74
 
-- name: "Base ressources de la RLS, ramenée en mensuel, supérieure au plafond"
+- name: Base ressources de la RLS, ramenée en mensuel, supérieure au plafond
   period: 2018-09
   relative_error_margin: 0.001
-  familles:
-    parents: ["parent1"]
-  individus:
-    - id: "parent1"
-      date_naissance: 1980-05-29
-      salaire_de_base:
-        2018: 1160 * 12
-  menages:
-    personne_de_reference: "parent1"
-    depcom: 31555
-    logement_conventionne: true
-    loyer: 500
-    charges_locatives: 50
-  output_variables:
+  input:
+    famille:
+      parents: [parent1]
+    individus:
+      parent1:
+        date_naissance: 1980-05-29
+        salaire_de_base:
+          2018: 1160 * 12
+    menage:
+      personne_de_reference: parent1
+      depcom: 31555
+      logement_conventionne: true
+      loyer: 500
+      charges_locatives: 50
+    foyer_fiscal:
+      declarants:
+      - parent1
+  output:
     aide_logement_base_ressources: 10200.0
     reduction_loyer_solidarite_plafond_ressources: 846.0
     reduction_loyer_solidarite: 0.0

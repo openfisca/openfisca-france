@@ -1,7 +1,7 @@
-- period: "2016-06"
+- period: 2016-06
   name: Complémentaire santé (obligatoire depuis le 1er janvier 2016)
   relative_error_margin: 0.001
-  input_variables:
+  input:
     salaire_de_base: 1467
     # necessary when requesting on a 1 month salary :
     allegement_fillon_mode_recouvrement: anticipe
@@ -9,6 +9,6 @@
     effectif_entreprise: 249
     complementaire_sante_taux_employeur: 0.6
     complementaire_sante_montant: 35
-  output_variables:
+  output:
     complementaire_sante_employeur: -35 * 0.6
     complementaire_sante_salarie: -35 * (1 - 0.6)
