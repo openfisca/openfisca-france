@@ -1,6 +1,15 @@
 # Changelog
 
-### 31.2.0 [#1219](https://github.com/openfisca/openfisca-france/pull/1219)
+### 31.2.1 [#1222](https://github.com/openfisca/openfisca-france/pull/1222)
+
+* Changement mineur.
+* Zones impactées : `assets`, `cotisations_sociales`.
+* Détails :
+  - Supprime le fichier `holidays.py` qui contenait une liste de jours fériés français
+  - Supprime le script de génération de ce fichier
+  - Supprime l'usage, jamais testé, de ces jours fériés dans `coefficient_proratisation`
+
+## 31.2.0 [#1219](https://github.com/openfisca/openfisca-france/pull/1219)
 
 * Changement mineurs.
 * Périodes concernées : toutes.
@@ -11,7 +20,6 @@
 * Détails :
   - Corrige les employés de la fonction publique disposant d'un indice majorée
   - Corrige les employés de la fonction publique disposant d'une prime
-
 
 ## 31.1.0 [#1221](https://github.com/openfisca/openfisca-france/pull/1221)
 
