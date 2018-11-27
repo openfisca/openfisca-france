@@ -12,12 +12,12 @@ description: |
   Montant mensuel = 407,36€
 period: 2015-09
 relative_error_margin: 0.02
-input_variables:
+input:
   allegement_fillon_mode_recouvrement: progressif
-  contrat_de_travail_debut: "2015-01-01"
+  contrat_de_travail_debut: '2015-01-01'
   effectif_entreprise: 1
   jeune_entreprise_innovante: false
   salaire_de_base: 1457.52
   categorie_salarie: prive_non_cadre
-output_variables:
+output:
   allegement_fillon: 407.37

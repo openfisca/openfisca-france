@@ -1,14 +1,14 @@
-name: "Salarié IPP"
-period: "2014-11"
+name: Salarié IPP
+period: 2014-11
 absolute_error_margin: 0.005
-input_variables:
+input:
   assujettie_taxe_salaires: true
   contrat_de_travail_duree: cdd
-  contrat_de_travail_debut: "2014-11-02"
+  contrat_de_travail_debut: '2014-11-02'
   effectif_entreprise: 3000
   # exposition_accident: tres_eleve
-  code_postal_entreprise: "75014"
-  depcom_entreprise: "75114"
+  code_postal_entreprise: '75014'
+  depcom_entreprise: '75114'
   prevoyance_obligatoire_cadre_taux_employeur: 0.0157
   ratio_alternants: 0
   redevable_taxe_apprentissage: 0
@@ -18,7 +18,7 @@ input_variables:
   titre_restaurant_volume: 19
   categorie_salarie: prive_cadre
   indemnite_fin_contrat_due: 1
-output_variables:
+output:
   conge_individuel_formation_cdd: -50.6
   contribution_solidarite_autonomie: -15.18
   participation_effort_construction: -22.77
@@ -76,4 +76,3 @@ output_variables:
 
   salaire_net_a_payer: 3894.95458984
 
-  # TODO taxe_handicapes: 18.40

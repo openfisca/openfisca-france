@@ -1,14 +1,14 @@
-- period: "2016-02"
+- period: 2016-02
   reforms: openfisca_france.reforms.de_net_a_brut.de_net_a_brut
   relative_error_margin: 0.005
-  input_variables:
+  input:
     salaire_net_a_payer: 1790
     effectif_entreprise: 1
     categorie_salarie: prive_non_cadre
     allegement_fillon_mode_recouvrement: anticipe
     allegement_cotisation_allocations_familiales_mode_recouvrement: anticipe
-    contrat_de_travail_debut: 2016-2
-  output_variables: # Full payroll simulation
+    contrat_de_travail_debut: 2016-02
+  output:           # Full payroll simulation
     salaire_net_a_payer: 1790.3199462890625
     salaire_de_base: 2300
     aide_premier_salarie: 166.6666717529297

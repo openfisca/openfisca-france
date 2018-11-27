@@ -1,20 +1,20 @@
-name: "Ingénieur SSII"
-period: "2013-08"
+name: Ingénieur SSII
+period: 2013-08
 absolute_error_margin: 0.005
-input_variables:
+input:
   allegement_fillon_mode_recouvrement: fin_d_annee  #Indiqué: index 0 --> "fin d'année" et non "anticipé"# "anticipe_regularisation_fin_de_periode"
   arrco_tranche_a_taux_employeur: 0.04539
   arrco_tranche_a_taux_salarie: 0.03024
   assujettie_taxe_salaires: false
   avantage_en_nature_valeur_reelle: 0
   contrat_de_travail: temps_plein
-  contrat_de_travail_debut: "2013-01-01"
-  contrat_de_travail_fin: "2013-12-31"
+  contrat_de_travail_debut: '2013-01-01'
+  contrat_de_travail_fin: '2013-12-31'
   contrat_de_travail_duree: cdi
   effectif_entreprise: 5000
   heures_non_remunerees_volume: 21.0
   # exposition_accident: tres_eleve
-  code_postal_entreprise: "77023"
+  code_postal_entreprise: '77023'
   nombre_tickets_restaurant: 0
   prevoyance_obligatoire_cadre_taux_employeur: 0.015  # 1.5% est le minimum
   primes_salaires: 24.88
@@ -29,9 +29,9 @@ input_variables:
   taux_versement_transport: 0.015  # Codé en dur car le taux a changé depuis et on ne dispose pas d'historique
   titre_restaurant_valeur_unitaire: 0
   titre_restaurant_volume: 0
-  categorie_salarie: {"2013-08": prive_cadre}
+  categorie_salarie: {2013-08: prive_cadre}
   volume_jours_ijss: 0
-output_variables:
+output:
   # TODO à inclure dans la décomposition et à finir de coder forfait_social: -3.8 # 47.49 de base
   # TODO à coder taxe_handicapes: 18.40
 
@@ -109,4 +109,3 @@ output_variables:
 
   depense_cantine_titre_restaurant_employe: 0
 
-  # salaire_net_a_payer: 1969.3

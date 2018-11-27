@@ -1,24 +1,24 @@
-- name: "Ingénieur d'étude"
-  period: "2014-07"
+- name: Ingénieur d'étude
+  period: 2014-07
   absolute_error_margin: 0.005
-  input_variables:
+  input:
     allegement_fillon_mode_recouvrement: anticipe  # "anticipe_regularisation_fin_de_periode"
     allegement_cotisation_allocations_familiales_mode_recouvrement: anticipe
     assujettie_taxe_salaires: false
     avantage_en_nature_valeur_reelle: 0
-    date_naissance: "1974-01-01"
+    date_naissance: '1974-01-01'
     contrat_de_travail: temps_plein
-    contrat_de_travail_debut: "2014-01-01"
-    contrat_de_travail_fin: "2014-12-31"
+    contrat_de_travail_debut: '2014-01-01'
+    contrat_de_travail_fin: '2014-12-31'
     contrat_de_travail_duree: cdi
-    depcom_entreprise: "75114"
+    depcom_entreprise: '75114'
     effectif_entreprise: 3000
     heures_non_remunerees_volume: 0
     heures_remunerees_volume: 0
     # exposition_accident: 3
     indemnites_forfaitaires: 160 + 40.95  # indemnités transports et repas
     indemnites_journalieres_maladie: 0
-    code_postal_entreprise: "75014"
+    code_postal_entreprise: '75014'
     prevoyance_obligatoire_cadre_taux_employeur: 59.02/3000  # 1.5% est le minimum
     primes_salaires: 0
     prise_en_charge_employeur_retraite_complementaire: 0
@@ -33,7 +33,7 @@
     titre_restaurant_volume: 0
     categorie_salarie: prive_cadre  # Anciennement "categorie_salarie: 1  # non cadre", mais 1 correspondait à prive_cadre
     volume_jours_ijss: 0
-  output_variables:
+  output:
     # salaire_super_brut: 0
     # cotisations_employeur: 0
     remboursement_transport: 0
