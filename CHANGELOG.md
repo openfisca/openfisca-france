@@ -1,5 +1,14 @@
 # Changelog
 
+# 32.0.0 [#1223](https://github.com/openfisca/openfisca-france/pull/1223)
+
+* Évolution de la législation **non rétrocompatible**
+* Périodes concernées : toutes.
+* Zones impactées : `prestations/aides_logement`.
+* Détails :
+  - Privilégie la notion de logement conventionné pour la détermination du secteur APL
+  - Les clients qui s'appuient sur `locataire_hlm` doivent utiliser `logement_conventionne`
+
 ### 31.2.1 [#1222](https://github.com/openfisca/openfisca-france/pull/1222)
 
 * Changement mineur.
