@@ -297,3 +297,46 @@
     irpp: 0
     impots_directs: -0.19*100000
     # revenu_disponible: 100000*(1-(0.19+0.045+0.02+0.003+0.005+0.099))
+
+- name: Revenu disponible avec APL avant RLS
+  absolute_error_margin: 0.1
+  period: 2017-12
+  input_variables:
+    zone_apl: zone_1
+    aide_logement_montant_brut: 100
+    logement_conventionne:
+      2017-12: true
+    aide_logement_base_ressources: 900
+    minima_sociaux:
+      2017: 5000
+  output_variables:
+    apl:
+      2017-12: 99.5
+    revenu_disponible:
+      2017: 5099.5
+    prestations_sociales:
+      2017: 5099.5
+    aides_logement:
+      2017: 99.5
+
+- name: Revenu disponible avec APL après RLS
+  absolute_error_margin: 0.1
+  period: 2018-01
+  input_variables:
+    zone_apl: zone_1
+    aide_logement_montant_brut: 100
+    logement_conventionne:
+      2018-01: true
+      2018-02: false
+    aide_logement_base_ressources: 900
+    minima_sociaux:
+      2018: 5000
+  output_variables:
+    apl: 68.45
+    reduction_loyer_solidarite: 31.83
+    revenu_disponible:
+      2018: 5100.28
+    prestations_sociales:
+      2018: 5100.28
+    aides_logement:
+      2018: 68.45

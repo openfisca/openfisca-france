@@ -95,7 +95,7 @@ class reduction_loyer_solidarite_montant(Variable):
 class reduction_loyer_solidarite(Variable):
     value_type = float
     entity = Famille
-    label = u"Éligibilibité à la réduction du loyer de solidarité"
+    label = u"Réduction du loyer de solidarité effectivement versée"
     reference = [
         u"https://www.anil.org/aj-reduction-loyer-solidarite-rls-apl/",
         u"https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000036650010&dateTexte=&categorieLien=id",
@@ -103,11 +103,15 @@ class reduction_loyer_solidarite(Variable):
         ]
     definition_period = MONTH
 
-    def formula(famille, period):
+    def formula_2018_01_01(famille, period):
         # les ressources renvoyés sont recombiné pour donner une valeur annuelle
         # necessité de diviser par 12 pour comparer au plafond mensuel
         ressources = famille('aide_logement_base_ressources', period) / 12
         plafond = famille('reduction_loyer_solidarite_plafond_ressources', period)
+        statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
+        logement_conventionne = famille.demandeur.menage('logement_conventionne', period)
+        locataire_foyer = statut_occupation_logement == TypesStatutOccupationLogement.locataire_foyer
 
+        eligible = (ressources < plafond) * logement_conventionne * not_(locataire_foyer)
         montant = famille('reduction_loyer_solidarite_montant', period)
-        return (ressources < plafond) * montant
+        return eligible * montant
