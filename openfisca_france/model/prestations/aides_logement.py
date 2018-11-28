@@ -115,9 +115,10 @@ class aide_logement_montant_brut_crds(Variable):
         aide_logement_montant_brut = famille('aide_logement_montant_brut', period)
         reduction_loyer_solidarite = famille('reduction_loyer_solidarite', period)
         logement_conventionne = famille.demandeur.menage('logement_conventionne', period)
+        statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
 
         taux_rls = rls.fraction_baisse_aide_logement
-        rls_apl = reduction_loyer_solidarite * taux_rls * logement_conventionne
+        rls_apl = reduction_loyer_solidarite * taux_rls * logement_conventionne * (statut_occupation_logement != TypesStatutOccupationLogement.locataire_foyer)
         montant = max_(0, (aide_logement_montant_brut - rls_apl))
         return montant
 
