@@ -2,12 +2,12 @@
   period: 2017-10
   relative_error_margin: 0.02
   input_variables:
-    etudiant: 1
+    etudiant: true
     loyer: 200
     zone_apl: zone_2
     statut_occupation_logement: locataire_foyer
     etat_logement_foyer: logement_rehabilite
-    logement_crous: 1
+    logement_crous: true
   output_variables:
     aide_logement_charges: 53.67 # C
     aides_logement_k: 0.67 # K
@@ -20,14 +20,14 @@
   period: 2017-10
   relative_error_margin: 0.02
   input_variables:
-    etudiant: 1
-    logement_crous: 1
+    etudiant: true
+    logement_crous: true
     loyer: 150
     zone_apl: zone_3
     statut_occupation_logement: locataire_foyer
-    logement_chambre: 1
+    logement_chambre: true
     etat_logement_foyer: logement_rehabilite
-    boursier: 1
+    boursier: true
   output_variables:
     aide_logement_charges: 53.67 # C
     aides_logement_k: 0.7 # K
@@ -40,14 +40,14 @@
   period: 2017-10
   relative_error_margin: 0.02
   input_variables:
-    etudiant: 1
-    logement_crous: 1
+    etudiant: true
+    logement_crous: true
     loyer: 150
     zone_apl: zone_3
     statut_occupation_logement: locataire_foyer
-    logement_chambre: 1
-    logement_conventionne: 1
-    boursier: 1
+    logement_chambre: true
+    logement_conventionne: true
+    boursier: true
   output_variables:
     aide_logement_charges: 53.67 # C
     aides_logement_k: 0.77 # K
@@ -88,8 +88,8 @@
       2017: 9000
       2016: 9000
       2015: 9000
-    logement_conventionne: 1
-    logement_chambre: 1
+    logement_conventionne: true
+    logement_chambre: true
   output_variables:
     aide_logement_charges: 53.67 # C
     aides_logement_k: 0.6 # K
