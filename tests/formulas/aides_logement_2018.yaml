@@ -24,6 +24,7 @@
   period: 2018-04
   relative_error_margin: 0.001
   input_variables:
+    statut_occupation_logement: locataire_hlm
     logement_conventionne: true
     aide_logement_loyer_retenu: 100
     aide_logement_charges: 0
