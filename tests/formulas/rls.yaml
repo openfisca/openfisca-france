@@ -1,7 +1,7 @@
 - name: Zone 2 isolé
   period: 2018-01
   input_variables:
-    statut_occupation_logement: locataire_hlm
+    logement_conventionne: true
     zone_apl: zone_2
     aide_logement_base_ressources: 100
   output_variables:
@@ -11,7 +11,7 @@
 - name: Zone 2 avec 8 personnes à charges
   period: 2018-01
   input_variables:
-    statut_occupation_logement: locataire_hlm
+    logement_conventionne: true
     zone_apl: zone_2
     al_nb_personnes_a_charge: 8
     aide_logement_base_ressources: 100
@@ -22,7 +22,7 @@
 - name: Zone 1 isolé
   period: 2018-01
   input_variables:
-    statut_occupation_logement: locataire_hlm
+    logement_conventionne: true
     aide_logement_base_ressources: 100
     zone_apl: zone_1
   output_variables:
@@ -32,7 +32,7 @@
 - name: Zone 1 avec 8 personnes à charges
   period: 2018-01
   input_variables:
-    statut_occupation_logement: locataire_hlm
+    logement_conventionne: true
     zone_apl: zone_1
     al_nb_personnes_a_charge: 8
     aide_logement_base_ressources: 100
@@ -43,7 +43,7 @@
 - name: Zone 3 isolé
   period: 2018-01
   input_variables:
-    statut_occupation_logement: locataire_hlm
+    logement_conventionne: true
     aide_logement_base_ressources: 100
     zone_apl: zone_3
   output_variables:
@@ -53,7 +53,7 @@
 - name: Zone 3 avec 8 personnes à charges
   period: 2018-01
   input_variables:
-    statut_occupation_logement: locataire_hlm
+    logement_conventionne: true
     zone_apl: zone_3
     al_nb_personnes_a_charge: 8
     aide_logement_base_ressources: 100

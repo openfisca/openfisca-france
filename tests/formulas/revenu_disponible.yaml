@@ -304,8 +304,8 @@
   input_variables:
     zone_apl: zone_1
     aide_logement_montant_brut: 100
-    statut_occupation_logement:
-      2017-12: locataire_hlm
+    logement_conventionne:
+      2017-12: true
     aide_logement_base_ressources: 900
     minima_sociaux:
       2017: 5000
@@ -325,9 +325,9 @@
   input_variables:
     zone_apl: zone_1
     aide_logement_montant_brut: 100
-    statut_occupation_logement:
-      2018-01: locataire_hlm
-      2018-02: non_renseigne
+    logement_conventionne:
+      2018-01: true
+      2018-02: false
     aide_logement_base_ressources: 900
     minima_sociaux:
       2018: 5000
