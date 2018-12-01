@@ -11,7 +11,7 @@ Famille = build_entity(
             'key': 'parent',
             'plural': 'parents',
             'label': u'Parents',
-            'subroles': ['demandeur', 'conjoint']
+            'max': 2,
             },
         {
             'key': 'enfant',
@@ -43,7 +43,7 @@ FoyerFiscal = build_entity(
             'key': 'declarant',
             'plural': 'declarants',
             'label': u'Déclarants',
-            'subroles': ['declarant_principal', 'conjoint'],
+            'max': 2,
             },
         {
             'key': 'personne_a_charge',
