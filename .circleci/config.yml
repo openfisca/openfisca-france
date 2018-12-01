@@ -23,7 +23,7 @@ jobs:
           name: Install dependencies
           command: |
             make build
-            # pip install --editable git+https://github.com/openfisca/openfisca-core.git@BRANCH_NAME#egg=OpenFisca-Core  # use a specific branch of OpenFisca-Core
+            pip install --editable git+https://github.com/fpagnoux/openfisca-core.git@multiple-role-projector#egg=OpenFisca-Core  # use a specific branch of OpenFisca-Core
 
       - save_cache:
           key: v1-py2-deps-{{ checksum "setup.py" }}
@@ -64,7 +64,7 @@ jobs:
           name: Install dependencies
           command: |
             make build
-            # pip install --editable git+https://github.com/openfisca/openfisca-core.git@BRANCH_NAME#egg=OpenFisca-Core  # use a specific branch of OpenFisca-Core
+            pip install --editable git+https://github.com/fpagnoux/openfisca-core.git@multiple-role-projector#egg=OpenFisca-Core  # use a specific branch of OpenFisca-Core
 
       - save_cache:
           key: v1-py3-deps-{{ checksum "setup.py" }}
