@@ -18,7 +18,7 @@ class bourse_college_echelon(Variable):
         https://www.legifrance.gouv.fr/eli/arrete/2016/3/22/MENE1606428A/jo
         """
 
-        rfr = famille.demandeur.foyer_fiscal('rfr', period.n_2)
+        rfr = famille.parents[0].foyer_fiscal('rfr', period.n_2)
         age_i = famille.members('age', period)
         nb_enfants = famille.sum(age_i >= 0, role = Famille.ENFANT)
         P = parameters(period).bourses_education.bourse_college.apres_2016
@@ -61,7 +61,7 @@ class bourse_college_echelon(Variable):
             )
 
     def formula(famille, period, parameters):
-        rfr = famille.demandeur.foyer_fiscal('rfr', period.n_2)
+        rfr = famille.parents[0].foyer_fiscal('rfr', period.n_2)
         age_i = famille.members('age', period)
         nb_enfants = famille.sum(age_i >= 0, role = Famille.ENFANT)
 
@@ -147,7 +147,7 @@ class bourse_lycee_nombre_parts(Variable):
 
     def formula(famille, period, parameters):
         points_de_charge = famille('bourse_lycee_points_de_charge', period)
-        rfr = famille.demandeur.foyer_fiscal('rfr', period.n_2)
+        rfr = famille.parents[0].foyer_fiscal('rfr', period.n_2)
         plafonds_reference = parameters(period).bourses_education.bourse_lycee.avant_2016.plafonds_reference
         increments_par_point_de_charge = parameters(period).bourses_education.bourse_lycee.avant_2016.increments_par_point_de_charge
 
@@ -180,7 +180,7 @@ class bourse_lycee_echelon(Variable):
         https://www.legifrance.gouv.fr/eli/arrete/2016/3/22/MENE1606432A/jo
         """
 
-        rfr = famille.demandeur.foyer_fiscal('rfr', period.n_2)
+        rfr = famille.parents[0].foyer_fiscal('rfr', period.n_2)
         age_i = famille.members('age', period)
         nb_enfants = famille.sum(age_i >= 0, role = Famille.ENFANT)
         P = parameters(period).bourses_education.bourse_lycee.apres_2016

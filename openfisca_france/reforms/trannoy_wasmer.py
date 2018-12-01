@@ -39,7 +39,7 @@ class charge_loyer(Variable):
     def formula(foyer_fiscal, period, parameters):
         nbptr = foyer_fiscal('nbptr', period)
 
-        loyer = foyer_fiscal.declarant_principal.menage('loyer', period, options = [ADD])
+        loyer = foyer_fiscal.declarants[0].menage('loyer', period, options = [ADD])
 
         charge_loyer = parameters(period).charge_loyer
 

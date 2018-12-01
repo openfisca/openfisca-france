@@ -71,7 +71,7 @@ class prestations_familiales_base_ressources_individu(Variable):
         traitements_salaires_pensions_rentes = individu('traitements_salaires_pensions_rentes', annee_fiscale_n_2)
         hsup = individu('hsup', annee_fiscale_n_2, options = [ADD])
         glo = individu('glo', annee_fiscale_n_2)
-        plus_values = individu.foyer_fiscal('assiette_csg_plus_values', annee_fiscale_n_2) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
+        plus_values = individu.foyer_fiscal('assiette_csg_plus_values', annee_fiscale_n_2) * individu.has_role(FoyerFiscal.DECLARANT, 0)
         rpns = individu('rpns', annee_fiscale_n_2)
         rpns_pvce = individu('rpns_pvce', annee_fiscale_n_2)
         rpns_pvct = individu('rpns_pvct', annee_fiscale_n_2)
@@ -180,14 +180,14 @@ class prestations_familiales_base_ressources(Variable):
         ressources_i = (not_(enfant_i) + enfant_a_charge_i) * base_ressources_i
         base_ressources_i_total = famille.sum(ressources_i)
 
-        demandeur_declarant_principal = famille.demandeur.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
-        conjoint_declarant_principal = famille.conjoint.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
+        demandeur_declarant_principal = famille.parents[0].has_role(FoyerFiscal.DECLARANT, 0)
+        conjoint_declarant_principal = famille.parents[1].has_role(FoyerFiscal.DECLARANT, 0)
 
         # Revenus du foyer fiscal
         rev_coll = (
-            famille.demandeur.foyer_fiscal('rev_coll', annee_fiscale_n_2)
+            famille.parents[0].foyer_fiscal('rev_coll', annee_fiscale_n_2)
             * demandeur_declarant_principal
-            + famille.conjoint.foyer_fiscal('rev_coll', annee_fiscale_n_2)
+            + famille.parents[1].foyer_fiscal('rev_coll', annee_fiscale_n_2)
             * conjoint_declarant_principal
             )
 

@@ -53,8 +53,8 @@ class asi_aspa_base_ressources_individu(Variable):
 
         # Revenus du foyer fiscal que l'on projette sur le premier invidividu
         rente_viagere_titre_onereux_foyer_fiscal = individu.foyer_fiscal('rente_viagere_titre_onereux', three_previous_months, options = [ADD])
-        revenus_foyer_fiscal_individu = rente_viagere_titre_onereux_foyer_fiscal * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
-        plus_values = individu.foyer_fiscal('assiette_csg_plus_values', period.this_year) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL) * (3 / 12)
+        revenus_foyer_fiscal_individu = rente_viagere_titre_onereux_foyer_fiscal * individu.has_role(FoyerFiscal.DECLARANT, 0)
+        plus_values = individu.foyer_fiscal('assiette_csg_plus_values', period.this_year) * individu.has_role(FoyerFiscal.DECLARANT, 0) * (3 / 12)
 
         def revenus_tns():
             revenus_auto_entrepreneur = individu('tns_auto_entrepreneur_benefice', three_previous_months, options = [ADD])
@@ -214,10 +214,10 @@ class asi(Variable):
         base_ressources = individu.famille('asi_aspa_base_ressources', period, max_nb_cycles = 0)
         P = parameters(period).prestations.minima_sociaux
 
-        demandeur_eligible_asi = individu.famille.demandeur('asi_eligibilite', period)
-        demandeur_eligible_aspa = individu.famille.demandeur('aspa_eligibilite', period)
-        conjoint_eligible_asi = individu.famille.conjoint('asi_eligibilite', period)
-        conjoint_eligible_aspa = individu.famille.conjoint('aspa_eligibilite', period)
+        demandeur_eligible_asi = individu.famille.parents[0]('asi_eligibilite', period)
+        demandeur_eligible_aspa = individu.famille.parents[0]('aspa_eligibilite', period)
+        conjoint_eligible_asi = individu.famille.parents[1]('asi_eligibilite', period)
+        conjoint_eligible_aspa = individu.famille.parents[1]('aspa_eligibilite', period)
 
         # Un seul éligible
         elig1 = ((asi_aspa_nb_alloc == 1) & (demandeur_eligible_asi | conjoint_eligible_asi))
@@ -257,8 +257,8 @@ class asi(Variable):
         # Montant mensuel servi (sous réserve d'éligibilité)
         montant_servi_asi = max_(diff, 0)
         return montant_servi_asi * (
-            + individu.has_role(Famille.DEMANDEUR) * demandeur_eligible_asi * (elig1 + elig2 / 2 + elig3 / 2)
-            + individu.has_role(Famille.CONJOINT) * conjoint_eligible_asi * (elig1 + elig2 / 2 + elig3 / 2)
+            + individu.has_role(Famille.PARENT, 0) * demandeur_eligible_asi * (elig1 + elig2 / 2 + elig3 / 2)
+            + individu.has_role(Famille.PARENT, 1) * conjoint_eligible_asi * (elig1 + elig2 / 2 + elig3 / 2)
             )
 
 
@@ -295,10 +295,10 @@ class aspa(Variable):
         base_ressources = famille('asi_aspa_base_ressources', period)
         P = parameters(period).prestations.minima_sociaux
 
-        demandeur_eligible_asi = famille.demandeur('asi_eligibilite', period)
-        demandeur_eligible_aspa = famille.demandeur('aspa_eligibilite', period)
-        conjoint_eligible_asi = famille.conjoint('asi_eligibilite', period)
-        conjoint_eligible_aspa = famille.conjoint('aspa_eligibilite', period)
+        demandeur_eligible_asi = famille.parents[0]('asi_eligibilite', period)
+        demandeur_eligible_aspa = famille.parents[0]('aspa_eligibilite', period)
+        conjoint_eligible_asi = famille.parents[1]('asi_eligibilite', period)
+        conjoint_eligible_aspa = famille.parents[1]('aspa_eligibilite', period)
 
         # Un seul éligible
         elig1 = ((asi_aspa_nb_alloc == 1) & (demandeur_eligible_aspa | conjoint_eligible_aspa))

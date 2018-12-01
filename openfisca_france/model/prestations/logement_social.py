@@ -152,7 +152,7 @@ class logement_social_plafond_ressources(Variable):
         logement_social = parameters(period).logement_social.plai
 
         categorie_menage = famille('logement_social_categorie_menage', period)
-        zone_logement_social = famille.demandeur.menage('zone_logement_social', period)
+        zone_logement_social = famille.parents[0].menage('zone_logement_social', period)
         personnes_a_charge = famille('al_nb_personnes_a_charge', period)
 
         # On détermine le nombre de personnes à charge supplémentaires au-dessus de 4
@@ -173,6 +173,6 @@ class logement_social_eligible(Variable):
     def formula_2017(famille, period, parameters):
 
         logement_social_plafond_ressources = famille('logement_social_plafond_ressources', period)
-        revenu_fiscal_de_reference = famille.demandeur.foyer_fiscal('rfr', period.n_2)
+        revenu_fiscal_de_reference = famille.parents[0].foyer_fiscal('rfr', period.n_2)
 
         return revenu_fiscal_de_reference <= logement_social_plafond_ressources

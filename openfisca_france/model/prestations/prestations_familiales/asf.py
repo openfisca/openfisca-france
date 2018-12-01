@@ -36,7 +36,7 @@ class asf_elig(Variable):
 
     def formula(famille, period):
         isole = not_(famille('en_couple', period))
-        residence_mayotte = famille.demandeur.menage('residence_mayotte', period)
+        residence_mayotte = famille.parents[0].menage('residence_mayotte', period)
 
         # Parent isolé et ne résident pas à Mayotte
         return not_(residence_mayotte) * isole

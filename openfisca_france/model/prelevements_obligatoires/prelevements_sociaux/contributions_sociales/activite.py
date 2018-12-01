@@ -210,7 +210,7 @@ class salaire_imposable(Variable):
 
         # Revenu du foyer fiscal projeté sur le demandeur
         rev_microsocial = individu.foyer_fiscal('rev_microsocial', period, options = [DIVIDE])
-        rev_microsocial_declarant1 = rev_microsocial * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
+        rev_microsocial_declarant1 = rev_microsocial * individu.has_role(FoyerFiscal.DECLARANT, 0)
 
         return (
             salaire_de_base

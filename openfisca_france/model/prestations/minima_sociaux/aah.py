@@ -25,7 +25,7 @@ class aah_base_ressources(Variable):
     def formula(famille, period, parameters):
         law = parameters(period)
 
-        demandeur_en_activite = famille.demandeur('salaire_imposable', period) > 0
+        demandeur_en_activite = famille.parents[0]('salaire_imposable', period) > 0
 
         def assiette_conjoint(revenus_conjoint):
             return 0.9 * (1 - 0.2) * revenus_conjoint
@@ -38,16 +38,16 @@ class aah_base_ressources(Variable):
 
         def base_ressource_eval_trim():
             three_previous_months = period.first_month.start.period('month', 3).offset(-3)
-            base_ressource_activite_demandeur = famille.demandeur('aah_base_ressources_activite_eval_trimestrielle', period) - famille.demandeur('aah_base_ressources_activite_milieu_protege', three_previous_months, options = [ADD])
-            base_ressource_hors_activite_demandeur = famille.demandeur('aah_base_ressources_hors_activite_eval_trimestrielle', period) + famille.demandeur('aah_base_ressources_activite_milieu_protege', three_previous_months, options = [ADD])
+            base_ressource_activite_demandeur = famille.parents[0]('aah_base_ressources_activite_eval_trimestrielle', period) - famille.parents[0]('aah_base_ressources_activite_milieu_protege', three_previous_months, options = [ADD])
+            base_ressource_hors_activite_demandeur = famille.parents[0]('aah_base_ressources_hors_activite_eval_trimestrielle', period) + famille.parents[0]('aah_base_ressources_activite_milieu_protege', three_previous_months, options = [ADD])
             base_ressource_demandeur = assiette_revenu_activite_demandeur(base_ressource_activite_demandeur) + base_ressource_hors_activite_demandeur
 
-            base_ressource_conjoint = famille.conjoint('aah_base_ressources_activite_eval_trimestrielle', period) + famille.conjoint('aah_base_ressources_hors_activite_eval_trimestrielle', period)
+            base_ressource_conjoint = famille.parents[1]('aah_base_ressources_activite_eval_trimestrielle', period) + famille.parents[1]('aah_base_ressources_hors_activite_eval_trimestrielle', period)
             return base_ressource_demandeur + assiette_conjoint(base_ressource_conjoint)
 
         def base_ressource_eval_annuelle():
-            base_ressource_demandeur = assiette_revenu_activite_demandeur(famille.demandeur('revenu_activite', period.n_2)) + famille.demandeur('revenu_assimile_pension', period.n_2)
-            base_ressource_conjoint = famille.conjoint('aah_base_ressources_eval_annuelle', period)
+            base_ressource_demandeur = assiette_revenu_activite_demandeur(famille.parents[0]('revenu_activite', period.n_2)) + famille.parents[0]('revenu_assimile_pension', period.n_2)
+            base_ressource_conjoint = famille.parents[1]('aah_base_ressources_eval_annuelle', period)
 
             return base_ressource_demandeur + assiette_conjoint(base_ressource_conjoint)
 

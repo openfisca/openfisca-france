@@ -62,7 +62,7 @@ class af_eligibilite_base(Variable):
     definition_period = MONTH
 
     def formula(famille, period):
-        residence_dom = famille.demandeur.menage('residence_dom', period)
+        residence_dom = famille.parents[0].menage('residence_dom', period)
         af_nbenf = famille('af_nbenf', period)
 
         return not_(residence_dom) * (af_nbenf >= 2)
@@ -75,8 +75,8 @@ class af_eligibilite_dom(Variable):
     definition_period = MONTH
 
     def formula(famille, period):
-        residence_dom = famille.demandeur.menage('residence_dom', period)
-        residence_mayotte = famille.demandeur.menage('residence_mayotte', period)
+        residence_dom = famille.parents[0].menage('residence_dom', period)
+        residence_mayotte = famille.parents[0].menage('residence_mayotte', period)
         af_nbenf = famille('af_nbenf', period)
 
         return residence_dom * not_(residence_mayotte) * (af_nbenf >= 1)

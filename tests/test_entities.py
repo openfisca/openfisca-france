@@ -127,7 +127,7 @@ def test_value_from_person():
 
     foyer_fiscal = simulation.foyer_fiscal
 
-    age_conjoint = foyer_fiscal.conjoint('age', period='2013-01')
+    age_conjoint = foyer_fiscal.declarants[1]('age', period='2013-01')
     assert_near(age_conjoint, [37, 0])
 
 
@@ -137,7 +137,7 @@ def test_combination_projections():
 
     individu = simulation.persons
 
-    age_parent1 = individu.famille.demandeur('age', period='2013-01')
+    age_parent1 = individu.famille.parents[0]('age', period='2013-01')
 
     assert_near(age_parent1, [40, 40, 40, 40, 54, 54])
 
@@ -165,7 +165,7 @@ def test_complex_chain_2():
 
     simulation = new_simulation(test_case)
 
-    assert_near(simulation.famille.demandeur.menage.personne_de_reference('age', period='2013-01'), [30, 31, 33])
-    assert_near(simulation.famille.conjoint.menage.personne_de_reference('age', period='2013-01'), [31, 0, 0])
-    assert_near(simulation.famille.demandeur.foyer_fiscal.declarant_principal('age', period='2013-01'), [30, 32, 32])
-    assert_near(simulation.foyer_fiscal.conjoint.famille.demandeur('age', period='2013-01'), [30, 33])
+    assert_near(simulation.famille.parents[0].menage.personne_de_reference('age', period='2013-01'), [30, 31, 33])
+    assert_near(simulation.famille.parents[1].menage.personne_de_reference('age', period='2013-01'), [31, 0, 0])
+    assert_near(simulation.famille.parents[0].foyer_fiscal.declarants[0]('age', period='2013-01'), [30, 32, 32])
+    assert_near(simulation.foyer_fiscal.declarants[1].famille.parents[0]('age', period='2013-01'), [30, 33])

@@ -121,7 +121,7 @@ class cmu_eligible_majoration_dom(Variable):
     definition_period = MONTH
 
     def formula(famille, period):
-        menage = famille.demandeur.menage
+        menage = famille.parents[0].menage
         residence_guadeloupe = menage('residence_guadeloupe', period)
         residence_martinique = menage('residence_martinique', period)
         residence_guyane = menage('residence_guyane', period)
@@ -338,7 +338,7 @@ class cmu_base_ressources(Variable):
             for ressource in ressources_famille_a_inclure
             ])
 
-        statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
+        statut_occupation_logement = famille.parents[0].menage('statut_occupation_logement', period)
         cmu_forfait_logement_base = famille('cmu_forfait_logement_base', period)
         cmu_forfait_logement_al = famille('cmu_forfait_logement_al', period)
 
@@ -385,7 +385,7 @@ class cmu_c(Variable):
     def formula(famille, period):
         cmu_c_plafond = famille('cmu_c_plafond', period)
         cmu_base_ressources = famille('cmu_base_ressources', period)
-        residence_mayotte = famille.demandeur.menage('residence_mayotte', period)
+        residence_mayotte = famille.parents[0].menage('residence_mayotte', period)
         cmu_acs_eligibilite = famille('cmu_acs_eligibilite', period)
 
         if period.start.date >= date(2016, 1, 1):
@@ -421,7 +421,7 @@ class acs(Variable):
         cmu_base_ressources = famille('cmu_base_ressources', period)
         acs_plafond = famille('acs_plafond', period)
         acs_montant = famille('acs_montant', period)
-        residence_mayotte = famille.demandeur.menage('residence_mayotte', period)
+        residence_mayotte = famille.parents[0].menage('residence_mayotte', period)
         cmu_acs_eligibilite = famille('cmu_acs_eligibilite', period)
 
         return (

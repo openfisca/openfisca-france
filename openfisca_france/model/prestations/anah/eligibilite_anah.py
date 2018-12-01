@@ -26,7 +26,7 @@ class eligibilite_anah(Variable):
         departements_idf = [b'75', b'77', b'78', b'91', b'92', b'93', b'94', b'95']
         in_idf = sum([startswith(depcom, departement_idf) for departement_idf in departements_idf])
 
-        rfr_declarants_principaux_du_menage = menage.members.has_role(FoyerFiscal.DECLARANT_PRINCIPAL) * menage.members.foyer_fiscal('rfr', period.n_2)
+        rfr_declarants_principaux_du_menage = menage.members.has_role(FoyerFiscal.DECLARANT, 0) * menage.members.foyer_fiscal('rfr', period.n_2)
         rfr = menage.sum(rfr_declarants_principaux_du_menage)
 
         nb_members = menage.nb_persons()

@@ -150,7 +150,7 @@ class rsa_base_ressources_individu(Variable):
             )
 
         rentes_viageres = individu.foyer_fiscal('rente_viagere_titre_onereux', period.last_3_months, options = [ADD])
-        revenus_foyer_fiscal_projetes = rentes_viageres * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
+        revenus_foyer_fiscal_projetes = rentes_viageres * individu.has_role(FoyerFiscal.DECLARANT, 0)
 
         return (revenus_pro + revenus_non_pros + revenus_foyer_fiscal_projetes) / 3
 
@@ -203,7 +203,7 @@ class rsa_base_ressources_individu(Variable):
 
         # Revenus du foyer fiscal que l'on projette sur le premier invidividus
         rente_viagere_titre_onereux = individu.foyer_fiscal('rente_viagere_titre_onereux', period.last_3_months, options = [ADD])
-        revenus_foyer_fiscal_projetes = rente_viagere_titre_onereux * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
+        revenus_foyer_fiscal_projetes = rente_viagere_titre_onereux * individu.has_role(FoyerFiscal.DECLARANT, 0)
 
         return (revenus_pro + revenus_non_pros + revenus_foyer_fiscal_projetes) / 3
 
@@ -713,12 +713,12 @@ class rsa_base_ressources_patrimoine_individu(Variable):
         livret_a = individu('livret_a', period)
         taux_livret_a = parameters(period).epargne.livret_a.taux
         epargne_revenus_non_imposables = individu('epargne_revenus_non_imposables', period)
-        revenus_capital = individu('revenus_capital', period) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
+        revenus_capital = individu('revenus_capital', period) * individu.has_role(FoyerFiscal.DECLARANT, 0)
         valeur_locative_immo_non_loue = individu('valeur_locative_immo_non_loue', period)
         valeur_locative_terrains_non_loues = individu('valeur_locative_terrains_non_loues', period)
         revenus_locatifs = individu('revenus_locatifs', period)
         rsa = parameters(period).prestations.minima_sociaux.rsa
-        plus_values = individu.foyer_fiscal('assiette_csg_plus_values', period.this_year) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
+        plus_values = individu.foyer_fiscal('assiette_csg_plus_values', period.this_year) * individu.has_role(FoyerFiscal.DECLARANT, 0)
 
         return (
             + livret_a * taux_livret_a / 12
@@ -901,9 +901,9 @@ class rsa_forfait_logement(Variable):
     def formula(famille, period, parameters):
         np_pers = famille('nb_parents', period) + famille('rsa_nb_enfants', period)
         aide_logement = famille('aide_logement', period)
-        statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
-        participation_frais = famille.demandeur.menage('participation_frais', period)
-        loyer = famille.demandeur.menage('loyer', period)
+        statut_occupation_logement = famille.parents[0].menage('statut_occupation_logement', period)
+        participation_frais = famille.parents[0].menage('participation_frais', period)
+        loyer = famille.parents[0].menage('loyer', period)
 
         avantage_nature = or_(
             ((statut_occupation_logement == TypesStatutOccupationLogement.primo_accedant) + (statut_occupation_logement == TypesStatutOccupationLogement.proprietaire)) * not_(loyer),
@@ -989,8 +989,8 @@ class rsa_non_calculable(Variable):
         # ces ressources. Il n'y a donc pas non calculabilité.
         eligible_rsa = famille('rsa_montant', period) > 0
 
-        non_calculable_tns_parent1 = famille.demandeur('rsa_non_calculable_tns_individu', period)
-        non_calculable_tns_parent2 = famille.conjoint('rsa_non_calculable_tns_individu', period)
+        non_calculable_tns_parent1 = famille.parents[0]('rsa_non_calculable_tns_individu', period)
+        non_calculable_tns_parent2 = famille.parents[1]('rsa_non_calculable_tns_individu', period)
 
         non_calculable = select(
             [non_calculable_tns_parent1, non_calculable_tns_parent2],

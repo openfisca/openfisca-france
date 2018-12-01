@@ -37,13 +37,13 @@ class exonere_taxe_habitation(Variable):
         aspa = menage.sum(aspa_i)
 
         isf_tot_i = menage.members.foyer_fiscal('isf_tot', period)
-        isf_tot = menage.sum(isf_tot_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
+        isf_tot = menage.sum(isf_tot_i, role = (FoyerFiscal.DECLARANT, 0))
 
         nbptr_i = menage.members.foyer_fiscal('nbptr', period)
-        nbptr = menage.sum(nbptr_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)  # TODO: Beurk
+        nbptr = menage.sum(nbptr_i, role = (FoyerFiscal.DECLARANT, 0))  # TODO: Beurk
 
         rfr_i = menage.members.foyer_fiscal('rfr', period)
-        rfr = menage.sum(rfr_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
+        rfr = menage.sum(rfr_i, role = (FoyerFiscal.DECLARANT, 0))
 
         seuil_th = P.plaf_th_1 + P.plaf_th_supp * (max_(0, (nbptr - 1) / 2))
         elig = ((age >= 60) + (statut_marital == TypesStatutMarital.veuf)) * (isf_tot <= 0) * (rfr < seuil_th) + (asi > 0) + (aspa > 0) + (aah > 0)
@@ -66,7 +66,7 @@ class taxe_habitation(Variable):
         nombre_enfants_majeurs_celibataires_sans_enfant = menage('nombre_enfants_majeurs_celibataires_sans_enfant', period)
 
         rfr_i = menage.members.foyer_fiscal('rfr', last_year)
-        rfr = menage.sum(rfr_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)  # noqa F841
+        rfr = menage.sum(rfr_i, role = (FoyerFiscal.DECLARANT, 0))  # noqa F841
 
         # Variables TODO: à inclure dans la fonction
         valeur_locative_brute = 0

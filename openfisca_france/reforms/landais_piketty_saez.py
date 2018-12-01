@@ -26,9 +26,9 @@ class assiette_csg(Variable):
         salaire_de_base = individu('salaire_de_base', period, options = [ADD])
         chomage_brut = individu('chomage_brut', period, options = [ADD])
         retraite_brute = individu('retraite_brute', period, options = [ADD])
-        revenus_capitaux_prelevement_bareme = individu.foyer_fiscal('revenus_capitaux_prelevement_bareme', period, options = [ADD]) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)  # Supprimée à partir de 2018
-        revenus_capitaux_prelevement_liberatoire = individu.foyer_fiscal('revenus_capitaux_prelevement_liberatoire', period, options = [ADD]) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)  # Supprimée à partir de 2018
-        revenus_capitaux_prelevement_forfaitaire_unique_ir = individu.foyer_fiscal('revenus_capitaux_prelevement_forfaitaire_unique_ir', period, options = [ADD]) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)  # Existe à partir de 2018
+        revenus_capitaux_prelevement_bareme = individu.foyer_fiscal('revenus_capitaux_prelevement_bareme', period, options = [ADD]) * individu.has_role(FoyerFiscal.DECLARANT, 0)  # Supprimée à partir de 2018
+        revenus_capitaux_prelevement_liberatoire = individu.foyer_fiscal('revenus_capitaux_prelevement_liberatoire', period, options = [ADD]) * individu.has_role(FoyerFiscal.DECLARANT, 0)  # Supprimée à partir de 2018
+        revenus_capitaux_prelevement_forfaitaire_unique_ir = individu.foyer_fiscal('revenus_capitaux_prelevement_forfaitaire_unique_ir', period, options = [ADD]) * individu.has_role(FoyerFiscal.DECLARANT, 0)  # Existe à partir de 2018
         return salaire_de_base + chomage_brut + retraite_brute + revenus_capitaux_prelevement_bareme + revenus_capitaux_prelevement_liberatoire + revenus_capitaux_prelevement_forfaitaire_unique_ir
 
 
@@ -41,8 +41,8 @@ class impot_revenu_lps(Variable):
     def formula(individu, period, parameters):
         janvier = period.first_month
 
-        nbF = individu.foyer_fiscal('nbF', period) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
-        nbH = individu.foyer_fiscal('nbH', period) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
+        nbF = individu.foyer_fiscal('nbF', period) * individu.has_role(FoyerFiscal.DECLARANT, 0)
+        nbH = individu.foyer_fiscal('nbH', period) * individu.has_role(FoyerFiscal.DECLARANT, 0)
         nbEnf = (nbF + nbH / 2)
         lps = parameters(period).landais_piketty_saez
         ae = nbEnf * lps.abatt_enfant
@@ -68,7 +68,7 @@ class revenu_disponible(Variable):
         impot_revenu_lps = menage.sum(impot_revenu_lps_i)
         pensions_nettes_i = menage.members('pensions_nettes', period)
         pensions_nettes = menage.sum(pensions_nettes_i)
-        prestations_sociales_i = menage.members.famille('prestations_sociales', period) * menage.members.has_role(Famille.DEMANDEUR)
+        prestations_sociales_i = menage.members.famille('prestations_sociales', period) * menage.members.has_role(Famille.PARENT, 0)
         prestations_sociales = menage.sum(prestations_sociales_i)
         revenus_nets_du_capital_i = menage.members('revenus_nets_du_capital', period)
         revenus_nets_du_capital = menage.sum(revenus_nets_du_capital_i)

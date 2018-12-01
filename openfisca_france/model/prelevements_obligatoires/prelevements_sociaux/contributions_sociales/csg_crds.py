@@ -23,7 +23,7 @@ class csg(Variable):
         csg_non_salarie = individu('csg_non_salarie', period, options = [ADD])
         # CSG sur revenus du capital, définie à l'échelle du foyer fiscal, mais projetée sur le déclarant principal
         csg_revenus_capital = individu.foyer_fiscal('csg_revenus_capital', period)
-        csg_revenus_capital_projetee = csg_revenus_capital * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
+        csg_revenus_capital_projetee = csg_revenus_capital * individu.has_role(FoyerFiscal.DECLARANT, 0)
 
         return (
             csg_imposable_salaire
@@ -55,10 +55,10 @@ class crds(Variable):
         crds_logement = individu.famille('crds_logement', period, options = [ADD])
         crds_mini = individu.famille('crds_mini', period, options = [ADD])
         crds_famille = crds_pfam + crds_logement + crds_mini
-        crds_famille_projetes = crds_famille * individu.has_role(Famille.DEMANDEUR)
+        crds_famille_projetes = crds_famille * individu.has_role(Famille.PARENT, 0)
         # CRDS sur revenus du capital, définie à l'échelle du foyer fiscal, mais projetée sur le déclarant principal
         crds_revenus_capital = individu.foyer_fiscal('crds_revenus_capital', period)
-        crds_revenus_capital_projetee = crds_revenus_capital * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
+        crds_revenus_capital_projetee = crds_revenus_capital * individu.has_role(FoyerFiscal.DECLARANT, 0)
         return crds_individu + crds_famille_projetes + crds_revenus_capital_projetee
 
 
@@ -77,6 +77,6 @@ class crds_hors_prestations(Variable):
         crds_individu = crds_salaire + crds_retraite + crds_chomage + crds_non_salarie
         # CRDS sur revenus du capital, définie à l'échelle du foyer fiscal, mais projetée sur le déclarant principal
         crds_revenus_capital = individu.foyer_fiscal('crds_revenus_capital', period)
-        crds_revenus_capital_projetee = crds_revenus_capital * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
+        crds_revenus_capital_projetee = crds_revenus_capital * individu.has_role(FoyerFiscal.DECLARANT, 0)
 
         return crds_individu + crds_revenus_capital_projetee

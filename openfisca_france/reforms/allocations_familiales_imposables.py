@@ -89,7 +89,7 @@ class allocations_familiales_imposables(Reform):
 
         def formula(foyer_fiscal, period, parameters):
             imposition = parameters(period).allocations_familiales_imposables.imposition
-            af = foyer_fiscal.declarant_principal.famille('af', period, options = [ADD])
+            af = foyer_fiscal.declarants[0].famille('af', period, options = [ADD])
 
             return af * imposition
 

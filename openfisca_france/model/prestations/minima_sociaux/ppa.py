@@ -308,9 +308,9 @@ class ppa_forfait_logement(Variable):
     def formula(famille, period, parameters):
         np_pers = famille('nb_parents', period) + famille('rsa_nb_enfants', period)
         aide_logement = famille('aide_logement', period)
-        statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
-        participation_frais = famille.demandeur.menage('participation_frais', period)
-        loyer = famille.demandeur.menage('loyer', period)
+        statut_occupation_logement = famille.parents[0].menage('statut_occupation_logement', period)
+        participation_frais = famille.parents[0].menage('participation_frais', period)
+        loyer = famille.parents[0].menage('loyer', period)
 
         avantage_nature = or_(
             ((statut_occupation_logement == TypesStatutOccupationLogement.primo_accedant) + (statut_occupation_logement == TypesStatutOccupationLogement.proprietaire)) * not_(loyer),

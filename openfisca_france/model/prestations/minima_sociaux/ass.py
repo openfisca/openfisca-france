@@ -53,8 +53,8 @@ class ass_base_ressources(Variable):
     definition_period = MONTH
 
     def formula(famille, period):
-        ass_base_ressources_demandeur = famille.demandeur('ass_base_ressources_individu', period)
-        ass_base_ressources_conjoint = famille.conjoint('ass_base_ressources_conjoint', period)
+        ass_base_ressources_demandeur = famille.parents[0]('ass_base_ressources_individu', period)
+        ass_base_ressources_conjoint = famille.parents[1]('ass_base_ressources_conjoint', period)
 
         result = ass_base_ressources_demandeur + ass_base_ressources_conjoint
         return result
@@ -79,7 +79,7 @@ class ass_base_ressources_individu(Variable):
         salaire_imposable = (1 - salaire_imposable_interrompu) * salaire_imposable
         retraite_nette = individu('retraite_nette', previous_year, options = [ADD])
         revenus_locatifs = individu('revenus_locatifs', previous_year, options = [ADD])
-        revenus_capital = individu('revenus_capital', period) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
+        revenus_capital = individu('revenus_capital', period) * individu.has_role(FoyerFiscal.DECLARANT, 0)
         pensions_invalidite = individu('pensions_invalidite', previous_year, options = [ADD])
 
         def revenus_tns():
@@ -165,7 +165,7 @@ class ass_base_ressources_conjoint(Variable):
         pensions_alimentaires_percues = calculateWithAbatement('pensions_alimentaires_percues')
         pensions_invalidite = individu('pensions_invalidite', previous_year, options = [ADD])
         revenus_locatifs = individu('revenus_locatifs', previous_year, options = [ADD])
-        revenus_capital = individu('revenus_capital', period) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
+        revenus_capital = individu('revenus_capital', period) * individu.has_role(FoyerFiscal.DECLARANT, 0)
 
         def revenus_tns():
             revenus_auto_entrepreneur = individu('tns_auto_entrepreneur_benefice', previous_year, options = [ADD])

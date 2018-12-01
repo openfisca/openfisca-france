@@ -831,7 +831,7 @@ class supplement_familial_traitement(Variable):
         traitement_indiciaire_brut = individu('traitement_indiciaire_brut', period)
         _P = parameters(period)
 
-        fonc_nbenf = individu.famille('af_nbenf_fonc', period) * individu.has_role(Famille.DEMANDEUR)
+        fonc_nbenf = individu.famille('af_nbenf_fonc', period) * individu.has_role(Famille.PARENT, 0)
 
         P = _P.fonc.supplement_familial
         part_fixe_1 = P.fixe.enf1

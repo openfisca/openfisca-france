@@ -67,11 +67,11 @@ class revenu_disponible(Variable):
 
         # On prend en compte les PPE touchés par un foyer fiscal dont le déclarant principal est dans le ménage
         ppe_i = menage.members.foyer_fiscal('ppe', period)  # PPE du foyer fiscal auquel appartient chaque membre du ménage
-        ppe = menage.sum(ppe_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)  # On somme seulement pour les déclarants principaux
+        ppe = menage.sum(ppe_i, role = (FoyerFiscal.DECLARANT, 0))  # On somme seulement pour les déclarants principaux
 
         # On prend en compte les prestations sociales touchées par une famille dont le demandeur est dans le ménage
         prestations_sociales_i = menage.members.famille('prestations_sociales', period)  # PF de la famille auquel appartient chaque membre du ménage
-        prestations_sociales = menage.sum(prestations_sociales_i, role = Famille.DEMANDEUR)  # On somme seulement pour les demandeurs
+        prestations_sociales = menage.sum(prestations_sociales_i, role = (Famille.PARENT, 0))  # On somme seulement pour les demandeurs
 
         return (
             revenus_nets_du_travail
@@ -142,7 +142,7 @@ class pensions_nettes(Variable):
         pensions_alimentaires_versees = foyer_fiscal('pensions_alimentaires_versees', period)
         rente_viagere_titre_onereux = foyer_fiscal('rente_viagere_titre_onereux', period, options = [ADD])
         pen_foyer_fiscal = pensions_alimentaires_versees + rente_viagere_titre_onereux
-        pen_foyer_fiscal_projetees = pen_foyer_fiscal * (individu.has_role(foyer_fiscal.DECLARANT_PRINCIPAL))
+        pen_foyer_fiscal_projetees = pen_foyer_fiscal * (individu.has_role(foyer_fiscal.DECLARANT, 0))
 
         return (
             chomage_net
@@ -286,7 +286,7 @@ class revenus_nets_du_capital(Variable):
             revenus_du_capital_cap_avant_prelevements_sociaux
             + prelevements_sociaux_revenus_capital
             )
-        revenus_foyer_fiscal_projetes = revenus_foyer_fiscal * individu.has_role(foyer_fiscal.DECLARANT_PRINCIPAL)
+        revenus_foyer_fiscal_projetes = revenus_foyer_fiscal * individu.has_role(foyer_fiscal.DECLARANT, 0)
 
         return revenus_foyer_fiscal_projetes
 
@@ -313,10 +313,10 @@ class revenus_fonciers_bruts_menage(Variable):
         f4bb_i = menage.members.foyer_fiscal('f4bb', period)
         f4bc_i = menage.members.foyer_fiscal('f4bc', period)
 
-        f4ba = menage.sum(f4ba_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
-        f4be = menage.sum(f4be_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
-        f4bb = menage.sum(f4bb_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
-        f4bc = menage.sum(f4bc_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
+        f4ba = menage.sum(f4ba_i, role = (FoyerFiscal.DECLARANT, 0))
+        f4be = menage.sum(f4be_i, role = (FoyerFiscal.DECLARANT, 0))
+        f4bb = menage.sum(f4bb_i, role = (FoyerFiscal.DECLARANT, 0))
+        f4bc = menage.sum(f4bc_i, role = (FoyerFiscal.DECLARANT, 0))
 
         return f4ba + f4be - f4bb - f4bc
 
@@ -412,11 +412,11 @@ class revenus_capitaux_mobiliers_plus_values_bruts_menage(Variable):
         '''
 
         revenus_capitaux_prelevement_forfaitaire_unique_ir_i = menage.members.foyer_fiscal('revenus_capitaux_prelevement_forfaitaire_unique_ir', period, options = [ADD])
-        revenus_capitaux_prelevement_forfaitaire_unique_ir = menage.sum(revenus_capitaux_prelevement_forfaitaire_unique_ir_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
+        revenus_capitaux_prelevement_forfaitaire_unique_ir = menage.sum(revenus_capitaux_prelevement_forfaitaire_unique_ir_i, role = (FoyerFiscal.DECLARANT, 0))
         revenus_capitaux_prelevement_bareme_i = menage.members.foyer_fiscal('revenus_capitaux_prelevement_bareme', period, options = [ADD])
-        revenus_capitaux_prelevement_bareme = menage.sum(revenus_capitaux_prelevement_bareme_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
+        revenus_capitaux_prelevement_bareme = menage.sum(revenus_capitaux_prelevement_bareme_i, role = (FoyerFiscal.DECLARANT, 0))
         revenus_capitaux_prelevement_liberatoire_i = menage.members.foyer_fiscal('revenus_capitaux_prelevement_liberatoire', period, options = [ADD])
-        revenus_capitaux_prelevement_liberatoire = menage.sum(revenus_capitaux_prelevement_liberatoire_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
+        revenus_capitaux_prelevement_liberatoire = menage.sum(revenus_capitaux_prelevement_liberatoire_i, role = (FoyerFiscal.DECLARANT, 0))
 
         interets_plan_epargne_logement_moins_de_12_ans_ouvert_avant_2018_i = menage.members('interets_plan_epargne_logement_moins_de_12_ans_ouvert_avant_2018', period)
         interets_plan_epargne_logement_moins_de_12_ans_ouvert_avant_2018 = menage.sum(interets_plan_epargne_logement_moins_de_12_ans_ouvert_avant_2018_i)
@@ -427,10 +427,10 @@ class revenus_capitaux_mobiliers_plus_values_bruts_menage(Variable):
         interets_compte_epargne_logement_ouvert_a_partir_de_2018_i = menage.members('interets_compte_epargne_logement_ouvert_a_partir_de_2018', period)
         interets_compte_epargne_logement_ouvert_a_partir_de_2018 = menage.sum(interets_compte_epargne_logement_ouvert_a_partir_de_2018_i)
         assurance_vie_ps_exoneree_irpp_pl_i = menage.members.foyer_fiscal('assurance_vie_ps_exoneree_irpp_pl', period)
-        assurance_vie_ps_exoneree_irpp_pl = menage.sum(assurance_vie_ps_exoneree_irpp_pl_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
+        assurance_vie_ps_exoneree_irpp_pl = menage.sum(assurance_vie_ps_exoneree_irpp_pl_i, role = (FoyerFiscal.DECLARANT, 0))
 
         plus_values_base_large_i = menage.members.foyer_fiscal('plus_values_base_large', period)
-        plus_values_base_large = menage.sum(plus_values_base_large_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
+        plus_values_base_large = menage.sum(plus_values_base_large_i, role = (FoyerFiscal.DECLARANT, 0))
 
         return (
             + revenus_capitaux_prelevement_forfaitaire_unique_ir
@@ -479,7 +479,7 @@ class prelevements_sociaux_menage(Variable):
         crds_hors_prestations = menage.sum(crds_hors_presta_i)
 
         prelevements_sociaux_revenus_capital_hors_csg_crds_i = menage.members.foyer_fiscal('prelevements_sociaux_revenus_capital_hors_csg_crds', period, options = [ADD])
-        prelevements_sociaux_revenus_capital_hors_csg_crds = menage.sum(prelevements_sociaux_revenus_capital_hors_csg_crds_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
+        prelevements_sociaux_revenus_capital_hors_csg_crds = menage.sum(prelevements_sociaux_revenus_capital_hors_csg_crds_i, role = (FoyerFiscal.DECLARANT, 0))
 
         return (
             + csg
@@ -609,19 +609,19 @@ class impots_directs(Variable):
 
         # On prend en compte l'IR des foyers fiscaux dont le déclarant principal est dans le ménage
         irpp_economique_i = menage.members.foyer_fiscal('irpp_economique', period)
-        irpp_economique = menage.sum(irpp_economique_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
+        irpp_economique = menage.sum(irpp_economique_i, role = (FoyerFiscal.DECLARANT, 0))
 
         # On prend en compte le PFL des foyers fiscaux dont le déclarant principal est dans le ménage : variable existant jusqu'en 2017
         prelevement_forfaitaire_liberatoire_i = menage.members.foyer_fiscal('prelevement_forfaitaire_liberatoire', period)
-        prelevement_forfaitaire_liberatoire = menage.sum(prelevement_forfaitaire_liberatoire_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
+        prelevement_forfaitaire_liberatoire = menage.sum(prelevement_forfaitaire_liberatoire_i, role = (FoyerFiscal.DECLARANT, 0))
 
         # On prend en compte le PFU (partie au titre de l'IR) des foyers fiscaux dont le déclarant principal est dans le ménage : variable existant à partir de 2018
         prelevement_forfaitaire_unique_ir_i = menage.members.foyer_fiscal('prelevement_forfaitaire_unique_ir', period)
-        prelevement_forfaitaire_unique_ir = menage.sum(prelevement_forfaitaire_unique_ir_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
+        prelevement_forfaitaire_unique_ir = menage.sum(prelevement_forfaitaire_unique_ir_i, role = (FoyerFiscal.DECLARANT, 0))
 
         # On comptabilise ir_pv_immo ici directement, et non pas dans la variable 'irpp', car administrativement, cet impôt n'est pas dans l'irpp, et n'est déclaré dans le formulaire 2042C que pour calculer le revenu fiscal de référence. On colle à la définition administrative, afin d'avoir une variable 'irpp' qui soit comparable à l'IR du simulateur en ligne de la DGFiP
         # On prend en compte l'IR sur PV immobilières des foyers fiscaux dont le déclarant principal est dans le ménage
         ir_pv_immo_i = menage.members.foyer_fiscal('ir_pv_immo', period)
-        ir_pv_immo = menage.sum(ir_pv_immo_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
+        ir_pv_immo = menage.sum(ir_pv_immo_i, role = (FoyerFiscal.DECLARANT, 0))
 
         return irpp_economique + taxe_habitation + prelevement_forfaitaire_liberatoire + prelevement_forfaitaire_unique_ir + ir_pv_immo

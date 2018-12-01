@@ -185,7 +185,7 @@ class cf_eligibilite_base(Variable):
     definition_period = MONTH
 
     def formula(famille, period, parameters):
-        residence_dom = famille.demandeur.menage('residence_dom', period)
+        residence_dom = famille.parents[0].menage('residence_dom', period)
 
         cf_enfant_eligible = famille.members('cf_enfant_eligible', period)
         cf_nbenf = famille.sum(cf_enfant_eligible)
@@ -200,8 +200,8 @@ class cf_eligibilite_dom(Variable):
     definition_period = MONTH
 
     def formula(famille, period, parameters):
-        residence_dom = famille.demandeur.menage('residence_dom', period)
-        residence_mayotte = famille.demandeur.menage('residence_mayotte', period)
+        residence_dom = famille.parents[0].menage('residence_dom', period)
+        residence_mayotte = famille.parents[0].menage('residence_mayotte', period)
 
         cf_dom_enfant_eligible = famille.members('cf_dom_enfant_eligible', period)
         cf_nbenf = famille.sum(cf_dom_enfant_eligible)
@@ -315,7 +315,7 @@ class cf(Variable):
         apje_avant_cumul = famille('apje_avant_cumul', period)
         ape_avant_cumul = famille('ape_avant_cumul', period)
         cf_montant = famille('cf_montant', period)
-        residence_mayotte = famille.demandeur.menage('residence_mayotte', period)
+        residence_mayotte = famille.parents[0].menage('residence_mayotte', period)
 
         cf_brut = (
             not_(paje_base)

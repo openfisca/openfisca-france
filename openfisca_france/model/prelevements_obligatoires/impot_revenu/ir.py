@@ -344,7 +344,7 @@ class maries_ou_pacses(Variable):
     definition_period = YEAR
 
     def formula(foyer_fiscal, period):
-        statut_marital = foyer_fiscal.declarant_principal('statut_marital', period.first_month)
+        statut_marital = foyer_fiscal.declarants[0]('statut_marital', period.first_month)
         marie_ou_pacse = (statut_marital == TypesStatutMarital.marie) | (statut_marital == TypesStatutMarital.pacse)
 
         return marie_ou_pacse
@@ -357,7 +357,7 @@ class celibataire_ou_divorce(Variable):
     definition_period = YEAR
 
     def formula(foyer_fiscal, period):
-        statut_marital = foyer_fiscal.declarant_principal('statut_marital', period.first_month)
+        statut_marital = foyer_fiscal.declarants[0]('statut_marital', period.first_month)
         celibataire_ou_divorce = (statut_marital == TypesStatutMarital.celibataire) | (
             statut_marital == TypesStatutMarital.divorce
             )
@@ -372,7 +372,7 @@ class veuf(Variable):
     definition_period = YEAR
 
     def formula(foyer_fiscal, period):
-        statut_marital = foyer_fiscal.declarant_principal('statut_marital', period.first_month)
+        statut_marital = foyer_fiscal.declarants[0]('statut_marital', period.first_month)
         veuf = (statut_marital == TypesStatutMarital.veuf)
 
         return veuf
@@ -385,7 +385,7 @@ class jeune_veuf(Variable):
     definition_period = YEAR
 
     def formula(foyer_fiscal, period):
-        statut_marital = foyer_fiscal.declarant_principal('statut_marital', period.first_month)
+        statut_marital = foyer_fiscal.declarants[0]('statut_marital', period.first_month)
         jeune_veuf = (statut_marital == TypesStatutMarital.jeune_veuf)
 
         return jeune_veuf
@@ -603,7 +603,7 @@ class traitements_salaires_pensions_rentes(Variable):
         # Quand tspr est calculé sur une année glissante, rente_viagere_titre_onereux_net est calculé sur l'année légale
         # correspondante.
         rente_viagere_titre_onereux_net = individu.foyer_fiscal('rente_viagere_titre_onereux_net', period.offset('first-of'))
-        rente_viagere_titre_onereux_net_declarant1 = rente_viagere_titre_onereux_net * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
+        rente_viagere_titre_onereux_net_declarant1 = rente_viagere_titre_onereux_net * individu.has_role(FoyerFiscal.DECLARANT, 0)
 
         return (
             + revenu_assimile_salaire_apres_abattements
@@ -1522,8 +1522,8 @@ class teicaa(Variable):  # f5rm
         """
         bareme = parameters(period).impot_revenu.teicaa
 
-        f5qm = foyer_fiscal.declarant_principal('f5qm', period)
-        f5rm = foyer_fiscal.conjoint('f5qm', period)
+        f5qm = foyer_fiscal.declarants[0]('f5qm', period)
+        f5rm = foyer_fiscal.declarants[1]('f5qm', period)
 
         return bareme.calc(f5qm) + bareme.calc(f5rm)
 
@@ -1660,12 +1660,12 @@ class taxation_plus_values_hors_bareme(Variable):
         plus_values = parameters(period).impot_revenu.plus_values
 
         rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
-        f3vd = foyer_fiscal.declarant_principal('f3vd', period)  # noqa F841
-        f3sd = foyer_fiscal.conjoint('f3vd', period)  # noqa F841
-        f3vi = foyer_fiscal.declarant_principal('f3vi', period)
-        f3si = foyer_fiscal.conjoint('f3vi', period)  # noqa F841
-        f3vf = foyer_fiscal.declarant_principal('f3vf', period)
-        f3sf = foyer_fiscal.conjoint('f3vf', period)  # noqa F841
+        f3vd = foyer_fiscal.declarants[0]('f3vd', period)  # noqa F841
+        f3sd = foyer_fiscal.declarants[1]('f3vd', period)  # noqa F841
+        f3vi = foyer_fiscal.declarants[0]('f3vi', period)
+        f3si = foyer_fiscal.declarants[1]('f3vi', period)  # noqa F841
+        f3vf = foyer_fiscal.declarants[0]('f3vf', period)
+        f3sf = foyer_fiscal.declarants[1]('f3vf', period)  # noqa F841
         #  TODO: remove this todo use sum for all fields after checking
         # revenus taxés à un taux proportionnel
 
@@ -1690,12 +1690,12 @@ class taxation_plus_values_hors_bareme(Variable):
         plus_values = parameters(period).impot_revenu.plus_values
 
         rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
-        f3vd = foyer_fiscal.declarant_principal('f3vd', period)
-        f3sd = foyer_fiscal.conjoint('f3vd', period)  # noqa F841
-        f3vi = foyer_fiscal.declarant_principal('f3vi', period)
-        f3si = foyer_fiscal.conjoint('f3vi', period)  # noqa F841
-        f3vf = foyer_fiscal.declarant_principal('f3vf', period)
-        f3sf = foyer_fiscal.conjoint('f3vf', period)  # noqa F841
+        f3vd = foyer_fiscal.declarants[0]('f3vd', period)
+        f3sd = foyer_fiscal.declarants[1]('f3vd', period)  # noqa F841
+        f3vi = foyer_fiscal.declarants[0]('f3vi', period)
+        f3si = foyer_fiscal.declarants[1]('f3vi', period)  # noqa F841
+        f3vf = foyer_fiscal.declarants[0]('f3vf', period)
+        f3sf = foyer_fiscal.declarants[1]('f3vf', period)  # noqa F841
         #  TODO: remove this todo use sum for all fields after checking
         # revenus taxés à un taux proportionnel
 
@@ -2610,8 +2610,8 @@ class moins_values_court_terme_nonpro(Variable):
     definition_period = YEAR
 
     def formula(individu, period, parameters):
-        macc_mvct = individu.foyer_fiscal('macc_mvct', period) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
-        mncn_mvct = individu.foyer_fiscal('mncn_mvct', period) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
+        macc_mvct = individu.foyer_fiscal('macc_mvct', period) * individu.has_role(FoyerFiscal.DECLARANT, 0)
+        mncn_mvct = individu.foyer_fiscal('mncn_mvct', period) * individu.has_role(FoyerFiscal.DECLARANT, 0)
 
         return macc_mvct + mncn_mvct
 
@@ -2623,7 +2623,7 @@ class moins_values_court_terme_pro(Variable):
     definition_period = YEAR
 
     def formula(individu, period, parameters):
-        mbic_mvct = individu.foyer_fiscal('mbic_mvct', period) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
+        mbic_mvct = individu.foyer_fiscal('mbic_mvct', period) * individu.has_role(FoyerFiscal.DECLARANT, 0)
         mbnc_mvct = individu('mbnc_mvct', period)
 
         return mbic_mvct + mbnc_mvct
@@ -2738,8 +2738,8 @@ class rpns_individu(Variable):
         rpns_pvct = individu('rpns_pvct', period)
         rpns_mvct_pro = individu('moins_values_court_terme_pro', period)
         rpns_mvct_nonpro = individu('moins_values_court_terme_nonpro', period)  # noqa F841
-        macc_mvct = individu.foyer_fiscal('macc_mvct', period) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
-        mncn_mvct = individu.foyer_fiscal('mncn_mvct', period) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
+        macc_mvct = individu.foyer_fiscal('macc_mvct', period) * individu.has_role(FoyerFiscal.DECLARANT, 0)
+        mncn_mvct = individu.foyer_fiscal('mncn_mvct', period) * individu.has_role(FoyerFiscal.DECLARANT, 0)
         nbnc_proc = individu('nbnc_proc', period)  # noqa F841
         pveximpres = individu('pveximpres', period)  # noqa F841
         pvtaimpres = individu('pvtaimpres', period)  # noqa F841
@@ -2875,8 +2875,8 @@ class abat_spe(Variable):
         abattements_rni = parameters(period).impot_revenu.abattements_rni
         abattements_personne_agee_ou_invalide = abattements_rni.personne_agee_ou_invalide
 
-        ageV = foyer_fiscal.declarant_principal('age', period.first_month)
-        ageC = foyer_fiscal.conjoint('age', period.first_month)
+        ageV = foyer_fiscal.declarants[0]('age', period.first_month)
+        ageC = foyer_fiscal.declarants[1]('age', period.first_month)
 
         invV, invC = caseP, caseF
         nb_elig_as = (
@@ -3191,19 +3191,19 @@ class ppe_brute(Variable):
         nbH = foyer_fiscal('nbH', period)
         ppe = parameters(period).impot_revenu.credits_impot.ppe
 
-        eliv = foyer_fiscal.declarant_principal('ppe_elig_individu', period)
-        elic = foyer_fiscal.conjoint('ppe_elig_individu', period)
+        eliv = foyer_fiscal.declarants[0]('ppe_elig_individu', period)
+        elic = foyer_fiscal.declarants[1]('ppe_elig_individu', period)
         eligible_i = foyer_fiscal.members('ppe_elig_individu', period)
 
-        basevi = foyer_fiscal.declarant_principal('ppe_rev', period)
-        baseci = foyer_fiscal.conjoint('ppe_rev', period)
+        basevi = foyer_fiscal.declarants[0]('ppe_rev', period)
+        baseci = foyer_fiscal.declarants[1]('ppe_rev', period)
 
-        basev = foyer_fiscal.declarant_principal('ppe_base', period)
-        basec = foyer_fiscal.conjoint('ppe_base', period)
+        basev = foyer_fiscal.declarants[0]('ppe_base', period)
+        basec = foyer_fiscal.declarants[1]('ppe_base', period)
         base_i = foyer_fiscal.members('ppe_base', period)
 
-        coef_tpv = foyer_fiscal.declarant_principal('ppe_coef_tp', period)
-        coef_tpc = foyer_fiscal.conjoint('ppe_coef_tp', period)
+        coef_tpv = foyer_fiscal.declarants[0]('ppe_coef_tp', period)
+        coef_tpc = foyer_fiscal.declarants[1]('ppe_coef_tp', period)
         coef_tp_i = foyer_fiscal.members('ppe_coef_tp', period)
 
         nb_pac_ppe = max_(0, nb_pac - foyer_fiscal.sum(eligible_i, role = FoyerFiscal.PERSONNE_A_CHARGE))
