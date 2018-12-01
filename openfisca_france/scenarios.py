@@ -13,7 +13,10 @@ def init_single_entity(scenario, axes = None, enfants = None, famille = None, fo
         axis = axes[0]
         count = axis['count']
         variable = axis['name']
-        values = [axis['min'] + i * ((axis['max'] - axis['min']) / axis['count']) for i in range(0, (axis['count']))]
+        if count > 1:
+            values = [axis['min'] + i * ((axis['max'] - axis['min']) / (count - 1)) for i in range(0, (count))]
+        else:
+            values = [axis['max']]
 
     if enfants is None:
         enfants = []
