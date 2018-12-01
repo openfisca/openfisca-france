@@ -4,6 +4,9 @@ import datetime
 
 
 from openfisca_core import periods
+
+from openfisca_france.scenarios import init_single_entity
+
 from openfisca_france.reforms.plf2016_ayrault_muet import ayrault_muet
 from ..cache import tax_benefit_system
 
@@ -14,7 +17,7 @@ def test():
     count = 2
     people = 1
     reform = ayrault_muet(tax_benefit_system)
-    scenario = reform.new_scenario().init_single_entity(
+    scenario = init_single_entity(reform.new_scenario(),
         axes = [
             dict(
                 count = count,

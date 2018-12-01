@@ -3,6 +3,9 @@
 import datetime
 
 from openfisca_core import periods
+
+from openfisca_france.scenarios import init_single_entity
+
 from openfisca_france.reforms.plf2015 import plf2015
 from ..cache import tax_benefit_system
 
@@ -12,7 +15,7 @@ def test(year = 2013):
     count = 2
     people = 1
     reform = plf2015(tax_benefit_system)
-    scenario = reform.new_scenario().init_single_entity(
+    scenario = init_single_entity(reform.new_scenario(),
         axes = [
             dict(
                 count = count,

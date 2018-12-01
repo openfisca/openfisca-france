@@ -9,11 +9,13 @@ from openfisca_core.tools import assert_near
 from openfisca_france.reforms.allocations_familiales_imposables import allocations_familiales_imposables
 from ..cache import tax_benefit_system
 
+from openfisca_france.scenarios import init_single_entity
+
 
 def test_allocations_familiales_imposables():
     year = 2012
     reform = allocations_familiales_imposables(tax_benefit_system)
-    scenario = reform.new_scenario().init_single_entity(
+    scenario = init_single_entity(reform.new_scenario(),
         axes = [
             dict(
                 count = 10,
