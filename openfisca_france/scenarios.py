@@ -2,6 +2,9 @@
 
 import logging
 
+# For Python 2 comptability
+from collections import OrderedDict
+
 log = logging.getLogger(__name__)
 
 
@@ -22,10 +25,10 @@ def init_single_entity(scenario, axes = None, enfants = None, famille = None, fo
         enfants = []
     assert parent1 is not None
 
-    familles = {}
-    foyers_fiscaux = {}
-    menages = {}
-    individus = {}
+    familles = OrderedDict()
+    foyers_fiscaux = OrderedDict()
+    menages = OrderedDict()
+    individus = OrderedDict()
 
     count_so_far = 0
     for nth in range(0, count):
