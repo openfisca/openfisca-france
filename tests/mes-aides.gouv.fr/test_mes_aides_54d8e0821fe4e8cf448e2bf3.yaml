@@ -1,8 +1,8 @@
 name: Le forfait de charges est inchangé pour un couple en colocation
 keywords:
-  - al
-  - colocation
-  - location
+- al
+- colocation
+- location
 description: |
   On teste ici simplement que le forfait de charges spécial pour les personnes seules en colocation n'est pas appliqué aux couples, qui gardent le même forfait de charges qu'un couple qui n'est pas en colocation.
 
@@ -23,234 +23,235 @@ description: |
   AL	281,77
 
   caf.fr : 281,78
-period: "month:2015-02"
+period: month:2015-02
 relative_error_margin: 0.02
-individus:
-  - age: 34
-    age_en_mois: 413
-    date_naissance: "1980-08-12"
-    chomage_imposable:
-      2013: 0
-    etudiant: 0
-    id: 54d8e0041fe4e8cf448e2bf2
-    inapte_travail: 0
-    handicap: 0
-    pensions_alimentaires_percues:
-      2013: 0
-    retraite_imposable:
-      2013: 0
-    salaire_imposable:
-      2013: 0
-    statut_marital: marie
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-  - age: 34
-    age_en_mois: 413
-    date_naissance: "1980-08-12"
-    chomage_imposable:
-      2013: 0
-    etudiant: 0
-    id: 54d8e0041fe4e8cf448e2bf1
-    inapte_travail: 0
-    handicap: 0
-    pensions_alimentaires_percues:
-      2013: 0
-    retraite_imposable:
-      2013: 0
-    salaire_imposable:
-      2013: 0
-    valeur_locative_immo_non_loue:
-      2012-01: 0
-    valeur_locative_terrains_non_loues:
-      2012-01: 0
-familles:
-  acs:
-    2014-02: 0
-    2014-03: 0
-    2014-04: 0
-    2014-05: 0
-    2014-06: 0
-    2014-07: 0
-    2014-08: 0
-    2014-09: 0
-    2014-10: 0
-    2014-11: 0
-    2014-12: 0
-    2015-01: 0
-  af:
-    2014-02: 0
-    2014-03: 0
-    2014-04: 0
-    2014-05: 0
-    2014-06: 0
-    2014-07: 0
-    2014-08: 0
-    2014-09: 0
-    2014-10: 0
-    2014-11: 0
-    2014-12: 0
-    2015-01: 0
-  aide_logement:
-    2014-02: 0
-    2014-03: 0
-    2014-04: 0
-    2014-05: 0
-    2014-06: 0
-    2014-07: 0
-    2014-08: 0
-    2014-09: 0
-    2014-10: 0
-    2014-11: 0
-    2014-12: 0
-    2015-01: 0
-  alf:
-    2014-02: 0
-    2014-03: 0
-    2014-04: 0
-    2014-05: 0
-    2014-06: 0
-    2014-07: 0
-    2014-08: 0
-    2014-09: 0
-    2014-10: 0
-    2014-11: 0
-    2014-12: 0
-    2015-01: 0
-  als:
-    2014-02: 0
-    2014-03: 0
-    2014-04: 0
-    2014-05: 0
-    2014-06: 0
-    2014-07: 0
-    2014-08: 0
-    2014-09: 0
-    2014-10: 0
-    2014-11: 0
-    2014-12: 0
-    2015-01: 0
-  apl:
-    2014-02: 0
-    2014-03: 0
-    2014-04: 0
-    2014-05: 0
-    2014-06: 0
-    2014-07: 0
-    2014-08: 0
-    2014-09: 0
-    2014-10: 0
-    2014-11: 0
-    2014-12: 0
-    2015-01: 0
-  asf:
-    2014-02: 0
-    2014-03: 0
-    2014-04: 0
-    2014-05: 0
-    2014-06: 0
-    2014-07: 0
-    2014-08: 0
-    2014-09: 0
-    2014-10: 0
-    2014-11: 0
-    2014-12: 0
-    2015-01: 0
-  aspa:
-    2014-02: 0
-    2014-03: 0
-    2014-04: 0
-    2014-05: 0
-    2014-06: 0
-    2014-07: 0
-    2014-08: 0
-    2014-09: 0
-    2014-10: 0
-    2014-11: 0
-    2014-12: 0
-    2015-01: 0
-  bourse_college:
-    2014-02: 0
-    2014-03: 0
-    2014-04: 0
-    2014-05: 0
-    2014-06: 0
-    2014-07: 0
-    2014-08: 0
-    2014-09: 0
-    2014-10: 0
-    2014-11: 0
-    2014-12: 0
-    2015-01: 0
-  bourse_lycee:
-    2014-02: 0
-    2014-03: 0
-    2014-04: 0
-    2014-05: 0
-    2014-06: 0
-    2014-07: 0
-    2014-08: 0
-    2014-09: 0
-    2014-10: 0
-    2014-11: 0
-    2014-12: 0
-    2015-01: 0
-  cf:
-    2014-02: 0
-    2014-03: 0
-    2014-04: 0
-    2014-05: 0
-    2014-06: 0
-    2014-07: 0
-    2014-08: 0
-    2014-09: 0
-    2014-10: 0
-    2014-11: 0
-    2014-12: 0
-    2015-01: 0
-  paje_base:
-    2014-02: 0
-    2014-03: 0
-    2014-04: 0
-    2014-05: 0
-    2014-06: 0
-    2014-07: 0
-    2014-08: 0
-    2014-09: 0
-    2014-10: 0
-    2014-11: 0
-    2014-12: 0
-    2015-01: 0
-  parents:
+input:
+  individus:
+    54d8e0041fe4e8cf448e2bf2:
+      age: 34
+      age_en_mois: 413
+      date_naissance: '1980-08-12'
+      chomage_imposable:
+        2013: 0
+      etudiant: 0
+      inapte_travail: 0
+      handicap: 0
+      pensions_alimentaires_percues:
+        2013: 0
+      retraite_imposable:
+        2013: 0
+      salaire_imposable:
+        2013: 0
+      statut_marital: marie
+      valeur_locative_immo_non_loue:
+        2012-01: 0
+      valeur_locative_terrains_non_loues:
+        2012-01: 0
+    54d8e0041fe4e8cf448e2bf1:
+      age: 34
+      age_en_mois: 413
+      date_naissance: '1980-08-12'
+      chomage_imposable:
+        2013: 0
+      etudiant: 0
+      inapte_travail: 0
+      handicap: 0
+      pensions_alimentaires_percues:
+        2013: 0
+      retraite_imposable:
+        2013: 0
+      salaire_imposable:
+        2013: 0
+      valeur_locative_immo_non_loue:
+        2012-01: 0
+      valeur_locative_terrains_non_loues:
+        2012-01: 0
+  famille:
+    acs:
+      2014-02: 0
+      2014-03: 0
+      2014-04: 0
+      2014-05: 0
+      2014-06: 0
+      2014-07: 0
+      2014-08: 0
+      2014-09: 0
+      2014-10: 0
+      2014-11: 0
+      2014-12: 0
+      2015-01: 0
+    af:
+      2014-02: 0
+      2014-03: 0
+      2014-04: 0
+      2014-05: 0
+      2014-06: 0
+      2014-07: 0
+      2014-08: 0
+      2014-09: 0
+      2014-10: 0
+      2014-11: 0
+      2014-12: 0
+      2015-01: 0
+    aide_logement:
+      2014-02: 0
+      2014-03: 0
+      2014-04: 0
+      2014-05: 0
+      2014-06: 0
+      2014-07: 0
+      2014-08: 0
+      2014-09: 0
+      2014-10: 0
+      2014-11: 0
+      2014-12: 0
+      2015-01: 0
+    alf:
+      2014-02: 0
+      2014-03: 0
+      2014-04: 0
+      2014-05: 0
+      2014-06: 0
+      2014-07: 0
+      2014-08: 0
+      2014-09: 0
+      2014-10: 0
+      2014-11: 0
+      2014-12: 0
+      2015-01: 0
+    als:
+      2014-02: 0
+      2014-03: 0
+      2014-04: 0
+      2014-05: 0
+      2014-06: 0
+      2014-07: 0
+      2014-08: 0
+      2014-09: 0
+      2014-10: 0
+      2014-11: 0
+      2014-12: 0
+      2015-01: 0
+    apl:
+      2014-02: 0
+      2014-03: 0
+      2014-04: 0
+      2014-05: 0
+      2014-06: 0
+      2014-07: 0
+      2014-08: 0
+      2014-09: 0
+      2014-10: 0
+      2014-11: 0
+      2014-12: 0
+      2015-01: 0
+    asf:
+      2014-02: 0
+      2014-03: 0
+      2014-04: 0
+      2014-05: 0
+      2014-06: 0
+      2014-07: 0
+      2014-08: 0
+      2014-09: 0
+      2014-10: 0
+      2014-11: 0
+      2014-12: 0
+      2015-01: 0
+    aspa:
+      2014-02: 0
+      2014-03: 0
+      2014-04: 0
+      2014-05: 0
+      2014-06: 0
+      2014-07: 0
+      2014-08: 0
+      2014-09: 0
+      2014-10: 0
+      2014-11: 0
+      2014-12: 0
+      2015-01: 0
+    bourse_college:
+      2014-02: 0
+      2014-03: 0
+      2014-04: 0
+      2014-05: 0
+      2014-06: 0
+      2014-07: 0
+      2014-08: 0
+      2014-09: 0
+      2014-10: 0
+      2014-11: 0
+      2014-12: 0
+      2015-01: 0
+    bourse_lycee:
+      2014-02: 0
+      2014-03: 0
+      2014-04: 0
+      2014-05: 0
+      2014-06: 0
+      2014-07: 0
+      2014-08: 0
+      2014-09: 0
+      2014-10: 0
+      2014-11: 0
+      2014-12: 0
+      2015-01: 0
+    cf:
+      2014-02: 0
+      2014-03: 0
+      2014-04: 0
+      2014-05: 0
+      2014-06: 0
+      2014-07: 0
+      2014-08: 0
+      2014-09: 0
+      2014-10: 0
+      2014-11: 0
+      2014-12: 0
+      2015-01: 0
+    paje_base:
+      2014-02: 0
+      2014-03: 0
+      2014-04: 0
+      2014-05: 0
+      2014-06: 0
+      2014-07: 0
+      2014-08: 0
+      2014-09: 0
+      2014-10: 0
+      2014-11: 0
+      2014-12: 0
+      2015-01: 0
+    parents:
     - 54d8e0041fe4e8cf448e2bf2
     - 54d8e0041fe4e8cf448e2bf1
-  proprietaire_proche_famille: false
-  rsa:
-    2014-02: 0
-    2014-03: 0
-    2014-04: 0
-    2014-05: 0
-    2014-06: 0
-    2014-07: 0
-    2014-08: 0
-    2014-09: 0
-    2014-10: 0
-    2014-11: 0
-    2014-12: 0
-    2015-01: 0
-foyers_fiscaux:
-  declarants:
+    proprietaire_proche_famille: false
+    rsa:
+      2014-02: 0
+      2014-03: 0
+      2014-04: 0
+      2014-05: 0
+      2014-06: 0
+      2014-07: 0
+      2014-08: 0
+      2014-09: 0
+      2014-10: 0
+      2014-11: 0
+      2014-12: 0
+      2015-01: 0
+  foyer_fiscal:
+    declarants:
     - 54d8e0041fe4e8cf448e2bf2
     - 54d8e0041fe4e8cf448e2bf1
-  pensions_alimentaires_versees:
-    2013: 0
-menages:
-  coloc: 1
-  conjoint: 54d8e0041fe4e8cf448e2bf1
-  depcom: 75111
-  loyer: 1000
-  personne_de_reference: 54d8e0041fe4e8cf448e2bf2
-  statut_occupation_logement: locataire_vide
-output_variables:
+    pensions_alimentaires_versees:
+      2013: 0
+  menage:
+    coloc: 1
+    conjoint: 54d8e0041fe4e8cf448e2bf1
+    depcom: 75111
+    loyer: 1000
+    personne_de_reference: 54d8e0041fe4e8cf448e2bf2
+    statut_occupation_logement: locataire_vide
+output:
   aide_logement: 281.77

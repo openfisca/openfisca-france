@@ -1,42 +1,40 @@
 - name: regime_benef_reel_agricole_avec_cga
   period: 2014
   absolute_error_margin: 1
-  foyers_fiscaux:
-  - caseF: false
-    caseG: false
-    caseL: false
-    caseP: false
-    caseS: false
-    caseT: false
-    caseW: false
-    declarants:
-    - ind0
-    f5qo: 500
-    f5qp: 500
-    f5qq: 500
-    id: 0
-    nbF: 0.0
-    nbG: 0.0
-    nbH: 0.0
-    nbI: 0.0
-    nbJ: 0
-    nbR: 0
-  individus:
-  - activite: actif
-    arag_defi: 500
-    arag_impg: 25000
-    arag_pvce: 1000
-    date_naissance: '1970-01-01'
-    id: ind0
-    statut_marital: celibataire
-  familles:
-  - id: 0
-    parents:
-    - ind0
-  menages:
-  - id: 0
-    personne_de_reference: ind0
-  output_variables:
+  input:
+    foyer_fiscal:
+      caseF: false
+      caseG: false
+      caseL: false
+      caseP: false
+      caseS: false
+      caseT: false
+      caseW: false
+      declarants:
+      - ind0
+      f5qo: 500
+      f5qp: 500
+      f5qq: 500
+      nbF: 0.0
+      nbG: 0.0
+      nbH: 0.0
+      nbI: 0.0
+      nbJ: 0
+      nbR: 0
+    individus:
+      ind0:
+        activite: actif
+        arag_defi: 500
+        arag_impg: 25000
+        arag_pvce: 1000
+        date_naissance: '1970-01-01'
+        statut_marital: celibataire
+    famille:
+      parents:
+      - ind0
+    menage:
+      personne_de_reference: ind0
+  output:
     iai: 2023.0
     irpp: -2023.0
     nbptr: 1.0
@@ -47,42 +45,40 @@
 - name: regime_benef_reel_agricole_avec_cga
   period: 2015
   absolute_error_margin: 1
-  foyers_fiscaux:
-  - caseF: false
-    caseG: false
-    caseL: false
-    caseP: false
-    caseS: false
-    caseT: false
-    caseW: false
-    declarants:
-    - ind0
-    f5qo: 500
-    f5qp: 500
-    f5qq: 500
-    id: 0
-    nbF: 0.0
-    nbG: 0.0
-    nbH: 0.0
-    nbI: 0.0
-    nbJ: 0
-    nbR: 0
-  individus:
-  - activite: actif
-    arag_defi: 500
-    arag_impg: 25000
-    arag_pvce: 1000
-    date_naissance: '1970-01-01'
-    id: ind0
-    statut_marital: celibataire
-  familles:
-  - id: 0
-    parents:
-    - ind0
-  menages:
-  - id: 0
-    personne_de_reference: ind0
-  output_variables:
+  input:
+    foyer_fiscal:
+      caseF: false
+      caseG: false
+      caseL: false
+      caseP: false
+      caseS: false
+      caseT: false
+      caseW: false
+      declarants:
+      - ind0
+      f5qo: 500
+      f5qp: 500
+      f5qq: 500
+      nbF: 0.0
+      nbG: 0.0
+      nbH: 0.0
+      nbI: 0.0
+      nbJ: 0
+      nbR: 0
+    individus:
+      ind0:
+        activite: actif
+        arag_defi: 500
+        arag_impg: 25000
+        arag_pvce: 1000
+        date_naissance: '1970-01-01'
+        statut_marital: celibataire
+    famille:
+      parents:
+      - ind0
+    menage:
+      personne_de_reference: ind0
+  output:
     iai: 2022.0
     irpp: -2022.0
     nbptr: 1.0
@@ -92,42 +88,40 @@
 - name: regime_benef_reel_agricole_avec_cga
   period: 2016
   absolute_error_margin: 1
-  foyers_fiscaux:
-  - caseF: false
-    caseG: false
-    caseL: false
-    caseP: false
-    caseS: false
-    caseT: false
-    caseW: false
-    declarants:
-    - ind0
-    f5qo: 500
-    f5qp: 500
-    f5qq: 500
-    id: 0
-    nbF: 0.0
-    nbG: 0.0
-    nbH: 0.0
-    nbI: 0.0
-    nbJ: 0
-    nbR: 0
-  individus:
-  - activite: actif
-    arag_defi: 500
-    arag_impg: 25000
-    arag_pvce: 1000
-    date_naissance: '1970-01-01'
-    id: ind0
-    statut_marital: celibataire
-  familles:
-  - id: 0
-    parents:
-    - ind0
-  menages:
-  - id: 0
-    personne_de_reference: ind0
-  output_variables:
+  input:
+    foyer_fiscal:
+      caseF: false
+      caseG: false
+      caseL: false
+      caseP: false
+      caseS: false
+      caseT: false
+      caseW: false
+      declarants:
+      - ind0
+      f5qo: 500
+      f5qp: 500
+      f5qq: 500
+      nbF: 0.0
+      nbG: 0.0
+      nbH: 0.0
+      nbI: 0.0
+      nbJ: 0
+      nbR: 0
+    individus:
+      ind0:
+        activite: actif
+        arag_defi: 500
+        arag_impg: 25000
+        arag_pvce: 1000
+        date_naissance: '1970-01-01'
+        statut_marital: celibataire
+    famille:
+      parents:
+      - ind0
+    menage:
+      personne_de_reference: ind0
+  output:
     iai: 2021.0
     irpp: -2021.0
     nbptr: 1.0
@@ -137,42 +131,40 @@
 - name: regime_benef_reel_agricole_avec_cga
   period: 2017
   absolute_error_margin: 1
-  foyers_fiscaux:
-  - caseF: false
-    caseG: false
-    caseL: false
-    caseP: false
-    caseS: false
-    caseT: false
-    caseW: false
-    declarants:
-    - ind0
-    f5qo: 500
-    f5qp: 500
-    f5qq: 500
-    id: 0
-    nbF: 0.0
-    nbG: 0.0
-    nbH: 0.0
-    nbI: 0.0
-    nbJ: 0
-    nbR: 0
-  individus:
-  - activite: actif
-    arag_defi: 500
-    arag_impg: 25000
-    arag_pvce: 1000
-    date_naissance: '1970-01-01'
-    id: ind0
-    statut_marital: celibataire
-  familles:
-  - id: 0
-    parents:
-    - ind0
-  menages:
-  - id: 0
-    personne_de_reference: ind0
-  output_variables:
+  input:
+    foyer_fiscal:
+      caseF: false
+      caseG: false
+      caseL: false
+      caseP: false
+      caseS: false
+      caseT: false
+      caseW: false
+      declarants:
+      - ind0
+      f5qo: 500
+      f5qp: 500
+      f5qq: 500
+      nbF: 0.0
+      nbG: 0.0
+      nbH: 0.0
+      nbI: 0.0
+      nbJ: 0
+      nbR: 0
+    individus:
+      ind0:
+        activite: actif
+        arag_defi: 500
+        arag_impg: 25000
+        arag_pvce: 1000
+        date_naissance: '1970-01-01'
+        statut_marital: celibataire
+    famille:
+      parents:
+      - ind0
+    menage:
+      personne_de_reference: ind0
+  output:
     iai: 1975.0
     irpp: -1975.0
     nbptr: 1.0

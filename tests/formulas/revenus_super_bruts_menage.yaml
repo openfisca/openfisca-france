@@ -1,8 +1,8 @@
 - name: composantes_revenus_super_bruts_menage
-  description: "Test des composantes de revenus_super_bruts_menage"
+  description: Test des composantes de revenus_super_bruts_menage
   period: 2018
   absolute_error_margin: 1
-  input_variables:
+  input:
     revenus_capitaux_prelevement_forfaitaire_unique_ir:
       2018-01: 1000
     salaire_net:
@@ -41,6 +41,6 @@
       2018: 10
     f4bc:
       2018: 10
-  output_variables:
+  output:
     revenus_super_bruts_menage:
       2018: 2*1000+5*10+2000+3000+6*30+20+40-2*10

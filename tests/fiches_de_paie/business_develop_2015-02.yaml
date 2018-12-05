@@ -1,9 +1,9 @@
-name: "Business Develop (N)"
-period: "2015-02"
+name: Business Develop (N)
+period: 2015-02
 absolute_error_margin: 0.005
-input_variables:
+input:
   contrat_de_travail: forfait_jours_annee
-  depcom_entreprise: "75102"
+  depcom_entreprise: '75102'
   effectif_entreprise: 5
   forfait_jours_remuneres_volume: 218
   jeune_entreprise_innovante: 1
@@ -12,7 +12,7 @@ input_variables:
   salaire_de_base: 2000
   taux_accident_travail: 0.011
   categorie_salarie: prive_cadre
-output_variables:
+output:
   coefficient_proratisation: 217/218
   ags: -6.52
   agff_employeur: -26.07
@@ -53,7 +53,7 @@ output_variables:
   allegement_fillon: 0
   credit_impot_competitivite_emploi: 130.37
   tehr:
-    "year:2015": 0
+    year:2015: 0
   # assiette_cotisations_sociales
   cotisations_salariales: -509.15 + 109.7 + 62.38 + 0.01
   # cotisations_salariales_contributives
@@ -82,4 +82,3 @@ output_variables:
   hsup: 0
   depense_cantine_titre_restaurant_employe: 0
   salaire_net_a_payer: 1663.75 +.01
-  # salaire_super_brut: 2172.90 + 496.76

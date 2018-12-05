@@ -1,5 +1,13 @@
 # Changelog
 
+## 32.2.0 [#1224](https://github.com/openfisca/openfisca-france/pull/1224)
+
+* Amélioration technique.
+* Détails:
+  - Adapte à OpenFisca Core v25
+  - Change la syntaxe des tests
+  - Pour plus d'informations, voir le [Changelog de Core](https://github.com/openfisca/openfisca-core/blob/master/CHANGELOG.md#250-781)
+
 ### 32.1.0 [#1225](https://github.com/openfisca/openfisca-france/pull/1225)
 
 * Évolution du système socio-fiscal.

@@ -1,20 +1,20 @@
-- period: "2016-03"
+- period: 2016-03
   name: CDI, pas de CIF CDD
   relative_error_margin: 0.01
-  input_variables:
+  input:
     salaire_de_base: 1467
     allegement_fillon_mode_recouvrement: anticipe
     allegement_cotisation_allocations_familiales_mode_recouvrement: anticipe
     contrat_de_travail_duree: cdi
     effectif_entreprise: 94
     categorie_salarie: prive_non_cadre
-  output_variables:
+  output:
     conge_individuel_formation_cdd: 0
 
-- period: "2016-03"
+- period: 2016-03
   name: CDD, 1% de cotisation CIF-CDD, indemité de fin de contrat
   relative_error_margin: 0.01
-  input_variables:
+  input:
     salaire_de_base: 1467
     allegement_fillon_mode_recouvrement: anticipe
     allegement_cotisation_allocations_familiales_mode_recouvrement: anticipe
@@ -22,6 +22,6 @@
     effectif_entreprise: 94
     categorie_salarie: prive_non_cadre
     indemnite_fin_contrat_due: 1
-  output_variables:
+  output:
     indemnite_fin_contrat: 0.1 * 1467
     conge_individuel_formation_cdd: -(1467 * 1.1) * 0.01

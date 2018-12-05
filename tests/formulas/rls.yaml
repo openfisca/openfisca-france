@@ -1,62 +1,62 @@
 - name: Zone 2 isolé
   period: 2018-01
-  input_variables:
+  input:
     logement_conventionne: true
     zone_apl: zone_2
     aide_logement_base_ressources: 100
-  output_variables:
+  output:
     reduction_loyer_solidarite_plafond_ressources: 846
     reduction_loyer_solidarite: 27.74
 
 - name: Zone 2 avec 8 personnes à charges
   period: 2018-01
-  input_variables:
+  input:
     logement_conventionne: true
     zone_apl: zone_2
     al_nb_personnes_a_charge: 8
     aide_logement_base_ressources: 100
-  output_variables:
+  output:
     reduction_loyer_solidarite_plafond_ressources: 2737 + 2 * 263
     reduction_loyer_solidarite: 38.2 + 7 * 5.56
 
 - name: Zone 1 isolé
   period: 2018-01
-  input_variables:
+  input:
     logement_conventionne: true
     aide_logement_base_ressources: 100
     zone_apl: zone_1
-  output_variables:
+  output:
     reduction_loyer_solidarite_plafond_ressources: 906
     reduction_loyer_solidarite: 31.83
 
 - name: Zone 1 avec 8 personnes à charges
   period: 2018-01
-  input_variables:
+  input:
     logement_conventionne: true
     zone_apl: zone_1
     al_nb_personnes_a_charge: 8
     aide_logement_base_ressources: 100
-  output_variables:
+  output:
     reduction_loyer_solidarite_plafond_ressources: 2876 + 2 * 280
     reduction_loyer_solidarite: 43.38 + 7 * 6.29
 
 - name: Zone 3 isolé
   period: 2018-01
-  input_variables:
+  input:
     logement_conventionne: true
     aide_logement_base_ressources: 100
     zone_apl: zone_3
-  output_variables:
+  output:
     reduction_loyer_solidarite_plafond_ressources: 820
     reduction_loyer_solidarite: 26
 
 - name: Zone 3 avec 8 personnes à charges
   period: 2018-01
-  input_variables:
+  input:
     logement_conventionne: true
     zone_apl: zone_3
     al_nb_personnes_a_charge: 8
     aide_logement_base_ressources: 100
-  output_variables:
+  output:
     reduction_loyer_solidarite_plafond_ressources: 2645 + 2 * 245
     reduction_loyer_solidarite: 35.34 + 7 * 5.06

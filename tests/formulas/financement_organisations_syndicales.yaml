@@ -1,17 +1,65 @@
-- name: "Cotisation patronale de financement des organisations syndicales"
+- name: Cotisation patronale de financement des organisations syndicales
   period: 2015-01
-  individus:
-    - id: "non cadre"
-      salaire_de_base: 2000
-      categorie_salarie: prive_non_cadre
-    - id: "cadre"
-      salaire_de_base: 3000
-      categorie_salarie: prive_cadre
-    - id: "contractuel fonction publique"
-      salaire_de_base: 2000
-      categorie_salarie: public_non_titulaire
-    - id: "titualaire fonction publique"
-      salaire_de_base: 2000
-      categorie_salarie: public_titulaire_militaire #ATTENTION, l'index 3 se transforme en public_titulaire_militaire, le titre du test fait pense que public_titulaire_etat serait plus approprié
-  output_variables:
-    financement_organisations_syndicales: [-2000 * 0.00016, -3000 * 0.00016, -2000 * 0.00016, 0]
+  input:
+    individus:
+      non cadre:
+        salaire_de_base: 2000
+        categorie_salarie: prive_non_cadre
+      cadre:
+        salaire_de_base: 3000
+        categorie_salarie: prive_cadre
+      contractuel fonction publique:
+        salaire_de_base: 2000
+        categorie_salarie: public_non_titulaire
+      titualaire fonction publique:
+        salaire_de_base: 2000
+        categorie_salarie: public_titulaire_militaire
+    familles:
+      famille_0:
+        parents:
+        - non cadre
+      famille_1:
+        parents:
+        - cadre
+      famille_2:
+        parents:
+        - contractuel fonction publique
+      famille_3:
+        parents:
+        - titualaire fonction publique
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - non cadre
+      foyer_fiscal_1:
+        declarants:
+        - cadre
+      foyer_fiscal_2:
+        declarants:
+        - contractuel fonction publique
+      foyer_fiscal_3:
+        declarants:
+        - titualaire fonction publique
+    menages:
+      menage_0:
+        personne_de_reference:
+        - non cadre
+      menage_1:
+        personne_de_reference:
+        - cadre
+      menage_2:
+        personne_de_reference:
+        - contractuel fonction publique
+      menage_3:
+        personne_de_reference:
+        - titualaire fonction publique
+  output:
+    individus:
+      non cadre:
+        financement_organisations_syndicales: -2000 * 0.00016
+      cadre:
+        financement_organisations_syndicales: -3000 * 0.00016
+      contractuel fonction publique:
+        financement_organisations_syndicales: -2000 * 0.00016
+      titualaire fonction publique:
+        financement_organisations_syndicales: 0

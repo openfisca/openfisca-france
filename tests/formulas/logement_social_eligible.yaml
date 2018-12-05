@@ -1,23 +1,23 @@
-- name: "Logement social - Paris et communes limitrophes - Éligible"
+- name: Logement social - Paris et communes limitrophes - Éligible
   period: 2018-01
-  input_variables:
+  input:
     logement_social_categorie_menage: categorie_1
     zone_logement_social: paris_communes_limitrophes
     rfr:
       2016: 12700
       2017: 12733
       2018: 12733
-  output_variables:
+  output:
     logement_social_eligible: true
 
-- name: "Logement social - Paris et communes limitrophes - Non éligible"
+- name: Logement social - Paris et communes limitrophes - Non éligible
   period: 2018-01
-  input_variables:
+  input:
     logement_social_categorie_menage: categorie_1
     zone_logement_social: paris_communes_limitrophes
     rfr:
       2016: 12735
       2017: 12700
       2018: 12700
-  output_variables:
+  output:
     logement_social_eligible: false

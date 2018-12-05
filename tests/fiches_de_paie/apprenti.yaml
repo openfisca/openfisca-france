@@ -1,12 +1,12 @@
-name: "Apprenti petite entreprise"
-period: "2015-03"  # TODO: Mettre ici le mois de la fiche de paie.
+name: Apprenti petite entreprise
+period: 2015-03
 absolute_error_margin: 0.005
-input_variables:
-  apprentissage_contrat_debut: "2013-01-01"
+input:
+  apprentissage_contrat_debut: '2013-01-01'
   allegement_fillon_mode_recouvrement: anticipe  # "anticipe_regularisation_fin_de_periode"
   assujettie_taxe_salaires: false
   avantage_en_nature_valeur_reelle: 0
-  date_naissance: "1996-01-01"
+  date_naissance: '1996-01-01'
   contrat_de_travail: temps_plein
   # contrat_de_travail_debut:
   # contrat_de_travail_fin:
@@ -18,7 +18,7 @@ input_variables:
   indemnites_forfaitaires: 0
   indemnites_journalieres_maladie: 0
   indemnites_compensatrices_conges_payes: 0
-  code_postal_entreprise: "75014"
+  code_postal_entreprise: '75014'
   nombre_tickets_restaurant: 0
   prevoyance_obligatoire_cadre_taux_employeur: 0.015  # 1.5% est le minimum
   primes_salaires: 0
@@ -35,7 +35,7 @@ input_variables:
   titre_restaurant_volume: 0
   categorie_salarie: prive_non_cadre
   volume_jours_ijss: 0
-output_variables:
+output:
   # salaire_super_brut: 0
   remboursement_transport: 0
 

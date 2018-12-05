@@ -2,126 +2,125 @@ name: 10-CAAH
 description: |-
   ACS : 1
   ACS prévue : 1
-output_variables:
-  acs: 200
 absolute_error_margin: 10
 period: 2018-01
-individus:
-  - taux_incapacite:
-      2018-01: 0.7
-      2017-12: 0.7
-      2017-11: 0.7
-      2017-10: 0.7
-    echelon_bourse:
-      2018-01: -1
-      2017-12: -1
-      2017-11: -1
-      2017-10: -1
-    enfant_a_charge:
-      '2018': false
-    enfant_place:
-      2018-01: false
-      2017-12: false
-      2017-11: false
-      2017-10: false
-    tns_autres_revenus_type_activite:
-      2018-01: bic
-      2017-12: bic
-      2017-11: bic
-      2017-10: bic
-    tns_micro_entreprise_type_activite:
-      2018-01: bic
-      2017-12: bic
-      2017-11: bic
-      2017-10: bic
-    tns_auto_entrepreneur_type_activite:
-      2018-01: bic
-      2017-12: bic
-      2017-11: bic
-      2017-10: bic
-    date_naissance:
-      2018-01: '1985-03-21'
-      2017-12: '1985-03-21'
-      2017-11: '1985-03-21'
-      2017-10: '1985-03-21'
-    statut_marital:
-      2018-01: celibataire
-      2017-12: celibataire
-      2017-11: celibataire
-      2017-10: celibataire
-    aah:
-      2017-01: 811
-      2017-02: 811
-      2017-03: 811
-      2017-04: 811
-      2017-05: 811
-      2017-06: 811
-      2017-07: 811
-      2017-08: 811
-      2017-09: 811
-      2017-10: 811
-      2017-11: 811
-      2017-12: 811
-      2016-01: 811
-      2016-02: 811
-      2016-03: 811
-      2016-04: 811
-      2016-05: 811
-      2016-06: 811
-      2016-07: 811
-      2016-08: 811
-      2016-09: 811
-      2016-10: 811
-      2016-11: 811
-      2016-12: 811
-    caah:
-      2017-01: 0
-      2017-02: 0
-      2017-03: 0
-      2017-04: 0
-      2017-05: 0
-      2017-06: 0
-      2017-07: 0
-      2017-08: 0
-      2017-09: 0
-      2017-10: 0
-      2017-11: 0
-      2017-12: 0
-      2018-01: 0
-    gir:
-      2018-01: gir_6
-      2017-12: gir_6
-      2017-11: gir_6
-      2017-10: gir_6
-    age:
-      2018-01: 32
-      2017-12: 32
-      2017-11: 32
-      2017-10: 32
-    age_en_mois:
-      2018-01: 393
-      2017-12: 393
-      2017-11: 393
-      2017-10: 393
-    date_arret_de_travail:
-      2018-01: '2018-01-08'
-      2017-12: '2018-01-08'
-      2017-11: '2018-01-08'
-      2017-10: '2018-01-08'
-    handicap:
-      2018-01: true
-      2017-12: true
-      2017-11: true
-      2017-10: true
-    inapte_travail:
-      2018-01: false
-      2017-12: false
-      2017-11: false
-      2017-10: false
-    id: demandeur
-familles:
-  - parents:
-      - demandeur
+input:
+  individus:
+    demandeur:
+      taux_incapacite:
+        2018-01: 0.7
+        2017-12: 0.7
+        2017-11: 0.7
+        2017-10: 0.7
+      echelon_bourse:
+        2018-01: -1
+        2017-12: -1
+        2017-11: -1
+        2017-10: -1
+      enfant_a_charge:
+        '2018': false
+      enfant_place:
+        2018-01: false
+        2017-12: false
+        2017-11: false
+        2017-10: false
+      tns_autres_revenus_type_activite:
+        2018-01: bic
+        2017-12: bic
+        2017-11: bic
+        2017-10: bic
+      tns_micro_entreprise_type_activite:
+        2018-01: bic
+        2017-12: bic
+        2017-11: bic
+        2017-10: bic
+      tns_auto_entrepreneur_type_activite:
+        2018-01: bic
+        2017-12: bic
+        2017-11: bic
+        2017-10: bic
+      date_naissance:
+        2018-01: '1985-03-21'
+        2017-12: '1985-03-21'
+        2017-11: '1985-03-21'
+        2017-10: '1985-03-21'
+      statut_marital:
+        2018-01: celibataire
+        2017-12: celibataire
+        2017-11: celibataire
+        2017-10: celibataire
+      aah:
+        2017-01: 811
+        2017-02: 811
+        2017-03: 811
+        2017-04: 811
+        2017-05: 811
+        2017-06: 811
+        2017-07: 811
+        2017-08: 811
+        2017-09: 811
+        2017-10: 811
+        2017-11: 811
+        2017-12: 811
+        2016-01: 811
+        2016-02: 811
+        2016-03: 811
+        2016-04: 811
+        2016-05: 811
+        2016-06: 811
+        2016-07: 811
+        2016-08: 811
+        2016-09: 811
+        2016-10: 811
+        2016-11: 811
+        2016-12: 811
+      caah:
+        2017-01: 0
+        2017-02: 0
+        2017-03: 0
+        2017-04: 0
+        2017-05: 0
+        2017-06: 0
+        2017-07: 0
+        2017-08: 0
+        2017-09: 0
+        2017-10: 0
+        2017-11: 0
+        2017-12: 0
+        2018-01: 0
+      gir:
+        2018-01: gir_6
+        2017-12: gir_6
+        2017-11: gir_6
+        2017-10: gir_6
+      age:
+        2018-01: 32
+        2017-12: 32
+        2017-11: 32
+        2017-10: 32
+      age_en_mois:
+        2018-01: 393
+        2017-12: 393
+        2017-11: 393
+        2017-10: 393
+      date_arret_de_travail:
+        2018-01: '2018-01-08'
+        2017-12: '2018-01-08'
+        2017-11: '2018-01-08'
+        2017-10: '2018-01-08'
+      handicap:
+        2018-01: true
+        2017-12: true
+        2017-11: true
+        2017-10: true
+      inapte_travail:
+        2018-01: false
+        2017-12: false
+        2017-11: false
+        2017-10: false
+  famille:
+    parents:
+    - demandeur
     enfants: []
     bourse_lycee:
       2017-12: 0
@@ -266,12 +265,12 @@ familles:
       2017-03: 0
       2017-02: 0
       2017-01: 0
-foyers_fiscaux:
-  - declarants:
-      - demandeur
+  foyer_fiscal:
+    declarants:
+    - demandeur
     personnes_a_charge: []
-menages:
-  - loyer:
+  menage:
+    loyer:
       2018-01: 0
       2017-12: 0
       2017-11: 0
@@ -288,3 +287,5 @@ menages:
       2017-10: sans_domicile
     personne_de_reference: demandeur
     enfants: []
+output:
+  acs: 200

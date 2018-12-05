@@ -1,8 +1,7 @@
-- period: "2016-06"
-  name:
-    Taxe d'apprentissage / Contribution supplémentaire à l'apprentissage
+- period: 2016-06
+  name: Taxe d'apprentissage / Contribution supplémentaire à l'apprentissage
   relative_error_margin: 0.001
-  input_variables:
+  input:
     salaire_de_base: 1467
     # nécessaire pour des requêtes sur un mois de salaire :
     allegement_fillon_mode_recouvrement: anticipe
@@ -11,15 +10,14 @@
     contrat_de_travail_duree: cdi
     entreprise_est_association_non_lucrative: 0
     ratio_alternants: 0.015
-  output_variables:
+  output:
     taxe_apprentissage: -.0068 * 1467
     contribution_supplementaire_apprentissage: 0 # parce que < 250 employés -> non applicable
 
-- period: "2016-06"
-  name:
-    Taxe d'apprentissage / CSA non applicable car ratio 0.05
+- period: 2016-06
+  name: Taxe d'apprentissage / CSA non applicable car ratio 0.05
   relative_error_margin: 0.001
-  input_variables:
+  input:
     salaire_de_base: 1467
     # nécessaire pour des requêtes sur un mois de salaire :
     allegement_fillon_mode_recouvrement: anticipe
@@ -28,16 +26,15 @@
     contrat_de_travail_duree: cdi
     entreprise_est_association_non_lucrative: 0
     ratio_alternants: 0.05
-  output_variables:
+  output:
     taxe_apprentissage: -.0068 * 1467
     contribution_supplementaire_apprentissage: 0 # parce que ratio alternants >= 0.05 -> non applicable
 
 
-- period: "2016-06"
-  name:
-    Taxe d'apprentissage / CSA ratio 0.036
+- period: 2016-06
+  name: Taxe d'apprentissage / CSA ratio 0.036
   relative_error_margin: 0.001
-  input_variables:
+  input:
     salaire_de_base: 1467
     # nécessaire pour des requêtes sur un mois de salaire :
     allegement_fillon_mode_recouvrement: anticipe
@@ -46,16 +43,15 @@
     contrat_de_travail_duree: cdi
     entreprise_est_association_non_lucrative: 0
     ratio_alternants: 0.036
-  output_variables:
+  output:
     taxe_apprentissage: -.0068 * 1467
     contribution_supplementaire_apprentissage: -.0005 * 1467
 
 
-- period: "2016-06"
-  name:
-    Taxe d'apprentissage / CSA. Grosse entreprise, faible ratio alternants
+- period: 2016-06
+  name: Taxe d'apprentissage / CSA. Grosse entreprise, faible ratio alternants
   relative_error_margin: 0.001
-  input_variables:
+  input:
     salaire_de_base: 1467
     # nécessaire pour des requêtes sur un mois de salaire :
     allegement_fillon_mode_recouvrement: anticipe
@@ -64,15 +60,14 @@
     contrat_de_travail_duree: cdi
     entreprise_est_association_non_lucrative: 0
     ratio_alternants: 0.0008
-  output_variables:
+  output:
     contribution_supplementaire_apprentissage: -.006 * 1467
 
 
-- period: "2016-06"
-  name:
-    Taxe d'apprentissage / CSA pour une association
+- period: 2016-06
+  name: Taxe d'apprentissage / CSA pour une association
   relative_error_margin: 0.001
-  input_variables:
+  input:
     salaire_de_base: 1467
     # nécessaire pour des requêtes sur un mois de salaire :
     allegement_fillon_mode_recouvrement: anticipe
@@ -81,16 +76,15 @@
     contrat_de_travail_duree: cdi
     entreprise_est_association_non_lucrative: 1
     ratio_alternants: 0.015
-  output_variables:
+  output:
     taxe_apprentissage: 0
     contribution_supplementaire_apprentissage: 0
 
 
-- period: "2016-06"
-  description:
-    Taxe d'apprentissage / CSA A-M
+- period: 2016-06
+  description: Taxe d'apprentissage / CSA A-M
   relative_error_margin: 0.001
-  input_variables:
+  input:
     salaire_de_base: 1467
     # nécessaire pour des requêtes sur un mois de salaire :
     allegement_fillon_mode_recouvrement: anticipe
@@ -99,6 +93,6 @@
     contrat_de_travail_duree: cdi
     ratio_alternants: 0.0178
     salarie_regime_alsace_moselle: 1
-  output_variables:
+  output:
     taxe_apprentissage: -.0044 * 1467
     contribution_supplementaire_apprentissage: -.00104 * 1467

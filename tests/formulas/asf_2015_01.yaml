@@ -1,28 +1,58 @@
-- name: "Famille ayant droit à l'ASF - 2015"
+- name: Famille ayant droit à l'ASF - 2015
   period: 2015-01
   relative_error_margin: 0.01
-  familles:
-    parents: ["parent1"]
-    enfants: ["enfant1"]
-  individus:
-    - id: "parent1"
-      age: 40
-    - id: "enfant1"
-      age: 9
-      garde_alternee: false
-  output_variables:
+  input:
+    famille:
+      parents: [parent1]
+      enfants: [enfant1]
+    individus:
+      parent1:
+        age: 40
+      enfant1:
+        age: 9
+        garde_alternee: false
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - parent1
+      foyer_fiscal_1:
+        declarants:
+        - enfant1
+    menages:
+      menage_0:
+        personne_de_reference:
+        - parent1
+      menage_1:
+        personne_de_reference:
+        - enfant1
+  output:
     asf: 96
 
 - name: "Limite d'âge : 20 ans"
   period: 2015-01
   relative_error_margin: 0.01
-  familles:
-    parents: ["parent1"]
-    enfants: ["enfant1"]
-  individus:
-    - id: "parent1"
-      age: 40
-    - id: "enfant1"
-      age: 20
-  output_variables:
+  input:
+    famille:
+      parents: [parent1]
+      enfants: [enfant1]
+    individus:
+      parent1:
+        age: 40
+      enfant1:
+        age: 20
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - parent1
+      foyer_fiscal_1:
+        declarants:
+        - enfant1
+    menages:
+      menage_0:
+        personne_de_reference:
+        - parent1
+      menage_1:
+        personne_de_reference:
+        - enfant1
+  output:
     asf: 0

@@ -1,101 +1,108 @@
 - name: UC base
   period: 2018
-  output_variables:
+  input: {}
+  output:
     cheque_energie_unites_consommation:
       2018: 1
 
 - name: UC isolé
   period: 2018
-  menages:
-    - personne_de_reference: parent
-  foyers_fiscaux:
-    - declarants:
+  input:
+    menage:
+      personne_de_reference: parent
+    foyer_fiscal:
+      declarants:
       - parent
-  familles:
-    - parents:
+    famille:
+      parents:
       - parent
-  individus:
-    - id: parent
-  output_variables:
+    individus:
+      parent: {}
+  output:
     cheque_energie_unites_consommation:
       2018: 1
 
 - name: UC avec 1 enfant
   period: 2018
-  menages:
-    - personne_de_reference: parent
+  input:
+    menage:
+      personne_de_reference: parent
       enfants:
       - Mila
-  foyers_fiscaux:
-    - declarants:
+    foyer_fiscal:
+      declarants:
       - parent
       personnes_a_charge:
       - Mila
-  familles:
-    - parents:
+    famille:
+      parents:
       - parent
       enfants:
       - Mila
-  individus:
-    - id: parent
-    - id: Mila
-  output_variables:
+    individus:
+      parent: {}
+      Mila: {}
+  output:
     cheque_energie_unites_consommation:
       2018: 1.5
 
 - name: UC avec 1 enfant en garde alternée
   period: 2018
-  menages:
-    - personne_de_reference: parent
+  input:
+    menage:
+      personne_de_reference: parent
       enfants:
       - Mila
-  foyers_fiscaux:
-    - declarants:
+    foyer_fiscal:
+      declarants:
       - parent
       personnes_a_charge:
       - Mila
-  familles:
-    - parents:
+    famille:
+      parents:
       - parent
       enfants:
       - Mila
-  individus:
-    - id: parent
-    - id: Mila
-      garde_alternee: true
-  output_variables:
+    individus:
+      parent: {}
+      Mila:
+        garde_alternee: true
+  output:
     cheque_energie_unites_consommation:
       2018: 1.25
 
 - name: UC union libre, avec deux enfants
   period: 2018
-  menages:
-    - personne_de_reference: parent
+  input:
+    menage:
+      personne_de_reference: parent
       conjoint: conjoint
       enfants:
       - Mila
       - Luca
-  foyers_fiscaux:
-    - declarants:
-      - parent
-      personnes_a_charge:
-      - Mila
-    - declarants:
-      - conjoint
-      personnes_a_charge:
-      - Luca
-  familles:
-    - parents:
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - parent
+        personnes_a_charge:
+        - Mila
+      foyer_fiscal_1:
+        declarants:
+        - conjoint
+        personnes_a_charge:
+        - Luca
+    famille:
+      parents:
       - parent
       - conjoint
       enfants:
       - Mila
       - Luca
-  individus:
-    - id: parent
-    - id: conjoint
-    - id: Mila
-    - id: Luca
-  output_variables:
+    individus:
+      parent: {}
+      conjoint: {}
+      Mila: {}
+      Luca: {}
+  output:
     cheque_energie_unites_consommation:
       2018: 2.1

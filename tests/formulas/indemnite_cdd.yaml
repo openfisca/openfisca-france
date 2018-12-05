@@ -1,38 +1,38 @@
-- period: "2016-03"
+- period: 2016-03
   name: CDI, pas de prime de fin de contrat
   relative_error_margin: 0.01
-  input_variables:
+  input:
     salaire_de_base: 1467
     allegement_fillon_mode_recouvrement: anticipe
     allegement_cotisation_allocations_familiales_mode_recouvrement: anticipe
     contrat_de_travail_duree: cdi
     effectif_entreprise: 94
     categorie_salarie: prive_non_cadre
-  output_variables:
+  output:
     salaire_de_base: 1467
     assiette_cotisations_sociales: 1467
     participation_effort_construction: -1467 * 0.0045
 
-- period: "2016-03"
+- period: 2016-03
   name: CDD, prime de 10% non activée
   relative_error_margin: 0.01
-  input_variables:
+  input:
     salaire_de_base: 1467
     allegement_fillon_mode_recouvrement: anticipe
     allegement_cotisation_allocations_familiales_mode_recouvrement: anticipe
     contrat_de_travail_duree: cdd
     effectif_entreprise: 94
     categorie_salarie: prive_non_cadre
-  output_variables:
+  output:
     salaire_de_base: 1467
     assiette_cotisations_sociales: 1467
     indemnite_fin_contrat: 0
     participation_effort_construction: -1467 * 0.0045
 
-- period: "2016-03"
+- period: 2016-03
   name: CDD, prime de 10% activée
   relative_error_margin: 0.01
-  input_variables:
+  input:
     salaire_de_base: 1467
     allegement_fillon_mode_recouvrement: anticipe
     allegement_cotisation_allocations_familiales_mode_recouvrement: anticipe
@@ -40,7 +40,7 @@
     effectif_entreprise: 94
     categorie_salarie: prive_non_cadre
     indemnite_fin_contrat_due: 1
-  output_variables:
+  output:
     salaire_de_base: 1467
     assiette_cotisations_sociales: 1467 + 0.1 * 1467
     indemnite_fin_contrat: 0.1 * 1467

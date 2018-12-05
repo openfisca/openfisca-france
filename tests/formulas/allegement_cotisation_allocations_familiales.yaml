@@ -1,7 +1,7 @@
-- period: "2015-11"
+- period: 2015-11
   name: 1xSMIC
   relative_error_margin: 0.001
-  input_variables:
+  input:
     salaire_de_base: 1457.52
     # allegement mode necessary when requesting on a 1 month salary :
     allegement_cotisation_allocations_familiales_mode_recouvrement: anticipe
@@ -9,13 +9,13 @@
     contrat_de_travail_debut: 2015-01-01
     contrat_de_travail_fin: 2015-12-31
     effectif_entreprise: 1
-  output_variables:
+  output:
     allegement_cotisation_allocations_familiales: 26.23
 
-- period: "2015-11"
+- period: 2015-11
   name: 2xSMIC
   relative_error_margin: 0.001
-  input_variables:
+  input:
     salaire_de_base: 2915
     # allegement mode necessary when requesting on a 1 month salary :
     allegement_cotisation_allocations_familiales_mode_recouvrement: anticipe
@@ -23,14 +23,14 @@
     contrat_de_travail_debut: 2015-01-01
     contrat_de_travail_fin: 2015-12-31
     effectif_entreprise: 1
-  output_variables:
+  output:
     allegement_cotisation_allocations_familiales: 0
 
-- period: "2016-05"
+- period: 2016-05
   name: 3.5xSMIC
   description: après avril 2016, l'allègement est étendu jusqu'à 3.5 SMIC
   relative_error_margin: 0.001
-  input_variables:
+  input:
     salaire_de_base: 2915
     # allegement mode necessary when requesting on a 1 month salary :
     allegement_cotisation_allocations_familiales_mode_recouvrement: anticipe
@@ -38,5 +38,5 @@
     contrat_de_travail_debut: 2016-01-01
     contrat_de_travail_fin: 2016-12-31
     effectif_entreprise: 1
-  output_variables:
+  output:
     allegement_cotisation_allocations_familiales: 52.47

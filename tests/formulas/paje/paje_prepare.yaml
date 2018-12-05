@@ -1,188 +1,209 @@
-# bmaf 2017-04-01 = 407.84
-# prepare inactif 2004-01-01 = 0.9662
-# prepare partiel1 2004-01-01 = 0.6246
-# prepare partiel2 2004-01-01 = 0.3603
-
-
-- name: "Au 1er avril 2017, avec un taux plein (la paje_clca et la paje_colca sont supprimées au profit de la paje_prepare)"
+- name: Au 1er avril 2017, avec un taux plein (la paje_clca et la paje_colca sont supprimées au profit de la paje_prepare)
   period: 2018-01
   relative_error_margin: 0.01
-  individus:
-    - id: "parent1"
-      age: 40
-      salaire_imposable: 20000
-    - id: "enfant1"
-      date_naissance: 2017-01-01
-      age: 2
-    - id: "enfant2"
-      date_naissance: 2016-01-01
-      age: 2
-    - id: "parent2"
-      age: 40
-      salaire_imposable: 20000
-    - id: "enfant3"
-      date_naissance: 2017-01-01
-      age: 2
-    - id: "enfant4"
-      date_naissance: 2016-01-01
-      age: 2
-  familles:
-    -
-      parents: ["parent1"]
-      enfants: ["enfant1","enfant2"]
-      af_nbenf: 2
-      inactif: 1
-    -
-      parents: ["parent2"]
-      enfants: ["enfant3","enfant4"]
-      af_nbenf: 2
-      inactif: 1
-  foyers_fiscaux:
-    declarants: ["parent1"]
-    personnes_a_charge: ["enfant1", "enfant2"]
-  menages:
-    personne_de_reference: "parent1"
-    enfants: ["enfant1","enfant2"]
-  output_variables:
+  input:
+    individus:
+      parent1:
+        age: 40
+        salaire_imposable: 20000
+      enfant1:
+        date_naissance: 2017-01-01
+        age: 2
+      enfant2:
+        date_naissance: 2016-01-01
+        age: 2
+      parent2:
+        age: 40
+        salaire_imposable: 20000
+      enfant3:
+        date_naissance: 2017-01-01
+        age: 2
+      enfant4:
+        date_naissance: 2016-01-01
+        age: 2
+    familles:
+      famille_0:
+        parents: [parent1]
+        enfants: [enfant1, enfant2]
+        af_nbenf: 2
+        inactif: 1
+      famille_1:
+        parents: [parent2]
+        enfants: [enfant3, enfant4]
+        af_nbenf: 2
+        inactif: 1
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants: [parent1]
+        personnes_a_charge: [enfant1, enfant2]
+      foyer_fiscal_1:
+        declarants: [parent2]
+        personnes_a_charge: [enfant3, enfant4]
+    menages:
+      menage_0:
+        personne_de_reference: parent1
+        enfants: [enfant1, enfant2]
+      menage_1:
+        personne_de_reference: parent2
+        enfants: [enfant3, enfant4]
+  output:
     paje_base: 0.4595 * 407.84
     paje_clca: 0
     paje_colca: 0
-    # paje_prepare: 0.9662 * 407.84 # TODO: implémenter
-    # paje: (0.45950 * 407.84) + (0.9662 * 407.84) # TODO: implémenter
 
-
-- name: "Au 1er avril 2017, avec un taux partiel < 50 % (la paje_clca et la paje_colca sont supprimées au profit de la paje_prepare)"
+- name: Au 1er avril 2017, avec un taux partiel < 50 % (la paje_clca et la paje_colca sont supprimées au profit de la paje_prepare)
   period: 2018-01
   relative_error_margin: 0.01
-  individus:
-    - id: "parent1"
-      age: 40
-      salaire_imposable: 20000
-    - id: "enfant1"
-      date_naissance: 2017-01-01
-      age: 2
-    - id: "enfant2"
-      date_naissance: 2016-01-01
-      age: 2
-    - id: "parent2"
-      age: 40
-      salaire_imposable: 20000
-    - id: "enfant3"
-      date_naissance: 2017-01-01
-      age: 2
-    - id: "enfant4"
-      date_naissance: 2016-01-01
-      age: 2
-  familles:
-    -
-      parents: ["parent1"]
-      enfants: ["enfant1","enfant2"]
-      af_nbenf: 2
-      partiel1: 1
-    -
-      parents: ["parent2"]
-      enfants: ["enfant3","enfant4"]
-      af_nbenf: 2
-      partiel1: 1
-  foyers_fiscaux:
-    declarants: ["parent1"]
-    personnes_a_charge: ["enfant1", "enfant2"]
-  menages:
-    personne_de_reference: "parent1"
-    enfants: ["enfant1","enfant2"]
-  output_variables:
+  input:
+    individus:
+      parent1:
+        age: 40
+        salaire_imposable: 20000
+      enfant1:
+        date_naissance: 2017-01-01
+        age: 2
+      enfant2:
+        date_naissance: 2016-01-01
+        age: 2
+      parent2:
+        age: 40
+        salaire_imposable: 20000
+      enfant3:
+        date_naissance: 2017-01-01
+        age: 2
+      enfant4:
+        date_naissance: 2016-01-01
+        age: 2
+    familles:
+      famille_0:
+        parents: [parent1]
+        enfants: [enfant1, enfant2]
+        af_nbenf: 2
+        partiel1: 1
+      famille_1:
+        parents: [parent2]
+        enfants: [enfant3, enfant4]
+        af_nbenf: 2
+        partiel1: 1
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants: [parent1]
+        personnes_a_charge: [enfant1, enfant2]
+      foyer_fiscal_1:
+        declarants: [parent2]
+        personnes_a_charge: [enfant3, enfant4]
+    menages:
+      menage_0:
+        personne_de_reference: parent1
+        enfants: [enfant1, enfant2]
+      menage_1:
+        personne_de_reference: parent2
+        enfants: [enfant3, enfant4]
+  output:
     paje_base: 0.4595 * 407.84
     paje_clca: 0
     paje_colca: 0
-    # paje_prepare: 0.3603 * 407.84 # TODO: implémenter
-    # paje: (0.45950 * 407.84) + (0.3603 * 407.84) # TODO: implémenter
 
-
-- name: "Au 1er avril 2017, avec un taux partiel entre 50 et 80 % (la paje_clca et la paje_colca sont supprimées au profit de la paje_prepare)"
+- name: Au 1er avril 2017, avec un taux partiel entre 50 et 80 % (la paje_clca et la paje_colca sont supprimées au profit de la paje_prepare)
   period: 2018-01
   relative_error_margin: 0.01
-  individus:
-    - id: "parent1"
-      age: 40
-      salaire_imposable: 20000
-    - id: "enfant1"
-      date_naissance: 2017-01-01
-      age: 2
-    - id: "enfant2"
-      date_naissance: 2016-01-01
-      age: 2
-    - id: "parent2"
-      age: 40
-      salaire_imposable: 20000
-    - id: "enfant3"
-      date_naissance: 2017-01-01
-      age: 2
-    - id: "enfant4"
-      date_naissance: 2016-01-01
-      age: 2
-  familles:
-    -
-      parents: ["parent1"]
-      enfants: ["enfant1","enfant2"]
-      af_nbenf: 2
-      partiel2: 1
-    -
-      parents: ["parent2"]
-      enfants: ["enfant3","enfant4"]
-      af_nbenf: 2
-      partiel2: 1
-  foyers_fiscaux:
-    declarants: ["parent1"]
-    personnes_a_charge: ["enfant1", "enfant2"]
-  menages:
-    personne_de_reference: "parent1"
-    enfants: ["enfant1","enfant2"]
-  output_variables:
+  input:
+    individus:
+      parent1:
+        age: 40
+        salaire_imposable: 20000
+      enfant1:
+        date_naissance: 2017-01-01
+        age: 2
+      enfant2:
+        date_naissance: 2016-01-01
+        age: 2
+      parent2:
+        age: 40
+        salaire_imposable: 20000
+      enfant3:
+        date_naissance: 2017-01-01
+        age: 2
+      enfant4:
+        date_naissance: 2016-01-01
+        age: 2
+    familles:
+      famille_0:
+        parents: [parent1]
+        enfants: [enfant1, enfant2]
+        af_nbenf: 2
+        partiel2: 1
+      famille_1:
+        parents: [parent2]
+        enfants: [enfant3, enfant4]
+        af_nbenf: 2
+        partiel2: 1
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants: [parent1]
+        personnes_a_charge: [enfant1, enfant2]
+      foyer_fiscal_1:
+        declarants: [parent2]
+        personnes_a_charge: [enfant3, enfant4]
+    menages:
+      menage_0:
+        personne_de_reference: parent1
+        enfants: [enfant1, enfant2]
+      menage_1:
+        personne_de_reference: parent2
+        enfants: [enfant3, enfant4]
+  output:
     paje_base: 0.4595 * 407.84
     paje_clca: 0
     paje_colca: 0
-    # paje_prepare: 0.9662 * 407.84 # TODO: implémenter
-    # paje: (0.45950 * 407.84) + (0.9662 * 407.84) # TODO: implémenter
 
-
-- name: "Au 1er avril 2017, avec un taux plein la paje_clca et la paje_colca sont supprimées au profit de la paje_prepare"
+- name: Au 1er avril 2017, avec un taux plein la paje_clca et la paje_colca sont supprimées au profit de la paje_prepare
   period: 2018-01
   relative_error_margin: 0.01
-  individus:
-    - id: "parent1"
-      age: 40
-      salaire_imposable: 20000
-    - id: "enfant1"
-      date_naissance: 2017-01-01
-      age: 2
-    - id: "enfant2"
-      date_naissance: 2016-01-01
-      age: 2
-    - id: "parent2"
-      age: 40
-      salaire_imposable: 20000
-    - id: "enfant3"
-      date_naissance: 2017-01-01
-      age: 2
-    - id: "enfant4"
-      date_naissance: 2016-01-01
-      age: 2
-  familles:
-    -
-      parents: ["parent1"]
-      enfants: ["enfant1","enfant2"]
-      af_nbenf: 2
-    -
-      parents: ["parent2"]
-      enfants: ["enfant3","enfant4"]
-      af_nbenf: 2
-  foyers_fiscaux:
-    declarants: ["parent1"]
-    personnes_a_charge: ["enfant1", "enfant2"]
-  menages:
-    personne_de_reference: "parent1"
-    enfants: ["enfant1","enfant2"]
-  output_variables:
+  input:
+    individus:
+      parent1:
+        age: 40
+        salaire_imposable: 20000
+      enfant1:
+        date_naissance: 2017-01-01
+        age: 2
+      enfant2:
+        date_naissance: 2016-01-01
+        age: 2
+      parent2:
+        age: 40
+        salaire_imposable: 20000
+      enfant3:
+        date_naissance: 2017-01-01
+        age: 2
+      enfant4:
+        date_naissance: 2016-01-01
+        age: 2
+    familles:
+      famille_0:
+        parents: [parent1]
+        enfants: [enfant1, enfant2]
+        af_nbenf: 2
+      famille_1:
+        parents: [parent2]
+        enfants: [enfant3, enfant4]
+        af_nbenf: 2
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants: [parent1]
+        personnes_a_charge: [enfant1, enfant2]
+      foyer_fiscal_1:
+        declarants: [parent2]
+        personnes_a_charge: [enfant3, enfant4]
+    menages:
+      menage_0:
+        personne_de_reference: parent1
+        enfants: [enfant1, enfant2]
+      menage_1:
+        personne_de_reference: parent2
+        enfants: [enfant3, enfant4]
+  output:
     paje_base: 0.4595 * 407.84
     paje_clca: 0
     paje_colca: 0

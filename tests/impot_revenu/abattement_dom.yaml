@@ -1,11 +1,18 @@
 - name: Résidence fiscale Guadeloupe
-  period: "year:2018"
-  individus:
-    id: "parent"
-  foyers_fiscaux:
-    depcom_foyer: 97105
-    declarants: "parent"
-  output_variables:
+  period: year:2018
+  input:
+    individus:
+      parent: {}
+    foyer_fiscal:
+      depcom_foyer: 97105
+      declarants: parent
+    famille:
+      parents:
+      - parent
+    menage:
+      personne_de_reference:
+      - parent
+  output:
     residence_fiscale_guadeloupe: true
     residence_fiscale_guyane: false
     residence_fiscale_martinique: false
@@ -13,13 +20,20 @@
     residence_fiscale_reunion: false
 
 - name: Résidence fiscale Guyane
-  period: "year:2018"
-  individus:
-    id: "parent"
-  foyers_fiscaux:
-    depcom_foyer: 97302
-    declarants: "parent"
-  output_variables:
+  period: year:2018
+  input:
+    individus:
+      parent: {}
+    foyer_fiscal:
+      depcom_foyer: 97302
+      declarants: parent
+    famille:
+      parents:
+      - parent
+    menage:
+      personne_de_reference:
+      - parent
+  output:
     residence_fiscale_guadeloupe: false
     residence_fiscale_guyane: true
     residence_fiscale_martinique: false
@@ -27,13 +41,20 @@
     residence_fiscale_reunion: false
 
 - name: Résidence fiscale Martinique
-  period: "year:2018"
-  individus:
-    id: "parent"
-  foyers_fiscaux:
-    depcom_foyer: 97209
-    declarants: "parent"
-  output_variables:
+  period: year:2018
+  input:
+    individus:
+      parent: {}
+    foyer_fiscal:
+      depcom_foyer: 97209
+      declarants: parent
+    famille:
+      parents:
+      - parent
+    menage:
+      personne_de_reference:
+      - parent
+  output:
     residence_fiscale_guadeloupe: false
     residence_fiscale_guyane: false
     residence_fiscale_martinique: true
@@ -41,13 +62,20 @@
     residence_fiscale_reunion: false
 
 - name: Résidence fiscale Mayotte
-  period: "year:2018"
-  individus:
-    id: "parent"
-  foyers_fiscaux:
-    depcom_foyer: 97611
-    declarants: "parent"
-  output_variables:
+  period: year:2018
+  input:
+    individus:
+      parent: {}
+    foyer_fiscal:
+      depcom_foyer: 97611
+      declarants: parent
+    famille:
+      parents:
+      - parent
+    menage:
+      personne_de_reference:
+      - parent
+  output:
     residence_fiscale_guadeloupe: false
     residence_fiscale_guyane: false
     residence_fiscale_martinique: false
@@ -55,13 +83,20 @@
     residence_fiscale_reunion: false
 
 - name: Résidence fiscale Réunion
-  period: "year:2018"
-  individus:
-    id: "parent"
-  foyers_fiscaux:
-    depcom_foyer: 97411
-    declarants: "parent"
-  output_variables:
+  period: year:2018
+  input:
+    individus:
+      parent: {}
+    foyer_fiscal:
+      depcom_foyer: 97411
+      declarants: parent
+    famille:
+      parents:
+      - parent
+    menage:
+      personne_de_reference:
+      - parent
+  output:
     residence_fiscale_guadeloupe: false
     residence_fiscale_guyane: false
     residence_fiscale_martinique: false
@@ -69,15 +104,22 @@
     residence_fiscale_reunion: true
 
 - name: Pas d'abattement DOM
-  period: "year:2017"
+  period: year:2017
   absolute_error_margin: 1
-  individus:
-    id: "parent"
-    salaire_imposable: 50000
-  foyers_fiscaux:
-    depcom_foyer: 75101
-    declarants: "parent"
-  output_variables:
+  input:
+    individus:
+      parent:
+        salaire_imposable: 50000
+    foyer_fiscal:
+      depcom_foyer: 75101
+      declarants: parent
+    famille:
+      parents:
+      - parent
+    menage:
+      personne_de_reference:
+      - parent
+  output:
     residence_fiscale_guadeloupe: false
     residence_fiscale_guyane: false
     residence_fiscale_martinique: false
@@ -86,15 +128,22 @@
     ir_plaf_qf: 7793.0
 
 - name: Abattement 30% DOM
-  period: "year:2017"
+  period: year:2017
   absolute_error_margin: 1
-  individus:
-    id: "parent"
-    salaire_imposable: 50000
-  foyers_fiscaux:
-    depcom_foyer: 97105
-    declarants: "parent"
-  output_variables:
+  input:
+    individus:
+      parent:
+        salaire_imposable: 50000
+    foyer_fiscal:
+      depcom_foyer: 97105
+      declarants: parent
+    famille:
+      parents:
+      - parent
+    menage:
+      personne_de_reference:
+      - parent
+  output:
     residence_fiscale_guadeloupe: true
     residence_fiscale_guyane: false
     residence_fiscale_martinique: false
@@ -103,15 +152,22 @@
     ir_plaf_qf: 5455.0
 
 - name: Abattement 40% DOM
-  period: "year:2017"
+  period: year:2017
   absolute_error_margin: 1
-  individus:
-    id: "parent"
-    salaire_imposable: 50000
-  foyers_fiscaux:
-    depcom_foyer: 97302
-    declarants: "parent"
-  output_variables:
+  input:
+    individus:
+      parent:
+        salaire_imposable: 50000
+    foyer_fiscal:
+      depcom_foyer: 97302
+      declarants: parent
+    famille:
+      parents:
+      - parent
+    menage:
+      personne_de_reference:
+      - parent
+  output:
     residence_fiscale_guadeloupe: false
     residence_fiscale_guyane: true
     residence_fiscale_martinique: false
