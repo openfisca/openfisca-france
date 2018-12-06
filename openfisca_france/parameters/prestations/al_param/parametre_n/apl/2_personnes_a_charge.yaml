@@ -1,4 +1,10 @@
 reference: ipp
 values:
+  1986-01-01:
+    value: 3.0
   1988-07-01:
+    value: 3.0
+  1992-07-01:
+    value: 3.0
+  2007-07-01:
     value: 3.0
