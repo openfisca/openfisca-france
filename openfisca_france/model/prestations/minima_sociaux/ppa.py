@@ -4,7 +4,7 @@ from __future__ import division
 
 from openfisca_france.model.base import *
 
-from numpy import round as round_, logical_or as or_
+from numpy import round as round_, logical_or as or_, remainder as remainder_, datetime64
 
 
 class ppa_eligibilite(Variable):
@@ -403,3 +403,45 @@ class ppa(Variable):
         ppa = ppa * ppa_eligibilite_etudiants * (ppa >= seuil_non_versement)
 
         return ppa
+
+
+class ppa_mois_demande(Variable):
+    value_type = date
+    entity = Famille
+    definition_period = ETERNITY
+
+
+class ppa_versee_offset_total(Variable):
+    value_type = int
+    entity = Famille
+    label = u"Prime Pour l'Activité Versée en prenant en compte la date de la demande"
+    definition_period = MONTH
+
+    def formula(famille, period, parameters):
+        ppa_mois_demande = famille('ppa_mois_demande', period)
+        return (datetime64(period.start).astype('datetime64[M]') - ppa_mois_demande.astype('datetime64[M]')).astype('int')
+
+
+class ppa_versee_offset(Variable):
+    value_type = int
+    entity = Famille
+    label = u"Prime Pour l'Activité Versée en prenant en compte la date de la demande"
+    definition_period = MONTH
+
+    def formula(famille, period, parameters):
+        return remainder_(famille('ppa_versee_offset_total', period), 3)
+
+
+class ppa_versee(Variable):
+    value_type = float
+    entity = Famille
+    label = u"Prime Pour l'Activité Versée en prenant en compte la date de la demande"
+    definition_period = MONTH
+
+    def formula(famille, period, parameters):
+        remainder = famille('ppa_versee_offset', period)
+        return (
+            + famille('ppa', period) * (remainder == 0)
+            + famille('ppa', period.last_month) * (remainder == 1)
+            + famille('ppa', period.last_month.last_month) * (remainder == 2)
+            )

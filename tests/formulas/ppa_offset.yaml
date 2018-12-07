@@ -1,0 +1,25 @@
+- period: 2018-11
+  input_variables:
+    ppa_mois_demande:
+      ETERNITY: 2018-11
+  output_variables:
+    ppa_versee_offset_total:
+      2018-11: 0
+      2018-12: 1
+      2019-01: 2
+      2019-02: 3
+      2019-03: 4
+    ppa_versee_offset:
+      2018-11: 0
+      2018-12: 1
+      2019-01: 2
+      2019-02: 0
+      2019-03: 1
+
+- period: 2018-11
+  input_variables:
+    ppa_mois_demande:
+      ETERNITY: 2017-11
+  output_variables:
+    ppa_versee_offset_total: 12
+    ppa_versee_offset: 0
