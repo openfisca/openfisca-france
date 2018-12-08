@@ -344,6 +344,33 @@ class ppa_forfait_logement(Variable):
         return max_(montant_al, montant_nature)
 
 
+class ppa_fictive_ressource_activite(Variable):
+    value_type = float
+    entity = Famille
+    label = u"Prime pour l'activité fictive pour un mois"
+    definition_period = MONTH
+
+    def formula(famille, period, parameters):
+        pente = parameters(period).prestations.minima_sociaux.ppa.pente
+        ppa_revenu_activite = famille('ppa_revenu_activite', period, extra_params = [period])
+
+        return pente * ppa_revenu_activite
+
+
+class ppa_fictive_montant_forfaitaire(Variable):
+    value_type = float
+    entity = Famille
+    label = u"Prime pour l'activité fictive pour un mois"
+    definition_period = MONTH
+
+    def formula(famille, period, parameters):
+        ppa_majoree_eligibilite = famille('rsa_majore_eligibilite', period)
+        mff_non_majore = famille('ppa_montant_forfaitaire_familial_non_majore', period, extra_params = [period])
+        mff_majore = famille('ppa_montant_forfaitaire_familial_majore', period, extra_params = [period])
+
+        return where(ppa_majoree_eligibilite, mff_majore, mff_non_majore)
+
+
 class ppa_fictive(Variable):
     value_type = float
     entity = Famille
@@ -352,23 +379,18 @@ class ppa_fictive(Variable):
 
     def formula(famille, period, parameters):
         forfait_logement = famille('ppa_forfait_logement', period)
-        ppa_majoree_eligibilite = famille('rsa_majore_eligibilite', period)
         # Le paramètre extra_params est déprécié. Ne pas s'inspirer de ce qui suit
         elig = famille('ppa_eligibilite', period, extra_params = [period])
-        pente = parameters(period).prestations.minima_sociaux.ppa.pente
-        mff_non_majore = famille('ppa_montant_forfaitaire_familial_non_majore', period, extra_params = [period])
-        mff_majore = famille('ppa_montant_forfaitaire_familial_majore', period, extra_params = [period])
-        montant_forfaitaire_familialise = where(ppa_majoree_eligibilite, mff_majore, mff_non_majore)
+        montant_forfaitaire_familialise = famille('ppa_fictive_montant_forfaitaire', period)
         ppa_base_ressources = famille('ppa_base_ressources', period, extra_params = [period])
-        ppa_revenu_activite = famille('ppa_revenu_activite', period, extra_params = [period])
+        ppa_fictive_ressource_activite = famille('ppa_fictive_ressource_activite', period)
         bonification_i = famille.members('ppa_bonification', period, extra_params = [period])
         bonification = famille.sum(bonification_i)
 
         ppa_montant_base = (
             montant_forfaitaire_familialise
             + bonification
-            + pente
-            * ppa_revenu_activite
+            + ppa_fictive_ressource_activite
             - ppa_base_ressources
             - forfait_logement
             )
