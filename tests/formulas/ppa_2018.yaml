@@ -4,7 +4,6 @@
   input:
     famille:
       parents: [personne1]
-      aide_logement: 80
     menage:
       personne_de_reference: personne1
       statut_occupation_logement: locataire_vide
@@ -29,7 +28,6 @@
     famille:
       parents: [personne1]
       enfants: [enfant1]
-      aide_logement: 150
       asf:
         2018-05: 115.30
         2018-04: 115.30
@@ -62,7 +60,6 @@
     famille:
       parents: [personne1]
       enfants: [enfant1, enfant2]
-      aide_logement: 200
       asf:
         2018-05: 230.60
         2018-04: 230.60
@@ -101,7 +98,6 @@
   input:
     famille:
       parents: [personne1, personne2]
-      aide_logement: 200
     foyer_fiscal:
       declarants: [personne1, personne2]
     menage:
@@ -133,7 +129,6 @@
     famille:
       parents: [personne1, personne2]
       enfants: [enfant1]
-      aide_logement: 200
     foyer_fiscal:
       declarants: [personne1, personne2]
       personnes_a_charge: [enfant1]
@@ -169,7 +164,6 @@
     famille:
       parents: [personne1, personne2]
       enfants: [enfant1, enfant2]
-      aide_logement: 250
       af:
         2018-05: 131.16
         2018-04: 131.16
@@ -212,7 +206,6 @@
     famille:
       parents: [personne1, personne2]
       enfants: [enfant1, enfant2, enfant3]
-      aide_logement: 280
       af:
         2018-04: 299.20
         2018-03: 296.24
@@ -336,7 +329,6 @@
     famille:
       parents: [personne1, personne2]
       enfants: [enfant1, enfant2]
-      aide_logement: 100
       af:
         2018-05: 131.16
         2018-04: 131.16
