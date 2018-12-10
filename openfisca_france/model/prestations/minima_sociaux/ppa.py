@@ -13,8 +13,8 @@ class ppa_eligibilite(Variable):
     label = u"Eligibilité à la PPA pour un mois"
     definition_period = MONTH
 
-    def formula(famille, period, parameters, mois_demande):
-        P = parameters(mois_demande).prestations
+    def formula(famille, period, parameters):
+        P = parameters(period).prestations
         age_min = P.minima_sociaux.ppa.age_min
         condition_age_i = famille.members('age', period) >= age_min
         condition_age = famille.any(condition_age_i)
@@ -42,8 +42,7 @@ class ppa_eligibilite_etudiants(Variable):
             )
 
         def condition_ressource(period2):
-            # Le paramètre extra_params est déprécié. Ne pas s'inspirer de ce qui suit
-            revenu_activite = famille.members('ppa_revenu_activite_individu', period2, extra_params = [period])
+            revenu_activite = famille.members('ppa_revenu_activite_individu', period2)
             return revenu_activite > plancher_ressource
 
         m_1 = period.offset(-1, 'month')
@@ -68,11 +67,11 @@ class ppa_montant_forfaitaire_familial_non_majore(Variable):
     label = u"Montant forfaitaire familial (sans majoration)"
     definition_period = MONTH
 
-    def formula(famille, period, parameters, mois_demande):
+    def formula(famille, period, parameters):
         nb_parents = famille('nb_parents', period)
         nb_enfants = famille('rsa_nb_enfants', period)
         ppa_majoree_eligibilite = famille('rsa_majore_eligibilite', period)  # noqa F841
-        ppa = parameters(mois_demande).prestations.minima_sociaux.ppa
+        ppa = parameters(period).prestations.minima_sociaux.ppa
 
         nb_personnes = nb_parents + nb_enfants
 
@@ -95,9 +94,9 @@ class ppa_montant_forfaitaire_familial_majore(Variable):
     label = u"Montant forfaitaire familial (avec majoration)"
     definition_period = MONTH
 
-    def formula(famille, period, parameters, mois_demande):
+    def formula(famille, period, parameters):
         nb_enfants = famille('rsa_nb_enfants', period)
-        ppa = parameters(mois_demande).prestations.minima_sociaux.ppa
+        ppa = parameters(period).prestations.minima_sociaux.ppa
 
         taux_majore = (
             ppa.majoration_isolement_femme_enceinte
@@ -114,10 +113,9 @@ class ppa_revenu_activite(Variable):
     label = u"Revenu d'activité pris en compte pour la PPA"
     definition_period = MONTH
 
-    def formula(famille, period, parameters, mois_demande):
-        # Le paramètre extra_params est déprécié. Ne pas s'inspirer de ce qui suit
+    def formula(famille, period, parameters):
         ppa_revenu_activite_i = famille.members(
-            'ppa_revenu_activite_individu', period, extra_params = [mois_demande])
+            'ppa_revenu_activite_individu', period)
         ppa_revenu_activite = famille.sum(ppa_revenu_activite_i)
 
         return ppa_revenu_activite
@@ -129,8 +127,8 @@ class ppa_revenu_activite_individu(Variable):
     label = u"Revenu d'activité pris en compte pour la PPA (Individu) pour un mois"
     definition_period = MONTH
 
-    def formula(individu, period, parameters, mois_demande):
-        P = parameters(mois_demande)
+    def formula(individu, period, parameters):
+        P = parameters(period)
         smic_horaire = P.cotsoc.gen.smic_h_b
 
         ressources = [
@@ -144,7 +142,7 @@ class ppa_revenu_activite_individu(Variable):
 
         revenus_mensualises = sum(individu(ressource, period) for ressource in ressources)
 
-        revenus_tns_annualises = individu('ppa_rsa_derniers_revenus_tns_annuels_connus', mois_demande.this_year)
+        revenus_tns_annualises = individu('ppa_rsa_derniers_revenus_tns_annuels_connus', period.this_year)
 
         revenus_activites = revenus_mensualises + revenus_tns_annualises
 
@@ -185,13 +183,13 @@ class ppa_ressources_hors_activite(Variable):
     label = u"Revenu hors activité pris en compte pour la PPA"
     definition_period = MONTH
 
-    def formula(famille, period, parameters, mois_demande):
-        aspa = famille('aspa', mois_demande)
+    def formula(famille, period, parameters):
+        aspa = famille('aspa', period)
         # Le paramètre extra_params est déprécié. Ne pas s'inspirer de ce qui suit
-        pf = famille('ppa_base_ressources_prestations_familiales', period, extra_params = [mois_demande])
+        pf = famille('ppa_base_ressources_prestations_familiales', period)
 
-        ass_i = famille.members('ass', mois_demande)
-        ressources_hors_activite_i = famille.members('ppa_ressources_hors_activite_individu', period, extra_params = [mois_demande])
+        ass_i = famille.members('ass', period)
+        ressources_hors_activite_i = famille.members('ppa_ressources_hors_activite_individu', period)
 
         return aspa + pf + famille.sum(ass_i + ressources_hors_activite_i)
 
@@ -202,8 +200,8 @@ class ppa_ressources_hors_activite_individu(Variable):
     label = u"Revenu hors activité pris en compte pour la PPA (Individu) pour un mois"
     definition_period = MONTH
 
-    def formula(individu, period, parameters, mois_demande):
-        P = parameters(mois_demande)
+    def formula(individu, period, parameters):
+        P = parameters(period)
         smic_horaire = P.cotsoc.gen.smic_h_b
 
         ressources = [
@@ -221,7 +219,7 @@ class ppa_ressources_hors_activite_individu(Variable):
 
         # Le paramètre extra_params est déprécié. Ne pas s'inspirer de ce qui suit
         ressources_hors_activite_mensuel_i = sum(individu(ressource, period) for ressource in ressources)
-        revenus_activites = individu('ppa_revenu_activite_individu', period, extra_params = [mois_demande])
+        revenus_activites = individu('ppa_revenu_activite_individu', period)
 
         # L'aah est pris en compte comme revenu d'activité si  revenu d'activité hors aah > 29 * smic horaire brut
         seuil_aah_activite = P.prestations.minima_sociaux.ppa.seuil_aah_activite * smic_horaire
@@ -236,27 +234,23 @@ class ppa_base_ressources_prestations_familiales(Variable):
     label = u"Prestations familiales prises en compte dans le calcul de la PPA"
     definition_period = MONTH
 
-    def formula(famille, period, parameters, mois_demande):
-        prestations_calculees = [
-            'rsa_forfait_asf',
+    def formula(famille, period, parameters):
+        prestations = [
             'paje_base',
-            ]
-
-        prestations_autres = [
             'paje_clca',
             'paje_prepare',
             'paje_colca',
+            'rsa_forfait_asf'
             ]
 
-        result = sum(famille(prestation, mois_demande) for prestation in prestations_calculees)
-        result += sum(famille(prestation, period) for prestation in prestations_autres)
-        cf_non_majore_avant_cumul = famille('cf_non_majore_avant_cumul', mois_demande)
-        cf = famille('cf', mois_demande)
+        result = sum(famille(prestation, period) for prestation in prestations)
+        cf_non_majore_avant_cumul = famille('cf_non_majore_avant_cumul', period)
+        cf = famille('cf', period)
         # Seul le montant non majoré est pris en compte dans la base de ressources du RSA
         cf_non_majore = (cf > 0) * cf_non_majore_avant_cumul
 
-        af_base = famille('af_base', mois_demande)
-        af = famille('af', mois_demande)
+        af_base = famille('af_base', period)
+        af = famille('af', period)
 
         result = result + cf_non_majore + min_(af_base, af)
 
@@ -269,10 +263,9 @@ class ppa_base_ressources(Variable):
     label = u"Bases ressource prise en compte pour la PPA"
     definition_period = MONTH
 
-    def formula(famille, period, parameters, mois_demande):
-        # Le paramètre extra_params est déprécié. Ne pas s'inspirer de ce qui suit
-        ppa_revenu_activite = famille('ppa_revenu_activite', period, extra_params = [mois_demande])
-        ppa_ressources_hors_activite = famille('ppa_ressources_hors_activite', period, extra_params = [mois_demande])
+    def formula(famille, period, parameters):
+        ppa_revenu_activite = famille('ppa_revenu_activite', period)
+        ppa_ressources_hors_activite = famille('ppa_ressources_hors_activite', period)
         return ppa_revenu_activite + ppa_ressources_hors_activite
 
 
@@ -282,12 +275,11 @@ class ppa_bonification(Variable):
     label = u"Bonification de la PPA pour un individu"
     definition_period = MONTH
 
-    def formula(individu, period, parameters, mois_demande):
-        P = parameters(mois_demande)
+    def formula(individu, period, parameters):
+        P = parameters(period)
         smic_horaire = P.cotsoc.gen.smic_h_b
         ppa_base = P.prestations.minima_sociaux.ppa.montant_de_base
-        # Le paramètre extra_params est déprécié. Ne pas s'inspirer de ce qui suit
-        revenu_activite = individu('ppa_revenu_activite_individu', period, extra_params = [mois_demande])
+        revenu_activite = individu('ppa_revenu_activite_individu', period)
         seuil_1 = P.prestations.minima_sociaux.ppa.bonification.seuil_bonification * smic_horaire
         seuil_2 = P.prestations.minima_sociaux.ppa.bonification.seuil_max_bonification * smic_horaire
         bonification_max = round_(P.prestations.minima_sociaux.ppa.bonification.taux_bonification_max * ppa_base, 2)
