@@ -337,7 +337,7 @@ class ppa_forfait_logement(Variable):
 class ppa_fictive_ressource_activite(Variable):
     value_type = float
     entity = Famille
-    label = u"Prime pour l'activité fictive pour un mois"
+    label = u"Proportion de ressources provenant de l'activité prise en compte pour la primie d'activité fictive"
     definition_period = MONTH
 
     def formula(famille, period, parameters):
@@ -350,7 +350,7 @@ class ppa_fictive_ressource_activite(Variable):
 class ppa_fictive_montant_forfaitaire(Variable):
     value_type = float
     entity = Famille
-    label = u"Prime pour l'activité fictive pour un mois"
+    label = u"Montant forfaitaire de la prime d'activité fictive"
     definition_period = MONTH
 
     def formula(famille, period, parameters):
@@ -419,12 +419,13 @@ class ppa_mois_demande(Variable):
     value_type = date
     entity = Famille
     definition_period = ETERNITY
+    label = u"Date de la demande de la prime pour l'activité"
 
 
 class ppa_versee_offset_total(Variable):
     value_type = int
     entity = Famille
-    label = u"Prime Pour l'Activité Versée en prenant en compte la date de la demande"
+    label = u"Nombre de mois depuis la demande initiale de prime d'activité"
     definition_period = MONTH
 
     def formula(famille, period, parameters):
@@ -435,7 +436,7 @@ class ppa_versee_offset_total(Variable):
 class ppa_versee_offset(Variable):
     value_type = int
     entity = Famille
-    label = u"Prime Pour l'Activité Versée en prenant en compte la date de la demande"
+    label = u"Nombre de mois par rapport au mois de du précédent recalcul de la prime d'activité"
     definition_period = MONTH
 
     def formula(famille, period, parameters):
@@ -445,7 +446,7 @@ class ppa_versee_offset(Variable):
 class ppa_versee(Variable):
     value_type = float
     entity = Famille
-    label = u"Prime Pour l'Activité Versée en prenant en compte la date de la demande"
+    label = u"Prime pour l'activité versée en prenant en compte la date de la demande"
     definition_period = MONTH
 
     def formula(famille, period, parameters):
