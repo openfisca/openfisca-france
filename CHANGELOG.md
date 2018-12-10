@@ -1,5 +1,14 @@
 # Changelog
 
+### 32.2.1 [#1230](https://github.com/openfisca/openfisca-france/pull/1230)
+
+* Correction mineure.
+* Périodes concernées : à partir du 01/08/2018
+* Zones impactées :
+  - `prestations/minima_sociaux/ppa`
+* Détails :
+  - Corrige la date d'effet de paramètres de la prime d'activité
+
 ## 32.2.0 [#1224](https://github.com/openfisca/openfisca-france/pull/1224)
 
 * Amélioration technique.
