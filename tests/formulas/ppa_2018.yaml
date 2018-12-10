@@ -260,7 +260,11 @@
   input:
     famille:
       parents: [personne1, personne2]
-      aide_logement: 200
+      aide_logement:
+        2018-05: 200
+        2018-04: 200
+        2018-03: 200
+        2018-02: 200
     foyer_fiscal:
       declarants: [personne1, personne2]
     menage:
@@ -292,7 +296,11 @@
     famille:
       parents: [personne1, personne2]
       enfants: [enfant1]
-      aide_logement: 80
+      aide_logement:
+        2018-05: 80
+        2018-04: 80
+        2018-03: 80
+        2018-02: 80
     foyer_fiscal:
       declarants: [personne1, personne2]
       personnes_a_charge: [enfant1]
@@ -399,7 +407,11 @@
     famille:
       parents: [personne1]
       enfants: [enfant1]
-      aide_logement: 150
+      aide_logement:
+        2018-05: 150
+        2018-04: 150
+        2018-03: 150
+        2018-02: 150
       asf:
         2018-05: 115.30
         2018-04: 115.30
