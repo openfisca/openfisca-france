@@ -185,7 +185,6 @@ class ppa_ressources_hors_activite(Variable):
 
     def formula(famille, period, parameters):
         aspa = famille('aspa', period)
-        # Le paramètre extra_params est déprécié. Ne pas s'inspirer de ce qui suit
         pf = famille('ppa_base_ressources_prestations_familiales', period)
 
         ass_i = famille.members('ass', period)
@@ -217,7 +216,6 @@ class ppa_ressources_hors_activite_individu(Variable):
             'rsa_indemnites_journalieres_hors_activite',
             ]
 
-        # Le paramètre extra_params est déprécié. Ne pas s'inspirer de ce qui suit
         ressources_hors_activite_mensuel_i = sum(individu(ressource, period) for ressource in ressources)
         revenus_activites = individu('ppa_revenu_activite_individu', period)
 
@@ -411,7 +409,6 @@ class ppa(Variable):
         # éligibilité étudiants
 
         ppa_eligibilite_etudiants = famille('ppa_eligibilite_etudiants', period)
-        # Le paramètre extra_params est déprécié. Ne pas s'inspirer de ce qui suit
         ppa = famille('ppa_fictive', period.last_3_months, options = [ADD]) / 3
         ppa = ppa * ppa_eligibilite_etudiants * (ppa >= seuil_non_versement)
 
