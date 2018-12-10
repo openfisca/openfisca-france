@@ -375,7 +375,11 @@
   input:
     famille:
       parents: [personne1]
-      aide_logement: 80
+      aide_logement:
+          2018-05: 80
+          2018-04: 80
+          2018-03: 80
+          2018-02: 80
     foyer_fiscal:
       declarants: [personne1]
     menage:
