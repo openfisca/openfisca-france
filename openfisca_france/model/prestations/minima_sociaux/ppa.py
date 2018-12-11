@@ -422,25 +422,16 @@ class ppa_mois_demande(Variable):
     label = u"Date de la demande de la prime pour l'activité"
 
 
-class ppa_versee_offset_total(Variable):
-    value_type = int
-    entity = Famille
-    label = u"Nombre de mois depuis la demande initiale de prime d'activité"
-    definition_period = MONTH
-
-    def formula(famille, period, parameters):
-        ppa_mois_demande = famille('ppa_mois_demande', period)
-        return (datetime64(period.start).astype('datetime64[M]') - ppa_mois_demande.astype('datetime64[M]')).astype('int')
-
-
-class ppa_versee_offset(Variable):
+class ppa_indice_du_mois_trimestre_reference(Variable):
     value_type = int
     entity = Famille
     label = u"Nombre de mois par rapport au mois de du précédent recalcul de la prime d'activité"
     definition_period = MONTH
 
     def formula(famille, period, parameters):
-        return remainder_(famille('ppa_versee_offset_total', period), 3)
+        ppa_mois_demande = famille('ppa_mois_demande', period)
+        nombre_mois = (datetime64(period.start).astype('datetime64[M]') - ppa_mois_demande.astype('datetime64[M]')).astype('int')
+        return remainder_(nombre_mois, 3)
 
 
 class ppa_versee(Variable):
