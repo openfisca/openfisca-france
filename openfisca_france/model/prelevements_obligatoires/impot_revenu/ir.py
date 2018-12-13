@@ -902,19 +902,17 @@ class revenu_categoriel_foncier(Variable):
         f4be = foyer_fiscal('f4be', period)
         microfoncier = parameters(period).impot_revenu.rpns.micro.microfoncier
 
-        # # Calcul du revenu catégoriel
-        if ((f4be != 0) & ((f4ba != 0) | (f4bb != 0) | (f4bc != 0))).any():
-            log.error(("Problème de déclarations des revenus : incompatibilité de la déclaration des revenus fonciers (f4ba, f4bb, f4bc) et microfonciers (f4be)"))
+        # Conditions
+        deficit = f4ba - f4bd
+        micro = f4be > 0
 
-        a13 = f4ba + f4be - microfoncier.taux * f4be * (f4be <= microfoncier.max)
-        b13 = f4bb
-        c13 = a13 - b13
-        d13 = f4bc
-        e13 = c13 - d13 * (c13 >= 0)
-        f13 = f4bd * (e13 >= 0)
-        g13 = max_(0, e13 - f13)
-        rev_cat_rfon = (c13 >= 0) * (g13 + e13 * (e13 < 0)) - (c13 < 0) * d13
-        return rev_cat_rfon
+        # Calculs
+        si_deficit = -f4bc
+        si_micro = max_(f4be, microfoncier.max) * (1 - microfoncier.taux)
+        sinon = f4ba - f4bd
+
+        return select([deficit, micro],
+                      [si_deficit, si_micro], sinon)
 
 
 class revenu_categoriel_non_salarial(Variable):
