@@ -1,5 +1,13 @@
 # Changelog
 
+## 32.3.0 [#1232](https://github.com/openfisca/openfisca-france/pull/1232)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : toutes pour la PPA c'est à dire à partir du 01/10/2015.
+* Zones impactées : `prestations/minima_sociaux/ppa`.
+* Détails :
+  - Fiabilise le calcul de la PPA en remplaçant par de nouvelles variables dont `ppa_mois_demande` le mécanisme précédent.
+
 ### 32.2.1 [#1230](https://github.com/openfisca/openfisca-france/pull/1230)
 
 * Correction mineure.

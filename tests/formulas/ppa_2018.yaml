@@ -4,7 +4,6 @@
   input:
     famille:
       parents: [personne1]
-      aide_logement: 80
     menage:
       personne_de_reference: personne1
       statut_occupation_logement: locataire_vide
@@ -12,7 +11,6 @@
       personne1:
         date_naissance: 1980-01-01
         salaire_net:
-          2018-05: 134
           2018-04: 134
           2018-03: 134
           2018-02: 134
@@ -29,9 +27,7 @@
     famille:
       parents: [personne1]
       enfants: [enfant1]
-      aide_logement: 150
       asf:
-        2018-05: 115.30
         2018-04: 115.30
         2018-03: 109.65
         2018-02: 109.65
@@ -46,7 +42,6 @@
       personne1:
         date_naissance: 1980-01-01
         salaire_net:
-          2018-05: 134
           2018-04: 134
           2018-03: 134
           2018-02: 134
@@ -62,14 +57,11 @@
     famille:
       parents: [personne1]
       enfants: [enfant1, enfant2]
-      aide_logement: 200
       asf:
-        2018-05: 230.60
         2018-04: 230.60
         2018-03: 219.30
         2018-02: 219.30
       af:
-        2018-05: 131.16
         2018-04: 131.16
         2018-03: 129.86
         2018-02: 129.86
@@ -84,7 +76,6 @@
       personne1:
         date_naissance: 1980-01-01
         salaire_net:
-          2018-05: 134
           2018-04: 134
           2018-03: 134
           2018-02: 134
@@ -101,7 +92,6 @@
   input:
     famille:
       parents: [personne1, personne2]
-      aide_logement: 200
     foyer_fiscal:
       declarants: [personne1, personne2]
     menage:
@@ -112,14 +102,12 @@
       personne1:
         date_naissance: 1980-01-01
         salaire_net:
-          2018-05: 100
           2018-04: 100
           2018-03: 100
           2018-02: 100
       personne2:
         date_naissance: 1982-02-02
         salaire_net:
-          2018-05: 67
           2018-04: 67
           2018-03: 67
           2018-02: 67
@@ -133,7 +121,6 @@
     famille:
       parents: [personne1, personne2]
       enfants: [enfant1]
-      aide_logement: 200
     foyer_fiscal:
       declarants: [personne1, personne2]
       personnes_a_charge: [enfant1]
@@ -146,14 +133,12 @@
       personne1:
         date_naissance: 1980-01-01
         salaire_net:
-          2018-05: 250
           2018-04: 250
           2018-03: 250
           2018-02: 250
       personne2:
         date_naissance: 1982-02-02
         salaire_net:
-          2018-05: 400
           2018-04: 400
           2018-03: 400
           2018-02: 400
@@ -169,9 +154,7 @@
     famille:
       parents: [personne1, personne2]
       enfants: [enfant1, enfant2]
-      aide_logement: 250
       af:
-        2018-05: 131.16
         2018-04: 131.16
         2018-03: 129.86
         2018-02: 129.86
@@ -187,14 +170,12 @@
       personne1:
         date_naissance: 1980-01-01
         salaire_net:
-          2018-05: 250
           2018-04: 250
           2018-03: 250
           2018-02: 250
       personne2:
         date_naissance: 1982-02-02
         salaire_net:
-          2018-05: 400
           2018-04: 400
           2018-03: 400
           2018-02: 400
@@ -212,7 +193,6 @@
     famille:
       parents: [personne1, personne2]
       enfants: [enfant1, enfant2, enfant3]
-      aide_logement: 280
       af:
         2018-04: 299.20
         2018-03: 296.24
@@ -260,7 +240,10 @@
   input:
     famille:
       parents: [personne1, personne2]
-      aide_logement: 200
+      aide_logement:
+        2018-04: 200
+        2018-03: 200
+        2018-02: 200
     foyer_fiscal:
       declarants: [personne1, personne2]
     menage:
@@ -271,14 +254,12 @@
       personne1:
         date_naissance: 1980-01-01
         salaire_net:
-          2018-05: 1200
           2018-04: 1200
           2018-03: 1200
           2018-02: 1200
       personne2:
         date_naissance: 1982-02-02
         salaire_net:
-          2018-05: 1000
           2018-04: 1000
           2018-03: 1000
           2018-02: 1000
@@ -292,7 +273,10 @@
     famille:
       parents: [personne1, personne2]
       enfants: [enfant1]
-      aide_logement: 80
+      aide_logement:
+        2018-04: 80
+        2018-03: 80
+        2018-02: 80
     foyer_fiscal:
       declarants: [personne1, personne2]
       personnes_a_charge: [enfant1]
@@ -305,14 +289,12 @@
       personne1:
         date_naissance: 1980-01-01
         salaire_net:
-          2018-05: 1200
           2018-04: 1200
           2018-03: 1200
           2018-02: 1200
       personne2:
         date_naissance: 1982-02-02
         salaire_net:
-          2018-05: 1500
           2018-04: 1500
           2018-03: 1500
           2018-02: 1500
@@ -328,9 +310,7 @@
     famille:
       parents: [personne1, personne2]
       enfants: [enfant1, enfant2]
-      aide_logement: 100
       af:
-        2018-05: 131.16
         2018-04: 131.16
         2018-03: 129.86
         2018-02: 129.86
@@ -346,21 +326,18 @@
       personne1:
         date_naissance: 1980-01-01
         salaire_net:
-          2018-05: 1200
           2018-04: 1200
           2018-03: 1200
           2018-02: 1200
       personne2:
         date_naissance: 1982-02-02
         salaire_net:
-          2018-05: 1450
           2018-04: 1450
           2018-03: 1450
           2018-02: 1450
       enfant1:
         date_naissance: 2000-01-10
         salaire_net:
-          2018-05: 400
           2018-04: 400
           2018-03: 400
           2018-02: 400
@@ -375,7 +352,10 @@
   input:
     famille:
       parents: [personne1]
-      aide_logement: 80
+      aide_logement:
+          2018-04: 80
+          2018-03: 80
+          2018-02: 80
     foyer_fiscal:
       declarants: [personne1]
     menage:
@@ -385,7 +365,6 @@
       personne1:
         date_naissance: 1980-01-01
         salaire_net:
-          2018-05: 1450
           2018-04: 1450
           2018-03: 1450
           2018-02: 1450
@@ -399,9 +378,11 @@
     famille:
       parents: [personne1]
       enfants: [enfant1]
-      aide_logement: 150
+      aide_logement:
+        2018-04: 150
+        2018-03: 150
+        2018-02: 150
       asf:
-        2018-05: 115.30
         2018-04: 115.30
         2018-03: 109.65
         2018-02: 109.65
@@ -416,7 +397,6 @@
       personne1:
         date_naissance: 1980-01-01
         salaire_net:
-          2018-05: 2000
           2018-04: 2000
           2018-03: 2000
           2018-02: 2000

@@ -1,0 +1,18 @@
+- period: 2018-11
+  input:
+    ppa_mois_demande:
+      ETERNITY: 2018-11
+  output:
+    ppa_indice_du_mois_trimestre_reference:
+      2018-11: 0
+      2018-12: 1
+      2019-01: 2
+      2019-02: 0
+      2019-03: 1
+
+- period: 2018-11
+  input:
+    ppa_mois_demande:
+      ETERNITY: 2017-11
+  output:
+    ppa_indice_du_mois_trimestre_reference: 0
