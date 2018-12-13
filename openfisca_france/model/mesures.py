@@ -267,16 +267,12 @@ class revenus_nets_du_capital(Variable):
         assiette_csg_revenus_capital = foyer_fiscal('assiette_csg_revenus_capital', period)
         assiette_csg_plus_values = foyer_fiscal('assiette_csg_plus_values', period)
         plus_values_base_large = foyer_fiscal('plus_values_base_large', period)
-        rev_cat_rfon = foyer_fiscal('revenu_categoriel_foncier', period)
         rente_viagere_titre_onereux_net = foyer_fiscal('rente_viagere_titre_onereux_net', period)
-        revenus_fonciers_nets_abattement_microfoncier = foyer_fiscal('revenus_fonciers_nets_abattement_microfoncier', period)
 
         revenus_du_capital_cap_avant_prelevements_sociaux = (
             assiette_csg_revenus_capital
             - assiette_csg_plus_values
             + plus_values_base_large
-            - rev_cat_rfon
-            + revenus_fonciers_nets_abattement_microfoncier
             - rente_viagere_titre_onereux_net
             )
 
