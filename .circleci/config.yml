@@ -10,7 +10,7 @@ jobs:
       - checkout
 
       - restore_cache:
-          key: v1-py2-deps-{{ checksum "setup.py" }}
+          key: v1-py2-deps-{{ .Branch }}-{{ checksum "setup.py" }}
 
       - run:
           name: Create a virtualenv
@@ -26,7 +26,7 @@ jobs:
             # pip install --editable git+https://github.com/openfisca/openfisca-core.git@BRANCH_NAME#egg=OpenFisca-Core  # use a specific branch of OpenFisca-Core
 
       - save_cache:
-          key: v1-py2-deps-{{ checksum "setup.py" }}
+          key: v1-py2-deps-{{ .Branch }}-{{ checksum "setup.py" }}
           paths:
             - /tmp/venv/openfisca_france
             - dist
@@ -51,7 +51,7 @@ jobs:
       - checkout
 
       - restore_cache:
-          key: v1-py3-deps-{{ checksum "setup.py" }}
+          key: v1-py3-deps-{{ .Branch }}-{{ checksum "setup.py" }}
 
       - run:
           name: Create a virtualenv
@@ -67,7 +67,7 @@ jobs:
             # pip install --editable git+https://github.com/openfisca/openfisca-core.git@BRANCH_NAME#egg=OpenFisca-Core  # use a specific branch of OpenFisca-Core
 
       - save_cache:
-          key: v1-py3-deps-{{ checksum "setup.py" }}
+          key: v1-py3-deps-{{ .Branch }}-{{ checksum "setup.py" }}
           paths:
             - /tmp/venv/openfisca_france
 
@@ -90,7 +90,7 @@ jobs:
       - checkout
 
       - restore_cache:
-          key: v1-py3-deps-{{ checksum "setup.py" }}
+          key: v1-py3-deps-{{ .Branch }}-{{ checksum "setup.py" }}
 
       - run:
           name: Activate virtualenv
@@ -110,7 +110,7 @@ jobs:
       - checkout
 
       - restore_cache:
-          key: v1-py3-deps-{{ checksum "setup.py" }}
+          key: v1-py3-deps-{{ .Branch }}-{{ checksum "setup.py" }}
 
       - run:
           name: Activate virtualenv
@@ -147,7 +147,7 @@ jobs:
       - checkout
 
       - restore_cache:
-          key: v1-py2-deps-{{ checksum "setup.py" }}
+          key: v1-py2-deps-{{ .Branch }}-{{ checksum "setup.py" }}
 
       - restore_cache:
           key: v1-py2-build-{{ .Revision }}
@@ -181,7 +181,7 @@ jobs:
       - checkout
 
       - restore_cache:
-          key: v1-py3-deps-{{ checksum "setup.py" }}
+          key: v1-py3-deps-{{ .Branch }}-{{ checksum "setup.py" }}
 
       - restore_cache:
           key: v1-py3-build-{{ .Revision }}
