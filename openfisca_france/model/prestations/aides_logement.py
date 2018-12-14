@@ -1111,7 +1111,7 @@ class aides_logement_accedant_et_foyer(Variable):
 
         loyer = famille.demandeur.menage('loyer', period)
         plafond_mensualite = famille('aides_logement_plafond_mensualite', period)
-        L = min_(plafond_mensualite, loyer)
+        L = where(locataire_logement_foyer * not_(logement_conventionne), plafond_mensualite, min_(plafond_mensualite, loyer))
         C = forfait_charges * famille('aide_logement_charges', period)
         K = famille('aides_logement_k', period)
         Lo = famille('aides_logement_loyer_minimal', period)
