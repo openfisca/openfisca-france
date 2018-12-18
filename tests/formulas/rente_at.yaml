@@ -1,126 +1,204 @@
-- name: "cas 1: Victime salarié, IPP < 10%, versement d'une indemnité en capial"
+- name: "Cas 1: Victime salarié, taux d'IPP < 10%, versement d'une indemnité en capital"
   period: 2018-07
   absolute_error_margin: 0.02
-  individus:
-    - id: "parent1"
-      taux_accident_travail: 0.09
-      salaire_net:
-        2017-8: 20000
-  output_variables:
+  input:
+    famille:
+      parents: [parent1]
+    individus:
+      parent1:
+        taux_accident_travail: 0.09
+        salaire_net:
+          2017-7: 20000
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - parent1
+    menages:
+      menage_0:
+        personne_de_reference:
+        - parent1
+  output:
     indemnite_accident_travail: 4163.61
 
-- name: "cas 2: Victime salarié, 10% < IPP < 50%, versement d'une rente trimestrielle"
+- name: "Cas 2: Victime salarié, 10% < taux d'IPP < 50%, versement d'une rente trimestrielle"
   period: 2018-07
   absolute_error_margin: 0.02
-  individus:
-    - id: "parent1"
-      taux_accident_travail: 0.12
-      salaire_net:
-        2017-8: 20000
-  output_variables:
+  input:
+    famille:
+      parents: [parent1]
+    individus:
+      parent1:
+        taux_accident_travail: 0.12
+        salaire_net:
+          2018-06: 20000
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - parent1
+    menages:
+      menage_0:
+        personne_de_reference:
+        - parent1
+  output:
     rente_accident_travail: 300
 
-- name: "cas 3: Victime salarié, age 38 masculin, 10% < IPP < 50%, versement d'une rente trimestrielle avec rachat partiel"
+- name: "Cas 3: Victime salarié 38 ans, 10% < taux d'IPP < 50%, versement d'une rente trimestrielle avec rachat partiel de la rente"
   period: 2018-07
   absolute_error_margin: 0.02
-  individus:
-    - id: "parent1"
-      taux_accident_travail: 0.12
-      salaire_net:
-        2017-8: 20000
-      demande_rachat: true
-  output_variables:
-    rente_accident_travail: 225
+  input:
+    famille:
+      parents: [parent1]
+    individus:
+      parent1:
+        age: 38
+        taux_accident_travail: 0.12
+        salaire_net:
+          2018-06: 20000
+        demande_rachat: true
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - parent1
+    menages:
+      menage_0:
+        personne_de_reference:
+        - parent1
+  output:
     rente_accident_travail_rachat: 4621.20
+    rente_accident_travail: 225
 
-- name: "cas 4: Victime salarié, IPP > 50%, versement d'une rente mentuelle "
+- name: "Cas 4: Victime salarié, taux d'IPP > 50%, versement d'une rente mensuelle"
   period: 2018-07
   absolute_error_margin: 0.02
-  individus:
-    - id: "parent1"
-      taux_accident_travail: 0.70
-      salaire_net:
-        2017-08: 20000
-  output_variables:
+  input:
+    famille:
+      parents: [parent1]
+    individus:
+      parent1:
+        taux_accident_travail: 0.70
+        salaire_net:
+          2018-06: 20000
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - parent1
+    menages:
+      menage_0:
+        personne_de_reference:
+        - parent1
+  output:
     rente_accident_travail: 916.67
 
-- name: "cas 5: Victime salarié, IPP > 80%, versement d'une rente mentuelle et de la PCRT mensuelle"
+- name: "Cas 5: Victime salarié, d'IPP > 80%, versement d'une rente mensuelle et de la PCRT mensuelle"
   period: 2018-07
   absolute_error_margin: 0.02
-  individus:
-    - id: "parent1"
-      taux_accident_travail: 0.82
-      tns_benefice_exploitant_agricole:
-        2017: 20000
-      pcrtp_nombre_actes_assistance: 4
-  output_variables:
+  input:
+    famille:
+      parents: [parent1]
+    individus:
+      parent1:
+        taux_accident_travail: 0.82
+        salaire_net:
+          2018-06: 20000
+        pcrtp_nombre_actes_assistance: 4
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - parent1
+    menages:
+      menage_0:
+        personne_de_reference:
+        - parent1
+  output:
     rente_accident_travail: 1216.67
     pcrtp: 559.26
 
-- name: "cas 6: Victime non salarié agricol, IPP < 30%, pas de rentre ou d'indemnité"
+- name: "Cas 6: Victime non salarié agricol, taux d'IPP < 30%, pas de rente ou d'indemnité"
   period: 2018-07
   absolute_error_margin: 0.02
-  individus:
-    - id: "parent1"
-      taux_accident_travail: 0.29
-      tns_benefice_exploitant_agricole:
-        2017: 20000
-  output_variables:
-    rente_accident_travail: 725 #todo
+  input:
+    famille:
+      parents: [parent1]
+    individus:
+      parent1:
+        taux_accident_travail: 0.29
+        tns_benefice_exploitant_agricole:
+          2017: 20000
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - parent1
+    menages:
+      menage_0:
+        personne_de_reference:
+        - parent1
+  output:
+    rente_accident_travail: 0
 
-- name: "cas 7: Victime non salarié agricol, IPP >= 30%, versement d'une rente mensuelle"
+- name: "Cas 7: Victime agricol, taux d'IPP > 30%, versement d'une rente mensuelle"
   period: 2018-07
   absolute_error_margin: 0.02
-  individus:
-    - id: "parent1"
-      taux_accident_travail: 0.32
-      salaire_net:
-        2017-08: 20000
-  output_variables:
-    rente_accident_travail: 266.67 * 3 #todo
+  input:
+    famille:
+      parents: [parent1]
+    individus:
+      parent1:
+        taux_accident_travail: 0.32
+        tns_benefice_exploitant_agricole:
+          2017: 20000
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - parent1
+    menages:
+      menage_0:
+        personne_de_reference:
+        - parent1
+  output:
+    rente_accident_travail: 266.67
 
-- name: "cas 8: Victime non salarié agricol, IPP >= 30%, versement d'une rente mensuelle"
+- name: "Cas 8: Victime agricol, taux d'IPP > 30%, versement d'une rente mensuelle"
   period: 2018-07
   absolute_error_margin: 0.02
-  individus:
-    - id: "parent1"
-      taux_accident_travail: 0.70
-      salaire_net:
-        2017-08: 20000
-  output_variables:
+  input:
+    famille:
+      parents: [parent1]
+    individus:
+      parent1:
+        taux_accident_travail: 0.7
+        tns_benefice_exploitant_agricole:
+          2017: 20000
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - parent1
+    menages:
+      menage_0:
+        personne_de_reference:
+        - parent1
+  output:
     rente_accident_travail: 916.67
 
-- name: "cas 9: Victime non salarié agricol, IPP >= 80%, versement d'une rente mensuellevet de la PCRT mensuelle"
+- name: "Cas 9: Victime agricol, taux d'IPP > 80%, versement d'une rente mensuelle et de la PCRT mensuelle"
   period: 2018-07
   absolute_error_margin: 0.02
-  individus:
-    - id: "parent1"
-      taux_accident_travail: 0.90
-      salaire_net:
-        2017-08: 20000
-      pcrtp_nombre_actes_assistance: 5
-  output_variables:
+  input:
+    famille:
+      parents: [parent1]
+    individus:
+      parent1:
+        taux_accident_travail: 0.90
+        tns_benefice_exploitant_agricole:
+          2017: 20000
+        pcrtp_nombre_actes_assistance: 5
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - parent1
+    menages:
+      menage_0:
+        personne_de_reference:
+        - parent1
+  output:
     rente_accident_travail: 1416.67
     pcrtp: 1118.54
-
-- name: "cas 10: Victime cotisant solidaire, IPP < 100%, pas de rente ou d'indemnité"
-  period: 2018-07
-  absolute_error_margin: 0.02
-  individus:
-    - id: "parent1"
-      taux_accident_travail: 0.95
-      salaire_net:
-        2017-08: 20000
-  output_variables:
-    rente_accident_travail: 1541.66 #todo
-
-- name: "cas 11: Victime cotisant solidaire, IPP = 100%, versement d'une rente mensuelle"
-  period: 2018-07
-  absolute_error_margin: 0.02
-  individus:
-    - id: "parent1"
-      taux_accident_travail: 1
-      salaire_net:
-        2017-08: 20000
-  output_variables:
-    rente_accident_travail: 1666.67
