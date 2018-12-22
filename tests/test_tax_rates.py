@@ -10,14 +10,14 @@ from .cache import tax_benefit_system
 def test_average_tax_rate():
     year = 2013
     simulation = init_single_entity(tax_benefit_system.new_scenario(),
-        axes = [
+        axes = [[
             dict(
                 count = 100,
                 name = 'salaire_imposable',
                 max = 24000,
                 min = 0,
                 ),
-            ],
+            ]],
         period = year,
         parent1 = dict(age = 40),
         ).new_simulation()
@@ -30,14 +30,14 @@ def test_average_tax_rate():
 def test_marginal_tax_rate():
     year = 2013
     simulation = init_single_entity(tax_benefit_system.new_scenario(),
-        axes = [
+        axes = [[
             dict(
                 count = 10000,
                 name = 'salaire_imposable',
                 max = 1000000,
                 min = 0,
                 ),
-            ],
+            ]],
         period = year,
         parent1 = dict(age = 40),
         ).new_simulation()

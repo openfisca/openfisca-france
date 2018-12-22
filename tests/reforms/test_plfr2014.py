@@ -16,14 +16,14 @@ def test(year = 2013):
     people = 1
     reform = plfr2014(tax_benefit_system)
     scenario = init_single_entity(reform.new_scenario(),
-        axes = [
+        axes = [[
             dict(
                 count = count,
                 max = max_sal,
                 min = 0,
                 name = 'salaire_imposable',
                 ),
-            ],
+            ]],
         period = periods.period(year),
         parent1 = dict(date_naissance = datetime.date(year - 40, 1, 1)),
         parent2 = dict(date_naissance = datetime.date(year - 40, 1, 1)) if people >= 2 else None,

@@ -17,14 +17,14 @@ def test_charge_loyer():
     year = 2013
     reform = trannoy_wasmer(tax_benefit_system)
     scenario = init_single_entity(reform.new_scenario(),
-        axes = [
+        axes = [[
             dict(
                 count = 10,
                 max = 30000,
                 min = 0,
                 name = 'salaire_de_base',
                 ),
-            ],
+            ]],
         period = periods.period(year),
         parent1 = dict(date_naissance = datetime.date(year - 40, 1, 1)),
         parent2 = dict(date_naissance = datetime.date(year - 40, 1, 1)),
