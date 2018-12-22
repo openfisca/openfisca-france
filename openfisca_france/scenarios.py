@@ -56,5 +56,7 @@ def init_single_entity(scenario, axes = None, enfants = None, famille = None, fo
         'menages': menages,
         'individus': individus
         }
+    if axes:
+        dict['axes'] = axes
     scenario.init_from_dict(dict)
     return scenario
