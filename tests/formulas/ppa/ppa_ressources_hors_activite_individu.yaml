@@ -1,0 +1,5 @@
+- period: 2018-12
+  input:
+    revenus_capital: 100
+  output:
+    ppa_ressources_hors_activite_individu: 100
