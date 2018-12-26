@@ -26,6 +26,10 @@ class ppa_eligibilite_etudiants(Variable):
     value_type = bool
     entity = Famille
     label = u"Eligibilité à la PPA (condition sur tout le trimestre)"
+    reference = [
+        u"Article L842-2 du Code de la Sécurité Sociale",
+        u"https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=F2B88CEFCB83FCAFA4AA31671DAC89DD.tplgfr26s_3?idArticle=LEGIARTI000031087615&cidTexte=LEGITEXT000006073189&dateTexte=20181226"
+    ]
     definition_period = MONTH
 
     def formula(famille, period, parameters):
