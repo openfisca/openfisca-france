@@ -65,6 +65,10 @@ class ass_base_ressources_individu(Variable):
     label = u"Base de ressources individuelle de l'ASS"
     entity = Individu
     definition_period = MONTH
+    reference = [
+        # Articles R5423-1 à 6 du code du travail
+        u'https://www.legifrance.gouv.fr/affichCode.do?idSectionTA=LEGISCTA000018525086&cidTexte=LEGITEXT000006072050&dateTexte=20181227'
+        ]
 
     def formula(individu, period):
         # Rolling year
@@ -93,6 +97,7 @@ class ass_base_ressources_individu(Variable):
             return revenus_auto_entrepreneur + tns_micro_entreprise_benefice + tns_benefice_exploitant_agricole + tns_autres_revenus
 
         pensions_alimentaires_percues = individu('pensions_alimentaires_percues', previous_year, options = [ADD])
+        # Article R5423-4 du code du travail
         pensions_alimentaires_versees_individu = individu('pensions_alimentaires_versees_individu', previous_year, options = [ADD])
 
         aah = individu('aah', previous_year, options = [ADD])
