@@ -213,24 +213,37 @@ class ppa_ressources_hors_activite_individu(Variable):
         P = parameters(period)
         smic_horaire = P.cotsoc.gen.smic_h_b
 
-        ressources = [
-            'asi',
-            'chomage_net',
-            'retraite_nette',
-            'retraite_combattant',
-            'revenus_capital',
-            'revenus_locatifs',
-            'pensions_invalidite',
-            'pensions_alimentaires_percues',
-            'prestation_compensatoire',
-            'prime_forfaitaire_mensuelle_reprise_activite',
-            'rsa_indemnites_journalieres_hors_activite',
-            ]
+        def ressources_percues_au_cours_du_mois_considere():
+            ressources = [
+                'asi',
+                'chomage_net',
+                'retraite_nette',
+                'retraite_combattant',
+                'pensions_invalidite',
+                'pensions_alimentaires_percues',
+                'prestation_compensatoire',
+                'prime_forfaitaire_mensuelle_reprise_activite',
+                'rsa_indemnites_journalieres_hors_activite',
+                ]
 
-        ressources_hors_activite_mensuel_i = sum(individu(ressource, period) for ressource in ressources)
+            return sum(individu(ressource, period) for ressource in ressources)
+
+        def ressources_percues_il_y_a_deux_ans():
+            ressources = [
+                'revenus_capital',
+                'revenus_locatifs',
+                ]
+
+            return sum(individu(ressource, period.offset(-2, 'year')) for ressource in ressources)
+
+        ressources_hors_activite_mensuel_i = (
+            + ressources_percues_au_cours_du_mois_considere()
+            + ressources_percues_il_y_a_deux_ans()
+            )
+
         revenus_activites = individu('ppa_revenu_activite_individu', period)
 
-        # L'aah est pris en compte comme revenu d'activité si  revenu d'activité hors aah > 29 * smic horaire brut
+        # L'AAH est prise en compte comme revenu d'activité si revenu d'activité hors aah > 29 * smic horaire brut
         seuil_aah_activite = P.prestations.minima_sociaux.ppa.seuil_aah_activite * smic_horaire
         aah_hors_activite = (revenus_activites < seuil_aah_activite) * individu('aah', period)
 
