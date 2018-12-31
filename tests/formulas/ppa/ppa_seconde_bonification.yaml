@@ -1,0 +1,79 @@
+- name: Taux nul avec des ressources < 0.5 SMIC
+  period: 2019-01
+  absolute_error_margin: 0.001
+  input:
+    ppa_revenu_activite_individu_en_smic_mensuel_net:
+      2019-01: 0
+  output:
+    ppa_seconde_bonification_taux:
+      2019-01: 0
+
+- name: Taux nul avec des ressources = 0.5 SMIC
+  period: 2019-01
+  absolute_error_margin: 0.001
+  input:
+    ppa_revenu_activite_individu_en_smic_mensuel_net:
+      2019-01: 0.5
+  output:
+    ppa_seconde_bonification_taux:
+      2019-01: 0
+
+- name: Taux de 50% avec des ressources = 0.75 SMIC
+  period: 2019-01
+  absolute_error_margin: 0.001
+  input:
+    ppa_revenu_activite_individu_en_smic_mensuel_net:
+      2019-01: 0.75
+  output:
+    ppa_seconde_bonification_taux:
+      2019-01: 0.5
+
+- name: Taux plein avec des ressources = 1 SMIC
+  period: 2019-01
+  absolute_error_margin: 0.001
+  input:
+    ppa_revenu_activite_individu_en_smic_mensuel_net:
+      2019-01: 1
+  output:
+    ppa_seconde_bonification_taux:
+      2019-01: 1
+
+- name: Taux de 50% avec des ressources = 1.25 SMIC
+  period: 2019-01
+  absolute_error_margin: 0.001
+  input:
+    ppa_revenu_activite_individu_en_smic_mensuel_net:
+      2019-01: 1.25
+  output:
+    ppa_seconde_bonification_taux:
+      2019-01: 0.5
+
+- name: Taux de 50% avec des ressources = 1.5 SMIC
+  period: 2019-01
+  absolute_error_margin: 0.001
+  input:
+    ppa_revenu_activite_individu_en_smic_mensuel_net:
+      2019-01: 1.5
+  output:
+    ppa_seconde_bonification_taux:
+      2019-01: 0
+
+- name: Taux nul avec des ressources = 2 SMIC
+  period: 2019-01
+  absolute_error_margin: 0.001
+  input:
+    ppa_revenu_activite_individu_en_smic_mensuel_net:
+      2019-01: 2
+  output:
+    ppa_seconde_bonification_taux:
+      2019-01: 0
+
+- name: Taux nul avec des ressources = 3 SMIC
+  period: 2019-01
+  absolute_error_margin: 0.001
+  input:
+    ppa_revenu_activite_individu_en_smic_mensuel_net:
+      2019-01: 3
+  output:
+    ppa_seconde_bonification_taux:
+      2019-01: 0

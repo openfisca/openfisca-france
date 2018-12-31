@@ -288,15 +288,62 @@ class ppa_bonification(Variable):
         return bonification
 
 
-class ppa_seconde_bonification(Variable):
+class ppa_revenu_activite_individu_en_smic_mensuel_net(Variable):
+    value_type = float
+    entity = Individu
+    label = u""
+    definition_period = MONTH
+
+    def formula(individu, period, parameters):
+        revenu_activite = individu('ppa_revenu_activite_individu', period)
+
+        P = parameters(period)
+        smic_brut_mensuel = P.cotsoc.gen.smic_h_b * P.cotsoc.gen.nb_heure_travail_mensuel
+        smic_net_mensuel = 7.82 / 9.88 * smic_brut_mensuel
+
+        return revenu_activite / smic_net_mensuel
+
+
+class ppa_seconde_bonification_taux(Variable):
     value_type = float
     entity = Individu
     label = u"Bonification de la PPA pour un individu"
     definition_period = MONTH
 
     def formula_2018_10(individu, period, parameters):
-        revenu_activite = individu('ppa_revenu_activite_individu', period)
-        return revenu_activite * 0 + (90 - 11.57)
+        smic_net_mensuels = individu('ppa_revenu_activite_individu_en_smic_mensuel_net', period)
+        # Niveau de SMIC importants
+        xS = 0.5  # Seuil
+        xM = 1  # Taux maximal pour 1 SMIC
+        xP = 1.5  # Plafond
+
+        yM = 1  # Taux maximal = 100%
+
+        aS = yM / (xM - xS)
+        bS = - aS * xS
+
+        aP = yM / (xM - xP)
+        bP = - aP * xP
+
+        taux = (
+            (smic_net_mensuels <= xM) * (aS * smic_net_mensuels + bS) +
+            (smic_net_mensuels > xM) * (aP * smic_net_mensuels + bP)
+            )
+
+        return min_(1, max_(0, taux))
+
+
+class ppa_seconde_bonification(Variable):
+    value_type = float
+    entity = Individu
+    label = u"Seconde bonification de la PPA pour un individu"
+    definition_period = MONTH
+
+    def formula_2018_10(individu, period, parameters):
+        bonification_max = 90 - 11.57
+        ppa_seconde_bonification_taux = individu('ppa_seconde_bonification_taux', period)
+
+        return bonification_max * ppa_seconde_bonification_taux
 
 
 class ppa_forfait_logement(Variable):
