@@ -419,6 +419,40 @@ class ppa_fictive_montant_forfaitaire(Variable):
         return where(ppa_majoree_eligibilite, mff_majore, mff_non_majore)
 
 
+class ppa_fictive_pre(Variable):
+    value_type = float
+    entity = Famille
+    label = u"Prime pour l'activité fictive pour un mois"
+    definition_period = MONTH
+
+    def formula(famille, period, parameters):
+        forfait_logement = famille('ppa_forfait_logement', period)
+        elig = famille('ppa_eligibilite', period)
+        montant_forfaitaire_familialise = famille('ppa_fictive_montant_forfaitaire', period)
+        ppa_base_ressources = famille('ppa_base_ressources', period)
+        ppa_fictive_ressource_activite = famille('ppa_fictive_ressource_activite', period)
+        bonification_i = famille.members('ppa_bonification', period)
+        bonification = famille.sum(bonification_i)
+
+        ppa_montant_base = (
+            montant_forfaitaire_familialise
+            + bonification
+            + ppa_fictive_ressource_activite
+            - ppa_base_ressources
+            - forfait_logement
+            )
+
+        ppa_deduction = (
+            montant_forfaitaire_familialise
+            - ppa_base_ressources
+            - forfait_logement
+            )
+
+        ppa_fictive = ppa_montant_base - max_(ppa_deduction, 0)
+        ppa_fictive = max_(ppa_fictive, 0)
+        return elig * ppa_fictive
+
+
 class ppa_fictive(Variable):
     value_type = float
     entity = Famille
@@ -466,6 +500,16 @@ class ppa(Variable):
     reference = u"https://www.service-public.fr/particuliers/vosdroits/F2882"
 
     def formula_2016_01_01(famille, period, parameters):
+        seuil_non_versement = parameters(period).prestations.minima_sociaux.ppa.seuil_non_versement
+        # éligibilité étudiants
+
+        ppa_eligibilite_etudiants = famille('ppa_eligibilite_etudiants', period)
+        ppa = famille('ppa_fictive_pre', period.last_3_months, options = [ADD]) / 3
+        ppa = ppa * ppa_eligibilite_etudiants * (ppa >= seuil_non_versement)
+
+        return ppa
+
+    def formula_2019_01_01(famille, period, parameters):
         seuil_non_versement = parameters(period).prestations.minima_sociaux.ppa.seuil_non_versement
         # éligibilité étudiants
 
