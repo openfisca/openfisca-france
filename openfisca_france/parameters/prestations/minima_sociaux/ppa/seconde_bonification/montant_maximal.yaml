@@ -1,0 +1,6 @@
+description: Montant maximal pour la seconde bonification
+values:
+  2018-10-01:
+    value: 78.43 # 90 - 11.57
+  2019-01-01:
+    value: 85.45 # 90 - 4.55

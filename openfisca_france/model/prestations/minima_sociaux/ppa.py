@@ -340,7 +340,7 @@ class ppa_seconde_bonification(Variable):
     definition_period = MONTH
 
     def formula_2018_10(individu, period, parameters):
-        bonification_max = 90 - 11.57
+        bonification_max = parameters(period).prestations.minima_sociaux.ppa.seconde_bonification.montant_maximal
         ppa_seconde_bonification_taux = individu('ppa_seconde_bonification_taux', period)
 
         return bonification_max * ppa_seconde_bonification_taux
