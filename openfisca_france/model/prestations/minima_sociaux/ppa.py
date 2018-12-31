@@ -441,7 +441,7 @@ class ppa_versee(Variable):
     definition_period = MONTH
 
     def formula(famille, period, parameters):
-        remainder = famille('ppa_versee_offset', period)
+        remainder = famille('ppa_indice_du_mois_trimestre_reference', period)
         return (
             + famille('ppa', period) * (remainder == 0)
             + famille('ppa', period.last_month) * (remainder == 1)
