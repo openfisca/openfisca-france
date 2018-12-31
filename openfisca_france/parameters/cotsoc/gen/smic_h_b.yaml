@@ -45,3 +45,6 @@ values:
     value: 9.76
   2018-01-01:
     value: 9.88
+  2019-01-01:
+    value: 10.03
+    reference: https://travail-emploi.gouv.fr/droit-du-travail/la-remuneration/article/le-smic-374531
