@@ -288,6 +288,17 @@ class ppa_bonification(Variable):
         return bonification
 
 
+class ppa_seconde_bonification(Variable):
+    value_type = float
+    entity = Individu
+    label = u"Bonification de la PPA pour un individu"
+    definition_period = MONTH
+
+    def formula_2018_10(individu, period, parameters):
+        revenu_activite = individu('ppa_revenu_activite_individu', period)
+        return revenu_activite * 0 + (90 - 11.57)
+
+
 class ppa_forfait_logement(Variable):
     value_type = float
     entity = Famille
@@ -375,10 +386,13 @@ class ppa_fictive(Variable):
         ppa_fictive_ressource_activite = famille('ppa_fictive_ressource_activite', period)
         bonification_i = famille.members('ppa_bonification', period)
         bonification = famille.sum(bonification_i)
+        seconde_bonification_i = famille.members('ppa_seconde_bonification', period)
+        seconde_bonification = famille.sum(seconde_bonification_i)
 
         ppa_montant_base = (
             montant_forfaitaire_familialise
             + bonification
+            + seconde_bonification
             + ppa_fictive_ressource_activite
             - ppa_base_ressources
             - forfait_logement
