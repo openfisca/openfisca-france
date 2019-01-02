@@ -5,4 +5,4 @@ values:
   2015-10-01:
     value: 95.0 # 0.8 SMIC
   2018-10-01:
-    value: 118 # 1 SMIC * 0.5 (SMIC) * 59 (SMIC horaire brut) # Conversion brut -> net
+    value: 118 # 1 SMIC / 0.5 (SMIC) * 59 (SMIC horaire brut) # Conversion brut -> net
