@@ -1,0 +1,6 @@
+description: Revalorisation de la bonification de la PPA en euros
+values:
+  2015-10-01:
+    value: 0
+  2018-10-01:
+    value: 90

@@ -276,74 +276,17 @@ class ppa_bonification(Variable):
     def formula(individu, period, parameters):
         P = parameters(period)
         smic_horaire = P.cotsoc.gen.smic_h_b
-        ppa_base = P.prestations.minima_sociaux.ppa.montant_de_base
+        ppa_params = P.prestations.minima_sociaux.ppa
+        bonif_params = P.prestations.minima_sociaux.ppa.bonification
         revenu_activite = individu('ppa_revenu_activite_individu', period)
-        seuil_1 = P.prestations.minima_sociaux.ppa.bonification.seuil_bonification * smic_horaire
-        seuil_2 = P.prestations.minima_sociaux.ppa.bonification.seuil_max_bonification * smic_horaire
-        bonification_max = round_(P.prestations.minima_sociaux.ppa.bonification.taux_bonification_max * ppa_base, 2)
+        seuil_1 = bonif_params.seuil_bonification * smic_horaire
+        seuil_2 = bonif_params.seuil_max_bonification * smic_horaire
+        bonification_max = round_(bonif_params.taux_bonification_max * ppa_params.montant_de_base + bonif_params.revalorisation, 2)
         bonification = bonification_max * (revenu_activite - seuil_1) / (seuil_2 - seuil_1)
         bonification = max_(bonification, 0)
         bonification = min_(bonification, bonification_max)
 
         return bonification
-
-
-class ppa_revenu_activite_individu_en_smic_mensuel_net(Variable):
-    value_type = float
-    entity = Individu
-    label = u""
-    definition_period = MONTH
-
-    def formula(individu, period, parameters):
-        revenu_activite = individu('ppa_revenu_activite_individu', period)
-
-        P = parameters(period)
-        smic_brut_mensuel = P.cotsoc.gen.smic_h_b * P.cotsoc.gen.nb_heure_travail_mensuel
-        smic_net_mensuel = 7.82 / 9.88 * smic_brut_mensuel
-
-        return revenu_activite / smic_net_mensuel
-
-
-class ppa_seconde_bonification_taux(Variable):
-    value_type = float
-    entity = Individu
-    label = u"Bonification de la PPA pour un individu"
-    definition_period = MONTH
-
-    def formula_2018_10(individu, period, parameters):
-        smic_net_mensuels = individu('ppa_revenu_activite_individu_en_smic_mensuel_net', period)
-        # Niveau de SMIC importants
-        xS = 0.5  # Seuil
-        xM = 1  # Taux maximal pour 1 SMIC
-        xP = 1.5  # Plafond
-
-        yM = 1  # Taux maximal = 100%
-
-        aS = yM / (xM - xS)
-        bS = - aS * xS
-
-        aP = yM / (xM - xP)
-        bP = - aP * xP
-
-        taux = (
-            (smic_net_mensuels <= xM) * (aS * smic_net_mensuels + bS) +
-            (smic_net_mensuels > xM) * (aP * smic_net_mensuels + bP)
-            )
-
-        return min_(1, max_(0, taux))
-
-
-class ppa_seconde_bonification(Variable):
-    value_type = float
-    entity = Individu
-    label = u"Seconde bonification de la PPA pour un individu"
-    definition_period = MONTH
-
-    def formula_2018_10(individu, period, parameters):
-        bonification_max = parameters(period).prestations.minima_sociaux.ppa.seconde_bonification.montant_maximal
-        ppa_seconde_bonification_taux = individu('ppa_seconde_bonification_taux', period)
-
-        return bonification_max * ppa_seconde_bonification_taux
 
 
 class ppa_forfait_logement(Variable):
@@ -419,40 +362,6 @@ class ppa_fictive_montant_forfaitaire(Variable):
         return where(ppa_majoree_eligibilite, mff_majore, mff_non_majore)
 
 
-class ppa_fictive_pre(Variable):
-    value_type = float
-    entity = Famille
-    label = u"Prime pour l'activité fictive pour un mois"
-    definition_period = MONTH
-
-    def formula(famille, period, parameters):
-        forfait_logement = famille('ppa_forfait_logement', period)
-        elig = famille('ppa_eligibilite', period)
-        montant_forfaitaire_familialise = famille('ppa_fictive_montant_forfaitaire', period)
-        ppa_base_ressources = famille('ppa_base_ressources', period)
-        ppa_fictive_ressource_activite = famille('ppa_fictive_ressource_activite', period)
-        bonification_i = famille.members('ppa_bonification', period)
-        bonification = famille.sum(bonification_i)
-
-        ppa_montant_base = (
-            montant_forfaitaire_familialise
-            + bonification
-            + ppa_fictive_ressource_activite
-            - ppa_base_ressources
-            - forfait_logement
-            )
-
-        ppa_deduction = (
-            montant_forfaitaire_familialise
-            - ppa_base_ressources
-            - forfait_logement
-            )
-
-        ppa_fictive = ppa_montant_base - max_(ppa_deduction, 0)
-        ppa_fictive = max_(ppa_fictive, 0)
-        return elig * ppa_fictive
-
-
 class ppa_fictive(Variable):
     value_type = float
     entity = Famille
@@ -467,13 +376,10 @@ class ppa_fictive(Variable):
         ppa_fictive_ressource_activite = famille('ppa_fictive_ressource_activite', period)
         bonification_i = famille.members('ppa_bonification', period)
         bonification = famille.sum(bonification_i)
-        seconde_bonification_i = famille.members('ppa_seconde_bonification', period)
-        seconde_bonification = famille.sum(seconde_bonification_i)
 
         ppa_montant_base = (
             montant_forfaitaire_familialise
             + bonification
-            + seconde_bonification
             + ppa_fictive_ressource_activite
             - ppa_base_ressources
             - forfait_logement
@@ -500,16 +406,6 @@ class ppa(Variable):
     reference = u"https://www.service-public.fr/particuliers/vosdroits/F2882"
 
     def formula_2016_01_01(famille, period, parameters):
-        seuil_non_versement = parameters(period).prestations.minima_sociaux.ppa.seuil_non_versement
-        # éligibilité étudiants
-
-        ppa_eligibilite_etudiants = famille('ppa_eligibilite_etudiants', period)
-        ppa = famille('ppa_fictive_pre', period.last_3_months, options = [ADD]) / 3
-        ppa = ppa * ppa_eligibilite_etudiants * (ppa >= seuil_non_versement)
-
-        return ppa
-
-    def formula_2019_01_01(famille, period, parameters):
         seuil_non_versement = parameters(period).prestations.minima_sociaux.ppa.seuil_non_versement
         # éligibilité étudiants
 
