@@ -1,0 +1,116 @@
+- name: 'Cas N°1: Complément familial accordé car les ressources en-dessous du plafond'
+  description: Montant CF
+  period: 2019-01
+  absolute_error_margin: 0.02
+  input:
+    famille:
+      parents: [parent1, parent2]
+      enfants: [enfant1, enfant2, enfant3]
+    foyer_fiscal:
+      declarants: [parent1, parent2]
+      personnes_a_charge: [enfant1, enfant2, enfant3]
+    menage:
+      personne_de_reference: parent1
+      conjoint: parent2
+      enfants: [enfant1, enfant2, enfant3]
+    individus:
+      parent1:
+        age: 39
+        revenu_assimile_salaire:
+          2015: 20000
+          2016: 20000
+          2017: 20000
+          2018: 20000
+      parent2:
+        age: 36
+        revenu_assimile_salaire:
+          2015: 15000
+          2016: 15000
+          2017: 15000
+          2018: 15000
+      enfant1:
+        age: 13
+      enfant2:
+        age: 10
+      enfant3:
+        age: 8
+  output:
+    cf: 170.71 / (1 - 0.005)
+
+- name: 'Cas N°2: Complément familial accordé car les ressources en-dessous du plafond'
+  description: Montant CF
+  period: 2019-01
+  absolute_error_margin: 0.02
+  input:
+    famille:
+      parents: [parent1, parent2]
+      enfants: [enfant1, enfant2, enfant3]
+    foyer_fiscal:
+      declarants: [parent1, parent2]
+      personnes_a_charge: [enfant1, enfant2, enfant3]
+    menage:
+      personne_de_reference: parent1
+      conjoint: parent2
+      enfants: [enfant1, enfant2, enfant3]
+    individus:
+      parent1:
+        age: 39
+        revenu_assimile_salaire:
+          2015: 10000
+          2016: 10000
+          2017: 10000
+          2018: 10000
+      parent2:
+        age: 36
+        revenu_assimile_salaire:
+          2015: 5000
+          2016: 5000
+          2017: 5000
+          2018: 5000
+      enfant1:
+        age: 13
+      enfant2:
+        age: 10
+      enfant3:
+        age: 8
+  output:
+    cf: 256.09 / (1 - 0.005)
+
+- name: 'Cas N°3: Complément familial non accordé car les ressources au dessus du plafond'
+  description: Montant CF
+  period: 2019-01
+  absolute_error_margin: 0.02
+  input:
+    famille:
+      parents: [parent1, parent2]
+      enfants: [enfant1, enfant2, enfant3]
+    foyer_fiscal:
+      declarants: [parent1, parent2]
+      personnes_a_charge: [enfant1, enfant2, enfant3]
+    menage:
+      personne_de_reference: parent1
+      conjoint: parent2
+      enfants: [enfant1, enfant2, enfant3]
+    individus:
+      parent1:
+        age: 39
+        revenu_assimile_salaire:
+          2015: 30000
+          2016: 30000
+          2017: 30000
+          2018: 30000
+      parent2:
+        age: 36
+        revenu_assimile_salaire:
+          2015: 25000
+          2016: 25000
+          2017: 25000
+          2018: 25000
+      enfant1:
+        age: 13
+      enfant2:
+        age: 10
+      enfant3:
+        age: 8
+  output:
+    cf: 0
