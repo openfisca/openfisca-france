@@ -1,5 +1,18 @@
 # Changelog
 
+## 32.4.0 [#1247](https://github.com/openfisca/openfisca-france/pull/1247)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/10/2018.
+* Zones impactées :
+    - `parameters/prestations/minima_sociaux/ppa`
+    - `parameters/cotsoc/gen`
+* Détails :
+  - Met à jour les paramètres suivants de la PPA suite à la revalorisation exceptionnelle de janvier 2019 :
+    - `smic_h_b`
+    - `taux_bonification_max`
+    - `seuil_max_bonification`
+
 ### 32.3.1 [#1235](https://github.com/openfisca/openfisca-france/pull/1235)
 
 * Corrections de tests ou de bugs.
