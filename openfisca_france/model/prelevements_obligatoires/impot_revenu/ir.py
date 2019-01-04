@@ -433,44 +433,6 @@ class revenu_assimile_salaire_apres_abattements(Variable):
             )
 
 
-class revenu_activite_salariee(Variable):
-    value_type = float
-    entity = Individu
-    label = u"Revenu d'activité salariée"
-    definition_period = YEAR
-
-    def formula(individu, period, parameters):
-        salaire_imposable = individu('salaire_imposable', period, options = [ADD])
-
-        return salaire_imposable
-
-
-class revenu_activite_non_salariee(Variable):
-    value_type = float
-    entity = Individu
-    label = u"Revenu d'activité non salariée"
-    definition_period = YEAR
-
-    def formula(individu, period, parameters):
-        rpns_i = individu('rpns_individu', period)
-
-        return rpns_i  # TODO: vérifier cette définition
-
-
-class revenu_activite(Variable):
-    value_type = float
-    entity = Individu
-    label = u"Revenus d'activités"
-    definition_period = YEAR
-
-    def formula(individu, period, parameters):
-        ''' Revenus d'activités '''
-        revenu_activite_non_salariee = individu('revenu_activite_non_salariee', period)
-        revenu_activite_salariee = individu('revenu_activite_salariee', period)
-
-        return revenu_activite_non_salariee + revenu_activite_salariee
-
-
 class revenu_assimile_pension(Variable):
     value_type = float
     entity = Individu
