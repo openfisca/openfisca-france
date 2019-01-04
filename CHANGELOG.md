@@ -1,5 +1,13 @@
 # Changelog
 
+## 32.4.1 [#1245](https://github.com/openfisca/openfisca-france/pull/1245)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/03/2017
+* Zones impactées : `prelevements_sociaux/cotisations_sociales/fds/indice_majore_de_reference`.
+* Détails :
+  - Met à jour l'indice majoré de référence entrant en compte dans la cotisation FDS.
+
 ## 32.4.0 [#1247](https://github.com/openfisca/openfisca-france/pull/1247)
 
 * Évolution du système socio-fiscal.

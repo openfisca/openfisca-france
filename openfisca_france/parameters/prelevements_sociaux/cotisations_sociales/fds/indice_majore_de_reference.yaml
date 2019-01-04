@@ -32,3 +32,6 @@ values:
     value: 308.0
   2013-01-01:
     value: 309.0
+  2017-03-01:
+    reference: https://www.legifrance.gouv.fr/eli/decret/2017/2/24/RDFF1703537D/jo/texte
+    value: 313.0
