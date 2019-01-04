@@ -258,7 +258,7 @@ class revenus_nets_du_capital(Variable):
                 Par conséquent, vu qu'on retranche la CSG sur les revenus du capital,
                 qui contient dans sa base les rentes viagèes à titre onéreux, cette variable
                 peut être négative
-            (2) On change de concept de revenu fonciers (pas le même traitement des abattements)
+            (2) On change de concept de plus-values (cf. docstring de la variable plus_values_revenus_nets_du_capital pour mieux comprendre)
         Cette variable est définie au niveau individuel : on projette les revenus du foyer fiscal
         sur le déclarant principal
         '''
