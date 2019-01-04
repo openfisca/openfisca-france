@@ -1,6 +1,6 @@
 # Changelog
 
-### 33.0.0 [#1251](https://github.com/openfisca/openfisca-france/pull/1251)
+# 33.0.0 [#1251](https://github.com/openfisca/openfisca-france/pull/1251)
 
 * Changement majeur.
 * Périodes concernées : toutes.
