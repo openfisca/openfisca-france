@@ -16,7 +16,7 @@
   - `revenus\capital\foncier`
 * Idée : on rend les variables de revenus fonciers plus explicites, et on redéfinit les inputs variables de ces revenus afin d'avoir une définition claire de ces variables, et de ne pas avoir de redondance entre les variables.
 * Détails :
-  - Renomme la variable `fon` par `revenus_fonciers_nets_abattement_microfoncier`
+  - Supprime la variable `fon`. A la place, on utilise `revenu_categoriel_foncier`.
   - Enlève la formule qui était mise dans `f4ba`
   - Définit `revenus_locatifs` via les cases de la déclaration fiscale
   - Renomme la variable `revenus_locatifs` par `revenus_fonciers_nets_abattement_microfoncier_individu_mensuel`

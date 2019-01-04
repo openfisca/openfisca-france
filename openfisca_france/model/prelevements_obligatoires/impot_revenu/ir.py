@@ -2156,26 +2156,6 @@ class credits_impot_sur_valeurs_etrangeres(Variable):
         return f2ab
 
 
-class revenus_fonciers_nets_abattement_microfoncier(Variable):
-    value_type = float
-    entity = FoyerFiscal
-    label = u"Revenus fonciers"
-    reference = "http://impotsurlerevenu.org/definitions/220-revenu-foncier.php"
-    definition_period = YEAR
-
-    def formula(foyer_fiscal, period, parameters):
-        '''
-        Revenus fonciers nets des déficits et après abattement sur microfoncier
-        '''
-        f4ba = foyer_fiscal('f4ba', period)
-        f4bb = foyer_fiscal('f4bb', period)
-        f4bc = foyer_fiscal('f4bc', period)
-        f4be = foyer_fiscal('f4be', period)
-        microfoncier = parameters(period).impot_revenu.rpns.micro.microfoncier
-
-        return f4ba - f4bb - f4bc + round_(f4be * (1 - microfoncier.taux))
-
-
 class rpns_pvce(Variable):
     value_type = float
     entity = Individu

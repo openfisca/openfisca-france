@@ -125,8 +125,8 @@ class revenus_fonciers_nets_abattement_microfoncier_individu_mensuel(Variable):
         """
         Revenus fonciers nets des déficits et après abattement sur microfoncier, au niveau individuel et mensuel
         """
-        revenus_fonciers_nets_abattement_microfoncier = individu.foyer_fiscal('revenus_fonciers_nets_abattement_microfoncier', period.this_year)
-        montant = revenus_fonciers_nets_abattement_microfoncier * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL) / 12
+        revenu_categoriel_foncier = individu.foyer_fiscal('revenu_categoriel_foncier', period.this_year)
+        montant = revenu_categoriel_foncier * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL) / 12
         return montant
 
 
