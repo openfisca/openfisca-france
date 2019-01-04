@@ -1,5 +1,14 @@
 # Changelog
 
+## 33.0.1 [#1246](https://github.com/openfisca/openfisca-france/pull/1246)
+
+* Changement mineur
+* Périodes concernées : toutes
+* Zones impactées :
+  - prelevements_obligatoires/prelevements_sociaux/contributions_sociales/versement_transport
+* Détails :
+  - Une valeur donnée pour le taux est transmise à toutes les sous-périodes (utilisation de set_input_dispatch_by_period)
+
 # 33.0.0 [#1251](https://github.com/openfisca/openfisca-france/pull/1251)
 
 * Changement majeur.
@@ -48,6 +57,7 @@
 * Zones impactées : `tests`.
 * Détails :
   - Corrige un test RSA et un PPA en échec non signalés suite à openfisca/openfisca-core#781
+
 
 ## 32.3.0 [#1232](https://github.com/openfisca/openfisca-france/pull/1232)
 
