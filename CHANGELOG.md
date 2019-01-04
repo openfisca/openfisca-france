@@ -1,5 +1,13 @@
 # Changelog
 
+## 33.0.4 [#1249](https://github.com/openfisca/openfisca-france/pull/1249)
+
+* Changement mineur.
+* Périodes concernées : aucunes.
+* Zones impactées : aucunes.
+* Détails :
+  - Correction de style induites par l'exécution de `make test`
+
 ### 33.0.3 [#1233](https://github.com/openfisca/openfisca-france/pull/1233)
 
 * Changement mineur.
