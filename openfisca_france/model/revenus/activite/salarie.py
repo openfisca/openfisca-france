@@ -774,10 +774,10 @@ class primes_fonction_publique(Variable):
         traitement_indiciaire_brut = individu('traitement_indiciaire_brut', period)
 
         public = (
-            (categorie_salarie == TypesCategorieSalarie.public_titulaire_etat) +
-            (categorie_salarie == TypesCategorieSalarie.public_titulaire_militaire) +
-            (categorie_salarie == TypesCategorieSalarie.public_titulaire_territoriale) +
-            (categorie_salarie == TypesCategorieSalarie.public_titulaire_hospitaliere)
+            (categorie_salarie == TypesCategorieSalarie.public_titulaire_etat)
+            + (categorie_salarie == TypesCategorieSalarie.public_titulaire_militaire)
+            + (categorie_salarie == TypesCategorieSalarie.public_titulaire_territoriale)
+            + (categorie_salarie == TypesCategorieSalarie.public_titulaire_hospitaliere)
             )
 
         return TAUX_DE_PRIME * traitement_indiciaire_brut * public

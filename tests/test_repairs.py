@@ -27,32 +27,32 @@ def test_2_parents_2_enfants():
     json.dumps(scenario.to_json(), ensure_ascii = False, indent = 2)
     simulation = scenario.new_simulation()
     assert (
-        simulation.calculate('date_naissance', period = None).tolist() ==
-        [
+        simulation.calculate('date_naissance', period = None).tolist()
+        == [
             datetime.date(year - 40, 1, 1),
             datetime.date(year - 30, 1, 1),
             datetime.date(year - 10, 1, 1),
             datetime.date(year - 18, 1, 1),
             ])
     assert (
-        simulation.calculate('activite', period=janvier).decode().tolist() ==
-        [
+        simulation.calculate('activite', period=janvier).decode().tolist()
+        == [
             TypesActivite.inactif,
             TypesActivite.inactif,
             TypesActivite.etudiant,
             TypesActivite.inactif,
             ])
     assert (
-        simulation.calculate('age', period=janvier).tolist() ==
-        [
+        simulation.calculate('age', period=janvier).tolist()
+        == [
             40,
             30,
             10,
             18,
             ])
     assert (
-        simulation.calculate('age_en_mois', period=janvier).tolist() ==
-        [
+        simulation.calculate('age_en_mois', period=janvier).tolist()
+        == [
             40 * 12,
             30 * 12,
             10 * 12,
@@ -86,32 +86,32 @@ def test_famille_1_parent_3_enfants():
     json.dumps(scenario.to_json(), ensure_ascii = False, indent = 2)
     simulation = scenario.new_simulation()
     assert (
-        simulation.calculate('date_naissance', period = None).tolist() ==
-        [
+        simulation.calculate('date_naissance', period = None).tolist()
+        == [
             datetime.date(year - 40, 1, 1),
             datetime.date(year - 10, 1, 1),
             datetime.date(year - 12, 1, 1),
             datetime.date(year - 18, 1, 1),
             ])
     assert (
-        simulation.calculate('activite', period=janvier).decode().tolist() ==
-        [
+        simulation.calculate('activite', period=janvier).decode().tolist()
+        == [
             TypesActivite.inactif,
             TypesActivite.etudiant,
             TypesActivite.etudiant,
             TypesActivite.inactif,
             ])
     assert (
-        simulation.calculate('age', period=janvier).tolist() ==
-        [
+        simulation.calculate('age', period=janvier).tolist()
+        == [
             40,
             10,
             12,
             18,
             ])
     assert (
-        simulation.calculate('age_en_mois', period=janvier).tolist() ==
-        [
+        simulation.calculate('age_en_mois', period=janvier).tolist()
+        == [
             40 * 12,
             10 * 12,
             12 * 12,
@@ -145,32 +145,32 @@ def test_famille_2_parents_2_enfants():
     json.dumps(scenario.to_json(), ensure_ascii = False, indent = 2)
     simulation = scenario.new_simulation()
     assert (
-        simulation.calculate('date_naissance', period = None).tolist() ==
-        [
+        simulation.calculate('date_naissance', period = None).tolist()
+        == [
             datetime.date(year - 40, 1, 1),
             datetime.date(year - 30, 1, 1),
             datetime.date(year - 10, 1, 1),
             datetime.date(year - 18, 1, 1),
             ])
     assert (
-        simulation.calculate('activite', period=janvier).decode().tolist() ==
-        [
+        simulation.calculate('activite', period=janvier).decode().tolist()
+        == [
             TypesActivite.inactif,
             TypesActivite.inactif,
             TypesActivite.etudiant,
             TypesActivite.inactif,
             ])
     assert (
-        simulation.calculate('age', period=janvier).tolist() ==
-        [
+        simulation.calculate('age', period=janvier).tolist()
+        == [
             40,
             30,
             10,
             18,
             ])
     assert (
-        simulation.calculate('age_en_mois', period=janvier).tolist() ==
-        [
+        simulation.calculate('age_en_mois', period=janvier).tolist()
+        == [
             40 * 12,
             30 * 12,
             10 * 12,
@@ -204,32 +204,32 @@ def test_foyer_fiscal_1_declarant_3_personnes_a_charge():
     json.dumps(scenario.to_json(), ensure_ascii = False, indent = 2)
     simulation = scenario.new_simulation()
     assert (
-        simulation.calculate('date_naissance', period = None).tolist() ==
-        [
+        simulation.calculate('date_naissance', period = None).tolist()
+        == [
             datetime.date(year - 40, 1, 1),
             datetime.date(year - 10, 1, 1),
             datetime.date(year - 12, 1, 1),
             datetime.date(year - 18, 1, 1),
             ])
     assert (
-        simulation.calculate('activite', period=janvier).decode().tolist() ==
-        [
+        simulation.calculate('activite', period=janvier).decode().tolist()
+        == [
             TypesActivite.inactif,
             TypesActivite.etudiant,
             TypesActivite.etudiant,
             TypesActivite.inactif,
             ])
     assert (
-        simulation.calculate('age', period=janvier).tolist() ==
-        [
+        simulation.calculate('age', period=janvier).tolist()
+        == [
             40,
             10,
             12,
             18,
             ])
     assert (
-        simulation.calculate('age_en_mois', period=janvier).tolist() ==
-        [
+        simulation.calculate('age_en_mois', period=janvier).tolist()
+        == [
             40 * 12,
             10 * 12,
             12 * 12,
@@ -263,32 +263,32 @@ def test_foyer_fiscal_2_declarants_2_personnes_a_charge():
     json.dumps(scenario.to_json(), ensure_ascii = False, indent = 2)
     simulation = scenario.new_simulation()
     assert (
-        simulation.calculate('date_naissance', period=janvier).tolist() ==
-        [
+        simulation.calculate('date_naissance', period=janvier).tolist()
+        == [
             datetime.date(year - 40, 1, 1),
             datetime.date(year - 30, 1, 1),
             datetime.date(year - 10, 1, 1),
             datetime.date(year - 18, 1, 1),
             ])
     assert (
-        simulation.calculate('activite', period=janvier).decode().tolist() ==
-        [
+        simulation.calculate('activite', period=janvier).decode().tolist()
+        == [
             TypesActivite.inactif,
             TypesActivite.inactif,
             TypesActivite.etudiant,
             TypesActivite.inactif,
             ])
     assert (
-        simulation.calculate('age', period=janvier).tolist() ==
-        [
+        simulation.calculate('age', period=janvier).tolist()
+        == [
             40,
             30,
             10,
             18,
             ])
     assert (
-        simulation.calculate('age_en_mois', period=janvier).tolist() ==
-        [
+        simulation.calculate('age_en_mois', period=janvier).tolist()
+        == [
             40 * 12,
             30 * 12,
             10 * 12,
@@ -322,32 +322,32 @@ def test_menage_1_personne_de_reference_3_enfants():
     json.dumps(scenario.to_json(), ensure_ascii = False, indent = 2)
     simulation = scenario.new_simulation()
     assert (
-        simulation.calculate('date_naissance', period = None).tolist() ==
-        [
+        simulation.calculate('date_naissance', period = None).tolist()
+        == [
             datetime.date(year - 40, 1, 1),
             datetime.date(year - 10, 1, 1),
             datetime.date(year - 12, 1, 1),
             datetime.date(year - 18, 1, 1),
             ])
     assert (
-        simulation.calculate('activite', period=janvier).decode().tolist() ==
-        [
+        simulation.calculate('activite', period=janvier).decode().tolist()
+        == [
             TypesActivite.inactif,
             TypesActivite.etudiant,
             TypesActivite.etudiant,
             TypesActivite.inactif,
             ])
     assert (
-        simulation.calculate('age', period=janvier).tolist() ==
-        [
+        simulation.calculate('age', period=janvier).tolist()
+        == [
             40,
             10,
             12,
             18,
             ])
     assert (
-        simulation.calculate('age_en_mois', period=janvier).tolist() ==
-        [
+        simulation.calculate('age_en_mois', period=janvier).tolist()
+        == [
             40 * 12,
             10 * 12,
             12 * 12,
@@ -382,32 +382,32 @@ def test_menage_1_personne_de_reference_1_conjoint_2_enfants():
     json.dumps(scenario.to_json(), ensure_ascii = False, indent = 2)
     simulation = scenario.new_simulation()
     assert (
-        simulation.calculate('date_naissance', period = None).tolist() ==
-        [
+        simulation.calculate('date_naissance', period = None).tolist()
+        == [
             datetime.date(year - 40, 1, 1),
             datetime.date(year - 30, 1, 1),
             datetime.date(year - 10, 1, 1),
             datetime.date(year - 18, 1, 1),
             ])
     assert (
-        simulation.calculate('activite', period=janvier).decode().tolist() ==
-        [
+        simulation.calculate('activite', period=janvier).decode().tolist()
+        == [
             TypesActivite.inactif,
             TypesActivite.inactif,
             TypesActivite.etudiant,
             TypesActivite.inactif,
             ])
     assert (
-        simulation.calculate('age', period=janvier).tolist() ==
-        [
+        simulation.calculate('age', period=janvier).tolist()
+        == [
             40,
             30,
             10,
             18,
             ])
     assert (
-        simulation.calculate('age_en_mois', period=janvier).tolist() ==
-        [
+        simulation.calculate('age_en_mois', period=janvier).tolist()
+        == [
             40 * 12,
             30 * 12,
             10 * 12,
