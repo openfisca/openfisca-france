@@ -902,17 +902,27 @@ class revenu_categoriel_foncier(Variable):
         f4be = foyer_fiscal('f4be', period)
         microfoncier = parameters(period).impot_revenu.rpns.micro.microfoncier
 
-        # Conditions
-        deficit = f4ba - f4bd
-        micro = f4be > 0
+        micro = min_(f4be, microfoncier.max) * (1 - microfoncier.taux)
 
-        # Calculs
-        si_deficit = -f4bc
-        si_micro = max_(f4be, microfoncier.max) * (1 - microfoncier.taux)
-        sinon = f4ba - f4bd
+        revfon_nets_deffonc = f4ba - f4bb
+        revfon_nets_deffonc_defglob = f4ba - f4bb - f4bc
+        revfon_nets_deffonc_defglob_defant = f4ba - f4bb - f4bc - f4bd
 
-        return select([deficit, micro],
-                      [si_deficit, si_micro], sinon)
+        non_micro = where(
+            revfon_nets_deffonc_defglob_defant>=0,
+            revfon_nets_deffonc_defglob_defant,
+            where(
+                and_(revfon_nets_deffonc_defglob_defant<0, revfon_nets_deffonc_defglob>=0)
+                0,
+                where(
+                    and_(revfon_nets_deffonc_defglob<0, revfon_nets_deffonc>=0),
+                    revfon_nets_deffonc_defglob,
+                    -f4bc
+                    )
+                )
+            )
+
+        return micro + non_micro
 
 
 class revenu_categoriel_non_salarial(Variable):
