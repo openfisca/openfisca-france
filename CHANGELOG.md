@@ -1,5 +1,15 @@
 # Changelog
 
+# 33.0.0 [#1251](https://github.com/openfisca/openfisca-france/pull/1251)
+
+* Changement majeur.
+* Périodes concernées : toutes.
+* Zones impactées :
+  - `prelevements_obligatoires/impot_revenu/ir.py`
+  - `prestations/minima_sociaux/aah.py`
+* Détails :
+  - Corrige le changement de version de la PR [#1250](https://github.com/openfisca/openfisca-france/pull/1250) qui est un changement majeur car suppression de variables.
+
 ### 32.4.2 [#1250](https://github.com/openfisca/openfisca-france/pull/1250)
 
 * Changement mineur.
