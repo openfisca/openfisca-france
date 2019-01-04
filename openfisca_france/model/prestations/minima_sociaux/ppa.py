@@ -229,7 +229,7 @@ class ppa_ressources_hors_activite_individu(Variable):
             return sum(individu(ressource, period) for ressource in ressources)
 
         def ressources_percues_il_y_a_deux_ans():
-            plus_values = individu.foyer_fiscal('assiette_csg_plus_values', period.offset(-2, 'year').this_year) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
+            plus_values = individu.foyer_fiscal('assiette_csg_plus_values', period.offset(-2, 'year').this_year) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL) / 12
             ressources_hors_plus_values = [
                 'revenus_capital',
                 'revenus_locatifs',
