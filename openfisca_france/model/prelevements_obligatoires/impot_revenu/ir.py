@@ -5,7 +5,8 @@ from __future__ import division
 
 import logging
 
-from numpy import datetime64, timedelta64, logical_xor as xor_, round as round_, around
+from numpy import datetime64, timedelta64, logical_xor as xor_, round as round_, around, logical_and as and_
+
 from numpy.core.defchararray import startswith
 
 from openfisca_core.model_api import *
@@ -909,13 +910,13 @@ class revenu_categoriel_foncier(Variable):
         revfon_nets_deffonc_defglob_defant = f4ba - f4bb - f4bc - f4bd
 
         non_micro = where(
-            revfon_nets_deffonc_defglob_defant>=0,
+            revfon_nets_deffonc_defglob_defant >= 0,
             revfon_nets_deffonc_defglob_defant,
             where(
-                and_(revfon_nets_deffonc_defglob_defant<0, revfon_nets_deffonc_defglob>=0),
+                and_(revfon_nets_deffonc_defglob_defant < 0, revfon_nets_deffonc_defglob >= 0),
                 0,
                 where(
-                    and_(revfon_nets_deffonc_defglob<0, revfon_nets_deffonc>=0),
+                    and_(revfon_nets_deffonc_defglob < 0, revfon_nets_deffonc >= 0),
                     revfon_nets_deffonc_defglob,
                     -f4bc
                     )
