@@ -552,19 +552,16 @@
 - name: 'PPA: ressources prises en compte hors activité (M-1)'
   period: 2016-02
   input:
-    # Prestations calculées qui sont réinjectées dans la BR. On utilise donc la valeur du mois M.
+    # Les ressources prises en compte le sont sur le mois M-1
     af_base:
-      2016-02: 100
-    paje_base:
-      2016-02: 100
-    rsa_forfait_asf:
-      2016-02: 91.40
+      2016-01: 100
     ass:
-      2016-02: 100
+      2016-01: 100
     aspa:
-      2016-02: 100
-    # Autres ressources, on utilise le mois M-1
+      2016-01: 100
     asi:
+      2016-01: 100
+    paje_base:
       2016-01: 100
     paje_clca:
       2016-01: 100
@@ -572,6 +569,8 @@
       2016-01: 100
     paje_colca:
       2016-01: 100
+    rsa_forfait_asf:
+      2016-01: 91.40
     chomage_net:
       2016-01: 100
     retraite_nette:
