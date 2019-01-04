@@ -123,7 +123,10 @@ class revenus_locatifs(Variable):
 
     def formula(individu, period):
         """
-        Revenus fonciers nets des déficits et après abattement sur microfoncier, au niveau individuel et mensuel
+        Revenus locatifs utilisés pour les bases ressources des minima sociaux
+        Si cette variable n'est pas renseignée, on prend les revenus fonciers catégoriels de la section 4 de la déclaration 2042
+        Néanmoins, selon la législation, le concept de revenus locatifs pour ces bases ressources peut être plus large, notamment
+        pour les indépendants (exemple : case 5ND du formulaire 2042-C-PRO). Ce point reste à améliorer.
         """
         revenu_categoriel_foncier = individu.foyer_fiscal('revenu_categoriel_foncier', period.this_year)
         montant = revenu_categoriel_foncier * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL) / 12
