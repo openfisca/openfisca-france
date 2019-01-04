@@ -912,14 +912,14 @@ class revenu_categoriel_foncier(Variable):
             revfon_nets_deffonc_defglob_defant>=0,
             revfon_nets_deffonc_defglob_defant,
             where(
-                and_(revfon_nets_deffonc_defglob_defant<0, revfon_nets_deffonc_defglob>=0)
+                and_(revfon_nets_deffonc_defglob_defant<0, revfon_nets_deffonc_defglob>=0),
                 0,
                 where(
                     and_(revfon_nets_deffonc_defglob<0, revfon_nets_deffonc>=0),
                     revfon_nets_deffonc_defglob,
                     -f4bc
                     )
-                )
+                ),
             )
 
         return micro + non_micro
