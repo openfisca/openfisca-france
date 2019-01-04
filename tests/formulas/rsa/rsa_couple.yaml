@@ -14,18 +14,10 @@
         date_naissance: '1985-01-01'
     familles:
       famille_0:
-        parents:
-        - 1
-      famille_1:
-        parents:
-        - 2
+        parents: [1, 2]
     foyers_fiscaux:
       foyer_fiscal_0:
-        declarants:
-        - 1
-      foyer_fiscal_1:
-        declarants:
-        - 2
+        declarants: [1, 2]
   output:
     aide_logement:
       2014-01: 0
