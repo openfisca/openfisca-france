@@ -208,7 +208,7 @@ class ppa_ressources_hors_activite_individu(Variable):
             'chomage_net',
             'retraite_nette',
             'retraite_combattant',
-            'revenus_fonciers_nets_abattement_microfoncier_individu_mensuel',
+            'revenus_locatifs',
             'pensions_invalidite',
             'pensions_alimentaires_percues',
             'prestation_compensatoire',

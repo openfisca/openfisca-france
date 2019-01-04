@@ -114,7 +114,7 @@ class valeur_patrimoine_loue(Variable):
     definition_period = MONTH
 
 
-class revenus_fonciers_nets_abattement_microfoncier_individu_mensuel(Variable):
+class revenus_locatifs(Variable):
     value_type = float
     entity = Individu
     label = u"Revenus locatifs"
