@@ -1,5 +1,13 @@
 # Changelog
 
+### 32.3.1 [#1235](https://github.com/openfisca/openfisca-france/pull/1235)
+
+* Corrections de tests ou de bugs.
+* Périodes concernées : toutes.
+* Zones impactées : `tests`.
+* Détails :
+  - Corrige un test RSA et un PPA en échec non signalés suite à openfisca/openfisca-core#781
+
 ## 32.3.0 [#1232](https://github.com/openfisca/openfisca-france/pull/1232)
 
 * Évolution du système socio-fiscal.
