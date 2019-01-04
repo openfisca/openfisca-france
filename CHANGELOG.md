@@ -19,7 +19,6 @@
   - Supprime la variable `fon`. A la place, on utilise `revenu_categoriel_foncier`.
   - Enlève la formule qui était mise dans `f4ba`
   - Définit `revenus_locatifs` via les cases de la déclaration fiscale
-  - Renomme la variable `revenus_locatifs` par `revenus_fonciers_nets_abattement_microfoncier_individu_mensuel`
 
 ### 33.0.5 [#1252](https://github.com/openfisca/openfisca-france/pull/1252)
 
