@@ -1,5 +1,15 @@
 # Changelog
 
+### 32.4.2 [#1250](https://github.com/openfisca/openfisca-france/pull/1250)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées :
+  - `prelevements_obligatoires/impot_revenu/ir.py`
+  - `prestations/minima_sociaux/aah.py`
+* Détails :
+  - Supprime les variables `revenu_activite`, `revenu_activite_salariee` et `revenu_activite_non_salariee` qui incorporaient juste `salaire_imposable` et `rpns_individu` et n'étaient utilisées que pour l'AAH.
+
 ## 32.4.1 [#1245](https://github.com/openfisca/openfisca-france/pull/1245)
 
 * Évolution du système socio-fiscal.
