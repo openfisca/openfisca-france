@@ -1,6 +1,13 @@
 # Changelog
 
-## 33.0.1 [#1246](https://github.com/openfisca/openfisca-france/pull/1246)
+### 33.0.2 [#1244](https://github.com/openfisca/openfisca-france/pull/1244)
+
+* Changement mineur.
+* Zones impactées : `prestations/minima_sociaux/ass`.
+* Détails :
+  - Ajoute des références pour l'allocation de solidarité spécifique
+
+### 33.0.1 [#1246](https://github.com/openfisca/openfisca-france/pull/1246)
 
 * Changement mineur
 * Périodes concernées : toutes
