@@ -117,6 +117,36 @@ class af_base(Variable):
         return montant_base_module
 
 
+class af_montant_plafond_tranche_1(Variable):
+    value_type = float
+    entity = Famille
+    label = u"Plafond annuel de ressources n°1"
+    definition_period = MONTH
+
+    def formula(famille, period, parameters):
+        af_nbenf = famille('af_nbenf', period)
+        pfam = parameters(period).prestations.prestations_familiales.af
+        modulation = pfam.modulation
+        plafond = modulation.plafond_tranche_1 + af_nbenf * modulation.majoration_plafond_par_enfant_supplementaire
+
+        return plafond
+
+
+class af_montant_plafond_tranche_2(Variable):
+    value_type = float
+    entity = Famille
+    label = u"Plafond annuel de ressources n°2"
+    definition_period = MONTH
+
+    def formula(famille, period, parameters):
+        af_nbenf = famille('af_nbenf', period)
+        pfam = parameters(period).prestations.prestations_familiales.af
+        modulation = pfam.modulation
+        plafond = modulation.plafond_tranche_2 + af_nbenf * modulation.majoration_plafond_par_enfant_supplementaire
+
+        return plafond
+
+
 class af_taux_modulation(Variable):
     value_type = float
     default_value = 1
@@ -125,22 +155,11 @@ class af_taux_modulation(Variable):
     definition_period = MONTH
 
     def formula_2015_07_01(famille, period, parameters):
-        af_nbenf = famille('af_nbenf', period)
         pfam = parameters(period).prestations.prestations_familiales.af
         base_ressources = famille('prestations_familiales_base_ressources', period)
         modulation = pfam.modulation
-
-        plafond1 = (
-            modulation.plafond_tranche_1
-            + max_(af_nbenf - 2, 0)
-            * modulation.majoration_plafond_par_enfant_supplementaire
-            )
-
-        plafond2 = (
-            modulation.plafond_tranche_2
-            + max_(af_nbenf - 2, 0)
-            * modulation.majoration_plafond_par_enfant_supplementaire
-            )
+        plafond1 = famille('af_montant_plafond_tranche_1', period)
+        plafond2 = famille('af_montant_plafond_tranche_2', period)
 
         taux = (
             (base_ressources <= plafond1) * 1
@@ -166,17 +185,9 @@ class af_allocation_forfaitaire_taux_modulation(Variable):
         base_ressources = famille('prestations_familiales_base_ressources', period)
         modulation = pfam.modulation
 
-        plafond1 = (
-            modulation.plafond_tranche_1
-            + max_(nb_enf_tot - 2, 0)
-            * modulation.majoration_plafond_par_enfant_supplementaire
-            )
+        plafond1 = modulation.plafond_tranche_1 + nb_enf_tot * modulation.majoration_plafond_par_enfant_supplementaire
 
-        plafond2 = (
-            modulation.plafond_tranche_2
-            + max_(nb_enf_tot - 2, 0)
-            * modulation.majoration_plafond_par_enfant_supplementaire
-            )
+        plafond2 = modulation.plafond_tranche_2 + nb_enf_tot * modulation.majoration_plafond_par_enfant_supplementaire
 
         taux = (
             (base_ressources <= plafond1) * 1
@@ -272,6 +283,25 @@ class af_majoration(Variable):
         return af_majoration_enfants_module
 
 
+class af_depassement_mensuel(Variable):
+    value_type = float
+    entity = Famille
+    label = u"Depassement mentuel de ressources"
+    definition_period = MONTH
+
+    def formula(famille, period, parameters):
+        plafond1 = famille('af_montant_plafond_tranche_1', period)
+        plafond2 = famille('af_montant_plafond_tranche_2', period)
+        base_ressources = famille('prestations_familiales_base_ressources', period)
+
+        depassement_plafond1 = max_(0, base_ressources - plafond1)
+        depassement_plafond2 = max_(0, base_ressources - plafond2)
+
+        depassement_mensuel = where(depassement_plafond2 == 0, depassement_plafond1 / 12, depassement_plafond2 / 12)
+
+        return depassement_mensuel
+
+
 class af_complement_degressif(Variable):
     value_type = float
     entity = Famille
@@ -279,32 +309,9 @@ class af_complement_degressif(Variable):
     definition_period = MONTH
 
     def formula_2015_07_01(famille, period, parameters):
-        af_nbenf = famille('af_nbenf', period)
-        base_ressources = famille('prestations_familiales_base_ressources', period)
         af_base = famille('af_base', period)
         af_majoration = famille('af_majoration', period)
-        pfam = parameters(period).prestations.prestations_familiales.af
-        modulation = pfam.modulation
-
-        plafond1 = (
-            modulation.plafond_tranche_1
-            + max_(af_nbenf - 2, 0)
-            * modulation.majoration_plafond_par_enfant_supplementaire
-            )
-
-        plafond2 = (
-            modulation.plafond_tranche_2
-            + max_(af_nbenf - 2, 0)
-            * modulation.majoration_plafond_par_enfant_supplementaire
-            )
-
-        depassement_plafond1 = max_(0, base_ressources - plafond1)
-        depassement_plafond2 = max_(0, base_ressources - plafond2)
-
-        depassement_mensuel = (
-            (depassement_plafond2 == 0) * depassement_plafond1
-            + (depassement_plafond2 > 0) * depassement_plafond2
-            ) / 12
+        depassement_mensuel = famille('af_depassement_mensuel', period)
 
         af = af_base + af_majoration
 
@@ -318,33 +325,8 @@ class af_allocation_forfaitaire_complement_degressif(Variable):
     definition_period = MONTH
 
     def formula_2015_07_01(famille, period, parameters):
-        af_nbenf = famille('af_nbenf', period)
-        af_forfaitaire_nbenf = famille('af_allocation_forfaitaire_nb_enfants', period)
-        pfam = parameters(period).prestations.prestations_familiales.af
-        nb_enf_tot = af_nbenf + af_forfaitaire_nbenf  # noqa F841
-        base_ressources = famille('prestations_familiales_base_ressources', period)
         af_allocation_forfaitaire = famille('af_allocation_forfaitaire', period)
-        modulation = pfam.modulation
-
-        plafond1 = (
-            modulation.plafond_tranche_1
-            + max_(af_nbenf - 2, 0)
-            * modulation.majoration_plafond_par_enfant_supplementaire
-            )
-
-        plafond2 = (
-            modulation.plafond_tranche_2
-            + max_(af_nbenf - 2, 0)
-            * modulation.majoration_plafond_par_enfant_supplementaire
-            )
-
-        depassement_plafond1 = max_(0, base_ressources - plafond1)
-        depassement_plafond2 = max_(0, base_ressources - plafond2)
-
-        depassement_mensuel = (
-            (depassement_plafond2 == 0) * depassement_plafond1
-            + (depassement_plafond2 > 0) * depassement_plafond2
-            ) / 12
+        depassement_mensuel = famille('af_depassement_mensuel', period)
 
         return max_(0, af_allocation_forfaitaire - depassement_mensuel) * (depassement_mensuel > 0)
 
@@ -398,3 +380,4 @@ class af(Variable):
         af_allocation_forfaitaire = famille('af_allocation_forfaitaire', period)
 
         return af_base + af_majoration + af_allocation_forfaitaire
+
