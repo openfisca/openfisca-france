@@ -1,5 +1,13 @@
 # Changelog
 
+### 33.0.3 [#1233](https://github.com/openfisca/openfisca-france/pull/1233)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `prestations_sociales/aides_logement.py`.
+* Détails :
+  - Affine une condition concernant le loyer plafond dans le calcul de L .
+
 ### 33.0.2 [#1244](https://github.com/openfisca/openfisca-france/pull/1244)
 
 * Changement mineur.
