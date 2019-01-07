@@ -2,7 +2,7 @@
 
 from __future__ import division
 
-from numpy import absolute as abs_, logical_and as and_, logical_or as or_
+from numpy import absolute as abs_, logical_and as and_
 
 from openfisca_france.model.base import *
 
@@ -208,7 +208,11 @@ class ass_eligibilite_cumul_individu(Variable):
     label = u"Eligibilité au cumul de l'ASS avec un revenu d'activité"
     entity = Individu
     definition_period = MONTH
-    reference = u"https://www.legifrance.gouv.fr/eli/decret/2017/5/5/ETSD1708117D/jo/article_2"
+    reference = [
+        u"Article R5425-2 du code du travail",
+        u"https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006072050&idArticle=LEGIARTI000018496568&dateTexte=",
+        u"https://www.legifrance.gouv.fr/eli/decret/2017/5/5/ETSD1708117D/jo/article_2"
+        ]
 
     def formula_2017_09_01(individu, period):
         douze_mois_precedents = [period.offset(offset) for offset in range(-12, 0 + 1)]
@@ -244,6 +248,10 @@ class ass_eligibilite_individu(Variable):
     label = u"Éligibilité individuelle à l'ASS"
     entity = Individu
     definition_period = MONTH
+    reference = [
+        u"Article L5423-1 du code du travail",
+        u"https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006072050&idArticle=LEGIARTI000006903847&dateTexte=&categorieLien=cid",
+        ]
 
     def formula(individu, period, parameters):
         age_max = parameters(period).prestations.minima_sociaux.ass.age_max
@@ -278,11 +286,12 @@ class ass_eligibilite_individu(Variable):
 
         aah_eligible = individu('aah', period) > 0
 
-        demandeur_emploi_non_indemnise = and_(individu('activite', period) == TypesActivite.chomeur, individu('chomage_net', period) == 0)
-
         eligible_cumul_ass = individu('ass_eligibilite_cumul_individu', period)
 
-        demandeur_emploi_non_indemnise_et_cumul_accepte = or_(demandeur_emploi_non_indemnise, not_(demandeur_emploi_non_indemnise) * eligible_cumul_ass)
+        demandeur_emploi_non_indemnise_et_cumul_accepte = (
+            (individu('chomage_net', period) == 0) *
+            ((individu('activite', period) == TypesActivite.chomeur) + eligible_cumul_ass)
+            )
 
         # Indique que l'individu a travaillé 5 ans au cours des 10 dernieres années.
         ass_precondition_remplie = individu('ass_precondition_remplie', period)
