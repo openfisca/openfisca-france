@@ -306,8 +306,9 @@ class aides_logement_foyer_chambre_non_rehabilite_eligibilite(Variable):
         logement_chambre = famille.demandeur.menage('logement_chambre', period)
 
         return (
-            logement_crous * not_(logement_conventionne) *
-            (logement_chambre * (etat_logement_foyer == TypeEtatLogementFoyer.logement_non_rehabilite))
+            logement_crous
+            * not_(logement_conventionne)
+            * (logement_chambre * (etat_logement_foyer == TypeEtatLogementFoyer.logement_non_rehabilite))
             )
 
 
@@ -1346,13 +1347,13 @@ class aides_logement_foyer_conventionne_plafond(Variable):
         couple = famille('al_couple', period)
 
         return (
-            plafonds.personne_isolee_sans_enfant * not_(couple) * (al_nb_pac == 0) +
-            plafonds.menage_seul * couple * (al_nb_pac == 0) +
-            plafonds.menage_ou_isole_avec_1_enfant * (al_nb_pac == 1) +
-            plafonds.menage_ou_isole_avec_2_enfants * (al_nb_pac == 2) +
-            plafonds.menage_ou_isole_avec_3_enfants * (al_nb_pac == 3) +
-            plafonds.menage_ou_isole_avec_4_enfants * (al_nb_pac == 4) +
-            plafonds.menage_ou_isole_par_enfant_en_plus * (al_nb_pac > 4) * (al_nb_pac - 4)
+            plafonds.personne_isolee_sans_enfant * not_(couple) * (al_nb_pac == 0)
+            + plafonds.menage_seul * couple * (al_nb_pac == 0)
+            + plafonds.menage_ou_isole_avec_1_enfant * (al_nb_pac == 1)
+            + plafonds.menage_ou_isole_avec_2_enfants * (al_nb_pac == 2)
+            + plafonds.menage_ou_isole_avec_3_enfants * (al_nb_pac == 3)
+            + plafonds.menage_ou_isole_avec_4_enfants * (al_nb_pac == 4)
+            + plafonds.menage_ou_isole_par_enfant_en_plus * (al_nb_pac > 4) * (al_nb_pac - 4)
             )
 
 
