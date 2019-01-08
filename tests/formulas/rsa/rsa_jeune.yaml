@@ -2,7 +2,7 @@
   absolute_error_margin: 0.005
   name: RSA célibataire, salaire_net = 0, éligible moins de 25 ans
   input:
-    date_naissance: '1987-01-01'  # 29 ans
+    date_naissance: '1987-01-01'
     # salaire_net: 0
     statut_occupation_logement:
       2010-01: proprietaire
@@ -25,7 +25,7 @@
   absolute_error_margin: 0.005
   name: RSA célibataire, salaire_net = 0, non éligible moins de 25 ans
   input:
-    date_naissance: '1987-01-01'  # 29 ans
+    date_naissance: '1987-01-01'
     # salaire_net: 0
     statut_occupation_logement:
       2009-09: proprietaire
@@ -46,9 +46,9 @@
 
 - period: '2009'
   absolute_error_margin: 0.005
-  name: RSA célibataire, salaire_net = 0, non éligible moins de 25 ans
+  name: RMI célibataire, salaire_net = 0, non éligible moins de 25 ans
   input:
-    date_naissance: '1987-01-01'  # 29 ans
+    date_naissance: '1987-01-01'
     # salaire_net: 0
     statut_occupation_logement:
       2009-01: proprietaire
