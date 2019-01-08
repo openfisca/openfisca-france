@@ -772,10 +772,10 @@ class rsa_eligibilite(Variable):
         etudiant_i = famille.members('etudiant', period)
 
         if period.start < periods.period('2009-06').start:
-            # Les jeunes de moins de 25 ans ne sont pas éligibles au RMI
+            # Les jeunes de moins de 25 ans ne sont pas éligibles au RMI
             rsa_jeune_condition_i = False
         else:
-            # Les jeunes de moins de 25 ans sont éligibles sous condition d'activité suffisante
+            # Les jeunes de moins de 25 ans sont éligibles sous condition d'activité suffisante
             # à partir de 2010 rendue ici par rsa.rsa_jeune == 1
             rsa_jeune_condition_i = (
                 (rsa.rsa_jeune == 1)
