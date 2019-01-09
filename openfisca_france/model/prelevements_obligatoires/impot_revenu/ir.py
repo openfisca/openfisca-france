@@ -904,6 +904,8 @@ class revenu_categoriel_foncier(Variable):
         microfoncier = parameters(period).impot_revenu.rpns.micro.microfoncier
 
         # Messages d'erreurs
+        if ((f4ba != 0) & ((f4bb != 0) | (f4bc != 0))).any():
+            log.error(("Problème de déclarations des revenus : incompatibilité de la déclaration des revenus fonciers (f4ba) et de déficits (f4bb, f4bc)"))
         if ((f4be != 0) & ((f4ba != 0) | (f4bb != 0) | (f4bc != 0))).any():
             log.error(("Problème de déclarations des revenus : incompatibilité de la déclaration des revenus fonciers (f4ba, f4bb, f4bc) et microfonciers (f4be)"))
         if (f4be > microfoncier.max).any():
@@ -911,21 +913,17 @@ class revenu_categoriel_foncier(Variable):
 
         micro = min_(f4be, microfoncier.max) * (1 - microfoncier.taux)
 
-        non_micro = where(
-            f4ba - f4bb - f4bc - f4bd >= 0,
-            f4ba - f4bb - f4bc - f4bd,
-            where(
-                and_(f4ba - f4bb - f4bc - f4bd < 0, f4ba - f4bb - f4bc >= 0),
-                0,
-                where(
-                    and_(f4ba - f4bb - f4bc < 0, f4ba - f4bb >= 0),
-                    f4ba - f4bb - f4bc,
-                    -f4bc
-                    )
-                ),
-            )
+        # Conditions
+        deficit = (f4bc > 0) | (f4bb > 0)
+        micro = f4be > 0
 
-        return micro + non_micro
+        # Calculs
+        si_deficit = -f4bc
+        si_micro = min_(f4be, microfoncier.max) * (1 - microfoncier.taux)
+        sinon = max_(0, f4ba - f4bd)
+
+        return select([deficit, micro],
+                      [si_deficit, si_micro], sinon)
 
 
 class revenu_categoriel_non_salarial(Variable):
