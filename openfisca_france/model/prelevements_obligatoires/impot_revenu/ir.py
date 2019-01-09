@@ -5,7 +5,7 @@ from __future__ import division
 
 import logging
 
-from numpy import datetime64, timedelta64, logical_xor as xor_, round as round_, around, logical_and as and_
+from numpy import datetime64, timedelta64, logical_xor as xor_, round as round_, around
 
 from numpy.core.defchararray import startswith
 
