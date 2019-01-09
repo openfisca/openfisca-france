@@ -258,7 +258,7 @@ class revenus_nets_du_capital(Variable):
                 Par conséquent, vu qu'on retranche la CSG sur les revenus du capital,
                 qui contient dans sa base les rentes viagèes à titre onéreux, cette variable
                 peut être négative
-            (2) On change de concept de revenu fonciers (pas le même traitement des abattements)
+            (2) On change de concept de plus-values (cf. docstring de la variable plus_values_base_large pour mieux comprendre)
         Cette variable est définie au niveau individuel : on projette les revenus du foyer fiscal
         sur le déclarant principal
         '''
@@ -267,16 +267,12 @@ class revenus_nets_du_capital(Variable):
         assiette_csg_revenus_capital = foyer_fiscal('assiette_csg_revenus_capital', period)
         assiette_csg_plus_values = foyer_fiscal('assiette_csg_plus_values', period)
         plus_values_base_large = foyer_fiscal('plus_values_base_large', period)
-        rev_cat_rfon = foyer_fiscal('revenu_categoriel_foncier', period)
         rente_viagere_titre_onereux_net = foyer_fiscal('rente_viagere_titre_onereux_net', period)
-        fon = foyer_fiscal('fon', period)
 
         revenus_du_capital_cap_avant_prelevements_sociaux = (
             assiette_csg_revenus_capital
             - assiette_csg_plus_values
             + plus_values_base_large
-            - rev_cat_rfon
-            + fon
             - rente_viagere_titre_onereux_net
             )
 

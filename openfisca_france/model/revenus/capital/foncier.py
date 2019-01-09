@@ -49,10 +49,6 @@ class f4ba(Variable):
     label = u"Revenus fonciers imposables"
     definition_period = YEAR
 
-    def formula(foyer_fiscal, period):
-        revenus_locatifs = foyer_fiscal.members('revenus_locatifs', period, options = [ADD])
-        return foyer_fiscal.sum(revenus_locatifs)
-
 
 class f4bb(Variable):
     cerfa_field = u"4BB"
@@ -124,6 +120,17 @@ class revenus_locatifs(Variable):
     label = u"Revenus locatifs"
     definition_period = MONTH
     set_input = set_input_divide_by_period
+
+    def formula(individu, period):
+        """
+        Revenus locatifs utilisés pour les bases ressources des minima sociaux
+        Si cette variable n'est pas renseignée, on prend les revenus fonciers catégoriels de la section 4 de la déclaration 2042
+        Néanmoins, selon la législation, le concept de revenus locatifs pour ces bases ressources peut être plus large, notamment
+        pour les indépendants (exemple : case 5ND du formulaire 2042-C-PRO). Ce point reste à améliorer.
+        """
+        revenu_categoriel_foncier = individu.foyer_fiscal('revenu_categoriel_foncier', period.this_year)
+        montant = revenu_categoriel_foncier * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL) / 12
+        return max_(montant, 0)
 
 
 class valeur_immo_non_loue(Variable):

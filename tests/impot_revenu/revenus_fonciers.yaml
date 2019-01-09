@@ -1,0 +1,100 @@
+- name: revenu_categoriel_foncier_1
+  description: Test 1 de la variable de revenu foncier catégoriel
+  period: 2018
+  absolute_error_margin: 1
+  input:
+    f4ba: 20000
+    f4bb: 0
+    f4bc: 0
+    f4bd: 0
+    f4be: 0
+  output:
+    revenu_categoriel_foncier: 20000
+
+- name: revenu_categoriel_foncier_2
+  description: Test 2 de la variable de revenu foncier catégoriel
+  period: 2018
+  absolute_error_margin: 1
+  input:
+    f4ba: 0
+    f4bb: 20000
+    f4bc: 0
+    f4bd: 0
+    f4be: 0
+  output:
+    revenu_categoriel_foncier: 0
+
+- name: revenu_categoriel_foncier_3
+  description: Test 3 de la variable de revenu foncier catégoriel
+  period: 2018
+  absolute_error_margin: 1
+  input:
+    f4ba: 0
+    f4bb: 0
+    f4bc: 5000
+    f4bd: 0
+    f4be: 0
+  output:
+    revenu_categoriel_foncier: -5000
+
+- name: revenu_categoriel_foncier_4
+  description: Test 4 de la variable de revenu foncier catégoriel
+  period: 2018
+  absolute_error_margin: 1
+  input:
+    f4ba: 0
+    f4bb: 20000
+    f4bc: 25000
+    f4bd: 0
+    f4be: 0
+  output:
+    revenu_categoriel_foncier: -25000
+
+- name: revenu_categoriel_foncier_5
+  description: Test 5 de la variable de revenu foncier catégoriel
+  period: 2018
+  absolute_error_margin: 1
+  input:
+    f4ba: [20000, 25000]
+    f4bd: [25000, 20000]
+  output:
+    revenu_categoriel_foncier: [0, 5000]
+
+- name: revenu_categoriel_foncier_6
+  description: Test 6 de la variable de revenu foncier catégoriel
+  period: 2018
+  absolute_error_margin: 1
+  input:
+    f4ba: 0
+    f4bb: 20000
+    f4bc: 0
+    f4bd: 25000
+    f4be: 0
+  output:
+    revenu_categoriel_foncier: 0
+
+- name: revenu_categoriel_foncier_7
+  description: Test 7 de la variable de revenu foncier catégoriel
+  period: 2018
+  absolute_error_margin: 1
+  input:
+    f4ba: 0
+    f4bb: 0
+    f4bc: 20000
+    f4bd: 25000
+    f4be: 0
+  output:
+    revenu_categoriel_foncier: -20000
+
+- name: revenu_categoriel_foncier_8
+  description: Test 8 de la variable de revenu foncier catégoriel
+  period: 2018
+  absolute_error_margin: 1
+  input:
+    f4ba: 0
+    f4bb: 0
+    f4bc: 0
+    f4bd: 0
+    f4be: 10000
+  output:
+    revenu_categoriel_foncier: 7000 # car abattement de 30%

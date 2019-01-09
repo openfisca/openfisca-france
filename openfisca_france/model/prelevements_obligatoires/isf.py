@@ -507,7 +507,7 @@ class revetproduits(Variable):
         salcho_imp_i = foyer_fiscal.members('revenu_assimile_salaire_apres_abattements', period)
         pen_net_i = foyer_fiscal.members('revenu_assimile_pension_apres_abattements', period)
         rente_viagere_titre_onereux_net = foyer_fiscal('rente_viagere_titre_onereux_net', period)
-        fon = foyer_fiscal('fon', period)
+        revenu_categoriel_foncier = foyer_fiscal('revenu_categoriel_foncier', period)
         ric_i = foyer_fiscal.members('ric', period)
         rag_i = foyer_fiscal.members('rag', period)
         rpns_exon_i = foyer_fiscal.members('rpns_exon', period)
@@ -542,7 +542,7 @@ class revetproduits(Variable):
             + rpns_pvct
             + prelevement_forfaitaire_liberatoire
             + prelevement_forfaitaire_unique_ir
-            + fon
+            + revenu_categoriel_foncier
             )
 
         return pt * P.plafonnement_taux_d_imposition_isf

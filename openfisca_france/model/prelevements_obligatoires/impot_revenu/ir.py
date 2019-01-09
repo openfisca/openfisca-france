@@ -6,6 +6,7 @@ from __future__ import division
 import logging
 
 from numpy import datetime64, timedelta64, logical_xor as xor_, round as round_, around
+
 from numpy.core.defchararray import startswith
 
 from openfisca_core.model_api import *
@@ -902,19 +903,27 @@ class revenu_categoriel_foncier(Variable):
         f4be = foyer_fiscal('f4be', period)
         microfoncier = parameters(period).impot_revenu.rpns.micro.microfoncier
 
-        # # Calcul du revenu catégoriel
+        # Messages d'erreurs
+        if ((f4ba != 0) & ((f4bb != 0) | (f4bc != 0))).any():
+            log.error(("Problème de déclarations des revenus : incompatibilité de la déclaration des revenus fonciers (f4ba) et de déficits (f4bb, f4bc)"))
         if ((f4be != 0) & ((f4ba != 0) | (f4bb != 0) | (f4bc != 0))).any():
             log.error(("Problème de déclarations des revenus : incompatibilité de la déclaration des revenus fonciers (f4ba, f4bb, f4bc) et microfonciers (f4be)"))
+        if (f4be > microfoncier.max).any():
+            log.error(("Problème de déclarations des revenus : les revenus microfonciers (f4be) dépassent le maximum légal"))
 
-        a13 = f4ba + f4be - microfoncier.taux * f4be * (f4be <= microfoncier.max)
-        b13 = f4bb
-        c13 = a13 - b13
-        d13 = f4bc
-        e13 = c13 - d13 * (c13 >= 0)
-        f13 = f4bd * (e13 >= 0)
-        g13 = max_(0, e13 - f13)
-        rev_cat_rfon = (c13 >= 0) * (g13 + e13 * (e13 < 0)) - (c13 < 0) * d13
-        return rev_cat_rfon
+        micro = min_(f4be, microfoncier.max) * (1 - microfoncier.taux)
+
+        # Conditions
+        deficit = (f4bc > 0) | (f4bb > 0)
+        micro = f4be > 0
+
+        # Calculs
+        si_deficit = -f4bc
+        si_micro = min_(f4be, microfoncier.max) * (1 - microfoncier.taux)
+        sinon = max_(0, f4ba - f4bd)
+
+        return select([deficit, micro],
+                      [si_deficit, si_micro], sinon)
 
 
 class revenu_categoriel_non_salarial(Variable):
@@ -2146,27 +2155,6 @@ class credits_impot_sur_valeurs_etrangeres(Variable):
         f2ab = foyer_fiscal('f2ab', period)
 
         return f2ab
-
-
-class fon(Variable):
-    value_type = float
-    entity = FoyerFiscal
-    label = u"Revenus fonciers"
-    reference = "http://impotsurlerevenu.org/definitions/220-revenu-foncier.php"
-    definition_period = YEAR
-
-    def formula(foyer_fiscal, period, parameters):
-        '''
-        Revenus fonciers
-        '''
-        f4ba = foyer_fiscal('f4ba', period)
-        f4bb = foyer_fiscal('f4bb', period)
-        f4bc = foyer_fiscal('f4bc', period)
-        f4bd = foyer_fiscal('f4bd', period)  # noqa F841
-        f4be = foyer_fiscal('f4be', period)
-        microfoncier = parameters(period).impot_revenu.rpns.micro.microfoncier
-
-        return f4ba - f4bb - f4bc + round_(f4be * (1 - microfoncier.taux))
 
 
 class rpns_pvce(Variable):

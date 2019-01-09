@@ -131,7 +131,7 @@ class rev_coll(Variable):
         revenus_capitaux_prelevement_liberatoire = foyer_fiscal('revenus_capitaux_prelevement_liberatoire', period, options = [ADD])  # Supprimée en 2018
         revenus_capitaux_prelevement_forfaitaire_unique_ir = foyer_fiscal('revenus_capitaux_prelevement_forfaitaire_unique_ir', period, options = [ADD])  # Existe à partir de 2018
         abat_spe = foyer_fiscal('abat_spe', period)
-        fon = foyer_fiscal('fon', period)
+        revenu_categoriel_foncier = foyer_fiscal('revenu_categoriel_foncier', period)
         f7ga = foyer_fiscal('f7ga', period)
         f7gb = foyer_fiscal('f7gb', period)
         f7gc = foyer_fiscal('f7gc', period)
@@ -141,7 +141,7 @@ class rev_coll(Variable):
 
         # TODO: ajouter les revenus de l'étranger etr*0.9
         return (
-            + fon
+            + revenu_categoriel_foncier
             + pensions_alimentaires_versees  # négatif
             + rente_viagere_titre_onereux_net
             + rev_cat_rvcm
