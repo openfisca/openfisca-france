@@ -3,11 +3,11 @@
   period: 2018
   absolute_error_margin: 1
   input:
-    f2ba: 20000
-    f2bb: 0
-    f2bc: 0
-    f3bd: 0
-    f3be: 0
+    f4ba: 20000
+    f4bb: 0
+    f4bc: 0
+    f4bd: 0
+    f4be: 0
   output:
     revenu_categoriel_foncier: 20000
 
@@ -16,11 +16,11 @@
   period: 2018
   absolute_error_margin: 1
   input:
-    f2ba: 0
-    f2bb: 20000
-    f2bc: 0
-    f3bd: 0
-    f3be: 0
+    f4ba: 0
+    f4bb: 20000
+    f4bc: 0
+    f4bd: 0
+    f4be: 0
   output:
     revenu_categoriel_foncier: 0
 
@@ -29,11 +29,11 @@
   period: 2018
   absolute_error_margin: 1
   input:
-    f2ba: 20000
-    f2bb: 0
-    f2bc: 5000
-    f3bd: 0
-    f3be: 0
+    f4ba: 20000
+    f4bb: 0
+    f4bc: 5000
+    f4bd: 0
+    f4be: 0
   output:
     revenu_categoriel_foncier: 15000
 
@@ -42,11 +42,11 @@
   period: 2018
   absolute_error_margin: 1
   input:
-    f2ba: 20000
-    f2bb: 0
-    f2bc: 25000
-    f3bd: 0
-    f3be: 0
+    f4ba: 20000
+    f4bb: 0
+    f4bc: 25000
+    f4bd: 0
+    f4be: 0
   output:
     revenu_categoriel_foncier: -5000
 
@@ -55,11 +55,11 @@
   period: 2018
   absolute_error_margin: 1
   input:
-    f2ba: 0
-    f2bb: 20000
-    f2bc: 25000
-    f3bd: 0
-    f3be: 0
+    f4ba: 0
+    f4bb: 20000
+    f4bc: 25000
+    f4bd: 0
+    f4be: 0
   output:
     revenu_categoriel_foncier: -25000
 
@@ -68,11 +68,11 @@
   period: 2018
   absolute_error_margin: 1
   input:
-    f2ba: 20000
-    f2bb: 0
-    f2bc: 0
-    f3bd: 5000
-    f3be: 0
+    f4ba: 20000
+    f4bb: 0
+    f4bc: 0
+    f4bd: 5000
+    f4be: 0
   output:
     revenu_categoriel_foncier: 15000
 
@@ -81,11 +81,11 @@
   period: 2018
   absolute_error_margin: 1
   input:
-    f2ba: 20000
-    f2bb: 0
-    f2bc: 0
-    f3bd: 25000
-    f3be: 0
+    f4ba: 20000
+    f4bb: 0
+    f4bc: 0
+    f4bd: 25000
+    f4be: 0
   output:
     revenu_categoriel_foncier: 0
 
@@ -94,11 +94,11 @@
   period: 2018
   absolute_error_margin: 1
   input:
-    f2ba: 0
-    f2bb: 20000
-    f2bc: 0
-    f3bd: 25000
-    f3be: 0
+    f4ba: 0
+    f4bb: 20000
+    f4bc: 0
+    f4bd: 25000
+    f4be: 0
   output:
     revenu_categoriel_foncier: 0
 
@@ -107,11 +107,11 @@
   period: 2018
   absolute_error_margin: 1
   input:
-    f2ba: 0
-    f2bb: 0
-    f2bc: 20000
-    f3bd: 25000
-    f3be: 0
+    f4ba: 0
+    f4bb: 0
+    f4bc: 20000
+    f4bd: 25000
+    f4be: 0
   output:
     revenu_categoriel_foncier: -20000
 
@@ -120,11 +120,11 @@
   period: 2018
   absolute_error_margin: 1
   input:
-    f2ba: 10000
-    f2bb: 0
-    f2bc: 20000
-    f3bd: 25000
-    f3be: 0
+    f4ba: 10000
+    f4bb: 0
+    f4bc: 20000
+    f4bd: 25000
+    f4be: 0
   output:
     revenu_categoriel_foncier: -10000
 
@@ -133,11 +133,11 @@
   period: 2018
   absolute_error_margin: 1
   input:
-    f2ba: 23000
-    f2bb: 0
-    f2bc: 20000
-    f3bd: 25000
-    f3be: 0
+    f4ba: 23000
+    f4bb: 0
+    f4bc: 20000
+    f4bd: 25000
+    f4be: 0
   output:
     revenu_categoriel_foncier: 0
 
@@ -146,11 +146,11 @@
   period: 2018
   absolute_error_margin: 1
   input:
-    f2ba: 50000
-    f2bb: 0
-    f2bc: 20000
-    f3bd: 25000
-    f3be: 0
+    f4ba: 50000
+    f4bb: 0
+    f4bc: 20000
+    f4bd: 25000
+    f4be: 0
   output:
     revenu_categoriel_foncier: 5000
 
@@ -159,10 +159,10 @@
   period: 2018
   absolute_error_margin: 1
   input:
-    f2ba: 0
-    f2bb: 0
-    f2bc: 0
-    f3bd: 0
-    f3be: 10000
+    f4ba: 0
+    f4bb: 0
+    f4bc: 0
+    f4bd: 0
+    f4be: 10000
   output:
     revenu_categoriel_foncier: 7000 # car abattement de 30%

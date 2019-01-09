@@ -905,9 +905,9 @@ class revenu_categoriel_foncier(Variable):
 
         # Messages d'erreurs
         if ((f4be != 0) & ((f4ba != 0) | (f4bb != 0) | (f4bc != 0))).any():
-        log.error(("Problème de déclarations des revenus : incompatibilité de la déclaration des revenus fonciers (f4ba, f4bb, f4bc) et microfonciers (f4be)"))
+            log.error(("Problème de déclarations des revenus : incompatibilité de la déclaration des revenus fonciers (f4ba, f4bb, f4bc) et microfonciers (f4be)"))
         if (f4be > microfoncier.max).any():
-        log.error(("Problème de déclarations des revenus : les revenus microfonciers (f4be) dépassent le maximum légal"))
+            log.error(("Problème de déclarations des revenus : les revenus microfonciers (f4be) dépassent le maximum légal"))
 
         micro = min_(f4be, microfoncier.max) * (1 - microfoncier.taux)
 
