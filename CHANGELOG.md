@@ -17,8 +17,10 @@
 * Idée : on rend les variables de revenus fonciers plus explicites, et on redéfinit les inputs variables de ces revenus afin d'avoir une définition claire de ces variables, et de ne pas avoir de redondance entre les variables.
 * Détails :
   - Supprime la variable `fon`. A la place, on utilise `revenu_categoriel_foncier`.
-  - Enlève la formule qui était mise dans `f4ba`
-  - Définit `revenus_locatifs` via les cases de la déclaration fiscale
+  - Réécrit la formule de `revenu_categoriel_foncier`.
+  - Enlève la formule qui était mise dans `f4ba`.
+  - Définit `revenus_locatifs` via les cases de la déclaration fiscale.
+  - Supprime `REV_TYP` et `REVENUES_CATEGORIES`
 
 ### 33.0.5 [#1252](https://github.com/openfisca/openfisca-france/pull/1252)
 
