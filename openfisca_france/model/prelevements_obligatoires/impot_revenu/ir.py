@@ -903,21 +903,23 @@ class revenu_categoriel_foncier(Variable):
         f4be = foyer_fiscal('f4be', period)
         microfoncier = parameters(period).impot_revenu.rpns.micro.microfoncier
 
+        # Messages d'erreurs
+        if ((f4be != 0) & ((f4ba != 0) | (f4bb != 0) | (f4bc != 0))).any():
+        log.error(("Problème de déclarations des revenus : incompatibilité de la déclaration des revenus fonciers (f4ba, f4bb, f4bc) et microfonciers (f4be)"))
+        if (f4be > microfoncier.max).any():
+        log.error(("Problème de déclarations des revenus : les revenus microfonciers (f4be) dépassent le maximum légal"))
+
         micro = min_(f4be, microfoncier.max) * (1 - microfoncier.taux)
 
-        revfon_nets_deffonc = f4ba - f4bb
-        revfon_nets_deffonc_defglob = f4ba - f4bb - f4bc
-        revfon_nets_deffonc_defglob_defant = f4ba - f4bb - f4bc - f4bd
-
         non_micro = where(
-            revfon_nets_deffonc_defglob_defant >= 0,
-            revfon_nets_deffonc_defglob_defant,
+            f4ba - f4bb - f4bc - f4bd >= 0,
+            f4ba - f4bb - f4bc - f4bd,
             where(
-                and_(revfon_nets_deffonc_defglob_defant < 0, revfon_nets_deffonc_defglob >= 0),
+                and_(f4ba - f4bb - f4bc - f4bd < 0, f4ba - f4bb - f4bc >= 0),
                 0,
                 where(
-                    and_(revfon_nets_deffonc_defglob < 0, revfon_nets_deffonc >= 0),
-                    revfon_nets_deffonc_defglob,
+                    and_(f4ba - f4bb - f4bc < 0, f4ba - f4bb >= 0),
+                    f4ba - f4bb - f4bc,
                     -f4bc
                     )
                 ),
