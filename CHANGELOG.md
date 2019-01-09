@@ -1,5 +1,13 @@
 # Changelog
 
+### 33.0.5 [#1252](https://github.com/openfisca/openfisca-france/pull/1252)
+
+* Amélioration d'un calcul existant
+* Périodes concernées : à partir du 01/01/2017.
+* Zones impactées : `prestations/minima_sociaux/ass`.
+* Détails :
+  - Corrige la règle de non indemnisation devenue incorrecte suite à la prise en compte du cumul ASS et salaire
+
 ## 33.0.4 [#1249](https://github.com/openfisca/openfisca-france/pull/1249)
 
 * Changement mineur.

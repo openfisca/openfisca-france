@@ -361,3 +361,25 @@
       2019-07: 0
       2019-08: 0
       2019-09: 0
+
+
+- name: Cas N°4 Non éligibilité à l'ASS car perçoit le chômage
+  period: 2018-10
+  absolute_error_margin: 1
+  relative_error_margin: 0.5
+  input:
+    individus:
+      personne1:
+        date_naissance: 1970-01-01
+        chomage_net: 1
+        salaire_imposable: 700
+        ass_precondition_remplie: true
+    famille:
+      parents: [personne1]
+    foyer_fiscal:
+      declarants: [personne1]
+    menage:
+      personne_de_reference: personne1
+  output:
+    ass_eligibilite_cumul_individu: true
+    ass_eligibilite_individu: false
