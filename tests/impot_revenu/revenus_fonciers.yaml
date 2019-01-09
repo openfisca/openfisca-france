@@ -1,0 +1,168 @@
+- name: revenu_categoriel_foncier_1
+  description: Test 1 de la variable de revenu foncier catégoriel
+  period: 2018
+  absolute_error_margin: 1
+  input:
+    f2ba: 20000
+    f2bb: 0
+    f2bc: 0
+    f3bd: 0
+    f3be: 0
+  output:
+    revenu_categoriel_foncier: 20000
+
+- name: revenu_categoriel_foncier_2
+  description: Test 2 de la variable de revenu foncier catégoriel
+  period: 2018
+  absolute_error_margin: 1
+  input:
+    f2ba: 0
+    f2bb: 20000
+    f2bc: 0
+    f3bd: 0
+    f3be: 0
+  output:
+    revenu_categoriel_foncier: 0
+
+- name: revenu_categoriel_foncier_3
+  description: Test 3 de la variable de revenu foncier catégoriel
+  period: 2018
+  absolute_error_margin: 1
+  input:
+    f2ba: 20000
+    f2bb: 0
+    f2bc: 5000
+    f3bd: 0
+    f3be: 0
+  output:
+    revenu_categoriel_foncier: 15000
+
+- name: revenu_categoriel_foncier_4
+  description: Test 4 de la variable de revenu foncier catégoriel
+  period: 2018
+  absolute_error_margin: 1
+  input:
+    f2ba: 20000
+    f2bb: 0
+    f2bc: 25000
+    f3bd: 0
+    f3be: 0
+  output:
+    revenu_categoriel_foncier: -5000
+
+- name: revenu_categoriel_foncier_5
+  description: Test 5 de la variable de revenu foncier catégoriel
+  period: 2018
+  absolute_error_margin: 1
+  input:
+    f2ba: 0
+    f2bb: 20000
+    f2bc: 25000
+    f3bd: 0
+    f3be: 0
+  output:
+    revenu_categoriel_foncier: -25000
+
+- name: revenu_categoriel_foncier_6
+  description: Test 6 de la variable de revenu foncier catégoriel
+  period: 2018
+  absolute_error_margin: 1
+  input:
+    f2ba: 20000
+    f2bb: 0
+    f2bc: 0
+    f3bd: 5000
+    f3be: 0
+  output:
+    revenu_categoriel_foncier: 15000
+
+- name: revenu_categoriel_foncier_7
+  description: Test 7 de la variable de revenu foncier catégoriel
+  period: 2018
+  absolute_error_margin: 1
+  input:
+    f2ba: 20000
+    f2bb: 0
+    f2bc: 0
+    f3bd: 25000
+    f3be: 0
+  output:
+    revenu_categoriel_foncier: 0
+
+- name: revenu_categoriel_foncier_8
+  description: Test 8 de la variable de revenu foncier catégoriel
+  period: 2018
+  absolute_error_margin: 1
+  input:
+    f2ba: 0
+    f2bb: 20000
+    f2bc: 0
+    f3bd: 25000
+    f3be: 0
+  output:
+    revenu_categoriel_foncier: 0
+
+- name: revenu_categoriel_foncier_9
+  description: Test 9 de la variable de revenu foncier catégoriel
+  period: 2018
+  absolute_error_margin: 1
+  input:
+    f2ba: 0
+    f2bb: 0
+    f2bc: 20000
+    f3bd: 25000
+    f3be: 0
+  output:
+    revenu_categoriel_foncier: -20000
+
+- name: revenu_categoriel_foncier_10
+  description: Test 10 de la variable de revenu foncier catégoriel
+  period: 2018
+  absolute_error_margin: 1
+  input:
+    f2ba: 10000
+    f2bb: 0
+    f2bc: 20000
+    f3bd: 25000
+    f3be: 0
+  output:
+    revenu_categoriel_foncier: -10000
+
+- name: revenu_categoriel_foncier_11
+  description: Test 11 de la variable de revenu foncier catégoriel
+  period: 2018
+  absolute_error_margin: 1
+  input:
+    f2ba: 23000
+    f2bb: 0
+    f2bc: 20000
+    f3bd: 25000
+    f3be: 0
+  output:
+    revenu_categoriel_foncier: 0
+
+- name: revenu_categoriel_foncier_12
+  description: Test 12 de la variable de revenu foncier catégoriel
+  period: 2018
+  absolute_error_margin: 1
+  input:
+    f2ba: 50000
+    f2bb: 0
+    f2bc: 20000
+    f3bd: 25000
+    f3be: 0
+  output:
+    revenu_categoriel_foncier: 5000
+
+- name: revenu_categoriel_foncier_13
+  description: Test 13 de la variable de revenu foncier catégoriel
+  period: 2018
+  absolute_error_margin: 1
+  input:
+    f2ba: 0
+    f2bb: 0
+    f2bc: 0
+    f3bd: 0
+    f3be: 10000
+  output:
+    revenu_categoriel_foncier: 7000 # car abattement de 30%
