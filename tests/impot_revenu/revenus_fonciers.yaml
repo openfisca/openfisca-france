@@ -37,8 +37,8 @@
   output:
     revenu_categoriel_foncier: -5000
 
-- name: revenu_categoriel_foncier_5
-  description: Test 5 de la variable de revenu foncier catégoriel
+- name: revenu_categoriel_foncier_4
+  description: Test 4 de la variable de revenu foncier catégoriel
   period: 2018
   absolute_error_margin: 1
   input:
@@ -50,21 +50,8 @@
   output:
     revenu_categoriel_foncier: -25000
 
-- name: revenu_categoriel_foncier_6
-  description: Test 6 de la variable de revenu foncier catégoriel
-  period: 2018
-  absolute_error_margin: 1
-  input:
-    f4ba: 20000
-    f4bb: 0
-    f4bc: 0
-    f4bd: 5000
-    f4be: 0
-  output:
-    revenu_categoriel_foncier: 15000
-
-- name: revenu_categoriel_foncier_7
-  description: Test 7 de la variable de revenu foncier catégoriel
+- name: revenu_categoriel_foncier_5
+  description: Test 5 de la variable de revenu foncier catégoriel
   period: 2018
   absolute_error_margin: 1
   input:
@@ -73,8 +60,8 @@
   output:
     revenu_categoriel_foncier: [0, 5000]
 
-- name: revenu_categoriel_foncier_8
-  description: Test 8 de la variable de revenu foncier catégoriel
+- name: revenu_categoriel_foncier_6
+  description: Test 6 de la variable de revenu foncier catégoriel
   period: 2018
   absolute_error_margin: 1
   input:
@@ -86,8 +73,8 @@
   output:
     revenu_categoriel_foncier: 0
 
-- name: revenu_categoriel_foncier_9
-  description: Test 9 de la variable de revenu foncier catégoriel
+- name: revenu_categoriel_foncier_7
+  description: Test 7 de la variable de revenu foncier catégoriel
   period: 2018
   absolute_error_margin: 1
   input:
@@ -99,8 +86,8 @@
   output:
     revenu_categoriel_foncier: -20000
 
-- name: revenu_categoriel_foncier_13
-  description: Test 13 de la variable de revenu foncier catégoriel
+- name: revenu_categoriel_foncier_8
+  description: Test 8 de la variable de revenu foncier catégoriel
   period: 2018
   absolute_error_margin: 1
   input:
