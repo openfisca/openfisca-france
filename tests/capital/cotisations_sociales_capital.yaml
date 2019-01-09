@@ -159,20 +159,20 @@
     irpp: 0
 
 - name: f4babbbcbd_2006
-  description: Montant des cotisations sociales sur des revenus fonciers imposables de 20000 euros, un déficit imputable sur les revenus fonciers de 1000 euros,  un déficit imputable sur le revenu global de 1000 euros, des déficits antérieurs non encore imputés de 1000 euros en 2006
+  description: Montant des cotisations sociales sur des revenus fonciers imposables de 20000 euros, un déficit imputable sur les revenus fonciers de 1000 euros
   period: 2006
   absolute_error_margin: 0.5
   input:
     f4ba: 20000
-    f4bb: 1000
-    f4bc: 1000
+    f4bb: 0
+    f4bc: 0
     f4bd: 1000
   output:
-    csg_revenus_capital: -1394
-    crds_revenus_capital: -85
-    prelevements_sociaux_revenus_capital_hors_csg_crds: -391
-    revenu_categoriel_foncier: 17000
-    irpp: -1119
+    csg_revenus_capital: -1558
+    crds_revenus_capital: -95
+    prelevements_sociaux_revenus_capital_hors_csg_crds: -437
+    revenu_categoriel_foncier: 19000
+    irpp: -1399
 
 - name: ps_rev_exon_ir_2016
   description: Montant de prélèvements sociaux sur revenus exonérés d'impôt sur le revenus en 2016
