@@ -1,0 +1,67 @@
+- period: '2010'
+  absolute_error_margin: 0.005
+  name: RSA célibataire, salaire_net = 0, éligible moins de 25 ans
+  input:
+    date_naissance: '1987-01-01'
+    # salaire_net: 0
+    statut_occupation_logement:
+      2010-01: proprietaire
+  output:
+    aide_logement:
+      2010-01: 0
+    statut_occupation_logement:
+      2010-01: proprietaire
+    rsa_revenu_activite_individu:
+      2010-01: 0
+    rsa_base_ressources:
+      2010-01: 0
+    rsa_revenu_activite:
+      2010-01: 0
+    rsa_eligibilite:
+      2010-01: false
+
+
+- period: '2009'
+  absolute_error_margin: 0.005
+  name: RSA célibataire, salaire_net = 0, non éligible moins de 25 ans
+  input:
+    date_naissance: '1987-01-01'
+    # salaire_net: 0
+    statut_occupation_logement:
+      2009-09: proprietaire
+  output:
+    aide_logement:
+      2009-09: 0
+    statut_occupation_logement:
+      2009-09: proprietaire
+    rsa_revenu_activite_individu:
+      2009-09: 0
+    rsa_base_ressources:
+      2009-09: 0
+    rsa_revenu_activite:
+      2009-09: 0
+    rsa_eligibilite:
+      2009-09: false
+
+
+- period: '2009'
+  absolute_error_margin: 0.005
+  name: RMI célibataire, salaire_net = 0, non éligible moins de 25 ans
+  input:
+    date_naissance: '1987-01-01'
+    # salaire_net: 0
+    statut_occupation_logement:
+      2009-01: proprietaire
+  output:
+    aide_logement:
+      2009-01: 0
+    statut_occupation_logement:
+      2009-01: proprietaire
+    rsa_revenu_activite_individu:
+      2009-01: 0
+    rsa_base_ressources:
+      2009-01: 0
+    rsa_revenu_activite:
+      2009-01: 0
+    rsa_eligibilite:
+      2009-01: false

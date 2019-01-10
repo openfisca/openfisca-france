@@ -1,5 +1,15 @@
 # Changelog
 
+## 34.1.1 [#1253](https://github.com/openfisca/openfisca-france/pull/1253)
+
+* Correction d'un crash.
+* Périodes concernées : toutes.
+* Zones impactées : `prestations/minima_sociaux/rsa`.
+* Détails :
+  - Gestion de la variable `rsa_eligibilite` pour la période du RMI qui a été endomagée lors de l'introduction du paramètre `rsa_jeune`.
+  - Problème de type constaté lors de la mutiplication d'un scalaire égal à 1 avec des vecteurs numpy booléens révélé lors d'un usage au CASD (potentiellement dépendant du système d'exploiattion etc)
+
+
 ## 34.1.0 [#1243](https://github.com/openfisca/openfisca-france/pull/1243)
 
 * Amélioration d'un calcul existant

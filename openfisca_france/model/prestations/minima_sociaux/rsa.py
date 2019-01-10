@@ -5,6 +5,7 @@ from __future__ import division
 
 from numpy import datetime64, logical_and as and_, logical_or as or_
 
+from openfisca_core import periods
 from openfisca_france.model.base import *
 from openfisca_france.model.prestations.prestations_familiales.base_ressource import nb_enf
 
@@ -770,12 +771,18 @@ class rsa_eligibilite(Variable):
 
         etudiant_i = famille.members('etudiant', period)
 
-        rsa_jeune_condition_i = (
-            rsa.rsa_jeune
-            * (age_i > rsa.age_min_rsa_jeune)
-            * (age_i < rsa.age_max_rsa_jeune)
-            * rsa_jeune_condition_heures_travail_remplie_i
-            )
+        if period.start < periods.period('2009-06').start:
+            # Les jeunes de moins de 25 ans ne sont pas éligibles au RMI
+            rsa_jeune_condition_i = False
+        else:
+            # Les jeunes de moins de 25 ans sont éligibles sous condition d'activité suffisante
+            # à partir de 2010 rendue ici par rsa.rsa_jeune == 1
+            rsa_jeune_condition_i = (
+                (rsa.rsa_jeune == 1)
+                * (age_i > rsa.age_min_rsa_jeune)
+                * (age_i < rsa.age_max_rsa_jeune)
+                * rsa_jeune_condition_heures_travail_remplie_i
+                )
 
         # rsa_nb_enfants est à valeur pour une famille, il faut le projeter sur les individus avant de faire une opération avec age_i
         condition_age_i = famille.project(rsa_nb_enfants > 0) + (age_i > rsa.age_pac)
