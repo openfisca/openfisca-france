@@ -76,7 +76,7 @@
   output:
     cf: 256.09 / (1 - 0.005)
 
-- name: 'Cas N°3: Complément familial non accordé car les ressources au dessus du plafond'
+- name: 'Cas N°3: Complément familial non accordé car les ressources au-dessus du plafond'
   description: Montant CF
   period: 2019-01
   absolute_error_margin: 0.02
