@@ -1,5 +1,13 @@
 # Changelog
 
+## 34.1.0 [#1243](https://github.com/openfisca/openfisca-france/pull/1243)
+
+* Amélioration d'un calcul existant
+* Périodes concernées : toutes pour la prime d'activité, ie. à partir de janvier 2016.
+* Zones impactées : `prestations/minima_sociaux/ppa`.
+* Détails :
+  - Prise en compte des revenus du capital dans le calcul de la prime d'activité
+
 # 34.0.0 [#1216](https://github.com/openfisca/openfisca-france/pull/1216)
 
 * Changement majeur.

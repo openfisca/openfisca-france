@@ -1,0 +1,21 @@
+- name: PPA - Ressources hors activité individu - Revenus du capital
+  description: Sont pris en compte les revenus de capital de l'avant-dernière année
+  period: 2018-12
+  input:
+    revenus_capital:
+      2016: 1200
+      2017: 2400
+      2018: 3600
+  output:
+    ppa_ressources_hors_activite_individu: 100
+
+- name: PPA - Ressources hors activité individu - Revenus locatifs
+  description: Sont pris en compte les revenus locatifs de l'avant-dernière année
+  period: 2018-12
+  input:
+    revenus_locatifs:
+      2016: 3600
+      2017: 2400
+      2018: 1200
+  output:
+    ppa_ressources_hors_activite_individu: 300

@@ -26,6 +26,10 @@ class ppa_eligibilite_etudiants(Variable):
     value_type = bool
     entity = Famille
     label = u"Eligibilité à la PPA (condition sur tout le trimestre)"
+    reference = [
+        # Article L842-2 du Code de la Sécurité Sociale
+        u"https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=F2B88CEFCB83FCAFA4AA31671DAC89DD.tplgfr26s_3?idArticle=LEGIARTI000031087615&cidTexte=LEGITEXT000006073189&dateTexte=20181226"
+        ]
     definition_period = MONTH
 
     def formula(famille, period, parameters):
@@ -198,28 +202,52 @@ class ppa_ressources_hors_activite_individu(Variable):
     entity = Individu
     label = u"Revenu hors activité pris en compte pour la PPA (Individu) pour un mois"
     definition_period = MONTH
+    reference = [
+        # Article L842-4 du code de la sécurité sociale
+        u"https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=B1D8827D50F7B3CC603BB7D398E71AA8.tplgfr28s_3?idArticle=LEGIARTI000033813782&cidTexte=LEGITEXT000006073189&dateTexte=20181226",
+        # Article R843-1 du code de la sécurité sociale
+        u"https://www.legifrance.gouv.fr/affichCode.do;jsessionid=3D8AB2FEC931285820291B1F952160BA.tpdila22v_2?idSectionTA=LEGISCTA000031694323&cidTexte=LEGITEXT000006073189&dateTexte=20160215"
+        ]
 
     def formula(individu, period, parameters):
         P = parameters(period)
         smic_horaire = P.cotsoc.gen.smic_h_b
 
-        ressources = [
-            'asi',
-            'chomage_net',
-            'retraite_nette',
-            'retraite_combattant',
-            'revenus_locatifs',
-            'pensions_invalidite',
-            'pensions_alimentaires_percues',
-            'prestation_compensatoire',
-            'prime_forfaitaire_mensuelle_reprise_activite',
-            'rsa_indemnites_journalieres_hors_activite',
-            ]
+        def ressources_percues_au_cours_du_mois_considere():
+            ressources = [
+                'asi',
+                'chomage_net',
+                'retraite_nette',
+                'retraite_combattant',
+                'pensions_invalidite',
+                'pensions_alimentaires_percues',
+                'prestation_compensatoire',
+                'prime_forfaitaire_mensuelle_reprise_activite',
+                'rsa_indemnites_journalieres_hors_activite',
+                ]
 
-        ressources_hors_activite_mensuel_i = sum(individu(ressource, period) for ressource in ressources)
+            return sum(individu(ressource, period) for ressource in ressources)
+
+        def ressources_percues_il_y_a_deux_ans():
+            plus_values = individu.foyer_fiscal('assiette_csg_plus_values', period.offset(-2, 'year').this_year) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL) / 12
+            ressources_hors_plus_values = [
+                'revenus_capital',
+                'revenus_locatifs',
+                ]
+
+            return (
+                sum(individu(ressource, period.offset(-2, 'year')) for ressource in ressources_hors_plus_values)
+                + plus_values
+                )
+
+        ressources_hors_activite_mensuel_i = (
+            + ressources_percues_au_cours_du_mois_considere()
+            + ressources_percues_il_y_a_deux_ans()
+            )
+
         revenus_activites = individu('ppa_revenu_activite_individu', period)
 
-        # L'aah est pris en compte comme revenu d'activité si  revenu d'activité hors aah > 29 * smic horaire brut
+        # L'AAH est prise en compte comme revenu d'activité si revenu d'activité hors aah > 29 * smic horaire brut
         seuil_aah_activite = P.prestations.minima_sociaux.ppa.seuil_aah_activite * smic_horaire
         aah_hors_activite = (revenus_activites < seuil_aah_activite) * individu('aah', period)
 
