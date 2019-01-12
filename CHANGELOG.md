@@ -1,6 +1,14 @@
 # Changelog
 
-## 34.1.1 [#1253](https://github.com/openfisca/openfisca-france/pull/1253)
+## 34.2.0 [#1255](https://github.com/openfisca/openfisca-france/pull/1255)
+
+* Revalorisation périodique
+* Périodes concernées : à partir du 01/01/2019.
+* Zones impactées : `prestations/prestations_familiales/cf`.
+* Détails :
+  - Prend en compte la revalorisation des plafonds de ressources et de la majoration du complément familial (CF) au 1er janvier 2019.
+
+### 34.1.1 [#1253](https://github.com/openfisca/openfisca-france/pull/1253)
 
 * Correction d'un crash.
 * Périodes concernées : toutes.
@@ -32,7 +40,7 @@
   - `prestations\minima_sociaux\ppa`
   - `prestations\minima_sociaux\rsa`
   - `revenus\capital\foncier`
-* Idée : on rend les variables de revenus fonciers plus explicites, et on redéfinit les inputs variables de ces revenus afin d'avoir une définition claire de ces variables, et de ne pas avoir de redondance entre les variables.
+* Rend les variables de revenus fonciers plus explicites, et redéfinit les variables d'entrée de ces revenus afin d'en avoir une définition plus claire et moins de redondance.
 * Détails :
   - Supprime la variable `fon`. A la place, on utilise `revenu_categoriel_foncier`.
   - Réécrit la formule de `revenu_categoriel_foncier`.
