@@ -1,5 +1,15 @@
 # Changelog
 
+### 34.2.1 [#1257](https://github.com/openfisca/openfisca-france/pull/1257)
+
+* Changement mineur.
+* Périodes concernées : à partir du 01/01/2019.
+* Zones impactées :
+  - `parameters/prestations/prestations_familiales/paje`.
+  - `parameters/prestations/prestations_familiales/cf/majoration_plafond_biact_isole`.
+* Détails :
+  - Revalorise les plafonds de ressources et les montants de la PAJE en date du 01/01/2019.
+
 ## 34.2.0 [#1255](https://github.com/openfisca/openfisca-france/pull/1255)
 
 * Revalorisation périodique
