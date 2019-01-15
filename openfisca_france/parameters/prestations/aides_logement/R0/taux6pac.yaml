@@ -5,3 +5,6 @@ values:
     value: 9156.0
   2016-01-01:
     value: 9192.0
+  2019-01-01:
+    value: 9219.0
+    reference:
