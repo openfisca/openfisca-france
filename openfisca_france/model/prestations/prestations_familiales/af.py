@@ -120,13 +120,13 @@ class af_base(Variable):
 class af_montant_plafond_tranche_1(Variable):
     value_type = float
     entity = Famille
-    label = u"Plafond annuel de ressources n°1"
+    label = u"Plafond annuel de ressources de la première tranche"
     definition_period = MONTH
 
     def formula(famille, period, parameters):
         af_nbenf = famille('af_nbenf', period)
-        pfam = parameters(period).prestations.prestations_familiales.af
-        modulation = pfam.modulation
+        modulation = parameters(period).prestations.prestations_familiales.af.modulation
+
         plafond = modulation.plafond_tranche_1 + af_nbenf * modulation.majoration_plafond_par_enfant_supplementaire
 
         return plafond
@@ -135,13 +135,13 @@ class af_montant_plafond_tranche_1(Variable):
 class af_montant_plafond_tranche_2(Variable):
     value_type = float
     entity = Famille
-    label = u"Plafond annuel de ressources n°2"
+    label = u"Plafond annuel de ressources de la deuxième tranche"
     definition_period = MONTH
 
     def formula(famille, period, parameters):
         af_nbenf = famille('af_nbenf', period)
-        pfam = parameters(period).prestations.prestations_familiales.af
-        modulation = pfam.modulation
+        modulation = parameters(period).prestations.prestations_familiales.af.modulation
+
         plafond = modulation.plafond_tranche_2 + af_nbenf * modulation.majoration_plafond_par_enfant_supplementaire
 
         return plafond
@@ -155,9 +155,9 @@ class af_taux_modulation(Variable):
     definition_period = MONTH
 
     def formula_2015_07_01(famille, period, parameters):
-        pfam = parameters(period).prestations.prestations_familiales.af
+        modulation = parameters(period).prestations.prestations_familiales.af.modulation
         base_ressources = famille('prestations_familiales_base_ressources', period)
-        modulation = pfam.modulation
+
         plafond1 = famille('af_montant_plafond_tranche_1', period)
         plafond2 = famille('af_montant_plafond_tranche_2', period)
 
@@ -178,21 +178,20 @@ class af_allocation_forfaitaire_taux_modulation(Variable):
     definition_period = MONTH
 
     def formula_2015_07_01(famille, period, parameters):
-        pfam = parameters(period).prestations.prestations_familiales.af
-        af_nbenf = famille('af_nbenf', period)
+        plafond1 = famille('af_montant_plafond_tranche_1', period)
+        plafond2 = famille('af_montant_plafond_tranche_2', period)
+        modulation = parameters(period).prestations.prestations_familiales.af.modulation
         af_forfaitaire_nbenf = famille('af_allocation_forfaitaire_nb_enfants', period)
-        nb_enf_tot = af_nbenf + af_forfaitaire_nbenf
         base_ressources = famille('prestations_familiales_base_ressources', period)
-        modulation = pfam.modulation
 
-        plafond1 = modulation.plafond_tranche_1 + nb_enf_tot * modulation.majoration_plafond_par_enfant_supplementaire
-
-        plafond2 = modulation.plafond_tranche_2 + nb_enf_tot * modulation.majoration_plafond_par_enfant_supplementaire
+        majoration_plafond_forfaitaire = af_forfaitaire_nbenf * modulation.majoration_plafond_par_enfant_supplementaire
+        plafond_forfaitaire_1 = plafond1 + majoration_plafond_forfaitaire
+        plafond_forfaitaire_2 = plafond2 + majoration_plafond_forfaitaire
 
         taux = (
-            (base_ressources <= plafond1) * 1
-            + (base_ressources > plafond1) * (base_ressources <= plafond2) * modulation.taux_tranche_2
-            + (base_ressources > plafond2) * modulation.taux_tranche_3
+            (base_ressources <= plafond_forfaitaire_1) * 1
+            + (base_ressources > plafond_forfaitaire_1) * (base_ressources <= plafond_forfaitaire_2) * modulation.taux_tranche_2
+            + (base_ressources > plafond_forfaitaire_2) * modulation.taux_tranche_3
             )
 
         return taux
@@ -286,7 +285,7 @@ class af_majoration(Variable):
 class af_depassement_mensuel(Variable):
     value_type = float
     entity = Famille
-    label = u"Depassement mentuel de ressources"
+    label = u"Depassement mensuel de ressources"
     definition_period = MONTH
 
     def formula(famille, period, parameters):
