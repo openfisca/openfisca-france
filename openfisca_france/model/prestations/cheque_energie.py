@@ -62,7 +62,10 @@ class cheque_energie_eligibilite_logement(Variable):
 class cheque_energie_montant(Variable):
     entity = Menage
     value_type = float
-    reference = "https://www.legifrance.gouv.fr/affichTexteArticle.do;jsessionid=1EA40CA7787AF90A95D1E1B3155D9028.tplgfr29s_1?idArticle=JORFARTI000032496647&cidTexte=JORFTEXT000032496630&dateTexte=20160508&categorieLien=id"
+    reference = [
+        u"https://www.legifrance.gouv.fr/eli/decret/2016/5/6/DEVR1604032D/jo/article_1",
+        u"https://www.legifrance.gouv.fr/eli/arrete/2018/12/26/TRER1832961A/jo/texte",
+        ]
     label = u"Montant du chèque énergie"
     definition_period = YEAR
 
@@ -87,6 +90,27 @@ class cheque_energie_montant(Variable):
             + (seuils.tranche_deux <= ressources_par_uc) * (ressources_par_uc < seuils.tranche_trois) * montants[uc].tranche_trois
             )
 
+    def formula_2019(menage, period, parameters):
+        baremes = parameters(period).cheque_energie.baremes
+        seuils = baremes.thresholds
+        montants = baremes.montants
+
+        uc_menage = menage('cheque_energie_unites_consommation', period)
+        rfr = menage.personne_de_reference.foyer_fiscal('rfr', period.n_2)
+
+        ressources_par_uc = rfr / uc_menage
+
+        uc = select(
+            [uc_menage <= 1, uc_menage < 2, 2 <= uc_menage],
+            [UCChequeEnergie.une_uc, UCChequeEnergie.une_uc_a_deux_uc, UCChequeEnergie.plus_de_deux_uc]
+            )
+
+        return (
+            + (ressources_par_uc < seuils.tranche_une) * montants[uc].tranche_une
+            + (seuils.tranche_une <= ressources_par_uc) * (ressources_par_uc < seuils.tranche_deux) * montants[uc].tranche_deux
+            + (seuils.tranche_deux <= ressources_par_uc) * (ressources_par_uc < seuils.tranche_trois) * montants[uc].tranche_trois
+            + (seuils.tranche_trois <= ressources_par_uc) * (ressources_par_uc < seuils.tranche_quatre) * montants[uc].tranche_quatre
+            )
 
 class cheque_energie(Variable):
     entity = Menage
