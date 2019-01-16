@@ -1,5 +1,15 @@
 # Changelog
 
+## 34.3.0 [#1259](https://github.com/openfisca/openfisca-france/pull/1259)
+
+* Revalorisation périodique
+* Périodes concernées : à partir du 01/01/2019.
+* Zones impactées :
+   - `parameters/prestations/aides_logement`.
+   - `parameters/prestations/reduction_loyer_solidarite`.
+* Détails :
+  - Revalorisation des aides au logement au 1er janvier 2019 en métropole.
+
 ### 34.2.2 [#1262](https://github.com/openfisca/openfisca-france/pull/1262)
 
 * Correction d'un crash.
@@ -9,7 +19,7 @@
 
 ### 34.2.1 [#1257](https://github.com/openfisca/openfisca-france/pull/1257)
 
-* Changement mineur.
+* Revalorisation périodique
 * Périodes concernées : à partir du 01/01/2019.
 * Zones impactées :
   - `parameters/prestations/prestations_familiales/paje`.
