@@ -1,4 +1,3 @@
----
 unites_consommation:
   premiere_personne:
     values:
@@ -13,106 +12,81 @@ unites_consommation:
       2017-01-01:
         value: 0.3
 baremes:
-  thresholds:
-    tranche_une:
-      unit: currency
-      values:
-        2017-01-01:
-          value: 5600
-    tranche_deux:
-      unit: currency
-      values:
-        2017-01-01:
-          value: 6700
-    tranche_trois:
-      unit: currency
-      values:
-        2017-01-01:
-          value: 7700
-    tranche_quatre:
-      unit: currency
-      values:
-        2019-01-01:
-          value: 10700
-  montants:
-    une_uc:
-      tranche_une:
-        unit: currency
-        values:
+  une_uc:
+    brackets:
+      - threshold:
+          2017-01-01:
+            value: 0
+        amount:
           2017-01-01:
             value: 144
-          2019-01-01:
-            value: 194
-      tranche_deux:
-        unit: currency
-        values:
+      - threshold:
+          2017-01-01:
+            value: 5600
+        amount:
           2017-01-01:
             value: 96
-          2019-01-01:
-            value: 146
-      tranche_trois:
-        unit: currency
-        values:
+      - threshold:
+          2017-01-01:
+            value: 6700
+        amount:
           2017-01-01:
             value: 48
-          2019-01-01:
-            value: 113
-      tranche_quatre:
-        unit: currency
-        values:
-          2019-01-01:
-            value: 48
-    une_uc_a_deux_uc:
-      tranche_une:
-        unit: currency
-        values:
+      - threshold:
+          2017-01-01:
+            value: 7700
+        amount:
+          2017-01-01:
+            value: 0
+  une_uc_a_deux_uc:
+    brackets:
+      - threshold:
+          2017-01-01:
+            value: 0
+        amount:
           2017-01-01:
             value: 190
-          2019-01-01:
-            value: 240
-      tranche_deux:
-        unit: currency
-        values:
+      - threshold:
+          2017-01-01:
+            value: 5600
+        amount:
           2017-01-01:
             value: 126
-          2019-01-01:
-            value: 176
-      tranche_trois:
-        unit: currency
-        values:
+      - threshold:
+          2017-01-01:
+            value: 6700
+        amount:
           2017-01-01:
             value: 63
-          2019-01-01:
-            value: 113
-      tranche_quatre:
-        unit: currency
-        values:
-          2019-01-01:
-            value: 63
-    plus_de_deux_uc:
-      tranche_une:
-        unit: currency
-        values:
+      - threshold:
+          2017-01-01:
+            value: 7700
+        amount:
+          2017-01-01:
+            value: 0
+  plus_de_deux_ucs:
+    brackets:
+      - threshold:
+          2017-01-01:
+            value: 0
+        amount:
           2017-01-01:
             value: 227
-          2019-01-01:
-            value: 277
-      tranche_deux:
-        unit: currency
-        values:
+      - threshold:
+          2017-01-01:
+            value: 5600
+        amount:
           2017-01-01:
             value: 152
-          2019-01-01:
-            value: 202
-      tranche_trois:
-        unit: currency
-        values:
+      - threshold:
+          2017-01-01:
+            value: 6700
+        amount:
           2017-01-01:
             value: 76
-          2019-01-01:
-            value: 126
-      tranche_quatre:
-        unit: currency
-        values:
-          2019-01-01:
-            value: 76
+      - threshold:
+          2017-01-01:
+            value: 7700
+        amount:
+          2017-01-01:
+            value: 0
