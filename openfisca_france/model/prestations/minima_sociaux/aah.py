@@ -13,6 +13,26 @@ from openfisca_france.model.base import *
 # Article D821-1 / 821-11
 # https://www.legifrance.gouv.fr/affichCode.do;jsessionid=157287C570B3AE9450A0BD88AA902970.tplgfr38s_1?idSectionTA=LEGISCTA000006141593&cidTexte=LEGITEXT000006073189&dateTexte=20180731
 
+class aah_hospitalise(Variable):
+    value_type = bool
+    entity = Individu
+    label = u"Le bénéficiaire de l'AAH est hospitalisé dans un établissement de soins"
+    definition_period = MONTH
+
+
+class aah_heberge_en_mas(Variable):
+    value_type = bool
+    entity = Individu
+    label = u"Le bénéficiaire de l'AAH est placé à temps plein en Maison d'accueil spécialisée ou soumettre au régime d'internat dans un établissement type IME (Institut Médico-Educatif) ou IMPRO "
+    definition_period = MONTH
+
+
+class aah_incarcere(Variable):
+    value_type = bool
+    label = u"Le bénéficiaire de l'AAH est incarcéré ou bénéficie d'une mesure d'aménagement ou d'exécution de peine"
+    entity = Individu
+    definition_period = MONTH
+
 
 class aah_base_ressources(Variable):
     value_type = float
@@ -304,10 +324,20 @@ class aah(Variable):
 
     def formula(individu, period, parameters):
         aah_base = individu('aah_base', period)
-        # caah
-        # mva
+        aah_param = parameters(period).prestations.minima_sociaux.aah
 
-        return aah_base
+        previous_months_1 = period.last_month
+        previous_months_2 = previous_months_1.last_month
+
+        aah_hospitalise = individu("aah_hospitalise", previous_months_1) * individu("aah_hospitalise",
+                                                                                    previous_months_2)
+        aah_heberge_en_mas = individu("aah_heberge_en_mas", previous_months_1) * individu("aah_heberge_en_mas",
+                                                                                          previous_months_2)
+        aah_incarcere = individu("aah_incarcere", previous_months_1) * individu("aah_incarcere", previous_months_2)
+
+        return (((aah_hospitalise + aah_heberge_en_mas + aah_incarcere) * (
+                    aah_base * (1 - aah_param.taux_reduction_hospitalise_ou_incarcere)))
+                + ((not_(aah_hospitalise + aah_heberge_en_mas + aah_incarcere)) * aah_base))
 
 
 class caah(Variable):
@@ -366,37 +396,8 @@ class caah(Variable):
         l'autre.
     '''
     def formula_2015_07_01(individu, period, parameters):
-        # Rolling year
-        annee_precedente = period.start.period('year').offset(-1)
-        prestations = parameters(period).prestations
-
-        garantie_ressources = prestations.minima_sociaux.caah.garantie_ressources
-        aah_montant = prestations.minima_sociaux.aah.montant
-        mva_montant = prestations.minima_sociaux.aah.mva
-
-        aah = individu('aah', period)
-        asi_eligibilite = individu('asi_eligibilite', period)
-        asi = individu('asi', period)
-        benef_asi = (asi_eligibilite * (asi > 0))
-        # montant allocs logement de la famille
-        al = individu.famille('aide_logement_montant', period)
-        taux_incapacite = individu('taux_incapacite', period)
-        locataire_foyer = (individu.menage('statut_occupation_logement', period) == TypesStatutOccupationLogement.locataire_foyer)
-        salaire_net = individu('salaire_net', annee_precedente, options = [ADD])
-
-        eligible_complement_ressources = (taux_incapacite > 0.8) * ((aah > 0) | (benef_asi > 0)) * not_(locataire_foyer) * (salaire_net == 0)
-        complement_ressources = eligible_complement_ressources * max_(garantie_ressources - aah_montant, 0)
-
-        eligible_mva = (
-            (al > 0)
-            * (taux_incapacite > 0.8)
-            * ((aah > 0) | (benef_asi > 0))
-            * not_(locataire_foyer)
-            * (salaire_net == 0)
-            )
-
-        mva = mva_montant * eligible_mva
-
+        complement_ressources = individu('complement_ressources', period)
+        mva = individu('mva', period)
         return max_(complement_ressources, mva)
 
     def formula_2005_07_01(individu, period, parameters):
@@ -456,6 +457,55 @@ class mva(Variable):
     value_type = float
     label = u"Majoration pour la vie autonome"
     definition_period = MONTH
+
+    def formula_2015_05_01(individu, period, parameters):
+        # Rolling year
+        annee_precedente = period.start.period('year').offset(-1)
+        prestations = parameters(period).prestations
+        aah = individu('aah', period)
+        taux_incapacite = individu('taux_incapacite', period)
+        asi_eligibilite = individu('asi_eligibilite', period)
+        asi = individu('asi', period)  # montant asi de la famille
+        al = individu.famille('aide_logement_montant', period)  # montant allocs logement de la famille
+        locataire_foyer = (individu.menage('statut_occupation_logement',
+                                           period) == TypesStatutOccupationLogement.locataire_foyer)
+        salaire_net = individu('salaire_net', annee_precedente, options=[ADD])
+
+        benef_asi = (asi_eligibilite * (asi > 0))
+        eligible_mva = (al > 0) * (taux_incapacite > 0.8) * ((aah > 0) | (benef_asi > 0)) * not_(locataire_foyer) * (
+                    salaire_net == 0)
+        mva_montant = prestations.minima_sociaux.aah.mva
+
+        return mva_montant * eligible_mva
+
+
+class complement_ressources(Variable):
+    entity = Individu
+    value_type = float
+    label = u"Majoration pour la vie autonome"
+    definition_period = MONTH
+
+    def formula_2015_05_01(individu, period, parameters):
+        # Rolling year
+        annee_precedente = period.start.period('year').offset(-1)
+        prestations = parameters(period).prestations
+
+        garantie_ressources = prestations.minima_sociaux.caah.garantie_ressources
+        aah_montant = prestations.minima_sociaux.aah.montant
+
+        aah = individu('aah', period)
+        asi_eligibilite = individu('asi_eligibilite', period)
+        asi = individu('asi', period)  # montant asi de la famille
+        benef_asi = (asi_eligibilite * (asi > 0))
+
+        taux_incapacite = individu('taux_incapacite', period)
+        locataire_foyer = (individu.menage('statut_occupation_logement', period) == TypesStatutOccupationLogement.locataire_foyer)
+        salaire_net = individu('salaire_net', annee_precedente, options=[ADD])
+
+        eligible_complement_ressources = (taux_incapacite > 0.8) * ((aah > 0) | (benef_asi > 0)) * not_(locataire_foyer) * (salaire_net == 0)
+        complement_ressources = eligible_complement_ressources * max_(garantie_ressources - aah_montant, 0)
+
+        return complement_ressources
 
 
 class pch(Variable):
