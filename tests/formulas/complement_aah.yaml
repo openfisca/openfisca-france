@@ -1,0 +1,49 @@
+- name: AAH Eligibilité
+  description: Montant AAH pour un couple sans revenus
+  period: 2019-01
+  absolute_error_margin: 1
+  input:
+    famille:
+      parents: parent1
+    individus:
+      parent1:
+        age: 58
+        taux_incapacite: 0.95
+        aah: 261.56
+        asi: 230.32
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - parent1
+    menages:
+      menage_0:
+        personne_de_reference:
+        - parent1
+  output:
+    complement_ressources: 179.31
+    caah: 179.31
+
+- name: AAH Eligibilité
+  description: Montant AAH pour un couple sans revenus
+  period: 2019-01
+  absolute_error_margin: 1
+  input:
+    famille:
+      parents: parent1
+      aide_logement_montant: 254.27
+    individus:
+      parent1:
+        age: 58
+        taux_incapacite: 0.95
+        aah: 261.56
+        asi: 200.71
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - parent1
+    menages:
+      menage_0:
+        personne_de_reference:
+        - parent1
+  output:
+    mva: 104.77
