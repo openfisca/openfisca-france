@@ -353,7 +353,6 @@ class salarie_regime_alsace_moselle(Variable):
 class effectif_entreprise(Variable):
     entity = Individu
     value_type = int
-    base_function = requested_period_last_value
     label = u"Effectif de l'entreprise"
     set_input = set_input_dispatch_by_period
     definition_period = MONTH
@@ -408,7 +407,6 @@ class entreprise_creation(Variable):
 class nombre_tickets_restaurant(Variable):
     value_type = int
     entity = Individu
-    base_function = requested_period_last_value
     label = u"Nombre de tickets restaurant"
     definition_period = MONTH
 
@@ -424,7 +422,6 @@ class prevoyance_obligatoire_cadre_taux_employe(Variable):
     value_type = float
     default_value = 0.015  # 1.5% est le minimum en 2014
     entity = Individu
-    base_function = requested_period_last_value
     label = u"Taux de cotisation employeur pour la prévoyance obligatoire des cadres"
     definition_period = MONTH
 
@@ -433,7 +430,6 @@ class prevoyance_obligatoire_cadre_taux_employeur(Variable):
     value_type = float
     default_value = 0.015  # 1.5% est le minimum en 2014
     entity = Individu
-    base_function = requested_period_last_value
     label = u"Taux de cotisation employeur pour la prévoyance obligatoire des cadres"
     definition_period = MONTH
 
