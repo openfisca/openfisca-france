@@ -380,6 +380,7 @@ class livret_a(Variable):
     entity = Individu
     label = u"Épargne sur Livret A"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class epargne_revenus_non_imposables(Variable):
@@ -388,6 +389,7 @@ class epargne_revenus_non_imposables(Variable):
     entity = Individu
     label = u"Épargne générant des revenus non imposables hors Livret A"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class epargne_revenus_imposables(Variable):
