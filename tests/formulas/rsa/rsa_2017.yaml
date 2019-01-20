@@ -164,7 +164,9 @@
       4:
         age: 5
     famille:
-      rsa_isolement_recent: true
+      rsa_isolement_recent:
+        2016: true
+        2017: true
       parents: [1]
       enfants: [3, 4]
     menage:
@@ -290,7 +292,9 @@
     famille:
       parents: [1]
       enfants: [2, 3]
-      rsa_isolement_recent: true
+      rsa_isolement_recent:
+        2016: true
+        2017: true
       rsa_nb_enfants:
         2017-01: 2
         2016-12: 2
