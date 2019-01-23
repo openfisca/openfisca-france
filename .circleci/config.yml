@@ -141,7 +141,7 @@ workflows:
       - lint_python_files:
           requires:
             - build
-      - deploy
+      - deploy:
           requires:
             - check_version_and_changelog
             - build
