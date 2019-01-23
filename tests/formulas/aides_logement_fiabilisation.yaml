@@ -1,0 +1,178 @@
+ # Cas N° 1
+- name: "Cas 1-zone_1: Personne seule chômeur indemnisé réside dans un secteur locatif vide non conventionné dans la zone 1"
+  period: 2018-11
+  relative_error_margin: 0.01
+  input:
+    famille:
+      parents: parent1
+    menage:
+      personne_de_reference: parent1
+      statut_occupation_logement: locataire_vide
+      zone_apl: zone_1
+      loyer: 500
+    individus:
+      parent1:
+        date_naissance: 1968-01-10
+        activite: chomeur
+        date_debut_chomage: 2018-07-01
+        salaire_imposable:
+          2016: 10000
+    foyer_fiscal:
+      declarants: parent1
+  output:
+    aide_logement: 252.26
+
+ # Cas N° 2
+- name: "Cas 2-zone_3: Personne seule chômeur indemnisé réside dans un secteur locatif vide conventionné dans la zone 3"
+  period: 2018-11
+  relative_error_margin: 0.01
+  input:
+    famille:
+      parents: parent1
+    menage:
+      personne_de_reference: parent1
+      statut_occupation_logement: locataire_vide
+      logement_conventionne:  true
+      zone_apl: zone_3
+      loyer: 500
+    individus:
+      parent1:
+        date_naissance: 1968-01-10
+        activite: chomeur
+        date_debut_chomage: 2018-07-01
+        salaire_imposable:
+          2016: 10000
+    foyer_fiscal:
+      declarants: parent1
+  output:
+    aide_logement: 173.65
+
+ # Cas N° 3
+- name: "Cas 3-zone_1: Couple réside dans un secteur locatif meublé non conventionné dans la zone 1"
+  period: 2018-11
+  relative_error_margin: 0.01
+  input:
+    famille:
+      parents: [parent1, parent2]
+    menage:
+      personne_de_reference: parent1
+      conjoint: parent2
+      statut_occupation_logement: locataire_meuble
+      zone_apl: zone_1
+      loyer: 720
+    individus:
+      parent1:
+        date_naissance: 1990-06-06
+        salaire_imposable:
+          2016: 8000
+      parent2:
+        date_naissance: 1992-07-12
+        salaire_imposable:
+          2016: 6000
+    foyer_fiscal:
+      declarants: [parent1, parent2]
+  output:
+    aide_logement: 153.77
+
+ # Cas N° 4
+- name: "Cas 4-zone_2: Couple avec un enfant réside dans un sectaur locatif meublé non conventionné dans la zone 2"
+  period: 2018-11
+  relative_error_margin: 0.01
+  input:
+    famille:
+      parents: [parent1, parent2]
+      enfants: enfant1
+    menage:
+      personne_de_reference: parent1
+      conjoint: parent2
+      enfants: enfant1
+      statut_occupation_logement: locataire_meuble
+      zone_apl: zone_2
+      loyer: 720
+    individus:
+      parent1:
+        date_naissance: 1990-06-06
+        salaire_imposable:
+          2016: 8000
+      parent2:
+        date_naissance: 1992-07-12
+        salaire_imposable:
+          2016: 6000
+      enfant1:
+        date_naissance: 2014-01-01
+    foyer_fiscal:
+      declarants: [parent1, parent2]
+      personnes_a_charge: enfant1
+  output:
+    aide_logement: 234.17
+
+ # Cas N° 5
+- name: "Cas 5-zone_2: Couple avec deux enfant réside dans un secteur locatif meublé conventionné dans la zone 2"
+  period: 2018-11
+  relative_error_margin: 0.01
+  input:
+    famille:
+      parents: [parent1, parent2]
+      enfants: [enfant1, enfant2]
+    menage:
+      personne_de_reference: parent1
+      conjoint: parent2
+      enfants: [enfant1, enfant2]
+      statut_occupation_logement: locataire_meuble
+      logement_conventionne: true
+      zone_apl: zone_2
+      loyer: 720
+    individus:
+      parent1:
+        date_naissance: 1990-06-06
+        salaire_imposable:
+          2016: 8888.88
+      parent2:
+        date_naissance: 1992-07-12
+        salaire_imposable:
+          2016: 6000
+      enfant1:
+        date_naissance: 2014-01-01
+      enfant2:
+        date_naissance: 2016-12-18
+    foyer_fiscal:
+      declarants: [parent1, parent2]
+      personnes_a_charge: [enfant1, enfant2]
+  output:
+    aide_logement: 247.33
+
+ # Cas N° 6
+- name: "Cas 6-zone_3: Couple avec un enfant réside dans un sectaur locatif meublé conventionné dans la zone 3"
+  period: 2018-11
+  relative_error_margin: 0.01
+  input:
+    famille:
+      parents: [parent1, parent2]
+      enfants: enfant1
+    menage:
+      personne_de_reference: parent1
+      conjoint: parent2
+      enfants: enfant1
+      statut_occupation_logement: locataire_meuble
+      logement_conventionne: true
+      zone_apl: zone_3
+      loyer: 720
+    individus:
+      parent1:
+        date_naissance: 1990-06-06
+        salaire_imposable:
+          2016: 8888.88
+      parent2:
+        date_naissance: 1992-07-12
+        salaire_imposable:
+          2016: 6000
+      enfant1:
+        date_naissance: 2014-01-01
+    foyer_fiscal:
+      declarants: [parent1, parent2]
+      personnes_a_charge: enfant1
+  output:
+    aide_logement: 151.54
+
+
+
