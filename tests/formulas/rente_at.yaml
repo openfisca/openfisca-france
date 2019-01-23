@@ -1,0 +1,47 @@
+- name: "cas 1: taux d'incapacité permanente inferieur a 50% et le salaire annuel est supérieur au salaire minimum "
+  period: 2018-07
+  absolute_error_margin: 0.02
+  individus:
+    - id: "parent1"
+      age: 36
+      taux_accident_travail: 0.3
+      salaire_net:
+        2017-7: 18600
+  output_variables:
+    rente_accident_travail: 18600 * 0.15
+
+- name: "cas 2: taux d'incapacité permanente superieur à 50% et le salaire annuel est supérieur au salaire minimum "
+  period: 2018-07
+  absolute_error_margin: 0.02
+  individus:
+    - id: "parent1"
+      age: 36
+      taux_accident_travail: 0.75
+      salaire_net:
+        2017-7: 18600
+  output_variables:
+    rente_accident_travail: 18600 * 0.625
+
+- name: "cas 3: taux d'incapacité permanente inferieur a 10% et le salaire annuel est supérieur au salaire minimum "
+  period: 2018-07
+  absolute_error_margin: 0.02
+  individus:
+    - id: "parent1"
+      age: 36
+      taux_accident_travail: 0.05
+      salaire_net:
+        2017-7: 18600
+  output_variables:
+    rente_accident_travail: 18600 * 0
+
+- name: "cas 4: le salaire annuel est supérieur a 2 fois salaire minimum et inferieur a huit fois le salaire minimum"
+  period: 2018-07
+  absolute_error_margin: 0.02
+  individus:
+    - id: "parent1"
+      age: 36
+      taux_accident_travail: 0.3
+      salaire_net:
+        2017-7: 37640
+  output_variables:
+    rente_accident_travail: (37040 + (37640 - 37040)/3) * 0.15

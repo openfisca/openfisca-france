@@ -1,0 +1,6 @@
+description: Taux d'incapacité minimum
+reference: "https://www.legifrance.gouv.fr/affichCode.do?idSectionTA=LEGISCTA000006173455&cidTexte=LEGITEXT000006073189"
+unit: currency
+values:
+  1985-12-21:
+    value: 0.1

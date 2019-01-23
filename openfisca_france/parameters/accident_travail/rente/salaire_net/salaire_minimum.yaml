@@ -1,0 +1,10 @@
+description:  Salaire minimum des rentes
+reference: "https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006743072&dateTexte=&categorieLien=cid"
+unit: currency
+values:
+  1954-09-01:
+    value: 276000
+  2016-04-01:
+    value: 18281.80
+  2018-04-01:
+    value: 18520

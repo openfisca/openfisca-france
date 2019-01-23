@@ -1,0 +1,22 @@
+description: Tranche de salaire annuel pour calculer la rente d’accident du travail
+reference: openfisca
+unit: currency
+brackets:
+- rate:
+    2018-01-01:
+      value: 1
+  threshold:
+    2018-01-01:
+      value: 0
+- rate:
+    2018-01-01:
+      value: 0.3333334
+  threshold:
+    2018-01-01:
+      value: 2
+- rate:
+    2018-01-01:
+      value: 0
+  threshold:
+    2018-01-01:
+      value: 8
