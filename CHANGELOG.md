@@ -1,5 +1,12 @@
 # Changelog
 
+### 34.2.2 [#1262](https://github.com/openfisca/openfisca-france/pull/1262)
+
+* Correction d'un crash.
+* Zones impactées : `prestations/minima_sociaux/ppa.py`.
+* Détails :
+  - Répare la variable de la prime d'activité versée
+
 ### 34.2.1 [#1257](https://github.com/openfisca/openfisca-france/pull/1257)
 
 * Changement mineur.
