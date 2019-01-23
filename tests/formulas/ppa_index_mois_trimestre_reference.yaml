@@ -14,5 +14,17 @@
   input:
     ppa_mois_demande:
       ETERNITY: 2017-11
+    ppa:
+      2018-08: 400
+      2018-09: 300
+      2018-10: 200
+      2018-11: 100
   output:
     ppa_indice_du_mois_trimestre_reference: 0
+    ppa_versee:
+      2018-08: 400
+      2018-09: 400
+      2018-10: 400
+      2018-11: 100
+      2018-12: 100
+      2019-01: 100
