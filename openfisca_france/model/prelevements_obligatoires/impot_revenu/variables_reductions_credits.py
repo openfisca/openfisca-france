@@ -1118,7 +1118,7 @@ class f7wr(Variable):
     definition_period = YEAR
 
 
-# Investissements dans les DOM-TOM dans le cadre d'une entrepise
+# Investissements dans les DOM-TOM dans le cadre d'une entreprise
 
 class f7ur(Variable):
     cerfa_field = u"7UR"
