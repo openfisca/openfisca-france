@@ -1,5 +1,4 @@
-- name: AAH Eligibilité
-  description: Montant AAH pour un couple sans revenus
+- name: 'Cas 1: Personne bénéfice du complément de Ressources'
   period: 2019-01
   absolute_error_margin: 1
   input:
@@ -8,7 +7,8 @@
     individus:
       parent1:
         age: 58
-        taux_incapacite: 0.95
+        taux_incapacite: 0.81
+        taux_capacite_travail: 0.04
         aah: 261.56
         asi: 230.32
     foyers_fiscaux:
@@ -23,8 +23,7 @@
     complement_ressources: 179.31
     caah: 179.31
 
-- name: AAH Eligibilité
-  description: Montant AAH pour un couple sans revenus
+- name: 'cas 2: Personne bénéfice de la Majoration pour vie autonome'
   period: 2019-01
   absolute_error_margin: 1
   input:
@@ -34,7 +33,7 @@
     individus:
       parent1:
         age: 58
-        taux_incapacite: 0.95
+        taux_incapacite: 0.81
         aah: 261.56
         asi: 200.71
     foyers_fiscaux:
@@ -47,3 +46,70 @@
         - parent1
   output:
     mva: 104.77
+    caah: 104.77
+
+- name: 'Cas 3: Montant AAH pour une personne hospitalisé'
+  period: 2019-01
+  absolute_error_margin: 1
+  input:
+    famille:
+      parents: parent1
+    individus:
+      parent1:
+        age: 55
+        aah_date_hospitalise: 2018-10-15
+        taux_incapacite: 0.8
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - parent1
+    menages:
+      menage_0:
+        personne_de_reference:
+        - parent1
+  output:
+    aah: 258.00
+
+- name: 'Cas 4: Montant AAH pour une personne incarcéré'
+  period: 2018-09
+  absolute_error_margin: 1
+  input:
+    famille:
+      parents: parent1
+    individus:
+      parent1:
+        age: 55
+        aah_date_incarcere: 2018-06-17
+        taux_incapacite: 0.8
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - parent1
+    menages:
+      menage_0:
+        personne_de_reference:
+        - parent1
+  output:
+    aah: 245.70
+
+- name: 'Cas 5: Montant AAH pour une personne incarcéré'
+  period: 2019-01
+  absolute_error_margin: 1
+  input:
+    famille:
+      parents: parent1
+    individus:
+      parent1:
+        age: 55
+        aah_date_incarcere: 2018-06-17
+        taux_incapacite: 0.8
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - parent1
+    menages:
+      menage_0:
+        personne_de_reference:
+        - parent1
+  output:
+    aah: 258.00

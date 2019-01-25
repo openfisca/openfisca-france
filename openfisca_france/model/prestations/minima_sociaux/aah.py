@@ -2,6 +2,8 @@
 # -*- coding: utf-8 -*-
 from openfisca_france.model.base import *
 
+from numpy import datetime64
+
 # Références juridiques - Code de la sécurité sociale
 #
 # Article L821-1 / 821-8
@@ -13,23 +15,26 @@ from openfisca_france.model.base import *
 # Article D821-1 / 821-11
 # https://www.legifrance.gouv.fr/affichCode.do;jsessionid=157287C570B3AE9450A0BD88AA902970.tplgfr38s_1?idSectionTA=LEGISCTA000006141593&cidTexte=LEGITEXT000006073189&dateTexte=20180731
 
-class aah_hospitalise(Variable):
-    value_type = bool
+class taux_capacite_travail(Variable):
+    value_type = float
+    default_value = 1.0
     entity = Individu
-    label = u"Le bénéficiaire de l'AAH est hospitalisé dans un établissement de soins"
+    label = u"Taux de capacité de travail"
     definition_period = MONTH
 
 
-class aah_heberge_en_mas(Variable):
-    value_type = bool
+class aah_date_incarcere(Variable):
+    value_type = date
+    default_value = date.max
+    label = u"La date de début d'incarcération"
     entity = Individu
-    label = u"Le bénéficiaire de l'AAH est placé à temps plein en Maison d'accueil spécialisée ou soumettre au régime d'internat dans un établissement type IME (Institut Médico-Educatif) ou IMPRO "
     definition_period = MONTH
 
 
-class aah_incarcere(Variable):
-    value_type = bool
-    label = u"Le bénéficiaire de l'AAH est incarcéré ou bénéficie d'une mesure d'aménagement ou d'exécution de peine"
+class aah_date_hospitalise(Variable):
+    value_type = date
+    default_value = date.max
+    label = u"La date de début d'hospitalisation"
     entity = Individu
     definition_period = MONTH
 
@@ -279,13 +284,12 @@ class aah_plafond_ressources(Variable):
 
     def formula(individu, period, parameters):
         law = parameters(period).prestations
-
         en_couple = individu.famille('en_couple', period)
         af_nbenf = individu.famille('af_nbenf', period)
-        montant_max = law.minima_sociaux.aah.montant
-        return montant_max * (1 +
-                              en_couple * law.minima_sociaux.aah.majoration_du_plafond_pour_un_couple +
-                              law.minima_sociaux.aah.tx_plaf_supp * af_nbenf)
+
+        montant_max = law.minima_sociaux.aah.montantgit
+        return montant_max * (1 + en_couple + law.minima_sociaux.aah.tx_plaf_supp * af_nbenf)
+
 
 
 class aah_base(Variable):
@@ -318,6 +322,7 @@ class aah(Variable):
     calculate_output = calculate_output_add
     value_type = float
     label = u"Allocation adulte handicapé mensualisée"
+    reference = u"https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006754198"
     entity = Individu
     definition_period = MONTH
     set_input = set_input_divide_by_period
@@ -325,19 +330,13 @@ class aah(Variable):
     def formula(individu, period, parameters):
         aah_base = individu('aah_base', period)
         aah_param = parameters(period).prestations.minima_sociaux.aah
+        two_months = datetime64(period.offset(-2, 'month').start)
 
-        previous_months_1 = period.last_month
-        previous_months_2 = previous_months_1.last_month
+        aah_date_hospitalise = individu("aah_date_hospitalise", period)
+        aah_date_incarcere = individu("aah_date_incarcere", period)
+        aah_reduction = (aah_date_hospitalise <= two_months) + (aah_date_incarcere <= two_months)
 
-        aah_hospitalise = individu("aah_hospitalise", previous_months_1) * individu("aah_hospitalise",
-                                                                                    previous_months_2)
-        aah_heberge_en_mas = individu("aah_heberge_en_mas", previous_months_1) * individu("aah_heberge_en_mas",
-                                                                                          previous_months_2)
-        aah_incarcere = individu("aah_incarcere", previous_months_1) * individu("aah_incarcere", previous_months_2)
-
-        return (((aah_hospitalise + aah_heberge_en_mas + aah_incarcere) * (
-                    aah_base * (1 - aah_param.taux_reduction_hospitalise_ou_incarcere)))
-                + ((not_(aah_hospitalise + aah_heberge_en_mas + aah_incarcere)) * aah_base))
+        return where(aah_reduction, aah_base * (1 - aah_param.taux_reduction_hospitalise_ou_incarcere), aah_base)
 
 
 class caah(Variable):
@@ -347,54 +346,7 @@ class caah(Variable):
     entity = Individu
     set_input = set_input_divide_by_period
     definition_period = MONTH
-    '''
-        Complément d'allocation adulte handicapé : complément de ressources ou majoration vie autonome.
 
-        Complément de ressources
-
-        Pour bénéficier du complément de ressources, l’intéressé doit remplir les conditions
-        suivantes :
-        - percevoir l’allocation aux adultes handicapés à taux normal ou en
-           complément d’une pension d’invalidité, d’une pension de vieillesse ou
-           d’une rente accident du travail ;
-        - avoir un taux d’incapacité égal ou supérieur à 80 % ;
-        - avoir une capacité de travail, appréciée par la commission des droits et
-           de l’autonomie (CDAPH) inférieure à 5 % du fait du handicap ;
-        - ne pas avoir perçu de revenu à caractère professionnel depuis un an à la date
-           du dépôt de la demande de complément ;
-        - disposer d’un logement indépendant.
-        A noter : une personne hébergée par un particulier à son domicile n’est pas
-        considérée disposer d’un logement indépendant, sauf s’il s’agit de son conjoint,
-        de son concubin ou de la personne avec laquelle elle est liée par un pacte civil
-        de solidarité.
-
-        Le complément de ressources est destiné aux personnes handicapées dans l’incapacité de
-        travailler. Il est égal à la différence entre la garantie de ressources pour les personnes
-        handicapées (GRPH) et l’AAH.
-
-        Majoration pour la vie autonome
-
-        La majoration pour la vie autonome est destinée à permettre aux personnes, en capacité de travailler et
-        au chômage en raison de leur handicap, de pourvoir faire face à leur dépense de logement.
-
-        Conditions d'attribution
-        La majoration pour la vie autonome est versée automatiquement aux personnes qui remplissent les conditions
-        suivantes :
-        - percevoir l'AAH à taux normal ou en complément d'un avantage vieillesse ou d'invalidité ou d'une rente
-        accident du travail,
-        - avoir un taux d'incapacité au moins égal à 80 %,
-        - disposer d'un logement indépendant,
-        - bénéficier d'une aide au logement (aide personnelle au logement, ou allocation de logement sociale ou
-        familiale), comme titulaire du droit, ou comme conjoint, concubin ou partenaire lié par
-        un Pacs au titulaire du droit,
-        - ne pas percevoir de revenu d'activité à caractère professionnel propre.
-
-        Choix entre la majoration ou la garantie de ressources
-        La majoration pour la vie autonome n'est pas cumulable avec la garantie de ressources pour les personnes
-        handicapées.
-        La personne qui remplit les conditions d'octroi de ces deux avantages doit choisir de bénéficier de l'un ou de
-        l'autre.
-    '''
     def formula_2015_07_01(individu, period, parameters):
         complement_ressources = individu('complement_ressources', period)
         mva = individu('mva', period)
@@ -452,16 +404,52 @@ class caah(Variable):
         return ancien_caah
 
 
+class complement_ressources(Variable):
+    entity = Individu
+    value_type = float
+    label = u"Majoration pour la vie autonome"
+    reference = u"https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006745305&dateTexte=&categorieLien=cid"
+    definition_period = MONTH
+
+    def formula(individu, period, parameters):
+        annee_precedente = period.start.period('year').offset(-1)
+        prestations = parameters(period).prestations
+        garantie_ressources = prestations.minima_sociaux.caah.garantie_ressources
+        aah_montant = prestations.minima_sociaux.aah.montant
+        taux_capacite_travail_max = prestations.minima_sociaux.aah.taux_capacite_travail
+        taux_incapacite_min = prestations.minima_sociaux.aah.taux_incapacite
+        aah = individu('aah', period)
+        asi_eligibilite = individu('asi_eligibilite', period)
+        asi = individu('asi', period)  # montant asi de la famille
+        benef_asi = (asi_eligibilite * (asi > 0))
+        taux_incapacite = individu('taux_incapacite', period)
+        taux_capacite_travail = individu('taux_capacite_travail', period)
+
+        locataire_foyer = (individu.menage('statut_occupation_logement', period) == TypesStatutOccupationLogement.locataire_foyer)
+        salaire_net = individu('salaire_net', annee_precedente, options=[ADD])
+
+        eligible_complement_ressources = ((taux_incapacite >= taux_incapacite_min) *
+                                          (taux_capacite_travail < taux_capacite_travail_max) *
+                                          ((aah > 0) | (benef_asi > 0)) *
+                                          not_(locataire_foyer) *
+                                          (salaire_net == 0)
+                                          )
+        complement_ressources = eligible_complement_ressources * max_(garantie_ressources - aah_montant, 0)
+
+        return complement_ressources
+
+
 class mva(Variable):
     entity = Individu
     value_type = float
     label = u"Majoration pour la vie autonome"
+    reference= u"https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=6E5B97C7E6C7E06666BCFFA11871E70B.tplgfr43s_2?idArticle=LEGIARTI000006745350&cidTexte=LEGITEXT000006073189&dateTexte=20190124"
     definition_period = MONTH
 
-    def formula_2015_05_01(individu, period, parameters):
-        # Rolling year
+    def formula(individu, period, parameters):
         annee_precedente = period.start.period('year').offset(-1)
         prestations = parameters(period).prestations
+        taux_incapacite_min = prestations.minima_sociaux.aah.taux_incapacite
         aah = individu('aah', period)
         taux_incapacite = individu('taux_incapacite', period)
         asi_eligibilite = individu('asi_eligibilite', period)
@@ -470,42 +458,17 @@ class mva(Variable):
         locataire_foyer = (individu.menage('statut_occupation_logement',
                                            period) == TypesStatutOccupationLogement.locataire_foyer)
         salaire_net = individu('salaire_net', annee_precedente, options=[ADD])
-
         benef_asi = (asi_eligibilite * (asi > 0))
-        eligible_mva = (al > 0) * (taux_incapacite > 0.8) * ((aah > 0) | (benef_asi > 0)) * not_(locataire_foyer) * (
-                    salaire_net == 0)
+
+        eligible_mva = ((al > 0) *
+                        (taux_incapacite >= taux_incapacite_min) *
+                        ((aah > 0) | (benef_asi > 0)) *
+                        not_(locataire_foyer) *
+                        (salaire_net == 0)
+                        )
         mva_montant = prestations.minima_sociaux.aah.mva
 
         return mva_montant * eligible_mva
-
-
-class complement_ressources(Variable):
-    entity = Individu
-    value_type = float
-    label = u"Majoration pour la vie autonome"
-    definition_period = MONTH
-
-    def formula_2015_05_01(individu, period, parameters):
-        # Rolling year
-        annee_precedente = period.start.period('year').offset(-1)
-        prestations = parameters(period).prestations
-
-        garantie_ressources = prestations.minima_sociaux.caah.garantie_ressources
-        aah_montant = prestations.minima_sociaux.aah.montant
-
-        aah = individu('aah', period)
-        asi_eligibilite = individu('asi_eligibilite', period)
-        asi = individu('asi', period)  # montant asi de la famille
-        benef_asi = (asi_eligibilite * (asi > 0))
-
-        taux_incapacite = individu('taux_incapacite', period)
-        locataire_foyer = (individu.menage('statut_occupation_logement', period) == TypesStatutOccupationLogement.locataire_foyer)
-        salaire_net = individu('salaire_net', annee_precedente, options=[ADD])
-
-        eligible_complement_ressources = (taux_incapacite > 0.8) * ((aah > 0) | (benef_asi > 0)) * not_(locataire_foyer) * (salaire_net == 0)
-        complement_ressources = eligible_complement_ressources * max_(garantie_ressources - aah_montant, 0)
-
-        return complement_ressources
 
 
 class pch(Variable):
