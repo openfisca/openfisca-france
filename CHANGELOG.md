@@ -1,5 +1,13 @@
 # Changelog
 
+### 34.3.1 [#1263](https://github.com/openfisca/openfisca-france/pull/1263)
+
+* Changement mineur
+* Zones impactées :
+   - `reductions_impot`.
+* Détails :
+  - Correction d'une typo en plusieurs endroits.
+
 ## 34.3.0 [#1259](https://github.com/openfisca/openfisca-france/pull/1259)
 
 * Revalorisation périodique

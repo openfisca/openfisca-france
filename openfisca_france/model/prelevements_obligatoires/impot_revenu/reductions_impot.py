@@ -796,7 +796,7 @@ class doment(Variable):
 
     def formula_2005_01_01(foyer_fiscal, period, parameters):
         '''
-        Investissements dans les DOM-TOM dans le cadre d'une entrepise.
+        Investissements dans les DOM-TOM dans le cadre d'une entreprise.
         '''
         f7ur = foyer_fiscal('f7ur', period)
         f7oz = foyer_fiscal('f7oz', period)
@@ -808,7 +808,7 @@ class doment(Variable):
 
     def formula_2006_01_01(foyer_fiscal, period, parameters):
         '''
-        Investissements dans les DOM-TOM dans le cadre d'une entrepise.
+        Investissements dans les DOM-TOM dans le cadre d'une entreprise.
         '''
         f7ur = foyer_fiscal('f7ur', period)
         f7oz = foyer_fiscal('f7oz', period)
@@ -821,7 +821,7 @@ class doment(Variable):
 
     def formula_2009_01_01(foyer_fiscal, period, parameters):
         '''
-        Investissements dans les DOM-TOM dans le cadre d'une entrepise.
+        Investissements dans les DOM-TOM dans le cadre d'une entreprise.
         '''
         f7oz = foyer_fiscal('f7oz', period)
         f7pz = foyer_fiscal('f7pz', period)
@@ -839,7 +839,7 @@ class doment(Variable):
 
     def formula_2010_01_01(foyer_fiscal, period, parameters):
         '''
-        Investissements dans les DOM-TOM dans le cadre d'une entrepise.
+        Investissements dans les DOM-TOM dans le cadre d'une entreprise.
         '''
         f7oz = foyer_fiscal('f7oz', period)
         f7pz = foyer_fiscal('f7pz', period)
@@ -874,7 +874,7 @@ class doment(Variable):
 
     def formula_2011_01_01(foyer_fiscal, period, parameters):
         '''
-        Investissements dans les DOM-TOM dans le cadre d'une entrepise.
+        Investissements dans les DOM-TOM dans le cadre d'une entreprise.
         '''
         f7ks = foyer_fiscal('f7ks', period)
         f7kt = foyer_fiscal('f7kt', period)
@@ -919,7 +919,7 @@ class doment(Variable):
 
     def formula_2012_01_01(foyer_fiscal, period, parameters):
         '''
-        Investissements dans les DOM-TOM dans le cadre d'une entrepise.
+        Investissements dans les DOM-TOM dans le cadre d'une entreprise.
         '''
         f7ks = foyer_fiscal('f7ks', period)
         f7kt = foyer_fiscal('f7kt', period)
@@ -996,7 +996,7 @@ class doment(Variable):
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
         '''
-        Investissements dans les DOM-TOM dans le cadre d'une entrepise.
+        Investissements dans les DOM-TOM dans le cadre d'une entreprise.
         '''
         fhsa = foyer_fiscal('fhsa', period)
         fhsb = foyer_fiscal('fhsb', period)
@@ -1092,7 +1092,7 @@ class doment(Variable):
 
     def formula_2014_01_01(foyer_fiscal, period, parameters):
         '''
-        Investissements dans les DOM-TOM dans le cadre d'une entrepise.
+        Investissements dans les DOM-TOM dans le cadre d'une entreprise.
         '''
         fhaa = foyer_fiscal('fhaa', period)
         fhab = foyer_fiscal('fhab', period)
@@ -1213,7 +1213,7 @@ class doment(Variable):
 
     def formula_2015_01_01(foyer_fiscal, period, parameters):
         '''
-        Investissements dans les DOM-TOM dans le cadre d'une entrepise.
+        Investissements dans les DOM-TOM dans le cadre d'une entreprise.
         '''
         fhaa = foyer_fiscal('fhaa', period)
         fhab = foyer_fiscal('fhab', period)
@@ -1352,7 +1352,7 @@ class doment(Variable):
 
     def formula_2016_01_01(foyer_fiscal, period, parameters):
         '''
-        Investissements dans les DOM-TOM dans le cadre d'une entrepise.
+        Investissements dans les DOM-TOM dans le cadre d'une entreprise.
         '''
         fhaa = foyer_fiscal('fhaa', period)
         fhab = foyer_fiscal('fhab', period)
@@ -1497,7 +1497,7 @@ class doment(Variable):
 
     def formula_2017_01_01(foyer_fiscal, period, parameters):
         '''
-        Investissements dans les DOM-TOM dans le cadre d'une entrepise.
+        Investissements dans les DOM-TOM dans le cadre d'une entreprise.
         '''
         fhaa = foyer_fiscal('fhaa', period)
         fhab = foyer_fiscal('fhab', period)
