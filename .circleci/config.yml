@@ -1,48 +1,7 @@
 # CircleCI 2.0 configuration file. See <https://circleci.com/docs/2.0/language-python/>.
 version: 2
 jobs:
-  build_python2:
-    parallelism: 2  # Speed up the tests, while letting two containers available for other builds.
-    docker:
-      - image: python:2.7.15
-
-    steps:
-      - checkout
-
-      - restore_cache:
-          key: v1-py2-deps-{{ .Branch }}-{{ checksum "setup.py" }}
-
-      - run:
-          name: Create a virtualenv
-          command: |
-            mkdir -p /tmp/venv/openfisca_france
-            virtualenv /tmp/venv/openfisca_france
-            echo "source /tmp/venv/openfisca_france/bin/activate" >> $BASH_ENV
-
-      - run:
-          name: Install dependencies
-          command: |
-            make build
-            # pip install --editable git+https://github.com/openfisca/openfisca-core.git@BRANCH_NAME#egg=OpenFisca-Core  # use a specific branch of OpenFisca-Core
-
-      - save_cache:
-          key: v1-py2-deps-{{ .Branch }}-{{ checksum "setup.py" }}
-          paths:
-            - /tmp/venv/openfisca_france
-            - dist
-
-      - save_cache:
-          key: v1-py2-build-{{ .Revision }}
-          paths:
-            - dist
-
-      - run:
-          name: Run tests
-          command: |
-            pytest `circleci tests glob "tests/**/[^_]*.py" | circleci tests split`
-            openfisca-run-test `circleci tests glob "tests/**/*.{yaml,yml}" | circleci tests split`
-
-  build_python3:
+  build:
     parallelism: 2  # Speed up the tests, while letting two containers available for other builds.
     docker:
       - image: python:3.7
@@ -136,45 +95,11 @@ jobs:
             git fetch
             .circleci/is-version-number-acceptable.sh
 
-  deploy_python2:
-    docker:
-      - image: python:2.7.15
-    environment:
-      PYPI_USERNAME: openfisca-bot
-      # PYPI_PASSWORD: this value is set in CircleCI's web interface; do not set it here, it is a secret!
-
-    steps:
-      - checkout
-
-      - restore_cache:
-          key: v1-py2-deps-{{ .Branch }}-{{ checksum "setup.py" }}
-
-      - restore_cache:
-          key: v1-py2-build-{{ .Revision }}
-
-      - run:
-          name: Check for functional changes
-          command: if ! .circleci/has-functional-changes.sh ; then circleci step halt ; fi
-
-      - run:
-          name: Upload a Python package to Pypi
-          command: |
-            source /tmp/venv/openfisca_france/bin/activate
-            twine upload dist/* --username $PYPI_USERNAME --password $PYPI_PASSWORD
-
-      - run:
-          name: Publish a git tag
-          command: .circleci/publish-git-tag.sh
-
-      - run:
-          name: Deploy the Web API
-          command: ssh -o StrictHostKeyChecking=no deploy-api@fr.openfisca.org
-
-  deploy_python3:
+  deploy:
     docker:
       - image: python:3.7
     environment:
-      PYPI_USERNAME: openfisca-bot  # Edit this value to replace it by your Pypi username
+      PYPI_USERNAME: openfisca-bot
       # PYPI_PASSWORD: this value is set in CircleCI's web interface; do not set it here, it is a secret!
 
     steps:
@@ -196,34 +121,30 @@ jobs:
             source /tmp/venv/openfisca_france/bin/activate
             twine upload dist/* --username $PYPI_USERNAME --password $PYPI_PASSWORD
 
+      - run:
+          name: Publish a git tag
+          command: .circleci/publish-git-tag.sh
+
+      - run:
+          name: Deploy the Web API
+          command: ssh -o StrictHostKeyChecking=no deploy-api@fr.openfisca.org
+
 workflows:
   version: 2
   build_and_deploy:
     jobs:
       - check_version_and_changelog
-      - build_python2
-      - build_python3
+      - build
       - lint_yaml_files:
           requires:
-            - build_python3
+            - build
       - lint_python_files:
           requires:
-            - build_python3
-      - deploy_python2:
+            - build
+      - deploy:
           requires:
             - check_version_and_changelog
-            - build_python2
-            - build_python3
-            - lint_yaml_files
-            - lint_python_files
-          filters:
-            branches:
-              only: master
-      - deploy_python3:
-          requires:
-            - check_version_and_changelog
-            - build_python2
-            - build_python3
+            - build
             - lint_yaml_files
             - lint_python_files
           filters:
