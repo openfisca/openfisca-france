@@ -130,6 +130,12 @@ class ppa_revenu_activite_individu(Variable):
     entity = Individu
     label = u"Revenu d'activité pris en compte pour la PPA (Individu) pour un mois"
     definition_period = MONTH
+    reference = [
+        'Article L842-4 du code de la sécurité sociale',
+        'https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=358C45A1DF4FA63CC63BEC9456F63F18.tplgfr21s_3?idArticle=LEGIARTI000033813782&cidTexte=LEGITEXT000006073189',
+        'Article R844-1 du code de la sécurité sociale',
+        'https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=358C45A1DF4FA63CC63BEC9456F63F18.tplgfr21s_3?idArticle=LEGIARTI000031675756&cidTexte=LEGITEXT000006073189'
+        ]
 
     def formula(individu, period, parameters):
         P = parameters(period)
