@@ -59,5 +59,12 @@ class TypesStatutOccupationLogement(Enum):
     sans_domicile = u"Sans domicile stable"
 
 
+class TypesScolarite(Enum):
+    __order__ = 'inconnue college lycee'  # Needed to preserve the enum order in Python 2
+    inconnue = u"Inconnue"
+    college = u"Collège"
+    lycee = u"Lycée"
+
+
 # Taux de prime moyen de la fonction publique
 TAUX_DE_PRIME = 0.195  # primes_fonction_publique (hors suppl. familial et indemnité de résidence)/rémunération brute
