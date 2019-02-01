@@ -1,12 +1,20 @@
 # Changelog
 
+## 34.4.0 [#1264](https://github.com/openfisca/openfisca-france/pull/1264)
+
+* Évolution du système socio-fiscal. 
+* Périodes concernées : à partir du 01/11/2018.
+* Zones impactées : `prestations/minima_sociaux/aah`
+* Détails :
+  - Diminue le plafond de ressources à 89% (au lieu de 100%) pour les bénéficiaires de l'allocation adulte handicapé en couple.
+
 ### 34.3.1 [#1263](https://github.com/openfisca/openfisca-france/pull/1263)
 
 * Changement mineur
 * Zones impactées :
    - `reductions_impot`.
 * Détails :
-  - Correction d'une typo en plusieurs endroits.
+  - Corrige une typo en plusieurs endroits.
 
 ## 34.3.0 [#1259](https://github.com/openfisca/openfisca-france/pull/1259)
 
@@ -16,7 +24,7 @@
    - `parameters/prestations/aides_logement`.
    - `parameters/prestations/reduction_loyer_solidarite`.
 * Détails :
-  - Revalorisation des aides au logement au 1er janvier 2019 en métropole.
+  - Revalorise les aides au logement au 1er janvier 2019 en métropole.
 
 ### 34.2.2 [#1262](https://github.com/openfisca/openfisca-france/pull/1262)
 
