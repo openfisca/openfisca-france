@@ -1,5 +1,15 @@
 # Changelog
 
+## 34.5.0 [#1248](https://github.com/openfisca/openfisca-france/pull/1248)
+
+* Revalorisation périodique
+* Périodes concernées : à partir du 01/01/2019.
+* Zones impactées : `prestations/prestations_familiales/af/modulation`.
+* Détails :
+  - Revalorise les plafonds de ressources et la majoration du plafond par enfant dans le calcul de l'Allocation Familiale.
+  - Introduit des paramètres plus proches des textes de loi, les anciens étant basés sur des circulaires.
+  - Factorise du code répété vers des "helpers".
+
 ### 34.4.1 [#1265](https://github.com/openfisca/openfisca-france/pull/1265)
 
 * Changement mineur.
