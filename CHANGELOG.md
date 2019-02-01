@@ -1,5 +1,11 @@
 # Changelog
 
+### 34.4.1 [#1265](https://github.com/openfisca/openfisca-france/pull/1265)
+
+* Changement mineur.
+* Détails :
+  - Ajoute des références législatives à une variable de la prime d'activité
+
 ## 34.4.0 [#1264](https://github.com/openfisca/openfisca-france/pull/1264)
 
 * Évolution du système socio-fiscal. 
