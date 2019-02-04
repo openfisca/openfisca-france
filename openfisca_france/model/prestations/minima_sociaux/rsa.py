@@ -883,6 +883,12 @@ class rsa_forfait_asf(Variable):
     entity = Famille
     label = u"Allocation de soutien familial forfaitisée pour le RSA"
     definition_period = MONTH
+    reference = [
+        "Pour le revenu de solidarité active, article R262-10-1 du code de l'action sociale et des familles",
+        "https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=210D97A377874C24466BA7DE746FFF78.tplgfr27s_3?idArticle=LEGIARTI000029006452&cidTexte=LEGITEXT000006074069&dateTexte=20190204",
+        "Pour la prime d'activité, article R844-4 du code de la sécurité sociale",
+        "https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=210D97A377874C24466BA7DE746FFF78.tplgfr27s_3?idArticle=LEGIARTI000031676000&cidTexte=LEGITEXT000006073189&dateTexte=20190204"
+        ]
 
     def formula_2014_04_01(famille, period, parameters):
         # Si un ASF est versé, on ne prend pas en compte le montant réel mais un forfait.

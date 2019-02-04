@@ -1,5 +1,14 @@
 # Changelog
 
+### 34.5.1 [#1267](https://github.com/openfisca/openfisca-france/pull/1267)
+
+* Changement mineur.
+* Détails :
+  - Ajoute des références pour la prise en compte de l'ASF dans le RSA et la PPA
+  - Ajoute des références pour la prise en compte du CF et des AL dans la PPA
+  - (AL = Aides au Logement, CF = Complément Familial, ASF = Allocation de Soutien Familial)
+  - (RSA = Revenu de Solidarité Active, PPA = Prime Pour l'Activité)
+
 ## 34.5.0 [#1248](https://github.com/openfisca/openfisca-france/pull/1248)
 
 * Revalorisation périodique
