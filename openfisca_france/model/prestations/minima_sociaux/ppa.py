@@ -265,6 +265,12 @@ class ppa_base_ressources_prestations_familiales(Variable):
     entity = Famille
     label = u"Prestations familiales prises en compte dans le calcul de la PPA"
     definition_period = MONTH
+    reference = [
+        "Pour la prise en compte du complément familial, II. de l'article R844-4 du code de la sécurité sociale",
+        "https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=210D97A377874C24466BA7DE746FFF78.tplgfr27s_3?idArticle=LEGIARTI000031676000&cidTexte=LEGITEXT000006073189",
+        "Pour la prise en compte des allocations familiales, 3° de l'article R844-5 du code de la sécurité sociale",
+        "https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=210D97A377874C24466BA7DE746FFF78.tplgfr27s_3?idArticle=LEGIARTI000031676016&cidTexte=LEGITEXT000006073189"
+        ]
 
     def formula(famille, period, parameters):
         prestations = [
@@ -276,15 +282,16 @@ class ppa_base_ressources_prestations_familiales(Variable):
             ]
 
         result = sum(famille(prestation, period) for prestation in prestations)
+
         cf_non_majore_avant_cumul = famille('cf_non_majore_avant_cumul', period)
         cf = famille('cf', period)
-        # Seul le montant non majoré est pris en compte dans la base de ressources du RSA
-        cf_non_majore = (cf > 0) * cf_non_majore_avant_cumul
+        cf_pris_en_compte = (cf > 0) * cf_non_majore_avant_cumul
 
         af_base = famille('af_base', period)
         af = famille('af', period)
+        af_prises_en_compte = min_(af_base, af)
 
-        result = result + cf_non_majore + min_(af_base, af)
+        result = result + cf_pris_en_compte + af_prises_en_compte
 
         return result
 
@@ -326,7 +333,7 @@ class ppa_forfait_logement(Variable):
     value_type = float
     entity = Famille
     label = u"Forfait logement intervenant dans le calcul de la prime d'activité"
-    reference = u"https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=9A3FFF4142B563EB5510DDE9F2870BF4.tplgfr41s_2?idArticle=LEGIARTI000031675988&cidTexte=LEGITEXT000006073189&dateTexte=20171222"
+    reference = u"https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=9A3FFF4142B563EB5510DDE9F2870BF4.tplgfr41s_2?idArticle=LEGIARTI000031675988&cidTexte=LEGITEXT000006073189"
     definition_period = MONTH
 
     def formula(famille, period, parameters):
