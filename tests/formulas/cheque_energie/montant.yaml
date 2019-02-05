@@ -38,6 +38,26 @@
     cheque_energie_montant:
       2018: 0
 
+- name: 1 UC - RFR = 7800 (barème 2019)
+  period: 2019
+  input:
+    cheque_energie_unites_consommation: 1
+    rfr:
+      2017: 7800
+  output:
+    cheque_energie_montant:
+      2019: 48
+
+- name: 1 UC - RFR = 17800 (barème 2019)
+  period: 2019
+  input:
+    cheque_energie_unites_consommation: 1
+    rfr:
+      2017: 17800
+  output:
+    cheque_energie_montant:
+      2019: 0
+
 - name: 1.5 UC - RFR < 5600 * 1.5
   period: 2018
   input:
