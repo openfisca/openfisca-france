@@ -794,6 +794,7 @@ class aide_logement_loyer_reel(Variable):
     value_type = float
     entity = Famille
     label = u"Loyer réel dans le calcul des aides au logement"
+    reference = u"https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=F2CE61DFFD9BD9F08700031784123828.tplgfr28s_2?idArticle=LEGIARTI000006737243&cidTexte=LEGITEXT000006073189&categorieLien=id&dateTexte="
     definition_period = MONTH
 
     def formula(famille, period):
