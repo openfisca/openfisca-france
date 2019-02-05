@@ -16,6 +16,7 @@ input:
       age_en_mois: 369
       ass_precondition_remplie: true
       date_naissance: '1984-11-19'
+      date_debut_chomage: 2014-09-01
       chomage_brut:
         2014-09: -218.37882841168638
         2014-10: -218.37882841168638
