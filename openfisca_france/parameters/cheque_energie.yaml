@@ -14,7 +14,7 @@ unites_consommation:
 baremes:
   une_uc:
     metadata:
-      type: lookup
+      type: single_amount
     brackets:
       - threshold:
           2017-01-01:
@@ -42,7 +42,7 @@ baremes:
             value: 0
   une_uc_a_deux_uc:
     metadata:
-      type: lookup
+      type: single_amount
     brackets:
       - threshold:
           2017-01-01:
@@ -70,7 +70,7 @@ baremes:
             value: 0
   plus_de_deux_ucs:
     metadata:
-      type: lookup
+      type: single_amount
     brackets:
       - threshold:
           2017-01-01:
