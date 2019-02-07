@@ -35,8 +35,7 @@ class rente_accident_travail_salarie(Variable):
         montant_rente_accident_travail = where(rente_accident_travail_rachat != 0, rente_accident_travail_apres_rachat,
                                                rente_accident_travail_base)
         rente_accident_travail_verse = select([taux_incapacite < 0.1, taux_incapacite < 0.5, taux_incapacite >= 0.5],
-                                  [0, montant_rente_accident_travail / 4, montant_rente_accident_travail / 12]
-                                  )
+                                  [0, montant_rente_accident_travail / 4, montant_rente_accident_travail / 12])
         return rente_accident_travail_verse
 
 
@@ -49,7 +48,7 @@ class rente_accident_travail_exploitant_agricole(Variable):
 
     def formula(individu, period):
         previous_year = period.start.period('year').offset(-1)
-        non_salarie_agricole = individu('tns_benefice_exploitant_agricole', previous_year,options=[ADD]) != 0
+        non_salarie_agricole = individu('tns_benefice_exploitant_agricole', previous_year, options=[ADD]) != 0
         rente_accident_travail_rachat = individu('rente_accident_travail_rachat', period)
         taux_incapacite = individu('taux_accident_travail', period)
         rente_accident_travail_base = individu('rente_accident_travail_base', period) * non_salarie_agricole
@@ -75,14 +74,14 @@ class indemnite_accident_travail(Variable):
         taux_incapacite = individu('taux_accident_travail', period)
         return select(
             [taux_incapacite == 0.01, taux_incapacite == 0.02, taux_incapacite == 0.03, taux_incapacite == 0.04,
-             taux_incapacite == 0.05, taux_incapacite == 0.06, taux_incapacite == 0.07, taux_incapacite == 0.08,
-             taux_incapacite == 0.09],
+            taux_incapacite == 0.05, taux_incapacite == 0.06, taux_incapacite == 0.07, taux_incapacite == 0.08,
+            taux_incapacite == 0.09],
             [indem_at.indemnite_accident_travail['taux_1'], indem_at.indemnite_accident_travail['taux_2'],
-             indem_at.indemnite_accident_travail['taux_3'], indem_at.indemnite_accident_travail['taux_4'],
-             indem_at.indemnite_accident_travail['taux_5'], indem_at.indemnite_accident_travail['taux_6'],
-             indem_at.indemnite_accident_travail['taux_7'], indem_at.indemnite_accident_travail['taux_8'],
-             indem_at.indemnite_accident_travail['taux_9']],
-        )
+            indem_at.indemnite_accident_travail['taux_3'], indem_at.indemnite_accident_travail['taux_4'],
+            indem_at.indemnite_accident_travail['taux_5'], indem_at.indemnite_accident_travail['taux_6'],
+            indem_at.indemnite_accident_travail['taux_7'], indem_at.indemnite_accident_travail['taux_8'],
+            indem_at.indemnite_accident_travail['taux_9']]
+            )
 
 
 class rente_accident_travail_base(Variable):
@@ -92,14 +91,11 @@ class rente_accident_travail_base(Variable):
     reference = u"https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006743072&dateTexte=&categorieLien=cid"
     definition_period = MONTH
 
-    def formula(individu,  period, parameters):
+    def formula(individu, period, parameters):
         param_rente_at = parameters(period).accident_travail.rente.taux
         taux_incapacite = individu('taux_accident_travail', period)
         taux = param_rente_at.bareme.calc(taux_incapacite)
-        taux_rente_accident_travail = select(
-            [taux_incapacite < param_rente_at.taux_minimum],
-            [0], default=taux
-        )
+        taux_rente_accident_travail = select([taux_incapacite < param_rente_at.taux_minimum], [0], default=taux)
         rente_accident_travail_base = individu('rente_accident_travail_salaire_utile', period) * taux_rente_accident_travail
 
         return rente_accident_travail_base
@@ -108,7 +104,7 @@ class rente_accident_travail_base(Variable):
 class demande_rachat(Variable):
     value_type = bool
     entity = Individu
-    label = u"Le victime demande le rachat partiel de la rente"
+    label = u"La victime demande le rachat partiel de la rente"
     definition_period = MONTH
 
 
