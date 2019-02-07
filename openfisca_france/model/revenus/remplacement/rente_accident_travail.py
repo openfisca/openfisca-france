@@ -6,7 +6,7 @@ from openfisca_france.model.base import *
 class rente_accident_travail(Variable):
     value_type = float
     entity = Individu
-    label = u"Montant mensuel ou tremestriel de la rente d’accident du travail"
+    label = u"Montant mensuel ou trimestriel de la rente d’accident du travail"
     reference = u"https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006743072&dateTexte=&categorieLien=cid"
     definition_period = MONTH
 
@@ -66,7 +66,7 @@ class rente_accident_travail_exploitant_agricole(Variable):
 class indemnite_accident_travail(Variable):
     value_type = float
     entity = Individu
-    label = u"Indimnite selon taux d'incapacite"
+    label = u"Indemnité selon taux d'incapacité"
     reference = u"https://www.legifrance.gouv.fr/affichCode.do?idSectionTA=LEGISCTA000006172216&cidTexte=LEGITEXT000006073189"
     definition_period = MONTH
 
@@ -88,7 +88,7 @@ class indemnite_accident_travail(Variable):
 class rente_accident_travail_base(Variable):
     value_type = float
     entity = Individu
-    label = u"Montant anuel de la rente d’accident du travail"
+    label = u"Montant base de la rente d’accident du travail"
     reference = u"https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006743072&dateTexte=&categorieLien=cid"
     definition_period = MONTH
 
@@ -124,7 +124,10 @@ class rente_accident_travail_apres_rachat(Variable):
         rente_accident_travail_rachat = individu('rente_accident_travail_rachat', period)
         conversion_rente_capetal = rente_at.capital_representatif[age]
         rente_accident_travail_base = individu('rente_accident_travail_base', period)
-        rente_apres_rachat = rente_accident_travail_base - (rente_accident_travail_rachat / conversion_rente_capetal)
+        rente_apres_rachat = where(
+            conversion_rente_capetal != 0,
+            rente_accident_travail_base - (rente_accident_travail_rachat // conversion_rente_capetal),
+            rente_accident_travail_base)
 
         return rente_apres_rachat
 
