@@ -1,0 +1,157 @@
+# Cas N°1
+- name: Montant ASS pour une personne seule sans ressources
+  period: 2018-04
+  absolute_error_margin: 0.02
+  input:
+    famille:
+      parents: [parent1]
+      ass_base_ressources: 0 * 12
+    foyer_fiscal:
+      declarants: [parent1]
+    menage:
+      personne_de_reference: parent1
+      residence_mayotte: true
+    individus:
+      parent1:
+        ass_precondition_remplie: true
+  output:
+    ass: 246.90
+- name: Montant ASS pour une personne en couple sans ressources
+  period: 2018-04
+  absolute_error_margin: 0.02
+  input:
+    famille:
+      parents: [parent1, parent2]
+      ass_base_ressources: 0 * 12
+    foyer_fiscal:
+      declarants: [parent1, parent2]
+    menage:
+      personne_de_reference: parent1
+      conjoint: parent2
+      residence_mayotte: true
+    individus:
+      parent1:
+        ass_precondition_remplie: true
+      parent2: {}
+  output:
+    ass: [246.90, 0]
+
+# Cas N°2
+- name: Montant ASS pour une personne seule avec ressources mensuelles inferieures à 329.20
+  period: 2018-04
+  absolute_error_margin: 0.02
+  input:
+    famille:
+      parents: [parent1]
+      ass_base_ressources: 329.20 * 12
+    foyer_fiscal:
+      declarants: [parent1]
+    menage:
+      personne_de_reference: parent1
+      residence_mayotte: true
+    individus:
+      parent1:
+        ass_precondition_remplie: true
+  output:
+    ass: 246.90
+
+# Cas N°3
+- name: Montant ASS pour personne en couple avec ressources mensuelles inferieures à 658.40
+  period: 2018-04
+  absolute_error_margin: 0.02
+  input:
+    famille:
+      parents: [parent1, parent2]
+      ass_base_ressources: 658.40 * 12
+    foyer_fiscal:
+      declarants: [parent1, parent2]
+    menage:
+      personne_de_reference: parent1
+      conjoint: parent2
+      residence_mayotte: true
+    individus:
+      parent1:
+        ass_precondition_remplie: true
+      parent2: {}
+  output:
+    ass: [246.90, 0]
+
+# Cas N°4
+- name: Montant ASS pour personne seule avec ressources mensuelles égale à 450
+  period: 2018-04
+  absolute_error_margin: 0.02
+  input:
+    famille:
+      parents: [parent1]
+      ass_base_ressources: 450 * 12
+    foyer_fiscal:
+      declarants: [parent1]
+    menage:
+      personne_de_reference: parent1
+      residence_mayotte: true
+    individus:
+      parent1:
+        ass_precondition_remplie: true
+  output:
+    ass: 126.10
+
+# Cas N°5
+- name: Montant ASS pour personne en couple avec ressources mensuelles égale à 750
+  period: 2018-04
+  absolute_error_margin: 0.02
+  input:
+    famille:
+      parents: [parent1, parent2]
+      ass_base_ressources: 750 * 12
+    foyer_fiscal:
+      declarants: [parent1, parent2]
+    menage:
+      personne_de_reference: parent1
+      conjoint: parent2
+      residence_mayotte: true
+    individus:
+      parent1:
+        ass_precondition_remplie: true
+      parent2: {}
+  output:
+    ass: [155.30, 0]
+
+# Cas N°6
+- name: Montant ASS pour personne seule avec ressources mensuelles supérieures à 576.10
+  period: 2018-04
+  absolute_error_margin: 0.02
+  input:
+    famille:
+      parents: [parent1]
+      ass_base_ressources: 576.10 * 12
+    foyer_fiscal:
+      declarants: [parent1]
+    menage:
+      personne_de_reference: parent1
+      residence_mayotte: true
+    individus:
+      parent1:
+        ass_precondition_remplie: true
+  output:
+    ass: 0
+
+# Cas N°6
+- name: Montant ASS pour personne en couple avec ressources mensuelles supérieures à 905.30
+  period: 2018-04
+  absolute_error_margin: 0.02
+  input:
+    famille:
+      parents: [parent1, parent2]
+      ass_base_ressources: 905.30 * 12
+    foyer_fiscal:
+      declarants: [parent1, parent2]
+    menage:
+      personne_de_reference: parent1
+      conjoint: parent2
+      residence_mayotte: true
+    individus:
+      parent1:
+        ass_precondition_remplie: true
+      parent2: {}
+  output:
+    ass: [0, 0]
