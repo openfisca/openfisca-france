@@ -24,7 +24,7 @@ class reductions(Variable):
         '''
         reductions = [
             # Depuis 2002
-            'accult', 'adhcga', 'assvie', 'cappme', 'cotsyn',
+            'accult', 'adhcga', 'assvie', 'cappme', 'reduction_cotisations_syndicales',
             'daepad', 'dfppce', 'doment', 'domlog', 'donapd',
             'ecpess', 'garext', 'intemp', 'invfor', 'invrev',
             'prcomp', 'rsceha', 'saldom', 'spfcpi',
@@ -494,10 +494,10 @@ class cappme(Variable):
             )
 
 
-class cotsyn(Variable):
+class reduction_cotisations_syndicales(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = u"cotsyn"
+    label = u"Réduction d'impôt pour cotisations syndicales"
     definition_period = YEAR
     end = '2011-12-31'
 
