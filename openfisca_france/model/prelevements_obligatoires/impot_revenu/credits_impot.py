@@ -582,7 +582,7 @@ class ci_garext(Variable):
             + min_(f7gf, max1 / 2)
             + min_(f7gg, max1 / 2)
             )
-       
+
 
 class credit_cotisations_syndicales(Variable):
     value_type = float
