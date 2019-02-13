@@ -588,6 +588,7 @@ class cotsyn2(Variable):
     value_type = float
     entity = FoyerFiscal
     label = u"Crédit d'impôt pour cotisations syndicales"
+    reference = u"http://bofip.impots.gouv.fr/bofip/1605-PGP"
     definition_period = YEAR
 
     def formula_2012_01_01(foyer_fiscal, period, parameters):
