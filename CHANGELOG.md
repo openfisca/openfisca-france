@@ -1,5 +1,15 @@
 # Changelog
 
+## 34.7.0 [#1273](https://github.com/openfisca/openfisca-france/pull/1273)
+* Correction d'un crash.
+* Périodes concernées : toutes.
+* Zones impactées:
+    - `prestations/minima_sociaux/rsa.py`
+    - `mesures.py`
+* Détails :
+  - Actualise la formule de la variable `crds_mini`
+  - Introduit `crds_mini` et `crds_pfam` dans la chaîne de calcul du revenu disponible
+
 ## 34.6.0 [#1258](https://github.com/openfisca/openfisca-france/pull/1258)
 
 - Revalorisation périodique.

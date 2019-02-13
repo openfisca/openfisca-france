@@ -517,8 +517,9 @@ class prestations_familiales(Variable):
         aeeh = famille('aeeh', period, options = [ADD])
         paje = famille('paje', period, options = [ADD])
         asf = famille('asf', period, options = [ADD])
+        crds_pfam = famille('crds_pfam', period)
 
-        return af + cf + ars + aeeh + paje + asf
+        return af + cf + ars + aeeh + paje + asf + crds_pfam
 
 
 class minimum_vieillesse(Variable):
@@ -553,8 +554,9 @@ class minima_sociaux(Variable):
         rsa = famille('rsa', period, options = [ADD])
         ppa = famille('ppa', period, options = [ADD])
         psa = famille('psa', period, options = [ADD])
+        crds_mini = famille('crds_mini', period, options = [ADD])
 
-        return aah + caah + minimum_vieillesse + rsa + aefa + api + ass + psa + ppa
+        return aah + caah + minimum_vieillesse + rsa + aefa + api + ass + psa + ppa + crds_mini
 
 
 class aides_logement(Variable):

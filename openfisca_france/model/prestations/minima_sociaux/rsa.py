@@ -334,6 +334,12 @@ class crds_mini(Variable):
     label = u"CRDS versée sur les minimas sociaux"
     definition_period = MONTH
 
+    def formula_2016_01_01(famille, period, parameters):
+        ppa = famille('ppa', period)
+        taux_crds = parameters(period).prelevements_sociaux.contributions.crds.taux
+
+        return - taux_crds * ppa
+
     def formula_2009_06_01(famille, period, parameters):
         rsa_activite = famille('rsa_activite', period)
         taux_crds = parameters(period).prelevements_sociaux.contributions.crds.taux
