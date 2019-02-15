@@ -20,7 +20,7 @@
         personne_de_reference:
         - parent1
   output:
-    complement_ressources: 179.31
+    complement_ressources_aah: 179.31
     caah: 179.31
 
 - name: 'cas 2: Personne bénéfice de la Majoration pour vie autonome'
@@ -57,7 +57,7 @@
     individus:
       parent1:
         age: 55
-        aah_date_hospitalise: 2018-10-15
+        aah_date_debut_hospitalisation: 2018-10-15
         taux_incapacite: 0.8
     foyers_fiscaux:
       foyer_fiscal_0:
@@ -79,7 +79,7 @@
     individus:
       parent1:
         age: 55
-        aah_date_incarcere: 2018-06-17
+        aah_date_debut_incarceration: 2018-06-17
         taux_incapacite: 0.8
     foyers_fiscaux:
       foyer_fiscal_0:
@@ -101,7 +101,7 @@
     individus:
       parent1:
         age: 55
-        aah_date_incarcere: 2018-06-17
+        aah_date_debut_incarceration: 2018-06-17
         taux_incapacite: 0.8
     foyers_fiscaux:
       foyer_fiscal_0:

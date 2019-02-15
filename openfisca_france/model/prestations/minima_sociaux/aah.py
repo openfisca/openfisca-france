@@ -23,7 +23,7 @@ class taux_capacite_travail(Variable):
     definition_period = MONTH
 
 
-class aah_date_incarcere(Variable):
+class aah_date_debut_incarceration(Variable):
     value_type = date
     default_value = date.max
     label = u"La date de début d'incarcération"
@@ -31,7 +31,7 @@ class aah_date_incarcere(Variable):
     definition_period = MONTH
 
 
-class aah_date_hospitalise(Variable):
+class aah_date_debut_hospitalisation(Variable):
     value_type = date
     default_value = date.max
     label = u"La date de début d'hospitalisation"
@@ -287,7 +287,7 @@ class aah_plafond_ressources(Variable):
         en_couple = individu.famille('en_couple', period)
         af_nbenf = individu.famille('af_nbenf', period)
 
-        montant_max = law.minima_sociaux.aah.montantgit
+        montant_max = law.minima_sociaux.aah.montant
         return montant_max * (1 + en_couple + law.minima_sociaux.aah.tx_plaf_supp * af_nbenf)
 
 
@@ -330,13 +330,13 @@ class aah(Variable):
     def formula(individu, period, parameters):
         aah_base = individu('aah_base', period)
         aah_param = parameters(period).prestations.minima_sociaux.aah
-        two_months = datetime64(period.offset(-2, 'month').start)
+        m_2 = datetime64(period.offset(-2, 'month').start)
 
-        aah_date_hospitalise = individu("aah_date_hospitalise", period)
-        aah_date_incarcere = individu("aah_date_incarcere", period)
-        aah_reduction = (aah_date_hospitalise <= two_months) + (aah_date_incarcere <= two_months)
+        aah_date_debut_hospitalisation = individu("aah_date_debut_hospitalisation", period)
+        aah_date_debut_incarceration = individu("aah_date_debut_incarceration", period)
+        aah_reduction = (aah_date_debut_hospitalisation <= m_2) + (aah_date_debut_incarceration <= m_2)
 
-        return where(aah_reduction, aah_base * (1 - aah_param.taux_reduction_hospitalise_ou_incarcere), aah_base)
+        return where(aah_reduction, aah_base * aah_param.taux_aah_hospitalise_ou_incarcere, aah_base)
 
 
 class caah(Variable):
@@ -348,9 +348,9 @@ class caah(Variable):
     definition_period = MONTH
 
     def formula_2015_07_01(individu, period, parameters):
-        complement_ressources = individu('complement_ressources', period)
+        complement_ressources_aah = individu('complement_ressources_aah', period)
         mva = individu('mva', period)
-        return max_(complement_ressources, mva)
+        return max_(complement_ressources_aah, mva)
 
     def formula_2005_07_01(individu, period, parameters):
         law = parameters(period).prestations
@@ -404,10 +404,10 @@ class caah(Variable):
         return ancien_caah
 
 
-class complement_ressources(Variable):
+class complement_ressources_aah(Variable):
     entity = Individu
     value_type = float
-    label = u"Majoration pour la vie autonome"
+    label = u"Le complément de ressources"
     reference = u"https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006745305&dateTexte=&categorieLien=cid"
     definition_period = MONTH
 
