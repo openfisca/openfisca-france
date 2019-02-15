@@ -284,12 +284,13 @@ class aah_plafond_ressources(Variable):
 
     def formula(individu, period, parameters):
         law = parameters(period).prestations
+
         en_couple = individu.famille('en_couple', period)
         af_nbenf = individu.famille('af_nbenf', period)
-
         montant_max = law.minima_sociaux.aah.montant
-        return montant_max * (1 + en_couple + law.minima_sociaux.aah.tx_plaf_supp * af_nbenf)
-
+        return montant_max * (1 +
+                              en_couple * law.minima_sociaux.aah.majoration_du_plafond_pour_un_couple +
+                              law.minima_sociaux.aah.tx_plaf_supp * af_nbenf)
 
 
 class aah_base(Variable):
