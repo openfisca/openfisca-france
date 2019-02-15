@@ -15,6 +15,7 @@ from numpy import datetime64
 # Article D821-1 / 821-11
 # https://www.legifrance.gouv.fr/affichCode.do;jsessionid=157287C570B3AE9450A0BD88AA902970.tplgfr38s_1?idSectionTA=LEGISCTA000006141593&cidTexte=LEGITEXT000006073189&dateTexte=20180731
 
+
 class taux_capacite_travail(Variable):
     value_type = float
     default_value = 1.0
@@ -444,7 +445,7 @@ class mva(Variable):
     entity = Individu
     value_type = float
     label = u"Majoration pour la vie autonome"
-    reference= u"https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=6E5B97C7E6C7E06666BCFFA11871E70B.tplgfr43s_2?idArticle=LEGIARTI000006745350&cidTexte=LEGITEXT000006073189&dateTexte=20190124"
+    reference = u"https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=6E5B97C7E6C7E06666BCFFA11871E70B.tplgfr43s_2?idArticle=LEGIARTI000006745350&cidTexte=LEGITEXT000006073189&dateTexte=20190124"
     definition_period = MONTH
 
     def formula(individu, period, parameters):
