@@ -37,7 +37,7 @@
     ass: [246.90, 0]
 
 # Cas N°2
-- name: Montant ASS pour une personne seule avec ressources mensuelles inferieures à 329.20
+- name: Montant ASS pour une personne seule avec ressources mensuelles inférieures à 329.20
   period: 2018-04
   absolute_error_margin: 0.02
   input:
@@ -56,7 +56,7 @@
     ass: 246.90
 
 # Cas N°3
-- name: Montant ASS pour personne en couple avec ressources mensuelles inferieures à 658.40
+- name: Montant ASS pour personne en couple avec ressources mensuelles inférieures à 658.40
   period: 2018-04
   absolute_error_margin: 0.02
   input:
@@ -135,7 +135,7 @@
   output:
     ass: 0
 
-# Cas N°6
+# Cas N°7
 - name: Montant ASS pour personne en couple avec ressources mensuelles supérieures à 905.30
   period: 2018-04
   absolute_error_margin: 0.02
