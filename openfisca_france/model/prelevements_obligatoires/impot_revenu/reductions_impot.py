@@ -505,6 +505,16 @@ class reduction_cotisations_syndicales(Variable):
         '''
         Cotisations syndicales : réduction d'impôt (2002-2011) puis crédit d'impôt (2012- )
         '''
+        return foyer_fiscal('cotsyn', period)
+
+
+class cotsyn(Variable):
+    value_type = float
+    entity = FoyerFiscal
+    label = u"Montant de la réduction ou crédit d'impôt pour cotisations syndicales"
+    definition_period = YEAR
+
+    def formula(foyer_fiscal, period, parameters):
         cotisations_versees = foyer_fiscal.members('f7ac', period)
         salaire_imposable = foyer_fiscal.members('salaire_imposable', period, options = [ADD])
         chomage_imposable = foyer_fiscal.members('chomage_imposable', period, options = [ADD])
