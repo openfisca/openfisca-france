@@ -1,5 +1,14 @@
 # Changelog
 
+### 34.7.1 [#1271](https://github.com/openfisca/openfisca-france/pull/1271)
+
+* Correction d'un calcul existant
+* Périodes concernées : à partir du 01/01/2012.
+* Zones impactées : `prelevements_obligatoires/impot_revenu/(credits,reductions)_impot`.
+* Détails :
+  - Introduit les variables `reduction_cotisations_syndicales` et `credit_cotisations_syndicales`
+  - Factorise le calcul de ces variables (portant le statut) via `cotsyn` (portant seulement le montant)
+
 ## 34.7.0 [#1273](https://github.com/openfisca/openfisca-france/pull/1273)
 * Correction d'un crash.
 * Périodes concernées : toutes.
