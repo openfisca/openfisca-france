@@ -190,7 +190,7 @@ class credits_impot(Variable):
         assloy = foyer_fiscal('assloy', period)
         autent = foyer_fiscal('autent', period)
         ci_garext = foyer_fiscal('ci_garext', period)
-        cotsyn = foyer_fiscal('cotsyn', period)
+        credit_cotisations_syndicales = foyer_fiscal('credit_cotisations_syndicales', period)
         creimp = foyer_fiscal('creimp', period)
         direpa = foyer_fiscal('direpa', period)
         drbail = foyer_fiscal('drbail', period)
@@ -201,7 +201,7 @@ class credits_impot(Variable):
         saldom2 = foyer_fiscal('saldom2', period)
 
         return (
-            aidper + assloy + autent + ci_garext + cotsyn + creimp + direpa + drbail + inthab
+            aidper + assloy + autent + ci_garext + credit_cotisations_syndicales + creimp + direpa + drbail + inthab
             + preetu + prlire + quaenv + saldom2
             )
 
@@ -213,7 +213,7 @@ class credits_impot(Variable):
         assloy = foyer_fiscal('assloy', period)
         autent = foyer_fiscal('autent', period)
         ci_garext = foyer_fiscal('ci_garext', period)
-        cotsyn = foyer_fiscal('cotsyn', period)
+        credit_cotisations_syndicales = foyer_fiscal('credit_cotisations_syndicales', period)
         creimp = foyer_fiscal('creimp', period)
         direpa = foyer_fiscal('direpa', period)
         drbail = foyer_fiscal('drbail', period)
@@ -224,7 +224,7 @@ class credits_impot(Variable):
         saldom2 = foyer_fiscal('saldom2', period)
 
         return (
-            aidper + assloy + autent + ci_garext + cotsyn + creimp + direpa + drbail + inthab
+            aidper + assloy + autent + ci_garext + credit_cotisations_syndicales + creimp + direpa + drbail + inthab
             + preetu + prlire + quaenv + saldom2
             )
 
@@ -236,7 +236,7 @@ class credits_impot(Variable):
         assloy = foyer_fiscal('assloy', period)
         autent = foyer_fiscal('autent', period)
         ci_garext = foyer_fiscal('ci_garext', period)
-        cotsyn = foyer_fiscal('cotsyn', period)
+        credit_cotisations_syndicales = foyer_fiscal('credit_cotisations_syndicales', period)
         creimp = foyer_fiscal('creimp', period)
         direpa = foyer_fiscal('direpa', period)
         drbail = foyer_fiscal('drbail', period)
@@ -247,7 +247,7 @@ class credits_impot(Variable):
         saldom2 = foyer_fiscal('saldom2', period)
 
         return (
-            aidper + assloy + autent + ci_garext + cotsyn + creimp + direpa + drbail + inthab
+            aidper + assloy + autent + ci_garext + credit_cotisations_syndicales + creimp + direpa + drbail + inthab
             + preetu + prlire + quaenv + saldom2
             )
 
@@ -258,7 +258,7 @@ class credits_impot(Variable):
         aidper = foyer_fiscal('aidper', period)
         autent = foyer_fiscal('autent', period)
         ci_garext = foyer_fiscal('ci_garext', period)
-        cotsyn = foyer_fiscal('cotsyn', period)
+        credit_cotisations_syndicales = foyer_fiscal('credit_cotisations_syndicales', period)
         creimp = foyer_fiscal('creimp', period)
         direpa = foyer_fiscal('direpa', period)
         drbail = foyer_fiscal('drbail', period)
@@ -269,7 +269,7 @@ class credits_impot(Variable):
         saldom2 = foyer_fiscal('saldom2', period)
 
         return (
-            aidper + autent + ci_garext + cotsyn
+            aidper + autent + ci_garext + credit_cotisations_syndicales
             + creimp + direpa + drbail + inthab
             + preetu + prlire + quaenv + saldom2
             )
@@ -582,6 +582,20 @@ class ci_garext(Variable):
             + min_(f7gf, max1 / 2)
             + min_(f7gg, max1 / 2)
             )
+
+
+class credit_cotisations_syndicales(Variable):
+    value_type = float
+    entity = FoyerFiscal
+    label = u"Crédit d'impôt pour cotisations syndicales"
+    reference = u"http://bofip.impots.gouv.fr/bofip/1605-PGP"
+    definition_period = YEAR
+
+    def formula_2012_01_01(foyer_fiscal, period, parameters):
+        '''
+        Cotisations syndicales : réduction d'impôt (2002-2011) puis crédit d'impôt (2012- )
+        '''
+        return foyer_fiscal('cotsyn', period)
 
 
 class creimp_exc_2008(Variable):

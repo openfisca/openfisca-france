@@ -1,0 +1,37 @@
+- name: Cotisations syndicales en réduction d’impôt jusqu’à 2011, imposable largement
+  period: 2011
+  relative_error_margin: 0.01
+  input:
+    salaire_imposable: 50000.0
+    f7ac: 700
+  output:
+    ip_net: 7934.0
+    reductions: 330.0
+    reduction_cotisations_syndicales: 330.0
+    irpp: -(7934.0 - 330.0)
+
+- name: Cotisations syndicales en réduction d’impôt jusqu’à 2011, non imposable suite à réduction
+  period: 2011
+  relative_error_margin: 0.01
+  input:
+    salaire_imposable: 13000.0
+    f7ac: 700
+  output:
+    ip_net: 35.0
+    reductions: 35.0
+    reduction_cotisations_syndicales: 85.8
+    irpp: 0.0
+
+- name: Cotisations syndicales en crédit d’impôt depuis 2012, impôt négatif
+  period: 2012
+  relative_error_margin: 0.01
+  input:
+    salaire_imposable: 13300.0
+    f7ac: 700
+  output:
+    ip_net: 25.0
+    reductions: 0.0
+    reduction_cotisations_syndicales: 0.0
+    credit_cotisations_syndicales: 87.8
+    credits_impot: 87.8
+    irpp: -(25.0 - 87.8)

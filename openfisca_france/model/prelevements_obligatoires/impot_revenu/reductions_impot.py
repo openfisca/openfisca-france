@@ -24,7 +24,7 @@ class reductions(Variable):
         '''
         reductions = [
             # Depuis 2002
-            'accult', 'adhcga', 'assvie', 'cappme', 'cotsyn',
+            'accult', 'adhcga', 'assvie', 'cappme', 'reduction_cotisations_syndicales',
             'daepad', 'dfppce', 'doment', 'domlog', 'donapd',
             'ecpess', 'garext', 'intemp', 'invfor', 'invrev',
             'prcomp', 'rsceha', 'saldom', 'spfcpi',
@@ -494,10 +494,10 @@ class cappme(Variable):
             )
 
 
-class cotsyn(Variable):
+class reduction_cotisations_syndicales(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = u"cotsyn"
+    label = u"Réduction d'impôt pour cotisations syndicales"
     definition_period = YEAR
     end = '2011-12-31'
 
@@ -505,6 +505,16 @@ class cotsyn(Variable):
         '''
         Cotisations syndicales : réduction d'impôt (2002-2011) puis crédit d'impôt (2012- )
         '''
+        return foyer_fiscal('cotsyn', period)
+
+
+class cotsyn(Variable):
+    value_type = float
+    entity = FoyerFiscal
+    label = u"Montant de la réduction ou crédit d'impôt pour cotisations syndicales"
+    definition_period = YEAR
+
+    def formula(foyer_fiscal, period, parameters):
         cotisations_versees = foyer_fiscal.members('f7ac', period)
         salaire_imposable = foyer_fiscal.members('salaire_imposable', period, options = [ADD])
         chomage_imposable = foyer_fiscal.members('chomage_imposable', period, options = [ADD])
