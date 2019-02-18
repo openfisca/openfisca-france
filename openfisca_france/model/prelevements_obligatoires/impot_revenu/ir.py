@@ -1779,6 +1779,156 @@ class taxation_plus_values_hors_bareme(Variable):
             )
 
 
+class plus_values_taxees_hors_bareme(Variable):
+    value_type = float
+    entity = FoyerFiscal
+    label = u"Plus-values taxées hors barème"
+    definition_period = YEAR
+    end = '2017-12-31'
+
+    def formula_2007_01_01(foyer_fiscal, period):  # f3sd is in f3vd holder
+        f3vg = foyer_fiscal('f3vg', period)
+        f3vh = foyer_fiscal('f3vh', period)
+        f3vl = foyer_fiscal('f3vl', period)
+        f3vm = foyer_fiscal('f3vm', period)
+        rpns_pvce_i = foyer_fiscal.members('rpns_pvce', period)
+
+        rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
+        f3vd = foyer_fiscal.declarant_principal('f3vd', period)  # noqa F841
+        f3sd = foyer_fiscal.conjoint('f3vd', period)  # noqa F841
+        f3vi = foyer_fiscal.declarant_principal('f3vi', period)
+        f3si = foyer_fiscal.conjoint('f3vi', period)  # noqa F841
+        f3vf = foyer_fiscal.declarant_principal('f3vf', period)
+        f3sf = foyer_fiscal.conjoint('f3vf', period)  # noqa F841
+        #  TODO: remove this todo use sum for all fields after checking
+        # revenus taxés à un taux proportionnel
+
+        return round_(
+            rpns_pvce
+            + max_(0, f3vg - f3vh)
+            + f3vl
+            + f3vm
+            + f3vi
+            + f3vf
+            )
+
+    def formula_2008_01_01(foyer_fiscal, period):  # f3sd is in f3vd holder
+        f3vg = foyer_fiscal('f3vg', period)
+        f3vh = foyer_fiscal('f3vh', period)
+        f3vl = foyer_fiscal('f3vl', period)
+        f3vm = foyer_fiscal('f3vm', period)
+        rpns_pvce_i = foyer_fiscal.members('rpns_pvce', period)
+
+        rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
+        f3vd = foyer_fiscal.declarant_principal('f3vd', period)
+        f3sd = foyer_fiscal.conjoint('f3vd', period)  # noqa F841
+        f3vi = foyer_fiscal.declarant_principal('f3vi', period)
+        f3si = foyer_fiscal.conjoint('f3vi', period)  # noqa F841
+        f3vf = foyer_fiscal.declarant_principal('f3vf', period)
+        f3sf = foyer_fiscal.conjoint('f3vf', period)  # noqa F841
+        #  TODO: remove this todo use sum for all fields after checking
+        # revenus taxés à un taux proportionnel
+
+        return round_(
+            rpns_pvce
+            + max_(0, f3vg - f3vh)
+            + f3vl
+            + f3vm
+            + f3vi
+            + f3vf
+            + f3vd
+            )
+
+    def formula_2012_01_01(foyer_fiscal, period):
+        f3sa = foyer_fiscal('f3sa', period)
+        f3sj = foyer_fiscal('f3sj', period)
+        f3sk = foyer_fiscal('f3sk', period)
+        f3vg = foyer_fiscal('f3vg', period)
+        f3vh = foyer_fiscal('f3vh', period)
+        f3vl = foyer_fiscal('f3vl', period)
+        f3vt = foyer_fiscal('f3vt', period)
+        f3vm = foyer_fiscal('f3vm', period)
+        f3vd_i = foyer_fiscal.members('f3vd', period)
+        f3vi_i = foyer_fiscal.members('f3vi', period)
+        f3vf_i = foyer_fiscal.members('f3vf', period)
+        rpns_pvce_i = foyer_fiscal.members('rpns_pvce', period)
+
+        rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
+        f3vd = foyer_fiscal.sum(f3vd_i)
+        f3vi = foyer_fiscal.sum(f3vi_i)
+        f3vf = foyer_fiscal.sum(f3vf_i)
+
+        return round_(
+            rpns_pvce
+            + max_(0, f3vg - f3vh)
+            + f3vd
+            + f3vl
+            + f3vm
+            + f3vt
+            + f3sa
+            + f3vi
+            + f3vf
+            + f3sj
+            + f3sk
+            )
+
+    def formula_2013_01_01(foyer_fiscal, period):
+        f3sj = foyer_fiscal('f3sj', period)
+        f3sk = foyer_fiscal('f3sk', period)
+        f3vm = foyer_fiscal('f3vm', period)
+        f3vt = foyer_fiscal('f3vt', period)
+        f3vd_i = foyer_fiscal.members('f3vd', period)
+        f3vi_i = foyer_fiscal.members('f3vi', period)
+        f3vf_i = foyer_fiscal.members('f3vf', period)
+        rpns_pvce_i = foyer_fiscal.members('rpns_pvce', period)
+
+        rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
+        f3vd = foyer_fiscal.sum(f3vd_i)
+        f3vi = foyer_fiscal.sum(f3vi_i)
+        f3vf = foyer_fiscal.sum(f3vf_i)
+
+        return round_(
+            rpns_pvce
+            + f3vm
+            + f3vt
+            + f3vd
+            + f3vi
+            + f3vf
+            + f3sj
+            + f3sk
+            )
+
+    def formula_2016_01_01(foyer_fiscal, period):
+        f3sj = foyer_fiscal('f3sj', period)
+        f3sk = foyer_fiscal('f3sk', period)
+        f3vm = foyer_fiscal('f3vm', period)
+        f3vt = foyer_fiscal('f3vt', period)
+        f3vd_i = foyer_fiscal.members('f3vd', period)
+        f3vi_i = foyer_fiscal.members('f3vi', period)
+        f3vf_i = foyer_fiscal.members('f3vf', period)
+        f3wi = foyer_fiscal('f3wi', period)
+        f3wj = foyer_fiscal('f3wj', period)
+        rpns_pvce_i = foyer_fiscal.members('rpns_pvce', period)
+
+        rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
+        f3vd = foyer_fiscal.sum(f3vd_i)
+        f3vi = foyer_fiscal.sum(f3vi_i)
+        f3vf = foyer_fiscal.sum(f3vf_i)
+
+        return round_(
+            rpns_pvce
+            + f3vm
+            + f3vt
+            + f3vd
+            + f3vi
+            + f3vf
+            + f3sj
+            + f3sk
+            + f3wi
+            + f3wj
+            )
+
+
 class rfr_plus_values_hors_rni(Variable):
     value_type = float
     entity = FoyerFiscal
