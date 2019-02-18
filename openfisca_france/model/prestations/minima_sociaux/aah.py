@@ -64,8 +64,12 @@ class aah_base_ressources(Variable):
         def base_ressource_eval_annuelle():
             base_ressource_demandeur = assiette_revenu_activite_demandeur(famille.demandeur('aah_base_ressources_eval_annuelle', period))
             base_ressource_conjoint = famille.conjoint('aah_base_ressources_eval_annuelle', period)
+            base_ressource_capital = (
+                famille.demandeur('aah_base_ressources_eval_annuelle_capital', period)
+                + famille.conjoint('aah_base_ressources_eval_annuelle_capital', period)
+                )
+            return base_ressource_demandeur + assiette_conjoint(base_ressource_conjoint) + base_ressource_capital
 
-            return base_ressource_demandeur + assiette_conjoint(base_ressource_conjoint)
 
         return where(
             demandeur_en_activite,
@@ -188,6 +192,31 @@ class aah_base_ressources_eval_annuelle(Variable):
             + individu('rpns_individu', period.n_2)
             + individu('revenu_assimile_pension', period.n_2)
             )
+
+
+class aah_base_ressources_eval_annuelle_capital(Variable):
+    value_type = float
+    label = u"Base de ressources des revenus d'activité de l'AAH pour un individu, évaluation trimestrielle"
+    entity = Individu
+    definition_period = MONTH
+
+    def formula(individu, period):
+        revenus_fonciers = individu.foyer_fiscal('revenu_categoriel_foncier', period.n_2)
+        revenus_valeurs_mobilieres = (
+            individu.foyer_fiscal('revenu_categoriel_capital', period.n_2)
+            + individu.foyer_fiscal('revenus_capitaux_prelevement_liberatoire', period.n_2, options = [ADD])
+            + individu.foyer_fiscal('revenus_capitaux_prelevement_forfaitaire_unique_ir', period.n_2, options = [ADD])
+            )
+        plus_values = (
+            individu.foyer_fiscal('revenu_categoriel_plus_values', period.n_2)
+            + individu.foyer_fiscal('plus_values_taxees_hors_bareme', period.n_2)
+            )
+
+        return (
+            revenus_fonciers
+            + revenus_valeurs_mobilieres
+            + plus_values
+            ) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
 
 
 class aah_restriction_substantielle_durable_acces_emploi(Variable):
