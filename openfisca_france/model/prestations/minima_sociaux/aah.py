@@ -62,7 +62,7 @@ class aah_base_ressources(Variable):
             return base_ressource_demandeur + assiette_conjoint(base_ressource_conjoint)
 
         def base_ressource_eval_annuelle():
-            base_ressource_demandeur = assiette_revenu_activite_demandeur(famille.demandeur('salaire_imposable', period.n_2, options = [ADD]) + famille.demandeur('rpns_individu', period.n_2)) + famille.demandeur('revenu_assimile_pension', period.n_2)
+            base_ressource_demandeur = assiette_revenu_activite_demandeur(famille.demandeur('aah_base_ressources_eval_annuelle', period))
             base_ressource_conjoint = famille.conjoint('aah_base_ressources_eval_annuelle', period)
 
             return base_ressource_demandeur + assiette_conjoint(base_ressource_conjoint)
