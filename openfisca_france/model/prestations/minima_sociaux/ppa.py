@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 
-from __future__ import division
-
 from openfisca_france.model.base import *
 
 from numpy import round as round_, logical_or as or_, remainder as remainder_, datetime64

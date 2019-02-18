@@ -1,8 +1,5 @@
 # -*- coding: utf-8 -*-
 
-from __future__ import division
-
-
 from numpy import datetime64, logical_and as and_, logical_or as or_
 
 from openfisca_core import periods
