@@ -62,8 +62,8 @@ class aah_base_ressources(Variable):
             return base_ressource_demandeur + assiette_conjoint(base_ressource_conjoint)
 
         def base_ressource_eval_annuelle():
-            base_ressource_demandeur = assiette_revenu_activite_demandeur(famille.demandeur('aah_base_ressources_eval_annuelle', period))
-            base_ressource_conjoint = famille.conjoint('aah_base_ressources_eval_annuelle', period)
+            base_ressource_demandeur = assiette_revenu_activite_demandeur(famille.demandeur('aah_base_ressources_eval_annuelle_salaires_rpns_pensions', period))
+            base_ressource_conjoint = famille.conjoint('aah_base_ressources_eval_annuelle_salaires_rpns_pensions', period)
             base_ressource_capital = (
                 famille.demandeur('aah_base_ressources_eval_annuelle_capital', period)
                 + famille.conjoint('aah_base_ressources_eval_annuelle_capital', period)
@@ -180,7 +180,7 @@ class aah_base_ressources_hors_activite_eval_trimestrielle(Variable):
         return ressources * 4
 
 
-class aah_base_ressources_eval_annuelle(Variable):
+class aah_base_ressources_eval_annuelle_salaires_rpns_pensions(Variable):
     value_type = float
     label = u"Base de ressources de l'AAH pour un individu, évaluation annuelle"
     entity = Individu
