@@ -70,7 +70,6 @@ class aah_base_ressources(Variable):
                 )
             return base_ressource_demandeur + assiette_conjoint(base_ressource_conjoint) + base_ressource_capital
 
-
         return where(
             demandeur_en_activite,
             base_ressource_eval_trim(),
