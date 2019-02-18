@@ -210,6 +210,7 @@ class aah_base_ressources_eval_annuelle_capital(Variable):
         plus_values = (
             individu.foyer_fiscal('revenu_categoriel_plus_values', period.n_2)
             + individu.foyer_fiscal('plus_values_taxees_hors_bareme', period.n_2)
+            + individu.foyer_fiscal('plus_values_prelevement_forfaitaire_unique_ir', period.n_2)
             )
 
         return (
