@@ -2,9 +2,6 @@
 
 from copy import deepcopy
 
-# For Python 2 comptability
-from odictliteral import odict
-
 from openfisca_core.taxbenefitsystems import TaxBenefitSystem
 from openfisca_core.tools import assert_near
 
@@ -60,19 +57,19 @@ class DummyTaxBenefitSystem(TaxBenefitSystem):
 tax_benefit_system = DummyTaxBenefitSystem()
 
 TEST_CASE = {
-    'individus': odict['ind0': {}, 'ind1': {}, 'ind2': {}, 'ind3': {}, 'ind4': {}, 'ind5': {}],
-    'familles': odict[
+    'individus': {'ind0': {}, 'ind1': {}, 'ind2': {}, 'ind3': {}, 'ind4': {}, 'ind5': {}},
+    'familles': {
         'f1': {'enfants': ['ind2', 'ind3'], 'parents': ['ind0', 'ind1']},
         'f2': {'enfants': ['ind5'], 'parents': ['ind4']}
-        ],
-    'foyers_fiscaux': odict[
+        },
+    'foyers_fiscaux': {
         'ff1': {'declarants': ['ind0', 'ind1'], 'personnes_a_charge': ['ind2', 'ind3']},
         'ff2': {'personnes_a_charge': ['ind5'], 'declarants': ['ind4']}
-        ],
-    'menages': odict[
+        },
+    'menages': {
         'm1': {'conjoint': 'ind1', 'enfants': ['ind2', 'ind3'], 'personne_de_reference': 'ind0'},
         'm2': {'conjoint': [], 'enfants': ['ind5'], 'personne_de_reference': 'ind4'},
-        ],
+        },
     }
 
 TEST_CASE_AGES = deepcopy(TEST_CASE)
@@ -93,11 +90,11 @@ def test_transpose():
     test_case = deepcopy(TEST_CASE)
     test_case['familles']['f1']['af'] = 20000
     test_case['familles']['f2']['af'] = 10000
-    test_case['foyers_fiscaux'] = odict[
+    test_case['foyers_fiscaux'] = {
         'ff1': TEST_CASE['foyers_fiscaux']['ff1'],
         'ff2': {'declarants': ['ind4']},
         'ff3': {'declarants': ['ind5']}
-        ]
+        }
 
     simulation = new_simulation(test_case)
     foyer_fiscal = simulation.foyer_fiscal
@@ -143,21 +140,21 @@ def test_combination_projections():
 
 def test_complex_chain_2():
     test_case = {
-        'individus': odict['ind0': {'age': 30}, 'ind1': {'age': 31}, 'ind2': {'age': 32}, 'ind3': {'age': 33}],
-        'familles': odict[
+        'individus': {'ind0': {'age': 30}, 'ind1': {'age': 31}, 'ind2': {'age': 32}, 'ind3': {'age': 33}},
+        'familles': {
             'f1': {'parents': ['ind0', 'ind1']},
             'f2': {'parents': ['ind2']},
             'f3': {'parents': ['ind3']},
-            ],
-        'foyers_fiscaux': odict[
+            },
+        'foyers_fiscaux': {
             'ff1': {'declarants': ['ind0', 'ind1']},
             'ff2': {'declarants': ['ind2', 'ind3']},
-            ],
-        'menages': odict[
+            },
+        'menages': {
             'm1': {'personne_de_reference': 'ind0'},
             'm2': {'personne_de_reference': 'ind1', 'autres': 'ind2'},
             'm4': {'personne_de_reference': 'ind3'},
-            ],
+            },
         }
 
     simulation = new_simulation(test_case)
