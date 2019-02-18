@@ -1,8 +1,5 @@
 # -*- coding: utf-8 -*-
 
-from __future__ import division
-
-
 import logging
 
 from numpy import datetime64, timedelta64, logical_xor as xor_, round as round_, around

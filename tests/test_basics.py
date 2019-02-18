@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 
-from __future__ import division
-
 import datetime
 
 from .cache import tax_benefit_system
