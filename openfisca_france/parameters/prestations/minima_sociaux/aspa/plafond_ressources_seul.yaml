@@ -38,3 +38,6 @@ values:
     value: 9638.42
   2018-04-01:
     value: 9998.40
+  2019-01-01:
+    value: 10418.40
+    reference: https://www.legifrance.gouv.fr/eli/decret/2018/3/30/SSAS1805864D/jo/article_1
