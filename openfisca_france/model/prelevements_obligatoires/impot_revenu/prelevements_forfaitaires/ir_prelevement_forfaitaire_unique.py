@@ -249,6 +249,7 @@ class prelevement_forfaitaire_unique_ir_sur_assurance_vie(Variable):
 
         # Nouveau régime de taxation (produits au titre des primes versées à compter du 26 septembre 1997, pour les contrats souscrits à partir du 26 septembre 1997)
         assurance_vie_pfu_ir_plus8ans_19970926_primes_apres_20170927_apres_abt = max_(assurance_vie_pfu_ir_plus8ans_19970926_primes_apres_20170927 - rvcm.abat_assvie * (1 + maries_ou_pacses), 0)
+        reliquat_abt = max_(rvcm.abat_assvie * (1 + maries_ou_pacses) - assurance_vie_pfu_ir_plus8ans_19970926_primes_apres_20170927, 0)
         pfu_ir_av_nouveau_regime = -(
             (assurance_vie_pfu_ir_moins8ans_19970926_primes_apres_20170927 * P1.taux)
             + (min_(assurance_vie_pfu_ir_plus8ans_19970926_primes_apres_20170927_apres_abt, P1.seuil_taux_reduit_av) * P1.taux_reduit_av)
@@ -257,9 +258,15 @@ class prelevement_forfaitaire_unique_ir_sur_assurance_vie(Variable):
 
         # Ancien régime de taxation (autres produits que ceux mentionnés ci-dessus)
         p_contrat_age_sup_apres_abt = (
-            max_(assurance_vie_pfu_ir_plus8ans_1990_19970926 - rvcm.abat_assvie * (1 + maries_ou_pacses), 0)
-            + max_(assurance_vie_pfu_ir_plus6ans_avant1990 - rvcm.abat_assvie * (1 + maries_ou_pacses), 0)
-            + max_(assurance_vie_pfu_ir_plus8ans_19970926_primes_avant_20170927 - rvcm.abat_assvie * (1 + maries_ou_pacses), 0)
+            max_(
+                (
+                    assurance_vie_pfu_ir_plus8ans_1990_19970926
+                    + assurance_vie_pfu_ir_plus6ans_avant1990
+                    + assurance_vie_pfu_ir_plus8ans_19970926_primes_avant_20170927
+                    )
+                - reliquat_abt,
+                0
+                )
             )
         p_contrat_age_mid = assurance_vie_pfu_ir_4_8_ans_1990_19970926 + assurance_vie_pfu_ir_4_8_ans_19970926_primes_avant_20170927
         p_contrat_age_low = assurance_vie_pfu_ir_moins4ans_1990_19970926 + assurance_vie_pfu_ir_moins4ans_19970926_primes_avant_20170927
