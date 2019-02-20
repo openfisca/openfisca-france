@@ -1,8 +1,5 @@
 # -*- coding: utf-8 -*-
 
-from __future__ import division
-
-
 from openfisca_france.model.base import *  # noqa analysis:ignore
 
 from openfisca_core.reforms import Reform

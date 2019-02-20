@@ -1,5 +1,13 @@
 # Changelog
 
+### 34.7.3 [#1276](https://github.com/openfisca/openfisca-france/pull/1276)
+
+* Amélioration technique
+* Périodes concernées : n/a
+* Zones impactées : n/a
+* Détails :
+  - Supprime **__future__** imports, car trivials après l'arrêt du support Python2
+
 ### 34.7.2 [#1279](https://github.com/openfisca/openfisca-france/pull/1279)
 
 * Changement mineur.

@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 
-from __future__ import division
-
 import logging
 
 from numpy import busday_count, datetime64, logical_or as or_, logical_and as and_, timedelta64

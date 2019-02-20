@@ -6,8 +6,6 @@
 
 """Impôt Landais, Piketty, Saez"""
 
-from __future__ import division
-
 import os
 
 from openfisca_france.model.base import *

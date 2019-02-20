@@ -1,7 +1,5 @@
 
 # -*- coding: utf-8 -*-
-from __future__ import division
-
 from openfisca_france.model.base import *
 
 # Références juridiques - Code de la sécurité sociale
