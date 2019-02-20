@@ -3,10 +3,10 @@
 ### 34.7.2 [#1279](https://github.com/openfisca/openfisca-france/pull/1279)
 
 * Changement mineur.
-* Périodes concernées : 2018
+* Périodes concernées : à partir du 01/01/2018.
 * Zones impactées :
-     - `prelevements_obligatoires/impot_revenu/prelevements_forfaitaires/ir_prelevement_forfaitaire_unique`
-* Détails: Corrige l'application d'un abattement sur les produits d'assurance-vie
+  - `prelevements_obligatoires/impot_revenu/prelevements_forfaitaires/ir_prelevement_forfaitaire_unique`.
+* Détails: Corrige l'application d'un abattement sur les produits d'assurance-vie.
 
 ### 34.7.1 [#1271](https://github.com/openfisca/openfisca-france/pull/1271)
 
