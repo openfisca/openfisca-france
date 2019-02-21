@@ -1,5 +1,13 @@
 # Changelog
 
+### 34.8.0 [#1280](https://github.com/openfisca/openfisca-france/pull/1280)
+
+* Revalorisation périodique
+* Périodes concernées : à partir du 01/01/2019.
+* Zones impactées : `parameters/prestations/minima_sociaux/aspa`.
+* Détails :
+  - Revalorise l'allocation de solidarité aux personnes âgées au 1er janvier 2019 et au 1er janvier 2020.
+
 ### 34.7.3 [#1276](https://github.com/openfisca/openfisca-france/pull/1276)
 
 * Amélioration technique

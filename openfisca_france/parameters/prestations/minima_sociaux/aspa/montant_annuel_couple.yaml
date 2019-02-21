@@ -30,3 +30,9 @@ values:
     value: 14963.65
   2018-04-01:
     value: 15522.54
+  2019-01-01:
+    value: 16174.59
+    reference: https://www.legifrance.gouv.fr/eli/decret/2018/3/30/SSAS1805864D/jo/article_1
+  2020-01-01:
+    value: 16826.64
+    reference: https://www.legifrance.gouv.fr/eli/decret/2018/3/30/SSAS1805864D/jo/article_1
