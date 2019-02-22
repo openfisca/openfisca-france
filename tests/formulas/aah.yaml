@@ -750,3 +750,29 @@
         - enfant2
   output:
     aah: 0
+
+- name: AAH avec revenus fonciers durant les trois derniers mois et évaluation trimestrielle des ressources (i.e. si salaire_imposable>0)'
+  absolute_error_margin: 0.1
+  period: 2018-04
+  input:
+    aah_eligible: True
+    salaire_imposable: 10
+    revenu_categoriel_foncier:
+      2018: 20000
+  output:
+    aah_base_ressources_hors_activite_eval_trimestrielle: 20000
+    aah_base_ressources: 20000 # Pas de salaire dans la base ressources les salaires pris en compte sont ceux des trois derniers mois
+    aah: 0
+
+- name: AAH avec revenus fonciers en N-2 et évaluation annuelle des ressources (i.e. si salaire_imposable=0)'
+  absolute_error_margin: 0.1
+  period: 2018-04
+  input:
+    aah_eligible: True
+    salaire_imposable: 0
+    revenu_categoriel_foncier:
+      2016: 20000
+  output:
+    aah_base_ressources_eval_annuelle_capital: 20000
+    aah_base_ressources: 20000
+    aah: 0
