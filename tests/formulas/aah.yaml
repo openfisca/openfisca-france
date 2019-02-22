@@ -755,7 +755,7 @@
   absolute_error_margin: 0.1
   period: 2018-04
   input:
-    aah_eligible: True
+    aah_eligible: true
     salaire_imposable: 10
     revenu_categoriel_foncier:
       2018: 20000
@@ -768,7 +768,7 @@
   absolute_error_margin: 0.1
   period: 2018-04
   input:
-    aah_eligible: True
+    aah_eligible: true
     salaire_imposable: 0
     revenu_categoriel_foncier:
       2016: 20000
