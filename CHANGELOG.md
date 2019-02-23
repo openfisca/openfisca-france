@@ -8,7 +8,7 @@
 * Détails :
   - Tient compte de la CASA dans le calcul de `revenus_remplacement_pensions_bruts_menage`
 
-### 34.8.0 [#1280](https://github.com/openfisca/openfisca-france/pull/1280)
+## 34.8.0 [#1280](https://github.com/openfisca/openfisca-france/pull/1280)
 
 * Revalorisation périodique
 * Périodes concernées : à partir du 01/01/2019.
