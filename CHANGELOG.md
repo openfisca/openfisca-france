@@ -45,12 +45,12 @@
 
 ## 34.6.0 [#1258](https://github.com/openfisca/openfisca-france/pull/1258)
 
-- Revalorisation périodique.
-- Périodes concernées : à partir de janvier 2019.
-- Zones impactées :
+* Revalorisation périodique.
+* Périodes concernées : à partir de janvier 2019.
+* Zones impactées :
   - `prestations/cheque_energie.py`
   - `parameters/cheque_energie.yaml`
-- Détails :
+* Détails :
   - Met à jour le chèque énergie avec les nouveaux barèmes : les montants changent et il y a une nouvelle tranche de revenus.
   - Exige une version de Core supérieure à 25.3, permettant de reformuler le barème du Chèque Energie comme un SingleAmountTaxScale.
 
