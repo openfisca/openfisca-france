@@ -366,6 +366,7 @@ class revenus_remplacement_pensions_bruts_menage(Variable):
         Revenus de remplacement et pensions bruts du ménage : avant CSG et CRDS
         '''
         pensions_nettes_i = menage.members('pensions_nettes', period)
+        casa_i = menage.members('casa', period, options = [ADD])
         csg_imposable_chomage_i = menage.members('csg_imposable_chomage', period, options = [ADD])
         csg_deductible_chomage_i = menage.members('csg_deductible_chomage', period, options = [ADD])
         csg_imposable_retraite_i = menage.members('csg_imposable_retraite', period, options = [ADD])
@@ -374,6 +375,7 @@ class revenus_remplacement_pensions_bruts_menage(Variable):
         crds_retraite_i = menage.members('crds_retraite', period, options = [ADD])
 
         pensions_nettes = menage.sum(pensions_nettes_i)
+        casa = menage.sum(casa_i)
         csg_imposable_chomage = menage.sum(csg_imposable_chomage_i)
         csg_deductible_chomage = menage.sum(csg_deductible_chomage_i)
         csg_imposable_retraite = menage.sum(csg_imposable_retraite_i)
@@ -383,6 +385,7 @@ class revenus_remplacement_pensions_bruts_menage(Variable):
 
         return (
             + pensions_nettes
+            - casa
             - csg_imposable_chomage  # On veut ajouter le montant de cotisations. Vu que ce montant est négatif, on met un "moins". Idem pour les autres items ci-dessous
             - csg_deductible_chomage
             - csg_imposable_retraite

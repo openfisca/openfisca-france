@@ -1,6 +1,14 @@
 # Changelog
 
-### 34.8.0 [#1280](https://github.com/openfisca/openfisca-france/pull/1280)
+### 34.8.1 [#1272](https://github.com/openfisca/openfisca-france/pull/1272)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `mesures.py`.
+* Détails :
+  - Tient compte de la CASA dans le calcul de `revenus_remplacement_pensions_bruts_menage`
+
+## 34.8.0 [#1280](https://github.com/openfisca/openfisca-france/pull/1280)
 
 * Revalorisation périodique
 * Périodes concernées : à partir du 01/01/2019.
@@ -45,12 +53,12 @@
 
 ## 34.6.0 [#1258](https://github.com/openfisca/openfisca-france/pull/1258)
 
-- Revalorisation périodique.
-- Périodes concernées : à partir de janvier 2019.
-- Zones impactées :
+* Revalorisation périodique.
+* Périodes concernées : à partir de janvier 2019.
+* Zones impactées :
   - `prestations/cheque_energie.py`
   - `parameters/cheque_energie.yaml`
-- Détails :
+* Détails :
   - Met à jour le chèque énergie avec les nouveaux barèmes : les montants changent et il y a une nouvelle tranche de revenus.
   - Exige une version de Core supérieure à 25.3, permettant de reformuler le barème du Chèque Energie comme un SingleAmountTaxScale.
 
