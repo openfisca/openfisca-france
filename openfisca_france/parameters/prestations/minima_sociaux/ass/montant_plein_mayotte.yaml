@@ -1,4 +1,6 @@
-description: Montant journalier à taux plein de l'ASS spécifique à Mayotte
+description: Montant journalier à taux plein de l'ASS spécifique à Mayotte \
+  (prestations.minima_sociaux.ass.montant_plein de la métropole est pris par défaut \
+  lorsque la valeur spécifique à Mayotte est non répertoriée)
 unit: currency
 values:
   2001-01-01:
