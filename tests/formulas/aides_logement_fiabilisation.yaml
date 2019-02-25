@@ -49,37 +49,32 @@
 
  # Cas N° 3
  # La règle des 2/3 du loyer ne s'applique(s'applique pour les seules chambres meublées pour l'APL)
-- name: "Cas 3-zone_3: Couple avec un enfant réside dans un sectaur locatif meublé conventionné dans la zone 3"
+- name: "Cas 3-1: Personne seule salariée avec un enfant réside dans un secteur locatif meublé conventionné dans la zone 1"
   period: 2018-11
   relative_error_margin: 0.01
   input:
     famille:
-      parents: [parent1, parent2]
+      parents: parent1
       enfants: enfant1
     menage:
       personne_de_reference: parent1
-      conjoint: parent2
       enfants: enfant1
       statut_occupation_logement: locataire_meuble
       logement_conventionne: true
-      zone_apl: zone_3
-      loyer: 720
+      zone_apl: zone_1
+      loyer: 550
     individus:
       parent1:
-        date_naissance: 1990-06-06
+        date_naissance: 1968-01-10
         salaire_imposable:
-          2016: 8888.88
-      parent2:
-        date_naissance: 1992-07-12
-        salaire_imposable:
-          2016: 6000
+          2016: 850 * 12
       enfant1:
-        date_naissance: 2014-01-01
+        date_naissance: 2003-05-20
     foyer_fiscal:
-      declarants: [parent1, parent2]
+      declarants: parent1
       personnes_a_charge: enfant1
   output:
-    aide_logement: 151.54
+    aide_logement: 334.70
 
  # Cas N° 4
  # tests pour la correction d'une double application des coefficients "coloc" et "logement_chambre"
