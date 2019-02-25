@@ -1,4 +1,5 @@
 description: Le pourcentage minimal de la capacité de travail pour bénéficier du complément de ressources
+unit: /1
 values:
   2005-07-01:
     value: 0.05
