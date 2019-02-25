@@ -7,7 +7,7 @@ from setuptools import setup, find_packages
 
 setup(
     name = "OpenFisca-France",
-    version = "34.8.1",
+    version = "35.0.0",
     author = "OpenFisca Team",
     author_email = "contact@openfisca.fr",
     classifiers = [
@@ -50,12 +50,12 @@ setup(
             "pytest < 4.0",
             "scipy >= 0.17",  # Only used to test de_net_a_brut reform
             "requests >= 2.8",
-            "yamllint >= 1.11.1, < 1.12",
+            "yamllint >= 1.11.1, < 1.12"
             ],
         },
     include_package_data = True,  # Will read MANIFEST.in
     install_requires = [
-        "OpenFisca-Core >= 25.3, < 26.0",
+        "OpenFisca-Core >= 26.0, < 27.0",
         ],
     message_extractors = {"openfisca_france": [
         ("**.py", "python", None),

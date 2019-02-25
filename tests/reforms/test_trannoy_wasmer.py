@@ -5,6 +5,9 @@ import datetime
 
 
 from openfisca_core import periods
+
+from openfisca_france.scenarios import init_single_entity
+
 from openfisca_core.tools import assert_near
 from openfisca_france.reforms.trannoy_wasmer import trannoy_wasmer
 from ..cache import tax_benefit_system
@@ -13,15 +16,15 @@ from ..cache import tax_benefit_system
 def test_charge_loyer():
     year = 2013
     reform = trannoy_wasmer(tax_benefit_system)
-    scenario = reform.new_scenario().init_single_entity(
-        axes = [
+    scenario = init_single_entity(reform.new_scenario(),
+        axes = [[
             dict(
                 count = 10,
                 max = 30000,
                 min = 0,
                 name = 'salaire_de_base',
                 ),
-            ],
+            ]],
         period = periods.period(year),
         parent1 = dict(date_naissance = datetime.date(year - 40, 1, 1)),
         parent2 = dict(date_naissance = datetime.date(year - 40, 1, 1)),

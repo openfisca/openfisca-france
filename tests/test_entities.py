@@ -5,7 +5,6 @@ from copy import deepcopy
 from openfisca_core.taxbenefitsystems import TaxBenefitSystem
 from openfisca_core.tools import assert_near
 
-from openfisca_france.scenarios import Scenario
 from openfisca_france.entities import entities, Individu, Famille, Menage
 from openfisca_france.model.base import *  # noqa analysis:ignore
 
@@ -52,53 +51,50 @@ class depcom(Variable):
 class DummyTaxBenefitSystem(TaxBenefitSystem):
     def __init__(self):
         TaxBenefitSystem.__init__(self, entities)
-        self.Scenario = Scenario
         self.add_variables(af, salaire, age, autonomie_financiere, depcom)
 
 
 tax_benefit_system = DummyTaxBenefitSystem()
 
 TEST_CASE = {
-    'individus': [{'id': 'ind0'}, {'id': 'ind1'}, {'id': 'ind2'}, {'id': 'ind3'}, {'id': 'ind4'}, {'id': 'ind5'}],
-    'familles': [
-        {'enfants': ['ind2', 'ind3'], 'parents': ['ind0', 'ind1']},
-        {'enfants': ['ind5'], 'parents': ['ind4']}
-        ],
-    'foyers_fiscaux': [
-        {'declarants': ['ind0', 'ind1'], 'personnes_a_charge': ['ind2', 'ind3']},
-        {'personnes_a_charge': ['ind5'], 'declarants': ['ind4']}
-        ],
-    'menages': [
-        {'conjoint': 'ind1', 'enfants': ['ind2', 'ind3'], 'personne_de_reference': 'ind0'},
-        {'conjoint': None, 'enfants': ['ind5'], 'personne_de_reference': 'ind4'},
-        ],
+    'individus': {'ind0': {}, 'ind1': {}, 'ind2': {}, 'ind3': {}, 'ind4': {}, 'ind5': {}},
+    'familles': {
+        'f1': {'enfants': ['ind2', 'ind3'], 'parents': ['ind0', 'ind1']},
+        'f2': {'enfants': ['ind5'], 'parents': ['ind4']}
+        },
+    'foyers_fiscaux': {
+        'ff1': {'declarants': ['ind0', 'ind1'], 'personnes_a_charge': ['ind2', 'ind3']},
+        'ff2': {'personnes_a_charge': ['ind5'], 'declarants': ['ind4']}
+        },
+    'menages': {
+        'm1': {'conjoint': 'ind1', 'enfants': ['ind2', 'ind3'], 'personne_de_reference': 'ind0'},
+        'm2': {'conjoint': [], 'enfants': ['ind5'], 'personne_de_reference': 'ind4'},
+        },
     }
 
 TEST_CASE_AGES = deepcopy(TEST_CASE)
 AGES = [40, 37, 7, 9, 54, 20]
 
-for (individu, age_) in zip(TEST_CASE_AGES['individus'], AGES):
+for (individu, age_) in zip(TEST_CASE_AGES['individus'].values(), AGES):
     individu['age'] = age_
 
 reference_period = 2013
 
 
 def new_simulation(test_case):
-    return tax_benefit_system.new_scenario().init_from_test_case(
-        period = reference_period,
-        test_case = test_case
-        ).new_simulation()
+    test_case['period'] = reference_period
+    return tax_benefit_system.new_scenario().init_from_dict(test_case).new_simulation()
 
 
 def test_transpose():
     test_case = deepcopy(TEST_CASE)
-    test_case['familles'][0]['af'] = 20000
-    test_case['familles'][1]['af'] = 10000
-    test_case['foyers_fiscaux'] = [
-        TEST_CASE['foyers_fiscaux'][0],
-        {'declarants': ['ind4']},
-        {'declarants': ['ind5']}
-        ]
+    test_case['familles']['f1']['af'] = 20000
+    test_case['familles']['f2']['af'] = 10000
+    test_case['foyers_fiscaux'] = {
+        'ff1': TEST_CASE['foyers_fiscaux']['ff1'],
+        'ff2': {'declarants': ['ind4']},
+        'ff3': {'declarants': ['ind5']}
+        }
 
     simulation = new_simulation(test_case)
     foyer_fiscal = simulation.foyer_fiscal
@@ -110,8 +106,8 @@ def test_transpose():
 
 def test_transpose_string():
     test_case = deepcopy(TEST_CASE)
-    test_case['menages'][0]['depcom'] = "93400"
-    test_case['menages'][1]['depcom'] = "89300"
+    test_case['menages']['m1']['depcom'] = "93400"
+    test_case['menages']['m2']['depcom'] = "89300"
 
     simulation = new_simulation(test_case)
     famille = simulation.famille
@@ -144,23 +140,21 @@ def test_combination_projections():
 
 def test_complex_chain_2():
     test_case = {
-        'individus': [
-            {'id': 'ind0', 'age': 30}, {'id': 'ind1', 'age': 31}, {'id': 'ind2', 'age': 32}, {'id': 'ind3', 'age': 33}
-            ],
-        'familles': [
-            {'parents': ['ind0', 'ind1']},
-            {'parents': ['ind2']},
-            {'parents': ['ind3']},
-            ],
-        'foyers_fiscaux': [
-            {'declarants': ['ind0', 'ind1']},
-            {'declarants': ['ind2', 'ind3']},
-            ],
-        'menages': [
-            {'personne_de_reference': 'ind0'},
-            {'personne_de_reference': 'ind1', 'autres': 'ind2'},
-            {'personne_de_reference': 'ind3'},
-            ],
+        'individus': {'ind0': {'age': 30}, 'ind1': {'age': 31}, 'ind2': {'age': 32}, 'ind3': {'age': 33}},
+        'familles': {
+            'f1': {'parents': ['ind0', 'ind1']},
+            'f2': {'parents': ['ind2']},
+            'f3': {'parents': ['ind3']},
+            },
+        'foyers_fiscaux': {
+            'ff1': {'declarants': ['ind0', 'ind1']},
+            'ff2': {'declarants': ['ind2', 'ind3']},
+            },
+        'menages': {
+            'm1': {'personne_de_reference': 'ind0'},
+            'm2': {'personne_de_reference': 'ind1', 'autres': 'ind2'},
+            'm4': {'personne_de_reference': 'ind3'},
+            },
         }
 
     simulation = new_simulation(test_case)

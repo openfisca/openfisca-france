@@ -6,6 +6,8 @@ from openfisca_core import periods
 from openfisca_core.reforms import Reform
 from openfisca_core.tools import assert_near
 
+from openfisca_france.scenarios import init_single_entity
+
 from ..cache import tax_benefit_system
 
 simulation_year = 2013
@@ -27,15 +29,15 @@ class ir_100_tranche_1(Reform):
 def test_parametric_reform():
     reform = ir_100_tranche_1(tax_benefit_system)
 
-    scenario = reform.new_scenario().init_single_entity(
-        axes = [
+    scenario = init_single_entity(reform.new_scenario(),
+        axes = [[
             dict(
                 count = 3,
                 name = 'salaire_imposable',
                 max = 100000,
                 min = 0,
                 ),
-            ],
+            ]],
         period = simulation_period,
         parent1 = dict(date_naissance = datetime.date(simulation_year - 40, 1, 1)),
         )

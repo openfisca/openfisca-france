@@ -2,6 +2,8 @@
 
 import datetime
 
+from openfisca_france.scenarios import init_single_entity
+
 from .cache import tax_benefit_system
 
 
@@ -34,7 +36,7 @@ def check_run(simulation, period):
 def test_basics():
     for scenario_arguments in scenarios_arguments:
         scenario = tax_benefit_system.new_scenario()
-        scenario.init_single_entity(**scenario_arguments)
+        init_single_entity(scenario, **scenario_arguments)
         simulation = scenario.new_simulation(debug = False)
         period = scenario_arguments['period']
         yield check_run, simulation, period

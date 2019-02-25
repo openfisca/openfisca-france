@@ -1,5 +1,12 @@
 # Changelog
 
+# 35.0.0 [#1227](https://github.com/openfisca/openfisca-france/pull/1227)
+
+* Amélioration technique **non rétro-compatible**.
+* Détails:
+  - Adapte à OpenFisca Core v26
+  - Pour plus d'informations, voir le [Changelog de Core](https://github.com/openfisca/openfisca-core/blob/master/CHANGELOG.md#2600-790)
+
 ### 34.8.1 [#1272](https://github.com/openfisca/openfisca-france/pull/1272)
 
 * Changement mineur.
