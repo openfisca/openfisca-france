@@ -46,7 +46,7 @@ def init_single_entity(scenario, axes = None, enfants = None, famille = None, fo
         foyers_fiscaux["ff{}".format(nth)] = foyer_fiscal_nth
         menages["m{}".format(nth)] = menage_nth
 
-    dict = {
+    test_data = {
         'period': period,
         'familles': familles,
         'foyers_fiscaux': foyers_fiscaux,
@@ -54,6 +54,6 @@ def init_single_entity(scenario, axes = None, enfants = None, famille = None, fo
         'individus': individus
         }
     if axes:
-        dict['axes'] = axes
-    scenario.init_from_dict(dict)
+        test_data['axes'] = axes
+    scenario.init_from_dict(test_data)
     return scenario
