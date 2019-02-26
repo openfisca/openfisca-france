@@ -73,18 +73,9 @@ class indemnite_accident_travail(Variable):
     def formula(individu, period, parameters):
         indem_at = parameters(period).accident_travail.rente.taux
         taux_incapacite = individu('taux_accident_travail', period)
-        result = indem_at.indemnite_accident_travail.calc(taux_incapacite)
-        # return select(
-        #     [taux_incapacite == 0.01, taux_incapacite == 0.02, taux_incapacite == 0.03, taux_incapacite == 0.04,
-        #     taux_incapacite == 0.05, taux_incapacite == 0.06, taux_incapacite == 0.07, taux_incapacite == 0.08,
-        #     taux_incapacite == 0.09],
-        #     [indem_at.indemnite_accident_travail['taux_1'], indem_at.indemnite_accident_travail['taux_2'],
-        #     indem_at.indemnite_accident_travail['taux_3'], indem_at.indemnite_accident_travail['taux_4'],
-        #     indem_at.indemnite_accident_travail['taux_5'], indem_at.indemnite_accident_travail['taux_6'],
-        #     indem_at.indemnite_accident_travail['taux_7'], indem_at.indemnite_accident_travail['taux_8'],
-        #     indem_at.indemnite_accident_travail['taux_9']]
-        #     )
-        return result
+
+        montant_indimnite = indem_at.indemnite_accident_travail.calc(taux_incapacite)
+        return montant_indimnite
 
 class rente_accident_travail_base(Variable):
     value_type = float
