@@ -1,4 +1,4 @@
- - name: "Cas 1: Victime salariée, taux d'IPP < 10%, versement d'une indemnité en capital"
+- name: "Cas 1: Victime salariée, taux d'IPP < 10%, versement d'une indemnité en capital"
   period: 2018-07
   absolute_error_margin: 0.01
   input:
@@ -135,7 +135,7 @@
   output:
     rente_accident_travail: 0
 
-- name: "Cas 7: Victime agricole, taux d'IPP > 30%, versement d'une rente mensuelle"
+- name: "Cas 7: Victime non salariée agricole, taux d'IPP > 30%, versement d'une rente mensuelle"
   period: 2018-07
   absolute_error_margin: 0.02
   input:
@@ -157,7 +157,7 @@
   output:
     rente_accident_travail: 266.67
 
-- name: "Cas 8: Victime agricole, taux d'IPP > 30%, versement d'une rente mensuelle"
+- name: "Cas 8: Victime non salariée agricole, taux d'IPP > 30%, versement d'une rente mensuelle"
   period: 2018-07
   absolute_error_margin: 0.02
   input:
@@ -179,7 +179,7 @@
   output:
     rente_accident_travail: 916.67
 
-- name: "Cas 9: Victime agricole, taux d'IPP > 80%, versement d'une rente mensuelle et de la PCRT mensuelle"
+- name: "Cas 9: Victime non salariée agricole, taux d'IPP > 80%, versement d'une rente mensuelle et de la PCRT mensuelle"
   period: 2018-07
   absolute_error_margin: 0.02
   input:
