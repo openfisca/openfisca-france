@@ -1,5 +1,15 @@
 # Changelog
 
+## 35.1.0 [#1275](https://github.com/openfisca/openfisca-france/pull/1275)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/07/2012.
+* Zones impactées :
+  - `model/prestations/minima_sociaux/ass`.
+  - `parameters/prestations/minima_sociaux/ass/montant_plein_mayotte`.
+* Détails :
+  - Applique le montant journalier de l'allocation de solidarité spécifique à Mayotte à compter du 1er juillet 2012.
+
 # 35.0.0 [#1227](https://github.com/openfisca/openfisca-france/pull/1227)
 
 * Amélioration technique **non rétro-compatible**.
