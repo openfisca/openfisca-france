@@ -331,14 +331,14 @@ class aah(Variable):
 
     def formula(individu, period, parameters):
         aah_base = individu('aah_base', period)
-        aah_param = parameters(period).prestations.minima_sociaux.aah
-        m_2 = datetime64(period.offset(-2, 'month').start)
+        aah_parameters = parameters(period).prestations.minima_sociaux.aah
+        m_2 = datetime64(period.offset(-60, 'day').start)
 
         aah_date_debut_hospitalisation = individu("aah_date_debut_hospitalisation", period)
         aah_date_debut_incarceration = individu("aah_date_debut_incarceration", period)
         aah_reduction = (aah_date_debut_hospitalisation <= m_2) + (aah_date_debut_incarceration <= m_2)
 
-        return where(aah_reduction, aah_base * aah_param.taux_aah_hospitalise_ou_incarcere, aah_base)
+        return where(aah_reduction, aah_base * aah_parameters.taux_aah_hospitalise_ou_incarcere, aah_base)
 
 
 class caah(Variable):
@@ -413,7 +413,7 @@ class complement_ressources_aah(Variable):
     reference = u"https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006745305&dateTexte=&categorieLien=cid"
     definition_period = MONTH
 
-    def formula(individu, period, parameters):
+    def formula_2015_07_01(individu, period, parameters):
         annee_precedente = period.start.period('year').offset(-1)
         prestations = parameters(period).prestations
         garantie_ressources = prestations.minima_sociaux.caah.garantie_ressources
@@ -448,7 +448,7 @@ class mva(Variable):
     reference = u"https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=6E5B97C7E6C7E06666BCFFA11871E70B.tplgfr43s_2?idArticle=LEGIARTI000006745350&cidTexte=LEGITEXT000006073189&dateTexte=20190124"
     definition_period = MONTH
 
-    def formula(individu, period, parameters):
+    def formula_2015_07_01(individu, period, parameters):
         annee_precedente = period.start.period('year').offset(-1)
         prestations = parameters(period).prestations
         taux_incapacite_min = prestations.minima_sociaux.aah.taux_incapacite
