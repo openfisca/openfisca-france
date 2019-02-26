@@ -23,11 +23,12 @@ class ass(Variable):
     def formula(individu, period, parameters):
         ass_base_ressources = individu.famille('ass_base_ressources', period)
         en_couple = individu.famille('en_couple', period)
+        residence_mayotte = individu.menage('residence_mayotte', period)
         ass_params = parameters(period).prestations.minima_sociaux.ass
 
         elig = individu('ass_eligibilite_individu', period)
 
-        montant_journalier = ass_params.montant_plein
+        montant_journalier = where(residence_mayotte, ass_params.montant_plein_mayotte, ass_params.montant_plein)
         montant_mensuel = 30 * montant_journalier
         plafond_mensuel = montant_journalier * (
             not_(en_couple) * ass_params.plaf_seul

@@ -1,0 +1,18 @@
+# Cas N°1
+- name: Montant ASS pour une personne seule réside à Mayotte avec ressources mensuelles inférieures à 329.20
+  period: 2018-04
+  absolute_error_margin: 0.02
+  input:
+    famille:
+      parents: [parent1]
+      ass_base_ressources: 329.20 * 12
+    foyer_fiscal:
+      declarants: [parent1]
+    menage:
+      personne_de_reference: parent1
+      residence_mayotte: true
+    individus:
+      parent1:
+        ass_precondition_remplie: true
+  output:
+    ass: 246.90

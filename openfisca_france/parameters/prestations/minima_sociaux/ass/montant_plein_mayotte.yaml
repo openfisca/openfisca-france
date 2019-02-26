@@ -1,0 +1,48 @@
+description: Montant journalier à taux plein de l'ASS spécifique à Mayotte \
+  (prestations.minima_sociaux.ass.montant_plein de la métropole est pris par défaut \
+  lorsque la valeur spécifique à Mayotte est non répertoriée)
+unit: currency
+values:
+  2001-01-01:
+    value: 13.1
+  2002-01-01:
+    value: 13.36
+  2003-01-01:
+    value: 13.56
+  2004-01-01:
+    value: 13.76
+  2005-01-01:
+    value: 14.0
+  2006-01-01:
+    value: 14.25
+  2007-01-01:
+    value: 14.51
+  2008-01-01:
+    value: 14.74
+  2009-01-01:
+    value: 14.96
+  2010-01-01:
+    value: 15.14
+  2011-01-01:
+    value: 15.37
+  2012-07-01:
+    value: 3.91
+    reference: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=LEGITEXT000026565447&dateTexte=20181118
+  2013-07-01:
+    value: 5.96
+    reference: https://www.legifrance.gouv.fr/eli/decret/2013/6/26/ETSD1304539D/jo/texte/fr
+  2014-07-01:
+    value: 8.05
+    reference: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000029337211&categorieLien=id
+  2015-01-01:
+    value: 8.12
+    reference: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000030171179&categorieLien=id
+  2016-04-01:
+    value: 8.13
+    reference: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000032711723&categorieLien=id
+  2017-04-01:
+    value: 8.15
+    reference: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000034678220&categorieLien=id
+  2018-04-01:
+    value: 8.23
+    reference: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000031781118&cidTexte=LEGITEXT000006072050&dateTexte=20180420&fastPos=1&fastReqId=505933634&oldAction=rechCodeArticle
