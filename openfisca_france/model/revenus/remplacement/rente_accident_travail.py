@@ -11,10 +11,12 @@ class rente_accident_travail(Variable):
     definition_period = MONTH
 
     def formula(individu, period):
+        previous_year = period.start.period('year').offset(-1)
+        non_salarie_agricole = individu('tns_benefice_exploitant_agricole', previous_year, options=[ADD]) != 0
         rente_accident_travail_salarie = individu('rente_accident_travail_salarie', period)
         rente_accident_travail_exploitant_agricole = individu('rente_accident_travail_exploitant_agricole', period)
 
-        return max_(rente_accident_travail_salarie, rente_accident_travail_exploitant_agricole)
+        return where(non_salarie_agricole, rente_accident_travail_exploitant_agricole, rente_accident_travail_salarie)
 
 
 class rente_accident_travail_salarie(Variable):
@@ -34,9 +36,9 @@ class rente_accident_travail_salarie(Variable):
 
         montant_rente_accident_travail = where(rente_accident_travail_rachat != 0, rente_accident_travail_apres_rachat,
                                                rente_accident_travail_base)
-        rente_accident_travail_verse = select([taux_incapacite < 0.1, taux_incapacite < 0.5, taux_incapacite >= 0.5],
-                                  [0, montant_rente_accident_travail / 4, montant_rente_accident_travail / 12])
-        return rente_accident_travail_verse
+
+        return select([taux_incapacite < 0.1, taux_incapacite >= 0.1],
+                                  [0, montant_rente_accident_travail / 12])
 
 
 class rente_accident_travail_exploitant_agricole(Variable):
@@ -56,10 +58,9 @@ class rente_accident_travail_exploitant_agricole(Variable):
 
         montant_rente_accident_travail = where(rente_accident_travail_rachat != 0, rente_accident_travail_apres_rachat,
                                                rente_accident_travail_base)
-        rente_accident_travail_verse = select([taux_incapacite < 0.3, taux_incapacite >= 0.3],
+        return select([taux_incapacite < 0.3, taux_incapacite >= 0.3],
                                               [0, montant_rente_accident_travail / 12]
                                               )
-        return rente_accident_travail_verse
 
 
 class indemnite_accident_travail(Variable):
@@ -72,17 +73,18 @@ class indemnite_accident_travail(Variable):
     def formula(individu, period, parameters):
         indem_at = parameters(period).accident_travail.rente.taux
         taux_incapacite = individu('taux_accident_travail', period)
-        return select(
-            [taux_incapacite == 0.01, taux_incapacite == 0.02, taux_incapacite == 0.03, taux_incapacite == 0.04,
-            taux_incapacite == 0.05, taux_incapacite == 0.06, taux_incapacite == 0.07, taux_incapacite == 0.08,
-            taux_incapacite == 0.09],
-            [indem_at.indemnite_accident_travail['taux_1'], indem_at.indemnite_accident_travail['taux_2'],
-            indem_at.indemnite_accident_travail['taux_3'], indem_at.indemnite_accident_travail['taux_4'],
-            indem_at.indemnite_accident_travail['taux_5'], indem_at.indemnite_accident_travail['taux_6'],
-            indem_at.indemnite_accident_travail['taux_7'], indem_at.indemnite_accident_travail['taux_8'],
-            indem_at.indemnite_accident_travail['taux_9']]
-            )
-
+        result = indem_at.indemnite_accident_travail.calc(taux_incapacite)
+        # return select(
+        #     [taux_incapacite == 0.01, taux_incapacite == 0.02, taux_incapacite == 0.03, taux_incapacite == 0.04,
+        #     taux_incapacite == 0.05, taux_incapacite == 0.06, taux_incapacite == 0.07, taux_incapacite == 0.08,
+        #     taux_incapacite == 0.09],
+        #     [indem_at.indemnite_accident_travail['taux_1'], indem_at.indemnite_accident_travail['taux_2'],
+        #     indem_at.indemnite_accident_travail['taux_3'], indem_at.indemnite_accident_travail['taux_4'],
+        #     indem_at.indemnite_accident_travail['taux_5'], indem_at.indemnite_accident_travail['taux_6'],
+        #     indem_at.indemnite_accident_travail['taux_7'], indem_at.indemnite_accident_travail['taux_8'],
+        #     indem_at.indemnite_accident_travail['taux_9']]
+        #     )
+        return result
 
 class rente_accident_travail_base(Variable):
     value_type = float
@@ -186,6 +188,7 @@ class rente_accident_travail_salaire_utile(Variable):
             'tns_benefice_exploitant_agricole', previous_year, options=[ADD])
         salaire = max_(salaire_net, tns_benefice_exploitant_agricole)
         salaire_net_base = max_(rente_at.salaire_net.salaire_minimum, salaire)
+        coef = salaire_net_base / rente_at.salaire_net.salaire_minimum
+        bareme = rente_at.salaire_net.bareme.calc(coef)
+        return rente_at.salaire_net.salaire_minimum * bareme
 
-        return rente_at.salaire_net.salaire_minimum * rente_at.salaire_net.bareme.calc(
-            salaire_net_base / rente_at.salaire_net.salaire_minimum)
