@@ -37,8 +37,10 @@ class rente_accident_travail_salarie(Variable):
         montant_rente_accident_travail = where(rente_accident_travail_rachat != 0, rente_accident_travail_apres_rachat,
                                                rente_accident_travail_base)
 
-        return select([taux_incapacite < 0.1, taux_incapacite >= 0.1],
-                                  [0, montant_rente_accident_travail / 12])
+        return select(
+                [taux_incapacite < 0.1, taux_incapacite >= 0.1],
+                [0, montant_rente_accident_travail / 12]
+                )
 
 
 class rente_accident_travail_exploitant_agricole(Variable):
@@ -58,9 +60,10 @@ class rente_accident_travail_exploitant_agricole(Variable):
 
         montant_rente_accident_travail = where(rente_accident_travail_rachat != 0, rente_accident_travail_apres_rachat,
                                                rente_accident_travail_base)
-        return select([taux_incapacite < 0.3, taux_incapacite >= 0.3],
-                                              [0, montant_rente_accident_travail / 12]
-                                              )
+        return select(
+                [taux_incapacite < 0.3, taux_incapacite >= 0.3],
+                [0, montant_rente_accident_travail / 12]
+                )
 
 
 class indemnite_accident_travail(Variable):
@@ -74,8 +77,9 @@ class indemnite_accident_travail(Variable):
         indem_at = parameters(period).accident_travail.rente.taux
         taux_incapacite = individu('taux_accident_travail', period)
 
-        montant_indimnite = indem_at.indemnite_accident_travail.calc(taux_incapacite)
+        montant_indimnite = indem_at.indemnite_accident_travail.baremes.calc(taux_incapacite * 100)
         return montant_indimnite
+
 
 class rente_accident_travail_base(Variable):
     value_type = float
@@ -116,7 +120,8 @@ class rente_accident_travail_apres_rachat(Variable):
         rente_apres_rachat = where(
             conversion_rente_capital != 0,
             rente_accident_travail_base - (rente_accident_travail_rachat / conversion_rente_capital),
-            rente_accident_travail_base)
+            rente_accident_travail_base
+            )
 
         return rente_apres_rachat
 
@@ -182,4 +187,3 @@ class rente_accident_travail_salaire_utile(Variable):
         coef = salaire_net_base / rente_at.salaire_net.salaire_minimum
         bareme = rente_at.salaire_net.bareme.calc(coef)
         return rente_at.salaire_net.salaire_minimum * bareme
-

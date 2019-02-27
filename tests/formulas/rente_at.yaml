@@ -6,9 +6,9 @@
       parents: [parent1]
     individus:
       parent1:
-        taux_accident_travail: 0.08
+        taux_accident_travail: 0.07
         salaire_net:
-          2017-7: 20000
+          2018-06: 20000
     foyers_fiscaux:
       foyer_fiscal_0:
         declarants:
@@ -18,7 +18,7 @@
         personne_de_reference:
         - parent1
   output:
-    indemnite_accident_travail: 3539.11
+    indemnite_accident_travail: 2966.40
 
 - name: "Cas 2: Victime salariée, 10% < taux d'IPP < 50%, versement d'une rente trimestrielle"
   period: 2018-07
