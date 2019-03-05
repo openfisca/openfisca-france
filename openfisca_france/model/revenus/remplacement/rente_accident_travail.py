@@ -6,7 +6,7 @@ from openfisca_france.model.base import *
 class rente_accident_travail(Variable):
     value_type = float
     entity = Individu
-    label = u"Montant mensuel ou trimestriel de la rente d’accident du travail"
+    label = u"Montant mensuel de la rente d’accident du travail"
     reference = u"https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006743072&dateTexte=&categorieLien=cid"
     definition_period = MONTH
 
@@ -38,9 +38,9 @@ class rente_accident_travail_salarie(Variable):
                                                rente_accident_travail_base)
 
         return select(
-                [taux_incapacite < 0.1, taux_incapacite >= 0.1],
-                [0, montant_rente_accident_travail / 12]
-                )
+            [taux_incapacite < 0.1, taux_incapacite >= 0.1],
+            [0, montant_rente_accident_travail / 12]
+            )
 
 
 class rente_accident_travail_exploitant_agricole(Variable):
@@ -61,9 +61,9 @@ class rente_accident_travail_exploitant_agricole(Variable):
         montant_rente_accident_travail = where(rente_accident_travail_rachat != 0, rente_accident_travail_apres_rachat,
                                                rente_accident_travail_base)
         return select(
-                [taux_incapacite < 0.3, taux_incapacite >= 0.3],
-                [0, montant_rente_accident_travail / 12]
-                )
+            [taux_incapacite < 0.3, taux_incapacite >= 0.3],
+            [0, montant_rente_accident_travail / 12]
+            )
 
 
 class indemnite_accident_travail(Variable):
