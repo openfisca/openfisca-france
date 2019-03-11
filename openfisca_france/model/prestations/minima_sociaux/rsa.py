@@ -340,23 +340,11 @@ class rsa_enfant_a_charge(Variable):
         age = individu('age', period)
         autonomie_financiere = individu('autonomie_financiere', period)
 
-        if period.start.date >= date(2017, 1, 1):
-            m_1 = period.last_month
-            m_2 = m_1.last_month
-            m_3 = m_2.last_month
-            # Le paramètre extra_params est déprécié. Ne pas s'inspirer de ce qui suit
-            ressources = (
-                individu('rsa_base_ressources_individu', period)
-                + individu('rsa_revenu_activite_individu', period, extra_params = [m_1]) / 3
-                + individu('rsa_revenu_activite_individu', period, extra_params = [m_2]) / 3
-                + individu('rsa_revenu_activite_individu', period, extra_params = [m_3]) / 3
-                )
-        else:
-            ressources = (
-                individu('rsa_base_ressources_individu', period)
-                + (1 - P_rsa.pente)
-                * individu('rsa_revenu_activite_individu', period)
-                )
+        ressources = (
+            individu('rsa_base_ressources_individu', period)
+            + (1 - P_rsa.pente)
+            * individu('rsa_revenu_activite_individu', period)
+            )
 
         # Les parametres ont changé de nom au moment où le RMI est devenu le RSA
         if period.start.date >= date(2009, 6, 1):
