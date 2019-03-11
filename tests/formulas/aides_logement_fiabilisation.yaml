@@ -1,0 +1,150 @@
+ # Cas N° 1
+- name: "Cas 1-zone_1: Personne seule chômeur indemnisé réside dans un secteur locatif vide non conventionné dans la zone 1"
+  period: 2018-11
+  relative_error_margin: 0.01
+  input:
+    famille:
+      parents: parent1
+    menage:
+      personne_de_reference: parent1
+      statut_occupation_logement: locataire_vide
+      zone_apl: zone_1
+      loyer: 500
+    individus:
+      parent1:
+        date_naissance: 1968-01-10
+        activite: chomeur
+        date_debut_chomage: 2018-07-01
+        salaire_imposable:
+          2016: 10000
+    foyer_fiscal:
+      declarants: parent1
+  output:
+    aide_logement: 252.26
+
+ # Cas N° 2
+- name: "Cas 2-zone_3: Personne seule chômeur indemnisé réside dans un secteur locatif vide conventionné dans la zone 3"
+  period: 2018-11
+  relative_error_margin: 0.01
+  input:
+    famille:
+      parents: parent1
+    menage:
+      personne_de_reference: parent1
+      statut_occupation_logement: locataire_vide
+      logement_conventionne:  true
+      zone_apl: zone_3
+      loyer: 500
+    individus:
+      parent1:
+        date_naissance: 1968-01-10
+        activite: chomeur
+        date_debut_chomage: 2018-07-01
+        salaire_imposable:
+          2016: 10000
+    foyer_fiscal:
+      declarants: parent1
+  output:
+    aide_logement: 173.65
+
+ # Cas N° 3
+ # La règle des 2/3 du loyer ne s'applique(s'applique pour les seules chambres meublées pour l'APL)
+- name: "Cas 3-1: Personne seule salariée avec un enfant réside dans un secteur locatif meublé conventionné dans la zone 1"
+  period: 2018-11
+  relative_error_margin: 0.01
+  input:
+    famille:
+      parents: parent1
+      enfants: enfant1
+    menage:
+      personne_de_reference: parent1
+      enfants: enfant1
+      statut_occupation_logement: locataire_meuble
+      logement_conventionne: true
+      zone_apl: zone_1
+      loyer: 550
+    individus:
+      parent1:
+        date_naissance: 1968-01-10
+        salaire_imposable:
+          2016: 850 * 12
+      enfant1:
+        date_naissance: 2003-05-20
+    foyer_fiscal:
+      declarants: parent1
+      personnes_a_charge: enfant1
+  output:
+    aide_logement: 334.70
+
+ # Cas N° 4
+ # tests pour la correction d'une double application des coefficients "coloc" et "logement_chambre"
+- name: "Cas 4-zone_2: Personne seule salariée temps partiel réside dans un Hotel/chambre meublée conventionné dans la zone 2"
+  period: 2018-11
+  relative_error_margin: 0.02
+  input:
+    famille:
+      parents: parent1
+    menage:
+      personne_de_reference: parent1
+      statut_occupation_logement: locataire_meuble
+      logement_conventionne: true
+      logement_chambre: true
+      zone_apl: zone_2
+      loyer: 990
+    individus:
+      parent1:
+        date_naissance: 1973-03-15
+        salaire_imposable:
+          2016: 700 * 12
+    foyer_fiscal:
+      declarants: parent1
+  output:
+    aide_logement: 31.95
+
+ # Cas N° 4
+ # tests pour la correction d'une double application des coefficients "coloc" et "logement_chambre"
+- name: "Cas 4-zone_2: Personne seule salariée temps partiel réside en coloc dans la zone 2"
+  period: 2018-11
+  relative_error_margin: 0.02
+  input:
+    famille:
+      parents: parent1
+    menage:
+      personne_de_reference: parent1
+      statut_occupation_logement: locataire_meuble
+      logement_conventionne: true
+      coloc: true
+      zone_apl: zone_2
+      loyer: 540
+    individus:
+      parent1:
+        date_naissance: 1973-03-15
+        salaire_imposable:
+          2016: 700 * 12
+    foyer_fiscal:
+      declarants: parent1
+  output:
+    aide_logement: 15.05
+
+- name: "Cas 4-zone_3: Personne seule salariée temps partiel réside dans un Hotel/chambre meublée conventionné dans la zone 3"
+  period: 2018-11
+  relative_error_margin: 0.02
+  input:
+    famille:
+      parents: parent1
+    menage:
+      personne_de_reference: parent1
+      statut_occupation_logement: locataire_meuble
+      logement_conventionne: true
+      logement_chambre: true
+      zone_apl: zone_3
+      loyer: 990
+    individus:
+      parent1:
+        date_naissance: 1973-03-15
+        salaire_imposable:
+          2016: 700 * 12
+    foyer_fiscal:
+      declarants: parent1
+  output:
+    aide_logement: 0

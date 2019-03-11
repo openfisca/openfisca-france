@@ -132,18 +132,12 @@ class aide_logement_montant_brut(Variable):
     def formula_2016_07_01(famille, period, parameters):
         montant_avant_degressivite = famille('aide_logement_montant_brut_avant_degressivite', period)
         loyer_reel = famille('aide_logement_loyer_reel', period)
-
         zone_apl = famille.demandeur.menage('zone_apl', period)
         loyer_plafond = famille('aide_logement_loyer_plafond', period)
-        chambre = famille.demandeur.menage('logement_chambre', period)
-        coloc = famille.demandeur.menage('coloc', period)
 
         coefficients = parameters(period).prestations.aides_logement.loyers_plafond.par_zone[zone_apl]
-        minoration_coloc = 0.25 * coloc
-        minoration_chambre = 0.1 * chambre
-        modulation = minoration_coloc + minoration_chambre
-        loyer_degressivite = round_(loyer_plafond * (coefficients.degressivite + modulation), 2)
-        loyer_suppression = round_(loyer_plafond * (coefficients.suppression + modulation), 2)
+        loyer_degressivite = round_(loyer_plafond * (coefficients.degressivite), 2)
+        loyer_suppression = round_(loyer_plafond * (coefficients.suppression), 2)
 
         coeff = select(
             [loyer_reel <= loyer_degressivite, loyer_reel <= loyer_suppression, loyer_reel > loyer_suppression],
@@ -256,6 +250,14 @@ class aide_logement_date_pret_conventionne(Variable):
     default_value = date.max
     entity = Menage
     label = u"Date de contraction du prêt conventionné "
+    definition_period = ETERNITY
+
+
+class date_debut_chomage(Variable):
+    value_type = date
+    default_value = date.max
+    entity = Individu
+    label = u"Date de début de chômage"
     definition_period = ETERNITY
 
 
@@ -523,9 +525,10 @@ class aide_logement_abattement_chomage_indemnise(Variable):
     reference = u"https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000031694522&cidTexte=LEGITEXT000006073189"
 
     def formula(individu, period, parameters):
-        chomage_net_m_1 = individu('chomage_net', period.offset(-1))
-        chomage_net_m_2 = individu('chomage_net', period.offset(-2))
-        condition_abattement = (chomage_net_m_1 > 0) * (chomage_net_m_2 > 0)
+        activite = individu('activite', period)
+        date_debut_chomage = individu('date_debut_chomage', period)
+        two_months_ago = datetime64(period.offset(-2, 'month').start)
+        condition_abattement = (activite == TypesActivite.chomeur) * (date_debut_chomage < two_months_ago)
         revenus_activite_pro = individu('aide_logement_assiette_abattement_chomage', period.n_2)
         taux_abattement = parameters(period).prestations.aides_logement.ressources.abattement_chomage_indemnise
 
@@ -791,13 +794,21 @@ class aide_logement_loyer_reel(Variable):
     value_type = float
     entity = Famille
     label = u"Loyer réel dans le calcul des aides au logement"
+    reference = u"https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=F2CE61DFFD9BD9F08700031784123828.tplgfr28s_2?idArticle=LEGIARTI000006737243&cidTexte=LEGITEXT000006073189&categorieLien=id&dateTexte="
     definition_period = MONTH
 
     def formula(famille, period):
         statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
         loyer = famille.demandeur.menage('loyer', period)
-        coeff_meuble = where(statut_occupation_logement == TypesStatutOccupationLogement.locataire_meuble, 2 / 3, 1)  # Coeff de 2/3 pour les meublés
-        return round_(loyer * coeff_meuble)
+        categorie_apl = famille.demandeur.menage('logement_conventionne', period)
+        logement_chambre = famille.demandeur.menage('logement_chambre', period)
+        locataire_meuble = statut_occupation_logement == TypesStatutOccupationLogement.locataire_meuble
+
+        # Coeff de 2/3 pour les logements meublés pour l'AL
+        coeff_meuble_al = where(locataire_meuble, 2 / 3, 1)
+        # Coeff de 2/3 pour les seules chambres meublées pour l'APL
+        coeff_meuble_apl = where(locataire_meuble * logement_chambre, 2 / 3, 1)
+        return where(categorie_apl, round_(loyer * coeff_meuble_apl), round_(loyer * coeff_meuble_al))
 
 
 class aide_logement_loyer_retenu(Variable):

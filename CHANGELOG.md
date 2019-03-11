@@ -1,5 +1,18 @@
 # Changelog
 
+# 36.0.0 [#1269](https://github.com/openfisca/openfisca-france/pull/1269)
+
+* Évolution du système socio-fiscal **non rétro-compatible**.
+* Périodes concernées : toutes.
+* Zones impactées :
+  - `prestations/aides_logement`.
+* Informations de mise à niveau :
+  - Cette évolution impacte le calcul des aides au logement pour les personnes au chômage. Si vous transmettez la valeur `chomeur` pour la variable `activite`, vous devez maintenant également transmettre `date_debut_chomage`, une condition de durée de chômage de deux mois ou plus étant désormais évaluée.
+* Détails :
+  - Ajoute la variable `date_debut_chomage`.
+  - Corrige une double application des coefficients 'coloc' et 'chambre' dans aides_logement.
+  - Corrige l'application de la règle des 2/3 du montant du loyer pour l'AL et l'APL.
+
 ## 35.1.0 [#1275](https://github.com/openfisca/openfisca-france/pull/1275)
 
 * Évolution du système socio-fiscal.
