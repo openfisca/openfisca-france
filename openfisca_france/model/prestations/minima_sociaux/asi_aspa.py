@@ -12,13 +12,6 @@ class inapte_travail(Variable):
     definition_period = MONTH
 
 
-class taux_incapacite(Variable):
-    value_type = float
-    entity = Individu
-    label = u"Taux d'incapacité"
-    definition_period = MONTH
-
-
 class asi_aspa_base_ressources_individu(Variable):
     value_type = float
     label = u"Base ressources individuelle du minimum vieillesse/ASPA"
