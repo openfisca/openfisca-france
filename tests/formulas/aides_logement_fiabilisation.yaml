@@ -78,7 +78,7 @@
 
  # Cas N° 4
  # tests pour la correction d'une double application des coefficients "coloc" et "logement_chambre"
-- name: "Cas 4-zone_2: Perssone seule salariée temps partiel réside dans un Hotel/chambre meublée conventionné dans la zone 2"
+- name: "Cas 4-zone_2: Personne seule salariée temps partiel réside dans un Hotel/chambre meublée conventionné dans la zone 2"
   period: 2018-11
   relative_error_margin: 0.02
   input:
@@ -103,7 +103,7 @@
 
  # Cas N° 4
  # tests pour la correction d'une double application des coefficients "coloc" et "logement_chambre"
-- name: "Cas 4-zone_2: Perssone seule salariée temps partiel réside en coloc dans la zone 2"
+- name: "Cas 4-zone_2: Personne seule salariée temps partiel réside en coloc dans la zone 2"
   period: 2018-11
   relative_error_margin: 0.02
   input:
@@ -126,7 +126,7 @@
   output:
     aide_logement: 15.05
 
-- name: "Cas 4-zone_3: Perssone seule salariée temps partiel réside dans un Hotel/chambre meublée conventionné dans la zone 3"
+- name: "Cas 4-zone_3: Personne seule salariée temps partiel réside dans un Hotel/chambre meublée conventionné dans la zone 3"
   period: 2018-11
   relative_error_margin: 0.02
   input:
