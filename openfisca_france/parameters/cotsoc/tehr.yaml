@@ -2,9 +2,13 @@ brackets:
 - rate:
     2013-01-01:
       value: 0.5
+    2015-01-01:
+      value: null
   threshold:
     2013-01-01:
       value: 1000000.0
+    2015-01-01:
+      value: null
 description: Taxes exceptionnelles sur les hauts revenus
 metadata:
   threshold_unit: currency

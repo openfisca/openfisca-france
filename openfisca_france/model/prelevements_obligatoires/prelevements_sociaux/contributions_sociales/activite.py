@@ -252,6 +252,7 @@ class tehr(Variable):
     reference = u"http://vosdroits.service-public.fr/professionnels-entreprises/F32096.xhtml"
     calculate_output = calculate_output_divide
     definition_period = YEAR
+    end = '2015-01-01'
 
     def formula(individu, period, parameters):
         salaire_de_base = individu('salaire_de_base', period, options = [ADD])  # TODO: check base
