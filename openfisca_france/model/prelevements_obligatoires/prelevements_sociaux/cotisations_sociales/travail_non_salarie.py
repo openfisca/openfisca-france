@@ -29,7 +29,7 @@ class categorie_non_salarie(Variable):
 class cotisations_non_salarie(Variable):
     value_type = float
     entity = Individu
-    label = u"Cotisations sociales contributives des travailleurs non salaries"
+    label = u"Cotisations sociales des travailleurs non salaries"
     definition_period = YEAR
     calculate_output = calculate_output_add
 
