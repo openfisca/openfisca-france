@@ -1,5 +1,28 @@
 # Changelog
 
+## 36.1.0 [#1274](https://github.com/openfisca/openfisca-france/pull/1274)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : toutes.
+* Zones impactées : 
+  - `model/prestations/minima_sociaux/aah`.
+  - `parameters/prestations/minima_sociaux/aah/mva`.
+  - `parameters/prestations/minima_sociaux/aah/taux_aah_hospitalise_ou_incarcere`.
+  - `parameters/prestations/minima_sociaux/aah/taux_capacite_travail`.
+  - `parameters/prestations/minima_sociaux/caah/garantie_ressources`.
+
+* Détails :
+  - Implémente des compléments à l'AAH : 
+    - le complément de ressources 
+    - la majoration pour vie autonome (MVA) a désormais une formule de calcul.
+  - Applique un montant minimal de l'AAH en cas d'hospitalisation ou incarcération.
+  - Ajoute les variables:
+    - taux_capacite_travail
+    - aah_date_debut_incarceration
+    - aah_date_debut_hospitalisation
+    - complement_ressources_aah
+    - eligibilite_caah
+
 # 36.0.0 [#1269](https://github.com/openfisca/openfisca-france/pull/1269)
 
 * Évolution du système socio-fiscal **non rétro-compatible**.
