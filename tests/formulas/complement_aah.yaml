@@ -1,0 +1,115 @@
+- name: 'Cas 1 : Personne bénéficie du Complément de Ressources'
+  period: 2019-01
+  absolute_error_margin: 1
+  input:
+    famille:
+      parents: parent1
+    individus:
+      parent1:
+        age: 58
+        taux_incapacite: 0.8
+        taux_capacite_travail: 0.04
+        aah: 261.56
+        asi: 230.32
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - parent1
+    menages:
+      menage_0:
+        personne_de_reference:
+        - parent1
+  output:
+    complement_ressources_aah: 179.31
+    caah: 179.31
+
+- name: 'Cas 2 : Personne bénéficie de la Majoration pour Vie Autonome'
+  period: 2019-01
+  absolute_error_margin: 1
+  input:
+    famille:
+      parents: parent1
+      aide_logement_montant: 254.27
+    individus:
+      parent1:
+        age: 58
+        taux_incapacite: 0.8
+        aah: 261.56
+        asi: 200.71
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - parent1
+    menages:
+      menage_0:
+        personne_de_reference:
+        - parent1
+  output:
+    mva: 104.77
+    caah: 104.77
+
+- name: 'Cas 3 : Montant AAH pour une personne hospitalisée'
+  period: 2019-01
+  absolute_error_margin: 1
+  input:
+    famille:
+      parents: parent1
+    individus:
+      parent1:
+        age: 55
+        aah_date_debut_hospitalisation: 2018-10-15
+        taux_incapacite: 0.8
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - parent1
+    menages:
+      menage_0:
+        personne_de_reference:
+        - parent1
+  output:
+    aah: 258.00
+
+- name: 'Cas 4 : Montant AAH pour une personne incarcérée'
+  period: 2018-09
+  absolute_error_margin: 1
+  input:
+    famille:
+      parents: parent1
+    individus:
+      parent1:
+        age: 55
+        aah_date_debut_incarceration: 2018-06-17
+        taux_incapacite: 0.8
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - parent1
+    menages:
+      menage_0:
+        personne_de_reference:
+        - parent1
+  output:
+    aah: 245.70
+
+- name: 'Cas 5 : Montant AAH pour une personne incarcérée'
+  period: 2019-01
+  absolute_error_margin: 1
+  input:
+    famille:
+      parents: parent1
+    individus:
+      parent1:
+        age: 55
+        aah_date_debut_incarceration: 2018-06-17
+        taux_incapacite: 0.8
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - parent1
+    menages:
+      menage_0:
+        personne_de_reference:
+        - parent1
+  output:
+    aah: 258.00
