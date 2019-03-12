@@ -484,66 +484,11 @@ class rsa_indemnites_journalieres_hors_activite(Variable):
             )
 
 
-class primes_salaires_net(Variable):
-    value_type = float
-    entity = Individu
-    label = u"Indemnités, primes et avantages en argent (net)"
-    definition_period = MONTH
-
-
-class salaire_net_hors_revenus_exceptionnels(Variable):
-    value_type = float
-    label = u"Salaire net hors prime, indemnites de licenciement, prime de précarité..."
-    entity = Individu
-    definition_period = MONTH
-
-    def formula(individu, period):
-        return (
-            individu('salaire_net', period)
-            - individu('primes_salaires_net', period)
-            - individu('indemnite_fin_contrat_net', period)
-            )
-
-
 class rsa_revenu_activite_individu(Variable):
     value_type = float
     label = u"Revenus d'activité du Rsa - Individuel"
     entity = Individu
     definition_period = MONTH
-
-    def formula_2017_01_01(individu, period, parameters):
-        last_3_months = period.last_3_months
-
-        types_revenus_activite = [
-            'salaire_net_hors_revenus_exceptionnels',
-            'indemnites_chomage_partiel',
-            'indemnites_volontariat',
-            'revenus_stage_formation_pro',
-            'bourse_recherche',
-            'hsup',
-            'etr',
-            'tns_auto_entrepreneur_benefice',
-            'rsa_indemnites_journalieres_activite',
-            'primes_salaires_net',
-            'indemnite_fin_contrat_net',
-            ]
-
-        possede_ressource_substitution = individu('rsa_has_ressources_substitution', period)
-
-        # Les revenus pros interrompus au mois M sont neutralisés s'il n'y a pas de revenus de substitution.
-
-        revenus_moyennes = sum(
-            individu(type_revenu, last_3_months, options = [ADD]) * not_(
-                (individu(type_revenu, period) == 0)
-                * (individu(type_revenu, period.last_month) > 0)
-                * not_(possede_ressource_substitution)
-                )
-            for type_revenu in types_revenus_activite
-            ) / 3
-
-        revenus_tns_annualises = individu('ppa_rsa_derniers_revenus_tns_annuels_connus', period.this_year)
-
-        return revenus_moyennes + revenus_tns_annualises
 
     def formula_2009_06(individu, period):
         last_3_months = period.last_3_months
@@ -567,14 +512,20 @@ class rsa_revenu_activite_individu(Variable):
         possede_ressource_substitution = individu('rsa_has_ressources_substitution', period)
 
         # Les revenus pros interrompus au mois M sont neutralisés s'il n'y a pas de revenus de substitution.
-        return sum(
+        revenus_moyennes = sum(
             individu(type_revenu, last_3_months, options = [ADD]) * not_(
-                (individu(type_revenu, period.first_month) == 0)
+                (individu(type_revenu, period) == 0)
                 * (individu(type_revenu, period.last_month) > 0)
                 * not_(possede_ressource_substitution)
                 )
             for type_revenu in types_revenus_activite
             ) / 3
+
+        revenus_tns_annualises = 0
+        if period.start.date >= date(2017, 1, 1):
+            revenus_tns_annualises = individu('ppa_rsa_derniers_revenus_tns_annuels_connus', period.this_year)
+
+        return revenus_moyennes + revenus_tns_annualises
 
 
 class rsa_montant(Variable):
