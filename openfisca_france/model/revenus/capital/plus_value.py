@@ -210,7 +210,7 @@ class f3sb(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Plus-values en report d'imposition, dont le report a expiré cette année"
+    label = u"Plus-values en report d'imposition, dont le report a expiré cette année; montant imposable"
     # start_date = date(2013, 1, 1)
     definition_period = YEAR
 
