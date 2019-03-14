@@ -478,7 +478,7 @@ class f3vl(Variable):
     definition_period = YEAR
 
 
-class f3sa(Variable):
+class f3sa_2012(Variable):
     cerfa_field = u"3SA"
     value_type = int
     entity = FoyerFiscal

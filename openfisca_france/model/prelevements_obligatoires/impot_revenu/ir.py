@@ -1681,7 +1681,7 @@ class taxation_plus_values_hors_bareme(Variable):
         """
         Taxation des plus values
         """
-        f3sa = foyer_fiscal('f3sa', period)
+        f3sa = foyer_fiscal('f3sa_2012', period)
         f3sj = foyer_fiscal('f3sj', period)
         f3sk = foyer_fiscal('f3sk', period)
         f3vg = foyer_fiscal('f3vg', period)
@@ -1811,7 +1811,7 @@ class rfr_plus_values_hors_rni(Variable):
         """
         Plus-values 2012 entrant dans le calcul du revenu fiscal de référence
         """
-        f3sa = foyer_fiscal('f3sa', period)
+        f3sa = foyer_fiscal('f3sa_2012', period)
         f3sj = foyer_fiscal('f3sj', period)
         f3sk = foyer_fiscal('f3sk', period)
         f3vc = foyer_fiscal('f3vc', period)
