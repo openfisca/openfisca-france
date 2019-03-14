@@ -1681,7 +1681,7 @@ class taxation_plus_values_hors_bareme(Variable):
         """
         Taxation des plus values
         """
-        f3sa = foyer_fiscal('f3sa', period)
+        f3sa_2012 = foyer_fiscal('f3sa_2012', period)
         f3sj = foyer_fiscal('f3sj', period)
         f3sk = foyer_fiscal('f3sk', period)
         f3vg = foyer_fiscal('f3vg', period)
@@ -1707,7 +1707,7 @@ class taxation_plus_values_hors_bareme(Variable):
             + plus_values.taux_pv_mob_pro * f3vl
             + plus_values.pea.taux_avant_2_ans * f3vm
             + plus_values.pea.taux_posterieur * f3vt
-            + plus_values.taux_pv_entrep * f3sa
+            + plus_values.taux_pv_entrep * f3sa_2012
             + plus_values.taux3 * f3vi
             + plus_values.taux4 * f3vf
             + plus_values.taux_plus_values_bspce * f3sj
@@ -1811,7 +1811,7 @@ class rfr_plus_values_hors_rni(Variable):
         """
         Plus-values 2012 entrant dans le calcul du revenu fiscal de référence
         """
-        f3sa = foyer_fiscal('f3sa', period)
+        f3sa_2012 = foyer_fiscal('f3sa_2012', period)
         f3sj = foyer_fiscal('f3sj', period)
         f3sk = foyer_fiscal('f3sk', period)
         f3vc = foyer_fiscal('f3vc', period)
@@ -1834,7 +1834,7 @@ class rfr_plus_values_hors_rni(Variable):
         rpns_pvce_i = foyer_fiscal.members('rpns_pvce', period)
         rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
 
-        return f3sa + f3sj + f3sk + f3vc + f3vd + f3vf + f3vg + f3vi + f3vl + f3vm + f3vp + f3vt + f3vy + f3vz + f3we + rpns_pvce
+        return f3sa_2012 + f3sj + f3sk + f3vc + f3vd + f3vf + f3vg + f3vi + f3vl + f3vm + f3vp + f3vt + f3vy + f3vz + f3we + rpns_pvce
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
         """

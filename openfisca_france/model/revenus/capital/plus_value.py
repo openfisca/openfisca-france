@@ -196,12 +196,21 @@ class f3tz(Variable):
     definition_period = YEAR
 
 
+class f3sa(Variable):
+    cerfa_field = u"3SA"
+    value_type = int
+    entity = FoyerFiscal
+    label = u"Plus-values en report d'imposition, dont le report a expiré cette année; montant avant abattement"
+    # start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+
 class f3sb(Variable):
     cerfa_field = u"3SB"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Plus-values en report d'imposition, dont le report a expiré cette année"
+    label = u"Plus-values en report d'imposition, dont le report a expiré cette année; montant imposable"
     # start_date = date(2013, 1, 1)
     definition_period = YEAR
 
@@ -478,7 +487,7 @@ class f3vl(Variable):
     definition_period = YEAR
 
 
-class f3sa(Variable):
+class f3sa_2012(Variable):
     cerfa_field = u"3SA"
     value_type = int
     entity = FoyerFiscal
