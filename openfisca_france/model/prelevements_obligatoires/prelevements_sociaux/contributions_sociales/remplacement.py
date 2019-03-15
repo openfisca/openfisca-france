@@ -27,7 +27,7 @@ class taux_csg_remplacement(Variable):
     set_input = set_input_dispatch_by_period
 
     def formula_2015(individu, period, parameters):
-        rfr = individu.foyer_fiscal('rfr', period = period.n_2, max_nb_cycles = 1)
+        rfr = individu.foyer_fiscal('rfr', period = period.n_2)
         nbptr = individu.foyer_fiscal('nbptr', period = period.n_2)
         seuils = parameters(period.start).prelevements_sociaux.contributions.csg.remplacement.pensions_de_retraite_et_d_invalidite
         seuil_exoneration = seuils.seuil_de_rfr_1 + (nbptr - 1) * seuils.demi_part_suppl
@@ -42,16 +42,6 @@ class taux_csg_remplacement(Variable):
                 )
             )
         return taux_csg_remplacement
-
-    # def formula_1991_02_01(individu, period, parameters):
-        # Hack because it goes too far in the past
-        # irpp = individu.foyer_fiscal('irpp', period = period.n_2, max_nb_cycles = 1)
-        # taux_csg_remplacement = where(
-        #     irpp <= parameters(period.start).prelevements_sociaux.contributions.csg.remplacement.pensions_de_retraite_et_d_invalidite.seuil_d_ir,
-        #     TypesTauxCSGRemplacement.exonere,
-        #     TypesTauxCSGRemplacement.taux_plein,
-        #     )
-        # return taux_csg_remplacement
 
 
 # Allocations chômage
