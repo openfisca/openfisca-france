@@ -1,6 +1,10 @@
 # Changelog
 
-# 37.0.0 [#1287](https://github.com/openfisca/openfisca-france/pull/1286)
+### 37.0.1 [#1289](https://github.com/openfisca/openfisca-france/pull/1289)
+
+* Correction cosmétique de ce fichier (CHANGELOG.md)
+
+# 37.0.0 [#1287](https://github.com/openfisca/openfisca-france/pull/1287)
 
 * Évolution du système socio-fiscal. 
 * Périodes concernées : à partir du 01/01/2012
