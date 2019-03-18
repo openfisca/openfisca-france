@@ -1,6 +1,7 @@
 # Changelog
 
-### 37.0.0 [#1287](https://github.com/openfisca/openfisca-france/pull/1286è
+### 37.0.0 [#1287](https://github.com/openfisca/openfisca-france/pull/1286)
+
 * Évolution du système socio-fiscal. 
 * Périodes concernées : à partir du 01/01/2012
 * Zones impactées : `openfisca_france/model/prelevements_obligatoires/impot_revenu`.
@@ -9,6 +10,7 @@
   - Renomme la variable `f3sa` (existant précédemment et correspondant à la case en 2012) en `f3sa_2012`
   
 ### 36.1.1 [#1286](https://github.com/openfisca/openfisca-france/pull/1286)
+
 * Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 01/01/2015.
 * Zones impactées : `prelevements_obligatoires/prelevements_sociaux/contributions_sociales/activite`.
