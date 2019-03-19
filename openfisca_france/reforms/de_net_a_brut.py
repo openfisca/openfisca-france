@@ -45,7 +45,7 @@ class salaire_de_base(Variable):
 
         def solve_func(net):
             def innerfunc(essai):
-                return calculate_net_from(essai, individu, period, requested_variable_names) - net
+                return calculate_net_from(essai, individu, period) - net
             return innerfunc
         brut_calcule = fsolve(
             solve_func(net),
