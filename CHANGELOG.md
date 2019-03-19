@@ -8,6 +8,7 @@
 * Détails :
   - Supprime `extra_param` du calcul du RSA. Le RSA est calculé au titre d'un mois donné (correspondant à l'argument `period`), en fonction des paramètres en vigueur durant ce mois-ci, et en fonction des ressources de `period.last_3_months`. On supprime la variable `rsa_fictif`, qui devient redondante.
   - Implique la suppression de la distinction des revenus d'activités moyennés et non-moyennés dans la base ressources : suppression des variables `indemnite_fin_contrat_net`, `primes_salaires_net` et `salaire_net_hors_revenus_exceptionnels`.
+  - Autres variables impactées : `rsa_base_ressources`, `rsa_base_ressources_minima_sociaux`, `rsa_base_ressources_prestations_familiales`, `rsa_enfant_a_charge`, `rsa_revenu_activite_individu`, `rsa_montant`.
 
 ## Guide de migration
 
