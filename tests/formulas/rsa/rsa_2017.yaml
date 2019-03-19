@@ -196,7 +196,7 @@
     # RSA - AF - Forfait ASF
     rsa: 986.42 - 130.12 - 180
 
-- name: Le RSA est calculé sur les revenus d'acrtivité moyens des trois derniers mois
+- name: Le RSA est calculé sur les revenus d'activité moyens des trois derniers mois
   period: 2017-01
   relative_error_margin: 0.01
   input:
@@ -222,9 +222,9 @@
     rsa_forfait_logement:
       2017-01: 0
     rsa_revenu_activite_individu:
-      2017-01: (700+200+200)/3
+      2017-01: (700 + 200 + 200) / 3
     rsa:
-      2017-01: 535.17 - (700 + 200 + 200)/3
+      2017-01: 535.17 - (700 + 200 + 200) / 3
 
 - name: Les derniers benefices agricoles et autres TNS sont pris en compte dans la BR du RSA
   period: 2017-01
@@ -340,4 +340,4 @@
     rsa_forfait_logement:
       2017-01: 158.94
     rsa:
-      2017-01: 1145.37 - 158.94 - (1000+500+0)/3 - 130
+      2017-01: 1145.37 - 158.94 - (1000 + 500 + 0) / 3 - 130

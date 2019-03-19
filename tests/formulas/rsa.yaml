@@ -34,11 +34,11 @@
     rsa_forfait_logement:
       2018-05: 132.22
     rsa_socle:
-      2018-05: 550.93*1.5
+      2018-05: 550.93 * 1.5
     rsa_base_ressources:
       2018-05: 167
     rsa:
-      2018-05: 550.93*1.5 - 132.22 - 167
+      2018-05: 550.93 * 1.5 - 132.22 - 167
 
 - name: RSA Cas N°2
   period: 2018-05
@@ -78,7 +78,7 @@
       enfant1:
         date_naissance: 2005-03-10
   output:
-    rsa: 550.93*1.8*(1 - 0.165) - 167
+    rsa: 550.93 * 1.8 * (1 - 0.165) - 167
 
 - name: RSA Cas N°3
   period: 2018-05
@@ -126,11 +126,11 @@
         date_naissance: 2008-01-08
   output:
     rsa_socle:
-      2018-05: 550.93*2.1
+      2018-05: 550.93 * 2.1
     rsa_forfait_logement:
-      2018-05: 550.93*1.8*0.165
+      2018-05: 550.93 * 1.8 * 0.165
     rsa:
-      2018-05: 550.93*2.1 - 550.93*1.8*0.165 - 167 - 131.16
+      2018-05: 550.93 * 2.1 - 550.93 * 1.8 * 0.165 - 167 - 131.16
 
 - name: RSA Cas N°4
   period: 2018-05
@@ -185,7 +185,7 @@
         date_naissance: 2010-10-15
   output:
     rsa:
-      2018-05: 550.93*2.5 - 550.93*1.8*0.165 - 167 - 299.20 - 170.71
+      2018-05: 550.93 * 2.5 - 550.93 * 1.8 * 0.165 - 167 - 299.20 - 170.71
 
 - name: RSA Cas N°5
   period: 2018-05
@@ -245,7 +245,7 @@
           2018-03: 134
           2018-02: 134
   output:
-    rsa: 550.93*(1-0.12) - 134
+    rsa: 550.93 * (1 - 0.12) - 134
 
 - name: RSA Cas N°7
   period: 2018-05
@@ -284,7 +284,7 @@
       enfant1:
         date_naissance: 2005-03-10
   output:
-    rsa: 550.93*(1.28412+0.42804) - 550.93*1.5*0.16 - 115.30 - 134
+    rsa: 550.93 * (1.28412 + 0.42804) - 550.93 * 1.5 * 0.16 - 115.30 - 134
 
 - name: RSA Cas N°8
   period: 2018-05
@@ -330,7 +330,7 @@
       enfant2:
         date_naissance: 2008-01-04
   output:
-    rsa: 550.93*(1.28412+2*0.42804) - 550.93*1.8*0.165 - 230.60 - 131.16 - 134
+    rsa: 550.93 * (1.28412 + 2 * 0.42804) - 550.93 * 1.8 * 0.165 - 230.60 - 131.16 - 134
 
 - name: RSA Cas Non Passant N°1
   period: 2018-05
@@ -457,7 +457,8 @@
       enfant2:
         date_naissance: 2005-03-10
   output:
-    rsa: 550.93*1.8 - 550.93*1.8*0.165 - 600 - 131.16 # Explication : règle CAF : un enfant ayant des resosurces > à la hausse du socle qu'il implique ne compte pas dans le calcul du RSA'
+    # Règle CAF : un enfant ayant des ressources > à la hausse du socle qu'il implique ne compte pas dans le calcul du RSA
+    rsa: 550.93 * 1.8 - 550.93 * 1.8 * 0.165 - 600 - 131.16
 
 - name: RSA Cas Non Passant N°4
   period: 2018-05
