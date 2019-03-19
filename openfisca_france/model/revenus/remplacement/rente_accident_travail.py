@@ -112,15 +112,11 @@ class rente_accident_travail_apres_rachat(Variable):
 
     def formula(individu, period, parameters):
         rente_at = parameters(period).accident_travail.rente.taux
-        age = max_(individu('age', period), 0)
+        age = max_(individu('age', period), 16)
         rente_accident_travail_rachat = individu('rente_accident_travail_rachat', period)
         conversion_rente_capital = rente_at.capital_representatif[age]
         rente_accident_travail_base = individu('rente_accident_travail_base', period)
-        rente_apres_rachat = where(
-            conversion_rente_capital != 0,
-            rente_accident_travail_base - (rente_accident_travail_rachat / conversion_rente_capital),
-            rente_accident_travail_base
-            )
+        rente_apres_rachat = rente_accident_travail_base - (rente_accident_travail_rachat / conversion_rente_capital)
 
         return rente_apres_rachat
 
@@ -135,7 +131,7 @@ class rente_accident_travail_rachat(Variable):
     def formula(individu, period, parameters):
         rente_at = parameters(period).accident_travail.rente.taux
         demande_rachat = individu('demande_rachat', period)
-        age = max_(individu('age', period), 0)
+        age = max_(individu('age', period), 16)
         conversion_rente_capital = rente_at.capital_representatif[age]
         rente_accident_travail_base = individu('rente_accident_travail_base', period)
         rachat = (rente_accident_travail_base * conversion_rente_capital) / 4
