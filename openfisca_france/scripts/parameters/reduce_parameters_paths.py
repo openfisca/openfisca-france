@@ -47,7 +47,7 @@ def get_sub_parent_path(directory_path, parent_path):
 
 def get_raw_content(yaml_filepath):
     with open(yaml_filepath, 'r') as stream:
-        return yaml.load(stream)
+        return yaml.load(stream, Loader=yaml.FullLoader)
 
 
 def harvest(item):

@@ -130,7 +130,7 @@ def main():
 
         # Verify YAML syntax of generated file.
         with open(yaml_file_path, 'r') as yaml_file:
-            scenario = yaml.load(yaml_file)
+            scenario = yaml.load(yaml_file, Loader=yaml.FullLoader)
         assert isinstance(scenario, dict), (yaml_file_path, scenario, test_json)
 
     if args.test_ids is None:
