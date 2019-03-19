@@ -196,21 +196,17 @@
     # RSA - AF - Forfait ASF
     rsa: 986.42 - 130.12 - 180
 
-- name: Les primes sur un mois ne sont pas moyennées
+- name: Le RSA est calculé sur les revenus d'activité moyens des trois derniers mois
   period: 2017-01
   relative_error_margin: 0.01
   input:
     individus:
       1:
         salaire_net:
-          2017-01: 200
+          2017-01: 1000
           2016-12: 700
           2016-11: 200
           2016-10: 200
-        primes_salaires_net:
-          2016-12: 500
-          2016-11: 0
-          2016-10: 0
     famille:
       parents:
       - 1
@@ -221,44 +217,14 @@
       personne_de_reference:
       - 1
   output:
+    rsa_socle:
+      2017-01: 535.17
+    rsa_forfait_logement:
+      2017-01: 0
+    rsa_revenu_activite_individu:
+      2017-01: (700 + 200 + 200) / 3
     rsa:
-      2017-01: 223
-    rsa_fictif:
-      2016-12: 0
-      2016-11: 535.17 - 200
-      2016-10: 535.17 - 200
-
-- name: Les indemnités de licenciement sur un mois ne sont pas moyennées
-  period: 2017-01
-  relative_error_margin: 0.01
-  input:
-    individus:
-      1:
-        salaire_net:
-          2017-01: 400
-          2016-12: 400
-          2016-11: 0
-          2016-10: 2000
-        indemnite_fin_contrat_net:
-          2016-12: 0
-          2016-11: 0
-          2016-10: 1500
-    famille:
-      parents:
-      - 1
-    foyer_fiscal:
-      declarants:
-      - 1
-    menage:
-      personne_de_reference:
-      - 1
-  output:
-    rsa:
-      2017-01: 156.8
-    rsa_fictif:
-      2016-12: 535.17 - 300
-      2016-11: 535.17 - 300
-      2016-10: 0
+      2017-01: 535.17 - (700 + 200 + 200) / 3
 
 - name: Les derniers benefices agricoles et autres TNS sont pris en compte dans la BR du RSA
   period: 2017-01
@@ -282,10 +248,6 @@
       2017-01: 535.17 - 200
     rsa_montant:
       2017-01: 535.17 - 200
-    rsa_fictif:
-      2016-12: 535.17 - 200
-      2016-11: 535.17 - 200
-      2016-10: 535.17 - 200
 
 - name: Les derniers benefices TNS sont pris en compte dans la BR du RSA
   period: 2017-01
@@ -311,10 +273,6 @@
       2017-01: 535.17 - 400
     rsa_montant:
       2017-01: 535.17 - 400
-    rsa_fictif:
-      2016-12: 535.17 - 400
-      2016-11: 535.17 - 400
-      2016-10: 535.17 - 400
 
 - name: Effets figés introduits en 2017 (exemple inspiré du suivi législatif)
   period: 2017-01
@@ -323,7 +281,7 @@
     individus:
       1:
         salaire_net:
-          2017-01: 1000
+          2017-01: 3000
           2016-12: 1000
           2016-11: 500
           2016-10: 0
@@ -334,14 +292,13 @@
       enfants: [2, 3]
       rsa_isolement_recent: true
       rsa_nb_enfants:
+        2017-01: 2
         2016-12: 2
-        2016-11: 2
-        2016-10: 1
+        2016-11: 1
       paje_prepare:
         2017-01: 130
-        2016-12: 130
+        2016-12: 0
         2016-11: 0
-        2016-10: 0
       af:
         2017-01: 0
         2016-12: 0
@@ -378,12 +335,9 @@
         personne_de_reference:
         - 3
   output:
-    rsa: 376.9
     rsa_socle_majore:
-      2016-12: 1145.37 # (Montant Forfaitaire MF)
-      2016-11: 1145.37 # MF
-      2016-10: 916.29 # MF
-    rsa_fictif:
-      2016-12: 1145.37 - 158.94 - (500 + 130)  # (Montant Forfaitaire MF -  Forfait logement FL - Prestations familiales PF)
-      2016-11: 1145.37 - 158.94 - 500  # (MF - FL - PF)
-      2016-10: 916.29 - 128.44 - 500  # (MF - FL - PF)
+      2017-01: 1145.37
+    rsa_forfait_logement:
+      2017-01: 158.94
+    rsa:
+      2017-01: 1145.37 - 158.94 - (1000 + 500 + 0) / 3 - 130

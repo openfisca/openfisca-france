@@ -1,18 +1,34 @@
 # Changelog
 
+# 38.0.0 [#1284](https://github.com/openfisca/openfisca-france/pull/1284)
+
+* Évolution du système socio-fiscal **non rétrocompatible**
+* Périodes concernées : à partir de 2017.
+* Zones impactées : `prestations/minima_sociaux/rsa.py`.
+* Détails :
+  - Supprime `extra_param` du calcul du RSA. Le RSA est calculé au titre d'un mois donné (correspondant à l'argument `period`), en fonction des paramètres en vigueur durant ce mois-ci, et en fonction des ressources de `period.last_3_months`. On supprime la variable `rsa_fictif`, qui devient redondante.
+  - Implique la suppression de la distinction des revenus d'activités moyennés et non-moyennés dans la base ressources : suppression des variables `indemnite_fin_contrat_net`, `primes_salaires_net` et `salaire_net_hors_revenus_exceptionnels`.
+  - Autres variables impactées : `rsa_base_ressources`, `rsa_base_ressources_minima_sociaux`, `rsa_base_ressources_prestations_familiales`, `rsa_enfant_a_charge`, `rsa_revenu_activite_individu`, `rsa_montant`.
+
+## Guide de migration
+
+- Remplacer la variable `rsa` par `rsa_fictif`
+- Remplacer `salaire_net_hors_revenus_exceptionnels` par `salaire_net`
+- Utiliser les versions brutes de `indemnite_fin_contrat` et `primes_salaires` qui sont reflétées en net dans `salaire_imposable`
+
 ### 37.0.1 [#1289](https://github.com/openfisca/openfisca-france/pull/1289)
 
 * Correction cosmétique de ce fichier (CHANGELOG.md)
 
 # 37.0.0 [#1287](https://github.com/openfisca/openfisca-france/pull/1287)
 
-* Évolution du système socio-fiscal. 
+* Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 01/01/2012
 * Zones impactées : `openfisca_france/model/prelevements_obligatoires/impot_revenu`.
 * Détails :
   - Crée une variable `f3sa` correspondant à la case 3SA réintroduite à partir de 2016
   - Renomme la variable `f3sa` (existant précédemment et correspondant à la case en 2012) en `f3sa_2012`
-  
+
 ### 36.1.1 [#1286](https://github.com/openfisca/openfisca-france/pull/1286)
 
 * Évolution du système socio-fiscal.
