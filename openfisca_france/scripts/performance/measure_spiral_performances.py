@@ -40,32 +40,32 @@ situation = {
                 "2016-10": 62191,
                 "2016-11": 62191,
                 "2016-12": 62191
+                }
             }
-        }
-    },
+        },
     "familles": {
         "_": {
             "parents": [
                 "demandeur"
-            ]
-        }
-    },
+                ]
+            }
+        },
     "foyers_fiscaux": {
         "_": {
             "declarants": [
                 "demandeur"
-            ],
+                ],
             "personnes_a_charge": []
-        }
-    },
+            }
+        },
     "menages": {
         "_": {
             "personne_de_reference": [
                 "demandeur"
-            ]
+                ]
+            }
         }
     }
-}
 
 
 def timeit(method):
@@ -81,16 +81,16 @@ def timeit(method):
 def test_revenu_disponible():
     def new_simulation():
         return SimulationBuilder().build_from_dict(tax_benefit_system, couple)
-                
+
     simulations = [new_simulation() for i in range(NB_RUN)]
 
     @timeit
     def run_test():
         for simulation in simulations:
             simulation.calculate('revenu_disponible', 2018)
-    
+
     result, delta = run_test()
-    print('{:2.6f} s'.format(delta / NB_RUN))
+    print('{:2.6f} s'.format(delta / NB_RUN))  # noqa T001
 
 
 def test_spiral():
@@ -105,23 +105,22 @@ def test_spiral():
     def run_test():
         for simulation in simulations:
             simulation.calculate('ass', '2018-12')
-            logement_social_eligible = simulation.calculate('logement_social_eligible', '2018-12')
-            # assert (logement_social_eligible == 0).all()
+            simulation.calculate('logement_social_eligible', '2018-12')
 
     result, delta = run_test()
-    print('{:2.6f} s'.format(delta / NB_RUN))
+    print('{:2.6f} s'.format(delta / NB_RUN))  # noqa T001
 
 
-print('Premier test revenu disponible')
+print('Premier test revenu disponible')  # noqa T001
 test_revenu_disponible()
-print('Second test revenu disponible')
+print('Second test revenu disponible')  # noqa T001
 test_revenu_disponible()
-print('3e test revenu disponible')
+print('3e test revenu disponible')  # noqa T001
 test_revenu_disponible()
 
-print('Premier test ciblé spirale')
+print('Premier test ciblé spirale')  # noqa T001
 test_spiral()
-print('Second test ciblé spirale')
+print('Second test ciblé spirale')  # noqa T001
 test_spiral()
-print('3e test ciblé spirale')
+print('3e test ciblé spirale')  # noqa T001
 test_spiral()
