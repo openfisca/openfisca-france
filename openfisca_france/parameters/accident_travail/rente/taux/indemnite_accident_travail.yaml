@@ -1,0 +1,73 @@
+description:  Le montant de l'indemnité en capital
+unit: currency
+
+baremes:
+  metadata:
+    type: single_amount
+  brackets:
+    - threshold:
+        2016-04-01:
+          value: 0
+      amount:
+        2016-04-01:
+          value: 0
+    - threshold:
+        2016-04-01:
+          value: 1
+      amount:
+        2016-04-01:
+          value: 416.47
+    - threshold:
+        2016-04-01:
+          value: 2
+      amount:
+        2016-04-01:
+          value: 676.90
+    - threshold:
+        2016-04-01:
+          value: 3
+      amount:
+        2016-04-01:
+          value: 989.15
+    - threshold:
+        2016-04-01:
+          value: 4
+      amount:
+        2016-04-01:
+          value: 1561.20
+    - threshold:
+        2016-04-01:
+          value: 5
+      amount:
+        2016-04-01:
+          value: 1977.76
+    - threshold:
+        2016-04-01:
+          value: 6
+      amount:
+        2016-04-01:
+          value: 2446.16
+    - threshold:
+        2016-04-01:
+          value: 7
+      amount:
+        2016-04-01:
+          value: 2966.40
+    - threshold:
+        2016-04-01:
+          value: 8
+      amount:
+        2016-04-01:
+          value: 3539.11
+    - threshold:
+        2016-04-01:
+          value: 9
+      amount:
+        2016-04-01:
+          value: 4163.61
+    - threshold:
+        2016-04-01:
+          value: 10
+      amount:
+        2016-04-01:
+          value: 0

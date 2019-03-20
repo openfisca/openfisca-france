@@ -1,5 +1,26 @@
 # Changelog
 
+## 38.1.0bis [#1270](https://github.com/openfisca/openfisca-france/pull/1270)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : toutes.
+* Zones impactées :
+  - `revenus/remplacement/rente_accident_travail`.
+  - `parameters/accident_travail/rente/*`.
+* Détails :
+  - Permet le calcul de `rente_accident_travail`.
+  - Ajoute les variables:
+    - `demande_rachat` (en entrée)
+    - `pcrtp_nombre_actes_assistance` (en entrée)
+    - `indemnite_accident_travail`
+    - `pcrtp`
+    - `rente_accident_travail_apres_rachat`
+    - `rente_accident_travail_base`
+    - `rente_accident_travail_exploitant_agricole`
+    - `rente_accident_travail_rachat`
+    - `rente_accident_travail_salaire_utile`
+    - `rente_accident_travail_salarie`
+
 ### 37.0.1 [#1289](https://github.com/openfisca/openfisca-france/pull/1289)
 
 * Correction cosmétique de ce fichier (CHANGELOG.md)

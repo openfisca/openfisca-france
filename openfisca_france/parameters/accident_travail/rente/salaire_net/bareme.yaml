@@ -1,0 +1,22 @@
+description: Barème utilisé pour la détermination de rente_accident_travail_salaire_utile (cf. formule)
+reference: https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=7392B9902E4B974EAE8783FAF2D69849.tplgfr30s_1?idArticle=LEGIARTI000006750376&cidTexte=LEGITEXT000006073189&dateTexte=20180823
+unit: currency
+brackets:
+- rate:
+    2018-01-01:
+      value: 1
+  threshold:
+    2018-01-01:
+      value: 0
+- rate:
+    2018-01-01:
+      value: 0.3333334
+  threshold:
+    2018-01-01:
+      value: 2
+- rate:
+    2018-01-01:
+      value: 0
+  threshold:
+    2018-01-01:
+      value: 8
