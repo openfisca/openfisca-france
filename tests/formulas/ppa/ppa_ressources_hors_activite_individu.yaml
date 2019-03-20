@@ -19,3 +19,23 @@
       2018: 1200
   output:
     ppa_ressources_hors_activite_individu: 300
+
+- name: PPA - Ressources hors activité individu - rentes viagères à titre onéreux
+  description: Sont pris en compte les rentes viagères à titre onéreux de l'avant-dernière année
+  period: 2018-06
+  input:
+    rente_viagere_titre_onereux:
+      2016-01: 1000
+      2016-02: 1000
+      2016-03: 1000
+      2016-04: 1000
+      2016-05: 1000
+      2016-06: 1000
+      2016-07: 1500
+      2016-08: 1500
+      2016-09: 1500
+      2016-10: 1500
+      2016-11: 1500
+      2016-12: 1500
+  output:
+    ppa_base_ressources: (1000 + 1500) * 6 / 12
