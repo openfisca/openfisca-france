@@ -584,16 +584,16 @@
     pensions_invalidite:
       2016-01: 100
     revenus_locatifs:
-      2014-01: 100
+      2014-01: 120
     prime_forfaitaire_mensuelle_reprise_activite:
       2016-01: 100
   output:
     ppa:
       2016-02: 0
     ppa_ressources_hors_activite_individu:
-      2016-01: 900
+      2016-01: 810 # Car pour revenus locatifs, on prend le douzième des revenus totaux de l'année N-2
     ppa_ressources_hors_activite:
-      2016-01: 1691.40
+      2016-01: 1601.40 # Car pour revenus locatifs, on prend le douzième des revenus totaux de l'année N-2
 
 - name: 'PPA: étudiant éligible (ressources > plancher)'
   period: 2016-01
