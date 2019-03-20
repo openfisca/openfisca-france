@@ -239,12 +239,12 @@ class ppa_ressources_hors_activite_individu(Variable):
                 ]
 
             return (
-                sum(individu(ressource, period.offset(-2, 'year')) for ressource in ressources_individuelles_mensuelles)
+                sum(individu(ressource, period.offset(-2, 'year').this_year, options = [ADD]) for ressource in ressources_individuelles_mensuelles)
                 + (
-                    individu.foyer_fiscal('assiette_csg_plus_values', period.offset(-2, 'year').this_year) / 12
-                    + individu.foyer_fiscal('rente_viagere_titre_onereux', period.offset(-2, 'year'))
+                    individu.foyer_fiscal('assiette_csg_plus_values', period.offset(-2, 'year').this_year)
+                    + individu.foyer_fiscal('rente_viagere_titre_onereux', period.offset(-2, 'year').this_year, options = [ADD])
                     ) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
-                )
+                ) / 12
 
         ressources_hors_activite_mensuel_i = (
             + ressources_percues_au_cours_du_mois_considere()
