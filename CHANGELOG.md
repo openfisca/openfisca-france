@@ -1,5 +1,14 @@
 # Changelog
 
+### 38.1.1 [#1291](https://github.com/openfisca/openfisca-france/pull/1291)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `prestations\minima_sociaux\ppa`.
+* Détails :
+  - Ajoute les rentes foncières à titre onéreux dans la base ressources de la PPA
+  - Appelle dans les revenus du capital le douzième de l'année N-2, et pas le mois d'il y a deux ans.
+
 ## 38.1.0 [#1270](https://github.com/openfisca/openfisca-france/pull/1270)
 
 * Évolution du système socio-fiscal.
