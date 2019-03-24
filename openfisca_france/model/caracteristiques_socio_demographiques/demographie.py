@@ -203,7 +203,7 @@ class nb_parents(Variable):
         # Note : Cette variable est "instantanée" : quelque soit la période demandée, elle retourne la valeur au premier
         # jour, sans changer la période.
 
-        return famille.nb_persons(role = famille.PARENT)
+        return famille.nb_persons(role = Famille.PARENT)
 
 
 class maries(Variable):
@@ -218,7 +218,7 @@ class maries(Variable):
         statut_marital = famille.members('statut_marital', period)
         individu_marie = (statut_marital == TypesStatutMarital.marie)
 
-        return famille.any(individu_marie, role = famille.PARENT)
+        return famille.any(individu_marie, role = Famille.PARENT)
 
 
 class en_couple(Variable):
