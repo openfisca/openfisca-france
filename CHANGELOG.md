@@ -1,5 +1,11 @@
 # Changelog
 
+# 39.0.0 [#1293](https://github.com/openfisca/openfisca-france/pull/1293)
+
+* Amélioration technique **non rétrocompatible**
+* Détails :
+  - Met à jour à la syntaxe Core v.29 (suivre le [guide de migration de Core](https://github.com/openfisca/openfisca-core/blob/232bca40e51c9eb5adaf030c70e0db362e84ec66/CHANGELOG.md#2900-843)). 
+
 ### 38.1.1 [#1291](https://github.com/openfisca/openfisca-france/pull/1291)
 
 * Changement mineur.
