@@ -50,7 +50,7 @@ setup(
             "pytest < 4.0",
             "scipy >= 0.17",  # Only used to test de_net_a_brut reform
             "requests >= 2.8",
-            "yamllint >= 1.11.1, < 1.12"
+            "yamllint >=1.11.1,<1.16"
             ],
         },
     include_package_data = True,  # Will read MANIFEST.in
