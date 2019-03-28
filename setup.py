@@ -28,11 +28,6 @@ setup(
         ("share/openfisca/openfisca-france", ["CHANGELOG.md", "LICENSE.AGPL.txt", "README.md"]),
         ],
     extras_require = {
-        "baremes_ipp": [
-            "xlrd >= 1.0.0",
-            "lxml >= 3.8.0, < 4.0",
-            "Biryani[datetimeconv] >= 0.10.4",
-            ],
         "inversion_revenus": [
             "scipy >= 0.17",
             ],
