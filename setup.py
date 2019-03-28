@@ -7,7 +7,7 @@ from setuptools import setup, find_packages
 
 setup(
     name = "OpenFisca-France",
-    version = "39.0.0",
+    version = "39.0.1",
     author = "OpenFisca Team",
     author_email = "contact@openfisca.fr",
     classifiers = [
@@ -44,9 +44,9 @@ setup(
             ],
         "dev": [
             "autopep8 == 1.4.0",
-            "flake8 >= 3.5.0, < 3.6.0",
+            "flake8 >=3.5.0,<3.8.0",
             "flake8-print",
-            "pycodestyle >= 2.3.0, < 2.4.0",  # To avoid incompatibility with flake
+            "pycodestyle >=2.3.0,<2.6.0",  # To avoid incompatibility with flake
             "pytest < 4.0",
             "scipy >= 0.17",  # Only used to test de_net_a_brut reform
             "requests >= 2.8",
