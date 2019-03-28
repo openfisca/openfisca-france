@@ -1,5 +1,11 @@
 # Changelog
 
+### 39.0.1 [#1292](https://github.com/openfisca/openfisca-france/pull/1292)
+
+* Amélioration technique
+* Détails :
+  - Met à jour l'outil de suivi du formatage Python
+
 # 39.0.0 [#1293](https://github.com/openfisca/openfisca-france/pull/1293)
 
 * Amélioration technique **non rétrocompatible**
