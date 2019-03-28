@@ -30,7 +30,7 @@ setup(
     extras_require = {
         "baremes_ipp": [
             "xlrd >= 1.0.0",
-            "lxml >= 3.8.0, < 4.0",
+            "lxml >=3.8.0,<5.0",
             "Biryani[datetimeconv] >= 0.10.4",
             ],
         "inversion_revenus": [
