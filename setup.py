@@ -7,7 +7,7 @@ from setuptools import setup, find_packages
 
 setup(
     name = "OpenFisca-France",
-    version = "39.0.1",
+    version = "39.0.2",
     author = "OpenFisca Team",
     author_email = "contact@openfisca.fr",
     classifiers = [
@@ -28,11 +28,6 @@ setup(
         ("share/openfisca/openfisca-france", ["CHANGELOG.md", "LICENSE.AGPL.txt", "README.md"]),
         ],
     extras_require = {
-        "baremes_ipp": [
-            "xlrd >= 1.0.0",
-            "lxml >= 3.8.0, < 4.0",
-            "Biryani[datetimeconv] >= 0.10.4",
-            ],
         "inversion_revenus": [
             "scipy >= 0.17",
             ],
@@ -43,14 +38,14 @@ setup(
             "pandas >= 0.13",
             ],
         "dev": [
-            "autopep8 == 1.4.0",
+            "autopep8 ==1.4.3",
             "flake8 >=3.5.0,<3.8.0",
             "flake8-print",
             "pycodestyle >=2.3.0,<2.6.0",  # To avoid incompatibility with flake
-            "pytest < 4.0",
+            "pytest <5.0",
             "scipy >= 0.17",  # Only used to test de_net_a_brut reform
             "requests >= 2.8",
-            "yamllint >= 1.11.1, < 1.12"
+            "yamllint >=1.11.1,<1.16"
             ],
         },
     include_package_data = True,  # Will read MANIFEST.in
