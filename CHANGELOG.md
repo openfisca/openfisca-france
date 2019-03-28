@@ -1,5 +1,12 @@
 # Changelog
 
+### 39.0.2 [#1294](https://github.com/openfisca/openfisca-france/pull/1294)
+
+* Amélioration technique
+* Détails :
+  - Met à jour yamllint, Pytest, autopep8
+  - Supprime les dépendances du groupe "Barèmes IPP", obsolètes
+
 ### 39.0.1 [#1292](https://github.com/openfisca/openfisca-france/pull/1292)
 
 * Amélioration technique
