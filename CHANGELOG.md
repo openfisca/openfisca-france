@@ -1,5 +1,11 @@
 # Changelog
 
+# 40.0.0 [#1268](https://github.com/openfisca/openfisca-france/pull/1268)
+
+* Amélioration technique **non rétrocompatible**
+* Détails :
+  - Met à jour Core à v.30 (pour plus de détails voir [le descriptif](https://github.com/openfisca/openfisca-france/pull/1268), et suivre le [guide de migration de Core](https://github.com/openfisca/openfisca-core/pull/817)).
+
 ### 39.0.2 [#1294](https://github.com/openfisca/openfisca-france/pull/1294)
 
 * Amélioration technique
