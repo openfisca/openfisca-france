@@ -11,7 +11,7 @@ from .. import entities
 from ..model.base import *
 
 
-def calculate_net_from(salaire_de_base, individu, period, requested_variable_names):
+def calculate_net_from(salaire_de_base, individu, period):
 
     # We're not wanting to calculate salaire_de_base again, but instead manually set it as an input variable
     individu.get_holder('salaire_de_base').put_in_cache(salaire_de_base, period)
@@ -19,11 +19,6 @@ def calculate_net_from(salaire_de_base, individu, period, requested_variable_nam
     # Work in isolation
     temp_simulation = individu.simulation.clone()
     temp_individu = temp_simulation.individu
-
-    # Calculated variable holders might contain undesired cache
-    # (their entity.simulation points to the original simulation above)
-    for name in requested_variable_names:
-        temp_individu.get_holder[name].delete_arrays()
 
     # Force recomputing of salaire_net
     temp_individu.get_holder('salaire_net_a_payer').delete_arrays()
@@ -48,22 +43,9 @@ class salaire_de_base(Variable):
         if net is None:
             return individu.empty_array()
 
-        simulation = individu.simulation
-
-        # List of variables already calculated. We will need it to remove their holders,
-        # that might contain undesired cache
-        requested_variable_names = list(simulation.requested_periods_by_variable_name.keys())
-        if requested_variable_names:
-            requested_variable_names.remove(u'salaire_de_base')
-        # Clean 'requested_periods_by_variable_name', that is used by -core to check for computation cycles.
-        # This variable, salaire_de_base, might have been called from variable X,
-        # that will be calculated again in our iterations to compute the salaire_net requested
-        # as an input variable, hence producing a cycle error
-        simulation.requested_periods_by_variable_name = dict()
-
         def solve_func(net):
             def innerfunc(essai):
-                return calculate_net_from(essai, individu, period, requested_variable_names) - net
+                return calculate_net_from(essai, individu, period) - net
             return innerfunc
         brut_calcule = fsolve(
             solve_func(net),

@@ -310,7 +310,7 @@ class TypesCotisationSocialeModeRecouvrement(Enum):
 class cotisation_sociale_mode_recouvrement(Variable):
     value_type = Enum
     possible_values = TypesCotisationSocialeModeRecouvrement
-    default_value = TypesCotisationSocialeModeRecouvrement.mensuel
+    default_value = TypesCotisationSocialeModeRecouvrement.mensuel_strict
     entity = Individu
     label = u"Mode de recouvrement des cotisations sociales"
     definition_period = MONTH

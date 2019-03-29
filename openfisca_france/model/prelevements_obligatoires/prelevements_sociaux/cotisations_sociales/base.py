@@ -126,7 +126,7 @@ def compute_cotisation_anticipee(individu, period, parameters, cotisation_type =
             )
     if period.start.month == 12:
         cumul = individu(variable_name, period.start.offset('first-of', 'month').offset(
-            -11, 'month').period('month', 11), max_nb_cycles = 1, options = [ADD])
+            -11, 'month').period('month', 11), options = [ADD])
         # December variable_name depends on variable_name in the past 11 months.
         # We need to explicitely allow this recursion.
 

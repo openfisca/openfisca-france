@@ -174,6 +174,7 @@
   input:
     f1aw: 30000
     f4ba: 20000
+    rsa: 0
   output:
     prelevements_sociaux_revenus_capital: -7052 # -(0.7*30000 + 20000) * (0.045 + 0.02 + 0.003 + 0.005 + 0.082)
     revenus_nets_du_capital: (20000 - 7052)
@@ -196,6 +197,7 @@
     revenus_nets_du_capital: 100000*(1-(0.045+0.02+0.003+0.005+0.082))
     irpp: -7266 # Montant calculé sur le simulateur de la DGFiP
     impots_directs: -7266-13000
+
 - name: acomptes_ir_2017
   description: Montant d'impôt et revenu disponible en cas d'acomptes pour l'IR en 2017 (prélèvement forfaitaire non libératoire)
   period: 2017
@@ -203,6 +205,7 @@
   input:
     f2ck: 10000
     f2dc: 100000
+    rsa: 0
   output:
     prelevement_forfaitaire_non_liberatoire: 10000
     acomptes_ir: 10000
@@ -223,6 +226,7 @@
     ir_pv_immo: -0.19*100000
     irpp: 0
     impots_directs: -0.19*100000
+
 - name: pfu_av_2018
   description: Test du prélèvement forfaitaire unique en 2018 pour les produits d'assurance-vie
   period: 2018
@@ -237,6 +241,7 @@
     assurance_vie_pfu_ir_moins4ans_19970926_primes_avant_20170927: 700000
     assurance_vie_pfu_ir_moins8ans_19970926_primes_apres_20170927: 800000
     assurance_vie_pfu_ir_plus8ans_19970926_primes_apres_20170927: 900000
+    rsa: 0
   output:
     prelevements_sociaux_revenus_capital: -774000 # -4500000*(0.045+0.02+0.003+0.005+0.099)
     revenus_nets_du_capital: 4500000 - 774000
@@ -251,6 +256,7 @@
   input:
     produit_epargne_solidaire: 20000
     produit_etats_non_cooperatif: 30000
+    rsa: 0
   output:
     prelevements_sociaux_revenus_capital: -8600 # -50000*(0.045+0.02+0.003+0.005+0.099)
     revenus_nets_du_capital: 50000 - 8600
@@ -269,6 +275,7 @@
     f3vd: 50000
     interets_plan_epargne_logement_moins_de_12_ans_ouvert_a_partir_de_2018: 60000
     interets_compte_epargne_logement_ouvert_a_partir_de_2018: 70000
+    rsa: 0
   output:
     prelevements_sociaux_revenus_capital: -32680 # ATTENTION : f3sa et f3vd sont hors du champ des prélèvements sociaux par hypothèse du simulateur (cf. docstring de la variable assiette_csg_plus_values pour une explication). Donc : -190000*(0.045+0.02+0.003+0.005+0.099)
     revenus_nets_du_capital: 270000 - 32680

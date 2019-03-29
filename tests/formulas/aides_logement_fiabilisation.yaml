@@ -5,6 +5,8 @@
   input:
     famille:
       parents: parent1
+      rsa:
+        2018-10: 0
     menage:
       personne_de_reference: parent1
       statut_occupation_logement: locataire_vide
@@ -29,6 +31,8 @@
   input:
     famille:
       parents: parent1
+      rsa:
+        2018-10: 0
     menage:
       personne_de_reference: parent1
       statut_occupation_logement: locataire_vide
@@ -56,6 +60,8 @@
     famille:
       parents: parent1
       enfants: enfant1
+      rsa:
+        2018-10: 0
     menage:
       personne_de_reference: parent1
       enfants: enfant1
@@ -84,6 +90,8 @@
   input:
     famille:
       parents: parent1
+      rsa:
+        2018-10: 0
     menage:
       personne_de_reference: parent1
       statut_occupation_logement: locataire_meuble
@@ -109,6 +117,8 @@
   input:
     famille:
       parents: parent1
+      rsa:
+        2018-10: 0
     menage:
       personne_de_reference: parent1
       statut_occupation_logement: locataire_meuble
@@ -132,6 +142,8 @@
   input:
     famille:
       parents: parent1
+      rsa:
+        2018-10: 0
     menage:
       personne_de_reference: parent1
       statut_occupation_logement: locataire_meuble
