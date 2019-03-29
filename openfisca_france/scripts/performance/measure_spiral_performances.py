@@ -3,7 +3,6 @@
 
 import time
 from openfisca_core.simulation_builder import SimulationBuilder
-from openfisca_core.simulations import Simulation
 from openfisca_france import FranceTaxBenefitSystem
 from openfisca_france.situation_examples import couple
 
@@ -95,9 +94,7 @@ def test_revenu_disponible():
 
 def test_spiral():
     def new_simulation():
-        return Simulation(
-            tax_benefit_system = tax_benefit_system,
-            simulation_json = situation)
+        return SimulationBuilder().build_from_dict(tax_benefit_system, situation)
 
     simulations = [new_simulation() for i in range(NB_RUN)]
 
