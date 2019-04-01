@@ -195,7 +195,7 @@ class apprentissage_contrat_debut(Variable):
     value_type = date
     entity = Individu
     label = u"Date de début du contrat d'apprentissage"
-    definition_period = MONTH
+    definition_period = ETERNITY
 
 
 class arrco_tranche_a_taux_employeur(Variable):
