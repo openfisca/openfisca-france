@@ -37,7 +37,8 @@
   period: 2018-01
   absolute_error_margin: 1
   input:
-    statut_occupation_logement: locataire_vide
+    statut_occupation_logement:
+      2018: locataire_vide
     aide_logement_loyer_retenu:
       2018-01: 400
       2018-02: 400
