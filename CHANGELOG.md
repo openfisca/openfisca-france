@@ -1,5 +1,18 @@
 # Changelog
 
+# 41.0.0 [#1261](https://github.com/openfisca/openfisca-france/pull/1261)
+
+* Evolution technique **non rétrocompatible**
+* Zones impactées : plusieurs (voir liste ci-dessous).
+* Détails :
+  - Supprime l'attribut base_function des variables `garde_alternee`, `age`, `age_en_mois`, `rsa_isolement_recent`, `contrat_de_travail_debut`, `contrat_de_travail_fin`, `salarie_regime_alsace_moselle`, `entreprise_creation`, `prevoyance_obligatoire_cadre_taux_employe`, `prevoyance_obligatoire_cadre_taux_employeur`, `livret_a`, `epargne_revenus_non_imposables`, `epargne_revenus_imposables`, `valeur_patrimoine_loue`, `valeur_immo_non_loue`, `valeur_terrains_non_loues`, `valeur_locative_terrains_non_loues`
+  - Ajoute le comportement `set_input_dispatch_by_period` à ces variables le cas échéant
+  - Adapte certains tests qui s'appuyaient sur ces inférences "magiques" pour les variables d'entrée.
+
+## Guide de migration
+
+- Si vous utilisez ces variables en entrée, vous devrez expliciter la période pour laquelle ces variables sont fournies, de sorte qu'elle recouvre toute la période de vos calculs (vous pouvez utiliser la [syntaxe des périodes multi-mois ou multi-années](https://openfisca.org/doc/coding-the-legislation/35_periods.html) pour gagner en concision)
+
 # 40.0.0 [#1268](https://github.com/openfisca/openfisca-france/pull/1268)
 
 * Amélioration technique **non rétrocompatible**
