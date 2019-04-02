@@ -111,6 +111,7 @@ class valeur_patrimoine_loue(Variable):
     entity = Individu
     label = u"Valeur des biens immobiliers et des terrains loués"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class revenus_locatifs(Variable):
@@ -137,6 +138,7 @@ class valeur_immo_non_loue(Variable):
     entity = Individu
     label = u"Valeur des biens immobiliers possédés et non loués"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class valeur_locative_immo_non_loue(Variable):
@@ -152,6 +154,7 @@ class valeur_terrains_non_loues(Variable):
     entity = Individu
     label = u"Valeur des terrains possédés et non loués"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class valeur_locative_terrains_non_loues(Variable):

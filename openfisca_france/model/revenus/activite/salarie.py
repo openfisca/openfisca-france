@@ -347,6 +347,7 @@ class salarie_regime_alsace_moselle(Variable):
     value_type = bool
     label = u"Le salarié cotise au régime de l'Alsace-Moselle"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
     # Attention : ce n'est pas équivalent au fait de travailler en Alsace-Moselle !
     # http://regime-local.fr/salaries/
 
@@ -425,6 +426,7 @@ class prevoyance_obligatoire_cadre_taux_employe(Variable):
     entity = Individu
     label = u"Taux de cotisation employeur pour la prévoyance obligatoire des cadres"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class prevoyance_obligatoire_cadre_taux_employeur(Variable):
@@ -433,6 +435,7 @@ class prevoyance_obligatoire_cadre_taux_employeur(Variable):
     entity = Individu
     label = u"Taux de cotisation employeur pour la prévoyance obligatoire des cadres"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class primes_salaires(Variable):

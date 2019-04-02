@@ -397,6 +397,7 @@ class epargne_revenus_imposables(Variable):
     entity = Individu
     label = u"Épargne générant des revenus imposables"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class revenus_capitaux_prelevement_bareme(Variable):
