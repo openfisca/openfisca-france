@@ -503,9 +503,7 @@
   input:
     age: 40
     statut_occupation_logement:
-      2015-12: proprietaire
-      2015-11: proprietaire
-      2015-10: proprietaire
+      year:2015:2: proprietaire
     salaire_net:
       2016-01: 918 # > 95 smic horaire brut
       2015-12: 918

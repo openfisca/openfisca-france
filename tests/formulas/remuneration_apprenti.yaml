@@ -1,6 +1,7 @@
 - period: month:2015-03
   input:
-    apprentissage_contrat_debut: '2013-01-01'
+    apprentissage_contrat_debut:
+      year:2013:3: '2013-01-01'
     date_naissance: '1996-01-01'
   output:
     apprenti: 1
@@ -8,7 +9,7 @@
 - period: month:2015-03
   input:
     apprentissage_contrat_debut:
-      2013-01: '2013-01-01'
+      year:2013:3: '2013-01-01'
     date_naissance: '1996-01-01'
   output:
     apprenti:

@@ -109,9 +109,9 @@ class f4bl(Variable):
 class valeur_patrimoine_loue(Variable):
     value_type = float
     entity = Individu
-    base_function = requested_period_last_value
     label = u"Valeur des biens immobiliers et des terrains loués"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class revenus_locatifs(Variable):
@@ -136,30 +136,30 @@ class revenus_locatifs(Variable):
 class valeur_immo_non_loue(Variable):
     value_type = float
     entity = Individu
-    base_function = requested_period_last_value
     label = u"Valeur des biens immobiliers possédés et non loués"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class valeur_locative_immo_non_loue(Variable):
     value_type = float
     entity = Individu
-    base_function = requested_period_last_value
     label = u"Valeur locative, à l'année, des biens immobiliers possédés et non loués"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class valeur_terrains_non_loues(Variable):
     value_type = float
     entity = Individu
-    base_function = requested_period_last_value
     label = u"Valeur des terrains possédés et non loués"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class valeur_locative_terrains_non_loues(Variable):
     value_type = float
     entity = Individu
-    base_function = requested_period_last_value
     label = u"Valeur locative, à l'année, des terrains possédés et non loués"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period

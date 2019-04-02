@@ -46,7 +46,7 @@
       personne_de_reference: 1
       conjoint: 2
       statut_occupation_logement:
-        2014-01: proprietaire
+        2014: proprietaire
     individus:
       1:
         date_naissance: '1985-01-01'

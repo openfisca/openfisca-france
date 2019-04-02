@@ -2,15 +2,19 @@
   period: '2014'
   relative_error_margin: 0.0001
   input:
-    contrat_de_travail_debut: '2014-01-01'
-    effectif_entreprise: 20
+    contrat_de_travail_debut:
+      year:2014:10: '2014-01-01'
+    effectif_entreprise:
+      year:2014:10: 20
     entreprise_benefice:
       year:2014:10: 1 * 10
     salaire_de_base:
       '2014': 35 * 52 * 9.53 * 2.5
       '2015': 35 * 52 * 9.61 * 2.5
-    zone_revitalisation_rurale: true
-    categorie_salarie: prive_non_cadre
+    zone_revitalisation_rurale:
+      year:2014:10: true
+    categorie_salarie:
+      year:2014:10: prive_non_cadre
   output:
     exoneration_is_creation_zrr:
       '2014': 1

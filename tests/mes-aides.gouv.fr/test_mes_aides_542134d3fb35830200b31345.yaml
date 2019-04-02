@@ -19,9 +19,9 @@ input:
       valeur_locative_terrains_non_loues:
         2012-01: 0
       livret_a:
-        2012-01: 10000
+        year:2012:3: 10000
       epargne_revenus_non_imposables:
-        2012-01: 30000
+        year:2012:3: 30000
   famille:
     acs:
       2013-09: 0

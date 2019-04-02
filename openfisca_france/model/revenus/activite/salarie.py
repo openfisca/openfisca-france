@@ -196,6 +196,7 @@ class apprentissage_contrat_debut(Variable):
     entity = Individu
     label = u"Date de début du contrat d'apprentissage"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class arrco_tranche_a_taux_employeur(Variable):
@@ -270,7 +271,6 @@ class contrat_de_travail_debut(Variable):
     entity = Individu
     label = u"Date d'arrivée dans l'entreprise"
     definition_period = MONTH
-    base_function = requested_period_last_or_next_value
     set_input = set_input_dispatch_by_period
 
 
@@ -280,7 +280,6 @@ class contrat_de_travail_fin(Variable):
     entity = Individu
     label = u"Date de départ de l'entreprise"
     definition_period = MONTH
-    base_function = requested_period_last_or_next_value
     set_input = set_input_dispatch_by_period
 
 
@@ -348,6 +347,7 @@ class salarie_regime_alsace_moselle(Variable):
     value_type = bool
     label = u"Le salarié cotise au régime de l'Alsace-Moselle"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
     # Attention : ce n'est pas équivalent au fait de travailler en Alsace-Moselle !
     # http://regime-local.fr/salaries/
 
@@ -355,7 +355,6 @@ class salarie_regime_alsace_moselle(Variable):
 class effectif_entreprise(Variable):
     entity = Individu
     value_type = int
-    base_function = requested_period_last_value
     label = u"Effectif de l'entreprise"
     set_input = set_input_dispatch_by_period
     definition_period = MONTH
@@ -410,7 +409,6 @@ class entreprise_creation(Variable):
 class nombre_tickets_restaurant(Variable):
     value_type = int
     entity = Individu
-    base_function = requested_period_last_value
     label = u"Nombre de tickets restaurant"
     definition_period = MONTH
 
@@ -426,18 +424,18 @@ class prevoyance_obligatoire_cadre_taux_employe(Variable):
     value_type = float
     default_value = 0.015  # 1.5% est le minimum en 2014
     entity = Individu
-    base_function = requested_period_last_value
     label = u"Taux de cotisation employeur pour la prévoyance obligatoire des cadres"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class prevoyance_obligatoire_cadre_taux_employeur(Variable):
     value_type = float
     default_value = 0.015  # 1.5% est le minimum en 2014
     entity = Individu
-    base_function = requested_period_last_value
     label = u"Taux de cotisation employeur pour la prévoyance obligatoire des cadres"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class primes_salaires(Variable):

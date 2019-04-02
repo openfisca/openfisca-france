@@ -2,14 +2,17 @@
   period: '2014'
   absolute_error_margin: 0.005
   input:
-    contrat_de_travail_debut: '2014-01-01'
-    effectif_entreprise: 20
+    contrat_de_travail_debut:
+      year:2014:2: '2014-01-01'
+    effectif_entreprise:
+      year:2014:2: 20
     salaire_de_base:
       '2014': 35 * 52 * 9.53
       '2015': 35 * 52 * 9.61
     zone_revitalisation_rurale:
-      year:2014:5: true
-    categorie_salarie: prive_non_cadre
+      year:2014:2: true
+    categorie_salarie:
+      year:2014:2: prive_non_cadre
   output:
     exoneration_cotisations_employeur_zrr:
       2014-01: 35 * 52 * 9.53 * 0.281 / 12
@@ -19,14 +22,17 @@
   period: '2014'
   absolute_error_margin: 0.005
   input:
-    contrat_de_travail_debut: '2014-05-01'
-    effectif_entreprise: 20
+    contrat_de_travail_debut:
+      year:2014:3: '2014-05-01'
+    effectif_entreprise:
+      year:2014:3: 20
     salaire_de_base:
       month:2014-05:8: 35 * 52 * 9.53 * 1.4 * 8 / 12
       '2015': 35 * 52 * 9.61 * 1.4
     zone_revitalisation_rurale:
-      year:2014:5: true
-    categorie_salarie: prive_non_cadre
+      year:2014:3: true
+    categorie_salarie:
+      year:2014:3: prive_non_cadre
   output:
     exoneration_cotisations_employeur_zrr:
       2014-06: 35 * 52 * 9.53 * 1.4 * 0.281 / 12
@@ -37,14 +43,17 @@
 - name: Exonération cotisations employeur zone de revitalisation rurale (ZRR) - 2.5 SMIC
   period: '2014'
   input:
-    contrat_de_travail_debut: '2010-05-01'
-    effectif_entreprise: 20
+    contrat_de_travail_debut:
+      year:2010:6: '2010-05-01'
+    effectif_entreprise:
+      year:2010:6: 20
     salaire_de_base:
       '2014': 35 * 52 * 9.53 * 2.5
       '2015': 35 * 52 * 9.61 * 2.5
     zone_revitalisation_rurale:
-      year:2014:5: true
-    categorie_salarie: prive_non_cadre
+      year:2010:6: true
+    categorie_salarie:
+      year:2010:6: prive_non_cadre
   output:
     exoneration_cotisations_employeur_zrr:
       2014-01: 35 * 52 * 9.53 * 2.5 * 0 / 12

@@ -834,8 +834,8 @@ class rsa_isolement_recent(Variable):
     value_type = bool
     entity = Famille
     label = u"Situation d'isolement depuis moins de 18 mois"
-    base_function = requested_period_last_or_next_value
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
 
 class rsa_majore_eligibilite(Variable):

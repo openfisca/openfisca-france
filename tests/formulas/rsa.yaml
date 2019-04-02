@@ -265,7 +265,8 @@
         2018-03: 109.65
         2018-02: 109.65
       paje_base: 0
-      rsa_isolement_recent: 1
+      rsa_isolement_recent:
+        2018: true
     foyer_fiscal:
       declarants: [personne1]
       personnes_a_charge: [enfant1]
@@ -309,7 +310,8 @@
         2018-03: 129.86
         2018-02: 129.86
       paje_base: 0
-      rsa_isolement_recent: 1
+      rsa_isolement_recent:
+        2018: true
     foyer_fiscal:
       declarants: [personne1]
       personnes_a_charge: [enfant1, enfant2]

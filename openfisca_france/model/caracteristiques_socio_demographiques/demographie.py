@@ -22,7 +22,6 @@ class garde_alternee(Variable):
     value_type = bool
     entity = Individu
     label = u'Enfant en garde alternée'
-    base_function = requested_period_last_or_next_value
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
