@@ -1,5 +1,17 @@
 # Changelog
 
+## 41.2.0 [#1303](https://github.com/openfisca/openfisca-france/pull/1303)
+
+* Correction d'un crash.
+* Périodes concernées : toutes.
+* Zones impactées :
+   - `prestations/prestations_familiales/base_ressources`
+   - `prestations/prestations_familiales/cf`
+* Détails :
+  - Injecte les revenus fiscaux non individualisables dans la base ressources du CF
+  - Crée une variable `prestations_familiales_base_ressources_communes` pour mutualiser cette opération pour les différentes bases ressources des prestations familiales
+  - Renomme `cf_ressources` par `cf_base_ressources` et `cf_ressources_individu` par `cf_base_ressources_individu`.
+
 ## 41.1.0 [#1302](https://github.com/openfisca/openfisca-france/pull/1302)
 
 * Revalorisation périodique.
@@ -49,7 +61,7 @@
 
 * Amélioration technique **non rétrocompatible**
 * Détails :
-  - Met à jour à la syntaxe Core v.29 (suivre le [guide de migration de Core](https://github.com/openfisca/openfisca-core/blob/232bca40e51c9eb5adaf030c70e0db362e84ec66/CHANGELOG.md#2900-843)). 
+  - Met à jour à la syntaxe Core v.29 (suivre le [guide de migration de Core](https://github.com/openfisca/openfisca-core/blob/232bca40e51c9eb5adaf030c70e0db362e84ec66/CHANGELOG.md#2900-843)).
 
 ### 38.1.1 [#1291](https://github.com/openfisca/openfisca-france/pull/1291)
 
