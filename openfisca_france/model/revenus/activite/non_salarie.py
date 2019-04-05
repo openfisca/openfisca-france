@@ -1162,17 +1162,6 @@ class nlnp_defs(Variable):
     definition_period = YEAR
 
 
-class cbnc_assc(Variable):
-    cerfa_field = {0: u"5QM",
-        1: u"5RM", }
-    value_type = int
-    unit = 'currency'
-    entity = Individu
-    label = u"Agents généraux d'assurances : indemnités de cessation d'activité (revenus non commerciaux professionnels, régime de la déclaration contrôlée)"
-    # start_date = date(2006, 1, 1)
-    definition_period = YEAR
-
-
 class abnc_proc(Variable):
     cerfa_field = {0: u"5TF",
         1: u"5UF",
