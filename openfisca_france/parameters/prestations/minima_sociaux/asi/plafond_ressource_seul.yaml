@@ -29,3 +29,6 @@ values:
     value: 8457.76
   2018-04-01:
     value: 8542.33
+  2019-04-01:
+    value: 8679.00
+    reference: http://circulaires.legifrance.gouv.fr/pdf/2019/03/cir_44460.pdf

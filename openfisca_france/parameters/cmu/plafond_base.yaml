@@ -31,3 +31,6 @@ values:
     value: 8723.0
   2018-04-01:
     value: 8810.23
+  2019-04-01:
+    value: 8951.00
+    reference: https://www.legifrance.gouv.fr/eli/arrete/2019/3/20/SSAS1908400A/jo/article_1
