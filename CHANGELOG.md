@@ -2,7 +2,7 @@
 
 ## 41.2.0 [#1303](https://github.com/openfisca/openfisca-france/pull/1303)
 
-* Correction d'un crash.
+* Amélioration de modélisation.
 * Périodes concernées : toutes.
 * Zones impactées :
    - `prestations/prestations_familiales/base_ressources`
