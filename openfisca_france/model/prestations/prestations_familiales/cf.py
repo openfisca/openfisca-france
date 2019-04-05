@@ -84,7 +84,7 @@ class cf_dom_enfant_trop_jeune(Variable):
         return condition_age * est_enfant_dans_famille
 
 
-class cf_ressources_individu(Variable):
+class cf_base_ressources_individu(Variable):
     value_type = float
     entity = Individu
     label = u"Complément familial - Ressources de l'individu prises en compte"
@@ -164,15 +164,15 @@ class cf_majore_plafond(Variable):
         return plafond_base * pfam.cf.plafond_cf_majore
 
 
-class cf_ressources(Variable):
+class cf_base_ressources(Variable):
     value_type = float
     entity = Famille
     label = u"Ressources prises en compte pour l'éligibilité au complément familial"
     definition_period = MONTH
 
     def formula(famille, period):
-        cf_ressources_individu_i = famille.members('cf_ressources_individu', period)
-        ressources_i_total = famille.sum(cf_ressources_individu_i)
+        cf_base_ressources_individu_i = famille.members('cf_base_ressources_individu', period)
+        ressources_i_total = famille.sum(cf_base_ressources_individu_i)
         ressources_communes = famille('prestations_familiales_base_ressources_communes', period)
         return ressources_i_total + ressources_communes
 
@@ -223,7 +223,7 @@ class cf_non_majore_avant_cumul(Variable):
     def formula(famille, period, parameters):
         eligibilite_base = famille('cf_eligibilite_base', period)
         eligibilite_dom = famille('cf_eligibilite_dom', period)
-        ressources = famille('cf_ressources', period)
+        ressources = famille('cf_base_ressources', period)
         plafond = famille('cf_plafond', period)
 
         pfam = parameters(period).prestations.prestations_familiales
@@ -264,7 +264,7 @@ class cf_majore_avant_cumul(Variable):
     def formula_2014_04_01(famille, period, parameters):
         eligibilite_base = famille('cf_eligibilite_base', period)
         eligibilite_dom = famille('cf_eligibilite_dom', period)
-        ressources = famille('cf_ressources', period)
+        ressources = famille('cf_base_ressources', period)
         plafond_majore = famille('cf_majore_plafond', period)
 
         pfam = parameters(period).prestations.prestations_familiales

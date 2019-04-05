@@ -6,4 +6,4 @@
     revenu_categoriel_foncier:
       2016: 20000
   output:
-    cf_ressources: 20000
+    cf_base_ressources: 20000
