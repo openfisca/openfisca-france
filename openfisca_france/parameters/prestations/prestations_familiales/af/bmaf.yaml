@@ -106,4 +106,7 @@ values:
     value: 407.84
   2018-04-01:
     value: 411.92
-    reference : http://circulaires.legifrance.gouv.fr/pdf/2018/03/cir_43190.pdf
+    reference: http://circulaires.legifrance.gouv.fr/pdf/2018/03/cir_43190.pdf
+  2019-04-01:
+    value: 413.16
+    reference: http://circulaires.legifrance.gouv.fr/pdf/2019/03/cir_44472.pdf
