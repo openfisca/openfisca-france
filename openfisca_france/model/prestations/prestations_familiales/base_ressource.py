@@ -191,13 +191,6 @@ class prestations_familiales_base_ressources(Variable):
     definition_period = MONTH
 
     def formula(famille, period):
-        '''
-        Base ressource des prestations familiales de la famille
-        'fam'
-        '''
-        # period_legacy = period.start.offset('first-of', 'month').period('year')
-        annee_fiscale_n_2 = period.n_2
-
         base_ressources_i = famille.members('prestations_familiales_base_ressources_individu', period)
         enfant_i = famille.members('est_enfant_dans_famille', period)
         enfant_a_charge_i = famille.members('prestations_familiales_enfant_a_charge', period)
