@@ -172,8 +172,9 @@ class cf_ressources(Variable):
 
     def formula(famille, period):
         cf_ressources_individu_i = famille.members('cf_ressources_individu', period)
-        ressources = famille.sum(cf_ressources_individu_i)
-        return ressources
+        ressources_i_total = famille.sum(cf_ressources_individu_i)
+        ressources_communes = famille('prestations_familiales_base_ressources_communes', period)
+        return ressources_i_total + ressources_communes
 
 
 class cf_eligibilite_base(Variable):
