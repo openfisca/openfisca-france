@@ -1,0 +1,9 @@
+- name: revenus_fonciers_base_ressources_cf
+  description: Prise en compte des revenus fonciers dans la base ressources du complément familial
+  period: 2018-01
+  absolute_error_margin: 1
+  input:
+    revenu_categoriel_foncier:
+      2016: 20000
+  output:
+    cf_base_ressources: 20000

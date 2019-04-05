@@ -154,6 +154,32 @@ class rev_coll(Variable):
             )
 
 
+class prestations_familiales_base_ressources_communes(Variable):
+    value_type = float
+    entity = Famille
+    label = u"Ressources non individualisables prises en compte pour les prestations familiales"
+    reference = [
+        u"Article D521-4 du Code de la sécurité sociale",
+        u"https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000030678081&cidTexte=LEGITEXT000006073189&categorieLien=id"
+        ]
+    definition_period = MONTH
+
+    def formula(famille, period):
+        annee_fiscale_n_2 = period.n_2
+
+        demandeur_declarant_principal = famille.demandeur.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
+        conjoint_declarant_principal = famille.conjoint.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
+
+        rev_coll = (
+            famille.demandeur.foyer_fiscal('rev_coll', annee_fiscale_n_2)
+            * demandeur_declarant_principal
+            + famille.conjoint.foyer_fiscal('rev_coll', annee_fiscale_n_2)
+            * conjoint_declarant_principal
+            )
+
+        return rev_coll
+
+
 class prestations_familiales_base_ressources(Variable):
     value_type = float
     entity = Famille
@@ -165,32 +191,15 @@ class prestations_familiales_base_ressources(Variable):
     definition_period = MONTH
 
     def formula(famille, period):
-        '''
-        Base ressource des prestations familiales de la famille
-        'fam'
-        '''
-        # period_legacy = period.start.offset('first-of', 'month').period('year')
-        annee_fiscale_n_2 = period.n_2
-
         base_ressources_i = famille.members('prestations_familiales_base_ressources_individu', period)
         enfant_i = famille.members('est_enfant_dans_famille', period)
         enfant_a_charge_i = famille.members('prestations_familiales_enfant_a_charge', period)
         ressources_i = (not_(enfant_i) + enfant_a_charge_i) * base_ressources_i
         base_ressources_i_total = famille.sum(ressources_i)
 
-        demandeur_declarant_principal = famille.demandeur.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
-        conjoint_declarant_principal = famille.conjoint.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
+        ressources_communes = famille('prestations_familiales_base_ressources_communes', period)
 
-        # Revenus du foyer fiscal
-        rev_coll = (
-            famille.demandeur.foyer_fiscal('rev_coll', annee_fiscale_n_2)
-            * demandeur_declarant_principal
-            + famille.conjoint.foyer_fiscal('rev_coll', annee_fiscale_n_2)
-            * conjoint_declarant_principal
-            )
-
-        base_ressources = base_ressources_i_total + rev_coll
-        return base_ressources
+        return base_ressources_i_total + ressources_communes
 
 
 ############################################################################
