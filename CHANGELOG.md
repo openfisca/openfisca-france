@@ -1,5 +1,18 @@
 # Changelog
 
+## 41.1.0 [#1302](https://github.com/openfisca/openfisca-france/pull/1302)
+
+* Revalorisation périodique.
+* Périodes concernées : à partir du 01/04/2019.
+* Zones impactées :
+  - `parameters/prestations/prestations_familiales/af`.
+  - `parameters/cmu`.
+  - `parameters/prestations/minima_sociaux/asi`.
+* Détails :
+  - Revalorise l'allocation familiale (AF) au 1er avril 2019 en métropole .
+  - Revalorise l'aide CMU-c et ACS au 01 avril 2019 en métropole .
+  - Revalorise l’allocation supplémentaire d’invalidité (ASI) au 1er avril 2019.
+
 # 41.0.0 [#1261](https://github.com/openfisca/openfisca-france/pull/1261)
 
 * Evolution technique **non rétrocompatible**
