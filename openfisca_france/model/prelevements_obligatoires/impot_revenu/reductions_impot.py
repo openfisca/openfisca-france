@@ -18,7 +18,7 @@ class reductions(Variable):
 
     def formula(foyer_fiscal, period, parameters):
         '''
-        Renvoie la somme des réductions d'impôt à intégrer pour l'année 2002
+        Renvoie la somme des réductions d'impôt
         '''
         reductions = [
             # Depuis 2002
