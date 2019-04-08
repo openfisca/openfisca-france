@@ -1,5 +1,13 @@
 # Changelog
 
+### 41.2.1 [#1304](https://github.com/openfisca/openfisca-france/pull/1304)
+
+* Simplification du code.
+* Périodes concernées : depuis 2002.
+* Zones impactées : `credits_impots`.
+* Détails :
+  - Factorise la formule générale des crédits d'impôt
+
 ## 41.2.0 [#1303](https://github.com/openfisca/openfisca-france/pull/1303)
 
 * Amélioration de modélisation.
