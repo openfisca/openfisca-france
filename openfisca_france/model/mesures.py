@@ -613,4 +613,14 @@ class impots_directs(Variable):
         ir_pv_immo_i = menage.members.foyer_fiscal('ir_pv_immo', period)
         ir_pv_immo = menage.sum(ir_pv_immo_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
 
-        return irpp_economique + taxe_habitation + prelevement_forfaitaire_liberatoire + prelevement_forfaitaire_unique_ir + ir_pv_immo
+        isf_ifi_i = menage.members.foyer_fiscal('isf_ifi', period)
+        isf_ifi = menage.sum(isf_ifi_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
+
+        return (
+            taxe_habitation
+            + irpp_economique
+            + prelevement_forfaitaire_liberatoire
+            + prelevement_forfaitaire_unique_ir
+            + ir_pv_immo
+            + isf_ifi
+            )
