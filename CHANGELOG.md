@@ -1,8 +1,14 @@
 # Changelog
 
+### 42.0.1 [#1304](https://github.com/openfisca/openfisca-france/pull/1304)
+
+* Changement mineur.
+* Détails :
+  - Exige `flake8 >= 3.7` (et pycodestyle transitivement; la double spécification était nécessaire avant la version 3.7 de flake8 mais ce n'est plus le cas)
+
 # 42.0.0 [#1306](https://github.com/openfisca/openfisca-france/pull/1306)
 
-* Évolution du système socio-fiscal.
+* Évolution du système socio-fiscal **non rétrocompatible**
 * Périodes concernées : toutes.
 * Zones impactées :
     - `mesures`
