@@ -24,3 +24,99 @@
     b1ac: 400000
   output:
     isf_ifi_imm_bati: 2500000 # 0.7 * 3000000 + 400000
+
+- name: ISF avec décote, et sans revenu
+  period: 2017
+  absolute_error_margin: 0.5
+  input:
+    isf_ifi_imm_bati: (1350000 / 1.05) / 2 # Divisé par 1.05 pour tomber sur une assiette de 1350000 après application du forfait mobilier
+    isf_droits_sociaux: (1350000 / 1.05) / 2 # Divisé par 1.05 pour tomber sur une assiette de 1350000 après application du forfait mobilier
+  output:
+    isf_ifi: 0 # revenus = 0 => plafond d'ISF est égal à zéro.
+
+- name: ISF avec décote et sans plafonnement
+  period: 2017
+  absolute_error_margin: 0.5
+  input:
+    isf_ifi_imm_bati: (1350000 / 1.05) / 2 # Divisé par 1.05 pour tomber sur une assiette de 1350000 après application du forfait mobilier
+    isf_droits_sociaux: (1350000 / 1.05) / 2 # Divisé par 1.05 pour tomber sur une assiette de 1350000 après application du forfait mobilier
+    salaire_imposable: 400000
+  output:
+    assiette_isf_ifi: 1350000
+    decote_isf_ifi: 17500 - 0.0125*1350000
+    isf_ifi: (-1) * (500000*0.005 + 50000*0.007 - (17500 - 0.0125*1350000))
+
+- name: ISF jusqu'à la dernière tranche et sans plafonnement
+  period: 2017
+  absolute_error_margin: 0.5
+  input:
+    isf_ifi_imm_bati: (15000000 / 1.05) / 2 # Divisé par 1.05 pour tomber sur une assiette de 15000000 après application du forfait mobilier
+    isf_droits_sociaux: (15000000 / 1.05) / 2 # Divisé par 1.05 pour tomber sur une assiette de 15000000 après application du forfait mobilier
+    salaire_imposable: 5000000
+  output:
+    assiette_isf_ifi: 15000000
+    decote_isf_ifi: 0
+    isf_ifi: (-1) * (500000*0.005 + 1270000*0.007 + 2430000*0.01 + 5000000*0.0125 + 5000000*0.015)
+
+- name: ISF jusqu'à la dernière tranche et avec plafonnement
+  period: 2017
+  absolute_error_margin: 0.5
+  input:
+    isf_ifi_imm_bati: (15000000 / 1.05) / 2 # Divisé par 1.05 pour tomber sur une assiette de 15000000 après application du forfait mobilier
+    isf_droits_sociaux: (15000000 / 1.05) / 2 # Divisé par 1.05 pour tomber sur une assiette de 15000000 après application du forfait mobilier
+    irpp_economique: 0
+    prelevement_forfaitaire_liberatoire: 0
+    prelevement_forfaitaire_unique_ir: 0
+    ir_pv_immo: 0
+    taxe_habitation: 0
+    revenus_et_produits_plafonnement_isf_ifi: (1/0.85) * (500000*0.005 + 1270000*0.007 + 2430000*0.01 + 5000000*0.0125 + 5000000*0.015)
+  output:
+    assiette_isf_ifi: 15000000
+    decote_isf_ifi: 0
+    isf_ifi: (-1) * (0.75/0.85) * (500000*0.005 + 1270000*0.007 + 2430000*0.01 + 5000000*0.0125 + 5000000*0.015)
+
+- name: IFI avec décote, et sans revenu
+  period: 2018
+  absolute_error_margin: 0.5
+  input:
+    isf_ifi_imm_bati: (1350000 / 1.05) # Divisé par 1.05 pour tomber sur une assiette de 1350000 après application du forfait mobilier
+  output:
+    isf_ifi: 0 # revenus = 0 => plafond d'ISF est égal à zéro.
+
+- name: IFI avec décote et sans plafonnement
+  period: 2018
+  absolute_error_margin: 0.5
+  input:
+    isf_ifi_imm_bati: (1350000 / 1.05) # Divisé par 1.05 pour tomber sur une assiette de 1350000 après application du forfait mobilier
+    salaire_imposable: 400000
+  output:
+    assiette_isf_ifi: 1350000
+    decote_isf_ifi: 17500 - 0.0125*1350000
+    isf_ifi: (-1) * (500000*0.005 + 50000*0.007 - (17500 - 0.0125*1350000))
+
+- name: IFI jusqu'à la dernière tranche et sans plafonnement
+  period: 2018
+  absolute_error_margin: 0.5
+  input:
+    isf_ifi_imm_bati: (15000000 / 1.05) # Divisé par 1.05 pour tomber sur une assiette de 15000000 après application du forfait mobilier
+    salaire_imposable: 5000000
+  output:
+    assiette_isf_ifi: 15000000
+    decote_isf_ifi: 0
+    isf_ifi: (-1) * (500000*0.005 + 1270000*0.007 + 2430000*0.01 + 5000000*0.0125 + 5000000*0.015)
+
+- name: IFI jusqu'à la dernière tranche et avec plafonnement
+  period: 2018
+  absolute_error_margin: 0.5
+  input:
+    isf_ifi_imm_bati: (15000000 / 1.05) # Divisé par 1.05 pour tomber sur une assiette de 15000000 après application du forfait mobilier
+    irpp_economique: 0
+    prelevement_forfaitaire_liberatoire: 0
+    prelevement_forfaitaire_unique_ir: 0
+    ir_pv_immo: 0
+    taxe_habitation: 0
+    revenus_et_produits_plafonnement_isf_ifi: (1/0.85) * (500000*0.005 + 1270000*0.007 + 2430000*0.01 + 5000000*0.0125 + 5000000*0.015)
+  output:
+    assiette_isf_ifi: 15000000
+    decote_isf_ifi: 0
+    isf_ifi: (-1) * (0.75/0.85) * (500000*0.005 + 1270000*0.007 + 2430000*0.01 + 5000000*0.0125 + 5000000*0.015)
