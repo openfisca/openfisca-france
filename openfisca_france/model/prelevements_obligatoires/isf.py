@@ -466,12 +466,20 @@ class isf_avant_plaf(Variable):
 class tot_impot(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = u"Total des impôts dus au titre des revenus et produits (irpp, cehr, pl, prélèvements sociaux) + ISF. Utilisé pour calculer le montant du plafonnement de l'ISF."
+    label = u"Total des impôts dus au titre des revenus et produits (irpp, cehr, prélèvements forfaitaires, prélèvements sociaux) + ISF. Utilisé pour calculer le montant du plafonnement de l'ISF."
     definition_period = YEAR
 
-    def formula(foyer_fiscal, period, parameters):
-        irpp = foyer_fiscal('irpp', period)
+    def formula(foyer_fiscal, period):
+        '''
+        Voir le formulaire 2041-ISF-FCP
+        https://www.impots.gouv.fr/portail/formulaire/2041-isf-fcp/fiche-de-calcul-du-plafonnement-isf
+        Points à améliorer : impôts payés à l'étranger
+        '''
         isf_avant_plaf = foyer_fiscal('isf_avant_plaf', period)
+        irpp_economique = foyer_fiscal('irpp_economique', period)
+        prelevement_forfaitaire_liberatoire = foyer_fiscal('prelevement_forfaitaire_liberatoire', period)
+        prelevement_forfaitaire_unique_ir = foyer_fiscal('prelevement_forfaitaire_unique_ir', period)
+        ir_pv_immo = foyer_fiscal('ir_pv_immo', period)
         crds_i = foyer_fiscal.members('crds', period)
         csg_i = foyer_fiscal.members('csg', period)
         crds = foyer_fiscal.sum(crds_i, role = FoyerFiscal.DECLARANT)
@@ -479,28 +487,28 @@ class tot_impot(Variable):
         prelevements_sociaux_revenus_capital_hors_csg_crds = foyer_fiscal('prelevements_sociaux_revenus_capital_hors_csg_crds', period)
 
         return (
-            - irpp
-            + isf_avant_plaf
+            isf_avant_plaf
+            - irpp_economique
+            - prelevement_forfaitaire_liberatoire
+            - prelevement_forfaitaire_unique_ir
+            - ir_pv_immo
             - crds
             - csg
             - prelevements_sociaux_revenus_capital_hors_csg_crds
             )
 
-        # TODO: irpp n'est pas suffisant : ajouter ir soumis à taux propor + impôt acquitté à l'étranger
-        # + prélèvement libé de l'année passée + montant de la csg
-
 
 class revetproduits(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = u"Revenus et produits perçus (avant abattement)"
+    label = u"Revenus et produits perçus, utilisés pour calculer le montant du plafonnement de l'ISF"
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
         '''
-        Utilisé pour calculer le montant du plafonnement de l'ISF
-        Cf.
-        http://www.impots.gouv.fr/portal/deploiement/p1/fichedescriptiveformulaire_8342/fichedescriptiveformulaire_8342.pdf
+        Voir le formulaire 2041-ISF-FCP
+        https://www.impots.gouv.fr/portail/formulaire/2041-isf-fcp/fiche-de-calcul-du-plafonnement-isf
+        Points à améliorer : revenus de l'étranger et revenus exonérés
         '''
         salcho_imp_i = foyer_fiscal.members('revenu_assimile_salaire_apres_abattements', period)
         pen_net_i = foyer_fiscal.members('revenu_assimile_pension_apres_abattements', period)
@@ -513,9 +521,12 @@ class revetproduits(Variable):
         revenus_capitaux_prelevement_bareme = foyer_fiscal('revenus_capitaux_prelevement_bareme', period, options = [ADD])  # Supprimée à partir de 2018
         revenus_capitaux_prelevement_liberatoire = foyer_fiscal('revenus_capitaux_prelevement_liberatoire', period, options = [ADD])  # Supprimée à partir de 2018
         revenus_capitaux_prelevement_forfaitaire_unique_ir = foyer_fiscal('revenus_capitaux_prelevement_forfaitaire_unique_ir', period, options = [ADD])  # Existe à partir de 2018
-        prelevement_forfaitaire_liberatoire = foyer_fiscal('prelevement_forfaitaire_liberatoire', period)
-        prelevement_forfaitaire_unique_ir = foyer_fiscal('prelevement_forfaitaire_unique_ir', period)
-        P = parameters(period).taxation_capital.isf.plafonnement
+        plus_values_base_large = foyer_fiscal('plus_values_base_large', period)
+        assurance_vie_ps_exoneree_irpp_pl = foyer_fiscal('assurance_vie_ps_exoneree_irpp_pl', period)
+        interets_pel_moins_12_ans_cel_i = foyer_fiscal.members('interets_pel_moins_12_ans_cel', period)
+        livret_a_i = foyer_fiscal.members('livret_a', period.last_month)
+        taux_livret_a = parameters(period).epargne.livret_a.taux
+        interets_livret_a_i = livret_a_i * taux_livret_a
 
         revenu_assimile_pension_apres_abattements = foyer_fiscal.sum(pen_net_i)
         rag = foyer_fiscal.sum(rag_i)
@@ -523,10 +534,10 @@ class revetproduits(Variable):
         rpns_exon = foyer_fiscal.sum(rpns_exon_i)
         rpns_pvct = foyer_fiscal.sum(rpns_pvct_i)
         revenu_assimile_salaire_apres_abattements = foyer_fiscal.sum(salcho_imp_i)
+        interets_pel_moins_12_ans_cel = foyer_fiscal.sum(interets_pel_moins_12_ans_cel_i)
+        interets_livret_a = foyer_fiscal.sum(interets_livret_a_i)
 
-        # rev_cap et prelevement_forfaitaire_liberatoire pour produits soumis à prel libératoire- check TODO:
-        # # def rev_exon et rev_etranger dans data? ##
-        pt = max_(
+        montant = max_(
             0,
             revenu_assimile_salaire_apres_abattements
             + revenu_assimile_pension_apres_abattements
@@ -538,12 +549,14 @@ class revetproduits(Variable):
             + rag
             + rpns_exon
             + rpns_pvct
-            + prelevement_forfaitaire_liberatoire
-            + prelevement_forfaitaire_unique_ir
             + revenu_categoriel_foncier
+            + plus_values_base_large
+            + assurance_vie_ps_exoneree_irpp_pl
+            + interets_pel_moins_12_ans_cel
+            + interets_livret_a
             )
 
-        return pt * P.plafonnement_taux_d_imposition_isf
+        return montant
 
 
 class decote_isf(Variable):
@@ -566,7 +579,6 @@ class isf_apres_plaf(Variable):
     entity = FoyerFiscal
     label = u"Impôt sur la fortune après plafonnement"
     definition_period = YEAR
-    # Plafonnement supprimé pour l'année 2012
 
     def formula_2002_01_01(foyer_fiscal, period, parameters):
         tot_impot = foyer_fiscal('tot_impot', period)
@@ -586,25 +598,20 @@ class isf_apres_plaf(Variable):
             )
         return max_(isf_avant_plaf - limitationplaf, 0)
 
-    def formula_2012_01_01(foyer_fiscal, period, parameters):
+    def formula_2012_01_01(foyer_fiscal, period):
+        '''
+        Plafonnement supprimé pour l'année 2012
+        '''
         isf_avant_plaf = foyer_fiscal('isf_avant_plaf', period)
-
-        # si ISF avant plafonnement n'excède pas seuil 1= la limitation du plafonnement ne joue pas ##
-        # si entre les deux seuils; l'allègement est limité au 1er seuil ##
-        # si ISF avant plafonnement est supérieur au 2nd seuil, l'allègement qui résulte du plafonnement
-        #    est limité à 50% de l'ISF
         return isf_avant_plaf
 
-    # Cette formule a seulement été vérifiée jusqu'au 2015-12-31
     def formula_2013_01_01(foyer_fiscal, period, parameters):
-        """
-        Impôt sur la fortune après plafonnement
-        """
         tot_impot = foyer_fiscal('tot_impot', period)
         revetproduits = foyer_fiscal('revetproduits', period)
         isf_avant_plaf = foyer_fiscal('isf_avant_plaf', period)
+        P = parameters(period).taxation_capital.isf.plafonnement
 
-        plafond = max_(0, tot_impot - revetproduits)  # case PU sur la déclaration d'impôt
+        plafond = max_(0, tot_impot - P.plafonnement_taux_d_imposition_isf * revetproduits)  # case 9PV sur le formulaire 2042C des revenus 2013 aux revenus 2016
         return max_(isf_avant_plaf - plafond, 0)
 
 
@@ -612,16 +619,12 @@ class isf_tot(Variable):
     value_type = float
     entity = FoyerFiscal
     label = u"isf_tot"
-    reference = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_isf&espId=1&impot=ISF&sfid=50"
     definition_period = YEAR
 
-    def formula(foyer_fiscal, period, parameters):
+    def formula(foyer_fiscal, period):
         b4rs = foyer_fiscal('b4rs', period)
-        isf_avant_plaf = foyer_fiscal('isf_avant_plaf', period)
         isf_apres_plaf = foyer_fiscal('isf_apres_plaf', period)
-        irpp = foyer_fiscal('irpp', period)
-
-        return min_(-((isf_apres_plaf - b4rs) * ((-irpp) > 0) + (isf_avant_plaf - b4rs) * ((-irpp) <= 0)), 0)
+        return min_(-(isf_apres_plaf - b4rs), 0)
 
 
 # # BOUCLIER FISCAL ##
