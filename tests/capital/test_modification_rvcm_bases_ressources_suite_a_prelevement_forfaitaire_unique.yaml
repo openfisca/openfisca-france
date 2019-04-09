@@ -26,7 +26,7 @@
     f2dc: 100000
     f2dh: 50000
   output:
-    revenus_et_produits_plafonnement_isf_ifi: 0.75 * 150000 # NB : à première vue, on devrait avoir 0.75 * (150000 - 0.075*50000) du fait de prelevement_forfaitaire_liberatoire. Mais f2dh n'est pas la base du PFL : la base du PFL est dans les variables commençant par "assurance-vie" et qui elles sont injectées dans f2dh.
+    revenus_et_produits_plafonnement_isf_ifi: 150000
 
 - name: revenus_et_produits_plafonnement_isf_ifi_f2dc_f2dh_2018
   description: Montant de revenus_et_produits_plafonnement_isf_ifi en 2018 via les case 2DC et 2DH
@@ -36,7 +36,7 @@
     f2dc: 100000
     f2dh: 50000
   output:
-    revenus_et_produits_plafonnement_isf_ifi: 0.75 * (150000 - 0.128 * 150000)
+    revenus_et_produits_plafonnement_isf_ifi: 150000
 
 - name: aide_logement_base_revenus_fiscaux_f2dc_f2dh_2017
   description: Montant de aide_logement_base_revenus_fiscaux en 2017 via les case 2DC et 2DH
