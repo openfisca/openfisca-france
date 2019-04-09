@@ -54,6 +54,7 @@ class interets_compte_epargne_logement_ouvert_a_partir_de_2018(Variable):
     label = u"Intérêts des comptes épargne logement (CEL) ouverts à partir du 1er janvier 2018"
     definition_period = YEAR
 
+
 class interets_pel_moins_12_ans_cel(Variable):
     """ NB : Cette variable est définie indépendemment de epargne_revenus_non_imposables """
     value_type = float
@@ -84,6 +85,7 @@ class interets_pel_moins_12_ans_cel(Variable):
             + interets_plan_epargne_logement_moins_de_12_ans_ouvert_a_partir_de_2018
             + interets_compte_epargne_logement_ouvert_a_partir_de_2018
             )
+
 
 class assurance_vie_ps_exoneree_irpp_pl(Variable):
     value_type = float
