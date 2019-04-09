@@ -414,14 +414,8 @@ class revenus_capitaux_mobiliers_plus_values_bruts_menage(Variable):
         revenus_capitaux_prelevement_liberatoire_i = menage.members.foyer_fiscal('revenus_capitaux_prelevement_liberatoire', period, options = [ADD])
         revenus_capitaux_prelevement_liberatoire = menage.sum(revenus_capitaux_prelevement_liberatoire_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
 
-        interets_plan_epargne_logement_moins_de_12_ans_ouvert_avant_2018_i = menage.members('interets_plan_epargne_logement_moins_de_12_ans_ouvert_avant_2018', period)
-        interets_plan_epargne_logement_moins_de_12_ans_ouvert_avant_2018 = menage.sum(interets_plan_epargne_logement_moins_de_12_ans_ouvert_avant_2018_i)
-        interets_plan_epargne_logement_moins_de_12_ans_ouvert_a_partir_de_2018_i = menage.members('interets_plan_epargne_logement_moins_de_12_ans_ouvert_a_partir_de_2018', period)
-        interets_plan_epargne_logement_moins_de_12_ans_ouvert_a_partir_de_2018 = menage.sum(interets_plan_epargne_logement_moins_de_12_ans_ouvert_a_partir_de_2018_i)
-        interets_compte_epargne_logement_ouvert_avant_2018_i = menage.members('interets_compte_epargne_logement_ouvert_avant_2018', period)
-        interets_compte_epargne_logement_ouvert_avant_2018 = menage.sum(interets_compte_epargne_logement_ouvert_avant_2018_i)
-        interets_compte_epargne_logement_ouvert_a_partir_de_2018_i = menage.members('interets_compte_epargne_logement_ouvert_a_partir_de_2018', period)
-        interets_compte_epargne_logement_ouvert_a_partir_de_2018 = menage.sum(interets_compte_epargne_logement_ouvert_a_partir_de_2018_i)
+        interets_pel_moins_12_ans_cel_i = menage.members('interets_pel_moins_12_ans_cel', period)
+        interets_pel_moins_12_ans_cel = menage.sum(interets_pel_moins_12_ans_cel_i)
         assurance_vie_ps_exoneree_irpp_pl_i = menage.members.foyer_fiscal('assurance_vie_ps_exoneree_irpp_pl', period)
         assurance_vie_ps_exoneree_irpp_pl = menage.sum(assurance_vie_ps_exoneree_irpp_pl_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
 
@@ -432,10 +426,7 @@ class revenus_capitaux_mobiliers_plus_values_bruts_menage(Variable):
             + revenus_capitaux_prelevement_forfaitaire_unique_ir
             + revenus_capitaux_prelevement_bareme
             + revenus_capitaux_prelevement_liberatoire
-            + interets_plan_epargne_logement_moins_de_12_ans_ouvert_avant_2018
-            + interets_plan_epargne_logement_moins_de_12_ans_ouvert_a_partir_de_2018
-            + interets_compte_epargne_logement_ouvert_avant_2018
-            + interets_compte_epargne_logement_ouvert_a_partir_de_2018
+            + interets_pel_moins_12_ans_cel
             + assurance_vie_ps_exoneree_irpp_pl
             + plus_values_base_large
             )
