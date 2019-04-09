@@ -8,7 +8,7 @@
     - `mesures`
     - `prelevements_obligatoires/isf`
     - `prelevements_obligatoires/prelevements_sociaux/contributions_sociales/capital`
-* Objectif : cette version vise à fiabiliser le calcul de l'ISF (et à ajouter l'IFI) à partir de la variable `ass_isf` (appelée maintenant `assiette_isf_ifi`). Les variables en amont (utilisées pour le calcul de l'assiette) n'ont pas été modifiées.
+* Objectif : cette version vise à fiabiliser le calcul de l'ISF (et à ajouter l'IFI) à partir de la variable `ass_isf` (appelée maintenant `assiette_isf_ifi`). Les variables en amont (utilisées pour le calcul de l'assiette) n'ont pas été modifiées. Les variables de réductions d'impôt (`isf_inv_pme`, `isf_org_int_gen`, `isf_org_int_gen`) n'ont également pas été modifiées.
 * Détails :
   - Améliore le calcul du plafonnement de l'ISF
   - Ajoute le calcul de l'IFI
