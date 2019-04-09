@@ -63,8 +63,8 @@ class interets_pel_moins_12_ans_cel(Variable):
 
     def formula(individu, period):
 
-        interets_plan_epargne_logement_moins_de_12_ans_ouvert_avant_2018 = foyer_fiscal('interets_plan_epargne_logement_moins_de_12_ans_ouvert_avant_2018', period)
-        interets_compte_epargne_logement_ouvert_avant_2018 = foyer_fiscal('interets_compte_epargne_logement_ouvert_avant_2018', period)
+        interets_plan_epargne_logement_moins_de_12_ans_ouvert_avant_2018 = individu('interets_plan_epargne_logement_moins_de_12_ans_ouvert_avant_2018', period)
+        interets_compte_epargne_logement_ouvert_avant_2018 = individu('interets_compte_epargne_logement_ouvert_avant_2018', period)
 
         return (
             interets_plan_epargne_logement_moins_de_12_ans_ouvert_avant_2018
@@ -73,10 +73,10 @@ class interets_pel_moins_12_ans_cel(Variable):
 
     def formula_2018_01_01(individu, period):
 
-        interets_plan_epargne_logement_moins_de_12_ans_ouvert_avant_2018 = foyer_fiscal('interets_plan_epargne_logement_moins_de_12_ans_ouvert_avant_2018', period)
-        interets_compte_epargne_logement_ouvert_avant_2018 = foyer_fiscal('interets_compte_epargne_logement_ouvert_avant_2018', period)
-        interets_plan_epargne_logement_moins_de_12_ans_ouvert_a_partir_de_2018 = foyer_fiscal('interets_plan_epargne_logement_moins_de_12_ans_ouvert_a_partir_de_2018', period)
-        interets_compte_epargne_logement_ouvert_a_partir_de_2018 = foyer_fiscal('interets_compte_epargne_logement_ouvert_a_partir_de_2018', period)
+        interets_plan_epargne_logement_moins_de_12_ans_ouvert_avant_2018 = individu('interets_plan_epargne_logement_moins_de_12_ans_ouvert_avant_2018', period)
+        interets_compte_epargne_logement_ouvert_avant_2018 = individu('interets_compte_epargne_logement_ouvert_avant_2018', period)
+        interets_plan_epargne_logement_moins_de_12_ans_ouvert_a_partir_de_2018 = individu('interets_plan_epargne_logement_moins_de_12_ans_ouvert_a_partir_de_2018', period)
+        interets_compte_epargne_logement_ouvert_a_partir_de_2018 = individu('interets_compte_epargne_logement_ouvert_a_partir_de_2018', period)
 
         return (
             interets_plan_epargne_logement_moins_de_12_ans_ouvert_avant_2018
