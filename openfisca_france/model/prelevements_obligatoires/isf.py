@@ -245,7 +245,7 @@ class isf_ifi_imm_bati(Variable):
     def formula(foyer_fiscal, period, parameters):
         b1ab = foyer_fiscal('b1ab', period)
         b1ac = foyer_fiscal('b1ac', period)
-        P = parameters(period).taxation_capital.isf.res_princ
+        P = parameters(period).taxation_capital.isf_ifi.res_princ
 
         return (1 - P.abattement_sur_residence_principale) * b1ab + b1ac
 
@@ -261,7 +261,7 @@ class isf_ifi_imm_non_bati(Variable):
         b1be = foyer_fiscal('b1be', period)
         b1bh = foyer_fiscal('b1bh', period)
         b1bk = foyer_fiscal('b1bk', period)
-        P = parameters(period).taxation_capital.isf.nonbat
+        P = parameters(period).taxation_capital.isf_ifi.nonbat
 
         # forêts
         b1bd = b1bc * P.taux_f
@@ -289,7 +289,7 @@ class isf_actions_sal(Variable):  # # non présent en 2005##
         Parts ou actions détenues par les salariés et mandataires sociaux
         '''
         b1cl = foyer_fiscal('b1cl', period)
-        P = parameters(period).taxation_capital.isf.droits_soc
+        P = parameters(period).taxation_capital.isf_ifi.droits_soc
 
         return b1cl * P.taux1
 
@@ -308,7 +308,7 @@ class isf_droits_sociaux(Variable):
         b1ce = foyer_fiscal('b1ce', period)
         b1cf = foyer_fiscal('b1cf', period)
         b1cg = foyer_fiscal('b1cg', period)
-        P = parameters(period).taxation_capital.isf.droits_soc
+        P = parameters(period).taxation_capital.isf_ifi.droits_soc
 
         b1cc = b1cb * P.taux2
         return isf_actions_sal + b1cc + b1cd + b1ce + b1cf + b1cg
@@ -327,7 +327,7 @@ class assiette_isf_ifi(Variable):
         isf_droits_sociaux = foyer_fiscal('isf_droits_sociaux', period)
         b1cg = foyer_fiscal('b1cg', period)
         b2gh = foyer_fiscal('b2gh', period)
-        P = parameters(period).taxation_capital.isf.forf_mob
+        P = parameters(period).taxation_capital.isf_ifi.forf_mob
 
         total = isf_ifi_imm_bati + isf_ifi_imm_non_bati + isf_droits_sociaux
         forf_mob = (b1cg != 0) * b1cg + (b1cg == 0) * total * P.taux
@@ -346,13 +346,13 @@ class isf_ifi_iai(Variable):
 
     def formula_2002_01_01(foyer_fiscal, period, parameters):
         assiette_isf_ifi = foyer_fiscal('assiette_isf_ifi', period)
-        bareme = parameters(period).taxation_capital.isf.bareme
+        bareme = parameters(period).taxation_capital.isf_ifi.bareme
         return bareme.calc(assiette_isf_ifi)
 
     # Cette formule a seulement été vérifiée jusqu'au 2015-12-31
     def formula_2011_01_01(foyer_fiscal, period, parameters):
         assiette_isf_ifi = foyer_fiscal('assiette_isf_ifi', period)
-        bareme = parameters(period).taxation_capital.isf.bareme
+        bareme = parameters(period).taxation_capital.isf_ifi.bareme
         assiette_isf_ifi = (assiette_isf_ifi >= bareme.rates[1]) * assiette_isf_ifi
         return bareme.calc(assiette_isf_ifi)
 
@@ -383,7 +383,7 @@ class isf_reduc_pac(Variable):
         '''
         nb_pac = foyer_fiscal('nb_pac', period)
         nbH = foyer_fiscal('nbH', period)
-        P = parameters(period).taxation_capital.isf.reduc_pac
+        P = parameters(period).taxation_capital.isf_ifi.reduc_pac
 
         return P.reduc_enf_garde * nb_pac + (P.reduc_enf_garde / 2) * nbH
 
@@ -405,7 +405,7 @@ class isf_inv_pme(Variable):
         b2nf = foyer_fiscal('b2nf', period)
         b2mx = foyer_fiscal('b2mx', period)
         b2na = foyer_fiscal('b2na', period)
-        P = parameters(period).taxation_capital.isf.reduc_invest_don
+        P = parameters(period).taxation_capital.isf_ifi.reduc_invest_don
 
         inv_dir_soc = b2mt * P.taux_don_interet_general + b2ne * P.taux_invest_direct_soc_holding
         holdings = b2mv * P.taux_don_interet_general + b2nf * P.taux_invest_direct_soc_holding
@@ -423,7 +423,7 @@ class isf_org_int_gen(Variable):
 
     def formula_2008(foyer_fiscal, period, parameters):
         b2nc = foyer_fiscal('b2nc', period)
-        P = parameters(period).taxation_capital.isf.reduc_invest_don
+        P = parameters(period).taxation_capital.isf_ifi.reduc_invest_don
 
         return b2nc * P.taux_don_interet_general
 
@@ -453,7 +453,7 @@ class isf_ifi_avant_plaf(Variable):
         isf_inv_pme = foyer_fiscal('isf_inv_pme', period)
         isf_org_int_gen = foyer_fiscal('isf_org_int_gen', period)
         isf_reduc_pac = foyer_fiscal('isf_reduc_pac', period)
-        borne_max = parameters(period).taxation_capital.isf.reduc_invest_don.max
+        borne_max = parameters(period).taxation_capital.isf_ifi.reduc_invest_don.max
 
         return max_(0, isf_ifi_avant_reduction - min_(isf_inv_pme + isf_org_int_gen, borne_max) - isf_reduc_pac)
 
@@ -563,7 +563,7 @@ class decote_isf_ifi(Variable):
 
     def formula_2013(foyer_fiscal, period, parameters):
         assiette_isf_ifi = foyer_fiscal('assiette_isf_ifi', period)
-        P = parameters(period).taxation_capital.isf.decote
+        P = parameters(period).taxation_capital.isf_ifi.decote
 
         elig = (assiette_isf_ifi >= P.isf_borne_min_decote) & (assiette_isf_ifi <= P.isf_borne_sup_decote)
         LB = P.isf_base_decote - P.isf_taux_decote * assiette_isf_ifi
@@ -580,7 +580,7 @@ class isf_ifi_apres_plaf(Variable):
         total_impots_plafonnement_isf_ifi = foyer_fiscal('total_impots_plafonnement_isf_ifi', period)
         revenus_et_produits_plafonnement_isf_ifi = foyer_fiscal('revenus_et_produits_plafonnement_isf_ifi', period)
         isf_ifi_avant_plaf = foyer_fiscal('isf_ifi_avant_plaf', period)
-        P = parameters(period).taxation_capital.isf.plaf
+        P = parameters(period).taxation_capital.isf_ifi.plaf
 
         # si ISF avant plafonnement n'excède pas seuil 1= la limitation du plafonnement ne joue pas
         # si entre les deux seuils; l'allègement est limité au 1er seuil
@@ -605,7 +605,7 @@ class isf_ifi_apres_plaf(Variable):
         total_impots_plafonnement_isf_ifi = foyer_fiscal('total_impots_plafonnement_isf_ifi', period)
         revenus_et_produits_plafonnement_isf_ifi = foyer_fiscal('revenus_et_produits_plafonnement_isf_ifi', period)
         isf_ifi_avant_plaf = foyer_fiscal('isf_ifi_avant_plaf', period)
-        P = parameters(period).taxation_capital.isf.plafonnement
+        P = parameters(period).taxation_capital.isf_ifi.plafonnement
 
         plafond = max_(0, total_impots_plafonnement_isf_ifi - P.plafonnement_taux_d_imposition_isf * revenus_et_produits_plafonnement_isf_ifi)  # case 9PV sur le formulaire 2042C des revenus 2013 aux revenus 2016
         return max_(isf_ifi_avant_plaf - plafond, 0)
