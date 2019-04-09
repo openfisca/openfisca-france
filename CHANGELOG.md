@@ -1,5 +1,21 @@
 # Changelog
 
+# 42.0.0 [#1306](https://github.com/openfisca/openfisca-france/pull/1306)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : toutes.
+* Zones impactées :
+    - `mesures`
+    - `prelevements_obligatoires/isf`
+    - `prelevements_obligatoires/prelevements_sociaux/contributions_sociales/capital`
+* Objectif : cette version vise à fiabiliser le calcul de l'ISF (et à ajouter l'IFI) à partir de la variable `ass_isf` (appelée maintenant `assiette_isf_ifi`). Les variables en amont (utilisées pour le calcul de l'assiette) n'ont pas été modifiées.
+* Détails :
+  - Améliore le calcul du plafonnement de l'ISF
+  - Ajoute le calcul de l'IFI
+  - Renomme le dossier parameters `isf` en `isf_ifi`
+  - Renomme `isf_imm_bati` par `isf_ifi_imm_bati`, `isf_imm_non_bati` par `isf_ifi_imm_non_bati`, `ass_isf` par `assiette_isf_ifi`, `isf_iai` par `isf_ifi_iai`, `isf_avant_reduction` par `isf_ifi_avant_reduction`, `isf_avant_plaf` par `isf_ifi_avant_plaf`, `tot_impot` par `total_impots_plafonnement_isf_ifi`, `revetproduits` par `revenus_et_produits_plafonnement_isf_ifi`, `decote_isf` par `decote_isf_ifi`, `isf_apres_plaf` par `isf_ifi_apres_plaf`, `isf_tot` par `isf_ifi`.
+  - Point mineur : simplifie les variables relatives aux PEL-CEL.
+
 ### 41.2.1 [#1304](https://github.com/openfisca/openfisca-france/pull/1304)
 
 * Simplification du code.
