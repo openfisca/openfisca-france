@@ -139,7 +139,7 @@ class pensions_nettes(Variable):
         pensions_alimentaires_versees = foyer_fiscal('pensions_alimentaires_versees', period)
         rente_viagere_titre_onereux = foyer_fiscal('rente_viagere_titre_onereux', period, options = [ADD])
         pen_foyer_fiscal = pensions_alimentaires_versees + rente_viagere_titre_onereux
-        pen_foyer_fiscal_projetees = pen_foyer_fiscal * (individu.has_role(foyer_fiscal.DECLARANT_PRINCIPAL))
+        pen_foyer_fiscal_projetees = pen_foyer_fiscal * (individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL))
 
         return (
             chomage_net
@@ -279,7 +279,7 @@ class revenus_nets_du_capital(Variable):
             revenus_du_capital_cap_avant_prelevements_sociaux
             + prelevements_sociaux_revenus_capital
             )
-        revenus_foyer_fiscal_projetes = revenus_foyer_fiscal * individu.has_role(foyer_fiscal.DECLARANT_PRINCIPAL)
+        revenus_foyer_fiscal_projetes = revenus_foyer_fiscal * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
 
         return revenus_foyer_fiscal_projetes
 

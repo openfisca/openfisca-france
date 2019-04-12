@@ -110,9 +110,9 @@ class biactivite(Variable):
             + famille.members('revenu_assimile_salaire_apres_abattements', annee_fiscale_n_2)
             >= seuil_rev
             )
-        deux_parents = famille.nb_persons(role = famille.PARENT) == 2
+        deux_parents = famille.nb_persons(role = Famille.PARENT) == 2
 
-        return deux_parents * famille.all(condition_ressource, role = famille.PARENT)
+        return deux_parents * famille.all(condition_ressource, role = Famille.PARENT)
 
 
 class rev_coll(Variable):

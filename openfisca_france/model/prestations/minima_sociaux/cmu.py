@@ -163,7 +163,7 @@ class cmu_c_plafond(Variable):
             [cmu.coeff_p2, cmu.coeff_p3_p4, cmu.coeff_p5_plus]
             ) * coeff_garde_alt_i
 
-        coeff_monoparental = 1 + famille.sum(coeff_enfant_i, role = famille.ENFANT)
+        coeff_monoparental = 1 + famille.sum(coeff_enfant_i, role = Famille.ENFANT)
 
         # Couple
 
@@ -172,7 +172,7 @@ class cmu_c_plafond(Variable):
             [cmu.coeff_p3_p4, cmu.coeff_p5_plus]
             ) * coeff_garde_alt_i
 
-        coeff_couple = 1 + cmu.coeff_p2 + famille.sum(coeff_enfant_i, role = famille.ENFANT)
+        coeff_couple = 1 + cmu.coeff_p2 + famille.sum(coeff_enfant_i, role = Famille.ENFANT)
 
         coefficient_famille = where(is_couple, coeff_couple, coeff_monoparental)
         coefficient_dom = 1 + cmu_eligible_majoration_dom * cmu.majoration_dom
