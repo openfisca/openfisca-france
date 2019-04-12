@@ -1,5 +1,13 @@
 # Changelog
 
+### 42.0.2 [#1307](https://github.com/openfisca/openfisca-france/pull/1307)
+
+* Amélioration technique
+* Périodes concernées : toutes.
+* Détails :
+  - Transforme les références aux rôles de la forme `famille.PARENT` en `Famille.PARENT`.
+  - (Ces changements sont rétro-compatibles et n'exigent pas d'ajuster la version de Core requise par France)
+
 ### 42.0.1 [#1304](https://github.com/openfisca/openfisca-france/pull/1304)
 
 * Changement mineur.
