@@ -7,7 +7,7 @@ from setuptools import setup, find_packages
 
 setup(
     name = "OpenFisca-France",
-    version = "42.0.2",
+    version = "42.0.3",
     author = "OpenFisca Team",
     author_email = "contact@openfisca.fr",
     classifiers = [
@@ -38,7 +38,7 @@ setup(
             "pandas >= 0.13",
             ],
         "dev": [
-            "autopep8 ==1.4.3",
+            "autopep8 ==1.4.4",
             "flake8 >=3.7.0,<3.8.0",
             "flake8-print",
             "pytest <5.0",
@@ -49,7 +49,7 @@ setup(
         },
     include_package_data = True,  # Will read MANIFEST.in
     install_requires = [
-        "OpenFisca-Core >=31.0, <32.0",
+        "OpenFisca-Core >=31.0,<33.0",
         ],
     message_extractors = {"openfisca_france": [
         ("**.py", "python", None),
