@@ -1,5 +1,12 @@
 # Changelog
 
+### 42.0.3 [#1309](https://github.com/openfisca/openfisca-france/pull/1309)
+
+* Mise à jour de dépendances
+* Détails :
+  - Met à jour `autopep8`
+  - Déclare le paquet compatible avec Core 33
+
 ### 42.0.2 [#1307](https://github.com/openfisca/openfisca-france/pull/1307)
 
 * Amélioration technique
