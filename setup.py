@@ -1,9 +1,21 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import os
 
 from setuptools import setup, find_packages
 
+openfisca_core_version = " >=31.0,<33.0"
+local_requires = [
+    "OpenFisca-Core" + openfisca_core_version
+    ]
+server_requires = [
+    "OpenFisca-Core[web-api]" + openfisca_core_version,
+    "OpenFisca-Tracker >=0.4.0,<1.0.0"
+    ]
+server = os.environ.get('SERVER', None)
+
+install_requires = server_requires if server else local_requires
 
 setup(
     name = "OpenFisca-France",
@@ -48,9 +60,7 @@ setup(
             ],
         },
     include_package_data = True,  # Will read MANIFEST.in
-    install_requires = [
-        "OpenFisca-Core >=31.0,<33.0",
-        ],
+    install_requires = install_requires,
     message_extractors = {"openfisca_france": [
         ("**.py", "python", None),
         ]},
