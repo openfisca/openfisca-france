@@ -39,7 +39,7 @@ jobs:
           name: Run tests
           command: |
             pytest `circleci tests glob "tests/**/[^_]*.py" | circleci tests split`
-            openfisca-run-test `circleci tests glob "tests/**/*.{yaml,yml}" | circleci tests split`
+            openfisca test `circleci tests glob "tests/**/*.{yaml,yml}" | circleci tests split`
 
   lint_yaml_files:
     docker:
