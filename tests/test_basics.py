@@ -6,6 +6,8 @@ from openfisca_france.scenarios import init_single_entity
 
 from .cache import tax_benefit_system
 
+import pytest
+
 
 scenarios_arguments = [
     dict(
@@ -27,29 +29,12 @@ scenarios_arguments = [
     ]
 
 
-def check_run(simulation, period):
+@pytest.mark.parametrize("scenario_arguments", scenarios_arguments)
+def test_basics(scenario_arguments):
+    scenario = tax_benefit_system.new_scenario()
+    init_single_entity(scenario, **scenario_arguments)
+    simulation = scenario.new_simulation(debug = False)
+    period = scenario_arguments['period']
     assert simulation.calculate('revenu_disponible', period = period) is not None, "Can't compute revenu_disponible on period {}".format(period)
     assert simulation.calculate_add('salaire_super_brut', period = period) is not None, \
         "Can't compute salaire_super_brut on period {}".format(period)
-
-
-def test_basics():
-    for scenario_arguments in scenarios_arguments:
-        scenario = tax_benefit_system.new_scenario()
-        init_single_entity(scenario, **scenario_arguments)
-        simulation = scenario.new_simulation(debug = False)
-        period = scenario_arguments['period']
-        yield check_run, simulation, period
-
-
-if __name__ == '__main__':
-    import logging
-    import sys
-
-    logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
-    logger = logging.getLogger(__name__)
-
-    for _, simulation, period in test_basics():
-        check_run(simulation, period)
-
-    logger.info(u'OpenFisca-France basic test was executed successfully.'.encode('utf-8'))
