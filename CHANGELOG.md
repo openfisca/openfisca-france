@@ -1,5 +1,12 @@
 # Changelog
 
+## 42.1.0 [#1313](https://github.com/openfisca/openfisca-france/pull/1313)
+
+* Amélioration technique.
+* Détails :
+  - Adapte les tests de France à l'utilisation de Pytest
+  - Déclare le paquet compatible avec Core 34
+
 ### 42.0.3 [#1309](https://github.com/openfisca/openfisca-france/pull/1309)
 
 * Mise à jour de dépendances
