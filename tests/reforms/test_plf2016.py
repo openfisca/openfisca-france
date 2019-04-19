@@ -11,8 +11,9 @@ from ..cache import tax_benefit_system
 
 
 def test_plf2016(year = 2015):
-    for reform in [plf2016, plf2016_counterfactual, plf2016_counterfactual_2014]:
-        yield run, reform, year
+    run(plf2016, 2015)
+    run(plf2016_counterfactual, 2015)
+    run(plf2016_counterfactual_2014, 2015)
 
 
 def run(reform_class, year):
