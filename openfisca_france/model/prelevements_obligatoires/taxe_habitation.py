@@ -2,27 +2,46 @@
 
 from openfisca_france.model.base import *
 
+####### Simulation TH de la résidence principale : législation à partir de l'année 2016
+
+
+class condition_rfr_exoneration_th(Variable):
+    value_type = bool
+    default_value = False
+    entity = FoyerFiscal
+    label = u"Condition de revenu fiscal de référence pour l'éxonération à l'échelle du foyer fiscal"
+    reference = "BOI-IF-TH-10-50-30"
+    definition_period = YEAR
+
+    def formula_2016_01_01(menage, period, parameters):
+        '''
+        Pour l'exonération de la taxe d'habitation, en cas de ménages à foyers fiscaux multiples, la condition relative
+        au revenu fiscal de référence doit être respectée pour tous les foyers fiscaux du ménage, d'où cette variable
+        intermédiaire
+        '''
+        P = parameters(period).taxation_locale.taxe_habitation
+        rfr = foyer_fiscal('rfr', period.last_year)
+        nbptr = foyer_fiscal('nbptr', period.last_year)
+        seuil_th = P.exon_plaf_rfr_1 + P.exon_plaf_rfr_supp * max_(0, (nbptr - 1) * 2)
+        return (rfr < seuil_th)
+
 
 class exonere_taxe_habitation(Variable):
     value_type = bool
-    default_value = True
+    default_value = False
     entity = Menage
     label = u"Exonération de la taxe d'habitation"
     reference = "http://vosdroits.service-public.fr/particuliers/F42.xhtml"
     definition_period = YEAR
 
-    def formula(menage, period, parameters):
-        """Exonation de la taxe d'habitation
-        Eligibilité:
-        - âgé de plus de 60 ans, non soumis à l'impôt de solidarité sur la fortune (ISF) en n-1
-        - veuf quel que soit votre âge et non soumis à l'impôt de solidarité sur la fortune (ISF) n-1
-        - titulaire de l'allocation de solidarité aux personnes âgées (Aspa)  ou de l'allocation supplémentaire d'invalidité (Asi),
-        bénéficiaire de l'allocation aux adultes handicapés (AAH),
-        atteint d'une infirmité ou d'une invalidité vous empêchant de subvenir à vos besoins par votre travail.
-        """
+    def formula_2016_01_01(menage, period):
+        '''
+        Hypothèses :
+            (1) pour la condition de plus de 60 ans ou veuf, on regarde seulement la personne de référence du ménage
+            (2) pour la condition relative à l'ASPA l'ASI et l'AAH, on fait la somme de ces prestations à l'échelle du ménage
+            (3) pour la condition relative à l'ISF-IFI, on fait la somme de ces impôts à l'échelle du ménage
+        '''
         janvier = period.first_month
-
-        P = parameters(period).cotsoc.gen
 
         age = menage.personne_de_reference('age', janvier)
         statut_marital = menage.personne_de_reference('statut_marital', janvier)
@@ -34,18 +53,15 @@ class exonere_taxe_habitation(Variable):
         asi = menage.sum(asi_i)
         aspa = menage.sum(aspa_i)
 
-        isf_ifi_i = menage.members.foyer_fiscal('isf_ifi', period)
+        isf_ifi_i = menage.members.foyer_fiscal('isf_ifi', period.last_year)
         isf_ifi = menage.sum(isf_ifi_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
 
-        nbptr_i = menage.members.foyer_fiscal('nbptr', period)
-        nbptr = menage.sum(nbptr_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)  # TODO: Beurk
+        condition_rfr_exoneration_th_i = menage.members.foyer_fiscal('condition_rfr_exoneration_th', period)
+        condition_rfr_exoneration_th = menage.all(condition_rfr_exoneration_th_i)
 
-        rfr_i = menage.members.foyer_fiscal('rfr', period)
-        rfr = menage.sum(rfr_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
-
-        seuil_th = P.plaf_th_1 + P.plaf_th_supp * (max_(0, (nbptr - 1) / 2))
-        elig = ((age >= 60) + (statut_marital == TypesStatutMarital.veuf)) * (isf_ifi <= 0) * (rfr < seuil_th) + (asi > 0) + (aspa > 0) + (aah > 0)
-        return not_(elig)
+        exon_avant_condition_rfr = ((age >= 60) + (statut_marital == TypesStatutMarital.veuf)) * (isf_ifi == 0) + (asi > 0) + (aspa > 0) + (aah > 0)
+        exon = exon_avant_condition_rfr * condition_rfr_exoneration_th
+        return exon
 
 
 class taxe_habitation(Variable):
@@ -55,7 +71,7 @@ class taxe_habitation(Variable):
     reference = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?espId=1&pageId=part_taxe_habitation&impot=TH&sfid=50"
     definition_period = YEAR
 
-    def formula(menage, period, parameters):
+    def formula_2016_01_01(menage, period, parameters):
         last_year = period.last_year
 
         exonere_taxe_habitation = menage('exonere_taxe_habitation', period)
