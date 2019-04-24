@@ -1,0 +1,7 @@
+description: 'Plafond d''exonération de la taxe d''habitation: demi-part supplémentaire'
+unit: currency
+values:
+  2017-01-01:
+    value: 2859.0
+  2018-01-01:
+    value: 2888.0

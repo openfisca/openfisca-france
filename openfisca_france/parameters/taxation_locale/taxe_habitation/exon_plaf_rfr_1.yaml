@@ -1,0 +1,8 @@
+description: 'Plafond d''exonération de la taxe d''habitation: première part'
+unit: currency
+reference: art. 1417-I du CGI
+values:
+  2017-01-01:
+    value: 10708.0
+  2018-01-01:
+    value: 10815.0
