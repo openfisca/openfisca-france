@@ -15,9 +15,9 @@ class condition_rfr_exoneration_th(Variable):
 
     def formula_2017_01_01(menage, period, parameters):
         '''
-        Pour l'exonération de la taxe d'habitation, en cas de ménages à foyers fiscaux multiples, la condition relative
-        au revenu fiscal de référence doit être respectée pour tous les foyers fiscaux du ménage, d'où cette variable
-        intermédiaire
+        Pour l'exonération de la taxe d'habitation et l'abattement pour condition modeste, en cas de ménages à foyers
+        fiscaux multiples, la condition relative au revenu fiscal de référence doit être respectée pour tous les foyers
+        fiscaux du ménage, d'où cette variable intermédiaire
         '''
         P = parameters(period).taxation_locale.taxe_habitation
         rfr = foyer_fiscal('rfr', period.last_year)
@@ -134,6 +134,61 @@ class abattement_charge_famille_th_epci(Variable):
             quotite_abattement_pac_1_2_epci * min_(nb_enfants, 2)
             + quotite_abattement_pac_3_plus_epci * max_(nb_enfants - 2, 0)
             )
+
+class abattement_personnes_condition_modeste_th_commune(Variable):
+    value_type = float
+    entity = Menage
+    label = u"Abattement pour personnes de condition modeste - TH de la commune"
+    reference = "3. du II. de l'art. 1411 du CGI"
+    definition_period = YEAR
+
+    def formula_2017_01_01(menage, period, parameters):
+        '''
+        Pour le nombre de personnes à charge, on ne prend pas en compte les gardes en résidence alternée qui font
+        qu'une personne à charge ne compte que pour 0.5 au lieu de 1.
+        '''
+        nb_enfants = menage.nb_persons(role = Menage.ENFANT)
+        valeur_locative_cadastrale_brute = menage('valeur_locative_cadastrale_brute', period)
+        P = parameters(period).taxation_locale.taxe_habitation
+        code_INSEE_commune = menage('code_INSEE_commune', period)
+        quotite_abattement_condition_modeste_com = P.quotite_abattement_condition_modeste.communes[code_INSEE_commune]
+        valeur_locative_moyenne_com = P.valeur_locative_moyenne.communes[code_INSEE_commune]
+        taux_plafond_general = P.seuil_valeur_locative_abattement_condition_modeste
+        maj_taux_plafond_par_pac = P.maj_seuil_valeur_locative_abattement_condition_modeste
+        valeur_locative_max = (taux_plafond_general + maj_taux_plafond_par_pac * nb_enfants) * valeur_locative_moyenne_com
+        condition_rfr_exoneration_th_i = menage.members.foyer_fiscal('condition_rfr_exoneration_th', period)
+        condition_rfr_exoneration_th = menage.all(condition_rfr_exoneration_th_i)
+        elig = condition_rfr_exoneration_th * not_(exonere_th) * (valeur_locative_cadastrale_brute <= valeur_locative_max)
+
+        return elig * quotite_abattement_condition_modeste_com
+
+
+class abattement_personnes_condition_modeste_th_epci(Variable):
+    value_type = float
+    entity = Menage
+    label = u"Abattement pour personnes de condition modeste - TH de l'EPCI"
+    reference = "3. du II. de l'art. 1411 du CGI"
+    definition_period = YEAR
+
+    def formula_2017_01_01(menage, period, parameters):
+        '''
+        Pour le nombre de personnes à charge, on ne prend pas en compte les gardes en résidence alternée qui font
+        qu'une personne à charge ne compte que pour 0.5 au lieu de 1.
+        '''
+        nb_enfants = menage.nb_persons(role = Menage.ENFANT)
+        valeur_locative_cadastrale_brute = menage('valeur_locative_cadastrale_brute', period)
+        P = parameters(period).taxation_locale.taxe_habitation
+        SIREN_EPCI = menage('SIREN_EPCI', period)
+        quotite_abattement_condition_modeste_epci = P.quotite_abattement_condition_modeste.epci[SIREN_EPCI]
+        valeur_locative_moyenne_epci = P.valeur_locative_moyenne.epci[SIREN_EPCI]
+        taux_plafond_general = P.seuil_valeur_locative_abattement_condition_modeste
+        maj_taux_plafond_par_pac = P.maj_seuil_valeur_locative_abattement_condition_modeste
+        valeur_locative_max = (taux_plafond_general + maj_taux_plafond_par_pac * nb_enfants) * valeur_locative_moyenne_epci
+        condition_rfr_exoneration_th_i = menage.members.foyer_fiscal('condition_rfr_exoneration_th', period)
+        condition_rfr_exoneration_th = menage.all(condition_rfr_exoneration_th_i)
+        elig = condition_rfr_exoneration_th * not_(exonere_th) * (valeur_locative_cadastrale_brute <= valeur_locative_max)
+
+        return elig * quotite_abattement_condition_modeste_epci
 
 
 class taxe_habitation(Variable):
