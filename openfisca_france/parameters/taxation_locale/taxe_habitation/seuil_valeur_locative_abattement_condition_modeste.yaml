@@ -1,0 +1,6 @@
+description: Pourcentage plafond de la valeur locative par rapport à la valeur locative moyenne pour bénéficier de l'abattement pour personnes de condition modeste
+unit: /1
+reference: 3. du II de l'art. 1411 du CGI
+values:
+  2017-01-01:
+    value: 1.30
