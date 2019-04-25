@@ -100,7 +100,8 @@ class abattement_charge_famille_th_commune(Variable):
             (2) on ne prend pas en compte les gardes en résidence alternée qui font qu'une personne à charge ne compte
                 que pour 0.5 au lieu de 1.
         '''
-        nb_enfants = menage.nb_persons(role = Menage.ENFANT)
+        ... nb_enfants : mettre Famille. alors que menage.nb_persons : à checker
+        nb_enfants = menage.nb_persons(role = Famille.ENFANT)
         P = parameters(period).taxation_locale.taxe_habitation
         code_INSEE_commune = menage('code_INSEE_commune', period)
         quotite_abattement_pac_1_2_com = P.quotite_abattement_pac_1_2.communes[code_INSEE_commune]
@@ -125,7 +126,8 @@ class abattement_charge_famille_th_epci(Variable):
             (2) on ne prend pas en compte les gardes en résidence alternée qui font qu'une personne à charge ne compte
                 que pour 0.5 au lieu de 1.
         '''
-        nb_enfants = menage.nb_persons(role = Menage.ENFANT)
+        ... nb_enfants : mettre Famille. alors que menage.nb_persons : à checker
+        nb_enfants = menage.nb_persons(role = Famille.ENFANT)
         P = parameters(period).taxation_locale.taxe_habitation
         SIREN_EPCI = menage('SIREN_EPCI', period)
         quotite_abattement_pac_1_2_epci = P.quotite_abattement_pac_1_2.epci[SIREN_EPCI]
@@ -147,7 +149,8 @@ class abattement_personnes_condition_modeste_th_commune(Variable):
         Pour le nombre de personnes à charge, on ne prend pas en compte les gardes en résidence alternée qui font
         qu'une personne à charge ne compte que pour 0.5 au lieu de 1.
         '''
-        nb_enfants = menage.nb_persons(role = Menage.ENFANT)
+        ... nb_enfants : mettre Famille. alors que menage.nb_persons : à checker
+        nb_enfants = menage.nb_persons(role = Famille.ENFANT)
         valeur_locative_cadastrale_brute = menage('valeur_locative_cadastrale_brute', period)
         P = parameters(period).taxation_locale.taxe_habitation
         code_INSEE_commune = menage('code_INSEE_commune', period)
@@ -175,7 +178,8 @@ class abattement_personnes_condition_modeste_th_epci(Variable):
         Pour le nombre de personnes à charge, on ne prend pas en compte les gardes en résidence alternée qui font
         qu'une personne à charge ne compte que pour 0.5 au lieu de 1.
         '''
-        nb_enfants = menage.nb_persons(role = Menage.ENFANT)
+        ... nb_enfants : mettre Famille. alors que menage.nb_persons : à checker
+        nb_enfants = menage.nb_persons(role = Famille.ENFANT)
         valeur_locative_cadastrale_brute = menage('valeur_locative_cadastrale_brute', period)
         P = parameters(period).taxation_locale.taxe_habitation
         SIREN_EPCI = menage('SIREN_EPCI', period)
