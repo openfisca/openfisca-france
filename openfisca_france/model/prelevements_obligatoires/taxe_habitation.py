@@ -26,7 +26,7 @@ class condition_rfr_exoneration_th(Variable):
         return (rfr < seuil_th)
 
 
-class exonere_taxe_habitation(Variable):
+class exonere_th(Variable):
     value_type = bool
     default_value = False
     entity = Menage
@@ -64,6 +64,78 @@ class exonere_taxe_habitation(Variable):
         return exon
 
 
+class valeur_locative_cadastrale_brute(Variable):
+    value_type = float
+    entity = Menage
+    label = u"Valeur locative cadastrale utilisée pour les impôts locaux, avant abattements"
+    reference = "art. 1496 du CGI"
+    definition_period = YEAR
+
+class code_INSEE_commune(Variable):
+    value_type = str
+    max_length = 5
+    entity = Menage
+    label = u"Code INSEE de la commune de résidence du ménage"
+    definition_period = YEAR
+
+class SIREN_EPCI(Variable):
+    value_type = str
+    max_length = 9
+    entity = Menage
+    label = u"Numéro SIREN de l'EPCI de résidence du ménage"
+    definition_period = YEAR
+
+class abattement_charge_famille_th_commune(Variable):
+    value_type = float
+    entity = Menage
+    label = u"Abattement obligatoire pour charges de famille - TH de la commune"
+    reference = "art. 1411 du CGI"
+    definition_period = YEAR
+
+    def formula_2016_01_01(menage, period, parameters):
+        '''
+        Dans les personnes à charge :
+            (1) on ne compte pas les ascendants de plus de 70 ans ou infirmes, ayant un
+                revenu fiscal de référence inférieur à un certain seuil.
+            (2) on ne prend pas en compte les gardes en résidence alternée qui font qu'une personne à charge ne compte
+                que pour 0.5 au lieu de 1.
+        '''
+        nb_enfants = menage.nb_persons(role = Menage.ENFANT)
+        P = parameters(period).taxation_locale.taxe_habitation
+        code_INSEE_commune = menage('code_INSEE_commune', period)
+        quotite_abattement_pac_1_2_com = P.quotite_abattement_pac_1_2.communes[code_INSEE_commune]
+        quotite_abattement_pac_3_plus_com = P.quotite_abattement_pac_3_plus.communes[code_INSEE_commune]
+        return (
+            quotite_abattement_pac_1_2_com * min_(nb_enfants, 2)
+            + quotite_abattement_pac_3_plus_com * max_(nb_enfants - 2, 0)
+            )
+
+class abattement_charge_famille_th_epci(Variable):
+    value_type = float
+    entity = Menage
+    label = u"Abattement obligatoire pour charges de famille - TH de l'EPCI"
+    reference = "art. 1411 du CGI"
+    definition_period = YEAR
+
+    def formula_2016_01_01(menage, period, parameters):
+        '''
+        Dans les personnes à charge :
+            (1) on ne compte pas les ascendants de plus de 70 ans ou infirmes, ayant un
+                revenu fiscal de référence inférieur à un certain seuil.
+            (2) on ne prend pas en compte les gardes en résidence alternée qui font qu'une personne à charge ne compte
+                que pour 0.5 au lieu de 1.
+        '''
+        nb_enfants = menage.nb_persons(role = Menage.ENFANT)
+        P = parameters(period).taxation_locale.taxe_habitation
+        SIREN_EPCI = menage('SIREN_EPCI', period)
+        quotite_abattement_pac_1_2_epci = P.quotite_abattement_pac_1_2.epci[SIREN_EPCI]
+        quotite_abattement_pac_3_plus_epci = P.quotite_abattement_pac_3_plus.epci[SIREN_EPCI]
+        return (
+            quotite_abattement_pac_1_2_epci * min_(nb_enfants, 2)
+            + quotite_abattement_pac_3_plus_epci * max_(nb_enfants - 2, 0)
+            )
+
+
 class taxe_habitation(Variable):
     value_type = float
     entity = Menage
@@ -74,7 +146,7 @@ class taxe_habitation(Variable):
     def formula_2016_01_01(menage, period, parameters):
         last_year = period.last_year
 
-        exonere_taxe_habitation = menage('exonere_taxe_habitation', period)
+        exonere_th = menage('exonere_th', period)
         enfant_a_charge_i = menage.members('enfant_a_charge', period)
         nombre_enfants_a_charge_menage = menage.sum(enfant_a_charge_i)
         nombre_enfants_majeurs_celibataires_sans_enfant = menage('nombre_enfants_majeurs_celibataires_sans_enfant', period)
@@ -182,4 +254,4 @@ class taxe_habitation(Variable):
         # TODO
         prelevement_residence_secondaire = 0  # noqa F841
 
-        return - 0 * not_(exonere_taxe_habitation)
+        return - 0 * not_(exonere_th)
