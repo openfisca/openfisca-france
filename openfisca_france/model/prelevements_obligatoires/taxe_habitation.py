@@ -2,7 +2,7 @@
 
 from openfisca_france.model.base import *
 
-####### Simulation TH de la résidence principale : législation à partir de l'année 2016
+####### Simulation TH de la résidence principale : législation à partir de l'année 2017
 
 
 class condition_rfr_exoneration_th(Variable):
@@ -13,7 +13,7 @@ class condition_rfr_exoneration_th(Variable):
     reference = "BOI-IF-TH-10-50-30"
     definition_period = YEAR
 
-    def formula_2016_01_01(menage, period, parameters):
+    def formula_2017_01_01(menage, period, parameters):
         '''
         Pour l'exonération de la taxe d'habitation, en cas de ménages à foyers fiscaux multiples, la condition relative
         au revenu fiscal de référence doit être respectée pour tous les foyers fiscaux du ménage, d'où cette variable
@@ -34,7 +34,7 @@ class exonere_th(Variable):
     reference = "http://vosdroits.service-public.fr/particuliers/F42.xhtml"
     definition_period = YEAR
 
-    def formula_2016_01_01(menage, period):
+    def formula_2017_01_01(menage, period):
         '''
         Hypothèses :
             (1) pour la condition de plus de 60 ans ou veuf, on regarde seulement la personne de référence du ménage
@@ -92,7 +92,7 @@ class abattement_charge_famille_th_commune(Variable):
     reference = "art. 1411 du CGI"
     definition_period = YEAR
 
-    def formula_2016_01_01(menage, period, parameters):
+    def formula_2017_01_01(menage, period, parameters):
         '''
         Dans les personnes à charge :
             (1) on ne compte pas les ascendants de plus de 70 ans ou infirmes, ayant un
@@ -117,7 +117,7 @@ class abattement_charge_famille_th_epci(Variable):
     reference = "art. 1411 du CGI"
     definition_period = YEAR
 
-    def formula_2016_01_01(menage, period, parameters):
+    def formula_2017_01_01(menage, period, parameters):
         '''
         Dans les personnes à charge :
             (1) on ne compte pas les ascendants de plus de 70 ans ou infirmes, ayant un
@@ -143,7 +143,7 @@ class taxe_habitation(Variable):
     reference = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?espId=1&pageId=part_taxe_habitation&impot=TH&sfid=50"
     definition_period = YEAR
 
-    def formula_2016_01_01(menage, period, parameters):
+    def formula_2017_01_01(menage, period, parameters):
         last_year = period.last_year
 
         exonere_th = menage('exonere_th', period)
