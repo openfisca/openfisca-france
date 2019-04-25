@@ -195,6 +195,54 @@ class abattement_personnes_condition_modeste_th_epci(Variable):
         return elig * quotite_abattement_condition_modeste_epci
 
 
+class base_nette_th_commune(Variable):
+    value_type = float
+    entity = Menage
+    label = u"Base nette - TH de la commune"
+    definition_period = YEAR
+
+    def formula_2017_01_01(menage, period, parameters):
+        '''
+        Note : on ne prend pas en compte l'abattement en faveur des personnes handicapées
+        '''
+        valeur_locative_cadastrale_brute = menage('valeur_locative_cadastrale_brute', period)
+        abattement_charge_famille_th_commune = menage('abattement_charge_famille_th_commune', period)
+        abattement_personnes_condition_modeste_th_commune = menage('abattement_personnes_condition_modeste_th_commune', period)
+        code_INSEE_commune = menage('code_INSEE_commune', period)
+        quotite_abattement_general_a_la_base_com = P.quotite_abattement_general_a_la_base.communes[code_INSEE_commune]
+        base_brute_moins_abattements = (
+            valeur_locative_cadastrale_brute
+            - abattement_charge_famille_th_commune
+            - abattement_personnes_condition_modeste_th_commune
+            - quotite_abattement_general_a_la_base_com
+            )
+        return max_(base_brute_moins_abattements, 0)
+
+
+class base_nette_th_epci(Variable):
+    value_type = float
+    entity = Menage
+    label = u"Base nette - TH de l'EPCI"
+    definition_period = YEAR
+
+    def formula_2017_01_01(menage, period, parameters):
+        '''
+        Note : on ne prend pas en compte l'abattement en faveur des personnes handicapées
+        '''
+        valeur_locative_cadastrale_brute = menage('valeur_locative_cadastrale_brute', period)
+        abattement_charge_famille_th_epci = menage('abattement_charge_famille_th_epci', period)
+        abattement_personnes_condition_modeste_th_epci = menage('abattement_personnes_condition_modeste_th_epci', period)
+        SIREN_EPCI = menage('SIREN_EPCI', period)
+        quotite_abattement_general_a_la_base_epci = P.quotite_abattement_general_a_la_base.epci[SIREN_EPCI]
+        base_brute_moins_abattements = (
+            valeur_locative_cadastrale_brute
+            - abattement_charge_famille_th_epci
+            - abattement_personnes_condition_modeste_th_epci
+            - quotite_abattement_general_a_la_base_epci
+            )
+        return max_(base_brute_moins_abattements, 0)
+
+
 class taxe_habitation(Variable):
     value_type = float
     entity = Menage
