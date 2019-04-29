@@ -77,6 +77,7 @@ class indemnite_fin_contrat(Variable):
     label = u"Indemnité de fin de contrat"
     reference = u"https://www.service-public.fr/particuliers/vosdroits/F40"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
         contrat_de_travail_duree = individu('contrat_de_travail_duree', period)
