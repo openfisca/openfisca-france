@@ -982,7 +982,6 @@ class aide_logement_base_ressources(Variable):
             + retraite_combattant_i
             + rente_accident_travail_i
             )
-
         ressources_annee_glissante = famille.sum(ressources_annee_glissante_i, role=Famille.PARENT)
         paje = famille('paje', annee_glissante, options=[ADD])
         ressources_annee_glissante += paje
