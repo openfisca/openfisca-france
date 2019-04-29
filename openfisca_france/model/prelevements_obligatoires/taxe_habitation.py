@@ -262,6 +262,23 @@ class taxe_habitation_commune_epci_avant_plafonnement(Variable):
         return base_nette_th_commune * taux_com + base_nette_th_epci * taux_epci
 
 
+class taxe_habitation_commune_epci_avant_plafonnement(Variable):
+    value_type = float
+    entity = Menage
+    label = u"Taxe d'habitation de la commune et de l'EPCI avant plafonnement"
+    definition_period = YEAR
+
+    def formula_2017_01_01(menage, period, parameters):
+        P = parameters(period).taxation_locale.taxe_habitation
+        code_INSEE_commune = menage('code_INSEE_commune', period)
+        SIREN_EPCI = menage('SIREN_EPCI', period)
+        taux_com = P.taux.communes[code_INSEE_commune]
+        taux_epci = P.taux.epci[SIREN_EPCI]
+        base_nette_th_commune = menage('base_nette_th_commune', period)
+        base_nette_th_epci = menage('base_nette_th_epci', period)
+        return base_nette_th_commune * taux_com + base_nette_th_epci * taux_epci
+
+
 class taxe_habitation(Variable):
     value_type = float
     entity = Menage
