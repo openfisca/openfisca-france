@@ -678,6 +678,49 @@ class aide_logement_base_revenus_fiscaux(Variable):
         ]
     definition_period = YEAR
 
+    def formula_2019_06_01(foyer_fiscal, period):
+        # Retrait de la rente viagere  a titre onereux
+        # et de la pension alimentaire versée, utilisée sur une periode differentes du reste
+        # Supprimée à partir de 2018
+        rev_cat_rvcm = foyer_fiscal('revenu_categoriel_capital', period)
+        # Supprimée à partir de 2018
+        revenus_capitaux_prelevement_liberatoire = foyer_fiscal('revenus_capitaux_prelevement_liberatoire', period,
+                                                                options=[ADD])
+        # Apparait à partir de 2018
+        revenus_capitaux_prelevement_forfaitaire_unique_ir = foyer_fiscal(
+            'revenus_capitaux_prelevement_forfaitaire_unique_ir', period, options=[ADD])
+        revenu_categoriel_foncier = foyer_fiscal('revenu_categoriel_foncier', period)
+        f7ga = foyer_fiscal('f7ga', period)
+        f7gb = foyer_fiscal('f7gb', period)
+        f7gc = foyer_fiscal('f7gc', period)
+        # Supprimée à partir de 2018
+        rev_cat_pv = foyer_fiscal('revenu_categoriel_plus_values', period)
+        # Apparait à partir de 2018
+        plus_values_prelevement_forfaitaire_unique_ir = foyer_fiscal('plus_values_prelevement_forfaitaire_unique_ir',
+                                                                     period)
+
+        abat_spe = foyer_fiscal('abat_spe', period)
+        caseP = foyer_fiscal('caseP', period)
+        caseF = foyer_fiscal('caseF', period)
+        invV, invC = caseP, caseF
+        naissanceP = foyer_fiscal.declarant_principal('date_naissance', period)
+        naissanceC = foyer_fiscal.conjoint('date_naissance', period)
+        dateLimite = datetime64('1931-01-01')
+        apply_abat_spe = (abat_spe > 0) * (invV + invC + (naissanceP < dateLimite) + (naissanceC < dateLimite))
+
+        return (
+                + revenu_categoriel_foncier
+                + rev_cat_rvcm
+                + revenus_capitaux_prelevement_liberatoire
+                + revenus_capitaux_prelevement_forfaitaire_unique_ir
+                + rev_cat_pv
+                + plus_values_prelevement_forfaitaire_unique_ir
+                - abat_spe * apply_abat_spe
+                - f7ga
+                - f7gb
+                - f7gc
+        )
+
     def formula(foyer_fiscal, period):
         rente_viagere_titre_onereux_net = foyer_fiscal('rente_viagere_titre_onereux_net', period)
         # Supprimée à partir de 2018

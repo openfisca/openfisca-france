@@ -3504,8 +3504,15 @@ class ppe(Variable):
         return ppe
 
 
+class plus_values_gains_divers(Variable):
+    value_type = float
+    entity = FoyerFiscal
+    label = u"Plus values et gains divers"
+    definition_period = YEAR
+
+
 class deficit_exercice(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "Déficit sur l'exercice"
+    label = u"Deficit sur l'exercice"
     definition_period = YEAR
