@@ -820,17 +820,17 @@ class aide_logement_base_revenus_fiscaux(Variable):
         apply_abat_spe = (abat_spe > 0) * (invV + invC + (naissanceP < dateLimite) + (naissanceC < dateLimite))
 
         return (
-                + revenu_categoriel_foncier
-                + rev_cat_rvcm
-                + revenus_capitaux_prelevement_liberatoire
-                + revenus_capitaux_prelevement_forfaitaire_unique_ir
-                + rev_cat_pv
-                + plus_values_prelevement_forfaitaire_unique_ir
-                - abat_spe * apply_abat_spe
-                - f7ga
-                - f7gb
-                - f7gc
-        )
+            + revenu_categoriel_foncier
+            + rev_cat_rvcm
+            + revenus_capitaux_prelevement_liberatoire
+            + revenus_capitaux_prelevement_forfaitaire_unique_ir
+            + rev_cat_pv
+            + plus_values_prelevement_forfaitaire_unique_ir
+            - abat_spe * apply_abat_spe
+            - f7ga
+            - f7gb
+            - f7gc
+            )
 
     def formula(foyer_fiscal, period):
         rente_viagere_titre_onereux_net = foyer_fiscal('rente_viagere_titre_onereux_net', period)
@@ -940,7 +940,7 @@ class aide_logement_base_ressources(Variable):
             + pch_i
             + retraite_combattant_i
             + rente_accident_travail_i
-        )
+            )
         ressources_annee_glissante = famille.sum(ressources_annee_glissante_i, role=Famille.PARENT)
         paje = famille('paje', annee_glissante, options=[ADD])
         ressources_annee_glissante += paje
@@ -950,7 +950,7 @@ class aide_logement_base_ressources(Variable):
         ressources_n_1_i = (
             pensions_alimentaires_percues_i
             * pensions_alimentaires_percues_decl_i
-        )
+            )
         ressources_n_1 = famille.sum(ressources_n_1_i, role=Famille.PARENT)
         pensions_alimentaires_versees = famille.demandeur.foyer_fiscal('pensions_alimentaires_versees', period.last_year)
         ressources_n_1 += pensions_alimentaires_versees
@@ -982,7 +982,7 @@ class aide_logement_base_ressources(Variable):
             + benefice_agricole_i
             + benefice_micro_entreprise_i
             + benefice_auto_entrepreneur_i
-        )
+            )
         ressources_n_2 = famille.sum(ressources_n_2_i, role=Famille.PARENT)
         f4ba = famille.demandeur.foyer_fiscal('f4ba', period.n_2)
         rente_viagere_titre_onereux_net = famille.demandeur.foyer_fiscal('rente_viagere_titre_onereux_net', period.n_2)
@@ -995,7 +995,7 @@ class aide_logement_base_ressources(Variable):
             + assiette_csg_plus_values
             + plus_values_gains_divers
             + deficit_exercice
-        )
+            )
 
         # Montants a soustraire
         rpns_mvct_i = famille.members('moins_values_court_terme_non_salaries', period.n_2)
@@ -1012,11 +1012,11 @@ class aide_logement_base_ressources(Variable):
         demandeur_declarant_principal = famille.demandeur.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
         conjoint_declarant_principal = famille.conjoint.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
         revenus_fiscaux = (
-                famille.demandeur.foyer_fiscal('aide_logement_base_revenus_fiscaux',
-                                               period.n_2) * demandeur_declarant_principal
-                + famille.conjoint.foyer_fiscal('aide_logement_base_revenus_fiscaux',
-                                                period.n_2) * conjoint_declarant_principal
-        )
+            famille.demandeur.foyer_fiscal('aide_logement_base_revenus_fiscaux',
+                                           period.n_2) * demandeur_declarant_principal
+            + famille.conjoint.foyer_fiscal('aide_logement_base_revenus_fiscaux',
+                                            period.n_2) * conjoint_declarant_principal
+            )
 
         neutralisation_rsa = famille('aide_logement_neutralisation_rsa', period)
         neutralisation_conge_parental_i = famille.members('aide_logement_neutralisation_conge_parental', period)
@@ -1045,19 +1045,19 @@ class aide_logement_base_ressources(Variable):
         revenu_assimile_pension_i = pensions_alimentaires_percues_i * pensions_alimentaires_percues_decl_i + retraite_imposable_i + pensions_invalidite_i
         abat_pension = famille.sum(max_(0, revenu_assimile_pension_i - round_(max_(abatpen.taux * revenu_assimile_pension_i, abatpen.min))))
         ressources = (
-                + ressources_annee_glissante
-                + ressources_n_1
-                + ressources_n_2
-                + base_ressources_enfants
-                + ressources_patrimoine
-                + revenus_fiscaux
-                - rpns_mvct
-                - rpns_mvlt
-                - abatpro_frais_reels
-                - abat_pension
-                - f4bb
-                - (abattement_chomage_indemnise + abattement_depart_retraite + neutralisation_revenus_pro_chomage)
-        )
+            + ressources_annee_glissante
+            + ressources_n_1
+            + ressources_n_2
+            + base_ressources_enfants
+            + ressources_patrimoine
+            + revenus_fiscaux
+            - rpns_mvct
+            - rpns_mvlt
+            - abatpro_frais_reels
+            - abat_pension
+            - f4bb
+            - (abattement_chomage_indemnise + abattement_depart_retraite + neutralisation_revenus_pro_chomage)
+            )
 
         # Abattement forfaitaire pour double activité
         abattement_double_activite = biactivite * params_al_ressources.dar_1
