@@ -1,0 +1,8 @@
+description: Majoration pour les autres demi-parts supplémentaires du plafond de revenu fiscal de référence pour le plafonnement de la taxe d'habitation
+unit: currency
+reference: II de l'art. 1417 du CGI
+values:
+  2017-01-01:
+    value: 4631.0
+  2018-01-01:
+    value: 4677.0
