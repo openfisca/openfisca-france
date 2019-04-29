@@ -441,6 +441,7 @@ class primes_salaires(Variable):
     entity = Individu
     label = "Indemnités, primes et avantages en argent (brut)"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class complementaire_sante_montant(Variable):
@@ -1062,3 +1063,12 @@ class cout_differe(Variable):
         tehr = individu('tehr', period, options = [DIVIDE])
 
         return credit_impot_competitivite_emploi + aide_premier_salarie + aide_embauche_pme + tehr
+
+class type_conges(Variable):
+    value_type = Enum
+    possible_values = TypesConges  # defined in model/base.py
+    default_value = TypesConges.non_renseigne
+    entity = Individu
+    label = u"Type de congés en cours"
+    definition_period = MONTH
+    set_input = set_input_dispatch_by_period
