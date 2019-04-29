@@ -1,5 +1,6 @@
-description: 'Plafond d''exonération de la taxe d''habitation: demi-part supplémentaire'
+description: Majoration par demi-part supplémentaire du plafond de revenu fiscal de référence pour l'exonération de la taxe d'habitation
 unit: currency
+reference: I de l'art. 1417 du CGI
 values:
   2017-01-01:
     value: 2859.0
