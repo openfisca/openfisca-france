@@ -709,17 +709,17 @@ class aide_logement_base_revenus_fiscaux(Variable):
         apply_abat_spe = (abat_spe > 0) * (invV + invC + (naissanceP < dateLimite) + (naissanceC < dateLimite))
 
         return (
-                + revenu_categoriel_foncier
-                + rev_cat_rvcm
-                + revenus_capitaux_prelevement_liberatoire
-                + revenus_capitaux_prelevement_forfaitaire_unique_ir
-                + rev_cat_pv
-                + plus_values_prelevement_forfaitaire_unique_ir
-                - abat_spe * apply_abat_spe
-                - f7ga
-                - f7gb
-                - f7gc
-        )
+            + revenu_categoriel_foncier
+            + rev_cat_rvcm
+            + revenus_capitaux_prelevement_liberatoire
+            + revenus_capitaux_prelevement_forfaitaire_unique_ir
+            + rev_cat_pv
+            + plus_values_prelevement_forfaitaire_unique_ir
+            - abat_spe * apply_abat_spe
+            - f7ga
+            - f7gb
+            - f7gc
+            )
 
     def formula(foyer_fiscal, period):
         rente_viagere_titre_onereux_net = foyer_fiscal('rente_viagere_titre_onereux_net', period)
