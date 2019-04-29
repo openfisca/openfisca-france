@@ -908,7 +908,7 @@ class al_abattement_pro_frais_reels(Variable):
     value_type = float
     entity = Individu
     label = u"Abattement professionel ou application des frais réels"
-    definition_period = YEAR
+    definition_period = MONTH
 
     def formula_2019_06_01(individu, period, parameters):
         # Rolling year
