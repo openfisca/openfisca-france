@@ -3516,12 +3516,20 @@ class ppe(Variable):
 class plus_values_gains_divers(Variable):
     value_type = float
     entity = FoyerFiscal
+<<<<<<< HEAD
     label = "Plus-values et gains divers"
+=======
+    label = u"Plus values et gains divers"
+>>>>>>> 69a0afede (Recréation de branche propre)
     definition_period = YEAR
 
 
 class deficit_exercice(Variable):
     value_type = float
     entity = FoyerFiscal
+<<<<<<< HEAD
     label = "Déficit sur l'exercice"
+=======
+    label = u"Deficit sur l'exercice"
+>>>>>>> 69a0afede (Recréation de branche propre)
     definition_period = YEAR
