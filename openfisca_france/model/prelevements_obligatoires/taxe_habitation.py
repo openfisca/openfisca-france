@@ -259,7 +259,8 @@ class taxe_habitation_commune_epci_avant_degrevement(Variable):
         taux_epci = P.taux.epci[SIREN_EPCI]
         base_nette_th_commune = menage('base_nette_th_commune', period)
         base_nette_th_epci = menage('base_nette_th_epci', period)
-        return base_nette_th_commune * taux_com + base_nette_th_epci * taux_epci
+        exonere_th = menage('exonere_th', period)
+        return (base_nette_th_commune * taux_com + base_nette_th_epci * taux_epci) * not_(exonere_th)
 
 
 class plafond_taxe_habitation(Variable):
