@@ -1,5 +1,13 @@
 # Changelog
 
+## 42.1.1 [#1314](https://github.com/openfisca/openfisca-france/pull/1314)
+
+* Évolution du système socio-fiscal
+* Périodes concernées : 2018
+* Zones impactées : `prelevements_obligatoires/impot_revenu`
+* Détails :
+  - Met à jour les barèmes de l'impôt sur les revenus 2018
+
 ## 42.1.0 [#1313](https://github.com/openfisca/openfisca-france/pull/1313)
 
 * Amélioration technique.
