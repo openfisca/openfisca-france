@@ -245,10 +245,10 @@ class base_nette_th_epci(Variable):
         return max_(base_brute_moins_abattements, 0)
 
 
-class taxe_habitation_commune_epci_avant_plafonnement(Variable):
+class taxe_habitation_commune_epci_avant_degrevement(Variable):
     value_type = float
     entity = Menage
-    label = u"Taxe d'habitation de la commune et de l'EPCI avant plafonnement"
+    label = u"Taxe d'habitation de la commune et de l'EPCI avant dégrèvement"
     definition_period = YEAR
 
     def formula_2017_01_01(menage, period, parameters):
@@ -262,21 +262,57 @@ class taxe_habitation_commune_epci_avant_plafonnement(Variable):
         return base_nette_th_commune * taux_com + base_nette_th_epci * taux_epci
 
 
-class taxe_habitation_commune_epci_avant_plafonnement(Variable):
+class plafond_taxe_habitation(Variable):
     value_type = float
     entity = Menage
-    label = u"Taxe d'habitation de la commune et de l'EPCI avant plafonnement"
+    label = u"Plafond de la taxe d'habitation en fonction du revenu fiscal de référence"
+    reference = "art. 1414 A du CGI"
     definition_period = YEAR
 
     def formula_2017_01_01(menage, period, parameters):
+        P_plaf = parameters(period).taxation_locale.taxe_habitation.plafonnement
+        rfr_i = menage.members.foyer_fiscal('rfr', period.last_year)
+        rfr_menage = menage.sum(rfr_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
+        nbptr_i = menage.members.foyer_fiscal('nbptr', period.last_year)
+        nbptr_menage = menage.sum(nbptr_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
+        isf_ifi_i = menage.members.foyer_fiscal('isf_ifi', period.last_year)
+        isf_ifi_menage = menage.sum(isf_ifi_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
+        seuil_rfr = P_plaf.plaf_rfr_1ere_part + P_plaf.plaf_rfr_1ere_demi_part_supp * (min_(max_(nbptr_menage - 1, 0), 0.5)) / 0.5 + P_plaf.plaf_rfr_autres_demi_parts_supp * (max_(nbptr_menage - 1.5, 0)) / 0.5
+        abattement = P_plaf.abattement_rfr_1ere_part + P_plaf.abattement_rfr_4_1eres_demi_parts_supp * (min_(max_(nbptr_menage - 1, 0), 2)) / 0.5 + P_plaf.abattement_rfr_autres_demi_parts_supp * (max_(nbptr_menage - 3, 0)) / 0.5
+        return (rfr_menage - abattement) * P_plaf.taux_plafonnement_revenu * (rfr_menage <= seuil_rfr) * (isf_ifi_menage == 0)
+
+class degrevement_taxe_habitation(Variable):
+    value_type = float
+    entity = Menage
+    label = u"Dégrèvement de la taxe d'habitation"
+    reference = "art. 1414 A du CGI"
+    definition_period = YEAR
+
+    def formula_2017_01_01(menage, period, parameters):
+        taxe_habitation_commune_epci_avant_degrevement = menage('taxe_habitation_commune_epci_avant_degrevement', period)
+        plafond_taxe_habitation = menage('plafond_taxe_habitation', period)
+        base_nette_th_commune = menage('base_nette_th_commune', period)
+        base_nette_th_epci = menage('base_nette_th_epci', period)
+        base_reduction_degrevement = min_(base_nette_th_commune, base_nette_th_epci)
         P = parameters(period).taxation_locale.taxe_habitation
         code_INSEE_commune = menage('code_INSEE_commune', period)
         SIREN_EPCI = menage('SIREN_EPCI', period)
         taux_com = P.taux.communes[code_INSEE_commune]
         taux_epci = P.taux.epci[SIREN_EPCI]
-        base_nette_th_commune = menage('base_nette_th_commune', period)
-        base_nette_th_epci = menage('base_nette_th_epci', period)
-        return base_nette_th_commune * taux_com + base_nette_th_epci * taux_epci
+        ecart_avec_2000 = year(period.start.offset('first-of', 'year')) - 2000
+        annee_2000 = period.start.offset('first-of', 'year').period('year').offset(-ecart_avec_2000)
+        P_2000 = parameters(annee_2000).taxation_locale.taxe_habitation
+        taux_com_2000 = P_2000.taux.communes[code_INSEE_commune]
+        taux_epci_2000 = P_2000.taux.epci[SIREN_EPCI]
+        assert and_(taux_com_2000 is not None, taux_epci_2000 is not None) # Mais quid des variations d'appartenance d'une commune donnée à un EPCI ?
+        reduction_degrevement = base_reduction_degrevement * (taux_com + taux_epci - (taux_com_2000 + taux_epci_2000) * P.plafonnement.coeff_multiplicateur_taux_2000)
+        reduction_degrevement = reduction_degrevement * (reduction_degrevement > P.valeur_minimale_reduction_degrevement)
+        degrevement = (
+            taxe_habitation_commune_epci_avant_degrevement
+            - plafond_taxe_habitation
+            - reduction_degrevement
+            )
+        return max_(degrevement, 0)
 
 
 class taxe_habitation(Variable):
