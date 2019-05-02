@@ -3,8 +3,9 @@
 from numpy import logical_and as and_
 from openfisca_france.model.base import *
 
-####### Simulation TH de la résidence principale : législation à partir de l'année 2017
-
+################################################################################################
+####### Simulation TH de la résidence principale : législation à partir de l'année 2017 ########
+################################################################################################
 
 class condition_rfr_exoneration_th(Variable):
     value_type = bool
