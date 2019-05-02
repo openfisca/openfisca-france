@@ -45,7 +45,8 @@ class exonere_th(Variable):
         '''
         janvier = period.first_month
 
-        age = menage.personne_de_reference('age', janvier)
+        age_personne_de_reference = menage.personne_de_reference('age', janvier)
+        age_conjoint = menage.conjoint('age', janvier)
         statut_marital = menage.personne_de_reference('statut_marital', janvier)
 
         aah_i = menage.members('aah', period, options = [ADD])
@@ -53,7 +54,7 @@ class exonere_th(Variable):
         aspa_i = menage.members.famille('aspa', period, options = [ADD])
         aah = menage.sum(aah_i)
         asi = menage.sum(asi_i)
-        aspa = menage.sum(aspa_i)
+        aspa = menage.sum(aspa_i, role = Famille.DEMANDEUR)
 
         isf_ifi_i = menage.members.foyer_fiscal('isf_ifi', period.last_year)
         isf_ifi = menage.sum(isf_ifi_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
@@ -61,7 +62,7 @@ class exonere_th(Variable):
         condition_rfr_exoneration_th_i = menage.members.foyer_fiscal('condition_rfr_exoneration_th', period)
         condition_rfr_exoneration_th = menage.all(condition_rfr_exoneration_th_i)
 
-        exon_avant_condition_rfr = ((age >= 60) + (statut_marital == TypesStatutMarital.veuf)) * (isf_ifi == 0) + (asi > 0) + (aspa > 0) + (aah > 0)
+        exon_avant_condition_rfr = ((age_personne_de_reference >= 60) + (age_conjoint >= 60) + (statut_marital == TypesStatutMarital.veuf)) * (isf_ifi == 0) + (asi > 0) + (aspa > 0) + (aah > 0)
         exon = exon_avant_condition_rfr * condition_rfr_exoneration_th
         return exon
 
