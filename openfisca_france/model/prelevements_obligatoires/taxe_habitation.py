@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+from numpy import logical_and as and_
 from openfisca_france.model.base import *
 
 ####### Simulation TH de la résidence principale : législation à partir de l'année 2017
@@ -13,7 +14,7 @@ class condition_rfr_exoneration_th(Variable):
     reference = "BOI-IF-TH-10-50-30"
     definition_period = YEAR
 
-    def formula_2017_01_01(menage, period, parameters):
+    def formula_2017_01_01(foyer_fiscal, period, parameters):
         '''
         Pour l'exonération de la taxe d'habitation et l'abattement pour condition modeste, en cas de ménages à foyers
         fiscaux multiples, la condition relative au revenu fiscal de référence doit être respectée pour tous les foyers
@@ -100,8 +101,8 @@ class abattement_charge_famille_th_commune(Variable):
             (2) on ne prend pas en compte les gardes en résidence alternée qui font qu'une personne à charge ne compte
                 que pour 0.5 au lieu de 1.
         '''
-        ... nb_enfants : mettre Famille. alors que menage.nb_persons : à checker
-        nb_enfants = menage.nb_persons(role = Famille.ENFANT)
+        enfant_i = menage.members.has_role(Famille.ENFANT)
+        nb_enfants = menage.sum(enfant_i)
         P = parameters(period).taxation_locale.taxe_habitation
         code_INSEE_commune = menage('code_INSEE_commune', period)
         quotite_abattement_pac_1_2_com = P.quotite_abattement_pac_1_2.communes[code_INSEE_commune]
@@ -126,8 +127,8 @@ class abattement_charge_famille_th_epci(Variable):
             (2) on ne prend pas en compte les gardes en résidence alternée qui font qu'une personne à charge ne compte
                 que pour 0.5 au lieu de 1.
         '''
-        ... nb_enfants : mettre Famille. alors que menage.nb_persons : à checker
-        nb_enfants = menage.nb_persons(role = Famille.ENFANT)
+        enfant_i = menage.members.has_role(Famille.ENFANT)
+        nb_enfants = menage.sum(enfant_i)
         P = parameters(period).taxation_locale.taxe_habitation
         SIREN_EPCI = menage('SIREN_EPCI', period)
         quotite_abattement_pac_1_2_epci = P.quotite_abattement_pac_1_2.epci[SIREN_EPCI]
@@ -149,8 +150,8 @@ class abattement_personnes_condition_modeste_th_commune(Variable):
         Pour le nombre de personnes à charge, on ne prend pas en compte les gardes en résidence alternée qui font
         qu'une personne à charge ne compte que pour 0.5 au lieu de 1.
         '''
-        ... nb_enfants : mettre Famille. alors que menage.nb_persons : à checker
-        nb_enfants = menage.nb_persons(role = Famille.ENFANT)
+        enfant_i = menage.members.has_role(Famille.ENFANT)
+        nb_enfants = menage.sum(enfant_i)
         valeur_locative_cadastrale_brute = menage('valeur_locative_cadastrale_brute', period)
         P = parameters(period).taxation_locale.taxe_habitation
         code_INSEE_commune = menage('code_INSEE_commune', period)
@@ -178,8 +179,8 @@ class abattement_personnes_condition_modeste_th_epci(Variable):
         Pour le nombre de personnes à charge, on ne prend pas en compte les gardes en résidence alternée qui font
         qu'une personne à charge ne compte que pour 0.5 au lieu de 1.
         '''
-        ... nb_enfants : mettre Famille. alors que menage.nb_persons : à checker
-        nb_enfants = menage.nb_persons(role = Famille.ENFANT)
+        enfant_i = menage.members.has_role(Famille.ENFANT)
+        nb_enfants = menage.sum(enfant_i)
         valeur_locative_cadastrale_brute = menage('valeur_locative_cadastrale_brute', period)
         P = parameters(period).taxation_locale.taxe_habitation
         SIREN_EPCI = menage('SIREN_EPCI', period)
@@ -263,10 +264,10 @@ class taxe_habitation_commune_epci_avant_degrevement(Variable):
         return (base_nette_th_commune * taux_com + base_nette_th_epci * taux_epci) * not_(exonere_th)
 
 
-class plafond_taxe_habitation(Variable):
-    value_type = float
+class plafond_taxe_habitation_eligibilite(Variable):
+    value_type = bool
     entity = Menage
-    label = u"Plafond de la taxe d'habitation en fonction du revenu fiscal de référence"
+    label = u"Eligibilité au plafond de la taxe d'habitation en fonction du revenu fiscal de référence"
     reference = "art. 1414 A du CGI"
     definition_period = YEAR
 
@@ -279,8 +280,25 @@ class plafond_taxe_habitation(Variable):
         isf_ifi_i = menage.members.foyer_fiscal('isf_ifi', period.last_year)
         isf_ifi_menage = menage.sum(isf_ifi_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
         seuil_rfr = P_plaf.plaf_rfr_1ere_part + P_plaf.plaf_rfr_1ere_demi_part_supp * (min_(max_(nbptr_menage - 1, 0), 0.5)) / 0.5 + P_plaf.plaf_rfr_autres_demi_parts_supp * (max_(nbptr_menage - 1.5, 0)) / 0.5
+        return (rfr_menage <= seuil_rfr) * (isf_ifi_menage == 0)
+
+
+class plafond_taxe_habitation(Variable):
+    value_type = float
+    entity = Menage
+    label = u"Plafond de la taxe d'habitation en fonction du revenu fiscal de référence"
+    reference = "art. 1414 A du CGI"
+    definition_period = YEAR
+
+    def formula_2017_01_01(menage, period, parameters):
+        plafond_taxe_habitation_eligibilite = menage('plafond_taxe_habitation_eligibilite', period)
+        P_plaf = parameters(period).taxation_locale.taxe_habitation.plafonnement
+        rfr_i = menage.members.foyer_fiscal('rfr', period.last_year)
+        rfr_menage = menage.sum(rfr_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
+        nbptr_i = menage.members.foyer_fiscal('nbptr', period.last_year)
+        nbptr_menage = menage.sum(nbptr_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
         abattement = P_plaf.abattement_rfr_1ere_part + P_plaf.abattement_rfr_4_1eres_demi_parts_supp * (min_(max_(nbptr_menage - 1, 0), 2)) / 0.5 + P_plaf.abattement_rfr_autres_demi_parts_supp * (max_(nbptr_menage - 3, 0)) / 0.5
-        return (rfr_menage - abattement) * P_plaf.taux_plafonnement_revenu * (rfr_menage <= seuil_rfr) * (isf_ifi_menage == 0)
+        return (rfr_menage - abattement) * P_plaf.taux_plafonnement_revenu * plafond_taxe_habitation_eligibilite
 
 
 class degrevement_taxe_habitation(Variable):
@@ -292,6 +310,7 @@ class degrevement_taxe_habitation(Variable):
 
     def formula_2017_01_01(menage, period, parameters):
         taxe_habitation_commune_epci_avant_degrevement = menage('taxe_habitation_commune_epci_avant_degrevement', period)
+        plafond_taxe_habitation_eligibilite = menage('plafond_taxe_habitation_eligibilite', period)
         plafond_taxe_habitation = menage('plafond_taxe_habitation', period)
         base_nette_th_commune = menage('base_nette_th_commune', period)
         base_nette_th_epci = menage('base_nette_th_epci', period)
@@ -301,25 +320,25 @@ class degrevement_taxe_habitation(Variable):
         SIREN_EPCI = menage('SIREN_EPCI', period)
         taux_com = P.taux.communes[code_INSEE_commune]
         taux_epci = P.taux.epci[SIREN_EPCI]
-        ecart_avec_2000 = year(period.start.offset('first-of', 'year')) - 2000
+        ecart_avec_2000 = period.start.offset('first-of', 'year').year - 2000
         annee_2000 = period.start.offset('first-of', 'year').period('year').offset(-ecart_avec_2000)
         P_2000 = parameters(annee_2000).taxation_locale.taxe_habitation
         taux_com_2000 = P_2000.taux.communes[code_INSEE_commune]
         taux_epci_2000 = P_2000.taux.epci[SIREN_EPCI]
         assert and_(taux_com_2000 is not None, taux_epci_2000 is not None) # Mais quid des variations d'appartenance d'une commune donnée à un EPCI ?
         reduction_degrevement = base_reduction_degrevement * (taux_com + taux_epci - (taux_com_2000 + taux_epci_2000) * P.plafonnement.coeff_multiplicateur_taux_2000)
-        reduction_degrevement = reduction_degrevement * (reduction_degrevement > P.valeur_minimale_reduction_degrevement)
+        reduction_degrevement = reduction_degrevement * (reduction_degrevement > P.plafonnement.valeur_minimale_reduction_degrevement)
         degrevement = (
             taxe_habitation_commune_epci_avant_degrevement
             - plafond_taxe_habitation
             - reduction_degrevement
             )
-        return max_(degrevement, 0)
+        return max_(degrevement, 0) * plafond_taxe_habitation_eligibilite
 
 class taxe_habitation_commune_epci(Variable):
     value_type = float
     entity = Menage
-    label = u"Taxe d'habitation de la commune et de l'EPCI"
+    label = u"Taxe d'habitation de la commune et de l'EPCI, frais de gestion inclus"
     reference = "https://www.service-public.fr/particuliers/vosdroits/F42"
     definition_period = YEAR
 
@@ -329,4 +348,4 @@ class taxe_habitation_commune_epci(Variable):
         P = parameters(period).taxation_locale.taxe_habitation
         taux_frais_assiette = P.frais_assiette
         montant = max_(taxe_habitation_commune_epci_avant_degrevement - degrevement_taxe_habitation, 0)
-        return montant * (1 + taux_frais_assiette)
+        return - montant * (1 + taux_frais_assiette)
