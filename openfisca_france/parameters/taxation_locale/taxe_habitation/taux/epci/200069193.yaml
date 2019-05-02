@@ -2,4 +2,4 @@ description: Taux de TH de l'EPCI
 unit: /1
 values:
   2017-01-01:
-    value: xxx
+    value: 0.0784
