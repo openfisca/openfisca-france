@@ -3514,5 +3514,5 @@ class plus_values_gains_divers(Variable):
 class deficit_exercice(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = u"Deficit sur l'exercice"
+    label = u"Déficit sur l'exercice"
     definition_period = YEAR
