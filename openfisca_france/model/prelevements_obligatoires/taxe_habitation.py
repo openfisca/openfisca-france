@@ -311,6 +311,15 @@ class degrevement_taxe_habitation(Variable):
     definition_period = YEAR
 
     def formula_2017_01_01(menage, period, parameters):
+        '''
+        Notes :
+            (1) On ne prend pas en compte la majoration du dégrèvement pour les cas spécifiques où le montant
+                de taxe résulte exclusivement de la réduction du dégrèvement dépendant des hausses de taux
+                depuis 2000 (3. du III. de l'art 1414 A du CGI)
+            (2) Pour la réduction du dégrèvement, on ne prend pas en compte les cas où les abattements du
+                département en 2010 étaient plus avantageux que les abattements de la commune ou de l'EPCI
+                en 2018 (a. du 1. du III. de l'art 1414 A du CGI)
+        '''
         taxe_habitation_commune_epci_avant_degrevement = menage('taxe_habitation_commune_epci_avant_degrevement', period)
         plafond_taxe_habitation_eligibilite = menage('plafond_taxe_habitation_eligibilite', period)
         plafond_taxe_habitation = menage('plafond_taxe_habitation', period)
