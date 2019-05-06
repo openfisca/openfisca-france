@@ -403,7 +403,7 @@ class degrevement_office_taxe_habitation(Variable):
         return degrev * elig_degrev + degrev_degressif * elig_degrev_degressif
 
 
-class taxe_habitation_commune_epci(Variable):
+class taxe_habitation(Variable):
     value_type = float
     entity = Menage
     label = u"Taxe d'habitation de la commune et de l'EPCI, frais de gestion inclus"

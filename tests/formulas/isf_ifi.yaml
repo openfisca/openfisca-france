@@ -68,7 +68,7 @@
     prelevement_forfaitaire_liberatoire: 0
     prelevement_forfaitaire_unique_ir: 0
     ir_pv_immo: 0
-    taxe_habitation_commune_epci: 0
+    taxe_habitation: 0
     revenus_et_produits_plafonnement_isf_ifi: (1/0.85) * (500000*0.005 + 1270000*0.007 + 2430000*0.01 + 5000000*0.0125 + 5000000*0.015)
   output:
     assiette_isf_ifi: 15000000
@@ -114,7 +114,7 @@
     prelevement_forfaitaire_liberatoire: 0
     prelevement_forfaitaire_unique_ir: 0
     ir_pv_immo: 0
-    taxe_habitation_commune_epci: 0
+    taxe_habitation: 0
     revenus_et_produits_plafonnement_isf_ifi: (1/0.85) * (500000*0.005 + 1270000*0.007 + 2430000*0.01 + 5000000*0.0125 + 5000000*0.015)
   output:
     assiette_isf_ifi: 15000000
