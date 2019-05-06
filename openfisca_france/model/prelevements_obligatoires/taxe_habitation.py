@@ -303,10 +303,10 @@ class plafond_taxe_habitation(Variable):
         return (rfr_menage - abattement) * P_plaf.taux_plafonnement_revenu * plafond_taxe_habitation_eligibilite
 
 
-class degrevement_taxe_habitation(Variable):
+class degrevement_plafonnement_taxe_habitation(Variable):
     value_type = float
     entity = Menage
-    label = u"Dégrèvement de la taxe d'habitation"
+    label = u"Dégrèvement de la taxe d'habitation au titre du plafonnement"
     reference = "art. 1414 A du CGI"
     definition_period = YEAR
 
@@ -346,6 +346,55 @@ class degrevement_taxe_habitation(Variable):
             )
         return max_(degrevement, 0) * plafond_taxe_habitation_eligibilite
 
+
+class taxe_habitation_commune_epci_apres_degrevement_plafonnement(Variable):
+    value_type = float
+    entity = Menage
+    label = u"Taxe d'habitation de la commune et de l'EPCI après dégrèvement pour plafonnement"
+    definition_period = YEAR
+
+    def formula_2017_01_01(menage, period, parameters):
+        taxe_habitation_commune_epci_avant_degrevement = menage('taxe_habitation_commune_epci_avant_degrevement', period)
+        degrevement_plafonnement_taxe_habitation = menage('degrevement_plafonnement_taxe_habitation', period)
+        return max_(taxe_habitation_commune_epci_avant_degrevement - degrevement_plafonnement_taxe_habitation, 0)
+
+
+class degrevement_office_taxe_habitation(Variable):
+    value_type = float
+    entity = Menage
+    label = u"Dégrèvement d'office de la taxe d'habitation"
+    reference = "art. 1414 C du CGI"
+    definition_period = YEAR
+
+    def formula_2018_01_01(menage, period, parameters):
+        '''
+        Note Importante : on ne prend pas en compte l'exclusion de ce dégrèvement des hausses de taux et d'abattements depuis 2018.
+        Dans les faits :
+            - si les variations de taux de taxation et d'abattements votés par les communes et EPCI depuis 2017
+              entrainent une baisse ou une non variation de la taxe d'habitation, le dégrèvement s'applique au
+              montant de taxe d'habitation avec taux et abattements actualisés;
+            - si ces variations entrainent une hausse de la taxe d'habitation, le dégrèvement d'office est
+              appliqué à la taxe d'habitation qui aurait été payée en N (avec N>=2018) avec les taux de taxation
+              et d'abattements votés par les communes et EPCI en 2017.
+        Dans ce code, on suppose qu'on est toujours dans le premier cas.
+        '''
+        P_degrev = parameters(period).taxation_locale.taxe_habitation.degrevement_d_office
+        isf_ifi_i = menage.members.foyer_fiscal('isf_ifi', period.last_year)
+        isf_ifi_menage = menage.sum(isf_ifi_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
+        rfr_i = menage.members.foyer_fiscal('rfr', period.last_year)
+        rfr_menage = menage.sum(rfr_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
+        nbptr_i = menage.members.foyer_fiscal('nbptr', period.last_year)
+        nbptr_menage = menage.sum(nbptr_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
+        plafond_rfr_degrev = P_degrev.plaf_rfr_degrev_1ere_part + P_degrev.plaf_rfr_degrev_2_1eres_demi_parts_supp * (min_(max_(nbptr_menage - 1, 0), 1)) / 0.5 + P_degrev.plaf_rfr_degrev_autres_demi_parts_supp * (max_(nbptr_menage - 2, 0)) / 0.5
+        plafond_rfr_degrev_degressif = P_degrev.plaf_rfr_degrev_degressif_1ere_part + P_degrev.plaf_rfr_degrev_degressif_2_1eres_demi_parts_supp * (min_(max_(nbptr_menage - 1, 0), 1)) / 0.5 + P_degrev.plaf_rfr_degrev_degressif_autres_demi_parts_supp * (max_(nbptr_menage - 2, 0)) / 0.5
+        elig_degrev = (isf_ifi_menage == 0) * (rfr_menage <= plafond_rfr_degrev)
+        elig_degrev_degressif = (isf_ifi_menage == 0) * (elig_degrev == 0) * (rfr_menage <= plafond_rfr_degrev_degressif)
+        taxe_habitation_commune_epci_apres_degrevement_plafonnement = menage('taxe_habitation_commune_epci_apres_degrevement_plafonnement', period)
+        degrev = P_degrev.taux * taxe_habitation_commune_epci_apres_degrevement_plafonnement
+        degrev_degressif = degrev * max_((plafond_rfr_degrev_degressif - rfr_menage) / (plafond_rfr_degrev_degressif - plafond_rfr_degrev), 0)
+        return degrev * elig_degrev + degrev_degressif * elig_degrev_degressif
+
+
 class taxe_habitation_commune_epci(Variable):
     value_type = float
     entity = Menage
@@ -354,9 +403,9 @@ class taxe_habitation_commune_epci(Variable):
     definition_period = YEAR
 
     def formula_2017_01_01(menage, period, parameters):
-        taxe_habitation_commune_epci_avant_degrevement = menage('taxe_habitation_commune_epci_avant_degrevement', period)
-        degrevement_taxe_habitation = menage('degrevement_taxe_habitation', period)
+        taxe_habitation_commune_epci_apres_degrevement_plafonnement = menage('taxe_habitation_commune_epci_apres_degrevement_plafonnement', period)
+        degrevement_office_taxe_habitation = menage('degrevement_office_taxe_habitation', period)
         P = parameters(period).taxation_locale.taxe_habitation
         taux_frais_assiette = P.frais_assiette
-        montant = max_(taxe_habitation_commune_epci_avant_degrevement - degrevement_taxe_habitation, 0)
+        montant = max_(taxe_habitation_commune_epci_apres_degrevement_plafonnement - degrevement_office_taxe_habitation, 0)
         return - montant * (1 + taux_frais_assiette)
