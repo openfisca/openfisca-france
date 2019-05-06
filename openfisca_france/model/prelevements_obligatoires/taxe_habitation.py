@@ -42,6 +42,8 @@ class exonere_th(Variable):
             (1) pour la condition de plus de 60 ans ou veuf, on regarde seulement la personne de référence du ménage
             (2) pour la condition relative à l'ASPA l'ASI et l'AAH, on fait la somme de ces prestations à l'échelle du ménage
             (3) pour la condition relative à l'ISF-IFI, on fait la somme de ces impôts à l'échelle du ménage
+            (4) on ne prend pas en compte les prolongements temporaires d'exonération pour certains contribuables
+                ayant perdu l'éligibilité à l'éxonération (I bis de l'art. 1414 du CGI)
         '''
         janvier = period.first_month
 
@@ -206,7 +208,10 @@ class base_nette_th_commune(Variable):
 
     def formula_2017_01_01(menage, period, parameters):
         '''
-        Note : on ne prend pas en compte l'abattement en faveur des personnes handicapées
+        Notes :
+            (1) on ne prend pas en compte l'abattement en faveur des personnes handicapées
+            (2) on ne prend pas en compte les abattements temporaires pour certains contribuables
+                ayant perdu l'éligibilité à l'éxonération (I bis de l'art. 1414 du CGI)
         '''
         P = parameters(period).taxation_locale.taxe_habitation
         valeur_locative_cadastrale_brute = menage('valeur_locative_cadastrale_brute', period)
@@ -231,7 +236,10 @@ class base_nette_th_epci(Variable):
 
     def formula_2017_01_01(menage, period, parameters):
         '''
-        Note : on ne prend pas en compte l'abattement en faveur des personnes handicapées
+        Notes :
+            (1) on ne prend pas en compte l'abattement en faveur des personnes handicapées
+            (2) on ne prend pas en compte les abattements temporaires pour certains contribuables
+                ayant perdu l'éligibilité à l'éxonération (I bis de l'art. 1414 du CGI)
         '''
         P = parameters(period).taxation_locale.taxe_habitation
         valeur_locative_cadastrale_brute = menage('valeur_locative_cadastrale_brute', period)
