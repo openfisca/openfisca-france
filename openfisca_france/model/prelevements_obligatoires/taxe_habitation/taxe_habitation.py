@@ -2,7 +2,6 @@
 
 import logging
 
-from numpy import logical_and as and_
 from openfisca_france.model.base import *
 
 log = logging.getLogger(__name__)
@@ -200,7 +199,6 @@ class base_nette_th_commune(Variable):
             (2) on ne prend pas en compte les abattements temporaires pour certains contribuables
                 ayant perdu l'éligibilité à l'éxonération (I bis de l'art. 1414 du CGI)
         '''
-        P = parameters(period).taxation_locale.taxe_habitation
         valeur_locative_cadastrale_brute = menage('valeur_locative_cadastrale_brute', period)
         abattement_charge_famille_th_commune = menage('abattement_charge_famille_th_commune', period)
         abattement_personnes_condition_modeste_th_commune = menage('abattement_personnes_condition_modeste_th_commune', period)
@@ -227,7 +225,6 @@ class base_nette_th_epci(Variable):
             (2) on ne prend pas en compte les abattements temporaires pour certains contribuables
                 ayant perdu l'éligibilité à l'éxonération (I bis de l'art. 1414 du CGI)
         '''
-        P = parameters(period).taxation_locale.taxe_habitation
         valeur_locative_cadastrale_brute = menage('valeur_locative_cadastrale_brute', period)
         abattement_charge_famille_th_epci = menage('abattement_charge_famille_th_epci', period)
         abattement_personnes_condition_modeste_th_epci = menage('abattement_personnes_condition_modeste_th_epci', period)
@@ -248,7 +245,6 @@ class taxe_habitation_commune_epci_avant_degrevement(Variable):
     definition_period = YEAR
 
     def formula_2017_01_01(menage, period, parameters):
-        P = parameters(period).taxation_locale.taxe_habitation
         taux_th_commune = menage('taux_th_commune', period)
         taux_th_epci = menage('taux_th_epci', period)
         if taux_th_commune + taux_th_epci == 0:
