@@ -82,7 +82,6 @@ class code_INSEE_commune(Variable):
     max_length = 5
     entity = Menage
     label = u"Code INSEE de la commune de résidence du ménage"
-    01001
     definition_period = YEAR
 
 class SIREN_EPCI(Variable):
