@@ -78,13 +78,16 @@ class valeur_locative_cadastrale_brute(Variable):
 
 class code_INSEE_commune(Variable):
     value_type = str
+    default_value = "01001"
     max_length = 5
     entity = Menage
     label = u"Code INSEE de la commune de résidence du ménage"
+    01001
     definition_period = YEAR
 
 class SIREN_EPCI(Variable):
     value_type = str
+    default_value = "200069193"
     max_length = 9
     entity = Menage
     label = u"Numéro SIREN de l'EPCI de résidence du ménage"
