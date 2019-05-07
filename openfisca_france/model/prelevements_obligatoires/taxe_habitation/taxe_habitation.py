@@ -1,7 +1,11 @@
 # -*- coding: utf-8 -*-
 
+import logging
+
 from numpy import logical_and as and_
 from openfisca_france.model.base import *
+
+log = logging.getLogger(__name__)
 
 
 # Simulation TH de la résidence principale : législation à partir de l'année 2017
@@ -77,24 +81,6 @@ class valeur_locative_cadastrale_brute(Variable):
     definition_period = YEAR
 
 
-class code_INSEE_commune(Variable):
-    value_type = str
-    default_value = "01001"
-    max_length = 5
-    entity = Menage
-    label = u"Code INSEE de la commune de résidence du ménage"
-    definition_period = YEAR
-
-
-class SIREN_EPCI(Variable):
-    value_type = str
-    default_value = "200069193"
-    max_length = 9
-    entity = Menage
-    label = u"Numéro SIREN de l'EPCI de résidence du ménage"
-    definition_period = YEAR
-
-
 class abattement_charge_famille_th_commune(Variable):
     value_type = float
     entity = Menage
@@ -112,13 +98,11 @@ class abattement_charge_famille_th_commune(Variable):
         '''
         enfant_i = menage.members.has_role(Famille.ENFANT)
         nb_enfants = menage.sum(enfant_i)
-        P = parameters(period).taxation_locale.taxe_habitation
-        code_INSEE_commune = menage('code_INSEE_commune', period)
-        quotite_abattement_pac_1_2_com = P.quotite_abattement_pac_1_2.communes[code_INSEE_commune]
-        quotite_abattement_pac_3_plus_com = P.quotite_abattement_pac_3_plus.communes[code_INSEE_commune]
+        abt_pac_1_2_th_commune = menage('abt_pac_1_2_th_commune', period)
+        abt_pac_3pl_th_commune = menage('abt_pac_3pl_th_commune', period)
         return (
-            quotite_abattement_pac_1_2_com * min_(nb_enfants, 2)
-            + quotite_abattement_pac_3_plus_com * max_(nb_enfants - 2, 0)
+            abt_pac_1_2_th_commune * min_(nb_enfants, 2)
+            + abt_pac_3pl_th_commune * max_(nb_enfants - 2, 0)
             )
 
 
@@ -139,13 +123,11 @@ class abattement_charge_famille_th_epci(Variable):
         '''
         enfant_i = menage.members.has_role(Famille.ENFANT)
         nb_enfants = menage.sum(enfant_i)
-        P = parameters(period).taxation_locale.taxe_habitation
-        SIREN_EPCI = menage('SIREN_EPCI', period)
-        quotite_abattement_pac_1_2_epci = P.quotite_abattement_pac_1_2.epci[SIREN_EPCI]
-        quotite_abattement_pac_3_plus_epci = P.quotite_abattement_pac_3_plus.epci[SIREN_EPCI]
+        abt_pac_1_2_th_epci = menage('abt_pac_1_2_th_epci', period)
+        abt_pac_3pl_th_epci = menage('abt_pac_3pl_th_epci', period)
         return (
-            quotite_abattement_pac_1_2_epci * min_(nb_enfants, 2)
-            + quotite_abattement_pac_3_plus_epci * max_(nb_enfants - 2, 0)
+            abt_pac_1_2_th_epci * min_(nb_enfants, 2)
+            + abt_pac_3pl_th_epci * max_(nb_enfants - 2, 0)
             )
 
 
@@ -165,17 +147,16 @@ class abattement_personnes_condition_modeste_th_commune(Variable):
         nb_enfants = menage.sum(enfant_i)
         valeur_locative_cadastrale_brute = menage('valeur_locative_cadastrale_brute', period)
         P = parameters(period).taxation_locale.taxe_habitation
-        code_INSEE_commune = menage('code_INSEE_commune', period)
-        quotite_abattement_condition_modeste_com = P.quotite_abattement_condition_modeste.communes[code_INSEE_commune]
-        valeur_locative_moyenne_com = P.valeur_locative_moyenne.communes[code_INSEE_commune]
+        abt_condition_modeste_th_commune = menage('abt_condition_modeste_th_commune', period)
+        valeur_locative_moyenne_th_commune = menage('valeur_locative_moyenne_th_commune', period)
         taux_plafond_general = P.seuil_valeur_locative_abattement_condition_modeste
         maj_taux_plafond_par_pac = P.maj_seuil_valeur_locative_abattement_condition_modeste
-        valeur_locative_max = (taux_plafond_general + maj_taux_plafond_par_pac * nb_enfants) * valeur_locative_moyenne_com
+        valeur_locative_max = (taux_plafond_general + maj_taux_plafond_par_pac * nb_enfants) * valeur_locative_moyenne_th_commune
         condition_rfr_exoneration_th_i = menage.members.foyer_fiscal('condition_rfr_exoneration_th', period)
         condition_rfr_exoneration_th = menage.all(condition_rfr_exoneration_th_i)
         elig = condition_rfr_exoneration_th * not_(exonere_th) * (valeur_locative_cadastrale_brute <= valeur_locative_max)
 
-        return elig * quotite_abattement_condition_modeste_com
+        return elig * abt_condition_modeste_th_commune
 
 
 class abattement_personnes_condition_modeste_th_epci(Variable):
@@ -194,17 +175,16 @@ class abattement_personnes_condition_modeste_th_epci(Variable):
         nb_enfants = menage.sum(enfant_i)
         valeur_locative_cadastrale_brute = menage('valeur_locative_cadastrale_brute', period)
         P = parameters(period).taxation_locale.taxe_habitation
-        SIREN_EPCI = menage('SIREN_EPCI', period)
-        quotite_abattement_condition_modeste_epci = P.quotite_abattement_condition_modeste.epci[SIREN_EPCI]
-        valeur_locative_moyenne_epci = P.valeur_locative_moyenne.epci[SIREN_EPCI]
+        abt_condition_modeste_th_epci = menage('abt_condition_modeste_th_epci', period)
+        valeur_locative_moyenne_th_epci = menage('valeur_locative_moyenne_th_epci', period)
         taux_plafond_general = P.seuil_valeur_locative_abattement_condition_modeste
         maj_taux_plafond_par_pac = P.maj_seuil_valeur_locative_abattement_condition_modeste
-        valeur_locative_max = (taux_plafond_general + maj_taux_plafond_par_pac * nb_enfants) * valeur_locative_moyenne_epci
+        valeur_locative_max = (taux_plafond_general + maj_taux_plafond_par_pac * nb_enfants) * valeur_locative_moyenne_th_epci
         condition_rfr_exoneration_th_i = menage.members.foyer_fiscal('condition_rfr_exoneration_th', period)
         condition_rfr_exoneration_th = menage.all(condition_rfr_exoneration_th_i)
         elig = condition_rfr_exoneration_th * not_(exonere_th) * (valeur_locative_cadastrale_brute <= valeur_locative_max)
 
-        return elig * quotite_abattement_condition_modeste_epci
+        return elig * abt_condition_modeste_th_epci
 
 
 class base_nette_th_commune(Variable):
@@ -224,13 +204,12 @@ class base_nette_th_commune(Variable):
         valeur_locative_cadastrale_brute = menage('valeur_locative_cadastrale_brute', period)
         abattement_charge_famille_th_commune = menage('abattement_charge_famille_th_commune', period)
         abattement_personnes_condition_modeste_th_commune = menage('abattement_personnes_condition_modeste_th_commune', period)
-        code_INSEE_commune = menage('code_INSEE_commune', period)
-        quotite_abattement_general_a_la_base_com = P.quotite_abattement_general_a_la_base.communes[code_INSEE_commune]
+        abt_general_base_th_commune = menage('abt_general_base_th_commune', period)
         base_brute_moins_abattements = (
             valeur_locative_cadastrale_brute
             - abattement_charge_famille_th_commune
             - abattement_personnes_condition_modeste_th_commune
-            - quotite_abattement_general_a_la_base_com
+            - abt_general_base_th_commune
             )
         return max_(base_brute_moins_abattements, 0)
 
@@ -252,13 +231,12 @@ class base_nette_th_epci(Variable):
         valeur_locative_cadastrale_brute = menage('valeur_locative_cadastrale_brute', period)
         abattement_charge_famille_th_epci = menage('abattement_charge_famille_th_epci', period)
         abattement_personnes_condition_modeste_th_epci = menage('abattement_personnes_condition_modeste_th_epci', period)
-        SIREN_EPCI = menage('SIREN_EPCI', period)
-        quotite_abattement_general_a_la_base_epci = P.quotite_abattement_general_a_la_base.epci[SIREN_EPCI]
+        abt_general_base_th_epci = menage('abt_general_base_th_epci', period)
         base_brute_moins_abattements = (
             valeur_locative_cadastrale_brute
             - abattement_charge_famille_th_epci
             - abattement_personnes_condition_modeste_th_epci
-            - quotite_abattement_general_a_la_base_epci
+            - abt_general_base_th_epci
             )
         return max_(base_brute_moins_abattements, 0)
 
@@ -271,14 +249,14 @@ class taxe_habitation_commune_epci_avant_degrevement(Variable):
 
     def formula_2017_01_01(menage, period, parameters):
         P = parameters(period).taxation_locale.taxe_habitation
-        code_INSEE_commune = menage('code_INSEE_commune', period)
-        SIREN_EPCI = menage('SIREN_EPCI', period)
-        taux_com = P.taux.communes[code_INSEE_commune]
-        taux_epci = P.taux.epci[SIREN_EPCI]
+        taux_th_commune = menage('taux_th_commune', period)
+        taux_th_epci = menage('taux_th_epci', period)
+        if taux_th_commune + taux_th_epci == 0:
+            log.error(("Attention, il n'y a pas de taux de taxe d'habitation défini pour la commune indiquée."))
         base_nette_th_commune = menage('base_nette_th_commune', period)
         base_nette_th_epci = menage('base_nette_th_epci', period)
         exonere_th = menage('exonere_th', period)
-        return (base_nette_th_commune * taux_com + base_nette_th_epci * taux_epci) * not_(exonere_th)
+        return (base_nette_th_commune * taux_th_commune + base_nette_th_epci * taux_th_epci) * not_(exonere_th)
 
 
 class plafond_taxe_habitation_eligibilite(Variable):
@@ -342,18 +320,17 @@ class degrevement_plafonnement_taxe_habitation(Variable):
         base_nette_th_epci = menage('base_nette_th_epci', period)
         base_reduction_degrevement = min_(base_nette_th_commune, base_nette_th_epci)
         P = parameters(period).taxation_locale.taxe_habitation
-        code_INSEE_commune = menage('code_INSEE_commune', period)
-        SIREN_EPCI = menage('SIREN_EPCI', period)
-        taux_com = P.taux.communes[code_INSEE_commune]
-        taux_epci = P.taux.epci[SIREN_EPCI]
+        taux_th_commune = menage('taux_th_commune', period)
+        taux_th_epci = menage('taux_th_epci', period)
         ecart_avec_2000 = period.start.offset('first-of', 'year').year - 2000
         annee_2000 = period.start.offset('first-of', 'year').period('year').offset(-ecart_avec_2000)
-        P_2000 = parameters(annee_2000).taxation_locale.taxe_habitation
-        taux_com_2000 = P_2000.taux.communes[code_INSEE_commune]
-        taux_epci_2000 = P_2000.taux.epci[SIREN_EPCI]
-        assert and_(taux_com_2000 is not None, taux_epci_2000 is not None)  # Mais quid des variations d'appartenance d'une commune donnée à un EPCI ?
-        reduction_degrevement = base_reduction_degrevement * (taux_com + taux_epci - (taux_com_2000 + taux_epci_2000) * P.plafonnement.coeff_multiplicateur_taux_2000)
+        taux_th_commune_2000 = menage('taux_th_commune', annee_2000)
+        taux_th_epci_2000 = menage('taux_th_epci', annee_2000)
+        reduction_degrevement = base_reduction_degrevement * (taux_th_commune + taux_th_epci - (taux_th_commune_2000 + taux_th_epci_2000) * P.plafonnement.coeff_multiplicateur_taux_2000)
         reduction_degrevement = reduction_degrevement * (reduction_degrevement > P.plafonnement.valeur_minimale_reduction_degrevement)
+        if taux_th_commune_2000 + taux_th_epci_2000 == 0:
+            reduction_degrevement = 0
+            log.error(("Les taux de taxe d'habitation de l'année 2000 utilisés pour la réduction du plafonnement ne sont pas disponibles pour cette commune. Nous mettons donc cette réduction à zéro."))
         degrevement = (
             taxe_habitation_commune_epci_avant_degrevement
             - plafond_taxe_habitation
