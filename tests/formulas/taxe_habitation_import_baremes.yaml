@@ -1,0 +1,19 @@
+- name: import_parametres_locaux_th_2017
+  description: Teste l'import des paramètres locaux 2017 de la taxe d'habitation
+  period: 2017
+  absolute_error_margin: 0.001
+  input:
+    code_INSEE_commune: "01058"
+  output:
+    taux_th_commune: 0.1037
+    taux_th_epci: 0.0362
+    valeur_locative_moyenne_th_commune: 2766.0
+    valeur_locative_moyenne_th_epci: 2766.0
+    abt_general_base_th_commune: 248.0
+    abt_general_base_th_epci: 273.0
+    abt_pac_1_2_th_commune: 473.0
+    abt_pac_1_2_th_epci: 487.0
+    abt_pac_3pl_th_commune: 628.0
+    abt_pac_3pl_th_epci: 640.0
+    abt_condition_modeste_th_commune: 248.0
+    abt_condition_modeste_th_epci: 273.0
