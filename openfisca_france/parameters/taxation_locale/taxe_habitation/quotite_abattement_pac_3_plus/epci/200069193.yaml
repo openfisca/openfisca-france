@@ -1,6 +1,0 @@
-description: Quotité de l'abattement obligatoire pour charges de famille, pour les personnes à charge à partir de la troisième - TH de l'EPCI
-unit: currency
-reference: art. 1411 du CGI
-values:
-  2017-01-01:
-    value: 450.0

@@ -1,6 +1,0 @@
-description: Valeur locative moyenne utilisée pour les abattements
-unit: currency
-reference: art. 1411 du CGI
-values:
-  2017-01-01:
-    value: 2766.0
