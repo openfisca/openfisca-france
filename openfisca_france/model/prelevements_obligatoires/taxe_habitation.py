@@ -3,9 +3,9 @@
 from numpy import logical_and as and_
 from openfisca_france.model.base import *
 
-################################################################################################
-####### Simulation TH de la résidence principale : législation à partir de l'année 2017 ########
-################################################################################################
+
+# Simulation TH de la résidence principale : législation à partir de l'année 2017
+
 
 class condition_rfr_exoneration_th(Variable):
     value_type = bool
@@ -76,6 +76,7 @@ class valeur_locative_cadastrale_brute(Variable):
     reference = "art. 1496 du CGI"
     definition_period = YEAR
 
+
 class code_INSEE_commune(Variable):
     value_type = str
     default_value = "01001"
@@ -84,6 +85,7 @@ class code_INSEE_commune(Variable):
     label = u"Code INSEE de la commune de résidence du ménage"
     definition_period = YEAR
 
+
 class SIREN_EPCI(Variable):
     value_type = str
     default_value = "200069193"
@@ -91,6 +93,7 @@ class SIREN_EPCI(Variable):
     entity = Menage
     label = u"Numéro SIREN de l'EPCI de résidence du ménage"
     definition_period = YEAR
+
 
 class abattement_charge_famille_th_commune(Variable):
     value_type = float
@@ -118,6 +121,7 @@ class abattement_charge_famille_th_commune(Variable):
             + quotite_abattement_pac_3_plus_com * max_(nb_enfants - 2, 0)
             )
 
+
 class abattement_charge_famille_th_epci(Variable):
     value_type = float
     entity = Menage
@@ -143,6 +147,7 @@ class abattement_charge_famille_th_epci(Variable):
             quotite_abattement_pac_1_2_epci * min_(nb_enfants, 2)
             + quotite_abattement_pac_3_plus_epci * max_(nb_enfants - 2, 0)
             )
+
 
 class abattement_personnes_condition_modeste_th_commune(Variable):
     value_type = float
@@ -346,7 +351,7 @@ class degrevement_plafonnement_taxe_habitation(Variable):
         P_2000 = parameters(annee_2000).taxation_locale.taxe_habitation
         taux_com_2000 = P_2000.taux.communes[code_INSEE_commune]
         taux_epci_2000 = P_2000.taux.epci[SIREN_EPCI]
-        assert and_(taux_com_2000 is not None, taux_epci_2000 is not None) # Mais quid des variations d'appartenance d'une commune donnée à un EPCI ?
+        assert and_(taux_com_2000 is not None, taux_epci_2000 is not None)  # Mais quid des variations d'appartenance d'une commune donnée à un EPCI ?
         reduction_degrevement = base_reduction_degrevement * (taux_com + taux_epci - (taux_com_2000 + taux_epci_2000) * P.plafonnement.coeff_multiplicateur_taux_2000)
         reduction_degrevement = reduction_degrevement * (reduction_degrevement > P.plafonnement.valeur_minimale_reduction_degrevement)
         degrevement = (

@@ -2,8 +2,8 @@ description: Taux de TH de la commune
 unit: /1
 values:
   2000-01-01:
-    value: 0.1070 # Valeur fake pour que la formule de degrevement_plafonnement_taxe_habitation tourne avec la commune par défaut. On a mis un taux tel que la réduction du dégrèvement qui fait appel à ce paramètre soit nulle (0.1070 = 0.1106 / 1.034 )
+    value: 0.1070  # Valeur fake pour que la formule de degrevement_plafonnement_taxe_habitation tourne avec la commune par défaut. On a mis un taux tel que la réduction du dégrèvement qui fait appel à ce paramètre soit nulle (0.1070 = 0.1106 / 1.034 )
   2001-01-01:
-    value: null # On ne met rien ici pour le moment car on n'a pas besoin de ces valeurs
+    value: null  # On ne met rien ici pour le moment car on n'a pas besoin de ces valeurs
   2017-01-01:
     value: 0.1106
