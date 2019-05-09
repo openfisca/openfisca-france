@@ -1,5 +1,13 @@
 # Changelog
 
+## 42.2.0 [#1319](https://github.com/openfisca/openfisca-france/pull/1319)
+
+* Revalorisation périodique.
+* Périodes concernées : à partir du 01/04/2019.
+* Zones impactées : `parameters/prestations/minima_sociaux/rsa/montant_de_base_du_rsa`.
+* Détails :
+  - Revalorise le montant de base du rsa au 1 avril 2019.
+
 ### 42.1.2 [#1317](https://github.com/openfisca/openfisca-france/pull/1317)
 
 * Changement mineur.
