@@ -1,6 +1,13 @@
 # Changelog
 
-## 42.1.1 [#1314](https://github.com/openfisca/openfisca-france/pull/1314)
+### 42.1.2 [#1317](https://github.com/openfisca/openfisca-france/pull/1317)
+
+* Changement mineur.
+* Détails :
+  - Retire une référence inadaptée.
+  - Corrige le label d'une variable.
+
+### 42.1.1 [#1314](https://github.com/openfisca/openfisca-france/pull/1314)
 
 * Évolution du système socio-fiscal
 * Périodes concernées : 2018
