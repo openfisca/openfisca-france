@@ -366,6 +366,8 @@ class degrevement_office_taxe_habitation(Variable):
               et d'abattements votés par les communes et EPCI en 2017.
         Dans ce code, on suppose qu'on est toujours dans le premier cas.
         '''
+
+        # Calcul de l'éligibilité en fonction du revenu fiscal de référence et de la perception de l'ISF-IFI
         P_degrev = parameters(period).taxation_locale.taxe_habitation.degrevement_d_office
         isf_ifi_i = menage.members.foyer_fiscal('isf_ifi', period.last_year)
         isf_ifi_menage = menage.sum(isf_ifi_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
@@ -377,9 +379,12 @@ class degrevement_office_taxe_habitation(Variable):
         plafond_rfr_degrev_degressif = P_degrev.plaf_rfr_degrev_degressif_1ere_part + P_degrev.plaf_rfr_degrev_degressif_2_1eres_demi_parts_supp * (min_(max_(nbptr_menage - 1, 0), 1)) / 0.5 + P_degrev.plaf_rfr_degrev_degressif_autres_demi_parts_supp * (max_(nbptr_menage - 2, 0)) / 0.5
         elig_degrev = (isf_ifi_menage == 0) * (rfr_menage <= plafond_rfr_degrev)
         elig_degrev_degressif = (isf_ifi_menage == 0) * (elig_degrev == 0) * (rfr_menage <= plafond_rfr_degrev_degressif)
+
+        # Calcul du dégrèvement
         taxe_habitation_commune_epci_apres_degrevement_plafonnement = menage('taxe_habitation_commune_epci_apres_degrevement_plafonnement', period)
         degrev = P_degrev.taux * taxe_habitation_commune_epci_apres_degrevement_plafonnement
         degrev_degressif = degrev * max_((plafond_rfr_degrev_degressif - rfr_menage) / (plafond_rfr_degrev_degressif - plafond_rfr_degrev), 0)
+
         return degrev * elig_degrev + degrev_degressif * elig_degrev_degressif
 
 
