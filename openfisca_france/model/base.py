@@ -59,13 +59,5 @@ class TypesStatutOccupationLogement(Enum):
     sans_domicile = u"Sans domicile stable"
 
 
-class TypesConges(Enum):
-    __order__ = 'non_renseigne conge_parental conge_maternite_paternite conge_presence_parental'  # Needed to preserve the enum order in Python 2
-    non_renseigne = u"Non renseigné"
-    conge_parental = u"Congé parental"
-    conge_maternite_paternite = u"Congé maternité ou paternité"
-    conge_presence_parental = u"Congé de présence parentale"
-
-
 # Taux de prime moyen de la fonction publique
 TAUX_DE_PRIME = 0.195  # primes_fonction_publique (hors suppl. familial et indemnité de résidence)/rémunération brute
