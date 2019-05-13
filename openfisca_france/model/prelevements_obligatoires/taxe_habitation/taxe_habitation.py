@@ -14,7 +14,7 @@ class valeur_locative_cadastrale_brute(Variable):
     value_type = float
     entity = Menage
     label = u"Valeur locative cadastrale utilisée pour les impôts locaux, avant abattements"
-    reference = "art. 1496 du CGI"
+    reference = "https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000034111395&cidTexte=LEGITEXT000006069577&dateTexte=20170302"
     definition_period = YEAR
 
 
@@ -84,7 +84,7 @@ class abattement_charge_famille_th_commune(Variable):
     value_type = float
     entity = Menage
     label = u"Abattement obligatoire pour charges de famille - TH de la commune"
-    reference = "art. 1411 du CGI"
+    reference = "https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006069577&idArticle=LEGIARTI000033220348&dateTexte=&categorieLien=id"
     definition_period = YEAR
 
     def formula_2017_01_01(menage, period, parameters):
@@ -109,7 +109,7 @@ class abattement_charge_famille_th_epci(Variable):
     value_type = float
     entity = Menage
     label = u"Abattement obligatoire pour charges de famille - TH de l'EPCI"
-    reference = "art. 1411 du CGI"
+    reference = "https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006069577&idArticle=LEGIARTI000033220348&dateTexte=&categorieLien=id"
     definition_period = YEAR
 
     def formula_2017_01_01(menage, period, parameters):
@@ -134,7 +134,7 @@ class abattement_personnes_condition_modeste_th_commune(Variable):
     value_type = float
     entity = Menage
     label = u"Abattement pour personnes de condition modeste - TH de la commune"
-    reference = "3. du II. de l'art. 1411 du CGI"
+    reference = "https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006069577&idArticle=LEGIARTI000033220348&dateTexte=&categorieLien=id"
     definition_period = YEAR
 
     def formula_2017_01_01(menage, period, parameters):
@@ -162,7 +162,7 @@ class abattement_personnes_condition_modeste_th_epci(Variable):
     value_type = float
     entity = Menage
     label = u"Abattement pour personnes de condition modeste - TH de l'EPCI"
-    reference = "3. du II. de l'art. 1411 du CGI"
+    reference = "https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006069577&idArticle=LEGIARTI000033220348&dateTexte=&categorieLien=id"
     definition_period = YEAR
 
     def formula_2017_01_01(menage, period, parameters):
@@ -259,7 +259,7 @@ class plafond_taxe_habitation_eligibilite(Variable):
     value_type = bool
     entity = Menage
     label = u"Eligibilité au plafond de la taxe d'habitation en fonction du revenu fiscal de référence"
-    reference = "art. 1414 A du CGI"
+    reference = "https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006069577&idArticle=LEGIARTI000006312070&dateTexte=&categorieLien=cid"
     definition_period = YEAR
 
     def formula_2017_01_01(menage, period, parameters):
@@ -278,7 +278,7 @@ class plafond_taxe_habitation(Variable):
     value_type = float
     entity = Menage
     label = u"Plafond de la taxe d'habitation en fonction du revenu fiscal de référence"
-    reference = "art. 1414 A du CGI"
+    reference = "https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006069577&idArticle=LEGIARTI000006312070&dateTexte=&categorieLien=cid"
     definition_period = YEAR
 
     def formula_2017_01_01(menage, period, parameters):
@@ -296,7 +296,7 @@ class degrevement_plafonnement_taxe_habitation(Variable):
     value_type = float
     entity = Menage
     label = u"Dégrèvement de la taxe d'habitation au titre du plafonnement"
-    reference = "art. 1414 A du CGI"
+    reference = "https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006069577&idArticle=LEGIARTI000006312070&dateTexte=&categorieLien=cid"
     definition_period = YEAR
 
     def formula_2017_01_01(menage, period, parameters):
@@ -351,7 +351,7 @@ class degrevement_office_taxe_habitation(Variable):
     value_type = float
     entity = Menage
     label = u"Dégrèvement d'office de la taxe d'habitation"
-    reference = "art. 1414 C du CGI"
+    reference = "https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=268AD735F5C69F94FB6756E3125BF0A0.tplgfr43s_1?idArticle=LEGIARTI000036441815&cidTexte=LEGITEXT000006069577&dateTexte=20190513&categorieLien=id&oldAction=&nbResultRech="
     definition_period = YEAR
 
     def formula_2018_01_01(menage, period, parameters):
