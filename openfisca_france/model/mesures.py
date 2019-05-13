@@ -596,7 +596,7 @@ class impots_directs(Variable):
         Pour les impôts définis au niveau du foyer fiscal :
         on prend en compte l'impôt des foyers fiscaux dont le déclarant principal est dans le ménage
         '''
-        taxe_habitation_commune_epci = menage('taxe_habitation_commune_epci', period)
+        taxe_habitation = menage('taxe_habitation', period)
 
         irpp_economique_i = menage.members.foyer_fiscal('irpp_economique', period)
         irpp_economique = menage.sum(irpp_economique_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
@@ -615,7 +615,7 @@ class impots_directs(Variable):
         isf_ifi = menage.sum(isf_ifi_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
 
         return (
-            taxe_habitation_commune_epci
+            taxe_habitation
             + irpp_economique
             + prelevement_forfaitaire_liberatoire
             + prelevement_forfaitaire_unique_ir

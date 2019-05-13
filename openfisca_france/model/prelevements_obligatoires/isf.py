@@ -773,8 +773,8 @@ class bouclier_imp_gen(Variable):  # # ajouter CSG- CRDS
         csg_deductible_retraite = foyer_fiscal.sum(csg_deductible_retraite_i)
         csg_imposable_retraite = foyer_fiscal.sum(csg_imposable_retraite_i)
 
-        taxe_habitation_commune_epci_i = foyer_fiscal.members.menage('taxe_habitation_commune_epci', period)  # noqa F841
-        taxe_habitation_commune_epci = foyer_fiscal.sum(taxe_habitation_commune_epci_i, role = Menage.PERSONNE_DE_REFERENCE)
+        taxe_habitation_i = foyer_fiscal.members.menage('taxe_habitation', period)  # noqa F841
+        taxe_habitation = foyer_fiscal.sum(taxe_habitation_i, role = Menage.PERSONNE_DE_REFERENCE)
 
         # # ajouter Prelèvements sources/ libé
         # # ajouter crds rstd
@@ -783,7 +783,7 @@ class bouclier_imp_gen(Variable):  # # ajouter CSG- CRDS
         '''
         Impôts payés en l'année 'n' au titre des revenus réalisés sur l'année 'n'
         '''
-        imp2 = irpp + isf_ifi + taxe_habitation_commune_epci + tax_fonc + csg_imposable_salaire + csg_imposable_chomage + csg_imposable_retraite
+        imp2 = irpp + isf_ifi + taxe_habitation + tax_fonc + csg_imposable_salaire + csg_imposable_chomage + csg_imposable_retraite
         '''
         Impôts payés en l'année 'n' au titre des revenus réalisés en 'n-1'
         '''
