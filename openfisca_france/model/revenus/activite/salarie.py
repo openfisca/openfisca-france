@@ -1066,6 +1066,14 @@ class cout_differe(Variable):
 
         return credit_impot_competitivite_emploi + aide_premier_salarie + aide_embauche_pme + tehr
 
+
+class TypesConges(Enum):
+    non_renseigne = "Non renseigné"
+    conge_parental = "Congé parental"
+    conge_maternite_paternite = "Congé maternité ou paternité"
+    conge_presence_parental = "Congé de présence parentale"
+
+
 class type_conges(Variable):
     value_type = Enum
     possible_values = TypesConges  # defined in model/base.py
