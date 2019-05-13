@@ -375,8 +375,8 @@ class degrevement_office_taxe_habitation(Variable):
         rfr_menage = menage.sum(rfr_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
         nbptr_i = menage.members.foyer_fiscal('nbptr', period.last_year)
         nbptr_menage = menage.sum(nbptr_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
-        plafond_rfr_degrev = P_degrev.plaf_rfr_degrev_1ere_part + P_degrev.plaf_rfr_degrev_2_1eres_demi_parts_supp * (min_(max_(nbptr_menage - 1, 0), 1)) / 0.5 + P_degrev.plaf_rfr_degrev_autres_demi_parts_supp * (max_(nbptr_menage - 2, 0)) / 0.5
-        plafond_rfr_degrev_degressif = P_degrev.plaf_rfr_degrev_degressif_1ere_part + P_degrev.plaf_rfr_degrev_degressif_2_1eres_demi_parts_supp * (min_(max_(nbptr_menage - 1, 0), 1)) / 0.5 + P_degrev.plaf_rfr_degrev_degressif_autres_demi_parts_supp * (max_(nbptr_menage - 2, 0)) / 0.5
+        plafond_rfr_degrev = P_degrev.plaf_rfr_degrev.1ere_part + P_degrev.plaf_rfr_degrev.2_1eres_demi_parts_supp * (min_(max_(nbptr_menage - 1, 0), 1)) / 0.5 + P_degrev.plaf_rfr_degrev.autres_demi_parts_supp * (max_(nbptr_menage - 2, 0)) / 0.5
+        plafond_rfr_degrev_degressif = P_degrev.plaf_rfr_degrev_degressif.1ere_part + P_degrev.plaf_rfr_degrev_degressif.2_1eres_demi_parts_supp * (min_(max_(nbptr_menage - 1, 0), 1)) / 0.5 + P_degrev.plaf_rfr_degrev_degressif.autres_demi_parts_supp * (max_(nbptr_menage - 2, 0)) / 0.5
         elig_degrev = (isf_ifi_menage == 0) * (rfr_menage <= plafond_rfr_degrev)
         elig_degrev_degressif = (isf_ifi_menage == 0) * (elig_degrev == 0) * (rfr_menage <= plafond_rfr_degrev_degressif)
 

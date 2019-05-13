@@ -1,8 +1,0 @@
-description: Plafond de revenu fiscal de référence pour le dégrèvement d'office dégressif - deux premières demi-parts supplémentaires
-unit: currency
-reference: 2. du II bis de l'art. 1417 du CGI
-values:
-  2018-01-01:
-    value: 8500.0
-  2019-01-01:
-    value: 8636.0
