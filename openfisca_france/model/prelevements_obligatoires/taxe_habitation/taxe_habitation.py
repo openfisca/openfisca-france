@@ -10,6 +10,14 @@ log = logging.getLogger(__name__)
 # Simulation TH de la résidence principale : législation à partir de l'année 2017
 
 
+class valeur_locative_cadastrale_brute(Variable):
+    value_type = float
+    entity = Menage
+    label = u"Valeur locative cadastrale utilisée pour les impôts locaux, avant abattements"
+    reference = "art. 1496 du CGI"
+    definition_period = YEAR
+
+
 class condition_rfr_exoneration_th(Variable):
     value_type = bool
     default_value = False
@@ -70,14 +78,6 @@ class exonere_th(Variable):
         exon_avant_condition_rfr = ((age_personne_de_reference >= 60) + (age_conjoint >= 60) + (statut_marital == TypesStatutMarital.veuf)) * (isf_ifi == 0) + (asi > 0) + (aspa > 0) + (aah > 0)
         exon = exon_avant_condition_rfr * condition_rfr_exoneration_th
         return exon
-
-
-class valeur_locative_cadastrale_brute(Variable):
-    value_type = float
-    entity = Menage
-    label = u"Valeur locative cadastrale utilisée pour les impôts locaux, avant abattements"
-    reference = "art. 1496 du CGI"
-    definition_period = YEAR
 
 
 class abattement_charge_famille_th_commune(Variable):
