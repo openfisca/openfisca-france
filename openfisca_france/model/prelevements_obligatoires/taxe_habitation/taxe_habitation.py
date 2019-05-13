@@ -23,7 +23,7 @@ class condition_rfr_exoneration_th(Variable):
     default_value = False
     entity = FoyerFiscal
     label = u"Condition de revenu fiscal de référence pour l'éxonération à l'échelle du foyer fiscal"
-    reference = "BOI-IF-TH-10-50-30"
+    reference = "http://bofip.impots.gouv.fr/bofip/5934-PGP.html"
     definition_period = YEAR
 
     def formula_2017_01_01(foyer_fiscal, period, parameters):
