@@ -1111,7 +1111,6 @@ class cout_differe(Variable):
 
         return credit_impot_competitivite_emploi + aide_premier_salarie + aide_embauche_pme + tehr
 
-<<<<<<< HEAD
 
 class TypesConges(Enum):
     non_renseigne = "Non renseigné"
@@ -1130,13 +1129,5 @@ class type_conges(Variable):
     default_value = TypesConges.non_renseigne
     entity = Individu
     label = "Type de congés en cours"
-=======
-class type_conges(Variable):
-    value_type = Enum
-    possible_values = TypesConges  # defined in model/base.py
-    default_value = TypesConges.non_renseigne
-    entity = Individu
-    label = u"Type de congés en cours"
->>>>>>> 8dc98265e (Recréation de branche propre)
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
