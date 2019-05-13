@@ -1072,6 +1072,10 @@ class TypesConges(Enum):
     conge_parental = "Congé parental"
     conge_maternite_paternite = "Congé maternité ou paternité"
     conge_presence_parental = "Congé de présence parentale"
+    conge_conventionnel = "Congé conventionnel"
+    conge_sans_solde = "Congé sans solde"
+    disponibilite = "Mise en disponibilité (fonction publique)"
+    conge_sabbatique = "Congé sabbatique"
 
 
 class type_conges(Variable):
