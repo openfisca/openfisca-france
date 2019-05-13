@@ -35,7 +35,7 @@ class condition_rfr_exoneration_th(Variable):
         P = parameters(period).taxation_locale.taxe_habitation
         rfr = foyer_fiscal('rfr', period.last_year)
         nbptr = foyer_fiscal('nbptr', period.last_year)
-        seuil_th = P.exon_plaf_rfr_1 + P.exon_plaf_rfr_supp * max_(0, (nbptr - 1) * 2)
+        seuil_th = P.exon_plaf_rfr.1ere_part + P.exon_plaf_rfr.demi_part_supp * max_(0, (nbptr - 1) * 2)
         return (rfr < seuil_th)
 
 
@@ -270,7 +270,7 @@ class plafond_taxe_habitation_eligibilite(Variable):
         nbptr_menage = menage.sum(nbptr_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
         isf_ifi_i = menage.members.foyer_fiscal('isf_ifi', period.last_year)
         isf_ifi_menage = menage.sum(isf_ifi_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
-        seuil_rfr = P_plaf.plaf_rfr_1ere_part + P_plaf.plaf_rfr_1ere_demi_part_supp * (min_(max_(nbptr_menage - 1, 0), 0.5)) / 0.5 + P_plaf.plaf_rfr_autres_demi_parts_supp * (max_(nbptr_menage - 1.5, 0)) / 0.5
+        seuil_rfr = P_plaf.plaf_rfr.1ere_part + P_plaf.plaf_rfr.1ere_demi_part_supp * (min_(max_(nbptr_menage - 1, 0), 0.5)) / 0.5 + P_plaf.plaf_rfr.autres_demi_parts_supp * (max_(nbptr_menage - 1.5, 0)) / 0.5
         return (rfr_menage <= seuil_rfr) * (isf_ifi_menage == 0)
 
 
@@ -288,7 +288,7 @@ class plafond_taxe_habitation(Variable):
         rfr_menage = menage.sum(rfr_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
         nbptr_i = menage.members.foyer_fiscal('nbptr', period.last_year)
         nbptr_menage = menage.sum(nbptr_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
-        abattement = P_plaf.abattement_rfr_1ere_part + P_plaf.abattement_rfr_4_1eres_demi_parts_supp * (min_(max_(nbptr_menage - 1, 0), 2)) / 0.5 + P_plaf.abattement_rfr_autres_demi_parts_supp * (max_(nbptr_menage - 3, 0)) / 0.5
+        abattement = P_plaf.abattement_rfr.1ere_part + P_plaf.abattement_rfr.4_1eres_demi_parts_supp * (min_(max_(nbptr_menage - 1, 0), 2)) / 0.5 + P_plaf.abattement_rfr.autres_demi_parts_supp * (max_(nbptr_menage - 3, 0)) / 0.5
         return (rfr_menage - abattement) * P_plaf.taux_plafonnement_revenu * plafond_taxe_habitation_eligibilite
 
 
