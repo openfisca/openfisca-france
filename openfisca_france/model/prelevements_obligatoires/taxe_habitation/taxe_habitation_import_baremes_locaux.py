@@ -22,11 +22,8 @@ def preload_taux_by_com(year = None):
                 openfisca_france.__name__,
                 'assets/taxe_habitation/parametres_th_{}.csv'.format(year),
                 ) as csv_file:
-            if sys.version_info < (3, 0):
-                csv_reader = csv.DictReader(csv_file)
-            else:
-                utf8_reader = codecs.getreader("utf-8")
-                csv_reader = csv.DictReader(utf8_reader(csv_file))
+            utf8_reader = codecs.getreader("utf-8")
+            csv_reader = csv.DictReader(utf8_reader(csv_file))
             taux_by_com = {
                 row['code_insee_commune']: row['taux_com']
                 for row in csv_reader
@@ -42,11 +39,8 @@ def preload_taux_by_epci(year = None):
                 openfisca_france.__name__,
                 'assets/taxe_habitation/parametres_th_{}.csv'.format(year),
                 ) as csv_file:
-            if sys.version_info < (3, 0):
-                csv_reader = csv.DictReader(csv_file)
-            else:
-                utf8_reader = codecs.getreader("utf-8")
-                csv_reader = csv.DictReader(utf8_reader(csv_file))
+            utf8_reader = codecs.getreader("utf-8")
+            csv_reader = csv.DictReader(utf8_reader(csv_file))
             taux_by_epci = {
                 row['code_insee_commune']: row['taux_epci']
                 for row in csv_reader
@@ -62,11 +56,8 @@ def preload_valeur_locative_moyenne_by_com(year = None):
                 openfisca_france.__name__,
                 'assets/taxe_habitation/parametres_th_{}.csv'.format(year),
                 ) as csv_file:
-            if sys.version_info < (3, 0):
-                csv_reader = csv.DictReader(csv_file)
-            else:
-                utf8_reader = codecs.getreader("utf-8")
-                csv_reader = csv.DictReader(utf8_reader(csv_file))
+            utf8_reader = codecs.getreader("utf-8")
+            csv_reader = csv.DictReader(utf8_reader(csv_file))
             valeur_locative_moyenne_by_com = {
                 row['code_insee_commune']: row['valeur_locative_moyenne_com']
                 for row in csv_reader
@@ -82,11 +73,8 @@ def preload_valeur_locative_moyenne_by_epci(year = None):
                 openfisca_france.__name__,
                 'assets/taxe_habitation/parametres_th_{}.csv'.format(year),
                 ) as csv_file:
-            if sys.version_info < (3, 0):
-                csv_reader = csv.DictReader(csv_file)
-            else:
-                utf8_reader = codecs.getreader("utf-8")
-                csv_reader = csv.DictReader(utf8_reader(csv_file))
+            utf8_reader = codecs.getreader("utf-8")
+            csv_reader = csv.DictReader(utf8_reader(csv_file))
             valeur_locative_moyenne_by_epci = {
                 row['code_insee_commune']: row['valeur_locative_moyenne_epci']
                 for row in csv_reader
@@ -102,11 +90,8 @@ def preload_abt_general_base_by_com(year = None):
                 openfisca_france.__name__,
                 'assets/taxe_habitation/parametres_th_{}.csv'.format(year),
                 ) as csv_file:
-            if sys.version_info < (3, 0):
-                csv_reader = csv.DictReader(csv_file)
-            else:
-                utf8_reader = codecs.getreader("utf-8")
-                csv_reader = csv.DictReader(utf8_reader(csv_file))
+            utf8_reader = codecs.getreader("utf-8")
+            csv_reader = csv.DictReader(utf8_reader(csv_file))
             abt_general_base_by_com = {
                 row['code_insee_commune']: row['abt_general_base_com']
                 for row in csv_reader
@@ -122,11 +107,8 @@ def preload_abt_general_base_by_epci(year = None):
                 openfisca_france.__name__,
                 'assets/taxe_habitation/parametres_th_{}.csv'.format(year),
                 ) as csv_file:
-            if sys.version_info < (3, 0):
-                csv_reader = csv.DictReader(csv_file)
-            else:
-                utf8_reader = codecs.getreader("utf-8")
-                csv_reader = csv.DictReader(utf8_reader(csv_file))
+            utf8_reader = codecs.getreader("utf-8")
+            csv_reader = csv.DictReader(utf8_reader(csv_file))
             abt_general_base_by_epci = {
                 row['code_insee_commune']: row['abt_general_base_epci']
                 for row in csv_reader
@@ -142,11 +124,8 @@ def preload_abt_pac_1_2_by_com(year = None):
                 openfisca_france.__name__,
                 'assets/taxe_habitation/parametres_th_{}.csv'.format(year),
                 ) as csv_file:
-            if sys.version_info < (3, 0):
-                csv_reader = csv.DictReader(csv_file)
-            else:
-                utf8_reader = codecs.getreader("utf-8")
-                csv_reader = csv.DictReader(utf8_reader(csv_file))
+            utf8_reader = codecs.getreader("utf-8")
+            csv_reader = csv.DictReader(utf8_reader(csv_file))
             abt_pac_1_2_by_com = {
                 row['code_insee_commune']: row['abt_pac_1_2_com']
                 for row in csv_reader
@@ -162,11 +141,8 @@ def preload_abt_pac_1_2_by_epci(year = None):
                 openfisca_france.__name__,
                 'assets/taxe_habitation/parametres_th_{}.csv'.format(year),
                 ) as csv_file:
-            if sys.version_info < (3, 0):
-                csv_reader = csv.DictReader(csv_file)
-            else:
-                utf8_reader = codecs.getreader("utf-8")
-                csv_reader = csv.DictReader(utf8_reader(csv_file))
+            utf8_reader = codecs.getreader("utf-8")
+            csv_reader = csv.DictReader(utf8_reader(csv_file))
             abt_pac_1_2_by_epci = {
                 row['code_insee_commune']: row['abt_pac_1_2_epci']
                 for row in csv_reader
@@ -182,11 +158,8 @@ def preload_abt_pac_3pl_by_com(year = None):
                 openfisca_france.__name__,
                 'assets/taxe_habitation/parametres_th_{}.csv'.format(year),
                 ) as csv_file:
-            if sys.version_info < (3, 0):
-                csv_reader = csv.DictReader(csv_file)
-            else:
-                utf8_reader = codecs.getreader("utf-8")
-                csv_reader = csv.DictReader(utf8_reader(csv_file))
+            utf8_reader = codecs.getreader("utf-8")
+            csv_reader = csv.DictReader(utf8_reader(csv_file))
             abt_pac_3pl_by_com = {
                 row['code_insee_commune']: row['abt_pac_3pl_com']
                 for row in csv_reader
@@ -202,11 +175,8 @@ def preload_abt_pac_3pl_by_epci(year = None):
                 openfisca_france.__name__,
                 'assets/taxe_habitation/parametres_th_{}.csv'.format(year),
                 ) as csv_file:
-            if sys.version_info < (3, 0):
-                csv_reader = csv.DictReader(csv_file)
-            else:
-                utf8_reader = codecs.getreader("utf-8")
-                csv_reader = csv.DictReader(utf8_reader(csv_file))
+            utf8_reader = codecs.getreader("utf-8")
+            csv_reader = csv.DictReader(utf8_reader(csv_file))
             abt_pac_3pl_by_epci = {
                 row['code_insee_commune']: row['abt_pac_3pl_epci']
                 for row in csv_reader
@@ -222,11 +192,8 @@ def preload_abt_condition_modeste_by_com(year = None):
                 openfisca_france.__name__,
                 'assets/taxe_habitation/parametres_th_{}.csv'.format(year),
                 ) as csv_file:
-            if sys.version_info < (3, 0):
-                csv_reader = csv.DictReader(csv_file)
-            else:
-                utf8_reader = codecs.getreader("utf-8")
-                csv_reader = csv.DictReader(utf8_reader(csv_file))
+            utf8_reader = codecs.getreader("utf-8")
+            csv_reader = csv.DictReader(utf8_reader(csv_file))
             abt_condition_modeste_by_com = {
                 row['code_insee_commune']: row['abt_condition_modeste_com']
                 for row in csv_reader
@@ -242,11 +209,8 @@ def preload_abt_condition_modeste_by_epci(year = None):
                 openfisca_france.__name__,
                 'assets/taxe_habitation/parametres_th_{}.csv'.format(year),
                 ) as csv_file:
-            if sys.version_info < (3, 0):
-                csv_reader = csv.DictReader(csv_file)
-            else:
-                utf8_reader = codecs.getreader("utf-8")
-                csv_reader = csv.DictReader(utf8_reader(csv_file))
+            utf8_reader = codecs.getreader("utf-8")
+            csv_reader = csv.DictReader(utf8_reader(csv_file))
             abt_condition_modeste_by_epci = {
                 row['code_insee_commune']: row['abt_condition_modeste_epci']
                 for row in csv_reader
