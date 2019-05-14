@@ -4,7 +4,6 @@ import os
 import csv
 import codecs
 import pkg_resources
-import sys
 import openfisca_france
 from numpy import fromiter
 from openfisca_france.model.base import *
