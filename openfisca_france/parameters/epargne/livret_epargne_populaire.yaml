@@ -1,0 +1,82 @@
+majoration_base_livret_a:
+  reference: Article 3 du règlement n° 86-13 du 14 mai 1986
+  values:
+    2008-07-28:
+      value: 0.005
+coefficient_multiplicateur:
+  reference: Article L221-15 du code monétaire et financier - https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006072026&idArticle=LEGIARTI000006651936&dateTexte=&categorieLien=cid
+  values:
+    2014-01-01:
+      value: 1.8
+baremes:
+  reference: I de l'article 1417 du code général des impôts - https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=E596249E4FBBDB2A6D14A1D46EEB9451.tplgfr25s_3?idArticle=LEGIARTI000036443079&cidTexte=LEGITEXT000006069577&categorieLien=id&dateTexte=20200101
+  metropole:
+    base:
+      values:
+        2019-01-01:
+          value: 10815
+        2011-12-30:
+          value: 10024
+    demi_part_supplementaire:
+      values:
+        2019-01-01:
+          value: 2888
+        2011-12-30:
+          value: 2676
+  martinique_guadeloupe_la_reunion:
+    base:
+      values:
+        2019-01-01:
+          value: 12798
+        2011-12-30:
+          value: 11861
+    premiere_demi_part:
+      values:
+        2019-01-01:
+          value: 3057
+        2011-12-30:
+          value: 2833
+    demi_part_supplementaire:
+      values:
+        2019-01-01:
+          value: 2888
+        2011-12-30:
+          value: 2676
+  guyane:
+    base:
+      values:
+        2019-01-01:
+          value: 13380
+        2011-12-30:
+          value: 12402
+    premiere_demi_part:
+      values:
+        2019-01-01:
+          value: 3683
+        2011-12-30:
+          value: 3424
+    demi_part_supplementaire:
+      values:
+        2019-01-01:
+          value: 2888
+        2011-12-30:
+          value: 2676
+  mayotte:
+    base:
+      values:
+        2019-01-01:
+          value: 20052
+        2011-12-30:
+          value: 0
+    premiere_demi_part:
+      values:
+        2019-01-01:
+          value: 5518
+        2011-12-30:
+          value: 0
+    demi_part_supplementaire:
+      values:
+        2019-01-01:
+          value: 4326
+        2011-12-30:
+          value: 0

@@ -1,0 +1,23 @@
+- period: 2019-05
+  input:
+    residence_guadeloupe: false
+    residence_guyane: false
+    residence_martinique: false
+    residence_mayotte: false
+    residence_reunion: false
+    nbptr:
+      2017: 1
+  output:
+    livret_epargne_populaire_plafond: 1.8 * 10815
+
+- period: 2019-05
+  input:
+    residence_guadeloupe: false
+    residence_guyane: false
+    residence_martinique: false
+    residence_mayotte: false
+    residence_reunion: false
+    nbptr:
+      2017: 1.5
+  output:
+    livret_epargne_populaire_plafond: 24666 # ceil(1.8 * (10815 + 2888))
