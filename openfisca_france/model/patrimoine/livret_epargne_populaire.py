@@ -16,31 +16,14 @@ class livret_epargne_populaire_plafond(Variable):
 
     def formula(individu, period, parameters):
         params = parameters(period).epargne.livret_epargne_populaire
-        p_metropole = params.baremes.metropole
-        p_mgr = params.baremes.martinique_guadeloupe_la_reunion
-        p_guyane = params.baremes.guyane
-        p_mayotte = params.baremes.mayotte
+        residence = individu.menage('residence', period)
+        bareme = params.baremes[residence]
 
         nbptr = individu.foyer_fiscal('nbptr', period.n_2)
-
-        metropole = min_(1, nbptr) * p_metropole.base + 2 * (max_(0, (nbptr - 1))) * p_metropole.demi_part_supplementaire
-        mgr = min_(1, nbptr) * p_mgr.base + 2 * (min_(max_(0, nbptr - 1), 0.5) * p_mgr.premiere_demi_part + max_(0, nbptr - 1.5) * p_mgr.demi_part_supplementaire)
-        guyane = min_(1, nbptr) * p_guyane.base + 2 * (min_(max_(0, nbptr - 1), 0.5) * p_guyane.premiere_demi_part + max_(0, nbptr - 1.5) * p_guyane.demi_part_supplementaire)
-        mayotte = min_(1, nbptr) * p_mayotte.base + 2 * (min_(max_(0, nbptr - 1), 0.5) * p_mayotte.premiere_demi_part + max_(0, nbptr - 1.5) * p_mayotte.demi_part_supplementaire)
-
-        r_mgr = individu.menage('residence_martinique', period) + individu.menage('residence_guadeloupe', period) + individu.menage('residence_reunion', period)
-        r_guyane = individu.menage('residence_guyane', period)
-        r_mayotte = individu.menage('residence_mayotte', period)
-        r_metropole = not_(r_mgr + r_guyane + r_mayotte)
-
-        plafond = (
-            + r_metropole * metropole
-            + r_mgr * mgr
-            + r_guyane * guyane
-            + r_mayotte * mayotte
-            )
+        plafond = min_(1, nbptr) * bareme.base + 2 * (min_(max_(0, nbptr - 1), 0.5) * bareme.premiere_demi_part + max_(0, nbptr - 1.5) * bareme.demi_part_supplementaire)
 
         coef = params.coefficient_multiplicateur
+
         return ceil(coef * plafond)
 
 

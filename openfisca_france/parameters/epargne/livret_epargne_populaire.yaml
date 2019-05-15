@@ -17,13 +17,14 @@ baremes:
           value: 10815
         2011-12-30:
           value: 10024
-    demi_part_supplementaire:
+    premiere_demi_part: &demi_part_supplementaire_metropole
       values:
         2019-01-01:
           value: 2888
         2011-12-30:
           value: 2676
-  martinique_guadeloupe_la_reunion:
+    demi_part_supplementaire: *demi_part_supplementaire_metropole
+  martinique_guadeloupe_la_reunion: &martinique_guadeloupe_la_reunion
     base:
       values:
         2019-01-01:
@@ -42,6 +43,9 @@ baremes:
           value: 2888
         2011-12-30:
           value: 2676
+  guadeloupe: *martinique_guadeloupe_la_reunion
+  la_reunion: *martinique_guadeloupe_la_reunion
+  martinique: *martinique_guadeloupe_la_reunion
   guyane:
     base:
       values:

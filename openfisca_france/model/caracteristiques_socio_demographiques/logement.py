@@ -131,6 +131,16 @@ class residence_reunion(Variable):
         return startswith(depcom, b'974')
 
 
+class residence_saint_pierre_et_miquelon(Variable):
+    value_type = bool
+    entity = Menage
+    definition_period = MONTH
+
+    def formula(menage, period, parameters):
+        depcom = menage('depcom', period)
+        return startswith(depcom, b'975')
+
+
 class residence_mayotte(Variable):
     value_type = bool
     entity = Menage
@@ -159,3 +169,37 @@ class residence_saint_martin(Variable):
     def formula(menage, period, parameters):
         depcom = menage('depcom', period)
         return startswith(depcom, b'978')
+
+
+class residence(Variable):
+    value_type = Enum
+    possible_values = TypesLieuResidence
+    default_value = TypesLieuResidence.non_renseigne
+    entity = Menage
+    label = u"Type du travailleur salarié (artisant, commercant, profession libérale, etc)"
+    definition_period = MONTH
+
+    def formula(menage, period, parameters):
+        return select(
+            [
+                menage('residence_guadeloupe', period),
+                menage('residence_martinique', period),
+                menage('residence_guyane', period),
+                menage('residence_reunion', period),
+                menage('residence_saint_pierre_et_miquelon', period),
+                menage('residence_mayotte', period),
+                menage('residence_saint_bartelemy', period),
+                menage('residence_saint_martin', period)
+            ],
+            [
+                TypesLieuResidence.guadeloupe,
+                TypesLieuResidence.martinique,
+                TypesLieuResidence.guyane,
+                TypesLieuResidence.la_reunion,
+                TypesLieuResidence.saint_pierre_et_miquelon,
+                TypesLieuResidence.mayotte,
+                TypesLieuResidence.saint_bartelemy,
+                TypesLieuResidence.saint_martin
+            ],
+            default=TypesLieuResidence.metropole
+            )
