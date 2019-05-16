@@ -1080,7 +1080,7 @@ class TypesConges(Enum):
 
 class type_conges(Variable):
     value_type = Enum
-    possible_values = TypesConges  # defined in model/base.py
+    possible_values = TypesConges
     default_value = TypesConges.non_renseigne
     entity = Individu
     label = u"Type de congés en cours"
