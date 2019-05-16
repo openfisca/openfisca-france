@@ -612,10 +612,11 @@ class aide_logement_abattement_chomage_indemnise(Variable):
         activite = individu('activite', period)
         date_debut_chomage = individu('date_debut_chomage', period)
         two_months_ago = datetime64(period.offset(-2, 'month').start)
+        condition_neutralisation = individu('aide_logement_condition_neutralisation_chomage', period)
         condition_abattement = (activite == TypesActivite.chomeur) * (date_debut_chomage < two_months_ago)
         revenus_activite_pro = individu('aide_logement_assiette_abattement_chomage', period.start.period('year'))
         taux_abattement = parameters(period).prestations.aides_logement.ressources.abattement_chomage_indemnise
-        return condition_abattement * taux_abattement * revenus_activite_pro
+        return condition_abattement * not_(condition_neutralisation) * taux_abattement * revenus_activite_pro
 
     def formula(individu, period, parameters):
         activite = individu('activite', period)
