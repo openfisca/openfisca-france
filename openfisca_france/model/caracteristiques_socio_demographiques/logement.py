@@ -190,7 +190,7 @@ class residence(Variable):
                 menage('residence_mayotte', period),
                 menage('residence_saint_bartelemy', period),
                 menage('residence_saint_martin', period)
-            ],
+                ],
             [
                 TypesLieuResidence.guadeloupe,
                 TypesLieuResidence.martinique,
@@ -200,6 +200,6 @@ class residence(Variable):
                 TypesLieuResidence.mayotte,
                 TypesLieuResidence.saint_bartelemy,
                 TypesLieuResidence.saint_martin
-            ],
+                ],
             default=TypesLieuResidence.metropole
             )
