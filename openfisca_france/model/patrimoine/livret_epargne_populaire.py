@@ -10,6 +10,8 @@ class livret_epargne_populaire_plafond(Variable):
     entity = Individu
     definition_period = MONTH
     reference = [
+        'Article L221-15 du code monétaire et financier',
+        'https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=5ADBC3914320B781FBF13FBA821C392E.tplgfr25s_3?idArticle=LEGIARTI000028447486&cidTexte=LEGITEXT000006072026&dateTexte=20190515',
         'Article 1417 du Code général des impôts',
         'https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=E596249E4FBBDB2A6D14A1D46EEB9451.tplgfr25s_3?idArticle=LEGIARTI000036443079&cidTexte=LEGITEXT000006069577&categorieLien=id&dateTexte=20200101'
         ]
@@ -20,7 +22,7 @@ class livret_epargne_populaire_plafond(Variable):
         bareme = params.baremes[residence]
 
         nbptr = individu.foyer_fiscal('nbptr', period.n_2)
-        plafond = min_(1, nbptr) * bareme.base + 2 * (min_(max_(0, nbptr - 1), 0.5) * bareme.premiere_demi_part + max_(0, nbptr - 1.5) * bareme.demi_part_supplementaire)
+        plafond = min_(1, nbptr) * bareme.valeur_de_base + 2 * (min_(max_(0, nbptr - 1), 0.5) * bareme.premiere_demi_part + max_(0, nbptr - 1.5) * bareme.demi_part_supplementaire)
 
         coef = params.coefficient_multiplicateur
 
