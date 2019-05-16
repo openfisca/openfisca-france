@@ -25,6 +25,7 @@ class aide_logement(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
+
     def formula(famille, period):
         apl = famille('apl', period)
         als = famille('als', period)
