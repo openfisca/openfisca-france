@@ -799,19 +799,18 @@ class aide_logement_base_revenus_fiscaux(Variable):
         apply_abat_spe = (abat_spe > 0) * (invV + invC + (naissanceP < dateLimite) + (naissanceC < dateLimite))
 
         return (
-                + rente_viagere_titre_onereux_net
-                + revenu_categoriel_foncier
-                + rev_cat_rvcm
-                + revenus_capitaux_prelevement_liberatoire
-                + revenus_capitaux_prelevement_forfaitaire_unique_ir
-                + rev_cat_pv
-                + plus_values_prelevement_forfaitaire_unique_ir
-                - abat_spe * apply_abat_spe
-                - f7ga
-                - f7gb
-                - f7gc
-        )
-
+            + rente_viagere_titre_onereux_net
+            + revenu_categoriel_foncier
+            + rev_cat_rvcm
+            + revenus_capitaux_prelevement_liberatoire
+            + revenus_capitaux_prelevement_forfaitaire_unique_ir
+            + rev_cat_pv
+            + plus_values_prelevement_forfaitaire_unique_ir
+            - abat_spe * apply_abat_spe
+            - f7ga
+            - f7gb
+            - f7gc
+            )
 
     def formula(foyer_fiscal, period):
         rente_viagere_titre_onereux_net = foyer_fiscal('rente_viagere_titre_onereux_net', period)
@@ -1016,16 +1015,16 @@ class aide_logement_base_ressources(Variable):
         base_ressources_enfants = famille.sum(max_(0, base_ressources_i + ressources_annee_glissante_i - abattement_ressources_enfant), role = Famille.ENFANT)
 
         ressources = (
-                + base_ressources_parents
-                + ressources_annee_glissante
-                + ressources_n_1
-                + ressources_n_2
-                + base_ressources_enfants
-                + ressources_patrimoine
-                + revenus_fiscaux
-                - f4bb
-                - (abattement_chomage_indemnise + abattement_depart_retraite)
-        )
+            + base_ressources_parents
+            + ressources_annee_glissante
+            + ressources_n_1
+            + ressources_n_2
+            + base_ressources_enfants
+            + ressources_patrimoine
+            + revenus_fiscaux
+            - f4bb
+            - (abattement_chomage_indemnise + abattement_depart_retraite)
+            )
 
         # Abattement forfaitaire pour double activité
         abattement_double_activite = biactivite * params_al_ressources.dar_1
