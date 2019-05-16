@@ -528,9 +528,9 @@ class aide_logement_condition_neutralisation_chomage(Variable):
         ass = individu('ass', annee_glissante, options=[ADD])
 
         # chomage non indemnisé ou indemnisé mais donnant lieu au versement de l'ass
-        chomage_non_indemnnise = (chomage_imposable == 0) + ((chomage_imposable > 0) * (ass > 0))
+        chomage_non_indemnise = (chomage_imposable == 0) + ((chomage_imposable > 0) * (ass > 0))
 
-        return (activite == TypesActivite.chomeur) * (date_debut_chomage < two_months_ago) * chomage_non_indemnnise
+        return (activite == TypesActivite.chomeur) * (date_debut_chomage < two_months_ago) * chomage_non_indemnise
 
     def formula(individu, period, parameters):
         activite = individu('activite', period)
@@ -541,9 +541,9 @@ class aide_logement_condition_neutralisation_chomage(Variable):
         ass = individu('ass', period.n_2, options=[ADD])
 
         # chomage non indemnisé ou indemnisé mais donnant lieu au versement de l'ass
-        chomage_non_indemnnise = (chomage_imposable == 0) + ((chomage_imposable > 0) * (ass > 0))
+        chomage_non_indemnise = (chomage_imposable == 0) + ((chomage_imposable > 0) * (ass > 0))
 
-        return (activite == TypesActivite.chomeur) * (date_debut_chomage < two_months_ago) * chomage_non_indemnnise
+        return (activite == TypesActivite.chomeur) * (date_debut_chomage < two_months_ago) * chomage_non_indemnise
 
 
 class aide_logement_neutralisation_chomage(Variable):
@@ -907,7 +907,7 @@ class al_revenu_assimile_salaire_apres_abattements(Variable):
 class al_traitements_salaires_pensions_rentes(Variable):
     value_type = float
     entity = Individu
-    label = u"Traitements salaires pensions et rentes individuelles dans le cadre des aides au logement"
+    label = "Traitements salaires pensions et rentes individuelles dans le cadre des aides au logement"
     definition_period = MONTH
 
     def formula_2019_06_01(individu, period, parameters):
@@ -942,7 +942,7 @@ class al_base_ressources_individu(Variable):
     value_type = float
     is_period_size_independent = True
     entity = Individu
-    label = u"Base ressource individuelle des aides logement"
+    label = "Base ressource individuelle des aides logement"
     definition_period = MONTH
 
     def formula_2019_06_01(individu, period):
