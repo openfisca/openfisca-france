@@ -171,12 +171,25 @@ class residence_saint_martin(Variable):
         return startswith(depcom, b'978')
 
 
+class TypesLieuResidence(Enum):
+    non_renseigne = u"Non renseigné"
+    metropole = u"Métropole"
+    guadeloupe = u"Guadeloupe"
+    martinique = u"Martinique"
+    guyane = u"Guyane"
+    la_reunion = u"La réunion"
+    saint_pierre_et_miquelon = u"Saint Pierre et Miquelon"
+    mayotte = u"Mayotte"
+    saint_bartelemy = u"Saint Bartelemy"
+    saint_martin = u"Saint Martin"
+
+
 class residence(Variable):
     value_type = Enum
     possible_values = TypesLieuResidence
     default_value = TypesLieuResidence.non_renseigne
     entity = Menage
-    label = u"Type du travailleur salarié (artisant, commercant, profession libérale, etc)"
+    label = u"Zone de résidence"
     definition_period = MONTH
 
     def formula(menage, period, parameters):

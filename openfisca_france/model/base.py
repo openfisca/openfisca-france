@@ -59,18 +59,5 @@ class TypesStatutOccupationLogement(Enum):
     sans_domicile = u"Sans domicile stable"
 
 
-class TypesLieuResidence(Enum):
-    non_renseigne = u"Non renseigné"
-    metropole = u"Métropole"
-    guadeloupe = u"Guadeloupe"
-    martinique = u"Martinique"
-    guyane = u"Guyane"
-    la_reunion = u"La réunion"
-    saint_pierre_et_miquelon = u"Saint Pierre et Miquelon"
-    mayotte = u"Mayotte"
-    saint_bartelemy = u"Saint Bartelemy"
-    saint_martin = u"Saint Martin"
-
-
 # Taux de prime moyen de la fonction publique
 TAUX_DE_PRIME = 0.195  # primes_fonction_publique (hors suppl. familial et indemnité de résidence)/rémunération brute
