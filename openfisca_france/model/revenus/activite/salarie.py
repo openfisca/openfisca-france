@@ -1083,6 +1083,6 @@ class type_conges(Variable):
     possible_values = TypesConges
     default_value = TypesConges.non_renseigne
     entity = Individu
-    label = u"Type de congés en cours"
+    label = "Type de congés en cours"
     definition_period = MONTH
     set_input = set_input_dispatch_by_period

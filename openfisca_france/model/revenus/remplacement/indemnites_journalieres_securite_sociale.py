@@ -92,7 +92,7 @@ class indemnites_journalieres_imposables(Variable):
 class indemnites_journalieres_atexa(Variable):
     value_type = float
     entity = Individu
-    label = u"Indemnités de l'assurance Accident du Travail des Exploitants Agricoles"
+    label = "Indemnités de l'assurance Accident du Travail des Exploitants Agricoles"
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
