@@ -812,6 +812,7 @@ class aide_logement_base_revenus_fiscaux(Variable):
                 - f7gc
         )
 
+
     def formula(foyer_fiscal, period):
         rente_viagere_titre_onereux_net = foyer_fiscal('rente_viagere_titre_onereux_net', period)
         pensions_alimentaires_versees = foyer_fiscal('pensions_alimentaires_versees', period)
@@ -960,7 +961,7 @@ class aide_logement_base_ressources(Variable):
             + pch_i
             + retraite_combattant_i
             + rente_accident_travail_i
-        )
+            )
         ressources_annee_glissante = famille.sum(ressources_annee_glissante_i, role=Famille.PARENT)
         paje = famille('paje', annee_glissante, options=[ADD])
         ressources_annee_glissante += paje
@@ -981,7 +982,7 @@ class aide_logement_base_ressources(Variable):
             + benefice_agricole_i
             + benefice_micro_entreprise_i
             + benefice_auto_entrepreneur_i
-        )
+            )
         ressources_n_2 = famille.sum(ressources_n_2_i, role=Famille.PARENT)
         f4ba = famille.demandeur.foyer_fiscal('f4ba', period.n_2)
         plus_values_gains_divers = famille.demandeur.foyer_fiscal('plus_values_gains_divers', period.n_2)
@@ -990,7 +991,7 @@ class aide_logement_base_ressources(Variable):
             f4ba
             + plus_values_gains_divers
             + deficit_exercice
-        )
+            )
 
         # Montants a soustraire
         f4bb = famille.demandeur.foyer_fiscal('f4bb', period.n_2)
@@ -999,11 +1000,11 @@ class aide_logement_base_ressources(Variable):
         demandeur_declarant_principal = famille.demandeur.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
         conjoint_declarant_principal = famille.conjoint.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
         revenus_fiscaux = (
-                famille.demandeur.foyer_fiscal('aide_logement_base_revenus_fiscaux',
-                                               period.n_2) * demandeur_declarant_principal
-                + famille.conjoint.foyer_fiscal('aide_logement_base_revenus_fiscaux',
-                                                period.n_2) * conjoint_declarant_principal
-        )
+            famille.demandeur.foyer_fiscal('aide_logement_base_revenus_fiscaux',
+                                           period.n_2) * demandeur_declarant_principal
+            + famille.conjoint.foyer_fiscal('aide_logement_base_revenus_fiscaux',
+                                            period.n_2) * conjoint_declarant_principal
+            )
 
         abattement_chomage_indemnise_i = famille.members('aide_logement_abattement_chomage_indemnise', period)
         abattement_chomage_indemnise = famille.sum(abattement_chomage_indemnise_i, role=Famille.PARENT)
