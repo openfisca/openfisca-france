@@ -28,6 +28,22 @@ baremes:
         2011-12-30:
           value: 2676
     demi_part_supplementaire: *demi_part_supplementaire_metropole
+  non_renseigne: &ineligible
+    valeur_de_base:
+      values:
+        2011-12-30:
+          value: 0
+    premiere_demi_part:
+      values:
+        2011-12-30:
+          value: 0
+    demi_part_supplementaire:
+      values:
+        2011-12-30:
+          value: 0
+  saint_bartelemy: *ineligible
+  saint_martin: *ineligible
+  saint_pierre_et_miquelon: *ineligible
   martinique_guadeloupe_la_reunion: &martinique_guadeloupe_la_reunion
     valeur_de_base:
       values:
