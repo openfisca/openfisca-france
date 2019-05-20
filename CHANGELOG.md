@@ -1,5 +1,13 @@
 # Changelog
 
+### 42.3.1 [#1324](https://github.com/openfisca/openfisca-france/pull/1324)
+
+* Évolution du système socio-fiscal
+* Périodes concernées : 2018
+* Zones impactées : `prelevements_obligatoires/impot_revenu/decote`
+* Détails :
+  - Met à jour la décote 2018
+
 ## 42.3.0 [#1322](https://github.com/openfisca/openfisca-france/pull/1322)
 
 * Évolution du système socio-fiscal.

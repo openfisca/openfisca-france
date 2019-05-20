@@ -7,7 +7,7 @@ from setuptools import setup, find_packages
 
 setup(
     name = "OpenFisca-France",
-    version = "42.3.0",
+    version = "42.3.1",
     author = "OpenFisca Team",
     author_email = "contact@openfisca.fr",
     classifiers = [
@@ -25,7 +25,10 @@ setup(
     url = "https://github.com/openfisca/openfisca-france",
 
     data_files = [
-        ("share/openfisca/openfisca-france", ["CHANGELOG.md", "LICENSE.AGPL.txt", "README.md"]),
+        (
+            "share/openfisca/openfisca-france",
+            ["CHANGELOG.md", "LICENSE.AGPL.txt", "README.md"],
+            ),
         ],
     extras_require = {
         "inversion_revenus": [
