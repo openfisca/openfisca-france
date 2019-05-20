@@ -1,0 +1,15 @@
+- period: month:2019-05
+  input:
+    rfr:
+      2017: 9
+    livret_epargne_populaire_plafond: 10
+  output:
+    livret_epargne_populaire_eligibilite: true
+
+- period: month:2019-05
+  input:
+    rfr:
+      2017: 11
+    livret_epargne_populaire_plafond: 10
+  output:
+    livret_epargne_populaire_eligibilite: false

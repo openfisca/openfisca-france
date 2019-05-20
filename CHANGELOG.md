@@ -1,5 +1,13 @@
 # Changelog
 
+## 42.3.0 [#1322](https://github.com/openfisca/openfisca-france/pull/1322)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : toutes.
+* Zones impactées : `model/patrimoine/livret_epargne_populaire.py`.
+* Détails :
+  - Ajoute l'éligibilité au Livret d'épargne populaire
+
 ## 42.2.0 [#1319](https://github.com/openfisca/openfisca-france/pull/1319)
 
 * Revalorisation périodique.

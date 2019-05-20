@@ -1,0 +1,15 @@
+- period: 2019-05
+  input:
+    residence: metropole
+    nbptr:
+      2017: 1
+  output:
+    livret_epargne_populaire_plafond: 19779 # ceil(1.8 * 10988)
+
+- period: 2019-05
+  input:
+    residence: metropole
+    nbptr:
+      2017: 1.5
+  output:
+    livret_epargne_populaire_plafond: 25060 # ceil(1.8 * (10988 + 2934))
