@@ -69,39 +69,46 @@ class ass_base_ressources_individu(Variable):
         u'https://www.legifrance.gouv.fr/affichCode.do?idSectionTA=LEGISCTA000018525086&cidTexte=LEGITEXT000006072050&dateTexte=20181227'
         ]
 
-    def formula(individu, period):
+    def formula(individu, period, parameters):
+        '''
+                N'intègre pas l'exception citée à l'article R5423-2 du Code du Travail sur les conjoints chefs d'entreprises entrant dans le champ d'application de l'article 50-0 du CGI
+                '''
+        last_month = period.start.period('month').offset(-1)
         # Rolling year
         previous_year = period.start.period('year').offset(-1)
         # N-1
         last_year = period.last_year
 
-        salaire_imposable = individu('salaire_imposable', previous_year, options = [ADD])
-        salaire_imposable_this_month = individu('salaire_imposable', period)
-        salaire_imposable_interrompu = (salaire_imposable > 0) * (salaire_imposable_this_month == 0)
-        # Le Salaire d'une activité partielle est neutralisé en cas d'interruption
-        salaire_imposable = (1 - salaire_imposable_interrompu) * salaire_imposable
-        retraite_nette = individu('retraite_nette', previous_year, options = [ADD])
-        revenus_locatifs = individu('revenus_locatifs', previous_year, options = [ADD])
+        has_ressources_substitution = (
+            individu('chomage_net', last_month)
+            + individu('indemnites_journalieres', last_month)
+            + individu('retraite_nette', last_month)
+            ) > 0
+
+        salaire_imposable = calculateWithAbatement(individu, parameters, period, 'salaire_imposable', has_ressources_substitution)
+        revenus_stage_formation_pro = calculateWithAbatement(individu, parameters, period, 'revenus_stage_formation_pro', has_ressources_substitution)
+        aah = calculateWithAbatement(individu, parameters, period, 'aah', has_ressources_substitution)
+        retraite_nette = calculateWithAbatement(individu, parameters, period, 'retraite_nette', has_ressources_substitution)
+        pensions_alimentaires_percues = calculateWithAbatement(individu, parameters, period, 'pensions_alimentaires_percues', has_ressources_substitution)
+        indemnites_stage = calculateWithAbatement(individu, parameters, period, 'indemnites_stage', has_ressources_substitution)
+        indemnites_journalieres = calculateWithAbatement(individu, parameters, period, 'indemnites_journalieres', has_ressources_substitution)
+
+        pensions_invalidite = individu('pensions_invalidite', previous_year, options=[ADD])
+        revenus_locatifs = individu('revenus_locatifs', previous_year, options=[ADD])
         revenus_capital = individu('revenus_capital', period) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
-        pensions_invalidite = individu('pensions_invalidite', previous_year, options = [ADD])
 
         def revenus_tns():
-            revenus_auto_entrepreneur = individu('tns_auto_entrepreneur_benefice', previous_year, options = [ADD])
+            revenus_auto_entrepreneur = individu('tns_auto_entrepreneur_benefice', previous_year, options=[ADD])
 
-            # Les revenus TNS hors AE sont estimés en se basant sur le revenu N-1
+            # Les revenus TNS hors AE sont estimés en se basant <sur le revenu N-1
             tns_micro_entreprise_benefice = individu('tns_micro_entreprise_benefice', last_year)
             tns_benefice_exploitant_agricole = individu('tns_benefice_exploitant_agricole', last_year)
-            tns_autres_revenus = individu('tns_autres_revenus', last_year)
+            tns_autres_revenus = individu('tns_autres_revenus', last_year, options=[ADD])
 
             return revenus_auto_entrepreneur + tns_micro_entreprise_benefice + tns_benefice_exploitant_agricole + tns_autres_revenus
 
-        pensions_alimentaires_percues = individu('pensions_alimentaires_percues', previous_year, options = [ADD])
-        # Article R5423-4 du code du travail
-        pensions_alimentaires_versees_individu = individu('pensions_alimentaires_versees_individu', previous_year, options = [ADD])
-
-        aah = individu('aah', previous_year, options = [ADD])
-        indemnites_stage = individu('indemnites_stage', previous_year, options = [ADD])
-        revenus_stage_formation_pro = individu('revenus_stage_formation_pro', previous_year, options = [ADD])
+        pensions_alimentaires_versees_individu = individu('pensions_alimentaires_versees_individu', previous_year,
+                                                          options=[ADD])
 
         return (
             salaire_imposable
@@ -115,6 +122,7 @@ class ass_base_ressources_individu(Variable):
             + revenus_tns()
             + revenus_locatifs
             + revenus_capital
+            + indemnites_journalieres
             )
 
 
@@ -125,81 +133,43 @@ class ass_base_ressources_conjoint(Variable):
     definition_period = MONTH
 
     def formula(individu, period, parameters):
-        '''
-        N'intègre pas l'exception citée à l'article R5423-2 du Code du Travail sur les conjoints chefs d'entreprises entrant dans le champ d'application de l'article 50-0 du CGI
-        '''
+        ass_base_ressources_individu = individu('ass_base_ressources_individu', period)
         last_month = period.start.period('month').offset(-1)
-        # Rolling year
-        previous_year = period.start.period('year').offset(-1)
-        # N-1
-        last_year = period.last_year
-
         has_ressources_substitution = (
             individu('chomage_net', last_month)
             + individu('indemnites_journalieres', last_month)
             + individu('retraite_nette', last_month)
             ) > 0
+        chomage_net = calculateWithAbatement(individu, parameters, period, 'chomage_net', has_ressources_substitution)
+        indemnites_journalieres = calculateWithAbatement(individu, parameters, period, 'indemnites_journalieres',
+                                                         has_ressources_substitution)
 
-        def calculateWithAbatement(ressourceName, neutral_totale = False):
-            ressource_year = individu(ressourceName, previous_year, options = [ADD])
-            ressource_last_month = individu(ressourceName, last_month)
+        return (
+                ass_base_ressources_individu
+                + chomage_net
+                + indemnites_journalieres
+        )
 
-            ressource_interrompue = (ressource_year > 0) * (ressource_last_month == 0)
 
-            # Les ressources interrompues sont abattues différement si elles sont substituées ou non.
-            # http://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000020398006&cidTexte=LEGITEXT000006072050
+def calculateWithAbatement(individu, parameters, period, ressourceName, has_ressources_substitution):
+    last_month = period.start.period('month').offset(-1)
+    # Rolling year
+    previous_year = period.start.period('year').offset(-1)
 
-            tx_abat_partiel = parameters(period).prestations.minima_sociaux.ass.abat_rev_subst_conj
-            tx_abat_total = parameters(period).prestations.minima_sociaux.ass.abat_rev_non_subst_conj
+    ressource_year = individu(ressourceName, previous_year, options=[ADD])
+    ressource_last_month = individu(ressourceName, last_month)
 
-            abat_partiel = ressource_interrompue * has_ressources_substitution * (1 - neutral_totale)
-            abat_total = ressource_interrompue * (1 - abat_partiel)
+    ressource_interrompue = (ressource_year > 0) * (ressource_last_month == 0)
 
-            tx_abat_applique = abat_partiel * tx_abat_partiel + abat_total * tx_abat_total
+    # Les ressources interrompues sont abattues différement si elles sont substituées ou non.
+    # http://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000020398006&cidTexte=LEGITEXT000006072050
 
-            return (1 - tx_abat_applique) * ressource_year
+    tx_abat_partiel = parameters(period).prestations.minima_sociaux.ass.abat_rev_subst_conj
+    tx_abat_total = parameters(period).prestations.minima_sociaux.ass.abat_rev_non_subst_conj
 
-        salaire_imposable = calculateWithAbatement('salaire_imposable')
-        indemnites_stage = calculateWithAbatement('indemnites_stage', neutral_totale = True)
-        revenus_stage_formation_pro = calculateWithAbatement('revenus_stage_formation_pro')
-        chomage_net = calculateWithAbatement('chomage_net', neutral_totale = True)
-        indemnites_journalieres = calculateWithAbatement('indemnites_journalieres')
-        aah = calculateWithAbatement('aah')
-        retraite_nette = calculateWithAbatement('retraite_nette')
-        pensions_alimentaires_percues = calculateWithAbatement('pensions_alimentaires_percues')
-        pensions_invalidite = individu('pensions_invalidite', previous_year, options = [ADD])
-        revenus_locatifs = individu('revenus_locatifs', previous_year, options = [ADD])
-        revenus_capital = individu('revenus_capital', period) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
+    tx_abat_applique = where(has_ressources_substitution, tx_abat_partiel, tx_abat_total)
 
-        def revenus_tns():
-            revenus_auto_entrepreneur = individu('tns_auto_entrepreneur_benefice', previous_year, options = [ADD])
-
-            # Les revenus TNS hors AE sont estimés en se basant sur le revenu N-1
-            tns_micro_entreprise_benefice = individu('tns_micro_entreprise_benefice', last_year)
-            tns_benefice_exploitant_agricole = individu('tns_benefice_exploitant_agricole', last_year)
-            tns_autres_revenus = individu('tns_autres_revenus', last_year, options = [ADD])
-
-            return revenus_auto_entrepreneur + tns_micro_entreprise_benefice + tns_benefice_exploitant_agricole + tns_autres_revenus
-
-        pensions_alimentaires_versees_individu = individu('pensions_alimentaires_versees_individu', previous_year, options = [ADD])
-
-        result = (
-            salaire_imposable
-            + pensions_alimentaires_percues
-            - abs_(pensions_alimentaires_versees_individu)
-            + aah
-            + indemnites_stage
-            + revenus_stage_formation_pro
-            + retraite_nette
-            + pensions_invalidite
-            + chomage_net
-            + indemnites_journalieres
-            + revenus_tns()
-            + revenus_locatifs
-            + revenus_capital
-            )
-
-        return result
+    return where(ressource_interrompue,  (1 - tx_abat_applique) * ressource_year, ressource_year)
 
 
 class ass_eligibilite_cumul_individu(Variable):
