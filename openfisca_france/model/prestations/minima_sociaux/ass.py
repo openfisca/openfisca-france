@@ -91,7 +91,6 @@ class ass_base_ressources_individu(Variable):
         retraite_nette = calculateWithAbatement(individu, parameters, period, 'retraite_nette', has_ressources_substitution)
         pensions_alimentaires_percues = calculateWithAbatement(individu, parameters, period, 'pensions_alimentaires_percues', has_ressources_substitution)
         indemnites_stage = calculateWithAbatement(individu, parameters, period, 'indemnites_stage', has_ressources_substitution)
-        indemnites_journalieres = calculateWithAbatement(individu, parameters, period, 'indemnites_journalieres', has_ressources_substitution)
 
         pensions_invalidite = individu('pensions_invalidite', previous_year, options=[ADD])
         revenus_locatifs = individu('revenus_locatifs', previous_year, options=[ADD])
@@ -122,7 +121,6 @@ class ass_base_ressources_individu(Variable):
             + revenus_tns()
             + revenus_locatifs
             + revenus_capital
-            + indemnites_journalieres
             )
 
 
