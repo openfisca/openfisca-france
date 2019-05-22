@@ -4586,7 +4586,7 @@ class rpinel(Variable):
         f7qr = foyer_fiscal('f7qr', period)
         f7qs = foyer_fiscal('f7qs', period)
         f7qt = foyer_fiscal('f7qt', period)
-        f7qu = foyer_fiscal('f7qu', period)s
+        f7qu = foyer_fiscal('f7qu', period)
         f7qz = foyer_fiscal('f7qz', period)
         f7ra = foyer_fiscal('f7ra', period)
         f7rb = foyer_fiscal('f7rb', period)
