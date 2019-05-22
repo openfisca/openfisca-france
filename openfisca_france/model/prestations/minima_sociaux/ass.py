@@ -87,7 +87,7 @@ class ass_base_ressources_individu(Variable):
         revenus_capital = individu('revenus_capital', period) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
 
         def revenus_tns():
-            revenus_auto_entrepreneur = individu('tns_auto_entrepreneur_benefice', previous_year, options= [ADD])
+            revenus_auto_entrepreneur = individu('tns_auto_entrepreneur_benefice', previous_year, options=[ADD])
 
             # Les revenus TNS hors AE sont estimés en se basant sur le revenu N-1
             tns_micro_entreprise_benefice = individu('tns_micro_entreprise_benefice', last_year)
