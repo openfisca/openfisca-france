@@ -498,14 +498,14 @@ class al_revenu_assimile_salaire(Variable):
     definition_period = MONTH
 
     def formula(individu, period, parameters):
-        # Rolling year
-        annee_glissante = period.start.period('year').offset(-1)
+        # version spécifique aux aides logement de revenu_assimile_salaire
+        period_salaire_chomage = period.start.period('year').offset(-1)
+        period_f1tt_f3vj = period.n_2
 
-        salaire_imposable = individu('salaire_imposable', annee_glissante, options=[ADD])
-        chomage_imposable = individu('chomage_imposable', annee_glissante, options=[ADD])
-
-        f1tt = individu('f1tt', period.n_2)
-        f3vj = individu('f3vj', period.n_2)
+        salaire_imposable = individu('salaire_imposable', period_salaire_chomage, options=[ADD])
+        chomage_imposable = individu('chomage_imposable', period_salaire_chomage, options=[ADD])
+        f1tt = individu('f1tt', period_f1tt_f3vj)
+        f3vj = individu('f3vj', period_f1tt_f3vj)
 
         return salaire_imposable + chomage_imposable + f1tt + f3vj
 
@@ -878,9 +878,14 @@ class al_revenu_assimile_salaire_apres_abattements(Variable):
     definition_period = MONTH
 
     def formula_2019_06_01(individu, period, parameters):
-        chomeur_longue_duree = individu('chomeur_longue_duree', period.n_2)
-        frais_reels = individu('frais_reels', period.last_year)
-        revenu_assimile_salaire = individu('al_revenu_assimile_salaire', period)
+        # version spécifique aux aides logement de revenu_assimile_salaire_apres_abattements
+        period_revenus = period
+        period_chomage = period.n_2
+        period_frais = period.last_year
+
+        revenu_assimile_salaire = individu('al_revenu_assimile_salaire', period_revenus)
+        chomeur_longue_duree = individu('chomeur_longue_duree', period_chomage)
+        frais_reels = individu('frais_reels', period_frais)
 
         abatpro = parameters(period.last_year).impot_revenu.tspr.abatpro
         abattement_minimum = where(chomeur_longue_duree, abatpro.min2, abatpro.min)
