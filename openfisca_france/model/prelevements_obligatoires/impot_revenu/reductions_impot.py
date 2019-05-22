@@ -862,7 +862,7 @@ class doment(Variable):
         f7qo = foyer_fiscal('f7qo_2012', period)
         f7qp = foyer_fiscal('f7qp_2012', period)
         f7qq = foyer_fiscal('f7qq', period)
-        f7qr = foyer_fiscal('f7qr', period)
+        f7qr = foyer_fiscal('f7qr_2012', period)
         f7qs = foyer_fiscal('f7qs', period)
         f7mm = foyer_fiscal('f7mm', period)
         f7ma = foyer_fiscal('f7ma', period)
@@ -913,7 +913,7 @@ class doment(Variable):
         f7qi = foyer_fiscal('f7qi', period)
         f7qo = foyer_fiscal('f7qo_2012', period)
         f7qp = foyer_fiscal('f7qp_2012', period)
-        f7qr = foyer_fiscal('f7qr', period)
+        f7qr = foyer_fiscal('f7qr_2012', period)
         f7qv = foyer_fiscal('f7qv', period)
 
         return (
@@ -971,7 +971,7 @@ class doment(Variable):
         f7qi = foyer_fiscal('f7qi', period)
         f7qo = foyer_fiscal('f7qo_2012', period)
         f7qp = foyer_fiscal('f7qp_2012', period)
-        f7qr = foyer_fiscal('f7qr', period)
+        f7qr = foyer_fiscal('f7qr_2012', period)
         f7qv = foyer_fiscal('f7qv', period)
         f7qz = foyer_fiscal('f7qz_2012', period)
         f7rg = foyer_fiscal('f7rg', period)
@@ -1735,7 +1735,7 @@ class domlog(Variable):
         f7qc = foyer_fiscal('f7qc', period)
         f7qd = foyer_fiscal('f7qd', period)
         f7ql = foyer_fiscal('f7ql', period)
-        f7qt = foyer_fiscal('f7qt', period)
+        f7qt = foyer_fiscal('f7qt_2012', period)
         f7qm = foyer_fiscal('f7qm_2012', period)
 
         return f7qb + f7qc + f7qd + f7ql + f7qt + f7qm
@@ -1751,7 +1751,7 @@ class domlog(Variable):
         f7qd = foyer_fiscal('f7qd', period)
         f7ql = foyer_fiscal('f7ql', period)
         f7qm = foyer_fiscal('f7qm_2012', period)
-        f7qt = foyer_fiscal('f7qt', period)
+        f7qt = foyer_fiscal('f7qt_2012', period)
         f7oa = foyer_fiscal('f7oa', period)
         f7ob = foyer_fiscal('f7ob', period)
         f7oc = foyer_fiscal('f7oc', period)
@@ -1773,7 +1773,7 @@ class domlog(Variable):
         f7qd = foyer_fiscal('f7qd', period)
         f7ql = foyer_fiscal('f7ql', period)
         f7qm = foyer_fiscal('f7qm_2012', period)
-        f7qt = foyer_fiscal('f7qt', period)
+        f7qt = foyer_fiscal('f7qt_2012', period)
         f7oa = foyer_fiscal('f7oa', period)
         f7ob = foyer_fiscal('f7ob', period)
         f7oc = foyer_fiscal('f7oc', period)
@@ -2146,7 +2146,7 @@ class domsoc(Variable):
         '''
         f7qn = foyer_fiscal('f7qn_2012', period)
         f7qk = foyer_fiscal('f7qk', period)
-        f7qu = foyer_fiscal('f7qu', period)
+        f7qu = foyer_fiscal('f7qu_2012', period)
         f7kg = foyer_fiscal('f7kg', period)
         f7kh = foyer_fiscal('f7kh', period)
         f7ki = foyer_fiscal('f7ki', period)
@@ -2160,7 +2160,7 @@ class domsoc(Variable):
         '''
         f7qn = foyer_fiscal('f7qn_2012', period)
         f7qk = foyer_fiscal('f7qk', period)
-        f7qu = foyer_fiscal('f7qu', period)
+        f7qu = foyer_fiscal('f7qu_2012', period)
         f7kg = foyer_fiscal('f7kg', period)
         f7kh = foyer_fiscal('f7kh', period)
         f7ki = foyer_fiscal('f7ki', period)
@@ -4200,8 +4200,8 @@ class resimm(Variable):
         Travaux de restauration immobilière (cases 7RA et 7RB)
         2009-2010
         '''
-        f7ra = foyer_fiscal('f7ra', period)
-        f7rb = foyer_fiscal('f7rb', period)
+        f7ra = foyer_fiscal('f7ra_2015', period)
+        f7rb = foyer_fiscal('f7rb_2015', period)
         P = parameters(period).impot_revenu.reductions_impots.resimm
 
         max1 = P.max
@@ -4213,10 +4213,10 @@ class resimm(Variable):
         Travaux de restauration immobilière (cases 7RA, 7RB, 7RC, 7RD)
         2011
         '''
-        f7ra = foyer_fiscal('f7ra', period)
-        f7rb = foyer_fiscal('f7rb', period)
-        f7rc = foyer_fiscal('f7rc', period)
-        f7rd = foyer_fiscal('f7rd', period)
+        f7ra = foyer_fiscal('f7ra_2015', period)
+        f7rb = foyer_fiscal('f7rb_2015', period)
+        f7rc = foyer_fiscal('f7rc_2015', period)
+        f7rd = foyer_fiscal('f7rd_2015', period)
         P = parameters(period).impot_revenu.reductions_impots.resimm
 
         max1 = P.max
@@ -4236,10 +4236,10 @@ class resimm(Variable):
         Travaux de restauration immobilière (cases 7RA, 7RB, 7RC, 7RD, 7RE, 7RF)
         2012
         '''
-        f7ra = foyer_fiscal('f7ra', period)
-        f7rb = foyer_fiscal('f7rb', period)
-        f7rc = foyer_fiscal('f7rc', period)
-        f7rd = foyer_fiscal('f7rd', period)
+        f7ra = foyer_fiscal('f7ra_2015', period)
+        f7rb = foyer_fiscal('f7rb_2015', period)
+        f7rc = foyer_fiscal('f7rc_2015', period)
+        f7rd = foyer_fiscal('f7rd_2015', period)
         f7re = foyer_fiscal('f7re', period)
         f7rf = foyer_fiscal('f7rf', period)
         P = parameters(period).impot_revenu.reductions_impots.resimm
@@ -4263,10 +4263,10 @@ class resimm(Variable):
         Travaux de restauration immobilière (cases 7RA, 7RB, 7RC, 7RD, 7RE, 7RF, 7SX, 7SY)
         2013-2015
         '''
-        f7ra = foyer_fiscal('f7ra', period)
-        f7rb = foyer_fiscal('f7rb', period)
-        f7rc = foyer_fiscal('f7rc', period)
-        f7rd = foyer_fiscal('f7rd', period)
+        f7ra = foyer_fiscal('f7ra_2015', period)
+        f7rb = foyer_fiscal('f7rb_2015', period)
+        f7rc = foyer_fiscal('f7rc_2015', period)
+        f7rd = foyer_fiscal('f7rd_2015', period)
         f7re = foyer_fiscal('f7re', period)
         f7rf = foyer_fiscal('f7rf', period)
         f7sx = foyer_fiscal('f7sx', period)
