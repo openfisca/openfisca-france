@@ -73,24 +73,17 @@ class ass_base_ressources_individu(Variable):
         '''
                 N'intègre pas l'exception citée à l'article R5423-2 du Code du Travail sur les conjoints chefs d'entreprises entrant dans le champ d'application de l'article 50-0 du CGI
                 '''
-        last_month = period.start.period('month').offset(-1)
         # Rolling year
         previous_year = period.start.period('year').offset(-1)
         # N-1
         last_year = period.last_year
 
-        has_ressources_substitution = (
-            individu('chomage_net', last_month)
-            + individu('indemnites_journalieres', last_month)
-            + individu('retraite_nette', last_month)
-            ) > 0
-
-        salaire_imposable = calculateWithAbatement(individu, parameters, period, 'salaire_imposable', has_ressources_substitution)
-        revenus_stage_formation_pro = calculateWithAbatement(individu, parameters, period, 'revenus_stage_formation_pro', has_ressources_substitution)
-        aah = calculateWithAbatement(individu, parameters, period, 'aah', has_ressources_substitution)
-        retraite_nette = calculateWithAbatement(individu, parameters, period, 'retraite_nette', has_ressources_substitution)
-        pensions_alimentaires_percues = calculateWithAbatement(individu, parameters, period, 'pensions_alimentaires_percues', has_ressources_substitution)
-        indemnites_stage = calculateWithAbatement(individu, parameters, period, 'indemnites_stage', has_ressources_substitution)
+        salaire_imposable = calculateWithAbatement(individu, parameters, period, 'salaire_imposable')
+        revenus_stage_formation_pro = calculateWithAbatement(individu, parameters, period, 'revenus_stage_formation_pro')
+        aah = calculateWithAbatement(individu, parameters, period, 'aah')
+        retraite_nette = calculateWithAbatement(individu, parameters, period, 'retraite_nette')
+        pensions_alimentaires_percues = calculateWithAbatement(individu, parameters, period, 'pensions_alimentaires_percues')
+        indemnites_stage = calculateWithAbatement(individu, parameters, period, 'indemnites_stage')
 
         pensions_invalidite = individu('pensions_invalidite', previous_year, options=[ADD])
         revenus_locatifs = individu('revenus_locatifs', previous_year, options=[ADD])
@@ -132,15 +125,8 @@ class ass_base_ressources_conjoint(Variable):
 
     def formula(individu, period, parameters):
         ass_base_ressources_individu = individu('ass_base_ressources_individu', period)
-        last_month = period.start.period('month').offset(-1)
-        has_ressources_substitution = (
-            individu('chomage_net', last_month)
-            + individu('indemnites_journalieres', last_month)
-            + individu('retraite_nette', last_month)
-            ) > 0
-        chomage_net = calculateWithAbatement(individu, parameters, period, 'chomage_net', has_ressources_substitution)
-        indemnites_journalieres = calculateWithAbatement(individu, parameters, period, 'indemnites_journalieres',
-                                                         has_ressources_substitution)
+        chomage_net = calculateWithAbatement(individu, parameters, period, 'chomage_net')
+        indemnites_journalieres = calculateWithAbatement(individu, parameters, period, 'indemnites_journalieres')
 
         return (
                 ass_base_ressources_individu
@@ -149,8 +135,13 @@ class ass_base_ressources_conjoint(Variable):
         )
 
 
-def calculateWithAbatement(individu, parameters, period, ressourceName, has_ressources_substitution):
+def calculateWithAbatement(individu, parameters, period, ressourceName):
     last_month = period.start.period('month').offset(-1)
+    has_ressources_substitution = (
+        individu('chomage_net', last_month)
+        + individu('indemnites_journalieres', last_month)
+        + individu('retraite_nette', last_month)
+        ) > 0
     # Rolling year
     previous_year = period.start.period('year').offset(-1)
 
