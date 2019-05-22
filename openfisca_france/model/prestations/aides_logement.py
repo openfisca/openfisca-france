@@ -548,19 +548,6 @@ class aide_logement_condition_neutralisation_chomage(Variable):
         return (activite == TypesActivite.chomeur) * (date_debut_chomage < two_months_ago) * chomage_non_indemnise
 
 
-class aide_logement_neutralisation_chomage(Variable):
-    value_type = float
-    entity = Individu
-    label = u"Abattement sur les revenus des chomeurs non indemnisés."
-    definition_period = MONTH
-
-    def formula(individu, period, parameters):
-        condition_neutralisation = individu('aide_logement_condition_neutralisation_chomage', period)
-        revenus_a_neutraliser = individu('revenu_assimile_salaire_apres_abattements', period.n_2)
-
-        return condition_neutralisation * revenus_a_neutraliser
-
-
 class aide_logement_assiette_abattement_chomage(Variable):
     value_type = float
     entity = Individu
