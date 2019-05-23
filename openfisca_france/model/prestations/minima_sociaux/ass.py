@@ -131,10 +131,10 @@ class ass_base_ressources_conjoint(Variable):
         indemnites_journalieres = calculateWithAbatement(individu, parameters, period, 'indemnites_journalieres')
 
         return (
-                ass_base_ressources_individu
-                + chomage_net
-                + indemnites_journalieres
-        )
+            ass_base_ressources_individu
+            + chomage_net
+            + indemnites_journalieres
+            )
 
 
 def calculateWithAbatement(individu, parameters, period, ressourceName):
@@ -160,7 +160,7 @@ def calculateWithAbatement(individu, parameters, period, ressourceName):
 
     tx_abat_applique = where(has_ressources_substitution, tx_abat_partiel, tx_abat_total)
 
-    return where(ressource_interrompue,  (1 - tx_abat_applique) * ressource_year, ressource_year)
+    return where(ressource_interrompue, (1 - tx_abat_applique) * ressource_year, ressource_year)
 
 
 class ass_eligibilite_cumul_individu(Variable):
@@ -233,8 +233,8 @@ class ass_eligibilite_individu(Variable):
         eligible_cumul_ass = individu('ass_eligibilite_cumul_individu', period)
 
         demandeur_emploi_non_indemnise_et_cumul_accepte = (
-            (individu('chomage_net', period) == 0) *
-            ((individu('activite', period) == TypesActivite.chomeur) + eligible_cumul_ass)
+            (individu('chomage_net', period) == 0)
+            * ((individu('activite', period) == TypesActivite.chomeur) + eligible_cumul_ass)
             )
 
         # Indique que l'individu a travaillé 5 ans au cours des 10 dernieres années.
