@@ -2547,6 +2547,33 @@ class duflot(Variable):
                 + min_(P.plafond, invest_domtom_2014)
                 )
             ) / 9 + report_reduc_2013 + report_reduc_2014 + report_reduc_2015 + report_reduc_2016
+    
+    def formula_2018_01_01(foyer_fiscal, period, parameters):
+        '''
+        Investissements locatifs intermediaires (loi Duflot)
+        2018
+        '''
+        invest_domtom_2013 = foyer_fiscal('f7gi', period)
+        invest_domtom_2014 = foyer_fiscal('f7el', period)
+        invest_metropole_2013 = foyer_fiscal('f7gh', period)
+        invest_metropole_2014 = foyer_fiscal('f7ek', period)
+        report_reduc_2013 = foyer_fiscal('f7fi', period)
+        report_reduc_2014 = foyer_fiscal('f7fk', period)
+        report_reduc_2015 = foyer_fiscal('f7fr', period)
+        report_reduc_2016 = foyer_fiscal('f7fv', period)
+        report_reduc_2017 = foyer_fiscal('f7fw', period)
+        P = parameters(period).impot_revenu.reductions_impots.duflot
+
+        return (
+            P.taux_m * (
+                min_(P.plafond - invest_domtom_2013, invest_metropole_2013)
+                + min_(P.plafond - invest_domtom_2014, invest_metropole_2014)
+                )
+            + P.taux_om * (
+                min_(P.plafond, invest_domtom_2013)
+                + min_(P.plafond, invest_domtom_2014)
+                )
+            ) / 9 + report_reduc_2013 + report_reduc_2014 + report_reduc_2015 + report_reduc_2016 + report_reduc_2017
 
 
 # TODO: / 5 dans trois TOM
