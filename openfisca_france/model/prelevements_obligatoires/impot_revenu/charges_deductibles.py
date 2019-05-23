@@ -290,6 +290,16 @@ class f6hq(Variable):
     definition_period = YEAR
 
 
+class f6hr(Variable):
+    cerfa_field = u"6HR"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses de l'année 2017"
+    # start_date = date(2018, 1, 1)
+    definition_period = YEAR
+
+
 # Sommes à rajouter au revenu imposable
 class f6gh(Variable):
     cerfa_field = "6GH"
@@ -871,5 +881,26 @@ class grosses_reparations(Variable):
 
         depenses_courantes = f6cb
         report_depenses = report_2009 + report_2010 + report_2011 + report_2012 + report_2013 + report_2014 + report_2015 + report_2016
+
+        return min_(depenses_courantes + report_depenses, plafond_grosses_reparations)
+
+    def formula_2018(foyer_fiscal, period, parameters):
+        '''
+        Dépenses de grosses réparations des nus-propriétaires
+        '''
+        f6cb = foyer_fiscal('f6cb', period)
+        report_2009 = foyer_fiscal('f6hj', period)
+        report_2010 = foyer_fiscal('f6hk', period)
+        report_2011 = foyer_fiscal('f6hl', period)
+        report_2012 = foyer_fiscal('f6hm', period)
+        report_2013 = foyer_fiscal('f6hn', period)
+        report_2014 = foyer_fiscal('f6ho', period)
+        report_2015 = foyer_fiscal('f6hp', period)
+        report_2016 = foyer_fiscal('f6hq', period)
+        report_2017 = foyer_fiscal('f6hr', period)
+        plafond_grosses_reparations = parameters(period).impot_revenu.charges_deductibles.grosses_reparations.plafond
+
+        depenses_courantes = f6cb
+        report_depenses = report_2009 + report_2010 + report_2011 + report_2012 + report_2013 + report_2014 + report_2015 + report_2016 + report_2017
 
         return min_(depenses_courantes + report_depenses, plafond_grosses_reparations)
