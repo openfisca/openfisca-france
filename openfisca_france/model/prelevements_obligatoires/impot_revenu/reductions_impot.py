@@ -4629,7 +4629,7 @@ class rpinel(Variable):
             + around(P.taux18 * min_(max_(0, P.seuil - f7qp - f7qo), f7qn) / 9)
             + around(P.taux12 * min_(max_(0, P.seuil - f7qp - f7qo - f7qn), f7qm) / 6)
             )
-        
+
         reduc_invest_real_2018 = (
             around(P.taux29 * min_(P.seuil, f7qu) / 9)
             + around(P.taux23 * min_(max_(0, P.seuil - f7qu), f7qt) / 6)
@@ -4647,7 +4647,6 @@ class rpinel(Variable):
             + reduc_invest_real_2018
             + report
             )
-
 
 
 class rsceha(Variable):
