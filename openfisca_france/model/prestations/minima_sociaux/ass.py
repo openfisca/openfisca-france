@@ -120,8 +120,14 @@ class ass_base_ressources_conjoint(Variable):
     definition_period = MONTH
 
     def formula(individu, period, parameters):
+        # Rolling year
+        previous_year = period.start.period('year').offset(-1)
+
+        last_month = period.start.period('month').offset(-1)
+
         ass_base_ressources_individu = individu('ass_base_ressources_individu', period)
-        chomage_net = calculateWithAbatement(individu, parameters, period, 'chomage_net')
+        chomage_net_interrompue = individu('chomage_net', last_month) == 0
+        chomage_net = individu('chomage_net', previous_year, options=[ADD]) * (1 - chomage_net_interrompue)
         indemnites_journalieres = calculateWithAbatement(individu, parameters, period, 'indemnites_journalieres')
 
         return (
