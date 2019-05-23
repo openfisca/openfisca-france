@@ -1079,7 +1079,7 @@ class f7wi_2012(Variable):
 
 
 class f7wi_2015(Variable):
-    cerfa_field = u"7WI"
+    cerfa_field = "7WI"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
@@ -1090,7 +1090,7 @@ class f7wi_2015(Variable):
 
 
 class f7wi(Variable):
-    cerfa_field = u"7WI"
+    cerfa_field = "7WI"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal

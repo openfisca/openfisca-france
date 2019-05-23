@@ -293,6 +293,7 @@ class f2bg(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     label = "Crédits d'impôt 'directive épargne' et autres crédits d'impôt restituables"
+    end = '2017-12-31'
     definition_period = YEAR
 
 
