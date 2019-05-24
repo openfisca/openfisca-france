@@ -1,5 +1,13 @@
 # Changelog
 
+### 42.3.2 [#1327](https://github.com/openfisca/openfisca-france/pull/1327)
+
+* Correction d'un crash.
+* Périodes concernées : toutes.
+* Zones impactées : `revenus/remplacement/rente_accident_travail`.
+* Détails :
+  - Corrige une erreur lors du calcul de la rente accident du travail pour les personnes de plus de 100 ans
+
 ### 42.3.1 [#1324](https://github.com/openfisca/openfisca-france/pull/1324)
 
 * Évolution du système socio-fiscal
