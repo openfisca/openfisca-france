@@ -7924,6 +7924,7 @@ class f7bm(Variable):
 # réutilisation de case pour 2013
 # """
 
+
 class f7sd(Variable):
     cerfa_field = u"7SD"
     value_type = int
