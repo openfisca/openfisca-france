@@ -187,6 +187,7 @@
       parents: [parent1]
     individus:
       parent1:
+        age_en_mois: 1224
         taux_accident_travail: 0.90
         tns_benefice_exploitant_agricole:
           2017: 20000
