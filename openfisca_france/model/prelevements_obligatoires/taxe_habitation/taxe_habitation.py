@@ -47,7 +47,7 @@ class exonere_th(Variable):
     reference = "http://vosdroits.service-public.fr/particuliers/F42.xhtml"
     definition_period = YEAR
 
-    def formula_2017_01_01(menage, period):
+    def formula_2017_01_01(menage, period, parameters):
         '''
         Hypothèses :
             (1) pour la condition de plus de 60 ans ou veuf, on regarde seulement la personne de référence du ménage
@@ -75,7 +75,8 @@ class exonere_th(Variable):
         condition_rfr_exoneration_th_i = menage.members.foyer_fiscal('condition_rfr_exoneration_th', period)
         condition_rfr_exoneration_th = menage.all(condition_rfr_exoneration_th_i)
 
-        exon_avant_condition_rfr = ((age_personne_de_reference >= 60) + (age_conjoint >= 60) + (statut_marital == TypesStatutMarital.veuf)) * (isf_ifi == 0) + (asi > 0) + (aspa > 0) + (aah > 0)
+        P = parameters(period).taxation_locale.taxe_habitation
+        exon_avant_condition_rfr = ((age_personne_de_reference >= P.exon_age_min) + (age_conjoint >= P.exon_age_min) + (statut_marital == TypesStatutMarital.veuf)) * (isf_ifi == 0) + (asi > 0) + (aspa > 0) + (aah > 0)
         exon = exon_avant_condition_rfr * condition_rfr_exoneration_th
         return exon
 
