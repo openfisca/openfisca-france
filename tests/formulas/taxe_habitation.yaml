@@ -143,10 +143,10 @@
     nbptr: 4
     base_nette_th_commune: 4178 #(6000 - 473*2 - 628 - 248)
     base_nette_th_epci: 4113 #(6000 - 487*2 - 640 - 273)
-    taxe_habitation_commune_epci_avant_degrevement: 582.15 #4178*0.1037 + 4113*0.0362
+    taxe_habitation_commune_epci_avant_degrevement: 587.97 #(4178*0.1037 + 4113*0.0362)*1.01
     plafond_taxe_habitation: 296.98 #(26000 - 17367)*0.0344
-    degrevement_plafonnement_taxe_habitation: 7.46 #582.15 - 296.98 - ((0.1037 + 0.0362) - (0.05 + 0.02)*1.034)*4113
-    taxe_habitation: -(582.15-7.46)*1.01
+    degrevement_plafonnement_taxe_habitation: 13.28 #587.97 - 296.98 - ((0.1037 + 0.0362) - (0.05 + 0.02)*1.034)*4113
+    taxe_habitation: -(587.97-13.28)
 
 - name: th_plaf_2017_2
   description: Taxe d'habitation 2017 - test du plafonnement avec réduction de dégrèvement pour un couple avec 3 enfants avec un RFR ne donnant pas éligibilité à l'exonération
@@ -186,10 +186,10 @@
     nbptr: 4
     base_nette_th_commune: 4178 #(6000 - 473*2 - 628 - 248)
     base_nette_th_epci: 4113 #(6000 - 487*2 - 640 - 273)
-    taxe_habitation_commune_epci_avant_degrevement: 582.15 #4178*0.1037 + 4113*0.0362
+    taxe_habitation_commune_epci_avant_degrevement: 587.97 #(4178*0.1037 + 4113*0.0362)*1.01
     plafond_taxe_habitation: 434.58 #(30000 - 17367)*0.0344
-    degrevement_plafonnement_taxe_habitation: 0 #max(582.15 - 434.58 - ((0.1037 + 0.0362) - (0.05 + 0.02)*1.034)*4113; 0)
-    taxe_habitation: -582.15*1.01
+    degrevement_plafonnement_taxe_habitation: 0 #max(587.97 - 434.58 - ((0.1037 + 0.0362) - (0.05 + 0.02)*1.034)*4113; 0)
+    taxe_habitation: -587.97
 
 - name: th_abt_condition_modeste_2017
   description: Taxe d'habitation 2017 - test de l'abattement pour personnes de condition modeste, combiné avec éligibilité au plafonnement pour un couple avec 3 enfants avec un RFR donnant éligibilité à l'exonération mais non éligibible à l'exonération du fait des autres critères d'éligibilité
@@ -225,10 +225,10 @@
     nbptr: 4
     base_nette_th_commune: 930 #(3000 - 473*2 - 628 - 248 - 248)
     base_nette_th_epci: 840 #(3000 - 487*2 - 640 - 273 - 273)
-    taxe_habitation_commune_epci_avant_degrevement: 126.85 #930*0.1037 + 840*0.0362
+    taxe_habitation_commune_epci_avant_degrevement: 128.12 #(930*0.1037 + 840*0.0362)*1.01
     plafond_taxe_habitation: 296.98 #(26000 - 17367)*0.0344
     degrevement_plafonnement_taxe_habitation: 0
-    taxe_habitation: -126.85*1.01
+    taxe_habitation: -128.12
 
 - name: th_pas_abt_condition_modeste_val_loc_elevee_2017
   description: Taxe d'habitation 2017 - test de la non-éligibilité à l'abattement pour personnes de condition modeste du fait d'une valeur locative trop élevée (pour un ménage éligible aux conditions de RFR de cet abattement), combiné avec éligibilité au plafonnement pour un couple avec 3 enfants
@@ -264,10 +264,10 @@
     nbptr: 4
     base_nette_th_commune: 3178 #(5000 - 473*2 - 628 - 248)
     base_nette_th_epci: 3113 #(5000 - 487*2 - 640 - 273)
-    taxe_habitation_commune_epci_avant_degrevement: 442.25 #3178*0.1037 + 3113*0.0362
+    taxe_habitation_commune_epci_avant_degrevement: 446.67 #(3178*0.1037 + 3113*0.0362)*1.01
     plafond_taxe_habitation: 296.98 #(26000 - 17367)*0.0344
-    degrevement_plafonnement_taxe_habitation: 145.27 #442.25 - 296.98
-    taxe_habitation: -(442.25 - 145.27)*1.01
+    degrevement_plafonnement_taxe_habitation: 149.69 #446.67 - 296.98
+    taxe_habitation: -(446.67 - 149.69)
 
 - name: th_test_differents_foyers_fiscaux_2017_1
   description: Taxe d'habitation 2017 - test 1 du fait que la condition de RFR doit être respectée pour chaque foyer fiscal pour l'exonération, et via la somme des RFR pour le plafonnement
@@ -309,10 +309,10 @@
       exonere_th: 0
       base_nette_th_commune: 2752 #(3000 - 248)
       base_nette_th_epci: 2727 #(3000 - 273)
-      taxe_habitation_commune_epci_avant_degrevement: 384.10 #2752*0.1037 + 2727*0.0362
+      taxe_habitation_commune_epci_avant_degrevement: 387.94 #(2752*0.1037 + 2727*0.0362)*1.01
       plafond_taxe_habitation: 253.84 #(16000 - 8621)*0.0344
-      degrevement_plafonnement_taxe_habitation: 0 #max(384.10 - 253.84 - ((0.1037 + 0.0362) - (0.05 + 0.02)*1.034)*2727; 0)
-      taxe_habitation: -384.10*1.01
+      degrevement_plafonnement_taxe_habitation: 0 #max(387.94 - 253.84 - ((0.1037 + 0.0362) - (0.05 + 0.02)*1.034)*2727; 0)
+      taxe_habitation: -387.94
 
 - name: th_test_differents_foyers_fiscaux_2017_2
   description: Taxe d'habitation 2017 - test 2 du fait que la condition de RFR doit être respectée pour chaque foyer fiscal pour l'exonération, et via la somme des RFR pour le plafonnement
@@ -397,10 +397,10 @@
     nbptr: 4
     base_nette_th_commune: 1178 #(3000 - 473*2 - 628 - 248)
     base_nette_th_epci: 1113 #(3000 - 487*2 - 640 - 273)
-    taxe_habitation_commune_epci_avant_degrevement: 162.45 #1178*0.1037 + 1113*0.0362
-    taxe_habitation_commune_epci_apres_degrevement_plafonnement: 162.45
-    degrevement_office_taxe_habitation: 162.45 * 0.30
-    taxe_habitation: -162.45*(1-0.30)*1.01
+    taxe_habitation_commune_epci_avant_degrevement: 164.07 #(1178*0.1037 + 1113*0.0362)*1.01
+    taxe_habitation_commune_epci_apres_degrevement_plafonnement: 164.07
+    degrevement_office_taxe_habitation: 164.07 * 0.30
+    taxe_habitation: -164.07*(1-0.30)
 
 - name: th_degrevement_office_degressif_2018
   description: Taxe d'habitation 2018 - test du dégrèvement d'office dégressif pour un couple avec 3 enfants
@@ -449,10 +449,10 @@
     nbptr: 4
     base_nette_th_commune: 1178 #(3000 - 473*2 - 628 - 248)
     base_nette_th_epci: 1113 #(3000 - 487*2 - 640 - 273)
-    taxe_habitation_commune_epci_avant_degrevement: 162.45 #1178*0.1037 + 1113*0.0362
-    taxe_habitation_commune_epci_apres_degrevement_plafonnement: 162.45
-    degrevement_office_taxe_habitation: 14.62 #162.45 * 0.30 * ((69000-68400) / (69000-67000))
-    taxe_habitation: -(162.45-14.62)*1.01
+    taxe_habitation_commune_epci_avant_degrevement: 164.07 #(1178*0.1037 + 1113*0.0362)*1.01
+    taxe_habitation_commune_epci_apres_degrevement_plafonnement: 164.07
+    degrevement_office_taxe_habitation: 14.77 #164.07 * 0.30 * ((69000-68400) / (69000-67000))
+    taxe_habitation: -(164.07-14.77)
 
 - name: th_degrevement_office_non_eligibilite_2018
   description: Taxe d'habitation 2018 - test de la non-éligibilité au dégrèvement d'office pour un couple avec 3 enfants
@@ -501,7 +501,7 @@
     nbptr: 4
     base_nette_th_commune: 1178 #(3000 - 473*2 - 628 - 248)
     base_nette_th_epci: 1113 #(3000 - 487*2 - 640 - 273)
-    taxe_habitation_commune_epci_avant_degrevement: 162.45 #1178*0.1037 + 1113*0.0362
-    taxe_habitation_commune_epci_apres_degrevement_plafonnement: 162.45
+    taxe_habitation_commune_epci_avant_degrevement: 164.07 #(1178*0.1037 + 1113*0.0362)*1.01
+    taxe_habitation_commune_epci_apres_degrevement_plafonnement: 164.07
     degrevement_office_taxe_habitation: 0
-    taxe_habitation: -(162.45)*1.01
+    taxe_habitation: -164.07

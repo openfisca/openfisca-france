@@ -244,7 +244,7 @@ class base_nette_th_epci(Variable):
 class taxe_habitation_commune_epci_avant_degrevement(Variable):
     value_type = float
     entity = Menage
-    label = u"Taxe d'habitation de la commune et de l'EPCI avant dégrèvement"
+    label = u"Taxe d'habitation de la commune et de l'EPCI avant dégrèvement (frais de gestion inclus)"
     definition_period = YEAR
 
     def formula_2017_01_01(menage, period, parameters):
@@ -255,7 +255,9 @@ class taxe_habitation_commune_epci_avant_degrevement(Variable):
         base_nette_th_commune = menage('base_nette_th_commune', period)
         base_nette_th_epci = menage('base_nette_th_epci', period)
         exonere_th = menage('exonere_th', period)
-        return (base_nette_th_commune * taux_th_commune + base_nette_th_epci * taux_th_epci) * not_(exonere_th)
+        P = parameters(period).taxation_locale.taxe_habitation
+        taux_frais_assiette = P.frais_assiette
+        return (base_nette_th_commune * taux_th_commune + base_nette_th_epci * taux_th_epci) * not_(exonere_th) * (1 + taux_frais_assiette)
 
 
 class plafond_taxe_habitation_eligibilite(Variable):
@@ -398,10 +400,7 @@ class taxe_habitation(Variable):
     reference = "https://www.service-public.fr/particuliers/vosdroits/F42"
     definition_period = YEAR
 
-    def formula_2017_01_01(menage, period, parameters):
+    def formula_2017_01_01(menage, period):
         taxe_habitation_commune_epci_apres_degrevement_plafonnement = menage('taxe_habitation_commune_epci_apres_degrevement_plafonnement', period)
         degrevement_office_taxe_habitation = menage('degrevement_office_taxe_habitation', period)
-        P = parameters(period).taxation_locale.taxe_habitation
-        taux_frais_assiette = P.frais_assiette
-        montant = max_(taxe_habitation_commune_epci_apres_degrevement_plafonnement - degrevement_office_taxe_habitation, 0)
-        return - montant * (1 + taux_frais_assiette)
+        return - max_(taxe_habitation_commune_epci_apres_degrevement_plafonnement - degrevement_office_taxe_habitation, 0)
