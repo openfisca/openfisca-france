@@ -223,12 +223,51 @@
         date_naissance: '1990-01-01'
   output:
     nbptr: 4
-    base_nette_th_commune: 1178 #(3000 - 473*2 - 628 - 248)
-    base_nette_th_epci: 1113 #(3000 - 487*2 - 640 - 273)
-    taxe_habitation_commune_epci_avant_degrevement: 162.45 #1178*0.1037 + 1113*0.0362
+    base_nette_th_commune: 930 #(3000 - 473*2 - 628 - 248 - 248)
+    base_nette_th_epci: 840 #(3000 - 487*2 - 640 - 273 - 273)
+    taxe_habitation_commune_epci_avant_degrevement: 126.85 #930*0.1037 + 840*0.0362
     plafond_taxe_habitation: 296.98 #(26000 - 17367)*0.0344
     degrevement_plafonnement_taxe_habitation: 0
-    taxe_habitation: -162.45*1.01
+    taxe_habitation: -126.85*1.01
+
+- name: th_pas_abt_condition_modeste_val_loc_elevee_2017
+  description: Taxe d'habitation 2017 - test de la non-éligibilité à l'abattement pour personnes de condition modeste du fait d'une valeur locative trop élevée (pour un ménage éligible aux conditions de RFR de cet abattement), combiné avec éligibilité au plafonnement pour un couple avec 3 enfants
+  period: 2017
+  absolute_error_margin: 0.03
+  input:
+    famille:
+      parents: [parent1, parent2]
+      enfants: [enfant1, enfant2, enfant3]
+    foyer_fiscal:
+      declarants: [parent1, parent2]
+      personnes_a_charge: [enfant1, enfant2, enfant3]
+      rfr:
+        2016: 26000
+    menage:
+      personne_de_reference: parent1
+      conjoint: parent2
+      enfants: [enfant1, enfant2, enfant3]
+      code_INSEE_commune: "01058"
+      valeur_locative_cadastrale_brute: 5000
+    individus:
+      parent1:
+        date_naissance: '1963-01-01'
+      parent2:
+        date_naissance: '1963-01-01'
+      enfant1:
+        date_naissance: '1990-01-01'
+      enfant2:
+        date_naissance: '1990-01-01'
+      enfant3:
+        date_naissance: '1990-01-01'
+  output:
+    nbptr: 4
+    base_nette_th_commune: 3178 #(5000 - 473*2 - 628 - 248)
+    base_nette_th_epci: 3113 #(5000 - 487*2 - 640 - 273)
+    taxe_habitation_commune_epci_avant_degrevement: 442.25 #3178*0.1037 + 3113*0.0362
+    plafond_taxe_habitation: 296.98 #(26000 - 17367)*0.0344
+    degrevement_plafonnement_taxe_habitation: 145.27 #442.25 - 296.98
+    taxe_habitation: -(442.25 - 145.27)*1.01
 
 - name: th_test_differents_foyers_fiscaux_2017_1
   description: Taxe d'habitation 2017 - test 1 du fait que la condition de RFR doit être respectée pour chaque foyer fiscal pour l'exonération, et via la somme des RFR pour le plafonnement
