@@ -42,14 +42,14 @@ setup(
             ],
         "dev": [
             "autopep8", # == 1.4.0",
-            "flake8", # >= 3.5.0, < 3.6.0",
-            "flake8-print",
+            #"flake8", # >= 3.5.0, < 3.6.0",
+            #"flake8-print",
             "pycodestyle", # >= 2.3.0, < 2.4.0",  # To avoid incompatibility with flake
             "pytest < 5.0",
             "requests >= 2.8",
             "scipy >= 0.17",  # Only used to test de_net_a_brut reform
             #"yamllint >= 1.11.1, < 1.12",
-            ],
+            ]
         },
     include_package_data = True,  # Will read MANIFEST.in
     install_requires = [
