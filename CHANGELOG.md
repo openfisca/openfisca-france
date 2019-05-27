@@ -1,5 +1,13 @@
 # Changelog
 
+## 42.4.0 [#1328](https://github.com/openfisca/openfisca-france/pull/1328)
+
+* Revalorisation périodique.
+* Périodes concernées :  à partir du 01/04/2019.
+* Zones impactées : `parameters/prestations/minima_sociaux/ass/montant_plein`.
+* Détails :
+  - Revalorise le montant journalier de l’ASS au 1er avril 2019.
+
 ### 42.3.2 [#1327](https://github.com/openfisca/openfisca-france/pull/1327)
 
 * Correction d'un crash.
@@ -30,7 +38,7 @@
 * Périodes concernées : à partir du 01/04/2019.
 * Zones impactées : `parameters/prestations/minima_sociaux/rsa/montant_de_base_du_rsa`.
 * Détails :
-  - Revalorise le montant de base du rsa au 1 avril 2019.
+  - Revalorise le montant de base du RSA au 1er avril 2019.
 
 ### 42.1.2 [#1317](https://github.com/openfisca/openfisca-france/pull/1317)
 
