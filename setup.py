@@ -41,13 +41,14 @@ setup(
             "pandas >= 0.13",
             ],
         "dev": [
-            "autopep8 ==1.4.4",
-            "flake8 >=3.7.0,<3.8.0",
+            "autopep8", # == 1.4.0",
+            "flake8", # >= 3.5.0, < 3.6.0",
             "flake8-print",
-            "pytest <5.0",
-            "scipy >= 0.17",  # Only used to test de_net_a_brut reform
+            "pycodestyle", # >= 2.3.0, < 2.4.0",  # To avoid incompatibility with flake
+            "pytest < 5.0",
             "requests >= 2.8",
-            "yamllint >=1.11.1,<1.16"
+            "scipy >= 0.17",  # Only used to test de_net_a_brut reform
+            #"yamllint >= 1.11.1, < 1.12",
             ],
         },
     include_package_data = True,  # Will read MANIFEST.in
