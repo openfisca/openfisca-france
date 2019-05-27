@@ -153,6 +153,7 @@ class abattement_personnes_condition_modeste_th_commune(Variable):
         valeur_locative_max = (taux_plafond_general + maj_taux_plafond_par_pac * nb_enfants) * valeur_locative_moyenne_th_commune
         condition_rfr_exoneration_th_i = menage.members.foyer_fiscal('condition_rfr_exoneration_th', period)
         condition_rfr_exoneration_th = menage.all(condition_rfr_exoneration_th_i)
+        exonere_th = menage('exonere_th', period)
         elig = condition_rfr_exoneration_th * not_(exonere_th) * (valeur_locative_cadastrale_brute <= valeur_locative_max)
 
         return elig * abt_condition_modeste_th_commune
@@ -181,6 +182,7 @@ class abattement_personnes_condition_modeste_th_epci(Variable):
         valeur_locative_max = (taux_plafond_general + maj_taux_plafond_par_pac * nb_enfants) * valeur_locative_moyenne_th_epci
         condition_rfr_exoneration_th_i = menage.members.foyer_fiscal('condition_rfr_exoneration_th', period)
         condition_rfr_exoneration_th = menage.all(condition_rfr_exoneration_th_i)
+        exonere_th = menage('exonere_th', period)
         elig = condition_rfr_exoneration_th * not_(exonere_th) * (valeur_locative_cadastrale_brute <= valeur_locative_max)
 
         return elig * abt_condition_modeste_th_epci
