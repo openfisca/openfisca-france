@@ -810,7 +810,7 @@ class aide_logement_base_revenus_fiscaux(Variable):
             - f7ga
             - f7gb
             - f7gc
-        )
+            )
 
     def formula(foyer_fiscal, period):
         rente_viagere_titre_onereux_net = foyer_fiscal('rente_viagere_titre_onereux_net', period)
@@ -1024,7 +1024,7 @@ class aide_logement_base_ressources(Variable):
             + revenus_fiscaux
             - f4bb
             - (abattement_chomage_indemnise + abattement_depart_retraite)
-        )
+            )
 
         # Abattement forfaitaire pour double activité
         abattement_double_activite = biactivite * params_al_ressources.dar_1
