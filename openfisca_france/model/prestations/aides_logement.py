@@ -660,14 +660,7 @@ class aide_logement_abattement_depart_retraite(Variable):
         retraite = activite == TypesActivite.retraite
         condition_abattement = (retraite_annee_glissante == 0) * retraite
 
-        salaire_imposable = individu('salaire_imposable', annee_glissante, options = [ADD])
-        chomage_imposable = individu('chomage_imposable', annee_glissante, options = [ADD])
-        f1tt = individu('f1tt', period.n_2)
-        f3vj = individu('f3vj', period.n_2)
-        revenu_assimile_salaire = salaire_imposable + chomage_imposable + f1tt + f3vj
-
-        abatpro_frais_reels = individu('al_abattement_pro_frais_reels', period)
-        revenus_activite_pro = max_(0, revenu_assimile_salaire - abatpro_frais_reels)
+        revenus_activite_pro = individu('al_revenu_assimile_salaire_apres_abattements', period)
 
         abattement = condition_abattement * 0.3 * revenus_activite_pro
 
@@ -826,7 +819,7 @@ class aide_logement_base_revenus_fiscaux(Variable):
             - f7ga
             - f7gb
             - f7gc
-            )
+        )
 
     def formula(foyer_fiscal, period):
         rente_viagere_titre_onereux_net = foyer_fiscal('rente_viagere_titre_onereux_net', period)
