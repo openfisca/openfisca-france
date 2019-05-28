@@ -679,8 +679,8 @@ class aide_logement_base_revenus_fiscaux(Variable):
     definition_period = YEAR
 
     def formula_2019_06_01(foyer_fiscal, period):
-        # Retrait de la rente viagere  a titre onereux
-        # et de la pension alimentaire versée, utilisée sur une periode differentes du reste
+        rente_viagere_titre_onereux_net = foyer_fiscal('rente_viagere_titre_onereux_net', period)
+        # Deplacement de la pension alimentaire versée, utilisée sur une periode differentes du reste
         # Supprimée à partir de 2018
         rev_cat_rvcm = foyer_fiscal('revenu_categoriel_capital', period)
         # Supprimée à partir de 2018
@@ -709,6 +709,7 @@ class aide_logement_base_revenus_fiscaux(Variable):
         apply_abat_spe = (abat_spe > 0) * (invV + invC + (naissanceP < dateLimite) + (naissanceC < dateLimite))
 
         return (
+            + rente_viagere_titre_onereux_net
             + revenu_categoriel_foncier
             + rev_cat_rvcm
             + revenus_capitaux_prelevement_liberatoire
@@ -719,7 +720,7 @@ class aide_logement_base_revenus_fiscaux(Variable):
             - f7ga
             - f7gb
             - f7gc
-            )
+        )
 
     def formula(foyer_fiscal, period):
         rente_viagere_titre_onereux_net = foyer_fiscal('rente_viagere_titre_onereux_net', period)
