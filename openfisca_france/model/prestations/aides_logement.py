@@ -820,7 +820,7 @@ class aide_logement_base_revenus_fiscaux(Variable):
             - f7ga
             - f7gb
             - f7gc
-        )
+            )
 
     def formula(foyer_fiscal, period):
         rente_viagere_titre_onereux_net = foyer_fiscal('rente_viagere_titre_onereux_net', period)
