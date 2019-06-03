@@ -59,7 +59,7 @@
   output:
     credits_impot: 2400.0
     iai: 7702.0
-    irpp: 5302.0
+    irpp: -5302.0
     nbptr: 1.0
     quaenv: 2400.0
     rbg: 45000.0
