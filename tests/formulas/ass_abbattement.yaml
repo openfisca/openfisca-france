@@ -120,7 +120,7 @@
 
 - name: Abattement des revenus quand le revenu d'individu est interrompu
   description: Montant ASS pour personne seule avec ressources mensuelles inférieures à 941,70 et pris en compte à 70%
-  period: 2019-04
+  period: 2018-04
   absolute_error_margin: 0.02
   input:
     famille:
@@ -134,13 +134,13 @@
         ass_precondition_remplie: true
         activite: chomeur
         salaire_imposable:
-          2019-01: 940
-          2019-02: 940
-          2019-03: 0
-          year:2018-04: 940 * 12
+          2018-01: 940
+          2018-02: 940
+          2018-03: 0
+          year:2017-04: 940 * 12
         chomage_net:
-          2019-03: 200
-          year:2018-04: 2000
+          2018-03: 200
+          year:2017-04: 2000
   output:
     ass_base_ressources_individu: [7896]
     ass_base_ressources: 7896
@@ -148,7 +148,7 @@
 
 - name: Abattement des revenus quand le revenu d'individu est interrompu
   description: Montant ASS pour personne en couple avec ressources mensuelles inférieures à 1883.43 et pris en compte à 70%
-  period: 2019-04
+  period: 2018-04
   absolute_error_margin: 0.02
   input:
     famille:
@@ -163,13 +163,13 @@
         ass_precondition_remplie: true
         activite: chomeur
         salaire_imposable:
-          2019-01: 1880
-          2019-02: 1880
-          2019-03: 0
-          year:2018-04: 1880 * 12
+          2018-01: 1880
+          2018-02: 1880
+          2018-03: 0
+          year:2017-04: 1880 * 12
         chomage_net:
-          2019-03: 200
-          year:2018-04: 2000
+          2018-03: 200
+          year:2017-04: 2000
       parent2:
         ass_precondition_remplie: true
         activite: chomeur
@@ -181,7 +181,7 @@
 
 - name: Abattement des revenus quand le revenu d'individu et du conjoint sont interrompus
   description: Montant ASS pour personne en couple
-  period: 2019-04
+  period: 2018-04
   absolute_error_margin: 0.02
   input:
     famille:
@@ -196,24 +196,24 @@
         ass_precondition_remplie: true
         activite: chomeur
         salaire_imposable:
-          2019-01: 1000
-          2019-02: 1000
-          2019-03: 0
-          year:2018-04: 1000 * 12
+          2018-01: 1000
+          2018-02: 1000
+          2018-03: 0
+          year:2017-04: 1000 * 12
         chomage_net:
-          2019-03: 200
-          year:2018-04: 2000
+          2018-03: 200
+          year:2017-04: 2000
       parent2:
         ass_precondition_remplie: true
         activite: chomeur
         salaire_imposable:
-          2019-01: 1100
-          2019-02: 1100
-          2019-03: 0
-          year:2018-04: 1100 * 12
+          2018-01: 1100
+          2018-02: 1100
+          2018-03: 0
+          year:2017-04: 1100 * 12
         chomage_net:
-          2019-03: 140
-          year:2018-04: 140 * 12
+          2018-03: 140
+          year:2017-04: 140 * 12
   output:
     ass_base_ressources_individu: [8400, 9240]
     ass_base_ressources_conjoint: [10400, 10920]
@@ -222,7 +222,7 @@
 
 - name: Abattement des revenus quand le revenu d'individu et du conjoint sont interrompus
   description: Montant ASS pour personne en couple
-  period: 2019-04
+  period: 2018-04
   absolute_error_margin: 0.02
   input:
     famille:
@@ -237,34 +237,34 @@
         ass_precondition_remplie: true
         activite: chomeur
         revenus_locatifs:
-          2019-01: 400
-          2019-02: 400
-          2019-03: 0
-          year:2018-04: 400 * 12
+          2018-01: 400
+          2018-02: 400
+          2018-03: 0
+          year:2017-04: 400 * 12
         salaire_imposable:
-          2019-01: 400
-          2019-02: 400
-          2019-03: 0
-          year:2018-04: 400 * 12
+          2018-01: 400
+          2018-02: 400
+          2018-03: 0
+          year:2017-04: 400 * 12
         chomage_net:
-          2019-03: 200
-          year:2018-04: 2000
+          2018-03: 200
+          year:2017-04: 2000
       parent2:
         ass_precondition_remplie: true
         activite: chomeur
         revenus_locatifs:
-          2019-01: 500
-          2019-02: 500
-          2019-03: 0
-          year:2018-04: 500 * 12
+          2018-01: 500
+          2018-02: 500
+          2018-03: 0
+          year:2017-04: 500 * 12
         salaire_imposable:
-          2019-01: 200
-          2019-02: 200
-          2019-03: 0
-          year:2018-04: 200 * 12
+          2018-01: 200
+          2018-02: 200
+          2018-03: 0
+          year:2017-04: 200 * 12
         chomage_net:
-          2019-03: 140
-          year:2018-04: 140 * 12
+          2018-03: 140
+          year:2017-04: 140 * 12
   output:
     ass_base_ressources_individu: [8160, 7680]
     ass_base_ressources_conjoint: [10160, 9360]
