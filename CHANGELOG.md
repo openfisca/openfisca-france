@@ -1,5 +1,14 @@
 # Changelog
 
+## 42.5.0 [#1326](https://github.com/openfisca/openfisca-france/pull/1326)
+
+* Correction d'un calcul existant
+* Périodes concernées : toutes.
+* Zones impactées : `prestations/minima_sociaux/ass`.
+* Détails :
+  - Application de l’abattement sur les revenus de substitution pour l’allocation de solidarité spécifique (ASS).
+  - Factorise le calcul de l’abattement des ressources pour les variables ass_base_ressources_individu et ass_base_ressources_conjoint.
+
 ## 42.4.0 [#1328](https://github.com/openfisca/openfisca-france/pull/1328)
 
 * Revalorisation périodique.
