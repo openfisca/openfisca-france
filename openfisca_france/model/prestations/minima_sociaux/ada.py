@@ -21,7 +21,7 @@ class ada(Variable):
             ada.montant_journalier_pour_une_personne
             + (nb_pers - 1) * ada.majoration_pers_supp
             + ada.supplement_non_hebergement
-            * (not place_hebergement)
+            * not_(place_hebergement)
             )
 
         montant_ada = period.days * ada_par_jour * asile_demandeur
