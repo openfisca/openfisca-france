@@ -4543,44 +4543,42 @@ class rpinel(Variable):
         Investissement locatif privé - Dispositif Pinel
         2018
         '''
-        f7ai = foyer_fiscal('f7ai', period)
-        f7bi = foyer_fiscal('f7bi', period)
-        f7bz = foyer_fiscal('f7bz', period)
-        f7ci = foyer_fiscal('f7ci', period)
-        f7cz = foyer_fiscal('f7cz', period)
-        f7di = foyer_fiscal('f7di', period)
-        f7dz = foyer_fiscal('f7dz', period)
         f7ek = foyer_fiscal('f7ek', period)
         f7el = foyer_fiscal('f7el', period)
-        f7ez = foyer_fiscal('f7ez', period)
         f7qa = foyer_fiscal('f7qa', period)
         f7qb = foyer_fiscal('f7qb', period)
         f7qc = foyer_fiscal('f7qc', period)
         f7qd = foyer_fiscal('f7qd', period)
-        f7qe = foyer_fiscal('f7qe', period)
-        f7qf = foyer_fiscal('f7qf', period)
-        f7qg = foyer_fiscal('f7qg', period)
-        f7qh = foyer_fiscal('f7qh', period)
-        f7qi = foyer_fiscal('f7qi', period)
-        f7qj = foyer_fiscal('f7qj', period)
-        f7qk = foyer_fiscal('f7qk', period)
-        f7ql = foyer_fiscal('f7ql', period)
-        f7qm = foyer_fiscal('f7qm', period)
-        f7qn = foyer_fiscal('f7qn', period)
-        f7qo = foyer_fiscal('f7qo', period)
-        f7qp = foyer_fiscal('f7qp', period)
-        f7qr = foyer_fiscal('f7qr', period)
-        f7qs = foyer_fiscal('f7qs', period)
-        f7qt = foyer_fiscal('f7qt', period)
-        f7qu = foyer_fiscal('f7qu', period)
-        f7qz = foyer_fiscal('f7qz', period)
-        f7ra = foyer_fiscal('f7ra', period)
-        f7rb = foyer_fiscal('f7rb', period)
-        f7rc = foyer_fiscal('f7rc', period)
-        f7rd = foyer_fiscal('f7rd', period)
-        f7rz = foyer_fiscal('f7rz', period)
-        f7sz = foyer_fiscal('f7sz', period)
-        f7tz = foyer_fiscal('f7tz', period)
+
+        cases_investissement = {
+            "2015": [
+                ('f7qh', 9, 'outremer'),
+                ('f7qg', 6, 'outremer'),
+                ('f7qf', 9, 'metropole'),
+                ('f7qe', 6, 'metropole')],
+            "2016": [
+                ('f7ql', 9, 'outremer'),
+                ('f7qk', 6, 'outremer'),
+                ('f7qj', 9, 'metropole'),
+                ('f7qi', 6, 'metropole')],
+            "2017": [
+                ('f7qp', 9, 'outremer'),
+                ('f7qo', 6, 'outremer'),
+                ('f7qn', 9, 'metropole'),
+                ('f7qm', 6, 'metropole')],
+            "2018": [
+                ('f7qu', 9, 'outremer'),
+                ('f7qt', 6, 'outremer'),
+                ('f7qs', 9, 'metropole'),
+                ('f7qr', 6, 'metropole')]
+            }
+
+        cases_report = {
+            "2014": ['f7ai', 'f7bi', 'f7ci', 'f7di'],
+            "2015": ['f7bz', 'f7cz', 'f7dz', 'f7ez'],
+            "2016": ['f7qz', 'f7rz', 'f7sz', 'f7tz'],
+            "2017": ['f7ra', 'f7rb', 'f7rc', 'f7rd'],
+            }
 
         P = parameters(period).impot_revenu.reductions_impots.rpinel
 
@@ -4595,44 +4593,21 @@ class rpinel(Variable):
             + around(P.taux12 * min_(max3, f7qa) / 6)
             )
 
-        reduc_invest_real_2015 = (
-            around(P.taux29 * min_(P.plafond, f7qh) / 9)
-            + around(P.taux23 * min_(max_(0, P.plafond - f7qh), f7qg) / 6)
-            + around(P.taux18 * min_(max_(0, P.plafond - f7qh - f7qg), f7qf) / 9)
-            + around(P.taux12 * min_(max_(0, P.plafond - f7qh - f7qg - f7qf), f7qe) / 6)
-            )
+        def calcul_reduction_investissement(cases):
+            reduction = foyer_fiscal.empty_array()
+            depenses_cumulees = foyer_fiscal.empty_array()
+            for case in cases:
+                variable, duree, zone = case
+                depense = foyer_fiscal(variable, period)
+                taux = P.taux[zone][str(duree) + '_ans']
+                reduction += around(taux * min_(max_(0, P.plafond - depenses_cumulees), depense) / duree)
+                depenses_cumulees += depense
+            return reduction
 
-        reduc_invest_real_2016 = (
-            around(P.taux29 * min_(P.plafond, f7ql) / 9)
-            + around(P.taux23 * min_(max_(0, P.plafond - f7ql), f7qk) / 6)
-            + around(P.taux18 * min_(max_(0, P.plafond - f7ql - f7qk), f7qj) / 9)
-            + around(P.taux12 * min_(max_(0, P.plafond - f7ql - f7qk - f7qj), f7qi) / 6)
-            )
+        reduction_cumulee = reduc_invest_real_2014 + sum([calcul_reduction_investissement(cases) for cases in cases_investissement.values()])
+        report = sum([foyer_fiscal(case, period) for year in cases_report.keys() for case in cases_report[year]])
 
-        reduc_invest_real_2017 = (
-            around(P.taux29 * min_(P.plafond, f7qp) / 9)
-            + around(P.taux23 * min_(max_(0, P.plafond - f7qp), f7qo) / 6)
-            + around(P.taux18 * min_(max_(0, P.plafond - f7qp - f7qo), f7qn) / 9)
-            + around(P.taux12 * min_(max_(0, P.plafond - f7qp - f7qo - f7qn), f7qm) / 6)
-            )
-
-        reduc_invest_real_2018 = (
-            around(P.taux29 * min_(P.plafond, f7qu) / 9)
-            + around(P.taux23 * min_(max_(0, P.plafond - f7qu), f7qt) / 6)
-            + around(P.taux18 * min_(max_(0, P.plafond - f7qu - f7qt), f7qs) / 9)
-            + around(P.taux12 * min_(max_(0, P.plafond - f7qu - f7qt - f7qs), f7qr) / 6)
-            )
-
-        report = f7ai + f7bi + f7ci + f7di + f7bz + f7cz + f7dz + f7ez + f7qz + f7rz + f7sz + f7tz + f7ra + f7rb + f7rc + f7rd
-
-        return (
-            reduc_invest_real_2014
-            + reduc_invest_real_2015
-            + reduc_invest_real_2016
-            + reduc_invest_real_2017
-            + reduc_invest_real_2018
-            + report
-            )
+        return reduction_cumulee + report
 
 
 class rsceha(Variable):
