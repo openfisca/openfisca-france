@@ -1,0 +1,5 @@
+description: Plafond
+unit: currency
+values:
+  2014-01-01:
+    value: 300000.0
