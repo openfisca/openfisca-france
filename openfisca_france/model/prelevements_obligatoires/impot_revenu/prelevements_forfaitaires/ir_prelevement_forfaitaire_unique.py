@@ -149,8 +149,6 @@ class plus_values_prelevement_forfaitaire_unique_ir(Variable):
         f3sa = foyer_fiscal('f3sa', period)
         f3vg = foyer_fiscal('f3vg', period)
         f3ua = foyer_fiscal('f3ua', period)
-        f3sg = foyer_fiscal('f3sg', period)
-        f3sl = foyer_fiscal('f3sl', period)
         f3wb = foyer_fiscal('f3wb', period)
 
         # Ici, on reprend le champ des plus-values de la variable taxation_plus_values_hors_bareme
@@ -170,16 +168,13 @@ class plus_values_prelevement_forfaitaire_unique_ir(Variable):
         rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
 
         # Notes :
-        # 3sg + 3sl : correspond aux abattements associés aux cases 3vg et 3ua (donc, on considère les montants bruts).
-        #             En revanche, on n'enlève pas l'abattement fixe en 3va, car il est maintenu, y compris si le contribuable
-        #             choisit le PFU. Les conditions on été légèrement modifiées, mais on ne va pas dans ce détail-là. Cf par exemple https://taj-strategie.fr/plf-2018-lecture-definitive-fiscalite-personnes
         # 3WE n'est pas compté, car normalement, il n'est pas dans la base du PFU... A checker ?
         # 3WB : il s'agit des plus-values et créances sans sursis de paiement (pour transfert du domicile fiscal hors de France)
         #       après abattements. Normalement, il faudrait prendre la mesure avant abattement. Les montants avant abattements sont case 3WD. Mais cette case
         #       comprend, en plus des plus-values imposables avant abbattement, celles bénéficiant d'un report d'imposition. HYP : on prend les montants nets.
         # 3WI et 3WJ : les conditions liées au report d'imposition de l'art. 150-0 B ter du CGI ont été remaniées à la marge.
         #              On ne prend pas en compte ces remaniements. Situation résumée dans https://taj-strategie.fr/plf-2018-lecture-definitive-fiscalite-personnes
-        return f3sa + f3vg + f3ua + f3sg + f3sl + f3wb + f3sj + f3sk + f3vm + f3vt + f3vd + f3vi + f3vf + f3wi + f3wj + rpns_pvce
+        return f3sa + f3vg + f3ua + f3wb + f3sj + f3sk + f3vm + f3vt + f3vd + f3vi + f3vf + f3wi + f3wj + rpns_pvce
 
 
 class prelevement_forfaitaire_unique_ir_hors_assurance_vie_epargne_solidaire_etats_non_cooperatifs(Variable):
