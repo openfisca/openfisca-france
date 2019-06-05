@@ -1906,9 +1906,7 @@ class rfr_plus_values_hors_rni(Variable):
         f3vg = foyer_fiscal('f3vg', period)
         f3ua = foyer_fiscal('f3ua', period)
         f3sj = foyer_fiscal('f3sj', period)
-
         f3sk = foyer_fiscal('f3sk', period)
-        f3tz = foyer_fiscal('f3tz', period)
         f3vc = foyer_fiscal('f3vc', period)
         f3vd_i = foyer_fiscal.members('f3vd', period)
         f3vf_i = foyer_fiscal.members('f3vf', period)
@@ -1929,7 +1927,7 @@ class rfr_plus_values_hors_rni(Variable):
         rpns_pvce_i = foyer_fiscal.members('rpns_pvce', period)
         rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
 
-        return f3sa + f3vg + f3ua + f3sj + f3sk + f3tz + f3vc + f3vd + f3vf + f3vi + f3vm + (f3vq - f3vr) + f3vt + f3vz + f3we + f3wi + f3wj + rpns_pvce
+        return f3sa + f3vg + f3ua + f3sj + f3sk + f3vc + f3vd + f3vf + f3vi + f3vm + (f3vq - f3vr) + f3vt + f3vz + f3we + f3wi + f3wj + rpns_pvce
 
 
 class iai(Variable):
