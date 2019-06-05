@@ -4501,7 +4501,7 @@ class rpinel(Variable):
                 ('f7qn', 9, 'metropole'),
                 ('f7qm', 6, 'metropole')]
             }
-        
+
         cases_report = {
             "2014": ['f7ai', 'f7bi', 'f7ci', 'f7di'],
             "2015": ['f7bz', 'f7cz', 'f7dz', 'f7ez'],
@@ -4535,9 +4535,9 @@ class rpinel(Variable):
 
         reduction_cumulee = reduc_invest_real_2014 + sum([calcul_reduction_investissement(cases) for cases in cases_investissement.values()])
         report = sum([foyer_fiscal(case, period) for year in cases_report.keys() for case in cases_report[year]])
-        
+
         return reduction_cumulee + report
-    
+
     def formula_2018_01_01(foyer_fiscal, period, parameters):
         '''
         Investissement locatif privé - Dispositif Pinel
