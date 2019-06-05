@@ -4352,22 +4352,22 @@ class rpinel(Variable):
         Investissement locatif privé - Dispositif Pinel
         2014
         '''
-        invest_metropole_2014 = foyer_fiscal('f7ek', period)
-        invest_domtom_2014 = foyer_fiscal('f7el', period)
+        f7ek = foyer_fiscal('f7ek', period)
+        f7el = foyer_fiscal('f7el', period)
         f7qa = foyer_fiscal('f7qa', period)
         f7qb = foyer_fiscal('f7qb', period)
         f7qc = foyer_fiscal('f7qc', period)
         f7qd = foyer_fiscal('f7qd', period)
         P = parameters(period).impot_revenu.reductions_impots.rpinel
 
-        max1 = max_(0, P.plafond - invest_domtom_2014 - f7qd)  # 2014 : plafond commun 'duflot' et 'rpinel'
+        max1 = max_(0, P.plafond - f7el - f7qd)  # 2014 : plafond commun 'duflot' et 'rpinel'
         max2 = max_(0, max1 - f7qc)
-        max3 = max_(0, max2 - invest_metropole_2014 - f7qb)
+        max3 = max_(0, max2 - f7ek - f7qb)
 
         return around(
-            P.taux29 * min_(max_(0, P.plafond - invest_domtom_2014), f7qd) / 9
+            P.taux29 * min_(max_(0, P.plafond - f7el), f7qd) / 9
             + P.taux23 * min_(max1, f7qc) / 6
-            + P.taux18 * min_(max_(0, max2 - invest_metropole_2014), f7qb) / 9
+            + P.taux18 * min_(max_(0, max2 - f7ek), f7qb) / 9
             + P.taux12 * min_(max3, f7qa) / 6
             )
 
