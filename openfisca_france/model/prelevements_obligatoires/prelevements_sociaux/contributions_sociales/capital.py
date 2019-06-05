@@ -198,7 +198,7 @@ class assiette_csg_plus_values(Variable):
         # Plus-values immobilières
         f3vz = foyer_fiscal('f3vz', period)
 
-        return f3vg + f3va + f3vz + f3we
+        return f3vg + f3ua + f3vz + f3we
 
 
 class assiette_csg_revenus_capital(Variable):
