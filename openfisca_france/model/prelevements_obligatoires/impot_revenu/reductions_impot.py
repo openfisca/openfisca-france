@@ -4506,7 +4506,6 @@ class rpinel(Variable):
             "2014": ['f7ai', 'f7bi', 'f7ci', 'f7di'],
             "2015": ['f7bz', 'f7cz', 'f7dz', 'f7ez'],
             "2016": ['f7qz', 'f7rz', 'f7sz', 'f7tz'],
-            "2017": ['f7ra', 'f7rb', 'f7rc', 'f7rd']
             }
 
         P = parameters(period).impot_revenu.reductions_impots.rpinel
