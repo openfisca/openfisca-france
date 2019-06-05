@@ -1866,6 +1866,7 @@ class rfr_plus_values_hors_rni(Variable):
         """
         Plus-values 2016 et + entrant dans le calcul du revenu fiscal de référence
         """
+        f3sa = foyer_fiscal('f3sa', period)
         f3sj = foyer_fiscal('f3sj', period)
         f3sk = foyer_fiscal('f3sk', period)
         f3tz = foyer_fiscal('f3tz', period)
@@ -1891,7 +1892,7 @@ class rfr_plus_values_hors_rni(Variable):
         rpns_pvce_i = foyer_fiscal.members('rpns_pvce', period)
         rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
 
-        return f3sj + f3sk + f3tz + f3vc + f3vd + f3vf + f3vi + f3vm + f3vp + (f3vq - f3vr) + f3vt + f3vy + f3vz + f3we + f3wi + f3wj + rpns_pvce
+        return f3sa + f3sj + f3sk + f3tz + f3vc + f3vd + f3vf + f3vi + f3vm + f3vp + (f3vq - f3vr) + f3vt + f3vy + f3vz + f3we + f3wi + f3wj + rpns_pvce
 
     def formula_2018_01_01(foyer_fiscal, period, parameters):
         """
