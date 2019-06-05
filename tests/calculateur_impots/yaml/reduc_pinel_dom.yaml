@@ -86,7 +86,7 @@
     rni: 45000.0
 - name: reduc_pinel_dom
   period: 2016
-  absolute_error_margin: 0.1
+  absolute_error_margin: 2.0
   input:
     foyer_fiscal:
       caseF: false
