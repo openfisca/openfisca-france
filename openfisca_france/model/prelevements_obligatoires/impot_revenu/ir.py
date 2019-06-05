@@ -1617,7 +1617,6 @@ class taxation_plus_values_hors_bareme(Variable):
     label = u"Taxation forfaitaire des plus-values"
     reference = "http://bofip.impots.gouv.fr/bofip/6957-PGP"
     definition_period = YEAR
-    end = '2017-12-31'
 
     def formula_2007_01_01(foyer_fiscal, period, parameters):  # f3sd is in f3vd holder
         """
