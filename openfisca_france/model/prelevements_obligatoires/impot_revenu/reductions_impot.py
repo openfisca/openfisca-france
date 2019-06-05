@@ -4365,10 +4365,10 @@ class rpinel(Variable):
         max3 = max_(0, max2 - f7ek - f7qb)
 
         return around(
-            P.taux29 * min_(max_(0, P.plafond - f7el), f7qd) / 9
-            + P.taux23 * min_(max1, f7qc) / 6
-            + P.taux18 * min_(max_(0, max2 - f7ek), f7qb) / 9
-            + P.taux12 * min_(max3, f7qa) / 6
+            P.taux['outremer']['9_ans'] * min_(max_(0, P.plafond - f7el), f7qd) / 9
+            + P.taux['outremer']['6_ans'] * min_(max1, f7qc) / 6
+            + P.taux['metropole']['9_ans'] * min_(max_(0, max2 - f7ek), f7qb) / 9
+            + P.taux['metropole']['6_ans'] * min_(max3, f7qa) / 6
             )
 
     def formula_2015_01_01(foyer_fiscal, period, parameters):
@@ -4401,11 +4401,11 @@ class rpinel(Variable):
         max2 = max_(0, max1 - f7qc)
         max3 = max_(0, max2 - f7ek - f7qb)
 
-        reduc_invest_real_2014 = (
-            around(P.taux29 * min_(max_(0, P.plafond - f7el), f7qd) / 9)
-            + around(P.taux23 * min_(max1, f7qc) / 6)
-            + around(P.taux18 * min_(max_(0, max2 - f7ek), f7qb) / 9)
-            + around(P.taux12 * min_(max3, f7qa) / 6)
+        reduc_invest_real_2014 = around(
+            P.taux['outremer']['9_ans'] * min_(max_(0, P.plafond - f7el), f7qd) / 9
+            + P.taux['outremer']['6_ans'] * min_(max1, f7qc) / 6
+            + P.taux['metropole']['9_ans'] * min_(max_(0, max2 - f7ek), f7qb) / 9
+            + P.taux['metropole']['6_ans'] * min_(max3, f7qa) / 6
             )
 
         def calcul_reduction_investissement(cases):
@@ -4460,11 +4460,11 @@ class rpinel(Variable):
         max2 = max_(0, max1 - f7qc)
         max3 = max_(0, max2 - f7ek - f7qb)
 
-        reduc_invest_real_2014 = (
-            around(P.taux29 * min_(max_(0, P.plafond - f7el), f7qd) / 9)
-            + around(P.taux23 * min_(max1, f7qc) / 6)
-            + around(P.taux18 * min_(max_(0, max2 - f7ek), f7qb) / 9)
-            + around(P.taux12 * min_(max3, f7qa) / 6)
+        reduc_invest_real_2014 = around(
+            P.taux['outremer']['9_ans'] * min_(max_(0, P.plafond - f7el), f7qd) / 9
+            + P.taux['outremer']['6_ans'] * min_(max1, f7qc) / 6
+            + P.taux['metropole']['9_ans'] * min_(max_(0, max2 - f7ek), f7qb) / 9
+            + P.taux['metropole']['6_ans'] * min_(max3, f7qa) / 6
             )
 
         def calcul_reduction_investissement(cases):
@@ -4525,11 +4525,11 @@ class rpinel(Variable):
         max2 = max_(0, max1 - f7qc)
         max3 = max_(0, max2 - f7ek - f7qb)
 
-        reduc_invest_real_2014 = (
-            around(P.taux29 * min_(max_(0, P.plafond - f7el), f7qd) / 9)
-            + around(P.taux23 * min_(max1, f7qc) / 6)
-            + around(P.taux18 * min_(max_(0, max2 - f7ek), f7qb) / 9)
-            + around(P.taux12 * min_(max3, f7qa) / 6)
+        reduc_invest_real_2014 = around(
+            P.taux['outremer']['9_ans'] * min_(max_(0, P.plafond - f7el), f7qd) / 9
+            + P.taux['outremer']['6_ans'] * min_(max1, f7qc) / 6
+            + P.taux['metropole']['9_ans'] * min_(max_(0, max2 - f7ek), f7qb) / 9
+            + P.taux['metropole']['6_ans'] * min_(max3, f7qa) / 6
             )
 
         def calcul_reduction_investissement(cases):
@@ -4596,11 +4596,11 @@ class rpinel(Variable):
         max2 = max_(0, max1 - f7qc)
         max3 = max_(0, max2 - f7ek - f7qb)
 
-        reduc_invest_real_2014 = (
-            around(P.taux29 * min_(max_(0, P.plafond - f7el), f7qd) / 9)
-            + around(P.taux23 * min_(max1, f7qc) / 6)
-            + around(P.taux18 * min_(max_(0, max2 - f7ek), f7qb) / 9)
-            + around(P.taux12 * min_(max3, f7qa) / 6)
+        reduc_invest_real_2014 = around(
+            P.taux['outremer']['9_ans'] * min_(max_(0, P.plafond - f7el), f7qd) / 9
+            + P.taux['outremer']['6_ans'] * min_(max1, f7qc) / 6
+            + P.taux['metropole']['9_ans'] * min_(max_(0, max2 - f7ek), f7qb) / 9
+            + P.taux['metropole']['6_ans'] * min_(max3, f7qa) / 6
             )
 
         def calcul_reduction_investissement(cases):
