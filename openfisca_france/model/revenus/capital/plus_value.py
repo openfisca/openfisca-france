@@ -414,6 +414,11 @@ class abattements_plus_values(Variable):
 
         return f3sg + f3sl + f3va
 
+    def formula_2018_01_01(foyer_fiscal, period):
+        f3va = foyer_fiscal('f3va', period)
+
+        return f3va
+
 
 # Plus values et gains taxables à des taux forfaitaires
 

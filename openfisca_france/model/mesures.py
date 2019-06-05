@@ -224,13 +224,11 @@ class plus_values_base_large(Variable):
         v1_assiette_csg_plus_values = foyer_fiscal('assiette_csg_plus_values', period)
         v2_rfr_plus_values_hors_rni = foyer_fiscal('rfr_plus_values_hors_rni', period)
 
-        f3sg = foyer_fiscal('f3sg', period)
-        f3sl = foyer_fiscal('f3sl', period)
         f3ua = foyer_fiscal('f3ua', period)
         f3vg = foyer_fiscal('f3vg', period)
         f3vz = foyer_fiscal('f3vz', period)
 
-        intersection_v1_v2 = f3vg + f3ua + f3vz + f3sg + f3sl
+        intersection_v1_v2 = f3vg + f3ua + f3vz
 
         return v1_assiette_csg_plus_values + v2_rfr_plus_values_hors_rni - intersection_v1_v2
 

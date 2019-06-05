@@ -188,6 +188,19 @@ class assiette_csg_plus_values(Variable):
 
         return f3vg + f3sg + f3sl + f3va + f3ua + f3vz + f3we
 
+    def formula_2018_01_01(foyer_fiscal, period, parameters):
+
+        # Plus-values mobilières brutes (avant abattement)
+        f3vg = foyer_fiscal('f3vg', period)
+        f3va = foyer_fiscal('f3va', period)
+        f3we = foyer_fiscal('f3we', period)
+        f3ua = foyer_fiscal('f3ua', period)
+
+        # Plus-values immobilières
+        f3vz = foyer_fiscal('f3vz', period)
+
+        return f3vg + f3va + f3ua + f3vz + f3we
+
 
 class assiette_csg_revenus_capital(Variable):
     value_type = float
