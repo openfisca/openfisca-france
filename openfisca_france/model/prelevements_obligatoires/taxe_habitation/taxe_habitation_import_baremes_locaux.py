@@ -12,9 +12,8 @@ from openfisca_france.model.base import *
 # Importe les barèmes locaux de la taxe d'habitation
 
 
-def preload_taux_by_com(year = None):
-    global taux_by_com
-    taux_by_com = None
+def preload_parametres_locaux_taxe_habitation(year = None, variable_to_load = None):
+    assert variable_to_load is not None
     assert year is not None
     if os.path.isfile('{}/assets/taxe_habitation/parametres_th_{}.csv'.format(openfisca_france.__name__, year)):
         with pkg_resources.resource_stream(
@@ -23,195 +22,8 @@ def preload_taux_by_com(year = None):
                 ) as csv_file:
             utf8_reader = codecs.getreader("utf-8")
             csv_reader = csv.DictReader(utf8_reader(csv_file))
-            taux_by_com = {
-                row['code_insee_commune']: row['taux_com']
-                for row in csv_reader
-                }
-
-
-def preload_taux_by_epci(year = None):
-    global taux_by_epci
-    taux_by_epci = None
-    assert year is not None
-    if os.path.isfile('{}/assets/taxe_habitation/parametres_th_{}.csv'.format(openfisca_france.__name__, year)):
-        with pkg_resources.resource_stream(
-                openfisca_france.__name__,
-                'assets/taxe_habitation/parametres_th_{}.csv'.format(year),
-                ) as csv_file:
-            utf8_reader = codecs.getreader("utf-8")
-            csv_reader = csv.DictReader(utf8_reader(csv_file))
-            taux_by_epci = {
-                row['code_insee_commune']: row['taux_epci']
-                for row in csv_reader
-                }
-
-
-def preload_valeur_locative_moyenne_by_com(year = None):
-    global valeur_locative_moyenne_by_com
-    valeur_locative_moyenne_by_com = None
-    assert year is not None
-    if os.path.isfile('{}/assets/taxe_habitation/parametres_th_{}.csv'.format(openfisca_france.__name__, year)):
-        with pkg_resources.resource_stream(
-                openfisca_france.__name__,
-                'assets/taxe_habitation/parametres_th_{}.csv'.format(year),
-                ) as csv_file:
-            utf8_reader = codecs.getreader("utf-8")
-            csv_reader = csv.DictReader(utf8_reader(csv_file))
-            valeur_locative_moyenne_by_com = {
-                row['code_insee_commune']: row['valeur_locative_moyenne_com']
-                for row in csv_reader
-                }
-
-
-def preload_valeur_locative_moyenne_by_epci(year = None):
-    global valeur_locative_moyenne_by_epci
-    valeur_locative_moyenne_by_epci = None
-    assert year is not None
-    if os.path.isfile('{}/assets/taxe_habitation/parametres_th_{}.csv'.format(openfisca_france.__name__, year)):
-        with pkg_resources.resource_stream(
-                openfisca_france.__name__,
-                'assets/taxe_habitation/parametres_th_{}.csv'.format(year),
-                ) as csv_file:
-            utf8_reader = codecs.getreader("utf-8")
-            csv_reader = csv.DictReader(utf8_reader(csv_file))
-            valeur_locative_moyenne_by_epci = {
-                row['code_insee_commune']: row['valeur_locative_moyenne_epci']
-                for row in csv_reader
-                }
-
-
-def preload_abt_general_base_by_com(year = None):
-    global abt_general_base_by_com
-    abt_general_base_by_com = None
-    assert year is not None
-    if os.path.isfile('{}/assets/taxe_habitation/parametres_th_{}.csv'.format(openfisca_france.__name__, year)):
-        with pkg_resources.resource_stream(
-                openfisca_france.__name__,
-                'assets/taxe_habitation/parametres_th_{}.csv'.format(year),
-                ) as csv_file:
-            utf8_reader = codecs.getreader("utf-8")
-            csv_reader = csv.DictReader(utf8_reader(csv_file))
-            abt_general_base_by_com = {
-                row['code_insee_commune']: row['abt_general_base_com']
-                for row in csv_reader
-                }
-
-
-def preload_abt_general_base_by_epci(year = None):
-    global abt_general_base_by_epci
-    abt_general_base_by_epci = None
-    assert year is not None
-    if os.path.isfile('{}/assets/taxe_habitation/parametres_th_{}.csv'.format(openfisca_france.__name__, year)):
-        with pkg_resources.resource_stream(
-                openfisca_france.__name__,
-                'assets/taxe_habitation/parametres_th_{}.csv'.format(year),
-                ) as csv_file:
-            utf8_reader = codecs.getreader("utf-8")
-            csv_reader = csv.DictReader(utf8_reader(csv_file))
-            abt_general_base_by_epci = {
-                row['code_insee_commune']: row['abt_general_base_epci']
-                for row in csv_reader
-                }
-
-
-def preload_abt_pac_1_2_by_com(year = None):
-    global abt_pac_1_2_by_com
-    abt_pac_1_2_by_com = None
-    assert year is not None
-    if os.path.isfile('{}/assets/taxe_habitation/parametres_th_{}.csv'.format(openfisca_france.__name__, year)):
-        with pkg_resources.resource_stream(
-                openfisca_france.__name__,
-                'assets/taxe_habitation/parametres_th_{}.csv'.format(year),
-                ) as csv_file:
-            utf8_reader = codecs.getreader("utf-8")
-            csv_reader = csv.DictReader(utf8_reader(csv_file))
-            abt_pac_1_2_by_com = {
-                row['code_insee_commune']: row['abt_pac_1_2_com']
-                for row in csv_reader
-                }
-
-
-def preload_abt_pac_1_2_by_epci(year = None):
-    global abt_pac_1_2_by_epci
-    abt_pac_1_2_by_epci = None
-    assert year is not None
-    if os.path.isfile('{}/assets/taxe_habitation/parametres_th_{}.csv'.format(openfisca_france.__name__, year)):
-        with pkg_resources.resource_stream(
-                openfisca_france.__name__,
-                'assets/taxe_habitation/parametres_th_{}.csv'.format(year),
-                ) as csv_file:
-            utf8_reader = codecs.getreader("utf-8")
-            csv_reader = csv.DictReader(utf8_reader(csv_file))
-            abt_pac_1_2_by_epci = {
-                row['code_insee_commune']: row['abt_pac_1_2_epci']
-                for row in csv_reader
-                }
-
-
-def preload_abt_pac_3pl_by_com(year = None):
-    global abt_pac_3pl_by_com
-    abt_pac_3pl_by_com = None
-    assert year is not None
-    if os.path.isfile('{}/assets/taxe_habitation/parametres_th_{}.csv'.format(openfisca_france.__name__, year)):
-        with pkg_resources.resource_stream(
-                openfisca_france.__name__,
-                'assets/taxe_habitation/parametres_th_{}.csv'.format(year),
-                ) as csv_file:
-            utf8_reader = codecs.getreader("utf-8")
-            csv_reader = csv.DictReader(utf8_reader(csv_file))
-            abt_pac_3pl_by_com = {
-                row['code_insee_commune']: row['abt_pac_3pl_com']
-                for row in csv_reader
-                }
-
-
-def preload_abt_pac_3pl_by_epci(year = None):
-    global abt_pac_3pl_by_epci
-    abt_pac_3pl_by_epci = None
-    assert year is not None
-    if os.path.isfile('{}/assets/taxe_habitation/parametres_th_{}.csv'.format(openfisca_france.__name__, year)):
-        with pkg_resources.resource_stream(
-                openfisca_france.__name__,
-                'assets/taxe_habitation/parametres_th_{}.csv'.format(year),
-                ) as csv_file:
-            utf8_reader = codecs.getreader("utf-8")
-            csv_reader = csv.DictReader(utf8_reader(csv_file))
-            abt_pac_3pl_by_epci = {
-                row['code_insee_commune']: row['abt_pac_3pl_epci']
-                for row in csv_reader
-                }
-
-
-def preload_abt_condition_modeste_by_com(year = None):
-    global abt_condition_modeste_by_com
-    abt_condition_modeste_by_com = None
-    assert year is not None
-    if os.path.isfile('{}/assets/taxe_habitation/parametres_th_{}.csv'.format(openfisca_france.__name__, year)):
-        with pkg_resources.resource_stream(
-                openfisca_france.__name__,
-                'assets/taxe_habitation/parametres_th_{}.csv'.format(year),
-                ) as csv_file:
-            utf8_reader = codecs.getreader("utf-8")
-            csv_reader = csv.DictReader(utf8_reader(csv_file))
-            abt_condition_modeste_by_com = {
-                row['code_insee_commune']: row['abt_condition_modeste_com']
-                for row in csv_reader
-                }
-
-
-def preload_abt_condition_modeste_by_epci(year = None):
-    global abt_condition_modeste_by_epci
-    abt_condition_modeste_by_epci = None
-    assert year is not None
-    if os.path.isfile('{}/assets/taxe_habitation/parametres_th_{}.csv'.format(openfisca_france.__name__, year)):
-        with pkg_resources.resource_stream(
-                openfisca_france.__name__,
-                'assets/taxe_habitation/parametres_th_{}.csv'.format(year),
-                ) as csv_file:
-            utf8_reader = codecs.getreader("utf-8")
-            csv_reader = csv.DictReader(utf8_reader(csv_file))
-            abt_condition_modeste_by_epci = {
-                row['code_insee_commune']: row['abt_condition_modeste_epci']
+            return {
+                row['code_insee_commune']: row[variable_to_load]
                 for row in csv_reader
                 }
 
@@ -235,7 +47,7 @@ class taux_th_commune(Variable):
     def formula(menage, period):
         code_INSEE_commune = menage('code_INSEE_commune', period)
         annee = period.start.offset('first-of', 'year').year
-        preload_taux_by_com(year = annee)
+        taux_by_com = preload_parametres_locaux_taxe_habitation(year = annee, variable_to_load = 'taux_com')
         default_value = 0
         if taux_by_com is None:
             montant = fromiter((default_value for code_INSEE_commune_cell in code_INSEE_commune), dtype = float)
@@ -260,7 +72,7 @@ class taux_th_epci(Variable):
     def formula(menage, period):
         code_INSEE_commune = menage('code_INSEE_commune', period)
         annee = period.start.offset('first-of', 'year').year
-        preload_taux_by_epci(year = annee)
+        taux_by_epci = preload_parametres_locaux_taxe_habitation(year = annee, variable_to_load = 'taux_epci')
         default_value = 0
         if taux_by_epci is None:
             montant = fromiter((default_value for code_INSEE_commune_cell in code_INSEE_commune), dtype = float)
@@ -285,7 +97,7 @@ class valeur_locative_moyenne_th_commune(Variable):
     def formula(menage, period):
         code_INSEE_commune = menage('code_INSEE_commune', period)
         annee = period.start.offset('first-of', 'year').year
-        preload_valeur_locative_moyenne_by_com(year = annee)
+        valeur_locative_moyenne_by_com = preload_parametres_locaux_taxe_habitation(year = annee, variable_to_load = 'valeur_locative_moyenne_com')
         default_value = 0
         if valeur_locative_moyenne_by_com is None:
             montant = fromiter((default_value for code_INSEE_commune_cell in code_INSEE_commune), dtype = float)
@@ -310,7 +122,7 @@ class valeur_locative_moyenne_th_epci(Variable):
     def formula(menage, period):
         code_INSEE_commune = menage('code_INSEE_commune', period)
         annee = period.start.offset('first-of', 'year').year
-        preload_valeur_locative_moyenne_by_epci(year = annee)
+        valeur_locative_moyenne_by_epci = preload_parametres_locaux_taxe_habitation(year = annee, variable_to_load = 'valeur_locative_moyenne_epci')
         default_value = 0
         if valeur_locative_moyenne_by_epci is None:
             montant = fromiter((default_value for code_INSEE_commune_cell in code_INSEE_commune), dtype = float)
@@ -335,7 +147,7 @@ class abt_general_base_th_commune(Variable):
     def formula(menage, period):
         code_INSEE_commune = menage('code_INSEE_commune', period)
         annee = period.start.offset('first-of', 'year').year
-        preload_abt_general_base_by_com(year = annee)
+        abt_general_base_by_com = preload_parametres_locaux_taxe_habitation(year = annee, variable_to_load = 'abt_general_base_com')
         default_value = 0
         if abt_general_base_by_com is None:
             montant = fromiter((default_value for code_INSEE_commune_cell in code_INSEE_commune), dtype = float)
@@ -360,7 +172,7 @@ class abt_general_base_th_epci(Variable):
     def formula(menage, period):
         code_INSEE_commune = menage('code_INSEE_commune', period)
         annee = period.start.offset('first-of', 'year').year
-        preload_abt_general_base_by_epci(year = annee)
+        abt_general_base_by_epci = preload_parametres_locaux_taxe_habitation(year = annee, variable_to_load = 'abt_general_base_epci')
         default_value = 0
         if abt_general_base_by_epci is None:
             montant = fromiter((default_value for code_INSEE_commune_cell in code_INSEE_commune), dtype = float)
@@ -385,7 +197,7 @@ class abt_pac_1_2_th_commune(Variable):
     def formula(menage, period):
         code_INSEE_commune = menage('code_INSEE_commune', period)
         annee = period.start.offset('first-of', 'year').year
-        preload_abt_pac_1_2_by_com(year = annee)
+        abt_pac_1_2_by_com = preload_parametres_locaux_taxe_habitation(year = annee, variable_to_load = 'abt_pac_1_2_com')
         default_value = 0
         if abt_pac_1_2_by_com is None:
             montant = fromiter((default_value for code_INSEE_commune_cell in code_INSEE_commune), dtype = float)
@@ -410,7 +222,7 @@ class abt_pac_1_2_th_epci(Variable):
     def formula(menage, period):
         code_INSEE_commune = menage('code_INSEE_commune', period)
         annee = period.start.offset('first-of', 'year').year
-        preload_abt_pac_1_2_by_epci(year = annee)
+        abt_pac_1_2_by_epci = preload_parametres_locaux_taxe_habitation(year = annee, variable_to_load = 'abt_pac_1_2_epci')
         default_value = 0
         if abt_pac_1_2_by_epci is None:
             montant = fromiter((default_value for code_INSEE_commune_cell in code_INSEE_commune), dtype = float)
@@ -435,7 +247,7 @@ class abt_pac_3pl_th_commune(Variable):
     def formula(menage, period):
         code_INSEE_commune = menage('code_INSEE_commune', period)
         annee = period.start.offset('first-of', 'year').year
-        preload_abt_pac_3pl_by_com(year = annee)
+        abt_pac_3pl_by_com = preload_parametres_locaux_taxe_habitation(year = annee, variable_to_load = 'abt_pac_3pl_com')
         default_value = 0
         if abt_pac_3pl_by_com is None:
             montant = fromiter((default_value for code_INSEE_commune_cell in code_INSEE_commune), dtype = float)
@@ -460,7 +272,7 @@ class abt_pac_3pl_th_epci(Variable):
     def formula(menage, period):
         code_INSEE_commune = menage('code_INSEE_commune', period)
         annee = period.start.offset('first-of', 'year').year
-        preload_abt_pac_3pl_by_epci(year = annee)
+        abt_pac_3pl_by_epci = preload_parametres_locaux_taxe_habitation(year = annee, variable_to_load = 'abt_pac_3pl_epci')
         default_value = 0
         if abt_pac_3pl_by_epci is None:
             montant = fromiter((default_value for code_INSEE_commune_cell in code_INSEE_commune), dtype = float)
@@ -485,7 +297,7 @@ class abt_condition_modeste_th_commune(Variable):
     def formula(menage, period):
         code_INSEE_commune = menage('code_INSEE_commune', period)
         annee = period.start.offset('first-of', 'year').year
-        preload_abt_condition_modeste_by_com(year = annee)
+        abt_condition_modeste_by_com = preload_parametres_locaux_taxe_habitation(year = annee, variable_to_load = 'abt_condition_modeste_com')
         default_value = 0
         if abt_condition_modeste_by_com is None:
             montant = fromiter((default_value for code_INSEE_commune_cell in code_INSEE_commune), dtype = float)
@@ -510,7 +322,7 @@ class abt_condition_modeste_th_epci(Variable):
     def formula(menage, period):
         code_INSEE_commune = menage('code_INSEE_commune', period)
         annee = period.start.offset('first-of', 'year').year
-        preload_abt_condition_modeste_by_epci(year = annee)
+        abt_condition_modeste_by_epci = preload_parametres_locaux_taxe_habitation(year = annee, variable_to_load = 'abt_condition_modeste_epci')
         default_value = 0
         if abt_condition_modeste_by_epci is None:
             montant = fromiter((default_value for code_INSEE_commune_cell in code_INSEE_commune), dtype = float)
