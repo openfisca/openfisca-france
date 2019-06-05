@@ -577,7 +577,6 @@ class revenu_categoriel_plus_values(Variable):
     label = u"Revenu catégoriel - Plus-values"
     reference = "http://www.insee.fr/fr/methodes/default.asp?page=definitions/revenus-categoriesl.htm"
     definition_period = YEAR
-    end = '2017-12-31'
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
         f3sb = foyer_fiscal('f3sb', period)
@@ -601,6 +600,11 @@ class revenu_categoriel_plus_values(Variable):
         f3ua = foyer_fiscal('f3ua', period)  # Cette case existant avant, mais ses montants étaient inclus dans 3vg.
 
         return f3sb + f3vg + f3wb + f3ua
+
+    def formula_2018_01_01(foyer_fiscal, period, parameters):
+        f3wb = foyer_fiscal('f3wb', period)
+        
+        return f3wb
 
 
 class revenu_categoriel_tspr(Variable):
@@ -977,8 +981,9 @@ class revenu_categoriel(Variable):
         rev_cat_tspr = foyer_fiscal('revenu_categoriel_tspr', period)
         rev_cat_rfon = foyer_fiscal('revenu_categoriel_foncier', period)
         rev_cat_rpns = foyer_fiscal('revenu_categoriel_non_salarial', period)
+        rev_cat_pv = foyer_fiscal('revenu_categoriel_plus_values', period)
 
-        return rev_cat_tspr + rev_cat_rfon + rev_cat_rpns
+        return rev_cat_tspr + rev_cat_rfon + rev_cat_rpns + rev_cat_pv
 
 
 ###############################################################################
@@ -1897,13 +1902,10 @@ class rfr_plus_values_hors_rni(Variable):
     def formula_2018_01_01(foyer_fiscal, period, parameters):
         """
         Plus-values 2018 et + entrant dans le calcul du revenu fiscal de référence.
-        A partir de l'imposition des revenus 2018, il est supposé qu'aucune plus-values n'est taxée au barème.
-        Toutes les plus-values entrant dans le calcul du RFR se retrouvent ici dans la variable 'rfr_plus_values_hors_rni'
         """
         f3sa = foyer_fiscal('f3sa', period)
         f3vg = foyer_fiscal('f3vg', period)
         f3ua = foyer_fiscal('f3ua', period)
-        f3wb = foyer_fiscal('f3wb', period)
         f3sj = foyer_fiscal('f3sj', period)
 
         f3sk = foyer_fiscal('f3sk', period)
@@ -1928,7 +1930,7 @@ class rfr_plus_values_hors_rni(Variable):
         rpns_pvce_i = foyer_fiscal.members('rpns_pvce', period)
         rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
 
-        return f3sa + f3vg + f3ua + f3wb + f3sj + f3sk + f3tz + f3vc + f3vd + f3vf + f3vi + f3vm + (f3vq - f3vr) + f3vt + f3vz + f3we + f3wi + f3wj + rpns_pvce
+        return f3sa + f3vg + f3ua + f3sj + f3sk + f3tz + f3vc + f3vd + f3vf + f3vi + f3vm + (f3vq - f3vr) + f3vt + f3vz + f3we + f3wi + f3wj + rpns_pvce
 
 
 class iai(Variable):

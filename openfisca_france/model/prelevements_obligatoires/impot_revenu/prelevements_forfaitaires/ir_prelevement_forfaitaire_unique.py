@@ -142,14 +142,11 @@ class plus_values_prelevement_forfaitaire_unique_ir(Variable):
 
     def formula_2018_01_01(foyer_fiscal, period, parameters):
         '''
-        Cette variable fusionne le périmètre des plus-values des anciennes variables de plus_values-values présentes
-        dans taxation_plus_values_hors_bareme et dans 'revenu_categoriel_plus_values', mais en adaptant les assiettes au PFU
-        (notamment, pour les revenus de 'revenu_categoriel_plus_values', passage des montants nets à bruts)
+        Les assiettes des plus-values du PFU doivent être brutes (et non nettes)
         '''
         f3sa = foyer_fiscal('f3sa', period)
         f3vg = foyer_fiscal('f3vg', period)
         f3ua = foyer_fiscal('f3ua', period)
-        f3wb = foyer_fiscal('f3wb', period)
 
         # Ici, on reprend le champ des plus-values de la variable taxation_plus_values_hors_bareme
         f3sj = foyer_fiscal('f3sj', period)
@@ -174,7 +171,7 @@ class plus_values_prelevement_forfaitaire_unique_ir(Variable):
         #       comprend, en plus des plus-values imposables avant abbattement, celles bénéficiant d'un report d'imposition. HYP : on prend les montants nets.
         # 3WI et 3WJ : les conditions liées au report d'imposition de l'art. 150-0 B ter du CGI ont été remaniées à la marge.
         #              On ne prend pas en compte ces remaniements. Situation résumée dans https://taj-strategie.fr/plf-2018-lecture-definitive-fiscalite-personnes
-        return f3sa + f3vg + f3ua + f3wb + f3sj + f3sk + f3vm + f3vt + f3vd + f3vi + f3vf + f3wi + f3wj + rpns_pvce
+        return f3sa + f3vg + f3ua + f3sj + f3sk + f3vm + f3vt + f3vd + f3vi + f3vf + f3wi + f3wj + rpns_pvce
 
 
 class prelevement_forfaitaire_unique_ir_hors_assurance_vie_epargne_solidaire_etats_non_cooperatifs(Variable):
