@@ -192,14 +192,13 @@ class assiette_csg_plus_values(Variable):
 
         # Plus-values mobilières brutes (avant abattement)
         f3vg = foyer_fiscal('f3vg', period)
-        f3va = foyer_fiscal('f3va', period)
         f3we = foyer_fiscal('f3we', period)
         f3ua = foyer_fiscal('f3ua', period)
 
         # Plus-values immobilières
         f3vz = foyer_fiscal('f3vz', period)
 
-        return f3vg + f3va + f3ua + f3vz + f3we
+        return f3vg + f3va + f3vz + f3we
 
 
 class assiette_csg_revenus_capital(Variable):
