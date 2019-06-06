@@ -1,5 +1,8 @@
 description: Abattement maximum pour l'ensemble du foyer
-reference: https://www.ipp.eu/outils/baremes-ipp/
+reference:
+  - https://www.ipp.eu/baremes-ipp/impot-sur-le-revenu/calcul_revenus_imposables/deductions/
+  - http://bofip.impots.gouv.fr/bofip/7458-PGP#7458-PGP_Plafond_de_labattement_33
+  - https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000034597100&cidTexte=LEGITEXT000006069577
 unit: currency
 values:
   1977-01-01:
@@ -80,3 +83,6 @@ values:
     value: 3715.0
   2017-01-01:
     value: 3752.0
+  2018-01-01:
+    value: 3812.0
+
