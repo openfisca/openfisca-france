@@ -1,5 +1,7 @@
 description: Maximum par personne
-reference: https://www.ipp.eu/outils/baremes-ipp/
+reference:
+  - https://www.ipp.eu/baremes-ipp/impot-sur-le-revenu/calcul_revenus_imposables/charg_deduc/
+  - https://www.service-public.fr/particuliers/vosdroits/F10259
 unit: currency
 values:
   2004-01-01:
@@ -28,3 +30,6 @@ values:
     value: 30432.0
   2017-01-01:
     value: 30893.0
+  2018-01-01:
+    value: 31786.0
+

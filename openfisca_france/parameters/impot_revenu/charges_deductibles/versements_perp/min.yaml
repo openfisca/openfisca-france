@@ -1,5 +1,7 @@
 description: Minimum par personne
-reference: Barèmes IPP - https://www.ipp.eu/wp-content/uploads/2017/07/baremes-ipp-impot-revenu-income-tax.xlsx
+reference:
+  - https://www.ipp.eu/baremes-ipp/impot-sur-le-revenu/calcul_revenus_imposables/charg_deduc/
+  - https://www.service-public.fr/particuliers/vosdroits/F10259
 unit: currency
 values:
   2004-01-01:
@@ -28,3 +30,5 @@ values:
     value: 3804.0
   2017-01-01:
     value: 3862.0
+  2018-01-01:
+    value: 3973.0
