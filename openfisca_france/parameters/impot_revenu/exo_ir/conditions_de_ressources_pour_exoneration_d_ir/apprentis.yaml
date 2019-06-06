@@ -1,4 +1,7 @@
-reference: https://www.ipp.eu/outils/baremes-ipp/
+reference:
+  - https://www.ipp.eu/baremes-ipp/impot-sur-le-revenu/calcul_revenus_imposables/exo_ir/
+  - http://bofip.impots.gouv.fr/bofip/5893-PGP#5893-PGP_Portee_de_lexoneration_210
+  - https://www.insee.fr/fr/statistiques/1375188
 unit: currency
 values:
   1977-01-01:
@@ -77,3 +80,5 @@ values:
     value: 17599.0
   2017-01-01:
     value: 17763.0
+  2018-01-01:
+    value: 17982.0
