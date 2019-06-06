@@ -1,5 +1,8 @@
 description: Enfants à charge (par personne rattachée)
-reference: https://www.ipp.eu/outils/baremes-ipp/ - http://bofip.impots.gouv.fr/bofip/2036-PGP.html
+reference:
+  - https://www.ipp.eu/baremes-ipp/impot-sur-le-revenu/calcul_revenus_imposables/abat_rni/
+  - http://bofip.impots.gouv.fr/bofip/2036-PGP.html
+  - https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006069577&idArticle=LEGIARTI000037985596
 unit: currency
 values:
   1977-01-01:
@@ -80,3 +83,5 @@ values:
     value: 5738.0
   2017-01-01:
     value: 5795.0
+  2018-01-01:
+    value: 5888.0
