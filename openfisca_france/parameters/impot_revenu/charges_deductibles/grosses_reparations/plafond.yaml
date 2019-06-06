@@ -6,5 +6,5 @@ unit: currency
 values:
   2009-01-01:
     value: 25000.0
-  2016-01-01:
+  2017-01-01:
     value: null
