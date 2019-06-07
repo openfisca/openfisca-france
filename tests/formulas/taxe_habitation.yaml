@@ -106,7 +106,8 @@
     taxe_habitation: 0
 
 - name: th_plaf_2017_1
-  description: Taxe d'habitation 2017 - test du plafonnement avec réduction de dégrèvement pour un couple avec 3 enfants avec un RFR donnant éligibilité à l'exonération mais non éligibible à l'exonération du fait des autres critères d'éligibilité
+  description: Taxe d'habitation 2017 - test du plafonnement avec réduction de dégrèvement pour un couple avec 3 enfants \
+    avec un RFR donnant éligibilité à l'exonération mais non éligibible à l'exonération du fait des autres critères d'éligibilité
   period: 2017
   absolute_error_margin: 0.03
   input:
@@ -149,7 +150,8 @@
     taxe_habitation: -(587.97-13.28)
 
 - name: th_plaf_2017_2
-  description: Taxe d'habitation 2017 - test du plafonnement avec réduction de dégrèvement pour un couple avec 3 enfants avec un RFR ne donnant pas éligibilité à l'exonération
+  description: Taxe d'habitation 2017 - test du plafonnement avec réduction de dégrèvement pour un couple avec 3 enfants \
+    avec un RFR ne donnant pas éligibilité à l'exonération
   period: 2017
   absolute_error_margin: 0.03
   input:
@@ -192,7 +194,9 @@
     taxe_habitation: -587.97
 
 - name: th_abt_condition_modeste_2017
-  description: Taxe d'habitation 2017 - test de l'abattement pour personnes de condition modeste, combiné avec éligibilité au plafonnement pour un couple avec 3 enfants avec un RFR donnant éligibilité à l'exonération mais non éligibible à l'exonération du fait des autres critères d'éligibilité
+  description: Taxe d'habitation 2017 - test de l'abattement pour personnes de condition modeste, combiné avec éligibilité au plafonnement \
+    pour un couple avec 3 enfants avec un RFR donnant éligibilité à l'exonération mais non éligibible à l'exonération \
+    du fait des autres critères d'éligibilité
   period: 2017
   absolute_error_margin: 0.03
   input:
@@ -231,7 +235,9 @@
     taxe_habitation: -128.12
 
 - name: th_pas_abt_condition_modeste_val_loc_elevee_2017
-  description: Taxe d'habitation 2017 - test de la non-éligibilité à l'abattement pour personnes de condition modeste du fait d'une valeur locative trop élevée (pour un ménage éligible aux conditions de RFR de cet abattement), combiné avec éligibilité au plafonnement pour un couple avec 3 enfants
+  description: Taxe d'habitation 2017 - test de la non-éligibilité à l'abattement pour personnes de condition modeste \
+    du fait d'une valeur locative trop élevée (pour un ménage éligible aux conditions de RFR de cet abattement), \
+    combiné avec éligibilité au plafonnement pour un couple avec 3 enfants
   period: 2017
   absolute_error_margin: 0.03
   input:
@@ -270,7 +276,8 @@
     taxe_habitation: -(446.67 - 149.69)
 
 - name: th_test_differents_foyers_fiscaux_2017_1
-  description: Taxe d'habitation 2017 - test 1 du fait que la condition de RFR doit être respectée pour chaque foyer fiscal pour l'exonération, et via la somme des RFR pour le plafonnement
+  description: Taxe d'habitation 2017 - test 1 du fait que la condition de RFR doit être respectée pour chaque foyer fiscal pour l'exonération, \
+    et via la somme des RFR pour le plafonnement
   period: 2017
   absolute_error_margin: 0.03
   input:
@@ -315,7 +322,8 @@
       taxe_habitation: -387.94
 
 - name: th_test_differents_foyers_fiscaux_2017_2
-  description: Taxe d'habitation 2017 - test 2 du fait que la condition de RFR doit être respectée pour chaque foyer fiscal pour l'exonération, et via la somme des RFR pour le plafonnement
+  description: Taxe d'habitation 2017 - test 2 du fait que la condition de RFR doit être respectée pour chaque foyer fiscal pour l'exonération, \
+    et via la somme des RFR pour le plafonnement
   period: 2017
   absolute_error_margin: 0.03
   input:
