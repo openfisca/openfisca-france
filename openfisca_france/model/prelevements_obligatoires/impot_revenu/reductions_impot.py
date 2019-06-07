@@ -4561,22 +4561,22 @@ class rpinel(Variable):
         f7qd = foyer_fiscal('f7qd', period)
 
         cases_investissement = {
-            "2015": [
+            2015: [
                 ('f7qh', 9, 'outremer'),
                 ('f7qg', 6, 'outremer'),
                 ('f7qf', 9, 'metropole'),
                 ('f7qe', 6, 'metropole')],
-            "2016": [
+            2016: [
                 ('f7ql', 9, 'outremer'),
                 ('f7qk', 6, 'outremer'),
                 ('f7qj', 9, 'metropole'),
                 ('f7qi', 6, 'metropole')],
-            "2017": [
+            2017: [
                 ('f7qp', 9, 'outremer'),
                 ('f7qo', 6, 'outremer'),
                 ('f7qn', 9, 'metropole'),
                 ('f7qm', 6, 'metropole')],
-            "2018": [
+            2018: [
                 ('f7qu', 9, 'outremer'),
                 ('f7qt', 6, 'outremer'),
                 ('f7qs', 9, 'metropole'),
@@ -4584,10 +4584,10 @@ class rpinel(Variable):
             }
 
         cases_report = {
-            "2014": ['f7ai', 'f7bi', 'f7ci', 'f7di'],
-            "2015": ['f7bz', 'f7cz', 'f7dz', 'f7ez'],
-            "2016": ['f7qz', 'f7rz', 'f7sz', 'f7tz'],
-            "2017": ['f7ra', 'f7rb', 'f7rc', 'f7rd'],
+            2014: ['f7ai', 'f7bi', 'f7ci', 'f7di'],
+            2015: ['f7bz', 'f7cz', 'f7dz', 'f7ez'],
+            2016: ['f7qz', 'f7rz', 'f7sz', 'f7tz'],
+            2017: ['f7ra', 'f7rb', 'f7rc', 'f7rd'],
             }
 
         P = parameters(period).impot_revenu.reductions_impots.rpinel
@@ -4614,8 +4614,10 @@ class rpinel(Variable):
                 depenses_cumulees += depense
             return reduction
 
-        reduction_cumulee = reduc_invest_real_2014 + sum([calcul_reduction_investissement(cases) for cases in cases_investissement.values()])
-        report = sum([foyer_fiscal(case, period) for year in cases_report.keys() for case in cases_report[year]])
+        annee_fiscale = period.start.year
+
+        reduction_cumulee = reduc_invest_real_2014 + sum([calcul_reduction_investissement(cases_investissement[year]) for year in range(2015, annee_fiscale + 1)])
+        report = sum([foyer_fiscal(case, period) for year in range(2014, annee_fiscale) for case in cases_report[year]])
 
         return reduction_cumulee + report
 
