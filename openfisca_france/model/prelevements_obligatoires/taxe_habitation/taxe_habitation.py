@@ -1,10 +1,6 @@
 # -*- coding: utf-8 -*-
 
-import logging
-
 from openfisca_france.model.base import *
-
-log = logging.getLogger(__name__)
 
 
 # Simulation TH de la résidence principale : législation à partir de l'année 2017
@@ -250,8 +246,9 @@ class taxe_habitation_commune_epci_avant_degrevement(Variable):
     def formula_2017_01_01(menage, period, parameters):
         taux_th_commune = menage('taux_th_commune', period)
         taux_th_epci = menage('taux_th_epci', period)
-        if taux_th_commune + taux_th_epci == 0:
-            log.error(("Attention, il n'y a pas de taux de taxe d'habitation défini pour la commune indiquée."))
+        # Attention, si (taux_th_commune + taux_th_epci == 0), alors 
+        # il n'y a pas de taux de taxe d'habitation défini pour le code_INSEE_commune indiqué.
+
         base_nette_th_commune = menage('base_nette_th_commune', period)
         base_nette_th_epci = menage('base_nette_th_epci', period)
         exonere_taxe_habitation = menage('exonere_taxe_habitation', period)
@@ -320,18 +317,22 @@ class degrevement_plafonnement_taxe_habitation(Variable):
         base_nette_th_commune = menage('base_nette_th_commune', period)
         base_nette_th_epci = menage('base_nette_th_epci', period)
         base_reduction_degrevement = min_(base_nette_th_commune, base_nette_th_epci)
-        P = parameters(period).taxation_locale.taxe_habitation
+
         taux_th_commune = menage('taux_th_commune', period)
         taux_th_epci = menage('taux_th_epci', period)
         ecart_avec_2000 = period.start.offset('first-of', 'year').year - 2000
         annee_2000 = period.start.offset('first-of', 'year').period('year').offset(-ecart_avec_2000)
         taux_th_commune_2000 = menage('taux_th_commune', annee_2000)
         taux_th_epci_2000 = menage('taux_th_epci', annee_2000)
+
+        P = parameters(period).taxation_locale.taxe_habitation
         reduction_degrevement = base_reduction_degrevement * (taux_th_commune + taux_th_epci - (taux_th_commune_2000 + taux_th_epci_2000) * P.plafonnement.coeff_multiplicateur_taux_2000)
         reduction_degrevement = reduction_degrevement * (reduction_degrevement > P.plafonnement.valeur_minimale_reduction_degrevement)
         if taux_th_commune_2000 + taux_th_epci_2000 == 0:
+            # Les taux de taxe d'habitation de l'année 2000 utilisés pour la réduction du plafonnement 
+            # ne sont pas disponibles pour cette commune. Nous mettons donc cette réduction à zéro.
             reduction_degrevement = 0
-            log.error(("Les taux de taxe d'habitation de l'année 2000 utilisés pour la réduction du plafonnement ne sont pas disponibles pour cette commune. Nous mettons donc cette réduction à zéro."))
+
         degrevement = (
             taxe_habitation_commune_epci_avant_degrevement
             - plafond_taxe_habitation
