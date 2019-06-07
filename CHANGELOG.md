@@ -1,5 +1,13 @@
 # Changelog
 
+### 42.5.1 [#1334](https://github.com/openfisca/openfisca-france/pull/1334)
+
+* Correction d'un crash.
+* Périodes concernées : toutes.
+* Zones impactées : `prestations/minima_sociaux/ada`.
+* Détails :
+  - Utilise numpy `not` à la place du `not` de Python qui ne gère pas les vecteurs
+
 ## 42.5.0 [#1326](https://github.com/openfisca/openfisca-france/pull/1326)
 
 * Correction d'un calcul existant
