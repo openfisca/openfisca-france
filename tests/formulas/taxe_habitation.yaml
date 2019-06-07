@@ -306,7 +306,7 @@
       foyer_fiscal_2:
         nbptr: 1
     menage:
-      exonere_th: 0
+      exonere_taxe_habitation: 0
       base_nette_th_commune: 2752 #(3000 - 248)
       base_nette_th_epci: 2727 #(3000 - 273)
       taxe_habitation_commune_epci_avant_degrevement: 387.94 #(2752*0.1037 + 2727*0.0362)*1.01
@@ -347,7 +347,7 @@
       foyer_fiscal_2:
         nbptr: 1
     menage:
-      exonere_th: 1
+      exonere_taxe_habitation: 1
       taxe_habitation: -0
 
 - name: th_degrevement_office_2018

@@ -39,7 +39,7 @@ class condition_rfr_exoneration_th(Variable):
         return (rfr < seuil_th)
 
 
-class exonere_th(Variable):
+class exonere_taxe_habitation(Variable):
     value_type = bool
     default_value = False
     entity = Menage
@@ -154,8 +154,8 @@ class abattement_personnes_condition_modeste_th_commune(Variable):
         valeur_locative_max = (taux_plafond_general + maj_taux_plafond_par_pac * nb_enfants) * valeur_locative_moyenne_th_commune
         condition_rfr_exoneration_th_i = menage.members.foyer_fiscal('condition_rfr_exoneration_th', period)
         condition_rfr_exoneration_th = menage.all(condition_rfr_exoneration_th_i)
-        exonere_th = menage('exonere_th', period)
-        elig = condition_rfr_exoneration_th * not_(exonere_th) * (valeur_locative_cadastrale_brute <= valeur_locative_max)
+        exonere_taxe_habitation = menage('exonere_taxe_habitation', period)
+        elig = condition_rfr_exoneration_th * not_(exonere_taxe_habitation) * (valeur_locative_cadastrale_brute <= valeur_locative_max)
 
         return elig * abt_condition_modeste_th_commune
 
@@ -183,8 +183,8 @@ class abattement_personnes_condition_modeste_th_epci(Variable):
         valeur_locative_max = (taux_plafond_general + maj_taux_plafond_par_pac * nb_enfants) * valeur_locative_moyenne_th_epci
         condition_rfr_exoneration_th_i = menage.members.foyer_fiscal('condition_rfr_exoneration_th', period)
         condition_rfr_exoneration_th = menage.all(condition_rfr_exoneration_th_i)
-        exonere_th = menage('exonere_th', period)
-        elig = condition_rfr_exoneration_th * not_(exonere_th) * (valeur_locative_cadastrale_brute <= valeur_locative_max)
+        exonere_taxe_habitation = menage('exonere_taxe_habitation', period)
+        elig = condition_rfr_exoneration_th * not_(exonere_taxe_habitation) * (valeur_locative_cadastrale_brute <= valeur_locative_max)
 
         return elig * abt_condition_modeste_th_epci
 
@@ -254,10 +254,10 @@ class taxe_habitation_commune_epci_avant_degrevement(Variable):
             log.error(("Attention, il n'y a pas de taux de taxe d'habitation défini pour la commune indiquée."))
         base_nette_th_commune = menage('base_nette_th_commune', period)
         base_nette_th_epci = menage('base_nette_th_epci', period)
-        exonere_th = menage('exonere_th', period)
+        exonere_taxe_habitation = menage('exonere_taxe_habitation', period)
         P = parameters(period).taxation_locale.taxe_habitation
         taux_frais_assiette = P.frais_assiette
-        return (base_nette_th_commune * taux_th_commune + base_nette_th_epci * taux_th_epci) * not_(exonere_th) * (1 + taux_frais_assiette)
+        return (base_nette_th_commune * taux_th_commune + base_nette_th_epci * taux_th_epci) * not_(exonere_taxe_habitation) * (1 + taux_frais_assiette)
 
 
 class plafond_taxe_habitation_eligibilite(Variable):
