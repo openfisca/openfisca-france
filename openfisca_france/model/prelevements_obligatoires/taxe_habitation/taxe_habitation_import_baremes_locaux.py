@@ -66,7 +66,7 @@ class taux_th_epci(Variable):
     value_type = float
     default_value = 0
     entity = Menage
-    label = u"Taux de taxe d'habitation de l'EPCI"
+    label = u"Taux de taxe d'habitation de l'EPCI (Établissement Public de Coopération Intercommunale)"
     definition_period = YEAR
 
     def formula(menage, period):
@@ -116,7 +116,7 @@ class valeur_locative_moyenne_th_epci(Variable):
     value_type = float
     default_value = 0
     entity = Menage
-    label = u"Valeur locative moyenne utilisée pour le calcul des abattements de la taxe d'habitation de l'EPCI"
+    label = u"Valeur locative moyenne utilisée pour le calcul des abattements de la taxe d'habitation de l'EPCI (Établissement Public de Coopération Intercommunale)"
     definition_period = YEAR
 
     def formula(menage, period):
@@ -166,7 +166,7 @@ class abt_general_base_th_epci(Variable):
     value_type = float
     default_value = 0
     entity = Menage
-    label = u"Quotité (ajustée) de l'abattement général à la base - taxe d'habitation de l'EPCI"
+    label = u"Quotité (ajustée) de l'abattement général à la base - taxe d'habitation de l'EPCI (Établissement Public de Coopération Intercommunale)"
     definition_period = YEAR
 
     def formula(menage, period):
@@ -191,7 +191,7 @@ class abt_pac_1_2_th_commune(Variable):
     value_type = float
     default_value = 0
     entity = Menage
-    label = u"Quotité (ajustée) de l'abattement obligatoire pour charges de famille, pour les deux premières personnes à charge - TH de la commune"
+    label = u"Quotité (ajustée) de l'abattement obligatoire pour charges de famille, pour les deux premières personnes à charge - taxe d'habitation de la commune"
     definition_period = YEAR
 
     def formula(menage, period):
@@ -216,7 +216,7 @@ class abt_pac_1_2_th_epci(Variable):
     value_type = float
     default_value = 0
     entity = Menage
-    label = u"Quotité (ajustée) de l'abattement obligatoire pour charges de famille, pour les deux premières personnes à charge - TH de l'EPCI"
+    label = u"Quotité (ajustée) de l'abattement obligatoire pour charges de famille, pour les deux premières personnes à charge - taxe d'habitation de l'EPCI (Établissement Public de Coopération Intercommunale)"
     definition_period = YEAR
 
     def formula(menage, period):
@@ -241,7 +241,7 @@ class abt_pac_3pl_th_commune(Variable):
     value_type = float
     default_value = 0
     entity = Menage
-    label = u"Quotité (ajustée) de l'abattement obligatoire pour charges de famille, pour les personnes à charge à partir de la troisième - TH de la commune"
+    label = u"Quotité (ajustée) de l'abattement obligatoire pour charges de famille, pour les personnes à charge à partir de la troisième - taxe d'habitation de la commune"
     definition_period = YEAR
 
     def formula(menage, period):
@@ -266,7 +266,7 @@ class abt_pac_3pl_th_epci(Variable):
     value_type = float
     default_value = 0
     entity = Menage
-    label = u"Quotité (ajustée) de l'abattement obligatoire pour charges de famille, pour les personnes à charge à partir de la troisième - TH de l'EPCI"
+    label = u"Quotité (ajustée) de l'abattement obligatoire pour charges de famille, pour les personnes à charge à partir de la troisième - taxe d'habitation de l'EPCI (Établissement Public de Coopération Intercommunale)"
     definition_period = YEAR
 
     def formula(menage, period):
@@ -291,7 +291,7 @@ class abt_condition_modeste_th_commune(Variable):
     value_type = float
     default_value = 0
     entity = Menage
-    label = u"Quotité (ajustée) de l'abattement pour personnes de condition modeste - TH de la commune"
+    label = u"Quotité (ajustée) de l'abattement pour personnes de condition modeste - taxe d'habitation de la commune"
     definition_period = YEAR
 
     def formula(menage, period):
@@ -316,7 +316,7 @@ class abt_condition_modeste_th_epci(Variable):
     value_type = float
     default_value = 0
     entity = Menage
-    label = u"Quotité (ajustée) de l'abattement pour personnes de condition modeste - TH de l'EPCI"
+    label = u"Quotité (ajustée) de l'abattement pour personnes de condition modeste - taxe d'habitation de l'EPCI (Établissement Public de Coopération Intercommunale)"
     definition_period = YEAR
 
     def formula(menage, period):
