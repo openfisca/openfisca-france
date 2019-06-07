@@ -36,5 +36,5 @@ def test(year = 2013):
     reference_simulation = scenario.new_simulation(use_baseline = True)
     reform_simulation = scenario.new_simulation()
     # error_margin = 1
-    impots_directs = reference_simulation.calculate('impots_directs', period = year) # noqa F841
-    reform_impots_directs = reform_simulation.calculate('impots_directs', period = year) # noqa F841
+    impots_directs = reference_simulation.calculate('impots_directs', period = year)  # noqa F841
+    reform_impots_directs = reform_simulation.calculate('impots_directs', period = year)  # noqa F841
