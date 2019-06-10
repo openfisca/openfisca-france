@@ -4374,7 +4374,7 @@ class rpinel(Variable):
     def formula_2015_01_01(foyer_fiscal, period, parameters):
         '''
         Investissement locatif privé - Dispositif Pinel
-        2015
+        Depuis 2015
         '''
         f7ek = foyer_fiscal('f7ek', period)
         f7el = foyer_fiscal('f7el', period)
@@ -4384,199 +4384,22 @@ class rpinel(Variable):
         f7qd = foyer_fiscal('f7qd', period)
 
         cases_investissement = {
-            "2015": [
+            2015: [
                 ('f7qh', 9, 'outremer'),
                 ('f7qg', 6, 'outremer'),
                 ('f7qf', 9, 'metropole'),
                 ('f7qe', 6, 'metropole')],
-            }
-
-        cases_report = {
-            "2014": ['f7ai', 'f7bi', 'f7ci', 'f7di'],
-            }
-
-        P = parameters(period).impot_revenu.reductions_impots.rpinel
-
-        max1 = max_(0, P.plafond - f7el - f7qd)  # 2014 : plafond commun 'duflot' et 'rpinel'
-        max2 = max_(0, max1 - f7qc)
-        max3 = max_(0, max2 - f7ek - f7qb)
-
-        reduc_invest_real_2014 = around(
-            P.taux['outremer']['9_ans'] * min_(max_(0, P.plafond - f7el), f7qd) / 9
-            + P.taux['outremer']['6_ans'] * min_(max1, f7qc) / 6
-            + P.taux['metropole']['9_ans'] * min_(max_(0, max2 - f7ek), f7qb) / 9
-            + P.taux['metropole']['6_ans'] * min_(max3, f7qa) / 6
-            )
-
-        def calcul_reduction_investissement(cases):
-            reduction = foyer_fiscal.empty_array()
-            depenses_cumulees = foyer_fiscal.empty_array()
-            for case in cases:
-                variable, duree, zone = case
-                depense = foyer_fiscal(variable, period)
-                taux = P.taux[zone][str(duree) + '_ans']
-                reduction += around(taux * min_(max_(0, P.plafond - depenses_cumulees), depense) / duree)
-                depenses_cumulees += depense
-            return reduction
-
-        reduction_cumulee = reduc_invest_real_2014 + sum([calcul_reduction_investissement(cases) for cases in cases_investissement.values()])
-        report = sum([foyer_fiscal(case, period) for year in cases_report.keys() for case in cases_report[year]])
-
-        return reduction_cumulee + report
-
-    def formula_2016_01_01(foyer_fiscal, period, parameters):
-        '''
-        Investissement locatif privé - Dispositif Pinel
-        2016
-        '''
-        f7ek = foyer_fiscal('f7ek', period)
-        f7el = foyer_fiscal('f7el', period)
-        f7qa = foyer_fiscal('f7qa', period)
-        f7qb = foyer_fiscal('f7qb', period)
-        f7qc = foyer_fiscal('f7qc', period)
-        f7qd = foyer_fiscal('f7qd', period)
-
-        cases_investissement = {
-            "2015": [
-                ('f7qh', 9, 'outremer'),
-                ('f7qg', 6, 'outremer'),
-                ('f7qf', 9, 'metropole'),
-                ('f7qe', 6, 'metropole')],
-            "2016": [
+            2016: [
                 ('f7ql', 9, 'outremer'),
                 ('f7qk', 6, 'outremer'),
                 ('f7qj', 9, 'metropole'),
                 ('f7qi', 6, 'metropole')],
-            }
-
-        cases_report = {
-            "2014": ['f7ai', 'f7bi', 'f7ci', 'f7di'],
-            "2015": ['f7bz', 'f7cz', 'f7dz', 'f7ez'],
-            }
-
-        P = parameters(period).impot_revenu.reductions_impots.rpinel
-
-        max1 = max_(0, P.plafond - f7el - f7qd)  # 2014 : plafond commun 'duflot' et 'rpinel'
-        max2 = max_(0, max1 - f7qc)
-        max3 = max_(0, max2 - f7ek - f7qb)
-
-        reduc_invest_real_2014 = around(
-            P.taux['outremer']['9_ans'] * min_(max_(0, P.plafond - f7el), f7qd) / 9
-            + P.taux['outremer']['6_ans'] * min_(max1, f7qc) / 6
-            + P.taux['metropole']['9_ans'] * min_(max_(0, max2 - f7ek), f7qb) / 9
-            + P.taux['metropole']['6_ans'] * min_(max3, f7qa) / 6
-            )
-
-        def calcul_reduction_investissement(cases):
-            reduction = foyer_fiscal.empty_array()
-            depenses_cumulees = foyer_fiscal.empty_array()
-            for case in cases:
-                variable, duree, zone = case
-                depense = foyer_fiscal(variable, period)
-                taux = P.taux[zone][str(duree) + '_ans']
-                reduction += around(taux * min_(max_(0, P.plafond - depenses_cumulees), depense) / duree)
-                depenses_cumulees += depense
-            return reduction
-
-        reduction_cumulee = reduc_invest_real_2014 + sum([calcul_reduction_investissement(cases) for cases in cases_investissement.values()])
-        report = sum([foyer_fiscal(case, period) for year in cases_report.keys() for case in cases_report[year]])
-
-        return reduction_cumulee + report
-
-    def formula_2017_01_01(foyer_fiscal, period, parameters):
-        '''
-        Investissement locatif privé - Dispositif Pinel
-        2017
-        '''
-        f7ek = foyer_fiscal('f7ek', period)
-        f7el = foyer_fiscal('f7el', period)
-        f7qa = foyer_fiscal('f7qa', period)
-        f7qb = foyer_fiscal('f7qb', period)
-        f7qc = foyer_fiscal('f7qc', period)
-        f7qd = foyer_fiscal('f7qd', period)
-
-        cases_investissement = {
-            "2015": [
-                ('f7qh', 9, 'outremer'),
-                ('f7qg', 6, 'outremer'),
-                ('f7qf', 9, 'metropole'),
-                ('f7qe', 6, 'metropole')],
-            "2016": [
-                ('f7ql', 9, 'outremer'),
-                ('f7qk', 6, 'outremer'),
-                ('f7qj', 9, 'metropole'),
-                ('f7qi', 6, 'metropole')],
-            "2017": [
-                ('f7qp', 9, 'outremer'),
-                ('f7qo', 6, 'outremer'),
-                ('f7qn', 9, 'metropole'),
-                ('f7qm', 6, 'metropole')]
-            }
-
-        cases_report = {
-            "2014": ['f7ai', 'f7bi', 'f7ci', 'f7di'],
-            "2015": ['f7bz', 'f7cz', 'f7dz', 'f7ez'],
-            "2016": ['f7qz', 'f7rz', 'f7sz', 'f7tz'],
-            }
-
-        P = parameters(period).impot_revenu.reductions_impots.rpinel
-
-        max1 = max_(0, P.plafond - f7el - f7qd)  # 2014 : plafond commun 'duflot' et 'rpinel'
-        max2 = max_(0, max1 - f7qc)
-        max3 = max_(0, max2 - f7ek - f7qb)
-
-        reduc_invest_real_2014 = around(
-            P.taux['outremer']['9_ans'] * min_(max_(0, P.plafond - f7el), f7qd) / 9
-            + P.taux['outremer']['6_ans'] * min_(max1, f7qc) / 6
-            + P.taux['metropole']['9_ans'] * min_(max_(0, max2 - f7ek), f7qb) / 9
-            + P.taux['metropole']['6_ans'] * min_(max3, f7qa) / 6
-            )
-
-        def calcul_reduction_investissement(cases):
-            reduction = foyer_fiscal.empty_array()
-            depenses_cumulees = foyer_fiscal.empty_array()
-            for case in cases:
-                variable, duree, zone = case
-                depense = foyer_fiscal(variable, period)
-                taux = P.taux[zone][str(duree) + '_ans']
-                reduction += around(taux * min_(max_(0, P.plafond - depenses_cumulees), depense) / duree)
-                depenses_cumulees += depense
-            return reduction
-
-        reduction_cumulee = reduc_invest_real_2014 + sum([calcul_reduction_investissement(cases) for cases in cases_investissement.values()])
-        report = sum([foyer_fiscal(case, period) for year in cases_report.keys() for case in cases_report[year]])
-
-        return reduction_cumulee + report
-
-    def formula_2018_01_01(foyer_fiscal, period, parameters):
-        '''
-        Investissement locatif privé - Dispositif Pinel
-        2018
-        '''
-        f7ek = foyer_fiscal('f7ek', period)
-        f7el = foyer_fiscal('f7el', period)
-        f7qa = foyer_fiscal('f7qa', period)
-        f7qb = foyer_fiscal('f7qb', period)
-        f7qc = foyer_fiscal('f7qc', period)
-        f7qd = foyer_fiscal('f7qd', period)
-
-        cases_investissement = {
-            "2015": [
-                ('f7qh', 9, 'outremer'),
-                ('f7qg', 6, 'outremer'),
-                ('f7qf', 9, 'metropole'),
-                ('f7qe', 6, 'metropole')],
-            "2016": [
-                ('f7ql', 9, 'outremer'),
-                ('f7qk', 6, 'outremer'),
-                ('f7qj', 9, 'metropole'),
-                ('f7qi', 6, 'metropole')],
-            "2017": [
+            2017: [
                 ('f7qp', 9, 'outremer'),
                 ('f7qo', 6, 'outremer'),
                 ('f7qn', 9, 'metropole'),
                 ('f7qm', 6, 'metropole')],
-            "2018": [
+            2018: [
                 ('f7qu', 9, 'outremer'),
                 ('f7qt', 6, 'outremer'),
                 ('f7qs', 9, 'metropole'),
@@ -4584,10 +4407,10 @@ class rpinel(Variable):
             }
 
         cases_report = {
-            "2014": ['f7ai', 'f7bi', 'f7ci', 'f7di'],
-            "2015": ['f7bz', 'f7cz', 'f7dz', 'f7ez'],
-            "2016": ['f7qz', 'f7rz', 'f7sz', 'f7tz'],
-            "2017": ['f7ra', 'f7rb', 'f7rc', 'f7rd'],
+            2014: ['f7ai', 'f7bi', 'f7ci', 'f7di'],
+            2015: ['f7bz', 'f7cz', 'f7dz', 'f7ez'],
+            2016: ['f7qz', 'f7rz', 'f7sz', 'f7tz'],
+            2017: ['f7ra', 'f7rb', 'f7rc', 'f7rd'],
             }
 
         P = parameters(period).impot_revenu.reductions_impots.rpinel
@@ -4614,8 +4437,10 @@ class rpinel(Variable):
                 depenses_cumulees += depense
             return reduction
 
-        reduction_cumulee = reduc_invest_real_2014 + sum([calcul_reduction_investissement(cases) for cases in cases_investissement.values()])
-        report = sum([foyer_fiscal(case, period) for year in cases_report.keys() for case in cases_report[year]])
+        annee_fiscale = period.start.year
+
+        reduction_cumulee = reduc_invest_real_2014 + sum([calcul_reduction_investissement(cases_investissement[year]) for year in range(2015, annee_fiscale + 1)])
+        report = sum([foyer_fiscal(case, period) for year in range(2014, annee_fiscale) for case in cases_report[year]])
 
         return reduction_cumulee + report
 
