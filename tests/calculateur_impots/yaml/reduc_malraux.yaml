@@ -12,10 +12,10 @@
       caseW: false
       declarants:
       - ind0
-      f7ra_2015: 500
-      f7rb_2015: 500
-      f7rc_2015: 500
-      f7rd_2015: 500
+      f7ra: 500
+      f7rb: 500
+      f7rc: 500
+      f7rd: 500
       f7re: 500
       f7rf: 500
       f7sx: 500
@@ -61,10 +61,10 @@
       caseW: false
       declarants:
       - ind0
-      f7ra_2015: 500
-      f7rb_2015: 500
-      f7rc_2015: 500
-      f7rd_2015: 500
+      f7ra: 500
+      f7rb: 500
+      f7rc: 500
+      f7rd: 500
       f7re: 500
       f7rf: 500
       f7sx: 500

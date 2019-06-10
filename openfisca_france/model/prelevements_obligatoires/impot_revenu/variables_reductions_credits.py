@@ -3603,7 +3603,7 @@ class f7my(Variable):
 
 
 # 2012 et 2013 ok
-class f7ra_2015(Variable):
+class f7ra(Variable):
     cerfa_field = u"7RA"
     value_type = int
     unit = 'currency'
@@ -3614,7 +3614,7 @@ class f7ra_2015(Variable):
     definition_period = YEAR
 
 
-class f7rb_2015(Variable):
+class f7rb(Variable):
     cerfa_field = u"7RB"
     value_type = int
     unit = 'currency'
@@ -3625,7 +3625,7 @@ class f7rb_2015(Variable):
     definition_period = YEAR
 
 
-class f7rc_2015(Variable):
+class f7rc(Variable):
     cerfa_field = u"7RC"
     value_type = int
     unit = 'currency'
@@ -3636,7 +3636,7 @@ class f7rc_2015(Variable):
     definition_period = YEAR
 
 
-class f7rd_2015(Variable):
+class f7rd(Variable):
     cerfa_field = u"7RD"
     value_type = int
     unit = 'currency'
@@ -4240,7 +4240,7 @@ class f7ql(Variable):
     definition_period = YEAR
 
 
-class f7qt_2012(Variable):
+class f7qt(Variable):
     cerfa_field = u"7QT"
     value_type = int
     unit = 'currency'
@@ -4274,12 +4274,11 @@ class fhqm(Variable):
     definition_period = YEAR
 
 
-class f7qu_2012(Variable):
+class f7qu(Variable):
     cerfa_field = u"7QU"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    end = '2012-12-31'
     definition_period = YEAR
 
 
@@ -4379,12 +4378,11 @@ class f7qq(Variable):
     definition_period = YEAR
 
 
-class f7qr_2012(Variable):
+class f7qr(Variable):
     cerfa_field = u"7QR"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    end = '2012-12-31'
     definition_period = YEAR
 
 
@@ -4396,12 +4394,11 @@ class fhqr(Variable):
     definition_period = YEAR
 
 
-class f7qs_2012(Variable):
+class f7qs(Variable):
     cerfa_field = u"7QS"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    end = '2012-12-31'
     definition_period = YEAR
 
 
@@ -8334,46 +8331,6 @@ class f7qp(Variable):
     definition_period = YEAR
 
 
-class f7qr(Variable):
-    cerfa_field = u"7QR"
-    value_type = int
-    unit = 'currency'
-    entity = FoyerFiscal
-    label = u"Investissements locatifs intermédiaires en métropole réalisés en 2018 avec engagement de location 6 ans"
-    # start_date = date(2018, 1, 1)
-    definition_period = YEAR
-
-
-class f7qs(Variable):
-    cerfa_field = u"7QS"
-    value_type = int
-    unit = 'currency'
-    entity = FoyerFiscal
-    label = u"Investissements locatifs intermédiaires en métropole réalisés en 2018 avec engagement de location 9 ans"
-    # start_date = date(2018, 1, 1)
-    definition_period = YEAR
-
-
-class f7qt(Variable):
-    cerfa_field = u"7QT"
-    value_type = int
-    unit = 'currency'
-    entity = FoyerFiscal
-    label = u"Investissements locatifs intermédiaires en outre-mer réalisés en 2018 avec engagement de location 6 ans"
-    # start_date = date(2018, 1, 1)
-    definition_period = YEAR
-
-
-class f7qu(Variable):
-    cerfa_field = u"7QU"
-    value_type = int
-    unit = 'currency'
-    entity = FoyerFiscal
-    label = u"Investissements locatifs intermédiaires en outre-mer réalisés en 2018 avec engagement de location 9 ans"
-    # start_date = date(2018, 1, 1)
-    definition_period = YEAR
-
-
 class f7qz(Variable):
     cerfa_field = u"7QZ"
     value_type = int
@@ -8411,46 +8368,6 @@ class f7tz(Variable):
     entity = FoyerFiscal
     label = u"Report concernant les investissements locatifs intermédiaires en outre-mer en 2016 avec engagement de location 9 ans"
     # start_date = date(2017, 1, 1)
-    definition_period = YEAR
-
-
-class f7ra(Variable):
-    cerfa_field = u"7RA"
-    value_type = int
-    unit = 'currency'
-    entity = FoyerFiscal
-    label = u"Report concernant les investissements locatifs intermédiaires en métropole en 2017 avec engagement de location 6 ans"
-    # start_date = date(2018, 1, 1)
-    definition_period = YEAR
-
-
-class f7rb(Variable):
-    cerfa_field = u"7RB"
-    value_type = int
-    unit = 'currency'
-    entity = FoyerFiscal
-    label = u"Report concernant les investissements locatifs intermédiaires en métropole en 2017 avec engagement de location 9 ans"
-    # start_date = date(2018, 1, 1)
-    definition_period = YEAR
-
-
-class f7rc(Variable):
-    cerfa_field = u"7RC"
-    value_type = int
-    unit = 'currency'
-    entity = FoyerFiscal
-    label = u"Report concernant les investissements locatifs intermédiaires en outre-mer en 2017 avec engagement de location 6 ans"
-    # start_date = date(2018, 1, 1)
-    definition_period = YEAR
-
-
-class f7rd(Variable):
-    cerfa_field = u"7RD"
-    value_type = int
-    unit = 'currency'
-    entity = FoyerFiscal
-    label = u"Report concernant les investissements locatifs intermédiaires en outre-mer en 2017 avec engagement de location 9 ans"
-    # start_date = date(2018, 1, 1)
     definition_period = YEAR
 
 # section 8

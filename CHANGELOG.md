@@ -1,18 +1,5 @@
 # Changelog
 
-### 43.0.0 [#1325](https://github.com/openfisca/openfisca-france/pull/1325)
-
-* Évolution du système socio-fiscal.
-* Périodes concernées : à partir du 01/01/2015.
-* Zones impactées : `model/prelevements_obligatoires/impot_revenu/`.
-* Détails :
-  - Ajoute comme inputs variables les nouvelles cases de la déclaration IR 2018 liée à la réduction Pinel.
-  - Renomme les anciennes inputs variables du même nom, selon la méthode habituelle 
-  - Mets à jour la formule de calcul de la réduction (introduction des investissements réalisés en 2018 et ajout du report des investissements 2017)
-  - Factorise les formules de la réduction Pinel
-  - Renomme le paramètre `seuil` en `plafond`
-  - Ajoute 2 tests issus des résultats du [calculateur en ligne du site impots.gouv](https://www3.impots.gouv.fr/simulateur/calcul_impot/2019/index.htm)
-
 ### 42.5.1 [#1334](https://github.com/openfisca/openfisca-france/pull/1334)
 
 * Correction d'un crash.
