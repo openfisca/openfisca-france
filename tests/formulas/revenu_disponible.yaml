@@ -280,8 +280,9 @@
     prelevements_sociaux_revenus_capital: -32680 # ATTENTION : f3sa et f3vd sont hors du champ des prélèvements sociaux par hypothèse du simulateur (cf. docstring de la variable assiette_csg_plus_values pour une explication). Donc : -190000*(0.045+0.02+0.003+0.005+0.099)
     revenus_nets_du_capital: 270000 - 32680
     prelevement_forfaitaire_unique_ir_hors_assurance_vie_epargne_solidaire_etats_non_cooperatifs: -28160 #-(22000*0.128) 3VD est un gain taxé forfaitairement au taux de 18% et non au PFU
-    impots_directs: -34560
-    revenu_disponible: 270000 - 32680 - 34560
+    axation_plus_values_hors_bareme: 9000 #50000 * 0.18
+    impots_directs: -28160 - 9000
+    revenu_disponible: 270000 - 32680 - 28160 - 9000
 
 - name: plus_values_immobilières_2018
   description: Montant d'impôt et revenu disponible pour les plus-values immobilières (3VZ)
