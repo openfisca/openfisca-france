@@ -64,5 +64,5 @@ setup(
     message_extractors = {"openfisca_france": [
         ("**.py", "python", None),
         ]},
-    packages = find_packages(exclude=["openfisca_france.tests*"]),
+    packages = find_packages(exclude=["openfisca_france.tests*", "openfisca_france.assets.taxe_habitation.source*"]),
     )
