@@ -603,7 +603,7 @@ class revenu_categoriel_plus_values(Variable):
 
     def formula_2018_01_01(foyer_fiscal, period, parameters):
         f3wb = foyer_fiscal('f3wb', period)
-        
+
         return f3wb
 
 
