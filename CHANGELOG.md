@@ -1,5 +1,13 @@
 # Changelog
 
+
+### 43.0.1 [#1342](https://github.com/openfisca/openfisca-france/pull/1342)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2015.
+* Zones impactées : `model/prelevements_obligatoires/impot_revenu/`.
+* Détails :
+  - Corrige la PR précédente (ajoute un guide de migration et corrige un commit).
 # 43.0.0 [#1325](https://github.com/openfisca/openfisca-france/pull/1325)
 
 * Évolution du système socio-fiscal.
