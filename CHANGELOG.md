@@ -1,5 +1,15 @@
 # Changelog
 
+## 43.1.0 [#1336](https://github.com/openfisca/openfisca-france/pull/1336)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2018.
+* Zones impactées : `model/prelevements_obligatoires/`.
+* Détails :
+  - Affine et corrige [#1333](https://github.com/openfisca/openfisca-france/issues/1333) sur le PFU
+  - Le PFU a été codé avant la publication du nouveau formulaire de l'IR et des règles précises concernant son application. Désormais, le formulaire est disponible et les règles connues, cette PR vient les corriger
+  - Pour plus de détails voir [le descriptif](https://github.com/openfisca/openfisca-france/pull/1336) de la version
+
 ### 43.0.1 [#1342](https://github.com/openfisca/openfisca-france/pull/1342)
 
 * Correction technique
