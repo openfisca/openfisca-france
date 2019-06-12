@@ -1,13 +1,14 @@
 # Changelog
 
-
 ### 43.0.1 [#1342](https://github.com/openfisca/openfisca-france/pull/1342)
 
-* Évolution du système socio-fiscal.
+* Correction technique
 * Périodes concernées : à partir du 01/01/2015.
 * Zones impactées : `model/prelevements_obligatoires/impot_revenu/`.
 * Détails :
-  - Corrige la PR précédente (ajoute un guide de migration et corrige un commit).
+  - Corrige des aspects non fonctionnels (factorisation du code) de la version 43.0.0
+  - Ajoute des éléments documentaires (guide de migration) dans le descriptif de la version
+
 # 43.0.0 [#1325](https://github.com/openfisca/openfisca-france/pull/1325)
 
 * Évolution du système socio-fiscal.
@@ -20,6 +21,7 @@
   - Factorise les formules de la réduction Pinel
   - Renomme le paramètre `seuil` en `plafond`
   - Ajoute 2 tests issus des résultats du [calculateur en ligne du site impots.gouv](https://www3.impots.gouv.fr/simulateur/calcul_impot/2019/index.htm)
+
 ## Guide de migration
 
 - Si vous utilisiez les variables `f7ra`, `f7rb`, `f7rc`, `f7rd`, il faut les renommer en ajoutant le suffixe `_2015`
