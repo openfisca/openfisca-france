@@ -142,44 +142,13 @@ class plus_values_prelevement_forfaitaire_unique_ir(Variable):
 
     def formula_2018_01_01(foyer_fiscal, period, parameters):
         '''
-        Cette variable fusionne le périmètre des plus-values des anciennes variables de plus_values-values présentes
-        dans taxation_plus_values_hors_bareme et dans 'revenu_categoriel_plus_values', mais en adaptant les assiettes au PFU
-        (notamment, pour les revenus de 'revenu_categoriel_plus_values', passage des montants nets à bruts)
+        Les assiettes des plus-values du PFU doivent être brutes (et non nettes)
         '''
         f3sa = foyer_fiscal('f3sa', period)
         f3vg = foyer_fiscal('f3vg', period)
         f3ua = foyer_fiscal('f3ua', period)
-        f3sg = foyer_fiscal('f3sg', period)
-        f3sl = foyer_fiscal('f3sl', period)
-        f3wb = foyer_fiscal('f3wb', period)
 
-        # Ici, on reprend le champ des plus-values de la variable taxation_plus_values_hors_bareme
-        f3sj = foyer_fiscal('f3sj', period)
-        f3sk = foyer_fiscal('f3sk', period)
-        f3vm = foyer_fiscal('f3vm', period)
-        f3vt = foyer_fiscal('f3vt', period)
-        f3vd_i = foyer_fiscal.members('f3vd', period)
-        f3vi_i = foyer_fiscal.members('f3vi', period)
-        f3vf_i = foyer_fiscal.members('f3vf', period)
-        f3vd = foyer_fiscal.sum(f3vd_i)
-        f3vi = foyer_fiscal.sum(f3vi_i)
-        f3vf = foyer_fiscal.sum(f3vf_i)
-        f3wi = foyer_fiscal('f3wi', period)
-        f3wj = foyer_fiscal('f3wj', period)
-        rpns_pvce_i = foyer_fiscal.members('rpns_pvce', period)
-        rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
-
-        # Notes :
-        # 3sg + 3sl : correspond aux abattements associés aux cases 3vg et 3ua (donc, on considère les montants bruts).
-        #             En revanche, on n'enlève pas l'abattement fixe en 3va, car il est maintenu, y compris si le contribuable
-        #             choisit le PFU. Les conditions on été légèrement modifiées, mais on ne va pas dans ce détail-là. Cf par exemple https://taj-strategie.fr/plf-2018-lecture-definitive-fiscalite-personnes
-        # 3WE n'est pas compté, car normalement, il n'est pas dans la base du PFU... A checker ?
-        # 3WB : il s'agit des plus-values et créances sans sursis de paiement (pour transfert du domicile fiscal hors de France)
-        #       après abattements. Normalement, il faudrait prendre la mesure avant abattement. Les montants avant abattements sont case 3WD. Mais cette case
-        #       comprend, en plus des plus-values imposables avant abbattement, celles bénéficiant d'un report d'imposition. HYP : on prend les montants nets.
-        # 3WI et 3WJ : les conditions liées au report d'imposition de l'art. 150-0 B ter du CGI ont été remaniées à la marge.
-        #              On ne prend pas en compte ces remaniements. Situation résumée dans https://taj-strategie.fr/plf-2018-lecture-definitive-fiscalite-personnes
-        return f3sa + f3vg + f3ua + f3sg + f3sl + f3wb + f3sj + f3sk + f3vm + f3vt + f3vd + f3vi + f3vf + f3wi + f3wj + rpns_pvce
+        return f3sa + f3vg + f3ua
 
 
 class prelevement_forfaitaire_unique_ir_hors_assurance_vie_epargne_solidaire_etats_non_cooperatifs(Variable):

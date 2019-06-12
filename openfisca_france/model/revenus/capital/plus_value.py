@@ -193,6 +193,7 @@ class f3tz(Variable):
     entity = FoyerFiscal
     label = u"Plus-values de cession de titres d'OPC monétaires en report d'imposition, plus-values réalisées du 1.1 au 31.3.2017, plus-values en report d'imposition"
     # start_date = date(2016, 1, 1)
+    end = '2017-12-31'
     definition_period = YEAR
 
 
@@ -388,6 +389,7 @@ class abattements_plus_values(Variable):
     reference = u"http://bofip.impots.gouv.fr/bofip/9540-PGP"
     label = u"Abattements sur plus-values notamment pour durée de détention de droit commun, renforcé, et abattement en cas de départ à la retraite d'un dirigeant de PME (abattement fixe et pour durée de détention)"
     definition_period = YEAR
+    end = '2017-12-31'
 
     def formula_2013_01_01(foyer_fiscal, period):
         f3sg = foyer_fiscal('f3sg', period)
