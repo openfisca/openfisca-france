@@ -1961,7 +1961,7 @@ class quaenv(Variable):
             ]
         depenses_transition_energetique = sum([foyer_fiscal(case, period) for case in cases_depenses])
         cases_depense_taux_reduit = ['f7ao', 'f7ap']
-        depenses_transition_energetique_taux_reduit = sum([foyer_fiscal(case, period) for case in cases_depenses])
+        depenses_transition_energetique_taux_reduit = sum([foyer_fiscal(case, period) for case in cases_depenses_taux_reduit])
 
         plafond_depenses_energetiques = P.max * (1 + maries_ou_pacses) + P.pac1 * personnes_a_charge
         plafond_depenses_energetiques_taux_reduit = max_(0, plafond_depenses_energetiques - depenses_transition_energetique)
