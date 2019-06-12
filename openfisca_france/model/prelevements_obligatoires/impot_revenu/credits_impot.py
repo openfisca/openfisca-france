@@ -1958,7 +1958,6 @@ class quaenv(Variable):
 
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         personnes_a_charge = foyer_fiscal('nb_pac2', period)
-        rfr = foyer_fiscal('rfr', period)  # noqa F841
         P = parameters(period).impot_revenu.credits_impot.quaenv
 
         depenses_transition_energetique = (
@@ -2005,7 +2004,6 @@ class quaenv(Variable):
 
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         personnes_a_charge = foyer_fiscal('nb_pac2', period)
-        rfr = foyer_fiscal('rfr', period)  # noqa F841
         P = parameters(period).impot_revenu.credits_impot.quaenv
 
         depenses_transition_energetique = (
