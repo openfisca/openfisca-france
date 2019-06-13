@@ -64,16 +64,6 @@ class f1tx(Variable):
     definition_period = YEAR
 
 
-class f1tz(Variable):
-    cerfa_field = u"1TZ"
-    value_type = int
-    unit = 'currency'
-    entity = FoyerFiscal
-    label = u"Gains d'acquisition d'actions gratuites attribuées sur décision prise à compter du 8.8.2015"
-    # start_date = date(2015, 1, 1)
-    definition_period = YEAR
-
-
 class f3vj(Variable):
     cerfa_field = {
         0: u"3VJ",
