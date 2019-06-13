@@ -35,8 +35,8 @@
     menage:
       personne_de_reference: ind0
   output:
-    prelevement_forfaitaire_unique_ir: -10253.0
+    prelevement_forfaitaire_unique_ir: -10368.0
     nbptr: 1.0
     ppe: 0.0
-    rfr: 80100.0
-    prelevements_sociaux_revenus_capital: 13778.0
+    rfr: 81000.0
+    prelevements_sociaux_revenus_capital: 13932.0
