@@ -1044,7 +1044,6 @@ class csg_patrimoine_deductible_ir(Variable):
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
-        ''' CSG déductible '''
         P = parameters(period).prelevements_sociaux.contributions.csg.capital
         rbg = foyer_fiscal('rbg', period)
         f6de = foyer_fiscal('f6de', period)
@@ -1062,7 +1061,6 @@ class rng(Variable):
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
-        ''' Revenu net global (total 20) '''
         rbg = foyer_fiscal('rbg', period)
         csg_patrimoine_deductible_ir = foyer_fiscal('csg_patrimoine_deductible_ir', period)
         charges_deduc = foyer_fiscal('charges_deduc', period)
@@ -1078,7 +1076,6 @@ class rni(Variable):
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
-        ''' Revenu net imposable ou déficit à reporter'''
         rng = foyer_fiscal('rng', period)
         abat_spe = foyer_fiscal('abat_spe', period)
 
@@ -2140,9 +2137,6 @@ class credits_impot_sur_valeurs_etrangeres(Variable):
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
-        '''
-        Avoir fiscal et crédits d'impôt (zavff)
-        '''
         f2ab = foyer_fiscal('f2ab', period)
 
         return f2ab
