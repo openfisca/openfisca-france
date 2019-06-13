@@ -79,26 +79,11 @@ class assurance_vie_pfu_ir(Variable):
     definition_period = YEAR
 
     def formula_2018_01_01(foyer_fiscal, period):
-
-        assurance_vie_pfu_ir_plus8ans_1990_19970926 = foyer_fiscal('assurance_vie_pfu_ir_plus8ans_1990_19970926', period)
-        assurance_vie_pfu_ir_plus6ans_avant1990 = foyer_fiscal('assurance_vie_pfu_ir_plus6ans_avant1990', period)
-        assurance_vie_pfu_ir_moins4ans_1990_19970926 = foyer_fiscal('assurance_vie_pfu_ir_moins4ans_1990_19970926', period)
-        assurance_vie_pfu_ir_4_8_ans_1990_19970926 = foyer_fiscal('assurance_vie_pfu_ir_4_8_ans_1990_19970926', period)
-        assurance_vie_pfu_ir_plus8ans_19970926_primes_avant_20170927 = foyer_fiscal('assurance_vie_pfu_ir_plus8ans_19970926_primes_avant_20170927', period)
-        assurance_vie_pfu_ir_4_8_ans_19970926_primes_avant_20170927 = foyer_fiscal('assurance_vie_pfu_ir_4_8_ans_19970926_primes_avant_20170927', period)
-        assurance_vie_pfu_ir_moins4ans_19970926_primes_avant_20170927 = foyer_fiscal('assurance_vie_pfu_ir_moins4ans_19970926_primes_avant_20170927', period)
         assurance_vie_pfu_ir_moins8ans_19970926_primes_apres_20170927 = foyer_fiscal('assurance_vie_pfu_ir_moins8ans_19970926_primes_apres_20170927', period)
         assurance_vie_pfu_ir_plus8ans_19970926_primes_apres_20170927 = foyer_fiscal('assurance_vie_pfu_ir_plus8ans_19970926_primes_apres_20170927', period)
 
         return (
-            assurance_vie_pfu_ir_plus8ans_1990_19970926
-            + assurance_vie_pfu_ir_plus6ans_avant1990
-            + assurance_vie_pfu_ir_moins4ans_1990_19970926
-            + assurance_vie_pfu_ir_4_8_ans_1990_19970926
-            + assurance_vie_pfu_ir_plus8ans_19970926_primes_avant_20170927
-            + assurance_vie_pfu_ir_4_8_ans_19970926_primes_avant_20170927
-            + assurance_vie_pfu_ir_moins4ans_19970926_primes_avant_20170927
-            + assurance_vie_pfu_ir_moins8ans_19970926_primes_apres_20170927
+            assurance_vie_pfu_ir_moins8ans_19970926_primes_apres_20170927
             + assurance_vie_pfu_ir_plus8ans_19970926_primes_apres_20170927
             )
 
@@ -198,13 +183,6 @@ class prelevement_forfaitaire_unique_ir_sur_assurance_vie(Variable):
 
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
 
-        assurance_vie_pfu_ir_plus8ans_1990_19970926 = foyer_fiscal('assurance_vie_pfu_ir_plus8ans_1990_19970926', period)
-        assurance_vie_pfu_ir_plus6ans_avant1990 = foyer_fiscal('assurance_vie_pfu_ir_plus6ans_avant1990', period)
-        assurance_vie_pfu_ir_moins4ans_1990_19970926 = foyer_fiscal('assurance_vie_pfu_ir_moins4ans_1990_19970926', period)
-        assurance_vie_pfu_ir_4_8_ans_1990_19970926 = foyer_fiscal('assurance_vie_pfu_ir_4_8_ans_1990_19970926', period)
-        assurance_vie_pfu_ir_plus8ans_19970926_primes_avant_20170927 = foyer_fiscal('assurance_vie_pfu_ir_plus8ans_19970926_primes_avant_20170927', period)
-        assurance_vie_pfu_ir_4_8_ans_19970926_primes_avant_20170927 = foyer_fiscal('assurance_vie_pfu_ir_4_8_ans_19970926_primes_avant_20170927', period)
-        assurance_vie_pfu_ir_moins4ans_19970926_primes_avant_20170927 = foyer_fiscal('assurance_vie_pfu_ir_moins4ans_19970926_primes_avant_20170927', period)
         assurance_vie_pfu_ir_moins8ans_19970926_primes_apres_20170927 = foyer_fiscal('assurance_vie_pfu_ir_moins8ans_19970926_primes_apres_20170927', period)
         assurance_vie_pfu_ir_plus8ans_19970926_primes_apres_20170927 = foyer_fiscal('assurance_vie_pfu_ir_plus8ans_19970926_primes_apres_20170927', period)
 
@@ -217,27 +195,7 @@ class prelevement_forfaitaire_unique_ir_sur_assurance_vie(Variable):
             + (max_(assurance_vie_pfu_ir_plus8ans_19970926_primes_apres_20170927_apres_abt - P1.seuil_taux_reduit_av, 0) * P1.taux)
             )
 
-        # Ancien régime de taxation (autres produits que ceux mentionnés ci-dessus)
-        p_contrat_age_sup_apres_abt = (
-            max_(
-                (
-                    assurance_vie_pfu_ir_plus8ans_1990_19970926
-                    + assurance_vie_pfu_ir_plus6ans_avant1990
-                    + assurance_vie_pfu_ir_plus8ans_19970926_primes_avant_20170927
-                    )
-                - reliquat_abt,
-                0
-                )
-            )
-        p_contrat_age_mid = assurance_vie_pfu_ir_4_8_ans_1990_19970926 + assurance_vie_pfu_ir_4_8_ans_19970926_primes_avant_20170927
-        p_contrat_age_low = assurance_vie_pfu_ir_moins4ans_1990_19970926 + assurance_vie_pfu_ir_moins4ans_19970926_primes_avant_20170927
-        pfu_ir_av_ancien_regime = -(
-            (p_contrat_age_low * P2.souscrits_apres_le_1_1_90_et_le_pour_une_duree_de.duree_moins_de_4_ans)
-            + (p_contrat_age_mid * P2.souscrits_apres_le_1_1_90_et_le_pour_une_duree_de.duree_4_a_8_ans)
-            + (p_contrat_age_sup_apres_abt * P2.souscrits_apres_le_1_1_90_et_le_pour_une_duree_de.duree_8_ans_et_plus_pour_les_produits_acquis_apres_le_01_01_1998_avec_abattement_sur_l_ir_5)
-            )
-
-        return pfu_ir_av_nouveau_regime + pfu_ir_av_ancien_regime
+        return pfu_ir_av_nouveau_regime
 
 
 class prelevement_forfaitaire_unique_ir_epargne_solidaire_etats_non_cooperatifs(Variable):
