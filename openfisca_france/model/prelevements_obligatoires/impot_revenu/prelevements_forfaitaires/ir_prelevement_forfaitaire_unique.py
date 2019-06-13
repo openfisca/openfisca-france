@@ -64,13 +64,23 @@ class f2zz(Variable):
     entity = FoyerFiscal
     label = u"Produits des bons ou contrats de capitalisation et d'assurance vie de moins de 8 ans pour les contrats souscrits après le 26 septembre 1997, dont le produits sont associés aux primes versées après le 27 septembre 2017, et que le bénéficiaire décide de soumettre au prélèvement forfaitaire unique au titre de l'impôt sur le revenu"
     definition_period = YEAR
+    # start_date = date(2018, 1, 1)
 
 
-class assurance_vie_pfu_ir_plus8ans_19970926_primes_apres_20170927(Variable):
+class f2vv(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = u"Produits des bons ou contrats de capitalisation et d'assurance vie de plus de 8 ans pour les contrats souscrits après le 26 septembre 1997, dont le produits sont associés aux primes versées après le 27 septembre 2017, et que le bénéficiaire décide de soumettre au prélèvement forfaitaire unique au titre de l'impôt sur le revenu"
+    label = u"Produits des bons ou contrats de capitalisation et d'assurance vie de plus de 8 ans pour les contrats souscrits après le 26 septembre 1997, dont le produits sont associés aux primes versées après le 27 septembre 2017, et que le bénéficiaire décide de soumettre au prélèvement forfaitaire unique au titre de l'impôt sur le revenu; produit correspondant aux primes n'excédant pas 150 000 euros."
     definition_period = YEAR
+    # start_date = date(2018, 1, 1)
+
+
+class f2ww(Variable):
+    value_type = float
+    entity = FoyerFiscal
+    label = u"Produits des bons ou contrats de capitalisation et d'assurance vie de plus de 8 ans pour les contrats souscrits après le 26 septembre 1997, dont le produits sont associés aux primes versées après le 27 septembre 2017, et que le bénéficiaire décide de soumettre au prélèvement forfaitaire unique au titre de l'impôt sur le revenu; produit correspondant aux primes excédant pas 150 000 euros."
+    definition_period = YEAR
+    # start_date = date(2018, 1, 1)
 
 
 class assurance_vie_pfu_ir(Variable):
@@ -81,12 +91,10 @@ class assurance_vie_pfu_ir(Variable):
 
     def formula_2018_01_01(foyer_fiscal, period):
         f2zz = foyer_fiscal('f2zz', period)
-        assurance_vie_pfu_ir_plus8ans_19970926_primes_apres_20170927 = foyer_fiscal('assurance_vie_pfu_ir_plus8ans_19970926_primes_apres_20170927', period)
+        f2vv = foyer_fiscal('f2vv', period)
+        f2ww = foyer_fiscal('f2ww', period)
 
-        return (
-            f2zz
-            + assurance_vie_pfu_ir_plus8ans_19970926_primes_apres_20170927
-            )
+        return f2zz + f2vv + f2ww
 
 
 class revenus_capitaux_prelevement_forfaitaire_unique_ir(Variable):
@@ -183,20 +191,19 @@ class prelevement_forfaitaire_unique_ir_sur_assurance_vie(Variable):
         rvcm = parameters(period).impot_revenu.rvcm
 
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
-
         f2zz = foyer_fiscal('f2zz', period)
-        assurance_vie_pfu_ir_plus8ans_19970926_primes_apres_20170927 = foyer_fiscal('assurance_vie_pfu_ir_plus8ans_19970926_primes_apres_20170927', period)
+        f2vv = foyer_fiscal('f2vv', period)
+        f2ww = foyer_fiscal('f2ww', period)
 
-        # Nouveau régime de taxation (produits au titre des primes versées à compter du 26 septembre 1997, pour les contrats souscrits à partir du 26 septembre 1997)
-        assurance_vie_pfu_ir_plus8ans_19970926_primes_apres_20170927_apres_abt = max_(assurance_vie_pfu_ir_plus8ans_19970926_primes_apres_20170927 - rvcm.abat_assvie * (1 + maries_ou_pacses), 0)
-        reliquat_abt = max_(rvcm.abat_assvie * (1 + maries_ou_pacses) - assurance_vie_pfu_ir_plus8ans_19970926_primes_apres_20170927, 0)
-        pfu_ir_av_nouveau_regime = -(
+        assurance_vie_pfu_ir_plus8ans_19970926_primes_apres_20170927_apres_abt = max_(f2vv + f2ww - rvcm.abat_assvie * (1 + maries_ou_pacses), 0)
+        reliquat_abt = max_(rvcm.abat_assvie * (1 + maries_ou_pacses) - f2vv + f2ww, 0)
+        pfu_ir_sur_assurance_vie = -(
             (f2zz * P1.taux)
             + (min_(assurance_vie_pfu_ir_plus8ans_19970926_primes_apres_20170927_apres_abt, P1.seuil_taux_reduit_av) * P1.taux_reduit_av)
             + (max_(assurance_vie_pfu_ir_plus8ans_19970926_primes_apres_20170927_apres_abt - P1.seuil_taux_reduit_av, 0) * P1.taux)
             )
 
-        return pfu_ir_av_nouveau_regime
+        return pfu_ir_sur_assurance_vie
 
 
 class prelevement_forfaitaire_unique_ir_epargne_solidaire_etats_non_cooperatifs(Variable):
