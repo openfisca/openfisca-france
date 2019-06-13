@@ -1,0 +1,26 @@
+description: Plafonds de revenu fiscal de référence pour le dégrèvement d'office à taux plein
+reference: 1. du II bis de l'art. 1417 du CGI
+premiere_part:
+  description: Plafonds de revenu fiscal de référence pour le dégrèvement d'office à taux plein - 1ère part
+  unit: currency
+  values:
+    2018-01-01:
+      value: 27000.0
+    2019-01-01:
+      value: 27432.0
+deux_premieres_demi_parts_supp:
+  description: Plafond de revenu fiscal de référence pour le dégrèvement d'office à taux plein - deux premières demi-parts supplémentaires
+  unit: currency
+  values:
+    2018-01-01:
+      value: 8000.0
+    2019-01-01:
+      value: 8128.0
+autres_demi_parts_supp:
+  description: Plafond de revenu fiscal de référence pour le dégrèvement d'office à taux plein - autres demi-parts supplémentaires
+  unit: currency
+  values:
+    2018-01-01:
+      value: 6000.0
+    2019-01-01:
+      value: 6096.0

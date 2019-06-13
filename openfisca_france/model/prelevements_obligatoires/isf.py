@@ -774,7 +774,7 @@ class bouclier_imp_gen(Variable):  # # ajouter CSG- CRDS
         csg_imposable_retraite = foyer_fiscal.sum(csg_imposable_retraite_i)
 
         taxe_habitation_i = foyer_fiscal.members.menage('taxe_habitation', period)  # noqa F841
-        taxe_habitation = foyer_fiscal.sum(taxe_habitation, role = Menage.PERSONNE_DE_REFERENCE)
+        taxe_habitation = foyer_fiscal.sum(taxe_habitation_i, role = Menage.PERSONNE_DE_REFERENCE)
 
         # # ajouter Prelèvements sources/ libé
         # # ajouter crds rstd

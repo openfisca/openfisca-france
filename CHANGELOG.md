@@ -1,5 +1,23 @@
 # Changelog
 
+# 46.0.0 [#1320](https://github.com/openfisca/openfisca-france/pull/1320)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : toutes.
+* Zones impactées :
+  - `prelevements_obligatoires/taxe_habitation`
+  - `prelevements_obligatoires/isf`
+  - `mesures`
+* Détails :
+  - Re-code la taxe d'habitation (TH) : on code la TH des communes et EPCI (Etablissement Public de Coopération Intercommunale) due au titre de la résidence principale à partir de la législation 2017, et jusqu'à la législation 2019. Cette PR intègre les barèmes locaux votés par les communes et EPCI (taux de taxation, taux d'abattements) de 2017.
+  - Paramètres supprimés :
+    - `cotsoc/gen/plaf_th_1`
+    - `cotsoc/gen/plaf_th_1_dom`
+    - `cotsoc/gen/plaf_th_1_guy`
+    - `cotsoc/gen/plaf_th_supp`
+    - `cotsoc/gen/plaf_th_supp1_dom`
+    - `cotsoc/gen/plaf_th_supp1_guy`
+
 # 45.0.0 [#1340](https://github.com/openfisca/openfisca-france/pull/1340)
 
 * Suppression d'éléments redondants du système socio-fiscal.
