@@ -1,0 +1,66 @@
+- name: credit_quaenv
+  period: 2018
+  absolute_error_margin: 0.1
+  input:
+    foyer_fiscal:
+      caseF: false
+      caseG: false
+      caseL: false
+      caseP: false
+      caseS: false
+      caseT: false
+      caseW: false
+      declarants:
+      - ind0
+      f7aa: 100.0
+      f7ad: 200.0
+      f7af: 300.0
+      f7ah: 200.0
+      f7ak: 100.0
+      f7al: 1000.0
+      f7am: 100.0
+      f7an: 200.0
+      f7ao: 300.0
+      f7ap: 200.0
+      f7aq: 100.0
+      f7ar: 2000.0
+      f7as: 100.0
+      f7av: 200.0
+      f7ax: 300.0
+      f7ay: 200.0
+      f7az: 100.0
+      f7bb: 1500.0
+      f7bc: 100.0
+      f7bd: 200.0
+      f7be: 300.0
+      f7bf: 200.0
+      f7bh: 100.0
+      f7bk: 200.0
+      f7bl: 300.0
+      f7bm: 200.0
+      f7cb: 100.0
+      nbF: 0.0
+      nbG: 0.0
+      nbH: 0.0
+      nbI: 0.0
+      nbJ: 0
+      nbR: 0
+    individus:
+      ind0:
+        activite: actif
+        date_naissance: '1970-01-01'
+        salaire_imposable: 50000.0
+        statut_marital: celibataire
+    famille:
+      parents:
+      - ind0
+    menage:
+      personne_de_reference: ind0
+  output:
+    credits_impot: 2400.0
+    iai: 7702.0
+    irpp: -5302.0
+    nbptr: 1.0
+    quaenv: 2400.0
+    rbg: 45000.0
+    rfr: 45000.0

@@ -1743,7 +1743,7 @@ class quaenv(Variable):
         Crédits d’impôt pour dépenses en faveur de la qualité environnementale (1.1-31.8.2014) et transition energétique (1.9.2014-31.12.2015)
         2015
         '''
-        f7aa = foyer_fiscal('f7aa', period)
+        f7aa = foyer_fiscal('f7aa_2016', period)
         f7ad = foyer_fiscal('f7ad', period)
         f7af = foyer_fiscal('f7af', period)
         f7ah = foyer_fiscal('f7ah', period)
@@ -1885,46 +1885,16 @@ class quaenv(Variable):
         Crédits d’impôt pour dépenses en faveur de la transition energétique
         2016
         '''
-        f7aa = foyer_fiscal('f7aa', period)
-        f7ad = foyer_fiscal('f7ad', period)
-        f7af = foyer_fiscal('f7af', period)
-        f7ah = foyer_fiscal('f7ah', period)
-        f7ak = foyer_fiscal('f7ak', period)
-        f7al = foyer_fiscal('f7al', period)
-        f7am = foyer_fiscal('f7am', period)
-        f7an = foyer_fiscal('f7an', period)
-        f7aq = foyer_fiscal('f7aq', period)
-        f7ar = foyer_fiscal('f7ar', period)
-        f7av = foyer_fiscal('f7av', period)
-        f7ax = foyer_fiscal('f7ax', period)
-        f7ay = foyer_fiscal('f7ay', period)
-        f7az = foyer_fiscal('f7az', period)
-        f7bb = foyer_fiscal('f7bb', period)
-        f7bc = foyer_fiscal('f7bc', period)
-        f7bd = foyer_fiscal('f7bd', period)
-        f7be = foyer_fiscal('f7be', period)
-        f7bf = foyer_fiscal('f7bf', period)
-        f7bh = foyer_fiscal('f7bh', period)
-        f7bk = foyer_fiscal('f7bk', period)
-        f7bl = foyer_fiscal('f7bl', period)
-        f7bm = foyer_fiscal('f7bm', period)
-        f7cb = foyer_fiscal('f7cb', period)
-        f7we = foyer_fiscal('f7we', period)  # noqa F841
-        f7wg = foyer_fiscal('f7wg', period)  # noqa F841
-
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         nb_pac2 = foyer_fiscal('nb_pac2', period)
-        rfr = foyer_fiscal('rfr', period)  # noqa F841
         P = parameters(period).impot_revenu.credits_impot.quaenv
-
-        depenses_transition_energetique = (
-            f7aa + f7ad + f7af + f7ah + f7ak + f7al + f7am + f7an + f7aq + f7ar + f7av + f7ax
-            + f7ay + f7az + f7bb + f7bc + f7bd + f7be + f7bf + f7bh + f7bk + f7bl + f7bm + f7cb
-            )
-
         max0 = P.max * (1 + maries_ou_pacses) + P.pac1 * nb_pac2
 
-        # TODO: inclure la condition de non cumul éco-prêt / crédit quaenv si RFR > ... (condition complexifiée à partir de 2014)
+        cases_depenses = [
+            'f7aa_2016', 'f7ad', 'f7af', 'f7ah', 'f7ak', 'f7al', 'f7am', 'f7an', 'f7aq', 'f7ar', 'f7av', 'f7ax',
+            'f7ay', 'f7az', 'f7bb', 'f7bc', 'f7bd', 'f7be', 'f7bf', 'f7bh', 'f7bk', 'f7bl', 'f7bm_2016', 'f7cb',
+            ]
+        depenses_transition_energetique = sum([foyer_fiscal(case, period) for case in cases_depenses])
 
         return P.taux30 * min_(max0, depenses_transition_energetique)
 
@@ -1933,42 +1903,43 @@ class quaenv(Variable):
         Crédits d’impôt pour dépenses en faveur de la transition energétique
         2017
         '''
-        f7ad = foyer_fiscal('f7ad', period)
-        f7af = foyer_fiscal('f7af', period)
-        f7ah = foyer_fiscal('f7ah', period)
-        f7ak = foyer_fiscal('f7ak', period)
-        f7al = foyer_fiscal('f7al', period)
-        f7am = foyer_fiscal('f7am', period)
-        f7an = foyer_fiscal('f7an', period)
-        f7aq = foyer_fiscal('f7aq', period)
-        f7ar = foyer_fiscal('f7ar', period)
-        f7av = foyer_fiscal('f7av', period)
-        f7ax = foyer_fiscal('f7ax', period)
-        f7ay = foyer_fiscal('f7ay', period)
-        f7az = foyer_fiscal('f7az', period)
-        f7bb = foyer_fiscal('f7bb', period)
-        f7bc = foyer_fiscal('f7bc', period)
-        f7bd = foyer_fiscal('f7bd', period)
-        f7be = foyer_fiscal('f7be', period)
-        f7bf = foyer_fiscal('f7bf', period)
-        f7bh = foyer_fiscal('f7bh', period)
-        f7bk = foyer_fiscal('f7bk', period)
-        f7bl = foyer_fiscal('f7bl', period)
-        f7cb = foyer_fiscal('f7cb', period)
-
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         personnes_a_charge = foyer_fiscal('nb_pac2', period)
-        rfr = foyer_fiscal('rfr', period)  # noqa F841
         P = parameters(period).impot_revenu.credits_impot.quaenv
 
-        depenses_transition_energetique = (
-            f7ad + f7af + f7ah + f7ak + f7al + f7am + f7an + f7aq + f7ar + f7av + f7ax
-            + f7ay + f7az + f7bb + f7bc + f7bd + f7be + f7bf + f7bh + f7bk + f7bl + f7cb
-            )
-
+        cases_depenses = [
+            'f7ad', 'f7af', 'f7ah', 'f7ak', 'f7al', 'f7am', 'f7an', 'f7aq', 'f7ar', 'f7av', 'f7ax', 'f7ay', 'f7az',
+            'f7bb', 'f7bc', 'f7bd', 'f7be', 'f7bf', 'f7bh', 'f7bk', 'f7bl', 'f7cb',
+            ]
+        depenses_transition_energetique = sum([foyer_fiscal(case, period) for case in cases_depenses])
         plafond_depenses_energetiques = P.max * (1 + maries_ou_pacses) + P.pac1 * personnes_a_charge
 
         return P.taux30 * min_(plafond_depenses_energetiques, depenses_transition_energetique)
+
+    def formula_2018_01_01(foyer_fiscal, period, parameters):
+        '''
+        Crédits d’impôt pour dépenses en faveur de la transition energétique
+        2018
+        '''
+        maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
+        personnes_a_charge = foyer_fiscal('nb_pac2', period)
+        P = parameters(period).impot_revenu.credits_impot.quaenv
+
+        cases_depenses = [
+            'f7aa', 'f7ad', 'f7af', 'f7ah', 'f7ak', 'f7al', 'f7am', 'f7an', 'f7aq', 'f7ar', 'f7as', 'f7av', 'f7ax', 'f7ay', 'f7az',
+            'f7bb', 'f7bc', 'f7bd', 'f7be', 'f7bf', 'f7bh', 'f7bk', 'f7bl', 'f7bm', 'f7cb',
+            ]
+        depenses_transition_energetique = sum([foyer_fiscal(case, period) for case in cases_depenses])
+        cases_depense_taux_reduit = ['f7ao', 'f7ap']
+        depenses_transition_energetique_taux_reduit = sum([foyer_fiscal(case, period) for case in cases_depense_taux_reduit])
+
+        plafond_depenses_energetiques = P.max * (1 + maries_ou_pacses) + P.pac1 * personnes_a_charge
+        plafond_depenses_energetiques_taux_reduit = max_(0, plafond_depenses_energetiques - depenses_transition_energetique)
+
+        return (
+            P.taux30 * min_(plafond_depenses_energetiques, depenses_transition_energetique)
+            + P.taux15 * min_(plafond_depenses_energetiques_taux_reduit, depenses_transition_energetique_taux_reduit)
+            )
 
 
 class quaenv_bouquet(Variable):

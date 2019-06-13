@@ -834,7 +834,7 @@ class f7bb(Variable):
     definition_period = YEAR
 
 
-class f7bm(Variable):
+class f7bm_2016(Variable):
     cerfa_field = u"7BM"
     value_type = int
     entity = FoyerFiscal
@@ -7840,7 +7840,7 @@ class f7cb(Variable):
     definition_period = YEAR
 
 
-class f7aa(Variable):
+class f7aa_2016(Variable):
     cerfa_field = u"7AA"
     value_type = int
     unit = 'currency'
@@ -7848,6 +7848,16 @@ class f7aa(Variable):
     label = u"Dépenses en faveur de la qualité environnementale des logements donnés en location en 2015 (hors bouquet sur 2 ans) : chaudières à condensation "
     # start_date = date(2015, 1, 1)
     end = '2016-12-31'
+    definition_period = YEAR
+
+
+class f7aa(Variable):
+    cerfa_field = u"7AA"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Dépenses en faveur de la qualité environnementale des logements donnés en location : Chaudières à haute performance énergétique utilisant le fioul : dépenses payées en 2018 avec acceptation d’un devis et versement d’un acompte au plus tard le 31.12.2017 "
+    # start_date = date(2018, 1, 1)
     definition_period = YEAR
 
 
@@ -7871,9 +7881,49 @@ class f7af(Variable):
     definition_period = YEAR
 
 
+class f7ao(Variable):
+    cerfa_field = u"7AO"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Dépenses en faveur de la qualité environnementale des logements donnés en location : Chaudières à très haute performance énergétique utilisant le fioul : dépenses payées du 1.1.2018 au 30.6.2018 et dépenses payées du 1.7.2018 au 31.12.2018 avec acceptation d’un devis et versement d’un acompte au plus tard le 30.6.2018."
+    # start_date = date(2018, 1, 1)
+    definition_period = YEAR
+
+
+class f7ap(Variable):
+    cerfa_field = u"7AP"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Dépenses en faveur de la qualité environnementale des logements donnés en location : Matériaux d’isolation thermique des parois vitrées (fenêtres, portes-fenêtres…) venant en remplacement de simples vitrages."
+    # start_date = date(2018, 1, 1)
+    definition_period = YEAR
+
+
+class f7as(Variable):
+    cerfa_field = u"7AS"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Dépenses en faveur de la qualité environnementale des logements donnés en location : Pompes à chaleur (autres que air/air) dédiées à la production d’eau chaude sanitaire (chauffe-eaux thermodynamiques); dépenses payées en 2018 avec acceptation d’un devis et versement d’un acompte au plus tard le 31.12.2017"
+    # start_date = date(2018, 1, 1)
+    definition_period = YEAR
+
+
+class f7bm(Variable):
+    cerfa_field = u"7BM"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Dépenses en faveur de la qualité environnementale des logements donnés en location : Audit énergétique"
+    # start_date = date(2018, 1, 1)
+    definition_period = YEAR
+
 # """
 # réutilisation de case pour 2013
 # """
+
 
 class f7sd(Variable):
     cerfa_field = u"7SD"

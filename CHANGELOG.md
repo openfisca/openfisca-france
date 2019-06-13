@@ -1,5 +1,20 @@
 # Changelog
 
+# 44.0.0 [#1329](https://github.com/openfisca/openfisca-france/pull/1329)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2018.
+* Zones impactées : `model/prelevements_obligatoires/impot_revenu/`.
+* Détails :
+  - Ajoute comme inputs variables les nouvelles cases de la déclaration IR 2018 liée au crédit d'impôt pour la transition énergétique (CITE)
+  - Renomme les anciennes inputs variables du même nom, selon la méthode habituelle
+  - Mets à jour la formule pour l'impôt 2019 sur revenus 2018
+  - Factorise les formules 2016, 2017 et 2018.
+
+## Guide de migration
+
+- Si vous utilisiez les variables `f7bm`, `f7aa`, il faut les renommer en ajoutant le suffixe `_2016`
+
 ## 43.1.0 [#1336](https://github.com/openfisca/openfisca-france/pull/1336)
 
 * Évolution du système socio-fiscal.
