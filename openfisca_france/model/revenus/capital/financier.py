@@ -31,23 +31,12 @@ class f2dh(Variable):
         return assurance_vie_pl_non_anonyme_plus8ans_depuis1990 + assurance_vie_pl_non_anonyme_plus6ans_avant1990
 
     def formula_2018_01_01(foyer_fiscal, period):
-        '''
-        Même si le formulaire 2042 de l'impôt 2019 au titre des revenus 2018 n'est toujours pas publié, on remplie cette case
-        quand même, en essayant de garder un périmètre similaire. On fait ceci afin de ne pas modifier la structure des cases,
-        ce qui pourrait avoir des impacts assez large dans le simulateur.
-        Ce que l'on fait : on a toute une série de variables d'assurance-vie désagrégées, que l'on injecte en f2dh ou f2ee.
-        En revanche, on neutralise les variables f2ch et f2ts
-        '''
         assurance_vie_pfu_ir_plus8ans_1990_19970926 = foyer_fiscal('assurance_vie_pfu_ir_plus8ans_1990_19970926', period)
-        assurance_vie_pfu_ir_plus6ans_avant1990 = foyer_fiscal('assurance_vie_pfu_ir_plus6ans_avant1990', period)
         assurance_vie_pfu_ir_plus8ans_19970926_primes_avant_20170927 = foyer_fiscal('assurance_vie_pfu_ir_plus8ans_19970926_primes_avant_20170927', period)
-        assurance_vie_pfu_ir_plus8ans_19970926_primes_apres_20170927 = foyer_fiscal('assurance_vie_pfu_ir_plus8ans_19970926_primes_apres_20170927', period)
 
         return (
             assurance_vie_pfu_ir_plus8ans_1990_19970926
-            + assurance_vie_pfu_ir_plus6ans_avant1990
             + assurance_vie_pfu_ir_plus8ans_19970926_primes_avant_20170927
-            + assurance_vie_pfu_ir_plus8ans_19970926_primes_apres_20170927
             )
 
 
