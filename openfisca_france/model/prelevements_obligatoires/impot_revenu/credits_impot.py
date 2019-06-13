@@ -1306,7 +1306,6 @@ class prlire(Variable):
     entity = FoyerFiscal
     label = u"Prélèvement libératoire à restituer (case 2DH)"
     definition_period = YEAR
-    end = '2017-12-31'
 
     def formula_2002(foyer_fiscal, period, parameters):
         f2dh = foyer_fiscal('f2dh', period)
