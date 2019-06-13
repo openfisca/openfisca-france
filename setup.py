@@ -7,7 +7,7 @@ from setuptools import setup, find_packages
 
 setup(
     name = "OpenFisca-France",
-    version = "44.0.0",
+    version = "45.0.0",
     author = "OpenFisca Team",
     author_email = "contact@openfisca.fr",
     classifiers = [
@@ -50,7 +50,7 @@ setup(
             "yamllint >=1.11.1,<1.16"
             ],
         "casd-dev": [
-            # Same as dev with package not available at CASD removed 
+            # Same as dev with packages not available at CASD removed
             "autopep8 >=1.3.2",
             "pytest < 5.0",
             "requests >= 2.8",
