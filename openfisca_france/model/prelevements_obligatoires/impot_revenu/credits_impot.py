@@ -1309,11 +1309,6 @@ class prlire(Variable):
     end = '2017-12-31'
 
     def formula_2002(foyer_fiscal, period, parameters):
-        '''
-        Prélèvement libératoire à restituer (case 2DH)
-        2002-
-        http://www2.impots.gouv.fr/documentation/2013/brochure_ir/index.html#122/z
-        '''
         f2dh = foyer_fiscal('f2dh', period)
         f2ch = foyer_fiscal('f2ch', period)
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
