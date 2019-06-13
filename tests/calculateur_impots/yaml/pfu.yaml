@@ -23,6 +23,7 @@
       f2ts: 30000.0
       f2tr: 15000.0
       f2tt: 5000.0
+      f2go: 1000.0
     individus:
       ind0:
         activite: actif
@@ -34,8 +35,8 @@
     menage:
       personne_de_reference: ind0
   output:
-    prelevement_forfaitaire_unique_ir: -10240.0
+    prelevement_forfaitaire_unique_ir: -10253.0
     nbptr: 1.0
     ppe: 0.0
-    rfr: 80000.0
-    prelevements_sociaux_revenus_capital: 13760.0
+    rfr: 80100.0
+    prelevements_sociaux_revenus_capital: 13778.0
