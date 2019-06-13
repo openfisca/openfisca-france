@@ -473,7 +473,6 @@ class revenus_capitaux_prelevement_liberatoire(Variable):
     set_input = set_input_divide_by_period
     reference = "http://bofip.impots.gouv.fr/bofip/3817-PGP"
     definition_period = MONTH
-    end = '2017-12-31'
 
     def formula_2002_01_01(foyer_fiscal, period, parameters):
         f2dh = foyer_fiscal('f2dh', period.this_year)
