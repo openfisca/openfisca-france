@@ -116,9 +116,8 @@ class revenus_capitaux_prelevement_forfaitaire_unique_ir(Variable):
         f2tr = foyer_fiscal('f2tr', year)
         f2tt = foyer_fiscal('f2tt', year)
         f2go = foyer_fiscal('f2go', year)
-        majoration_revenus_reputes_distribues = parameters(period).impot_revenu.rvcm.majoration_revenus_reputes_distribues
 
-        return (f2dc + f2fu + f2ch + f2ts + f2tr + f2tt + f2go * majoration_revenus_reputes_distribues) / 12
+        return (f2dc + f2fu + f2ch + f2ts + f2tr + f2tt + f2go) / 12
 
 
 class plus_values_prelevement_forfaitaire_unique_ir(Variable):
