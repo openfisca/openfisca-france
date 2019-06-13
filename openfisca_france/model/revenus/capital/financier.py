@@ -139,7 +139,6 @@ class f2ts(Variable):
     entity = FoyerFiscal
     label = u"Revenus de valeurs mobilières, produits des contrats d'assurance-vie d'une durée inférieure à 8 ans et distributions (n'ouvrant pas droit à abattement)"
     definition_period = YEAR
-    end = '2017-12-31'  # On neutralise cette variable par hypothèse à partir de 2018 : tous les produits d'assurance vie sont mis en f2dh et f2ee. Cf. docstring de ces deux cases
 
 
 class f2go(Variable):
