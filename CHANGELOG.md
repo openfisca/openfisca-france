@@ -1,5 +1,18 @@
 # Changelog
 
+# 45.0.0 [#1340](https://github.com/openfisca/openfisca-france/pull/1340)
+
+* Suppression d'éléments redondants du système socio-fiscal.
+* Périodes concernées : toutes.
+* Zones impactées :
+  - `impot_revenu`, `revenus`
+  - `parameters\prelevements_sociaux\contributions\csg\remplacement`
+* Détails :
+  - Supprime la variable `cbnc_assc` redondante avec `f5qm`, la variable `f1tz` inutilisée
+  - Ajoute l'attribut `cerfa_field` à la variable fiscale `f3va`
+  - Met à jour les paramètres relatifs à la CSG sur revenus de remplacement
+  - Ajoute une option d'installation `casd-dev` pour les activités de développement de l'IPP au CASD
+
 # 44.0.0 [#1329](https://github.com/openfisca/openfisca-france/pull/1329)
 
 * Évolution du système socio-fiscal.
