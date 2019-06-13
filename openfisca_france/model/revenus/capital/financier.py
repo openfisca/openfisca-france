@@ -168,6 +168,7 @@ class f2fa(Variable):
     entity = FoyerFiscal
     label = u"Intérêts et autres produits de placement à revenu fixe n'excédant pas 2000 euros, taxables sur option à 24%"
     # start_date = date(2013, 1, 1)
+    end = '2017-12-31'
     definition_period = YEAR
 
 
