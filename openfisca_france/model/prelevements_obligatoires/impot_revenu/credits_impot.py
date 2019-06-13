@@ -794,7 +794,6 @@ class acomptes_ir(Variable):
     entity = FoyerFiscal
     label = u"Ensemble des acomptes de l'IR"
     definition_period = YEAR
-    end = '2017-12-31'  # On neutralise cette variable à partir de 2018 car cette variable n'est pas un montant de revenu, mais un montant d'impôt, versé en acompte. Or, pour le moment, à partir de 2018, on ne dispose pas de cet acompte.
 
     def formula_2013_01_01(foyer_fiscal, period):
         '''
