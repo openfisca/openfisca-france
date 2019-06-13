@@ -259,7 +259,6 @@ class f2ck(Variable):
     label = u"Crédit d'impôt égal au prélèvement forfaitaire déjà versé"
     # start_date = date(2013, 1, 1)
     definition_period = YEAR
-    # TODO: nouvelle case à créer où c'est nécessaire, vérifier sur la déclaration des revenus 2013
 
 
 class f2ab(Variable):
