@@ -119,7 +119,6 @@ class revenus_capitaux_prelevement_forfaitaire_unique_ir(Variable):
                 (à savoir revenus_capitaux_prelevement_bareme et revenus_capitaux_prelevement_liberatoire)
         '''
         year = period.this_year
-        f2dh = foyer_fiscal('f2dh', year)
         f2dc = foyer_fiscal('f2dc', year)
         f2fu = foyer_fiscal('f2fu', year)
         f2ch = foyer_fiscal('f2ch', year)
