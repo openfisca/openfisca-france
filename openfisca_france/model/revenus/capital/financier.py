@@ -148,8 +148,8 @@ class f2tr(Variable):
     definition_period = YEAR
 
 
-class f2zz(Variable):
-    cerfa_field = u"2ZZ"
+class f2yy(Variable):
+    cerfa_field = u"2YY"
     value_type = float
     entity = FoyerFiscal
     label = u"Produits des bons ou contrats de capitalisation et d'assurance vie de moins de 8 ans pour les contrats souscrits après le 26 septembre 1997, dont le produits sont associés aux primes versées avant le 27 septembre 2017, et qui n'ont pas été soumis au prélèvement libératoire"
