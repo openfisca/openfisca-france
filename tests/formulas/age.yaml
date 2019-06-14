@@ -116,3 +116,27 @@
       - 40
       - 9
       - 9
+- period: 2018-03
+  absolute_error_margin: 0.03
+  input:
+    famille:
+      parents: [parent1, parent2]
+      enfants: [enfant1, enfant2]
+    foyer_fiscal:
+      declarants: [parent1, parent2]
+      personnes_a_charge: [enfant1, enfant2]
+    menage:
+      personne_de_reference: parent1
+      conjoint: parent2
+      enfants: [enfant1, enfant2]
+    individus:
+      parent1:
+        age_en_mois: 38 * 12
+      parent2:
+        age_en_mois: 35 * 12
+      enfant1:
+        age_en_mois: 2
+      enfant2:
+        age_en_mois: 2
+  output:
+    age: [38, 35, 0, 0]

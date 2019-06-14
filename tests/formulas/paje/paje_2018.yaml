@@ -416,21 +416,21 @@
       enfants: [enfant1]
     individus:
       parent1:
-        age: 38
+        age_en_mois: 38 * 12
         revenu_assimile_salaire:
           2015: 28000
           2016: 28000
           2017: 28000
           2018: 28000
       parent2:
-        age: 35
+        age_en_mois: 35 * 12
         revenu_assimile_salaire:
           2015: 15000
           2016: 15000
           2017: 15000
           2018: 15000
       enfant1:
-        date_naissance: 2018-01-01
+        age_en_mois: 2
   output:
     paje: 923.08 / (1 - 0.005) + 92.31 / (1 - 0.005)
 - name: PAJE - PPN - Cas N°2
@@ -450,24 +450,26 @@
       enfants: [enfant1, enfant2]
     individus:
       parent1:
-        age: 38
+        age_en_mois: 38 * 12
         revenu_assimile_salaire:
           2015: 28000
           2016: 28000
           2017: 28000
           2018: 28000
       parent2:
-        age: 35
+        age_en_mois: 35 * 12
         revenu_assimile_salaire:
           2015: 15000
           2016: 15000
           2017: 15000
           2018: 15000
       enfant1:
-        date_naissance: 2018-01-01
+        age_en_mois: 1
       enfant2:
-        date_naissance: 2018-01-01
+        age_en_mois: 1
   output:
+    af_nbenf: 2
+    paje_base: 92.31 / (1 - 0.005)
     paje: 1846.16 / (1 - 0.005) + 92.31 / (1 - 0.005)
 - name: PAJE - PPN - Cas N°3
   description: Montant PAJE
@@ -486,26 +488,28 @@
       enfants: [enfant1, enfant2, enfant3]
     individus:
       parent1:
-        age: 38
+        age_en_mois: 38 * 12
         revenu_assimile_salaire:
           2015: 28000
           2016: 28000
           2017: 28000
           2018: 28000
       parent2:
-        age: 35
+        age_en_mois: 35 * 12
         revenu_assimile_salaire:
           2015: 15000
           2016: 15000
           2017: 15000
           2018: 15000
       enfant1:
-        date_naissance: 2018-01-01
+        age_en_mois: 1
       enfant2:
-        date_naissance: 2018-01-01
+        age_en_mois: 1
       enfant3:
-        date_naissance: 2018-01-01
+        age_en_mois: 1
   output:
+    af_nbenf: 3
+    paje_base: 92.31 / (1 - 0.005)
     paje: 2769.24 / (1 - 0.005) + 92.31 / (1 - 0.005)
 - name: PAJE - PPN Non Passant - Cas N°1
   description: Montant PAJE
@@ -524,21 +528,21 @@
       enfants: [enfant1]
     individus:
       parent1:
-        age: 38
+        age_en_mois: 38 * 12
         revenu_assimile_salaire:
           2015: 35000
           2016: 35000
           2017: 35000
           2018: 35000
       parent2:
-        age: 35
+        age_en_mois: 35 * 12
         revenu_assimile_salaire:
           2015: 20000
           2016: 20000
           2017: 20000
           2018: 20000
       enfant1:
-        date_naissance: 2018-01-01
+        age_en_mois: 1
   output:
     paje: 0
 
@@ -559,22 +563,22 @@
       enfants: [enfant1, enfant2]
     individus:
       parent1:
-        age: 38
+        age_en_mois: 38 * 12
         revenu_assimile_salaire:
           2015: 25000
           2016: 25000
           2017: 25000
           2018: 25000
       parent2:
-        age: 35
+        age_en_mois: 35 * 12
         revenu_assimile_salaire:
           2015: 35000
           2016: 35000
           2017: 35000
           2018: 35000
       enfant1:
-        age: 1
+        age_en_mois: 12
       enfant2:
-        date_naissance: 2018-01-01
+        age_en_mois: 1
   output:
     paje: 0
