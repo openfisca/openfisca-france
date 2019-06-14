@@ -3,8 +3,8 @@
 from openfisca_france.model.base import *
 
 
-# RVCM
 # revenus au prélèvement libératoire
+
 class f2da(Variable):
     cerfa_field = u"2DA"
     value_type = int
@@ -91,6 +91,7 @@ class f2ee(Variable):
 
 
 # revenus des valeurs et capitaux mobiliers ouvrant droit à abattement
+
 class f2dc(Variable):
     cerfa_field = u"2DC"
     value_type = int
@@ -117,8 +118,8 @@ class f2ch(Variable):
     label = u"Produits des contrats d'assurance-vie et de capitalisation d'une durée d'au moins 6 ou 8 ans donnant droit à abattement"
     definition_period = YEAR
 
-#  Revenus des valeurs et capitaux mobiliers n'ouvrant pas droit à abattement
 
+#  Revenus des valeurs et capitaux mobiliers n'ouvrant pas droit à abattement
 
 class f2ts(Variable):
     cerfa_field = u"2TS"
@@ -147,7 +148,17 @@ class f2tr(Variable):
     definition_period = YEAR
 
 
+class f2zz(Variable):
+    cerfa_field = u"2ZZ"
+    value_type = float
+    entity = FoyerFiscal
+    label = u"Produits des bons ou contrats de capitalisation et d'assurance vie de moins de 8 ans pour les contrats souscrits après le 26 septembre 1997, dont le produits sont associés aux primes versées avant le 27 septembre 2017, et qui n'ont pas été soumis au prélèvement libératoire"
+    definition_period = YEAR
+    # start_date = date(2018, 1, 1)
+
+
 # Autres revenus des valeurs et capitaux mobiliers
+
 class f2fa(Variable):
     cerfa_field = u"2FA"
     value_type = int

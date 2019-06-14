@@ -836,10 +836,14 @@ class revenu_categoriel_capital(Variable):
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         deficit_rcm = foyer_fiscal('deficit_rcm', period)
         f2ch = foyer_fiscal('f2ch', period)
+        f2zz = foyer_fiscal('f2zz', period)
         P = parameters(period).impot_revenu.rvcm
 
         abattement_assurance_vie = P.abat_assvie * (1 + maries_ou_pacses)
-        rvcm_apres_abattement = f2ch - min_(f2ch, abattement_assurance_vie)
+        rvcm_apres_abattement = (
+            f2zz
+            + f2ch - min_(f2ch, abattement_assurance_vie)
+            )
 
         return max_(0, rvcm_apres_abattement - deficit_rcm)
 
