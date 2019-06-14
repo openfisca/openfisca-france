@@ -464,17 +464,17 @@
           2017: 15000
           2018: 15000
       enfant1:
-        age_en_mois: 1
+        age_en_mois: 2
       enfant2:
-        age_en_mois: 1
+        age_en_mois: 2
   output:
     af_nbenf: 2
-    paje_base: 92.31 / (1 - 0.005)
-    paje: 1846.16 / (1 - 0.005) + 92.31 / (1 - 0.005)
+    paje_base: 2 * 92.31 / (1 - 0.005)
+    paje: 1846.16 / (1 - 0.005) + (2 * 92.31 / (1 - 0.005))
 - name: PAJE - PPN - Cas N°3
   description: Montant PAJE
   period: 2018-03
-  absolute_error_margin: 0.03
+  absolute_error_margin: 0.04
   input:
     famille:
       parents: [parent1, parent2]
@@ -502,15 +502,15 @@
           2017: 15000
           2018: 15000
       enfant1:
-        age_en_mois: 1
+        age_en_mois: 2
       enfant2:
-        age_en_mois: 1
+        age_en_mois: 2
       enfant3:
-        age_en_mois: 1
+        age_en_mois: 2
   output:
     af_nbenf: 3
-    paje_base: 92.31 / (1 - 0.005)
-    paje: 2769.24 / (1 - 0.005) + 92.31 / (1 - 0.005)
+    paje_base: 2 * 92.31 / (1 - 0.005)
+    paje: 2769.24 / (1 - 0.005) + (2 * 92.31 / (1 - 0.005))
 - name: PAJE - PPN Non Passant - Cas N°1
   description: Montant PAJE
   period: 2018-01
