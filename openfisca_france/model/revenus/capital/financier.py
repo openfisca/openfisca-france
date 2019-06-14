@@ -2,8 +2,16 @@
 
 from openfisca_france.model.base import *
 
+# PLAN :
+# 1) Revenus des valeurs et capitaux mobiliers taxés au prélèvement libératoire
+# 2) Revenus des valeurs et capitaux mobiliers ouvrant droit à abattement
+# 3) Revenus des valeurs et capitaux mobiliers n'ouvrant pas droit à abattement
+# 4) Autres revenus des valeurs et capitaux mobiliers
+# 5) Revenus des valeurs et capitaux mobiliers utilisés par mes aides
+# 6) Variables agrégées de revenus des valeurs et capitaux mobiliers
 
-# revenus au prélèvement libératoire
+
+# Revenus des valeurs et capitaux mobiliers taxés au prélèvement libératoire
 
 class f2da(Variable):
     cerfa_field = u"2DA"
@@ -90,7 +98,7 @@ class f2ee(Variable):
             )
 
 
-# revenus des valeurs et capitaux mobiliers ouvrant droit à abattement
+# Revenus des valeurs et capitaux mobiliers ouvrant droit à abattement
 
 class f2dc(Variable):
     cerfa_field = u"2DC"
@@ -119,7 +127,7 @@ class f2ch(Variable):
     definition_period = YEAR
 
 
-#  Revenus des valeurs et capitaux mobiliers n'ouvrant pas droit à abattement
+# Revenus des valeurs et capitaux mobiliers n'ouvrant pas droit à abattement
 
 class f2ts(Variable):
     cerfa_field = u"2TS"
@@ -337,9 +345,6 @@ class f2ar(Variable):
     # start_date = date(2012, 1, 1)
     definition_period = YEAR
 
-# je ne sais pas d'ou sort f2as...! probablement une ancienne année à laquelle je ne suis pas encore arrivé
-# TODO: vérifier existence <=2011
-
 
 class f2as(Variable):
     value_type = int
@@ -369,10 +374,10 @@ class f2gr(Variable):
     # start_date = date(2005, 1, 1)
     end = '2009-12-31'
     definition_period = YEAR
-    # TODO: vérifier existence à partir de 2011
 
 
-# Utilisés par mes aides. TODO: à consolider
+# Revenus des valeurs et capitaux mobiliers utilisés par mes aides. TODO: à consolider
+
 class livret_a(Variable):
     value_type = float
     entity = Individu
@@ -397,6 +402,8 @@ class epargne_revenus_imposables(Variable):
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
+
+# Variables agrégées de revenus des valeurs et capitaux mobiliers
 
 class revenus_capitaux_prelevement_bareme(Variable):
     value_type = float
