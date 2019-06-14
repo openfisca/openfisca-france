@@ -412,7 +412,6 @@ class revenus_capitaux_prelevement_bareme(Variable):
     set_input = set_input_divide_by_period
     reference = "http://bofip.impots.gouv.fr/bofip/3775-PGP"
     definition_period = MONTH
-    end = '2017-12-31'
 
     def formula(foyer_fiscal, period, parameters):
         year = period.this_year
@@ -469,6 +468,13 @@ class revenus_capitaux_prelevement_bareme(Variable):
         majoration_revenus_reputes_distribues = parameters(period).impot_revenu.rvcm.majoration_revenus_reputes_distribues
 
         return (f2dc + f2ch + f2ts + f2go * majoration_revenus_reputes_distribues + f2tr + f2fu + f2tt) / 12
+
+    def formula_2018_01_01(foyer_fiscal, period, parameters):
+        year = period.this_year
+        f2ch = foyer_fiscal('f2ch', year)
+        f2yy = foyer_fiscal('f2yy', year)
+
+        return (f2ch + f2yy) / 12
 
 
 class revenus_capitaux_prelevement_liberatoire(Variable):
