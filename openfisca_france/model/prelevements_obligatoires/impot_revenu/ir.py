@@ -647,7 +647,6 @@ class revenu_categoriel_capital(Variable):
     label = u"Revenu catégoriel - Capitaux"
     reference = "http://www.insee.fr/fr/methodes/default.asp?page=definitions/revenus-categoriesl.htm"
     definition_period = YEAR
-    end = '2017-12-31'
 
     def formula_2002_01_01(foyer_fiscal, period, parameters):
         """
@@ -829,6 +828,20 @@ class revenu_categoriel_capital(Variable):
             )
 
         return max_(0, rvcm_apres_abattement - f2ca - deficit_rcm)
+
+    def formula_2018_01_01(foyer_fiscal, period, parameters):
+        """
+        Revenus des valeurs et capitaux mobiliers
+        """
+        maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
+        deficit_rcm = foyer_fiscal('deficit_rcm', period)
+        f2ch = foyer_fiscal('f2ch', period)
+        P = parameters(period).impot_revenu.rvcm
+
+        abattement_assurance_vie = P.abat_assvie * (1 + maries_ou_pacses)
+        rvcm_apres_abattement = f2ch - min_(f2ch, abattement_assurance_vie)
+
+        return max_(0, rvcm_apres_abattement - deficit_rcm)
 
 
 class rfr_rvcm_abattements_a_reintegrer(Variable):
