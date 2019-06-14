@@ -116,7 +116,6 @@ class f2ch(Variable):
     entity = FoyerFiscal
     label = u"Produits des contrats d'assurance-vie et de capitalisation d'une durée d'au moins 6 ou 8 ans donnant droit à abattement"
     definition_period = YEAR
-    end = '2017-12-31'  # On neutralise cette variable par hypothèse à partir de 2018 : tous les produits d'assurance vie sont mis en f2dh et f2ee. Cf. docstring de ces deux cases
 
 #  Revenus des valeurs et capitaux mobiliers n'ouvrant pas droit à abattement
 
