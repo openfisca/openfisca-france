@@ -60,12 +60,12 @@
       nbI: 0.0
       nbJ: 0
       nbR: 0
-      f2dh: 10000.0
-      f2ch: 20000.0
-      f2vv: 30000.0
-      f2ww: 15000.0
-      f2yy: 5000.0
-      f2zz: 1000.0
+      f2dh: 10000.0 # taxé au prélèvement forfaitaire libératoire
+      f2ch: 20000.0 # taxé au barème
+      f2vv: 30000.0 # taxé au PFU à 7,5%
+      f2ww: 15000.0 # taxé au PFU à 12,8%
+      f2yy: 5000.0 # taxé au barème
+      f2zz: 1000.0 # taxé au PFU à 12,8%
     individus:
       ind0:
         activite: actif
@@ -77,7 +77,7 @@
     menage:
       personne_de_reference: ind0
   output:
-    prelevement_forfaitaire_unique_ir: 4298.0
+    prelevement_forfaitaire_unique_ir: 4298.0 # 2250 + 1920 + 128
     iai: 1461.0
     irpp: 1361.0
     nbptr: 1.0
