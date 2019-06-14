@@ -20,46 +20,63 @@ class ppa_eligibilite(Variable):
         return condition_age
 
 
-class ppa_eligibilite_etudiants(Variable):
-    value_type = bool
+class ppa_plancher_revenu_activite_etudiant(Variable):
+    value_type = float
     entity = Famille
-    label = "Eligibilité à la PPA (condition sur tout le trimestre)"
-    reference = [
-        # Article L842-2 du Code de la Sécurité Sociale
-        "https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=F2B88CEFCB83FCAFA4AA31671DAC89DD.tplgfr26s_3?idArticle=LEGIARTI000031087615&cidTexte=LEGITEXT000006073189&dateTexte=20181226"
-        ]
+    label = u"Plancher des revenus d'activité pour être éligible à la PPA en tant qu'étudiant"
     definition_period = MONTH
 
-    def formula(famille, period, parameters):
+    def formula(individu, period, parameters):
         P = parameters(period)
-        ppa_majoree_eligibilite = famille('rsa_majore_eligibilite', period)
 
-        # Pour un individu
-        etudiant_i = famille.members('etudiant', period)  # individu
-
-        plancher_ressource = (
+        return (
             169
             * P.cotsoc.gen.smic_h_b
             * P.prestations.prestations_familiales.af.seuil_rev_taux
             )
 
-        def condition_ressource(period2):
+
+class ppa_eligibilite_etudiants(Variable):
+    value_type = bool
+    entity = Famille
+    label = "Eligibilité à la PPA (condition sur tout le trimestre)"
+    reference = [
+        "Article L842-1 du code de la sécurité sociale",
+        "https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=46068A49B8592A593A05D64D8EDB045A.tplgfr26s_3?idArticle=LEGIARTI000031087527&cidTexte=LEGITEXT000006073189&dateTexte=20181226",
+        "Article L842-2 du Code de la Sécurité Sociale",
+        "https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=F2B88CEFCB83FCAFA4AA31671DAC89DD.tplgfr26s_3?idArticle=LEGIARTI000031087615&cidTexte=LEGITEXT000006073189&dateTexte=20181226"
+        ]
+    definition_period = MONTH
+
+    def formula(famille, period, parameters):
+        ppa_majoree_eligibilite = famille('rsa_majore_eligibilite', period)
+
+        etudiant_i = famille.members('etudiant', period)
+        plancher_etudiant = famille('ppa_plancher_revenu_activite_etudiant', period)
+
+        def condition_ressource(period2, plancher):
             revenu_activite = famille.members('ppa_revenu_activite_individu', period2)
-            return revenu_activite > plancher_ressource
+            return plancher < revenu_activite
 
         m_1 = period.offset(-1, 'month')
         m_2 = period.offset(-2, 'month')
         m_3 = period.offset(-3, 'month')
 
         condition_etudiant_i = (
-            condition_ressource(m_1)
-            * condition_ressource(m_2)
-            * condition_ressource(m_3)
+            condition_ressource(m_1, plancher_etudiant)
+            * condition_ressource(m_2, plancher_etudiant)
+            * condition_ressource(m_3, plancher_etudiant)
             )
 
-        # Au moins une personne de la famille doit être non étudiant ou avoir des ressources > plancher
-        condition_famille = famille.any(not_(etudiant_i) + condition_etudiant_i, role = Famille.PARENT)
+        condition_non_etudiant_i = (
+            not_(etudiant_i) * (
+                condition_ressource(m_1, 1)
+                + condition_ressource(m_2, 2)
+                + condition_ressource(m_3, 3)
+                )
+            )
 
+        condition_famille = famille.any(condition_non_etudiant_i + condition_etudiant_i, role = Famille.PARENT)
         return ppa_majoree_eligibilite + condition_famille
 
 
