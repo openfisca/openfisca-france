@@ -40,7 +40,7 @@
     ppe: 0.0
     rfr: 81000.0
     prelevements_sociaux_revenus_capital: -13932.0
-- name: Application du PFU aux produits des bons et contrats de capitalisation
+- name: Application du PFU aux produits des bons et contrats de capitalisation et d'assurance-vie
   period: 2018
   absolute_error_margin: 1
   input:
