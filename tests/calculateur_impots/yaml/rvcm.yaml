@@ -80,7 +80,7 @@
     prelevement_forfaitaire_unique_ir: -3953.0 # 1000 * 0.128 + 30000 * 0.075 + 15000 * 0.128
     #prelevement_forfaitaire_liberatoire: -345.0
     iai: 0.0
-    irpp: 0.0
+    irpp: 345.0 # Crédit d'IR au tittre du PFL (2DH)
     nbptr: 1.0
     ppe: 0.0
     rfr: 56000.0
