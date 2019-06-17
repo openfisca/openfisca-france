@@ -1000,19 +1000,6 @@ class revenu_categoriel(Variable):
 
         return rev_cat_tspr + rev_cat_rvcm + rev_cat_rfon + rev_cat_rpns + rev_cat_pv
 
-    def formula_2018_01_01(foyer_fiscal, period, parameters):
-        '''
-        Revenus Categoriels
-        Différence par rapport à la formule précédente : on enlève revenu_categoriel_capital et revenu_categoriel_plus_values (suite à la création du prélèvement forfaitaire unique)
-        Hypothèse : les contribuables choisissent toujours le prélèvement forfaitaire unique par rapport au barème pour ces revenus
-        '''
-        rev_cat_tspr = foyer_fiscal('revenu_categoriel_tspr', period)
-        rev_cat_rfon = foyer_fiscal('revenu_categoriel_foncier', period)
-        rev_cat_rpns = foyer_fiscal('revenu_categoriel_non_salarial', period)
-        rev_cat_pv = foyer_fiscal('revenu_categoriel_plus_values', period)
-
-        return rev_cat_tspr + rev_cat_rfon + rev_cat_rpns + rev_cat_pv
-
 
 ###############################################################################
 # # Déroulé du calcul de l'irpp
