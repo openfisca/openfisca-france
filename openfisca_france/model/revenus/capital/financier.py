@@ -83,7 +83,6 @@ class f2ee(Variable):
         assurance_vie_pfu_ir_4_8_ans_1990_19970926 = foyer_fiscal('assurance_vie_pfu_ir_4_8_ans_1990_19970926', period)
         assurance_vie_pfu_ir_4_8_ans_19970926_primes_avant_20170927 = foyer_fiscal('assurance_vie_pfu_ir_4_8_ans_19970926_primes_avant_20170927', period)
         assurance_vie_pfu_ir_moins4ans_19970926_primes_avant_20170927 = foyer_fiscal('assurance_vie_pfu_ir_moins4ans_19970926_primes_avant_20170927', period)
-        f2zz = foyer_fiscal('f2zz', period)
         produit_epargne_solidaire = foyer_fiscal('produit_epargne_solidaire', period)
         produit_etats_non_cooperatif = foyer_fiscal('produit_etats_non_cooperatif', period)
 
@@ -92,7 +91,6 @@ class f2ee(Variable):
             + assurance_vie_pfu_ir_4_8_ans_1990_19970926
             + assurance_vie_pfu_ir_4_8_ans_19970926_primes_avant_20170927
             + assurance_vie_pfu_ir_moins4ans_19970926_primes_avant_20170927
-            + f2zz
             + produit_epargne_solidaire
             + produit_etats_non_cooperatif
             )
