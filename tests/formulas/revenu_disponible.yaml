@@ -255,7 +255,7 @@
   period: 2018
   absolute_error_margin: 1
   input:
-    f2dh: 20000
+    f2dc: 20000
     f3sa: 30000
     f3vg: 40000
     f3vd: 50000
