@@ -40,10 +40,12 @@ class f2dh(Variable):
 
     def formula_2018_01_01(foyer_fiscal, period):
         assurance_vie_pfu_ir_plus8ans_1990_19970926 = foyer_fiscal('assurance_vie_pfu_ir_plus8ans_1990_19970926', period)
+        assurance_vie_pfu_ir_plus6ans_avant1990 = foyer_fiscal('assurance_vie_pfu_ir_plus6ans_avant1990', period)
         assurance_vie_pfu_ir_plus8ans_19970926_primes_avant_20170927 = foyer_fiscal('assurance_vie_pfu_ir_plus8ans_19970926_primes_avant_20170927', period)
 
         return (
             assurance_vie_pfu_ir_plus8ans_1990_19970926
+            + assurance_vie_pfu_ir_plus6ans_avant1990
             + assurance_vie_pfu_ir_plus8ans_19970926_primes_avant_20170927
             )
 
