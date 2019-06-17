@@ -98,6 +98,16 @@ class f2ee(Variable):
             )
 
 
+class f2xx(Variable):
+    cerfa_field = u"2XX"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Produits des bons et contrats de capitalisation et d'assurance-vie de moins de 8 ans; produits des versements effectués avant le 27.9.2017; soumis au prélèvement libératoire"
+    # start_date = date(2108, 1, 1)
+    definition_period = YEAR
+
+
 # Revenus des valeurs et capitaux mobiliers ouvrant droit à abattement
 
 class f2dc(Variable):
@@ -504,6 +514,14 @@ class revenus_capitaux_prelevement_liberatoire(Variable):
         f2fa = foyer_fiscal('f2fa', period.this_year)
 
         return (f2dh + f2ee + f2fa) / 12
+
+    def formula_2018_01_01(foyer_fiscal, period, parameters):
+        f2dh = foyer_fiscal('f2dh', period.this_year)
+        f2ee = foyer_fiscal('f2ee', period.this_year)
+        f2fa = foyer_fiscal('f2fa', period.this_year)
+        f2xx = foyer_fiscal('f2xx', period.this_year)
+
+        return (f2dh + f2ee + f2fa + f2xx) / 12
 
 
 class revenus_capital(Variable):
