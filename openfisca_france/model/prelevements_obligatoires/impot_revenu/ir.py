@@ -906,7 +906,7 @@ class rfr_rvcm_abattements_a_reintegrer(Variable):
         abattement_dividende = (f2fu + f2dc) * P.taux_abattement_capitaux_mobiliers
         abattement_assurance_vie = min_(f2ch + f2dh + f2vv + f2ww, P.abat_assvie * (1 + maries_ou_pacses))
 
-        return abattement_dividende + abattement_assurance_vie
+        return abattement_assurance_vie # + abattement_dividende
 
 
 class revenu_categoriel_foncier(Variable):
