@@ -908,7 +908,7 @@ class rfr_rvcm_abattements_a_reintegrer(Variable):
             (f2ch < P.abat_assvie * (1 + maries_ou_pacses)) * max_(0, min_(f2vv + f2ww, P.abat_assvie * (1 + maries_ou_pacses) - f2ch - f2dh))
             )
 
-        return - abattement_assurance_vie # + abattement_dividende
+        return - abattement_assurance_vie #  + abattement_dividende
 
 
 class revenu_categoriel_foncier(Variable):
