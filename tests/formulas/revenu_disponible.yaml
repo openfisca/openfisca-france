@@ -246,9 +246,9 @@
   output:
     prelevements_sociaux_revenus_capital: -774000 # -4500000*(0.045+0.02+0.003+0.005+0.099)
     revenus_nets_du_capital: 4500000 - 774000
-    prelevement_forfaitaire_unique_ir_sur_assurance_vie: -769061.2 # =0,075*150000+0,128*(900000-150000-4600)+0,075*(100000+200000+500000)+0,15*(400000+600000)+0,35*(300000+700000)+0,128*800000
-    impots_directs: -769061.2
-    revenu_disponible: 4500000 - 774000 -769061.2
+    prelevement_forfaitaire_unique_ir_sur_assurance_vie: -209305.0 # ((150000 - 4600)  * 0.075 + 800000 * 0.128 + 750000 * 0.128)
+    impots_directs: -209305.0
+    revenu_disponible: 4500000 - 774000 -209305.0
 
 - name: pfu_epargne_non_solidaire_etats_non_cooperatifs_2018
   description: Test du prélèvement forfaitaire unique en 2018 pour les produits d'épargne solidaire et les produits des états non-coopératifs'
