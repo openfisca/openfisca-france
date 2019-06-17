@@ -903,7 +903,7 @@ class rfr_rvcm_abattements_a_reintegrer(Variable):
         f2ww = foyer_fiscal('f2ww', period)
         P = parameters(period).impot_revenu.rvcm
 
-        abattement_dividende = (f2fu + f2dc) * P.taux_abattement_capitaux_mobiliers
+        # abattement_dividende = (f2fu + f2dc) * P.taux_abattement_capitaux_mobiliers
         abattement_assurance_vie = (
             (f2ch < P.abat_assvie * (1 + maries_ou_pacses)) * max_(0, min_(f2vv + f2ww, P.abat_assvie * (1 + maries_ou_pacses) - f2ch - f2dh))
             )
