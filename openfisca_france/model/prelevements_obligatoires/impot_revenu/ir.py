@@ -851,13 +851,10 @@ class revenu_categoriel_capital(Variable):
 class rfr_rvcm_abattements_a_reintegrer(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = u"rfr_rvcm_abattements_a_reintegrer"
+    label = u"Abattement sur revenus des valeurs et capitaux mobiliers à réintégrer dans le calcul du revenu fiscal de référence"
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
-        '''
-        Abattements sur rvcm à réintégrer dans le revenu fiscal de référence
-        '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         f2dc = foyer_fiscal('f2dc', period)
         f2ts = foyer_fiscal('f2ts', period)
@@ -885,9 +882,6 @@ class rfr_rvcm_abattements_a_reintegrer(Variable):
         return max_((rvcm.taux_abattement_capitaux_mobiliers) * (f2dc + f2fu) - i121, 0)
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
-        '''
-        Abattements sur rvcm à réintégrer dans le revenu fiscal de référence
-        '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         f2dc = foyer_fiscal('f2dc', period)
         f2ch = foyer_fiscal('f2ch', period)
@@ -900,9 +894,6 @@ class rfr_rvcm_abattements_a_reintegrer(Variable):
         return abattement_dividende + abattement_assurance_vie
 
     def formula_2018_01_01(foyer_fiscal, period, parameters):
-        '''
-        Abattements sur rvcm à réintégrer dans le revenu fiscal de référence
-        '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         f2ch = foyer_fiscal('f2ch', period)
         f2dc = foyer_fiscal('f2dc', period)
