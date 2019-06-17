@@ -61,7 +61,7 @@
       nbJ: 0
       nbR: 0
       f2dh: 10000.0 # taxé au prélèvement forfaitaire libératoire (abattement fixe applicable)
-      #f2ch: 20000.0 # taxé au barème (abattement fixe applicable)
+      f2ch: 20000.0 # taxé au barème (abattement fixe applicable)
       f2vv: 30000.0 # taxé au PFU à 7,5% (abattement fixe applicable)
       f2ww: 15000.0 # taxé au PFU à 12,8% (abattement fixe applicable)
       #f2yy: 5000.0 # taxé au barème
@@ -79,10 +79,10 @@
   output:
     prelevement_forfaitaire_unique_ir: -3953.0 # 1000 * 0.128 + 30000 * 0.075 + 15000 * 0.128
     #prelevement_forfaitaire_liberatoire: -345.0
-    iai: 0.0
-    irpp: 345.0 # Crédit d'IR au tittre du PFL (2DH)
+    iai: 761.0
+    irpp: -136.0
     nbptr: 1.0
     ppe: 0.0
-    rfr: 56000.0
-    rni: 0
-    prelevements_sociaux_revenus_capital: -9632.0
+    rfr: 71400.0
+    rni: 15400.0
+    prelevements_sociaux_revenus_capital: -13072.0 # (10000 + 20000 + 30000 + 15000 + 1000) * 0.172
