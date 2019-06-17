@@ -186,9 +186,7 @@ class prelevement_forfaitaire_unique_ir_sur_assurance_vie(Variable):
 
     def formula_2018_01_01(foyer_fiscal, period, parameters):
         P1 = parameters(period).impot_revenu.prelevement_forfaitaire_unique_ir
-        P2 = parameters(period).taxation_capital.pfl_av.bons_ou_contrats_de_capitalisation_et_placements_de_meme_nature_assurance_vie_lors_du_denouement_du_contrat
-        P3 = parameters(period).impot_revenu.rvcm
-        rvcm = parameters(period).impot_revenu.rvcm
+        P2 = parameters(period).impot_revenu.rvcm
 
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         f2ch = foyer_fiscal('f2ch', period)
@@ -196,7 +194,7 @@ class prelevement_forfaitaire_unique_ir_sur_assurance_vie(Variable):
         f2vv = foyer_fiscal('f2vv', period)
         f2ww = foyer_fiscal('f2ww', period)
 
-        abattement_residuel = max_(P3.abat_assvie * (1 + maries_ou_pacses) - f2ch, 0)
+        abattement_residuel = max_(P2.abat_assvie * (1 + maries_ou_pacses) - f2ch, 0)
         abattement_residuel2 = max_(abattement_residuel - f2vv, 0)
         pfu_ir_sur_assurance_vie = -(
             (f2zz * P1.taux)
