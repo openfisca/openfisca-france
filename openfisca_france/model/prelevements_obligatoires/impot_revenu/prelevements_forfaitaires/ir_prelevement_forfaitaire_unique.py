@@ -109,6 +109,7 @@ class revenus_capitaux_prelevement_forfaitaire_unique_ir(Variable):
                 (à savoir revenus_capitaux_prelevement_bareme et revenus_capitaux_prelevement_liberatoire)
         '''
         year = period.this_year
+        assurance_vie_pfu_ir = foyer_fiscal('assurance_vie_pfu_ir', year)
         f2dc = foyer_fiscal('f2dc', year)
         f2fu = foyer_fiscal('f2fu', year)
         f2ts = foyer_fiscal('f2ts', year)
@@ -116,7 +117,7 @@ class revenus_capitaux_prelevement_forfaitaire_unique_ir(Variable):
         f2tt = foyer_fiscal('f2tt', year)
         f2go = foyer_fiscal('f2go', year)
 
-        return (f2dc + f2fu + f2ts + f2tr + f2tt + f2go) / 12
+        return (assurance_vie_pfu_ir + f2dc + f2fu + f2ts + f2tr + f2tt + f2go) / 12
 
 
 class plus_values_prelevement_forfaitaire_unique_ir(Variable):
