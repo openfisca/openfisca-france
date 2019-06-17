@@ -516,10 +516,9 @@ class revenus_capitaux_prelevement_liberatoire(Variable):
     def formula_2018_01_01(foyer_fiscal, period, parameters):
         f2dh = foyer_fiscal('f2dh', period.this_year)
         f2ee = foyer_fiscal('f2ee', period.this_year)
-        f2fa = foyer_fiscal('f2fa', period.this_year)
         f2xx = foyer_fiscal('f2xx', period.this_year)
 
-        return (f2dh + f2ee + f2fa + f2xx) / 12
+        return (f2dh + f2ee + f2xx) / 12
 
 
 class revenus_capital(Variable):
