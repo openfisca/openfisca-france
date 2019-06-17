@@ -77,7 +77,7 @@
     menage:
       personne_de_reference: ind0
   output:
-    prelevement_forfaitaire_unique_ir: 128.0 # 4298.0 # 2250 + 1920 + 128
+    prelevement_forfaitaire_unique_ir: -128.0 # 4298.0 # 2250 + 1920 + 128
     iai: 0.0 #1461.0
     irpp: 0.0 #1361.0
     nbptr: 1.0
