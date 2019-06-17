@@ -196,11 +196,11 @@ class prelevement_forfaitaire_unique_ir_sur_assurance_vie(Variable):
         f2ww = foyer_fiscal('f2ww', period)
 
         abattement_residuel = max_(P3.abat_assvie * (1 + maries_ou_pacses) - f2ch, 0)
-        assurance_vie_pfu_ir_plus8ans_19970926_primes_apres_20170927_apres_abt = max_(f2vv + f2ww - abattement_residuel, 0)
+        abattement_residuel = max_(abattement_residuel - f2vv, 0)
         pfu_ir_sur_assurance_vie = -(
             (f2zz * P1.taux)
-            + (min_(assurance_vie_pfu_ir_plus8ans_19970926_primes_apres_20170927_apres_abt, P1.seuil_taux_reduit_av) * P1.taux_reduit_av)
-            + (max_(assurance_vie_pfu_ir_plus8ans_19970926_primes_apres_20170927_apres_abt - P1.seuil_taux_reduit_av, 0) * P1.taux)
+            + (max_(f2vv - abattement_residuel, 0) * P1.taux_reduit_av)
+            + (max_(f2ww - abattement_residuel2, 0) * P1.taux)
             )
 
         return pfu_ir_sur_assurance_vie
