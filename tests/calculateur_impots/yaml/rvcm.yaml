@@ -63,7 +63,7 @@
       #f2dh: 10000.0 # taxé au prélèvement forfaitaire libératoire
       #f2ch: 20000.0 # taxé au barème
       f2vv: 30000.0 # taxé au PFU à 7,5% (abattement fixe applicable)
-      #f2ww: 15000.0 # taxé au PFU à 12,8%
+      f2ww: 15000.0 # taxé au PFU à 12,8% (abattement fixe applicable)
       #f2yy: 5000.0 # taxé au barème
       f2zz: 1000.0 # taxé au PFU à 12,8%
     individus:
@@ -77,11 +77,11 @@
     menage:
       personne_de_reference: ind0
   output:
-    prelevement_forfaitaire_unique_ir: -2033.0 # 128 + (30000 - 4600) * 0.075
-    iai: 0.0 #1461.0
-    irpp: 0.0 #1361.0
+    prelevement_forfaitaire_unique_ir: -3953.0 # 128 + (30000 - 4600) * 0.075 + 15000 * 0.128
+    iai: 0.0
+    irpp: 0.0
     nbptr: 1.0
     ppe: 0.0
     rfr: 26400.0
-    rni: 0 # 20400.0
-    prelevements_sociaux_revenus_capital: -5332.0
+    rni: 0
+    prelevements_sociaux_revenus_capital: -7912.0
