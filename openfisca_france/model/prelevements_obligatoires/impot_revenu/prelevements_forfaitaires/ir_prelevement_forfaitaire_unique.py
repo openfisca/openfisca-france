@@ -207,26 +207,6 @@ class prelevement_forfaitaire_unique_ir_sur_assurance_vie(Variable):
         return pfu_ir_sur_assurance_vie
 
 
-class prelevement_forfaitaire_unique_ir_epargne_solidaire_etats_non_cooperatifs(Variable):
-    value_type = float
-    entity = FoyerFiscal
-    label = u"Partie du prélèvement forfaitaire unique associée à l'impôt sur le revenu sur les produits d'épargne solidaire et les produits venant des états non-coopératifs"
-    definition_period = YEAR
-
-    def formula_2018_01_01(foyer_fiscal, period, parameters):
-        produit_epargne_solidaire = foyer_fiscal('produit_epargne_solidaire', period)
-        produit_etats_non_cooperatif = foyer_fiscal('produit_etats_non_cooperatif', period)
-
-        param_pfl = parameters(period).taxation_capital.pfl
-
-        montant = -(
-            (param_pfl.produits_epargne_solidaire_partage * produit_epargne_solidaire)
-            + (param_pfl.produits_vers_etats_non_cooperatifs * produit_etats_non_cooperatif)
-            )
-
-        return montant
-
-
 class prelevement_forfaitaire_unique_ir(Variable):
     value_type = float
     entity = FoyerFiscal
@@ -236,10 +216,8 @@ class prelevement_forfaitaire_unique_ir(Variable):
     def formula_2018_01_01(foyer_fiscal, period, parameters):
         prelevement_forfaitaire_unique_ir_hors_assurance_vie_epargne_solidaire_etats_non_cooperatifs = foyer_fiscal('prelevement_forfaitaire_unique_ir_hors_assurance_vie_epargne_solidaire_etats_non_cooperatifs', period)
         prelevement_forfaitaire_unique_ir_sur_assurance_vie = foyer_fiscal('prelevement_forfaitaire_unique_ir_sur_assurance_vie', period)
-        prelevement_forfaitaire_unique_ir_epargne_solidaire_etats_non_cooperatifs = foyer_fiscal('prelevement_forfaitaire_unique_ir_epargne_solidaire_etats_non_cooperatifs', period)
 
         return (
             prelevement_forfaitaire_unique_ir_hors_assurance_vie_epargne_solidaire_etats_non_cooperatifs
             + prelevement_forfaitaire_unique_ir_sur_assurance_vie
-            + prelevement_forfaitaire_unique_ir_epargne_solidaire_etats_non_cooperatifs
             )
