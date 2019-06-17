@@ -64,7 +64,7 @@
       f2ch: 20000.0 # taxé au barème (abattement fixe applicable)
       f2vv: 30000.0 # taxé au PFU à 7,5% (abattement fixe applicable)
       f2ww: 15000.0 # taxé au PFU à 12,8% (abattement fixe applicable)
-      #f2yy: 5000.0 # taxé au barème
+      f2yy: 5000.0 # taxé au barème
       f2zz: 1000.0 # taxé au PFU à 12,8%
     individus:
       ind0:
@@ -79,10 +79,10 @@
   output:
     prelevement_forfaitaire_unique_ir: -4298.0 # 1000 * 0.128 + 30000 * 0.075 + 15000 * 0.128
     #prelevement_forfaitaire_liberatoire: -345.0
-    ir_brut: 761.0
-    irpp: -136.0
+    ir_brut: 1461.0
+    irpp: -1361.0
     nbptr: 1.0
     ppe: 0.0
-    rfr: 71400.0
-    rni: 15400.0
-    prelevements_sociaux_revenus_capital: -13072.0 # (10000 + 20000 + 30000 + 15000 + 1000) * 0.172
+    rfr: 76400.0
+    rni: 20400.0
+    prelevements_sociaux_revenus_capital: -13932.0 # (10000 + 20000 + 30000 + 15000 + 5000 + 1000) * 0.172
