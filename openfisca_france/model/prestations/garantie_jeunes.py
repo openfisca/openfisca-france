@@ -51,7 +51,7 @@ class garantie_jeunes_eligibilite_age(Variable):
     label = u"Éligibilité en fonction de l'âge à la Garantie Jeune"
 
     def formula(individu, period, parameters):
-        params_age = parameters(period).garantie_jeunes.age
+        params_age = parameters(period).prestations.garantie_jeunes.critere_age.age
         age = individu('age', period)
 
         return (params_age.minimum <= age) * (age <= params_age.maximum)
