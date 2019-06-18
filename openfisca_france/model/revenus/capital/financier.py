@@ -356,15 +356,6 @@ class f2ar(Variable):
     definition_period = YEAR
 
 
-class f2as(Variable):
-    value_type = int
-    unit = 'currency'
-    entity = FoyerFiscal
-    label = u"Déficits des années antérieures non encore déduits: année 2012"
-    end = '2011-12-31'
-    definition_period = YEAR
-
-
 class f2dm(Variable):
     cerfa_field = u"2DM"
     value_type = int
