@@ -832,6 +832,9 @@ class revenu_categoriel_capital(Variable):
     def formula_2018_01_01(foyer_fiscal, period, parameters):
         """
         Revenus des valeurs et capitaux mobiliers
+
+        NB : La mise en place du PFU supprime la taxation au barème de la plupart des revenus des valeurs et capitaux mobiliers.
+        Ces revenus sortent donc de la variable `revenu_categoriel_capital` et entrent dans la variable `revenus_capitaux_prelevement_forfaitaire_unique_ir`.
         """
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         deficit_rcm = foyer_fiscal('deficit_rcm', period)
