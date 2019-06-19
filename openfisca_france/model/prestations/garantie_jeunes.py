@@ -38,10 +38,7 @@ class garantie_jeunes_max(Variable):
         montant_base = params.montant_de_base_du_rsa
         taux_1_personne = params.forfait_logement.taux_1_personne
 
-        # Une formule doit retourner un vecteur
-        # c'est la raison pour laquelle il y a
-        # une multiplication par (individu('age', period) > 0)
-        return (individu('age', period) > 0) * montant_base * (1 - taux_1_personne)
+        return montant_base * (1 - taux_1_personne)
 
 
 class garantie_jeunes_eligibilite_age(Variable):
