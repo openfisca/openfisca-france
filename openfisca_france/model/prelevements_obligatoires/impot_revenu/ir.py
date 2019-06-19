@@ -896,6 +896,12 @@ class rfr_rvcm_abattements_a_reintegrer(Variable):
         return abattement_dividende
 
     def formula_2018_01_01(foyer_fiscal, period, parameters):
+        """
+        2 remarques :
+            - L'abattement sur les dividendes devrait être intégré dans cette formule (il s'ajoute au RFR) mais on attends pour cela de coder l'option pour l'imposition au barème des dividendes.
+            - À partir de 2018, les revenus de l'assurance-vie sont taxés au PFU et entrent dans le calcul du RFR via `revenus_capitaux_prelevement_forfaitaire_unique_ir`.
+              Cette variable est brute d'abattement. Or, l'abattement sur les assurance-vie se déduit bien du RFR (contrairement à celui sur les dividendes). On le rajoute donc ici en négatif.
+        """
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         f2ch = foyer_fiscal('f2ch', period)
         f2dh = foyer_fiscal('f2dh', period)
