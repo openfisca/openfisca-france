@@ -885,9 +885,7 @@ class rfr_rvcm_abattements_a_reintegrer(Variable):
         return max_((rvcm.taux_abattement_capitaux_mobiliers) * (f2dc + f2fu) - i121, 0)
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
-        maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         f2dc = foyer_fiscal('f2dc', period)
-        f2ch = foyer_fiscal('f2ch', period)
         f2fu = foyer_fiscal('f2fu', period)
         P = parameters(period).impot_revenu.rvcm
 
