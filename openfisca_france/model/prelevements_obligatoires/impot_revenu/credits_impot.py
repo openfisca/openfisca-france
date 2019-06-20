@@ -774,7 +774,6 @@ class prelevement_forfaitaire_non_liberatoire(Variable):
     entity = FoyerFiscal
     label = u"Prélèvement forfaitaire non libératoire sur les revenus du capital"
     definition_period = YEAR
-    end = '2017-12-31'  # On neutralise cette variable à partir de 2018 car cette variable n'est pas un montant de revenu, mais un montant d'impôt, versé en acompte. Or, pour le moment, à partir de 2018, on ne dispose pas de cet acompte.
 
     def formula_2013_01_01(foyer_fiscal, period):
         '''
@@ -795,7 +794,6 @@ class acomptes_ir(Variable):
     entity = FoyerFiscal
     label = u"Ensemble des acomptes de l'IR"
     definition_period = YEAR
-    end = '2017-12-31'  # On neutralise cette variable à partir de 2018 car cette variable n'est pas un montant de revenu, mais un montant d'impôt, versé en acompte. Or, pour le moment, à partir de 2018, on ne dispose pas de cet acompte.
 
     def formula_2013_01_01(foyer_fiscal, period):
         '''
@@ -1308,14 +1306,8 @@ class prlire(Variable):
     entity = FoyerFiscal
     label = u"Prélèvement libératoire à restituer (case 2DH)"
     definition_period = YEAR
-    end = '2017-12-31'
 
     def formula_2002(foyer_fiscal, period, parameters):
-        '''
-        Prélèvement libératoire à restituer (case 2DH)
-        2002-
-        http://www2.impots.gouv.fr/documentation/2013/brochure_ir/index.html#122/z
-        '''
         f2dh = foyer_fiscal('f2dh', period)
         f2ch = foyer_fiscal('f2ch', period)
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)

@@ -58,18 +58,29 @@ class assurance_vie_pfu_ir_moins4ans_19970926_primes_avant_20170927(Variable):
     definition_period = YEAR
 
 
-class assurance_vie_pfu_ir_moins8ans_19970926_primes_apres_20170927(Variable):
+class f2zz(Variable):
+    cerfa_field = u"2ZZ"
     value_type = float
     entity = FoyerFiscal
     label = u"Produits des bons ou contrats de capitalisation et d'assurance vie de moins de 8 ans pour les contrats souscrits après le 26 septembre 1997, dont le produits sont associés aux primes versées après le 27 septembre 2017, et que le bénéficiaire décide de soumettre au prélèvement forfaitaire unique au titre de l'impôt sur le revenu"
     definition_period = YEAR
+    # start_date = date(2018, 1, 1)
 
 
-class assurance_vie_pfu_ir_plus8ans_19970926_primes_apres_20170927(Variable):
+class f2vv(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = u"Produits des bons ou contrats de capitalisation et d'assurance vie de plus de 8 ans pour les contrats souscrits après le 26 septembre 1997, dont le produits sont associés aux primes versées après le 27 septembre 2017, et que le bénéficiaire décide de soumettre au prélèvement forfaitaire unique au titre de l'impôt sur le revenu"
+    label = u"Produits des bons ou contrats de capitalisation et d'assurance vie de plus de 8 ans pour les contrats souscrits après le 26 septembre 1997, dont le produits sont associés aux primes versées après le 27 septembre 2017, et que le bénéficiaire décide de soumettre au prélèvement forfaitaire unique au titre de l'impôt sur le revenu; produit correspondant aux primes n'excédant pas 150 000 euros."
     definition_period = YEAR
+    # start_date = date(2018, 1, 1)
+
+
+class f2ww(Variable):
+    value_type = float
+    entity = FoyerFiscal
+    label = u"Produits des bons ou contrats de capitalisation et d'assurance vie de plus de 8 ans pour les contrats souscrits après le 26 septembre 1997, dont le produits sont associés aux primes versées après le 27 septembre 2017, et que le bénéficiaire décide de soumettre au prélèvement forfaitaire unique au titre de l'impôt sur le revenu; produit correspondant aux primes excédant pas 150 000 euros."
+    definition_period = YEAR
+    # start_date = date(2018, 1, 1)
 
 
 class assurance_vie_pfu_ir(Variable):
@@ -79,28 +90,11 @@ class assurance_vie_pfu_ir(Variable):
     definition_period = YEAR
 
     def formula_2018_01_01(foyer_fiscal, period):
+        f2zz = foyer_fiscal('f2zz', period)
+        f2vv = foyer_fiscal('f2vv', period)
+        f2ww = foyer_fiscal('f2ww', period)
 
-        assurance_vie_pfu_ir_plus8ans_1990_19970926 = foyer_fiscal('assurance_vie_pfu_ir_plus8ans_1990_19970926', period)
-        assurance_vie_pfu_ir_plus6ans_avant1990 = foyer_fiscal('assurance_vie_pfu_ir_plus6ans_avant1990', period)
-        assurance_vie_pfu_ir_moins4ans_1990_19970926 = foyer_fiscal('assurance_vie_pfu_ir_moins4ans_1990_19970926', period)
-        assurance_vie_pfu_ir_4_8_ans_1990_19970926 = foyer_fiscal('assurance_vie_pfu_ir_4_8_ans_1990_19970926', period)
-        assurance_vie_pfu_ir_plus8ans_19970926_primes_avant_20170927 = foyer_fiscal('assurance_vie_pfu_ir_plus8ans_19970926_primes_avant_20170927', period)
-        assurance_vie_pfu_ir_4_8_ans_19970926_primes_avant_20170927 = foyer_fiscal('assurance_vie_pfu_ir_4_8_ans_19970926_primes_avant_20170927', period)
-        assurance_vie_pfu_ir_moins4ans_19970926_primes_avant_20170927 = foyer_fiscal('assurance_vie_pfu_ir_moins4ans_19970926_primes_avant_20170927', period)
-        assurance_vie_pfu_ir_moins8ans_19970926_primes_apres_20170927 = foyer_fiscal('assurance_vie_pfu_ir_moins8ans_19970926_primes_apres_20170927', period)
-        assurance_vie_pfu_ir_plus8ans_19970926_primes_apres_20170927 = foyer_fiscal('assurance_vie_pfu_ir_plus8ans_19970926_primes_apres_20170927', period)
-
-        return (
-            assurance_vie_pfu_ir_plus8ans_1990_19970926
-            + assurance_vie_pfu_ir_plus6ans_avant1990
-            + assurance_vie_pfu_ir_moins4ans_1990_19970926
-            + assurance_vie_pfu_ir_4_8_ans_1990_19970926
-            + assurance_vie_pfu_ir_plus8ans_19970926_primes_avant_20170927
-            + assurance_vie_pfu_ir_4_8_ans_19970926_primes_avant_20170927
-            + assurance_vie_pfu_ir_moins4ans_19970926_primes_avant_20170927
-            + assurance_vie_pfu_ir_moins8ans_19970926_primes_apres_20170927
-            + assurance_vie_pfu_ir_plus8ans_19970926_primes_apres_20170927
-            )
+        return f2zz + f2vv + f2ww
 
 
 class revenus_capitaux_prelevement_forfaitaire_unique_ir(Variable):
@@ -111,27 +105,19 @@ class revenus_capitaux_prelevement_forfaitaire_unique_ir(Variable):
 
     def formula_2018_01_01(foyer_fiscal, period, parameters):
         '''
-        Les frais et charges déductibles de la case 2CA ne sont déductibles que si imposition au barème, d'où l'absence de cette case dans cette formualre
-        Cf. https://www.impots.gouv.fr/portail/particulier/questions/les-frais-engages-sur-mes-valeurs-mobilieres-sont-ils-deductibles
-        Note : on laisse les cases de la déclaration 2042 associées à l'assurance-vie, car en attendant d'avoir le formulaire de l'impôt 2019 sur revenus 2018,
-        on réinjecte les montants des variables désaggrégées d'assurance-vie dans ces cases, afin de garder constante la structure des cases
-        Notes : cette variable est définie à l'échelle du mois pour être en cohérence avec les variables qu'elle remplace
+        Note : cette variable est définie à l'échelle du mois pour être en cohérence avec les variables qu'elle remplace
                 (à savoir revenus_capitaux_prelevement_bareme et revenus_capitaux_prelevement_liberatoire)
         '''
         year = period.this_year
-        f2dh = foyer_fiscal('f2dh', year)
-        f2ee = foyer_fiscal('f2ee', year)
+        assurance_vie_pfu_ir = foyer_fiscal('assurance_vie_pfu_ir', year)
         f2dc = foyer_fiscal('f2dc', year)
         f2fu = foyer_fiscal('f2fu', year)
-        f2ch = foyer_fiscal('f2ch', year)
         f2ts = foyer_fiscal('f2ts', year)
         f2tr = foyer_fiscal('f2tr', year)
         f2tt = foyer_fiscal('f2tt', year)
-        f2fa = foyer_fiscal('f2fa', year)
         f2go = foyer_fiscal('f2go', year)
-        majoration_revenus_reputes_distribues = parameters(period).impot_revenu.rvcm.majoration_revenus_reputes_distribues
 
-        return (f2dh + f2ee + f2dc + f2fu + f2ch + f2ts + f2tr + f2tt + f2fa + f2go * majoration_revenus_reputes_distribues) / 12
+        return (assurance_vie_pfu_ir + f2dc + f2fu + f2ts + f2tr + f2tt + f2go) / 12
 
 
 class plus_values_prelevement_forfaitaire_unique_ir(Variable):
@@ -166,7 +152,8 @@ class prelevement_forfaitaire_unique_ir_hors_assurance_vie_epargne_solidaire_eta
         assurance_vie_pfu_ir = foyer_fiscal('assurance_vie_pfu_ir', period)
         produit_epargne_solidaire = foyer_fiscal('produit_epargne_solidaire', period)
         produit_etats_non_cooperatif = foyer_fiscal('produit_etats_non_cooperatif', period)
-        revenus_capitaux_prelevement_forfaitaire_unique_ir_hors_assurance_vie_epargne_solidaire_etats_non_cooperatifs = (
+        revenus_capitaux_prelevement_forfaitaire_unique_ir_hors_assurance_vie_epargne_solidaire_etats_non_cooperatifs = max_(
+            0,
             revenus_capitaux_prelevement_forfaitaire_unique_ir
             - assurance_vie_pfu_ir
             - produit_epargne_solidaire
@@ -200,71 +187,23 @@ class prelevement_forfaitaire_unique_ir_sur_assurance_vie(Variable):
 
     def formula_2018_01_01(foyer_fiscal, period, parameters):
         P1 = parameters(period).impot_revenu.prelevement_forfaitaire_unique_ir
-        P2 = parameters(period).taxation_capital.pfl_av.bons_ou_contrats_de_capitalisation_et_placements_de_meme_nature_assurance_vie_lors_du_denouement_du_contrat
-        rvcm = parameters(period).impot_revenu.rvcm
+        P2 = parameters(period).impot_revenu.rvcm
 
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
+        f2ch = foyer_fiscal('f2ch', period)
+        f2zz = foyer_fiscal('f2zz', period)
+        f2vv = foyer_fiscal('f2vv', period)
+        f2ww = foyer_fiscal('f2ww', period)
 
-        assurance_vie_pfu_ir_plus8ans_1990_19970926 = foyer_fiscal('assurance_vie_pfu_ir_plus8ans_1990_19970926', period)
-        assurance_vie_pfu_ir_plus6ans_avant1990 = foyer_fiscal('assurance_vie_pfu_ir_plus6ans_avant1990', period)
-        assurance_vie_pfu_ir_moins4ans_1990_19970926 = foyer_fiscal('assurance_vie_pfu_ir_moins4ans_1990_19970926', period)
-        assurance_vie_pfu_ir_4_8_ans_1990_19970926 = foyer_fiscal('assurance_vie_pfu_ir_4_8_ans_1990_19970926', period)
-        assurance_vie_pfu_ir_plus8ans_19970926_primes_avant_20170927 = foyer_fiscal('assurance_vie_pfu_ir_plus8ans_19970926_primes_avant_20170927', period)
-        assurance_vie_pfu_ir_4_8_ans_19970926_primes_avant_20170927 = foyer_fiscal('assurance_vie_pfu_ir_4_8_ans_19970926_primes_avant_20170927', period)
-        assurance_vie_pfu_ir_moins4ans_19970926_primes_avant_20170927 = foyer_fiscal('assurance_vie_pfu_ir_moins4ans_19970926_primes_avant_20170927', period)
-        assurance_vie_pfu_ir_moins8ans_19970926_primes_apres_20170927 = foyer_fiscal('assurance_vie_pfu_ir_moins8ans_19970926_primes_apres_20170927', period)
-        assurance_vie_pfu_ir_plus8ans_19970926_primes_apres_20170927 = foyer_fiscal('assurance_vie_pfu_ir_plus8ans_19970926_primes_apres_20170927', period)
-
-        # Nouveau régime de taxation (produits au titre des primes versées à compter du 26 septembre 1997, pour les contrats souscrits à partir du 26 septembre 1997)
-        assurance_vie_pfu_ir_plus8ans_19970926_primes_apres_20170927_apres_abt = max_(assurance_vie_pfu_ir_plus8ans_19970926_primes_apres_20170927 - rvcm.abat_assvie * (1 + maries_ou_pacses), 0)
-        reliquat_abt = max_(rvcm.abat_assvie * (1 + maries_ou_pacses) - assurance_vie_pfu_ir_plus8ans_19970926_primes_apres_20170927, 0)
-        pfu_ir_av_nouveau_regime = -(
-            (assurance_vie_pfu_ir_moins8ans_19970926_primes_apres_20170927 * P1.taux)
-            + (min_(assurance_vie_pfu_ir_plus8ans_19970926_primes_apres_20170927_apres_abt, P1.seuil_taux_reduit_av) * P1.taux_reduit_av)
-            + (max_(assurance_vie_pfu_ir_plus8ans_19970926_primes_apres_20170927_apres_abt - P1.seuil_taux_reduit_av, 0) * P1.taux)
+        abattement_residuel = max_(P2.abat_assvie * (1 + maries_ou_pacses) - f2ch, 0)
+        abattement_residuel2 = max_(abattement_residuel - f2vv, 0)
+        pfu_ir_sur_assurance_vie = -(
+            (f2zz * P1.taux)
+            + (max_(f2vv - abattement_residuel, 0) * P1.taux_reduit_av)
+            + (max_(f2ww - abattement_residuel2, 0) * P1.taux)
             )
 
-        # Ancien régime de taxation (autres produits que ceux mentionnés ci-dessus)
-        p_contrat_age_sup_apres_abt = (
-            max_(
-                (
-                    assurance_vie_pfu_ir_plus8ans_1990_19970926
-                    + assurance_vie_pfu_ir_plus6ans_avant1990
-                    + assurance_vie_pfu_ir_plus8ans_19970926_primes_avant_20170927
-                    )
-                - reliquat_abt,
-                0
-                )
-            )
-        p_contrat_age_mid = assurance_vie_pfu_ir_4_8_ans_1990_19970926 + assurance_vie_pfu_ir_4_8_ans_19970926_primes_avant_20170927
-        p_contrat_age_low = assurance_vie_pfu_ir_moins4ans_1990_19970926 + assurance_vie_pfu_ir_moins4ans_19970926_primes_avant_20170927
-        pfu_ir_av_ancien_regime = -(
-            (p_contrat_age_low * P2.souscrits_apres_le_1_1_90_et_le_pour_une_duree_de.duree_moins_de_4_ans)
-            + (p_contrat_age_mid * P2.souscrits_apres_le_1_1_90_et_le_pour_une_duree_de.duree_4_a_8_ans)
-            + (p_contrat_age_sup_apres_abt * P2.souscrits_apres_le_1_1_90_et_le_pour_une_duree_de.duree_8_ans_et_plus_pour_les_produits_acquis_apres_le_01_01_1998_avec_abattement_sur_l_ir_5)
-            )
-
-        return pfu_ir_av_nouveau_regime + pfu_ir_av_ancien_regime
-
-
-class prelevement_forfaitaire_unique_ir_epargne_solidaire_etats_non_cooperatifs(Variable):
-    value_type = float
-    entity = FoyerFiscal
-    label = u"Partie du prélèvement forfaitaire unique associée à l'impôt sur le revenu sur les produits d'épargne solidaire et les produits venant des états non-coopératifs"
-    definition_period = YEAR
-
-    def formula_2018_01_01(foyer_fiscal, period, parameters):
-        produit_epargne_solidaire = foyer_fiscal('produit_epargne_solidaire', period)
-        produit_etats_non_cooperatif = foyer_fiscal('produit_etats_non_cooperatif', period)
-
-        param_pfl = parameters(period).taxation_capital.pfl
-
-        montant = -(
-            (param_pfl.produits_epargne_solidaire_partage * produit_epargne_solidaire)
-            + (param_pfl.produits_vers_etats_non_cooperatifs * produit_etats_non_cooperatif)
-            )
-
-        return montant
+        return pfu_ir_sur_assurance_vie
 
 
 class prelevement_forfaitaire_unique_ir(Variable):
@@ -276,10 +215,8 @@ class prelevement_forfaitaire_unique_ir(Variable):
     def formula_2018_01_01(foyer_fiscal, period, parameters):
         prelevement_forfaitaire_unique_ir_hors_assurance_vie_epargne_solidaire_etats_non_cooperatifs = foyer_fiscal('prelevement_forfaitaire_unique_ir_hors_assurance_vie_epargne_solidaire_etats_non_cooperatifs', period)
         prelevement_forfaitaire_unique_ir_sur_assurance_vie = foyer_fiscal('prelevement_forfaitaire_unique_ir_sur_assurance_vie', period)
-        prelevement_forfaitaire_unique_ir_epargne_solidaire_etats_non_cooperatifs = foyer_fiscal('prelevement_forfaitaire_unique_ir_epargne_solidaire_etats_non_cooperatifs', period)
 
         return (
             prelevement_forfaitaire_unique_ir_hors_assurance_vie_epargne_solidaire_etats_non_cooperatifs
             + prelevement_forfaitaire_unique_ir_sur_assurance_vie
-            + prelevement_forfaitaire_unique_ir_epargne_solidaire_etats_non_cooperatifs
             )

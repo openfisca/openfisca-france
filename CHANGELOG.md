@@ -1,5 +1,22 @@
 # Changelog
 
+# 47.0.0 [#1343](https://github.com/openfisca/openfisca-france/pull/1343)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2018.
+* Zones impactées :
+  - `prelevements_obligatoires/impot_revenu`
+  - `revenus/capital/financier`
+* Détails :
+  - Affine et corrige [#1333](https://github.com/openfisca/openfisca-france/issues/1333) sur le PFU
+  - Le PFU a été codé avant la publication du nouveau formulaire de l'IR et des règles précises concernant son application. Désormais, le formulaire est disponible et les règles connues, cette PR vient les corriger
+  - Pour plus de détails voir [le descriptif](https://github.com/openfisca/openfisca-france/pull/1343) de la version
+  - Corrige également le calcul du RFR pour les années avant 2018 (notamment la prise en compte de l'abattement sur les assurance-vie)
+
+## Guide de migration
+  - La variable `assurance_vie_pfu_ir_moins8ans_19970926_primes_apres_20170927`est renommée `f2zz`,
+  - La variable `assurance_vie_pfu_ir_plus8ans_19970926_primes_apres_20170927` est remplacée par `f2ww` et `f2zz` (l'ancienne variable correspond à la somme de ces deux nouvelles)
+
 # 46.0.0 [#1320](https://github.com/openfisca/openfisca-france/pull/1320)
 
 * Évolution du système socio-fiscal.

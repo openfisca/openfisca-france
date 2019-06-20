@@ -2,9 +2,17 @@
 
 from openfisca_france.model.base import *
 
+# PLAN :
+# 1) Revenus des valeurs et capitaux mobiliers taxés au prélèvement libératoire
+# 2) Revenus des valeurs et capitaux mobiliers ouvrant droit à abattement
+# 3) Revenus des valeurs et capitaux mobiliers n'ouvrant pas droit à abattement
+# 4) Autres revenus des valeurs et capitaux mobiliers
+# 5) Revenus des valeurs et capitaux mobiliers utilisés par mes aides
+# 6) Variables agrégées de revenus des valeurs et capitaux mobiliers
 
-# RVCM
-# revenus au prélèvement libératoire
+
+# Revenus des valeurs et capitaux mobiliers taxés au prélèvement libératoire
+
 class f2da(Variable):
     cerfa_field = u"2DA"
     value_type = int
@@ -31,23 +39,14 @@ class f2dh(Variable):
         return assurance_vie_pl_non_anonyme_plus8ans_depuis1990 + assurance_vie_pl_non_anonyme_plus6ans_avant1990
 
     def formula_2018_01_01(foyer_fiscal, period):
-        '''
-        Même si le formulaire 2042 de l'impôt 2019 au titre des revenus 2018 n'est toujours pas publié, on remplie cette case
-        quand même, en essayant de garder un périmètre similaire. On fait ceci afin de ne pas modifier la structure des cases,
-        ce qui pourrait avoir des impacts assez large dans le simulateur.
-        Ce que l'on fait : on a toute une série de variables d'assurance-vie désagrégées, que l'on injecte en f2dh ou f2ee.
-        En revanche, on neutralise les variables f2ch et f2ts
-        '''
         assurance_vie_pfu_ir_plus8ans_1990_19970926 = foyer_fiscal('assurance_vie_pfu_ir_plus8ans_1990_19970926', period)
         assurance_vie_pfu_ir_plus6ans_avant1990 = foyer_fiscal('assurance_vie_pfu_ir_plus6ans_avant1990', period)
         assurance_vie_pfu_ir_plus8ans_19970926_primes_avant_20170927 = foyer_fiscal('assurance_vie_pfu_ir_plus8ans_19970926_primes_avant_20170927', period)
-        assurance_vie_pfu_ir_plus8ans_19970926_primes_apres_20170927 = foyer_fiscal('assurance_vie_pfu_ir_plus8ans_19970926_primes_apres_20170927', period)
 
         return (
             assurance_vie_pfu_ir_plus8ans_1990_19970926
             + assurance_vie_pfu_ir_plus6ans_avant1990
             + assurance_vie_pfu_ir_plus8ans_19970926_primes_avant_20170927
-            + assurance_vie_pfu_ir_plus8ans_19970926_primes_apres_20170927
             )
 
 
@@ -86,7 +85,6 @@ class f2ee(Variable):
         assurance_vie_pfu_ir_4_8_ans_1990_19970926 = foyer_fiscal('assurance_vie_pfu_ir_4_8_ans_1990_19970926', period)
         assurance_vie_pfu_ir_4_8_ans_19970926_primes_avant_20170927 = foyer_fiscal('assurance_vie_pfu_ir_4_8_ans_19970926_primes_avant_20170927', period)
         assurance_vie_pfu_ir_moins4ans_19970926_primes_avant_20170927 = foyer_fiscal('assurance_vie_pfu_ir_moins4ans_19970926_primes_avant_20170927', period)
-        assurance_vie_pfu_ir_moins8ans_19970926_primes_apres_20170927 = foyer_fiscal('assurance_vie_pfu_ir_moins8ans_19970926_primes_apres_20170927', period)
         produit_epargne_solidaire = foyer_fiscal('produit_epargne_solidaire', period)
         produit_etats_non_cooperatif = foyer_fiscal('produit_etats_non_cooperatif', period)
 
@@ -95,13 +93,23 @@ class f2ee(Variable):
             + assurance_vie_pfu_ir_4_8_ans_1990_19970926
             + assurance_vie_pfu_ir_4_8_ans_19970926_primes_avant_20170927
             + assurance_vie_pfu_ir_moins4ans_19970926_primes_avant_20170927
-            + assurance_vie_pfu_ir_moins8ans_19970926_primes_apres_20170927
             + produit_epargne_solidaire
             + produit_etats_non_cooperatif
             )
 
 
-# revenus des valeurs et capitaux mobiliers ouvrant droit à abattement
+class f2xx(Variable):
+    cerfa_field = u"2XX"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Produits des bons et contrats de capitalisation et d'assurance-vie de moins de 8 ans; produits des versements effectués avant le 27.9.2017; soumis au prélèvement libératoire"
+    # start_date = date(2108, 1, 1)
+    definition_period = YEAR
+
+
+# Revenus des valeurs et capitaux mobiliers ouvrant droit à abattement
+
 class f2dc(Variable):
     cerfa_field = u"2DC"
     value_type = int
@@ -127,10 +135,9 @@ class f2ch(Variable):
     entity = FoyerFiscal
     label = u"Produits des contrats d'assurance-vie et de capitalisation d'une durée d'au moins 6 ou 8 ans donnant droit à abattement"
     definition_period = YEAR
-    end = '2017-12-31'  # On neutralise cette variable par hypothèse à partir de 2018 : tous les produits d'assurance vie sont mis en f2dh et f2ee. Cf. docstring de ces deux cases
 
-#  Revenus des valeurs et capitaux mobiliers n'ouvrant pas droit à abattement
 
+# Revenus des valeurs et capitaux mobiliers n'ouvrant pas droit à abattement
 
 class f2ts(Variable):
     cerfa_field = u"2TS"
@@ -139,7 +146,6 @@ class f2ts(Variable):
     entity = FoyerFiscal
     label = u"Revenus de valeurs mobilières, produits des contrats d'assurance-vie d'une durée inférieure à 8 ans et distributions (n'ouvrant pas droit à abattement)"
     definition_period = YEAR
-    end = '2017-12-31'  # On neutralise cette variable par hypothèse à partir de 2018 : tous les produits d'assurance vie sont mis en f2dh et f2ee. Cf. docstring de ces deux cases
 
 
 class f2go(Variable):
@@ -160,7 +166,17 @@ class f2tr(Variable):
     definition_period = YEAR
 
 
+class f2yy(Variable):
+    cerfa_field = u"2YY"
+    value_type = float
+    entity = FoyerFiscal
+    label = u"Produits des bons ou contrats de capitalisation et d'assurance vie de moins de 8 ans pour les contrats souscrits après le 26 septembre 1997, dont le produits sont associés aux primes versées avant le 27 septembre 2017, et qui n'ont pas été soumis au prélèvement libératoire"
+    definition_period = YEAR
+    # start_date = date(2018, 1, 1)
+
+
 # Autres revenus des valeurs et capitaux mobiliers
+
 class f2fa(Variable):
     cerfa_field = u"2FA"
     value_type = int
@@ -168,6 +184,7 @@ class f2fa(Variable):
     entity = FoyerFiscal
     label = u"Intérêts et autres produits de placement à revenu fixe n'excédant pas 2000 euros, taxables sur option à 24%"
     # start_date = date(2013, 1, 1)
+    end = '2017-12-31'
     definition_period = YEAR
 
 
@@ -259,7 +276,6 @@ class f2ck(Variable):
     label = u"Crédit d'impôt égal au prélèvement forfaitaire déjà versé"
     # start_date = date(2013, 1, 1)
     definition_period = YEAR
-    # TODO: nouvelle case à créer où c'est nécessaire, vérifier sur la déclaration des revenus 2013
 
 
 class f2ab(Variable):
@@ -339,18 +355,6 @@ class f2ar(Variable):
     # start_date = date(2012, 1, 1)
     definition_period = YEAR
 
-# je ne sais pas d'ou sort f2as...! probablement une ancienne année à laquelle je ne suis pas encore arrivé
-# TODO: vérifier existence <=2011
-
-
-class f2as(Variable):
-    value_type = int
-    unit = 'currency'
-    entity = FoyerFiscal
-    label = u"Déficits des années antérieures non encore déduits: année 2012"
-    end = '2011-12-31'
-    definition_period = YEAR
-
 
 class f2dm(Variable):
     cerfa_field = u"2DM"
@@ -371,10 +375,10 @@ class f2gr(Variable):
     # start_date = date(2005, 1, 1)
     end = '2009-12-31'
     definition_period = YEAR
-    # TODO: vérifier existence à partir de 2011
 
 
-# Utilisés par mes aides. TODO: à consolider
+# Revenus des valeurs et capitaux mobiliers utilisés par mes aides. TODO: à consolider
+
 class livret_a(Variable):
     value_type = float
     entity = Individu
@@ -400,6 +404,8 @@ class epargne_revenus_imposables(Variable):
     set_input = set_input_dispatch_by_period
 
 
+# Variables agrégées de revenus des valeurs et capitaux mobiliers
+
 class revenus_capitaux_prelevement_bareme(Variable):
     value_type = float
     entity = FoyerFiscal
@@ -407,7 +413,6 @@ class revenus_capitaux_prelevement_bareme(Variable):
     set_input = set_input_divide_by_period
     reference = "http://bofip.impots.gouv.fr/bofip/3775-PGP"
     definition_period = MONTH
-    end = '2017-12-31'
 
     def formula(foyer_fiscal, period, parameters):
         year = period.this_year
@@ -465,6 +470,13 @@ class revenus_capitaux_prelevement_bareme(Variable):
 
         return (f2dc + f2ch + f2ts + f2go * majoration_revenus_reputes_distribues + f2tr + f2fu + f2tt) / 12
 
+    def formula_2018_01_01(foyer_fiscal, period, parameters):
+        year = period.this_year
+        f2ch = foyer_fiscal('f2ch', year)
+        f2yy = foyer_fiscal('f2yy', year)
+
+        return (f2ch + f2yy) / 12
+
 
 class revenus_capitaux_prelevement_liberatoire(Variable):
     value_type = float
@@ -473,7 +485,6 @@ class revenus_capitaux_prelevement_liberatoire(Variable):
     set_input = set_input_divide_by_period
     reference = "http://bofip.impots.gouv.fr/bofip/3817-PGP"
     definition_period = MONTH
-    end = '2017-12-31'
 
     def formula_2002_01_01(foyer_fiscal, period, parameters):
         f2dh = foyer_fiscal('f2dh', period.this_year)
@@ -494,6 +505,13 @@ class revenus_capitaux_prelevement_liberatoire(Variable):
         f2fa = foyer_fiscal('f2fa', period.this_year)
 
         return (f2dh + f2ee + f2fa) / 12
+
+    def formula_2018_01_01(foyer_fiscal, period, parameters):
+        f2dh = foyer_fiscal('f2dh', period.this_year)
+        f2ee = foyer_fiscal('f2ee', period.this_year)
+        f2xx = foyer_fiscal('f2xx', period.this_year)
+
+        return (f2dh + f2ee + f2xx) / 12
 
 
 class revenus_capital(Variable):
