@@ -152,7 +152,8 @@ class prelevement_forfaitaire_unique_ir_hors_assurance_vie_epargne_solidaire_eta
         assurance_vie_pfu_ir = foyer_fiscal('assurance_vie_pfu_ir', period)
         produit_epargne_solidaire = foyer_fiscal('produit_epargne_solidaire', period)
         produit_etats_non_cooperatif = foyer_fiscal('produit_etats_non_cooperatif', period)
-        revenus_capitaux_prelevement_forfaitaire_unique_ir_hors_assurance_vie_epargne_solidaire_etats_non_cooperatifs = max_(0,
+        revenus_capitaux_prelevement_forfaitaire_unique_ir_hors_assurance_vie_epargne_solidaire_etats_non_cooperatifs = max_(
+            0,
             revenus_capitaux_prelevement_forfaitaire_unique_ir
             - assurance_vie_pfu_ir
             - produit_epargne_solidaire
