@@ -281,9 +281,9 @@ class aah_plafond_ressources(Variable):
         en_couple = individu.famille('en_couple', period)
         af_nbenf = individu.famille('af_nbenf', period)
         montant_max = law.minima_sociaux.aah.montant
-        return montant_max * (1 +
-                              en_couple * law.minima_sociaux.aah.majoration_du_plafond_pour_un_couple +
-                              law.minima_sociaux.aah.tx_plaf_supp * af_nbenf)
+        return montant_max * (1
+                            + en_couple * law.minima_sociaux.aah.majoration_du_plafond_pour_un_couple
+                            + law.minima_sociaux.aah.tx_plaf_supp * af_nbenf)
 
 
 class aah_base(Variable):
@@ -352,10 +352,10 @@ class eligibilite_caah(Variable):
         locataire_foyer = (individu.menage('statut_occupation_logement', period) == TypesStatutOccupationLogement.locataire_foyer)
         salaire_net = individu('salaire_net', annee_precedente, options=[ADD])
 
-        return ((taux_incapacite >= taux_incapacite_min) *
-            ((aah > 0) | (benef_asi > 0)) *
-            not_(locataire_foyer) *
-            (salaire_net == 0)
+        return ((taux_incapacite >= taux_incapacite_min)
+            * ((aah > 0) | (benef_asi > 0))
+            * not_(locataire_foyer)
+            * (salaire_net == 0)
             )
 
 

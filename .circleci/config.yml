@@ -79,7 +79,7 @@ jobs:
       - run:
           name: Lint files
           command: |
-            make check-syntax-errors
+            make check-syntax-errors check-style
             .circleci/lint-changed-python-files.sh
 
   check_version_and_changelog:

@@ -1,5 +1,13 @@
 # Changelog
 
+### 47.0.1 [#1349](https://github.com/openfisca/openfisca-france/pull/1349)
+
+* Amélioration technique.
+* Périodes concernées : toutes.
+* Zones impactées : `aah.py`.
+* Détails :
+  - Corrige des erreurs de formatage bloquantes pour suivre les instructions du README
+
 # 47.0.0 [#1343](https://github.com/openfisca/openfisca-france/pull/1343)
 
 * Évolution du système socio-fiscal.
