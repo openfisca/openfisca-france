@@ -70,6 +70,44 @@ class acs_montant(Variable):
         return famille.sum(acs_montant_i)
 
 
+class complementaire_sante_solidaire_montant_i(Variable):
+    value_type = float
+    entity = Individu
+    label = u"Montant du complémentaire santé solidaire attribué pour une personne en cas d'éligibilité de la famille"
+    definition_period = MONTH
+
+    def formula_2009_08_01(individu, period, parameters):
+        P = parameters(period).cmu.complementaire_sante_solidaire
+        p_alsace_moselle = parameters(period).cmu.complementaire_sante_solidaire_regime_alsace_moselle
+        age = individu('age', period)
+        salarie_regime_alsace_moselle = individu('salarie_regime_alsace_moselle', period)
+
+        montant_si_parent = select(
+            [age <= 29, age <= 49, age <= 59, age <= 69, age >= 70],
+            [P.cmu_moins_30_ans, P.cmu_30_49_ans, P.cmu_50_59_ans,
+             P.cmu_60_69_ans, P.cmu_plus_69_ans],
+            )
+
+        montant_si_parent_regime_alsace_moselle = select(
+            [age <= 29, age <= 49, age <= 59, age <= 69, age >= 70],
+            [p_alsace_moselle.cmu_moins_30_ans, p_alsace_moselle.cmu_30_49_ans, p_alsace_moselle.cmu_50_59_ans,
+             p_alsace_moselle.cmu_60_69_ans, p_alsace_moselle.cmu_plus_69_ans],
+            )
+
+        return where(salarie_regime_alsace_moselle, montant_si_parent_regime_alsace_moselle, montant_si_parent)
+
+
+class complementaire_sante_solidaire_montant(Variable):
+    value_type = float
+    entity = Famille
+    label = u"Montant du complémentaire santé solidaire en cas d'éligibilité"
+    definition_period = MONTH
+
+    def formula_2009_08_01(famille, period, parameters):
+        cmu_c_etendue_montant_i = famille.members('complementaire_sante_solidaire_montant_i', period)
+        return famille.sum(cmu_c_etendue_montant_i)
+
+
 class cmu_forfait_logement_base(Variable):
     value_type = float
     entity = Famille
@@ -197,6 +235,19 @@ class acs_plafond(Variable):
         P = parameters(period).cmu
 
         return cmu_c_plafond * (1 + P.majoration_plafond_acs)
+
+
+class complementaire_sante_solidaire_plafond(Variable):
+    value_type = float
+    entity = Famille
+    label = u"Plafond annuel de ressources pour l'éligibilité au complémentaire santé solidaire"
+    definition_period = MONTH
+
+    def formula(famille, period, parameters):
+        cmu_c_plafond = famille('cmu_c_plafond', period)
+        P = parameters(period).cmu
+
+        return cmu_c_plafond * (1 + P.majoration_plafond_complementaire_sante_solidaire)
 
 
 class cmu_base_ressources_individu(Variable):
@@ -428,6 +479,30 @@ class acs(Variable):
             * not_(cmu_c)
             * (cmu_base_ressources <= acs_plafond)
             * acs_montant
+            )
+
+
+class complementaire_sante_solidaire(Variable):
+    value_type = float
+    label = u"Montant (annuel) du complémentaire santé solidaire"
+    entity = Famille
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
+
+    def formula_2019_11_01(famille, period):
+        cmu_c = famille('cmu_c', period)
+        cmu_base_ressources = famille('cmu_base_ressources', period)
+        cmu_c_etendue_plafond = famille('complementaire_sante_solidaire_plafond', period)
+        cmu_c_etendue_montant = famille('complementaire_sante_solidaire_montant', period)
+        residence_mayotte = famille.demandeur.menage('residence_mayotte', period)
+        cmu_acs_eligibilite = famille('cmu_acs_eligibilite', period)
+
+        return (
+            cmu_acs_eligibilite
+            * not_(residence_mayotte)
+            * not_(cmu_c)
+            * (cmu_base_ressources <= cmu_c_etendue_plafond)
+            * cmu_c_etendue_montant
             )
 
 
