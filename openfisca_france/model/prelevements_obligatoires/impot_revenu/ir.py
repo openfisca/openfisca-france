@@ -2840,21 +2840,25 @@ class abat_spe(Variable):
 
         # Vecteur de foyers eligibles aux abattements spéciaux
         foyers_eligibles = (
-            + (age_declarant >= 65 | (declarant_invalide & age_declarant > 0))
-            * (age_conjoint >= 65 | (conjoint_invalide & age_conjoint > 0))
+            + (((age_declarant >= 65) | declarant_invalide) & (age_declarant > 0))
+            + (((age_conjoint >= 65) | conjoint_invalide) & (age_conjoint > 0))
             )
 
         # Vecteur de montants d'abattement pour personnes âges ou invalides
         as_inv = (
             + foyers_eligibles
-            * abattement_age_ou_invalidite.montant_1
             * (
-                + (revenu_net_global <= abattement_age_ou_invalidite.plafond_1)
-                + (
-                    + (revenu_net_global > abattement_age_ou_invalidite.plafond_1)
-                    & (revenu_net_global <= abattement_age_ou_invalidite.plafond_2)
+                (
+                    + abattement_age_ou_invalidite.montant_1
+                    * (revenu_net_global <= abattement_age_ou_invalidite.plafond_1)
                     )
-                * abattement_age_ou_invalidite.montant_2
+                + (
+                    + abattement_age_ou_invalidite.montant_2
+                    * (
+                        + (revenu_net_global > abattement_age_ou_invalidite.plafond_1)
+                        & (revenu_net_global <= abattement_age_ou_invalidite.plafond_2)
+                        )
+                    )
                 )
             )
 
