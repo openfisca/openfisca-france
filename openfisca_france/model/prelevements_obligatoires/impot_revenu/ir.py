@@ -2802,22 +2802,10 @@ class abat_spe(Variable):
 
     def formula(foyer_fiscal, period, parameters):
         """
-        Abattements spéciaux
+        Abattements spéciaux pour :
 
-        - pour personnes âges ou invalides : âgé(e) de plus de 65 ans
-          ou invalide (titulaire d’une pension d’invalidité militaire ou d’accident
-          du travail d’au moins 40 % ou titulaire de la carte d’invalidité),
-          abattement de 2 416 € si rng du foyer fiscal inférieur à 15 140 €
-                        1 208 € si rng  compris entre 15 140 € et 24 390 €.
-          Abattement doublé si conjoint remplit également ces conditions
-          d’âge ou d’invalidité.
-        - pour enfants à charge ayant fondé un foyer distinct : Si  rattachement
-          enfants mariés ou pacsés ou enfants  célibataires, veufs, divorcés, séparés,
-          chargés de famille, abattement 5 888 € par personne ainsi rattachée.
-          Si l’enfant de la personne rattachée est réputé à charge de
-          l’un et l’autre de ses parents (garde alternée), cet abattement est divisé
-          par deux soit 2 944 €. Exemple : 11 776 € pour un jeune ménage et 8 832 €
-          pour un célibataire avec un jeune enfant en résidence alternée.
+        - pour personnes âges ou invalides ;
+        - pour enfants à charge ayant fondé un foyer distinct.
         """
 
         # Âge déclarant·e principal·e
