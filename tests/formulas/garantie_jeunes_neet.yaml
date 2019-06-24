@@ -1,0 +1,39 @@
+- name: Prise en compte du salaire dans la définition de NEET
+  description: Not in Employement, Education or Training
+  period: 2019-01
+  input:
+    salaire_net: 1
+  output:
+    garantie_jeunes_neet: false
+
+- name: Prise en compte de la scolarité dans la définition de NEET
+  description: Not in Employement, Education or Training
+  period: 2019-01
+  input:
+    scolarite: college
+  output:
+    garantie_jeunes_neet: false
+
+- name: Prise en compte du status étudiant dans la définition de NEET
+  description: Not in Employement, Education or Training
+  period: 2019-01
+  input:
+    activite: etudiant
+  output:
+    garantie_jeunes_neet: false
+
+- name: Prise en compte des indemnités de stage dans la définition de NEET
+  description: Not in Employement, Education or Training
+  period: 2019-01
+  input:
+    indemnites_stage: 1
+  output:
+    garantie_jeunes_neet: false
+
+- name: Prise en compte des revenus de formation professionnelle dans la définition de NEET
+  description: Not in Employement, Education or Training
+  period: 2019-01
+  input:
+    revenus_stage_formation_pro: 1
+  output:
+    garantie_jeunes_neet: false

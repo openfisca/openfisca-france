@@ -7,7 +7,7 @@ from setuptools import setup, find_packages
 
 setup(
     name = "OpenFisca-France",
-    version = "47.0.1",
+    version = "47.1.0",
     author = "OpenFisca Team",
     author_email = "contact@openfisca.fr",
     classifiers = [
