@@ -1,49 +1,35 @@
 # -*- coding: utf-8 -*-
 
-import datetime
+import numpy
 
-
-from openfisca_core import periods
-
-from openfisca_france.scenarios import init_single_entity
-
-from openfisca_france.reforms.plf2016_ayrault_muet import ayrault_muet
 from ..cache import tax_benefit_system
+from openfisca_core import periods
+from openfisca_france.scenarios import init_single_entity
+from openfisca_france.reforms.plf2016_ayrault_muet import ayrault_muet
 
 
-def test():
-    year = 2015
-    max_sal = 18000
-    count = 2
-    people = 1
+def test_plf2016_ayrault_muet(axes, parent1, parent2, enfants):
     reform = ayrault_muet(tax_benefit_system)
-    scenario = init_single_entity(reform.new_scenario(),
-        axes = [[
-            dict(
-                count = count,
-                max = max_sal,
-                min = 0,
-                name = 'salaire_imposable',
-                ),
-            ]],
+    count = 2
+    salaire_max = 18000
+    salaire_min = 0
+    name = "salaire_imposable"
+    year = 2015
+    people = 1
+
+    scenario = init_single_entity(
+        reform.new_scenario(),
+        axes = axes(count, salaire_max, salaire_min, name),
         period = periods.period(year),
-        parent1 = dict(date_naissance = datetime.date(year - 40, 1, 1)),
-        parent2 = dict(date_naissance = datetime.date(year - 40, 1, 1)) if people >= 2 else None,
-        enfants = [
-            dict(date_naissance = datetime.date(year - 9, 1, 1)) if people >= 3 else None,
-            dict(date_naissance = datetime.date(year - 9, 1, 1)) if people >= 4 else None,
-            ] if people >= 3 else None,
+        parent1 = parent1(year),
+        parent2 = parent2(year, people),
+        enfants = enfants(year, people),
         )
 
     reference_simulation = scenario.new_simulation(use_baseline = True)
+    impots_reference = reference_simulation.calculate('impots_directs', period = year)
+
     reform_simulation = scenario.new_simulation()
+    impots_reforme = reform_simulation.calculate('impots_directs', period = year)
 
-    impots_directs = reference_simulation.calculate('impots_directs', period = year)  # noqa F841
-    reform_impots_directs = reform_simulation.calculate('impots_directs', period = year)  # noqa F841
-
-
-if __name__ == '__main__':
-    import logging
-    import sys
-    logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
-    test()
+    assert numpy.all(numpy.equal(impots_reference, impots_reforme))
