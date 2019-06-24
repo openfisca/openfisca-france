@@ -8,9 +8,7 @@ class garantie_jeunes_neet(Variable):
     entity = Individu
     definition_period = MONTH
     label = u"Variable NEET - Ni étudiant, ni employé, ni stagiaire"
-    reference = [
-        'https://fr.wikipedia.org/wiki/NEET'
-    ]
+    reference = ['https://fr.wikipedia.org/wiki/NEET']
 
     def formula(individu, period):
         not_in_employment = individu('salaire_net', period) == 0
