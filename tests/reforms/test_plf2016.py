@@ -1,16 +1,36 @@
 # -*- coding: utf-8 -*-
 
+from typing import Callable, Tuple
+
 import numpy
 import pytest
 
 from ..cache import tax_benefit_system
-from openfisca_core import periods
-from openfisca_france.scenarios import init_single_entity
+from openfisca_core.reforms import Reform
+from openfisca_core.simulations import Simulation
 from openfisca_france.reforms.plf2016 import (
     plf2016,
     plf2016_counterfactual,
     plf2016_counterfactual_2014,
     )
+
+
+@pytest.fixture
+def simulations(new_scenario) -> Callable[..., Tuple[Simulation]]:
+    def _simulations(reform_class: Reform, year: int) -> Tuple[Simulation]:
+        scenario = new_scenario(
+            reform = reform_class(tax_benefit_system),
+            count = 2,
+            _max = 18000,
+            _min = 0,
+            name = "salaire_imposable",
+            year = year,
+            people = 1,
+            )
+
+        return scenario.new_simulation(use_baseline = True), scenario.new_simulation()
+
+    return _simulations
 
 
 def equal(before: numpy.ndarray, after: numpy.ndarray) -> bool:
@@ -28,28 +48,8 @@ def not_equal(before: numpy.ndarray, after: numpy.ndarray) -> bool:
         (plf2016_counterfactual_2014, not_equal),
         ),
     )
-def test_plf2016(reform_class, expected, axes, parent1, parent2, enfants):
-    reform = reform_class(tax_benefit_system)
-    count = 2
-    salaire_max = 18000
-    salaire_min = 0
-    name = "salaire_imposable"
-    year = 2015
-    people = 1
-
-    scenario = init_single_entity(
-        reform.new_scenario(),
-        axes = axes(count, salaire_max, salaire_min, name),
-        period = periods.period(year),
-        parent1 = parent1(year),
-        parent2 = parent2(year, people),
-        enfants = enfants(year, people),
-        )
-
-    reference_simulation = scenario.new_simulation(use_baseline = True)
-    impots_reference = reference_simulation.calculate('impots_directs', period = year)
-
-    reform_simulation = scenario.new_simulation()
-    impots_reforme = reform_simulation.calculate('impots_directs', period = year)
-
-    assert expected(impots_reference, impots_reforme)
+def test_plf2016(reform_class, expected, simulations, year = 2015):
+    actual_simulation, reform_simulation = simulations(reform_class, year)
+    actual_impots = actual_simulation.calculate('impots_directs', year)
+    reform_impots = reform_simulation.calculate('impots_directs', year)
+    assert expected(actual_impots, reform_impots)
