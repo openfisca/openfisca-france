@@ -1,5 +1,14 @@
 # Changelog
 
+## 47.1.0 [#1347](https://github.com/openfisca/openfisca-france/pull/1347)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 08/08/2016.
+* Zones impactées : N/A.
+* Détails :
+  - Ajoute la Garantie Jeunes, modélisée par la variable `garantie_jeunes`
+    - La garantie jeunes permet d'accompagner les jeunes entre 16 et 25 ans en situation de grande précarité vers l'emploi ou la formation. C'est une modalité spécifique du parcours contractualisé d'accompagnement vers l'emploi et l'autonomie (PACEA).
+
 ### 47.0.1 [#1349](https://github.com/openfisca/openfisca-france/pull/1349)
 
 * Amélioration technique.
