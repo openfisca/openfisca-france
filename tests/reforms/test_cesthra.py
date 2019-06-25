@@ -1,52 +1,42 @@
 # -*- coding: utf-8 -*-
 
-import datetime
+from typing import Callable, Tuple
 
+import numpy
+import pytest
 
-from openfisca_core import periods
-from openfisca_france.reforms.cesthra_invalidee import cesthra_invalidee
 from ..cache import tax_benefit_system
-
-from openfisca_france.scenarios import init_single_entity
-
-
-def test_cesthra_invalidee():
-    year = 2012
-    period = periods.period(year)
-    reform = cesthra_invalidee(tax_benefit_system)
-    scenario = init_single_entity(reform.new_scenario(),
-        axes = [[
-            dict(
-                count = 10,
-                max = 30000,
-                min = 0,
-                name = 'salaire_imposable',
-                ),
-            ]],
-        period = period,
-        parent1 = dict(date_naissance = datetime.date(year - 40, 1, 1)),
-        parent2 = dict(date_naissance = datetime.date(year - 40, 1, 1)),
-        enfants = [
-            dict(date_naissance = datetime.date(year - 9, 1, 1)),
-            dict(date_naissance = datetime.date(year - 9, 1, 1)),
-            ],
-        )
-
-    reference_simulation = scenario.new_simulation(use_baseline = True)
-    reference_impo = reference_simulation.calculate('impots_directs', period = period)
-    assert reference_impo is not None
-    reference_revenu_disponible = reference_simulation.calculate('revenu_disponible', period = period)
-    assert reference_revenu_disponible is not None
-
-    reform_simulation = scenario.new_simulation()
-    reform_impots_directs = reform_simulation.calculate('impots_directs', period = period)
-    assert reform_impots_directs is not None
-    reform_revenu_disponible = reform_simulation.calculate('revenu_disponible', period = period)
-    assert reform_revenu_disponible is not None
+from openfisca_core.simulations import Simulation
+from openfisca_france.reforms.cesthra_invalidee import cesthra_invalidee
 
 
-if __name__ == '__main__':
-    import logging
-    import sys
-    logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
-    test_cesthra_invalidee()
+@pytest.fixture
+def simulations(new_scenario) -> Callable[..., Tuple[Simulation]]:
+    def _simulations(year: int) -> Tuple[Simulation]:
+        scenario = new_scenario(
+            reform = cesthra_invalidee(tax_benefit_system),
+            count = 10,
+            _max = 30000,
+            _min = 0,
+            name = "salaire_imposable",
+            year = year,
+            people = 4,
+            )
+
+        return scenario.new_simulation(use_baseline = True), scenario.new_simulation()
+
+    return _simulations
+
+
+def test_cesthra_impots_directs(simulations, year = 2012):
+    actual_simulation, reform_simulation = simulations(year)
+    actual_impots = actual_simulation.calculate('impots_directs', year)
+    reform_impots = reform_simulation.calculate('impots_directs', year)
+    assert numpy.all(numpy.equal(actual_impots, reform_impots))
+
+
+def test_cesthra_revdisp(simulations, year = 2012):
+    actual_simulation, reform_simulation = simulations(year)
+    actual_revdisp = actual_simulation.calculate('revenu_disponible', year)
+    reform_revdisp = reform_simulation.calculate('revenu_disponible', year)
+    assert numpy.all(numpy.equal(actual_revdisp, reform_revdisp))

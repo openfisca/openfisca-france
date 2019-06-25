@@ -1,5 +1,15 @@
 # Changelog
 
+## 47.2.0 [#1337](https://github.com/openfisca/openfisca-france/pull/1337)
+
+* Évolution du système socio-fiscal
+* Périodes concernées : jusqu'au 31/12/2018
+* Zones impactées : `openfisca_france/parameters/impot_revenu`.
+* Détails :
+  - Mise à jour des charges déductibles du revenu brut global
+  - Mise à jour de l'abattement pour revenu net imposable
+  - Mise à jour du plafonnement du quotient familial et décote
+
 ## 47.1.0 [#1347](https://github.com/openfisca/openfisca-france/pull/1347)
 
 * Évolution du système socio-fiscal.

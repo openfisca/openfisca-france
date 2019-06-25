@@ -2802,49 +2802,74 @@ class abat_spe(Variable):
 
     def formula(foyer_fiscal, period, parameters):
         """
-        Abattements spéciaux
+        Abattements spéciaux pour :
 
-        - pour personnes âges ou invalides : âgé(e) de plus de 65 ans
-          ou invalide (titulaire d’une pension d’invalidité militaire ou d’accident
-          du travail d’au moins 40 % ou titulaire de la carte d’invalidité),
-          abattement de 2 172 € si rng du foyer fiscal inférieur à 13 370 €
-                        1 086 € si rng  compris entre 13 370 € et 21 570 €.
-          Abattement doublé si conjoint remplit également ces conditions
-          d’âge ou d’invalidité.
-        - pour enfants à charge ayant fondé un foyer distinct : Si  rattachement
-          enfants mariés ou pacsés ou enfants  célibataires, veufs, divorcés, séparés, chargés de famille,
-          abattement 5 495 € par personne ainsi rattachée.
-          Si l’enfant de la personne rattachée est réputé à charge de
-          l’un et l’autre de ses parents (garde alternée), cet abattement est divisé
-          par deux soit 2 748€. Exemple : 10 990 € pour un jeune ménage et 8 243 €
-          pour un célibataire avec un jeune enfant en résidence alternée.
+        - pour personnes âges ou invalides ;
+        - pour enfants à charge ayant fondé un foyer distinct.
         """
-        caseP = foyer_fiscal('caseP', period)
-        caseF = foyer_fiscal('caseF', period)
-        rng = foyer_fiscal('rng', period)
-        nbN = foyer_fiscal('nbN', period)
 
-        abattements_rni = parameters(period).impot_revenu.abattements_rni
-        abattements_personne_agee_ou_invalide = abattements_rni.personne_agee_ou_invalide
+        # Âge déclarant·e principal·e
+        age_declarant = foyer_fiscal.declarant_principal('age', period.first_month)
 
-        ageV = foyer_fiscal.declarant_principal('age', period.first_month)
-        ageC = foyer_fiscal.conjoint('age', period.first_month)
+        # Titulaire d'une pension pour une invalidité d'au moins 40 % ou d'une carte
+        # d'invalidité d'au moins 80%
+        declarant_invalide = foyer_fiscal('caseP', period)
 
-        invV, invC = caseP, caseF
-        nb_elig_as = (
-            1 * (((ageV >= 65) | invV) & (ageV > 0))
-            + 1 * (((ageC >= 65) | invC) & (ageC > 0))
+        # Âge conjoint·e
+        age_conjoint = foyer_fiscal.conjoint('age', period.first_month)
+
+        # Conjoint·e titulaire d'une pension ou d'une carte d'invalidité (vivant ou
+        # décédé l'année de perception des revenus)
+        conjoint_invalide = foyer_fiscal('caseF', period)
+
+        # Revenu net global
+        revenu_net_global = foyer_fiscal('rng', period)
+
+        # Nombre d'enfants marié·e·s/pacse·é·s et d'enfants non mari·é·s charg·é·s de
+        # famille
+        nombre_enfants = foyer_fiscal('nbN', period)
+
+        # Abattements pour revenu net imposable
+        abattements = parameters(period).impot_revenu.abattements_rni
+
+        # Abattement pour personnes agées de + de 65 ans ou invalide
+        abattement_age_ou_invalidite = abattements.personne_agee_ou_invalide
+
+        # Abattement pour rattachement d'enfants mari·é·s
+        abattement_enfant_marie = abattements.enfant_marie
+
+        # Vecteur de foyers eligibles aux abattements spéciaux
+        foyers_eligibles = (
+            + (((age_declarant >= 65) | declarant_invalide) & (age_declarant > 0))
+            + (((age_conjoint >= 65) | conjoint_invalide) & (age_conjoint > 0))
             )
-        as_inv = nb_elig_as * abattements_personne_agee_ou_invalide.montant * (
-            (rng <= abattements_personne_agee_ou_invalide.plafond_de_ressources_1)
-            + ((rng > abattements_personne_agee_ou_invalide.plafond_de_ressources_1)
-                & (rng <= abattements_personne_agee_ou_invalide.plafond_de_ressources_2)
-               ) * 0.5
+
+        # Vecteur de montants d'abattement pour personnes âges ou invalides
+        as_inv = (
+            + foyers_eligibles
+            * (
+                (
+                    + abattement_age_ou_invalidite.montant_1
+                    * (revenu_net_global <= abattement_age_ou_invalidite.plafond_1)
+                    )
+                + (
+                    + abattement_age_ou_invalidite.montant_2
+                    * (
+                        + (revenu_net_global > abattement_age_ou_invalidite.plafond_1)
+                        & (revenu_net_global <= abattement_age_ou_invalidite.plafond_2)
+                        )
+                    )
+                )
             )
 
-        as_enf = nbN * abattements_rni.enfant_marie.montant
+        # Vecteur de montants d'abattement pour enfants à charge
+        as_enf = (
+            + nombre_enfants
+            * abattement_enfant_marie.montant
+            )
 
-        return min_(rng, as_inv + as_enf)
+        # Le montant total d'abattement ne peut pas être supérieur au revenu net global
+        return min_(revenu_net_global, as_inv + as_enf)
 
 
 class taux_effectif(Variable):

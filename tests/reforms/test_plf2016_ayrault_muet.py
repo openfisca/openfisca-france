@@ -1,49 +1,35 @@
 # -*- coding: utf-8 -*-
 
-import datetime
+from typing import Callable, Tuple
 
+import numpy
+import pytest
 
-from openfisca_core import periods
-
-from openfisca_france.scenarios import init_single_entity
-
-from openfisca_france.reforms.plf2016_ayrault_muet import ayrault_muet
 from ..cache import tax_benefit_system
+from openfisca_core.simulations import Simulation
+from openfisca_france.reforms.plf2016_ayrault_muet import ayrault_muet
 
 
-def test():
-    year = 2015
-    max_sal = 18000
-    count = 2
-    people = 1
-    reform = ayrault_muet(tax_benefit_system)
-    scenario = init_single_entity(reform.new_scenario(),
-        axes = [[
-            dict(
-                count = count,
-                max = max_sal,
-                min = 0,
-                name = 'salaire_imposable',
-                ),
-            ]],
-        period = periods.period(year),
-        parent1 = dict(date_naissance = datetime.date(year - 40, 1, 1)),
-        parent2 = dict(date_naissance = datetime.date(year - 40, 1, 1)) if people >= 2 else None,
-        enfants = [
-            dict(date_naissance = datetime.date(year - 9, 1, 1)) if people >= 3 else None,
-            dict(date_naissance = datetime.date(year - 9, 1, 1)) if people >= 4 else None,
-            ] if people >= 3 else None,
-        )
+@pytest.fixture
+def simulations(new_scenario) -> Callable[..., Tuple[Simulation]]:
+    def _simulations(year: int) -> Tuple[Simulation]:
+        scenario = new_scenario(
+            reform = ayrault_muet(tax_benefit_system),
+            count = 2,
+            _max = 18000,
+            _min = 0,
+            name = "salaire_imposable",
+            year = year,
+            people = 1,
+            )
 
-    reference_simulation = scenario.new_simulation(use_baseline = True)
-    reform_simulation = scenario.new_simulation()
+        return scenario.new_simulation(use_baseline = True), scenario.new_simulation()
 
-    impots_directs = reference_simulation.calculate('impots_directs', period = year) # noqa F841
-    reform_impots_directs = reform_simulation.calculate('impots_directs', period = year) # noqa F841
+    return _simulations
 
 
-if __name__ == '__main__':
-    import logging
-    import sys
-    logging.basicConfig(level = logging.ERROR, stream = sys.stdout)
-    test()
+def test_plf2016_ayrault_muet(simulations, year = 2015):
+    actual_simulation, reform_simulation = simulations(year)
+    actual_impots = actual_simulation.calculate('impots_directs', year)
+    reform_impots = reform_simulation.calculate('impots_directs', year)
+    assert numpy.all(numpy.equal(actual_impots, reform_impots))

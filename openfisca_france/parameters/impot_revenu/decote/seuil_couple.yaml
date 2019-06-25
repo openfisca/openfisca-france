@@ -1,5 +1,8 @@
 description: Seuil de la décote pour un couple
-reference: Barèmes IPP - https://www.ipp.eu/wp-content/uploads/2017/07/baremes-ipp-impot-revenu-income-tax.xlsx
+reference:
+  - https://www.ipp.eu/baremes-ipp/impot-sur-le-revenu/calcul_impot_revenu/plaf_qf/
+  - http://bofip.impots.gouv.fr/bofip/2495-PGP
+  - https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000037985566&cidTexte=LEGITEXT000006069577
 unit: currency
 values:
   2014-01-01:

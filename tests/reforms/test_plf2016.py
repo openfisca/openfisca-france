@@ -1,47 +1,55 @@
 # -*- coding: utf-8 -*-
 
-import datetime
+from typing import Callable, Tuple
 
-from openfisca_core import periods
+import numpy
+import pytest
 
-from openfisca_france.scenarios import init_single_entity
-
-from openfisca_france.reforms.plf2016 import plf2016, plf2016_counterfactual, plf2016_counterfactual_2014
 from ..cache import tax_benefit_system
+from openfisca_core.reforms import Reform
+from openfisca_core.simulations import Simulation
+from openfisca_france.reforms.plf2016 import (
+    plf2016,
+    plf2016_counterfactual,
+    plf2016_counterfactual_2014,
+    )
 
 
-def test_plf2016(year = 2015):
-    run(plf2016, 2015)
-    run(plf2016_counterfactual, 2015)
-    run(plf2016_counterfactual_2014, 2015)
+@pytest.fixture
+def simulations(new_scenario) -> Callable[..., Tuple[Simulation]]:
+    def _simulations(reform_class: Reform, year: int) -> Tuple[Simulation]:
+        scenario = new_scenario(
+            reform = reform_class(tax_benefit_system),
+            count = 2,
+            _max = 18000,
+            _min = 0,
+            name = "salaire_imposable",
+            year = year,
+            people = 1,
+            )
+
+        return scenario.new_simulation(use_baseline = True), scenario.new_simulation()
+
+    return _simulations
 
 
-def run(reform_class, year):
-    max_sal = 18000
-    count = 2
-    people = 1
-    reform = reform_class(tax_benefit_system)
-    scenario = init_single_entity(reform.new_scenario(),
-        axes = [[
-            dict(
-                count = count,
-                max = max_sal,
-                min = 0,
-                name = 'salaire_imposable',
-                ),
-            ]],
-        period = periods.period(year),
-        parent1 = dict(date_naissance = datetime.date(year - 40, 1, 1)),
-        parent2 = dict(date_naissance = datetime.date(year - 40, 1, 1)) if people >= 2 else None,
-        enfants = [
-            dict(date_naissance = datetime.date(year - 9, 1, 1)) if people >= 3 else None,
-            dict(date_naissance = datetime.date(year - 9, 1, 1)) if people >= 4 else None,
-            ] if people >= 3 else None,
-        )
+def equal(before: numpy.ndarray, after: numpy.ndarray) -> bool:
+    return numpy.all(numpy.equal(before, after))
 
-    reference_simulation = scenario.new_simulation(use_baseline = True)
-    reform_simulation = scenario.new_simulation()
-#    error_margin = 1
 
-    impo = reference_simulation.calculate('impots_directs', period = year)  # noqa F841
-    reform_impo = reform_simulation.calculate('impots_directs', period = year) # noqa F841
+def not_equal(before: numpy.ndarray, after: numpy.ndarray) -> bool:
+    return numpy.any(numpy.not_equal(before, after))
+
+
+@pytest.mark.parametrize(
+    "reform_class, expected", (
+        (plf2016, equal),
+        (plf2016_counterfactual, not_equal),
+        (plf2016_counterfactual_2014, not_equal),
+        ),
+    )
+def test_plf2016(reform_class, expected, simulations, year = 2015):
+    actual_simulation, reform_simulation = simulations(reform_class, year)
+    actual_impots = actual_simulation.calculate('impots_directs', year)
+    reform_impots = reform_simulation.calculate('impots_directs', year)
+    assert expected(actual_impots, reform_impots)

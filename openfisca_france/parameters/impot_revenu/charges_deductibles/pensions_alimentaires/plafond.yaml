@@ -1,5 +1,8 @@
 description: Limite par enfant
-reference: Barèmes IPP - https://www.ipp.eu/wp-content/uploads/2017/07/baremes-ipp-impot-revenu-income-tax.xlsx
+reference:
+  - https://www.ipp.eu/baremes-ipp/impot-sur-le-revenu/calcul_revenus_imposables/charg_deduc/
+  - http://bofip.impots.gouv.fr/bofip/4930-PGP
+  - https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000037985596&cidTexte=LEGITEXT000006069577
 unit: currency
 values:
   1974-01-01:
@@ -82,3 +85,5 @@ values:
     value: 5738.0
   2017-01-01:
     value: 5795.0
+  2018-01-01:
+    value: 5888.0

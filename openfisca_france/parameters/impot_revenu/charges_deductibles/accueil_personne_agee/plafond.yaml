@@ -1,5 +1,8 @@
 description: Maximum par personne
-reference: Barèmes IPP - https://www.ipp.eu/wp-content/uploads/2017/07/baremes-ipp-impot-revenu-income-tax.xlsx
+reference:
+  - https://www.ipp.eu/baremes-ipp/impot-sur-le-revenu/calcul_revenus_imposables/charg_deduc/
+  - http://bofip.impots.gouv.fr/bofip/1860-PGP.html#1860-PGP_80_027
+  - https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000037671023&cidTexte=LEGITEXT000006069577
 unit: currency
 values:
   1984-01-01:
@@ -62,3 +65,7 @@ values:
     value: 3407.0
   2016-01-01:
     value: 3411.0
+  2017-01-01:
+    value: 3445.0
+  2018-01-01:
+    value: 3500.0

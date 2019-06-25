@@ -1,0 +1,81 @@
+description: Âgé ou invalide - montant 2
+reference:
+  - https://www.ipp.eu/baremes-ipp/impot-sur-le-revenu/calcul_revenus_imposables/abat_rni/
+  - http://bofip.impots.gouv.fr/bofip/2036-PGP.html
+  - https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006069577&idArticle=LEGIARTI000006308322
+unit: currency
+values:
+  1977-01-01:
+    value: 1700.0
+  1978-01-01:
+    value: 1860.0
+  1979-01-01:
+    value: 2040.0
+  1980-01-01:
+    value: 2315.0
+  1981-01-01:
+    value: 2630.0
+  1984-01-01:
+    value: 3480.0
+  1985-01-01:
+    value: 3680.0
+  1986-01-01:
+    value: 3770.0
+  1987-01-01:
+    value: 3900.0
+  1988-01-01:
+    value: 4010.0
+  1990-01-01:
+    value: 4290.0
+  1991-01-01:
+    value: 4430.0
+  1992-01-01:
+    value: 4560.0
+  1993-01-01:
+    value: 4650.0
+  1994-01-01:
+    value: 4720.0
+  1995-01-01:
+    value: 4810.0
+  1996-01-01:
+    value: 4910.0
+  1997-01-01:
+    value: 4970.0
+  1998-01-01:
+    value: 5020.0
+  1999-01-01:
+    value: 5050.0
+  2000-01-01:
+    value: 5130.0
+  2001-01-01:
+    value: 795.0
+  2002-01-01:
+    value: 809.0
+  2003-01-01:
+    value: 823.0
+  2004-01-01:
+    value: 837.0
+  2005-01-01:
+    value: 853.0
+  2006-01-01:
+    value: 1086.0
+  2007-01-01:
+    value: 1101.0
+  2008-01-01:
+    value: 1133.0
+  2009-01-01:
+    value: 1138.0
+  2010-01-01:
+    value: 1156.0
+  2013-01-01:
+    value: 1166.0
+  2014-01-01:
+    value: 1172.0
+  2015-01-01:
+    value: 1174.0
+  2016-01-01:
+    value: 1176.0
+  2017-01-01:
+    value: 1188.0
+  2018-01-01:
+    value: 1208.0

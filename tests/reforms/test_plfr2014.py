@@ -1,40 +1,35 @@
 # -*- coding: utf-8 -*-
 
-import datetime
+from typing import Callable, Tuple
 
-from openfisca_core import periods
+import numpy
+import pytest
 
-from openfisca_france.scenarios import init_single_entity
-
-from openfisca_france.reforms.plfr2014 import plfr2014
 from ..cache import tax_benefit_system
+from openfisca_core.simulations import Simulation
+from openfisca_france.reforms.plfr2014 import plfr2014
 
 
-def test(year = 2013):
-    max_sal = 18000
-    count = 2
-    people = 1
-    reform = plfr2014(tax_benefit_system)
-    scenario = init_single_entity(reform.new_scenario(),
-        axes = [[
-            dict(
-                count = count,
-                max = max_sal,
-                min = 0,
-                name = 'salaire_imposable',
-                ),
-            ]],
-        period = periods.period(year),
-        parent1 = dict(date_naissance = datetime.date(year - 40, 1, 1)),
-        parent2 = dict(date_naissance = datetime.date(year - 40, 1, 1)) if people >= 2 else None,
-        enfants = [
-            dict(date_naissance = datetime.date(year - 9, 1, 1)) if people >= 3 else None,
-            dict(date_naissance = datetime.date(year - 9, 1, 1)) if people >= 4 else None,
-            ] if people >= 3 else None,
-        )
+@pytest.fixture
+def simulations(new_scenario) -> Callable[..., Tuple[Simulation]]:
+    def _simulations(year: int) -> Tuple[Simulation]:
+        scenario = new_scenario(
+            reform = plfr2014(tax_benefit_system),
+            count = 2,
+            _max = 18000,
+            _min = 0,
+            name = "salaire_imposable",
+            year = year,
+            people = 1,
+            )
 
-    reference_simulation = scenario.new_simulation(use_baseline = True)
-    reform_simulation = scenario.new_simulation()
-    # error_margin = 1
-    impots_directs = reference_simulation.calculate('impots_directs', period = year) # noqa F841
-    reform_impots_directs = reform_simulation.calculate('impots_directs', period = year) # noqa F841
+        return scenario.new_simulation(use_baseline = True), scenario.new_simulation()
+
+    return _simulations
+
+
+def test_plf2014(simulations, year = 2013):
+    actual_simulation, reform_simulation = simulations(year)
+    actual_impots = actual_simulation.calculate('impots_directs', year)
+    reform_impots = reform_simulation.calculate('impots_directs', year)
+    assert numpy.all(numpy.equal(actual_impots, reform_impots))
