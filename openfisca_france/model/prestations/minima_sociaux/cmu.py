@@ -489,7 +489,7 @@ class complementaire_sante_solidaire(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
-    def formula_2019_11_01(famille, period):
+    def formula_2019_01_01(famille, period):
         cmu_c = famille('cmu_c', period)
         cmu_base_ressources = famille('cmu_base_ressources', period)
         cmu_c_etendue_plafond = famille('complementaire_sante_solidaire_plafond', period)
