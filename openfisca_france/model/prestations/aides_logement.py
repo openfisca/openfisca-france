@@ -679,7 +679,7 @@ class aide_logement_base_revenus_fiscaux(Variable):
         ]
     definition_period = YEAR
 
-    def formula_2019_01_01(foyer_fiscal, period):
+    def formula_2020_01_01(foyer_fiscal, period):
         rente_viagere_titre_onereux_net = foyer_fiscal('rente_viagere_titre_onereux_net', period)
         # Deplacement de la pension alimentaire versée, utilisée sur une periode differentes du reste
         # Supprimée à partir de 2018
