@@ -496,11 +496,14 @@ class complementaire_sante_solidaire(Variable):
         cmu_c_etendue_montant = famille('complementaire_sante_solidaire_montant', period)
         residence_mayotte = famille.demandeur.menage('residence_mayotte', period)
         cmu_acs_eligibilite = famille('cmu_acs_eligibilite', period)
+        acs = famille('acs', period)
+
 
         return (
             cmu_acs_eligibilite
             * not_(residence_mayotte)
             * not_(cmu_c)
+            * (acs == 0)
             * (cmu_base_ressources <= cmu_c_etendue_plafond)
             * cmu_c_etendue_montant
             )
