@@ -247,7 +247,7 @@ class complementaire_sante_solidaire_plafond(Variable):
         cmu_c_plafond = famille('cmu_c_plafond', period)
         P = parameters(period).cmu
 
-        return cmu_c_plafond * (1 + P.majoration_plafond_complementaire_sante_solidaire)
+        return cmu_c_plafond * (1 + P.majoration_plafond_acs)
 
 
 class cmu_base_ressources_individu(Variable):
