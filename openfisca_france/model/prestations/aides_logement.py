@@ -285,10 +285,10 @@ class aides_logement_primo_accedant_eligibilite(Variable):
 
         est_zone_3 = (zone_apl == TypesZoneApl.zone_3)
         date_pret_conventionne_avant_2018_01 = (aide_logement_date_pret_conventionne < date(2018, 1, 1))
-        date_pret_conventionne_avant_2020_01 = (aide_logement_date_pret_conventionne < date(2020, 1, 1))
+        date_pret_conventionne_avant_2019_01 = (aide_logement_date_pret_conventionne < date(2019, 1, 1))
 
         eligibilite = select(
-            [date_pret_conventionne_avant_2018_01, date_pret_conventionne_avant_2020_01],
+            [date_pret_conventionne_avant_2018_01, date_pret_conventionne_avant_2019_01],
             [True, (est_logement_ancien * est_zone_3)], default = False
             )
 
