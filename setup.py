@@ -44,7 +44,7 @@ setup(
             "autopep8 ==1.4.4",
             "flake8 >=3.7.0,<3.8.0",
             "flake8-print",
-            "pytest <5.0",
+            "pytest <6.0",
             "scipy >= 0.17",  # Only used to test de_net_a_brut reform
             "requests >= 2.8",
             "yamllint >=1.11.1,<1.16"
