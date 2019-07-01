@@ -1,5 +1,13 @@
 # Changelog
 
+### 47.2.1 [#1350](https://github.com/openfisca/openfisca-france/pull/1350)
+
+* Amélioration technique.
+* Périodes concernées : toutes.
+* Zones impactées : `tests`.
+* Détails :
+  - Supprime le test `test_api.py` dont le temps d'exécution est prohibitif (10s), la valeur ajoutée très faible (aucune information actionable n'est fournie en cas d'erreur) et qui dégrade l'expérience des contributeurs
+
 ## 47.2.0 [#1337](https://github.com/openfisca/openfisca-france/pull/1337)
 
 * Évolution du système socio-fiscal
