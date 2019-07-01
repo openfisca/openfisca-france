@@ -1,0 +1,506 @@
+- name: CMU-C N°1
+  period: 2018-04
+  absolute_error_margin: 0.05
+  input:
+    individus:
+      parent1:
+        salaire_net:
+          2018-03: 0.00
+          2018-02: 0.00
+          2018-01: 01384.00
+          2017-12: 0.00
+          2017-11: 531.00
+          2017-10: 985.00
+          2017-09: 1100.00
+          2017-08: 750.00
+          2017-07: 1250.00
+          2017-06: 500.00
+          2017-05: 1500.00
+          2017-04: 810.00
+    famille:
+      parents: parent1
+    menage:
+      personne_de_reference: parent1
+    foyer_fiscal:
+      declarants: parent1
+  output:
+    cmu_acs_eligibilite: true
+    cmu_c_plafond: 8810.00
+    acs_plafond: 11893.5
+    cmu_base_ressources: 8810.00 #cas de test fourni : 21655.78, ecart de 946.39, soit exactement la PAJE Naissance qui devrait être exclu
+
+- name: CMU-C N°2
+  period: 2018-04
+  absolute_error_margin: 0.05
+  input:
+    individus:
+      parent1:
+        salaire_net:
+          2018-03: 1000.00
+          2018-02: 190.00
+          2018-01: 1384.00
+          2017-12: 0.00
+          2017-11: 531.00
+          2017-10: 985.00
+          2017-09: 1100.00
+          2017-08: 750.00
+          2017-07: 1250.00
+          2017-06: 500.00
+          2017-05: 1500.00
+          2017-04: 810.00
+    famille:
+      parents: parent1
+      cmu_forfait_logement_al: 780.27
+    menage:
+      personne_de_reference: parent1
+      statut_occupation_logement:
+        2018-04: locataire_vide
+    foyer_fiscal:
+      declarants: parent1
+  output:
+    cmu_acs_eligibilite: true
+    cmu_c_plafond: 8810
+    acs_plafond: 11893.5
+    cmu_base_ressources: 10780.27
+
+- name: CMU-C N°3
+  period: 2018-04
+  relative_error_margin: 0.05
+  input:
+    individus:
+      parent1:
+        salaire_net:
+          2018-03: 00.00
+          2018-02: 00.00
+          2018-01: 1384.00
+          2017-12: 800.00
+          2017-11: 531.00
+          2017-10: 985.00
+          2017-09: 1100.00
+          2017-08: 750.00
+          2017-07: 1250.00
+          2017-06: 850.00
+          2017-05: 1500.00
+          2017-04: 850.00
+      parent2:
+        salaire_net:
+          2018-03: 00.00
+          2018-02: 950.00
+          2018-01: 1000.00
+          2017-12: 1050.00
+          2017-11: 1050.00
+          2017-10: 450.00
+          2017-09: 00.00
+          2017-08: 00.00
+          2017-07: 00.00
+          2017-06: 00.00
+          2017-05: 00.00
+          2017-04: 00.00
+      enfant1:
+        date_naissance: 2005-01-01
+      enfant2:
+        date_naissance: 1998-01-01
+    famille:
+      parents: [parent1, parent2]
+      enfants: [enfant1, enfant2]
+      cmu_forfait_logement_al: 1638.57
+      af:
+          2018-03: 131.16
+          2018-02: 131.16
+          2018-01: 131.16
+          2017-12: 131.16
+          2017-11: 131.16
+          2017-10: 131.16
+          2017-09: 131.16
+          2017-08: 131.16
+          2017-07: 131.16
+          2017-06: 131.16
+          2017-05: 131.16
+          2017-04: 131.16
+    menage:
+      personne_de_reference: parent1
+      conjoint: parent2
+      enfants: [enfant1, enfant2]
+      statut_occupation_logement:
+        2018-04: locataire_vide
+    foyer_fiscal:
+      declarants: [parent1, parent2]
+      personnes_a_charge: [enfant1, enfant2]
+  output:
+    cmu_acs_eligibilite: true
+    cmu_c_plafond: 18501.00
+    acs_plafond: 24977.00
+    cmu_base_ressources: 17712.49
+
+- name: CMU-C N°4
+  period: 2018-04
+  relative_error_margin: 0.05
+  input:
+    individus:
+      parent1:
+        salaire_net:
+          2018-03: 00.00
+          2018-02: 00.00
+          2018-01: 1384.00
+          2017-12: 800.00
+          2017-11: 531.00
+          2017-10: 985.00
+          2017-09: 1100.00
+          2017-08: 750.00
+          2017-07: 1250.00
+          2017-06: 850.00
+          2017-05: 1500.00
+          2017-04: 850.00
+        indemnites_journalieres:
+          2018-03: 00.00
+          2018-02: 00.00
+          2018-01: 00.00
+          2017-12: 00.00
+          2017-11: 00.00
+          2017-10: 00.00
+          2017-09: 00.00
+          2017-08: 00.00
+          2017-07: 150.00
+          2017-06: 950.00
+          2017-05: 950.00
+          2017-04: 00.00
+      parent2:
+        salaire_net:
+          2018-03: 950.00
+          2018-02: 950.00
+          2018-01: 1000.00
+          2017-12: 1050.00
+          2017-11: 1050.00
+          2017-10: 450.00
+          2017-09: 1200.00
+          2017-08: 1000.00
+          2017-07: 00.00
+          2017-06: 00.00
+          2017-05: 00.00
+          2017-04: 00.00
+      enfant1:
+        date_naissance: 2005-01-01
+      enfant2:
+        date_naissance: 2003-01-01
+      enfant3:
+        date_naissance: 1998-01-01
+    famille:
+      parents: [parent1, parent2]
+      enfants: [enfant1, enfant2, enfant3]
+      cmu_forfait_logement_al: 1638.57
+      af:
+        2018-03: 131.16
+        2018-02: 131.16
+        2018-01: 131.16
+        2017-12: 131.16
+        2017-11: 131.16
+        2017-10: 131.16
+        2017-09: 131.16
+        2017-08: 131.16
+        2017-07: 131.16
+        2017-06: 131.16
+        2017-05: 131.16
+        2017-04: 131.16
+      cf:
+        2018-03: 00.00
+        2018-02: 00.00
+        2018-01: 00.00
+        2017-12: 00.00
+        2017-11: 00.00
+        2017-10: 00.00
+        2017-09: 00.00
+        2017-08: 00.00
+        2017-07: 00.00
+        2017-06: 00.00
+        2017-05: 00.00
+        2017-04: 00.00
+    menage:
+      personne_de_reference: parent1
+      conjoint: parent2
+      enfants: [enfant1, enfant2, enfant3]
+      statut_occupation_logement:
+        2018-04: locataire_vide
+    foyer_fiscal:
+      declarants: [parent1, parent2]
+      personnes_a_charge: [enfant1, enfant2, enfant3]
+  output:
+    cmu_acs_eligibilite: true
+    cmu_c_plafond: 22026.00
+    acs_plafond: 29735.00
+    cmu_base_ressources: 22912.49
+
+- name: CMU-C N°5
+  period: 2018-04
+  relative_error_margin: 0.05
+  input:
+    individus:
+      parent1:
+        salaire_net:
+          2018-03: 00.00
+          2018-02: 00.00
+          2018-01: 1384.00
+          2017-12: 800.00
+          2017-11: 531.00
+          2017-10: 985.00
+          2017-09: 1200.00
+          2017-08: 800.00
+          2017-07: 00.00
+          2017-06: 00.00
+          2017-05: 00.00
+          2017-04: 00.00
+        indemnites_journalieres:
+          2018-03: 00.00
+          2018-02: 00.00
+          2018-01: 00.00
+          2017-12: 00.00
+          2017-11: 00.00
+          2017-10: 00.00
+          2017-09: 00.00
+          2017-08: 00.00
+          2017-07: 00.00
+          2017-06: 00.00
+          2017-05: 1350.00
+          2017-04: 00.00
+        chomage_net:
+          2018-03: 600.00
+          2018-02: 1000.00
+          2018-01: 00.00
+          2017-12: 00.00
+          2017-11: 00.00
+          2017-10: 00.00
+          2017-09: 00.00
+          2017-08: 00.00
+          2017-07: 00.00
+          2017-06: 00.00
+          2017-05: 00.00
+          2017-04: 1000.00
+      parent2:
+        salaire_net:
+          2018-03: 00.00
+          2018-02: 950.00
+          2018-01: 1000.00
+          2017-12: 1050.00
+          2017-11: 1050.00
+          2017-10: 450.00
+          2017-09: 1200.00
+          2017-08: 1000.00
+          2017-07: 450.00
+          2017-06: 1500.00
+          2017-05: 910.00
+          2017-04: 00.00
+        chomage_net:
+          2018-03: 00.00
+          2018-02: 00.00
+          2018-01: 00.00
+          2017-12: 00.00
+          2017-11: 00.00
+          2017-10: 00.00
+          2017-09: 1000.00
+          2017-08: 1000.00
+          2017-07: 1000.00
+          2017-06: 1000.00
+          2017-05: 00.00
+          2017-04: 00.00
+      enfant1:
+        date_naissance: 1099-01-01
+        salaire_net:
+          2018-03: 1000.00
+          2018-02: 1000.00
+          2018-01: 1000.00
+          2017-12: 800.00
+          2017-11: 531.00
+          2017-10: 985.00
+          2017-09: 1200.00
+          2017-08: 800.00
+          2017-07: 00.00
+          2017-06: 00.00
+          2017-05: 00.00
+          2017-04: 00.00
+      enfant2:
+        date_naissance: 2005-01-01
+      enfant3:
+        date_naissance: 2003-01-01
+      enfant4:
+        date_naissance: 1998-01-01
+    famille:
+      parents: [parent1, parent2]
+      enfants: [enfant1, enfant2, enfant3, enfant4]
+      cmu_forfait_logement_al: 1638.57
+      af:
+        2018-03: 532.83
+        2018-02: 532.83
+        2018-01: 532.83
+        2017-12: 532.83
+        2017-11: 532.83
+        2017-10: 532.83
+        2017-09: 532.83
+        2017-08: 532.83
+        2017-07: 532.83
+        2017-06: 532.83
+        2017-05: 532.83
+        2017-04: 532.83
+      cf:
+        2018-03: 00.00
+        2018-02: 00.00
+        2018-01: 00.00
+        2017-12: 00.00
+        2017-11: 00.00
+        2017-10: 00.00
+        2017-09: 00.00
+        2017-08: 00.00
+        2017-07: 00.00
+        2017-06: 00.00
+        2017-05: 00.00
+        2017-04: 00.00
+    menage:
+      personne_de_reference: parent1
+      conjoint: parent2
+      enfants: [enfant1, enfant2, enfant3, enfant4]
+      statut_occupation_logement:
+        2018-04: locataire_vide
+    foyer_fiscal:
+      declarants: [parent1, parent2]
+      personnes_a_charge: [enfant1, enfant2, enfant3, enfant4]
+  output:
+    cmu_acs_eligibilite: true
+    cmu_c_plafond: 25550.00
+    acs_plafond: 34492.00
+    cmu_base_ressources: 32532.53
+
+- name: CMU-C N°6
+  period: 2018-04
+  relative_error_margin: 0.05
+  input:
+    individus:
+      parent1:
+        salaire_net:
+          2018-03: 00.00
+          2018-02: 00.00
+          2018-01: 1384.00
+          2017-12: 800.00
+          2017-11: 531.00
+          2017-10: 985.00
+          2017-09: 1200.00
+          2017-08: 800.00
+          2017-07: 00.00
+          2017-06: 00.00
+          2017-05: 00.00
+          2017-04: 00.00
+        indemnites_journalieres:
+          2018-03: 00.00
+          2018-02: 00.00
+          2018-01: 00.00
+          2017-12: 00.00
+          2017-11: 00.00
+          2017-10: 00.00
+          2017-09: 00.00
+          2017-08: 00.00
+          2017-07: 00.00
+          2017-06: 00.00
+          2017-05: 1350.00
+          2017-04: 00.00
+        chomage_net:
+          2018-03: 600.00
+          2018-02: 1000.00
+          2018-01: 00.00
+          2017-12: 00.00
+          2017-11: 00.00
+          2017-10: 00.00
+          2017-09: 00.00
+          2017-08: 00.00
+          2017-07: 00.00
+          2017-06: 00.00
+          2017-05: 00.00
+          2017-04: 1000.00
+      parent2:
+        salaire_net:
+          2018-03: 00.00
+          2018-02: 950.00
+          2018-01: 1000.00
+          2017-12: 1050.00
+          2017-11: 1050.00
+          2017-10: 450.00
+          2017-09: 1200.00
+          2017-08: 1000.00
+          2017-07: 450.00
+          2017-06: 1500.00
+          2017-05: 910.00
+          2017-04: 00.00
+        chomage_net:
+          2018-03: 00.00
+          2018-02: 00.00
+          2018-01: 00.00
+          2017-12: 00.00
+          2017-11: 00.00
+          2017-10: 00.00
+          2017-09: 1000.00
+          2017-08: 1000.00
+          2017-07: 1000.00
+          2017-06: 1000.00
+          2017-05: 00.00
+          2017-04: 00.00
+      enfant1:
+        date_naissance: 1099-01-01
+        salaire_net:
+          2018-03: 1000.00
+          2018-02: 1000.00
+          2018-01: 1000.00
+          2017-12: 800.00
+          2017-11: 531.00
+          2017-10: 985.00
+          2017-09: 1200.00
+          2017-08: 800.00
+          2017-07: 00.00
+          2017-06: 00.00
+          2017-05: 00.00
+          2017-04: 00.00
+      enfant2:
+        date_naissance: 2005-01-01
+      enfant3:
+        date_naissance: 2003-01-01
+      enfant4:
+        date_naissance: 1998-01-01
+    famille:
+      parents: [parent1, parent2]
+      enfants: [enfant1, enfant2, enfant3, enfant4]
+      cmu_forfait_logement_al: 1638.57
+      af:
+        2018-03: 532.83
+        2018-02: 532.83
+        2018-01: 532.83
+        2017-12: 532.83
+        2017-11: 532.83
+        2017-10: 532.83
+        2017-09: 532.83
+        2017-08: 532.83
+        2017-07: 532.83
+        2017-06: 532.83
+        2017-05: 532.83
+        2017-04: 532.83
+      cf:
+        2018-03: 00.00
+        2018-02: 00.00
+        2018-01: 00.00
+        2017-12: 00.00
+        2017-11: 00.00
+        2017-10: 00.00
+        2017-09: 00.00
+        2017-08: 00.00
+        2017-07: 00.00
+        2017-06: 00.00
+        2017-05: 00.00
+        2017-04: 00.00
+    menage:
+      personne_de_reference: parent1
+      conjoint: parent2
+      enfants: [enfant1, enfant2, enfant3, enfant4]
+      statut_occupation_logement:
+        2018-04: locataire_vide
+    foyer_fiscal:
+      declarants: [parent1, parent2]
+      personnes_a_charge: [enfant1, enfant2, enfant3, enfant4]
+  output:
+    cmu_acs_eligibilite: true
+    cmu_c_plafond: 25550.00
+    acs_plafond: 34492.00
+    cmu_base_ressources: 32532.53
