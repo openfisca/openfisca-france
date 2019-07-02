@@ -284,8 +284,8 @@ class aah_plafond_ressources(Variable):
         return montant_max * (
             + 1
             + en_couple
-            * law.minima_sociaux.aah.majoration_du_plafond_pour_un_couple
-            + law.minima_sociaux.aah.tx_plaf_supp
+            * law.minima_sociaux.aah.majoration_plafond_couple
+            + law.minima_sociaux.aah.majoration_plafond_personne_a_charge
             * af_nbenf
             )
 
@@ -410,7 +410,7 @@ class caah(Variable):
     def formula_2002_01_01(individu, period, parameters):
         law = parameters(period).prestations
 
-        cpltx = law.minima_sociaux.caah.cpltx
+        cpltx = law.minima_sociaux.caah.taux_montant_complement_ressources
         aah_montant = law.minima_sociaux.aah.montant
 
         aah = individu('aah', period)
