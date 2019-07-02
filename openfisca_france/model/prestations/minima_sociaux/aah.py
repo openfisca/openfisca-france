@@ -457,7 +457,7 @@ class mva(Variable):
     def formula_2015_07_01(individu, period, parameters):
         prestations = parameters(period).prestations
         al = individu.famille('aide_logement_montant', period)  # montant allocs logement de la famille
-        mva_montant = prestations.minima_sociaux.aah.mva
+        mva_montant = prestations.minima_sociaux.caah.majoration_vie_autonome
 
         return mva_montant * (al > 0)
 
