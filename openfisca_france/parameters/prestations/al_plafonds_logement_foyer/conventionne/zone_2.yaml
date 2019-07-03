@@ -38,7 +38,6 @@ menage_seul:
     2017-10-01:
       value: 471.50
     2019-10-01:
-      reference:
       value: 472.91
 personne_isolee_sans_enfant:
   values:
