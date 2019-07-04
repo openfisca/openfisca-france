@@ -284,8 +284,8 @@ class aah_plafond_ressources(Variable):
         return montant_max * (
             + 1
             + en_couple
-            * law.minima_sociaux.aah.majoration_du_plafond_pour_un_couple
-            + law.minima_sociaux.aah.tx_plaf_supp
+            * law.minima_sociaux.aah.majoration_plafond_couple
+            + law.minima_sociaux.aah.majoration_plafond_personne_a_charge
             * af_nbenf
             )
 
@@ -410,7 +410,7 @@ class caah(Variable):
     def formula_2002_01_01(individu, period, parameters):
         law = parameters(period).prestations
 
-        cpltx = law.minima_sociaux.caah.cpltx
+        cpltx = law.minima_sociaux.caah.taux_montant_complement_ressources
         aah_montant = law.minima_sociaux.aah.montant
 
         aah = individu('aah', period)
@@ -457,7 +457,7 @@ class mva(Variable):
     def formula_2015_07_01(individu, period, parameters):
         prestations = parameters(period).prestations
         al = individu.famille('aide_logement_montant', period)  # montant allocs logement de la famille
-        mva_montant = prestations.minima_sociaux.aah.mva
+        mva_montant = prestations.minima_sociaux.caah.majoration_vie_autonome
 
         return mva_montant * (al > 0)
 
