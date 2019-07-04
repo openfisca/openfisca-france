@@ -1,5 +1,20 @@
 # Changelog
 
+# 48.0.0 [#1353](https://github.com/openfisca/openfisca-france/pull/1353)
+
+* Évolution du système socio-fiscal **non rétrocompatible**
+* Périodes concernées : toutes.
+* Zones impactées :
+  - `openfisca_france/model/prestations/minima_sociaux/aah.py`
+  - `openfisca_france/parameters/prestations/minima_sociaux/aah`
+  - `openfisca_france/parameters/prestations/minima_sociaux/caah`
+* Détails :
+  - Supprime un doublon entre les paramètres `aah.mva` et `caah.majoration_vie_autonome` (on garde le second).
+  - Supprime un doublon entre les paramètres `caah.cpltx` et `caah.taux_du_montant_mensuel_du_complement_aux_adultes_handicape_2` (on renomme en `caah.taux_montant_complement_ressources`).
+  - Renomme le paramètre `aah.majoration_du_plafond_pour_un_couple` en `aah.majoration_plafond_couple`.
+  - Renomme le paramètre `aah.tx_plaf_supp` en `aah.majoration_plafond_personne_a_charge`.
+  - Renomme le paramètre `aah.plafond_de_ressources_en_multiple_du_montant_de_base` en `aah.plafond_ressources`.
+
 ## 47.3.0 [#1352](https://github.com/openfisca/openfisca-france/pull/1352)
 
 * Amélioration technique.
