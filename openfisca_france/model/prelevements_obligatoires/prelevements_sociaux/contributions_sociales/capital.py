@@ -371,14 +371,16 @@ class prelevements_sociaux_revenus_capital_hors_csg_crds(Variable):
     def formula_2009_01_01(foyer_fiscal, period, parameters):
         '''
         Attention : Pour les années avant 2013, cette formule n'est pas entièrement correcte car le taux de la CSG n'était pas unique (distinction revenus du patrimoine et revenus de placement)
+        Selon un rapport de la CCSS, les dividendes étaient considérés comme appartenant à la catégorie "revenus du patrimoine" jusqu'en 2007, et
+        ont basculé la catégorie "produit de placement" en 2018. De ce fait, le rendement des prélèvements sociaux est majoritairement imputable aux
+        revenus de placement. On modifie alors la formule pour prendre plutôt "produit de placement" plutôt que "revenus du patrimoine".
         '''
         assiette_csg_revenus_capital = foyer_fiscal('assiette_csg_revenus_capital', period)
         P = parameters(period).taxation_capital.prelevements_sociaux
 
         total = (
-            P.prelevement_social.revenus_du_patrimoine
-            + P.caps.revenus_du_patrimoine
-            + P.prelevements_solidarite.revenus_du_patrimoine
+            P.prelevement_social.produits_de_placement
+            + P.caps.produits_de_placement
             + P.caps.rsa
             )
 
@@ -386,7 +388,7 @@ class prelevements_sociaux_revenus_capital_hors_csg_crds(Variable):
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
         '''
-        Attention : Pour les années avant 2013, cette formule n'est pas entièrement correcte car le taux de la CSG n'était pas unique (distinction revenus du patrimoine et revenus de placement)
+        À partir de 2013, cette formule est correcte car les taux sont identiques entre "produits de placement" et "revenus du patrimoine".        
         '''
         assiette_csg_revenus_capital = foyer_fiscal('assiette_csg_revenus_capital', period)
         P = parameters(period).taxation_capital.prelevements_sociaux
