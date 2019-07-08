@@ -10,6 +10,10 @@ class ass_precondition_remplie(Variable):
     entity = Individu
     label = u"Éligible à l'ASS"
     definition_period = MONTH
+    reference = [
+        u"Article R5423-1 du Code du travail",
+        u"https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006072050&idArticle=LEGIARTI000018525084&dateTexte=20190618&categorieLien=cid#LEGIARTI000018525084"
+        ]
     set_input = set_input_dispatch_by_period
 
 

@@ -1,5 +1,11 @@
 # Changelog
 
+## 48.2.1 [#1357](https://github.com/openfisca/openfisca-france/pull/1357)
+
+* Changement mineur
+* Détails :
+  - Ajoute une référence à l'ASS
+
 ## 48.2.0 [#1355](https://github.com/openfisca/openfisca-france/pull/1355)
 
 * Évolution du système socio-fiscal.
