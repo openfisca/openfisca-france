@@ -1,5 +1,14 @@
 # Changelog
 
+# 48.1.0 [#1354](https://github.com/openfisca/openfisca-france/pull/1354)
+
+* Évolution du système socio-fiscal
+* Périodes concernées : à partir du 01/01/2018
+* Zones impactées : `parameters\impot_revenu\plafond_qf\reduction_ss_condition_revenus`.
+* Détails :
+  - Pour matcher les valeurs apparaissant dans les références législatives
+  - Probablement, ces valeurs ont été réajustées
+
 # 48.0.0 [#1353](https://github.com/openfisca/openfisca-france/pull/1353)
 
 * Évolution du système socio-fiscal **non rétrocompatible**
