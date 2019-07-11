@@ -1354,9 +1354,6 @@ class decote(Variable):
         return around(max_(0, decote.seuil - ir_plaf_qf) * 0.5)
 
     def formula_2014_01_01(foyer_fiscal, period, parameters):
-        # Ca pourrait marcher aussi à partir de 2001-01-01, avec taux= 0.5
-        # mais ça serait peut être moins clair au regard du texte de loi, qui ne diff
-        # érentiait pas seuil_celib et seuil_couple
         ir_plaf_qf = foyer_fiscal("ir_plaf_qf", period)
         nb_adult = foyer_fiscal("nb_adult", period)
         taux_decote = parameters(period).impot_revenu.decote.taux
