@@ -1,6 +1,17 @@
 # Changelog
 
-# 48.1.0 [#1354](https://github.com/openfisca/openfisca-france/pull/1354)
+## 48.2.0 [#1355](https://github.com/openfisca/openfisca-france/pull/1355)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2001.
+* Zones impactées : 
+  - `model\prelevements_obligatoires\impot_revenu\ir.py`
+  - `parameters\impot_revenu\decote`
+* Détails :
+  - Ajoute un paramètre `impot_revenu.decote.taux` pour permettre d'éventuelles réformes.
+  - Factorise les formules `2014` et `2015` de la `decote`.
+
+## 48.1.0 [#1354](https://github.com/openfisca/openfisca-france/pull/1354)
 
 * Évolution du système socio-fiscal
 * Périodes concernées : à partir du 01/01/2018
