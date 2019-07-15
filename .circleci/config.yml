@@ -127,7 +127,7 @@ jobs:
 
       - run:
           name: Deploy the Web API
-          command: ssh -o StrictHostKeyChecking=no deploy-api@fr.openfisca.org
+          command: ssh -o StrictHostKeyChecking=no deploy-api@api.fr.openfisca.org
 
 workflows:
   version: 2
