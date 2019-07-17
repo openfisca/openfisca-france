@@ -372,6 +372,11 @@ class caah(Variable):
     set_input = set_input_divide_by_period
     definition_period = MONTH
 
+    def formula_2019_12_01(individu, period, parameters):
+        eligibilite_caah = individu('eligibilite_caah', period)
+        mva = individu('mva', period)
+        return mva * eligibilite_caah
+
     def formula_2015_07_01(individu, period, parameters):
         eligibilite_caah = individu('eligibilite_caah', period)
         complement_ressources_aah = individu('complement_ressources_aah', period)
