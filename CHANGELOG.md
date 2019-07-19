@@ -1,5 +1,15 @@
 # Changelog
 
+### 48.3.2 [#1365](https://github.com/openfisca/openfisca-france/pull/1365)
+
+* Correction d'un crash.
+* Périodes concernées : toutes.
+* Zones impactées :
+  - `openfisca_france/model/prestations/autonomie.py`
+* Détails :
+  - Corrige erreur sur 'apa_domicile', 'apa_etablissement' et 'apa_urgence_domicile'
+  - Il s'agit d'une double comparaison, incompatible avec `numpy`
+
 ### 48.3.1 [#1366](https://github.com/openfisca/openfisca-france/pull/1366)
 
 * Changement mineur
@@ -27,8 +37,8 @@
 * Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 01/01/2001.
 * Zones impactées :
-  - `model\prelevements_obligatoires\impot_revenu\ir.py`
-  - `parameters\impot_revenu\decote`
+  - `model/prelevements_obligatoires/impot_revenu/ir.py`
+  - `parameters/impot_revenu/decote`
 * Détails :
   - Ajoute un paramètre `impot_revenu.decote.taux` pour permettre d'éventuelles réformes.
   - Factorise les formules `2014` et `2015` de la `decote`.
@@ -37,7 +47,7 @@
 
 * Évolution du système socio-fiscal
 * Périodes concernées : à partir du 01/01/2018
-* Zones impactées : `parameters\impot_revenu\plafond_qf\reduction_ss_condition_revenus`.
+* Zones impactées : `parameters/impot_revenu/plafond_qf/reduction_ss_condition_revenus`.
 * Détails :
   - Pour matcher les valeurs apparaissant dans les références législatives
   - Probablement, ces valeurs ont été réajustées
