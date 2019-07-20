@@ -2366,8 +2366,8 @@ Par exemple pour :
 
 ```
 class TypesAAHNonCalculable(Enum):
-calculable = u"Calculable"
-intervention_CDAPH_necessaire = u"intervention_CDAPH_necessaire"
+calculable = "Calculable"
+intervention_CDAPH_necessaire = "intervention_CDAPH_necessaire"
 ```
 
 - `False`, ancien index 0, devient `TypesAAHNonCalculable.calculable`

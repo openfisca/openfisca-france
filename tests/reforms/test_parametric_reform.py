@@ -20,7 +20,7 @@ def modify_parameters(parameters):
 
 
 class ir_100_tranche_1(Reform):
-    name = u"Imposition à 100% dès le premier euro et jusqu'à la fin de la 1ère tranche"
+    name = "Imposition à 100% dès le premier euro et jusqu'à la fin de la 1ère tranche"
 
     def apply(self):
         self.modify_parameters(modifier_function = modify_parameters)

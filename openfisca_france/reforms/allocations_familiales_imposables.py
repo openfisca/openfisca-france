@@ -16,10 +16,10 @@ def modify_parameters(parameters):
 
 
 class allocations_familiales_imposables(Reform):
-    name = u'Allocations familiales imposables'
+    name = 'Allocations familiales imposables'
 
     class rbg(Variable):
-        label = u"Nouveau revenu brut global intégrant les allocations familiales"
+        label = "Nouveau revenu brut global intégrant les allocations familiales"
         definition_period = YEAR
 
         def formula(foyer_fiscal, period, parameters):
@@ -45,7 +45,7 @@ class allocations_familiales_imposables(Reform):
                 )
 
     class rfr(Variable):
-        label = u"Nouveau revenu fiscal de référence intégrant les allocations familiales"
+        label = "Nouveau revenu fiscal de référence intégrant les allocations familiales"
         definition_period = YEAR
 
         def formula(foyer_fiscal, period, parameters):
@@ -82,7 +82,7 @@ class allocations_familiales_imposables(Reform):
     class allocations_familiales_imposables(Variable):
         value_type = float
         entity = FoyerFiscal
-        label = u"Allocations familiales imposables"
+        label = "Allocations familiales imposables"
         definition_period = YEAR
 
         def formula(foyer_fiscal, period, parameters):

@@ -21,33 +21,33 @@ def build_reform(tax_benefit_system):
 
     Reform = reforms.make_reform(
         key = 'inversion_revenus',
-        name = u'Inversion des revenus',
+        name = 'Inversion des revenus',
         reference_tax_benefit_system = tax_benefit_system,
         )
 
     class salaire_imposable_pour_inversion(Reform.Variable):
         value_type = float
         entity = entities.Individu
-        label = u'Salaire imposable utilisé pour remonter au salaire brut'
+        label = 'Salaire imposable utilisé pour remonter au salaire brut'
         definition_period = YEAR
 
     class chomage_imposable_pour_inversion(Reform.Variable):
         value_type = float
         entity = entities.Individu
-        label = u'Autres revenus imposables (chômage, préretraite), utilisé pour l’inversion'
+        label = 'Autres revenus imposables (chômage, préretraite), utilisé pour l’inversion'
         definition_period = YEAR
 
     class retraite_imposable_pour_inversion(Reform.Variable):
         value_type = float
         entity = entities.Individu
-        label = u'Pensions, retraites, rentes connues imposables, utilisé pour l’inversion'
+        label = 'Pensions, retraites, rentes connues imposables, utilisé pour l’inversion'
         definition_period = YEAR
 
     class salaire_de_base(Reform.Variable):
         value_type = float
         entity = entities.Individu
-        label = u"Salaire brut ou traitement indiciaire brut"
-        reference = u"http://www.trader-finance.fr/lexique-finance/definition-lettre-S/Salaire-brut.html"
+        label = "Salaire brut ou traitement indiciaire brut"
+        reference = "http://www.trader-finance.fr/lexique-finance/definition-lettre-S/Salaire-brut.html"
         definition_period = MONTH
 
         def formula(individu, period, parameters):
@@ -173,8 +173,8 @@ def build_reform(tax_benefit_system):
     class chomage_brut(Reform.Variable):
         value_type = float
         entity = entities.Individu
-        label = u"Allocations chômage brutes"
-        reference = u"http://vosdroits.service-public.fr/particuliers/N549.xhtml"
+        label = "Allocations chômage brutes"
+        reference = "http://vosdroits.service-public.fr/particuliers/N549.xhtml"
         definition_period = MONTH
 
         def formula(individu, period, parameters):
@@ -222,8 +222,8 @@ def build_reform(tax_benefit_system):
     class retraite_brute(Reform.Variable):
         value_type = float
         entity = entities.Individu
-        label = u"Pensions de retraite brutes"
-        reference = u"http://vosdroits.service-public.fr/particuliers/N20166.xhtml"
+        label = "Pensions de retraite brutes"
+        reference = "http://vosdroits.service-public.fr/particuliers/N20166.xhtml"
         definition_period = MONTH
 
         def formula(individu, period, parameters):

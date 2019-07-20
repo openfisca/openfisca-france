@@ -8,7 +8,7 @@ from openfisca_france.model.base import *
 class cmu_acs_eligibilite(Variable):
     value_type = bool
     entity = Famille
-    label = u"Pré-éligibilité à la CMU, avant prise en compte des ressources"
+    label = "Pré-éligibilité à la CMU, avant prise en compte des ressources"
     definition_period = MONTH
 
     def formula(famille, period, parameters):
@@ -38,7 +38,7 @@ class cmu_acs_eligibilite(Variable):
 class acs_montant_i(Variable):
     value_type = float
     entity = Individu
-    label = u"Montant de l'ACS attribué pour une personne en cas d'éligibilité de la famille"
+    label = "Montant de l'ACS attribué pour une personne en cas d'éligibilité de la famille"
     definition_period = MONTH
 
     def formula_2009_08_01(individu, period, parameters):
@@ -62,7 +62,7 @@ class acs_montant_i(Variable):
 class acs_montant(Variable):
     value_type = float
     entity = Famille
-    label = u"Montant de l'ACS en cas d'éligibilité"
+    label = "Montant de l'ACS en cas d'éligibilité"
     definition_period = MONTH
 
     def formula_2009_08_01(famille, period, parameters):
@@ -73,7 +73,7 @@ class acs_montant(Variable):
 class cmu_forfait_logement_base(Variable):
     value_type = float
     entity = Famille
-    label = u"Forfait logement applicable en cas de propriété ou d'occupation à titre gratuit"
+    label = "Forfait logement applicable en cas de propriété ou d'occupation à titre gratuit"
     definition_period = MONTH
 
     def formula(famille, period, parameters):
@@ -87,7 +87,7 @@ class cmu_forfait_logement_base(Variable):
 class cmu_forfait_logement_al(Variable):
     value_type = float
     entity = Famille
-    label = u"Forfait logement applicable en cas d'aide au logement"
+    label = "Forfait logement applicable en cas d'aide au logement"
     definition_period = MONTH
 
     def formula(famille, period, parameters):
@@ -103,7 +103,7 @@ class cmu_nbp_foyer(Variable):
     value_type = int
     is_period_size_independent = True
     entity = Famille
-    label = u"Nombre de personnes dans le foyer CMU"
+    label = "Nombre de personnes dans le foyer CMU"
     definition_period = MONTH
 
     def formula(famille, period, parameters):
@@ -131,9 +131,9 @@ class cmu_eligible_majoration_dom(Variable):
 class cmu_c_plafond(Variable):
     value_type = float
     entity = Famille
-    label = u"Plafond annuel de ressources pour l'éligibilité à la CMU-C"
+    label = "Plafond annuel de ressources pour l'éligibilité à la CMU-C"
     definition_period = MONTH
-    reference = u"https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006753234"
+    reference = "https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006753234"
 
     def formula(famille, period, parameters):
         """
@@ -189,7 +189,7 @@ class cmu_c_plafond(Variable):
 class acs_plafond(Variable):
     value_type = float
     entity = Famille
-    label = u"Plafond annuel de ressources pour l'éligibilité à l'ACS"
+    label = "Plafond annuel de ressources pour l'éligibilité à l'ACS"
     definition_period = MONTH
 
     def formula(famille, period, parameters):
@@ -201,14 +201,14 @@ class acs_plafond(Variable):
 
 class cmu_base_ressources_individu(Variable):
     value_type = float
-    label = u"Base de ressources de l'individu prise en compte pour l'éligibilité à la CMU-C / ACS"
+    label = "Base de ressources de l'individu prise en compte pour l'éligibilité à la CMU-C / ACS"
     reference = [
-        u"Article R861-8 du code de la Sécurité Sociale",
-        u"https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=DEA53FDC793298CE041862E42D999E84.tplgfr43s_1?idArticle=LEGIARTI000034424885&cidTexte=LEGITEXT000006073189&dateTexte=20180829&categorieLien=id&oldAction=",
-        u"Article R861-10 du code de la Sécurité Sociale pour les ressources exclues",
-        u"https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=DEA53FDC793298CE041862E42D999E84.tplgfr43s_1?idArticle=LEGIARTI000030055485&cidTexte=LEGITEXT000006073189&dateTexte=20180829&categorieLien=id&oldAction=&nbResultRech=",
-        u"Circulaire N°DSS/2A/2002/110 du 22 février 2002 relative à la notion de ressources à prendre en compte pour l'appréciation du droit à la protection complémentaire en matière de santé",
-        u"http://circulaire.legifrance.gouv.fr/pdf/2009/04/cir_6430.pdf"
+        "Article R861-8 du code de la Sécurité Sociale",
+        "https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=DEA53FDC793298CE041862E42D999E84.tplgfr43s_1?idArticle=LEGIARTI000034424885&cidTexte=LEGITEXT000006073189&dateTexte=20180829&categorieLien=id&oldAction=",
+        "Article R861-10 du code de la Sécurité Sociale pour les ressources exclues",
+        "https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=DEA53FDC793298CE041862E42D999E84.tplgfr43s_1?idArticle=LEGIARTI000030055485&cidTexte=LEGITEXT000006073189&dateTexte=20180829&categorieLien=id&oldAction=&nbResultRech=",
+        "Circulaire N°DSS/2A/2002/110 du 22 février 2002 relative à la notion de ressources à prendre en compte pour l'appréciation du droit à la protection complémentaire en matière de santé",
+        "http://circulaire.legifrance.gouv.fr/pdf/2009/04/cir_6430.pdf"
         ]
     entity = Individu
     definition_period = MONTH
@@ -315,7 +315,7 @@ class cmu_base_ressources_individu(Variable):
 
 class cmu_base_ressources(Variable):
     value_type = float
-    label = u"Base de ressources prise en compte pour l'éligibilité à la CMU-C / ACS"
+    label = "Base de ressources prise en compte pour l'éligibilité à la CMU-C / ACS"
     entity = Famille
     definition_period = MONTH
 
@@ -365,7 +365,7 @@ class cmu_nb_pac(Variable):
     value_type = int
     is_period_size_independent = True
     entity = Famille
-    label = u"Nombre de personnes à charge au titre de la CMU"
+    label = "Nombre de personnes à charge au titre de la CMU"
     definition_period = MONTH
 
     def formula(famille, period, parameters):
@@ -376,7 +376,7 @@ class cmu_nb_pac(Variable):
 
 class cmu_c(Variable):
     value_type = bool
-    label = u"Éligibilité à la CMU-C"
+    label = "Éligibilité à la CMU-C"
     entity = Famille
     definition_period = MONTH
 
@@ -409,7 +409,7 @@ class cmu_c(Variable):
 
 class acs(Variable):
     value_type = float
-    label = u"Montant (annuel) de l'ACS"
+    label = "Montant (annuel) de l'ACS"
     entity = Famille
     definition_period = MONTH
     set_input = set_input_divide_by_period

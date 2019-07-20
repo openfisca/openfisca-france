@@ -10,14 +10,14 @@ from openfisca_france.model.prestations.prestations_familiales.base_ressource im
 class rsa_jeune_condition_heures_travail_remplie(Variable):
     value_type = bool
     entity = Individu
-    label = u"Éligible au RSA si la personne a moins de vingt-cinq ans et a travaillé deux ans sur les trois dernières années"
-    reference = u"https://www.legifrance.gouv.fr/affichCode.do?idSectionTA=LEGISCTA000022743616&cidTexte=LEGITEXT000006074069"
+    label = "Éligible au RSA si la personne a moins de vingt-cinq ans et a travaillé deux ans sur les trois dernières années"
+    reference = "https://www.legifrance.gouv.fr/affichCode.do?idSectionTA=LEGISCTA000022743616&cidTexte=LEGITEXT000006074069"
     definition_period = MONTH
 
 
 class rsa_base_ressources(Variable):
     value_type = float
-    label = u"Base ressources du Rmi ou du Rsa"
+    label = "Base ressources du Rmi ou du Rsa"
     entity = Famille
     definition_period = MONTH
 
@@ -57,7 +57,7 @@ class rsa_base_ressources(Variable):
 
 class rsa_has_ressources_substitution(Variable):
     value_type = bool
-    label = u"Présence de ressources de substitution au mois M, qui désactivent la neutralisation des revenus professionnels interrompus au moins M."
+    label = "Présence de ressources de substitution au mois M, qui désactivent la neutralisation des revenus professionnels interrompus au moins M."
     entity = Individu
     definition_period = MONTH
 
@@ -71,10 +71,10 @@ class rsa_has_ressources_substitution(Variable):
 
 class rsa_base_ressources_individu(Variable):
     value_type = float
-    label = u"Base ressource individuelle du RSA/RMI (hors revenus d'actvité)"
+    label = "Base ressource individuelle du RSA/RMI (hors revenus d'actvité)"
     entity = Individu
     definition_period = MONTH
-    reference = u"https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000036393176&dateTexte=&categorieLien=id"
+    reference = "https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000036393176&dateTexte=&categorieLien=id"
 
     def formula_2009_06_01(individu, period, parameters):
         # Revenus professionels
@@ -185,7 +185,7 @@ class rsa_base_ressources_individu(Variable):
 
 class rsa_base_ressources_minima_sociaux(Variable):
     value_type = float
-    label = u"Minima sociaux inclus dans la base ressource RSA/RMI"
+    label = "Minima sociaux inclus dans la base ressource RSA/RMI"
     entity = Famille
     definition_period = MONTH
 
@@ -203,8 +203,8 @@ class rsa_base_ressources_minima_sociaux(Variable):
 class rsa_base_ressources_prestations_familiales(Variable):
     value_type = float
     entity = Famille
-    label = u"Prestations familiales inclues dans la base ressource RSA/RMI"
-    reference = u"https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=DA7C73D70BE5D3C7BE36D690E75FDC83.tplgfr38s_3?idArticle=LEGIARTI000020526199&cidTexte=LEGITEXT000006074069&categorieLien=id&dateTexte=20161231"
+    label = "Prestations familiales inclues dans la base ressource RSA/RMI"
+    reference = "https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=DA7C73D70BE5D3C7BE36D690E75FDC83.tplgfr38s_3?idArticle=LEGIARTI000020526199&cidTexte=LEGITEXT000006074069&categorieLien=id&dateTexte=20161231"
     definition_period = MONTH
 
     def formula_2002_01_01(famille, period):
@@ -294,7 +294,7 @@ class rsa_base_ressources_prestations_familiales(Variable):
 class crds_mini(Variable):
     value_type = float
     entity = Famille
-    label = u"CRDS versée sur les minimas sociaux"
+    label = "CRDS versée sur les minimas sociaux"
     definition_period = MONTH
 
     def formula_2016_01_01(famille, period, parameters):
@@ -329,7 +329,7 @@ class enceinte_fam(Variable):
 class rsa_enfant_a_charge(Variable):
     value_type = bool
     entity = Individu
-    label = u"Enfant pris en compte dans le calcul du RSA"
+    label = "Enfant pris en compte dans le calcul du RSA"
     definition_period = MONTH
 
     def formula(individu, period, parameters):
@@ -398,7 +398,7 @@ class rsa_enfant_a_charge(Variable):
 class rsa_nb_enfants(Variable):
     value_type = int
     entity = Famille
-    label = u"Nombre d'enfants pris en compte pour le calcul du RSA"
+    label = "Nombre d'enfants pris en compte pour le calcul du RSA"
     definition_period = MONTH
 
     def formula(famille, period):
@@ -408,13 +408,13 @@ class rsa_nb_enfants(Variable):
 class participation_frais(Variable):
     value_type = bool
     entity = Menage
-    label = u"Partipation aux frais de logement pour un hebergé à titre gratuit"
+    label = "Partipation aux frais de logement pour un hebergé à titre gratuit"
     definition_period = MONTH
 
 
 class rsa_revenu_activite(Variable):
     value_type = float
-    label = u"Revenus d'activité du RSA"
+    label = "Revenus d'activité du RSA"
     entity = Famille
     definition_period = MONTH
 
@@ -428,7 +428,7 @@ class rsa_revenu_activite(Variable):
 
 class rsa_indemnites_journalieres_activite(Variable):
     value_type = float
-    label = u"Indemnités journalières prises en compte comme revenu d'activité"
+    label = "Indemnités journalières prises en compte comme revenu d'activité"
     entity = Individu
     definition_period = MONTH
 
@@ -473,7 +473,7 @@ class rsa_indemnites_journalieres_activite(Variable):
 
 class rsa_indemnites_journalieres_hors_activite(Variable):
     value_type = float
-    label = u"Indemnités journalières prises en compte comme revenu de remplacement"
+    label = "Indemnités journalières prises en compte comme revenu de remplacement"
     entity = Individu
     definition_period = MONTH
 
@@ -486,7 +486,7 @@ class rsa_indemnites_journalieres_hors_activite(Variable):
 
 class rsa_revenu_activite_individu(Variable):
     value_type = float
-    label = u"Revenus d'activité du Rsa - Individuel"
+    label = "Revenus d'activité du Rsa - Individuel"
     entity = Individu
     definition_period = MONTH
 
@@ -530,8 +530,8 @@ class rsa_revenu_activite_individu(Variable):
 
 class rsa_montant(Variable):
     value_type = float
-    label = u"Revenu de solidarité active, avant prise en compte de la non-calculabilité."
-    reference = u"https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=C0E3FD6701B46D63786815D26ADEAD58.tplgfr35s_2?idArticle=LEGIARTI000033979143&cidTexte=LEGITEXT000006074069&dateTexte=20180830"
+    label = "Revenu de solidarité active, avant prise en compte de la non-calculabilité."
+    reference = "https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=C0E3FD6701B46D63786815D26ADEAD58.tplgfr35s_2?idArticle=LEGIARTI000033979143&cidTexte=LEGITEXT000006074069&dateTexte=20180830"
     entity = Famille
     definition_period = MONTH
 
@@ -558,7 +558,7 @@ class rsa_montant(Variable):
 class rsa(Variable):
     calculate_output = calculate_output_add
     value_type = float
-    label = u"Revenu de solidarité active"
+    label = "Revenu de solidarité active"
     entity = Famille
     definition_period = MONTH
     set_input = set_input_divide_by_period
@@ -573,15 +573,15 @@ class rsa(Variable):
 class TypesRSANonCalculable(Enum):
     # Needed to preserve the enum order in Python 2
     __order__ = 'calculable tns conjoint_tns'
-    calculable = u"Calculable"
-    tns = u"tns"
-    conjoint_tns = u"conjoint_tns"
+    calculable = "Calculable"
+    tns = "tns"
+    conjoint_tns = "conjoint_tns"
 
 
 class rsa_base_ressources_patrimoine_individu(Variable):
     value_type = float
-    label = u"Base de ressources des revenus du patrimoine du RSA"
-    reference = u"https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006074069&idArticle=LEGIARTI000006905072&dateTexte=&categorieLien=cid"
+    label = "Base de ressources des revenus du patrimoine du RSA"
+    reference = "https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006074069&idArticle=LEGIARTI000006905072&dateTexte=&categorieLien=cid"
     entity = Individu
     definition_period = MONTH
 
@@ -611,7 +611,7 @@ class rsa_condition_nationalite(Variable):
     value_type = bool
     default_value = True
     entity = Individu
-    label = u"Conditions de nationnalité et de titre de séjour pour bénéficier du RSA"
+    label = "Conditions de nationnalité et de titre de séjour pour bénéficier du RSA"
     definition_period = MONTH
 
     def formula_2009_06_01(individu, period, parameters):
@@ -631,7 +631,7 @@ class rsa_condition_nationalite(Variable):
 class rsa_eligibilite(Variable):
     value_type = bool
     entity = Famille
-    label = u"Eligibilité au RSA et au RMI"
+    label = "Eligibilité au RSA et au RMI"
     definition_period = MONTH
 
     def formula(famille, period, parameters):
@@ -673,7 +673,7 @@ class rsa_eligibilite_tns(Variable):
     value_type = bool
     default_value = True
     entity = Famille
-    label = u"Condition de chiffres d'affaires pour qu'un travailleur non salarié soit éligible au RSA"
+    label = "Condition de chiffres d'affaires pour qu'un travailleur non salarié soit éligible au RSA"
     end = '2016-12-31'
     definition_period = MONTH
 
@@ -756,7 +756,7 @@ class rsa_eligibilite_tns(Variable):
 class rsa_forfait_asf(Variable):
     value_type = float
     entity = Famille
-    label = u"Allocation de soutien familial forfaitisée pour le RSA"
+    label = "Allocation de soutien familial forfaitisée pour le RSA"
     definition_period = MONTH
     reference = [
         "Pour le revenu de solidarité active, article R262-10-1 du code de l'action sociale et des familles",
@@ -782,8 +782,8 @@ class rsa_forfait_asf(Variable):
 class rsa_forfait_logement(Variable):
     value_type = float
     entity = Famille
-    label = u"Forfait logement intervenant dans le calcul du Rmi ou du Rsa"
-    reference = u"https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000031694445&cidTexte=LEGITEXT000006074069&dateTexte=20171222&fastPos=2&fastReqId=1534790830&oldAction=rechCodeArticle"
+    label = "Forfait logement intervenant dans le calcul du Rmi ou du Rsa"
+    reference = "https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000031694445&cidTexte=LEGITEXT000006074069&dateTexte=20171222&fastPos=2&fastReqId=1534790830&oldAction=rechCodeArticle"
     definition_period = MONTH
 
     def formula(famille, period, parameters):
@@ -833,7 +833,7 @@ class rsa_forfait_logement(Variable):
 class rsa_isolement_recent(Variable):
     value_type = bool
     entity = Famille
-    label = u"Situation d'isolement depuis moins de 18 mois"
+    label = "Situation d'isolement depuis moins de 18 mois"
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
@@ -841,7 +841,7 @@ class rsa_isolement_recent(Variable):
 class rsa_majore_eligibilite(Variable):
     value_type = bool
     entity = Famille
-    label = u"Eligibilité au RSA majoré pour parent isolé"
+    label = "Eligibilité au RSA majoré pour parent isolé"
     definition_period = MONTH
 
     def formula(famille, period):
@@ -865,7 +865,7 @@ class rsa_non_calculable(Variable):
     possible_values = TypesRSANonCalculable
     default_value = TypesRSANonCalculable.calculable
     entity = Famille
-    label = u"RSA non calculable"
+    label = "RSA non calculable"
     end = '2016-12-31'
     definition_period = MONTH
 
@@ -896,7 +896,7 @@ class rsa_non_calculable(Variable):
 class rsa_non_calculable_tns_individu(Variable):
     value_type = bool
     entity = Individu
-    label = u"RSA non calculable du fait de la situation de l'individu. Dans le cas des TNS, l'utilisateur est renvoyé vers son PCG"
+    label = "RSA non calculable du fait de la situation de l'individu. Dans le cas des TNS, l'utilisateur est renvoyé vers son PCG"
     definition_period = MONTH
 
     # En fait l'évaluation par le PCD est plutôt l'exception que la règle. En général on retient plutôt le bénéfice déclaré au FISC (après abattement forfaitaire ou réel).
@@ -966,7 +966,7 @@ class rsa_socle(Variable):
 class rsa_socle_majore(Variable):
     value_type = float
     entity = Famille
-    label = u"Montant majoré pour parent isolé du Revenu de solidarité active socle"
+    label = "Montant majoré pour parent isolé du Revenu de solidarité active socle"
     definition_period = MONTH
 
     def formula_2009_06_01(famille, period, parameters):

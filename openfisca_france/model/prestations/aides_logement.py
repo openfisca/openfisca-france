@@ -22,7 +22,7 @@ log = logging.getLogger(__name__)
 class aide_logement(Variable):
     value_type = float
     entity = Famille
-    label = u"Aide au logement (tout type)"
+    label = "Aide au logement (tout type)"
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -39,8 +39,8 @@ class apl(Variable):
     calculate_output = calculate_output_add
     value_type = float
     entity = Famille
-    label = u"Aide personnalisée au logement"
-    reference = u"http://vosdroits.service-public.fr/particuliers/F12006.xhtml",
+    label = "Aide personnalisée au logement"
+    reference = "http://vosdroits.service-public.fr/particuliers/F12006.xhtml",
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -55,8 +55,8 @@ class als(Variable):
     calculate_output = calculate_output_add
     value_type = float
     entity = Famille
-    label = u"Allocation logement sociale"
-    reference = u"http://vosdroits.service-public.fr/particuliers/F1280.xhtml"
+    label = "Allocation logement sociale"
+    reference = "http://vosdroits.service-public.fr/particuliers/F1280.xhtml"
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -73,8 +73,8 @@ class alf(Variable):
     calculate_output = calculate_output_add
     value_type = float
     entity = Famille
-    label = u"Allocation logement familiale"
-    reference = u"http://vosdroits.service-public.fr/particuliers/F13132.xhtml"
+    label = "Allocation logement familiale"
+    reference = "http://vosdroits.service-public.fr/particuliers/F13132.xhtml"
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -90,7 +90,7 @@ class alf(Variable):
 class aide_logement_montant(Variable):
     value_type = float
     entity = Famille
-    label = u"Montant des aides au logement net de CRDS"
+    label = "Montant des aides au logement net de CRDS"
     definition_period = MONTH
 
     def formula(famille, period):
@@ -104,8 +104,8 @@ class aide_logement_montant(Variable):
 class aide_logement_montant_brut_crds(Variable):
     value_type = float
     entity = Famille
-    label = u"Montant des aides au logement brut de CRDS"
-    reference = u"https://www.legifrance.gouv.fr/eli/decret/2018/2/27/2018-136/jo/article_1"
+    label = "Montant des aides au logement brut de CRDS"
+    reference = "https://www.legifrance.gouv.fr/eli/decret/2018/2/27/2018-136/jo/article_1"
     definition_period = MONTH
 
     def formula_2018(famille, period, parameters):
@@ -125,8 +125,8 @@ class aide_logement_montant_brut_crds(Variable):
 class aide_logement_montant_brut(Variable):
     value_type = float
     entity = Famille
-    label = u"Montant des aides au logement après degressivité et abattement forfaitaire, avant CRDS"
-    reference = u"https://www.legifrance.gouv.fr/eli/decret/2017/9/28/TERL1721632D/jo/texte"
+    label = "Montant des aides au logement après degressivité et abattement forfaitaire, avant CRDS"
+    reference = "https://www.legifrance.gouv.fr/eli/decret/2017/9/28/TERL1721632D/jo/texte"
     definition_period = MONTH
 
     def formula_2016_07_01(famille, period, parameters):
@@ -165,8 +165,8 @@ class aide_logement_montant_brut(Variable):
 
 class aide_logement_montant_brut_avant_degressivite(Variable):
     value_type = float
-    label = u"Montant des aides aux logements en secteur locatif avant degressivité et brut de CRDS"
-    reference = u"https://www.legifrance.gouv.fr/eli/arrete/2018/2/27/TERL1801552A/jo/article_1"
+    label = "Montant des aides aux logements en secteur locatif avant degressivité et brut de CRDS"
+    reference = "https://www.legifrance.gouv.fr/eli/arrete/2018/2/27/TERL1801552A/jo/article_1"
     entity = Famille
     definition_period = MONTH
 
@@ -200,9 +200,9 @@ class aide_logement_montant_brut_avant_degressivite(Variable):
 
 
 class TypeEtatLogementFoyer(Enum):
-    non_renseigne = u"Non renseigne"
-    logement_rehabilite = u"Logement rehabilité"
-    logement_non_rehabilite = u"Logement non rehabilité"
+    non_renseigne = "Non renseigne"
+    logement_rehabilite = "Logement rehabilité"
+    logement_non_rehabilite = "Logement non rehabilité"
 
 
 class etat_logement_foyer(Variable):
@@ -210,7 +210,7 @@ class etat_logement_foyer(Variable):
     possible_values = TypeEtatLogementFoyer
     entity = Menage
     default_value = TypeEtatLogementFoyer.non_renseigne
-    label = u"Etat du logement crous"
+    label = "Etat du logement crous"
     set_input = set_input_dispatch_by_period
     definition_period = MONTH
 
@@ -218,20 +218,20 @@ class etat_logement_foyer(Variable):
 class logement_conventionne(Variable):
     value_type = bool
     entity = Menage
-    label = u"Logement conventionné"
+    label = "Logement conventionné"
     definition_period = MONTH
 
 
 class TypeEtatLogement(Enum):
     order__ = ' non_renseigne construction_acquisition_logement_neuf travaux_amelioration_residence_principale agrandissement_amenagement acquisition_amelioration acquisition_sans_amelioration_logement_existant amelioration'  # Needed to preserve the enum order in Python 2
-    non_renseigne = u"Non renseigné"
+    non_renseigne = "Non renseigné"
     # Logement neuf
-    construction_acquisition_logement_neuf = u"Construction Acquisition d'un logement NEUF"
+    construction_acquisition_logement_neuf = "Construction Acquisition d'un logement NEUF"
     # Logement ancien
-    acquisition_amelioration = u"Acquisition Amélioration"
-    acquisition_sans_amelioration_logement_existant = u"Acquisition sans amélioration d'un logement existant"
-    amelioration = u"Amélioration"
-    agrandissement_amenagement = u"Agrandissement Aménagement"
+    acquisition_amelioration = "Acquisition Amélioration"
+    acquisition_sans_amelioration_logement_existant = "Acquisition sans amélioration d'un logement existant"
+    amelioration = "Amélioration"
+    agrandissement_amenagement = "Agrandissement Aménagement"
 
 
 class etat_logement(Variable):
@@ -239,8 +239,8 @@ class etat_logement(Variable):
     possible_values = TypeEtatLogement  # defined in model/base.py
     entity = Menage
     default_value = TypeEtatLogement.non_renseigne
-    label = u"Etat du logement"
-    reference = u"http://www.msa.fr/lfy/documents/11566/48471/Certificat+de+pret+pour+APL.pdf"
+    label = "Etat du logement"
+    reference = "http://www.msa.fr/lfy/documents/11566/48471/Certificat+de+pret+pour+APL.pdf"
     set_input = set_input_dispatch_by_period
     definition_period = MONTH
 
@@ -249,7 +249,7 @@ class aide_logement_date_pret_conventionne(Variable):
     value_type = date
     default_value = date.max
     entity = Menage
-    label = u"Date de contraction du prêt conventionné "
+    label = "Date de contraction du prêt conventionné "
     definition_period = ETERNITY
 
 
@@ -257,7 +257,7 @@ class date_debut_chomage(Variable):
     value_type = date
     default_value = date.max
     entity = Individu
-    label = u"Date de début de chômage"
+    label = "Date de début de chômage"
     definition_period = ETERNITY
 
 
@@ -265,7 +265,7 @@ class aides_logement_primo_accedant_eligibilite(Variable):
     value_type = bool
     default_value = False
     entity = Menage
-    reference = u"https://www.legifrance.gouv.fr/eli/loi/2017/12/30/CPAX1723900L/jo/article_126"
+    reference = "https://www.legifrance.gouv.fr/eli/loi/2017/12/30/CPAX1723900L/jo/article_126"
     definition_period = MONTH
 
     def formula(menage, period):
@@ -327,7 +327,7 @@ class aides_logement_foyer_personne_agee_eligibilite(Variable):
 class al_nb_personnes_a_charge(Variable):
     value_type = int
     entity = Famille
-    label = u"Nombre de personne à charge au sens des allocations logement"
+    label = "Nombre de personne à charge au sens des allocations logement"
     definition_period = MONTH
 
     def formula(famille, period, parameters):
@@ -389,9 +389,9 @@ class al_nb_personnes_a_charge(Variable):
 
 class aide_logement_base_ressources_patrimoine(Variable):
     value_type = float
-    label = u"Base de ressources des revenus du patrimoine des aides au logement"
+    label = "Base de ressources des revenus du patrimoine des aides au logement"
     entity = Famille
-    reference = u"https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000033243725&categorieLien=id"
+    reference = "https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000033243725&categorieLien=id"
     definition_period = MONTH
 
     def formula_2016_10_01(famille, period, parameters):
@@ -448,7 +448,7 @@ class aide_logement_base_ressources_patrimoine(Variable):
 class al_couple(Variable):
     value_type = bool
     entity = Famille
-    label = u'Situation de couple pour le calcul des AL'
+    label = 'Situation de couple pour le calcul des AL'
     definition_period = MONTH
 
     def formula(famille, period):
@@ -462,7 +462,7 @@ class al_couple(Variable):
 class aide_logement_base_ressources_eval_forfaitaire(Variable):
     value_type = float
     entity = Famille
-    label = u"Base ressources en évaluation forfaitaire des aides au logement (R351-7 du CCH)"
+    label = "Base ressources en évaluation forfaitaire des aides au logement (R351-7 du CCH)"
     definition_period = MONTH
 
     def formula(famille, period, parameters):
@@ -495,7 +495,7 @@ class aide_logement_base_ressources_eval_forfaitaire(Variable):
 class aide_logement_assiette_abattement_chomage(Variable):
     value_type = float
     entity = Individu
-    label = u"Assiette sur lequel un abattement chômage peut être appliqués pour les AL. Ce sont les revenus d'activité professionnelle, moins les abbattements pour frais professionnels."
+    label = "Assiette sur lequel un abattement chômage peut être appliqués pour les AL. Ce sont les revenus d'activité professionnelle, moins les abbattements pour frais professionnels."
     definition_period = YEAR
 
     def formula(individu, period, parameters):
@@ -519,10 +519,10 @@ class aide_logement_assiette_abattement_chomage(Variable):
 class aide_logement_abattement_chomage_indemnise(Variable):
     value_type = float
     entity = Individu
-    label = u"Montant de l'abattement pour personnes au chômage indemnisé (R351-13 du CCH)"
+    label = "Montant de l'abattement pour personnes au chômage indemnisé (R351-13 du CCH)"
     definition_period = MONTH
     # Article R532-7 du Code de la sécurité sociale
-    reference = u"https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000031694522&cidTexte=LEGITEXT000006073189"
+    reference = "https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000031694522&cidTexte=LEGITEXT000006073189"
 
     def formula(individu, period, parameters):
         activite = individu('activite', period)
@@ -538,10 +538,10 @@ class aide_logement_abattement_chomage_indemnise(Variable):
 class aide_logement_abattement_depart_retraite(Variable):
     value_type = float
     entity = Individu
-    label = u"Montant de l'abattement sur les salaires en cas de départ en retraite"
+    label = "Montant de l'abattement sur les salaires en cas de départ en retraite"
     definition_period = MONTH
     # Article R532-5 du Code de la sécurité sociale
-    reference = u"https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000006750910&cidTexte=LEGITEXT000006073189&dateTexte=20151231"
+    reference = "https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000006750910&cidTexte=LEGITEXT000006073189&dateTexte=20151231"
 
     def formula(individu, period, parameters):
         retraite_n_2 = individu('retraite_imposable', period.n_2, options = [ADD])
@@ -558,13 +558,13 @@ class aide_logement_abattement_depart_retraite(Variable):
 class aide_logement_neutralisation_rsa(Variable):
     value_type = float
     entity = Famille
-    label = u"Abattement sur les revenus n-2 pour les bénéficiaires du RSA"
+    label = "Abattement sur les revenus n-2 pour les bénéficiaires du RSA"
     definition_period = MONTH
     reference = [
         # Article R532-7 du Code de la sécurité sociale
-        u"https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000031694522&cidTexte=LEGITEXT000006073189",
+        "https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000031694522&cidTexte=LEGITEXT000006073189",
         # Article R351-14-1 du Code de la construction et de l'habitation
-        u"https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006074096&idArticle=LEGIARTI000006897410"
+        "https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006074096&idArticle=LEGIARTI000006897410"
         ]
 
     def formula(famille, period, parameters):
@@ -581,7 +581,7 @@ class aide_logement_neutralisation_rsa(Variable):
 class aide_logement_base_ressources_defaut(Variable):
     value_type = float
     entity = Famille
-    label = u"Base ressource par défaut des allocations logement"
+    label = "Base ressource par défaut des allocations logement"
     definition_period = MONTH
 
     def formula(famille, period, parameters):
@@ -628,14 +628,14 @@ class aide_logement_base_ressources_defaut(Variable):
 class aide_logement_base_revenus_fiscaux(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = u"Revenus fiscaux perçus par le foyer fiscal à prendre en compte dans la base ressource des aides au logement"
+    label = "Revenus fiscaux perçus par le foyer fiscal à prendre en compte dans la base ressource des aides au logement"
     reference = [
-        u"Code de la construction et de l'habitation - Article R351-5",
-        u"https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=F039735F667F9271DFB284F78105BDC0.tplgfr31s_3?idArticle=LEGIARTI000021632267&cidTexte=LEGITEXT000006074096&dateTexte=20171123",
-        u"Code de la sécurité sociale - Article R831-6",
-        u"https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=9A3FFF4142B563EB5510DDE9F2870BF4.tplgfr41s_2?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000020080073&dateTexte=20171222&categorieLien=cid#LEGIARTI000020080073",
-        u"Code de la sécurité sociale - Article D542-10",
-        u"https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=F1CF3B807CE064C9F518B442EF8C856F.tpdila22v_1?idArticle=LEGIARTI000020986758&cidTexte=LEGITEXT000006073189&dateTexte=20170803&categorieLien=id&oldAction=&nbResultRech="
+        "Code de la construction et de l'habitation - Article R351-5",
+        "https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=F039735F667F9271DFB284F78105BDC0.tplgfr31s_3?idArticle=LEGIARTI000021632267&cidTexte=LEGITEXT000006074096&dateTexte=20171123",
+        "Code de la sécurité sociale - Article R831-6",
+        "https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=9A3FFF4142B563EB5510DDE9F2870BF4.tplgfr41s_2?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000020080073&dateTexte=20171222&categorieLien=cid#LEGIARTI000020080073",
+        "Code de la sécurité sociale - Article D542-10",
+        "https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=F1CF3B807CE064C9F518B442EF8C856F.tpdila22v_1?idArticle=LEGIARTI000020986758&cidTexte=LEGITEXT000006073189&dateTexte=20170803&categorieLien=id&oldAction=&nbResultRech="
         ]
     definition_period = YEAR
 
@@ -685,7 +685,7 @@ class aide_logement_base_revenus_fiscaux(Variable):
 class aide_logement_base_ressources(Variable):
     value_type = float
     entity = Famille
-    label = u"Base ressources des allocations logement"
+    label = "Base ressources des allocations logement"
     definition_period = MONTH
 
     def formula(famille, period, parameters):
@@ -748,8 +748,8 @@ class aide_logement_base_ressources(Variable):
 class aides_logement_primo_accedant_ressources(Variable):
     value_type = float
     entity = Menage
-    label = u"Allocation logement pour les primo-accédants, plancher de ressources"
-    reference = u"https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=0E9C46E37CA82EB75BD1482030D54BB5.tpdila18v_2?idArticle=LEGIARTI000021632291&cidTexte=LEGITEXT000006074096&dateTexte=20170623&categorieLien=id&oldAction="
+    label = "Allocation logement pour les primo-accédants, plancher de ressources"
+    reference = "https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=0E9C46E37CA82EB75BD1482030D54BB5.tpdila18v_2?idArticle=LEGIARTI000021632291&cidTexte=LEGITEXT000006074096&dateTexte=20170623&categorieLien=id&oldAction="
     definition_period = MONTH
 
     def formula(menage, period, parameters):
@@ -761,7 +761,7 @@ class aides_logement_primo_accedant_ressources(Variable):
 class aide_logement_loyer_plafond(Variable):
     value_type = float
     entity = Famille
-    label = u"Loyer plafond dans le calcul des aides au logement (L2)"
+    label = "Loyer plafond dans le calcul des aides au logement (L2)"
     definition_period = MONTH
 
     def formula(famille, period, parameters):
@@ -793,8 +793,8 @@ class aide_logement_loyer_plafond(Variable):
 class aide_logement_loyer_reel(Variable):
     value_type = float
     entity = Famille
-    label = u"Loyer réel dans le calcul des aides au logement"
-    reference = u"https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=F2CE61DFFD9BD9F08700031784123828.tplgfr28s_2?idArticle=LEGIARTI000006737243&cidTexte=LEGITEXT000006073189&categorieLien=id&dateTexte="
+    label = "Loyer réel dans le calcul des aides au logement"
+    reference = "https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=F2CE61DFFD9BD9F08700031784123828.tplgfr28s_2?idArticle=LEGIARTI000006737243&cidTexte=LEGITEXT000006073189&categorieLien=id&dateTexte="
     definition_period = MONTH
 
     def formula(famille, period):
@@ -814,7 +814,7 @@ class aide_logement_loyer_reel(Variable):
 class aide_logement_loyer_retenu(Variable):
     value_type = float
     entity = Famille
-    label = u"Loyer retenu (hors charge) dans le calcul des aides au logement"
+    label = "Loyer retenu (hors charge) dans le calcul des aides au logement"
     definition_period = MONTH
 
     def formula(famille, period, parameters):
@@ -828,7 +828,7 @@ class aide_logement_loyer_retenu(Variable):
 class aide_logement_charges(Variable):
     value_type = float
     entity = Famille
-    label = u"Charges retenues dans le calcul des aides au logement"
+    label = "Charges retenues dans le calcul des aides au logement"
     definition_period = MONTH
 
     def formula(famille, period, parameters):
@@ -845,7 +845,7 @@ class aide_logement_charges(Variable):
 class aide_logement_R0(Variable):
     value_type = float
     entity = Famille
-    label = u"Revenu de référence, basé sur la situation familiale, pris en compte dans le calcul des AL."
+    label = "Revenu de référence, basé sur la situation familiale, pris en compte dans le calcul des AL."
     definition_period = MONTH
 
     def formula(famille, period, parameters):
@@ -904,7 +904,7 @@ class aide_logement_R0(Variable):
 class aide_logement_taux_famille(Variable):
     value_type = float
     entity = Famille
-    label = u"Taux représentant la situation familiale, décroissant avec le nombre de personnes à charge"
+    label = "Taux représentant la situation familiale, décroissant avec le nombre de personnes à charge"
     definition_period = MONTH
 
     def formula(famille, period, parameters):
@@ -940,7 +940,7 @@ class aide_logement_taux_famille(Variable):
 class aide_logement_taux_loyer(Variable):
     value_type = float
     entity = Famille
-    label = u"Taux obscur basé sur une comparaison du loyer retenu à un loyer de référence."
+    label = "Taux obscur basé sur une comparaison du loyer retenu à un loyer de référence."
     definition_period = MONTH
 
     def formula(famille, period, parameters):
@@ -972,7 +972,7 @@ class aide_logement_taux_loyer(Variable):
 class aide_logement_participation_personnelle(Variable):
     value_type = float
     entity = Famille
-    label = u"Participation personelle de la famille au loyer"
+    label = "Participation personelle de la famille au loyer"
     definition_period = MONTH
 
     def formula(famille, period, parameters):
@@ -996,8 +996,8 @@ class aide_logement_participation_personnelle(Variable):
 
 class TypesAideLogementNonCalculable(Enum):
     __order__ = 'calculable locataire_foyer'  # Needed to preserve the enum order in Python 2
-    calculable = u"Calculable"
-    locataire_foyer = u"Non calculable (Locataire foyer)"
+    calculable = "Calculable"
+    locataire_foyer = "Non calculable (Locataire foyer)"
 
 
 class aide_logement_non_calculable(Variable):
@@ -1005,7 +1005,7 @@ class aide_logement_non_calculable(Variable):
     possible_values = TypesAideLogementNonCalculable
     default_value = TypesAideLogementNonCalculable.calculable
     entity = Famille
-    label = u"Aide au logement non calculable"
+    label = "Aide au logement non calculable"
     definition_period = MONTH
 
     def formula(famille, period):
@@ -1022,8 +1022,8 @@ class crds_logement(Variable):
     calculate_output = calculate_output_add
     value_type = float
     entity = Famille
-    label = u"CRDS des allocations logement"
-    reference = u"http://vosdroits.service-public.fr/particuliers/F17585.xhtml"
+    label = "CRDS des allocations logement"
+    reference = "http://vosdroits.service-public.fr/particuliers/F17585.xhtml"
     definition_period = MONTH
 
     def formula(famille, period, parameters):
@@ -1034,10 +1034,10 @@ class crds_logement(Variable):
 
 class TypesZoneApl(Enum):
     __order__ = 'non_renseigne zone_1 zone_2 zone_3'  # Needed to preserve the enum order in Python 2
-    non_renseigne = u"Non renseigné"
-    zone_1 = u"Zone 1"
-    zone_2 = u"Zone 2"
-    zone_3 = u"Zone 3"
+    non_renseigne = "Non renseigné"
+    zone_1 = "Zone 1"
+    zone_2 = "Zone 2"
+    zone_3 = "Zone 3"
 
 
 zone_apl_by_depcom = None
@@ -1075,7 +1075,7 @@ class zone_apl(Variable):
     possible_values = TypesZoneApl
     default_value = TypesZoneApl.zone_2
     entity = Menage
-    label = u"Zone APL"
+    label = "Zone APL"
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
@@ -1105,10 +1105,10 @@ class zone_apl(Variable):
 class aides_logement_accedant_et_foyer(Variable):
     value_type = float
     entity = Famille
-    label = u"Allocation logement pour les primo-accédants"
+    label = "Allocation logement pour les primo-accédants"
     reference = [u"https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006737341&dateTexte=&categorieLien=cid",
-                 u"https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000035671385&dateTexte=&categorieLien=id",
-                 u"https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=8A5E748B84270643BC39A1D691F4FC5C.tplgfr27s_2?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006739837&dateTexte=20181031&categorieLien=cid#LEGIARTI000006739837"
+                 "https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000035671385&dateTexte=&categorieLien=id",
+                 "https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=8A5E748B84270643BC39A1D691F4FC5C.tplgfr27s_2?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006739837&dateTexte=20181031&categorieLien=cid#LEGIARTI000006739837"
                  ]
     definition_period = MONTH
 
@@ -1132,9 +1132,9 @@ class aides_logement_accedant_et_foyer(Variable):
 class aides_logement_k(Variable):
     value_type = float
     entity = Famille
-    label = u"Allocation logement pour les logements foyers loyer minimal"
+    label = "Allocation logement pour les logements foyers loyer minimal"
     reference = [u"https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006074096&idArticle=LEGIARTI000006898932&dateTexte=&categorieLien=cid",
-                 u"https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006737341&dateTexte=&categorieLien=cid"]
+                 "https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006737341&dateTexte=&categorieLien=cid"]
     definition_period = MONTH
 
     def formula(famille, period, parameters):
@@ -1149,8 +1149,8 @@ class aides_logement_k(Variable):
 class aides_logement_primo_accedant_k(Variable):
     value_type = float
     entity = Famille
-    label = u"Allocation logement pour les primo-accédants K"
-    reference = u"https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006737341&dateTexte=&categorieLien=cid"
+    label = "Allocation logement pour les primo-accédants K"
+    reference = "https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006737341&dateTexte=&categorieLien=cid"
     definition_period = MONTH
 
     def formula(famille, period, parameters):
@@ -1168,9 +1168,9 @@ class aides_logement_primo_accedant_k(Variable):
 class aides_logement_foyer_k_al(Variable):
     value_type = float
     entity = Famille
-    label = u"Allocation logement pour les logements foyers loyer minimal"
+    label = "Allocation logement pour les logements foyers loyer minimal"
     reference = [u"https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006074096&idArticle=LEGIARTI000006898932&dateTexte=&categorieLien=cid",
-                 u"https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006737341&dateTexte=&categorieLien=cid"]
+                 "https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006737341&dateTexte=&categorieLien=cid"]
     definition_period = MONTH
 
     def formula(famille, period, parameters):
@@ -1189,9 +1189,9 @@ class aides_logement_foyer_k_al(Variable):
 class aides_logement_foyer_k_apl(Variable):
     value_type = float
     entity = Famille
-    label = u"Allocation logement pour les logements foyers loyer minimal"
+    label = "Allocation logement pour les logements foyers loyer minimal"
     reference = [u"https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006074096&idArticle=LEGIARTI000006898932&dateTexte=&categorieLien=cid",
-                 u"https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006737341&dateTexte=&categorieLien=cid"]
+                 "https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006737341&dateTexte=&categorieLien=cid"]
     definition_period = MONTH
 
     def formula(famille, period, parameters):
@@ -1222,8 +1222,8 @@ class aides_logement_categorie(Variable):
 class aides_logement_nb_part(Variable):
     value_type = float
     entity = Famille
-    label = u"Nombre de parts (paramètre N) pour l'aide au logement"
-    reference = u"https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006737341&dateTexte=&categorieLien=cid"
+    label = "Nombre de parts (paramètre N) pour l'aide au logement"
+    reference = "https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006737341&dateTexte=&categorieLien=cid"
     definition_period = MONTH
 
     def formula(famille, period, parameters):
@@ -1247,8 +1247,8 @@ class aides_logement_nb_part(Variable):
 class aides_logement_loyer_minimal(Variable):
     value_type = float
     entity = Famille
-    label = u"Allocation logement pour les logements foyers loyer minimal"
-    reference = u"https://www.legifrance.gouv.fr/eli/arrete/2007/11/8/MLVU0759263A/jo/article_2"
+    label = "Allocation logement pour les logements foyers loyer minimal"
+    reference = "https://www.legifrance.gouv.fr/eli/arrete/2007/11/8/MLVU0759263A/jo/article_2"
     definition_period = MONTH
 
     def formula(famille, period, parameters):
@@ -1261,8 +1261,8 @@ class aides_logement_loyer_minimal(Variable):
 class aides_logement_loyer_minimal_al(Variable):
     value_type = float
     entity = Famille
-    label = u"Allocation logement loyer minimal"
-    reference = u"https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006737341&dateTexte=&categorieLien=cid"
+    label = "Allocation logement loyer minimal"
+    reference = "https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006737341&dateTexte=&categorieLien=cid"
     definition_period = MONTH
 
     def formula(famille, period, parameters):
@@ -1280,8 +1280,8 @@ class aides_logement_loyer_minimal_al(Variable):
 class aides_logement_loyer_minimal_apl(Variable):
     value_type = float
     entity = Famille
-    label = u"Allocation logement pour les logements foyers loyer minimal"
-    reference = u"https://www.legifrance.gouv.fr/eli/arrete/2007/11/8/MLVU0759263A/jo/article_2"
+    label = "Allocation logement pour les logements foyers loyer minimal"
+    reference = "https://www.legifrance.gouv.fr/eli/arrete/2007/11/8/MLVU0759263A/jo/article_2"
     definition_period = MONTH
 
     # Temporairement limitée à après 2007-11 pour pallier des carences de valeurs de paramètres
@@ -1300,7 +1300,7 @@ class aides_logement_loyer_minimal_apl(Variable):
 class aides_logement_plafond_mensualite(Variable):
     value_type = float
     entity = Famille
-    label = u"Plafond de mensualités (formule commune)"
+    label = "Plafond de mensualités (formule commune)"
     definition_period = MONTH
 
     def formula(famille, period, parameters):
@@ -1317,8 +1317,8 @@ class aides_logement_plafond_mensualite(Variable):
 class aides_logement_primo_accedant_plafond_mensualite(Variable):
     value_type = float
     entity = Famille
-    label = u"Allocation logement pour les primo-accédants plafond mensualité"
-    reference = u"https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000006737237&cidTexte=LEGITEXT000006073189&dateTexte=20170811"
+    label = "Allocation logement pour les primo-accédants plafond mensualité"
+    reference = "https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000006737237&cidTexte=LEGITEXT000006073189&dateTexte=20170811"
     definition_period = MONTH
 
     def formula(famille, period, parameters):
@@ -1344,8 +1344,8 @@ class aides_logement_foyer_conventionne_plafond(Variable):
 
     value_type = float
     entity = Famille
-    label = u"Allocation logement pour les logements foyers plafond"
-    reference = u"https://www.legifrance.gouv.fr/eli/arrete/2017/9/28/TERL1725443A/jo/article_11"
+    label = "Allocation logement pour les logements foyers plafond"
+    reference = "https://www.legifrance.gouv.fr/eli/arrete/2017/9/28/TERL1725443A/jo/article_11"
     definition_period = MONTH
 
     def formula(famille, period, parameters):
@@ -1370,9 +1370,9 @@ class aides_logement_foyer_plafond_mensualite(Variable):
 
     value_type = float
     entity = Famille
-    label = u"Allocation logement pour les logements foyers plafond mensualité"
+    label = "Allocation logement pour les logements foyers plafond mensualité"
     reference = [u"https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000035665875&dateTexte=&categorieLien=id",
-                 u"https://www.legifrance.gouv.fr/eli/arrete/2017/9/28/TERL1725443A/jo/article_11"]
+                 "https://www.legifrance.gouv.fr/eli/arrete/2017/9/28/TERL1725443A/jo/article_11"]
     definition_period = MONTH
 
     # Temporairement limitée à après 2017 pour pallier des carences de valeurs de paramètres

@@ -20,7 +20,7 @@ def modify_parameters(parameters):
 class cesthra(Variable):
     value_type = float
     entity = entities.FoyerFiscal
-    label = u"Contribution exceptionnelle de solidarité sur les très hauts revenus d'activité"
+    label = "Contribution exceptionnelle de solidarité sur les très hauts revenus d'activité"
     definition_period = YEAR
     # PLF 2013 (rejeté) : 'taxe à 75%'
 
@@ -34,7 +34,7 @@ class cesthra(Variable):
 
 
 class irpp(Variable):
-    label = u"Impôt sur le revenu des personnes physiques (réformée pour intégrer la cesthra)"
+    label = "Impôt sur le revenu des personnes physiques (réformée pour intégrer la cesthra)"
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
@@ -60,7 +60,7 @@ class irpp(Variable):
 
 
 class cesthra_invalidee(Reform):
-    name = u"Contribution execptionnelle sur les très hauts revenus d'activité (invalidée par le CC)"
+    name = "Contribution execptionnelle sur les très hauts revenus d'activité (invalidée par le CC)"
 
     def apply(self):
         self.add_variable(cesthra)

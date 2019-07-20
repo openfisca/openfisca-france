@@ -12,7 +12,7 @@ TAUX_DE_PRIME = .10
 class salaire_imposable_pour_inversion(Variable):
     value_type = float
     entity = Individu
-    label = u'Salaire imposable utilisé pour remonter au salaire brut'
+    label = 'Salaire imposable utilisé pour remonter au salaire brut'
     definition_period = MONTH
 
 
@@ -150,7 +150,7 @@ class primes_fonction_publique(Variable):
 
 class inversion_directe_salaires(Reform):
     key = 'inversion_directe_salaires'
-    name = u'Inversion des revenus'
+    name = 'Inversion des revenus'
 
     def apply(self):
         self.add_variable(salaire_imposable_pour_inversion)

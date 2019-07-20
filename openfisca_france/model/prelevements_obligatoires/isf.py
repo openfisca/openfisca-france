@@ -11,7 +11,7 @@ class b1ab(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Valeur de la résidence principale avant abattement"
+    label = "Valeur de la résidence principale avant abattement"
     definition_period = YEAR
 
 
@@ -19,7 +19,7 @@ class b1ac(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Valeur des autres immeubles avant abattement"
+    label = "Valeur des autres immeubles avant abattement"
     definition_period = YEAR
 
 
@@ -28,7 +28,7 @@ class b1bc(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Immeubles non bâtis : bois, fôrets et parts de groupements forestiers"
+    label = "Immeubles non bâtis : bois, fôrets et parts de groupements forestiers"
     definition_period = YEAR
 
 
@@ -36,7 +36,7 @@ class b1be(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Immeubles non bâtis : biens ruraux loués à long termes"
+    label = "Immeubles non bâtis : biens ruraux loués à long termes"
     definition_period = YEAR
 
 
@@ -44,7 +44,7 @@ class b1bh(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Immeubles non bâtis : parts de groupements fonciers agricoles et de groupements agricoles fonciers"
+    label = "Immeubles non bâtis : parts de groupements fonciers agricoles et de groupements agricoles fonciers"
     definition_period = YEAR
 
 
@@ -52,7 +52,7 @@ class b1bk(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Immeubles non bâtis : autres biens"
+    label = "Immeubles non bâtis : autres biens"
     definition_period = YEAR
 
 
@@ -61,7 +61,7 @@ class b1cl(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Parts et actions détenues par les salariés et mandataires sociaux"
+    label = "Parts et actions détenues par les salariés et mandataires sociaux"
     definition_period = YEAR
 
 
@@ -69,7 +69,7 @@ class b1cb(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Parts et actions de sociétés avec engagement de conservation de 6 ans minimum"
+    label = "Parts et actions de sociétés avec engagement de conservation de 6 ans minimum"
     definition_period = YEAR
 
 
@@ -77,7 +77,7 @@ class b1cd(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Droits sociaux de sociétés dans lesquelles vous exercez une fonction ou une activité"
+    label = "Droits sociaux de sociétés dans lesquelles vous exercez une fonction ou une activité"
     definition_period = YEAR
 
 
@@ -85,7 +85,7 @@ class b1ce(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Autres valeurs mobilières"
+    label = "Autres valeurs mobilières"
     definition_period = YEAR
 
 
@@ -93,7 +93,7 @@ class b1cf(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Liquidités"
+    label = "Liquidités"
     definition_period = YEAR
 
 
@@ -101,7 +101,7 @@ class b1cg(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Autres biens meubles"
+    label = "Autres biens meubles"
     definition_period = YEAR
 
 
@@ -109,7 +109,7 @@ class b1co(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Autres biens meubles : contrats d'assurance-vie"
+    label = "Autres biens meubles : contrats d'assurance-vie"
     definition_period = YEAR
 
 
@@ -124,7 +124,7 @@ class b2gh(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Total du passif et autres déductions"
+    label = "Total du passif et autres déductions"
     definition_period = YEAR
 
 
@@ -133,7 +133,7 @@ class b2mt(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Réductions pour investissements directs dans une société"
+    label = "Réductions pour investissements directs dans une société"
     definition_period = YEAR
 
 
@@ -141,7 +141,7 @@ class b2ne(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Réductions pour investissements directs dans une société"
+    label = "Réductions pour investissements directs dans une société"
     definition_period = YEAR
 
 
@@ -149,7 +149,7 @@ class b2mv(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Réductions pour investissements par sociétés interposées, holdings"
+    label = "Réductions pour investissements par sociétés interposées, holdings"
     definition_period = YEAR
 
 
@@ -157,7 +157,7 @@ class b2nf(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Réductions pour investissements par sociétés interposées, holdings"
+    label = "Réductions pour investissements par sociétés interposées, holdings"
     definition_period = YEAR
 
 
@@ -165,7 +165,7 @@ class b2mx(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Réductions pour investissements par le biais de FIP"
+    label = "Réductions pour investissements par le biais de FIP"
     definition_period = YEAR
 
 
@@ -173,7 +173,7 @@ class b2na(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Réductions pour investissements par le biais de FCPI ou FCPR"
+    label = "Réductions pour investissements par le biais de FCPI ou FCPR"
     definition_period = YEAR
 
 
@@ -181,7 +181,7 @@ class b2nc(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Réductions pour dons à certains organismes d'intérêt général"
+    label = "Réductions pour dons à certains organismes d'intérêt général"
     definition_period = YEAR
 
 
@@ -190,7 +190,7 @@ class b4rs(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Montant de l'impôt acquitté hors de France"
+    label = "Montant de l'impôt acquitté hors de France"
     definition_period = YEAR
 
 
@@ -214,7 +214,7 @@ class tax_fonc(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Taxe foncière"
+    label = "Taxe foncière"
     definition_period = YEAR
 
 
@@ -239,7 +239,7 @@ class etr(Variable):
 class isf_ifi_imm_bati(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = u"Base de l'ISF-IFI sur l'immobilier bâti"
+    label = "Base de l'ISF-IFI sur l'immobilier bâti"
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
@@ -253,7 +253,7 @@ class isf_ifi_imm_bati(Variable):
 class isf_ifi_imm_non_bati(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = u"Base de l'ISF-IFI sur l'immobilier non-bâti"
+    label = "Base de l'ISF-IFI sur l'immobilier non-bâti"
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
@@ -280,7 +280,7 @@ class isf_ifi_imm_non_bati(Variable):
 class isf_actions_sal(Variable):  # # non présent en 2005##
     value_type = float
     entity = FoyerFiscal
-    label = u"isf_actions_sal"
+    label = "isf_actions_sal"
     definition_period = YEAR
     end = '2017-12-31'
 
@@ -297,7 +297,7 @@ class isf_actions_sal(Variable):  # # non présent en 2005##
 class isf_droits_sociaux(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = u"isf_droits_sociaux"
+    label = "isf_droits_sociaux"
     definition_period = YEAR
     end = '2017-12-31'
 
@@ -317,7 +317,7 @@ class isf_droits_sociaux(Variable):
 class assiette_isf_ifi(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = u"Assiette de l'ISF-IFI"
+    label = "Assiette de l'ISF-IFI"
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
@@ -341,7 +341,7 @@ class assiette_isf_ifi(Variable):
 class isf_ifi_iai(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = u"ISF-IFI avant décote, réductions et plafonnement"
+    label = "ISF-IFI avant décote, réductions et plafonnement"
     definition_period = YEAR
 
     def formula_2002_01_01(foyer_fiscal, period, parameters):
@@ -360,7 +360,7 @@ class isf_ifi_iai(Variable):
 class isf_ifi_avant_reduction(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = u"ISF-IFI avant réductions et plafonnement"
+    label = "ISF-IFI avant réductions et plafonnement"
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
@@ -373,7 +373,7 @@ class isf_ifi_avant_reduction(Variable):
 class isf_reduc_pac(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = u"isf_reduc_pac"
+    label = "isf_reduc_pac"
     end = '2012-12-31'
     definition_period = YEAR
 
@@ -391,7 +391,7 @@ class isf_reduc_pac(Variable):
 class isf_inv_pme(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = u"isf_inv_pme"
+    label = "isf_inv_pme"
     definition_period = YEAR
 
     def formula_2008(foyer_fiscal, period, parameters):
@@ -418,7 +418,7 @@ class isf_inv_pme(Variable):
 class isf_org_int_gen(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = u"isf_org_int_gen"
+    label = "isf_org_int_gen"
     definition_period = YEAR
 
     def formula_2008(foyer_fiscal, period, parameters):
@@ -431,7 +431,7 @@ class isf_org_int_gen(Variable):
 class isf_ifi_avant_plaf(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = u"ISF-IFI avant plafonnement"
+    label = "ISF-IFI avant plafonnement"
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
@@ -462,7 +462,7 @@ class isf_ifi_avant_plaf(Variable):
 class total_impots_plafonnement_isf_ifi(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = u"Total des impôts dus au titre des revenus et produits (irpp, cehr, prélèvements forfaitaires, prélèvements sociaux) + ISF et IFI. Utilisé pour calculer le montant du plafonnement de l'ISF et de l'IFI."
+    label = "Total des impôts dus au titre des revenus et produits (irpp, cehr, prélèvements forfaitaires, prélèvements sociaux) + ISF et IFI. Utilisé pour calculer le montant du plafonnement de l'ISF et de l'IFI."
     definition_period = YEAR
 
     def formula(foyer_fiscal, period):
@@ -497,7 +497,7 @@ class total_impots_plafonnement_isf_ifi(Variable):
 class revenus_et_produits_plafonnement_isf_ifi(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = u"Revenus et produits perçus, utilisés pour calculer le montant du plafonnement de l'ISF"
+    label = "Revenus et produits perçus, utilisés pour calculer le montant du plafonnement de l'ISF"
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
@@ -558,7 +558,7 @@ class revenus_et_produits_plafonnement_isf_ifi(Variable):
 class decote_isf_ifi(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = u"Décote de l'ISF-IFI"
+    label = "Décote de l'ISF-IFI"
     definition_period = YEAR
 
     def formula_2013(foyer_fiscal, period, parameters):
@@ -573,7 +573,7 @@ class decote_isf_ifi(Variable):
 class isf_ifi_apres_plaf(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = u"ISF-IFI après plafonnement"
+    label = "ISF-IFI après plafonnement"
     definition_period = YEAR
 
     def formula_2002_01_01(foyer_fiscal, period, parameters):
@@ -614,7 +614,7 @@ class isf_ifi_apres_plaf(Variable):
 class isf_ifi(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = u"Montant d'ISF-IFI"
+    label = "Montant d'ISF-IFI"
     definition_period = YEAR
 
     def formula(foyer_fiscal, period):
@@ -632,7 +632,7 @@ class isf_ifi(Variable):
 class rvcm_plus_abat(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = u"rvcm_plus_abat"
+    label = "rvcm_plus_abat"
     definition_period = YEAR
     end = '2010-12-31'
 
@@ -649,7 +649,7 @@ class rvcm_plus_abat(Variable):
 class maj_cga(Variable):
     value_type = float
     entity = Individu
-    label = u"Majoration pour non adhésion à un centre de gestion agréé (pour chaque individu du foyer)"
+    label = "Majoration pour non adhésion à un centre de gestion agréé (pour chaque individu du foyer)"
     definition_period = YEAR
 
     # TODO: à reintégrer dans irpp (et vérifier au passage que frag_impo est dans la majo_cga
@@ -686,7 +686,7 @@ class maj_cga(Variable):
 class bouclier_rev(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = u"bouclier_rev"
+    label = "bouclier_rev"
     end = '2010-12-31'
     definition_period = YEAR
 
@@ -747,7 +747,7 @@ class bouclier_rev(Variable):
 class bouclier_imp_gen(Variable):  # # ajouter CSG- CRDS
     value_type = float
     entity = FoyerFiscal
-    label = u"bouclier_imp_gen"
+    label = "bouclier_imp_gen"
     end = '2010-12-31'
     definition_period = YEAR
 
@@ -793,7 +793,7 @@ class bouclier_imp_gen(Variable):  # # ajouter CSG- CRDS
 class restitutions(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = u"restitutions"
+    label = "restitutions"
     end = '2010-12-31'
     definition_period = YEAR
 
@@ -810,7 +810,7 @@ class restitutions(Variable):
 class bouclier_sumimp(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = u"bouclier_sumimp"
+    label = "bouclier_sumimp"
     end = '2010-12-31'
     definition_period = YEAR
 
@@ -827,7 +827,7 @@ class bouclier_sumimp(Variable):
 class bouclier_fiscal(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = u"bouclier_fiscal"
+    label = "bouclier_fiscal"
     end = '2010-12-31'
     reference = "http://fr.wikipedia.org/wiki/Bouclier_fiscal"
     definition_period = YEAR

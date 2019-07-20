@@ -21,8 +21,8 @@ logger = logging.getLogger(app_name)
 
 def main():
     parser = argparse.ArgumentParser(description = __doc__)
-    parser.add_argument('insee_communes_file', help = u"INSEE communes file")
-    parser.add_argument('-v', '--verbose', action = 'store_true', default = False, help = u"increase output verbosity")
+    parser.add_argument('insee_communes_file', help = "INSEE communes file")
+    parser.add_argument('-v', '--verbose', action = 'store_true', default = False, help = "increase output verbosity")
     args = parser.parse_args()
     logging.basicConfig(level = logging.DEBUG if args.verbose else logging.WARNING)
 

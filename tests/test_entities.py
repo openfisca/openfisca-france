@@ -41,7 +41,7 @@ class depcom(Variable):
     value_type = str
     max_length = 5
     entity = Menage
-    label = u"""Code INSEE "depcom" de la commune de résidence de la famille"""
+    label = """Code INSEE "depcom" de la commune de résidence de la famille"""
     definition_period = ETERNITY
 
 # This tests are more about core than france, but we need france entities to run some of them.

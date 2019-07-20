@@ -8,7 +8,7 @@ from openfisca_france.model.base import *
 class autonomie_financiere(Variable):
     value_type = bool
     entity = Individu
-    label = u"Indicatrice d'autonomie financière vis-à-vis des prestations familiales"
+    label = "Indicatrice d'autonomie financière vis-à-vis des prestations familiales"
     definition_period = MONTH
     reference = [
         'https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000006750602&cidTexte=LEGITEXT000006073189',
@@ -30,7 +30,7 @@ class autonomie_financiere(Variable):
 class prestations_familiales_enfant_a_charge(Variable):
     value_type = bool
     entity = Individu
-    label = u"Enfant considéré à charge au sens des prestations familiales"
+    label = "Enfant considéré à charge au sens des prestations familiales"
     definition_period = MONTH
 
     def formula(individu, period, parameters):
@@ -60,7 +60,7 @@ class prestations_familiales_base_ressources_individu(Variable):
     value_type = float
     is_period_size_independent = True
     entity = Individu
-    label = u"Base ressource individuelle des prestations familiales"
+    label = "Base ressource individuelle des prestations familiales"
     definition_period = MONTH
 
     def formula(individu, period):
@@ -82,7 +82,7 @@ class prestations_familiales_base_ressources_individu(Variable):
 class biactivite(Variable):
     value_type = bool
     entity = Famille
-    label = u"Indicatrice de biactivité"
+    label = "Indicatrice de biactivité"
     definition_period = MONTH
 
     def formula(famille, period, parameters):
@@ -118,7 +118,7 @@ class biactivite(Variable):
 class rev_coll(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = u"Revenus perçus par le foyer fiscal à prendre en compte dans la base ressource des prestations familiales"
+    label = "Revenus perçus par le foyer fiscal à prendre en compte dans la base ressource des prestations familiales"
     definition_period = YEAR
 
     def formula(foyer_fiscal, period):
@@ -157,10 +157,10 @@ class rev_coll(Variable):
 class prestations_familiales_base_ressources_communes(Variable):
     value_type = float
     entity = Famille
-    label = u"Ressources non individualisables prises en compte pour les prestations familiales"
+    label = "Ressources non individualisables prises en compte pour les prestations familiales"
     reference = [
-        u"Article D521-4 du Code de la sécurité sociale",
-        u"https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000030678081&cidTexte=LEGITEXT000006073189&categorieLien=id"
+        "Article D521-4 du Code de la sécurité sociale",
+        "https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000030678081&cidTexte=LEGITEXT000006073189&categorieLien=id"
         ]
     definition_period = MONTH
 
@@ -183,10 +183,10 @@ class prestations_familiales_base_ressources_communes(Variable):
 class prestations_familiales_base_ressources(Variable):
     value_type = float
     entity = Famille
-    label = u"Base ressource des prestations familiales"
+    label = "Base ressource des prestations familiales"
     reference = [
-        u"Article D521-4 du Code de la sécurité sociale",
-        u"https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000030678081&cidTexte=LEGITEXT000006073189&categorieLien=id"
+        "Article D521-4 du Code de la sécurité sociale",
+        "https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000030678081&cidTexte=LEGITEXT000006073189&categorieLien=id"
         ]
     definition_period = MONTH
 
@@ -212,7 +212,7 @@ def nb_enf(famille, period, age_min, age_max):
     Renvoie le nombre d'enfant au sens des allocations familiales dont l'âge est compris entre ag1 et ag2
     """
 
-    assert period.unit == u'month'
+    assert period.unit == 'month'
     assert period.size == 1
 
     age = famille.members('age', period)

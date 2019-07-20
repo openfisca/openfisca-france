@@ -15,7 +15,7 @@ COUNTRY_DIR = os.path.dirname(os.path.abspath(__file__))
 
 class FranceTaxBenefitSystem(TaxBenefitSystem):
     """French tax benefit system"""
-    CURRENCY = u"€"
+    CURRENCY = "€"
     DATA_SOURCES_DIR = os.path.join(COUNTRY_DIR, 'data', 'sources')
     preprocess_parameters = staticmethod(preprocessing.preprocess_parameters)
 

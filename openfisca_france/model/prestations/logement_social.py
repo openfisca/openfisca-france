@@ -49,9 +49,9 @@ departements_idf = [
 
 class ZoneLogementSocial(Enum):
     __order__ = 'paris_communes_limitrophes ile_de_france autres_regions'
-    paris_communes_limitrophes = u"Paris et communes limitrophes"
-    ile_de_france = u"Île-de-France hors Paris et communes limitrophes"
-    autres_regions = u"Autres régions"
+    paris_communes_limitrophes = "Paris et communes limitrophes"
+    ile_de_france = "Île-de-France hors Paris et communes limitrophes"
+    autres_regions = "Autres régions"
 
 
 class zone_logement_social(Variable):
@@ -60,7 +60,7 @@ class zone_logement_social(Variable):
     default_value = ZoneLogementSocial.autres_regions
     entity = Menage
     definition_period = MONTH
-    label = u"Zone logement social"
+    label = "Zone logement social"
 
     def formula(menage, period):
         depcom = menage('depcom', period)
@@ -83,12 +83,12 @@ class zone_logement_social(Variable):
 
 class CategorieMenageLogementSocial(Enum):
     __order__ = 'categorie_1 categorie_2 categorie_3 categorie_4 categorie_5 categorie_6'
-    categorie_1 = u"Une personne seule"
-    categorie_2 = u"Deux personnes ne comportant aucune pers. à charge à l'exclusion des jeunes ménages"
-    categorie_3 = u"Trois personnes ou une pers. seule avec une pers. à charge ou jeune ménage sans personne à charge"
-    categorie_4 = u"Quatre personnes ou une pers. seule avec deux pers. à charge"
-    categorie_5 = u"Cinq personnes ou une pers. seule avec trois pers. à charge"
-    categorie_6 = u"Six personnes ou une pers. seule avec quatre pers. à charge"
+    categorie_1 = "Une personne seule"
+    categorie_2 = "Deux personnes ne comportant aucune pers. à charge à l'exclusion des jeunes ménages"
+    categorie_3 = "Trois personnes ou une pers. seule avec une pers. à charge ou jeune ménage sans personne à charge"
+    categorie_4 = "Quatre personnes ou une pers. seule avec deux pers. à charge"
+    categorie_5 = "Cinq personnes ou une pers. seule avec trois pers. à charge"
+    categorie_6 = "Six personnes ou une pers. seule avec quatre pers. à charge"
 
 
 class logement_social_categorie_menage(Variable):
@@ -97,10 +97,10 @@ class logement_social_categorie_menage(Variable):
     possible_values = CategorieMenageLogementSocial
     default_value = CategorieMenageLogementSocial.categorie_1
     definition_period = MONTH
-    label = u"Catégorie de ménage pour déterminer le plafond de ressources"
+    label = "Catégorie de ménage pour déterminer le plafond de ressources"
     reference = [
-        u"Arrêté du 29 juillet 1987 relatif aux plafonds de ressources des bénéficiaires de la législation sur les habitations à loyer modéré et des nouvelles aides de l'Etat en secteur locatif",
-        u"https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000294318"
+        "Arrêté du 29 juillet 1987 relatif aux plafonds de ressources des bénéficiaires de la législation sur les habitations à loyer modéré et des nouvelles aides de l'Etat en secteur locatif",
+        "https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000294318"
         ]
 
     def formula(famille, period, parameters):
@@ -142,10 +142,10 @@ class logement_social_plafond_ressources(Variable):
     entity = Famille
     value_type = float
     definition_period = MONTH
-    label = u"Plafonds de ressources des bénéficiaires de la législation sur les habitations à loyer modéré et des nouvelles aides de l'Etat en secteur locatif"
+    label = "Plafonds de ressources des bénéficiaires de la législation sur les habitations à loyer modéré et des nouvelles aides de l'Etat en secteur locatif"
     reference = [
-        u"Arrêté du 22 décembre 2016 modifiant l'arrêté du 29 juillet 1987 relatif aux plafonds de ressources des bénéficiaires de la législation sur les habitations à loyer modéré et des nouvelles aides de l'Etat en secteur locatif ",
-        u"https://www.legifrance.gouv.fr/eli/arrete/2016/12/22/LHAL1629455A/jo/texte",
+        "Arrêté du 22 décembre 2016 modifiant l'arrêté du 29 juillet 1987 relatif aux plafonds de ressources des bénéficiaires de la législation sur les habitations à loyer modéré et des nouvelles aides de l'Etat en secteur locatif ",
+        "https://www.legifrance.gouv.fr/eli/arrete/2016/12/22/LHAL1629455A/jo/texte",
         ]
 
     def formula(famille, period, parameters):
@@ -168,7 +168,7 @@ class logement_social_eligible(Variable):
     entity = Famille
     value_type = bool
     definition_period = MONTH
-    label = u"Logement social - Éligibilité"
+    label = "Logement social - Éligibilité"
 
     def formula_2017(famille, period, parameters):
 

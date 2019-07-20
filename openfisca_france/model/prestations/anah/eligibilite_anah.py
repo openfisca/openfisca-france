@@ -7,9 +7,9 @@ from openfisca_france.model.base import *
 class TypesEligibiliteANAH(Enum):
     # Needed to preserve the enum order in Python 2
     __order__ = 'a_verifier modestes tres_modeste'
-    a_verifier = u"A vérifier"
-    modestes = u"Modestes"
-    tres_modeste = u"Très modestes"
+    a_verifier = "A vérifier"
+    modestes = "Modestes"
+    tres_modeste = "Très modestes"
 
 
 class eligibilite_anah(Variable):
@@ -17,7 +17,7 @@ class eligibilite_anah(Variable):
     possible_values = TypesEligibiliteANAH
     default_value = TypesEligibiliteANAH.a_verifier
     entity = Menage
-    label = u"Barème d'éligibilité aux aides ANAH"
+    label = "Barème d'éligibilité aux aides ANAH"
     definition_period = YEAR
 
     def formula(menage, period):

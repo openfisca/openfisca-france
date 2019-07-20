@@ -11,56 +11,56 @@ from openfisca_core.periods import Instant
 class inactif(Variable):
     value_type = bool
     entity = Famille
-    label = u"Parent inactif (PAJE-CLCA)"
+    label = "Parent inactif (PAJE-CLCA)"
     definition_period = MONTH
 
 
 class partiel1(Variable):
     value_type = bool
     entity = Famille
-    label = u"Parent actif à moins de 50% (PAJE-CLCA)"
+    label = "Parent actif à moins de 50% (PAJE-CLCA)"
     definition_period = MONTH
 
 
 class partiel2(Variable):
     value_type = bool
     entity = Famille
-    label = u"Parent actif entre 50% et 80% (PAJE-CLCA)"
+    label = "Parent actif entre 50% et 80% (PAJE-CLCA)"
     definition_period = MONTH
 
 
 class opt_colca(Variable):
     value_type = bool
     entity = Famille
-    label = u"Opte pour le COLCA"
+    label = "Opte pour le COLCA"
     definition_period = MONTH
 
 
 class empl_dir(Variable):
     value_type = bool
     entity = Famille
-    label = u"Emploi direct (CLCMG)"
+    label = "Emploi direct (CLCMG)"
     definition_period = MONTH
 
 
 class ass_mat(Variable):
     value_type = bool
     entity = Famille
-    label = u"Assistante maternelle (CLCMG)"
+    label = "Assistante maternelle (CLCMG)"
     definition_period = MONTH
 
 
 class gar_dom(Variable):
     value_type = bool
     entity = Famille
-    label = u"Garde à domicile (CLCMG)"
+    label = "Garde à domicile (CLCMG)"
     definition_period = MONTH
 
 
 class paje(Variable):
     value_type = float
     entity = Famille
-    label = u"PAJE - Ensemble des prestations"
+    label = "PAJE - Ensemble des prestations"
     reference = "http://www.caf.fr/aides-et-services/s-informer-sur-les-aides/petite-enfance/la-prestation-d-accueil-du-jeune-enfant-paje"
     definition_period = MONTH
 
@@ -92,7 +92,7 @@ class paje_base(Variable):
     calculate_output = calculate_output_add
     value_type = float
     entity = Famille
-    label = u"Allocation de base de la PAJE"
+    label = "Allocation de base de la PAJE"
     reference = "http://vosdroits.service-public.fr/particuliers/F2552.xhtml"
     definition_period = MONTH
     set_input = set_input_divide_by_period
@@ -177,7 +177,7 @@ class paje_base(Variable):
 class enfant_eligible_paje(Variable):
     value_type = bool
     entity = Individu
-    label = u"Enfant ouvrant droit à la PAJE de base"
+    label = "Enfant ouvrant droit à la PAJE de base"
     definition_period = MONTH
 
     def formula(individu, period, parameters):
@@ -194,7 +194,7 @@ class paje_naissance(Variable):
     calculate_output = calculate_output_add
     value_type = float
     entity = Famille
-    label = u"Allocation de naissance de la PAJE"
+    label = "Allocation de naissance de la PAJE"
     reference = "http://vosdroits.service-public.fr/particuliers/F2550.xhtml"
     definition_period = MONTH
 
@@ -335,7 +335,7 @@ class paje_prepare(Variable):
     value_type = float
     entity = Famille
     set_input = set_input_divide_by_period
-    label = u"Prestation Partagée d’éducation de l’Enfant (PreParE)"
+    label = "Prestation Partagée d’éducation de l’Enfant (PreParE)"
     reference = "https://www.service-public.fr/particuliers/vosdroits/F32485"
     definition_period = MONTH
 
@@ -344,7 +344,7 @@ class paje_cmg(Variable):
     calculate_output = calculate_output_add
     value_type = float
     entity = Famille
-    label = u"PAJE - Complément de libre choix du mode de garde"
+    label = "PAJE - Complément de libre choix du mode de garde"
     set_input = set_input_divide_by_period
     reference = [
         "http://www.caf.fr/aides-et-services/s-informer-sur-les-aides/petite-enfance/le-complement-de-libre-choix-du-mode-de-garde",
@@ -588,7 +588,7 @@ class paje_cmg(Variable):
 class ape_avant_cumul(Variable):
     value_type = float
     entity = Famille
-    label = u"Allocation parentale d'éducation, avant prise en compte de la non-cumulabilité avec le CF et l'APJE"
+    label = "Allocation parentale d'éducation, avant prise en compte de la non-cumulabilité avec le CF et l'APJE"
     end = '2003-12-31'
     reference = "http://fr.wikipedia.org/wiki/Allocation_parentale_d'%C3%A9ducation_en_France"
     definition_period = MONTH
@@ -649,7 +649,7 @@ class ape_avant_cumul(Variable):
 class apje_avant_cumul(Variable):
     value_type = float
     entity = Famille
-    label = u"Allocation pour le jeune enfant, avant prise en compte de la non-cumulabilité avec le CF et l'APE"
+    label = "Allocation pour le jeune enfant, avant prise en compte de la non-cumulabilité avec le CF et l'APE"
     end = '2003-12-31'
     reference = "http://vosdroits.service-public.fr/particuliers/F2552.xhtml"
     definition_period = MONTH
@@ -693,7 +693,7 @@ class apje_avant_cumul(Variable):
 class ape(Variable):
     value_type = float
     entity = Famille
-    label = u"Allocation parentale d'éducation"
+    label = "Allocation parentale d'éducation"
     end = '2003-12-31'
     reference = "http://fr.wikipedia.org/wiki/Allocation_parentale_d'%C3%A9ducation_en_France"
     definition_period = MONTH
@@ -713,7 +713,7 @@ class ape(Variable):
 class apje(Variable):
     value_type = float
     entity = Famille
-    label = u"Allocation pour le jeune enfant"
+    label = "Allocation pour le jeune enfant"
     end = '2003-12-31'
     reference = "http://vosdroits.service-public.fr/particuliers/F2552.xhtml"
     definition_period = MONTH
@@ -732,7 +732,7 @@ class paje_clca(Variable):
     calculate_output = calculate_output_add
     value_type = float
     entity = Famille
-    label = u"PAJE - Complément de libre choix d'activité - remplacée par paje_prepare à partir de 04/2017"
+    label = "PAJE - Complément de libre choix d'activité - remplacée par paje_prepare à partir de 04/2017"
     reference = "http://vosdroits.service-public.fr/particuliers/F313.xhtml"
     definition_period = MONTH
     set_input = set_input_divide_by_period
@@ -805,7 +805,7 @@ class paje_clca(Variable):
 class paje_clca_taux_plein(Variable):
     value_type = bool
     entity = Famille
-    label = u"Indicatrice Clca taux plein"
+    label = "Indicatrice Clca taux plein"
     reference = "http://vosdroits.service-public.fr/particuliers/F313.xhtml"
     definition_period = MONTH
     end = '2017-04-01'
@@ -820,7 +820,7 @@ class paje_clca_taux_plein(Variable):
 class paje_clca_taux_partiel(Variable):
     value_type = bool
     entity = Famille
-    label = u"Indicatrice Clca taux partiel"
+    label = "Indicatrice Clca taux partiel"
     reference = "http://vosdroits.service-public.fr/particuliers/F313.xhtml"
     definition_period = MONTH
     end = '2017-04-01'
@@ -838,7 +838,7 @@ class paje_colca(Variable):
     calculate_output = calculate_output_add
     value_type = float
     entity = Famille
-    label = u"PAJE - Complément optionnel de libre choix d'activité"
+    label = "PAJE - Complément optionnel de libre choix d'activité"
     set_input = set_input_divide_by_period
     reference = "http://vosdroits.service-public.fr/particuliers/F15110.xhtml"
     definition_period = MONTH

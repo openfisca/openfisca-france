@@ -12,57 +12,57 @@ log = logging.getLogger(__name__)
 class assurance_vie_pfu_ir_plus8ans_1990_19970926(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = u"Produits des bons ou contrats de capitalisation et d'assurance vie d'une durée d'au moins 8 ans pour les contrats souscrits entre le 1er janvier 1990 et le 26 septembre 1997, et que le bénéficiaire décide de soumettre au prélèvement forfaitaire unique au titre de l'impôt sur le revenu"
+    label = "Produits des bons ou contrats de capitalisation et d'assurance vie d'une durée d'au moins 8 ans pour les contrats souscrits entre le 1er janvier 1990 et le 26 septembre 1997, et que le bénéficiaire décide de soumettre au prélèvement forfaitaire unique au titre de l'impôt sur le revenu"
     definition_period = YEAR
 
 
 class assurance_vie_pfu_ir_plus6ans_avant1990(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = u"Produits des bons ou contrats de capitalisation et d'assurance vie d'une durée d'au moins 6 ans pour les contrats souscrits avant le 1er janvier 1990, et que le bénéficiaire décide de soumettre au prélèvement forfaitaire unique au titre de l'impôt sur le revenu"
+    label = "Produits des bons ou contrats de capitalisation et d'assurance vie d'une durée d'au moins 6 ans pour les contrats souscrits avant le 1er janvier 1990, et que le bénéficiaire décide de soumettre au prélèvement forfaitaire unique au titre de l'impôt sur le revenu"
     definition_period = YEAR
 
 
 class assurance_vie_pfu_ir_moins4ans_1990_19970926(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = u"Produits des bons ou contrats de capitalisation et d'assurance vie d'une durée de moins de 4 ans pour les contrats souscrits entre le 1er janvier 1990 et le 26 septembre 1997, et que le bénéficiaire décide de soumettre au prélèvement forfaitaire unique au titre de l'impôt sur le revenu"
+    label = "Produits des bons ou contrats de capitalisation et d'assurance vie d'une durée de moins de 4 ans pour les contrats souscrits entre le 1er janvier 1990 et le 26 septembre 1997, et que le bénéficiaire décide de soumettre au prélèvement forfaitaire unique au titre de l'impôt sur le revenu"
     definition_period = YEAR
 
 
 class assurance_vie_pfu_ir_4_8_ans_1990_19970926(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = u"Produits des bons ou contrats de capitalisation et d'assurance vie d'une durée entre 4 et 8 ans pour les contrats souscrits entre le 1er janvier 1990 et le 26 septembre 1997, et que le bénéficiaire décide de soumettre au prélèvement forfaitaire unique au titre de l'impôt sur le revenu"
+    label = "Produits des bons ou contrats de capitalisation et d'assurance vie d'une durée entre 4 et 8 ans pour les contrats souscrits entre le 1er janvier 1990 et le 26 septembre 1997, et que le bénéficiaire décide de soumettre au prélèvement forfaitaire unique au titre de l'impôt sur le revenu"
     definition_period = YEAR
 
 
 class assurance_vie_pfu_ir_plus8ans_19970926_primes_avant_20170927(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = u"Produits des bons ou contrats de capitalisation et d'assurance vie de plus de 8 ans pour les contrats souscrits après le 26 septembre 1997, dont le produits sont associés aux primes versées avant le 27 septembre 2017, et que le bénéficiaire décide de soumettre au prélèvement forfaitaire unique au titre de l'impôt sur le revenu"
+    label = "Produits des bons ou contrats de capitalisation et d'assurance vie de plus de 8 ans pour les contrats souscrits après le 26 septembre 1997, dont le produits sont associés aux primes versées avant le 27 septembre 2017, et que le bénéficiaire décide de soumettre au prélèvement forfaitaire unique au titre de l'impôt sur le revenu"
     definition_period = YEAR
 
 
 class assurance_vie_pfu_ir_4_8_ans_19970926_primes_avant_20170927(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = u"Produits des bons ou contrats de capitalisation et d'assurance vie entre 4 et 8 ans pour les contrats souscrits après le 26 septembre 1997, dont le produits sont associés aux primes versées avant le 27 septembre 2017, et que le bénéficiaire décide de soumettre au prélèvement forfaitaire unique au titre de l'impôt sur le revenu"
+    label = "Produits des bons ou contrats de capitalisation et d'assurance vie entre 4 et 8 ans pour les contrats souscrits après le 26 septembre 1997, dont le produits sont associés aux primes versées avant le 27 septembre 2017, et que le bénéficiaire décide de soumettre au prélèvement forfaitaire unique au titre de l'impôt sur le revenu"
     definition_period = YEAR
 
 
 class assurance_vie_pfu_ir_moins4ans_19970926_primes_avant_20170927(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = u"Produits des bons ou contrats de capitalisation et d'assurance vie de moins de 4 ans pour les contrats souscrits après le 26 septembre 1997, dont le produits sont associés aux primes versées avant le 27 septembre 2017, et que le bénéficiaire décide de soumettre au prélèvement forfaitaire unique au titre de l'impôt sur le revenu"
+    label = "Produits des bons ou contrats de capitalisation et d'assurance vie de moins de 4 ans pour les contrats souscrits après le 26 septembre 1997, dont le produits sont associés aux primes versées avant le 27 septembre 2017, et que le bénéficiaire décide de soumettre au prélèvement forfaitaire unique au titre de l'impôt sur le revenu"
     definition_period = YEAR
 
 
 class f2zz(Variable):
-    cerfa_field = u"2ZZ"
+    cerfa_field = "2ZZ"
     value_type = float
     entity = FoyerFiscal
-    label = u"Produits des bons ou contrats de capitalisation et d'assurance vie de moins de 8 ans pour les contrats souscrits après le 26 septembre 1997, dont le produits sont associés aux primes versées après le 27 septembre 2017, et que le bénéficiaire décide de soumettre au prélèvement forfaitaire unique au titre de l'impôt sur le revenu"
+    label = "Produits des bons ou contrats de capitalisation et d'assurance vie de moins de 8 ans pour les contrats souscrits après le 26 septembre 1997, dont le produits sont associés aux primes versées après le 27 septembre 2017, et que le bénéficiaire décide de soumettre au prélèvement forfaitaire unique au titre de l'impôt sur le revenu"
     definition_period = YEAR
     # start_date = date(2018, 1, 1)
 
@@ -70,7 +70,7 @@ class f2zz(Variable):
 class f2vv(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = u"Produits des bons ou contrats de capitalisation et d'assurance vie de plus de 8 ans pour les contrats souscrits après le 26 septembre 1997, dont le produits sont associés aux primes versées après le 27 septembre 2017, et que le bénéficiaire décide de soumettre au prélèvement forfaitaire unique au titre de l'impôt sur le revenu; produit correspondant aux primes n'excédant pas 150 000 euros."
+    label = "Produits des bons ou contrats de capitalisation et d'assurance vie de plus de 8 ans pour les contrats souscrits après le 26 septembre 1997, dont le produits sont associés aux primes versées après le 27 septembre 2017, et que le bénéficiaire décide de soumettre au prélèvement forfaitaire unique au titre de l'impôt sur le revenu; produit correspondant aux primes n'excédant pas 150 000 euros."
     definition_period = YEAR
     # start_date = date(2018, 1, 1)
 
@@ -78,7 +78,7 @@ class f2vv(Variable):
 class f2ww(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = u"Produits des bons ou contrats de capitalisation et d'assurance vie de plus de 8 ans pour les contrats souscrits après le 26 septembre 1997, dont le produits sont associés aux primes versées après le 27 septembre 2017, et que le bénéficiaire décide de soumettre au prélèvement forfaitaire unique au titre de l'impôt sur le revenu; produit correspondant aux primes excédant pas 150 000 euros."
+    label = "Produits des bons ou contrats de capitalisation et d'assurance vie de plus de 8 ans pour les contrats souscrits après le 26 septembre 1997, dont le produits sont associés aux primes versées après le 27 septembre 2017, et que le bénéficiaire décide de soumettre au prélèvement forfaitaire unique au titre de l'impôt sur le revenu; produit correspondant aux primes excédant pas 150 000 euros."
     definition_period = YEAR
     # start_date = date(2018, 1, 1)
 
@@ -86,7 +86,7 @@ class f2ww(Variable):
 class assurance_vie_pfu_ir(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = u"Produits des bons ou contrats de capitalisation et d'assurance vie soumis au prélèvement forfaitaire unique au titre de l'impôt sur le revenu"
+    label = "Produits des bons ou contrats de capitalisation et d'assurance vie soumis au prélèvement forfaitaire unique au titre de l'impôt sur le revenu"
     definition_period = YEAR
 
     def formula_2018_01_01(foyer_fiscal, period):
@@ -100,7 +100,7 @@ class assurance_vie_pfu_ir(Variable):
 class revenus_capitaux_prelevement_forfaitaire_unique_ir(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = u"Revenus des valeurs et capitaux mobiliers soumis au prélèvement forfaitaire unique (partie impôt sur le revenu)"
+    label = "Revenus des valeurs et capitaux mobiliers soumis au prélèvement forfaitaire unique (partie impôt sur le revenu)"
     definition_period = MONTH
 
     def formula_2018_01_01(foyer_fiscal, period, parameters):
@@ -123,7 +123,7 @@ class revenus_capitaux_prelevement_forfaitaire_unique_ir(Variable):
 class plus_values_prelevement_forfaitaire_unique_ir(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = u"Plus-values soumises au prélèvement forfaitaire unique (partie impôt sur le revenu)"
+    label = "Plus-values soumises au prélèvement forfaitaire unique (partie impôt sur le revenu)"
     definition_period = YEAR
 
     def formula_2018_01_01(foyer_fiscal, period, parameters):
@@ -140,7 +140,7 @@ class plus_values_prelevement_forfaitaire_unique_ir(Variable):
 class prelevement_forfaitaire_unique_ir_hors_assurance_vie_epargne_solidaire_etats_non_cooperatifs(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = u"Partie du prélèvement forfaitaire unique associée à l'impôt sur le revenu (hors assurance-vie, épargne solidaire et produits venant des états non-coopératifs)"
+    label = "Partie du prélèvement forfaitaire unique associée à l'impôt sur le revenu (hors assurance-vie, épargne solidaire et produits venant des états non-coopératifs)"
     definition_period = YEAR
 
     def formula_2018_01_01(foyer_fiscal, period, parameters):
@@ -182,7 +182,7 @@ class prelevement_forfaitaire_unique_ir_hors_assurance_vie_epargne_solidaire_eta
 class prelevement_forfaitaire_unique_ir_sur_assurance_vie(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = u"Partie du prélèvement forfaitaire unique associée à l'impôt sur le revenu sur l'assurance-vie"
+    label = "Partie du prélèvement forfaitaire unique associée à l'impôt sur le revenu sur l'assurance-vie"
     definition_period = YEAR
 
     def formula_2018_01_01(foyer_fiscal, period, parameters):
@@ -209,7 +209,7 @@ class prelevement_forfaitaire_unique_ir_sur_assurance_vie(Variable):
 class prelevement_forfaitaire_unique_ir(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = u"Partie du prélèvement forfaitaire unique associée à l'impôt sur le revenu"
+    label = "Partie du prélèvement forfaitaire unique associée à l'impôt sur le revenu"
     definition_period = YEAR
 
     def formula_2018_01_01(foyer_fiscal, period, parameters):

@@ -7,21 +7,21 @@ from openfisca_france.model.prelevements_obligatoires.prelevements_sociaux.cotis
 class stage_duree_heures(Variable):
     value_type = int
     entity = Individu
-    label = u"Nombre d'heures effectuées en stage"
+    label = "Nombre d'heures effectuées en stage"
     definition_period = MONTH
 
 
 class stage_gratification_taux(Variable):
     value_type = float
     entity = Individu
-    label = u"Taux de gratification (en plafond de la Sécurité sociale)"
+    label = "Taux de gratification (en plafond de la Sécurité sociale)"
     definition_period = MONTH
 
 
 class stage_gratification(Variable):
     value_type = float
     entity = Individu
-    label = u"Gratification de stage"
+    label = "Gratification de stage"
     definition_period = MONTH
 
     def formula_2014_11(individu, period, parameters):
@@ -37,7 +37,7 @@ class stage_gratification(Variable):
 class stage_gratification_reintegration(Variable):
     value_type = float
     entity = Individu
-    label = u"Part de la gratification de stage réintégrée à l'assiette des cotisations et contributions sociales"
+    label = "Part de la gratification de stage réintégrée à l'assiette des cotisations et contributions sociales"
     definition_period = MONTH
 
     def formula_2014_11(individu, period, parameters):
@@ -52,7 +52,7 @@ class stage_gratification_reintegration(Variable):
 class stagiaire(Variable):
     value_type = bool
     entity = Individu
-    label = u"L'individu est stagiaire"
+    label = "L'individu est stagiaire"
     definition_period = MONTH
 
     def formula(individu, period, parameters):
@@ -63,7 +63,7 @@ class stagiaire(Variable):
 class exoneration_cotisations_employeur_stagiaire(Variable):
     value_type = float
     entity = Individu
-    label = u"Exonrérations de cotisations employeur pour un stagaire"
+    label = "Exonrérations de cotisations employeur pour un stagaire"
     reference = "http://www.apce.com/pid2798/stages.html?espace=3"
     definition_period = MONTH
 
@@ -95,7 +95,7 @@ class exoneration_cotisations_employeur_stagiaire(Variable):
 class exoneration_cotisations_salarie_stagiaire(Variable):
     value_type = float
     entity = Individu
-    label = u"Exonrérations de cotisations salarié pour un stagiaire"
+    label = "Exonrérations de cotisations salarié pour un stagiaire"
     reference = "http://www.apce.com/pid2798/stages.html?espace=3"
     definition_period = MONTH
 

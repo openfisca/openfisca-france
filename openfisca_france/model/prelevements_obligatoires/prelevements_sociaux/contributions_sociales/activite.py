@@ -16,7 +16,7 @@ log = logging.getLogger(__name__)
 
 class assiette_csg_abattue(Variable):
     value_type = float
-    label = u"Assiette CSG - CRDS"
+    label = "Assiette CSG - CRDS"
     entity = Individu
     definition_period = MONTH
 
@@ -48,7 +48,7 @@ class assiette_csg_abattue(Variable):
 
 class assiette_csg_non_abattue(Variable):
     value_type = float
-    label = u"Assiette CSG - CRDS"
+    label = "Assiette CSG - CRDS"
     entity = Individu
     definition_period = MONTH
 
@@ -68,7 +68,7 @@ class assiette_csg_non_abattue(Variable):
 class csg_deductible_salaire(Variable):
     calculate_output = calculate_output_add
     value_type = float
-    label = u"CSG déductible sur les salaires"
+    label = "CSG déductible sur les salaires"
     entity = Individu
     definition_period = MONTH
 
@@ -90,7 +90,7 @@ class csg_deductible_salaire(Variable):
 class csg_imposable_salaire(Variable):
     calculate_output = calculate_output_add
     value_type = float
-    label = u"CSG imposables sur les salaires"
+    label = "CSG imposables sur les salaires"
     entity = Individu
     definition_period = MONTH
 
@@ -113,7 +113,7 @@ class csg_imposable_salaire(Variable):
 class crds_salaire(Variable):
     calculate_output = calculate_output_add
     value_type = float
-    label = u"CRDS sur les salaires"
+    label = "CRDS sur les salaires"
     entity = Individu
     definition_period = MONTH
 
@@ -137,7 +137,7 @@ class crds_salaire(Variable):
 class forfait_social(Variable):
     value_type = float
     entity = Individu
-    label = u"Forfait social"
+    label = "Forfait social"
     definition_period = MONTH
     calculate_output = calculate_output_add
 
@@ -182,14 +182,14 @@ class salaire_imposable(Variable):
     value_type = float
     unit = 'currency'
     cerfa_field = {  # (f1aj, f1bj, f1cj, f1dj, f1ej)
-        0: u"1AJ",
-        1: u"1BJ",
-        2: u"1CJ",
-        3: u"1DJ",
-        4: u"1EJ",
+        0: "1AJ",
+        1: "1BJ",
+        2: "1CJ",
+        3: "1DJ",
+        4: "1EJ",
         }
     entity = Individu
-    label = u"Salaires imposables"
+    label = "Salaires imposables"
     set_input = set_input_divide_by_period
     definition_period = MONTH
 
@@ -229,7 +229,7 @@ class salaire_imposable(Variable):
 class salaire_net(Variable):
     value_type = float
     entity = Individu
-    label = u"Salaires nets d'après définition INSEE"
+    label = "Salaires nets d'après définition INSEE"
     set_input = set_input_divide_by_period
     definition_period = MONTH
 
@@ -248,8 +248,8 @@ class salaire_net(Variable):
 class tehr(Variable):
     value_type = float
     entity = Individu
-    label = u"Taxe exceptionnelle de solidarité sur les hautes rémunérations versées par les entreprises"
-    reference = u"art. 15 de la loi 2013-1278 (https://www.legifrance.gouv.fr/affichTexteArticle.do;jsessionid=1AACF2E1F7F065EF9C92B6B91E024EBE.tpdjo02v_1?idArticle=LEGIARTI000028402680&cidTexte=LEGITEXT000028402464&dateTexte=20140113)"
+    label = "Taxe exceptionnelle de solidarité sur les hautes rémunérations versées par les entreprises"
+    reference = "art. 15 de la loi 2013-1278 (https://www.legifrance.gouv.fr/affichTexteArticle.do;jsessionid=1AACF2E1F7F065EF9C92B6B91E024EBE.tpdjo02v_1?idArticle=LEGIARTI000028402680&cidTexte=LEGITEXT000028402464&dateTexte=20140113)"
     calculate_output = calculate_output_divide
     definition_period = YEAR
     end = '2015-01-01'
@@ -266,8 +266,8 @@ class rev_microsocial(Variable):
     """Revenu net des cotisations sociales sous régime microsocial (auto-entrepreneur)"""
     value_type = float
     entity = FoyerFiscal
-    label = u"Revenu net des cotisations sociales pour le régime microsocial"
-    reference = u"http://www.apce.com/pid6137/regime-micro-social.html"
+    label = "Revenu net des cotisations sociales pour le régime microsocial"
+    reference = "http://www.apce.com/pid6137/regime-micro-social.html"
     definition_period = YEAR
 
     def formula_2009_01_01(foyer_fiscal, period, parameters):
@@ -286,7 +286,7 @@ class assiette_csg_crds_non_salarie(Variable):
     """Assiette CSG des personnes non salariées"""
     value_type = float
     entity = Individu
-    label = u"Assiette CSG des personnes non salariées"
+    label = "Assiette CSG des personnes non salariées"
     definition_period = YEAR
 
     def formula(individu, period):
@@ -325,7 +325,7 @@ class assiette_csg_crds_non_salarie(Variable):
 class csg_non_salarie(Variable):
     value_type = float
     entity = Individu
-    label = u"Assiette CSG des personnes non salariées"
+    label = "Assiette CSG des personnes non salariées"
     definition_period = YEAR
 
     def formula(individu, period, parameters):
@@ -338,7 +338,7 @@ class csg_non_salarie(Variable):
 class crds_non_salarie(Variable):
     value_type = float
     entity = Individu
-    label = u"Assiette CSG des personnes non salariées"
+    label = "Assiette CSG des personnes non salariées"
     definition_period = YEAR
 
     def formula(individu, period, parameters):

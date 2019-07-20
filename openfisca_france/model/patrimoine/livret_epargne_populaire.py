@@ -32,7 +32,7 @@ class livret_epargne_populaire_plafond(Variable):
 class livret_epargne_populaire_eligibilite(Variable):
     value_type = bool
     entity = Individu
-    label = u"Eligibilité au livret d'épargne populaire"
+    label = "Eligibilité au livret d'épargne populaire"
     definition_period = MONTH
 
     def formula(individu, period, parameters):
@@ -45,7 +45,7 @@ class livret_epargne_populaire_eligibilite(Variable):
 class livret_epargne_populaire_taux(Variable):
     value_type = float
     entity = Individu
-    label = u"Eligibilité au livret d'épargne populaire"
+    label = "Eligibilité au livret d'épargne populaire"
     definition_period = MONTH
 
     def formula(individu, period, parameters):

@@ -17,7 +17,7 @@ def modify_parameters(parameters):
 
 
 class charges_deduc(Variable):
-    label = u"Charge déductibles intégrant la charge pour loyer (Trannoy-Wasmer)"
+    label = "Charge déductibles intégrant la charge pour loyer (Trannoy-Wasmer)"
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
@@ -31,7 +31,7 @@ class charges_deduc(Variable):
 class charge_loyer(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = u"Charge déductible pour paiement d'un loyer"
+    label = "Charge déductible pour paiement d'un loyer"
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
@@ -49,7 +49,7 @@ class charge_loyer(Variable):
 
 
 class trannoy_wasmer(Reform):
-    name = u'Loyer comme charge déductible (Trannoy-Wasmer)'
+    name = 'Loyer comme charge déductible (Trannoy-Wasmer)'
 
     def apply(self):
         self.update_variable(charges_deduc)

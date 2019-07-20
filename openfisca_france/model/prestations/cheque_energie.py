@@ -7,7 +7,7 @@ class cheque_energie_unites_consommation(Variable):
     entity = Menage
     value_type = float
     reference = "https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=1EA40CA7787AF90A95D1E1B3155D9028.tplgfr29s_1?idArticle=LEGIARTI000032497834&cidTexte=LEGITEXT000023983208&dateTexte=20160511"
-    label = u"Unités de consommation du ménage pour le calcul du chèque Énergie"
+    label = "Unités de consommation du ménage pour le calcul du chèque Énergie"
     definition_period = YEAR
 
     def formula_2017(menage, period, parameters):
@@ -27,12 +27,12 @@ class cheque_energie_eligibilite_logement(Variable):
     entity = Menage
     value_type = bool
     reference = [
-        u"Article L124-1 du Code de l'énergie",
-        u"https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=5AB50D02153C9CB753729850314A2E17.tplgfr29s_1?idArticle=LEGIARTI000031057544&cidTexte=LEGITEXT000023983208&dateTexte=20180314",
-        u"Article LO6314-3 du Code général des collectivités territoriales",
-        u"https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=6A3717E70623B148432581CC8F585C5F.tplgfr31s_1?idArticle=LEGIARTI000006394061&cidTexte=LEGITEXT000006070633&dateTexte=20180316",
+        "Article L124-1 du Code de l'énergie",
+        "https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=5AB50D02153C9CB753729850314A2E17.tplgfr29s_1?idArticle=LEGIARTI000031057544&cidTexte=LEGITEXT000023983208&dateTexte=20180314",
+        "Article LO6314-3 du Code général des collectivités territoriales",
+        "https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=6A3717E70623B148432581CC8F585C5F.tplgfr31s_1?idArticle=LEGIARTI000006394061&cidTexte=LEGITEXT000006070633&dateTexte=20180316",
         ]
-    label = u"Éligibilité du logement occupé au chèque énergie"
+    label = "Éligibilité du logement occupé au chèque énergie"
     definition_period = MONTH
 
     def formula_2017(menage, period, parameters):
@@ -54,10 +54,10 @@ class cheque_energie_montant(Variable):
     entity = Menage
     value_type = float
     reference = [
-        u"https://www.legifrance.gouv.fr/eli/decret/2016/5/6/DEVR1604032D/jo/article_1",
-        u"https://www.legifrance.gouv.fr/eli/arrete/2018/12/26/TRER1832961A/jo/texte",
+        "https://www.legifrance.gouv.fr/eli/decret/2016/5/6/DEVR1604032D/jo/article_1",
+        "https://www.legifrance.gouv.fr/eli/arrete/2018/12/26/TRER1832961A/jo/texte",
         ]
-    label = u"Montant du chèque énergie"
+    label = "Montant du chèque énergie"
     definition_period = YEAR
 
     def formula_2017(menage, period, parameters):
@@ -79,7 +79,7 @@ class cheque_energie(Variable):
     entity = Menage
     value_type = float
     reference = "https://chequeenergie.gouv.fr"
-    label = u"Montant auquel le ménage peut prétendre au titre du chèque energie"
+    label = "Montant auquel le ménage peut prétendre au titre du chèque energie"
     definition_period = MONTH
 
     def formula_2017(menage, period, parameters):

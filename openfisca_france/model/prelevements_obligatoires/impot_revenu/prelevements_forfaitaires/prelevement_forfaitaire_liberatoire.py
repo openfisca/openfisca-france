@@ -9,42 +9,42 @@ log = logging.getLogger(__name__)
 class assurance_vie_pl_non_anonyme_plus8ans_depuis1990(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = u"Produits des bons ou contrats de capitalisation et d'assurance vie d'une durée d'au moins 8 ans pour les contrats souscrits depuis le 1er janvier 1990, et que le bénéficiaire décide de soumettre au prélèvement libératoire"
+    label = "Produits des bons ou contrats de capitalisation et d'assurance vie d'une durée d'au moins 8 ans pour les contrats souscrits depuis le 1er janvier 1990, et que le bénéficiaire décide de soumettre au prélèvement libératoire"
     definition_period = YEAR
 
 
 class assurance_vie_pl_non_anonyme_plus6ans_avant1990(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = u"Produits des bons ou contrats de capitalisation et d'assurance vie d'une durée d'au moins 6 ans pour les contrats souscrits précédemment, et que le bénéficiaire décide de soumettre au prélèvement libératoire"
+    label = "Produits des bons ou contrats de capitalisation et d'assurance vie d'une durée d'au moins 6 ans pour les contrats souscrits précédemment, et que le bénéficiaire décide de soumettre au prélèvement libératoire"
     definition_period = YEAR
 
 
 class assurance_vie_pl_non_anonyme_moins4ans_depuis1990(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = u"Produits des bons ou contrats de capitalisation et d'assurance vie d'une durée de moins de 4 ans, pour les contrats souscrits depuis le 1er janvier 1990, et que le bénéficiaire décide de soumettre au prélèvement libératoire"
+    label = "Produits des bons ou contrats de capitalisation et d'assurance vie d'une durée de moins de 4 ans, pour les contrats souscrits depuis le 1er janvier 1990, et que le bénéficiaire décide de soumettre au prélèvement libératoire"
     definition_period = YEAR
 
 
 class assurance_vie_pl_non_anonyme_4_8_ans_depuis1990(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = u"Produits des bons ou contrats de capitalisation et d'assurance vie d'une durée de 4 à 8 ans, pour les contrats souscrits depuis le 1er janvier 1990, et que le bénéficiaire décide de soumettre au prélèvement libératoire"
+    label = "Produits des bons ou contrats de capitalisation et d'assurance vie d'une durée de 4 à 8 ans, pour les contrats souscrits depuis le 1er janvier 1990, et que le bénéficiaire décide de soumettre au prélèvement libératoire"
     definition_period = YEAR
 
 
 class assurance_vie_pl_anonyme(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = u"Produits des bons ou contrats de capitalisation et d'assurance vie lorsque le bénéficiaire ne révèle pas son identité et son domicile fiscal, et qu'il décide de soumettre ces produits au prélèvement libératoire"
+    label = "Produits des bons ou contrats de capitalisation et d'assurance vie lorsque le bénéficiaire ne révèle pas son identité et son domicile fiscal, et qu'il décide de soumettre ces produits au prélèvement libératoire"
     definition_period = YEAR
 
 
 class prelevement_forfaitaire_liberatoire(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = u"Prelèvement forfaitaire libératoire sur les revenus du capital"
+    label = "Prelèvement forfaitaire libératoire sur les revenus du capital"
     reference = "art. 125-0 A du Code Général des Impôts"
     definition_period = YEAR
 

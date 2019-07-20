@@ -8,18 +8,18 @@ from openfisca_france.model.base import *
 class ass_precondition_remplie(Variable):
     value_type = bool
     entity = Individu
-    label = u"Éligible à l'ASS"
+    label = "Éligible à l'ASS"
     definition_period = MONTH
     reference = [
-        u"Article R5423-1 du Code du travail",
-        u"https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006072050&idArticle=LEGIARTI000018525084&dateTexte=20190618&categorieLien=cid#LEGIARTI000018525084"
+        "Article R5423-1 du Code du travail",
+        "https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006072050&idArticle=LEGIARTI000018525084&dateTexte=20190618&categorieLien=cid#LEGIARTI000018525084"
         ]
     set_input = set_input_dispatch_by_period
 
 
 class ass(Variable):
     value_type = float
-    label = u"Montant de l'ASS pour un individu"
+    label = "Montant de l'ASS pour un individu"
     entity = Individu
     definition_period = MONTH
     set_input = set_input_divide_by_period
@@ -51,7 +51,7 @@ class ass(Variable):
 
 class ass_base_ressources(Variable):
     value_type = float
-    label = u"Base de ressources de l'ASS"
+    label = "Base de ressources de l'ASS"
     entity = Famille
     definition_period = MONTH
 
@@ -65,12 +65,12 @@ class ass_base_ressources(Variable):
 
 class ass_base_ressources_individu(Variable):
     value_type = float
-    label = u"Base de ressources individuelle de l'ASS"
+    label = "Base de ressources individuelle de l'ASS"
     entity = Individu
     definition_period = MONTH
     reference = [
         # Articles R5423-1 à 6 du code du travail
-        u'https://www.legifrance.gouv.fr/affichCode.do?idSectionTA=LEGISCTA000018525086&cidTexte=LEGITEXT000006072050&dateTexte=20181227'
+        'https://www.legifrance.gouv.fr/affichCode.do?idSectionTA=LEGISCTA000018525086&cidTexte=LEGITEXT000006072050&dateTexte=20181227'
         ]
 
     def formula(individu, period, parameters):
@@ -119,7 +119,7 @@ class ass_base_ressources_individu(Variable):
 
 class ass_base_ressources_conjoint(Variable):
     value_type = float
-    label = u"Base de ressources individuelle pour le conjoint du demandeur de l'ASS"
+    label = "Base de ressources individuelle pour le conjoint du demandeur de l'ASS"
     entity = Individu
     definition_period = MONTH
 
@@ -169,13 +169,13 @@ def calculateWithAbatement(individu, parameters, period, ressourceName):
 
 class ass_eligibilite_cumul_individu(Variable):
     value_type = bool
-    label = u"Eligibilité au cumul de l'ASS avec un revenu d'activité"
+    label = "Eligibilité au cumul de l'ASS avec un revenu d'activité"
     entity = Individu
     definition_period = MONTH
     reference = [
-        u"Article R5425-2 du code du travail",
-        u"https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006072050&idArticle=LEGIARTI000018496568&dateTexte=",
-        u"https://www.legifrance.gouv.fr/eli/decret/2017/5/5/ETSD1708117D/jo/article_2"
+        "Article R5425-2 du code du travail",
+        "https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006072050&idArticle=LEGIARTI000018496568&dateTexte=",
+        "https://www.legifrance.gouv.fr/eli/decret/2017/5/5/ETSD1708117D/jo/article_2"
         ]
 
     def formula_2017_09_01(individu, period):
@@ -209,12 +209,12 @@ class ass_eligibilite_cumul_individu(Variable):
 
 class ass_eligibilite_individu(Variable):
     value_type = bool
-    label = u"Éligibilité individuelle à l'ASS"
+    label = "Éligibilité individuelle à l'ASS"
     entity = Individu
     definition_period = MONTH
     reference = [
-        u"Article L5423-1 du code du travail",
-        u"https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006072050&idArticle=LEGIARTI000006903847&dateTexte=&categorieLien=cid",
+        "Article L5423-1 du code du travail",
+        "https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006072050&idArticle=LEGIARTI000006903847&dateTexte=&categorieLien=cid",
         ]
 
     def formula(individu, period, parameters):

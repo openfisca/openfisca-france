@@ -5,94 +5,94 @@ from openfisca_france.model.base import *
 
 # Rentes viagères
 class f1aw(Variable):
-    cerfa_field = u"1AW"
+    cerfa_field = "1AW"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Rentes viagères à titre onéreux perçues par le foyer par âge d'entrée en jouissance : Moins de 50 ans"
+    label = "Rentes viagères à titre onéreux perçues par le foyer par âge d'entrée en jouissance : Moins de 50 ans"
     definition_period = YEAR
 
 
 class f1bw(Variable):
-    cerfa_field = u"1BW"
+    cerfa_field = "1BW"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Rentes viagères à titre onéreux perçues par le foyer par âge d'entrée en jouissance : De 50 à 59 ans"
+    label = "Rentes viagères à titre onéreux perçues par le foyer par âge d'entrée en jouissance : De 50 à 59 ans"
     definition_period = YEAR
 
 
 class f1cw(Variable):
-    cerfa_field = u"1CW"
+    cerfa_field = "1CW"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Rentes viagères à titre onéreux perçues par le foyer par âge d'entrée en jouissance : De 60 à 69 ans"
+    label = "Rentes viagères à titre onéreux perçues par le foyer par âge d'entrée en jouissance : De 60 à 69 ans"
     definition_period = YEAR
 
 
 class f1dw(Variable):
-    cerfa_field = u"1DW"
+    cerfa_field = "1DW"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Rentes viagères à titre onéreux perçues par le foyer par âge d'entrée en jouissance : A partir de 70 ans"
+    label = "Rentes viagères à titre onéreux perçues par le foyer par âge d'entrée en jouissance : A partir de 70 ans"
     definition_period = YEAR
 
 
 # Revenus fonciers
 class f4ba(Variable):
-    cerfa_field = u"4BA"
+    cerfa_field = "4BA"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Revenus fonciers imposables"
+    label = "Revenus fonciers imposables"
     definition_period = YEAR
 
 
 class f4bb(Variable):
-    cerfa_field = u"4BB"
+    cerfa_field = "4BB"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Déficit imputable sur les revenus fonciers"
+    label = "Déficit imputable sur les revenus fonciers"
     definition_period = YEAR
 
 
 class f4bc(Variable):
-    cerfa_field = u"4BC"
+    cerfa_field = "4BC"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Déficit imputable sur le revenu global"
+    label = "Déficit imputable sur le revenu global"
     definition_period = YEAR
 
 
 class f4bd(Variable):
-    cerfa_field = u"4BD"
+    cerfa_field = "4BD"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Déficits antérieurs non encore imputés"
+    label = "Déficits antérieurs non encore imputés"
     definition_period = YEAR
 
 
 class f4be(Variable):
-    cerfa_field = u"4BE"
+    cerfa_field = "4BE"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Micro foncier: recettes brutes sans abattement"
+    label = "Micro foncier: recettes brutes sans abattement"
     definition_period = YEAR
 
 
 # Prime d'assurance loyers impayés
 class f4bf(Variable):
-    cerfa_field = u"4BF"
+    cerfa_field = "4BF"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Primes d'assurance pour loyers impayés des locations conventionnées"
+    label = "Primes d'assurance pour loyers impayés des locations conventionnées"
     end = '2016-12-31'
     definition_period = YEAR
 
@@ -109,7 +109,7 @@ class f4bl(Variable):
 class valeur_patrimoine_loue(Variable):
     value_type = float
     entity = Individu
-    label = u"Valeur des biens immobiliers et des terrains loués"
+    label = "Valeur des biens immobiliers et des terrains loués"
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
@@ -117,7 +117,7 @@ class valeur_patrimoine_loue(Variable):
 class revenus_locatifs(Variable):
     value_type = float
     entity = Individu
-    label = u"Revenus locatifs"
+    label = "Revenus locatifs"
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
@@ -136,7 +136,7 @@ class revenus_locatifs(Variable):
 class valeur_immo_non_loue(Variable):
     value_type = float
     entity = Individu
-    label = u"Valeur des biens immobiliers possédés et non loués"
+    label = "Valeur des biens immobiliers possédés et non loués"
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
@@ -144,7 +144,7 @@ class valeur_immo_non_loue(Variable):
 class valeur_locative_immo_non_loue(Variable):
     value_type = float
     entity = Individu
-    label = u"Valeur locative, à l'année, des biens immobiliers possédés et non loués"
+    label = "Valeur locative, à l'année, des biens immobiliers possédés et non loués"
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
@@ -152,7 +152,7 @@ class valeur_locative_immo_non_loue(Variable):
 class valeur_terrains_non_loues(Variable):
     value_type = float
     entity = Individu
-    label = u"Valeur des terrains possédés et non loués"
+    label = "Valeur des terrains possédés et non loués"
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
@@ -160,6 +160,6 @@ class valeur_terrains_non_loues(Variable):
 class valeur_locative_terrains_non_loues(Variable):
     value_type = float
     entity = Individu
-    label = u"Valeur locative, à l'année, des terrains possédés et non loués"
+    label = "Valeur locative, à l'année, des terrains possédés et non loués"
     definition_period = MONTH
     set_input = set_input_dispatch_by_period

@@ -10,14 +10,14 @@ class jei_date_demande(Variable):
     value_type = date
     default_value = date(2099, 12, 31)
     entity = Individu
-    label = u"Date de demande (et d'octroi) du statut de jeune entreprise innovante (JEI)"
+    label = "Date de demande (et d'octroi) du statut de jeune entreprise innovante (JEI)"
     definition_period = MONTH
 
 
 class exoneration_cotisations_employeur_geographiques(Variable):
     value_type = float
     entity = Individu
-    label = u"Exonérations de cotisations employeur dépendant d'une zone géographique"
+    label = "Exonérations de cotisations employeur dépendant d'une zone géographique"
     reference = "https://www.apce.com/pid815/aides-au-recrutement.html?espace=1&tp=1"
     definition_period = MONTH
 
@@ -38,7 +38,7 @@ class exoneration_cotisations_employeur_geographiques(Variable):
 class exoneration_cotisations_employeur_jei(Variable):
     value_type = float
     entity = Individu
-    label = u"Exonrérations de cotisations employeur pour une jeune entreprise innovante"
+    label = "Exonrérations de cotisations employeur pour une jeune entreprise innovante"
     reference = "http://www.apce.com/pid1653/jeune-entreprise-innovante.html?pid=1653&pagination=2"
     definition_period = MONTH
 
@@ -86,7 +86,7 @@ class exoneration_cotisations_employeur_jei(Variable):
 class exoneration_cotisations_employeur_zfu(Variable):
     value_type = float
     entity = Individu
-    label = u"Exonrérations de cotisations employeur pour l'embauche en zone franche urbaine (ZFU)"
+    label = "Exonrérations de cotisations employeur pour l'embauche en zone franche urbaine (ZFU)"
     reference = "http://www.apce.com/pid553/exoneration-dans-les-zfu.html?espace=1&tp=1&pagination=2"
     definition_period = MONTH
 
@@ -252,7 +252,7 @@ class exoneration_cotisations_employeur_zfu(Variable):
 class exoneration_cotisations_employeur_zrd(Variable):
     value_type = float
     entity = Individu
-    label = u"Exonrérations de cotisations employeur pour l'embauche en zone de restructuration de la Défense (ZRD)"
+    label = "Exonrérations de cotisations employeur pour l'embauche en zone de restructuration de la Défense (ZRD)"
     reference = "http://www.apce.com/pid11668/exoneration-dans-les-zrd.html?espace=1&tp=1"
     definition_period = MONTH
 
@@ -290,7 +290,7 @@ class exoneration_cotisations_employeur_zrd(Variable):
 class exoneration_cotisations_employeur_zrr(Variable):
     value_type = float
     entity = Individu
-    label = u"Exonrérations de cotisations employeur pour l'embauche en zone de revitalisation rurale (ZRR)"
+    label = "Exonrérations de cotisations employeur pour l'embauche en zone de revitalisation rurale (ZRR)"
     reference = "http://www.apce.com/pid538/embauches-en-zru-et-zrr.html?espace=1&tp=1"
     definition_period = MONTH
 
@@ -348,7 +348,7 @@ class exoneration_cotisations_employeur_zrr(Variable):
 class exoneration_is_creation_zrr(Variable):
     value_type = float
     entity = Individu
-    label = u"Exonrérations fiscales pour création d'une entreprise en zone de revitalisation rurale (ZRR)"
+    label = "Exonrérations fiscales pour création d'une entreprise en zone de revitalisation rurale (ZRR)"
     reference = 'http://www.apce.com/pid11690/exonerations-d-impots-zrr.html?espace=1&tp=1'
     definition_period = YEAR
     calculate_output = calculate_output_divide
@@ -402,7 +402,7 @@ class exoneration_is_creation_zrr(Variable):
 # # class bassin_emploi_redynamiser(Variable):
 #     value_type = bool
 #     entity = Individu
-#     label = u"L'entreprise est située danns un bassin d'emploi à redynamiser(BER)"
+#     label = "L'entreprise est située danns un bassin d'emploi à redynamiser(BER)"
 #     # La liste des bassins d'emploi à redynamiser a été fixée par le décret n°2007-228 du 20 février 2007.
 #     # Actuellement, deux régions sont concernées : Champagne-Ardenne (zone d'emploi de la Vallée de la Meuse)
 #     # et Midi-Pyrénées (zone d'emploi de Lavelanet).
@@ -414,7 +414,7 @@ class exoneration_is_creation_zrr(Variable):
 class jeune_entreprise_innovante(Variable):
     value_type = bool
     entity = Individu
-    label = u"L'entreprise est une jeune entreprise innovante"
+    label = "L'entreprise est une jeune entreprise innovante"
     definition_period = MONTH
 
     def formula(individu, period, parameters):
@@ -475,7 +475,7 @@ class jeune_entreprise_innovante(Variable):
 class bassin_emploi_redynamiser(Variable):
     value_type = bool
     entity = Individu
-    label = u"L'entreprise est située danns un bassin d'emploi à redynamiser (BER)"
+    label = "L'entreprise est située danns un bassin d'emploi à redynamiser (BER)"
     # La liste des bassins d'emploi à redynamiser a été fixée par le décret n°2007-228 du 20 février 2007.
     # Actuellement, deux régions sont concernées : Champagne-Ardenne (zone d'emploi de la Vallée de la Meuse)
     # et Midi-Pyrénées (zone d'emploi de Lavelanet).
@@ -490,7 +490,7 @@ class bassin_emploi_redynamiser(Variable):
 class zone_restructuration_defense(Variable):
     value_type = bool
     entity = Individu
-    label = u"L'entreprise est située dans une zone de restructuration de la Défense (ZRD)"
+    label = "L'entreprise est située dans une zone de restructuration de la Défense (ZRD)"
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
@@ -502,7 +502,7 @@ class zone_restructuration_defense(Variable):
 class zone_franche_urbaine(Variable):
     value_type = bool
     entity = Individu
-    label = u"L'entreprise est située danns une zone franche urbaine (ZFU)"
+    label = "L'entreprise est située danns une zone franche urbaine (ZFU)"
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
@@ -514,7 +514,7 @@ class zone_franche_urbaine(Variable):
 class zone_revitalisation_rurale(Variable):
     value_type = bool
     entity = Individu
-    label = u"L'entreprise est située dans une zone de revitalisation rurale (ZRR)"
+    label = "L'entreprise est située dans une zone de revitalisation rurale (ZRR)"
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 

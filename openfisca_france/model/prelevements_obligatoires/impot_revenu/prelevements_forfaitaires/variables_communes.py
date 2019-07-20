@@ -11,12 +11,12 @@ log = logging.getLogger(__name__)
 class produit_epargne_solidaire(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = u"Produit d'épargne solidaire"
+    label = "Produit d'épargne solidaire"
     definition_period = YEAR
 
 
 class produit_etats_non_cooperatif(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = u"Produits de placement à revenus fixe ou de contrats de capitalisation et d'assurance-vie versés à un bénéficiaire résidant dans un état non-coopératif"
+    label = "Produits de placement à revenus fixe ou de contrats de capitalisation et d'assurance-vie versés à un bénéficiaire résidant dans un état non-coopératif"
     definition_period = YEAR

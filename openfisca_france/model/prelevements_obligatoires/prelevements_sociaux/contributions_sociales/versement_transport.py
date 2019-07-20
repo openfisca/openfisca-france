@@ -12,7 +12,7 @@ from openfisca_france.france_taxbenefitsystem import COUNTRY_DIR
 class taux_versement_transport(Variable):
     value_type = float
     entity = Individu
-    label = u""
+    label = ""
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
@@ -47,7 +47,7 @@ class taux_versement_transport(Variable):
 class versement_transport(Variable):
     value_type = float
     entity = Individu
-    label = u"Versement transport"
+    label = "Versement transport"
     definition_period = MONTH
 
     def formula(individu, period, parameters):

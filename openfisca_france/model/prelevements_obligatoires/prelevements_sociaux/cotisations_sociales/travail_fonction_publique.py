@@ -9,7 +9,7 @@ from openfisca_france.model.prelevements_obligatoires.prelevements_sociaux.cotis
 class allocations_temporaires_invalidite(Variable):
     value_type = float
     entity = Individu
-    label = u"Allocations temporaires d'invalidité (ATI, fonction publique et collectivités locales)"
+    label = "Allocations temporaires d'invalidité (ATI, fonction publique et collectivités locales)"
     definition_period = MONTH
     # patronale, non-contributive
 
@@ -40,7 +40,7 @@ class allocations_temporaires_invalidite(Variable):
 class assiette_cotisations_sociales_public(Variable):
     value_type = float
     entity = Individu
-    label = u"Assiette des cotisations sociales des agents titulaires de la fonction publique"
+    label = "Assiette des cotisations sociales des agents titulaires de la fonction publique"
     definition_period = MONTH
     # TODO: gestion des heures supplémentaires
 
@@ -71,7 +71,7 @@ class assiette_cotisations_sociales_public(Variable):
 class contribution_exceptionnelle_solidarite(Variable):
     value_type = float
     entity = Individu
-    label = u"Cotisation exceptionnelle au fonds de solidarité (salarié)"
+    label = "Cotisation exceptionnelle au fonds de solidarité (salarié)"
     definition_period = MONTH
     end = '2017-12-31'
     reference = "https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006072050&idArticle=LEGIARTI000006903878&dateTexte=&categorieLien=cid"
@@ -133,7 +133,7 @@ class contribution_exceptionnelle_solidarite(Variable):
 class fonds_emploi_hospitalier(Variable):
     value_type = float
     entity = Individu
-    label = u"Fonds pour l'emploi hospitalier (employeur)"
+    label = "Fonds pour l'emploi hospitalier (employeur)"
     definition_period = MONTH
 
     def formula(individu, period, parameters):
@@ -154,7 +154,7 @@ class fonds_emploi_hospitalier(Variable):
 class ircantec_salarie(Variable):
     value_type = float
     entity = Individu
-    label = u"Ircantec salarié"
+    label = "Ircantec salarié"
     definition_period = MONTH
 
     def formula(individu, period, parameters):
@@ -176,7 +176,7 @@ class ircantec_salarie(Variable):
 class ircantec_employeur(Variable):
     value_type = float
     entity = Individu
-    label = u"Ircantec employeur"
+    label = "Ircantec employeur"
     definition_period = MONTH
 
     def formula(individu, period, parameters):
@@ -198,7 +198,7 @@ class ircantec_employeur(Variable):
 class pension_civile_salarie(Variable):
     value_type = float
     entity = Individu
-    label = u"Pension civile salarié"
+    label = "Pension civile salarié"
     definition_period = MONTH
 
     def formula(individu, period, parameters):
@@ -222,8 +222,8 @@ class pension_civile_salarie(Variable):
 class pension_civile_employeur(Variable):
     value_type = float
     entity = Individu
-    label = u"Cotisation patronale pension civile"
-    reference = u"http://www.ac-besancon.fr/spip.php?article2662"
+    label = "Cotisation patronale pension civile"
+    reference = "http://www.ac-besancon.fr/spip.php?article2662"
     definition_period = MONTH
 
     def formula(individu, period, parameters):
@@ -252,7 +252,7 @@ class pension_civile_employeur(Variable):
 class rafp_salarie(Variable):
     value_type = float
     entity = Individu
-    label = u"Part salariale de la retraite additionelle de la fonction publique"
+    label = "Part salariale de la retraite additionelle de la fonction publique"
     definition_period = MONTH
     # Part salariale de la retraite additionelle de la fonction publique
     # TODO: ajouter la gipa qui n'est pas affectée par le plafond d'assiette
@@ -282,7 +282,7 @@ class rafp_salarie(Variable):
 class rafp_employeur(Variable):
     value_type = float
     entity = Individu
-    label = u"Part patronale de la retraite additionnelle de la fonction publique"
+    label = "Part patronale de la retraite additionnelle de la fonction publique"
     definition_period = MONTH
 
     # TODO: ajouter la gipa qui n'est pas affectée par le plafond d'assiette
