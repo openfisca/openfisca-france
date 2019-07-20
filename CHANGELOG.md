@@ -1,5 +1,12 @@
 # Changelog
 
+### 48.3.1 [#1366](https://github.com/openfisca/openfisca-france/pull/1366)
+
+* Changement mineur
+* Zones impactées : `**/*`.
+* Détails :
+  - Supprime le keyword unicode `u`, qui n'est plus nécessaire depuis Python 3
+
 ##  48.3.0 [#1358](https://github.com/openfisca/openfisca-france/pull/1358)
 
 * Évolution du système socio-fiscal.
