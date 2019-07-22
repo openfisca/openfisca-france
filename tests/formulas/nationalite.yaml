@@ -1,0 +1,5 @@
+period: 2019-08
+input:
+  nationalite: [FR, IT, AG]
+output:
+  ressortissant_eee: [true, true, false]
