@@ -20,5 +20,6 @@ cache_blacklist = set([
     'garantie_jeunes_eligibilite_age',
     'montant_cheque_energie',
     'ppa_forfait_logement',
+    'ppa_plancher_revenu_activite_etudiant',
     'unites_consommation_cheque_energie',
     ])
