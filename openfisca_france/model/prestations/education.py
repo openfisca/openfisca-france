@@ -5,7 +5,7 @@ from openfisca_france.model.base import *
 
 class bourse_college_echelon(Variable):
     value_type = int
-    label = u"Échelon de la bourse de collège attribuée"
+    label = "Échelon de la bourse de collège attribuée"
     entity = Famille
     definition_period = MONTH
 
@@ -81,7 +81,7 @@ class bourse_college_echelon(Variable):
 
 class bourse_college(Variable):
     value_type = float
-    label = u"Montant annuel de la bourse de collège"
+    label = "Montant annuel de la bourse de collège"
     entity = Famille
     definition_period = MONTH
     set_input = set_input_divide_by_period
@@ -115,7 +115,7 @@ class bourse_college(Variable):
 
 class bourse_lycee_points_de_charge(Variable):
     value_type = float
-    label = u"Nombre de points de charge pour la bourse de lycée"
+    label = "Nombre de points de charge pour la bourse de lycée"
     entity = Famille
     definition_period = MONTH
     end = '2016-07-01'
@@ -138,7 +138,7 @@ class bourse_lycee_points_de_charge(Variable):
 
 class bourse_lycee_nombre_parts(Variable):
     value_type = float
-    label = u"Nombre de parts pour le calcul du montant de la bourse de lycée"
+    label = "Nombre de parts pour le calcul du montant de la bourse de lycée"
     entity = Famille
     definition_period = MONTH
     end = '2016-07-01'
@@ -167,7 +167,7 @@ class bourse_lycee_nombre_parts(Variable):
 
 class bourse_lycee_echelon(Variable):
     value_type = int
-    label = u"Échelon de la bourse de collège attribuée"
+    label = "Échelon de la bourse de collège attribuée"
     entity = Famille
     definition_period = MONTH
 
@@ -247,7 +247,7 @@ class bourse_lycee_echelon(Variable):
 
 class bourse_lycee(Variable):
     value_type = float
-    label = u"Montant annuel de la bourse de lycée"
+    label = "Montant annuel de la bourse de lycée"
     entity = Famille
     definition_period = MONTH
     set_input = set_input_divide_by_period
@@ -292,9 +292,9 @@ class bourse_lycee(Variable):
 
 class TypesScolarite(Enum):
     __order__ = 'inconnue college lycee'  # Needed to preserve the enum order in Python 2
-    inconnue = u"Inconnue"
-    college = u"Collège"
-    lycee = u"Lycée"
+    inconnue = "Inconnue"
+    college = "Collège"
+    lycee = "Lycée"
 
 
 class scolarite(Variable):
@@ -302,5 +302,5 @@ class scolarite(Variable):
     possible_values = TypesScolarite
     default_value = TypesScolarite.inconnue
     entity = Individu
-    label = u"Scolarité de l'enfant : collège, lycée..."
+    label = "Scolarité de l'enfant : collège, lycée..."
     definition_period = MONTH

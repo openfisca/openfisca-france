@@ -30,14 +30,14 @@ class variator(Variable):
     value_type = float
     default_value = 1
     entity = FoyerFiscal
-    label = u'Multiplicateur du seuil de régularisation'
+    label = 'Multiplicateur du seuil de régularisation'
     definition_period = YEAR
 
 
 class reduction_csg(Variable):
     value_type = float
     entity = Individu
-    label = u"Réduction dégressive de CSG"
+    label = "Réduction dégressive de CSG"
     definition_period = YEAR
 
     def formula_2015_01_01(individu, period, parameters):
@@ -60,7 +60,7 @@ class reduction_csg(Variable):
 
 class reduction_csg_foyer_fiscal(Variable):
     entity = FoyerFiscal
-    label = u"Réduction dégressive de CSG des memebres du foyer fiscal"
+    label = "Réduction dégressive de CSG des memebres du foyer fiscal"
     value_type = float
     definition_period = YEAR
 
@@ -72,7 +72,7 @@ class reduction_csg_foyer_fiscal(Variable):
 class reduction_csg_nette(Variable):
     value_type = float
     entity = Individu
-    label = u"Réduction dégressive de CSG"
+    label = "Réduction dégressive de CSG"
     definition_period = YEAR
 
     def formula_2015_01_01(individu, period):
@@ -84,7 +84,7 @@ class reduction_csg_nette(Variable):
 class ppe_elig_bis(Variable):
     value_type = bool
     entity = FoyerFiscal
-    label = u"ppe_elig_bis"
+    label = "ppe_elig_bis"
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
@@ -108,7 +108,7 @@ class ppe_elig_bis(Variable):
 class regularisation_reduction_csg(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = u"Régularisation complète réduction dégressive de CSG"
+    label = "Régularisation complète réduction dégressive de CSG"
     definition_period = YEAR
 
     def formula_2015_01_01(foyer_fiscal, period, parameters):
@@ -118,7 +118,7 @@ class regularisation_reduction_csg(Variable):
 
 
 class ayrault_muet(Reform):
-    name = u'Amendement Ayrault-Muet au PLF2016'
+    name = 'Amendement Ayrault-Muet au PLF2016'
     key = 'ayrault_muet'
 
     def apply(self):

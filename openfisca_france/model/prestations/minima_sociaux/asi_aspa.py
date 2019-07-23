@@ -8,13 +8,13 @@ from openfisca_france.model.base import *
 class inapte_travail(Variable):
     value_type = bool
     entity = Individu
-    label = u"Reconnu inapte au travail"
+    label = "Reconnu inapte au travail"
     definition_period = MONTH
 
 
 class asi_aspa_base_ressources_individu(Variable):
     value_type = float
-    label = u"Base ressources individuelle du minimum vieillesse/ASPA"
+    label = "Base ressources individuelle du minimum vieillesse/ASPA"
     entity = Individu
     definition_period = MONTH
 
@@ -104,7 +104,7 @@ class asi_aspa_base_ressources_individu(Variable):
 
 class asi_aspa_base_ressources(Variable):
     value_type = float
-    label = u"Base ressource du minimum vieillesse et assimilés (ASPA)"
+    label = "Base ressource du minimum vieillesse et assimilés (ASPA)"
     entity = Famille
     definition_period = MONTH
 
@@ -116,7 +116,7 @@ class asi_aspa_base_ressources(Variable):
 
 class aspa_eligibilite(Variable):
     value_type = bool
-    label = u"Indicatrice individuelle d'éligibilité à l'allocation de solidarité aux personnes agées"
+    label = "Indicatrice individuelle d'éligibilité à l'allocation de solidarité aux personnes agées"
     entity = Individu
     definition_period = MONTH
 
@@ -136,7 +136,7 @@ class aspa_eligibilite(Variable):
 
 class asi_eligibilite(Variable):
     value_type = bool
-    label = u"Indicatrice individuelle d'éligibilité à l'allocation supplémentaire d'invalidité"
+    label = "Indicatrice individuelle d'éligibilité à l'allocation supplémentaire d'invalidité"
     entity = Individu
     definition_period = MONTH
 
@@ -161,7 +161,7 @@ class asi_eligibilite(Variable):
 class asi_aspa_condition_nationalite(Variable):
     value_type = bool
     default_value = True
-    label = u"Condition de nationnalité et de titre de séjour pour bénéficier de l'ASPA ou l'ASI"
+    label = "Condition de nationnalité et de titre de séjour pour bénéficier de l'ASPA ou l'ASI"
     entity = Individu
     definition_period = MONTH
 
@@ -175,7 +175,7 @@ class asi_aspa_condition_nationalite(Variable):
 
 class asi_aspa_nb_alloc(Variable):
     value_type = int
-    label = u"Nombre d'allocataires ASI/ASPA"
+    label = "Nombre d'allocataires ASI/ASPA"
     entity = Famille
     definition_period = MONTH
 
@@ -192,8 +192,8 @@ class asi_aspa_nb_alloc(Variable):
 class asi(Variable):
     calculate_output = calculate_output_add
     value_type = float
-    label = u"Allocation supplémentaire d'invalidité"
-    reference = u"http://vosdroits.service-public.fr/particuliers/F16940.xhtml"
+    label = "Allocation supplémentaire d'invalidité"
+    reference = "http://vosdroits.service-public.fr/particuliers/F16940.xhtml"
     entity = Individu
     definition_period = MONTH
     set_input = set_input_divide_by_period
@@ -255,7 +255,7 @@ class asi(Variable):
 
 class aspa_couple(Variable):
     value_type = bool
-    label = u"Couple au sens de l'ASPA"
+    label = "Couple au sens de l'ASPA"
     entity = Famille
     definition_period = MONTH
 
@@ -274,7 +274,7 @@ class aspa(Variable):
     calculate_output = calculate_output_add
     value_type = float
     entity = Famille
-    label = u"Allocation de solidarité aux personnes agées"
+    label = "Allocation de solidarité aux personnes agées"
     reference = "http://vosdroits.service-public.fr/particuliers/F16871.xhtml"
     definition_period = MONTH
     set_input = set_input_divide_by_period

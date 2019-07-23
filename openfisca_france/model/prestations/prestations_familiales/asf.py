@@ -6,7 +6,7 @@ from openfisca_france.model.base import *
 class asf_elig_enfant(Variable):
     value_type = bool
     entity = Individu
-    label = u"Enfant pouvant ouvrir droit à l'ASF"
+    label = "Enfant pouvant ouvrir droit à l'ASF"
     definition_period = MONTH
 
     def formula(individu, period, parameters):
@@ -28,7 +28,7 @@ class asf_elig_enfant(Variable):
 class asf_elig(Variable):
     value_type = bool
     entity = Famille
-    label = u"Éligibilité à l'ASF"
+    label = "Éligibilité à l'ASF"
     reference = ['https://www.aide-sociale.fr/allocation-soutien-familial/']
     definition_period = MONTH
 
@@ -44,7 +44,7 @@ class asf(Variable):
     calculate_output = calculate_output_add
     value_type = float
     entity = Famille
-    label = u"Allocation de soutien familial (ASF)"
+    label = "Allocation de soutien familial (ASF)"
     definition_period = MONTH
     set_input = set_input_divide_by_period
 

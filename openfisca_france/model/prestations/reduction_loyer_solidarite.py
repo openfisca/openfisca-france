@@ -6,11 +6,11 @@ from openfisca_france.model.base import *
 class reduction_loyer_solidarite_plafond_ressources(Variable):
     value_type = float
     entity = Famille
-    label = u"Plafond de ressources pour le calcul de la réduction du loyer de solidarité"
+    label = "Plafond de ressources pour le calcul de la réduction du loyer de solidarité"
     reference = [
-        u"https://www.anil.org/aj-reduction-loyer-solidarite-rls-apl/",
-        u"https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000036650010&dateTexte=&categorieLien=id",
-        u"https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000036650026&dateTexte=&categorieLien=id"
+        "https://www.anil.org/aj-reduction-loyer-solidarite-rls-apl/",
+        "https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000036650010&dateTexte=&categorieLien=id",
+        "https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000036650026&dateTexte=&categorieLien=id"
         ]
     definition_period = MONTH
 
@@ -60,8 +60,8 @@ class reduction_loyer_solidarite_plafond_ressources(Variable):
 class reduction_loyer_solidarite_montant(Variable):
     value_type = float
     entity = Famille
-    label = u"Montant de la réduction du loyer de solidarité"
-    reference = u"https://www.legifrance.gouv.fr/eli/arrete/2018/2/27/TERL1801551A/jo/article_2"
+    label = "Montant de la réduction du loyer de solidarité"
+    reference = "https://www.legifrance.gouv.fr/eli/arrete/2018/2/27/TERL1801551A/jo/article_2"
     definition_period = MONTH
 
     def formula(famille, period, parameters):
@@ -95,11 +95,11 @@ class reduction_loyer_solidarite_montant(Variable):
 class reduction_loyer_solidarite(Variable):
     value_type = float
     entity = Famille
-    label = u"Réduction du loyer de solidarité effectivement versée"
+    label = "Réduction du loyer de solidarité effectivement versée"
     reference = [
-        u"https://www.anil.org/aj-reduction-loyer-solidarite-rls-apl/",
-        u"https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000036650010&dateTexte=&categorieLien=id",
-        u"https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000036650026&dateTexte=&categorieLien=id"
+        "https://www.anil.org/aj-reduction-loyer-solidarite-rls-apl/",
+        "https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000036650010&dateTexte=&categorieLien=id",
+        "https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000036650026&dateTexte=&categorieLien=id"
         ]
     definition_period = MONTH
 

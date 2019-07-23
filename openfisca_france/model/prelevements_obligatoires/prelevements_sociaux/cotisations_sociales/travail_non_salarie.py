@@ -22,14 +22,14 @@ class categorie_non_salarie(Variable):
     possible_values = TypesCategorieNonSalarie
     default_value = TypesCategorieNonSalarie.non_pertinent
     entity = Individu
-    label = u"Type du travailleur salarié (artisant, commercant, profession libérale, etc)"
+    label = "Type du travailleur salarié (artisant, commercant, profession libérale, etc)"
     definition_period = YEAR
 
 
 class cotisations_non_salarie(Variable):
     value_type = float
     entity = Individu
-    label = u"Cotisations sociales des travailleurs non salaries"
+    label = "Cotisations sociales des travailleurs non salaries"
     definition_period = YEAR
     calculate_output = calculate_output_add
 
@@ -73,7 +73,7 @@ class cotisations_non_salarie(Variable):
 class deces_artisan_commercant(Variable):
     value_type = float
     entity = Individu
-    label = u"Cotisation décès des artisans et des commercants"
+    label = "Cotisation décès des artisans et des commercants"
     definition_period = YEAR
     calculate_output = calculate_output_add
 
@@ -96,7 +96,7 @@ class deces_artisan_commercant(Variable):
 class formation_artisan_commercant(Variable):
     value_type = float
     entity = Individu
-    label = u"Cotisation formation des artisans et des commercants"
+    label = "Cotisation formation des artisans et des commercants"
     definition_period = YEAR
     calculate_output = calculate_output_add
 
@@ -123,7 +123,7 @@ class formation_artisan_commercant(Variable):
 class maladie_maternite_artisan_commercant(Variable):
     value_type = float
     entity = Individu
-    label = u"Cotisation maladie et maternité des artisans et des commercants"
+    label = "Cotisation maladie et maternité des artisans et des commercants"
     definition_period = YEAR
     calculate_output = calculate_output_add
 
@@ -174,7 +174,7 @@ class maladie_maternite_artisan_commercant(Variable):
 class retraite_complementaire_artisan_commercant(Variable):
     value_type = float
     entity = Individu
-    label = u"Cotisation de la retraite complémentaire des artisans et des commercants"
+    label = "Cotisation de la retraite complémentaire des artisans et des commercants"
     definition_period = YEAR
     calculate_output = calculate_output_add
 
@@ -197,7 +197,7 @@ class retraite_complementaire_artisan_commercant(Variable):
 class vieillesse_artisan_commercant(Variable):
     value_type = float
     entity = Individu
-    label = u"Cotisation vieillesse (plafonnée et déplafonnée) des artisans et des commercants"
+    label = "Cotisation vieillesse (plafonnée et déplafonnée) des artisans et des commercants"
     definition_period = YEAR
     calculate_output = calculate_output_add
 
@@ -219,7 +219,7 @@ class vieillesse_artisan_commercant(Variable):
 class famille_independant(Variable):
     value_type = float
     entity = Individu
-    label = u"Cotisation famille des indépendants"
+    label = "Cotisation famille des indépendants"
     definition_period = YEAR
     calculate_output = calculate_output_add
 
@@ -254,7 +254,7 @@ class famille_independant(Variable):
 class formation_profession_liberale(Variable):
     value_type = float
     entity = Individu
-    label = u"Cotisation formation professionelle des professions libérales"
+    label = "Cotisation formation professionelle des professions libérales"
     definition_period = YEAR
     calculate_output = calculate_output_add
 
@@ -275,7 +275,7 @@ class formation_profession_liberale(Variable):
 class maladie_maternite_profession_liberale(Variable):
     value_type = float
     entity = Individu
-    label = u"Cotisation maladie maternité des professions libérales"
+    label = "Cotisation maladie maternité des professions libérales"
     definition_period = YEAR
     calculate_output = calculate_output_add
 
@@ -309,7 +309,7 @@ class maladie_maternite_profession_liberale(Variable):
 class retraite_complementaire_profession_liberale(Variable):
     value_type = float
     entity = Individu
-    label = u"Cotisation de retraite complémentarie des professions libérales"
+    label = "Cotisation de retraite complémentarie des professions libérales"
     definition_period = YEAR
     calculate_output = calculate_output_add
 
@@ -329,7 +329,7 @@ class retraite_complementaire_profession_liberale(Variable):
 class vieillesse_profession_liberale(Variable):
     value_type = float
     entity = Individu
-    label = u"Cotisation retraite des professions libérales"
+    label = "Cotisation retraite des professions libérales"
     definition_period = YEAR
     calculate_output = calculate_output_add
 

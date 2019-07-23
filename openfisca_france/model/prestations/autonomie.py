@@ -5,7 +5,7 @@ from openfisca_france.model.base import *
 
 class base_ressources_apa(Variable):
     value_type = float
-    label = u"Ressources considérées dans le calcul de l'APA"
+    label = "Ressources considérées dans le calcul de l'APA"
     entity = Individu
     definition_period = MONTH
 
@@ -23,7 +23,7 @@ class base_ressources_apa(Variable):
 
 class apa_domicile_participation(Variable):
     value_type = float
-    label = u"Participation du bénéficiaire de l'APA à domicile en euros"
+    label = "Participation du bénéficiaire de l'APA à domicile en euros"
     entity = Individu
     definition_period = MONTH
 
@@ -129,7 +129,7 @@ class apa_domicile_participation(Variable):
 class apa_eligibilite(Variable):
     value_type = bool
     entity = Individu
-    label = u"Allocation personalisée d'autonomie - Éligibilité"
+    label = "Allocation personalisée d'autonomie - Éligibilité"
     definition_period = MONTH
 
     def formula(individu, period, parameters):
@@ -151,7 +151,7 @@ class apa_eligibilite(Variable):
 
 class apa_domicile_taux_participation(Variable):
     value_type = float
-    label = u"Taux de participation du bénéficiaire à l'APA à domicile"
+    label = "Taux de participation du bénéficiaire à l'APA à domicile"
     entity = Individu
     definition_period = MONTH
 
@@ -165,7 +165,7 @@ class apa_domicile_taux_participation(Variable):
 
 class apa_domicile(Variable):
     value_type = float
-    label = u"Allocation personalisée d'autonomie"
+    label = "Allocation personalisée d'autonomie"
     entity = Individu
     definition_period = MONTH
 
@@ -184,7 +184,7 @@ class apa_domicile(Variable):
 
 class apa_etablissement(Variable):
     value_type = float
-    label = u"Allocation personalisée d'autonomie en institution"
+    label = "Allocation personalisée d'autonomie en institution"
     entity = Individu
     definition_period = MONTH
 
@@ -250,13 +250,13 @@ class apa_etablissement(Variable):
 
 class TypesGir(Enum):
     __order__ = 'non_defini gir_1 gir_2 gir_3 gir_4 gir_5 gir_6'  # Needed to preserve the enum order in Python 2
-    non_defini = u"Non défini"
-    gir_1 = u"Gir 1"
-    gir_2 = u"Gir 2"
-    gir_3 = u"Gir 3"
-    gir_4 = u"Gir 4"
-    gir_5 = u"Gir 5"
-    gir_6 = u"Gir 6"
+    non_defini = "Non défini"
+    gir_1 = "Gir 1"
+    gir_2 = "Gir 2"
+    gir_3 = "Gir 3"
+    gir_4 = "Gir 4"
+    gir_5 = "Gir 5"
+    gir_6 = "Gir 6"
 
 
 class gir(Variable):
@@ -264,34 +264,34 @@ class gir(Variable):
     possible_values = TypesGir
     default_value = TypesGir.non_defini
     entity = Individu
-    label = u"Groupe iso-ressources de l'individu"
+    label = "Groupe iso-ressources de l'individu"
     definition_period = MONTH
 
 
 class dependance_plan_aide_domicile(Variable):
     value_type = float
     entity = Individu
-    label = u"Coût du plan d'aide à domicile pour une personne dépendante"
+    label = "Coût du plan d'aide à domicile pour une personne dépendante"
     definition_period = MONTH
 
 
 class dependance_tarif_etablissement_gir_5_6(Variable):
     value_type = float
     entity = Individu
-    label = u"Tarif dépendance de l'établissement pour les GIR 5 et 6"
+    label = "Tarif dépendance de l'établissement pour les GIR 5 et 6"
     definition_period = MONTH
 
 
 class dependance_tarif_etablissement_gir_dependant(Variable):
     value_type = float
     entity = Individu
-    label = u"Tarif dépendance de l'établissement pour le GIR de la personne dépendante"
+    label = "Tarif dépendance de l'établissement pour le GIR de la personne dépendante"
     definition_period = MONTH
 
 
 class apa_urgence_domicile(Variable):
     value_type = float
-    label = u"Allocation personalisée d'autonomie d'urgence à domicile"
+    label = "Allocation personalisée d'autonomie d'urgence à domicile"
     entity = Individu
     definition_period = MONTH
 
@@ -306,7 +306,7 @@ class apa_urgence_domicile(Variable):
 
 class apa_urgence_institution(Variable):
     value_type = float
-    label = u"Allocation personalisée d'autonomie en institution"
+    label = "Allocation personalisée d'autonomie en institution"
     entity = Individu
     definition_period = MONTH
 
@@ -320,7 +320,7 @@ class apa_urgence_institution(Variable):
 
 class dependance_plan_aide_domicile_accepte(Variable):
     value_type = float
-    label = u"Coût du plan d'aide plafonné pris en compte pour la détermination de l'APA"
+    label = "Coût du plan d'aide plafonné pris en compte pour la détermination de l'APA"
     entity = Individu
     definition_period = MONTH
     reference = [

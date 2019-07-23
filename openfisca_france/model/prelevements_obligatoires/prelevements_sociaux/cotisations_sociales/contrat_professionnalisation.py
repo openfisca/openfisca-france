@@ -6,7 +6,7 @@ from openfisca_france.model.base import *
 class professionnalisation(Variable):
     value_type = bool
     entity = Individu
-    label = u"L'individu est en contrat de professionnalisation"
+    label = "L'individu est en contrat de professionnalisation"
     reference = "http://www.apce.com/pid879/contrat-de-professionnalisation.html?espace=1&tp=1"
     definition_period = MONTH
 
@@ -27,7 +27,7 @@ class professionnalisation(Variable):
 class remuneration_professionnalisation(Variable):
     value_type = float
     entity = Individu
-    label = u"Rémunération de l'apprenti"
+    label = "Rémunération de l'apprenti"
     reference = "http://www.apce.com/pid927/contrat-d-apprentissage.html?espace=1&tp=1&pagination=2"
     definition_period = MONTH
 
@@ -92,7 +92,7 @@ class remuneration_professionnalisation(Variable):
 class exoneration_cotisations_employeur_professionnalisation(Variable):
     value_type = float
     entity = Individu
-    label = u"Exonération de cotisations patronales pour l'emploi d'un apprenti"
+    label = "Exonération de cotisations patronales pour l'emploi d'un apprenti"
     reference = "http://www.apce.com/pid927/contrat-d-apprentissage.html?espace=1&tp=1&pagination=2"
     definition_period = MONTH
 

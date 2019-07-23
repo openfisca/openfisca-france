@@ -9,7 +9,7 @@ from openfisca_france.model.base import *
 class valeur_locative_cadastrale_brute(Variable):
     value_type = float
     entity = Menage
-    label = u"Valeur locative cadastrale utilisée pour les impôts locaux, avant abattements"
+    label = "Valeur locative cadastrale utilisée pour les impôts locaux, avant abattements"
     reference = "https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000034111395&cidTexte=LEGITEXT000006069577&dateTexte=20170302"
     definition_period = YEAR
 
@@ -18,7 +18,7 @@ class condition_rfr_exoneration_th(Variable):
     value_type = bool
     default_value = False
     entity = FoyerFiscal
-    label = u"Condition de revenu fiscal de référence pour l'éxonération à l'échelle du foyer fiscal"
+    label = "Condition de revenu fiscal de référence pour l'éxonération à l'échelle du foyer fiscal"
     reference = "http://bofip.impots.gouv.fr/bofip/5934-PGP.html"
     definition_period = YEAR
 
@@ -39,7 +39,7 @@ class exonere_taxe_habitation(Variable):
     value_type = bool
     default_value = False
     entity = Menage
-    label = u"Exonération de la taxe d'habitation"
+    label = "Exonération de la taxe d'habitation"
     reference = "http://vosdroits.service-public.fr/particuliers/F42.xhtml"
     definition_period = YEAR
 
@@ -80,7 +80,7 @@ class exonere_taxe_habitation(Variable):
 class abattement_charge_famille_th_commune(Variable):
     value_type = float
     entity = Menage
-    label = u"Abattement obligatoire pour charges de famille - TH de la commune"
+    label = "Abattement obligatoire pour charges de famille - TH de la commune"
     reference = "https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006069577&idArticle=LEGIARTI000033220348&dateTexte=&categorieLien=id"
     definition_period = YEAR
 
@@ -105,7 +105,7 @@ class abattement_charge_famille_th_commune(Variable):
 class abattement_charge_famille_th_epci(Variable):
     value_type = float
     entity = Menage
-    label = u"Abattement obligatoire pour charges de famille - TH de l'EPCI"
+    label = "Abattement obligatoire pour charges de famille - TH de l'EPCI"
     reference = "https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006069577&idArticle=LEGIARTI000033220348&dateTexte=&categorieLien=id"
     definition_period = YEAR
 
@@ -130,7 +130,7 @@ class abattement_charge_famille_th_epci(Variable):
 class abattement_personnes_condition_modeste_th_commune(Variable):
     value_type = float
     entity = Menage
-    label = u"Abattement pour personnes de condition modeste - TH de la commune"
+    label = "Abattement pour personnes de condition modeste - TH de la commune"
     reference = "https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006069577&idArticle=LEGIARTI000033220348&dateTexte=&categorieLien=id"
     definition_period = YEAR
 
@@ -159,7 +159,7 @@ class abattement_personnes_condition_modeste_th_commune(Variable):
 class abattement_personnes_condition_modeste_th_epci(Variable):
     value_type = float
     entity = Menage
-    label = u"Abattement pour personnes de condition modeste - TH de l'EPCI"
+    label = "Abattement pour personnes de condition modeste - TH de l'EPCI"
     reference = "https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006069577&idArticle=LEGIARTI000033220348&dateTexte=&categorieLien=id"
     definition_period = YEAR
 
@@ -188,7 +188,7 @@ class abattement_personnes_condition_modeste_th_epci(Variable):
 class base_nette_th_commune(Variable):
     value_type = float
     entity = Menage
-    label = u"Base nette - TH de la commune"
+    label = "Base nette - TH de la commune"
     definition_period = YEAR
 
     def formula_2017_01_01(menage, period, parameters):
@@ -214,7 +214,7 @@ class base_nette_th_commune(Variable):
 class base_nette_th_epci(Variable):
     value_type = float
     entity = Menage
-    label = u"Base nette - TH de l'EPCI"
+    label = "Base nette - TH de l'EPCI"
     definition_period = YEAR
 
     def formula_2017_01_01(menage, period, parameters):
@@ -240,7 +240,7 @@ class base_nette_th_epci(Variable):
 class taxe_habitation_commune_epci_avant_degrevement(Variable):
     value_type = float
     entity = Menage
-    label = u"Taxe d'habitation de la commune et de l'EPCI avant dégrèvement (frais de gestion inclus)"
+    label = "Taxe d'habitation de la commune et de l'EPCI avant dégrèvement (frais de gestion inclus)"
     definition_period = YEAR
 
     def formula_2017_01_01(menage, period, parameters):
@@ -260,7 +260,7 @@ class taxe_habitation_commune_epci_avant_degrevement(Variable):
 class plafond_taxe_habitation_eligibilite(Variable):
     value_type = bool
     entity = Menage
-    label = u"Eligibilité au plafond de la taxe d'habitation en fonction du revenu fiscal de référence"
+    label = "Eligibilité au plafond de la taxe d'habitation en fonction du revenu fiscal de référence"
     reference = "https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006069577&idArticle=LEGIARTI000006312070&dateTexte=&categorieLien=cid"
     definition_period = YEAR
 
@@ -279,7 +279,7 @@ class plafond_taxe_habitation_eligibilite(Variable):
 class plafond_taxe_habitation(Variable):
     value_type = float
     entity = Menage
-    label = u"Plafond de la taxe d'habitation en fonction du revenu fiscal de référence"
+    label = "Plafond de la taxe d'habitation en fonction du revenu fiscal de référence"
     reference = "https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006069577&idArticle=LEGIARTI000006312070&dateTexte=&categorieLien=cid"
     definition_period = YEAR
 
@@ -297,7 +297,7 @@ class plafond_taxe_habitation(Variable):
 class degrevement_plafonnement_taxe_habitation(Variable):
     value_type = float
     entity = Menage
-    label = u"Dégrèvement de la taxe d'habitation au titre du plafonnement"
+    label = "Dégrèvement de la taxe d'habitation au titre du plafonnement"
     reference = "https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006069577&idArticle=LEGIARTI000006312070&dateTexte=&categorieLien=cid"
     definition_period = YEAR
 
@@ -344,7 +344,7 @@ class degrevement_plafonnement_taxe_habitation(Variable):
 class taxe_habitation_commune_epci_apres_degrevement_plafonnement(Variable):
     value_type = float
     entity = Menage
-    label = u"Taxe d'habitation de la commune et de l'EPCI après dégrèvement pour plafonnement"
+    label = "Taxe d'habitation de la commune et de l'EPCI après dégrèvement pour plafonnement"
     definition_period = YEAR
 
     def formula_2017_01_01(menage, period, parameters):
@@ -356,7 +356,7 @@ class taxe_habitation_commune_epci_apres_degrevement_plafonnement(Variable):
 class degrevement_office_taxe_habitation(Variable):
     value_type = float
     entity = Menage
-    label = u"Dégrèvement d'office de la taxe d'habitation"
+    label = "Dégrèvement d'office de la taxe d'habitation"
     reference = "https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=268AD735F5C69F94FB6756E3125BF0A0.tplgfr43s_1?idArticle=LEGIARTI000036441815&cidTexte=LEGITEXT000006069577&dateTexte=20190513&categorieLien=id&oldAction=&nbResultRech="
     definition_period = YEAR
 
@@ -397,7 +397,7 @@ class degrevement_office_taxe_habitation(Variable):
 class taxe_habitation(Variable):
     value_type = float
     entity = Menage
-    label = u"Taxe d'habitation de la commune et de l'EPCI (Établissement Public de Coopération Intercommunale), frais de gestion inclus"
+    label = "Taxe d'habitation de la commune et de l'EPCI (Établissement Public de Coopération Intercommunale), frais de gestion inclus"
     reference = "https://www.service-public.fr/particuliers/vosdroits/F42"
     definition_period = YEAR
 

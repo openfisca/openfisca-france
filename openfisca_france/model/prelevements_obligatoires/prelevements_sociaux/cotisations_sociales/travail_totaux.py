@@ -12,7 +12,7 @@ log = logging.getLogger(__name__)
 class cotisations_employeur(Variable):
     value_type = float
     entity = Individu
-    label = u"Cotisations sociales employeur"
+    label = "Cotisations sociales employeur"
     set_input = set_input_divide_by_period
     definition_period = MONTH
     calculate_output = calculate_output_add
@@ -33,7 +33,7 @@ class cotisations_employeur(Variable):
 class cotisations_employeur_contributives(Variable):
     value_type = float
     entity = Individu
-    label = u"Cotisations sociales employeur contributives"
+    label = "Cotisations sociales employeur contributives"
     set_input = set_input_divide_by_period
     definition_period = MONTH
 
@@ -79,7 +79,7 @@ class cotisations_employeur_contributives(Variable):
 class cotisations_employeur_non_contributives(Variable):
     value_type = float
     entity = Individu
-    label = u"Cotisations sociales employeur non-contributives"
+    label = "Cotisations sociales employeur non-contributives"
     set_input = set_input_divide_by_period
     definition_period = MONTH
 
@@ -110,7 +110,7 @@ class cotisations_employeur_non_contributives(Variable):
 class cotisations_salariales_contributives(Variable):
     value_type = float
     entity = Individu
-    label = u"Cotisations sociales salariales contributives"
+    label = "Cotisations sociales salariales contributives"
     set_input = set_input_divide_by_period
     definition_period = MONTH
 
@@ -151,7 +151,7 @@ class cotisations_salariales_contributives(Variable):
 class cotisations_salariales_non_contributives(Variable):
     value_type = float
     entity = Individu
-    label = u"Cotisations sociales salariales non-contributives"
+    label = "Cotisations sociales salariales non-contributives"
     set_input = set_input_divide_by_period
     definition_period = MONTH
 
@@ -172,7 +172,7 @@ class cotisations_salariales_non_contributives(Variable):
 class cotisations_salariales(Variable):
     value_type = float
     entity = Individu
-    label = u"Cotisations sociales salariales"
+    label = "Cotisations sociales salariales"
     set_input = set_input_divide_by_period
     definition_period = MONTH
     calculate_output = calculate_output_add

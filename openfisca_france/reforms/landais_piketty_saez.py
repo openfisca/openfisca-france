@@ -17,7 +17,7 @@ dir_path = os.path.join(os.path.dirname(__file__), 'parameters')
 class assiette_csg(Variable):
     value_type = float
     entity = Individu
-    label = u"Assiette de la CSG"
+    label = "Assiette de la CSG"
     definition_period = YEAR
 
     def formula(individu, period, parameters):
@@ -33,7 +33,7 @@ class assiette_csg(Variable):
 class impot_revenu_lps(Variable):
     value_type = float
     entity = Individu
-    label = u"Impôt individuel sur l'ensemble de l'assiette de la csg, comme proposé par Landais, Piketty et Saez"
+    label = "Impôt individuel sur l'ensemble de l'assiette de la csg, comme proposé par Landais, Piketty et Saez"
     definition_period = YEAR
 
     def formula(individu, period, parameters):
@@ -57,8 +57,8 @@ class impot_revenu_lps(Variable):
 class revenu_disponible(Variable):
     value_type = float
     entity = Menage
-    label = u"Revenu disponible du ménage"
-    reference = u"http://fr.wikipedia.org/wiki/Revenu_disponible"
+    label = "Revenu disponible du ménage"
+    reference = "http://fr.wikipedia.org/wiki/Revenu_disponible"
     definition_period = YEAR
 
     def formula(menage, period, parameters):
@@ -84,7 +84,7 @@ def modify_parameters(parameters):
 
 
 class landais_piketty_saez(Reform):
-    name = u'Landais Piketty Saez'
+    name = 'Landais Piketty Saez'
 
     def apply(self):
         for variable in [assiette_csg, impot_revenu_lps, revenu_disponible]:

@@ -22,7 +22,7 @@ logger = logging.getLogger(__name__)
 def clean_from_filename(relative_path):
     last_separator_index = relative_path.rfind(os.path.sep)
     if last_separator_index == -1:
-        raise ValueError(u'Directory expected but none found in: ' + relative_path)
+        raise ValueError('Directory expected but none found in: ' + relative_path)
     return relative_path[:last_separator_index]
 
 
@@ -119,7 +119,7 @@ def parse_and_clean(directory, paths_to_clean):
 
 
 long_parameters_paths = list_long_paths(PARAMETERS_DIRECTORY)
-logger.info(u"{} directories have files with more than {} characters in their paths starting from this directory: {}".format(len(long_parameters_paths), PATH_MAX_LENGTH, PARENT_DIRECTORY).encode('utf-8'))
+logger.info("{} directories have files with more than {} characters in their paths starting from this directory: {}".format(len(long_parameters_paths), PATH_MAX_LENGTH, PARENT_DIRECTORY).encode('utf-8'))
 
 while len(long_parameters_paths) > 0:
     parse_and_clean(PARAMETERS_DIRECTORY, long_parameters_paths)

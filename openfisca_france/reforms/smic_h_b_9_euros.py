@@ -9,7 +9,7 @@ def modify_parameters(parameters):
 
 
 class smic_h_b_9_euros(Reform):
-    name = u"Réforme pour simulation ACOSS SMIC horaire brut fixe à 9 euros"
+    name = "Réforme pour simulation ACOSS SMIC horaire brut fixe à 9 euros"
 
     def apply(self):
         self.modify_parameters(modifier_function = modify_parameters)

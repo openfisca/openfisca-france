@@ -11,10 +11,10 @@ log = logging.getLogger(__name__)
 
 class TypesTauxCSGRemplacement(Enum):
     __order__ = 'non_renseigne exonere taux_reduit taux_plein'  # Needed to preserve the enum order in Python 2
-    non_renseigne = u"Non renseigné/non pertinent"
-    exonere = u"Exonéré"
-    taux_reduit = u"Taux réduit"
-    taux_plein = u"Taux plein"
+    non_renseigne = "Non renseigné/non pertinent"
+    exonere = "Exonéré"
+    taux_reduit = "Taux réduit"
+    taux_plein = "Taux plein"
 
 
 class taux_csg_remplacement(Variable):
@@ -22,7 +22,7 @@ class taux_csg_remplacement(Variable):
     value_type = Enum
     possible_values = TypesTauxCSGRemplacement
     entity = Individu
-    label = u"Taux retenu sur la CSG des revenus de remplacment"
+    label = "Taux retenu sur la CSG des revenus de remplacment"
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
@@ -50,8 +50,8 @@ class csg_deductible_chomage(Variable):
     calculate_output = calculate_output_add
     value_type = float
     entity = Individu
-    label = u"CSG déductible sur les allocations chômage"
-    reference = u"http://vosdroits.service-public.fr/particuliers/F2329.xhtml"
+    label = "CSG déductible sur les allocations chômage"
+    reference = "http://vosdroits.service-public.fr/particuliers/F2329.xhtml"
     definition_period = MONTH
 
     def formula(individu, period, parameters):
@@ -91,8 +91,8 @@ class csg_imposable_chomage(Variable):
     calculate_output = calculate_output_add
     value_type = float
     entity = Individu
-    label = u"CSG imposable sur les allocations chômage"
-    reference = u"http://vosdroits.service-public.fr/particuliers/F2329.xhtml"
+    label = "CSG imposable sur les allocations chômage"
+    reference = "http://vosdroits.service-public.fr/particuliers/F2329.xhtml"
     definition_period = MONTH
 
     def formula(individu, period, parameters):
@@ -118,8 +118,8 @@ class crds_chomage(Variable):
     calculate_output = calculate_output_add
     value_type = float
     entity = Individu
-    label = u"CRDS sur les allocations chômage"
-    reference = u"http://www.insee.fr/fr/methodes/default.asp?page=definitions/contrib-remb-dette-sociale.htm"
+    label = "CRDS sur les allocations chômage"
+    reference = "http://www.insee.fr/fr/methodes/default.asp?page=definitions/contrib-remb-dette-sociale.htm"
     definition_period = MONTH
 
     def formula(individu, period, parameters):
@@ -155,16 +155,16 @@ class chomage_imposable(Variable):
     value_type = float
     unit = 'currency'
     cerfa_field = {
-        0: u"1AP",
-        1: u"1BP",
-        2: u"1CP",
-        3: u"1DP",
-        4: u"1EP",
+        0: "1AP",
+        1: "1BP",
+        2: "1CP",
+        3: "1DP",
+        4: "1EP",
         }
     entity = Individu
-    label = u"Allocations chômage imposables"
+    label = "Allocations chômage imposables"
     set_input = set_input_divide_by_period
-    reference = u"http://www.insee.fr/fr/methodes/default.asp?page=definitions/chomage.htm"
+    reference = "http://www.insee.fr/fr/methodes/default.asp?page=definitions/chomage.htm"
     definition_period = MONTH
 
     def formula(individu, period):
@@ -177,9 +177,9 @@ class chomage_imposable(Variable):
 class chomage_net(Variable):
     value_type = float
     entity = Individu
-    label = u"Allocations chômage nettes"
+    label = "Allocations chômage nettes"
     set_input = set_input_divide_by_period
-    reference = u"http://vosdroits.service-public.fr/particuliers/N549.xhtml"
+    reference = "http://vosdroits.service-public.fr/particuliers/N549.xhtml"
     definition_period = MONTH
 
     def formula(individu, period):
@@ -196,8 +196,8 @@ class csg_deductible_retraite(Variable):
     calculate_output = calculate_output_add
     value_type = float
     entity = Individu
-    label = u"CSG déductible sur les pensions de retraite"
-    reference = u"https://www.lassuranceretraite.fr/cs/Satellite/PUBPrincipale/Retraites/Paiement-Votre-Retraite/Prelevements-Sociaux?packedargs=null"
+    label = "CSG déductible sur les pensions de retraite"
+    reference = "https://www.lassuranceretraite.fr/cs/Satellite/PUBPrincipale/Retraites/Paiement-Votre-Retraite/Prelevements-Sociaux?packedargs=null"
     definition_period = MONTH
 
     def formula(individu, period, parameters):
@@ -219,8 +219,8 @@ class csg_imposable_retraite(Variable):
     calculate_output = calculate_output_add
     value_type = float
     entity = Individu
-    label = u"CSG imposable sur les pensions de retraite"
-    reference = u"https://www.lassuranceretraite.fr/cs/Satellite/PUBPrincipale/Retraites/Paiement-Votre-Retraite/Prelevements-Sociaux?packedargs=null"
+    label = "CSG imposable sur les pensions de retraite"
+    reference = "https://www.lassuranceretraite.fr/cs/Satellite/PUBPrincipale/Retraites/Paiement-Votre-Retraite/Prelevements-Sociaux?packedargs=null"
     definition_period = MONTH
 
     def formula(individu, period, parameters):
@@ -239,8 +239,8 @@ class crds_retraite(Variable):
     calculate_output = calculate_output_add
     value_type = float
     entity = Individu
-    label = u"CRDS sur les pensions de retraite"
-    reference = u"http://www.pensions.bercy.gouv.fr/vous-%C3%AAtes-retrait%C3%A9-ou-pensionn%C3%A9/le-calcul-de-ma-pension/les-pr%C3%A9l%C3%A8vements-effectu%C3%A9s-sur-ma-pension"
+    label = "CRDS sur les pensions de retraite"
+    reference = "http://www.pensions.bercy.gouv.fr/vous-%C3%AAtes-retrait%C3%A9-ou-pensionn%C3%A9/le-calcul-de-ma-pension/les-pr%C3%A9l%C3%A8vements-effectu%C3%A9s-sur-ma-pension"
     definition_period = MONTH
 
     def formula(individu, period, parameters):
@@ -259,8 +259,8 @@ class crds_retraite(Variable):
 class casa(Variable):
     value_type = float
     entity = Individu
-    label = u"Contribution additionnelle de solidarité et d'autonomie"
-    reference = u"http://www.service-public.fr/actualites/002691.html"
+    label = "Contribution additionnelle de solidarité et d'autonomie"
+    reference = "http://www.service-public.fr/actualites/002691.html"
     definition_period = MONTH
 
     def formula_2013_04_01(individu, period, parameters):
@@ -278,16 +278,16 @@ class retraite_imposable(Variable):
     unit = 'currency'
     value_type = float
     cerfa_field = {
-        0: u"1AS",
-        1: u"1BS",
-        2: u"1CS",
-        3: u"1DS",
-        4: u"1ES",
+        0: "1AS",
+        1: "1BS",
+        2: "1CS",
+        3: "1DS",
+        4: "1ES",
         }
     entity = Individu
-    label = u"Retraites au sens strict imposables (rentes à titre onéreux exclues)"
+    label = "Retraites au sens strict imposables (rentes à titre onéreux exclues)"
     set_input = set_input_divide_by_period
-    reference = u"http://vosdroits.service-public.fr/particuliers/F415.xhtml"
+    reference = "http://vosdroits.service-public.fr/particuliers/F415.xhtml"
     definition_period = MONTH
 
     def formula(individu, period):
@@ -300,9 +300,9 @@ class retraite_imposable(Variable):
 class retraite_nette(Variable):
     value_type = float
     entity = Individu
-    label = u"Pensions de retraite nettes"
+    label = "Pensions de retraite nettes"
     set_input = set_input_divide_by_period
-    reference = u"http://vosdroits.service-public.fr/particuliers/N20166.xhtml"
+    reference = "http://vosdroits.service-public.fr/particuliers/N20166.xhtml"
     definition_period = MONTH
 
     def formula(individu, period):
@@ -317,7 +317,7 @@ class retraite_nette(Variable):
 class crds_pfam(Variable):
     value_type = float
     entity = Famille
-    label = u"CRDS sur les prestations familiales)"
+    label = "CRDS sur les prestations familiales)"
     reference = "http://www.cleiss.fr/docs/regimes/regime_francea1.html"
     definition_period = YEAR
 

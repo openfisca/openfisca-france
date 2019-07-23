@@ -12,7 +12,7 @@ dir_path = os.path.join(os.path.dirname(__file__), 'parameters')
 # par le Conseil constitutionnel
 
 class plfr2014(Reform):
-    name = u'Projet de Loi de Finances Rectificative 2014'
+    name = 'Projet de Loi de Finances Rectificative 2014'
 
     class reduction_impot_exceptionnelle(Variable):
         definition_period = YEAR
@@ -29,7 +29,7 @@ class plfr2014(Reform):
             return min_(max_(plafond + montant - rfr, 0), montant)
 
     class reductions(Variable):
-        label = u"Somme des réductions d'impôt à intégrer pour l'année 2013"
+        label = "Somme des réductions d'impôt à intégrer pour l'année 2013"
         definition_period = YEAR
 
         def formula_2013_01_01(foyer_fiscal, period, parameters):

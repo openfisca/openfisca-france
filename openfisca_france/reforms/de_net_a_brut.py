@@ -31,7 +31,7 @@ def calculate_net_from(salaire_de_base, individu, period):
 class salaire_de_base(Variable):
     value_type = float
     entity = entities.Individu
-    label = u"Salaire brut"
+    label = "Salaire brut"
     definition_period = MONTH
 
     def formula(individu, period, parameters):
@@ -56,7 +56,7 @@ class salaire_de_base(Variable):
 
 
 class de_net_a_brut(Reform):
-    name = u'Inversion du calcul brut -> net'
+    name = 'Inversion du calcul brut -> net'
 
     def apply(self):
         self.update_variable(salaire_de_base)

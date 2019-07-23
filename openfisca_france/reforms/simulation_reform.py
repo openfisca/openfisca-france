@@ -7,14 +7,14 @@ from openfisca_core import reforms
 class date_simulation(Variable):
     value_type = date
     entity = Individu
-    label = u"Date de la simulation"
+    label = "Date de la simulation"
     definition_period = MONTH
 
 
 class aah(Variable):
     calculate_output = calculate_output_add
     value_type = float
-    label = u"Allocation adulte handicapé (Individu) mensualisée"
+    label = "Allocation adulte handicapé (Individu) mensualisée"
     entity = Individu
     definition_period = MONTH
     set_input = set_input_divide_by_period

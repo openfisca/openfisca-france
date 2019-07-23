@@ -19,11 +19,11 @@ def reform_modify_parameters(parameters):
 
 
 class plf2016(Reform):
-    name = u'Projet de Loi de Finances 2016 appliquée aux revenus 2014'
+    name = 'Projet de Loi de Finances 2016 appliquée aux revenus 2014'
     # key = 'plf2016'
 
     class decote(Variable):
-        label = u"Décote IR 2016 appliquée en 2015 sur revenus 2014"
+        label = "Décote IR 2016 appliquée en 2015 sur revenus 2014"
         definition_period = YEAR
 
         # This formula is copy-pasted from the reference decote formula, so that we only change the decote formula for 2014
@@ -84,11 +84,11 @@ def counterfactual_modify_parameters(parameters):
 
 
 class plf2016_counterfactual(Reform):
-    name = u'Contrefactuel du PLF 2016 sur les revenus 2015'
+    name = 'Contrefactuel du PLF 2016 sur les revenus 2015'
     # key = 'plf2016_counterfactual'
 
     class decote(Variable):
-        label = u"Décote IR 2015 appliquée sur revenus 2015 (contrefactuel)"
+        label = "Décote IR 2015 appliquée sur revenus 2015 (contrefactuel)"
         definition_period = YEAR
 
         def formula_2015_01_01(foyer_fiscal, period, parameters):
@@ -115,7 +115,7 @@ class plf2016_counterfactual(Reform):
             return min_(max_(plafond + montant - rfr, 0), montant)
 
     class reductions(Variable):
-        label = u"Somme des réductions d'impôt"
+        label = "Somme des réductions d'impôt"
         definition_period = YEAR
 
         def formula_2013_01_01(foyer_fiscal, period, parameters):
@@ -182,7 +182,7 @@ def counterfactual_2014_modify_parameters(parameters):
 
 
 class plf2016_counterfactual_2014(Reform):
-    name = u'Contrefactuel 2014 du PLF 2016 sur les revenus 2015'
+    name = 'Contrefactuel 2014 du PLF 2016 sur les revenus 2015'
     key = 'plf2016_counterfactual_2014'
 
     class decote(Variable):
@@ -212,7 +212,7 @@ class plf2016_counterfactual_2014(Reform):
             return min_(max_(plafond + montant - rfr, 0), montant)
 
     class reductions(Variable):
-        label = u"Somme des réductions d'impôt"
+        label = "Somme des réductions d'impôt"
         definition_period = YEAR
 
         def formula_2013_01_01(foyer_fiscal, period, parameters):

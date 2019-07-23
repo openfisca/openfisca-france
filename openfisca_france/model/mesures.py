@@ -6,8 +6,8 @@ from openfisca_france.model.base import *
 class unites_consommation(Variable):
     value_type = float
     entity = Menage
-    label = u"Unités de consommation du ménage, selon l'échelle de l'INSEE"
-    reference = u"https://insee.fr/fr/metadonnees/definition/c1802"
+    label = "Unités de consommation du ménage, selon l'échelle de l'INSEE"
+    reference = "https://insee.fr/fr/metadonnees/definition/c1802"
     definition_period = YEAR
 
     def formula(menage, period, parameters):
@@ -20,7 +20,7 @@ class type_menage(Variable):
     value_type = int
     is_period_size_independent = True
     entity = Menage
-    label = u"Type de ménage"
+    label = "Type de ménage"
     definition_period = YEAR
 
     def formula(menage, period):
@@ -48,7 +48,7 @@ class type_menage(Variable):
 class revenu_disponible(Variable):
     value_type = float
     entity = Menage
-    label = u"Revenu disponible du ménage"
+    label = "Revenu disponible du ménage"
     reference = "http://fr.wikipedia.org/wiki/Revenu_disponible"
     definition_period = YEAR
 
@@ -83,7 +83,7 @@ class revenu_disponible(Variable):
 class niveau_de_vie(Variable):
     value_type = float
     entity = Menage
-    label = u"Niveau de vie du ménage"
+    label = "Niveau de vie du ménage"
     definition_period = YEAR
 
     def formula(menage, period):
@@ -95,7 +95,7 @@ class niveau_de_vie(Variable):
 class revenus_nets_du_travail(Variable):
     value_type = float
     entity = Individu
-    label = u"Revenus nets du travail (salariés et non salariés)"
+    label = "Revenus nets du travail (salariés et non salariés)"
     reference = "http://fr.wikipedia.org/wiki/Revenu_du_travail"
     definition_period = YEAR
 
@@ -124,7 +124,7 @@ class revenus_nets_du_travail(Variable):
 class pensions_nettes(Variable):
     value_type = float
     entity = Individu
-    label = u"Pensions et revenus de remplacement"
+    label = "Pensions et revenus de remplacement"
     reference = "http://fr.wikipedia.org/wiki/Rente"
     definition_period = YEAR
 
@@ -153,7 +153,7 @@ class pensions_nettes(Variable):
 class plus_values_base_large(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = u"Montant des plus-values utilisé pour le montant total de revenus du capital"
+    label = "Montant des plus-values utilisé pour le montant total de revenus du capital"
     definition_period = YEAR
 
     def formula(foyer_fiscal, period):
@@ -236,7 +236,7 @@ class plus_values_base_large(Variable):
 class revenus_nets_du_capital(Variable):
     value_type = float
     entity = Individu
-    label = u"Revenus du capital nets de prélèvements sociaux"
+    label = "Revenus du capital nets de prélèvements sociaux"
     reference = "http://fr.wikipedia.org/wiki/Revenu#Revenu_du_Capital"
     definition_period = YEAR
 
@@ -285,7 +285,7 @@ class revenus_nets_du_capital(Variable):
 class revenus_fonciers_bruts_menage(Variable):
     value_type = float
     entity = Menage
-    label = u"Revenus fonciers du ménage après déficits mais avant abattements"
+    label = "Revenus fonciers du ménage après déficits mais avant abattements"
     definition_period = YEAR
 
     def formula_2013_01_01(menage, period):
@@ -315,7 +315,7 @@ class revenus_fonciers_bruts_menage(Variable):
 class revenus_travail_super_bruts_menage(Variable):
     value_type = float
     entity = Menage
-    label = u"Revenus du travail super bruts du ménage"
+    label = "Revenus du travail super bruts du ménage"
     definition_period = YEAR
 
     def formula(menage, period):
@@ -356,7 +356,7 @@ class revenus_travail_super_bruts_menage(Variable):
 class revenus_remplacement_pensions_bruts_menage(Variable):
     value_type = float
     entity = Menage
-    label = u"Revenus de remplacement et pensions bruts du ménage"
+    label = "Revenus de remplacement et pensions bruts du ménage"
     definition_period = YEAR
 
     def formula(menage, period):
@@ -396,7 +396,7 @@ class revenus_remplacement_pensions_bruts_menage(Variable):
 class revenus_capitaux_mobiliers_plus_values_bruts_menage(Variable):
     value_type = float
     entity = Menage
-    label = u"Revenus bruts des capitaux mobiliers et plus-values du ménage"
+    label = "Revenus bruts des capitaux mobiliers et plus-values du ménage"
     definition_period = YEAR
 
     def formula(menage, period):
@@ -433,7 +433,7 @@ class revenus_capitaux_mobiliers_plus_values_bruts_menage(Variable):
 class revenus_super_bruts_menage(Variable):
     value_type = float
     entity = Menage
-    label = u"Revenus super bruts du ménage"
+    label = "Revenus super bruts du ménage"
     definition_period = YEAR
 
     def formula(menage, period):
@@ -454,7 +454,7 @@ class revenus_super_bruts_menage(Variable):
 class prelevements_sociaux_menage(Variable):
     value_type = float
     entity = Menage
-    label = u"Prélèvements sociaux du ménage (tous revenus, hors prestations)"
+    label = "Prélèvements sociaux du ménage (tous revenus, hors prestations)"
     definition_period = YEAR
 
     def formula(menage, period):
@@ -476,7 +476,7 @@ class prelevements_sociaux_menage(Variable):
 class prestations_sociales(Variable):
     value_type = float
     entity = Famille
-    label = u"Prestations sociales"
+    label = "Prestations sociales"
     reference = "http://fr.wikipedia.org/wiki/Prestation_sociale"
     definition_period = YEAR
 
@@ -495,7 +495,7 @@ class prestations_sociales(Variable):
 class prestations_familiales(Variable):
     value_type = float
     entity = Famille
-    label = u"Prestations familiales"
+    label = "Prestations familiales"
     reference = "http://www.social-sante.gouv.fr/informations-pratiques,89/fiches-pratiques,91/prestations-familiales,1885/les-prestations-familiales,12626.html"
     definition_period = YEAR
 
@@ -515,7 +515,7 @@ class minimum_vieillesse(Variable):
     calculate_output = calculate_output_add
     value_type = float
     entity = Famille
-    label = u"Minimum vieillesse (ASI + ASPA)"
+    label = "Minimum vieillesse (ASI + ASPA)"
     definition_period = YEAR
 
     def formula(famille, period):
@@ -525,7 +525,7 @@ class minimum_vieillesse(Variable):
 class minima_sociaux(Variable):
     value_type = float
     entity = Famille
-    label = u"Minima sociaux"
+    label = "Minima sociaux"
     reference = "http://fr.wikipedia.org/wiki/Minima_sociaux"
     definition_period = YEAR
 
@@ -551,7 +551,7 @@ class minima_sociaux(Variable):
 class aides_logement(Variable):
     value_type = float
     entity = Famille
-    label = u"Aides logement nettes"
+    label = "Aides logement nettes"
     reference = "http://vosdroits.service-public.fr/particuliers/N20360.xhtml"
     definition_period = YEAR
 
@@ -562,7 +562,7 @@ class aides_logement(Variable):
 class irpp_economique(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = u"Notion économique de l'IRPP"
+    label = "Notion économique de l'IRPP"
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
@@ -587,7 +587,7 @@ class irpp_economique(Variable):
 class impots_directs(Variable):
     value_type = float
     entity = Menage
-    label = u"Impôts directs"
+    label = "Impôts directs"
     reference = "http://fr.wikipedia.org/wiki/Imp%C3%B4t_direct"
     definition_period = YEAR
 

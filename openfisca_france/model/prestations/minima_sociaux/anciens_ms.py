@@ -9,8 +9,8 @@ from openfisca_france.model.prestations.prestations_familiales.base_ressource im
 class api(Variable):
     value_type = float
     entity = Famille
-    label = u"Allocation de parent isolé"
-    reference = u"http://fr.wikipedia.org/wiki/Allocation_de_parent_isol%C3%A9",
+    label = "Allocation de parent isolé"
+    reference = "http://fr.wikipedia.org/wiki/Allocation_de_parent_isol%C3%A9",
     end = '2009-05-31'
     definition_period = MONTH
     calculate_output = calculate_output_add
@@ -96,9 +96,9 @@ class api(Variable):
 class psa(Variable):
     value_type = float
     entity = Famille
-    label = u"Prime de solidarité active"
+    label = "Prime de solidarité active"
     end = '2009-04-30'
-    reference = u"http://www.service-public.fr/actualites/001077.html"
+    reference = "http://www.service-public.fr/actualites/001077.html"
     definition_period = MONTH
     calculate_output = calculate_output_add
 
@@ -132,7 +132,7 @@ class psa(Variable):
 class rmi(Variable):
     value_type = float
     entity = Famille
-    label = u"Revenu Minimum d'Insertion"
+    label = "Revenu Minimum d'Insertion"
     end = '2009-05-31'
     definition_period = MONTH
 
@@ -156,7 +156,7 @@ class rmi(Variable):
 class rsa_activite(Variable):
     value_type = float
     entity = Famille
-    label = u"Revenu de solidarité active - activité"
+    label = "Revenu de solidarité active - activité"
     end = '2015-12-31'
     definition_period = MONTH
 
@@ -172,7 +172,7 @@ class rsa_activite(Variable):
 class rsa_activite_individu(Variable):
     value_type = float
     entity = Individu
-    label = u"Revenu de solidarité active - activité au niveau de l'individu"
+    label = "Revenu de solidarité active - activité au niveau de l'individu"
     end = '2015-12-31'
     definition_period = YEAR
 

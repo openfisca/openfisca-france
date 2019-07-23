@@ -9,21 +9,21 @@ from openfisca_france.model.base import *
 class coloc(Variable):
     value_type = bool
     entity = Menage
-    label = u"Vie en colocation"
+    label = "Vie en colocation"
     definition_period = MONTH
 
 
 class logement_crous(Variable):
     value_type = bool
     entity = Menage
-    label = u"Le logement est gérée par les CROUS "
+    label = "Le logement est gérée par les CROUS "
     definition_period = MONTH
 
 
 class logement_chambre(Variable):
     value_type = bool
     entity = Menage
-    label = u"Le logement est considéré comme une chambre"
+    label = "Le logement est considéré comme une chambre"
     definition_period = MONTH
 
 
@@ -31,7 +31,7 @@ class loyer(Variable):
     value_type = float
     entity = Menage
     set_input = set_input_divide_by_period
-    label = u"Loyer ou mensualité d'emprunt pour un primo-accédant"
+    label = "Loyer ou mensualité d'emprunt pour un primo-accédant"
     definition_period = MONTH
 
 
@@ -39,7 +39,7 @@ class depcom(Variable):
     value_type = str
     max_length = 5
     entity = Menage
-    label = u"Code INSEE (depcom) du lieu de résidence"
+    label = "Code INSEE (depcom) du lieu de résidence"
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
@@ -48,21 +48,21 @@ class charges_locatives(Variable):
     value_type = float
     entity = Menage
     set_input = set_input_divide_by_period
-    label = u'Charges locatives'
+    label = 'Charges locatives'
     definition_period = MONTH
 
 
 class proprietaire_proche_famille(Variable):
     value_type = bool
     entity = Famille
-    label = u"Le propriétaire du logement a un lien de parenté avec la personne de référence ou son conjoint"
+    label = "Le propriétaire du logement a un lien de parenté avec la personne de référence ou son conjoint"
     definition_period = MONTH
 
 
 class habite_chez_parents(Variable):
     value_type = bool
     entity = Individu
-    label = u"L'individu habite chez ses parents"
+    label = "L'individu habite chez ses parents"
     definition_period = MONTH
 
 
@@ -71,7 +71,7 @@ class statut_occupation_logement(Variable):
     possible_values = TypesStatutOccupationLogement  # defined in model/base.py
     entity = Menage
     default_value = TypesStatutOccupationLogement.non_renseigne
-    label = u"Statut d'occupation du logement"
+    label = "Statut d'occupation du logement"
     set_input = set_input_dispatch_by_period
     definition_period = MONTH
 
@@ -172,16 +172,16 @@ class residence_saint_martin(Variable):
 
 
 class TypesLieuResidence(Enum):
-    non_renseigne = u"Non renseigné"
-    metropole = u"Métropole"
-    guadeloupe = u"Guadeloupe"
-    martinique = u"Martinique"
-    guyane = u"Guyane"
-    la_reunion = u"La réunion"
-    saint_pierre_et_miquelon = u"Saint Pierre et Miquelon"
-    mayotte = u"Mayotte"
-    saint_bartelemy = u"Saint Bartelemy"
-    saint_martin = u"Saint Martin"
+    non_renseigne = "Non renseigné"
+    metropole = "Métropole"
+    guadeloupe = "Guadeloupe"
+    martinique = "Martinique"
+    guyane = "Guyane"
+    la_reunion = "La réunion"
+    saint_pierre_et_miquelon = "Saint Pierre et Miquelon"
+    mayotte = "Mayotte"
+    saint_bartelemy = "Saint Bartelemy"
+    saint_martin = "Saint Martin"
 
 
 class residence(Variable):
@@ -189,7 +189,7 @@ class residence(Variable):
     possible_values = TypesLieuResidence
     default_value = TypesLieuResidence.non_renseigne
     entity = Menage
-    label = u"Zone de résidence"
+    label = "Zone de résidence"
     definition_period = MONTH
 
     def formula(menage, period, parameters):

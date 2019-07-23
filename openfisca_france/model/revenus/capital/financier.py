@@ -14,22 +14,22 @@ from openfisca_france.model.base import *
 # Revenus des valeurs et capitaux mobiliers taxés au prélèvement libératoire
 
 class f2da(Variable):
-    cerfa_field = u"2DA"
+    cerfa_field = "2DA"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Revenus des actions et parts soumis au prélèvement libératoire de 21 %"
+    label = "Revenus des actions et parts soumis au prélèvement libératoire de 21 %"
     # start_date = date(2008, 1, 1)
     end = '2012-12-31'
     definition_period = YEAR
 
 
 class f2dh(Variable):
-    cerfa_field = u"2DH"
+    cerfa_field = "2DH"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Produits d’assurance-vie et de capitalisation soumis au prélèvement libératoire de 7.5 %"
+    label = "Produits d’assurance-vie et de capitalisation soumis au prélèvement libératoire de 7.5 %"
     definition_period = YEAR
 
     def formula_2013_01_01(foyer_fiscal, period):
@@ -51,11 +51,11 @@ class f2dh(Variable):
 
 
 class f2ee(Variable):
-    cerfa_field = u"2EE"
+    cerfa_field = "2EE"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Autres produits de placement soumis aux prélèvements libératoires"
+    label = "Autres produits de placement soumis aux prélèvements libératoires"
     definition_period = YEAR
 
     def formula_2013_01_01(foyer_fiscal, period):
@@ -99,11 +99,11 @@ class f2ee(Variable):
 
 
 class f2xx(Variable):
-    cerfa_field = u"2XX"
+    cerfa_field = "2XX"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Produits des bons et contrats de capitalisation et d'assurance-vie de moins de 8 ans; produits des versements effectués avant le 27.9.2017; soumis au prélèvement libératoire"
+    label = "Produits des bons et contrats de capitalisation et d'assurance-vie de moins de 8 ans; produits des versements effectués avant le 27.9.2017; soumis au prélèvement libératoire"
     # start_date = date(2108, 1, 1)
     definition_period = YEAR
 
@@ -111,66 +111,66 @@ class f2xx(Variable):
 # Revenus des valeurs et capitaux mobiliers ouvrant droit à abattement
 
 class f2dc(Variable):
-    cerfa_field = u"2DC"
+    cerfa_field = "2DC"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Revenus des actions et parts donnant droit à abattement"
+    label = "Revenus des actions et parts donnant droit à abattement"
     definition_period = YEAR
 
 
 class f2fu(Variable):
-    cerfa_field = u"2FU"
+    cerfa_field = "2FU"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Revenus imposables des titres non côtés détenus dans le PEA et distributions perçues via votre entreprise donnant droit à abattement"
+    label = "Revenus imposables des titres non côtés détenus dans le PEA et distributions perçues via votre entreprise donnant droit à abattement"
     definition_period = YEAR
 
 
 class f2ch(Variable):
-    cerfa_field = u"2CH"
+    cerfa_field = "2CH"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Produits des contrats d'assurance-vie et de capitalisation d'une durée d'au moins 6 ou 8 ans donnant droit à abattement"
+    label = "Produits des contrats d'assurance-vie et de capitalisation d'une durée d'au moins 6 ou 8 ans donnant droit à abattement"
     definition_period = YEAR
 
 
 # Revenus des valeurs et capitaux mobiliers n'ouvrant pas droit à abattement
 
 class f2ts(Variable):
-    cerfa_field = u"2TS"
+    cerfa_field = "2TS"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Revenus de valeurs mobilières, produits des contrats d'assurance-vie d'une durée inférieure à 8 ans et distributions (n'ouvrant pas droit à abattement)"
+    label = "Revenus de valeurs mobilières, produits des contrats d'assurance-vie d'une durée inférieure à 8 ans et distributions (n'ouvrant pas droit à abattement)"
     definition_period = YEAR
 
 
 class f2go(Variable):
-    cerfa_field = u"2GO"
+    cerfa_field = "2GO"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Autres revenus distribués et revenus des structures soumises hors de France à un régime fiscal privilégié (n'ouvrant pas droit à abattement)"
+    label = "Autres revenus distribués et revenus des structures soumises hors de France à un régime fiscal privilégié (n'ouvrant pas droit à abattement)"
     definition_period = YEAR
 
 
 class f2tr(Variable):
-    cerfa_field = u"2TR"
+    cerfa_field = "2TR"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Produits de placements à revenu fixe, intérêts et autres revenus assimilés (n'ouvrant pas droit à abattement)"
+    label = "Produits de placements à revenu fixe, intérêts et autres revenus assimilés (n'ouvrant pas droit à abattement)"
     definition_period = YEAR
 
 
 class f2yy(Variable):
-    cerfa_field = u"2YY"
+    cerfa_field = "2YY"
     value_type = float
     entity = FoyerFiscal
-    label = u"Produits des bons ou contrats de capitalisation et d'assurance vie de moins de 8 ans pour les contrats souscrits après le 26 septembre 1997, dont le produits sont associés aux primes versées avant le 27 septembre 2017, et qui n'ont pas été soumis au prélèvement libératoire"
+    label = "Produits des bons ou contrats de capitalisation et d'assurance vie de moins de 8 ans pour les contrats souscrits après le 26 septembre 1997, dont le produits sont associés aux primes versées avant le 27 septembre 2017, et qui n'ont pas été soumis au prélèvement libératoire"
     definition_period = YEAR
     # start_date = date(2018, 1, 1)
 
@@ -178,200 +178,200 @@ class f2yy(Variable):
 # Autres revenus des valeurs et capitaux mobiliers
 
 class f2fa(Variable):
-    cerfa_field = u"2FA"
+    cerfa_field = "2FA"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Intérêts et autres produits de placement à revenu fixe n'excédant pas 2000 euros, taxables sur option à 24%"
+    label = "Intérêts et autres produits de placement à revenu fixe n'excédant pas 2000 euros, taxables sur option à 24%"
     # start_date = date(2013, 1, 1)
     end = '2017-12-31'
     definition_period = YEAR
 
 
 class f2tt_2016(Variable):
-    cerfa_field = u"2TT"
+    cerfa_field = "2TT"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Intérêts des prêts participatifs"
+    label = "Intérêts des prêts participatifs"
     # start_date = date(2016, 1, 1)
     end = '2016-12-31'
     definition_period = YEAR
 
 
 class f2tt(Variable):
-    cerfa_field = u"2TT"
+    cerfa_field = "2TT"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Intérêts des prêts participatifs nettes des pertes à imputer au titre de l'impôt sur le revenu"
+    label = "Intérêts des prêts participatifs nettes des pertes à imputer au titre de l'impôt sur le revenu"
     # start_date = date(2017, 1, 1)
     definition_period = YEAR
 
 
 class f2tu_2016(Variable):
-    cerfa_field = u"2TU"
+    cerfa_field = "2TU"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Pertes en capital sur prêts participatifs en 2016"
+    label = "Pertes en capital sur prêts participatifs en 2016"
     # start_date = date(2016, 1, 1)
     end = '2016-12-31'
     definition_period = YEAR
 
 
 class f2tu(Variable):
-    cerfa_field = u"2TU"
+    cerfa_field = "2TU"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Pertes en capital sur prêts participatifs en 2016 à reporter sur l'année 2018"
+    label = "Pertes en capital sur prêts participatifs en 2016 à reporter sur l'année 2018"
     # start_date = date(2017, 1, 1)
     definition_period = YEAR
 
 
 class f2tv(Variable):
-    cerfa_field = u"2TV"
+    cerfa_field = "2TV"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Pertes en capital sur prêts participatifs en 2017 à reporter sur l'année 2018"
+    label = "Pertes en capital sur prêts participatifs en 2017 à reporter sur l'année 2018"
     # start_date = date(2017, 1, 1)
     definition_period = YEAR
 
 
 class f2cg(Variable):
-    cerfa_field = u"2CG"
+    cerfa_field = "2CG"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Revenus des lignes 2DC, 2CH, 2TS, 2TR déjà soumis au prélèvement sociaux sans CSG déductible"
+    label = "Revenus des lignes 2DC, 2CH, 2TS, 2TR déjà soumis au prélèvement sociaux sans CSG déductible"
     definition_period = YEAR
 
 
 class f2bh(Variable):
-    cerfa_field = u"2BH"
+    cerfa_field = "2BH"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Revenus des lignes 2DC, 2CH, 2TS, 2TR déjà soumis au prélèvement sociaux avec CSG déductible"
+    label = "Revenus des lignes 2DC, 2CH, 2TS, 2TR déjà soumis au prélèvement sociaux avec CSG déductible"
     # start_date = date(2007, 1, 1)
     definition_period = YEAR
 
 
 class f2ca(Variable):
-    cerfa_field = u"2CA"
+    cerfa_field = "2CA"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Frais et charges déductibles"
+    label = "Frais et charges déductibles"
     definition_period = YEAR
 
 
 class f2ck(Variable):
-    cerfa_field = u"2CK"
+    cerfa_field = "2CK"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Crédit d'impôt égal au prélèvement forfaitaire déjà versé"
+    label = "Crédit d'impôt égal au prélèvement forfaitaire déjà versé"
     # start_date = date(2013, 1, 1)
     definition_period = YEAR
 
 
 class f2ab(Variable):
-    cerfa_field = u"2AB"
+    cerfa_field = "2AB"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Crédits d'impôt sur valeurs étrangères"
+    label = "Crédits d'impôt sur valeurs étrangères"
     definition_period = YEAR
 
 
 class f2bg(Variable):
-    cerfa_field = u"2BG"
+    cerfa_field = "2BG"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Crédits d'impôt 'directive épargne' et autres crédits d'impôt restituables"
+    label = "Crédits d'impôt 'directive épargne' et autres crédits d'impôt restituables"
     definition_period = YEAR
 
 
 class f2aa(Variable):
-    cerfa_field = u"2AA"
+    cerfa_field = "2AA"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Déficits des années antérieures non encore déduits"
+    label = "Déficits des années antérieures non encore déduits"
     # start_date = date(2007, 1, 1)
     definition_period = YEAR
 
 
 class f2al(Variable):
-    cerfa_field = u"2AL"
+    cerfa_field = "2AL"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Déficits des années antérieures non encore déduits"
+    label = "Déficits des années antérieures non encore déduits"
     # start_date = date(2008, 1, 1)
     definition_period = YEAR
 
 
 class f2am(Variable):
-    cerfa_field = u"2AM"
+    cerfa_field = "2AM"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Déficits des années antérieures non encore déduits"
+    label = "Déficits des années antérieures non encore déduits"
     # start_date = date(2009, 1, 1)
     definition_period = YEAR
 
 
 class f2an(Variable):
-    cerfa_field = u"2AN"
+    cerfa_field = "2AN"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Déficits des années antérieures non encore déduits"
+    label = "Déficits des années antérieures non encore déduits"
     # start_date = date(2010, 1, 1)
     definition_period = YEAR
 
 
 class f2aq(Variable):
-    cerfa_field = u"2AQ"
+    cerfa_field = "2AQ"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Déficits des années antérieures non encore déduits"
+    label = "Déficits des années antérieures non encore déduits"
     # start_date = date(2011, 1, 1)
     definition_period = YEAR
 
 
 class f2ar(Variable):
-    cerfa_field = u"2AR"
+    cerfa_field = "2AR"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Déficits des années antérieures non encore déduits"
+    label = "Déficits des années antérieures non encore déduits"
     # start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
 class f2dm(Variable):
-    cerfa_field = u"2DM"
+    cerfa_field = "2DM"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Impatriés: revenus de capitaux mobiliers perçus à l'étranger, abattement de 50 %"
+    label = "Impatriés: revenus de capitaux mobiliers perçus à l'étranger, abattement de 50 %"
     # start_date = date(2008, 1, 1)
     definition_period = YEAR
 
 
 class f2gr(Variable):
-    cerfa_field = u"2GR"
+    cerfa_field = "2GR"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Revenus distribués dans le PEA (pour le calcul du crédit d'impôt de 50 %)"
+    label = "Revenus distribués dans le PEA (pour le calcul du crédit d'impôt de 50 %)"
     # start_date = date(2005, 1, 1)
     end = '2009-12-31'
     definition_period = YEAR
@@ -382,7 +382,7 @@ class f2gr(Variable):
 class livret_a(Variable):
     value_type = float
     entity = Individu
-    label = u"Épargne sur Livret A"
+    label = "Épargne sur Livret A"
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
@@ -391,7 +391,7 @@ class epargne_revenus_non_imposables(Variable):
     """ NB : cette variable est définie indépendemment des variables commençant par interets_plan_epargne_logement et interets_compte_epargne_logement """
     value_type = float
     entity = Individu
-    label = u"Épargne générant des revenus non imposables hors Livret A"
+    label = "Épargne générant des revenus non imposables hors Livret A"
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
@@ -399,7 +399,7 @@ class epargne_revenus_non_imposables(Variable):
 class epargne_revenus_imposables(Variable):
     value_type = float
     entity = Individu
-    label = u"Épargne générant des revenus imposables"
+    label = "Épargne générant des revenus imposables"
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
@@ -409,7 +409,7 @@ class epargne_revenus_imposables(Variable):
 class revenus_capitaux_prelevement_bareme(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = u"Revenus du capital imposés au barème (montants bruts)"
+    label = "Revenus du capital imposés au barème (montants bruts)"
     set_input = set_input_divide_by_period
     reference = "http://bofip.impots.gouv.fr/bofip/3775-PGP"
     definition_period = MONTH
@@ -481,7 +481,7 @@ class revenus_capitaux_prelevement_bareme(Variable):
 class revenus_capitaux_prelevement_liberatoire(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = u"Revenu du capital imposé au prélèvement libératoire (montants bruts)"
+    label = "Revenu du capital imposé au prélèvement libératoire (montants bruts)"
     set_input = set_input_divide_by_period
     reference = "http://bofip.impots.gouv.fr/bofip/3817-PGP"
     definition_period = MONTH
@@ -517,7 +517,7 @@ class revenus_capitaux_prelevement_liberatoire(Variable):
 class revenus_capital(Variable):
     value_type = float
     entity = Individu
-    label = u"Revenus du capital"
+    label = "Revenus du capital"
     definition_period = MONTH
     set_input = set_input_divide_by_period
 

@@ -12,7 +12,7 @@ log = logging.getLogger(__name__)
 class assiette_allegement(Variable):
     value_type = float
     entity = Individu
-    label = u"Assiette des allègements de cotisations sociales employeur"
+    label = "Assiette des allègements de cotisations sociales employeur"
     definition_period = MONTH
 
     def formula(individu, period, parameters):
@@ -27,7 +27,7 @@ class assiette_allegement(Variable):
 class coefficient_proratisation(Variable):
     value_type = float
     entity = Individu
-    label = u"Coefficient de proratisation du salaire notamment pour le calcul du SMIC"
+    label = "Coefficient de proratisation du salaire notamment pour le calcul du SMIC"
     definition_period = MONTH
 
     def formula(individu, period, parameters):
@@ -119,7 +119,7 @@ class coefficient_proratisation(Variable):
 class credit_impot_competitivite_emploi(Variable):
     value_type = float
     entity = Individu
-    label = u"Crédit d'impôt pour la compétitivité et l'emploi"
+    label = "Crédit d'impôt pour la compétitivité et l'emploi"
     definition_period = MONTH
     calculate_output = calculate_output_add
 
@@ -140,7 +140,7 @@ class credit_impot_competitivite_emploi(Variable):
 class aide_premier_salarie(Variable):
     value_type = float
     entity = Individu
-    label = u"Aide à l'embauche d'un premier salarié"
+    label = "Aide à l'embauche d'un premier salarié"
     definition_period = MONTH
     calculate_output = calculate_output_add
 
@@ -203,8 +203,8 @@ class aide_premier_salarie(Variable):
 class aide_embauche_pme(Variable):
     value_type = float
     entity = Individu
-    label = u"Aide à l'embauche d'un salarié pour les PME"
-    reference = u"http://travail-emploi.gouv.fr/grands-dossiers/embauchepme"
+    label = "Aide à l'embauche d'un salarié pour les PME"
+    reference = "http://travail-emploi.gouv.fr/grands-dossiers/embauchepme"
     definition_period = MONTH
     calculate_output = calculate_output_add
 
@@ -284,7 +284,7 @@ class aide_embauche_pme(Variable):
 class smic_proratise(Variable):
     value_type = float
     entity = Individu
-    label = u"SMIC proratisé (mensuel)"
+    label = "SMIC proratisé (mensuel)"
     definition_period = MONTH
 
     def formula(individu, period, parameters):
@@ -298,8 +298,8 @@ class smic_proratise(Variable):
 class allegement_fillon(Variable):
     value_type = float
     entity = Individu
-    label = u"Allègement de charges employeur sur les bas et moyens salaires (dit allègement Fillon)"
-    reference = u"https://www.service-public.fr/professionnels-entreprises/vosdroits/F24542"
+    label = "Allègement de charges employeur sur les bas et moyens salaires (dit allègement Fillon)"
+    reference = "https://www.service-public.fr/professionnels-entreprises/vosdroits/F24542"
     definition_period = MONTH
     calculate_output = calculate_output_add
 
@@ -382,9 +382,9 @@ def compute_allegement_fillon(individu, period, parameters):
 
 class allegement_cotisation_allocations_familiales(Variable):
     value_type = float
-    label = u"Allègement de la cotisation d'allocations familiales sur les bas et moyens salaires"
+    label = "Allègement de la cotisation d'allocations familiales sur les bas et moyens salaires"
     entity = Individu
-    reference = u"https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-cotisation-dallocations-famil/la-reduction-du-taux-de-la-cotis.html"
+    reference = "https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-cotisation-dallocations-famil/la-reduction-du-taux-de-la-cotis.html"
     definition_period = MONTH
 
     def formula_2015_01_01(individu, period, parameters):

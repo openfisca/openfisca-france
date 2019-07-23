@@ -9,7 +9,7 @@ from openfisca_france.model.base import *
 class apprenti(Variable):
     value_type = bool
     entity = Individu
-    label = u"L'individu est apprenti"
+    label = "L'individu est apprenti"
     reference = "http://www.apce.com/pid927/contrat-d-apprentissage.html?espace=1&tp=1&pagination=2"
     definition_period = MONTH
 
@@ -28,7 +28,7 @@ class apprenti(Variable):
 class remuneration_apprenti(Variable):
     value_type = float
     entity = Individu
-    label = u"Rémunération de l'apprenti"
+    label = "Rémunération de l'apprenti"
     reference = "http://www.apce.com/pid927/contrat-d-apprentissage.html?espace=1&tp=1&pagination=2"
     definition_period = MONTH
 
@@ -91,7 +91,7 @@ class remuneration_apprenti(Variable):
 class exoneration_cotisations_employeur_apprenti(Variable):
     value_type = float
     entity = Individu
-    label = u"Exonération de cotisations employeur pour l'emploi d'un apprenti"
+    label = "Exonération de cotisations employeur pour l'emploi d'un apprenti"
     reference = "http://www.apce.com/pid927/contrat-d-apprentissage.html?espace=1&tp=1&pagination=2"
     definition_period = MONTH
     # Artisans et employeurs de moins de 11 salariés
@@ -145,7 +145,7 @@ class exoneration_cotisations_employeur_apprenti(Variable):
 class exoneration_cotisations_salariales_apprenti(Variable):
     value_type = float
     entity = Individu
-    label = u"Exonération de cotisations salariales pour l'emploi d'un apprenti"
+    label = "Exonération de cotisations salariales pour l'emploi d'un apprenti"
     reference = "http://www.apce.com/pid927/contrat-d-apprentissage.html?espace=1&tp=1&pagination=2"
     definition_period = MONTH
 
@@ -160,7 +160,7 @@ class exoneration_cotisations_salariales_apprenti(Variable):
 class prime_apprentissage(Variable):
     value_type = float
     entity = Individu
-    label = u"Prime d'apprentissage pour les entreprise employant un apprenti"
+    label = "Prime d'apprentissage pour les entreprise employant un apprenti"
     reference = "http://www.apce.com/pid927/contrat-d-apprentissage.html?espace=1&tp=1&pagination=2"
     definition_period = YEAR
     # L'employeur peut également recevoir de la région dans laquelle est situé l'établissement du lieu de travail,
@@ -187,7 +187,7 @@ class prime_apprentissage(Variable):
 # # class credit_impot_emploi_apprenti(Variable):
 #     value_type = float
 #     entity = Individu
-#     label = u" Crédit d'impôt pour l'emploi d'apprentis"
+#     label = " Crédit d'impôt pour l'emploi d'apprentis"
 #     reference = "http://www.apce.com/pid927/contrat-d-apprentissage.html?espace=1&tp=1&pagination=2"
 #
 #     def formula(individu, period, parameters):
@@ -211,7 +211,7 @@ class prime_apprentissage(Variable):
 # # class credit_impot_emploi_apprenti(Variable):
 #     value_type = float
 #     entity = Individu
-#     label = u"Déduction de la créance "bonus alternant"
+#     label = "Déduction de la créance "bonus alternant"
 # Les entreprises de plus de 250 salariés, tous établissements confondus, redevables de la taxe d'apprentissage,
 # qui emploient plus de 4 % de jeunes en apprentissage (5 % pour la taxe payable en 2016 au titre de 2015), dans la
 # limite de 6 % d'alternants, peuvent bénéficier d'une créance à déduire du hors quota de la taxe d'apprentissage (TA).
