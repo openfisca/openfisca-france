@@ -1,5 +1,13 @@
 # Changelog
 
+### 48.3.3 [#1361](https://github.com/openfisca/openfisca-france/pull/1361)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : toutes.
+* Zones impactées : `prestations/minima_sociaux/ppa`.
+* Détails :
+  - Améliore les conditions d'éligibilité à la PPA pour les couples avec étudiant
+
 ### 48.3.2 [#1365](https://github.com/openfisca/openfisca-france/pull/1365)
 
 * Correction d'un crash.
