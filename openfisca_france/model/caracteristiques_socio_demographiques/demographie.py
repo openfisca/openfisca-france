@@ -2,6 +2,40 @@
 
 from openfisca_france.model.base import *
 
+EEE_COUNTRY_CODES = [
+    b'AT',
+    b'BE',
+    b'BG',
+    b'CY',
+    b'CZ',
+    b'DE',
+    b'DK',
+    b'EE',
+    b'ES',
+    b'FI',
+    b'FR',
+    b'GR',
+    b'HR',
+    b'HU',
+    b'IE',
+    b'IS',
+    b'IT',
+    b'LI',
+    b'LU',
+    b'LV',
+    b'MT',
+    b'NL',
+    b'NO',
+    b'PL',
+    b'PT',
+    b'RO',
+    b'SE',
+    b'SI',
+    b'SK',
+    b'UK',
+    b'CH',  # Suisse hors EEE
+    ]
+
 
 class date_naissance(Variable):
     value_type = date
@@ -267,12 +301,25 @@ class rempli_obligation_scolaire(Variable):
     definition_period = MONTH
 
 
+class nationalite(Variable):
+    value_type = str
+    entity = Individu
+    default_value = 'FR'
+    max_length = 2
+    label = "Code ISO de la nationalité de l'individu"
+    definition_period = MONTH
+
+
 class ressortissant_eee(Variable):
     value_type = bool
     default_value = True
     entity = Individu
-    label = u"Ressortissant de l'EEE ou de la Suisse."
+    label = "Ressortissant de l'EEE ou de la Suisse."
     definition_period = MONTH
+
+    def formula(individu, period):
+        nationalite = individu('nationalite', period)
+        return sum([nationalite == code_iso for code_iso in EEE_COUNTRY_CODES])
 
 
 class duree_possession_titre_sejour(Variable):

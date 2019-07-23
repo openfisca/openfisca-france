@@ -1,6 +1,15 @@
 # Changelog
 
-## 48.2.1 [#1357](https://github.com/openfisca/openfisca-france/pull/1357)
+##  48.3.0 [#1358](https://github.com/openfisca/openfisca-france/pull/1358)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : toutes.
+* Zones impactées : `caracteristiques_socio_demographiques/demographie.py`.
+* Détails :
+  - Ajoute une variable pour la nationalité des individus
+  - Rend `ressortissant_eee` calculable à partir de la `nationalite`
+
+### 48.2.1 [#1357](https://github.com/openfisca/openfisca-france/pull/1357)
 
 * Changement mineur
 * Détails :
@@ -10,7 +19,7 @@
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 01/01/2001.
-* Zones impactées : 
+* Zones impactées :
   - `model\prelevements_obligatoires\impot_revenu\ir.py`
   - `parameters\impot_revenu\decote`
 * Détails :
