@@ -1,6 +1,16 @@
 # Changelog
 
-### 48.3.3 [#1361](https://github.com/openfisca/openfisca-france/pull/1361)
+### 48.4.0 [#1368](https://github.com/openfisca/openfisca-france/pull/1368)
+
+* Correction d'un crash.
+* Périodes concernées : toutes.
+* Zones impactées : `prestations/minima_sociaux/ppa`.
+* Détails :
+  - Change l'entité associée à `ppa_plancher_revenu_activite_etudiant`
+
+### ~48.3.3 [#1361](https://github.com/openfisca/openfisca-france/pull/1361)~ Version dé-publiée
+
+> Cette version a été dé-publiée pour éviter un changement majeur pour le correctif apporté par la 48.4.0
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : toutes.
