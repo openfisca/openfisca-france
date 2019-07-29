@@ -70,9 +70,9 @@ class ppa_eligibilite_etudiants(Variable):
 
         condition_non_etudiant_i = (
             not_(etudiant_i) * (
-                condition_ressource(m_1, 1)
-                + condition_ressource(m_2, 2)
-                + condition_ressource(m_3, 3)
+                condition_ressource(m_1, 0)
+                + condition_ressource(m_2, 0)
+                + condition_ressource(m_3, 0)
                 )
             )
 
