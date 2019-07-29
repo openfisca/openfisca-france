@@ -22,7 +22,7 @@ class ppa_eligibilite(Variable):
 
 class ppa_plancher_revenu_activite_etudiant(Variable):
     value_type = float
-    entity = Famille
+    entity = Individu
     label = u"Plancher des revenus d'activité pour être éligible à la PPA en tant qu'étudiant"
     definition_period = MONTH
 
@@ -52,7 +52,7 @@ class ppa_eligibilite_etudiants(Variable):
         ppa_majoree_eligibilite = famille('rsa_majore_eligibilite', period)
 
         etudiant_i = famille.members('etudiant', period)
-        plancher_etudiant = famille('ppa_plancher_revenu_activite_etudiant', period)
+        plancher_etudiant = famille.members('ppa_plancher_revenu_activite_etudiant', period)
 
         def condition_ressource(period2, plancher):
             revenu_activite = famille.members('ppa_revenu_activite_individu', period2)
