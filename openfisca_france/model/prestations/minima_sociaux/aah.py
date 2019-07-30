@@ -441,6 +441,7 @@ class complement_ressources_aah(Variable):
     label = "Le complément de ressources"
     reference = "https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006745305&dateTexte=&categorieLien=cid"
     definition_period = MONTH
+    end = "2019-11-30"
 
     def formula_2015_07_01(individu, period, parameters):
         prestations = parameters(period).prestations
