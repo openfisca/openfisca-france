@@ -1,6 +1,15 @@
 # Changelog
 
-### 48.4.0 [#1368](https://github.com/openfisca/openfisca-france/pull/1368)
+## 48.5.0 [#1362](https://github.com/openfisca/openfisca-france/pull/1362)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/12/2019.
+* Zones impactées : `model/prestations/minima_sociaux/aah`.
+* Détails :
+  - Neutralise le complément de ressources AAH
+  - Ne prends plus en compte le complément de ressources dans le calcul du CAAH
+
+## 48.4.0 [#1368](https://github.com/openfisca/openfisca-france/pull/1368)
 
 * Correction d'un crash.
 * Périodes concernées : toutes.
@@ -8,7 +17,7 @@
 * Détails :
   - Change l'entité associée à `ppa_plancher_revenu_activite_etudiant`
 
-### ~48.3.3 [#1361](https://github.com/openfisca/openfisca-france/pull/1361)~ Version dé-publiée
+### 48.3.3 [#1361](https://github.com/openfisca/openfisca-france/pull/1361)
 
 > Cette version a été dé-publiée pour éviter un changement majeur pour le correctif apporté par la 48.4.0
 
