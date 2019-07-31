@@ -1,0 +1,749 @@
+- name: "CSS: N°1 Foyer d'une personne dans la tranche 30 à 49 ans, hors régime Alsace Moselle"
+  period: 2019-11
+  absolute_error_margin: 0.1
+  input:
+    individus:
+      parent1:
+        date_naissance: 1973-05-01
+        salaire_net:
+          2019-10: 833.33
+          2019-09: 833.33
+          2019-08: 833.33
+          2019-07: 833.33
+          2019-06: 833.33
+          2019-05: 833.33
+          2019-04: 833.33
+          2019-03: 833.33
+          2019-02: 833.33
+          2019-01: 833.33
+          2018-12: 833.33
+          2018-11: 833.33
+        salarie_regime_alsace_moselle: false
+    famille:
+      parents: [parent1]
+      aide_logement: 0
+      rsa: 0
+      acs: 0
+    menage:
+      personne_de_reference: parent1
+      statut_occupation_logement: locataire_vide
+    foyer_fiscal:
+      declarants: [parent1]
+  output:
+    cmu_acs_eligibilite: true
+    cmu_c_plafond: 8950.96
+    complementaire_sante_solidaire_plafond: 12083.81
+    cmu_base_ressources: 10000
+    cmu_c: false
+    complementaire_sante_solidaire: 14
+
+- name: "CSS: N°2 Foyer d'une personne dans la tranche 30 à 49 ans, régime Alsace Moselle"
+  period: 2019-11
+  absolute_error_margin: 0.1
+  input:
+    individus:
+      parent1:
+        date_naissance: 1973-05-01
+        salaire_net:
+          2019-10: 833.33
+          2019-09: 833.33
+          2019-08: 833.33
+          2019-07: 833.33
+          2019-06: 833.33
+          2019-05: 833.33
+          2019-04: 833.33
+          2019-03: 833.33
+          2019-02: 833.33
+          2019-01: 833.33
+          2018-12: 833.33
+          2018-11: 833.33
+        salarie_regime_alsace_moselle: true
+    famille:
+      parents: [parent1]
+      aide_logement: 0
+      rsa: 0
+      acs: 0
+    menage:
+      personne_de_reference: parent1
+      statut_occupation_logement: locataire_vide
+    foyer_fiscal:
+      declarants: [parent1]
+  output:
+    cmu_acs_eligibilite: true
+    cmu_c_plafond: 8950.96
+    complementaire_sante_solidaire_plafond: 12083.81
+    cmu_base_ressources: 10000
+    cmu_c: false
+    complementaire_sante_solidaire: 4.90
+
+- name: "CSS: N°3 Foyer de deux personnes dans les tranche 50 à 59 ans et 60 à 69 ans, hors régime Alsace Moselle"
+  period: 2019-11
+  absolute_error_margin: 0.1
+  input:
+    individus:
+      parent1:
+        date_naissance: 1961-01-01
+        salaire_net:
+          2019-10: 583.33
+          2019-09: 583.33
+          2019-08: 583.33
+          2019-07: 583.33
+          2019-06: 583.33
+          2019-05: 583.33
+          2019-04: 583.33
+          2019-03: 583.33
+          2019-02: 583.33
+          2019-01: 583.33
+          2018-12: 583.33
+          2018-11: 583.33
+        salarie_regime_alsace_moselle: false
+      parent2:
+        date_naissance: 1951-05-01
+        salaire_net:
+          2019-10: 583.33
+          2019-09: 583.33
+          2019-08: 583.33
+          2019-07: 583.33
+          2019-06: 583.33
+          2019-05: 583.33
+          2019-04: 583.33
+          2019-03: 583.33
+          2019-02: 583.33
+          2019-01: 583.33
+          2018-12: 583.33
+          2018-11: 583.33
+        salarie_regime_alsace_moselle: false
+    famille:
+      parents: [parent1, parent2]
+      aide_logement: 0
+      rsa: 0
+      acs: 0
+      af:
+        2019-10: 0
+        2019-09: 0
+        2019-08: 0
+        2019-07: 0
+        2019-06: 0
+        2019-05: 0
+        2019-04: 0
+        2019-03: 0
+        2019-02: 0
+        2019-01: 0
+        2018-12: 0
+        2018-11: 0
+      cf:
+        2019-10: 0
+        2019-09: 0
+        2019-08: 0
+        2019-07: 0
+        2019-06: 0
+        2019-05: 0
+        2019-04: 0
+        2019-03: 0
+        2019-02: 0
+        2019-01: 0
+        2018-12: 0
+        2018-11: 0
+      asf:
+        2019-10: 0
+        2019-09: 0
+        2019-08: 0
+        2019-07: 0
+        2019-06: 0
+        2019-05: 0
+        2019-04: 0
+        2019-03: 0
+        2019-02: 0
+        2019-01: 0
+        2018-12: 0
+        2018-11: 0
+      aspa:
+        2019-10: 0
+        2019-09: 0
+        2019-08: 0
+        2019-07: 0
+        2019-06: 0
+        2019-05: 0
+        2019-04: 0
+        2019-03: 0
+        2019-02: 0
+        2019-01: 0
+        2018-12: 0
+        2018-11: 0
+    menage:
+      personne_de_reference: parent1
+      conjoint: parent2
+      statut_occupation_logement: locataire_vide
+    foyer_fiscal:
+      declarants: [parent1, parent2]
+  output:
+    cmu_acs_eligibilite: true
+    cmu_c_plafond: 13426
+    complementaire_sante_solidaire_plafond: 18125
+    cmu_base_ressources: 14000
+    cmu_c: false
+    complementaire_sante_solidaire: 21 + 25
+
+- name: "CSS: N°4 Foyer de deux personnes dans les tranche 50 à 59 ans et 60 à 69 ans, régime Alsace Moselle"
+  period: 2019-11
+  absolute_error_margin: 0.1
+  input:
+    individus:
+      parent1:
+        date_naissance: 1961-01-01
+        salaire_net:
+          2019-10: 583.33
+          2019-09: 583.33
+          2019-08: 583.33
+          2019-07: 583.33
+          2019-06: 583.33
+          2019-05: 583.33
+          2019-04: 583.33
+          2019-03: 583.33
+          2019-02: 583.33
+          2019-01: 583.33
+          2018-12: 583.33
+          2018-11: 583.33
+        salarie_regime_alsace_moselle: true
+      parent2:
+        date_naissance: 1951-05-01
+        salaire_net:
+          2019-10: 583.33
+          2019-09: 583.33
+          2019-08: 583.33
+          2019-07: 583.33
+          2019-06: 583.33
+          2019-05: 583.33
+          2019-04: 583.33
+          2019-03: 583.33
+          2019-02: 583.33
+          2019-01: 583.33
+          2018-12: 583.33
+          2018-11: 583.33
+        salarie_regime_alsace_moselle: true
+    famille:
+      parents: [parent1, parent2]
+      aide_logement: 0
+      rsa: 0
+      acs: 0
+      af:
+        2019-10: 0
+        2019-09: 0
+        2019-08: 0
+        2019-07: 0
+        2019-06: 0
+        2019-05: 0
+        2019-04: 0
+        2019-03: 0
+        2019-02: 0
+        2019-01: 0
+        2018-12: 0
+        2018-11: 0
+      cf:
+        2019-10: 0
+        2019-09: 0
+        2019-08: 0
+        2019-07: 0
+        2019-06: 0
+        2019-05: 0
+        2019-04: 0
+        2019-03: 0
+        2019-02: 0
+        2019-01: 0
+        2018-12: 0
+        2018-11: 0
+      asf:
+        2019-10: 0
+        2019-09: 0
+        2019-08: 0
+        2019-07: 0
+        2019-06: 0
+        2019-05: 0
+        2019-04: 0
+        2019-03: 0
+        2019-02: 0
+        2019-01: 0
+        2018-12: 0
+        2018-11: 0
+      aspa:
+        2019-10: 0
+        2019-09: 0
+        2019-08: 0
+        2019-07: 0
+        2019-06: 0
+        2019-05: 0
+        2019-04: 0
+        2019-03: 0
+        2019-02: 0
+        2019-01: 0
+        2018-12: 0
+        2018-11: 0
+    menage:
+      personne_de_reference: parent1
+      conjoint: parent2
+      statut_occupation_logement: locataire_vide
+    foyer_fiscal:
+      declarants: [parent1, parent2]
+  output:
+    cmu_acs_eligibilite: true
+    cmu_c_plafond: 13426
+    complementaire_sante_solidaire_plafond: 18125
+    cmu_base_ressources: 14000
+    cmu_c: false
+    complementaire_sante_solidaire: 7.30 + 8.70
+
+- name: "CSS: N°5 Foyer de cinq personnes, dans les tranches moins de 29 ans et 30 à 49 ans, hors régime Alsace Moselle"
+  period: 2019-11
+  absolute_error_margin: 0.1
+  input:
+    individus:
+      parent1:
+        date_naissance: 1994-01-01
+        salaire_net:
+          2019-10: 1000
+          2019-09: 1000
+          2019-08: 1000
+          2019-07: 1000
+          2019-06: 1000
+          2019-05: 1000
+          2019-04: 1000
+          2019-03: 1000
+          2019-02: 1000
+          2019-01: 1000
+          2018-12: 1000
+          2018-11: 1000
+        salarie_regime_alsace_moselle: false
+      parent2:
+        date_naissance: 1984-02-01
+        salaire_net:
+          2019-10: 1000
+          2019-09: 1000
+          2019-08: 1000
+          2019-07: 1000
+          2019-06: 1000
+          2019-05: 1000
+          2019-04: 1000
+          2019-03: 1000
+          2019-02: 1000
+          2019-01: 1000
+          2018-12: 1000
+          2018-11: 1000
+        salarie_regime_alsace_moselle: false
+      enfant1:
+        date_naissance: 2009-07-01
+        salarie_regime_alsace_moselle: false
+      enfant2:
+        date_naissance: 2015-02-25
+        salarie_regime_alsace_moselle: false
+      enfant3:
+        date_naissance: 2011-06-01
+        salarie_regime_alsace_moselle: false
+    famille:
+        parents: [parent1, parent2]
+        enfants: [enfant1, enfant2, enfant3]
+        aide_logement: 0
+        rsa: 0
+        acs: 0
+        af:
+          2019-10: 0
+          2019-09: 0
+          2019-08: 0
+          2019-07: 0
+          2019-06: 0
+          2019-05: 0
+          2019-04: 0
+          2019-03: 0
+          2019-02: 0
+          2019-01: 0
+          2018-12: 0
+          2018-11: 0
+        cf:
+          2019-10: 0
+          2019-09: 0
+          2019-08: 0
+          2019-07: 0
+          2019-06: 0
+          2019-05: 0
+          2019-04: 0
+          2019-03: 0
+          2019-02: 0
+          2019-01: 0
+          2018-12: 0
+          2018-11: 0
+        asf:
+          2019-10: 0
+          2019-09: 0
+          2019-08: 0
+          2019-07: 0
+          2019-06: 0
+          2019-05: 0
+          2019-04: 0
+          2019-03: 0
+          2019-02: 0
+          2019-01: 0
+          2018-12: 0
+          2018-11: 0
+        aspa:
+          2019-10: 0
+          2019-09: 0
+          2019-08: 0
+          2019-07: 0
+          2019-06: 0
+          2019-05: 0
+          2019-04: 0
+          2019-03: 0
+          2019-02: 0
+          2019-01: 0
+          2018-12: 0
+          2018-11: 0
+    menage:
+      personne_de_reference: parent1
+      conjoint: parent2
+      enfants: [enfant1, enfant2, enfant3]
+      statut_occupation_logement: locataire_vide
+    foyer_fiscal:
+      declarants: [parent1, parent2]
+      personnes_a_charge: [enfant1, enfant2, enfant3]
+  output:
+    cmu_acs_eligibilite: true
+    cmu_c_plafond: 22378
+    complementaire_sante_solidaire_plafond: 30210.3
+    cmu_base_ressources: 24000
+    cmu_c: false
+    complementaire_sante_solidaire: 8 + 14 + 8 + 8 + 8
+
+- name: "CSS: N°6 Foyer de cinq personnes, dans les tranches moins de 29 ans et 30 à 49 ans, régime Alsace Moselle"
+  period: 2019-11
+  absolute_error_margin: 0.1
+  input:
+    individus:
+      parent1:
+        date_naissance: 1994-01-01
+        salaire_net:
+          2019-10: 1000
+          2019-09: 1000
+          2019-08: 1000
+          2019-07: 1000
+          2019-06: 1000
+          2019-05: 1000
+          2019-04: 1000
+          2019-03: 1000
+          2019-02: 1000
+          2019-01: 1000
+          2018-12: 1000
+          2018-11: 1000
+        salarie_regime_alsace_moselle: true
+      parent2:
+        date_naissance: 1984-02-01
+        salaire_net:
+          2019-10: 1000
+          2019-09: 1000
+          2019-08: 1000
+          2019-07: 1000
+          2019-06: 1000
+          2019-05: 1000
+          2019-04: 1000
+          2019-03: 1000
+          2019-02: 1000
+          2019-01: 1000
+          2018-12: 1000
+          2018-11: 1000
+        salarie_regime_alsace_moselle: true
+      enfant1:
+        date_naissance: 2009-07-01
+        salarie_regime_alsace_moselle: true
+      enfant2:
+        date_naissance: 2015-02-25
+        salarie_regime_alsace_moselle: true
+      enfant3:
+        date_naissance: 2011-06-01
+        salarie_regime_alsace_moselle: true
+    famille:
+      parents: [parent1, parent2]
+      enfants: [enfant1, enfant2, enfant3]
+      aide_logement: 0
+      rsa: 0
+      acs: 0
+      af:
+        2019-10: 0
+        2019-09: 0
+        2019-08: 0
+        2019-07: 0
+        2019-06: 0
+        2019-05: 0
+        2019-04: 0
+        2019-03: 0
+        2019-02: 0
+        2019-01: 0
+        2018-12: 0
+        2018-11: 0
+      cf:
+        2019-10: 0
+        2019-09: 0
+        2019-08: 0
+        2019-07: 0
+        2019-06: 0
+        2019-05: 0
+        2019-04: 0
+        2019-03: 0
+        2019-02: 0
+        2019-01: 0
+        2018-12: 0
+        2018-11: 0
+      asf:
+        2019-10: 0
+        2019-09: 0
+        2019-08: 0
+        2019-07: 0
+        2019-06: 0
+        2019-05: 0
+        2019-04: 0
+        2019-03: 0
+        2019-02: 0
+        2019-01: 0
+        2018-12: 0
+        2018-11: 0
+      aspa:
+        2019-10: 0
+        2019-09: 0
+        2019-08: 0
+        2019-07: 0
+        2019-06: 0
+        2019-05: 0
+        2019-04: 0
+        2019-03: 0
+        2019-02: 0
+        2019-01: 0
+        2018-12: 0
+        2018-11: 0
+    menage:
+      personne_de_reference: parent1
+      conjoint: parent2
+      enfants: [enfant1, enfant2, enfant3]
+      statut_occupation_logement: locataire_vide
+    foyer_fiscal:
+      declarants: [parent1, parent2]
+      personnes_a_charge: [enfant1, enfant2, enfant3]
+  output:
+    cmu_acs_eligibilite: true
+    cmu_c_plafond: 22378
+    complementaire_sante_solidaire_plafond: 30210.3
+    cmu_base_ressources: 24000
+    cmu_c: false
+    complementaire_sante_solidaire: 2.80 + 4.90 + 2.80 + 2.80 + 2.80
+
+- name: "CSS: N°7 Foyer de deux personnes dans les tranche plus de 70 ans et 60 à 69 ans, hors régime Alsace Moselle"
+  period: 2019-11
+  absolute_error_margin: 0.1
+  input:
+    individus:
+      parent1:
+        date_naissance: 1936-10-26
+        salaire_net:
+          2019-10: 583.33
+          2019-09: 583.33
+          2019-08: 583.33
+          2019-07: 583.33
+          2019-06: 583.33
+          2019-05: 583.33
+          2019-04: 583.33
+          2019-03: 583.33
+          2019-02: 583.33
+          2019-01: 583.33
+          2018-12: 583.33
+          2018-11: 583.33
+        salarie_regime_alsace_moselle: false
+      parent2:
+        date_naissance: 1951-05-01
+        salaire_net:
+          2019-10: 583.33
+          2019-09: 583.33
+          2019-08: 583.33
+          2019-07: 583.33
+          2019-06: 583.33
+          2019-05: 583.33
+          2019-04: 583.33
+          2019-03: 583.33
+          2019-02: 583.33
+          2019-01: 583.33
+          2018-12: 583.33
+          2018-11: 583.33
+        salarie_regime_alsace_moselle: false
+    famille:
+      parents: [parent1, parent2]
+      aide_logement: 0
+      rsa: 0
+      acs: 0
+      af:
+        2019-10: 0
+        2019-09: 0
+        2019-08: 0
+        2019-07: 0
+        2019-06: 0
+        2019-05: 0
+        2019-04: 0
+        2019-03: 0
+        2019-02: 0
+        2019-01: 0
+        2018-12: 0
+        2018-11: 0
+      cf:
+        2019-10: 0
+        2019-09: 0
+        2019-08: 0
+        2019-07: 0
+        2019-06: 0
+        2019-05: 0
+        2019-04: 0
+        2019-03: 0
+        2019-02: 0
+        2019-01: 0
+        2018-12: 0
+        2018-11: 0
+      asf:
+        2019-10: 0
+        2019-09: 0
+        2019-08: 0
+        2019-07: 0
+        2019-06: 0
+        2019-05: 0
+        2019-04: 0
+        2019-03: 0
+        2019-02: 0
+        2019-01: 0
+        2018-12: 0
+        2018-11: 0
+      aspa:
+        2019-10: 0
+        2019-09: 0
+        2019-08: 0
+        2019-07: 0
+        2019-06: 0
+        2019-05: 0
+        2019-04: 0
+        2019-03: 0
+        2019-02: 0
+        2019-01: 0
+        2018-12: 0
+        2018-11: 0
+    menage:
+      personne_de_reference: parent1
+      conjoint: parent2
+      statut_occupation_logement: locataire_vide
+    foyer_fiscal:
+      declarants: [parent1, parent2]
+  output:
+    cmu_acs_eligibilite: true
+    cmu_c_plafond: 13426
+    complementaire_sante_solidaire_plafond: 18125
+    cmu_base_ressources: 14000
+    cmu_c: false
+    complementaire_sante_solidaire: 30 + 25
+
+- name: "CSS: N°8 Foyer de deux personnes dans les tranche plus de 70 ans et 60 à 69 ans, régime Alsace Moselle"
+  period: 2019-11
+  absolute_error_margin: 0.1
+  input:
+    individus:
+      parent1:
+        date_naissance: 1936-10-26
+        salaire_net:
+          2019-10: 583.33
+          2019-09: 583.33
+          2019-08: 583.33
+          2019-07: 583.33
+          2019-06: 583.33
+          2019-05: 583.33
+          2019-04: 583.33
+          2019-03: 583.33
+          2019-02: 583.33
+          2019-01: 583.33
+          2018-12: 583.33
+          2018-11: 583.33
+        salarie_regime_alsace_moselle: true
+      parent2:
+        date_naissance: 1951-05-01
+        salaire_net:
+          2019-10: 583.33
+          2019-09: 583.33
+          2019-08: 583.33
+          2019-07: 583.33
+          2019-06: 583.33
+          2019-05: 583.33
+          2019-04: 583.33
+          2019-03: 583.33
+          2019-02: 583.33
+          2019-01: 583.33
+          2018-12: 583.33
+          2018-11: 583.33
+        salarie_regime_alsace_moselle: true
+    famille:
+      parents: [parent1, parent2]
+      aide_logement: 0
+      rsa: 0
+      acs: 0
+      af:
+        2019-10: 0
+        2019-09: 0
+        2019-08: 0
+        2019-07: 0
+        2019-06: 0
+        2019-05: 0
+        2019-04: 0
+        2019-03: 0
+        2019-02: 0
+        2019-01: 0
+        2018-12: 0
+        2018-11: 0
+      cf:
+        2019-10: 0
+        2019-09: 0
+        2019-08: 0
+        2019-07: 0
+        2019-06: 0
+        2019-05: 0
+        2019-04: 0
+        2019-03: 0
+        2019-02: 0
+        2019-01: 0
+        2018-12: 0
+        2018-11: 0
+      asf:
+        2019-10: 0
+        2019-09: 0
+        2019-08: 0
+        2019-07: 0
+        2019-06: 0
+        2019-05: 0
+        2019-04: 0
+        2019-03: 0
+        2019-02: 0
+        2019-01: 0
+        2018-12: 0
+        2018-11: 0
+      aspa:
+        2019-10: 0
+        2019-09: 0
+        2019-08: 0
+        2019-07: 0
+        2019-06: 0
+        2019-05: 0
+        2019-04: 0
+        2019-03: 0
+        2019-02: 0
+        2019-01: 0
+        2018-12: 0
+        2018-11: 0
+    menage:
+      personne_de_reference: parent1
+      conjoint: parent2
+      statut_occupation_logement: locataire_vide
+    foyer_fiscal:
+      declarants: [parent1, parent2]
+  output:
+    cmu_acs_eligibilite: true
+    cmu_c_plafond: 13426
+    complementaire_sante_solidaire_plafond: 18125
+    cmu_base_ressources: 14000
+    cmu_c: false
+    complementaire_sante_solidaire: 10.50 + 8.70
