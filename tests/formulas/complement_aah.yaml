@@ -2,23 +2,11 @@
   period: 2019-01
   absolute_error_margin: 1
   input:
-    famille:
-      parents: parent1
-    individus:
-      parent1:
-        age: 58
-        taux_incapacite: 0.8
-        taux_capacite_travail: 0.04
-        aah: 261.56
-        asi: 230.32
-    foyers_fiscaux:
-      foyer_fiscal_0:
-        declarants:
-        - parent1
-    menages:
-      menage_0:
-        personne_de_reference:
-        - parent1
+    aah: 261.56
+    age: 58
+    asi: 230.32
+    taux_capacite_travail: 0.04
+    taux_incapacite: 0.8
   output:
     complement_ressources_aah: 179.31
     caah: 179.31
@@ -27,23 +15,11 @@
   period: 2019-01
   absolute_error_margin: 1
   input:
-    famille:
-      parents: parent1
-      aide_logement_montant: 254.27
-    individus:
-      parent1:
-        age: 58
-        taux_incapacite: 0.8
-        aah: 261.56
-        asi: 200.71
-    foyers_fiscaux:
-      foyer_fiscal_0:
-        declarants:
-        - parent1
-    menages:
-      menage_0:
-        personne_de_reference:
-        - parent1
+    aide_logement_montant: 254.27
+    age: 58
+    taux_incapacite: 0.8
+    aah: 261.56
+    asi: 200.71
   output:
     mva: 104.77
     caah: 104.77
@@ -52,21 +28,9 @@
   period: 2019-01
   absolute_error_margin: 1
   input:
-    famille:
-      parents: parent1
-    individus:
-      parent1:
-        age: 55
-        aah_date_debut_hospitalisation: 2018-10-15
-        taux_incapacite: 0.8
-    foyers_fiscaux:
-      foyer_fiscal_0:
-        declarants:
-        - parent1
-    menages:
-      menage_0:
-        personne_de_reference:
-        - parent1
+    age: 55
+    aah_date_debut_hospitalisation: 2018-10-15
+    taux_incapacite: 0.8
   output:
     aah: 258.00
 
@@ -74,21 +38,9 @@
   period: 2018-09
   absolute_error_margin: 1
   input:
-    famille:
-      parents: parent1
-    individus:
-      parent1:
-        age: 55
-        aah_date_debut_incarceration: 2018-06-17
-        taux_incapacite: 0.8
-    foyers_fiscaux:
-      foyer_fiscal_0:
-        declarants:
-        - parent1
-    menages:
-      menage_0:
-        personne_de_reference:
-        - parent1
+    age: 55
+    aah_date_debut_incarceration: 2018-06-17
+    taux_incapacite: 0.8
   output:
     aah: 245.70
 
@@ -96,20 +48,25 @@
   period: 2019-01
   absolute_error_margin: 1
   input:
-    famille:
-      parents: parent1
-    individus:
-      parent1:
-        age: 55
-        aah_date_debut_incarceration: 2018-06-17
-        taux_incapacite: 0.8
-    foyers_fiscaux:
-      foyer_fiscal_0:
-        declarants:
-        - parent1
-    menages:
-      menage_0:
-        personne_de_reference:
-        - parent1
+    age: 55
+    aah_date_debut_incarceration: 2018-06-17
+    taux_incapacite: 0.8
   output:
     aah: 258.00
+
+- name: 'Réforme 01-12-2019 : suppression du complément de ressources au profit de la Majoration pour Vie Autonome'
+  absolute_error_margin: 1
+  input:
+    aide_logement_montant:
+      2019-11: 254.27
+      2019-12: 254.27
+    taux_capacite_travail:
+      2019-11: 0.04
+      2019-12: 0.04
+  output:
+    complement_ressources_aah:
+      2019-11: 139.31
+      2019-12: 0
+    mva:
+      2019-11: 104.77
+      2019-12: 104.77
