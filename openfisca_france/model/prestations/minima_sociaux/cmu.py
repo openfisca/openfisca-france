@@ -237,19 +237,6 @@ class acs_plafond(Variable):
         return cmu_c_plafond * (1 + P.majoration_plafond_acs)
 
 
-class complementaire_sante_solidaire_plafond(Variable):
-    value_type = float
-    entity = Famille
-    label = u"Plafond annuel de ressources pour l'éligibilité au complémentaire santé solidaire"
-    definition_period = MONTH
-
-    def formula(famille, period, parameters):
-        cmu_c_plafond = famille('cmu_c_plafond', period)
-        P = parameters(period).cmu
-
-        return cmu_c_plafond * (1 + P.majoration_plafond_acs)
-
-
 class cmu_base_ressources_individu(Variable):
     value_type = float
     label = "Base de ressources de l'individu prise en compte pour l'éligibilité à la CMU-C / ACS"
@@ -492,7 +479,7 @@ class complementaire_sante_solidaire(Variable):
     def formula_2019_11_01(famille, period):
         cmu_c = famille('cmu_c', period)
         cmu_base_ressources = famille('cmu_base_ressources', period)
-        cmu_c_etendue_plafond = famille('complementaire_sante_solidaire_plafond', period)
+        cmu_c_etendue_plafond = famille('acs_plafond', period)
         cmu_c_etendue_montant = famille('complementaire_sante_solidaire_montant', period)
         residence_mayotte = famille.demandeur.menage('residence_mayotte', period)
         cmu_acs_eligibilite = famille('cmu_acs_eligibilite', period)

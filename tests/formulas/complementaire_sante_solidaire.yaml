@@ -32,7 +32,7 @@
   output:
     cmu_acs_eligibilite: true
     cmu_c_plafond: 8950.96
-    complementaire_sante_solidaire_plafond: 12083.81
+    acs_plafond: 12083.81
     cmu_base_ressources: 10000
     cmu_c: false
     complementaire_sante_solidaire: 14
@@ -71,7 +71,7 @@
   output:
     cmu_acs_eligibilite: true
     cmu_c_plafond: 8950.96
-    complementaire_sante_solidaire_plafond: 12083.81
+    acs_plafond: 12083.81
     cmu_base_ressources: 10000
     cmu_c: false
     complementaire_sante_solidaire: 4.90
@@ -179,7 +179,7 @@
   output:
     cmu_acs_eligibilite: true
     cmu_c_plafond: 13426
-    complementaire_sante_solidaire_plafond: 18125
+    acs_plafond: 18125
     cmu_base_ressources: 14000
     cmu_c: false
     complementaire_sante_solidaire: 21 + 25
@@ -287,7 +287,7 @@
   output:
     cmu_acs_eligibilite: true
     cmu_c_plafond: 13426
-    complementaire_sante_solidaire_plafond: 18125
+    acs_plafond: 18125
     cmu_base_ressources: 14000
     cmu_c: false
     complementaire_sante_solidaire: 7.30 + 8.70
@@ -407,7 +407,7 @@
   output:
     cmu_acs_eligibilite: true
     cmu_c_plafond: 22378
-    complementaire_sante_solidaire_plafond: 30210.3
+    acs_plafond: 30210.3
     cmu_base_ressources: 24000
     cmu_c: false
     complementaire_sante_solidaire: 8 + 14 + 8 + 8 + 8
@@ -527,7 +527,7 @@
   output:
     cmu_acs_eligibilite: true
     cmu_c_plafond: 22378
-    complementaire_sante_solidaire_plafond: 30210.3
+    acs_plafond: 30210.3
     cmu_base_ressources: 24000
     cmu_c: false
     complementaire_sante_solidaire: 2.80 + 4.90 + 2.80 + 2.80 + 2.80
@@ -635,7 +635,7 @@
   output:
     cmu_acs_eligibilite: true
     cmu_c_plafond: 13426
-    complementaire_sante_solidaire_plafond: 18125
+    acs_plafond: 18125
     cmu_base_ressources: 14000
     cmu_c: false
     complementaire_sante_solidaire: 30 + 25
@@ -743,7 +743,7 @@
   output:
     cmu_acs_eligibilite: true
     cmu_c_plafond: 13426
-    complementaire_sante_solidaire_plafond: 18125
+    acs_plafond: 18125
     cmu_base_ressources: 14000
     cmu_c: false
     complementaire_sante_solidaire: 10.50 + 8.70
