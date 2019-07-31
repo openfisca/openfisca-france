@@ -54,38 +54,12 @@
       parents: [parent1]
       aide_logement: 0
       rsa: 0
-    menage:
-      personne_de_reference: parent1
-      statut_occupation_logement: locataire_vide
-    foyer_fiscal:
-      declarants: [parent1]
-  output:
+    acs_plafond: 12083.81
     cmu_base_ressources: 10000
-
-- name: "CSS: Montant de cotisation CSS d'une personne dans la tranche 30 à 49 ans, hors régime Alsace Moselle"
-  period: 2019-11
-  absolute_error_margin: 0.1
-  input:
-    individus:
-      parent1:
-        date_naissance: 1973-05-01
-        salarie_regime_alsace_moselle: false
-    famille:
-      parents: [parent1]
-      rsa: 0
-      cmu_c_plafond: 8950.96
-      cmu_base_ressources: 10000
-      acs_plafond: 12083.81
-    menage:
-      personne_de_reference: parent1
-      statut_occupation_logement: locataire_vide
-    foyer_fiscal:
-      declarants: [parent1]
-  output:
-    age: 46
+    cmu_c: false
     complementaire_sante_solidaire: 14
 
-- name: "CSS: Montant de cotisation CSS d'une personne dans la tranche 30 à 49 ans, régime Alsace Moselle"
+- name: "CSS: N°2 Foyer d'une personne dans la tranche 30 à 49 ans, régime Alsace Moselle"
   period: 2019-11
   absolute_error_margin: 0.1
   input:
