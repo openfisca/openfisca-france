@@ -1,5 +1,13 @@
 # Changelog
 
+### 48.5.1 [#1367](https://github.com/openfisca/openfisca-france/pull/1367)
+
+* Correction d'un crash.
+* Périodes concernées : à partir du 01/01/2017.
+* Zones impactées : `openfisca_france/model/prelevements_obligatoires/taxe_habitation/taxe_habitation.py`.
+* Détails :
+  - Corrige la comparaison entre un `numpy.array` et un nombre
+
 ## 48.5.0 [#1362](https://github.com/openfisca/openfisca-france/pull/1362)
 
 * Évolution du système socio-fiscal.

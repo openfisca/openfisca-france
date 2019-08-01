@@ -328,10 +328,14 @@ class degrevement_plafonnement_taxe_habitation(Variable):
         P = parameters(period).taxation_locale.taxe_habitation
         reduction_degrevement = base_reduction_degrevement * (taux_th_commune + taux_th_epci - (taux_th_commune_2000 + taux_th_epci_2000) * P.plafonnement.coeff_multiplicateur_taux_2000)
         reduction_degrevement = reduction_degrevement * (reduction_degrevement > P.plafonnement.valeur_minimale_reduction_degrevement)
-        if taux_th_commune_2000 + taux_th_epci_2000 == 0:
-            # Les taux de taxe d'habitation de l'année 2000 utilisés pour la réduction du plafonnement
-            # ne sont pas disponibles pour cette commune. Nous mettons donc cette réduction à zéro.
-            reduction_degrevement = 0
+
+        # Les taux de taxe d'habitation de l'année 2000 utilisés pour la réduction du plafonnement
+        # ne sont pas disponibles pour cette commune. Nous mettons donc cette réduction à zéro.
+        reduction_degrevement = where(
+            taux_th_commune_2000 + taux_th_epci_2000 == 0,
+            0,
+            reduction_degrevement,
+            )
 
         degrevement = (
             taxe_habitation_commune_epci_avant_degrevement
