@@ -78,23 +78,20 @@ class complementaire_sante_solidaire_montant_i(Variable):
 
     def formula(individu, period, parameters):
         P = parameters(period).cmu.complementaire_sante_solidaire
-        p_alsace_moselle = parameters(period).cmu.complementaire_sante_solidaire_regime_alsace_moselle
         age = individu('age', period)
         salarie_regime_alsace_moselle = individu('salarie_regime_alsace_moselle', period)
+        regime = where(salarie_regime_alsace_moselle, RegimeComplementaireSanteSolidaire.alsace_moselle,
+                       RegimeComplementaireSanteSolidaire.france)
+        tranche = select(
+            [age < 30, age <= 49, age <= 59, age <= 69, age > 69],
+            [TranchesComplementaireSanteSolidaire.cmu_moins_30_ans,
+                TranchesComplementaireSanteSolidaire.cmu_30_49_ans,
+                TranchesComplementaireSanteSolidaire.cmu_50_59_ans,
+                TranchesComplementaireSanteSolidaire.cmu_60_69_ans,
+                TranchesComplementaireSanteSolidaire.cmu_plus_69_ans],
+        )
 
-        montant_si_parent = select(
-            [age <= 29, age <= 49, age <= 59, age <= 69, age >= 70],
-            [P.cmu_moins_30_ans, P.cmu_30_49_ans, P.cmu_50_59_ans,
-             P.cmu_60_69_ans, P.cmu_plus_69_ans],
-            )
-
-        montant_si_parent_regime_alsace_moselle = select(
-            [age <= 29, age <= 49, age <= 59, age <= 69, age >= 70],
-            [p_alsace_moselle.cmu_moins_30_ans, p_alsace_moselle.cmu_30_49_ans, p_alsace_moselle.cmu_50_59_ans,
-             p_alsace_moselle.cmu_60_69_ans, p_alsace_moselle.cmu_plus_69_ans],
-            )
-
-        return where(salarie_regime_alsace_moselle, montant_si_parent_regime_alsace_moselle, montant_si_parent)
+        return P[regime][tranche]
 
 
 class complementaire_sante_solidaire_montant(Variable):
@@ -493,6 +490,19 @@ class complementaire_sante_solidaire(Variable):
             * (cmu_base_ressources <= cmu_c_etendue_plafond)
             * cmu_c_etendue_montant
             )
+
+
+class RegimeComplementaireSanteSolidaire(Enum):
+    france = 'France'
+    alsace_moselle = 'Alsace Moselle'
+
+
+class TranchesComplementaireSanteSolidaire(Enum):
+    cmu_moins_30_ans = 'Moins de 30 ans'
+    cmu_30_49_ans = 'Entre 30 et 49 ans'
+    cmu_50_59_ans = 'Entre 50 et 59 ans'
+    cmu_60_69_ans = 'Entre 60 et 69 ans'
+    cmu_plus_69_ans = 'Plus de 69 ans'
 
 
 # Helper functions
