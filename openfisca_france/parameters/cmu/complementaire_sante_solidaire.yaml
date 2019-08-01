@@ -1,0 +1,52 @@
+france:
+  cmu_moins_30_ans:
+    unit: currency
+    values:
+      2019-11-01:
+        value: 8.00
+  cmu_30_49_ans:
+    unit: currency
+    values:
+      2019-11-01:
+        value: 14.00
+  cmu_50_59_ans:
+    unit: currency
+    values:
+      2019-11-01:
+        value: 21.00
+  cmu_60_69_ans:
+    unit: currency
+    values:
+      2019-11-01:
+        value: 25.00
+  cmu_plus_69_ans:
+    unit: currency
+    values:
+      2019-11-01:
+        value: 30.00
+alsace_moselle:
+  cmu_moins_30_ans:
+    unit: currency
+    values:
+      2019-11-01:
+        value: 2.80
+  cmu_30_49_ans:
+    unit: currency
+    values:
+      2019-11-01:
+        value: 4.90
+  cmu_50_59_ans:
+    unit: currency
+    values:
+      2019-11-01:
+        value: 7.30
+  cmu_60_69_ans:
+    unit: currency
+    values:
+      2019-11-01:
+        value: 8.70
+  cmu_plus_69_ans:
+    unit: currency
+    values:
+      2019-11-01:
+        value: 10.50
