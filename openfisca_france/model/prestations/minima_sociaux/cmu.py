@@ -89,7 +89,7 @@ class complementaire_sante_solidaire_montant_i(Variable):
                 TranchesComplementaireSanteSolidaire.cmu_50_59_ans,
                 TranchesComplementaireSanteSolidaire.cmu_60_69_ans,
                 TranchesComplementaireSanteSolidaire.cmu_plus_69_ans],
-        )
+            )
 
         return P[regime][tranche]
 
