@@ -31,6 +31,7 @@ class remuneration_apprenti(Variable):
     label = "Rémunération de l'apprenti"
     reference = "http://www.apce.com/pid927/contrat-d-apprentissage.html?espace=1&tp=1&pagination=2"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     # Aux jeunes de 16 à 25 ans (exceptionnellement 15 ans, s'ils ont effectué la scolarité du premier cycle de
     # l'enseignement secondaire, ou, s'ils suivent une "formation apprentissage junior").
