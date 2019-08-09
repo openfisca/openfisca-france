@@ -237,7 +237,6 @@ class acs_plafond(Variable):
         return cmu_c_plafond * (1 + P.majoration_plafond_acs)
 
 
-<<<<<<< HEAD
 class complementaire_sante_solidaire_plafond(Variable):
     value_type = float
     entity = Famille
@@ -251,8 +250,6 @@ class complementaire_sante_solidaire_plafond(Variable):
         return cmu_c_plafond * (1 + P.majoration_plafond_complementaire_sante_solidaire)
 
 
-=======
->>>>>>> 8d20c688b (Supprime le nouveau plafond au profit de acs_plafond existant)
 class cmu_base_ressources_individu(Variable):
     value_type = float
     label = u"Base de ressources de l'individu prise en compte pour l'éligibilité à la CMU-C / ACS"
