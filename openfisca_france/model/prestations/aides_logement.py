@@ -964,16 +964,28 @@ class aide_logement_base_ressources(Variable):
         # Ressources N-2
         indemnites_journalieres_atexa_i = famille.members('indemnites_journalieres_atexa', period.n_2, options=[ADD])
         gains_exceptionnels_i = famille.members('gains_exceptionnels', period.n_2, options=[ADD])
-        benefice_agricole_i = famille.members('tns_benefice_exploitant_agricole', period.n_2)
-        benefice_micro_entreprise_i = famille.members('tns_micro_entreprise_benefice', period.n_2)
-        benefice_auto_entrepreneur_i = famille.members('tns_auto_entrepreneur_benefice', period.n_2, options=[ADD])
+        benefice_agricole_i_n_2 = famille.members('tns_benefice_exploitant_agricole', period.n_2)
+        benefice_micro_entreprise_i_n_2 = famille.members('tns_micro_entreprise_benefice', period.n_2)
+        benefice_auto_entrepreneur_i_n_2 = famille.members('tns_auto_entrepreneur_benefice', period.n_2, options=[ADD])
+        # En l'absence de benefices TNS en N-2, on recupère les bénéfices de l'année glissante à compter de M-1
+        annee_glissante_m_1 = annee_glissante.offset(-1, 'month')
+        benefice_agricole_i_m_12 = famille.members('tns_benefice_exploitant_agricole', annee_glissante_m_1)
+        benefice_micro_entreprise_i_m_12 = famille.members('tns_micro_entreprise_benefice', annee_glissante_m_1)
+        benefice_auto_entrepreneur_i_m_12 = famille.members('tns_auto_entrepreneur_benefice', annee_glissante_m_1,
+                                                            options=[ADD])
+        benefice_agricole_i = where(benefice_agricole_i_n_2 > 0, benefice_agricole_i_n_2, benefice_agricole_i_m_12)
+        benefice_micro_entreprise_i = where(benefice_micro_entreprise_i_n_2 > 0, benefice_micro_entreprise_i_n_2,
+                                            benefice_micro_entreprise_i_m_12)
+        benefice_auto_entrepreneur_i = where(benefice_auto_entrepreneur_i_n_2 > 0, benefice_auto_entrepreneur_i_n_2,
+                                             benefice_auto_entrepreneur_i_m_12)
+
         ressources_n_2_i = (
-            indemnites_journalieres_atexa_i
-            + gains_exceptionnels_i
-            + benefice_agricole_i
-            + benefice_micro_entreprise_i
-            + benefice_auto_entrepreneur_i
-            )
+                indemnites_journalieres_atexa_i
+                + gains_exceptionnels_i
+                + benefice_agricole_i
+                + benefice_micro_entreprise_i
+                + benefice_auto_entrepreneur_i
+        )
         ressources_n_2 = famille.sum(ressources_n_2_i, role=Famille.PARENT)
         f4ba = famille.demandeur.foyer_fiscal('f4ba', period.n_2)
         plus_values_gains_divers = famille.demandeur.foyer_fiscal('plus_values_gains_divers', period.n_2)
