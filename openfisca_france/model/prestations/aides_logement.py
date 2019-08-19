@@ -516,7 +516,7 @@ class aide_logement_condition_neutralisation_chomage(Variable):
     label = "Condition de neutralisation du chomage dans le calcul des ressources de l'aide au logement."
     definition_period = MONTH
 
-    def formula_2020_01_01(individu, period, parameters):
+    def formula_2019_06_01(individu, period, parameters):
         # Rolling year
         annee_glissante = period.start.period('year').offset(-1)
 
@@ -552,7 +552,7 @@ class aide_logement_assiette_abattement_chomage(Variable):
     label = "Assiette sur lequel un abattement chômage peut être appliqués pour les AL. Ce sont les revenus d'activité professionnelle, moins les abbattements pour frais professionnels."
     definition_period = YEAR
 
-    def formula_2020_01_01(individu, period, parameters):
+    def formula_2019_06_01(individu, period, parameters):
         # Rolling year
         annee_glissante = period.start.period('year').offset(-1)
 
@@ -598,16 +598,6 @@ class aide_logement_abattement_chomage_indemnise(Variable):
     # Article R532-7 du Code de la sécurité sociale
     reference = "https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000031694522&cidTexte=LEGITEXT000006073189"
 
-    def formula_2019_06_01(individu, period, parameters):
-        activite = individu('activite', period)
-        date_debut_chomage = individu('date_debut_chomage', period)
-        two_months_ago = datetime64(period.offset(-2, 'month').start)
-        condition_neutralisation = individu('aide_logement_condition_neutralisation_chomage', period)
-        condition_abattement = (activite == TypesActivite.chomeur) * (date_debut_chomage < two_months_ago)
-        revenus_activite_pro = individu('aide_logement_assiette_abattement_chomage', period.start.period('year'))
-        taux_abattement = parameters(period).prestations.aides_logement.ressources.abattement_chomage_indemnise
-        return condition_abattement * not_(condition_neutralisation) * taux_abattement * revenus_activite_pro
-
     def formula_2020_01_01(individu, period, parameters):
         activite = individu('activite', period)
         date_debut_chomage = individu('date_debut_chomage', period)
@@ -636,21 +626,6 @@ class aide_logement_abattement_depart_retraite(Variable):
     definition_period = MONTH
     # Article R532-5 du Code de la sécurité sociale
     reference = "https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000006750910&cidTexte=LEGITEXT000006073189&dateTexte=20151231"
-
-    def formula_2019_06_01(individu, period, parameters):
-        # Rolling year
-        annee_glissante = period.start.period('year').offset(-1)
-
-        retraite_annee_glissante = individu('retraite_imposable', annee_glissante, options = [ADD])
-        activite = individu('activite', period)
-        retraite = activite == TypesActivite.retraite
-        condition_abattement = (retraite_annee_glissante == 0) * retraite
-
-        revenus_activite_pro = individu('al_revenu_assimile_salaire_apres_abattements', period)
-
-        abattement = condition_abattement * 0.3 * revenus_activite_pro
-
-        return abattement
 
     def formula_2020_01_01(individu, period, parameters):
         # Rolling year
@@ -778,7 +753,7 @@ class aide_logement_base_revenus_fiscaux(Variable):
         ]
     definition_period = YEAR
 
-    def formula_2020_01_01(foyer_fiscal, period):
+    def formula_2019_06_01(foyer_fiscal, period):
         rente_viagere_titre_onereux_net = foyer_fiscal('rente_viagere_titre_onereux_net', period)
         # Deplacement de la pension alimentaire versée, utilisée sur une periode differentes du reste
         # Supprimée à partir de 2018
@@ -871,7 +846,7 @@ class al_revenu_assimile_salaire_apres_abattements(Variable):
     label = "Salaires et chômage imposables après abattements dans le cadre du calcul des ressources de l'aide au logement"
     definition_period = MONTH
 
-    def formula_2020_01_01(individu, period, parameters):
+    def formula_2019_06_01(individu, period, parameters):
         # version spécifique aux aides logement de revenu_assimile_salaire_apres_abattements
         period_revenus = period
         period_chomage = period.n_2
@@ -886,6 +861,7 @@ class al_revenu_assimile_salaire_apres_abattements(Variable):
         abatfor = round_(min_(max_(abatpro.taux * revenu_assimile_salaire, abattement_minimum), abatpro.max))
 
         abattement = max_(frais_reels, abatfor)
+        return max_(0, revenu_assimile_salaire - abattement)
 
         return max_(0, revenu_assimile_salaire - abattement)
 
@@ -896,7 +872,7 @@ class al_traitements_salaires_pensions_rentes(Variable):
     label = "Traitements salaires pensions et rentes individuelles dans le cadre des aides au logement"
     definition_period = MONTH
 
-    def formula_2020_01_01(individu, period, parameters):
+    def formula_2019_06_01(individu, period, parameters):
         # Rolling year
         annee_glissante = period.start.period('year').offset(-1)
 
@@ -931,7 +907,7 @@ class al_base_ressources_individu(Variable):
     label = "Base ressource individuelle des aides logement"
     definition_period = MONTH
 
-    def formula_2020_01_01(individu, period):
+    def formula_2019_06_01(individu, period):
         traitements_salaires_pensions_rentes = individu('al_traitements_salaires_pensions_rentes', period)
         hsup = individu('hsup', period.n_2, options = [ADD])
         glo = individu('glo', period.n_2)
@@ -951,7 +927,7 @@ class aide_logement_base_ressources(Variable):
     label = "Base ressources des allocations logement"
     definition_period = MONTH
 
-    def formula_2020_01_01(famille, period, parameters):
+    def formula_2019_06_01(famille, period, parameters):
         biactivite = famille('biactivite', period)
         params_al_ressources = parameters(period).prestations.aides_logement.ressources
 
@@ -982,7 +958,8 @@ class aide_logement_base_ressources(Variable):
 
         # Ressources N-1
         pensions_alimentaires_versees = famille.demandeur.foyer_fiscal('pensions_alimentaires_versees', period.last_year)
-        ressources_n_1 = pensions_alimentaires_versees
+        #Montant à soustraire
+        ressources_n_1 = -pensions_alimentaires_versees
 
         # Ressources N-2
         indemnites_journalieres_atexa_i = famille.members('indemnites_journalieres_atexa', period.n_2, options=[ADD])
@@ -1016,7 +993,7 @@ class aide_logement_base_ressources(Variable):
         ressources_n_2 += (
             f4ba
             + plus_values_gains_divers
-            + deficit_exercice
+            - deficit_exercice
             )
 
         # Montants a soustraire
