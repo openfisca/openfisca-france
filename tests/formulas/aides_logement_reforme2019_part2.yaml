@@ -149,10 +149,10 @@
           2018-10: 720
           2018-09: 720
           2018-08: 720
+        pensions_alimentaires_versees_individu:
+          2018: 2376
     foyer_fiscal:
       declarants: [personne1]
-      pensions_alimentaires_versees_individu:
-        2018: 2376
   output:
     zone_apl: zone_3
     aide_logement: 229.14
