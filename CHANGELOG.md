@@ -1,5 +1,17 @@
 # Changelog
 
+## 48.7.0 [#1371](https://github.com/openfisca/openfisca-france/pull/1371)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/06/2009.
+* Zones impactées :
+`openfisca_france/model/prestations/minima_sociaux/rsa.py`
+`openfisca_france/parameters/prestations/minima_sociaux/rsa/duree_min_titre_sejour.yaml`
+`openfisca_france/tests/formulas/rsa/rsa_condition_nationalite.yaml`
+* Détails :
+  - Avant cette modification, un ressortissant de l'EEE était considéré comme ayant toujours droit au RSA, alors qu'en réalité il doit être en France depuis au moins 3 mois pour y avoir droit.
+  - Ce changement est lié à une évolution de l'interface Mes Aides : on y pose désormais une question sur la durée de résidence en France pour les ressortissants étrangers, et on souhaite se servir de cette donnée pour fiabiliser les résultats.
+
 ### 48.6.2 [#1372](https://github.com/openfisca/openfisca-france/pull/1372)
 
 * Revalorisation périodique.
@@ -33,6 +45,9 @@
 * Détails :
   - Intègre la fusion de l'ACS dans la CMU-C, sous la forme d'une CMU-C étendue appelée Complémentaire Sante Solidaire (CSS)
   - Intègre la cotisation forfataire par individu membre de la famille en fonction de l'âge prévue par la réforme.
+=======
+  - Ce changement est lié à une évolution de l'interface Mes Aides : on y pose désormais une question sur la durée de résidence en France pour les ressortissants étrangers, et on souhaite donc se servir de cette donnée pour fiabiliser les résultats.
+>>>>>>> Corrige les tests sur rsa_condition_nationalite et MAJ le changelog
 
 ### 48.5.2 [#1370](https://github.com/openfisca/openfisca-france/pull/1370)
 

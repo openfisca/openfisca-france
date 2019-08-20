@@ -1,0 +1,7 @@
+- period: 2018-06
+  input:
+    nationalite: [null, null, null, null, FR]
+    ressortissant_eee: [true, true, false, false, null]
+    duree_possession_titre_sejour: [0.2, 0.25, 4.9, 5, 0]
+  output:
+    rsa_condition_nationalite: [false, true, false, true, true]
