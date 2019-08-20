@@ -68,7 +68,6 @@
     famille:
       parents: [parent1]
       rsa: 0
-      acs: 0
       cmu_c_plafond: 8950.96
       cmu_base_ressources: 10000
       acs_plafond: 12083.81
