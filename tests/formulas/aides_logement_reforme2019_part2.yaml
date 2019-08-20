@@ -116,7 +116,7 @@
     aide_logement: 129.65
 
 - name: "Lot 1, Cas 4 AL Reforme 2019"
-  period: 2019-07
+  period: 2019-08
   relative_error_margin: 0.01
   input:
     famille:
@@ -124,19 +124,20 @@
     menage:
       personne_de_reference: personne1
       statut_occupation_logement:
-        2019-07: locataire_vide
+        2019-08: locataire_vide
       logement_conventionne:
-        2019-07: false
+        2019-08: false
       depcom:
-        2019-07: 32013
+        2019-08: 32013
       loyer:
-        2019-07: 311
+        2019-08: 311
     individus:
       personne1:
         activite: actif
         date_naissance:
-          2019-07: 1986-01-01
+          2019-08: 1986-01-01
         salaire_imposable:
+          2019-07: 720
           2019-06: 720
           2019-05: 720
           2019-04: 720
@@ -148,10 +149,9 @@
           2018-10: 720
           2018-09: 720
           2018-08: 720
-          2018-07: 720
     foyer_fiscal:
       declarants: [personne1]
-      pensions_alimentaires_versees:
+      pensions_alimentaires_versees_individu:
         2018: 2376
   output:
     zone_apl: zone_3

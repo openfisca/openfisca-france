@@ -959,7 +959,8 @@ class aide_logement_base_ressources(Variable):
         ressources_annee_glissante += paje
 
         # Ressources N-1
-        pensions_alimentaires_versees = famille.demandeur.foyer_fiscal('pensions_alimentaires_versees', period.last_year)
+        pensions_alimentaires_versees_i = famille.members('pensions_alimentaires_versees_individu', period.last_year)
+        pensions_alimentaires_versees = famille.sum(pensions_alimentaires_versees_i, role=Famille.PARENT)
         #Montant à soustraire
         ressources_n_1 = -pensions_alimentaires_versees
 
