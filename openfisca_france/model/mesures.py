@@ -52,32 +52,11 @@ class revenu_disponible(Variable):
     reference = "http://fr.wikipedia.org/wiki/Revenu_disponible"
     definition_period = YEAR
 
-    def formula(menage, period, parameters):
-        pensions_nettes_i = menage.members('pensions_nettes', period)
-        revenus_nets_du_capital_i = menage.members('revenus_nets_du_capital', period)
-        revenus_nets_du_travail_i = menage.members('revenus_nets_du_travail', period)
-        pensions_nettes = menage.sum(pensions_nettes_i)
-        revenus_nets_du_capital = menage.sum(revenus_nets_du_capital_i)
-        revenus_nets_du_travail = menage.sum(revenus_nets_du_travail_i)
-
-        impots_directs = menage('impots_directs', period)
-
-        # On prend en compte les PPE touchés par un foyer fiscal dont le déclarant principal est dans le ménage
-        ppe_i = menage.members.foyer_fiscal('ppe', period)  # PPE du foyer fiscal auquel appartient chaque membre du ménage
-        ppe = menage.sum(ppe_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)  # On somme seulement pour les déclarants principaux
-
-        # On prend en compte les prestations sociales touchées par une famille dont le demandeur est dans le ménage
-        prestations_sociales_i = menage.members.famille('prestations_sociales', period)  # PF de la famille auquel appartient chaque membre du ménage
-        prestations_sociales = menage.sum(prestations_sociales_i, role = Famille.DEMANDEUR)  # On somme seulement pour les demandeurs
-
-        return (
-            revenus_nets_du_travail
-            + impots_directs
-            + pensions_nettes
-            + ppe
-            + prestations_sociales
-            + revenus_nets_du_capital
-            )
+    expression = "revenus_nets_du_travail + impots_directs + pensions_nettes + ppe + prestations_sociales + revenus_nets_du_capital"
+    expression_options = {
+        "ppe": {"filter": FoyerFiscal.DECLARANT_PRINCIPAL},
+        "prestations_sociales": {"filter": Famille.DEMANDEUR},
+    }
 
 
 class niveau_de_vie(Variable):
