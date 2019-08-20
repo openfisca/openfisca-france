@@ -448,6 +448,10 @@ class acs(Variable):
     entity = Famille
     definition_period = MONTH
     set_input = set_input_divide_by_period
+    end = '2021-05-01'
+
+    def formula_2019_07_01(famille, period):
+        return
 
     def formula(famille, period):
         cmu_c = famille('cmu_c', period)

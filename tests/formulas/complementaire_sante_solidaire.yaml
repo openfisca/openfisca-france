@@ -54,7 +54,6 @@
       parents: [parent1]
       aide_logement: 0
       rsa: 0
-      acs: 0
     menage:
       personne_de_reference: parent1
       statut_occupation_logement: locataire_vide
@@ -74,7 +73,6 @@
     famille:
       parents: [parent1]
       rsa: 0
-      acs: 0
       cmu_c_plafond: 8950.96
       cmu_base_ressources: 10000
       acs_plafond: 12083.81
@@ -99,7 +97,6 @@
       parents: [parent1]
       aide_logement: 0
       rsa: 0
-      acs: 0
       cmu_c_plafond: 8950.96
       cmu_base_ressources: 10000
       acs_plafond: 12083.81
@@ -189,7 +186,6 @@
       parents: [parent1, parent2]
       aide_logement: 0
       rsa: 0
-      acs: 0
       af:
         2019-10: 0
         2019-09: 0
@@ -265,7 +261,6 @@
     famille:
       parents: [parent1, parent2]
       rsa: 0
-      acs: 0
       cmu_c_plafond: 13426.44
       cmu_base_ressources: 14000
       acs_plafond: 18125.69
@@ -293,7 +288,6 @@
     famille:
       parents: [parent1, parent2]
       rsa: 0
-      acs: 0
       cmu_c_plafond: 13426.44
       cmu_base_ressources: 14000
       acs_plafond: 18125.69
@@ -409,7 +403,6 @@
       enfants: [enfant1, enfant2, enfant3]
       aide_logement: 0
       rsa: 0
-      acs: 0
       af:
         2019-10: 0
         2019-09: 0
@@ -497,7 +490,6 @@
       parents: [parent1, parent2]
       enfants: [enfant1, enfant2, enfant3]
       rsa: 0
-      acs: 0
       cmu_c_plafond: 22377.40
       cmu_base_ressources: 24000
       acs_plafond: 30209.49
@@ -537,7 +529,6 @@
       parents: [parent1, parent2]
       enfants: [enfant1, enfant2, enfant3]
       rsa: 0
-      acs: 0
       cmu_c_plafond: 22377.40
       cmu_base_ressources: 24000
       acs_plafond: 30209.49
@@ -567,7 +558,6 @@
     famille:
       parents: [parent1, parent2]
       rsa: 0
-      acs: 0
       cmu_c_plafond: 13426.44
       cmu_base_ressources: 14000
       acs_plafond: 18125.69
@@ -595,7 +585,6 @@
     famille:
       parents: [parent1, parent2]
       rsa: 0
-      acs: 0
       cmu_c_plafond: 13426.44
       cmu_base_ressources: 14000
       acs_plafond: 18125.69
