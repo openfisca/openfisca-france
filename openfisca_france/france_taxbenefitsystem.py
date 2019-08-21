@@ -2,13 +2,16 @@
 
 import os
 
+import yaml
+from yaml import SafeLoader
+
 from openfisca_core.taxbenefitsystems import TaxBenefitSystem
-
+from openfisca_france.conf.cache_blacklist import \
+    cache_blacklist as conf_cache_blacklist
 from openfisca_france.entities import entities
-from openfisca_france.model.prelevements_obligatoires.prelevements_sociaux.cotisations_sociales import preprocessing
-from openfisca_france.conf.cache_blacklist import cache_blacklist as conf_cache_blacklist
+from openfisca_france.model.prelevements_obligatoires.prelevements_sociaux.cotisations_sociales import \
+    preprocessing
 from openfisca_france.situation_examples import couple
-
 
 COUNTRY_DIR = os.path.dirname(os.path.abspath(__file__))
 
@@ -28,6 +31,12 @@ class FranceTaxBenefitSystem(TaxBenefitSystem):
         self.load_parameters(param_dir)
 
         self.add_variables_from_directory(os.path.join(COUNTRY_DIR, 'model'))
+
+        decomposition_path = os.path.join(COUNTRY_DIR, 'model', 'decomposition.yaml')
+        with open(decomposition_path, 'r') as yaml_file:
+            decomposition_tree = yaml.load(yaml_file, Loader = SafeLoader)
+        self.add_variables_from_decomposition_tree(decomposition_tree)
+
         self.cache_blacklist = conf_cache_blacklist
 
         self.open_api_config = {

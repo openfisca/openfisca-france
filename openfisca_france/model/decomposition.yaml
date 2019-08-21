@@ -1,0 +1,67 @@
+variable_name: revenu_disponible
+label: Revenu disponible
+entity: menage
+definition_period: year
+children:
+  - variable_name: revenus_nets_du_travail
+    label: Revenus nets du travail (salariés et non salariés)
+    entity: individu
+    definition_period: year
+    # expression_options:
+    #   salaire_net:
+    #     calculate: [add]
+    children:
+      - variable_name: salaire_net
+        label: Salaire net
+    #     children:
+    #       - variable_name: salaire_imposable
+    #         label: Salaire imposable
+    #         children:
+    #           - variable_name: salaire_de_base
+    #             label: Salaire brut
+    #             children:
+    #               - variable_name: salaire_super_brut_hors_allegements
+    #                 label: Salaire super brut HA
+    #                 children:
+    #                   - variable_name: salaire_super_brut
+    #                     label: Salaire super brut
+    #                     children:
+    #                       - variable_name: cout_du_travail
+    #                         label: Coût du travail
+    #                       - variable_name: credit_impot_competitivite_emploi
+    #                         label: CICE
+    #                       - variable_name: aide_premier_salarie
+    #                         label: Aide premier salarié
+    #                       - variable_name: aide_embauche_pme
+    #                         label: Aide PME
+    #                       - variable_name: tehr
+    #                         label: Taxe exceptionnelle
+    #                   - variable_name: allegement_fillon
+    #                     label: Fillon
+    #               - variable_name: cotisations_employeur
+    #                 label: Cotisations employeur
+    #           - variable_name: cotisations_salariales
+    #             label: Cotisations salariales
+    #           - variable_name: csg_deductible_salaire
+    #             label: CSG déductible
+    #       - variable_name: csg_imposable_salaire
+    #         label: CSG imposable
+    #       - variable_name: crds_salaire
+    #         label: CRDS
+  - variable_name: prestations_sociales
+    label: Prestations sociales
+    # children:
+    #   - variable_name: minima_sociaux
+    #     label: Minima sociaux
+    #     children:
+    #       - variable_name: rsa
+    #         label: RSA
+    #       - variable_name: ppa
+    #         label: PPA
+  - variable_name: ppe
+    label: PPE
+  - variable_name: impots_directs
+    label: Impôts directs
+    # children:
+    #   - variable_name: irpp
+    #     label: Impôt sur le revenu
