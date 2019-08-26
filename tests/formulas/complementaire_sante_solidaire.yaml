@@ -1,4 +1,4 @@
-- name: "CSS: Plafond CMU pour une personne seule"
+- name: "CSS: Plafond CMU et ACS pour une personne seule"
   period: 2019-11
   relative_error_margin: 0.01
   input:
@@ -13,22 +13,27 @@
       declarants: [parent1]
   output:
     cmu_c_plafond: 8950.96
+    acs_plafond: 12083.81
 
-- name: "CSS: Plafond ACS pour une personne seule"
+- name: "CSS: Plafond CMU et ACS pour deux personnes"
   period: 2019-11
   relative_error_margin: 0.01
   input:
     individus:
       parent1:
-        date_naissance: 1973-05-01
+        date_naissance: 1961-01-01
+      parent2:
+        date_naissance: 1951-05-01
     famille:
-      parents: [parent1]
+      parents: [parent1, parent2]
     menage:
       personne_de_reference: parent1
+      conjoint: parent2
     foyer_fiscal:
-      declarants: [parent1]
+      declarants: [parent1, parent2]
   output:
-    acs_plafond: 12083.81
+    cmu_c_plafond: 13426.44
+    acs_plafond: 18125.69
 
 - name: "CSS: Base de ressource d'une personne seule"
   period: 2019-11
@@ -62,90 +67,14 @@
   output:
     cmu_base_ressources: 10000
 
-- name: "CSS: Montant de cotisation CSS d'une personne dans la tranche 30 à 49 ans, hors régime Alsace Moselle"
+- name: "CSS: Montant de cotisation CSS d'une personne dans la tranche 30 à 49 ans"
   period: 2019-11
   absolute_error_margin: 0.1
   input:
-    individus:
-      parent1:
-        date_naissance: 1973-05-01
-        salarie_regime_alsace_moselle: false
-    famille:
-      parents: [parent1]
-      rsa: 0
-      cmu_c_plafond: 8950.96
-      cmu_base_ressources: 10000
-      acs_plafond: 12083.81
-    menage:
-      personne_de_reference: parent1
-      statut_occupation_logement: locataire_vide
-    foyer_fiscal:
-      declarants: [parent1]
+    age: [46, 46]
+    salarie_regime_alsace_moselle: [false, true]
   output:
-    age: 46
-    complementaire_sante_solidaire: 14
-
-- name: "CSS: Montant de cotisation CSS d'une personne dans la tranche 30 à 49 ans, régime Alsace Moselle"
-  period: 2019-11
-  absolute_error_margin: 0.1
-  input:
-    individus:
-      parent1:
-        date_naissance: 1973-05-01
-        salarie_regime_alsace_moselle: true
-    famille:
-      parents: [parent1]
-      aide_logement: 0
-      rsa: 0
-      cmu_c_plafond: 8950.96
-      cmu_base_ressources: 10000
-      acs_plafond: 12083.81
-    menage:
-      personne_de_reference: parent1
-      statut_occupation_logement: locataire_vide
-    foyer_fiscal:
-      declarants: [parent1]
-  output:
-    age: 46
-    complementaire_sante_solidaire: 4.90
-
-- name: "CSS: Plafond CMU pour deux personnes"
-  period: 2019-11
-  relative_error_margin: 0.01
-  input:
-    individus:
-      parent1:
-        date_naissance: 1961-01-01
-      parent2:
-        date_naissance: 1951-05-01
-    famille:
-      parents: [parent1, parent2]
-    menage:
-      personne_de_reference: parent1
-      conjoint: parent2
-    foyer_fiscal:
-      declarants: [parent1, parent2]
-  output:
-    cmu_c_plafond: 13426.44
-
-- name: "CSS: Plafond ACS pour deux personnes"
-  period: 2019-11
-  relative_error_margin: 0.01
-  input:
-    individus:
-      parent1:
-        date_naissance: 1961-01-01
-      parent2:
-        date_naissance: 1951-05-01
-    famille:
-      parents: [parent1, parent2]
-    menage:
-      personne_de_reference: parent1
-      conjoint: parent2
-    foyer_fiscal:
-      declarants: [parent1, parent2]
-  output:
-    acs_plafond: 18125.69
+    complementaire_sante_solidaire_montant_i: [14, 4.90]
 
 - name: "CSS: Base de ressource de deux personnes"
   period: 2019-11
@@ -251,57 +180,12 @@
   period: 2019-11
   absolute_error_margin: 0.1
   input:
-    individus:
-      parent1:
-        date_naissance: 1961-01-01
-        salarie_regime_alsace_moselle: false
-      parent2:
-        date_naissance: 1951-05-01
-        salarie_regime_alsace_moselle: false
-    famille:
-      parents: [parent1, parent2]
-      rsa: 0
-      cmu_c_plafond: 13426.44
-      cmu_base_ressources: 14000
-      acs_plafond: 18125.69
-    menage:
-      personne_de_reference: parent1
-      conjoint: parent2
-      statut_occupation_logement: locataire_vide
-    foyer_fiscal:
-      declarants: [parent1, parent2]
+    age: [58, 58, 68, 68]
+    salarie_regime_alsace_moselle: [false, true, false, true]
   output:
-    age: [58, 68]
-    complementaire_sante_solidaire: 21 + 25
+    complementaire_sante_solidaire_montant_i: [21, 7.30, 25, 8.70]
 
-- name: "CSS: Montant de cotisation CSS de deux personnes dans les tranche 50 à 59 ans et 60 à 69 ans, régime Alsace Moselle"
-  period: 2019-11
-  absolute_error_margin: 0.1
-  input:
-    individus:
-      parent1:
-        date_naissance: 1961-01-01
-        salarie_regime_alsace_moselle: true
-      parent2:
-        date_naissance: 1951-05-01
-        salarie_regime_alsace_moselle: true
-    famille:
-      parents: [parent1, parent2]
-      rsa: 0
-      cmu_c_plafond: 13426.44
-      cmu_base_ressources: 14000
-      acs_plafond: 18125.69
-    menage:
-      personne_de_reference: parent1
-      conjoint: parent2
-      statut_occupation_logement: locataire_vide
-    foyer_fiscal:
-      declarants: [parent1, parent2]
-  output:
-    age: [58, 68]
-    complementaire_sante_solidaire: 7.30 + 8.70
-
-- name: "CSS: Plafond CMU pour cinq personnes"
+- name: "CSS: Plafond CMU et ACS pour cinq personnes"
   period: 2019-11
   relative_error_margin: 0.01
   input:
@@ -328,33 +212,6 @@
       personnes_a_charge: [enfant1, enfant2, enfant3]
   output:
     cmu_c_plafond: 22377.40
-
-- name: "CSS: Plafond ACS pour cinq personnes"
-  period: 2019-11
-  relative_error_margin: 0.01
-  input:
-    individus:
-      parent1:
-        date_naissance: 1994-01-01
-      parent2:
-        date_naissance: 1984-02-01
-      enfant1:
-        date_naissance: 2009-07-01
-      enfant2:
-        date_naissance: 2015-02-25
-      enfant3:
-        date_naissance: 2011-06-01
-    famille:
-      parents: [parent1, parent2]
-      enfants: [enfant1, enfant2, enfant3]
-    menage:
-      personne_de_reference: parent1
-      conjoint: parent2
-      enfants: [enfant1, enfant2, enfant3]
-    foyer_fiscal:
-      declarants: [parent1, parent2]
-      personnes_a_charge: [enfant1, enfant2, enfant3]
-  output:
     acs_plafond: 30209.49
 
 - name: "CSS: Base de ressource de cinq personnes"
