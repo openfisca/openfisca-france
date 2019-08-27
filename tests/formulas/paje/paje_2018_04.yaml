@@ -408,14 +408,14 @@
       enfants: [enfant1]
     individus:
       parent1:
-        age: 38
+        date_naissance: 1980-01-01
         revenu_assimile_salaire:
           2015: 28000
           2016: 28000
           2017: 28000
           2018: 28000
       parent2:
-        age: 35
+        date_naissance: 1982-01-01
         revenu_assimile_salaire:
           2015: 15000
           2016: 15000
@@ -424,14 +424,14 @@
       enfant1:
         date_naissance: 2018-04-10
   output:
-    age: [38, 35, 0]
+    age: [38, 36, 0]
     prestations_familiales_enfant_a_charge: [False, False, True]
     enfant_eligible_paje: [False, False, True]
     paje_naissance: 946.39
-    paje_base: 0
+    paje_base: 85.36 / (1 - 0.005)
     paje_cmg: 0
     paje_prepare: 0
-    paje: 941.66 / (1 - 0.005) + 0
+    paje: (941.66 + 85.36) / (1 - 0.005)
 - name: PAJE - PPN - Cas N°2
   description: Montant PAJE
   period: 2018-06
@@ -449,14 +449,14 @@
       enfants: [enfant1, enfant2]
     individus:
       parent1:
-        age: 38
+        date_naissance: 1980-01-01
         revenu_assimile_salaire:
           2015: 28000
           2016: 28000
           2017: 28000
           2018: 28000
       parent2:
-        age: 35
+        date_naissance: 1982-01-01
         revenu_assimile_salaire:
           2015: 15000
           2016: 15000
@@ -467,7 +467,7 @@
       enfant2:
         date_naissance: 2018-04-10
   output:
-    paje: 1883.32  / (1 - 0.005) + 0
+    paje: (1883.32 + 85.36) / (1 - 0.005)
 - name: PAJE - PPN - Cas N°3
   description: Montant PAJE
   period: 2018-06
@@ -485,14 +485,14 @@
       enfants: [enfant1, enfant2, enfant3]
     individus:
       parent1:
-        age: 38
+        date_naissance: 1980-01-01
         revenu_assimile_salaire:
           2015: 28000
           2016: 28000
           2017: 28000
           2018: 28000
       parent2:
-        age: 35
+        date_naissance: 1982-01-01
         revenu_assimile_salaire:
           2015: 15000
           2016: 15000
@@ -505,7 +505,7 @@
       enfant3:
         date_naissance: 2018-04-10
   output:
-    paje: 2824.98 / ( 1 - 0.005 ) + 0
+    paje: (2824.98 + 85.36 + 85.36) / ( 1 - 0.005 )
 - name: PAJE - PPN Non Passant - Cas N°1
   description: Montant PAJE
   period: 2018-06
@@ -523,14 +523,14 @@
       enfants: [enfant1]
     individus:
       parent1:
-        age: 38
+        date_naissance: 1980-01-01
         revenu_assimile_salaire:
           2015: 35000
           2016: 35000
           2017: 35000
           2018: 35000
       parent2:
-        age: 35
+        date_naissance: 1982-01-01
         revenu_assimile_salaire:
           2015: 20000
           2016: 20000
@@ -539,7 +539,14 @@
       enfant1:
         date_naissance: 2018-04-10
   output:
-    paje: 0
+    age: [38, 36, 0]
+    prestations_familiales_enfant_a_charge: [False, False, True]
+    enfant_eligible_paje: [False, False, True]
+    paje_naissance: 946.39
+    paje_base: 0
+    paje_cmg: 0
+    paje_prepare: 0
+    paje: (941.66) / (1 - 0.005)
 
 - name: PAJE - PPN Non Passant - Cas N°2
   description: Montant PAJE
@@ -558,14 +565,14 @@
       enfants: [enfant1, enfant2]
     individus:
       parent1:
-        age: 38
+        date_naissance: 1980-01-01
         revenu_assimile_salaire:
           2015: 25000
           2016: 25000
           2017: 25000
           2018: 25000
       parent2:
-        age: 35
+        date_naissance: 1982-01-01
         revenu_assimile_salaire:
           2015: 35000
           2016: 35000
@@ -576,4 +583,5 @@
       enfant2:
         date_naissance: 2018-04-10
   output:
-    paje: 0
+    paje_naissance: 946.39
+    paje: (941.66) / (1 - 0.005)
