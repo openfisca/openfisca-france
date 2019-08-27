@@ -425,8 +425,8 @@
         date_naissance: 2018-04-10
   output:
     age: [38, 36, 0]
-    prestations_familiales_enfant_a_charge: [False, False, True]
-    enfant_eligible_paje: [False, False, True]
+    prestations_familiales_enfant_a_charge: [false, false, true]
+    enfant_eligible_paje: [false, false, true]
     paje_naissance: 946.39
     paje_base: 85.36 / (1 - 0.005)
     paje_cmg: 0
@@ -540,8 +540,8 @@
         date_naissance: 2018-04-10
   output:
     age: [38, 36, 0]
-    prestations_familiales_enfant_a_charge: [False, False, True]
-    enfant_eligible_paje: [False, False, True]
+    prestations_familiales_enfant_a_charge: [false, false, true]
+    enfant_eligible_paje: [false, false, true]
     paje_naissance: 946.39
     paje_base: 0
     paje_cmg: 0
