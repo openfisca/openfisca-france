@@ -32,10 +32,10 @@ class FranceTaxBenefitSystem(TaxBenefitSystem):
 
         self.add_variables_from_directory(os.path.join(COUNTRY_DIR, 'model'))
 
-        decomposition_path = os.path.join(COUNTRY_DIR, 'model', 'decomposition.yaml')
-        with open(decomposition_path, 'r') as yaml_file:
-            decomposition_tree = yaml.load(yaml_file, Loader = SafeLoader)
-        self.add_variables_from_decomposition_tree(decomposition_tree)
+        # decomposition_path = os.path.join(COUNTRY_DIR, 'model', 'decomposition.yaml')
+        # with open(decomposition_path, 'r') as yaml_file:
+        #     decomposition_tree = yaml.load(yaml_file, Loader = SafeLoader)
+        # self.add_variables_from_decomposition_tree(decomposition_tree)
 
         self.cache_blacklist = conf_cache_blacklist
 

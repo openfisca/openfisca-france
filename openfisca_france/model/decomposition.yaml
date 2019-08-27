@@ -3,6 +3,17 @@ label: Revenu disponible
 entity: menage
 definition_period: year
 children:
+  - variable_name: revenus_nets_du_capital
+    label: "Revenus du capital nets de prélèvements sociaux"
+    entity: individu
+    definition_period: year
+    children:
+      - variable_name: assiette_csg_revenus_capital
+      - variable_name: assiette_csg_plus_values
+        negate: true
+      - variable_name: plus_values_base_large
+      - variable_name: rente_viagere_titre_onereux_net
+        negate: true
   - variable_name: revenus_nets_du_travail
     label: Revenus nets du travail (salariés et non salariés)
     entity: individu
@@ -11,11 +22,17 @@ children:
     #   salaire_net:
     #     calculate: [add]
     children:
+      - variable_name: revenu_non_salarie_net
+        children:
+          - variable_name: revenu_non_salarie
+          - variable_name: cotisations_non_salarie
+          - variable_name: csg_non_salarie
+          - variable_name: crds_non_salarie
       - variable_name: salaire_net
         label: Salaire net
-    #     children:
-    #       - variable_name: salaire_imposable
-    #         label: Salaire imposable
+        children:
+          - variable_name: salaire_imposable
+            label: Salaire imposable
     #         children:
     #           - variable_name: salaire_de_base
     #             label: Salaire brut
@@ -44,10 +61,10 @@ children:
     #             label: Cotisations salariales
     #           - variable_name: csg_deductible_salaire
     #             label: CSG déductible
-    #       - variable_name: csg_imposable_salaire
-    #         label: CSG imposable
-    #       - variable_name: crds_salaire
-    #         label: CRDS
+          - variable_name: csg_imposable_salaire
+            label: CSG imposable
+          - variable_name: crds_salaire
+            label: CRDS
   - variable_name: prestations_sociales
     label: Prestations sociales
     # children:
