@@ -23,6 +23,7 @@ children:
     #     calculate: [add]
     children:
       - variable_name: revenu_non_salarie_net
+        label: Revenu non salarié net
         children:
           - variable_name: revenu_non_salarie
           - variable_name: cotisations_non_salarie
