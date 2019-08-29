@@ -15,11 +15,18 @@ log = logging.getLogger(__name__)
 def visit(node, decomposition_simulation, simulation, period):
     variable_name = node["variable_name"]
     children = node.get("children")
-    log.info("{}: decomposition = {}, direct {}".format(
-        variable_name,
-        decomposition_simulation.calculate(variable_name, period = period),
-        simulation.calculate(variable_name, period = period) if variable_name in simulation.tax_benefit_system.variables else "Not available",
-        ))
+
+    if variable_name in simulation.tax_benefit_system.variables:
+        decomposition_result = decomposition_simulation.calculate_add(variable_name, period = period)
+        result = simulation.calculate_add(variable_name, period = period)
+        assert (decomposition_result == result).all(), "{}: decomposition = {} != {} = original".format(
+            variable_name,
+            decomposition_result,
+            result,
+            )
+    else:
+        log.info("Variable {} is not available in original tax-benefit system".format(variable_name))
+
     if children:
         for child_node in children:
             visit(child_node, decomposition_simulation, simulation, period)
@@ -69,4 +76,7 @@ def test_revenu_disponible_decomposition():
 
 
 if __name__ == "__main__":
+    import sys
+    logging.basicConfig(level = logging.DEBUG, stream = sys.stdout)
+
     test_revenu_disponible_decomposition()
