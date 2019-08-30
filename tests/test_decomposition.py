@@ -16,22 +16,28 @@ def visit(node, decomposition_simulation, simulation, period):
     variable_name = node["variable_name"]
     children = node.get("children")
 
-    if variable_name in simulation.tax_benefit_system.variables:
-        decomposition_result = decomposition_simulation.calculate_add(variable_name, period = period)
-        result = simulation.calculate_add(variable_name, period = period)
-        assert (decomposition_result == result).all(), "{}: decomposition = {} != {} = original".format(
-            variable_name,
-            decomposition_result,
-            result,
-            )
-    else:
-        log.info("Variable {} is not available in original tax-benefit system".format(variable_name))
+    def compare():
+        if variable_name in simulation.tax_benefit_system.variables:
+            decomposition_result = decomposition_simulation.calculate_add(variable_name, period = period)
+            result = simulation.calculate_add(variable_name, period = period)
+            assert (decomposition_result == result).all(), "{}: decomposition = {} != {} = original".format(
+                    variable_name,
+                    decomposition_result,
+                    result,
+                    )
+            log.debug("{} : ok".format(variable_name))
+
+        else:
+            log.info("Variable {} is not available in original tax-benefit system".format(variable_name))
 
     if children:
         for child_node in children:
             visit(child_node, decomposition_simulation, simulation, period)
+        compare()
     else:
+        compare()
         return
+
 
 def test_revenu_disponible_decomposition():
     # Just ensure that disposable_income can be calculated with and without decomposition.

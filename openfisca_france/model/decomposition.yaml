@@ -68,28 +68,29 @@ children:
             label: CRDS
   - variable_name: prestations_sociales
     label: Prestations sociales
+    entity: famille
     children:
       - variable_name: minima_sociaux
-        label: Minima sociaux
-        # children:
-        #   - variable_name: aah
-        #   - variable_name: caah
-        #   - variable_name: minimum_vieillesse
-        #   - variable_name: rsa
-        #   - variable_name: aefa
-        #   - variable_name: api
-        #   - variable_name: ass
-        #   - variable_name: psa
-        #   - variable_name: ppa
-        #   - variable_name: crds_mini
+        children:
+          - variable_name: aah
+          - variable_name: caah
+          - variable_name: minimum_vieillesse
+          - variable_name: rsa
+          - variable_name: aefa
+          - variable_name: api
+          - variable_name: ass
+          - variable_name: psa
+          - variable_name: ppa
+          - variable_name: crds_mini
       - variable_name: prestations_familiales
-      - variable_name: minima_sociaux
       - variable_name: aides_logement
       - variable_name: reduction_loyer_solidarite
   - variable_name: ppe
     label: PPE
+    entity: foyer_fiscal
   - variable_name: impots_directs
     label: Impôts directs
-    # children:
-    #   - variable_name: irpp
-    #     label: Impôt sur le revenu
+    entity: foyer_fiscal
+    children:
+      - variable_name: irpp
+        label: Impôt sur le revenu
