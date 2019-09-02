@@ -1,6 +1,7 @@
 import datetime
 import logging
 import os
+import numpy as np
 import yaml
 
 
@@ -11,6 +12,7 @@ from openfisca_france.scenarios import init_single_entity
 
 log = logging.getLogger(__name__)
 
+ABSOLUTE_ERROR = 1e-4
 
 def visit(node, decomposition_simulation, simulation, period):
     variable_name = node["variable_name"]
@@ -20,7 +22,7 @@ def visit(node, decomposition_simulation, simulation, period):
         if variable_name in simulation.tax_benefit_system.variables:
             decomposition_result = decomposition_simulation.calculate_add(variable_name, period = period)
             result = simulation.calculate_add(variable_name, period = period)
-            assert (decomposition_result == result).all(), "{}: decomposition = {} != {} = original".format(
+            assert (np.abs(decomposition_result - result) < ABSOLUTE_ERROR).all(), "{}: decomposition = {} != {} = original".format(
                     variable_name,
                     decomposition_result,
                     result,

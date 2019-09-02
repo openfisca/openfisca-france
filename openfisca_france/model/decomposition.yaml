@@ -40,9 +40,9 @@ children:
                 children:
                   - variable_name: salaire_super_brut_hors_allegements
                     label: Salaire super brut HA
-                    # children:
-                    #   - variable_name: salaire_super_brut
-                    #     label: Salaire super brut
+                    children:
+                      - variable_name: salaire_super_brut
+                        label: Salaire super brut
                     #     children:
                     #       - variable_name: cout_du_travail
                     #         label: Coût du travail
@@ -54,8 +54,8 @@ children:
                     #         label: Aide PME
                     #       - variable_name: tehr
                     #         label: Taxe exceptionnelle
-                    #   - variable_name: allegement_fillon
-                    #     label: Fillon
+                      - variable_name: allegement_fillon
+                        label: Fillon
                   - variable_name: cotisations_employeur
                     label: Cotisations employeur
               - variable_name: cotisations_salariales
