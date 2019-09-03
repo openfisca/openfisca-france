@@ -43,19 +43,30 @@ children:
                     children:
                       - variable_name: salaire_super_brut
                         label: Salaire super brut
-                    #     children:
-                    #       - variable_name: cout_du_travail
-                    #         label: Coût du travail
-                    #       - variable_name: credit_impot_competitivite_emploi
-                    #         label: CICE
-                    #       - variable_name: aide_premier_salarie
-                    #         label: Aide premier salarié
-                    #       - variable_name: aide_embauche_pme
-                    #         label: Aide PME
-                    #       - variable_name: tehr
-                    #         label: Taxe exceptionnelle
+                        children:
+                          - variable_name: cout_du_travail
+                            label: Coût du travailexpression_options
+                          - variable_name: cout_differe
+                            expression_options:
+                              tehr:
+                                calculate: [divide]
+                            children:
+                              - variable_name: credit_impot_competitivite_emploi
+                                label: CICE
+                              - variable_name: aide_premier_salarie
+                                label: Aide premier salarié
+                              - variable_name: aide_embauche_pme
+                                label: Aide PME
+                              - variable_name: tehr
+                                label: Taxe exceptionnelle sur les hauts revenus
                       - variable_name: allegement_fillon
-                        label: Fillon
+                        label: Alleg. Fillon
+                      - variable_name: allegement_cotisation_allocations_familiales
+                        label: Alleg. cotisation AF
+                      - variable_name: exoneration_cotisations_employeur_apprenti
+                      - variable_name: exoneration_cotisations_employeur_geographiques
+                      - variable_name: exoneration_cotisations_employeur_jei
+                      - variable_name: exoneration_cotisations_employeur_stagiaire
                   - variable_name: cotisations_employeur
                     label: Cotisations employeur
               - variable_name: cotisations_salariales

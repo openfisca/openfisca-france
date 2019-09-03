@@ -965,28 +965,10 @@ class salaire_super_brut_hors_allegements(Variable):
     definition_period = MONTH
 
     def formula(individu, period, parameters):
-        salaire_de_base = individu('salaire_de_base', period)
-        remuneration_principale = individu('remuneration_principale', period)
-        remuneration_apprenti = individu('remuneration_apprenti', period)
-
-        primes_fonction_publique = individu('primes_fonction_publique', period)
-        indemnite_residence = individu('indemnite_residence', period)
-        supplement_familial_traitement = individu('supplement_familial_traitement', period)
-        cotisations_employeur = individu('cotisations_employeur', period)
-        depense_cantine_titre_restaurant_employeur = individu('depense_cantine_titre_restaurant_employeur', period)
-        reintegration_titre_restaurant_employeur = individu('reintegration_titre_restaurant_employeur', period)
-        indemnite_fin_contrat = individu('indemnite_fin_contrat', period)
+        salaire_super_brut = individu('salaire_super_brut', period)
+        exonerations_et_allegements = individu('exonerations_et_allegements', period)
         salaire_super_brut_hors_allegements = (
-            salaire_de_base
-            + remuneration_apprenti
-            + indemnite_fin_contrat
-            + remuneration_principale
-            + primes_fonction_publique
-            + indemnite_residence
-            + supplement_familial_traitement
-            + depense_cantine_titre_restaurant_employeur
-            - reintegration_titre_restaurant_employeur
-            - cotisations_employeur
+            salaire_super_brut + exonerations_et_allegements
             )
 
         return salaire_super_brut_hors_allegements
@@ -1000,11 +982,12 @@ class salaire_super_brut(Variable):
     definition_period = MONTH
 
     def formula(individu, period, parameters):
-        period = period
-        salaire_super_brut_hors_allegements = individu('salaire_super_brut_hors_allegements', period)
-        exonerations_et_allegements = individu('exonerations_et_allegements', period)
 
-        return salaire_super_brut_hors_allegements - exonerations_et_allegements
+        cout_du_travail = individu('cout_du_travail', period)
+        cout_differe = individu('cout_differe', period)
+        salaire_super_brut = cout_du_travail + cout_differe
+
+        return salaire_super_brut
 
 
 class exonerations_et_allegements(Variable):
@@ -1045,7 +1028,32 @@ class cout_du_travail(Variable):
     calculate_output = calculate_output_add
 
     def formula(individu, period, parameters):
-        salaire_super_brut = individu('salaire_super_brut', period)
+        salaire_de_base = individu('salaire_de_base', period)
+        remuneration_principale = individu('remuneration_principale', period)
+        remuneration_apprenti = individu('remuneration_apprenti', period)
+        primes_fonction_publique = individu('primes_fonction_publique', period)
+        indemnite_residence = individu('indemnite_residence', period)
+        supplement_familial_traitement = individu('supplement_familial_traitement', period)
+        cotisations_employeur = individu('cotisations_employeur', period)
+        depense_cantine_titre_restaurant_employeur = individu('depense_cantine_titre_restaurant_employeur', period)
+        reintegration_titre_restaurant_employeur = individu('reintegration_titre_restaurant_employeur', period)
+        indemnite_fin_contrat = individu('indemnite_fin_contrat', period)
+        salaire_super_brut_hors_allegements = (
+            salaire_de_base
+            + remuneration_apprenti
+            + indemnite_fin_contrat
+            + remuneration_principale
+            + primes_fonction_publique
+            + indemnite_residence
+            + supplement_familial_traitement
+            + depense_cantine_titre_restaurant_employeur
+            - reintegration_titre_restaurant_employeur
+            - cotisations_employeur
+            )
+
+        exonerations_et_allegements = individu('exonerations_et_allegements', period)
+
+        salaire_super_brut = salaire_super_brut_hors_allegements - exonerations_et_allegements
         cout_differe = individu('cout_differe', period)
 
         return salaire_super_brut - cout_differe
@@ -1062,5 +1070,4 @@ class cout_differe(Variable):
         aide_premier_salarie = individu('aide_premier_salarie', period, options = [ADD])
         aide_embauche_pme = individu('aide_embauche_pme', period, options = [ADD])
         tehr = individu('tehr', period, options = [DIVIDE])
-
         return credit_impot_competitivite_emploi + aide_premier_salarie + aide_embauche_pme + tehr
