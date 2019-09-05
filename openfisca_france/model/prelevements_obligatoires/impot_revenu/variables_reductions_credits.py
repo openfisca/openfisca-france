@@ -1094,7 +1094,7 @@ class f7wi(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Dépenses en faveur de l'aide aux personnes réalisées dans l'habitation principale: équipements permettant l’adaptation des logements à la perte d’autonomie ou au handicap"
+    label = "Dépenses en faveur de l'aide aux personnes réalisées dans l'habitation principale: équipements permettant l’adaptation des logements à la perte d’autonomie ou au handicap"
     # start_date = date(2018, 1, 1)
     definition_period = YEAR
 
@@ -8266,11 +8266,11 @@ class f7fv(Variable):
 
 
 class f7fw(Variable):
-    cerfa_field = u"7FW"
+    cerfa_field = "7FW"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Report concernant les investissements réalisés et achevés en 2017 en métropole et outre-mer"
+    label = "Report concernant les investissements réalisés et achevés en 2017 en métropole et outre-mer"
     # start_date = date(2018, 1, 1)
     definition_period = YEAR
 

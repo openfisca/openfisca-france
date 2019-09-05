@@ -23,7 +23,7 @@ class ppa_eligibilite(Variable):
 class ppa_plancher_revenu_activite_etudiant(Variable):
     value_type = float
     entity = Individu
-    label = u"Plancher des revenus d'activité pour être éligible à la PPA en tant qu'étudiant"
+    label = "Plancher des revenus d'activité pour être éligible à la PPA en tant qu'étudiant"
     definition_period = MONTH
 
     def formula(individu, period, parameters):

@@ -294,7 +294,7 @@ class aidper(Variable):
             + P.taux_wj * min_(f7wj, max0)
             + P.taux_wl * min_(f7wl, max1)
             )
-    
+
     def formula_2018_01_01(foyer_fiscal, period, parameters):
         '''
         Crédits d’impôt pour dépenses en faveur de l’aide aux personnes

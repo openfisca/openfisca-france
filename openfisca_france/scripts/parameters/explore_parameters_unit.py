@@ -22,7 +22,8 @@ def get_parameters_by_unit(parameter, parameters_by_unit = None):
             rate = list(),
             year = list(),
             )
-    for name, sub_parameter in parameter.children.items():
+
+    for sub_parameter in parameter.children.values():
         if isinstance(sub_parameter, ParameterNode):
             get_parameters_by_unit(sub_parameter, parameters_by_unit)
         else:
@@ -42,7 +43,9 @@ def get_parameters_by_unit(parameter, parameters_by_unit = None):
                         sub_parameter.name, threshold_unit, rate_unit))
 
                 continue
+
             unit = sub_parameter.metadata.get('unit')
+
             if unit is None:
                 parameters_by_unit['none'].append(sub_parameter)
             elif unit == "/1":
@@ -69,7 +72,7 @@ if __name__ == '__main__':
     logger.info('Distribution of parameters types:')
 
     for type_, sub_parameters in parameters_by_unit.items():
-        logger.info(type_, len(parameters_by_unit[type_]))
+        logger.info(type_, len(sub_parameters))
 
     logger.info('\n')
     logger.info('List of parameters with no units')

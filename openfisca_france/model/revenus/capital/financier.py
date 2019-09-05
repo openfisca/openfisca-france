@@ -241,7 +241,7 @@ class f2tv(Variable):
 
 
 class f2tw(Variable):
-    cerfa_field = u"2TW"
+    cerfa_field = "2TW"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal

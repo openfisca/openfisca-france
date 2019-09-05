@@ -11,10 +11,10 @@ def test_coefficient_proratisation_only_contract_periods_wide():
         parent1=dict(salaire_de_base={'2017-11': 2300},
         effectif_entreprise=1,
         code_postal_entreprise="75001",
-        categorie_salarie=u'prive_non_cadre',
+        categorie_salarie='prive_non_cadre',
         contrat_de_travail_debut={2017: '2017-11-01'},
         contrat_de_travail_fin={2017: '2017-12-01'},
-        allegement_fillon_mode_recouvrement=u'progressif'))
+        allegement_fillon_mode_recouvrement='progressif'))
     simulation = scenario.new_simulation()
     assert simulation.calculate('coefficient_proratisation', '2017-11') == 1
     assert simulation.calculate('coefficient_proratisation', '2017-12') == 0
@@ -29,10 +29,10 @@ def test_coefficient_proratisation_only_contract_periods_narrow():
         parent1=dict(salaire_de_base={'2017-11': 2300},
         effectif_entreprise=1,
         code_postal_entreprise="75001",
-        categorie_salarie=u'prive_non_cadre',
+        categorie_salarie='prive_non_cadre',
         contrat_de_travail_debut={2017: '2017-11-01'},
         contrat_de_travail_fin={2017: '2017-12-01'},
-        allegement_fillon_mode_recouvrement=u'progressif'))
+        allegement_fillon_mode_recouvrement='progressif'))
     simulation = scenario.new_simulation()
     assert simulation.calculate('coefficient_proratisation', '2017-11') == 1
     assert simulation.calculate('coefficient_proratisation', '2017-12') == 0

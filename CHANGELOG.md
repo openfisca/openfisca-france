@@ -2590,7 +2590,7 @@ Lors du calcul d'une variable Enum en Python, l'output est un array de membres E
 
 > Chaque membre d'Enum :
 > - a un attribut `name` qui contient sa clé (e.g. `nulle`)
-> - a un attribut `value` qui contient sa description (e.g. `u"Nulle, pas d'exposition de l'employé à un facteur de pénibilité"`)
+> - a un attribut `value` qui contient sa description (e.g. `"Nulle, pas d'exposition de l'employé à un facteur de pénibilité"`)
 
 ### 19.0.4 [#870](https://github.com/openfisca/openfisca-france/pull/870)
 

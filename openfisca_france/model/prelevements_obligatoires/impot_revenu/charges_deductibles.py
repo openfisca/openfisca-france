@@ -291,11 +291,11 @@ class f6hq(Variable):
 
 
 class f6hr(Variable):
-    cerfa_field = u"6HR"
+    cerfa_field = "6HR"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses de l'année 2017"
+    label = "Dépenses de grosses réparations effectuées par les nus-propriétaires: report des dépenses de l'année 2017"
     # start_date = date(2018, 1, 1)
     definition_period = YEAR
 
@@ -758,10 +758,20 @@ class grosses_reparations(Variable):
         '''
         f6cb = foyer_fiscal('f6cb', period)
         year = period.start.year
+
         report_depenses_depuis_2009 = sum(
             foyer_fiscal(case_report, period)
-            for case_report in
-                ['f6hj', 'f6hk', 'f6hl', 'f6hm', 'f6hn', 'f6ho', 'f6hp', 'f6hq', 'f6hr'][0:year-2009]
+            for case_report in [
+                "f6hj",
+                "f6hk",
+                "f6hl",
+                "f6hm",
+                "f6hn",
+                "f6ho",
+                "f6hp",
+                "f6hq",
+                "f6hr",
+                ][0:year - 2009]
             )
 
         plafond_grosses_reparations = parameters(period).impot_revenu.charges_deductibles.grosses_reparations.plafond
