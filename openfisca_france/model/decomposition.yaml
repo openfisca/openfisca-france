@@ -45,7 +45,7 @@ children:
                         label: Salaire super brut
                         children:
                           - variable_name: cout_du_travail
-                            label: Coût du travailexpression_options
+                            label: Coût du travail
                           - variable_name: cout_differe
                             expression_options:
                               tehr:
