@@ -73,22 +73,33 @@ class acs_montant(Variable):
 class complementaire_sante_solidaire_montant_i(Variable):
     value_type = float
     entity = Individu
-    label = u"Montant du complémentaire santé solidaire attribué pour une personne en cas d'éligibilité de la famille"
+    label = "Montant de la complémentaire santé solidaire attribuée à une personne en cas d'éligibilité de la famille"
     definition_period = MONTH
 
     def formula(individu, period, parameters):
         P = parameters(period).cmu.complementaire_sante_solidaire
         age = individu('age', period)
         salarie_regime_alsace_moselle = individu('salarie_regime_alsace_moselle', period)
-        regime = where(salarie_regime_alsace_moselle, RegimeComplementaireSanteSolidaire.alsace_moselle,
-                       RegimeComplementaireSanteSolidaire.france)
+        regime = where(
+            salarie_regime_alsace_moselle,
+            RegimeComplementaireSanteSolidaire.alsace_moselle,
+            RegimeComplementaireSanteSolidaire.france,
+            )
         tranche = select(
-            [age < 30, age <= 49, age <= 59, age <= 69, age > 69],
-            [TranchesComplementaireSanteSolidaire.cmu_moins_30_ans,
+            [
+                age < 30,
+                age <= 49,
+                age <= 59,
+                age <= 69,
+                age > 69,
+                ],
+            [
+                TranchesComplementaireSanteSolidaire.cmu_moins_30_ans,
                 TranchesComplementaireSanteSolidaire.cmu_30_49_ans,
                 TranchesComplementaireSanteSolidaire.cmu_50_59_ans,
                 TranchesComplementaireSanteSolidaire.cmu_60_69_ans,
-                TranchesComplementaireSanteSolidaire.cmu_plus_69_ans],
+                TranchesComplementaireSanteSolidaire.cmu_plus_69_ans,
+                ],
             )
 
         return P[regime][tranche]
@@ -97,7 +108,7 @@ class complementaire_sante_solidaire_montant_i(Variable):
 class complementaire_sante_solidaire_montant(Variable):
     value_type = float
     entity = Famille
-    label = u"Montant du complémentaire santé solidaire en cas d'éligibilité"
+    label = "Montant du complémentaire santé solidaire en cas d'éligibilité"
     definition_period = MONTH
 
     def formula(famille, period, parameters):
@@ -472,7 +483,7 @@ class acs(Variable):
 
 class complementaire_sante_solidaire(Variable):
     value_type = float
-    label = u"Montant (annuel) du complémentaire santé solidaire"
+    label = "Montant (annuel) de la complémentaire santé solidaire"
     entity = Famille
     definition_period = MONTH
     set_input = set_input_divide_by_period
