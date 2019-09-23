@@ -1,4 +1,4 @@
-- name: 'CMU-C: N°1 refus CMUC, accord ACS'
+- name: 'CMU-C: N°1 refus CMU-C, accord ACS'
   period: 2018-05
   absolute_error_margin: 0.05
   input:
@@ -162,7 +162,7 @@
     cmu_base_ressources: 20709.40 #cas de test fourni : 21655.78, ecart de 946.39, soit exactement la PAJE Naissance qui devrait être exclu
     cmu_c: false
 
-- name: 'CMU-C: N°2 refus CMUC, accord ACS'
+- name: 'CMU-C: N°2 refus CMU-C, accord ACS'
   period: 2018-05
   absolute_error_margin: 0.05
   input:
@@ -321,7 +321,7 @@
     cmu_base_ressources: 29140.64 #cas de test fourni : 29510.21, ecart de 369.57, soit exactement l'ARS qui devrait être exclu
     cmu_c: false
 
-- name: 'CMU-C: N°3 accord CMUC'
+- name: 'CMU-C: N°3 accord CMU-C'
   period: 2018-05
   absolute_error_margin: 0.05
   input:
@@ -435,7 +435,7 @@
     cmu_base_ressources: 19323
     cmu_c: true
 
-- name: 'CMU-C: N°4 refus CMUC, accord ACS'
+- name: 'CMU-C: N°4 refus CMU-C, accord ACS'
   period: 2018-05
   absolute_error_margin: 0.05
   input:
@@ -531,7 +531,7 @@
     cmu_base_ressources: 14615
     cmu_c: false
 
-- name: 'CMU-C: N°5 accord CMUC'
+- name: 'CMU-C: N°5 accord CMU-C'
   period: 2018-05
   relative_error_margin: 0.05
   input:
