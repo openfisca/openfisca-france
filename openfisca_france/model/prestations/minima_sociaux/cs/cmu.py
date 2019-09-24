@@ -5,6 +5,7 @@ from numpy import (
     logical_not as not_,
     logical_or as or_,
     minimum as min_,
+    maximum as max_,
     round as round_,
     )
 from openfisca_france.model.base import (
