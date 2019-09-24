@@ -1,4 +1,4 @@
-from numpy import select, where
+from numpy import select, where, logical_not as not_
 from openfisca_france.model.base import (
     Enum,
     Variable,
@@ -9,10 +9,10 @@ from openfisca_france.model.base import (
     )
 
 
-class complementaire_sante_solidaire_montant_i(Variable):
+class css_participation_forfaitaire_montant_i(Variable):
     value_type = float
     entity = Individu
-    label = "Montant de la complémentaire santé solidaire attribué à une personne en cas d'éligibilité de la famille"
+    label = "Montant de la participation forfaitaire d'une personne"
     definition_period = MONTH
 
     def formula(individu, period, parameters):
@@ -44,21 +44,20 @@ class complementaire_sante_solidaire_montant_i(Variable):
         return P[regime][tranche]
 
 
-class complementaire_sante_solidaire_montant(Variable):
+class css_participation_forfaitaire_montant(Variable):
     value_type = float
     entity = Famille
-    label = "Montant du complémentaire santé solidaire en cas d'éligibilité"
+    label = "Montant de participation forfaitaire d'une famille en cas d'éligibilité"
     definition_period = MONTH
 
     def formula(famille, period, parameters):
-        cmu_c_etendue_montant_i = famille.members('complementaire_sante_solidaire_montant_i', period)
-        return famille.sum(cmu_c_etendue_montant_i)
+        css_participation_forfaitaire_i = famille.members('css_participation_forfaitaire_i', period)
+        return famille.sum(css_participation_forfaitaire_i)
 
 
-
-class complementaire_sante_solidaire(Variable):
+class css_participation_forfaitaire(Variable):
     value_type = float
-    label = "Montant (annuel) de la complémentaire santé solidaire"
+    label = "Montant annuel de la participation forfaitaire à la CSS"
     entity = Famille
     definition_period = MONTH
     set_input = set_input_divide_by_period
@@ -66,8 +65,8 @@ class complementaire_sante_solidaire(Variable):
     def formula_2019_11_01(famille, period):
         cmu_c = famille('cmu_c', period)
         cmu_base_ressources = famille('cmu_base_ressources', period)
-        cmu_c_etendue_plafond = famille('acs_plafond', period)
-        cmu_c_etendue_montant = famille('complementaire_sante_solidaire_montant', period)
+        css_plafond = famille('acs_plafond', period)
+        css_participation_forfaitaire_montant = famille('css_participation_forfaitaire_montant', period)
         residence_mayotte = famille.demandeur.menage('residence_mayotte', period)
         cmu_acs_eligibilite = famille('cmu_acs_eligibilite', period)
         acs = famille('acs', period)
@@ -77,8 +76,8 @@ class complementaire_sante_solidaire(Variable):
             * not_(residence_mayotte)
             * not_(cmu_c)
             * (acs == 0)
-            * (cmu_base_ressources <= cmu_c_etendue_plafond)
-            * cmu_c_etendue_montant
+            * (cmu_base_ressources <= css_plafond)
+            * css_participation_forfaitaire_montant
             )
 
 

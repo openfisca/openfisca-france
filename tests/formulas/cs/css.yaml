@@ -74,6 +74,7 @@
     foyer_fiscal:
       declarants: [parent1]
   output:
+    acs: 0.0
     cmu_base_ressources: 10000
 
 - name: "CSS: Base de ressource de deux personnes"
@@ -174,6 +175,7 @@
     foyer_fiscal:
       declarants: [parent1, parent2]
   output:
+    acs: 0.0
     cmu_base_ressources: 14000
 
 - name: "CSS: Base de ressource de cinq personnes"
@@ -283,6 +285,7 @@
       declarants: [parent1, parent2]
       personnes_a_charge: [enfant1, enfant2, enfant3]
   output:
+    acs: 0.0
     cmu_base_ressources: 24000
 
 - name: "CSS: Montant de cotisation CSS - France"
@@ -291,7 +294,7 @@
     age: [29, 30, 49, 50, 59, 60, 69, 70]
     salarie_regime_alsace_moselle: [false, false, false, false, false, false, false, false]
   output:
-    complementaire_sante_solidaire_montant_i: [8, 14, 14, 21, 21, 25, 25, 30]
+    css_participation_forfaitaire_montant_i: [8, 14, 14, 21, 21, 25, 25, 30]
 
 - name: "CSS: Montant de cotisation CSS - Alsace-Moselle"
   period: 2019-11
@@ -299,4 +302,4 @@
     age: [29, 30, 49, 50, 59, 60, 69, 70]
     salarie_regime_alsace_moselle: [true, true, true, true, true, true, true, true]
   output:
-    complementaire_sante_solidaire_montant_i: [2.80, 4.90, 4.90, 7.30, 7.30, 8.70, 8.70, 10.50]
+    css_participation_forfaitaire_montant_i: [2.80, 4.90, 4.90, 7.30, 7.30, 8.70, 8.70, 10.50]
