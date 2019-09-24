@@ -16,7 +16,7 @@ class css_participation_forfaitaire_montant_i(Variable):
     definition_period = MONTH
 
     def formula(individu, period, parameters):
-        P = parameters(period).cmu.complementaire_sante_solidaire
+        P = parameters(period).cs.css
         age = individu('age', period)
         salarie_regime_alsace_moselle = individu('salarie_regime_alsace_moselle', period)
         regime = where(

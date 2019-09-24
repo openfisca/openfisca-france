@@ -11,7 +11,7 @@ class cmu_acs_eligibilite(Variable):
     def formula(famille, period, parameters):
         previous_year = period.start.period('year').offset(-1)
         this_year = period.this_year
-        age_min = parameters(period).cmu.age_limite_pac
+        age_min = parameters(period).cs.cmu.age_limite_pac
         nb_enfants = famille('cmu_nb_pac', period)
 
         # Une personne de 25 ans ne doit pas être à charge fiscale, ni hébergée par ses parents, ni recevoir de pensions alimentaires pour pouvoir bénéficier de la CMU individuellement.

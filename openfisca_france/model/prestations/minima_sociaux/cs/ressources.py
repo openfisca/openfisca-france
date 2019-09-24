@@ -31,7 +31,7 @@ class cmu_base_ressources_individu(Variable):
         last_year = period.last_year
         last_month = period.last_month
 
-        P = parameters(period).cmu
+        P = parameters(period).cs.cmu
 
         ressources_a_inclure = [
             'aah',
@@ -106,7 +106,7 @@ class cmu_base_ressources(Variable):
         cmu_forfait_logement_base = famille('cmu_forfait_logement_base', period)
         cmu_forfait_logement_al = famille('cmu_forfait_logement_al', period)
 
-        P = parameters(period).cmu
+        P = parameters(period).cs.cmu
 
         proprietaire = (statut_occupation_logement == TypesStatutOccupationLogement.proprietaire)
         heberge_titre_gratuit = (statut_occupation_logement == TypesStatutOccupationLogement.loge_gratuitement)

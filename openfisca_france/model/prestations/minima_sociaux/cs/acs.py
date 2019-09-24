@@ -15,7 +15,7 @@ class acs_montant_i(Variable):
     definition_period = MONTH
 
     def formula_2009_08_01(individu, period, parameters):
-        P = parameters(period).cmu
+        P = parameters(period).cs.acs
         age = individu('age', period)
         montant_si_pac = select(
             [(age <= 15) * (age >= 0), age <= 25],
@@ -50,7 +50,7 @@ class acs_plafond(Variable):
     definition_period = MONTH
 
     def formula(famille, period, parameters):
-        P = parameters(period).cmu
+        P = parameters(period).cs.acs
         cmu_c_plafond = famille('cmu_c_plafond', period)
 
         return cmu_c_plafond * (1 + P.majoration_plafond_acs)
