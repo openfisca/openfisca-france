@@ -1,5 +1,13 @@
 # Changelog
 
+### 48.6.1 [#1375](https://github.com/openfisca/openfisca-france/pull/1375)
+
+* Changement mineur.
+* Périodes concernées : à partir du 01/01/2012.
+* Zones impactées : `prelevements_obligatoires/impot_revenu/ir.py`.
+* Détails :
+  - Enlève des lignes mettant en dur à zéro à partir de 2012 des termes dépendant de `abatmob`, lui-même à zéro dans les paramètres à partir de cette date. Fait que pas possible de simuler des réformes relatives à cet abattement.
+
 ## 48.6.0 [#1369](https://github.com/openfisca/openfisca-france/pull/1369)
 
 * Évolution du système socio-fiscal.
