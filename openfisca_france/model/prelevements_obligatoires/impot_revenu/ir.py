@@ -726,10 +726,7 @@ class revenu_categoriel_capital(Variable):
         rev = g12b + f2gr + f2fu * (1 - rvcm.taux_abattement_capitaux_mobiliers)
 
         # Abattements, limité au revenu
-        if period.start.date >= date(2012, 1, 1):
-            h12 = 0
-        else:
-            h12 = rvcm.abatmob * (1 + maries_ou_pacses)
+        h12 = rvcm.abatmob * (1 + maries_ou_pacses)
         TOT2 = max_(0, rev - h12)
         # i121= -min_(0,rev - h12)
 
@@ -877,10 +874,7 @@ class rfr_rvcm_abattements_a_reintegrer(Variable):
         rev = g12b + f2gr + f2fu * (1 - rvcm.taux_abattement_capitaux_mobiliers)
 
         # Abattements, limité au revenu
-        if period.start.date >= date(2012, 1, 1):
-            h12 = 0
-        else:
-            h12 = rvcm.abatmob * (1 + maries_ou_pacses)
+        h12 = rvcm.abatmob * (1 + maries_ou_pacses)
         i121 = - min_(0, rev - h12)
         return max_((rvcm.taux_abattement_capitaux_mobiliers) * (f2dc + f2fu) - i121, 0)
 
