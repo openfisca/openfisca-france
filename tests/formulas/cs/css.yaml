@@ -1,0 +1,305 @@
+- name: "CSS: Plafond CMU et ACS pour une personne seule"
+  period: 2019-11
+  relative_error_margin: 0.01
+  input:
+    date_naissance: 1973-05-01
+  output:
+    cmu_c_plafond: 8950.96
+    acs_plafond: 12083.81
+
+- name: "CSS: Plafond CMU et ACS pour un couple"
+  period: 2019-11
+  relative_error_margin: 0.01
+  input:
+    individus:
+      parent1:
+        date_naissance: 1961-01-01
+      parent2:
+        date_naissance: 1951-05-01
+    famille:
+      parents: [parent1, parent2]
+  output:
+    cmu_c_plafond: 13426.44
+    acs_plafond: 18125.69
+
+- name: "CSS: Plafond CMU et ACS pour un couple avec trois enfants"
+  period: 2019-11
+  relative_error_margin: 0.01
+  input:
+    individus:
+      parent1:
+        date_naissance: 1994-01-01
+      parent2:
+        date_naissance: 1984-02-01
+      enfant1:
+        date_naissance: 2009-07-01
+      enfant2:
+        date_naissance: 2015-02-25
+      enfant3:
+        date_naissance: 2011-06-01
+    famille:
+      parents: [parent1, parent2]
+      enfants: [enfant1, enfant2, enfant3]
+  output:
+    cmu_c_plafond: 22377.40
+    acs_plafond: 30209.49
+
+- name: "CSS: Base de ressource d'une personne seule"
+  period: 2019-11
+  absolute_error_margin: 0.1
+  input:
+    individus:
+      parent1:
+        date_naissance: 1973-05-01
+        salaire_net:
+          2019-10: 833.33
+          2019-09: 833.33
+          2019-08: 833.33
+          2019-07: 833.33
+          2019-06: 833.33
+          2019-05: 833.33
+          2019-04: 833.33
+          2019-03: 833.33
+          2019-02: 833.33
+          2019-01: 833.33
+          2018-12: 833.33
+          2018-11: 833.33
+    famille:
+      parents: [parent1]
+      aide_logement: 0
+      rsa: 0
+    menage:
+      personne_de_reference: parent1
+      statut_occupation_logement: locataire_vide
+    foyer_fiscal:
+      declarants: [parent1]
+  output:
+    acs: 0.0
+    cmu_base_ressources: 10000
+
+- name: "CSS: Base de ressource de deux personnes"
+  period: 2019-11
+  absolute_error_margin: 0.1
+  input:
+    individus:
+      parent1:
+        date_naissance: 1961-01-01
+        salaire_net:
+          2019-10: 583.33
+          2019-09: 583.33
+          2019-08: 583.33
+          2019-07: 583.33
+          2019-06: 583.33
+          2019-05: 583.33
+          2019-04: 583.33
+          2019-03: 583.33
+          2019-02: 583.33
+          2019-01: 583.33
+          2018-12: 583.33
+          2018-11: 583.33
+      parent2:
+        date_naissance: 1951-05-01
+        salaire_net:
+          2019-10: 583.33
+          2019-09: 583.33
+          2019-08: 583.33
+          2019-07: 583.33
+          2019-06: 583.33
+          2019-05: 583.33
+          2019-04: 583.33
+          2019-03: 583.33
+          2019-02: 583.33
+          2019-01: 583.33
+          2018-12: 583.33
+          2018-11: 583.33
+    famille:
+      parents: [parent1, parent2]
+      aide_logement: 0
+      rsa: 0
+      af:
+        2019-10: 0
+        2019-09: 0
+        2019-08: 0
+        2019-07: 0
+        2019-06: 0
+        2019-05: 0
+        2019-04: 0
+        2019-03: 0
+        2019-02: 0
+        2019-01: 0
+        2018-12: 0
+        2018-11: 0
+      cf:
+        2019-10: 0
+        2019-09: 0
+        2019-08: 0
+        2019-07: 0
+        2019-06: 0
+        2019-05: 0
+        2019-04: 0
+        2019-03: 0
+        2019-02: 0
+        2019-01: 0
+        2018-12: 0
+        2018-11: 0
+      asf:
+        2019-10: 0
+        2019-09: 0
+        2019-08: 0
+        2019-07: 0
+        2019-06: 0
+        2019-05: 0
+        2019-04: 0
+        2019-03: 0
+        2019-02: 0
+        2019-01: 0
+        2018-12: 0
+        2018-11: 0
+      aspa:
+        2019-10: 0
+        2019-09: 0
+        2019-08: 0
+        2019-07: 0
+        2019-06: 0
+        2019-05: 0
+        2019-04: 0
+        2019-03: 0
+        2019-02: 0
+        2019-01: 0
+        2018-12: 0
+        2018-11: 0
+    menage:
+      personne_de_reference: parent1
+      conjoint: parent2
+      statut_occupation_logement: locataire_vide
+    foyer_fiscal:
+      declarants: [parent1, parent2]
+  output:
+    acs: 0.0
+    cmu_base_ressources: 14000
+
+- name: "CSS: Base de ressource de cinq personnes"
+  period: 2019-11
+  absolute_error_margin: 0.1
+  input:
+    individus:
+      parent1:
+        date_naissance: 1994-01-01
+        salaire_net:
+          2019-10: 1000
+          2019-09: 1000
+          2019-08: 1000
+          2019-07: 1000
+          2019-06: 1000
+          2019-05: 1000
+          2019-04: 1000
+          2019-03: 1000
+          2019-02: 1000
+          2019-01: 1000
+          2018-12: 1000
+          2018-11: 1000
+      parent2:
+        date_naissance: 1984-02-01
+        salaire_net:
+          2019-10: 1000
+          2019-09: 1000
+          2019-08: 1000
+          2019-07: 1000
+          2019-06: 1000
+          2019-05: 1000
+          2019-04: 1000
+          2019-03: 1000
+          2019-02: 1000
+          2019-01: 1000
+          2018-12: 1000
+          2018-11: 1000
+      enfant1:
+        date_naissance: 2009-07-01
+      enfant2:
+        date_naissance: 2015-02-25
+      enfant3:
+        date_naissance: 2011-06-01
+    famille:
+      parents: [parent1, parent2]
+      enfants: [enfant1, enfant2, enfant3]
+      aide_logement: 0
+      rsa: 0
+      af:
+        2019-10: 0
+        2019-09: 0
+        2019-08: 0
+        2019-07: 0
+        2019-06: 0
+        2019-05: 0
+        2019-04: 0
+        2019-03: 0
+        2019-02: 0
+        2019-01: 0
+        2018-12: 0
+        2018-11: 0
+      cf:
+        2019-10: 0
+        2019-09: 0
+        2019-08: 0
+        2019-07: 0
+        2019-06: 0
+        2019-05: 0
+        2019-04: 0
+        2019-03: 0
+        2019-02: 0
+        2019-01: 0
+        2018-12: 0
+        2018-11: 0
+      asf:
+        2019-10: 0
+        2019-09: 0
+        2019-08: 0
+        2019-07: 0
+        2019-06: 0
+        2019-05: 0
+        2019-04: 0
+        2019-03: 0
+        2019-02: 0
+        2019-01: 0
+        2018-12: 0
+        2018-11: 0
+      aspa:
+        2019-10: 0
+        2019-09: 0
+        2019-08: 0
+        2019-07: 0
+        2019-06: 0
+        2019-05: 0
+        2019-04: 0
+        2019-03: 0
+        2019-02: 0
+        2019-01: 0
+        2018-12: 0
+        2018-11: 0
+    menage:
+      personne_de_reference: parent1
+      conjoint: parent2
+      enfants: [enfant1, enfant2, enfant3]
+      statut_occupation_logement: locataire_vide
+    foyer_fiscal:
+      declarants: [parent1, parent2]
+      personnes_a_charge: [enfant1, enfant2, enfant3]
+  output:
+    acs: 0.0
+    cmu_base_ressources: 24000
+
+- name: "CSS: Montant de cotisation CSS - France"
+  period: 2019-11
+  input:
+    age: [29, 30, 49, 50, 59, 60, 69, 70]
+    salarie_regime_alsace_moselle: [false, false, false, false, false, false, false, false]
+  output:
+    css_participation_forfaitaire_montant_i: [8, 14, 14, 21, 21, 25, 25, 30]
+
+- name: "CSS: Montant de cotisation CSS - Alsace-Moselle"
+  period: 2019-11
+  input:
+    age: [29, 30, 49, 50, 59, 60, 69, 70]
+    salarie_regime_alsace_moselle: [true, true, true, true, true, true, true, true]
+  output:
+    css_participation_forfaitaire_montant_i: [2.80, 4.90, 4.90, 7.30, 7.30, 8.70, 8.70, 10.50]
