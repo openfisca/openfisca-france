@@ -1,5 +1,16 @@
 # Changelog
 
+## 48.6.0 [#1369](https://github.com/openfisca/openfisca-france/pull/1369)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/11/2019.
+* Zones impactées :
+  - `parameters/cs/*`
+  - `model/prestations/minima_sociaux/cs/*`
+* Détails :
+  - Intègre la fusion de l'ACS dans la CMU-C, sous la forme d'une CMU-C étendue appelée Complémentaire Sante Solidaire (CSS)
+  - Intègre la cotisation forfataire par individu membre de la famille en fonction de l'âge prévue par la réforme.
+
 ### 48.5.2 [#1370](https://github.com/openfisca/openfisca-france/pull/1370)
 
 * Amélioration technique.
