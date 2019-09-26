@@ -323,7 +323,7 @@ class ressortissant_eee(Variable):
 
 
 class duree_possession_titre_sejour(Variable):
-    value_type = int
+    value_type = float
     entity = Individu
     label = "Durée depuis laquelle l'individu possède un titre de séjour (en années)"
     definition_period = MONTH

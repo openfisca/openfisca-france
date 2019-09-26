@@ -615,10 +615,16 @@ class rsa_condition_nationalite(Variable):
     definition_period = MONTH
 
     def formula_2009_06_01(individu, period, parameters):
+        fr = individu('nationalite', period) == b'FR'
         ressortissant_eee = individu('ressortissant_eee', period)
+
         duree_possession_titre_sejour = individu('duree_possession_titre_sejour', period)
         duree_min_titre_sejour = parameters(period).prestations.minima_sociaux.rsa.duree_min_titre_sejour
-        return or_(ressortissant_eee, duree_possession_titre_sejour >= duree_min_titre_sejour)
+
+        eligibilite_eee = ressortissant_eee * duree_possession_titre_sejour >= duree_min_titre_sejour.eee
+        eligibilite_non_eee = not_(ressortissant_eee) * duree_possession_titre_sejour >= duree_min_titre_sejour.non_eee
+
+        return fr + eligibilite_eee + eligibilite_non_eee
 
     # RMI
     def formula(individu, period, parameters):
