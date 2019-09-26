@@ -1,5 +1,20 @@
 # Changelog
 
+### 48.6.2 [#1372](https://github.com/openfisca/openfisca-france/pull/1372)
+
+* Revalorisation périodique.
+* Périodes concernées : à partir du 01/10/2019.
+* Zones impactées :
+  - `parameters/prestations/aides_logement/al_charge`.
+  - `parameters/prestations/aides_logement/forfait_charges`.
+  - `parameters/prestations/aides_logement/loyers_plafond`.
+  - `parameters/prestations/al_plafonds_accession`.
+  - `parameters/prestations/al_plafonds_logement_foyer`.
+  - `parameters/prestations/al_plafonds_logement_foyer_crous`.
+
+* Détails :
+  - Revalorisation annuelle des paramètres de calcul de l’APL, de l’ALF et de l’ALS au 1 octobre 2019.
+
 ### 48.6.1 [#1375](https://github.com/openfisca/openfisca-france/pull/1375)
 
 * Changement mineur.
