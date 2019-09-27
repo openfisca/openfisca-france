@@ -76,7 +76,7 @@ class complementaire_sante_solidaire_montant_i(Variable):
     label = u"Montant du complémentaire santé solidaire attribué pour une personne en cas d'éligibilité de la famille"
     definition_period = MONTH
 
-    def formula_2019_07_01(individu, period, parameters):
+    def formula_2019_10_03(individu, period, parameters):
         P = parameters(period).cmu.complementaire_sante_solidaire
         age = individu('age', period)
         salarie_regime_alsace_moselle = individu('salarie_regime_alsace_moselle', period)
@@ -450,7 +450,7 @@ class acs(Variable):
     set_input = set_input_divide_by_period
     end = '2021-05-01'
 
-    def formula_2019_07_01(famille, period):
+    def formula_2019_10_03(famille, period):
         return
 
     def formula(famille, period):
@@ -477,7 +477,7 @@ class complementaire_sante_solidaire(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
-    def formula_2019_07_01(famille, period):
+    def formula_2019_10_03(famille, period):
         cmu_c = famille('cmu_c', period)
         cmu_base_ressources = famille('cmu_base_ressources', period)
         cmu_c_etendue_plafond = famille('acs_plafond', period)
