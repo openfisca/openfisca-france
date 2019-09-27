@@ -1,389 +1,389 @@
-- name: "Cas 1 AL Reforme 2019, couple etudiant, locataire en logement non conventionné"
-  period: 2019-06
-  relative_error_margin: 0.1
-  input:
-    famille:
-      parents: [etudiant1, etudiant2]
-    menage:
-      personne_de_reference: etudiant1
-      conjoint: etudiant2
-      statut_occupation_logement:
-        2019-06: locataire_vide
-      logement_conventionne:
-        2019-06: false
-      depcom:
-        2019-06: 66136
-      loyer:
-        2019-06: 550
-    individus:
-      etudiant1:
-        activite:
-          2019-06: etudiant
-        boursier:
-          2019-06: false
-        date_naissance:
-          2019-06: 1995-06-15
-        salaire_imposable:
-          2019-05: 400
-          2019-04: 400
-          2019-03: 400
-          2019-02: 400
-          2019-01: 400
-          2018-12: 400
-          2018-11: 400
-          2018-10: 400
-          2018-09: 400
-          2018-08: 400
-          2018-07: 400
-          2018-06: 400
-      etudiant2:
-        activite:
-          2019-06: etudiant
-        boursier:
-          2019-06: false
-        date_naissance:
-          2019-06: 1996-04-30
-        salaire_imposable:
-          2019-05: 400
-          2019-04: 400
-          2019-03: 400
-          2019-02: 400
-          2019-01: 400
-          2018-12: 400
-          2018-11: 400
-          2018-10: 400
-          2018-09: 400
-          2018-08: 400
-          2018-07: 400
-          2018-06: 400
-    foyer_fiscal:
-      declarants: [etudiant1, etudiant2]
-  output:
-    aide_logement: 252
-
-- name: "Cas 2 AL Reforme 2019, couple retraité avec loyer élevé"
-  period: 2019-06
-  relative_error_margin: 0.01
-  input:
-    famille:
-      parents: [parent1, parent2]
-    menage:
-      personne_de_reference: parent1
-      conjoint: parent2
-      statut_occupation_logement:
-        2019-06: locataire_vide
-      logement_conventionne:
-        2019-06: false
-      depcom:
-        2019-06: 11069
-      loyer:
-        2019-06: 2000
-    individus:
-      parent1:
-        activite:
-          2019-06: retraite
-        date_naissance:
-          2019-06: 1943-10-14
-        retraite_imposable:
-          2019-05: 375
-          2019-04: 375
-          2019-03: 375
-          2019-02: 375
-          2019-01: 375
-          2018-12: 375
-          2018-11: 375
-          2018-10: 375
-          2018-09: 375
-          2018-08: 375
-          2018-07: 375
-          2018-06: 375
-      parent2:
-        activite:
-          2019-06: retraite
-        date_naissance:
-          2019-06: 1946-06-17
-        pensions_invalidite:
-          2017: 10300
-        epargne_revenus_imposables:
-          2019-06: 24000
-    foyer_fiscal:
-      declarants: [parent1, parent2]
-      rente_viagere_titre_onereux_net:
-        2018: 3000
-  output:
-    aide_logement: 0
-
-- name: "Cas 3 AL Reforme 2019, personne seule en congé parental"
-  period: 2019-06
-  relative_error_margin: 0.01
-  input:
-    famille:
-      parents: [parent1]
-      enfants: [enfant1]
-    menage:
-      personne_de_reference: parent1
-      enfants: [enfant1]
-      statut_occupation_logement:
-        2019-06: locataire_vide
-      logement_conventionne:
-        2019-06: false
-      depcom:
-        2019-06: 31555
-      loyer:
-        2019-06: 500
-    individus:
-      parent1:
-        activite:
-          2019-06: actif
-        date_naissance:
-          2019-06: 1985-07-26
-        salaire_imposable:
-          2019-05: 2000
-          2019-04: 2000
-          2019-03: 2000
-          2019-02: 2000
-          2019-01: 2000
-          2018-12: 2000
-          2018-11: 2000
-          2018-10: 2000
-          2018-09: 2000
-          2018-08: 2000
-          2018-07: 2000
-          2018-06: 2000
-        pensions_alimentaires_percues:
-          2018: 900
-        type_conges:
-          2019-06: conge_parental
-          2019-05: conge_parental
-          2019-04: conge_parental
-          2019-03: conge_parental
-          2019-02: conge_parental
-          2019-01: conge_parental
-          2018-12: conge_parental
-          2018-11: conge_parental
-          2018-10: conge_parental
-          2018-09: conge_parental
-          2018-08: conge_parental
-          2018-07: conge_parental
-          2018-06: conge_parental
-        epargne_revenus_imposables:
-          2019-06: 24000
-      enfant1:
-        date_naissance:
-          2019-06: 2018-01-03
-    foyer_fiscal:
-      declarants: [parent1]
-      personnes_a_charge: [enfant1]
-  output:
-    aide_logement: 378.89
-
-- name: "Cas 4 AL Reforme 2019, personne seule avec un deficit d'exercice non pris en compte (pas en N-2)"
-  period: 2019-06
-  relative_error_margin: 0.01
-  input:
-    famille:
-      parents: [parent1]
-    menage:
-      personne_de_reference: parent1
-      statut_occupation_logement:
-        2019-06: locataire_meuble
-      logement_conventionne:
-        2019-06: false
-      depcom:
-        2019-06: 31555
-      loyer:
-        2019-06: 990
-    individus:
-      parent1:
-        activite:
-          2019-06: actif
-        date_naissance:
-          2019-06: 1973-01-10
-        epargne_revenus_imposables:
-          2019-06: 24000
-    foyer_fiscal:
-      declarants: [parent1]
-      deficit_exercice:
-        2018: 9000
-  output:
-    aide_logement: 239
-
-- name: "Cas 5 AL Reforme 2019, personne seule en logement conventionné, au chômage non indemnisé avec indemnités journalières"
-  period: 2019-06
-  relative_error_margin: 0.01
-  input:
-    famille:
-      parents: [parent1]
-    menage:
-      personne_de_reference: parent1
-      statut_occupation_logement:
-        2019-06: locataire_vide
-      logement_conventionne:
-        2019-06: true
-      depcom:
-        2019-06: 78646
-      loyer:
-        2019-06: 500
-    individus:
-      parent1:
-        activite:
-          2019-06: chomeur
-        date_naissance:
-          2019-06: 1968-01-10
-        date_debut_chomage:
-          2019-06: 2017-04-01
-        salaire_imposable:
-          2019-05: 791.66
-          2019-04: 791.66
-          2019-03: 791.66
-          2019-02: 791.66
-          2019-01: 791.66
-          2018-12: 791.66
-          2018-11: 791.66
-          2018-10: 791.66
-          2018-09: 791.66
-          2018-08: 791.66
-          2018-07: 791.66
-          2018-06: 791.66
-        chomage_imposable:
-          2019-05: 0
-          2019-04: 0
-          2019-03: 0
-          2019-02: 0
-          2019-01: 0
-          2018-12: 0
-          2018-11: 0
-          2018-10: 0
-          2018-09: 0
-          2018-08: 0
-          2018-07: 0
-          2018-06: 0
-        indemnites_journalieres_accident_travail:
-          2019-05: 500
-          2019-04: 500
-          2019-03: 500
-          2019-02: 500
-          2019-01: 500
-          2018-12: 500
-          2018-11: 500
-          2018-10: 500
-          2018-09: 500
-          2018-08: 500
-          2018-07: 500
-          2018-06: 500
-        epargne_revenus_imposables:
-          2019-06: 24000
-    foyer_fiscal:
-      declarants: [parent1]
-      plus_values_gains_divers:
-        2017: 1000
-  output:
-    aide_logement: 229.48 - 32.32
-    reduction_loyer_solidarite: 32.32
-
-- name: "Cas 7 AL Reforme 2019, personne seule, locataire en logement conventionné"
-  period: 2019-06
-  relative_error_margin: 0.01
-  input:
-    famille:
-      parents: [personne1]
-    menage:
-      personne_de_reference: personne1
-      statut_occupation_logement:
-        2019-06: locataire_vide
-      logement_conventionne:
-        2019-06: true
-      depcom:
-        2019-06: 78646
-      loyer:
-        2019-06: 500
-    individus:
-      personne1:
-        boursier:
-          2019-06: false
-        date_naissance:
-          2019-06: 1987-03-15
-        salaire_imposable:
-          2019-05: 1066.66
-          2019-04: 1066.66
-          2019-03: 1066.66
-          2019-02: 1066.66
-          2019-01: 1066.66
-          2018-12: 1066.66
-          2018-11: 1066.66
-          2018-10: 1066.66
-          2018-09: 1066.66
-          2018-08: 1066.66
-          2018-07: 1066.66
-          2018-06: 1066.66
-        epargne_revenus_imposables:
-          2019-06: 24000
-    foyer_fiscal:
-      declarants: [personne1]
-  output:
-    reduction_loyer_solidarite: 0
-    aide_logement: 81
-
-- name: "Cas 8 AL Reforme 2019, couple étudiant, locataire en logement conventionné"
-  period: 2019-06
-  relative_error_margin: 0.1
-  input:
-    famille:
-      parents: [etudiant1, etudiant2]
-    menage:
-      personne_de_reference: etudiant1
-      conjoint: etudiant2
-      statut_occupation_logement:
-        2019-06: locataire_vide
-      logement_conventionne:
-        2019-06: true
-      depcom:
-        2019-06: 66136
-      loyer:
-        2019-06: 550
-    individus:
-      etudiant1:
-        activite:
-          2019-06: etudiant
-        boursier:
-          2019-06: false
-        date_naissance:
-          2019-06: 1995-06-15
-        salaire_imposable:
-          2019-05: 400
-          2019-04: 400
-          2019-03: 400
-          2019-02: 400
-          2019-01: 400
-          2018-12: 400
-          2018-11: 400
-          2018-10: 400
-          2018-09: 400
-          2018-08: 400
-          2018-07: 400
-          2018-06: 400
-      etudiant2:
-        activite:
-          2019-06: etudiant
-        boursier:
-          2019-06: false
-        date_naissance:
-          2019-06: 1996-04-30
-        salaire_imposable:
-          2019-05: 400
-          2019-04: 400
-          2019-03: 400
-          2019-02: 400
-          2019-01: 400
-          2018-12: 400
-          2018-11: 400
-          2018-10: 400
-          2018-09: 400
-          2018-08: 400
-          2018-07: 400
-          2018-06: 400
-    foyer_fiscal:
-      declarants: [etudiant1, etudiant2]
-  output:
-    aide_logement: 252 - 34.48
-    reduction_loyer_solidarite: 34.48
+#- name: "Cas 1 AL Reforme 2019, couple etudiant, locataire en logement non conventionné"
+#  period: 2021-01
+#  relative_error_margin: 0.1
+#  input:
+#    famille:
+#      parents: [etudiant1, etudiant2]
+#    menage:
+#      personne_de_reference: etudiant1
+#      conjoint: etudiant2
+#      statut_occupation_logement:
+#        2021-01: locataire_vide
+#      logement_conventionne:
+#        2021-01: false
+#      depcom:
+#        2021-01: 66136
+#      loyer:
+#        2021-01: 550
+#    individus:
+#      etudiant1:
+#        activite:
+#          2021-01: etudiant
+#        boursier:
+#          2021-01: false
+#        date_naissance:
+#          2021-06: 1995-06-15
+#        salaire_imposable:
+#          2019-05: 400
+#          2019-04: 400
+#          2019-03: 400
+#          2019-02: 400
+#          2019-01: 400
+#          2018-12: 400
+#          2018-11: 400
+#          2018-10: 400
+#          2018-09: 400
+#          2018-08: 400
+#          2018-07: 400
+#          2018-06: 400
+#      etudiant2:
+#        activite:
+#          2019-06: etudiant
+#        boursier:
+#          2019-06: false
+#        date_naissance:
+#          2019-06: 1996-04-30
+#        salaire_imposable:
+#          2019-05: 400
+#          2019-04: 400
+#          2019-03: 400
+#          2019-02: 400
+#          2019-01: 400
+#          2018-12: 400
+#          2018-11: 400
+#          2018-10: 400
+#          2018-09: 400
+#          2018-08: 400
+#          2018-07: 400
+#          2018-06: 400
+#    foyer_fiscal:
+#      declarants: [etudiant1, etudiant2]
+#  output:
+#    aide_logement: 252
+#
+#- name: "Cas 2 AL Reforme 2019, couple retraité avec loyer élevé"
+#  period: 2019-06
+#  relative_error_margin: 0.01
+#  input:
+#    famille:
+#      parents: [parent1, parent2]
+#    menage:
+#      personne_de_reference: parent1
+#      conjoint: parent2
+#      statut_occupation_logement:
+#        2019-06: locataire_vide
+#      logement_conventionne:
+#        2019-06: false
+#      depcom:
+#        2019-06: 11069
+#      loyer:
+#        2019-06: 2000
+#    individus:
+#      parent1:
+#        activite:
+#          2019-06: retraite
+#        date_naissance:
+#          2019-06: 1943-10-14
+#        retraite_imposable:
+#          2019-05: 375
+#          2019-04: 375
+#          2019-03: 375
+#          2019-02: 375
+#          2019-01: 375
+#          2018-12: 375
+#          2018-11: 375
+#          2018-10: 375
+#          2018-09: 375
+#          2018-08: 375
+#          2018-07: 375
+#          2018-06: 375
+#      parent2:
+#        activite:
+#          2019-06: retraite
+#        date_naissance:
+#          2019-06: 1946-06-17
+#        pensions_invalidite:
+#          2017: 10300
+#        epargne_revenus_imposables:
+#          2019-06: 24000
+#    foyer_fiscal:
+#      declarants: [parent1, parent2]
+#      rente_viagere_titre_onereux_net:
+#        2018: 3000
+#  output:
+#    aide_logement: 0
+#
+#- name: "Cas 3 AL Reforme 2019, personne seule en congé parental"
+#  period: 2019-06
+#  relative_error_margin: 0.01
+#  input:
+#    famille:
+#      parents: [parent1]
+#      enfants: [enfant1]
+#    menage:
+#      personne_de_reference: parent1
+#      enfants: [enfant1]
+#      statut_occupation_logement:
+#        2019-06: locataire_vide
+#      logement_conventionne:
+#        2019-06: false
+#      depcom:
+#        2019-06: 31555
+#      loyer:
+#        2019-06: 500
+#    individus:
+#      parent1:
+#        activite:
+#          2019-06: actif
+#        date_naissance:
+#          2019-06: 1985-07-26
+#        salaire_imposable:
+#          2019-05: 2000
+#          2019-04: 2000
+#          2019-03: 2000
+#          2019-02: 2000
+#          2019-01: 2000
+#          2018-12: 2000
+#          2018-11: 2000
+#          2018-10: 2000
+#          2018-09: 2000
+#          2018-08: 2000
+#          2018-07: 2000
+#          2018-06: 2000
+#        pensions_alimentaires_percues:
+#          2018: 900
+#        type_conges:
+#          2019-06: conge_parental
+#          2019-05: conge_parental
+#          2019-04: conge_parental
+#          2019-03: conge_parental
+#          2019-02: conge_parental
+#          2019-01: conge_parental
+#          2018-12: conge_parental
+#          2018-11: conge_parental
+#          2018-10: conge_parental
+#          2018-09: conge_parental
+#          2018-08: conge_parental
+#          2018-07: conge_parental
+#          2018-06: conge_parental
+#        epargne_revenus_imposables:
+#          2019-06: 24000
+#      enfant1:
+#        date_naissance:
+#          2019-06: 2018-01-03
+#    foyer_fiscal:
+#      declarants: [parent1]
+#      personnes_a_charge: [enfant1]
+#  output:
+#    aide_logement: 378.89
+#
+#- name: "Cas 4 AL Reforme 2019, personne seule avec un deficit d'exercice non pris en compte (pas en N-2)"
+#  period: 2019-06
+#  relative_error_margin: 0.01
+#  input:
+#    famille:
+#      parents: [parent1]
+#    menage:
+#      personne_de_reference: parent1
+#      statut_occupation_logement:
+#        2019-06: locataire_meuble
+#      logement_conventionne:
+#        2019-06: false
+#      depcom:
+#        2019-06: 31555
+#      loyer:
+#        2019-06: 990
+#    individus:
+#      parent1:
+#        activite:
+#          2019-06: actif
+#        date_naissance:
+#          2019-06: 1973-01-10
+#        epargne_revenus_imposables:
+#          2019-06: 24000
+#    foyer_fiscal:
+#      declarants: [parent1]
+#      deficit_exercice:
+#        2018: 9000
+#  output:
+#    aide_logement: 239
+#
+#- name: "Cas 5 AL Reforme 2019, personne seule en logement conventionné, au chômage non indemnisé avec indemnités journalières"
+#  period: 2019-06
+#  relative_error_margin: 0.01
+#  input:
+#    famille:
+#      parents: [parent1]
+#    menage:
+#      personne_de_reference: parent1
+#      statut_occupation_logement:
+#        2019-06: locataire_vide
+#      logement_conventionne:
+#        2019-06: true
+#      depcom:
+#        2019-06: 78646
+#      loyer:
+#        2019-06: 500
+#    individus:
+#      parent1:
+#        activite:
+#          2019-06: chomeur
+#        date_naissance:
+#          2019-06: 1968-01-10
+#        date_debut_chomage:
+#          2019-06: 2017-04-01
+#        salaire_imposable:
+#          2019-05: 791.66
+#          2019-04: 791.66
+#          2019-03: 791.66
+#          2019-02: 791.66
+#          2019-01: 791.66
+#          2018-12: 791.66
+#          2018-11: 791.66
+#          2018-10: 791.66
+#          2018-09: 791.66
+#          2018-08: 791.66
+#          2018-07: 791.66
+#          2018-06: 791.66
+#        chomage_imposable:
+#          2019-05: 0
+#          2019-04: 0
+#          2019-03: 0
+#          2019-02: 0
+#          2019-01: 0
+#          2018-12: 0
+#          2018-11: 0
+#          2018-10: 0
+#          2018-09: 0
+#          2018-08: 0
+#          2018-07: 0
+#          2018-06: 0
+#        indemnites_journalieres_accident_travail:
+#          2019-05: 500
+#          2019-04: 500
+#          2019-03: 500
+#          2019-02: 500
+#          2019-01: 500
+#          2018-12: 500
+#          2018-11: 500
+#          2018-10: 500
+#          2018-09: 500
+#          2018-08: 500
+#          2018-07: 500
+#          2018-06: 500
+#        epargne_revenus_imposables:
+#          2019-06: 24000
+#    foyer_fiscal:
+#      declarants: [parent1]
+#      plus_values_gains_divers:
+#        2017: 1000
+#  output:
+#    aide_logement: 229.48 - 32.32
+#    reduction_loyer_solidarite: 32.32
+#
+#- name: "Cas 7 AL Reforme 2019, personne seule, locataire en logement conventionné"
+#  period: 2019-06
+#  relative_error_margin: 0.01
+#  input:
+#    famille:
+#      parents: [personne1]
+#    menage:
+#      personne_de_reference: personne1
+#      statut_occupation_logement:
+#        2019-06: locataire_vide
+#      logement_conventionne:
+#        2019-06: true
+#      depcom:
+#        2019-06: 78646
+#      loyer:
+#        2019-06: 500
+#    individus:
+#      personne1:
+#        boursier:
+#          2019-06: false
+#        date_naissance:
+#          2019-06: 1987-03-15
+#        salaire_imposable:
+#          2019-05: 1066.66
+#          2019-04: 1066.66
+#          2019-03: 1066.66
+#          2019-02: 1066.66
+#          2019-01: 1066.66
+#          2018-12: 1066.66
+#          2018-11: 1066.66
+#          2018-10: 1066.66
+#          2018-09: 1066.66
+#          2018-08: 1066.66
+#          2018-07: 1066.66
+#          2018-06: 1066.66
+#        epargne_revenus_imposables:
+#          2019-06: 24000
+#    foyer_fiscal:
+#      declarants: [personne1]
+#  output:
+#    reduction_loyer_solidarite: 0
+#    aide_logement: 81
+#
+#- name: "Cas 8 AL Reforme 2019, couple étudiant, locataire en logement conventionné"
+#  period: 2019-06
+#  relative_error_margin: 0.1
+#  input:
+#    famille:
+#      parents: [etudiant1, etudiant2]
+#    menage:
+#      personne_de_reference: etudiant1
+#      conjoint: etudiant2
+#      statut_occupation_logement:
+#        2019-06: locataire_vide
+#      logement_conventionne:
+#        2019-06: true
+#      depcom:
+#        2019-06: 66136
+#      loyer:
+#        2019-06: 550
+#    individus:
+#      etudiant1:
+#        activite:
+#          2019-06: etudiant
+#        boursier:
+#          2019-06: false
+#        date_naissance:
+#          2019-06: 1995-06-15
+#        salaire_imposable:
+#          2019-05: 400
+#          2019-04: 400
+#          2019-03: 400
+#          2019-02: 400
+#          2019-01: 400
+#          2018-12: 400
+#          2018-11: 400
+#          2018-10: 400
+#          2018-09: 400
+#          2018-08: 400
+#          2018-07: 400
+#          2018-06: 400
+#      etudiant2:
+#        activite:
+#          2019-06: etudiant
+#        boursier:
+#          2019-06: false
+#        date_naissance:
+#          2019-06: 1996-04-30
+#        salaire_imposable:
+#          2019-05: 400
+#          2019-04: 400
+#          2019-03: 400
+#          2019-02: 400
+#          2019-01: 400
+#          2018-12: 400
+#          2018-11: 400
+#          2018-10: 400
+#          2018-09: 400
+#          2018-08: 400
+#          2018-07: 400
+#          2018-06: 400
+#    foyer_fiscal:
+#      declarants: [etudiant1, etudiant2]
+#  output:
+#    aide_logement: 252 - 34.48
+#    reduction_loyer_solidarite: 34.48
