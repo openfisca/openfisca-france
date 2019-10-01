@@ -192,7 +192,7 @@ class aah_base_ressources_eval_annuelle(Variable):
 
 class aah_restriction_substantielle_durable_acces_emploi(Variable):
     value_type = bool
-    default_value = True
+    default_value = False
     entity = Individu
     label = "Restriction substantielle et durable pour l'accès à l'emploi reconnue par la commission des droits et de l'autonomie des personnes handicapées"
     reference = [

@@ -332,6 +332,7 @@
   input:
     age: 50
     taux_incapacite: 0.55
+    aah_restriction_substantielle_durable_acces_emploi: true
     salaire_imposable:
       2018-05: 2400
       2018-04: 1500
@@ -351,6 +352,7 @@
       parent1:
         age: 42
         taux_incapacite: 0.55
+        aah_restriction_substantielle_durable_acces_emploi: true
         salaire_imposable:
           2018-05: 2250
           2018-04: 2250

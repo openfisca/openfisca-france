@@ -51,3 +51,41 @@
     taux_incapacite: 0.4
   output:
     aah_eligible: false
+
+- name: "Ineligibilité à l'AAH: taux d'incapacité inférieur à 50% et
+    une estriction substantielle et durable pour l'accès à l'emploi
+      reconnue par la commission des droits et
+      de l'autonomie des personnes handicapées"
+  description: Eligible à AAH
+  period: 2013-07
+  input:
+    age: 50
+    handicap: true
+    taux_incapacite: 0.4
+    aah_restriction_substantielle_durable_acces_emploi: true
+  output:
+    aah_eligible: false
+
+- name: "Ineligibilité à l'AAH: taux d'incapacité supérieur à 50% et
+    une estriction substantielle et durable pour l'accès à l'emploi
+      reconnue par la commission des droits et
+      de l'autonomie des personnes handicapées"
+  description: Eligible à AAH
+  period: 2013-07
+  input:
+    age: 50
+    handicap: true
+    taux_incapacite: 0.6
+    aah_restriction_substantielle_durable_acces_emploi: true
+  output:
+    aah_eligible: true
+
+- name: "Ineligibilité à l'AAH: taux d'incapacité supérieur à 50%"
+  description: Eligible à AAH
+  period: 2013-07
+  input:
+    age: 50
+    handicap: true
+    taux_incapacite: 0.6
+  output:
+    aah_eligible: false
