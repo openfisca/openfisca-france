@@ -572,12 +572,12 @@
     complementaire_sante_solidaire: 30 + 25
 
 - name: "CSS: Montant de cotisation CSS de deux personnes dans les tranche plus de 70 ans et 60 à 69 ans, régime Alsace Moselle"
-  period: 2019-11
+  period: 2019-10
   absolute_error_margin: 0.1
   input:
     individus:
       parent1:
-        date_naissance: 1936-10-26
+        date_naissance: 1936-09-26
         salarie_regime_alsace_moselle: true
       parent2:
         date_naissance: 1951-05-01
@@ -597,3 +597,4 @@
   output:
     age: [83, 68]
     complementaire_sante_solidaire: 10.50 + 8.70
+    acs: 0
