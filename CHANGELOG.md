@@ -1,6 +1,15 @@
 # Changelog
 
-## 48.7.1 [#1378](https://github.com/openfisca/openfisca-france/pull/1378)
+### 48.7.2 [#1374](https://github.com/openfisca/openfisca-france/pull/1374)
+
+* Correction d'un crash.
+* Périodes concernées : à partir du 01/01/2002.
+* Zones impactées : `prestations/autonomie.py`.
+* Détails :
+  - Corrige `apa_urgence_institution`
+  - Corrige une date manquant dans l'appel de l'arbre de paramètres
+
+### 48.7.1 [#1378](https://github.com/openfisca/openfisca-france/pull/1378)
 
 * Revalorisation périodique.
 * Périodes concernées : à partir du 01/10/2019.
