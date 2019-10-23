@@ -29,7 +29,7 @@ class taux_csg_remplacement(Variable):
     def formula_2015(individu, period, parameters):
         rfr = individu.foyer_fiscal('rfr', period = period.n_2)
         nbptr = individu.foyer_fiscal('nbptr', period = period.n_2)
-        seuils = parameters(period.start).prelevements_sociaux.contributions.csg.remplacement.pensions_de_retraite_et_d_invalidite
+        seuils = parameters(period).prelevements_sociaux.contributions.csg.remplacement.pensions_de_retraite_et_d_invalidite
         seuil_exoneration = seuils.seuil_de_rfr_1 + (nbptr - 1) * seuils.demi_part_suppl
         seuil_reduction = seuils.seuil_de_rfr_2 + (nbptr - 1) * seuils.demi_part_suppl
         taux_csg_remplacement = where(
@@ -58,7 +58,7 @@ class csg_deductible_chomage(Variable):
         chomage_brut = individu('chomage_brut', period)
         csg_imposable_chomage = individu('csg_imposable_chomage', period)
         taux_csg_remplacement = individu('taux_csg_remplacement', period)
-        parameters = parameters(period.start)
+        parameters = parameters(period)
         montant_csg = montant_csg_crds(
             base_avec_abattement = chomage_brut,
             indicatrice_taux_plein = (taux_csg_remplacement == TypesTauxCSGRemplacement.taux_plein),
@@ -97,7 +97,7 @@ class csg_imposable_chomage(Variable):
 
     def formula(individu, period, parameters):
         chomage_brut = individu('chomage_brut', period)
-        parameters = parameters(period.start)
+        parameters = parameters(period)
 
         montant_csg = montant_csg_crds(
             base_avec_abattement = chomage_brut,
@@ -127,7 +127,7 @@ class crds_chomage(Variable):
         csg_deductible_chomage = individu('csg_deductible_chomage', period)
         csg_imposable_chomage = individu('csg_imposable_chomage', period)
         taux_csg_remplacement = individu('taux_csg_remplacement', period)
-        law = parameters(period.start)
+        law = parameters(period)
         smic_h_b = law.cotsoc.gen.smic_h_b
         # salaire_mensuel_reference = chomage_brut / .7
         # heures_mensuelles = min_(salaire_mensuel_reference / smic_h_b, 35 * 52 / 12)  # TODO: depuis 2001 mais avant ?
@@ -203,7 +203,7 @@ class csg_deductible_retraite(Variable):
     def formula(individu, period, parameters):
         retraite_brute = individu('retraite_brute', period)
         taux_csg_remplacement = individu('taux_csg_remplacement', period)
-        law = parameters(period.start)
+        law = parameters(period)
 
         montant_csg = montant_csg_crds(
             base_sans_abattement = retraite_brute,
@@ -225,7 +225,7 @@ class csg_imposable_retraite(Variable):
 
     def formula(individu, period, parameters):
         retraite_brute = individu('retraite_brute', period)
-        law = parameters(period.start)
+        law = parameters(period)
 
         montant_csg = montant_csg_crds(
             base_sans_abattement = retraite_brute,
@@ -246,7 +246,7 @@ class crds_retraite(Variable):
     def formula(individu, period, parameters):
         retraite_brute = individu('retraite_brute', period)
         taux_csg_remplacement = individu('taux_csg_remplacement', period)
-        law = parameters(period.start)
+        law = parameters(period)
 
         montant_crds = montant_csg_crds(
             base_sans_abattement = retraite_brute,
@@ -266,7 +266,7 @@ class casa(Variable):
     def formula_2013_04_01(individu, period, parameters):
         retraite_brute = individu('retraite_brute', period = period)
         taux_csg_remplacement = individu('taux_csg_remplacement', period)
-        contributions = parameters(period.start).prelevements_sociaux.contributions
+        contributions = parameters(period).prelevements_sociaux.contributions
         casa = (
             (taux_csg_remplacement == TypesTauxCSGRemplacement.taux_plein)
             * contributions.casa.calc(retraite_brute)
@@ -329,6 +329,6 @@ class crds_pfam(Variable):
         paje = famille('paje', period, options = [ADD])
         ape = famille('ape', period, options = [ADD])
         apje = famille('apje', period, options = [ADD])
-        taux_crds = parameters(period.start).prelevements_sociaux.contributions.crds.taux
+        taux_crds = parameters(period).prelevements_sociaux.contributions.crds.taux
 
         return -(af + cf + asf + ars + paje + ape + apje) * taux_crds
