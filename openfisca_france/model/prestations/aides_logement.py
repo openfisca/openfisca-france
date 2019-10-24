@@ -567,7 +567,7 @@ class aide_logement_assiette_abattement_chomage(Variable):
         abattement_minimum = where(chomeur_longue_duree, abatpro.min2, abatpro.min)
         abattement_forfaitaire = round_(min_(max_(abatpro.taux * revenu_salarie, abattement_minimum), abatpro.max))
         revenus_salarie_apres_abbatement = where(
-            frais_reels > abattement_forfaitaire,
+            frais_reels > 0,
             revenu_salarie - frais_reels,
             max_(0, revenu_salarie - abattement_forfaitaire)
             )
@@ -584,7 +584,7 @@ class aide_logement_assiette_abattement_chomage(Variable):
         abattement_minimum = where(chomeur_longue_duree, abatpro.min2, abatpro.min)
         abattement_forfaitaire = round_(min_(max_(abatpro.taux * revenu_salarie, abattement_minimum), abatpro.max))
         revenus_salarie_apres_abbatement = where(
-            frais_reels > abattement_forfaitaire,
+            frais_reels > 0,
             revenu_salarie - frais_reels,
             max_(0, revenu_salarie - abattement_forfaitaire)
             )
@@ -860,12 +860,14 @@ class al_revenu_assimile_salaire_apres_abattements(Variable):
 
         abatpro = parameters(period.last_year).impot_revenu.tspr.abatpro
         abattement_minimum = where(chomeur_longue_duree, abatpro.min2, abatpro.min)
-        abatfor = round_(min_(max_(abatpro.taux * revenu_assimile_salaire, abattement_minimum), abatpro.max))
+        abattement_forfaitaire = round_(min_(max_(abatpro.taux * revenu_assimile_salaire, abattement_minimum), abatpro.max))
 
-        abattement = max_(frais_reels, abatfor)
-        return max_(0, revenu_assimile_salaire - abattement)
+        return where(
+            frais_reels > 0,
+            revenu_assimile_salaire - frais_reels,
+            max_(0, revenu_assimile_salaire - abattement_forfaitaire)
+        )
 
-        return max_(0, revenu_assimile_salaire - abattement)
 
 
 class al_traitements_salaires_pensions_rentes(Variable):
