@@ -1,5 +1,17 @@
 # Changelog
 
+## 48.9.0 [#1335](https://github.com/openfisca/openfisca-france/pull/1335)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2018.
+* Zones impactées : `mode/prelevements_obligatoires/impot_revenu`.
+* Détails :
+   - Ajout de nouvelles variables liées au nouveau formulaire de l'IR (et supprime celles qui disparaissent)
+   - Mise à jour de la formule des charges déductibles pour grosse réparation
+   - Mise à jour de la formule de la réduction Duflot
+   - Mise à jour de la réduction pour aide à la personne
+   - Mise à jour de barèmes (abattement DOM-TOM...)
+
 ## 48.8.0 [#1380](https://github.com/openfisca/openfisca-france/pull/1380)
 
 * Évolution du système socio-fiscal.
