@@ -299,8 +299,21 @@ class dependance_tarif_etablissement_gir_5_6(Variable):
 class dependance_tarif_etablissement_gir_dependant(Variable):
     value_type = float
     entity = Individu
-    label = "Tarif dépendance de l'établissement pour le GIR de la personne dépendante"
     definition_period = MONTH
+    label = "Tarif dépendance de l'établissement pour le GIR de la personne dépendante"
+    reference = ["https://www.service-public.fr/particuliers/vosdroits/F10009"]
+
+    def formula_2002(individu, period):
+        gir = individu("gir", period)
+        tarif_gir_1_2 = individu("dependance_tarif_etablissement_gir_1_2", period)
+        tarif_gir_3_4 = individu("dependance_tarif_etablissement_gir_3_4", period)
+
+        # Vérifie si l'individu est rattaché à l'un des groupes 1 à 4 de la grille Aggir
+        gir_1_2 = (gir == TypesGir.gir_1) + (gir == TypesGir.gir_2)
+        gir_3_4 = (gir == TypesGir.gir_3) + (gir == TypesGir.gir_4)
+
+        # Sélectionne le tarif correspondant à la grille de la personne
+        return select([gir_1_2, gir_3_4], [tarif_gir_1_2, tarif_gir_3_4])
 
 
 class apa_urgence_domicile(Variable):
