@@ -1,5 +1,13 @@
 # Changelog
 
+## 48.8.0 [#1380](https://github.com/openfisca/openfisca-france/pull/1380)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2002.
+* Zones impactées : `model/prestations/autonomie.py`.
+* Détails :
+  - Améliore formule pour déterminer le tarif établissement pour le GIR de la personne dépendante.
+
 ### 48.7.2 [#1374](https://github.com/openfisca/openfisca-france/pull/1374)
 
 * Correction d'un crash.

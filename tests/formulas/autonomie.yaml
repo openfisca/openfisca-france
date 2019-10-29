@@ -283,6 +283,29 @@
   output:
     apa_domicile_taux_participation: 0.9
 
+- name: Test tarif dépendance de l'établissement
+  description: Tarif dépendance de l'établissement pour le GIR de la personne dépendante
+  period: 2002-01
+  input:
+    individus:
+      personne1:
+        gir: gir_1
+        dependance_tarif_etablissement_gir_1_2: 300
+      personne2:
+        gir: gir_3
+        dependance_tarif_etablissement_gir_3_4: 200
+      personne3:
+        gir: gir_5
+        dependance_tarif_etablissement_gir_5_6: 100
+  output:
+    individus:
+      personne1:
+        dependance_tarif_etablissement_gir_dependant: 300
+      personne2:
+        dependance_tarif_etablissement_gir_dependant: 200
+      personne3:
+        dependance_tarif_etablissement_gir_dependant: 0
+
 - name: APA établissement - test situation d'urgence
   description: Montant APA forfataire en cas d'urgence
   input:
