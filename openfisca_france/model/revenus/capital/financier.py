@@ -225,7 +225,7 @@ class f2tu(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = "Pertes en capital sur prêts participatifs en 2016 à reporter sur l'année 2018"
+    label = "Pertes en capital sur prêts participatifs en 2016 à reporter sur l'année courante"
     # start_date = date(2017, 1, 1)
     definition_period = YEAR
 
@@ -235,8 +235,18 @@ class f2tv(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = "Pertes en capital sur prêts participatifs en 2017 à reporter sur l'année 2018"
+    label = "Pertes en capital sur prêts participatifs en 2017 à reporter sur l'année courante"
     # start_date = date(2017, 1, 1)
+    definition_period = YEAR
+
+
+class f2tw(Variable):
+    cerfa_field = "2TW"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "Pertes en capital sur prêts participatifs en 2017 à reporter sur l'année courante"
+    # start_date = date(2018, 1, 1)
     definition_period = YEAR
 
 
@@ -293,6 +303,7 @@ class f2bg(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     label = "Crédits d'impôt 'directive épargne' et autres crédits d'impôt restituables"
+    end = '2017-12-31'
     definition_period = YEAR
 
 

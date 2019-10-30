@@ -252,7 +252,6 @@ class aidper(Variable):
     def formula_2013_01_01(foyer_fiscal, period, parameters):
         '''
         Crédits d’impôt pour dépenses en faveur de l’aide aux personnes
-        (cases 7WI, 7WJ, 7WL).
         2013 - 2015
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
@@ -276,8 +275,7 @@ class aidper(Variable):
     def formula_2015_01_01(foyer_fiscal, period, parameters):
         '''
         Crédits d’impôt pour dépenses en faveur de l’aide aux personnes
-        (cases 7WI, 7WJ, 7WL).
-        2015 -
+        2015 - 2018
         '''
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         nb_pac_majoration_plafond = foyer_fiscal('nb_pac2', period)
@@ -294,6 +292,30 @@ class aidper(Variable):
         return (
             P.taux_wr * f7wr
             + P.taux_wj * min_(f7wj, max0)
+            + P.taux_wl * min_(f7wl, max1)
+            )
+
+    def formula_2018_01_01(foyer_fiscal, period, parameters):
+        '''
+        Crédits d’impôt pour dépenses en faveur de l’aide aux personnes
+        2018 -
+        '''
+        maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
+        nb_pac_majoration_plafond = foyer_fiscal('nb_pac2', period)
+        f7wi = foyer_fiscal('f7wi', period)
+        f7wj = foyer_fiscal('f7wj', period)
+        f7wl = foyer_fiscal('f7wl', period)
+        f7wr = foyer_fiscal('f7wr', period)
+        P = parameters(period).impot_revenu.credits_impot.aidper
+
+        # On ne contrôle pas que 7WR ne dépasse pas le plafond (dépend du nombre de logements et de la nature des travaux)
+        max00 = P.max * (1 + maries_ou_pacses)
+        max0 = max00 + P.pac1 * nb_pac_majoration_plafond
+        max1 = P.max_wl
+
+        return (
+            P.taux_wr * f7wr
+            + P.taux_wj * min_(f7wi + f7wj, max0)
             + P.taux_wl * min_(f7wl, max1)
             )
 
@@ -1821,7 +1843,7 @@ class quaenv(Variable):
         f7we = foyer_fiscal('f7we', period)  # noqa F841
         f7wg = foyer_fiscal('f7wg', period)  # noqa F841
         f7wh = foyer_fiscal('f7wh', period)
-        f7wi = foyer_fiscal('f7wi', period)
+        f7wi = foyer_fiscal('f7wi_2015', period)
         f7wk = foyer_fiscal('f7wk', period)  # noqa F841
         f7wt = foyer_fiscal('f7wt', period)
         f7wu = foyer_fiscal('f7wu', period)

@@ -1,5 +1,17 @@
 # Changelog
 
+## 48.9.0 [#1335](https://github.com/openfisca/openfisca-france/pull/1335)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2018.
+* Zones impactées : `mode/prelevements_obligatoires/impot_revenu`.
+* Détails :
+   - Ajout de nouvelles variables liées au nouveau formulaire de l'IR (et supprime celles qui disparaissent)
+   - Mise à jour de la formule des charges déductibles pour grosse réparation
+   - Mise à jour de la formule de la réduction Duflot
+   - Mise à jour de la réduction pour aide à la personne
+   - Mise à jour de barèmes (abattement DOM-TOM...)
+
 ## 48.8.0 [#1380](https://github.com/openfisca/openfisca-france/pull/1380)
 
 * Évolution du système socio-fiscal.
@@ -2590,7 +2602,7 @@ Lors du calcul d'une variable Enum en Python, l'output est un array de membres E
 
 > Chaque membre d'Enum :
 > - a un attribut `name` qui contient sa clé (e.g. `nulle`)
-> - a un attribut `value` qui contient sa description (e.g. `u"Nulle, pas d'exposition de l'employé à un facteur de pénibilité"`)
+> - a un attribut `value` qui contient sa description (e.g. `"Nulle, pas d'exposition de l'employé à un facteur de pénibilité"`)
 
 ### 19.0.4 [#870](https://github.com/openfisca/openfisca-france/pull/870)
 

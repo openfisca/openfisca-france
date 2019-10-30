@@ -1078,7 +1078,7 @@ class f7wi_2012(Variable):
     definition_period = YEAR
 
 
-class f7wi(Variable):
+class f7wi_2015(Variable):
     cerfa_field = "7WI"
     value_type = int
     unit = 'currency'
@@ -1086,6 +1086,16 @@ class f7wi(Variable):
     label = "Dépenses en faveur de l'aide aux personnes réalisées dans l'habitation principale: dépenses payées en 2015 de matériaux d'isolation des toitures, posés sur une partie de la toiture"
     # start_date = date(2015, 1, 1)
     end = '2015-12-31'
+    definition_period = YEAR
+
+
+class f7wi(Variable):
+    cerfa_field = "7WI"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "Dépenses en faveur de l'aide aux personnes réalisées dans l'habitation principale: équipements permettant l’adaptation des logements à la perte d’autonomie ou au handicap"
+    # start_date = date(2018, 1, 1)
     definition_period = YEAR
 
 
@@ -3877,6 +3887,7 @@ class f7xn(Variable):
     entity = FoyerFiscal
     label = "Investissements locatifs dans le secteur de touristique, logement neuf: report des dépenses d'investissement des années antérieures"
     # start_date = date(2012, 1, 1)
+    end = '2017-12-31'
     definition_period = YEAR
 
 
@@ -3929,6 +3940,7 @@ class f7xv(Variable):
     entity = FoyerFiscal
     label = "Investissements locatifs dans le secteur de touristique: Report des dépenses d'investissement des années antérieures"
     # start_date = date(2012, 1, 1)
+    end = '2017-12-31'
     definition_period = YEAR
 
 
@@ -5819,6 +5831,7 @@ class f7kc(Variable):
     entity = FoyerFiscal
     label = "Dépenses de protection du patrimoine naturel (excédent de réduction d’impôt d’années antérieures qui n’a pu être imputé)"
     # start_date = date(2012, 1, 1)
+    end = '2017-12-31'
     definition_period = YEAR
 
 
@@ -8250,6 +8263,17 @@ class f7fv(Variable):
     label = "Report concernant les investissements réalisés et achevés en 2016 en métropole et outre-mer"
     # start_date = date(2017, 1, 1)
     definition_period = YEAR
+
+
+class f7fw(Variable):
+    cerfa_field = "7FW"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "Report concernant les investissements réalisés et achevés en 2017 en métropole et outre-mer"
+    # start_date = date(2018, 1, 1)
+    definition_period = YEAR
+
 
 # Réduction d'impôts sur les investissements locatifs intermédiaires (loi Pinel)
 

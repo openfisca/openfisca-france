@@ -231,6 +231,7 @@ class exoneration_cotisations_employeur_zfu(Variable):
                 large_taux_exoneration[condition_on_year_passed] = rate * taux_exoneration
 
         for year_passed, rate in small_rate_by_year_passed.items():
+            condition_on_year_passed = exoneration_relative_year_passed == timedelta64(year_passed, 'Y')
             if condition_on_year_passed.any():
                 small_taux_exoneration[condition_on_year_passed] = rate * taux_exoneration
 

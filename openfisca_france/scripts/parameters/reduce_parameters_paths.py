@@ -29,7 +29,7 @@ def clean_from_filename(relative_path):
 def list_long_paths(absolute_directory_path):
     long_paths = []
 
-    for directory, sub_directories, files in os.walk(absolute_directory_path):
+    for directory, _sub_directories, files in os.walk(absolute_directory_path):
         for f in files:
             file_path = os.path.join(directory, f)
             if (len(file_path) - PATH_LENGTH_TO_IGNORE) > PATH_MAX_LENGTH:
