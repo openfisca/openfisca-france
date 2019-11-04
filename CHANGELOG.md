@@ -1,5 +1,13 @@
 # Changelog
 
+### 48.9.1 [#1381](https://github.com/openfisca/openfisca-france/pull/1381)
+
+* Correction d'un crash.
+* Périodes concernées : à partir du 01/11/2019
+* Zones impactées : `model/prestations/minima_sociaux/cs/css`
+* Détails :
+  - Répare une erreur de renommage dans une formule de la Complémentaire Santé Solidaire
+
 ## 48.9.0 [#1335](https://github.com/openfisca/openfisca-france/pull/1335)
 
 * Évolution du système socio-fiscal.
