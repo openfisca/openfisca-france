@@ -51,7 +51,7 @@ class css_participation_forfaitaire_montant(Variable):
     definition_period = MONTH
 
     def formula(famille, period, parameters):
-        css_participation_forfaitaire_i = famille.members('css_participation_forfaitaire_i', period)
+        css_participation_forfaitaire_i = famille.members('css_participation_forfaitaire_montant_i', period)
         return famille.sum(css_participation_forfaitaire_i)
 
 
