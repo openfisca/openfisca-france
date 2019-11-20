@@ -173,6 +173,9 @@ class aide_logement_montant_brut_avant_degressivite(Variable):
 
     def formula(famille, period, parameters):
         al = parameters(period).prestations.aides_logement
+
+        residence_mayotte = famille.demandeur.menage('residence_mayotte', period)
+
         statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
         locataire = ((statut_occupation_logement == TypesStatutOccupationLogement.locataire_hlm)
                 + (statut_occupation_logement == TypesStatutOccupationLogement.locataire_vide)
@@ -181,6 +184,7 @@ class aide_logement_montant_brut_avant_degressivite(Variable):
         accedant = famille.demandeur.menage('aides_logement_primo_accedant_eligibilite', period)
 
         locataire_logement_foyer = statut_occupation_logement == TypesStatutOccupationLogement.locataire_foyer
+        logement_crous = famille.demandeur.menage('logement_crous', period)
 
         loyer_retenu = famille('aide_logement_loyer_retenu', period)
         charges_retenues = famille('aide_logement_charges', period)
@@ -189,7 +193,7 @@ class aide_logement_montant_brut_avant_degressivite(Variable):
         montant_accedant_et_foyer = famille('aides_logement_accedant_et_foyer', period)
         montant_locataire = max_(0, loyer_retenu + charges_retenues - participation_personnelle)
 
-        montant = select([locataire, accedant + locataire_logement_foyer],
+        montant = select([locataire, accedant + locataire_logement_foyer + logement_crous],
                          [montant_locataire, montant_accedant_et_foyer])
 
         logement_conventionne = famille.demandeur.menage('logement_conventionne', period)
@@ -197,7 +201,7 @@ class aide_logement_montant_brut_avant_degressivite(Variable):
         seuil_versement = al.al_min.montant_min_mensuel.montant_min_apl_al[type_aide]
         minimum_atteint = montant >= seuil_versement
 
-        return minimum_atteint * montant
+        return minimum_atteint * montant * not_(residence_mayotte)
 
 
 class TypeEtatLogementFoyer(Enum):
@@ -334,14 +338,12 @@ class al_nb_personnes_a_charge(Variable):
     def formula(famille, period, parameters):
         '''
         site de la CAF en 2011:
-
         # Enfant à charge
         Vous assurez financièrement l'entretien et asez la responsabilité
         affective et éducative d'un enfant, que vous ayez ou non un lien de
         parenté avec lui. Il est reconnu à votre charge pour le versement
         des aides au logement jusqu'au mois précédent ses 21 ans.
         Attention, s'il travaille, il doit gagner moins de 836,55 € par mois.
-
         # Parents âgés ou infirmes
         Sont à votre charge s'ils vivent avec vous et si leurs revenus 2009
         ne dépassent pas 10 386,59 € :
@@ -508,8 +510,9 @@ class al_revenu_assimile_salaire(Variable):
         chomage_imposable = individu('chomage_imposable', period_salaire_chomage, options=[ADD])
         f1tt = individu('f1tt', period_f1tt_f3vj)
         f3vj = individu('f3vj', period_f1tt_f3vj)
+        remuneration_apprenti = individu('remuneration_apprenti', period_salaire_chomage, options=[ADD])
 
-        return salaire_imposable + chomage_imposable + f1tt + f3vj
+        return salaire_imposable + chomage_imposable + f1tt + f3vj + remuneration_apprenti
 
 
 class aide_logement_condition_neutralisation_chomage(Variable):
@@ -1050,8 +1053,10 @@ class aide_logement_base_ressources(Variable):
         demandeur_etudiant = famille.demandeur('etudiant', period)
         demandeur_boursier = famille.demandeur('boursier', period)
         statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
-        montant_plancher_ressources = (statut_occupation_logement != TypesStatutOccupationLogement.locataire_foyer) * max_(0, demandeur_etudiant * params_al_ressources.dar_4 - demandeur_boursier * params_al_ressources.dar_5)
-        montant_plancher_ressources_logement_foyer = (statut_occupation_logement == TypesStatutOccupationLogement.locataire_foyer) * max_(0, demandeur_etudiant * params_al_ressources.dar_11 - demandeur_boursier * params_al_ressources.dar_12)
+        logement_crous = famille.demandeur.menage('logement_crous', period)
+        logement_crous_ou_foyer = (statut_occupation_logement == TypesStatutOccupationLogement.locataire_foyer) + logement_crous
+        montant_plancher_ressources = not_(logement_crous_ou_foyer) * max_(0, demandeur_etudiant * params_al_ressources.dar_4 - demandeur_boursier * params_al_ressources.dar_5)
+        montant_plancher_ressources_logement_foyer = logement_crous_ou_foyer * max_(0, demandeur_etudiant * params_al_ressources.dar_11 - demandeur_boursier * params_al_ressources.dar_12)
 
         ressources = max_(ressources, max_(montant_plancher_ressources, montant_plancher_ressources_logement_foyer))
 
@@ -1107,8 +1112,11 @@ class aide_logement_base_ressources(Variable):
         demandeur_etudiant = famille.demandeur('etudiant', period)
         demandeur_boursier = famille.demandeur('boursier', period)
         statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
-        montant_plancher_ressources = (statut_occupation_logement != TypesStatutOccupationLogement.locataire_foyer) * max_(0, demandeur_etudiant * Pr.dar_4 - demandeur_boursier * Pr.dar_5)
-        montant_plancher_ressources_logement_foyer = (statut_occupation_logement == TypesStatutOccupationLogement.locataire_foyer) * max_(0, demandeur_etudiant * Pr.dar_11 - demandeur_boursier * Pr.dar_12)
+        logement_crous = famille.demandeur.menage('logement_crous', period)
+        logement_crous_ou_foyer = (statut_occupation_logement == TypesStatutOccupationLogement.locataire_foyer) + logement_crous
+        montant_plancher_ressources = not_(logement_crous_ou_foyer) * max_(0, demandeur_etudiant * Pr.dar_4 - demandeur_boursier * Pr.dar_5)
+        montant_plancher_ressources_logement_foyer = logement_crous_ou_foyer * max_(0, demandeur_etudiant * Pr.dar_11 - demandeur_boursier * Pr.dar_12)
+
         ressources = max_(ressources, max_(montant_plancher_ressources, montant_plancher_ressources_logement_foyer))
 
         # Arrondi au centime, pour éviter qu'une petite imprécision liée à la recombinaison d'une valeur annuelle éclatée ne fasse monter d'un cran l'arrondi au 100€ supérieur.
@@ -1495,12 +1503,14 @@ class aides_logement_accedant_et_foyer(Variable):
         statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
         accedant = (statut_occupation_logement == TypesStatutOccupationLogement.primo_accedant)
         locataire_logement_foyer = statut_occupation_logement == TypesStatutOccupationLogement.locataire_foyer
+        logement_crous = famille.demandeur.menage('logement_crous', period)
+        locataire_crous_ou_foyer = logement_crous + locataire_logement_foyer
         logement_conventionne = famille.demandeur.menage('logement_conventionne', period)
-        forfait_charges = accedant + (locataire_logement_foyer * not_(logement_conventionne))
+        forfait_charges = accedant + (locataire_crous_ou_foyer * not_(logement_conventionne))
 
         loyer = famille.demandeur.menage('loyer', period)
         plafond_mensualite = famille('aides_logement_plafond_mensualite', period)
-        L = where(locataire_logement_foyer * not_(logement_conventionne), plafond_mensualite, min_(plafond_mensualite, loyer))
+        L = where(locataire_crous_ou_foyer * not_(logement_conventionne), plafond_mensualite, min_(plafond_mensualite, loyer))
         C = forfait_charges * famille('aide_logement_charges', period)
         K = famille('aides_logement_k', period)
         Lo = famille('aides_logement_loyer_minimal', period)
@@ -1686,11 +1696,12 @@ class aides_logement_plafond_mensualite(Variable):
         accedant = famille.demandeur.menage('aides_logement_primo_accedant_eligibilite', period)
         statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
         locataire_logement_foyer = statut_occupation_logement == TypesStatutOccupationLogement.locataire_foyer
+        logement_crous = famille.demandeur.menage('logement_crous', period)
 
         aides_accedants = famille('aides_logement_primo_accedant_plafond_mensualite', period)
         aides_foyer = famille('aides_logement_foyer_plafond_mensualite', period)
 
-        return select([accedant, locataire_logement_foyer], [aides_accedants, aides_foyer])
+        return select([accedant, locataire_logement_foyer + logement_crous], [aides_accedants, aides_foyer])
 
 
 class aides_logement_primo_accedant_plafond_mensualite(Variable):
