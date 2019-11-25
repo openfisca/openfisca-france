@@ -1,5 +1,12 @@
 # Changelog
 
+### 48.9.2 [#1382](https://github.com/openfisca/openfisca-france/pull/1382)
+
+* Amélioration technique.
+* Détails :
+  - Met à jour la librairie `yamllint`
+  - Intervient au formatage automatique des fichiers YAML sur CircleCI
+
 ### 48.9.1 [#1381](https://github.com/openfisca/openfisca-france/pull/1381)
 
 * Correction d'un crash.
