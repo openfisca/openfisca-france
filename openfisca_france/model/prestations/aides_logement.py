@@ -511,8 +511,9 @@ class al_revenu_assimile_salaire(Variable):
         f1tt = individu('f1tt', period_f1tt_f3vj)
         f3vj = individu('f3vj', period_f1tt_f3vj)
         remuneration_apprenti = individu('remuneration_apprenti', period_salaire_chomage, options=[ADD])
+        indemnites_stage = individu('indemnites_stage', period_salaire_chomage, options=[ADD])
 
-        return salaire_imposable + chomage_imposable + f1tt + f3vj + remuneration_apprenti
+        return salaire_imposable + chomage_imposable + f1tt + f3vj + remuneration_apprenti + indemnites_stage
 
 
 class aide_logement_condition_neutralisation_chomage(Variable):
@@ -947,14 +948,12 @@ class aide_logement_base_ressources(Variable):
         # Ressources des douze derniers mois
         indemnites_journalieres_i = famille.members('indemnites_journalieres', annee_glissante, options=[ADD])
         revenus_stage_formation_pro_i = famille.members('revenus_stage_formation_pro', annee_glissante, options=[ADD])
-        indemnites_stage_i = famille.members('indemnites_stage', annee_glissante, options=[ADD])
         pch_i = famille.members('pch', annee_glissante, options=[ADD])
         retraite_combattant_i = famille.members('retraite_combattant', annee_glissante, options=[ADD])
         rente_accident_travail_i = famille.members('rente_accident_travail', annee_glissante, options=[ADD])
         ressources_annee_glissante_i = (
             indemnites_journalieres_i
             + revenus_stage_formation_pro_i
-            + indemnites_stage_i
             + pch_i
             + retraite_combattant_i
             + rente_accident_travail_i
