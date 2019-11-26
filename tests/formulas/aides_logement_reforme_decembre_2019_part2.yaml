@@ -502,8 +502,7 @@
           2020-03: retraite
           2020-02: retraite
           2020-01: retraite
-        date_naissance:
-          2021-01: 1936-01-01
+        date_naissance: 1936-01-01
         retraite_imposable:
           2020-12: 758.5
           2020-11: 758.5
@@ -630,84 +629,99 @@
     aide_logement: 145.3
     reduction_loyer_solidarite: 28.18
 
-- name: "cas test pour la remuneration apprenti"
-  period: 2021-01
+- name: "Cas 13: stagiaire étudiant"
+  period: 2019-11
   relative_error_margin: 0.01
   input:
     famille:
       parents: [personne1]
       rsa:
-        2020-12: 0
-        2020-11: 0
-        2020-10: 0
-        2020-09: 0
-        2020-08: 0
-        2020-07: 0
-        2020-06: 0
-        2020-05: 0
-        2020-04: 0
-        2020-03: 0
-        2020-02: 0
-        2020-01: 0
+        2019-10: 0
     menage:
       personne_de_reference: personne1
-      statut_occupation_logement:
-        2021-01: locataire_vide
-      depcom:
-        2021-01: 32107
-      loyer:
-        2021-01: 500
-      charges_locatives:
-        2021-01: 20
+      statut_occupation_logement: locataire_vide
+      zone_apl: zone_2
+      loyer: 373
     individus:
       personne1:
-        date_naissance:
-          2021-01: 1986-12-01
+        date_naissance: 1998-01-01
+        etudiant: True
         salaire_imposable:
-          2020: 0
+          2019-10: 0
+          2019-09: 0
+          2019-08: 0
+          2019-07: 0
+          2019-06: 0
+          2019-05: 0
+          2019-04: 0
+          2019-03: 0
+          2019-02: 0
+          2019-01: 0
+          2018-12: 0
+          2018-11: 0
         remuneration_apprenti:
-          2020: 700 * 12
+          2019-10: 186.41
+          2019-09: 186.41
+          2019-08: 186.41
+          2019-07: 186.41
+          2019-06: 186.41
+          2019-05: 186.41
+          2019-04: 186.41
+          2019-03: 186.41
+          2019-02: 186.41
+          2019-01: 186.41
+          2018-11: 186.41
+          2018-12: 186.41
     foyer_fiscal:
       declarants: [personne1]
   output:
-    aide_logement: 161.8
+    aide_logement_base_ressources: 7700
+    aide_logement: 172.78
 
-- name: "cas test pour l'indemnites de stage"
-  period: 2021-01
+- name: "cas 14: apprenti avec un salaire"
+  period: 2019-11
   relative_error_margin: 0.01
   input:
     famille:
       parents: [personne1]
       rsa:
-        2020-12: 0
-        2020-11: 0
-        2020-10: 0
-        2020-09: 0
-        2020-08: 0
-        2020-07: 0
-        2020-06: 0
-        2020-05: 0
-        2020-04: 0
-        2020-03: 0
-        2020-02: 0
-        2020-01: 0
+        2019-10: 0
     menage:
       personne_de_reference: personne1
-      statut_occupation_logement:
-        2021-01: locataire_vide
-      depcom:
-        2021-01: 32107
-      loyer:
-        2021-01: 500
-      charges_locatives:
-        2021-01: 20
+      statut_occupation_logement: locataire_vide
+      zone_apl: zone_2
+      loyer: 373
     individus:
       personne1:
-        date_naissance:
-          2021-01: 1986-12-01
-        indemnites_stage:
-          2020: 700 * 12
+        date_naissance: 1998-01-01
+        salaire_imposable:
+          2019-10: 0
+          2019-09: 0
+          2019-08: 0
+          2019-07: 0
+          2019-06: 0
+          2019-05: 0
+          2019-04: 0
+          2019-03: 0
+          2019-02: 0
+          2019-01: 0
+          2018-12: 0
+          2018-11: 0
+        remuneration_apprenti:
+          2019-10: 990
+          2019-09: 990
+          2019-08: 990
+          2019-07: 990
+          2019-06: 990
+          2019-05: 990
+          2019-04: 990
+          2019-03: 990
+          2019-02: 990
+          2019-01: 990
+          2018-12: 990
+          2018-11: 990
     foyer_fiscal:
       declarants: [personne1]
   output:
-    aide_logement: 136.46
+    aide_logement_base_ressources: 10700
+    aide_logement: 79.2
