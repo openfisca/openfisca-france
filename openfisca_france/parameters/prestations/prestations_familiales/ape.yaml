@@ -41,7 +41,7 @@ nombre_minimal_d_enfants_pris_en_charge:
     1994-07-01:
       value: 2.0
 taux_activite_sup_50:
-  description: Activité au plus égale au mi-temps de la durée légale du travail (en % de la bmaf)
+  description: Activité au plus égale au mi-temps de la durée légale du travail en % de la base mensuelle des allocations familiales (BMAF)
   reference: https://www.ipp.eu/outils/baremes-ipp/
   unit: /1
   values:
@@ -50,7 +50,7 @@ taux_activite_sup_50:
     1994-07-01:
       value: 0.9427
 taux_activite_sup_80:
-  description: Activité entre 50% et 80% de la durée légale du travail (en % de la bmaf)
+  description: Activité entre 50% et 80% de la durée légale du travail en % de la base mensuelle des allocations familiales (BMAF)
   reference: https://www.ipp.eu/outils/baremes-ipp/
   unit: /1
   values:
@@ -59,7 +59,7 @@ taux_activite_sup_80:
     1987-04-01:
       value: 0.7129
 taux_inactivite:
-  description: Cessation complète d'activité à plein temps (en % de la bmaf)
+  description: Cessation complète d'activité à plein temps en % de la base mensuelle des allocations familiales (BMAF)
   reference: https://www.ipp.eu/outils/baremes-ipp/
   unit: /1
   values:

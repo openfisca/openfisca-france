@@ -1,4 +1,4 @@
-description: Montant échelon 1, en multiple de la BMAF
+description: Montant échelon 1, en multiple de la base mensuelle des allocations familiales (BMAF)
 unit: currency
 values:
   2009-05-15:
