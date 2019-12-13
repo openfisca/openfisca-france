@@ -1,4 +1,4 @@
-description: Montant de la bourse de lycée échelon 5, en multiple de la BMAF
+description: Montant mensuel de la bourse de lycée échelon 5, en multiple de la base mensuelle des allocations familiales (BMAF)
 unit: currency
 values:
   2016-07-01:

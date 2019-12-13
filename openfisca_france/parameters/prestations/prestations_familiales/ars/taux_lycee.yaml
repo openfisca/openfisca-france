@@ -1,4 +1,4 @@
-description: Taux pour les lycéens (en % de bmaf)
+description: Taux pour les lycéens en % de la base mensuelle des allocations familiales (BMAF)
 reference: https://www.ipp.eu/outils/baremes-ipp/
 unit: /1
 values:
