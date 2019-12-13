@@ -49,7 +49,7 @@ class api(Variable):
         # TODO: quel mois mettre ?
         # TODO: pas complètement exact
         # L'allocataire perçoit l'API :
-        # jusqu'�� ce que le plus jeune enfant ait 3 ans,
+        # jusqu'à ce que le plus jeune enfant ait 3 ans,
         # ou pendant 12 mois consécutifs si les enfants sont âgés de plus de 3 ans
         #    et s'il a présenté sa demande dans les 6 mois à partir du moment où il
         #    assure seul la charge de l'enfant.
