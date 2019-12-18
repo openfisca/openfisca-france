@@ -250,6 +250,20 @@ class etat_logement(Variable):
     definition_period = MONTH
 
 
+class ass_familiale(Variable):
+    value_type = bool
+    entity = Famille
+    label = "Assistant familial (CLCMG)"
+    definition_period = MONTH
+
+
+class journaliste(Variable):
+    value_type = bool
+    entity = Famille
+    label = "Journaliste"
+    definition_period = MONTH
+
+
 class aide_logement_date_pret_conventionne(Variable):
     value_type = date
     default_value = date.max
@@ -506,7 +520,7 @@ class al_revenu_assimile_salaire(Variable):
         period_salaire_chomage = period.start.period('year').offset(-1)
         period_f1tt_f3vj = period.n_2
 
-        salaire_imposable = individu('salaire_imposable', period_salaire_chomage, options=[ADD])
+        salaire_imposable = individu('al_salaire_imposable_apres_abbatement', period_salaire_chomage, options=[ADD])
         chomage_imposable = individu('chomage_imposable', period_salaire_chomage, options=[ADD])
         f1tt = individu('f1tt', period_f1tt_f3vj)
         f3vj = individu('f3vj', period_f1tt_f3vj)
@@ -514,6 +528,27 @@ class al_revenu_assimile_salaire(Variable):
         indemnites_stage = individu('indemnites_stage', period_salaire_chomage, options=[ADD])
 
         return salaire_imposable + chomage_imposable + f1tt + f3vj + remuneration_apprenti + indemnites_stage
+
+
+class al_salaire_imposable_apres_abbatement(Variable):
+    value_type = float
+    entity = Individu
+    label = "Revenu imposé comme des salaires dans le cadre du calcul des ressources de l'aide au logement."
+    definition_period = MONTH
+
+    def formula(individu, period, parameters):
+        ass_mat = individu('ass_mat', period)
+        ass_familiale = individu('ass_familiale', period)
+        journaliste = individu('journaliste', period)
+        salaire_imposable = individu('salaire_imposable', period)
+        # Todo
+        abattement_ass_mat =  5
+        abattement_ass_familiale = 6
+        abattement_journaliste = 7
+        salaire_imposable_apres_abbatement = select([ass_mat, ass_familiale, journaliste],
+                                                    [salaire_imposable - abattement_ass_mat, salaire_imposable - abattement_ass_familiale, salaire_imposable - abattement_journaliste],
+                                                    default=salaire_imposable)
+        return max_(0, salaire_imposable_apres_abbatement)
 
 
 class aide_logement_condition_neutralisation_chomage(Variable):
@@ -565,7 +600,7 @@ class aide_logement_assiette_abattement_chomage(Variable):
         revenus_non_salarie = individu('rpns', period.n_2)
         revenu_salarie = individu('salaire_imposable', annee_glissante, options = [ADD])
         chomeur_longue_duree = individu('chomeur_longue_duree', period.n_2)
-        frais_reels = individu('frais_reels', period.last_year)
+        frais_reels = individu('frais_rFeels', period.last_year)
         abatpro = parameters(period.last_year).impot_revenu.tspr.abatpro
 
         abattement_minimum = where(chomeur_longue_duree, abatpro.min2, abatpro.min)
