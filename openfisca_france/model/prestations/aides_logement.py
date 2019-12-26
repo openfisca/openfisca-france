@@ -543,7 +543,7 @@ class al_abattement_forfaitaire_pour_assistants_et_journalistes(Variable):
     label = "Salaire imposable apres l'application de l'abbatement forfaitaire pour les journaliste et les assistants maternels et familials."
     definition_period = MONTH
 
-    def formula(individu, period, parameters):
+    def formula_2019_01(individu, period, parameters):
         ass_maternel = individu('ass_maternel', period)
         ass_familial = individu('ass_familial', period)
         journaliste = individu('journaliste', period)
