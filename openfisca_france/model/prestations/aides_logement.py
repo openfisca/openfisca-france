@@ -251,14 +251,14 @@ class etat_logement(Variable):
 class ass_maternel(Variable):
     value_type = bool
     entity = Individu
-    label = "Assistant familial (CLCMG)"
+    label = "Assistant maternel"
     definition_period = MONTH
 
 
 class ass_familial(Variable):
     value_type = bool
     entity = Individu
-    label = "Assistant familial (CLCMG)"
+    label = "Assistant familial"
     definition_period = MONTH
 
 
@@ -552,6 +552,7 @@ class al_abattement_forfaitaire_pour_assistants_et_journalistes(Variable):
                     [salaire_imposable - abat.assistant_maternel, salaire_imposable - abat.assistant_familial,
                      salaire_imposable - abat.journaliste],
                     default=salaire_imposable)
+
         return max_(0, salaire_imposable_apres_abbatement)
 
 
