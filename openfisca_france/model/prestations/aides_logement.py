@@ -250,16 +250,23 @@ class etat_logement(Variable):
     definition_period = MONTH
 
 
-class ass_familiale(Variable):
+class ass_maternel(Variable):
     value_type = bool
-    entity = Famille
+    entity = Individu
+    label = "Assistant familial (CLCMG)"
+    definition_period = MONTH
+
+
+class ass_familial(Variable):
+    value_type = bool
+    entity = Individu
     label = "Assistant familial (CLCMG)"
     definition_period = MONTH
 
 
 class journaliste(Variable):
     value_type = bool
-    entity = Famille
+    entity = Individu
     label = "Journaliste"
     definition_period = MONTH
 
@@ -520,7 +527,7 @@ class al_revenu_assimile_salaire(Variable):
         period_salaire_chomage = period.start.period('year').offset(-1)
         period_f1tt_f3vj = period.n_2
 
-        salaire_imposable = individu('al_salaire_imposable_apres_abbatement', period_salaire_chomage, options=[ADD])
+        salaire_imposable = individu('al_abattement_forfaitaire_pour_assistants_et_journalistes', period_salaire_chomage, options=[ADD])
         chomage_imposable = individu('chomage_imposable', period_salaire_chomage, options=[ADD])
         f1tt = individu('f1tt', period_f1tt_f3vj)
         f3vj = individu('f3vj', period_f1tt_f3vj)
@@ -530,24 +537,23 @@ class al_revenu_assimile_salaire(Variable):
         return salaire_imposable + chomage_imposable + f1tt + f3vj + remuneration_apprenti + indemnites_stage
 
 
-class al_salaire_imposable_apres_abbatement(Variable):
+class al_abattement_forfaitaire_pour_assistants_et_journalistes(Variable):
     value_type = float
     entity = Individu
-    label = "Revenu imposé comme des salaires dans le cadre du calcul des ressources de l'aide au logement."
+    label = "Salaire imposable apres l'application de l'abbatement forfaitaire pour les journaliste et les assistants maternels et familials."
     definition_period = MONTH
 
     def formula(individu, period, parameters):
-        ass_mat = individu('ass_mat', period)
-        ass_familiale = individu('ass_familiale', period)
+        ass_maternel = individu('ass_maternel', period)
+        ass_familial = individu('ass_familial', period)
         journaliste = individu('journaliste', period)
         salaire_imposable = individu('salaire_imposable', period)
-        # Todo
-        abattement_ass_mat =  5
-        abattement_ass_familiale = 6
-        abattement_journaliste = 7
-        salaire_imposable_apres_abbatement = select([ass_mat, ass_familiale, journaliste],
-                                                    [salaire_imposable - abattement_ass_mat, salaire_imposable - abattement_ass_familiale, salaire_imposable - abattement_journaliste],
-                                                    default=salaire_imposable)
+        abat = parameters(period).prestations.al_assistant_journaliste.abattement.montant
+
+        salaire_imposable_apres_abbatement = select([ass_maternel, ass_familial, journaliste],
+                    [salaire_imposable - abat.assistant_maternel, salaire_imposable - abat.assistant_familial,
+                     salaire_imposable - abat.journaliste],
+                    default=salaire_imposable)
         return max_(0, salaire_imposable_apres_abbatement)
 
 
@@ -600,7 +606,7 @@ class aide_logement_assiette_abattement_chomage(Variable):
         revenus_non_salarie = individu('rpns', period.n_2)
         revenu_salarie = individu('salaire_imposable', annee_glissante, options = [ADD])
         chomeur_longue_duree = individu('chomeur_longue_duree', period.n_2)
-        frais_reels = individu('frais_rFeels', period.last_year)
+        frais_reels = individu('frais_reels', period.last_year)
         abatpro = parameters(period.last_year).impot_revenu.tspr.abatpro
 
         abattement_minimum = where(chomeur_longue_duree, abatpro.min2, abatpro.min)
@@ -893,6 +899,9 @@ class al_revenu_assimile_salaire_apres_abattements(Variable):
         period_chomage = period.n_2
         period_frais = period.last_year
 
+
+        ass_ou_journaliste = individu('ass_maternel', period.last_month) + individu('ass_familial', period.last_month) + individu('journaliste', period.last_month)
+
         revenu_assimile_salaire = individu('al_revenu_assimile_salaire', period_revenus)
         chomeur_longue_duree = individu('chomeur_longue_duree', period_chomage)
         frais_reels = individu('frais_reels', period_frais)
@@ -901,13 +910,11 @@ class al_revenu_assimile_salaire_apres_abattements(Variable):
         abattement_minimum = where(chomeur_longue_duree, abatpro.min2, abatpro.min)
         abattement_forfaitaire = round_(min_(max_(abatpro.taux * revenu_assimile_salaire, abattement_minimum), abatpro.max))
 
-        return where(
-            frais_reels > 0,
-            revenu_assimile_salaire - frais_reels,
+        return select(
+            [ass_ou_journaliste, frais_reels > 0],
+            [revenu_assimile_salaire, revenu_assimile_salaire - frais_reels],
             max_(0, revenu_assimile_salaire - abattement_forfaitaire)
-        )
-
-
+            )
 
 class al_traitements_salaires_pensions_rentes(Variable):
     value_type = float
