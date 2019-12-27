@@ -1108,6 +1108,33 @@ class ir_brut(Variable):
         return (taux_effectif == 0) * nbptr * bareme.calc(rni / nbptr) + taux_effectif * rni
 
 
+class ir_taux_marginal(Variable):
+    value_type = float
+    entity = FoyerFiscal
+    label = "Taux marginal de l'impôt sur le revenu"
+    definition_period = YEAR
+
+    def formula(foyer_fiscal, period, parameters):
+        nbptr = foyer_fiscal('nbptr', period)
+        taux_effectif = foyer_fiscal('taux_effectif', period)
+        rni = foyer_fiscal('rni', period)
+        bareme = parameters(period).impot_revenu.bareme
+        return (taux_effectif == 0) * bareme.compute_marginal_rate(rni / nbptr) + taux_effectif
+
+
+class ir_tranche(Variable):
+    value_type = int
+    entity = FoyerFiscal
+    label = "Tranche du barème appliquée"
+    definition_period = YEAR
+
+    def formula(foyer_fiscal, period, parameters):
+        nbptr = foyer_fiscal('nbptr', period)
+        rni = foyer_fiscal('rni', period)
+        bareme = parameters(period).impot_revenu.bareme
+        return bareme.compute_bracket_index(rni / nbptr)
+
+
 class ir_ss_qf(Variable):
     value_type = float
     entity = FoyerFiscal

@@ -1,0 +1,31 @@
+- name: IRPP - Célibataire ayant des revenus salariaux (1AJ) de 5000 €
+  period: 2018
+  absolute_error_margin: 0.0001
+  input:
+    salaire_imposable: 5000
+  output:
+    ir_tranche: 0
+    ir_taux_marginal: 0
+    irpp: 0
+
+
+- name: IRPP - Célibataire ayant des revenus salariaux (1AJ) de 20 000 €
+  period: 2018
+  absolute_error_margin: 0.0001
+  input:
+    salaire_imposable: 20000
+  output:
+    ir_tranche: 1
+    ir_taux_marginal: .14
+    irpp: -618
+
+
+- name: IRPP - Célibataire ayant des revenus salariaux (1AJ) de 500 000 €
+  period: 2018
+  relative_error_margin: 0.0001
+  input:
+    salaire_imposable: 500000
+  output:
+    ir_tranche: 4
+    ir_taux_marginal: .45
+    irpp: -206430
