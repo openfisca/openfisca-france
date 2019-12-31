@@ -1119,7 +1119,7 @@ class ir_taux_marginal(Variable):
         taux_effectif = foyer_fiscal('taux_effectif', period)
         rni = foyer_fiscal('rni', period)
         bareme = parameters(period).impot_revenu.bareme
-        return (taux_effectif == 0) * bareme.compute_marginal_rate(rni / nbptr) + taux_effectif
+        return (taux_effectif == 0) * bareme.marginal_rates(rni / nbptr) + taux_effectif
 
 
 class ir_tranche(Variable):
@@ -1132,7 +1132,7 @@ class ir_tranche(Variable):
         nbptr = foyer_fiscal('nbptr', period)
         rni = foyer_fiscal('rni', period)
         bareme = parameters(period).impot_revenu.bareme
-        return bareme.compute_bracket_index(rni / nbptr)
+        return bareme.bracket_indices(rni / nbptr)
 
 
 class ir_ss_qf(Variable):
