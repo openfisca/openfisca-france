@@ -1,5 +1,11 @@
+from numpy import logical_not as not_, select
 from numpy.core.defchararray import startswith
-from openfisca_france.model.base import *
+
+from openfisca_core.indexed_enums import Enum
+from openfisca_core.periods import MONTH
+from openfisca_core.variables import Variable
+
+from openfisca_france.entities import Famille, Menage
 
 paris_communes_limitrophes = [
     b'75056',  # Paris
