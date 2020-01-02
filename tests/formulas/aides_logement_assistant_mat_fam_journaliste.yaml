@@ -1,5 +1,5 @@
 - name: "Cas 1, abattement journaliste"
-  period: 2020-01
+  period: 2021-01
   relative_error_margin: 0.01
   input:
     famille:
@@ -13,38 +13,38 @@
       parent1:
         date_naissance: 1968-01-10
         salaire_imposable:
-          2019-12: 2000
-          2019-11: 2000
-          2019-10: 2000
-          2019-09: 2000
-          2019-08: 2000
-          2019-07: 2000
-          2019-06: 2000
-          2019-05: 2000
-          2019-04: 2000
-          2019-03: 2000
-          2019-02: 2000
-          2019-01: 2000
+          2020-12: 2000
+          2020-11: 2000
+          2020-10: 2000
+          2020-09: 2000
+          2020-08: 2000
+          2020-07: 2000
+          2020-06: 2000
+          2020-05: 2000
+          2020-04: 2000
+          2020-03: 2000
+          2020-02: 2000
+          2020-01: 2000
         journaliste:
-          2019-12: true
-          2019-11: true
-          2019-10: true
-          2019-09: true
-          2019-08: true
-          2019-07: true
-          2019-06: true
-          2019-05: false
-          2019-04: false
-          2019-03: false
-          2019-02: false
-          2019-01: false
+          2020-12: true
+          2020-11: true
+          2020-10: true
+          2020-09: true
+          2020-08: true
+          2020-07: true
+          2020-06: true
+          2020-05: false
+          2020-04: false
+          2020-03: false
+          2020-02: false
+          2020-01: false
     foyer_fiscal:
       declarants: parent1
   output:
     al_revenu_assimile_salaire_apres_abattements: 24000 - (637.5*7)
 
 - name: "Cas 2, abattement assistant maternel"
-  period: 2020-01
+  period: 2021-01
   relative_error_margin: 0.01
   input:
     famille:
@@ -58,38 +58,38 @@
       parent1:
         date_naissance: 1968-01-10
         salaire_imposable:
-          2019-12: 2000
-          2019-11: 2000
-          2019-10: 2000
-          2019-09: 2000
-          2019-08: 2000
-          2019-07: 2000
-          2019-06: 2000
-          2019-05: 2000
-          2019-04: 2000
-          2019-03: 2000
-          2019-02: 2000
-          2019-01: 2000
+          2020-12: 2000
+          2020-11: 2000
+          2020-10: 2000
+          2020-09: 2000
+          2020-08: 2000
+          2020-07: 2000
+          2020-06: 2000
+          2020-05: 2000
+          2020-04: 2000
+          2020-03: 2000
+          2020-02: 2000
+          2020-01: 2000
         ass_maternel:
-          2019-12: true
-          2019-11: true
-          2019-10: true
-          2019-09: true
-          2019-08: false
-          2019-07: false
-          2019-06: false
-          2019-05: false
-          2019-04: false
-          2019-03: false
-          2019-02: false
-          2019-01: false
+          2020-12: true
+          2020-11: true
+          2020-10: true
+          2020-09: true
+          2020-08: false
+          2020-07: false
+          2020-06: false
+          2020-05: false
+          2020-04: false
+          2020-03: false
+          2020-02: false
+          2020-01: false
     foyer_fiscal:
       declarants: parent1
   output:
     al_revenu_assimile_salaire_apres_abattements: 24000 - (4 * 1195)
 
 - name: "Cas 3, abattement assistant familial"
-  period: 2020-01
+  period: 2021-01
   relative_error_margin: 0.01
   input:
     famille:
@@ -103,32 +103,32 @@
       parent1:
         date_naissance: 1968-01-10
         salaire_imposable:
-          2019-12: 2000
-          2019-11: 2000
-          2019-10: 2000
-          2019-09: 2000
-          2019-08: 2000
-          2019-07: 2000
-          2019-06: 2000
-          2019-05: 2000
-          2019-04: 2000
-          2019-03: 2000
-          2019-02: 2000
-          2019-01: 2000
+          2020-12: 2000
+          2020-11: 2000
+          2020-10: 2000
+          2020-09: 2000
+          2020-08: 2000
+          2020-07: 2000
+          2020-06: 2000
+          2020-05: 2000
+          2020-04: 2000
+          2020-03: 2000
+          2020-02: 2000
+          2020-01: 2000
         ass_familial:
-          2019-12: true
-          2019-11: true
-          2019-10: true
-          2019-09: true
-          2019-08: true
-          2019-07: false
-          2019-06: false
-          2019-05: false
-          2019-04: false
-          2019-03: false
-          2019-02: false
-          2019-01: false
+          2020-12: true
+          2020-11: false
+          2020-10: false
+          2020-09: false
+          2020-08: false
+          2020-07: false
+          2020-06: false
+          2020-05: false
+          2020-04: false
+          2020-03: false
+          2020-02: false
+          2020-01: false
     foyer_fiscal:
       declarants: parent1
   output:
-    al_revenu_assimile_salaire_apres_abattements: 24000 - ( 5 * 1195)
+    al_revenu_assimile_salaire_apres_abattements: 24000 - ( 1 * 1195)
