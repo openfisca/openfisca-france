@@ -540,7 +540,7 @@ class al_revenu_assimile_salaire(Variable):
 class al_abattement_forfaitaire_pour_assistants_et_journalistes(Variable):
     value_type = float
     entity = Individu
-    label = "Salaire imposable apres l'application de l'abbatement forfaitaire pour les journaliste et les assistants maternels et familials."
+    label = "Salaire imposable apres l'application de l'abattement forfaitaire pour les journaliste et les assistants maternels et familials."
     definition_period = MONTH
 
     def formula_2019_01(individu, period, parameters):
@@ -550,12 +550,12 @@ class al_abattement_forfaitaire_pour_assistants_et_journalistes(Variable):
         salaire_imposable = individu('salaire_imposable', period)
         abat = parameters(period).prestations.al_assistant_journaliste.abattement.montant
 
-        salaire_imposable_apres_abbatement = select([ass_maternel, ass_familial, journaliste],
+        salaire_imposable_apres_abattement = select([ass_maternel, ass_familial, journaliste],
                     [salaire_imposable - abat.assistant_maternel, salaire_imposable - abat.assistant_familial,
                      salaire_imposable - abat.journaliste],
                     default=salaire_imposable)
 
-        return max_(0, salaire_imposable_apres_abbatement)
+        return max_(0, salaire_imposable_apres_abattement)
 
 
 class aide_logement_condition_neutralisation_chomage(Variable):
@@ -597,7 +597,7 @@ class aide_logement_condition_neutralisation_chomage(Variable):
 class aide_logement_assiette_abattement_chomage(Variable):
     value_type = float
     entity = Individu
-    label = "Assiette sur lequel un abattement chômage peut être appliqués pour les AL. Ce sont les revenus d'activité professionnelle, moins les abbattements pour frais professionnels."
+    label = "Assiette sur lequel un abattement chômage peut être appliqués pour les AL. Ce sont les revenus d'activité professionnelle, moins les abattements pour frais professionnels."
     definition_period = YEAR
 
     def formula_2020_12_01(individu, period, parameters):
@@ -612,13 +612,13 @@ class aide_logement_assiette_abattement_chomage(Variable):
 
         abattement_minimum = where(chomeur_longue_duree, abatpro.min2, abatpro.min)
         abattement_forfaitaire = round_(min_(max_(abatpro.taux * revenu_salarie, abattement_minimum), abatpro.max))
-        revenus_salarie_apres_abbatement = where(
+        revenus_salarie_apres_abattement = where(
             frais_reels > 0,
             revenu_salarie - frais_reels,
             max_(0, revenu_salarie - abattement_forfaitaire)
             )
 
-        return revenus_non_salarie + revenus_salarie_apres_abbatement
+        return revenus_non_salarie + revenus_salarie_apres_abattement
 
     def formula(individu, period, parameters):
         revenus_non_salarie = individu('rpns', period)
@@ -629,13 +629,13 @@ class aide_logement_assiette_abattement_chomage(Variable):
 
         abattement_minimum = where(chomeur_longue_duree, abatpro.min2, abatpro.min)
         abattement_forfaitaire = round_(min_(max_(abatpro.taux * revenu_salarie, abattement_minimum), abatpro.max))
-        revenus_salarie_apres_abbatement = where(
+        revenus_salarie_apres_abattement = where(
             frais_reels > 0,
             revenu_salarie - frais_reels,
             max_(0, revenu_salarie - abattement_forfaitaire)
             )
 
-        return revenus_non_salarie + revenus_salarie_apres_abbatement
+        return revenus_non_salarie + revenus_salarie_apres_abattement
 
 
 class aide_logement_abattement_chomage_indemnise(Variable):
