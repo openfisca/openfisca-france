@@ -1,6 +1,8 @@
-# -*- coding: utf-8 -*-
+from __future__ import annotations
 
+from numpy import ndarray
 from numpy.core.defchararray import startswith
+
 from openfisca_france.model.base import *
 
 paris_communes_limitrophes = [
@@ -62,7 +64,7 @@ class zone_logement_social(Variable):
     definition_period = MONTH
     label = "Zone logement social"
 
-    def formula(menage, period):
+    def formula(menage: GroupPopulation, period: Period) -> ndarray[ZoneLogementSocial]:
         depcom = menage('depcom', period)
 
         in_paris_communes_limitrophes = sum([depcom == commune_proche_paris for commune_proche_paris in paris_communes_limitrophes])
