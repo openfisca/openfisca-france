@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 import numpy
-from numpy import absolute as abs_
 
 from openfisca_france.model.base import *
 
@@ -108,7 +107,7 @@ class ass_base_ressources_individu(Variable):
             + retraite_nette
             + pensions_invalidite
             + pensions_alimentaires_percues
-            - abs_(pensions_alimentaires_versees_individu)
+            - numpy.absolute(pensions_alimentaires_versees_individu)
             + aah
             + indemnites_stage
             + revenus_stage_formation_pro

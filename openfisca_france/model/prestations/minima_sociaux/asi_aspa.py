@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 import numpy
-from numpy import abs as abs_
 
 from openfisca_france.model.base import *
 
@@ -98,7 +97,7 @@ class asi_aspa_base_ressources_individu(Variable):
         base_ressources_3_mois = sum(
             numpy.maximum(0, individu(ressource_type, three_previous_months, options = [ADD]))
             for ressource_type in ressources_incluses
-            ) + aah + revenus_foyer_fiscal_individu + revenus_tns() - abs_(pensions_alimentaires_versees) - abattement_salaire() + plus_values
+            ) + aah + revenus_foyer_fiscal_individu + revenus_tns() - numpy.absolute(pensions_alimentaires_versees) - abattement_salaire() + plus_values
 
         return base_ressources_3_mois / 3
 

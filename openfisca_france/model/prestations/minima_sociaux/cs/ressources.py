@@ -1,5 +1,4 @@
 import numpy
-from numpy import absolute as abs_
 
 from openfisca_france.model.base import (
     Variable,
@@ -67,7 +66,7 @@ class cmu_base_ressources_individu(Variable):
             for ressource in ressources_a_inclure
             ])
 
-        pensions_alim_versees = abs_(individu(
+        pensions_alim_versees = numpy.absolute(individu(
             'pensions_alimentaires_versees_individu',
             previous_year, options = [ADD])
             )
