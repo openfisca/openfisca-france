@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 import numpy
-from numpy import ceil
 
 from openfisca_france.model.base import *
 
@@ -27,7 +26,7 @@ class livret_epargne_populaire_plafond(Variable):
 
         coef = params.coefficient_multiplicateur
 
-        return ceil(coef * plafond)
+        return numpy.ceil(coef * plafond)
 
 
 class livret_epargne_populaire_eligibilite(Variable):

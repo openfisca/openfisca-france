@@ -8,7 +8,7 @@ import pkg_resources
 import sys
 
 import numpy
-from numpy import ceil, datetime64, fromiter, int16, logical_or as or_, logical_and as and_
+from numpy import datetime64, fromiter, int16, logical_or as or_, logical_and as and_
 
 import openfisca_france
 from openfisca_core.periods import Instant
@@ -738,7 +738,7 @@ class aide_logement_base_ressources(Variable):
         ressources = numpy.round(ressources * 100) / 100
 
         # Arrondi aux 100 euros supérieurs
-        ressources = ceil(ressources / 100) * 100
+        ressources = numpy.ceil(ressources / 100) * 100
 
         accedant = famille.demandeur.menage('aides_logement_primo_accedant_eligibilite', period)
         plancher = famille.demandeur.menage('aides_logement_primo_accedant_ressources', period)
