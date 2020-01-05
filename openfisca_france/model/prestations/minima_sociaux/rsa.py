@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import numpy
-from numpy import datetime64, logical_and as and_
+from numpy import datetime64
 
 from openfisca_core import periods
 from openfisca_france.model.base import *
@@ -323,7 +323,7 @@ class enceinte_fam(Variable):
         age_en_mois_i = famille.members('age_en_mois', period)
         age_en_mois_enfant = famille.min(age_en_mois_i, role = Famille.ENFANT)
 
-        enceinte_compat = and_(age_en_mois_enfant < 0, age_en_mois_enfant > -6)
+        enceinte_compat = numpy.logical_and(age_en_mois_enfant < 0, age_en_mois_enfant > -6)
         return parent_enceinte + enceinte_compat
 
 

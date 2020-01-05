@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import numpy
-from numpy import absolute as abs_, logical_and as and_
+from numpy import absolute as abs_
 
 from openfisca_france.model.base import *
 
@@ -222,7 +222,7 @@ class ass_eligibilite_individu(Variable):
         age_max = parameters(period).prestations.minima_sociaux.ass.age_max
         sous_age_limite = individu('age_en_mois', period) <= age_max
 
-        demandeur_emploi_non_indemnise = and_(individu('activite', period) == TypesActivite.chomeur, individu('chomage_net', period) == 0)
+        demandeur_emploi_non_indemnise = numpy.logical_and(individu('activite', period) == TypesActivite.chomeur, individu('chomage_net', period) == 0)
 
         # Indique que l'individu a travaillé 5 ans au cours des 10 dernieres années.
         ass_precondition_remplie = individu('ass_precondition_remplie', period)

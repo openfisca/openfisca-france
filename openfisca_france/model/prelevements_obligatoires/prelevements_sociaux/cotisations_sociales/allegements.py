@@ -3,7 +3,7 @@
 import logging
 
 import numpy
-from numpy import busday_count, datetime64, logical_and as and_, timedelta64
+from numpy import busday_count, datetime64, timedelta64
 
 from openfisca_france.model.base import *
 
@@ -159,7 +159,7 @@ class aide_premier_salarie(Variable):
         # TODO : Si toutefois elle est reconduite et modifiée pour 2017, les dates et le montant seront à
         # implémenter comme des params xml.
 
-        eligible_contrat = and_(
+        eligible_contrat = numpy.logical_and(
             contrat_de_travail_debut >= datetime64("2015-06-09"),
             contrat_de_travail_debut <= datetime64("2016-12-31")
             )
@@ -169,7 +169,7 @@ class aide_premier_salarie(Variable):
             # durée indéterminée
             contrat_de_travail_duree == TypesContratDeTravailDuree.cdi,
             # durée déterminée supérieure à 1 an
-            and_(
+            numpy.logical_and(
                 contrat_de_travail_duree == TypesContratDeTravailDuree.cdd,
                 # > 6 mois
                 (contrat_de_travail_fin - contrat_de_travail_debut).astype('timedelta64[M]') >= timedelta64(6, 'M')
@@ -232,7 +232,7 @@ class aide_embauche_pme(Variable):
         # pour les PME
         eligible_effectif = effectif_entreprise < 250
 
-        non_cumulee = and_(
+        non_cumulee = numpy.logical_and(
             # non cumulable avec l'aide pour la première embauche
             # qui est identique, si ce n'est qu'elle couvre tous les salaires
             aide_premier_salarie == 0,
@@ -240,7 +240,7 @@ class aide_embauche_pme(Variable):
             numpy.logical_not(exoneration_cotisations_employeur_jei)
             )
 
-        eligible_contrat = and_(
+        eligible_contrat = numpy.logical_and(
             contrat_de_travail_debut >= datetime64("2016-01-18"),
             contrat_de_travail_debut <= datetime64("2017-06-30")
             )
@@ -250,7 +250,7 @@ class aide_embauche_pme(Variable):
             # durée indéterminée
             contrat_de_travail_duree == TypesContratDeTravailDuree.cdi,
             # durée déterminée supérieure à 1 an
-            and_(
+            numpy.logical_and(
                 # CDD
                 contrat_de_travail_duree == TypesContratDeTravailDuree.cdd,
                 # > 6 mois
