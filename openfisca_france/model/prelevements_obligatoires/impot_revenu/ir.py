@@ -3,7 +3,7 @@
 import logging
 
 import numpy
-from numpy import datetime64, timedelta64, logical_xor as xor_, around
+from numpy import datetime64, timedelta64, around
 
 from openfisca_core.model_api import *
 from openfisca_france.model.base import *
@@ -3170,7 +3170,7 @@ class ppe_brute(Variable):
 
         nb_pac_ppe = numpy.maximum(0, nb_pac - foyer_fiscal.sum(eligible_i, role = FoyerFiscal.PERSONNE_A_CHARGE))
 
-        ligne2 = maries_ou_pacses & xor_(basevi >= ppe.seuil1, baseci >= ppe.seuil1)
+        ligne2 = maries_ou_pacses & numpy.logical_xor(basevi >= ppe.seuil1, baseci >= ppe.seuil1)
         ligne3 = (celibataire_ou_divorce | veuf) & caseT & numpy.logical_not(veuf & caseT & caseL)
         ligne1 = numpy.logical_not(ligne2) & numpy.logical_not(ligne3)
 
