@@ -568,10 +568,10 @@ class pensions_alimentaires_deduites(Variable):
         # foyer, la déduction est limitée à 2*max
         # S'il habite chez ses parents, max 3359, sinon 5698
         return (
-            min_(f6gi * (1 + taux_jgt_2006), max1)
-            + min_(f6gj * (1 + taux_jgt_2006), max1)
-            + min_(f6el, max1)
-            + min_(f6em, max1)
+            numpy.minimum(f6gi * (1 + taux_jgt_2006), max1)
+            + numpy.minimum(f6gj * (1 + taux_jgt_2006), max1)
+            + numpy.minimum(f6el, max1)
+            + numpy.minimum(f6em, max1)
             + f6gp
             * (1 + taux_jgt_2006) + f6gu
             )
@@ -588,7 +588,7 @@ class cd_acc75a(Variable):
         f6ev = foyer_fiscal('f6ev', period)
         acc75a = parameters(period).impot_revenu.charges_deductibles.accueil_personne_agee
         amax = acc75a.plafond * numpy.maximum(1, f6ev)
-        return min_(f6eu, amax)
+        return numpy.minimum(f6eu, amax)
 
 
 class pertes_capital_societes_nouvelles(Variable):
@@ -608,7 +608,7 @@ class pertes_capital_societes_nouvelles(Variable):
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         percap = parameters(period).impot_revenu.charges_deductibles.pertes_en_capital_societes_nouvelles
         plafond_cb = percap.plafond_cb * (1 + maries_ou_pacses)
-        return min_(f6cb, plafond_cb)
+        return numpy.minimum(f6cb, plafond_cb)
 
     def formula_2003_01_01(foyer_fiscal, period, parameters):
         '''
@@ -622,7 +622,7 @@ class pertes_capital_societes_nouvelles(Variable):
         percap = parameters(period).impot_revenu.charges_deductibles.pertes_en_capital_societes_nouvelles
         plafond_cb = percap.plafond_cb * (1 + maries_ou_pacses)
         plafond_da = percap.plafond_da * (1 + maries_ou_pacses)
-        return min_(min_(f6cb, plafond_cb) + min_(f6da, plafond_da), plafond_da)
+        return numpy.minimum(numpy.minimum(f6cb, plafond_cb) + numpy.minimum(f6da, plafond_da), plafond_da)
 
 
 class cd_deddiv(Variable):
@@ -671,7 +671,7 @@ class cd_eparet(Variable):
             where(
                 f6ps_i == 0,
                 f6rs_i + f6ss_i,
-                min_(f6rs_i + f6ss_i, f6ps_i)
+                numpy.minimum(f6rs_i + f6ss_i, f6ps_i)
                 )
             )
 
@@ -693,8 +693,8 @@ class cd_sofipe(Variable):
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         sofipeche = parameters(period).impot_revenu.charges_deductibles.sofipeche
 
-        plafond = min_(sofipeche.plafond_pct_rng * rbg_int, sofipeche.plafond * (1 + maries_ou_pacses))
-        return min_(f6cc, plafond)
+        plafond = numpy.minimum(sofipeche.plafond_pct_rng * rbg_int, sofipeche.plafond * (1 + maries_ou_pacses))
+        return numpy.minimum(f6cc, plafond)
 
 
 class souscriptions_cinema_audiovisuel(Variable):
@@ -713,8 +713,8 @@ class souscriptions_cinema_audiovisuel(Variable):
         rbg_int = foyer_fiscal('rbg_int', period)
         cinema = parameters(period).impot_revenu.charges_deductibles.cinema
 
-        max1 = min_(cinema.taux * rbg_int, cinema.max)
-        return min_(f6aa, max1)
+        max1 = numpy.minimum(cinema.taux * rbg_int, cinema.max)
+        return numpy.minimum(f6aa, max1)
 
 
 class epargne_codeveloppement(Variable):
@@ -733,8 +733,8 @@ class epargne_codeveloppement(Variable):
         rbg_int = foyer_fiscal('rbg_int', period)
         ecodev = parameters(period).impot_revenu.charges_deductibles.compte_epargne_codev
 
-        plafond = min_(ecodev.plafond_pct_rng * rbg_int, ecodev.plafond)
-        return min_(f6eh, plafond)
+        plafond = numpy.minimum(ecodev.plafond_pct_rng * rbg_int, ecodev.plafond)
+        return numpy.minimum(f6eh, plafond)
 
 
 class grosses_reparations(Variable):
@@ -752,7 +752,7 @@ class grosses_reparations(Variable):
         f6cb = foyer_fiscal('f6cb', period)
         plafond_grosses_reparations = parameters(period).impot_revenu.charges_deductibles.grosses_reparations.plafond
 
-        return min_(f6cb, plafond_grosses_reparations)
+        return numpy.minimum(f6cb, plafond_grosses_reparations)
 
     def formula_2010(foyer_fiscal, period, parameters):
         '''
@@ -779,4 +779,4 @@ class grosses_reparations(Variable):
         plafond_grosses_reparations = parameters(period).impot_revenu.charges_deductibles.grosses_reparations.plafond
         depenses_courantes = f6cb
 
-        return min_(depenses_courantes + report_depenses_depuis_2009, plafond_grosses_reparations)
+        return numpy.minimum(depenses_courantes + report_depenses_depuis_2009, plafond_grosses_reparations)

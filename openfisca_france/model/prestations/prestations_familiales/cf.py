@@ -121,7 +121,7 @@ class cf_plafond(Variable):
         taux_plafond_metropole = (
             1
             + pfam.cf.majoration_plafond_2_premiers_enf
-            * min_(cf_nbenf, 2)
+            * numpy.minimum(cf_nbenf, 2)
             + pfam.cf.majoration_plafond_3eme_enf_et_plus
             * numpy.maximum(cf_nbenf - 2, 0)
             )

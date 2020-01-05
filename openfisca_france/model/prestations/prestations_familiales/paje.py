@@ -119,7 +119,7 @@ class paje_base(Variable):
 
             plafond = (
                 plafond_de_base
-                + min_(nombre_enfants, 2) * maj_plafond_2_premiers_enfants
+                + numpy.minimum(nombre_enfants, 2) * maj_plafond_2_premiers_enfants
                 + numpy.maximum(nombre_enfants - 2, 0) * maj_plafond_par_enfant_sup
                 + (couple_biactif + parent_isole) * maj_plafond_seul_biactif
                 )
@@ -225,7 +225,7 @@ class paje_naissance(Variable):
         # Est-ce que ces taux n'ont pas été mis à jour en avril 2014 ?
         taux_plafond = (
             (nbenf > 0)
-            + P.paje.base.apres_2018.taux_majoration_2_premiers_enf * min_(nbenf, 2)
+            + P.paje.base.apres_2018.taux_majoration_2_premiers_enf * numpy.minimum(nbenf, 2)
             + P.paje.base.apres_2018.taux_majoration_3eme_enf_et_plus * numpy.maximum(nbenf - 2, 0)
             )
 
@@ -271,7 +271,7 @@ class paje_naissance(Variable):
         # Est-ce que ces taux n'ont pas été mis à jour en avril 2014 ?
         taux_plafond = (
             (nbenf > 0)
-            + P.paje.base.avant_2014.taux_majoration_2_premiers_enf * min_(nbenf, 2)
+            + P.paje.base.avant_2014.taux_majoration_2_premiers_enf * numpy.minimum(nbenf, 2)
             + P.paje.base.avant_2014.taux_majoration_3eme_enf_et_plus * numpy.maximum(nbenf - 2, 0)
             )
 
@@ -313,7 +313,7 @@ class paje_naissance(Variable):
         # Est-ce que ces taux n'ont pas été mis à jour en avril 2014 ?
         plaf_tx = (
             (nbenf > 0)
-            + P.paje.base.avant_2014.taux_majoration_2_premiers_enf * min_(nbenf, 2)
+            + P.paje.base.avant_2014.taux_majoration_2_premiers_enf * numpy.minimum(nbenf, 2)
             + P.paje.base.avant_2014.taux_majoration_3eme_enf_et_plus * numpy.maximum(nbenf - 2, 0)
             )
 
@@ -672,7 +672,7 @@ class apje_avant_cumul(Variable):
         base = round(P.apje.taux * bmaf, 2)
         base2 = round(P.apje.taux * bmaf_n_2, 2)
 
-        plaf_tx = (nbenf > 0) + P.apje.taux_enfant_1_et_2 * min_(nbenf, 2) + P.apje.taux_enfant_3_et_plus * numpy.maximum(nbenf - 2, 0)
+        plaf_tx = (nbenf > 0) + P.apje.taux_enfant_1_et_2 * numpy.minimum(nbenf, 2) + P.apje.taux_enfant_3_et_plus * numpy.maximum(nbenf - 2, 0)
         majo = isole | biactivite
         plaf = P.apje.plaf * plaf_tx + P.apje.plaf_maj * majo
         plaf2 = plaf + 12 * base2

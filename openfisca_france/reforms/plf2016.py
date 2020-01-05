@@ -113,7 +113,7 @@ class plf2016_counterfactual(Reform):
             montant_plafond = 350 * inflator
             plafond = seuil * nb_adult + (nb_parents - nb_adult) * 2 * majoration_seuil
             montant = montant_plafond * nb_adult
-            return min_(numpy.maximum(plafond + montant - rfr, 0), montant)
+            return numpy.minimum(numpy.maximum(plafond + montant - rfr, 0), montant)
 
     class reductions(Variable):
         label = "Somme des réductions d'impôt"
@@ -154,7 +154,7 @@ class plf2016_counterfactual(Reform):
                 donapd + duflot + ecpess + garext + intagr + invfor + invlst + locmeu + mecena + mohist + patnat + \
                 prcomp + repsoc + resimm + rsceha + saldom + scelli + sofica + spfcpi + reduction_impot_exceptionnelle
 
-            return min_(ip_net, total_reductions)
+            return numpy.minimum(ip_net, total_reductions)
 
     def apply(self):
         for variable in [self.decote, self.reductions, self.reduction_impot_exceptionnelle]:
@@ -210,7 +210,7 @@ class plf2016_counterfactual_2014(Reform):
             montant_plafond = 350 * inflator
             plafond = seuil * nb_adult + (nb_parents - nb_adult) * 2 * majoration_seuil
             montant = montant_plafond * nb_adult
-            return min_(numpy.maximum(plafond + montant - rfr, 0), montant)
+            return numpy.minimum(numpy.maximum(plafond + montant - rfr, 0), montant)
 
     class reductions(Variable):
         label = "Somme des réductions d'impôt"
@@ -251,7 +251,7 @@ class plf2016_counterfactual_2014(Reform):
                 donapd + duflot + ecpess + garext + intagr + invfor + invlst + locmeu + mecena + mohist + patnat + \
                 prcomp + repsoc + resimm + rsceha + saldom + scelli + sofica + spfcpi + reduction_impot_exceptionnelle
 
-            return min_(ip_net, total_reductions)
+            return numpy.minimum(ip_net, total_reductions)
 
     def apply(self):
         for variable in [self.decote, self.reduction_impot_exceptionnelle, self.reductions]:

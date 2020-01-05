@@ -421,7 +421,8 @@ class revenu_assimile_salaire_apres_abattements(Variable):
         abatpro = parameters(period).impot_revenu.tspr.abatpro
 
         abattement_minimum = where(chomeur_longue_duree, abatpro.min2, abatpro.min)
-        abatfor = round_(min_(numpy.maximum(abatpro.taux * revenu_assimile_salaire, abattement_minimum), abatpro.max))
+        abatfor = round_(numpy.minimum(numpy.maximum(abatpro.taux * revenu_assimile_salaire, abattement_minimum), abatpro.max))
+
         return (
             (frais_reels > abatfor)
             * (revenu_assimile_salaire - frais_reels)
@@ -463,7 +464,7 @@ class revenu_assimile_pension_apres_abattements(Variable):
         return numpy.maximum(0, revenu_assimile_pension - round_(numpy.maximum(abatpen.taux * revenu_assimile_pension, abatpen.min)))
 
 
-#    return numpy.maximum(0, revenu_assimile_pension - min_(round_(numpy.maximum(abatpen.taux*revenu_assimile_pension , abatpen.min)), abatpen.max))  le max se met au niveau du foyer
+#    return numpy.maximum(0, revenu_assimile_pension - numpy.minimum(round_(numpy.maximum(abatpen.taux*revenu_assimile_pension , abatpen.min)), abatpen.max))  le max se met au niveau du foyer
 
 class indu_plaf_abat_pen(Variable):
     value_type = float
@@ -480,7 +481,7 @@ class indu_plaf_abat_pen(Variable):
         revenu_assimile_pension = foyer_fiscal.sum(rev_pen_i)
 
         abat = revenu_assimile_pension - revenu_assimile_pension_apres_abattements
-        return abat - min_(abat, abatpen.max)
+        return abat - numpy.minimum(abat, abatpen.max)
 
 
 class abattement_salaires_pensions(Variable):
@@ -495,7 +496,7 @@ class abattement_salaires_pensions(Variable):
         revenu_assimile_pension_apres_abattements = individu('revenu_assimile_pension_apres_abattements', period)
         abatsalpen = parameters(period).impot_revenu.tspr.abatsalpen
 
-        return min_(abatsalpen.taux * numpy.maximum(revenu_assimile_salaire_apres_abattements + revenu_assimile_pension_apres_abattements, 0), abatsalpen.max)
+        return numpy.minimum(abatsalpen.taux * numpy.maximum(revenu_assimile_salaire_apres_abattements + revenu_assimile_pension_apres_abattements, 0), abatsalpen.max)
 
 
 class rente_viagere_titre_onereux(Variable):
@@ -669,14 +670,14 @@ class revenu_categoriel_capital(Variable):
         f2tr_bis = f2tr
         # # Calcul du revenu catégoriel
         # 1.2 Revenus des valeurs et capitaux mobiliers
-        b12 = min_(f2ch, rvcm.abat_assvie * (1 + maries_ou_pacses))
+        b12 = numpy.minimum(f2ch, rvcm.abat_assvie * (1 + maries_ou_pacses))
         TOT1 = f2ch - b12  # c12
         # Part des frais s'imputant sur les revenus déclarés case DC
         den = ((f2dc_bis + f2ts) != 0) * (f2dc_bis + f2ts) + ((f2dc_bis + f2ts) == 0)
         F1 = f2ca / den * f2dc_bis  # f12
         # Revenus de capitaux mobiliers nets de frais, ouvrant droit à abattement
         # partie négative (à déduire des autres revenus nets de frais d'abattements
-        g12a = -min_(f2dc_bis * (1 - rvcm.taux_abattement_capitaux_mobiliers) - F1, 0)
+        g12a = -numpy.minimum(f2dc_bis * (1 - rvcm.taux_abattement_capitaux_mobiliers) - F1, 0)
         # partie positive
         g12b = numpy.maximum(f2dc_bis * (1 - rvcm.taux_abattement_capitaux_mobiliers) - F1, 0)
         rev = g12b + f2gr + f2fu * (1 - rvcm.taux_abattement_capitaux_mobiliers)
@@ -684,7 +685,7 @@ class revenu_categoriel_capital(Variable):
         # Abattements, limité au revenu
         h12 = rvcm.abatmob * (1 + maries_ou_pacses)
         TOT2 = numpy.maximum(0, rev - h12)
-        # i121= -min_(0,rev - h12)
+        # i121= -numpy.minimum(0,rev - h12)
 
         # Part des frais s'imputant sur les revenus déclarés ligne TS
         F2 = f2ca - F1
@@ -714,14 +715,14 @@ class revenu_categoriel_capital(Variable):
         f2tr_bis = f2tr
         # # Calcul du revenu catégoriel
         # 1.2 Revenus des valeurs et capitaux mobiliers
-        b12 = min_(f2ch, rvcm.abat_assvie * (1 + maries_ou_pacses))
+        b12 = numpy.minimum(f2ch, rvcm.abat_assvie * (1 + maries_ou_pacses))
         TOT1 = f2ch - b12  # c12
         # Part des frais s'imputant sur les revenus déclarés case DC
         den = ((f2dc_bis + f2ts) != 0) * (f2dc_bis + f2ts) + ((f2dc_bis + f2ts) == 0)
         F1 = f2ca / den * f2dc_bis  # f12
         # Revenus de capitaux mobiliers nets de frais, ouvrant droit à abattement
         # partie négative (à déduire des autres revenus nets de frais d'abattements
-        g12a = -min_(f2dc_bis * (1 - rvcm.taux_abattement_capitaux_mobiliers) - F1, 0)
+        g12a = -numpy.minimum(f2dc_bis * (1 - rvcm.taux_abattement_capitaux_mobiliers) - F1, 0)
         # partie positive
         g12b = numpy.maximum(f2dc_bis * (1 - rvcm.taux_abattement_capitaux_mobiliers) - F1, 0)
         rev = g12b + f2gr + f2fu * (1 - rvcm.taux_abattement_capitaux_mobiliers)
@@ -729,7 +730,7 @@ class revenu_categoriel_capital(Variable):
         # Abattements, limité au revenu
         h12 = rvcm.abatmob * (1 + maries_ou_pacses)
         TOT2 = numpy.maximum(0, rev - h12)
-        # i121= -min_(0,rev - h12)
+        # i121= -numpy.minimum(0,rev - h12)
 
         # Part des frais s'imputant sur les revenus déclarés ligne TS
         F2 = f2ca - F1
@@ -758,7 +759,7 @@ class revenu_categoriel_capital(Variable):
         abattement_assurance_vie = P.abat_assvie * (1 + maries_ou_pacses)
         rvcm_apres_abattement = (
             f2fu + f2dc - abattement_dividende
-            + f2ch - min_(f2ch, abattement_assurance_vie)
+            + f2ch - numpy.minimum(f2ch, abattement_assurance_vie)
             + f2ts + f2tr + f2go * P.majoration_revenus_reputes_distribues
             )
 
@@ -786,7 +787,7 @@ class revenu_categoriel_capital(Variable):
         abattement_assurance_vie = P.abat_assvie * (1 + maries_ou_pacses)
         rvcm_apres_abattement = (
             f2fu + f2dc - abattement_dividende
-            + f2ch - min_(f2ch, abattement_assurance_vie)
+            + f2ch - numpy.minimum(f2ch, abattement_assurance_vie)
             + f2ts + f2tr + numpy.maximum(0, f2tt_2016 - f2tu_2016) + f2go * P.majoration_revenus_reputes_distribues
             )
 
@@ -821,7 +822,7 @@ class revenu_categoriel_capital(Variable):
         abattement_assurance_vie = P.abat_assvie * (1 + maries_ou_pacses)
         rvcm_apres_abattement = (
             f2fu + f2dc - abattement_dividende
-            + f2ch - min_(f2ch, abattement_assurance_vie)
+            + f2ch - numpy.minimum(f2ch, abattement_assurance_vie)
             + f2ts + f2tr + f2tt + f2go * P.majoration_revenus_reputes_distribues
             )
 
@@ -843,7 +844,7 @@ class revenu_categoriel_capital(Variable):
         abattement_assurance_vie = P.abat_assvie * (1 + maries_ou_pacses)
         rvcm_apres_abattement = (
             f2yy
-            + f2ch - min_(f2ch, abattement_assurance_vie)
+            + f2ch - numpy.minimum(f2ch, abattement_assurance_vie)
             )
 
         return numpy.maximum(0, rvcm_apres_abattement - deficit_rcm)
@@ -876,7 +877,7 @@ class rfr_rvcm_abattements_a_reintegrer(Variable):
 
         # Abattements, limité au revenu
         h12 = rvcm.abatmob * (1 + maries_ou_pacses)
-        i121 = - min_(0, rev - h12)
+        i121 = - numpy.minimum(0, rev - h12)
         return numpy.maximum((rvcm.taux_abattement_capitaux_mobiliers) * (f2dc + f2fu) - i121, 0)
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
@@ -903,7 +904,7 @@ class rfr_rvcm_abattements_a_reintegrer(Variable):
         P = parameters(period).impot_revenu.rvcm
 
         abattement_assurance_vie = (
-            (f2ch < P.abat_assvie * (1 + maries_ou_pacses)) * numpy.maximum(0, min_(f2vv + f2ww, P.abat_assvie * (1 + maries_ou_pacses) - f2ch - f2dh))
+            (f2ch < P.abat_assvie * (1 + maries_ou_pacses)) * numpy.maximum(0, numpy.minimum(f2vv + f2ww, P.abat_assvie * (1 + maries_ou_pacses) - f2ch - f2dh))
             )
 
         return - abattement_assurance_vie
@@ -935,7 +936,7 @@ class revenu_categoriel_foncier(Variable):
         if (f4be > microfoncier.max).any():
             log.error(("Problème de déclarations des revenus : les revenus microfonciers (f4be) dépassent le maximum légal"))
 
-        micro = min_(f4be, microfoncier.max) * (1 - microfoncier.taux)
+        micro = numpy.minimum(f4be, microfoncier.max) * (1 - microfoncier.taux)
 
         # Conditions
         deficit = (f4bc > 0) | (f4bb > 0)
@@ -943,7 +944,7 @@ class revenu_categoriel_foncier(Variable):
 
         # Calculs
         si_deficit = -f4bc
-        si_micro = min_(f4be, microfoncier.max) * (1 - microfoncier.taux)
+        si_micro = numpy.minimum(f4be, microfoncier.max) * (1 - microfoncier.taux)
         sinon = numpy.maximum(0, f4ba - f4bd)
 
         return select([deficit, micro],
@@ -1062,7 +1063,7 @@ class csg_patrimoine_deductible_ir(Variable):
         f2bh = foyer_fiscal('f2bh', period)
         csg_deduc_patrimoine = numpy.maximum(f6de, 0) + numpy.maximum(P.deduc * f2bh, 0)
 
-        return min_(csg_deduc_patrimoine, numpy.maximum(rbg, 0))
+        return numpy.minimum(csg_deduc_patrimoine, numpy.maximum(rbg, 0))
 
 
 class rng(Variable):
@@ -1167,7 +1168,7 @@ class ir_plaf_qf(Variable):
         I = ir_brut  # noqa F741
 
         aa0 = (nb_parts - nb_adult) * 2  # nombre de demi part excédant nbadult
-        aa1 = min_((nb_parts - 1) * 2, 2)  # deux première demi part excédants une part
+        aa1 = numpy.minimum((nb_parts - 1) * 2, 2)  # deux première demi part excédants une part
 
         B1 = plafond_qf.celib_enf * aa1 / 2 + plafond_qf.maries_ou_pacses * (aa0 - aa1)
         B2 = plafond_qf.maries_ou_pacses * aa0
@@ -1261,7 +1262,7 @@ class ir_plaf_qf(Variable):
         I = ir_brut  # noqa F741
 
         aa0 = (nb_parts - nb_adult) * 2
-        aa1 = min_((nb_parts - 1) * 2, 2)
+        aa1 = numpy.minimum((nb_parts - 1) * 2, 2)
         B1 = plafond_qf.celib_enf * aa1 / 2 + plafond_qf.maries_ou_pacses * (aa0 - aa1)
         B2 = plafond_qf.maries_ou_pacses * aa0
         B3 = plafond_qf.celib
@@ -1311,8 +1312,8 @@ class ir_plaf_qf(Variable):
         residence_dom = (residence_guadeloupe_martinique_reunion | residence_guyane_mayotte)
 
         abattement_dom = (
-            residence_guadeloupe_martinique_reunion * min_(plafond_qf.abat_dom.plaf_GuadMarReu, plafond_qf.abat_dom.taux_GuadMarReu * impot_apres_reduction_complementaire)
-            + residence_guyane_mayotte * min_(plafond_qf.abat_dom.plaf_GuyMay, plafond_qf.abat_dom.taux_GuyMay * impot_apres_reduction_complementaire)
+            residence_guadeloupe_martinique_reunion * numpy.minimum(plafond_qf.abat_dom.plaf_GuadMarReu, plafond_qf.abat_dom.taux_GuadMarReu * impot_apres_reduction_complementaire)
+            + residence_guyane_mayotte * numpy.minimum(plafond_qf.abat_dom.plaf_GuyMay, plafond_qf.abat_dom.taux_GuyMay * impot_apres_reduction_complementaire)
             )
 
         impot_apres_abattement_dom = numpy.maximum(0, impot_apres_reduction_complementaire - abattement_dom)
@@ -1373,7 +1374,7 @@ class decote_gain_fiscal(Variable):
         decote = foyer_fiscal('decote', period)
         ir_plaf_qf = foyer_fiscal('ir_plaf_qf', period)
 
-        return around(min_(decote, ir_plaf_qf))
+        return around(numpy.minimum(decote, ir_plaf_qf))
 
 
 class reduction_ss_condition_revenus(Variable):
@@ -2244,7 +2245,7 @@ class defrag(Variable):
         arag_impg = foyer_fiscal.sum(arag_impg_i)
         nrag_impg = foyer_fiscal.sum(nrag_impg_i)
         frag_pvct = foyer_fiscal.sum(frag_pvct_i)
-        return min_(f5qf + f5qg + f5qn + f5qo + f5qp + f5qq, (1 + cga) * (frag_impo + nrag_impg + frag_pvct)
+        return numpy.minimum(f5qf + f5qg + f5qn + f5qo + f5qp + f5qq, (1 + cga) * (frag_impo + nrag_impg + frag_pvct)
                     + arag_impg + frag_fore)
 
 
@@ -2270,7 +2271,7 @@ class defacc(Variable):
         micro = parameters(period).impot_revenu.rpns.micro
 
         def abat_rpns(rev, P):
-            return numpy.maximum(0, rev - min_(rev, numpy.maximum(P.taux * min_(P.max, rev), P.min)))
+            return numpy.maximum(0, rev - numpy.minimum(rev, numpy.maximum(P.taux * numpy.minimum(P.max, rev), P.min)))
 
         nacc_impn = foyer_fiscal.sum(nacc_impn_i)
         macc_pvct = foyer_fiscal.sum(macc_pvct_i)
@@ -2279,7 +2280,7 @@ class defacc(Variable):
         aacc_impn = foyer_fiscal.sum(aacc_impn_i)
         macc_timp = abat_rpns(macc_impv, micro.specialbnc.marchandises) + abat_rpns(macc_imps, micro.specialbnc.services)
         return (
-            min_(f5rn + f5ro + f5rp + f5rq + f5rr + f5rw, aacc_impn + macc_pvct + macc_timp + (1 + cga) * nacc_impn)
+            numpy.minimum(f5rn + f5ro + f5rp + f5rq + f5rr + f5rw, aacc_impn + macc_pvct + macc_timp + (1 + cga) * nacc_impn)
             )
 
 
@@ -2304,12 +2305,12 @@ class defncn(Variable):
         specialbnc = parameters(period).impot_revenu.rpns.micro.specialbnc
 
         def abat_rpns(rev, P):
-            return numpy.maximum(0, rev - min_(rev, numpy.maximum(P.taux * min_(P.max, rev), P.min)))
+            return numpy.maximum(0, rev - numpy.minimum(rev, numpy.maximum(P.taux * numpy.minimum(P.max, rev), P.min)))
         cncn_bene = foyer_fiscal.sum(cncn_bene_i)
         mncn_impo = foyer_fiscal.sum(mncn_impo_i)
         mncn_pvct = foyer_fiscal.sum(mncn_pvct_i)
         cncn_aimp = foyer_fiscal.sum(cncn_aimp_i)
-        return min_(
+        return numpy.minimum(
             f5ht + f5it + f5jt + f5kt + f5lt + f5mt,
             abat_rpns(mncn_impo, specialbnc.services) + mncn_pvct + cncn_aimp + (1 + cga) * cncn_bene
             )  #  TODO check !
@@ -2337,7 +2338,7 @@ class defmeu(Variable):
 
         nacc_defs = foyer_fiscal.sum(nacc_defs_i)
         alnp_imps = foyer_fiscal.sum(alnp_imps_i)
-        return min_(f5ga + f5gb + f5gc + f5gd + f5ge + f5gf + f5gg + f5gh + f5gi + f5gj, alnp_imps + nacc_defs)
+        return numpy.minimum(f5ga + f5gb + f5gc + f5gd + f5ge + f5gf + f5gg + f5gh + f5gi + f5gj, alnp_imps + nacc_defs)
 
 
 class rag(Variable):
@@ -2409,7 +2410,7 @@ class ric(Variable):
         cond = (mbic_impv > 0) & (mbic_imps == 0)
         taux = micro.specialbnc.marchandises.taux * cond + micro.specialbnc.services.taux * numpy.logical_not(cond)
 
-        cbic = min_(
+        cbic = numpy.minimum(
             mbic_impv + mbic_imps + mbic_exon,
             numpy.maximum(
                 micro.specialbnc.marchandises.min,
@@ -2460,7 +2461,7 @@ class rac(Variable):
         cond = (macc_impv > 0) & (macc_imps == 0)
         taux = micro.specialbnc.marchandises.taux * cond + micro.specialbnc.services.taux * numpy.logical_not(cond)
 
-        cacc = min_(macc_impv + macc_imps + macc_exon + mncn_impo, numpy.maximum(micro.specialbnc.marchandises.min, round_(
+        cacc = numpy.minimum(macc_impv + macc_imps + macc_exon + mncn_impo, numpy.maximum(micro.specialbnc.marchandises.min, round_(
             macc_impv * micro.specialbnc.marchandises.taux
             + macc_imps * micro.specialbnc.services.taux + macc_exon * taux
             + mncn_impo * micro.specialbnc.taux)))
@@ -2496,7 +2497,7 @@ class rnc(Variable):
             - abnc_defi - nbnc_defi
             )
 
-        cbnc = min_(
+        cbnc = numpy.minimum(
             mbnc_exon + mbnc_impo,
             numpy.maximum(
                 specialbnc.services.min,
@@ -2685,7 +2686,7 @@ class rpns_individu(Variable):
         micro = parameters(period).impot_revenu.rpns.micro
 
         def abat_rpns(rev, P):
-            return numpy.maximum(0, rev - min_(rev, numpy.maximum(P.taux * min_(P.max, rev), P.min)))
+            return numpy.maximum(0, rev - numpy.minimum(rev, numpy.maximum(P.taux * numpy.minimum(P.max, rev), P.min)))
 
         # Jeunes agriculteurs montant de l'abattement de 50% ou 100%
         # nrag_ajag = f5hm + f5im + f5jm
@@ -2694,9 +2695,9 @@ class rpns_individu(Variable):
     #    # sur des revenus agricoles)
     #    rag_timp = frag_impo + frag_pvct + arag_impg + nrag_impg
     #    cond = (AUTRE <= microentreprise.def_agri_seuil)
-    #    def_agri = cond*(arag_defi + nrag_defi) + numpy.logical_not(cond)*min_(rag_timp, arag_defi + nrag_defi)
+    #    def_agri = cond*(arag_defi + nrag_defi) + numpy.logical_not(cond)*numpy.minimum(rag_timp, arag_defi + nrag_defi)
     #    # TODO : check 2006 cf art 156 du CGI pour 2006
-    #    def_agri_ant    = min_(numpy.maximum(0,rag_timp - def_agri), f5sq)
+    #    def_agri_ant    = numpy.minimum(numpy.maximum(0,rag_timp - def_agri), f5sq)
 
         def_agri = f5sq + arag_defi + (1 + cga_taux2) * nrag_defi
 
@@ -2855,7 +2856,7 @@ class abat_spe(Variable):
             )
 
         # Le montant total d'abattement ne peut pas être supérieur au revenu net global
-        return min_(revenu_net_global, as_inv + as_enf)
+        return numpy.minimum(revenu_net_global, as_inv + as_enf)
 
 
 class taux_effectif(Variable):
@@ -2955,13 +2956,13 @@ class nbptr(Variable):
 
         # # nombre de parts liées aux enfants à charge
         # que des enfants en résidence alternée
-        enf1 = (no_pac & has_alt) * (quotient_familial.enf1 * min_(nbH, 2) * 0.5
+        enf1 = (no_pac & has_alt) * (quotient_familial.enf1 * numpy.minimum(nbH, 2) * 0.5
                                      + quotient_familial.enf2 * numpy.maximum(nbH - 2, 0) * 0.5)
         # pas que des enfants en résidence alternée
-        enf2 = (has_pac & has_alt) * ((nb_pac == 1) * (quotient_familial.enf1 * min_(nbH, 1) * 0.5
+        enf2 = (has_pac & has_alt) * ((nb_pac == 1) * (quotient_familial.enf1 * numpy.minimum(nbH, 1) * 0.5
             + quotient_familial.enf2 * numpy.maximum(nbH - 1, 0) * 0.5) + (nb_pac > 1) * (quotient_familial.enf2 * nbH * 0.5))
         # pas d'enfant en résidence alternée
-        enf3 = quotient_familial.enf1 * min_(nb_pac, 2) + quotient_familial.enf2 * numpy.maximum((nb_pac - 2), 0)
+        enf3 = quotient_familial.enf1 * numpy.minimum(nb_pac, 2) + quotient_familial.enf2 * numpy.maximum((nb_pac - 2), 0)
 
         enf = enf1 + enf2 + enf3
         # # note 2 : nombre de parts liées aux invalides (enfant + adulte)
@@ -3072,7 +3073,7 @@ class ppe_rev(Variable):
         # Revenu d'activité salarié
         rev_sa = salaire_imposable + hsup  # TODO: + TV + TW + TX + AQ + LZ + VJ
         # Revenu d'activité non salarié
-        rev_ns = min_(0, rpns) / ppe.abatns + numpy.maximum(0, rpns) * ppe.abatns
+        rev_ns = numpy.minimum(0, rpns) / ppe.abatns + numpy.maximum(0, rpns) * ppe.abatns
         # très bizarre la partie min(0, rpns) - après vérification c'est dans la loi
         return rev_sa + rev_ns
 
@@ -3208,15 +3209,15 @@ class ppe_brute(Variable):
 
         # Primes pour enfants à charge
         maj_pac = ppe_elig * (eliv | elic) * (
-            (ligne1 & maries_ou_pacses & ((ppev + ppec) != 0) & (min_(basev, basec) <= ppe.seuil3)) * ppe.pac
+            (ligne1 & maries_ou_pacses & ((ppev + ppec) != 0) & (numpy.minimum(basev, basec) <= ppe.seuil3)) * ppe.pac
             * (nb_pac_ppe + nbH * 0.5)
             + (ligne1 & (celibataire_ou_divorce | veuf) & eliv & (basev <= ppe.seuil3)) * ppe.pac * (nb_pac_ppe + nbH * 0.5)
             + (ligne2 & (base_monacti >= ppe.seuil1) & (base_monact <= ppe.seuil3)) * ppe.pac * (nb_pac_ppe + nbH * 0.5)
             + (ligne2 & (base_monact > ppe.seuil3) & (base_monact <= ppe.seuil5)) * ppe.pac
             * ((nb_pac_ppe != 0) + 0.5 * ((nb_pac_ppe == 0) & (nbH != 0)))
             + (ligne3 & (basevi >= ppe.seuil1) & (basev <= ppe.seuil3)) * (
-                (min_(nb_pac_ppe, 1) * 2 * ppe.pac + numpy.maximum(nb_pac_ppe - 1, 0) * ppe.pac)
-                + (nb_pac_ppe == 0) * (min_(nbH, 2) * ppe.pac + numpy.maximum(nbH - 2, 0) * ppe.pac * 0.5))
+                (numpy.minimum(nb_pac_ppe, 1) * 2 * ppe.pac + numpy.maximum(nb_pac_ppe - 1, 0) * ppe.pac)
+                + (nb_pac_ppe == 0) * (numpy.minimum(nbH, 2) * ppe.pac + numpy.maximum(nbH - 2, 0) * ppe.pac * 0.5))
             + (ligne3 & (basev > ppe.seuil3) & (basev <= ppe.seuil5)) * ppe.pac
             * ((nb_pac_ppe != 0) * 2 + ((nb_pac_ppe == 0) & (nbH != 0))))
 

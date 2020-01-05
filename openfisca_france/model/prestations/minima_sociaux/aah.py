@@ -49,7 +49,7 @@ class aah_base_ressources(Variable):
 
         def assiette_revenu_activite_demandeur(revenus_demandeur):
             smic_brut_annuel = 12 * law.cotsoc.gen.smic_h_b * law.cotsoc.gen.nb_heure_travail_mensuel
-            tranche1 = min_(0.3 * smic_brut_annuel, revenus_demandeur)
+            tranche1 = numpy.minimum(0.3 * smic_brut_annuel, revenus_demandeur)
             tranche2 = revenus_demandeur - tranche1
             return (1 - 0.8) * tranche1 + (1 - 0.4) * tranche2
 
@@ -311,11 +311,11 @@ class aah_base(Variable):
         plaf_ress_aah = individu('aah_plafond_ressources', period)
         # Le montant de l'AAH est plafonné au montant de base.
         montant_max = law.minima_sociaux.aah.montant
-        montant_aah = min_(montant_max, numpy.maximum(0, plaf_ress_aah - aah_base_ressources))
+        montant_aah = numpy.minimum(montant_max, numpy.maximum(0, plaf_ress_aah - aah_base_ressources))
 
         aah_base_non_cumulable = individu('aah_base_non_cumulable', period)
 
-        return aah_eligible * min_(montant_aah, numpy.maximum(0, montant_max - aah_base_non_cumulable))
+        return aah_eligible * numpy.minimum(montant_aah, numpy.maximum(0, montant_max - aah_base_non_cumulable))
 
 
 class aah(Variable):

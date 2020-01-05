@@ -132,7 +132,7 @@ class crds_chomage(Variable):
         law = parameters(period)
         smic_h_b = law.cotsoc.gen.smic_h_b
         # salaire_mensuel_reference = chomage_brut / .7
-        # heures_mensuelles = min_(salaire_mensuel_reference / smic_h_b, 35 * 52 / 12)  # TODO: depuis 2001 mais avant ?
+        # heures_mensuelles = numpy.minimum(salaire_mensuel_reference / smic_h_b, 35 * 52 / 12)  # TODO: depuis 2001 mais avant ?
         heures_mensuelles = 35 * 52 / 12
         cho_seuil_exo = law.prelevements_sociaux.contributions.csg.chomage.min_exo * heures_mensuelles * smic_h_b
         eligible = (

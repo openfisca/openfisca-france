@@ -23,7 +23,7 @@ class livret_epargne_populaire_plafond(Variable):
         bareme = params.baremes[residence]
 
         nbptr = individu.foyer_fiscal('nbptr', period.n_2)
-        plafond = min_(1, nbptr) * bareme.valeur_de_base + 2 * (min_(numpy.maximum(0, nbptr - 1), 0.5) * bareme.premiere_demi_part + numpy.maximum(0, nbptr - 1.5) * bareme.demi_part_supplementaire)
+        plafond = numpy.minimum(1, nbptr) * bareme.valeur_de_base + 2 * (numpy.minimum(numpy.maximum(0, nbptr - 1), 0.5) * bareme.premiere_demi_part + numpy.maximum(0, nbptr - 1.5) * bareme.demi_part_supplementaire)
 
         coef = params.coefficient_multiplicateur
 

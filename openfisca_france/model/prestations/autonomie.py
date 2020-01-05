@@ -107,7 +107,7 @@ class apa_domicile_participation(Variable):
         A_2 = select(condlist, choicelist_2)
         A_3 = select(condlist, choicelist_3)
 
-        apa_domicile_participation = min_(
+        apa_domicile_participation = numpy.minimum(
             0.9 * dependance_plan_aide_domicile_accepte,
             0.9
             * numpy.maximum(0, base_ressources_apa_domicile - 0.725 * majoration_tierce_personne)
@@ -237,7 +237,7 @@ class apa_etablissement(Variable):
 
         participation_beneficiaire = select(conditions_ressources, participations)
         taux_reste_a_vivre = parameters.apa_institution.taux_reste_a_vivre
-        participation_beneficiaire = min_(
+        participation_beneficiaire = numpy.minimum(
             participation_beneficiaire,
             numpy.maximum(base_ressources_apa_etablissement * (1 - taux_reste_a_vivre), 0)
             )
@@ -381,4 +381,4 @@ class dependance_plan_aide_domicile_accepte(Variable):
             plafond_gir4 * majoration_tierce_personne,
             ]
         plafond_par_gir = select(condition_plafond_par_gir, valeur_plafond_par_gir)
-        return min_(plafond_par_gir, dependance_plan_aide_domicile)
+        return numpy.minimum(plafond_par_gir, dependance_plan_aide_domicile)

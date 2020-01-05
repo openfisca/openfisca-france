@@ -237,7 +237,7 @@ class famille_independant(Variable):
             + (categorie_non_salarie == TypesCategorieNonSalarie.profession_liberale)
             ) * individu('rpns_individu', period)
         taux = (
-            0 + (.031) * min_(
+            0 + (.031) * numpy.minimum(
                 numpy.maximum(
                     assiette / plafond_securite_sociale_annuel - 1.1,
                     0
@@ -292,7 +292,7 @@ class maladie_maternite_profession_liberale(Variable):
             * individu('rpns_individu', period)
             )
         taux = (
-            .015 + (.065 - .015) * min_(
+            .015 + (.065 - .015) * numpy.minimum(
                 numpy.maximum(
                     assiette / plafond_securite_sociale_annuel,
                     0

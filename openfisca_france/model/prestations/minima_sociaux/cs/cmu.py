@@ -5,7 +5,6 @@ from numpy import (
     select,
     where,
     logical_or as or_,
-    minimum as min_,
     round as round_,
     )
 from openfisca_france.model.base import (
@@ -41,7 +40,7 @@ class cmu_forfait_logement_al(Variable):
         P = parameters(period).cs.cmu.forfait_logement_al
         law_rsa = parameters(period).prestations.minima_sociaux.rmi
 
-        return (aide_logement > 0) * min_(12 * aide_logement, forfait_logement(nb_personnes_foyer, P, law_rsa))
+        return (aide_logement > 0) * numpy.minimum(12 * aide_logement, forfait_logement(nb_personnes_foyer, P, law_rsa))
 
 
 class cmu_nbp_foyer(Variable):

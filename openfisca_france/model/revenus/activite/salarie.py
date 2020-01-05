@@ -675,7 +675,7 @@ class nombre_jours_calendaires(Variable):
         jours_travailles = numpy.maximum(
             busday_count(
                 numpy.maximum(contrat_de_travail_debut, debut_mois),
-                min_(contrat_de_travail_fin, fin_mois) + timedelta64(1, 'D')
+                numpy.minimum(contrat_de_travail_fin, fin_mois) + timedelta64(1, 'D')
                 ),
             0,
             )
@@ -893,7 +893,7 @@ class supplement_familial_traitement(Variable):
             + (categorie_salarie == TypesCategorieSalarie.public_non_titulaire)
             )
 
-        sft = public * min_(
+        sft = public * numpy.minimum(
             numpy.maximum(part_fixe + pct_variable * traitement_indiciaire_brut, plancher),
             plafond
             )

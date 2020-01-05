@@ -93,7 +93,7 @@ class asi_aspa_base_ressources_individu(Variable):
             abattement_forfaitaire = abattement_forfaitaire_base * taux_abattement_forfaitaire
             salaire_de_base = individu('salaire_de_base', three_previous_months, options = [ADD])
 
-            return min_(salaire_de_base, abattement_forfaitaire)
+            return numpy.minimum(salaire_de_base, abattement_forfaitaire)
 
         base_ressources_3_mois = sum(
             numpy.maximum(0, individu(ressource_type, three_previous_months, options = [ADD]))

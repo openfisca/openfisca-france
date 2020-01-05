@@ -49,10 +49,10 @@ from openfisca_france.model.base import *
 #         taux_reduc = numpy.maximum(dur_det_immo - pv_immo.ann_det1, 0) * pv_immo.taux1
 #     else:
 #         taux_reduc = (numpy.maximum(dur_det_immo - pv_immo.ann_det3, 0) * pv_immo.taux3
-#             + numpy.maximum(min_(dur_det_immo, pv_immo.ann_det3) - pv_immo.ann_det2, 0) * pv_immo.taux2
-#             + numpy.maximum(min_(dur_det_immo, pv_immo.ann_det2) - pv_immo.ann_det1, 0) * pv_immo.taux1)
+#             + numpy.maximum(numpy.minimum(dur_det_immo, pv_immo.ann_det3) - pv_immo.ann_det2, 0) * pv_immo.taux2
+#             + numpy.maximum(numpy.minimum(dur_det_immo, pv_immo.ann_det2) - pv_immo.ann_det1, 0) * pv_immo.taux1)
 #
-#     taux_reduc = min_(taux_reduc, 1.0)
+#     taux_reduc = numpy.minimum(taux_reduc, 1.0)
 #     pv_impos = (1 - taux_reduc) * plus_value_brute
 #
 #     # 45. MONTANT DE LA PLUS-VALUE BENEFICIANT, SOUS CONDITIONS, DE L’EXONERATION AU TITRE DE LA

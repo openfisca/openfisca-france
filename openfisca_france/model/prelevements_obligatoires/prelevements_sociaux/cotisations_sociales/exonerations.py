@@ -60,7 +60,7 @@ class exoneration_cotisations_employeur_jei(Variable):
                 bareme_by_type_sal_name = bareme_by_type_sal_name,
                 bareme_name = bareme_name,
                 categorie_salarie = categorie_salarie,
-                base = min_(assiette_allegement, 4.5 * smic_proratise),
+                base = numpy.minimum(assiette_allegement, 4.5 * smic_proratise),
                 plafond_securite_sociale = plafond_securite_sociale,
                 round_base_decimals = 2,
                 )
@@ -531,7 +531,7 @@ def compute_taux_exoneration(assiette_allegement, smic_proratise, taux_max, seui
     ratio_smic_salaire = smic_proratise / (assiette_allegement + 1e-16)
     # règle d'arrondi: 4 décimales au dix-millième le plus proche ( # TODO: reprise de l'allègement Fillon unchecked)
     return round_(
-        taux_max * min_(1, numpy.maximum(seuil_max * seuil_min * ratio_smic_salaire - seuil_min, 0) / (seuil_max - seuil_min)),
+        taux_max * numpy.minimum(1, numpy.maximum(seuil_max * seuil_min * ratio_smic_salaire - seuil_min, 0) / (seuil_max - seuil_min)),
         4,
         )
 

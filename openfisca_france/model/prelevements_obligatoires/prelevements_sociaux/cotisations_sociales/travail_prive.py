@@ -461,7 +461,7 @@ class arrco_salarie(Variable):
 
         # cas où l'entreprise applique un taux spécifique
         cotisation_entreprise = - (
-            min_(numpy.maximum(assiette_cotisations_sociales, 0), plafond_securite_sociale)
+            numpy.minimum(numpy.maximum(assiette_cotisations_sociales, 0), plafond_securite_sociale)
             * arrco_tranche_a_taux_salarie
             )
 
@@ -500,7 +500,7 @@ class arrco_employeur(Variable):
 
         # cas où l'entreprise applique un taux spécifique
         cotisation_entreprise = - (
-            min_(numpy.maximum(assiette_cotisations_sociales, 0), plafond_securite_sociale)
+            numpy.minimum(numpy.maximum(assiette_cotisations_sociales, 0), plafond_securite_sociale)
             * arrco_tranche_a_taux_employeur
             )
 
@@ -742,7 +742,7 @@ class plafond_securite_sociale(Variable):
         # que le salarié a été présent de jours calendaires. Source urssaf.fr "L’assiette maximale"
         # calcul du nombre de jours calendaires de présence du salarié
         nombre_jours_calendaires = individu('nombre_jours_calendaires', period)
-        plafond = plafond * (min_(nombre_jours_calendaires, 30) / 30)
+        plafond = plafond * (numpy.minimum(nombre_jours_calendaires, 30) / 30)
 
         return plafond
 
@@ -763,7 +763,7 @@ class prevoyance_obligatoire_cadre(Variable):
 
         cotisation = - (
             (categorie_salarie == TypesCategorieSalarie.prive_cadre)
-            * min_(assiette_cotisations_sociales, plafond_securite_sociale)
+            * numpy.minimum(assiette_cotisations_sociales, plafond_securite_sociale)
             * prevoyance_obligatoire_cadre_taux_employeur
             )
         return cotisation

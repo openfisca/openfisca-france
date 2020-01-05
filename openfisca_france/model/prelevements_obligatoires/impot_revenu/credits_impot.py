@@ -146,7 +146,7 @@ class aidper(Variable):
                 ) / 2
             )
 
-        return P.taux_wi * min_(f7wi, max0)
+        return P.taux_wi * numpy.minimum(f7wi, max0)
 
     def formula_2004_01_01(foyer_fiscal, period, parameters):
         '''
@@ -177,8 +177,8 @@ class aidper(Variable):
 
         max1 = numpy.maximum(0, max0 - f7wj)
         return (
-            P.taux_wj * min_(f7wj, max0)
-            + P.taux_wi * min_(f7wi, max1)
+            P.taux_wj * numpy.minimum(f7wj, max0)
+            + P.taux_wi * numpy.minimum(f7wi, max1)
             )
 
     def formula_2006_01_01(foyer_fiscal, period, parameters):
@@ -197,8 +197,8 @@ class aidper(Variable):
         max0 = P.max * (1 + maries_ou_pacses) + P.pac1 * nb_pac_majoration_plafond
         max1 = numpy.maximum(0, max0 - f7wj)
         return (
-            P.taux_wj * min_(f7wj, max0)
-            + P.taux_wi * min_(f7wi, max1)
+            P.taux_wj * numpy.minimum(f7wj, max0)
+            + P.taux_wi * numpy.minimum(f7wi, max1)
             )
 
     def formula_2010_01_01(foyer_fiscal, period, parameters):
@@ -219,9 +219,9 @@ class aidper(Variable):
         max1 = numpy.maximum(0, max0 - f7wl - f7sf)
         max2 = numpy.maximum(0, max1 - f7wj)
         return (
-            P.taux_wl * min_(f7wl + f7sf, max0)
-            + P.taux_wj * min_(f7wj, max1)
-            + P.taux_wi * min_(f7wi, max2)
+            P.taux_wl * numpy.minimum(f7wl + f7sf, max0)
+            + P.taux_wj * numpy.minimum(f7wj, max1)
+            + P.taux_wi * numpy.minimum(f7wi, max2)
             )
 
     def formula_2012_01_01(foyer_fiscal, period, parameters):
@@ -245,9 +245,9 @@ class aidper(Variable):
         max2 = numpy.maximum(0, max1 - f7wi)  # f7wi s'impute avant f7wl
         return (
             P.taux_wr * f7wr +
-            + P.taux_wj * min_(f7wj, max0)
-            + P.taux_wi * min_(f7wi, max1)
-            + P.taux_wl * (min_(f7wl, max2) + min_(numpy.maximum(0, f7wl - max2), max00))
+            + P.taux_wj * numpy.minimum(f7wj, max0)
+            + P.taux_wi * numpy.minimum(f7wi, max1)
+            + P.taux_wl * (numpy.minimum(f7wl, max2) + numpy.minimum(numpy.maximum(0, f7wl - max2), max00))
             )
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
@@ -269,8 +269,8 @@ class aidper(Variable):
 
         return (
             P.taux_wr * f7wr
-            + P.taux_wj * min_(f7wj, max0)
-            + P.taux_wl * (min_(f7wl, max1) + min_(numpy.maximum(0, f7wl - max1), max00))
+            + P.taux_wj * numpy.minimum(f7wj, max0)
+            + P.taux_wl * (numpy.minimum(f7wl, max1) + numpy.minimum(numpy.maximum(0, f7wl - max1), max00))
             )
 
     def formula_2015_01_01(foyer_fiscal, period, parameters):
@@ -292,8 +292,8 @@ class aidper(Variable):
 
         return (
             P.taux_wr * f7wr
-            + P.taux_wj * min_(f7wj, max0)
-            + P.taux_wl * min_(f7wl, max1)
+            + P.taux_wj * numpy.minimum(f7wj, max0)
+            + P.taux_wl * numpy.minimum(f7wl, max1)
             )
 
     def formula_2018_01_01(foyer_fiscal, period, parameters):
@@ -316,8 +316,8 @@ class aidper(Variable):
 
         return (
             P.taux_wr * f7wr
-            + P.taux_wj * min_(f7wi + f7wj, max0)
-            + P.taux_wl * min_(f7wl, max1)
+            + P.taux_wj * numpy.minimum(f7wi + f7wj, max0)
+            + P.taux_wl * numpy.minimum(f7wl, max1)
             )
 
 
@@ -378,12 +378,12 @@ class ci_garext(Variable):
 
         max1 = P.plafond
         return P.taux * (
-            min_(f7ga, max1)
-            + min_(f7gb, max1)
-            + min_(f7gc, max1)
-            + min_(f7ge, max1 / 2)
-            + min_(f7gf, max1 / 2)
-            + min_(f7gg, max1 / 2)
+            numpy.minimum(f7ga, max1)
+            + numpy.minimum(f7gb, max1)
+            + numpy.minimum(f7gc, max1)
+            + numpy.minimum(f7ge, max1 / 2)
+            + numpy.minimum(f7gf, max1 / 2)
+            + numpy.minimum(f7gg, max1 / 2)
             )
 
 
@@ -428,7 +428,7 @@ class creimp_exc_2008(Variable):
             * (rpp <= 12475)
             * around(
                 (2 / 3)
-                * min_(12475, iai)
+                * numpy.minimum(12475, iai)
                 * (rpp < 11674)
                 + (rpp > 11673)
                 * numpy.maximum(0, 8317 * (12475 - rpp) / 802)
@@ -866,7 +866,7 @@ class divide(Variable):
         P = parameters(period).impot_revenu.credits_impot.divide
 
         max1 = P.max * (maries_ou_pacses + 1)
-        return min_(P.taux * (f2dc + f2gr), max1)
+        return numpy.minimum(P.taux * (f2dc + f2gr), max1)
 
 
 class drbail(Variable):
@@ -909,7 +909,7 @@ class inthab(Variable):
 
         invalide = invalidite_decl | invalidite_conj | (nbpac_invalideG != 0) | (nbpac_invalideR != 0)
         max0 = P.max * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac_majoration_plafond * P.add
-        return P.taux1 * min_(max0, f7uh)
+        return P.taux1 * numpy.minimum(max0, f7uh)
 
     def formula_2008_01_01(foyer_fiscal, period, parameters):
         '''
@@ -931,8 +931,8 @@ class inthab(Variable):
         max1 = numpy.maximum(max0 - f7vy, 0)
 
         return (
-            P.taux1 * min_(f7vy, max0)
-            + P.taux3 * min_(f7vz, max1)
+            P.taux1 * numpy.minimum(f7vy, max0)
+            + P.taux3 * numpy.minimum(f7vz, max1)
             )
 
     def formula_2009_01_01(foyer_fiscal, period, parameters):
@@ -958,9 +958,9 @@ class inthab(Variable):
         max2 = numpy.maximum(max1 - f7vy, 0)
 
         return (
-            P.taux1 * min_(f7vx, max0)
-            + P.taux1 * min_(f7vy, max1)
-            + P.taux3 * min_(f7vz, max2)
+            P.taux1 * numpy.minimum(f7vx, max0)
+            + P.taux1 * numpy.minimum(f7vy, max1)
+            + P.taux3 * numpy.minimum(f7vz, max2)
             )
 
     def formula_2010_01_01(foyer_fiscal, period, parameters):
@@ -988,10 +988,10 @@ class inthab(Variable):
         max3 = numpy.maximum(max2 - f7vw, 0)
 
         return (
-            P.taux1 * min_(f7vx, max0)
-            + P.taux1 * min_(f7vy, max1)
-            + P.taux2 * min_(f7vw, max2)
-            + P.taux3 * min_(f7vz, max3)
+            P.taux1 * numpy.minimum(f7vx, max0)
+            + P.taux1 * numpy.minimum(f7vy, max1)
+            + P.taux2 * numpy.minimum(f7vw, max2)
+            + P.taux3 * numpy.minimum(f7vz, max3)
             )
 
     def formula_2011_01_01(foyer_fiscal, period, parameters):
@@ -1023,12 +1023,12 @@ class inthab(Variable):
         max5 = numpy.maximum(max4 - f7vz, 0)
 
         return (
-            P.taux1 * min_(f7vx, max0)
-            + P.taux1 * min_(f7vy, max1)
-            + P.taux2 * min_(f7vw, max2)
-            + P.taux3 * min_(f7vu, max3)
-            + P.taux4 * min_(f7vz, max4)
-            + P.taux5 * min_(f7vv, max5)
+            P.taux1 * numpy.minimum(f7vx, max0)
+            + P.taux1 * numpy.minimum(f7vy, max1)
+            + P.taux2 * numpy.minimum(f7vw, max2)
+            + P.taux3 * numpy.minimum(f7vu, max3)
+            + P.taux4 * numpy.minimum(f7vz, max4)
+            + P.taux5 * numpy.minimum(f7vv, max5)
             )
 
     def formula_2012_01_01(foyer_fiscal, period, parameters):
@@ -1063,13 +1063,13 @@ class inthab(Variable):
         max6 = numpy.maximum(max5 - f7vv, 0)
 
         return (
-            P.taux1 * min_(f7vx, max0)
-            + P.taux1 * min_(f7vy, max1)
-            + P.taux2 * min_(f7vw, max2)
-            + P.taux3 * min_(f7vu, max3)
-            + P.taux4 * min_(f7vz, max4)
-            + P.taux5 * min_(f7vv, max5)
-            + P.taux6 * min_(f7vt, max6)
+            P.taux1 * numpy.minimum(f7vx, max0)
+            + P.taux1 * numpy.minimum(f7vy, max1)
+            + P.taux2 * numpy.minimum(f7vw, max2)
+            + P.taux3 * numpy.minimum(f7vu, max3)
+            + P.taux4 * numpy.minimum(f7vz, max4)
+            + P.taux5 * numpy.minimum(f7vv, max5)
+            + P.taux6 * numpy.minimum(f7vt, max6)
             )
 
     def formula_2014_01_01(foyer_fiscal, period, parameters):
@@ -1101,11 +1101,11 @@ class inthab(Variable):
         max4 = numpy.maximum(max3 - f7vv, 0)
 
         return (
-            P.taux1 * min_(f7vx, max0)
-            + P.taux3 * min_(f7vu, max1)
-            + P.taux4 * min_(f7vz, max2)
-            + P.taux5 * min_(f7vv, max3)
-            + P.taux6 * min_(f7vt, max4)
+            P.taux1 * numpy.minimum(f7vx, max0)
+            + P.taux3 * numpy.minimum(f7vu, max1)
+            + P.taux4 * numpy.minimum(f7vz, max2)
+            + P.taux5 * numpy.minimum(f7vv, max3)
+            + P.taux6 * numpy.minimum(f7vt, max4)
             )
 
     def formula_2015_01_01(foyer_fiscal, period, parameters):
@@ -1135,10 +1135,10 @@ class inthab(Variable):
         max3 = numpy.maximum(max2 - f7vv, 0)
 
         return (
-            P.taux1 * min_(f7vx, max0)
-            + P.taux4 * min_(f7vz, max1)
-            + P.taux5 * min_(f7vv, max2)
-            + P.taux6 * min_(f7vt, max3)
+            P.taux1 * numpy.minimum(f7vx, max0)
+            + P.taux4 * numpy.minimum(f7vz, max1)
+            + P.taux5 * numpy.minimum(f7vv, max2)
+            + P.taux6 * numpy.minimum(f7vt, max3)
             )
 
     def formula_2016_01_01(foyer_fiscal, period, parameters):
@@ -1166,9 +1166,9 @@ class inthab(Variable):
         max2 = numpy.maximum(max1 - f7vz, 0)
 
         return (
-            P.taux1 * min_(f7vx, max0)
-            + P.taux4 * min_(f7vz, max1)
-            + P.taux6 * min_(f7vt, max2)
+            P.taux1 * numpy.minimum(f7vx, max0)
+            + P.taux4 * numpy.minimum(f7vz, max1)
+            + P.taux6 * numpy.minimum(f7vt, max2)
             )
 
     def formula_2017_01_01(foyer_fiscal, period, parameters):
@@ -1196,9 +1196,9 @@ class inthab(Variable):
         max2 = numpy.maximum(max1 - f7vv, 0)
 
         return (
-            P.taux1 * min_(f7vx, max0)
-            + P.taux5 * min_(f7vv, max1)
-            + P.taux6 * min_(f7vt, max2)
+            P.taux1 * numpy.minimum(f7vx, max0)
+            + P.taux5 * numpy.minimum(f7vv, max1)
+            + P.taux6 * numpy.minimum(f7vt, max2)
             )
 
 
@@ -1296,7 +1296,7 @@ class preetu(Variable):
         f7uk = foyer_fiscal('f7uk', period)
         P = parameters(period).impot_revenu.credits_impot.preetu
 
-        return P.taux * min_(f7uk, P.max)
+        return P.taux * numpy.minimum(f7uk, P.max)
 
     def formula_2006_01_01(foyer_fiscal, period, parameters):
         '''
@@ -1308,7 +1308,7 @@ class preetu(Variable):
         P = parameters(period).impot_revenu.credits_impot.preetu
 
         max1 = P.max * (1 + f7vo)
-        return P.taux * min_(f7uk, max1)
+        return P.taux * numpy.minimum(f7uk, max1)
 
     def formula_2008_01_01(foyer_fiscal, period, parameters):
         '''
@@ -1321,7 +1321,7 @@ class preetu(Variable):
         P = parameters(period).impot_revenu.credits_impot.preetu
 
         max1 = P.max * f7vo
-        return P.taux * min_(f7uk, P.max) + P.taux * min_(f7td, max1)
+        return P.taux * numpy.minimum(f7uk, P.max) + P.taux * numpy.minimum(f7td, max1)
 
 
 class prlire(Variable):
@@ -1337,7 +1337,7 @@ class prlire(Variable):
         P = parameters(period)
 
         plaf_resid = numpy.maximum(P.impot_revenu.rvcm.abat_assvie * (1 + maries_ou_pacses) - f2ch, 0)
-        return P.impot_revenu.credits_impot.prlire.taux * min_(f2dh, plaf_resid)
+        return P.impot_revenu.credits_impot.prlire.taux * numpy.minimum(f2dh, plaf_resid)
 
 
 class quaenv(Variable):
@@ -1365,9 +1365,9 @@ class quaenv(Variable):
         max1 = numpy.maximum(0, max0 - f7wf)
         max2 = numpy.maximum(0, max1 - f7wg)
         return (
-            P.taux_wf * min_(f7wf, max0)
-            + P.taux_wg * min_(f7wg, max1)
-            + P.taux_wh * min_(f7wh, max2)
+            P.taux_wf * numpy.minimum(f7wf, max0)
+            + P.taux_wg * numpy.minimum(f7wg, max1)
+            + P.taux_wh * numpy.minimum(f7wh, max2)
             )
 
     def formula_2006_01_01(foyer_fiscal, period, parameters):
@@ -1390,10 +1390,10 @@ class quaenv(Variable):
         max2 = numpy.maximum(0, max1 - f7wg)
         max3 = numpy.maximum(0, max2 - f7wh)
         return (
-            P.taux_wf * min_(f7wf, max0)
-            + P.taux_wg * min_(f7wg, max1)
-            + P.taux_wh * min_(f7wh, max2)
-            + P.taux_wq * min_(f7wq, max3)
+            P.taux_wf * numpy.minimum(f7wf, max0)
+            + P.taux_wg * numpy.minimum(f7wg, max1)
+            + P.taux_wh * numpy.minimum(f7wh, max2)
+            + P.taux_wq * numpy.minimum(f7wq, max3)
             )
 
     def formula_2009_01_01(foyer_fiscal, period, parameters):
@@ -1429,15 +1429,15 @@ class quaenv(Variable):
         max8 = numpy.maximum(0, max7 - f7sb)
 
         return or_(numpy.logical_not(f7we), rfr < P.max_rfr) * (
-            P.taux_wf * min_(f7wf, max0)
-            + P.taux_se * min_(f7se, max1)
-            + P.taux_wk * min_(f7wk, max2)
-            + P.taux_sd * min_(f7sd, max3)
-            + P.taux_wg * min_(f7wg, max4)
-            + P.taux_sc * min_(f7sc, max5)
-            + P.taux_wh * min_(f7wh, max6)
-            + P.taux_sb * min_(f7sb, max7)
-            + P.taux_wq * min_(f7wq, max8)
+            P.taux_wf * numpy.minimum(f7wf, max0)
+            + P.taux_se * numpy.minimum(f7se, max1)
+            + P.taux_wk * numpy.minimum(f7wk, max2)
+            + P.taux_sd * numpy.minimum(f7sd, max3)
+            + P.taux_wg * numpy.minimum(f7wg, max4)
+            + P.taux_sc * numpy.minimum(f7sc, max5)
+            + P.taux_wh * numpy.minimum(f7wh, max6)
+            + P.taux_sb * numpy.minimum(f7sb, max7)
+            + P.taux_wq * numpy.minimum(f7wq, max8)
             )
 
     def formula_2010_01_01(foyer_fiscal, period, parameters):
@@ -1471,14 +1471,14 @@ class quaenv(Variable):
         max6 = numpy.maximum(0, max5 - f7sb)
         max7 = numpy.maximum(0, max6 - f7wq)
         return numpy.logical_not(f7wg) * or_(numpy.logical_not(f7we), (rfr < P.max_rfr)) * (
-            P.taux_wf * min_(f7wf, max0)
-            + P.taux_se * min_(f7se, max1)
-            + P.taux_wk * min_(f7wk, max2)
-            + P.taux_sd * min_(f7sd, max3)
-            + P.taux_wh * min_(f7wh, max4)
-            + P.taux_sb * min_(f7sb, max5)
-            + P.taux_wq * min_(f7wq, max6)
-            + P.taux_sh * min_(f7sh, max7)
+            P.taux_wf * numpy.minimum(f7wf, max0)
+            + P.taux_se * numpy.minimum(f7se, max1)
+            + P.taux_wk * numpy.minimum(f7wk, max2)
+            + P.taux_sd * numpy.minimum(f7sd, max3)
+            + P.taux_wh * numpy.minimum(f7wh, max4)
+            + P.taux_sb * numpy.minimum(f7sb, max5)
+            + P.taux_wq * numpy.minimum(f7wq, max6)
+            + P.taux_sh * numpy.minimum(f7sh, max7)
             )
 
     def formula_2012_01_01(foyer_fiscal, period, parameters):
@@ -1531,12 +1531,12 @@ class quaenv(Variable):
         maxi4 = numpy.maximum(0, maxi3 - f7tv)
         maxi5 = numpy.maximum(0, maxi4 - f7tu)
         collectif = (
-            P.taux_ty * min_(f7ty, max0)
-            + P.taux_tx * min_(f7tx, maxi1)
-            + P.taux_tw * min_(f7tw, maxi2)
-            + P.taux_tv * min_(f7tv, maxi3)
-            + P.taux_tu * min_(f7tu, maxi4)
-            + P.taux_tt * min_(f7tt, maxi5)
+            P.taux_ty * numpy.minimum(f7ty, max0)
+            + P.taux_tx * numpy.minimum(f7tx, maxi1)
+            + P.taux_tw * numpy.minimum(f7tw, maxi2)
+            + P.taux_tv * numpy.minimum(f7tv, maxi3)
+            + P.taux_tu * numpy.minimum(f7tu, maxi4)
+            + P.taux_tt * numpy.minimum(f7tt, maxi5)
             )
 
         max1 = numpy.maximum(0, max0 - quaenv_bouquet * (f7ss + f7st) - numpy.logical_not(quaenv_bouquet) * (f7ss + f7st + f7sv))
@@ -1550,23 +1550,23 @@ class quaenv(Variable):
 
         montant = (
             quaenv_bouquet * (
-                P.taux10 * min_(max8, f7sk + f7sl)
-                + P.taux11 * min_(max7, f7sm)
-                + P.taux15 * min_(max6, f7sf + f7si + f7su + f7sw)
-                + P.taux18 * min_(max5, f7sd + f7sj)
-                + P.taux23 * min_(max4, f7sg + f7sh + f7so + f7sp)
-                + P.taux26 * min_(max3, f7se)
-                + P.taux32 * min_(max2, f7sv)
-                + P.taux34 * min_(max1, f7sn + f7sr + f7sq)
-                + P.taux40 * min_(max0, f7ss + f7st)
+                P.taux10 * numpy.minimum(max8, f7sk + f7sl)
+                + P.taux11 * numpy.minimum(max7, f7sm)
+                + P.taux15 * numpy.minimum(max6, f7sf + f7si + f7su + f7sw)
+                + P.taux18 * numpy.minimum(max5, f7sd + f7sj)
+                + P.taux23 * numpy.minimum(max4, f7sg + f7sh + f7so + f7sp)
+                + P.taux26 * numpy.minimum(max3, f7se)
+                + P.taux32 * numpy.minimum(max2, f7sv)
+                + P.taux34 * numpy.minimum(max1, f7sn + f7sr + f7sq)
+                + P.taux40 * numpy.minimum(max0, f7ss + f7st)
                 )
             + numpy.logical_not(quaenv_bouquet) * (
-                P.taux32 * min_(max0, f7ss + f7st + f7sv)
-                + P.taux26 * min_(max1, f7sn + f7sq + f7sr)
-                + P.taux17 * min_(max2, f7se)
-                + P.taux15 * min_(max3, f7sf + f7sg + f7sh + f7si + f7so + f7su + f7sw + f7sp)
-                + P.taux11 * min_(max4, f7sm)
-                + P.taux10 * min_(max5, f7sd + numpy.logical_not(f7wk) * (f7sj + f7sk + f7sl))
+                P.taux32 * numpy.minimum(max0, f7ss + f7st + f7sv)
+                + P.taux26 * numpy.minimum(max1, f7sn + f7sq + f7sr)
+                + P.taux17 * numpy.minimum(max2, f7se)
+                + P.taux15 * numpy.minimum(max3, f7sf + f7sg + f7sh + f7si + f7so + f7su + f7sw + f7sp)
+                + P.taux11 * numpy.minimum(max4, f7sm)
+                + P.taux10 * numpy.minimum(max5, f7sd + numpy.logical_not(f7wk) * (f7sj + f7sk + f7sl))
                 )
             )
 
@@ -1621,23 +1621,23 @@ class quaenv(Variable):
 
         montant = (
             quaenv_bouquet * (
-                P.taux10 * min_(max8, f7sk + f7sl)
-                + P.taux11 * min_(max7, f7sm)
-                + P.taux15 * min_(max6, f7sf + f7si + f7su + f7sw)
-                + P.taux18 * min_(max5, f7sd + f7sj)
-                + P.taux23 * min_(max4, f7sg + f7sh + f7so + f7sp)
-                + P.taux26 * min_(max3, f7se)
-                + P.taux32 * min_(max2, f7sv)
-                + P.taux34 * min_(max1, f7sn + f7sr + f7sq)
-                + P.taux40 * min_(max0, f7ss + f7st)
+                P.taux10 * numpy.minimum(max8, f7sk + f7sl)
+                + P.taux11 * numpy.minimum(max7, f7sm)
+                + P.taux15 * numpy.minimum(max6, f7sf + f7si + f7su + f7sw)
+                + P.taux18 * numpy.minimum(max5, f7sd + f7sj)
+                + P.taux23 * numpy.minimum(max4, f7sg + f7sh + f7so + f7sp)
+                + P.taux26 * numpy.minimum(max3, f7se)
+                + P.taux32 * numpy.minimum(max2, f7sv)
+                + P.taux34 * numpy.minimum(max1, f7sn + f7sr + f7sq)
+                + P.taux40 * numpy.minimum(max0, f7ss + f7st)
                 )
             + numpy.logical_not(quaenv_bouquet) * (
-                + P.taux32 * min_(max0, f7ss + f7st + f7sv)
-                + P.taux26 * min_(max1, f7sn + f7sq + f7sr)
-                + P.taux17 * min_(max2, f7se)
-                + P.taux15 * min_(max3, f7sf + f7sg + f7sh + f7si + f7so + f7su + f7sw + f7sp)
-                + P.taux11 * min_(max4, f7sm)
-                + P.taux10 * min_(max5, f7sd + numpy.logical_not(f7wk) * (f7sj + f7sk + f7sl))
+                + P.taux32 * numpy.minimum(max0, f7ss + f7st + f7sv)
+                + P.taux26 * numpy.minimum(max1, f7sn + f7sq + f7sr)
+                + P.taux17 * numpy.minimum(max2, f7se)
+                + P.taux15 * numpy.minimum(max3, f7sf + f7sg + f7sh + f7si + f7so + f7su + f7sw + f7sp)
+                + P.taux11 * numpy.minimum(max4, f7sm)
+                + P.taux10 * numpy.minimum(max5, f7sd + numpy.logical_not(f7wk) * (f7sj + f7sk + f7sl))
                 )
             )
         return or_(numpy.logical_not(or_(f7we, f7wg)), (rfr < P.max_rfr)) * montant + f7sz  # TODO : attention, la condition porte sur le RFR des années passées (N-2 et N-3)
@@ -1736,12 +1736,12 @@ class quaenv(Variable):
         max1 = numpy.maximum(0, max00 - quaenv_bouquet * (f7sd + f7se + f7wc + f7vg + f7wt + f7sn + f7sp + f7sr + f7ss + f7sq + f7st) - numpy.logical_not(quaenv_bouquet) * (max00))
 
         credit_quaenv = (
-            quaenv_bouquet * (P.taux25 * (min_(max00,
+            quaenv_bouquet * (P.taux25 * (numpy.minimum(max00,
                 f7sd + f7se + f7wc + f7vg + f7wt + f7sn + f7sp + f7sr + f7ss + f7sq + f7st))
-                + P.taux15 * min_(max1,
+                + P.taux15 * numpy.minimum(max1,
                     f7sf + f7sg + f7sh + f7si + f7sj + f7sk + f7sl + f7sv + f7sw)
                               )
-            + numpy.logical_not(quaenv_bouquet) * P.taux15 * (min_(max00,
+            + numpy.logical_not(quaenv_bouquet) * P.taux15 * (numpy.minimum(max00,
                 f7se + f7wc + f7vg + f7sn + f7sp + f7sr + f7ss + f7sq + f7st + f7sf + f7sg
                 + f7sh + f7si + f7sv + f7sw + f7sd + numpy.logical_not(f7wk) * (f7wt + f7sj + f7sk + f7sl)))
             )
@@ -1751,7 +1751,7 @@ class quaenv(Variable):
         # TODO : inclure la condition de bouquet sur 2 périodes (si pas de bouquet avec les dépenses du 1.1 au 31.8, le bouquet peut s'apprécier
         #          sur la base des dépenses faites du 1.1 au 31.12 mais le taux sera de 25% pour la 1ère moitié de l'année et 30% l'autre)
 
-        return P.taux30 * min_(max0, depenses_transition_energetique) + min_(numpy.maximum(0, max0 - depenses_transition_energetique), credit_quaenv)
+        return P.taux30 * numpy.minimum(max0, depenses_transition_energetique) + numpy.minimum(numpy.maximum(0, max0 - depenses_transition_energetique), credit_quaenv)
 
     def formula_2015_01_01(foyer_fiscal, period, parameters):
         '''
@@ -1881,9 +1881,9 @@ class quaenv(Variable):
         max1 = numpy.maximum(0, max00 - quaenv_bouquet * (f7sd + f7se + f7wc + f7vg + f7wt + f7sn + f7sp + f7sr + f7ss + f7sq + f7st) - numpy.logical_not(quaenv_bouquet) * (max00))
         credit_quaenv_bouquet_2ans = (
             quaenv_bouquet * (
-                P.taux25 * (min_(max00,
+                P.taux25 * (numpy.minimum(max00,
                     f7sd + f7se + f7wc + f7vg + f7wt + f7sn + f7sp + f7sr + f7ss + f7sq + f7st))
-                + P.taux15 * min_(max1,
+                + P.taux15 * numpy.minimum(max1,
                     f7sf + f7sg + f7sh + f7si + f7sj + f7sk + f7sl + f7sv + f7sw)
                 )
             )
@@ -1891,8 +1891,8 @@ class quaenv(Variable):
         # TODO: inclure la condition de non cumul éco-prêt / crédit quaenv si RFR > ... (condition complexifiée à partir de 2014)
 
         return (
-            P.taux30 * min_(max0, depenses_transition_energetique)
-            + min_(numpy.maximum(0, max0 - depenses_transition_energetique), credit_quaenv_bouquet_2ans)
+            P.taux30 * numpy.minimum(max0, depenses_transition_energetique)
+            + numpy.minimum(numpy.maximum(0, max0 - depenses_transition_energetique), credit_quaenv_bouquet_2ans)
             )
 
     def formula_2016_01_01(foyer_fiscal, period, parameters):
@@ -1911,7 +1911,7 @@ class quaenv(Variable):
             ]
         depenses_transition_energetique = sum([foyer_fiscal(case, period) for case in cases_depenses])
 
-        return P.taux30 * min_(max0, depenses_transition_energetique)
+        return P.taux30 * numpy.minimum(max0, depenses_transition_energetique)
 
     def formula_2017_01_01(foyer_fiscal, period, parameters):
         '''
@@ -1929,7 +1929,7 @@ class quaenv(Variable):
         depenses_transition_energetique = sum([foyer_fiscal(case, period) for case in cases_depenses])
         plafond_depenses_energetiques = P.max * (1 + maries_ou_pacses) + P.pac1 * personnes_a_charge
 
-        return P.taux30 * min_(plafond_depenses_energetiques, depenses_transition_energetique)
+        return P.taux30 * numpy.minimum(plafond_depenses_energetiques, depenses_transition_energetique)
 
     def formula_2018_01_01(foyer_fiscal, period, parameters):
         '''
@@ -1952,8 +1952,8 @@ class quaenv(Variable):
         plafond_depenses_energetiques_taux_reduit = numpy.maximum(0, plafond_depenses_energetiques - depenses_transition_energetique)
 
         return (
-            P.taux30 * min_(plafond_depenses_energetiques, depenses_transition_energetique)
-            + P.taux15 * min_(plafond_depenses_energetiques_taux_reduit, depenses_transition_energetique_taux_reduit)
+            P.taux30 * numpy.minimum(plafond_depenses_energetiques, depenses_transition_energetique)
+            + P.taux15 * numpy.minimum(plafond_depenses_energetiques_taux_reduit, depenses_transition_energetique_taux_reduit)
             )
 
 
@@ -2173,10 +2173,10 @@ class saldom2(Variable):
         nbpacmin = nb_pac_majoration_plafond + f7dl
         maxBase = P.max1
         maxDuMaxNonInv = P.max2
-        maxNonInv = min_(maxBase + P.pac * nbpacmin, maxDuMaxNonInv)
+        maxNonInv = numpy.minimum(maxBase + P.pac * nbpacmin, maxDuMaxNonInv)
         maxEffectif = maxNonInv * numpy.logical_not(isinvalid) + P.max3 * isinvalid
 
-        return P.taux * min_(f7db, maxEffectif)
+        return P.taux * numpy.minimum(f7db, maxEffectif)
 
     def formula_2009_01_01(foyer_fiscal, period, parameters):
         '''
@@ -2195,7 +2195,7 @@ class saldom2(Variable):
         nbpacmin = nb_pac_majoration_plafond + f7dl
         maxBase = P.max1 * numpy.logical_not(annee1) + P.max1_premiere_annee * annee1
         maxDuMaxNonInv = P.max2 * numpy.logical_not(annee1) + P.max2_premiere_annee * annee1
-        maxNonInv = min_(maxBase + P.pac * nbpacmin, maxDuMaxNonInv)
+        maxNonInv = numpy.minimum(maxBase + P.pac * nbpacmin, maxDuMaxNonInv)
         maxEffectif = maxNonInv * numpy.logical_not(isinvalid) + P.max3 * isinvalid
 
-        return P.taux * min_(f7db, maxEffectif)
+        return P.taux * numpy.minimum(f7db, maxEffectif)

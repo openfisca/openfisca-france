@@ -268,10 +268,10 @@ class isf_ifi_imm_non_bati(Variable):
         # forêts
         b1bd = b1bc * P.taux_f
         # bien ruraux loués à long terme
-        b1bf = min_(b1be, P.seuil) * P.taux_r1
+        b1bf = numpy.minimum(b1be, P.seuil) * P.taux_r1
         b1bg = numpy.maximum(b1be - P.seuil, 0) * P.taux_r2
         # part de groupements forestiers- agricoles fonciers
-        b1bi = min_(b1bh, P.seuil) * P.taux_r1
+        b1bi = numpy.minimum(b1bh, P.seuil) * P.taux_r1
         b1bj = numpy.maximum(b1bh - P.seuil, 0) * P.taux_r2
         return b1bd + b1bf + b1bg + b1bi + b1bj + b1bk
 
@@ -457,7 +457,7 @@ class isf_ifi_avant_plaf(Variable):
         isf_reduc_pac = foyer_fiscal('isf_reduc_pac', period)
         borne_max = parameters(period).taxation_capital.isf_ifi.reduc_invest_don.max
 
-        return numpy.maximum(0, isf_ifi_avant_reduction - min_(isf_inv_pme + isf_org_int_gen, borne_max) - isf_reduc_pac)
+        return numpy.maximum(0, isf_ifi_avant_reduction - numpy.minimum(isf_inv_pme + isf_org_int_gen, borne_max) - isf_reduc_pac)
 
 
 # # calcul du plafonnement ##
@@ -591,8 +591,8 @@ class isf_ifi_apres_plaf(Variable):
         plafonnement = numpy.maximum(total_impots_plafonnement_isf_ifi - revenus_et_produits_plafonnement_isf_ifi, 0)
         limitationplaf = (
             (isf_ifi_avant_plaf <= P.seuil1) * plafonnement
-            + (P.seuil1 <= isf_ifi_avant_plaf) * (isf_ifi_avant_plaf <= P.seuil2) * min_(plafonnement, P.seuil1)
-            + (isf_ifi_avant_plaf >= P.seuil2) * min_(isf_ifi_avant_plaf * P.taux, plafonnement)
+            + (P.seuil1 <= isf_ifi_avant_plaf) * (isf_ifi_avant_plaf <= P.seuil2) * numpy.minimum(plafonnement, P.seuil1)
+            + (isf_ifi_avant_plaf >= P.seuil2) * numpy.minimum(isf_ifi_avant_plaf * P.taux, plafonnement)
             )
         return numpy.maximum(isf_ifi_avant_plaf - limitationplaf, 0)
 
@@ -622,7 +622,7 @@ class isf_ifi(Variable):
     def formula(foyer_fiscal, period):
         b4rs = foyer_fiscal('b4rs', period)
         isf_ifi_apres_plaf = foyer_fiscal('isf_ifi_apres_plaf', period)
-        return min_(-(isf_ifi_apres_plaf - b4rs), 0)
+        return numpy.minimum(-(isf_ifi_apres_plaf - b4rs), 0)
 
 
 # # BOUCLIER FISCAL ##

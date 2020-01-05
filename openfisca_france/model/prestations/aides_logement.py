@@ -382,7 +382,7 @@ class al_nb_personnes_a_charge(Variable):
             return famille.sum(adulte_handicape, role = Famille.ENFANT)
 
         nb_pac = al_nb_enfants() + al_nb_adultes_handicapes()
-        nb_pac = where(residence_dom, min_(nb_pac, 6), nb_pac)
+        nb_pac = where(residence_dom, numpy.minimum(nb_pac, 6), nb_pac)
         # Dans les DOMs, le barème est fixe à partir de 6 enfants.
 
         return nb_pac
@@ -474,7 +474,7 @@ class aide_logement_base_ressources_eval_forfaitaire(Variable):
             params_abattement = parameters(period).impot_revenu.tspr.abatpro
             somme_salaires_mois_precedent = 12 * salaire_imposable
             montant_abattement = round_(
-                min_(
+                numpy.minimum(
                     numpy.maximum(params_abattement.taux * somme_salaires_mois_precedent, params_abattement.min),
                     params_abattement.max
                     )
@@ -507,7 +507,7 @@ class aide_logement_assiette_abattement_chomage(Variable):
         abatpro = parameters(period).impot_revenu.tspr.abatpro
 
         abattement_minimum = where(chomeur_longue_duree, abatpro.min2, abatpro.min)
-        abattement_forfaitaire = round_(min_(numpy.maximum(abatpro.taux * revenu_salarie, abattement_minimum), abatpro.max))
+        abattement_forfaitaire = round_(numpy.minimum(numpy.maximum(abatpro.taux * revenu_salarie, abattement_minimum), abatpro.max))
         revenus_salarie_apres_abbatement = where(
             frais_reels > abattement_forfaitaire,
             revenu_salarie - frais_reels,
@@ -823,7 +823,7 @@ class aide_logement_loyer_retenu(Variable):
         loyer_reel = famille('aide_logement_loyer_reel', period)
 
         # loyer retenu
-        return min_(loyer_reel, loyer_plafond)
+        return numpy.minimum(loyer_reel, loyer_plafond)
 
 
 class aide_logement_charges(Variable):
@@ -1122,7 +1122,7 @@ class aides_logement_accedant_et_foyer(Variable):
 
         loyer = famille.demandeur.menage('loyer', period)
         plafond_mensualite = famille('aides_logement_plafond_mensualite', period)
-        L = where(locataire_logement_foyer * numpy.logical_not(logement_conventionne), plafond_mensualite, min_(plafond_mensualite, loyer))
+        L = where(locataire_logement_foyer * numpy.logical_not(logement_conventionne), plafond_mensualite, numpy.minimum(plafond_mensualite, loyer))
         C = forfait_charges * famille('aide_logement_charges', period)
         K = famille('aides_logement_k', period)
         Lo = famille('aides_logement_loyer_minimal', period)

@@ -2,6 +2,8 @@
 
 import math
 
+import numpy
+
 from openfisca_france.model.base import *
 from openfisca_france.model.prelevements_obligatoires.prelevements_sociaux.cotisations_sociales.base import apply_bareme_for_relevant_type_sal
 
@@ -120,7 +122,7 @@ class contribution_exceptionnelle_solidarite(Variable):
         cotisation = apply_bareme_for_relevant_type_sal(
             bareme_by_type_sal_name = parameters.cotsoc.cotisations_salarie,
             bareme_name = "excep_solidarite",
-            base = assujettis * min_(
+            base = assujettis * numpy.minimum(
                 remuneration_brute + supplement_familial_traitement + primes_fonction_publique + deduction,
                 parameters.prelevements_sociaux.cotisations_sociales.fds.plafond_base_solidarite,
                 ),
@@ -273,7 +275,7 @@ class rafp_salarie(Variable):
 
         plaf_ass = _P.cotsoc.sal.fonc.etat.rafp_plaf_assiette
         base_imposable = primes_fonction_publique + supplement_familial_traitement + indemnite_residence
-        assiette = min_(base_imposable, plaf_ass * traitement_indiciaire_brut * eligible)
+        assiette = numpy.minimum(base_imposable, plaf_ass * traitement_indiciaire_brut * eligible)
         # Même régime pour les fonctions publiques d'Etat et des collectivité locales
         rafp_salarie = eligible * _P.cotsoc.cotisations_salarie.public_titulaire_etat['rafp'].calc(assiette)
         return -rafp_salarie
@@ -302,7 +304,7 @@ class rafp_employeur(Variable):
 
         plaf_ass = _P.cotsoc.sal.fonc.etat.rafp_plaf_assiette
         base_imposable = primes_fonction_publique + supplement_familial_traitement + indemnite_residence
-        assiette = min_(base_imposable, plaf_ass * traitement_indiciaire_brut * eligible)
+        assiette = numpy.minimum(base_imposable, plaf_ass * traitement_indiciaire_brut * eligible)
         bareme_rafp = _P.cotsoc.cotisations_employeur.public_titulaire_etat['rafp']
         rafp_employeur = eligible * bareme_rafp.calc(assiette)
         return - rafp_employeur

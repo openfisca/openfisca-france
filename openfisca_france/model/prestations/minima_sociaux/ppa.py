@@ -307,7 +307,7 @@ class ppa_base_ressources_prestations_familiales(Variable):
 
         af_base = famille('af_base', period)
         af = famille('af', period)
-        af_prises_en_compte = min_(af_base, af)
+        af_prises_en_compte = numpy.minimum(af_base, af)
 
         result = result + cf_pris_en_compte + af_prises_en_compte
 
@@ -342,7 +342,7 @@ class ppa_bonification(Variable):
         bonification_max = round_(P.prestations.minima_sociaux.ppa.bonification.taux_bonification_max * ppa_base, 2)
         bonification = bonification_max * (revenu_activite - seuil_1) / (seuil_2 - seuil_1)
         bonification = numpy.maximum(bonification, 0)
-        bonification = min_(bonification, bonification_max)
+        bonification = numpy.minimum(bonification, bonification_max)
 
         return bonification
 
@@ -387,7 +387,7 @@ class ppa_forfait_logement(Variable):
             + (np_pers >= 3) * params.forfait_logement.taux_3_personnes_ou_plus
             )
 
-        montant_al = avantage_al * min_(aide_logement, montant_forfait)
+        montant_al = avantage_al * numpy.minimum(aide_logement, montant_forfait)
         montant_nature = avantage_nature * montant_forfait
 
         return numpy.maximum(montant_al, montant_nature)

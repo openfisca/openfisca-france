@@ -55,7 +55,7 @@ class reduction_csg(Variable):
         tx_max = coefficient_correctif * taux_csg
         ratio_smic_salaire = smic_proratise / (assiette_csg_abattue + 1e-16)
         # règle d'arrondi: 4 décimales au dix-millième le plus proche
-        taux_allegement_csg = tx_max * min_(1, numpy.maximum(seuil - 1 / ratio_smic_salaire, 0) / (seuil - 1))
+        taux_allegement_csg = tx_max * numpy.minimum(1, numpy.maximum(seuil - 1 / ratio_smic_salaire, 0) / (seuil - 1))
         # Montant de l'allegment
         return taux_allegement_csg * assiette_csg_abattue
 

@@ -47,7 +47,7 @@ class charge_loyer(Variable):
         plaf_nbp = charge_loyer.plaf_nbp
         plafond = plaf * (numpy.logical_not(plaf_nbp) + plaf * nbptr * plaf_nbp)
 
-        return 12 * min_(loyer / 12, plafond)
+        return 12 * numpy.minimum(loyer / 12, plafond)
 
 
 class trannoy_wasmer(Reform):

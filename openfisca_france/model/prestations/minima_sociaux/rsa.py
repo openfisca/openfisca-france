@@ -263,7 +263,7 @@ class rsa_base_ressources_prestations_familiales(Variable):
         af = famille('af', period)
 
         # Si des AF on été injectées et sont plus faibles que le cf
-        result = result + cf_non_majore + min_(af_base, af)
+        result = result + cf_non_majore + numpy.minimum(af_base, af)
 
         return result
 
@@ -287,7 +287,7 @@ class rsa_base_ressources_prestations_familiales(Variable):
         af = famille('af', period)
 
         # Si des AF on été injectées et sont plus faibles que le cf
-        result = result + cf_non_majore + min_(af_base, af)
+        result = result + cf_non_majore + numpy.minimum(af_base, af)
 
         return result
 
@@ -831,7 +831,7 @@ class rsa_forfait_logement(Variable):
             + (np_pers >= 3) * forf_logement_taux_3p
             )
 
-        montant_al = avantage_al * min_(aide_logement, montant_forfait)
+        montant_al = avantage_al * numpy.minimum(aide_logement, montant_forfait)
         montant_nature = avantage_nature * montant_forfait
 
         return numpy.maximum(montant_al, montant_nature)
