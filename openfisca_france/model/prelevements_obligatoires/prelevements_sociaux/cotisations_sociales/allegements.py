@@ -3,7 +3,6 @@
 import logging
 
 import numpy
-from numpy import busday_count
 
 from openfisca_france.model.base import *
 
@@ -64,14 +63,14 @@ class coefficient_proratisation(Variable):
         fin_mois = numpy.datetime64(period.start.offset('last-of', 'month')) + numpy.timedelta64(1,
                                                                                      'D')  # busday ignores the last day
 
-        jours_ouvres_ce_mois = busday_count(
+        jours_ouvres_ce_mois = numpy.busday_count(
             debut_mois,
             fin_mois,
             weekmask='1111100'
             )
 
         # jours travaillables sur l'intersection du contrat de travail et du mois en cours
-        jours_ouvres_ce_mois_incomplet = busday_count(
+        jours_ouvres_ce_mois_incomplet = numpy.busday_count(
             numpy.maximum(contrat_de_travail_debut, debut_mois),
             numpy.minimum(contrat_de_travail_fin, fin_mois),
             weekmask='1111100'
