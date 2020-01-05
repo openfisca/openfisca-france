@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import numpy
-from numpy import floor, logical_and as and_, logical_or as or_
+from numpy import floor, logical_and as and_
 
 from openfisca_france.model.base import *
 from openfisca_france.model.prestations.prestations_familiales.base_ressource import nb_enf
@@ -124,7 +124,7 @@ class psa(Variable):
 
         dummy_api = api > 0
         dummy_rmi = rsa > 0
-        dummy_al = and_(aide_logement > 0, or_(af_nbenf > 0, parent_en_activite))
+        dummy_al = and_(aide_logement > 0, numpy.logical_or(af_nbenf > 0, parent_en_activite))
         condition = (dummy_api + dummy_rmi + dummy_al > 0)
         psa = condition * P.psa
         return psa
@@ -189,6 +189,6 @@ class rsa_activite_individu(Variable):
 
         # On partage le rsa_activite entre les parents. Si la personne est mariée et qu'aucun conjoint n'a été déclaré,
         # on divise par 2.
-        partage_rsa = or_(marie, en_couple)
+        partage_rsa = numpy.logical_or(marie, en_couple)
 
         return numpy.where(partage_rsa, rsa_activite / 2, rsa_activite)

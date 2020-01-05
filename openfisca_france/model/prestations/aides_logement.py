@@ -8,7 +8,7 @@ import pkg_resources
 import sys
 
 import numpy
-from numpy import datetime64, fromiter, int16, logical_or as or_, logical_and as and_
+from numpy import datetime64, fromiter, int16, logical_and as and_
 
 import openfisca_france
 from openfisca_core.periods import Instant
@@ -713,7 +713,7 @@ class aide_logement_base_ressources(Variable):
         plafond_salaire_jeune_couple = parameters(period).prestations.aides_logement.ressources.dar_9
         plafond_salaire_jeune = numpy.where(en_couple, plafond_salaire_jeune_couple, plafond_salaire_jeune_isole)
 
-        neutral_jeune = or_(age_demandeur < 25, and_(en_couple, age_conjoint < 25))
+        neutral_jeune = numpy.logical_or(age_demandeur < 25, and_(en_couple, age_conjoint < 25))
         neutral_jeune &= somme_salaires < plafond_salaire_jeune
 
         eval_forfaitaire = base_ressources_defaut <= plafond_eval_forfaitaire

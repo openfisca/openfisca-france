@@ -3,7 +3,7 @@
 import logging
 
 import numpy
-from numpy import around, logical_or as or_
+from numpy import around
 
 from openfisca_france.model.base import *
 
@@ -1428,7 +1428,7 @@ class quaenv(Variable):
         max7 = numpy.maximum(0, max6 - f7wh)
         max8 = numpy.maximum(0, max7 - f7sb)
 
-        return or_(numpy.logical_not(f7we), rfr < P.max_rfr) * (
+        return numpy.logical_or(numpy.logical_not(f7we), rfr < P.max_rfr) * (
             P.taux_wf * numpy.minimum(f7wf, max0)
             + P.taux_se * numpy.minimum(f7se, max1)
             + P.taux_wk * numpy.minimum(f7wk, max2)
@@ -1470,7 +1470,7 @@ class quaenv(Variable):
         max5 = numpy.maximum(0, max4 - f7wh)
         max6 = numpy.maximum(0, max5 - f7sb)
         max7 = numpy.maximum(0, max6 - f7wq)
-        return numpy.logical_not(f7wg) * or_(numpy.logical_not(f7we), (rfr < P.max_rfr)) * (
+        return numpy.logical_not(f7wg) * numpy.logical_or(numpy.logical_not(f7we), (rfr < P.max_rfr)) * (
             P.taux_wf * numpy.minimum(f7wf, max0)
             + P.taux_se * numpy.minimum(f7se, max1)
             + P.taux_wk * numpy.minimum(f7wk, max2)
@@ -1570,7 +1570,7 @@ class quaenv(Variable):
                 )
             )
 
-        return numpy.logical_not(f7wg) * or_(numpy.logical_not(f7we), (rfr < P.max_rfr)) * (montant + collectif) + f7sz
+        return numpy.logical_not(f7wg) * numpy.logical_or(numpy.logical_not(f7we), (rfr < P.max_rfr)) * (montant + collectif) + f7sz
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
         '''
@@ -1640,7 +1640,7 @@ class quaenv(Variable):
                 + P.taux10 * numpy.minimum(max5, f7sd + numpy.logical_not(f7wk) * (f7sj + f7sk + f7sl))
                 )
             )
-        return or_(numpy.logical_not(or_(f7we, f7wg)), (rfr < P.max_rfr)) * montant + f7sz  # TODO : attention, la condition porte sur le RFR des années passées (N-2 et N-3)
+        return numpy.logical_or(numpy.logical_not(numpy.logical_or(f7we, f7wg)), (rfr < P.max_rfr)) * montant + f7sz  # TODO : attention, la condition porte sur le RFR des années passées (N-2 et N-3)
 
     def formula_2014_01_01(foyer_fiscal, period, parameters):
         '''

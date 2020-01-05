@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import numpy
-from numpy import datetime64, logical_and as and_, logical_or as or_
+from numpy import datetime64, logical_and as and_
 
 from openfisca_core import periods
 from openfisca_france.model.base import *
@@ -424,7 +424,7 @@ class rsa_revenu_activite(Variable):
         rsa_enfant_a_charge_i = famille.members('rsa_enfant_a_charge', period)
         enfant_i = famille.members('est_enfant_dans_famille', period)
 
-        return famille.sum(or_(numpy.logical_not(enfant_i), rsa_enfant_a_charge_i) * rsa_revenu_activite_i)
+        return famille.sum(numpy.logical_or(numpy.logical_not(enfant_i), rsa_enfant_a_charge_i) * rsa_revenu_activite_i)
 
 
 class rsa_indemnites_journalieres_activite(Variable):
@@ -632,7 +632,7 @@ class rsa_condition_nationalite(Variable):
         ressortissant_eee = individu('ressortissant_eee', period)
         duree_possession_titre_sejour = individu('duree_possession_titre_sejour', period)
         duree_min_titre_sejour = parameters(period).prestations.minima_sociaux.rmi.duree_min_titre_sejour
-        return or_(ressortissant_eee, duree_possession_titre_sejour >= duree_min_titre_sejour)
+        return numpy.logical_or(ressortissant_eee, duree_possession_titre_sejour >= duree_min_titre_sejour)
 
 
 class rsa_eligibilite(Variable):
@@ -800,7 +800,7 @@ class rsa_forfait_logement(Variable):
         participation_frais = famille.demandeur.menage('participation_frais', period)
         loyer = famille.demandeur.menage('loyer', period)
 
-        avantage_nature = or_(
+        avantage_nature = numpy.logical_or(
             ((statut_occupation_logement == TypesStatutOccupationLogement.primo_accedant) + (statut_occupation_logement == TypesStatutOccupationLogement.proprietaire)) * numpy.logical_not(loyer),
             (statut_occupation_logement == TypesStatutOccupationLogement.loge_gratuitement) * numpy.logical_not(participation_frais)
             )

@@ -3,7 +3,7 @@
 import logging
 
 import numpy
-from numpy import busday_count, datetime64, logical_or as or_, logical_and as and_, timedelta64
+from numpy import busday_count, datetime64, logical_and as and_, timedelta64
 
 from openfisca_france.model.base import *
 
@@ -165,7 +165,7 @@ class aide_premier_salarie(Variable):
             )
 
         # Si CDD, durée du contrat doit être > 1 an
-        eligible_duree = or_(
+        eligible_duree = numpy.logical_or(
             # durée indéterminée
             contrat_de_travail_duree == TypesContratDeTravailDuree.cdi,
             # durée déterminée supérieure à 1 an
@@ -246,7 +246,7 @@ class aide_embauche_pme(Variable):
             )
 
         # Si CDD, durée du contrat doit être > 1 an
-        eligible_duree = or_(
+        eligible_duree = numpy.logical_or(
             # durée indéterminée
             contrat_de_travail_duree == TypesContratDeTravailDuree.cdi,
             # durée déterminée supérieure à 1 an

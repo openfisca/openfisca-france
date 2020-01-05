@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import numpy
-from numpy import abs as abs_, logical_or as or_
+from numpy import abs as abs_
 
 from openfisca_france.model.base import *
 
@@ -171,7 +171,7 @@ class asi_aspa_condition_nationalite(Variable):
         duree_possession_titre_sejour = individu('duree_possession_titre_sejour', period)
         duree_min_titre_sejour = parameters(period).prestations.minima_sociaux.aspa.duree_min_titre_sejour
 
-        return or_(ressortissant_eee, duree_possession_titre_sejour >= duree_min_titre_sejour)
+        return numpy.logical_or(ressortissant_eee, duree_possession_titre_sejour >= duree_min_titre_sejour)
 
 
 class asi_aspa_nb_alloc(Variable):

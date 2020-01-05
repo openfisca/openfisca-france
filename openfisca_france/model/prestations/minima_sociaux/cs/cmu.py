@@ -1,7 +1,6 @@
 from datetime import date
 
 import numpy
-from numpy import logical_or as or_
 
 from openfisca_france.model.base import (
     Variable,
@@ -168,7 +167,7 @@ class cmu_c(Variable):
         return (
             cmu_acs_eligibilite
             * numpy.logical_not(residence_mayotte)
-            * or_(eligibilite_basique, eligibilite_rsa)
+            * numpy.logical_or(eligibilite_basique, eligibilite_rsa)
             )
 
 # Helper functions

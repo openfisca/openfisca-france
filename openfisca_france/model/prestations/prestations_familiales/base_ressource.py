@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 import numpy
-from numpy import logical_or as or_
 
 from openfisca_france.model.base import *
 
@@ -54,7 +53,7 @@ class prestations_familiales_enfant_a_charge(Variable):
             * numpy.logical_not(autonomie_financiere)
             )
 
-        return or_(condition_enfant, condition_jeune) * est_enfant_dans_famille
+        return numpy.logical_or(condition_enfant, condition_jeune) * est_enfant_dans_famille
 
 
 class prestations_familiales_base_ressources_individu(Variable):

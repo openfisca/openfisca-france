@@ -1,4 +1,6 @@
-from numpy import absolute as abs_, logical_or as or_
+import numpy
+from numpy import absolute as abs_
+
 from openfisca_france.model.base import (
     Variable,
     Individu,
@@ -150,7 +152,7 @@ def abbattement_chomage(individu, period, previous_year, P):
     condition_ass = ass > 0
     condition_revenus_formation_pro = revenus_stage_formation_pro > 0
 
-    eligibilite_abattement_chomage = or_(condition_ij_maladie, or_(condition_chomage, or_(condition_ass, condition_revenus_formation_pro)))
+    eligibilite_abattement_chomage = numpy.logical_or(condition_ij_maladie, numpy.logical_or(condition_chomage, numpy.logical_or(condition_ass, condition_revenus_formation_pro)))
 
     salaire_net = individu('salaire_net', previous_year, options = [ADD])
 

@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 import numpy
-from numpy import logical_or as or_
 
 from openfisca_france.model.base import *
 from openfisca_france.model.prestations.prestations_familiales.base_ressource import nb_enf
@@ -95,7 +94,7 @@ class af_base(Variable):
 
         pfam = parameters(period).prestations.prestations_familiales.af
 
-        eligibilite = or_(eligibilite_base, eligibilite_dom)
+        eligibilite = numpy.logical_or(eligibilite_base, eligibilite_dom)
 
         un_seul_enfant = (
             eligibilite_dom
@@ -200,7 +199,7 @@ class af_majoration_enfant(Variable):
         montant = (af_nbenf == 1) * montant_enfant_seul + (af_nbenf > 1) * montant_plusieurs_enfants
 
         # Attention ! Ne fonctionne pas pour les enfants du même âge (typiquement les jumeaux...)
-        pas_aine = or_(af_nbenf != 2, (af_nbenf == 2) * numpy.logical_not(age == age_aine))
+        pas_aine = numpy.logical_or(af_nbenf != 2, (af_nbenf == 2) * numpy.logical_not(age == age_aine))
 
         coeff_garde_alternee = numpy.where(garde_alternee, pfam.af.facteur_garde_alternee, 1)
 

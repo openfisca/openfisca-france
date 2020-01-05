@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import numpy
-from numpy import logical_or as or_, remainder as remainder_, datetime64
+from numpy import remainder as remainder_, datetime64
 
 from openfisca_france.model.base import *
 
@@ -361,7 +361,7 @@ class ppa_forfait_logement(Variable):
         participation_frais = famille.demandeur.menage('participation_frais', period)
         loyer = famille.demandeur.menage('loyer', period)
 
-        avantage_nature = or_(
+        avantage_nature = numpy.logical_or(
             ((statut_occupation_logement == TypesStatutOccupationLogement.primo_accedant) + (statut_occupation_logement == TypesStatutOccupationLogement.proprietaire)) * numpy.logical_not(loyer),
             (statut_occupation_logement == TypesStatutOccupationLogement.loge_gratuitement) * numpy.logical_not(participation_frais)
             )

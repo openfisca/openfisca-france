@@ -2,8 +2,8 @@
 
 import json
 
-
-from numpy import logical_or as or_, fromiter
+import numpy
+from numpy import fromiter
 
 from openfisca_france.model.base import *
 from openfisca_france.france_taxbenefitsystem import COUNTRY_DIR
@@ -41,7 +41,7 @@ class taux_versement_transport(Variable):
             )
         # "L'entreprise emploie-t-elle plus de 9 ou 10 salariés dans le périmètre de l'Autorité organisatrice de transport
         # (AOT) suivante ou syndicat mixte de transport (SMT)"
-        return taux_versement_transport * or_(effectif_entreprise >= seuil_effectif, public) / 100
+        return taux_versement_transport * numpy.logical_or(effectif_entreprise >= seuil_effectif, public) / 100
 
 
 class versement_transport(Variable):

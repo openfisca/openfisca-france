@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import numpy
-from numpy import round, logical_or as or_
+from numpy import round
 
 from openfisca_france.model.base import *
 
@@ -46,7 +46,7 @@ class cf_enfant_eligible(Variable):
 
         condition_jeune = (age >= pfam.enfants.age_intermediaire) * (age < pfam.cf.age_max)
 
-        return or_(condition_enfant, condition_jeune) * cf_enfant_a_charge
+        return numpy.logical_or(condition_enfant, condition_jeune) * cf_enfant_a_charge
 
 
 class cf_dom_enfant_eligible(Variable):
@@ -96,7 +96,7 @@ class cf_base_ressources_individu(Variable):
         est_enfant_dans_famille = individu('est_enfant_dans_famille', period)
         cf_enfant_a_charge = individu('cf_enfant_a_charge', period)
 
-        return or_(numpy.logical_not(est_enfant_dans_famille), cf_enfant_a_charge) * base_ressources
+        return numpy.logical_or(numpy.logical_not(est_enfant_dans_famille), cf_enfant_a_charge) * base_ressources
 
 
 class cf_plafond(Variable):
@@ -229,7 +229,7 @@ class cf_non_majore_avant_cumul(Variable):
 
         pfam = parameters(period).prestations.prestations_familiales
 
-        eligibilite_sous_condition = or_(eligibilite_base, eligibilite_dom)
+        eligibilite_sous_condition = numpy.logical_or(eligibilite_base, eligibilite_dom)
 
         # Montant
         montant = (
@@ -270,7 +270,7 @@ class cf_majore_avant_cumul(Variable):
 
         pfam = parameters(period).prestations.prestations_familiales
 
-        eligibilite_sous_condition = or_(eligibilite_base, eligibilite_dom)
+        eligibilite_sous_condition = numpy.logical_or(eligibilite_base, eligibilite_dom)
 
         # Montant
         montant = (
