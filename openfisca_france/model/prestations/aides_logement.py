@@ -8,7 +8,6 @@ import pkg_resources
 import sys
 
 import numpy
-from numpy import int16
 
 import openfisca_france
 from openfisca_core.periods import Instant
@@ -1094,7 +1093,7 @@ class zone_apl(Variable):
                 zone_apl_by_depcom.get(depcom_cell if isinstance(depcom_cell, str) else depcom_cell.decode('utf-8'), default_value)
                 for depcom_cell in depcom
                 ),
-            dtype = int16,
+            dtype = numpy.int16,
             )
         return numpy.select(
             (zone == 1, zone == 2, zone == 3),
