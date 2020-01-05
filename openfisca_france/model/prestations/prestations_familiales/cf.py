@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 import numpy
-from numpy import round
 
 from openfisca_france.model.base import *
 
@@ -324,4 +323,4 @@ class cf(Variable):
             * cf_montant
             )
 
-        return numpy.logical_not(residence_mayotte) * round(cf_brut, 2)
+        return numpy.logical_not(residence_mayotte) * numpy.round(cf_brut, 2)

@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 import numpy
-from numpy import round
 
 from openfisca_france.model.base import *
 from openfisca_france.model.prestations.prestations_familiales.base_ressource import nb_enf
@@ -212,7 +211,7 @@ class paje_naissance(Variable):
         P = parameters(period).prestations.prestations_familiales
 
         bmaf = P.af.bmaf
-        prime_naissance = round(100 * P.paje.prime_naissance.prime_tx * bmaf) / 100
+        prime_naissance = numpy.round(100 * P.paje.prime_naissance.prime_tx * bmaf) / 100
 
         date_naissance_i = famille.members('date_naissance', period)
 
@@ -258,7 +257,7 @@ class paje_naissance(Variable):
         # Le montant de la PAJE est gelé depuis avril 2013.
         date_gel_paje = Instant((2013, 4, 1))
         bmaf = P.af.bmaf if period.start < date_gel_paje else parameters(date_gel_paje).prestations.prestations_familiales.af.bmaf
-        prime_naissance = round(100 * P.paje.prime_naissance.prime_tx * bmaf) / 100
+        prime_naissance = numpy.round(100 * P.paje.prime_naissance.prime_tx * bmaf) / 100
 
         date_naissance_i = famille.members('date_naissance', period)
 
@@ -302,7 +301,7 @@ class paje_naissance(Variable):
         # Le montant de la PAJE est gelé depuis avril 2013.
         date_gel_paje = Instant((2013, 4, 1))
         bmaf = P.af.bmaf if period.start < date_gel_paje else parameters(date_gel_paje).prestations.prestations_familiales.af.bmaf
-        nais_prime = round(100 * P.paje.prime_naissance.prime_tx * bmaf) / 100
+        nais_prime = numpy.round(100 * P.paje.prime_naissance.prime_tx * bmaf) / 100
 
         age_en_mois_i = famille.members('age_en_mois', period)
         # Versée au 7e mois de grossesse dans l'année donc les enfants concernés sont les enfants qui ont -2 mois
@@ -669,8 +668,8 @@ class apje_avant_cumul(Variable):
         nbenf = nb_enf(famille, period, 0, P.apje.age_max_dernier_enf - 1)
         bmaf = P.af.bmaf
         bmaf_n_2 = P_n_2.af.bmaf
-        base = round(P.apje.taux * bmaf, 2)
-        base2 = round(P.apje.taux * bmaf_n_2, 2)
+        base = numpy.round(P.apje.taux * bmaf, 2)
+        base2 = numpy.round(P.apje.taux * bmaf_n_2, 2)
 
         plaf_tx = (nbenf > 0) + P.apje.taux_enfant_1_et_2 * numpy.minimum(nbenf, 2) + P.apje.taux_enfant_3_et_plus * numpy.maximum(nbenf - 2, 0)
         majo = isole | biactivite
@@ -708,7 +707,7 @@ class ape(Variable):
         cf_montant = famille('cf_montant', period)
 
         ape = (apje_avant_cumul < ape_avant_cumul) * (cf_montant < ape_avant_cumul) * ape_avant_cumul
-        return round(ape, 2)
+        return numpy.round(ape, 2)
 
 
 class apje(Variable):
@@ -726,7 +725,7 @@ class apje(Variable):
         cf_montant = famille('cf_montant', period)
 
         apje = (cf_montant < apje_avant_cumul) * (ape_avant_cumul < apje_avant_cumul) * apje_avant_cumul
-        return round(apje, 2)
+        return numpy.round(apje, 2)
 
 
 class paje_clca(Variable):
