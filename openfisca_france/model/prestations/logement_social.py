@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 import numpy
-from numpy.core.defchararray import startswith
 
 from openfisca_france.model.base import *
 
@@ -68,7 +67,7 @@ class zone_logement_social(Variable):
         depcom = menage('depcom', period)
 
         in_paris_communes_limitrophes = sum([depcom == commune_proche_paris for commune_proche_paris in paris_communes_limitrophes])
-        in_idf = sum([startswith(depcom, departement) for departement in departements_idf])
+        in_idf = sum([numpy.core.defchararray.startswith(depcom, departement) for departement in departements_idf])
 
         return numpy.select(
             [

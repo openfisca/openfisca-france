@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 import numpy
-from numpy.core.defchararray import startswith
 
 from openfisca_france.model.base import *
 
@@ -26,7 +25,7 @@ class eligibilite_anah(Variable):
         depcom = menage('depcom', period.first_month)
 
         departements_idf = [b'75', b'77', b'78', b'91', b'92', b'93', b'94', b'95']
-        in_idf = sum([startswith(depcom, departement_idf) for departement_idf in departements_idf])
+        in_idf = sum([numpy.core.defchararray.startswith(depcom, departement_idf) for departement_idf in departements_idf])
 
         rfr_declarants_principaux_du_menage = menage.members.has_role(FoyerFiscal.DECLARANT_PRINCIPAL) * menage.members.foyer_fiscal('rfr', period.n_2)
         rfr = menage.sum(rfr_declarants_principaux_du_menage)
