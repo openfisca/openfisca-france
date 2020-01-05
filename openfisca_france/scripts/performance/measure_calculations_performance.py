@@ -9,17 +9,16 @@ Usage example:
     python openfisca_france/scripts/performance/measure_calculations_performance.py
 """
 
-
 import argparse
 import logging
 import sys
 import time
 
-import numpy as np
+import numpy
+
 from openfisca_core import periods, simulations
 from openfisca_core.tools import assert_near
 from openfisca_france import FranceTaxBenefitSystem
-
 
 args = None
 logger = logging.getLogger(__name__)
@@ -35,13 +34,13 @@ def add_member(entity, **variables_value_by_name):
     for variable_name, variable_holder in entity.holder_by_name.items():
         column = variable_holder.variable
         if column.definition_period is ETERNITY:   # noqa F821
-            variable_holder._array = np.hstack((variable_holder._array, [column.default_value]))
+            variable_holder._array = numpy.hstack((variable_holder._array, [column.default_value]))
         else:
             array_by_period = variable_holder._array_by_period
             if array_by_period is None:
                 variable_holder._array_by_period = array_by_period = {}
             for period, array in array_by_period.items():
-                array_by_period[period] = np.hstack((array, [column.default_value]))
+                array_by_period[period] = numpy.hstack((array, [column.default_value]))
 
     # When entity is a person, ensure that the index & role of the person in the other entities are set.
     value_by_name = variables_value_by_name.copy()
@@ -64,7 +63,7 @@ def add_member(entity, **variables_value_by_name):
             for period, period_value in value.items():
                 array = variable_holder.get_array(period)
                 if array is None:
-                    array = np.empty(entity.count, dtype = column.dtype)
+                    array = numpy.empty(entity.count, dtype = column.dtype)
                     array.fill(column.default_value)
                     variable_holder.put_in_cache(array, period)
                 array[member_index] = period_value
@@ -72,7 +71,7 @@ def add_member(entity, **variables_value_by_name):
             period = simulation.period
             array = variable_holder.get_array(period)
             if array is None:
-                array = np.empty(entity.count, dtype = column.dtype)
+                array = numpy.empty(entity.count, dtype = column.dtype)
                 array.fill(column.default_value)
                 variable_holder.put_in_cache(array, period)
             array[member_index] = value
