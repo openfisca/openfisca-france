@@ -67,7 +67,7 @@ class api(Variable):
         rsa = (api.age_pac >= 25)  # dummy passage au rsa majoré
         br_api = rsa_base_ressources + af_majoration * numpy.logical_not(rsa)
         # On pourrait mensualiser RMI, BRrmi et forfait logement
-        api = max_(0, api1 - rsa_forfait_logement / 12 - br_api / 12 - rsa / 12)
+        api = numpy.maximum(0, api1 - rsa_forfait_logement / 12 - br_api / 12 - rsa / 12)
         # L'API est exonérée de CRDS
         return api  # annualisé
         # TODO API: temps partiel qui modifie la base ressource
@@ -150,7 +150,7 @@ class rmi(Variable):
         rsa_socle = famille('rsa_socle', period)
         rsa_forfait_logement = famille('rsa_forfait_logement', period)
 
-        return condition_activite * max_(0, rsa_socle - rsa_forfait_logement - rsa_base_ressources)
+        return condition_activite * numpy.maximum(0, rsa_socle - rsa_forfait_logement - rsa_base_ressources)
         # TODO: Migré lors de la mensualisation. Probablement faux
 
 
@@ -166,8 +166,8 @@ class rsa_activite(Variable):
         rsa_base_ressources = famille('rsa_base_ressources', period)
         rsa_socle = famille('rsa_socle', period)
         rsa_forfait_logement = famille('rsa_forfait_logement', period)
-        rmi = max_(0, rsa_socle - rsa_forfait_logement - rsa_base_ressources)
-        return max_(rsa - rmi, 0)
+        rmi = numpy.maximum(0, rsa_socle - rsa_forfait_logement - rsa_base_ressources)
+        return numpy.maximum(rsa - rmi, 0)
 
 
 class rsa_activite_individu(Variable):

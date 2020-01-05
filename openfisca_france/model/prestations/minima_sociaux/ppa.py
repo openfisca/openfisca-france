@@ -102,7 +102,7 @@ class ppa_montant_forfaitaire_familial_non_majore(Variable):
             + (nb_personnes >= 3) * ppa.taux_troisieme_personne
             + (nb_personnes >= 4) * where(nb_parents == 1, ppa.taux_personne_supp, ppa.taux_troisieme_personne)
             # Si nb_parents == 1, pas de conjoint, la 4e personne est un enfant, donc le taux est de 40%.
-            + max_(nb_personnes - 4, 0) * ppa.taux_personne_supp
+            + numpy.maximum(nb_personnes - 4, 0) * ppa.taux_personne_supp
             )
 
         return ppa.montant_de_base * taux_non_majore
@@ -341,7 +341,7 @@ class ppa_bonification(Variable):
         seuil_2 = P.prestations.minima_sociaux.ppa.bonification.seuil_max_bonification * smic_horaire
         bonification_max = round_(P.prestations.minima_sociaux.ppa.bonification.taux_bonification_max * ppa_base, 2)
         bonification = bonification_max * (revenu_activite - seuil_1) / (seuil_2 - seuil_1)
-        bonification = max_(bonification, 0)
+        bonification = numpy.maximum(bonification, 0)
         bonification = min_(bonification, bonification_max)
 
         return bonification
@@ -390,7 +390,7 @@ class ppa_forfait_logement(Variable):
         montant_al = avantage_al * min_(aide_logement, montant_forfait)
         montant_nature = avantage_nature * montant_forfait
 
-        return max_(montant_al, montant_nature)
+        return numpy.maximum(montant_al, montant_nature)
 
 
 class ppa_fictive_ressource_activite(Variable):
@@ -449,8 +449,8 @@ class ppa_fictive(Variable):
             - forfait_logement
             )
 
-        ppa_fictive = ppa_montant_base - max_(ppa_deduction, 0)
-        ppa_fictive = max_(ppa_fictive, 0)
+        ppa_fictive = ppa_montant_base - numpy.maximum(ppa_deduction, 0)
+        ppa_fictive = numpy.maximum(ppa_fictive, 0)
         return elig * ppa_fictive
 
 

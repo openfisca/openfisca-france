@@ -2,6 +2,8 @@
 
 import logging
 
+import numpy
+
 from openfisca_france.model.base import *
 
 
@@ -526,7 +528,7 @@ class rbg_int(Variable):
         rbg = foyer_fiscal('rbg', period)
         cd1 = foyer_fiscal('cd1', period)
 
-        return max_(rbg - cd1, 0)
+        return numpy.maximum(rbg - cd1, 0)
 
 
 class charges_deduc(Variable):
@@ -585,7 +587,7 @@ class cd_acc75a(Variable):
         f6eu = foyer_fiscal('f6eu', period)
         f6ev = foyer_fiscal('f6ev', period)
         acc75a = parameters(period).impot_revenu.charges_deductibles.accueil_personne_agee
-        amax = acc75a.plafond * max_(1, f6ev)
+        amax = acc75a.plafond * numpy.maximum(1, f6ev)
         return min_(f6eu, amax)
 
 

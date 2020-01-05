@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 
-
 import os
+
+import numpy
 
 from ..model.base import *
 
@@ -112,7 +113,7 @@ class plf2016_counterfactual(Reform):
             montant_plafond = 350 * inflator
             plafond = seuil * nb_adult + (nb_parents - nb_adult) * 2 * majoration_seuil
             montant = montant_plafond * nb_adult
-            return min_(max_(plafond + montant - rfr, 0), montant)
+            return min_(numpy.maximum(plafond + montant - rfr, 0), montant)
 
     class reductions(Variable):
         label = "Somme des réductions d'impôt"
@@ -209,7 +210,7 @@ class plf2016_counterfactual_2014(Reform):
             montant_plafond = 350 * inflator
             plafond = seuil * nb_adult + (nb_parents - nb_adult) * 2 * majoration_seuil
             montant = montant_plafond * nb_adult
-            return min_(max_(plafond + montant - rfr, 0), montant)
+            return min_(numpy.maximum(plafond + montant - rfr, 0), montant)
 
     class reductions(Variable):
         label = "Somme des réductions d'impôt"

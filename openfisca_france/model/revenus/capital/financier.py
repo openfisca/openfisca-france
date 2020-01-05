@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+import numpy
+
 from openfisca_france.model.base import *
 
 # PLAN :
@@ -534,9 +536,9 @@ class revenus_capital(Variable):
 
     def formula(individu, period):
         revenus_capitaux = (
-            max_(0, individu.foyer_fiscal('revenus_capitaux_prelevement_bareme', period))
-            + max_(0, individu.foyer_fiscal('revenus_capitaux_prelevement_liberatoire', period))
-            + max_(0, individu.foyer_fiscal('revenus_capitaux_prelevement_forfaitaire_unique_ir', period))
+            numpy.maximum(0, individu.foyer_fiscal('revenus_capitaux_prelevement_bareme', period))
+            + numpy.maximum(0, individu.foyer_fiscal('revenus_capitaux_prelevement_liberatoire', period))
+            + numpy.maximum(0, individu.foyer_fiscal('revenus_capitaux_prelevement_forfaitaire_unique_ir', period))
             )
 
         return revenus_capitaux

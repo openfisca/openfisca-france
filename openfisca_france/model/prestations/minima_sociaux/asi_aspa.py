@@ -96,7 +96,7 @@ class asi_aspa_base_ressources_individu(Variable):
             return min_(salaire_de_base, abattement_forfaitaire)
 
         base_ressources_3_mois = sum(
-            max_(0, individu(ressource_type, three_previous_months, options = [ADD]))
+            numpy.maximum(0, individu(ressource_type, three_previous_months, options = [ADD]))
             for ressource_type in ressources_incluses
             ) + aah + revenus_foyer_fiscal_individu + revenus_tns() - abs_(pensions_alimentaires_versees) - abattement_salaire() + plus_values
 
@@ -238,7 +238,7 @@ class asi(Variable):
             + elig4 * P.aspa.plafond_ressources_couple
             + elig5 * P.aspa.plafond_ressources_couple) / 12
 
-        depassement = max_(ressources - plafond_ressources, 0)
+        depassement = numpy.maximum(ressources - plafond_ressources, 0)
 
         diff = (
             (elig1 | elig2 | elig3) * (montant_max - depassement)
@@ -247,7 +247,7 @@ class asi(Variable):
             )
 
         # Montant mensuel servi (sous réserve d'éligibilité)
-        montant_servi_asi = max_(diff, 0)
+        montant_servi_asi = numpy.maximum(diff, 0)
         return montant_servi_asi * (
             + individu.has_role(Famille.DEMANDEUR) * demandeur_eligible_asi * (elig1 + elig2 / 2 + elig3 / 2)
             + individu.has_role(Famille.CONJOINT) * conjoint_eligible_asi * (elig1 + elig2 / 2 + elig3 / 2)
@@ -319,7 +319,7 @@ class aspa(Variable):
             * P.aspa.plafond_ressources_couple
             ) / 12
 
-        depassement = max_(ressources - plafond_ressources, 0)
+        depassement = numpy.maximum(ressources - plafond_ressources, 0)
 
         diff = (
             (elig1 | elig2) * (montant_max - depassement)
@@ -327,7 +327,7 @@ class aspa(Variable):
             )
 
         # Montant mensuel servi (sous réserve d'éligibilité)
-        montant_servi_aspa = max_(diff, 0)
+        montant_servi_aspa = numpy.maximum(diff, 0)
 
         # TODO: Faute de mieux, on verse l'aspa à la famille plutôt qu'aux individus
         # aspa[CHEF] = demandeur_eligible_aspa*montant_servi_aspa*(elig1 + elig2/2)

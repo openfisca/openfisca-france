@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+import numpy
+
 from openfisca_france.model.base import *
 
 # PLAN :
@@ -390,7 +392,7 @@ class abattements_plus_values(Variable):
         f3va = foyer_fiscal('f3va_2014', period)
         f3vb = foyer_fiscal('f3vb', period)
 
-        return max_(0, f3sg - f3sh) + max_(0, f3sl - f3sm) + f3va - f3vb
+        return numpy.maximum(0, f3sg - f3sh) + numpy.maximum(0, f3sl - f3sm) + f3va - f3vb
 
     def formula_2015_01_01(foyer_fiscal, period):
         f3sg = foyer_fiscal('f3sg', period)

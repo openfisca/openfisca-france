@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 
 import logging
+
+import numpy
+
 from openfisca_france.model.base import *
 
 log = logging.getLogger(__name__)
@@ -152,7 +155,7 @@ class prelevement_forfaitaire_unique_ir_hors_assurance_vie_epargne_solidaire_eta
         assurance_vie_pfu_ir = foyer_fiscal('assurance_vie_pfu_ir', period)
         produit_epargne_solidaire = foyer_fiscal('produit_epargne_solidaire', period)
         produit_etats_non_cooperatif = foyer_fiscal('produit_etats_non_cooperatif', period)
-        revenus_capitaux_prelevement_forfaitaire_unique_ir_hors_assurance_vie_epargne_solidaire_etats_non_cooperatifs = max_(
+        revenus_capitaux_prelevement_forfaitaire_unique_ir_hors_assurance_vie_epargne_solidaire_etats_non_cooperatifs = numpy.maximum(
             0,
             revenus_capitaux_prelevement_forfaitaire_unique_ir
             - assurance_vie_pfu_ir
@@ -195,12 +198,12 @@ class prelevement_forfaitaire_unique_ir_sur_assurance_vie(Variable):
         f2vv = foyer_fiscal('f2vv', period)
         f2ww = foyer_fiscal('f2ww', period)
 
-        abattement_residuel = max_(P2.abat_assvie * (1 + maries_ou_pacses) - f2ch, 0)
-        abattement_residuel2 = max_(abattement_residuel - f2vv, 0)
+        abattement_residuel = numpy.maximum(P2.abat_assvie * (1 + maries_ou_pacses) - f2ch, 0)
+        abattement_residuel2 = numpy.maximum(abattement_residuel - f2vv, 0)
         pfu_ir_sur_assurance_vie = -(
             (f2zz * P1.taux)
-            + (max_(f2vv - abattement_residuel, 0) * P1.taux_reduit_av)
-            + (max_(f2ww - abattement_residuel2, 0) * P1.taux)
+            + (numpy.maximum(f2vv - abattement_residuel, 0) * P1.taux_reduit_av)
+            + (numpy.maximum(f2ww - abattement_residuel2, 0) * P1.taux)
             )
 
         return pfu_ir_sur_assurance_vie

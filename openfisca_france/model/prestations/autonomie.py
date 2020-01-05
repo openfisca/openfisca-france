@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+import numpy
+
 from openfisca_france.model.base import *
 
 
@@ -108,7 +110,7 @@ class apa_domicile_participation(Variable):
         apa_domicile_participation = min_(
             0.9 * dependance_plan_aide_domicile_accepte,
             0.9
-            * max_(0, base_ressources_apa_domicile - 0.725 * majoration_tierce_personne)
+            * numpy.maximum(0, base_ressources_apa_domicile - 0.725 * majoration_tierce_personne)
             / (1.945 * majoration_tierce_personne)
             * (
                 A_1
@@ -237,7 +239,7 @@ class apa_etablissement(Variable):
         taux_reste_a_vivre = parameters.apa_institution.taux_reste_a_vivre
         participation_beneficiaire = min_(
             participation_beneficiaire,
-            max_(base_ressources_apa_etablissement * (1 - taux_reste_a_vivre), 0)
+            numpy.maximum(base_ressources_apa_etablissement * (1 - taux_reste_a_vivre), 0)
             )
         apa = dependance_tarif_etablissement_gir_dependant - participation_beneficiaire
 

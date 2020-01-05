@@ -672,9 +672,9 @@ class nombre_jours_calendaires(Variable):
         busday_count = partial(original_busday_count, weekmask = "1" * 7)
         debut_mois = datetime64(period.start.offset('first-of', 'month'))
         fin_mois = datetime64(period.start.offset('last-of', 'month'))
-        jours_travailles = max_(
+        jours_travailles = numpy.maximum(
             busday_count(
-                max_(contrat_de_travail_debut, debut_mois),
+                numpy.maximum(contrat_de_travail_debut, debut_mois),
                 min_(contrat_de_travail_fin, fin_mois) + timedelta64(1, 'D')
                 ),
             0,
@@ -732,7 +732,7 @@ class indemnite_residence(Variable):
             + (categorie_salarie == TypesCategorieSalarie.public_titulaire_hospitaliere)
             + (categorie_salarie == TypesCategorieSalarie.public_non_titulaire)
             )
-        return max_(
+        return numpy.maximum(
             plancher,
             taux * (traitement_indiciaire_brut + salaire_de_base)
             ) * public
@@ -842,7 +842,7 @@ class supplement_familial_traitement(Variable):
         part_fixe = (
             part_fixe_1 * (fonc_nbenf == 1)
             + part_fixe_2 * (fonc_nbenf == 2)
-            + part_fixe_supp * max_(0, fonc_nbenf - 2)
+            + part_fixe_supp * numpy.maximum(0, fonc_nbenf - 2)
             )
 
         # pct_variable_1 = 0
@@ -853,7 +853,7 @@ class supplement_familial_traitement(Variable):
         pct_variable = (
             pct_variable_2 * (fonc_nbenf == 2)
             + (pct_variable_3) * (fonc_nbenf == 3)
-            + pct_variable_supp * max_(0, fonc_nbenf - 3)
+            + pct_variable_supp * numpy.maximum(0, fonc_nbenf - 3)
             )
 
         indice_maj_min = P.IM_min
@@ -869,7 +869,7 @@ class supplement_familial_traitement(Variable):
             plancher_mensuel_1 * (fonc_nbenf == 1)
             + plancher_mensuel_2 * (fonc_nbenf == 2)
             + plancher_mensuel_3 * (fonc_nbenf >= 3)
-            + plancher_mensuel_supp * max_(0, fonc_nbenf - 3)
+            + plancher_mensuel_supp * numpy.maximum(0, fonc_nbenf - 3)
             )
 
         traitement_brut_mensuel_max = _traitement_brut_mensuel(indice_maj_max, _P)
@@ -882,7 +882,7 @@ class supplement_familial_traitement(Variable):
             plafond_mensuel_1 * (fonc_nbenf == 1)
             + plafond_mensuel_2 * (fonc_nbenf == 2)
             + plafond_mensuel_3 * (fonc_nbenf == 3)
-            + plafond_mensuel_supp * max_(0, fonc_nbenf - 3)
+            + plafond_mensuel_supp * numpy.maximum(0, fonc_nbenf - 3)
             )
 
         public = (
@@ -894,7 +894,7 @@ class supplement_familial_traitement(Variable):
             )
 
         sft = public * min_(
-            max_(part_fixe + pct_variable * traitement_indiciaire_brut, plancher),
+            numpy.maximum(part_fixe + pct_variable * traitement_indiciaire_brut, plancher),
             plafond
             )
 

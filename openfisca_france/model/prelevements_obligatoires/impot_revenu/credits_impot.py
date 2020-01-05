@@ -137,7 +137,7 @@ class aidper(Variable):
             P.max * (1 + maries_ou_pacses)
             + P.pac1 * (n >= 1)
             + P.pac2 * (n >= 2)
-            + P.pac3 * (max_(n - 2, 0))
+            + P.pac3 * (numpy.maximum(n - 2, 0))
             + (
                 (n >= 2) * P.pac3 * nbH
                 + (n == 1) * (P.pac2 + (nbH > 1) * P.pac3 * (nbH - 1)) * (nbH >= 1)
@@ -167,7 +167,7 @@ class aidper(Variable):
             P.max * (1 + maries_ou_pacses)
             + P.pac1 * (n >= 1)
             + P.pac2 * (n >= 2)
-            + P.pac3 * (max_(n - 2, 0))
+            + P.pac3 * (numpy.maximum(n - 2, 0))
             + (
                 (n >= 2) * P.pac3 * nbH
                 + (n == 1) * (P.pac2 + (nbH > 1) * P.pac3 * (nbH - 1)) * (nbH >= 1)
@@ -175,7 +175,7 @@ class aidper(Variable):
                 ) / 2
             )
 
-        max1 = max_(0, max0 - f7wj)
+        max1 = numpy.maximum(0, max0 - f7wj)
         return (
             P.taux_wj * min_(f7wj, max0)
             + P.taux_wi * min_(f7wi, max1)
@@ -195,7 +195,7 @@ class aidper(Variable):
         P = parameters(period).impot_revenu.credits_impot.aidper
 
         max0 = P.max * (1 + maries_ou_pacses) + P.pac1 * nb_pac_majoration_plafond
-        max1 = max_(0, max0 - f7wj)
+        max1 = numpy.maximum(0, max0 - f7wj)
         return (
             P.taux_wj * min_(f7wj, max0)
             + P.taux_wi * min_(f7wi, max1)
@@ -216,8 +216,8 @@ class aidper(Variable):
         P = parameters(period).impot_revenu.credits_impot.aidper
 
         max0 = P.max * (1 + maries_ou_pacses) + P.pac1 * nb_pac_majoration_plafond
-        max1 = max_(0, max0 - f7wl - f7sf)
-        max2 = max_(0, max1 - f7wj)
+        max1 = numpy.maximum(0, max0 - f7wl - f7sf)
+        max2 = numpy.maximum(0, max1 - f7wj)
         return (
             P.taux_wl * min_(f7wl + f7sf, max0)
             + P.taux_wj * min_(f7wj, max1)
@@ -241,13 +241,13 @@ class aidper(Variable):
         # On ne contrôle pas que 7WR ne dépasse pas le plafond (dépend du nombre de logements et de la nature des travaux)
         max00 = P.max * (1 + maries_ou_pacses)
         max0 = max00 + P.pac1 * nb_pac_majoration_plafond
-        max1 = max_(0, max0 - f7wj)  # f7wj s'impute avant f7wl et f7wi
-        max2 = max_(0, max1 - f7wi)  # f7wi s'impute avant f7wl
+        max1 = numpy.maximum(0, max0 - f7wj)  # f7wj s'impute avant f7wl et f7wi
+        max2 = numpy.maximum(0, max1 - f7wi)  # f7wi s'impute avant f7wl
         return (
             P.taux_wr * f7wr +
             + P.taux_wj * min_(f7wj, max0)
             + P.taux_wi * min_(f7wi, max1)
-            + P.taux_wl * (min_(f7wl, max2) + min_(max_(0, f7wl - max2), max00))
+            + P.taux_wl * (min_(f7wl, max2) + min_(numpy.maximum(0, f7wl - max2), max00))
             )
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
@@ -265,12 +265,12 @@ class aidper(Variable):
         # On ne contrôle pas que 7WR ne dépasse pas le plafond (dépend du nombre de logements et de la nature des travaux)
         max00 = P.max * (1 + maries_ou_pacses)
         max0 = max00 + P.pac1 * nb_pac_majoration_plafond
-        max1 = max_(0, max0 - f7wj)  # f7wj s'impute avant f7wl
+        max1 = numpy.maximum(0, max0 - f7wj)  # f7wj s'impute avant f7wl
 
         return (
             P.taux_wr * f7wr
             + P.taux_wj * min_(f7wj, max0)
-            + P.taux_wl * (min_(f7wl, max1) + min_(max_(0, f7wl - max1), max00))
+            + P.taux_wl * (min_(f7wl, max1) + min_(numpy.maximum(0, f7wl - max1), max00))
             )
 
     def formula_2015_01_01(foyer_fiscal, period, parameters):
@@ -431,7 +431,7 @@ class creimp_exc_2008(Variable):
                 * min_(12475, iai)
                 * (rpp < 11674)
                 + (rpp > 11673)
-                * max_(0, 8317 * (12475 - rpp) / 802)
+                * numpy.maximum(0, 8317 * (12475 - rpp) / 802)
                 )
             )
 
@@ -928,7 +928,7 @@ class inthab(Variable):
 
         invalide = invalidite_decl | invalidite_conj | (nbpac_invalideG != 0) | (nbpac_invalideR != 0)
         max0 = P.max * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac_majoration_plafond * P.add
-        max1 = max_(max0 - f7vy, 0)
+        max1 = numpy.maximum(max0 - f7vy, 0)
 
         return (
             P.taux1 * min_(f7vy, max0)
@@ -954,8 +954,8 @@ class inthab(Variable):
         invalide = invalidite_decl | invalidite_conj | (nbpac_invalideG != 0) | (nbpac_invalideR != 0)
         max0 = P.max * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac_majoration_plafond * P.add
 
-        max1 = max_(max0 - f7vx, 0)
-        max2 = max_(max1 - f7vy, 0)
+        max1 = numpy.maximum(max0 - f7vx, 0)
+        max2 = numpy.maximum(max1 - f7vy, 0)
 
         return (
             P.taux1 * min_(f7vx, max0)
@@ -983,9 +983,9 @@ class inthab(Variable):
         invalide = invalidite_decl | invalidite_conj | (nbpac_invalideG != 0) | (nbpac_invalideR != 0)
         max0 = P.max * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac_majoration_plafond * P.add
 
-        max1 = max_(max0 - f7vx, 0)
-        max2 = max_(max1 - f7vy, 0)
-        max3 = max_(max2 - f7vw, 0)
+        max1 = numpy.maximum(max0 - f7vx, 0)
+        max2 = numpy.maximum(max1 - f7vy, 0)
+        max3 = numpy.maximum(max2 - f7vw, 0)
 
         return (
             P.taux1 * min_(f7vx, max0)
@@ -1016,11 +1016,11 @@ class inthab(Variable):
         invalide = invalidite_decl | invalidite_conj | (nbpac_invalideG != 0) | (nbpac_invalideR != 0)
         max0 = P.max * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac_majoration_plafond * P.add
 
-        max1 = max_(max0 - f7vx, 0)
-        max2 = max_(max1 - f7vy, 0)
-        max3 = max_(max2 - f7vw, 0)
-        max4 = max_(max3 - f7vu, 0)
-        max5 = max_(max4 - f7vz, 0)
+        max1 = numpy.maximum(max0 - f7vx, 0)
+        max2 = numpy.maximum(max1 - f7vy, 0)
+        max3 = numpy.maximum(max2 - f7vw, 0)
+        max4 = numpy.maximum(max3 - f7vu, 0)
+        max5 = numpy.maximum(max4 - f7vz, 0)
 
         return (
             P.taux1 * min_(f7vx, max0)
@@ -1055,12 +1055,12 @@ class inthab(Variable):
         invalide = invalidite_decl | invalidite_conj | (nbpac_invalideG != 0) | (nbpac_invalideR != 0) | (nbpac_invalideI != 0)
         max0 = P.max * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac_majoration_plafond * P.add
 
-        max1 = max_(max0 - f7vx, 0)
-        max2 = max_(max1 - f7vy, 0)
-        max3 = max_(max2 - f7vw, 0)
-        max4 = max_(max3 - f7vu, 0)
-        max5 = max_(max4 - f7vz, 0)
-        max6 = max_(max5 - f7vv, 0)
+        max1 = numpy.maximum(max0 - f7vx, 0)
+        max2 = numpy.maximum(max1 - f7vy, 0)
+        max3 = numpy.maximum(max2 - f7vw, 0)
+        max4 = numpy.maximum(max3 - f7vu, 0)
+        max5 = numpy.maximum(max4 - f7vz, 0)
+        max6 = numpy.maximum(max5 - f7vv, 0)
 
         return (
             P.taux1 * min_(f7vx, max0)
@@ -1095,10 +1095,10 @@ class inthab(Variable):
         # NB : max0 = plafond initial du montant d'intérêts retenus pour calculer le crédit
         #      max1..max4 = plafonds après imputations successives (dans l'ordre décrit dans la législation) des intérêts éligibles au crédit d'impôt
         max0 = P.max * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac_majoration_plafond * P.add
-        max1 = max_(max0 - f7vx, 0)
-        max2 = max_(max1 - f7vu, 0)
-        max3 = max_(max2 - f7vz, 0)
-        max4 = max_(max3 - f7vv, 0)
+        max1 = numpy.maximum(max0 - f7vx, 0)
+        max2 = numpy.maximum(max1 - f7vu, 0)
+        max3 = numpy.maximum(max2 - f7vz, 0)
+        max4 = numpy.maximum(max3 - f7vv, 0)
 
         return (
             P.taux1 * min_(f7vx, max0)
@@ -1130,9 +1130,9 @@ class inthab(Variable):
         # NB : max0 = plafond initial du montant d'intérêts retenus pour calculer le crédit
         #      max1..max4 = plafonds après imputations successives (dans l'ordre décrit dans la législation) des intérêts éligibles au crédit d'impôt
         max0 = P.max * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac_majoration_plafond * P.add
-        max1 = max_(max0 - f7vx, 0)
-        max2 = max_(max1 - f7vz, 0)
-        max3 = max_(max2 - f7vv, 0)
+        max1 = numpy.maximum(max0 - f7vx, 0)
+        max2 = numpy.maximum(max1 - f7vz, 0)
+        max3 = numpy.maximum(max2 - f7vv, 0)
 
         return (
             P.taux1 * min_(f7vx, max0)
@@ -1162,8 +1162,8 @@ class inthab(Variable):
         # NB : max0 = plafond initial du montant d'intérêts retenus pour calculer le crédit
         #      max1..max4 = plafonds après imputations successives (dans l'ordre décrit dans la législation) des intérêts éligibles au crédit d'impôt
         max0 = P.max * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac_majoration_plafond * P.add
-        max1 = max_(max0 - f7vx, 0)
-        max2 = max_(max1 - f7vz, 0)
+        max1 = numpy.maximum(max0 - f7vx, 0)
+        max2 = numpy.maximum(max1 - f7vz, 0)
 
         return (
             P.taux1 * min_(f7vx, max0)
@@ -1192,8 +1192,8 @@ class inthab(Variable):
         # NB : max0 = plafond initial du montant d'intérêts retenus pour calculer le crédit
         #      max1..max4 = plafonds après imputations successives (dans l'ordre décrit dans la législation) des intérêts éligibles au crédit d'impôt
         max0 = P.max * (maries_ou_pacses + 1) * (1 + invalide) + nb_pac_majoration_plafond * P.add
-        max1 = max_(max0 - f7vx, 0)
-        max2 = max_(max1 - f7vv, 0)
+        max1 = numpy.maximum(max0 - f7vx, 0)
+        max2 = numpy.maximum(max1 - f7vv, 0)
 
         return (
             P.taux1 * min_(f7vx, max0)
@@ -1247,7 +1247,7 @@ class jeunes_ind(Variable):
             rfr
             < P.rfr_plaf
             * (maries_ou_pacses * P.rfr_mult + numpy.logical_not(maries_ou_pacses))
-            + max_(0, nbptr - 2)
+            + numpy.maximum(0, nbptr - 2)
             * .5
             * P.rfr_maj
             + (nbptr == 1.5)
@@ -1259,7 +1259,7 @@ class jeunes_ind(Variable):
             + (P.int <= salaire_imposable) * (salaire_imposable <= P.max) * (P.max - salaire_imposable) * P.taux
             )
 
-        return elig_creimp_jeunes * elig * max_(25, montant)  # D'après  le document num. 2041 GY
+        return elig_creimp_jeunes * elig * numpy.maximum(25, montant)  # D'après  le document num. 2041 GY
 
         # somme calculée sur formulaire 2041
 
@@ -1336,7 +1336,7 @@ class prlire(Variable):
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         P = parameters(period)
 
-        plaf_resid = max_(P.impot_revenu.rvcm.abat_assvie * (1 + maries_ou_pacses) - f2ch, 0)
+        plaf_resid = numpy.maximum(P.impot_revenu.rvcm.abat_assvie * (1 + maries_ou_pacses) - f2ch, 0)
         return P.impot_revenu.credits_impot.prlire.taux * min_(f2dh, plaf_resid)
 
 
@@ -1360,10 +1360,10 @@ class quaenv(Variable):
         P = parameters(period).impot_revenu.credits_impot.quaenv
 
         n = nb_pac_majoration_plafond
-        max0 = P.max * (1 + maries_ou_pacses) + P.pac1 * (n >= 1) + P.pac2 * (n >= 2) + P.pac2 * (max_(n - 2, 0))
+        max0 = P.max * (1 + maries_ou_pacses) + P.pac1 * (n >= 1) + P.pac2 * (n >= 2) + P.pac2 * (numpy.maximum(n - 2, 0))
 
-        max1 = max_(0, max0 - f7wf)
-        max2 = max_(0, max1 - f7wg)
+        max1 = numpy.maximum(0, max0 - f7wf)
+        max2 = numpy.maximum(0, max1 - f7wg)
         return (
             P.taux_wf * min_(f7wf, max0)
             + P.taux_wg * min_(f7wg, max1)
@@ -1386,9 +1386,9 @@ class quaenv(Variable):
 
         max0 = P.max * (1 + maries_ou_pacses) + P.pac1 * nb_pac_majoration_plafond
 
-        max1 = max_(0, max0 - f7wf)
-        max2 = max_(0, max1 - f7wg)
-        max3 = max_(0, max2 - f7wh)
+        max1 = numpy.maximum(0, max0 - f7wf)
+        max2 = numpy.maximum(0, max1 - f7wg)
+        max3 = numpy.maximum(0, max2 - f7wh)
         return (
             P.taux_wf * min_(f7wf, max0)
             + P.taux_wg * min_(f7wg, max1)
@@ -1419,14 +1419,14 @@ class quaenv(Variable):
 
         max0 = P.max * (1 + maries_ou_pacses) + P.pac1 * nb_pac_majoration_plafond
 
-        max1 = max_(0, max0 - f7wf)
-        max2 = max_(0, max1 - f7se)
-        max3 = max_(0, max2 - f7wk)
-        max4 = max_(0, max3 - f7sd)
-        max5 = max_(0, max4 - f7wg)
-        max6 = max_(0, max5 - f7sc)
-        max7 = max_(0, max6 - f7wh)
-        max8 = max_(0, max7 - f7sb)
+        max1 = numpy.maximum(0, max0 - f7wf)
+        max2 = numpy.maximum(0, max1 - f7se)
+        max3 = numpy.maximum(0, max2 - f7wk)
+        max4 = numpy.maximum(0, max3 - f7sd)
+        max5 = numpy.maximum(0, max4 - f7wg)
+        max6 = numpy.maximum(0, max5 - f7sc)
+        max7 = numpy.maximum(0, max6 - f7wh)
+        max8 = numpy.maximum(0, max7 - f7sb)
 
         return or_(numpy.logical_not(f7we), rfr < P.max_rfr) * (
             P.taux_wf * min_(f7wf, max0)
@@ -1463,13 +1463,13 @@ class quaenv(Variable):
 
         max0 = P.max * (1 + maries_ou_pacses) + P.pac1 * nb_pac_majoration_plafond
 
-        max1 = max_(0, max0 - f7wf)
-        max2 = max_(0, max1 - f7se)
-        max3 = max_(0, max2 - f7wk)
-        max4 = max_(0, max3 - f7sd)
-        max5 = max_(0, max4 - f7wh)
-        max6 = max_(0, max5 - f7sb)
-        max7 = max_(0, max6 - f7wq)
+        max1 = numpy.maximum(0, max0 - f7wf)
+        max2 = numpy.maximum(0, max1 - f7se)
+        max3 = numpy.maximum(0, max2 - f7wk)
+        max4 = numpy.maximum(0, max3 - f7sd)
+        max5 = numpy.maximum(0, max4 - f7wh)
+        max6 = numpy.maximum(0, max5 - f7sb)
+        max7 = numpy.maximum(0, max6 - f7wq)
         return numpy.logical_not(f7wg) * or_(numpy.logical_not(f7we), (rfr < P.max_rfr)) * (
             P.taux_wf * min_(f7wf, max0)
             + P.taux_se * min_(f7se, max1)
@@ -1525,11 +1525,11 @@ class quaenv(Variable):
         P = parameters(period).impot_revenu.credits_impot.quaenv
 
         max0 = P.max * (1 + maries_ou_pacses) + P.pac1 * nb_pac_majoration_plafond
-        maxi1 = max_(0, max0 - f7ty)
-        maxi2 = max_(0, maxi1 - f7tx)
-        maxi3 = max_(0, maxi2 - f7tw)
-        maxi4 = max_(0, maxi3 - f7tv)
-        maxi5 = max_(0, maxi4 - f7tu)
+        maxi1 = numpy.maximum(0, max0 - f7ty)
+        maxi2 = numpy.maximum(0, maxi1 - f7tx)
+        maxi3 = numpy.maximum(0, maxi2 - f7tw)
+        maxi4 = numpy.maximum(0, maxi3 - f7tv)
+        maxi5 = numpy.maximum(0, maxi4 - f7tu)
         collectif = (
             P.taux_ty * min_(f7ty, max0)
             + P.taux_tx * min_(f7tx, maxi1)
@@ -1539,14 +1539,14 @@ class quaenv(Variable):
             + P.taux_tt * min_(f7tt, maxi5)
             )
 
-        max1 = max_(0, max0 - quaenv_bouquet * (f7ss + f7st) - numpy.logical_not(quaenv_bouquet) * (f7ss + f7st + f7sv))
-        max2 = max_(0, max1 - quaenv_bouquet * (f7sn + f7sr + f7sq) - numpy.logical_not(quaenv_bouquet) * (f7sn + f7sq + f7sr))
-        max3 = max_(0, max2 - quaenv_bouquet * (f7sv) - numpy.logical_not(quaenv_bouquet) * (f7se))
-        max4 = max_(0, max3 - quaenv_bouquet * (f7se) - numpy.logical_not(quaenv_bouquet) * (f7sf + f7sg + f7sh + f7si + f7so + f7su + f7sw + f7sp))
-        max5 = max_(0, max4 - quaenv_bouquet * (f7sg + f7sh + f7so + f7sp) - numpy.logical_not(quaenv_bouquet) * (f7sm))
-        max6 = max_(0, max5 - quaenv_bouquet * (f7sd + f7sj))
-        max7 = max_(0, max6 - quaenv_bouquet * (f7sf + f7si + f7su + f7sw))
-        max8 = max_(0, max7 - quaenv_bouquet * (f7sm))
+        max1 = numpy.maximum(0, max0 - quaenv_bouquet * (f7ss + f7st) - numpy.logical_not(quaenv_bouquet) * (f7ss + f7st + f7sv))
+        max2 = numpy.maximum(0, max1 - quaenv_bouquet * (f7sn + f7sr + f7sq) - numpy.logical_not(quaenv_bouquet) * (f7sn + f7sq + f7sr))
+        max3 = numpy.maximum(0, max2 - quaenv_bouquet * (f7sv) - numpy.logical_not(quaenv_bouquet) * (f7se))
+        max4 = numpy.maximum(0, max3 - quaenv_bouquet * (f7se) - numpy.logical_not(quaenv_bouquet) * (f7sf + f7sg + f7sh + f7si + f7so + f7su + f7sw + f7sp))
+        max5 = numpy.maximum(0, max4 - quaenv_bouquet * (f7sg + f7sh + f7so + f7sp) - numpy.logical_not(quaenv_bouquet) * (f7sm))
+        max6 = numpy.maximum(0, max5 - quaenv_bouquet * (f7sd + f7sj))
+        max7 = numpy.maximum(0, max6 - quaenv_bouquet * (f7sf + f7si + f7su + f7sw))
+        max8 = numpy.maximum(0, max7 - quaenv_bouquet * (f7sm))
 
         montant = (
             quaenv_bouquet * (
@@ -1610,14 +1610,14 @@ class quaenv(Variable):
         P = parameters(period).impot_revenu.credits_impot.quaenv
 
         max0 = P.max * (1 + maries_ou_pacses) + P.pac1 * nb_pac_majoration_plafond
-        max1 = max_(0, max0 - quaenv_bouquet * (f7ss + f7st) - numpy.logical_not(quaenv_bouquet) * (f7ss + f7st + f7sv))
-        max2 = max_(0, max1 - quaenv_bouquet * (f7sn + f7sr + f7sq) - numpy.logical_not(quaenv_bouquet) * (f7sn + f7sq + f7sr))
-        max3 = max_(0, max2 - quaenv_bouquet * (f7sv) - numpy.logical_not(quaenv_bouquet) * (f7se))
-        max4 = max_(0, max3 - quaenv_bouquet * (f7se) - numpy.logical_not(quaenv_bouquet) * (f7sf + f7sg + f7sh + f7si + f7so + f7su + f7sw + f7sp))
-        max5 = max_(0, max4 - quaenv_bouquet * (f7sg + f7sh + f7so + f7sp) - numpy.logical_not(quaenv_bouquet) * (f7sm))
-        max6 = max_(0, max5 - quaenv_bouquet * (f7sd + f7sj))
-        max7 = max_(0, max6 - quaenv_bouquet * (f7sf + f7si + f7su + f7sw))
-        max8 = max_(0, max7 - quaenv_bouquet * (f7sm))
+        max1 = numpy.maximum(0, max0 - quaenv_bouquet * (f7ss + f7st) - numpy.logical_not(quaenv_bouquet) * (f7ss + f7st + f7sv))
+        max2 = numpy.maximum(0, max1 - quaenv_bouquet * (f7sn + f7sr + f7sq) - numpy.logical_not(quaenv_bouquet) * (f7sn + f7sq + f7sr))
+        max3 = numpy.maximum(0, max2 - quaenv_bouquet * (f7sv) - numpy.logical_not(quaenv_bouquet) * (f7se))
+        max4 = numpy.maximum(0, max3 - quaenv_bouquet * (f7se) - numpy.logical_not(quaenv_bouquet) * (f7sf + f7sg + f7sh + f7si + f7so + f7su + f7sw + f7sp))
+        max5 = numpy.maximum(0, max4 - quaenv_bouquet * (f7sg + f7sh + f7so + f7sp) - numpy.logical_not(quaenv_bouquet) * (f7sm))
+        max6 = numpy.maximum(0, max5 - quaenv_bouquet * (f7sd + f7sj))
+        max7 = numpy.maximum(0, max6 - quaenv_bouquet * (f7sf + f7si + f7su + f7sw))
+        max8 = numpy.maximum(0, max7 - quaenv_bouquet * (f7sm))
 
         montant = (
             quaenv_bouquet * (
@@ -1731,9 +1731,9 @@ class quaenv(Variable):
             + P.pac1 * nb_pac2
             )
 
-        max00 = max_(0, max0 - depenses_transition_energetique)
+        max00 = numpy.maximum(0, max0 - depenses_transition_energetique)
 
-        max1 = max_(0, max00 - quaenv_bouquet * (f7sd + f7se + f7wc + f7vg + f7wt + f7sn + f7sp + f7sr + f7ss + f7sq + f7st) - numpy.logical_not(quaenv_bouquet) * (max00))
+        max1 = numpy.maximum(0, max00 - quaenv_bouquet * (f7sd + f7se + f7wc + f7vg + f7wt + f7sn + f7sp + f7sr + f7ss + f7sq + f7st) - numpy.logical_not(quaenv_bouquet) * (max00))
 
         credit_quaenv = (
             quaenv_bouquet * (P.taux25 * (min_(max00,
@@ -1751,7 +1751,7 @@ class quaenv(Variable):
         # TODO : inclure la condition de bouquet sur 2 périodes (si pas de bouquet avec les dépenses du 1.1 au 31.8, le bouquet peut s'apprécier
         #          sur la base des dépenses faites du 1.1 au 31.12 mais le taux sera de 25% pour la 1ère moitié de l'année et 30% l'autre)
 
-        return P.taux30 * min_(max0, depenses_transition_energetique) + min_(max_(0, max0 - depenses_transition_energetique), credit_quaenv)
+        return P.taux30 * min_(max0, depenses_transition_energetique) + min_(numpy.maximum(0, max0 - depenses_transition_energetique), credit_quaenv)
 
     def formula_2015_01_01(foyer_fiscal, period, parameters):
         '''
@@ -1877,8 +1877,8 @@ class quaenv(Variable):
             )
 
         max0 = P.max * (1 + maries_ou_pacses) + P.pac1 * nb_pac2
-        max00 = max_(0, max0 - depenses_transition_energetique)
-        max1 = max_(0, max00 - quaenv_bouquet * (f7sd + f7se + f7wc + f7vg + f7wt + f7sn + f7sp + f7sr + f7ss + f7sq + f7st) - numpy.logical_not(quaenv_bouquet) * (max00))
+        max00 = numpy.maximum(0, max0 - depenses_transition_energetique)
+        max1 = numpy.maximum(0, max00 - quaenv_bouquet * (f7sd + f7se + f7wc + f7vg + f7wt + f7sn + f7sp + f7sr + f7ss + f7sq + f7st) - numpy.logical_not(quaenv_bouquet) * (max00))
         credit_quaenv_bouquet_2ans = (
             quaenv_bouquet * (
                 P.taux25 * (min_(max00,
@@ -1892,7 +1892,7 @@ class quaenv(Variable):
 
         return (
             P.taux30 * min_(max0, depenses_transition_energetique)
-            + min_(max_(0, max0 - depenses_transition_energetique), credit_quaenv_bouquet_2ans)
+            + min_(numpy.maximum(0, max0 - depenses_transition_energetique), credit_quaenv_bouquet_2ans)
             )
 
     def formula_2016_01_01(foyer_fiscal, period, parameters):
@@ -1949,7 +1949,7 @@ class quaenv(Variable):
         depenses_transition_energetique_taux_reduit = sum([foyer_fiscal(case, period) for case in cases_depense_taux_reduit])
 
         plafond_depenses_energetiques = P.max * (1 + maries_ou_pacses) + P.pac1 * personnes_a_charge
-        plafond_depenses_energetiques_taux_reduit = max_(0, plafond_depenses_energetiques - depenses_transition_energetique)
+        plafond_depenses_energetiques_taux_reduit = numpy.maximum(0, plafond_depenses_energetiques - depenses_transition_energetique)
 
         return (
             P.taux30 * min_(plafond_depenses_energetiques, depenses_transition_energetique)

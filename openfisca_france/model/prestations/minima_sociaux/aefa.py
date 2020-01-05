@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+import numpy
+
 from openfisca_france.model.base import *
 from openfisca_france.model.prestations.prestations_familiales.base_ressource import nb_enf
 
@@ -51,7 +53,7 @@ class aefa(Variable):
         majoration = 1 + (condition_majoration * (
             (nb_parents == 2) * aefa.tx_2p
             + nbPAC * aefa.tx_supp * (nb_parents <= 2)
-            + nbPAC * aefa.tx_3pac * max_(nbPAC - 2, 0)
+            + nbPAC * aefa.tx_3pac * numpy.maximum(nbPAC - 2, 0)
             ))
 
         montant_aefa = aefa.mon_seul * majoration

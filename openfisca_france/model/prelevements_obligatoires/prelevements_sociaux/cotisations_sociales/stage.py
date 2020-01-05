@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+import numpy
+
 from openfisca_france.model.base import *
 from openfisca_france.model.prelevements_obligatoires.prelevements_sociaux.cotisations_sociales.base import apply_bareme_for_relevant_type_sal
 
@@ -30,7 +32,7 @@ class stage_gratification(Variable):
         stagiaire = individu('stagiaire', period)
         plafond_securite_sociale_horaire = parameters(period).cotsoc.gen.plafond_securite_sociale_horaire
         stage_gratification_taux_min = parameters(period).cotsoc.stage.taux_gratification_min
-        return stagiaire * plafond_securite_sociale_horaire * stage_duree_heures * max_(
+        return stagiaire * plafond_securite_sociale_horaire * stage_duree_heures * numpy.maximum(
             stage_gratification_taux, stage_gratification_taux_min)
 
 
@@ -46,7 +48,7 @@ class stage_gratification_reintegration(Variable):
         plafond_securite_sociale_horaire = parameters(period).cotsoc.gen.plafond_securite_sociale_horaire
         stage_gratification_taux_min = parameters(period).cotsoc.stage.taux_gratification_min
         stage_gratification_min = plafond_securite_sociale_horaire * stage_duree_heures * stage_gratification_taux_min
-        return max_(stage_gratification - stage_gratification_min, 0)
+        return numpy.maximum(stage_gratification - stage_gratification_min, 0)
 
 
 class stagiaire(Variable):

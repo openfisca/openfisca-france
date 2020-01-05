@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+import numpy
 from numpy import datetime64, timedelta64
 
 from openfisca_france.model.base import *
@@ -530,7 +531,7 @@ def compute_taux_exoneration(assiette_allegement, smic_proratise, taux_max, seui
     ratio_smic_salaire = smic_proratise / (assiette_allegement + 1e-16)
     # règle d'arrondi: 4 décimales au dix-millième le plus proche ( # TODO: reprise de l'allègement Fillon unchecked)
     return round_(
-        taux_max * min_(1, max_(seuil_max * seuil_min * ratio_smic_salaire - seuil_min, 0) / (seuil_max - seuil_min)),
+        taux_max * min_(1, numpy.maximum(seuil_max * seuil_min * ratio_smic_salaire - seuil_min, 0) / (seuil_max - seuil_min)),
         4,
         )
 

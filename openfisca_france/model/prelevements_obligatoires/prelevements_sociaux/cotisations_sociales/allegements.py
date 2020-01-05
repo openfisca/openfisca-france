@@ -72,7 +72,7 @@ class coefficient_proratisation(Variable):
 
         # jours travaillables sur l'intersection du contrat de travail et du mois en cours
         jours_ouvres_ce_mois_incomplet = busday_count(
-            max_(contrat_de_travail_debut, debut_mois),
+            numpy.maximum(contrat_de_travail_debut, debut_mois),
             min_(contrat_de_travail_fin, fin_mois),
             weekmask='1111100'
             )
@@ -375,7 +375,7 @@ def compute_allegement_fillon(individu, period, parameters):
     ratio_smic_salaire = smic_proratise / (assiette + 1e-16)
 
     # règle d'arrondi: 4 décimales au dix-millième le plus proche
-    taux_fillon = round_(tx_max * min_(1, max_(seuil * ratio_smic_salaire - 1, 0) / (seuil - 1)), 4)
+    taux_fillon = round_(tx_max * min_(1, numpy.maximum(seuil * ratio_smic_salaire - 1, 0) / (seuil - 1)), 4)
 
     # Montant de l'allegment
     return taux_fillon * assiette

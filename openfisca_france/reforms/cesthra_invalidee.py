@@ -2,6 +2,8 @@
 
 import os
 
+import numpy
+
 from openfisca_france.model.base import *
 
 from .. import entities
@@ -28,7 +30,7 @@ class cesthra(Variable):
         salaire_imposable_i = foyer_fiscal.members("salaire_imposable", period, options = [ADD])
         law_cesthra = parameters(period).cesthra
 
-        cesthra_i = max_(salaire_imposable_i - law_cesthra.seuil, 0) * law_cesthra.taux
+        cesthra_i = numpy.maximum(salaire_imposable_i - law_cesthra.seuil, 0) * law_cesthra.taux
 
         return foyer_fiscal.sum(cesthra_i)
 

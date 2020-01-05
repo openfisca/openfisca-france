@@ -46,11 +46,11 @@ from openfisca_france.model.base import *
 #     # 40. ABATTEMENT POUR DUREE DE DETENTION
 #     # 41. NOMBRE D’ANNEES DE DETENTION AU-DELA DE LA 5EME ANNEE
 #     if period.start:  # TODO:
-#         taux_reduc = max_(dur_det_immo - pv_immo.ann_det1, 0) * pv_immo.taux1
+#         taux_reduc = numpy.maximum(dur_det_immo - pv_immo.ann_det1, 0) * pv_immo.taux1
 #     else:
-#         taux_reduc = (max_(dur_det_immo - pv_immo.ann_det3, 0) * pv_immo.taux3
-#             + max_(min_(dur_det_immo, pv_immo.ann_det3) - pv_immo.ann_det2, 0) * pv_immo.taux2
-#             + max_(min_(dur_det_immo, pv_immo.ann_det2) - pv_immo.ann_det1, 0) * pv_immo.taux1)
+#         taux_reduc = (numpy.maximum(dur_det_immo - pv_immo.ann_det3, 0) * pv_immo.taux3
+#             + numpy.maximum(min_(dur_det_immo, pv_immo.ann_det3) - pv_immo.ann_det2, 0) * pv_immo.taux2
+#             + numpy.maximum(min_(dur_det_immo, pv_immo.ann_det2) - pv_immo.ann_det1, 0) * pv_immo.taux1)
 #
 #     taux_reduc = min_(taux_reduc, 1.0)
 #     pv_impos = (1 - taux_reduc) * plus_value_brute
@@ -60,7 +60,7 @@ from openfisca_france.model.base import *
 #     # (CGI, 1° BIS DU II DE L’ARTICLE 150 U) TODO:
 #     exo = 0
 #
-#     pv_net_impos = max_(pv_impos - exo, 0)  # 46. PLUS-VALUE NETTE IMPOSABLE [LIGNE 44 OU (LIGNE 44 – LIGNE 45)] = €
+#     pv_net_impos = numpy.maximum(pv_impos - exo, 0)  # 46. PLUS-VALUE NETTE IMPOSABLE [LIGNE 44 OU (LIGNE 44 – LIGNE 45)] = €
 #     # 50. PLUS-VALUE NETTE IMPOSABLE GLOBALE =
 #     # (LIGNE 46 OU TOTAL DES LIGNES 46 SI PLUSIEURS 2048-IMM-SD PAGE 2)
 #

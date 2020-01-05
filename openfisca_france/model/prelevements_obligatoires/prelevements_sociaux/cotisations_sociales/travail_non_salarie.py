@@ -2,6 +2,7 @@
 
 import logging
 
+import numpy
 
 from openfisca_core.taxscales import MarginalRateTaxScale
 from openfisca_france.model.base import *
@@ -237,7 +238,7 @@ class famille_independant(Variable):
             ) * individu('rpns_individu', period)
         taux = (
             0 + (.031) * min_(
-                max_(
+                numpy.maximum(
                     assiette / plafond_securite_sociale_annuel - 1.1,
                     0
                     ),
@@ -292,7 +293,7 @@ class maladie_maternite_profession_liberale(Variable):
             )
         taux = (
             .015 + (.065 - .015) * min_(
-                max_(
+                numpy.maximum(
                     assiette / plafond_securite_sociale_annuel,
                     0
                     ),

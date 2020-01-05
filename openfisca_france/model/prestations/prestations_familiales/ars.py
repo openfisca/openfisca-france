@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+import numpy
+
 from openfisca_france.model.base import *
 from openfisca_france.model.prestations.prestations_familiales.base_ressource import nb_enf
 
@@ -49,6 +51,6 @@ class ars(Variable):
 
         # Forme de l'ARS  en fonction des enfants a*n - (rev-plaf)/n
         # ars_diff = (ars_plaf_res + arsbase - base_ressources) / arsnbenf
-        ars = (arsnbenf > 0) * max_(0, arsbase - max_(0, (base_ressources - ars_plaf_res) / max_(1, arsnbenf)))
+        ars = (arsnbenf > 0) * numpy.maximum(0, arsbase - numpy.maximum(0, (base_ressources - ars_plaf_res) / numpy.maximum(1, arsnbenf)))
 
         return ars * (ars >= P.ars.montant_seuil_non_versement)

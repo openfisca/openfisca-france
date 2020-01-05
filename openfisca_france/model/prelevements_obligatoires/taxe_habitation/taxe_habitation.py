@@ -32,7 +32,7 @@ class condition_rfr_exoneration_th(Variable):
         P = parameters(period).taxation_locale.taxe_habitation
         rfr = foyer_fiscal('rfr', period.last_year)
         nbptr = foyer_fiscal('nbptr', period.last_year)
-        seuil_th = P.exon_plaf_rfr.premiere_part + P.exon_plaf_rfr.demi_part_supp * max_(0, (nbptr - 1) * 2)
+        seuil_th = P.exon_plaf_rfr.premiere_part + P.exon_plaf_rfr.demi_part_supp * numpy.maximum(0, (nbptr - 1) * 2)
         return (rfr < seuil_th)
 
 
@@ -99,7 +99,7 @@ class abattement_charge_famille_th_commune(Variable):
         abt_pac_3pl_th_commune = menage('abt_pac_3pl_th_commune', period)
         return (
             abt_pac_1_2_th_commune * min_(nb_enfants, 2)
-            + abt_pac_3pl_th_commune * max_(nb_enfants - 2, 0)
+            + abt_pac_3pl_th_commune * numpy.maximum(nb_enfants - 2, 0)
             )
 
 
@@ -124,7 +124,7 @@ class abattement_charge_famille_th_epci(Variable):
         abt_pac_3pl_th_epci = menage('abt_pac_3pl_th_epci', period)
         return (
             abt_pac_1_2_th_epci * min_(nb_enfants, 2)
-            + abt_pac_3pl_th_epci * max_(nb_enfants - 2, 0)
+            + abt_pac_3pl_th_epci * numpy.maximum(nb_enfants - 2, 0)
             )
 
 
@@ -209,7 +209,7 @@ class base_nette_th_commune(Variable):
             - abattement_personnes_condition_modeste_th_commune
             - abt_general_base_th_commune
             )
-        return max_(base_brute_moins_abattements, 0)
+        return numpy.maximum(base_brute_moins_abattements, 0)
 
 
 class base_nette_th_epci(Variable):
@@ -235,7 +235,7 @@ class base_nette_th_epci(Variable):
             - abattement_personnes_condition_modeste_th_epci
             - abt_general_base_th_epci
             )
-        return max_(base_brute_moins_abattements, 0)
+        return numpy.maximum(base_brute_moins_abattements, 0)
 
 
 class taxe_habitation_commune_epci_avant_degrevement(Variable):
@@ -273,7 +273,7 @@ class plafond_taxe_habitation_eligibilite(Variable):
         nbptr_menage = menage.sum(nbptr_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
         isf_ifi_i = menage.members.foyer_fiscal('isf_ifi', period.last_year)
         isf_ifi_menage = menage.sum(isf_ifi_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
-        seuil_rfr = P_plaf.plaf_rfr.premiere_part + P_plaf.plaf_rfr.premiere_demi_part_supp * (min_(max_(nbptr_menage - 1, 0), 0.5)) / 0.5 + P_plaf.plaf_rfr.autres_demi_parts_supp * (max_(nbptr_menage - 1.5, 0)) / 0.5
+        seuil_rfr = P_plaf.plaf_rfr.premiere_part + P_plaf.plaf_rfr.premiere_demi_part_supp * (min_(numpy.maximum(nbptr_menage - 1, 0), 0.5)) / 0.5 + P_plaf.plaf_rfr.autres_demi_parts_supp * (numpy.maximum(nbptr_menage - 1.5, 0)) / 0.5
         return (rfr_menage <= seuil_rfr) * (isf_ifi_menage == 0)
 
 
@@ -291,7 +291,7 @@ class plafond_taxe_habitation(Variable):
         rfr_menage = menage.sum(rfr_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
         nbptr_i = menage.members.foyer_fiscal('nbptr', period.last_year)
         nbptr_menage = menage.sum(nbptr_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
-        abattement = P_plaf.abattement_rfr.premiere_part + P_plaf.abattement_rfr.quatre_premieres_demi_parts_supp * (min_(max_(nbptr_menage - 1, 0), 2)) / 0.5 + P_plaf.abattement_rfr.autres_demi_parts_supp * (max_(nbptr_menage - 3, 0)) / 0.5
+        abattement = P_plaf.abattement_rfr.premiere_part + P_plaf.abattement_rfr.quatre_premieres_demi_parts_supp * (min_(numpy.maximum(nbptr_menage - 1, 0), 2)) / 0.5 + P_plaf.abattement_rfr.autres_demi_parts_supp * (numpy.maximum(nbptr_menage - 3, 0)) / 0.5
         return (rfr_menage - abattement) * P_plaf.taux_plafonnement_revenu * plafond_taxe_habitation_eligibilite
 
 
@@ -343,7 +343,7 @@ class degrevement_plafonnement_taxe_habitation(Variable):
             - plafond_taxe_habitation
             - reduction_degrevement
             )
-        return max_(degrevement, 0) * plafond_taxe_habitation_eligibilite
+        return numpy.maximum(degrevement, 0) * plafond_taxe_habitation_eligibilite
 
 
 class taxe_habitation_commune_epci_apres_degrevement_plafonnement(Variable):
@@ -355,7 +355,7 @@ class taxe_habitation_commune_epci_apres_degrevement_plafonnement(Variable):
     def formula_2017_01_01(menage, period, parameters):
         taxe_habitation_commune_epci_avant_degrevement = menage('taxe_habitation_commune_epci_avant_degrevement', period)
         degrevement_plafonnement_taxe_habitation = menage('degrevement_plafonnement_taxe_habitation', period)
-        return max_(taxe_habitation_commune_epci_avant_degrevement - degrevement_plafonnement_taxe_habitation, 0)
+        return numpy.maximum(taxe_habitation_commune_epci_avant_degrevement - degrevement_plafonnement_taxe_habitation, 0)
 
 
 class degrevement_office_taxe_habitation(Variable):
@@ -386,15 +386,15 @@ class degrevement_office_taxe_habitation(Variable):
         rfr_menage = menage.sum(rfr_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
         nbptr_i = menage.members.foyer_fiscal('nbptr', period.last_year)
         nbptr_menage = menage.sum(nbptr_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
-        plafond_rfr_degrev = P_degrev.plaf_rfr_degrev.premiere_part + P_degrev.plaf_rfr_degrev.deux_premieres_demi_parts_supp * (min_(max_(nbptr_menage - 1, 0), 1)) / 0.5 + P_degrev.plaf_rfr_degrev.autres_demi_parts_supp * (max_(nbptr_menage - 2, 0)) / 0.5
-        plafond_rfr_degrev_degressif = P_degrev.plaf_rfr_degrev_degressif.premiere_part + P_degrev.plaf_rfr_degrev_degressif.deux_premieres_demi_parts_supp * (min_(max_(nbptr_menage - 1, 0), 1)) / 0.5 + P_degrev.plaf_rfr_degrev_degressif.autres_demi_parts_supp * (max_(nbptr_menage - 2, 0)) / 0.5
+        plafond_rfr_degrev = P_degrev.plaf_rfr_degrev.premiere_part + P_degrev.plaf_rfr_degrev.deux_premieres_demi_parts_supp * (min_(numpy.maximum(nbptr_menage - 1, 0), 1)) / 0.5 + P_degrev.plaf_rfr_degrev.autres_demi_parts_supp * (numpy.maximum(nbptr_menage - 2, 0)) / 0.5
+        plafond_rfr_degrev_degressif = P_degrev.plaf_rfr_degrev_degressif.premiere_part + P_degrev.plaf_rfr_degrev_degressif.deux_premieres_demi_parts_supp * (min_(numpy.maximum(nbptr_menage - 1, 0), 1)) / 0.5 + P_degrev.plaf_rfr_degrev_degressif.autres_demi_parts_supp * (numpy.maximum(nbptr_menage - 2, 0)) / 0.5
         elig_degrev = (isf_ifi_menage == 0) * (rfr_menage <= plafond_rfr_degrev)
         elig_degrev_degressif = (isf_ifi_menage == 0) * (elig_degrev == 0) * (rfr_menage <= plafond_rfr_degrev_degressif)
 
         # Calcul du dégrèvement
         taxe_habitation_commune_epci_apres_degrevement_plafonnement = menage('taxe_habitation_commune_epci_apres_degrevement_plafonnement', period)
         degrev = P_degrev.taux * taxe_habitation_commune_epci_apres_degrevement_plafonnement
-        degrev_degressif = degrev * max_((plafond_rfr_degrev_degressif - rfr_menage) / (plafond_rfr_degrev_degressif - plafond_rfr_degrev), 0)
+        degrev_degressif = degrev * numpy.maximum((plafond_rfr_degrev_degressif - rfr_menage) / (plafond_rfr_degrev_degressif - plafond_rfr_degrev), 0)
 
         return degrev * elig_degrev + degrev_degressif * elig_degrev_degressif
 
@@ -409,4 +409,4 @@ class taxe_habitation(Variable):
     def formula_2017_01_01(menage, period):
         taxe_habitation_commune_epci_apres_degrevement_plafonnement = menage('taxe_habitation_commune_epci_apres_degrevement_plafonnement', period)
         degrevement_office_taxe_habitation = menage('degrevement_office_taxe_habitation', period)
-        return - max_(taxe_habitation_commune_epci_apres_degrevement_plafonnement - degrevement_office_taxe_habitation, 0)
+        return - numpy.maximum(taxe_habitation_commune_epci_apres_degrevement_plafonnement - degrevement_office_taxe_habitation, 0)

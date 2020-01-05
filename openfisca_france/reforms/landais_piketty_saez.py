@@ -1,15 +1,14 @@
 # -*- coding: utf-8 -*-
 
-
 # TODO switch to to average tax rates
-
 
 """Impôt Landais, Piketty, Saez"""
 
 import os
 
-from openfisca_france.model.base import *
+import numpy
 
+from openfisca_france.model.base import *
 
 dir_path = os.path.join(os.path.dirname(__file__), 'parameters')
 
@@ -51,7 +50,7 @@ class impot_revenu_lps(Variable):
         ac = couple * lps.abatt_conj
         rc = couple * lps.reduc_conj
         assiette_csg = individu('assiette_csg', period)
-        return -max_(0, lps.bareme.calc(max_(assiette_csg - ae - ac, 0)) - re - rc) + ce
+        return -numpy.maximum(0, lps.bareme.calc(numpy.maximum(assiette_csg - ae - ac, 0)) - re - rc) + ce
 
 
 class revenu_disponible(Variable):

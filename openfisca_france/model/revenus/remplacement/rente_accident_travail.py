@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+import numpy
+
 from openfisca_france.model.base import *
 
 
@@ -112,7 +114,7 @@ class rente_accident_travail_apres_rachat(Variable):
 
     def formula(individu, period, parameters):
         rente_at = parameters(period).accident_travail.rente.taux
-        age = min_(max_(individu('age', period), 16), 100)
+        age = min_(numpy.maximum(individu('age', period), 16), 100)
         rente_accident_travail_rachat = individu('rente_accident_travail_rachat', period)
         conversion_rente_capital = rente_at.capital_representatif[age]
         rente_accident_travail_base = individu('rente_accident_travail_base', period)
@@ -131,7 +133,7 @@ class rente_accident_travail_rachat(Variable):
     def formula(individu, period, parameters):
         rente_at = parameters(period).accident_travail.rente.taux
         demande_rachat = individu('demande_rachat', period)
-        age = min_(max_(individu('age', period), 16), 100)
+        age = min_(numpy.maximum(individu('age', period), 16), 100)
         conversion_rente_capital = rente_at.capital_representatif[age]
         rente_accident_travail_base = individu('rente_accident_travail_base', period)
         rachat = (rente_accident_travail_base * conversion_rente_capital) / 4
@@ -176,8 +178,8 @@ class rente_accident_travail_salaire_utile(Variable):
 
         salaire_net = individu('salaire_net', previous_year, options=[ADD])
         tns_benefice_exploitant_agricole = individu('tns_benefice_exploitant_agricole', previous_year, options=[ADD])
-        salaire = max_(salaire_net, tns_benefice_exploitant_agricole)
-        salaire_net_base = max_(rente_at.salaire_net.salaire_minimum, salaire)
+        salaire = numpy.maximum(salaire_net, tns_benefice_exploitant_agricole)
+        salaire_net_base = numpy.maximum(rente_at.salaire_net.salaire_minimum, salaire)
         coef = salaire_net_base / rente_at.salaire_net.salaire_minimum
         bareme = rente_at.salaire_net.bareme.calc(coef)
         return rente_at.salaire_net.salaire_minimum * bareme

@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+import numpy
+
 from openfisca_france.model.base import *
 
 
@@ -130,7 +132,7 @@ class revenus_locatifs(Variable):
         """
         revenu_categoriel_foncier = individu.foyer_fiscal('revenu_categoriel_foncier', period.this_year)
         montant = revenu_categoriel_foncier * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL) / 12
-        return max_(montant, 0)
+        return numpy.maximum(montant, 0)
 
 
 class valeur_immo_non_loue(Variable):

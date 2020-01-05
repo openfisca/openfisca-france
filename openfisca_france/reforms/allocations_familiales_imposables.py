@@ -2,8 +2,9 @@
 
 import os
 
-from ..model.base import *
+import numpy
 
+from ..model.base import *
 
 dir_path = os.path.join(os.path.dirname(__file__), 'parameters')
 
@@ -34,7 +35,7 @@ class allocations_familiales_imposables(Reform):
             cga = parameters(period).impot_revenu.rpns.cga_taux2
 
             nacc_pvce = foyer_fiscal.sum(nacc_pvce_i)
-            return max_(
+            return numpy.maximum(
                 0,
                 allocations_familiales_imposables
                 + revenu_categoriel
@@ -65,7 +66,7 @@ class allocations_familiales_imposables(Reform):
             rpns_exon = foyer_fiscal.sum(rpns_exon_holder)
 
             return (
-                max_(0, rni - allocations_familiales_imposables)
+                numpy.maximum(0, rni - allocations_familiales_imposables)
                 + rfr_cd
                 + rfr_rvcm_abattements_a_reintegrer
                 + revenus_capitaux_prelevement_liberatoire

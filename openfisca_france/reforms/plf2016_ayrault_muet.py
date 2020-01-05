@@ -55,7 +55,7 @@ class reduction_csg(Variable):
         tx_max = coefficient_correctif * taux_csg
         ratio_smic_salaire = smic_proratise / (assiette_csg_abattue + 1e-16)
         # règle d'arrondi: 4 décimales au dix-millième le plus proche
-        taux_allegement_csg = tx_max * min_(1, max_(seuil - 1 / ratio_smic_salaire, 0) / (seuil - 1))
+        taux_allegement_csg = tx_max * min_(1, numpy.maximum(seuil - 1 / ratio_smic_salaire, 0) / (seuil - 1))
         # Montant de l'allegment
         return taux_allegement_csg * assiette_csg_abattue
 
@@ -102,8 +102,8 @@ class ppe_elig_bis(Variable):
         nbptr = foyer_fiscal('nbptr', period)
         variator = foyer_fiscal('variator', period)
         ppe = parameters(period).impot_revenu.credits_impot.ppe
-        seuil = (veuf | celibataire_ou_divorce) * (ppe.eligi1 + 2 * max_(nbptr - 1, 0) * ppe.eligi3) \
-            + maries_ou_pacses * (ppe.eligi2 + 2 * max_(nbptr - 2, 0) * ppe.eligi3)
+        seuil = (veuf | celibataire_ou_divorce) * (ppe.eligi1 + 2 * numpy.maximum(nbptr - 1, 0) * ppe.eligi3) \
+            + maries_ou_pacses * (ppe.eligi2 + 2 * numpy.maximum(nbptr - 2, 0) * ppe.eligi3)
         return (rfr * ppe_coef) <= (seuil * variator)
 
 

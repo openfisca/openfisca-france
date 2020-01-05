@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import numpy
-from numpy import round, floor, datetime64, maximum
+from numpy import round, floor, datetime64
 
 from openfisca_france.model.base import *
 from openfisca_france.model.prestations.prestations_familiales.base_ressource import nb_enf
@@ -120,7 +120,7 @@ class paje_base(Variable):
             plafond = (
                 plafond_de_base
                 + min_(nombre_enfants, 2) * maj_plafond_2_premiers_enfants
-                + max_(nombre_enfants - 2, 0) * maj_plafond_par_enfant_sup
+                + numpy.maximum(nombre_enfants - 2, 0) * maj_plafond_par_enfant_sup
                 + (couple_biactif + parent_isole) * maj_plafond_seul_biactif
                 )
             return plafond
@@ -148,7 +148,7 @@ class paje_base(Variable):
             return plafond
 
         a_un_enfant_eligible = famille.any(famille.members('enfant_eligible_paje', period))
-        date_plus_jeune = famille.reduce(famille.members('date_naissance', period), maximum, datetime64('1066-01-01'))
+        date_plus_jeune = famille.reduce(famille.members('date_naissance', period), numpy.maximum, datetime64('1066-01-01'))
         sujet_a_reforme_2014 = date_plus_jeune >= datetime64('2014-04-01')
         sujet_a_reforme_2018 = date_plus_jeune >= datetime64('2018-04-01')
         ne_avant_avril_2014 = True
@@ -226,7 +226,7 @@ class paje_naissance(Variable):
         taux_plafond = (
             (nbenf > 0)
             + P.paje.base.apres_2018.taux_majoration_2_premiers_enf * min_(nbenf, 2)
-            + P.paje.base.apres_2018.taux_majoration_3eme_enf_et_plus * max_(nbenf - 2, 0)
+            + P.paje.base.apres_2018.taux_majoration_3eme_enf_et_plus * numpy.maximum(nbenf - 2, 0)
             )
 
         majoration_isole_biactif = isole | biactivite
@@ -272,7 +272,7 @@ class paje_naissance(Variable):
         taux_plafond = (
             (nbenf > 0)
             + P.paje.base.avant_2014.taux_majoration_2_premiers_enf * min_(nbenf, 2)
-            + P.paje.base.avant_2014.taux_majoration_3eme_enf_et_plus * max_(nbenf - 2, 0)
+            + P.paje.base.avant_2014.taux_majoration_3eme_enf_et_plus * numpy.maximum(nbenf - 2, 0)
             )
 
         majoration_isole_biactif = isole | biactivite
@@ -314,7 +314,7 @@ class paje_naissance(Variable):
         plaf_tx = (
             (nbenf > 0)
             + P.paje.base.avant_2014.taux_majoration_2_premiers_enf * min_(nbenf, 2)
-            + P.paje.base.avant_2014.taux_majoration_3eme_enf_et_plus * max_(nbenf - 2, 0)
+            + P.paje.base.avant_2014.taux_majoration_3eme_enf_et_plus * numpy.maximum(nbenf - 2, 0)
             )
 
         majo = isole | biactivite
@@ -416,13 +416,13 @@ class paje_cmg(Variable):
         seuil_revenus_1 = (
             (nombre_enfants == 1) * P.paje.clmg.seuil11
             + (nombre_enfants >= 2) * P.paje.clmg.seuil12
-            + max_(nombre_enfants - 2, 0) * P.paje.clmg.seuil1sup
+            + numpy.maximum(nombre_enfants - 2, 0) * P.paje.clmg.seuil1sup
             )
 
         seuil_revenus_2 = (
             (nombre_enfants == 1) * P.paje.clmg.seuil21
             + (nombre_enfants >= 2) * P.paje.clmg.seuil22
-            + max_(nombre_enfants - 2, 0) * P.paje.clmg.seuil2sup
+            + numpy.maximum(nombre_enfants - 2, 0) * P.paje.clmg.seuil2sup
             )
 
     #        Si vous bénéficiez du PreParE taux partiel (= vous travaillez entre 50 et 80% de la durée du travail fixée
@@ -533,7 +533,7 @@ class paje_cmg(Variable):
             * (nbenf == 1)
             + P.paje.clmg.seuil12
             * (nbenf >= 2)
-            + max_(nbenf - 2, 0)
+            + numpy.maximum(nbenf - 2, 0)
             * P.paje.clmg.seuil1sup
             )
 
@@ -542,7 +542,7 @@ class paje_cmg(Variable):
             * (nbenf == 1)
             + P.paje.clmg.seuil22
             * (nbenf >= 2)
-            + max_(nbenf - 2, 0)
+            + numpy.maximum(nbenf - 2, 0)
             * P.paje.clmg.seuil2sup
             )
 
@@ -672,12 +672,12 @@ class apje_avant_cumul(Variable):
         base = round(P.apje.taux * bmaf, 2)
         base2 = round(P.apje.taux * bmaf_n_2, 2)
 
-        plaf_tx = (nbenf > 0) + P.apje.taux_enfant_1_et_2 * min_(nbenf, 2) + P.apje.taux_enfant_3_et_plus * max_(nbenf - 2, 0)
+        plaf_tx = (nbenf > 0) + P.apje.taux_enfant_1_et_2 * min_(nbenf, 2) + P.apje.taux_enfant_3_et_plus * numpy.maximum(nbenf - 2, 0)
         majo = isole | biactivite
         plaf = P.apje.plaf * plaf_tx + P.apje.plaf_maj * majo
         plaf2 = plaf + 12 * base2
 
-        apje = (nbenf >= 1) * ((base_ressources <= plaf) * base + (base_ressources > plaf) * max_(plaf2 - base_ressources, 0) / 12.0)
+        apje = (nbenf >= 1) * ((base_ressources <= plaf) * base + (base_ressources > plaf) * numpy.maximum(plaf2 - base_ressources, 0) / 12.0)
 
         # Pour bénéficier de cette allocation, il faut que tous les enfants du foyer soient nés, adoptés, ou recueillis
         # en vue d’une adoption avant le 1er janvier 2004, et qu’au moins l’un d’entre eux ait moins de 3 ans.

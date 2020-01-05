@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+import numpy
+
 from openfisca_france.model.base import *
 
 # Variables apparaissant dans la feuille de déclaration de patrimoine soumis à l'ISF
@@ -267,10 +269,10 @@ class isf_ifi_imm_non_bati(Variable):
         b1bd = b1bc * P.taux_f
         # bien ruraux loués à long terme
         b1bf = min_(b1be, P.seuil) * P.taux_r1
-        b1bg = max_(b1be - P.seuil, 0) * P.taux_r2
+        b1bg = numpy.maximum(b1be - P.seuil, 0) * P.taux_r2
         # part de groupements forestiers- agricoles fonciers
         b1bi = min_(b1bh, P.seuil) * P.taux_r1
-        b1bj = max_(b1bh - P.seuil, 0) * P.taux_r2
+        b1bj = numpy.maximum(b1bh - P.seuil, 0) * P.taux_r2
         return b1bd + b1bf + b1bg + b1bi + b1bj + b1bk
 
 
@@ -438,7 +440,7 @@ class isf_ifi_avant_plaf(Variable):
         isf_ifi_avant_reduction = foyer_fiscal('isf_ifi_avant_reduction', period)
         isf_reduc_pac = foyer_fiscal('isf_reduc_pac', period)
 
-        return max_(0, isf_ifi_avant_reduction - isf_reduc_pac)
+        return numpy.maximum(0, isf_ifi_avant_reduction - isf_reduc_pac)
 
     def formula_2008(foyer_fiscal, period, parameters):
         isf_ifi_avant_reduction = foyer_fiscal('isf_ifi_avant_reduction', period)
@@ -446,7 +448,7 @@ class isf_ifi_avant_plaf(Variable):
         isf_org_int_gen = foyer_fiscal('isf_org_int_gen', period)
         isf_reduc_pac = foyer_fiscal('isf_reduc_pac', period)
 
-        return max_(0, isf_ifi_avant_reduction - (isf_inv_pme + isf_org_int_gen) - isf_reduc_pac)
+        return numpy.maximum(0, isf_ifi_avant_reduction - (isf_inv_pme + isf_org_int_gen) - isf_reduc_pac)
 
     def formula_2009(foyer_fiscal, period, parameters):
         isf_ifi_avant_reduction = foyer_fiscal('isf_ifi_avant_reduction', period)
@@ -455,7 +457,7 @@ class isf_ifi_avant_plaf(Variable):
         isf_reduc_pac = foyer_fiscal('isf_reduc_pac', period)
         borne_max = parameters(period).taxation_capital.isf_ifi.reduc_invest_don.max
 
-        return max_(0, isf_ifi_avant_reduction - min_(isf_inv_pme + isf_org_int_gen, borne_max) - isf_reduc_pac)
+        return numpy.maximum(0, isf_ifi_avant_reduction - min_(isf_inv_pme + isf_org_int_gen, borne_max) - isf_reduc_pac)
 
 
 # # calcul du plafonnement ##
@@ -533,7 +535,7 @@ class revenus_et_produits_plafonnement_isf_ifi(Variable):
         interets_pel_moins_12_ans_cel = foyer_fiscal.sum(interets_pel_moins_12_ans_cel_i)
         interets_livret_a = foyer_fiscal.sum(interets_livret_a_i)
 
-        montant = max_(
+        montant = numpy.maximum(
             0,
             revenu_assimile_salaire_apres_abattements
             + revenu_assimile_pension_apres_abattements
@@ -586,13 +588,13 @@ class isf_ifi_apres_plaf(Variable):
         # si entre les deux seuils; l'allègement est limité au 1er seuil
         # si ISF avant plafonnement est supérieur au 2nd seuil, l'allègement qui résulte du plafonnement
         #    est limité à 50% de l'ISF
-        plafonnement = max_(total_impots_plafonnement_isf_ifi - revenus_et_produits_plafonnement_isf_ifi, 0)
+        plafonnement = numpy.maximum(total_impots_plafonnement_isf_ifi - revenus_et_produits_plafonnement_isf_ifi, 0)
         limitationplaf = (
             (isf_ifi_avant_plaf <= P.seuil1) * plafonnement
             + (P.seuil1 <= isf_ifi_avant_plaf) * (isf_ifi_avant_plaf <= P.seuil2) * min_(plafonnement, P.seuil1)
             + (isf_ifi_avant_plaf >= P.seuil2) * min_(isf_ifi_avant_plaf * P.taux, plafonnement)
             )
-        return max_(isf_ifi_avant_plaf - limitationplaf, 0)
+        return numpy.maximum(isf_ifi_avant_plaf - limitationplaf, 0)
 
     def formula_2012_01_01(foyer_fiscal, period):
         '''
@@ -607,8 +609,8 @@ class isf_ifi_apres_plaf(Variable):
         isf_ifi_avant_plaf = foyer_fiscal('isf_ifi_avant_plaf', period)
         P = parameters(period).taxation_capital.isf_ifi.plafonnement
 
-        plafond = max_(0, total_impots_plafonnement_isf_ifi - P.plafonnement_taux_d_imposition_isf * revenus_et_produits_plafonnement_isf_ifi)  # case 9PV sur le formulaire 2042C des revenus 2013 aux revenus 2016
-        return max_(isf_ifi_avant_plaf - plafond, 0)
+        plafond = numpy.maximum(0, total_impots_plafonnement_isf_ifi - P.plafonnement_taux_d_imposition_isf * revenus_et_produits_plafonnement_isf_ifi)  # case 9PV sur le formulaire 2042C des revenus 2013 aux revenus 2016
+        return numpy.maximum(isf_ifi_avant_plaf - plafond, 0)
 
 
 class isf_ifi(Variable):
@@ -672,7 +674,7 @@ class maj_cga(Variable):
 
         # C revenus industriels et commerciaux non professionnels
         # (revenus accesoires du foyers en nomenclature INSEE)
-        nacc_timp = max_(0, (nacc_impn + nacc_meup) - (nacc_defn + nacc_defs))
+        nacc_timp = numpy.maximum(0, (nacc_impn + nacc_meup) - (nacc_defn + nacc_defs))
 
         # régime de la déclaration contrôlée ne bénéficiant pas de l'abattement association agréée
         nbnc_timp = nbnc_impo - nbnc_defi
@@ -680,7 +682,7 @@ class maj_cga(Variable):
         # Totaux
         ntimp = nrag_impg + nbic_timp + nacc_timp + nbnc_timp
 
-        return max_(0, P.cga_taux2 * (ntimp + frag_impo))
+        return numpy.maximum(0, P.cga_taux2 * (ntimp + frag_impo))
 
 
 class bouclier_rev(Variable):
@@ -837,4 +839,4 @@ class bouclier_fiscal(Variable):
         bouclier_rev = foyer_fiscal('bouclier_rev', period)
         P = parameters(period).bouclier_fiscal
 
-        return max_(0, bouclier_sumimp - (bouclier_rev * P.taux))
+        return numpy.maximum(0, bouclier_sumimp - (bouclier_rev * P.taux))

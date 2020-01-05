@@ -2,6 +2,8 @@
 
 import logging
 
+import numpy
+
 from openfisca_france.model.base import *
 from openfisca_france.model.prelevements_obligatoires.prelevements_sociaux.contributions_sociales.base import (
     montant_csg_crds
@@ -74,9 +76,9 @@ class csg_deductible_chomage(Variable):
             * parameters.cotsoc.gen.smic_h_b
             )
 
-        csg_deductible_chomage = max_(
+        csg_deductible_chomage = numpy.maximum(
             - montant_csg
-            - max_(cho_seuil_exo - (
+            - numpy.maximum(cho_seuil_exo - (
                 chomage_brut
                 + csg_imposable_chomage
                 + montant_csg
@@ -110,7 +112,7 @@ class csg_imposable_chomage(Variable):
             * nbh_travail
             * parameters.cotsoc.gen.smic_h_b
             )
-        csg_imposable_chomage = max_(- montant_csg - max_(cho_seuil_exo - (chomage_brut + montant_csg), 0), 0)
+        csg_imposable_chomage = numpy.maximum(- montant_csg - numpy.maximum(cho_seuil_exo - (chomage_brut + montant_csg), 0), 0)
         return - csg_imposable_chomage
 
 
@@ -143,8 +145,8 @@ class crds_chomage(Variable):
             plafond_securite_sociale = law.cotsoc.gen.plafond_securite_sociale,
             ) * eligible
 
-        crds_chomage = max_(
-            -montant_crds - max_(
+        crds_chomage = numpy.maximum(
+            -montant_crds - numpy.maximum(
                 cho_seuil_exo - (chomage_brut + csg_imposable_chomage + csg_deductible_chomage + montant_crds), 0
                 ), 0
             )

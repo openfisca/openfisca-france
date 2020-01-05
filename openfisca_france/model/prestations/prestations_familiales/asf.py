@@ -64,4 +64,4 @@ class asf(Variable):
         montant = famille.sum(asf_par_enfant, role = Famille.ENFANT)
         pensions_alimentaires_percues = famille.sum(famille.members('pensions_alimentaires_percues', period))
 
-        return asf_elig * max_(montant - pensions_alimentaires_percues, 0)
+        return asf_elig * numpy.maximum(montant - pensions_alimentaires_percues, 0)

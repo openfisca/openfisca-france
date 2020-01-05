@@ -2,6 +2,8 @@
 
 import os
 
+import numpy
+
 from ..model.base import *
 
 
@@ -26,7 +28,7 @@ class plfr2014(Reform):
             params = parameters(period).plfr2014.reduction_impot_exceptionnelle
             plafond = params.seuil * nb_adult + (nb_parents - nb_adult) * 2 * params.majoration_seuil
             montant = params.montant_plafond * nb_adult
-            return min_(max_(plafond + montant - rfr, 0), montant)
+            return min_(numpy.maximum(plafond + montant - rfr, 0), montant)
 
     class reductions(Variable):
         label = "Somme des réductions d'impôt à intégrer pour l'année 2013"

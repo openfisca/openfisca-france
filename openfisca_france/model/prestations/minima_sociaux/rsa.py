@@ -113,7 +113,7 @@ class rsa_base_ressources_individu(Variable):
         montant_de_base_du_rsa = parameters(period).prestations.minima_sociaux.rsa.montant_de_base_du_rsa
         montant_forfaitaire_neutralisation = 3 * montant_de_base_du_rsa
         revenus_non_pros = sum(
-            max_(
+            numpy.maximum(
                 0,
                 individu(type_revenu, period.last_3_months, options = [ADD])
                 - (
@@ -166,7 +166,7 @@ class rsa_base_ressources_individu(Variable):
         neutral_max_forfaitaire = 3 * parameters(period).prestations.minima_sociaux.rmi.rmi
 
         revenus_non_pros = sum(
-            max_(
+            numpy.maximum(
                 0,
                 individu(type_revenu, period.last_3_months, options = [ADD])
                 - neutral_max_forfaitaire * (
@@ -539,7 +539,7 @@ class rsa_montant(Variable):
     def formula_2009_06(famille, period, parameters):
         rsa_socle_non_majore = famille('rsa_socle', period)
         rsa_socle_majore = famille('rsa_socle_majore', period)
-        rsa_socle = max_(rsa_socle_non_majore, rsa_socle_majore)
+        rsa_socle = numpy.maximum(rsa_socle_non_majore, rsa_socle_majore)
 
         rsa_revenu_activite = famille('rsa_revenu_activite', period)
         rsa_forfait_logement = famille('rsa_forfait_logement', period)
@@ -550,7 +550,7 @@ class rsa_montant(Variable):
 
         montant = rsa_socle - rsa_forfait_logement - rsa_base_ressources + P.pente * rsa_revenu_activite
 
-        montant = max_(montant, 0)
+        montant = numpy.maximum(montant, 0)
         montant = montant * (montant >= seuil_non_versement)
 
         return montant
@@ -714,7 +714,7 @@ class rsa_eligibilite_tns(Variable):
                 + maj_1e_2ad
                 * (rsa_nb_enfants > 0)
                 + maj_e_sup
-                * max_(rsa_nb_enfants - 1, 0)
+                * numpy.maximum(rsa_nb_enfants - 1, 0)
                 )
 
             taux_sans_conjoint = (
@@ -722,7 +722,7 @@ class rsa_eligibilite_tns(Variable):
                 + maj_2p
                 * (rsa_nb_enfants > 0)
                 + maj_e_sup
-                * max_(rsa_nb_enfants - 1, 0)
+                * numpy.maximum(rsa_nb_enfants - 1, 0)
                 )
 
             taux_majoration = (
@@ -834,7 +834,7 @@ class rsa_forfait_logement(Variable):
         montant_al = avantage_al * min_(aide_logement, montant_forfait)
         montant_nature = avantage_nature * montant_forfait
 
-        return max_(montant_al, montant_nature)
+        return numpy.maximum(montant_al, montant_nature)
 
 
 class rsa_isolement_recent(Variable):
@@ -941,7 +941,7 @@ class rsa_socle(Variable):
             + (nb_personnes >= 3) * rsa.majoration_rsa.taux_troisieme_personne
             + (nb_personnes >= 4) * where(nb_parents == 1, rsa.majoration_rsa.taux_personne_supp, rsa.majoration_rsa.taux_troisieme_personne)
             # Si nb_parents == 1, pas de conjoint, la 4e personne est un enfant, donc le taux est de 40%.
-            + max_(nb_personnes - 4, 0) * rsa.majoration_rsa.taux_personne_supp
+            + numpy.maximum(nb_personnes - 4, 0) * rsa.majoration_rsa.taux_personne_supp
             )
 
         socle = rsa.montant_de_base_du_rsa
@@ -962,7 +962,7 @@ class rsa_socle(Variable):
             + (nb_personnes >= 3) * rmi.txp3
             + (nb_personnes >= 4) * where(nb_parents == 1, rmi.txps, rmi.txp3)
             # Si nb_parents == 1, pas de conjoint, la 4e personne est un enfant, donc le taux est de 40%.
-            + max_(nb_personnes - 4, 0) * rmi.txps
+            + numpy.maximum(nb_personnes - 4, 0) * rmi.txps
             )
 
         socle = rmi.rmi

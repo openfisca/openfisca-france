@@ -104,7 +104,7 @@ class af_base(Variable):
             )
 
         deux_enfants = (af_nbenf >= 2) * pfam.taux.enf2
-        plus_de_trois_enfants = max_(af_nbenf - 2, 0) * pfam.taux.enf3
+        plus_de_trois_enfants = numpy.maximum(af_nbenf - 2, 0) * pfam.taux.enf3
         taux_total = un_seul_enfant + deux_enfants + plus_de_trois_enfants
         montant_base = eligibilite * round_(pfam.bmaf * taux_total, 2)
         coeff_garde_alternee = famille('af_coeff_garde_alternee', period)
@@ -244,7 +244,7 @@ class af_complement_degressif(Variable):
         af_majoration = famille('af_majoration', period)
         af = af_base + af_majoration
 
-        return max_(0, af - depassement_mensuel) * (depassement_mensuel > 0)
+        return numpy.maximum(0, af - depassement_mensuel) * (depassement_mensuel > 0)
 
 
 class af_allocation_forfaitaire_complement_degressif(Variable):
@@ -261,7 +261,7 @@ class af_allocation_forfaitaire_complement_degressif(Variable):
         depassement_mensuel = depassement_helper(famille, period, parameters, af_nbenf)
 
         af_allocation_forfaitaire = famille('af_allocation_forfaitaire', period)
-        return max_(0, af_allocation_forfaitaire - depassement_mensuel) * (depassement_mensuel > 0)
+        return numpy.maximum(0, af_allocation_forfaitaire - depassement_mensuel) * (depassement_mensuel > 0)
 
 
 class af_allocation_forfaitaire(Variable):
@@ -321,12 +321,12 @@ def plafonds_helper(famille, period, parameters, nb_enf_tot):
 
     plafond1 = (
         modulation.plafond_tranche_1_base
-        + max_(nb_enf_tot, 0) * modulation.majoration_plafond_par_enfant_supplementaire
+        + numpy.maximum(nb_enf_tot, 0) * modulation.majoration_plafond_par_enfant_supplementaire
         )
 
     plafond2 = (
         modulation.plafond_tranche_2_base
-        + max_(nb_enf_tot, 0) * modulation.majoration_plafond_par_enfant_supplementaire
+        + numpy.maximum(nb_enf_tot, 0) * modulation.majoration_plafond_par_enfant_supplementaire
         )
 
     return (plafond1, plafond2)
@@ -354,8 +354,8 @@ def depassement_helper(famille, period, parameters, nb_enf_tot):
 
     plafond1, plafond2 = plafonds_helper(famille, period, parameters, nb_enf_tot)
 
-    depassement_plafond1 = max_(0, base_ressources - plafond1)
-    depassement_plafond2 = max_(0, base_ressources - plafond2)
+    depassement_plafond1 = numpy.maximum(0, base_ressources - plafond1)
+    depassement_plafond2 = numpy.maximum(0, base_ressources - plafond2)
 
     depassement_mensuel = (
         (depassement_plafond2 == 0) * depassement_plafond1

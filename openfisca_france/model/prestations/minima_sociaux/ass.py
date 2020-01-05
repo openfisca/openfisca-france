@@ -42,7 +42,7 @@ class ass(Variable):
         revenus = ass_base_ressources / 12
 
         ass = min_(montant_mensuel, plafond_mensuel - revenus)
-        ass = max_(ass, 0)
+        ass = numpy.maximum(ass, 0)
         ass = ass * elig
         # pas d'ASS si montant mensuel < montant journalier de base
         ass = ass * numpy.logical_not(ass < ass_params.montant_plein)

@@ -135,7 +135,7 @@ class reintegration_titre_restaurant_employeur(Variable):
 
         montant_reintegration = volume * (
             condition_exoneration_taux
-            * max_(valeur_unitaire * taux_employeur - seuil_prix_titre, 0)
+            * numpy.maximum(valeur_unitaire * taux_employeur - seuil_prix_titre, 0)
             + numpy.logical_not(condition_exoneration_taux)
             * valeur_unitaire
             * taux_employeur
@@ -312,7 +312,7 @@ class agirc_gmp_salarie(Variable):
         # - que la cotisation agirc_salarie est négative car c'est un prélèvement,
         # - que la cotisation_forfaitaire est positive,
         # le montant de la gmp est cotisation_forfaitaire - (-agirc_salarie) soit:
-        return - max_(cotisation_forfaitaire + agirc_salarie, 0) * cadre_cotisant
+        return - numpy.maximum(cotisation_forfaitaire + agirc_salarie, 0) * cadre_cotisant
 
 
 class agirc_gmp_employeur(Variable):
@@ -342,7 +342,7 @@ class agirc_gmp_employeur(Variable):
         # - que la cotisation agirc_salarie est négative car c'est un prélèvement,
         # - que la cotisation_forfaitaire est positive,
         # le montant de la gmp est cotisation_forfaitaire - (-agirc_salarie) soit:
-        return - max_(cotisation_forfaitaire + agirc_employeur, 0) * cadre_cotisant
+        return - numpy.maximum(cotisation_forfaitaire + agirc_employeur, 0) * cadre_cotisant
 
 
 class agirc_salarie(Variable):
@@ -461,7 +461,7 @@ class arrco_salarie(Variable):
 
         # cas où l'entreprise applique un taux spécifique
         cotisation_entreprise = - (
-            min_(max_(assiette_cotisations_sociales, 0), plafond_securite_sociale)
+            min_(numpy.maximum(assiette_cotisations_sociales, 0), plafond_securite_sociale)
             * arrco_tranche_a_taux_salarie
             )
 
@@ -500,7 +500,7 @@ class arrco_employeur(Variable):
 
         # cas où l'entreprise applique un taux spécifique
         cotisation_entreprise = - (
-            min_(max_(assiette_cotisations_sociales, 0), plafond_securite_sociale)
+            min_(numpy.maximum(assiette_cotisations_sociales, 0), plafond_securite_sociale)
             * arrco_tranche_a_taux_employeur
             )
 

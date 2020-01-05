@@ -123,7 +123,7 @@ class cf_plafond(Variable):
             + pfam.cf.majoration_plafond_2_premiers_enf
             * min_(cf_nbenf, 2)
             + pfam.cf.majoration_plafond_3eme_enf_et_plus
-            * max_(cf_nbenf - 2, 0)
+            * numpy.maximum(cf_nbenf - 2, 0)
             )
 
         # Majoration du plafond pour biactivité ou isolement (France métropolitaine)
@@ -253,7 +253,7 @@ class cf_non_majore_avant_cumul(Variable):
 
         montant_diff = (plafond_diff - ressources) / 12
 
-        return max_(eligibilite * montant, eligibilite_diff * montant_diff)
+        return numpy.maximum(eligibilite * montant, eligibilite_diff * montant_diff)
 
 
 class cf_majore_avant_cumul(Variable):
@@ -295,7 +295,7 @@ class cf_montant(Variable):
         cf_non_majore_avant_cumul = famille('cf_non_majore_avant_cumul', period)
         cf_majore_avant_cumul = famille('cf_majore_avant_cumul', period)
 
-        return max_(cf_non_majore_avant_cumul, cf_majore_avant_cumul)
+        return numpy.maximum(cf_non_majore_avant_cumul, cf_majore_avant_cumul)
 
 
 class cf(Variable):

@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 
 import logging
+
+import numpy
+
 from openfisca_france.model.base import *
 
 log = logging.getLogger(__name__)
@@ -248,7 +251,7 @@ class assiette_csg_revenus_capital(Variable):
         # Crédits d'impôt sur valeurs étrangères déduits de la base CSG
         credits_impot_sur_valeurs_etrangeres = foyer_fiscal('credits_impot_sur_valeurs_etrangeres', period)
 
-        return max_(
+        return numpy.maximum(
             revenus_capitaux_prelevement_bareme
             + revenus_capitaux_prelevement_liberatoire
             + revenus_capitaux_prelevement_forfaitaire_unique_ir

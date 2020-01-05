@@ -6,7 +6,6 @@ from numpy import (
     where,
     logical_or as or_,
     minimum as min_,
-    maximum as max_,
     round as round_,
     )
 from openfisca_france.model.base import (
@@ -165,7 +164,7 @@ class cmu_c(Variable):
             rsa_socle_majore = famille('rsa_socle_majore', period)
             rsa_forfait_logement = famille('rsa_forfait_logement', period)
             rsa_base_ressources = famille('rsa_base_ressources', period)
-            socle = max_(rsa_socle, rsa_socle_majore)
+            socle = numpy.maximum(rsa_socle, rsa_socle_majore)
             rsa = famille('rsa', period)
             eligibilite_rsa = (rsa > 0) * (rsa_base_ressources < socle - rsa_forfait_logement)
 

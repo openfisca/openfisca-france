@@ -32,7 +32,7 @@ class aide_logement(Variable):
         als = famille('als', period)
         alf = famille('alf', period)
 
-        return max_(max_(apl, als), alf)
+        return numpy.maximum(numpy.maximum(apl, als), alf)
 
 
 class apl(Variable):
@@ -117,7 +117,7 @@ class aide_logement_montant_brut_crds(Variable):
         taux_rls = rls.fraction_baisse_aide_logement
         rls_apl = reduction_loyer_solidarite * taux_rls
 
-        return max_(0, (aide_logement_montant_brut - rls_apl))
+        return numpy.maximum(0, (aide_logement_montant_brut - rls_apl))
 
     def formula(famille, period, parameters):
         return famille('aide_logement_montant_brut', period)
@@ -158,7 +158,7 @@ class aide_logement_montant_brut(Variable):
 
         abattement_forfaitaire = parameters(period).prestations.aides_logement.autres.abattement_forfaitaire
 
-        return max_(0, montant_avant_degressivite_et_coeff - abattement_forfaitaire)
+        return numpy.maximum(0, montant_avant_degressivite_et_coeff - abattement_forfaitaire)
 
     def formula(famille, period):
         return famille('aide_logement_montant_brut_avant_degressivite', period)
@@ -187,7 +187,7 @@ class aide_logement_montant_brut_avant_degressivite(Variable):
         participation_personnelle = famille('aide_logement_participation_personnelle', period)
 
         montant_accedant_et_foyer = famille('aides_logement_accedant_et_foyer', period)
-        montant_locataire = max_(0, loyer_retenu + charges_retenues - participation_personnelle)
+        montant_locataire = numpy.maximum(0, loyer_retenu + charges_retenues - participation_personnelle)
 
         montant = select([locataire, accedant + locataire_logement_foyer],
                          [montant_locataire, montant_accedant_et_foyer])
@@ -475,11 +475,11 @@ class aide_logement_base_ressources_eval_forfaitaire(Variable):
             somme_salaires_mois_precedent = 12 * salaire_imposable
             montant_abattement = round_(
                 min_(
-                    max_(params_abattement.taux * somme_salaires_mois_precedent, params_abattement.min),
+                    numpy.maximum(params_abattement.taux * somme_salaires_mois_precedent, params_abattement.min),
                     params_abattement.max
                     )
                 )
-            return max_(0, somme_salaires_mois_precedent - montant_abattement)
+            return numpy.maximum(0, somme_salaires_mois_precedent - montant_abattement)
 
         def eval_forfaitaire_tns():
             last_july_first = Instant(
@@ -490,7 +490,7 @@ class aide_logement_base_ressources_eval_forfaitaire(Variable):
             any_tns = famille.any(travailleur_non_salarie_i)
             return any_tns * 1500 * smic_horaire_brut
 
-        return max_(eval_forfaitaire_salaries(), eval_forfaitaire_tns())
+        return numpy.maximum(eval_forfaitaire_salaries(), eval_forfaitaire_tns())
 
 
 class aide_logement_assiette_abattement_chomage(Variable):
@@ -507,11 +507,11 @@ class aide_logement_assiette_abattement_chomage(Variable):
         abatpro = parameters(period).impot_revenu.tspr.abatpro
 
         abattement_minimum = where(chomeur_longue_duree, abatpro.min2, abatpro.min)
-        abattement_forfaitaire = round_(min_(max_(abatpro.taux * revenu_salarie, abattement_minimum), abatpro.max))
+        abattement_forfaitaire = round_(min_(numpy.maximum(abatpro.taux * revenu_salarie, abattement_minimum), abatpro.max))
         revenus_salarie_apres_abbatement = where(
             frais_reels > abattement_forfaitaire,
             revenu_salarie - frais_reels,
-            max_(0, revenu_salarie - abattement_forfaitaire)
+            numpy.maximum(0, revenu_salarie - abattement_forfaitaire)
             )
 
         return revenus_non_salarie + revenus_salarie_apres_abbatement
@@ -598,7 +598,7 @@ class aide_logement_base_ressources_defaut(Variable):
         neutralisation_rsa = famille('aide_logement_neutralisation_rsa', period)
         abattement_ressources_enfant = parameters(period.n_2.stop).prestations.minima_sociaux.aspa.plafond_ressources_seul * 1.25
         base_ressources_enfants = famille.sum(
-            max_(0, base_ressources_i - abattement_ressources_enfant), role = Famille.ENFANT)
+            numpy.maximum(0, base_ressources_i - abattement_ressources_enfant), role = Famille.ENFANT)
 
         demandeur_declarant_principal = famille.demandeur.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
         conjoint_declarant_principal = famille.conjoint.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
@@ -621,7 +621,7 @@ class aide_logement_base_ressources_defaut(Variable):
         abattement_double_activite = biactivite * Pr.dar_1
 
         # Arrondi aux 100 euros supérieurs
-        result = max_(ressources - abattement_double_activite, 0)
+        result = numpy.maximum(ressources - abattement_double_activite, 0)
 
         return result
 
@@ -729,9 +729,9 @@ class aide_logement_base_ressources(Variable):
         demandeur_etudiant = famille.demandeur('etudiant', period)
         demandeur_boursier = famille.demandeur('boursier', period)
         statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
-        montant_plancher_ressources = (statut_occupation_logement != TypesStatutOccupationLogement.locataire_foyer) * max_(0, demandeur_etudiant * Pr.dar_4 - demandeur_boursier * Pr.dar_5)
-        montant_plancher_ressources_logement_foyer = (statut_occupation_logement == TypesStatutOccupationLogement.locataire_foyer) * max_(0, demandeur_etudiant * Pr.dar_11 - demandeur_boursier * Pr.dar_12)
-        ressources = max_(ressources, max_(montant_plancher_ressources, montant_plancher_ressources_logement_foyer))
+        montant_plancher_ressources = (statut_occupation_logement != TypesStatutOccupationLogement.locataire_foyer) * numpy.maximum(0, demandeur_etudiant * Pr.dar_4 - demandeur_boursier * Pr.dar_5)
+        montant_plancher_ressources_logement_foyer = (statut_occupation_logement == TypesStatutOccupationLogement.locataire_foyer) * numpy.maximum(0, demandeur_etudiant * Pr.dar_11 - demandeur_boursier * Pr.dar_12)
+        ressources = numpy.maximum(ressources, numpy.maximum(montant_plancher_ressources, montant_plancher_ressources_logement_foyer))
 
         # Arrondi au centime, pour éviter qu'une petite imprécision liée à la recombinaison d'une valeur annuelle éclatée ne fasse monter d'un cran l'arrondi au 100€ supérieur.
 
@@ -743,7 +743,7 @@ class aide_logement_base_ressources(Variable):
         accedant = famille.demandeur.menage('aides_logement_primo_accedant_eligibilite', period)
         plancher = famille.demandeur.menage('aides_logement_primo_accedant_ressources', period)
 
-        return where(accedant, max_(ressources, plancher), ressources)
+        return where(accedant, numpy.maximum(ressources, plancher), ressources)
 
 
 class aides_logement_primo_accedant_ressources(Variable):
@@ -964,7 +964,7 @@ class aide_logement_taux_loyer(Variable):
         # TODO: paramètres en dur ??
         TL = where(RL >= 0.75,
             al.taux_participation_loyer.taux_tranche_3 * (RL - 0.75) + al.taux_participation_loyer.taux_tranche_2 * (0.75 - 0.45),
-            max_(0, al.taux_participation_loyer.taux_tranche_2 * (RL - 0.45))
+            numpy.maximum(0, al.taux_participation_loyer.taux_tranche_2 * (RL - 0.45))
             )
 
         return TL
@@ -981,12 +981,12 @@ class aide_logement_participation_personnelle(Variable):
 
         R = famille('aide_logement_base_ressources', period)
         R0 = famille('aide_logement_R0', period)
-        Rp = max_(0, R - R0)
+        Rp = numpy.maximum(0, R - R0)
 
         loyer_retenu = famille('aide_logement_loyer_retenu', period)
         charges_retenues = famille('aide_logement_charges', period)
         E = loyer_retenu + charges_retenues
-        P0 = max_(al.participation_min.taux * E, al.participation_min.montant_forfaitaire)  # Participation personnelle minimale
+        P0 = numpy.maximum(al.participation_min.taux * E, al.participation_min.montant_forfaitaire)  # Participation personnelle minimale
 
         Tf = famille('aide_logement_taux_famille', period)
         Tl = famille('aide_logement_taux_loyer', period)
@@ -1127,7 +1127,7 @@ class aides_logement_accedant_et_foyer(Variable):
         K = famille('aides_logement_k', period)
         Lo = famille('aides_logement_loyer_minimal', period)
 
-        return (L > 0) * K * max_(0, (L + C - Lo))
+        return (L > 0) * K * numpy.maximum(0, (L + C - Lo))
 
 
 class aides_logement_k(Variable):

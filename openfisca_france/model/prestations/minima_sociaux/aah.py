@@ -311,11 +311,11 @@ class aah_base(Variable):
         plaf_ress_aah = individu('aah_plafond_ressources', period)
         # Le montant de l'AAH est plafonné au montant de base.
         montant_max = law.minima_sociaux.aah.montant
-        montant_aah = min_(montant_max, max_(0, plaf_ress_aah - aah_base_ressources))
+        montant_aah = min_(montant_max, numpy.maximum(0, plaf_ress_aah - aah_base_ressources))
 
         aah_base_non_cumulable = individu('aah_base_non_cumulable', period)
 
-        return aah_eligible * min_(montant_aah, max_(0, montant_max - aah_base_non_cumulable))
+        return aah_eligible * min_(montant_aah, numpy.maximum(0, montant_max - aah_base_non_cumulable))
 
 
 class aah(Variable):
@@ -383,7 +383,7 @@ class caah(Variable):
         eligibilite_caah = individu('eligibilite_caah', period)
         complement_ressources_aah = individu('complement_ressources_aah', period)
         mva = individu('mva', period)
-        return max_(complement_ressources_aah, mva) * eligibilite_caah
+        return numpy.maximum(complement_ressources_aah, mva) * eligibilite_caah
 
     def formula_2005_07_01(individu, period, parameters):
         law = parameters(period).prestations
@@ -403,7 +403,7 @@ class caah(Variable):
         elig_cpl = ((aah > 0) | (benef_asi > 0)) * (taux_incapacite >= law.minima_sociaux.aah.taux_incapacite)
         # TODO: & logement indépendant & inactif 12 derniers mois
         # & capa de travail < 5%
-        compl_ress = elig_cpl * max_(garantie_ressources - aah_montant, 0)
+        compl_ress = elig_cpl * numpy.maximum(garantie_ressources - aah_montant, 0)
 
         elig_mva = (al > 0) * ((aah > 0) | (benef_asi > 0))
         # TODO: & logement indépendant & pas de revenus professionnels
@@ -411,7 +411,7 @@ class caah(Variable):
         # TODO: rentrer mva dans paramètres. mva (mensuelle) = 104,77 en 2015, était de 101,80 en 2006, et de 119,72 en 2007
         mva = 0.0 * elig_mva
 
-        return max_(compl_ress, mva)
+        return numpy.maximum(compl_ress, mva)
 
     # TODO FIXME start date
     def formula_2002_01_01(individu, period, parameters):
@@ -452,7 +452,7 @@ class complement_ressources_aah(Variable):
         taux_capacite_travail_max = prestations.minima_sociaux.aah.taux_capacite_travail
         taux_capacite_travail = individu('taux_capacite_travail', period)
 
-        return (taux_capacite_travail < taux_capacite_travail_max) * max_(garantie_ressources - aah_montant, 0)
+        return (taux_capacite_travail < taux_capacite_travail_max) * numpy.maximum(garantie_ressources - aah_montant, 0)
 
 
 class mva(Variable):
