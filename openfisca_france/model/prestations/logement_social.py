@@ -1,5 +1,4 @@
-from numpy import isin, logical_not as not_, select
-from numpy.core.defchararray import startswith
+from numpy import char, isin, logical_not as not_, select
 
 from openfisca_core.indexed_enums import Enum
 from openfisca_core.periods import MONTH
@@ -69,7 +68,7 @@ class zone_logement_social(Variable):
     def formula(menage, period):
         depcom = menage('depcom', period)
         in_paris_communes_limitrophes = isin(depcom, paris_communes_limitrophes)
-        in_idf = isin([True], startswith(depcom, departements_idf))
+        in_idf = isin(char.ljust(depcom, 2), departements_idf)
 
         return select(
             [
