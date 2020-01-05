@@ -100,7 +100,7 @@ class ppa_montant_forfaitaire_familial_non_majore(Variable):
             1
             + (nb_personnes >= 2) * ppa.taux_deuxieme_personne
             + (nb_personnes >= 3) * ppa.taux_troisieme_personne
-            + (nb_personnes >= 4) * where(nb_parents == 1, ppa.taux_personne_supp, ppa.taux_troisieme_personne)
+            + (nb_personnes >= 4) * numpy.where(nb_parents == 1, ppa.taux_personne_supp, ppa.taux_troisieme_personne)
             # Si nb_parents == 1, pas de conjoint, la 4e personne est un enfant, donc le taux est de 40%.
             + numpy.maximum(nb_personnes - 4, 0) * ppa.taux_personne_supp
             )
@@ -417,7 +417,7 @@ class ppa_fictive_montant_forfaitaire(Variable):
         mff_non_majore = famille('ppa_montant_forfaitaire_familial_non_majore', period)
         mff_majore = famille('ppa_montant_forfaitaire_familial_majore', period)
 
-        return where(ppa_majoree_eligibilite, mff_majore, mff_non_majore)
+        return numpy.where(ppa_majoree_eligibilite, mff_majore, mff_non_majore)
 
 
 class ppa_fictive(Variable):

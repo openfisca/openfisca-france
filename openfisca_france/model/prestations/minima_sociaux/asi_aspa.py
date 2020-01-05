@@ -84,7 +84,7 @@ class asi_aspa_base_ressources_individu(Variable):
                 leg_1er_janvier.cotsoc.gen.smic_h_b * law.cotsoc.gen.nb_heure_travail_mensuel
                 )
 
-            taux_abattement_forfaitaire = where(
+            taux_abattement_forfaitaire = numpy.where(
                 aspa_couple,
                 law.prestations.minima_sociaux.aspa.abattement_forfaitaire_tx_couple,
                 law.prestations.minima_sociaux.aspa.abattement_forfaitaire_tx_seul

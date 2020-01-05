@@ -33,7 +33,7 @@ class ass(Variable):
 
         elig = individu('ass_eligibilite_individu', period)
 
-        montant_journalier = where(residence_mayotte, ass_params.montant_plein_mayotte, ass_params.montant_plein)
+        montant_journalier = numpy.where(residence_mayotte, ass_params.montant_plein_mayotte, ass_params.montant_plein)
         montant_mensuel = 30 * montant_journalier
         plafond_mensuel = montant_journalier * (
             numpy.logical_not(en_couple) * ass_params.plaf_seul
@@ -163,9 +163,9 @@ def calculateWithAbatement(individu, parameters, period, ressourceName):
     tx_abat_partiel = parameters(period).prestations.minima_sociaux.ass.abat_rev_subst_conj
     tx_abat_total = parameters(period).prestations.minima_sociaux.ass.abat_rev_non_subst_conj
 
-    tx_abat_applique = where(has_ressources_substitution, tx_abat_partiel, tx_abat_total)
+    tx_abat_applique = numpy.where(has_ressources_substitution, tx_abat_partiel, tx_abat_total)
 
-    return where(ressource_interrompue, (1 - tx_abat_applique) * ressource_year, ressource_year)
+    return numpy.where(ressource_interrompue, (1 - tx_abat_applique) * ressource_year, ressource_year)
 
 
 class ass_eligibilite_cumul_individu(Variable):
@@ -193,7 +193,7 @@ class ass_eligibilite_cumul_individu(Variable):
 
             # reinitialisation du nombre de mois de cumul après 3 mois consécutif sans activité
             nb_mois_cumul = nb_mois_cumul * (nb_mois_consecutif_sans_activite < 3)
-            nb_mois_consecutif_sans_activite = where(absence_ressources_activite * chomeur, nb_mois_consecutif_sans_activite + 1, 0)
+            nb_mois_consecutif_sans_activite = numpy.where(absence_ressources_activite * chomeur, nb_mois_consecutif_sans_activite + 1, 0)
 
             nb_mois_cumul = (
                 nb_mois_cumul

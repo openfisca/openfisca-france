@@ -668,7 +668,7 @@ class cd_eparet(Variable):
         # TODO: En théorie, les plafonds de déductions (ps, pt, pu) sont calculés sur
         # le formulaire 2041 GX
         return foyer_fiscal.sum(
-            where(
+            numpy.where(
                 f6ps_i == 0,
                 f6rs_i + f6ss_i,
                 numpy.minimum(f6rs_i + f6ss_i, f6ps_i)

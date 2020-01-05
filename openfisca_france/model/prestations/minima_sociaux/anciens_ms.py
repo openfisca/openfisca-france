@@ -191,4 +191,4 @@ class rsa_activite_individu(Variable):
         # on divise par 2.
         partage_rsa = or_(marie, en_couple)
 
-        return where(partage_rsa, rsa_activite / 2, rsa_activite)
+        return numpy.where(partage_rsa, rsa_activite / 2, rsa_activite)

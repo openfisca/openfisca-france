@@ -49,4 +49,4 @@ class eligibilite_anah(Variable):
              numpy.select([rfr <= 29506, rfr <= 37826], [TypesEligibiliteANAH.tres_modeste, TypesEligibiliteANAH.modestes], TypesEligibiliteANAH.a_verifier),
              numpy.select([rfr <= 33774 + ((nb_members - 5) * 4257), rfr <= 43297 + ((nb_members - 5) * 5454)], [TypesEligibiliteANAH.tres_modeste, TypesEligibiliteANAH.modestes], TypesEligibiliteANAH.a_verifier)])
 
-        return where(in_idf, bareme_idf, bareme_out)
+        return numpy.where(in_idf, bareme_idf, bareme_out)

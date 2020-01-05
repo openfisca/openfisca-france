@@ -34,10 +34,10 @@ class taux_csg_remplacement(Variable):
         seuils = parameters(period).prelevements_sociaux.contributions.csg.remplacement.pensions_de_retraite_et_d_invalidite
         seuil_exoneration = seuils.seuil_de_rfr_1 + (nbptr - 1) * seuils.demi_part_suppl
         seuil_reduction = seuils.seuil_de_rfr_2 + (nbptr - 1) * seuils.demi_part_suppl
-        taux_csg_remplacement = where(
+        taux_csg_remplacement = numpy.where(
             rfr <= seuil_exoneration,
             TypesTauxCSGRemplacement.exonere,
-            where(
+            numpy.where(
                 rfr <= seuil_reduction,
                 TypesTauxCSGRemplacement.taux_reduit,
                 TypesTauxCSGRemplacement.taux_plein,

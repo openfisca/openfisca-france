@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+import numpy
+
 from openfisca_france.model.base import *
 
 EEE_COUNTRY_CODES = [
@@ -89,7 +91,7 @@ class statut_marital(Variable):
     def formula(individu, period, parameters):
         # Par défault, on considère que deux adultes dans un foyer fiscal sont PACSÉS
         deux_adultes = individu.foyer_fiscal.nb_persons(FoyerFiscal.DECLARANT) >= 2
-        return where(deux_adultes, TypesStatutMarital.pacse, TypesStatutMarital.celibataire)
+        return numpy.where(deux_adultes, TypesStatutMarital.pacse, TypesStatutMarital.celibataire)
 
 
 class nbN(Variable):

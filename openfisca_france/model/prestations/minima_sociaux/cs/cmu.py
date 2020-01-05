@@ -1,7 +1,7 @@
 from datetime import date
 
 import numpy
-from numpy import where, logical_or as or_
+from numpy import logical_or as or_
 
 from openfisca_france.model.base import (
     Variable,
@@ -89,7 +89,7 @@ class cmu_c_plafond(Variable):
         is_couple = (famille('nb_parents', period) == 2)
         is_enfant = famille.members.has_role(Famille.ENFANT)
         cmu_eligible_majoration_dom = famille('cmu_eligible_majoration_dom', period)
-        coeff_garde_alt_i = where(famille.members('garde_alternee', period), 0.5, 1)
+        coeff_garde_alt_i = numpy.where(famille.members('garde_alternee', period), 0.5, 1)
 
         # 0 pour l'aîné, 1 pour le cadet, etc.
         rang_dans_fratrie = famille.members.get_rank(famille, - age_i, condition = is_enfant)
@@ -112,7 +112,7 @@ class cmu_c_plafond(Variable):
 
         coeff_couple = 1 + cmu.coeff_p2 + famille.sum(coeff_enfant_i, role = Famille.ENFANT)
 
-        coefficient_famille = where(is_couple, coeff_couple, coeff_monoparental)
+        coefficient_famille = numpy.where(is_couple, coeff_couple, coeff_monoparental)
         coefficient_dom = 1 + cmu_eligible_majoration_dom * cmu.majoration_dom
 
         plafonds = (

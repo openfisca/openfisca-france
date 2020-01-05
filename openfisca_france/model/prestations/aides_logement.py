@@ -152,7 +152,7 @@ class aide_logement_montant_brut(Variable):
         accedant = (statut_occupation_logement == TypesStatutOccupationLogement.primo_accedant)
         locataire_foyer = (statut_occupation_logement == TypesStatutOccupationLogement.locataire_foyer)
         exception = accedant + locataire_foyer + handicap
-        coeff = where(exception, 1, coeff)
+        coeff = numpy.where(exception, 1, coeff)
 
         montant_avant_degressivite_et_coeff = numpy.round(montant_avant_degressivite * coeff, 2)
 
@@ -193,7 +193,7 @@ class aide_logement_montant_brut_avant_degressivite(Variable):
                          [montant_locataire, montant_accedant_et_foyer])
 
         logement_conventionne = famille.demandeur.menage('logement_conventionne', period)
-        type_aide = where(logement_conventionne, 'apl', 'non_apl', )
+        type_aide = numpy.where(logement_conventionne, 'apl', 'non_apl', )
         seuil_versement = al.al_min.montant_min_mensuel.montant_min_apl_al[type_aide]
         minimum_atteint = montant >= seuil_versement
 
@@ -382,7 +382,7 @@ class al_nb_personnes_a_charge(Variable):
             return famille.sum(adulte_handicape, role = Famille.ENFANT)
 
         nb_pac = al_nb_enfants() + al_nb_adultes_handicapes()
-        nb_pac = where(residence_dom, numpy.minimum(nb_pac, 6), nb_pac)
+        nb_pac = numpy.where(residence_dom, numpy.minimum(nb_pac, 6), nb_pac)
         # Dans les DOMs, le barème est fixe à partir de 6 enfants.
 
         return nb_pac
@@ -506,10 +506,9 @@ class aide_logement_assiette_abattement_chomage(Variable):
         frais_reels = individu('frais_reels', period)
         abatpro = parameters(period).impot_revenu.tspr.abatpro
 
-        abattement_minimum = where(chomeur_longue_duree, abatpro.min2, abatpro.min)
+        abattement_minimum = numpy.where(chomeur_longue_duree, abatpro.min2, abatpro.min)
         abattement_forfaitaire = numpy.round(numpy.minimum(numpy.maximum(abatpro.taux * revenu_salarie, abattement_minimum), abatpro.max))
-
-        revenus_salarie_apres_abbatement = where(
+        revenus_salarie_apres_abbatement = numpy.where(
             frais_reels > abattement_forfaitaire,
             revenu_salarie - frais_reels,
             numpy.maximum(0, revenu_salarie - abattement_forfaitaire)
@@ -712,7 +711,7 @@ class aide_logement_base_ressources(Variable):
 
         plafond_salaire_jeune_isole = parameters(period).prestations.aides_logement.ressources.dar_8
         plafond_salaire_jeune_couple = parameters(period).prestations.aides_logement.ressources.dar_9
-        plafond_salaire_jeune = where(en_couple, plafond_salaire_jeune_couple, plafond_salaire_jeune_isole)
+        plafond_salaire_jeune = numpy.where(en_couple, plafond_salaire_jeune_couple, plafond_salaire_jeune_isole)
 
         neutral_jeune = or_(age_demandeur < 25, and_(en_couple, age_conjoint < 25))
         neutral_jeune &= somme_salaires < plafond_salaire_jeune
@@ -722,7 +721,7 @@ class aide_logement_base_ressources(Variable):
         eval_forfaitaire &= aah == 0
         eval_forfaitaire &= numpy.logical_not(neutral_jeune)
 
-        ressources = where(eval_forfaitaire, base_ressources_eval_forfaitaire, base_ressources_defaut)
+        ressources = numpy.where(eval_forfaitaire, base_ressources_eval_forfaitaire, base_ressources_defaut)
 
         # Planchers de ressources pour étudiants
         # Seul le statut étudiant (et boursier) du demandeur importe, pas celui du conjoint
@@ -744,7 +743,7 @@ class aide_logement_base_ressources(Variable):
         accedant = famille.demandeur.menage('aides_logement_primo_accedant_eligibilite', period)
         plancher = famille.demandeur.menage('aides_logement_primo_accedant_ressources', period)
 
-        return where(accedant, numpy.maximum(ressources, plancher), ressources)
+        return numpy.where(accedant, numpy.maximum(ressources, plancher), ressources)
 
 
 class aides_logement_primo_accedant_ressources(Variable):
@@ -786,8 +785,8 @@ class aide_logement_loyer_plafond(Variable):
             default = plafond_couple
             )
 
-        coeff_coloc = where(coloc, al.loyers_plafond.colocation, 1)
-        coeff_chambre = where(chambre, al.loyers_plafond.chambre, 1)
+        coeff_coloc = numpy.where(coloc, al.loyers_plafond.colocation, 1)
+        coeff_chambre = numpy.where(chambre, al.loyers_plafond.chambre, 1)
 
         return numpy.round(plafond * coeff_coloc * coeff_chambre, 2)
 
@@ -807,10 +806,10 @@ class aide_logement_loyer_reel(Variable):
         locataire_meuble = statut_occupation_logement == TypesStatutOccupationLogement.locataire_meuble
 
         # Coeff de 2/3 pour les logements meublés pour l'AL
-        coeff_meuble_al = where(locataire_meuble, 2 / 3, 1)
+        coeff_meuble_al = numpy.where(locataire_meuble, 2 / 3, 1)
         # Coeff de 2/3 pour les seules chambres meublées pour l'APL
-        coeff_meuble_apl = where(locataire_meuble * logement_chambre, 2 / 3, 1)
-        return where(categorie_apl, numpy.round(loyer * coeff_meuble_apl), numpy.round(loyer * coeff_meuble_al))
+        coeff_meuble_apl = numpy.where(locataire_meuble * logement_chambre, 2 / 3, 1)
+        return numpy.where(categorie_apl, numpy.round(loyer * coeff_meuble_apl), numpy.round(loyer * coeff_meuble_al))
 
 
 class aide_logement_loyer_retenu(Variable):
@@ -838,10 +837,10 @@ class aide_logement_charges(Variable):
         al_nb_pac = famille('al_nb_personnes_a_charge', period)
         couple = famille('al_couple', period)
         coloc = famille.demandeur.menage('coloc', period)
-        montant_coloc = where(couple, 1, 0.5) * P.cas_general + al_nb_pac * P.majoration_par_enfant
+        montant_coloc = numpy.where(couple, 1, 0.5) * P.cas_general + al_nb_pac * P.majoration_par_enfant
         montant_cas_general = P.cas_general + al_nb_pac * P.majoration_par_enfant
 
-        return where(coloc, montant_coloc, montant_cas_general)
+        return numpy.where(coloc, montant_coloc, montant_cas_general)
 
 
 class aide_logement_R0(Variable):
@@ -936,7 +935,7 @@ class aide_logement_taux_famille(Variable):
             + al.taux_participation_fam.dom.taux8 * (al_nb_pac >= 6)
             )
 
-        return where(residence_dom, TF_dom, TF_metropole)
+        return numpy.where(residence_dom, TF_dom, TF_metropole)
 
 
 class aide_logement_taux_loyer(Variable):
@@ -963,7 +962,7 @@ class aide_logement_taux_loyer(Variable):
         RL = L / loyer_reference
 
         # TODO: paramètres en dur ??
-        TL = where(RL >= 0.75,
+        TL = numpy.where(RL >= 0.75,
             al.taux_participation_loyer.taux_tranche_3 * (RL - 0.75) + al.taux_participation_loyer.taux_tranche_2 * (0.75 - 0.45),
             numpy.maximum(0, al.taux_participation_loyer.taux_tranche_2 * (RL - 0.45))
             )
@@ -1013,7 +1012,7 @@ class aide_logement_non_calculable(Variable):
     def formula(famille, period):
         statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
 
-        return where(
+        return numpy.where(
             statut_occupation_logement == TypesStatutOccupationLogement.locataire_foyer,
             TypesAideLogementNonCalculable.locataire_foyer,
             TypesAideLogementNonCalculable.calculable
@@ -1123,7 +1122,7 @@ class aides_logement_accedant_et_foyer(Variable):
 
         loyer = famille.demandeur.menage('loyer', period)
         plafond_mensualite = famille('aides_logement_plafond_mensualite', period)
-        L = where(locataire_logement_foyer * numpy.logical_not(logement_conventionne), plafond_mensualite, numpy.minimum(plafond_mensualite, loyer))
+        L = numpy.where(locataire_logement_foyer * numpy.logical_not(logement_conventionne), plafond_mensualite, numpy.minimum(plafond_mensualite, loyer))
         C = forfait_charges * famille('aide_logement_charges', period)
         K = famille('aides_logement_k', period)
         Lo = famille('aides_logement_loyer_minimal', period)
@@ -1218,7 +1217,7 @@ class aides_logement_categorie(Variable):
 
     def formula(famille, period, parameters):
         categorie_apl = famille.demandeur.menage('logement_conventionne', period)
-        return where(categorie_apl, 'apl', 'al')
+        return numpy.where(categorie_apl, 'apl', 'al')
 
 
 class aides_logement_nb_part(Variable):
@@ -1257,7 +1256,7 @@ class aides_logement_loyer_minimal(Variable):
         logement_conventionne = famille.demandeur.menage('logement_conventionne', period)
         loyer_al = famille('aides_logement_loyer_minimal_al', period)
         loyer_apl = famille('aides_logement_loyer_minimal_apl', period)
-        return where(logement_conventionne, loyer_apl, loyer_al)
+        return numpy.where(logement_conventionne, loyer_apl, loyer_al)
 
 
 class aides_logement_loyer_minimal_al(Variable):
@@ -1382,7 +1381,7 @@ class aides_logement_foyer_plafond_mensualite(Variable):
         plafond_crous = parameters(period).prestations.al_plafonds_logement_foyer_crous
         plafond_foyer = parameters(period).prestations.al_plafonds_logement_foyer
 
-        statut_couple = where(famille('al_couple', period), 'couple', 'personne_isolee')
+        statut_couple = numpy.where(famille('al_couple', period), 'couple', 'personne_isolee')
 
         foyer_plafond = plafond_crous.rehabilitee[statut_couple]
         foyer_chambre_non_rehabilite_plafond = plafond_crous.non_rehabilitee[statut_couple]

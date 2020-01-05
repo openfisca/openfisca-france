@@ -18,7 +18,7 @@ class rente_accident_travail(Variable):
         rente_accident_travail_salarie = individu('rente_accident_travail_salarie', period)
         rente_accident_travail_exploitant_agricole = individu('rente_accident_travail_exploitant_agricole', period)
 
-        return where(non_salarie_agricole, rente_accident_travail_exploitant_agricole, rente_accident_travail_salarie)
+        return numpy.where(non_salarie_agricole, rente_accident_travail_exploitant_agricole, rente_accident_travail_salarie)
 
 
 class rente_accident_travail_salarie(Variable):
@@ -36,7 +36,7 @@ class rente_accident_travail_salarie(Variable):
         rente_accident_travail_base = individu('rente_accident_travail_base', period) * salarie
         rente_accident_travail_apres_rachat = individu('rente_accident_travail_apres_rachat', period)
 
-        montant_rente_accident_travail = where(rente_accident_travail_rachat != 0, rente_accident_travail_apres_rachat,
+        montant_rente_accident_travail = numpy.where(rente_accident_travail_rachat != 0, rente_accident_travail_apres_rachat,
                                                rente_accident_travail_base)
 
         return numpy.select(
@@ -60,7 +60,7 @@ class rente_accident_travail_exploitant_agricole(Variable):
         rente_accident_travail_base = individu('rente_accident_travail_base', period) * non_salarie_agricole
         rente_accident_travail_apres_rachat = individu('rente_accident_travail_apres_rachat', period)
 
-        montant_rente_accident_travail = where(rente_accident_travail_rachat != 0, rente_accident_travail_apres_rachat,
+        montant_rente_accident_travail = numpy.where(rente_accident_travail_rachat != 0, rente_accident_travail_apres_rachat,
                                                rente_accident_travail_base)
         return numpy.select(
             [taux_incapacite < 0.3, taux_incapacite >= 0.3],

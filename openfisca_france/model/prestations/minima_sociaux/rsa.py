@@ -386,7 +386,7 @@ class rsa_enfant_a_charge(Variable):
             enfant
             * numpy.logical_not(autonomie_financiere)
             * (age <= age_pac)
-            * where(
+            * numpy.where(
                 ouvre_droit_majoration(),
                 ressources < (majo_rsa.pac0 - 1 + majo_rsa.pac_enf_sup) * montant_base_rsa,
                 ressources < taux_personne_supp * montant_base_rsa
@@ -939,7 +939,7 @@ class rsa_socle(Variable):
             1
             + (nb_personnes >= 2) * rsa.majoration_rsa.taux_deuxieme_personne
             + (nb_personnes >= 3) * rsa.majoration_rsa.taux_troisieme_personne
-            + (nb_personnes >= 4) * where(nb_parents == 1, rsa.majoration_rsa.taux_personne_supp, rsa.majoration_rsa.taux_troisieme_personne)
+            + (nb_personnes >= 4) * numpy.where(nb_parents == 1, rsa.majoration_rsa.taux_personne_supp, rsa.majoration_rsa.taux_troisieme_personne)
             # Si nb_parents == 1, pas de conjoint, la 4e personne est un enfant, donc le taux est de 40%.
             + numpy.maximum(nb_personnes - 4, 0) * rsa.majoration_rsa.taux_personne_supp
             )
@@ -960,7 +960,7 @@ class rsa_socle(Variable):
             1
             + (nb_personnes >= 2) * rmi.txp2
             + (nb_personnes >= 3) * rmi.txp3
-            + (nb_personnes >= 4) * where(nb_parents == 1, rmi.txps, rmi.txp3)
+            + (nb_personnes >= 4) * numpy.where(nb_parents == 1, rmi.txps, rmi.txp3)
             # Si nb_parents == 1, pas de conjoint, la 4e personne est un enfant, donc le taux est de 40%.
             + numpy.maximum(nb_personnes - 4, 0) * rmi.txps
             )

@@ -1,5 +1,4 @@
 import numpy
-from numpy import where
 
 from openfisca_france.model.base import (
     Enum,
@@ -21,7 +20,7 @@ class css_participation_forfaitaire_montant_i(Variable):
         P = parameters(period).cs.css
         age = individu('age', period)
         salarie_regime_alsace_moselle = individu('salarie_regime_alsace_moselle', period)
-        regime = where(
+        regime = numpy.where(
             salarie_regime_alsace_moselle,
             RegimeComplementaireSanteSolidaire.alsace_moselle,
             RegimeComplementaireSanteSolidaire.france,

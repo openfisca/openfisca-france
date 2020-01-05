@@ -332,7 +332,7 @@ class degrevement_plafonnement_taxe_habitation(Variable):
 
         # Les taux de taxe d'habitation de l'année 2000 utilisés pour la réduction du plafonnement
         # ne sont pas disponibles pour cette commune. Nous mettons donc cette réduction à zéro.
-        reduction_degrevement = where(
+        reduction_degrevement = numpy.where(
             taux_th_commune_2000 + taux_th_epci_2000 == 0,
             0,
             reduction_degrevement,

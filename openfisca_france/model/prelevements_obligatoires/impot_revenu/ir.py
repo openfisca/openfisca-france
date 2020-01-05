@@ -420,7 +420,7 @@ class revenu_assimile_salaire_apres_abattements(Variable):
         frais_reels = individu('frais_reels', period)
         abatpro = parameters(period).impot_revenu.tspr.abatpro
 
-        abattement_minimum = where(chomeur_longue_duree, abatpro.min2, abatpro.min)
+        abattement_minimum = numpy.where(chomeur_longue_duree, abatpro.min2, abatpro.min)
         abatfor = numpy.round(numpy.minimum(numpy.maximum(abatpro.taux * revenu_assimile_salaire, abattement_minimum), abatpro.max))
 
         return (

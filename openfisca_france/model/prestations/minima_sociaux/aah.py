@@ -68,7 +68,7 @@ class aah_base_ressources(Variable):
 
             return base_ressource_demandeur + assiette_conjoint(base_ressource_conjoint)
 
-        return where(
+        return numpy.where(
             demandeur_en_activite,
             base_ressource_eval_trim(),
             base_ressource_eval_annuelle()
@@ -336,7 +336,7 @@ class aah(Variable):
         aah_date_debut_incarceration = individu("aah_date_debut_incarceration", period)
         aah_reduction = (aah_date_debut_hospitalisation <= m_2) + (aah_date_debut_incarceration <= m_2)
 
-        return where(aah_reduction, aah_base * aah_parameters.taux_aah_hospitalise_ou_incarcere, aah_base)
+        return numpy.where(aah_reduction, aah_base * aah_parameters.taux_aah_hospitalise_ou_incarcere, aah_base)
 
 
 class eligibilite_caah(Variable):

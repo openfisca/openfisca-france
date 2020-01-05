@@ -1,5 +1,4 @@
 import numpy
-from numpy import where
 
 from openfisca_france.model.base import (
     Variable,
@@ -27,7 +26,7 @@ class acs_montant_i(Variable):
             [age <= 15, age <= 49, age <= 59, age >= 60],
             [P.acs_moins_16_ans, P.acs_16_49_ans, P.acs_50_59_ans, P.acs_plus_60_ans],
             )
-        return where(
+        return numpy.where(
             individu.has_role(Famille.PARENT),
             montant_si_parent,
             montant_si_pac
