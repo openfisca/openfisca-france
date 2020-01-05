@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+import numpy
+
 from openfisca_france.model.base import *
 
 
@@ -121,7 +123,7 @@ class bourse_lycee_points_de_charge(Variable):
     end = '2016-07-01'
 
     def formula(famille, period, parameters):
-        isole = not_(famille('en_couple', period))
+        isole = numpy.logical_not(famille('en_couple', period))
         age_i = famille.members('age', period)
         nb_enfants = famille.sum(age_i >= 0, role = Famille.ENFANT)
 

@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+import numpy
+
 from openfisca_france.model.base import *
 
 
@@ -19,7 +21,7 @@ class asf_elig_enfant(Variable):
             # Âge compatible avec les prestations familiales
             (age >= pfam.af.age1)
             * (age < pfam.af.age3)
-            * not_(autonomie_financiere)  # Ne perçoit pas plus de ressources que "55% du SMIC" au sens CAF
+            * numpy.logical_not(autonomie_financiere)  # Ne perçoit pas plus de ressources que "55% du SMIC" au sens CAF
             )
 
         return eligibilite
@@ -33,11 +35,11 @@ class asf_elig(Variable):
     definition_period = MONTH
 
     def formula(famille, period):
-        isole = not_(famille('en_couple', period))
+        isole = numpy.logical_not(famille('en_couple', period))
         residence_mayotte = famille.demandeur.menage('residence_mayotte', period)
 
         # Parent isolé et ne résident pas à Mayotte
-        return not_(residence_mayotte) * isole
+        return numpy.logical_not(residence_mayotte) * isole
 
 
 class asf(Variable):

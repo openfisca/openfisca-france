@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 
-from openfisca_france.model.base import *
-
+import numpy
 from numpy import round as round_, logical_or as or_, remainder as remainder_, datetime64
+
+from openfisca_france.model.base import *
 
 
 class ppa_eligibilite(Variable):
@@ -69,7 +70,7 @@ class ppa_eligibilite_etudiants(Variable):
             )
 
         condition_non_etudiant_i = (
-            not_(etudiant_i) * (
+            numpy.logical_not(etudiant_i) * (
                 condition_ressource(m_1, 0)
                 + condition_ressource(m_2, 0)
                 + condition_ressource(m_3, 0)
@@ -361,8 +362,8 @@ class ppa_forfait_logement(Variable):
         loyer = famille.demandeur.menage('loyer', period)
 
         avantage_nature = or_(
-            ((statut_occupation_logement == TypesStatutOccupationLogement.primo_accedant) + (statut_occupation_logement == TypesStatutOccupationLogement.proprietaire)) * not_(loyer),
-            (statut_occupation_logement == TypesStatutOccupationLogement.loge_gratuitement) * not_(participation_frais)
+            ((statut_occupation_logement == TypesStatutOccupationLogement.primo_accedant) + (statut_occupation_logement == TypesStatutOccupationLogement.proprietaire)) * numpy.logical_not(loyer),
+            (statut_occupation_logement == TypesStatutOccupationLogement.loge_gratuitement) * numpy.logical_not(participation_frais)
             )
 
         avantage_al = aide_logement > 0

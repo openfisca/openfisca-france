@@ -2,6 +2,8 @@
 
 import os
 
+import numpy
+
 from ..model.base import *
 
 
@@ -114,7 +116,7 @@ class regularisation_reduction_csg(Variable):
     def formula_2015_01_01(foyer_fiscal, period, parameters):
         reduction_csg = foyer_fiscal('reduction_csg_foyer_fiscal', period)
         ppe_elig_bis = foyer_fiscal('ppe_elig_bis', period)
-        return not_(ppe_elig_bis) * (reduction_csg > 1)
+        return numpy.logical_not(ppe_elig_bis) * (reduction_csg > 1)
 
 
 class ayrault_muet(Reform):

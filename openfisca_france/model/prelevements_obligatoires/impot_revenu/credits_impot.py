@@ -2,6 +2,7 @@
 
 import logging
 
+import numpy
 from numpy import around, logical_or as or_
 
 from openfisca_france.model.base import *
@@ -1245,7 +1246,7 @@ class jeunes_ind(Variable):
         elig = (age < P.age) * (
             rfr
             < P.rfr_plaf
-            * (maries_ou_pacses * P.rfr_mult + not_(maries_ou_pacses))
+            * (maries_ou_pacses * P.rfr_mult + numpy.logical_not(maries_ou_pacses))
             + max_(0, nbptr - 2)
             * .5
             * P.rfr_maj
@@ -1427,7 +1428,7 @@ class quaenv(Variable):
         max7 = max_(0, max6 - f7wh)
         max8 = max_(0, max7 - f7sb)
 
-        return or_(not_(f7we), rfr < P.max_rfr) * (
+        return or_(numpy.logical_not(f7we), rfr < P.max_rfr) * (
             P.taux_wf * min_(f7wf, max0)
             + P.taux_se * min_(f7se, max1)
             + P.taux_wk * min_(f7wk, max2)
@@ -1469,7 +1470,7 @@ class quaenv(Variable):
         max5 = max_(0, max4 - f7wh)
         max6 = max_(0, max5 - f7sb)
         max7 = max_(0, max6 - f7wq)
-        return not_(f7wg) * or_(not_(f7we), (rfr < P.max_rfr)) * (
+        return numpy.logical_not(f7wg) * or_(numpy.logical_not(f7we), (rfr < P.max_rfr)) * (
             P.taux_wf * min_(f7wf, max0)
             + P.taux_se * min_(f7se, max1)
             + P.taux_wk * min_(f7wk, max2)
@@ -1538,11 +1539,11 @@ class quaenv(Variable):
             + P.taux_tt * min_(f7tt, maxi5)
             )
 
-        max1 = max_(0, max0 - quaenv_bouquet * (f7ss + f7st) - not_(quaenv_bouquet) * (f7ss + f7st + f7sv))
-        max2 = max_(0, max1 - quaenv_bouquet * (f7sn + f7sr + f7sq) - not_(quaenv_bouquet) * (f7sn + f7sq + f7sr))
-        max3 = max_(0, max2 - quaenv_bouquet * (f7sv) - not_(quaenv_bouquet) * (f7se))
-        max4 = max_(0, max3 - quaenv_bouquet * (f7se) - not_(quaenv_bouquet) * (f7sf + f7sg + f7sh + f7si + f7so + f7su + f7sw + f7sp))
-        max5 = max_(0, max4 - quaenv_bouquet * (f7sg + f7sh + f7so + f7sp) - not_(quaenv_bouquet) * (f7sm))
+        max1 = max_(0, max0 - quaenv_bouquet * (f7ss + f7st) - numpy.logical_not(quaenv_bouquet) * (f7ss + f7st + f7sv))
+        max2 = max_(0, max1 - quaenv_bouquet * (f7sn + f7sr + f7sq) - numpy.logical_not(quaenv_bouquet) * (f7sn + f7sq + f7sr))
+        max3 = max_(0, max2 - quaenv_bouquet * (f7sv) - numpy.logical_not(quaenv_bouquet) * (f7se))
+        max4 = max_(0, max3 - quaenv_bouquet * (f7se) - numpy.logical_not(quaenv_bouquet) * (f7sf + f7sg + f7sh + f7si + f7so + f7su + f7sw + f7sp))
+        max5 = max_(0, max4 - quaenv_bouquet * (f7sg + f7sh + f7so + f7sp) - numpy.logical_not(quaenv_bouquet) * (f7sm))
         max6 = max_(0, max5 - quaenv_bouquet * (f7sd + f7sj))
         max7 = max_(0, max6 - quaenv_bouquet * (f7sf + f7si + f7su + f7sw))
         max8 = max_(0, max7 - quaenv_bouquet * (f7sm))
@@ -1559,17 +1560,17 @@ class quaenv(Variable):
                 + P.taux34 * min_(max1, f7sn + f7sr + f7sq)
                 + P.taux40 * min_(max0, f7ss + f7st)
                 )
-            + not_(quaenv_bouquet) * (
+            + numpy.logical_not(quaenv_bouquet) * (
                 P.taux32 * min_(max0, f7ss + f7st + f7sv)
                 + P.taux26 * min_(max1, f7sn + f7sq + f7sr)
                 + P.taux17 * min_(max2, f7se)
                 + P.taux15 * min_(max3, f7sf + f7sg + f7sh + f7si + f7so + f7su + f7sw + f7sp)
                 + P.taux11 * min_(max4, f7sm)
-                + P.taux10 * min_(max5, f7sd + not_(f7wk) * (f7sj + f7sk + f7sl))
+                + P.taux10 * min_(max5, f7sd + numpy.logical_not(f7wk) * (f7sj + f7sk + f7sl))
                 )
             )
 
-        return not_(f7wg) * or_(not_(f7we), (rfr < P.max_rfr)) * (montant + collectif) + f7sz
+        return numpy.logical_not(f7wg) * or_(numpy.logical_not(f7we), (rfr < P.max_rfr)) * (montant + collectif) + f7sz
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
         '''
@@ -1609,11 +1610,11 @@ class quaenv(Variable):
         P = parameters(period).impot_revenu.credits_impot.quaenv
 
         max0 = P.max * (1 + maries_ou_pacses) + P.pac1 * nb_pac_majoration_plafond
-        max1 = max_(0, max0 - quaenv_bouquet * (f7ss + f7st) - not_(quaenv_bouquet) * (f7ss + f7st + f7sv))
-        max2 = max_(0, max1 - quaenv_bouquet * (f7sn + f7sr + f7sq) - not_(quaenv_bouquet) * (f7sn + f7sq + f7sr))
-        max3 = max_(0, max2 - quaenv_bouquet * (f7sv) - not_(quaenv_bouquet) * (f7se))
-        max4 = max_(0, max3 - quaenv_bouquet * (f7se) - not_(quaenv_bouquet) * (f7sf + f7sg + f7sh + f7si + f7so + f7su + f7sw + f7sp))
-        max5 = max_(0, max4 - quaenv_bouquet * (f7sg + f7sh + f7so + f7sp) - not_(quaenv_bouquet) * (f7sm))
+        max1 = max_(0, max0 - quaenv_bouquet * (f7ss + f7st) - numpy.logical_not(quaenv_bouquet) * (f7ss + f7st + f7sv))
+        max2 = max_(0, max1 - quaenv_bouquet * (f7sn + f7sr + f7sq) - numpy.logical_not(quaenv_bouquet) * (f7sn + f7sq + f7sr))
+        max3 = max_(0, max2 - quaenv_bouquet * (f7sv) - numpy.logical_not(quaenv_bouquet) * (f7se))
+        max4 = max_(0, max3 - quaenv_bouquet * (f7se) - numpy.logical_not(quaenv_bouquet) * (f7sf + f7sg + f7sh + f7si + f7so + f7su + f7sw + f7sp))
+        max5 = max_(0, max4 - quaenv_bouquet * (f7sg + f7sh + f7so + f7sp) - numpy.logical_not(quaenv_bouquet) * (f7sm))
         max6 = max_(0, max5 - quaenv_bouquet * (f7sd + f7sj))
         max7 = max_(0, max6 - quaenv_bouquet * (f7sf + f7si + f7su + f7sw))
         max8 = max_(0, max7 - quaenv_bouquet * (f7sm))
@@ -1630,16 +1631,16 @@ class quaenv(Variable):
                 + P.taux34 * min_(max1, f7sn + f7sr + f7sq)
                 + P.taux40 * min_(max0, f7ss + f7st)
                 )
-            + not_(quaenv_bouquet) * (
+            + numpy.logical_not(quaenv_bouquet) * (
                 + P.taux32 * min_(max0, f7ss + f7st + f7sv)
                 + P.taux26 * min_(max1, f7sn + f7sq + f7sr)
                 + P.taux17 * min_(max2, f7se)
                 + P.taux15 * min_(max3, f7sf + f7sg + f7sh + f7si + f7so + f7su + f7sw + f7sp)
                 + P.taux11 * min_(max4, f7sm)
-                + P.taux10 * min_(max5, f7sd + not_(f7wk) * (f7sj + f7sk + f7sl))
+                + P.taux10 * min_(max5, f7sd + numpy.logical_not(f7wk) * (f7sj + f7sk + f7sl))
                 )
             )
-        return or_(not_(or_(f7we, f7wg)), (rfr < P.max_rfr)) * montant + f7sz  # TODO : attention, la condition porte sur le RFR des années passées (N-2 et N-3)
+        return or_(numpy.logical_not(or_(f7we, f7wg)), (rfr < P.max_rfr)) * montant + f7sz  # TODO : attention, la condition porte sur le RFR des années passées (N-2 et N-3)
 
     def formula_2014_01_01(foyer_fiscal, period, parameters):
         '''
@@ -1732,7 +1733,7 @@ class quaenv(Variable):
 
         max00 = max_(0, max0 - depenses_transition_energetique)
 
-        max1 = max_(0, max00 - quaenv_bouquet * (f7sd + f7se + f7wc + f7vg + f7wt + f7sn + f7sp + f7sr + f7ss + f7sq + f7st) - not_(quaenv_bouquet) * (max00))
+        max1 = max_(0, max00 - quaenv_bouquet * (f7sd + f7se + f7wc + f7vg + f7wt + f7sn + f7sp + f7sr + f7ss + f7sq + f7st) - numpy.logical_not(quaenv_bouquet) * (max00))
 
         credit_quaenv = (
             quaenv_bouquet * (P.taux25 * (min_(max00,
@@ -1740,9 +1741,9 @@ class quaenv(Variable):
                 + P.taux15 * min_(max1,
                     f7sf + f7sg + f7sh + f7si + f7sj + f7sk + f7sl + f7sv + f7sw)
                               )
-            + not_(quaenv_bouquet) * P.taux15 * (min_(max00,
+            + numpy.logical_not(quaenv_bouquet) * P.taux15 * (min_(max00,
                 f7se + f7wc + f7vg + f7sn + f7sp + f7sr + f7ss + f7sq + f7st + f7sf + f7sg
-                + f7sh + f7si + f7sv + f7sw + f7sd + not_(f7wk) * (f7wt + f7sj + f7sk + f7sl)))
+                + f7sh + f7si + f7sv + f7sw + f7sd + numpy.logical_not(f7wk) * (f7wt + f7sj + f7sk + f7sl)))
             )
 
         # TODO: inclure la condition de non cumul éco-prêt / crédit quaenv si RFR > ... (condition complexifiée à partir de 2014)
@@ -1877,7 +1878,7 @@ class quaenv(Variable):
 
         max0 = P.max * (1 + maries_ou_pacses) + P.pac1 * nb_pac2
         max00 = max_(0, max0 - depenses_transition_energetique)
-        max1 = max_(0, max00 - quaenv_bouquet * (f7sd + f7se + f7wc + f7vg + f7wt + f7sn + f7sp + f7sr + f7ss + f7sq + f7st) - not_(quaenv_bouquet) * (max00))
+        max1 = max_(0, max00 - quaenv_bouquet * (f7sd + f7se + f7wc + f7vg + f7wt + f7sn + f7sp + f7sr + f7ss + f7sq + f7st) - numpy.logical_not(quaenv_bouquet) * (max00))
         credit_quaenv_bouquet_2ans = (
             quaenv_bouquet * (
                 P.taux25 * (min_(max00,
@@ -2173,7 +2174,7 @@ class saldom2(Variable):
         maxBase = P.max1
         maxDuMaxNonInv = P.max2
         maxNonInv = min_(maxBase + P.pac * nbpacmin, maxDuMaxNonInv)
-        maxEffectif = maxNonInv * not_(isinvalid) + P.max3 * isinvalid
+        maxEffectif = maxNonInv * numpy.logical_not(isinvalid) + P.max3 * isinvalid
 
         return P.taux * min_(f7db, maxEffectif)
 
@@ -2192,9 +2193,9 @@ class saldom2(Variable):
         isinvalid = f7dg
         annee1 = f7dq
         nbpacmin = nb_pac_majoration_plafond + f7dl
-        maxBase = P.max1 * not_(annee1) + P.max1_premiere_annee * annee1
-        maxDuMaxNonInv = P.max2 * not_(annee1) + P.max2_premiere_annee * annee1
+        maxBase = P.max1 * numpy.logical_not(annee1) + P.max1_premiere_annee * annee1
+        maxDuMaxNonInv = P.max2 * numpy.logical_not(annee1) + P.max2_premiere_annee * annee1
         maxNonInv = min_(maxBase + P.pac * nbpacmin, maxDuMaxNonInv)
-        maxEffectif = maxNonInv * not_(isinvalid) + P.max3 * isinvalid
+        maxEffectif = maxNonInv * numpy.logical_not(isinvalid) + P.max3 * isinvalid
 
         return P.taux * min_(f7db, maxEffectif)

@@ -2,6 +2,8 @@
 
 import logging
 
+import numpy
+
 from openfisca_france.model.base import *
 from openfisca_france.model.prelevements_obligatoires.prelevements_sociaux.cotisations_sociales.base import (
     apply_bareme, apply_bareme_for_relevant_type_sal)
@@ -100,7 +102,7 @@ class indemnite_fin_contrat(Variable):
                 (categorie_salarie == TypesCategorieSalarie.prive_non_cadre)
                 + (categorie_salarie == TypesCategorieSalarie.prive_cadre)
                 )
-            * not_(apprenti)
+            * numpy.logical_not(apprenti)
             * indemnite_fin_contrat_due
             # 10% du brut
             * taux
@@ -134,7 +136,7 @@ class reintegration_titre_restaurant_employeur(Variable):
         montant_reintegration = volume * (
             condition_exoneration_taux
             * max_(valeur_unitaire * taux_employeur - seuil_prix_titre, 0)
-            + not_(condition_exoneration_taux)
+            + numpy.logical_not(condition_exoneration_taux)
             * valeur_unitaire
             * taux_employeur
             )

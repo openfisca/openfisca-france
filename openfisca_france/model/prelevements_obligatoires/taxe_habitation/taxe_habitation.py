@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 
-from openfisca_france.model.base import *
+import numpy
 
+from openfisca_france.model.base import *
 
 # Simulation TH de la résidence principale : législation à partir de l'année 2017
 
@@ -151,7 +152,7 @@ class abattement_personnes_condition_modeste_th_commune(Variable):
         condition_rfr_exoneration_th_i = menage.members.foyer_fiscal('condition_rfr_exoneration_th', period)
         condition_rfr_exoneration_th = menage.all(condition_rfr_exoneration_th_i)
         exonere_taxe_habitation = menage('exonere_taxe_habitation', period)
-        elig = condition_rfr_exoneration_th * not_(exonere_taxe_habitation) * (valeur_locative_cadastrale_brute <= valeur_locative_max)
+        elig = condition_rfr_exoneration_th * numpy.logical_not(exonere_taxe_habitation) * (valeur_locative_cadastrale_brute <= valeur_locative_max)
 
         return elig * abt_condition_modeste_th_commune
 
@@ -180,7 +181,7 @@ class abattement_personnes_condition_modeste_th_epci(Variable):
         condition_rfr_exoneration_th_i = menage.members.foyer_fiscal('condition_rfr_exoneration_th', period)
         condition_rfr_exoneration_th = menage.all(condition_rfr_exoneration_th_i)
         exonere_taxe_habitation = menage('exonere_taxe_habitation', period)
-        elig = condition_rfr_exoneration_th * not_(exonere_taxe_habitation) * (valeur_locative_cadastrale_brute <= valeur_locative_max)
+        elig = condition_rfr_exoneration_th * numpy.logical_not(exonere_taxe_habitation) * (valeur_locative_cadastrale_brute <= valeur_locative_max)
 
         return elig * abt_condition_modeste_th_epci
 
@@ -254,7 +255,7 @@ class taxe_habitation_commune_epci_avant_degrevement(Variable):
         exonere_taxe_habitation = menage('exonere_taxe_habitation', period)
         P = parameters(period).taxation_locale.taxe_habitation
         taux_frais_assiette = P.frais_assiette
-        return (base_nette_th_commune * taux_th_commune + base_nette_th_epci * taux_th_epci) * not_(exonere_taxe_habitation) * (1 + taux_frais_assiette)
+        return (base_nette_th_commune * taux_th_commune + base_nette_th_epci * taux_th_epci) * numpy.logical_not(exonere_taxe_habitation) * (1 + taux_frais_assiette)
 
 
 class plafond_taxe_habitation_eligibilite(Variable):

@@ -1,4 +1,6 @@
-from numpy import select, where, logical_not as not_
+import numpy
+from numpy import select, where
+
 from openfisca_france.model.base import (
     Variable,
     Individu,
@@ -77,8 +79,8 @@ class acs(Variable):
 
         return (
             cmu_acs_eligibilite
-            * not_(residence_mayotte)
-            * not_(cmu_c)
+            * numpy.logical_not(residence_mayotte)
+            * numpy.logical_not(cmu_c)
             * (cmu_base_ressources <= acs_plafond)
             * acs_montant
             )

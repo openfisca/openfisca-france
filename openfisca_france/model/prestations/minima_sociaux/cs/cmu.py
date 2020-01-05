@@ -1,8 +1,9 @@
 from datetime import date
+
+import numpy
 from numpy import (
     select,
     where,
-    logical_not as not_,
     logical_or as or_,
     minimum as min_,
     maximum as max_,
@@ -172,7 +173,7 @@ class cmu_c(Variable):
 
         return (
             cmu_acs_eligibilite
-            * not_(residence_mayotte)
+            * numpy.logical_not(residence_mayotte)
             * or_(eligibilite_basique, eligibilite_rsa)
             )
 

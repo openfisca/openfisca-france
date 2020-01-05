@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+import numpy
 from numpy import datetime64, logical_and as and_, logical_or as or_
 
 from openfisca_core import periods
@@ -33,7 +34,7 @@ class rsa_base_ressources(Variable):
             + famille.members('rsa_revenu_activite_individu', period)
             )
 
-        ressources_individuelles = famille.sum((not_(enfant_i) + rsa_enfant_a_charge_i) * ressources_individuelles_i)
+        ressources_individuelles = famille.sum((numpy.logical_not(enfant_i) + rsa_enfant_a_charge_i) * ressources_individuelles_i)
 
         return (
             rsa_base_ressources_prestations_familiales
@@ -87,10 +88,10 @@ class rsa_base_ressources_individu(Variable):
 
         # Les revenus pros interrompus au mois M sont neutralisés s'il n'y a pas de revenus de substitution.
         revenus_pro = sum(
-            individu(type_revenu, period.last_3_months, options = [ADD]) * not_(
+            individu(type_revenu, period.last_3_months, options = [ADD]) * numpy.logical_not(
                 (individu(type_revenu, period) == 0)
                 * (individu(type_revenu, period.last_month) > 0)
-                * not_(possede_ressources_substitution)
+                * numpy.logical_not(possede_ressources_substitution)
                 )
             for type_revenu in types_revenus_pros
             )
@@ -140,10 +141,10 @@ class rsa_base_ressources_individu(Variable):
 
         # Les revenus pros interrompus au mois M sont neutralisés s'il n'y a pas de revenus de substitution.
         revenus_pro = sum(
-            individu(type_revenu, period.last_3_months, options = [ADD]) * not_(
+            individu(type_revenu, period.last_3_months, options = [ADD]) * numpy.logical_not(
                 (individu(type_revenu, period) == 0)
                 * (individu(type_revenu, period.last_month) > 0)
-                * not_(possede_ressource_substitution)
+                * numpy.logical_not(possede_ressource_substitution)
                 )
             for type_revenu in types_revenus_pros
             )
@@ -369,21 +370,21 @@ class rsa_enfant_a_charge(Variable):
         def ouvre_droit_majoration():
             famille = individu.famille
             enceinte_fam = famille('enceinte_fam', period)
-            isole = not_(famille('en_couple', period))
+            isole = numpy.logical_not(famille('en_couple', period))
             isolement_recent = famille('rsa_isolement_recent', period)
 
-            presence_autres_enfants = famille.sum(enfant * not_(autonomie_financiere) * (age <= age_pac)) > 1
+            presence_autres_enfants = famille.sum(enfant * numpy.logical_not(autonomie_financiere) * (age <= age_pac)) > 1
 
             return (
-                not_(enceinte_fam)
+                numpy.logical_not(enceinte_fam)
                 * isole
                 * isolement_recent
-                * not_(presence_autres_enfants)
+                * numpy.logical_not(presence_autres_enfants)
                 )
 
         rsa_enf_charge = (
             enfant
-            * not_(autonomie_financiere)
+            * numpy.logical_not(autonomie_financiere)
             * (age <= age_pac)
             * where(
                 ouvre_droit_majoration(),
@@ -423,7 +424,7 @@ class rsa_revenu_activite(Variable):
         rsa_enfant_a_charge_i = famille.members('rsa_enfant_a_charge', period)
         enfant_i = famille.members('est_enfant_dans_famille', period)
 
-        return famille.sum(or_(not_(enfant_i), rsa_enfant_a_charge_i) * rsa_revenu_activite_i)
+        return famille.sum(or_(numpy.logical_not(enfant_i), rsa_enfant_a_charge_i) * rsa_revenu_activite_i)
 
 
 class rsa_indemnites_journalieres_activite(Variable):
@@ -513,10 +514,10 @@ class rsa_revenu_activite_individu(Variable):
 
         # Les revenus pros interrompus au mois M sont neutralisés s'il n'y a pas de revenus de substitution.
         revenus_moyennes = sum(
-            individu(type_revenu, last_3_months, options = [ADD]) * not_(
+            individu(type_revenu, last_3_months, options = [ADD]) * numpy.logical_not(
                 (individu(type_revenu, period) == 0)
                 * (individu(type_revenu, period.last_month) > 0)
-                * not_(possede_ressource_substitution)
+                * numpy.logical_not(possede_ressource_substitution)
                 )
             for type_revenu in types_revenus_activite
             ) / 3
@@ -622,7 +623,7 @@ class rsa_condition_nationalite(Variable):
         duree_min_titre_sejour = parameters(period).prestations.minima_sociaux.rsa.duree_min_titre_sejour
 
         eligibilite_eee = ressortissant_eee * duree_possession_titre_sejour >= duree_min_titre_sejour.eee
-        eligibilite_non_eee = not_(ressortissant_eee) * duree_possession_titre_sejour >= duree_min_titre_sejour.non_eee
+        eligibilite_non_eee = numpy.logical_not(ressortissant_eee) * duree_possession_titre_sejour >= duree_min_titre_sejour.non_eee
 
         return fr + eligibilite_eee + eligibilite_non_eee
 
@@ -669,7 +670,7 @@ class rsa_eligibilite(Variable):
         condition_age_i = famille.project(rsa_nb_enfants > 0) + (age_i > rsa.age_pac)
 
         return (
-            famille.any((condition_age_i | rsa_jeune_condition_i) * not_(etudiant_i), role = Famille.PARENT)
+            famille.any((condition_age_i | rsa_jeune_condition_i) * numpy.logical_not(etudiant_i), role = Famille.PARENT)
             * condition_nationalite
             * rsa_eligibilite_tns
             )
@@ -756,7 +757,7 @@ class rsa_eligibilite_tns(Variable):
             role = Famille.PARENT
             )
 
-        return eligibilite_agricole * not_(tns_avec_employe) * eligibilite_chiffre_affaire
+        return eligibilite_agricole * numpy.logical_not(tns_avec_employe) * eligibilite_chiffre_affaire
 
 
 class rsa_forfait_asf(Variable):
@@ -800,8 +801,8 @@ class rsa_forfait_logement(Variable):
         loyer = famille.demandeur.menage('loyer', period)
 
         avantage_nature = or_(
-            ((statut_occupation_logement == TypesStatutOccupationLogement.primo_accedant) + (statut_occupation_logement == TypesStatutOccupationLogement.proprietaire)) * not_(loyer),
-            (statut_occupation_logement == TypesStatutOccupationLogement.loge_gratuitement) * not_(participation_frais)
+            ((statut_occupation_logement == TypesStatutOccupationLogement.primo_accedant) + (statut_occupation_logement == TypesStatutOccupationLogement.proprietaire)) * numpy.logical_not(loyer),
+            (statut_occupation_logement == TypesStatutOccupationLogement.loge_gratuitement) * numpy.logical_not(participation_frais)
             )
 
         avantage_al = aide_logement > 0
@@ -851,7 +852,7 @@ class rsa_majore_eligibilite(Variable):
     definition_period = MONTH
 
     def formula(famille, period):
-        isole = not_(famille('en_couple', period))
+        isole = numpy.logical_not(famille('en_couple', period))
         isolement_recent = famille('rsa_isolement_recent', period)
         enfant_moins_3_ans = nb_enf(famille, period, 0, 2) > 0
         enceinte_fam = famille('enceinte_fam', period)

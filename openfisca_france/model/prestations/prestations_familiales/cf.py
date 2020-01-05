@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+import numpy
 from numpy import round, logical_or as or_
 
 from openfisca_france.model.base import *
@@ -19,7 +20,7 @@ class cf_enfant_a_charge(Variable):
         pfam = parameters(period).prestations.prestations_familiales
 
         condition_age = (age >= 0) * (age < pfam.cf.age_max)
-        condition_situation = est_enfant_dans_famille * not_(autonomie_financiere)
+        condition_situation = est_enfant_dans_famille * numpy.logical_not(autonomie_financiere)
 
         return condition_age * condition_situation
 
@@ -95,7 +96,7 @@ class cf_base_ressources_individu(Variable):
         est_enfant_dans_famille = individu('est_enfant_dans_famille', period)
         cf_enfant_a_charge = individu('cf_enfant_a_charge', period)
 
-        return or_(not_(est_enfant_dans_famille), cf_enfant_a_charge) * base_ressources
+        return or_(numpy.logical_not(est_enfant_dans_famille), cf_enfant_a_charge) * base_ressources
 
 
 class cf_plafond(Variable):
@@ -109,7 +110,7 @@ class cf_plafond(Variable):
 
         eligibilite_base = famille('cf_eligibilite_base', period)
         eligibilite_dom = famille('cf_eligibilite_dom', period)
-        isole = not_(famille('en_couple', period))
+        isole = numpy.logical_not(famille('en_couple', period))
         biactivite = famille('biactivite', period)
 
         # Calcul du nombre d'enfants à charge au sens du CF
@@ -189,7 +190,7 @@ class cf_eligibilite_base(Variable):
         cf_enfant_eligible = famille.members('cf_enfant_eligible', period)
         cf_nbenf = famille.sum(cf_enfant_eligible)
 
-        return not_(residence_dom) * (cf_nbenf >= 3)
+        return numpy.logical_not(residence_dom) * (cf_nbenf >= 3)
 
 
 class cf_eligibilite_dom(Variable):
@@ -209,7 +210,7 @@ class cf_eligibilite_dom(Variable):
         cf_nbenf_trop_jeune = famille.sum(cf_dom_enfant_trop_jeune)
 
         condition_composition_famille = (cf_nbenf >= 1) * (cf_nbenf_trop_jeune == 0)
-        condition_residence = residence_dom * not_(residence_mayotte)
+        condition_residence = residence_dom * numpy.logical_not(residence_mayotte)
 
         return condition_composition_famille * condition_residence
 
@@ -245,7 +246,7 @@ class cf_non_majore_avant_cumul(Variable):
         plafond_diff = plafond + 12 * montant
 
         eligibilite_diff = (
-            not_(eligibilite)
+            numpy.logical_not(eligibilite)
             * eligibilite_sous_condition
             * (ressources <= plafond_diff)
             )
@@ -317,10 +318,10 @@ class cf(Variable):
         residence_mayotte = famille.demandeur.menage('residence_mayotte', period)
 
         cf_brut = (
-            not_(paje_base)
+            numpy.logical_not(paje_base)
             * (apje_avant_cumul <= cf_montant)
             * (ape_avant_cumul <= cf_montant)
             * cf_montant
             )
 
-        return not_(residence_mayotte) * round(cf_brut, 2)
+        return numpy.logical_not(residence_mayotte) * round(cf_brut, 2)

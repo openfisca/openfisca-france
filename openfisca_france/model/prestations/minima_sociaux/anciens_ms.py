@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+import numpy
 from numpy import floor, logical_and as and_, logical_or as or_
 
 from openfisca_france.model.base import *
@@ -19,7 +20,7 @@ class api(Variable):
         """
         Allocation de parent isolé
         """
-        isole = not_(famille('en_couple', period))
+        isole = numpy.logical_not(famille('en_couple', period))
         rsa_forfait_logement = famille('rsa_forfait_logement', period)
         rsa_base_ressources = famille('rsa_base_ressources', period)
         af_majoration = famille('af_majoration', period)
@@ -64,7 +65,7 @@ class api(Variable):
         # moins de 25 ans après inclusion dans rsa
         api1 = eligib * af.bmaf * (api.base + api.supplement_par_enfant * nb_enf(famille, period, af.age1, api.age_pac - 1))
         rsa = (api.age_pac >= 25)  # dummy passage au rsa majoré
-        br_api = rsa_base_ressources + af_majoration * not_(rsa)
+        br_api = rsa_base_ressources + af_majoration * numpy.logical_not(rsa)
         # On pourrait mensualiser RMI, BRrmi et forfait logement
         api = max_(0, api1 - rsa_forfait_logement / 12 - br_api / 12 - rsa / 12)
         # L'API est exonérée de CRDS

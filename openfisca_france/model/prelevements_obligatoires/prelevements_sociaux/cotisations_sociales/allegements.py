@@ -2,6 +2,7 @@
 
 import logging
 
+import numpy
 from numpy import busday_count, datetime64, logical_or as or_, logical_and as and_, timedelta64
 
 from openfisca_france.model.base import *
@@ -131,10 +132,10 @@ class credit_impot_competitivite_emploi(Variable):
         parameters = parameters(period)
         taux_cice = taux_exo_cice(assiette_allegement, smic_proratise, parameters)
         credit_impot_competitivite_emploi = taux_cice * assiette_allegement
-        non_cumul = not_(stagiaire)
+        non_cumul = numpy.logical_not(stagiaire)
         association = individu('entreprise_est_association_non_lucrative', period)
 
-        return credit_impot_competitivite_emploi * non_cumul * not_(association)
+        return credit_impot_competitivite_emploi * non_cumul * numpy.logical_not(association)
 
 
 class aide_premier_salarie(Variable):
@@ -179,13 +180,13 @@ class aide_premier_salarie(Variable):
 
         eligible_date = datetime64(period.offset(-24, 'month').start) < contrat_de_travail_debut
         eligible = \
-            (effectif_entreprise == 1) * not_(apprenti) * eligible_contrat * eligible_duree * eligible_date
+            (effectif_entreprise == 1) * numpy.logical_not(apprenti) * eligible_contrat * eligible_duree * eligible_date
 
         # somme sur 24 mois, à raison de 500 € maximum par trimestre
         montant_max = 4000
 
         # non cumul avec le dispositif Jeune Entreprise Innovante (JEI)
-        non_cumulee = not_(exoneration_cotisations_employeur_jei)
+        non_cumulee = numpy.logical_not(exoneration_cotisations_employeur_jei)
 
         # TODO comment implémenter la condition "premier employé" ? L'effectif est insuffisant en cas de rupture
         # d'un premier contrat
@@ -236,7 +237,7 @@ class aide_embauche_pme(Variable):
             # qui est identique, si ce n'est qu'elle couvre tous les salaires
             aide_premier_salarie == 0,
             # non cumul avec le dispositif Jeune Entreprise Innovante (JEI)
-            not_(exoneration_cotisations_employeur_jei)
+            numpy.logical_not(exoneration_cotisations_employeur_jei)
             )
 
         eligible_contrat = and_(
@@ -267,7 +268,7 @@ class aide_embauche_pme(Variable):
             * eligible_contrat
             * eligible_duree
             * eligible_date
-            * not_(apprenti)
+            * numpy.logical_not(apprenti)
             )
 
         # somme sur 24 mois, à raison de 500 € maximum par trimestre
@@ -311,7 +312,7 @@ class allegement_fillon(Variable):
         allegement_mode_recouvrement = individu('allegement_fillon_mode_recouvrement', period)
         exoneration_cotisations_employeur_jei = individu('exoneration_cotisations_employeur_jei', period)
 
-        non_cumulee = not_(exoneration_cotisations_employeur_jei)
+        non_cumulee = numpy.logical_not(exoneration_cotisations_employeur_jei)
 
         # switch on 3 possible payment options
         allegement = switch_on_allegement_mode(
@@ -320,7 +321,7 @@ class allegement_fillon(Variable):
             "allegement_fillon",
             )
 
-        return allegement * not_(stagiaire) * not_(apprenti) * non_cumulee
+        return allegement * numpy.logical_not(stagiaire) * numpy.logical_not(apprenti) * non_cumulee
 
 
 def compute_allegement_fillon(individu, period, parameters):
@@ -363,7 +364,7 @@ def compute_allegement_fillon(individu, period, parameters):
         seuil = fillon.ensemble_des_entreprises.plafond
         tx_max = (
             fillon.ensemble_des_entreprises.reduction_maximale.entreprises_de_20_salaries_et_plus
-            * not_(majoration)
+            * numpy.logical_not(majoration)
             + fillon.ensemble_des_entreprises.reduction_maximale.entreprises_de_moins_de_20_salaries
             * majoration
             )
@@ -394,7 +395,7 @@ class allegement_cotisation_allocations_familiales(Variable):
             individu('allegement_cotisation_allocations_familiales_mode_recouvrement', period)
         exoneration_cotisations_employeur_jei = individu('exoneration_cotisations_employeur_jei', period)
 
-        non_cumulee = not_(exoneration_cotisations_employeur_jei)
+        non_cumulee = numpy.logical_not(exoneration_cotisations_employeur_jei)
 
         # switch on 3 possible payment options
         allegement = switch_on_allegement_mode(
@@ -403,7 +404,7 @@ class allegement_cotisation_allocations_familiales(Variable):
             "allegement_cotisation_allocations_familiales",
             )
 
-        return allegement * not_(stagiaire) * not_(apprenti) * non_cumulee
+        return allegement * numpy.logical_not(stagiaire) * numpy.logical_not(apprenti) * non_cumulee
 
 
 def compute_allegement_cotisation_allocations_familiales(individu, period, parameters):

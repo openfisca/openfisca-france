@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+import numpy
+
 from openfisca_france.model.base import *
 
 
@@ -30,7 +32,7 @@ class aeeh(Variable):
         son activité professionnelle ou lorsqu'il embauche une tierce personne rémunérée.
         '''
         janvier = period.this_year.first_month
-        isole = not_(famille('en_couple', janvier))
+        isole = numpy.logical_not(famille('en_couple', janvier))
         prestations_familiales = parameters(period).prestations.prestations_familiales
 
         if period.start.year >= 2006:

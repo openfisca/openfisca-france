@@ -2,6 +2,8 @@
 
 import os
 
+import numpy
+
 from ..model.base import *
 
 
@@ -43,7 +45,7 @@ class charge_loyer(Variable):
 
         plaf = charge_loyer.plaf
         plaf_nbp = charge_loyer.plaf_nbp
-        plafond = plaf * (not_(plaf_nbp) + plaf * nbptr * plaf_nbp)
+        plafond = plaf * (numpy.logical_not(plaf_nbp) + plaf * nbptr * plaf_nbp)
 
         return 12 * min_(loyer / 12, plafond)
 

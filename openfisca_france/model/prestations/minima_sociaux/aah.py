@@ -1,8 +1,9 @@
-
 # -*- coding: utf-8 -*-
-from openfisca_france.model.base import *
 
+import numpy
 from numpy import datetime64
+
+from openfisca_france.model.base import *
 
 # Références juridiques - Code de la sécurité sociale
 #
@@ -360,7 +361,7 @@ class eligibilite_caah(Variable):
         return (
             + (taux_incapacite >= taux_incapacite_min)
             * ((aah > 0) | (benef_asi > 0))
-            * not_(locataire_foyer)
+            * numpy.logical_not(locataire_foyer)
             * (salaire_net == 0)
             )
 

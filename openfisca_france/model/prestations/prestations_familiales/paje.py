@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+import numpy
 from numpy import round, floor, datetime64, maximum
 
 from openfisca_france.model.base import *
@@ -99,7 +100,7 @@ class paje_base(Variable):
 
     def formula_2004(famille, period, parameters):
         couple_biactif = famille('biactivite', period)
-        parent_isole = not_(famille('en_couple', period))
+        parent_isole = numpy.logical_not(famille('en_couple', period))
         nombre_enfants = famille('af_nbenf', period)
         pfam = parameters(period).prestations.prestations_familiales
 
@@ -187,7 +188,7 @@ class enfant_eligible_paje(Variable):
 
         # L'allocation de base est versée jusqu'au dernier jour du mois civil précédant
         # celui au cours duquel l'enfant atteint l'âge de 3 ans.
-        return (age < age_limite) * not_(autonomie_financiere)
+        return (age < age_limite) * numpy.logical_not(autonomie_financiere)
 
 
 class paje_naissance(Variable):
@@ -206,7 +207,7 @@ class paje_naissance(Variable):
         '''
         af_nbenf = famille('af_nbenf', period)
         base_ressources = famille('prestations_familiales_base_ressources', period)
-        isole = not_(famille('en_couple', period))
+        isole = numpy.logical_not(famille('en_couple', period))
         biactivite = famille('biactivite', period)
         P = parameters(period).prestations.prestations_familiales
 
@@ -250,7 +251,7 @@ class paje_naissance(Variable):
         '''
         af_nbenf = famille('af_nbenf', period)
         base_ressources = famille('prestations_familiales_base_ressources', period)
-        isole = not_(famille('en_couple', period))
+        isole = numpy.logical_not(famille('en_couple', period))
         biactivite = famille('biactivite', period)
         P = parameters(period).prestations.prestations_familiales
 
@@ -294,7 +295,7 @@ class paje_naissance(Variable):
         '''
         af_nbenf = famille('af_nbenf', period)
         base_ressources = famille('prestations_familiales_base_ressources', period)
-        isole = not_(famille('en_couple', period))
+        isole = numpy.logical_not(famille('en_couple', period))
         biactivite = famille('biactivite', period)
         P = parameters(period).prestations.prestations_familiales
 
@@ -402,13 +403,13 @@ class paje_cmg(Variable):
         # TODO: RSA insertion, alloc insertion, ass
         cond_nonact = (aah > 0) | parent_etudiant  # | (ass>0)
 
-        cond_eligibilite = cond_age_enf & (not_(inactif) | cond_nonact)
+        cond_eligibilite = cond_age_enf & (numpy.logical_not(inactif) | cond_nonact)
 
         # Si vous bénéficiez de la PreParE taux plein
         # (= vous ne travaillez plus ou interrompez votre activité professionnelle),
         # vous ne pouvez pas bénéficier du Cmg.
         paje_prepare_inactif = (paje_prepare > 0) * inactif
-        eligible = cond_eligibilite * not_(paje_prepare_inactif)
+        eligible = cond_eligibilite * numpy.logical_not(paje_prepare_inactif)
 
     # Les plafonds de ressource
 
@@ -580,7 +581,7 @@ class paje_cmg(Variable):
         # Si vous bénéficiez du Clca taux plein
         # (= vous ne travaillez plus ou interrompez votre activité professionnelle),
         # vous ne pouvez pas bénéficier du Cmg.
-        paje_cmg = elig * not_(paje_clca_taux_plein) * clmg
+        paje_cmg = elig * numpy.logical_not(paje_clca_taux_plein) * clmg
         # TODO vérfiez les règles de cumul
         return paje_cmg
 
@@ -660,7 +661,7 @@ class apje_avant_cumul(Variable):
         '''
         base_ressources = famille('prestations_familiales_base_ressources', period.first_month)
         biactivite = famille('biactivite', period, options = [ADD])
-        isole = not_(famille('en_couple', period))
+        isole = numpy.logical_not(famille('en_couple', period))
         P = parameters(period).prestations.prestations_familiales
         P_n_2 = parameters(period.start.offset(-2, 'year')).prestations.prestations_familiales
 
@@ -787,7 +788,7 @@ class paje_clca(Variable):
 
         paje_clca = (
             (condition * P.af.bmaf) * (
-                not_(paje) * (
+                numpy.logical_not(paje) * (
                     inactif * P.paje.clca.sansab_tx_inactif
                     + partiel1 * P.paje.clca.sansab_tx_partiel1
                     + partiel2 * P.paje.clca.sansab_tx_partiel2
@@ -866,7 +867,7 @@ class paje_colca(Variable):
             * condition
             * (nbenf >= 3)
             * P.af.bmaf
-            * (paje * P.paje.colca.avecab + not_(paje) * P.paje.colca.sansab)
+            * (paje * P.paje.colca.avecab + numpy.logical_not(paje) * P.paje.colca.sansab)
             )
 
         return paje_colca

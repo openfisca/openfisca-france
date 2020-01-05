@@ -1,4 +1,5 @@
-from numpy import logical_not as not_
+import numpy
+
 from openfisca_france.model.base import Variable, Famille, MONTH, ADD
 
 
@@ -18,7 +19,7 @@ class cmu_acs_eligibilite(Variable):
         a_charge_des_parents = famille.members('enfant_a_charge', this_year)
         habite_chez_parents = famille.members('habite_chez_parents', period)
         recoit_pension = famille.members('pensions_alimentaires_percues', previous_year, options = [ADD]) > 0
-        condition_independance = not_(a_charge_des_parents + habite_chez_parents + recoit_pension)
+        condition_independance = numpy.logical_not(a_charge_des_parents + habite_chez_parents + recoit_pension)
 
         age = famille.members('age', period)
         condition_age = (age >= age_min)

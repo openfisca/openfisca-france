@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+import numpy
+
 from openfisca_france.model.base import *
 
 
@@ -31,14 +33,14 @@ class type_menage(Variable):
         '''
 
         af_nbenf = menage.personne_de_reference.famille('af_nbenf', period.first_month)
-        isole = not_(menage.personne_de_reference.famille('en_couple', period.first_month))
+        isole = numpy.logical_not(menage.personne_de_reference.famille('en_couple', period.first_month))
 
         return (
             0 * (isole * (af_nbenf == 0))  # Célibataire
-            + 1 * (not_(isole) * (af_nbenf == 0))  # Couple sans enfants
-            + 2 * (not_(isole) * (af_nbenf == 1))  # Couple un enfant
-            + 3 * (not_(isole) * (af_nbenf == 2))  # Couple deux enfants
-            + 4 * (not_(isole) * (af_nbenf == 3))  # Couple trois enfants et plus
+            + 1 * (numpy.logical_not(isole) * (af_nbenf == 0))  # Couple sans enfants
+            + 2 * (numpy.logical_not(isole) * (af_nbenf == 1))  # Couple un enfant
+            + 3 * (numpy.logical_not(isole) * (af_nbenf == 2))  # Couple deux enfants
+            + 4 * (numpy.logical_not(isole) * (af_nbenf == 3))  # Couple trois enfants et plus
             + 5 * (isole * (af_nbenf == 1))  # Famille monoparentale un enfant
             + 6 * (isole * (af_nbenf == 2))  # Famille monoparentale deux enfants
             + 7 * (isole * (af_nbenf == 3))

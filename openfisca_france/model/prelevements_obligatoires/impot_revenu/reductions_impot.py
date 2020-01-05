@@ -2,10 +2,10 @@
 
 import logging
 
+import numpy
 from numpy import around
 
 from openfisca_france.model.base import *
-
 
 log = logging.getLogger(__name__)
 
@@ -3387,7 +3387,7 @@ class locmeu(Variable):
 
         majoration_taux_invest_2011 = (maxi(f7ij, f7il, f7in, f7iv) == max_(f7il, f7in))
         taux_reduc_2009_2010 = P.taux
-        taux_reduc_2011 = P.taux20 * majoration_taux_invest_2011 + P.taux18 * not_(majoration_taux_invest_2011)
+        taux_reduc_2011 = P.taux20 * majoration_taux_invest_2011 + P.taux18 * numpy.logical_not(majoration_taux_invest_2011)
         report = P.taux * max_(f7ik, f7ip + f7ir + f7iq) + f7is + f7iu + f7it
 
         return (
@@ -3432,8 +3432,8 @@ class locmeu(Variable):
         majoration_taux_invest_2011 = (maxi(f7ij, f7il, f7in, f7iv) == max_(f7il, f7in))
         majoration_taux_invest_2012 = (maxi(f7id, f7ie, f7if, f7ig) == max_(f7ie, f7if))
         taux_reduc_2009_2010 = P.taux
-        taux_reduc_2011 = P.taux20 * majoration_taux_invest_2011 + P.taux18 * not_(majoration_taux_invest_2011)
-        taux_reduc_2012 = P.taux18 * majoration_taux_invest_2012 + P.taux11 * not_(majoration_taux_invest_2012)
+        taux_reduc_2011 = P.taux20 * majoration_taux_invest_2011 + P.taux18 * numpy.logical_not(majoration_taux_invest_2011)
+        taux_reduc_2012 = P.taux18 * majoration_taux_invest_2012 + P.taux11 * numpy.logical_not(majoration_taux_invest_2012)
         report = P.taux * max_(f7ik + f7ip, f7ir + f7iq) + f7ia + f7ib + f7ic + f7ih + f7is + f7iu + f7it + f7ix + f7iz
 
         return (
@@ -3489,8 +3489,8 @@ class locmeu(Variable):
         majoration_taux_invest_2011 = (maxi(f7ij, f7il, f7in, f7iv) == max_(f7il, f7in))
         majoration_taux_invest_2012 = (maxi(f7id, f7ie, f7if, f7ig) == max_(f7ie, f7if))
         taux_reduc_2009_2010 = P.taux
-        taux_reduc_2011 = P.taux20 * majoration_taux_invest_2011 + P.taux18 * not_(majoration_taux_invest_2011)
-        taux_reduc_2012 = P.taux18 * majoration_taux_invest_2012 + P.taux11 * not_(majoration_taux_invest_2012)
+        taux_reduc_2011 = P.taux20 * majoration_taux_invest_2011 + P.taux18 * numpy.logical_not(majoration_taux_invest_2011)
+        taux_reduc_2012 = P.taux18 * majoration_taux_invest_2012 + P.taux11 * numpy.logical_not(majoration_taux_invest_2012)
         taux_reduc_2013 = P.taux11
 
         report = (
@@ -4444,7 +4444,7 @@ class saldom(Variable):
         invalide = foyer_fiscal('f7dg', period)
         P = parameters(period).impot_revenu.reductions_impots.salarie_domicile
 
-        max1 = P.max1 * not_(invalide) + P.max3 * invalide
+        max1 = P.max1 * numpy.logical_not(invalide) + P.max3 * invalide
         return P.taux * min_(f7df, max1)
 
     def formula_2005_01_01(foyer_fiscal, period, parameters):
@@ -4462,7 +4462,7 @@ class saldom(Variable):
         max_base = P.max1
         max_du_max_non_inv = P.max2
         max_non_inv = min_(max_base + P.pac * nbpacmin, max_du_max_non_inv)
-        max1 = max_non_inv * not_(invalide) + P.max3 * invalide
+        max1 = max_non_inv * numpy.logical_not(invalide) + P.max3 * invalide
         return P.taux * min_(f7df, max1)
 
     def formula_2007_01_01(foyer_fiscal, period, parameters):
@@ -4481,7 +4481,7 @@ class saldom(Variable):
         max_base = P.max1
         max_du_max_non_inv = P.max2
         max_non_inv = min_(max_base + P.pac * nbpacmin, max_du_max_non_inv)
-        max_effectif = max_non_inv * not_(invalide) + P.max3 * invalide
+        max_effectif = max_non_inv * numpy.logical_not(invalide) + P.max3 * invalide
         max1 = max_effectif - min_(f7db, max_effectif)
         return P.taux * min_(f7df, max1)
 
@@ -4499,12 +4499,12 @@ class saldom(Variable):
         P = parameters(period).impot_revenu.reductions_impots.salarie_domicile
 
         nbpacmin = nb_pac_majoration_plafond + f7dl
-        max_base = P.max1 * not_(annee1) + P.max1_premiere_annee * annee1
-        max_du_max_non_inv = P.max2 * not_(annee1) + P.max2_premiere_annee * annee1
+        max_base = P.max1 * numpy.logical_not(annee1) + P.max1_premiere_annee * annee1
+        max_du_max_non_inv = P.max2 * numpy.logical_not(annee1) + P.max2_premiere_annee * annee1
         max_non_inv = min_(max_base + P.pac * nbpacmin, max_du_max_non_inv)
         max_non_inv2 = min_(max_base + P.pac * nb_pac_majoration_plafond, max_du_max_non_inv)
-        max_effectif = max_non_inv * not_(invalide) + P.max3 * invalide
-        max_effectif2 = max_non_inv2 * not_(invalide) + P.max3 * invalide
+        max_effectif = max_non_inv * numpy.logical_not(invalide) + P.max3 * invalide
+        max_effectif2 = max_non_inv2 * numpy.logical_not(invalide) + P.max3 * invalide
         max1 = max_effectif - min_(f7db, max_effectif2)
         return P.taux * min_(f7df, max1)
 
@@ -4523,12 +4523,12 @@ class saldom(Variable):
         P = parameters(period).impot_revenu.reductions_impots.salarie_domicile
 
         nbpacmin = nb_pac_majoration_plafond + f7dl
-        max_base = P.max1 * not_(annee1) + P.max1_premiere_annee * annee1
-        max_du_max_non_inv = P.max2 * not_(annee1) + P.max2_premiere_annee * annee1
+        max_base = P.max1 * numpy.logical_not(annee1) + P.max1_premiere_annee * annee1
+        max_du_max_non_inv = P.max2 * numpy.logical_not(annee1) + P.max2_premiere_annee * annee1
         max_non_inv = min_(max_base + P.pac * nbpacmin, max_du_max_non_inv)
         max_non_inv2 = min_(max_base + P.pac * nb_pac_majoration_plafond, max_du_max_non_inv)
-        max_effectif = max_non_inv * not_(invalide) + P.max3 * invalide
-        max_effectif2 = max_non_inv2 * not_(invalide) + P.max3 * invalide
+        max_effectif = max_non_inv * numpy.logical_not(invalide) + P.max3 * invalide
+        max_effectif2 = max_non_inv2 * numpy.logical_not(invalide) + P.max3 * invalide
         max1 = max_effectif - min_(f7db, max_effectif2)
         return P.taux * min_(f7df + f7dd, max1)
 

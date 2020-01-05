@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+import numpy
 from numpy import logical_or as or_
 
 from openfisca_france.model.base import *
@@ -63,7 +64,7 @@ class af_eligibilite_base(Variable):
         residence_dom = famille.demandeur.menage('residence_dom', period)
         af_nbenf = famille('af_nbenf', period)
 
-        return not_(residence_dom) * (af_nbenf >= 2)
+        return numpy.logical_not(residence_dom) * (af_nbenf >= 2)
 
 
 class af_eligibilite_dom(Variable):
@@ -77,7 +78,7 @@ class af_eligibilite_dom(Variable):
         residence_mayotte = famille.demandeur.menage('residence_mayotte', period)
         af_nbenf = famille('af_nbenf', period)
 
-        return residence_dom * not_(residence_mayotte) * (af_nbenf >= 1)
+        return residence_dom * numpy.logical_not(residence_mayotte) * (af_nbenf >= 1)
 
 
 class af_base(Variable):
@@ -199,7 +200,7 @@ class af_majoration_enfant(Variable):
         montant = (af_nbenf == 1) * montant_enfant_seul + (af_nbenf > 1) * montant_plusieurs_enfants
 
         # Attention ! Ne fonctionne pas pour les enfants du même âge (typiquement les jumeaux...)
-        pas_aine = or_(af_nbenf != 2, (af_nbenf == 2) * not_(age == age_aine))
+        pas_aine = or_(af_nbenf != 2, (af_nbenf == 2) * numpy.logical_not(age == age_aine))
 
         coeff_garde_alternee = where(garde_alternee, pfam.af.facteur_garde_alternee, 1)
 

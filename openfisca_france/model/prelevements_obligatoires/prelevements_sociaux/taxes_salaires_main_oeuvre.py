@@ -2,7 +2,7 @@
 
 import logging
 
-import numpy as np
+import numpy
 
 from openfisca_france.model.base import *
 
@@ -50,7 +50,7 @@ class redevable_taxe_apprentissage(Variable):
         # -> pas de taxe d'apprentissage
         association = individu('entreprise_est_association_non_lucrative', period)
 
-        return not_(association)
+        return numpy.logical_not(association)
 
 
 class contribution_developpement_apprentissage(Variable):
@@ -335,7 +335,7 @@ class taxe_apprentissage(Variable):
             variable_name = 'taxe_apprentissage',
             )
 
-        cotisation = np.where(
+        cotisation = numpy.where(
             salarie_regime_alsace_moselle,
             cotisation_regime_alsace_moselle,
             cotisation_regime_general,
@@ -395,7 +395,7 @@ class taxe_salaires(Variable):
         conditions = [estimation < parametres.franchise, estimation <= parametres.decote_montant, estimation > parametres.decote_montant]
         results = [0, estimation - (parametres.decote_montant - estimation) * parametres.decote_taux, estimation]
 
-        estimation_reduite = np.select(conditions, results)
+        estimation_reduite = numpy.select(conditions, results)
 
         # Abattement spécial de taxe sur les salaires
         # Les associations à but non lucratif bénéficient d'un abattement important
@@ -408,7 +408,7 @@ class taxe_salaires(Variable):
                 }
             )
 
-        with np.errstate(invalid='ignore'):
+        with numpy.errstate(invalid='ignore'):
             cotisation = switch(effectif_entreprise == 0, {
                 True: individu.filled_array(0),
                 False: estimation_abattue / effectif_entreprise / 12

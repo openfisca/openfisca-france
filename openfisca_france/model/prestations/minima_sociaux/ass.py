@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+import numpy
 from numpy import absolute as abs_, logical_and as and_
 
 from openfisca_france.model.base import *
@@ -35,7 +36,7 @@ class ass(Variable):
         montant_journalier = where(residence_mayotte, ass_params.montant_plein_mayotte, ass_params.montant_plein)
         montant_mensuel = 30 * montant_journalier
         plafond_mensuel = montant_journalier * (
-            not_(en_couple) * ass_params.plaf_seul
+            numpy.logical_not(en_couple) * ass_params.plaf_seul
             + en_couple * ass_params.plaf_coup
             )
         revenus = ass_base_ressources / 12
@@ -44,7 +45,7 @@ class ass(Variable):
         ass = max_(ass, 0)
         ass = ass * elig
         # pas d'ASS si montant mensuel < montant journalier de base
-        ass = ass * not_(ass < ass_params.montant_plein)
+        ass = ass * numpy.logical_not(ass < ass_params.montant_plein)
 
         return ass
 
@@ -185,10 +186,10 @@ class ass_eligibilite_cumul_individu(Variable):
 
         for mois in douze_mois_precedents:
             presence_ressources_activite = individu('salaire_imposable', mois) > 0
-            absence_ressources_activite = not_(presence_ressources_activite)
+            absence_ressources_activite = numpy.logical_not(presence_ressources_activite)
             ass_precondition_remplie = individu('ass_precondition_remplie', mois)
             chomeur = individu('activite', mois) == TypesActivite.chomeur
-            absence_aah = not_(individu('aah', mois) > 0)
+            absence_aah = numpy.logical_not(individu('aah', mois) > 0)
 
             # reinitialisation du nombre de mois de cumul après 3 mois consécutif sans activité
             nb_mois_cumul = nb_mois_cumul * (nb_mois_consecutif_sans_activite < 3)
@@ -198,7 +199,7 @@ class ass_eligibilite_cumul_individu(Variable):
                 nb_mois_cumul
                 + 1
                 * presence_ressources_activite
-                * not_(chomeur)
+                * numpy.logical_not(chomeur)
                 * ass_precondition_remplie
                 * absence_aah
                 )
@@ -244,4 +245,4 @@ class ass_eligibilite_individu(Variable):
         # Indique que l'individu a travaillé 5 ans au cours des 10 dernieres années.
         ass_precondition_remplie = individu('ass_precondition_remplie', period)
 
-        return not_(aah_eligible) * demandeur_emploi_non_indemnise_et_cumul_accepte * ass_precondition_remplie * sous_age_limite
+        return numpy.logical_not(aah_eligible) * demandeur_emploi_non_indemnise_et_cumul_accepte * ass_precondition_remplie * sous_age_limite

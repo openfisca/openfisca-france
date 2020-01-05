@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+import numpy
 from numpy import abs as abs_, logical_or as or_
 
 from openfisca_france.model.base import *
@@ -69,7 +70,7 @@ class asi_aspa_base_ressources_individu(Variable):
         # Exclut l'AAH si éligible ASPA, retraite ou pension invalidité
         # en application du II.B. de http://www.legislation.cnav.fr/Pages/texte.aspx?Nom=LE_MIN_19031982
         aah = individu('aah', three_previous_months, options = [ADD])
-        aah = aah * not_(aspa_eligibilite) * not_(asi_eligibilite) * not_(pension_invalidite)
+        aah = aah * numpy.logical_not(aspa_eligibilite) * numpy.logical_not(asi_eligibilite) * numpy.logical_not(pension_invalidite)
 
         pensions_alimentaires_versees = individu(
             'pensions_alimentaires_versees_individu', three_previous_months, options = [ADD]
@@ -143,7 +144,7 @@ class asi_eligibilite(Variable):
     def formula(individu, period):
         last_month = period.start.period('month').offset(-1)
 
-        non_eligible_aspa = not_(individu('aspa_eligibilite', period))
+        non_eligible_aspa = numpy.logical_not(individu('aspa_eligibilite', period))
         touche_pension_invalidite = individu('pensions_invalidite', period) > 0
         handicap = individu('handicap', period)
         touche_retraite = individu('retraite_nette', last_month) > 0
@@ -215,11 +216,11 @@ class asi(Variable):
         # Couple d'éligibles mariés
         elig2 = demandeur_eligible_asi & conjoint_eligible_asi & maries
         # Couple d'éligibles non mariés
-        elig3 = demandeur_eligible_asi & conjoint_eligible_asi & not_(maries)
+        elig3 = demandeur_eligible_asi & conjoint_eligible_asi & numpy.logical_not(maries)
         # Un seul éligible et époux éligible ASPA
         elig4 = ((demandeur_eligible_asi & conjoint_eligible_aspa) | (conjoint_eligible_asi & demandeur_eligible_aspa)) & maries
         # Un seul éligible et conjoint non marié éligible ASPA
-        elig5 = ((demandeur_eligible_asi & conjoint_eligible_aspa) | (conjoint_eligible_asi & demandeur_eligible_aspa)) & not_(maries)
+        elig5 = ((demandeur_eligible_asi & conjoint_eligible_aspa) | (conjoint_eligible_asi & demandeur_eligible_aspa)) & numpy.logical_not(maries)
 
         montant_max = (
             elig1 * P.asi.montant_seul
@@ -231,7 +232,7 @@ class asi(Variable):
         ressources = base_ressources + montant_max
 
         plafond_ressources = (
-            elig1 * (P.asi.plafond_ressource_seul * not_(en_couple) + P.asi.plafond_ressource_couple * en_couple)
+            elig1 * (P.asi.plafond_ressource_seul * numpy.logical_not(en_couple) + P.asi.plafond_ressource_couple * en_couple)
             + elig2 * P.asi.plafond_ressource_couple
             + elig3 * P.asi.plafond_ressource_couple
             + elig4 * P.aspa.plafond_ressources_couple
@@ -298,7 +299,7 @@ class aspa(Variable):
         # Un seul éligible et époux éligible ASI
         elig3 = ((demandeur_eligible_asi & conjoint_eligible_aspa) | (conjoint_eligible_asi & demandeur_eligible_aspa)) & maries
         # Un seul éligible et conjoint non marié éligible ASI
-        elig4 = ((demandeur_eligible_asi & conjoint_eligible_aspa) | (conjoint_eligible_asi & demandeur_eligible_aspa)) & not_(maries)
+        elig4 = ((demandeur_eligible_asi & conjoint_eligible_aspa) | (conjoint_eligible_asi & demandeur_eligible_aspa)) & numpy.logical_not(maries)
 
         elig = elig1 | elig2 | elig3 | elig4
 
@@ -313,7 +314,7 @@ class aspa(Variable):
 
         plafond_ressources = (
             elig1
-            * (P.aspa.plafond_ressources_seul * not_(en_couple) + P.aspa.plafond_ressources_couple * en_couple)
+            * (P.aspa.plafond_ressources_seul * numpy.logical_not(en_couple) + P.aspa.plafond_ressources_couple * en_couple)
             + (elig2 | elig3 | elig4)
             * P.aspa.plafond_ressources_couple
             ) / 12

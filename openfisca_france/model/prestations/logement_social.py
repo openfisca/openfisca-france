@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 
+import numpy
 from numpy.core.defchararray import startswith
+
 from openfisca_france.model.base import *
 
 paris_communes_limitrophes = [
@@ -113,13 +115,13 @@ class logement_social_categorie_menage(Variable):
         # dont la somme des âges des deux conjoints est inférieure ou égale à 55 ans
         age = famille.members('age', period)
         sum_age = famille.sum(age, role = Famille.PARENT)
-        jeune_menage = (not_(personne_seule) * (sum_age <= 55))
+        jeune_menage = (numpy.logical_not(personne_seule) * (sum_age <= 55))
 
         return select(
             [
                 personne_seule,
                 # Deux personnes ne comportant aucune personne à charge, à l'exclusion des jeunes ménages.
-                ((nb_personnes == 2) * (personnes_a_charge == 0) * not_(jeune_menage)),
+                ((nb_personnes == 2) * (personnes_a_charge == 0) * numpy.logical_not(jeune_menage)),
                 # Trois personnes, ou une personne seule avec une personne à charge, ou jeune ménage sans personne à charge.
                 (personnes_a_charge == 1) + (jeune_menage * (personnes_a_charge == 0)),
                 # Quatre personnes, ou une personne seule avec deux personnes à charge.

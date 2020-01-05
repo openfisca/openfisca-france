@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+import numpy
+
 from openfisca_france.model.base import *
 
 
@@ -34,7 +36,7 @@ class reduction_loyer_solidarite_plafond_ressources(Variable):
 
         return select(
             [
-                not_(couple) * (personnes_a_charge_al == 0),
+                numpy.logical_not(couple) * (personnes_a_charge_al == 0),
                 couple * (personnes_a_charge_al == 0),
                 personnes_a_charge_al == 1,
                 personnes_a_charge_al == 2,
@@ -79,7 +81,7 @@ class reduction_loyer_solidarite_montant(Variable):
 
         return select(
             [
-                not_(couple) * (personnes_a_charge_al == 0),
+                numpy.logical_not(couple) * (personnes_a_charge_al == 0),
                 couple * (personnes_a_charge_al == 0),
                 personnes_a_charge_al == 1
                 ],
@@ -112,6 +114,6 @@ class reduction_loyer_solidarite(Variable):
         logement_conventionne = famille.demandeur.menage('logement_conventionne', period)
         locataire_foyer = statut_occupation_logement == TypesStatutOccupationLogement.locataire_foyer
 
-        eligible = (ressources < plafond) * logement_conventionne * not_(locataire_foyer)
+        eligible = (ressources < plafond) * logement_conventionne * numpy.logical_not(locataire_foyer)
         montant = famille('reduction_loyer_solidarite_montant', period)
         return eligible * montant

@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+import numpy
 from numpy import logical_or as or_
 
 from openfisca_france.model.base import *
@@ -50,7 +51,7 @@ class prestations_familiales_enfant_a_charge(Variable):
         condition_jeune = (
             (age >= pfam.enfants.age_intermediaire)
             * (age < pfam.enfants.age_limite)
-            * not_(autonomie_financiere)
+            * numpy.logical_not(autonomie_financiere)
             )
 
         return or_(condition_enfant, condition_jeune) * est_enfant_dans_famille
@@ -194,7 +195,7 @@ class prestations_familiales_base_ressources(Variable):
         base_ressources_i = famille.members('prestations_familiales_base_ressources_individu', period)
         enfant_i = famille.members('est_enfant_dans_famille', period)
         enfant_a_charge_i = famille.members('prestations_familiales_enfant_a_charge', period)
-        ressources_i = (not_(enfant_i) + enfant_a_charge_i) * base_ressources_i
+        ressources_i = (numpy.logical_not(enfant_i) + enfant_a_charge_i) * base_ressources_i
         base_ressources_i_total = famille.sum(ressources_i)
 
         ressources_communes = famille('prestations_familiales_base_ressources_communes', period)
@@ -226,7 +227,7 @@ def nb_enf(famille, period, age_min, age_max):
     condition = (
         (age >= age_min)
         * (age <= age_max)
-        * not_(autonomie_financiere)
+        * numpy.logical_not(autonomie_financiere)
         )
 
     return famille.sum(condition, role = Famille.ENFANT)

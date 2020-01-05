@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+import numpy
+
 from openfisca_france.model.base import *
 
 
@@ -40,7 +42,7 @@ class cheque_energie_eligibilite_logement(Variable):
         residence_saint_martin = menage('residence_saint_martin', period)
 
         return (
-            not_(residence_saint_martin) * (
+            numpy.logical_not(residence_saint_martin) * (
                 + (statut_occupation_logement == TypesStatutOccupationLogement.primo_accedant)
                 + (statut_occupation_logement == TypesStatutOccupationLogement.proprietaire)
                 + (statut_occupation_logement == TypesStatutOccupationLogement.locataire_hlm)

@@ -2,6 +2,7 @@
 
 import logging
 
+import numpy
 from numpy import datetime64, timedelta64, logical_xor as xor_, round as round_, around
 
 from numpy.core.defchararray import startswith
@@ -244,7 +245,7 @@ class nbF(Variable):
 
         enfant_a_charge = foyer_fiscal.members('enfant_a_charge', period)
         garde_alternee = foyer_fiscal.members('garde_alternee', janvier)
-        return foyer_fiscal.sum(enfant_a_charge * not_(garde_alternee))
+        return foyer_fiscal.sum(enfant_a_charge * numpy.logical_not(garde_alternee))
 
 
 class nbG(Variable):
@@ -260,7 +261,7 @@ class nbG(Variable):
         enfant_a_charge = foyer_fiscal.members('enfant_a_charge', period)
         garde_alternee = foyer_fiscal.members('garde_alternee', janvier)
         invalidite = foyer_fiscal.members('invalidite', janvier)
-        return foyer_fiscal.sum(enfant_a_charge * not_(garde_alternee) * invalidite)
+        return foyer_fiscal.sum(enfant_a_charge * numpy.logical_not(garde_alternee) * invalidite)
 
 
 class nbH(Variable):
@@ -307,7 +308,7 @@ class enfant_majeur_celibataire_sans_enfant(Variable):
         handicap = individu('handicap', janvier)
         is_pac = individu.has_role(FoyerFiscal.PERSONNE_A_CHARGE)
 
-        return is_pac * (age >= 18) * not_(handicap)
+        return is_pac * (age >= 18) * numpy.logical_not(handicap)
 
 
 class nbJ(Variable):
@@ -1173,11 +1174,11 @@ class ir_plaf_qf(Variable):
         B3 = plafond_qf.celib
 
         condition61 = celibataire_ou_divorce & caseT
-        condition63 = (celibataire_ou_divorce | (veuf & not_(jeune_veuf))) & not_(caseN) & (nb_pac == 0) & (caseK | caseE) & (caseH < int(period.start.year) - 25)
+        condition63 = (celibataire_ou_divorce | (veuf & numpy.logical_not(jeune_veuf))) & numpy.logical_not(caseN) & (nb_pac == 0) & (caseK | caseE) & (caseH < int(period.start.year) - 25)
 
         B = B1 * condition61 + \
-            B2 * (not_(condition61 | condition63)) + \
-            B3 * (condition63 & not_(condition61))
+            B2 * (numpy.logical_not(condition61 | condition63)) + \
+            B3 * (condition63 & numpy.logical_not(condition61))
         C = max_(0, A - B)
 
         IP0 = max_(I, C)  # Impôt après plafonnement
@@ -1188,13 +1189,13 @@ class ir_plaf_qf(Variable):
         # réduction complémentaire
         condition62b = (I < C)
         # celibataire_ou_divorce veuf
-        condition62caa0 = (celibataire_ou_divorce | (veuf & not_(jeune_veuf)))
+        condition62caa0 = (celibataire_ou_divorce | (veuf & numpy.logical_not(jeune_veuf)))
         condition62caa1 = (nb_pac == 0) & (caseP | caseG | caseF | caseW)
         condition62caa2 = caseP & ((nbF - nbG > 0) | (nbH - nbI > 0))
-        condition62caa3 = not_(caseN) & (caseE | caseK) & (caseH >= 1981)
+        condition62caa3 = numpy.logical_not(caseN) & (caseE | caseK) & (caseH >= 1981)
         condition62caa = condition62caa0 & (condition62caa1 | condition62caa2 | condition62caa3)
         # marié pacs
-        condition62cab = (maries_ou_pacses | jeune_veuf) & caseS & not_(caseP | caseF)
+        condition62cab = (maries_ou_pacses | jeune_veuf) & caseS & numpy.logical_not(caseP | caseF)
 
         condition62ca = (condition62caa | condition62cab)
 
@@ -1269,8 +1270,8 @@ class ir_plaf_qf(Variable):
         condition63 = (celibataire_ou_divorce | veuf) & (nb_pac == 0) & caseL
 
         B = B1 * condition61 + \
-            B2 * (not_(condition61 | condition63)) + \
-            B3 * (condition63 & not_(condition61))
+            B2 * (numpy.logical_not(condition61 | condition63)) + \
+            B3 * (condition63 & numpy.logical_not(condition61))
 
         C = max_(0, A - B)
 
@@ -1291,7 +1292,7 @@ class ir_plaf_qf(Variable):
         condition62d = (nb_pac > 0) & (veuf)
 
         E = condition62b * condition62c * (
-            plafond_qf.reduc_postplafond * condition62c0 * not_(condition62c1)
+            plafond_qf.reduc_postplafond * condition62c0 * numpy.logical_not(condition62c1)
             + plafond_qf.reduc_postplafond * 2 * condition62c1
             + plafond_qf.reduc_postplafond * (nbG + nbI / 2 + nbR) * condition62c2
             )
@@ -1317,7 +1318,7 @@ class ir_plaf_qf(Variable):
         impot_apres_abattement_dom = max_(0, impot_apres_reduction_complementaire - abattement_dom)
 
         return (
-            not_(residence_dom) * (condition62a * impot_apres_plaf_qf + condition62b * impot_apres_reduction_complementaire)
+            numpy.logical_not(residence_dom) * (condition62a * impot_apres_plaf_qf + condition62b * impot_apres_reduction_complementaire)
             + residence_dom * impot_apres_abattement_dom
             )
 
@@ -2406,7 +2407,7 @@ class ric(Variable):
             )
 
         cond = (mbic_impv > 0) & (mbic_imps == 0)
-        taux = micro.specialbnc.marchandises.taux * cond + micro.specialbnc.services.taux * not_(cond)
+        taux = micro.specialbnc.marchandises.taux * cond + micro.specialbnc.services.taux * numpy.logical_not(cond)
 
         cbic = min_(
             mbic_impv + mbic_imps + mbic_exon,
@@ -2457,7 +2458,7 @@ class rac(Variable):
 
     # TODO: aacc_imps aacc_defs
         cond = (macc_impv > 0) & (macc_imps == 0)
-        taux = micro.specialbnc.marchandises.taux * cond + micro.specialbnc.services.taux * not_(cond)
+        taux = micro.specialbnc.marchandises.taux * cond + micro.specialbnc.services.taux * numpy.logical_not(cond)
 
         cacc = min_(macc_impv + macc_imps + macc_exon + mncn_impo, max_(micro.specialbnc.marchandises.min, round_(
             macc_impv * micro.specialbnc.marchandises.taux
@@ -2693,7 +2694,7 @@ class rpns_individu(Variable):
     #    # sur des revenus agricoles)
     #    rag_timp = frag_impo + frag_pvct + arag_impg + nrag_impg
     #    cond = (AUTRE <= microentreprise.def_agri_seuil)
-    #    def_agri = cond*(arag_defi + nrag_defi) + not_(cond)*min_(rag_timp, arag_defi + nrag_defi)
+    #    def_agri = cond*(arag_defi + nrag_defi) + numpy.logical_not(cond)*min_(rag_timp, arag_defi + nrag_defi)
     #    # TODO : check 2006 cf art 156 du CGI pour 2006
     #    def_agri_ant    = min_(max_(0,rag_timp - def_agri), f5sq)
 
@@ -2948,9 +2949,9 @@ class nbptr(Variable):
         quotient_familial = parameters(period).impot_revenu.quotient_familial
 
         no_pac = nb_pac == 0  # Aucune personne à charge en garde exclusive
-        has_pac = not_(no_pac)
+        has_pac = numpy.logical_not(no_pac)
         no_alt = nbH == 0  # Aucun enfant à charge en garde alternée
-        has_alt = not_(no_alt)
+        has_alt = numpy.logical_not(no_alt)
 
         # # nombre de parts liées aux enfants à charge
         # que des enfants en résidence alternée
@@ -2974,7 +2975,7 @@ class nbptr(Variable):
         n31b = quotient_familial.not31b * (no_pac & no_alt & (caseW | caseG))
         n31 = max_(n31a, n31b)
         # - personne seule ayant élevé des enfants
-        n32 = quotient_familial.not32 * (no_pac & no_alt & ((caseE | caseK | caseL) & not_(caseN)))
+        n32 = quotient_familial.not32 * (no_pac & no_alt & ((caseE | caseK | caseL) & numpy.logical_not(caseN)))
         n3 = max_(n31, n32)
         # # note 4 Invalidité de la personne ou du conjoint pour les mariés ou
         # # jeunes veuf(ve)s
@@ -3002,7 +3003,7 @@ class nbptr(Variable):
         # # celib div
         nb_parts_celib = 1 + enf + n2 + n3 + n6 + n7
 
-        return (maries_ou_pacses | jeune_veuf) * nb_parts_famille + (veuf & not_(jeune_veuf)) * nb_parts_veuf + celibataire_ou_divorce * nb_parts_celib
+        return (maries_ou_pacses | jeune_veuf) * nb_parts_famille + (veuf & numpy.logical_not(jeune_veuf)) * nb_parts_veuf + celibataire_ou_divorce * nb_parts_celib
 
 
 ###############################################################################
@@ -3093,7 +3094,7 @@ class ppe_coef_tp(Variable):
         frac_sa = ppe_du_sa / ppe.TP_nbh
         frac_ns = ppe_du_ns / ppe.TP_nbj
         tp = ppe_tp_sa | ppe_tp_ns | (frac_sa + frac_ns >= 1)
-        return tp + not_(tp) * (frac_sa + frac_ns)
+        return tp + numpy.logical_not(tp) * (frac_sa + frac_ns)
 
 
 class ppe_base(Variable):
@@ -3171,8 +3172,8 @@ class ppe_brute(Variable):
         nb_pac_ppe = max_(0, nb_pac - foyer_fiscal.sum(eligible_i, role = FoyerFiscal.PERSONNE_A_CHARGE))
 
         ligne2 = maries_ou_pacses & xor_(basevi >= ppe.seuil1, baseci >= ppe.seuil1)
-        ligne3 = (celibataire_ou_divorce | veuf) & caseT & not_(veuf & caseT & caseL)
-        ligne1 = not_(ligne2) & not_(ligne3)
+        ligne3 = (celibataire_ou_divorce | veuf) & caseT & numpy.logical_not(veuf & caseT & caseL)
+        ligne1 = numpy.logical_not(ligne2) & numpy.logical_not(ligne3)
 
         base_monact = ligne2 * (eliv * basev + elic * basec)
         base_monacti = ligne2 * (eliv * basevi + elic * baseci)

@@ -58,7 +58,7 @@ class assiette_cotisations_sociales_public(Variable):
 
         assiette = public * (
             remuneration_principale
-            # + not_(titulaire) * (indemnite_residence + primes_fonction_publique)
+            # + numpy.logical_not(titulaire) * (indemnite_residence + primes_fonction_publique)
             )
         return assiette
 
