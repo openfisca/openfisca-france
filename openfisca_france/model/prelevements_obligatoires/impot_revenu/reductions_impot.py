@@ -3,7 +3,6 @@
 import logging
 
 import numpy
-from numpy import around
 
 from openfisca_france.model.base import *
 
@@ -51,7 +50,7 @@ class reductions(Variable):
             ]
 
         impot_net = foyer_fiscal('ip_net', period)
-        montants = [around(foyer_fiscal(reduction, period)) for reduction in reductions]
+        montants = [numpy.around(foyer_fiscal(reduction, period)) for reduction in reductions]
         total_reductions = sum(montants)
         return numpy.minimum(impot_net, total_reductions)
 
@@ -3014,7 +3013,7 @@ class invlst(Variable):
         xn = P.taux_xn * numpy.minimum(f7xn, seuil1 / 6)
         xo = P.taux_xo * f7xo
 
-        return around(xc + xd + xe + xf + xg + xh + xi + xj + xk + xl + xm + xn + xo)
+        return numpy.around(xc + xd + xe + xf + xg + xh + xi + xj + xk + xl + xm + xn + xo)
 
     def formula_2005_01_01(foyer_fiscal, period, parameters):
         '''
@@ -3055,7 +3054,7 @@ class invlst(Variable):
         xn = P.taux_xn * numpy.minimum(f7xn, seuil1 / 6)
         xo = P.taux_xo * f7xo
 
-        return around(xc + xd + xe + xf + xg + xh + xi + xj + xk + xl + xm + xn + xo)
+        return numpy.around(xc + xd + xe + xf + xg + xh + xi + xj + xk + xl + xm + xn + xo)
 
     def formula_2011_01_01(foyer_fiscal, period, parameters):
         '''
@@ -3097,7 +3096,7 @@ class invlst(Variable):
         xl = P.taux_xl * numpy.minimum(f7xl, seuil1 / 6)
         xo = P.taux_xo * (f7xk + f7xo + f7xr)
 
-        return around(xc + xa + xg + xb + xh + xi + xj + xl + xo)
+        return numpy.around(xc + xa + xg + xb + xh + xi + xj + xl + xo)
 
     def formula_2012_01_01(foyer_fiscal, period, parameters):
         '''
@@ -3144,7 +3143,7 @@ class invlst(Variable):
         xl = P.taux_xl * numpy.minimum(f7xl, seuil1 / 6)
         xo = P.taux_xo * (f7xk + f7xo + f7xr)
 
-        return around(xc + xa + xg + xx + xb + xz + xh + xi + xj + xl + xo)
+        return numpy.around(xc + xa + xg + xx + xb + xz + xh + xi + xj + xl + xo)
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
         '''
@@ -3171,7 +3170,7 @@ class invlst(Variable):
         xj = P.taux_xj * (f7xm + f7xj + f7xq + f7xv + f7uz)
         xo = P.taux_xo * (f7xk + f7xo + f7xr)
 
-        return around(xi + xj + xo)
+        return numpy.around(xi + xj + xo)
 
     def formula_2014_01_01(foyer_fiscal, period, parameters):
         '''
@@ -3210,7 +3209,7 @@ class invlst(Variable):
             + report_residence_sociale_2010
             )
 
-        return around(reduction_logement_neuf + reduction_rehabilitation + reduction_residence_sociale)
+        return numpy.around(reduction_logement_neuf + reduction_rehabilitation + reduction_residence_sociale)
 
     def formula_2015_01_01(foyer_fiscal, period, parameters):
         '''
@@ -3245,7 +3244,7 @@ class invlst(Variable):
 
         reduction_residence_sociale = P.taux_xo * report_residence_sociale_2010
 
-        return around(reduction_logement_neuf + reduction_rehabilitation + reduction_residence_sociale)
+        return numpy.around(reduction_logement_neuf + reduction_rehabilitation + reduction_residence_sociale)
 
     def formula_2016_01_01(foyer_fiscal, period, parameters):
         '''
@@ -3273,7 +3272,7 @@ class invlst(Variable):
             + report_rehabilitation_2012
             )
 
-        return around(reduction_logement_neuf + reduction_rehabilitation)
+        return numpy.around(reduction_logement_neuf + reduction_rehabilitation)
 
     def formula_2017_01_01(foyer_fiscal, period, parameters):
         '''
@@ -3297,7 +3296,7 @@ class invlst(Variable):
             + report_rehabilitation_2012
             )
 
-        return around(reduction_logement_neuf + reduction_rehabilitation)
+        return numpy.around(reduction_logement_neuf + reduction_rehabilitation)
 
     # TODO : verrifier la formule de cette réduction pour les années 2004-2013, les cases changent de signification d'une année à l'autre, cela ne semble pas pris en compte dans le calcul (ex: f7xd)
 
@@ -3587,12 +3586,12 @@ class locmeu(Variable):
 
         return (
             (
-                around(reduction_investissements_acheve_2014_realise_2009 / 9)
-                + around(reduction_investissements_acheve_2014_realise_2010 / 9)
-                + around(reduction_investissements_acheve_2014_realise_2011 / 9)
-                + around(reduction_investissements_acheve_2014_realise_2012 / 9)
-                + around(reduction_investissements_acheve_2014_realise_2013 / 9)
-                + around(reduction_investissements_acheve_2014_realise_2014 / 9)
+                numpy.around(reduction_investissements_acheve_2014_realise_2009 / 9)
+                + numpy.around(reduction_investissements_acheve_2014_realise_2010 / 9)
+                + numpy.around(reduction_investissements_acheve_2014_realise_2011 / 9)
+                + numpy.around(reduction_investissements_acheve_2014_realise_2012 / 9)
+                + numpy.around(reduction_investissements_acheve_2014_realise_2013 / 9)
+                + numpy.around(reduction_investissements_acheve_2014_realise_2014 / 9)
                 )
             + report_invest_anterieur
             + report_non_impute
@@ -3689,13 +3688,13 @@ class locmeu(Variable):
 
         return (
             (
-                around(reduction_investissements_acheve_2015_realise_2009 / 9)
-                + around(reduction_investissements_acheve_2015_realise_2010 / 9)
-                + around(reduction_investissements_acheve_2015_realise_2011 / 9)
-                + around(reduction_investissements_acheve_2015_realise_2012 / 9)
-                + around(reduction_investissements_acheve_2015_realise_2013 / 9)
-                + around(reduction_investissements_acheve_2015_realise_2014 / 9)
-                + around(reduction_investissements_acheve_2015_realise_2015 / 9)
+                numpy.around(reduction_investissements_acheve_2015_realise_2009 / 9)
+                + numpy.around(reduction_investissements_acheve_2015_realise_2010 / 9)
+                + numpy.around(reduction_investissements_acheve_2015_realise_2011 / 9)
+                + numpy.around(reduction_investissements_acheve_2015_realise_2012 / 9)
+                + numpy.around(reduction_investissements_acheve_2015_realise_2013 / 9)
+                + numpy.around(reduction_investissements_acheve_2015_realise_2014 / 9)
+                + numpy.around(reduction_investissements_acheve_2015_realise_2015 / 9)
                 )
             + report_invest_anterieur
             + report_non_impute
@@ -3802,13 +3801,13 @@ class locmeu(Variable):
 
         return (
             (
-                around(reduction_investissements_acheve_2016_realise_2010 / 9)
-                + around(reduction_investissements_acheve_2016_realise_2011 / 9)
-                + around(reduction_investissements_acheve_2016_realise_2012 / 9)
-                + around(reduction_investissements_acheve_2016_realise_2013 / 9)
-                + around(reduction_investissements_acheve_2016_realise_2014 / 9)
-                + around(reduction_investissements_acheve_2016_realise_2015 / 9)
-                + around(reduction_investissements_acheve_2016_realise_2016 / 9)
+                numpy.around(reduction_investissements_acheve_2016_realise_2010 / 9)
+                + numpy.around(reduction_investissements_acheve_2016_realise_2011 / 9)
+                + numpy.around(reduction_investissements_acheve_2016_realise_2012 / 9)
+                + numpy.around(reduction_investissements_acheve_2016_realise_2013 / 9)
+                + numpy.around(reduction_investissements_acheve_2016_realise_2014 / 9)
+                + numpy.around(reduction_investissements_acheve_2016_realise_2015 / 9)
+                + numpy.around(reduction_investissements_acheve_2016_realise_2016 / 9)
                 )
             + report_invest_anterieur
             + report_non_impute
@@ -3930,13 +3929,13 @@ class locmeu(Variable):
         # Calcul de la réduction concernant les investissements achevés ou réalisés l'année courante
 
         reduc_invest_acheves_2017 = (
-            around(P.taux18 * numpy.minimum(P.max, invest_2011_acheves_2017) / 9)
-            + around(P.taux11 * numpy.minimum(P.max, invest_2012_acheves_2017) / 9)
-            + around(P.taux11 * numpy.minimum(P.max, invest_2013_acheves_2017) / 9)
-            + around(P.taux11 * numpy.minimum(P.max, invest_2014_acheves_2017) / 9)
-            + around(P.taux11 * numpy.minimum(P.max, invest_2015_acheves_2017) / 9)
-            + around(P.taux11 * numpy.minimum(P.max, invest_2016_acheves_2017) / 9)
-            + around(P.taux11 * numpy.minimum(P.max, invest_2017_acheves_2017) / 9)
+            numpy.around(P.taux18 * numpy.minimum(P.max, invest_2011_acheves_2017) / 9)
+            + numpy.around(P.taux11 * numpy.minimum(P.max, invest_2012_acheves_2017) / 9)
+            + numpy.around(P.taux11 * numpy.minimum(P.max, invest_2013_acheves_2017) / 9)
+            + numpy.around(P.taux11 * numpy.minimum(P.max, invest_2014_acheves_2017) / 9)
+            + numpy.around(P.taux11 * numpy.minimum(P.max, invest_2015_acheves_2017) / 9)
+            + numpy.around(P.taux11 * numpy.minimum(P.max, invest_2016_acheves_2017) / 9)
+            + numpy.around(P.taux11 * numpy.minimum(P.max, invest_2017_acheves_2017) / 9)
             )
 
         return (
@@ -4324,7 +4323,7 @@ class rpinel(Variable):
         max2 = numpy.maximum(0, max1 - f7qc)
         max3 = numpy.maximum(0, max2 - f7ek - f7qb)
 
-        return around(
+        return numpy.around(
             P.taux['outremer']['9_ans'] * numpy.minimum(numpy.maximum(0, P.plafond - f7el), f7qd) / 9
             + P.taux['outremer']['6_ans'] * numpy.minimum(max1, f7qc) / 6
             + P.taux['metropole']['9_ans'] * numpy.minimum(numpy.maximum(0, max2 - f7ek), f7qb) / 9
@@ -4379,7 +4378,7 @@ class rpinel(Variable):
         max2 = numpy.maximum(0, max1 - f7qc)
         max3 = numpy.maximum(0, max2 - f7ek - f7qb)
 
-        reduc_invest_real_2014 = around(
+        reduc_invest_real_2014 = numpy.around(
             P.taux['outremer']['9_ans'] * numpy.minimum(numpy.maximum(0, P.plafond - f7el), f7qd) / 9
             + P.taux['outremer']['6_ans'] * numpy.minimum(max1, f7qc) / 6
             + P.taux['metropole']['9_ans'] * numpy.minimum(numpy.maximum(0, max2 - f7ek), f7qb) / 9
@@ -4393,7 +4392,7 @@ class rpinel(Variable):
                 variable, duree, zone = case
                 depense = foyer_fiscal(variable, period)
                 taux = P.taux[zone][str(duree) + '_ans']
-                reduction += around(taux * numpy.minimum(numpy.maximum(0, P.plafond - depenses_cumulees), depense) / duree)
+                reduction += numpy.around(taux * numpy.minimum(numpy.maximum(0, P.plafond - depenses_cumulees), depense) / duree)
                 depenses_cumulees += depense
             return reduction
 

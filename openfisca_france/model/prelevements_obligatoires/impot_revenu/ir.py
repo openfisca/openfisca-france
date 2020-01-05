@@ -3,7 +3,7 @@
 import logging
 
 import numpy
-from numpy import datetime64, timedelta64, around
+from numpy import datetime64, timedelta64
 
 from openfisca_core.model_api import *
 from openfisca_france.model.base import *
@@ -1345,7 +1345,7 @@ class decote(Variable):
         ir_plaf_qf = foyer_fiscal('ir_plaf_qf', period)
         decote = parameters(period).impot_revenu.decote
 
-        return around(numpy.maximum(0, decote.seuil - ir_plaf_qf) * decote.taux)
+        return numpy.around(numpy.maximum(0, decote.seuil - ir_plaf_qf) * decote.taux)
 
     def formula_2014_01_01(foyer_fiscal, period, parameters):
         ir_plaf_qf = foyer_fiscal("ir_plaf_qf", period)
@@ -1356,7 +1356,7 @@ class decote(Variable):
         decote_celib = numpy.maximum(0, decote_seuil_celib - taux_decote * ir_plaf_qf)
         decote_couple = numpy.maximum(0, decote_seuil_couple - taux_decote * ir_plaf_qf)
 
-        return around((nb_adult == 1) * decote_celib + (nb_adult == 2) * decote_couple)
+        return numpy.around((nb_adult == 1) * decote_celib + (nb_adult == 2) * decote_couple)
 
 
 class decote_gain_fiscal(Variable):
@@ -1372,7 +1372,7 @@ class decote_gain_fiscal(Variable):
         decote = foyer_fiscal('decote', period)
         ir_plaf_qf = foyer_fiscal('ir_plaf_qf', period)
 
-        return around(numpy.minimum(decote, ir_plaf_qf))
+        return numpy.around(numpy.minimum(decote, ir_plaf_qf))
 
 
 class reduction_ss_condition_revenus(Variable):
@@ -1445,7 +1445,7 @@ class ip_net(Variable):
         # N'est pas véritablement une 'réduction', cf. la définition de cette variable
         reduction_ss_condition_revenus = foyer_fiscal('reduction_ss_condition_revenus', period)
 
-        return around(numpy.maximum(0, ir_plaf_qf + foyer_fiscal.sum(cncn_info_i) * taux - decote - reduction_ss_condition_revenus))
+        return numpy.around(numpy.maximum(0, ir_plaf_qf + foyer_fiscal.sum(cncn_info_i) * taux - decote - reduction_ss_condition_revenus))
 
 
 class iaidrdi(Variable):

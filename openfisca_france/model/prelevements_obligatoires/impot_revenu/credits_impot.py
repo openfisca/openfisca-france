@@ -3,7 +3,6 @@
 import logging
 
 import numpy
-from numpy import around
 
 from openfisca_france.model.base import *
 
@@ -50,7 +49,7 @@ class credits_impot(Variable):
             'credit_cotisations_syndicales'
             ]
 
-        montants = [around(foyer_fiscal(credit, period)) for credit in credits]
+        montants = [numpy.around(foyer_fiscal(credit, period)) for credit in credits]
         total_credits = sum(montants)
 
         return total_credits
@@ -426,7 +425,7 @@ class creimp_exc_2008(Variable):
             elig_creimp_exc_2008
             * (mohist < 10700)
             * (rpp <= 12475)
-            * around(
+            * numpy.around(
                 (2 / 3)
                 * numpy.minimum(12475, iai)
                 * (rpp < 11674)
