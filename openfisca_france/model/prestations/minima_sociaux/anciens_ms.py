@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 import numpy
-from numpy import floor
 
 from openfisca_france.model.base import *
 from openfisca_france.model.prestations.prestations_familiales.base_ressource import nb_enf
@@ -58,7 +57,7 @@ class api(Variable):
         # Le droit à l'allocation est réétudié tous les 3 mois.
         # # Calcul de l'année et mois de naissance du benjamin
 
-        condition = (floor(age_en_mois_enfant / 12) <= api.age_limite - 1)
+        condition = (numpy.floor(age_en_mois_enfant / 12) <= api.age_limite - 1)
         eligib = isole * ((enceinte != 0) | (nb_enf(famille, period, 0, api.age_limite - 1) > 0)) * condition
 
         # moins de 20 ans avant inclusion dans rsa

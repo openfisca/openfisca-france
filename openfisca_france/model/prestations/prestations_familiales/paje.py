@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import numpy
-from numpy import round, floor
+from numpy import round
 
 from openfisca_france.model.base import *
 from openfisca_france.model.prestations.prestations_familiales.base_ressource import nb_enf
@@ -782,7 +782,7 @@ class paje_clca(Variable):
         age_m_benjamin = famille.min(age_en_mois_i, role = Famille.ENFANT)
 
         condition1 = (af_nbenf == 1) * (age_m_benjamin >= 0) * (age_m_benjamin < P.paje.clca.duree1)
-        age_benjamin = floor(age_m_benjamin / 12)
+        age_benjamin = numpy.floor(age_m_benjamin / 12)
         condition2 = (age_benjamin <= (P.paje.base.age_max_enfant - 1))
         condition = (af_nbenf >= 2) * condition2 + condition1
 
