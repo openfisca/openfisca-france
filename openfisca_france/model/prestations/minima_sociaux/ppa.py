@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 import numpy
-from numpy import remainder as remainder_
 
 from openfisca_france.model.base import *
 
@@ -490,7 +489,7 @@ class ppa_indice_du_mois_trimestre_reference(Variable):
     def formula(famille, period, parameters):
         ppa_mois_demande = famille('ppa_mois_demande', period)
         nombre_mois = (numpy.datetime64(period.start).astype('datetime64[M]') - ppa_mois_demande.astype('datetime64[M]')).astype('int')
-        return remainder_(nombre_mois, 3)
+        return numpy.remainder(nombre_mois, 3)
 
 
 class ppa_versee(Variable):
