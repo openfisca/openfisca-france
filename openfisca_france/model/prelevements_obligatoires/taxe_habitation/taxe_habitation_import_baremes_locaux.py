@@ -4,10 +4,11 @@ import os
 import csv
 import codecs
 import pkg_resources
-import openfisca_france
-from numpy import fromiter
-from openfisca_france.model.base import *
 
+import numpy
+
+import openfisca_france
+from openfisca_france.model.base import *
 
 # Importe les barèmes locaux de la taxe d'habitation
 
@@ -50,9 +51,9 @@ class taux_th_commune(Variable):
         taux_by_com = preload_parametres_locaux_taxe_habitation(year = annee, variable_to_load = 'taux_com')
         default_value = 0
         if taux_by_com is None:
-            montant = fromiter((default_value for code_INSEE_commune_cell in code_INSEE_commune), dtype = float)
+            montant = numpy.fromiter((default_value for code_INSEE_commune_cell in code_INSEE_commune), dtype = float)
         else:
-            montant = fromiter(
+            montant = numpy.fromiter(
                 (
                     taux_by_com.get(code_INSEE_commune_cell if isinstance(code_INSEE_commune_cell, str) else code_INSEE_commune_cell.decode('utf-8'), default_value)
                     for code_INSEE_commune_cell in code_INSEE_commune
@@ -75,9 +76,9 @@ class taux_th_epci(Variable):
         taux_by_epci = preload_parametres_locaux_taxe_habitation(year = annee, variable_to_load = 'taux_epci')
         default_value = 0
         if taux_by_epci is None:
-            montant = fromiter((default_value for code_INSEE_commune_cell in code_INSEE_commune), dtype = float)
+            montant = numpy.fromiter((default_value for code_INSEE_commune_cell in code_INSEE_commune), dtype = float)
         else:
-            montant = fromiter(
+            montant = numpy.fromiter(
                 (
                     taux_by_epci.get(code_INSEE_commune_cell if isinstance(code_INSEE_commune_cell, str) else code_INSEE_commune_cell.decode('utf-8'), default_value)
                     for code_INSEE_commune_cell in code_INSEE_commune
@@ -100,9 +101,9 @@ class valeur_locative_moyenne_th_commune(Variable):
         valeur_locative_moyenne_by_com = preload_parametres_locaux_taxe_habitation(year = annee, variable_to_load = 'valeur_locative_moyenne_com')
         default_value = 0
         if valeur_locative_moyenne_by_com is None:
-            montant = fromiter((default_value for code_INSEE_commune_cell in code_INSEE_commune), dtype = float)
+            montant = numpy.fromiter((default_value for code_INSEE_commune_cell in code_INSEE_commune), dtype = float)
         else:
-            montant = fromiter(
+            montant = numpy.fromiter(
                 (
                     valeur_locative_moyenne_by_com.get(code_INSEE_commune_cell if isinstance(code_INSEE_commune_cell, str) else code_INSEE_commune_cell.decode('utf-8'), default_value)
                     for code_INSEE_commune_cell in code_INSEE_commune
@@ -125,9 +126,9 @@ class valeur_locative_moyenne_th_epci(Variable):
         valeur_locative_moyenne_by_epci = preload_parametres_locaux_taxe_habitation(year = annee, variable_to_load = 'valeur_locative_moyenne_epci')
         default_value = 0
         if valeur_locative_moyenne_by_epci is None:
-            montant = fromiter((default_value for code_INSEE_commune_cell in code_INSEE_commune), dtype = float)
+            montant = numpy.fromiter((default_value for code_INSEE_commune_cell in code_INSEE_commune), dtype = float)
         else:
-            montant = fromiter(
+            montant = numpy.fromiter(
                 (
                     valeur_locative_moyenne_by_epci.get(code_INSEE_commune_cell if isinstance(code_INSEE_commune_cell, str) else code_INSEE_commune_cell.decode('utf-8'), default_value)
                     for code_INSEE_commune_cell in code_INSEE_commune
@@ -150,9 +151,9 @@ class abt_general_base_th_commune(Variable):
         abt_general_base_by_com = preload_parametres_locaux_taxe_habitation(year = annee, variable_to_load = 'abt_general_base_com')
         default_value = 0
         if abt_general_base_by_com is None:
-            montant = fromiter((default_value for code_INSEE_commune_cell in code_INSEE_commune), dtype = float)
+            montant = numpy.fromiter((default_value for code_INSEE_commune_cell in code_INSEE_commune), dtype = float)
         else:
-            montant = fromiter(
+            montant = numpy.fromiter(
                 (
                     abt_general_base_by_com.get(code_INSEE_commune_cell if isinstance(code_INSEE_commune_cell, str) else code_INSEE_commune_cell.decode('utf-8'), default_value)
                     for code_INSEE_commune_cell in code_INSEE_commune
@@ -175,9 +176,9 @@ class abt_general_base_th_epci(Variable):
         abt_general_base_by_epci = preload_parametres_locaux_taxe_habitation(year = annee, variable_to_load = 'abt_general_base_epci')
         default_value = 0
         if abt_general_base_by_epci is None:
-            montant = fromiter((default_value for code_INSEE_commune_cell in code_INSEE_commune), dtype = float)
+            montant = numpy.fromiter((default_value for code_INSEE_commune_cell in code_INSEE_commune), dtype = float)
         else:
-            montant = fromiter(
+            montant = numpy.fromiter(
                 (
                     abt_general_base_by_epci.get(code_INSEE_commune_cell if isinstance(code_INSEE_commune_cell, str) else code_INSEE_commune_cell.decode('utf-8'), default_value)
                     for code_INSEE_commune_cell in code_INSEE_commune
@@ -200,9 +201,9 @@ class abt_pac_1_2_th_commune(Variable):
         abt_pac_1_2_by_com = preload_parametres_locaux_taxe_habitation(year = annee, variable_to_load = 'abt_pac_1_2_com')
         default_value = 0
         if abt_pac_1_2_by_com is None:
-            montant = fromiter((default_value for code_INSEE_commune_cell in code_INSEE_commune), dtype = float)
+            montant = numpy.fromiter((default_value for code_INSEE_commune_cell in code_INSEE_commune), dtype = float)
         else:
-            montant = fromiter(
+            montant = numpy.fromiter(
                 (
                     abt_pac_1_2_by_com.get(code_INSEE_commune_cell if isinstance(code_INSEE_commune_cell, str) else code_INSEE_commune_cell.decode('utf-8'), default_value)
                     for code_INSEE_commune_cell in code_INSEE_commune
@@ -225,9 +226,9 @@ class abt_pac_1_2_th_epci(Variable):
         abt_pac_1_2_by_epci = preload_parametres_locaux_taxe_habitation(year = annee, variable_to_load = 'abt_pac_1_2_epci')
         default_value = 0
         if abt_pac_1_2_by_epci is None:
-            montant = fromiter((default_value for code_INSEE_commune_cell in code_INSEE_commune), dtype = float)
+            montant = numpy.fromiter((default_value for code_INSEE_commune_cell in code_INSEE_commune), dtype = float)
         else:
-            montant = fromiter(
+            montant = numpy.fromiter(
                 (
                     abt_pac_1_2_by_epci.get(code_INSEE_commune_cell if isinstance(code_INSEE_commune_cell, str) else code_INSEE_commune_cell.decode('utf-8'), default_value)
                     for code_INSEE_commune_cell in code_INSEE_commune
@@ -250,9 +251,9 @@ class abt_pac_3pl_th_commune(Variable):
         abt_pac_3pl_by_com = preload_parametres_locaux_taxe_habitation(year = annee, variable_to_load = 'abt_pac_3pl_com')
         default_value = 0
         if abt_pac_3pl_by_com is None:
-            montant = fromiter((default_value for code_INSEE_commune_cell in code_INSEE_commune), dtype = float)
+            montant = numpy.fromiter((default_value for code_INSEE_commune_cell in code_INSEE_commune), dtype = float)
         else:
-            montant = fromiter(
+            montant = numpy.fromiter(
                 (
                     abt_pac_3pl_by_com.get(code_INSEE_commune_cell if isinstance(code_INSEE_commune_cell, str) else code_INSEE_commune_cell.decode('utf-8'), default_value)
                     for code_INSEE_commune_cell in code_INSEE_commune
@@ -275,9 +276,9 @@ class abt_pac_3pl_th_epci(Variable):
         abt_pac_3pl_by_epci = preload_parametres_locaux_taxe_habitation(year = annee, variable_to_load = 'abt_pac_3pl_epci')
         default_value = 0
         if abt_pac_3pl_by_epci is None:
-            montant = fromiter((default_value for code_INSEE_commune_cell in code_INSEE_commune), dtype = float)
+            montant = numpy.fromiter((default_value for code_INSEE_commune_cell in code_INSEE_commune), dtype = float)
         else:
-            montant = fromiter(
+            montant = numpy.fromiter(
                 (
                     abt_pac_3pl_by_epci.get(code_INSEE_commune_cell if isinstance(code_INSEE_commune_cell, str) else code_INSEE_commune_cell.decode('utf-8'), default_value)
                     for code_INSEE_commune_cell in code_INSEE_commune
@@ -300,9 +301,9 @@ class abt_condition_modeste_th_commune(Variable):
         abt_condition_modeste_by_com = preload_parametres_locaux_taxe_habitation(year = annee, variable_to_load = 'abt_condition_modeste_com')
         default_value = 0
         if abt_condition_modeste_by_com is None:
-            montant = fromiter((default_value for code_INSEE_commune_cell in code_INSEE_commune), dtype = float)
+            montant = numpy.fromiter((default_value for code_INSEE_commune_cell in code_INSEE_commune), dtype = float)
         else:
-            montant = fromiter(
+            montant = numpy.fromiter(
                 (
                     abt_condition_modeste_by_com.get(code_INSEE_commune_cell if isinstance(code_INSEE_commune_cell, str) else code_INSEE_commune_cell.decode('utf-8'), default_value)
                     for code_INSEE_commune_cell in code_INSEE_commune
@@ -325,9 +326,9 @@ class abt_condition_modeste_th_epci(Variable):
         abt_condition_modeste_by_epci = preload_parametres_locaux_taxe_habitation(year = annee, variable_to_load = 'abt_condition_modeste_epci')
         default_value = 0
         if abt_condition_modeste_by_epci is None:
-            montant = fromiter((default_value for code_INSEE_commune_cell in code_INSEE_commune), dtype = float)
+            montant = numpy.fromiter((default_value for code_INSEE_commune_cell in code_INSEE_commune), dtype = float)
         else:
-            montant = fromiter(
+            montant = numpy.fromiter(
                 (
                     abt_condition_modeste_by_epci.get(code_INSEE_commune_cell if isinstance(code_INSEE_commune_cell, str) else code_INSEE_commune_cell.decode('utf-8'), default_value)
                     for code_INSEE_commune_cell in code_INSEE_commune

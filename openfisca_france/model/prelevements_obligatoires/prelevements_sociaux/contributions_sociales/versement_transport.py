@@ -3,7 +3,6 @@
 import json
 
 import numpy
-from numpy import fromiter
 
 from openfisca_france.model.base import *
 from openfisca_france.france_taxbenefitsystem import COUNTRY_DIR
@@ -32,7 +31,7 @@ class taux_versement_transport(Variable):
             + (categorie_salarie == TypesCategorieSalarie.public_non_titulaire)
             + (categorie_salarie == TypesCategorieSalarie.non_pertinent)
             )
-        taux_versement_transport = fromiter(
+        taux_versement_transport = numpy.fromiter(
             (
                 get_taux_versement_transport(code_commune, period)
                 for code_commune in depcom_entreprise

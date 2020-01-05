@@ -8,7 +8,7 @@ import pkg_resources
 import sys
 
 import numpy
-from numpy import fromiter, int16
+from numpy import int16
 
 import openfisca_france
 from openfisca_core.periods import Instant
@@ -1089,7 +1089,7 @@ class zone_apl(Variable):
 
         preload_zone_apl()
         default_value = 2
-        zone = fromiter(
+        zone = numpy.fromiter(
             (
                 zone_apl_by_depcom.get(depcom_cell if isinstance(depcom_cell, str) else depcom_cell.decode('utf-8'), default_value)
                 for depcom_cell in depcom
