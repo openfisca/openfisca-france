@@ -3,7 +3,7 @@
 import logging
 
 import numpy
-from numpy import datetime64, timedelta64, logical_xor as xor_, round as round_, around
+from numpy import datetime64, timedelta64, logical_xor as xor_, around
 
 from numpy.core.defchararray import startswith
 
@@ -421,7 +421,7 @@ class revenu_assimile_salaire_apres_abattements(Variable):
         abatpro = parameters(period).impot_revenu.tspr.abatpro
 
         abattement_minimum = where(chomeur_longue_duree, abatpro.min2, abatpro.min)
-        abatfor = round_(numpy.minimum(numpy.maximum(abatpro.taux * revenu_assimile_salaire, abattement_minimum), abatpro.max))
+        abatfor = numpy.round(numpy.minimum(numpy.maximum(abatpro.taux * revenu_assimile_salaire, abattement_minimum), abatpro.max))
 
         return (
             (frais_reels > abatfor)
@@ -461,10 +461,10 @@ class revenu_assimile_pension_apres_abattements(Variable):
     #            AO + BO + CO + DO + EO )
     #    penv2 = (d11-f11> abatpen.max)*(penv + (d11-f11-abatpen.max)) + (d11-f11<= abatpen.max)*penv
     #    Plus d'abatement de 20% en 2006
-        return numpy.maximum(0, revenu_assimile_pension - round_(numpy.maximum(abatpen.taux * revenu_assimile_pension, abatpen.min)))
+        return numpy.maximum(0, revenu_assimile_pension - numpy.round(numpy.maximum(abatpen.taux * revenu_assimile_pension, abatpen.min)))
 
 
-#    return numpy.maximum(0, revenu_assimile_pension - numpy.minimum(round_(numpy.maximum(abatpen.taux*revenu_assimile_pension , abatpen.min)), abatpen.max))  le max se met au niveau du foyer
+#    return numpy.maximum(0, revenu_assimile_pension - numpy.minimum(numpy.round(numpy.maximum(abatpen.taux*revenu_assimile_pension , abatpen.min)), abatpen.max))  le max se met au niveau du foyer
 
 class indu_plaf_abat_pen(Variable):
     value_type = float
@@ -541,7 +541,7 @@ class rente_viagere_titre_onereux_net(Variable):
         f1dw = foyer_fiscal('f1dw', period)
         abatviag = parameters(period).impot_revenu.tspr.abatviag
 
-        return round_(
+        return numpy.round(
             + abatviag.taux1 * f1aw
             + abatviag.taux2 * f1bw
             + abatviag.taux3 * f1cw
@@ -1479,7 +1479,7 @@ class cont_rev_loc(Variable):
         f4bl = foyer_fiscal('f4bl', period)
         crl = parameters(period).impot_revenu.crl
 
-        return round_(crl.taux * (f4bl >= crl.seuil) * f4bl)
+        return numpy.round(crl.taux * (f4bl >= crl.seuil) * f4bl)
 
 
 class teicaa(Variable):  # f5rm
@@ -1640,7 +1640,7 @@ class taxation_plus_values_hors_bareme(Variable):
         #  TODO: remove this todo use sum for all fields after checking
         # revenus taxés à un taux proportionnel
 
-        return round_(
+        return numpy.round(
             plus_values.pvce * rpns_pvce
             + plus_values.taux1 * numpy.maximum(0, f3vg - f3vh)
             + plus_values.taux_pv_mob_pro * f3vl
@@ -1670,7 +1670,7 @@ class taxation_plus_values_hors_bareme(Variable):
         #  TODO: remove this todo use sum for all fields after checking
         # revenus taxés à un taux proportionnel
 
-        return round_(
+        return numpy.round(
             plus_values.pvce * rpns_pvce
             + plus_values.taux1 * numpy.maximum(0, f3vg - f3vh)
             + plus_values.taux_pv_mob_pro * f3vl
@@ -1703,7 +1703,7 @@ class taxation_plus_values_hors_bareme(Variable):
         f3vi = foyer_fiscal.sum(f3vi_i)
         f3vf = foyer_fiscal.sum(f3vf_i)
 
-        return round_(
+        return numpy.round(
             plus_values.pvce * rpns_pvce
             + plus_values.taux1 * numpy.maximum(0, f3vg - f3vh)
             + plus_values.taux2 * f3vd
@@ -1736,7 +1736,7 @@ class taxation_plus_values_hors_bareme(Variable):
         f3vf = foyer_fiscal.sum(f3vf_i)
         plus_values = parameters(period).impot_revenu.plus_values
 
-        return round_(
+        return numpy.round(
             plus_values.pvce * rpns_pvce
             + plus_values.pea.taux_avant_2_ans * f3vm
             + plus_values.pea.taux_posterieur * f3vt
@@ -1768,7 +1768,7 @@ class taxation_plus_values_hors_bareme(Variable):
         f3vf = foyer_fiscal.sum(f3vf_i)
         plus_values = parameters(period).impot_revenu.plus_values
 
-        return round_(
+        return numpy.round(
             plus_values.pvce * rpns_pvce
             + plus_values.pea.taux_avant_2_ans * f3vm
             + plus_values.pea.taux_posterieur * f3vt
@@ -2414,7 +2414,7 @@ class ric(Variable):
             mbic_impv + mbic_imps + mbic_exon,
             numpy.maximum(
                 micro.specialbnc.marchandises.min,
-                round_(
+                numpy.round(
                     mbic_impv * micro.specialbnc.marchandises.taux + mbic_imps * micro.specialbnc.services.taux + mbic_exon * taux
                     )
                 )
@@ -2461,7 +2461,7 @@ class rac(Variable):
         cond = (macc_impv > 0) & (macc_imps == 0)
         taux = micro.specialbnc.marchandises.taux * cond + micro.specialbnc.services.taux * numpy.logical_not(cond)
 
-        cacc = numpy.minimum(macc_impv + macc_imps + macc_exon + mncn_impo, numpy.maximum(micro.specialbnc.marchandises.min, round_(
+        cacc = numpy.minimum(macc_impv + macc_imps + macc_exon + mncn_impo, numpy.maximum(micro.specialbnc.marchandises.min, numpy.round(
             macc_impv * micro.specialbnc.marchandises.taux
             + macc_imps * micro.specialbnc.services.taux + macc_exon * taux
             + mncn_impo * micro.specialbnc.taux)))
@@ -2501,7 +2501,7 @@ class rnc(Variable):
             mbnc_exon + mbnc_impo,
             numpy.maximum(
                 specialbnc.services.min,
-                round_((mbnc_exon + mbnc_impo) * specialbnc.taux)
+                numpy.round((mbnc_exon + mbnc_impo) * specialbnc.taux)
                 )
             )
 

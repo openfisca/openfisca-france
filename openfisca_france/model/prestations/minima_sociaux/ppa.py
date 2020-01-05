@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import numpy
-from numpy import round as round_, logical_or as or_, remainder as remainder_, datetime64
+from numpy import logical_or as or_, remainder as remainder_, datetime64
 
 from openfisca_france.model.base import *
 
@@ -339,7 +339,7 @@ class ppa_bonification(Variable):
         revenu_activite = individu('ppa_revenu_activite_individu', period)
         seuil_1 = P.prestations.minima_sociaux.ppa.bonification.seuil_bonification * smic_horaire
         seuil_2 = P.prestations.minima_sociaux.ppa.bonification.seuil_max_bonification * smic_horaire
-        bonification_max = round_(P.prestations.minima_sociaux.ppa.bonification.taux_bonification_max * ppa_base, 2)
+        bonification_max = numpy.round(P.prestations.minima_sociaux.ppa.bonification.taux_bonification_max * ppa_base, 2)
         bonification = bonification_max * (revenu_activite - seuil_1) / (seuil_2 - seuil_1)
         bonification = numpy.maximum(bonification, 0)
         bonification = numpy.minimum(bonification, bonification_max)

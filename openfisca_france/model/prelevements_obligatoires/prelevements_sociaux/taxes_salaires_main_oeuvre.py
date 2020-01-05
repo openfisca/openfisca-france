@@ -383,7 +383,7 @@ class taxe_salaires(Variable):
                 factor = 1 / 12,
                 round_base_decimals = 2
                 )
-            + round_(parametres.taux.metro * base, 2)
+            + numpy.round(parametres.taux.metro * base, 2)
             )
 
         # Une franchise et une décôte s'appliquent à cette taxe

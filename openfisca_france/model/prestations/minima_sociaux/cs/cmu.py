@@ -5,7 +5,6 @@ from numpy import (
     select,
     where,
     logical_or as or_,
-    round as round_,
     )
 from openfisca_france.model.base import (
     Variable,
@@ -125,7 +124,7 @@ class cmu_c_plafond(Variable):
             * coefficient_famille
             )
 
-        return round_(plafonds)
+        return numpy.round(plafonds)
 
 
 class cmu_eligible_majoration_dom(Variable):

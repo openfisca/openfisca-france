@@ -97,7 +97,7 @@ class aide_logement_montant(Variable):
     def formula(famille, period):
         aide_logement_montant_brut = famille('aide_logement_montant_brut_crds', period)
         crds_logement = famille('crds_logement', period)
-        montant = round_(aide_logement_montant_brut + crds_logement, 2)
+        montant = numpy.round(aide_logement_montant_brut + crds_logement, 2)
 
         return montant
 
@@ -137,8 +137,8 @@ class aide_logement_montant_brut(Variable):
         loyer_plafond = famille('aide_logement_loyer_plafond', period)
 
         coefficients = parameters(period).prestations.aides_logement.loyers_plafond.par_zone[zone_apl]
-        loyer_degressivite = round_(loyer_plafond * (coefficients.degressivite), 2)
-        loyer_suppression = round_(loyer_plafond * (coefficients.suppression), 2)
+        loyer_degressivite = numpy.round(loyer_plafond * (coefficients.degressivite), 2)
+        loyer_suppression = numpy.round(loyer_plafond * (coefficients.suppression), 2)
 
         coeff = select(
             [loyer_reel <= loyer_degressivite, loyer_reel <= loyer_suppression, loyer_reel > loyer_suppression],
@@ -154,7 +154,7 @@ class aide_logement_montant_brut(Variable):
         exception = accedant + locataire_foyer + handicap
         coeff = where(exception, 1, coeff)
 
-        montant_avant_degressivite_et_coeff = round_(montant_avant_degressivite * coeff, 2)
+        montant_avant_degressivite_et_coeff = numpy.round(montant_avant_degressivite * coeff, 2)
 
         abattement_forfaitaire = parameters(period).prestations.aides_logement.autres.abattement_forfaitaire
 
@@ -473,7 +473,7 @@ class aide_logement_base_ressources_eval_forfaitaire(Variable):
             # Application de l'abattement pour frais professionnels
             params_abattement = parameters(period).impot_revenu.tspr.abatpro
             somme_salaires_mois_precedent = 12 * salaire_imposable
-            montant_abattement = round_(
+            montant_abattement = numpy.round(
                 numpy.minimum(
                     numpy.maximum(params_abattement.taux * somme_salaires_mois_precedent, params_abattement.min),
                     params_abattement.max
@@ -507,7 +507,8 @@ class aide_logement_assiette_abattement_chomage(Variable):
         abatpro = parameters(period).impot_revenu.tspr.abatpro
 
         abattement_minimum = where(chomeur_longue_duree, abatpro.min2, abatpro.min)
-        abattement_forfaitaire = round_(numpy.minimum(numpy.maximum(abatpro.taux * revenu_salarie, abattement_minimum), abatpro.max))
+        abattement_forfaitaire = numpy.round(numpy.minimum(numpy.maximum(abatpro.taux * revenu_salarie, abattement_minimum), abatpro.max))
+
         revenus_salarie_apres_abbatement = where(
             frais_reels > abattement_forfaitaire,
             revenu_salarie - frais_reels,
@@ -735,7 +736,7 @@ class aide_logement_base_ressources(Variable):
 
         # Arrondi au centime, pour éviter qu'une petite imprécision liée à la recombinaison d'une valeur annuelle éclatée ne fasse monter d'un cran l'arrondi au 100€ supérieur.
 
-        ressources = round_(ressources * 100) / 100
+        ressources = numpy.round(ressources * 100) / 100
 
         # Arrondi aux 100 euros supérieurs
         ressources = ceil(ressources / 100) * 100
@@ -788,7 +789,7 @@ class aide_logement_loyer_plafond(Variable):
         coeff_coloc = where(coloc, al.loyers_plafond.colocation, 1)
         coeff_chambre = where(chambre, al.loyers_plafond.chambre, 1)
 
-        return round_(plafond * coeff_coloc * coeff_chambre, 2)
+        return numpy.round(plafond * coeff_coloc * coeff_chambre, 2)
 
 
 class aide_logement_loyer_reel(Variable):
@@ -809,7 +810,7 @@ class aide_logement_loyer_reel(Variable):
         coeff_meuble_al = where(locataire_meuble, 2 / 3, 1)
         # Coeff de 2/3 pour les seules chambres meublées pour l'APL
         coeff_meuble_apl = where(locataire_meuble * logement_chambre, 2 / 3, 1)
-        return where(categorie_apl, round_(loyer * coeff_meuble_apl), round_(loyer * coeff_meuble_al))
+        return where(categorie_apl, numpy.round(loyer * coeff_meuble_apl), numpy.round(loyer * coeff_meuble_al))
 
 
 class aide_logement_loyer_retenu(Variable):
@@ -877,7 +878,7 @@ class aide_logement_R0(Variable):
             + al.r2.majoration_par_enf_supp_a_charge * (al_nb_pac > 2) * (al_nb_pac - 2)
             )
 
-        R0 = round_(12 * (R1 - R2) * (1 - al.autres.abat_sal))
+        R0 = numpy.round(12 * (R1 - R2) * (1 - al.autres.abat_sal))
 
         return R0
 

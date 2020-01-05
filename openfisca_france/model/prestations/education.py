@@ -46,9 +46,9 @@ class bourse_college_echelon(Variable):
             P_e1.plafond_8e
             )
 
-        plafonds_echelon_3 = round_(plafonds_echelon_3_en_pourcent_smic * smic_juillet_n_2)
-        plafonds_echelon_2 = round_(plafonds_echelon_2_en_pourcent_smic * smic_juillet_n_2)
-        plafonds_echelon_1 = round_(plafonds_echelon_1_en_pourcent_smic * smic_juillet_n_2)
+        plafonds_echelon_3 = numpy.round(plafonds_echelon_3_en_pourcent_smic * smic_juillet_n_2)
+        plafonds_echelon_2 = numpy.round(plafonds_echelon_2_en_pourcent_smic * smic_juillet_n_2)
+        plafonds_echelon_1 = numpy.round(plafonds_echelon_1_en_pourcent_smic * smic_juillet_n_2)
 
         return apply_thresholds(
             rfr,
@@ -73,9 +73,9 @@ class bourse_college_echelon(Variable):
             rfr,
             thresholds = [
                 # plafond_taux_3 est le plus bas
-                round_(P.plafond_taux_3 * coefficient_famille),
-                round_(P.plafond_taux_2 * coefficient_famille),
-                round_(P.plafond_taux_1 * coefficient_famille),
+                numpy.round(P.plafond_taux_3 * coefficient_famille),
+                numpy.round(P.plafond_taux_2 * coefficient_famille),
+                numpy.round(P.plafond_taux_1 * coefficient_famille),
                 ],
             choices = [3, 2, 1]
             )
@@ -110,7 +110,7 @@ class bourse_college(Variable):
             )
 
         # Arrondi au multiple de 3 le plus proche, car 3 trimestres
-        montant_par_enfant = round_(montant_par_enfant_en_pourcent_bmaf * bmaf_1er_janvier / 3) * 3
+        montant_par_enfant = numpy.round(montant_par_enfant_en_pourcent_bmaf * bmaf_1er_janvier / 3) * 3
 
         return nb_enfants_college * montant_par_enfant
 
@@ -155,7 +155,7 @@ class bourse_lycee_nombre_parts(Variable):
         nombre_parts = apply_thresholds(
             rfr,
             thresholds = [
-                round_(
+                numpy.round(
                     plafonds_reference['{}_parts'.format(index)]
                     + ((points_de_charge - 9) * increments_par_point_de_charge['{}_parts'.format(index)])
                     )
@@ -226,12 +226,12 @@ class bourse_lycee_echelon(Variable):
             P_e1.plafond_8e
             )
 
-        plafonds_echelon_6 = round_(plafonds_echelon_6_en_pourcent_smic * smic_juillet_n_2)
-        plafonds_echelon_5 = round_(plafonds_echelon_5_en_pourcent_smic * smic_juillet_n_2)
-        plafonds_echelon_4 = round_(plafonds_echelon_4_en_pourcent_smic * smic_juillet_n_2)
-        plafonds_echelon_3 = round_(plafonds_echelon_3_en_pourcent_smic * smic_juillet_n_2)
-        plafonds_echelon_2 = round_(plafonds_echelon_2_en_pourcent_smic * smic_juillet_n_2)
-        plafonds_echelon_1 = round_(plafonds_echelon_1_en_pourcent_smic * smic_juillet_n_2)
+        plafonds_echelon_6 = numpy.round(plafonds_echelon_6_en_pourcent_smic * smic_juillet_n_2)
+        plafonds_echelon_5 = numpy.round(plafonds_echelon_5_en_pourcent_smic * smic_juillet_n_2)
+        plafonds_echelon_4 = numpy.round(plafonds_echelon_4_en_pourcent_smic * smic_juillet_n_2)
+        plafonds_echelon_3 = numpy.round(plafonds_echelon_3_en_pourcent_smic * smic_juillet_n_2)
+        plafonds_echelon_2 = numpy.round(plafonds_echelon_2_en_pourcent_smic * smic_juillet_n_2)
+        plafonds_echelon_1 = numpy.round(plafonds_echelon_1_en_pourcent_smic * smic_juillet_n_2)
 
         return apply_thresholds(
             rfr,
@@ -276,7 +276,7 @@ class bourse_lycee(Variable):
             )
 
         # Arrondi au multiple de 3 le plus proche, car 3 trimestres
-        montant_par_enfant = round_(montant_par_enfant_en_pourcent_bmaf * bmaf_1er_janvier / 3) * 3
+        montant_par_enfant = numpy.round(montant_par_enfant_en_pourcent_bmaf * bmaf_1er_janvier / 3) * 3
 
         return nb_enfants_lycee * montant_par_enfant
 
