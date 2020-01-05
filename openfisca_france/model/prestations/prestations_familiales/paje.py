@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import numpy
-from numpy import round, floor, datetime64
+from numpy import round, floor
 
 from openfisca_france.model.base import *
 from openfisca_france.model.prestations.prestations_familiales.base_ressource import nb_enf
@@ -148,9 +148,9 @@ class paje_base(Variable):
             return plafond
 
         a_un_enfant_eligible = famille.any(famille.members('enfant_eligible_paje', period))
-        date_plus_jeune = famille.reduce(famille.members('date_naissance', period), numpy.maximum, datetime64('1066-01-01'))
-        sujet_a_reforme_2014 = date_plus_jeune >= datetime64('2014-04-01')
-        sujet_a_reforme_2018 = date_plus_jeune >= datetime64('2018-04-01')
+        date_plus_jeune = famille.reduce(famille.members('date_naissance', period), numpy.maximum, numpy.datetime64('1066-01-01'))
+        sujet_a_reforme_2014 = date_plus_jeune >= numpy.datetime64('2014-04-01')
+        sujet_a_reforme_2018 = date_plus_jeune >= numpy.datetime64('2018-04-01')
         ne_avant_avril_2014 = True
 
         plafond_taux_partiel = numpy.select(
@@ -217,7 +217,7 @@ class paje_naissance(Variable):
         date_naissance_i = famille.members('date_naissance', period)
 
         # Versée au 2 mois après la grossesse donc les enfants concernés sont les enfants qui ont 2 mois
-        diff_mois_naissance_periode = (date_naissance_i.astype('datetime64[M]') - datetime64(period.start, 'M'))
+        diff_mois_naissance_periode = (date_naissance_i.astype('datetime64[M]') - numpy.datetime64(period.start, 'M'))
         nb_enfants_eligible = famille.sum(diff_mois_naissance_periode.astype('int') == -2, role = Famille.ENFANT)
 
         nbenf = af_nbenf + nb_enfants_eligible  # On ajoute l'enfant à  naître;
@@ -263,7 +263,7 @@ class paje_naissance(Variable):
         date_naissance_i = famille.members('date_naissance', period)
 
         # Versée au 2 mois après la grossesse donc les enfants concernés sont les enfants qui ont 2 mois
-        diff_mois_naissance_periode = (date_naissance_i.astype('datetime64[M]') - datetime64(period.start, 'M'))
+        diff_mois_naissance_periode = (date_naissance_i.astype('datetime64[M]') - numpy.datetime64(period.start, 'M'))
         nb_enfants_eligible = famille.sum(diff_mois_naissance_periode.astype('int') == -2, role = Famille.ENFANT)
 
         nbenf = af_nbenf + nb_enfants_eligible  # On ajoute l'enfant à  naître;

@@ -3,7 +3,7 @@
 import logging
 
 import numpy
-from numpy import busday_count, datetime64
+from numpy import busday_count
 
 from openfisca_france.model.base import *
 
@@ -60,8 +60,8 @@ class coefficient_proratisation(Variable):
         # Décompte des jours en début et fin de contrat
         # http://www.gestiondelapaie.com/flux-paie/?1029-la-bonne-premiere-paye
 
-        debut_mois = datetime64(period.start.offset('first-of', 'month'))
-        fin_mois = datetime64(period.start.offset('last-of', 'month')) + numpy.timedelta64(1,
+        debut_mois = numpy.datetime64(period.start.offset('first-of', 'month'))
+        fin_mois = numpy.datetime64(period.start.offset('last-of', 'month')) + numpy.timedelta64(1,
                                                                                      'D')  # busday ignores the last day
 
         jours_ouvres_ce_mois = busday_count(
@@ -160,8 +160,8 @@ class aide_premier_salarie(Variable):
         # implémenter comme des params xml.
 
         eligible_contrat = numpy.logical_and(
-            contrat_de_travail_debut >= datetime64("2015-06-09"),
-            contrat_de_travail_debut <= datetime64("2016-12-31")
+            contrat_de_travail_debut >= numpy.datetime64("2015-06-09"),
+            contrat_de_travail_debut <= numpy.datetime64("2016-12-31")
             )
 
         # Si CDD, durée du contrat doit être > 1 an
@@ -178,7 +178,7 @@ class aide_premier_salarie(Variable):
                 )
             )
 
-        eligible_date = datetime64(period.offset(-24, 'month').start) < contrat_de_travail_debut
+        eligible_date = numpy.datetime64(period.offset(-24, 'month').start) < contrat_de_travail_debut
         eligible = \
             (effectif_entreprise == 1) * numpy.logical_not(apprenti) * eligible_contrat * eligible_duree * eligible_date
 
@@ -241,8 +241,8 @@ class aide_embauche_pme(Variable):
             )
 
         eligible_contrat = numpy.logical_and(
-            contrat_de_travail_debut >= datetime64("2016-01-18"),
-            contrat_de_travail_debut <= datetime64("2017-06-30")
+            contrat_de_travail_debut >= numpy.datetime64("2016-01-18"),
+            contrat_de_travail_debut <= numpy.datetime64("2017-06-30")
             )
 
         # Si CDD, durée du contrat doit être > 1 an
@@ -259,7 +259,7 @@ class aide_embauche_pme(Variable):
             )
 
         # Valable 2 ans seulement
-        eligible_date = datetime64(period.offset(-24, 'month').start) < contrat_de_travail_debut
+        eligible_date = numpy.datetime64(period.offset(-24, 'month').start) < contrat_de_travail_debut
 
         eligible = (
             eligible_salaire

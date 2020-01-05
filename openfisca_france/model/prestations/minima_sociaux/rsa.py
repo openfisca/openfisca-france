@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 import numpy
-from numpy import datetime64
 
 from openfisca_core import periods
 from openfisca_france.model.base import *
@@ -447,7 +446,7 @@ class rsa_indemnites_journalieres_activite(Variable):
                 )
 
         date_arret_de_travail = individu('date_arret_de_travail', period)
-        three_months_ago = datetime64(m_3.start)
+        three_months_ago = numpy.datetime64(m_3.start)
         condition_date_arret_travail = date_arret_de_travail > three_months_ago
 
         # Si la date d'arrêt de travail n'est pas définie (et vaut donc par défaut date.min), mais qu'il n'y a pas d'IJSS à M-3, on estime que l'arrêt est récent.

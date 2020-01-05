@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 import numpy
-from numpy import datetime64
 
 from openfisca_france.model.base import *
 from openfisca_france.model.prelevements_obligatoires.prelevements_sociaux.cotisations_sociales.base import apply_bareme_for_relevant_type_sal
@@ -162,7 +161,7 @@ class exoneration_cotisations_employeur_zfu(Variable):
 
         duree_cdd_eligible = (contrat_de_travail_fin > contrat_de_travail_debut + numpy.timedelta64(365, 'D'))
         # TODO: move to parameters file
-        contrat_de_travail_eligible = (contrat_de_travail_debut <= datetime64("2014-12-31")) * (
+        contrat_de_travail_eligible = (contrat_de_travail_debut <= numpy.datetime64("2014-12-31")) * (
             (contrat_de_travail_duree == TypesContratDeTravailDuree.cdi) + (
                 (contrat_de_travail_duree == TypesContratDeTravailDuree.cdd) * (duree_cdd_eligible)
                 )
@@ -327,7 +326,7 @@ class exoneration_cotisations_employeur_zrr(Variable):
             )
 
         duree_validite = (
-            datetime64(period.start) + numpy.timedelta64(1, 'D') - contrat_de_travail_debut
+            numpy.datetime64(period.start) + numpy.timedelta64(1, 'D') - contrat_de_travail_debut
             ).astype('timedelta64[Y]') < numpy.timedelta64(1, 'Y')
 
         eligible = (
@@ -465,7 +464,7 @@ class jeune_entreprise_innovante(Variable):
         jeune_entreprise_innovante = (
             independance
             * (effectif_entreprise < 250)
-            * (entreprise_creation <= datetime64("2016-12-31"))
+            * (entreprise_creation <= numpy.datetime64("2016-12-31"))
             * ((jei_date_demande + numpy.timedelta64(1, 'D') - entreprise_creation).astype('timedelta64[Y]') < numpy.timedelta64(8, 'Y'))
             * (entreprise_chiffre_affaire < 50e6)
             * (entreprise_bilan < 43e6)
@@ -537,4 +536,4 @@ def compute_taux_exoneration(assiette_allegement, smic_proratise, taux_max, seui
 
 
 def exoneration_relative_year(period, other_date):
-    return (datetime64(period.start) + numpy.timedelta64(1, 'D') - other_date).astype('timedelta64[Y]')
+    return (numpy.datetime64(period.start) + numpy.timedelta64(1, 'D') - other_date).astype('timedelta64[Y]')

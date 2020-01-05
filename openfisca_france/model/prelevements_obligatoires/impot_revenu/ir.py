@@ -3,7 +3,6 @@
 import logging
 
 import numpy
-from numpy import datetime64
 
 from openfisca_core.model_api import *
 from openfisca_france.model.base import *
@@ -90,7 +89,7 @@ class age(Variable):
 
         date_naissance = individu('date_naissance', period)
         epsilon = numpy.timedelta64(1)
-        return (datetime64(period.start) - date_naissance + epsilon).astype('timedelta64[Y]')
+        return (numpy.datetime64(period.start) - date_naissance + epsilon).astype('timedelta64[Y]')
 
 
 class age_en_mois(Variable):
@@ -121,7 +120,7 @@ class age_en_mois(Variable):
                 return individu('age', period) * 12
         date_naissance = individu('date_naissance', period)
         epsilon = numpy.timedelta64(1)
-        return (datetime64(period.start) - date_naissance + epsilon).astype('timedelta64[M]')
+        return (numpy.datetime64(period.start) - date_naissance + epsilon).astype('timedelta64[M]')
 
 
 class depcom_foyer(Variable):

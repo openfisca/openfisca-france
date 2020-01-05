@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 import numpy
-from numpy import datetime64
 
 from openfisca_france.model.base import *
 
@@ -330,7 +329,7 @@ class aah(Variable):
     def formula(individu, period, parameters):
         aah_base = individu('aah_base', period)
         aah_parameters = parameters(period).prestations.minima_sociaux.aah
-        m_2 = datetime64(period.offset(-60, 'day').start)
+        m_2 = numpy.datetime64(period.offset(-60, 'day').start)
 
         aah_date_debut_hospitalisation = individu("aah_date_debut_hospitalisation", period)
         aah_date_debut_incarceration = individu("aah_date_debut_incarceration", period)

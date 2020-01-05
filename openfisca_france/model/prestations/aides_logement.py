@@ -8,7 +8,7 @@ import pkg_resources
 import sys
 
 import numpy
-from numpy import datetime64, fromiter, int16
+from numpy import fromiter, int16
 
 import openfisca_france
 from openfisca_core.periods import Instant
@@ -528,7 +528,7 @@ class aide_logement_abattement_chomage_indemnise(Variable):
     def formula(individu, period, parameters):
         activite = individu('activite', period)
         date_debut_chomage = individu('date_debut_chomage', period)
-        two_months_ago = datetime64(period.offset(-2, 'month').start)
+        two_months_ago = numpy.datetime64(period.offset(-2, 'month').start)
         condition_abattement = (activite == TypesActivite.chomeur) * (date_debut_chomage < two_months_ago)
         revenus_activite_pro = individu('aide_logement_assiette_abattement_chomage', period.n_2)
         taux_abattement = parameters(period).prestations.aides_logement.ressources.abattement_chomage_indemnise
@@ -664,7 +664,7 @@ class aide_logement_base_revenus_fiscaux(Variable):
         invV, invC = caseP, caseF
         naissanceP = foyer_fiscal.declarant_principal('date_naissance', period)
         naissanceC = foyer_fiscal.conjoint('date_naissance', period)
-        dateLimite = datetime64('1931-01-01')
+        dateLimite = numpy.datetime64('1931-01-01')
         apply_abat_spe = (abat_spe > 0) * (invV + invC + (naissanceP < dateLimite) + (naissanceC < dateLimite))
 
         return (

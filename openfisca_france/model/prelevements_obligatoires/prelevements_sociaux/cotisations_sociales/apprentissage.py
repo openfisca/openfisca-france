@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 
 import numpy
-from numpy import datetime64
-
 
 from openfisca_france.model.base import *
 
@@ -19,7 +17,7 @@ class apprenti(Variable):
         age_condition = (16 <= age) * (age < 25)
         apprentissage_contrat_debut = individu('apprentissage_contrat_debut', period)
         duree_contrat = (
-            datetime64(period.start) + numpy.timedelta64(1, 'D') - apprentissage_contrat_debut
+            numpy.datetime64(period.start) + numpy.timedelta64(1, 'D') - apprentissage_contrat_debut
             ).astype('timedelta64[Y]')
         anciennete_contrat = (duree_contrat < numpy.timedelta64(3, 'Y'))
 
@@ -46,7 +44,7 @@ class remuneration_apprenti(Variable):
         apprentissage_contrat_debut = individu('apprentissage_contrat_debut', period)
         smic = parameters(period).cotsoc.gen.smic_h_b * 52 * 35 / 12
         anciennete_contrat = (
-            datetime64(period.start) + numpy.timedelta64(1, 'D') - apprentissage_contrat_debut
+            numpy.datetime64(period.start) + numpy.timedelta64(1, 'D') - apprentissage_contrat_debut
             ).astype('timedelta64[Y]')
         apprenti = individu('apprenti', period)
         salaire_en_smic = [  # TODO: move to parameters
