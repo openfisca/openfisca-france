@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import numpy
-from numpy import datetime64, timedelta64
+from numpy import datetime64
 
 from openfisca_france.model.base import *
 from openfisca_france.model.prelevements_obligatoires.prelevements_sociaux.cotisations_sociales.base import apply_bareme_for_relevant_type_sal
@@ -77,7 +77,7 @@ class exoneration_cotisations_employeur_jei(Variable):
             7: 1,
             }  # TODO: move to parameters file
         for year_passed, rate in rate_by_year_passed.items():
-            condition_on_year_passed = exoneration_relative_year_passed == timedelta64(year_passed, 'Y')
+            condition_on_year_passed = exoneration_relative_year_passed == numpy.timedelta64(year_passed, 'Y')
             if condition_on_year_passed.any():
                 exoneration[condition_on_year_passed] = rate * exoneration
 
@@ -160,7 +160,7 @@ class exoneration_cotisations_employeur_zfu(Variable):
         smic_proratise = individu('smic_proratise', period)
         zone_franche_urbaine = individu('zone_franche_urbaine', period)
 
-        duree_cdd_eligible = (contrat_de_travail_fin > contrat_de_travail_debut + timedelta64(365, 'D'))
+        duree_cdd_eligible = (contrat_de_travail_fin > contrat_de_travail_debut + numpy.timedelta64(365, 'D'))
         # TODO: move to parameters file
         contrat_de_travail_eligible = (contrat_de_travail_debut <= datetime64("2014-12-31")) * (
             (contrat_de_travail_duree == TypesContratDeTravailDuree.cdi) + (
@@ -227,12 +227,12 @@ class exoneration_cotisations_employeur_zfu(Variable):
         small_taux_exoneration = eligible * 0.0
 
         for year_passed, rate in large_rate_by_year_passed.items():
-            condition_on_year_passed = exoneration_relative_year_passed == timedelta64(year_passed, 'Y')
+            condition_on_year_passed = exoneration_relative_year_passed == numpy.timedelta64(year_passed, 'Y')
             if condition_on_year_passed.any():
                 large_taux_exoneration[condition_on_year_passed] = rate * taux_exoneration
 
         for year_passed, rate in small_rate_by_year_passed.items():
-            condition_on_year_passed = exoneration_relative_year_passed == timedelta64(year_passed, 'Y')
+            condition_on_year_passed = exoneration_relative_year_passed == numpy.timedelta64(year_passed, 'Y')
             if condition_on_year_passed.any():
                 small_taux_exoneration[condition_on_year_passed] = rate * taux_exoneration
 
@@ -280,7 +280,7 @@ class exoneration_cotisations_employeur_zrd(Variable):
             }  # TODO: move to parameters file
         ratio = eligible * 0.0
         for year_passed, rate in rate_by_year_passed.items():
-            condition_on_year_passed = exoneration_relative_year_passed == timedelta64(year_passed, 'Y')
+            condition_on_year_passed = exoneration_relative_year_passed == numpy.timedelta64(year_passed, 'Y')
             if condition_on_year_passed.any():
                 ratio[condition_on_year_passed] = rate
 
@@ -319,7 +319,7 @@ class exoneration_cotisations_employeur_zrr(Variable):
         smic_proratise = individu('smic_proratise', period)
         zone_revitalisation_rurale = individu('zone_revitalisation_rurale', period)
 
-        duree_cdd_eligible = contrat_de_travail_fin > contrat_de_travail_debut + timedelta64(365, 'D')
+        duree_cdd_eligible = contrat_de_travail_fin > contrat_de_travail_debut + numpy.timedelta64(365, 'D')
         # TODO: move to parameters file
         contrat_de_travail_eligible = (
             contrat_de_travail_duree == TypesContratDeTravailDuree.cdi) + (
@@ -327,8 +327,8 @@ class exoneration_cotisations_employeur_zrr(Variable):
             )
 
         duree_validite = (
-            datetime64(period.start) + timedelta64(1, 'D') - contrat_de_travail_debut
-            ).astype('timedelta64[Y]') < timedelta64(1, 'Y')
+            datetime64(period.start) + numpy.timedelta64(1, 'D') - contrat_de_travail_debut
+            ).astype('timedelta64[Y]') < numpy.timedelta64(1, 'Y')
 
         eligible = (
             contrat_de_travail_eligible
@@ -365,7 +365,7 @@ class exoneration_is_creation_zrr(Variable):
 
         contrat_de_travail_debut = individu('contrat_de_travail_debut', decembre)
         contrat_de_travail_fin = individu('contrat_de_travail_fin', decembre)
-        duree_eligible = contrat_de_travail_fin > contrat_de_travail_debut + timedelta64(365, 'D')
+        duree_eligible = contrat_de_travail_fin > contrat_de_travail_debut + numpy.timedelta64(365, 'D')
         # TODO: move to parameters file
         contrat_de_travail_eligible = (
             contrat_de_travail_duree == TypesContratDeTravailDuree.cdi) + (
@@ -394,7 +394,7 @@ class exoneration_is_creation_zrr(Variable):
         taux_exoneraion = eligible * 0.0
 
         for year_passed, rate in rate_by_year_passed.items():
-            condition_on_year_passed = exoneration_relative_year_passed == timedelta64(year_passed, 'Y')
+            condition_on_year_passed = exoneration_relative_year_passed == numpy.timedelta64(year_passed, 'Y')
             taux_exoneraion[condition_on_year_passed] = rate
 
         return taux_exoneraion * entreprise_benefice
@@ -466,7 +466,7 @@ class jeune_entreprise_innovante(Variable):
             independance
             * (effectif_entreprise < 250)
             * (entreprise_creation <= datetime64("2016-12-31"))
-            * ((jei_date_demande + timedelta64(1, 'D') - entreprise_creation).astype('timedelta64[Y]') < timedelta64(8, 'Y'))
+            * ((jei_date_demande + numpy.timedelta64(1, 'D') - entreprise_creation).astype('timedelta64[Y]') < numpy.timedelta64(8, 'Y'))
             * (entreprise_chiffre_affaire < 50e6)
             * (entreprise_bilan < 43e6)
             )
@@ -537,4 +537,4 @@ def compute_taux_exoneration(assiette_allegement, smic_proratise, taux_max, seui
 
 
 def exoneration_relative_year(period, other_date):
-    return (datetime64(period.start) + timedelta64(1, 'D') - other_date).astype('timedelta64[Y]')
+    return (datetime64(period.start) + numpy.timedelta64(1, 'D') - other_date).astype('timedelta64[Y]')

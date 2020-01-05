@@ -3,7 +3,7 @@
 import logging
 
 import numpy
-from numpy import busday_count, datetime64, timedelta64
+from numpy import busday_count, datetime64
 
 from openfisca_france.model.base import *
 
@@ -61,7 +61,7 @@ class coefficient_proratisation(Variable):
         # http://www.gestiondelapaie.com/flux-paie/?1029-la-bonne-premiere-paye
 
         debut_mois = datetime64(period.start.offset('first-of', 'month'))
-        fin_mois = datetime64(period.start.offset('last-of', 'month')) + timedelta64(1,
+        fin_mois = datetime64(period.start.offset('last-of', 'month')) + numpy.timedelta64(1,
                                                                                      'D')  # busday ignores the last day
 
         jours_ouvres_ce_mois = busday_count(
@@ -172,7 +172,7 @@ class aide_premier_salarie(Variable):
             numpy.logical_and(
                 contrat_de_travail_duree == TypesContratDeTravailDuree.cdd,
                 # > 6 mois
-                (contrat_de_travail_fin - contrat_de_travail_debut).astype('timedelta64[M]') >= timedelta64(6, 'M')
+                (contrat_de_travail_fin - contrat_de_travail_debut).astype('timedelta64[M]') >= numpy.timedelta64(6, 'M')
                 # Initialement, la condition était d'un contrat >= 12 mois,
                 # pour les demandes transmises jusqu'au 26 janvier.
                 )
@@ -254,7 +254,7 @@ class aide_embauche_pme(Variable):
                 # CDD
                 contrat_de_travail_duree == TypesContratDeTravailDuree.cdd,
                 # > 6 mois
-                (contrat_de_travail_fin - contrat_de_travail_debut).astype('timedelta64[M]') >= timedelta64(6, 'M')
+                (contrat_de_travail_fin - contrat_de_travail_debut).astype('timedelta64[M]') >= numpy.timedelta64(6, 'M')
                 )
             )
 

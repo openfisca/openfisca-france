@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from numpy import datetime64, timedelta64
+import numpy
+from numpy import datetime64
 
 
 from openfisca_france.model.base import *
@@ -18,9 +19,9 @@ class apprenti(Variable):
         age_condition = (16 <= age) * (age < 25)
         apprentissage_contrat_debut = individu('apprentissage_contrat_debut', period)
         duree_contrat = (
-            datetime64(period.start) + timedelta64(1, 'D') - apprentissage_contrat_debut
+            datetime64(period.start) + numpy.timedelta64(1, 'D') - apprentissage_contrat_debut
             ).astype('timedelta64[Y]')
-        anciennete_contrat = (duree_contrat < timedelta64(3, 'Y'))
+        anciennete_contrat = (duree_contrat < numpy.timedelta64(3, 'Y'))
 
         return age_condition * anciennete_contrat
 
@@ -45,7 +46,7 @@ class remuneration_apprenti(Variable):
         apprentissage_contrat_debut = individu('apprentissage_contrat_debut', period)
         smic = parameters(period).cotsoc.gen.smic_h_b * 52 * 35 / 12
         anciennete_contrat = (
-            datetime64(period.start) + timedelta64(1, 'D') - apprentissage_contrat_debut
+            datetime64(period.start) + numpy.timedelta64(1, 'D') - apprentissage_contrat_debut
             ).astype('timedelta64[Y]')
         apprenti = individu('apprenti', period)
         salaire_en_smic = [  # TODO: move to parameters
@@ -82,7 +83,7 @@ class remuneration_apprenti(Variable):
         for age_interval in salaire_en_smic:
             age_condition = (age_interval["age_min"] <= age) * (age < age_interval["age_max"])
             output[age_condition] = sum([
-                (anciennete_contrat[age_condition] == timedelta64(anciennete, 'Y')) * part_de_smic
+                (anciennete_contrat[age_condition] == numpy.timedelta64(anciennete, 'Y')) * part_de_smic
                 for anciennete, part_de_smic in age_interval['part_de_smic_by_anciennete'].items()
                 ])
         return output * smic * apprenti

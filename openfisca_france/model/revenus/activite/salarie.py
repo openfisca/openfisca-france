@@ -3,7 +3,7 @@
 from functools import partial
 
 import numpy
-from numpy import busday_count as original_busday_count, datetime64, timedelta64
+from numpy import busday_count as original_busday_count, datetime64
 
 from openfisca_france.model.base import *
 
@@ -675,7 +675,7 @@ class nombre_jours_calendaires(Variable):
         jours_travailles = numpy.maximum(
             busday_count(
                 numpy.maximum(contrat_de_travail_debut, debut_mois),
-                numpy.minimum(contrat_de_travail_fin, fin_mois) + timedelta64(1, 'D')
+                numpy.minimum(contrat_de_travail_fin, fin_mois) + numpy.timedelta64(1, 'D')
                 ),
             0,
             )
