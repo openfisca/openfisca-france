@@ -140,7 +140,7 @@ class aide_logement_montant_brut(Variable):
         loyer_degressivite = numpy.round(loyer_plafond * (coefficients.degressivite), 2)
         loyer_suppression = numpy.round(loyer_plafond * (coefficients.suppression), 2)
 
-        coeff = select(
+        coeff = numpy.select(
             [loyer_reel <= loyer_degressivite, loyer_reel <= loyer_suppression, loyer_reel > loyer_suppression],
             [1, 1 - ((loyer_reel - loyer_degressivite) / (loyer_suppression - loyer_degressivite)), 0]
             )
@@ -189,7 +189,7 @@ class aide_logement_montant_brut_avant_degressivite(Variable):
         montant_accedant_et_foyer = famille('aides_logement_accedant_et_foyer', period)
         montant_locataire = numpy.maximum(0, loyer_retenu + charges_retenues - participation_personnelle)
 
-        montant = select([locataire, accedant + locataire_logement_foyer],
+        montant = numpy.select([locataire, accedant + locataire_logement_foyer],
                          [montant_locataire, montant_accedant_et_foyer])
 
         logement_conventionne = famille.demandeur.menage('logement_conventionne', period)
@@ -287,7 +287,7 @@ class aides_logement_primo_accedant_eligibilite(Variable):
         date_pret_conventionne_avant_2018_01 = (aide_logement_date_pret_conventionne < date(2018, 1, 1))
         date_pret_conventionne_avant_2020_01 = (aide_logement_date_pret_conventionne < date(2020, 1, 1))
 
-        eligibilite = select(
+        eligibilite = numpy.select(
             [date_pret_conventionne_avant_2018_01, date_pret_conventionne_avant_2020_01],
             [True, (est_logement_ancien * est_zone_3)], default = False
             )
@@ -780,7 +780,7 @@ class aide_logement_loyer_plafond(Variable):
         plafond_couple = loyers_plafond.couples
         plafond_famille = loyers_plafond.un_enfant + (al_nb_pac > 1) * (al_nb_pac - 1) * loyers_plafond.majoration_par_enf_supp
 
-        plafond = select(
+        plafond = numpy.select(
             [numpy.logical_not(couple) * (al_nb_pac == 0) + chambre, al_nb_pac > 0],
             [plafond_personne_seule, plafond_famille],
             default = plafond_couple
@@ -1097,7 +1097,7 @@ class zone_apl(Variable):
                 ),
             dtype = int16,
             )
-        return select(
+        return numpy.select(
             (zone == 1, zone == 2, zone == 3),
             # The .index is not striclty necessary, but it improves perfomances by avoiding a later encoding
             (TypesZoneApl.zone_1.index, TypesZoneApl.zone_2.index, TypesZoneApl.zone_3.index)
@@ -1145,7 +1145,7 @@ class aides_logement_k(Variable):
         coef_k_accedant = famille('aides_logement_primo_accedant_k', period)
         coef_k_apl = famille('aides_logement_foyer_k_apl', period)
         coef_k_al = famille('aides_logement_foyer_k_al', period)
-        return select([accedant, logement_conventionne], [coef_k_accedant, coef_k_apl], coef_k_al)
+        return numpy.select([accedant, logement_conventionne], [coef_k_accedant, coef_k_apl], coef_k_al)
 
 
 class aides_logement_primo_accedant_k(Variable):
@@ -1313,7 +1313,7 @@ class aides_logement_plafond_mensualite(Variable):
         aides_accedants = famille('aides_logement_primo_accedant_plafond_mensualite', period)
         aides_foyer = famille('aides_logement_foyer_plafond_mensualite', period)
 
-        return select([accedant, locataire_logement_foyer], [aides_accedants, aides_foyer])
+        return numpy.select([accedant, locataire_logement_foyer], [aides_accedants, aides_foyer])
 
 
 class aides_logement_primo_accedant_plafond_mensualite(Variable):
@@ -1394,7 +1394,7 @@ class aides_logement_foyer_plafond_mensualite(Variable):
         foyer_chambre_non_rehabilite_eligibilite = famille('aides_logement_foyer_chambre_non_rehabilite_eligibilite', period)
         foyer_personne_agee_eligibilite = famille('aides_logement_foyer_personne_agee_eligibilite', period)
 
-        return select(
+        return numpy.select(
             [foyer_personne_agee_eligibilite, foyer_chambre_non_rehabilite_eligibilite, logement_conventionne],
             [foyer_personne_agee_plafond, foyer_chambre_non_rehabilite_plafond, foyer_conventionne_plafond],
             default = foyer_plafond

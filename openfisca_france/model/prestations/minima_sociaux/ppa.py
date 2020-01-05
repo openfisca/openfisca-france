@@ -191,7 +191,7 @@ class ppa_rsa_derniers_revenus_tns_annuels_connus(Variable):
             valeur_n = individu(variable_name, period)
             valeur_n_1 = individu(variable_name, period.last_year)
             valeur_n_2 = individu(variable_name, period.n_2)
-            return select(
+            return numpy.select(
                 [valeur_n > 0, valeur_n_1 > 0, valeur_n_2 > 0],
                 [valeur_n, valeur_n_1, valeur_n_2]
                 ) / 12.

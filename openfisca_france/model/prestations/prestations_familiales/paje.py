@@ -153,12 +153,12 @@ class paje_base(Variable):
         sujet_a_reforme_2018 = date_plus_jeune >= datetime64('2018-04-01')
         ne_avant_avril_2014 = True
 
-        plafond_taux_partiel = select(
+        plafond_taux_partiel = numpy.select(
             [sujet_a_reforme_2018, sujet_a_reforme_2014, ne_avant_avril_2014],
             [plafond_taux_partiel(pfam.paje.base.apres_2018), plafond_taux_partiel(pfam.paje.base.apres_2014), plafond_avant_avril_2014()]
             )
 
-        plafond_taux_plein = select(
+        plafond_taux_plein = numpy.select(
             [sujet_a_reforme_2018, sujet_a_reforme_2014, ne_avant_avril_2014],
             [plafond_taux_plein(pfam.paje.base.apres_2018), plafond_taux_plein(pfam.paje.base.apres_2014), plafond_avant_avril_2014()]
             )

@@ -1,11 +1,8 @@
 from datetime import date
 
 import numpy
-from numpy import (
-    select,
-    where,
-    logical_or as or_,
-    )
+from numpy import where, logical_or as or_
+
 from openfisca_france.model.base import (
     Variable,
     Famille,
@@ -99,7 +96,7 @@ class cmu_c_plafond(Variable):
 
         # Famille monoparentale
 
-        coeff_enfant_i = select(
+        coeff_enfant_i = numpy.select(
             [rang_dans_fratrie == 0, rang_dans_fratrie <= 2, rang_dans_fratrie >= 3],
             [cmu.coeff_p2, cmu.coeff_p3_p4, cmu.coeff_p5_plus]
             ) * coeff_garde_alt_i
@@ -108,7 +105,7 @@ class cmu_c_plafond(Variable):
 
         # Couple
 
-        coeff_enfant_i = select(
+        coeff_enfant_i = numpy.select(
             [rang_dans_fratrie <= 1, rang_dans_fratrie >= 2],
             [cmu.coeff_p3_p4, cmu.coeff_p5_plus]
             ) * coeff_garde_alt_i
@@ -187,7 +184,7 @@ def forfait_logement(nbp_foyer, P, law_rsa):
         + law_rsa.txp3 * (nbp_foyer >= 3)
         )
 
-    return 12 * montant_rsa_socle * select(
+    return 12 * montant_rsa_socle * numpy.select(
         [nbp_foyer == 1, nbp_foyer == 2, nbp_foyer > 2],
         [P.taux_1p, P.taux_2p, P.taux_3p_plus]
         )

@@ -1,5 +1,5 @@
 import numpy
-from numpy import select, where
+from numpy import where
 
 from openfisca_france.model.base import (
     Enum,
@@ -26,7 +26,7 @@ class css_participation_forfaitaire_montant_i(Variable):
             RegimeComplementaireSanteSolidaire.alsace_moselle,
             RegimeComplementaireSanteSolidaire.france,
             )
-        tranche = select(
+        tranche = numpy.select(
             [
                 age < 30,
                 age <= 49,

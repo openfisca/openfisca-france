@@ -34,7 +34,7 @@ class reduction_loyer_solidarite_plafond_ressources(Variable):
         plafond_6pac = plafond_ressources.famille_6pac
         plafond_famille = plafond_ressources.famille_6pac + (personnes_a_charge_al > 6) * (personnes_a_charge_al - 6) * plafond_ressources.majoration_par_pac_supp
 
-        return select(
+        return numpy.select(
             [
                 numpy.logical_not(couple) * (personnes_a_charge_al == 0),
                 couple * (personnes_a_charge_al == 0),
@@ -79,7 +79,7 @@ class reduction_loyer_solidarite_montant(Variable):
         montant_1pac = montant.famille_1pac
         montant_famille = montant.famille_1pac + (personnes_a_charge_al > 1) * (personnes_a_charge_al - 1) * montant.majoration_par_pac_supp
 
-        return select(
+        return numpy.select(
             [
                 numpy.logical_not(couple) * (personnes_a_charge_al == 0),
                 couple * (personnes_a_charge_al == 0),

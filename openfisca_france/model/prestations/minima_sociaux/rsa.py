@@ -887,14 +887,14 @@ class rsa_non_calculable(Variable):
         non_calculable_tns_parent1 = famille.demandeur('rsa_non_calculable_tns_individu', period)
         non_calculable_tns_parent2 = famille.conjoint('rsa_non_calculable_tns_individu', period)
 
-        non_calculable = select(
+        non_calculable = numpy.select(
             [non_calculable_tns_parent1, non_calculable_tns_parent2],
             [1, 2]
             )
 
         non_calculable = eligible_rsa * non_calculable
 
-        return select(
+        return numpy.select(
             [non_calculable == 0, non_calculable == 1, non_calculable == 2],
             [TypesRSANonCalculable.calculable, TypesRSANonCalculable.tns, TypesRSANonCalculable.conjoint_tns]
             )

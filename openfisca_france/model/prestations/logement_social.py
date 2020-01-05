@@ -70,7 +70,7 @@ class zone_logement_social(Variable):
         in_paris_communes_limitrophes = sum([depcom == commune_proche_paris for commune_proche_paris in paris_communes_limitrophes])
         in_idf = sum([startswith(depcom, departement) for departement in departements_idf])
 
-        return select(
+        return numpy.select(
             [
                 in_paris_communes_limitrophes,
                 in_idf
@@ -117,7 +117,7 @@ class logement_social_categorie_menage(Variable):
         sum_age = famille.sum(age, role = Famille.PARENT)
         jeune_menage = (numpy.logical_not(personne_seule) * (sum_age <= 55))
 
-        return select(
+        return numpy.select(
             [
                 personne_seule,
                 # Deux personnes ne comportant aucune personne à charge, à l'exclusion des jeunes ménages.

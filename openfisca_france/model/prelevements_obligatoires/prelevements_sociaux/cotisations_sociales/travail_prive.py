@@ -820,7 +820,7 @@ class taille_entreprise(Variable):
     def formula(individu, period, parameters):
         effectif_entreprise = individu('effectif_entreprise', period)
 
-        taille_entreprise = select(
+        taille_entreprise = numpy.select(
             [
                 (effectif_entreprise <= 0),
                 (effectif_entreprise <= 9),

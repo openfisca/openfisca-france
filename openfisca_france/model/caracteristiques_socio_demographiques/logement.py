@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
+import numpy
 from numpy.core.defchararray import startswith
-
 
 from openfisca_france.model.base import *
 
@@ -193,7 +193,7 @@ class residence(Variable):
     definition_period = MONTH
 
     def formula(menage, period, parameters):
-        return select(
+        return numpy.select(
             [
                 menage('residence_guadeloupe', period),
                 menage('residence_martinique', period),

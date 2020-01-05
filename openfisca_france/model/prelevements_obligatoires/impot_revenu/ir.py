@@ -947,7 +947,7 @@ class revenu_categoriel_foncier(Variable):
         si_micro = numpy.minimum(f4be, microfoncier.max) * (1 - microfoncier.taux)
         sinon = numpy.maximum(0, f4ba - f4bd)
 
-        return select([deficit, micro],
+        return numpy.select([deficit, micro],
                       [si_deficit, si_micro], sinon)
 
 

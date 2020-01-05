@@ -28,19 +28,19 @@ class bourse_college_echelon(Variable):
         smic_juillet_n_2 = parameters(juillet_n_2).cotsoc.gen.smic_h_b
 
         P_e3 = P.echelon_3
-        plafonds_echelon_3_en_pourcent_smic = select(
+        plafonds_echelon_3_en_pourcent_smic = numpy.select(
             [nb_enfants <= i for i in range(1, 8)],
             [P_e3.plafond_1e, P_e3.plafond_2e, P_e3.plafond_3e, P_e3.plafond_4e, P_e3.plafond_5e, P_e3.plafond_6e, P_e3.plafond_7e],
             P_e3.plafond_8e
             )
         P_e2 = P.echelon_2
-        plafonds_echelon_2_en_pourcent_smic = select(
+        plafonds_echelon_2_en_pourcent_smic = numpy.select(
             [nb_enfants <= i for i in range(1, 8)],
             [P_e2.plafond_1e, P_e2.plafond_2e, P_e2.plafond_3e, P_e2.plafond_4e, P_e2.plafond_5e, P_e2.plafond_6e, P_e2.plafond_7e],
             P_e2.plafond_8e
             )
         P_e1 = P.echelon_1
-        plafonds_echelon_1_en_pourcent_smic = select(
+        plafonds_echelon_1_en_pourcent_smic = numpy.select(
             [nb_enfants <= i for i in range(1, 8)],
             [P_e1.plafond_1e, P_e1.plafond_2e, P_e1.plafond_3e, P_e1.plafond_4e, P_e1.plafond_5e, P_e1.plafond_6e, P_e1.plafond_7e],
             P_e1.plafond_8e
@@ -104,7 +104,7 @@ class bourse_college(Variable):
 
         echelon = famille('bourse_college_echelon', period)
 
-        montant_par_enfant_en_pourcent_bmaf = select(
+        montant_par_enfant_en_pourcent_bmaf = numpy.select(
             [echelon == 3, echelon == 2, echelon == 1],
             [P.montant_taux_3, P.montant_taux_2, P.montant_taux_1],
             )
@@ -190,37 +190,37 @@ class bourse_lycee_echelon(Variable):
         smic_juillet_n_2 = parameters(juillet_n_2).cotsoc.gen.smic_h_b
 
         P_e6 = P.echelon_6
-        plafonds_echelon_6_en_pourcent_smic = select(
+        plafonds_echelon_6_en_pourcent_smic = numpy.select(
             [nb_enfants <= i for i in range(1, 8)],
             [P_e6.plafond_1e, P_e6.plafond_2e, P_e6.plafond_3e, P_e6.plafond_4e, P_e6.plafond_5e, P_e6.plafond_6e, P_e6.plafond_7e],
             P_e6.plafond_8e
             )
         P_e5 = P.echelon_5
-        plafonds_echelon_5_en_pourcent_smic = select(
+        plafonds_echelon_5_en_pourcent_smic = numpy.select(
             [nb_enfants <= i for i in range(1, 8)],
             [P_e5.plafond_1e, P_e5.plafond_2e, P_e5.plafond_3e, P_e5.plafond_4e, P_e5.plafond_5e, P_e5.plafond_6e, P_e5.plafond_7e],
             P_e5.plafond_8e
             )
         P_e4 = P.echelon_4
-        plafonds_echelon_4_en_pourcent_smic = select(
+        plafonds_echelon_4_en_pourcent_smic = numpy.select(
             [nb_enfants <= i for i in range(1, 8)],
             [P_e4.plafond_1e, P_e4.plafond_2e, P_e4.plafond_3e, P_e4.plafond_4e, P_e4.plafond_5e, P_e4.plafond_6e, P_e4.plafond_7e],
             P_e4.plafond_8e
             )
         P_e3 = P.echelon_3
-        plafonds_echelon_3_en_pourcent_smic = select(
+        plafonds_echelon_3_en_pourcent_smic = numpy.select(
             [nb_enfants <= i for i in range(1, 8)],
             [P_e3.plafond_1e, P_e3.plafond_2e, P_e3.plafond_3e, P_e3.plafond_4e, P_e3.plafond_5e, P_e3.plafond_6e, P_e3.plafond_7e],
             P_e3.plafond_8e
             )
         P_e2 = P.echelon_2
-        plafonds_echelon_2_en_pourcent_smic = select(
+        plafonds_echelon_2_en_pourcent_smic = numpy.select(
             [nb_enfants <= i for i in range(1, 8)],
             [P_e2.plafond_1e, P_e2.plafond_2e, P_e2.plafond_3e, P_e2.plafond_4e, P_e2.plafond_5e, P_e2.plafond_6e, P_e2.plafond_7e],
             P_e2.plafond_8e
             )
         P_e1 = P.echelon_1
-        plafonds_echelon_1_en_pourcent_smic = select(
+        plafonds_echelon_1_en_pourcent_smic = numpy.select(
             [nb_enfants <= i for i in range(1, 8)],
             [P_e1.plafond_1e, P_e1.plafond_2e, P_e1.plafond_3e, P_e1.plafond_4e, P_e1.plafond_5e, P_e1.plafond_6e, P_e1.plafond_7e],
             P_e1.plafond_8e
@@ -270,7 +270,7 @@ class bourse_lycee(Variable):
 
         echelon = famille('bourse_lycee_echelon', period)
 
-        montant_par_enfant_en_pourcent_bmaf = select(
+        montant_par_enfant_en_pourcent_bmaf = numpy.select(
             [echelon == 6, echelon == 5, echelon == 4, echelon == 3, echelon == 2, echelon == 1],
             [P.echelon_6.montant, P.echelon_5.montant, P.echelon_4.montant, P.echelon_3.montant, P.echelon_2.montant, P.echelon_1.montant],
             )

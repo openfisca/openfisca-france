@@ -62,7 +62,7 @@ class apa_domicile_participation(Variable):
             taux_max_participation,
             ]
 
-        return select(condition_ressources_domicile, taux_participation) * dependance_plan_aide_domicile_accepte
+        return numpy.select(condition_ressources_domicile, taux_participation) * dependance_plan_aide_domicile_accepte
 
     def formula_2016_03_01(individu, period, parameters):
         # Les départements doivent appliquer la nouvelle formule
@@ -103,9 +103,9 @@ class apa_domicile_participation(Variable):
             0,
             dependance_plan_aide_domicile_accepte - (premier_seuil + second_seuil)
             ]
-        A_1 = select(condlist, choicelist_1)
-        A_2 = select(condlist, choicelist_2)
-        A_3 = select(condlist, choicelist_3)
+        A_1 = numpy.select(condlist, choicelist_1)
+        A_2 = numpy.select(condlist, choicelist_2)
+        A_3 = numpy.select(condlist, choicelist_3)
 
         apa_domicile_participation = numpy.minimum(
             0.9 * dependance_plan_aide_domicile_accepte,
@@ -235,7 +235,7 @@ class apa_etablissement(Variable):
             * 0.80
             ]
 
-        participation_beneficiaire = select(conditions_ressources, participations)
+        participation_beneficiaire = numpy.select(conditions_ressources, participations)
         taux_reste_a_vivre = parameters.apa_institution.taux_reste_a_vivre
         participation_beneficiaire = numpy.minimum(
             participation_beneficiaire,
@@ -315,7 +315,7 @@ class dependance_tarif_etablissement_gir_dependant(Variable):
         gir_3_4 = (gir == TypesGir.gir_3) + (gir == TypesGir.gir_4)
 
         # Sélectionne le tarif correspondant à la grille de la personne
-        return select([gir_1_2, gir_3_4], [tarif_gir_1_2, tarif_gir_3_4])
+        return numpy.select([gir_1_2, gir_3_4], [tarif_gir_1_2, tarif_gir_3_4])
 
 
 class apa_urgence_domicile(Variable):
@@ -374,11 +374,14 @@ class dependance_plan_aide_domicile_accepte(Variable):
             gir == TypesGir.gir_3,
             gir == TypesGir.gir_4,
             ]
+
         valeur_plafond_par_gir = [
             plafond_gir1 * majoration_tierce_personne,
             plafond_gir2 * majoration_tierce_personne,
             plafond_gir3 * majoration_tierce_personne,
             plafond_gir4 * majoration_tierce_personne,
             ]
-        plafond_par_gir = select(condition_plafond_par_gir, valeur_plafond_par_gir)
+
+        plafond_par_gir = numpy.select(condition_plafond_par_gir, valeur_plafond_par_gir)
+
         return numpy.minimum(plafond_par_gir, dependance_plan_aide_domicile)

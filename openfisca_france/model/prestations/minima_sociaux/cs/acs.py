@@ -1,5 +1,5 @@
 import numpy
-from numpy import select, where
+from numpy import where
 
 from openfisca_france.model.base import (
     Variable,
@@ -19,11 +19,11 @@ class acs_montant_i(Variable):
     def formula_2009_08_01(individu, period, parameters):
         P = parameters(period).cs.acs
         age = individu('age', period)
-        montant_si_pac = select(
+        montant_si_pac = numpy.select(
             [(age <= 15) * (age >= 0), age <= 25],
             [P.acs_moins_16_ans, P.acs_16_49_ans]
             )
-        montant_si_parent = select(
+        montant_si_parent = numpy.select(
             [age <= 15, age <= 49, age <= 59, age >= 60],
             [P.acs_moins_16_ans, P.acs_16_49_ans, P.acs_50_59_ans, P.acs_plus_60_ans],
             )
