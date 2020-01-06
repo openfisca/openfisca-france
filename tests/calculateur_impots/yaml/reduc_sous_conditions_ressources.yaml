@@ -1,0 +1,125 @@
+- name: Réduction sous conditions de ressources - cas d'un couple avec enfants dans la zone à 20%
+  period: 2018
+  absolute_error_margin: 1
+  input:
+    foyer_fiscal:
+      caseF: false
+      caseG: false
+      caseP: false
+      caseS: false
+      caseW: false
+      declarants:
+      - ind0
+      - ind1
+      nbF: 2.0
+      nbG: 0.0
+      nbH: 0.0
+      nbI: 0.0
+      nbJ: 0
+      nbN: 0
+      nbR: 0
+      personnes_a_charge:
+      - ind2
+      - ind3
+    individus:
+      ind0:
+        activite: actif
+        date_naissance: '1970-01-01'
+        salaire_imposable: 25000.0
+        statut_marital: marie
+      ind1:
+        activite: actif
+        date_naissance: '1970-01-01'
+        salaire_imposable: 20000.0
+        statut_marital: marie
+      ind2:
+        activite: etudiant
+        date_naissance: '2002-01-01'
+      ind3:
+        activite: etudiant
+        date_naissance: '2003-01-01'
+    famille:
+      enfants:
+      - ind2
+      - ind3
+      parents:
+      - ind0
+      - ind1
+    menage:
+      conjoint: ind1
+      enfants:
+      - ind2
+      - ind3
+      personne_de_reference: ind0
+  output:
+    decote_gain_fiscal: 856.0
+    irpp: -503.0
+    nbptr: 3.0
+    ppe: 0.0
+    reduction_ss_condition_revenus: 126.0
+    rbg: 40500.0
+    rfr: 40500.0
+    rni: 40500.0
+
+- name: Réduction sous conditions de ressources - cas d'un couple avec enfants dans la zone dégressive
+  period: 2018
+  absolute_error_margin: 1
+  input:
+    foyer_fiscal:
+      caseF: false
+      caseG: false
+      caseP: false
+      caseS: false
+      caseW: false
+      declarants:
+      - ind0
+      - ind1
+      nbF: 2.0
+      nbG: 0.0
+      nbH: 0.0
+      nbI: 0.0
+      nbJ: 0
+      nbN: 0
+      nbR: 0
+      personnes_a_charge:
+      - ind2
+      - ind3
+    individus:
+      ind0:
+        activite: actif
+        date_naissance: '1952-01-01'
+        revenu_assimile_pension: 25000.0
+        statut_marital: marie
+      ind1:
+        activite: actif
+        date_naissance: '1952-01-01'
+        revenu_assimile_pension: 25000.0
+        statut_marital: marie
+      ind2:
+        activite: etudiant
+        date_naissance: '2002-01-01'
+      ind3:
+        activite: etudiant
+        date_naissance: '2003-01-01'
+    famille:
+      enfants:
+      - ind2
+      - ind3
+      parents:
+      - ind0
+      - ind1
+    menage:
+      conjoint: ind1
+      enfants:
+      - ind2
+      - ind3
+      personne_de_reference: ind0
+  output:
+    decote_gain_fiscal: 259.0
+    irpp: -1679.0
+    nbptr: 3.0
+    ppe: 0.0
+    reduction_ss_condition_revenus: 343.0
+    rbg: 46188.0
+    rfr: 46188.0
+    rni: 46188.0
