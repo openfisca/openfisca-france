@@ -1,5 +1,14 @@
 # Changelog
 
+### 48.9.3 [#1388](https://github.com/openfisca/openfisca-france/pull/1388)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `openfisca-france/openfisca_france/parameters/bourses_education/*`.
+* Détails :
+  - Remplace l'acronyme `BMAF` dans la description des paramètres par sa signification,
+  - Précise la périodicité mensuelle du montant des bourses de collège et lycée.
+
 ### 48.9.2 [#1382](https://github.com/openfisca/openfisca-france/pull/1382)
 
 * Amélioration technique.
