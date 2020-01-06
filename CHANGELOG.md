@@ -1,5 +1,15 @@
 # Changelog
 
+### 48.9.5 [#1395](https://github.com/openfisca/openfisca-france/pull/1395)
+
+* Amélioration technique.
+* Périodes concernées : toutes.
+* Zones impactées : `model/prestations/logement_social.py`.
+* Détails :
+  - La formule zone_logement_social retournait un scalar `numpy.ndarray[int]`.
+  - Corrige zone_logement_social pour retourner un vecteur `numpy.ndarray[bool]`.
+  - Note : à partir de Numpy 1.18, l'utilisation de `select` avec une valeur non `bool` est dépréciée.
+
 ### 48.9.4 [#1399](https://github.com/openfisca/openfisca-france/pull/1399)
 
 * Évolution du système socio-fiscal.
