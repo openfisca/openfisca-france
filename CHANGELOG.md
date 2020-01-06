@@ -1,5 +1,13 @@
 # Changelog
 
+### 48.9.4 [#1399](https://github.com/openfisca/openfisca-france/pull/1399)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2016.
+* Zones impactées : `prelevements_obligatoires/impot_revenu/ir.py`.
+* Détails :
+  - Corrige le calcul de la réduction d'impît dans le cas d'un couple au-dessus du premier seuil.
+
 ### 48.9.3 [#1388](https://github.com/openfisca/openfisca-france/pull/1388)
 
 * Changement mineur.
