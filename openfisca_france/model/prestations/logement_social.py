@@ -1,7 +1,10 @@
-# -*- coding: utf-8 -*-
+from numpy import char, isin, logical_not as not_, select
 
-from numpy.core.defchararray import startswith
-from openfisca_france.model.base import *
+from openfisca_core.indexed_enums import Enum
+from openfisca_core.periods import MONTH
+from openfisca_core.variables import Variable
+
+from openfisca_france.entities import Famille, Menage
 
 paris_communes_limitrophes = [
     b'75056',  # Paris
@@ -64,9 +67,8 @@ class zone_logement_social(Variable):
 
     def formula(menage, period):
         depcom = menage('depcom', period)
-
-        in_paris_communes_limitrophes = sum([depcom == commune_proche_paris for commune_proche_paris in paris_communes_limitrophes])
-        in_idf = sum([startswith(depcom, departement) for departement in departements_idf])
+        in_paris_communes_limitrophes = isin(depcom, paris_communes_limitrophes)
+        in_idf = isin(char.ljust(depcom, 2), departements_idf)
 
         return select(
             [
