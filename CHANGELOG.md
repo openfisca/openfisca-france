@@ -1,5 +1,12 @@
 # Changelog
 
+### 48.9.6 [#1392](https://github.com/openfisca/openfisca-france/pull/1392)
+
+* Amélioration technique.
+* Détails :
+  - Met à jour la librairie `yamllint`
+  - Intervient au formatage automatique des fichiers de tests YAML sur CircleCI
+
 ### 48.9.5 [#1395](https://github.com/openfisca/openfisca-france/pull/1395)
 
 * Amélioration technique.
@@ -16,7 +23,7 @@
 * Périodes concernées : à partir du 01/01/2016.
 * Zones impactées : `prelevements_obligatoires/impot_revenu/ir.py`.
 * Détails :
-  - Corrige le calcul de la réduction d'impît dans le cas d'un couple au-dessus du premier seuil.
+  - Corrige le calcul de la réduction d'impôt dans le cas d'un couple au-dessus du premier seuil.
 
 ### 48.9.3 [#1388](https://github.com/openfisca/openfisca-france/pull/1388)
 
