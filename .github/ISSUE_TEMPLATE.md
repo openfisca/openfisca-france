@@ -2,13 +2,13 @@ Hello hello !
 
 Je suis le fan numéro un d'OpenFisca, mais je viens de rencontrer un problème.
 
-### Qu'ai-je fait :
+### Qu'ai-je fait ?
 
 
-### À quoi m'attendais-je :
+### À quoi m'attendais-je ?
 
 
-### Que s'est-il passé en réalité :
+### Que s'est-il passé en réalité ?
 
 
 ### Voici des informations qui peuvent aider à reproduire le problème :
