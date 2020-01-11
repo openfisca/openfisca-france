@@ -1,0 +1,187 @@
+- name: Contribution supplémentaire à l'apprentissage (CSA) - moins de 250 salarié·e·s
+  input:
+    assiette_cotisations_sociales:
+      2010-01: 3000
+      2013-01: 3000
+      2015-01: 3000
+    effectif_entreprise:
+      2010-01: 249
+      2013-01: 249
+      2015-01: 249
+  output:
+    contribution_supplementaire_apprentissage:
+      2010-01: 0
+      2013-01: 0
+      2015-01: 0
+
+- name: Contribution supplémentaire à l'apprentissage (CSA) - entre 250 et 1999 salarié·e·s
+  input:
+    assiette_cotisations_sociales:
+      2010-01: 3000
+      2013-01: 3000
+      2015-01: 3000
+    effectif_entreprise:
+      2010-01: 250
+      2013-01: 250
+      2015-01: 250
+  output:
+    contribution_supplementaire_apprentissage:
+      2010-01: -3
+      2013-01: -9
+      2015-01: -12
+
+- name: Contribution supplémentaire à l'apprentissage (CSA) - entre 250 et 1999 salarié·e·s et 1% alternants
+  input:
+    assiette_cotisations_sociales:
+      2010-01: 3000
+      2013-01: 3000
+      2015-01: 3000
+    effectif_entreprise:
+      2010-01: 250
+      2013-01: 250
+      2015-01: 250
+    ratio_alternants:
+      2010-01: 0.01
+      2013-01: 0.01
+      2015-01: 0.01
+  output:
+    contribution_supplementaire_apprentissage:
+      2010-01: -3
+      2013-01: -3
+      2015-01: -6
+
+- name: Contribution supplémentaire à l'apprentissage (CSA) - entre 250 et 1999 salarié·e·s et 2% alternants
+  input:
+    assiette_cotisations_sociales:
+      2010-01: 3000
+      2013-01: 3000
+      2015-01: 3000
+    effectif_entreprise:
+      2010-01: 250
+      2013-01: 250
+      2015-01: 250
+    ratio_alternants:
+      2010-01: 0.02
+      2013-01: 0.02
+      2015-01: 0.02
+  output:
+    contribution_supplementaire_apprentissage:
+      2010-01: -3
+      2013-01: -3
+      2015-01: -3
+
+- name: Contribution supplémentaire à l'apprentissage (CSA) - entre 250 et 1999 salarié·e·s et 3% alternants
+  input:
+    assiette_cotisations_sociales:
+      2010-01: 3000
+      2013-01: 3000
+      2015-01: 3000
+    effectif_entreprise:
+      2010-01: 250
+      2013-01: 250
+      2015-01: 250
+    ratio_alternants:
+      2010-01: 0.03
+      2013-01: 0.03
+      2015-01: 0.03
+  output:
+    contribution_supplementaire_apprentissage:
+      2010-01: -3
+      2013-01: -1.5
+      2015-01: -1.5
+
+- name: Contribution supplémentaire à l'apprentissage (CSA) - entre 250 et 1999 salarié·e·s et 4% alternants
+  input:
+    assiette_cotisations_sociales:
+      2010-01: 3000
+      2013-01: 3000
+      2015-01: 3000
+    effectif_entreprise:
+      2010-01: 250
+      2013-01: 250
+      2015-01: 250
+    ratio_alternants:
+      2010-01: 0.04
+      2013-01: 0.04
+      2015-01: 0.04
+  output:
+    contribution_supplementaire_apprentissage:
+      2010-01: -3
+      2013-01: 0
+      2015-01: -1.5
+
+- name: Contribution supplémentaire à l'apprentissage (CSA) - entre 250 et 1999 salarié·e·s et 5% alternants
+  input:
+    assiette_cotisations_sociales:
+      2010-01: 3000
+      2013-01: 3000
+      2015-01: 3000
+    effectif_entreprise:
+      2010-01: 250
+      2013-01: 250
+      2015-01: 250
+    ratio_alternants:
+      2010-01: 0.05
+      2013-01: 0.05
+      2015-01: 0.05
+  output:
+    contribution_supplementaire_apprentissage:
+      2010-01: -3
+      2013-01: 0
+      2015-01: 0
+
+- name: Contribution supplémentaire à l'apprentissage (CSA) - à partir de 2000 salarié·e·s
+  input:
+    assiette_cotisations_sociales:
+      2010-01: 3000
+      2013-01: 3000
+      2015-01: 3000
+    effectif_entreprise:
+      2010-01: 2000
+      2013-01: 2000
+      2015-01: 2000
+  output:
+    contribution_supplementaire_apprentissage:
+      2010-01: -3
+      2013-01: -15
+      2015-01: -18
+
+- name: Contribution supplémentaire à l'apprentissage (CSA) - à partir de 2000 salarié·e·s et 1% alternants
+  input:
+    assiette_cotisations_sociales:
+      2010-01: 3000
+      2013-01: 3000
+      2015-01: 3000
+    effectif_entreprise:
+      2010-01: 2000
+      2013-01: 2000
+      2015-01: 2000
+    ratio_alternants:
+      2010-01: 0.01
+      2013-01: 0.01
+      2015-01: 0.01
+  output:
+    contribution_supplementaire_apprentissage:
+      2010-01: -3
+      2013-01: -3
+      2015-01: -6
+
+- name: Contribution supplémentaire à l'apprentissage (CSA) - Alsace-Moselle
+  input:
+    assiette_cotisations_sociales:
+      2010-01: 3000
+      2013-01: 3000
+      2015-01: 3000
+    effectif_entreprise:
+      2010-01: 2000
+      2013-01: 2000
+      2015-01: 2000
+    salarie_regime_alsace_moselle:
+      2010-01: true
+      2013-01: true
+      2015-01: true
+  output:
+    contribution_supplementaire_apprentissage:
+      2010-01: -3
+      2013-01: -7.8
+      2015-01: -9.36

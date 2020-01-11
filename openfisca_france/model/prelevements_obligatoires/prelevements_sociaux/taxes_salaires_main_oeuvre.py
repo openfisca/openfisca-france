@@ -96,7 +96,7 @@ class contribution_supplementaire_apprentissage(Variable):
 
         taxe_due = (effectif_entreprise >= 250) * (ratio_alternants < .05)
         taux_conditionnel = (
-            (effectif_entreprise < 2000) * (ratio_alternants < .01) * csa_params.moins_2000_moins_1pc_alternants
+            + (effectif_entreprise < 2000) * (ratio_alternants < .01) * csa_params.moins_2000_moins_1pc_alternants
             + (effectif_entreprise >= 2000) * (ratio_alternants < .01) * csa_params.plus_2000_moins_1pc_alternants
             + (.01 <= ratio_alternants) * (ratio_alternants < .02) * csa_params.entre_1_2_pc_alternants
             + (.02 <= ratio_alternants) * (ratio_alternants < .03) * csa_params.entre_2_3_pc_alternants
