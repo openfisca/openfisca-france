@@ -1,5 +1,13 @@
 # Changelog
 
+### 48.9.7 [#1402](https://github.com/openfisca/openfisca-france/pull/1402)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `/prelevements_obligatoires/prelevements_sociaux/taxes_salaires_main_oeuvre`.
+* Détails :
+  - Correction d'une formule gérant la période en dur dans le code.
+
 ### 48.9.6 [#1392](https://github.com/openfisca/openfisca-france/pull/1392)
 
 * Amélioration technique.
