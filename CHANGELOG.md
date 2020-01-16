@@ -1,5 +1,13 @@
 # Changelog
 
+### 48.9.8 [#1406](https://github.com/openfisca/openfisca-france/pull/1406)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2020
+* Zones impactées : `openfisca_france/parameters/cotsoc/gen/smic_h_b.yaml`.
+* Détails :
+  - Mise à jour du smic horaire brut suite au décret n° 2019-1387 du 18 décembre 2019 portant relèvement du salaire minimum de croissance.
+
 ### 48.9.7 [#1402](https://github.com/openfisca/openfisca-france/pull/1402)
 
 * Changement mineur.
@@ -61,7 +69,7 @@
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 01/01/2018.
-* Zones impactées : `mode/prelevements_obligatoires/impot_revenu`.
+* Zones impactées : `model/prelevements_obligatoires/impot_revenu`.
 * Détails :
    - Ajout de nouvelles variables liées au nouveau formulaire de l'IR (et supprime celles qui disparaissent)
    - Mise à jour de la formule des charges déductibles pour grosse réparation
@@ -75,7 +83,7 @@
 * Périodes concernées : à partir du 01/01/2002.
 * Zones impactées : `model/prestations/autonomie.py`.
 * Détails :
-  - Améliore formule pour déterminer le tarif établissement pour le GIR de la personne dépendante.
+  - Améliore la formule pour déterminer le tarif établissement pour le GIR de la personne dépendante.
 
 ### 48.7.2 [#1374](https://github.com/openfisca/openfisca-france/pull/1374)
 
