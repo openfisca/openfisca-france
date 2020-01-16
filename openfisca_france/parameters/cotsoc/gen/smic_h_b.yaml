@@ -47,3 +47,6 @@ values:
     value: 9.88
   2019-01-01:
     value: 10.03
+  2020-01-01:
+    reference: https://www.legifrance.gouv.fr/eli/decret/2019/12/18/MTRX1933646D/jo/texte
+    value: 10.15
