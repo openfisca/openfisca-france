@@ -1111,7 +1111,7 @@ class ir_brut(Variable):
 class ir_taux_marginal(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "Taux marginal de l'impôt sur le revenu"
+    label = "Taux marginal d'imposition à l'impôt sur le revenu"
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
