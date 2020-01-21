@@ -4,6 +4,7 @@ from numpy import logical_or as or_
 
 from openfisca_france.model.base import *
 
+from numpy import datetime64
 
 class autonomie_financiere(Variable):
     value_type = bool
@@ -128,7 +129,7 @@ class rev_coll(Variable):
         rev_cat_rvcm = foyer_fiscal('revenu_categoriel_capital', period)  # Supprimée en 2018
         revenus_capitaux_prelevement_liberatoire = foyer_fiscal('revenus_capitaux_prelevement_liberatoire', period, options = [ADD])  # Supprimée en 2018
         revenus_capitaux_prelevement_forfaitaire_unique_ir = foyer_fiscal('revenus_capitaux_prelevement_forfaitaire_unique_ir', period, options = [ADD])  # Existe à partir de 2018
-        abat_spe = foyer_fiscal('abat_spe', period)
+        abat_spe = foyer_fiscal('abat_spe_prestations_familiales', period)
         revenu_categoriel_foncier = foyer_fiscal('revenu_categoriel_foncier', period)
         f7ga = foyer_fiscal('f7ga', period)
         f7gb = foyer_fiscal('f7gb', period)
@@ -230,3 +231,78 @@ def nb_enf(famille, period, age_min, age_max):
         )
 
     return famille.sum(condition, role = Famille.ENFANT)
+
+
+class abat_spe_prestations_familiales(Variable):
+    value_type = float
+    entity = FoyerFiscal
+    label = "Abattements spéciaux"
+    reference = "http://bofip.impots.gouv.fr/bofip/2036-PGP"
+    definition_period = YEAR
+
+    def formula(foyer_fiscal, period, parameters):
+
+        dateLimite = datetime64('1931-01-01')
+
+        age_declarant = foyer_fiscal.declarant_principal('age', period.first_month)
+        date_naissance_declarant = foyer_fiscal.declarant_principal('date_naissance', period.first_month)
+
+        # Titulaire d'une pension pour une invalidité d'au moins 40 % ou d'une carte
+        # d'invalidité d'au moins 80%
+        declarant_invalide = foyer_fiscal('caseP', period)
+
+        age_conjoint = foyer_fiscal.declarant_principal('age', period.first_month)
+        date_naissance_conjoint = foyer_fiscal.conjoint('date_naissance', period.first_month)
+
+        # Conjoint·e titulaire d'une pension ou d'une carte d'invalidité (vivant ou
+        # décédé l'année de perception des revenus)
+        conjoint_invalide = foyer_fiscal('caseF', period)
+
+        # Revenu net global
+        revenu_net_global = foyer_fiscal('rng', period)
+
+        # Nombre d'enfants marié·e·s/pacse·é·s et d'enfants non mari·é·s charg·é·s de
+        # famille
+        nombre_enfants = foyer_fiscal('nbN', period)
+
+        # Abattements pour revenu net imposable
+        abattements = parameters(period).impot_revenu.abattements_rni
+
+        # Abattement pour personnes agées de + de 65 ans ou invalide
+        abattement_age_ou_invalidite = abattements.personne_agee_ou_invalide
+
+        # Abattement pour rattachement d'enfants mari·é·s
+        abattement_enfant_marie = abattements.enfant_marie
+
+        # Vecteur de foyers eligibles aux abattements spéciaux
+        foyers_eligibles = (
+            + (((date_naissance_declarant < dateLimite) | declarant_invalide) & (age_declarant > 0))
+            + (((date_naissance_conjoint < dateLimite) | conjoint_invalide) & (age_conjoint > 0))
+            )
+
+        # Vecteur de montants d'abattement pour personnes âges ou invalides
+        as_inv = (
+            + foyers_eligibles
+            * (
+                (
+                    + abattement_age_ou_invalidite.montant_1
+                    * (revenu_net_global <= abattement_age_ou_invalidite.plafond_1)
+                    )
+                + (
+                    + abattement_age_ou_invalidite.montant_2
+                    * (
+                        + (revenu_net_global > abattement_age_ou_invalidite.plafond_1)
+                        & (revenu_net_global <= abattement_age_ou_invalidite.plafond_2)
+                        )
+                    )
+                )
+            )
+
+        # Vecteur de montants d'abattement pour enfants à charge
+        as_enf = (
+            + nombre_enfants
+            * abattement_enfant_marie.montant
+            )
+
+        # Le montant total d'abattement ne peut pas être supérieur au revenu net global
+        return min_(revenu_net_global, as_inv + as_enf)
