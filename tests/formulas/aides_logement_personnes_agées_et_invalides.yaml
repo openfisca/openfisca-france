@@ -1,0 +1,72 @@
+- name: "Personne agée né avant 1931, application de l'abattement spécial accordé aux personnes âgées nées avant 1930 ou en 1930 "
+  period: 2021-01
+  relative_error_margin: 0.01
+  input:
+    famille:
+      parents: [personne1]
+    menage:
+      personne_de_reference: personne1
+      statut_occupation_logement: locataire_vide
+      logement_conventionne: false
+      zone_apl: zone_3
+      loyer: 500
+    individus:
+      personne1:
+        salaire_imposable:
+          2020: 13249
+        date_naissance: 1930-12-31
+    foyer_fiscal:
+      declarants: [personne1]
+  output:
+    aide_logement_base_ressources: 9600
+    aide_logement: 99.49
+
+- name: "Personne agée né en 1931, pas d'application de l'abattement spécial accordé aux personnes âgées"
+  period: 2021-01
+  relative_error_margin: 0.01
+  input:
+    famille:
+      parents: [personne1]
+    menage:
+      personne_de_reference: personne1
+      statut_occupation_logement: locataire_vide
+      logement_conventionne: false
+      zone_apl: zone_3
+      loyer: 500
+    individus:
+      personne1:
+        salaire_imposable:
+          2020: 8587
+        date_naissance: 1931-01-01
+    foyer_fiscal:
+      declarants: [personne1]
+  output:
+    aide_logement_base_ressources: 7800
+    aide_logement: 154.77
+
+- name: "Personne salarie infirme, application de l'abattement spécial accordé aux personnes invalides"
+  period: 2021-01
+  relative_error_margin: 0.01
+  input:
+    famille:
+      parents: [personne1]
+    menage:
+      personne_de_reference: personne1
+      statut_occupation_logement: locataire_vide
+      logement_conventionne: false
+      zone_apl: zone_3
+      loyer: 500
+    individus:
+      personne1:
+        salaire_imposable:
+          2020: 18535
+        date_naissance: 1985-01-01
+        frais_reels:
+          2020: 7960
+    foyer_fiscal:
+      declarants: [personne1]
+      caseP:
+        2020: true
+  output:
+    aide_logement_base_ressources: 8200
+    aide_logement: 142.71
