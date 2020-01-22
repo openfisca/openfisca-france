@@ -1,5 +1,13 @@
 # Changelog
 
+### 48.9.9 [#1408](https://github.com/openfisca/openfisca-france/pull/1408)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/07/2018
+* Zones impactées : `prestations/prestations_familiales/asf`.
+* Détails :
+  - Prise en compte du seuil de non-versement de l'ASF
+
 ### 48.9.8 [#1406](https://github.com/openfisca/openfisca-france/pull/1406)
 
 * Évolution du système socio-fiscal.

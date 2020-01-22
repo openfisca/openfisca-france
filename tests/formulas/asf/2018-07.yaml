@@ -1,0 +1,17 @@
+- name: Seuil de non-versement
+  period: 2020-01
+  input:
+    individus:
+      p:
+        asf_elig_enfant: false
+        pensions_alimentaires_percues: 112
+      e:
+        asf_elig_enfant: true
+        pensions_alimentaires_percues: 0
+    familles:
+      _:
+        parents: [p]
+        enfants: [e]
+        asf_elig: true
+  output:
+    asf: 0
