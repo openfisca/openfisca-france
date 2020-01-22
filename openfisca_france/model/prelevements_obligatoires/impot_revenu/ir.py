@@ -1127,6 +1127,7 @@ class ir_tranche(Variable):
     value_type = int
     entity = FoyerFiscal
     label = "Tranche du barème appliquée"
+    reference = "https://impots.dispofi.fr/bareme-impot/calcul-impot-par-tranche"
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
