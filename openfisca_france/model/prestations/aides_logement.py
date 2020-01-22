@@ -876,16 +876,6 @@ class aide_logement_base_revenus_fiscaux(Variable):
         # Apparait à partir de 2018
         plus_values_prelevement_forfaitaire_unique_ir = foyer_fiscal('plus_values_prelevement_forfaitaire_unique_ir',
                                                                      period)
-
-        # abat_spe = foyer_fiscal('abat_spe', period)
-        # caseP = foyer_fiscal('caseP', period)
-        # caseF = foyer_fiscal('caseF', period)
-        # invV, invC = caseP, caseF
-        # naissanceP = foyer_fiscal.declarant_principal('date_naissance', period)
-        # naissanceC = foyer_fiscal.conjoint('date_naissance', period)
-        # dateLimite = datetime64('1931-01-01')
-        # apply_abat_spe = (abat_spe > 0) * (invV + invC + (naissanceP < dateLimite) + (naissanceC < dateLimite))
-
         return (
             + rente_viagere_titre_onereux_net
             + revenu_categoriel_foncier
@@ -894,7 +884,6 @@ class aide_logement_base_revenus_fiscaux(Variable):
             + revenus_capitaux_prelevement_forfaitaire_unique_ir
             + rev_cat_pv
             + plus_values_prelevement_forfaitaire_unique_ir
-            # - abat_spe * apply_abat_spe
             - f7ga
             - f7gb
             - f7gc
@@ -918,15 +907,6 @@ class aide_logement_base_revenus_fiscaux(Variable):
         # Apparait à partir de 2018
         plus_values_prelevement_forfaitaire_unique_ir = foyer_fiscal('plus_values_prelevement_forfaitaire_unique_ir', period)
 
-        # abat_spe = foyer_fiscal('abat_spe', period)
-        # caseP = foyer_fiscal('caseP', period)
-        # caseF = foyer_fiscal('caseF', period)
-        # invV, invC = caseP, caseF
-        # naissanceP = foyer_fiscal.declarant_principal('date_naissance', period)
-        # naissanceC = foyer_fiscal.conjoint('date_naissance', period)
-        # dateLimite = datetime64('1931-01-01')
-        # apply_abat_spe = (abat_spe > 0) * (invV + invC + (naissanceP < dateLimite) + (naissanceC < dateLimite))
-
         return (
             + revenu_categoriel_foncier
             + pensions_alimentaires_versees
@@ -936,7 +916,6 @@ class aide_logement_base_revenus_fiscaux(Variable):
             + revenus_capitaux_prelevement_forfaitaire_unique_ir
             + rev_cat_pv
             + plus_values_prelevement_forfaitaire_unique_ir
-            # - abat_spe * apply_abat_spe
             - f7ga
             - f7gb
             - f7gc
