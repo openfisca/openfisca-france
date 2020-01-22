@@ -1,5 +1,13 @@
 # Changelog
 
+## 48.10.0 [#1393](https://github.com/openfisca/openfisca-france/pull/1393)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : toutes.
+* Zones impactées : `prelevements_obligatoires/impot_revenu/ir`.
+* Détails :
+  - Ajout du calcul du taux marginal et de la tranche applicable pour l'impôt sur le revenu
+
 ### 48.9.9 [#1408](https://github.com/openfisca/openfisca-france/pull/1408)
 
 * Évolution du système socio-fiscal.
