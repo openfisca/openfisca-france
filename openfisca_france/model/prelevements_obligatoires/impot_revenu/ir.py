@@ -1112,6 +1112,7 @@ class ir_taux_marginal(Variable):
     value_type = float
     entity = FoyerFiscal
     label = "Taux marginal d'imposition à l'impôt sur le revenu"
+    reference = "http://impotsurlerevenu.org/fonctionnement-de-l-impot/60-calculer-le-tmi.php"
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
