@@ -40,6 +40,29 @@ class asf_elig(Variable):
         return not_(residence_mayotte) * isole
 
 
+class asf_montant(Variable):
+    calculate_output = calculate_output_add
+    value_type = float
+    entity = Famille
+    label = "Montant de l'allocation de soutien familial (ASF)"
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
+
+    def formula(famille, period, parameters):
+        pfam = parameters(period).prestations.prestations_familiales
+
+        asf_par_enfant = (
+            famille.members('asf_elig_enfant', period)
+            * pfam.af.bmaf
+            * pfam.asf.taux_1_parent
+            )
+
+        montant = famille.sum(asf_par_enfant, role = Famille.ENFANT)
+        pensions_alimentaires_percues = famille.sum(famille.members('pensions_alimentaires_percues', period))
+
+        return max_(montant - pensions_alimentaires_percues, 0)
+
+
 class asf(Variable):
     calculate_output = calculate_output_add
     value_type = float
@@ -52,14 +75,6 @@ class asf(Variable):
         pfam = parameters(period).prestations.prestations_familiales
 
         asf_elig = famille('asf_elig', period)
+        montant = famille('asf_montant', period)
 
-        asf_par_enfant = (
-            famille.members('asf_elig_enfant', period)
-            * pfam.af.bmaf
-            * pfam.asf.taux_1_parent
-            )
-
-        montant = famille.sum(asf_par_enfant, role = Famille.ENFANT)
-        pensions_alimentaires_percues = famille.sum(famille.members('pensions_alimentaires_percues', period))
-
-        return asf_elig * max_(montant - pensions_alimentaires_percues, 0)
+        return asf_elig * (montant > pfam.asf.seuil) * montant
