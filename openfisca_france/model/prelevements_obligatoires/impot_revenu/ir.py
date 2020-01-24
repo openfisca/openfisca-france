@@ -699,6 +699,7 @@ class revenu_categoriel_capital(Variable):
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         deficit_rcm = foyer_fiscal('deficit_rcm', period)
         f2ch = foyer_fiscal('f2ch', period)
+        f2da = foyer_fiscal('f2da', period)
         f2dc = foyer_fiscal('f2dc', period)
         f2ts = foyer_fiscal('f2ts', period)
         f2ca = foyer_fiscal('f2ca', period)
@@ -710,14 +711,15 @@ class revenu_categoriel_capital(Variable):
 
         den = ((f2dc + f2ts) != 0) * (f2dc + f2ts) + ((f2dc + f2ts) == 0)
         F1 = f2ca / den * f2dc
-        g12a = -min_(f2dc * (1 - P.taux_abattement_capitaux_mobiliers) - F1, 0)
-        dividendes_apres_abattements = max_(f2dc * (1 - P.taux_abattement_capitaux_mobiliers) - F1, 0)
+        g12a = -min_(f2dc * (1 - P.taux_abattement_capitaux_mobiliers * (f2da == 0)) - F1, 0)
+
+        dividendes_apres_abattements = max_(f2dc * (1 - P.taux_abattement_capitaux_mobiliers * (f2da == 0)) - F1, 0)
         revenus_assurance_vie_apres_abattements = f2ch - min_(f2ch, P.abat_assvie * (1 + maries_ou_pacses))
         rvcm_apres_abattements_proportionnels = (
             revenus_assurance_vie_apres_abattements
             + dividendes_apres_abattements
             + f2gr
-            + f2fu * (1 - P.taux_abattement_capitaux_mobiliers)
+            + f2fu * (1 - P.taux_abattement_capitaux_mobiliers * (f2da == 0))
             )
         rvcm_apres_abattements_proportionnels_et_fixes = max_(0, rvcm_apres_abattements_proportionnels - P.abatmob * (1 + maries_ou_pacses))
         autres_rvcm_sans_abattements = (
@@ -847,6 +849,7 @@ class rfr_rvcm_abattements_a_reintegrer(Variable):
 
     def formula(foyer_fiscal, period, parameters):
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
+        f2da = foyer_fiscal('f2da', period)
         f2dc = foyer_fiscal('f2dc', period)
         f2ts = foyer_fiscal('f2ts', period)
         f2ca = foyer_fiscal('f2ca', period)
@@ -861,13 +864,13 @@ class rfr_rvcm_abattements_a_reintegrer(Variable):
         F1 = f2ca / den * f2dc  # f12
         # Revenus de capitaux mobiliers nets de frais, ouvrant droit à abattement
         # partie positive
-        g12b = max_(f2dc * (1 - rvcm.taux_abattement_capitaux_mobiliers) - F1, 0)
-        rev = g12b + f2gr + f2fu * (1 - rvcm.taux_abattement_capitaux_mobiliers)
+        g12b = max_(f2dc * (1 - rvcm.taux_abattement_capitaux_mobiliers * (f2da == 0)) - F1, 0)
+        rev = g12b + f2gr + f2fu * (1 - rvcm.taux_abattement_capitaux_mobiliers * (f2da == 0))
 
         # Abattements, limité au revenu
         h12 = rvcm.abatmob * (1 + maries_ou_pacses)
         i121 = - min_(0, rev - h12)
-        return max_((rvcm.taux_abattement_capitaux_mobiliers) * (f2dc + f2fu) - i121, 0)
+        return max_((rvcm.taux_abattement_capitaux_mobiliers) * (f2dc + f2fu) * (f2da == 0) - i121, 0)
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
         f2dc = foyer_fiscal('f2dc', period)
