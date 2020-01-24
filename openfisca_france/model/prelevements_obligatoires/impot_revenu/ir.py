@@ -706,29 +706,29 @@ class revenu_categoriel_capital(Variable):
         f2go = foyer_fiscal('f2go', period)
         f2gr = foyer_fiscal('f2gr', period)
         f2tr = foyer_fiscal('f2tr', period)
-        rvcm = parameters(period).impot_revenu.rvcm
+        P = parameters(period).impot_revenu.rvcm
 
         # 1.2 Revenus des valeurs et capitaux mobiliers
-        b12 = min_(f2ch, rvcm.abat_assvie * (1 + maries_ou_pacses))
+        b12 = min_(f2ch, P.abat_assvie * (1 + maries_ou_pacses))
         TOT1 = f2ch - b12
         # Part des frais s'imputant sur les revenus déclarés case DC
         den = ((f2dc + f2ts) != 0) * (f2dc + f2ts) + ((f2dc + f2ts) == 0)
         F1 = f2ca / den * f2dc
         # Revenus de capitaux mobiliers nets de frais, ouvrant droit à abattement
         # partie négative (à déduire des autres revenus nets de frais d'abattements
-        g12a = -min_(f2dc * (1 - rvcm.taux_abattement_capitaux_mobiliers) - F1, 0)
+        g12a = -min_(f2dc * (1 - P.taux_abattement_capitaux_mobiliers) - F1, 0)
         # partie positive
-        g12b = max_(f2dc * (1 - rvcm.taux_abattement_capitaux_mobiliers) - F1, 0)
-        rev = g12b + f2gr + f2fu * (1 - rvcm.taux_abattement_capitaux_mobiliers)
+        g12b = max_(f2dc * (1 - P.taux_abattement_capitaux_mobiliers) - F1, 0)
+        rev = g12b + f2gr + f2fu * (1 - P.taux_abattement_capitaux_mobiliers)
 
         # Abattements, limité au revenu
-        h12 = rvcm.abatmob * (1 + maries_ou_pacses)
+        h12 = P.abatmob * (1 + maries_ou_pacses)
         TOT2 = max_(0, rev - h12)
         # i121= -min_(0,rev - h12)
 
         # Part des frais s'imputant sur les revenus déclarés ligne TS
         F2 = f2ca - F1
-        TOT3 = (f2ts - F2) + f2go * rvcm.majoration_revenus_reputes_distribues + f2tr - g12a
+        TOT3 = (f2ts - F2) + f2go * P.majoration_revenus_reputes_distribues + f2tr - g12a
 
         DEF = deficit_rcm
         return max_(TOT1 + TOT2 + TOT3 - DEF, 0)
