@@ -1,0 +1,79 @@
+- name: abat_dividendes_only_bareme
+  period: 2012
+  absolute_error_margin: 1
+  input:
+    foyer_fiscal:
+      caseF: false
+      caseG: false
+      caseL: false
+      caseP: true
+      caseS: false
+      caseT: false
+      caseW: false
+      f2dc: 10000.0
+      declarants:
+      - ind0
+      nbF: 0.0
+      nbG: 0.0
+      nbH: 0.0
+      nbI: 0.0
+      nbJ: 0
+      nbR: 0
+    individus:
+      ind0:
+        activite: actif
+        date_naissance: '1970-01-01'
+        salaire_imposable: 200000.0
+        statut_marital: celibataire
+    famille:
+      parents:
+      - ind0
+    menage:
+      personne_de_reference: ind0
+  output:
+    irpp: -69742.0
+    nbptr: 1.0
+    ppe: 0.0
+    rbg: 194000.0
+    rfr: 198000.0
+    rni: 194000.0
+- name: abat_dividendes_mixtes
+  period: 2012
+  absolute_error_margin: 1
+  input:
+    foyer_fiscal:
+      caseF: false
+      caseG: false
+      caseL: false
+      caseP: true
+      caseS: false
+      caseT: false
+      caseW: false
+      f2da: 50000.0
+      f2dc: 10000.0
+      declarants:
+      - ind0
+      nbF: 0.0
+      nbG: 0.0
+      nbH: 0.0
+      nbI: 0.0
+      nbJ: 0
+      nbR: 0
+    individus:
+      ind0:
+        activite: actif
+        date_naissance: '1970-01-01'
+        salaire_imposable: 200000.0
+        statut_marital: celibataire
+    famille:
+      parents:
+      - ind0
+    menage:
+      personne_de_reference: ind0
+  output:
+    irpp: -69742.0
+    nbptr: 1.0
+    ppe: 0.0
+    rbg: 198000.0
+    rfr: 248000.0
+    rni: 198000.0
