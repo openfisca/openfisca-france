@@ -708,30 +708,25 @@ class revenu_categoriel_capital(Variable):
         f2tr = foyer_fiscal('f2tr', period)
         P = parameters(period).impot_revenu.rvcm
 
-        # 1.2 Revenus des valeurs et capitaux mobiliers
-        b12 = min_(f2ch, P.abat_assvie * (1 + maries_ou_pacses))
-        TOT1 = f2ch - b12
-        # Part des frais s'imputant sur les revenus déclarés case DC
         den = ((f2dc + f2ts) != 0) * (f2dc + f2ts) + ((f2dc + f2ts) == 0)
         F1 = f2ca / den * f2dc
-        # Revenus de capitaux mobiliers nets de frais, ouvrant droit à abattement
-        # partie négative (à déduire des autres revenus nets de frais d'abattements
         g12a = -min_(f2dc * (1 - P.taux_abattement_capitaux_mobiliers) - F1, 0)
-        # partie positive
-        g12b = max_(f2dc * (1 - P.taux_abattement_capitaux_mobiliers) - F1, 0)
-        rev = g12b + f2gr + f2fu * (1 - P.taux_abattement_capitaux_mobiliers)
+        dividendes_apres_abattements = max_(f2dc * (1 - P.taux_abattement_capitaux_mobiliers) - F1, 0)
+        revenus_assurance_vie_apres_abattements = f2ch - min_(f2ch, P.abat_assvie * (1 + maries_ou_pacses))
+        rvcm_apres_abattements_proportionnels = (
+            revenus_assurance_vie_apres_abattements
+            + dividendes_apres_abattements
+            + f2gr
+            + f2fu * (1 - P.taux_abattement_capitaux_mobiliers)
+            )
+        rvcm_apres_abattements_proportionnels_et_fixes = max_(0, rvcm_apres_abattements_proportionnels - P.abatmob * (1 + maries_ou_pacses))
+        autres_rvcm_sans_abattements = (
+            f2ts - (f2ca - F1)
+            + f2go * P.majoration_revenus_reputes_distribues
+            + f2tr - g12a
+            )
 
-        # Abattements, limité au revenu
-        h12 = P.abatmob * (1 + maries_ou_pacses)
-        TOT2 = max_(0, rev - h12)
-        # i121= -min_(0,rev - h12)
-
-        # Part des frais s'imputant sur les revenus déclarés ligne TS
-        F2 = f2ca - F1
-        TOT3 = (f2ts - F2) + f2go * P.majoration_revenus_reputes_distribues + f2tr - g12a
-
-        DEF = deficit_rcm
-        return max_(TOT1 + TOT2 + TOT3 - DEF, 0)
+        return max_(rvcm_apres_abattements_proportionnels_et_fixes + autres_rvcm_sans_abattements - deficit_rcm, 0)
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
         """
