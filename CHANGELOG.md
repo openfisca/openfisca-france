@@ -1,5 +1,13 @@
 # Changelog
 
+### 48.10.1 [#1409](https://github.com/openfisca/openfisca-france/pull/1409)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : toutes.
+* Zones impactées : `prestations/minima_sociaux/cs/ressources`.
+* Détails :
+  - Améliore la prise en compte des bourses sur critères sociaux pour la CSS
+
 ## 48.10.0 [#1393](https://github.com/openfisca/openfisca-france/pull/1393)
 
 * Évolution du système socio-fiscal.

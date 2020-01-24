@@ -1,4 +1,5 @@
-from numpy import absolute as abs_, logical_or as or_
+from numpy import absolute as abs_, logical_or as or_, logical_not as not_
+
 from openfisca_france.model.base import (
     Variable,
     Individu,
@@ -15,9 +16,9 @@ class cmu_base_ressources_individu(Variable):
     label = "Base de ressources de l'individu prise en compte pour l'éligibilité à la ACS / CMU-C / CSS"
     reference = [
         "Article R861-8 du code de la Sécurité Sociale",
-        "https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=DEA53FDC793298CE041862E42D999E84.tplgfr43s_1?idArticle=LEGIARTI000034424885&cidTexte=LEGITEXT000006073189&dateTexte=20180829&categorieLien=id&oldAction=",
+        "https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000034424885&cidTexte=LEGITEXT000006073189&dateTexte=20180829",
         "Article R861-10 du code de la Sécurité Sociale pour les ressources exclues",
-        "https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=DEA53FDC793298CE041862E42D999E84.tplgfr43s_1?idArticle=LEGIARTI000030055485&cidTexte=LEGITEXT000006073189&dateTexte=20180829&categorieLien=id&oldAction=&nbResultRech=",
+        "https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000030055485&cidTexte=LEGITEXT000006073189&dateTexte=20180829",
         "Circulaire N°DSS/2A/2002/110 du 22 février 2002 relative à la notion de ressources à prendre en compte pour l'appréciation du droit à la protection complémentaire en matière de santé",
         "http://circulaire.legifrance.gouv.fr/pdf/2009/04/cir_6430.pdf"
         ]
@@ -38,7 +39,6 @@ class cmu_base_ressources_individu(Variable):
             'allocation_securisation_professionnelle',
             'asi',
             'ass',
-            'bourse_enseignement_sup',
             'bourse_recherche',
             'caah',
             'chomage_net',
@@ -60,6 +60,9 @@ class cmu_base_ressources_individu(Variable):
             'rente_accident_travail',
             ]
 
+        boursier = individu('boursier', period)
+        bourse = not_(boursier) * individu('bourse_enseignement_sup', period)
+
         ressources = sum([
             individu(ressource, previous_year, options = [ADD])
             for ressource in ressources_a_inclure
@@ -72,6 +75,7 @@ class cmu_base_ressources_individu(Variable):
 
         return (
             ressources
+            + bourse
             + revenus_tns(individu, previous_year, last_year)
             - pensions_alim_versees
             - abbattement_chomage(individu, period, previous_year, P)
