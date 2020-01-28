@@ -707,23 +707,23 @@ class revenu_categoriel_capital(Variable):
         f2go = foyer_fiscal('f2go', period)
         f2gr = foyer_fiscal('f2gr', period)
         f2tr = foyer_fiscal('f2tr', period)
-        P = parameters(period).impot_revenu.rvcm
+        parameter_rvcm = parameters(period).impot_revenu.rvcm
 
         part_frais_imputes_sur_f2dc = f2ca / max_(1, f2dc + f2ts) * f2dc
-        part_frais_restant_a_imputer = -min_(f2dc * (1 - P.taux_abattement_capitaux_mobiliers * (f2da == 0)) - part_frais_imputes_sur_f2dc, 0)
+        part_frais_restant_a_imputer = -min_(f2dc * (1 - parameter_rvcm.taux_abattement_capitaux_mobiliers * (f2da == 0)) - part_frais_imputes_sur_f2dc, 0)
 
-        dividendes_apres_abattements = max_(f2dc * (1 - P.taux_abattement_capitaux_mobiliers * (f2da == 0)) - part_frais_imputes_sur_f2dc, 0)
-        revenus_assurance_vie_apres_abattements = f2ch - min_(f2ch, P.abat_assvie * (1 + maries_ou_pacses))
+        dividendes_apres_abattements = max_(f2dc * (1 - parameter_rvcm.taux_abattement_capitaux_mobiliers * (f2da == 0)) - part_frais_imputes_sur_f2dc, 0)
+        revenus_assurance_vie_apres_abattements = f2ch - min_(f2ch, parameter_rvcm.abat_assvie * (1 + maries_ou_pacses))
         rvcm_apres_abattements_proportionnels = (
             revenus_assurance_vie_apres_abattements
             + dividendes_apres_abattements
             + f2gr
-            + f2fu * (1 - P.taux_abattement_capitaux_mobiliers * (f2da == 0))
+            + f2fu * (1 - parameter_rvcm.taux_abattement_capitaux_mobiliers * (f2da == 0))
             )
-        rvcm_apres_abattements_proportionnels_et_fixes = max_(0, rvcm_apres_abattements_proportionnels - P.abatmob * (1 + maries_ou_pacses))
+        rvcm_apres_abattements_proportionnels_et_fixes = max_(0, rvcm_apres_abattements_proportionnels - parameter_rvcm.abatmob * (1 + maries_ou_pacses))
         autres_rvcm_sans_abattements = (
             f2ts - (f2ca - part_frais_imputes_sur_f2dc)
-            + f2go * P.majoration_revenus_reputes_distribues
+            + f2go * parameter_rvcm.majoration_revenus_reputes_distribues
             + f2tr - part_frais_restant_a_imputer
             )
 
