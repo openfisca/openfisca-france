@@ -709,11 +709,10 @@ class revenu_categoriel_capital(Variable):
         f2tr = foyer_fiscal('f2tr', period)
         P = parameters(period).impot_revenu.rvcm
 
-        den = ((f2dc + f2ts) != 0) * (f2dc + f2ts) + ((f2dc + f2ts) == 0)
-        F1 = f2ca / den * f2dc
-        g12a = -min_(f2dc * (1 - P.taux_abattement_capitaux_mobiliers * (f2da == 0)) - F1, 0)
+        part_frais_imputes_sur_f2dc = f2ca / max_(1, f2dc + f2ts) * f2dc
+        part_frais_restant_a_imputer = -min_(f2dc * (1 - P.taux_abattement_capitaux_mobiliers * (f2da == 0)) - part_frais_imputes_sur_f2dc, 0)
 
-        dividendes_apres_abattements = max_(f2dc * (1 - P.taux_abattement_capitaux_mobiliers * (f2da == 0)) - F1, 0)
+        dividendes_apres_abattements = max_(f2dc * (1 - P.taux_abattement_capitaux_mobiliers * (f2da == 0)) - part_frais_imputes_sur_f2dc, 0)
         revenus_assurance_vie_apres_abattements = f2ch - min_(f2ch, P.abat_assvie * (1 + maries_ou_pacses))
         rvcm_apres_abattements_proportionnels = (
             revenus_assurance_vie_apres_abattements
@@ -723,9 +722,9 @@ class revenu_categoriel_capital(Variable):
             )
         rvcm_apres_abattements_proportionnels_et_fixes = max_(0, rvcm_apres_abattements_proportionnels - P.abatmob * (1 + maries_ou_pacses))
         autres_rvcm_sans_abattements = (
-            f2ts - (f2ca - F1)
+            f2ts - (f2ca - part_frais_imputes_sur_f2dc)
             + f2go * P.majoration_revenus_reputes_distribues
-            + f2tr - g12a
+            + f2tr - part_frais_restant_a_imputer
             )
 
         return max_(rvcm_apres_abattements_proportionnels_et_fixes + autres_rvcm_sans_abattements - deficit_rcm, 0)
