@@ -1,5 +1,15 @@
 # Changelog
 
+### 48.10.2 [#1410](https://github.com/openfisca/openfisca-france/pull/1410)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : jusqu'au 01/01/2013.
+* `model/prelevements_obligatoires/impot_revenu/ir.py`.
+* Détails :
+  - Ajoute un test sur les abattements sur dividendes
+  - Simplifie le calcul du revenu catégoriel du capital
+  - Corrige l'application de l'abattement sur dividendes
+
 ### 48.10.1 [#1409](https://github.com/openfisca/openfisca-france/pull/1409)
 
 * Évolution du système socio-fiscal.
