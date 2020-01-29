@@ -1,4 +1,4 @@
-- name: abat_dividendes_only_bareme
+- name: Impôt sur le revenu avant 2013 - Déclaration avec option barème progressif uniquement (abattement de 40%)
   period: 2012
   absolute_error_margin: 1
   input:
@@ -37,7 +37,7 @@
     rbg: 194000.0
     rfr: 198000.0
     rni: 194000.0
-- name: abat_dividendes_mixtes
+- name: Impôt sur le revenu avant 2013 - Déclaration avec option barème progressif et PFL (pas d'abattement de 40%)
   period: 2012
   absolute_error_margin: 1
   input:
