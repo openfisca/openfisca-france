@@ -1,5 +1,11 @@
 # Changelog
 
+### 42.10.3 [#1407](https://github.com/openfisca/openfisca-france/pull/1407)
+
+* Mise à jour de dépendances
+* Détails :
+  - Met à jour `autopep8`
+
 ### 48.10.2 [#1410](https://github.com/openfisca/openfisca-france/pull/1410)
 
 * Évolution du système socio-fiscal.
