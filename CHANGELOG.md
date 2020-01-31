@@ -1,5 +1,13 @@
 # Changelog
 
+### 48.10.3 [#14101412](https://github.com/openfisca/openfisca-france/pull/1412)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/02/2020.
+* Zones impactées : `parameters/epargne/livret_a/taux.yaml`.
+* Détails :
+  - Le taux du livret A passera de 0,75% à 0,5% à partir du 1er février 2020.
+
 ### 48.10.2 [#1410](https://github.com/openfisca/openfisca-france/pull/1410)
 
 * Évolution du système socio-fiscal.
