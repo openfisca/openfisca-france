@@ -500,6 +500,7 @@ class rsa_revenu_activite_individu(Variable):
         types_revenus_activite = [
             'salaire_net',
             'indemnites_chomage_partiel',
+            'remuneration_apprenti',
             'indemnites_volontariat',
             'revenus_stage_formation_pro',
             'bourse_recherche',
