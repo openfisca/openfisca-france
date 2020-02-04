@@ -602,3 +602,73 @@
         age: 35
   output:
     rsa: 826.40 - 200
+
+- name: RSA avec revenu d'apprenti
+  period: 2020-04
+  absolute_error_margin: 0.03
+  input:
+    famille:
+      parents: [personne1]
+      aide_logement:
+        2020-04: 250
+        2020-03: 250
+        2020-02: 250
+        2020-01: 250
+    foyer_fiscal:
+      declarants: [personne1]
+    menage:
+      personne_de_reference: personne1
+      statut_occupation_logement: locataire_vide
+    individus:
+      personne1:
+        date_naissance: 1980-01-01
+        remuneration_apprenti:
+          2020-04: 960
+          2020-03: 960
+          2020-02: 960
+          2020-01: 960
+        salaire_imposable:
+          2020-04: 0
+          2020-03: 0
+          2020-02: 0
+          2020-01: 0
+  output:
+    rsa_forfait_logement: 67.17
+    rsa_base_ressources: 960
+    rsa: 0
+
+
+- name: RSA avec revenu d'apprenti - la condition d'accés est remplie sur les 3 ans qui précède la demande soit les 3214 heures d'activité
+  period: 2020-04
+  absolute_error_margin: 0.03
+  input:
+    famille:
+      parents: [personne1]
+      aide_logement:
+        2020-04: 120
+        2020-03: 120
+        2020-02: 120
+        2020-01: 120
+    foyer_fiscal:
+      declarants: [personne1]
+    menage:
+      personne_de_reference: personne1
+      statut_occupation_logement: locataire_vide
+    individus:
+      personne1:
+        date_naissance: 2000-01-01
+        remuneration_apprenti:
+          2020-04: 943
+          2020-03: 943
+          2020-02: 943
+          2020-01: 943
+        rsa_jeune_condition_heures_travail_remplie: true
+        salaire_imposable:
+          2020-04: 0
+          2020-03: 0
+          2020-02: 0
+          2020-01: 0
+  output:
+    rsa_forfait_logement: 67.17
+    rsa_base_ressources: 943
+    rsa: 0
