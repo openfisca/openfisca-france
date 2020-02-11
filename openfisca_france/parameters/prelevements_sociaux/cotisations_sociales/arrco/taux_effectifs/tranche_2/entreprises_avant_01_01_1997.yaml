@@ -1,23 +1,24 @@
-reference: https://www.ipp.eu/outils/baremes-ipp/
-unit: /1
+metadata:
+  unit: /1
+  reference: https://www.ipp.eu/outils/baremes-ipp/
 values:
-  1996-01-01:
-    value: 0.05625
-  1997-01-01:
-    value: 0.0625
-  1998-01-01:
-    value: 0.06875
-  1999-01-01:
-    value: 0.075
-  2000-01-01:
-    value: 0.125
-  2002-01-01:
-    value: 0.15
-  2004-01-01:
-    value: 0.175
-  2005-01-01:
-    value: 0.2
-  2014-01-01:
-    value: 0.20125
-  2015-01-01:
+  '2015-01-01':
     value: 0.2025
+  '2014-01-01':
+    value: 0.20125
+  '2005-01-01':
+    value: 0.2
+  '2004-01-01':
+    value: 0.175
+  '2002-01-01':
+    value: 0.15
+  '2000-01-01':
+    value: 0.125
+  '1999-01-01':
+    value: 0.075
+  '1998-01-01':
+    value: 0.06875
+  '1997-01-01':
+    value: 0.0625
+  '1996-01-01':
+    value: 0.05625

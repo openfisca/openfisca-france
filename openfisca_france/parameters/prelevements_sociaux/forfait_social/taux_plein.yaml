@@ -1,14 +1,15 @@
 description: Taux plein
-reference: https://www.ipp.eu/outils/baremes-ipp/
-unit: /1
+metadata:
+  unit: /1
+  reference: https://www.ipp.eu/outils/baremes-ipp/
 values:
-  2009-01-01:
-    value: 0.02
-  2010-01-01:
-    value: 0.04
-  2011-01-01:
-    value: 0.06
-  2012-01-01:
-    value: 0.08
-  2012-08-01:
+  '2012-08-01':
     value: 0.2
+  '2012-01-01':
+    value: 0.08
+  '2011-01-01':
+    value: 0.06
+  '2010-01-01':
+    value: 0.04
+  '2009-01-01':
+    value: 0.02

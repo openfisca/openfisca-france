@@ -1,5 +1,6 @@
 description: Âge minimal pour bénéficier de la PPA
-unit: year
+metadata:
+  unit: year
 values:
-  2015-10-01:
+  '2015-10-01':
     value: 18.0

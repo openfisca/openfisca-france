@@ -1,5 +1,6 @@
-reference: https://www.ipp.eu/outils/baremes-ipp/
+metadata:
+  unit: year
+  reference: https://www.ipp.eu/outils/baremes-ipp/
 values:
-  1985-12-22:
+  '1985-12-22':
     value: 20.0
-unit: year

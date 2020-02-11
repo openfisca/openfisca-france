@@ -1,8 +1,9 @@
 description: Taux
-reference: https://www.ipp.eu/outils/baremes-ipp/
-unit: /1
+metadata:
+  unit: /1
+  reference: https://www.ipp.eu/outils/baremes-ipp/
 values:
-  1998-01-01:
-    value: 0.25
-  2007-01-01:
+  '2007-01-01':
     value: null
+  '1998-01-01':
+    value: 0.25

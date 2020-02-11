@@ -1,0 +1,7 @@
+description: Limite d'âge (stricte) pour bénéficier de l'APE
+metadata:
+  unit: year
+  reference: https://www.ipp.eu/outils/baremes-ipp/
+values:
+  '1985-01-01':
+    value: 3.0

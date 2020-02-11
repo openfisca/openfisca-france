@@ -1,7 +1,9 @@
-description: Seuil de RFR à partir duquel un foyer ayant bénéficié d'un éco-prêt à taux zéro  ne peut pas bénéficier du crédit d'impôt
-unit: currency
+description: Seuil de RFR à partir duquel un foyer ayant bénéficié d'un éco-prêt à
+  taux zéro  ne peut pas bénéficier du crédit d'impôt
+metadata:
+  unit: currency
 values:
-  2009-01-01:
-    value: 45000.0
-  2012-01-01:
+  '2012-01-01':
     value: 30000.0
+  '2009-01-01':
+    value: 45000.0

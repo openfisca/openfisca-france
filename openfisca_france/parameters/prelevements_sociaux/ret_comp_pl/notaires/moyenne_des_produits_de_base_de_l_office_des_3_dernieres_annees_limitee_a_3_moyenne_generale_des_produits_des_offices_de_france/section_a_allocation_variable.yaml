@@ -1,0 +1,10 @@
+metadata:
+  unit: /1
+  reference: https://www.ipp.eu/outils/baremes-ipp/
+values:
+  '2005-01-01':
+    value: 0.045
+  '1962-01-01':
+    value: 0.025
+  '1949-01-01':
+    value: 0.05

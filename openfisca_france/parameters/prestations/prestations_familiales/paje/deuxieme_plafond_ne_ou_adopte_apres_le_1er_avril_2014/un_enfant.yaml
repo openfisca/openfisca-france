@@ -1,0 +1,8 @@
+metadata:
+  unit: currency
+  reference: https://www.ipp.eu/outils/baremes-ipp/
+values:
+  '2016-01-01':
+    value: 45575.0
+  '2015-01-01':
+    value: 45393.0

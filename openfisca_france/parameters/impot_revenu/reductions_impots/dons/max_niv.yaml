@@ -1,5 +1,6 @@
 description: Plafond en niveau par foyer
-unit: currency
+metadata:
+  unit: currency
 values:
-  2012-01-01:
+  '2012-01-01':
     value: 15000.0

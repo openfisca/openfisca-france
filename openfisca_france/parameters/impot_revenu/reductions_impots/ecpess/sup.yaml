@@ -1,8 +1,9 @@
 description: Supérieur
-reference: https://www.ipp.eu/outils/baremes-ipp/
-unit: currency
+metadata:
+  unit: currency
+  reference: https://www.ipp.eu/outils/baremes-ipp/
 values:
-  1992-01-01:
-    value: 1200.0
-  2001-01-01:
+  '2001-01-01':
     value: 183.0
+  '1992-01-01':
+    value: 1200.0

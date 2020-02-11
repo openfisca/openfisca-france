@@ -1,15 +1,16 @@
-reference: https://www.ipp.eu/outils/baremes-ipp/
-unit: /1
+metadata:
+  unit: /1
+  reference: https://www.ipp.eu/outils/baremes-ipp/
 values:
-  1930-07-01:
-    value: 0.04
-  1936-01-01:
-    value: 0.035
-  1937-01-01:
-    value: 0.04
-  1945-01-01:
-    value: 0.06
-  1948-07-01:
-    value: 0.02
-  1967-09-01:
+  '1967-09-01':
     value: null
+  '1948-07-01':
+    value: 0.02
+  '1945-01-01':
+    value: 0.06
+  '1937-01-01':
+    value: 0.04
+  '1936-01-01':
+    value: 0.035
+  '1930-07-01':
+    value: 0.04

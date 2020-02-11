@@ -1,0 +1,6 @@
+metadata:
+  unit: year
+  reference: https://www.ipp.eu/outils/baremes-ipp/
+values:
+  '1991-11-11':
+    value: 65.0

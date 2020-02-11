@@ -1,10 +1,11 @@
 description: Taux pour 2 enfants
-reference: https://www.ipp.eu/outils/baremes-ipp/
-unit: /1
+metadata:
+  unit: /1
+  reference: https://www.ipp.eu/outils/baremes-ipp/
 values:
-  2001-01-01:
-    value: 0.0257
-  2002-01-01:
-    value: 0.0297
-  2007-07-01:
+  '2007-07-01':
     value: 0.0238
+  '2002-01-01':
+    value: 0.0297
+  '2001-01-01':
+    value: 0.0257

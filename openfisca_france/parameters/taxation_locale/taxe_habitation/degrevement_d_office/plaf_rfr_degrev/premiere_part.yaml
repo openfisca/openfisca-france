@@ -1,0 +1,9 @@
+description: Plafonds de revenu fiscal de référence pour le dégrèvement d'office à
+  taux plein - 1ère part
+metadata:
+  unit: currency
+values:
+  '2019-01-01':
+    value: 27432.0
+  '2018-01-01':
+    value: 27000.0

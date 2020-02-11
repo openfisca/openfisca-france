@@ -1,6 +1,7 @@
 description: Taux de modulation de la tranche 2
-reference: https://www.ipp.eu/outils/baremes-ipp/
-unit: /1
+metadata:
+  unit: /1
+  reference: https://www.ipp.eu/outils/baremes-ipp/
 values:
-  2015-07-01:
+  '2015-07-01':
     value: 0.5

@@ -1,0 +1,11 @@
+description: Majoration par demi-part supplémentaire du plafond de revenu fiscal de
+  référence pour l'exonération de la taxe d'habitation
+metadata:
+  unit: currency
+values:
+  '2019-01-01':
+    value: 2934.0
+  '2018-01-01':
+    value: 2888.0
+  '2017-01-01':
+    value: 2859.0

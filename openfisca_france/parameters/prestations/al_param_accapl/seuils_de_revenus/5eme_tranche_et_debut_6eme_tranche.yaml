@@ -1,5 +1,6 @@
-reference: https://www.ipp.eu/outils/baremes-ipp/
-unit: currency
+metadata:
+  unit: currency
+  reference: https://www.ipp.eu/outils/baremes-ipp/
 values:
-  2007-07-01:
+  '2007-07-01':
     value: 6331.29

@@ -1,5 +1,6 @@
 description: Limite d'âge
-unit: year
+metadata:
+  unit: year
 values:
-  1976-08-01:
+  '1976-08-01':
     value: 20.0

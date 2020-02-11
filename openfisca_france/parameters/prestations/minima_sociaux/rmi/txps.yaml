@@ -1,5 +1,6 @@
 description: Taux par personne supplémentaire
-unit: /1
+metadata:
+  unit: /1
 values:
-  2002-01-01:
+  '2002-01-01':
     value: 0.4

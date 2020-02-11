@@ -1,8 +1,9 @@
 description: Plafond maximal d'abattement DOM - Guyane, Mayotte
-reference: https://www.ipp.eu/outils/baremes-ipp/
-unit: currency
+metadata:
+  unit: currency
+  reference: https://www.ipp.eu/outils/baremes-ipp/
 values:
-  2001-01-01:
-    value: 6700.0
-  2018-01-01:
+  '2018-01-01':
     value: 4050.0
+  '2001-01-01':
+    value: 6700.0

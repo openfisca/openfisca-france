@@ -1,5 +1,6 @@
-reference: https://www.ipp.eu/outils/baremes-ipp/
-unit: currency
+metadata:
+  unit: currency
+  reference: https://www.ipp.eu/outils/baremes-ipp/
 values:
-  2013-01-01:
+  '2013-01-01':
     value: 20.25

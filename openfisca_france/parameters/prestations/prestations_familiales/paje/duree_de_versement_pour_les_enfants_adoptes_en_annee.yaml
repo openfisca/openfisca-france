@@ -1,5 +1,6 @@
-reference: https://www.ipp.eu/outils/baremes-ipp/
-unit: year
+metadata:
+  unit: year
+  reference: https://www.ipp.eu/outils/baremes-ipp/
 values:
-  2004-01-01:
+  '2004-01-01':
     value: 3.0

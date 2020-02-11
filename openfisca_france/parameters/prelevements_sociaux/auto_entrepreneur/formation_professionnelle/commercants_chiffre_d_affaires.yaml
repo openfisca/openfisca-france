@@ -1,0 +1,6 @@
+metadata:
+  unit: /1
+  reference: https://www.ipp.eu/outils/baremes-ipp/
+values:
+  '2011-01-01':
+    value: 0.001

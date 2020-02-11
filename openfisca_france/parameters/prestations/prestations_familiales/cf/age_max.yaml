@@ -1,12 +1,13 @@
 description: Âge limite supérieur
-reference: https://www.ipp.eu/outils/baremes-ipp/
-unit: year
+metadata:
+  unit: year
+  reference: https://www.ipp.eu/outils/baremes-ipp/
 values:
-  1978-01-01:
-    value: 3.0
-  1986-07-01:
-    value: 17.0
-  1997-01-01:
-    value: 18.0
-  2000-02-01:
+  '2000-02-01':
     value: 21.0
+  '1997-01-01':
+    value: 18.0
+  '1986-07-01':
+    value: 17.0
+  '1978-01-01':
+    value: 3.0

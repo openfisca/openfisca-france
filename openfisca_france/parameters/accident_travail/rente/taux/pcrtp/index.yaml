@@ -1,0 +1,4 @@
+description: Montant de la prestation complémentaire versé en fonction de besoins
+  d'assistance
+metadata:
+  unit: currency

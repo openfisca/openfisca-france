@@ -1,0 +1,8 @@
+description: Taux forfaitaire général appliqué aux plus-values en report d'imposition
+  et dont le report a expiré.
+metadata:
+  unit: /1
+  reference: openfisca
+values:
+  '2016-01-01':
+    value: 0.24

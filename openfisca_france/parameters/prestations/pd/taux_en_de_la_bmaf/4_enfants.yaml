@@ -1,5 +1,6 @@
-reference: https://www.ipp.eu/outils/baremes-ipp/
-unit: /1
+metadata:
+  unit: /1
+  reference: https://www.ipp.eu/outils/baremes-ipp/
 values:
-  1976-08-01:
+  '1976-08-01':
     value: 2.6

@@ -1,5 +1,6 @@
 description: Par enfant mineur à charge
-unit: currency
+metadata:
+  unit: currency
 values:
-  2005-01-01:
+  '2005-01-01':
     value: 1500.0

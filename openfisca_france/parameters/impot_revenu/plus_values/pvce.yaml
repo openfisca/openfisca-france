@@ -1,0 +1,9 @@
+description: Plus value de cession (RPNS) 16%
+metadata:
+  unit: /1
+  reference: openfisca
+values:
+  '2017-01-01':
+    value: 0.128
+  '2002-01-01':
+    value: 0.16

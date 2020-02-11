@@ -1,8 +1,9 @@
 description: Taux de l'APJE
-reference: https://www.ipp.eu/outils/baremes-ipp/
-unit: /1
+metadata:
+  unit: /1
+  reference: https://www.ipp.eu/outils/baremes-ipp/
 values:
-  1985-01-01:
-    value: 0.4595
-  2004-01-01:
+  '2004-01-01':
     value: null
+  '1985-01-01':
+    value: 0.4595

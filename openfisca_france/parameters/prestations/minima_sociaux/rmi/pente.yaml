@@ -1,9 +1,10 @@
 description: Pente du RSA
-unit: /1
+metadata:
+  unit: /1
 values:
-  2002-01-01:
+  '2016-01-01':
     value: 0.0
-  2009-07-01:
+  '2009-07-01':
     value: 0.62
-  2016-01-01:
+  '2002-01-01':
     value: 0.0

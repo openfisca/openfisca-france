@@ -1,5 +1,6 @@
 description: Seuil de recouvrement avant imputations
-unit: currency
+metadata:
+  unit: currency
 values:
-  2002-01-01:
+  '2002-01-01':
     value: 61.0

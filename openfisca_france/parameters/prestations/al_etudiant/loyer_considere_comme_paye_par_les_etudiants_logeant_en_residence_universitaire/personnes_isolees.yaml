@@ -1,43 +1,42 @@
-reference: https://www.ipp.eu/outils/baremes-ipp/
-unit: currency
+metadata:
+  unit: currency
+  reference: https://www.ipp.eu/outils/baremes-ipp/
 values:
-  1994-07-01:
-    value: 416.0
-  1997-07-01:
-    value: 431.0
-  1998-07-01:
-    value: 441.0
-  1999-07-01:
-    value: 445.0
-  2000-07-01:
-    value: 449.0
-  2001-07-01:
-    value: 69.21
-  2002-07-01:
-    value: 70.04
-  2003-07-01:
-    value: 70.88
-  2005-09-01:
-    value: 72.16
-  2007-01-01:
-    value: 74.18
-  2008-01-01:
-    value: 76.23
-  2009-01-01:
-    value: 78.48
-  2010-01-01:
-    value: 78.73
-  2011-01-01:
-    value: 79.6
-  2012-01-01:
-    value: 80.4
-  2013-01-01:
-    value: 82.13
-  2014-10-01:
-    value: 82.6
-  2015-10-01:
-    reference: https://www.legifrance.gouv.fr/eli/arrete/2015/10/16/AFSS1524789A/jo/article_1
-    value: 82.67
-  2017-10-01:
-    reference: https://www.legifrance.gouv.fr/eli/arrete/2017/9/28/TERL1725443A/jo/article_11
+  '2017-10-01':
     value: 83.29
+  '2015-10-01':
+    value: 82.67
+  '2014-10-01':
+    value: 82.6
+  '2013-01-01':
+    value: 82.13
+  '2012-01-01':
+    value: 80.4
+  '2011-01-01':
+    value: 79.6
+  '2010-01-01':
+    value: 78.73
+  '2009-01-01':
+    value: 78.48
+  '2008-01-01':
+    value: 76.23
+  '2007-01-01':
+    value: 74.18
+  '2005-09-01':
+    value: 72.16
+  '2003-07-01':
+    value: 70.88
+  '2002-07-01':
+    value: 70.04
+  '2001-07-01':
+    value: 69.21
+  '2000-07-01':
+    value: 449.0
+  '1999-07-01':
+    value: 445.0
+  '1998-07-01':
+    value: 441.0
+  '1997-07-01':
+    value: 431.0
+  '1994-07-01':
+    value: 416.0

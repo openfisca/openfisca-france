@@ -1,6 +1,8 @@
-description: Taux de la partie du prélèvement forfaitaire unique associé à l'impôt sur le revenu
-reference: https://www.ipp.eu/outils/baremes-ipp/ (hors parser des barèmes)
-unit: /1
+description: Taux de la partie du prélèvement forfaitaire unique associé à l'impôt
+  sur le revenu
+metadata:
+  unit: /1
+  reference: https://www.ipp.eu/outils/baremes-ipp/ (hors parser des barèmes)
 values:
-  2018-01-01:
+  '2018-01-01':
     value: 0.128

@@ -1,0 +1,10 @@
+description: Activité entre 50% et 80% de la durée légale du travail en % de la base
+  mensuelle des allocations familiales (BMAF)
+metadata:
+  unit: /1
+  reference: https://www.ipp.eu/outils/baremes-ipp/
+values:
+  '1987-04-01':
+    value: 0.7129
+  '1985-01-01':
+    value: 0.451

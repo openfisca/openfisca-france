@@ -1,0 +1,41 @@
+brackets:
+- amount:
+    '2019-01-01':
+      value: 277
+    '2017-01-01':
+      value: 227
+  threshold:
+    '2017-01-01':
+      value: 0
+- amount:
+    '2019-01-01':
+      value: 202
+    '2017-01-01':
+      value: 152
+  threshold:
+    '2017-01-01':
+      value: 5600
+- amount:
+    '2019-01-01':
+      value: 126
+    '2017-01-01':
+      value: 76
+  threshold:
+    '2017-01-01':
+      value: 6700
+- amount:
+    '2019-01-01':
+      value: 76
+    '2017-01-01':
+      value: 0
+  threshold:
+    '2017-01-01':
+      value: 7700
+- amount:
+    '2019-01-01':
+      value: 0
+  threshold:
+    '2019-01-01':
+      value: 10700
+metadata:
+  type: single_amount

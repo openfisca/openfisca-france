@@ -1,12 +1,13 @@
 description: Plafond
-reference: https://www.ipp.eu/outils/baremes-ipp/
-unit: /1
+metadata:
+  unit: /1
+  reference: https://www.ipp.eu/outils/baremes-ipp/
 values:
-  1996-01-01:
-    value: 0.05
-  1999-01-01:
-    value: 0.06
-  2001-01-01:
-    value: 0.1
-  2002-01-01:
+  '2002-01-01':
     value: 0.2
+  '2001-01-01':
+    value: 0.1
+  '1999-01-01':
+    value: 0.06
+  '1996-01-01':
+    value: 0.05

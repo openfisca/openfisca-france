@@ -1,0 +1,7 @@
+metadata:
+  reference: https://www.ipp.eu/outils/baremes-ipp/
+values:
+  '1987-04-01':
+    value: 120.0
+  '1985-01-01':
+    value: 30.0

@@ -1,2 +1,3 @@
 description: Frais d'accueil d'une personne de plus de 75 ans
-reference: https://www.ipp.eu/outils/baremes-ipp/
+metadata:
+  reference: https://www.ipp.eu/outils/baremes-ipp/

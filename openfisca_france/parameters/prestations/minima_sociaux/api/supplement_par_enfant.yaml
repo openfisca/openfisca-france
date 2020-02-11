@@ -1,10 +1,11 @@
 description: Majoration de taux par enfant supplémentaire (en pourcentage de la BMAF)
-reference: https://www.ipp.eu/outils/baremes-ipp/
-unit: /1
+metadata:
+  unit: /1
+  reference: https://www.ipp.eu/outils/baremes-ipp/
 values:
-  1976-10-01:
-    value: 0.44
-  1977-11-27:
-    value: 0.5
-  2009-06-01:
+  '2009-06-01':
     value: null
+  '1977-11-27':
+    value: 0.5
+  '1976-10-01':
+    value: 0.44

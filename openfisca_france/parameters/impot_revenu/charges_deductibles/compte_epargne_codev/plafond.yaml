@@ -1,8 +1,9 @@
 description: Limite de y euros par personne
-reference: https://www.ipp.eu/outils/baremes-ipp/
-unit: currency
+metadata:
+  unit: currency
+  reference: https://www.ipp.eu/outils/baremes-ipp/
 values:
-  2007-01-01:
-    value: 20000.0
-  2009-01-01:
+  '2009-01-01':
     value: null
+  '2007-01-01':
+    value: 20000.0

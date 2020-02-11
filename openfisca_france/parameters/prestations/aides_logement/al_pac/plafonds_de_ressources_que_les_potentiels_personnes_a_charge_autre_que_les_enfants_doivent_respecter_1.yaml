@@ -1,0 +1,10 @@
+metadata:
+  unit: currency
+  reference: https://www.ipp.eu/outils/baremes-ipp/
+values:
+  '2018-01-01':
+    value: 9609.6
+  '2007-07-01':
+    value: 9600.0
+  '1991-11-11':
+    value: 6997.0

@@ -1,16 +1,18 @@
-description: Taux pour les collégiens en % de la base mensuelle des allocations familiales (BMAF)
-reference: https://www.ipp.eu/outils/baremes-ipp/
-unit: /1
+description: Taux pour les collégiens en % de la base mensuelle des allocations familiales
+  (BMAF)
+metadata:
+  unit: /1
+  reference: https://www.ipp.eu/outils/baremes-ipp/
 values:
-  1978-01-01:
-    value: 0.2
-  1995-08-01:
-    value: 0.3223
-  1997-08-01:
-    value: 0.2
-  2001-08-01:
-    value: 0.7322
-  2008-08-03:
-    value: 0.7649
-  2012-09-03:
+  '2012-09-03':
     value: 0.9467
+  '2008-08-03':
+    value: 0.7649
+  '2001-08-01':
+    value: 0.7322
+  '1997-08-01':
+    value: 0.2
+  '1995-08-01':
+    value: 0.3223
+  '1978-01-01':
+    value: 0.2

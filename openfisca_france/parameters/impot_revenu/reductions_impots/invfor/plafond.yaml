@@ -1,6 +1,7 @@
 description: Plafond de dépenses d'acquisition
-reference: https://www.ipp.eu/outils/baremes-ipp/
-unit: currency
+metadata:
+  unit: currency
+  reference: https://www.ipp.eu/outils/baremes-ipp/
 values:
-  2001-01-01:
+  '2001-01-01':
     value: 5700.0

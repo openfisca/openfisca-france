@@ -1,7 +1,8 @@
 description: Prime de solidarité active
-unit: currency
+metadata:
+  unit: currency
 values:
-  2009-01-01:
-    value: 200.0
-  2010-01-01:
+  '2010-01-01':
     value: null
+  '2009-01-01':
+    value: 200.0

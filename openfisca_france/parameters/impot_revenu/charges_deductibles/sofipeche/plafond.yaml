@@ -1,10 +1,11 @@
 description: Maximum
-reference: https://www.ipp.eu/outils/baremes-ipp/
-unit: currency
+metadata:
+  unit: currency
+  reference: https://www.ipp.eu/outils/baremes-ipp/
 values:
-  1998-01-01:
-    value: 125000.0
-  2001-01-01:
-    value: 19000.0
-  2007-01-01:
+  '2007-01-01':
     value: null
+  '2001-01-01':
+    value: 19000.0
+  '1998-01-01':
+    value: 125000.0

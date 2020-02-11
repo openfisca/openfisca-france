@@ -1,0 +1,11 @@
+description: Abattement du revenu fiscal de référence pour le plafonnement de la taxe
+  d'habitation - 1ère part
+metadata:
+  unit: currency
+values:
+  '2019-01-01':
+    value: 5604.0
+  '2018-01-01':
+    value: 5516.0
+  '2017-01-01':
+    value: 5461.0

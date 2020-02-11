@@ -1,0 +1,7 @@
+description: Taux pour recours à une garde à domicile avant le second plafond
+metadata:
+  unit: /1
+  reference: https://www.ipp.eu/outils/baremes-ipp/
+values:
+  '2004-01-01':
+    value: 1.7976

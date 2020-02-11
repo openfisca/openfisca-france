@@ -1,12 +1,13 @@
 description: Taux
-reference: https://www.ipp.eu/outils/baremes-ipp/
-unit: /1
+metadata:
+  unit: /1
+  reference: https://www.ipp.eu/outils/baremes-ipp/
 values:
-  1989-01-01:
-    value: 0.4
-  1996-01-01:
-    value: 0.5
-  2002-01-01:
-    value: 0.6
-  2005-01-01:
+  '2005-01-01':
     value: 0.66
+  '2002-01-01':
+    value: 0.6
+  '1996-01-01':
+    value: 0.5
+  '1989-01-01':
+    value: 0.4

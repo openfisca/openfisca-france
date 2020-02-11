@@ -1,0 +1,12 @@
+description: Cessation complète d'activité à plein temps en % de la base mensuelle
+  des allocations familiales (BMAF)
+metadata:
+  unit: /1
+  reference: https://www.ipp.eu/outils/baremes-ipp/
+values:
+  '1987-04-01':
+    value: 1.4257
+  '1986-07-01':
+    value: 0.902
+  '1985-01-01':
+    value: 0.624

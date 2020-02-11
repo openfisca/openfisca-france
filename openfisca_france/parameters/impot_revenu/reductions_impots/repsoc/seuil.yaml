@@ -1,7 +1,8 @@
 description: Seuil
-unit: currency
+metadata:
+  unit: currency
 values:
-  2004-01-01:
-    value: 10000.0
-  2008-01-01:
+  '2008-01-01':
     value: 20000.0
+  '2004-01-01':
+    value: 10000.0

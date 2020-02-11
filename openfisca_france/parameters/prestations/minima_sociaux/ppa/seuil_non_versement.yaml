@@ -1,6 +1,7 @@
 description: Seuil de non versement de la PPA
-reference: https://www.ipp.eu/outils/baremes-ipp/
-unit: currency
+metadata:
+  unit: currency
+  reference: https://www.ipp.eu/outils/baremes-ipp/
 values:
-  2015-10-01:
+  '2015-10-01':
     value: 15.0

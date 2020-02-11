@@ -1,0 +1,7 @@
+description: Taux pour recours à un emploi direct avant le second plafond
+metadata:
+  unit: /1
+  reference: https://www.ipp.eu/outils/baremes-ipp/
+values:
+  '2004-01-01':
+    value: 0.7191

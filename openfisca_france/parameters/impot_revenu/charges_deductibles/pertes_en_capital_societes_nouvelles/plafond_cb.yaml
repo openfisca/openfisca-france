@@ -1,10 +1,11 @@
 description: Case CB
-reference: https://www.ipp.eu/outils/baremes-ipp/
-unit: currency
+metadata:
+  unit: currency
+  reference: https://www.ipp.eu/outils/baremes-ipp/
 values:
-  1994-01-01:
-    value: 100000.0
-  2001-01-01:
-    value: 15250.0
-  2007-01-01:
+  '2007-01-01':
     value: null
+  '2001-01-01':
+    value: 15250.0
+  '1994-01-01':
+    value: 100000.0

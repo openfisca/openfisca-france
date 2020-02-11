@@ -1,10 +1,11 @@
 description: Premier taux
-reference: https://www.ipp.eu/outils/baremes-ipp/
-unit: /1
+metadata:
+  unit: /1
+  reference: https://www.ipp.eu/outils/baremes-ipp/
 values:
-  1997-01-01:
-    value: 0.25
-  2011-01-01:
-    value: 0.22
-  2012-01-01:
+  '2012-01-01':
     value: 0.18
+  '2011-01-01':
+    value: 0.22
+  '1997-01-01':
+    value: 0.25

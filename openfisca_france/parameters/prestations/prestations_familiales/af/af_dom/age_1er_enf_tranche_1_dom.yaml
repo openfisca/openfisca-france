@@ -1,0 +1,9 @@
+description: Âge de début de la 1ere majoration
+metadata:
+  unit: year
+  reference: https://www.ipp.eu/outils/baremes-ipp/
+values:
+  '1999-01-01':
+    value: 11.0
+  '1991-08-06':
+    value: 10.0

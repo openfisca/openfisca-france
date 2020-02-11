@@ -1,0 +1,8 @@
+description: Taux pour recours à une assistante maternelle, une association, une entreprise
+  ou une microcréche après le second plafond
+metadata:
+  unit: /1
+  reference: https://www.ipp.eu/outils/baremes-ipp/
+values:
+  '2004-01-01':
+    value: 1.1505

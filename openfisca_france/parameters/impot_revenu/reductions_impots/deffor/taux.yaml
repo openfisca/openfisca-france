@@ -1,5 +1,6 @@
 description: Taux
-unit: /1
+metadata:
+  unit: /1
 values:
-  2006-01-01:
+  '2006-01-01':
     value: 0.5

@@ -1,5 +1,6 @@
 description: Prime 1er personne à charge, famille monoparentale
-unit: currency
+metadata:
+  unit: currency
 values:
-  2007-01-01:
+  '2007-01-01':
     value: 72.0

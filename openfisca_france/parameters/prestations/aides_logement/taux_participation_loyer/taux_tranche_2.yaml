@@ -1,8 +1,9 @@
 description: Tranche 45-75%
-reference: https://www.ipp.eu/outils/baremes-ipp/
-unit: /1
+metadata:
+  unit: /1
+  reference: https://www.ipp.eu/outils/baremes-ipp/
 values:
-  2001-01-01:
-    value: 0.0056
-  2007-07-01:
+  '2007-07-01':
     value: 0.0045
+  '2001-01-01':
+    value: 0.0056

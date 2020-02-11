@@ -1,6 +1,7 @@
 description: Allocation forfaitaire par enfant de 20 ans
-reference: https://www.ipp.eu/outils/baremes-ipp/
-unit: /1
+metadata:
+  unit: /1
+  reference: https://www.ipp.eu/outils/baremes-ipp/
 values:
-  2003-07-01:
+  '2003-07-01':
     value: 0.20234

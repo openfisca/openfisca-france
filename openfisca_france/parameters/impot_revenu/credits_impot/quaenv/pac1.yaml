@@ -1,5 +1,6 @@
 description: Majoration du plafond pour le 1er enfant
-unit: currency
+metadata:
+  unit: currency
 values:
-  2002-01-01:
+  '2002-01-01':
     value: 400.0

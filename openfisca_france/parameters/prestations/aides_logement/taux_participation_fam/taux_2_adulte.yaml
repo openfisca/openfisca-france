@@ -1,10 +1,11 @@
 description: Taux pour 2 adultes
-reference: https://www.ipp.eu/outils/baremes-ipp/
-unit: /1
+metadata:
+  unit: /1
+  reference: https://www.ipp.eu/outils/baremes-ipp/
 values:
-  2001-01-01:
-    value: 0.0331
-  2002-01-01:
-    value: 0.0394
-  2007-07-01:
+  '2007-07-01':
     value: 0.0315
+  '2002-01-01':
+    value: 0.0394
+  '2001-01-01':
+    value: 0.0331

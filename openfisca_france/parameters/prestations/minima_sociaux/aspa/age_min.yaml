@@ -1,5 +1,6 @@
 description: Âge minimal requis
-unit: year
+metadata:
+  unit: year
 values:
-  2002-01-01:
+  '2002-01-01':
     value: 65.0

@@ -1,0 +1,12 @@
+metadata:
+  unit: currency
+  reference: https://www.ipp.eu/outils/baremes-ipp/
+values:
+  '2013-01-01':
+    value: null
+  '2009-01-01':
+    value: 152500.0
+  '2001-01-01':
+    value: 152000.0
+  '2000-01-01':
+    value: 1000000.0

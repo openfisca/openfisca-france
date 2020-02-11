@@ -1,8 +1,10 @@
-description: Allocation de base en % de la base mensuelle des allocations familiales (BMAF)
-reference: https://www.ipp.eu/outils/baremes-ipp/
-unit: /1
+description: Allocation de base en % de la base mensuelle des allocations familiales
+  (BMAF)
+metadata:
+  unit: /1
+  reference: https://www.ipp.eu/outils/baremes-ipp/
 values:
-  2004-01-01:
-    value: 0.4595
-  2018-04-01:
+  '2018-04-01':
     value: 0.4165
+  '2004-01-01':
+    value: 0.4595

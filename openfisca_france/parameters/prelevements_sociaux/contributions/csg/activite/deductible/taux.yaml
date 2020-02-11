@@ -1,10 +1,11 @@
 description: taux de la CSG déductible
-reference: https://www.ipp.eu/outils/baremes-ipp/
-unit: /1
+metadata:
+  unit: /1
+  reference: https://www.ipp.eu/outils/baremes-ipp/
 values:
-  1997-01-01:
-    value: 0.01
-  1998-01-01:
-    value: 0.051
-  2018-01-01:
+  '2018-01-01':
     value: 0.068
+  '1998-01-01':
+    value: 0.051
+  '1997-01-01':
+    value: 0.01

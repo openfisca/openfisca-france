@@ -1,7 +1,8 @@
-reference: https://www.ipp.eu/outils/baremes-ipp/
-unit: currency
+metadata:
+  unit: currency
+  reference: https://www.ipp.eu/outils/baremes-ipp/
 values:
-  1957-01-01:
-    value: 6000000.0
-  1968-01-01:
+  '1968-01-01':
     value: null
+  '1957-01-01':
+    value: 6000000.0
