@@ -1,5 +1,13 @@
 # Changelog
 
+### 48.10.4 [#1415](https://github.com/openfisca/openfisca-france/pull/1415)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2019.
+* Zones impactées : `parameters/impot_revenu/bareme.yaml`.
+* Détails :
+  -  Ajout du barème de l'impôt sur les revenus 2019 et 2020.
+
 ### 48.10.3 [#14101412](https://github.com/openfisca/openfisca-france/pull/1412)
 
 * Évolution du système socio-fiscal.
