@@ -1,6 +1,6 @@
 # Changelog
 
-### 48.10.5 
+### 48.10.5
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 01/01/2019.
@@ -16,7 +16,7 @@
 * Détails :
   -  Ajout du barème de l'impôt sur les revenus 2019 et 2020.
 
-### 48.10.3 [#14101412](https://github.com/openfisca/openfisca-france/pull/1412)
+### 48.10.3 [#1412](https://github.com/openfisca/openfisca-france/pull/1412)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 01/02/2020.
