@@ -1,5 +1,13 @@
 # Changelog
 
+### 48.10.5 
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2019.
+* Zones impactées : `parameters/impot_revenu/bareme.yaml`.
+* Détails :
+  -  Corrige d'un euro les seuils du barème de l'impôt sur les revenus 2019 et 2020.
+
 ### 48.10.4 [#1415](https://github.com/openfisca/openfisca-france/pull/1415)
 
 * Évolution du système socio-fiscal.
@@ -20,7 +28,7 @@
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : jusqu'au 01/01/2013.
-* `model/prelevements_obligatoires/impot_revenu/ir.py`.
+* Zones impactées : `model/prelevements_obligatoires/impot_revenu/ir.py`.
 * Détails :
   - Ajoute un test sur les abattements sur dividendes
   - Simplifie le calcul du revenu catégoriel du capital
