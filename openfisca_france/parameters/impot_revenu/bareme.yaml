@@ -1,6 +1,7 @@
-description: Tranches de l'IR
-reference: Barèmes IPP - https://www.ipp.eu/wp-content/uploads/2017/07/baremes-ipp-impot-revenu-income-tax.xlsx
+description: Barème progressif de l'impôt sur le revenu applicable aux revenus des années indiquées
 metadata:
+  reference: https://www.ipp.eu/baremes-ipp/impot-sur-le-revenu/bareme_ir_depuis_1945/bareme_ir/
+  type: marginal_rate
   threshold_unit: currency
   rate_unit: /1
 brackets:
@@ -153,7 +154,7 @@ brackets:
     2018-01-01:
       value: 9964.0
     2019-01-01:
-      value: 10065.0
+      value: 10064.0
 - rate:
     1945-01-01:
       value: 0.3
@@ -299,9 +300,9 @@ brackets:
     2018-01-01:
       value: 27519.0
     2019-01-01:
-      value: 27795.0
+      value: 27794.0
     2020-01-01:
-      value: 25660.0
+      value: 25659.0
 - rate:
     1945-01-01:
       value: 0.45
@@ -447,9 +448,9 @@ brackets:
     2018-01-01:
       value: 73779.0
     2019-01-01:
-      value: 74518.0
+      value: 74517.0
     2020-01-01:
-      value: 73370.0
+      value: 73369.0
 - rate:
     1945-01-01:
       value: 0.6
@@ -599,7 +600,7 @@ brackets:
     2018-01-01:
       value: 156244.0
     2019-01-01:
-      value: 157807.0
+      value: 157806.0
 - rate:
     1947-01-01:
       value: 0.6
