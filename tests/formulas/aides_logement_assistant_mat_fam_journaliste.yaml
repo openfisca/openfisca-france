@@ -1,4 +1,4 @@
-- name: "Cas 1, abattement journaliste"
+- name: "Cas 1, abattement journaliste sur 4 mois"
   period: 2021-01
   relative_error_margin: 0.01
   input:
@@ -7,24 +7,75 @@
     menage:
       personne_de_reference: parent1
       statut_occupation_logement: locataire_vide
-      zone_apl: zone_1
-      loyer: 500
+      zone_apl: zone_2
+      loyer: 750
+      charges_locatives: 50
     individus:
       parent1:
         date_naissance: 1968-01-10
         salaire_imposable:
-          2020-12: 2000
-          2020-11: 2000
-          2020-10: 2000
-          2020-09: 2000
-          2020-08: 2000
-          2020-07: 2000
-          2020-06: 2000
-          2020-05: 2000
-          2020-04: 2000
-          2020-03: 2000
-          2020-02: 2000
-          2020-01: 2000
+          2020-12: 2250
+          2020-11: 2250
+          2020-10: 2250
+          2020-09: 2250
+          2020-08: 1100
+          2020-07: 1100
+          2020-06: 1100
+          2020-05: 1100
+          2020-04: 1100
+          2020-03: 1100
+          2020-02: 1100
+          2020-01: 1100
+        journaliste:
+          2020-12: true
+          2020-11: true
+          2020-10: true
+          2020-09: true
+          2020-08: false
+          2020-07: false
+          2020-06: false
+          2020-05: false
+          2020-04: false
+          2020-03: false
+          2020-02: false
+          2020-01: false
+    foyer_fiscal:
+      declarants: parent1
+  output:
+    aide_logement_base_ressources: 13725
+    aide_logement: 0
+
+- name: "Cas 2, abattement journaliste sur les 12 mois"
+  period: 2021-01
+  relative_error_margin: 0.01
+  input:
+    famille:
+      parents: [parent1, parent2]
+      enfants: [enfant1, enfant2]
+    menage:
+      personne_de_reference: parent1
+      conjoint: parent2
+      enfants: [enfant1, enfant2]
+      statut_occupation_logement: locataire_vide
+      zone_apl: zone_2
+      loyer: 850
+      charges_locatives: 20
+    individus:
+      parent1:
+        date_naissance: 1985-01-10
+        salaire_imposable:
+          2020-12: 2600
+          2020-11: 2600
+          2020-10: 2600
+          2020-09: 2600
+          2020-08: 2600
+          2020-07: 2600
+          2020-06: 2600
+          2020-05: 2600
+          2020-04: 2600
+          2020-03: 2700
+          2020-02: 2700
+          2020-01: 2700
         journaliste:
           2020-12: true
           2020-11: true
@@ -33,17 +84,38 @@
           2020-08: true
           2020-07: true
           2020-06: true
-          2020-05: false
-          2020-04: false
-          2020-03: false
-          2020-02: false
-          2020-01: false
+          2020-05: true
+          2020-04: true
+          2020-03: true
+          2020-02: true
+          2020-01: true
+      parent2:
+        date_naissance: 1988-01-01
+        salaire_imposable:
+          2020-12: 0
+          2020-11: 0
+          2020-10: 0
+          2020-09: 0
+          2020-08: 0
+          2020-07: 0
+          2020-06: 0
+          2020-05: 0
+          2020-04: 0
+          2020-03: 0
+          2020-02: 0
+          2020-01: 0
+      enfant1:
+        date_naissance: 2014-01-01
+      enfant2:
+        date_naissance: 2016-01-01
     foyer_fiscal:
-      declarants: parent1
+      declarants: [parent1, parent2]
+      personnes_a_charge: [enfant1, enfant2]
   output:
-    al_revenu_assimile_salaire_apres_abattements: 24000 - (637.5*7)
+    aide_logement_base_ressources: 21465
+    aide_logement: 75.85
 
-- name: "Cas 2, abattement assistant maternel"
+- name: "Cas 3, abattement assistant maternel sur les 12 mois"
   period: 2021-01
   relative_error_margin: 0.01
   input:
@@ -52,43 +124,184 @@
     menage:
       personne_de_reference: parent1
       statut_occupation_logement: locataire_vide
-      zone_apl: zone_1
+      zone_apl: zone_2
       loyer: 500
+      charges_locatives: 50
     individus:
       parent1:
-        date_naissance: 1968-01-10
+        date_naissance: 1985-01-10
         salaire_imposable:
-          2020-12: 2000
-          2020-11: 2000
-          2020-10: 2000
-          2020-09: 2000
-          2020-08: 2000
-          2020-07: 2000
-          2020-06: 2000
-          2020-05: 2000
-          2020-04: 2000
-          2020-03: 2000
-          2020-02: 2000
-          2020-01: 2000
+          2020-12: 1250
+          2020-11: 1250
+          2020-10: 1250
+          2020-09: 1250
+          2020-08: 1250
+          2020-07: 1250
+          2020-06: 1250
+          2020-05: 1250
+          2020-04: 1250
+          2020-03: 1250
+          2020-02: 1250
+          2020-01: 1250
         ass_maternel:
           2020-12: true
           2020-11: true
           2020-10: true
           2020-09: true
-          2020-08: false
-          2020-07: false
-          2020-06: false
-          2020-05: false
-          2020-04: false
-          2020-03: false
-          2020-02: false
-          2020-01: false
+          2020-08: true
+          2020-07: true
+          2020-06: true
+          2020-05: true
+          2020-04: true
+          2020-03: true
+          2020-02: true
+          2020-01: true
     foyer_fiscal:
       declarants: parent1
   output:
-    al_revenu_assimile_salaire_apres_abattements: 24000 - (4 * 1195)
+    aide_logement: 270.26
 
-- name: "Cas 3, abattement assistant familial"
+- name: "Cas 4, couple avec 2 enfants, abattement assistant materenel sur les 12 mois"
+  period: 2021-01
+  relative_error_margin: 0.01
+  input:
+    famille:
+      parents: [parent1, parent2]
+      enfants: [enfant1, enfant2]
+    menage:
+      personne_de_reference: parent1
+      conjoint: parent2
+      enfants: [enfant1, enfant2]
+      statut_occupation_logement: locataire_vide
+      zone_apl: zone_2
+      loyer: 700
+      charges_locatives: 100
+    individus:
+      parent1:
+        date_naissance: 1985-01-10
+        salaire_imposable:
+          2020-12: 916.67
+          2020-11: 916.67
+          2020-10: 916.67
+          2020-09: 916.67
+          2020-08: 916.67
+          2020-07: 916.67
+          2020-06: 916.67
+          2020-05: 916.67
+          2020-04: 916.67
+          2020-03: 916.67
+          2020-02: 916.67
+          2020-01: 916.67
+        ass_maternel:
+          2020-12: true
+          2020-11: true
+          2020-10: true
+          2020-09: true
+          2020-08: true
+          2020-07: true
+          2020-06: true
+          2020-05: true
+          2020-04: true
+          2020-03: true
+          2020-02: true
+          2020-01: true
+      parent2:
+        date_naissance: 1988-01-01
+        salaire_imposable:
+          2020-12: 1375
+          2020-11: 1375
+          2020-10: 1375
+          2020-09: 1375
+          2020-08: 1375
+          2020-07: 1375
+          2020-06: 1375
+          2020-05: 1375
+          2020-04: 1375
+          2020-03: 1375
+          2020-02: 1375
+          2020-01: 1375
+      enfant1:
+        date_naissance: 2014-01-01
+      enfant2:
+        date_naissance: 2016-01-01
+    foyer_fiscal:
+      declarants: [parent1, parent2]
+      personnes_a_charge: [enfant1, enfant2]
+  output:
+    aide_logement_base_ressources: 14755
+    aide_logement: 254.85
+
+- name: "Cas 5, couple, abattement assistant materenel sur 12 mois"
+  period: 2021-01
+  relative_error_margin: 0.01
+  input:
+    famille:
+      parents: [parent1, parent2]
+      enfants: [enfant1, enfant2]
+    menage:
+      personne_de_reference: parent1
+      conjoint: parent2
+      enfants: [enfant1, enfant2]
+      statut_occupation_logement: locataire_vide
+      zone_apl: zone_2
+      loyer: 700
+      charges_locatives: 100
+    individus:
+      parent1:
+        date_naissance: 1990-01-10
+        salaire_imposable:
+          2020-12: 900
+          2020-11: 900
+          2020-10: 900
+          2020-09: 900
+          2020-08: 900
+          2020-07: 900
+          2020-06: 900
+          2020-05: 900
+          2020-04: 900
+          2020-03: 900
+          2020-02: 900
+          2020-01: 900
+        ass_maternel:
+          2020-12: true
+          2020-11: true
+          2020-10: true
+          2020-09: true
+          2020-08: true
+          2020-07: true
+          2020-06: true
+          2020-05: true
+          2020-04: true
+          2020-03: true
+          2020-02: true
+          2020-01: true
+      parent2:
+        date_naissance: 1990-01-01
+        salaire_imposable:
+          2020-12: 733.33
+          2020-11: 733.33
+          2020-10: 733.33
+          2020-09: 733.33
+          2020-08: 733.33
+          2020-07: 733.33
+          2020-06: 733.33
+          2020-05: 733.33
+          2020-04: 733.33
+          2020-03: 733.33
+          2020-02: 733.33
+          2020-01: 733.33
+      enfant1:
+        date_naissance: 2014-01-01
+      enfant2:
+        date_naissance: 2016-01-01
+    foyer_fiscal:
+      declarants: [parent1, parent2]
+      personnes_a_charge: [enfant1, enfant2]
+  output:
+    aide_logement_base_ressources: 7825
+    aide_logement: 436.52
+
+- name: "Cas 6, assistant maternel avec des frais réels déclarés"
   period: 2021-01
   relative_error_margin: 0.01
   input:
@@ -97,38 +310,42 @@
     menage:
       personne_de_reference: parent1
       statut_occupation_logement: locataire_vide
-      zone_apl: zone_1
+      zone_apl: zone_2
       loyer: 500
+      charges_locatives: 50
     individus:
       parent1:
         date_naissance: 1968-01-10
         salaire_imposable:
-          2020-12: 2000
-          2020-11: 2000
-          2020-10: 2000
-          2020-09: 2000
-          2020-08: 2000
-          2020-07: 2000
-          2020-06: 2000
-          2020-05: 2000
-          2020-04: 2000
-          2020-03: 2000
-          2020-02: 2000
-          2020-01: 2000
-        ass_familial:
+          2020-12: 1250
+          2020-11: 1250
+          2020-10: 1250
+          2020-09: 1250
+          2020-08: 1250
+          2020-07: 1250
+          2020-06: 1250
+          2020-05: 1250
+          2020-04: 1250
+          2020-03: 1250
+          2020-02: 1250
+          2020-01: 1250
+        ass_maternel:
           2020-12: true
-          2020-11: false
-          2020-10: false
-          2020-09: false
-          2020-08: false
-          2020-07: false
-          2020-06: false
-          2020-05: false
-          2020-04: false
-          2020-03: false
-          2020-02: false
-          2020-01: false
+          2020-11: true
+          2020-10: true
+          2020-09: true
+          2020-08: true
+          2020-07: true
+          2020-06: true
+          2020-05: true
+          2020-04: true
+          2020-03: true
+          2020-02: true
+          2020-01: true
+        frais_reels:
+          2020: 5000.00
     foyer_fiscal:
       declarants: parent1
   output:
-    al_revenu_assimile_salaire_apres_abattements: 24000 - ( 1 * 1195)
+    aide_logement_base_ressources: 10000
+    aide_logement: 101.04

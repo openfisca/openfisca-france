@@ -524,10 +524,18 @@ class al_revenu_assimile_salaire(Variable):
 
     def formula(individu, period, parameters):
         # version spécifique aux aides logement de revenu_assimile_salaire
+
         period_salaire_chomage = period.start.period('year').offset(-1)
         period_f1tt_f3vj = period.n_2
 
-        salaire_imposable = individu('al_abattement_forfaitaire_pour_assistants_et_journalistes', period_salaire_chomage, options=[ADD])
+        # salaire imposable pour les journaliste et les assistants mat/fam apres l'aplication de l'abattement forfaitaire
+        # dans le cas des frais réels déclaré superieur a Zero.
+        salaire_imposable_apres_abattement = individu('al_abattement_forfaitaire_pour_assistants_et_journalistes',
+                                                     period_salaire_chomage, options=[ADD])
+        salaire_imposable_sans_abattement = individu('salaire_imposable', period_salaire_chomage, options=[ADD])
+        frais_reels = individu('frais_reels', period.last_year)
+        salaire_imposable = where(frais_reels > 0, salaire_imposable_sans_abattement, salaire_imposable_apres_abattement)
+
         chomage_imposable = individu('chomage_imposable', period_salaire_chomage, options=[ADD])
         f1tt = individu('f1tt', period_f1tt_f3vj)
         f3vj = individu('f3vj', period_f1tt_f3vj)
@@ -537,10 +545,46 @@ class al_revenu_assimile_salaire(Variable):
         return salaire_imposable + chomage_imposable + f1tt + f3vj + remuneration_apprenti + indemnites_stage
 
 
+class al_biactivite(Variable):
+    value_type = bool
+    entity = Famille
+    label = "Indicatrice de biactivité"
+    definition_period = MONTH
+
+    def formula(famille, period, parameters):
+        '''
+        Hypothèses/points à éclaircir :
+           (1) A partir d'une certaine date sont apparemment pris en compte
+               dans les "revenus professinnels" les indemnités journalières.
+               Cf. circulaire interministérielle DSS/2B n°2011-447 du 01/12/2011
+               Regarder davantage ce point
+           (2) On n'a pas pris en compte les abbattements présents dans la
+               variable abattement_salaires_pensions, car il s'agit d'une
+               variable dépendant conjointement des salaires et des pensions
+               (or, les pensions ne doivent pas être pris en compte ici, et
+               cette variable ne peut pas être décomposée entre une part salaire et
+               une part pensions). Mais cette variable n'existe que jusqu'à 2005
+               inclus.
+        '''
+        annee_fiscale_n_1 = period.start.period('year').offset(-1)
+
+        pfam = parameters(annee_fiscale_n_1).prestations.prestations_familiales
+        seuil_rev = 12 * pfam.af.bmaf
+
+        condition_ressource = (
+                famille.members('rpns_individu', annee_fiscale_n_1)
+                + famille.members('revenu_assimile_salaire_apres_abattements', annee_fiscale_n_1)
+                >= seuil_rev
+        )
+        deux_parents = famille.nb_persons(role=Famille.PARENT) == 2
+
+        return deux_parents * famille.all(condition_ressource, role=Famille.PARENT)
+
+
 class al_abattement_forfaitaire_pour_assistants_et_journalistes(Variable):
     value_type = float
     entity = Individu
-    label = "Salaire imposable apres l'application de l'abattement forfaitaire pour les journaliste et les assistants maternels et familials."
+    label = "L'application de l'abattement forfaitaire pour les journaliste et les assistants maternels et familials."
     definition_period = MONTH
 
     def formula_2019_01(individu, period, parameters):
@@ -550,12 +594,11 @@ class al_abattement_forfaitaire_pour_assistants_et_journalistes(Variable):
         salaire_imposable = individu('salaire_imposable', period)
         abat = parameters(period).prestations.al_assistant_journaliste.abattement.montant
 
-        salaire_imposable_apres_abattement = select([ass_maternel, ass_familial, journaliste],
-                    [salaire_imposable - abat.assistant_maternel, salaire_imposable - abat.assistant_familial,
-                     salaire_imposable - abat.journaliste],
-                    default=salaire_imposable)
+        montant_abattement = select([ass_maternel, ass_familial, journaliste],
+                    [abat.assistant_maternel, abat.assistant_familial, abat.journaliste],
+                    default=0)
 
-        return max_(0, salaire_imposable_apres_abattement)
+        return max_(0, salaire_imposable - montant_abattement)
 
 
 class aide_logement_condition_neutralisation_chomage(Variable):
@@ -748,6 +791,7 @@ class aide_logement_base_ressources_defaut(Variable):
 
     def formula(famille, period, parameters):
         biactivite = famille('biactivite', period)
+        print('biactivite: {}'.format(biactivite))
         Pr = parameters(period).prestations.aides_logement.ressources
         base_ressources_i = famille.members('prestations_familiales_base_ressources_individu', period)
         base_ressources_parents = famille.sum(base_ressources_i, role = Famille.PARENT)
@@ -900,9 +944,6 @@ class al_revenu_assimile_salaire_apres_abattements(Variable):
         period_chomage = period.n_2
         period_frais = period.last_year
 
-
-        ass_ou_journaliste = individu('ass_maternel', period.last_month) + individu('ass_familial', period.last_month) + individu('journaliste', period.last_month)
-
         revenu_assimile_salaire = individu('al_revenu_assimile_salaire', period_revenus)
         chomeur_longue_duree = individu('chomeur_longue_duree', period_chomage)
         frais_reels = individu('frais_reels', period_frais)
@@ -911,11 +952,10 @@ class al_revenu_assimile_salaire_apres_abattements(Variable):
         abattement_minimum = where(chomeur_longue_duree, abatpro.min2, abatpro.min)
         abattement_forfaitaire = round_(min_(max_(abatpro.taux * revenu_assimile_salaire, abattement_minimum), abatpro.max))
 
-        return select(
-            [ass_ou_journaliste, frais_reels > 0],
-            [revenu_assimile_salaire, revenu_assimile_salaire - frais_reels],
+        return where(frais_reels > 0, revenu_assimile_salaire - frais_reels,
             max_(0, revenu_assimile_salaire - abattement_forfaitaire)
             )
+
 
 class al_traitements_salaires_pensions_rentes(Variable):
     value_type = float
@@ -979,7 +1019,7 @@ class aide_logement_base_ressources(Variable):
     definition_period = MONTH
 
     def formula_2020_12_01(famille, period, parameters):
-        biactivite = famille('biactivite', period)
+        biactivite = famille('al_biactivite', period)
         params_al_ressources = parameters(period).prestations.aides_logement.ressources
 
         # Rolling year
