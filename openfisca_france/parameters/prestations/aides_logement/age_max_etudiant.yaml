@@ -1,0 +1,5 @@
+description: Âge maximal d'un etudiant
+unit: year
+values:
+  2020-01-01:
+    value: 28
