@@ -1020,7 +1020,7 @@ class aide_logement_base_ressources(Variable):
     def formula_2020_12_01(famille, period, parameters):
         biactivite = famille('al_biactivite', period)
         params_al_ressources = parameters(period).prestations.aides_logement.ressources
-
+        age_etudiant_max = parameters(period).prestations.aides_logement.age_max_etudiant
         # Rolling year
         annee_glissante = period.start.period('year').offset(-1)
 
@@ -1131,7 +1131,7 @@ class aide_logement_base_ressources(Variable):
 
         # Planchers de ressources pour étudiants
         # Seul le statut étudiant (et boursier) du demandeur importe, pas celui du conjoint
-        demandeur_etudiant = famille.demandeur('etudiant', period)
+        demandeur_etudiant = famille.demandeur('etudiant', period) * ( famille.demandeur('age', period) < age_etudiant_max)
         demandeur_boursier = famille.demandeur('boursier', period)
         statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
         logement_crous = famille.demandeur.menage('logement_crous', period)
@@ -1139,7 +1139,7 @@ class aide_logement_base_ressources(Variable):
         montant_plancher_ressources = not_(logement_crous_ou_foyer) * max_(0, demandeur_etudiant * params_al_ressources.dar_4 - demandeur_boursier * params_al_ressources.dar_5)
         montant_plancher_ressources_logement_foyer = logement_crous_ou_foyer * max_(0, demandeur_etudiant * params_al_ressources.dar_11 - demandeur_boursier * params_al_ressources.dar_12)
 
-        ressources = max_(ressources, max_(montant_plancher_ressources, montant_plancher_ressources_logement_foyer))
+        ressources = where(demandeur_etudiant, max_(montant_plancher_ressources, montant_plancher_ressources_logement_foyer), ressources)
 
         # Arrondi au centime, pour éviter qu'une petite imprécision liée à la recombinaison d'une valeur annuelle éclatée ne fasse monter d'un cran l'arrondi au 100€ supérieur.
 
