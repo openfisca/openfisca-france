@@ -530,7 +530,7 @@ class al_revenu_assimile_salaire(Variable):
 
         # salaire imposable pour les journaliste et les assistants mat/fam apres l'aplication de l'abattement forfaitaire
         # dans le cas des frais réels déclaré superieur a Zero.
-        salaire_imposable_apres_abattement = individu('al_abattement_forfaitaire_pour_assistants_et_journalistes',
+        salaire_imposable_apres_abattement = individu('al_abattement_forfaitaire_assistants_et_journalistes',
                                                      period_salaire_chomage, options=[ADD])
         salaire_imposable_sans_abattement = individu('salaire_imposable', period_salaire_chomage, options=[ADD])
         frais_reels = individu('frais_reels', period.last_year)
@@ -548,7 +548,7 @@ class al_revenu_assimile_salaire(Variable):
 class al_biactivite(Variable):
     value_type = bool
     entity = Famille
-    label = "Indicatrice de biactivité"
+    label = "Indicatrice de biactivité dans le cadre du calcul des ressources de l'aide au logement."
     definition_period = MONTH
 
     def formula(famille, period, parameters):
@@ -581,7 +581,7 @@ class al_biactivite(Variable):
         return deux_parents * famille.all(condition_ressource, role=Famille.PARENT)
 
 
-class al_abattement_forfaitaire_pour_assistants_et_journalistes(Variable):
+class al_abattement_forfaitaire_assistants_et_journalistes(Variable):
     value_type = float
     entity = Individu
     label = "L'application de l'abattement forfaitaire pour les journaliste et les assistants maternels et familials."
@@ -791,7 +791,6 @@ class aide_logement_base_ressources_defaut(Variable):
 
     def formula(famille, period, parameters):
         biactivite = famille('biactivite', period)
-        print('biactivite: {}'.format(biactivite))
         Pr = parameters(period).prestations.aides_logement.ressources
         base_ressources_i = famille.members('prestations_familiales_base_ressources_individu', period)
         base_ressources_parents = famille.sum(base_ressources_i, role = Famille.PARENT)
