@@ -578,10 +578,10 @@ class al_biactivite(Variable):
         seuil_rev = 12 * pfam.af.bmaf
 
         condition_ressource = (
-                famille.members('rpns_individu', annee_fiscale_n_1)
-                + famille.members('revenu_assimile_salaire_apres_abattements', annee_fiscale_n_1)
-                >= seuil_rev
-        )
+            famille.members('rpns_individu', annee_fiscale_n_1)
+            + famille.members('revenu_assimile_salaire_apres_abattements', annee_fiscale_n_1)
+            >= seuil_rev
+            )
         deux_parents = famille.nb_persons(role=Famille.PARENT) == 2
 
         return deux_parents * famille.all(condition_ressource, role=Famille.PARENT)
@@ -601,8 +601,8 @@ class al_abattement_forfaitaire_assistants_et_journalistes(Variable):
         abat = parameters(period).prestations.al_assistant_journaliste.abattement.montant
 
         montant_abattement = select([ass_maternel, ass_familial, journaliste],
-                    [abat.assistant_maternel, abat.assistant_familial, abat.journaliste],
-                    default=0)
+            [abat.assistant_maternel, abat.assistant_familial, abat.journaliste],
+            default=0)
 
         return max_(0, salaire_imposable - montant_abattement)
 
@@ -1053,7 +1053,7 @@ class aide_logement_base_ressources(Variable):
         # Ressources N-1
         pensions_alimentaires_versees_i = famille.members('pensions_alimentaires_versees_individu', period.last_year, options=[ADD])
         pensions_alimentaires_versees = famille.sum(pensions_alimentaires_versees_i, role=Famille.PARENT)
-        #Montant à soustraire
+        # Montant à soustraire
         ressources_n_1 = -pensions_alimentaires_versees
 
         # Ressources N-2
@@ -1079,13 +1079,13 @@ class aide_logement_base_ressources(Variable):
                                      tns_autres_revenus_i_m_12)
 
         ressources_n_2_i = (
-                indemnites_journalieres_atexa_i
-                + gains_exceptionnels_i
-                + benefice_agricole_i
-                + benefice_micro_entreprise_i
-                + benefice_auto_entrepreneur_i
-                + tns_autres_revenus_i
-        )
+            indemnites_journalieres_atexa_i
+            + gains_exceptionnels_i
+            + benefice_agricole_i
+            + benefice_micro_entreprise_i
+            + benefice_auto_entrepreneur_i
+            + tns_autres_revenus_i
+            )
         ressources_n_2 = famille.sum(ressources_n_2_i, role=Famille.PARENT)
         f4ba = famille.demandeur.foyer_fiscal('f4ba', period.n_2)
         plus_values_gains_divers = famille.demandeur.foyer_fiscal('plus_values_gains_divers', period.n_2)
@@ -1137,7 +1137,7 @@ class aide_logement_base_ressources(Variable):
 
         # Planchers de ressources pour étudiants
         # Seul le statut étudiant (et boursier) du demandeur importe, pas celui du conjoint
-        demandeur_etudiant = famille.demandeur('etudiant', period) * ( famille.demandeur('age', period) < age_etudiant_max)
+        demandeur_etudiant = famille.demandeur('etudiant', period) * (famille.demandeur('age', period) < age_etudiant_max)
         demandeur_boursier = famille.demandeur('boursier', period)
         statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
         logement_crous = famille.demandeur.menage('logement_crous', period)
