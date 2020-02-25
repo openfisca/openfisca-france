@@ -645,7 +645,7 @@
     individus:
       personne1:
         date_naissance: 1998-01-01
-        etudiant: True
+        etudiant: true
         salaire_imposable:
           2020-10: 0
           2020-09: 0
