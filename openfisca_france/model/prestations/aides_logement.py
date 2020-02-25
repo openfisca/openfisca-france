@@ -528,6 +528,8 @@ class al_revenu_assimile_salaire(Variable):
         period_salaire_chomage = period.start.period('year').offset(-1)
         period_f1tt_f3vj = period.n_2
 
+        smic_annuel_brut = parameters(period).cotsoc.gen.smic_h_b * 52 * 35
+
         # salaire imposable pour les journaliste et les assistants mat/fam apres l'aplication de l'abattement forfaitaire
         # dans le cas des frais réels déclaré superieur a Zero.
         salaire_imposable_apres_abattement = individu('al_abattement_forfaitaire_assistants_et_journalistes',
@@ -539,10 +541,14 @@ class al_revenu_assimile_salaire(Variable):
         chomage_imposable = individu('chomage_imposable', period_salaire_chomage, options=[ADD])
         f1tt = individu('f1tt', period_f1tt_f3vj)
         f3vj = individu('f3vj', period_f1tt_f3vj)
-        remuneration_apprenti = individu('remuneration_apprenti', period_salaire_chomage, options=[ADD])
-        indemnites_stage = individu('indemnites_stage', period_salaire_chomage, options=[ADD])
 
-        return salaire_imposable + chomage_imposable + f1tt + f3vj + remuneration_apprenti + indemnites_stage
+        # Application du plafond d'exoneration fiscal pour les salaires des stagiaires et des apprentis
+        remuneration_apprenti = individu('remuneration_apprenti', period_salaire_chomage, options=[ADD])
+        remuneration_apprenti_apres_abattement = max(0, sum(remuneration_apprenti - smic_annuel_brut))
+        indemnites_stage = individu('indemnites_stage', period_salaire_chomage, options=[ADD])
+        indemnites_stage_ares_abattement = max(0, sum(indemnites_stage - smic_annuel_brut))
+
+        return salaire_imposable + chomage_imposable + f1tt + f3vj + remuneration_apprenti_apres_abattement + indemnites_stage_ares_abattement
 
 
 class al_biactivite(Variable):
