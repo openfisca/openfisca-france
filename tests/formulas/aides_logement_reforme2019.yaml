@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 - name: "Cas 1 AL Reforme 2019, couple etudiant, locataire en logement non conventionné"
-=======
-- name: "Cas 1 AL Reforme 2019, couple etudiant"
->>>>>>> 69a0afede (Recréation de branche propre)
   period: 2019-06
   relative_error_margin: 0.1
   input:
@@ -138,11 +134,7 @@
     individus:
       parent1:
         activite:
-<<<<<<< HEAD
           2019-06: actif
-=======
-          2019-06: retraite
->>>>>>> 69a0afede (Recréation de branche propre)
         date_naissance:
           2019-06: 1985-07-26
         salaire_imposable:
@@ -216,11 +208,7 @@
   output:
     aide_logement: 239
 
-<<<<<<< HEAD
 - name: "Cas 5 AL Reforme 2019, personne seule en logement conventionné, au chômage non indemnisé avec indemnités journalières"
-=======
-- name: "Cas 5 AL Reforme 2019, personne seule en logement conventionné, au chomage non indemnisé avec IJs"
->>>>>>> 69a0afede (Recréation de branche propre)
   period: 2019-06
   relative_error_margin: 0.01
   input:
@@ -336,11 +324,7 @@
     reduction_loyer_solidarite: 0
     aide_logement: 81
 
-<<<<<<< HEAD
 - name: "Cas 8 AL Reforme 2019, couple étudiant, locataire en logement conventionné"
-=======
-- name: "Cas 8 AL Reforme 2019, couple etudiant"
->>>>>>> 69a0afede (Recréation de branche propre)
   period: 2019-06
   relative_error_margin: 0.1
   input:
