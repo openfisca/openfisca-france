@@ -159,6 +159,7 @@ class ppa_revenu_activite_individu(Variable):
         ressources = [
             'salaire_net',
             'revenus_stage_formation_pro',
+            'remuneration_apprenti',
             'bourse_recherche',
             'indemnites_chomage_partiel',
             'tns_auto_entrepreneur_benefice',
