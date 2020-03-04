@@ -29,3 +29,6 @@ values:
   2019-01-01:
     value: 1326.53
     reference: https://www.legifrance.gouv.fr/eli/arrete/2018/12/27/LOGL1831318A/jo/texte
+  2020-01-01:
+    value: 1339.80
+    reference: https://www.legifrance.gouv.fr/eli/arrete/2019/12/23/SSAS1936646A/jo/article_1
