@@ -8,3 +8,6 @@ values:
   2019-01-01:
     value: 4575.0
     reference: https://www.legifrance.gouv.fr/eli/decret/2018/12/27/2018-1316/jo/texte
+  2020-01-01:
+    value: 4588.0
+    reference: https://www.legifrance.gouv.fr/eli/arrete/2020/1/3/LOGL1934006A/jo/article_1
