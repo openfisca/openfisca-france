@@ -1402,6 +1402,11 @@ class reduction_ss_condition_revenus(Variable):
     entity = FoyerFiscal
     label = "Réduction d'impôt sous condition de revenus, s'imputant avant toutes autres réductions"
     definition_period = YEAR
+    end = '2019-12-31'
+    reference = "https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000037985566&cidTexte=LEGITEXT000006069577"
+    documentation = '''
+    La "réfaction foyers modestes" est abrogée par la Loi de Finances 2020.
+    '''
 
     def formula_2016_01_01(foyer_fiscal, period, parameters):
         '''
