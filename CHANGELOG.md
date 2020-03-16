@@ -1,6 +1,20 @@
 # Changelog
 
-### 48.10.5
+### 48.10.6 [#1420](https://github.com/openfisca/openfisca-france/pull/1420)
+
+* Évolution du système socio-fiscal. 
+* Périodes concernées : à partir du 2019-01-01.
+* Zones impactées : 
+  - `parameters/impot_revenu/decote/`
+  - `parameters/impot_revenu/plafond_qf/`
+  - et `model/prelevements_obligatoires/impot_revenu/ir.py`.
+* Détails :
+  - Prise en compte de la suppression de la réfaction à partir de 2020
+    - Désactive la variable `reduction_ss_condition_revenus`
+  - Prise en compte du changement de formule dans la décote à partir de 2020
+  - Prise en compte de l'inflation dans les taux de la décote pour l'année 2019
+
+### 48.10.5 [#1417](https://github.com/openfisca/openfisca-france/pull/1417)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 01/01/2019.
