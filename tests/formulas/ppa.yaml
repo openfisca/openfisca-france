@@ -948,15 +948,15 @@
       2015-10: 2300
 
 - name: PPA avec revenu d'apprenti
-  period: 2020-04
+  period: 2021-04
   absolute_error_margin: 0.03
   input:
     famille:
       parents: [personne1]
       aide_logement:
-        2020-03: 250
-        2020-02: 250
-        2020-01: 250
+        2021-03: 250
+        2021-02: 250
+        2021-01: 250
     foyer_fiscal:
       declarants: [personne1]
     menage:
@@ -966,27 +966,27 @@
       personne1:
         date_naissance: 1980-01-01
         remuneration_apprenti:
-          2020-03: 960
-          2020-02: 960
-          2020-01: 960
+          2021-03: 960
+          2021-02: 960
+          2021-01: 960
         salaire_imposable:
-          2020-03: 0
-          2020-02: 0
-          2020-01: 0
+          2021-03: 0
+          2021-02: 0
+          2021-01: 0
   output:
     ppa:
-      2020-04: 204.54
+      2021-04: 206.28
 
 - name: PPA avec revenu d'apprenti -la condition d'accés est remplie sur les 3 ans qui précède la demande soit les 3214 heures d'activité
-  period: 2020-01
+  period: 2021-01
   absolute_error_margin: 0.03
   input:
     famille:
       parents: [personne1]
       aide_logement:
-        2020-01: 120
-        2020-02: 120
-        2020-03: 120
+        2021-01: 120
+        2021-02: 120
+        2021-03: 120
     foyer_fiscal:
       declarants: [personne1]
     menage:
@@ -996,14 +996,14 @@
       personne1:
         date_naissance: 2000-01-01
         remuneration_apprenti:
-          2020-01: 943
-          2020-02: 943
-          2020-03: 943
+          2021-01: 943
+          2021-02: 943
+          2021-03: 943
         rsa_jeune_condition_heures_travail_remplie: true
         salaire_imposable:
-          2020-01: 0
-          2020-02: 0
-          2020-03: 0
+          2021-01: 0
+          2021-02: 0
+          2021-03: 0
   output:
     ppa:
-      2020-04: 206.76
+      2021-04: 208.50
