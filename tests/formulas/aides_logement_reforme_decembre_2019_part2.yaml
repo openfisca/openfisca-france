@@ -201,7 +201,7 @@
   output:
     zone_apl: zone_3
     aide_logement_base_ressources: 21600
-    aide_logement: 52,39
+    aide_logement: 52.39
 
 - name: "Lot 2, Cas 6 AL Reforme 2019"
   period: 2021-01
