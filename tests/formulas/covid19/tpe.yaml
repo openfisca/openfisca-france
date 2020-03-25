@@ -1,0 +1,13 @@
+- period: 2020-03
+  absolute_error_margin: 0
+  input:
+    travailleur_non_salarie: [false, true]
+  output:
+    covid_aide_exceptionnelle_tpe_eligible: [false, true]
+
+- period: 2020-03
+  absolute_error_margin: 0
+  input:
+    covid_aide_exceptionnelle_tpe_eligible: true
+  output:
+    covid_aide_exceptionnelle_tpe_montant: 1500
