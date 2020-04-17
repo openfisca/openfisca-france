@@ -1,5 +1,12 @@
 # Changelog
 
+### 48.10.7 [#1424](https://github.com/openfisca/openfisca-france/pull/1424)
+
+* Amélioration technique.
+* Détails :
+  - Met à jour la librairie `autopep8` utilisée par la commande `make format-style`
+  - Met à jour la librairie `yamllint` utilisée par le job `lint_yaml_files` CircleCI
+
 ### 48.10.6 [#1420](https://github.com/openfisca/openfisca-france/pull/1420)
 
 * Évolution du système socio-fiscal. 

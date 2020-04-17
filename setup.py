@@ -7,7 +7,7 @@ from setuptools import setup, find_packages
 
 setup(
     name = "OpenFisca-France",
-    version = "48.10.6",
+    version = "48.10.7",
     author = "OpenFisca Team",
     author_email = "contact@openfisca.fr",
     classifiers = [
@@ -41,13 +41,13 @@ setup(
             "pandas >= 0.13",
             ],
         "dev": [
-            "autopep8 ==1.5",
+            "autopep8 ==1.5.1",
             "flake8 >=3.7.0,<3.8.0",
             "flake8-print",
             "pytest <5.0",
             "scipy >= 0.17",  # Only used to test de_net_a_brut reform
             "requests >= 2.8",
-            "yamllint >=1.11.1,<1.21"
+            "yamllint >=1.11.1,<1.23"
             ],
         "casd-dev": [
             # Same as dev with packages not available at CASD removed
