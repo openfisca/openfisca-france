@@ -239,11 +239,15 @@ class af_complement_degressif(Variable):
 
         depassement_mensuel = depassement_helper(famille, period, parameters, af_nbenf)
 
+        residence_dom = famille.demandeur.menage('residence_dom', period)
+        residence_mayotte = famille.demandeur.menage('residence_mayotte', period)
+        non_eligible = residence_dom * not_(residence_mayotte) * (af_nbenf == 1)
+
         af_base = famille('af_base', period)
         af_majoration = famille('af_majoration', period)
         af = af_base + af_majoration
 
-        return max_(0, af - depassement_mensuel) * (depassement_mensuel > 0)
+        return max_(0, af - depassement_mensuel) * (depassement_mensuel > 0) * not_(non_eligible)
 
 
 class af_allocation_forfaitaire_complement_degressif(Variable):
