@@ -1,14 +1,7 @@
-<<<<<<< HEAD:tests/formulas/af_2019_1_dom_complement.yaml
-- name: Allocations familiales - Cas N°1
-  description: Montant AF
-  period: 2019-01
-  absolute_error_margin: 0.02
-=======
 - name: Allocations familiales - Couple, 1 enfant, résidence DOM hors Mayotte
   description: Montant AF + majoration + complément dégressif
   period: 2020-04
   absolute_error_margin: 0.01
->>>>>>> ef848d259... Refactoring:tests/formulas/af_2020_04.yaml
   input:
     famille:
       parents: [parent1, parent2]
