@@ -1646,3 +1646,35 @@ class travailleur_occasionnel_agricole(Variable):
             + (taches_salarie_type == TypesTaches.travaux_forestiers)
             )
         return secteur_agricole * cdd * cdd_occasionnel_agricole * taches_eligibles
+
+
+class cer_ou_ppae(Variable):
+    value_type = bool
+    entity = Individu
+    label = "Avoir un CER (Contrat d’engagement réciproque) et/ou un PPAE (Projet personnalisé d’accès à l’emploi) en cours"
+    definition_period = MONTH
+    set_input = set_input_dispatch_by_period
+
+
+class formation(Variable):
+    value_type = bool
+    entity = Individu
+    label = "Etre en formation"
+    definition_period = MONTH
+    set_input = set_input_dispatch_by_period
+
+
+class duree_contrat_ou_formation(Variable):
+    value_type = int
+    entity = Individu
+    label = "Durée en mois du CDD ou de la formation"
+    definition_period = MONTH
+    set_input = set_input_dispatch_by_period
+
+
+class creation_ou_reprise_entreprise(Variable):
+    value_type = bool
+    entity = Individu
+    label = "Etre en création ou en reprise d'entreprise"
+    definition_period = MONTH
+    set_input = set_input_dispatch_by_period
