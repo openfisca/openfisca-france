@@ -16,8 +16,9 @@ class covid_aide_exceptionnelle_tpe_montant(Variable):
     value_type = float
     label = "Montant de l'aide exceptionnelle pour les TPE pendant la crise sanitaire dûe au COVID-19"
     definition_period = MONTH
+    end = '2020-05-31'
 
-    def formula(individu, period, parameters):
+    def formula_2020_03(individu, period, parameters):
         elig = individu('covid_aide_exceptionnelle_tpe_eligible', period)
         return elig * parameters(period).covid19.aide_exceptionnelle_tpe.montant
 
@@ -42,8 +43,9 @@ class covid_aide_exceptionnelle_famille_montant(Variable):
     value_type = float
     label = "Montant de l'aide exceptionnelle pour les familles pendant la crise sanitaire dûe au COVID-19"
     definition_period = MONTH
+    end = '2020-05-31'
 
-    def formula(famille, period, parameters):
+    def formula_2020_03(famille, period, parameters):
         montants = parameters(period).covid19.aide_exceptionnelle_famille
         rsa = famille('rsa', period) > 0
         ass = famille.sum(famille.members('ass', period)) > 0
