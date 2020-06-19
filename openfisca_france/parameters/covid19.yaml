@@ -1,0 +1,14 @@
+aide_exceptionnelle_tpe:
+  montant:
+    values:
+      2020-03-01:
+        value: 1500
+aide_exceptionnelle_famille:
+  base:
+    values:
+      2020-04-01:
+        value: 150
+  par_enfant:
+    values:
+      2020-04-01:
+        value: 100
