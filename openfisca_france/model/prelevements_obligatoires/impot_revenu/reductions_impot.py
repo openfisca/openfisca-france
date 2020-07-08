@@ -48,6 +48,8 @@ class reductions(Variable):
             'rpinel',
             # Introduites en 2017
             'rehab'
+            # Introduites en 2020
+            'notredame'
             ]
 
         impot_net = foyer_fiscal('ip_net', period)
@@ -3978,6 +3980,21 @@ class mohist(Variable):
 
         return P.taux * min_(f7nz, P.max)
 
+class notredame(Variable):
+    value_type = float
+    entity = FoyerFiscal
+    label = 'notredame'
+    definition_period = YEAR
+
+    def formula_2020_01_01(foyer_fiscal, period, parameters):
+        '''
+        Dons versés du 16.4 au 31.12.2019 pour la conservation et la restauration de la cathédrale Notre-Dame de Paris (case UE)
+        2020
+        '''
+        f7ue = foyer_fiscal('f7ue', period)
+        P = parameters(period).impot_revenu.reductions_impots.dons.dons_notre_dame
+
+        return P.taux * min_(f7ue, P.plafond)
 
 class patnat(Variable):
     value_type = float
