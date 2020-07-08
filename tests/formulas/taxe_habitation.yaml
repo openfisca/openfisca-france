@@ -513,3 +513,32 @@
     taxe_habitation_commune_epci_apres_degrevement_plafonnement: 164.07
     degrevement_office_taxe_habitation: 0
     taxe_habitation: -164.07
+
+- name: th_prelevement_base_imposition_elevee_2017
+  description: Taxe d'habitation 2017 - prélèvement sur base d'imposition élevée
+  period: 2017
+  absolute_error_margin: 0.03
+  input:
+    famille:
+      parents: [parent1]
+    foyer_fiscal:
+      declarants: [parent1]
+      rfr:
+        2016: 70000
+    menage:
+      personne_de_reference: parent1
+      code_INSEE_commune: "01058"
+      valeur_locative_cadastrale_brute: 6000
+      # Si dessous, on met en dur les paramètres locaux
+      taux_th_commune: 0.1037
+      taux_th_epci: 0.00 # Taux EPCI à zéro pour simplifier le test
+      valeur_locative_moyenne_th_commune: 2766.0
+      abt_general_base_th_commune: 248.0
+    individus:
+      parent1:
+        date_naissance: '1963-01-01'
+  output:
+    base_nette_th_commune: 5752 #(6000 - 248)
+    taxe_habitation_commune_epci_avant_degrevement: 602.45 #(5752*0.1037)*1.01
+    prelevement_base_imposition_elevee_taxe_habitation: 11.5 #5752*0.002
+    taxe_habitation: -590.95
