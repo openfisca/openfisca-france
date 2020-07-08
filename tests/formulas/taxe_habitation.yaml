@@ -541,4 +541,4 @@
     base_nette_th_commune: 5752 #(6000 - 248)
     taxe_habitation_commune_epci_avant_degrevement: 602.45 #(5752*0.1037)*1.01
     prelevement_base_imposition_elevee_taxe_habitation: 11.5 #5752*0.002
-    taxe_habitation: -590.95
+    taxe_habitation: -613.95
