@@ -403,6 +403,38 @@ class degrevement_office_taxe_habitation(Variable):
 
         return degrev * elig_degrev + degrev_degressif * elig_degrev_degressif
 
+class prelevement_base_imposition_elevee_taxe_habitation(Variable):
+    value_type = float
+    entity = Menage
+    label = "Prélevement sur base d'imposition élevée sur l'habitation principale"
+    reference = "https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=81889AAB5AC742D99144BC27CE3D7C31.tplgfr32s_3?idArticle=LEGIARTI000036443853&cidTexte=LEGITEXT000006069577&categorieLien=id&dateTexte=20171231"
+    definition_period = YEAR
+
+    def formula_2017_01_01(menage, period, parameters):
+
+        P = parameters(period).taxation_locale.taxe_habitation.prelevement_base_imposition_elevee
+        exonere_taxe_habitation = menage('exonere_taxe_habitation', period)
+        degrevement_plafonnement_taxe_habitation = menage('degrevement_plafonnement_taxe_habitation', period)
+        degrevement_office_taxe_habitation = menage('degrevement_office_taxe_habitation', period)
+        base_nette_th_commune = menage('base_nette_th_commune', period)
+        
+        non_exonere_non_degreve = not_(exonere_taxe_habitation) * (degrevement_plafonnement_taxe_habitation == 0) * (degrevement_office_taxe_habitation ==0)
+        condition_base_nette = (base_nette_th_commune > P.seuil_base_nette_habitation_principale)
+
+        return non_exonere_non_degreve * condition_base_nette * base_nette_th_commune * P.taux_habitation_principale
+
+    def formula_2020_01_01(menage, period, parameters):
+
+        P = parameters(period).taxation_locale.taxe_habitation.prelevement_base_imposition_elevee
+        exonere_taxe_habitation = menage('exonere_taxe_habitation', period)
+        degrevement_office_taxe_habitation = menage('degrevement_office_taxe_habitation', period)
+        base_nette_th_commune = menage('base_nette_th_commune', period)
+        
+        non_exonere_non_degreve = not_(exonere_taxe_habitation) * (degrevement_office_taxe_habitation ==0)
+        condition_base_nette = (base_nette_th_commune > P.seuil_base_nette_habitation_principale)
+
+        return non_exonere_non_degreve * condition_base_nette * base_nette_th_commune * P.taux_habitation_principale
+
 
 class taxe_habitation(Variable):
     value_type = float
@@ -414,9 +446,11 @@ class taxe_habitation(Variable):
     def formula_2017_01_01(menage, period):
         taxe_habitation_commune_epci_apres_degrevement_plafonnement = menage('taxe_habitation_commune_epci_apres_degrevement_plafonnement', period)
         degrevement_office_taxe_habitation = menage('degrevement_office_taxe_habitation', period)
-        return - max_(taxe_habitation_commune_epci_apres_degrevement_plafonnement - degrevement_office_taxe_habitation, 0)
+        prelevement_base_imposition_elevee_taxe_habitation = menage('prelevement_base_imposition_elevee_taxe_habitation', period)
+        return - max_(taxe_habitation_commune_epci_apres_degrevement_plafonnement - degrevement_office_taxe_habitation, 0) - prelevement_base_imposition_elevee_taxe_habitation
     
     def formula_2020_01_01(menage, period):
         taxe_habitation_commune_epci_avant_degrevement = menage('taxe_habitation_commune_epci_avant_degrevement', period)
         degrevement_office_taxe_habitation = menage('degrevement_office_taxe_habitation', period)
-        return - max_(taxe_habitation_commune_epci_avant_degrevement - degrevement_office_taxe_habitation, 0)
+        prelevement_base_imposition_elevee_taxe_habitation = menage('prelevement_base_imposition_elevee_taxe_habitation', period)
+        return - max_(taxe_habitation_commune_epci_avant_degrevement - degrevement_office_taxe_habitation, 0) - prelevement_base_imposition_elevee_taxe_habitation
