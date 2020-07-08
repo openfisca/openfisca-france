@@ -1,5 +1,5 @@
 /***************************************************************************************/
-/*** Mise en forme du fichier REI 2017 pour OpenFisca
+/*** Mise en forme du fichier REI 2017 et 2018 pour OpenFisca
      Nécessite Stata version 14                        *********************************/
 /***************************************************************************************/
 
@@ -7,14 +7,17 @@ clear
 set more off
 cap log close
 
-**** Chemin du REI 2017 en local. Le fichier REI 2017 en .xlsx est accessible en ligne sur https://www.data.gouv.fr/fr/datasets/impots-locaux-fichier-de-recensement-des-elements-dimposition-a-la-fiscalite-directe-locale-rei-3/
-global input = ""
+**** Chemin des REI 2017 et REI 2018 en local. Le fichier REI 2017 en .xlsx est accessible en ligne sur https://www.data.gouv.fr/fr/datasets/impots-locaux-fichier-de-recensement-des-elements-dimposition-a-la-fiscalite-directe-locale-rei-3/
+global input_2017 = ""
+global input_2018 = ""
 
 **** Chemin d'export du fichier csv
-global export = ""
+global export_2017 = ""
+global export_2018 = ""
 
+forval i=2017/2018 {
 set excelxlsxlargefile on
-import excel using "${input}.xlsx", sheet("REI_2017") firstrow clear
+import excel using "${input_`i'}.xlsx", firstrow clear
 keep DEP COM SIREPCI Q03 LIBCOM H12 H32 J21 J23 J31* J33* J41* J43* J51* J53* J61* J63*
 compress
 
@@ -45,5 +48,6 @@ foreach var of varlist  taux_* valeur_locative_moyenne_* abt_* {
 }
 
 sort     code_insee_commune
-outsheet code_insee_commune taux_* valeur_locative_moyenne_* abt_* using "${export}.csv", comma replace
+outsheet code_insee_commune taux_* valeur_locative_moyenne_* abt_* using "${export_`i'}.csv", comma replace
 
+}
