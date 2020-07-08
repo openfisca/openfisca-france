@@ -72,8 +72,10 @@ class exonere_taxe_habitation(Variable):
         condition_rfr_exoneration_th = menage.all(condition_rfr_exoneration_th_i)
 
         P = parameters(period).taxation_locale.taxe_habitation
-        exon_avant_condition_rfr = ((age_personne_de_reference >= P.exon_age_min) + (age_conjoint >= P.exon_age_min) + (statut_marital == TypesStatutMarital.veuf)) * (isf_ifi == 0) + (asi > 0) + (aspa > 0) + (aah > 0)
-        exon = exon_avant_condition_rfr * condition_rfr_exoneration_th
+
+        exon_non_soumis_a_condition_rfr = (asi > 0) + (aspa > 0)
+        exon_soumis_a_condition_rfr = ((age_personne_de_reference >= P.exon_age_min) + (age_conjoint >= P.exon_age_min) + (statut_marital == TypesStatutMarital.veuf)) * (isf_ifi == 0) + (aah > 0)
+        exon = exon_non_soumis_a_condition_rfr + exon_soumis_a_condition_rfr * condition_rfr_exoneration_th
         return exon
 
 
