@@ -263,6 +263,7 @@ class plafond_taxe_habitation_eligibilite(Variable):
     label = "Eligibilité au plafond de la taxe d'habitation en fonction du revenu fiscal de référence"
     reference = "https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006069577&idArticle=LEGIARTI000006312070&dateTexte=&categorieLien=cid"
     definition_period = YEAR
+    end = '2019-12-31'
 
     def formula_2017_01_01(menage, period, parameters):
         P_plaf = parameters(period).taxation_locale.taxe_habitation.plafonnement
@@ -282,6 +283,7 @@ class plafond_taxe_habitation(Variable):
     label = "Plafond de la taxe d'habitation en fonction du revenu fiscal de référence"
     reference = "https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006069577&idArticle=LEGIARTI000006312070&dateTexte=&categorieLien=cid"
     definition_period = YEAR
+    end = '2019-12-31'
 
     def formula_2017_01_01(menage, period, parameters):
         plafond_taxe_habitation_eligibilite = menage('plafond_taxe_habitation_eligibilite', period)
@@ -300,6 +302,7 @@ class degrevement_plafonnement_taxe_habitation(Variable):
     label = "Dégrèvement de la taxe d'habitation au titre du plafonnement"
     reference = "https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006069577&idArticle=LEGIARTI000006312070&dateTexte=&categorieLien=cid"
     definition_period = YEAR
+    end = '2019-12-31'
 
     def formula_2017_01_01(menage, period, parameters):
         '''
@@ -350,6 +353,7 @@ class taxe_habitation_commune_epci_apres_degrevement_plafonnement(Variable):
     entity = Menage
     label = "Taxe d'habitation de la commune et de l'EPCI après dégrèvement pour plafonnement"
     definition_period = YEAR
+    end = '2019-12-31'
 
     def formula_2017_01_01(menage, period, parameters):
         taxe_habitation_commune_epci_avant_degrevement = menage('taxe_habitation_commune_epci_avant_degrevement', period)
@@ -409,3 +413,8 @@ class taxe_habitation(Variable):
         taxe_habitation_commune_epci_apres_degrevement_plafonnement = menage('taxe_habitation_commune_epci_apres_degrevement_plafonnement', period)
         degrevement_office_taxe_habitation = menage('degrevement_office_taxe_habitation', period)
         return - max_(taxe_habitation_commune_epci_apres_degrevement_plafonnement - degrevement_office_taxe_habitation, 0)
+    
+    def formula_2020_01_01(menage, period):
+        taxe_habitation_commune_epci_avant_degrevement = menage('taxe_habitation_commune_epci_avant_degrevement', period)
+        degrevement_office_taxe_habitation = menage('degrevement_office_taxe_habitation', period)
+        return - max_(taxe_habitation_commune_epci_avant_degrevement - degrevement_office_taxe_habitation, 0)
