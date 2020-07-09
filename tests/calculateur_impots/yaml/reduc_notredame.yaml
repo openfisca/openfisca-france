@@ -1,5 +1,5 @@
 - name: reduc_notredame
-  period: 2020
+  period: 2019
   absolute_error_margin: 1
   input:
     foyer_fiscal:
@@ -32,4 +32,11 @@
       personne_de_reference: ind0
   output:
     notredame: 300.0
-    iai:
+    iai: 7644.0
+    irpp: -7644.0
+    nbptr: 1.0
+    ppe: 0.0
+    rbg: 45000.0
+    reductions: 300.0
+    rfr: 45000.0
+    rni: 45000.0
