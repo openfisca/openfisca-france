@@ -12,6 +12,16 @@ class f7ud(Variable):
     label = "Dons à des organismes d'aide aux personnes en difficulté"
     definition_period = YEAR
 
+# Dons pour Notre-Dame
+class f7ue(Variable):
+    cerfa_field = "7UE"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "Dons versés du 16.4 au 31.12.2019 pour la conservation et la restauration de la cathédrale Notre-Dame de Paris "
+    # start_date = date(2019, 1, 1)
+    definition_period = YEAR
+
 
 # début/fin ?
 class f7uf(Variable):
@@ -6305,17 +6315,18 @@ class f7lp(Variable):
     definition_period = YEAR
 
 
-class f7na(Variable):
+class f7na_2017(Variable):
     cerfa_field = "7NA"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = "Investissements locatifs neufs dispositif Scellier : investissements réalisés et engagés en 2011, métropole, BBC"
     # start_date = date(2011, 1, 1)
+    end = '2017-12-31'
     definition_period = YEAR
 
 
-class f7nb(Variable):
+class f7nb_2016(Variable):
     cerfa_field = "7NB"
     value_type = int
     unit = 'currency'
@@ -6326,23 +6337,25 @@ class f7nb(Variable):
     definition_period = YEAR
 
 
-class f7nc(Variable):
+class f7nc_2017(Variable):
     cerfa_field = "7NC"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = "Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2010, Investissement réalisé du 1.1.2011 au 31.1.2011, métropole, BBC"
     # start_date = date(2011, 1, 1)
+    end = '2017-12-31'
     definition_period = YEAR
 
 
-class f7nd(Variable):
+class f7nd_2017(Variable):
     cerfa_field = "7ND"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = "Investissements locatifs neufs dispositif Scellier : Logement acquis en l'état futur d'achèvement avec contrat de réservation enregistré au plus tard le 31.12.2010, Investissement réalisé du 1.2.2011 au 31.3.2011, métropole, BBC"
     # start_date = date(2011, 1, 1)
+    end = '2017-12-31'
     definition_period = YEAR
 
 
@@ -7126,6 +7139,44 @@ class f7yz(Variable):
     label = "Scellier: report de 1/5 de la réduction d'impôt des investissements réalisés en 2011 avec promesse d'achat en 2010 et achevés en 2015 en Polynésie, en Nouvelle Calédonie et à Wallis et Futuna "
     # start_date = date(2016, 1, 1)
     definition_period = YEAR
+
+#Investissement dans l'immobilier ancien:
+
+class f7na(Variable):
+    cerfa_field = "7NA"
+    value_type = int
+    entity = FoyerFiscal
+    label = "Denormandie: Investissements réalisés en 2019 en métropole avec engagement de location de 6 ans"
+    # start_date = date(2019, 1, 1)
+    definition_period = YEAR
+
+
+class f7nb(Variable):
+    cerfa_field = "7NB"
+    value_type = int
+    entity = FoyerFiscal
+    label = "Denormandie: Investissements réalisés en 2019 en métropole avec engagement de location de 9 ans"
+    # start_date = date(2019, 1, 1)
+    definition_period = YEAR
+
+
+class f7nc(Variable):
+    cerfa_field = "7NC"
+    value_type = int
+    entity = FoyerFiscal
+    label = "Denormandie: Investissements réalisés en 2019 en outre-mer avec engagement de location de 6 ans"
+    # start_date = date(2019, 1, 1)
+    definition_period = YEAR
+
+
+class f7nd(Variable):
+    cerfa_field = "7ND"
+    value_type = int
+    entity = FoyerFiscal
+    label = "Denormandie: Investissements réalisés en 2019 en outre-mer avec engagement de location de 9 ans"
+    # start_date = date(2019, 1, 1)
+    definition_period = YEAR
+
 
 # Investissement en vue de la location meublée non professionnelle dans certains établissements ou résidences
 
@@ -8408,6 +8459,16 @@ class f7qp(Variable):
     definition_period = YEAR
 
 
+class f7qq(Variable):
+    cerfa_field = "7QQ"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "Investissement locatifs intermédiaires en outre-mer réalisés en 2019 avec engagement de location 9 ans"
+    # start_date = date(2019, 1, 1)
+    definition_period = YEAR
+
+
 class f7qr(Variable):
     cerfa_field = "7QR"
     value_type = int
@@ -8445,6 +8506,36 @@ class f7qu(Variable):
     entity = FoyerFiscal
     label = "Investissements locatifs intermédiaires en outre-mer réalisés en 2018 avec engagement de location 9 ans"
     # start_date = date(2018, 1, 1)
+    definition_period = YEAR
+
+
+class f7qw(Variable):
+    cerfa_field = "7QW"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "Investissement locatifs intermédiaires en métropole réalisés en 2019 avec engagement de location 6 ans"
+    # start_date = date(2019, 1, 1)
+    definition_period = YEAR
+
+
+class f7qx(Variable):
+    cerfa_field = "7QX"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "Investissement locatifs intermédiaires en métropole réalisés en 2019 avec engagement de location 9 ans"
+    # start_date = date(2019, 1, 1)
+    definition_period = YEAR
+
+
+class f7qy(Variable):
+    cerfa_field = "7QY"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "Investissement locatifs intermédiaires en outre-mer réalisés en 2019 avec engagement de location 6 ans"
+    # start_date = date(2019, 1, 1)
     definition_period = YEAR
 
 
