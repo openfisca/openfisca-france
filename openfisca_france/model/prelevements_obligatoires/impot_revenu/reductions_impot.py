@@ -47,9 +47,9 @@ class reductions(Variable):
             # Introduites en 2014
             'rpinel',
             # Introduites en 2017
-            'rehab'
+            'rehab',
             # Introduites en 2020
-            'notredame'
+            'notredame', 'denormandie'
             ]
 
         impot_net = foyer_fiscal('ip_net', period)
@@ -631,6 +631,54 @@ class daepad(Variable):
 
         return P.taux * (min_(f7cd, P.max) + min_(f7ce, P.max))
 
+class denormandie(Variable):
+    value_type = float
+    entity = FoyerFiscal
+    label = "denormandie"
+    reference = "https://bofip.impots.gouv.fr/bofip/11862-PGP"
+    definition_period = YEAR
+
+    def formula_2019_01_01(foyer_fiscal, period, parameters):
+        '''
+        Investissements locatifs anciens : dispositif Denormandie
+        '''
+        denormandie_metropole_6ans = foyer_fiscal('f7na', period)
+        denormandie_metropole_9ans = foyer_fiscal('f7nb', period)
+        denormandie_outremer_6ans = foyer_fiscal('f7nc', period)
+        denormandie_outremer_9ans = foyer_fiscal('f7nd', period)
+        f7qi = foyer_fiscal('f7qi', period)
+        f7qj = foyer_fiscal('f7qj', period)
+        f7qk = foyer_fiscal('f7qk', period)
+        f7ql = foyer_fiscal('f7ql', period)
+        f7qm = foyer_fiscal('f7qm', period)
+        f7qn = foyer_fiscal('f7qn', period)
+        f7qo = foyer_fiscal('f7qo', period)
+        f7qp = foyer_fiscal('f7qp', period)
+        f7qr = foyer_fiscal('f7qr', period)
+        f7qs = foyer_fiscal('f7qs', period)
+        f7qt = foyer_fiscal('f7qt', period)
+        f7qu = foyer_fiscal('f7qu', period)
+        f7qw = foyer_fiscal('f7qw', period)
+        f7qx = foyer_fiscal('f7qx', period)
+        f7qy = foyer_fiscal('f7qy', period)
+        f7qq = foyer_fiscal('f7qq', period)
+        P = parameters(period).impot_revenu.reductions_impots.denormandie
+
+        pinel_metropole_6ans = f7qi + f7qm + f7qr + f7qw
+        pinel_metropole_9ans = f7qj + f7qn + f7qs + f7qx
+        pinel_outremer_6ans = f7qk + f7qo + f7qt + f7qy
+        pinel_outremer_9ans = f7ql + f7qp + f7qu + f7qq
+
+        max1 = max_(0, P.plafond - pinel_outremer_9ans - denormandie_outremer_9ans) #Plafond commun à Pinel
+        max2 = max_(0, max1 - pinel_outremer_6ans - denormandie_outremer_6ans) #Plafond commun à Pinel
+        max3 = max_(0, max2 - pinel_metropole_9ans - denormandie_metropole_9ans) #Plafond commun à Pinel
+
+        return around(
+            P.taux['outremer']['9_ans'] * min_(max_(0, P.plafond - pinel_outremer_9ans), denormandie_outremer_9ans) /9
+            + P.taux['outremer']['6_ans'] * min_(max_(0, max1 - pinel_outremer_6ans), denormandie_outremer_6ans) /6
+            + P.taux['metropole']['9_ans'] * min_(max_(0, max2 - pinel_metropole_9ans), denormandie_metropole_9ans) /9
+            + P.taux['metropole']['6_ans'] * min_(max_(0, max3 - pinel_metropole_6ans), denormandie_metropole_6ans) /6
+        )
 
 class dfppce(Variable):
     value_type = float
