@@ -1,8 +1,8 @@
 - name: reduc_denormandie_metro
   period: 2019
+  absolute_error_margin: 1
   input:
     foyer_fiscal:
-      foyer_fiscal:
       caseF: false
       caseG: false
       caseL: false
@@ -12,8 +12,8 @@
       caseW: false
       declarants:
       - ind0
-      f7fa: 100000.0
-      f7fb: 0.0
+      f7na: 100000.0
+      f7nb: 0.0
       nbF: 0.0
       nbG: 0.0
       nbH: 0.0
@@ -32,6 +32,7 @@
     menage:
       personne_de_reference: ind0
   output:
+    denormandie: 2000.0
     iai: 5644.0
     irpp: -5644.0
     nbptr: 1.0
@@ -54,8 +55,8 @@
       caseW: false
       declarants:
       - ind0
-      f7fa: 0.0
-      f7fb: 150000.0
+      f7na: 0.0
+      f7nb: 300000.0
       nbF: 0.0
       nbG: 0.0
       nbH: 0.0
@@ -74,11 +75,12 @@
     menage:
       personne_de_reference: ind0
   output:
-    iai: 4644.0
-    irpp: -4644.0
+    denormandie: 6000.0
+    iai: 1644.0
+    irpp: -1644.0
     nbptr: 1.0
     ppe: 0.0
     rbg: 45000.0
-    reductions: 3000.0
+    reductions: 6000.0
     rfr: 45000.0
     rni: 45000.0
