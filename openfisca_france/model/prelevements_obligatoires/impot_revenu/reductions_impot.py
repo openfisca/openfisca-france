@@ -824,6 +824,7 @@ class dfppce(Variable):
         politiques et des campagnes électorales (2011-2013)
         '''
         rbg_int = foyer_fiscal('rbg_int', period)
+        f7ue = foyer_fiscal('f7ue', period)
         f7uf = foyer_fiscal('f7uf', period)
         f7uh = foyer_fiscal('f7uh', period)
         f7xs = foyer_fiscal('f7xs', period)
@@ -840,6 +841,34 @@ class dfppce(Variable):
         base = min_(P.max_niv, f7uf + f7uh) + f7vc + f7xs + f7xt + f7xu + f7xw + f7xy + report_f7va
         max1 = P.taux_max_dons_partipo * rbg_int
         return P.taux_dons_oeuvres * min_(base, max1)
+
+
+    def formula_2019_01_01(foyer_fiscal, period, parameters):
+        '''
+        Dons aux autres oeuvres et dons effectués pour le financement des partis
+        politiques et des campagnes électorales (2019-)
+        '''
+        rbg_int = foyer_fiscal('rbg_int', period)
+        f7ue = foyer_fiscal('f7ue', period)
+        f7uf = foyer_fiscal('f7uf', period)
+        f7uh = foyer_fiscal('f7uh', period)
+        f7xs = foyer_fiscal('f7xs', period)
+        f7xt = foyer_fiscal('f7xt', period)
+        f7xu = foyer_fiscal('f7xu', period)
+        f7xw = foyer_fiscal('f7xw', period)
+        f7xy = foyer_fiscal('f7xy', period)
+        f7va = foyer_fiscal('f7va', period)
+        f7vc = foyer_fiscal('f7vc', period)
+        P = parameters(period).impot_revenu.reductions_impots.dons
+        plafond_reduction_donapd = parameters(period).impot_revenu.reductions_impots.donapd.max
+        plafond_reduction_notredame = parameters(period).impot_revenu.reductions_impots.dons.dons_notre_dame.plafond
+
+        report_f7va = max_(0, f7va - plafond_reduction_donapd)
+        report_f7ue = max_(0, f7ue - plafond_reduction_notredame)
+        base = min_(P.max_niv, f7uf + f7uh) + f7vc + f7xs + f7xt + f7xu + f7xw + f7xy + report_f7va + report_f7ue
+        max1 = P.taux_max_dons_partipo * rbg_int
+        return P.taux_dons_oeuvres * min_(base, max1)
+
 
     # TODO:
     # - Introduire plus de détails dans la déclaration pour séparer les dons aux partis politiques et aux candidats des autres dons (intérêt général)
@@ -2216,10 +2245,10 @@ class domsoc(Variable):
         f7ki = foyer_fiscal('f7ki', period)
         f7qj = foyer_fiscal('f7qj', period)
         f7qs = foyer_fiscal('f7qs', period)
-        f7qw = foyer_fiscal('f7qw', period)
+        f7qw_2012 = foyer_fiscal('f7qw_2012', period)
         f7qx = foyer_fiscal('f7qx', period)
 
-        return f7qn + f7qk + f7qu + f7kg + f7kh + f7ki + f7qj + f7qs + f7qw + f7qx
+        return f7qn + f7qk + f7qu + f7kg + f7kh + f7ki + f7qj + f7qs + f7qw_2012 + f7qx
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
         '''
@@ -4428,7 +4457,12 @@ class rpinel(Variable):
                 ('f7qu', 9, 'outremer'),
                 ('f7qt', 6, 'outremer'),
                 ('f7qs', 9, 'metropole'),
-                ('f7qr', 6, 'metropole')]
+                ('f7qr', 6, 'metropole')],
+            2019: [
+                ('f7qq', 9, 'outremer'),
+                ('f7qy', 6, 'outremer'),
+                ('f7qx', 9, 'metropole'),
+                ('f7qw', 6, 'metropole')]
             }
 
         cases_report = {
@@ -4436,6 +4470,7 @@ class rpinel(Variable):
             2015: ['f7bz', 'f7cz', 'f7dz', 'f7ez'],
             2016: ['f7qz', 'f7rz', 'f7sz', 'f7tz'],
             2017: ['f7ra', 'f7rb', 'f7rc', 'f7rd'],
+            2018: ['f7re', 'f7rf', 'f7rg', 'f7rh'],
             }
 
         P = parameters(period).impot_revenu.reductions_impots.rpinel
