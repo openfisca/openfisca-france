@@ -41,7 +41,7 @@
     reductions: 2000.0
     rfr: 45000.0
     rni: 45000.0
-- name: reduc_denormandie_dom
+- name: reduc_denormandie_metro
   period: 2019
   absolute_error_margin: 1
   input:
@@ -84,3 +84,135 @@
     reductions: 6000.0
     rfr: 45000.0
     rni: 45000.0
+- name: reduc_denormandie_metro
+  period: 2019
+  absolute_error_margin: 1
+  input:
+    foyer_fiscal:
+      caseF: false
+      caseG: false
+      caseL: false
+      caseP: false
+      caseS: false
+      caseT: false
+      caseW: false
+      declarants:
+      - ind0
+      f7na: 200000.0
+      f7nb: 0.0
+      f7qy: 200000.0
+      nbF: 0.0
+      nbG: 0.0
+      nbH: 0.0
+      nbI: 0.0
+      nbJ: 0
+      nbR: 0
+    individus:
+      ind0:
+        activite: actif
+        date_naissance: '1970-01-01'
+        salaire_imposable: 100000.0
+        statut_marital: celibataire
+    famille:
+      parents:
+      - ind0
+    menage:
+      personne_de_reference: ind0
+  output:
+    denormandie: 2000.0
+    iai: 13180.0
+    irpp: -13180.0
+    nbptr: 1.0
+    ppe: 0.0
+    rbg: 90000.0
+    reductions: 9667.0
+    rfr: 90000.0
+    rni: 90000.0
+- name: reduc_denormandie_metro
+  period: 2019
+  absolute_error_margin: 1
+  input:
+    foyer_fiscal:
+      caseF: false
+      caseG: false
+      caseL: false
+      caseP: false
+      caseS: false
+      caseT: false
+      caseW: false
+      declarants:
+      - ind0
+      f7na: 200000.0
+      f7nb: 0.0
+      f7qm: 200000.0
+      nbF: 0.0
+      nbG: 0.0
+      nbH: 0.0
+      nbI: 0.0
+      nbJ: 0
+      nbR: 0
+    individus:
+      ind0:
+        activite: actif
+        date_naissance: '1970-01-01'
+        salaire_imposable: 60000.0
+        statut_marital: celibataire
+    famille:
+      parents:
+      - ind0
+    menage:
+      personne_de_reference: ind0
+  output:
+    denormandie: 2000.0
+    iai: 4344.0
+    irpp: -4344.0
+    nbptr: 1.0
+    ppe: 0.0
+    rbg: 54000.0
+    reductions: 6000.0
+    rfr: 54000.0
+    rni: 54000.0
+- name: reduc_denormandie_metro
+  period: 2019
+  absolute_error_margin: 1
+  input:
+    foyer_fiscal:
+      caseF: false
+      caseG: false
+      caseL: false
+      caseP: false
+      caseS: false
+      caseT: false
+      caseW: false
+      declarants:
+      - ind0
+      f7na: 0.0
+      f7nb: 200000.0
+      f7qx: 200000.0
+      nbF: 0.0
+      nbG: 0.0
+      nbH: 0.0
+      nbI: 0.0
+      nbJ: 0
+      nbR: 0
+    individus:
+      ind0:
+        activite: actif
+        date_naissance: '1970-01-01'
+        salaire_imposable: 90000.0
+        statut_marital: celibataire
+    famille:
+      parents:
+      - ind0
+    menage:
+      personne_de_reference: ind0
+  output:
+    denormandie: 2000.0
+    iai: 13157.0
+    irpp: -13157.0
+    nbptr: 1.0
+    ppe: 0.0
+    rbg: 81000.0
+    reductions: 6000.0
+    rfr: 81000.0
+    rni: 81000.0
