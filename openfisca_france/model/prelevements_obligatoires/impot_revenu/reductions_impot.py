@@ -4428,7 +4428,7 @@ class rpinel(Variable):
     def formula_2015_01_01(foyer_fiscal, period, parameters):
         '''
         Investissement locatif privé - Dispositif Pinel
-        Depuis 2015
+        De 2015 à 2018
         '''
         f7ek = foyer_fiscal('f7ek', period)
         f7el = foyer_fiscal('f7el', period)
@@ -4458,11 +4458,6 @@ class rpinel(Variable):
                 ('f7qt', 6, 'outremer'),
                 ('f7qs', 9, 'metropole'),
                 ('f7qr', 6, 'metropole')],
-            2019: [
-                ('f7qq', 9, 'outremer'),
-                ('f7qy', 6, 'outremer'),
-                ('f7qx', 9, 'metropole'),
-                ('f7qw', 6, 'metropole')]
             }
 
         cases_report = {
@@ -4470,7 +4465,6 @@ class rpinel(Variable):
             2015: ['f7bz', 'f7cz', 'f7dz', 'f7ez'],
             2016: ['f7qz', 'f7rz', 'f7sz', 'f7tz'],
             2017: ['f7ra', 'f7rb', 'f7rc', 'f7rd'],
-            2018: ['f7re', 'f7rf', 'f7rg', 'f7rh'],
             }
 
         P = parameters(period).impot_revenu.reductions_impots.rpinel
@@ -4505,6 +4499,65 @@ class rpinel(Variable):
         report = sum([foyer_fiscal(case, period) for year in range_year_report for case in cases_report[year]])
 
         return reduction_cumulee + report
+
+    def formula_2019_01_01(foyer_fiscal, period, parameters):
+        '''
+        Investissement locatif privé - Dispositif Pinel
+        Depuis 2019
+        '''
+        f7na = foyer_fiscal('f7na', period)
+        f7nb = foyer_fiscal('f7nb', period)
+        f7nc = foyer_fiscal('f7nc', period)
+        f7nd = foyer_fiscal('f7nd', period)
+        f7qi = foyer_fiscal('f7qi', period)
+        f7qj = foyer_fiscal('f7qj', period)
+        f7qk = foyer_fiscal('f7qk', period)
+        f7ql = foyer_fiscal('f7ql', period)
+        f7qm = foyer_fiscal('f7qm', period)
+        f7qn = foyer_fiscal('f7qn', period)
+        f7qo = foyer_fiscal('f7qo', period)
+        f7qp = foyer_fiscal('f7qp', period)
+        f7qr = foyer_fiscal('f7qr', period)
+        f7qs = foyer_fiscal('f7qs', period)
+        f7qt = foyer_fiscal('f7qt', period)
+        f7qu = foyer_fiscal('f7qu', period)
+        f7qw = foyer_fiscal('f7qw', period)
+        f7qx = foyer_fiscal('f7qx', period)
+        f7qy = foyer_fiscal('f7qy', period)
+        f7qq = foyer_fiscal('f7qq', period)
+
+        pinel_metropole_6ans = f7qi + f7qm + f7qr + f7qw
+        pinel_metropole_9ans = f7qj + f7qn + f7qs + f7qx
+        pinel_outremer_6ans = f7qk + f7qo + f7qt + f7qy
+        pinel_outremer_9ans = f7ql + f7qp + f7qu + f7qq
+
+        cases_report = {
+            2014: ['f7ai', 'f7bi', 'f7ci', 'f7di'],
+            2015: ['f7bz', 'f7cz', 'f7dz', 'f7ez'],
+            2016: ['f7qz', 'f7rz', 'f7sz', 'f7tz'],
+            2017: ['f7ra', 'f7rb', 'f7rc', 'f7rd'],
+            2018: ['f7re', 'f7rf', 'f7rg', 'f7rh'],
+            }
+
+        P = parameters(period).impot_revenu.reductions_impots.rpinel
+
+        max1 = max_(0, P.plafond - f7nd - pinel_outremer_9ans)  # 2019 : plafond commun 'denormandie' et 'rpinel'
+        max2 = max_(0, max1 - f7nc - pinel_outremer_6ans)
+        max3 = max_(0, max2 - f7nb - pinel_metropole_9ans)
+
+        reduc_invest_pinel_2019 = around(
+            P.taux['outremer']['9_ans'] * min_(max_(0, P.plafond), pinel_outremer_9ans) / 9
+            + P.taux['outremer']['6_ans'] * min_(max_(0, max1), pinel_outremer_6ans) / 6
+            + P.taux['metropole']['9_ans'] * min_(max_(0, max2), pinel_metropole_9ans) / 9
+            + P.taux['metropole']['6_ans'] * min_(max_(0, max3), pinel_metropole_6ans) / 6
+            )
+
+        annee_fiscale = period.start.year
+        range_year_report = list(set([year for year in range(2014, annee_fiscale)]) & set([year for year in cases_report.keys()]))
+
+        report = sum([foyer_fiscal(case, period) for year in range_year_report for case in cases_report[year]])
+
+        return reduc_invest_pinel_2019 + report
 
 
 class rsceha(Variable):
