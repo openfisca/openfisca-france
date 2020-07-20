@@ -15,7 +15,8 @@
       personne_de_reference: parent1
       conjoint: parent2
       enfants: [enfant1, enfant2, enfant3]
-      code_INSEE_commune: "01058"
+      depcom:
+        2017-01: "01058"
       valeur_locative_cadastrale_brute: 3000
     individus:
       parent1:
@@ -54,7 +55,8 @@
       personne_de_reference: parent1
       conjoint: parent2
       enfants: [enfant1, enfant2, enfant3]
-      code_INSEE_commune: "01058"
+      depcom:
+        2017-01: "01058"
       valeur_locative_cadastrale_brute: 3000
     individus:
       parent1:
@@ -88,7 +90,8 @@
       personne_de_reference: parent1
       conjoint: parent2
       enfants: [enfant1, enfant2, enfant3]
-      code_INSEE_commune: "01058"
+      depcom:
+        2017-01: "01058"
       valeur_locative_cadastrale_brute: 3000
     individus:
       parent1:
@@ -123,7 +126,8 @@
       personne_de_reference: parent1
       conjoint: parent2
       enfants: [enfant1, enfant2, enfant3]
-      code_INSEE_commune: "01058"
+      depcom:
+        2017-01: "01058"
       valeur_locative_cadastrale_brute: 6000
       taux_th_commune:
         2000: 0.05
@@ -167,7 +171,8 @@
       personne_de_reference: parent1
       conjoint: parent2
       enfants: [enfant1, enfant2, enfant3]
-      code_INSEE_commune: "01058"
+      depcom:
+        2017-01: "01058"
       valeur_locative_cadastrale_brute: 6000
       taux_th_commune:
         2000: 0.05
@@ -212,7 +217,8 @@
       personne_de_reference: parent1
       conjoint: parent2
       enfants: [enfant1, enfant2, enfant3]
-      code_INSEE_commune: "01058"
+      depcom:
+        2017-01: "01058"
       valeur_locative_cadastrale_brute: 3000
     individus:
       parent1:
@@ -253,7 +259,8 @@
       personne_de_reference: parent1
       conjoint: parent2
       enfants: [enfant1, enfant2, enfant3]
-      code_INSEE_commune: "01058"
+      depcom:
+        2017-01: "01058"
       valeur_locative_cadastrale_brute: 5000
     individus:
       parent1:
@@ -295,7 +302,8 @@
     menage:
       personne_de_reference: parent1
       conjoint: parent2
-      code_INSEE_commune: "01058"
+      depcom:
+        2017-01: "01058"
       valeur_locative_cadastrale_brute: 3000
       taux_th_commune:
         2000: 0.05
@@ -341,7 +349,8 @@
     menage:
       personne_de_reference: parent1
       conjoint: parent2
-      code_INSEE_commune: "01058"
+      depcom:
+        2017-01: "01058"
       valeur_locative_cadastrale_brute: 3000
     individus:
       parent1:
@@ -375,7 +384,8 @@
       personne_de_reference: parent1
       conjoint: parent2
       enfants: [enfant1, enfant2, enfant3]
-      code_INSEE_commune: "01058"
+      depcom:
+        2018-01: "01058"
       valeur_locative_cadastrale_brute: 3000
       # Si dessous, on met en dur les paramètres locaux, car on n'a pas encore les paramètres de 2018
       taux_th_commune: 0.1037
@@ -427,7 +437,8 @@
       personne_de_reference: parent1
       conjoint: parent2
       enfants: [enfant1, enfant2, enfant3]
-      code_INSEE_commune: "01058"
+      depcom:
+        2018-01: "01058"
       valeur_locative_cadastrale_brute: 3000
       # Si dessous, on met en dur les paramètres locaux, car on n'a pas encore les paramètres de 2018
       taux_th_commune: 0.1037
@@ -479,7 +490,8 @@
       personne_de_reference: parent1
       conjoint: parent2
       enfants: [enfant1, enfant2, enfant3]
-      code_INSEE_commune: "01058"
+      depcom:
+        2018-01: "01058"
       valeur_locative_cadastrale_brute: 3000
       # Si dessous, on met en dur les paramètres locaux, car on n'a pas encore les paramètres de 2018
       taux_th_commune: 0.1037
@@ -527,7 +539,8 @@
         2016: 70000
     menage:
       personne_de_reference: parent1
-      code_INSEE_commune: "01058"
+      depcom:
+        2017-01: "01058"
       valeur_locative_cadastrale_brute: 6000
       # Si dessous, on met en dur les paramètres locaux
       taux_th_commune: 0.1037

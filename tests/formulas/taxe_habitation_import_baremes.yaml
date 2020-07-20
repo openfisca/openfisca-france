@@ -3,7 +3,8 @@
   period: 2017
   absolute_error_margin: 0.001
   input:
-    code_INSEE_commune: "01058"
+    depcom:
+      2017-01: "01058"
   output:
     taux_th_commune: 0.1037
     taux_th_epci: 0.0362
