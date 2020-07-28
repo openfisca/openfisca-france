@@ -397,8 +397,11 @@ class degrevement_office_taxe_habitation(Variable):
         elig_degrev_degressif = (isf_ifi_menage == 0) * (elig_degrev == 0) * (rfr_menage <= plafond_rfr_degrev_degressif)
 
         # Calcul du dégrèvement
-        taxe_habitation_commune_epci_apres_degrevement_plafonnement = menage('taxe_habitation_commune_epci_apres_degrevement_plafonnement', period)
-        degrev = P_degrev.taux * taxe_habitation_commune_epci_apres_degrevement_plafonnement
+        if period.start.year < 2020:
+            taxe_habitation_commune_epci_avant_degrevement_office = menage('taxe_habitation_commune_epci_apres_degrevement_plafonnement', period)
+        if period.start.year >= 2020:
+            taxe_habitation_commune_epci_avant_degrevement_office = menage('taxe_habitation_commune_epci_avant_degrevement', period)
+        degrev = P_degrev.taux * taxe_habitation_commune_epci_avant_degrevement_office
         degrev_degressif = degrev * max_((plafond_rfr_degrev_degressif - rfr_menage) / (plafond_rfr_degrev_degressif - plafond_rfr_degrev), 0)
 
         return degrev * elig_degrev + degrev_degressif * elig_degrev_degressif
