@@ -194,11 +194,60 @@ class assiette_csg_plus_values(Variable):
         f3vg = foyer_fiscal('f3vg', period)
         f3we = foyer_fiscal('f3we', period)
         f3ua = foyer_fiscal('f3ua', period)
+        f3vd_i = foyer_fiscal.members('f3vd', period)
+        f3vi_i = foyer_fiscal.members('f3vi', period)
+        f3vf_i = foyer_fiscal.members('f3vf', period)
+        f3sj = foyer_fiscal('f3sj', period)
+        f3tj = foyer_fiscal('f3tj', period)
+        f3sk = foyer_fiscal('f3sk', period)
+        f3vm = foyer_fiscal('f3vm', period)
+        f3vt = foyer_fiscal('f3vt', period)
+        f3wi = foyer_fiscal('f3wi', period)
+        f3wj = foyer_fiscal('f3wj', period)
+        rpns_pvce_i = foyer_fiscal.members('rpns_pvce', period)
+        f3pi = foyer_fiscal('f3pi', period)
+
+        rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
+        f3vd = foyer_fiscal.sum(f3vd_i)
+        f3vi = foyer_fiscal.sum(f3vi_i)
+        f3vf = foyer_fiscal.sum(f3vf_i)
+        plus_values = parameters(period).impot_revenu.plus_values        
 
         # Plus-values immobilières
         f3vz = foyer_fiscal('f3vz', period)
 
-        return f3vg + f3ua + f3vz + f3we
+        return f3vg + f3ua + f3vz + f3we + rpns_pvce + f3sj + f3sk + f3vm + f3vt + f3wi + f3wj + f3pi + f3tj + f3vd + f3vi + f3vf
+
+    def formula_2019_01_01(foyer_fiscal, period, parameters):
+
+        # Plus-values mobilières brutes (avant abattement)
+        f3vg = foyer_fiscal('f3vg', period)
+        f3we = foyer_fiscal('f3we', period)
+        f3ua = foyer_fiscal('f3ua', period)
+        f3vd_i = foyer_fiscal.members('f3vd', period)
+        f3vi_i = foyer_fiscal.members('f3vi', period)
+        f3vf_i = foyer_fiscal.members('f3vf', period)
+        f3sj = foyer_fiscal('f3sj', period)
+        f3tj = foyer_fiscal('f3tj', period)
+        f3sk = foyer_fiscal('f3sk', period)
+        f3vm = foyer_fiscal('f3vm', period)
+        f3vt = foyer_fiscal('f3vt', period)
+        f3wi = foyer_fiscal('f3wi', period)
+        f3wj = foyer_fiscal('f3wj', period)
+        rpns_pvce_i = foyer_fiscal.members('rpns_pvce', period)
+        f3pi = foyer_fiscal('f3pi', period)
+        f3an = foyer_fiscal('f3an', period)
+        f3bn = foyer_fiscal('f3bn', period)
+
+        rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
+        f3vd = foyer_fiscal.sum(f3vd_i)
+        f3vi = foyer_fiscal.sum(f3vi_i)
+        f3vf = foyer_fiscal.sum(f3vf_i)
+
+        # Plus-values immobilières
+        f3vz = foyer_fiscal('f3vz', period)
+
+        return f3vg + f3ua + f3vz + f3we + rpns_pvce + f3sj + f3sk + f3vm + f3vt + f3wi + f3wj + f3pi + f3tj + f3an - f3bn 
 
 
 class assiette_csg_revenus_capital(Variable):

@@ -1,0 +1,118 @@
+- name: Application du PFU aux plus-values
+  period: 2019
+  absolute_error_margin: 1
+  input:
+    foyer_fiscal:
+      caseF: false
+      caseG: false
+      caseL: false
+      caseP: false
+      caseS: false
+      caseT: false
+      caseW: false
+      declarants:
+      - ind0
+      nbF: 0.0
+      nbG: 0.0
+      nbH: 0.0
+      nbI: 0.0
+      nbJ: 0
+      nbR: 0
+      f3vg: 10000.0
+      f3vt: 30000.0
+      f3an: 10000.0
+    individus:
+      ind0:
+        activite: actif
+        date_naissance: '1970-01-01'
+        statut_marital: celibataire
+    famille:
+      parents:
+      - ind0
+    menage:
+      personne_de_reference: ind0
+  output:
+    prelevement_forfaitaire_unique_ir: -6400.0
+    nbptr: 1.0
+    ppe: 0.0
+    rfr: 50000.0
+    prelevements_sociaux_revenus_capital: -8600.0
+- name: Application du PFU aux plus-values et taxation hors barème
+  period: 2019
+  absolute_error_margin: 1
+  input:
+    foyer_fiscal:
+      caseF: false
+      caseG: false
+      caseL: false
+      caseP: false
+      caseS: false
+      caseT: false
+      caseW: false
+      declarants:
+      - ind0
+      nbF: 0.0
+      nbG: 0.0
+      nbH: 0.0
+      nbI: 0.0
+      nbJ: 0
+      nbR: 0
+      f3vg: 20000.0
+      f3vt: 20000.0
+      f3pi: 20000.0
+    individus:
+      ind0:
+        activite: actif
+        date_naissance: '1970-01-01'
+        statut_marital: celibataire
+    famille:
+      parents:
+      - ind0
+    menage:
+      personne_de_reference: ind0
+  output:
+    prelevement_forfaitaire_unique_ir: -5120.0
+    nbptr: 1.0
+    ppe: 0.0
+    rfr: 60000.0
+    irpp: -10000.0
+    prelevements_sociaux_revenus_capital: -10320.0
+- name: Taxation hors barème des plus-values
+  period: 2018
+  absolute_error_margin: 1
+  input:
+    foyer_fiscal:
+      caseF: false
+      caseG: false
+      caseL: false
+      caseP: false
+      caseS: false
+      caseT: false
+      caseW: false
+      declarants:
+      - ind0
+      nbF: 0.0
+      nbG: 0.0
+      nbH: 0.0
+      nbI: 0.0
+      nbJ: 0
+      nbR: 0
+      f3sk: 20000.0
+      f3vt: 20000.0
+    individus:
+      ind0:
+        activite: actif
+        date_naissance: '1970-01-01'
+        statut_marital: celibataire
+        f3vi: 10000.0
+    famille:
+      parents:
+      - ind0
+    menage:
+      personne_de_reference: ind0
+  output:
+    nbptr: 1.0
+    ppe: 0.0
+    rfr: 50000.0
+    irpp: -12800.0
+    prelevements_sociaux_revenus_capital: -8600.0
