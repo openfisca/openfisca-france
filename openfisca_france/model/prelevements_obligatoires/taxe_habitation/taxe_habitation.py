@@ -295,7 +295,7 @@ class plafond_taxe_habitation(Variable):
         nbptr_i = menage.members.foyer_fiscal('nbptr', period.last_year)
         nbptr_menage = menage.sum(nbptr_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
         abattement = P_plaf.abattement_rfr.premiere_part + P_plaf.abattement_rfr.quatre_premieres_demi_parts_supp * (min_(max_(nbptr_menage - 1, 0), 2)) / 0.5 + P_plaf.abattement_rfr.autres_demi_parts_supp * (max_(nbptr_menage - 3, 0)) / 0.5
-        return (rfr_menage - abattement) * P_plaf.taux_plafonnement_revenu * plafond_taxe_habitation_eligibilite
+        return max_(rfr_menage - abattement, 0) * P_plaf.taux_plafonnement_revenu * plafond_taxe_habitation_eligibilite
 
 
 class degrevement_plafonnement_taxe_habitation(Variable):
