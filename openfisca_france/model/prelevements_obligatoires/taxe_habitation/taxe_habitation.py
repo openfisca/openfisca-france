@@ -397,11 +397,34 @@ class degrevement_office_taxe_habitation(Variable):
         elig_degrev_degressif = (isf_ifi_menage == 0) * (elig_degrev == 0) * (rfr_menage <= plafond_rfr_degrev_degressif)
 
         # Calcul du dégrèvement
-        if period.start.year < 2020:
-            taxe_habitation_commune_epci_avant_degrevement_office = menage('taxe_habitation_commune_epci_apres_degrevement_plafonnement', period)
-        if period.start.year >= 2020:
-            taxe_habitation_commune_epci_avant_degrevement_office = menage('taxe_habitation_commune_epci_avant_degrevement', period)
-        degrev = P_degrev.taux * taxe_habitation_commune_epci_avant_degrevement_office
+        taxe_habitation_commune_epci_apres_degrevement_plafonnement = menage('taxe_habitation_commune_epci_apres_degrevement_plafonnement', period)
+        degrev = P_degrev.taux * taxe_habitation_commune_epci_apres_degrevement_plafonnement
+        degrev_degressif = degrev * max_((plafond_rfr_degrev_degressif - rfr_menage) / (plafond_rfr_degrev_degressif - plafond_rfr_degrev), 0)
+
+        return degrev * elig_degrev + degrev_degressif * elig_degrev_degressif
+
+   def formula_2020_01_01(menage, period, parameters):
+        '''
+        Différence par rapport à la formule précédente : le taux de plafonnement est appliqué à taxe_habitation_commune_epci_avant_degrevement
+        (au lieu de taxe_habitation_commune_epci_apres_degrevement_plafonnement)
+        '''
+
+        # Calcul de l'éligibilité en fonction du revenu fiscal de référence et de la perception de l'ISF-IFI
+        P_degrev = parameters(period).taxation_locale.taxe_habitation.degrevement_d_office
+        isf_ifi_i = menage.members.foyer_fiscal('isf_ifi', period.last_year)
+        isf_ifi_menage = menage.sum(isf_ifi_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
+        rfr_i = menage.members.foyer_fiscal('rfr', period.last_year)
+        rfr_menage = menage.sum(rfr_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
+        nbptr_i = menage.members.foyer_fiscal('nbptr', period.last_year)
+        nbptr_menage = menage.sum(nbptr_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)
+        plafond_rfr_degrev = P_degrev.plaf_rfr_degrev.premiere_part + P_degrev.plaf_rfr_degrev.deux_premieres_demi_parts_supp * (min_(max_(nbptr_menage - 1, 0), 1)) / 0.5 + P_degrev.plaf_rfr_degrev.autres_demi_parts_supp * (max_(nbptr_menage - 2, 0)) / 0.5
+        plafond_rfr_degrev_degressif = P_degrev.plaf_rfr_degrev_degressif.premiere_part + P_degrev.plaf_rfr_degrev_degressif.deux_premieres_demi_parts_supp * (min_(max_(nbptr_menage - 1, 0), 1)) / 0.5 + P_degrev.plaf_rfr_degrev_degressif.autres_demi_parts_supp * (max_(nbptr_menage - 2, 0)) / 0.5
+        elig_degrev = (isf_ifi_menage == 0) * (rfr_menage <= plafond_rfr_degrev)
+        elig_degrev_degressif = (isf_ifi_menage == 0) * (elig_degrev == 0) * (rfr_menage <= plafond_rfr_degrev_degressif)
+
+        # Calcul du dégrèvement
+        taxe_habitation_commune_epci_avant_degrevement = menage('taxe_habitation_commune_epci_avant_degrevement', period)
+        degrev = P_degrev.taux * taxe_habitation_commune_epci_avant_degrevement
         degrev_degressif = degrev * max_((plafond_rfr_degrev_degressif - rfr_menage) / (plafond_rfr_degrev_degressif - plafond_rfr_degrev), 0)
 
         return degrev * elig_degrev + degrev_degressif * elig_degrev_degressif
@@ -436,10 +459,13 @@ class taxe_habitation(Variable):
     definition_period = YEAR
 
     def formula_2017_01_01(menage, period):
-        if period.start.year < 2020:
-            taxe_habitation_commune_epci_avant_degrevement_office = menage('taxe_habitation_commune_epci_apres_degrevement_plafonnement', period)
-        if period.start.year >= 2020:
-            taxe_habitation_commune_epci_avant_degrevement_office = menage('taxe_habitation_commune_epci_avant_degrevement', period)
+        taxe_habitation_commune_epci_apres_degrevement_plafonnement = menage('taxe_habitation_commune_epci_apres_degrevement_plafonnement', period)
         degrevement_office_taxe_habitation = menage('degrevement_office_taxe_habitation', period)
         prelevement_base_imposition_elevee_taxe_habitation = menage('prelevement_base_imposition_elevee_taxe_habitation', period)
-        return - max_(taxe_habitation_commune_epci_avant_degrevement_office - degrevement_office_taxe_habitation, 0) - prelevement_base_imposition_elevee_taxe_habitation
+        return - max_(taxe_habitation_commune_epci_apres_degrevement_plafonnement - degrevement_office_taxe_habitation, 0) - prelevement_base_imposition_elevee_taxe_habitation
+
+    def formula_2020_01_01(menage, period):
+        taxe_habitation_commune_epci_avant_degrevement = menage('taxe_habitation_commune_epci_avant_degrevement', period)
+        degrevement_office_taxe_habitation = menage('degrevement_office_taxe_habitation', period)
+        prelevement_base_imposition_elevee_taxe_habitation = menage('prelevement_base_imposition_elevee_taxe_habitation', period)
+        return - max_(taxe_habitation_commune_epci_avant_degrevement - degrevement_office_taxe_habitation, 0) - prelevement_base_imposition_elevee_taxe_habitation
