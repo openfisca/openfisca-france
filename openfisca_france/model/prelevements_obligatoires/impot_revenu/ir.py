@@ -1851,7 +1851,6 @@ class taxation_plus_values_hors_bareme(Variable):
         f3vf_i = foyer_fiscal.members('f3vf', period)
         f3sj = foyer_fiscal('f3sj', period)
         f3sk = foyer_fiscal('f3sk', period)
-        f3vt = foyer_fiscal('f3vt', period)
         f3wi = foyer_fiscal('f3wi', period)
         f3wj = foyer_fiscal('f3wj', period)
         rpns_pvce_i = foyer_fiscal.members('rpns_pvce', period)

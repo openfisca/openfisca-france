@@ -211,7 +211,6 @@ class assiette_csg_plus_values(Variable):
         f3vd = foyer_fiscal.sum(f3vd_i)
         f3vi = foyer_fiscal.sum(f3vi_i)
         f3vf = foyer_fiscal.sum(f3vf_i)
-        plus_values = parameters(period).impot_revenu.plus_values        
 
         # Plus-values immobilières
         f3vz = foyer_fiscal('f3vz', period)
@@ -247,7 +246,7 @@ class assiette_csg_plus_values(Variable):
         # Plus-values immobilières
         f3vz = foyer_fiscal('f3vz', period)
 
-        return f3vg + f3ua + f3vz + f3we + rpns_pvce + f3sj + f3sk + f3vm + f3vt + f3wi + f3wj + f3pi + f3tj + f3an - f3bn 
+        return f3vg + f3ua + f3vz + f3we + rpns_pvce + f3sj + f3sk + f3vm + f3vt + f3wi + f3wj + f3pi + f3tj + f3an - f3bn + f3vd + f3vi + f3vf
 
 
 class assiette_csg_revenus_capital(Variable):

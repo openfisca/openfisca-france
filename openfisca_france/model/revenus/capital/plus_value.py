@@ -466,7 +466,7 @@ class f3vt(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = "Clôture du PEA  entre la 2e et la 5e année: gains taxables à 19 %" #Depuis IR 2020 :Retrait ou rachat du PEA ou du PEA-PME avant expiration de la 5e année"
+    label = "Clôture du PEA  entre la 2e et la 5e année: gains taxables à 19 %"  # Depuis IR 2020 :Retrait ou rachat du PEA ou du PEA-PME avant expiration de la 5e année"
     # start_date = date(2012, 1, 1)
     definition_period = YEAR
 
