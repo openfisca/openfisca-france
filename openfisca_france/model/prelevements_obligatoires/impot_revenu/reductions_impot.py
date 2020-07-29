@@ -631,6 +631,7 @@ class daepad(Variable):
 
         return P.taux * (min_(f7cd, P.max) + min_(f7ce, P.max))
 
+
 class denormandie(Variable):
     value_type = float
     entity = FoyerFiscal
@@ -669,16 +670,17 @@ class denormandie(Variable):
         pinel_outremer_6ans = f7qk + f7qo + f7qt + f7qy
         pinel_outremer_9ans = f7ql + f7qp + f7qu + f7qq
 
-        max1 = max_(0, P.plafond - pinel_outremer_9ans - denormandie_outremer_9ans) #Plafond commun à Pinel
-        max2 = max_(0, max1 - pinel_outremer_6ans - denormandie_outremer_6ans) #Plafond commun à Pinel
-        max3 = max_(0, max2 - pinel_metropole_9ans - denormandie_metropole_9ans) #Plafond commun à Pinel
+        max1 = max_(0, P.plafond - pinel_outremer_9ans - denormandie_outremer_9ans)  # Plafond commun à Pinel
+        max2 = max_(0, max1 - pinel_outremer_6ans - denormandie_outremer_6ans)  # Plafond commun à Pinel
+        max3 = max_(0, max2 - pinel_metropole_9ans - denormandie_metropole_9ans)  # Plafond commun à Pinel
 
         return around(
-            P.taux['outremer']['9_ans'] * min_(max_(0, P.plafond - pinel_outremer_9ans), denormandie_outremer_9ans) /9
-            + P.taux['outremer']['6_ans'] * min_(max_(0, max1 - pinel_outremer_6ans), denormandie_outremer_6ans) /6
-            + P.taux['metropole']['9_ans'] * min_(max_(0, max2 - pinel_metropole_9ans), denormandie_metropole_9ans) /9
-            + P.taux['metropole']['6_ans'] * min_(max_(0, max3 - pinel_metropole_6ans), denormandie_metropole_6ans) /6
-        )
+            P.taux['outremer']['9_ans'] * min_(max_(0, P.plafond - pinel_outremer_9ans), denormandie_outremer_9ans) / 9
+            + P.taux['outremer']['6_ans'] * min_(max_(0, max1 - pinel_outremer_6ans), denormandie_outremer_6ans) / 6
+            + P.taux['metropole']['9_ans'] * min_(max_(0, max2 - pinel_metropole_9ans), denormandie_metropole_9ans) / 9
+            + P.taux['metropole']['6_ans'] * min_(max_(0, max3 - pinel_metropole_6ans), denormandie_metropole_6ans) / 6
+            )
+
 
 class dfppce(Variable):
     value_type = float
@@ -824,7 +826,6 @@ class dfppce(Variable):
         politiques et des campagnes électorales (2011-2013)
         '''
         rbg_int = foyer_fiscal('rbg_int', period)
-        f7ue = foyer_fiscal('f7ue', period)
         f7uf = foyer_fiscal('f7uf', period)
         f7uh = foyer_fiscal('f7uh', period)
         f7xs = foyer_fiscal('f7xs', period)
@@ -841,7 +842,6 @@ class dfppce(Variable):
         base = min_(P.max_niv, f7uf + f7uh) + f7vc + f7xs + f7xt + f7xu + f7xw + f7xy + report_f7va
         max1 = P.taux_max_dons_partipo * rbg_int
         return P.taux_dons_oeuvres * min_(base, max1)
-
 
     def formula_2019_01_01(foyer_fiscal, period, parameters):
         '''
@@ -868,7 +868,6 @@ class dfppce(Variable):
         base = min_(P.max_niv, f7uf + f7uh) + f7vc + f7xs + f7xt + f7xu + f7xw + f7xy + report_f7va + report_f7ue
         max1 = P.taux_max_dons_partipo * rbg_int
         return P.taux_dons_oeuvres * min_(base, max1)
-
 
     # TODO:
     # - Introduire plus de détails dans la déclaration pour séparer les dons aux partis politiques et aux candidats des autres dons (intérêt général)
@@ -940,7 +939,7 @@ class doment(Variable):
         f7qj = foyer_fiscal('f7qj', period)
         f7qo = foyer_fiscal('f7qo_2012', period)
         f7qp = foyer_fiscal('f7qp_2012', period)
-        f7qq = foyer_fiscal('f7qq', period)
+        f7qq = foyer_fiscal('f7qq_2012', period)
         f7qr = foyer_fiscal('f7qr_2012', period)
         f7qs = foyer_fiscal('f7qs', period)
         f7mm = foyer_fiscal('f7mm', period)
@@ -2246,9 +2245,9 @@ class domsoc(Variable):
         f7qj = foyer_fiscal('f7qj', period)
         f7qs = foyer_fiscal('f7qs', period)
         f7qw_2012 = foyer_fiscal('f7qw_2012', period)
-        f7qx = foyer_fiscal('f7qx', period)
+        f7qx_2012 = foyer_fiscal('f7qx_2012', period)
 
-        return f7qn + f7qk + f7qu + f7kg + f7kh + f7ki + f7qj + f7qs + f7qw_2012 + f7qx
+        return f7qn + f7qk + f7qu + f7kg + f7kh + f7ki + f7qj + f7qs + f7qw_2012 + f7qx_2012
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
         '''
@@ -4057,6 +4056,7 @@ class mohist(Variable):
 
         return P.taux * min_(f7nz, P.max)
 
+
 class notredame(Variable):
     value_type = float
     entity = FoyerFiscal
@@ -4073,6 +4073,7 @@ class notredame(Variable):
         P = parameters(period).impot_revenu.reductions_impots.dons.dons_notre_dame
 
         return P.taux * min_(f7ue, P.plafond)
+
 
 class patnat(Variable):
     value_type = float
@@ -4506,7 +4507,6 @@ class rpinel(Variable):
         Investissement locatif privé - Dispositif Pinel
         Depuis 2019
         '''
-        f7na = foyer_fiscal('f7na', period)
         f7nb = foyer_fiscal('f7nb', period)
         f7nc = foyer_fiscal('f7nc', period)
         f7nd = foyer_fiscal('f7nd', period)
@@ -5475,7 +5475,6 @@ class scelli(Variable):
             + report_scelli_2015
             )
 
-
     def formula_2017_01_01(foyer_fiscal, period, parameters):
         '''
         Investissements locatif neufs : Dispositif Scellier
@@ -5628,7 +5627,6 @@ class scelli(Variable):
             + report_scelli_2016
             )
 
-
     def formula_2018_01_01(foyer_fiscal, period, parameters):
         '''
         Investissements locatif neufs : Dispositif Scellier
@@ -5641,26 +5639,12 @@ class scelli(Variable):
         f7ha = foyer_fiscal('f7ha', period)
         f7hd = foyer_fiscal('f7hd', period)
         f7hf = foyer_fiscal('f7hf', period)
-        f7hr = foyer_fiscal('f7hr', period)
-        f7hs = foyer_fiscal('f7hs', period)
         f7ht = foyer_fiscal('f7ht', period)
         f7hu = foyer_fiscal('f7hu', period)
         f7hv = foyer_fiscal('f7hv', period)
         f7hw = foyer_fiscal('f7hw', period)
         f7hx = foyer_fiscal('f7hx', period)
         f7hz = foyer_fiscal('f7hz', period)
-        f7ja = foyer_fiscal('f7ja', period)
-        f7jd = foyer_fiscal('f7jd', period)
-        f7je = foyer_fiscal('f7je', period)
-        f7jf = foyer_fiscal('f7jf', period)
-        f7jh = foyer_fiscal('f7jh', period)
-        f7jj = foyer_fiscal('f7jj', period)
-        f7jk = foyer_fiscal('f7jk', period)
-        f7jm = foyer_fiscal('f7jm', period)
-        f7jn = foyer_fiscal('f7jn', period)
-        f7jo = foyer_fiscal('f7jo', period)
-        f7jq = foyer_fiscal('f7jq', period)
-        f7jr = foyer_fiscal('f7jr', period)
         f7la = foyer_fiscal('f7la', period)
         f7lb = foyer_fiscal('f7lb', period)
         f7lc = foyer_fiscal('f7lc', period)
@@ -5696,9 +5680,6 @@ class scelli(Variable):
         f7yd = foyer_fiscal('f7yd', period)
         f7yf = foyer_fiscal('f7yf', period)
         f7yh = foyer_fiscal('f7yh', period)
-        f7yj = foyer_fiscal('f7yj', period)
-        f7yk = foyer_fiscal('f7yk', period)
-        f7yl = foyer_fiscal('f7yl', period)
         f7ym = foyer_fiscal('f7ym', period)
         f7yn = foyer_fiscal('f7yn', period)
         f7yo = foyer_fiscal('f7yo', period)
@@ -5737,7 +5718,6 @@ class scelli(Variable):
             + report_scelli_2016
             )
 
-
     def formula_2019_01_01(foyer_fiscal, period, parameters):
         '''
         Investissements locatif neufs : Dispositif Scellier
@@ -5750,18 +5730,6 @@ class scelli(Variable):
         f7ha = foyer_fiscal('f7ha', period)
         f7hd = foyer_fiscal('f7hd', period)
         f7hf = foyer_fiscal('f7hf', period)
-        f7ja = foyer_fiscal('f7ja', period)
-        f7jd = foyer_fiscal('f7jd', period)
-        f7je = foyer_fiscal('f7je', period)
-        f7jf = foyer_fiscal('f7jf', period)
-        f7jh = foyer_fiscal('f7jh', period)
-        f7jj = foyer_fiscal('f7jj', period)
-        f7jk = foyer_fiscal('f7jk', period)
-        f7jm = foyer_fiscal('f7jm', period)
-        f7jn = foyer_fiscal('f7jn', period)
-        f7jo = foyer_fiscal('f7jo', period)
-        f7jq = foyer_fiscal('f7jq', period)
-        f7jr = foyer_fiscal('f7jr', period)
         f7la = foyer_fiscal('f7la', period)
         f7lb = foyer_fiscal('f7lb', period)
         f7lc = foyer_fiscal('f7lc', period)
@@ -5797,9 +5765,6 @@ class scelli(Variable):
         f7yd = foyer_fiscal('f7yd', period)
         f7yf = foyer_fiscal('f7yf', period)
         f7yh = foyer_fiscal('f7yh', period)
-        f7yj = foyer_fiscal('f7yj', period)
-        f7yk = foyer_fiscal('f7yk', period)
-        f7yl = foyer_fiscal('f7yl', period)
         f7ym = foyer_fiscal('f7ym', period)
         f7yn = foyer_fiscal('f7yn', period)
         f7yo = foyer_fiscal('f7yo', period)
@@ -5812,14 +5777,12 @@ class scelli(Variable):
         f7yy = foyer_fiscal('f7yy', period)
         f7yz = foyer_fiscal('f7yz', period)
 
-        P = parameters(period).impot_revenu.reductions_impots.scelli
-
         report_reduc_scelli_non_impute = f7ms + f7mt + f7mu + f7mv + f7mh + f7lx + f7lt + f7ln + f7lg + f7lh + f7li + f7lj + f7lk + f7ll + f7lo + f7lp + f7lq + f7lr + f7lu + f7lv + f7la + f7lb + f7lc + f7ly
 
         report_scelli_2011 = f7ha + f7hd + f7hf
         report_scelli_2012 = f7gj + f7gl + f7gs + f7gu
         report_scelli_2013 = f7yb + f7yd + f7yf + f7yh
-        report_scelli_2014 = f7ym + f7yn + f7yo + f7yp 
+        report_scelli_2014 = f7ym + f7yn + f7yo + f7yp
         report_scelli_2015 = f7yt + f7yu + f7yv + f7yw + f7yx + f7yy + f7yz
         report_scelli_2016 = f7wt + f7wu + f7wv + f7ww + f7wx + f7wy + f7wz
 

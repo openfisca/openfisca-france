@@ -12,6 +12,7 @@ class f7ud(Variable):
     label = "Dons à des organismes d'aide aux personnes en difficulté"
     definition_period = YEAR
 
+
 # Dons pour Notre-Dame
 class f7ue(Variable):
     cerfa_field = "7UE"
@@ -1011,7 +1012,7 @@ class f7wv_2012(Variable):
     definition_period = YEAR
 
 
-class f7wv(Variable):
+class f7wv_2015(Variable):
     cerfa_field = "7WV"
     value_type = bool
     entity = FoyerFiscal
@@ -1031,7 +1032,7 @@ class f7ww_2012(Variable):
     definition_period = YEAR
 
 
-class f7ww(Variable):
+class f7ww_2015(Variable):
     cerfa_field = "7WW"
     value_type = bool
     entity = FoyerFiscal
@@ -4334,11 +4335,12 @@ class f7qw_2012(Variable):
     definition_period = YEAR
 
 
-class f7qx(Variable):
+class f7qx_2012(Variable):
     cerfa_field = "7QX"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
+    end = '2012-12-31'
     definition_period = YEAR
 
 
@@ -4398,11 +4400,12 @@ class fhqi(Variable):
     definition_period = YEAR
 
 
-class f7qq(Variable):
+class f7qq_2012(Variable):
     cerfa_field = "7QQ"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
+    end = '2012-12-31'
     definition_period = YEAR
 
 
@@ -7302,6 +7305,7 @@ class f7wy(Variable):
     # start_date = date(2017, 1, 1)
     definition_period = YEAR
 
+
 class f7ys(Variable):
     cerfa_field = "7YS"
     value_type = int
@@ -7328,7 +7332,8 @@ class f7wz(Variable):
     # start_date = date(2017, 1, 1)
     definition_period = YEAR
 
-#Investissement dans l'immobilier ancien:
+# Investissement dans l'immobilier ancien:
+
 
 class f7na(Variable):
     cerfa_field = "7NA"
