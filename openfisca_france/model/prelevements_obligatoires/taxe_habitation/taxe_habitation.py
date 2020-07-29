@@ -403,7 +403,7 @@ class degrevement_office_taxe_habitation(Variable):
 
         return degrev * elig_degrev + degrev_degressif * elig_degrev_degressif
 
-   def formula_2020_01_01(menage, period, parameters):
+    def formula_2020_01_01(menage, period, parameters):
         '''
         Différence par rapport à la formule précédente : le taux de plafonnement est appliqué à taxe_habitation_commune_epci_avant_degrevement
         (au lieu de taxe_habitation_commune_epci_apres_degrevement_plafonnement)
