@@ -4061,6 +4061,7 @@ class notredame(Variable):
     value_type = float
     entity = FoyerFiscal
     label = 'notredame'
+    end = '2019-12-31'
     definition_period = YEAR
 
     def formula_2019_01_01(foyer_fiscal, period, parameters):
