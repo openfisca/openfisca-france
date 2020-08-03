@@ -78,6 +78,19 @@ class frag_exon(Variable):
     definition_period = YEAR
 
 
+# (f5xa, f5ya, f5za))
+class mrag_exon(Variable):
+    cerfa_field = {0: "5XA",
+        1: "5YA",
+        2: "5ZA", }
+    value_type = int
+    unit = 'currency'
+    entity = Individu
+    label = "Revenus agricoles exonérés (régime micro BA)"
+    # start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+
 # (f5ho, f5io, f5jo))
 class frag_impo(Variable):
     cerfa_field = {0: "5HO",
@@ -89,6 +102,89 @@ class frag_impo(Variable):
     label = "Revenus agricoles imposables (régime du forfait)"
     # start_date = date(2007, 1, 1)
     end = '2015-12-31'
+    definition_period = YEAR
+
+
+# (f5xb, f5yb, f5zb))
+class mrag_impo(Variable):
+    cerfa_field = {0: "5XAB",
+        1: "5YB",
+        2: "5ZB", }
+    value_type = int
+    unit = 'currency'
+    entity = Individu
+    label = "Revenus agricoles imposables (régime micro BA)"
+    # start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+
+# (f5xc, f5yc, f5zc)
+class date_creation(Variable):
+    cerfa_field = {0: "5XC",
+        1: "5YC",
+        2: "5ZC",
+                   }
+    value_type = int
+    entity = Individu
+    label = "Revenus agricoles : Année de création de l’activité"
+    # start_date = date(2016, 1, 1)
+    end = '2017-12-31'
+    definition_period = YEAR
+
+
+# (f5xd, f5yd, f5zd))
+class frag_impo_n2(Variable):
+    cerfa_field = {0: "5XD",
+        1: "5YD",
+        2: "5ZD", }
+    value_type = int
+    unit = 'currency'
+    entity = Individu
+    label = "Revenus agricoles, forfait ou microBA année n-2"
+    # start_date = date(2016, 1, 1)
+    end = '2017-12-31'
+    definition_period = YEAR
+
+
+# (f5xe, f5ye, f5ze))
+class frag_impo_n1(Variable):
+    cerfa_field = {0: "5XE",
+        1: "5YE",
+        2: "5ZE", }
+    value_type = int
+    unit = 'currency'
+    entity = Individu
+    label = "Revenus agricoles, forfait ou microBA année n-1"
+    # start_date = date(2016, 1, 1)
+    end = '2017-12-31'
+    definition_period = YEAR
+
+
+# (f5xf, f5yf, f5zf))
+class arag_impo_n2(Variable):
+    cerfa_field = {0: "5XF",
+        1: "5YF",
+        2: "5ZF", }
+    value_type = int
+    unit = 'currency'
+    entity = Individu
+    label = "Revenus agricoles, régime du bénéfice réel année n-2"
+    # start_date = date(2016, 1, 1)
+    end = '2017-12-31'
+    definition_period = YEAR
+
+
+# (f5xg, f5yg, f5zg))
+class arag_impo_n1(Variable):
+    cerfa_field = {0: "5XG",
+        1: "5YG",
+        2: "5ZG", }
+    value_type = int
+    unit = 'currency'
+    entity = Individu
+    label = "Revenus agricoles, régime du bénéfice réel année n-1"
+    # start_date = date(2016, 1, 1)
+    end = '2016-12-31'
     definition_period = YEAR
 
 
@@ -198,7 +294,6 @@ class ebic_impv(Variable):
     entity = Individu
     label = "Revenus industriels et commerciaux professionnels imposables: vente de marchandises et assimilées (régime auto-entrepreneur)"
     # start_date = date(2009, 1, 1)
-    # end = '2016-12-31'
     definition_period = YEAR
 
 
@@ -212,7 +307,6 @@ class ebic_imps(Variable):
     entity = Individu
     label = "Revenus industriels et commerciaux professionnels imposables: prestations de services et locations meublées (régime auto-entrepreneur)"
     # start_date = date(2009, 1, 1)
-    # end = '2016-12-31'
     definition_period = YEAR
 
 
@@ -226,7 +320,6 @@ class ebnc_impo(Variable):
     entity = Individu
     label = "Revenus non commerciaux (régime auto-entrepreneur ayant opté pour le versement libératoire)"
     # start_date = date(2009, 1, 1)
-    # end = '2016-12-31'
     definition_period = YEAR
 
 
