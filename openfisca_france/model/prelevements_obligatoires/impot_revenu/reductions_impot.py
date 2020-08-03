@@ -49,7 +49,7 @@ class reductions(Variable):
             # Introduites en 2017
             'rehab',
             # Introduites en 2020
-            'notredame', 'denormandie'
+            'notredame', 'denormandie',
             ]
 
         impot_net = foyer_fiscal('ip_net', period)
@@ -834,11 +834,12 @@ class dfppce(Variable):
         f7xw = foyer_fiscal('f7xw', period)
         f7xy = foyer_fiscal('f7xy', period)
         f7va = foyer_fiscal('f7va', period)
+        f7ud = foyer_fiscal('f7ud', period)
         f7vc = foyer_fiscal('f7vc', period)
         P = parameters(period).impot_revenu.reductions_impots.dons
         plafond_reduction_donapd = parameters(period).impot_revenu.reductions_impots.donapd.max
 
-        report_f7va = max_(0, f7va - plafond_reduction_donapd)
+        report_f7va = max_(0, f7va + f7ud - plafond_reduction_donapd)
         base = min_(P.max_niv, f7uf + f7uh) + f7vc + f7xs + f7xt + f7xu + f7xw + f7xy + report_f7va
         max1 = P.taux_max_dons_partipo * rbg_int
         return P.taux_dons_oeuvres * min_(base, max1)
@@ -858,12 +859,13 @@ class dfppce(Variable):
         f7xw = foyer_fiscal('f7xw', period)
         f7xy = foyer_fiscal('f7xy', period)
         f7va = foyer_fiscal('f7va', period)
+        f7ud = foyer_fiscal('f7ud', period)
         f7vc = foyer_fiscal('f7vc', period)
         P = parameters(period).impot_revenu.reductions_impots.dons
         plafond_reduction_donapd = parameters(period).impot_revenu.reductions_impots.donapd.max
         plafond_reduction_notredame = parameters(period).impot_revenu.reductions_impots.dons.dons_notre_dame.plafond
 
-        report_f7va = max_(0, f7va - plafond_reduction_donapd)
+        report_f7va = max_(0, f7va + f7ud - plafond_reduction_donapd)
         report_f7ue = max_(0, f7ue - plafond_reduction_notredame)
         base = min_(P.max_niv, f7uf + f7uh) + f7vc + f7xs + f7xt + f7xu + f7xw + f7xy + report_f7va + report_f7ue
         max1 = P.taux_max_dons_partipo * rbg_int
@@ -871,7 +873,6 @@ class dfppce(Variable):
 
     # TODO:
     # - Introduire plus de détails dans la déclaration pour séparer les dons aux partis politiques et aux candidats des autres dons (intérêt général)
-    # - Verrifier si l'excédent de f7ud ne s'impute pas à la réduction 'dfppce' (comme pour 'f7va')
 
 
 class doment(Variable):

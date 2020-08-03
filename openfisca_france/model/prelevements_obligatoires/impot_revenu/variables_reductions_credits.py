@@ -6189,7 +6189,7 @@ class f7lb_2016(Variable):
     entity = FoyerFiscal
     label = "Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Investissements réalisés et achevés en 2009 ou 2010 ou réalisés et achevés en 2010 avec engagement avant le 1.1.2010, Report de l'année 2010"
     # start_date = date(2011, 1, 1)
-    end = '2015-12-31'
+    end = '2016-12-31'
     definition_period = YEAR
 
 
@@ -6231,6 +6231,7 @@ class f7ld(Variable):
     entity = FoyerFiscal
     label = "Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Investissements réalisés et achevés en 2010 ; réalisés en 2010 et achevés en 2011 ; réalisés et achevés en 2011 avec engagement en 2010, Report de l'année 2011"
     # start_date = date(2012, 1, 1)
+    end = '2017-12-31'
     definition_period = YEAR
 
 
@@ -6241,6 +6242,7 @@ class f7le(Variable):
     entity = FoyerFiscal
     label = "Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Investissements réalisés et achevés en 2009 ou 2010 ou réalisés et achevés en 2010 avec engagement avant le 1.1.2010, Report de l'année 2011"
     # start_date = date(2012, 1, 1)
+    end = '2017-12-31'
     definition_period = YEAR
 
 
@@ -6251,6 +6253,7 @@ class f7lf(Variable):
     entity = FoyerFiscal
     label = "Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Investissements réalisés et achevés en 2011 : report du solde de réduction d'impôt de l'année 2011"
     # start_date = date(2012, 1, 1)
+    end = '2017-12-31'
     definition_period = YEAR
 
 
@@ -6261,6 +6264,7 @@ class f7ls(Variable):
     entity = FoyerFiscal
     label = "Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Investissements réalisés et achevés en 2010 ; réalisés en 2010 et achevés en 2011 ; réalisés et achevés en 2011 avec engagement en 2010"
     # start_date = date(2013, 1, 1)
+    end = '2018-12-31'
     definition_period = YEAR
 
 
@@ -6281,6 +6285,7 @@ class f7lm(Variable):
     entity = FoyerFiscal
     label = "Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Investissements réalisés et achevés en 2009 ou 2010 ou réalisés et achevés en 2010 avec engagement avant le 1.1.2010"
     # start_date = date(2013, 1, 1)
+    end = '2018-12-31'
     definition_period = YEAR
 
 
@@ -6351,6 +6356,7 @@ class f7lz(Variable):
     entity = FoyerFiscal
     label = "Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Report du solde de réduction d'impôt de l'année 2012"
     # start_date = date(2013, 1, 1)
+    end = '2018-12-31'
     definition_period = YEAR
 
 
@@ -6371,6 +6377,7 @@ class f7mg(Variable):
     entity = FoyerFiscal
     label = "Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Investissements réalisés et achevés en 2012 : report du solde de réduction d'impôt de l'année 2012"
     # start_date = date(2013, 1, 1)
+    end = '2018-12-31'
     definition_period = YEAR
 
 
