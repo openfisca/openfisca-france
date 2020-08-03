@@ -1808,7 +1808,8 @@ class taxation_plus_values_hors_bareme(Variable):
 
     def formula_2018_01_01(foyer_fiscal, period, parameters):
         '''
-        Taxation des plus-values (hors imposition au barÃ¨me)
+        Taxation des plus-values (hors imposition au barÃ¨me), en excluant celles imposées au PFU
+        (qui sont à impot_revenu/prelevements_forfaitaires/ir_prelevement_forfaitaire_unique.py)
         '''
         f3vd_i = foyer_fiscal.members('f3vd', period)
         f3vi_i = foyer_fiscal.members('f3vi', period)
@@ -1844,7 +1845,8 @@ class taxation_plus_values_hors_bareme(Variable):
 
     def formula_2019_01_01(foyer_fiscal, period, parameters):
         '''
-        Taxation des plus-values (hors imposition au barÃ¨me)
+        Taxation des plus-values (hors imposition au barÃ¨me), en excluant celles imposées au PFU
+        (qui sont à impot_revenu/prelevements_forfaitaires/ir_prelevement_forfaitaire_unique.py)
         '''
         f3vd_i = foyer_fiscal.members('f3vd', period)
         f3vi_i = foyer_fiscal.members('f3vi', period)

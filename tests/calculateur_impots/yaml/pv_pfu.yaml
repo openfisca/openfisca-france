@@ -3,21 +3,8 @@
   absolute_error_margin: 1
   input:
     foyer_fiscal:
-      caseF: false
-      caseG: false
-      caseL: false
-      caseP: false
-      caseS: false
-      caseT: false
-      caseW: false
       declarants:
       - ind0
-      nbF: 0.0
-      nbG: 0.0
-      nbH: 0.0
-      nbI: 0.0
-      nbJ: 0
-      nbR: 0
       f3vg: 10000.0
       f3vt: 30000.0
       f3an: 10000.0
@@ -34,29 +21,17 @@
   output:
     prelevement_forfaitaire_unique_ir: -6400.0
     nbptr: 1.0
-    ppe: 0.0
     rfr: 50000.0
+    irpp: 0.0
     prelevements_sociaux_revenus_capital: -8600.0
-- name: Application du PFU aux plus-values et taxation hors barème
+
+- name: Cas d'un foyer fiscal sujet à la fois au PFU sur plus-values et à des taxations hors barème et hors PFU sur plus-values
   period: 2019
   absolute_error_margin: 1
   input:
     foyer_fiscal:
-      caseF: false
-      caseG: false
-      caseL: false
-      caseP: false
-      caseS: false
-      caseT: false
-      caseW: false
       declarants:
       - ind0
-      nbF: 0.0
-      nbG: 0.0
-      nbH: 0.0
-      nbI: 0.0
-      nbJ: 0
-      nbR: 0
       f3vg: 20000.0
       f3vt: 20000.0
       f3pi: 20000.0
@@ -73,30 +48,17 @@
   output:
     prelevement_forfaitaire_unique_ir: -5120.0
     nbptr: 1.0
-    ppe: 0.0
     rfr: 60000.0
     irpp: -10000.0
     prelevements_sociaux_revenus_capital: -10320.0
-- name: Taxation hors barème des plus-values
+
+- name: Cas d'imposition hors barème de plus-values non imposable au PFU
   period: 2018
   absolute_error_margin: 1
   input:
     foyer_fiscal:
-      caseF: false
-      caseG: false
-      caseL: false
-      caseP: false
-      caseS: false
-      caseT: false
-      caseW: false
       declarants:
       - ind0
-      nbF: 0.0
-      nbG: 0.0
-      nbH: 0.0
-      nbI: 0.0
-      nbJ: 0
-      nbR: 0
       f3sk: 20000.0
       f3vt: 20000.0
     individus:
@@ -111,8 +73,8 @@
     menage:
       personne_de_reference: ind0
   output:
+    prelevement_forfaitaire_unique_ir: 0.0
     nbptr: 1.0
-    ppe: 0.0
     rfr: 50000.0
     irpp: -12800.0
     prelevements_sociaux_revenus_capital: -8600.0
