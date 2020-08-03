@@ -1,5 +1,11 @@
 # Changelog
 
+### 48.11.1 [#1433](https://github.com/openfisca/openfisca-france/pull/1433)
+
+* Amélioration technique.
+* Détails :
+  - Facilite l'utilisation de GitPod.io
+
 ## 48.11.0 [#1423](https://github.com/openfisca/openfisca-france/pull/1423)
 
 * Évolution du système socio-fiscal.
