@@ -42,7 +42,7 @@ class reductions(Variable):
             # Introduites en 2010
             'patnat',
             # Introduites en 2013
-            'duflot',
+            'duflot', 'donpartipol',
             'reduction_impot_exceptionnelle',
             # Introduites en 2014
             'rpinel',
@@ -682,6 +682,25 @@ class denormandie(Variable):
             )
 
 
+class donpartipol(Variable):
+    value_type = float
+    entity = FoyerFiscal
+    label = "Dons et cotisations versés aux partis politiques"
+    reference = "BOI-IR-RICI-250-10-20-40"
+    definition_period = YEAR
+
+    def formula_2013_01_01(foyer_fiscal, period, parameters):
+        '''
+        Dons aux partis politiques (case séparée des dons aux oeuvres depuis IR 2014 sur revenus 2013)
+        '''
+        f7uh = foyer_fiscal('f7uh', period)
+        P = parameters(period).impot_revenu.reductions_impots.dons
+        rbg_int = foyer_fiscal('rbg_int', period)
+
+        dons_plafonnes = min_(P.max_dons_partipo_seul, f7uh) # Il faudrait coder le cas où il y a plus d'un individu déclarant les impôts (plafond à 15000€)
+        return dons_plafonnes * P.taux_dons_partipol
+
+
 class dfppce(Variable):
     value_type = float
     entity = FoyerFiscal
@@ -699,7 +718,7 @@ class dfppce(Variable):
         P = parameters(period).impot_revenu.reductions_impots.dons
 
         base = f7uf
-        max1 = P.taux_max_dons_partipo * rbg_int
+        max1 = P.max_dons_oeuvres * rbg_int
         return P.taux_dons_oeuvres * min_(base, max1)
 
     def formula_2004_01_01(foyer_fiscal, period, parameters):
@@ -713,7 +732,7 @@ class dfppce(Variable):
         P = parameters(period).impot_revenu.reductions_impots.dons
 
         base = f7uf + f7xs
-        max1 = P.taux_max_dons_partipo * rbg_int
+        max1 = P.max_dons_oeuvres * rbg_int
         return P.taux_dons_oeuvres * min_(base, max1)
 
     def formula_2005_01_01(foyer_fiscal, period, parameters):
@@ -728,7 +747,7 @@ class dfppce(Variable):
         P = parameters(period).impot_revenu.reductions_impots.dons
 
         base = f7uf + f7xs + f7xt
-        max1 = P.taux_max_dons_partipo * rbg_int
+        max1 = P.max_dons_oeuvres * rbg_int
         return P.taux_dons_oeuvres * min_(base, max1)
 
     def formula_2006_01_01(foyer_fiscal, period, parameters):
@@ -744,7 +763,7 @@ class dfppce(Variable):
         P = parameters(period).impot_revenu.reductions_impots.dons
 
         base = f7uf + f7xs + f7xt + f7xu
-        max1 = P.taux_max_dons_partipo * rbg_int
+        max1 = P.max_dons_oeuvres * rbg_int
         return P.taux_dons_oeuvres * min_(base, max1)
 
     def formula_2007_01_01(foyer_fiscal, period, parameters):
@@ -761,7 +780,7 @@ class dfppce(Variable):
         P = parameters(period).impot_revenu.reductions_impots.dons
 
         base = f7uf + f7xs + f7xt + f7xu + f7xw
-        max1 = P.taux_max_dons_partipo * rbg_int
+        max1 = P.max_dons_oeuvres * rbg_int
         return P.taux_dons_oeuvres * min_(base, max1)
 
     def formula_2008_01_01(foyer_fiscal, period, parameters):
@@ -779,7 +798,7 @@ class dfppce(Variable):
         P = parameters(period).impot_revenu.reductions_impots.dons
 
         base = f7uf + f7xs + f7xt + f7xu + f7xw + f7xy
-        max1 = P.taux_max_dons_partipo * rbg_int
+        max1 = P.max_dons_oeuvres * rbg_int
         return P.taux_dons_oeuvres * min_(base, max1)
 
     def formula_2011_01_01(foyer_fiscal, period, parameters):
@@ -788,17 +807,21 @@ class dfppce(Variable):
         politiques et des campagnes électorales (2011-2013)
         '''
         rbg_int = foyer_fiscal('rbg_int', period)
+        f7ud = foyer_fiscal('f7ud', period)
         f7uf = foyer_fiscal('f7uf', period)
         f7xs = foyer_fiscal('f7xs', period)
         f7xt = foyer_fiscal('f7xt', period)
         f7xu = foyer_fiscal('f7xu', period)
         f7xw = foyer_fiscal('f7xw', period)
         f7xy = foyer_fiscal('f7xy', period)
+        f7va = foyer_fiscal('f7va', period)
         f7vc = foyer_fiscal('f7vc', period)
         P = parameters(period).impot_revenu.reductions_impots.dons
+        plafond_reduction_donapd = parameters(period).impot_revenu.reductions_impots.donapd.max
 
-        base = f7uf + f7vc + f7xs + f7xt + f7xu + f7xw + f7xy
-        max1 = P.taux_max_dons_partipo * rbg_int
+        report_f7va = max_(0, f7va + f7ud - plafond_reduction_donapd)
+        base = f7uf + f7vc + f7xs + f7xt + f7xu + f7xw + f7xy + report_f7va
+        max1 = P.max_dons_oeuvres * rbg_int
         return P.taux_dons_oeuvres * min_(base, max1)
 
     def formula_2012_01_01(foyer_fiscal, period, parameters):
@@ -807,23 +830,27 @@ class dfppce(Variable):
         politiques et des campagnes électorales (2011-2013)
         '''
         rbg_int = foyer_fiscal('rbg_int', period)
+        f7ud = foyer_fiscal('f7ud', period)
         f7uf = foyer_fiscal('f7uf', period)
         f7xs = foyer_fiscal('f7xs', period)
         f7xt = foyer_fiscal('f7xt', period)
         f7xu = foyer_fiscal('f7xu', period)
         f7xw = foyer_fiscal('f7xw', period)
         f7xy = foyer_fiscal('f7xy', period)
+        f7va = foyer_fiscal('f7va', period)
         f7vc = foyer_fiscal('f7vc', period)
         P = parameters(period).impot_revenu.reductions_impots.dons
+        plafond_reduction_donapd = parameters(period).impot_revenu.reductions_impots.donapd.max
 
-        base = min_(P.max_niv, f7uf) + f7vc + f7xs + f7xt + f7xu + f7xw + f7xy
-        max1 = P.taux_max_dons_partipo * rbg_int
+        report_f7va = max_(0, f7va + f7ud - plafond_reduction_donapd)
+        base = f7uf + f7vc + f7xs + f7xt + f7xu + f7xw + f7xy + report_f7va
+        max1 = P.max_dons_oeuvres * rbg_int
         return P.taux_dons_oeuvres * min_(base, max1)
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
         '''
-        Dons aux autres oeuvres et dons effectués pour le financement des partis
-        politiques et des campagnes électorales (2011-2013)
+        Dons versés à d’autres organismes d’intérêt général,
+        aux associations d’utilité publique, aux candidats aux élections (2011-2018)
         '''
         rbg_int = foyer_fiscal('rbg_int', period)
         f7uf = foyer_fiscal('f7uf', period)
@@ -840,19 +867,21 @@ class dfppce(Variable):
         plafond_reduction_donapd = parameters(period).impot_revenu.reductions_impots.donapd.max
 
         report_f7va = max_(0, f7va + f7ud - plafond_reduction_donapd)
-        base = min_(P.max_niv, f7uf + f7uh) + f7vc + f7xs + f7xt + f7xu + f7xw + f7xy + report_f7va
-        max1 = P.taux_max_dons_partipo * rbg_int
-        return P.taux_dons_oeuvres * min_(base, max1)
+        base = f7uf + f7vc + f7xs + f7xt + f7xu + f7xw + f7xy + report_f7va
+        max1 = P.max_dons_oeuvres * rbg_int
+        max2 = max1 - min_(P.max_dons_partipo_seul, f7uh)
+        return P.taux_dons_oeuvres * min_(base, max2)
 
     def formula_2019_01_01(foyer_fiscal, period, parameters):
         '''
-        Dons aux autres oeuvres et dons effectués pour le financement des partis
-        politiques et des campagnes électorales (2019-)
+        Dons versés à d’autres organismes d’intérêt général,
+        aux associations d’utilité publique, aux candidats aux élections (2019-)
         '''
         rbg_int = foyer_fiscal('rbg_int', period)
         f7ue = foyer_fiscal('f7ue', period)
         f7uf = foyer_fiscal('f7uf', period)
         f7uh = foyer_fiscal('f7uh', period)
+        f7uc = foyer_fiscal('f7vc', period)
         f7xs = foyer_fiscal('f7xs', period)
         f7xt = foyer_fiscal('f7xt', period)
         f7xu = foyer_fiscal('f7xu', period)
@@ -867,12 +896,10 @@ class dfppce(Variable):
 
         report_f7va = max_(0, f7va + f7ud - plafond_reduction_donapd)
         report_f7ue = max_(0, f7ue - plafond_reduction_notredame)
-        base = min_(P.max_niv, f7uf + f7uh) + f7vc + f7xs + f7xt + f7xu + f7xw + f7xy + report_f7va + report_f7ue
-        max1 = P.taux_max_dons_partipo * rbg_int
-        return P.taux_dons_oeuvres * min_(base, max1)
-
-    # TODO:
-    # - Introduire plus de détails dans la déclaration pour séparer les dons aux partis politiques et aux candidats des autres dons (intérêt général)
+        base = f7uf + f7vc + f7vc + f7xs + f7xt + f7xu + f7xw + f7xy + report_f7va + report_f7ue
+        max1 = P.max_dons_oeuvres * rbg_int
+        max2 = max1 - min_(P.max_dons_partipo_seul, f7uh)
+        return P.taux_dons_oeuvres * min_(base, max2)
 
 
 class doment(Variable):
