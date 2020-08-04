@@ -4243,10 +4243,12 @@ class rehab(Variable):
     def formula_2017_01_01(foyer_fiscal, period, parameters):
         '''
         Travaux de réhabilitation des résidences de tourisme
-        2017
+        (2017 -)
         '''
-        depenses_2017 = foyer_fiscal('f7xx', period)  # déjà plafonnées
+        f7xx = foyer_fiscal('f7xx', period)  # Comment coder le plafond roulant sur les 3 années ?
+
         P = parameters(period).impot_revenu.reductions_impots.rehab
+        depenses_2017 = min_(P.max, f7xx)
 
         return (P.taux * depenses_2017)
 

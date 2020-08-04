@@ -3975,7 +3975,7 @@ class f7xx(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = "Travaux de réhabilitation des résidences de tourisme : dépenses payées en 2017"
+    label = "Travaux de réhabilitation des résidences de tourisme : dépenses payées durant l'année d'imposition"
     # start_date = date(2017, 1, 1)
     definition_period = YEAR
 
