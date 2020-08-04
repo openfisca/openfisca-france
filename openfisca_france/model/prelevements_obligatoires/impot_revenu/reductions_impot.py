@@ -695,9 +695,8 @@ class donpartipol(Variable):
         '''
         f7uh = foyer_fiscal('f7uh', period)
         P = parameters(period).impot_revenu.reductions_impots.dons
-        rbg_int = foyer_fiscal('rbg_int', period)
 
-        dons_plafonnes = min_(P.max_dons_partipo_seul, f7uh) # Il faudrait coder le cas où il y a plus d'un individu déclarant les impôts (plafond à 15000€)
+        dons_plafonnes = min_(P.max_dons_partipo_seul, f7uh)  # Il faudrait coder le cas où il y a plus d'un individu déclarant les impôts (plafond à 15000€)
         return dons_plafonnes * P.taux_dons_partipol
 
 
@@ -881,7 +880,6 @@ class dfppce(Variable):
         f7ue = foyer_fiscal('f7ue', period)
         f7uf = foyer_fiscal('f7uf', period)
         f7uh = foyer_fiscal('f7uh', period)
-        f7uc = foyer_fiscal('f7vc', period)
         f7xs = foyer_fiscal('f7xs', period)
         f7xt = foyer_fiscal('f7xt', period)
         f7xu = foyer_fiscal('f7xu', period)
