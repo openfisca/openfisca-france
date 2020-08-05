@@ -1955,6 +1955,31 @@ class quaenv(Variable):
             + P.taux15 * min_(plafond_depenses_energetiques_taux_reduit, depenses_transition_energetique_taux_reduit)
             )
 
+    def formula_2019_01_01(foyer_fiscal, period, parameters):
+        '''
+        Crédits d’impôt pour dépenses en faveur de la transition energétique
+        2019
+        '''
+        maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
+        personnes_a_charge = foyer_fiscal('nb_pac2', period)
+        P = parameters(period).impot_revenu.credits_impot.quaenv
+
+        cases_depenses = [
+            'f7aa', 'f7ad', 'f7af', 'f7ah', 'f7ak', 'f7al', 'f7ar', 'f7as', 'f7av', 'f7ax', 'f7ay', 'f7az',
+            'f7bb', 'f7bc', 'f7bd', 'f7be', 'f7bf', 'f7bh', 'f7bk', 'f7bl', 'f7bm', 'f7cb', 'f7bn'
+            ]
+        depenses_transition_energetique = sum([foyer_fiscal(case, period) for case in cases_depenses])
+        f7bq = foyer_fiscal('f7bq', period)
+
+        plafond = P.max * (1 + maries_ou_pacses) + P.pac1 * personnes_a_charge
+        plafondint = min_(plafond, f7bq)
+        plafond_ordinaire = (plafond - plafondint)
+
+        return (
+            P.taux30 * min_(plafond_ordinaire, depenses_transition_energetique)
+            + P.taux50 * plafondint
+            )
+
 
 class quaenv_bouquet(Variable):
     value_type = bool

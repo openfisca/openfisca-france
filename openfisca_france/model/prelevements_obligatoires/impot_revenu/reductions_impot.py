@@ -872,7 +872,7 @@ class dfppce(Variable):
         base = f7uf + f7vc + f7xs + f7xt + f7xu + f7xw + f7xy + report_f7va
         max1 = P.max_dons_oeuvres * rbg_int
         plafondpartipol = P.max_dons_partipo_seul * (1 + maries_ou_pacses)
-        dons_plafonnes = min_(plafondpartipol, f7uh)        
+        dons_plafonnes = min_(plafondpartipol, f7uh)
         max2 = max1 - dons_plafonnes
         return P.taux_dons_oeuvres * min_(base, max2)
 
@@ -903,7 +903,7 @@ class dfppce(Variable):
         base = f7uf + f7vc + f7vc + f7xs + f7xt + f7xu + f7xw + f7xy + report_f7va + report_f7ue
         max1 = P.max_dons_oeuvres * rbg_int
         plafondpartipol = P.max_dons_partipo_seul * (1 + maries_ou_pacses)
-        dons_plafonnes = min_(plafondpartipol, f7uh)        
+        dons_plafonnes = min_(plafondpartipol, f7uh)
         max2 = max1 - dons_plafonnes
         return P.taux_dons_oeuvres * min_(base, max2)
 

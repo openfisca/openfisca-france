@@ -635,6 +635,7 @@ class f7am(Variable):
     entity = FoyerFiscal
     label = "Dépenses en faveur de la qualité environnementale de l'habitation principale (hors bouquet sur 2 ans) : Matériaux d'isolation thermique des parois vitrées"
     # start_date = date(2015, 1, 1)
+    end = '2018-12-31'
     definition_period = YEAR
 
 
@@ -644,6 +645,7 @@ class f7an(Variable):
     entity = FoyerFiscal
     label = "Dépenses en faveur de la qualité environnementale de l'habitation principale (hors bouquet sur 2 ans) : Volets isolants"
     # start_date = date(2015, 1, 1)
+    end = '2018-12-31'
     definition_period = YEAR
 
 
@@ -653,6 +655,7 @@ class f7aq(Variable):
     entity = FoyerFiscal
     label = "Dépenses en faveur de la qualité environnementale de l'habitation principale (hors bouquet sur 2 ans) : Portes d'entrées donnant sur l'extérieur"
     # start_date = date(2015, 1, 1)
+    end = '2018-12-31'
     definition_period = YEAR
 
 
@@ -852,6 +855,24 @@ class f7bm_2016(Variable):
     label = "Dépenses en faveur de la qualité environnementale de l'habitation principale : Systèmes de production d'électricité utilisant une source d'énergie renouvelable (éolien, hydraulique) avec signature d'un devis et versement d'un acompte avant le 1.1.2016"
     # start_date = date(2016, 1, 1)
     end = '2016-12-31'
+    definition_period = YEAR
+
+
+class f7bn(Variable):
+    cerfa_field = "7BN"
+    value_type = int
+    entity = FoyerFiscal
+    label = "Dépenses de pose d’équipements de chauffage ou de fourniture d’eau chaude utilisant une source d’énergie renouvelable, de systèmes de fourniture d’électricité utilisant l’énergie hydraulique ou la biomasse et de pompes à chaleur autres que air/air (à l’exception du coût de la pose de l’échangeur de chaleur souterrain des pompes à chaleur géothermiques)"
+    # start_date = date(2019, 1, 1)
+    definition_period = YEAR
+
+
+class f7bq(Variable):
+    cerfa_field = "7BQ"
+    value_type = int
+    entity = FoyerFiscal
+    label = "Dépose d’une cuve à fioul"
+    # start_date = date(2019, 1, 1)
     definition_period = YEAR
 
 
@@ -8152,6 +8173,7 @@ class f7ao(Variable):
     entity = FoyerFiscal
     label = "Dépenses en faveur de la qualité environnementale des logements donnés en location : Chaudières à très haute performance énergétique utilisant le fioul : dépenses payées du 1.1.2018 au 30.6.2018 et dépenses payées du 1.7.2018 au 31.12.2018 avec acceptation d’un devis et versement d’un acompte au plus tard le 30.6.2018."
     # start_date = date(2018, 1, 1)
+    end = '2018-12-31'
     definition_period = YEAR
 
 
