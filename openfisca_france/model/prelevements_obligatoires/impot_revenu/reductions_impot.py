@@ -694,9 +694,11 @@ class donpartipol(Variable):
         Dons aux partis politiques (case séparée des dons aux oeuvres depuis IR 2014 sur revenus 2013)
         '''
         f7uh = foyer_fiscal('f7uh', period)
+        maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
         P = parameters(period).impot_revenu.reductions_impots.dons
 
-        dons_plafonnes = min_(P.max_dons_partipo_seul, f7uh)  # Il faudrait coder le cas où il y a plus d'un individu déclarant les impôts (plafond à 15000€)
+        plafond = P.max_dons_partipo_seul * (1 + maries_ou_pacses)
+        dons_plafonnes = min_(plafond, f7uh)  # Il faudrait coder le cas où il y a plus d'un individu déclarant les impôts (plafond à 15000€)
         return dons_plafonnes * P.taux_dons_partipol
 
 
