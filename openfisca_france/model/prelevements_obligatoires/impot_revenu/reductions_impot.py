@@ -698,7 +698,7 @@ class donpartipol(Variable):
         P = parameters(period).impot_revenu.reductions_impots.dons
 
         plafond = P.max_dons_partipo_seul * (1 + maries_ou_pacses)
-        dons_plafonnes = min_(plafond, f7uh)  # Il faudrait coder le cas où il y a plus d'un individu déclarant les impôts (plafond à 15000€)
+        dons_plafonnes = min_(plafond, f7uh)
         return dons_plafonnes * P.taux_dons_partipol
 
 
@@ -866,11 +866,14 @@ class dfppce(Variable):
         f7vc = foyer_fiscal('f7vc', period)
         P = parameters(period).impot_revenu.reductions_impots.dons
         plafond_reduction_donapd = parameters(period).impot_revenu.reductions_impots.donapd.max
+        maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
 
         report_f7va = max_(0, f7va + f7ud - plafond_reduction_donapd)
         base = f7uf + f7vc + f7xs + f7xt + f7xu + f7xw + f7xy + report_f7va
         max1 = P.max_dons_oeuvres * rbg_int
-        max2 = max1 - min_(P.max_dons_partipo_seul, f7uh)
+        plafondpartipol = P.max_dons_partipo_seul * (1 + maries_ou_pacses)
+        dons_plafonnes = min_(plafondpartipol, f7uh)        
+        max2 = max1 - dons_plafonnes
         return P.taux_dons_oeuvres * min_(base, max2)
 
     def formula_2019_01_01(foyer_fiscal, period, parameters):
@@ -893,12 +896,15 @@ class dfppce(Variable):
         P = parameters(period).impot_revenu.reductions_impots.dons
         plafond_reduction_donapd = parameters(period).impot_revenu.reductions_impots.donapd.max
         plafond_reduction_notredame = parameters(period).impot_revenu.reductions_impots.dons.dons_notre_dame.plafond
+        maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
 
         report_f7va = max_(0, f7va + f7ud - plafond_reduction_donapd)
         report_f7ue = max_(0, f7ue - plafond_reduction_notredame)
         base = f7uf + f7vc + f7vc + f7xs + f7xt + f7xu + f7xw + f7xy + report_f7va + report_f7ue
         max1 = P.max_dons_oeuvres * rbg_int
-        max2 = max1 - min_(P.max_dons_partipo_seul, f7uh)
+        plafondpartipol = P.max_dons_partipo_seul * (1 + maries_ou_pacses)
+        dons_plafonnes = min_(plafondpartipol, f7uh)        
+        max2 = max1 - dons_plafonnes
         return P.taux_dons_oeuvres * min_(base, max2)
 
 
