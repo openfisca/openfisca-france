@@ -1000,8 +1000,75 @@ class frag_pvce(Variable):
     value_type = int
     unit = 'currency'
     entity = Individu
-    label = "Plus-values agricoles de cession (régime du forfait)"
+    label = "Plus-values agricoles de cession (régime du forfait) taxables à 16%"
     # start_date = date(2007, 1, 1)
+    end = '2015-12-31'
+    definition_period = YEAR
+
+
+# (f5hx, f5ix, f5jx))
+class mrag_pvce(Variable):
+    cerfa_field = {0: "5HX",
+        1: "5IX",
+        2: "5JX", }
+    value_type = int
+    unit = 'currency'
+    entity = Individu
+    label = "Plus-values agricoles de cession (régime microBA) taxables à 16%"
+    # start_date = date(2016, 1, 1)
+    end = '2016-12-31'
+    definition_period = YEAR
+
+
+# (f5hw, f5iw, f5jw))
+class mrag_pvct(Variable):
+    cerfa_field = {0: "5HW",
+        1: "5IW",
+        2: "5JW", }
+    value_type = int
+    unit = 'currency'
+    entity = Individu
+    label = "Plus-values agricoles (régime microBA) à court-terme"
+    # start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+
+# (f5hx, f5ix, f5jx))
+class mrag_pvlt(Variable):
+    cerfa_field = {0: "5HX",
+        1: "5IX",
+        2: "5JX", }
+    value_type = int
+    unit = 'currency'
+    entity = Individu
+    label = "Plus-values agricoles (régime microBA) à long-terme"
+    # start_date = date(2017, 1, 1)
+    definition_period = YEAR
+
+
+# (f5xo, f5yo, f5zo))
+class mrag_pvct(Variable):
+    cerfa_field = {0: "5XO",
+        1: "5YO",
+        2: "5ZO", }
+    value_type = int
+    unit = 'currency'
+    entity = Individu
+    label = "Moins-values agricoles (régime microBA) à court-terme"
+    # start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+
+# (f5xn, f5yn, f5zn))
+class mrag_pvct(Variable):
+    cerfa_field = {0: "5XN",
+        1: "5YN",
+        2: "5ZN", }
+    value_type = int
+    unit = 'currency'
+    entity = Individu
+    label = "Moins-values agricoles (régime microBA) à long-terme"
+    # start_date = date(2016, 1, 1)
     definition_period = YEAR
 
 
@@ -1015,6 +1082,20 @@ class arag_pvce(Variable):
     entity = Individu
     label = "Plus-values agricoles de cession taxables à 16% (Régime du bénéfice réel, revenus bénéficiant de l'abattement CGA ou viseur)"
     # start_date = date(2007, 1, 1)
+    end = '2016-12-31'
+    definition_period = YEAR
+
+
+# (f5he, f5ie, f5je))
+class mrag_pvlt(Variable):
+    cerfa_field = {0: "5HE",
+        1: "5IE",
+        2: "5JE", }
+    value_type = int
+    unit = 'currency'
+    entity = Individu
+    label = "Plus-values agricoles (régime du bénéfice réel, revenus bénéficiant de l'abattement CGA ou viseur) à long-terme"
+    # start_date = date(2017, 1, 1)
     definition_period = YEAR
 
 
