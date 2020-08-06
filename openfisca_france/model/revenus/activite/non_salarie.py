@@ -120,7 +120,7 @@ class frag_impo(Variable):
 
 # (f5xb, f5yb, f5zb))
 class mrag_impo(Variable):
-    cerfa_field = {0: "5XAB",
+    cerfa_field = {0: "5XB",
         1: "5YB",
         2: "5ZB", }
     value_type = int
@@ -1373,6 +1373,7 @@ class abnc_proc(Variable):
     entity = Individu
     label = "Honoraires de prospection commerciale exonérés avec CGA ou viseur (revenus non commerciaux professionnels, régime de la déclaration contrôlée)"
     # start_date = date(2009, 1, 1)
+    end = '2017-12-31'
     definition_period = YEAR
 
 
@@ -1385,6 +1386,7 @@ class nbnc_proc(Variable):
     entity = Individu
     label = "Honoraires de prospection commerciale exonérés sans CGA (revenus non commerciaux professionnels, régime de la déclaration contrôlée)"
     # start_date = date(2009, 1, 1)
+    end = '2017-12-31'
     definition_period = YEAR
 
 

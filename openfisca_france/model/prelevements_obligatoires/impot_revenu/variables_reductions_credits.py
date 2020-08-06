@@ -9094,6 +9094,7 @@ class f8te(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     label = "Crédit d'impôt en faveur des entreprises: adhésion à un groupement de prévention agréé"
+    end = "2018-12-31"
     definition_period = YEAR
 
 
@@ -9195,6 +9196,7 @@ class f8wb(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     label = "Crédit d'impôt en faveur des entreprises: Prospection commerciale"
+    end = '2017-12-31'
     definition_period = YEAR
 
 
@@ -9235,6 +9237,7 @@ class f8we(Variable):
     entity = FoyerFiscal
     label = "Crédit d'impôt en faveur des entreprises: Intéressement"
     # start_date = date(2008, 1, 1)
+    end = '2017-12-31'
     definition_period = YEAR
 
 
