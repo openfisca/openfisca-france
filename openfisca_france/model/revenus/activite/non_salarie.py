@@ -78,6 +78,19 @@ class frag_exon(Variable):
     definition_period = YEAR
 
 
+# (f5hd, f5id, f5jd))
+class coupe_bois(Variable):
+    cerfa_field = {0: "5HD",
+        1: "5ID",
+        2: "5JD", }
+    value_type = int
+    unit = 'currency'
+    entity = Individu
+    label = "Revenus forfaitaire provenant des coupes de bois"
+    # start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+
 # (f5xa, f5ya, f5za))
 class mrag_exon(Variable):
     cerfa_field = {0: "5XA",
@@ -1164,6 +1177,7 @@ class frag_fore(Variable):
     entity = Individu
     label = "Revenus des exploitants forestiers (régime du forfait)"
     # start_date = date(2007, 1, 1)
+    end = '2015-12-31'
     definition_period = YEAR
 
 

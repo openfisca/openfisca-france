@@ -1,0 +1,52 @@
+- name: Test microBA (sans coupe de bois)
+  period: 2017
+  absolute_error_margin: 1
+  input:
+    foyer_fiscal:
+      declarants:
+      - ind0
+    individus:
+      ind0:
+        activite: actif
+        date_naissance: '1970-01-01'
+        date_creation: 2017.0
+        mrag_impo: 60000.0
+        statut_marital: celibataire
+    famille:
+      parents:
+      - ind0
+    menage:
+      personne_de_reference: ind0
+  output:
+    iai: 0.0
+    irpp: -0.0
+    rbg: 7800.0
+    rni: 7800.0
+
+- name: Test microBA avec coupe de bois depuis plusieurs années
+  period: 2017
+  absolute_error_margin: 1
+  input:
+    foyer_fiscal:
+      declarants:
+      - ind0
+    individus:
+      ind0:
+        activite: actif
+        date_naissance: '1970-01-01'
+        date_creation: 2012.0
+        arag_impo_n2: 70000.0
+        frag_impo_n1: 65000.0
+        coupe_bois: 2500.0
+        mrag_impo: 60000.0
+        statut_marital: celibataire
+    famille:
+      parents:
+      - ind0
+    menage:
+      personne_de_reference: ind0
+  output:
+    iai: 0.0
+    irpp: -0.0
+    rbg: 10950.0
+    rni: 10950.0

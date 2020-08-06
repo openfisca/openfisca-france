@@ -2369,18 +2369,20 @@ class defrag(Variable):
         mrag_impo_i = foyer_fiscal.members('mrag_impo', period)
         nrag_impg_i = foyer_fiscal.members('nrag_impg', period)
         frag_fore_i = foyer_fiscal.members('frag_fore', period)
+        coupe_bois_i = foyer_fiscal.members('coupe_bois', period)
         frag_pvct_i = foyer_fiscal.members('frag_pvct', period)
         arag_impg_i = foyer_fiscal.members('arag_impg', period)
         cga = parameters(period).impot_revenu.rpns.cga_taux2
 
         frag_fore = foyer_fiscal.sum(frag_fore_i)
+        coupe_bois = foyer_fiscal.sum(coupe_bois_i)
         frag_impo = foyer_fiscal.sum(frag_impo_i)
         mrag_impo = foyer_fiscal.sum(mrag_impo_i)
         arag_impg = foyer_fiscal.sum(arag_impg_i)
         nrag_impg = foyer_fiscal.sum(nrag_impg_i)
         frag_pvct = foyer_fiscal.sum(frag_pvct_i)
         return min_(f5qf + f5qg + f5qn + f5qo + f5qp + f5qq, (1 + cga) * (frag_impo + nrag_impg + frag_pvct)
-                    + arag_impg + frag_fore + mrag_impo)
+                    + arag_impg + frag_fore + coupe_bois + mrag_impo)
 
 
 class defacc(Variable):
@@ -2767,38 +2769,42 @@ class rpns_revenus_microBA_agricole(Variable):
         arag_impo_n1 = individu('arag_impo_n1', period)
         date_creation = individu('date_creation', period)
 
-        if date_creation < 2015:
-            frag_impo_n2_maj = frag_impo_n2 * 1.25
-            frag_impo_n1_maj = frag_impo_n1 * 1.25            
-            benefices_estimes = (mrag_impo + frag_impo_n2_maj + arag_impo_n2 + frag_impo_n1_maj + arag_impo_n1) / 3
-            return benefices_estimes * 0.13
-        if date_creation == 2015:
-            frag_impo_n1_maj = frag_impo_n1 * 1.25            
-            benefices_estimes (mrag_impo + frag_impo_n1_maj + arag_impo_n1) / 2
-            return benefices_estimes * 0.13
-        if date_creation == 2016:
-            return mrag_impo * 0.13
+        frag_impo_n2_maj = frag_impo_n2 * 1.25
+        frag_impo_n1_maj = frag_impo_n1 * 1.25
+        benefices_estimes_3 = (mrag_impo + frag_impo_n2_maj + arag_impo_n2 + frag_impo_n1_maj + arag_impo_n1) / 3
+        benefices_estimes_2 = (mrag_impo + frag_impo_n1_maj + arag_impo_n1) / 2
+
+        montant_benef = (
+            (date_creation < 2015) * benefices_estimes_3
+            + (date_creation == 2015) * benefices_estimes_2
+            + (date_creation == 2016) * mrag_impo
+            )
+
+        return montant_benef * 0.13
 
     def formula_2017_01_01(individu, period, parameters):
         mrag_impo = individu('mrag_impo', period)
         frag_impo_n2 = individu('frag_impo_n2', period)
         frag_impo_n1 = individu('frag_impo_n1', period)
         arag_impo_n2 = individu('arag_impo_n2', period)
+        date_creation = individu('date_creation', period)
 
-        if date_creation < 2016:
-            frag_impo_n2_maj = frag_impo_n2 * 1.25
-            benefices_estimes = (mrag_impo + frag_impo_n2_maj + arag_impo_n2 + frag_impo_n1) / 3
-            return benefices_estimes * 0.13
-        if date_creation == 2016:
-            benefices_estimes (mrag_impo + frag_impo_n1) / 2
-            return benefices_estimes * 0.13
-        if date_creation == 2017:
-            return mrag_impo * 0.13
+        frag_impo_n2_maj = frag_impo_n2 * 1.25
+        benefices_estimes_3 = (mrag_impo + frag_impo_n2_maj + arag_impo_n2 + frag_impo_n1) / 3
+        benefices_estimes_2 = (mrag_impo + frag_impo_n1) / 2
+
+        montant_benef = (
+            (date_creation < 2016) * benefices_estimes_3
+            + (date_creation == 2016) * benefices_estimes_2
+            + (date_creation == 2017) * mrag_impo
+            )
+
+        return montant_benef * 0.13
 
     def formula_2018_01_01(individu, period, parameters):
         mrag_impo = individu('mrag_impo', period)
 
-        return mrag_impo
+        return mrag_impo * 0.13
 
 
 class rpns_individu(Variable):
@@ -2850,6 +2856,7 @@ class rpns_individu(Variable):
         cncn_defi = individu('cncn_defi', period)
         abnc_proc = individu('abnc_proc', period)  # noqa F841
         frag_fore = individu('frag_fore', period)
+        coupe_bois = individu('coupe_bois', period)
         f5sq = individu('f5sq', period)
         mncn_exon = individu('mncn_exon', period)  # noqa F841
         cncn_exon = individu('cncn_exon', period)  # noqa F841
@@ -2952,7 +2959,7 @@ class rpns_individu(Variable):
 
         majo_cga = max_(0, cga_taux2 * (ntimp + rpns_frag))  # Pour ne pas avoir à majorer les déficits
         # total 6
-        revevenus_non_salaries = rpns_frag + rpns_mrag + frag_fore + atimp + ntimp + majo_cga - def_agri
+        revevenus_non_salaries = rpns_frag + rpns_mrag + frag_fore + coupe_bois + atimp + ntimp + majo_cga - def_agri
 
         # revenu net après abatement
         # total 7
