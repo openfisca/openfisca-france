@@ -527,6 +527,7 @@ class nbic_apch(Variable):
     unit = 'currency'
     entity = Individu
     label = "Artisans pêcheurs : abattement 50% avec CGA ou viseur (régime du bénéfice réel)"
+    end = '2017-12-31'
     definition_period = YEAR
 
 
@@ -675,6 +676,19 @@ class nacc_meup(Variable):
     entity = Individu
     label = "Locations meublées non professionnelles: Locations déjà soumises aux prélèvements sociaux (régime micro entreprise)"
     # start_date = date(2012, 1, 1)
+    definition_period = YEAR
+
+
+# (f5nw, f5ow, f5pw))
+class nacc_meuc(Variable):
+    cerfa_field = {0: "5NW",
+        1: "5OW",
+        2: "5PW", }
+    value_type = int
+    unit = 'currency'
+    entity = Individu
+    label = "Locations meublées non professionnelles: cas général des locations déjà soumises aux prélèvements sociaux (régime micro entreprise)"
+    # start_date = (2017,1,1)
     definition_period = YEAR
 
 

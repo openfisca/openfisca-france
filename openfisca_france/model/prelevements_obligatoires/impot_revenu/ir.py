@@ -2842,6 +2842,7 @@ class rpns_individu(Variable):
         aacc_imps = individu('aacc_imps', period)
         mbnc_impo = individu('mbnc_impo', period)
         nacc_meup = individu('nacc_meup', period)
+        nacc_meuc = individu('nacc_meuc', period)
         abic_impm = individu('abic_impm', period)
         abic_defm = individu('abic_defm', period)
         abnc_impo = individu('abnc_impo', period)
@@ -2927,6 +2928,10 @@ class rpns_individu(Variable):
                 + (nacc_meup > 0) * max_(
                     micro.specialbnc.services.min,
                     nacc_meup * (1 - micro.specialbnc.marchandises.taux)
+                    )
+                + (nacc_meuc > 0) * max_(
+                    micro.specialbnc.services.min,
+                    nacc_meuc * (1 - micro.specialbnc.services.taux)
                     )
                 + max_(0, nacc_defs - alnp_defs) - aacc_defn
                 )
