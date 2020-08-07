@@ -1856,19 +1856,24 @@ class taxation_plus_values_hors_bareme(Variable):
         f3wi = foyer_fiscal('f3wi', period)
         f3wj = foyer_fiscal('f3wj', period)
         rpns_pvce_i = foyer_fiscal.members('rpns_pvce', period)
+        rpns_info_i = foyer_fiscal.members('rpns_info', period)
+
         f3pi = foyer_fiscal('f3pi', period)
 
         rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
+        rpns_info = foyer_fiscal.sum(rpns_info_i)
         f3vd = foyer_fiscal.sum(f3vd_i)
         f3vi = foyer_fiscal.sum(f3vi_i)
         f3vf = foyer_fiscal.sum(f3vf_i)
         plus_values = parameters(period).impot_revenu.plus_values
+        P = parameters(period).impot_revenu.rpns
 
         return round_(
             plus_values.taux2 * f3vd
             + plus_values.taux3 * f3vi
             + plus_values.taux4 * f3vf
             + plus_values.pvce * rpns_pvce
+            + P.taux10 * rpns_info
             + plus_values.taux_plus_values_bspce * f3sj
             + plus_values.taux_plus_values_bspce_conditionnel * f3sk
             + plus_values.taux_plus_values_report * f3wi
@@ -2324,16 +2329,16 @@ class rpns_info(Variable):
         '''
         Plus values de cession
         '''
-        cncc_info_red1 = individu('cncc_info_red1', period)
-        cncc_info_red2 = individu('cncc_info_red2', period)
+        cncn_info_red1 = individu('cncn_info_red1', period)
+        cncn_info_red2 = individu('cncn_info_red2', period)
         arag_info = individu('arag_info', period)
         abic_info = individu('abic_info', period)
         aacc_info = individu('aacc_info', period)
         abnc_info = individu('abnc_info', period)
 
         return (
-            cncc_info_red1
-            + cncc_info_red2
+            cncn_info_red1
+            + cncn_info_red2
             + arag_info
             + abic_info
             + aacc_info
