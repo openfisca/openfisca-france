@@ -78,6 +78,19 @@ class frag_exon(Variable):
     definition_period = YEAR
 
 
+# (f5ha, f5ia, f5ja))
+class arag_info(Variable):
+    cerfa_field = {0: "5HA",
+        1: "5IA",
+        2: "5JA", }
+    value_type = int
+    unit = 'currency'
+    entity = Individu
+    label = "Revenus agricoles: revenus nets de la cession ou concession de brevets et assimilés"
+    # start_date = date(2019, 1, 1)
+    definition_period = YEAR
+
+
 # (f5hd, f5id, f5jd))
 class coupe_bois(Variable):
     cerfa_field = {0: "5HD",
@@ -434,6 +447,19 @@ class nbic_impn(Variable):
     definition_period = YEAR
 
 
+# (f5ui, f5vi, f5wi))
+class abic_info(Variable):
+    cerfa_field = {0: "5UI",
+        1: "5VI",
+        2: "5WI", }
+    value_type = int
+    unit = 'currency'
+    entity = Individu
+    label = "Revenus industriels et commerciaux professionnels : Revenus nets de la cession ou concession de brevets et assimilés"
+    # start_date = date(2019, 1, 1)
+    definition_period = YEAR
+
+
 # """
 # Réutilisation cases 2013
 # """
@@ -552,6 +578,19 @@ class aacc_exon(Variable):
     unit = 'currency'
     entity = Individu
     label = "Revenus industriels et commerciaux non professionnels exonérés yc plus-values avec CGA ou viseur (régime du bénéfice réel)"
+    definition_period = YEAR
+
+
+# (f5tf, f5uf, f5vf))
+class aacc_info(Variable):
+    cerfa_field = {0: "5TF",
+        1: "5UF",
+        2: "5VF", }
+    value_type = int
+    unit = 'currency'
+    entity = Individu
+    label = "Revenus industriels et commerciaux non-professionnels : Revenus nets de la cession ou concession de brevets et assimilés"
+    # start_date = date(2019, 1, 1)
     definition_period = YEAR
 
 
@@ -801,6 +840,19 @@ class mbnc_impo(Variable):
     unit = 'currency'
     entity = Individu
     label = "Revenus non commerciaux professionnels imposables (régime déclaratif spécial ou micro BNC)"
+    definition_period = YEAR
+
+
+# (f5qa, f5ra, f5sa))
+class abnc_info(Variable):
+    cerfa_field = {0: "5QA",
+        1: "5RA",
+        2: "5SA", }
+    value_type = int
+    unit = 'currency'
+    entity = Individu
+    label = "Revenus non-commerciaux professionnels imposables: Revenus nets de la cession ou concession de brevets et assimilés (régime de déclaration controlée)"
+    # start_date = date(2019, 1, 1)
     definition_period = YEAR
 
 
@@ -1220,7 +1272,7 @@ class cncn_pvce(Variable):
     value_type = int
     unit = 'currency'
     entity = Individu
-    label = "Plus-values non commerciales non professionnelles taxables à 16% avec AA ou viseur (régime de la déclaration controlée)"
+    label = "Plus-values nettes non commerciales non professionnelles taxables au taux de droit commun (régime de la déclaration controlée)"
     # start_date = date(2006, 1, 1)
     definition_period = YEAR
 
@@ -1445,8 +1497,33 @@ class cncn_info(Variable):
     value_type = int
     unit = 'currency'
     entity = Individu
-    label = "Inventeurs et auteurs de logiciels : produits taxables à 16%, revenus non commerciaux non professionnels avec CGA (régime de la déclaration contrôlée)"
+    label = "Inventeurs et auteurs de logiciels : produits taxables aux taux de droit commun revenus non commerciaux non professionnels avec CGA (régime de la déclaration contrôlée)"
     # start_date = date(2009, 1, 1)
+    end = '2018-12-31'
+    definition_period = YEAR
+
+
+class cncn_info_red1(Variable):
+    cerfa_field = {0: "5TC",
+        1: "5UC",
+        2: "5VC", }
+    value_type = int
+    unit = 'currency'
+    entity = Individu
+    label = "Inventeurs et auteurs de logiciels : – produits taxables à 10%, déjà soumis aux CS, revenus non commerciaux non professionnels avec CGA (régime de la déclaration contrôlée)"
+    # start_date = date(2019, 1, 1)
+    definition_period = YEAR
+
+
+class cncn_info_red2(Variable):
+    cerfa_field = {0: "5QJ",
+        1: "5RJ",
+        2: "5SJ", }
+    value_type = int
+    unit = 'currency'
+    entity = Individu
+    label = "Inventeurs et auteurs de logiciels : – produits taxables à 10%, revenus non commerciaux non professionnels avec CGA (régime de la déclaration contrôlée)"
+    # start_date = date(2019, 1, 1)
     definition_period = YEAR
 
 

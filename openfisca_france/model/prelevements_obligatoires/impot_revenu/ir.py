@@ -2297,6 +2297,7 @@ class rpns_pvce(Variable):
         abnc_pvce = individu('abnc_pvce', period)
         mncn_pvce = individu('mncn_pvce', period)
         cncn_pvce = individu('cncn_pvce', period)
+        cncn_info = individu('cncn_info', period)
 
         return (
             frag_pvce
@@ -2309,6 +2310,34 @@ class rpns_pvce(Variable):
             + abnc_pvce
             + mncn_pvce
             + cncn_pvce
+            + cncn_info
+            )
+
+
+class rpns_info(Variable):
+    value_type = float
+    entity = Individu
+    label = "Plus values de cession de brevets, logiciels ou inventions - Revenu des professions non salariées"
+    definition_period = YEAR
+
+    def formula_2019_01_01(individu, period, parameters):
+        '''
+        Plus values de cession
+        '''
+        cncc_info_red1 = individu('cncc_info_red1', period)
+        cncc_info_red2 = individu('cncc_info_red2', period)
+        arag_info = individu('arag_info', period)
+        abic_info = individu('abic_info', period)
+        aacc_info = individu('aacc_info', period)
+        abnc_info = individu('abnc_info', period)
+
+        return (
+            cncc_info_red1
+            + cncc_info_red2
+            + arag_info
+            + abic_info
+            + aacc_info
+            + abnc_info
             )
 
 
@@ -2341,14 +2370,13 @@ class rpns_exon(Variable):
         mncn_exon = individu('mncn_exon', period)
         cncn_exon = individu('cncn_exon', period)
         cncn_jcre = individu('cncn_jcre', period)
-        cncn_info = individu('cncn_info', period)
         nbic_pvce = individu('nbic_pvce', period)
         cga = parameters(period).impot_revenu.rpns.cga_taux2
 
         return (
             frag_exon + mrag_exon + arag_exon + nrag_exon + mbic_exon + abic_exon + nbnc_proc * (1 + cga)
             + nbic_exon + macc_exon + aacc_exon + nacc_exon + mbnc_exon + abnc_proc
-            + abnc_exon + nbnc_exon + mncn_exon + cncn_exon + cncn_jcre + cncn_info + nbic_pvce + nrag_pvce
+            + abnc_exon + nbnc_exon + mncn_exon + cncn_exon + cncn_jcre  + nbic_pvce + nrag_pvce
             )
 
 
