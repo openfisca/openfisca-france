@@ -2285,7 +2285,7 @@ class credits_impot_sur_valeurs_etrangeres(Variable):
 class rpns_pvce(Variable):
     value_type = float
     entity = Individu
-    label = "Plus values de cession - Revenu des professions non salariées"
+    label = "Plus values de cession nettes des moins-values - Revenu des professions non salariées"
     definition_period = YEAR
 
     def formula(individu, period, parameters):
@@ -2294,6 +2294,7 @@ class rpns_pvce(Variable):
         '''
         frag_pvce = individu('frag_pvce', period)
         arag_pvce = individu('arag_pvce', period)
+        mrag_pvce = individu('mrag_pvce', period)
         mbic_pvce = individu('mbic_pvce', period)
         abic_pvce = individu('abic_pvce', period)
         macc_pvce = individu('macc_pvce', period)
@@ -2303,10 +2304,12 @@ class rpns_pvce(Variable):
         mncn_pvce = individu('mncn_pvce', period)
         cncn_pvce = individu('cncn_pvce', period)
         cncn_info = individu('cncn_info', period)
+        moins_values_long_terme_non_salaries = individu('moins_values_long_terme_non_salaries', period)
 
         return (
             frag_pvce
             + arag_pvce
+            + mrag_pvce
             + mbic_pvce
             + abic_pvce
             + macc_pvce
@@ -2316,6 +2319,7 @@ class rpns_pvce(Variable):
             + mncn_pvce
             + cncn_pvce
             + cncn_info
+            - moins_values_long_terme_non_salaries
             )
 
 
@@ -2705,18 +2709,19 @@ class rpns_pvct(Variable):
         Plus values de court terme
         '''
         frag_pvct = individu('frag_pvct', period)
+        mrag_pvct = individu('mrag_pvct', period)
         mbic_pvct = individu('mbic_pvct', period)
         macc_pvct = individu('macc_pvct', period)
         mbnc_pvct = individu('mbnc_pvct', period)
         mncn_pvct = individu('mncn_pvct', period)
 
-        return frag_pvct + macc_pvct + mbic_pvct + mbnc_pvct + mncn_pvct
+        return frag_pvct + mrag_pvct + macc_pvct + mbic_pvct + mbnc_pvct + mncn_pvct
 
 
 class moins_values_court_terme_nonpro(Variable):
     value_type = float
     entity = Individu
-    label = "Moins values de court terme - Revenu des professions non salariées non profesionnelles"
+    label = "Moins values de court terme - Revenu des professions non salariées non professionnelles"
     definition_period = YEAR
 
     def formula(individu, period, parameters):
@@ -2729,7 +2734,7 @@ class moins_values_court_terme_nonpro(Variable):
 class moins_values_court_terme_pro(Variable):
     value_type = float
     entity = Individu
-    label = "Moins values de court terme - Revenu des professions non salariées profesionnelles"
+    label = "Moins values de court terme - Revenu des professions non salariées professionnelles"
     definition_period = YEAR
 
     def formula(individu, period, parameters):
@@ -2745,6 +2750,18 @@ class moins_values_court_terme_pro(Variable):
         return nbic_mvct + mbnc_mvct
 
 
+class moins_values_court_terme_agr(Variable):
+    value_type = float
+    entity = Individu
+    label = "Moins values de court terme - Revenu des professions agricoles"
+    definition_period = YEAR
+
+    def formula(individu, period, parameters):
+        mrag_mvct = individu('mrag_mvct', period)
+
+        return mrag_mvct
+
+
 class moins_values_court_terme_non_salaries(Variable):
     value_type = float
     entity = Individu
@@ -2754,8 +2771,9 @@ class moins_values_court_terme_non_salaries(Variable):
     def formula(individu, period, parameters):
         rpns_mvct_pro = individu('moins_values_court_terme_pro', period)
         rpns_mvct_nonpro = individu('moins_values_court_terme_nonpro', period)
+        rpns_mvct_agr = individu('moins_values_court_terme_agr', period)
 
-        return rpns_mvct_pro + rpns_mvct_nonpro
+        return rpns_mvct_pro + rpns_mvct_nonpro + rpns_mvct_agr
 
 
 class moins_values_long_terme_non_salaries(Variable):
@@ -2766,11 +2784,12 @@ class moins_values_long_terme_non_salaries(Variable):
 
     def formula(individu, period, parameters):
         mbic_mvlt = individu('mbic_mvlt', period)
+        mrag_mvlt = individu('mrag_mvlt', period)
         macc_mvlt = individu('macc_mvlt', period)
         mbnc_mvlt = individu('mbnc_mvlt', period)
         mncn_mvlt = individu('mncn_mvlt', period)
 
-        return mbic_mvlt + macc_mvlt + mbnc_mvlt + mncn_mvlt
+        return mbic_mvlt + macc_mvlt + mbnc_mvlt + mncn_mvlt + mrag_mvlt
 
 
 class rpns_revenus_forfait_agricole(Variable):
@@ -2903,6 +2922,7 @@ class rpns_individu(Variable):
         rpns_mrag = individu('rpns_revenus_microBA_agricole', period)
         rpns_pvct = individu('rpns_pvct', period)
         rpns_mvct_pro = individu('moins_values_court_terme_pro', period)
+        rpns_mvct_agr = individu('moins_values_court_terme_agr', period)
         rpns_mvct_nonpro = individu('moins_values_court_terme_nonpro', period)  # noqa F841
         macc_mvct = individu.foyer_fiscal('macc_mvct', period) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
         mncn_mvct = individu.foyer_fiscal('mncn_mvct', period) * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
@@ -3007,7 +3027,7 @@ class rpns_individu(Variable):
 
         return (
             revevenus_non_salaries + rev_ns_mi + rpns_pvct + exon_acc + exon_ncn
-            + abic_impm - abic_defm + alnp_imps + cncn_aimp - rpns_mvct_pro
+            + abic_impm - abic_defm + alnp_imps + cncn_aimp - rpns_mvct_pro - rpns_mvct_agr - rpns_mvct_nonpro
             )
 
 
