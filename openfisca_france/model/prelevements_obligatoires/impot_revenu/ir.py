@@ -2385,7 +2385,7 @@ class rpns_exon(Variable):
         return (
             frag_exon + mrag_exon + arag_exon + nrag_exon + mbic_exon + abic_exon + nbnc_proc * (1 + cga)
             + nbic_exon + macc_exon + aacc_exon + nacc_exon + mbnc_exon + abnc_proc
-            + abnc_exon + nbnc_exon + mncn_exon + cncn_exon + cncn_jcre  + nbic_pvce + nrag_pvce
+            + abnc_exon + nbnc_exon + mncn_exon + cncn_exon + cncn_jcre + nbic_pvce + nrag_pvce
             )
 
 
