@@ -35,7 +35,7 @@
     nbptr: 1.0
     ppe: 0.0
     rbg: 194000.0
-    rfr: 197085.02
+    rfr: 198000.0
     rni: 194000.0
 - name: Impôt sur le revenu avant 2013 - Déclaration avec option barème progressif et PFL (pas d'abattement de 40%)
   period: 2012
@@ -75,5 +75,5 @@
     nbptr: 1.0
     ppe: 0.0
     rbg: 198000.0
-    rfr: 247085.02
+    rfr: 248000.0
     rni: 198000.0
