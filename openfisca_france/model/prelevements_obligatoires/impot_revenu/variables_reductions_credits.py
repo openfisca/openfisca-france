@@ -9326,3 +9326,168 @@ class elig_creimp_jeunes(Variable):
     # start_date = date(2005, 1, 1)
     end = '2008-01-01'
     definition_period = YEAR
+
+
+# Revenus de source Ã©trangÃ¨re avec crÃ©dit dâ€™impÃ´t Ã©gal Ã  lâ€™impÃ´t franÃ§ais
+class rag1_ci_etr(Variable):
+    cerfa_field = {0: "5AK",
+        1: "5BK",
+        2: "5CK", }
+    value_type = int
+    unit = 'currency'
+    entity = Individu
+    label = "Revenus de source Ã©trangÃ¨re avec crÃ©dit dâ€™impÃ´t Ã©gal Ã  lâ€™impÃ´t franÃ§ais - Revenus agricoles - OGA/Viseur"
+    # start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+
+class rag2_ci_etr(Variable):
+    cerfa_field = {0: "5AL",
+        1: "5BL",
+        2: "5CL", }
+    value_type = int
+    unit = 'currency'
+    entity = Individu
+    label = "Revenus de source Ã©trangÃ¨re avec crÃ©dit dâ€™impÃ´t Ã©gal Ã  lâ€™impÃ´t franÃ§ais - Revenus agricoles - Sans"
+    # start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+
+class ricpro1_ci_etr(Variable):
+    cerfa_field = {0: "5DF",
+        1: "5EF",
+        2: "5FF", }
+    value_type = int
+    unit = 'currency'
+    entity = Individu
+    label = "Revenus de source Ã©trangÃ¨re avec crÃ©dit dâ€™impÃ´t Ã©gal Ã  lâ€™impÃ´t franÃ§ais - RIC pro - OGA/Viseur"
+    # start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+
+class ricpro2_ci_etr(Variable):
+    cerfa_field = {0: "5DG",
+        1: "5EG",
+        2: "5FG", }
+    value_type = int
+    unit = 'currency'
+    entity = Individu
+    label = "Revenus de source Ã©trangÃ¨re avec crÃ©dit dâ€™impÃ´t Ã©gal Ã  lâ€™impÃ´t franÃ§ais - RIC Pro - Sans"
+    # start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+
+class ricnpro1_ci_etr(Variable):
+    cerfa_field = {0: "5UR",
+        1: "5VR",
+        2: "5WR", }
+    value_type = int
+    unit = 'currency'
+    entity = Individu
+    label = "Revenus de source Ã©trangÃ¨re avec crÃ©dit dâ€™impÃ´t Ã©gal Ã  lâ€™impÃ´t franÃ§ais - RIC non-pro - OGA/Viseur"
+    # start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+
+class ricnpro2_ci_etr(Variable):
+    cerfa_field = {0: "5US",
+        1: "5VS",
+        2: "5WS", }
+    value_type = int
+    unit = 'currency'
+    entity = Individu
+    label = "Revenus de source Ã©trangÃ¨re avec crÃ©dit dâ€™impÃ´t Ã©gal Ã  lâ€™impÃ´t franÃ§ais - RIC non-pro - Sans"
+    # start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+
+class locmeu1_ci_etr(Variable):
+    cerfa_field = {0: "5EY",
+        1: "5FY",
+        2: "5GY", }
+    value_type = int
+    unit = 'currency'
+    entity = Individu
+    label = "Revenus de source Ã©trangÃ¨re avec crÃ©dit dâ€™impÃ´t Ã©gal Ã  lâ€™impÃ´t franÃ§ais - Location meublÃ©e non-pro - OGA/Viseur"
+    # start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+
+class locmeu2_ci_etr(Variable):
+    cerfa_field = {0: "5EZ",
+        1: "5FZ",
+        2: "5GZ", }
+    value_type = int
+    unit = 'currency'
+    entity = Individu
+    label = "Revenus de source Ã©trangÃ¨re avec crÃ©dit dâ€™impÃ´t Ã©gal Ã  lâ€™impÃ´t franÃ§ais - Location meublÃ©e non-pro - Sans"
+    # start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+
+class rncpro1_ci_etr(Variable):
+    cerfa_field = {0: "5XJ",
+        1: "5YJ",
+        2: "5ZJ", }
+    value_type = int
+    unit = 'currency'
+    entity = Individu
+    label = "Revenus de source Ã©trangÃ¨re avec crÃ©dit dâ€™impÃ´t Ã©gal Ã  lâ€™impÃ´t franÃ§ais - RNC pro - OGA/Viseur"
+    # start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+
+class rncpro2_ci_etr(Variable):
+    cerfa_field = {0: "5XK",
+        1: "5YK",
+        2: "5ZK", }
+    value_type = int
+    unit = 'currency'
+    entity = Individu
+    label = "Revenus de source Ã©trangÃ¨re avec crÃ©dit dâ€™impÃ´t Ã©gal Ã  lâ€™impÃ´t franÃ§ais - RNC pro - Sans"
+    # start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+
+class rncnpro1_ci_etr(Variable):
+    cerfa_field = {0: "5XS",
+        1: "5YS",
+        2: "5ZS", }
+    value_type = int
+    unit = 'currency'
+    entity = Individu
+    label = "Revenus de source Ã©trangÃ¨re avec crÃ©dit dâ€™impÃ´t Ã©gal Ã  lâ€™impÃ´t franÃ§ais - RNC non-pro - OGA/Viseur"
+    # start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+
+class rncnpro2_ci_etr(Variable):
+    cerfa_field = {0: "5XX",
+        1: "5YX",
+        2: "5ZX", }
+    value_type = int
+    unit = 'currency'
+    entity = Individu
+    label = "Revenus de source Ã©trangÃ¨re avec crÃ©dit dâ€™impÃ´t Ã©gal Ã  lâ€™impÃ´t franÃ§ais - RNC non-pro - Sans"
+    # start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+
+class mfonc_ci_etr(Variable):
+    cerfa_field = "4BK"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "Revenus de source Ã©trangÃ¨re avec crÃ©dit dâ€™impÃ´t Ã©gal Ã  lâ€™impÃ´t franÃ§ais - Micro-foncier"
+    # start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+
+class afonc_ci_etr(Variable):
+    cerfa_field = "4BL"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "Revenus de source Ã©trangÃ¨re avec crÃ©dit dâ€™impÃ´t Ã©gal Ã  lâ€™impÃ´t franÃ§ais - Revenus foncier rÃ©gime du bÃ©nÃ©fice rÃ©el"
+    # start_date = date(2016, 1, 1)
+    definition_period = YEAR

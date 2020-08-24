@@ -46,7 +46,9 @@ class credits_impot(Variable):
             # Depuis 2010
             'percvm',
             # Depuis 2012
-            'credit_cotisations_syndicales'
+            'credit_cotisations_syndicales',
+            # Depuis 2016
+            'revenus_etranger'
             ]
 
         montants = [around(foyer_fiscal(credit, period)) for credit in credits]
@@ -2238,6 +2240,55 @@ class quaenv_bouquet(Variable):
 
         bouquet = ((t1 + t2 + t3 + t4 + t5 + t6) > 1) * (depense_2014_eligible > 0) * (depense_2015_eligible > 0)
         return bouquet
+
+
+class revenus_etranger(Variable):
+    value_type = float
+    entity = FoyerFiscal
+    label = "Crédit d’impôt sur les revenus déjà imposés à l'étranger"
+    definition_period = YEAR
+
+    def formula_2016_01_01(foyer_fiscal, period, parameters):
+        '''
+        Crédit d'impôt égal à l'impôt français pour les revenus déjà imposés à l'étranger, méthode du taux effectif
+        2016-
+        '''
+        mfonc_ci_etr = foyer_fiscal('mfonc_ci_etr', period)
+        afonc_ci_etr = foyer_fiscal('afonc_ci_etr', period)
+        rag1_ci_etr_i = foyer_fiscal.members('rag1_ci_etr', period)
+        rag2_ci_etr_i = foyer_fiscal.members('rag2_ci_etr', period)
+        ricpro1_ci_etr_i = foyer_fiscal.members('ricpro1_ci_etr', period)
+        ricpro2_ci_etr_i = foyer_fiscal.members('ricpro2_ci_etr', period)
+        ricnpro1_ci_etr_i = foyer_fiscal.members('ricnpro1_ci_etr', period)
+        ricnpro2_ci_etr_i = foyer_fiscal.members('ricnpro2_ci_etr', period)
+        locmeu1_ci_etr_i = foyer_fiscal.members('locmeu1_ci_etr', period)
+        locmeu2_ci_etr_i = foyer_fiscal.members('locmeu2_ci_etr', period)
+        rncpro1_ci_etr_i = foyer_fiscal.members('rncpro1_ci_etr', period)
+        rncpro2_ci_etr_i = foyer_fiscal.members('rncpro2_ci_etr', period)
+        rncnpro1_ci_etr_i = foyer_fiscal.members('rncnpro1_ci_etr', period)
+        rncnpro2_ci_etr_i = foyer_fiscal.members('rncnpro2_ci_etr', period)
+        rng = foyer_fiscal('rng', period)
+        iai = foyer_fiscal('iai', period)
+
+        rag1_ci_etr = foyer_fiscal.sum(rag1_ci_etr_i)
+        rag2_ci_etr = foyer_fiscal.sum(rag2_ci_etr_i)
+        ricpro1_ci_etr = foyer_fiscal.sum(ricpro1_ci_etr_i)
+        ricpro2_ci_etr = foyer_fiscal.sum(ricpro2_ci_etr_i)
+        ricnpro1_ci_etr = foyer_fiscal.sum(ricnpro1_ci_etr_i)
+        ricnpro2_ci_etr = foyer_fiscal.sum(ricnpro2_ci_etr_i)
+        locmeu1_ci_etr = foyer_fiscal.sum(locmeu1_ci_etr_i)
+        locmeu2_ci_etr = foyer_fiscal.sum(locmeu2_ci_etr_i)
+        rncpro1_ci_etr = foyer_fiscal.sum(rncpro1_ci_etr_i)
+        rncpro2_ci_etr = foyer_fiscal.sum(rncpro2_ci_etr_i)
+        rncnpro1_ci_etr = foyer_fiscal.sum(rncnpro1_ci_etr_i)
+        rncnpro2_ci_etr = foyer_fiscal.sum(rncnpro2_ci_etr_i)
+
+        revenus_etr = rag1_ci_etr + rag2_ci_etr + ricpro1_ci_etr + ricpro2_ci_etr + ricnpro1_ci_etr + ricnpro2_ci_etr + locmeu1_ci_etr + locmeu2_ci_etr + rncpro1_ci_etr + rncpro2_ci_etr + rncnpro1_ci_etr + rncnpro2_ci_etr
+
+        if iai > 0:
+            return iai * revenus_etr / rng
+        else:
+            return 0
 
 
 class saldom2(Variable):
