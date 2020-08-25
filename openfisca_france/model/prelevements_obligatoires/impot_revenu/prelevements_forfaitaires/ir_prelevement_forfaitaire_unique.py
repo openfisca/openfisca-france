@@ -127,9 +127,6 @@ class plus_values_prelevement_forfaitaire_unique_ir(Variable):
     definition_period = YEAR
 
     def formula_2018_01_01(foyer_fiscal, period, parameters):
-        '''
-        Les assiettes des plus-values du PFU doivent être brutes (et non nettes)
-        '''
         f3sa = foyer_fiscal('f3sa', period)
         f3ua = foyer_fiscal('f3ua', period)
         f3va = foyer_fiscal('f3va', period)
@@ -139,9 +136,6 @@ class plus_values_prelevement_forfaitaire_unique_ir(Variable):
         return f3sa + max_(0, f3ua - f3va) + f3vg + f3tj
 
     def formula_2019_01_01(foyer_fiscal, period, parameters):
-        '''
-        Les assiettes des plus-values du PFU doivent être brutes (et non nettes)
-        '''
         f3sa = foyer_fiscal('f3sa', period)
         f3ua = foyer_fiscal('f3ua', period)
         f3va = foyer_fiscal('f3va', period)
