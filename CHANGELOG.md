@@ -1,5 +1,15 @@
 # Changelog
 
+### 48.11.2 [#1438](https://github.com/openfisca/openfisca-france/pull/1438)
+
+* Évolution du système socio-fiscal.
+* Zones impactées :
+  - `openfisca_france/parameters/impot_revenu/rpns`
+  - `openfisca_france/parameters/impot_revenu/reductions_impots`
+  - `openfisca_france/parameters/impot_revenu/charges_deductibles`
+* Détails :
+  - Met à jour les valeurs des paramètres évoluant annuellement pour les années les plus récentes
+
 ### 48.11.1 [#1433](https://github.com/openfisca/openfisca-france/pull/1433)
 
 * Amélioration technique.
