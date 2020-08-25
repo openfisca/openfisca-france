@@ -127,14 +127,26 @@ class plus_values_prelevement_forfaitaire_unique_ir(Variable):
     definition_period = YEAR
 
     def formula_2018_01_01(foyer_fiscal, period, parameters):
-        '''
-        Les assiettes des plus-values du PFU doivent être brutes (et non nettes)
-        '''
         f3sa = foyer_fiscal('f3sa', period)
-        f3vg = foyer_fiscal('f3vg', period)
         f3ua = foyer_fiscal('f3ua', period)
+        f3va = foyer_fiscal('f3va', period)
+        f3vg = foyer_fiscal('f3vg', period)
+        f3tj = foyer_fiscal('f3tj', period)
 
-        return f3sa + f3vg + f3ua
+        return f3sa + max_(0, f3ua - f3va) + f3vg + f3tj
+
+    def formula_2019_01_01(foyer_fiscal, period, parameters):
+        f3sa = foyer_fiscal('f3sa', period)
+        f3ua = foyer_fiscal('f3ua', period)
+        f3va = foyer_fiscal('f3va', period)
+        f3vg = foyer_fiscal('f3vg', period)
+        f3tj = foyer_fiscal('f3tj', period)
+        f3tk = foyer_fiscal('f3tk', period)
+        f3vt = foyer_fiscal('f3vt', period)
+        f3an = foyer_fiscal('f3an', period)
+        f3bn = foyer_fiscal('f3bn', period)
+
+        return f3sa + max_(0, f3ua - f3va) + f3vg + max_(0, f3tj - f3tk) + f3vt + f3an - f3bn
 
 
 class prelevement_forfaitaire_unique_ir_hors_assurance_vie_epargne_solidaire_etats_non_cooperatifs(Variable):

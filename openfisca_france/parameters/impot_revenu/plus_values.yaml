@@ -219,3 +219,10 @@ taux_plus_values_report_conditionnel:
   values:
     2016-01-01:
       value: 0.19
+taux_plus_values_entc:
+  description: Taux forfaitaire d'imposition sur les profits sur instruments financiers dans des ETNC
+  reference: https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=CE740B6D375E31370F15EEF5F40ADFF8.tplgfr27s_2?idArticle=LEGIARTI000037526716&cidTexte=LEGITEXT000006069577&categorieLien=id&dateTexte=
+  unit: /1
+  values:
+    2018-01-01:
+      value: 0.5

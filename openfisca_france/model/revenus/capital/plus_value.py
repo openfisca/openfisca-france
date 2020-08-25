@@ -457,6 +457,7 @@ class f3vm(Variable):
     entity = FoyerFiscal
     label = "Clôture du PEA avant l'expiration de la 2e année: gains taxables à 22.5 %"
     # start_date = date(2012, 1, 1)
+    end = '2018-12-31'
     definition_period = YEAR
 
 
@@ -465,7 +466,7 @@ class f3vt(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = "Clôture du PEA  entre la 2e et la 5e année: gains taxables à 19 %"
+    label = "Clôture du PEA  entre la 2e et la 5e année: gains taxables à 19 %"  # Depuis IR 2020 :Retrait ou rachat du PEA ou du PEA-PME avant expiration de la 5e année"
     # start_date = date(2012, 1, 1)
     definition_period = YEAR
 
@@ -499,6 +500,26 @@ class f3sj(Variable):
     definition_period = YEAR
 
 
+class f3tj(Variable):
+    cerfa_field = "3TJ"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "Gains de cession de bons de souscription de parts de crÃ©ateur d'entreprise attribuÃ©s aprÃ¨s 2018 : gains taxables Ã  12.8%"
+    # start_date = date(2018, 1, 1)
+    definition_period = YEAR
+
+
+class f3tk(Variable):
+    cerfa_field = "3TK"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "Abattement forfaitaire sur les gains de cession de bons de souscription de parts de crÃ©ateur d'entreprise (dÃ©part dirigeant PME)"
+    # start_date = date(2019, 1, 1)
+    definition_period = YEAR
+
+
 class f3sk(Variable):
     cerfa_field = "3SK"
     value_type = int
@@ -525,6 +546,36 @@ class f3wj(Variable):
     entity = FoyerFiscal
     label = "Plus-values en report d'imposition dont le report a expiré cette année : réalisées du 14.11.2012 au 31.12.2012 et taxables à 19%"
     # start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+
+class f3an(Variable):
+    cerfa_field = "3AN"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "Plus-value rÃ©alisÃ©e sur la cession d'actifs numÃ©riques"
+    # start_date = date(2019, 1, 1)
+    definition_period = YEAR
+
+
+class f3bn(Variable):
+    cerfa_field = "3BN"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "Moins-value rÃ©alisÃ©e sur la cession d'actifs numÃ©riques"
+    # start_date = date(2019, 1, 1)
+    definition_period = YEAR
+
+
+class f3pi(Variable):
+    cerfa_field = "3PI"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "Profits sur instruments financiers rÃ©alisÃ©s dans des ETNC ou paradis fiscaux"
+    # start_date = date(2018, 1, 1)
     definition_period = YEAR
 
 

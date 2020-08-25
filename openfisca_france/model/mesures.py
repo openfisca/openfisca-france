@@ -226,9 +226,27 @@ class plus_values_base_large(Variable):
 
         f3ua = foyer_fiscal('f3ua', period)
         f3vg = foyer_fiscal('f3vg', period)
+        f3we = foyer_fiscal('f3we', period)
         f3vz = foyer_fiscal('f3vz', period)
+        f3vd_i = foyer_fiscal.members('f3vd', period)
+        f3vi_i = foyer_fiscal.members('f3vi', period)
+        f3vf_i = foyer_fiscal.members('f3vf', period)
+        f3sj = foyer_fiscal('f3sj', period)
+        f3tj = foyer_fiscal('f3tj', period)
+        f3sk = foyer_fiscal('f3sk', period)
+        f3vm = foyer_fiscal('f3vm', period)
+        f3vt = foyer_fiscal('f3vt', period)
+        f3wi = foyer_fiscal('f3wi', period)
+        f3wj = foyer_fiscal('f3wj', period)
+        rpns_pvce_i = foyer_fiscal.members('rpns_pvce', period)
+        f3pi = foyer_fiscal('f3pi', period)
 
-        intersection_v1_v2 = f3vg + f3ua + f3vz
+        rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
+        f3vd = foyer_fiscal.sum(f3vd_i)
+        f3vi = foyer_fiscal.sum(f3vi_i)
+        f3vf = foyer_fiscal.sum(f3vf_i)
+
+        intersection_v1_v2 = f3vg + f3ua + f3vz + f3we + rpns_pvce + f3sj + f3sk + f3vm + f3vt + f3wi + f3wj + f3pi + f3tj + f3vd + f3vi + f3vf
 
         return v1_assiette_csg_plus_values + v2_rfr_plus_values_hors_rni - intersection_v1_v2
 
