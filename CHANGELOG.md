@@ -2,7 +2,7 @@
 
 ### 48.11.2 [#1438](https://github.com/openfisca/openfisca-france/pull/1438)
 
-* Amélioration technique
+* Évolution du système socio-fiscal.
 * Zones impactées :
   - `openfisca_france/parameters/impot_revenu/rpns`
   - `openfisca_france/parameters/impot_revenu/reductions_impots`
