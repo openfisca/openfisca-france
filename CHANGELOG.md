@@ -1,5 +1,25 @@
 # Changelog
 
+## 48.12.0 [#1436](https://github.com/openfisca/openfisca-france/pull/1436)
+
+* Évolution du système socio-fiscal
+* Périodes concernées : à partir du 01/01/2018 jusqu'au 31/12/2019
+* Zones impactées : 
+- `openfisca_france/parameters/impot_revenu/plus_values.yaml`.
+- `openfisca_france/model/prelevements_obligatoires/impot_revenu/ir.py`
+- `openfisca_france/model/revenus/capital/plus_value.py`                             
+`openfisca_france/model/prelevements_obligatoires/impot_revenu/prelevements_forfaitaires/ir_prelevement_forfaitaire_unique.py`
+- openfisca_france/model/prelevements_obligatoires/prelevements_sociaux/contributions_sociales/capital.py
+- tests/calculateur_impots/yaml/pv_pfu.yaml
+
+* Détails :
+  - Le modèle de calcul de l'IR est mis à jour avec les cases pour 2019 et 2020 pour l'imposition des plus-values survenues du 01/01/2018 jusqu'au 31/12/2019 et qui sont taxées forfaitairement hors barème.
+  - Le fichier de PFU est modifié afin d'intégrer les cessions de BSPCE émis à partir du 01/01/2018, les revenus d'un PEA après moins de 5 ans de détention suite à une opération réalisée à partir du 01/01/2019 et l'imposition sur la cession d'actifs numériques.
+  - Le fichier YAML est modifié en conséquence afin d'ajouter l'imposition sur les profits sur instruments financiers dans des ETNC.
+  - Les variables correspondantes aux nouvelles cases des formulaires pour IR 2019 et 2020 sont ajoutées au fichier capital/plus_value.py.
+  - Les prélèvements sociaux sur les plus-values sont aussi mis à jour pour ces 2 années.
+  - Un fichier test est ajouté avec simulation de PFU, simulation d'IRPP des plus-values taxées hors barème et simulation des 2 mélangés. Les prélèvements sociaux sont aussi vérifiés dans ce fichier test.
+
 ### 48.11.2 [#1438](https://github.com/openfisca/openfisca-france/pull/1438)
 
 * Évolution du système socio-fiscal.
