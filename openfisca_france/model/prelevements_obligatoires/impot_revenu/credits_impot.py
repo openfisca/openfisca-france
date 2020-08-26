@@ -1966,7 +1966,7 @@ class quaenv(Variable):
 
         cases_depenses = [
             'f7aa', 'f7ad', 'f7af', 'f7ah', 'f7ak', 'f7al', 'f7ar', 'f7as', 'f7av', 'f7ax', 'f7ay', 'f7az',
-            'f7bb', 'f7bc', 'f7bd', 'f7be', 'f7bf', 'f7bh', 'f7bk', 'f7bl', 'f7bm', 'f7cb', 'f7bn'
+            'f7bb', 'f7bc', 'f7bd', 'f7be', 'f7bf', 'f7bh', 'f7bk', 'f7bl', 'f7bm', 'f7cb', 'f7bn',
             ]
         depenses_transition_energetique = sum([foyer_fiscal(case, period) for case in cases_depenses])
         f7bq = foyer_fiscal('f7bq', period)

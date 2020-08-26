@@ -686,7 +686,7 @@ class donpartipol(Variable):
     value_type = float
     entity = FoyerFiscal
     label = "Dons et cotisations versés aux partis politiques"
-    reference = "BOI-IR-RICI-250-10-20-40"
+    reference = "https://bofip.impots.gouv.fr/bofip/5869-PGP"
     definition_period = YEAR
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
