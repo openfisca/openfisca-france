@@ -182,15 +182,6 @@ class f8ti(Variable):
     definition_period = YEAR
 
 
-class f8tk(Variable):
-    cerfa_field = "8TK"
-    value_type = int
-    unit = 'currency'
-    entity = FoyerFiscal
-    label = "Revenus de l'étranger imposables"
-    definition_period = YEAR
-
-
 # Auto-entrepreneur : versements libératoires d’impôt sur le revenu
 class f8uy(Variable):
     cerfa_field = "8UY"
