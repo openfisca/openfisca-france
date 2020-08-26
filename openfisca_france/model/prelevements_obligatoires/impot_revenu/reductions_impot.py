@@ -820,8 +820,8 @@ class dfppce(Variable):
         P = parameters(period).impot_revenu.reductions_impots.dons
         plafond_reduction_donapd = parameters(period).impot_revenu.reductions_impots.donapd.max
 
-        report_f7va = max_(0, f7va + f7ud - plafond_reduction_donapd)
-        base = f7uf + f7vc + f7xs + f7xt + f7xu + f7xw + f7xy + report_f7va
+        report_f7va_f7ud = max_(0, f7va + f7ud - plafond_reduction_donapd)
+        base = f7uf + f7vc + f7xs + f7xt + f7xu + f7xw + f7xy + report_f7va_f7ud
         max1 = P.max_dons_oeuvres * rni
         return P.taux_dons_oeuvres * min_(base, max1)
 
@@ -843,8 +843,8 @@ class dfppce(Variable):
         P = parameters(period).impot_revenu.reductions_impots.dons
         plafond_reduction_donapd = parameters(period).impot_revenu.reductions_impots.donapd.max
 
-        report_f7va = max_(0, f7va + f7ud - plafond_reduction_donapd)
-        base = f7uf + f7vc + f7xs + f7xt + f7xu + f7xw + f7xy + report_f7va
+        report_f7va_f7ud = max_(0, f7va + f7ud - plafond_reduction_donapd)
+        base = f7uf + f7vc + f7xs + f7xt + f7xu + f7xw + f7xy + report_f7va_f7ud
         max1 = P.max_dons_oeuvres * rni
         return P.taux_dons_oeuvres * min_(base, max1)
 
@@ -868,8 +868,8 @@ class dfppce(Variable):
         plafond_reduction_donapd = parameters(period).impot_revenu.reductions_impots.donapd.max
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
 
-        report_f7va = max_(0, f7va + f7ud - plafond_reduction_donapd)
-        base = f7uf + f7vc + f7xs + f7xt + f7xu + f7xw + f7xy + report_f7va
+        report_f7va_f7ud = max_(0, f7va + f7ud - plafond_reduction_donapd)
+        base = f7uf + f7vc + f7xs + f7xt + f7xu + f7xw + f7xy + report_f7va_f7ud
         max1 = P.max_dons_oeuvres * rni
         plafondpartipol = P.max_dons_partipo_seul * (1 + maries_ou_pacses)
         dons_plafonnes = min_(plafondpartipol, f7uh)
@@ -898,9 +898,9 @@ class dfppce(Variable):
         plafond_reduction_notredame = parameters(period).impot_revenu.reductions_impots.dons.dons_notre_dame.plafond
         maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
 
-        report_f7va = max_(0, f7va + f7ud - plafond_reduction_donapd)
+        report_f7va_f7ud = max_(0, f7va + f7ud - plafond_reduction_donapd)
         report_f7ue = max_(0, f7ue - plafond_reduction_notredame)
-        base = f7uf + f7vc + f7vc + f7xs + f7xt + f7xu + f7xw + f7xy + report_f7va + report_f7ue
+        base = f7uf + f7vc + f7vc + f7xs + f7xt + f7xu + f7xw + f7xy + report_f7va_f7ud + report_f7ue
         max1 = P.max_dons_oeuvres * rni
         plafondpartipol = P.max_dons_partipo_seul * (1 + maries_ou_pacses)
         dons_plafonnes = min_(plafondpartipol, f7uh)
