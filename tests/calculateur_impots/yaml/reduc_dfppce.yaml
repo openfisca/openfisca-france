@@ -216,8 +216,8 @@
     foyer_fiscal:
       declarants:
       - ind0
-      f7uf: 6000.0
-      f7uh: 5000.0
+      f7uf: 5000.0
+      f7uh: 6000.0
     individus:
       ind0:
         activite: actif
