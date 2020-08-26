@@ -45,6 +45,7 @@
     reductions: 3500.0
     rfr: 45000.0
     rni: 45000.0
+
 - name: reduc_dfppce
   period: 2015
   absolute_error_margin: 1
@@ -91,6 +92,7 @@
     reductions: 3500.0
     rfr: 45000.0
     rni: 45000.0
+
 - name: reduc_dfppce
   period: 2016
   absolute_error_margin: 1
@@ -137,6 +139,7 @@
     reductions: 3500.0
     rfr: 45000.0
     rni: 45000.0
+
 - name: reduc_dfppce
   period: 2017
   absolute_error_margin: 1
@@ -183,6 +186,7 @@
     rbg: 45000.0
     reductions: 3500.0
     rfr: 45000.0
+
 - name: Vérification dons aux oeuvres + dons partis politiques
   period: 2017
   absolute_error_margin: 1
@@ -209,6 +213,7 @@
     rbg: 45000.0
     reductions: 1980.0
     rfr: 45000.0
+
 - name: Vérification plafond dons aux oeuvres + dons partis politiques
   period: 2017
   absolute_error_margin: 1

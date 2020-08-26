@@ -75,6 +75,7 @@
     rbg: 137843.0
     rfr: 137843.0
     rni: 137843.0
+
 - name: reduc_locmeu_avec_reports
   period: 2015
   absolute_error_margin: 0.1
@@ -161,6 +162,7 @@
     rbg: 137830.0
     rfr: 137830.0
     rni: 137830.0
+
 - name: reduc_locmeu_avec_reports
   period: 2016
   absolute_error_margin: 0.1
@@ -255,6 +257,7 @@
     rbg: 137817.0
     rfr: 137817.0
     rni: 137817.0
+
 - name: reduc_locmeu_avec_reports
   period: 2017
   absolute_error_margin: 0.1
@@ -347,6 +350,7 @@
     patnat: 0.0
     rbg: 137695.0
     rfr: 137695.0
+
 - name: Censi-Bouvard 2019 avec reports
   period: 2019
   absolute_error_margin: 0.1
