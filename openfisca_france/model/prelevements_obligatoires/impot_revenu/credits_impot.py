@@ -506,7 +506,7 @@ class creimp(Variable):
         f8we = foyer_fiscal('f8we', period)
 
         return (
-            f2ab + f8ta + f8tb + f8tc + f8td_2002_2005 + f8te + f8tj - f8tf + f8tg + f8to - f8tp + f8tz + f8uz + f8wa
+            f2ab + f8ta + f8tb + f8tc + f8td_2002_2005 + f8te + f8tk - f8tf + f8tg + f8to - f8tp + f8tz + f8uz + f8wa
             + f8wb + f8wc + f8we
             )
 
