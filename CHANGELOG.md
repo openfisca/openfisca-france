@@ -1,8 +1,8 @@
 # Changelog
 
-# 49.0.0 [#1437](https://github.com/openfisca/openfisca-france/pull/1437)
+# 48.13.0 [#1437](https://github.com/openfisca/openfisca-france/pull/1437)
 
-* Évolution du système socio-fiscal. 
+* Évolution du système socio-fiscal.
 * Périodes concernées :  jusqu'au 31/12/2019
 * Zones impactées : 
 `openfisca_france/model/prelevements_obligatoires/impot_revenu/reductions_impot.py`.
