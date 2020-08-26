@@ -2820,9 +2820,10 @@ class rpns_revenus_microBA_agricole(Variable):
         arag_impo_n2 = individu('arag_impo_n2', period)
         arag_impo_n1 = individu('arag_impo_n1', period)
         date_creation = individu('date_creation', period)
+        micro = parameters(period).impot_revenu.rpns.micro
 
-        frag_impo_n2_maj = frag_impo_n2 * 1.25
-        frag_impo_n1_maj = frag_impo_n1 * 1.25
+        frag_impo_n2_maj = frag_impo_n2 * micro.maj_frag
+        frag_impo_n1_maj = frag_impo_n1 * micro.maj_frag
         benefices_estimes_3 = (mrag_impo + frag_impo_n2_maj + arag_impo_n2 + frag_impo_n1_maj + arag_impo_n1) / 3
         benefices_estimes_2 = (mrag_impo + frag_impo_n1_maj + arag_impo_n1) / 2
 
@@ -2832,7 +2833,7 @@ class rpns_revenus_microBA_agricole(Variable):
             + (date_creation == 2016) * mrag_impo
             )
 
-        return montant_benef * 0.13
+        return montant_benef * (1 - micro.taux_mBA)
 
     def formula_2017_01_01(individu, period, parameters):
         mrag_impo = individu('mrag_impo', period)
@@ -2840,8 +2841,9 @@ class rpns_revenus_microBA_agricole(Variable):
         frag_impo_n1 = individu('frag_impo_n1', period)
         arag_impo_n2 = individu('arag_impo_n2', period)
         date_creation = individu('date_creation', period)
+        micro = parameters(period).impot_revenu.rpns.micro
 
-        frag_impo_n2_maj = frag_impo_n2 * 1.25
+        frag_impo_n2_maj = frag_impo_n2 * micro.maj_frag
         benefices_estimes_3 = (mrag_impo + frag_impo_n2_maj + arag_impo_n2 + frag_impo_n1) / 3
         benefices_estimes_2 = (mrag_impo + frag_impo_n1) / 2
 
@@ -2851,12 +2853,13 @@ class rpns_revenus_microBA_agricole(Variable):
             + (date_creation == 2017) * mrag_impo
             )
 
-        return montant_benef * 0.13
+        return montant_benef * (1 - micro.taux_mBA)
 
     def formula_2018_01_01(individu, period, parameters):
         mrag_impo = individu('mrag_impo', period)
+        micro = parameters(period).impot_revenu.rpns.micro
 
-        return mrag_impo * 0.13
+        return mrag_impo * (1 - micro.taux_mBA)
 
 
 class rpns_individu(Variable):
