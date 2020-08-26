@@ -686,21 +686,23 @@ class f7sm(Variable):
     definition_period = YEAR
 
 
-class f7sn(Variable):
+class f7sn_2015(Variable):
     cerfa_field = "7SN"
     value_type = int
     entity = FoyerFiscal
     label = "Dépenses en faveur de la qualité environnementale de l'habitation principale: Appareils de chauffage au bois ou autres biomasses remplaçant un appareil équivalent"
     # start_date = date(2012, 1, 1)
+    end = '2015-12-31'
     definition_period = YEAR
 
 
-class f7so(Variable):
+class f7so_2015(Variable):
     cerfa_field = "7SO"
     value_type = int
     entity = FoyerFiscal
     label = "Dépenses en faveur de la qualité environnementale de l'habitation principale: Appareils de chauffage au bois ou autres biomasses ne remplaçant pas un appareil équivalent"
     # start_date = date(2012, 1, 1)
+    end = '2015-12-31'
     definition_period = YEAR
 
 
@@ -1688,7 +1690,7 @@ class f7pt_2012(Variable):
     definition_period = YEAR
 
 
-class f7pu(Variable):
+class f7pu_2013(Variable):
     cerfa_field = "7PU"
     value_type = int
     entity = FoyerFiscal
@@ -1697,7 +1699,7 @@ class f7pu(Variable):
     definition_period = YEAR
 
 
-class f7pv(Variable):
+class f7pv_2013(Variable):
     cerfa_field = "7PV"
     value_type = int
     entity = FoyerFiscal
@@ -1706,7 +1708,7 @@ class f7pv(Variable):
     definition_period = YEAR
 
 
-class f7pw(Variable):
+class f7pw_2013(Variable):
     cerfa_field = "7PW"
     value_type = int
     entity = FoyerFiscal
@@ -1715,7 +1717,7 @@ class f7pw(Variable):
     definition_period = YEAR
 
 
-class f7px(Variable):
+class f7px_2013(Variable):
     cerfa_field = "7PX"
     value_type = int
     entity = FoyerFiscal
@@ -1724,7 +1726,7 @@ class f7px(Variable):
     definition_period = YEAR
 
 
-class f7py(Variable):
+class f7py_2013(Variable):
     cerfa_field = "7PY"
     value_type = int
     entity = FoyerFiscal
@@ -3621,6 +3623,7 @@ class f7iy(Variable):
     value_type = int
     entity = FoyerFiscal
     # end = '2009-12-31' changes meaning in 2014
+    end = '2018-12-31'
     definition_period = YEAR
 
 
@@ -4846,6 +4849,26 @@ class f7ox(Variable):
     entity = FoyerFiscal
     label = "Investissements destinés à la location meublée non professionnelle : Investissements réalisés en 2017"
     # start_date = date(2017, 1, 1)
+    definition_period = YEAR
+
+
+class f7oy(Variable):
+    cerfa_field = "7OY"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "Investissements destinés à la location meublée non professionnelle : Investissements réalisés en 2018"
+    # start_date = date(2018, 1, 1)
+    definition_period = YEAR
+
+
+class f7pz(Variable):
+    cerfa_field = "7PZ"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "Investissements destinés à la location meublée non professionnelle : Investissements réalisés en 2019"
+    # start_date = date(2019, 1, 1)
     definition_period = YEAR
 
 
@@ -6131,7 +6154,7 @@ class f7hn(Variable):
     definition_period = YEAR
 
 
-class f7ho(Variable):
+class f7ho_2016(Variable):
     cerfa_field = "7HO"
     value_type = int
     unit = 'currency'
@@ -6162,7 +6185,7 @@ class f7hm(Variable):
     definition_period = YEAR
 
 
-class f7hr(Variable):
+class f7hr_2016(Variable):
     cerfa_field = "7HR"
     value_type = int
     unit = 'currency'
@@ -6172,7 +6195,7 @@ class f7hr(Variable):
     definition_period = YEAR
 
 
-class f7hs(Variable):
+class f7hs_2016(Variable):
     cerfa_field = "7HS"
     value_type = int
     unit = 'currency'
@@ -7409,6 +7432,7 @@ class f7ij(Variable):
     entity = FoyerFiscal
     label = "Investissement destinés à la location meublée non professionnelle: Investissements réalisés en 2011 et achevés en 2012, engagement de réalisation de l'investissement en 2011"
     # start_date = date(2009, 1, 1)
+    end = '2017-12-31'
     definition_period = YEAR
 
 
@@ -7441,6 +7465,7 @@ class f7ik(Variable):
     entity = FoyerFiscal
     label = "Investissements destinés à la location meublée non professionnelle : Reports de 1/9 de l'investissement réalisé et achevé en 2009"
     # start_date = date(2010, 1, 1)
+    end = '2017-12-31'
     definition_period = YEAR
 
 
@@ -7494,6 +7519,7 @@ class f7ip(Variable):
     entity = FoyerFiscal
     label = "Investissements destinés à la location meublée non professionnelle : "
     # start_date = date(2011, 1, 1)
+    end = '2018-12-31'
     definition_period = YEAR
 
 
@@ -7504,6 +7530,7 @@ class f7ir(Variable):
     entity = FoyerFiscal
     label = "Investissements destinés à la location meublée non professionnelle : "
     # start_date = date(2011, 1, 1)
+    end = '2018-12-31'
     definition_period = YEAR
 
 
@@ -7514,6 +7541,7 @@ class f7iq(Variable):
     entity = FoyerFiscal
     label = "Investissements destinés à la location meublée non professionnelle : "
     # start_date = date(2011, 1, 1)
+    end = '2018-12-31'
     definition_period = YEAR
 
 
@@ -7586,6 +7614,7 @@ class f7id(Variable):
     entity = FoyerFiscal
     label = "Investissements destinés à la location meublée non professionnelle : Investissements réalisés en 2012, Engagement de réalisation de l'investissement en 2012"
     # start_date = date(2012, 1, 1)
+    end = '2018-12-31'
     definition_period = YEAR
 
 
@@ -7629,6 +7658,7 @@ class f7ix(Variable):
     entity = FoyerFiscal
     label = "Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2009; réalisés en 2009 et achevés en 2010; réalisés et achevés en 2010 avec engagement avant le 1.1.2010, Report du solde de réduction d'impôt de l'année 2011"
     # start_date = date(2012, 1, 1)
+    end = '2017-12-31'
     definition_period = YEAR
 
 
@@ -7639,6 +7669,7 @@ class f7ih(Variable):
     entity = FoyerFiscal
     label = "Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2010 ; réalisés en 2010 et achevés en 2011 ; réalisés et achevés en 2011 avec engagement en 2010, Report du solde de réduction d'impôt de l'année 2011"
     # start_date = date(2012, 1, 1)
+    end = '2017-12-31'
     definition_period = YEAR
 
 
@@ -7649,6 +7680,7 @@ class f7iz(Variable):
     entity = FoyerFiscal
     label = "Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2011 : report du solde de réduction d'impôt de l'année 2011"
     # start_date = date(2012, 1, 1)
+    end = '2017-12-31'
     definition_period = YEAR
 
 
@@ -7873,6 +7905,56 @@ class f7ot(Variable):  # noqa 728
     definition_period = YEAR
 
 
+class f7sa(Variable):
+    cerfa_field = "7SA"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "Investissements destinés à la location meublée non professionnelle : Report de 1/9 de la réduction d'impôt. Investissements achevés en 2017 et réalisés de 2013 à 2017"
+    # start_date = date(2018, 1, 1)
+    definition_period = YEAR
+
+
+class f7sb(Variable):
+    cerfa_field = "7SB"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "Investissements destinés à la location meublée non professionnelle : Report de 1/9 de la réduction d'impôt. Investissements achevés en 2017 et réalisés en 2012"
+    # start_date = date(2018, 1, 1)
+    definition_period = YEAR
+
+
+class f7sc(Variable):
+    cerfa_field = "7SC"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "Investissements destinés à la location meublée non professionnelle : Report de 1/9 de la réduction d'impôt. Investissements achevés en 2017 et réalisés en 2011"
+    # start_date = date(2018, 1, 1)
+    definition_period = YEAR
+
+
+class f7so(Variable):
+    cerfa_field = "7SO"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "Investissements destinés à la location meublée non professionnelle : Report de 1/9 de la réduction d'impôt. Investissements achevés en 2018 et réalisés entre 2013 et 2018"
+    # start_date = date(2019, 1, 1)
+    definition_period = YEAR
+
+
+class f7sn(Variable):
+    cerfa_field = "7SN"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "Investissements destinés à la location meublée non professionnelle : Report de 1/9 de la réduction d'impôt. Investissements achevés en 2018 et réalisés en 2012"
+    # start_date = date(2019, 1, 1)
+    definition_period = YEAR
+
+
 class f7jc(Variable):
     cerfa_field = "7JC"
     value_type = int
@@ -7880,6 +7962,7 @@ class f7jc(Variable):
     entity = FoyerFiscal
     label = "Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2010 ; réalisés en 2010 et achevés en 2011 ; réalisés et achevés en 2011 avec engagement en 2010, Report du solde de réduction d'impôt de l'année 2012"
     # start_date = date(2013, 1, 1)
+    end = '2018-12-31'
     definition_period = YEAR
 
 
@@ -7890,6 +7973,7 @@ class f7ji(Variable):
     entity = FoyerFiscal
     label = "Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2011 ; réalisés en 2011 et achevés en 2011 ou 2012 ; réalisés en 2012 avec promesse d'achat en 2011 et achevés en 2012, Report du solde de réduction d'impôt de l'année 2012"
     # start_date = date(2013, 1, 1)
+    end = '2018-12-31'
     definition_period = YEAR
 
 
@@ -7900,6 +7984,7 @@ class f7js(Variable):
     entity = FoyerFiscal
     label = "Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2011 ; réalisés en 2011 et achevés en 2011 ou 2012 ; réalisés en 2012 avec promesse d'achat en 2011 et achevés en 2012, Report du solde de réduction d’impôt de l’année 2012"
     # start_date = date(2013, 1, 1)
+    end = '2018-12-31'
     definition_period = YEAR
 
 
@@ -7950,6 +8035,105 @@ class f7pt(Variable):
     entity = FoyerFiscal
     label = "Investissements destinés à la location meublée non professionnelle : Report du solde de réduction d’impôt non imputé de 2016"
     # start_date = date(2017, 1, 1)
+    definition_period = YEAR
+
+
+class f7pu(Variable):
+    cerfa_field = "7PU"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "Investissements destinés à la location meublée non professionnelle : Report du solde de réduction d’impôt non imputé de 2017"
+    # start_date = date(2018, 1, 1)
+    definition_period = YEAR
+
+
+class f7pv(Variable):
+    cerfa_field = "7PV"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "Investissements destinés à la location meublée non professionnelle : Report du solde de réduction d’impôt non imputé de 2017"
+    # start_date = date(2018, 1, 1)
+    definition_period = YEAR
+
+
+class f7pw(Variable):
+    cerfa_field = "7PW"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "Investissements destinés à la location meublée non professionnelle : Report du solde de réduction d’impôt non imputé de 2017"
+    # start_date = date(2018, 1, 1)
+    definition_period = YEAR
+
+
+class f7px(Variable):
+    cerfa_field = "7PX"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "Investissements destinés à la location meublée non professionnelle : Report du solde de réduction d’impôt non imputé de 2017"
+    # start_date = date(2018, 1, 1)
+    definition_period = YEAR
+
+
+class f7py(Variable):
+    cerfa_field = "7PY"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "Investissements destinés à la location meublée non professionnelle : Report du solde de réduction d’impôt non imputé de 2017"
+    # start_date = date(2018, 1, 1)
+    definition_period = YEAR
+
+
+class f7ho(Variable):
+    cerfa_field = "7HO"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "Investissements destinés à la location meublée non professionnelle : Report du solde de réduction d’impôt non imputé de 2018"
+    # start_date = date(2019, 1, 1)
+    definition_period = YEAR
+
+class f7hp(Variable):
+    cerfa_field = "7HP"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "Investissements destinés à la location meublée non professionnelle : Report du solde de réduction d’impôt non imputé de 2018"
+    # start_date = date(2019, 1, 1)
+    definition_period = YEAR
+
+
+class f7hq(Variable):
+    cerfa_field = "7HQ"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "Investissements destinés à la location meublée non professionnelle : Report du solde de réduction d’impôt non imputé de 2018"
+    # start_date = date(2019, 1, 1)
+    definition_period = YEAR
+
+
+class f7hr(Variable):
+    cerfa_field = "7HR"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "Investissements destinés à la location meublée non professionnelle : Report du solde de réduction d’impôt non imputé de 2018"
+    # start_date = date(2019, 1, 1)
+    definition_period = YEAR
+
+
+class f7hs(Variable):
+    cerfa_field = "7HS"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "Investissements destinés à la location meublée non professionnelle : Report du solde de réduction d’impôt non imputé de 2018"
+    # start_date = date(2019, 1, 1)
     definition_period = YEAR
 
 
@@ -8031,13 +8215,14 @@ class f7us(Variable):
 
 # Crédits d’impôt pour dépenses en faveur de la qualité environnementale
 
-class f7sa(Variable):
+class f7sa_2015(Variable):
     cerfa_field = "7SA"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = "Dépenses en faveur de la qualité environnementale des logements donnés en location du 1.9 au 31.12.2014 : chaudières à condensation "
     # start_date = date(2014, 1, 1)
+    end = '2015-12-31'
     definition_period = YEAR
 
 
@@ -8052,7 +8237,7 @@ class f7sb_2011(Variable):
     definition_period = YEAR
 
 
-class f7sb(Variable):
+class f7sb_2015(Variable):
     cerfa_field = "7SB"
     value_type = int
     unit = 'currency'
@@ -8074,7 +8259,7 @@ class f7sc_2009(Variable):
     definition_period = YEAR
 
 
-class f7sc(Variable):
+class f7sc_2016(Variable):
     cerfa_field = "7SC"
     value_type = int
     unit = 'currency'
