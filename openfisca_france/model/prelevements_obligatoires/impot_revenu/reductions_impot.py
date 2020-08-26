@@ -4253,7 +4253,7 @@ class rehab(Variable):
         Travaux de réhabilitation des résidences de tourisme
         (2017 -)
         '''
-        f7xx = foyer_fiscal('f7xx', period)  # Comment coder le plafond roulant sur les 3 années ?
+        f7xx = foyer_fiscal('f7xx', period)  # TO DO: Coder le plafond glissant sur 3 années
 
         P = parameters(period).impot_revenu.reductions_impots.rehab
         depenses_2017 = min_(P.max, f7xx)
