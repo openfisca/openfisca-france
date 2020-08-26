@@ -2822,8 +2822,8 @@ class rpns_revenus_microBA_agricole(Variable):
         date_creation = individu('date_creation', period)
         micro = parameters(period).impot_revenu.rpns.micro
 
-        frag_impo_n2_maj = frag_impo_n2 * micro.maj_frag
-        frag_impo_n1_maj = frag_impo_n1 * micro.maj_frag
+        frag_impo_n2_maj = frag_impo_n2 * (1 + micro.maj_frag)
+        frag_impo_n1_maj = frag_impo_n1 * (1 + micro.maj_frag)
         benefices_estimes_3 = (mrag_impo + frag_impo_n2_maj + arag_impo_n2 + frag_impo_n1_maj + arag_impo_n1) / 3
         benefices_estimes_2 = (mrag_impo + frag_impo_n1_maj + arag_impo_n1) / 2
 
@@ -2843,7 +2843,7 @@ class rpns_revenus_microBA_agricole(Variable):
         date_creation = individu('date_creation', period)
         micro = parameters(period).impot_revenu.rpns.micro
 
-        frag_impo_n2_maj = frag_impo_n2 * micro.maj_frag
+        frag_impo_n2_maj = frag_impo_n2 * (1 + micro.maj_frag)
         benefices_estimes_3 = (mrag_impo + frag_impo_n2_maj + arag_impo_n2 + frag_impo_n1) / 3
         benefices_estimes_2 = (mrag_impo + frag_impo_n1) / 2
 
