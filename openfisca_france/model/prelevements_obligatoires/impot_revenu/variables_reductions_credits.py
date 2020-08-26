@@ -9116,6 +9116,15 @@ class f8tg(Variable):
     definition_period = YEAR
 
 
+class f8tk(Variable):
+    cerfa_field = "8TK"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = "Revenus de source étrangère ouvrant droit à un crédit d’impôt égal à l’impôt français"
+    definition_period = YEAR
+
+
 class f8tl(Variable):
     cerfa_field = "8TL"
     value_type = int
