@@ -1186,7 +1186,7 @@ class f7oz(Variable):
     definition_period = YEAR
 
 
-class f7pz(Variable):
+class f7pz_2013(Variable):
     cerfa_field = "7PZ"
     value_type = int
     unit = 'currency'
@@ -8096,6 +8096,7 @@ class f7ho(Variable):
     label = "Investissements destinés à la location meublée non professionnelle : Report du solde de réduction d’impôt non imputé de 2018"
     # start_date = date(2019, 1, 1)
     definition_period = YEAR
+
 
 class f7hp(Variable):
     cerfa_field = "7HP"

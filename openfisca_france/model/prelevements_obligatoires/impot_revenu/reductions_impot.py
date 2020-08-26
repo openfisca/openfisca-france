@@ -920,7 +920,7 @@ class doment(Variable):
         '''
         f7ur = foyer_fiscal('f7ur', period)
         f7oz = foyer_fiscal('f7oz', period)
-        f7pz = foyer_fiscal('f7pz', period)
+        f7pz = foyer_fiscal('f7pz_2013', period)
         f7qz = foyer_fiscal('f7qz_2012', period)
         f7rz = foyer_fiscal('f7rz_2010', period)
 
@@ -932,7 +932,7 @@ class doment(Variable):
         '''
         f7ur = foyer_fiscal('f7ur', period)
         f7oz = foyer_fiscal('f7oz', period)
-        f7pz = foyer_fiscal('f7pz', period)
+        f7pz = foyer_fiscal('f7pz_2013', period)
         f7qz = foyer_fiscal('f7qz_2012', period)
         f7rz = foyer_fiscal('f7rz_2010', period)
         f7sz = foyer_fiscal('f7sz_2009', period)
@@ -944,7 +944,7 @@ class doment(Variable):
         Investissements dans les DOM-TOM dans le cadre d'une entreprise.
         '''
         f7oz = foyer_fiscal('f7oz', period)
-        f7pz = foyer_fiscal('f7pz', period)
+        f7pz = foyer_fiscal('f7pz_2013', period)
         f7qz = foyer_fiscal('f7qz_2012', period)
         f7rz = foyer_fiscal('f7rz_2010', period)
         f7sz = foyer_fiscal('f7sz_2009', period)
@@ -962,7 +962,7 @@ class doment(Variable):
         Investissements dans les DOM-TOM dans le cadre d'une entreprise.
         '''
         f7oz = foyer_fiscal('f7oz', period)
-        f7pz = foyer_fiscal('f7pz', period)
+        f7pz = foyer_fiscal('f7pz_2013', period)
         f7qz = foyer_fiscal('f7qz_2012', period)
         f7rz = foyer_fiscal('f7rz_2010', period)
         f7qe = foyer_fiscal('f7qe', period)
@@ -1017,7 +1017,7 @@ class doment(Variable):
         f7pi = foyer_fiscal('f7pi_2012', period)
         f7pj = foyer_fiscal('f7pj_2012', period)
         f7pl = foyer_fiscal('f7pl', period)
-        f7pz = foyer_fiscal('f7pz', period)
+        f7pz = foyer_fiscal('f7pz_2013', period)
         f7qz = foyer_fiscal('f7qz_2012', period)
         f7qe = foyer_fiscal('f7qe', period)
         f7qf = foyer_fiscal('f7qf', period)
@@ -1076,7 +1076,7 @@ class doment(Variable):
         f7pw = foyer_fiscal('f7pw_2013', period)
         f7px = foyer_fiscal('f7px_2013', period)
         f7py = foyer_fiscal('f7py_2013', period)
-        f7pz = foyer_fiscal('f7pz', period)
+        f7pz = foyer_fiscal('f7pz_2013', period)
         f7qe = foyer_fiscal('f7qe', period)
         f7qf = foyer_fiscal('f7qf', period)
         f7qg = foyer_fiscal('f7qg', period)
@@ -4192,7 +4192,6 @@ class locmeu(Variable):
             + report_reduc_non_impute
             )
 
-
     def formula_2019_01_01(foyer_fiscal, period, parameters):
         '''
         Investissement en vue de la location meublée non professionnelle dans certains établissements ou résidences
@@ -4279,7 +4278,7 @@ class locmeu(Variable):
         report_reduc_invest_2015 = f7ok + f7ol + f7om + f7on + f7oo
         report_reduc_invest_2016 = f7op + f7oq + f7or + f7os + f7ot
         report_reduc_invest_2017 = f7sa + f7sb + f7sc
-        report_reduc_invest_2018 = f7so + f7sn        
+        report_reduc_invest_2018 = f7so + f7sn
 
         report_reduc_invest_anterieur = (
             report_reduc_invest_2011
