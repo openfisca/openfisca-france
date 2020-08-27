@@ -1,0 +1,147 @@
+- name: Test réduction Denormandie métropole 6 ans
+  period: 2019
+  absolute_error_margin: 1
+  input:
+    foyer_fiscal:
+      declarants:
+      - ind0
+      f7na: 100000.0
+    individus:
+      ind0:
+        activite: actif
+        date_naissance: '1970-01-01'
+        salaire_imposable: 50000.0
+        statut_marital: celibataire
+    famille:
+      parents:
+      - ind0
+    menage:
+      personne_de_reference: ind0
+  output:
+    denormandie: 2000.0
+    iai: 5644.0
+    irpp: -5644.0
+    nbptr: 1.0
+    rbg: 45000.0
+    reductions: 2000.0
+    rfr: 45000.0
+    rni: 45000.0
+
+- name: Test réduction métropole 9 ans
+  period: 2019
+  absolute_error_margin: 1
+  input:
+    foyer_fiscal:
+      declarants:
+      - ind0
+      f7nb: 300000.0
+    individus:
+      ind0:
+        activite: actif
+        date_naissance: '1970-01-01'
+        salaire_imposable: 50000.0
+        statut_marital: celibataire
+    famille:
+      parents:
+      - ind0
+    menage:
+      personne_de_reference: ind0
+  output:
+    denormandie: 6000.0
+    iai: 1644.0
+    irpp: -1644.0
+    nbptr: 1.0
+    rbg: 45000.0
+    reductions: 6000.0
+    rfr: 45000.0
+    rni: 45000.0
+
+- name: Vérification respect plafond commun et ordre de priorité dans le calcul
+  period: 2019
+  absolute_error_margin: 1
+  input:
+    foyer_fiscal:
+      declarants:
+      - ind0
+      f7na: 200000.0
+      f7qy: 200000.0
+    individus:
+      ind0:
+        activite: actif
+        date_naissance: '1970-01-01'
+        salaire_imposable: 100000.0
+        statut_marital: celibataire
+    famille:
+      parents:
+      - ind0
+    menage:
+      personne_de_reference: ind0
+  output:
+    denormandie: 2000.0
+    iai: 13180.0
+    irpp: -13180.0
+    nbptr: 1.0
+    rbg: 90000.0
+    reductions: 9667.0
+    rfr: 90000.0
+    rni: 90000.0
+
+- name: Vérification respect plafond commun et ordre de priorité dans le calcul
+  period: 2019
+  absolute_error_margin: 1
+  input:
+    foyer_fiscal:
+      declarants:
+      - ind0
+      f7na: 200000.0
+      f7qm: 200000.0
+    individus:
+      ind0:
+        activite: actif
+        date_naissance: '1970-01-01'
+        salaire_imposable: 60000.0
+        statut_marital: celibataire
+    famille:
+      parents:
+      - ind0
+    menage:
+      personne_de_reference: ind0
+  output:
+    denormandie: 2000.0
+    iai: 4344.0
+    irpp: -4344.0
+    nbptr: 1.0
+    rbg: 54000.0
+    reductions: 6000.0
+    rfr: 54000.0
+    rni: 54000.0
+
+- name: Vérification respect plafond commun et ordre de priorité dans le calcul
+  period: 2019
+  absolute_error_margin: 1
+  input:
+    foyer_fiscal:
+      declarants:
+      - ind0
+      f7nb: 200000.0
+      f7qx: 200000.0
+    individus:
+      ind0:
+        activite: actif
+        date_naissance: '1970-01-01'
+        salaire_imposable: 90000.0
+        statut_marital: celibataire
+    famille:
+      parents:
+      - ind0
+    menage:
+      personne_de_reference: ind0
+  output:
+    denormandie: 2000.0
+    iai: 13157.0
+    irpp: -13157.0
+    nbptr: 1.0
+    rbg: 81000.0
+    reductions: 6000.0
+    rfr: 81000.0
+    rni: 81000.0

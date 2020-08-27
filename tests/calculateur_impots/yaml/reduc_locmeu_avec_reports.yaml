@@ -75,6 +75,7 @@
     rbg: 137843.0
     rfr: 137843.0
     rni: 137843.0
+
 - name: reduc_locmeu_avec_reports
   period: 2015
   absolute_error_margin: 0.1
@@ -161,6 +162,7 @@
     rbg: 137830.0
     rfr: 137830.0
     rni: 137830.0
+
 - name: reduc_locmeu_avec_reports
   period: 2016
   absolute_error_margin: 0.1
@@ -255,6 +257,7 @@
     rbg: 137817.0
     rfr: 137817.0
     rni: 137817.0
+
 - name: reduc_locmeu_avec_reports
   period: 2017
   absolute_error_margin: 0.1
@@ -347,3 +350,27 @@
     patnat: 0.0
     rbg: 137695.0
     rfr: 137695.0
+
+- name: Censi-Bouvard 2019 avec reports
+  period: 2019
+  absolute_error_margin: 0.1
+  input:
+    foyer_fiscal:
+      declarants:
+      - ind0
+      f7pz: 150000.0
+      f7sn: 4000.0
+      f7hs: 1000.0
+    individus:
+      ind0:
+        activite: actif
+        date_naissance: '1970-01-01'
+        salaire_imposable: 70000.0
+        statut_marital: celibataire
+  output:
+    locmeu: 6833.0
+    reductions: 6833.0
+    iai: 6211.0
+    irpp: -6211.0
+    rbg: 63000.0
+    rfr: 63000.0

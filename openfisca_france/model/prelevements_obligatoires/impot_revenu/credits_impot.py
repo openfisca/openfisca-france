@@ -1495,8 +1495,8 @@ class quaenv(Variable):
         f7sk = foyer_fiscal('f7sk', period)
         f7sl = foyer_fiscal('f7sl', period)
         f7sm = foyer_fiscal('f7sm', period)
-        f7sn = foyer_fiscal('f7sn', period)
-        f7so = foyer_fiscal('f7so', period)
+        f7sn = foyer_fiscal('f7sn_2015', period)
+        f7so = foyer_fiscal('f7so_2015', period)
         f7sp = foyer_fiscal('f7sp', period)
         f7sq = foyer_fiscal('f7sq', period)
         f7sr = foyer_fiscal('f7sr', period)
@@ -1586,8 +1586,8 @@ class quaenv(Variable):
         f7sk = foyer_fiscal('f7sk', period)
         f7sl = foyer_fiscal('f7sl', period)
         f7sm = foyer_fiscal('f7sm', period)
-        f7sn = foyer_fiscal('f7sn', period)
-        f7so = foyer_fiscal('f7so', period)
+        f7sn = foyer_fiscal('f7sn_2015', period)
+        f7so = foyer_fiscal('f7so_2015', period)
         f7sp = foyer_fiscal('f7sp', period)
         f7sq = foyer_fiscal('f7sq', period)
         f7sr = foyer_fiscal('f7sr', period)
@@ -1661,9 +1661,9 @@ class quaenv(Variable):
         f7rv = foyer_fiscal('f7rv', period)
         f7rw = foyer_fiscal('f7rw', period)
         f7rz = foyer_fiscal('f7rz_2015', period)
-        f7sa = foyer_fiscal('f7sa', period)
-        f7sb = foyer_fiscal('f7sb', period)
-        f7sc = foyer_fiscal('f7sc', period)
+        f7sa = foyer_fiscal('f7sa_2015', period)
+        f7sb = foyer_fiscal('f7sb_2015', period)
+        f7sc = foyer_fiscal('f7sc_2016', period)
         f7sd = foyer_fiscal('f7sd', period)
         f7se = foyer_fiscal('f7se', period)
         f7sf = foyer_fiscal('f7sf', period)
@@ -1673,8 +1673,8 @@ class quaenv(Variable):
         f7sj = foyer_fiscal('f7sj', period)
         f7sk = foyer_fiscal('f7sk', period)
         f7sl = foyer_fiscal('f7sl', period)
-        f7sn = foyer_fiscal('f7sn', period)
-        f7so = foyer_fiscal('f7so', period)  # noqa F841
+        f7sn = foyer_fiscal('f7sn_2015', period)
+        f7so = foyer_fiscal('f7so_2015', period)  # noqa F841
         f7sp = foyer_fiscal('f7sp', period)
         f7sq = foyer_fiscal('f7sq', period)
         f7sr = foyer_fiscal('f7sr', period)
@@ -1795,9 +1795,9 @@ class quaenv(Variable):
         f7rv = foyer_fiscal('f7rv', period)
         f7rw = foyer_fiscal('f7rw', period)
         f7rz = foyer_fiscal('f7rz_2015', period)
-        f7sa = foyer_fiscal('f7sa', period)
-        f7sb = foyer_fiscal('f7sb', period)
-        f7sc = foyer_fiscal('f7sc', period)
+        f7sa = foyer_fiscal('f7sa_2015', period)
+        f7sb = foyer_fiscal('f7sb_2015', period)
+        f7sc = foyer_fiscal('f7sc_2016', period)
         f7sd = foyer_fiscal('f7sd', period)
         f7se = foyer_fiscal('f7se', period)
         f7sf = foyer_fiscal('f7sf', period)
@@ -1808,9 +1808,8 @@ class quaenv(Variable):
         f7sk = foyer_fiscal('f7sk', period)
         f7sl = foyer_fiscal('f7sl', period)
         f7sm = foyer_fiscal('f7sm', period)
-        f7sn = foyer_fiscal('f7sn', period)
-        f7so = foyer_fiscal('f7so', period)
-        f7so = foyer_fiscal('f7so', period)
+        f7sn = foyer_fiscal('f7sn_2015', period)
+        f7so = foyer_fiscal('f7so_2015', period)
         f7sp = foyer_fiscal('f7sp', period)
         f7sq = foyer_fiscal('f7sq', period)
         f7sr = foyer_fiscal('f7sr', period)
@@ -1955,6 +1954,31 @@ class quaenv(Variable):
             + P.taux15 * min_(plafond_depenses_energetiques_taux_reduit, depenses_transition_energetique_taux_reduit)
             )
 
+    def formula_2019_01_01(foyer_fiscal, period, parameters):
+        '''
+        Crédits d’impôt pour dépenses en faveur de la transition energétique
+        2019
+        '''
+        maries_ou_pacses = foyer_fiscal('maries_ou_pacses', period)
+        personnes_a_charge = foyer_fiscal('nb_pac2', period)
+        P = parameters(period).impot_revenu.credits_impot.quaenv
+
+        cases_depenses = [
+            'f7aa', 'f7ad', 'f7af', 'f7ah', 'f7ak', 'f7al', 'f7ar', 'f7as', 'f7av', 'f7ax', 'f7ay', 'f7az',
+            'f7bb', 'f7bc', 'f7bd', 'f7be', 'f7bf', 'f7bh', 'f7bk', 'f7bl', 'f7bm', 'f7cb', 'f7bn',
+            ]
+        depenses_transition_energetique = sum([foyer_fiscal(case, period) for case in cases_depenses])
+        f7bq = foyer_fiscal('f7bq', period)
+
+        plafond = P.max * (1 + maries_ou_pacses) + P.pac1 * personnes_a_charge
+        plafondint = min_(plafond, f7bq)
+        plafond_ordinaire = (plafond - plafondint)
+
+        return (
+            P.taux30 * min_(plafond_ordinaire, depenses_transition_energetique)
+            + P.taux50 * plafondint
+            )
+
 
 class quaenv_bouquet(Variable):
     value_type = bool
@@ -1971,8 +1995,8 @@ class quaenv_bouquet(Variable):
         '''
         f7sd = foyer_fiscal('f7sd', period)
         f7se = foyer_fiscal('f7se', period)
-        f7sn = foyer_fiscal('f7sn', period)
-        f7so = foyer_fiscal('f7so', period)
+        f7sn = foyer_fiscal('f7sn_2015', period)
+        f7so = foyer_fiscal('f7so_2015', period)
         f7sp = foyer_fiscal('f7sp', period)
         f7sq = foyer_fiscal('f7sq', period)
         f7sr = foyer_fiscal('f7sr', period)
@@ -2006,8 +2030,8 @@ class quaenv_bouquet(Variable):
         '''
         f7sd = foyer_fiscal('f7sd', period)
         f7se = foyer_fiscal('f7se', period)
-        f7sn = foyer_fiscal('f7sn', period)
-        f7so = foyer_fiscal('f7so', period)
+        f7sn = foyer_fiscal('f7sn_2015', period)
+        f7so = foyer_fiscal('f7so_2015', period)
         f7sp = foyer_fiscal('f7sp', period)
         f7sq = foyer_fiscal('f7sq', period)
         f7sr = foyer_fiscal('f7sr', period)
@@ -2038,8 +2062,8 @@ class quaenv_bouquet(Variable):
         f7rr = foyer_fiscal('f7rr', period)
         f7rs = foyer_fiscal('f7rs', period)
         f7rt = foyer_fiscal('f7rt', period)
-        f7sa = foyer_fiscal('f7sa', period)
-        f7sb = foyer_fiscal('f7sb', period)
+        f7sa = foyer_fiscal('f7sa_2015', period)
+        f7sb = foyer_fiscal('f7sb_2015', period)
         f7sd = foyer_fiscal('f7sd', period)
         f7se = foyer_fiscal('f7se', period)
         f7sf = foyer_fiscal('f7sf', period)
@@ -2090,8 +2114,8 @@ class quaenv_bouquet(Variable):
         f7rr = foyer_fiscal('f7rr', period)
         f7rs = foyer_fiscal('f7rs', period)
         f7rt = foyer_fiscal('f7rt', period)
-        f7sa = foyer_fiscal('f7sa', period)
-        f7sb = foyer_fiscal('f7sb', period)
+        f7sa = foyer_fiscal('f7sa_2015', period)
+        f7sb = foyer_fiscal('f7sb_2015', period)
         f7sd = foyer_fiscal('f7sd', period)
         f7se = foyer_fiscal('f7se', period)
         f7sf = foyer_fiscal('f7sf', period)

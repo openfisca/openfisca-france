@@ -1,0 +1,148 @@
+- name: Test Denormandie OM 9 ans
+  period: 2019
+  absolute_error_margin: 1
+  input:
+    foyer_fiscal:
+      declarants:
+      - ind0
+      f7nd: 150000.0
+    individus:
+      ind0:
+        activite: actif
+        date_naissance: '1970-01-01'
+        salaire_imposable: 50000.0
+        statut_marital: celibataire
+    famille:
+      parents:
+      - ind0
+    menage:
+      personne_de_reference: ind0
+  output:
+    denormandie: 4833.0
+    iai: 2811.0
+    irpp: -2811.0
+    nbptr: 1.0
+    rbg: 45000.0
+    reductions: 4833.0
+    rfr: 45000.0
+    rni: 45000.0
+
+- name: Test Denormandie OM 6 ans
+  period: 2019
+  absolute_error_margin: 1
+  input:
+    foyer_fiscal:
+      declarants:
+      - ind0
+      f7nc: 200000.0
+    individus:
+      ind0:
+        activite: actif
+        date_naissance: '1970-01-01'
+        salaire_imposable: 50000.0
+        statut_marital: celibataire
+    famille:
+      parents:
+      - ind0
+    menage:
+      personne_de_reference: ind0
+  output:
+    denormandie: 7667.0
+    iai: 0.0
+    irpp: -0.0
+    nbptr: 1.0
+    rbg: 45000.0
+    reductions: 7644.0
+    rfr: 45000.0
+    rni: 45000.0
+
+- name: Test plafond commun Pinel et Denormandie ave investissements différents (OM et métropole)
+  period: 2019
+  absolute_error_margin: 1
+  input:
+    foyer_fiscal:
+      declarants:
+      - ind0
+      f7nc: 150000.0
+      f7qx: 200000.0
+    individus:
+      ind0:
+        activite: actif
+        date_naissance: '1970-01-01'
+        salaire_imposable: 90000.0
+        statut_marital: celibataire
+    famille:
+      parents:
+      - ind0
+    menage:
+      personne_de_reference: ind0
+  output:
+    denormandie: 5750.0
+    iai: 10407.0
+    irpp: -10407.0
+    nbptr: 1.0
+    rbg: 81000.0
+    reductions: 8750.0
+    rfr: 81000.0
+    rni: 81000.0
+
+- name: Test plafond commun Pinel Denormandie lorsque même investissement (OM 6 ans)
+  period: 2019
+  absolute_error_margin: 1
+  input:
+    foyer_fiscal:
+      declarants:
+      - ind0
+      f7nc: 150000.0
+      f7qy: 200000.0
+    individus:
+      ind0:
+        activite: actif
+        date_naissance: '1970-01-01'
+        salaire_imposable: 90000.0
+        statut_marital: celibataire
+    famille:
+      parents:
+      - ind0
+    menage:
+      personne_de_reference: ind0
+  output:
+    denormandie: 3833.0
+    iai: 7657.0
+    irpp: -7657.0
+    nbptr: 1.0
+    rbg: 81000.0
+    reductions: 11500.0
+    rfr: 81000.0
+    rni: 81000.0
+
+- name: Test plafond commun Pinel Denormandie lorsque même investissement (OM 9 ans)
+  period: 2019
+  absolute_error_margin: 1
+  input:
+    foyer_fiscal:
+      declarants:
+      - ind0
+      f7nc: 0.0
+      f7nd: 250000.0
+      f7qq: 100000.0
+    individus:
+      ind0:
+        activite: actif
+        date_naissance: '1970-01-01'
+        salaire_imposable: 90000.0
+        statut_marital: celibataire
+    famille:
+      parents:
+      - ind0
+    menage:
+      personne_de_reference: ind0
+  output:
+    denormandie: 6444.0
+    iai: 9491.0
+    irpp: -9491.0
+    nbptr: 1.0
+    rbg: 81000.0
+    reductions: 9666.0
+    rfr: 81000.0
+    rni: 81000.0

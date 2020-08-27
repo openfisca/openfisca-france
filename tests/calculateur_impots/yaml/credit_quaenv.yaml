@@ -64,3 +64,32 @@
     quaenv: 2400.0
     rbg: 45000.0
     rfr: 45000.0
+
+- name: CITE pour 2019
+  period: 2019
+  absolute_error_margin: 0.1
+  input:
+    foyer_fiscal:
+      declarants:
+      - ind0
+      f7aa: 2000.0
+      f7bq: 2000.0
+    individus:
+      ind0:
+        activite: actif
+        date_naissance: '1970-01-01'
+        salaire_imposable: 50000.0
+        statut_marital: celibataire
+    famille:
+      parents:
+      - ind0
+    menage:
+      personne_de_reference: ind0
+  output:
+    credits_impot: 1600.0
+    iai: 7644.0
+    irpp: -6044.0
+    nbptr: 1.0
+    quaenv: 1600.0
+    rbg: 45000.0
+    rfr: 45000.0
