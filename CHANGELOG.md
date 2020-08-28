@@ -1,6 +1,20 @@
 # Changelog
 
-# 48.13.0 [#1437](https://github.com/openfisca/openfisca-france/pull/1437)
+## 48.14.0 [#1440](https://github.com/openfisca/openfisca-france/pull/1440)
+
+* Évolution du système socio-fiscal. 
+* Périodes concernées :  jusqu'au 31/12/2019. | à partir du 01/01/2016.
+* Zones impactées:
+  - `model/prelevements_obligatoires/impot_revenu/credits_impot.py`
+  - `model/prelevements_obligatoires/impot_revenu/variables_reductions_credits.py`
+  - `model/revenus/activite/non_salarie.py`
+  - `model/prelevements_obligatoires/impot_revenu/ir.py`
+  - `parameters/impot_revenu/rpns/taux10.yaml`
+  - `parameters/impot_revenu/rpns/micro/specialbnc/max.yaml`
+* Détails :
+  - Modifie et actualise plusieurs calcul IR pour les déclarants du formulaire 2042 C PRO. D'abord, Prend en compte l'abattement minimum pour les autoentrepreneurs en versement liberatoire, puis ajoute passage au régime Micro BA au lieu du forfait agricole, et actualise l'imposition des plus-values et moins-values des différents régimes d'imposition de ce formulaire.
+
+## 48.13.0 [#1437](https://github.com/openfisca/openfisca-france/pull/1437)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées :  jusqu'au 31/12/2019

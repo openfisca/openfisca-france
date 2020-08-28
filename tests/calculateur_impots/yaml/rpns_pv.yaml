@@ -1,0 +1,138 @@
+- name: Imposition des plus-values des revenus de professions non-salariées - régime microBA
+  period: 2019
+  absolute_error_margin: 1
+  input:
+    foyer_fiscal:
+      declarants:
+      - ind0
+    individus:
+      ind0:
+        activite: actif
+        date_naissance: '1970-01-01'
+        statut_marital: celibataire
+        mrag_pvct: 25000.0
+        mrag_pvce: 40000.0
+    famille:
+      parents:
+      - ind0
+    menage:
+      personne_de_reference: ind0
+  output:
+    rbg: 25000.0
+    prelevement_forfaitaire_unique_ir: -5120.0
+    nbptr: 1.0
+    rfr: 65000.0
+    irpp: -2091.0
+    prelevements_sociaux_revenus_capital: -6880.0
+
+- name: Imposition des plus-values des revenus de professions non-salariées - Régime du bénéfice réel
+  period: 2019
+  absolute_error_margin: 1
+  input:
+    foyer_fiscal:
+      declarants:
+      - ind0
+    individus:
+      ind0:
+        activite: actif
+        date_naissance: '1970-01-01'
+        statut_marital: celibataire
+        arag_impg: 25000.0
+        arag_pvce: 25000.0
+        arag_info: 25000.0
+    famille:
+      parents:
+      - ind0
+    menage:
+      personne_de_reference: ind0
+  output:
+    rbg: 25000.0
+    prelevement_forfaitaire_unique_ir: -3200.0
+    nbptr: 1.0
+    rfr: 75000.0
+    irpp: -4591.0
+    prelevements_sociaux_revenus_capital: -4300.0
+
+- name: Imposition des plus-values des revenus de professions non-salariées - Régime Micro BIC
+  period: 2019
+  absolute_error_margin: 1
+  input:
+    foyer_fiscal:
+      declarants:
+      - ind0
+    individus:
+      ind0:
+        activite: actif
+        date_naissance: '1970-01-01'
+        statut_marital: celibataire
+        mbic_imps: 20000.0
+        mbic_pvct: 30000.0
+        mbic_pvce: 20000.0
+    famille:
+      parents:
+      - ind0
+    menage:
+      personne_de_reference: ind0
+  output:
+    rbg: 40000.0
+    prelevement_forfaitaire_unique_ir: -2560.0
+    nbptr: 1.0
+    rfr: 60000.0
+    irpp: -6144.0
+    prelevements_sociaux_revenus_capital: -3440.0
+
+- name: Imposition des plus-values des revenus de professions non-salariées - Régime RIC pro bénéfice réel
+  period: 2019
+  absolute_error_margin: 1
+  input:
+    foyer_fiscal:
+      declarants:
+      - ind0
+    individus:
+      ind0:
+        activite: actif
+        date_naissance: '1970-01-01'
+        statut_marital: celibataire
+        abic_impn: 40000.0
+        abic_info: 20000.0
+        abic_pvce: 20000.0
+    famille:
+      parents:
+      - ind0
+    menage:
+      personne_de_reference: ind0
+  output:
+    rbg: 40000.0
+    prelevement_forfaitaire_unique_ir: -2560.0
+    nbptr: 1.0
+    rfr: 80000.0
+    irpp: -8144.0
+    prelevements_sociaux_revenus_capital: -3440.0
+
+- name: Imposition des plus-values des revenus de professions non-salariées - Régime RIC non pro micro
+  period: 2019
+  absolute_error_margin: 1
+  input:
+    foyer_fiscal:
+      declarants:
+      - ind0
+    individus:
+      ind0:
+        activite: actif
+        date_naissance: '1970-01-01'
+        statut_marital: celibataire
+        macc_exon: 20000.0
+        macc_imps: 40000.0
+        macc_pvce: 20000.0
+    famille:
+      parents:
+      - ind0
+    menage:
+      personne_de_reference: ind0
+  output:
+    rbg: 20000.0
+    prelevement_forfaitaire_unique_ir: -2560.0
+    nbptr: 1.0
+    rfr: 60000.0
+    irpp: -1226.0
+    prelevements_sociaux_revenus_capital: -3440.0

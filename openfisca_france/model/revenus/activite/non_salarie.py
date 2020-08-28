@@ -78,6 +78,45 @@ class frag_exon(Variable):
     definition_period = YEAR
 
 
+# (f5ha, f5ia, f5ja))
+class arag_info(Variable):
+    cerfa_field = {0: "5HA",
+        1: "5IA",
+        2: "5JA", }
+    value_type = int
+    unit = 'currency'
+    entity = Individu
+    label = "Revenus agricoles: revenus nets de la cession ou concession de brevets et assimilés"
+    # start_date = date(2019, 1, 1)
+    definition_period = YEAR
+
+
+# (f5hd, f5id, f5jd))
+class coupe_bois(Variable):
+    cerfa_field = {0: "5HD",
+        1: "5ID",
+        2: "5JD", }
+    value_type = int
+    unit = 'currency'
+    entity = Individu
+    label = "Revenus forfaitaire provenant des coupes de bois"
+    # start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+
+# (f5xa, f5ya, f5za))
+class mrag_exon(Variable):
+    cerfa_field = {0: "5XA",
+        1: "5YA",
+        2: "5ZA", }
+    value_type = int
+    unit = 'currency'
+    entity = Individu
+    label = "Revenus agricoles exonérés (régime micro BA)"
+    # start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+
 # (f5ho, f5io, f5jo))
 class frag_impo(Variable):
     cerfa_field = {0: "5HO",
@@ -89,6 +128,89 @@ class frag_impo(Variable):
     label = "Revenus agricoles imposables (régime du forfait)"
     # start_date = date(2007, 1, 1)
     end = '2015-12-31'
+    definition_period = YEAR
+
+
+# (f5xb, f5yb, f5zb))
+class mrag_impo(Variable):
+    cerfa_field = {0: "5XB",
+        1: "5YB",
+        2: "5ZB", }
+    value_type = int
+    unit = 'currency'
+    entity = Individu
+    label = "Revenus agricoles imposables (régime micro BA)"
+    # start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+
+# (f5xc, f5yc, f5zc)
+class date_creation(Variable):
+    cerfa_field = {0: "5XC",
+        1: "5YC",
+        2: "5ZC",
+                   }
+    value_type = int
+    entity = Individu
+    label = "Revenus agricoles : Année de création de l’activité"
+    # start_date = date(2016, 1, 1)
+    end = '2017-12-31'
+    definition_period = YEAR
+
+
+# (f5xd, f5yd, f5zd))
+class frag_impo_n2(Variable):
+    cerfa_field = {0: "5XD",
+        1: "5YD",
+        2: "5ZD", }
+    value_type = int
+    unit = 'currency'
+    entity = Individu
+    label = "Revenus agricoles, forfait ou microBA année n-2"
+    # start_date = date(2016, 1, 1)
+    end = '2017-12-31'
+    definition_period = YEAR
+
+
+# (f5xe, f5ye, f5ze))
+class frag_impo_n1(Variable):
+    cerfa_field = {0: "5XE",
+        1: "5YE",
+        2: "5ZE", }
+    value_type = int
+    unit = 'currency'
+    entity = Individu
+    label = "Revenus agricoles, forfait ou microBA année n-1"
+    # start_date = date(2016, 1, 1)
+    end = '2017-12-31'
+    definition_period = YEAR
+
+
+# (f5xf, f5yf, f5zf))
+class arag_impo_n2(Variable):
+    cerfa_field = {0: "5XF",
+        1: "5YF",
+        2: "5ZF", }
+    value_type = int
+    unit = 'currency'
+    entity = Individu
+    label = "Revenus agricoles, régime du bénéfice réel année n-2"
+    # start_date = date(2016, 1, 1)
+    end = '2017-12-31'
+    definition_period = YEAR
+
+
+# (f5xg, f5yg, f5zg))
+class arag_impo_n1(Variable):
+    cerfa_field = {0: "5XG",
+        1: "5YG",
+        2: "5ZG", }
+    value_type = int
+    unit = 'currency'
+    entity = Individu
+    label = "Revenus agricoles, régime du bénéfice réel année n-1"
+    # start_date = date(2016, 1, 1)
+    end = '2016-12-31'
     definition_period = YEAR
 
 
@@ -198,7 +320,6 @@ class ebic_impv(Variable):
     entity = Individu
     label = "Revenus industriels et commerciaux professionnels imposables: vente de marchandises et assimilées (régime auto-entrepreneur)"
     # start_date = date(2009, 1, 1)
-    # end = '2016-12-31'
     definition_period = YEAR
 
 
@@ -212,7 +333,6 @@ class ebic_imps(Variable):
     entity = Individu
     label = "Revenus industriels et commerciaux professionnels imposables: prestations de services et locations meublées (régime auto-entrepreneur)"
     # start_date = date(2009, 1, 1)
-    # end = '2016-12-31'
     definition_period = YEAR
 
 
@@ -226,7 +346,6 @@ class ebnc_impo(Variable):
     entity = Individu
     label = "Revenus non commerciaux (régime auto-entrepreneur ayant opté pour le versement libératoire)"
     # start_date = date(2009, 1, 1)
-    # end = '2016-12-31'
     definition_period = YEAR
 
 
@@ -328,6 +447,19 @@ class nbic_impn(Variable):
     definition_period = YEAR
 
 
+# (f5ui, f5vi, f5wi))
+class abic_info(Variable):
+    cerfa_field = {0: "5UI",
+        1: "5VI",
+        2: "5WI", }
+    value_type = int
+    unit = 'currency'
+    entity = Individu
+    label = "Revenus industriels et commerciaux professionnels : Revenus nets de la cession ou concession de brevets et assimilés"
+    # start_date = date(2019, 1, 1)
+    definition_period = YEAR
+
+
 # """
 # Réutilisation cases 2013
 # """
@@ -421,6 +553,7 @@ class nbic_apch(Variable):
     unit = 'currency'
     entity = Individu
     label = "Artisans pêcheurs : abattement 50% avec CGA ou viseur (régime du bénéfice réel)"
+    end = '2017-12-31'
     definition_period = YEAR
 
 
@@ -445,6 +578,19 @@ class aacc_exon(Variable):
     unit = 'currency'
     entity = Individu
     label = "Revenus industriels et commerciaux non professionnels exonérés yc plus-values avec CGA ou viseur (régime du bénéfice réel)"
+    definition_period = YEAR
+
+
+# (f5tf, f5uf, f5vf))
+class aacc_info(Variable):
+    cerfa_field = {0: "5TF",
+        1: "5UF",
+        2: "5VF", }
+    value_type = int
+    unit = 'currency'
+    entity = Individu
+    label = "Revenus industriels et commerciaux non-professionnels : Revenus nets de la cession ou concession de brevets et assimilés"
+    # start_date = date(2019, 1, 1)
     definition_period = YEAR
 
 
@@ -572,6 +718,19 @@ class nacc_meup(Variable):
     definition_period = YEAR
 
 
+# (f5nw, f5ow, f5pw))
+class nacc_meuc(Variable):
+    cerfa_field = {0: "5NW",
+        1: "5OW",
+        2: "5PW", }
+    value_type = int
+    unit = 'currency'
+    entity = Individu
+    label = "Locations meublées non professionnelles: cas général des locations déjà soumises aux prélèvements sociaux (régime micro entreprise)"
+    # start_date = (2017,1,1)
+    definition_period = YEAR
+
+
 # (f5nl, f5ol, f5pl))
 class nacc_defn(Variable):
     cerfa_field = {0: "5NL",
@@ -684,6 +843,19 @@ class mbnc_impo(Variable):
     definition_period = YEAR
 
 
+# (f5qa, f5ra, f5sa))
+class abnc_info(Variable):
+    cerfa_field = {0: "5QA",
+        1: "5RA",
+        2: "5SA", }
+    value_type = int
+    unit = 'currency'
+    entity = Individu
+    label = "Revenus non-commerciaux professionnels imposables: Revenus nets de la cession ou concession de brevets et assimilés (régime de déclaration controlée)"
+    # start_date = date(2019, 1, 1)
+    definition_period = YEAR
+
+
 # (f5qc, f5rc, f5sc))
 class abnc_impo(Variable):
     cerfa_field = {0: "5QC",
@@ -787,6 +959,7 @@ class frag_pvct(Variable):
     entity = Individu
     label = "Plus-values agricoles  à court terme (régime du forfait)"
     # start_date = date(2007, 1, 1)
+    end = '2015-12-31'
     definition_period = YEAR
 
 
@@ -894,8 +1067,61 @@ class frag_pvce(Variable):
     value_type = int
     unit = 'currency'
     entity = Individu
-    label = "Plus-values agricoles de cession (régime du forfait)"
+    label = "Plus-values agricoles de cession (régime du forfait ou MICRO BA) taxables à 16%"
     # start_date = date(2007, 1, 1)
+    end = '2016-12-31'
+    definition_period = YEAR
+
+
+# (f5hw, f5iw, f5jw))
+class mrag_pvct(Variable):
+    cerfa_field = {0: "5HW",
+        1: "5IW",
+        2: "5JW", }
+    value_type = int
+    unit = 'currency'
+    entity = Individu
+    label = "Plus-values agricoles (régime microBA) à court-terme"
+    # start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+
+# (f5hx, f5ix, f5jx))
+class mrag_pvce(Variable):
+    cerfa_field = {0: "5HX",
+        1: "5IX",
+        2: "5JX", }
+    value_type = int
+    unit = 'currency'
+    entity = Individu
+    label = "Plus-values agricoles (régime microBA) à long-terme taxable selon droit commun"
+    # start_date = date(2017, 1, 1)
+    definition_period = YEAR
+
+
+# (f5xo, f5yo, f5zo))
+class mrag_mvct(Variable):
+    cerfa_field = {0: "5XO",
+        1: "5YO",
+        2: "5ZO", }
+    value_type = int
+    unit = 'currency'
+    entity = Individu
+    label = "Moins-values agricoles (régime microBA) à court-terme"
+    # start_date = date(2016, 1, 1)
+    definition_period = YEAR
+
+
+# (f5xn, f5yn, f5zn))
+class mrag_mvlt(Variable):
+    cerfa_field = {0: "5XN",
+        1: "5YN",
+        2: "5ZN", }
+    value_type = int
+    unit = 'currency'
+    entity = Individu
+    label = "Moins-values agricoles (régime microBA) à long-terme"
+    # start_date = date(2016, 1, 1)
     definition_period = YEAR
 
 
@@ -907,7 +1133,7 @@ class arag_pvce(Variable):
     value_type = int
     unit = 'currency'
     entity = Individu
-    label = "Plus-values agricoles de cession taxables à 16% (Régime du bénéfice réel, revenus bénéficiant de l'abattement CGA ou viseur)"
+    label = "Plus-values agricoles de cession taxables au régime de droit commun (Régime du bénéfice réel, revenus bénéficiant de l'abattement CGA ou viseur)"
     # start_date = date(2007, 1, 1)
     definition_period = YEAR
 
@@ -933,7 +1159,7 @@ class mbic_pvce(Variable):
     value_type = int
     unit = 'currency'
     entity = Individu
-    label = "Plus-values industrielles et commerciales professionnelles imposables: plus-values de cession taxables à 16% (régime micro entreprise)"
+    label = "Plus-values industrielles et commerciales professionnelles imposables: plus-values de cession taxables selon droit commun (régime micro entreprise)"
     definition_period = YEAR
 
 
@@ -945,7 +1171,7 @@ class abic_pvce(Variable):
     value_type = int
     unit = 'currency'
     entity = Individu
-    label = "Plus-values industrielles et commerciales de cession taxables à 16% avec CGA ou viseur (régime du bénéfice réel)"
+    label = "Plus-values industrielles et commerciales de cession taxables selon droit commun avec CGA ou viseur (régime du bénéfice réel)"
     definition_period = YEAR
 
 
@@ -970,7 +1196,7 @@ class macc_pvce(Variable):
     value_type = int
     unit = 'currency'
     entity = Individu
-    label = "Plus-values industrielles et commerciales non professionnelles imposables: plus-values de cession taxables à 16% (régime micro entreprise)"
+    label = "Plus-values industrielles et commerciales non professionnelles imposables: plus-values de cession taxables selon droit commun (régime micro entreprise)"
     definition_period = YEAR
 
 
@@ -982,7 +1208,7 @@ class aacc_pvce(Variable):
     value_type = int
     unit = 'currency'
     entity = Individu
-    label = "Plus-values industrielles et commerciales non professionnelles de cession taxables à 16% avec CGA ou viseur (régime du bénéfice réel)"
+    label = "Plus-values industrielles et commerciales non professionnelles de cession taxables selon droit commun avec CGA ou viseur (régime du bénéfice réel)"
     definition_period = YEAR
 
 
@@ -1007,7 +1233,7 @@ class mncn_pvce(Variable):
     value_type = int
     unit = 'currency'
     entity = Individu
-    label = "Plus-values non commerciales non professionnelles de cession taxables à 16% (régime déclaratif spécial ou micro BNC)"
+    label = "Plus-values non commerciales non professionnelles de cession taxables selon droit commun (régime déclaratif spécial ou micro BNC)"
     definition_period = YEAR
 
 
@@ -1019,7 +1245,7 @@ class cncn_pvce(Variable):
     value_type = int
     unit = 'currency'
     entity = Individu
-    label = "Plus-values non commerciales non professionnelles taxables à 16% avec AA ou viseur (régime de la déclaration controlée)"
+    label = "Plus-values nettes non commerciales non professionnelles taxables au taux de droit commun (régime de la déclaration controlée)"
     # start_date = date(2006, 1, 1)
     definition_period = YEAR
 
@@ -1032,7 +1258,7 @@ class mbnc_pvce(Variable):
     value_type = int
     unit = 'currency'
     entity = Individu
-    label = "Plus-values non commerciales professionnelles de cession taxables à 16% (régime déclaratif spécial ou micro BNC)"
+    label = "Plus-values non commerciales professionnelles de cession taxables selon droit commun(régime déclaratif spécial ou micro BNC)"
     definition_period = YEAR
 
 
@@ -1044,7 +1270,7 @@ class abnc_pvce(Variable):
     value_type = int
     unit = 'currency'
     entity = Individu
-    label = "Plus-values non commerciaux professionnels de cession taxables à 16% (régime de la déclaration controlée, revenus bénéficiant de l'abattement association agrée ou viseur)"
+    label = "Plus-values non commerciaux professionnels de cession taxables selon droit commun (régime de la déclaration controlée, revenus bénéficiant de l'abattement association agrée ou viseur)"
     definition_period = YEAR
 
 
@@ -1071,6 +1297,7 @@ class frag_fore(Variable):
     entity = Individu
     label = "Revenus des exploitants forestiers (régime du forfait)"
     # start_date = date(2007, 1, 1)
+    end = '2015-12-31'
     definition_period = YEAR
 
 
@@ -1171,6 +1398,7 @@ class abnc_proc(Variable):
     entity = Individu
     label = "Honoraires de prospection commerciale exonérés avec CGA ou viseur (revenus non commerciaux professionnels, régime de la déclaration contrôlée)"
     # start_date = date(2009, 1, 1)
+    end = '2017-12-31'
     definition_period = YEAR
 
 
@@ -1183,6 +1411,7 @@ class nbnc_proc(Variable):
     entity = Individu
     label = "Honoraires de prospection commerciale exonérés sans CGA (revenus non commerciaux professionnels, régime de la déclaration contrôlée)"
     # start_date = date(2009, 1, 1)
+    end = '2017-12-31'
     definition_period = YEAR
 
 
@@ -1241,8 +1470,33 @@ class cncn_info(Variable):
     value_type = int
     unit = 'currency'
     entity = Individu
-    label = "Inventeurs et auteurs de logiciels : produits taxables à 16%, revenus non commerciaux non professionnels avec CGA (régime de la déclaration contrôlée)"
+    label = "Inventeurs et auteurs de logiciels : produits taxables aux taux de droit commun revenus non commerciaux non professionnels avec CGA (régime de la déclaration contrôlée)"
     # start_date = date(2009, 1, 1)
+    end = '2018-12-31'
+    definition_period = YEAR
+
+
+class cncn_info_red1(Variable):
+    cerfa_field = {0: "5TC",
+        1: "5UC",
+        2: "5VC", }
+    value_type = int
+    unit = 'currency'
+    entity = Individu
+    label = "Inventeurs et auteurs de logiciels : – produits taxables à 10%, déjà soumis aux CS, revenus non commerciaux non professionnels avec CGA (régime de la déclaration contrôlée)"
+    # start_date = date(2019, 1, 1)
+    definition_period = YEAR
+
+
+class cncn_info_red2(Variable):
+    cerfa_field = {0: "5QJ",
+        1: "5RJ",
+        2: "5SJ", }
+    value_type = int
+    unit = 'currency'
+    entity = Individu
+    label = "Inventeurs et auteurs de logiciels : – produits taxables à 10%, revenus non commerciaux non professionnels avec CGA (régime de la déclaration contrôlée)"
+    # start_date = date(2019, 1, 1)
     definition_period = YEAR
 
 
