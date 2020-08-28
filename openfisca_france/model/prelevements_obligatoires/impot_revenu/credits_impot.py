@@ -727,6 +727,7 @@ class creimp(Variable):
         f8tz = foyer_fiscal('f8tz', period)
         f8uw = foyer_fiscal('f8uw', period)
         f8uz = foyer_fiscal('f8uz', period)
+        f8vl = foyer_fiscal('f8vl', period)
         f8wa = foyer_fiscal('f8wa', period)
         f8wb = foyer_fiscal('f8wb', period)
         f8wc = foyer_fiscal('f8wc', period)
@@ -741,7 +742,7 @@ class creimp(Variable):
 
         return (
             f2ab + f8ta + f8tb + f8tc + f8te - f8tf + f8tg + f8tk + f8to - f8tp + f8tl + f8ts + f8tz + f8uw
-            + f8uz + f8vm + f8wa + f8wb + f8wc + f8wd + f8we + f8wr + f8wt + f8wu
+            + f8uz + f8vm + f8wa + f8wb + f8wc + f8wd + f8we + f8wr + f8wt + f8wu + f8vl
             )
 
     def formula_2017_01_01(foyer_fiscal, period, parameters):
@@ -760,6 +761,7 @@ class creimp(Variable):
         f8tz = foyer_fiscal('f8tz', period)
         f8uw = foyer_fiscal('f8uw', period)
         f8uz = foyer_fiscal('f8uz', period)
+        f8vl = foyer_fiscal('f8vl', period)
         f8wa = foyer_fiscal('f8wa', period)
         f8wb = foyer_fiscal('f8wb', period)
         f8wc = foyer_fiscal('f8wc', period)
@@ -777,7 +779,7 @@ class creimp(Variable):
             + f8te - f8tf + f8tg + f8to - f8tp
             + f8tl + f8ts + f8tz + f8uw + f8uz
             + f8vm + f8wa + f8wb + f8wc + f8wd
-            + f8we + f8wr + f8wt + f8wu
+            + f8we + f8wr + f8wt + f8wu + f8vl
             )
 
     def formula_2018_01_01(foyer_fiscal, period, parameters):
@@ -796,6 +798,7 @@ class creimp(Variable):
         f8tz = foyer_fiscal('f8tz', period)
         f8uw = foyer_fiscal('f8uw', period)
         f8uz = foyer_fiscal('f8uz', period)
+        f8vl = foyer_fiscal('f8vl', period)
         f8wa = foyer_fiscal('f8wa', period)
         f8wc = foyer_fiscal('f8wc', period)
         f8wd = foyer_fiscal('f8wd', period)
@@ -811,7 +814,7 @@ class creimp(Variable):
             + f8te - f8tf + f8tg + f8to - f8tp
             + f8tl + f8ts + f8tz + f8uw + f8uz
             + f8vm + f8wa + f8wc + f8wd
-            + f8wr + f8wt + f8wu
+            + f8wr + f8wt + f8wu + f8vl
             )
 
     def formula_2019_01_01(foyer_fiscal, period, parameters):
@@ -829,6 +832,7 @@ class creimp(Variable):
         f8tz = foyer_fiscal('f8tz', period)
         f8uw = foyer_fiscal('f8uw', period)
         f8uz = foyer_fiscal('f8uz', period)
+        f8vl = foyer_fiscal('f8vl', period)
         f8wa = foyer_fiscal('f8wa', period)
         f8wc = foyer_fiscal('f8wc', period)
         f8wd = foyer_fiscal('f8wd', period)
@@ -844,7 +848,7 @@ class creimp(Variable):
             - f8tf + f8tg + f8to - f8tp
             + f8tl + f8ts + f8tz + f8uw + f8uz
             + f8vm + f8wa + f8wc + f8wd
-            + f8wr + f8wt + f8wu
+            + f8wr + f8wt + f8wu + f8vl
             )
 
 
