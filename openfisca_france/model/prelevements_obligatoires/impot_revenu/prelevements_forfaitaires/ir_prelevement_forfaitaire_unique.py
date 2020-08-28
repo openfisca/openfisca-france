@@ -132,8 +132,11 @@ class plus_values_prelevement_forfaitaire_unique_ir(Variable):
         f3va = foyer_fiscal('f3va', period)
         f3vg = foyer_fiscal('f3vg', period)
         f3tj = foyer_fiscal('f3tj', period)
+        rpns_pvce_i = foyer_fiscal.members('rpns_pvce', period)
 
-        return f3sa + max_(0, f3ua - f3va) + f3vg + f3tj
+        rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
+
+        return f3sa + max_(0, f3ua - f3va) + f3vg + f3tj + rpns_pvce
 
     def formula_2019_01_01(foyer_fiscal, period, parameters):
         f3sa = foyer_fiscal('f3sa', period)
@@ -145,8 +148,11 @@ class plus_values_prelevement_forfaitaire_unique_ir(Variable):
         f3vt = foyer_fiscal('f3vt', period)
         f3an = foyer_fiscal('f3an', period)
         f3bn = foyer_fiscal('f3bn', period)
+        rpns_pvce_i = foyer_fiscal.members('rpns_pvce', period)
 
-        return f3sa + max_(0, f3ua - f3va) + f3vg + max_(0, f3tj - f3tk) + f3vt + f3an - f3bn
+        rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
+
+        return f3sa + max_(0, f3ua - f3va) + f3vg + max_(0, f3tj - f3tk) + f3vt + f3an - f3bn + rpns_pvce
 
 
 class prelevement_forfaitaire_unique_ir_hors_assurance_vie_epargne_solidaire_etats_non_cooperatifs(Variable):

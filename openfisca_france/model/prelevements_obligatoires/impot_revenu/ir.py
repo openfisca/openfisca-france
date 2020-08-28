@@ -1820,10 +1820,8 @@ class taxation_plus_values_hors_bareme(Variable):
         f3vt = foyer_fiscal('f3vt', period)
         f3wi = foyer_fiscal('f3wi', period)
         f3wj = foyer_fiscal('f3wj', period)
-        rpns_pvce_i = foyer_fiscal.members('rpns_pvce', period)
         f3pi = foyer_fiscal('f3pi', period)
 
-        rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
         f3vd = foyer_fiscal.sum(f3vd_i)
         f3vi = foyer_fiscal.sum(f3vi_i)
         f3vf = foyer_fiscal.sum(f3vf_i)
@@ -1833,7 +1831,6 @@ class taxation_plus_values_hors_bareme(Variable):
             plus_values.taux2 * f3vd
             + plus_values.taux3 * f3vi
             + plus_values.taux4 * f3vf
-            + plus_values.pvce * rpns_pvce
             + plus_values.taux_plus_values_bspce * f3sj
             + plus_values.taux_plus_values_bspce_conditionnel * f3sk
             + plus_values.pea.taux_avant_2_ans * f3vm
@@ -1855,12 +1852,10 @@ class taxation_plus_values_hors_bareme(Variable):
         f3sk = foyer_fiscal('f3sk', period)
         f3wi = foyer_fiscal('f3wi', period)
         f3wj = foyer_fiscal('f3wj', period)
-        rpns_pvce_i = foyer_fiscal.members('rpns_pvce', period)
         rpns_info_i = foyer_fiscal.members('rpns_info', period)
 
         f3pi = foyer_fiscal('f3pi', period)
 
-        rpns_pvce = foyer_fiscal.sum(rpns_pvce_i)
         rpns_info = foyer_fiscal.sum(rpns_info_i)
         f3vd = foyer_fiscal.sum(f3vd_i)
         f3vi = foyer_fiscal.sum(f3vi_i)
@@ -1872,7 +1867,6 @@ class taxation_plus_values_hors_bareme(Variable):
             plus_values.taux2 * f3vd
             + plus_values.taux3 * f3vi
             + plus_values.taux4 * f3vf
-            + plus_values.pvce * rpns_pvce
             + P.taux10 * rpns_info
             + plus_values.taux_plus_values_bspce * f3sj
             + plus_values.taux_plus_values_bspce_conditionnel * f3sk
@@ -2214,13 +2208,15 @@ class rfr(Variable):
         rfr_plus_values_hors_rni = foyer_fiscal('rfr_plus_values_hors_rni', period)
         rni = foyer_fiscal('rni', period)
         rpns_exon_i = foyer_fiscal.members('rpns_exon', period)
+        rpns_info_i = foyer_fiscal.members('rpns_info', period)
 
+        rpns_info = foyer_fiscal.sum(rpns_info_i)
         rpns_exon = foyer_fiscal.sum(rpns_exon_i)
 
         return (
             max_(0, rni)
             + rfr_charges_deductibles + rfr_plus_values_hors_rni + rfr_rev_capitaux_mobiliers + revenus_capitaux_prelevement_liberatoire + revenus_capitaux_prelevement_forfaitaire_unique_ir
-            + rpns_exon
+            + rpns_exon + rpns_info
             + abattements_plus_values
             + f2dm + microentreprise
             )
