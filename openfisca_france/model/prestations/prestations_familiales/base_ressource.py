@@ -247,14 +247,14 @@ class abat_spe_prestations_familiales(Variable):
 
         # Titulaire d'une pension pour une invalidité d'au moins 40 % ou d'une carte
         # d'invalidité d'au moins 80%
-        declarant_invalide = foyer_fiscal('caseP', period)
+        declarant_invalide = foyer_fiscal('caseP', period.this_year)
 
         age_conjoint = foyer_fiscal.declarant_principal('age', period.first_month)
         date_naissance_conjoint = foyer_fiscal.conjoint('date_naissance', period.first_month)
 
         # Conjoint·e titulaire d'une pension ou d'une carte d'invalidité (vivant ou
         # décédé l'année de perception des revenus)
-        conjoint_invalide = foyer_fiscal('caseF', period)
+        conjoint_invalide = foyer_fiscal('caseF', period.this_year)
 
         # Revenu net global
         revenu_net_global = foyer_fiscal('rng', period)
