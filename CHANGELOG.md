@@ -1,6 +1,6 @@
 # Changelog
 
-# 48.13.0 [#1437](https://github.com/openfisca/openfisca-france/pull/1437)
+## 48.13.0 [#1437](https://github.com/openfisca/openfisca-france/pull/1437)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées :  jusqu'au 31/12/2019
