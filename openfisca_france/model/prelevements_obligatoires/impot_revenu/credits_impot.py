@@ -435,7 +435,7 @@ class creimp_exc_2008(Variable):
             )
 
 
-class creimp(Variable):  #TO DO : ajouter le crédit d'impôt sur impôts imposés à l'étranger, aux cases 5AK, 5AL, 5DF, 5DG, 5UR, 5US, 5EY, 5EZ, 5XJ, 5XK, 5XS, 5XX, 4BL et 4BK
+class creimp(Variable):  # TODO: ajouter le crédit d'impôt sur impôts imposés à l'étranger, aux cases 5AK, 5AL, 5DF, 5DG, 5UR, 5US, 5EY, 5EZ, 5XJ, 5XK, 5XS, 5XX, 4BL et 4BK
     value_type = float
     entity = FoyerFiscal
     label = "Ensemble de crédits d'impôt"
