@@ -1,5 +1,15 @@
 # Changelog
 
+## 48.15.0 [#1434](https://github.com/openfisca/openfisca-france/pull/1434)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2017.
+* Zones impactées : `model/prelevements_obligatoires/taxe_habitation/taxe_habitation.py`.
+* Détails :
+  - Code la TH pour 2020
+  - Fait des corrections mineures sur la TH des années d'avant
+  - Ajoute les paramètres locaux de la TH de 2018 (qui sont les derniers disponibles)
+
 ## 48.14.0 [#1440](https://github.com/openfisca/openfisca-france/pull/1440)
 
 * Évolution du système socio-fiscal. 

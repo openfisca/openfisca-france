@@ -28,15 +28,6 @@ def preload_parametres_locaux_taxe_habitation(year = None, variable_to_load = No
                 }
 
 
-class code_INSEE_commune(Variable):
-    value_type = str
-    default_value = "01001"
-    max_length = 5
-    entity = Menage
-    label = "Code INSEE de la commune de résidence du ménage"
-    definition_period = YEAR
-
-
 class taux_th_commune(Variable):
     value_type = float
     default_value = 0
@@ -45,7 +36,7 @@ class taux_th_commune(Variable):
     definition_period = YEAR
 
     def formula(menage, period):
-        code_INSEE_commune = menage('code_INSEE_commune', period)
+        code_INSEE_commune = menage('depcom', period.first_month)
         annee = period.start.offset('first-of', 'year').year
         taux_by_com = preload_parametres_locaux_taxe_habitation(year = annee, variable_to_load = 'taux_com')
         default_value = 0
@@ -70,7 +61,7 @@ class taux_th_epci(Variable):
     definition_period = YEAR
 
     def formula(menage, period):
-        code_INSEE_commune = menage('code_INSEE_commune', period)
+        code_INSEE_commune = menage('depcom', period.first_month)
         annee = period.start.offset('first-of', 'year').year
         taux_by_epci = preload_parametres_locaux_taxe_habitation(year = annee, variable_to_load = 'taux_epci')
         default_value = 0
@@ -95,7 +86,7 @@ class valeur_locative_moyenne_th_commune(Variable):
     definition_period = YEAR
 
     def formula(menage, period):
-        code_INSEE_commune = menage('code_INSEE_commune', period)
+        code_INSEE_commune = menage('depcom', period.first_month)
         annee = period.start.offset('first-of', 'year').year
         valeur_locative_moyenne_by_com = preload_parametres_locaux_taxe_habitation(year = annee, variable_to_load = 'valeur_locative_moyenne_com')
         default_value = 0
@@ -120,7 +111,7 @@ class valeur_locative_moyenne_th_epci(Variable):
     definition_period = YEAR
 
     def formula(menage, period):
-        code_INSEE_commune = menage('code_INSEE_commune', period)
+        code_INSEE_commune = menage('depcom', period.first_month)
         annee = period.start.offset('first-of', 'year').year
         valeur_locative_moyenne_by_epci = preload_parametres_locaux_taxe_habitation(year = annee, variable_to_load = 'valeur_locative_moyenne_epci')
         default_value = 0
@@ -145,7 +136,7 @@ class abt_general_base_th_commune(Variable):
     definition_period = YEAR
 
     def formula(menage, period):
-        code_INSEE_commune = menage('code_INSEE_commune', period)
+        code_INSEE_commune = menage('depcom', period.first_month)
         annee = period.start.offset('first-of', 'year').year
         abt_general_base_by_com = preload_parametres_locaux_taxe_habitation(year = annee, variable_to_load = 'abt_general_base_com')
         default_value = 0
@@ -170,7 +161,7 @@ class abt_general_base_th_epci(Variable):
     definition_period = YEAR
 
     def formula(menage, period):
-        code_INSEE_commune = menage('code_INSEE_commune', period)
+        code_INSEE_commune = menage('depcom', period.first_month)
         annee = period.start.offset('first-of', 'year').year
         abt_general_base_by_epci = preload_parametres_locaux_taxe_habitation(year = annee, variable_to_load = 'abt_general_base_epci')
         default_value = 0
@@ -195,7 +186,7 @@ class abt_pac_1_2_th_commune(Variable):
     definition_period = YEAR
 
     def formula(menage, period):
-        code_INSEE_commune = menage('code_INSEE_commune', period)
+        code_INSEE_commune = menage('depcom', period.first_month)
         annee = period.start.offset('first-of', 'year').year
         abt_pac_1_2_by_com = preload_parametres_locaux_taxe_habitation(year = annee, variable_to_load = 'abt_pac_1_2_com')
         default_value = 0
@@ -220,7 +211,7 @@ class abt_pac_1_2_th_epci(Variable):
     definition_period = YEAR
 
     def formula(menage, period):
-        code_INSEE_commune = menage('code_INSEE_commune', period)
+        code_INSEE_commune = menage('depcom', period.first_month)
         annee = period.start.offset('first-of', 'year').year
         abt_pac_1_2_by_epci = preload_parametres_locaux_taxe_habitation(year = annee, variable_to_load = 'abt_pac_1_2_epci')
         default_value = 0
@@ -245,7 +236,7 @@ class abt_pac_3pl_th_commune(Variable):
     definition_period = YEAR
 
     def formula(menage, period):
-        code_INSEE_commune = menage('code_INSEE_commune', period)
+        code_INSEE_commune = menage('depcom', period.first_month)
         annee = period.start.offset('first-of', 'year').year
         abt_pac_3pl_by_com = preload_parametres_locaux_taxe_habitation(year = annee, variable_to_load = 'abt_pac_3pl_com')
         default_value = 0
@@ -270,7 +261,7 @@ class abt_pac_3pl_th_epci(Variable):
     definition_period = YEAR
 
     def formula(menage, period):
-        code_INSEE_commune = menage('code_INSEE_commune', period)
+        code_INSEE_commune = menage('depcom', period.first_month)
         annee = period.start.offset('first-of', 'year').year
         abt_pac_3pl_by_epci = preload_parametres_locaux_taxe_habitation(year = annee, variable_to_load = 'abt_pac_3pl_epci')
         default_value = 0
@@ -295,7 +286,7 @@ class abt_condition_modeste_th_commune(Variable):
     definition_period = YEAR
 
     def formula(menage, period):
-        code_INSEE_commune = menage('code_INSEE_commune', period)
+        code_INSEE_commune = menage('depcom', period.first_month)
         annee = period.start.offset('first-of', 'year').year
         abt_condition_modeste_by_com = preload_parametres_locaux_taxe_habitation(year = annee, variable_to_load = 'abt_condition_modeste_com')
         default_value = 0
@@ -320,7 +311,7 @@ class abt_condition_modeste_th_epci(Variable):
     definition_period = YEAR
 
     def formula(menage, period):
-        code_INSEE_commune = menage('code_INSEE_commune', period)
+        code_INSEE_commune = menage('depcom', period.first_month)
         annee = period.start.offset('first-of', 'year').year
         abt_condition_modeste_by_epci = preload_parametres_locaux_taxe_habitation(year = annee, variable_to_load = 'abt_condition_modeste_epci')
         default_value = 0
