@@ -9,40 +9,53 @@ menage_ou_isole_avec_1_enfant:
       value: 502.73
     2019-10-01:
       value: 504.24
+    2020-10-01:
+      value: 505.75
 menage_ou_isole_avec_2_enfants:
   values:
     2017-10-01:
       value: 538.15
     2019-10-01:
       value: 539.76
+    2020-10-01:
+      value: 541.38
 menage_ou_isole_avec_3_enfants:
   values:
     2017-10-01:
       value: 573.42
     2019-10-01:
       value: 575.14
+    2020-10-01:
+      value: 576.87
 menage_ou_isole_avec_4_enfants:
   values:
     2017-10-01:
       value: 611.02
     2019-10-01:
       value: 612.85
+    2020-10-01:
+      value: 614.69
 menage_ou_isole_par_enfant_en_plus:
   values:
     2017-10-01:
       value: 63.68
     2019-10-01:
       value: 63.88
+    2020-10-01:
+      value: 64.07
 menage_seul:
   values:
     2017-10-01:
       value: 471.50
     2019-10-01:
-      reference:
       value: 472.91
+    2020-10-01:
+      value: 474.33
 personne_isolee_sans_enfant:
   values:
     2017-10-01:
       value: 404.00
     2019-10-01:
       value: 405.21
+    2020-10-01:
+      value: 406.43
