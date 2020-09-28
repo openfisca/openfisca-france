@@ -34,7 +34,7 @@ class covid_aide_exceptionnelle_tpe_montant(Variable):
         period_1 = period.offset(-1, 'year')
         ca_n_1 = individu('tns_auto_entrepreneur_chiffre_affaires', period_1)
         delta_ca = ca_n - ca_n_1
-        return elig*(delta_ca < 0)*((delta_ca < -plaf)*plaf + (delta_ca> -plaf)*(-delta_ca))
+        return elig*(delta_ca < 0) * ((delta_ca < -plaf) * plaf + (delta_ca > -plaf) * (-delta_ca))
 
 
 class covid_aide_exceptionnelle_famille_eligible(Variable):
