@@ -17,7 +17,7 @@ class covid_aide_exceptionnelle_tpe_eligible(Variable):
         period_1 = period.offset(-1, 'year')
         ca_n_1 = individu('tns_auto_entrepreneur_chiffre_affaires', period_1)
         delta_ca_rel = (ca_n - ca_n_1) / ca_n_1
-        return individu('travailleur_non_salarie', period)*(delta_ca_rel<-0.5)
+        return individu('travailleur_non_salarie', period) * (delta_ca_rel < -0.5)
 
 
 class covid_aide_exceptionnelle_tpe_montant(Variable):
