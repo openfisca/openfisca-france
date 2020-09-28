@@ -1,5 +1,5 @@
 aide_exceptionnelle_tpe:
-  montant:
+  plafond:
     values:
       2020-03-01:
         value: 1500
@@ -12,3 +12,13 @@ aide_exceptionnelle_famille:
     values:
       2020-04-01:
         value: 100
+indemnite_ap :
+   taux : 
+     2020-03-01:
+       0.70   
+   plancher :
+     2020-03-01:
+       8.03
+   plafond_smic :
+     2020-03-01: 
+       4.5

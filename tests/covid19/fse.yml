@@ -1,0 +1,91 @@
+- name: fse_2020_below1500
+  description: Montant fonds de solidarité aux indépendants
+  period: '2020-05'
+  input:
+    individus:
+      parent1:
+        tns_auto_entrepreneur_chiffre_affaires : 
+          2020-05 : 
+            10
+          2019-05 : 
+            1000
+    foyer_fiscal:
+      declarants: parent1
+    famille:
+      parents:
+      - parent1
+    menage:
+      personne_de_reference:
+      - parent1
+  output:
+    covid_aide_exceptionnelle_tpe_eligible: True
+    covid_aide_exceptionnelle_tpe_montant : 990
+
+- name: fse_2020_cap1500
+  description: Montant fonds de solidarité aux indépendants
+  period: '2020-05'
+  input:
+    individus:
+      parent1:
+        tns_auto_entrepreneur_chiffre_affaires : 
+          2020-05 : 
+            150
+          2019-05 : 
+            20000
+    foyer_fiscal:
+      declarants: parent1
+    famille:
+      parents:
+      - parent1
+    menage:
+      personne_de_reference:
+      - parent1
+  output:
+    covid_aide_exceptionnelle_tpe_eligible: True
+    covid_aide_exceptionnelle_tpe_montant : 1500
+    
+- name: fse_2020_nocadrop
+  description: Montant fonds de solidarité aux indépendants
+  period: '2020-05'
+  input:
+    individus:
+      parent1:
+        tns_auto_entrepreneur_chiffre_affaires : 
+          2020-05 : 
+            30000
+          2019-05 : 
+            20000
+    foyer_fiscal:
+      declarants: parent1
+    famille:
+      parents:
+      - parent1
+    menage:
+      personne_de_reference:
+      - parent1
+  output:
+    covid_aide_exceptionnelle_tpe_eligible: False
+    covid_aide_exceptionnelle_tpe_montant : 0
+    
+- name: fse_2020_smallcadrop
+  description: Montant fonds de solidarité aux indépendants
+  period: '2020-05'
+  input:
+    individus:
+      parent1:
+        tns_auto_entrepreneur_chiffre_affaires : 
+          2020-05 : 
+            19000
+          2019-05 : 
+            20000
+    foyer_fiscal:
+      declarants: parent1
+    famille:
+      parents:
+      - parent1
+    menage:
+      personne_de_reference:
+      - parent1
+  output:
+    covid_aide_exceptionnelle_tpe_eligible: False
+    covid_aide_exceptionnelle_tpe_montant : 0
