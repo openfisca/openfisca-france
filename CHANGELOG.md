@@ -1,5 +1,12 @@
 # Changelog
 
+### 48.15.1 [#1443](https://github.com/openfisca/openfisca-france/pull/1443)
+
+* Correction d'un crash.
+* Détails :
+  - Met à jour la librairie `pytest` employée pour les tests Python et YAML via la commande `openfisca test` héritée d'openfisca-core, pour les cibles d'installation `dev` et `casd-dev`.
+  - Corrige le décalage de version de `pytest` entre `Core` et `France`.
+
 ## 48.15.0 [#1434](https://github.com/openfisca/openfisca-france/pull/1434)
 
 * Évolution du système socio-fiscal.
