@@ -13,11 +13,10 @@ class covid_aide_exceptionnelle_tpe_eligible(Variable):
     definition_period = MONTH
 
     def formula(individu, period):
-        ca_n = individu('tns_auto_entrepreneur_chiffre_affaires', period)
+        chiffre_d_affaire = individu('tns_auto_entrepreneur_chiffre_affaires', period)
         period_1 = period.offset(-1, 'year')
-        ca_n_1 = individu('tns_auto_entrepreneur_chiffre_affaires', period_1)
-        delta_ca_rel = (ca_n - ca_n_1) / ca_n_1
-        return individu('travailleur_non_salarie', period) * (delta_ca_rel < -0.5)
+        chiffre_d_affaire_annee_n_1 = individu('tns_auto_entrepreneur_chiffre_affaires', period_1)
+        return individu('travailleur_non_salarie', period) * (((chiffre_d_affaire - chiffre_d_affaire_annee_n_1) / chiffre_d_affaire_annee_n_1) < -0.5)
 
 
 class covid_aide_exceptionnelle_tpe_montant(Variable):
@@ -28,13 +27,13 @@ class covid_aide_exceptionnelle_tpe_montant(Variable):
     end = '2020-12-31'
 
     def formula_2020_03(individu, period, parameters):
-        elig = individu('covid_aide_exceptionnelle_tpe_eligible', period)
-        plaf = parameters(period).covid19.aide_exceptionnelle_tpe.plafond
-        ca_n = individu('tns_auto_entrepreneur_chiffre_affaires', period)
+        eligibilite_fse = individu('covid_aide_exceptionnelle_tpe_eligible', period)
+        plafond_fse = parameters(period).covid19.aide_exceptionnelle_tpe.plafond
+        chiffre_d_affaire = individu('tns_auto_entrepreneur_chiffre_affaires', period)
         period_1 = period.offset(-1, 'year')
-        ca_n_1 = individu('tns_auto_entrepreneur_chiffre_affaires', period_1)
-        delta_ca = ca_n - ca_n_1
-        return elig*(delta_ca < 0) * ((delta_ca < -plaf) * plaf + (delta_ca > -plaf) * (-delta_ca))
+        chiffre_d_affaire_annee_n_1 = individu('tns_auto_entrepreneur_chiffre_affaires', period_1)
+        difference_chiffre_d_affaire = chiffre_d_affaire - chiffre_d_affaire_annee_n_1
+        return eligibilite_fse*(difference_chiffre_d_affaire < 0) * ((difference_chiffre_d_affaire < -plafond_fse) * plafond_fse + (difference_chiffre_d_affaire > -plafond_fse) * (-difference_chiffre_d_affaire))
 
 
 class covid_aide_exceptionnelle_famille_eligible(Variable):
@@ -90,11 +89,11 @@ class covid_activite_partielle_montant(Variable):
     definition_period = MONTH
     
     def formula_2020_03(individu, period, parameters) :
-        elig= individu('covid_activite_partielle_eligible', period)
+        eligibilite_activite_partielle= individu('covid_activite_partielle_eligible', period)
         heures = individu('heures_remunerees_volume', period)
-        salh = individu('salaire_de_base', period) / heures
-        indemn_nonplaf_h = parameters(period).covid19.indemnite_ap.taux * salh
-        plaf = parameters(period).cotsoc.gen.smic_h_b * parameters(period).covid19.indemnite_ap.plafond_smic
+        salaire_horaire = individu('salaire_de_base', period) / heures
+        indemnite_horaire_nonplafonnee = parameters(period).covid19.indemnite_ap.taux * salaire_horaire
+        plafond = parameters(period).cotsoc.gen.smic_h_b * parameters(period).covid19.indemnite_ap.plafond_smic
         plancher = parameters(period).covid19.indemnite_ap.plancher
-        indemn_h = max(min(indemn_nonplaf_h, plaf), plancher)
-        return elig*indemn_h*heures 
+        indemnite_horaire = max(min(indemnite_horaire_nonplafonnee, plafond), plancher)
+        return eligibilite_activite_partielle*indemnite_horaire*heures 
