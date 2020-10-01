@@ -109,4 +109,4 @@ class covid_activite_partielle_montant(Variable):
         plafond = parameters(period).cotsoc.gen.smic_h_b * parameters(period).covid19.indemnite_ap.plafond_smic
         plancher = parameters(period).covid19.indemnite_ap.plancher
         indemnite_horaire = max(min(indemnite_horaire_nonplafonnee, plafond), plancher)
-        return eligibilite_activite_partielle*indemnite_horaire*heures 
+        return eligibilite_activite_partielle * indemnite_horaire * heures 
