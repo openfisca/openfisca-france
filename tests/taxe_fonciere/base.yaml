@@ -1,0 +1,8 @@
+period: 2018
+input:
+  rfr: [1000, 1000, 1000]
+  taxe_fonciere_sur_avis: [100, 500, 600]
+output:
+  taxe_fonciere_degrevement: [0, 0, 100]
+  taxe_fonciere_degrevement_montant:
+    2020-01: [0, 0, 100]
