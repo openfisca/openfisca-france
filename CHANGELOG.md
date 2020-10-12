@@ -1,5 +1,11 @@
 # Changelog
 
+### 48.15.2 [#1439](https://github.com/openfisca/openfisca-france/pull/1439)
+
+* Amélioration technique.
+* Détails :
+  - Met à jour la librairie `autopep8` utilisée par la commande `make format-style`
+
 ### 48.15.1 [#1443](https://github.com/openfisca/openfisca-france/pull/1443)
 
 * Correction d'un crash.
@@ -19,7 +25,7 @@
 
 ## 48.14.0 [#1440](https://github.com/openfisca/openfisca-france/pull/1440)
 
-* Évolution du système socio-fiscal. 
+* Évolution du système socio-fiscal.
 * Périodes concernées :  jusqu'au 31/12/2019. | à partir du 01/01/2016.
 * Zones impactées:
   - `model/prelevements_obligatoires/impot_revenu/credits_impot.py`
@@ -35,13 +41,13 @@
 
 * Évolution du système socio-fiscal.
 * Périodes concernées :  jusqu'au 31/12/2019
-* Zones impactées : 
+* Zones impactées :
 `openfisca_france/model/prelevements_obligatoires/impot_revenu/reductions_impot.py`.
 `openfisca_france/model/prelevements_obligatoires/impot_revenu/reductions_impot.py`
   + ajout des fichiers YAML tests et des fichiers YAML paramètres
 
 * Détails :
-  - Ajoute 2 nouveaux dispositifs de réduction fiscale : la réduction pour dons à la reconstruction de Notre-Dame et la réduction associée au dispositif Denormandie ancien. 
+  - Ajoute 2 nouveaux dispositifs de réduction fiscale : la réduction pour dons à la reconstruction de Notre-Dame et la réduction associée au dispositif Denormandie ancien.
   - Met à jour les formules de calcul des réductions Scellier et Pinel avec les cases correctes des formulaires des années récentes. De plus, code le plafond commun des investissements Pinel + Denormandie.
   - Produit des fichiers test YAML avec les diverses hypothèses (imputation du don de ND au dessus de 1000€ à donapd, plafond commun Pinel et Denormandie, règle de l'ordre de calcul si plusieurs investissements etc...)
 
@@ -49,10 +55,10 @@
 
 * Évolution du système socio-fiscal
 * Périodes concernées : à partir du 01/01/2018 jusqu'au 31/12/2019
-* Zones impactées : 
+* Zones impactées :
 - `openfisca_france/parameters/impot_revenu/plus_values.yaml`.
 - `openfisca_france/model/prelevements_obligatoires/impot_revenu/ir.py`
-- `openfisca_france/model/revenus/capital/plus_value.py`                             
+- `openfisca_france/model/revenus/capital/plus_value.py`
 `openfisca_france/model/prelevements_obligatoires/impot_revenu/prelevements_forfaitaires/ir_prelevement_forfaitaire_unique.py`
 - openfisca_france/model/prelevements_obligatoires/prelevements_sociaux/contributions_sociales/capital.py
 - tests/calculateur_impots/yaml/pv_pfu.yaml
@@ -97,9 +103,9 @@
 
 ### 48.10.6 [#1420](https://github.com/openfisca/openfisca-france/pull/1420)
 
-* Évolution du système socio-fiscal. 
+* Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 2019-01-01.
-* Zones impactées : 
+* Zones impactées :
   - `parameters/impot_revenu/decote/`
   - `parameters/impot_revenu/plafond_qf/`
   - et `model/prelevements_obligatoires/impot_revenu/ir.py`.
