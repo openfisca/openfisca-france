@@ -1,6 +1,6 @@
 - name: aide_excep_2020_isole_0enf
   description: Montant aide exceptionnelle 
-  period: '2020-04'
+  period: '2020-05'
   absolute_error_margin: 1
   input:
     individus:
@@ -20,7 +20,7 @@
 
 - name: aide_excep_2020_2par_0enf
   description: Montant aide exceptionnelle 
-  period: '2020-04'
+  period: '2020-05'
   absolute_error_margin: 1
   input:
     individus:
@@ -45,7 +45,7 @@
 
 - name: aide_excep_2020_2par_1enf
   description: Montant aide exceptionnelle 
-  period: '2020-04'
+  period: '2020-05'
   absolute_error_margin: 1
   input:
     individus:
@@ -79,7 +79,7 @@
 
 - name: aide_excep_2020_2par_2enf
   description: Montant aide exceptionnelle 
-  period: '2020-04'
+  period: '2020-05'
   absolute_error_margin: 1
   input:
     individus:

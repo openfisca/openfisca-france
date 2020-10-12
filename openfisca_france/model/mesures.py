@@ -504,8 +504,9 @@ class prestations_sociales(Variable):
         minima_sociaux = famille('minima_sociaux', period)
         aides_logement = famille('aides_logement', period)
         reduction_loyer_solidarite = famille('reduction_loyer_solidarite', period, options = [ADD])
+        aide_exceptionnelle_covid = famille('covid_aide_exceptionnelle_famille_montant', period, options =[ADD])
 
-        return prestations_familiales + minima_sociaux + aides_logement + reduction_loyer_solidarite
+        return prestations_familiales + minima_sociaux + aides_logement + reduction_loyer_solidarite + aide_exceptionnelle_covid
 
 
 class prestations_familiales(Variable):

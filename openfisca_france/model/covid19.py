@@ -51,8 +51,13 @@ class covid_aide_exceptionnelle_famille_eligible(Variable):
         ass = famille.sum(famille.members('ass', period)) > 0
         al = famille('aide_logement', period) > 0
         af_nbenf = famille('af_nbenf', period) > 0
+        period_1 = period.offset(-1, 'month')
+        rsa_n_1 = famille('rsa', period_1) > 0
+        ass_n_1 = famille.sum(famille.members('ass', period_1)) > 0
+        al_n_1 = famille('aide_logement', period_1) > 0
+        af_nbenf_n_1 = famille('af_nbenf', period_1) > 0
 
-        return rsa + ass + (al * af_nbenf)
+        return max((rsa + ass + (al * af_nbenf)), (rsa_n_1 + ass_n_1 + (al_n_1 * af_nbenf_n_1)))
 
 
 class covid_aide_exceptionnelle_famille_montant(Variable):
@@ -62,16 +67,24 @@ class covid_aide_exceptionnelle_famille_montant(Variable):
     definition_period = MONTH
     end = '2020-05-31'
 
-    def formula_2020_03(famille, period, parameters):
+    def formula_2020_05(famille, period, parameters):
         montants = parameters(period).covid19.aide_exceptionnelle_famille
         rsa = famille('rsa', period) > 0
         ass = famille.sum(famille.members('ass', period)) > 0
         al = famille('aide_logement', period) > 0
         af_nbenf = famille('af_nbenf', period)
-
         base = rsa + ass
+        montant = base * (montants.base + montants.par_enfant * af_nbenf) + not_(base) * al * af_nbenf * montants.par_enfant
 
-        return base * (montants.base + montants.par_enfant * af_nbenf) + not_(base) * al * af_nbenf * montants.par_enfant
+        period_1 = period.offset(-1, 'month')
+        rsa_n_1 = famille('rsa', period_1) > 0
+        ass_n_1 = famille.sum(famille.members('ass', period_1)) > 0
+        al_n_1 = famille('aide_logement', period_1) > 0
+        af_nbenf_n_1 = famille('af_nbenf', period_1) > 0
+        base_n_1 = rsa_n_1 + ass_n_1
+        montant_n_1 = base_n_1 * (montants.base + montants.par_enfant * af_nbenf_n_1) + not_(base_n_1) * al_n_1 * af_nbenf_n_1 * montants.par_enfant
+        
+        return (montant>0)*montant + (montant==0)*(montant_n_1>0)*montant_n_1
 
 class covid_activite_partielle_eligible(Variable):
     entity = Individu
