@@ -13,3 +13,6 @@ values:
   2019-01-01:
     value: 56849.0
     reference: https://www.legifrance.gouv.fr/eli/arrete/2018/12/21/SSAS1835267A/jo/article_1
+  2020-01-01:
+    value: 57759.0
+    reference: https://solidarites-sante.gouv.fr/fichiers/bo/2019/19-12/ste_20190012_0000_0064.pdf

@@ -1,5 +1,5 @@
 description: Base mensuelle des allocations familiales
-reference: https://www.ipp.eu/outils/baremes-ipp/
+reference: https://www.ipp.eu/baremes-ipp/prestations-sociales/0/2/
 unit: currency
 values:
   1961-01-01:
@@ -110,3 +110,6 @@ values:
   2019-04-01:
     value: 413.16
     reference: http://circulaires.legifrance.gouv.fr/pdf/2019/03/cir_44472.pdf
+  2020-04-01:
+    value: 414.40
+    reference: https://solidarites-sante.gouv.fr/fichiers/bo/2020/20-02/ste_20200002_0000_0046.pdf
