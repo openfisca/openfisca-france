@@ -235,19 +235,18 @@ class af_complement_degressif(Variable):
     definition_period = MONTH
 
     def formula_2015_07_01(famille, period, parameters):
-        af_nbenf = famille('af_nbenf', period)
-
-        depassement_mensuel = depassement_helper(famille, period, parameters, af_nbenf)
-
-        residence_dom = famille.demandeur.menage('residence_dom', period)
-        residence_mayotte = famille.demandeur.menage('residence_mayotte', period)
-        non_eligible = residence_dom * not_(residence_mayotte) * (af_nbenf == 1)
-
+        eligibilite_dom = famille('af_eligibilite_dom', period)
         af_base = famille('af_base', period)
         af_majoration = famille('af_majoration', period)
         af = af_base + af_majoration
+        af_nbenf = famille('af_nbenf', period)
+        depassement_mensuel = depassement_helper(famille, period, parameters, af_nbenf)
 
-        return max_(0, af - depassement_mensuel) * (depassement_mensuel > 0) * not_(non_eligible)
+        return (
+            + not_(eligibilite_dom)
+            * (depassement_mensuel > 0)
+            * max_(0, af - depassement_mensuel)
+            )
 
 
 class af_allocation_forfaitaire_complement_degressif(Variable):
