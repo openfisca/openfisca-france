@@ -1,5 +1,13 @@
 # Changelog
 
+### 48.15.3 [#1448](https://github.com/openfisca/openfisca-france/pull/1448)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2020.
+* Zones impactées : `prestations/prestations_familiales/af`.
+* Détails :
+  - Revalorisation périodique de l'Allocation Familiale.
+
 ### 48.15.2 [#1439](https://github.com/openfisca/openfisca-france/pull/1439)
 
 * Amélioration technique.
