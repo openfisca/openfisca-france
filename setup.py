@@ -42,7 +42,7 @@ setup(
             ],
         "dev": [
             "autopep8 ==1.5.4",
-            "flake8 >=3.7.0,<3.8.0",
+            "flake8 >=3.8.0,<3.9.0",
             "flake8-print",
             "pytest >= 5.0.0, < 7.0.0",
             "scipy >= 0.17",  # Only used to test de_net_a_brut reform
