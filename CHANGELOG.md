@@ -1,5 +1,11 @@
 # Changelog
 
+### 48.15.5 [#1447](https://github.com/openfisca/openfisca-france/pull/1447)
+
+* Amélioration technique.
+* Détails :
+  - Met à jour les librairies `pytest` et `flake8`
+
 ### 48.15.4 [#1449](https://github.com/openfisca/openfisca-france/pull/1449)
 
 * Évolution du système socio-fiscal.
