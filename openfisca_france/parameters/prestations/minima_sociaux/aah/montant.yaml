@@ -56,3 +56,6 @@ values:
   2019-11-01:
     value: 900
     reference: https://www.service-public.fr/particuliers/vosdroits/F12242
+  2020-04-01:
+    value: 902.7
+    reference: https://www.legifrance.gouv.fr/loda/id/JORFTEXT000041835211/2020-10-13/
