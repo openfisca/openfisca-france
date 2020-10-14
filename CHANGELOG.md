@@ -1,5 +1,13 @@
 # Changelog
 
+### 48.15.4 [#1449](https://github.com/openfisca/openfisca-france/pull/1449)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/11/2019.
+* Zones impactées : `prestations/minima_sociaux/aah`.
+* Détails :
+  - Actualise les paramètres de l'AAH
+
 ### 48.15.3 [#1448](https://github.com/openfisca/openfisca-france/pull/1448)
 
 * Évolution du système socio-fiscal.
