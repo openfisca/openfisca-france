@@ -32,7 +32,7 @@ def add_member(entity, **variables_value_by_name):
     simulation = entity.simulation
 
     # Add a cell to all arrays of all variables of entity.
-    for variable_name, variable_holder in entity.holder_by_name.items():
+    for _variable_name, variable_holder in entity.holder_by_name.items():
         column = variable_holder.variable
         if column.definition_period is ETERNITY:   # noqa F821
             variable_holder._array = np.hstack((variable_holder._array, [column.default_value]))
@@ -46,7 +46,7 @@ def add_member(entity, **variables_value_by_name):
     # When entity is a person, ensure that the index & role of the person in the other entities are set.
     value_by_name = variables_value_by_name.copy()
     if entity.is_persons_entity:
-        for other_entity in simulation.entity_by_key_singular.itervalues():
+        for other_entity in iter(simulation.entity_by_key_singular.values()):
             if not other_entity.is_persons_entity:
                 assert other_entity.count > 0
                 value_by_name.setdefault(other_entity.index_for_person_variable_name, other_entity.count - 1)
