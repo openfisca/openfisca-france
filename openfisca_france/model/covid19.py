@@ -100,13 +100,16 @@ class covid_activite_partielle_montant(Variable):
     value_type = float
     label = "Montant de l'indemnité salariale de chômage partiel"
     definition_period = MONTH
+    reference = [
+        "Ordonnance n° 2020-346 du 27 mars 2020 portant mesures d'urgence en matière d'activité partielle",
+        "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000041762506/",
+    ]
     
     def formula_2020_03(individu, period, parameters) :
         eligibilite_activite_partielle= individu('covid_activite_partielle_eligible', period)
         heures = individu('heures_remunerees_volume', period)
         salaire_horaire = individu('salaire_de_base', period) / heures
-        indemnite_horaire_nonplafonnee = parameters(period).covid19.indemnite_ap.taux * salaire_horaire
-        plafond = parameters(period).cotsoc.gen.smic_h_b * parameters(period).covid19.indemnite_ap.plafond_smic
+        indemnite_horaire_nonplancher = parameters(period).covid19.indemnite_ap.taux * salaire_horaire
         plancher = parameters(period).covid19.indemnite_ap.plancher
-        indemnite_horaire = max(min(indemnite_horaire_nonplafonnee, plafond), plancher)
+        indemnite_horaire = max(indemnite_horaire_nonplancher, plancher)
         return eligibilite_activite_partielle * indemnite_horaire * heures 
