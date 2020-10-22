@@ -84,7 +84,7 @@ class covid_aide_exceptionnelle_famille_montant(Variable):
         base_n_1 = rsa_n_1 + ass_n_1
         montant_n_1 = base_n_1 * (montants.base + montants.par_enfant * af_nbenf_n_1) + not_(base_n_1) * al_n_1 * af_nbenf_n_1 * montants.par_enfant
         
-        return (montant>0)*montant + (montant==0)*(montant_n_1>0)*montant_n_1
+        return (montant > 0) * montant + (montant == 0) * (montant_n_1 > 0) * montant_n_1
 
 class covid_activite_partielle_eligible(Variable):
     entity = Individu
