@@ -1,5 +1,5 @@
 - name: "Lot 1, Cas 1 AL Reforme 2019"
-  period: 2019-07
+  period: 2021-01
   relative_error_margin: 0.01
   input:
     famille:
@@ -7,21 +7,21 @@
     menage:
       personne_de_reference: personne1
       statut_occupation_logement:
-        2019-07: locataire_vide
+        2021-01: locataire_vide
       logement_conventionne:
-        2019-07: false
+        2021-01: false
       depcom:
-        2019-07: 32107
+        2021-01: 32107
       loyer:
-        2019-07: 306
+        2021-01: 306
       charges_locatives:
-        2019-07: 20
+        2021-01: 20
     individus:
       personne1:
         activite:
-          2019-07: chomeur
+          2021-01: chomeur
         date_naissance:
-          2019-07: 1986-12-01
+          2021-01: 1986-12-01
     foyer_fiscal:
       declarants: [personne1]
   output:
@@ -29,7 +29,7 @@
     aide_logement: 254.27
 
 - name: "Lot 1, Cas 2 AL Reforme 2019"
-  period: 2019-07
+  period: 2021-01
   relative_error_margin: 0.01
   input:
     famille:
@@ -37,22 +37,22 @@
     menage:
       personne_de_reference: personne1
       statut_occupation_logement:
-        2019-07: locataire_vide
+        2021-01: locataire_vide
       logement_conventionne:
-        2019-07: false
+        2021-01: false
       depcom:
-        2019-07: 32013
+        2021-01: 32013
       loyer:
-        2019-07: 608
+        2021-01: 608
     individus:
       personne1:
         activite:
-          2019-07: actif
+          2021-01: actif
         date_naissance:
-          2019-07: 1960-01-01
+          2021-01: 1962-01-01
         tns_benefice_exploitant_agricole:
-          2017: 0
-          year:2018-06: 6864
+          2019: 0
+          year:2019-12: 6864
     foyer_fiscal:
       declarants: [personne1]
   output:
@@ -60,7 +60,7 @@
     aide_logement: 174.87
 
 - name: "Lot 1, Cas 3 AL Reforme 2019"
-  period: 2019-07
+  period: 2021-01
   relative_error_margin: 0.01
   input:
     famille:
@@ -68,47 +68,47 @@
     menage:
       personne_de_reference: personne1
       statut_occupation_logement:
-        2019-07: locataire_vide
+        2021-01: locataire_vide
       logement_conventionne:
-        2019-07: false
+        2021-01: false
       depcom:
-        2019-07: 32194
+        2021-01: 32194
       loyer:
-        2019-07: 306
+        2021-01: 306
       charges_locatives:
-        2019-07: 20
+        2021-01: 20
     individus:
       personne1:
         activite:
-          2019-07: chomeur
-          2019-06: chomeur
-          2019-05: chomeur
-          2019-04: chomeur
-          2019-03: chomeur
-          2019-02: chomeur
-          2019-01: chomeur
-          2018-12: chomeur
-          2018-11: chomeur
-          2018-10: actif
-          2018-09: actif
-          2018-08: actif
+          2020-12: chomeur
+          2020-11: chomeur
+          2020-10: chomeur
+          2020-09: chomeur
+          2020-08: chomeur
+          2020-07: chomeur
+          2020-06: chomeur
+          2020-05: chomeur
+          2020-04: chomeur
+          2020-03: actif
+          2020-02: actif
+          2020-01: actif
         date_naissance:
-          2019-07: 1986-01-01
+          2021-01: 1986-01-01
         ass_precondition_remplie: true
         salaire_imposable:
-          2018-09: 592.48
-          2018-08: 592.48
-          2018-07: 592.48
+          2020-03: 592.48
+          2020-02: 592.48
+          2020-01: 592.48
         chomage_imposable:
-          2019-06: 852.55
-          2019-05: 852.55
-          2019-04: 852.55
-          2019-03: 852.55
-          2019-02: 852.55
-          2019-01: 852.55
-          2018-12: 852.55
-          2018-11: 852.55
-          2018-10: 852.55
+          2020-12: 852.55
+          2020-11: 852.55
+          2020-10: 852.55
+          2020-06: 852.55
+          2020-05: 852.55
+          2020-04: 852.55
+          2020-03: 852.55
+          2020-02: 852.55
+          2020-01: 852.55
     foyer_fiscal:
       declarants: [personne1]
   output:
@@ -116,7 +116,7 @@
     aide_logement: 129.65
 
 - name: "Lot 1, Cas 4 AL Reforme 2019"
-  period: 2019-08
+  period: 2021-01
   relative_error_margin: 0.01
   input:
     famille:
@@ -124,33 +124,33 @@
     menage:
       personne_de_reference: personne1
       statut_occupation_logement:
-        2019-08: locataire_vide
+        2021-01: locataire_vide
       logement_conventionne:
-        2019-08: false
+        2021-01: false
       depcom:
-        2019-08: 32013
+        2021-01: 32013
       loyer:
-        2019-08: 311
+        2021-01: 311
     individus:
       personne1:
         activite: actif
         date_naissance:
-          2019-08: 1986-01-01
+          2021-01: 1986-01-01
         salaire_imposable:
-          2019-07: 720
-          2019-06: 720
-          2019-05: 720
-          2019-04: 720
-          2019-03: 720
-          2019-02: 720
-          2019-01: 720
-          2018-12: 720
-          2018-11: 720
-          2018-10: 720
-          2018-09: 720
-          2018-08: 720
+          2020-12: 720
+          2020-11: 720
+          2020-10: 720
+          2020-09: 720
+          2020-08: 720
+          2020-07: 720
+          2020-06: 720
+          2020-05: 720
+          2020-04: 720
+          2020-03: 720
+          2020-02: 720
+          2020-01: 720
         pensions_alimentaires_versees_individu:
-          2018: 2376
+          2020: 2376
     foyer_fiscal:
       declarants: [personne1]
   output:
@@ -158,7 +158,7 @@
     aide_logement: 229.14
 
 - name: "Lot 2, Cas 5 AL Reforme 2019"
-  period: 2019-07
+  period: 2021-01
   relative_error_margin: 0.01
   input:
     famille:
@@ -169,30 +169,30 @@
       conjoint: personne2
       enfants: [enfant1, enfant2]
       statut_occupation_logement:
-        2019-07: locataire_vide
+        2021-01: locataire_vide
       logement_conventionne:
-        2019-07: false
+        2021-01: false
       depcom:
-        2019-07: 65055
+        2021-01: 65055
       loyer:
-        2019-07: 579.50
+        2021-01: 579.50
     individus:
       personne1:
         activite: actif
         date_naissance:
-          2019-07: 1981-01-01
+          2021-01: 1981-01-01
         tns_benefice_exploitant_agricole:
-          2017: 21502
+          2019: 21502
       personne2:
         activite: inactif
         date_naissance:
-          2019-07: 1979-01-01
+          2021-01: 1979-01-01
       enfant1:
         date_naissance:
-          2019-07: 2011-01-01
+          2021-01: 2011-01-01
       enfant2:
         date_naissance:
-          2019-07: 2015-01-01
+          2021-01: 2015-01-01
     foyer_fiscal:
       declarants: [personne1, personne2]
       personnes_a_charge: [enfant1, enfant2]
@@ -201,7 +201,7 @@
     aide_logement: 50.25
 
 - name: "Lot 2, Cas 6 AL Reforme 2019"
-  period: 2019-07
+  period: 2021-01
   relative_error_margin: 0.01
   input:
     famille:
@@ -209,21 +209,21 @@
     menage:
       personne_de_reference: personne1
       statut_occupation_logement:
-        2019-07: locataire_vide
+        2021-01: locataire_vide
       logement_conventionne:
-        2019-07: false
+        2021-01: false
       depcom:
-        2019-07: 32013
+        2021-01: 32013
       loyer:
-        2019-07: 214.38
+        2021-01: 214.38
     individus:
       personne1:
         activite:
-          2019-07: actif
+          2021-01: actif
         date_naissance:
-          2019-07: 1964-01-01
+          2021-01: 1964-01-01
         tns_benefice_exploitant_agricole:
-          2017: 4935
+          2019: 4935
     foyer_fiscal:
       declarants: [personne1]
   output:
@@ -231,7 +231,7 @@
     aide_logement: 214.07
 
 - name: "Lot 2, Cas 7 AL Reforme 2019"
-  period: 2019-07
+  period: 2021-01
   relative_error_margin: 0.01
   input:
     famille:
@@ -239,45 +239,45 @@
     menage:
       personne_de_reference: personne1
       statut_occupation_logement:
-        2019-07: locataire_vide
+        2021-01: locataire_vide
       logement_conventionne:
-        2019-07: false
+        2021-01: false
       depcom:
-        2019-07: 32147
+        2021-01: 32147
       loyer:
-        2019-07: 267.66
+        2021-01: 267.66
     individus:
       personne1:
         activite:
-          2019-07: actif
-          2019-06: actif
-          2019-05: actif
-          2019-04: actif
-          2019-03: actif
-          2019-02: actif
-          2019-01: actif
-          2018-12: actif
-          2018-11: actif
-          2018-10: chomeur
-          2018-09: chomeur
-          2018-08: chomeur
+          2020-12: actif
+          2020-11: actif
+          2020-10: actif
+          2020-09: actif
+          2020-08: actif
+          2020-07: actif
+          2020-06: actif
+          2020-05: actif
+          2020-04: actif
+          2020-03: chomeur
+          2020-02: chomeur
+          2020-01: chomeur
         date_naissance:
-          2019-07: 1980-01-01
+          2021-01: 1980-01-01
         ass_precondition_remplie: true
         chomage_imposable:
-          2018-09: 204.28
-          2018-08: 204.28
-          2018-07: 204.28
+          2020-03: 204.28
+          2020-02: 204.28
+          2020-01: 204.28
         salaire_imposable:
-          2019-06: 1319.49
-          2019-05: 1319.49
-          2019-04: 1319.49
-          2019-03: 1319.49
-          2019-02: 1319.49
-          2019-01: 1319.49
-          2018-12: 1319.49
-          2018-11: 1319.49
-          2018-10: 1319.49
+          2020-12: 1319.49
+          2020-11: 1319.49
+          2020-10: 1319.49
+          2020-09: 1319.49
+          2020-08: 1319.49
+          2020-07: 1319.49
+          2020-06: 1319.49
+          2020-05: 1319.49
+          2020-04: 1319.49
     foyer_fiscal:
       declarants: [personne1]
   output:
@@ -285,237 +285,237 @@
     aide_logement: 46.23
 
 - name: "Lot 2, Cas 8 AL Reforme 2019"
-  period: 2019-07
+  period: 2021-01
   relative_error_margin: 0.01
   input:
     famille:
       parents: [personne1, personne2]
       enfants: [enfant1]
       rsa:
-        2019-06: 0
-        2019-05: 0
-        2019-04: 0
-        2019-03: 0
-        2019-02: 0
-        2019-01: 0
-        2018-12: 0
-        2018-11: 0
-        2018-10: 0
-        2018-09: 0
-        2018-08: 0
-        2018-07: 0
+        2020-12: 0
+        2020-11: 0
+        2020-10: 0
+        2020-09: 0
+        2020-08: 0
+        2020-07: 0
+        2020-06: 0
+        2020-05: 0
+        2020-04: 0
+        2020-03: 0
+        2020-02: 0
+        2020-01: 0
     menage:
       personne_de_reference: personne1
       conjoint: personne2
       enfants: [enfant1]
       statut_occupation_logement:
-        2019-07: locataire_vide
+        2021-01: locataire_vide
       logement_conventionne:
-        2019-07: true
+        2021-01: true
       depcom:
-        2019-07: 32013
+        2021-01: 32013
       loyer:
-        2019-07: 527.37
+        2021-01: 527.37
     individus:
       personne1:
         activite: actif
         date_naissance:
-          2019-07: 1965-01-01
+          2021-01: 1965-01-01
         salaire_imposable:
-          2019-06: 671.66
-          2019-05: 671.66
-          2019-04: 671.66
-          2019-03: 671.66
-          2019-02: 671.66
-          2019-01: 671.66
-          2018-12: 671.66
-          2018-11: 671.66
-          2018-10: 671.66
-          2018-09: 671.66
-          2018-08: 671.66
-          2018-07: 671.66
+          2020-12: 671.66
+          2020-11: 671.66
+          2020-10: 671.66
+          2020-09: 671.66
+          2020-08: 671.66
+          2020-07: 671.66
+          2020-06: 671.66
+          2020-05: 671.66
+          2020-04: 671.66
+          2020-03: 671.66
+          2020-02: 671.66
+          2020-01: 671.66
       personne2:
         activite: actif
         date_naissance:
           2019-07: 1965-01-01
         salaire_imposable:
-          2019-06: 281.58
-          2019-05: 281.58
-          2019-04: 281.58
-          2019-03: 281.58
-          2019-02: 281.58
-          2019-01: 281.58
-          2018-12: 281.58
-          2018-11: 281.58
-          2018-10: 281.58
-          2018-09: 281.58
-          2018-08: 281.58
-          2018-07: 281.58
+          2020-12: 281.58
+          2020-11: 281.58
+          2020-10: 281.58
+          2020-09: 281.58
+          2020-08: 281.58
+          2020-07: 281.58
+          2020-06: 281.58
+          2020-05: 281.58
+          2020-04: 281.58
+          2020-03: 281.58
+          2020-02: 281.58
+          2020-01: 281.58
       enfant1:
         date_naissance:
-          2019-07: 2000-01-01
+          2021-01: 2002-01-01
     foyer_fiscal:
       declarants: [personne1, personne2]
       personnes_a_charge: [enfant1]
   output:
     zone_apl: zone_3
-    aide_logement: 209.05 #ERROR
+    aide_logement: 244
 
-- name: "Lot 3, Cas 9 AL Reforme 2019"
-  period: 2019-07
-  relative_error_margin: 0.01
-  input:
-    famille:
-      parents: [personne1, personne2]
-      enfants: [enfant1, enfant2, enfant3, enfant4]
-      rsa:
-        2019-06: 0
-        2019-05: 0
-        2019-04: 0
-        2019-03: 0
-        2019-02: 0
-        2019-01: 0
-        2018-12: 0
-        2018-11: 0
-        2018-10: 0
-        2018-09: 0
-        2018-08: 0
-        2018-07: 0
-    menage:
-      personne_de_reference: personne1
-      conjoint: personne2
-      enfants: [enfant1, enfant2, enfant3, enfant4]
-      statut_occupation_logement:
-        2019-07: locataire_vide
-      logement_conventionne:
-        2019-07: true
-      depcom:
-        2019-07: 31000
-      loyer:
-        2019-07: 545.93
-    individus:
-      personne1:
-        activite:
-          2019-07: actif
-          2019-06: actif
-          2019-05: actif
-          2019-04: actif
-          2019-03: actif
-          2019-02: actif
-          2019-01: actif
-          2018-12: actif
-          2018-11: actif
-          2018-10: chomeur
-          2018-09: chomeur
-          2018-08: chomeur
-        date_naissance:
-          2019-07: 1970-01-01
-        salaire_imposable:
-          2018-09: 1633.2
-          2018-08: 1633.2
-          2018-07: 1633.2
-        chomage_imposable:
-          2019-06: 719.4
-          2019-05: 719.4
-          2019-04: 719.4
-          2019-03: 719.4
-          2019-02: 719.4
-          2019-01: 719.4
-          2018-12: 719.4
-          2018-11: 719.4
-          2018-10: 719.4
-      personne2:
-        activite: inactif
-        date_naissance:
-          2019-07: 1977-01-01
-      enfant1:
-        date_naissance:
-          2019-07: 2000-01-01
-      enfant2:
-        date_naissance:
-          2019-07: 2000-01-01
-      enfant3:
-        date_naissance:
-          2019-07: 2000-01-01
-      enfant4:
-        date_naissance:
-          2019-07: 2000-01-01
-    foyer_fiscal:
-      declarants: [personne1, personne2]
-      personnes_a_charge: [enfant1, enfant2, enfant3, enfant4]
-  output:
-    zone_apl: zone_2
-    aide_logement: 462.94
+#- name: "Lot 3, Cas 9 AL Reforme 2019"
+#  period: 2021-01
+#  relative_error_margin: 0.01
+#  input:
+#    famille:
+#      parents: [personne1, personne2]
+#      enfants: [enfant1, enfant2, enfant3, enfant4]
+#      rsa:
+#        2020-12: 0
+#        2020-11: 0
+#        2020-10: 0
+#        2020-09: 0
+#        2020-08: 0
+#        2020-07: 0
+#        2020-06: 0
+#        2020-05: 0
+#        2020-04: 0
+#        2020-03: 0
+#        2020-02: 0
+#        2020-01: 0
+#    menage:
+#      personne_de_reference: personne1
+#      conjoint: personne2
+#      enfants: [enfant1, enfant2, enfant3, enfant4]
+#      statut_occupation_logement:
+#        2021-01: locataire_vide
+#      logement_conventionne:
+#        2021-01: true
+#      depcom:
+#        2021-01: 31000
+#      loyer:
+#        2021-01: 545.93
+#    individus:
+#      personne1:
+#        activite:
+#          2020-12: actif
+#          2020-11: actif
+#          2020-10: actif
+#          2020-09: actif
+#          2020-08: actif
+#          2020-07: actif
+#          2020-06: actif
+#          2020-05: actif
+#          2020-04: actif
+#          2020-03: chomeur
+#          2020-02: chomeur
+#          2020-01: chomeur
+#        date_naissance:
+#          2021-01: 1970-01-01
+#        chomage_imposable:
+#          2020-01: 1633.2
+#          2020-02: 1633.2
+#          2020-03: 1633.2
+#        salaire_imposable:
+#          2020-12: 719.4
+#          2020-11: 719.4
+#          2020-10: 719.4
+#          2020-09: 719.4
+#          2020-08: 719.4
+#          2020-07: 719.4
+#          2020-06: 719.4
+#          2020-05: 719.4
+#          2020-04: 719.4
+#      personne2:
+#        activite: inactif
+#        date_naissance:
+#          2021-01: 1977-01-01
+#      enfant1:
+#        date_naissance:
+#          2021-01: 2000-01-01
+#      enfant2:
+#        date_naissance:
+#          2021-01: 2000-01-01
+#      enfant3:
+#        date_naissance:
+#          2021-01: 2000-01-01
+#      enfant4:
+#        date_naissance:
+#          2021-01: 2000-01-01
+#    foyer_fiscal:
+#      declarants: [personne1, personne2]
+#      personnes_a_charge: [enfant1, enfant2, enfant3, enfant4]
+#  output:
+#    zone_apl: zone_2
+#    aide_logement: 462.94
 
 - name: "Lot 3, Cas 10 AL Reforme 2019"
-  period: 2019-07
+  period: 2021-01
   relative_error_margin: 0.01
   input:
     famille:
       parents: [personne1]
       rsa:
-        2019-06: 0
-        2019-05: 0
-        2019-04: 0
-        2019-03: 0
-        2019-02: 0
-        2019-01: 0
-        2018-12: 0
-        2018-11: 0
-        2018-10: 0
-        2018-09: 0
-        2018-08: 0
-        2018-07: 0
+        2020-12: 0
+        2020-11: 0
+        2020-10: 0
+        2020-09: 0
+        2020-08: 0
+        2020-07: 0
+        2020-06: 0
+        2020-05: 0
+        2020-04: 0
+        2020-03: 0
+        2020-02: 0
+        2020-01: 0
     menage:
       personne_de_reference: personne1
       statut_occupation_logement:
-        2019-07: locataire_foyer
+        2021-01: locataire_foyer
       logement_conventionne:
-        2019-07: true
+        2021-01: true
       depcom:
-        2019-07: 32013
+        2021-01: 32013
       loyer:
-        2019-07: 612.60
+        2021-01: 612.60
       charges_locatives:
-        2019-07: 1
+        2021-01: 1
     individus:
       personne1:
         activite:
-          2019-07: retraite
-          2019-06: retraite
-          2019-05: retraite
-          2019-04: retraite
-          2019-03: retraite
-          2019-02: retraite
-          2019-01: retraite
-          2018-12: retraite
-          2018-11: retraite
-          2018-10: retraite
-          2018-09: retraite
-          2018-08: retraite
+          2020-12: retraite
+          2020-11: retraite
+          2020-10: retraite
+          2020-09: retraite
+          2020-08: retraite
+          2020-07: retraite
+          2020-06: retraite
+          2020-05: retraite
+          2020-04: retraite
+          2020-03: retraite
+          2020-02: retraite
+          2020-01: retraite
         date_naissance:
-          2019-07: 1936-01-01
+          2021-01: 1936-01-01
         retraite_imposable:
-          2018-09: 682.65
-          2018-08: 682.65
-          2018-07: 682.65
-          2019-06: 682.65
-          2019-05: 682.65
-          2019-04: 682.65
-          2019-03: 682.65
-          2019-02: 682.65
-          2019-01: 682.65
-          2018-12: 682.65
-          2018-11: 682.65
-          2018-10: 637.65 #rustine pour prise en compte frais réels (682.65 - 45)
+          2020-12: 682.65
+          2020-11: 682.65
+          2020-10: 637.65
+          2020-09: 682.65
+          2020-08: 682.65
+          2020-07: 682.65
+          2020-06: 682.65
+          2020-05: 682.65
+          2020-04: 682.65
+          2020-03: 682.65
+          2020-02: 682.65
+          2020-01: 682.65 #rustine pour prise en compte frais réels (682.65 - 45)
         livret_a:
-          2017: 828.40
+          2019: 828.40
         frais_reels:
-          2018: 45 #problème application frais réels sur pension retraite
+          2020: 45 #problème application frais réels sur pension retraite
     foyer_fiscal:
       declarants: [personne1]
       plus_values_gains_divers:
-        2017: 828.40
+        2019: 828.40
   output:
     zone_apl: zone_3
     aide_logement: 153.77 #ERROR
@@ -527,36 +527,36 @@
     famille:
       parents: [personne1]
       rsa:
-        2019-06: 0
-        2019-05: 0
-        2019-04: 0
-        2019-03: 0
-        2019-02: 0
-        2019-01: 0
-        2018-12: 0
-        2018-11: 0
-        2018-10: 0
-        2018-09: 0
-        2018-08: 0
-        2018-07: 0
+        2020-12: 0
+        2020-11: 0
+        2020-10: 0
+        2020-09: 0
+        2020-08: 0
+        2020-07: 0
+        2020-06: 0
+        2020-05: 0
+        2020-04: 0
+        2020-03: 0
+        2020-02: 0
+        2020-01: 0
     menage:
       personne_de_reference: personne1
       statut_occupation_logement:
-        2019-07: locataire_vide
+        2021-01: locataire_vide
       logement_conventionne:
-        2019-07: false
+        2021-01: false
       depcom:
-        2019-07: 31555
+        2021-01: 31555
       loyer:
-        2019-07: 300
+        2021-01: 300
     individus:
       personne1:
         activite:
-          2019-07: etudiant
+          2021-01: etudiant
         boursier:
-          2019-07: true
+          2021-01: true
         date_naissance:
-          2019-07: 2000-01-01
+          2021-01: 2000-01-01
     foyer_fiscal:
       declarants: [personne1]
   output:
@@ -570,107 +570,106 @@
     famille:
       parents: [personne1]
       rsa:
-        2019-06: 0
-        2019-05: 0
-        2019-04: 0
-        2019-03: 0
-        2019-02: 0
-        2019-01: 0
-        2018-12: 0
-        2018-11: 0
-        2018-10: 0
-        2018-09: 0
-        2018-08: 0
-        2018-07: 0
+        2020-12: 0
+        2020-11: 0
+        2020-10: 0
+        2020-09: 0
+        2020-08: 0
+        2020-07: 0
+        2020-06: 0
+        2020-05: 0
+        2020-04: 0
+        2020-03: 0
+        2020-02: 0
+        2020-01: 0
     menage:
       personne_de_reference: personne1
       statut_occupation_logement:
-        2019-07: locataire_vide
+        2021-01: locataire_vide
       logement_conventionne:
-        2019-07: true
+        2021-01: true
       depcom:
-        2019-07: 31555
+        2021-01: 31555
       loyer:
-        2019-07: 500
+        2021-01: 500
     individus:
       personne1:
         activite:
-          2019-07: etudiant
+          2021-01: etudiant
         boursier:
-          2019-07: false
+          2021-01: false
         date_naissance:
-          2019-07: 2002-01-01
+          2021-01: 2002-01-01
         salaire_imposable:
-          2019-06: 150
-          2019-05: 150
-          2019-04: 150
-          2019-03: 150
-          2019-02: 150
-          2019-01: 150
-          2018-12: 150
-          2018-11: 150
-          2018-10: 150
-          2018-09: 150
-          2018-08: 150
-          2018-07: 150
+          2020-12: 150
+          2020-11: 150
+          2020-10: 150
+          2020-09: 150
+          2020-08: 150
+          2020-07: 150
+          2020-06: 150
+          2020-05: 150
+          2020-04: 150
+          2020-03: 150
+          2020-02: 150
+          2020-01: 150
     foyer_fiscal:
       declarants: [personne1]
   output:
     zone_apl: zone_2
     aide_logement: 144.24
 
-#- name: "Cas 2 AL Reforme 2019, couple retraité avec loyer élevé"
-#  period: 2019-07
-#  relative_error_margin: 0.01
-#  input:
-#    famille:
-#      parents: [parent1, parent2]
-#    menage:
-#      personne_de_reference: parent1
-#      conjoint: parent2
-#      statut_occupation_logement:
-#        2019-07: locataire_vide
-#      logement_conventionne:
-#        2019-07: false
-#      depcom:
-#        2019-07: 11069
-#      loyer:
-#        2019-07: 2000
-#    individus:
-#      parent1:
-#        activite:
-#          2019-07: retraite
-#        date_naissance:
-#          2019-07: 1943-10-14
-#        retraite_imposable:
-#          2019-05: 375
-#          2019-04: 375
-#          2019-03: 375
-#          2019-02: 375
-#          2019-01: 375
-#          2018-12: 375
-#          2018-11: 375
-#          2018-10: 375
-#          2018-09: 375
-#          2018-08: 375
-#          2018-07: 375
-#          2018-06: 375
-#      parent2:
-#        activite:
-#          2019-07: retraite
-#        date_naissance:
-#          2019-07: 1946-06-17
-#        pensions_invalidite:
-#          2017: 10300
-#        epargne_revenus_imposables:
-#          2019-07: 24000
-#    foyer_fiscal:
-#      declarants: [parent1, parent2]
-#      rente_viagere_titre_onereux_net:
-#        2018: 3000
-#  output:
-#    aide_logement: 0
-#
+- name: "Cas 2 AL Reforme 2019, couple retraité avec loyer élevé"
+  period: 2021-01
+  relative_error_margin: 0.01
+  input:
+    famille:
+      parents: [parent1, parent2]
+    menage:
+      personne_de_reference: parent1
+      conjoint: parent2
+      statut_occupation_logement:
+        2021-01: locataire_vide
+      logement_conventionne:
+        2021-01: false
+      depcom:
+        2021-01: 11069
+      loyer:
+        2021-01: 2000
+    individus:
+      parent1:
+        activite:
+          2021-01: retraite
+        date_naissance:
+          2021-01: 1943-10-14
+        retraite_imposable:
+          2020-12: 375
+          2020-11: 375
+          2020-10: 375
+          2020-09: 375
+          2020-08: 375
+          2020-07: 375
+          2020-05: 375
+          2020-04: 375
+          2020-03: 375
+          2020-02: 375
+          2020-01: 375
+      parent2:
+        activite:
+          2021-01: retraite
+        date_naissance:
+          2021-01: 1946-06-17
+        pensions_invalidite:
+          2019: 10300
+        epargne_revenus_imposables:
+          2021-01: 24000
+    foyer_fiscal:
+      declarants: [parent1, parent2]
+      rente_viagere_titre_onereux_net:
+        2020: 3000
+  output:
+    aide_logement: 0
+
 #- name: "Cas 3 AL Reforme 2019, personne seule en congé parental"
 #  period: 2019-07
 #  relative_error_margin: 0.01
