@@ -33,7 +33,7 @@ class covid_aide_exceptionnelle_tpe_montant(Variable):
         period_1 = period.offset(-1, 'year')
         chiffre_d_affaire_annee_n_1 = individu('tns_auto_entrepreneur_chiffre_affaires', period_1)
         difference_chiffre_d_affaire = chiffre_d_affaire - chiffre_d_affaire_annee_n_1
-        return eligibilite_fse*(difference_chiffre_d_affaire < 0) * ((difference_chiffre_d_affaire < -plafond_fse) * plafond_fse + (difference_chiffre_d_affaire > -plafond_fse) * (-difference_chiffre_d_affaire))
+        return eligibilite_fse * (difference_chiffre_d_affaire < 0) * min_(plafond_fse, -difference_chiffre_d_affaire)
 
 
 class covid_aide_exceptionnelle_famille_eligible(Variable):
