@@ -15,7 +15,7 @@ class css_participation_forfaitaire_montant_i(Variable):
     label = "Montant de la participation forfaitaire d'une personne"
     definition_period = MONTH
 
-    def formula(individu, period, parameters):
+    def formula_2019_11_01(individu, period, parameters):
         P = parameters(period).cs.css
         age = individu('age', period)
         salarie_regime_alsace_moselle = individu('salarie_regime_alsace_moselle', period)
