@@ -64,7 +64,7 @@ class acs(Variable):
     set_input = set_input_divide_by_period
     end = '2021-05-01'
 
-    def formula_2019_07_01(famille, period):
+    def formula_2019_10_03(famille, period):
         return
 
     def formula(famille, period):
