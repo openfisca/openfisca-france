@@ -1,5 +1,13 @@
 # Changelog
 
+### 48.15.6 [#1456](https://github.com/openfisca/openfisca-france/pull/1456)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2020.
+* Zones impactées : `openfisca_france/parameters/prestations/reduction_loyer_solidarite/montant/par_zone/`
+* Détails :
+  - Mise à jour des montants de réduction de loyer de solidarité (RLS) pour janvier et octobre 2020.
+
 ### 48.15.5 [#1447](https://github.com/openfisca/openfisca-france/pull/1447)
 
 * Amélioration technique.
@@ -310,9 +318,9 @@
 * Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 01/06/2009.
 * Zones impactées :
-`openfisca_france/model/prestations/minima_sociaux/rsa.py`
-`openfisca_france/parameters/prestations/minima_sociaux/rsa/duree_min_titre_sejour.yaml`
-`openfisca_france/tests/formulas/rsa/rsa_condition_nationalite.yaml`
+  - `openfisca_france/model/prestations/minima_sociaux/rsa.py`
+  - `openfisca_france/parameters/prestations/minima_sociaux/rsa/duree_min_titre_sejour.yaml`
+  - `openfisca_france/tests/formulas/rsa/rsa_condition_nationalite.yaml`
 * Détails :
   - Avant cette modification, un ressortissant de l'EEE était considéré comme ayant toujours droit au RSA, alors qu'en réalité il doit être en France depuis au moins 3 mois pour y avoir droit.
 
