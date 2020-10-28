@@ -977,7 +977,7 @@
     ppa:
       2021-04: 206.28
 
-- name: PPA avec revenu d'apprenti -la condition d'accés est remplie sur les 3 ans qui précède la demande soit les 3214 heures d'activité
+- name: PPA avec revenu d'apprenti - la condition d'accés est remplie sur les 3 ans qui précède la demande soit les 3214 heures d'activité
   period: 2021-01
   absolute_error_margin: 0.03
   input:

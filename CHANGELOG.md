@@ -1,5 +1,16 @@
 # Changelog
 
+### 
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : toutes (base ressources) et à partir du 01/04/2020 (montant de base).
+* Zones impactées : 
+  - `openfisca_france/model/prestations/minima_sociaux/ppa.py`
+  - `openfisca_france/parameters/prestations/minima_sociaux/ppa/montant_de_base.yaml`
+* Détails :
+  - Met à jour le montant de base de la PPA pour avril 2020.
+  - Ajoute les ressources de l'apprenti à la base de ressources de la PPA via `ppa_revenu_activite_individu` et le teste.
+
 ### 48.15.6 [#1456](https://github.com/openfisca/openfisca-france/pull/1456)
 
 * Évolution du système socio-fiscal.
