@@ -51,7 +51,7 @@
     aah_eligible: false
 
 - name: "Ineligibilité à l'AAH: taux d'incapacité inférieur à 50% et
-    une estriction substantielle et durable pour l'accès à l'emploi
+    une restriction substantielle et durable pour l'accès à l'emploi
       reconnue par la commission des droits et
       de l'autonomie des personnes handicapées"
   description: Eligible à AAH
@@ -76,7 +76,7 @@
     aah_eligible: true
 
 - name: "Ineligibilité à l'AAH: taux d'incapacité supérieur à 50% et
-    une estriction substantielle et durable pour l'accès à l'emploi
+    une restriction substantielle et durable pour l'accès à l'emploi
       reconnue par la commission des droits et
       de l'autonomie des personnes handicapées"
   description: Eligible à AAH
