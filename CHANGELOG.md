@@ -1,6 +1,6 @@
 # Changelog
 
-### 
+## 48.16.0 [#1454](https://github.com/openfisca/openfisca-france/pull/1454)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : toutes (base ressources) et à partir du 01/04/2020 (montant de base).
