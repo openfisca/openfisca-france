@@ -1,6 +1,6 @@
 # Changelog
 
-###
+### 48.16.1 [#1452](https://github.com/openfisca/openfisca-france/pull/1452)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 01/04/2020.
