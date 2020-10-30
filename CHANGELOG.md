@@ -1,5 +1,16 @@
 # Changelog
 
+###
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/04/2020.
+* Zones impactées : 
+  - `openfisca_france/parameters/prestations/prestations_familiales/af/modulation/` (plafonds) 
+  - `openfisca_france/parameters/prestations/prestations_familiales/cf/plafond_de_ressources_0_enfant.yaml`
+* Détails :
+  - Revalorisation d'avril 2020 des plafonds de modulation des allocations familiales selon ressources
+  - Revalorisation d'avril 2020 du plafond de ressources du complément familial (cas sans enfant)
+
 ## 48.16.0 [#1454](https://github.com/openfisca/openfisca-france/pull/1454)
 
 * Évolution du système socio-fiscal.
