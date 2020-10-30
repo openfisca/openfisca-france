@@ -383,6 +383,17 @@ Le calcul se fait sur une période annuelle mais là formule actuelle effectue l
   - Le dispositif santé psy étudiants passe de 6 à 8 séances.
 
 
+#
+
+* Évolution du système socio-fiscal **non-rétrocompatible**.
+* Périodes concernées : toutes.
+* Zones impactées : 
+  - `model/prestations/minima_sociaux/aah.py`
+  - `tests/formulas/aah/aah_eligible.yaml`
+  - `tests/formulas/aah/aah.yaml`
+* Détails :
+  - AAH : met à jour la valeur par défaut de `aah_restriction_substantielle_durable_acces_emploi` et complète les tests.
+
 ### 149.4.2 [#2128](https://github.com/openfisca/openfisca-france/pull/2128)
 
 * Correction d'une erreur de calcul
