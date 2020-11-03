@@ -638,7 +638,7 @@
     rsa: 0
 
 
-- name: RSA avec revenu d'apprenti - la condition d'accés est remplie sur les 3 ans qui précède la demande soit les 3214 heures d'activité
+- name: RSA avec revenu d'apprenti - la condition d'accès est remplie sur les 3 ans qui précèdent la demande soit les 3214 heures d'activité
   period: 2021-04
   absolute_error_margin: 0.03
   input:
