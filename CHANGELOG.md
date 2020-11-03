@@ -1,11 +1,22 @@
 # Changelog
 
+### 48.16.2 [#1428](https://github.com/openfisca/openfisca-france/pull/1428)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : toutes
+* Zones impactées : `openfisca_france/model/prestations/prestations_familiales/af.py`.
+* Détails :
+  - Revalorisation des AF au 01/01/2020
+  - Ajoute la non applicabilité du complément dégressif des allocations familiales pour une famille ayant un enfant et résidant en DOM hors Mayotte
+  - En effet, le deuxième alinéa de l'article L. 755-12 du code de la sécurité sociale dispose que _toutefois, les quatre derniers alinéas de l’article L. 521-1 ne sont pas applicables lorsque le ménage ou la personne a un seul enfant à charge._
+  - Cet article s'applique dans le cas des allocations familiales dans les DOM hors Mayotte. Or, le dernier alinéa de l'article L. 521-1 correspond au complément dégressif des allocations familiales et de leur majoration. Le complément dégressif ne devrait donc pas s'appliquer dans le cas d'un ménage résidant en DOM hors Mayotte et ayant un enfant à charge.
+
 ### 48.16.1 [#1452](https://github.com/openfisca/openfisca-france/pull/1452)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 01/04/2020.
-* Zones impactées : 
-  - `openfisca_france/parameters/prestations/prestations_familiales/af/modulation/` (plafonds) 
+* Zones impactées :
+  - `openfisca_france/parameters/prestations/prestations_familiales/af/modulation/` (plafonds)
   - `openfisca_france/parameters/prestations/prestations_familiales/cf/plafond_de_ressources_0_enfant.yaml`
 * Détails :
   - Revalorisation d'avril 2020 des plafonds de modulation des allocations familiales selon ressources
@@ -15,7 +26,7 @@
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : toutes (base ressources) et à partir du 01/04/2020 (montant de base).
-* Zones impactées : 
+* Zones impactées :
   - `openfisca_france/model/prestations/minima_sociaux/ppa.py`
   - `openfisca_france/parameters/prestations/minima_sociaux/ppa/montant_de_base.yaml`
 * Détails :

@@ -1,0 +1,48 @@
+- name: Allocations familiales - Couple, 1 enfant, résidence DOM hors Mayotte
+  description: Montant AF + majoration + complément dégressif
+  period: 2020-04
+  absolute_error_margin: 0.01
+  input:
+    famille:
+      parents: [parent1, parent2]
+      enfants: [enfant1]
+    foyer_fiscal:
+      declarants: [parent1, parent2]
+      personnes_a_charge: [enfant1]
+    menage:
+      personne_de_reference: parent1
+      conjoint: parent2
+      enfants: [enfant1]
+      residence_dom: true
+      residence_mayotte: false
+    individus:
+      parent1:
+        age: 38
+        revenu_assimile_salaire:
+          # 63534 est égal au premier plafond de modulation des allocations
+          # familiales dans le cas d'un enfant à charge.
+          # Ici, le revenu est calculé de telle sorte que l'on se place
+          # juste au dessus du plafond en termes de ressources de base
+          # des allocations familiales.
+          2018: 63534 / 0.90 / 2 + 20 / 0.90 / 2
+      parent2:
+        age: 35
+        revenu_assimile_salaire:
+          2018: 63534 / 0.90 / 2 + 20 / 0.90 / 2
+      enfant1:
+        age: 10
+  output:
+    af_taux_modulation: 0.5
+    af_base: 12.19
+    af_majoration: 0
+    # Jusqu'ici, tout va bien. Cependant, nous sommes ici dans le cas d'un ménage
+    # à un enfant en DOM hors Mayotte. Le deuxième alinéa de l'article L. 755-12
+    # du code de la sécurité sociale stipule:
+    # "Toutefois, les quatre derniers alinéas de l’article L. 521-1 ne sont pas applicables lorsque le
+    #  ménage ou la personne a un seul enfant à charge."
+    # Or, le dernier alinéa de l'article L. 521-1 correspond au complément dégressif
+    # des allocations familiales et de leur majoration. Ce complément dégressif
+    # ne devrait pas donc être versé dans cette situation.
+    af_complement_degressif: 0
+    # Les allocations famililes sont bien la somme de la base et du complément.
+    af: 12.19
