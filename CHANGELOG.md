@@ -1,5 +1,16 @@
 # Changelog
 
+## 48.17.0 [#1453](https://github.com/openfisca/openfisca-france/pull/1453)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir de 06/2009 (base ressources).
+* Zones impactées :
+  - `openfisca_france/model/prestations/minima_sociaux/rsa.py`
+  - `openfisca_france/parameters/prestations/minima_sociaux/rsa/montant_de_base_du_rsa.yaml`
+* Détails : 
+  - Met à jour le montant de base du RSA pour avril 2020.
+  - Ajoute les ressources de l'apprenti à la base de ressources du RSA via `rsa_revenu_activite_individu` et le teste.
+
 ### 48.16.2 [#1428](https://github.com/openfisca/openfisca-france/pull/1428)
 
 * Évolution du système socio-fiscal.
