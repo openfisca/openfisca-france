@@ -1,0 +1,200 @@
+- name: Marié·e·s ou pacsé·e·s - Cas général
+  period: 2019
+  input:
+    individus:
+      individu1: {}
+      individu2: {}
+    foyer_fiscal:
+      declarants:
+        - individu1
+        - individu2
+      maries_ou_pacses: true
+  output:
+    nbptr: 2.0
+
+- name: Marié·e·s ou pacsé·e·s - 1 x invalidité
+  period: 2019
+  input:
+    individus:
+      individu1: {}
+      individu2: {}
+    foyer_fiscal:
+      declarants:
+        - individu1
+        - individu2
+      maries_ou_pacses: true
+      caseP: true
+  output:
+    nbptr: 2.5
+
+- name: Marié·e·s ou pacsé·e·s - 2 x invalidité
+  period: 2019
+  input:
+    individus:
+      individu1: {}
+      individu2: {}
+    foyer_fiscal:
+      declarants:
+        - individu1
+        - individu2
+      maries_ou_pacses: true
+      caseP: true
+      caseF: true
+  output:
+    nbptr: 3.0
+
+- name: Marié·e·s ou pacsé·e·s - 1 x agé de plus de 75 ans et carte du combattant / pension militaire d'invalidité / de victime de guerre
+  period: 2019
+  input:
+    individus:
+      individu1: {}
+      individu2: {}
+    foyer_fiscal:
+      declarants:
+        - individu1
+        - individu2
+      maries_ou_pacses: true
+      caseS: true
+  output:
+    nbptr: 2.5
+
+- name: Marié·e·s ou pacsé·e·s - 1 x personne à charge
+  period: 2019
+  input:
+    individus:
+      individu1: {}
+      individu2: {}
+    foyer_fiscal:
+      declarants:
+        - individu1
+        - individu2
+      maries_ou_pacses: true
+      nbF: 1
+  output:
+    nbptr: 2.5
+
+- name: Marié·e·s ou pacsé·e·s - 2 x personnes à charge
+  period: 2019
+  input:
+    individus:
+      individu1: {}
+      individu2: {}
+    foyer_fiscal:
+      declarants:
+        - individu1
+        - individu2
+      maries_ou_pacses: true
+      nbF: 2
+  output:
+    nbptr: 3.0
+
+- name: Marié·e·s ou pacsé·e·s - 4 x personnes à charge
+  period: 2019
+  input:
+    individus:
+      individu1: {}
+      individu2: {}
+    foyer_fiscal:
+      declarants:
+        - individu1
+        - individu2
+      maries_ou_pacses: true
+      nbF: 4
+  output:
+    nbptr: 5.0
+
+- name: Marié·e·s ou pacsé·e·s - 4 x personnes à charge dont 2 x invalidité
+  period: 2019
+  input:
+    individus:
+      individu1: {}
+      individu2: {}
+    foyer_fiscal:
+      declarants:
+        - individu1
+        - individu2
+      maries_ou_pacses: true
+      nbF: 4
+      nbG: 2
+  output:
+    nbptr: 6.0
+
+- name: Marié·e·s ou pacsé·e·s - 4 x personnes à charge dont 4 x invalidité
+  period: 2019
+  input:
+    individus:
+      individu1: {}
+      individu2: {}
+    foyer_fiscal:
+      declarants:
+        - individu1
+        - individu2
+      maries_ou_pacses: true
+      nbF: 4
+      nbG: 4
+  output:
+    nbptr: 7.0
+
+- name: Marié·e·s ou pacsé·e·s - 2 x personnes à charge et 2 x résidence alternée
+  period: 2019
+  input:
+    individus:
+      individu1: {}
+      individu2: {}
+    foyer_fiscal:
+      declarants:
+        - individu1
+        - individu2
+      maries_ou_pacses: true
+      nbF: 2
+      nbH: 2
+  output:
+    nbptr: 4.0
+
+- name: Marié·e·s ou pacsé·e·s - 4 x résidence alternée
+  period: 2019
+  input:
+    individus:
+      individu1: {}
+      individu2: {}
+    foyer_fiscal:
+      declarants:
+        - individu1
+        - individu2
+      maries_ou_pacses: true
+      nbH: 4
+  output:
+    nbptr: 3.5
+
+- name: Marié·e·s ou pacsé·e·s - 2 x personnes à charge et 2 x résidence alternée et invalidité
+  period: 2019
+  input:
+    individus:
+      individu1: {}
+      individu2: {}
+    foyer_fiscal:
+      declarants:
+        - individu1
+        - individu2
+      maries_ou_pacses: true
+      nbF: 2
+      nbH: 2
+      nbI: 2
+  output:
+    nbptr: 4.5
+
+- name: Marié·e·s ou pacsé·e·s - 4 x résidence alternée et invalidité
+  period: 2019
+  input:
+    individus:
+      individu1: {}
+      individu2: {}
+    foyer_fiscal:
+      declarants:
+        - individu1
+        - individu2
+      maries_ou_pacses: true
+      nbH: 4
+      nbI: 4
+  output:
+    nbptr: 4.5
