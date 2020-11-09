@@ -1,5 +1,14 @@
 # Changelog
 
+### 48.17.1 [#1461](https://github.com/openfisca/openfisca-france/pull/1461)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : toutes.
+* Zones impactées : `prelevements_obligatoires/impot_revenu/ir.py`.
+* Détails :
+  - Corrige le calcul du nombre de parts pour un·e veuf·ve
+  - Dans le cas où un·e veuf·ve aurait au moins un·e enfant à charge en garde alternée
+
 ## 48.17.0 [#1453](https://github.com/openfisca/openfisca-france/pull/1453)
 
 * Évolution du système socio-fiscal.
@@ -7,7 +16,7 @@
 * Zones impactées :
   - `openfisca_france/model/prestations/minima_sociaux/rsa.py`
   - `openfisca_france/parameters/prestations/minima_sociaux/rsa/montant_de_base_du_rsa.yaml`
-* Détails : 
+* Détails :
   - Met à jour le montant de base du RSA pour avril 2020.
   - Ajoute les ressources de l'apprenti à la base de ressources du RSA via `rsa_revenu_activite_individu` et le teste.
 
