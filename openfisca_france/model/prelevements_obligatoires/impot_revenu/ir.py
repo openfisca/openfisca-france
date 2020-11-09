@@ -3249,7 +3249,7 @@ class nbptr(Variable):
         nb_parts_famille = 1 + quotient_familial.conj + enf + n2 + n4
 
         # # veufs  hors jeune_veuf
-        nb_parts_veuf = 1 + quotient_familial.veuf * has_pac + enf + n2 + n3 + n5 + n6
+        nb_parts_veuf = 1 + quotient_familial.veuf * (has_pac | has_alt) + enf + n2 + n3 + n5 + n6
 
         # # celib div
         nb_parts_celib = 1 + enf + n2 + n3 + n6 + n7
