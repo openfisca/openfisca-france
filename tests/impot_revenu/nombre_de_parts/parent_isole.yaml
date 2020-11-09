@@ -1,0 +1,122 @@
+- name: Parent isolé·e - 1 x personne à charge
+  period: 2019
+  input:
+    individus:
+      individu1: {}
+    foyer_fiscal:
+      declarants:
+        - individu1
+      caseT: true
+      nbF: 1
+  output:
+    nbptr: 2.0
+
+- name: Parent isolé·e - 2 x personnes à charge
+  period: 2019
+  input:
+    individus:
+      individu1: {}
+    foyer_fiscal:
+      declarants:
+        - individu1
+      caseT: true
+      nbF: 2
+  output:
+    nbptr: 2.5
+
+- name: Parent isolé·e - 4 x personnes à charge
+  period: 2019
+  input:
+    individus:
+      individu1: {}
+    foyer_fiscal:
+      declarants:
+        - individu1
+      caseT: true
+      nbF: 4
+  output:
+    nbptr: 4.5
+
+- name: Parent isolé·e - 4 x personnes à charge dont 2 x invalidité
+  period: 2019
+  input:
+    individus:
+      individu1: {}
+    foyer_fiscal:
+      declarants:
+        - individu1
+      caseT: true
+      nbF: 4
+      nbG: 2
+  output:
+    nbptr: 5.5
+
+- name: Parent isolé·e - 4 x personnes à charge dont 4 x invalidité
+  period: 2019
+  input:
+    individus:
+      individu1: {}
+    foyer_fiscal:
+      declarants:
+        - individu1
+      caseT: true
+      nbF: 4
+      nbG: 4
+  output:
+    nbptr: 6.5
+
+- name: Parent isolé·e - 2 x personnes à charge et 2 x résidence alternée
+  period: 2019
+  input:
+    individus:
+      individu1: {}
+    foyer_fiscal:
+      declarants:
+        - individu1
+      caseT: true
+      nbF: 2
+      nbH: 2
+  output:
+    nbptr: 3.5
+
+- name: Parent isolé·e - 4 x résidence alternée
+  period: 2019
+  input:
+    individus:
+      individu1: {}
+    foyer_fiscal:
+      declarants:
+        - individu1
+      caseT: true
+      nbH: 4
+  output:
+    nbptr: 3.0
+
+- name: Parent isolé·e - 2 x personnes à charge et 2 x résidence alternée et invalidité
+  period: 2019
+  input:
+    individus:
+      individu1: {}
+    foyer_fiscal:
+      declarants:
+        - individu1
+      caseT: true
+      nbF: 2
+      nbH: 2
+      nbI: 2
+  output:
+    nbptr: 4.0
+
+- name: Parent isolé·e - 4 x résidence alternée et invalidité
+  period: 2019
+  input:
+    individus:
+      individu1: {}
+    foyer_fiscal:
+      declarants:
+        - individu1
+      caseT: true
+      nbH: 4
+      nbI: 4
+  output:
+    nbptr: 4.0
