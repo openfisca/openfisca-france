@@ -1,5 +1,16 @@
 # Changelog
 
+# 49.0.0 [#1462](https://github.com/openfisca/openfisca-france/pull/1462)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/1998.
+* Zones impactées : `parameters/impot_revenu/plafond_qf/veuf.yaml`.
+* Détails :
+  - Suppression d'un paramètre dupliqué sur le plafonnement du quotient familial
+  - Le paramètre `plafond_qf.veuf` reprend `plafond_qf.reduc_postplafond_veuf`
+  - Additionnellement, il n'est utilisé nulle part dans le code
+  - Enfin, il n'est pas bien-fondé : ce barème ne devrait commencer qu'en 2012
+
 ### 48.17.1 [#1461](https://github.com/openfisca/openfisca-france/pull/1461)
 
 * Évolution du système socio-fiscal.
