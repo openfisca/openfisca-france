@@ -1,5 +1,17 @@
 # Changelog
 
+
+## 51.1.0 [#1445](https://github.com/openfisca/openfisca-france/pull/1445)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : toutes.
+* Zones impactées :
+  - `model/prestations/agepi.py`
+  - `model/prestations/complement_aide_au_retour_emploi.py`
+* Détails :
+  - Ajout de l'aide à la garde d'enfants pour parent isolé (Agepi) au chômage
+  - Ajout du complément d'Allocation chômage d'aide au retour à l'emploi (ARE) en cas de reprise d'activité salariée
+
 ### 51.0.3 [#1476](https://github.com/openfisca/openfisca-france/pull/1476)
 
 * Amélioration technique.

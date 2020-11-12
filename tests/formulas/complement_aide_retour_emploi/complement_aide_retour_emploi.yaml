@@ -1,0 +1,6 @@
+- period: 2020-06
+  input:
+    salaire_journalier_reference: [100, 100]
+    salaire_de_base: [2100, 0]
+  output:
+    complement_aide_retour_emploi: [228, 0]

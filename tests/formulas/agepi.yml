@@ -1,0 +1,6 @@
+- period: 2020-06
+  input:
+    pe_nbenf: [1, 2]
+    temps_travail_semaine: [10, 10]
+  output:
+    agepi: [170, 195]
