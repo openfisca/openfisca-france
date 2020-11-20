@@ -2,13 +2,13 @@
 
 import logging
 
-from numpy import datetime64, timedelta64, logical_xor as xor_, round as round_, around
+from numpy import datetime64, timedelta64, logical_xor as xor_, round as round_, around, invert
 
 from numpy.core.defchararray import startswith
 
 from openfisca_core.model_api import *
 from openfisca_france.model.base import *
-
+from openfisca_france.model.prelevements_obligatoires.impot_revenu import arrondi_fiscal
 
 log = logging.getLogger(__name__)
 
@@ -2093,7 +2093,7 @@ class iai(Variable):
 
 
 class cehr(Variable):
-    value_type = float
+    value_type = int
     entity = FoyerFiscal
     label = "Contribution exceptionnelle sur les hauts revenus"
     reference = "http://www.legifrance.gouv.fr/affichCode.do?cidTexte=LEGITEXT000006069577&idSectionTA=LEGISCTA000025049019"
@@ -2101,15 +2101,97 @@ class cehr(Variable):
 
     def formula_2011_01_01(foyer_fiscal, period, parameters):
         '''
-        Contribution exceptionnelle sur les hauts revenus
-        'foy'
+        Contribution exceptionnelle sur les hauts revenus (art. 223 sexies du CGI)
+
+        Selon les règles de droit commun, la CEHR est calculée
+        sur une assiette égale au revenu fiscal de référence (RFR) de l'année N (art. 223 sexies, I)
+
+        Par exception, un mécanisme de lissage de la CEHR est applicable
+        lorsque 3 conditions cumulatives sont remplies (art. 223 sexies, II) :
+        1. les RFR des deux années précédentes (RFR N-1 et N-2) sont inférieurs au seuil d'imposition à la CEHR
+        2. le RFR de l'année d'imposition (RFR N) est supérieur à une fois et demie la moyenne des RFR N-1 et N-2
+        3. le foyer fiscal a été soumis à l'IR en France pour plus de la moitié de son RFR « mondial »
+           au titre des années N-1 et N-2 (cette indication doit être portée en case 8TD de la déclaration de revenus)
+
+        En cas d'application du lissage, on distingue :
+        - le revenu « ordinaire » égal à la moyenne des RFR des années N-1 et N-2 ;
+        - le revenu « exceptionnel » égal à la différence entre le RFR de l'année N est le revenu « ordinaire ».
+
+        Il convient alors de calculer une cotisation de CEHR supplémentaire égale à la différence entre :
+        - une cotisation calculée sur une assiette égale au revenu « ordinaire »
+          majoré de la moitié du revenu « exceptionnel » ;
+        - une cotisation calculée sur le seul revenu « ordinaire ».
+
+        Cette cotisation supplémentaire est ensuite multipliée par 2,
+        puis ajoutée à la cotisation calculée sur le seul revenu « ordinaire »;
+
+        Des règles particulières sont en outre prévues quant aux revenus fiscaux de référence
+        à prendre en considération en cas de changement de composition du foyer fiscal au cours de l'année d'imposition
+        ou des deux années précédentes, de sorte que les revenus fiscaux de référence à retenir dans ce cas
+        correspondent :
+        - en cas de mariage ou de PACS au cours de la période de référence : aux revenus fiscaux du couple
+          et des foyers fiscaux auxquels les conjoints ou partenaires ont appartenu au cours de la période
+          de référence ;
+        - en cas de divorce, séparation ou décès au cours de la période de référence ou en cas de mariage ou de la
+          conclusion d'un PACS au cours de l'année d'imposition avec option pour la déclaration séparée :
+          aux revenus fiscaux du contribuable et des foyers fiscaux auxquels le contribuable a appartenu
+          au cours de la période de référence.
+
+        Ces règles particulières de détermination des revenus fiscaux de référence dans le cadre du dispositif
+        du lissage en cas de modification de la composition du foyer fiscal ne sont pas prises en compte ici.
         '''
-        rfr = foyer_fiscal('rfr', period)
-        nb_adult = foyer_fiscal('nb_adult', period)
+
+        rfr = arrondi_fiscal(foyer_fiscal('rfr', period))
+        celibataire_ou_assimile = invert(foyer_fiscal('maries_ou_pacses', period))
         bareme = parameters(period).impot_revenu.cehr
 
-        return bareme.calc(rfr / nb_adult) * nb_adult
-        # TODO: Gérer le II.-1 du lissage interannuel ? (problème de non recours)
+        # Droit commun
+        assiette_droit_commun = rfr
+
+        # Variables utilisées pour l'application du lissage
+        rfr_n1 = arrondi_fiscal(foyer_fiscal('rfr', period.last_year))
+        rfr_n2 = arrondi_fiscal(foyer_fiscal('rfr', period.n_2))
+
+        seuil_condition_1 = where(celibataire_ou_assimile,
+                                  bareme.celibataire_ou_assimile.thresholds[1],
+                                  bareme.maries_ou_pacses.thresholds[1],
+                                  )
+
+        condition_1 = ((rfr_n1 <= seuil_condition_1) & (rfr_n2 <= seuil_condition_1))
+        condition_2 = rfr >= 1.5 * ((rfr_n1 + rfr_n2) / 2)
+        condition_3 = invert(foyer_fiscal('f8td', period))
+
+        lissage = condition_1 * condition_2 * condition_3
+
+        revenu_ordinaire = (rfr_n1 + rfr_n2) / 2
+        revenu_exceptionnel = rfr - revenu_ordinaire
+        assiette_lissage = arrondi_fiscal(revenu_ordinaire + (revenu_exceptionnel / 2))
+
+        # Calcul de la CEHR
+        cotisation = where(lissage,
+                           # Application des règles du lissage
+                           where(celibataire_ou_assimile,
+                                 # Pour un contribuable célibataire ou assimilé
+                                 (arrondi_fiscal(bareme.celibataire_ou_assimile.calc(revenu_ordinaire))
+                                  + ((arrondi_fiscal(bareme.celibataire_ou_assimile.calc(assiette_lissage))
+                                     - arrondi_fiscal(bareme.celibataire_ou_assimile.calc(revenu_ordinaire))
+                                      ) * 2)),
+                                 # Pour des contribuables soumis à une imposition commune
+                                 (arrondi_fiscal(bareme.maries_ou_pacses.calc(revenu_ordinaire))
+                                  + ((arrondi_fiscal(bareme.maries_ou_pacses.calc(assiette_lissage))
+                                      - arrondi_fiscal(bareme.maries_ou_pacses.calc(revenu_ordinaire))
+                                      ) * 2)),
+                                 ),
+                           # Application des règles de droit commun
+                           where(celibataire_ou_assimile,
+                                 # Pour un contribuable célibataire ou assimilé
+                                 arrondi_fiscal(bareme.celibataire_ou_assimile.calc(assiette_droit_commun)),
+                                 # Pour des contribuables soumis à une imposition commune
+                                 arrondi_fiscal(bareme.maries_ou_pacses.calc(assiette_droit_commun)),
+                                 ),
+                           )
+
+        return cotisation
 
 
 class irpp(Variable):

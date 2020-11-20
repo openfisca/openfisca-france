@@ -167,9 +167,10 @@ class f8td(Variable):
     cerfa_field = "8TD"
     value_type = bool
     entity = FoyerFiscal
-    label = "Revenus non imposables dépassent la moitié du RFR"
+    label = "Contribution exceptionnelle sur les hauts revenus : " \
+            "vos revenus non passibles de l'impôt sur le revenu en France excèdent 50 % de vos revenus mondiaux " \
+            "au titre des deux années précédant celle de l'année d'imposition"
     # start_date = date(2011, 1, 1)
-    end = '2014-12-31'
     definition_period = YEAR
 
 

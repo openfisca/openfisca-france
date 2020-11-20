@@ -11,6 +11,8 @@
   input:
     foyer_fiscal:
       declarants: [parent1, parent2]
+      rfr:
+        2010: 500_001
     individus:
       parent1:
         age: 40
@@ -39,6 +41,8 @@
   absolute_error_margin: 0.5
   input:
     salaire_imposable: 1500000
+    rfr:
+      2010: 250_001
   output:
     irpp: -642772
 
@@ -48,6 +52,8 @@
   input:
     foyer_fiscal:
       declarants: [parent1, parent2]
+      rfr:
+        2010: 500_001
     individus:
       parent1:
         age: 40
@@ -77,6 +83,8 @@
   input:
     foyer_fiscal:
       declarants: [parent1, parent2]
+      rfr:
+        2010: 500_001
     individus:
       parent1:
         age: 40
@@ -106,5 +114,139 @@
   absolute_error_margin: 0.5
   input:
     salaire_imposable: 1500000
+    rfr:
+      2011: 250_001
   output:
     irpp: -697262
+
+- name: CEHR - Célibataire ayant un revenu fiscal de référence de 200 000 €
+  period: 2019
+  input:
+    individus:
+      individu1:
+        age: 50
+    foyer_fiscal:
+      declarants: [individu1]
+      rfr: 200_000
+  output:
+    cehr: 0
+
+- name: CEHR - Célibataire ayant un revenu fiscal de référence de 800 000 €
+  period: 2019
+  input:
+    individus:
+      individu1:
+        age: 50
+    foyer_fiscal:
+      declarants: [individu1]
+      rfr:
+        2019: 800_000
+        2018: 250_001
+  output:
+    cehr: 19_500
+
+- name: CEHR - Couple soumis à une imposition commune ayant un revenu fiscal de référence de 400 000 €
+  period: 2019
+  input:
+    individus:
+      individu1:
+        age: 50
+      individu2:
+        age: 55
+    foyer_fiscal:
+      declarants: [individu1, individu2]
+      rfr: 400_000
+  output:
+    cehr: 0
+
+- name: CEHR - Couple soumis à une imposition commune ayant un revenu fiscal de référence de 1 500 000 €
+  period: 2019
+  input:
+    individus:
+      individu1:
+        age: 50
+      individu2:
+        age: 55
+    foyer_fiscal:
+      declarants: [individu1, individu2]
+      rfr:
+        2019: 1_500_000
+        2018: 500_001
+  output:
+    cehr: 35_000
+
+- name: |
+    CEHR - Couple soumis à une imposition commune ayant un revenu fiscal de référence N de 800 000 €,
+    un RFR n-1 de 350 000 € et un RFR n-2 de 400 000 € (lissage applicable)
+  period: 2019
+  input:
+    individus:
+      individu1:
+        age: 50
+      individu2:
+        age: 55
+    foyer_fiscal:
+      declarants: [individu1, individu2]
+      rfr:
+        2019: 800_000
+        2018: 350_000
+        2017: 400_000
+  output:
+    cehr: 5_250
+
+- name: |
+    CEHR - Couple soumis à une imposition commune ayant un revenu fiscal de référence N de 800 000 €,
+    un RFR n-1 de 550 000 € et un RFR n-2 de 400 000 €
+    (foyer fiscal non éligible au lissage car RFR N-1 supérieur à 500 000 €)
+  period: 2019
+  input:
+    individus:
+      individu1:
+        age: 50
+      individu2:
+        age: 55
+    foyer_fiscal:
+      declarants: [individu1, individu2]
+      rfr:
+        2019: 800_000
+        2018: 550_000
+        2017: 400_000
+  output:
+    cehr: 9_000
+
+- name: |
+    CEHR - Célibataire ayant un revenu fiscal de référence N de 280 000 €,
+    un RFR n-1 de 200 000 € et un RFR n-2 de 240 000 €
+    (foyer fiscal non éligible au lissage car RFR N inférieur à 1,5 fois la moyenne des RFR N-1 et N-2)
+  period: 2019
+  input:
+    individus:
+      individu1:
+        age: 50
+    foyer_fiscal:
+      declarants: [individu1]
+      rfr:
+        2019: 280_000
+        2018: 200_000
+        2017: 240_000
+  output:
+    cehr: 900
+
+- name: |
+    CEHR - Célibataire ayant un revenu fiscal de référence N de 500 000 €,
+    un RFR n-1 de 200 000 € et un RFR n-2 de 240 000 €, (non éligible au lissage car non imposé en France
+    pour plus de la moitié de son revenu mondial au titre des années N-1 et N-2)
+  period: 2019
+  input:
+    individus:
+      individu1:
+        age: 50
+    foyer_fiscal:
+      declarants: [individu1]
+      rfr:
+        2019: 500_000
+        2018: 200_000
+        2017: 240_000
+      f8td: true
+  output:
+    cehr: 7_500
