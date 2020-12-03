@@ -16,7 +16,12 @@ values:
     reference: https://www.legifrance.gouv.fr/eli/arrete/2018/12/21/SSAS1835267A/jo/article_1
   2020-01-01:
     value: 5775.0
+<<<<<<< HEAD
     reference: https://www.legifrance.gouv.fr/eli/arrete/2019/12/20/SSAS1934813A/jo/article_1
   2021-01-01:
     value: 5827.0
     reference: https://www.legifrance.gouv.fr/eli/arrete/2020/12/14/SSAS2032692A/jo/article_1
+=======
+  2021-01-01:
+    value: 5827.0
+>>>>>>> 0fcffe140 (Revalorisation des parametres des plafonds de ressources de certaines prestations familiales pour janvier 2021)
