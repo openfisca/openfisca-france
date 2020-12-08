@@ -9,7 +9,7 @@ class covid_aide_exceptionnelle_tpe_eligible(Variable):
         "Décret n°2020-371 du 30 mars 2020"
         "https://www.legifrance.gouv.fr/eli/decret/2020/3/30/ECOI2007755D/jo/texte",
         "Ordonnance n° 2020-705 du 10 juin 2020"
-        "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000041983045?r=D4toiqv7co"
+        "https://www.legifrance.gouv.fr/eli/ordonnance/2020/6/10/ECOI2012371R/jo/texte"
         ]
     definition_period = MONTH
 
@@ -103,7 +103,7 @@ class covid_activite_partielle_montant(Variable):
     definition_period = MONTH
     reference = [
         "Ordonnance n° 2020-346 du 27 mars 2020 portant mesures d'urgence en matière d'activité partielle",
-        "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000041762506/",
+        "https://www.legifrance.gouv.fr/eli/ordonnance/2020/3/27/MTRX2008381R/jo/texte",
     ]
     
     def formula_2020_03(individu, period, parameters) :
