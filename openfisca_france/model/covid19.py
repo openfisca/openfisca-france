@@ -109,7 +109,9 @@ class covid_activite_partielle_montant(Variable):
         eligibilite_activite_partielle= individu('covid_activite_partielle_eligible', period)
         heures = individu('heures_remunerees_volume', period)
         salaire_horaire = individu('salaire_de_base', period) / heures
-        indemnite_horaire_nonplancher = parameters(period).covid19.indemnite_ap.taux * salaire_horaire
-        plancher = parameters(period).covid19.indemnite_ap.plancher
-        indemnite_horaire = max(indemnite_horaire_nonplancher, plancher)
+        indemnite_ap = parameters(period).covid19.indemnite_ap
+        indemnite_horaire = max(
+            indemnite_horaire_ap.taux * salaire_horaire,
+            indemnite_ap.plancher
+            )        
         return eligibilite_activite_partielle * indemnite_horaire * heures 
