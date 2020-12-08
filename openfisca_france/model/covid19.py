@@ -1,5 +1,6 @@
 from openfisca_france.model.base import Variable, Individu, Famille, MONTH, not_
 
+
 class covid_aide_exceptionnelle_tpe_eligible(Variable):
     entity = Individu
     value_type = bool
