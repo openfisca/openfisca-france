@@ -1,0 +1,1 @@
+- name: Retraite Exoneration  period: 2020-01  input:    retraite_brute: 20000.0    rfr:       2018:         10000.0  output:    csg_imposable_retraite: 0.0

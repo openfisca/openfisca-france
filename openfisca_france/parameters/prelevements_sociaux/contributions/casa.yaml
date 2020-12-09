@@ -5,4 +5,16 @@ brackets:
   threshold:
     2013-04-01:
       value: 0.0
+    2015-01-01:
+      value: 13900
+    2016-04-01:
+      value: 13956
+    2017-01-01:
+      value: 14375
+    2018-01-01: 
+      value: 14404
+    2019-01-01:
+      value: 14548
+    2020-01-01:
+      value: 14781
 reference: https://www.ipp.eu/outils/baremes-ipp/

@@ -1,5 +1,6 @@
 description: Revenus du capital
 unit: /1
 values:
-  1998-01-01:
+  1996-02-01:
     value: 0.005
+    reference: https://www.legifrance.gouv.fr/loda/id/LEGIARTI000006759765/1996-01-25/#LEGIARTI000006759765

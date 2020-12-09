@@ -2,12 +2,14 @@ reference: https://www.ipp.eu/outils/baremes-ipp/
 unit: currency
 values:
   2015-01-01:
-    value: 10633.0
+    value: 13900.0
   2016-01-01:
-    value: 10676.0
+    value: 13956.0
   2017-01-01:
-    value: 10996.0
+    value: 14375.0
   2018-01-01:
-    value: 11018.0
+    value: 14404.0
   2019-01-01:
-    value: 11128.0
+    value: 14548.0
+  2020-01-01:
+    value: 14781.0

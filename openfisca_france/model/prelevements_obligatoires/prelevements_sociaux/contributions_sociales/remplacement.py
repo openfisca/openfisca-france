@@ -17,21 +17,55 @@ class TypesTauxCSGRemplacement(Enum):
     taux_plein = "Taux plein"
 
 
-class taux_csg_remplacement(Variable):
-    default_value = TypesTauxCSGRemplacement.taux_plein
+class TypesTauxCSGRetraite(Enum):
+    __order__ = 'non_renseigne exonere taux_reduit taux_plein'  # Needed to preserve the enum order in Python 2
+    non_renseigne = "Non renseigné/non pertinent"
+    exonere = "Exonéré"
+    taux_reduit = "Taux réduit"
+    taux_intermediaire = "Taux intermédiaire"
+    taux_plein = "Taux plein"
+    
+
+class taux_csg_retraite(Variable):
+    default_value = TypesTauxCSGRetraite.taux_plein
     value_type = Enum
-    possible_values = TypesTauxCSGRemplacement
+    possible_values = TypesTauxCSGRetraite
     entity = Individu
-    label = "Taux retenu sur la CSG des revenus de remplacment"
+    label = "Taux retenu sur la CSG des pensions de retraite et invalidité"
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
     def formula_2015(individu, period, parameters):
         rfr = individu.foyer_fiscal('rfr', period = period.n_2)
         nbptr = individu.foyer_fiscal('nbptr', period = period.n_2)
-        seuils = parameters(period).prelevements_sociaux.contributions.csg.remplacement.pensions_de_retraite_et_d_invalidite
-        seuil_exoneration = seuils.seuil_de_rfr_1 + (nbptr - 1) * seuils.demi_part_suppl
-        seuil_reduction = seuils.seuil_de_rfr_2 + (nbptr - 1) * seuils.demi_part_suppl
+        seuils = parameters(period).prelevements_sociaux.contributions.csg.seuils_taux
+        seuil_exoneration = seuils.seuil_de_rfr_1 + (nbptr - 1) * seuils.demi_part_suppl_seuil_1
+        seuil_reduction = seuils.seuil_de_rfr_2 + (nbptr - 1) * seuils.demi_part_suppl_seuil_2
+        seuil_taux_intermediaire = seuils.seuil_de_rfr_3 + (nbptr - 1) * seuils.demi_part_suppl_seuil_3
+        taux_csg_retraite_invalidite = select(
+            [rfr <= seuil_exoneration, rfr <= seuil_reduction, rfr <= seuil_taux_intermediaire, rfr > seuil_taux_intermediaire],
+            [TypesTauxCSGRetraite.exonere, TypesTauxCSGRetraite.taux_reduit, TypesTauxCSGRetraite.taux_intermediaire, TypesTauxCSGRetraite.taux_plein]
+            )
+        
+        return taux_csg_retraite_invalidite
+
+    # TODO il manque la formula_1997_2014 (autres critères pour taux réduit)
+
+class taux_csg_remplacement(Variable):
+    default_value = TypesTauxCSGRemplacement.taux_plein
+    value_type = Enum
+    possible_values = TypesTauxCSGRemplacement
+    entity = Individu
+    label = "Taux retenu sur la CSG des revenus de remplacement, hors retraite et invalidité"
+    definition_period = MONTH
+    set_input = set_input_dispatch_by_period
+
+    def formula_2015(individu, period, parameters):
+        rfr = individu.foyer_fiscal('rfr', period = period.n_2)
+        nbptr = individu.foyer_fiscal('nbptr', period = period.n_2)
+        seuils = parameters(period).prelevements_sociaux.contributions.csg.seuils_taux
+        seuil_exoneration = seuils.seuil_de_rfr_1 + (nbptr - 1) * seuils.demi_part_suppl_seuil_1
+        seuil_reduction = seuils.seuil_de_rfr_2 + (nbptr - 1) * seuils.demi_part_suppl_seuil_2
         taux_csg_remplacement = where(
             rfr <= seuil_exoneration,
             TypesTauxCSGRemplacement.exonere,
@@ -41,8 +75,10 @@ class taux_csg_remplacement(Variable):
                 TypesTauxCSGRemplacement.taux_plein,
                 )
             )
+        
         return taux_csg_remplacement
 
+    # TODO il manque la formula_1997_2014 (autres critères pour taux réduit)
 
 # Allocations chômage
 
@@ -66,7 +102,7 @@ class csg_deductible_chomage(Variable):
             law_node = parameters.prelevements_sociaux.contributions.csg.chomage.deductible,
             plafond_securite_sociale = parameters.cotsoc.gen.plafond_securite_sociale,
             )
-        nbh_travail = 35 * 52 / 12  # = 151.67  # TODO: depuis 2001 mais avant ?
+        nbh_travail = parameters.cotsoc.gen.nb_heure_travail_mensuel
 
         cho_seuil_exo = (
             parameters.prelevements_sociaux.contributions.csg.chomage.min_exo
@@ -101,10 +137,12 @@ class csg_imposable_chomage(Variable):
 
         montant_csg = montant_csg_crds(
             base_avec_abattement = chomage_brut,
+            indicatrice_taux_plein = (taux_csg_remplacement == TypesTauxCSGRemplacement.taux_plein),
+            indicatrice_taux_reduit = (taux_csg_remplacement == TypesTauxCSGRemplacement.taux_reduit),
             law_node = parameters.prelevements_sociaux.contributions.csg.chomage.imposable,
             plafond_securite_sociale = parameters.cotsoc.gen.plafond_securite_sociale,
             )
-        nbh_travail = 35 * 52 / 12  # = 151.67  # TODO: depuis 2001 mais avant ?
+        nbh_travail = parameters.cotsoc.gen.nb_heure_travail_mensuel
         cho_seuil_exo = (
             parameters.prelevements_sociaux.contributions.csg.chomage.min_exo
             * nbh_travail
@@ -130,8 +168,8 @@ class crds_chomage(Variable):
         law = parameters(period)
         smic_h_b = law.cotsoc.gen.smic_h_b
         # salaire_mensuel_reference = chomage_brut / .7
-        # heures_mensuelles = min_(salaire_mensuel_reference / smic_h_b, 35 * 52 / 12)  # TODO: depuis 2001 mais avant ?
-        heures_mensuelles = 35 * 52 / 12
+        # heures_mensuelles = min_(salaire_mensuel_reference / smic_h_b, 35 * 52 / 12) 
+        heures_mensuelles = parameters.cotsoc.gen.nb_heure_travail_mensuel
         cho_seuil_exo = law.prelevements_sociaux.contributions.csg.chomage.min_exo * heures_mensuelles * smic_h_b
         eligible = (
             (taux_csg_remplacement == TypesTauxCSGRemplacement.taux_reduit)
@@ -202,13 +240,14 @@ class csg_deductible_retraite(Variable):
 
     def formula(individu, period, parameters):
         retraite_brute = individu('retraite_brute', period)
-        taux_csg_remplacement = individu('taux_csg_remplacement', period)
+        taux_csg_retraite = individu('taux_csg_retraite', period)
         law = parameters(period)
 
         montant_csg = montant_csg_crds(
             base_sans_abattement = retraite_brute,
-            indicatrice_taux_plein = (taux_csg_remplacement == TypesTauxCSGRemplacement.taux_plein),
-            indicatrice_taux_reduit = (taux_csg_remplacement == TypesTauxCSGRemplacement.taux_reduit),
+            indicatrice_taux_plein = (taux_csg_retraite == TypesTauxCSGRetraite.taux_plein),
+            indicatrice_taux_reduit = (taux_csg_retraite == TypesTauxCSGRetraite.taux_reduit),
+            indicatrice_taux_intermediaire = (taux_csg_retraite == TypesTauxCSGRetraite.taux_intermediaire),
             law_node = law.prelevements_sociaux.contributions.csg.retraite.deductible,
             plafond_securite_sociale = law.cotsoc.gen.plafond_securite_sociale,
             )
@@ -229,6 +268,9 @@ class csg_imposable_retraite(Variable):
 
         montant_csg = montant_csg_crds(
             base_sans_abattement = retraite_brute,
+            indicatrice_taux_plein = (taux_csg_retraite == TypesTauxCSGRetraite.taux_plein),
+            indicatrice_taux_reduit = (taux_csg_retraite == TypesTauxCSGRetraite.taux_reduit),
+            indicatrice_taux_intermediaire = (taux_csg_retraite == TypesTauxCSGRetraite.taux_intermediaire),
             law_node = law.prelevements_sociaux.contributions.csg.retraite.imposable,
             plafond_securite_sociale = law.cotsoc.gen.plafond_securite_sociale,
             )
@@ -245,14 +287,14 @@ class crds_retraite(Variable):
 
     def formula(individu, period, parameters):
         retraite_brute = individu('retraite_brute', period)
-        taux_csg_remplacement = individu('taux_csg_remplacement', period)
+        taux_csg_retraite = individu('taux_csg_retraite', period)
         law = parameters(period)
 
         montant_crds = montant_csg_crds(
             base_sans_abattement = retraite_brute,
             law_node = law.prelevements_sociaux.contributions.crds.retraite,
             plafond_securite_sociale = law.cotsoc.gen.plafond_securite_sociale,
-            ) * (taux_csg_remplacement == TypesTauxCSGRemplacement.exonere)
+            ) * (taux_csg_retraite == TypesTauxCSGRetraite.exonere)
         return montant_crds
 
 
@@ -265,10 +307,10 @@ class casa(Variable):
 
     def formula_2013_04_01(individu, period, parameters):
         retraite_brute = individu('retraite_brute', period = period)
-        taux_csg_remplacement = individu('taux_csg_remplacement', period)
+        taux_csg_retraite = individu('taux_csg_retraite', period)
         contributions = parameters(period).prelevements_sociaux.contributions
         casa = (
-            (taux_csg_remplacement == TypesTauxCSGRemplacement.taux_plein)
+            ((taux_csg_retraite == TypesTauxCSGRetraite.taux_plein) + (taux_csg_retraite == TypesTauxCSGRetraite.taux_intermediaire))
             * contributions.casa.calc(retraite_brute)
             )
         return - casa
