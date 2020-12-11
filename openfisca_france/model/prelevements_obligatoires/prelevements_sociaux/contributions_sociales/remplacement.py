@@ -176,6 +176,30 @@ class csg_imposable_chomage(Variable):
         return - csg_imposable_chomage
 
 
+class csg_imposable_chomage_test(Variable):
+    calculate_output = calculate_output_add
+    value_type = float
+    entity = Individu
+    label = "CSG imposable sur les allocations chômage"
+    reference = "http://vosdroits.service-public.fr/particuliers/F2329.xhtml"
+    definition_period = MONTH
+
+    def formula(individu, period, parameters):
+        chomage_brut = individu('chomage_brut', period)
+        parameters = parameters(period)
+
+        montant_csg = montant_csg_crds(
+            base_avec_abattement = chomage_brut,
+            indicatrice_taux_plein = (taux_csg_remplacement == TypesTauxCSGRemplacement.taux_plein),
+            indicatrice_taux_reduit = (taux_csg_remplacement == TypesTauxCSGRemplacement.taux_reduit),
+            law_node = parameters.prelevements_sociaux.contributions.csg.chomage.imposable,
+            plafond_securite_sociale = parameters.cotsoc.gen.plafond_securite_sociale,
+            )
+        return montant_csg
+
+
+
+
 class crds_chomage(Variable):
     calculate_output = calculate_output_add
     value_type = float
