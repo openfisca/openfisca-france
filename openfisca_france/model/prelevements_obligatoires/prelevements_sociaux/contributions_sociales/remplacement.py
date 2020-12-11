@@ -18,13 +18,37 @@ class TypesTauxCSGRemplacement(Enum):
 
 
 class TypesTauxCSGRetraite(Enum):
-    __order__ = 'non_renseigne exonere taux_reduit taux_plein'  # Needed to preserve the enum order in Python 2
+    __order__ = 'non_renseigne exonere taux_reduit taux_intermediaire taux_plein'  # Needed to preserve the enum order in Python 2
     non_renseigne = "Non renseigné/non pertinent"
     exonere = "Exonéré"
     taux_reduit = "Taux réduit"
     taux_intermediaire = "Taux intermédiaire"
     taux_plein = "Taux plein"
-    
+
+
+def montant_csg_crds_3_taux(base_avec_abattement = None, base_sans_abattement = None, indicatrice_taux_plein = None,
+        indicatrice_taux_reduit = None, indicatrice_taux_intermediaire = None, law_node = None, plafond_securite_sociale = None):
+    assert law_node is not None
+    assert plafond_securite_sociale is not None
+    if base_sans_abattement is None:
+        base_sans_abattement = 0
+    if base_avec_abattement is None:
+        base = base_sans_abattement
+    else:
+        base = base_avec_abattement - law_node.abattement.calc(
+            base_avec_abattement,
+            factor = plafond_securite_sociale,
+            round_base_decimals = 2,
+            ) + base_sans_abattement
+    if indicatrice_taux_plein is None and indicatrice_taux_reduit is None and indicatrice_taux_intermediaire is None :
+        return -law_node.taux * base
+    else:
+        return - (
+            law_node.taux_plein * indicatrice_taux_plein + 
+            law_node.taux_reduit * indicatrice_taux_reduit + 
+            law_node.taux_median * indicatrice_taux_intermediaire
+            ) * base
+
 
 class taux_csg_retraite(Variable):
     default_value = TypesTauxCSGRetraite.taux_plein
@@ -243,7 +267,7 @@ class csg_deductible_retraite(Variable):
         taux_csg_retraite = individu('taux_csg_retraite', period)
         law = parameters(period)
 
-        montant_csg = montant_csg_crds(
+        montant_csg = montant_csg_crds_3_taux(
             base_sans_abattement = retraite_brute,
             indicatrice_taux_plein = (taux_csg_retraite == TypesTauxCSGRetraite.taux_plein),
             indicatrice_taux_reduit = (taux_csg_retraite == TypesTauxCSGRetraite.taux_reduit),
@@ -266,7 +290,7 @@ class csg_imposable_retraite(Variable):
         retraite_brute = individu('retraite_brute', period)
         law = parameters(period)
 
-        montant_csg = montant_csg_crds(
+        montant_csg = montant_csg_crds_3_taux(
             base_sans_abattement = retraite_brute,
             indicatrice_taux_plein = (taux_csg_retraite == TypesTauxCSGRetraite.taux_plein),
             indicatrice_taux_reduit = (taux_csg_retraite == TypesTauxCSGRetraite.taux_reduit),
