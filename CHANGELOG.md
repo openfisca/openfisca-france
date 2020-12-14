@@ -1,5 +1,14 @@
 # Changelog
 
+### 49.0.1 [#1466](https://github.com/openfisca/openfisca-france/pull/1466)
+
+* Correction d'un crash.
+* Périodes concernées : toutes. 
+* Zones impactées : openfisca_france/model/prelevements_obligatoires/impot_revenu/credits_impot.py
+* Détails :
+  - Correction dans l'appel de certaines cases de crédits d'impôts qui n'avaient pas été changé après renommage
+  - Suppression de l'appel de la variable f8tk dans les crédits d'impôts car ce n'en ai pas un
+
 # 49.0.0 [#1462](https://github.com/openfisca/openfisca-france/pull/1462)
 
 * Évolution du système socio-fiscal.
