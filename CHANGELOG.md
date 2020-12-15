@@ -2,10 +2,11 @@
 
 # 50.0.0 [#1431](https://github.com/openfisca/openfisca-france/pull/1431)
 
-* Amélioration technique.
+* Amélioration technique non rétro-compatible.
 * Périodes concernées : toutes.
 * Détails :
-  - Adapte OpenFisca-France à `Numpy` v1.18 au travers de la mise à jour de Core.
+  - Adapte OpenFisca-France à [numpy v1.18](https://numpy.org/devdocs/release/1.18.0-notes.html#expired-deprecations) au travers de la mise à jour à Core v35.
+  - Impacte les syntaxes des formules de calcul possibles du dépôt et de ses extensions.
 
 ### 49.0.1 [#1466](https://github.com/openfisca/openfisca-france/pull/1466)
 
