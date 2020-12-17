@@ -514,7 +514,7 @@ class arrco_employeur(Variable):
 class chomage_salarie(Variable):
     value_type = float
     entity = Individu
-    label = "Cotisation chômage tranche A (salarié)"
+    label = "Cotisation chômage totale (salarié)"
     definition_period = MONTH
     end = '2018-09-30'
 
@@ -533,7 +533,7 @@ class chomage_salarie(Variable):
 class chomage_employeur(Variable):
     value_type = float
     entity = Individu
-    label = "Cotisation chômage tranche A (employeur)"
+    label = "Cotisation chômage totale (employeur)"
     definition_period = MONTH
 
     def formula(individu, period, parameters):

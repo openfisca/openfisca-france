@@ -1,16 +1,54 @@
 brackets:
 - rate:
-    1993-07-01:
-      value: 0.0377
-    1994-01-01:
-      value: 0.0386
+    1959-01-01:
+      value: 0.002
+    1962-01-01:
+      value: 0.0005
+    1968-01-01:
+      value: 0.0007
+    1969-01-01:
+      value: 0.0008
+    1973-01-01:
+      value: 0.0014
+    1974-01-01:
+      value: 0.0016
+    1975-01-01:
+      value: 0.0036
+    1975-07-01:
+      value: 0.0048
+    1977-01-01:
+      value: 0.0044
+    1978-01-01:
+      value: 0.0048
+    1978-05-01:
+      value: 0.006
+    1979-04-01:
+      value: 0.0084
+    1982-11-06:
+      value: 0.0132
+    1983-07-01:
+      value: 0.0172
+    1984-04-01:
+      value: 0.0112
+    1985-07-01:
+      value: 0.0212
+    1985-11-01:
+      value: 0.0151
+    1988-01-01:
+      value: 0.0167
+    1990-10-01:
+      value: 0.0159
+    1991-01-01:
+      value: 0.0153
+    1992-01-01:
+      value: 0.0167
+    1992-08-01:
+      value: 0.0207
+    1993-08-01:
+      value: 0.0242
     1997-01-01:
-      value: 0.036
+      value: 0.0221
     2001-01-01:
-      value: 0.0349
-    2001-04-01:
-      value: 0.026
-    2001-07-01:
       value: 0.021
     2002-01-01:
       value: 0.02
@@ -29,13 +67,72 @@ brackets:
       reference: https://www.legifrance.gouv.fr/eli/loi/2017/12/30/CPAX1725580L/jo/article_8
       value: null
   threshold:
-    1993-07-01:
+    1959-01-01:
       value: 0.0
     2018-10-01:
       reference: https://www.legifrance.gouv.fr/eli/loi/2017/12/30/CPAX1725580L/jo/article_8
       value: null
 - rate:
+    1959-01-01:
+      value: null
+    1975-07-01:
+      value: 0.0048
+    1977-01-01:
+      value: 0.0044
+    1978-01-01:
+      value: 0.0048
+    1978-05-01:
+      value: 0.006
+    1979-04-01:
+      value: 0.0084
+    1982-11-06:
+      value: 0.0132
+    1983-07-01:
+      value: 0.0172
+    1984-04-01:
+      value: 0.0162
+    1985-07-01:
+      value: 0.0262
+    1985-11-01:
+      value: 0.0201
+    1988-01-01:
+      value: 0.0217
+    1991-01-01:
+      value: 0.0211
+    1992-01-01:
+      value: 0.0217
+    1992-08-01:
+      value: 0.0257
+    1993-08-01:
+      value: 0.0297
+    1997-01-01:
+      value: 0.0271
+    2001-01-01:
+      value: 0.026
+    2002-01-01:
+      value: 0.02
+    2002-07-01:
+      value: 0.021
     2003-01-01:
+      value: 0.024
+    2006-01-01:
+      value: 0.0244
+    2007-01-01:
+      value: 0.024
+    2018-01-01:
+      reference: https://www.legifrance.gouv.fr/eli/loi/2017/12/30/CPAX1725580L/jo/article_8
+      value: 0.0095
+    2018-10-01:
+      reference: https://www.legifrance.gouv.fr/eli/loi/2017/12/30/CPAX1725580L/jo/article_8
+      value: null
+  threshold:
+    1993-07-01:
+      value: 1.0
+    2018-10-01:
+      reference: https://www.legifrance.gouv.fr/eli/loi/2017/12/30/CPAX1725580L/jo/article_8
+      value: null
+- rate:
+    1959-01-01:
       value: 0.0
     2018-10-01:
       reference: https://www.legifrance.gouv.fr/eli/loi/2017/12/30/CPAX1725580L/jo/article_8
