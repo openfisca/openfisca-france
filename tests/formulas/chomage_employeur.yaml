@@ -1,0 +1,1 @@
+- period: 2018-01  name: Cotisation de chômage employeur  relative_error_margin: 0.001  input:    salaire_de_base: 1500  output:    chomage_employeur: -0.0405 * 1500
