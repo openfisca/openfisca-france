@@ -412,9 +412,45 @@ def compute_allegement_cotisation_allocations_familiales(individu, period, param
     """
     assiette = individu('assiette_allegement', period, options = [ADD])
     smic_proratise = individu('smic_proratise', period, options = [ADD])
-    # TODO: Ne semble pas dépendre de la taille de l'entreprise mais à vérifier
-    # taille_entreprise = individu('taille_entreprise', period)
     law = parameters(period).prelevements_sociaux.allegement_cotisation_allocations_familiales
+
+    # Montant de l'allegment
+    return (assiette < law.plafond_en_nombre_de_smic * smic_proratise) * law.reduction * assiette
+
+
+class allegement_cotisation_maladie(Variable):
+    value_type = float
+    label = "Allègement de la cotisation maladie sur les bas et moyens salaires"
+    entity = Individu
+    reference = "https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-cotisation-maladie---maternit.html"
+    definition_period = MONTH
+
+    def formula_2015_01_01(individu, period, parameters):
+        stagiaire = individu('stagiaire', period)
+        apprenti = individu('apprenti', period)
+        allegement_mode_recouvrement = \
+            individu('allegement_cotisation_maladie_mode_recouvrement', period)
+        exoneration_cotisations_employeur_jei = individu('exoneration_cotisations_employeur_jei', period)
+
+        non_cumulee = not_(exoneration_cotisations_employeur_jei)
+
+        # switch on 3 possible payment options
+        allegement = switch_on_allegement_mode(
+            individu, period, parameters,
+            allegement_mode_recouvrement,
+            "allegement_cotisation_maladie",
+            )
+
+        return allegement * not_(stagiaire) * not_(apprenti) * non_cumulee
+
+
+def compute_allegement_cotisation_maladie(individu, period, parameters):
+    """
+        La réduction du taux de la cotisation maladie
+    """
+    assiette = individu('assiette_allegement', period, options = [ADD])
+    smic_proratise = individu('smic_proratise', period, options = [ADD])
+    law = parameters(period).prelevements_sociaux.allegement_cotisation_maladie
 
     # Montant de l'allegment
     return (assiette < law.plafond_en_nombre_de_smic * smic_proratise) * law.reduction * assiette

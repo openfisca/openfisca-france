@@ -1,0 +1,5 @@
+unit: /1
+values:
+  2019-01-01:
+    value: 2.5
+    reference: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000037949208/2019-01-01/

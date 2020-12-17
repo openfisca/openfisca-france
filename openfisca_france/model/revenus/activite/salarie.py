@@ -191,6 +191,16 @@ class allegement_cotisation_allocations_familiales_mode_recouvrement(Variable):
     set_input = set_input_dispatch_by_period
 
 
+class allegement_cotisation_maladie_mode_recouvrement(Variable):
+    value_type = Enum
+    possible_values = TypesAllegementModeRecouvrement
+    default_value = TypesAllegementModeRecouvrement.fin_d_annee
+    entity = Individu
+    label = "Mode de recouvrement de l'allègement de la cotisation maladie"
+    definition_period = MONTH
+    set_input = set_input_dispatch_by_period
+
+
 class apprentissage_contrat_debut(Variable):
     value_type = date
     entity = Individu

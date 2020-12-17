@@ -5,3 +5,10 @@
     salaire_de_base: 2300
   output:
     mmid_employeur: -.1289 * 2300
+- period: 2019-02
+  name: Cotisation maladie MMID employeur
+  relative_error_margin: 0.001
+  input:
+    salaire_de_base: 2300
+  output:
+    mmid_employeur: -.13 * 2300
