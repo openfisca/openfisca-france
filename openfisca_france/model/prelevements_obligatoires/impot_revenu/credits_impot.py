@@ -449,11 +449,10 @@ class creimp(Variable):
         f8tc = foyer_fiscal('f8tc', period)
         f8td_2002_2005 = foyer_fiscal('f8td_2002_2005', period)
         f8te = foyer_fiscal('f8te', period)
-        f8tk = foyer_fiscal('f8tk', period)
         f8tf = foyer_fiscal('f8tf', period)
         f8tg = foyer_fiscal('f8tg', period)
 
-        return (f2ab + f8ta + f8tb + f8tc + f8tk + f8td_2002_2005 + f8te - f8tf + f8tg)
+        return (f2ab + f8ta + f8tb + f8tc + f8td_2002_2005 + f8te - f8tf + f8tg)
 
     def formula_2003_01_01(foyer_fiscal, period, parameters):
         f2ab = foyer_fiscal('f2ab', period)
@@ -461,14 +460,13 @@ class creimp(Variable):
         f8tb = foyer_fiscal('f8tb', period)
         f8tc = foyer_fiscal('f8tc', period)
         f8td_2002_2005 = foyer_fiscal('f8td_2002_2005', period)
-        f8tk = foyer_fiscal('f8tk', period)
         f8te = foyer_fiscal('f8te', period)
         f8tf = foyer_fiscal('f8tf', period)
         f8tg = foyer_fiscal('f8tg', period)
         f8to = foyer_fiscal('f8to', period)
         f8tp = foyer_fiscal('f8tp', period)
 
-        return (f2ab + f8ta + f8tb + f8tc + f8tk + f8td_2002_2005 + f8te - f8tf + f8tg + f8to - f8tp)
+        return (f2ab + f8ta + f8tb + f8tc + f8td_2002_2005 + f8te - f8tf + f8tg + f8to - f8tp)
 
     def formula_2004_01_01(foyer_fiscal, period, parameters):
         f2ab = foyer_fiscal('f2ab', period)
@@ -478,14 +476,13 @@ class creimp(Variable):
         f8td_2002_2005 = foyer_fiscal('f8td_2002_2005', period)
         f8te = foyer_fiscal('f8te', period)
         f8tf = foyer_fiscal('f8tf', period)
-        f8tk = foyer_fiscal('f8tk', period)
         f8tg = foyer_fiscal('f8tg', period)
         f8to = foyer_fiscal('f8to', period)
         f8tp = foyer_fiscal('f8tp', period)
         f8tz = foyer_fiscal('f8tz', period)
         f8uz = foyer_fiscal('f8uz', period)
 
-        return (f2ab + f8ta + f8tb + f8tc + f8td_2002_2005 + f8te + f8tk - f8tf + f8tg + f8to - f8tp + f8tz + f8uz)
+        return (f2ab + f8ta + f8tb + f8tc + f8td_2002_2005 + f8te - f8tf + f8tg + f8to - f8tp + f8tz + f8uz)
 
     def formula_2005_01_01(foyer_fiscal, period, parameters):
         f2ab = foyer_fiscal('f2ab', period)
@@ -494,7 +491,6 @@ class creimp(Variable):
         f8tc = foyer_fiscal('f8tc', period)
         f8td_2002_2005 = foyer_fiscal('f8td_2002_2005', period)
         f8te = foyer_fiscal('f8te', period)
-        f8tk = foyer_fiscal('f8tk', period)
         f8tf = foyer_fiscal('f8tf', period)
         f8tg = foyer_fiscal('f8tg', period)
         f8to = foyer_fiscal('f8to', period)
@@ -507,7 +503,7 @@ class creimp(Variable):
         f8we = foyer_fiscal('f8we', period)
 
         return (
-            f2ab + f8ta + f8tb + f8tc + f8td_2002_2005 + f8te + f8tk - f8tf + f8tg + f8to - f8tp + f8tz + f8uz + f8wa
+            f2ab + f8ta + f8tb + f8tc + f8td_2002_2005 + f8te - f8tf + f8tg + f8to - f8tp + f8tz + f8uz + f8wa
             + f8wb + f8wc + f8we
             )
 
@@ -521,7 +517,6 @@ class creimp(Variable):
         f8tg = foyer_fiscal('f8tg', period)
         f8to = foyer_fiscal('f8to', period)
         f8tp = foyer_fiscal('f8tp', period)
-        f8tk = foyer_fiscal('f8tk', period)
         f8tz = foyer_fiscal('f8tz', period)
         f8uz = foyer_fiscal('f8uz', period)
         f8wa = foyer_fiscal('f8wa', period)
@@ -535,7 +530,7 @@ class creimp(Variable):
         f8wu = foyer_fiscal('f8wu', period)
 
         return (
-            f2ab + f8ta + f8tb + f8tc + f8te - f8tf + f8tg + f8tk + f8to - f8tp + f8tz + f8uz + f8wa + f8wb + f8wc
+            f2ab + f8ta + f8tb + f8tc + f8te - f8tf + f8tg + f8to - f8tp + f8tz + f8uz + f8wa + f8wb + f8wc
             + f8wd + f8we + f8wr + f8ws + f8wt + f8wu
             )
 
@@ -548,7 +543,6 @@ class creimp(Variable):
         f8tf = foyer_fiscal('f8tf', period)
         f8tg = foyer_fiscal('f8tg', period)
         f8to = foyer_fiscal('f8to', period)
-        f8tk = foyer_fiscal('f8tk', period)
         f8tp = foyer_fiscal('f8tp', period)
         f8tz = foyer_fiscal('f8tz', period)
         f8uz = foyer_fiscal('f8uz', period)
@@ -564,7 +558,7 @@ class creimp(Variable):
         f8wx = foyer_fiscal('f8wx', period)
 
         return (
-            f2ab + f8ta + f8tb + f8tc + f8te - f8tf + f8tg + f8tk + f8to - f8tp + f8tz + f8uz + f8wa + f8wb + f8wc
+            f2ab + f8ta + f8tb + f8tc + f8te - f8tf + f8tg + f8to - f8tp + f8tz + f8uz + f8wa + f8wb + f8wc
             + f8wd + f8wr + f8ws + f8wt + f8wu + f8wv + f8wx
             )
 
@@ -578,7 +572,6 @@ class creimp(Variable):
         f8tg = foyer_fiscal('f8tg', period)
         f8to = foyer_fiscal('f8to', period)
         f8tp = foyer_fiscal('f8tp', period)
-        f8tk = foyer_fiscal('f8tk', period)
         f8tz = foyer_fiscal('f8tz', period)
         f8uz = foyer_fiscal('f8uz', period)
         f8wa = foyer_fiscal('f8wa', period)
@@ -594,7 +587,7 @@ class creimp(Variable):
         f8wx = foyer_fiscal('f8wx', period)
 
         return (
-            f2ab + f8ta + f8tb + f8tc + f8te - f8tf + f8tg + f8tk + f8to - f8tp + f8tz + f8uz + f8wa + f8wb + f8wc
+            f2ab + f8ta + f8tb + f8tc + f8te - f8tf + f8tg + f8to - f8tp + f8tz + f8uz + f8wa + f8wb + f8wc
             + f8wd + f8wr + f8ws + f8wt + f8wu + f8wv + f8wx
             )
 
@@ -605,7 +598,6 @@ class creimp(Variable):
         f8te = foyer_fiscal('f8te', period)
         f8tf = foyer_fiscal('f8tf', period)
         f8tg = foyer_fiscal('f8tg', period)
-        f8tk = foyer_fiscal('f8tk', period)
         f8to = foyer_fiscal('f8to', period)
         f8tp = foyer_fiscal('f8tp', period)
         f8tz = foyer_fiscal('f8tz', period)
@@ -622,7 +614,7 @@ class creimp(Variable):
         f8wx = foyer_fiscal('f8wx', period)
 
         return (
-            f2ab + f8ta + f8tb + f8te - f8tf + f8tg + f8tk + f8to - f8tp + f8tz + f8uz + f8wa + f8wb + f8wd
+            f2ab + f8ta + f8tb + f8te - f8tf + f8tg + f8to - f8tp + f8tz + f8uz + f8wa + f8wb + f8wd
             + f8we + f8wr + f8ws + f8wt + f8wu + f8wv + f8wx
             )
 
@@ -633,7 +625,6 @@ class creimp(Variable):
         f8tc = foyer_fiscal('f8tc', period)
         f8te = foyer_fiscal('f8te', period)
         f8tf = foyer_fiscal('f8tf', period)
-        f8tk = foyer_fiscal('f8tk', period)
         f8tg = foyer_fiscal('f8tg', period)
         f8to = foyer_fiscal('f8to', period)
         f8tp = foyer_fiscal('f8tp', period)
@@ -649,7 +640,7 @@ class creimp(Variable):
         f8wv = foyer_fiscal('f8wv', period)
 
         return (
-            f2ab + f8ta + f8tb + f8tc + f8te - f8tf + f8tk + f8tg + f8to - f8tp + f8tz + f8uz + f8wa + f8wb + f8wd
+            f2ab + f8ta + f8tb + f8tc + f8te - f8tf + f8tg + f8to - f8tp + f8tz + f8uz + f8wa + f8wb + f8wd
             + f8we + f8wr + f8wt + f8wu + f8wv
             )
 
@@ -662,7 +653,6 @@ class creimp(Variable):
         f8tf = foyer_fiscal('f8tf', period)
         f8tg = foyer_fiscal('f8tg', period)
         f8to = foyer_fiscal('f8to', period)
-        f8tk = foyer_fiscal('f8tk', period)
         f8tp = foyer_fiscal('f8tp', period)
         f8ts = foyer_fiscal('f8ts', period)
         f8tz = foyer_fiscal('f8tz', period)
@@ -678,7 +668,7 @@ class creimp(Variable):
         f8wv = foyer_fiscal('f8wv', period)
 
         return (
-            f2ab + f8ta + f8tb + f8tc + f8te - f8tf + f8tk + f8tg + f8to - f8tp + f8ts + f8tz + f8uz + f8wa + f8wb
+            f2ab + f8ta + f8tb + f8tc + f8te - f8tf + f8tg + f8to - f8tp + f8ts + f8tz + f8uz + f8wa + f8wb
             + f8wc + f8wd + f8we + f8wr + f8wt + f8wu + f8wv
             )
 
@@ -688,7 +678,6 @@ class creimp(Variable):
         f8tb = foyer_fiscal('f8tb', period)
         f8tc = foyer_fiscal('f8tc', period)
         f8te = foyer_fiscal('f8te', period)
-        f8tk = foyer_fiscal('f8tk', period)
         f8tf = foyer_fiscal('f8tf', period)
         f8tg = foyer_fiscal('f8tg', period)
         f8tl = foyer_fiscal('f8tl', period)
@@ -708,7 +697,7 @@ class creimp(Variable):
         f8wu = foyer_fiscal('f8wu', period)
 
         return (
-            f2ab + f8ta + f8tb + f8tc + f8te - f8tf + f8tk + f8tg + f8to - f8tp + f8tl + f8ts + f8tz + f8uw
+            f2ab + f8ta + f8tb + f8tc + f8te - f8tf + f8tg + f8to - f8tp + f8tl + f8ts + f8tz + f8uw
             + f8uz + f8wa + f8wb + f8wc + f8wd + f8we + f8wr + f8wt + f8wu
             )
 
@@ -721,7 +710,6 @@ class creimp(Variable):
         f8tf = foyer_fiscal('f8tf', period)
         f8tg = foyer_fiscal('f8tg', period)
         f8tl = foyer_fiscal('f8tl', period)
-        f8tk = foyer_fiscal('f8tk', period)
         f8to = foyer_fiscal('f8to', period)
         f8tp = foyer_fiscal('f8tp', period)
         f8ts = foyer_fiscal('f8ts', period)
@@ -742,7 +730,7 @@ class creimp(Variable):
         f8vm = foyer_fiscal.sum(f8vm_i)
 
         return (
-            f2ab + f8ta + f8tb + f8tc + f8te - f8tf + f8tg + f8tk + f8to - f8tp + f8tl + f8ts + f8tz + f8uw
+            f2ab + f8ta + f8tb + f8tc + f8te - f8tf + f8tg + f8to - f8tp + f8tl + f8ts + f8tz + f8uw
             + f8uz + f8vm + f8wa + f8wb + f8wc + f8wd + f8we + f8wr + f8wt + f8wu + f8vl
             )
 
@@ -756,7 +744,6 @@ class creimp(Variable):
         f8tg = foyer_fiscal('f8tg', period)
         f8tl = foyer_fiscal('f8tl', period)
         f8to = foyer_fiscal('f8to', period)
-        f8tk = foyer_fiscal('f8tk', period)
         f8tp = foyer_fiscal('f8tp', period)
         f8ts = foyer_fiscal('f8ts', period)
         f8tz = foyer_fiscal('f8tz', period)
@@ -776,7 +763,7 @@ class creimp(Variable):
         f8vm = foyer_fiscal.sum(f8vm_i)
 
         return (
-            f2ab + f8ta + f8tb + f8tc + f8tk
+            f2ab + f8ta + f8tb + f8tc
             + f8te - f8tf + f8tg + f8to - f8tp
             + f8tl + f8ts + f8tz + f8uw + f8uz
             + f8vm + f8wa + f8wb + f8wc + f8wd
@@ -790,7 +777,6 @@ class creimp(Variable):
         f8tc = foyer_fiscal('f8tc', period)
         f8te = foyer_fiscal('f8te', period)
         f8tf = foyer_fiscal('f8tf', period)
-        f8tk = foyer_fiscal('f8tk', period)
         f8tg = foyer_fiscal('f8tg', period)
         f8tl = foyer_fiscal('f8tl', period)
         f8to = foyer_fiscal('f8to', period)
@@ -811,7 +797,7 @@ class creimp(Variable):
         f8vm = foyer_fiscal.sum(f8vm_i)
 
         return (
-            f2ab + f8ta + f8tb + f8tc + f8tk
+            f2ab + f8ta + f8tb + f8tc
             + f8te - f8tf + f8tg + f8to - f8tp
             + f8tl + f8ts + f8tz + f8uw + f8uz
             + f8vm + f8wa + f8wc + f8wd
@@ -824,7 +810,6 @@ class creimp(Variable):
         f8tb = foyer_fiscal('f8tb', period)
         f8tc = foyer_fiscal('f8tc', period)
         f8tf = foyer_fiscal('f8tf', period)
-        f8tk = foyer_fiscal('f8tk', period)
         f8tg = foyer_fiscal('f8tg', period)
         f8tl = foyer_fiscal('f8tl', period)
         f8to = foyer_fiscal('f8to', period)
@@ -845,7 +830,7 @@ class creimp(Variable):
         f8vm = foyer_fiscal.sum(f8vm_i)
 
         return (
-            f2ab + f8ta + f8tb + f8tc + f8tk
+            f2ab + f8ta + f8tb + f8tc
             - f8tf + f8tg + f8to - f8tp
             + f8tl + f8ts + f8tz + f8uw + f8uz
             + f8vm + f8wa + f8wc + f8wd
@@ -1728,8 +1713,8 @@ class quaenv(Variable):
         Crédits d’impôt pour dépenses en faveur de la qualité environnementale (1.1-31.8.2014) et transition energétique (1.9-31.12.2014)
         2014
         '''
-        f7rg = foyer_fiscal('f7rg', period)
-        f7rh = foyer_fiscal('f7rh', period)
+        f7rg = foyer_fiscal('f7rg_2016', period)
+        f7rh = foyer_fiscal('f7rh_2016', period)
         f7ri = foyer_fiscal('f7ri', period)
         f7rj = foyer_fiscal('f7rj', period)
         f7rk = foyer_fiscal('f7rk', period)
@@ -1861,8 +1846,8 @@ class quaenv(Variable):
         f7bh = foyer_fiscal('f7bh', period)
         f7bk = foyer_fiscal('f7bk', period)
         f7bl = foyer_fiscal('f7bl', period)
-        f7rg = foyer_fiscal('f7rg', period)
-        f7rh = foyer_fiscal('f7rh', period)
+        f7rg = foyer_fiscal('f7rg_2016', period)
+        f7rh = foyer_fiscal('f7rh_2016', period)
         f7ri = foyer_fiscal('f7ri', period)
         f7rj = foyer_fiscal('f7rj', period)
         f7rk = foyer_fiscal('f7rk', period)
@@ -2155,7 +2140,7 @@ class quaenv_bouquet(Variable):
         f7sj = foyer_fiscal('f7sj', period)
         f7sk = foyer_fiscal('f7sk', period)
         f7sl = foyer_fiscal('f7sl', period)
-        f7sn = foyer_fiscal('f7sn', period)
+        f7sn = foyer_fiscal('f7sn_2015', period)
         f7sp = foyer_fiscal('f7sp', period)
         f7sq = foyer_fiscal('f7sq', period)
         f7sr = foyer_fiscal('f7sr', period)
@@ -2207,7 +2192,7 @@ class quaenv_bouquet(Variable):
         f7sj = foyer_fiscal('f7sj', period)
         f7sk = foyer_fiscal('f7sk', period)
         f7sl = foyer_fiscal('f7sl', period)
-        f7sn = foyer_fiscal('f7sn', period)
+        f7sn = foyer_fiscal('f7sn_2015', period)
         f7sp = foyer_fiscal('f7sp', period)
         f7sq = foyer_fiscal('f7sq', period)
         f7sr = foyer_fiscal('f7sr', period)
