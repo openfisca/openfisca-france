@@ -1,4 +1,4 @@
-from openfisca_france.model.base import Variable, Individu, Famille, MONTH, not_
+from openfisca_france.model.base import *
 
 
 class covid_aide_exceptionnelle_tpe_eligible(Variable):
@@ -112,7 +112,7 @@ class covid_activite_partielle_montant(Variable):
         salaire_horaire = individu('salaire_de_base', period) / heures
         indemnite_ap = parameters(period).covid19.indemnite_ap
         indemnite_horaire = max(
-            indemnite_horaire_ap.taux * salaire_horaire,
+            indemnite_ap.taux * salaire_horaire,
             indemnite_ap.plancher
-            )        
-        return eligibilite_activite_partielle * indemnite_horaire * heures 
+            )
+        return eligibilite_activite_partielle * indemnite_horaire * heures
