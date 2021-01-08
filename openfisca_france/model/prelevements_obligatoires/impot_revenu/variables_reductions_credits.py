@@ -6193,13 +6193,14 @@ class f7hr_2016(Variable):
     definition_period = YEAR
 
 
-class f7hs_2016(Variable):
+class f7hs_2017(Variable):
     cerfa_field = "7HS"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
     label = "Investissements locatifs neufs dispositif Scellier: investissements réalisés et achevés en 2009 dans les DOM COM du 27.5.2009 au 31.12.2009 respectant les plafonds spécifiques"
     # start_date = date(2010, 1, 1)
+    end = '2017-12-31'
     definition_period = YEAR
 
 
