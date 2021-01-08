@@ -1791,7 +1791,7 @@ class fhpv(Variable):
 
 
 class fhpw(Variable):
-    cerfa_field = "7HW"
+    cerfa_field = "HPW"
     value_type = int
     entity = FoyerFiscal
     label = "Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt dont vous demandez l'imputation en 2012"
@@ -2396,7 +2396,7 @@ class f7ku(Variable):
 
 
 class fhku(Variable):
-    cerfa_field = "7HU"
+    cerfa_field = "HKU"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
@@ -4275,7 +4275,7 @@ class f7kg(Variable):
 
 
 class fhql(Variable):
-    cerfa_field = "7HL"
+    cerfa_field = "HQL"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
