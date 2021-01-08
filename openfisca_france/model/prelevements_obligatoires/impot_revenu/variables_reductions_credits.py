@@ -1730,6 +1730,7 @@ class f7py_2013(Variable):
     entity = FoyerFiscal
     label = "Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 62,5 %"
     # start_date = date(2012, 1, 1)
+    end = '2013-12-31'
     definition_period = YEAR
 
 
@@ -3795,6 +3796,7 @@ class f7xb_2012(Variable):
     entity = FoyerFiscal
     label = "Investissements locatifs dans le secteur de touristique: travaux engagés avant 2011 dans une résidence de tourisme classée ou meublée"
     # start_date = date(2011, 1, 1)
+    end = '2012-12-31'
     definition_period = YEAR
 
 
