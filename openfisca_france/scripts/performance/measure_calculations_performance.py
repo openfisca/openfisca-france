@@ -1,6 +1,4 @@
 #! /usr/bin/env python
-# -*- coding: utf-8 -*-
-
 """
 Measure performance of formula calculations to compare to other OpenFisca implementations.
 

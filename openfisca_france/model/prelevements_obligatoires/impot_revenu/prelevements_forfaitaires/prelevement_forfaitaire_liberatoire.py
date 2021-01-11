@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 import logging
 from openfisca_france.model.base import *
 

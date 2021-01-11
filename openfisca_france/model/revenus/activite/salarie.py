@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 from functools import partial
 from numpy import busday_count as original_busday_count, datetime64, timedelta64
 from openfisca_france.model.base import *

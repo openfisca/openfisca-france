@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 from numpy import round, floor, datetime64, maximum
 
 from openfisca_france.model.base import *

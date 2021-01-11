@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 import os
 
 from openfisca_core.taxbenefitsystems import TaxBenefitSystem

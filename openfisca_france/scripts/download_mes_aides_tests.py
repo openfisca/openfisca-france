@@ -1,6 +1,4 @@
 #! /usr/bin/env python
-# -*- coding: utf-8 -*-
-
 """
 Download tests from Ludwig (https://mes-aides.gouv.fr/tests/).
 

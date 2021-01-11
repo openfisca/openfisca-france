@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 from openfisca_core.entities import build_entity
 
 Famille = build_entity(

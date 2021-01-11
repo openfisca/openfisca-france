@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 
 # TODO switch to to average tax rates
 

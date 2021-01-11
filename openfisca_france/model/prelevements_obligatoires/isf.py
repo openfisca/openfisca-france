@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 from openfisca_france.model.base import *
 
 # Variables apparaissant dans la feuille de déclaration de patrimoine soumis à l'ISF

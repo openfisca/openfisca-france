@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 import logging
 
 from numpy import busday_count, datetime64, logical_or as or_, logical_and as and_, timedelta64

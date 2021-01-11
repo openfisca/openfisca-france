@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 from numpy import abs as abs_, logical_or as or_
 
 from openfisca_france.model.base import *

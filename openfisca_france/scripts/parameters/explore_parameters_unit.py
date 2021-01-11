@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 
 from openfisca_core.parameters import ParameterNode, Scale
 from openfisca_france import FranceTaxBenefitSystem

@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 from openfisca_core import reforms
 from openfisca_core.periods import MONTH, YEAR
 from openfisca_core.entities import ADD, DIVIDE

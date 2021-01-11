@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 
 def montant_csg_crds(base_avec_abattement = None, base_sans_abattement = None, indicatrice_taux_plein = None,
         indicatrice_taux_reduit = None, law_node = None, plafond_securite_sociale = None):

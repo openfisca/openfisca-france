@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 from openfisca_france import FranceTaxBenefitSystem
 from openfisca_france.scenarios import init_single_entity
 
