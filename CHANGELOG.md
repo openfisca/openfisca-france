@@ -1,5 +1,13 @@
 # Changelog
 
+# 50.0.4 [#1470](https://github.com/openfisca/openfisca-france/pull/1470)
+
+* Évolution du système socio-fiscal. Changement mineur.
+* Périodes concernées : aucune.
+* Zones impactées : aucune.
+* Détails :
+  - Ajout d'un test pour l'initialisation de scénarios avec des axes parallèles pour tenir compte de openfisca/openfisca-core#968
+
 ### 50.0.3 [#1475](https://github.com/openfisca/openfisca-france/pull/1475)
 
 * Changement mineur.
@@ -36,7 +44,7 @@ Détails :
 ### 49.0.1 [#1466](https://github.com/openfisca/openfisca-france/pull/1466)
 
 * Correction d'un crash.
-* Périodes concernées : toutes. 
+* Périodes concernées : toutes.
 * Zones impactées : openfisca_france/model/prelevements_obligatoires/impot_revenu/credits_impot.py
 * Détails :
   - Correction dans l'appel de certaines cases de crédits d'impôts qui n'avaient pas été changées après renommage
