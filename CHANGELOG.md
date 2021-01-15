@@ -1,5 +1,13 @@
 # Changelog
 
+### 50.0.1 [#1471](https://github.com/openfisca/openfisca-france/pull/1471)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2021.
+* Zones impactées : `openfisca_france/parameters/cotsoc/gen/smic_h_b.yaml`
+* Détails :
+  - Revalorisation périodique du SMIC horaire brut.
+
 # 50.0.0 [#1431](https://github.com/openfisca/openfisca-france/pull/1431)
 
 * Amélioration technique non rétro-compatible.
