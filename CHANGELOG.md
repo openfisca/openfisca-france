@@ -1,5 +1,16 @@
 # Changelog
 
+### [#1473](https://github.com/openfisca/openfisca-france/pull/1473)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2021.
+* Zones impactées : 
+  - `parameters/impot_revenu/decote`
+  - `parameters/impot_revenu/plafond_qf`
+* Détails :
+  - Met à jour la décote et les plafonds du quotient familial pour 2021.
+  - La réfaction est inchangée pour la Guadeloupe, la Martinique, la Réunion, la Guyane et Mayotte.
+
 ### 51.0.1 [#1472](https://github.com/openfisca/openfisca-france/pull/1472)
 
 * Évolution du système socio-fiscal.
