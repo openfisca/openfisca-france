@@ -112,6 +112,9 @@ class covid_activite_partielle_montant(Variable):
     ]
     
     def formula_2020_03(individu, period, parameters) :
+        '''
+        Il s'agit de l'indemnité et pas de l'allocation (somme que doit verser l'entreprise au salarié et pas la somme que l'Etat verse à l'entreprise.
+        '''
         eligibilite_activite_partielle= individu('covid_activite_partielle_eligible', period)
         heures = individu('heures_remunerees_volume', period)
         salaire_horaire = individu('salaire_de_base', period) / heures
