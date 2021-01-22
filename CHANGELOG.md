@@ -1,5 +1,13 @@
 # Changelog
 
+### 50.0.3 [#1475](https://github.com/openfisca/openfisca-france/pull/1475)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `model/revenus/capital/financier.py`.
+* Détails :
+  - Rend les variables de valeur de patrimoine indépendantes de la taille de la période.
+
 ### 50.0.2 [#1474](https://github.com/openfisca/openfisca-france/pull/1474)
 
 * Changement mineur.
