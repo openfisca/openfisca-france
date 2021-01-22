@@ -4,10 +4,17 @@ aide_exceptionnelle_tpe:
       2020-03-01:
         value: 1500
 aide_exceptionnelle_famille:
+  reference:
+    - "Décret n°2020-519 du 5 mai 2020: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000041849630/"
+    - "Décret n°2020-769 du 24 juin 2020: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000042032514"
   base:
     values:
       2020-04-01:
         value: 150
+  base_jeune:
+    values:
+      2020-04-01:
+        value: 200
   par_enfant:
     values:
       2020-04-01:
