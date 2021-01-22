@@ -37,30 +37,6 @@ class covid_aide_exceptionnelle_tpe_montant(Variable):
         return eligibilite_fse * (difference_chiffre_d_affaire < 0) * min_(plafond_fse, -difference_chiffre_d_affaire)
 
 
-class covid_aide_exceptionnelle_famille_eligible(Variable):
-    entity = Famille
-    value_type = bool
-    label = "Montant de l'aide exceptionnelle pour les familles pendant la crise sanitaire dûe au COVID-19"
-    reference = [
-        "Décret n°2020-519 du 5 mai 2020"
-        "https://www.legifrance.gouv.fr/eli/decret/2020/5/5/SSAA2010355D/jo/texte",
-        ]
-    definition_period = MONTH
-
-    def formula(famille, period, parameters):
-        rsa = famille('rsa', period) > 0
-        ass = famille.sum(famille.members('ass', period)) > 0
-        al = famille('aide_logement', period) > 0
-        af_nbenf = famille('af_nbenf', period) > 0
-        period_1 = period.offset(-1, 'month')
-        rsa_n_1 = famille('rsa', period_1) > 0
-        ass_n_1 = famille.sum(famille.members('ass', period_1)) > 0
-        al_n_1 = famille('aide_logement', period_1) > 0
-        af_nbenf_n_1 = famille('af_nbenf', period_1) > 0
-
-        return max((rsa + ass + (al * af_nbenf)), (rsa_n_1 + ass_n_1 + (al_n_1 * af_nbenf_n_1)))
-
-
 class covid_aide_exceptionnelle_famille_montant(Variable):
     entity = Famille
     value_type = float
