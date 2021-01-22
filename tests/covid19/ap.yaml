@@ -19,7 +19,7 @@
       personne_de_reference:
       - parent1
   output:
-    covid_activite_partielle_montant: (4.5*10.15)*100
+    covid_activite_partielle_montant: ((10000/100)*0.70)*100
 
 - name: ap_2020
   description: Montant de l'indemnité d'activité partielle Covid 19
