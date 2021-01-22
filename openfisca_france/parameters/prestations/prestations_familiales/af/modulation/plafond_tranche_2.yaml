@@ -6,9 +6,9 @@ metadata:
     Précalcul du plafond annuel de ressources pour la deuxième tranche
     applicable pour l'attribution du montant modulé des allocations familiales.
 
-    La deuxième tranche est celle dont les revenus sont supérieurs à un plafond de base
-    de la 1ère tranche majoré d'un montant par enfant à charge mais inférieurs ou égaux
-    au plafond de base de cette 2ème tranche majoré d'un montant par enfant à charge.
+    La deuxième tranche est celle dont les revenus sont supérieurs à un plafond de base
+    de la 1ère tranche majoré d'un montant par enfant à charge mais inférieurs ou égaux
+    au plafond de base de cette 2ème tranche majoré d'un montant par enfant à charge.
 
     2018 : 90026 = 78770 + 5628 * 2
     2019 : 90926 = 79558 + 5684 * 2

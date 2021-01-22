@@ -1,5 +1,14 @@
 # Changelog
 
+### 50.0.2 [#1474](https://github.com/openfisca/openfisca-france/pull/1474)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `parameters/prestations/prestations_familiales/af/modulation/plafond_tranche_1.yaml.`
+`parameters/prestations/prestations_familiales/af/modulation/plafond_tranche_2.yaml.`
+Détails :
+- Corrige un encodage empêchant le bon import des paramètres
+
 ### 50.0.1 [#1471](https://github.com/openfisca/openfisca-france/pull/1471)
 
 * Évolution du système socio-fiscal.
