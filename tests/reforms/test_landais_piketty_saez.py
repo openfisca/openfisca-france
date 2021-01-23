@@ -1,4 +1,3 @@
-
 import datetime
 
 from openfisca_core import periods

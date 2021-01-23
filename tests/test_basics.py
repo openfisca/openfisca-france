@@ -41,7 +41,7 @@ def test_basics(scenario_arguments):
 def test_init_single_entity_parallel_axes():
     year = 2019
     count = 3
-    indexes = [0, 1]
+    indexes = [0, 1, 2]
     salaire_de_base_axes = [
         dict(
             count = count,
@@ -59,9 +59,10 @@ def test_init_single_entity_parallel_axes():
     scenario_kwargs = dict(
         parent1 = dict(age = 40),
         parent2 = dict(age = 40),
+        enfants = [dict(age = 20)],
         axes = axes,
         period = year
         )
 
     simulation = init_single_entity(tax_benefit_system.new_scenario(), **scenario_kwargs).new_simulation()
-    assert simulation.calculate_add('salaire_de_base', year) == pytest.approx([0, 0, 7500, 7500, 15000, 15000])
+    assert simulation.calculate_add('salaire_de_base', year) == pytest.approx([0, 0, 0, 7500, 7500, 7500, 15000, 15000, 15000])
