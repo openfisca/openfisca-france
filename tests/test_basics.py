@@ -1,3 +1,5 @@
+"""Basic test of all covered years."""
+
 import datetime
 
 from openfisca_france.scenarios import init_single_entity
@@ -29,6 +31,11 @@ scenarios_arguments = [
 
 @pytest.mark.parametrize("scenario_arguments", scenarios_arguments)
 def test_basics(scenario_arguments):
+    """Basic test for a specific year.
+
+    Args:
+        scenario_arguments (dict): Arguments to initialize scenario.
+    """
     scenario = tax_benefit_system.new_scenario()
     init_single_entity(scenario, **scenario_arguments)
     simulation = scenario.new_simulation(debug = False)
@@ -36,33 +43,3 @@ def test_basics(scenario_arguments):
     assert simulation.calculate('revenu_disponible', period = period) is not None, "Can't compute revenu_disponible on period {}".format(period)
     assert simulation.calculate_add('salaire_super_brut', period = period) is not None, \
         "Can't compute salaire_super_brut on period {}".format(period)
-
-
-def test_init_single_entity_parallel_axes():
-    year = 2019
-    count = 3
-    indexes = [0, 1, 2]
-    salaire_de_base_axes = [
-        dict(
-            count = count,
-            index = index,
-            min = 0,
-            max = 15000,
-            name = 'salaire_de_base',
-            period = year,
-            )
-        for index in indexes
-        ]
-
-    axes = [salaire_de_base_axes]
-
-    scenario_kwargs = dict(
-        parent1 = dict(age = 40),
-        parent2 = dict(age = 40),
-        enfants = [dict(age = 20)],
-        axes = axes,
-        period = year
-        )
-
-    simulation = init_single_entity(tax_benefit_system.new_scenario(), **scenario_kwargs).new_simulation()
-    assert simulation.calculate_add('salaire_de_base', year) == pytest.approx([0, 0, 0, 7500, 7500, 7500, 15000, 15000, 15000])
