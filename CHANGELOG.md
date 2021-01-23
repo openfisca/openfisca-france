@@ -1,6 +1,6 @@
 # Changelog
 
-# 50.0.4 [#1470](https://github.com/openfisca/openfisca-france/pull/1470)
+### 50.0.4 [#1470](https://github.com/openfisca/openfisca-france/pull/1470)
 
 * Évolution du système socio-fiscal. Changement mineur.
 * Périodes concernées : aucune.
