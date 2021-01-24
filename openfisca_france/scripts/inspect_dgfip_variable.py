@@ -1,6 +1,4 @@
 #! /usr/bin/env python
-# -*- coding: utf-8 -*-
-
 """Open a variable in the DGFIP website in a browser."""
 
 

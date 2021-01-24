@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """
 This files tests the performance of the test runner of openfisca-run-test on a subset of YAML tests.
 It is placed in openfisca-france because it is the largest set we currently have.

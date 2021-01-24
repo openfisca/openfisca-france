@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 ''' xml_to_yaml_france.py : Parse XML parameter files for Openfisca-France and convert them to YAML files. Comments are NOT transformed.
 
 Usage :

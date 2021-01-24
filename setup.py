@@ -1,13 +1,11 @@
 #! /usr/bin/env python
-# -*- coding: utf-8 -*-
-
 
 from setuptools import setup, find_packages
 
 
 setup(
     name = "OpenFisca-France",
-    version = "50.0.3",
+    version = "50.0.4",
     author = "OpenFisca Team",
     author_email = "contact@openfisca.fr",
     classifiers = [
@@ -59,7 +57,7 @@ setup(
         },
     include_package_data = True,  # Will read MANIFEST.in
     install_requires = [
-        "OpenFisca-Core >=34.6,<36.0",
+        "OpenFisca-Core >=35.0.1,<36.0",
         ],
     message_extractors = {"openfisca_france": [
         ("**.py", "python", None),

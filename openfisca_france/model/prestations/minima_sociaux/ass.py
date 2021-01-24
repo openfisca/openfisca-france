@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 from numpy import absolute as abs_, logical_and as and_
 
 from openfisca_france.model.base import *

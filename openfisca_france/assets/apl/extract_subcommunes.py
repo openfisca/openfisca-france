@@ -1,6 +1,4 @@
 #! /usr/bin/env python
-# -*- coding: utf-8 -*-
-
 """
 Extract mapping from subcommunes (arrondissements and communes associées) depcom codes to
 commune depcom code.

@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 from numpy import datetime64, timedelta64
 
 

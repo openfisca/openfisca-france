@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+"""Basic test of all covered years."""
 
 import datetime
 
@@ -31,6 +31,11 @@ scenarios_arguments = [
 
 @pytest.mark.parametrize("scenario_arguments", scenarios_arguments)
 def test_basics(scenario_arguments):
+    """Basic test for a specific year.
+
+    Args:
+        scenario_arguments (dict): Arguments to initialize scenario.
+    """
     scenario = tax_benefit_system.new_scenario()
     init_single_entity(scenario, **scenario_arguments)
     simulation = scenario.new_simulation(debug = False)

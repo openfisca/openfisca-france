@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 from .cache import tax_benefit_system
 
 

@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 from numpy.core.defchararray import startswith
 from openfisca_france.model.base import *
 

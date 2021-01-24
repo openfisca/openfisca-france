@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 import os
 
 from openfisca_france.model.base import *

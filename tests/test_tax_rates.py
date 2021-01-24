@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 from openfisca_core.rates import average_rate, marginal_rate
 
 from openfisca_france.scenarios import init_single_entity
