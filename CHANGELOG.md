@@ -6,7 +6,7 @@
 * Périodes concernées : aucune.
 * Zones impactées : aucune.
 * Détails :
-  - Ajout d'un test pour l'initialisation de scénarios avec des axes parallèles pour tenir compte de openfisca/openfisca-core#968
+  - Ajout d'un test pour l'initialisation de scénarios avec des axes parallèles afin de tenir compte de openfisca/openfisca-core#968
   - Suppression de l'encodage explicite du code source (UTF-8 est l'encodage par défaut en Python 3)
 
 ### 50.0.3 [#1475](https://github.com/openfisca/openfisca-france/pull/1475)
