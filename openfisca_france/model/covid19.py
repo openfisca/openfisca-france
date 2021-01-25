@@ -13,10 +13,12 @@ class covid_aide_exceptionnelle_tpe_eligible(Variable):
         ]
     definition_period = MONTH
 
-    def formula(individu, period):
+    def formula_2020_03(individu, period):
         chiffre_d_affaire = individu('tns_auto_entrepreneur_chiffre_affaires', period)
         period_1 = period.offset(-1, 'year')
-        chiffre_d_affaire_annee_n_1 = individu('tns_auto_entrepreneur_chiffre_affaires', period_1)
+        chiffre_d_affaire_annee_mois_un_an_avant = individu('tns_auto_entrepreneur_chiffre_affaires', period_1)
+        chiffre_d_affaire_annee_moyenne_annee_precedente = individu('tns_auto_entrepreneur_chiffre_affaires', period.last_year, options = [ADD]) / 12
+        chiffre_d_affaire_annee_n_1 = max_(chiffre_d_affaire_annee_mois_un_an_avant, chiffre_d_affaire_annee_moyenne_annee_precedente)
         return individu('travailleur_non_salarie', period) * (((chiffre_d_affaire - chiffre_d_affaire_annee_n_1) / chiffre_d_affaire_annee_n_1) < -0.5)
 
 
@@ -32,7 +34,9 @@ class covid_aide_exceptionnelle_tpe_montant(Variable):
         plafond_fse = parameters(period).covid19.aide_exceptionnelle_tpe.plafond
         chiffre_d_affaire = individu('tns_auto_entrepreneur_chiffre_affaires', period)
         period_1 = period.offset(-1, 'year')
-        chiffre_d_affaire_annee_n_1 = individu('tns_auto_entrepreneur_chiffre_affaires', period_1)
+        chiffre_d_affaire_annee_mois_un_an_avant = individu('tns_auto_entrepreneur_chiffre_affaires', period_1)
+        chiffre_d_affaire_annee_moyenne_annee_precedente = individu('tns_auto_entrepreneur_chiffre_affaires', period.last_year, options = [ADD]) / 12
+        chiffre_d_affaire_annee_n_1 = max_(chiffre_d_affaire_annee_mois_un_an_avant, chiffre_d_affaire_annee_moyenne_annee_precedente)
         difference_chiffre_d_affaire = chiffre_d_affaire - chiffre_d_affaire_annee_n_1
         return eligibilite_fse * (difference_chiffre_d_affaire < 0) * min_(plafond_fse, -difference_chiffre_d_affaire)
 
