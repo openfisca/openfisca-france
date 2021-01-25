@@ -59,7 +59,7 @@ class covid_aide_exceptionnelle_famille_montant(Variable):
         prim_forf = famille.sum(famille.members('prime_forfaitaire_mensuelle_reprise_activite', period)) > 0
         age_i = famille.members('age', period)
         etudiant_i = famille.members('etudiant', period)
-        moins_de_25_ans_non_etudiant = famille.any((age_i<=24) * (etudiant_i == 0), role = Famille.PARENT)
+        moins_de_25_ans_non_etudiant = famille.any((age_i <= 24) * (etudiant_i == 0), role = Famille.PARENT)
         base_jeune = moins_de_25_ans_non_etudiant * al
         base = (rsa + ass + aer + prim_forf)
         montant = (
@@ -77,7 +77,7 @@ class covid_aide_exceptionnelle_famille_montant(Variable):
         prim_forf_n_1 = famille.sum(famille.members('prime_forfaitaire_mensuelle_reprise_activite', period_1)) > 0
         age_i_n_1 = famille.members('age', period_1)
         etudiant_i_n_1 = famille.members('etudiant', period_1)
-        moins_de_25_ans_non_etudiant_n_1 = famille.any((age_i_n_1<=24) * (etudiant_i_n_1 == 0), role = Famille.PARENT)
+        moins_de_25_ans_non_etudiant_n_1 = famille.any((age_i_n_1 <= 24) * (etudiant_i_n_1 == 0), role = Famille.PARENT)
         base_jeune_n_1 = moins_de_25_ans_non_etudiant_n_1 * al_n_1
         base_n_1 = (rsa_n_1 + ass_n_1 + aer_n_1 + prim_forf_n_1)
         montant_n_1 = (
@@ -85,8 +85,9 @@ class covid_aide_exceptionnelle_famille_montant(Variable):
             + base_n_1 * not_(base_jeune_n_1) * (montants.base + montants.par_enfant * af_nbenf_n_1)
             + not_(base_n_1) * not_(base_jeune_n_1) * al_n_1 * af_nbenf_n_1 * montants.par_enfant
             )
-        
+
         return max_(montant, montant_n_1)
+
 
 class covid_activite_partielle_eligible(Variable):
     entity = Individu
@@ -94,8 +95,9 @@ class covid_activite_partielle_eligible(Variable):
     label = "Eligibilité au dispositif du chômage partiel"
     definition_period = MONTH
 
-    def formula(individu, period) :
-        return individu('salaire_de_base', period)!=0
+    def formula(individu, period):
+        return individu('salaire_de_base', period) != 0
+
 
 class covid_activite_partielle_montant(Variable):
     entity = Individu
@@ -105,13 +107,13 @@ class covid_activite_partielle_montant(Variable):
     reference = [
         "Ordonnance n° 2020-346 du 27 mars 2020 portant mesures d'urgence en matière d'activité partielle",
         "https://www.legifrance.gouv.fr/eli/ordonnance/2020/3/27/MTRX2008381R/jo/texte",
-    ]
-    
-    def formula_2020_03(individu, period, parameters) :
+        ]
+
+    def formula_2020_03(individu, period, parameters):
         '''
         Il s'agit de l'indemnité et pas de l'allocation (somme que doit verser l'entreprise au salarié et pas la somme que l'Etat verse à l'entreprise.
         '''
-        eligibilite_activite_partielle= individu('covid_activite_partielle_eligible', period)
+        eligibilite_activite_partielle = individu('covid_activite_partielle_eligible', period)
         heures = individu('heures_remunerees_volume', period)
         salaire_horaire = individu('salaire_de_base', period) / heures
         indemnite_ap = parameters(period).covid19.indemnite_ap
