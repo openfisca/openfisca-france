@@ -54,8 +54,8 @@
       parent2:
         activite: inactif
       enf1:
-        activite : etudiant
-        date_naissance : '2011-01-01'
+        activite: etudiant
+        date_naissance: '2011-01-01'
     foyer_fiscal:
       declarants:
       - parent1
@@ -84,7 +84,7 @@
     individus:
       parent1:
         activite: inactif
-        age : 24
+        age: 24
     foyer_fiscal:
       declarants: parent1
     famille:
