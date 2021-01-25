@@ -42,7 +42,7 @@ class covid_aide_exceptionnelle_famille_montant(Variable):
     value_type = float
     label = "Montant de l'aide exceptionnelle pour les familles pendant la crise sanitaire dûe au COVID-19"
     definition_period = MONTH
-    end = '2020-05-31'
+    end = '2020-10-31'
 
     def formula_2020_05(famille, period, parameters):
 
