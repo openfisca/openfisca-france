@@ -5,18 +5,18 @@
   input:
     individus:
       parent1:
-        activite : inactif
+        activite: inactif
     foyer_fiscal:
       declarants: parent1
     famille:
       parents:
       - parent1
-      rsa : 600
+      rsa: 600
     menage:
       personne_de_reference:
       - parent1
   output:
-    covid_aide_exceptionnelle_famille_montant : 150
+    covid_aide_exceptionnelle_famille_montant: 150
 
 - name: aide_excep_2020_2par_0enf
   description: Montant aide exceptionnelle - couple sans enfant
@@ -25,23 +25,23 @@
   input:
     individus:
       parent1:
-        activite : inactif
+        activite: inactif
       parent2:
-        activite : inactif
+        activite: inactif
     foyer_fiscal:
-      declarants: 
+      declarants:
       - parent1
       - parent2
     famille:
       parents:
       - parent1
       - parent2
-      rsa : 1100
+      rsa: 1100
     menage:
       personne_de_reference:
       - parent1
   output:
-    covid_aide_exceptionnelle_famille_montant : 150
+    covid_aide_exceptionnelle_famille_montant: 150
 
 - name: aide_excep_2020_2par_1enf
   description: Montant aide exceptionnelle - couple avec 1 enfant
@@ -57,7 +57,7 @@
         activite : etudiant
         date_naissance : '2011-01-01'
     foyer_fiscal:
-      declarants: 
+      declarants:
       - parent1
       - parent2
     famille:
@@ -74,7 +74,7 @@
       enfants:
       - enf1
   output:
-    covid_aide_exceptionnelle_famille_montant : 250
+    covid_aide_exceptionnelle_famille_montant: 250
 
 - name: aide_excep_2020_isole_jeune_non_etudiant
   description: Montant aide exceptionnelle - moins de 25 ans non étudiant
@@ -83,23 +83,23 @@
   input:
     individus:
       parent1:
-        activite : inactif
+        activite: inactif
         age : 24
     foyer_fiscal:
       declarants: parent1
     famille:
       parents:
       - parent1
-      aide_logement : 200
+      aide_logement: 200
     menage:
       personne_de_reference:
       - parent1
   output:
-    covid_aide_exceptionnelle_famille_montant : 200
+    covid_aide_exceptionnelle_famille_montant: 200
 
 
 - name: aide_excep_2020_2par_2enf
-  description: Montant aide exceptionnelle 
+  description: Montant aide exceptionnelle
   period: '2020-05'
   absolute_error_margin: 1
   input:
@@ -109,13 +109,13 @@
       parent2:
         activite: inactif
       enf1:
-        activite : etudiant
-        date_naissance : '2011-01-01'
+        activite: etudiant
+        date_naissance: '2011-01-01'
       enf2:
-        activite : etudiant
-        date_naissance : '2011-01-01'
+        activite: etudiant
+        date_naissance: '2011-01-01'
     foyer_fiscal:
-      declarants: 
+      declarants:
       - parent1
       - parent2
     famille:
@@ -134,4 +134,4 @@
       - enf1
       - enf2
   output:
-    covid_aide_exceptionnelle_famille_montant : 350
+    covid_aide_exceptionnelle_famille_montant: 350
