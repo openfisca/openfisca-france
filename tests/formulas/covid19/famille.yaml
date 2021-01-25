@@ -6,5 +6,4 @@
     aide_logement:  [0, 0, 0, 0, 1, 1]
     af_nbenf:       [0, 0, 1, 0, 0, 2]
   output:
-    covid_aide_exceptionnelle_famille_eligible: [false, true, true, true, false, true]
     covid_aide_exceptionnelle_famille_montant: [0, 150, 250, 150, 0, 200]
