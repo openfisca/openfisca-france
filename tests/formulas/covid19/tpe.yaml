@@ -1,13 +1,38 @@
-- period: 2020-03
+- name: fse_baisseCAsup50_mois1anavant_nonplaf
+  description: FSE - baisse de plus de 50% par rapport à la même période de l'année précédente - montant inférieur au plafond
+  period: 2020-04
   absolute_error_margin: 0
   input:
-    travailleur_non_salarie: [false, true]
+    travailleur_non_salarie: true
+    tns_auto_entrepreneur_chiffre_affaires:
+      2020-04: 700
+      2019-04: 1600
   output:
-    covid_aide_exceptionnelle_tpe_eligible: [false, true]
-
-- period: 2020-03
-  absolute_error_margin: 0
-  input:
     covid_aide_exceptionnelle_tpe_eligible: true
+    covid_aide_exceptionnelle_tpe_montant: 900
+
+- name: fse_baisseCAsup50_mois1anavant_plaf
+  description: FSE - baisse de plus de 50% par rapport à la même période de l'année précédente - montant supérieur au plafond
+  period: 2020-04
+  absolute_error_margin: 0
+  input:
+    travailleur_non_salarie: true
+    tns_auto_entrepreneur_chiffre_affaires:
+      2020-04: 700
+      2019-04: 4000
   output:
+    covid_aide_exceptionnelle_tpe_eligible: true
     covid_aide_exceptionnelle_tpe_montant: 1500
+
+- name: fse_baisseCAinf50_mois1anavant
+  description: FSE - baisse de moins de 50% par rapport à la même période de l'année précédente
+  period: 2020-04
+  absolute_error_margin: 0
+  input:
+    travailleur_non_salarie: true
+    tns_auto_entrepreneur_chiffre_affaires:
+      2020-04: 1200
+      2019-04: 1600
+  output:
+    covid_aide_exceptionnelle_tpe_eligible: false
+    covid_aide_exceptionnelle_tpe_montant: 0
