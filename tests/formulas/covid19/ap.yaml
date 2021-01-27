@@ -1,0 +1,68 @@
+- name: ap_2020_high
+  description: Montant de l'indemnité d'activité partielle Covid 19
+  period: '2020-05'
+  input:
+    individus:
+      parent1:
+        salaire_de_base:
+          2020-05:
+            10000
+        heures_remunerees_volume:
+          2020-05:
+            100
+    foyer_fiscal:
+      declarants: parent1
+    famille:
+      parents:
+      - parent1
+    menage:
+      personne_de_reference:
+      - parent1
+  output:
+    covid_activite_partielle_montant: ((10000/100)*0.70)*100
+
+- name: ap_2020
+  description: Montant de l'indemnité d'activité partielle Covid 19
+  period: '2020-05'
+  input:
+    individus:
+      parent1:
+        salaire_de_base:
+          2020-05:
+            4000
+        heures_remunerees_volume:
+          2020-05:
+            100
+    foyer_fiscal:
+      declarants: parent1
+    famille:
+      parents:
+      - parent1
+    menage:
+      personne_de_reference:
+      - parent1
+  output:
+    covid_activite_partielle_montant: ((4000/100)*0.70)*100
+
+- name: ap_2020_low
+  description: Montant de l'indemnité d'activité partielle Covid 19
+  period: '2020-05'
+  input:
+    individus:
+      parent1:
+        salaire_de_base:
+          2020-05:
+            800
+        heures_remunerees_volume:
+          2020-05:
+            100
+    foyer_fiscal:
+      declarants: parent1
+    famille:
+      parents:
+      - parent1
+    menage:
+      personne_de_reference:
+      - parent1
+  output:
+    covid_activite_partielle_montant: 8.03*100

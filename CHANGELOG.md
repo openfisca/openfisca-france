@@ -1,5 +1,17 @@
 # Changelog
 
+# 51.0.0 [#1442](https://github.com/openfisca/openfisca-france/pull/1442)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : jusqu'au 31/12/2020 | à partir du 01/03/2020
+* Zones impactées : `model/covid19.py`
+* Détails :
+  - Met à jour les mesures Covid 19 : Fonds de solidarité aux entreprises pour les indépendants et aides exceptionnelles pour les bénéficiaires de prestations sociales
+  - Affine l'éligibilité au FSE (prise en compte de la baisse de CA)
+  - Modifications justifiant un versionnage au premier niveau: 
+      - barème `aide_exceptionnelle_tpe.montant` remplacé par `aide_exceptionnelle_tpe.plafond` 
+      - Suppression de la variable `covid_aide_exceptionnelle_famille_eligibilite`
+
 ### 50.0.4 [#1470](https://github.com/openfisca/openfisca-france/pull/1470)
 
 * Évolution du système socio-fiscal. Changement mineur.
