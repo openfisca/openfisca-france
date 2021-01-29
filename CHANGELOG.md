@@ -1,5 +1,13 @@
 # Changelog
 
+### 51.0.1 [#1472](https://github.com/openfisca/openfisca-france/pull/1472)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/2021.
+* Zones impactées : `openfisca_france/parameters/impot_revenu/bareme.yaml`.
+* Détails :
+  - Mise à jour du barème d'IR applicable à partir du 1er janvier 2021.
+
 # 51.0.0 [#1442](https://github.com/openfisca/openfisca-france/pull/1442)
 
 * Évolution du système socio-fiscal.
