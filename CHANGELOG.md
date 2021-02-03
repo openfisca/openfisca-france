@@ -1,5 +1,11 @@
 # Changelog
 
+### 51.0.3 [#1476](https://github.com/openfisca/openfisca-france/pull/1476)
+
+* Amélioration technique.
+* Détails :
+  - Met à jour la librairie `yamllint` utilisée par le job CircleCI `lint_yaml_files`
+
 ### 51.0.2 [#1473](https://github.com/openfisca/openfisca-france/pull/1473)
 
 * Évolution du système socio-fiscal.
