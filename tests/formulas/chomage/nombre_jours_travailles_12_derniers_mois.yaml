@@ -1,0 +1,80 @@
+- name: Nombre de jours travaillés durant les 12 derniers mois précédant la rupture de contrat - Cas n°1
+  description: Nombre de jours travaillés durant les 12 derniers mois précédant la rupture de contrat au 2018-12, chaque mois affichant le même nombre de jours travaillés
+  period: 2018-12
+  input:
+    jours_travailles_chomage:
+      2017-12: 10
+      2018-01: 10
+      2018-02: 10
+      2018-03: 10
+      2018-04: 10
+      2018-05: 10
+      2018-06: 10
+      2018-07: 10
+      2018-08: 10
+      2018-09: 10
+      2018-10: 10
+      2018-11: 10
+      2018-12: 0
+
+    contrat_de_travail_fin: 2018-12
+  output:
+    nombre_jours_travailles_12_derniers_mois: 
+      2018-12: 120
+
+- name: Nombre de jours travaillés durant les 12 derniers mois précédant la rupture de contrat - Cas n°2
+  description: Nombre de jours travaillés durant les 12 derniers mois précédant la rupture de contrat au 2018-12, chaque mois affichant des valeurs différentes (dont des jours non travaillés)
+  period: 2018-12
+  input:
+    jours_travailles_chomage:
+      2017-12: 0
+      2018-01: 10
+      2018-02: 20
+      2018-03: 13
+      2018-04: 18
+      2018-05: 20
+      2018-06: 17
+      2018-07: 8
+      2018-08: 0
+      2018-09: 10
+      2018-10: 13
+      2018-11: 2
+      2018-12: 0
+
+    contrat_de_travail_fin: 2018-12
+  output:
+    nombre_jours_travailles_12_derniers_mois: 
+      2018-12: 131
+
+- name: Nombre de jours travaillés durant les 12 derniers mois précédant la rupture de contrat - Cas n°3
+  description: Nombre de jours travaillés durant les 12 derniers mois précédant la rupture de contrat au 2018-02, en rajoutant des mois non pris en compte dans le calcul 
+  period: 2018-02
+  input:
+    jours_travailles_chomage:
+      2016-10: 17
+      2016-11: 8
+      2016-12: 0
+      2017-01: 10
+      2017-02: 13
+      2017-03: 2
+      2017-04: 0
+      2017-05: 0
+      2017-06: 10
+      2017-07: 20
+      2017-08: 13
+      2017-09: 18
+      2017-10: 20
+      2017-11: 17
+      2017-12: 0
+      2018-01: 10
+      2018-02: 0
+      2018-03: 0
+      2018-04: 18
+      2018-05: 20
+
+    contrat_de_travail_fin: 2018-02
+  output:
+    nombre_jours_travailles_12_derniers_mois: 
+      2018-02: 123
+
+

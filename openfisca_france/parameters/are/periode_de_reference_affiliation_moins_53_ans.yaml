@@ -1,0 +1,8 @@
+description: Période de référence affiliation pour les moins de 53 ans, qui est la période au cours de laquelle est recherchée la durée minimale d’affiliation requise pour ouvrir ou recharger un droit 
+unit: months
+values:
+  2019-11-01:
+    value: 24
+  2017-11-01:
+    value: 28
+  

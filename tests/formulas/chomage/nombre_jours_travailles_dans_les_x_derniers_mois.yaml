@@ -1,0 +1,383 @@
+- name: Nombre de jours travaillés durant les x derniers mois précédant la rupture de contrat pour les moins de 53 ans - Cas n°1
+  description: Nombre de jours travaillés durant les x derniers mois précédant la rupture de contrat au 2018-12 pour les moins de 53 ans, chaque mois affichant le même nombre de jours travaillés
+  period: 2018-12
+  input:
+    age: 45
+    jours_travailles_chomage:
+      2016-08: 10
+      2016-09: 10
+      2016-10: 10
+      2016-11: 10
+      2016-12: 10
+      2017-01: 10
+      2017-02: 10
+      2017-03: 10
+      2017-04: 10
+      2017-05: 10
+      2017-06: 10
+      2017-07: 10
+      2017-08: 10
+      2017-09: 10
+      2017-10: 10
+      2017-11: 10
+      2017-12: 10
+      2018-01: 10
+      2018-02: 10
+      2018-03: 10
+      2018-04: 10
+      2018-05: 10
+      2018-06: 10
+      2018-07: 10
+      2018-08: 10
+      2018-09: 10
+      2018-10: 10
+      2018-11: 10
+      2018-12: 0
+
+    contrat_de_travail_fin: 2018-12
+  output:
+    nombre_jours_travailles_dans_les_x_derniers_mois:
+      2018-12: 280
+
+- name: Nombre de jours travaillés durant les x derniers mois précédant la rupture de contrat pour les moins de 53 ans - Cas n°2
+  description: Nombre de jours travaillés durant les x derniers mois précédant la rupture de contrat au 2018-12 pour les moins de 53 ans, chaque mois affichant des valeurs différentes (dont des jours non travaillés)
+  period: 2018-12
+  input:
+    age: 45
+    jours_travailles_chomage:
+      2016-08: 6
+      2016-09: 0
+      2016-10: 8
+      2016-11: 8
+      2016-12: 9
+      2017-01: 10
+      2017-02: 20
+      2017-03: 0
+      2017-04: 17
+      2017-05: 7
+      2017-06: 10
+      2017-07: 10
+      2017-08: 21
+      2017-09: 20
+      2017-10: 9
+      2017-11: 19
+      2017-12: 10
+      2018-01: 10
+      2018-02: 20
+      2018-03: 20
+      2018-04: 8
+      2018-05: 5
+      2018-06: 0
+      2018-07: 10
+      2018-08: 21
+      2018-09: 0
+      2018-10: 7
+      2018-11: 2
+      2018-12: 0
+    contrat_de_travail_fin: 2018-12
+
+  output:
+    nombre_jours_travailles_dans_les_x_derniers_mois:
+      2018-12: 287
+
+- name: Nombre de jours travaillés durant les x derniers mois précédant la rupture de contrat pour les moins de 53 ans - Cas n°3
+  description: Nombre de jours travaillés durant les x derniers mois précédant la rupture de contrat au 2018-02 pour les moins de 53 ans, en rajoutant des mois non pris en compte dans le calcul
+  period: 2018-02
+  input:
+    age: 45
+    jours_travailles_chomage:
+      2015-07: 0
+      2015-08: 8
+      2015-09: 8
+      2015-10: 9
+      2015-11: 10
+      2015-12: 0
+      2016-01: 8
+      2016-02: 8
+      2016-03: 9
+      2016-04: 10
+      2016-05: 20
+      2016-06: 0
+      2016-07: 17
+      2016-08: 6
+      2016-09: 0
+      2016-10: 8
+      2016-11: 8
+      2016-12: 9
+      2017-01: 10
+      2017-02: 20
+      2017-03: 0
+      2017-04: 17
+      2017-05: 7
+      2017-06: 10
+      2017-07: 10
+      2017-08: 21
+      2017-09: 20
+      2017-10: 9
+      2017-11: 19
+      2017-12: 10
+      2018-01: 10
+      2018-02: 0
+      2018-03: 20
+      2018-04: 8
+      2018-05: 5
+    contrat_de_travail_fin: 2018-02
+
+  output:
+    nombre_jours_travailles_dans_les_x_derniers_mois:
+      2018-02: 285
+
+- name: Nombre de jours travaillés durant les x derniers mois précédant la rupture de contrat pour les moins de 53 ans - Cas n°4
+  description: Nombre de jours travaillés durant les x derniers mois précédant la rupture de contrat au 2019-12 pour les moins de 53 ans
+  period: 2019-12
+  input:
+    age: 45
+    jours_travailles_chomage:
+      2017-07: 0
+      2017-08: 8
+      2017-09: 8
+      2017-10: 9
+      2017-11: 10
+      2017-12: 0
+      2018-01: 8
+      2018-02: 8
+      2018-03: 9
+      2018-04: 10
+      2018-05: 20
+      2018-06: 0
+      2018-07: 17
+      2018-08: 6
+      2018-09: 0
+      2018-10: 8
+      2018-11: 8
+      2018-12: 9
+      2019-01: 10
+      2019-02: 20
+      2019-03: 0
+      2019-04: 17
+      2019-05: 7
+      2019-06: 10
+      2019-07: 10
+      2019-08: 21
+      2019-09: 20
+      2019-10: 9
+      2019-11: 19
+      2019-12: 0
+      2020-01: 0
+      2020-02: 0
+      2020-03: 20
+      2020-04: 8
+      2020-05: 5
+    contrat_de_travail_fin: 2019-12
+
+  output:
+    nombre_jours_travailles_dans_les_x_derniers_mois:
+      2019-12: 246
+
+
+
+- name: Nombre de jours travaillés durant les x derniers mois précédant la rupture de contrat pour les personnes de 53 ans et plus - Cas n°1
+  description: Nombre de jours travaillés durant les x derniers mois précédant la rupture de contrat au 2018-12 pour les personnes de 53 ans, chaque mois affichant le même nombre de jours travaillés
+  period: 2018-12
+  input:
+    age: 54
+    jours_travailles_chomage:
+      2015-12: 10
+      2016-01: 10
+      2016-02: 10
+      2016-03: 10
+      2016-04: 10
+      2016-05: 10
+      2016-06: 10
+      2016-07: 10
+      2016-08: 10
+      2016-09: 10
+      2016-10: 10
+      2016-11: 10
+      2016-12: 10
+      2017-01: 10
+      2017-02: 10
+      2017-03: 10
+      2017-04: 10
+      2017-05: 10
+      2017-06: 10
+      2017-07: 10
+      2017-08: 10
+      2017-09: 10
+      2017-10: 10
+      2017-11: 10
+      2017-12: 10
+      2018-01: 10
+      2018-02: 10
+      2018-03: 10
+      2018-04: 10
+      2018-05: 10
+      2018-06: 10
+      2018-07: 10
+      2018-08: 10
+      2018-09: 10
+      2018-10: 10
+      2018-11: 10
+      2018-12: 0
+    contrat_de_travail_fin: 2018-12
+
+  output:
+    nombre_jours_travailles_dans_les_x_derniers_mois:
+      2018-12: 360
+
+- name: Nombre de jours travaillés durant les x derniers mois précédant la rupture de contrat pour les personnes de 53 ans et plus - Cas n°2
+  description: Nombre de jours travaillés durant les x derniers mois précédant la rupture de contrat au 2018-12 pour les personnes de 53 ans, chaque mois affichant des valeurs différentes (dont des jours non travaillés)
+  period: 2018-12
+  input:
+    age: 56
+    jours_travailles_chomage:
+      2015-12: 0
+      2016-01: 0
+      2016-02: 10
+      2016-03: 20
+      2016-04: 17
+      2016-05: 14
+      2016-06: 12
+      2016-07: 10
+      2016-08: 6
+      2016-09: 0
+      2016-10: 8
+      2016-11: 8
+      2016-12: 9
+      2017-01: 10
+      2017-02: 20
+      2017-03: 0
+      2017-04: 17
+      2017-05: 7
+      2017-06: 10
+      2017-07: 10
+      2017-08: 21
+      2017-09: 20
+      2017-10: 9
+      2017-11: 19
+      2017-12: 10
+      2018-01: 10
+      2018-02: 20
+      2018-03: 20
+      2018-04: 8
+      2018-05: 5
+      2018-06: 0
+      2018-07: 10
+      2018-08: 21
+      2018-09: 0
+      2018-10: 7
+      2018-11: 2
+      2018-12: 0
+    contrat_de_travail_fin: 2018-12
+
+  output:
+    nombre_jours_travailles_dans_les_x_derniers_mois:
+      2018-12: 370
+
+- name: Nombre de jours travaillés durant les x derniers mois précédant la rupture de contrat pour les personnes de 53 ans et plus - Cas n°3
+  description: Nombre de jours travaillés durant les x derniers mois précédant la rupture de contrat au 2018-02 pour les personnes de 53 ans, en rajoutant des mois non pris en compte dans le calcul
+  period: 2018-02
+  input:
+    age: 56
+    jours_travailles_chomage:
+      2015-02: 0
+      2015-03: 8
+      2015-04: 14
+      2015-05: 19
+      2015-06: 10
+      2015-07: 0
+      2015-08: 8
+      2015-09: 8
+      2015-10: 9
+      2015-11: 10
+      2015-12: 0
+      2016-01: 8
+      2016-02: 8
+      2016-03: 9
+      2016-04: 10
+      2016-05: 20
+      2016-06: 0
+      2016-07: 17
+      2016-08: 6
+      2016-09: 0
+      2016-10: 8
+      2016-11: 8
+      2016-12: 9
+      2017-01: 10
+      2017-02: 20
+      2017-03: 0
+      2017-04: 17
+      2017-05: 7
+      2017-06: 10
+      2017-07: 10
+      2017-08: 21
+      2017-09: 20
+      2017-10: 9
+      2017-11: 19
+      2017-12: 10
+      2018-01: 10
+      2018-02: 0
+      2018-03: 20
+      2018-04: 8
+      2018-05: 5
+    contrat_de_travail_fin: 2018-02
+
+  output:
+    nombre_jours_travailles_dans_les_x_derniers_mois:
+      2018-02: 352
+
+- name: Nombre de jours travaillés durant les x derniers mois précédant la rupture de contrat pour les personnes de 53 ans et plus - Cas n°4
+  description: Nombre de jours travaillés durant les x derniers mois précédant la rupture de contrat au 2019-12 pour les personnes de 53 ans
+  period: 2019-12
+  input:
+    age: 56
+    jours_travailles_chomage:
+      2016-12: 8
+      2017-01: 8
+      2017-02: 18
+      2017-03: 9
+      2017-04: 10
+      2017-05: 0
+      2017-06: 8
+      2017-07: 0
+      2017-08: 8
+      2017-09: 8
+      2017-10: 9
+      2017-11: 10
+      2017-12: 0
+      2018-01: 8
+      2018-02: 8
+      2018-03: 9
+      2018-04: 10
+      2018-05: 20
+      2018-06: 0
+      2018-07: 17
+      2018-08: 6
+      2018-09: 0
+      2018-10: 8
+      2018-11: 8
+      2018-12: 9
+      2019-01: 10
+      2019-02: 20
+      2019-03: 0
+      2019-04: 17
+      2019-05: 7
+      2019-06: 10
+      2019-07: 10
+      2019-08: 21
+      2019-09: 20
+      2019-10: 9
+      2019-11: 19
+      2019-12: 0
+      2020-01: 0
+      2020-02: 0
+      2020-03: 20
+      2020-04: 8
+      2020-05: 5
+    contrat_de_travail_fin: 2019-12
+
+  output:
+    nombre_jours_travailles_dans_les_x_derniers_mois:
+      2019-12: 342
+
+

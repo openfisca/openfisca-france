@@ -1,0 +1,139 @@
+- name: Salaire de référence des 12 derniers mois - Cas n°1
+  description: Salaire de référence pour un individu gagnant 2000 euros chaque mois durant les 12 derniers mois précédant sa date de fin de contrat au 2018-12
+  period: 2018-12
+  input:
+    salaire_de_base:
+      2017-12: 2000
+      2018-01: 2000
+      2018-02: 2000
+      2018-03: 2000
+      2018-04: 2000
+      2018-05: 2000
+      2018-06: 2000
+      2018-07: 2000
+      2018-08: 2000
+      2018-09: 2000
+      2018-10: 2000
+      2018-11: 2000
+      2018-12: 0
+
+    contrat_de_travail_fin: 2018-12
+  output:
+    salaire_de_reference: 
+      2018-12: 24000
+
+- name: Salaire de référence des 12 derniers mois - Cas n°2
+  description: Salaire de référence pour un individu gagnant 2000 euros chaque mois durant les 12 derniers mois précédant sa date de fin de contrat au 2018-12, en ajoutant d'autres mois (non pris en compte par le calcul)
+  period: 2018-12
+  input:
+    salaire_de_base:
+      2017-09: 2000
+      2017-10: 2000
+      2017-11: 2000
+      2017-12: 2000
+      2018-01: 2000
+      2018-02: 2000
+      2018-03: 2000
+      2018-04: 2000
+      2018-05: 2000
+      2018-06: 2000
+      2018-07: 2000
+      2018-08: 2000
+      2018-09: 2000
+      2018-10: 2000
+      2018-11: 2000
+      2018-12: 0
+      2019-01: 2000
+      2019-02: 2000
+
+    contrat_de_travail_fin: 2018-12
+  output:
+    salaire_de_reference: 
+      2018-12: 24000
+
+- name: Salaire de référence des 12 derniers mois - Cas n°3
+  description: Salaire de référence pour un individu gagnant 2000 euros chaque mois durant les 12 derniers mois précédant sa date de fin de contrat au 2018-09 (milieu d'année), en ajoutant d'autres mois (non pris en compte par le calcul)
+  period: 2018-09
+  input:
+    salaire_de_base:
+      2017-09: 2000
+      2017-10: 2000
+      2017-11: 2000
+      2017-12: 2000
+      2018-01: 2000
+      2018-02: 2000
+      2018-03: 2000
+      2018-04: 2000
+      2018-05: 2000
+      2018-06: 2000
+      2018-07: 2000
+      2018-08: 2000
+      2018-09: 0
+      2018-10: 0
+      2018-11: 0
+      2018-12: 2000
+      2019-01: 2000
+      2019-02: 2000
+
+    contrat_de_travail_fin: 2018-09
+  output:
+    salaire_de_reference: 
+      2018-09: 24000
+
+- name: Salaire de référence des 12 derniers mois - Cas n°4
+  description: Salaire de référence pour un individu gagnant des sommes différentes chaque mois durant les 12 derniers mois précédant sa date de fin de contrat au 2018-09 (milieu d'année), en ajoutant d'autres mois (non pris en compte par le calcul)
+  period: 2018-09
+  input:
+    salaire_de_base:
+      2017-09: 1500
+      2017-10: 2000
+      2017-11: 1800
+      2017-12: 2300
+      2018-01: 6400
+      2018-02: 1200
+      2018-03: 2100
+      2018-04: 800
+      2018-05: 1300
+      2018-06: 2100
+      2018-07: 700
+      2018-08: 600
+      2018-09: 0
+      2018-10: 0
+      2018-11: 0
+      2018-12: 2000
+      2019-01: 2000
+      2019-02: 2000
+
+    contrat_de_travail_fin: 2018-09
+  output:
+    salaire_de_reference: 
+      2018-09: 22800
+
+- name: Salaire de référence des 12 derniers mois - Cas n°5
+  description: Salaire de référence pour un individu gagnant des sommes différentes (dont des revenus nuls) chaque mois durant les 12 derniers mois précédant sa date de fin de contrat au 2018-09 (milieu d'année), en ajoutant d'autres mois (non pris en compte par le calcul)
+  period: 2018-09
+  input:
+    salaire_de_base:
+      2017-09: 1500
+      2017-10: 2000
+      2017-11: 1800
+      2017-12: 0
+      2018-01: 6400
+      2018-02: 0
+      2018-03: 2100
+      2018-04: 800
+      2018-05: 0
+      2018-06: 2100
+      2018-07: 700
+      2018-08: 600
+      2018-09: 0
+      2018-10: 0
+      2018-11: 0
+      2018-12: 2000
+      2019-01: 2000
+      2019-02: 2000
+
+    contrat_de_travail_fin: 2018-09
+  output:
+    salaire_de_reference: 
+      2018-09: 18000

@@ -1,0 +1,170 @@
+- name: "Cas 3 AL Reforme 2019"
+  period: 2018-01
+  relative_error_margin: 0.01
+  max_spiral_loops: 60
+  neutralized_variables:
+    # RSA TODO base ressources
+    - rsa_eligibilite_tns
+    - taux_csg_remplacement
+    # - Minimas sociaux
+    - aspa
+    - asi
+    - caah
+    # individu
+    - allocation_securisation_professionnelle
+    - dedommagement_victime_amiante
+    - gains_exceptionnels
+    - pensions_alimentaires_percues
+    - pensions_invalidite
+    - prestation_compensatoire
+    - prime_forfaitaire_mensuelle_reprise_activite
+    - rsa_base_ressources_patrimoine_individu
+    - rsa_indemnites_journalieres_hors_activite
+    - rente_viagere_titre_onereux
+    # ASS
+    # - chomage_net
+    - categorie_salarie
+    # Ass base ressources
+    - revenus_stage_formation_pro
+    - aah
+    - retraite_nette
+    - retraite_brute
+    - retraite_imposable
+    - pensions_alimentaires_percues
+    - indemnites_stage
+    - pensions_invalidite
+    - revenus_locatifs
+    - revenus_capital
+    - rpns
+    - tns_auto_entrepreneur_benefice
+    - tns_micro_entreprise_benefice
+    - tns_benefice_exploitant_agricole
+    - tns_autres_revenus
+    - pensions_alimentaires_versees_individu
+    # PF
+    - revenu_categoriel_capital
+  input:
+    famille:
+      parents: [personne1, personne2]
+      rsa:
+        year:1998:20: 0
+      aide_logement:
+        year:1998:20: 0
+    menage:
+      personne_de_reference: personne1
+      conjoint: personne2
+      statut_occupation_logement:
+        year:2010:20: locataire_vide
+      logement_conventionne:
+        year:2010:20: true
+      zone_apl:
+        year:2010:20: zone_2
+      loyer:
+        year:2010:20: 20 * 12 * 500
+    individus:
+      personne1:
+        age: 45
+        are:
+          year:1998:20: 0
+        ass:
+          year:1998:20: 0
+        date_debut_chomage: 2019-01-01
+        autonomie_financiere:
+          year:1995:40: False
+        rsa_jeune_condition_heures_travail_remplie: False
+        activite:
+          # month:2018-01:8: chomeur
+          2017: actif
+          2016: actif
+        contrat_de_travail_debut:
+          year:1995:30: 2005-01-01
+        contrat_de_travail_fin:
+          year:1995:30: 2018-01-01
+        nombre_annees_travaillees_les_10_dernieres_annees:
+          2018: 3
+          2019: 3
+        nombre_jours_travailles_dans_les_x_derniers_mois:
+          2018: 21.7 * 12
+          2019: 21.7 * 12
+        salaire_de_base:
+          2017: 12 * 101.2666667
+          2016: 12 * 101.2666667
+          2015: 12 * 101.2666667
+        nombre_jours_travailles_12_derniers_mois:
+          2018: 21.7 * 12 / 2
+          2019: 21.7 * 12 / 2
+      personne2:
+        activite:
+          2018: actif
+          2017: actif
+          2016: actif
+        age: 45
+        contrat_de_travail_debut:
+          year:1995:30: 2005-01-01
+        salaire_de_base:
+          2019: 12 * 1000
+          2018: 12 * 1000
+          2017: 12 * 1000
+          2016: 12 * 1000
+          2015: 12 * 1000
+          2014: 12 * 1000
+    foyer_fiscal:
+      declarants: [personne1, personne2]
+  output:
+    individus:
+      personne2: 
+        salaire_net: 
+          2018-04: 391.5987548828125
+          2019-04: 391.5987548828125
+      personne1:
+        are:
+          2018-01: 149.60501098632812
+          2018-02: 149.60501098632812
+          2018-03: 149.60501098632812
+          2018-04: 149.60501098632812
+          2018-05: 149.60501098632812
+          2018-06: 149.60501098632812
+          2018-07: 149.60501098632812
+          2018-08: 149.60501098632812
+          2018-09: 149.60501098632812
+          2018-10: 149.60501098632812
+          2018-11: 149.60501098632812
+          2018-12: 149.60501098632812
+          2019-01: 0
+          2019-02: 0
+          2019-03: 0
+          2019-04: 0
+        rsa:
+          2018-01: 303.93475341796875
+          2018-02: 303.93475341796875
+          2018-03: 303.93475341796875
+          2018-04: 309.21258544921875
+          2018-05: 309.21258544921875
+          2018-06: 309.21258544921875
+          2018-07: 309.21258544921875
+          2018-08: 309.21258544921875
+          2018-09: 309.21258544921875
+          2018-10: 309.21258544921875
+          2018-11: 309.21258544921875
+          2018-12: 309.21258544921875
+          2019-01: 456.362548828125
+          2019-02: 456.362548828125
+          2019-03: 456.362548828125
+          2019-04: 467.463134765625
+        rsa_socle: 
+          2018-01: 818.219970703125
+          2018-04: 826.395
+          2019-04: 839.61
+        rsa_base_ressources: 
+          2018-01: 383.3699951171875
+          2018-04: 384.959228515625
+          2019-01: 237.8092498779297
+        rsa_base_ressources_individu:
+          2018-01: 150
+          2018-04: 150
+          2019-01: 0
+      
+        
+  
+
+      

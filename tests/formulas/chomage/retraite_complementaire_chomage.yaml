@@ -1,0 +1,40 @@
+- name: Retenue de la retraite complémentaire sur les allocations chômage - Cas n°1
+  description: Retenue de la retraite complémentaire sur les allocations chômage supérieures à 871.8
+  period: 2019-04
+  input:
+    salaire_de_reference_mensuel: 2200
+    contrat_de_travail_fin: 2019-04
+    are: 1254
+  output: 
+     retraite_complementaire_chomage: 66
+
+- name: Retenue de la retraite complémentaire sur les allocations chômage - Cas n°2
+  description: Retenue de la retraite complémentaire sur les allocations chômage supérieures à 871.8
+  period: 2019-04
+  input:
+    salaire_de_reference_mensuel: 1400
+    contrat_de_travail_fin: 2019-04
+    are: 923.2001
+  output: 
+     retraite_complementaire_chomage: 42
+
+
+- name: Retenue de la retraite complémentaire sur les allocations chômage - Cas n°3
+  description: Retenue de la retraite complémentaire sur les allocations chômage inférieures à 871.8
+  period: 2019-04
+  input:
+    salaire_de_reference_mensuel: 800
+    contrat_de_travail_fin: 2019-04
+    are: 600
+  output: 
+     retraite_complementaire_chomage: 0
+
+- name: Retenue de la retraite complémentaire sur les allocations chômage - Cas n°4
+  description: Retenue de la retraite complémentaire sur les allocations chômage inférieures à 871.8
+  period: 2019-04
+  input:
+    salaire_de_reference_mensuel: 400
+    contrat_de_travail_fin: 2019-04
+    are: 300
+  output: 
+     retraite_complementaire_chomage: 0

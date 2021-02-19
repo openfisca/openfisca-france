@@ -1,0 +1,229 @@
+- name: Allocation de solidarité spécifique - Cas N°1
+  description: Montant ASS pour personne seule sans ressources
+  period: 2019-07
+  absolute_error_margin: 0.02
+  input:
+    famille:
+      parents: [parent1]
+      ass_base_ressources: 0 * 12
+    foyer_fiscal:
+      declarants: [parent1]
+    menage:
+      personne_de_reference: parent1
+    individus:
+      parent1:
+        ass_eligibilite_individu: true
+        activite: chomeur
+        chomage_net: 0
+        aah: 0
+  output:
+    ass: 502.2
+
+- name: Allocation de solidarité spécifique - Cas N°2
+  description: Montant ASS pour personne seule avec ressources mensuelles inferieures à 669.60
+  period: 2019-07
+  absolute_error_margin: 0.02
+  input:
+    famille:
+      parents: [parent1]
+      ass_base_ressources: 664 * 12
+    foyer_fiscal:
+      declarants: [parent1]
+    menage:
+      personne_de_reference: parent1
+    individus:
+      parent1:
+        ass_eligibilite_individu: true
+        activite: chomeur
+        chomage_net: 0
+        aah: 0
+  output:
+    ass: 502.2
+
+- name: Allocation de solidarité spécifique - Cas N°3
+  description: Montant ASS pour personne seule avec ressources mensuelles comprises entre 669.60 et 1171.80
+  period: 2019-07
+  absolute_error_margin: 0.02
+  input:
+    famille:
+      parents: [parent1]
+      ass_base_ressources: 1000 * 12
+    foyer_fiscal:
+      declarants: [parent1]
+    menage:
+      personne_de_reference: parent1
+    individus:
+      parent1:
+        ass_eligibilite_individu: true
+        activite: chomeur
+        chomage_net: 0
+        aah: 0
+  output:
+    ass: 171.8
+
+- name: Allocation de solidarité spécifique - Cas N°4
+  description: Montant ASS pour personne seule avec ressources mensuelles comprises entre 669.60 et 1171.80 et aah positive
+  period: 2019-07
+  absolute_error_margin: 0.02
+  input:
+    famille:
+      parents: [parent1]
+      ass_base_ressources: 1000 * 12
+    foyer_fiscal:
+      declarants: [parent1]
+    menage:
+      personne_de_reference: parent1
+    individus:
+      parent1:
+        ass_eligibilite_individu: true
+        activite: chomeur
+        chomage_net: 0
+        aah: 300
+  output:
+    ass: 0
+
+- name: Allocation de solidarité spécifique - Cas N°5
+  description: Montant ASS pour personne seule avec ressources mensuelles supérieures à 1171.80
+  period: 2019-07
+  absolute_error_margin: 0.02
+  input:
+    famille:
+      parents: [parent1]
+      ass_base_ressources: 1300 * 12
+    foyer_fiscal:
+      declarants: [parent1]
+    menage:
+      personne_de_reference: parent1
+    individus:
+      parent1:
+        ass_eligibilite_individu: true
+        activite: chomeur
+        chomage_net: 0
+        aah: 0
+  output:
+    ass: 0
+  
+- name: Allocation de solidarité spécifique - Cas N°6
+  description: Montant ASS pour personne en couple avec ressources mensuelles inferieures à 1338.20
+  period: 2019-07
+  absolute_error_margin: 0.02
+  input:
+    famille:
+      parents: [parent1, parent2]
+      ass_base_ressources: 1330 * 12
+    foyer_fiscal:
+      declarants: [parent1, parent2]
+    menage:
+      personne_de_reference: parent1
+      conjoint: parent2
+    individus:
+      parent1:
+        ass_eligibilite_individu: true
+        activite: chomeur
+        chomage_net: 0
+        aah: 0
+      parent2: {}
+  output:
+    ass: [502.20, 0]
+
+- name: Allocation de solidarité spécifique - Cas N°7
+  description: Montant ASS pour personne en couple avec ressources mensuelles comprises entre 1339.20 et 1841.4
+  period: 2019-07
+  absolute_error_margin: 0.02
+  input:
+    famille:
+      parents: [parent1, parent2]
+      ass_base_ressources: 1500 * 12
+    foyer_fiscal:
+      declarants: [parent1, parent2]
+    menage:
+      personne_de_reference: parent1
+      conjoint: parent2
+    individus:
+      parent1:
+        ass_eligibilite_individu: true
+        activite: chomeur
+        chomage_net: 0
+        aah: 0
+      parent2: {}
+  output:
+    ass: [341.40, 0]
+
+  
+- name: Allocation de solidarité spécifique - Cas N°8
+  description: Montant ASS pour personne en couple avec ressources mensuelles supérieures à 1841.4
+  period: 2019-07
+  absolute_error_margin: 0.02
+  input:
+    famille:
+      parents: [parent1, parent2]
+      ass_base_ressources: 1900 * 12
+    foyer_fiscal:
+      declarants: [parent1, parent2]
+    menage:
+      personne_de_reference: parent1
+      conjoint: parent2
+    individus:
+      parent1:
+        ass_eligibilite_individu: true
+        activite: chomeur
+        chomage_net: 0
+        aah: 0
+      parent2: {}
+  output:
+    ass: [0, 0]
+
+- name: Allocation de solidarité spécifique - Cas N°9
+  description: Montant ASS pour 2 personnes en couple éligibles toutes deux avec ressources mensuelles inferieures à 1339.20
+  period: 2019-07
+  absolute_error_margin: 0.02
+  input:
+    famille:
+      parents: [parent1, parent2]
+      ass_base_ressources: 1300 * 12
+    foyer_fiscal:
+      declarants: [parent1, parent2]
+    menage:
+      personne_de_reference: parent1
+      conjoint: parent2
+    individus:
+      parent1:
+        ass_eligibilite_individu: true
+        activite: chomeur
+        chomage_net: 0
+        aah: 0
+      parent2:
+        ass_eligibilite_individu: true
+        activite: chomeur
+        chomage_net: 0
+        aah: 0
+  output:
+    ass: [502.20, 502.2]
+
+- name: Allocation de solidarité spécifique - Cas N°10
+  description: Montant ASS pour 2 personnes en couple éligibles toutes deux avec ressources mensuelles inferieures à 1339.20 et aah positives
+  period: 2019-07
+  absolute_error_margin: 0.02
+  input:
+    famille:
+      parents: [parent1, parent2]
+      ass_base_ressources: 1300 * 12
+    foyer_fiscal:
+      declarants: [parent1, parent2]
+    menage:
+      personne_de_reference: parent1
+      conjoint: parent2
+    individus:
+      parent1:
+        ass_eligibilite_individu: true
+        activite: chomeur
+        chomage_net: 0
+        aah: 600
+      parent2:
+        ass_eligibilite_individu: true
+        activite: chomeur
+        chomage_net: 0
+        aah: 600
+  output:
+    ass: [0, 0]
+

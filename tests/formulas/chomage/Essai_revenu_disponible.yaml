@@ -1,0 +1,112 @@
+- name: Revenu disponible - Célibataire sans enfant - Salaire brut de 506 euros - PPA 
+  period: 2018-01
+  relative_error_margin: 0.01
+  max_spiral_loops: 60
+  neutralized_variables:
+    # RSA TODO base ressources
+    - rsa_eligibilite_tns
+    - taux_csg_remplacement
+    # - Minimas sociaux
+    - ars
+    - aefa
+    - aspa
+    - asi
+    - caah
+    # individu
+    - allocation_securisation_professionnelle
+    - dedommagement_victime_amiante
+    - gains_exceptionnels
+    - pensions_alimentaires_percues
+    - pensions_invalidite
+    - prestation_compensatoire
+    - prime_forfaitaire_mensuelle_reprise_activite
+    - rsa_base_ressources_patrimoine_individu
+    - rsa_indemnites_journalieres_hors_activite
+    - rente_viagere_titre_onereux
+    # ASS
+    # - chomage_net
+    - categorie_salarie
+    # Ass base ressources
+    - revenus_stage_formation_pro
+    - aah
+    - retraite_nette
+    - retraite_brute
+    - retraite_imposable
+    - pensions_alimentaires_percues
+    - indemnites_stage
+    - pensions_invalidite
+    - revenus_locatifs
+    - revenus_capital
+    - rpns
+    - tns_auto_entrepreneur_benefice
+    - tns_micro_entreprise_benefice
+    - tns_benefice_exploitant_agricole
+    - tns_autres_revenus
+    - pensions_alimentaires_versees_individu
+    # PF
+    - revenu_categoriel_capital
+  input:
+    famille:
+      aide_logement: 
+        year:1998:20: 0
+      parents:
+      - parent_1
+      rsa: 
+        year:1998:20: 0
+    foyer_fiscal:
+      declarants:
+      - parent_1
+    individus:
+      parent_1:
+        activite:
+          year:2016:2: actif
+        allegement_cotisation_allocations_familiales_mode_recouvrement:
+          year:2013:5: progressif
+        allegement_fillon_mode_recouvrement:
+          year:2013:5: progressif
+        are: 
+          year:1998:20: 0
+        ass: 
+          year:1998:20: 0
+        categorie_salarie:
+          year:2013:5: prive_non_cadre
+        chomage_brut: 
+          year:1998:20: 0
+        chomage_net: 
+          year:1998:20: 0
+        contrat_de_travail:
+          year:2013:5: temps_partiel
+        contrat_de_travail_debut: 
+          year:1995:30: '2005-01-01'
+        contrat_de_travail_duree:
+          year:2013:5: cdi
+        contrat_de_travail_fin:
+          year:1995:30: '2018-01-01'
+        date_debut_chomage: '2018-01-01'
+        date_naissance: '1977-12-25'
+        depcom_entreprise:
+          year:2013:5: 75114
+        duree_versement_are:
+          year:1998:20: 0
+        effectif_entreprise:
+          year:2013:5: 25
+        entreprise_assujettie_is:
+          year:2013:5: true
+        heures_remunerees_volume:
+          year:2013:5: 5 * 614.9797566801618
+          year:2018:6: 0
+        nombre_annees_travaillees_les_10_dernieres_annees:
+          year:2018:6: 8
+        nombre_jours_travailles_12_derniers_mois:
+          year:2018:6: 260.4
+        nombre_jours_travailles_dans_les_x_derniers_mois:
+          year:2018:6: 520.8
+        rsa_jeune_condition_heures_travail_remplie: 
+          year:2018:6: false
+        salaire_de_base:
+          year:2013:5: 5 * 12 * 506.333333
+          year:2018:6: 0
+        taux_accident_travail:
+          year:2013:5: 0.015
+  output: 
+    ppa: 244.19658

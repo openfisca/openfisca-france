@@ -193,7 +193,7 @@ class aide_logement_montant_brut_avant_degressivite(Variable):
         participation_personnelle = famille('aide_logement_participation_personnelle', period)
 
         montant_accedant_et_foyer = famille('aides_logement_accedant_et_foyer', period)
-        montant_locataire = max_(0, loyer_retenu + charges_retenues - participation_personnelle)
+        montant_locataire = max_(0, loyer_retenu + charges_retenues - participation_personnelle - 5)
 
         montant = select([locataire, accedant + locataire_logement_foyer + logement_crous],
                          [montant_locataire, montant_accedant_et_foyer])

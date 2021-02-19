@@ -1,0 +1,109 @@
+- name: Eligibilité à l'ARE en fonction de la période d'affiliation et de l'âge au 2018-12 - Cas n°1
+  description: Un individu de 70 ans ayant travaillé 3 mois dans les 28 et 36 derniers mois précédant la date de fin du contrat de travail n'est pas éligible à l'ARE
+  period: 2018-12
+  input:
+    age: 70
+    nombre_jours_travailles_dans_les_x_derniers_mois: 63
+
+  output:
+    are_eligibilite_individu:
+      2018-12: false
+
+- name: Eligibilité à l'ARE en fonction de la période d'affiliation et de l'âge au 2018-12 - Cas n°2
+  description: Un individu de 70 ans ayant travaillé 3 mois dans les 28 derniers mois mais 6 mois dans les 36 derniers mois précédant la date de fin du contrat de travail n'est pas éligible à l'ARE
+  period: 2018-12
+  input:
+    age: 70
+    nombre_jours_travailles_dans_les_x_derniers_mois: 126
+
+  output:
+    are_eligibilite_individu:
+      2018-12: false
+
+- name: Eligibilité à l'ARE en fonction de la période d'affiliation et de l'âge au 2018-12 - Cas n°3
+  description: Un individu de 70 ans ayant travaillé 6 mois dans les 28 et 36 derniers mois précédant la date de fin du contrat de travail n'est pas éligible à l'ARE
+  period: 2018-12
+  input:
+    age: 70
+    nombre_jours_travailles_dans_les_x_derniers_mois: 126
+
+  output:
+    are_eligibilite_individu:
+      2018-12: false
+
+- name: Eligibilité à l'ARE en fonction de la période d'affiliation et de l'âge au 2018-12 - Cas n°4
+  description: Un individu de 52 ans ayant travaillé 3 mois dans les 28 et 36 derniers mois précédant la date de fin du contrat de travail n'est pas éligible à l'ARE
+  period: 2018-12
+  input:
+    age: 52
+    nombre_jours_travailles_dans_les_x_derniers_mois: 63
+
+  output:
+    are_eligibilite_individu:
+      2018-12: false
+
+- name: Eligibilité à l'ARE en fonction de la période d'affiliation et de l'âge au 2018-12 - Cas n°5
+  description: Un individu de 52 ans ayant travaillé 3 mois dans les 28 derniers mois mais 5 mois dans les 36 derniers mois précédant la date de fin du contrat de travail n'est pas éligible à l'ARE
+  period: 2018-12
+  input:
+    age: 52
+    nombre_jours_travailles_dans_les_x_derniers_mois: 63
+
+  output:
+    are_eligibilite_individu:
+      2018-12: false
+
+- name: Eligibilité à l'ARE en fonction de la période d'affiliation et de l'âge au 2018-12 - Cas n°6
+  description: Un individu de 52 ans ayant travaillé 5 mois dans les 28 et 36 derniers mois précédant la date de fin du contrat de travail est éligible à l'ARE
+  period: 2018-12
+  input:
+    age: 52
+    nombre_jours_travailles_dans_les_x_derniers_mois: 105
+
+  output:
+    are_eligibilite_individu:
+      2018-12: true
+
+- name: Eligibilité à l'ARE en fonction de la période d'affiliation et de l'âge au 2018-12 - Cas n°7
+  description: Un individu de 54 ans ayant travaillé 3 mois dans les 28 et 36 derniers mois précédant la date de fin du contrat de travail n'est pas éligible à l'ARE
+  period: 2018-12
+  input:
+    age: 54
+    nombre_jours_travailles_dans_les_x_derniers_mois: 63
+
+  output:
+    are_eligibilite_individu:
+      2018-12: false
+
+- name: Eligibilité à l'ARE en fonction de la période d'affiliation et de l'âge au 2018-12 - Cas n°8
+  description: Un individu de 54 ans ayant travaillé 3 mois dans les 28 derniers mois mais 5 mois dans les 36 derniers mois précédant la date de fin du contrat de travail est éligible à l'ARE
+  period: 2018-12
+  input:
+    age: 54
+    nombre_jours_travailles_dans_les_x_derniers_mois: 105
+
+  output:
+    are_eligibilite_individu:
+      2018-12: true
+
+- name: Eligibilité à l'ARE en fonction de la période d'affiliation et de l'âge - Cas n°9
+  description: Un individu de 54 ans ayant travaillé 5 mois dans les 28 et 36 derniers mois précédant la date de fin du contrat de travail est éligible à l'ARE
+  period: 2018-12
+  input:
+    age: 54
+    nombre_jours_travailles_dans_les_x_derniers_mois: 126
+
+  output:
+    are_eligibilite_individu:
+      2018-12: true
+
+- name: Eligibilité à l'ARE en fonction de la période d'affiliation et de l'âge - Cas n°10
+  description: Un individu de 54 ans ayant travaillé 6 mois dans les 36 derniers mois précédant la date de fin du contrat de travail est éligible à l'ARE
+  period: 2018-12
+  input:
+    age: 54
+    nombre_jours_travailles_dans_les_x_derniers_mois: 126
+
+  output:
+    are_eligibilite_individu:
+      2018-12: true

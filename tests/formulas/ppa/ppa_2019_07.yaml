@@ -1,0 +1,849 @@
+- name: Calcul de la PPA pour une personne seule - Cas N°1
+  description: Non éligibilité en raison du critère de l'âge
+  period: 2019-07
+  absolute_error_margin: 0.03
+  input:
+    famille:
+      parents: [personne1]
+      aide_logement:
+          2019-07: 200
+          2019-06: 200
+          2019-05: 200
+          2019-04: 200
+    menage:
+      personne_de_reference: personne1
+      statut_occupation_logement: locataire_vide
+    individus:
+      personne1:
+        age: 16
+        salaire_net:
+          2019-07: 500
+          2019-06: 500
+          2019-05: 500
+          2019-04: 500
+    foyer_fiscal:
+      declarants:
+      - personne1
+  output:
+    ppa: 
+      2019-07: 0
+
+- name: Calcul de la PPA pour une personne seule - Cas N°2
+  description: PPA pour une personne seule sans enfant 
+  period: 2019-07
+  absolute_error_margin: 0.03
+  input:
+    famille:
+      parents: [personne1]
+      aide_logement:
+          2019-07: 200
+          2019-06: 200
+          2019-05: 200
+          2019-04: 200
+    menage:
+      personne_de_reference: personne1
+      statut_occupation_logement: locataire_vide
+    individus:
+      personne1:
+        age: 30
+        salaire_net:
+          2019-07: 500
+          2019-06: 500
+          2019-05: 500
+          2019-04: 500
+    foyer_fiscal:
+      declarants:
+      - personne1
+  output:
+    ppa: 
+      2019-07: 290.3288
+
+- name: Calcul de la PPA pour une personne seule - Cas N°3
+  description: PPA pour une personne seule avec un enfant 
+  period: 2019-07
+  absolute_error_margin: 0.03
+  input:
+    famille:
+      parents: [personne1]
+      enfants: [enfant1]
+      aide_logement:
+        2019-07: 200
+        2019-06: 200
+        2019-05: 200
+        2019-04: 200
+      rsa_forfait_asf:
+        2019-07: 92.961
+        2019-06: 92.961
+        2019-05: 92.961
+        2019-04: 92.961
+    foyer_fiscal:
+      declarants: [personne1]
+      personnes_a_charge: [enfant1]
+    menage:
+      personne_de_reference: personne1
+      enfants: [enfant1]
+      statut_occupation_logement: locataire_vide
+    individus:
+      personne1:
+        age: 30
+        salaire_net:
+          2019-07: 500
+          2019-06: 500
+          2019-05: 500
+          2019-04: 500
+      enfant1: 
+        age: 6
+  output:
+    ppa: 
+      2019-07: 305
+
+- name: Calcul de la PPA pour une personne seule - Cas N°4
+  description: PPA pour une personne seule avec deux enfants
+  period: 2019-07
+  absolute_error_margin: 0.03
+  input:
+    famille:
+      parents: [personne1]
+      enfants: [enfant1, enfant2]
+      aide_logement:
+        2019-07: 200
+        2019-06: 200
+        2019-05: 200
+        2019-04: 200
+      rsa_forfait_asf:
+        2019-07: 185.922
+        2019-06: 185.922
+        2019-05: 185.922
+        2019-04: 185.922
+      af:
+        2019-07: 132.2112
+        2019-06: 132.2112
+        2019-05: 132.2112
+        2019-04: 132.2112
+    foyer_fiscal:
+      declarants: [personne1]
+      personnes_a_charge: [enfant1, enfant2]
+    menage:
+      personne_de_reference: personne1
+      enfants: [enfant1, enfant2]
+      statut_occupation_logement: locataire_vide
+    individus:
+      personne1:
+        age: 30
+        salaire_net:
+          2019-07: 500
+          2019-06: 500
+          2019-05: 500
+          2019-04: 500
+      enfant1: 
+        age: 6
+      enfant2: 
+        age: 10
+  output:
+    ppa: 
+      2019-07: 305
+
+- name: Calcul de la PPA pour une personne seule  - Cas N°5
+  description: PPA pour une personne seule avec trois enfants 
+  period: 2019-07
+  absolute_error_margin: 0.03
+  input:
+    famille:
+      parents: [personne1]
+      enfants: [enfant1, enfant2, enfant3]
+      aide_logement:
+        2019-07: 200
+        2019-06: 200
+        2019-05: 200
+        2019-04: 200
+      rsa_forfait_asf:
+        2019-07: 278.883
+        2019-06: 278.883
+        2019-05: 278.883
+        2019-04: 278.883
+      af:
+        2019-07: 132.2112
+        2019-06: 132.2112
+        2019-05: 132.2112
+        2019-04: 132.2112
+      cf:
+        2019-07: 172.0811
+        2019-06: 172.0811
+        2019-05: 172.0811
+        2019-04: 172.0811
+    foyer_fiscal:
+      declarants: [personne1]
+      personnes_a_charge: [enfant1, enfant2, enfant3]
+    menage:
+      personne_de_reference: personne1
+      enfants: [enfant1, enfant2, enfant3]
+      statut_occupation_logement: locataire_vide
+    individus:
+      personne1:
+        age: 30
+        salaire_net:
+          2019-07: 500
+          2019-06: 500
+          2019-05: 500
+          2019-04: 500
+      enfant1: 
+        age: 6
+      enfant2: 
+        age: 10
+      enfant3: 
+        age: 15
+  output:
+    ppa: 
+      2019-07: 271.34827
+
+- name: Calcul de la PPA pour une personne seule - Cas N°6
+  description: Non éligibilité à la PPA pour une personne seule avec trois enfants en raison de ses ressources 
+  period: 2019-07
+  absolute_error_margin: 0.03
+  input:
+    famille:
+      parents: [personne1]
+      enfants: [enfant1, enfant2, enfant3]
+      aide_logement:
+        2019-07: 200
+        2019-06: 200
+        2019-05: 200
+        2019-04: 200
+      rsa_forfait_asf:
+        2019-07: 278.883
+        2019-06: 278.883
+        2019-05: 278.883
+        2019-04: 278.883
+      af:
+        2019-07: 132.2112
+        2019-06: 132.2112
+        2019-05: 132.2112
+        2019-04: 132.2112
+      cf:
+        2019-07: 172.0811
+        2019-06: 172.0811
+        2019-05: 172.0811
+        2019-04: 172.0811
+    foyer_fiscal:
+      declarants: [personne1]
+      personnes_a_charge: [enfant1, enfant2, enfant3]
+    menage:
+      personne_de_reference: personne1
+      enfants: [enfant1, enfant2, enfant3]
+      statut_occupation_logement: locataire_vide
+    individus:
+      personne1:
+        age: 30
+        salaire_net:
+          2019-07: 1800
+          2019-06: 1800
+          2019-05: 1800
+          2019-04: 1800
+      enfant1: 
+        age: 6
+      enfant2: 
+        age: 10
+      enfant3: 
+        age: 15
+  output:
+    ppa: 
+      2019-07: 0
+
+- name: Calcul de la PPA pour une personne seule - Cas N°7
+  description: PPA pour une personne seule sans enfant, avec bonification 
+  period: 2019-07
+  absolute_error_margin: 0.03
+  input:
+    famille:
+      parents: [personne1]
+      aide_logement:
+          2019-07: 200
+          2019-06: 200
+          2019-05: 200
+          2019-04: 200
+    menage:
+      personne_de_reference: personne1
+      statut_occupation_logement: locataire_vide
+    individus:
+      personne1:
+        age: 30
+        salaire_net: # compris entre 59 et 120 fois le smic horaire
+          2019-07: 600
+          2019-06: 600
+          2019-05: 600
+          2019-04: 600
+    foyer_fiscal:
+      declarants:
+      - personne1
+  output:
+    ppa_bonification: 2.1588
+    ppa: 
+      2019-07: 253.48763
+
+- name: Calcul de la PPA pour une personne seule - Cas N°8
+  description: PPA pour une personne seule avec un enfant, avec bonification maximale
+  period: 2019-07
+  absolute_error_margin: 0.03
+  input:
+    famille:
+      parents: [personne1]
+      enfants: [enfant1]
+      aide_logement:
+        2019-07: 200
+        2019-06: 200
+        2019-05: 200
+        2019-04: 200
+      rsa_forfait_asf:
+        2019-07: 92.961
+        2019-06: 92.961
+        2019-05: 92.961
+        2019-04: 92.961
+    foyer_fiscal:
+      declarants: [personne1]
+      personnes_a_charge: [enfant1]
+    menage:
+      personne_de_reference: personne1
+      enfants: [enfant1]
+      statut_occupation_logement: locataire_vide
+    individus:
+      personne1:
+        age: 30
+        salaire_net: #bonification maximale et constante car revenus d'activité supérieurs à 120 fois le SMIC. 
+          2019-07: 1300
+          2019-06: 1300
+          2019-05: 1300
+          2019-04: 1300
+      enfant1: 
+        age: 6
+  output:
+    ppa: 
+      2019-07: 255.436525
+
+
+
+- name: Calcul de la PPA pour un parent isolé - Cas N°1
+  description: PPA pour une femme enceinte sans enfant
+  period: 2019-07
+  absolute_error_margin: 0.03
+  input:
+    famille:
+      parents: [personne1]
+      aide_logement:
+          2019-07: 200
+          2019-06: 200
+          2019-05: 200
+          2019-04: 200
+      rsa_majore_eligibilite: 
+          2019-07: true
+          2019-06: true
+          2019-05: true
+          2019-04: true
+    menage:
+      personne_de_reference: personne1
+      statut_occupation_logement: locataire_vide
+    individus:
+      personne1:
+        age: 30
+        salaire_net:
+          2019-07: 500
+          2019-06: 500
+          2019-05: 500
+          2019-04: 500
+    foyer_fiscal:
+      declarants:
+      - personne1
+  output: 
+    ppa: 305
+
+- name: Calcul de la PPA pour un parent isolé - Cas N°2
+  description: PPA pour un parent isolé avec un enfant
+  period: 2019-07
+  absolute_error_margin: 0.03
+  input:
+    famille:
+      parents: [personne1]
+      enfants: [enfant1]
+      aide_logement:
+        2019-07: 200
+        2019-06: 200
+        2019-05: 200
+        2019-04: 200
+      rsa_forfait_asf:
+        2019-07: 92.961
+        2019-06: 92.961
+        2019-05: 92.961
+        2019-04: 92.961
+      rsa_majore_eligibilite: true
+    foyer_fiscal:
+      declarants: [personne1]
+      personnes_a_charge: [enfant1]
+    menage:
+      personne_de_reference: personne1
+      enfants: [enfant1]
+      statut_occupation_logement: locataire_vide
+    individus:
+      personne1:
+        age: 30
+        salaire_net:
+          2019-07: 500
+          2019-06: 500
+          2019-05: 500
+          2019-04: 500
+      enfant1: 
+        age: 6
+  output:
+    ppa: 
+      2019-07: 305
+
+- name: Calcul de la PPA pour un parent isolé - Cas N°3
+  description: PPA pour un parent isolé avec deux enfants
+  period: 2019-07
+  absolute_error_margin: 0.03
+  input:
+    famille:
+      parents: [personne1]
+      enfants: [enfant1, enfant2]
+      aide_logement:
+        2019-07: 200
+        2019-06: 200
+        2019-05: 200
+        2019-04: 200
+      rsa_forfait_asf:
+        2019-07: 185.922
+        2019-06: 185.922
+        2019-05: 185.922
+        2019-04: 185.922
+      af:
+        2019-07: 132.2112
+        2019-06: 132.2112
+        2019-05: 132.2112
+        2019-04: 132.2112
+      rsa_majore_eligibilite: true
+    foyer_fiscal:
+      declarants: [personne1]
+      personnes_a_charge: [enfant1, enfant2]
+    menage:
+      personne_de_reference: personne1
+      enfants: [enfant1, enfant2]
+      statut_occupation_logement: locataire_vide
+    individus:
+      personne1:
+        age: 30
+        salaire_net:
+          2019-07: 500
+          2019-06: 500
+          2019-05: 500
+          2019-04: 500
+      enfant1: 
+        age: 6
+      enfant2: 
+        age: 10
+  output:
+    ppa: 
+      2019-07: 305
+
+- name: Calcul de la PPA pour un parent isolé - Cas N°4
+  description: PPA pour un parent isolé avec trois enfants
+  period: 2019-07
+  absolute_error_margin: 0.03
+  input:
+    famille:
+      parents: [personne1]
+      enfants: [enfant1, enfant2, enfant3]
+      aide_logement:
+        2019-07: 200
+        2019-06: 200
+        2019-05: 200
+        2019-04: 200
+      rsa_forfait_asf:
+        2019-07: 278.883
+        2019-06: 278.883
+        2019-05: 278.883
+        2019-04: 278.883
+      af:
+        2019-07: 132.2112
+        2019-06: 132.2112
+        2019-05: 132.2112
+        2019-04: 132.2112
+      cf:
+        2019-07: 172.0811
+        2019-06: 172.0811
+        2019-05: 172.0811
+        2019-04: 172.0811
+      rsa_majore_eligibilite: 
+        2019-07: true
+        2019-06: true
+        2019-05: true
+        2019-04: true
+    foyer_fiscal:
+      declarants: [personne1]
+      personnes_a_charge: [enfant1, enfant2, enfant3]
+    menage:
+      personne_de_reference: personne1
+      enfants: [enfant1, enfant2, enfant3]
+      statut_occupation_logement: locataire_vide
+    individus:
+      personne1:
+        age: 30
+        salaire_net:
+          2019-07: 500
+          2019-06: 500
+          2019-05: 500
+          2019-04: 500
+      enfant1: 
+        age: 6
+      enfant2: 
+        age: 10
+      enfant3: 
+        age: 15
+  output:
+    ppa: 
+      2019-07: 305
+
+- name: Calcul de la PPA pour un parent isolé - Cas N°5
+  description: PPA pour une femme enceinte isolé, avec bonification
+  period: 2019-07
+  absolute_error_margin: 0.03
+  input:
+    famille:
+      parents: [personne1]
+      aide_logement:
+        2019-07: 200
+        2019-06: 200
+        2019-05: 200
+        2019-04: 200
+      rsa_majore_eligibilite: 
+        2019-07: true
+        2019-06: true
+        2019-05: true
+        2019-04: true
+    menage:
+      personne_de_reference: personne1
+      statut_occupation_logement: locataire_vide
+    individus:
+      personne1:
+        age: 30
+        salaire_net: # compris entre 59 et 120 fois le smic horaire
+          2019-07: 600
+          2019-06: 600
+          2019-05: 600
+          2019-04: 600
+    foyer_fiscal:
+      declarants:
+      - personne1
+  output:
+    ppa_bonification: 2.15889
+    ppa: 
+      2019-07: 368.1588
+
+
+
+- name: Calcul de la PPA pour un parent isolé - Cas N°6
+  description: PPA pour une femme enceinte isolé, avec bonification maximale
+  period: 2019-07
+  absolute_error_margin: 0.03
+  input:
+    famille:
+      parents: [personne1]
+      enfants: [enfant1]
+      aide_logement:
+        2019-07: 200
+        2019-06: 200
+        2019-05: 200
+        2019-04: 200
+      rsa_forfait_asf:
+        2019-07: 92.961
+        2019-06: 92.961
+        2019-05: 92.961
+        2019-04: 92.961
+      rsa_majore_eligibilite: 
+        2019-07: true
+        2019-06: true
+        2019-05: true
+        2019-04: true
+    foyer_fiscal:
+      declarants: [personne1]
+      personnes_a_charge: [enfant1]
+    menage:
+      personne_de_reference: personne1
+      enfants: [enfant1]
+      statut_occupation_logement: locataire_vide
+    individus:
+      personne1:
+        age: 30
+        salaire_net: #bonification maximale et constante car revenus d'activité supérieurs à 120 fois le SMIC. 
+          2019-07: 1300
+          2019-06: 1300
+          2019-05: 1300
+          2019-04: 1300
+      enfant1: 
+        age: 6
+  output:
+    ppa: 
+      2019-07: 372.44006
+
+- name: Calcul de la PPA pour une personne en couple - Cas N°1
+  description: PPA pour une personne en couple sans enfant
+  period: 2019-07
+  absolute_error_margin: 0.03
+  input:
+    famille:
+      parents: [personne1, personne2]
+      aide_logement:
+          2019-07: 200
+          2019-06: 200
+          2019-05: 200
+          2019-04: 200
+    menage:
+      personne_de_reference: personne1
+      conjoint: personne2
+      statut_occupation_logement: locataire_vide
+    individus:
+      personne1:
+        age: 30
+        salaire_net:
+          2019-07: 200
+          2019-06: 200
+          2019-05: 200
+          2019-04: 200
+      personne2: 
+        age: 35
+        salaire_net:
+          2019-07: 300
+          2019-06: 300
+          2019-05: 300
+          2019-04: 300
+    foyer_fiscal:
+      declarants: [personne1, personne2]
+  output:
+    ppa: 
+      2019-07: 305
+
+- name: Calcul de la PPA pour une personne en couple - Cas N°2
+  description: PPA pour une personne en couple avec un enfant
+  period: 2019-07
+  absolute_error_margin: 0.03
+  input:
+    famille:
+      parents: [personne1, personne2]
+      enfants: [enfant1]
+      aide_logement:
+          2019-07: 200
+          2019-06: 200
+          2019-05: 200
+          2019-04: 200
+    menage:
+      personne_de_reference: personne1
+      conjoint: personne2
+      enfants: [enfant1]
+      statut_occupation_logement: locataire_vide
+    individus:
+      personne1:
+        age: 30
+        salaire_net:
+          2019-07: 200
+          2019-06: 200
+          2019-05: 200
+          2019-04: 200
+      personne2: 
+        age: 35
+        salaire_net:
+          2019-07: 300
+          2019-06: 300
+          2019-05: 300
+          2019-04: 300
+      enfant1: 
+        age: 5
+    foyer_fiscal:
+      declarants: [personne1, personne2]
+      personnes_a_charge: [enfant1]
+  output:
+    ppa: 
+      2019-07: 305
+
+- name: Calcul de la PPA pour une personne en couple - Cas N°3
+  description: PPA pour une personne en couple avec deux enfants
+  period: 2019-07
+  absolute_error_margin: 0.03
+  input:
+    famille:
+      parents: [personne1, personne2]
+      enfants: [enfant1, enfant2]
+      aide_logement:
+          2019-07: 200
+          2019-06: 200
+          2019-05: 200
+          2019-04: 200
+      af:
+        2019-07: 132.2112
+        2019-06: 132.2112
+        2019-05: 132.2112
+        2019-04: 132.2112
+    menage:
+      personne_de_reference: personne1
+      conjoint: personne2
+      enfants: [enfant1, enfant2]
+      statut_occupation_logement: locataire_vide
+    individus:
+      personne1:
+        age: 30
+        salaire_net:
+          2019-07: 200
+          2019-06: 200
+          2019-05: 200
+          2019-04: 200
+      personne2: 
+        age: 35
+        salaire_net:
+          2019-07: 300
+          2019-06: 300
+          2019-05: 300
+          2019-04: 300
+      enfant1: 
+        age: 5
+      enfant2: 
+        age: 10
+    foyer_fiscal:
+      declarants: [personne1, personne2]
+      personnes_a_charge: [enfant1, enfant2]
+  output:
+    ppa: 
+      2019-07: 305
+
+- name: Calcul de la PPA pour une personne en couple - Cas N°4
+  description: PPA pour une personne en couple avec trois enfants
+  period: 2019-07
+  absolute_error_margin: 0.03
+  input:
+    famille:
+      parents: [personne1, personne2]
+      enfants: [enfant1, enfant2, enfant3]
+      aide_logement:
+          2019-07: 200
+          2019-06: 200
+          2019-05: 200
+          2019-04: 200
+      af:
+        2019-07: 132.2112
+        2019-06: 132.2112
+        2019-05: 132.2112
+        2019-04: 132.2112
+      cf:
+        2019-07: 172.0811
+        2019-06: 172.0811
+        2019-05: 172.0811
+        2019-04: 172.0811
+    menage:
+      personne_de_reference: personne1
+      conjoint: personne2
+      enfants: [enfant1, enfant2, enfant3]
+      statut_occupation_logement: locataire_vide
+    individus:
+      personne1:
+        age: 30
+        salaire_net:
+          2019-07: 200
+          2019-06: 200
+          2019-05: 200
+          2019-04: 200
+      personne2: 
+        age: 35
+        salaire_net:
+          2019-07: 300
+          2019-06: 300
+          2019-05: 300
+          2019-04: 300
+      enfant1: 
+        age: 5
+      enfant2: 
+        age: 10
+      enfant3: 
+        age: 12
+    foyer_fiscal:
+      declarants: [personne1, personne2]
+      personnes_a_charge: [enfant1, enfant2, enfant3]
+  output:
+    ppa: 
+      2019-07: 305
+
+- name: Calcul de la PPA pour une personne en couple - Cas N°5
+  description: PPA pour une personne en couple, avec bonification 
+  period: 2019-07
+  absolute_error_margin: 0.03
+  input:
+    famille:
+      parents: [personne1, personne2]
+      aide_logement:
+          2019-07: 200
+          2019-06: 200
+          2019-05: 200
+          2019-04: 200
+    menage:
+      personne_de_reference: personne1
+      conjoint: personne2
+      statut_occupation_logement: locataire_vide
+    individus:
+      personne1:
+        age: 30
+        salaire_net: # compris entre 59 et 120 fois le smic horaire
+          2019-07: 600
+          2019-06: 600
+          2019-05: 600
+          2019-04: 600
+      personne2: 
+        age: 35
+        salaire_net: # compris entre 59 et 120 fois le smic horaire
+          2019-07: 600
+          2019-06: 600
+          2019-05: 600
+          2019-04: 600
+    foyer_fiscal:
+      declarants: [personne1, personne2]
+  output:
+    ppa_bonification: [2.158818, 2.158818]  #la bonification est double car les deux individus ont des revenus d'activité supérieurs à 59 fois le SMIC horaire
+    ppa: 
+      2019-07: [231.22026]
+
+
+- name: Calcul de la PPA pour une personne en couple - Cas N°6
+  description: PPA pour une personne en couple, avec bonification maximale 
+  period: 2019-07
+  absolute_error_margin: 0.03
+  input:
+    famille:
+      parents: [personne1, personne2]
+      enfants: [enfant1]
+      aide_logement:
+          2019-07: 200
+          2019-06: 200
+          2019-05: 200
+          2019-04: 200
+    menage:
+      personne_de_reference: personne1
+      conjoint: personne2
+      enfants: enfant1
+      statut_occupation_logement: locataire_vide
+    individus:
+      personne1:
+        age: 30
+        salaire_net: # bonification maximale et constante car supérieure à 120 fois le SMIC horaire 
+          2019-07: 1300
+          2019-06: 1300
+          2019-05: 1300
+          2019-04: 1300
+      personne2: 
+        age: 35
+        salaire_net: # compris entre 59 et 120 fois le SMIC horaire
+          2019-07: 600
+          2019-06: 600
+          2019-05: 600
+          2019-04: 600
+      enfant1: 
+        age: 10
+    foyer_fiscal:
+      declarants: [personne1, personne2]
+      personnes_a_charge: [enfant1]
+  output:
+    ppa_bonification: [160.49, 2.158818, 0]  
+    ppa: 
+      2019-07: [250.56836]

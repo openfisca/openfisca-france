@@ -1,0 +1,10 @@
+- name: Salaire de référence mensuel des 12 derniers mois 
+  description: Salaire de référence pour un individu gagnant 2000 euros par mois et ayant travaillé les 12 derniers mois (261 jours travaillés)
+  period: 2012-12
+  input:
+    salaire_de_reference: 24000
+    nombre_jours_travailles_12_derniers_mois: 261
+    contrat_de_travail_fin: 2012-12
+  output:
+    salaire_de_reference_mensuel: 
+      2012-12: 1970.4435
