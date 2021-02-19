@@ -13,7 +13,6 @@ class rsa_jeune_condition_heures_travail_remplie(Variable):
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
-
 class rsa_base_ressources(Variable):
     value_type = float
     label = 'Base ressources du Rmi ou du Rsa'
@@ -67,7 +66,7 @@ class rsa_has_ressources_substitution(Variable):
             individu('chomage_net', period)
             + individu('indemnites_journalieres', period)
             + individu('retraite_nette', period)
-            ) > 0
+            )
 
 
 class rsa_base_ressources_individu(Variable):
@@ -94,14 +93,15 @@ class rsa_base_ressources_individu(Variable):
             'retraite_nette',
             ]
 
-        possede_ressource_substitution = individu('rsa_has_ressources_substitution', period)
+        ressources_de_substitution = individu('rsa_ressources_de_substitution', period)
+        possede_ressources_substitution = ressources_de_substitution > 0
 
         # Les revenus pros interrompus au mois M sont neutralisés s'il n'y a pas de revenus de substitution.
         revenus_pro = sum(
             individu(type_revenu, period.last_3_months, options = [ADD]) * not_(
                 (individu(type_revenu, period) == 0)
-                * (individu(type_revenu, period.last_month) > 0)
-                * not_(possede_ressource_substitution)
+                * (individu(type_revenu, period.last_3_months, options = [ADD]) > 0)
+                * not_(possede_ressources_substitution)
                 )
             for type_revenu in types_revenus_pros
             )
@@ -128,7 +128,7 @@ class rsa_base_ressources_individu(Variable):
                 individu(type_revenu, period.last_3_months, options = [ADD])
                 - neutral_max_forfaitaire * (
                     (individu(type_revenu, period) == 0)
-                    * (individu(type_revenu, period.last_month) > 0)
+                    * (individu(type_revenu, period.last_3_months, options = [ADD]) > 0)
                     )
                 )
             for type_revenu in types_revenus_non_pros
@@ -138,7 +138,11 @@ class rsa_base_ressources_individu(Variable):
         rente_viagere_titre_onereux = individu.foyer_fiscal('rente_viagere_titre_onereux', period.last_3_months, options = [ADD])
         revenus_foyer_fiscal_projetes = rente_viagere_titre_onereux * individu.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
 
-        return (revenus_pro + revenus_non_pros + revenus_foyer_fiscal_projetes) / 3
+        return (
+            max_(revenus_pro, 3 * ressources_de_substitution)
+            + revenus_non_pros
+            + revenus_foyer_fiscal_projetes
+            ) / 3
 
 
 class rsa_base_ressources_minima_sociaux(Variable):

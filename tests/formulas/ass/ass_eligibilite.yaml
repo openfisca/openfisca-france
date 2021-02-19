@@ -1,0 +1,105 @@
+- name: Eligibilité à l'ASS - Cas n°1
+  description: Non éligible à l'ASS en raison de la condition d'âge
+  period: 2019-07
+  input:
+    famille:
+      parents: [parent1]
+    individus:
+      parent1:
+        age: 70
+        ass_precondition_remplie: true
+        activite: chomeur
+        chomage_net:
+          2019-03: 400
+          2019-04: 400
+          2019-05: 400
+          2019-06: 400
+          2019-07: 0
+    foyer_fiscal:
+      declarants:
+      - parent1
+    menage:
+      personne_de_reference:
+      - parent1
+  output:
+    ass_eligibilite_individu: false
+
+- name: Eligibilité à l'ASS - Cas n°2
+  description: Non éligible à l'ASS en raison de la condition d'antériorité d'activité
+  period: 2019-07
+  input:
+    famille:
+      parents: [parent1]
+    individus:
+      parent1:
+        age: 50
+        ass_precondition_remplie: false
+        activite: chomeur
+        chomage_net:
+          2019-03: 400
+          2019-04: 400
+          2019-05: 400
+          2019-06: 400
+          2019-07: 0
+    foyer_fiscal:
+      declarants:
+      - parent1
+    menage:
+      personne_de_reference:
+      - parent1
+  output:
+    ass_eligibilite_individu: false
+
+- name: Eligibilité à l'ASS - Cas n°3
+  description: Non éligible à l'ASS en raison de la condition de perception d'allocations chômage (ARE)
+  period: 2019-07
+  input:
+    famille:
+      parents: [parent1]
+    individus:
+      parent1:
+        age: 50
+        ass_precondition_remplie: true
+        activite: chomeur
+        chomage_net:
+          2019-03: 400
+          2019-04: 400
+          2019-05: 400
+          2019-06: 400
+          2019-07: 400
+          2019-08: 0
+    foyer_fiscal:
+      declarants:
+      - parent1
+    menage:
+      personne_de_reference:
+      - parent1
+  output:
+    ass_eligibilite_individu: false
+
+- name: Eligibilité à l'ASS - Cas n°4
+  description: Eligible à l'ASS 
+  period: 2019-07
+  input:
+    famille:
+      parents: [parent1]
+    individus:
+      parent1:
+        age: 50
+        ass_precondition_remplie: true
+        activite: chomeur
+        chomage_net:
+          2019-03: 400
+          2019-04: 400
+          2019-05: 400
+          2019-06: 400
+          2019-07: 0
+          2019-08: 0
+    foyer_fiscal:
+      declarants:
+      - parent1
+    menage:
+      personne_de_reference:
+      - parent1
+  output:
+    ass_eligibilite_individu: true

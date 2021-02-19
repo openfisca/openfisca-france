@@ -1,0 +1,19 @@
+description: Âge légal de départ à la retraite
+unit: year
+values:
+  2017-01-01:
+    value: 62
+  2015-08-01:
+    value: 61.58
+  2014-03-01:
+    value: 61.17
+  2012-10-01:
+    value: 60.75
+  2011-11-01:
+    value: 60.33
+  1983-07-01:
+    value: 60
+ 
+ 
+  
+

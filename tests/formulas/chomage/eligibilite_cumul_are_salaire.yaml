@@ -1,0 +1,27 @@
+- name: Eligibilité au cumul des allocations chômage et revenus d'activité - Cas n°1
+  description: Eligibilité au cumul lorsque le salaire de base et l'ARE cumulés sont inférieurs au salaire de référence mensuel 
+  period: 2019-04
+  input:
+    salaire_de_reference_mensuel: 2000
+    contrat_de_travail_fin: 2019-04
+    salaire_de_base: 
+      2019-04: 500
+  output: 
+    are: 1165.6
+    eligibilite_cumul_are_salaire:
+      2019-04: true 
+
+- name: Eligibilité au cumul des allocations chômage et revenus d'activité - Cas n°2
+  description: Non-éligibilité  au cumul lorsque le salaire de base et l'ARE cumulés sont supérieurs au salaire de référence mensuel 
+  period: 2019-04
+  input:
+    salaire_de_reference_mensuel: 2000
+    contrat_de_travail_fin: 2019-04
+    salaire_de_base: 
+      2019-04: 1000
+  output: 
+    are: 1165.6
+    eligibilite_cumul_are_salaire:
+      2019-04: false
+
+

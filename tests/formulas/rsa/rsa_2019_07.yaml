@@ -1,0 +1,844 @@
+- name: Calcul RSA pour personne seule ou famille monoparentale (excluant RSA jeune) - Cas n°1
+  description: Personne seule sans enfant ni ressources ni forfait logement 
+  period: 2019-07
+  absolute_error_margin: 0.01
+  input:
+    age: 40
+    statut_occupation_logement:
+      2019-07: loge_gratuitement
+      2019-06: loge_gratuitement
+      2019-05: loge_gratuitement
+      2019-04: loge_gratuitement
+    participation_frais:
+      2019-07: true
+      2019-06: true
+      2019-05: true
+      2016-04: true
+  output:
+    rsa:
+      2019-07: 559.74
+      2019-08: 559.74
+      2019-09: 559.74
+      2019-10: 559.74
+      2019-11: 559.74
+
+- name: Calcul RSA pour personne seule ou famille monoparentale (excluant RSA jeune) - Cas n°2
+  description: Personne seule sans enfant avec ressources mensuelles durant les 3 derniers mois à la demande inférieures à 559,75 mais sans ressources forfaitaires 
+  period: 2019-07
+  absolute_error_margin: 0.03
+  input:
+    famille: 
+      parents: [personne1]
+    foyer_fiscal: 
+      declarants: [personne1]
+    menage:
+      personne_de_reference: personne1
+      statut_occupation_logement: loge_gratuitement
+      participation_frais: true
+    individus:
+      personne1:
+        age: 40
+        salaire_net:
+          2019-07: 134
+          2019-06: 134
+          2019-05: 134
+          2019-04: 134
+  output:
+    rsa:
+      2019-07: 425.75
+        
+
+- name: Calcul RSA pour personne seule ou famille monoparentale (excluant RSA jeune) - Cas n°3
+  description: Personne seule sans enfant avec ressources mensuelles durant les 3 derniers mois à la demande inférieures à 559,75 
+  period: 2019-07
+  absolute_error_margin: 0.03
+  input:
+    famille:
+      parents: [personne1]
+      aide_logement:
+        2019-07: 80
+        2019-06: 80
+        2019-05: 80
+        2019-04: 80
+    foyer_fiscal:
+      declarants: [personne1]
+    menage:
+      personne_de_reference: personne1
+      statut_occupation_logement: locataire_vide
+    individus:
+      personne1:
+        age: 40
+        salaire_net:
+          2019-07: 100
+          2019-06: 100
+          2019-05: 200
+          2019-04: 300
+  output:
+    rsa:
+      2019-07: 292.5812
+
+- name: Calcul RSA pour personne seule ou famille monoparentale (excluant RSA jeune) - Cas n°4
+  description: Personne seule sans enfant avec ressources mensuelles durant les 3 derniers mois à la demande supérieures à 559,75 
+  period: 2019-07
+  absolute_error_margin: 0.03
+  input:
+    famille:
+      parents: [personne1]
+      aide_logement:
+        2019-07: 80
+        2019-06: 80
+        2019-05: 80
+        2019-04: 80
+    foyer_fiscal:
+      declarants: [personne1]
+    menage:
+      personne_de_reference: personne1
+      statut_occupation_logement: locataire_vide
+    individus:
+      personne1:
+        age: 40
+        salaire_net:
+          2019-07: 100
+          2019-06: 500
+          2019-05: 500
+          2019-04: 700
+  output:
+    rsa:
+      2019-07: 0
+
+- name: Calcul RSA pour personne seule ou famille monoparentale (excluant RSA jeune) - Cas n°5
+  description: Personne seule avec 1 enfant et des ressources mensuelles durant les 3 derniers mois à la demande inférieures à 839.61 
+  period: 2019-07
+  absolute_error_margin: 0.01
+  input:
+    famille:
+      parents: [personne1]
+      enfants: [enfant1]
+      aide_logement:
+        2019-07: 200
+        2019-06: 200
+        2019-05: 200
+        2019-04: 200
+      rsa_forfait_asf:
+        2019-07: 92.961
+        2019-06: 92.961
+        2019-05: 92.961
+        2019-04: 92.961
+    foyer_fiscal:
+      declarants: [personne1]
+      personnes_a_charge: [enfant1]  
+    menage:
+      personne_de_reference: personne1
+      enfants: [enfant1]
+      statut_occupation_logement: locataire_vide
+    individus:
+      personne1:
+        age: 40
+        salaire_net:
+          2019-07: 100
+          2019-06: 300
+          2019-05: 200
+          2019-04: 100
+      enfant1:
+        age: 5 
+  output:
+    rsa:
+      2019-07: 412.3114
+
+- name: Calcul RSA pour personne seule ou famille monoparentale (excluant RSA jeune) - Cas n°6
+  description: Personne seule avec 1 enfant et des ressources mensuelles durant les 3 derniers mois à la demande supérieures à 839.61 
+  period: 2019-07
+  absolute_error_margin: 0.01
+  input:
+    famille:
+      parents: [personne1]
+      enfants: [enfant1]
+      aide_logement:
+        2019-07: 200
+        2019-06: 200
+        2019-05: 200
+        2019-04: 200
+      rsa_forfait_asf:
+        2019-07: 92.961
+        2019-06: 92.961
+        2019-05: 92.961
+        2019-04: 92.961
+    foyer_fiscal:
+      declarants: [personne1]
+      personnes_a_charge: [enfant1]  
+    menage:
+      personne_de_reference: personne1
+      enfants: [enfant1]
+      statut_occupation_logement: locataire_vide
+    individus:
+      personne1:
+        age: 40
+        salaire_net:
+          2019-07: 100
+          2019-06: 600
+          2019-05: 650
+          2019-04: 700
+      enfant1:
+        age: 5 
+  output:
+    rsa:
+      2019-07: 0
+    
+
+- name: Calcul RSA pour personne seule ou famille monoparentale (excluant RSA jeune) - Cas n°7
+  description: Personne seule avec 2 enfants et des ressources mensuelles durant les 3 derniers mois à la demande inférieures à 1007.532
+  period: 2019-07
+  absolute_error_margin: 0.01
+  input:
+    famille:
+      parents: [personne1]
+      enfants: [enfant1, enfant2]
+      aide_logement:
+        2019-07: 200
+        2019-06: 200
+        2019-05: 200
+        2019-04: 200
+      rsa_forfait_asf:
+        2019-07: 185.922
+        2019-06: 185.922
+        2019-05: 185.922
+        2019-04: 185.922
+      af:
+        2019-07: 132.2112
+        2019-06: 132.2112
+        2019-05: 132.2112
+        2019-04: 132.2112
+    foyer_fiscal:
+      declarants: [personne1]
+      personnes_a_charge: [enfant1, enfant2]  
+    menage:
+      personne_de_reference: personne1
+      enfants: [enfant1, enfant2]
+      statut_occupation_logement: locataire_vide
+    individus:
+      personne1:
+        age: 40
+        salaire_net:
+          2019-07: 100
+          2019-06: 450
+          2019-05: 450
+          2019-04: 450
+      enfant1:
+        age: 6
+      enfant2: 
+        age: 7
+  output:
+    rsa_forfait_logement:
+      2019-07: 166.24278
+    rsa_base_ressources:
+      2019-07: 768.1332
+    rsa_socle: 
+      2019-07: 1007.532
+    rsa:
+      2019-07: 73.15602
+
+- name: Calcul RSA pour personne seule ou famille monoparentale (excluant RSA jeune) - Cas n°8
+  description: Personne seule avec 2 enfants et des ressources mensuelles durant les 3 derniers mois à la demande supérieures à 1007.532
+  period: 2019-07
+  absolute_error_margin: 0.01
+  input:
+    famille:
+      parents: [personne1]
+      enfants: [enfant1, enfant2]
+      aide_logement:
+        2019-07: 200
+        2019-06: 200
+        2019-05: 200
+        2019-04: 200
+      rsa_forfait_asf:
+        2019-07: 185.922
+        2019-06: 185.922
+        2019-05: 185.922
+        2019-04: 185.922
+      af:
+        2019-07: 132.2112
+        2019-06: 132.2112
+        2019-05: 132.2112
+        2019-04: 132.2112
+    foyer_fiscal:
+      declarants: [personne1]
+      personnes_a_charge: [enfant1, enfant2]  
+    menage:
+      personne_de_reference: personne1
+      enfants: [enfant1, enfant2]
+      statut_occupation_logement: locataire_vide
+    individus:
+      personne1:
+        age: 40
+        salaire_net:
+          2019-07: 100
+          2019-06: 700
+          2019-05: 750
+          2019-04: 700
+      enfant1:
+        age: 6
+      enfant2: 
+        age: 7
+  output:
+    rsa_forfait_logement:
+      2019-07: 166.24278
+    rsa_base_ressources:
+      2019-07: 1034.7987
+    rsa_socle: 
+      2019-07: 1007.532
+    rsa:
+      2019-07: 0
+
+- name: Calcul RSA pour personne seule ou famille monoparentale (excluant RSA jeune) - Cas n°9
+  description: Personne seule avec 3 enfants et des ressources mensuelles durant les 3 derniers mois à la demande inférieures à 1231.428
+  period: 2019-07
+  absolute_error_margin: 0.01
+  input:
+    famille:
+      parents: [personne1]
+      enfants: [enfant1, enfant2, enfant3]
+      aide_logement:
+        2019-07: 200
+        2019-06: 200
+        2019-05: 200
+        2019-04: 200
+      rsa_forfait_asf:
+        2019-07: 278.883
+        2019-06: 278.883
+        2019-05: 278.883
+        2019-04: 278.883
+      af:
+        2019-07: 301.61
+        2019-06: 301.61
+        2019-05: 301.61
+        2019-04: 301.61
+      cf:
+        2019-07: 172.08
+        2019-06: 172.08
+        2019-05: 172.08
+        2019-04: 172.08
+    foyer_fiscal:
+      declarants: [personne1]
+      personnes_a_charge: [enfant1, enfant2, enfant3]  
+    menage:
+      personne_de_reference: personne1
+      enfants: [enfant1, enfant2, enfant3]
+      statut_occupation_logement: locataire_vide
+    individus:
+      personne1:
+        age: 40
+        salaire_net:
+          2019-07: 100
+          2019-06: 200
+          2019-05: 200
+          2019-04: 200
+      enfant1:
+        age: 6
+      enfant2: 
+        age: 7
+      enfant3:
+        age: 14
+  output:
+    rsa_forfait_logement:
+      2019-07: 166.24278
+    rsa_base_ressources:
+      2019-07: 952.573
+    rsa_socle: 
+      2019-07: 1231.428
+    rsa:
+      2019-07: 112.612
+
+- name: Calcul RSA pour personne seule ou famille monoparentale (excluant RSA jeune) - Cas n°10
+  description: Personne seule avec 3 enfants et des ressources mensuelles durant les 3 derniers mois à la demande supérieures à 1231.428
+  period: 2019-07
+  absolute_error_margin: 0.01
+  input:
+    famille:
+      parents: [personne1]
+      enfants: [enfant1, enfant2, enfant3]
+      aide_logement:
+        2019-07: 200
+        2019-06: 200
+        2019-05: 200
+        2019-04: 200
+      rsa_forfait_asf:
+        2019-07: 278.883
+        2019-06: 278.883
+        2019-05: 278.883
+        2019-04: 278.883
+      af:
+        2019-07: 301.61
+        2019-06: 301.61
+        2019-05: 301.61
+        2019-04: 301.61
+      cf:
+        2019-07: 172.08
+        2019-06: 172.08
+        2019-05: 172.08
+        2019-04: 172.08
+    foyer_fiscal:
+      declarants: [personne1]
+      personnes_a_charge: [enfant1, enfant2, enfant3]  
+    menage:
+      personne_de_reference: personne1
+      enfants: [enfant1, enfant2, enfant3]
+      statut_occupation_logement: locataire_vide
+    individus:
+      personne1:
+        age: 40
+        salaire_net:
+          2019-07: 100
+          2019-06: 400
+          2019-05: 400
+          2019-04: 400
+      enfant1:
+        age: 6
+      enfant2: 
+        age: 7
+      enfant3:
+        age: 14
+  output:
+    rsa_forfait_logement:
+      2019-07: 166.24278
+    rsa_base_ressources:
+      2019-07: 1152.573
+    rsa_socle: 
+      2019-07: 1231.428
+    rsa:
+      2019-07: 0
+
+- name: Calcul RSA pour personne seule ou famille monoparentale (excluant RSA jeune) - Cas n°11
+  description: Personne isolée enceinte avec ressources mensuelles durant les 3 derniers mois à la demande inférieures à 718.773
+  period: 2019-07
+  absolute_error_margin: 0.03
+  input:
+    famille: 
+      parents: [personne1]
+      enfants: []
+      aide_logement:
+        2019-07: 100
+        2019-06: 100
+        2019-05: 100
+        2019-04: 100
+    foyer_fiscal: 
+      declarants: [personne1]
+      personnes_a_charge: []
+    menage:
+      personne_de_reference: personne1
+      enfants: []
+      statut_occupation_logement: locataire_vide
+    individus:
+      personne1:
+        age: 40
+        enceinte: true
+        salaire_net:
+          2019-07: 134
+          2019-06: 134
+          2019-05: 134
+          2019-04: 134
+  output:
+    rsa: 
+      2019-07: 517.6042
+
+
+- name: Calcul RSA pour personne seule ou famille monoparentale (excluant RSA jeune) - Cas n°12
+  description: Personne isolée avec un enfant à charge et des ressources mensuelles durant les 3 derniers mois à la demande inférieures à 958.36
+  period: 2019-07
+  absolute_error_margin: 0.03
+  input:
+    famille: 
+      parents: [personne1]
+      enfants: [enfant1]
+      aide_logement:
+        2019-07: 200
+        2019-06: 200
+        2019-05: 200
+        2019-04: 200
+      rsa_forfait_asf:
+        2019-07: 92.961
+        2019-06: 92.961
+        2019-05: 92.961
+        2019-04: 92.961
+      rsa_isolement_recent: 
+          2019: true
+    foyer_fiscal: 
+      declarants: [personne1]
+      personnes_a_charge: [enfant1]
+    menage:
+      personne_de_reference: personne1
+      enfants: [enfant1]
+      statut_occupation_logement: locataire_vide
+    individus:
+      personne1:
+        age: 40
+        enceinte: true
+        salaire_net:
+          2019-07: 134
+          2019-06: 134
+          2019-05: 134
+          2019-04: 134
+      enfant1:
+        age: 5
+  output:
+    rsa: 
+      2019-07: 597.0614
+
+- name: Calcul RSA pour personne seule ou famille monoparentale (excluant RSA jeune) - Cas n°13
+  description: Personne isolée avec deux enfants à charge et des ressources mensuelles durant les 3 derniers mois à la demande inférieures à 1197.9511
+  period: 2019-07
+  absolute_error_margin: 0.03
+  input:
+    famille: 
+      parents: [personne1]
+      enfants: [enfant1, enfant2]
+      aide_logement:
+        2019-07: 200
+        2019-06: 200
+        2019-05: 200
+        2019-04: 200
+      rsa_forfait_asf:
+        2019-07: 185.922
+        2019-06: 185.922
+        2019-05: 185.922
+        2019-04: 185.922
+      af:
+        2019-07: 132.2112
+        2019-06: 132.2112
+        2019-05: 132.2112
+        2019-04: 132.2112
+      rsa_isolement_recent: 
+          2019: true
+    foyer_fiscal: 
+      declarants: [personne1]
+      personnes_a_charge: [enfant1, enfant2]
+    menage:
+      personne_de_reference: personne1
+      enfants: [enfant1, enfant2]
+      statut_occupation_logement: locataire_vide
+    individus:
+      personne1:
+        age: 40
+        enceinte: true
+        salaire_net:
+          2019-07: 134
+          2019-06: 134
+          2019-05: 134
+          2019-04: 134
+      enfant1:
+        age: 5
+      enfant2: 
+        age: 7
+  output:
+    rsa: 
+      2019-07: 579.57512
+
+- name: Calcul RSA pour personne seule ou famille monoparentale (excluant RSA jeune) - Cas n°14
+  description: Personne isolée avec trois enfants à charge et des ressources mensuelles durant les 3 derniers mois à la demande inférieures à 1437.5422
+  period: 2019-07
+  absolute_error_margin: 0.03
+  input:
+    famille: 
+      parents: [personne1]
+      enfants: [enfant1, enfant2, enfant3]
+      aide_logement:
+        2019-07: 200
+        2019-06: 200
+        2019-05: 200
+        2019-04: 200
+      rsa_forfait_asf:
+        2019-07: 278.883
+        2019-06: 278.883
+        2019-05: 278.883
+        2019-04: 278.883
+      af:
+        2019-07: 301.61
+        2019-06: 301.61
+        2019-05: 301.61
+        2019-04: 301.61
+      cf:
+        2019-07: 172.08
+        2019-06: 172.08
+        2019-05: 172.08
+        2019-04: 172.08
+      rsa_isolement_recent: 
+          2019: true
+    foyer_fiscal: 
+      declarants: [personne1]
+      personnes_a_charge: [enfant1, enfant2, enfant3]
+    menage:
+      personne_de_reference: personne1
+      enfants: [enfant1, enfant2, enfant3]
+      statut_occupation_logement: locataire_vide
+    individus:
+      personne1:
+        age: 40
+        enceinte: true
+        salaire_net:
+          2019-07: 134
+          2019-06: 134
+          2019-05: 134
+          2019-04: 134
+      enfant1:
+        age: 5
+      enfant2: 
+        age: 7
+      enfant3: 
+        age: 8
+  output:
+    rsa: 
+      2019-07: 384.726
+
+
+- name: Calcul RSA pour personne en couple (excluant RSA jeune) - Cas n°1
+  description: Personne en couple sans enfant avec ressources inférieures à 839.61
+  period: 2019-07
+  absolute_error_margin: 0.03
+  input:
+    famille: 
+      parents: [personne1, personne2]
+      aide_logement:
+        2019-07: 200
+        2019-06: 200
+        2019-05: 200
+        2019-04: 200
+    foyer_fiscal: 
+      declarants: [personne1, personne2]
+    menage:
+      personne_de_reference: personne1
+      conjoint: personne2
+      statut_occupation_logement: locataire_vide
+    individus:
+      personne1:
+        age: 40
+        enceinte: true
+        salaire_net:
+          2019-07: 134
+          2019-06: 134
+          2019-05: 134
+          2019-04: 134
+      personne2: 
+        age: 45
+        salaire_net:
+          2019-07: 500
+          2019-06: 500
+          2019-05: 500
+          2019-04: 500
+  output:
+    rsa: 
+      2019-07: 71.272
+
+- name: Calcul RSA pour personne en couple (excluant RSA jeune) - Cas n°2
+  description: Personne en couple avec un enfant et des ressources inférieures à 1007.532
+  period: 2019-07
+  absolute_error_margin: 0.03
+  input:
+    famille: 
+      parents: [personne1, personne2]
+      enfants: enfant1
+      aide_logement:
+        2019-07: 200
+        2019-06: 200
+        2019-05: 200
+        2019-04: 200
+    foyer_fiscal: 
+      declarants: [personne1, personne2]
+      personnes_a_charge: enfant1
+    menage:
+      personne_de_reference: personne1
+      conjoint: personne2
+      enfants: enfant1
+      statut_occupation_logement: locataire_vide
+    individus:
+      personne1:
+        age: 40
+        salaire_net:
+          2019-07: 134
+          2019-06: 134
+          2019-05: 134
+          2019-04: 134
+      personne2: 
+        age: 45
+        salaire_net:
+          2019-07: 500
+          2019-06: 500
+          2019-05: 500
+          2019-04: 500
+      enfant1: 
+        age: 8
+  output:
+    rsa: 
+      2019-07: 207.289
+
+- name: Calcul RSA pour personne en couple (excluant RSA jeune) - Cas n°3
+  description: Personne en couple avec deux enfants et des ressources inférieures à 1175.454
+  period: 2019-07
+  absolute_error_margin: 0.03
+  input:
+    famille: 
+      parents: [personne1, personne2]
+      enfants: [enfant1, enfant2]
+      aide_logement:
+        2019-07: 200
+        2019-06: 200
+        2019-05: 200
+        2019-04: 200
+      af:
+        2019-07: 132.2112
+        2019-06: 132.2112
+        2019-05: 132.2112
+        2019-04: 132.2112
+    foyer_fiscal: 
+      declarants: [personne1, personne2]
+      personnes_a_charge: [enfant1, enfant2]
+    menage:
+      personne_de_reference: personne1
+      conjoint: personne2
+      enfants: [enfant1, enfant2]
+      statut_occupation_logement: locataire_vide
+    individus:
+      personne1:
+        age: 40
+        salaire_net:
+          2019-07: 134
+          2019-06: 134
+          2019-05: 134
+          2019-04: 134
+      personne2: 
+        age: 45
+        salaire_net:
+          2019-07: 500
+          2019-06: 500
+          2019-05: 500
+          2019-04: 500
+      enfant1: 
+        age: 8
+      enfant2: 
+        age: 10
+  output:
+    rsa: 
+      2019-07: 243
+
+- name: Calcul RSA pour personne en couple (excluant RSA jeune) - Cas n°4
+  description: Personne en couple avec trois enfants et des ressources inférieures à 1399.35
+  period: 2019-07
+  absolute_error_margin: 0.03
+  input:
+    famille: 
+      parents: [personne1, personne2]
+      enfants: [enfant1, enfant2, enfant3]
+      aide_logement:
+        2019-07: 200
+        2019-06: 200
+        2019-05: 200
+        2019-04: 200
+      af:
+        2019-07: 301.61
+        2019-06: 301.61
+        2019-05: 301.61
+        2019-04: 301.61
+      cf:
+        2019-07: 172.08
+        2019-06: 172.08
+        2019-05: 172.08
+        2019-04: 172.08
+    foyer_fiscal: 
+      declarants: [personne1, personne2]
+      personnes_a_charge: [enfant1, enfant2, enfant3]
+    menage:
+      personne_de_reference: personne1
+      conjoint: personne2
+      enfants: [enfant1, enfant2, enfant3]
+      statut_occupation_logement: locataire_vide
+    individus:
+      personne1:
+        age: 40
+        salaire_net:
+          2019-07: 134
+          2019-06: 134
+          2019-05: 134
+          2019-04: 134
+      personne2: 
+        age: 45
+        salaire_net:
+          2019-07: 500
+          2019-06: 500
+          2019-05: 500
+          2019-04: 500
+      enfant1: 
+        age: 8
+      enfant2: 
+        age: 10
+      enfant3: 
+        age: 14
+  output:
+    rsa: 
+      2019-07: 125.417
+
+- name: Calcul RSA jeune pour personne de moins de 25 ans - Cas n°1
+  description: Une personne seule de moins de 25 ans peut être éligible au RSA si ses ressources sont inférieures à 559.74
+  period: 2019-07
+  absolute_error_margin: 0.03
+  input:
+    famille: 
+      parents: [personne1]
+      aide_logement:
+        2019-07: 100
+        2019-06: 100
+        2019-05: 100
+        2019-04: 100
+    foyer_fiscal: 
+      declarants: [personne1]
+    menage:
+      personne_de_reference: personne1
+      statut_occupation_logement: locataire_vide
+    individus:
+      personne1:
+        age: 22
+        rsa_jeune_condition_heures_travail_remplie: true
+        salaire_net:
+          2019-07: 134
+          2019-06: 134
+          2019-05: 134
+          2019-04: 134
+  output:
+    rsa: 
+      2019-07: 358.5712
+
+
+- name: Calcul RSA jeune pour personne de moins de 25 ans - Cas n°2
+  description: Une personne en couple de moins de 25 ans peut être éligible au RSA si ses ressources sont inférieures à 839.61
+  period: 2019-07
+  absolute_error_margin: 0.03
+  input:
+    famille: 
+      parents: [personne1, personne2]
+      aide_logement:
+        2019-07: 200
+        2019-06: 200
+        2019-05: 200
+        2019-04: 200
+    foyer_fiscal: 
+      declarants: [personne1, personne2]
+    menage:
+      personne_de_reference: personne1
+      conjoint: personne2
+      statut_occupation_logement: locataire_vide
+    individus:
+      personne1:
+        age: 22
+        rsa_jeune_condition_heures_travail_remplie: true
+        salaire_net:
+          2019-07: 134
+          2019-06: 134
+          2019-05: 134
+          2019-04: 134
+      personne2:
+        age: 24
+        salaire_net:
+          2019-07: 200
+          2019-06: 200
+          2019-05: 200
+          2019-04: 200
+  output:
+    rsa: 
+      2019-07: 371.2724

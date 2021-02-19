@@ -1,0 +1,220 @@
+- name: "Cas 3 AL Reforme 2019"
+  period: 2019-01
+  relative_error_margin: 0.01
+  max_spiral_loops: 60
+  neutralized_variables:
+    # RSA TODO base ressources
+    - rsa_eligibilite_tns
+    - taux_csg_remplacement
+    # - Minimas sociaux
+    - aspa
+    - asi
+    - caah
+    # individu
+    - allocation_securisation_professionnelle
+    - dedommagement_victime_amiante
+    - gains_exceptionnels
+    - pensions_alimentaires_percues
+    - pensions_invalidite
+    - prestation_compensatoire
+    - prime_forfaitaire_mensuelle_reprise_activite
+    - rsa_base_ressources_patrimoine_individu
+    - rsa_indemnites_journalieres_hors_activite
+    - rente_viagere_titre_onereux
+    # ASS
+    # - chomage_net
+    - categorie_salarie
+    # Ass base ressources
+    - revenus_stage_formation_pro
+    - aah
+    - retraite_nette
+    - retraite_brute
+    - retraite_imposable
+    - pensions_alimentaires_percues
+    - indemnites_stage
+    - pensions_invalidite
+    - revenus_locatifs
+    - revenus_capital
+    - rpns
+    - tns_auto_entrepreneur_benefice
+    - tns_micro_entreprise_benefice
+    - tns_benefice_exploitant_agricole
+    - tns_autres_revenus
+    - pensions_alimentaires_versees_individu
+    # PF
+    - revenu_categoriel_capital
+  input:
+    famille:
+      parents: [personne1]
+      rsa:
+        year:1999:20: 0
+      aide_logement:
+        year:1999:20: 0
+    menage:
+      personne_de_reference: personne1
+      statut_occupation_logement:
+        year:2010:20: locataire_vide
+      logement_conventionne:
+        year:2010:20: true
+      zone_apl:
+        year:2010:20: zone_2
+      loyer:
+        year:2010:20: 20 * 12 * 500
+    individus:
+      personne1:
+        are:
+          year:1999:20: 0
+        ass:
+          year:1999:20: 0
+        date_debut_chomage: 2019-01-01
+        autonomie_financiere:
+          year:1995:40: False
+        rsa_jeune_condition_heures_travail_remplie: False
+        activite:
+          # month:2019-01:8: chomeur
+          2018: actif
+          2017: actif
+        date_naissance: 1980-12-25
+        contrat_de_travail_debut:
+          year:1995:30: 2005-01-01
+        contrat_de_travail_fin:
+          year:1995:30: 2019-01-01
+        chomage_brut:
+            year:1999:20: 0
+        chomage_net:
+            year:1999:20: 0
+        duree_versement_are :
+            year:1999:20: 0
+        nombre_annees_travaillees_les_10_dernieres_annees:
+          2019: 8
+          2020: 8
+        nombre_jours_travailles_dans_les_x_derniers_mois:
+          2019: 12 * 21.7
+          2020: 12 * 21.7
+        salaire_de_base:
+          year:2019:3: 0
+          2018: 12 * 1519
+          2017: 12 * 1519
+        nombre_jours_travailles_12_derniers_mois:
+          2019: 12 * 21.7 / 2
+          2020: 12 * 21.7 / 2
+    foyer_fiscal:
+      declarants: [personne1]
+  output:
+    individus:
+      personne1:
+        are:
+          2019-01: 1710
+          2019-02: 1710
+          2019-03: 1710
+          2019-04: 1710
+          2019-05: 1710
+          2019-06: 1710
+          2019-07: 1710
+          2019-08: 1710
+          2019-09: 1710
+          2019-10: 1710
+          2019-11: 1710
+          2019-12: 1710
+          2020-01: 0
+          2020-02: 0
+          2020-03: 0
+          2020-04: 0
+        ass:
+          2019-01: 0
+          2019-02: 0
+          2019-03: 0
+          2019-04: 0
+          2019-05: 0
+          2019-06: 0
+          2019-07: 0
+          2019-08: 0
+          2019-09: 0
+          2019-10: 0
+          2019-11: 0
+          2019-12: 0
+          2020-01: 502.20001220703125
+          2020-02: 502.20001220703125
+          2020-03: 502.20001220703125
+          2020-04: 502.20001220703125
+        apl:
+          2019-01: 0
+          2019-02: 0
+          2019-03: 0
+          2019-04: 89.58999633789062
+          2019-05: 89.58999633789062
+          2019-06: 89.58999633789062
+          2019-07: 89.58999633789062
+          2019-08: 89.58999633789062
+          2019-09: 89.58999633789062
+          2019-10: 89.58999633789062
+          2019-11: 89.58999633789062
+          2019-12: 89.58999633789062
+          2020-01: 0
+          2020-02: 223.22000122070312
+          2020-03: 223.22000122070312
+          2020-04: 223.22000122070312
+          2020-05: 223.22000122070312
+          2020-06: 223.22000122070312
+        aide_logement:
+          2019-01: 0
+          2019-02: 0
+          2019-03: 0
+          2019-04: 89.58999633789062
+          2019-05: 89.58999633789062
+          2019-06: 89.58999633789062
+          2019-07: 89.58999633789062
+          2019-08: 89.58999633789062
+          2019-09: 89.58999633789062
+          2019-10: 89.58999633789062
+          2019-11: 89.58999633789062
+          2019-12: 89.58999633789062
+          2020-01: 0
+          2020-02: 223.22000122070312
+          2020-03: 223.22000122070312
+          2020-04: 223.22000122070312
+        aide_logement_base_ressources:
+          2019-01: 13300
+          2019-02: 13300
+          2019-03: 13300
+          2019-04: 9300
+          2019-05: 9300
+          2019-06: 9300
+          2019-07: 9300
+          2019-08: 9300
+          2019-09: 9300
+          2019-10: 9300
+          2019-11: 9300
+          2019-12: 9300
+          2020-01: 13300
+          2020-02: 0
+          2020-03: 0
+          2020-04: 0
+          2020-05: 0
+          2020-06: 0
+          2020-07: 0
+          2020-08: 0
+        rsa:
+          2019-01: 0
+          2019-02: 0
+          2019-03: 0
+          2019-04: 0
+          2019-05: 0
+          2019-06: 0
+          2019-07: 0
+          2019-08: 0
+          2019-09: 0
+          2019-10: 0
+          2019-11: 0
+          2019-12: 0
+          2020-01: 57.53997802734375
+          2020-02: 0
+          2020-03: 0
+          2020-04: 0
+        aide_logement_neutralisation_ass:
+          2020-01: 0
+          2020-02: 13354.75390625
+          2020-03: 13354.75390625
+          2020-04: 13354.75390625
+
+     
