@@ -37,42 +37,64 @@ class indemnites_chomage_partiel(Variable):
 
 
 
+
+
+
+
+
+class salaire_de_reference(Variable):
+    value_type = float
+    entity = Individu
+    label = "Salaire de référence (SR)"
+    definition_period = MONTH
+
+    def formula(individu, period, parameters):
+        contrat_de_travail_fin = individu('contrat_de_travail_fin', period)
+        instant = contrat_de_travail_fin
+        salaire_de_base = individu('salaire_de_base', instant.last_12_months, options=[ADD])
+
+        return salaire_de_base
+
+class salaire_journalier_de_reference_verse_par_mois(Variable):
+    value_type = float
+    entity = Individu
+    label = "Salaire journalier de référence (SJR)"
+    definition_period = MONTH
+
+    def formula(individu,period,parameters):
+        contrat_de_travail_fin = individu('contrat_de_travail_fin', period)
+        instant = contrat_de_travail_fin
+        salaire_de_base = individu('salaire_de_base', instant.last_12_months, options=[ADD])
+        nombre_jours_travailles_calendaires = individu('nombre_jours_calendaires', instant.last_12_months, options=[ADD])
+        salaire_journalier_de_reference = (salaire_de_reference / nombre_jours_travailles_calendaires) * 1,4 
+        salaire_journalier_de_reference_verse_par_mois = salaire_journalier_de_reference * 30
+        
+        return salaire_journalier_de_reference_verse_par_mois
+
+
+
 class are(Variable):
     value_type = float
     entity = Individu
     label = "Allocation chômage d'aide au retour à l'emploi (ARE)"
-    definition_period = DAY
+    definition_period = MONTH
     
     def formula_2009_01(individu, period, parameters):
-        salaire_de_base = individu('salaire_de_base', period)
-        salaire_de_base_reference = individu('salaire_de_base', period.last_year, options=[ADD])
-        salaire_de_base_reference_journalier = individu('salaire_de_base_reference_journalier', period)
+        contrat_de_travail_fin = individu('contrat_de_travail_fin', period)
+        instant = contrat_de_travail_fin
+        salaire_de_reference = individu('salaire_de_reference', instant.last_12_months, options=[ADD])
+        
 
-        montant_journalier = max_(base_params.fixe_6_ + salaire_de_base_reference_journalier * base_params.prct_6_, salaire_de_base_reference_journalier * base_params.prct)
-        plafond_mensuel = base_params.base_max * salaire_de_base_reference_journalier
-        plancher_mensuel = base_params.min_3
+        montant_journalier = max_(parameters.ARE.partie_fixe + (parameters.ARE.%_du_SJR_complement * salaire_journalier_de_reference), parameters.ARE.%_du_SJR_seul * salaire_journalier_de_reference)
+        montant_mensuel = montant_journalier * 30
+        plafond_mensuel = parameters.ARE.max_en_%_SJR * salaire_journalier_de_reference_verse_par_mois
+        plancher_mensuel = parameters.ARE.min * salaire_journalier_de_reference_verse_par_mois
+        plafond_mensuel > montant_mensuel
+        plancher_mensuel < montant_mensuel
+        
+        return montant_mensuel
 
 
-
-
-
-
-
-
-
-        return montant_journalier
-
-class salaire_de_base_reference_journalier(Variable):
-    value_type = float
-    entity = Individu
-    label = "Salaire journalier de référence (SJR)"
-    definition_period = DAY
-
-    def formula(individu, period, parameters):
-        nombre_jours_travailles_calendaires = individu('nombre_jours_calendaires', period.last_year, options=[ADD])
-        result = (salaire_de_base_reference / nombre_jours_travailles_calendaires) * 1,4 
-         
-        return result
 
 class are_eligibilite_individu_2011(Variable):
     value_type = bool
