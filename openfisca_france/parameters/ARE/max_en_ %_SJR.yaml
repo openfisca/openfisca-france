@@ -1,5 +1,5 @@
 description: Montant maximum (en % du SJR)
-unit: currency
+unit: /1
 values:
   2008-07-01:
     value: 0.75

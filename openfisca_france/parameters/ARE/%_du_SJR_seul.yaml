@@ -1,6 +1,5 @@
-Reference: 
 description: Pourcentage du SJR (seule)
-unit: currency
+unit: /1
 values:
   2008-07-01:
     value: 0.57

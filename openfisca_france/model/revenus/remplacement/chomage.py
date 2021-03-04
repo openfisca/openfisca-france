@@ -1,5 +1,6 @@
 from openfisca_france.model.base import *
-
+from openfisca_core.periods import Instant 
+from datetime import timedelta
 
 class chomeur_longue_duree(Variable):
     cerfa_field = {
@@ -48,73 +49,71 @@ class salaire_de_reference(Variable):
     label = "Salaire de référence (SR)"
     definition_period = MONTH
 
-    def formula(individu, period, parameters):
+    def formula(individu, period):
+        salaire_de_base = individu('salaire_de_base', period)
+        salaire_de_base_M_1 = individu('salaire_de_base', period.offset(-1, 'month'))
+        salaire_de_base_M_2 = individu('salaire_de_base', period.offset(-2, 'month'))
+        salaire_de_base_M_3 = individu('salaire_de_base', period.offset(-3, 'month'))
+        salaire_de_base_M_4 = individu('salaire_de_base', period.offset(-4, 'month'))
+        salaire_de_base_M_5 = individu('salaire_de_base', period.offset(-5, 'month'))
+        salaire_de_base_M_6 = individu('salaire_de_base', period.offset(-6, 'month'))
+        salaire_de_base_M_7 = individu('salaire_de_base', period.offset(-7, 'month'))
+        salaire_de_base_M_8 = individu('salaire_de_base', period.offset(-8, 'month'))
+        salaire_de_base_M_9 = individu('salaire_de_base', period.offset(-9, 'month'))
+        salaire_de_base_M_10 = individu('salaire_de_base', period.offset(-10, 'month'))
+        salaire_de_base_M_11 = individu('salaire_de_base', period.offset(-11, 'month'))
+        salaire_de_base_M_12 = individu('salaire_de_base', period.offset(-12, 'month'))
+        salaire_de_base_M_13 = individu('salaire_de_base', period.offset(-13, 'month'))
+        salaire_de_base_M_14 = individu('salaire_de_base', period.offset(-14, 'month'))
+        salaire_de_base_M_15 = individu('salaire_de_base', period.offset(-15, 'month'))
+        salaire_de_base_M_16 = individu('salaire_de_base', period.offset(-16, 'month'))
+        salaire_de_base_M_17 = individu('salaire_de_base', period.offset(-17, 'month'))
+        salaire_de_base_M_18 = individu('salaire_de_base', period.offset(-18, 'month'))
+        salaire_de_base_M_19 = individu('salaire_de_base', period.offset(-19, 'month'))
+        salaire_de_base_M_20 = individu('salaire_de_base', period.offset(-20, 'month'))
+        salaire_de_base_M_21 = individu('salaire_de_base', period.offset(-21, 'month'))
+        salaire_de_base_M_22 = individu('salaire_de_base', period.offset(-22, 'month'))
+        salaire_de_base_M_23 = individu('salaire_de_base', period.offset(-23, 'month'))
+        salaire_de_base_M_24 = individu('salaire_de_base', period.offset(-24, 'month'))
+        salaire_de_base_M_25 = individu('salaire_de_base', period.offset(-25, 'month'))
+        salaire_de_base_M_26 = individu('salaire_de_base', period.offset(-26, 'month'))
+        salaire_de_base_M_27 = individu('salaire_de_base', period.offset(-27, 'month'))
+        salaire_de_base_M_28 = individu('salaire_de_base', period.offset(-28, 'month'))
+        salaire_de_base_M_29 = individu('salaire_de_base', period.offset(-29, 'month'))
+        salaire_de_base_M_30 = individu('salaire_de_base', period.offset(-30, 'month'))
+        salaire_de_base_M_31 = individu('salaire_de_base', period.offset(-31, 'month'))
+        salaire_de_base_M_32 = individu('salaire_de_base', period.offset(-32, 'month'))
+        salaire_de_base_M_33 = individu('salaire_de_base', period.offset(-33, 'month'))
+        salaire_de_base_M_34 = individu('salaire_de_base', period.offset(-34, 'month'))
+        salaire_de_base_M_35 = individu('salaire_de_base', period.offset(-35, 'month'))
+        salaire_de_base_M_36 = individu('salaire_de_base', period.offset(-36, 'month'))
+        salaire_de_base_M_37 = individu('salaire_de_base', period.offset(-37, 'month'))
+        salaire_de_base_M_38 = individu('salaire_de_base', period.offset(-38, 'month'))
+        salaire_de_base_M_39 = individu('salaire_de_base', period.offset(-39, 'month'))
+        salaire_de_base_M_40 = individu('salaire_de_base', period.offset(-40, 'month'))
+        salaire_de_base_M_41 = individu('salaire_de_base', period.offset(-41, 'month'))
+        salaire_de_base_M_42 = individu('salaire_de_base', period.offset(-42, 'month'))
+        salaire_de_base_M_43 = individu('salaire_de_base', period.offset(-43, 'month'))
+        salaire_de_base_M_44 = individu('salaire_de_base', period.offset(-44, 'month'))
+        salaire_de_base_M_45 = individu('salaire_de_base', period.offset(-45, 'month'))
+        salaire_de_base_M_46 = individu('salaire_de_base', period.offset(-46, 'month'))
+        salaire_de_base_M_47 = individu('salaire_de_base', period.offset(-47, 'month'))
+        salaire_de_base_M_48 = individu('salaire_de_base', period.offset(-48, 'month'))
+        salaire_de_base_M_49 = individu('salaire_de_base', period.offset(-49, 'month'))
+
+
         contrat_de_travail_fin = individu('contrat_de_travail_fin', period)
-        instant = contrat_de_travail_fin
-        salaire_de_base = individu('salaire_de_base', instant.last_12_months, options=[ADD])
+        contrat_de_travail_fin_M_12 = contrat_de_travail_fin - timedelta(months = 12)
 
-        return salaire_de_base
+       
 
-class salaire_journalier_de_reference_verse_par_mois(Variable):
-    value_type = float
-    entity = Individu
-    label = "Salaire journalier de référence (SJR)"
-    definition_period = MONTH
-
-    def formula(individu,period,parameters):
-        contrat_de_travail_fin = individu('contrat_de_travail_fin', period)
-        instant = contrat_de_travail_fin
-        salaire_de_base = individu('salaire_de_base', instant.last_12_months, options=[ADD])
-        nombre_jours_travailles_calendaires = individu('nombre_jours_calendaires', instant.last_12_months, options=[ADD])
-        salaire_journalier_de_reference = (salaire_de_reference / nombre_jours_travailles_calendaires) * 1,4 
-        salaire_journalier_de_reference_verse_par_mois = salaire_journalier_de_reference * 30
-        
-        return salaire_journalier_de_reference_verse_par_mois
+        return salaire_de_reference
 
 
 
-class are(Variable):
-    value_type = float
-    entity = Individu
-    label = "Allocation chômage d'aide au retour à l'emploi (ARE)"
-    definition_period = MONTH
-    
-    def formula_2009_01(individu, period, parameters):
-        contrat_de_travail_fin = individu('contrat_de_travail_fin', period)
-        instant = contrat_de_travail_fin
-        salaire_de_reference = individu('salaire_de_reference', instant.last_12_months, options=[ADD])
-        
-
-        montant_journalier = max_(parameters.ARE.partie_fixe + (parameters.ARE.%_du_SJR_complement * salaire_journalier_de_reference), parameters.ARE.%_du_SJR_seul * salaire_journalier_de_reference)
-        montant_mensuel = montant_journalier * 30
-        plafond_mensuel = parameters.ARE.max_en_%_SJR * salaire_journalier_de_reference_verse_par_mois
-        plancher_mensuel = parameters.ARE.min * salaire_journalier_de_reference_verse_par_mois
-        plafond_mensuel > montant_mensuel
-        plancher_mensuel < montant_mensuel
-        
-        return montant_mensuel
 
 
 
-class are_eligibilite_individu_2011(Variable):
-    value_type = bool
-    label = "Éligibilité individuelle à l'ARE"
-    entity = Individu
-    definition_period = MONTH
-    reference = [
-        "Unédic - Règlement général annexé à la convention du 6 mai 2011",
-        "https://www.unedic.org/sites/default/files/regulations/RglACh11.pdf",
-        ]
-
-#il faut résider en France, être involontairement privé d'emploi, être inscrit comme demandeur d'emploi, être à la recherche active et permanente d'un emploi, être physiquement apte à l'exercice d'un emploi. 
-
-
-    def formula_2011(individu, period, parameters):
-        #critère de l'âge : ARE non versé si l'âge de départ à la retraite atteint, sauf en cas de taux plein non atteint
-        age_max = parameters(period).prestations.minima_sociaux.aah.age_legal_retraite
-        sous_age_limite = individu('age_en_mois', period) <= age_max
-
-        #conditions d'attribution de l'ARE en fonction de la période d'affiliation 
 
      
     

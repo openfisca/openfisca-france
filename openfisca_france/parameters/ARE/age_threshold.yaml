@@ -1,0 +1,7 @@
+description: Age limite nécessaire à la détermination de l'ARE
+unit: 
+values:
+  2011-07-01:
+    value: 50.00
+  2017-07-01:
+    value: 53.00

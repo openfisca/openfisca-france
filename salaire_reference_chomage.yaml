@@ -1,8 +1,0 @@
-- name: "Salaire journalier de référence pour un individu gagnant 2500 euros par mois, et ayant travaillé 200 jours en 12 mois"
-  period: 2012
-  absolute_error_margin: 0.5
-  input:
-    nombre_jours_travailles_calendaires: 200
-    salaire_de_base: 2500
-  output:
-    salaire_de_base_reference_journalier: 0
