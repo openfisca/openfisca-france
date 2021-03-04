@@ -14,22 +14,6 @@ from numpy import datetime64
 # https://www.legifrance.gouv.fr/affichCode.do;jsessionid=157287C570B3AE9450A0BD88AA902970.tplgfr38s_1?idSectionTA=LEGISCTA000006141593&cidTexte=LEGITEXT000006073189&dateTexte=20180731
 
 
-class aah_date_debut_incarceration(Variable):
-    value_type = date
-    default_value = date.max
-    label = "La date de début d'incarcération"
-    entity = Individu
-    definition_period = MONTH
-
-
-class aah_date_debut_hospitalisation(Variable):
-    value_type = date
-    default_value = date.max
-    label = "La date de début d'hospitalisation"
-    entity = Individu
-    definition_period = MONTH
-
-
 class aah_base_ressources(Variable):
     value_type = float
     label = "Base ressources de l'allocation adulte handicapé"
