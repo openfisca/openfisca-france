@@ -1,0 +1,117 @@
+description: Points de charge par plafond de ressources annuelles de l'échelon 6 de la bourse du supérieur sur critères sociaux
+reference:
+  2020-07-22:
+    - Arrêté du 22 juillet 2020 relatif aux taux des bourses d'enseignement supérieur du ministère
+      de l'enseignement supérieur, de la recherche et de l'innovation pour l'année universitaire 2020-2021
+    - https://www.legifrance.gouv.fr/eli/arrete/2020/7/22/ESRS2015874A/jo/texte
+metadata:
+  type: single_amount
+brackets:
+- amount:
+    2020-07-22:
+      value: 7540
+  threshold:
+    2020-07-22:
+      value: 0
+- amount:
+    2020-07-22:
+      value: 8370
+  threshold:
+    2020-07-22:
+      value: 1
+- amount:
+    2020-07-22:
+      value: 9220
+  threshold:
+    2020-07-22:
+      value: 2
+- amount:
+    2020-07-22:
+      value: 10050
+  threshold:
+    2020-07-22:
+      value: 3
+- amount:
+    2020-07-22:
+      value: 10880
+  threshold:
+    2020-07-22:
+      value: 4
+- amount:
+    2020-07-22:
+      value: 11730
+  threshold:
+    2020-07-22:
+      value: 5
+- amount:
+    2020-07-22:
+      value: 12570
+  threshold:
+    2020-07-22:
+      value: 6
+- amount:
+    2020-07-22:
+      value: 13410
+  threshold:
+    2020-07-22:
+      value: 7
+- amount:
+    2020-07-22:
+      value: 14240
+  threshold:
+    2020-07-22:
+      value: 8
+- amount:
+    2020-07-22:
+      value: 15080
+  threshold:
+    2020-07-22:
+      value: 9
+- amount:
+    2020-07-22:
+      value: 15910
+  threshold:
+    2020-07-22:
+      value: 10
+- amount:
+    2020-07-22:
+      value: 16750
+  threshold:
+    2020-07-22:
+      value: 11
+- amount:
+    2020-07-22:
+      value: 17590
+  threshold:
+    2020-07-22:
+      value: 12
+- amount:
+    2020-07-22:
+      value: 18420
+  threshold:
+    2020-07-22:
+      value: 13
+- amount:
+    2020-07-22:
+      value: 19270
+  threshold:
+    2020-07-22:
+      value: 14
+- amount:
+    2020-07-22:
+      value: 20110
+  threshold:
+    2020-07-22:
+      value: 15
+- amount:
+    2020-07-22:
+      value: 20940
+  threshold:
+    2020-07-22:
+      value: 16
+- amount:
+    2020-07-22:
+      value: 21780
+  threshold:
+    2020-07-22:
+      value: 17

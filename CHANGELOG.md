@@ -1,5 +1,14 @@
 # Changelog
 
+## 51.15.0 [#1493](https://github.com/openfisca/openfisca-france/pull/1493)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 22/07/2020.
+* Zones impactées : `prestations/bourses_superieur`.
+* Détails :
+  - Ajoute une première implémentation des bourses sur critères sociaux.
+  - Les critères de nationalité ne sont pas encore pris en compte, on fait l'hypothèse que les individus sont de nationalité française.
+
 ## 51.14.0 [#1514](https://github.com/openfisca/openfisca-france/pull/1514)
 
 * Évolution du système socio-fiscal.
