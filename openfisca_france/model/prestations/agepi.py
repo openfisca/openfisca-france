@@ -11,8 +11,9 @@ class pe_nbenf(Variable):
         "http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n2013-46-du-18-dece.html?type=dossiers/2013/bope-n2013-128-du-24-decembre-20"
         ]
 
-    def formula(famille, period):
-        return famille.sum(famille.members('age', period) < 10, role = Famille.ENFANT)
+    def formula(famille, period, parameters):
+        agepi = parameters(period).prestations.agepi
+        return famille.sum(famille.members('age', period) < agepi.age_enfant_maximum, role = Famille.ENFANT)
 
 
 class agepi_temps_travail_semaine(Variable):
@@ -36,13 +37,15 @@ class agepi(Variable):
         "http://www.bo-pole-emploi.org/bulletinsofficiels/deliberation-n2013-46-du-18-dece.html?type=dossiers/2013/bope-n2013-128-du-24-decembre-20"
         ]
 
-    def formula(famille, period):
+    def formula(famille, period, parameters):
         isole = famille('nb_parents', period) == 1
         nb_heures = famille.sum(famille.members('agepi_temps_travail_semaine', period), role = Famille.PARENT)
         nbenf = famille('pe_nbenf', period)
 
-        montant_moins_de_15h = 170 * (nbenf == 1) + 195 * (nbenf == 2) + 220 * (nbenf > 2)
-        montant_plus_de_15h = 400 * (nbenf == 1) + 460 * (nbenf == 2) + 520 * (nbenf > 2)
+        montants = parameters(period).prestations.agepi.montants
+        montant_moins_de_15h = montants.moins_de_15h_par_semaine.calc(nbenf)
+        montant_plus_de_15h = montants.plus_de_15h_par_semaine.calc(nbenf)
+
         montant = (nb_heures <= 15) * montant_moins_de_15h + (nb_heures > 15) * montant_plus_de_15h
 
         return isole * (nb_heures > 0) * montant

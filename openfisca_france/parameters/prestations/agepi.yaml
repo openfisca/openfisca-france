@@ -1,0 +1,50 @@
+age_enfant_maximum:
+  values:
+    2013-01-01:
+      value: 10
+montants:
+  moins_de_15h_par_semaine:
+    metadata:
+      type: single_amount
+    brackets:
+      - threshold:
+          2013-01-01:
+            value: 1
+        amount:
+          2013-01-01:
+            value: 170
+      - threshold:
+          2013-01-01:
+            value: 2
+        amount:
+          2013-01-01:
+            value: 195
+      - threshold:
+          2013-01-01:
+            value: 3
+        amount:
+          2013-01-01:
+            value: 220
+  plus_de_15h_par_semaine:
+    metadata:
+      type: single_amount
+    brackets:
+      - threshold:
+          2013-01-01:
+            value: 1
+        amount:
+          2013-01-01:
+            value: 400
+      - threshold:
+          2013-01-01:
+            value: 2
+        amount:
+          2013-01-01:
+            value: 460
+      - threshold:
+          2013-01-01:
+            value: 3
+        amount:
+          2013-01-01:
+            value: 520
+
