@@ -24,7 +24,7 @@ class agepi_temps_travail_semaine(Variable):
 
     def formula(individu, period):
         heures_remunerees_volume = individu('heures_remunerees_volume', period)
-        return heures_remunerees_volume / 52 * 12 # Passage en heures par semaine
+        return heures_remunerees_volume / 52 * 12  # Passage en heures par semaine
 
 
 class agepi(Variable):

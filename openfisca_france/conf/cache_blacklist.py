@@ -2,6 +2,7 @@
 # The following variables are intermediate results and do not need to be cached in those usecases.
 
 cache_blacklist = set([
+    'agepi_temps_travail_semaine',
     'aide_logement_loyer_retenu',
     'aide_logement_charges',
     'aide_logement_R0',
