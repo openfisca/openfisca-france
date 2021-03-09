@@ -15,11 +15,15 @@ class pe_nbenf(Variable):
         return famille.sum(famille.members('age', period) < 10, role = Famille.ENFANT)
 
 
-class temps_travail_semaine(Variable):
+class agepi_temps_travail_semaine(Variable):
     value_type = float
     entity = Individu
     label = "Temps de travail par semaine pour le calcul de l'aide à la garde des enfants de parents isolés de Pôle Emploi"
     definition_period = MONTH
+
+    def formula(individu, period):
+        heures_remunerees_volume = individu('heures_remunerees_volume', period)
+        return heures_remunerees_volume / 52 * 12 # Passage en heures par semaine
 
 
 class agepi(Variable):
@@ -34,7 +38,7 @@ class agepi(Variable):
 
     def formula(famille, period):
         isole = famille('nb_parents', period) == 1
-        nb_heures = famille.sum(famille.members('temps_travail_semaine', period), role = Famille.PARENT)
+        nb_heures = famille.sum(famille.members('agepi_temps_travail_semaine', period), role = Famille.PARENT)
         nbenf = famille('pe_nbenf', period)
 
         montant_moins_de_15h = 170 * (nbenf == 1) + 195 * (nbenf == 2) + 220 * (nbenf > 2)
