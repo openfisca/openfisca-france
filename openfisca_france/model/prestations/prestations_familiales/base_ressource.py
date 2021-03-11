@@ -4,6 +4,7 @@ from openfisca_france.model.base import *
 
 from numpy import datetime64
 
+
 class autonomie_financiere(Variable):
     value_type = bool
     entity = Individu
