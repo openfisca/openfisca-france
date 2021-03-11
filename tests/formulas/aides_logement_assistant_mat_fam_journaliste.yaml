@@ -113,7 +113,7 @@
       personnes_a_charge: [enfant1, enfant2]
   output:
     aide_logement_base_ressources: 21465
-    aide_logement: 75.85
+    aide_logement: 77.88
 
 - name: "Cas 3, abattement assistant maternel sur les 12 mois"
   period: 2021-01
@@ -348,4 +348,4 @@
       declarants: parent1
   output:
     aide_logement_base_ressources: 10000
-    aide_logement: 101.04
+    aide_logement: 102.26
