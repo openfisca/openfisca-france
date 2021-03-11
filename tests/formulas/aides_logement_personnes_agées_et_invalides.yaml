@@ -18,8 +18,8 @@
     foyer_fiscal:
       declarants: [personne1]
   output:
-    aide_logement_base_ressources: 9600
-    aide_logement: 99.49
+    aide_logement_base_ressources: 9500
+    aide_logement: 103.79
 
 - name: "Personne agée né en 1931, pas d'application de l'abattement spécial accordé aux personnes âgées"
   period: 2021-01
