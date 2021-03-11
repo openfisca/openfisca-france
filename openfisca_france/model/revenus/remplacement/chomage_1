@@ -16,26 +16,6 @@ class salaire_journalier_de_reference_verse_par_mois(Variable):
 
 
 
-class are(Variable):
-    value_type = float
-    entity = Individu
-    label = "Allocation chômage d'aide au retour à l'emploi (ARE)"
-    definition_period = MONTH
-    
-    def formula_2009_01(individu, period, parameters):
-        contrat_de_travail_fin = individu('contrat_de_travail_fin', period)
-        instant = contrat_de_travail_fin
-        salaire_de_reference = individu('salaire_de_reference', instant.last_12_months, options=[ADD])
-        
-
-        montant_journalier = max_(parameters.ARE.partie_fixe + (parameters.ARE.%_du_SJR_complement * salaire_journalier_de_reference), parameters.ARE.%_du_SJR_seul * salaire_journalier_de_reference)
-        montant_mensuel = montant_journalier * 30
-        plafond_mensuel = parameters.ARE.max_en_%_SJR * salaire_journalier_de_reference_verse_par_mois
-        plancher_mensuel = parameters.ARE.min * salaire_journalier_de_reference_verse_par_mois
-        plafond_mensuel > montant_mensuel
-        plancher_mensuel < montant_mensuel
-        
-        return montant_mensuel
 
 
 
@@ -79,3 +59,27 @@ class duree_are(Variable):
 
     def formula_2011(individu, period, parameters):
         salaire_de_base = individu('salaire_de_base', period)
+
+
+       
+
+         montant_final = max_(
+            are.min * 30,
+            montant_mensuel
+        )
+
+    
+        montant_max = min_(
+            montant_mensuel,
+            are.max_en_pourcentage_sjr * salaire_de_reference_mensuel
+            )
+
+        montant_min = max_(
+            are.min * 30,
+            montant_mensuel
+        )
+        
+        montant_final = montant_max + montant_min
+
+        
+        return montant_final

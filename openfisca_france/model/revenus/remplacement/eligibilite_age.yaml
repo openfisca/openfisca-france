@@ -1,0 +1,9 @@
+- name: Eligibilité à l'ARE en fonction de l'âge 
+  description: Un individu de 63 ans n'a pas le droit à l'ARE en raison de son âge supérieur à l'âge légal de départ à la retraite
+  period: 2016-12
+  input:
+    age_en_mois: 737
+    
+  output:
+    are_eligibilite_individu: 
+      2016-12: true

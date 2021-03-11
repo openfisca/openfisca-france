@@ -1,0 +1,10 @@
+- name: Eligibilité à l'ARE en fonction de la période d'affiliation
+  description: Un individu de 48 ans ayant cotisé 8 mois dans les 24 derniers mois précédant la date de fin du contrat de travail a le droit à l'ARE
+  period: 2018-12
+  input:
+    age_en_mois: 576
+    periode_affiliation: 8
+    
+  output:
+    are_eligibilite_individu: 
+      2018-12: true

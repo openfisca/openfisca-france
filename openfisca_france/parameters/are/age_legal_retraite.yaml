@@ -1,0 +1,15 @@
+description: Âge légal de départ à la retraite
+unit: months
+values:
+  1983-07-01:
+    value: 720
+  2011-11-01:
+    value: 724
+  2012-10-01:
+    value: 729
+  2014-04-01:
+    value: 733
+  2015-08-01:
+    value: 738
+  2017-01-01:
+    value: 743
