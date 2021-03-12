@@ -135,4 +135,3 @@ def compute_cotisation_anticipee(individu, period, parameters, cotisation_type =
             cotisation_type = cotisation_type,
             bareme_name = bareme_name,
             ) - cumul
-
