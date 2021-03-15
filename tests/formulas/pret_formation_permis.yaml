@@ -1,0 +1,8 @@
+- name: Éligibilité au prêt de formation au permis de conduire à 1 euro par jour
+  period: 2021-01
+  relative_error_margin: 0.05
+  input:
+    pret_formation_permis: [True, False, False, False, False]
+    age: [20, 14, 15, 25, 26]
+  output:
+    pret_formation_permis_eligibilite: [False, False, True, True, False]
