@@ -1,5 +1,15 @@
 # Changelog
 
+
+## 51.1.0 [#1445](https://github.com/openfisca/openfisca-france/pull/1445)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : toutes.
+* Zones impactées :
+  - `prestations/agepi.py`
+* Détails :
+  - Ajout de l'aide à la garde d'enfants pour parent isolé (Agepi) au chômage
+
 ### 51.0.3 [#1476](https://github.com/openfisca/openfisca-france/pull/1476)
 
 * Amélioration technique.
