@@ -1,6 +1,15 @@
 # Changelog
 
 
+## 51.2.0 [#1446](https://github.com/openfisca/openfisca-france/pull/1446)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : toutes.
+* Zones impactées :
+  - `prestations/prelevements_obligatoires/taxe_fonciere/taxe_fonciere.py`
+* Détails :
+  - Ajout d'une première version du dégrèvement de la taxe foncière
+
 ## 51.1.0 [#1445](https://github.com/openfisca/openfisca-france/pull/1445)
 
 * Évolution du système socio-fiscal.
