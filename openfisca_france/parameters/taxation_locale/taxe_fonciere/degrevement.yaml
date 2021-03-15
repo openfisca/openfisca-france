@@ -1,0 +1,6 @@
+pourcentage_reste_a_charge:
+  2018-01-01:
+    value: 0.50
+minimum:
+  2018-01-01:
+    value: 15
