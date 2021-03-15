@@ -22,10 +22,11 @@ class taxe_fonciere_degrevement(Variable):
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
+        degrevement = parameters(period).taxation_locale.taxe_fonciere.degrevement
         ressources = foyer_fiscal('rfr', period)
         tf_base = foyer_fiscal('taxe_fonciere_sur_avis', period)
-        montant = max_(0, tf_base - 0.50 * ressources)
-        return (15 < montant) * montant
+        montant = max_(0, tf_base - ressources * degrevement.pourcentage_reste_a_charge)
+        return (degrevement.minimum < montant) * montant
 
 
 class taxe_fonciere_degrevement_montant(Variable):
