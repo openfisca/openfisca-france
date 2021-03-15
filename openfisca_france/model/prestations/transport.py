@@ -1,5 +1,6 @@
 from openfisca_france.model.base import Variable, Individu, MONTH, not_
 
+
 class pret_formation_permis(Variable):
     value_type = bool
     label = "Bénéficiaire du prêt à la formation au permis de conduire à 1 euro par jour"
@@ -26,8 +27,9 @@ class pret_formation_permis_eligibilite(Variable):
         "https://www.securite-routiere.gouv.fr/passer-son-permis-de-conduire/financement-du-permis-de-conduire/permis-1-eu-par-jour"
         ]
 
-    def formula(individu, period):
+    def formula(individu, period, parameters):
         pret_formation_permis = individu('pret_formation_permis', period)
         age = individu('age', period)
-        condition_age = (15 <= age) * (age <= 25)
+        criteres_age = parameters(period).prestations.transport.pret_formation_permis.age
+        condition_age = (criteres_age.minimum <= age) * (age <= criteres_age.maximum)
         return not_(pret_formation_permis) * condition_age
