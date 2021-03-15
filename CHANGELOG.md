@@ -1,5 +1,14 @@
 # Changelog
 
+##
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : toutes.
+* Zones impactées :
+  - `prestations/transport.py`
+* Détails :
+  - Ajoute l'éligibilité au prêt à la formation au permis de conduire à 1€ par jour
+
 ## 51.2.0 [#1485](https://github.com/openfisca/openfisca-france/pull/1485)
 
 * Évolution du système socio-fiscal.
