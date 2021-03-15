@@ -1,6 +1,6 @@
 # Changelog
 
-##
+## [#1486](https://github.com/openfisca/openfisca-france/pull/1486)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : toutes.

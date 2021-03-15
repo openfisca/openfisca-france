@@ -12,8 +12,8 @@ class pret_formation_permis(Variable):
         ]
     documentation = '''
     Le prêt « permis à un euro par jour » est exclusivement destiné au financement
-    d’une formation initiale ou, dans le cas d’un échec à l’épreuve pratique 
-    de l’examen du permis de conduire, d’une formation complémentaire. 
+    d’une formation initiale ou, dans le cas d’un échec à l’épreuve pratique
+    de l’examen du permis de conduire, d’une formation complémentaire.
     '''
 
 
