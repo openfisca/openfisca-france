@@ -1,5 +1,13 @@
 # Changelog
 
+##
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : À partir de 01/2021.
+* Zones impactées :
+  - `prestations/alimentation.py`
+* Détails :
+  - Ajoute l'éligibilité à l'aide repas crous à 1€ pour tout étudiant.
 
 ## 51.1.0 [#1445](https://github.com/openfisca/openfisca-france/pull/1445)
 
