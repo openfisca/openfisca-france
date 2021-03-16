@@ -2,7 +2,7 @@
   period: 2021-01
   relative_error_margin: 0.05
   input:
-    pret_formation_permis: [True, False, False, False, False]
+    pret_formation_permis: [true, false, false, false, false]
     age: [20, 14, 15, 25, 26]
   output:
-    pret_formation_permis_eligibilite: [False, False, True, True, False]
+    pret_formation_permis_eligibilite: [false, false, true, true, false]
