@@ -1,5 +1,13 @@
 # Changelog
 
+## 51.2.0 [#1485](https://github.com/openfisca/openfisca-france/pull/1485)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir de 01/2021.
+* Zones impactées :
+  - `prestations/alimentation.py`
+* Détails :
+  - Ajoute l'éligibilité à l'aide repas CROUS à 1€ pour tout étudiant.
 
 ## 51.1.0 [#1445](https://github.com/openfisca/openfisca-france/pull/1445)
 
@@ -70,8 +78,8 @@
 * Périodes concernées : toutes.
 * Zones impactées : `parameters/prestations/prestations_familiales/af/modulation/plafond_tranche_1.yaml.`
 `parameters/prestations/prestations_familiales/af/modulation/plafond_tranche_2.yaml.`
-Détails :
-- Corrige un encodage empêchant le bon import des paramètres
+* Détails :
+  - Corrige un encodage empêchant le bon import des paramètres
 
 ### 50.0.1 [#1471](https://github.com/openfisca/openfisca-france/pull/1471)
 
@@ -248,12 +256,12 @@ Détails :
 * Évolution du système socio-fiscal
 * Périodes concernées : à partir du 01/01/2018 jusqu'au 31/12/2019
 * Zones impactées :
-- `openfisca_france/parameters/impot_revenu/plus_values.yaml`.
-- `openfisca_france/model/prelevements_obligatoires/impot_revenu/ir.py`
-- `openfisca_france/model/revenus/capital/plus_value.py`
-`openfisca_france/model/prelevements_obligatoires/impot_revenu/prelevements_forfaitaires/ir_prelevement_forfaitaire_unique.py`
-- openfisca_france/model/prelevements_obligatoires/prelevements_sociaux/contributions_sociales/capital.py
-- tests/calculateur_impots/yaml/pv_pfu.yaml
+  - `openfisca_france/parameters/impot_revenu/plus_values.yaml`.
+  - `openfisca_france/model/prelevements_obligatoires/impot_revenu/ir.py`
+  - `openfisca_france/model/revenus/capital/plus_value.py`
+  - `openfisca_france/model/prelevements_obligatoires/impot_revenu/prelevements_forfaitaires/ir_prelevement_forfaitaire_unique.py`
+  - `openfisca_france/model/prelevements_obligatoires/prelevements_sociaux/contributions_sociales/capital.py`
+  - `tests/calculateur_impots/yaml/pv_pfu.yaml`
 
 * Détails :
   - Le modèle de calcul de l'IR est mis à jour avec les cases pour 2019 et 2020 pour l'imposition des plus-values survenues du 01/01/2018 jusqu'au 31/12/2019 et qui sont taxées forfaitairement hors barème.
