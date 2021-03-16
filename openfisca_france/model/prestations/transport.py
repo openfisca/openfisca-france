@@ -27,7 +27,7 @@ class pret_formation_permis_eligibilite(Variable):
         "https://www.securite-routiere.gouv.fr/passer-son-permis-de-conduire/financement-du-permis-de-conduire/permis-1-eu-par-jour"
         ]
 
-    def formula(individu, period, parameters):
+    def formula_2005_09_30(individu, period, parameters):
         pret_formation_permis = individu('pret_formation_permis', period)
         age = individu('age', period)
         criteres_age = parameters(period).prestations.transport.pret_formation_permis.age
