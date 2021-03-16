@@ -1,7 +1,7 @@
 from openfisca_france.model.base import *
 
 
-class repas_crous_eligibilite(Variable):
+class crous_repas_un_euro_eligibilite(Variable):
     value_type = bool
     label = "Éligibilité au repas Crous à un euro"
     entity = Individu
@@ -17,5 +17,4 @@ class repas_crous_eligibilite(Variable):
     '''
 
     def formula_2021_01(individu, period, parameters):
-        etudiant = individu("etudiant", period)
-        return etudiant
+        return individu("etudiant", period)
