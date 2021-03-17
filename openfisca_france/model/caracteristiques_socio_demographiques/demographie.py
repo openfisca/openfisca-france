@@ -1,39 +1,5 @@
 from openfisca_france.model.base import *
 
-EEE_COUNTRY_CODES = [
-    b'AT',
-    b'BE',
-    b'BG',
-    b'CY',
-    b'CZ',
-    b'DE',
-    b'DK',
-    b'EE',
-    b'ES',
-    b'FI',
-    b'FR',
-    b'GR',
-    b'HR',
-    b'HU',
-    b'IE',
-    b'IS',
-    b'IT',
-    b'LI',
-    b'LU',
-    b'LV',
-    b'MT',
-    b'NL',
-    b'NO',
-    b'PL',
-    b'PT',
-    b'RO',
-    b'SE',
-    b'SI',
-    b'SK',
-    b'UK',
-    b'CH',  # Suisse hors EEE
-    ]
-
 
 class date_naissance(Variable):
     value_type = date
@@ -324,12 +290,12 @@ class ressortissant_eee(Variable):
     value_type = bool
     default_value = True
     entity = Individu
-    label = "Ressortissant de l'EEE ou de la Suisse."
+    label = "Individu ressortissant d'un pays membre de l'Espace Économique Européen (EEE)."
     definition_period = MONTH
 
-    def formula(individu, period):
+    def formula(individu, period, parameters):
         nationalite = individu('nationalite', period)
-        return sum([nationalite == code_iso for code_iso in EEE_COUNTRY_CODES])
+        return sum([ nationalite == str.encode(etat_membre) for etat_membre in parameters(period).geopolitique.eee ])  #TOOPTIMIZE: string encoding into bytes array should be done at load time
 
 
 class residence_continue_annees(Variable):

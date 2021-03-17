@@ -1,10 +1,9 @@
 - name: Nationalité française
   period: 2021-03
   input:
-    nationalite: [ FR, FR ]
-    residence_continue_annees: [ 0, 6 ]
+    nationalite: FR
   output:
-    garantie_pret_etudiant_condition_nationalite: [ true, true ]
+    garantie_pret_etudiant_condition_nationalite: true
 
 - name: Appartenance à l'EEE
   period: 2021-03
