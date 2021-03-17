@@ -610,7 +610,7 @@ class rsa_condition_nationalite(Variable):
     value_type = bool
     default_value = True
     entity = Individu
-    label = "Conditions de nationnalité et de titre de séjour pour bénéficier du RSA"
+    label = "Conditions de nationalité et de titre de séjour pour bénéficier du RSA"
     definition_period = MONTH
 
     def formula_2009_06_01(individu, period, parameters):
