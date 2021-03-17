@@ -295,7 +295,7 @@ class rempli_obligation_scolaire(Variable):
     value_type = bool
     default_value = True
     entity = Individu
-    label = "Rempli l'obligation scolaire"
+    label = "Remplit l'obligation scolaire"
     definition_period = MONTH
 
 
