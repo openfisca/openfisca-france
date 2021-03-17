@@ -25,7 +25,7 @@ class professionnalisation(Variable):
 class remuneration_professionnalisation(Variable):
     value_type = float
     entity = Individu
-    label = "Rémunération de l'apprenti"
+    label = "Rémunération de l'apprenti sous contrat de professionalisation"
     reference = "http://www.apce.com/pid927/contrat-d-apprentissage.html?espace=1&tp=1&pagination=2"
     definition_period = MONTH
 
