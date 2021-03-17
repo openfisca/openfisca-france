@@ -1,0 +1,23 @@
+- name: Nationalité française
+  period: 2021-03
+  input:
+    nationalite: [ FR, FR ]
+    residence_continue_annees: [ 0, 6 ]
+  output:
+    garantie_pret_etudiant_condition_nationalite: [ true, true ]
+
+- name: Appartenance à l'EEE
+  period: 2021-03
+  input:
+    nationalite: [ AT, BE, BG, CY, CZ, DE, DK, EE, ES, FI, FR, GR, HR, HU, IE, IS, IT, LI, LU, LV, MT, NL, 'NO', PL, PT, RO, SE, SI, SK, UK, CH, RU ]
+    residence_continue_annees: [ 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6 ]
+  output:
+    garantie_pret_etudiant_condition_nationalite: [ true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, false, false, false ]
+
+- name: Critère de résidence continue
+  period: 2021-03
+  input:
+    nationalite: [ AT, AT, AT ]
+    residence_continue_annees: [ 4, 5, 6 ]
+  output:
+    garantie_pret_etudiant_condition_nationalite: [ false, true, true ]

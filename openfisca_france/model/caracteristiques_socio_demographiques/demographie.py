@@ -332,6 +332,13 @@ class ressortissant_eee(Variable):
         return sum([nationalite == code_iso for code_iso in EEE_COUNTRY_CODES])
 
 
+class residence_continue_annees(Variable):
+    value_type = float
+    entity = Individu
+    label = "Durée depuis laquelle l'individu réside sur le territoire français de manière régulière et continue (en années)"
+    definition_period = MONTH
+
+
 class duree_possession_titre_sejour(Variable):
     value_type = float
     entity = Individu
