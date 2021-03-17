@@ -1,4 +1,4 @@
-from openfisca_france.model.base import Variable
+from openfisca_france.model.base import Variable, Individu, MONTH
 
 
 class mobili_jeune_eligibilite(Variable):
@@ -14,4 +14,10 @@ class mobili_jeune_eligibilite(Variable):
             individu("apprenti", period) 
             + individu("professionnalisation", period)
             )
-        return condition_age * condition_contrat
+        # 1% logement = https://www.service-public.fr/professionnels-entreprises/vosdroits/F22583
+        smic_mensuel_brut = individu("smic_proratise", period)
+        condition_remuneration = (
+            individu("remuneration_apprenti", period) 
+            * individu("remuneration_professionnalisation", period)
+            ) <= smic_mensuel_brut
+        return condition_age * condition_contrat * condition_remuneration
