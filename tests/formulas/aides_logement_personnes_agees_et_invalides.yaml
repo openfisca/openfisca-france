@@ -72,7 +72,7 @@
     aide_logement: 142.71
 
 - name: "Personne salarie infirme, application de l'abattement spécial accordé aux personnes invalides"
-  period: 2020-08
+  period: 2021-01
   relative_error_margin: 0.01
   input:
     famille:
@@ -85,6 +85,11 @@
     individus:
       personne1:
         salaire_imposable:
+          2020-12: 683.33
+          2020-11: 683.33
+          2020-10: 683.33
+          2020-09: 683.33
+          2020-08: 683.33
           2020-07: 683.33
           2020-06: 683.33
           2020-05: 683.33
@@ -92,16 +97,10 @@
           2020-03: 683.33
           2020-02: 683.33
           2020-01: 683.33
-          2019-12: 683.33
-          2019-11: 683.33
-          2019-10: 683.33
-          2019-09: 683.33
-          2019-08: 683.33
-          2019-07: 683.33
         date_naissance: 1985-01-01
     foyer_fiscal:
       declarants: [personne1]
       caseP:
-        2019: true
+        2020: true
   output:
     aide_logement: 257.41
