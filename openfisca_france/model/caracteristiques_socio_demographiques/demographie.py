@@ -285,11 +285,15 @@ class est_enfant_dans_famille(Variable):
         return individu.has_role(Famille.ENFANT)
 
 
+'''
+L'individu est inscrit·e dans un établissement en vue de la préparation d'un concours ou d'un diplôme de l'enseignement supérieur français : une université, une école de commerce ou d'ingénieur, dans un lycée pour un BTS…
+'''
 class etudiant(Variable):
     value_type = bool
     entity = Individu
-    label = "Indicatrice individuelle étudiant"
+    label = "Indique que l'individu dispose du statut étudiant"
     definition_period = MONTH
+    reference = "https://www.service-public.fr/particuliers/vosdroits/F986"
 
     def formula(individu, period, parameters):
         # Note : Cette variable est « instantanée » : quelle que soit la période demandée, elle retourne la valeur au premier
