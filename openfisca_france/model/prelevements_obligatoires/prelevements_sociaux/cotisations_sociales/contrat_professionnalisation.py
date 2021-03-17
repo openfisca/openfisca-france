@@ -5,7 +5,7 @@ class professionnalisation(Variable):
     value_type = bool
     entity = Individu
     label = "L'individu est en contrat de professionnalisation"
-    reference = "http://www.apce.com/pid879/contrat-de-professionnalisation.html?espace=1&tp=1"
+    reference = "https://www.legifrance.gouv.fr/codes/id/LEGIARTI000031088014/2016-01-01/"
     definition_period = MONTH
 
     def formula(individu, period, parameters):
