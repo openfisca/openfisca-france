@@ -128,7 +128,7 @@ class rev_coll(Variable):
         rev_cat_rvcm = foyer_fiscal('revenu_categoriel_capital', period)  # Supprimée en 2018
         revenus_capitaux_prelevement_liberatoire = foyer_fiscal('revenus_capitaux_prelevement_liberatoire', period, options = [ADD])  # Supprimée en 2018
         revenus_capitaux_prelevement_forfaitaire_unique_ir = foyer_fiscal('revenus_capitaux_prelevement_forfaitaire_unique_ir', period, options = [ADD])  # Existe à partir de 2018
-        abat_spe = foyer_fiscal('abat_spe_prestations_familiales', period)
+        abat_spe = foyer_fiscal('abattements_speciaux_prestations_familiales', period)
         revenu_categoriel_foncier = foyer_fiscal('revenu_categoriel_foncier', period)
         f7ga = foyer_fiscal('f7ga', period)
         f7gb = foyer_fiscal('f7gb', period)
@@ -232,10 +232,10 @@ def nb_enf(famille, period, age_min, age_max):
     return famille.sum(condition, role = Famille.ENFANT)
 
 
-class abat_spe_prestations_familiales(Variable):
+class abattements_speciaux_prestations_familiales(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "Abattements spéciaux"
+    label = "Abattements spéciaux concernant les personnes agées ou invalides et les enfants à charge"
     reference = "http://bofip.impots.gouv.fr/bofip/2036-PGP"
     definition_period = YEAR
 

@@ -817,9 +817,9 @@ class aide_logement_base_ressources_defaut(Variable):
             + famille.conjoint.foyer_fiscal('aide_logement_base_revenus_fiscaux', period.n_2) * conjoint_declarant_principal
             )
         abat_spe = (
-            famille.demandeur.foyer_fiscal('abat_spe_prestations_familiales', period.n_2)
+            famille.demandeur.foyer_fiscal('abattements_speciaux_prestations_familiales', period.n_2)
             * demandeur_declarant_principal
-            + famille.conjoint.foyer_fiscal('abat_spe_prestations_familiales', period.n_2)
+            + famille.conjoint.foyer_fiscal('abattements_speciaux_prestations_familiales', period.n_2)
             * conjoint_declarant_principal
             )
         base_ressources_parents = max_(0, base_ressources_parents - abat_spe)
@@ -1019,9 +1019,9 @@ class aide_logement_base_ressources(Variable):
         demandeur_declarant_principal = famille.demandeur.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
         conjoint_declarant_principal = famille.conjoint.has_role(FoyerFiscal.DECLARANT_PRINCIPAL)
         abat_spe = (
-            famille.demandeur.foyer_fiscal('abat_spe_prestations_familiales', annee_glissante)
+            famille.demandeur.foyer_fiscal('abattements_speciaux_prestations_familiales', annee_glissante)
             * demandeur_declarant_principal
-            + famille.conjoint.foyer_fiscal('abat_spe_prestations_familiales', annee_glissante)
+            + famille.conjoint.foyer_fiscal('abattements_speciaux_prestations_familiales', annee_glissante)
             * conjoint_declarant_principal
             )
 
@@ -1082,11 +1082,11 @@ class aide_logement_base_ressources(Variable):
             )
         ressources_n_2 = famille.sum(ressources_n_2_i, role=Famille.PARENT)
         f4ba = famille.demandeur.foyer_fiscal('f4ba', period.n_2)
-        plus_values_gains_divers = famille.demandeur.foyer_fiscal('plus_values_gains_divers', period.n_2)
+        plus_values_base_large = famille.demandeur.foyer_fiscal('plus_values_base_large', period.n_2)
         deficit_exercice = famille.demandeur.foyer_fiscal('deficit_exercice', period.n_2)
         ressources_n_2 += (
             f4ba
-            + plus_values_gains_divers
+            + plus_values_base_large
             - deficit_exercice
             )
 
