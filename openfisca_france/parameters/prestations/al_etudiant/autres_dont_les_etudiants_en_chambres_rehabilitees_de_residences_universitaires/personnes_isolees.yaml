@@ -27,5 +27,7 @@ values:
     value: 168.39
   2019-10-01:
     value: 168.90
+    reference: https://www.legifrance.gouv.fr/eli/arrete/2019/9/27/LOGL1925404A/jo/article_43
   2020-10-01:
     value: 169.41
+    reference: https://www.legifrance.gouv.fr/eli/arrete/2020/9/25/LOGL2020835A/jo/article_1
