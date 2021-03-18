@@ -397,14 +397,10 @@ class revenu_assimile_salaire(Variable):
     definition_period = YEAR
 
     def formula(individu, period, parameters):
-        # mise en parallèle avec avec le fonctionnement spécifique de al_revenu_assimile_salaire
-        period_salaire_chomage = period
-        period_f1tt_f3vj = period
-
-        salaire_imposable = individu('salaire_imposable', period_salaire_chomage, options = [ADD])
-        chomage_imposable = individu('chomage_imposable', period_salaire_chomage, options = [ADD])
-        f1tt = individu('f1tt', period_f1tt_f3vj)
-        f3vj = individu('f3vj', period_f1tt_f3vj)
+        salaire_imposable = individu('salaire_imposable', period, options = [ADD])
+        chomage_imposable = individu('chomage_imposable', period, options = [ADD])
+        f1tt = individu('f1tt', period)
+        f3vj = individu('f3vj', period)
 
         return salaire_imposable + chomage_imposable + f1tt + f3vj
 
@@ -416,14 +412,9 @@ class revenu_assimile_salaire_apres_abattements(Variable):
     definition_period = YEAR
 
     def formula(individu, period, parameters):
-        # mise en parallèle avec le fonctionnement spécifique de al_revenu_assimile_salaire_apres_abattements
-        period_revenus = period
-        period_chomage = period
-        period_frais = period
-
-        revenu_assimile_salaire = individu('revenu_assimile_salaire', period_revenus)
-        chomeur_longue_duree = individu('chomeur_longue_duree', period_chomage)
-        frais_reels = individu('frais_reels', period_frais)
+        revenu_assimile_salaire = individu('revenu_assimile_salaire', period)
+        chomeur_longue_duree = individu('chomeur_longue_duree', period)
+        frais_reels = individu('frais_reels', period)
         abatpro = parameters(period).impot_revenu.tspr.abatpro
 
         abattement_minimum = where(chomeur_longue_duree, abatpro.min2, abatpro.min)

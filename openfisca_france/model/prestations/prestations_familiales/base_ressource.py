@@ -240,7 +240,6 @@ class abat_spe_prestations_familiales(Variable):
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
-
         dateLimite = datetime64('1931-01-01')
 
         age_declarant = foyer_fiscal.declarant_principal('age', period.first_month)
@@ -280,7 +279,7 @@ class abat_spe_prestations_familiales(Variable):
             )
 
         # Vecteur de montants d'abattement pour personnes âges ou invalides
-        as_inv = (
+        abattement_special_personne_agee_invalide = (
             + foyers_eligibles
             * (
                 (
@@ -298,10 +297,10 @@ class abat_spe_prestations_familiales(Variable):
             )
 
         # Vecteur de montants d'abattement pour enfants à charge
-        as_enf = (
+        abattement_special_enfants_a_charge = (
             + nombre_enfants
             * abattement_enfant_marie.montant
             )
 
         # Le montant total d'abattement ne peut pas être supérieur au revenu net global
-        return min_(revenu_net_global, as_inv + as_enf)
+        return min_(revenu_net_global, abattement_special_personne_agee_invalide + abattement_special_enfants_a_charge)

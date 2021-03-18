@@ -248,17 +248,17 @@ class etat_logement(Variable):
     definition_period = MONTH
 
 
-class ass_maternel(Variable):
+class assistant_maternel(Variable):
     value_type = bool
     entity = Individu
-    label = "Assistant maternel"
+    label = "Exerce la profession d'assistant maternel"
     definition_period = MONTH
 
 
-class ass_familial(Variable):
+class assistant_familial(Variable):
     value_type = bool
     entity = Individu
-    label = "Assistant familial"
+    label = "Exerce la profession d'assistant familiale"
     definition_period = MONTH
 
 
@@ -308,10 +308,10 @@ class aides_logement_primo_accedant_eligibilite(Variable):
 
         est_zone_3 = (zone_apl == TypesZoneApl.zone_3)
         date_pret_conventionne_avant_2018_01 = (aide_logement_date_pret_conventionne < date(2018, 1, 1))
-        date_pret_conventionne_avant_2019_01 = (aide_logement_date_pret_conventionne < date(2019, 1, 1))
+        date_pret_conventionne_avant_2020_01 = (aide_logement_date_pret_conventionne < date(2020, 1, 1))
 
         eligibilite = select(
-            [date_pret_conventionne_avant_2018_01, date_pret_conventionne_avant_2019_01],
+            [date_pret_conventionne_avant_2018_01, date_pret_conventionne_avant_2020_01],
             [True, (est_logement_ancien * est_zone_3)], default = False
             )
 
@@ -522,14 +522,13 @@ class al_revenu_assimile_salaire(Variable):
 
     def formula(individu, period, parameters):
         # version spécifique aux aides logement de revenu_assimile_salaire
-
         period_salaire_chomage = period.start.period('year').offset(-1)
         period_f1tt_f3vj = period.n_2
 
         smic_annuel_brut = parameters(period).cotsoc.gen.smic_h_b * 52 * 35
 
         # salaire imposable pour les journaliste et les assistants mat/fam apres l'aplication de l'abattement forfaitaire
-        # dans le cas des frais réels déclaré superieur a Zero.
+        # dans le cas des frais réels déclarés superieurs à Zero.
         salaire_imposable_apres_abattement = individu('al_abattement_forfaitaire_assistants_et_journalistes',
                                                      period_salaire_chomage, options=[ADD])
         salaire_imposable_sans_abattement = individu('salaire_imposable', period_salaire_chomage, options=[ADD])
@@ -540,7 +539,7 @@ class al_revenu_assimile_salaire(Variable):
         f1tt = individu('f1tt', period_f1tt_f3vj)
         f3vj = individu('f3vj', period_f1tt_f3vj)
 
-        # Application du plafond d'exoneration fiscal pour les salaires des stagiaires et des apprentis
+        # application du plafond d'exonération fiscale pour les salaires des stagiaires et des apprentis
         remuneration_apprenti = individu('remuneration_apprenti', period_salaire_chomage, options=[ADD])
         remuneration_apprenti_apres_abattement = max(0, sum(remuneration_apprenti) - smic_annuel_brut)
         indemnites_stage = individu('indemnites_stage', period_salaire_chomage, options=[ADD])
@@ -573,12 +572,12 @@ class al_biactivite(Variable):
         annee_fiscale_n_1 = period.start.period('year').offset(-1)
 
         pfam = parameters(annee_fiscale_n_1).prestations.prestations_familiales
-        seuil_rev = 12 * pfam.af.bmaf
+        base_annuelle_allocations_famililales = 12 * pfam.af.bmaf
 
         condition_ressource = (
             famille.members('rpns_individu', annee_fiscale_n_1)
             + famille.members('revenu_assimile_salaire_apres_abattements', annee_fiscale_n_1)
-            >= seuil_rev
+            >= base_annuelle_allocations_famililales
             )
         deux_parents = famille.nb_persons(role=Famille.PARENT) == 2
 
@@ -588,17 +587,17 @@ class al_biactivite(Variable):
 class al_abattement_forfaitaire_assistants_et_journalistes(Variable):
     value_type = float
     entity = Individu
-    label = "L'application de l'abattement forfaitaire pour les journaliste et les assistants maternels et familials."
+    label = "L'application de l'abattement forfaitaire pour les journaliste et les assistants maternels et familiaux."
     definition_period = MONTH
 
     def formula_2019_01(individu, period, parameters):
-        ass_maternel = individu('ass_maternel', period)
-        ass_familial = individu('ass_familial', period)
+        assistant_maternel = individu('assistant_maternel', period)
+        assistant_familial = individu('assistant_familial', period)
         journaliste = individu('journaliste', period)
         salaire_imposable = individu('salaire_imposable', period)
         abat = parameters(period).prestations.al_assistant_journaliste.abattement.montant
 
-        montant_abattement = select([ass_maternel, ass_familial, journaliste],
+        montant_abattement = select([assistant_maternel, assistant_familial, journaliste],
             [abat.assistant_maternel, abat.assistant_familial, abat.journaliste],
             default=0)
 
@@ -752,8 +751,9 @@ class aide_logement_abattement_depart_retraite(Variable):
 class aide_logement_neutralisation_conge_parental(Variable):
     value_type = float
     entity = Individu
-    label = u"Abattement sur les revenus des parents en congé parental."
+    label = "Abattement sur les revenus des parents en congé parental."
     definition_period = MONTH
+    reference = "https://github.com/openfisca/openfisca-france/wiki/files/prestations/Integration-de-la-reforme-AL-2019-dans-OpenFisca_PJ_20190722-FAM_Reforme_AL-2019_v1.4.pdf"
 
     def formula(individu, period, parameters):
         type_conges = individu('type_conges', period)
