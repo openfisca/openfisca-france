@@ -1,4 +1,4 @@
-- name: "Cas 1, abattement journaliste sur 4 mois"
+- name: "Cas 1 AL Reforme 2019: abattement journaliste sur 4 mois"
   period: 2021-01
   relative_error_margin: 0.01
   input:
@@ -45,7 +45,7 @@
     aide_logement_base_ressources: 13725
     aide_logement: 0
 
-- name: "Cas 2, abattement journaliste sur les 12 mois"
+- name: "Cas 2 AL Reforme 2019: abattement journaliste sur les 12 mois"
   period: 2021-01
   relative_error_margin: 0.01
   input:
@@ -115,7 +115,7 @@
     aide_logement_base_ressources: 21465
     aide_logement: 77.88
 
-- name: "Cas 3, abattement assistant maternel sur les 12 mois"
+- name: "Cas 3 AL Reforme 2019: abattement assistant maternel sur les 12 mois"
   period: 2021-01
   relative_error_margin: 0.01
   input:
@@ -161,7 +161,7 @@
   output:
     aide_logement: 270.26
 
-- name: "Cas 4, couple avec 2 enfants, abattement assistant materenel sur les 12 mois"
+- name: "Cas 4 AL Reforme 2019: couple avec 2 enfants, abattement assistant materenel sur les 12 mois"
   period: 2021-01
   relative_error_margin: 0.01
   input:
@@ -231,7 +231,7 @@
     aide_logement_base_ressources: 14755
     aide_logement: 254.85
 
-- name: "Cas 5, couple, abattement assistant materenel sur 12 mois"
+- name: "Cas 5 AL Reforme 2019: couple, abattement assistant materenel sur 12 mois"
   period: 2021-01
   relative_error_margin: 0.01
   input:
@@ -301,7 +301,7 @@
     aide_logement_base_ressources: 7825
     aide_logement: 436.52
 
-- name: "Cas 6, assistant maternel avec des frais réels déclarés"
+- name: "Cas 6 AL Reforme 2019: assistant maternel avec des frais réels déclarés"
   period: 2021-01
   relative_error_margin: 0.01
   input:

@@ -1,4 +1,4 @@
-- name: "Lot 1, Cas 1 AL Reforme 2019"
+- name: "Cas 1 AL Reforme 2019"
   period: 2021-01
   relative_error_margin: 0.01
   input:
@@ -28,7 +28,7 @@
     zone_apl: zone_3
     aide_logement: 254.27
 
-- name: "Lot 1, Cas 2 AL Reforme 2019"
+- name: "Cas 2 AL Reforme 2019"
   period: 2021-01
   relative_error_margin: 0.01
   input:
@@ -59,7 +59,7 @@
     aide_logement_base_ressources: 6900
     aide_logement: 181.39
 
-- name: "Lot 1, Cas 3 AL Reforme 2019"
+- name: "Cas 3 AL Reforme 2019"
   period: 2021-01
   relative_error_margin: 0.01
   input:
@@ -116,50 +116,7 @@
     aide_logement_base_ressources: 9600
     aide_logement: 100.71
 
-#- name: "Lot 1, Cas 4 AL Reforme 2019"
-#  period: 2021-01
-#  relative_error_margin: 0.01
-#  input:
-#    famille:
-#      parents: [personne1]
-#    menage:
-#      personne_de_reference: personne1
-#      statut_occupation_logement:
-#        2021-01: locataire_vide
-#      logement_conventionne:
-#        2021-01: false
-#      depcom:
-#        2021-01: 32013
-#      loyer:
-#        2021-01: 311
-#    individus:
-#      personne1:
-#        activite: actif
-#        date_naissance:
-#          2021-01: 1986-01-01
-#        salaire_imposable:
-#          2020-12: 800
-#          2020-11: 800
-#          2020-10: 800
-#          2020-09: 800
-#          2020-08: 800
-#          2020-07: 800
-#          2020-06: 800
-#          2020-05: 800
-#          2020-04: 800
-#          2020-03: 800
-#          2020-02: 800
-#          2020-01: 800
-#        pensions_alimentaires_versees_individu:
-#          2020: 2376
-#    foyer_fiscal:
-#      declarants: [personne1]
-#  output:
-#    zone_apl: zone_3
-#    aide_logement_base_ressources: 6300
-#    aide_logement: 0
-
-- name: "Lot 2, Cas 5 AL Reforme 2019"
+- name: "Cas 5 AL Reforme 2019"
   period: 2021-01
   relative_error_margin: 0.01
   input:
@@ -203,7 +160,7 @@
     aide_logement_base_ressources: 21600
     aide_logement: 53.64
 
-- name: "Lot 2, Cas 6 AL Reforme 2019"
+- name: "Cas 6 AL Reforme 2019"
   period: 2021-01
   relative_error_margin: 0.01
   input:
@@ -234,7 +191,7 @@
     aide_logement_base_ressources: 5000
     aide_logement: 213.80
 
-- name: "Lot 2, Cas 7 AL Reforme 2019"
+- name: "Cas 7 AL Reforme 2019"
   period: 2021-01
   relative_error_margin: 0.01
   input:
@@ -289,7 +246,7 @@
     aide_logement_base_ressources: 12500
     aide_logement: 11.48
 
-- name: "Lot 2, Cas 8 AL Reforme 2019"
+- name: "Cas 8 AL Reforme 2019"
   period: 2021-01
   relative_error_margin: 0.01
   input:
@@ -368,7 +325,7 @@
     aide_logement: 209.46
     reduction_loyer_solidarite: 37.85
 
-- name: "Lot 3, Cas 9 AL Reforme 2019"
+- name: "Cas 9 AL Reforme 2019"
   period: 2021-01
   relative_error_margin: 0.01
   input:
@@ -456,7 +413,7 @@
     aide_logement: 438.81
     reduction_loyer_solidarite: 58.8
 
-- name: "Lot 3, Cas 10 AL Reforme 2019"
+- name: "Cas 10 AL Reforme 2019"
   period: 2021-01
   relative_error_margin: 0.01
   input:
@@ -527,7 +484,7 @@
     aide_logement_base_ressources: 9000
     aide_logement: 131.13
 
-- name: "Lot 3, Cas 11 AL Reforme 2019"
+- name: "Cas 11 AL Reforme 2019"
   period: 2021-01
   relative_error_margin: 0.01
   input:
@@ -571,7 +528,7 @@
     aide_logement_base_ressources: 6200
     aide_logement: 219.58
 
-- name: "Lot 3, Cas 12 AL Reforme 2019"
+- name: "Cas 12 AL Reforme 2019"
   period: 2021-01
   relative_error_margin: 0.01
   input:
@@ -629,7 +586,7 @@
     aide_logement: 145.3
     reduction_loyer_solidarite: 29.72
 
-- name: "Cas 13: stagiaire étudiant"
+- name: "Cas 13 AL Reforme 2019: stagiaire étudiant"
   period: 2021-01
   relative_error_margin: 0.01
   input:
@@ -660,7 +617,7 @@
           2020-12: 0
           2020-11: 0
         remuneration_apprenti:
-          2020-10: 1707.66 #186.41 + 1521.25
+          2020-10: 1707.66
           2020-09: 1707.66
           2020-08: 1707.66
           2020-07: 1707.66
@@ -677,7 +634,7 @@
   output:
     aide_logement: 172.78
 
-- name: "cas 14: apprenti avec un salaire"
+- name: "cas 14 AL Reforme 2019: apprenti avec un salaire"
   period: 2021-01
   relative_error_margin: 0.01
   input:
@@ -707,7 +664,7 @@
           2020-12: 0
           2020-11: 0
         remuneration_apprenti:
-          2020-10: 2511.25 # 990 + 1521.25
+          2020-10: 2511.25
           2020-09: 2511.25
           2020-08: 2511.25
           2020-07: 2511.25

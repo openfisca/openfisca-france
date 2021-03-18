@@ -1,4 +1,4 @@
-- name: "Personne agée né avant 1931, application de l'abattement spécial accordé aux personnes âgées nées avant 1930 ou en 1930 "
+- name: "Personne âgée née avant 1931, application de l'abattement spécial accordé aux personnes âgées nées avant 1930 ou en 1930 "
   period: 2021-01
   relative_error_margin: 0.01
   input:
@@ -21,7 +21,7 @@
     aide_logement_base_ressources: 9500
     aide_logement: 103.79
 
-- name: "Personne agée né en 1931, pas d'application de l'abattement spécial accordé aux personnes âgées"
+- name: "Personne âgée née en 1931, pas d'application de l'abattement spécial accordé aux personnes âgées"
   period: 2021-01
   relative_error_margin: 0.01
   input:
@@ -44,7 +44,7 @@
     aide_logement_base_ressources: 7800
     aide_logement: 154.77
 
-- name: "Personne salarie infirme, application de l'abattement spécial accordé aux personnes invalides"
+- name: "Personne salariée infirme, application de l'abattement spécial accordé aux personnes invalides"
   period: 2021-01
   relative_error_margin: 0.01
   input:
@@ -71,7 +71,7 @@
     aide_logement_base_ressources: 8200
     aide_logement: 142.71
 
-- name: "Personne salarie infirme, application de l'abattement spécial accordé aux personnes invalides"
+- name: "Personne salariée infirme, application de l'abattement spécial accordé aux personnes invalides"
   period: 2021-01
   relative_error_margin: 0.01
   input:
