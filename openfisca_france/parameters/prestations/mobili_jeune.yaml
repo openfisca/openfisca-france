@@ -1,0 +1,7 @@
+age_maximum:
+  description: Âge maximum (exclu) d'éligibilité à l'aide mobili-jeune
+  reference: https://www.actionlogement.fr/l-aide-mobili-jeune
+  unit: year
+  values:
+    2012-07-01:
+      value: 30
