@@ -1,6 +1,23 @@
 from openfisca_france.model.base import *
 
 
+class garantie_pret_etudiant_eligibilite(Variable):
+    value_type = bool
+    label = "Éligibilité à la garantie de l'État au prêt étudiant"
+    entity = Individu
+    definition_period = MONTH
+    reference = "https://www.service-public.fr/particuliers/vosdroits/F986"
+
+    def formula_2020_06_08(individu, period, parameters):
+        age = individu('age', period)
+        condition_age = (age >= 18) * (age <= parameters(period).prestations.garantie_pret_etudiant.age_max)  # approximation : en cas d'émancipation, un·e mineur·e est éligible
+
+        etudiant = individu('etudiant', period)
+        condition_nationalite = individu('garantie_pret_etudiant_condition_nationalite', period)
+
+        return etudiant * condition_nationalite * condition_age
+
+
 class garantie_pret_etudiant_condition_nationalite(Variable):
     value_type = bool
     label = "Remplissage de la condition de nationalité ou de résidence pour la garantie de l'État au prêt étudiant"
