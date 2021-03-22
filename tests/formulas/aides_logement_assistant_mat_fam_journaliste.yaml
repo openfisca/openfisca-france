@@ -143,7 +143,7 @@
           2020-03: 1250
           2020-02: 1250
           2020-01: 1250
-        ass_maternel:
+        assistant_maternel:
           2020-12: true
           2020-11: true
           2020-10: true
@@ -192,7 +192,7 @@
           2020-03: 916.67
           2020-02: 916.67
           2020-01: 916.67
-        ass_maternel:
+        assistant_maternel:
           2020-12: true
           2020-11: true
           2020-10: true
@@ -262,7 +262,7 @@
           2020-03: 900
           2020-02: 900
           2020-01: 900
-        ass_maternel:
+        assistant_maternel:
           2020-12: true
           2020-11: true
           2020-10: true
@@ -329,7 +329,7 @@
           2020-03: 1250
           2020-02: 1250
           2020-01: 1250
-        ass_maternel:
+        assistant_maternel:
           2020-12: true
           2020-11: true
           2020-10: true
