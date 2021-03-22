@@ -15,6 +15,7 @@ class mobili_jeune_eligibilite(Variable):
     Conditions non modélisées : 
     Etre locataire d'un logement en proximité géographique avec le lieu de la formation ou de l'entreprise.
     Avoir déposé la demande 3 mois avant la date de démarrage du cycle de formation ou jusqu’à 6 mois après cette date.
+    Avoir un reste à charge de loyer après déduction d'APL/ALS supérieur ou égal à 10€.
     '''
 
     def formula(individu, period, parameters):
@@ -37,6 +38,7 @@ class mobili_jeune_eligibilite(Variable):
             * individu("remuneration_professionnalisation", period)
             ) <= smic_mensuel_brut
         
+        statut_occupation_logement = individu("statut_occupation_logement", period)
         locataire = (
             (statut_occupation_logement == TypesStatutOccupationLogement.locataire_hlm)
             + (statut_occupation_logement == TypesStatutOccupationLogement.locataire_vide)
