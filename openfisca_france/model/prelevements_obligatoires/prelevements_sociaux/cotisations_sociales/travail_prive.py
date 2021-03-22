@@ -940,10 +940,3 @@ class secteur_activite_employeur(Variable):
     definition_period = MONTH
     reference = "https://www.service-public.fr/professionnels-entreprises/vosdroits/N24269"
     set_input = set_input_dispatch_by_period
-
-
-class TypesSecteurActivite(Enum):
-    __order__ = 'non_renseigne agricole non_agricole'  # Needed to preserve the enum order in Python 2
-    non_renseigne = 'Non renseigné'
-    agricole = 'Agricole'
-    non_agricole = 'Non agricole'

@@ -13,6 +13,14 @@ class TypesActivite(Enum):
     inactif = 'Autre, inactif'
 
 
+
+class TypesSecteurActivite(Enum):
+    __order__ = 'non_renseigne agricole non_agricole'  # Needed to preserve the enum order in Python 2
+    non_renseigne = 'Non renseigné'
+    agricole = 'Agricole'
+    non_agricole = 'Non agricole'
+
+
 class TypesCategorieNonSalarie(Enum):
     __order__ = 'non_pertinent artisan commercant profession_liberale'  # Needed to preserve the enum order in Python 2
     non_pertinent = "Non pertinent (l'individu n'est pas un travailleur indépendant)"
