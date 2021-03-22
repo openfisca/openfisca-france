@@ -8,7 +8,7 @@ class alternant(Variable):
     definition_period = MONTH
     reference = "https://www.service-public.fr/particuliers/vosdroits/F15478"
     documentation = '''
-    Périmètre réduit : 
+    Périmètre réduit :
     Le contrat d'apprentissage ou de professionalisation est dans une entreprise
     du secteur privé non agricole.
     '''

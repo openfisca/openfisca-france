@@ -1,8 +1,7 @@
 from openfisca_france.model.base import (
-    Variable, Individu, MONTH, 
+    Variable, Individu, MONTH,
     TypesCategorieSalarie, TypesSecteurActivite, TypesStatutOccupationLogement
     )
-
 
 
 class mobili_jeune_eligibilite(Variable):
@@ -12,7 +11,7 @@ class mobili_jeune_eligibilite(Variable):
     definition_period = MONTH
     reference = "https://www.actionlogement.fr/l-aide-mobili-jeune"
     documentation = '''
-    Conditions non modélisées : 
+    Conditions non modélisées :
     Etre locataire d'un logement en proximité géographique avec le lieu de la formation ou de l'entreprise.
     Avoir déposé la demande 3 mois avant la date de démarrage du cycle de formation ou jusqu’à 6 mois après cette date.
     Avoir un reste à charge de loyer après déduction d'APL/ALS supérieur ou égal à 10€.
@@ -21,7 +20,7 @@ class mobili_jeune_eligibilite(Variable):
     def formula_2012_07(individu, period, parameters):
         condition_age = individu("age", period) < parameters(period).prestations.mobili_jeune.age_maximum
         condition_contrat = individu("alternant", period) * (
-            individu("apprenti", period) 
+            individu("apprenti", period)
             + individu("professionnalisation", period)
             )
 
@@ -34,10 +33,10 @@ class mobili_jeune_eligibilite(Variable):
 
         smic_mensuel_brut = individu("smic_proratise", period)
         condition_remuneration = (
-            individu("remuneration_apprenti", period) 
+            individu("remuneration_apprenti", period)
             * individu("remuneration_professionnalisation", period)
             ) <= smic_mensuel_brut
-        
+
         statut_occupation_logement = individu.menage("statut_occupation_logement", period)
         locataire = (
             (statut_occupation_logement == TypesStatutOccupationLogement.locataire_hlm)
