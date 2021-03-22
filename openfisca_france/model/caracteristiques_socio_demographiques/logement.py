@@ -14,7 +14,7 @@ class coloc(Variable):
 class logement_crous(Variable):
     value_type = bool
     entity = Menage
-    label = "Le logement est gérée par les CROUS "
+    label = "Le logement est géré par les CROUS "
     definition_period = MONTH
 
 
