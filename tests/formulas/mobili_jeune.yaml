@@ -1,9 +1,9 @@
 - name: Éligibilité à l'aide au logement mobili-jeune
   period: 2021-01
   input:
-    age: [16, 18, 25, 27, 35]
+    age: [16, 18, 25, 27, 30]
     alternant: [true, false, true, true, true]
     apprenti: [true, true, true, false, false]
     professionnalisation: [false, false, false, true, true]
   output:
-    mobili_jeune_eligibilite: [true, false, true, false, false]
+    mobili_jeune_eligibilite: [true, false, true, true, false]
