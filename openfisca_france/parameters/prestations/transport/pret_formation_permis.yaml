@@ -1,0 +1,12 @@
+age:
+  minimum:
+    description: Age minimal d'éligibilité au prêt à la formation au permis de conduire
+    reference: https://www.legifrance.gouv.fr/loda/id/LEGIARTI000030316244/2015-03-06
+    values:
+      2005-09-30: 16
+      2015-03-06: 15
+  maximum:
+    description: Age maximal révolu d'éligibilité au prêt à la formation au permis de conduire
+    reference: https://www.legifrance.gouv.fr/loda/id/LEGIARTI000006245493/2005-09-30
+    values:
+      2005-09-30: 25
