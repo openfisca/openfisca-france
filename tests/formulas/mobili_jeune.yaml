@@ -1,9 +1,46 @@
-- name: Éligibilité à l'aide au logement mobili-jeune
+- name: Éligibilité à l'aide au logement mobili-jeune selon âge et contrat d'apprentissage
   period: 2021-01
   input:
     age: [16, 18, 25, 27, 30]
     alternant: [true, false, true, true, true]
     apprenti: [true, true, true, false, false]
+    remuneration_apprenti: [1554.58, 1554.58, 1554.58, 0., 0.]
     professionnalisation: [false, false, false, true, true]
+    remuneration_professionnalisation: [0., 0., 0., 1554.58, 1554.58]
+    categorie_salarie: ['prive_non_cadre', 'prive_non_cadre', 'prive_non_cadre', 'prive_non_cadre', 'prive_non_cadre']
+    secteur_activite_employeur: ['non_agricole', 'non_agricole', 'non_agricole', 'non_agricole', 'non_agricole']
+    peec_employeur: [true, true, true, true, true]
+    statut_occupation_logement: ['locataire_foyer', 'locataire_foyer', 'locataire_foyer', 'locataire_foyer', 'locataire_foyer']
   output:
     mobili_jeune_eligibilite: [true, false, true, true, false]
+
+
+- name: Éligibilité à l'aide au logement mobili-jeune selon employeur
+  period: 2021-01
+  input:
+    age: [18, 18, 18, 18, 18]
+    alternant: [true, true, true, true, true]
+    apprenti: [true, true, true, true, true]
+    remuneration_apprenti: [668.47, 668.47, 668.47, 668.47, 668.47]
+    categorie_salarie: ['prive_cadre', 'non_pertinent', 'prive_non_cadre', 'prive_non_cadre', 'prive_non_cadre']
+    secteur_activite_employeur: ['non_agricole', 'non_agricole', 'non_renseigne', 'non_agricole', 'non_agricole']
+    peec_employeur: [true, true, true, false, true]
+    statut_occupation_logement: ['locataire_foyer', 'locataire_foyer', 'locataire_foyer', 'locataire_foyer', 'locataire_foyer']
+  output:
+    mobili_jeune_eligibilite: [false, false, false, false, true]
+
+
+
+- name: Éligibilité à l'aide au logement mobili-jeune selon logement
+  period: 2021-01
+  input:
+    age: [18, 18, 18, 18, 18]
+    alternant: [true, true, true, true, true]
+    professionnalisation: [true, true, true, true, true]
+    remuneration_professionnalisation: [1010.48, 1010.48, 1010.48, 1010.48, 1010.48]
+    categorie_salarie: ['prive_non_cadre', 'prive_non_cadre', 'prive_non_cadre', 'prive_non_cadre', 'prive_non_cadre']
+    secteur_activite_employeur: ['non_agricole', 'non_agricole', 'non_agricole', 'non_agricole', 'non_agricole']
+    peec_employeur: [true, true, true, true, true]
+    statut_occupation_logement: ['locataire_foyer', 'locataire_hlm', 'locataire_meuble', 'locataire_vide', 'non_renseigne']
+  output:
+    mobili_jeune_eligibilite: [true, true, true, true, false]
