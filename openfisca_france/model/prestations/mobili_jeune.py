@@ -1,4 +1,5 @@
 from openfisca_france.model.base import Variable, Individu, MONTH
+from openfisca_france.model.base import TypesCategorieSalarie, TypesSecteurActivite
 
 
 class mobili_jeune_eligibilite(Variable):
@@ -7,6 +8,11 @@ class mobili_jeune_eligibilite(Variable):
     entity = Individu
     definition_period = MONTH
     reference = "https://www.actionlogement.fr/l-aide-mobili-jeune"
+    documentation = '''
+    Conditions non modélisées : 
+    Etre locataire d'un logement en proximité géographique avec le lieu de la formation ou de l'entreprise.
+    Avoir déposé la demande 3 mois avant la date de démarrage du cycle de formation ou jusqu’à 6 mois après cette date.
+    '''
 
     def formula(individu, period, parameters):
         condition_age = individu("age", period) < 30
@@ -14,10 +20,25 @@ class mobili_jeune_eligibilite(Variable):
             individu("apprenti", period) 
             + individu("professionnalisation", period)
             )
-        # 1% logement = https://www.service-public.fr/professionnels-entreprises/vosdroits/F22583
+
+        secteur_prive_non_agricole = (
+            individu("categorie_salarie", period) == TypesCategorieSalarie.prive_non_cadre
+            ) * (
+                individu("secteur_activite_employeur", period) != TypesSecteurActivite.agricole
+            )
+        condition_employeur = secteur_prive_non_agricole * individu("peec_employeur", period)
+
         smic_mensuel_brut = individu("smic_proratise", period)
         condition_remuneration = (
             individu("remuneration_apprenti", period) 
             * individu("remuneration_professionnalisation", period)
             ) <= smic_mensuel_brut
-        return condition_age * condition_contrat * condition_remuneration
+        
+        locataire = (
+            (statut_occupation_logement == TypesStatutOccupationLogement.locataire_hlm)
+            + (statut_occupation_logement == TypesStatutOccupationLogement.locataire_vide)
+            + (statut_occupation_logement == TypesStatutOccupationLogement.locataire_meuble)
+            + (statut_occupation_logement == TypesStatutOccupationLogement.locataire_foyer)
+            )
+
+        return condition_age * condition_contrat * condition_employeur * condition_remuneration * locataire
