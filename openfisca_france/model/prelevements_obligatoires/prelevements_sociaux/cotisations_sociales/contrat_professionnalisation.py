@@ -22,6 +22,14 @@ class professionnalisation(Variable):
         return (age_condition + dummy_ass + dummy_aah + dummy_rmi) > 0
 
 
+class qualifie(Variable):
+    value_type = bool
+    entity = Individu
+    label = "Etat du niveau de formation ou de qualification avant le contrat de professionnalisation"
+    definition_period = MONTH
+    reference = "https://travail-emploi.gouv.fr/formation-professionnelle/formation-en-alternance-10751/contrat-de-professionnalisation"
+
+
 class remuneration_professionnalisation(Variable):
     value_type = float
     entity = Individu
@@ -51,7 +59,7 @@ class remuneration_professionnalisation(Variable):
         age = individu('age', period)
         smic = parameters(period).cotsoc.gen.smic_h_b * 52 * 35 / 12
         professionnalisation = individu('professionnalisation', period)
-        qualifie = individu('qualifie')
+        qualifie = individu('qualifie', period)
         salaire_en_smic = [
             dict(
                 part_de_smic_by_qualification = {
