@@ -236,7 +236,10 @@ class abattements_speciaux_prestations_familiales(Variable):
     value_type = float
     entity = FoyerFiscal
     label = "Abattements spéciaux concernant les personnes agées ou invalides et les enfants à charge"
-    reference = "http://bofip.impots.gouv.fr/bofip/2036-PGP"
+    reference = [
+        "http://bofip.impots.gouv.fr/bofip/2036-PGP",
+        "https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000002185185"
+        ]
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):

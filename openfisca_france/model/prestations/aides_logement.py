@@ -608,6 +608,7 @@ class aide_logement_condition_neutralisation_chomage(Variable):
     value_type = bool
     entity = Individu
     label = "Condition de neutralisation du chomage dans le calcul des ressources de l'aide au logement."
+    reference = "https://www.legifrance.gouv.fr/eli/decret/2019/12/30/LOGL1920187D/jo/texte"
     definition_period = MONTH
 
     def formula_2021_01_01(individu, period, parameters):
@@ -644,6 +645,7 @@ class aide_logement_assiette_abattement_chomage(Variable):
     value_type = float
     entity = Individu
     label = "Assiette sur lequel un abattement chômage peut être appliqués pour les AL. Ce sont les revenus d'activité professionnelle, moins les abattements pour frais professionnels."
+    reference = "https://www.legifrance.gouv.fr/eli/decret/2019/12/30/LOGL1920187D/jo/texte"
     definition_period = YEAR
 
     def formula_2021_01_01(individu, period, parameters):
@@ -1004,6 +1006,10 @@ class aide_logement_base_ressources(Variable):
     value_type = float
     entity = Famille
     label = "Base ressources des allocations logement"
+    reference = [
+        "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000039701752",
+        "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000042841854"
+        ]
     definition_period = MONTH
 
     def formula_2021_01_01(famille, period, parameters):
