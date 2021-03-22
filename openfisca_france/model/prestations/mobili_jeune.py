@@ -1,5 +1,8 @@
-from openfisca_france.model.base import Variable, Individu, MONTH
-from openfisca_france.model.base import TypesCategorieSalarie, TypesSecteurActivite
+from openfisca_france.model.base import (
+    Variable, Individu, MONTH, 
+    TypesCategorieSalarie, TypesSecteurActivite
+    )
+
 
 
 class mobili_jeune_eligibilite(Variable):
