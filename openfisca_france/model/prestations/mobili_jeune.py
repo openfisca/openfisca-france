@@ -18,7 +18,7 @@ class mobili_jeune_eligibilite(Variable):
     Avoir un reste à charge de loyer après déduction d'APL/ALS supérieur ou égal à 10€.
     '''
 
-    def formula(individu, period, parameters):
+    def formula_2012_07(individu, period, parameters):
         condition_age = individu("age", period) < parameters(period).prestations.mobili_jeune.age_maximum
         condition_contrat = individu("alternant", period) * (
             individu("apprenti", period) 
