@@ -11,7 +11,7 @@ class professionnalisation(Variable):
     def formula(individu, period, parameters):
         age = individu('age', period)
         ass = individu('ass', period)
-        rsa = individu('rsa', period)
+        rsa = individu.famille('rsa', period)
         aah = individu('aah', period)
 
         age_condition = (16 <= age) * (age < 25)

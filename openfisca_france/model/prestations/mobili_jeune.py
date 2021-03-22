@@ -1,6 +1,6 @@
 from openfisca_france.model.base import (
     Variable, Individu, MONTH, 
-    TypesCategorieSalarie, TypesSecteurActivite
+    TypesCategorieSalarie, TypesSecteurActivite, TypesStatutOccupationLogement
     )
 
 
@@ -28,7 +28,7 @@ class mobili_jeune_eligibilite(Variable):
         secteur_prive_non_agricole = (
             individu("categorie_salarie", period) == TypesCategorieSalarie.prive_non_cadre
             ) * (
-                individu("secteur_activite_employeur", period) != TypesSecteurActivite.agricole
+                individu("secteur_activite_employeur", period) == TypesSecteurActivite.non_agricole
             )
         condition_employeur = secteur_prive_non_agricole * individu("peec_employeur", period)
 
@@ -38,7 +38,7 @@ class mobili_jeune_eligibilite(Variable):
             * individu("remuneration_professionnalisation", period)
             ) <= smic_mensuel_brut
         
-        statut_occupation_logement = individu("statut_occupation_logement", period)
+        statut_occupation_logement = individu.menage("statut_occupation_logement", period)
         locataire = (
             (statut_occupation_logement == TypesStatutOccupationLogement.locataire_hlm)
             + (statut_occupation_logement == TypesStatutOccupationLogement.locataire_vide)
