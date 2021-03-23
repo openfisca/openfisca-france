@@ -1,54 +1,4 @@
-class salaire_journalier_de_reference_verse_par_mois(Variable):
-    value_type = float
-    entity = Individu
-    label = "Salaire journalier de référence (SJR)"
-    definition_period = MONTH
 
-    def formula(individu,period,parameters):
-        contrat_de_travail_fin = individu('contrat_de_travail_fin', period)
-        instant = contrat_de_travail_fin
-        salaire_de_base = individu('salaire_de_base', instant.last_12_months, options=[ADD])
-        nombre_jours_travailles_calendaires = individu('nombre_jours_calendaires', instant.last_12_months, options=[ADD])
-        salaire_journalier_de_reference = (salaire_de_reference / nombre_jours_travailles_calendaires) * 1,4 
-        salaire_journalier_de_reference_verse_par_mois = salaire_journalier_de_reference * 30
-        
-        return salaire_journalier_de_reference_verse_par_mois
-
-
-
-
-
-
-class are_eligibilite_individu_2011(Variable):
-    value_type = bool
-    label = "Éligibilité individuelle à l'ARE"
-    entity = Individu
-    definition_period = MONTH
-    reference = [
-        "Unédic - Règlement général annexé à la convention du 6 mai 2011",
-        "https://www.unedic.org/sites/default/files/regulations/RglACh11.pdf",
-        ]
-
-#il faut résider en France, être involontairement privé d'emploi, être inscrit comme demandeur d'emploi, être à la recherche active et permanente d'un emploi, être physiquement apte à l'exercice d'un emploi. 
-
-
-    def formula_2011(individu, period, parameters):
-        #critère de l'âge : ARE non versé si l'âge de départ à la retraite atteint, sauf en cas de taux plein non atteint
-        age = individu('age', period, options=[DIVIDE])
-        age_condition = age < parameters(period).prestations.minima_sociaux.aah.age_legal_retraite
-
-        #conditions d'attribution de l'ARE en fonction de la période d'affiliation 
-        age_moins_de_50 = age < parameters.ARE.age_threshold
-        contrat_de_travail_fin = individu('contrat_de_travail_fin', period)
-        instant = contrat_de_travail_fin
-        nombre_jours_travailles_calendaires_28 = individu('nombre_jours_calendaires', instant.last_28_months, options=[ADD])
-        condition_periode_affiliation_moins_de_50 = ( 4 <= nombre_jours_travailles_calendaires_28) * age_moins_de_50
-        
-        age_plus_de_50 = parameters.ARE.age_threshold <= age
-        nombre_jours_travailles_calendaires_36 = individu('nombre_jours_calendaires', instant.last_36_months, options=[ADD])
-        condition_periode_affiliation_plus_de_50 = ( 4 <= nombre_jours_travailles_calendaires_36) * age_plus_de_50
-
-        return age_condition + condition_periode_affiliation_moins_de_50 + condition_periode_affiliation_plus_de_50
 
 
 class duree_are(Variable):
@@ -57,29 +7,13 @@ class duree_are(Variable):
     label = "Durée de perception de l'ARE par un individu"
     definition_period = MONTH
 
-    def formula_2011(individu, period, parameters):
-        salaire_de_base = individu('salaire_de_base', period)
 
+    #critère d'affiliation : avoir travaillé tant de temps dans les x derniers mois avant la date de fin de contrat pour les moins de 53 ans et tant de temps dans les y derniers mois pour les plus de 53 ans
+        contrat_de_travail_fin = individu('contrat_de_travail_fin', period)
+        mois_admissibles = [period.offset(-i) for i in range(0, 28)]
+        nombre_mois = (
+            np.array(
+                [(individu('salaire_de_base', period)) * (_mois > individu('date_fin_de_contrat', _mois)) for _mois in mois_admissibles]
+                ) > 0
+                ).sum(axis = 1)
 
-       
-
-         montant_final = max_(
-            are.min * 30,
-            montant_mensuel
-        )
-
-    
-        montant_max = min_(
-            montant_mensuel,
-            are.max_en_pourcentage_sjr * salaire_de_reference_mensuel
-            )
-
-        montant_min = max_(
-            are.min * 30,
-            montant_mensuel
-        )
-        
-        montant_final = montant_max + montant_min
-
-        
-        return montant_final

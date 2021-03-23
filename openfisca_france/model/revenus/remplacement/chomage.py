@@ -103,11 +103,11 @@ class are(Variable):
         salaire_de_reference_mensuel = individu('salaire_de_reference_mensuel', period)
         are = parameters(period).are
         montant_mensuel = max_(
-            are.partie_fixe * 30 + are.pourcentage_du_sjr_complement * salaire_de_reference_mensuel, 
+            are.are_partie_fixe * 30 + are.pourcentage_du_sjr_complement * salaire_de_reference_mensuel, 
             are.pourcentage_du_sjr_seul * salaire_de_reference_mensuel
             )
         montant_plancher = max_(
-            are.min * 30,
+            are.are_min * 30,
             montant_mensuel
         )
         montant_plafond = min_(
@@ -136,13 +136,8 @@ class are_eligibilite_individu(Variable):
 
         age_en_mois = individu('age_en_mois', period)
         age_condition = age_en_mois < parameters(period).are.age_legal_retraite
-
-        #critère d'affiliation : avoir travaillé tant de temps dans les x derniers mois avant la date de fin de contrat pour les moins de 53 ans et tant de temps dans les y derniers mois pour les plus de 53 ans
-        contrat_de_travail_fin = individu('contrat_de_travail_fin', period)
-        #créer une variable periode_affiliation
-
-
-        return age_condition * affiliation_condition
+      
+        return age_condition 
 
 
     
