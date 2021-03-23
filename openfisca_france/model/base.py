@@ -4,6 +4,22 @@ from openfisca_france.entities import Famille, FoyerFiscal, Individu, Menage  # 
 # Enums commonly used through the legislation
 
 
+class TypesDiplome(Enum):
+    # https://fr.wikipedia.org/wiki/Liste_des_diplômes_en_France#Nomenclature_des_niveaux_de_diplômes
+    # répertoire national des certifications professionnelles
+    # https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000037964754/
+    __order__ = 'non_renseigne'
+    non_renseigne = 'Non renseigné'
+    niveau_1 = 'Niveau 1 - École maternelle et élémentaire'
+    niveau_2 = 'Niveau 2 - École maternelle et élémentaire'
+    niveau_3 = 'Niveau 3 - CAP DNP CFG'
+    niveau_4 = 'Niveau 4 - Baccalauréat'
+    niveau_5 = 'Niveau 5 - Bac+2 BTS CPGE'
+    niveau_6 = 'Niveau 6 - Bac+3 Licence BUT'
+    niveau_7 = 'Niveau 7 - Bac+5 Master'
+    niveau_8 = 'Niveau 8 - Bac+8 Doctorat'
+
+
 class TypesActivite(Enum):
     __order__ = 'actif chomeur etudiant retraite inactif'  # Needed to preserve the enum order in Python 2
     actif = 'Actif occupé'
