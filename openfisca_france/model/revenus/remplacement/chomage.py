@@ -87,7 +87,7 @@ class salaire_de_reference_mensuel(Variable):
     label = "Salaire de référence mensuel (SRM)"
     definition_period = MONTH
 
-    def formula(individu, period):
+    def formula_2017_11(individu, period):
          nombre_jours_calendaires_12_derniers_mois = individu('nombre_jours_calendaires_12_derniers_mois', period)
          salaire_de_reference = individu('salaire_de_reference', period)
          salaire_ref_mensuel = ((salaire_de_reference) / (nombre_jours_calendaires_12_derniers_mois * 1.4 )) * 30
@@ -100,7 +100,7 @@ class are(Variable):
     label = "Allocation chômage d'aide au retour à l'emploi (ARE)"
     definition_period = MONTH
 
-    def formula_2009_01(individu, period, parameters):
+    def formula_2017_11(individu, period, parameters):
         are_eligibilite_individu = individu('are_eligibilite_individu', period)
         salaire_de_reference_mensuel = individu('salaire_de_reference_mensuel', period)
         are = parameters(period).are
@@ -132,7 +132,7 @@ class are_eligibilite_individu(Variable):
     #il faut résider en France, être involontairement privé d'emploi, être inscrit comme demandeur d'emploi, être à la recherche active et permanente d'un emploi, être physiquement apte à l'exercice d'un emploi.
 
 
-    def formula(individu, period, parameters):
+    def formula_2017_11(individu, period, parameters):
         #critère de l'âge: ARE non versé si l'âge de départ à la retraite atteint, sauf en cas de taux plein non atteint.
         #Pour simplifier, j'ai stipulé qu'on ne pouvait plus toucher d'ARE dès lors l'âge légal de départ à la retraite atteint.
 
@@ -140,31 +140,27 @@ class are_eligibilite_individu(Variable):
         age_condition = age_en_mois < parameters(period).are.age_legal_retraite
 
         #critère d'affiliation : avoir travaillé tant de jours dans les x derniers mois avant la date de fin de contrat pour les moins de 53 ans et tant de temps dans les y derniers mois pour les plus de 53 ans
-        contrat_de_travail_fin = individu('contrat_de_travail_fin', period)
-        mois_admissibles = [period.offset(-i) for i in range(0, 28)]
-        nombre_mois = (
-            np.array(
-                [(individu('salaire_de_base', period)) * (_mois > individu('date_fin_de_contrat', _mois)) for _mois in mois_admissibles]
-                ) > 0
-                ).sum(axis = 1)
+        periode_affiliation_moins_53_ans = individu('nombre_jours_travailles_dans_les_x_derniers_mois_moins_53_ans', period)
+        periode_affiliation_53_ans_et_plus = individu('nombre_jours_travailles_dans_les_x_derniers_mois_53_ans_et_plus', period)
+        condition_affiliation_moins_53_ans = periode_affiliation_moins_53_ans >= parameters(period).are.periode_minimale_affiliation_moins_53_ans
+        condition_affiliation_53_ans_et_plus = periode_affiliation_53_ans_et_plus >= parameters(period).are.periode_minimale_affiliation_moins_53_ans
+        
+        condition_affiliation = select(
+            [age_en_mois < 636, age_en_mois >= 636], 
+            [condition_affiliation_moins_53_ans, condition_affiliation_53_ans_et_plus],
+        )
 
-        return age_condition
-class duree_are(Variable):
-    value_type = float
-    entity = Individu
-    label = "Durée de perception de l'ARE par un individu"
-    definition_period = MONTH
-class duree_are(Variable):
-    value_type = float
-    entity = Individu
-    label = "Durée de perception de l'ARE par un individu"
-    definition_period = MONTH
+
+
+
+
+        return age_condition * condition_affiliation
 
 
 class nombre_jours_travailles_dans_les_x_derniers_mois_moins_53_ans(Variable):
     value_type = float
     entity = Individu
-    label = "Nombre de jours travaillés sur les x derniers mois avant la rupture de contrat"
+    label = "Nombre de jours travaillés sur les x derniers mois avant la rupture de contrat pour les moins de 53 ans"
     definition_period = MONTH
 
     def formula_2017_11(individu, period, parameters):
@@ -182,6 +178,26 @@ class nombre_jours_travailles_dans_les_x_derniers_mois_moins_53_ans(Variable):
                 )
         return nombre_jours_travailles_reference
 
+class nombre_jours_travailles_dans_les_x_derniers_mois_53_ans_et_plus(Variable):
+    value_type = float
+    entity = Individu
+    label = "Nombre de jours travaillés sur les x derniers mois avant la rupture de contrat pour les 53 ans et plus"
+    definition_period = MONTH
+
+    def formula_2017_11(individu, period, parameters):
+        nombre_jours_travailles_senior_reference = 0 * individu('nombre_jours_calendaires', period)
+        for months in range(0, 72):
+            contrat_de_travail_fin_potentiel = period.offset(-months)
+            nombre_jours_travailles_senior_reference = where(
+                individu('contrat_de_travail_fin', period) == datetime64(contrat_de_travail_fin_potentiel.start),
+                individu(
+                    'nombre_jours_calendaires',
+                    contrat_de_travail_fin_potentiel.offset(-parameters(period).are.periode_de_reference_affiliation_53_ans_et_plus).start.period('month', parameters(period).are.periode_de_reference_affiliation_53_ans_et_plus),
+                    options = [ADD],
+                    ),
+                nombre_jours_travailles_senior_reference,
+                )
+        return nombre_jours_travailles_senior_reference
 
 
 

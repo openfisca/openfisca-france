@@ -1,0 +1,11 @@
+- name: Eligibilité à l'ARE en fonction de la période d'affiliation
+  description: Un individu de 48 ans ayant travaillé 8 mois dans les 28 derniers mois précédant la date de fin du contrat de travail a le droit à l'ARE
+  period: 2018-12
+  input:
+    age_en_mois: 576
+    nombre_jours_travailles_dans_les_x_derniers_mois_moins_53_ans: 176
+    nombre_jours_travailles_dans_les_x_derniers_mois_53_ans_et_plus: 176
+    
+  output:
+    are_eligibilite_individu: 
+      2018-12: true
