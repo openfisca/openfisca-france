@@ -68,6 +68,21 @@ class diplome(Variable):
     set_input = set_input_dispatch_by_period
 
 
+class date_diplome(Variable):
+    value_type = date
+    default_value = date.max
+    entity = Individu
+    label = "Date d'obtention du diplôme de plus haut niveau"
+    definition_period = ETERNITY
+
+
+class formation(Variable):
+    value_type = bool
+    entity = Individu
+    label = "Inscrit à une formation ou en cours de formation professionnelle"
+    definition_period = MONTH
+
+
 class activite(Variable):
     value_type = Enum
     default_value = TypesActivite.inactif
