@@ -87,7 +87,7 @@ class salaire_de_reference_mensuel(Variable):
     label = "Salaire de référence mensuel (SRM)"
     definition_period = MONTH
 
-    def formula_2017_11(individu, period):
+    def formula(individu, period):
          nombre_jours_calendaires_12_derniers_mois = individu('nombre_jours_calendaires_12_derniers_mois', period)
          salaire_de_reference = individu('salaire_de_reference', period)
          salaire_ref_mensuel = ((salaire_de_reference) / (nombre_jours_calendaires_12_derniers_mois * 1.4 )) * 30
@@ -100,7 +100,7 @@ class are(Variable):
     label = "Allocation chômage d'aide au retour à l'emploi (ARE)"
     definition_period = MONTH
 
-    def formula_2017_11(individu, period, parameters):
+    def formula(individu, period, parameters):
         are_eligibilite_individu = individu('are_eligibilite_individu', period)
         salaire_de_reference_mensuel = individu('salaire_de_reference_mensuel', period)
         are = parameters(period).are
@@ -149,11 +149,6 @@ class are_eligibilite_individu(Variable):
             [age_en_mois < 636, age_en_mois >= 636], 
             [condition_affiliation_moins_53_ans, condition_affiliation_53_ans_et_plus],
         )
-
-
-
-
-
         return age_condition * condition_affiliation
 
 
