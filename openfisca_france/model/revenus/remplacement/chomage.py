@@ -100,6 +100,7 @@ class are(Variable):
     definition_period = MONTH
     
     def formula_2009_01(individu, period, parameters):
+        are_eligibilite_individu = individu('are_eligibilite_individu', period)
         salaire_de_reference_mensuel = individu('salaire_de_reference_mensuel', period)
         are = parameters(period).are
         montant_mensuel = max_(
@@ -115,7 +116,7 @@ class are(Variable):
             are.max_en_pourcentage_sjr * salaire_de_reference_mensuel
             )
         
-        return montant_plafond
+        return montant_plafond * are_eligibilite_individu
 
 class are_eligibilite_individu(Variable):
     value_type = bool
@@ -136,11 +137,49 @@ class are_eligibilite_individu(Variable):
 
         age_en_mois = individu('age_en_mois', period)
         age_condition = age_en_mois < parameters(period).are.age_legal_retraite
+    
+        #critère d'affiliation : avoir travaillé tant de jours dans les x derniers mois avant la date de fin de contrat pour les moins de 53 ans et tant de temps dans les y derniers mois pour les plus de 53 ans
+        contrat_de_travail_fin = individu('contrat_de_travail_fin', period)
+        mois_admissibles = [period.offset(-i) for i in range(0, 28)]
+        nombre_mois = (
+            np.array(
+                [(individu('salaire_de_base', period)) * (_mois > individu('date_fin_de_contrat', _mois)) for _mois in mois_admissibles]
+                ) > 0
+                ).sum(axis = 1)
       
         return age_condition 
+class duree_are(Variable):
+    value_type = float
+    entity = Individu
+    label = "Durée de perception de l'ARE par un individu"
+    definition_period = MONTH
+class duree_are(Variable):
+    value_type = float
+    entity = Individu
+    label = "Durée de perception de l'ARE par un individu"
+    definition_period = MONTH
 
 
-    
+    class nombre_jours_travailles_dans_les_x_derniers_mois_moins_53_ans(Variable):
+    value_type = float
+    entity = Individu
+    label = "Nombre de jours travaillés sur les x derniers mois avant la rupture de contrat"
+    definition_period = MONTH
+
+    def formula_2017_11(individu, period):
+        nombre_jours_travailles_reference = 0 * individu('nombre_jours_calendaires', period)
+        for months in range(0, 48):
+            contrat_de_travail_fin_potentiel = period.offset(-months) 
+            nombre_jours_travailles_reference = where(
+                individu('contrat_de_travail_fin', period) == datetime64(contrat_de_travail_fin_potentiel.start),
+                individu(
+                    'nombre_jours_calendaires', 
+                    contrat_de_travail_fin_potentiel.offset(-parameters(period).are.periode_de_reference_affiliation_moins_53_ans).start.period('month', parameters(period).are.periode_de_reference_affiliation_moins_53_ans),
+                    options = [ADD],
+                    ),
+                nombre_jours_travailles_reference,
+                )
+        return nombre_jours_travailles_reference
     
      
      

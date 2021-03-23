@@ -21,7 +21,7 @@
     nombre_jours_calendaires_12_derniers_mois: 261
     
     are_eligibilite_individu: 
-      2012-12: false
+      2012-12: true
   output:
     are: 
       2012-12: 1143.15917
