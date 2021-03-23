@@ -55,12 +55,27 @@ class diplome(Variable):
     set_input = set_input_dispatch_by_period
 
 
+class date_diplome(Variable):
+    value_type = date
+    default_value = date.max
+    entity = Individu
+    label = "Date d'obtention du diplôme de plus haut niveau"
+    definition_period = ETERNITY
+
+
 class alternant(Variable):
     value_type = bool
     label = "En formation en alternance"
     entity = Individu
     definition_period = MONTH
     reference = "https://www.service-public.fr/particuliers/vosdroits/N11240"
+
+
+class formation(Variable):
+    value_type = bool
+    entity = Individu
+    label = "Inscrit à une formation ou en cours de formation professionnelle"
+    definition_period = MONTH
 
 
 class activite(Variable):
