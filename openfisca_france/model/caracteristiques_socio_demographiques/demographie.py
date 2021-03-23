@@ -40,7 +40,17 @@ class adoption(Variable):
 class garde_alternee(Variable):
     value_type = bool
     entity = Individu
-    label = 'Enfant en garde alternée'
+    label = "Enfant en garde alternée"
+    definition_period = MONTH
+    set_input = set_input_dispatch_by_period
+
+
+class diplome(Variable):
+    value_type = Enum
+    default_value = TypesDiplome.non_renseigne
+    possible_values = TypesDiplome  # defined in model/base.py
+    entity = Individu
+    label = "Plus haut niveau de diplôme obtenu"
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
