@@ -19,10 +19,7 @@ class mobili_jeune_eligibilite(Variable):
 
     def formula_2012_07(individu, period, parameters):
         condition_age = individu("age", period) < parameters(period).prestations.mobili_jeune.age_maximum
-        condition_contrat = individu("alternant", period) * (
-            individu("apprenti", period)
-            + individu("professionnalisation", period)
-            )
+        condition_contrat = individu("alternant", period)  # sous contrat d'apprentissage ou de professionnalisation
 
         secteur_prive_non_agricole = (
             individu("categorie_salarie", period) == TypesCategorieSalarie.prive_non_cadre
