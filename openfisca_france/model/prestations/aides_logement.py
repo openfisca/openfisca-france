@@ -522,7 +522,7 @@ class al_revenu_assimile_salaire(Variable):
 
     def formula(individu, period, parameters):
         # version spécifique aux aides logement de revenu_assimile_salaire
-        period_salaire_chomage = period.start.period('year').offset(-1)
+        period_salaire_chomage = period.start.period('year').offset(-1).offset(-1, 'month')
         period_f1tt_f3vj = period.n_2
 
         smic_annuel_brut = parameters(period).cotsoc.gen.smic_h_b * 52 * 35
@@ -612,15 +612,12 @@ class aide_logement_condition_neutralisation_chomage(Variable):
     definition_period = MONTH
 
     def formula_2021_01_01(individu, period, parameters):
-        # Rolling year
-        annee_glissante = period.start.period('year').offset(-1)
-
         activite = individu('activite', period)
         date_debut_chomage = individu('date_debut_chomage', period)
         two_months_ago = datetime64(period.offset(-2, 'month').start)
 
-        chomage_imposable = individu('chomage_imposable', annee_glissante, options=[ADD])
-        ass = individu('ass', annee_glissante, options=[ADD])
+        chomage_imposable = individu('chomage_imposable', period)
+        ass = individu('ass', period)
 
         # chomage non indemnisé ou indemnisé mais donnant lieu au versement de l'ass
         chomage_non_indemnise = (chomage_imposable == 0) + ((chomage_imposable > 0) * (ass > 0))
@@ -644,13 +641,13 @@ class aide_logement_condition_neutralisation_chomage(Variable):
 class aide_logement_assiette_abattement_chomage(Variable):
     value_type = float
     entity = Individu
-    label = "Assiette sur lequel un abattement chômage peut être appliqués pour les AL. Ce sont les revenus d'activité professionnelle, moins les abattements pour frais professionnels."
+    label = "Assiette sur laquelle un abattement chômage peut être appliqués pour les AL. Ce sont les revenus d'activité professionnelle, moins les abattements pour frais professionnels."
     reference = "https://www.legifrance.gouv.fr/eli/decret/2019/12/30/LOGL1920187D/jo/texte"
-    definition_period = YEAR
+    definition_period = MONTH
 
     def formula_2021_01_01(individu, period, parameters):
         # Rolling year
-        annee_glissante = period.start.period('year').offset(-1)
+        annee_glissante = period.start.period('year').offset(-1).offset(-1, 'month')
 
         revenus_non_salarie = individu('rpns', period.n_2)
         revenu_salarie = individu('salaire_imposable', annee_glissante, options = [ADD])
@@ -669,10 +666,10 @@ class aide_logement_assiette_abattement_chomage(Variable):
         return revenus_non_salarie + revenus_salarie_apres_abattement
 
     def formula(individu, period, parameters):
-        revenus_non_salarie = individu('rpns', period)
-        revenu_salarie = individu('salaire_imposable', period, options = [ADD])
-        chomeur_longue_duree = individu('chomeur_longue_duree', period)
-        frais_reels = individu('frais_reels', period)
+        revenus_non_salarie = individu('rpns', period.n_2)
+        revenu_salarie = individu('salaire_imposable', period.n_2, options = [ADD])
+        chomeur_longue_duree = individu('chomeur_longue_duree', period.n_2)
+        frais_reels = individu('frais_reels', period.n_2)
         abatpro = parameters(period).impot_revenu.tspr.abatpro
 
         abattement_minimum = where(chomeur_longue_duree, abatpro.min2, abatpro.min)
@@ -700,7 +697,7 @@ class aide_logement_abattement_chomage_indemnise(Variable):
         two_months_ago = datetime64(period.offset(-2, 'month').start)
         condition_neutralisation = individu('aide_logement_condition_neutralisation_chomage', period)
         condition_abattement = (activite == TypesActivite.chomeur) * (date_debut_chomage < two_months_ago)
-        revenus_activite_pro = individu('aide_logement_assiette_abattement_chomage', period.start.period('year'))
+        revenus_activite_pro = individu('aide_logement_assiette_abattement_chomage', period)
         taux_abattement = parameters(period).prestations.aides_logement.ressources.abattement_chomage_indemnise
         return condition_abattement * not_(condition_neutralisation) * taux_abattement * revenus_activite_pro
 
@@ -709,7 +706,7 @@ class aide_logement_abattement_chomage_indemnise(Variable):
         date_debut_chomage = individu('date_debut_chomage', period)
         two_months_ago = datetime64(period.offset(-2, 'month').start)
         condition_abattement = (activite == TypesActivite.chomeur) * (date_debut_chomage < two_months_ago)
-        revenus_activite_pro = individu('aide_logement_assiette_abattement_chomage', period.n_2)
+        revenus_activite_pro = individu('aide_logement_assiette_abattement_chomage', period)
         taux_abattement = parameters(period).prestations.aides_logement.ressources.abattement_chomage_indemnise
 
         return condition_abattement * taux_abattement * revenus_activite_pro
@@ -725,16 +722,14 @@ class aide_logement_abattement_depart_retraite(Variable):
 
     def formula_2021_01_01(individu, period, parameters):
         # Rolling year
-        annee_glissante = period.start.period('year').offset(-1)
+        annee_glissante = period.start.period('year').offset(-1).offset(-1, 'month')
 
-        retraite_annee_glissante = individu('retraite_imposable', annee_glissante, options = [ADD])
         activite = individu('activite', period)
-        retraite = activite == TypesActivite.retraite
-        condition_abattement = (retraite_annee_glissante == 0) * retraite
+        condition_retraite = activite == TypesActivite.retraite
 
         revenus_activite_pro = individu('al_revenu_assimile_salaire_apres_abattements', period)
 
-        abattement = condition_abattement * 0.3 * revenus_activite_pro
+        abattement = condition_retraite * 0.3 * revenus_activite_pro
 
         return abattement
 
@@ -955,7 +950,7 @@ class al_traitements_salaires_pensions_rentes(Variable):
 
     def formula_2021_01_01(individu, period, parameters):
         # Rolling year
-        annee_glissante = period.start.period('year').offset(-1)
+        annee_glissante = period.start.period('year').offset(-1).offset(-1, 'month')
 
         revenu_assimile_salaire_apres_abattements = individu('al_revenu_assimile_salaire_apres_abattements', period)
 
@@ -1017,7 +1012,7 @@ class aide_logement_base_ressources(Variable):
         params_al_ressources = parameters(period).prestations.aides_logement.ressources
         age_etudiant_max = parameters(period).prestations.aides_logement.age_max_etudiant
         # Rolling year
-        annee_glissante = period.start.period('year').offset(-1)
+        annee_glissante = period.start.period('year').offset(-1).offset(-1, 'month')
 
         base_ressources_i = famille.members('al_base_ressources_individu', period)
         base_ressources_parents = famille.sum(base_ressources_i, role=Famille.PARENT)
@@ -1063,13 +1058,12 @@ class aide_logement_base_ressources(Variable):
         benefice_micro_entreprise_i_n_2 = famille.members('tns_micro_entreprise_benefice', period.n_2)
         benefice_auto_entrepreneur_i_n_2 = famille.members('tns_auto_entrepreneur_benefice', period.n_2, options=[ADD])
         tns_autres_revenus_i_n_2 = famille.members('tns_autres_revenus', period.n_2)
-        # En l'absence de benefices TNS en N-2, on recupère les bénéfices de l'année glissante à compter de M-1
-        annee_glissante_m_1 = annee_glissante.offset(-1, 'month')
-        benefice_agricole_i_m_12 = famille.members('tns_benefice_exploitant_agricole', annee_glissante_m_1)
-        benefice_micro_entreprise_i_m_12 = famille.members('tns_micro_entreprise_benefice', annee_glissante_m_1)
-        benefice_auto_entrepreneur_i_m_12 = famille.members('tns_auto_entrepreneur_benefice', annee_glissante_m_1,
+        # En l'absence de benefices TNS en N-2, on recupère les bénéfices de l'année glissante
+        benefice_agricole_i_m_12 = famille.members('tns_benefice_exploitant_agricole', annee_glissante)
+        benefice_micro_entreprise_i_m_12 = famille.members('tns_micro_entreprise_benefice', annee_glissante)
+        benefice_auto_entrepreneur_i_m_12 = famille.members('tns_auto_entrepreneur_benefice', annee_glissante,
                                                             options=[ADD])
-        tns_autres_revenus_i_m_12 = famille.members('tns_autres_revenus', annee_glissante_m_1)
+        tns_autres_revenus_i_m_12 = famille.members('tns_autres_revenus', annee_glissante)
         benefice_agricole_i = where(benefice_agricole_i_n_2 > 0, benefice_agricole_i_n_2, benefice_agricole_i_m_12)
         benefice_micro_entreprise_i = where(benefice_micro_entreprise_i_n_2 > 0, benefice_micro_entreprise_i_n_2,
                                             benefice_micro_entreprise_i_m_12)
@@ -1117,6 +1111,7 @@ class aide_logement_base_ressources(Variable):
         abattement_ressources_enfant = parameters(
             period.n_2.stop).prestations.minima_sociaux.aspa.plafond_ressources_seul * 1.25
         base_ressources_enfants = famille.sum(max_(0, base_ressources_i + ressources_annee_glissante_i - abattement_ressources_enfant), role = Famille.ENFANT)
+
         ressources = (
             + base_ressources_parents
             + ressources_annee_glissante
