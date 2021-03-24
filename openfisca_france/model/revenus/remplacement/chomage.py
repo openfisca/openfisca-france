@@ -43,7 +43,7 @@ class salaire_de_reference(Variable):
     definition_period = MONTH
 
     def formula(individu, period):
-        sal_ref = 0 * individu('salaire_de_base', period)
+        sal_ref = individu.empty_array()
         for months in range(0, 48):
             contrat_de_travail_fin_potentiel = period.offset(-months)
             sal_ref = where(
@@ -136,8 +136,8 @@ class are_eligibilite_individu(Variable):
         #critère de l'âge: ARE non versé si l'âge de départ à la retraite atteint, sauf en cas de taux plein non atteint.
         #Pour simplifier, j'ai stipulé qu'on ne pouvait plus toucher d'ARE dès lors l'âge légal de départ à la retraite atteint.
 
-        age_en_mois = individu('age_en_mois', period)
-        age_condition = age_en_mois < parameters(period).are.age_legal_retraite
+        age = individu('age', period)
+        age_condition = age < parameters(period).are.age_legal_retraite
 
         #critère d'affiliation : avoir travaillé tant de jours dans les x derniers mois avant la date de fin de contrat pour les moins de 53 ans et tant de temps dans les y derniers mois pour les plus de 53 ans
         periode_affiliation_moins_53_ans = individu('nombre_jours_travailles_dans_les_x_derniers_mois_moins_53_ans', period)
@@ -146,7 +146,7 @@ class are_eligibilite_individu(Variable):
         condition_affiliation_53_ans_et_plus = periode_affiliation_53_ans_et_plus >= parameters(period).are.periode_minimale_affiliation_moins_53_ans
         
         condition_affiliation = select(
-            [age_en_mois < 636, age_en_mois >= 636], 
+            [age < 53, age >= 53], 
             [condition_affiliation_moins_53_ans, condition_affiliation_53_ans_et_plus],
         )
         return age_condition * condition_affiliation
@@ -159,14 +159,15 @@ class nombre_jours_travailles_dans_les_x_derniers_mois_moins_53_ans(Variable):
     definition_period = MONTH
 
     def formula_2017_11(individu, period, parameters):
-        nombre_jours_travailles_reference = 0 * individu('nombre_jours_calendaires', period)
+        nombre_jours_travailles_reference = individu.empty_array()
+        periode_reference_affiliation_moins_53 = parameters(period).are.periode_de_reference_affiliation_moins_53_ans
         for months in range(0, 48):
             contrat_de_travail_fin_potentiel = period.offset(-months)
             nombre_jours_travailles_reference = where(
                 individu('contrat_de_travail_fin', period) == datetime64(contrat_de_travail_fin_potentiel.start),
                 individu(
                     'nombre_jours_calendaires',
-                    contrat_de_travail_fin_potentiel.offset(-parameters(period).are.periode_de_reference_affiliation_moins_53_ans).start.period('month', parameters(period).are.periode_de_reference_affiliation_moins_53_ans),
+                    contrat_de_travail_fin_potentiel.offset(-periode_reference_affiliation_moins_53).start.period('month', periode_reference_affiliation_moins_53),
                     options = [ADD],
                     ),
                 nombre_jours_travailles_reference,
@@ -180,14 +181,15 @@ class nombre_jours_travailles_dans_les_x_derniers_mois_53_ans_et_plus(Variable):
     definition_period = MONTH
 
     def formula_2017_11(individu, period, parameters):
-        nombre_jours_travailles_senior_reference = 0 * individu('nombre_jours_calendaires', period)
+        nombre_jours_travailles_senior_reference = individu.empty_array()
+        periode_reference_affiliation_plus_53 = parameters(period).are.periode_de_reference_affiliation_53_ans_et_plus
         for months in range(0, 72):
             contrat_de_travail_fin_potentiel = period.offset(-months)
             nombre_jours_travailles_senior_reference = where(
                 individu('contrat_de_travail_fin', period) == datetime64(contrat_de_travail_fin_potentiel.start),
                 individu(
                     'nombre_jours_calendaires',
-                    contrat_de_travail_fin_potentiel.offset(-parameters(period).are.periode_de_reference_affiliation_53_ans_et_plus).start.period('month', parameters(period).are.periode_de_reference_affiliation_53_ans_et_plus),
+                    contrat_de_travail_fin_potentiel.offset(-periode_reference_affiliation_plus_53).start.period('month', periode_reference_affiliation_plus_53),
                     options = [ADD],
                     ),
                 nombre_jours_travailles_senior_reference,
