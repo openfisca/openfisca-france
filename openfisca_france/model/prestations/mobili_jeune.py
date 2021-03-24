@@ -19,14 +19,13 @@ class mobili_jeune_eligibilite(Variable):
 
     def formula_2012_07(individu, period, parameters):
         condition_age = individu("age", period) < parameters(period).prestations.mobili_jeune.age_maximum
-        condition_contrat = individu("alternant", period)  # sous contrat d'apprentissage ou de professionnalisation
+        alternant = individu("alternant", period)  # sous contrat d'apprentissage ou de professionnalisation
 
         secteur_prive_non_agricole = (
             individu("categorie_salarie", period) == TypesCategorieSalarie.prive_non_cadre
             ) * (
                 individu("secteur_activite_employeur", period) == TypesSecteurActivite.non_agricole
             )
-        condition_employeur = secteur_prive_non_agricole * individu("peec_employeur", period)
 
         smic_mensuel_brut = individu("smic_proratise", period)
         condition_remuneration = (
@@ -42,4 +41,4 @@ class mobili_jeune_eligibilite(Variable):
             + (statut_occupation_logement == TypesStatutOccupationLogement.locataire_foyer)
             )
 
-        return condition_age * condition_contrat * condition_employeur * condition_remuneration * locataire
+        return condition_age * alternant * secteur_prive_non_agricole * condition_remuneration * locataire
