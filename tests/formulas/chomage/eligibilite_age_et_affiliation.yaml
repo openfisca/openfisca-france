@@ -3,11 +3,10 @@
   period: 2018-12
   input:
     age: 70
-    nombre_jours_travailles_dans_les_x_derniers_mois_moins_53_ans: 63
-    nombre_jours_travailles_dans_les_x_derniers_mois_53_ans_et_plus: 63
-    
+    nombre_jours_travailles_dans_les_x_derniers_mois: 63
+
   output:
-    are_eligibilite_individu: 
+    are_eligibilite_individu:
       2018-12: false
 
 - name: Eligibilité à l'ARE en fonction de la période d'affiliation et de l'âge - Cas n°2
@@ -15,11 +14,10 @@
   period: 2018-12
   input:
     age: 70
-    nombre_jours_travailles_dans_les_x_derniers_mois_moins_53_ans: 63
-    nombre_jours_travailles_dans_les_x_derniers_mois_53_ans_et_plus: 126
-    
+    nombre_jours_travailles_dans_les_x_derniers_mois: 63
+
   output:
-    are_eligibilite_individu: 
+    are_eligibilite_individu:
       2018-12: false
 
 - name: Eligibilité à l'ARE en fonction de la période d'affiliation et de l'âge - Cas n°3
@@ -27,11 +25,10 @@
   period: 2018-12
   input:
     age: 70
-    nombre_jours_travailles_dans_les_x_derniers_mois_moins_53_ans: 126
-    nombre_jours_travailles_dans_les_x_derniers_mois_53_ans_et_plus: 126
-    
+    nombre_jours_travailles_dans_les_x_derniers_mois: 126
+
   output:
-    are_eligibilite_individu: 
+    are_eligibilite_individu:
       2018-12: false
 
 - name: Eligibilité à l'ARE en fonction de la période d'affiliation et de l'âge - Cas n°4
@@ -39,11 +36,10 @@
   period: 2018-12
   input:
     age: 52
-    nombre_jours_travailles_dans_les_x_derniers_mois_moins_53_ans: 63
-    nombre_jours_travailles_dans_les_x_derniers_mois_53_ans_et_plus: 63
-    
+    nombre_jours_travailles_dans_les_x_derniers_mois: 63
+
   output:
-    are_eligibilite_individu: 
+    are_eligibilite_individu:
       2018-12: false
 
 - name: Eligibilité à l'ARE en fonction de la période d'affiliation et de l'âge - Cas n°5
@@ -51,11 +47,10 @@
   period: 2018-12
   input:
     age: 52
-    nombre_jours_travailles_dans_les_x_derniers_mois_moins_53_ans: 63
-    nombre_jours_travailles_dans_les_x_derniers_mois_53_ans_et_plus: 105
-    
+    nombre_jours_travailles_dans_les_x_derniers_mois: 63
+
   output:
-    are_eligibilite_individu: 
+    are_eligibilite_individu:
       2018-12: false
 
 - name: Eligibilité à l'ARE en fonction de la période d'affiliation et de l'âge - Cas n°6
@@ -63,11 +58,10 @@
   period: 2018-12
   input:
     age: 52
-    nombre_jours_travailles_dans_les_x_derniers_mois_moins_53_ans: 105
-    nombre_jours_travailles_dans_les_x_derniers_mois_53_ans_et_plus: 105
-    
+    nombre_jours_travailles_dans_les_x_derniers_mois: 105
+
   output:
-    are_eligibilite_individu: 
+    are_eligibilite_individu:
       2018-12: true
 
 - name: Eligibilité à l'ARE en fonction de la période d'affiliation et de l'âge - Cas n°7
@@ -75,11 +69,10 @@
   period: 2018-12
   input:
     age: 54
-    nombre_jours_travailles_dans_les_x_derniers_mois_moins_53_ans: 63
-    nombre_jours_travailles_dans_les_x_derniers_mois_53_ans_et_plus: 63
-    
+    nombre_jours_travailles_dans_les_x_derniers_mois: 63
+
   output:
-    are_eligibilite_individu: 
+    are_eligibilite_individu:
       2018-12: false
 
 - name: Eligibilité à l'ARE en fonction de la période d'affiliation et de l'âge - Cas n°8
@@ -87,11 +80,10 @@
   period: 2018-12
   input:
     age: 54
-    nombre_jours_travailles_dans_les_x_derniers_mois_moins_53_ans: 63
-    nombre_jours_travailles_dans_les_x_derniers_mois_53_ans_et_plus: 105
-    
+    nombre_jours_travailles_dans_les_x_derniers_mois: 105
+
   output:
-    are_eligibilite_individu: 
+    are_eligibilite_individu:
       2018-12: true
 
 - name: Eligibilité à l'ARE en fonction de la période d'affiliation et de l'âge - Cas n°9
@@ -99,11 +91,10 @@
   period: 2018-12
   input:
     age: 54
-    nombre_jours_travailles_dans_les_x_derniers_mois_moins_53_ans: 126
-    nombre_jours_travailles_dans_les_x_derniers_mois_53_ans_et_plus: 126
-    
+    nombre_jours_travailles_dans_les_x_derniers_mois: 126
+
   output:
-    are_eligibilite_individu: 
+    are_eligibilite_individu:
       2018-12: true
 
 - name: Eligibilité à l'ARE en fonction de la période d'affiliation et de l'âge - Cas n°10
@@ -111,9 +102,8 @@
   period: 2018-12
   input:
     age: 54
-    nombre_jours_travailles_dans_les_x_derniers_mois_moins_53_ans: 126
-    nombre_jours_travailles_dans_les_x_derniers_mois_53_ans_et_plus: 126
-    
+    nombre_jours_travailles_dans_les_x_derniers_mois: 126
+
   output:
-    are_eligibilite_individu: 
+    are_eligibilite_individu:
       2018-12: true
