@@ -1,5 +1,15 @@
 # Changelog
 
+### 51.3.1 [#1495](https://github.com/openfisca/openfisca-france/pull/1495)
+
+* Correction d'un crash.
+* Détails :
+  - Force la réinstallation d'OpenFisca France lors de la création du fichier de distribution d'OpenFisca France
+  - Erreur constatée lors du lancements des tests sur CircleCI :
+    - CircleCI utilise ce fichier pour faire tourner les tests
+    - Or, si de commits ont déjà été poussés sur un branch, CircleCI ne réinstalle pas OpenFisca France
+    - Ce qui est inattendu puisque si l'on ajoute par exemple un paramètre ou une variable après avoir poussé les changements une première fois, CircleCI va échouer car la version utilisée pour lancer les tests ne contient pas ces derniers changements
+
 ## 51.3.0 [#1486](https://github.com/openfisca/openfisca-france/pull/1486)
 
 * Évolution du système socio-fiscal.
