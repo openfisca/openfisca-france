@@ -1,5 +1,6 @@
 from openfisca_france.model.base import Individu, Variable, MONTH
 
+
 class crous_logement_eligibilite(Variable):
     entity = Individu
     value_type = int
