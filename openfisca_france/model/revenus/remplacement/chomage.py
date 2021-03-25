@@ -116,7 +116,7 @@ class are(Variable):
             montant_plancher,
             are.max_en_pourcentage_sjr * salaire_de_reference_mensuel
             )
-
+        
         return montant_plafond * are_eligibilite_individu
 
 
@@ -180,23 +180,23 @@ class nombre_jours_travailles_dans_les_x_derniers_mois(Variable):
                 nombre_jours_travailles_reference_moins_53,
                 )
         # Plus de 53 ans
-        nombre_jours_travailles_senior_reference_plus_53 = individu.empty_array()
+        nombre_jours_travailles_reference_plus_53 = individu.empty_array()
         periode_reference_plus_53 = are.periode_de_reference_affiliation_53_ans_et_plus
         for months in range(0, 72):
             contrat_de_travail_fin_potentiel = period.offset(-months)
-            nombre_jours_travailles_senior_reference_plus_53 = where(
+            nombre_jours_travailles_reference_plus_53 = where(
                 individu('contrat_de_travail_fin', period) == datetime64(contrat_de_travail_fin_potentiel.start),
                 individu(
                     'nombre_jours_calendaires',
                     contrat_de_travail_fin_potentiel.offset(-periode_reference_plus_53).start.period('month', periode_reference_plus_53),
                     options = [ADD],
                     ),
-                nombre_jours_travailles_senior_reference_plus_53,
+                nombre_jours_travailles_reference_plus_53,
                 )
 
         nombre_jours_travailles_reference = select(
             [age < 53, age >= 53],
-            [nombre_jours_travailles_reference_moins_53, nombre_jours_travailles_senior_reference_plus_53],
+            [nombre_jours_travailles_reference_moins_53, nombre_jours_travailles_reference_plus_53],
             )
 
         return nombre_jours_travailles_reference
