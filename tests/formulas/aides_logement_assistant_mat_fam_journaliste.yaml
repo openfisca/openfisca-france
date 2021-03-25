@@ -4,6 +4,8 @@
   input:
     famille:
       parents: parent1
+      rsa:
+        2020-12: 0
     menage:
       personne_de_reference: parent1
       statut_occupation_logement: locataire_vide
@@ -14,11 +16,10 @@
       parent1:
         date_naissance: 1968-01-10
         salaire_imposable:
-          2020-12: 2250
           2020-11: 2250
           2020-10: 2250
           2020-09: 2250
-          2020-08: 1100
+          2020-08: 2250
           2020-07: 1100
           2020-06: 1100
           2020-05: 1100
@@ -26,12 +27,12 @@
           2020-03: 1100
           2020-02: 1100
           2020-01: 1100
+          2019-12: 1100
         journaliste:
-          2020-12: true
           2020-11: true
           2020-10: true
           2020-09: true
-          2020-08: false
+          2020-08: true
           2020-07: false
           2020-06: false
           2020-05: false
@@ -39,6 +40,7 @@
           2020-03: false
           2020-02: false
           2020-01: false
+          2019-12: false
     foyer_fiscal:
       declarants: parent1
   output:
@@ -52,6 +54,8 @@
     famille:
       parents: [parent1, parent2]
       enfants: [enfant1, enfant2]
+      rsa:
+        2020-12: 0
     menage:
       personne_de_reference: parent1
       conjoint: parent2
@@ -64,7 +68,6 @@
       parent1:
         date_naissance: 1985-01-10
         salaire_imposable:
-          2020-12: 2600
           2020-11: 2600
           2020-10: 2600
           2020-09: 2600
@@ -73,11 +76,11 @@
           2020-06: 2600
           2020-05: 2600
           2020-04: 2600
-          2020-03: 2700
+          2020-03: 2600
           2020-02: 2700
           2020-01: 2700
+          2019-12: 2700
         journaliste:
-          2020-12: true
           2020-11: true
           2020-10: true
           2020-09: true
@@ -89,10 +92,10 @@
           2020-03: true
           2020-02: true
           2020-01: true
+          2019-12: true
       parent2:
         date_naissance: 1988-01-01
         salaire_imposable:
-          2020-12: 0
           2020-11: 0
           2020-10: 0
           2020-09: 0
@@ -104,6 +107,7 @@
           2020-03: 0
           2020-02: 0
           2020-01: 0
+          2019-12: 0
       enfant1:
         date_naissance: 2014-01-01
       enfant2:
@@ -121,6 +125,8 @@
   input:
     famille:
       parents: parent1
+      rsa:
+        2020-12: 0
     menage:
       personne_de_reference: parent1
       statut_occupation_logement: locataire_vide
@@ -131,7 +137,6 @@
       parent1:
         date_naissance: 1985-01-10
         salaire_imposable:
-          2020-12: 1250
           2020-11: 1250
           2020-10: 1250
           2020-09: 1250
@@ -143,8 +148,8 @@
           2020-03: 1250
           2020-02: 1250
           2020-01: 1250
+          2019-12: 1250
         assistant_maternel:
-          2020-12: true
           2020-11: true
           2020-10: true
           2020-09: true
@@ -156,6 +161,7 @@
           2020-03: true
           2020-02: true
           2020-01: true
+          2019-12: true
     foyer_fiscal:
       declarants: parent1
   output:
@@ -168,6 +174,8 @@
     famille:
       parents: [parent1, parent2]
       enfants: [enfant1, enfant2]
+      rsa:
+        2020-12: 0
     menage:
       personne_de_reference: parent1
       conjoint: parent2
@@ -180,7 +188,6 @@
       parent1:
         date_naissance: 1985-01-10
         salaire_imposable:
-          2020-12: 916.67
           2020-11: 916.67
           2020-10: 916.67
           2020-09: 916.67
@@ -192,8 +199,8 @@
           2020-03: 916.67
           2020-02: 916.67
           2020-01: 916.67
+          2019-12: 916.67
         assistant_maternel:
-          2020-12: true
           2020-11: true
           2020-10: true
           2020-09: true
@@ -205,10 +212,10 @@
           2020-03: true
           2020-02: true
           2020-01: true
+          2019-12: true
       parent2:
         date_naissance: 1988-01-01
         salaire_imposable:
-          2020-12: 1375
           2020-11: 1375
           2020-10: 1375
           2020-09: 1375
@@ -220,6 +227,7 @@
           2020-03: 1375
           2020-02: 1375
           2020-01: 1375
+          2019-12: 1375
       enfant1:
         date_naissance: 2014-01-01
       enfant2:
@@ -238,6 +246,8 @@
     famille:
       parents: [parent1, parent2]
       enfants: [enfant1, enfant2]
+      rsa:
+        2020-12: 0
     menage:
       personne_de_reference: parent1
       conjoint: parent2
@@ -250,7 +260,6 @@
       parent1:
         date_naissance: 1990-01-10
         salaire_imposable:
-          2020-12: 900
           2020-11: 900
           2020-10: 900
           2020-09: 900
@@ -262,8 +271,8 @@
           2020-03: 900
           2020-02: 900
           2020-01: 900
+          2019-12: 900
         assistant_maternel:
-          2020-12: true
           2020-11: true
           2020-10: true
           2020-09: true
@@ -275,10 +284,10 @@
           2020-03: true
           2020-02: true
           2020-01: true
+          2019-12: true
       parent2:
         date_naissance: 1990-01-01
         salaire_imposable:
-          2020-12: 733.33
           2020-11: 733.33
           2020-10: 733.33
           2020-09: 733.33
@@ -290,6 +299,7 @@
           2020-03: 733.33
           2020-02: 733.33
           2020-01: 733.33
+          2019-12: 733.33
       enfant1:
         date_naissance: 2014-01-01
       enfant2:
@@ -307,6 +317,8 @@
   input:
     famille:
       parents: parent1
+      rsa:
+        2020-12: 0
     menage:
       personne_de_reference: parent1
       statut_occupation_logement: locataire_vide
@@ -317,7 +329,6 @@
       parent1:
         date_naissance: 1968-01-10
         salaire_imposable:
-          2020-12: 1250
           2020-11: 1250
           2020-10: 1250
           2020-09: 1250
@@ -329,8 +340,8 @@
           2020-03: 1250
           2020-02: 1250
           2020-01: 1250
+          2019-12: 1250
         assistant_maternel:
-          2020-12: true
           2020-11: true
           2020-10: true
           2020-09: true
@@ -342,6 +353,7 @@
           2020-03: true
           2020-02: true
           2020-01: true
+          2019-12: true
         frais_reels:
           2020: 5000.00
     foyer_fiscal:

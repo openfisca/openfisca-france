@@ -1,5 +1,5 @@
 - name: "Cas 1, Etudiant moins de 28 ans, boursier"
-  period: 2021-01
+  period: 2021-02
   relative_error_margin: 0.01
   input:
     famille:
@@ -33,7 +33,7 @@
     aide_logement: 219.58
 
 - name: "Cas 1, Etudiant moins de 28 ans, Boursier en logement CROUS"
-  period: 2021-01
+  period: 2021-02
   relative_error_margin: 0.01
   input:
     famille:
@@ -68,7 +68,7 @@
     aide_logement: 114.34 # au lieu 53
 
 - name: "Cas 3, Etudiant plus de 28 ans, non boursier"
-  period: 2021-01
+  period: 2021-02
   relative_error_margin: 0.01
   input:
     famille:
