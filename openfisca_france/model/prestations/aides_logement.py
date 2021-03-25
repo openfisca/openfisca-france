@@ -721,9 +721,6 @@ class aide_logement_abattement_depart_retraite(Variable):
     reference = "https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000006750910&cidTexte=LEGITEXT000006073189&dateTexte=20151231"
 
     def formula_2021_01_01(individu, period, parameters):
-        # Rolling year
-        annee_glissante = period.start.period('year').offset(-1).offset(-1, 'month')
-
         activite = individu('activite', period)
         condition_retraite = activite == TypesActivite.retraite
 
