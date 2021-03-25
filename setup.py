@@ -59,9 +59,6 @@ setup(
     install_requires = [
         "OpenFisca-Core >=35.2.0,<36.0",
         ],
-    message_extractors = {"openfisca_france": [
-        ("**.py", "python", None),
-        ]},
     packages = find_packages(exclude = [
         "openfisca_france.tests*",
         "openfisca_france.assets.taxe_habitation.source*",
