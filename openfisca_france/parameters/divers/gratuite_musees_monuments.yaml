@@ -1,0 +1,11 @@
+age_min:
+  description: Âge à partir duquel l'accès aux musées et monuments nationaux est gratuit pour les résidents de l'Union européenne.
+  reference: https://www.service-public.fr/particuliers/vosdroits/F20348
+  values:
+    2007-05-01: 18  # cette date est approximative, la mesure a été adoptée sous la présidence Sarkozy
+
+age_max:
+  description: Âge jusqu'auquel l'accès aux musées et monuments nationaux est gratuit pour les résidents de l'Union européenne.
+  reference: https://www.service-public.fr/particuliers/vosdroits/F20348
+  values:
+    2007-05-01: 25  # cette date est approximative, la mesure a été adoptée sous la présidence Sarkozy
