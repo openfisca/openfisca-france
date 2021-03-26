@@ -16,3 +16,14 @@
     garantie_pret_etudiant_condition_nationalite: [ true, true, true, true, true ]
   output:
     garantie_pret_etudiant_eligibilite: [ false, true, true, false, false ]
+
+
+- name: Condition de majorité pour l'éligibilité à la garantie du prêt étudiant
+  period: 2021-03
+  input:
+    etudiant: true
+    mineur_emancipe: true
+    age: 16
+    garantie_pret_etudiant_condition_nationalite: true
+  output:
+    garantie_pret_etudiant_eligibilite: true

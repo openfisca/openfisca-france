@@ -9,13 +9,15 @@ class garantie_pret_etudiant_eligibilite(Variable):
     reference = "https://www.service-public.fr/particuliers/vosdroits/F986"
 
     def formula_2020_06_08(individu, period, parameters):
+        majeur = individu('majeur', period)
+
         age = individu('age', period)
-        condition_age = (age >= 18) * (age <= parameters(period).prestations.garantie_pret_etudiant.age_max)  # approximation : en cas d'émancipation, un·e mineur·e est éligible
+        condition_age = (age <= parameters(period).prestations.garantie_pret_etudiant.age_max)
 
         etudiant = individu('etudiant', period)
         condition_nationalite = individu('garantie_pret_etudiant_condition_nationalite', period)
 
-        return etudiant * condition_nationalite * condition_age
+        return majeur * etudiant * condition_age * condition_nationalite
 
 
 class garantie_pret_etudiant_condition_nationalite(Variable):
