@@ -1,6 +1,8 @@
 # Développement sur GitPod
 build
 
+.venv
+
 *~
 .idea*
 .tags*
