@@ -58,6 +58,14 @@ class garde_alternee(Variable):
     set_input = set_input_dispatch_by_period
 
 
+class alternant(Variable):
+    value_type = bool
+    label = "En formation en alternance"
+    entity = Individu
+    definition_period = MONTH
+    reference = "https://www.service-public.fr/particuliers/vosdroits/N11240"
+
+
 class activite(Variable):
     value_type = Enum
     default_value = TypesActivite.inactif
