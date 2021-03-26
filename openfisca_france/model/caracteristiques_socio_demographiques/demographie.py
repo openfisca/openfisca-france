@@ -232,7 +232,7 @@ class nb_parents(Variable):
     definition_period = MONTH
 
     def formula(famille, period):
-        # Note : Cette variable est "instantanée" : quelque soit la période demandée, elle retourne la valeur au premier
+        # Note : Cette variable est « instantanée » : quelle que soit la période demandée, elle retourne la valeur au premier
         # jour, sans changer la période.
 
         return famille.nb_persons(role = Famille.PARENT)
@@ -245,7 +245,7 @@ class maries(Variable):
     definition_period = MONTH
 
     def formula(famille, period):
-        # Note : Cette variable est "instantanée" : quelque soit la période demandée, elle retourne la valeur au premier
+        # Note : Cette variable est « instantanée » : quelle que soit la période demandée, elle retourne la valeur au premier
         # jour, sans changer la période.
         statut_marital = famille.members('statut_marital', period)
         individu_marie = (statut_marital == TypesStatutMarital.marie)
@@ -260,7 +260,7 @@ class en_couple(Variable):
     definition_period = MONTH
 
     def formula(famille, period, parameters):
-        # Note : Cette variable est "instantanée" : quelque soit la période demandée, elle retourne la valeur au premier
+        # Note : Cette variable est « instantanée » : quelle que soit la période demandée, elle retourne la valeur au premier
         # jour, sans changer la période.
         nb_parents = famille('nb_parents', period)
 
@@ -284,7 +284,7 @@ class etudiant(Variable):
     definition_period = MONTH
 
     def formula(individu, period, parameters):
-        # Note : Cette variable est "instantanée" : quelque soit la période demandée, elle retourne la valeur au premier
+        # Note : Cette variable est « instantanée » : quelle que soit la période demandée, elle retourne la valeur au premier
         # jour, sans changer la période.
         activite = individu('activite', period)
 
@@ -295,7 +295,7 @@ class rempli_obligation_scolaire(Variable):
     value_type = bool
     default_value = True
     entity = Individu
-    label = "Rempli l'obligation scolaire"
+    label = "Remplit l'obligation scolaire"
     definition_period = MONTH
 
 

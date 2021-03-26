@@ -159,7 +159,7 @@ class asi_eligibilite(Variable):
 class asi_aspa_condition_nationalite(Variable):
     value_type = bool
     default_value = True
-    label = "Condition de nationnalité et de titre de séjour pour bénéficier de l'ASPA ou l'ASI"
+    label = "Condition de nationalité et de titre de séjour pour bénéficier de l'ASPA ou l'ASI"
     entity = Individu
     definition_period = MONTH
 
