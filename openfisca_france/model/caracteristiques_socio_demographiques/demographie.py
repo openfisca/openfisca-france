@@ -9,6 +9,27 @@ class date_naissance(Variable):
     definition_period = ETERNITY
 
 
+class majeur(Variable):
+    value_type = bool
+    entity = Individu
+    label = "L'individu est considéré comme majeur"
+    definition_period = MONTH
+
+    def formula(individu, period, parameters):
+        majeur = individu('age', period) >= parameters(period).demographie.age_majorite
+        mineur_emancipe = individu('mineur_emancipe', period)
+
+        return majeur + mineur_emancipe
+
+
+class mineur_emancipe(Variable):
+    value_type = bool
+    default_value = False
+    entity = Individu
+    label = "L'individu est émancipé"
+    definition_period = MONTH
+
+
 class adoption(Variable):
     value_type = bool
     entity = Individu
