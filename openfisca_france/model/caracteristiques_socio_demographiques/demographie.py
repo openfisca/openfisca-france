@@ -325,6 +325,8 @@ class ressortissant_eee(Variable):
 La résidence est supposée par la nationalité.
 Si la résidence est déterminée d'une autre manière plus précise, écraser cette variable en la définissant plutôt qu'en la laissant calculer par la nationalité.
 '''
+
+
 class resident_ue(Variable):
     value_type = bool
     default_value = True
@@ -334,7 +336,7 @@ class resident_ue(Variable):
 
     def formula(individu, period, parameters):
         nationalite = individu('nationalite', period)
-        return sum([ nationalite == str.encode(etat_membre) for etat_membre in parameters(period).geopolitique.ue ])  #TOOPTIMIZE: string encoding into bytes array should be done at load time
+        return sum([nationalite == str.encode(etat_membre) for etat_membre in parameters(period).geopolitique.ue])  # TOOPTIMIZE: string encoding into bytes array should be done at load time
 
 
 class residence_continue_annees(Variable):
