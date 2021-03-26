@@ -254,6 +254,8 @@ class est_enfant_dans_famille(Variable):
 '''
 L'individu est inscrit·e dans un établissement en vue de la préparation d'un concours ou d'un diplôme de l'enseignement supérieur français : une université, une école de commerce ou d'ingénieur, dans un lycée pour un BTS…
 '''
+
+
 class etudiant(Variable):
     value_type = bool
     entity = Individu
@@ -295,7 +297,7 @@ class ressortissant_eee(Variable):
 
     def formula(individu, period, parameters):
         nationalite = individu('nationalite', period)
-        return sum([ nationalite == str.encode(etat_membre) for etat_membre in parameters(period).geopolitique.eee ])  #TOOPTIMIZE: string encoding into bytes array should be done at load time
+        return sum([nationalite == str.encode(etat_membre) for etat_membre in parameters(period).geopolitique.eee])  # TOOPTIMIZE: string encoding into bytes array should be done at load time
 
 
 class residence_continue_annees(Variable):
