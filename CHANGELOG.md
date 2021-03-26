@@ -1,5 +1,17 @@
 # Changelog
 
+## 51.6.0 [#1498](https://github.com/openfisca/openfisca-france/pull/1498)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir de 1579 (XVIᵉ siècle).
+* Zones impactées :
+  - `parameters/demographie/age_majorite.yaml`
+* Détails :
+  - Ajoute la variable `majeur` qui calcule si la personne a atteint la majorité civile par son âge on son émancipation.
+  - Ajoute la variable `mineur_emancipe`.
+  - Ajoute le paramètre `demographie.age_majorite` qui donne l'âge d'obtention de la majorité civile.
+  - Améliore le calcul de `garantie_pret_etudiant` en utilisant une condition de majorite et non d'âge.
+
 ## 51.5.0 [#1489](https://github.com/openfisca/openfisca-france/pull/1489)
 
 * Évolution du système socio-fiscal.

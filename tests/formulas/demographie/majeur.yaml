@@ -1,0 +1,14 @@
+- name: Cas général de majorité
+  period: 2021-01
+  input:
+    age: [ 15, 16, 18, 25 ]
+  output:
+    majeur: [ false, false, true, true ]
+
+- name: Cas des mineurs émancipés
+  period: 2021-01
+  input:
+    age: [ 16, 25 ]
+    mineur_emancipe: [ true, true ]
+  output:
+    majeur: [ true, true ]
