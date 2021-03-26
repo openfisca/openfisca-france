@@ -1,0 +1,5 @@
+description: Montant maximum du prêt garanti par l'État dans le cadre d'un prêt étudiant.
+reference: https://www.service-public.fr/particuliers/vosdroits/F986
+unit: currency
+values:
+  2020-06-08: 15000  # incohérence : le site BPI indique 20000€ (https://www.bpifrance.fr/Toutes-nos-solutions/Garanties-et-assurances/Garanties-aux-banques/Garantie-des-prets-etudiants) ; les sites du ministère de l'enseignement supérieur, service-public (https://www.service-public.fr/particuliers/vosdroits/F986) et AMF (https://www.abe-infoservice.fr/banque/credit-la-consommation/pret-etudiant) indiquent 15000. Pas de source plus autoritative trouvée.

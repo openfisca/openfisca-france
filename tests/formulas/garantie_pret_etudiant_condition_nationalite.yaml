@@ -1,0 +1,25 @@
+- name: Nationalité française
+  period: 2021-03
+  input:
+    nationalite: FR
+  output:
+    garantie_pret_etudiant_condition_nationalite: true
+
+
+- name: Critère de nationalité EEE
+  period: 2021-03
+  input:
+    nationalite: [ DE, CH, UK, RU ]
+    residence_continue_annees: [ 6, 6, 6, 6 ]
+  output:
+    garantie_pret_etudiant_condition_nationalite: [ true, false, false, false ]
+
+
+- name: Critère de résidence continue
+  period: 2021-03
+  input:
+    nationalite: [ XX, XX, XX ]  # override default French nationality
+    ressortissant_eee: [ true, true, true ]
+    residence_continue_annees: [ 4, 5, 6 ]
+  output:
+    garantie_pret_etudiant_condition_nationalite: [ false, true, true ]

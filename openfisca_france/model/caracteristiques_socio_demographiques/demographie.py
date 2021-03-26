@@ -1,39 +1,5 @@
 from openfisca_france.model.base import *
 
-EEE_COUNTRY_CODES = [
-    b'AT',
-    b'BE',
-    b'BG',
-    b'CY',
-    b'CZ',
-    b'DE',
-    b'DK',
-    b'EE',
-    b'ES',
-    b'FI',
-    b'FR',
-    b'GR',
-    b'HR',
-    b'HU',
-    b'IE',
-    b'IS',
-    b'IT',
-    b'LI',
-    b'LU',
-    b'LV',
-    b'MT',
-    b'NL',
-    b'NO',
-    b'PL',
-    b'PT',
-    b'RO',
-    b'SE',
-    b'SI',
-    b'SK',
-    b'UK',
-    b'CH',  # Suisse hors EEE
-    ]
-
 
 class date_naissance(Variable):
     value_type = date
@@ -285,11 +251,17 @@ class est_enfant_dans_famille(Variable):
         return individu.has_role(Famille.ENFANT)
 
 
+'''
+L'individu est inscrit·e dans un établissement en vue de la préparation d'un concours ou d'un diplôme de l'enseignement supérieur français : une université, une école de commerce ou d'ingénieur, dans un lycée pour un BTS…
+'''
+
+
 class etudiant(Variable):
     value_type = bool
     entity = Individu
-    label = "Indicatrice individuelle étudiant"
+    label = "Indique que l'individu dispose du statut étudiant"
     definition_period = MONTH
+    reference = "https://www.service-public.fr/particuliers/vosdroits/F986"
 
     def formula(individu, period, parameters):
         # Note : Cette variable est « instantanée » : quelle que soit la période demandée, elle retourne la valeur au premier
@@ -320,12 +292,19 @@ class ressortissant_eee(Variable):
     value_type = bool
     default_value = True
     entity = Individu
-    label = "Ressortissant de l'EEE ou de la Suisse."
+    label = "Individu ressortissant d'un pays membre de l'Espace Économique Européen (EEE)."
     definition_period = MONTH
 
-    def formula(individu, period):
+    def formula(individu, period, parameters):
         nationalite = individu('nationalite', period)
-        return sum([nationalite == code_iso for code_iso in EEE_COUNTRY_CODES])
+        return sum([nationalite == str.encode(etat_membre) for etat_membre in parameters(period).geopolitique.eee])  # TOOPTIMIZE: string encoding into bytes array should be done at load time
+
+
+class residence_continue_annees(Variable):
+    value_type = float
+    entity = Individu
+    label = "Durée depuis laquelle l'individu réside sur le territoire français de manière régulière et continue (en années)"
+    definition_period = MONTH
 
 
 class duree_possession_titre_sejour(Variable):

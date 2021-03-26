@@ -1,0 +1,20 @@
+description: L'Espace Économique Européen (EEE ou EEA en anglais) est une union économique rassemblant les États membres de l'Union européenne (UE) et des États membres de l'Association européenne de libre-échange (AELE).
+reference: https://fr.wikipedia.org/wiki/Espace_économique_européen#Évolution
+unit: ISO 3166-1 alpha-2
+values:
+  1994-01-01:
+    value: [ AT, BE, CH, DE, DK, ES, FI, FR, GR, IE, IS, IT, LU, NL, 'NO', PT, SE, UK ]
+  1994-03-17:
+    value: [ AT, BE, DE, DK, ES, FI, FR, GR, IE, IS, IT, LU, NL, 'NO', PT, SE, UK ]
+  1995-05-01:
+    value: [ AT, BE, DE, DK, ES, FI, FR, GR, IE, IS, IT, LI, LU, NL, 'NO', PT, SE, UK ]
+  2004-05-01:
+    value: [ AT, BE, CY, CZ, DE, DK, EE, ES, FI, FR, GR, HU, IE, IS, IT, LI, LT, LU, LV, MT, NL, 'NO', PL, PT, SE, SI, SK, UK ]
+  2007-07-25:
+    value: [ AT, BE, CY, CZ, DE, DK, EE, ES, FI, FR, GR, HU, IE, IS, IT, LI, LT, LU, LV, MT, NL, 'NO', PL, PT, SE, SI, SK, UK ]
+  2007-08-01:
+    value: [ AT, BE, BG, CY, CZ, DE, DK, EE, ES, FI, FR, GR, HU, IE, IS, IT, LI, LT, LU, LV, MT, NL, 'NO', PL, PT, RO, SE, SI, SK, UK ]
+  2014-04-11:
+    value: [ AT, BE, BG, CY, CZ, DE, DK, EE, ES, FI, FR, GR, HR, HU, IE, IS, IT, LI, LT, LU, LV, MT, NL, 'NO', PL, PT, RO, SE, SI, SK, UK ]
+  2021-01-01:
+    value: [ AT, BE, BG, CY, CZ, DE, DK, EE, ES, FI, FR, GR, HR, HU, IE, IS, IT, LI, LT, LU, LV, MT, NL, 'NO', PL, PT, RO, SE, SI, SK ]

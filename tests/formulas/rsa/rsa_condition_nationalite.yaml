@@ -6,8 +6,8 @@
 
 - period: 2018-06
   input:
-    nationalite: [CH, CH, NZ, NZ]
-    duree_possession_titre_sejour: [0.2, 0.25, 4.9, 5]
+    nationalite: [DE, DE, CH, NZ, NZ]
+    duree_possession_titre_sejour: [0.2, 0.25, 0.25, 4.9, 5]
   output:
-    ressortissant_eee: [true, true, false, false]
-    rsa_condition_nationalite: [false, true, false, true]
+    ressortissant_eee: [true, true, false, false, false]
+    rsa_condition_nationalite: [false, true, true, false, true]

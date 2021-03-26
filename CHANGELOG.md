@@ -1,5 +1,25 @@
 # Changelog
 
+## 51.5.0 [#1489](https://github.com/openfisca/openfisca-france/pull/1489)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 08/06/2020.
+* Zones impactées :
+  * `model/prestations/garantie_pret_etudiant.py`
+  * `model/prestations/garantie_pret_etudiant.py`
+  * `parameters/prestations/garantie_pret_etudiant/*`
+* Détails :
+  - Ajoute l'éligibilité à la garantie du prêt étudiant par l'État.
+  - Décrit la garantie du prêt étudiant par l'État.
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : toutes.
+* Zones impactées :
+  * `model/caracteristiques_socio_demographiques/demographie.py`
+* Détails :
+  - Corrige la liste des pays membres de l'EEE (retire notamment la Suisse et le Royaume-Uni).
+  - Crée un historique de l'évolution des pays membres de l'EEE.
+
 ## 51.4.0 [#1497](https://github.com/openfisca/openfisca-france/pull/1497)
 
 * Évolution du système socio-fiscal.
@@ -64,7 +84,7 @@
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 01/01/2021.
-* Zones impactées : 
+* Zones impactées :
   - `parameters/impot_revenu/decote`
   - `parameters/impot_revenu/plafond_qf`
 * Détails :
@@ -87,8 +107,8 @@
 * Détails :
   - Met à jour les mesures Covid 19 : Fonds de solidarité aux entreprises pour les indépendants et aides exceptionnelles pour les bénéficiaires de prestations sociales
   - Affine l'éligibilité au FSE (prise en compte de la baisse de CA)
-  - Modifications justifiant un versionnage au premier niveau: 
-      - barème `aide_exceptionnelle_tpe.montant` remplacé par `aide_exceptionnelle_tpe.plafond` 
+  - Modifications justifiant un versionnage au premier niveau:
+      - barème `aide_exceptionnelle_tpe.montant` remplacé par `aide_exceptionnelle_tpe.plafond`
       - Suppression de la variable `covid_aide_exceptionnelle_famille_eligibilite`
 
 ### 50.0.4 [#1470](https://github.com/openfisca/openfisca-france/pull/1470)
