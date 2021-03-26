@@ -1,5 +1,11 @@
 # Changelog
 
+### 51.3.2 [#1490](https://github.com/openfisca/openfisca-france/pull/1490)
+
+* Changement mineur.
+* Détails :
+  - Corrige des fautes de frappe dans les descriptions de variables.
+
 ### 51.3.1 [#1495](https://github.com/openfisca/openfisca-france/pull/1495)
 
 * Correction d'un crash.
