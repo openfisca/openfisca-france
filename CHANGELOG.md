@@ -1,5 +1,16 @@
 # Changelog
 
+## 51.4.0 [#1497](https://github.com/openfisca/openfisca-france/pull/1497)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir de 2021.
+* Zones impactées :
+  * `caracteristiques_socio_demographiques/demographie.py`
+  * `prestations/locapass.py`
+* Détails :
+  - Ajoute le dispositif Loca-Pass
+  - Ajoute la variable `alternant`
+
 ### 51.3.2 [#1490](https://github.com/openfisca/openfisca-france/pull/1490)
 
 * Changement mineur.
