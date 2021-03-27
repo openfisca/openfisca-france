@@ -28,10 +28,7 @@ class mobili_jeune_eligibilite(Variable):
             )
 
         smic_mensuel_brut = individu("smic_proratise", period)
-        condition_remuneration = (
-            individu("remuneration_apprenti", period)
-            + individu("remuneration_professionnalisation", period)
-            ) <= smic_mensuel_brut
+        condition_remuneration = individu("salaire_de_base", period) <= smic_mensuel_brut
 
         statut_occupation_logement = individu.menage("statut_occupation_logement", period)
         locataire = (
