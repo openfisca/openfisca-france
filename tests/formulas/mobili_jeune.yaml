@@ -1,22 +1,10 @@
-- name: Éligibilité à l'aide au logement mobili-jeune selon âge, contrat d'apprentissage et rémunération
+- name: Éligibilité à l'aide au logement mobili-jeune
   period: 2021-01
   input:
-    age: [29, 29, 29, 30]
-    alternant: [true, false, true, true]
-    salaire_de_base: [1554.58, 1554.58, 1555, 1554.58]
-    mobili_jeune_eligibilite_employeur: [true, true, true, true]
-    statut_occupation_logement: ['locataire_foyer', 'locataire_foyer', 'locataire_foyer', 'locataire_foyer']
+    age: [16, 30, 29, 29, 29, 29]
+    alternant: [true, true, false, true, true, true]
+    salaire_de_base: [1554.58, 1554.58, 1554.58, 1555, 1554.58, 1554.58]
+    mobili_jeune_eligibilite_employeur: [true, true, true, true, false, true]
+    statut_occupation_logement: ['locataire_meuble', 'locataire_vide', 'locataire_hlm', 'locataire_foyer', 'locataire_foyer', 'non_renseigne']
   output:
-    mobili_jeune_eligibilite: [true, false, false, false]
-
-
-- name: Éligibilité à l'aide au logement mobili-jeune selon logement et employeur
-  period: 2021-01
-  input:
-    age: [16, 16, 16, 16, 16, 16]
-    alternant: [true, true, true, true, true, true]
-    salaire_de_base: [855.02, 855.02, 855.02, 855.02, 855.02, 855.02]
-    statut_occupation_logement: ['locataire_foyer', 'locataire_hlm', 'locataire_vide', 'locataire_meuble', 'non_renseigne', 'locataire_meuble']
-    mobili_jeune_eligibilite_employeur: [true, true, true, true, true, false]
-  output:
-    mobili_jeune_eligibilite: [true, true, true, true, false, false]
+    mobili_jeune_eligibilite: [true, false, false, false, false, false]
