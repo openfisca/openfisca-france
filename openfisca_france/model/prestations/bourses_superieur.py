@@ -24,9 +24,9 @@ class aide_jeunes_diplomes_anciens_boursiers_eligibilite(Variable):
     Conditions non modélisées :
     Être disponible pour occuper un emploi, le jour de la demande.
     Ne pas être en formation (de niveau 5 minimum) au moment de la demande.
-    Ne pas être inscrit dans une nouvelle formation (de niveau 5 minimum) dans l'année universitaire qui suit l'obtention du diplôme.    
+    Ne pas être inscrit dans une nouvelle formation (de niveau 5 minimum) dans l'année universitaire qui suit l'obtention du diplôme.   
     '''
-    
+
     def formula_2021_02_05(individu, period, parameters):
         condition_age = individu("age", period) < 30
 
@@ -34,7 +34,7 @@ class aide_jeunes_diplomes_anciens_boursiers_eligibilite(Variable):
         date_diplome = individu("date_diplome", period)
         condition_diplome = (
             diplome == TypesDiplome.niveau_5
-            + diplome == TypesDiplome.niveau_6 
+            + diplome == TypesDiplome.niveau_6
             + diplome == TypesDiplome.niveau_7
             + diplome == TypesDiplome.niveau_8
             ) * (
@@ -46,7 +46,7 @@ class aide_jeunes_diplomes_anciens_boursiers_eligibilite(Variable):
 
         # Être inscrit sur la liste des demandeurs d’emploi
         demandeur_emploi = individu("activite", period) == TypesActivite.chomeur
-        pas_en_formation = individu("formation", period)
+        pas_en_formation = not_(individu("formation", period))
         condition_activite = demandeur_emploi * pas_en_formation
 
         return condition_age * condition_diplome * bourse_criteres_sociaux * condition_activite
