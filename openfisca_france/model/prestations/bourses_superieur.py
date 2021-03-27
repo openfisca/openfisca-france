@@ -20,6 +20,7 @@ class aide_jeunes_diplomes_anciens_boursiers_eligibilite(Variable):
     entity = Individu
     label = "Éligibilité à l'aide jeunes diplômés et anciens boursiers"
     definition_period = MONTH
+    reference = "https://www.pole-emploi.fr/candidat/mes-droits-aux-aides-et-allocati/allocations-et-aides--les-repons/aides-financieres-aux-jeunes-dip.html"
     documentation = '''
     Conditions non modélisées :
     Être disponible pour occuper un emploi, le jour de la demande.
