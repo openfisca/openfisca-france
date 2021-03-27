@@ -49,4 +49,11 @@ class aide_jeunes_diplomes_anciens_boursiers_eligibilite(Variable):
         pas_en_formation = not_(individu("formation", period))
         condition_activite = demandeur_emploi * pas_en_formation
 
-        return condition_age * condition_diplome * bourse_criteres_sociaux * condition_activite
+        condition_non_cumul = (
+            # ajouter ARE ATI
+            individu("ass", period)
+            * individu("rsa", period)
+            * individu("garantie_jeunes", period)
+            ) <= 0.
+
+        return condition_age * condition_diplome * bourse_criteres_sociaux * condition_activite * condition_non_cumul
