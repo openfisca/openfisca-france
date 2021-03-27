@@ -4,6 +4,17 @@ from openfisca_france.model.base import (
     )
 
 
+class mobili_jeune_eligibilite_employeur(Variable):
+    value_type = bool
+    label = "Conditions à remplir par l'employeur d'un demandeur d'aide au logement mobili-jeune"
+    entity = Individu
+    definition_period = MONTH
+    reference = "https://www.actionlogement.fr/l-aide-mobili-jeune"
+
+    def formula(individu, period, parameters):
+        return individu("secteur_activite_employeur", period) == TypesSecteurActivite.non_agricole
+
+
 class mobili_jeune_eligibilite(Variable):
     value_type = bool
     label = "Éligibilité à l'aide au logement mobili-jeune"
@@ -24,7 +35,7 @@ class mobili_jeune_eligibilite(Variable):
         secteur_prive_non_agricole = (
             individu("categorie_salarie", period) == TypesCategorieSalarie.prive_non_cadre
             ) * (
-                individu("secteur_activite_employeur", period) == TypesSecteurActivite.non_agricole
+                individu("mobili_jeune_eligibilite_employeur", period)
             )
 
         smic_mensuel_brut = individu("smic_proratise", period)
