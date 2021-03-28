@@ -321,13 +321,11 @@ class ressortissant_eee(Variable):
         return sum([nationalite == str.encode(etat_membre) for etat_membre in parameters(period).geopolitique.eee])  # TOOPTIMIZE: string encoding into bytes array should be done at load time
 
 
-'''
-La résidence est supposée par la nationalité.
-Si la résidence est déterminée d'une autre manière plus précise, écraser cette variable en la définissant plutôt qu'en la laissant calculer par la nationalité.
-'''
-
-
 class resident_ue(Variable):
+    '''
+    La résidence est supposée par la nationalité.
+    Si la résidence est déterminée d'une autre manière plus précise, écraser cette variable en la définissant plutôt qu'en la laissant calculer par la nationalité.
+    '''
     value_type = bool
     default_value = True
     entity = Individu
