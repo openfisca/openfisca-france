@@ -1,27 +1,6 @@
 # Changelog
 
-## 51.7.0 [#1498](https://github.com/openfisca/openfisca-france/pull/1498)
-
-* Évolution du système socio-fiscal.
-* Périodes concernées : à partir de 1579 (XVIᵉ siècle).
-* Zones impactées :
-  - `parameters/demographie/age_majorite.yaml`
-* Détails :
-  - Ajoute la variable `majeur` qui calcule si la personne a atteint la majorité civile par son âge on son émancipation.
-  - Ajoute la variable `mineur_emancipe`.
-  - Ajoute le paramètre `demographie.age_majorite` qui donne l'âge d'obtention de la majorité civile.
-  - Améliore le calcul de `garantie_pret_etudiant` en utilisant une condition de majorite et non d'âge.
-
-### 51.6.1 [#1500](https://github.com/openfisca/openfisca-france/pull/1500)
-
-* Évolution du système socio-fiscal.
-* Périodes concernées : à partir du 16/02/2021.
-* Zones impactées :
-  - `parameters/prestations/garantie_pret_etudiant/montant_max.yaml`
-* Détails :
-  - Mise à jour du montant maximum du prêt étudiant garanti par l'État.
-
-## 51.6.0 [#1499](https://github.com/openfisca/openfisca-france/pull/1499)
+## 51.7.0 [#1499](https://github.com/openfisca/openfisca-france/pull/1499)
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 01/01/1958.
@@ -34,6 +13,27 @@
   - Ajoute la variable `gratuite_musees_monuments`, qui indique l'éligibilité à la gratuité d'accès aux musées et monuments nationaux pour les jeunes résident·e·s de l'Union européenne.
   - Ajoute la variable `resident_ue`, qui calcule la résidence dans un pays de l'Union européenne à partir de la `nationalite` et peut être écrasée si l'information est obtenue de manière plus précise.
   - Ajoute le paramètre `geopolitique.ue`, qui donne l'évolution de la liste des pays de l'Union européenne de 1958 à 2021.
+
+### 51.6.1 [#1500](https://github.com/openfisca/openfisca-france/pull/1500)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 16/02/2021.
+* Zones impactées :
+  - `parameters/prestations/garantie_pret_etudiant/montant_max.yaml`
+* Détails :
+  - Mise à jour du montant maximum du prêt étudiant garanti par l'État.
+
+## 51.6.0 [#1498](https://github.com/openfisca/openfisca-france/pull/1498)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir de 1579 (XVIᵉ siècle).
+* Zones impactées :
+  - `parameters/demographie/age_majorite.yaml`
+* Détails :
+  - Ajoute la variable `majeur` qui calcule si la personne a atteint la majorité civile par son âge on son émancipation.
+  - Ajoute la variable `mineur_emancipe`.
+  - Ajoute le paramètre `demographie.age_majorite` qui donne l'âge d'obtention de la majorité civile.
+  - Améliore le calcul de `garantie_pret_etudiant` en utilisant une condition de majorite et non d'âge.
 
 ## 51.5.0 [#1489](https://github.com/openfisca/openfisca-france/pull/1489)
 
