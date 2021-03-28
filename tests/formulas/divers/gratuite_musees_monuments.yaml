@@ -1,0 +1,15 @@
+- name: Condition d'âge pour l'accès gratuit aux musées nationaux
+  period: 2021-03
+  input:
+    age: [ 16, 18, 25, 26 ]
+    nationalite: [ FR, FR, FR, FR ]
+  output:
+    gratuite_musees_monuments: [ false, true, true, false ]
+
+- name: Condition de résidence pour l'accès gratuit aux musées nationaux
+  period: 2021-03
+  input:
+    age: [ 19, 19, 19, 19, 19, 19 ]
+    nationalite: [ FR, DE, UK, CH, LI, NZ ]
+  output:
+    gratuite_musees_monuments: [ true, true, false, false, false, false ]

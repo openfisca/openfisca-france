@@ -1,0 +1,22 @@
+description: Liste des pays membres de l'Union européenne (UE ou EU en anglais), par date de ratification des traités d'adhésion.
+reference: https://fr.wikipedia.org/wiki/Élargissement_de_l%27Union_européenne#Chronologie
+unit: ISO 3166-1 alpha-2
+values:
+  1958-01-01:
+    value: [ BE, DE, FR, IT, LU, NL ]
+  1973-01-01:
+    value: [ BE, DE, DK, FR, IE, IT, LU, NL, UK ]
+  1981-01-01:
+    value: [ BE, DE, DK, FR, GR, IE, IT, LU, NL, UK ]
+  1986-01-01:
+    value: [ BE, DE, DK, ES, FR, GR, IE, IT, LU, NL, PT, UK ]
+  1995-01-01:
+    value: [ AT, BE, DE, DK, ES, FI, FR, GR, IE, IT, LU, NL, PT, SE, UK ]
+  2004-01-01:
+    value: [ AT, BE, CY, CZ, DE, DK, EE, ES, FI, FR, GR, HU, IE, IT, LT, LV, LU, MT, NL, PL, PT, SE, SK, SV, UK ]
+  2007-01-01:
+    value: [ AT, BE, BG, CY, CZ, DE, DK, EE, ES, FI, FR, GR, HU, IE, IT, LT, LV, LU, MT, NL, PL, PT, RO, SE, SK, SV, UK ]
+  2013-01-01:
+    value: [ AT, BE, BG, CY, CZ, DE, DK, EE, ES, FI, FR, GR, HR, HU, IE, IT, LT, LV, LU, MT, NL, PL, PT, RO, SE, SK, SV, UK ]
+  2021-01-01:
+    value: [ AT, BE, BG, CY, CZ, DE, DK, EE, ES, FI, FR, GR, HR, HU, IE, IT, LT, LV, LU, MT, NL, PL, PT, RO, SE, SK, SV ]

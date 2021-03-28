@@ -1,5 +1,19 @@
 # Changelog
 
+## 51.7.0 [#1499](https://github.com/openfisca/openfisca-france/pull/1499)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/01/1958.
+* Zones impactées :
+  - `parameters/geopolitique/ue.yaml`
+  - `parameters/divers/gratuite_musees_monuments.yaml`
+  - `model/demographie.py`
+  - `model/divers/gratuite_musees_monuments.py`
+* Détails :
+  - Ajoute la variable `gratuite_musees_monuments`, qui indique l'éligibilité à la gratuité d'accès aux musées et monuments nationaux pour les jeunes résident·e·s de l'Union européenne.
+  - Ajoute la variable `resident_ue`, qui calcule la résidence dans un pays de l'Union européenne à partir de la `nationalite` et peut être écrasée si l'information est obtenue de manière plus précise.
+  - Ajoute le paramètre `geopolitique.ue`, qui donne l'évolution de la liste des pays de l'Union européenne de 1958 à 2021.
+
 ### 51.6.1 [#1500](https://github.com/openfisca/openfisca-france/pull/1500)
 
 * Évolution du système socio-fiscal.

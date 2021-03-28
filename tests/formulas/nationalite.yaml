@@ -11,3 +11,17 @@
     nationalite: [ AT, BE, BG, CY, CZ, DE, DK, EE, ES, FI, FR, GR, HR, HU, IE, IS, IT, LI, LU, LV, MT, NL, 'NO', PL, PT, RO, SE, SI, SK, UK, CH, RU ]
   output:
     ressortissant_eee: [ true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, false, false ]
+
+- name: Appartenance à l'UE
+  period: 2021-03
+  input:
+    nationalite: [ AT, 'NO', UK, CH, NZ ]
+  output:
+    resident_ue: [ true, false, false, false, false ]
+
+- name: Appartenance à l'UE avant le Brexit
+  period: 2020-03
+  input:
+    nationalite: [ AT, UK ]
+  output:
+    resident_ue: [ true, true ]
