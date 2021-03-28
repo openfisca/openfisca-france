@@ -1,5 +1,14 @@
 # Changelog
 
+### 51.6.1 [#1500](https://github.com/openfisca/openfisca-france/pull/1500)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 16/02/2021.
+* Zones impactées :
+  - `parameters/prestations/garantie_pret_etudiant/montant_max.yaml`
+* Détails :
+  - Mise à jour du montant maximum du prêt étudiant garanti par l'État.
+
 ## 51.6.0 [#1498](https://github.com/openfisca/openfisca-france/pull/1498)
 
 * Évolution du système socio-fiscal.
