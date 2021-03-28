@@ -1,5 +1,16 @@
 # Changelog
 
+### 51.7.1 [#1496](https://github.com/openfisca/openfisca-france/pull/1496)
+
+* Changement mineur.
+* Détails :
+  - Supprime option d'internationalisation du `setup.py`
+  - On utilise `python setup.py --version` pour vérifier la version
+    - Le fichier `setup.py` contenait l'option `message_extractors`
+    - Cette option d'internationalisation n'est pas reconnue par `distutils`
+    - Puisqu'aucune internationalisation n'est prévue, il semblerait être une option qui n'est plus valide ni nécessaire
+    - La suppression de l'option `message_extractors` corrige aussi le script de vérification de version
+
 ## 51.7.0 [#1499](https://github.com/openfisca/openfisca-france/pull/1499)
 
 * Évolution du système socio-fiscal.

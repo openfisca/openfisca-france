@@ -5,7 +5,7 @@ from setuptools import setup, find_packages
 
 setup(
     name = "OpenFisca-France",
-    version = "51.7.0",
+    version = "51.7.1",
     author = "OpenFisca Team",
     author_email = "contact@openfisca.fr",
     classifiers = [
@@ -59,9 +59,6 @@ setup(
     install_requires = [
         "OpenFisca-Core >=35.2.0,<36.0",
         ],
-    message_extractors = {"openfisca_france": [
-        ("**.py", "python", None),
-        ]},
     packages = find_packages(exclude = [
         "openfisca_france.tests*",
         "openfisca_france.assets.taxe_habitation.source*",
