@@ -3,6 +3,7 @@
 
 cache_blacklist = set([
     'agepi_temps_travail_semaine',
+    'aide_financement_permis_apprenti_eligibilite',
     'aide_logement_loyer_retenu',
     'aide_logement_charges',
     'aide_logement_R0',

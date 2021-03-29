@@ -24,3 +24,38 @@ class pret_formation_permis_eligibilite(Variable):
         age = individu('age', period)
         criteres_age = parameters(period).prestations.transport.pret_formation_permis.age
         return (criteres_age.minimum <= age) * (age <= criteres_age.maximum)
+
+
+class aide_financement_permis_apprenti(Variable):
+    value_type = float
+    label = "Montant de l'aide au financement du permis de conduire pour les apprentis"
+    entity = Individu
+    definition_period = MONTH
+    reference = [
+        "Décret n° 2019-1 du 3 janvier 2019 relatif à l'aide au financement du permis de conduire pour les apprentis",
+        "https://www.legifrance.gouv.fr/eli/decret/2019/1/3/MTRD1835610D/jo/article_1"
+        ]
+
+    def formula(individu, period, parameters):
+        montant = parameters(period).prestations.transport.aide_financement_permis_apprenti.montant
+        eligibilite = individu('aide_financement_permis_apprenti_eligibilite', period)
+
+        return montant * eligibilite
+
+
+class aide_financement_permis_apprenti_eligibilite(Variable):
+    value_type = bool
+    label = "Éligibilité à l'aide au financement du permis de conduire pour les apprentis"
+    entity = Individu
+    definition_period = MONTH
+    reference = [
+        "Décret n° 2019-1 du 3 janvier 2019 relatif à l'aide au financement du permis de conduire pour les apprentis",
+        "https://www.legifrance.gouv.fr/eli/decret/2019/1/3/MTRD1835610D/jo/article_1"
+        ]
+
+    def formula(individu, period, parameters):
+        age_minimal = parameters(period).prestations.transport.aide_financement_permis_apprenti.age_minimal
+        age = individu('age', period)
+        apprenti = individu('apprenti', period)
+
+        return (age_minimal <= age) * apprenti
