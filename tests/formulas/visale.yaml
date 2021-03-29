@@ -73,3 +73,23 @@
     charges_locatives: [ 0, 1, 101 ]
   output:
     visale_eligibilite: [ true, false, false ]
+
+- name: Base ressources pour Visale
+  period: 2021-03
+  input:
+    age: [ 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18 ]
+    loyer: [ 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500 ]
+    salaire_net: [ 1000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
+    revenus_stage_formation_pro: [ 0, 1000, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
+    remuneration_apprenti: [ 0, 0, 1000, 0, 0, 0, 0, 0, 0, 0, 0 ]
+    tns_auto_entrepreneur_benefice: [ 0, 0, 0, 1000, 0, 0, 0, 0, 0, 0, 0 ]
+    bourse_enseignement_sup: [ 0, 0, 0, 0, 1000, 0, 0, 0, 0, 0, 0 ]
+    chomage_net: [ 0, 0, 0, 0, 0, 1000, 0, 0, 0, 0, 0 ]
+    ass: [ 0, 0, 0, 0, 0, 0, 1000, 0, 0, 0, 0 ]
+    indemnites_journalieres_maternite: [ 0, 0, 0, 0, 0, 0, 0, 500, 0, 0, 0 ]
+    indemnites_journalieres_accident_travail: [ 0, 0, 0, 0, 0, 0, 0, 500, 0, 0, 0 ]
+    rente_accident_travail: [ 0, 0, 0, 0, 0, 0, 0, 0, 1000, 0, 0 ]
+    paje: [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 1000, 0 ]
+    ada: [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1000 ]
+  output:
+    visale_base_ressources_individuelle: [ 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 0, 0 ]
