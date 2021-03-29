@@ -54,7 +54,7 @@ class aide_financement_permis_apprenti_eligibilite(Variable):
         ]
 
     def formula(individu, period, parameters):
-        age_minimal = parameters(period).prestations.transport.aide_financement_permis_apprenti.age_minimal
+        age_minimal = parameters(period).prestations.transport.aide_financement_permis_apprenti.age_min
         age = individu('age', period)
         apprenti = individu('apprenti', period)
 

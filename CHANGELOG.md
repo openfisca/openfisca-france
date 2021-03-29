@@ -1,5 +1,13 @@
 # Changelog
 
+## 51.8.0 [#1502](https://github.com/openfisca/openfisca-france/pull/1502)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : À partir du 03/01/2019.
+* Zones impactées : `prestations/transport.py`.
+* Détails :
+  - Ajoute l'aide au financement du permis de conduire pour les apprentis.
+
 ### 51.7.1 [#1496](https://github.com/openfisca/openfisca-france/pull/1496)
 
 * Changement mineur.
