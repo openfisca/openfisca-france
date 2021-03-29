@@ -2,18 +2,52 @@ from numpy import absolute as abs_, logical_and as and_
 
 from openfisca_france.model.base import *
 
+from numpy import datetime64
+
+from openfisca_core.periods import Instant
 
 class ass_precondition_remplie(Variable):
     value_type = bool
     entity = Individu
-    label = "Éligible à l'ASS"
+    label = "L'individu a travaillé au moins 5 ans durant les 10 dernières années précédant la fin de contrat de travail"
     definition_period = MONTH
     reference = [
         "Article R5423-1 du Code du travail",
         "https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006072050&idArticle=LEGIARTI000018525084&dateTexte=20190618&categorieLien=cid#LEGIARTI000018525084"
         ]
     set_input = set_input_dispatch_by_period
+    
+    def formula(individu,period):
+        nombre_annees_travaillees_les_10_dernieres_annees = individu('nombre_annees_travaillees_les_10_dernieres_annees', period)
+        condition_eligibilite = nombre_annees_travaillees_les_10_dernieres_annees >= 5
 
+        return condition_eligibilite
+
+    
+class nombre_annees_travaillees_les_10_dernieres_annees(Variable):
+    value_type = float
+    entity = Individu
+    label = "Nombre d'années travaillées dans les 10 dernières années précédent la fin du contrat de travail"
+    definition_period = MONTH
+
+    def formula(individu, period):
+        nombre_jours_travailles_10_dernieres_annees = individu.empty_array()
+        for months in range(0, 552):
+            contrat_de_travail_fin_potentiel = period.offset(-months)
+            nombre_jours_travailles_10_dernieres_annees = where(
+                individu('contrat_de_travail_fin', period) == datetime64(contrat_de_travail_fin_potentiel.start),
+                individu(
+                    'nombre_jours_calendaires',
+                    contrat_de_travail_fin_potentiel.offset(-120).start.period('month', 120),
+                    options = [ADD],
+                    ),
+                nombre_jours_travailles_10_dernieres_annees,
+                )
+            
+        nombre_mois_travailles_10_dernieres_annees = nombre_jours_travailles_10_dernieres_annees / 30
+        nombre_annees_travaillees_10_dernieres_annees = nombre_mois_travailles_10_dernieres_annees / 12
+
+        return nombre_annees_travaillees_10_dernieres_annees
 
 class ass(Variable):
     value_type = float
@@ -28,7 +62,9 @@ class ass(Variable):
         residence_mayotte = individu.menage('residence_mayotte', period)
         ass_params = parameters(period).prestations.minima_sociaux.ass
 
-        elig = individu('ass_eligibilite_individu', period)
+        elig = individu('ass_eligibilite_individu', period) 
+
+        non_cumul_avec_aah = not_(individu('aah', period) > 0)
 
         montant_journalier = where(residence_mayotte, ass_params.montant_plein_mayotte, ass_params.montant_plein)
         montant_mensuel = 30 * montant_journalier
@@ -40,7 +76,7 @@ class ass(Variable):
 
         ass = min_(montant_mensuel, plafond_mensuel - revenus)
         ass = max_(ass, 0)
-        ass = ass * elig
+        ass = ass * elig * non_cumul_avec_aah
         # pas d'ASS si montant mensuel < montant journalier de base
         ass = ass * not_(ass < ass_params.montant_plein)
 
@@ -221,7 +257,6 @@ class ass_eligibilite_individu(Variable):
 
         demandeur_emploi_non_indemnise = and_(individu('activite', period) == TypesActivite.chomeur, individu('chomage_net', period) == 0)
 
-        # Indique que l'individu a travaillé 5 ans au cours des 10 dernieres années.
         ass_precondition_remplie = individu('ass_precondition_remplie', period)
 
         return demandeur_emploi_non_indemnise * ass_precondition_remplie * sous_age_limite
@@ -239,7 +274,6 @@ class ass_eligibilite_individu(Variable):
             * ((individu('activite', period) == TypesActivite.chomeur) + eligible_cumul_ass)
             )
 
-        # Indique que l'individu a travaillé 5 ans au cours des 10 dernieres années.
         ass_precondition_remplie = individu('ass_precondition_remplie', period)
 
         return not_(aah_eligible) * demandeur_emploi_non_indemnise_et_cumul_accepte * ass_precondition_remplie * sous_age_limite

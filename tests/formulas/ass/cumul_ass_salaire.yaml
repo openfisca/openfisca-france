@@ -1,0 +1,224 @@
+- name: Eligibilité cumul ASS et salaire - Cas n°1
+  description: Aucun salaire perçu 
+  period: 2019-07
+  input:
+    famille:
+      parents: [parent1]
+    individus:
+      parent1:
+        age: 50
+        ass_precondition_remplie: true
+        activite: chomeur
+        chomage_net:
+          2019-03: 400
+          2019-04: 400
+          2019-05: 400
+          2019-06: 400
+          2019-07: 0
+          2019-08: 0
+        salaire_imposable:
+          2019-03: 0
+          2019-04: 0
+          2019-05: 0
+          2019-06: 0
+          2019-07: 0
+          2019-08: 0
+    foyer_fiscal:
+      declarants:
+      - parent1
+    menage:
+      personne_de_reference:
+      - parent1
+  output:
+    ass_eligibilite_cumul_individu: true
+
+- name: Eligibilité cumul ASS et salaire - Cas n°2
+  description: Salaire perçu uniquement au 2019-07
+  period: 2019-07
+  input:
+    famille:
+      parents: [parent1]
+    individus:
+      parent1:
+        age: 50
+        ass_precondition_remplie: true
+        activite: chomeur
+        chomage_net:
+          2019-03: 400
+          2019-04: 400
+          2019-05: 400
+          2019-06: 400
+          2019-07: 0
+          2019-08: 0
+        salaire_imposable:
+          2019-03: 0
+          2019-04: 0
+          2019-05: 0
+          2019-06: 0
+          2019-07: 1000
+          2019-08: 0
+    foyer_fiscal:
+      declarants:
+      - parent1
+    menage:
+      personne_de_reference:
+      - parent1
+  output:
+    ass_eligibilite_cumul_individu: true
+
+- name: Eligibilité cumul ASS et salaire - Cas n°3
+  description: Salaire perçu au 2019-07, 2019-08, et 2019-09
+  period: 2019-09
+  input:
+    famille:
+      parents: [parent1]
+    individus:
+      parent1:
+        age: 50
+        ass_precondition_remplie: true
+        activite: chomeur
+        chomage_net:
+          2019-03: 400
+          2019-04: 400
+          2019-05: 400
+          2019-06: 400
+          2019-07: 0
+          2019-08: 0
+          2019-09: 0
+        salaire_imposable:
+          2019-03: 0
+          2019-04: 0
+          2019-05: 0
+          2019-06: 0
+          2019-07: 1000
+          2019-08: 1000
+          2019-09: 1000
+    foyer_fiscal:
+      declarants:
+      - parent1
+    menage:
+      personne_de_reference:
+      - parent1
+  output:
+    ass_eligibilite_cumul_individu: true
+
+- name: Eligibilité cumul ASS et salaire - Cas n°4
+  description: Salaire perçu au 2019-07, 2019-08, et 2019-09 ainsi qu'auparavant, lors de la perception d'allocations chômage (ARE) 
+  period: 2019-09
+  input:
+    famille:
+      parents: [parent1]
+    individus:
+      parent1:
+        age: 50
+        ass_precondition_remplie: true
+        activite: chomeur
+        chomage_net:
+          2019-03: 400
+          2019-04: 400
+          2019-05: 400
+          2019-06: 400
+          2019-07: 0
+          2019-08: 0
+          2019-09: 0
+        salaire_imposable:
+          2019-03: 0
+          2019-04: 0
+          2019-05: 1000
+          2019-06: 1000
+          2019-07: 1000
+          2019-08: 1000
+          2019-09: 1000
+    foyer_fiscal:
+      declarants:
+      - parent1
+    menage:
+      personne_de_reference:
+      - parent1
+  output:
+    ass_eligibilite_cumul_individu: true
+
+- name: Eligibilité cumul ASS et salaire - Cas n°5
+  description: Salaire perçu en même temps que l'ASS pendant 3 mois non consécutifs 
+  period: 2019-09
+  input:
+    famille:
+      parents: [parent1]
+    individus:
+      parent1:
+        age: 50
+        ass_precondition_remplie: true
+        activite: chomeur
+        chomage_net:
+          2019-03: 400
+          2019-04: 0
+          2019-05: 600
+          2019-06: 0
+          2019-07: 700
+          2019-08: 700
+          2019-09: 0
+        salaire_imposable:
+          2019-03: 0
+          2019-04: 1000
+          2019-05: 1000
+          2019-06: 800
+          2019-07: 1000
+          2019-08: 1000
+          2019-09: 1000
+    foyer_fiscal:
+      declarants:
+      - parent1
+    menage:
+      personne_de_reference:
+      - parent1
+  output:
+    ass_eligibilite_cumul_individu: true
+
+- name: Eligibilité cumul ASS et salaire - Cas n°6
+  description: Salaire perçu en même temps que l'ASS pendant 4 mois consécutifs 
+  period: 2019-09
+  input:
+    famille:
+      parents: [parent1]
+    individus:
+      parent1:
+        age: 50
+        ass_precondition_remplie: true
+        activite: chomeur
+        chomage_net:
+          2018-09: 400
+          2018-10: 400
+          2018-11: 300
+          2018-12: 600
+          2019-01: 400
+          2019-02: 400
+          2019-03: 400
+          2019-04: 300
+          2019-05: 600
+          2019-06: 0
+          2019-07: 0
+          2019-08: 0
+          2019-09: 0
+        salaire_imposable:
+          2018-09: 400
+          2018-10: 400
+          2018-11: 300
+          2018-12: 600
+          2019-01: 400
+          2019-02: 400
+          2019-03: 400
+          2019-04: 300
+          2019-05: 600
+          2019-06: 800
+          2019-07: 600
+          2019-08: 200
+          2019-09: 100
+    foyer_fiscal:
+      declarants:
+      - parent1
+    menage:
+      personne_de_reference:
+      - parent1
+  output:
+    ass_eligibilite_cumul_individu: false
+

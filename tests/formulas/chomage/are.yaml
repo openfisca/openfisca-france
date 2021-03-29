@@ -1,6 +1,7 @@
 - name: Calcul du montant de l'allocation chômage (ARE) - Cas n°1
   description: Le montant de l'ARE pour un individu gagnant 1000 euros par mois et ayant travaillé les 12 derniers mois est égal à 75% du salaire mensuel de référence  
   period: 2019-07
+  absolute_error_margin: 0.02
   input:
     salaire_de_base:
       2018-07: 1000
@@ -31,6 +32,7 @@
 - name: Calcul du montant de l'allocation chômage (ARE) - Cas n°2
   description: Le montant de l'ARE pour un individu gagnant 1200 euros par mois et ayant travaillé les 12 derniers mois est égal au montant minimal, c'est à dire 877.8 au 2019-07
   period: 2019-07
+  absolute_error_margin: 0.02
   input:
     salaire_de_base:
       2018-07: 1200
@@ -61,6 +63,7 @@
 - name: Calcul du montant de l'allocation chômage (ARE) - Cas n°3
   description: Le montant de l'ARE pour un individu gagnant 2000 euros par mois et ayant travaillé les 12 derniers mois est égal à 40,4% du salaire mensuel de référence + 360€
   period: 2019-07
+  absolute_error_margin: 0.02
   input:
     salaire_de_base:
       2018-07: 2000
@@ -84,13 +87,14 @@
       2019-07: true
   output:
     salaire_de_reference_mensuel: 
-      2019-07: 1970.4435
+      2019-07: 1970.44335
     are: 
       2019-07: 1156.0592
 
 - name: Calcul du montant de l'allocation chômage (ARE) - Cas n°4
   description: Le montant de l'ARE pour un individu gagnant 10000 euros par mois et ayant travaillé les 12 derniers mois est égal à 57% du salaire mensuel de référence 
   period: 2019-07
+  absolute_error_margin: 0.02
   input:
     salaire_de_base:
       2018-07: 10000
@@ -121,6 +125,7 @@
 - name: Calcul du montant de l'allocation chômage (ARE) - Cas n°5
   description: Montant de l'ARE pour un individu gagnant des sommes différentes chaque mois et ayant travaillé les 12 derniers mois
   period: 2019-07
+  absolute_error_margin: 0.02
   input:
     salaire_de_base:
       2018-07: 10000
@@ -151,6 +156,7 @@
 - name: Calcul du montant de l'allocation chômage (ARE) - Cas n°6
   description: Montant de l'ARE pour un individu gagnant des sommes différentes chaque mois et ayant travaillé partiellement les 12 derniers mois
   period: 2019-07
+  absolute_error_margin: 0.02
   input:
     salaire_de_base:
       2018-07: 10000
@@ -181,6 +187,7 @@
 - name: Calcul du montant de l'allocation chômage (ARE) - Cas n°7
   description: Montant de l'ARE pour un individu gagnant des sommes différentes chaque mois et ayant travaillé partiellement les 12 derniers mois au 2013-07
   period: 2013-07
+  absolute_error_margin: 0.02
   input:
     salaire_de_base:
       2012-07: 10000
