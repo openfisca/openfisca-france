@@ -1,0 +1,7 @@
+- period: 2021-03
+  input:
+    apprenti: [true, true, false]
+    age: [16, 18, 18]
+  output:
+    aide_financement_permis_apprenti_eligibilite: [false, true, false]
+    aide_financement_permis_apprenti: [0, 500, 0]

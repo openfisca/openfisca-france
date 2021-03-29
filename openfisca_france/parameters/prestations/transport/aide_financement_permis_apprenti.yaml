@@ -1,0 +1,7 @@
+reference: https://www.legifrance.gouv.fr/eli/decret/2019/1/3/MTRD1835610D/jo/texte
+age_min:
+  2019-01-03:
+    value: 18
+montant:
+  2019-01-03:
+    value: 500
