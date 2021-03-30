@@ -340,6 +340,8 @@ class TypesClasse(Enum):
     autre = 'Autre'
     terminale = 'Terminale'
     licence_3 = 'Licence 3ème année'
+    licence_3 = 'Licence 3ème année'
+    master_1 = 'Master 1ère année'
 
 
 class classe_scolarite(Variable):
