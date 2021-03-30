@@ -1,0 +1,10 @@
+- name: Éligibilité à l'aide au logement mobili-jeune
+  period: 2021-01
+  input:
+    age: [16, 30, 29, 29, 29, 29]
+    alternant: [true, true, false, true, true, true]
+    salaire_de_base: [1554.58, 1554.58, 1554.58, 1555, 1554.58, 1554.58]
+    mobili_jeune_eligibilite_employeur: [true, true, true, true, false, true]
+    statut_occupation_logement: ['locataire_meuble', 'locataire_vide', 'locataire_hlm', 'locataire_foyer', 'locataire_foyer', 'non_renseigne']
+  output:
+    mobili_jeune_eligibilite: [true, false, false, false, false, false]

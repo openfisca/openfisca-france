@@ -5,13 +5,13 @@ class professionnalisation(Variable):
     value_type = bool
     entity = Individu
     label = "L'individu est en contrat de professionnalisation"
-    reference = "http://www.apce.com/pid879/contrat-de-professionnalisation.html?espace=1&tp=1"
+    reference = "https://www.legifrance.gouv.fr/codes/id/LEGIARTI000031088014/2016-01-01/"
     definition_period = MONTH
 
     def formula(individu, period, parameters):
         age = individu('age', period)
         ass = individu('ass', period)
-        rsa = individu('rsa', period)
+        rsa = individu.famille('rsa', period)
         aah = individu('aah', period)
 
         age_condition = (16 <= age) * (age < 25)
@@ -22,10 +22,18 @@ class professionnalisation(Variable):
         return (age_condition + dummy_ass + dummy_aah + dummy_rmi) > 0
 
 
+class qualifie(Variable):
+    value_type = bool
+    entity = Individu
+    label = "Etat du niveau de formation ou de qualification avant le contrat de professionnalisation"
+    definition_period = MONTH
+    reference = "https://travail-emploi.gouv.fr/formation-professionnelle/formation-en-alternance-10751/contrat-de-professionnalisation"
+
+
 class remuneration_professionnalisation(Variable):
     value_type = float
     entity = Individu
-    label = "Rémunération de l'apprenti"
+    label = "Rémunération de l'apprenti sous contrat de professionalisation"
     reference = "http://www.apce.com/pid927/contrat-d-apprentissage.html?espace=1&tp=1&pagination=2"
     definition_period = MONTH
 
@@ -51,7 +59,7 @@ class remuneration_professionnalisation(Variable):
         age = individu('age', period)
         smic = parameters(period).cotsoc.gen.smic_h_b * 52 * 35 / 12
         professionnalisation = individu('professionnalisation', period)
-        qualifie = individu('qualifie')
+        qualifie = individu('qualifie', period)
         salaire_en_smic = [
             dict(
                 part_de_smic_by_qualification = {

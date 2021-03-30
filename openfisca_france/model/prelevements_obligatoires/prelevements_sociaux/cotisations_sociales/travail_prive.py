@@ -921,3 +921,22 @@ class vieillesse_plafonnee_employeur(Variable):
             variable_name = 'vieillesse_plafonnee_employeur',
             )
         return cotisation
+
+
+class peec_employeur(Variable):
+    value_type = bool
+    entity = Individu
+    label = "Participation de l'employeur à l'effort de construction (PEEC) communément appelé le 1% logement (employeur)"
+    definition_period = MONTH
+    reference = "https://www.service-public.fr/professionnels-entreprises/vosdroits/F22583"
+
+
+class secteur_activite_employeur(Variable):
+    value_type = Enum
+    possible_values = TypesSecteurActivite
+    default_value = TypesSecteurActivite.non_renseigne
+    entity = Individu
+    label = "Secteur d'activité (employeur)"
+    definition_period = MONTH
+    reference = "https://www.service-public.fr/professionnels-entreprises/vosdroits/N24269"
+    set_input = set_input_dispatch_by_period

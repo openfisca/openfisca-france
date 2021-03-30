@@ -5,12 +5,19 @@ from openfisca_france.entities import Famille, FoyerFiscal, Individu, Menage  # 
 
 
 class TypesActivite(Enum):
-    __order__ = 'actif chomeur etudiant retraite inactif'  # Needed to preserve the enum order in Python 2
+    __order__ = 'actif chomeur etudiant retraite inactif'
     actif = 'Actif occupé'
     chomeur = 'Chômeur'
     etudiant = 'Étudiant, élève'
     retraite = 'Retraité'
     inactif = 'Autre, inactif'
+
+
+class TypesSecteurActivite(Enum):
+    __order__ = 'non_renseigne agricole non_agricole'
+    non_renseigne = 'Non renseigné'
+    agricole = 'Agricole'
+    non_agricole = 'Non agricole'
 
 
 class TypesCategorieNonSalarie(Enum):
