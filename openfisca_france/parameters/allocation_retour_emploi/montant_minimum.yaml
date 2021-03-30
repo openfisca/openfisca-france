@@ -1,4 +1,5 @@
 description: Montant minimum journalier de l'allocation chômage 
+reference: https://www.ipp.eu/baremes-ipp/chomage/allocations_assurance_chomage/alloc_base/
 unit: currency
 values:
   2020-07-01:
