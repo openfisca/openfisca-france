@@ -14,7 +14,7 @@ class TypesActivite(Enum):
 
 
 class TypesSecteurActivite(Enum):
-    __order__ = 'non_renseigne agricole non_agricole'  # Needed to preserve the enum order in Python 2
+    __order__ = 'non_renseigne agricole non_agricole'
     non_renseigne = 'Non renseigné'
     agricole = 'Agricole'
     non_agricole = 'Non agricole'
