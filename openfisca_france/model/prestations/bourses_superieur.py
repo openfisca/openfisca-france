@@ -47,7 +47,7 @@ class aide_jeunes_diplomes_anciens_boursiers_eligibilite(Variable):
 
         # Être inscrit sur la liste des demandeurs d’emploi
         demandeur_emploi = individu("activite", period) == TypesActivite.chomeur
-        pas_en_formation = not_(individu("formation", period))
+        pas_en_formation = individu("niveau_formation", period) == TypesDiplome.non_renseigne
         condition_activite = demandeur_emploi * pas_en_formation
 
         condition_non_cumul = (

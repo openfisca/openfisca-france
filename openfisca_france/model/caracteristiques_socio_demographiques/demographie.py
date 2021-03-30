@@ -76,10 +76,12 @@ class date_diplome(Variable):
     definition_period = ETERNITY
 
 
-class formation(Variable):
-    value_type = bool
+class niveau_formation(Variable):
+    value_type = Enum
+    default_value = TypesDiplome.non_renseigne
+    possible_values = TypesDiplome  # defined in model/base.py
     entity = Individu
-    label = "Inscrit à une formation ou en cours de formation professionnelle"
+    label = "Indique le niveau de la formation en cours"
     definition_period = MONTH
 
 

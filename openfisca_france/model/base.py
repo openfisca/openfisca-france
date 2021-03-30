@@ -8,7 +8,6 @@ class TypesDiplome(Enum):
     # https://fr.wikipedia.org/wiki/Liste_des_diplômes_en_France#Nomenclature_des_niveaux_de_diplômes
     # répertoire national des certifications professionnelles
     # https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000037964754/
-    __order__ = 'non_renseigne'
     non_renseigne = 'Non renseigné'
     niveau_1 = 'Niveau 1 - École maternelle et élémentaire'
     niveau_2 = 'Niveau 2 - École maternelle et élémentaire'
