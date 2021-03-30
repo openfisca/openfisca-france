@@ -1,5 +1,19 @@
 # Changelog
 
+## 51.9.0 [#1492](https://github.com/openfisca/openfisca-france/pull/1492)
+
+* Évolution du système socio-fiscal. 
+* Périodes concernées : à partir du 01/07/2012.
+* Zones impactées : 
+  - `model/base.py`
+  - `model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/`    
+    - `contrat_professionnalisation.py`
+    - `travail_prive.py`
+  - `model/prestations/mobili_jeune.py`
+  - `parameters/prestations/mobili_jeune.yaml`
+* Détails :
+  - Ajoute l'éligibilité à l'aide mobile-jeune qui subventionne une partie du loyer pour les jeunes en apprentissage.
+
 ## 51.8.0 [#1502](https://github.com/openfisca/openfisca-france/pull/1502)
 
 * Évolution du système socio-fiscal.
