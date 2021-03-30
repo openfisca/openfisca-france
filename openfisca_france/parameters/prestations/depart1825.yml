@@ -1,0 +1,30 @@
+plafond_ressources:
+  reference: https://www.ancv.com/actualites/le-magazine/depart-1825-un-nouveau-programme-pour-les-jeunes-de-18-25-ans
+  base:
+    2014-09-05:
+      value: 17000
+    2021-01-01: # Date approximative
+      value: 17280
+  par_demi_part_supplementaire:
+    2014-09-05:
+      value: 4320
+age:
+  minimum:
+    2014-09-05:
+      value: 18
+  maximum:
+    2014-09-05:
+      value: 25
+montant_maximum:
+  2014-09-05:
+    value: 150
+  2021-01-01:
+    value: 200
+proportion_maximum:
+  2014-09-05:
+    value: .50
+  2021-01-01:
+    value: .75
+reste_a_charge_minimum:
+  2014-09-05:
+    value: 50

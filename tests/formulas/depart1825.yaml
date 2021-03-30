@@ -1,0 +1,37 @@
+- period: 2021-03
+  input:
+    nbptr:
+      2019: [1, 1.5]
+  output:
+    depart1825_plafond_ressources: [17280, 21600]
+
+- period: 2021-03
+  input:
+    rfr:
+      2019: 100
+    depart1825_plafond_ressources: [120]
+  output:
+    depart1825_eligibilite_financiere: [true]
+
+- period: 2021-03
+  input:
+    activite: [etudiant, etudiant, inactif, inactif, actif]
+    boursier: [true, false, true, true, true]
+    alternant: [false, false, true, false, false]
+    garantie_jeunes: [0, 0, 0, 1, 0]
+  output:
+    depart1825_eligibilite_statut: [true, false, true, true, false]
+
+- period: 2021-03
+  input:
+    age: [18]
+    depart1825_eligibilite_statut: [true]
+    depart1825_eligibilite_financiere: [false]
+  output:
+    depart1825_eligibilite: [true]
+
+- period: 2021-03
+  input:
+    depart1825_eligibilite: [true, false]
+  output:
+    depart1825: [200, 0]
