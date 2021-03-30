@@ -8,4 +8,4 @@ class crous_logement_eligibilite(Variable):
     definition_period = MONTH
 
     def formula(individu, period):
-        return individu('bourse_criteres_sociaux', period) >= 0
+        return individu('bourse_criteres_sociaux_echelon', period) >= 0
