@@ -23,3 +23,35 @@ class aide_mobilite_parcoursup(Variable):
         montant = parameters(period).prestations.aide_mobilite_parcoursup.montant
 
         return montant * sortie_academie * en_terminal * boursier
+
+
+class aide_mobilite_master_sortie_academie(Variable):
+    value_type = bool
+    label = "Indicatrice d'une sortie de l'académie d'études entre la 3ème année de licence et le master"
+    entity = Individu
+    definition_period = MONTH
+
+
+class aide_mobilite_master(Variable):
+    """
+    Critères non pris en comptes:
+    - Première inscription en master l'année qui suit l'obtention de la licence
+    """
+    value_type = float
+    label = "Montant de l'aide à la mobilité Master"
+    entity = Individu
+    definition_period = MONTH
+    reference = [
+        "Décret n° 2017-969 du 10 mai 2017 relatif à l'aide à la mobilité accordée aux étudiants inscrits en première année du diplôme national de master",
+        "https://www.legifrance.gouv.fr/loda/id/JORFTEXT000034675851/"
+        ]
+
+    def formula(individu, period, parameters):
+        sortie_academie = individu("aide_mobilite_master_sortie_academie", period)
+        classe = individu("classe_scolarite", period)
+        en_transition = (classe == TypesClasse.licence_3) + (classe == TypesClasse.master_1)
+        boursier = individu("boursier", period)
+
+        montant = parameters(period).prestations.aide_mobilite_master.montant
+
+        return montant * sortie_academie * en_transition * boursier
