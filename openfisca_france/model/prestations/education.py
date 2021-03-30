@@ -310,6 +310,19 @@ class scolarite(Variable):
     set_input = set_input_dispatch_by_period
 
 
+class boursier(Variable):
+    value_type = bool
+    entity = Individu
+    label = "Élève ou étudiant boursier"
+    definition_period = MONTH
+
+    def formula_2021(individu, period):
+        college = individu.famille('bourse_college_echelon', period)
+        lycee = individu.famille('bourse_lycee', period)
+        sup = individu('bourse_criteres_sociaux', period)
+        return (college > 0) + (lycee > 0) + (sup > 0)
+
+
 class StatutsEtablissementScolaire(Enum):
     __order__ = 'inconnu public prive_sous_contrat prive_hors_contrat'  # Needed to preserve the enum order in Python 2
     inconnu = "Inconnu"
@@ -328,18 +341,21 @@ class statuts_etablissement_scolaire(Variable):
     set_input = set_input_dispatch_by_period
 
 
-class boursier(Variable):
-    value_type = bool
+class TypesClasse(Enum):
+    __order__ = 'autre terminale licence_3'
+    autre = 'Autre'
+    terminale = 'Terminale'
+    licence_3 = 'Licence 3ème année'
+
+
+class classe_scolarite(Variable):
+    value_type = Enum
+    possible_values = TypesClasse
+    default_value = TypesClasse.autre
     entity = Individu
-    label = "Élève ou étudiant boursier"
+    label = "Classe de l'étudiant"
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
-
-    def formula_2021(individu, period):
-        college = individu.famille('bourse_college_echelon', period)
-        lycee = individu.famille('bourse_lycee', period)
-        sup = individu('bourse_criteres_sociaux', period)
-        return (college > 0) + (lycee > 0) + (sup > 0)
 
 
 class debut_etudes_etranger(Variable):
