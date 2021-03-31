@@ -20,7 +20,7 @@ class aide_permis_demandeur_emploi_eligibilite_financiere(Variable):
 
         allocation_journaliere_minimum = parameters(period).allocation_retour_emploi.montant_minimum
         plafond_chomage = allocation_journaliere_minimum * 31
-        chomage_minimum = individu('chomage_brut', period) <= plafond_chomage
+        chomage_minimum = individu('chomage_net', period) <= plafond_chomage
 
         return sans_rsa * sans_aah * sans_retraite * chomage_minimum
 
