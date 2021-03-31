@@ -22,9 +22,6 @@ class visale_base_ressources_individuelle(Variable):
     reference = 'https://www.visale.fr/wp-content/uploads/2020/04/Visale-Ressources-Locataire_2020.pdf#page_7'
 
     def formula(individu, period, parameters):
-
-        # TODO: sont demandés les justificatifs des ressources sur le mois précédant la demande de visa
-
         ressources_individu_mensuelles = [
             'salaire_net',
             'primes_salaires',  # Sont prises en compte toutes les « primes récurrentes perçues dans le cadre d’une activité intégrée dans le calcul du salaire ou traitement ». Note : ce revenu est brut, il devrait être net.
@@ -77,7 +74,7 @@ class visale_base_ressources_individuelle(Variable):
         # foyer_fiscal = individu.foyer_fiscal
         # rente_viagere_titre_onereux = foyer_fiscal('rente_viagere_titre_onereux', period)
 
-        revenus_mensuels = sum(individu(ressource, period) for ressource in ressources_individu_mensuelles)
+        revenus_mensuels = sum(individu(ressource, period.last_month) for ressource in ressources_individu_mensuelles)  # les justificatifs des ressources sont demandés « sur le mois précédant la demande de visa »
         revenus_annuels = sum(individu(ressource, period.this_year) for ressource in ressources_individu_annuelles)  # DIVIDE ?
 
         return revenus_mensuels + (revenus_annuels / 12)
