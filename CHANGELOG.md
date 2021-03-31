@@ -1,5 +1,13 @@
 # Changelog
 
+## 51.11.0 [#1503](https://github.com/openfisca/openfisca-france/pull/1503)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : À partir du 11/04/2011.
+* Zones impactées : `prestations/aide_permis_demandeur_emploi.py`.
+* Détails :
+  -  Ajoute l'aide à l’obtention du permis de conduire automobile pour les demandeurs d’emploi.
+
 ## 51.10.0 [#1451](https://github.com/openfisca/openfisca-france/pull/1451)
 
 * Évolution du système socio-fiscal.

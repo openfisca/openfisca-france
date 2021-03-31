@@ -1,0 +1,20 @@
+- period: 2021-03
+  input:
+    rsa: [1, 0, 0, 0]
+    aah: [0, 1, 0, 0]
+    chomage_brut: [300, 300, 300, 1200]
+  output:
+    aide_permis_demandeur_emploi_eligibilite_financiere: [false, false, true, false]
+
+- period: 2021-03
+  input:
+    activite: [actif, chomeur]
+  output:
+    aide_permis_demandeur_emploi_eligibilite_individu: [false, true]
+
+- period: 2021-03
+  input:
+    aide_permis_demandeur_emploi_eligibilite_financiere: [true, false]
+    aide_permis_demandeur_emploi_eligibilite_individu: [true, true]
+  output:
+    aide_permis_demandeur_emploi: [1200, 0]
