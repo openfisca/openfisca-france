@@ -31,3 +31,11 @@ class indemnites_chomage_partiel(Variable):
     label = "Indemnités de chômage partiel"
     definition_period = MONTH
     set_input = set_input_divide_by_period
+
+
+class are(Variable):
+    value_type = float
+    entity = Individu
+    label = "Allocation chômage d'aide au retour à l'emploi (ARE)"
+    definition_period = MONTH
+    reference = "https://www.legifrance.gouv.fr/codes/id/LEGISCTA000006178163/"
