@@ -1,5 +1,42 @@
 # Changelog
 
+## 51.10.0 [#1451](https://github.com/openfisca/openfisca-france/pull/1451)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : toutes.
+* Zones impactées : 
+  - `model/prelevements_obligatoires/impot_revenu/ir.py`
+  - `model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/apprentissage.py`
+  - `model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/travail_prive.py`
+  - `model/prestations/aides_logement.py`
+  - `model/prestations/prestations_familiales/base_ressource.py`
+  - `model/revenus/activite/non_salarie.py`
+  - `model/revenus/remplacement/indemnites_journalieres_securite_sociale.py`
+  - `model/revenus/remplacement/rente_accident_travail.py`
+  - `parameters/impot_revenu/abattements_rni/personne_agee_ou_invalide/` (montants et plafonds 2019-01)
+  - `parameters/prestations/` :
+    - `aides_logement/R0/`
+    - `aides_logement/age_max_etudiant.yaml`
+    - `aides_logement/al_charge/personne_isolee_ou_menage_seul/cas_des_colocataires_ou_des_proprietaires_1.yaml`
+    - `aides_logement/forfait_charges/`
+    - `aides_logement/loyers_plafond/par_zone/`
+    - `aides_logement/participation_min/montant_forfaitaire.yaml`
+    - `aides_logement/ressources/`
+    - `al_assistant_journaliste/abattement.yaml`
+    - `al_etudiant/autres_dont_les_etudiants_en_chambres_rehabilitees_de_residences_universitaires/`
+    - `al_plafonds_logement_foyer/conventionne/`
+    - `prestations_familiales/af/modulation/`
+    - `prestations_familiales/ars/plafond_ressources.yaml`
+    - `prestations_familiales/cf/`
+    - `prestations_familiales/paje/base/apres_2014/`
+    - `prestations_familiales/paje/base/apres_2018/`
+    - `prestations_familiales/paje/montant_maximale_de_la_prise_en_charge/`
+    - `reduction_loyer_solidarite/montant/par_zone/`
+* Détails :
+  - À partir d’avril 2019, les ressources prises en compte pour ouvrir et calculer les droits aux aides au logement (AL) sont calculées non plus sur l’année fiscale N-2, mais sur les 12 derniers mois connus de manière glissante.
+  - La réforme affecte certains cas d'abattements et neutralisations communs aux aides au logement et aux prestations familiales (AF).
+  - La mise à jour inclut des revalorisations paramétriques de janvier 2020 (ressources et taux AL / ARS / PAJE), d'octobre 2020 (charges / plafonds loyers / cas étudiant  AL) et janvier 2021 (ressources AL / modulation AF / ARS / CF / PAJE).
+
 ## 51.9.0 [#1492](https://github.com/openfisca/openfisca-france/pull/1492)
 
 * Évolution du système socio-fiscal. 
@@ -165,7 +202,7 @@
 * Périodes concernées : à partir du 01/01/2021.
 * Zones impactées : `openfisca_france/parameters/impot_revenu/bareme.yaml`.
 * Détails :
-  - Mise à jour du barème d'IR applicable à partir du 1er janvier 2021.
+  - Mise à jour du barème d'impôt sur les revenus (IR) applicable à partir du 1er janvier 2021.
 
 # 51.0.0 [#1442](https://github.com/openfisca/openfisca-france/pull/1442)
 

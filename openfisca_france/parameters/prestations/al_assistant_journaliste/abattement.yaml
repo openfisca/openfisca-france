@@ -1,0 +1,18 @@
+montant:
+    journaliste:
+      unit: currency
+      values:
+        2019-01-01:
+          value: 637.5
+
+    assistant_maternel:
+      unit: currency
+      values:
+        2019-01-01:
+          value: 1195
+
+    assistant_familial:
+      unit: currency
+      values:
+        2019-01-01:
+          value: 1195

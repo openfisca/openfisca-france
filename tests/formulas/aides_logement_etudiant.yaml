@@ -1,0 +1,110 @@
+- name: "Cas 1, Etudiant moins de 28 ans, boursier"
+  period: 2021-02
+  relative_error_margin: 0.01
+  input:
+    famille:
+      parents: parent1
+    menage:
+      personne_de_reference: parent1
+      statut_occupation_logement: locataire_vide
+      zone_apl: zone_2
+      loyer: 300
+    individus:
+      parent1:
+        etudiant: true
+        boursier: true
+        date_naissance: 2000-01-10
+        salaire_imposable:
+          2020-12: 583.33
+          2020-11: 583.33
+          2020-10: 583.33
+          2020-09: 583.33
+          2020-08: 583.33
+          2020-07: 583.33
+          2020-06: 583.33
+          2020-05: 583.33
+          2020-04: 583.33
+          2020-03: 583.33
+          2020-02: 583.33
+          2020-01: 583.33
+    foyer_fiscal:
+      declarants: parent1
+  output:
+    aide_logement: 219.58
+
+- name: "Cas 1, Etudiant moins de 28 ans, Boursier en logement CROUS"
+  period: 2021-02
+  relative_error_margin: 0.01
+  input:
+    famille:
+      parents: parent1
+    menage:
+      personne_de_reference: parent1
+      logement_crous: true
+      zone_apl: zone_2
+      loyer: 400
+    individus:
+      parent1:
+        etudiant: true
+        boursier: true
+        date_naissance: 2000-01-10
+        salaire_imposable:
+          2020-12: 541.66
+          2020-11: 541.66
+          2020-10: 541.66
+          2020-09: 541.66
+          2020-08: 541.66
+          2020-07: 541.66
+          2020-06: 541.66
+          2020-05: 541.66
+          2020-04: 541.66
+          2020-03: 541.66
+          2020-02: 541.66
+          2020-01: 541.66
+    foyer_fiscal:
+      declarants: parent1
+  output:
+    aide_logement_base_ressources: 4900
+    aide_logement: 114.34 # au lieu 53
+
+- name: "Cas 3, Etudiant plus de 28 ans, non boursier"
+  period: 2021-02
+  relative_error_margin: 0.01
+  input:
+    famille:
+      parents: parent1
+      enfants: enfant1
+      rsa:
+        2020-12: 0
+        2020-11: 0
+        2020-10: 0
+    menage:
+      personne_de_reference: parent1
+      enfants: enfant1
+      statut_occupation_logement: locataire_vide
+      zone_apl: zone_2
+      loyer: 400
+    individus:
+      parent1:
+        etudiant: true
+        date_naissance: 1989-01-10
+        salaire_imposable:
+          2020-12: 658.33
+          2020-11: 658.33
+          2020-10: 658.33
+          2020-09: 658.33
+          2020-08: 658.33
+          2020-07: 658.33
+          2020-06: 658.33
+          2020-05: 658.33
+          2020-04: 658.33
+          2020-03: 658.33
+          2020-02: 658.33
+          2020-01: 658.33
+      enfant1:
+        date_naissance: 2016-01-01
+    foyer_fiscal:
+      declarants: parent1
+      personnes_a_charge: enfant1
+  output:
+    aide_logement: 378.55

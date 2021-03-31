@@ -87,6 +87,15 @@ class indemnites_journalieres_imposables(Variable):
         return result
 
 
+class indemnites_journalieres_atexa(Variable):
+    value_type = float
+    entity = Individu
+    label = "Indemnités de l'assurance Accident du Travail des Exploitants Agricoles"
+    reference = "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000649169"
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
+
+
 class date_arret_de_travail(Variable):
     value_type = date
     default_value = date.min

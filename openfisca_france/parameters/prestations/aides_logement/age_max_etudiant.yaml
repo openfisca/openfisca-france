@@ -1,0 +1,5 @@
+description: Âge maximal d'éligibilité d'un étudiant à l'aide au logement
+unit: year
+values:
+  2020-01-01:
+    value: 28

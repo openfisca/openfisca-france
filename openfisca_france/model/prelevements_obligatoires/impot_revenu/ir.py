@@ -3508,3 +3508,10 @@ class ppe(Variable):
         #   Dans les agrégats officiels de la DGFP, c'est à la PPE brute qu'il faut comparer
         ppe = max_(ppe_brute - rsa_act, 0)
         return ppe
+
+
+class deficit_exercice(Variable):
+    value_type = float
+    entity = FoyerFiscal
+    label = "Déficit sur l'exercice"
+    definition_period = YEAR

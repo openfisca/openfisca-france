@@ -1981,6 +1981,7 @@ class tns_auto_entrepreneur_benefice(Variable):
     label = "Bénéfice en tant qu'auto-entrepreneur"
     entity = Individu
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula_2008_01_01(individu, period, parameters):
         tns_auto_entrepreneur_type_activite = individu('tns_auto_entrepreneur_type_activite', period)
