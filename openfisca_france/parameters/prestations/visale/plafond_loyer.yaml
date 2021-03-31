@@ -1,0 +1,27 @@
+cas_general:
+  hors_ile_de_france:
+    description: Montant maximum du loyer éligible à la caution Visale pour les personnes logeant hors Île-de-France.
+    reference: https://www.visale.fr/vos-questions/faq-locataires/locataire-de-30-ans-ou-moins-suis-je-eligible/#13
+    unit: currency
+    values:
+      2020-03-25: 1300  # date déterminée d'après la date indiquée dans le PDF de détail des ressources : https://www.visale.fr/wp-content/uploads/2020/04/Visale-Ressources-Locataire_2020.pdf
+  ile_de_france:
+    description: Montant maximum du loyer éligible à la caution Visale pour les personnes logeant en Île-de-France.
+    reference: https://www.visale.fr/vos-questions/faq-locataires/locataire-de-30-ans-ou-moins-suis-je-eligible/#13
+    unit: currency
+    values:
+      2020-03-25: 1500  # date déterminée d'après la date indiquée dans le PDF de détail des ressources : https://www.visale.fr/wp-content/uploads/2020/04/Visale-Ressources-Locataire_2020.pdf
+
+etudiant:
+  hors_ile_de_france:
+    description: Montant maximum du loyer pour l'éligibilité automatique à Visale pour les personnes disposant d'un statut étudiant et logeant hors Île-de-France.
+    reference: https://www.visale.fr/vos-questions/faq-locataires/locataire-de-30-ans-ou-moins-suis-je-eligible/#13
+    unit: currency
+    values:
+      2020-03-25: 600  # date déterminée d'après la date indiquée dans le PDF de détail des ressources : https://www.visale.fr/wp-content/uploads/2020/04/Visale-Ressources-Locataire_2020.pdf
+  ile_de_france:
+    description: Montant maximum du loyer pour l'éligibilité automatique à Visale pour les personnes disposant d'un statut étudiant et logeant en Île-de-France.
+    reference: https://www.visale.fr/vos-questions/faq-locataires/locataire-de-30-ans-ou-moins-suis-je-eligible/#13
+    unit: currency
+    values:
+      2020-03-25: 800  # date déterminée d'après la date indiquée dans le PDF de détail des ressources : https://www.visale.fr/wp-content/uploads/2020/04/Visale-Ressources-Locataire_2020.pdf

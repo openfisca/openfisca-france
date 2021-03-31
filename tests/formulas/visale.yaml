@@ -27,6 +27,7 @@
     loyer: [ 600, 601, 601, 605, 1301 ]
   output:
     visale_eligibilite: [ true, false, true, false, false ]
+    visale_montant_max: [ 600, 600, 600, 1300, 1300, 1300 ]
 
 - name: Condition de ressources pour Visale étudiant en Île-de-France
   period: 2021-03
@@ -38,7 +39,7 @@
     loyer: [ 800, 801, 801, 805, 1501 ]
   output:
     visale_eligibilite: [ true, false, true, false, false ]
-
+    visale_montant_max: [ 800, 800, 800, 1500, 1500, 1500 ]
 
 - name: Condition de ressources pour Visale non étudiant hors Île-de-France
   period: 2021-03
@@ -50,6 +51,7 @@
     loyer: [ 600, 600, 1300, 1301 ]
   output:
     visale_eligibilite: [ false, true, true, false ]
+    visale_montant_max: [ 250, 600, 800, 1300, 1300 ]
 
 - name: Condition de ressources pour Visale non étudiant en Île-de-France
   period: 2021-03
@@ -61,6 +63,7 @@
     loyer: [ 800, 800, 1500, 1501 ]
   output:
     visale_eligibilite: [ false, true, true, false ]
+    visale_montant_max: [ 250, 800, 1500, 1500 ]
 
 - name: Prise en compte des charges locatives pour Visale
   period: 2021-03
@@ -73,6 +76,7 @@
     charges_locatives: [ 0, 1, 101 ]
   output:
     visale_eligibilite: [ true, false, false ]
+    visale_montant_max: [ 600, 600, 1300 ]
 
 - name: Base ressources pour Visale
   period: 2021-03
