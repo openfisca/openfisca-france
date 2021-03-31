@@ -8,6 +8,16 @@ class aide_mobilite_parcoursup_sortie_academie(Variable):
     definition_period = MONTH
 
 
+class aide_mobilite_parcoursup_boursier_lycee(Variable):
+    value_type = bool
+    label = "Bénéficiaire d'une bourse du lycée"
+    entity = Individu
+    definition_period = MONTH
+
+    def formula(individu, period):
+        return individu.famille("bourse_lycee", period) > 0
+
+
 class aide_mobilite_parcoursup(Variable):
     value_type = float
     label = "Montant de l'aide à la mobilité ParcourSup"
@@ -18,7 +28,7 @@ class aide_mobilite_parcoursup(Variable):
     def formula(individu, period, parameters):
         sortie_academie = individu("aide_mobilite_parcoursup_sortie_academie", period)
         en_terminal = individu("classe_scolarite", period) == TypesClasse.terminale
-        boursier = individu.famille("bourse_lycee", period) > 0
+        boursier = individu("aide_mobilite_parcoursup_boursier_lycee", period)
 
         montant = parameters(period).prestations.aide_mobilite_parcoursup.montant
 
