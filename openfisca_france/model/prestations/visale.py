@@ -75,6 +75,6 @@ class visale_base_ressources_individuelle(Variable):
         # rente_viagere_titre_onereux = foyer_fiscal('rente_viagere_titre_onereux', period)
 
         revenus_mensuels = sum(individu(ressource, period.last_month) for ressource in ressources_individu_mensuelles)  # les justificatifs des ressources sont demandés « sur le mois précédant la demande de visa »
-        revenus_annuels = sum(individu(ressource, period.this_year) for ressource in ressources_individu_annuelles)  # DIVIDE ?
+        revenus_annuels_mensualises = sum(individu(ressource, period, options = [DIVIDE]) for ressource in ressources_individu_annuelles)
 
-        return revenus_mensuels + (revenus_annuels / 12)
+        return revenus_mensuels + revenus_annuels_mensualises
