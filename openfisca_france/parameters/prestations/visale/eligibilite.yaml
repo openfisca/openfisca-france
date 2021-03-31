@@ -1,0 +1,6 @@
+age_max:
+  description: Âge jusqu'auquel une personne est éligible à la caution Visale.
+  reference: https://www.visale.fr/vos-questions/faq-locataires/locataire-de-30-ans-ou-moins-suis-je-eligible/#1
+  unit: year
+  values:
+    2020-03-25: 30  # date déterminée d'après la date indiquée dans le PDF de détail des ressources : https://www.visale.fr/wp-content/uploads/2020/04/Visale-Ressources-Locataire_2020.pdf

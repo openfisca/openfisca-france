@@ -1,6 +1,22 @@
 from openfisca_france.model.base import *
 
 
+class visale_eligibilite(Variable):
+    value_type = bool
+    entity = Menage  # « Si vous êtes 2 à rechercher un logement et un garant, votre demande Visale doit être réalisée conjointement. Pour les logements en colocation, au-delà de 2 colocataires, un bail et un visa individuels doivent être faits par colocataire. »
+    label = "Indique l'éligibilité à une caution Visale"
+    definition_period = MONTH
+    reference = "https://www.visale.fr/vos-questions/faq-locataires/locataire-de-30-ans-ou-moins-suis-je-eligible/"
+
+    def formula(menage, period, parameters):
+        # Le cas où un ménage est constitué d'une personne éligible et l'autre non éligible n'est pas spécifié dans la documentation Visale, on va donc tester l'égibilité uniquement sur la personne de référence.
+        age = menage.personne_de_reference('age', period)
+        majeur = menage.personne_de_reference('majeur', period)
+        ressortissant_eee = menage.personne_de_reference('ressortissant_eee', period)
+
+        return majeur * (age <= parameters(period).prestations.visale.eligibilite.age_max) * ressortissant_eee
+
+
 '''
 Attention, un montant non nul pour cette variable ne signifie pas que l'entité est éligible à Visale : d'autres conditions peuvent ne pas être remplies. Pour déterminer l'éligibilité à la caution Visale au loyer actuellement renseigné pour le ménage, il faut utiliser la variable `visale_eligibilite`.
 '''
