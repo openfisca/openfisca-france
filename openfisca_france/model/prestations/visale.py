@@ -12,9 +12,18 @@ class visale_eligibilite(Variable):
         # Le cas où un ménage est constitué d'une personne éligible et l'autre non éligible n'est pas spécifié dans la documentation Visale, on va donc tester l'égibilité uniquement sur la personne de référence.
         age = menage.personne_de_reference('age', period)
         majeur = menage.personne_de_reference('majeur', period)
+        etudiant = menage.personne_de_reference('etudiant', period)
+
         ressortissant_eee = menage.personne_de_reference('ressortissant_eee', period)
 
-        return majeur * (age <= parameters(period).prestations.visale.eligibilite.age_max) * ressortissant_eee
+        nationalite = menage.personne_de_reference('nationalite', period)
+        ressortissant_pays_eligible = sum([nationalite == str.encode(etat) for etat in parameters(period).prestations.visale.eligibilite.residence_hors_eee])  # TOOPTIMIZE: string encoding into bytes array should be done at load time
+
+        return majeur * (age <= parameters(period).prestations.visale.eligibilite.age_max) * (
+            ressortissant_eee
+            + ressortissant_pays_eligible
+            + etudiant  # Sont éligibles les « étudiant‧e‧s hors Union Européenne justifiant d’un visa long séjour valant titre de séjour mention étudiant ou passeport talent en cours de validité, ou d’un titre de séjour mention étudiant en cours de validité ». Vu qu'il s'agit d'une aide au logement, on suppose que le visa long séjour (4 mois à 1 an) est acquis, et on ignore donc les cas où un étudiant hors UE vient pour une durée de moins de 4 mois sans visa (ex : étudiante néo-zélandaise en visa touristique de 90 jours, l'éligibilité à Visale sera indiquée à tort comme positive).
+            )
 
 
 '''
