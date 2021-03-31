@@ -52,8 +52,9 @@ class aide_jeunes_diplomes_anciens_boursiers_eligibilite(Variable):
         condition_activite = demandeur_emploi * pas_en_formation
 
         condition_non_cumul = (
-            # ajouter ARE ATI
-            individu("ass", period)
+            individu("are", period)
+            * individu("ass", period)
+            * individu("allocation_travailleur_independant", period)
             * individu("rsa", period)
             * individu("garantie_jeunes", period)
             ) <= 0.
