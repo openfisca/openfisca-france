@@ -1,11 +1,11 @@
-- name: Éligibilité et montant de l'aide jeunes diplômés et anciens boursiers 
+- name: Éligibilité et montant de l'aide jeunes diplômés et anciens boursiers
   period: 2021-04
   absolute_error_margin: 0.01
   input:
     age: [29, 29, 29]
     diplome: [niveau_5, niveau_5, niveau_5]
     date_diplome: ['2020', '2021', '2021']
-    bourse_criteres_sociaux: 
+    bourse_criteres_sociaux:
       month:2020-01:10: [1032.0, false, false]
       month:2021-01:10: [false, 5679.0, 1032.0]
     activite: [chomeur, chomeur, chomeur]
