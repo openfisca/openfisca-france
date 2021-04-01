@@ -1,4 +1,4 @@
-from openfisca_core.model_api import not_, select, where, Variable, MONTH
+from openfisca_core.model_api import not_, select, where, Variable, MONTH, set_input_divide_by_period
 from openfisca_france.model.base import Famille, Individu, TypesStatutMarital
 from openfisca_france.model.prestations.education import TypesScolarite, StatutsEtablissementScolaire
 
@@ -12,6 +12,7 @@ class bourse_criteres_sociaux(Variable):
         ]
     label = "Montant de la bourse sur critères sociaux (BCS) de l'enseignement supérieur perçue"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(individu, period, parameters):
         montants = parameters(period).bourses_enseignement_superieur.criteres_sociaux.montants
