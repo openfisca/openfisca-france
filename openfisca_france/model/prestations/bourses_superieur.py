@@ -46,14 +46,14 @@ class aide_jeunes_diplomes_anciens_boursiers_eligibilite(Variable):
         diplome = individu("diplome", period)
         date_diplome = individu("date_diplome", period)
         condition_diplome = (
-            diplome == TypesDiplome.niveau_5
-            + diplome == TypesDiplome.niveau_6
-            + diplome == TypesDiplome.niveau_7
-            + diplome == TypesDiplome.niveau_8
+            ( diplome == TypesDiplome.niveau_5 )
+            + ( diplome == TypesDiplome.niveau_6 )
+            + ( diplome == TypesDiplome.niveau_7 )
+            + ( diplome == TypesDiplome.niveau_8 )
             ) * (
-                date_diplome.this_year == '2020'
-                + date_diplome.this_year == '2021'
-                )  # à améliorer
+               date_diplome.this_year == '2020'
+               + date_diplome.this_year == '2021'
+               )  # à améliorer
 
         bourse_criteres_sociaux = individu("bourse_criteres_sociaux", date_diplome.last_year) > 0  # à améliorer
 
