@@ -42,8 +42,9 @@ class aide_jeunes_diplomes_anciens_boursiers_eligibilite(Variable):
     Ne pas être inscrit dans une nouvelle formation (de niveau 5 minimum) dans l'année universitaire qui suit l'obtention du diplôme.   
     '''
 
-    def formula_2021_02_05(individu, period):
-        condition_age = individu("age", period) < 30
+    def formula_2021_02_05(individu, period, parameters):
+        age_limite =  parameters(period).bourses_superieur.criteres_sociaux.aide_jeunes_diplomes_anciens_boursiers.age_limite
+        condition_age = individu("age", period) < age_limite
 
         diplome = individu("diplome", period)
         date_diplome = individu("date_diplome", period)
@@ -89,13 +90,18 @@ class aide_jeunes_diplomes_anciens_boursiers_montant(Variable):
     end = '2021-06-30'
     reference = "https://www.pole-emploi.fr/candidat/mes-droits-aux-aides-et-allocati/allocations-et-aides--les-repons/aides-financieres-aux-jeunes-dip.html"
 
-    def formula_2021_02_05(individu, period):
+    def formula_2021_02_05(individu, period, parameters):
         aide_jeunes_diplomes_anciens_boursiers_eligibilite = individu("aide_jeunes_diplomes_anciens_boursiers_eligibilite", period)
         # 70% du montant net de la bourse perçue la dernière année
         bourse_2020 = individu("bourse_criteres_sociaux", 2020, options = [ADD])
         bourse_2021 = individu("bourse_criteres_sociaux", 2021, options = [ADD])
-        nombre_mois_bourse = 10
-        part_bourse = where(bourse_2021 > 0, bourse_2021/nombre_mois_bourse, bourse_2020/nombre_mois_bourse) * 0.7
+        
+        parameters_bourse =  parameters(period).bourses_superieur.criteres_sociaux
+        part_bourse = where(
+            bourse_2021 > 0, 
+            bourse_2021/parameters_bourse.nombre_mensualites, 
+            bourse_2020/parameters_bourse.nombre_mensualites
+            ) * parameters_bourse.aide_jeunes_diplomes_anciens_boursiers.taux_bourse
 
         # S’ajoute une somme supplémentaire de 100 € si vous ne vivez pas chez l’un de vos parents 
         # et devez-vous loger (sur justificatif : facture d'énergie, bail à votre nom).
@@ -104,6 +110,6 @@ class aide_jeunes_diplomes_anciens_boursiers_montant(Variable):
             (statut_occupation_logement == TypesStatutOccupationLogement.loge_gratuitement)
             + (statut_occupation_logement == TypesStatutOccupationLogement.non_renseigne)
             )
-        part_logement = condition_logement * 100.
+        part_logement = condition_logement * parameters_bourse.aide_jeunes_diplomes_anciens_boursiers.majoration_logement
 
         return aide_jeunes_diplomes_anciens_boursiers_eligibilite * ( part_bourse + part_logement )
