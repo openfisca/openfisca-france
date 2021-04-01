@@ -1,18 +1,21 @@
-- name: Éligibilité à l'aide jeunes diplômés et anciens boursiers 
+- name: Éligibilité et montant de l'aide jeunes diplômés et anciens boursiers 
   period: 2021-04
+  absolute_error_margin: 0.01
   input:
-    age: [29, 29]
-    diplome: [niveau_5, niveau_5]
-    date_diplome: ['2020', '2021']
+    age: [29, 29, 29]
+    diplome: [niveau_5, niveau_5, niveau_5]
+    date_diplome: ['2020', '2021', '2021']
     bourse_criteres_sociaux: 
-      2020-04: [true, false]
-      2021-04: [false, true]
-    activite: [chomeur, chomeur]
-    formation: [false, false]
-    are: [0., 881.4]
-    ass: [0., 0.]
-    allocation_travailleur_independant: [0., 0.]
-    rsa: [0., 0.]
-    garantie_jeunes: [0., 0.]
+      month:2020-01:10: [1032.0, false, false]
+      month:2021-01:10: [false, 5679.0, 1032.0]
+    activite: [chomeur, chomeur, chomeur]
+    formation: [false, false, false]
+    are: [0., 0., 881.4]
+    ass: [0., 0., 0.]
+    allocation_travailleur_independant: [0., 0., 0.]
+    garantie_jeunes: [0., 0., 0.]
+    rsa: [0., 0., 0.]
+    statut_occupation_logement: [locataire_meuble, loge_gratuitement, locataire_meuble]
   output:
-    aide_jeunes_diplomes_anciens_boursiers_eligibilite: [true, false]
+    aide_jeunes_diplomes_anciens_boursiers_eligibilite: [true, true, false]
+    aide_jeunes_diplomes_anciens_boursiers_montant: [172.24, 397.53, 0.]  # (bourse/10)*0.7
