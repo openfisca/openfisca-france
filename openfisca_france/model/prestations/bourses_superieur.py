@@ -25,6 +25,7 @@ class bourse_criteres_sociaux(Variable):
         ]
     label = "Échelon de la bourse sur critères sociaux de l'enseignement supérieur perçue (de 0 à 7)"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
 
 class aide_jeunes_diplomes_anciens_boursiers_eligibilite(Variable):
@@ -91,14 +92,18 @@ class aide_jeunes_diplomes_anciens_boursiers_montant(Variable):
     def formula_2021_02_05(individu, period):
         aide_jeunes_diplomes_anciens_boursiers_eligibilite = individu("aide_jeunes_diplomes_anciens_boursiers_eligibilite", period)
         # 70% du montant net de la bourse perçue la dernière année
-        part_bourse = individu("bourse_criteres_sociaux", period) * 0.7
+        bourse_2020 = individu("bourse_criteres_sociaux", 2020, options = [ADD])
+        bourse_2021 = individu("bourse_criteres_sociaux", 2021, options = [ADD])
+        nombre_mois_bourse = 10
+        part_bourse = where(bourse_2021 > 0, bourse_2021/nombre_mois_bourse, bourse_2020/nombre_mois_bourse) * 0.7
 
         # S’ajoute une somme supplémentaire de 100 € si vous ne vivez pas chez l’un de vos parents 
         # et devez-vous loger (sur justificatif : facture d'énergie, bail à votre nom).
-        statut_occupation_logement = individu("statut_occupation_logement", period)
+        statut_occupation_logement = individu.menage("statut_occupation_logement", period)
         condition_logement = not_(
             (statut_occupation_logement == TypesStatutOccupationLogement.loge_gratuitement)
             + (statut_occupation_logement == TypesStatutOccupationLogement.non_renseigne)
             )
         part_logement = condition_logement * 100.
+
         return aide_jeunes_diplomes_anciens_boursiers_eligibilite * ( part_bourse + part_logement )
