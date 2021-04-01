@@ -200,3 +200,22 @@ class nombre_jours_travailles_dans_les_x_derniers_mois(Variable):
             )
 
         return nombre_jours_travailles_reference
+
+class duree_versement_are(Variable):
+    value_type = float
+    entity = Individu
+    label = "Nombre de jours indemnisés par l'ARE"
+    definition_period = MONTH
+
+    def formula(individu, period):
+        age = individu('age', period)
+        nombre_jours_travailles_dans_la_periode_reference_affiliation = individu('nombre_jours_travailles_dans_les_x_derniers_mois', period)
+        nombre_jours_indemnises = nombre_jours_travailles_dans_la_periode_reference_affiliation * 1.4 
+
+        return select(
+            [age < 53, 53 <= age <= 54, age >= 55],
+            [min_(nombre_jours_indemnises, 730), min_(nombre_jours_indemnises, 913), min_(nombre_jours_indemnises, 1095)],
+            )
+
+
+
