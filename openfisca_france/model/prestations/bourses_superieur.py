@@ -71,10 +71,10 @@ class aide_jeunes_diplomes_anciens_boursiers_eligibilite(Variable):
 
         condition_non_cumul = not_(
             individu("are", period)
-            * individu("ass", period)
-            * individu("allocation_travailleur_independant", period)
-            * individu.famille("rsa", period)
-            * individu("garantie_jeunes", period)
+            + individu("ass", period)
+            + individu("allocation_travailleur_independant", period)
+            + individu.famille("rsa", period)
+            + individu("garantie_jeunes", period)
             )
 
         return condition_age * condition_diplome * condition_periode_bourse * condition_activite * condition_non_cumul
