@@ -15,6 +15,17 @@ class boursier(Variable):
     definition_period = MONTH
 
 
+class bourse_criteres_sociaux(Variable):
+    value_type = float
+    entity = Individu
+    reference = [
+        "Circulaire ESRS2013435C - Annexe 3 - Conditions de ressources et points de charge / 1 - Conditions de ressources",
+        "https://www.education.gouv.fr/bo/20/Hebdo25/ESRS2013435C.htm"
+        ]
+    label = "Échelon de la bourse sur critères sociaux de l'enseignement supérieur perçue (de 0 à 7)"
+    definition_period = MONTH
+
+
 class aide_jeunes_diplomes_anciens_boursiers_eligibilite(Variable):
     value_type = bool
     entity = Individu
