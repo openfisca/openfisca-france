@@ -73,7 +73,7 @@ class aide_jeunes_diplomes_anciens_boursiers_eligibilite(Variable):
             individu("are", period)
             * individu("ass", period)
             * individu("allocation_travailleur_independant", period)
-            * individu("rsa", period)
+            * individu.famille("rsa", period)
             * individu("garantie_jeunes", period)
             )
 

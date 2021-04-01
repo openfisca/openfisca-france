@@ -1,17 +1,17 @@
-- name: Éligibilité à l'aide jeunes diplômes anciens boursiers 
+- name: Éligibilité à l'aide jeunes diplômés et anciens boursiers 
   period: 2021-04
   input:
     age: 29
     diplome: niveau_5
-    date_diplome: 2020
+    date_diplome: '2020'
     bourse_criteres_sociaux: 
-      2019-10: true
-      2020-10: false
+      2020-10: true
+      2021-10: false
     activite: chomeur
     formation: false
     are: 0.
     ass: 0.
-    ati: 0.
+    allocation_travailleur_independant: 0.
     rsa: 0.
     garantie_jeunes: 0.
   output:
