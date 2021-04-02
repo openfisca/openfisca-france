@@ -20,6 +20,16 @@ class TypesNiveauDiplome(Enum):
     niveau_8 = 'Niveau 8 - Bac+8 Doctorat'
 
 
+class TypesMention(Enum):
+    # Mentions non honorifiques. Exemple tout types mentions bac général :
+    # https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037875563/2021-04-02
+    __order__ = 'non_renseigne mention_assez_bien mention_bien mention_tres_bien'
+    non_renseigne = 'Non renseigné'
+    mention_assez_bien = 'Mention assez bien'  # [12, 14[
+    mention_bien = 'Mention bien'  # [14, 16[
+    mention_tres_bien = 'Mention très bien'  # 16+
+
+
 class TypesActivite(Enum):
     __order__ = 'actif chomeur etudiant retraite inactif'
     actif = 'Actif occupé'
