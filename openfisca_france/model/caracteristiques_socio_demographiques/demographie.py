@@ -45,17 +45,17 @@ class garde_alternee(Variable):
     set_input = set_input_dispatch_by_period
 
 
-class diplome(Variable):
+class niveau_plus_haut_diplome(Variable):
     value_type = Enum
-    default_value = TypesDiplome.non_renseigne
-    possible_values = TypesDiplome  # defined in model/base.py
+    default_value = TypesNiveauDiplome.non_renseigne
+    possible_values = TypesNiveauDiplome  # defined in model/base.py
     entity = Individu
     label = "Plus haut niveau de diplôme obtenu"
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
 
-class date_diplome(Variable):
+class date_obtention_plus_haut_diplome(Variable):
     value_type = date
     default_value = date.max
     entity = Individu
@@ -71,10 +71,12 @@ class alternant(Variable):
     reference = "https://www.service-public.fr/particuliers/vosdroits/N11240"
 
 
-class formation(Variable):
-    value_type = bool
+class niveau_diplome_formation(Variable):
+    value_type = Enum
+    default_value = TypesNiveauDiplome.non_renseigne
+    possible_values = TypesNiveauDiplome  # defined in model/base.py
     entity = Individu
-    label = "Inscrit à une formation ou en cours de formation professionnelle"
+    label = "Niveau du diplôme en cours de préparation"
     definition_period = MONTH
 
 

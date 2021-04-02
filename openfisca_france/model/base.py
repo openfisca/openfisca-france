@@ -4,7 +4,7 @@ from openfisca_france.entities import Famille, FoyerFiscal, Individu, Menage  # 
 # Enums commonly used through the legislation
 
 
-class TypesDiplome(Enum):
+class TypesNiveauDiplome(Enum):
     # répertoire national des certifications professionnelles
     # https://fr.wikipedia.org/wiki/Liste_des_diplômes_en_France#Nomenclature_des_niveaux_de_diplômes
     # https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000037964754/
