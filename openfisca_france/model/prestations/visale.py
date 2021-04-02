@@ -44,12 +44,24 @@ class visale_montant_max(Variable):
     reference = "https://www.visale.fr/vos-questions/faq-locataires/locataire-de-30-ans-ou-moins-suis-je-eligible/#13"
 
     def formula(menage, period, parameters):
+        residence_idf = menage('residence_idf', period)
+
         etudiant = menage.personne_de_reference('etudiant', period)  # le cas où un ménage est constitué d'une personne étudiante et d'une personne non étudiante n'est pas spécifié dans la documentation Visale
-        minimum_etudiant = etudiant * parameters(period).prestations.visale.plafond_loyer.etudiant.hors_ile_de_france  # TODO: gérer les cas en Île-de-France
+        minimum_etudiant = where(
+            residence_idf,
+            parameters(period).prestations.visale.plafond_loyer.etudiant.ile_de_france,
+            parameters(period).prestations.visale.plafond_loyer.etudiant.hors_ile_de_france,
+            )
+
+        plafond_loyer = where(
+            residence_idf,
+            parameters(period).prestations.visale.plafond_loyer.cas_general.ile_de_france,
+            parameters(period).prestations.visale.plafond_loyer.cas_general.hors_ile_de_france,
+            )
 
         moitie_des_ressources = menage('visale_base_ressources', period) / 2
 
-        return max_(minimum_etudiant, min_(moitie_des_ressources, parameters(period).prestations.visale.plafond_loyer.cas_general.hors_ile_de_france))
+        return max_(minimum_etudiant, min_(moitie_des_ressources, plafond_loyer))
 
 
 class visale_base_ressources(Variable):
