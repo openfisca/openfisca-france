@@ -61,7 +61,7 @@ class visale_montant_max(Variable):
 
         moitie_des_ressources = menage('visale_base_ressources', period) / 2
 
-        return max_(minimum_etudiant, min_(moitie_des_ressources, plafond_loyer))
+        return max_(etudiant * minimum_etudiant, min_(moitie_des_ressources, plafond_loyer))
 
 
 class visale_base_ressources(Variable):
