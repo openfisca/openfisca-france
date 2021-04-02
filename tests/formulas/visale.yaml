@@ -3,7 +3,6 @@
   input:
     age: [ 16, 17, 30, 31 ]
     mineur_emancipe: [ true, false, false, false ]
-    loyer: [ 500, 500, 500, 500 ]
   output:
     visale_eligibilite: [ true, false, true, false ]
 
@@ -11,7 +10,6 @@
   period: 2021-03
   input:
     age: [ 18, 18, 18, 18, 18, 18 ]
-    loyer: [ 500, 500, 500, 500, 500, 500 ]
     etudiant: [ false, false, false, false, false, true ]  # on fait l'hypothèse que le visa long séjour est acquis pour un étudiant hors UE
     nationalite: [ FR, DE, CH, MC, NZ, NZ ]
   output:
@@ -23,11 +21,12 @@
     age: [ 18, 18, 18, 18, 18 ]
     etudiant: [ true, true, true, true, true ]
     depcom: [ false, false, false, false, false ]
-    salaire_net: [ 500, 500, 1202, 1202, 2602 ]
+    salaire_net:
+      2021-02: [ 500, 500, 1202, 1202, 2602 ]
     loyer: [ 600, 601, 601, 605, 1301 ]
   output:
     visale_eligibilite: [ true, false, true, false, false ]
-    visale_montant_max: [ 600, 600, 600, 1300, 1300, 1300 ]
+    visale_montant_max: [ 600, 600, 601, 601, 1300 ]
 
 - name: Condition de ressources pour Visale étudiant en Île-de-France
   period: 2021-03
@@ -35,11 +34,12 @@
     age: [ 18, 18, 18, 18, 18 ]
     etudiant: [ true, true, true, true, true ]
     depcom: [ "75112", "75112", "75112", "75112", "75112" ]
-    salaire_net: [ 500, 500, 1602, 1602, 3002 ]
+    salaire_net:
+      2021-02: [ 500, 500, 1602, 1602, 3002 ]
     loyer: [ 800, 801, 801, 805, 1501 ]
   output:
     visale_eligibilite: [ true, false, true, false, false ]
-    visale_montant_max: [ 800, 800, 800, 1500, 1500, 1500 ]
+    visale_montant_max: [ 800, 800, 801, 801, 1500 ]
 
 - name: Condition de ressources pour Visale non étudiant hors Île-de-France
   period: 2021-03
@@ -47,11 +47,12 @@
     age: [ 18, 18, 18, 18 ]
     etudiant: [ false, false, false, false ]
     depcom: [ "06088", "06088", "06088", "06088" ]
-    salaire_net: [ 500, 1200, 2600, 2602 ]
+    salaire_net:
+      2021-02: [ 500, 1200, 2600, 2602 ]
     loyer: [ 600, 600, 1300, 1301 ]
   output:
     visale_eligibilite: [ false, true, true, false ]
-    visale_montant_max: [ 250, 600, 800, 1300, 1300 ]
+    visale_montant_max: [ 250, 600, 1300, 1300 ]
 
 - name: Condition de ressources pour Visale non étudiant en Île-de-France
   period: 2021-03
@@ -59,7 +60,8 @@
     age: [ 18, 18, 18, 18 ]
     etudiant: [ false, false, false, false ]
     depcom: [ "75112", "75112", "75112", "75112" ]
-    salaire_net: [ 500, 1600, 3000, 3002 ]
+    salaire_net:
+      2021-02: [ 500, 1600, 3000, 3002 ]
     loyer: [ 800, 800, 1500, 1501 ]
   output:
     visale_eligibilite: [ false, true, true, false ]
@@ -71,7 +73,8 @@
     age: [ 18, 18, 18 ]
     etudiant: [ false, false, false ]
     depcom: [ "06088", "06088", "06088" ]
-    salaire_net: [ 1200, 1200, 2602 ]
+    salaire_net:
+      2021-02: [ 1200, 1200, 2602 ]
     loyer: [ 600, 600, 1200 ]
     charges_locatives: [ 0, 1, 101 ]
   output:
