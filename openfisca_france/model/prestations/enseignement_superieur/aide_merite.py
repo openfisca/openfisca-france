@@ -1,5 +1,6 @@
 from openfisca_france.model.base import *
 
+
 class aide_merite_eligibilite(Variable):
     value_type = bool
     entity = Individu
