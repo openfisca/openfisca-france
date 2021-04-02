@@ -3,7 +3,7 @@ from openfisca_france.model.base import (
     Variable, Individu, 
     MONTH, ADD, 
     not_, where,
-    TypesDiplome, TypesActivite, TypesStatutOccupationLogement
+    TypesNiveauDiplome, TypesActivite, TypesStatutOccupationLogement
 )
 
 
@@ -25,29 +25,25 @@ class aide_jeunes_diplomes_anciens_boursiers_eligibilite(Variable):
         age_limite = parameters(period).bourses_superieur.criteres_sociaux.aide_jeunes_diplomes_anciens_boursiers.age_limite
         condition_age = individu("age", period) < age_limite
 
-        diplome = individu("diplome", period)
-        date_diplome = individu("date_diplome", period)
-        annee_validation_diplome = date_diplome.astype("datetime64[Y]")
+        niveau_diplome = individu("niveau_plus_haut_diplome", period)
+        date_diplome = individu("date_obtention_plus_haut_diplome", period)
 
         condition_diplome = (
-            (diplome == TypesDiplome.niveau_5)
-            + (diplome == TypesDiplome.niveau_6)
-            + (diplome == TypesDiplome.niveau_7)
-            + (diplome == TypesDiplome.niveau_8)
-            ) * (
-            (annee_validation_diplome == datetime64("2020"))
-            + (annee_validation_diplome == datetime64("2021"))
+            (niveau_diplome == TypesNiveauDiplome.niveau_5)
+            + (niveau_diplome == TypesNiveauDiplome.niveau_6)
+            + (niveau_diplome == TypesNiveauDiplome.niveau_7)
+            + (niveau_diplome == TypesNiveauDiplome.niveau_8)
             )
+        * (datetime64('2020') <= date_diplome) 
+        * (date_diplome < datetime64('2022')
+        )
 
         # bourse au cours de la dernière année de préparation du diplôme
-        condition_periode_bourse = (
-            (individu("bourse_criteres_sociaux", 2020, options = [ADD]) > 0)
-            + (individu("bourse_criteres_sociaux", 2021, options = [ADD]) > 0)
-            )
+        condition_bourse = individu("aide_jeunes_diplomes_anciens_boursiers_montant_mensuel_reference", period) > 0
 
         # être inscrit sur la liste des demandeurs d’emploi
         demandeur_emploi = individu("activite", period) == TypesActivite.chomeur
-        pas_en_formation = not_(individu("formation", period))
+        pas_en_formation = individu("niveau_diplome_formation", period) == TypesNiveauDiplome.non_renseigne
         condition_activite = demandeur_emploi * pas_en_formation
 
         condition_non_cumul = not_(
@@ -58,7 +54,7 @@ class aide_jeunes_diplomes_anciens_boursiers_eligibilite(Variable):
             + individu("garantie_jeunes", period)
             )
 
-        return condition_age * condition_diplome * condition_periode_bourse * condition_activite * condition_non_cumul
+        return condition_age * condition_diplome * condition_bourse * condition_activite * condition_non_cumul
 
 
 class aide_jeunes_diplomes_anciens_boursiers_montant(Variable):
@@ -72,15 +68,10 @@ class aide_jeunes_diplomes_anciens_boursiers_montant(Variable):
     def formula_2021_02_05(individu, period, parameters):
         aide_jeunes_diplomes_anciens_boursiers_eligibilite = individu("aide_jeunes_diplomes_anciens_boursiers_eligibilite", period)
 
-        bourse_2020 = individu("bourse_criteres_sociaux", 2020, options = [ADD])
-        bourse_2021 = individu("bourse_criteres_sociaux", 2021, options = [ADD])
+        bourse_precedente = individu("aide_jeunes_diplomes_anciens_boursiers_montant_mensuel_reference", period)
         parameters_bourse = parameters(period).bourses_superieur.criteres_sociaux
 
-        part_bourse = where(
-            bourse_2021 > 0,
-            bourse_2021 / parameters_bourse.nombre_mensualites,
-            bourse_2020 / parameters_bourse.nombre_mensualites
-            ) * parameters_bourse.aide_jeunes_diplomes_anciens_boursiers.taux_bourse
+        part_bourse = bourse_precedente * parameters_bourse.aide_jeunes_diplomes_anciens_boursiers.taux_bourse
 
         statut_occupation_logement = individu.menage("statut_occupation_logement", period)
         condition_logement = not_(
