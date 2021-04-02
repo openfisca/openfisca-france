@@ -1,4 +1,4 @@
-from numpy import char, isin, logical_not as not_, select
+from numpy import isin, logical_not as not_, select
 
 from openfisca_core.indexed_enums import Enum
 from openfisca_core.periods import MONTH
@@ -38,17 +38,6 @@ paris_communes_limitrophes = [
     b'94080',  # Vincennes
     ]
 
-departements_idf = [
-    b'75',
-    b'77',
-    b'78',
-    b'91',
-    b'92',
-    b'93',
-    b'94',
-    b'95',
-    ]
-
 
 class ZoneLogementSocial(Enum):
     __order__ = 'paris_communes_limitrophes ile_de_france autres_regions'
@@ -68,7 +57,7 @@ class zone_logement_social(Variable):
     def formula(menage, period):
         depcom = menage('depcom', period)
         in_paris_communes_limitrophes = isin(depcom, paris_communes_limitrophes)
-        in_idf = isin(char.ljust(depcom, 2), departements_idf)
+        in_idf = menage('residence_idf', period)
 
         return select(
             [

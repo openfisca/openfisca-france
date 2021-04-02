@@ -1,6 +1,5 @@
 from numpy.core.defchararray import startswith
 
-
 from openfisca_france.model.base import *
 
 
@@ -72,6 +71,17 @@ class statut_occupation_logement(Variable):
     label = "Statut d'occupation du logement"
     set_input = set_input_dispatch_by_period
     definition_period = MONTH
+
+
+class residence_idf(Variable):
+    label = "Le logement est situé dans la région Île-de-France"
+    value_type = bool
+    entity = Menage
+    definition_period = MONTH
+
+    def formula(menage, period, parameters):
+        depcom = menage('depcom', period)
+        return sum([startswith(depcom, str.encode(departement_idf)) for departement_idf in parameters(period).geopolitique.departements_idf])  # TOOPTIMIZE: string encoding into bytes array should be done at load time
 
 
 class residence_dom(Variable):

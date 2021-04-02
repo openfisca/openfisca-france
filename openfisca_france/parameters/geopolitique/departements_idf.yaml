@@ -1,0 +1,10 @@
+description: Codes des départements constituant la région Île-de-France.
+reference: https://fr.wikipedia.org/wiki/Île-de-France
+unit: codes départements
+values:
+  1956-11-28:
+    value: [ '75', '77', '78' ]
+    reference: 'Journal officiel, 6 décembre 1956, p. 11649, https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000655884'
+  1968-01-01:
+    value: [ '75', '77', '78', '91', '92', '93', '94', '95' ]
+    reference: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000006272709
