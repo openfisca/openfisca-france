@@ -33,10 +33,7 @@ class aide_jeunes_diplomes_anciens_boursiers_eligibilite(Variable):
             + (niveau_diplome == TypesNiveauDiplome.niveau_6)
             + (niveau_diplome == TypesNiveauDiplome.niveau_7)
             + (niveau_diplome == TypesNiveauDiplome.niveau_8)
-            )
-        * (datetime64('2020') <= date_diplome) 
-        * (date_diplome < datetime64('2022')
-        )
+            ) * (datetime64('2020') <= date_diplome) * (date_diplome < datetime64('2022'))
 
         # bourse au cours de la dernière année de préparation du diplôme
         condition_bourse = individu("aide_jeunes_diplomes_anciens_boursiers_montant_mensuel_reference", period) > 0
