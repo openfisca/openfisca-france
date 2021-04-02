@@ -1,0 +1,8 @@
+- name: Éligibilité à l'aide au mérite à destination des étudiants
+  period: 2021-04
+  input:
+    mention_baccalaureat: mention_tres_bien
+    bourse_criteres_sociaux: 1032.0 / 10
+    allocation_annuelle: 0.
+  output:
+    aide_merite_eligibilite: true

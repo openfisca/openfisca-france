@@ -353,7 +353,7 @@ class fin_etudes_etranger(Variable):
 class mention_baccalaureat(Variable):
     value_type = Enum
     possible_values = TypesMention
-    default_value = TypesMention.inconnue
+    default_value = TypesMention.non_renseignee
     entity = Individu
     label = "Mention obtenue au baccalauréat (hors mentions honorifiques)"
     definition_period = ETERNITY

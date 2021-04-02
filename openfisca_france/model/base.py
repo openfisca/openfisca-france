@@ -23,8 +23,8 @@ class TypesNiveauDiplome(Enum):
 class TypesMention(Enum):
     # Mentions non honorifiques. Exemple tout types mentions bac général :
     # https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037875563/2021-04-02
-    __order__ = 'non_renseigne mention_assez_bien mention_bien mention_tres_bien'
-    non_renseigne = 'Non renseigné'
+    __order__ = 'non_renseignee mention_assez_bien mention_bien mention_tres_bien'
+    non_renseignee = 'Non renseignée'
     mention_assez_bien = 'Mention assez bien'  # [12, 14[
     mention_bien = 'Mention bien'  # [14, 16[
     mention_tres_bien = 'Mention très bien'  # 16+
