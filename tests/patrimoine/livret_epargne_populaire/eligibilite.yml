@@ -1,15 +1,9 @@
 - period: month:2019-05
   input:
     rfr:
-      2017: 9
-    livret_epargne_populaire_plafond: 10
+      2017: [9, 9, 11]
+    livret_epargne_populaire_plafond: [10, 10, 10]
+    enfant_a_charge:
+      2019: [true, false, false]
   output:
-    livret_epargne_populaire_eligibilite: true
-
-- period: month:2019-05
-  input:
-    rfr:
-      2017: 11
-    livret_epargne_populaire_plafond: 10
-  output:
-    livret_epargne_populaire_eligibilite: false
+    livret_epargne_populaire_eligibilite: [false, true, false]
