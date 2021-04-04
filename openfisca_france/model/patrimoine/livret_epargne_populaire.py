@@ -1,5 +1,4 @@
-from openfisca_france.model.base import *
-
+from openfisca_france.model.base import Individu, Variable, min_, max_, not_, MONTH
 from numpy import ceil
 
 
@@ -31,13 +30,15 @@ class livret_epargne_populaire_eligibilite(Variable):
     value_type = bool
     entity = Individu
     label = "Eligibilité au livret d'épargne populaire"
+    reference = "https://www.service-public.fr/particuliers/vosdroits/F2367"
     definition_period = MONTH
 
     def formula(individu, period, parameters):
         rfr = individu.foyer_fiscal('rfr', period.n_2)
         plafond = individu('livret_epargne_populaire_plafond', period)
+        independent = not_(individu('enfant_a_charge', period.this_year))
 
-        return rfr <= plafond
+        return independent * (rfr <= plafond)
 
 
 class livret_epargne_populaire_taux(Variable):
