@@ -1,7 +1,7 @@
 - period: 2021-03
   input:
     classe_scolarite: [licence_3, master_1, autre]
-    aide_mobilite_master_sortie_academie: [true, true, false]
+    aide_mobilite_master_sortie_region_academique: [true, true, false]
     boursier: [1, 1, 0]
   output:
     aide_mobilite_master: [1000, 1000, 0]

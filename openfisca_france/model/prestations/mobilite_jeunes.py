@@ -1,4 +1,5 @@
-from openfisca_france.model.base import Individu, Variable, MONTH, TypesClasse
+from openfisca_france.model.base import Individu, Variable, MONTH
+from openfisca_france.model.prestations.education import TypesClasse
 
 
 class aide_mobilite_parcoursup_sortie_academie(Variable):
@@ -35,9 +36,9 @@ class aide_mobilite_parcoursup(Variable):
         return montant * sortie_academie * en_terminal * boursier
 
 
-class aide_mobilite_master_sortie_academie(Variable):
+class aide_mobilite_master_sortie_region_academique(Variable):
     value_type = bool
-    label = "Indicatrice d'une sortie de l'académie d'études entre la 3ème année de licence et le master"
+    label = "Indicatrice d'un changement de région académique entre la 3ème année de licence et la 1ère 1ère année de master"
     entity = Individu
     definition_period = MONTH
 
@@ -57,7 +58,7 @@ class aide_mobilite_master(Variable):
         ]
 
     def formula(individu, period, parameters):
-        sortie_academie = individu("aide_mobilite_master_sortie_academie", period)
+        sortie_academie = individu("aide_mobilite_master_sortie_region_academique", period)
         classe = individu("classe_scolarite", period)
         en_transition = (classe == TypesClasse.licence_3) + (classe == TypesClasse.master_1)
         boursier = individu("boursier", period)
