@@ -215,18 +215,18 @@ class nb_pac(Variable):
 class enfant_a_charge(Variable):
     value_type = bool
     entity = Individu
-    label = "Enfant à charge non marié, de moins de 18 ans au 1er janvier de l'année de perception des" \
-        " revenus, ou né durant la même année, ou handicapés quel que soit son âge"
+    label = "Enfant à charge non marié, de moins de 18 ans non émancipé au 1er janvier de l'année de perception des revenus, ou né durant la même année, ou handicapé quel que soit son âge"
     definition_period = YEAR
 
     def formula(individu, period):
         janvier = period.first_month
         decembre = janvier.offset(11, 'month')
-        age = individu('age', janvier)
+
+        majeur = individu('majeur', janvier)
         handicap = individu('handicap', decembre)
         is_pac = individu.has_role(FoyerFiscal.PERSONNE_A_CHARGE)
 
-        return is_pac * ((age < 18) + handicap)
+        return is_pac * (not_(majeur) + handicap)
 
 
 class nbF(Variable):
