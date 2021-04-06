@@ -52,17 +52,17 @@ class visale_montant_max(Variable):
         Cette modélisation est impossible à réaliser telle quelle dans OpenFisca, car cela correspondrait à une variable de Ménage pour 1 à 2 personnes, et une variable d'Individu à partir de 3 personnes en colocation, mais pour lesquelles le montant du loyer serait différent (ou en tous cas, serait la quote-part du loyer total du logement loué).
         Par conséquent, le calcul de cette variable fait l'hypothèse d'une déclaration des Ménages avec un Ménage par personne inscrite sur le bail pour 3 personnes ou plus, et avec un seul Ménage pour une colocation (ou un bail solidaire) de 2 personnes.
         '''
-        residence_idf = menage('residence_idf', period)
+        residence_ile_de_france = menage('residence_ile_de_france', period)
 
         etudiant = menage.personne_de_reference('etudiant', period)  # le cas où un ménage est constitué d'une personne étudiante et d'une personne non étudiante n'est pas spécifié dans la documentation Visale
         minimum_etudiant = where(
-            residence_idf,
+            residence_ile_de_france,
             parameters(period).prestations.visale.plafond_loyer.etudiant.ile_de_france,
             parameters(period).prestations.visale.plafond_loyer.etudiant.hors_ile_de_france,
             )
 
         plafond_loyer = where(
-            residence_idf,
+            residence_ile_de_france,
             parameters(period).prestations.visale.plafond_loyer.cas_general.ile_de_france,
             parameters(period).prestations.visale.plafond_loyer.cas_general.hors_ile_de_france,
             )

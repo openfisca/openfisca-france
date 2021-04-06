@@ -18,7 +18,7 @@ class eligibilite_anah(Variable):
     definition_period = YEAR
 
     def formula(menage, period):
-        in_idf = menage('residence_idf', period.first_month)
+        in_idf = menage('residence_ile_de_france', period.first_month)
 
         rfr_declarants_principaux_du_menage = menage.members.has_role(FoyerFiscal.DECLARANT_PRINCIPAL) * menage.members.foyer_fiscal('rfr', period.n_2)
         rfr = menage.sum(rfr_declarants_principaux_du_menage)

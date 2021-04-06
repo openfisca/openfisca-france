@@ -73,7 +73,7 @@ class statut_occupation_logement(Variable):
     definition_period = MONTH
 
 
-class residence_idf(Variable):
+class residence_ile_de_france(Variable):
     label = "Le logement est situé dans la région Île-de-France"
     value_type = bool
     entity = Menage

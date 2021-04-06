@@ -3,4 +3,4 @@
   input:
     depcom: [ 75119, 93008, 13055, 2A004 ]
   output:
-    residence_idf: [ true, true, false, false ]
+    residence_ile_de_france: [ true, true, false, false ]

@@ -57,7 +57,7 @@ class zone_logement_social(Variable):
     def formula(menage, period):
         depcom = menage('depcom', period)
         in_paris_communes_limitrophes = isin(depcom, paris_communes_limitrophes)
-        in_idf = menage('residence_idf', period)
+        in_idf = menage('residence_ile_de_france', period)
 
         return select(
             [
