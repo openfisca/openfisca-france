@@ -125,18 +125,21 @@ class visale_base_ressources_individuelle(Variable):
 
         revenus_foyer = individu.foyer_fiscal('rente_viagere_titre_onereux', period.last_month)
 
-        # Ressources de la famille à prendre en compte à 100% :
-        # 'aspa',
-        # 'ppa',
-        # 'rsa',
-        # 'af',
-        # 'cf',
-        # 'aeeh',
-        # 'asf',
+        ressources_famille = [
+            'aeeh',
+            'af',
+            'asf',
+            'aspa',
+            'cf',
+            'ppa',
+            'rsa',
+            ]
+
+        revenus_famille = sum(individu.famille(ressource, period.last_month) for ressource in ressources_famille)
 
         # Ressources de la famille à prendre en compte à 67% sur la base du loyer du logement pour lequel Visale est demandé :
         # 'alf'
         # 'als'
         # 'apl'
 
-        return revenus_individu + revenus_non_salarie + revenus_foyer
+        return revenus_individu + revenus_non_salarie + revenus_foyer + revenus_famille
