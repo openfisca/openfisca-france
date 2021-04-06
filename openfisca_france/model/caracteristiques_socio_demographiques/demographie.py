@@ -272,12 +272,10 @@ class est_enfant_dans_famille(Variable):
         return individu.has_role(Famille.ENFANT)
 
 
-'''
-L'individu est inscrit·e dans un établissement en vue de la préparation d'un concours ou d'un diplôme de l'enseignement supérieur français : une université, une école de commerce ou d'ingénieur, dans un lycée pour un BTS…
-'''
-
-
 class etudiant(Variable):
+    '''
+    L'individu est inscrit·e dans un établissement en vue de la préparation d'un concours ou d'un diplôme de l'enseignement supérieur français : une université, une école de commerce ou d'ingénieur, dans un lycée pour un BTS…
+    '''
     value_type = bool
     entity = Individu
     label = "Indique que l'individu dispose du statut étudiant"
@@ -322,10 +320,6 @@ class ressortissant_eee(Variable):
 
 
 class resident_ue(Variable):
-    '''
-    La résidence est supposée par la nationalité.
-    Si la résidence est déterminée d'une autre manière plus précise, écraser cette variable en la définissant plutôt qu'en la laissant calculer par la nationalité.
-    '''
     value_type = bool
     default_value = True
     entity = Individu
@@ -333,6 +327,10 @@ class resident_ue(Variable):
     definition_period = MONTH
 
     def formula(individu, period, parameters):
+        '''
+        La résidence est supposée par la nationalité.
+        Si la résidence est déterminée d'une autre manière plus précise, écraser cette variable en la définissant plutôt qu'en la laissant calculer par la nationalité.
+        '''
         nationalite = individu('nationalite', period)
         return sum([nationalite == str.encode(etat_membre) for etat_membre in parameters(period).geopolitique.ue])  # TOOPTIMIZE: string encoding into bytes array should be done at load time
 

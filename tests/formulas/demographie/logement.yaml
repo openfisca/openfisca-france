@@ -1,0 +1,6 @@
+- name: Logement en Île-de-France ou non
+  period: 2021-01
+  input:
+    depcom: [ 75119, 93008, 13055, 2A004 ]
+  output:
+    residence_ile_de_france: [ true, true, false, false ]

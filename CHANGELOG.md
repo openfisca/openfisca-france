@@ -1,5 +1,21 @@
 # Changelog
 
+## 51.13.0 [#1513](https://github.com/openfisca/openfisca-france/pull/1513)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 25/03/2020.
+* Zones impactées :
+  - `model/caracteristiques_socio_demographiques/logement.py`
+  - `model/prestations/anah/eligibilite_anah.py`
+  - `model/prestations/logement_social.py`
+  - `model/prestations/visale.py`
+  - `parameters/geopolitique/departements_idf.yaml`
+  - `parameters/prestations/visale/*`
+* Détails :
+  - Ajoute le calcul de l'éligibilité et du montant de la caution Visale pour les moins de 30 ans.
+  - Extrait la liste des départements de la région Île-de-France dans un paramètre.
+  - Ajoute la variable `residence_ile_de_france` qui indique si un ménage réside dans un logement situé en région Île-de-France ou non.
+
 ## 51.12.0 [#1515](https://github.com/openfisca/openfisca-france/pull/1515)
 
 * Évolution du système socio-fiscal.
@@ -24,7 +40,7 @@
 
 * Évolution du système socio-fiscal.
 * Périodes concernées : toutes.
-* Zones impactées : 
+* Zones impactées :
   - `model/prelevements_obligatoires/impot_revenu/ir.py`
   - `model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/apprentissage.py`
   - `model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/travail_prive.py`
@@ -59,11 +75,11 @@
 
 ## 51.9.0 [#1492](https://github.com/openfisca/openfisca-france/pull/1492)
 
-* Évolution du système socio-fiscal. 
+* Évolution du système socio-fiscal.
 * Périodes concernées : à partir du 01/07/2012.
-* Zones impactées : 
+* Zones impactées :
   - `model/base.py`
-  - `model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/`    
+  - `model/prelevements_obligatoires/prelevements_sociaux/cotisations_sociales/`
     - `contrat_professionnalisation.py`
     - `travail_prive.py`
   - `model/prestations/mobili_jeune.py`
