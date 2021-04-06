@@ -305,7 +305,7 @@ class scolarite(Variable):
     definition_period = MONTH
 
 
-class TypesEtablissementScolaire(Enum):
+class StatutsEtablissementScolaire(Enum):
     __order__ = 'inconnu public prive_sous_contrat prive_hors_contrat'  # Needed to preserve the enum order in Python 2
     inconnu = "Inconnu"
     public = "Public"
@@ -313,10 +313,10 @@ class TypesEtablissementScolaire(Enum):
     prive_hors_contrat = "Privé hors contrat"
 
 
-class etablissement_scolaire(Variable):
+class statuts_etablissement_scolaire(Variable):
     value_type = Enum
-    possible_values = TypesEtablissementScolaire
-    default_value = TypesEtablissementScolaire.inconnu
+    label = "Statuts de l'établissement scolaire"
+    possible_values = StatutsEtablissementScolaire
+    default_value = StatutsEtablissementScolaire.inconnu
     entity = Individu
-    label = "Type d'établissement scolaire"
     definition_period = MONTH
