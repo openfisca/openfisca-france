@@ -137,9 +137,12 @@ class visale_base_ressources_individuelle(Variable):
 
         revenus_famille = sum(individu.famille(ressource, period.last_month) for ressource in ressources_famille)
 
-        # Ressources de la famille à prendre en compte à 67% sur la base du loyer du logement pour lequel Visale est demandé :
-        # 'alf'
-        # 'als'
-        # 'apl'
+        ressources_famille_abattues = [  # ressources de la famille à prendre en compte à 67% sur la base du loyer du logement pour lequel Visale est demandé
+            'alf',
+            'als',
+            'apl',
+            ]
 
-        return revenus_individu + revenus_non_salarie + revenus_foyer + revenus_famille
+        estimation_aides_logement = sum(individu.famille(ressource, period) for ressource in ressources_famille_abattues) * parameters(period).prestations.visale.quote_part_aides_logement
+
+        return revenus_individu + revenus_non_salarie + revenus_foyer + revenus_famille + estimation_aides_logement
