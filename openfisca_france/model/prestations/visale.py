@@ -3,7 +3,7 @@ from openfisca_france.model.base import *
 
 class visale_eligibilite(Variable):
     value_type = bool
-    entity = Menage  # « Si vous êtes 2 à rechercher un logement et un garant, votre demande Visale doit être réalisée conjointement. Pour les logements en colocation, au-delà de 2 colocataires, un bail et un visa individuels doivent être faits par colocataire. »
+    entity = Menage
     label = "Indique l'éligibilité à une caution Visale"
     definition_period = MONTH
     reference = "https://www.visale.fr/vos-questions/faq-locataires/locataire-de-30-ans-ou-moins-suis-je-eligible/"
@@ -11,7 +11,12 @@ class visale_eligibilite(Variable):
     # L'extension à toutes les personnes de moins de 30 ans sauf les étudiants boursiers encore rattachés au foyer fiscal de leurs parents a été faite en septembre 2016 : https://www.lemonde.fr/immobilier/article/2016/08/04/location-la-caution-visale-etendue-aux-moins-de-30-ans-au-plus-tard-le-30-septembre_4978567_1306281.html
     # L'extension à toutes les personnes de moins de 30 ans y compris les étudiants boursiers encore rattachés au foyer fiscal de leurs parents a été faite le 19 juin 2018.
     def formula_2018_06_19(menage, period, parameters):
-        # Le cas où un ménage est constitué d'une personne éligible et l'autre non éligible n'est pas spécifié dans la documentation Visale, on va donc tester l'égibilité uniquement sur la personne de référence.
+        '''
+        Le cas où un ménage est constitué d'une personne éligible et l'autre non éligible n'est pas spécifié dans la documentation Visale, on va donc tester l'égibilité uniquement sur la personne de référence.
+        La documentation Visale indique : « Si vous êtes 2 à rechercher un logement et un garant, votre demande Visale doit être réalisée conjointement. Pour les logements en colocation, au-delà de 2 colocataires, un bail et un visa individuels doivent être faits par colocataire. »
+        Cette modélisation est impossible à réaliser telle quelle dans OpenFisca, car cela correspondrait à une variable de Ménage pour 1 à 2 personnes, et une variable d'Individu à partir de 3 personnes en colocation, mais pour lesquelles le montant du loyer serait différent (ou en tous cas, serait la quote-part du loyer total du logement loué).
+        Par conséquent, le calcul de cette variable fait l'hypothèse d'une déclaration des Ménages avec un Ménage par personne inscrite sur le bail pour 3 personnes ou plus, et avec un seul Ménage pour une colocation (ou un bail solidaire) de 2 personnes.
+        '''
         age = menage.personne_de_reference('age', period)
         majeur = menage.personne_de_reference('majeur', period)
 
@@ -33,19 +38,20 @@ class visale_eligibilite(Variable):
         return eligibilite_age * eligibilite_nationalite * eligibilite_loyer
 
 
-'''
-Attention, un montant non nul pour cette variable ne signifie pas que l'entité est éligible à Visale : d'autres conditions peuvent ne pas être remplies. Pour déterminer l'éligibilité à la caution Visale au loyer actuellement renseigné pour le ménage, il faut utiliser la variable `visale_eligibilite`.
-'''
-
-
 class visale_montant_max(Variable):
     value_type = float
-    entity = Menage  # « Si vous êtes 2 à rechercher un logement et un garant, votre demande Visale doit être réalisée conjointement. Pour les logements en colocation, au-delà de 2 colocataires, un bail et un visa individuels doivent être faits par colocataire. »
+    entity = Menage
     label = "Montant maximum du loyer éligible à une caution Visale"
     definition_period = MONTH
     reference = "https://www.visale.fr/vos-questions/faq-locataires/locataire-de-30-ans-ou-moins-suis-je-eligible/#13"
 
     def formula_2016_01_01(menage, period, parameters):
+        '''
+        Attention, un montant non nul pour cette variable ne signifie pas nécessairement que l'entité est éligible à Visale : d'autres conditions peuvent ne pas être remplies. Pour déterminer l'éligibilité à la caution Visale au loyer actuellement renseigné pour le ménage, il faut utiliser la variable `visale_eligibilite`.
+        La documentation Visale indique : « Si vous êtes 2 à rechercher un logement et un garant, votre demande Visale doit être réalisée conjointement. Pour les logements en colocation, au-delà de 2 colocataires, un bail et un visa individuels doivent être faits par colocataire. »
+        Cette modélisation est impossible à réaliser telle quelle dans OpenFisca, car cela correspondrait à une variable de Ménage pour 1 à 2 personnes, et une variable d'Individu à partir de 3 personnes en colocation, mais pour lesquelles le montant du loyer serait différent (ou en tous cas, serait la quote-part du loyer total du logement loué).
+        Par conséquent, le calcul de cette variable fait l'hypothèse d'une déclaration des Ménages avec un Ménage par personne inscrite sur le bail pour 3 personnes ou plus, et avec un seul Ménage pour une colocation (ou un bail solidaire) de 2 personnes.
+        '''
         residence_idf = menage('residence_idf', period)
 
         etudiant = menage.personne_de_reference('etudiant', period)  # le cas où un ménage est constitué d'une personne étudiante et d'une personne non étudiante n'est pas spécifié dans la documentation Visale
@@ -66,13 +72,6 @@ class visale_montant_max(Variable):
         return max_(etudiant * minimum_etudiant, min_(moitie_des_ressources, plafond_loyer))
 
 
-'''
-La documentation Visale indique : « Si vous êtes 2 à rechercher un logement et un garant, votre demande Visale doit être réalisée conjointement. Pour les logements en colocation, au-delà de 2 colocataires, un bail et un visa individuels doivent être faits par colocataire. »
-Cette modélisation est impossible à réaliser telle quelle dans OpenFisca, car cela correspondrait à une variable de Ménage pour 1 à 2 personnes, et une variable d'Individu à partir de 3 personnes en colocation, mais pour lesquelles le montant du loyer serait différent (ou en tous cas, serait la quote-part du loyer total du logement loué).
-Par conséquent, le calcul de cette variable fait l'hypothèse d'une déclaration des Ménages avec un Ménage par personne inscrite sur le bail pour 3 personnes ou plus, et avec un seul Ménage pour une colocation (ou un bail solidaire) de 2 personnes.
-'''
-
-
 class visale_base_ressources(Variable):
     value_type = float
     entity = Menage
@@ -81,6 +80,11 @@ class visale_base_ressources(Variable):
     reference = "https://www.visale.fr/wp-content/uploads/2020/04/Visale-Ressources-Locataire_2020.pdf#page_7"
 
     def formula_2016_01_01(menage, period, parameters):
+        '''
+        La documentation Visale indique : « Si vous êtes 2 à rechercher un logement et un garant, votre demande Visale doit être réalisée conjointement. Pour les logements en colocation, au-delà de 2 colocataires, un bail et un visa individuels doivent être faits par colocataire. »
+        Cette modélisation est impossible à réaliser telle quelle dans OpenFisca, car cela correspondrait à une variable de Ménage pour 1 à 2 personnes, et une variable d'Individu à partir de 3 personnes en colocation, mais pour lesquelles le montant du loyer serait différent (ou en tous cas, serait la quote-part du loyer total du logement loué).
+        Par conséquent, le calcul de cette variable fait l'hypothèse d'une déclaration des Ménages avec un Ménage par personne inscrite sur le bail pour 3 personnes ou plus, et avec un seul Ménage pour une colocation (ou un bail solidaire) de 2 personnes.
+        '''
         revenus_individus = menage.sum(menage.members('visale_base_ressources_individuelle', period))
 
         ressources_foyer_fiscal = [
