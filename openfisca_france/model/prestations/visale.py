@@ -122,6 +122,9 @@ class visale_base_ressources_individuelle(Variable):
             ]
 
         revenus_non_salarie = sum(individu(ressource, period.last_year.first_month, options = [DIVIDE]) for ressource in ressources_individu_annuelles)
+
+        revenus_foyer = individu.foyer_fiscal('rente_viagere_titre_onereux', period.last_month)
+
         # Ressources de la famille à prendre en compte à 100% :
         # 'aspa',
         # 'ppa',
@@ -136,8 +139,4 @@ class visale_base_ressources_individuelle(Variable):
         # 'als'
         # 'apl'
 
-        # Ressources du foyer fiscal à prendre en compte :
-        # foyer_fiscal = individu.foyer_fiscal
-        # rente_viagere_titre_onereux = foyer_fiscal('rente_viagere_titre_onereux', period)
-
-        return revenus_individu + revenus_non_salarie
+        return revenus_individu + revenus_non_salarie + revenus_foyer
