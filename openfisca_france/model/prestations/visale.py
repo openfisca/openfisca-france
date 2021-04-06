@@ -8,7 +8,9 @@ class visale_eligibilite(Variable):
     definition_period = MONTH
     reference = "https://www.visale.fr/vos-questions/faq-locataires/locataire-de-30-ans-ou-moins-suis-je-eligible/"
 
-    def formula(menage, period, parameters):
+    # L'extension à toutes les personnes de moins de 30 ans sauf les étudiants boursiers encore rattachés au foyer fiscal de leurs parents a été faite en septembre 2016 : https://www.lemonde.fr/immobilier/article/2016/08/04/location-la-caution-visale-etendue-aux-moins-de-30-ans-au-plus-tard-le-30-septembre_4978567_1306281.html
+    # L'extension à toutes les personnes de moins de 30 ans y compris les étudiants boursiers encore rattachés au foyer fiscal de leurs parents a été faite le 19 juin 2018.
+    def formula_2018_06_19(menage, period, parameters):
         # Le cas où un ménage est constitué d'une personne éligible et l'autre non éligible n'est pas spécifié dans la documentation Visale, on va donc tester l'égibilité uniquement sur la personne de référence.
         age = menage.personne_de_reference('age', period)
         majeur = menage.personne_de_reference('majeur', period)
@@ -43,7 +45,7 @@ class visale_montant_max(Variable):
     definition_period = MONTH
     reference = "https://www.visale.fr/vos-questions/faq-locataires/locataire-de-30-ans-ou-moins-suis-je-eligible/#13"
 
-    def formula(menage, period, parameters):
+    def formula_2016_01_01(menage, period, parameters):
         residence_idf = menage('residence_idf', period)
 
         etudiant = menage.personne_de_reference('etudiant', period)  # le cas où un ménage est constitué d'une personne étudiante et d'une personne non étudiante n'est pas spécifié dans la documentation Visale
@@ -78,7 +80,7 @@ class visale_base_ressources(Variable):
     definition_period = MONTH
     reference = "https://www.visale.fr/wp-content/uploads/2020/04/Visale-Ressources-Locataire_2020.pdf#page_7"
 
-    def formula(menage, period, parameters):
+    def formula_2016_01_01(menage, period, parameters):
         revenus_individus = menage.sum(menage.members('visale_base_ressources_individuelle', period))
 
         ressources_foyer_fiscal = [
@@ -126,7 +128,7 @@ class visale_base_ressources_individuelle(Variable):
     definition_period = MONTH
     reference = "https://www.visale.fr/wp-content/uploads/2020/04/Visale-Ressources-Locataire_2020.pdf#page_7"
 
-    def formula(individu, period, parameters):
+    def formula_2016_01_01(individu, period, parameters):
         ressources_individu_mensuelles = [
             'salaire_net',
             'primes_salaires',  # Sont prises en compte toutes les « primes récurrentes perçues dans le cadre d’une activité intégrée dans le calcul du salaire ou traitement ». Note : ce revenu est brut, il devrait être net.
