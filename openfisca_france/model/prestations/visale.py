@@ -72,9 +72,44 @@ class visale_base_ressources(Variable):
     reference = 'https://www.visale.fr/wp-content/uploads/2020/04/Visale-Ressources-Locataire_2020.pdf#page_7'
 
     def formula(menage, period, parameters):
-        visale_bases_ressources_individuelles = menage.members('visale_base_ressources_individuelle', period)
+        revenus_individus = menage.sum(menage.members('visale_base_ressources_individuelle', period))
 
-        return menage.sum(visale_bases_ressources_individuelles)
+        ressources_foyer_fiscal = [
+            'rente_viagere_titre_onereux',
+            ]
+
+        ressources_famille = [
+            'aeeh',
+            'af',
+            'asf',
+            'aspa',
+            'cf',
+            'ppa',
+            'rsa',
+            ]
+
+        ressources_famille_abattues = [  # ressources de la famille à prendre en compte à 67% sur la base du loyer du logement pour lequel Visale est demandé
+            'alf',
+            'als',
+            'apl',
+            ]
+
+        revenus_foyers_fiscaux = sum(
+            menage.sum(menage.members.foyer_fiscal(ressource, period.last_month), role = FoyerFiscal.DECLARANT_PRINCIPAL)
+            for ressource in ressources_foyer_fiscal
+            )
+
+        revenus_familles = sum(
+            menage.sum(menage.members.famille(ressource, period.last_month), role = Famille.DEMANDEUR)
+            for ressource in ressources_famille
+            )
+
+        revenus_familles_abattus = sum(
+            menage.sum(menage.members.famille(ressource, period), role = Famille.DEMANDEUR)
+            for ressource in ressources_famille_abattues
+            ) * parameters(period).prestations.visale.quote_part_aides_logement
+
+        return revenus_individus + revenus_foyers_fiscaux + revenus_familles + revenus_familles_abattus
 
 
 class visale_base_ressources_individuelle(Variable):
@@ -123,26 +158,4 @@ class visale_base_ressources_individuelle(Variable):
 
         revenus_non_salarie = sum(individu(ressource, period.last_year.first_month, options = [DIVIDE]) for ressource in ressources_individu_annuelles)
 
-        revenus_foyer = individu.foyer_fiscal('rente_viagere_titre_onereux', period.last_month)
-
-        ressources_famille = [
-            'aeeh',
-            'af',
-            'asf',
-            'aspa',
-            'cf',
-            'ppa',
-            'rsa',
-            ]
-
-        revenus_famille = sum(individu.famille(ressource, period.last_month) for ressource in ressources_famille)
-
-        ressources_famille_abattues = [  # ressources de la famille à prendre en compte à 67% sur la base du loyer du logement pour lequel Visale est demandé
-            'alf',
-            'als',
-            'apl',
-            ]
-
-        estimation_aides_logement = sum(individu.famille(ressource, period) for ressource in ressources_famille_abattues) * parameters(period).prestations.visale.quote_part_aides_logement
-
-        return revenus_individu + revenus_non_salarie + revenus_foyer + revenus_famille + estimation_aides_logement
+        return revenus_individu + revenus_non_salarie
