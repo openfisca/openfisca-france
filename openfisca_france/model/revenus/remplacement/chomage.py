@@ -1,5 +1,6 @@
 from numpy import datetime64
-
+from functools import partial
+from numpy import busday_count as original_busday_count, datetime64, timedelta64
 from openfisca_france.model.base import *
 from openfisca_core.periods import Instant
 
@@ -35,6 +36,29 @@ class indemnites_chomage_partiel(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
+class jours_travailles_chomage(Variable):
+    value_type = float
+    entity = Individu
+    label = "Nombre de jours travaillés pris en compte dans le calcul du salaire de référence journalier (5 au maximum par semaine civile"
+    definition_period = MONTH
+    default_value = 21.75
+
+    def formula(individu, period) :
+      contrat_de_travail_debut = individu('contrat_de_travail_debut', period)
+      contrat_de_travail_fin = individu('contrat_de_travail_fin', period)
+
+      busday_count = partial(original_busday_count, weekmask = "1111100")
+      debut_mois = datetime64(period.start.offset('first-of', 'month'))
+      fin_mois = datetime64(period.start.offset('last-of', 'month'))
+      jours_travailles = max_(
+        busday_count(
+            max_(contrat_de_travail_debut, debut_mois),
+            min_(contrat_de_travail_fin, fin_mois) + timedelta64(1, 'D')
+            ),
+        0,
+        )
+
+      return jours_travailles
 
 class salaire_de_reference(Variable):
     value_type = float
@@ -58,26 +82,26 @@ class salaire_de_reference(Variable):
         return sal_ref
 
 
-class nombre_jours_calendaires_12_derniers_mois(Variable):
+class nombre_jours_travailles_12_derniers_mois(Variable):
     value_type = float
     entity = Individu
     label = "Jours travaillés sur les 12 derniers mois avant la rupture de contrat"
     definition_period = MONTH
 
     def formula(individu, period):
-        nombre_jours_calendaires_reference = 0 * individu('nombre_jours_calendaires', period)
+        nombre_jours_travailles_chomage = 0 * individu('jours_travailles_chomage', period)
         for months in range(0, 48):
             contrat_de_travail_fin_potentiel = period.offset(-months)
-            nombre_jours_calendaires_reference = where(
+            nombre_jours_travailles_chomage = where(
                 individu('contrat_de_travail_fin', period) == datetime64(contrat_de_travail_fin_potentiel.start),
                 individu(
-                    'nombre_jours_calendaires',
+                    'jours_travailles_chomage',
                     contrat_de_travail_fin_potentiel.offset(-12).start.period('month', 12),
                     options = [ADD],
                     ),
-                nombre_jours_calendaires_reference,
+                nombre_jours_travailles_chomage,
                 )
-        return nombre_jours_calendaires_reference
+        return nombre_jours_travailles_chomage
 
 
 
@@ -88,9 +112,9 @@ class salaire_de_reference_mensuel(Variable):
     definition_period = MONTH
 
     def formula(individu, period):
-         nombre_jours_calendaires_12_derniers_mois = individu('nombre_jours_calendaires_12_derniers_mois', period)
+         nombre_jours_travailles_12_derniers_mois = individu('nombre_jours_travailles_12_derniers_mois', period)
          salaire_de_reference = individu('salaire_de_reference', period)
-         salaire_ref_mensuel = ((salaire_de_reference) / (nombre_jours_calendaires_12_derniers_mois * 1.4 )) * 30
+         salaire_ref_mensuel = ((salaire_de_reference) / (nombre_jours_travailles_12_derniers_mois * 1.4 )) * 30
 
          return salaire_ref_mensuel
 
@@ -173,7 +197,7 @@ class nombre_jours_travailles_dans_les_x_derniers_mois(Variable):
             nombre_jours_travailles_reference_moins_53 = where(
                 individu('contrat_de_travail_fin', period) == datetime64(contrat_de_travail_fin_potentiel.start),
                 individu(
-                    'nombre_jours_calendaires',
+                    'jours_travailles_chomage',
                     contrat_de_travail_fin_potentiel.offset(-periode_reference_moins_53).start.period('month', periode_reference_moins_53),
                     options = [ADD],
                     ),
@@ -187,7 +211,7 @@ class nombre_jours_travailles_dans_les_x_derniers_mois(Variable):
             nombre_jours_travailles_reference_plus_53 = where(
                 individu('contrat_de_travail_fin', period) == datetime64(contrat_de_travail_fin_potentiel.start),
                 individu(
-                    'nombre_jours_calendaires',
+                    'jours_travailles_chomage',
                     contrat_de_travail_fin_potentiel.offset(-periode_reference_plus_53).start.period('month', periode_reference_plus_53),
                     options = [ADD],
                     ),

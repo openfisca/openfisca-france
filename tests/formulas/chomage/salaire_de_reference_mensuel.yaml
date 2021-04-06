@@ -3,7 +3,7 @@
   period: 2012-12
   input:
     salaire_de_reference: 24000
-    nombre_jours_calendaires_12_derniers_mois: 261
+    nombre_jours_travailles_12_derniers_mois: 261
     contrat_de_travail_fin: 2012-12
   output:
     salaire_de_reference_mensuel: 
