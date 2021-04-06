@@ -1,5 +1,16 @@
 # Changelog
 
+## 51.14.0 [#1514](https://github.com/openfisca/openfisca-france/pull/1514)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : toutes.
+* Zones impactées :
+  * `patrimoine/livret_epargne_populaire.py`.
+  * `prestations/logement_social.py`
+* Détails :
+  - Ajoute la condition d'autonomie à l'éligibilité au livret d'épargne populaire
+  - Ajoute la condition de majorité au logement social
+
 ## 51.13.0 [#1513](https://github.com/openfisca/openfisca-france/pull/1513)
 
 * Évolution du système socio-fiscal.
