@@ -76,7 +76,7 @@ class visale_base_ressources(Variable):
     entity = Menage
     label = "Revenus pris en compte pour l'éligibilité à la caution Visale"
     definition_period = MONTH
-    reference = 'https://www.visale.fr/wp-content/uploads/2020/04/Visale-Ressources-Locataire_2020.pdf#page_7'
+    reference = "https://www.visale.fr/wp-content/uploads/2020/04/Visale-Ressources-Locataire_2020.pdf#page_7"
 
     def formula(menage, period, parameters):
         revenus_individus = menage.sum(menage.members('visale_base_ressources_individuelle', period))
@@ -124,7 +124,7 @@ class visale_base_ressources_individuelle(Variable):
     entity = Individu
     label = "Revenus des individus pris en compte pour l'éligibilité à la caution Visale"
     definition_period = MONTH
-    reference = 'https://www.visale.fr/wp-content/uploads/2020/04/Visale-Ressources-Locataire_2020.pdf#page_7'
+    reference = "https://www.visale.fr/wp-content/uploads/2020/04/Visale-Ressources-Locataire_2020.pdf#page_7"
 
     def formula(individu, period, parameters):
         ressources_individu_mensuelles = [
