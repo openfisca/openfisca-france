@@ -1,4 +1,5 @@
-from openfisca_france.model.base import *
+from openfisca_france.model.base import Individu, Variable, MONTH
+from openfisca_france.model.prestations.education import TypesScolarite
 
 
 class crous_repas_un_euro_eligibilite(Variable):
@@ -17,4 +18,4 @@ class crous_repas_un_euro_eligibilite(Variable):
     '''
 
     def formula_2021_01(individu, period, parameters):
-        return individu("etudiant", period)
+        return individu('scolarite', period) == TypesScolarite.enseignement_superieur

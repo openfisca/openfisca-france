@@ -1,5 +1,17 @@
 # Changelog
 
+## 51.12.0 [#1515](https://github.com/openfisca/openfisca-france/pull/1515)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : toutes.
+* Zones impactées :
+  * `prestations/alimentation.py`
+  * `prestations/education.py`
+* Détails :
+  - Ajoute l'élément `enseignement_superieur` à l'énumération utilisé dans `scolarite`
+  - Ajoute la variable `etablissement_scolaire` pour indiquer le type (public, privé sous contrat, hors contratà des établissements scolaire
+  - Fiabilise l'éligibilité des repas à 1e à partir de ces nouvelles informations
+
 ## 51.11.0 [#1503](https://github.com/openfisca/openfisca-france/pull/1503)
 
 * Évolution du système socio-fiscal.

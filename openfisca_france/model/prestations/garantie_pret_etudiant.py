@@ -1,4 +1,5 @@
-from openfisca_france.model.base import *
+from openfisca_france.model.base import Individu, Variable, MONTH
+from openfisca_france.model.prestations.education import TypesScolarite
 
 
 class garantie_pret_etudiant_eligibilite(Variable):
@@ -14,10 +15,10 @@ class garantie_pret_etudiant_eligibilite(Variable):
         age = individu('age', period)
         condition_age = (age <= parameters(period).prestations.garantie_pret_etudiant.age_max)
 
-        etudiant = individu('etudiant', period)
+        etudiant_du_superieur = individu('scolarite', period) == TypesScolarite.enseignement_superieur
         condition_nationalite = individu('garantie_pret_etudiant_condition_nationalite', period)
 
-        return majeur * etudiant * condition_age * condition_nationalite
+        return majeur * etudiant_du_superieur * condition_age * condition_nationalite
 
 
 class garantie_pret_etudiant_condition_nationalite(Variable):

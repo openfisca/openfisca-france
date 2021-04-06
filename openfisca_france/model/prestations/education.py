@@ -289,10 +289,11 @@ class bourse_lycee(Variable):
 
 
 class TypesScolarite(Enum):
-    __order__ = 'inconnue college lycee'  # Needed to preserve the enum order in Python 2
+    __order__ = 'inconnue college lycee enseignement_superieur'  # Needed to preserve the enum order in Python 2
     inconnue = "Inconnue"
     college = "Collège"
     lycee = "Lycée"
+    enseignement_superieur = "Établissement de l'enseignement supérieur"
 
 
 class scolarite(Variable):
@@ -301,4 +302,21 @@ class scolarite(Variable):
     default_value = TypesScolarite.inconnue
     entity = Individu
     label = "Scolarité de l'enfant : collège, lycée..."
+    definition_period = MONTH
+
+
+class StatutsEtablissementScolaire(Enum):
+    __order__ = 'inconnu public prive_sous_contrat prive_hors_contrat'  # Needed to preserve the enum order in Python 2
+    inconnu = "Inconnu"
+    public = "Public"
+    prive_sous_contrat = "Privé sous contrat"
+    prive_hors_contrat = "Privé hors contrat"
+
+
+class statuts_etablissement_scolaire(Variable):
+    value_type = Enum
+    label = "Statuts de l'établissement scolaire"
+    possible_values = StatutsEtablissementScolaire
+    default_value = StatutsEtablissementScolaire.inconnu
+    entity = Individu
     definition_period = MONTH
