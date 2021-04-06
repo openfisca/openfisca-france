@@ -112,6 +112,8 @@ class visale_base_ressources_individuelle(Variable):
             # allocation journalière de présence parentale (AJPP)
             ]
 
+        revenus_individu = sum(individu(ressource, period.last_month) for ressource in ressources_individu_mensuelles)  # les justificatifs des ressources sont demandés « sur le mois précédant la demande de visa »
+
         ressources_individu_annuelles = [
             'rpns_individu',
             'cotisations_non_salarie',
@@ -119,6 +121,7 @@ class visale_base_ressources_individuelle(Variable):
             'crds_non_salarie',
             ]
 
+        revenus_non_salarie = sum(individu(ressource, period.last_year.first_month, options = [DIVIDE]) for ressource in ressources_individu_annuelles)
         # Ressources de la famille à prendre en compte à 100% :
         # 'aspa',
         # 'ppa',
@@ -137,7 +140,4 @@ class visale_base_ressources_individuelle(Variable):
         # foyer_fiscal = individu.foyer_fiscal
         # rente_viagere_titre_onereux = foyer_fiscal('rente_viagere_titre_onereux', period)
 
-        revenus_mensuels = sum(individu(ressource, period.last_month) for ressource in ressources_individu_mensuelles)  # les justificatifs des ressources sont demandés « sur le mois précédant la demande de visa »
-        revenus_annuels_mensualises = sum(individu(ressource, period, options = [DIVIDE]) for ressource in ressources_individu_annuelles)
-
-        return revenus_mensuels + revenus_annuels_mensualises
+        return revenus_individu + revenus_non_salarie
