@@ -162,8 +162,8 @@ class logement_social_eligible(Variable):
     label = "Logement social - Éligibilité"
 
     def formula_2017(famille, period, parameters):
-
+        parent_majeur = famille.any(famille.members('majeur', period), role = Famille.PARENT)
         logement_social_plafond_ressources = famille('logement_social_plafond_ressources', period)
         revenu_fiscal_de_reference = famille.demandeur.foyer_fiscal('rfr', period.n_2)
 
-        return revenu_fiscal_de_reference <= logement_social_plafond_ressources
+        return parent_majeur * (revenu_fiscal_de_reference <= logement_social_plafond_ressources)
