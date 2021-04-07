@@ -12,7 +12,7 @@ class mobili_jeune(Variable):
     definition_period = MONTH
     reference = "https://www.actionlogement.fr/l-aide-mobili-jeune"
 
-    def formula(individu, period, parameters):
+    def formula_2012_07(individu, period, parameters):
         loyer = individu.menage('loyer', period)
         charges_locatives = individu.menage('charges_locatives', period)
         apl = individu.famille('apl', period)
@@ -35,7 +35,7 @@ class mobili_jeune_eligibilite_employeur(Variable):
     definition_period = MONTH
     reference = "https://www.actionlogement.fr/l-aide-mobili-jeune"
 
-    def formula(individu, period):
+    def formula_2012_07(individu, period):
         secteur_prive_non_agricole = (
             individu("categorie_salarie", period) == TypesCategorieSalarie.prive_non_cadre
             ) * (
