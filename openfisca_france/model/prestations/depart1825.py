@@ -22,7 +22,8 @@ class depart1825_eligibilite_financiere(Variable):
     entity = Individu
     definition_period = MONTH
     reference = [
-        "https://programme-depart-1825.com/eligibilite/"
+        "https://programme-depart-1825.com/eligibilite/",
+        "https://www.ancv.com/actualites/le-magazine/depart-1825-un-nouveau-programme-pour-les-jeunes-de-18-25-ans"
         ]
 
     def formula(individu, period):
