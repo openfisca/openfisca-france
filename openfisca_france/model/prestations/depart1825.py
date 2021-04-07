@@ -6,6 +6,9 @@ class depart1825_plafond_ressources(Variable):
     entity = Individu
     definition_period = MONTH
     label = "Plafond de ressources pour le calcul de l'éligibilité au dispositif départ 18-25"
+    reference = [
+        "https://www.ancv.com/actualites/le-magazine/depart-1825-un-nouveau-programme-pour-les-jeunes-de-18-25-ans"
+        ]
 
     def formula(individu, period, parameters):
         nbptr = individu.foyer_fiscal('nbptr', period.n_2)
