@@ -102,7 +102,7 @@ class pensions_invalidite(Variable):
 class bourse_enseignement_sup(Variable):
     value_type = float
     entity = Individu
-    label = "Bourse de l'enseignement supérieur"
+    label = "Toute bourse de l'enseignement supérieur"
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
