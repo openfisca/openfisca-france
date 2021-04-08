@@ -33,7 +33,7 @@ class aide_jeunes_diplomes_anciens_boursiers_eligibilite(Variable):
     entity = Individu
     label = "Éligibilité à l'aide jeunes diplômés et anciens boursiers"
     definition_period = MONTH
-    end = '2021-06-30'
+    end = "2021-06-30"
     reference = "https://www.pole-emploi.fr/candidat/mes-droits-aux-aides-et-allocati/allocations-et-aides--les-repons/aides-financieres-aux-jeunes-dip.html"
     documentation = '''
     Conditions non modélisées :
@@ -48,7 +48,7 @@ class aide_jeunes_diplomes_anciens_boursiers_eligibilite(Variable):
 
         diplome = individu("diplome", period)
         date_diplome = individu("date_diplome", period)
-        annee_validation_diplome = date_diplome.astype('datetime64[Y]')
+        annee_validation_diplome = date_diplome.astype("datetime64[Y]")
 
         condition_diplome = (
             (diplome == TypesDiplome.niveau_5)
@@ -56,8 +56,8 @@ class aide_jeunes_diplomes_anciens_boursiers_eligibilite(Variable):
             + (diplome == TypesDiplome.niveau_7)
             + (diplome == TypesDiplome.niveau_8)
             ) * (
-            (annee_validation_diplome == datetime64('2020'))
-            + (annee_validation_diplome == datetime64('2021'))
+            (annee_validation_diplome == datetime64("2020"))
+            + (annee_validation_diplome == datetime64("2021"))
             )
 
         # bourse au cours de la dernière année de préparation du diplôme
@@ -87,7 +87,7 @@ class aide_jeunes_diplomes_anciens_boursiers_montant(Variable):
     entity = Individu
     label = "Montant de l'aide jeunes diplômés et anciens boursiers"
     definition_period = MONTH
-    end = '2021-06-30'
+    end = "2021-06-30"
     reference = "https://www.pole-emploi.fr/candidat/mes-droits-aux-aides-et-allocati/allocations-et-aides--les-repons/aides-financieres-aux-jeunes-dip.html"
 
     def formula_2021_02_05(individu, period, parameters):
