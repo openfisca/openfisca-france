@@ -5,8 +5,8 @@ from openfisca_france.entities import Famille, FoyerFiscal, Individu, Menage  # 
 
 
 class TypesDiplome(Enum):
-    # https://fr.wikipedia.org/wiki/Liste_des_diplômes_en_France#Nomenclature_des_niveaux_de_diplômes
     # répertoire national des certifications professionnelles
+    # https://fr.wikipedia.org/wiki/Liste_des_diplômes_en_France#Nomenclature_des_niveaux_de_diplômes
     # https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000037964754/
     __order__ = 'non_renseigne niveau_1 niveau_2 niveau_3 niveau_4 niveau_5 niveau_6 niveau_7 niveau_8'
     non_renseigne = 'Non renseigné'

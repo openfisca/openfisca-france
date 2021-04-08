@@ -60,7 +60,7 @@ class date_diplome(Variable):
     default_value = date.max
     entity = Individu
     label = "Date d'obtention du diplôme de plus haut niveau"
-    definition_period = ETERNITY
+    definition_period = MONTH
 
 
 class alternant(Variable):
