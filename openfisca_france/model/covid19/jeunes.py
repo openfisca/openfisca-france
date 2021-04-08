@@ -1,5 +1,10 @@
 from numpy import datetime64
-from openfisca_france.model.base import *
+from openfisca_france.model.base import (
+    Variable, Individu, 
+    MONTH, ADD, 
+    not_, where,
+    TypesDiplome, TypesActivite, TypesStatutOccupationLogement
+)
 
 
 class aide_jeunes_diplomes_anciens_boursiers_eligibilite(Variable):
