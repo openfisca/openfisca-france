@@ -336,7 +336,7 @@ class statuts_etablissement_scolaire(Variable):
 
 
 class TypesClasse(Enum):
-    __order__ = 'autre terminale licence_3 master_1'
+    __order__ = 'autre seconde premiere terminale licence_1 licence_2 licence_3 master_1 master_2 doctorat_1'
     autre = 'Autre'
     seconde = 'Seconde'
     premiere = 'Première'
