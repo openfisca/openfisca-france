@@ -1,7 +1,31 @@
 from openfisca_france.model.base import (
     Variable, Individu, MONTH,
-    TypesCategorieSalarie, TypesSecteurActivite, TypesStatutOccupationLogement
+    TypesCategorieSalarie, TypesSecteurActivite, TypesStatutOccupationLogement,
+    min_, where,
     )
+
+
+class mobili_jeune(Variable):
+    value_type = float
+    label = "Montant de l'aide au logement mobili-jeune"
+    entity = Individu
+    definition_period = MONTH
+    reference = "https://www.actionlogement.fr/l-aide-mobili-jeune"
+
+    def formula_2012_07(individu, period, parameters):
+        loyer = individu.menage('loyer', period)
+        charges_locatives = individu.menage('charges_locatives', period)
+        apl = individu.famille('apl', period)
+
+        reste_a_charge = loyer + charges_locatives - apl
+
+        eligibilite = individu('mobili_jeune_eligibilite', period)
+
+        return where(
+            reste_a_charge >= parameters(period).prestations.mobili_jeune.montant.minimum,
+            eligibilite * min_(reste_a_charge, parameters(period).prestations.mobili_jeune.montant.maximum),
+            0,
+            )
 
 
 class mobili_jeune_eligibilite_employeur(Variable):
@@ -11,7 +35,7 @@ class mobili_jeune_eligibilite_employeur(Variable):
     definition_period = MONTH
     reference = "https://www.actionlogement.fr/l-aide-mobili-jeune"
 
-    def formula(individu, period):
+    def formula_2012_07(individu, period):
         secteur_prive_non_agricole = (
             individu("categorie_salarie", period) == TypesCategorieSalarie.prive_non_cadre
             ) * (

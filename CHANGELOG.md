@@ -1,5 +1,15 @@
 # Changelog
 
+## 51.16.0 [#1516](https://github.com/openfisca/openfisca-france/pull/1516)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 01/07/2012.
+* Zones impactées :
+  * `prestations/mobili_jeune.py`
+  * `parameters/prestations/mobili_jeune.yaml`
+* Détails :
+  - Ajoute la variable `mobili_jeune` qui calcule le montant de l'aide Mobili-jeune.
+
 ## 51.15.0 [#1493](https://github.com/openfisca/openfisca-france/pull/1493)
 
 * Évolution du système socio-fiscal.

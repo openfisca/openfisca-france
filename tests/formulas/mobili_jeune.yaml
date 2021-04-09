@@ -8,3 +8,14 @@
     statut_occupation_logement: ['locataire_meuble', 'locataire_vide', 'locataire_hlm', 'locataire_foyer', 'locataire_foyer', 'non_renseigne']
   output:
     mobili_jeune_eligibilite: [true, false, false, false, false, false]
+
+- name: Montant de l'aide au logement mobili-jeune
+  description: Cas donnés sur actionlogement.fr/l-aide-mobili-jeune
+  period: 2021-03
+  input:
+    age: [ 18, 18, 18, 18 ]
+    mobili_jeune_eligibilite: [ true, true, true, false ]
+    loyer: [ 350, 350, 250, 350 ]
+    apl: [ 220, 280, 245, 220 ]
+  output:
+    mobili_jeune: [ 100, 70, 0, 0 ]
