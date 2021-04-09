@@ -1,0 +1,81 @@
+- period: 2021-03
+  input:
+    age: [23, 29, 30, 30]
+    handicap: [false, false, true, false]
+    bourse_criteres_sociaux_nombre_enfants_parent_etudiant: [0, 0, 0, 5]
+  output:
+    bourse_criteres_sociaux_eligibilite_age: [true, false, true, true]
+
+- period: 2021-03
+  input:
+    individus:
+      p1: {}
+      enf1: {}
+      enf2: {}
+      p2: {}
+    familles:
+      f1:
+        parents: [p1]
+        enfants: [enf1, enf2]
+      f2:
+        parents: [p2]
+  output:
+    bourse_criteres_sociaux_nombre_enfants_parent_etudiant: [2, 0]
+
+- period: 2021-03
+  input:
+    scolarite: [enseignement_superieur, enseignement_superieur, enseignement_superieur, enseignement_superieur]
+    statuts_etablissement_scolaire: [public, prive_sous_contrat, prive_hors_contrat, prive_sous_contrat]
+    alternant: [false, false, false, true]
+  output:
+    bourse_criteres_sociaux_eligibilite_etude: [true, true, false, false]
+
+- period: 2021-03
+  input:
+    bourse_criteres_sociaux_eligibilite_age: [true, false, true]
+    bourse_criteres_sociaux_eligibilite_etude: [true, true, false]
+  output:
+    bourse_criteres_sociaux_eligibilite: [true, false, false]
+
+- period: 2021-03
+  input:
+    statut_marital: [celibataire, marie, celibataire]
+    bourse_criteres_sociaux_etudiant_autonome_ressource_mensuelle: [2000, 2000, 0]
+    bourse_criteres_sociaux_nombre_enfants_parent_etudiant: [0, 0, 1]
+  output:
+    bourse_criteres_sociaux_etudiant_autonome: [false, true, true]
+
+- period: 2021-03
+  input:
+    bourse_criteres_sociaux_base_ressources_parentale: [1, 2, 3]
+    bourse_criteres_sociaux_etudiant_autonome: [true, false, false]
+    bourse_criteres_sociaux_base_ressources_etudiant_autonome: [4, 5, 6]
+  output:
+    bourse_criteres_sociaux_base_ressources: [4, 2, 3]
+
+- period: 2021-03
+  input:
+    bourse_criteres_sociaux_distance_domicile_familial: [0, 35, 1000]
+  output:
+    bourse_criteres_sociaux_points_de_charge_distance_domicile_familial: [0, 1, 2]
+
+- period: 2021-03
+  input:
+    bourse_criteres_sociaux_nombre_enfants_a_charge: [4]
+    bourse_criteres_sociaux_nombre_enfants_a_charge_dans_enseignement_superieur: [3]
+  output:
+    bourse_criteres_sociaux_points_de_charge_charges_familiale: [10] # (4 - 3) * 2 + (3 - 1) * 4
+
+- period: 2021-03
+  input:
+    bourse_criteres_sociaux_eligibilite: [true, true, true, true, true]
+    bourse_criteres_sociaux_base_ressources: [0, 1000, 1000, 1000, 30351]
+    bourse_criteres_sociaux_points_de_charge: [0, 0, 17, 18, 8]
+  output:
+    bourse_criteres_sociaux_echelon: [7, 6, 7, 7, 2]
+
+- period: 2021-03
+  input:
+    bourse_criteres_sociaux_echelon: [-1, 0, 8]
+  output:
+    bourse_criteres_sociaux: [0, 103.2, 567.9]

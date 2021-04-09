@@ -320,3 +320,16 @@ class statuts_etablissement_scolaire(Variable):
     default_value = StatutsEtablissementScolaire.inconnu
     entity = Individu
     definition_period = MONTH
+
+
+class boursier(Variable):
+    value_type = bool
+    entity = Individu
+    label = "Élève ou étudiant boursier"
+    definition_period = MONTH
+
+    def formula_2021(individu, period):
+        college = individu.famille('bourse_college_echelon', period)
+        lycee = individu.famille('bourse_lycee', period)
+        sup = individu('bourse_criteres_sociaux', period)
+        return (college > 0) + (lycee > 0) + (sup > 0)
