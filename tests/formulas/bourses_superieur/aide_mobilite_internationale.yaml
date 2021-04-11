@@ -1,26 +1,29 @@
 - name: Éligibilité à l'aide à la mobilité internationale selon les critères sociaux
   period: 2021-03
   input:
-    duree_etudes_etranger: [ 3, 3 ]
+    debut_etudes_etranger: [ 2021-01, 2021-01 ]
+    fin_etudes_etranger: [ 2021-03, 2021-03 ]
     statuts_etablissement_scolaire: [ public, public ]
     bourse_criteres_sociaux_eligibilite: [ true, false ]
   output:
-    aide_mobilite_internationale: [ true, false ]
+    aide_mobilite_internationale_eligibilite: [ true, false ]
 
 - name: Éligibilité à l'aide à la mobilité internationale selon la durée du séjour à l'étranger
   period: 2021-03
   input:
-    bourse_criteres_sociaux_eligibilite: [ true, true, true ]
-    statuts_etablissement_scolaire: [ public, public, public ]
-    duree_etudes_etranger: [ 1, 2, 10 ]
+    bourse_criteres_sociaux_eligibilite: [ true, true, true, true ]
+    statuts_etablissement_scolaire: [ public, public, public, public ]
+    debut_etudes_etranger: [ 2020-06, 2020-07, 2021-02, 2021-03 ]
+    fin_etudes_etranger: [ 2021-03, 2021-03, 2021-03, 2021-03 ]
   output:
-    aide_mobilite_internationale: [ false, true, false ]
+    aide_mobilite_internationale_eligibilite: [ false, true, true, false ]
 
 - name: Éligibilité à l'aide à la mobilité internationale selon le statut de l'établissement
   period: 2021-03
   input:
     bourse_criteres_sociaux_eligibilite: [ true, true, true ]
-    duree_etudes_etranger: [ 3, 3, 3 ]
+    debut_etudes_etranger: [ 2021-01, 2021-01, 2021-01 ]
+    fin_etudes_etranger: [ 2021-03, 2021-03, 2021-03 ]
     statuts_etablissement_scolaire: [ public, prive_sous_contrat, prive_hors_contrat ]
   output:
-    aide_mobilite_internationale: [ true, true, false ]
+    aide_mobilite_internationale_eligibilite: [ true, true, false ]
