@@ -12,6 +12,12 @@ class aide_mobilite_internationale_eligibilite(Variable):
     definition_period = MONTH
 
     def formula(individu, period, parameters):
+        '''
+        Conditions non modélisées :
+        - Éligibilité des boursiers bénéficiaires d'une allocation annuelle (dispositif des aides spécifiques).
+        - La formation ou stage à l'étranger s'inscrit dans le cadre du cursus d'études.
+        - Au cours de l'ensemble des études supérieures, ne peuvent être cumulés plus 9 mois d'aide à la mobilité internationale (sauf pour les étudiants ayant perçu neuf mensualités de l'aide à la mobilité internationale et dont le séjour à l'étranger a été interrompu en raison de l'épidémie de Covid-19, qui peuvent bénéficier de mensualités supplémentaires dans le cadre d'une mobilité ultérieure, dans la limite de la durée de la mobilité non effectuée.)
+        '''
         debut_etudes_etranger = individu('debut_etudes_etranger', period)
         fin_etudes_etranger = individu('fin_etudes_etranger', period)
         duree_etudes_etranger = (fin_etudes_etranger - debut_etudes_etranger).astype('timedelta64[M]')
@@ -33,4 +39,7 @@ class aide_mobilite_internationale(Variable):
     definition_period = MONTH
 
     def formula(individu, period, parameters):
+        '''
+        Ce calcul ne détermine qu'une éligibilité potentielle et n'ouvre pas de droits : l'aide est accordée par une évaluation de l'établissement d'origine, en fonction de la durée de votre séjour et de certaines spécificités telles que l'éloignement du pays d'accueil, le coût de la vie du pays choisi.
+        '''
         return individu('aide_mobilite_internationale_eligibilite', period) * parameters(period).prestations.aide_mobilite_internationale.montant
