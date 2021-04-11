@@ -1,5 +1,7 @@
 from openfisca_france.model.base import *
 
+from numpy import timedelta64
+
 
 class aide_mobilite_internationale_eligibilite(Variable):
     value_type = bool
@@ -7,15 +9,18 @@ class aide_mobilite_internationale_eligibilite(Variable):
     label = "Éligibilite à l'aide à la mobilité internationale (AMI)"
     definition_period = MONTH
 
-    def formula(individu, period):
+    def formula(individu, period, parameters):
         debut_etudes_etranger = individu('debut_etudes_etranger', period)
         fin_etudes_etranger = individu('fin_etudes_etranger', period)
+        duree_etudes_etranger = (fin_etudes_etranger - debut_etudes_etranger).astype('timedelta64[M]')
+        eligibilite_duree_min = duree_etudes_etranger >= timedelta64(parameters(period).prestations.aide_mobilite_internationale.duree_sejour.mois_min, 'M')
+        eligibilite_duree_max = duree_etudes_etranger <= timedelta64(parameters(period).prestations.aide_mobilite_internationale.duree_sejour.mois_max, 'M')
 
         statuts_etablissement_scolaire = individu('statuts_etablissement_scolaire', period)
 
         bourse_criteres_sociaux_eligibilite = individu('bourse_criteres_sociaux_eligibilite', period)
 
-        return bourse_criteres_sociaux_eligibilite
+        return bourse_criteres_sociaux_eligibilite * eligibilite_duree_min * eligibilite_duree_max
 
 
 class aide_mobilite_internationale(Variable):
