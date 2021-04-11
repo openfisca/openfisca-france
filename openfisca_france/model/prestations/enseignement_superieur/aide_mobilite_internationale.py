@@ -33,4 +33,4 @@ class aide_mobilite_internationale(Variable):
     definition_period = MONTH
 
     def formula(individu, period, parameters):
-        return individu('bourse_criteres_sociaux_eligibilite', period) * parameters(period).prestations.aide_mobilite_internationale.montant
+        return individu('aide_mobilite_internationale_eligibilite', period) * parameters(period).prestations.aide_mobilite_internationale.montant

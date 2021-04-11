@@ -1,3 +1,10 @@
+- name: Montant de l'aide à la mobilité internationale selon l'éligibilité
+  period: 2021-04
+  input:
+    aide_mobilite_internationale_eligibilite: [ true, false ]
+  output:
+    aide_mobilite_internationale: [ 400, 0 ]
+
 - name: Éligibilité à l'aide à la mobilité internationale selon les critères sociaux
   period: 2021-04
   input:
