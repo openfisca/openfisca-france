@@ -1,0 +1,14 @@
+- name: Eligibilité au cumul des allocations chômage et revenus d'activité - Cas n°1
+  description: 
+  period: 2019-04
+  input:
+    salaire_de_reference_mensuel: 2000
+    contrat_de_travail_fin: 2019-04
+    salaire_de_base: 
+      2019-04: 500
+  output: 
+    eligibilite_cumul_are_salaire:
+      2019-04: true 
+    
+
+

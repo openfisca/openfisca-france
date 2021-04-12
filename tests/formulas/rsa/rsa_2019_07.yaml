@@ -17,6 +17,10 @@
   output:
     rsa:
       2019-07: 559.74
+      2019-08: 559.74
+      2019-09: 559.74
+      2019-10: 559.74
+      2019-11: 559.74
 
 - name: Calcul RSA pour personne seule ou famille monoparentale (excluant RSA jeune) - Cas n°2
   description: Personne seule sans enfant avec ressources mensuelles durant les 3 derniers mois à la demande inférieures à 559,75 mais sans ressources forfaitaires 

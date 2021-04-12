@@ -53,7 +53,7 @@ class csg_deductible_chomage(Variable):
     definition_period = MONTH
 
     def formula(individu, period, parameters):
-        chomage_brut = individu('chomage_brut', period)
+        chomage_brut = individu('are', period)
         csg_imposable_chomage = individu('csg_imposable_chomage', period)
         taux_csg_remplacement = individu('taux_csg_remplacement', period)
         parameters = parameters(period)
@@ -94,7 +94,7 @@ class csg_imposable_chomage(Variable):
     definition_period = MONTH
 
     def formula(individu, period, parameters):
-        chomage_brut = individu('chomage_brut', period)
+        chomage_brut = individu('are', period)
         parameters = parameters(period)
 
         montant_csg = montant_csg_crds(
@@ -121,7 +121,7 @@ class crds_chomage(Variable):
     definition_period = MONTH
 
     def formula(individu, period, parameters):
-        chomage_brut = individu('chomage_brut', period)
+        chomage_brut = individu('are', period)
         csg_deductible_chomage = individu('csg_deductible_chomage', period)
         csg_imposable_chomage = individu('csg_imposable_chomage', period)
         taux_csg_remplacement = individu('taux_csg_remplacement', period)
@@ -166,7 +166,7 @@ class chomage_imposable(Variable):
     definition_period = MONTH
 
     def formula(individu, period):
-        chomage_brut = individu('chomage_brut', period)
+        chomage_brut = individu('are', period)
         csg_deductible_chomage = individu('csg_deductible_chomage', period)
 
         return chomage_brut + csg_deductible_chomage
