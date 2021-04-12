@@ -572,14 +572,15 @@ class al_biactivite(Variable):
                une part pensions). Mais cette variable n'existe que jusqu'à 2005
                inclus.
         '''
-        annee_fiscale_n_1 = period.start.period('year').offset(-1)
 
-        pfam = parameters(annee_fiscale_n_1).prestations.prestations_familiales
+        pfam = parameters(period).prestations.prestations_familiales
         base_annuelle_allocations_famililales = 12 * pfam.af.bmaf
 
         condition_ressource = (
-            famille.members('rpns_imposables', annee_fiscale_n_1)
-            + famille.members('revenu_assimile_salaire_apres_abattements', annee_fiscale_n_1)
+            individu('salaire_imposable', period, options = [ADD])
+            + individu('f1tt', period)
+            + individu('f3vj', period)
+            + famille.members('rpns_imposables', period)
             >= base_annuelle_allocations_famililales
             )
         deux_parents = famille.nb_persons(role=Famille.PARENT) == 2
@@ -791,7 +792,7 @@ class aide_logement_base_ressources_defaut(Variable):
     definition_period = MONTH
 
     def formula(famille, period, parameters):
-        biactivite = famille('biactivite', period)
+        biactivite = famille('al_biactivite', period.n_2)
         Pr = parameters(period).prestations.aides_logement.ressources
         base_ressources_i = famille.members('prestations_familiales_base_ressources_individu', period)
         base_ressources_parents = famille.sum(base_ressources_i, role = Famille.PARENT)
@@ -1006,11 +1007,12 @@ class aide_logement_base_ressources(Variable):
     definition_period = MONTH
 
     def formula_2021_01_01(famille, period, parameters):
-        biactivite = famille('al_biactivite', period)
         params_al_ressources = parameters(period).prestations.aides_logement.ressources
         age_etudiant_max = parameters(period).prestations.aides_logement.age_max_etudiant
         # Rolling year
         annee_glissante = period.start.period('year').offset(-1).offset(-1, 'month')
+
+        biactivite = famille('al_biactivite', annee_glissante)
 
         base_ressources_i = famille.members('al_base_ressources_individu', period)
         base_ressources_parents = famille.sum(base_ressources_i, role=Famille.PARENT)
