@@ -256,7 +256,7 @@ class bourse_criteres_sociaux_distance_domicile_familial(Variable):
         "Circulaire ESRS2013435C - Annexe 3 - Conditions de ressources et points de charge / 2 - Points de charge à prendre en considération pour l'attribution d'une bourse sur critères sociaux / 2.1 - Les charges de l'étudiant",
         "https://www.education.gouv.fr/bo/20/Hebdo25/ESRS2013435C.htm"
         ]
-    label = "Distance entre le lieu d'étude et le domicile familial pour le calcul la bourse sur critères sociaux de l'enseignement supérieur"
+    label = "Distance en kilomètres entre le lieu d'étude et le domicile familial"
     definition_period = MONTH
 
 
@@ -267,7 +267,7 @@ class bourse_criteres_sociaux_nombre_enfants_a_charge(Variable):
         "Circulaire ESRS2013435C - Annexe 3 - Conditions de ressources et points de charge / 2 - Points de charge à prendre en considération pour l'attribution d'une bourse sur critères sociaux / 2.2 - Les charges de la famille",
         "https://www.education.gouv.fr/bo/20/Hebdo25/ESRS2013435C.htm"
         ]
-    label = "Nombre total d'enfants à la charge de la famille pour le calcul la bourse sur critères sociaux de l'enseignement supérieur"
+    label = "Nombre total d'enfants à la charge de la famille pour le calcul de la bourse sur critères sociaux de l'enseignement supérieur"
     definition_period = MONTH
 
 
