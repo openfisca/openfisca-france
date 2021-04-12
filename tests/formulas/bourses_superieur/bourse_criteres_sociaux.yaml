@@ -68,11 +68,11 @@
 
 - period: 2021-03
   input:
-    bourse_criteres_sociaux_eligibilite: [true, true, true, true, true]
-    bourse_criteres_sociaux_base_ressources: [0, 1000, 1000, 1000, 30351]
-    bourse_criteres_sociaux_points_de_charge: [0, 0, 17, 18, 8]
+    bourse_criteres_sociaux_eligibilite: [true, true, true, true, true, false]
+    bourse_criteres_sociaux_base_ressources: [0, 1000, 1000, 1000, 30351, 30351]
+    bourse_criteres_sociaux_points_de_charge: [0, 0, 17, 18, 8, 8]
   output:
-    bourse_criteres_sociaux_echelon: [7, 6, 7, 7, 2]
+    bourse_criteres_sociaux_echelon: [7, 6, 7, 7, 2, -1]
 
 - period: 2021-03
   input:

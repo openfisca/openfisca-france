@@ -1,5 +1,12 @@
 # Changelog
 
+### 51.16.1 [#1517](https://github.com/openfisca/openfisca-france/pull/1517)
+
+* Changement mineur.
+* Zones impactées : `prestations/enseignement_superieur/bourse_criteres_sociaux.py`.
+* Détails :
+  - Corrige le calcul de l'échelon des bourses sur critères sociaux.
+
 ## 51.16.0 [#1516](https://github.com/openfisca/openfisca-france/pull/1516)
 
 * Évolution du système socio-fiscal.
