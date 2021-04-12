@@ -254,7 +254,7 @@ input:
         2017-05: false
         2017-04: false
         2017-03: false
-      echelon_bourse:
+      bourse_criteres_sociaux_echelon:
         2017-06: -1
         2017-05: -1
         2017-04: -1

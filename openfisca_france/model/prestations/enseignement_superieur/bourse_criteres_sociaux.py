@@ -3,16 +3,6 @@ from openfisca_france.model.base import Famille, Individu, TypesStatutMarital
 from openfisca_france.model.prestations.education import TypesScolarite, StatutsEtablissementScolaire
 
 
-class echelon_bourse(Variable):
-    entity = Individu
-    value_type = int
-    label = "Échelon de la bourse sur critères sociaux de l'enseignement supérieur perçue (de 0 à 7)"
-    definition_period = MONTH
-
-    def formula(individu, period):
-        return individu('bourse_criteres_sociaux_echelon', period)
-
-
 class bourse_criteres_sociaux(Variable):
     value_type = float
     entity = Individu
