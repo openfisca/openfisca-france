@@ -523,7 +523,7 @@ class al_revenu_assimile_salaire(Variable):
     label = "Revenu imposé comme des salaires dans le cadre du calcul des ressources de l'aide au logement."
     definition_period = MONTH
 
-    def formula(individu, period, parameters):
+    def formula_2021_01_01(individu, period, parameters):
         # version spécifique aux aides logement de revenu_assimile_salaire
         period_salaire_chomage = period.start.period('year').offset(-1).offset(-1, 'month')
         period_f1tt_f3vj = period.n_2
@@ -549,6 +549,33 @@ class al_revenu_assimile_salaire(Variable):
         indemnites_stage_apres_abattement = max(0, sum(indemnites_stage) - smic_annuel_brut)
 
         return salaire_imposable + chomage_imposable + f1tt + f3vj + remuneration_apprenti_apres_abattement + indemnites_stage_apres_abattement
+
+    def formula(individu, period, parameters):
+        # version spécifique aux aides logement de revenu_assimile_salaire
+        period_al =  period.n_2
+
+        smic_annuel_brut = parameters(period_al).cotsoc.gen.smic_h_b * 52 * 35
+
+        # salaire imposable pour les journaliste et les assistants mat/fam apres l'aplication de l'abattement forfaitaire
+        # dans le cas des frais réels déclarés superieurs à Zero.
+        salaire_imposable_apres_abattement = individu('al_abattement_forfaitaire_assistants_et_journalistes',
+                                                     period_al, options=[ADD])
+        salaire_imposable_sans_abattement = individu('salaire_imposable', period_al, options=[ADD])
+        frais_reels = individu('frais_reels', period_al)
+        salaire_imposable = where(frais_reels > 0, salaire_imposable_sans_abattement, salaire_imposable_apres_abattement)
+
+        chomage_imposable = individu('chomage_imposable', period_al, options=[ADD])
+        f1tt = individu('f1tt', period_al)
+        f3vj = individu('f3vj', period_al)
+
+        # application du plafond d'exonération fiscale pour les salaires des stagiaires et des apprentis
+        remuneration_apprenti = individu('remuneration_apprenti', period_al, options=[ADD])
+        remuneration_apprenti_apres_abattement = max(0, sum(remuneration_apprenti) - smic_annuel_brut)
+        indemnites_stage = individu('indemnites_stage', period_al, options=[ADD])
+        indemnites_stage_apres_abattement = max(0, sum(indemnites_stage) - smic_annuel_brut)
+
+        return salaire_imposable + chomage_imposable + f1tt + f3vj + remuneration_apprenti_apres_abattement + indemnites_stage_apres_abattement
+
 
 
 class al_biactivite(Variable):
@@ -739,7 +766,7 @@ class aide_logement_abattement_depart_retraite(Variable):
         activite = individu('activite', period)
         retraite = activite == TypesActivite.retraite
         condition_abattement = (retraite_n_2 == 0) * retraite
-        revenus_activite_pro = individu('revenu_assimile_salaire_apres_abattements', period.n_2)
+        revenus_activite_pro = individu('al_revenu_assimile_salaire_apres_abattements', period.n_2)
 
         abattement = condition_abattement * 0.3 * revenus_activite_pro
 
@@ -757,7 +784,7 @@ class aide_logement_neutralisation_conge_parental(Variable):
         type_conges = individu('type_conges', period)
         conge_parental = (type_conges == TypesConges.conge_parental)
 
-        revenus_a_neutraliser = individu('revenu_assimile_salaire_apres_abattements', period.n_2)
+        revenus_a_neutraliser = individu('al_revenu_assimile_salaire_apres_abattements', period.n_2)
 
         return revenus_a_neutraliser * conge_parental
 
@@ -779,7 +806,7 @@ class aide_logement_neutralisation_rsa(Variable):
         # We don't allow it, so default value of rsa will be returned if a recursion is detected.
         rsa_mois_dernier = famille('rsa', period.last_month)
 
-        revenus_a_neutraliser_i = famille.members('revenu_assimile_salaire_apres_abattements', period.n_2)
+        revenus_a_neutraliser_i = famille.members('al_revenu_assimile_salaire_apres_abattements', period.n_2)
         revenus_a_neutraliser = famille.sum(revenus_a_neutraliser_i)
 
         return revenus_a_neutraliser * (rsa_mois_dernier > 0)
@@ -927,14 +954,29 @@ class al_revenu_assimile_salaire_apres_abattements(Variable):
     def formula_2021_01_01(individu, period, parameters):
         # version spécifique aux aides logement de revenu_assimile_salaire_apres_abattements
         period_revenus = period
-        period_chomage = period.n_2
         period_frais = period.last_year
 
         revenu_assimile_salaire = individu('al_revenu_assimile_salaire', period_revenus)
-        chomeur_longue_duree = individu('chomeur_longue_duree', period_chomage)
+        chomeur_longue_duree = individu('chomeur_longue_duree', period_revenus)
         frais_reels = individu('frais_reels', period_frais)
 
         abatpro = parameters(period.last_year).impot_revenu.tspr.abatpro
+        abattement_minimum = where(chomeur_longue_duree, abatpro.min2, abatpro.min)
+        abattement_forfaitaire = round_(min_(max_(abatpro.taux * revenu_assimile_salaire, abattement_minimum), abatpro.max))
+
+        return where(frais_reels > 0, revenu_assimile_salaire - frais_reels,
+            max_(0, revenu_assimile_salaire - abattement_forfaitaire)
+            )
+
+    def formula(individu, period, parameters):
+        # version spécifique aux aides logement de revenu_assimile_salaire_apres_abattements
+        period_al =  period.n_2
+
+        revenu_assimile_salaire = individu('al_revenu_assimile_salaire', period_revenus)
+        chomeur_longue_duree = individu('chomeur_longue_duree', period_al)
+        frais_reels = individu('frais_reels', period_al)
+
+        abatpro = parameters(period_al).impot_revenu.tspr.abatpro
         abattement_minimum = where(chomeur_longue_duree, abatpro.min2, abatpro.min)
         abattement_forfaitaire = round_(min_(max_(abatpro.taux * revenu_assimile_salaire, abattement_minimum), abatpro.max))
 
