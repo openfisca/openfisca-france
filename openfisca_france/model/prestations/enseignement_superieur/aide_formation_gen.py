@@ -22,6 +22,12 @@ class aide_formation_gen(Variable):
     definition_period = MONTH
 
     def formula_2017_04_14(individu, period, parameters):
+        '''
+        Les conditions de non-cumul spécifiques à la formation ne sont pas modélisées car aucune n'est modélisée à ce jour dans OpenFisca et qu'un grand nombre sont arbitraires ou à l'échelon infra-national :
+        - L'aide n'est pas cumulable avec une aide spécifique versée par le ministre chargé de l'enseignement supérieur ou les établissements publics qui en relèvent.
+        - Sont exclues du bénéfice de l'aide les personnes inscrites à Pôle Emploi comme demandeurs d'emploi qui perçoivent une aide à l'insertion ou une aide à la formation professionnelle ainsi que les personnes rémunérées sous contrat d'apprentissage ou de professionnalisation et les personnes en congé individuel de formation.
+        - Sont également exclues du bénéfice de l'aide les personnes percevant une aide du ministère chargé de l'emploi ou d'un conseil régional versée au titre de la formation professionnelle ou de l'insertion professionnelle.
+        '''
         points_de_charge = individu('bourse_criteres_sociaux_points_de_charge', period)
         baremes = parameters(period).bourses_enseignement_superieur.criteres_sociaux.plafond_ressources
         plafond_echelon_0bis = baremes.echelon_0bis.calc(points_de_charge)
