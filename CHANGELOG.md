@@ -1,5 +1,22 @@
 # Changelog
 
+# 52.0.0 [#1521](https://github.com/openfisca/openfisca-france/pull/1521)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : toutes.
+* Zones impactées :
+  * `prestations/enseignement_superieur/bourse_criteres_sociaux.py`
+  * `prestations/enseignement_superieur/aide_formation_gen.py`
+  * `parameters/bourses_enseignement_superieur/criteres_sociaux/montants.yaml`
+  * `parameters/bourses_enseignement_superieur/criteres_sociaux/nationalites_hors_eee.yaml`
+* Détails :
+  - Renomme `bourse_criteres_sociaux_distance_domicile_familial` en `distance_domicile_familial`.
+  - Renomme `echelon_bourse` en `bourse_criteres_sociaux_echelon`.
+  - Ajoute le barème 2015 des bourses sur critères sociaux de l'enseignement supérieur.
+  - Ajoute la variable `bourse_criteres_sociaux_eligibilite_nationalite` et ajoute la condition de nationalité à l'éligibilité aux bourses sur critères sociaux de l'enseignement supérieur.
+  - Ajoute le type de scolarité `grande_ecole_du_numerique`.
+  - Ajoute le calcul de l'éligibilité et du montant à l'aide aux personnes inscrites dans les formations labellisées par la Grande Ecole du numérique avec les variables `aide_formation_gen_eligibilite` et `aide_formation_gen`.
+
 ### 51.17.3 [#1522](https://github.com/openfisca/openfisca-france/pull/1522)
 
 * Correction d'un crash.
