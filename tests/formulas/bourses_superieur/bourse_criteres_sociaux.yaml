@@ -68,7 +68,7 @@
 
 - period: 2021-03
   input:
-    bourse_criteres_sociaux_distance_domicile_familial: [0, 35, 1000]
+    distance_domicile_familial: [0, 35, 1000]
   output:
     bourse_criteres_sociaux_points_de_charge_distance_domicile_familial: [0, 1, 2]
 
