@@ -51,6 +51,34 @@ class bourse_criteres_sociaux_eligibilite_etude(Variable):
         return enseignement_superieur * temps_plein * etablissement_eligible
 
 
+class bourse_criteres_sociaux_eligibilite_nationalite(Variable):
+    value_type = bool
+    entity = Individu
+    reference = [
+        "Circulaire ESRS2013435C - 2.3.A",
+        "https://www.education.gouv.fr/bo/20/Hebdo25/ESRS2013435C.htm"
+        ]
+    label = "Satisfaction des critères de nationalité pour la bourse sur critères sociaux de l'enseignement supérieur"
+    definition_period = MONTH
+
+    def formula_2004_07_21(individu, period, parameters):
+        '''
+        Reference: https://www.education.gouv.fr/bo/2004/30/MENS0401499C.htm
+        '''
+        ressortissant_eee = individu('ressortissant_eee', period)
+
+        nationalite = individu('nationalite', period)
+        ressortissant_pays_eligible = sum([nationalite == str.encode(etat) for etat in parameters(period).bourses_enseignement_superieur.criteres_sociaux.nationalites_hors_eee])  # TOOPTIMIZE: string encoding into bytes array should be done at load time
+
+        return ressortissant_eee + ressortissant_pays_eligible
+
+    def formula_2003_04_23(individu, period):
+        '''
+        Reference: https://www.education.gouv.fr/bo/2003/18/MENS0300894C.htm
+        '''
+        return individu('resident_ue', period)
+
+
 class bourse_criteres_sociaux_nombre_enfants_parent_etudiant(Variable):
     value_type = int
     entity = Famille
@@ -97,8 +125,9 @@ class bourse_criteres_sociaux_eligibilite(Variable):
     def formula(individu, period, parameters):
         eligibilite_age = individu('bourse_criteres_sociaux_eligibilite_age', period)
         eligibilite_etude = individu('bourse_criteres_sociaux_eligibilite_etude', period)
+        eligibilite_nationalite = individu('bourse_criteres_sociaux_eligibilite_nationalite', period)
 
-        return eligibilite_age * eligibilite_etude
+        return eligibilite_age * eligibilite_etude * eligibilite_nationalite
 
 
 class bourse_criteres_sociaux_base_ressources(Variable):

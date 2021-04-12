@@ -32,10 +32,23 @@
 
 - period: 2021-03
   input:
-    bourse_criteres_sociaux_eligibilite_age: [true, false, true]
-    bourse_criteres_sociaux_eligibilite_etude: [true, true, false]
+    bourse_criteres_sociaux_eligibilite_age: [true, false, true, true]
+    bourse_criteres_sociaux_eligibilite_etude: [true, true, false, true]
+    bourse_criteres_sociaux_eligibilite_nationalite: [true, true, true, false]
   output:
-    bourse_criteres_sociaux_eligibilite: [true, false, false]
+    bourse_criteres_sociaux_eligibilite: [true, false, false, false]
+
+- period: 2021-03
+  input:
+    nationalite: [ FR, DE, UK, CH, LI, NZ ]
+  output:
+    bourse_criteres_sociaux_eligibilite_nationalite: [ true, true, true, true, true, false ]
+
+- period: 2003-05
+  input:
+    nationalite: [ FR, DE, UK, CH, LI, NZ ]
+  output:
+    bourse_criteres_sociaux_eligibilite_nationalite: [ true, true, true, false, false, false ]
 
 - period: 2021-03
   input:
