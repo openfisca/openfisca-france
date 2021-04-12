@@ -1124,12 +1124,6 @@ class aide_logement_base_ressources(Variable):
         paje = famille('paje', annee_glissante, options=[ADD])
         ressources_annee_glissante += paje
 
-        # Ressources N-1
-        pensions_alimentaires_versees_i = famille.members('pensions_alimentaires_versees_individu', period.last_year, options=[ADD])
-        pensions_alimentaires_versees = famille.sum(pensions_alimentaires_versees_i, role=Famille.PARENT)
-        # Montant à soustraire
-        ressources_n_1 = -pensions_alimentaires_versees
-
         # Ressources N-2
         indemnites_journalieres_atexa_i = famille.members('indemnites_journalieres_atexa', period.n_2, options=[ADD])
         gains_exceptionnels_i = famille.members('gains_exceptionnels', period.n_2, options=[ADD])
