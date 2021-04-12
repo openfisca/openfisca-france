@@ -11,7 +11,10 @@ class aide_formation_gen_eligibilite(Variable):
     definition_period = MONTH
 
     def formula_2017_04_14(individu, period):
-        return individu('scolarite', period) == TypesScolarite.grande_ecole_du_numerique
+        eligibilite_formation = individu('scolarite', period) == TypesScolarite.grande_ecole_du_numerique
+        eligibilite_nationalite = individu('bourse_criteres_sociaux_eligibilite_nationalite', period)
+
+        return eligibilite_formation * eligibilite_nationalite
 
 
 class aide_formation_gen(Variable):
