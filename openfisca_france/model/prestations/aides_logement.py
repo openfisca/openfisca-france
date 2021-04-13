@@ -545,10 +545,7 @@ class al_revenu_assimile_salaire(Variable):
 
         smic_annuel_brut = parameters(period).marche_travail.salaire_minimum.smic_h_b * 52 * 35
 
-        # salaire imposable pour les journaliste et les assistants mat/fam apres l'aplication de l'abattement forfaitaire
         # dans le cas des frais réels déclarés superieurs à Zero.
-        salaire_imposable_apres_abattement = individu('al_abattement_forfaitaire_assistants_et_journalistes',
-                                                     period_salaire_chomage, options=[ADD])
         salaire_imposable_sans_abattement = individu('salaire_imposable', period_salaire_chomage, options=[ADD])
         frais_reels = individu('frais_reels', period.last_year)
         salaire_imposable = where(frais_reels > 0, salaire_imposable_sans_abattement, salaire_imposable_apres_abattement)
@@ -557,13 +554,7 @@ class al_revenu_assimile_salaire(Variable):
         f1tt = individu('f1tt', period_f1tt_f3vj)
         f3vj = individu('f3vj', period_f1tt_f3vj)
 
-        # application du plafond d'exonération fiscale pour les salaires des stagiaires et des apprentis
-        remuneration_apprenti = individu('remuneration_apprenti', period_salaire_chomage, options=[ADD])
-        remuneration_apprenti_apres_abattement = max(0, sum(remuneration_apprenti) - smic_annuel_brut)
-        indemnites_stage = individu('indemnites_stage', period_salaire_chomage, options=[ADD])
-        indemnites_stage_apres_abattement = max(0, sum(indemnites_stage) - smic_annuel_brut)
-
-        return salaire_imposable + chomage_imposable + f1tt + f3vj + remuneration_apprenti_apres_abattement + indemnites_stage_apres_abattement
+        return salaire_imposable + chomage_imposable + f1tt + f3vj
 
     def formula(individu, period, parameters):
         # version spécifique aux aides logement de revenu_assimile_salaire
@@ -571,11 +562,8 @@ class al_revenu_assimile_salaire(Variable):
 
         smic_annuel_brut = parameters(period_al).cotsoc.gen.smic_h_b * 52 * 35
 
-        # salaire imposable pour les journaliste et les assistants mat/fam apres l'aplication de l'abattement forfaitaire
         # dans le cas des frais réels déclarés superieurs à Zero.
-        salaire_imposable_apres_abattement = individu('al_abattement_forfaitaire_assistants_et_journalistes',
-                                                     period_al, options=[ADD])
-        salaire_imposable_sans_abattement = individu('salaire_imposable', period_al, options=[ADD])
+       salaire_imposable_sans_abattement = individu('salaire_imposable', period_al, options=[ADD])
         frais_reels = individu('frais_reels', period_al)
         salaire_imposable = where(frais_reels > 0, salaire_imposable_sans_abattement, salaire_imposable_apres_abattement)
 
@@ -583,14 +571,7 @@ class al_revenu_assimile_salaire(Variable):
         f1tt = individu('f1tt', period_al)
         f3vj = individu('f3vj', period_al)
 
-        # application du plafond d'exonération fiscale pour les salaires des stagiaires et des apprentis
-        remuneration_apprenti = individu('remuneration_apprenti', period_al, options=[ADD])
-        remuneration_apprenti_apres_abattement = max(0, sum(remuneration_apprenti) - smic_annuel_brut)
-        indemnites_stage = individu('indemnites_stage', period_al, options=[ADD])
-        indemnites_stage_apres_abattement = max(0, sum(indemnites_stage) - smic_annuel_brut)
-
-        return salaire_imposable + chomage_imposable + f1tt + f3vj + remuneration_apprenti_apres_abattement + indemnites_stage_apres_abattement
-
+        return salaire_imposable + chomage_imposable + f1tt + f3vj 
 
 
 class al_biactivite(Variable):
@@ -629,27 +610,6 @@ class al_biactivite(Variable):
         deux_parents = famille.nb_persons(role=Famille.PARENT) == 2
 
         return deux_parents * famille.all(condition_ressource, role=Famille.PARENT)
-
-
-class al_abattement_forfaitaire_assistants_et_journalistes(Variable):
-    value_type = float
-    entity = Individu
-    label = "L'application de l'abattement forfaitaire pour les journaliste et les assistants maternels et familiaux."
-    definition_period = MONTH
-    set_input = set_input_divide_by_period
-
-    def formula_2019_01(individu, period, parameters):
-        assistant_maternel = individu('assistant_maternel', period)
-        assistant_familial = individu('assistant_familial', period)
-        journaliste = individu('journaliste', period)
-        salaire_imposable = individu('salaire_imposable', period)
-        abat = parameters(period).prestations.al_assistant_journaliste.abattement.montant
-
-        montant_abattement = select([assistant_maternel, assistant_familial, journaliste],
-            [abat.assistant_maternel, abat.assistant_familial, abat.journaliste],
-            default=0)
-
-        return max_(0, salaire_imposable - montant_abattement)
 
 
 class aide_logement_condition_neutralisation_chomage(Variable):
