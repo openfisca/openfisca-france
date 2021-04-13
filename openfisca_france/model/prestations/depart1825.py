@@ -18,7 +18,7 @@ class depart1825_plafond_ressources(Variable):
 
 class depart1825_eligibilite_financiere(Variable):
     value_type = bool
-    label = "Éligibilité au dispositif via les ressources du foyer"
+    label = "Éligibilité au dispositif Départ 18-25 en raison des ressources du foyer"
     entity = Individu
     definition_period = MONTH
     reference = [
@@ -41,7 +41,7 @@ class depart1825_eligibilite_statut(Variable):
     - jeunes suivis par l'Aide Sociale à l'Enfance.​
     """
     value_type = bool
-    label = "Éligibilité au dispositif via la situation du jeune"
+    label = "Éligibilité au dispositif Départ 18-25 en raison de la situation du jeune"
     entity = Individu
     definition_period = MONTH
     reference = [
@@ -77,7 +77,7 @@ class depart1825_eligibilite(Variable):
         return (criteres_age.minimum <= age) * (age <= criteres_age.maximum) * eligible
 
 
-class depart1825(Variable):
+class depart1825_montant_maximum(Variable):
     value_type = float
     label = "Montant maximum du dispositif départ 18-25"
     entity = Individu
