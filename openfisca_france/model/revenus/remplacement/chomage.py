@@ -115,11 +115,19 @@ class salaire_de_reference_mensuel(Variable):
     definition_period = MONTH
 
     def formula(individu, period):
-         nombre_jours_travailles_12_derniers_mois = individu('nombre_jours_travailles_12_derniers_mois', period)
-         salaire_de_reference = individu('salaire_de_reference', period)
-         salaire_ref_mensuel = ((salaire_de_reference) / (nombre_jours_travailles_12_derniers_mois * 1.4 )) * 30
+        nombre_jours_travailles_12_derniers_mois = individu('nombre_jours_travailles_12_derniers_mois', period)
+        salaire_de_reference = individu('salaire_de_reference', period)
+        salaire_de_reference_mensuel = where(
+            nombre_jours_travailles_12_derniers_mois > 0,
+            (
+                30
+                * salaire_de_reference
+                / (nombre_jours_travailles_12_derniers_mois * 1.4)
+                ),
+            0
+            )
+        return salaire_de_reference_mensuel
 
-         return salaire_ref_mensuel
 
 class are(Variable):
     value_type = float
@@ -138,7 +146,7 @@ class are(Variable):
         montant_plancher = max_(
             are.are_min * 30,
             montant_mensuel
-        )
+            )
         montant_plafond = min_(
             montant_plancher,
             are.max_en_pourcentage_sjr * salaire_de_reference_mensuel

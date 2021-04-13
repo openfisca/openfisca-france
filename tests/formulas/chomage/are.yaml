@@ -1,7 +1,14 @@
+- name: Calcul du montant de l'allocation chômage (ARE) - Cas n°0
+  description: Le montant de l'ARE pour un individu avec tous les valeurs par défaut
+  period: 2019-07
+  absolute_error_margin: 0.02
+  output:
+    are: 0
+
+
 - name: Calcul du montant de l'allocation chômage (ARE) - Cas n°1
   description: Le montant de l'ARE pour un individu gagnant 1000 euros par mois et ayant travaillé les 12 derniers mois est égal à 75% du salaire mensuel de référence
   period: 2019-07
-  max_spiral_loops: 30
   absolute_error_margin: 0.02
   input:
     salaire_de_base:
