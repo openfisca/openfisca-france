@@ -32,4 +32,5 @@ reste_a_charge_minimum:
   description: Montant minimum du coût du séjour à régler pour les bénéficiaires de Départ 18-25.
   reference: https://www.ancv.com/actualites/le-magazine/depart-1825-un-nouveau-programme-pour-les-jeunes-de-18-25-ans
   unit: currency
-  2014-09-05: 50
+  values:
+    2014-09-05: 50

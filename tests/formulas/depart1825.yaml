@@ -24,14 +24,14 @@
 
 - period: 2021-03
   input:
-    age: [18]
-    depart1825_eligibilite_statut: [true]
-    depart1825_eligibilite_financiere: [false]
+    age: [18, 18, 18]
+    depart1825_eligibilite_statut: [true, false, false]
+    depart1825_eligibilite_financiere: [false, true, false]
   output:
-    depart1825_eligibilite: [true]
+    depart1825_eligibilite: [true, true, false]
 
 - period: 2021-03
   input:
     depart1825_eligibilite: [true, false]
   output:
-    depart1825: [200, 0]
+    depart1825_montant_maximum: [200, 0]
