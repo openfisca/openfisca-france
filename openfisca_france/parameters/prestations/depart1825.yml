@@ -25,6 +25,7 @@ montant_maximum:
 proportion_maximum:
   2014-09-05:
     value: .50
+    reference: https://www.ancv.com/sites/default/files/20140905_depart_1825.pdf
   2021-01-01:
     value: .75
     reference: https://programme-depart-1825.com
