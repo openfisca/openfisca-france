@@ -1,5 +1,5 @@
 - name: Calcul du montant de l'allocation chômage (ARE) - Cas n°1
-  description: Le montant de l'ARE pour un individu gagnant 1000 euros par mois et ayant travaillé les 12 derniers mois est égal à 75% du salaire mensuel de référence  
+  description: Le montant de l'ARE pour un individu gagnant 1000 euros par mois et ayant travaillé les 12 derniers mois est égal à 75% du salaire mensuel de référence
   period: 2019-07
   max_spiral_loops: 30
   absolute_error_margin: 0.02
@@ -18,22 +18,20 @@
       2019-05: 1000
       2019-06: 1000
       2019-07: 0
-    
 
-    contrat_de_travail_fin: 
+
+    contrat_de_travail_fin:
       2019: 2019-07
 
     nombre_jours_travailles_12_derniers_mois: 261
-    
-    are_eligibilite_individu: 
+
+    are_eligibilite_individu:
       2019-07: true
   output:
-    salaire_de_reference_mensuel: 
+    salaire_de_reference_mensuel:
       2019-07: 985.22174
-      2019-08: 985.22174
-    are: 
+    are:
       2019-07: 738.9163
-      2019-08: 738.9163
 
 - name: Calcul du montant de l'allocation chômage (ARE) - Cas n°2
   description: Le montant de l'ARE pour un individu gagnant 1200 euros par mois et ayant travaillé les 12 derniers mois est égal au montant minimal, c'est à dire 877.8 au 2019-07
@@ -57,15 +55,15 @@
 
     contrat_de_travail_fin: 2019-07
     nombre_jours_travailles_12_derniers_mois: 261
-    
-    are_eligibilite_individu: 
+
+    are_eligibilite_individu:
       2019-07: true
   output:
-    salaire_de_reference_mensuel: 
+    salaire_de_reference_mensuel:
       2019-07: 1182.26601
-    are: 
+    are:
       2019-07: 877.8
-    
+
 - name: Calcul du montant de l'allocation chômage (ARE) - Cas n°3
   description: Le montant de l'ARE pour un individu gagnant 2000 euros par mois et ayant travaillé les 12 derniers mois est égal à 40,4% du salaire mensuel de référence + 360€
   period: 2019-07
@@ -88,17 +86,17 @@
 
     contrat_de_travail_fin: 2019-07
     nombre_jours_travailles_12_derniers_mois: 261
-    
-    are_eligibilite_individu: 
+
+    are_eligibilite_individu:
       2019-07: true
   output:
-    salaire_de_reference_mensuel: 
+    salaire_de_reference_mensuel:
       2019-07: 1970.44335
-    are: 
+    are:
       2019-07: 1156.0592
 
 - name: Calcul du montant de l'allocation chômage (ARE) - Cas n°4
-  description: Le montant de l'ARE pour un individu gagnant 10000 euros par mois et ayant travaillé les 12 derniers mois est égal à 57% du salaire mensuel de référence 
+  description: Le montant de l'ARE pour un individu gagnant 10000 euros par mois et ayant travaillé les 12 derniers mois est égal à 57% du salaire mensuel de référence
   period: 2019-07
   absolute_error_margin: 0.02
   input:
@@ -119,13 +117,13 @@
 
     contrat_de_travail_fin: 2019-07
     nombre_jours_travailles_12_derniers_mois: 261
-    
-    are_eligibilite_individu: 
+
+    are_eligibilite_individu:
       2019-07: true
   output:
-    salaire_de_reference_mensuel: 
+    salaire_de_reference_mensuel:
       2019-07: 9852.2167
-    are: 
+    are:
       2019-07: 5615.7637
 
 - name: Calcul du montant de l'allocation chômage (ARE) - Cas n°5
@@ -150,13 +148,13 @@
 
     contrat_de_travail_fin: 2019-07
     nombre_jours_travailles_12_derniers_mois: 261
-    
-    are_eligibilite_individu: 
+
+    are_eligibilite_individu:
       2019-07: true
   output:
-    salaire_de_reference_mensuel: 
+    salaire_de_reference_mensuel:
       2019-07: 1878.4893
-    are: 
+    are:
       2019-07: 1118.9097
 
 - name: Calcul du montant de l'allocation chômage (ARE) - Cas n°6
@@ -181,13 +179,13 @@
 
     contrat_de_travail_fin: 2019-07
     nombre_jours_travailles_12_derniers_mois: 102
-    
-    are_eligibilite_individu: 
+
+    are_eligibilite_individu:
       2019-07: true
   output:
-    salaire_de_reference_mensuel: 
+    salaire_de_reference_mensuel:
       2019-07: 4806.7227
-    are: 
+    are:
       2019-07: 2739.8318
 
 - name: Calcul du montant de l'allocation chômage (ARE) - Cas n°7
@@ -212,11 +210,11 @@
 
     contrat_de_travail_fin: 2013-07
     nombre_jours_travailles_12_derniers_mois: 102
-    
-    are_eligibilite_individu: 
+
+    are_eligibilite_individu:
       2013-07: true
   output:
-    salaire_de_reference_mensuel: 
+    salaire_de_reference_mensuel:
       2013-07: 4806.7227
-    are: 
+    are:
       2013-07: 2759.0588

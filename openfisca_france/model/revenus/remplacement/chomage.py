@@ -28,6 +28,9 @@ class chomage_brut(Variable):
     set_input = set_input_divide_by_period
     calculate_output = calculate_output_add
 
+    def formula(individu, period):
+        return individu('are', period)
+
 
 class indemnites_chomage_partiel(Variable):
     value_type = float
@@ -140,7 +143,7 @@ class are(Variable):
             montant_plancher,
             are.max_en_pourcentage_sjr * salaire_de_reference_mensuel
             )
-        
+
         return montant_plafond * are_eligibilite_individu
 
 
@@ -234,7 +237,7 @@ class duree_versement_are(Variable):
     def formula(individu, period):
         age = individu('age', period)
         nombre_jours_travailles_dans_la_periode_reference_affiliation = individu('nombre_jours_travailles_dans_les_x_derniers_mois', period)
-        nombre_jours_indemnises = nombre_jours_travailles_dans_la_periode_reference_affiliation * 1.4 
+        nombre_jours_indemnises = nombre_jours_travailles_dans_la_periode_reference_affiliation * 1.4
 
         return select(
             [age < 53, 53 <= age <= 54, age >= 55],
@@ -251,7 +254,7 @@ class eligibilite_cumul_are_salaire(Variable):
         salaire_de_reference_mensuel = individu('salaire_de_reference_mensuel', period)
         salaire_de_base = individu('salaire_de_base', period)
         are = individu('are', period)
-        revenus_totaux = salaire_de_base + are 
+        revenus_totaux = salaire_de_base + are
 
         condition_cumul = revenus_totaux <= salaire_de_reference_mensuel
 
@@ -280,12 +283,12 @@ class retraite_complementaire_chomage(Variable):
         salaire_de_reference_mensuel = individu('salaire_de_reference_mensuel', period)
         seuil_exoneration_retraite_complementaire = parameters(period).are.are_min
         are = individu('are', period)
-        
+
 
         montant_retenue_retraite_complementaire = select(
             [are > (seuil_exoneration_retraite_complementaire * 30), are <= (seuil_exoneration_retraite_complementaire * 30)],
             [(0.03 * salaire_de_reference_mensuel) , 0],
             )
-        
+
         return montant_retenue_retraite_complementaire
 
