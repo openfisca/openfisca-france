@@ -489,6 +489,7 @@ class aide_logement_base_ressources_eval_forfaitaire(Variable):
     entity = Famille
     label = "Base ressources en évaluation forfaitaire des aides au logement (R351-7 du CCH)"
     definition_period = MONTH
+    end = "2020-12-31"
 
     def formula(famille, period, parameters):
         def eval_forfaitaire_salaries():
@@ -655,78 +656,78 @@ class aide_logement_condition_neutralisation_chomage(Variable):
 
         return (activite == TypesActivite.chomeur) * (date_debut_chomage < two_months_ago) * chomage_non_indemnise
 
-class aide_logement_assiette_abattement_chomage(Variable):
-    value_type = float
-    entity = Individu
-    label = "Assiette sur laquelle un abattement chômage peut être appliqués pour les AL. Ce sont les revenus d'activité professionnelle, moins les abattements pour frais professionnels."
-    reference = "https://www.legifrance.gouv.fr/eli/decret/2019/12/30/LOGL1920187D/jo/texte"
-    definition_period = MONTH
+# class aide_logement_assiette_abattement_chomage(Variable):
+#     value_type = float
+#     entity = Individu
+#     label = "Assiette sur laquelle un abattement chômage peut être appliqués pour les AL. Ce sont les revenus d'activité professionnelle, moins les abattements pour frais professionnels."
+#     reference = "https://www.legifrance.gouv.fr/eli/decret/2019/12/30/LOGL1920187D/jo/texte"
+#     definition_period = MONTH
 
-    def formula_2021_01_01(individu, period, parameters):
-        # Rolling year
-        annee_glissante = period.start.period('year').offset(-1).offset(-1, 'month')
+#     def formula_2021_01_01(individu, period, parameters):
+#         Rolling year
+#         annee_glissante = period.start.period('year').offset(-1).offset(-1, 'month')
 
-        revenus_non_salarie = individu('rpns_imposables', period.n_2)
-        revenu_salarie = individu('salaire_imposable', annee_glissante, options = [ADD])
-        chomeur_longue_duree = individu('chomeur_longue_duree', annee_glissante)
-        frais_reels = individu('frais_reels', period.last_year)
-        abatpro = parameters(period.last_year).impot_revenu.tspr.abatpro
+#         revenus_non_salarie = individu('rpns', period.n_2)
+#         revenu_salarie = individu('salaire_imposable', annee_glissante, options = [ADD])
+#         chomeur_longue_duree = individu('chomeur_longue_duree', annee_glissante)
+#         frais_reels = individu('frais_reels', period.last_year)
+#         abatpro = parameters(period.last_year).impot_revenu.tspr.abatpro
 
-        abattement_minimum = where(chomeur_longue_duree, abatpro.min2, abatpro.min)
-        abattement_forfaitaire = round_(min_(max_(abatpro.taux * revenu_salarie, abattement_minimum), abatpro.max))
-        revenus_salarie_apres_abattement = where(
-            frais_reels > 0,
-            revenu_salarie - frais_reels,
-            max_(0, revenu_salarie - abattement_forfaitaire)
-            )
+#         abattement_minimum = where(chomeur_longue_duree, abatpro.min2, abatpro.min)
+#         abattement_forfaitaire = round_(min_(max_(abatpro.taux * revenu_salarie, abattement_minimum), abatpro.max))
+#         revenus_salarie_apres_abattement = where(
+#             frais_reels > 0,
+#             revenu_salarie - frais_reels,
+#             max_(0, revenu_salarie - abattement_forfaitaire)
+#             )
 
-        return revenus_non_salarie + revenus_salarie_apres_abattement
+#         return revenus_non_salarie + revenus_salarie_apres_abattement
 
-    def formula(individu, period, parameters):
-        revenus_non_salarie = individu('rpns_imposables', period.n_2)
-        revenu_salarie = individu('salaire_imposable', period.n_2, options = [ADD])
-        chomeur_longue_duree = individu('chomeur_longue_duree', period.n_2)
-        frais_reels = individu('frais_reels', period.n_2)
-        abatpro = parameters(period).impot_revenu.tspr.abatpro
+#     def formula(individu, period, parameters):
+#         revenus_non_salarie = individu('rpns', period.n_2)
+#         revenu_salarie = individu('salaire_imposable', period.n_2, options = [ADD])
+#         chomeur_longue_duree = individu('chomeur_longue_duree', period.n_2)
+#         frais_reels = individu('frais_reels', period.n_2)
+#         abatpro = parameters(period).impot_revenu.tspr.abatpro
 
-        abattement_minimum = where(chomeur_longue_duree, abatpro.min2, abatpro.min)
-        abattement_forfaitaire = round_(min_(max_(abatpro.taux * revenu_salarie, abattement_minimum), abatpro.max))
-        revenus_salarie_apres_abattement = where(
-            frais_reels > 0,
-            revenu_salarie - frais_reels,
-            max_(0, revenu_salarie - abattement_forfaitaire)
-            )
+#         abattement_minimum = where(chomeur_longue_duree, abatpro.min2, abatpro.min)
+#         abattement_forfaitaire = round_(min_(max_(abatpro.taux * revenu_salarie, abattement_minimum), abatpro.max))
+#         revenus_salarie_apres_abattement = where(
+#             frais_reels > 0,
+#             revenu_salarie - frais_reels,
+#             max_(0, revenu_salarie - abattement_forfaitaire)
+#             )
 
-        return revenus_non_salarie + revenus_salarie_apres_abattement
+#         return revenus_non_salarie + revenus_salarie_apres_abattement
 
 
-class aide_logement_abattement_chomage_indemnise(Variable):
-    value_type = float
-    entity = Individu
-    label = "Montant de l'abattement pour personnes au chômage indemnisé (R351-13 du CCH)"
-    definition_period = MONTH
-    # Article R532-7 du Code de la sécurité sociale
-    reference = "https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000031694522&cidTexte=LEGITEXT000006073189"
+# class aide_logement_abattement_chomage_indemnise(Variable):
+#     value_type = float
+#     entity = Individu
+#     label = "Montant de l'abattement pour personnes au chômage indemnisé (R351-13 du CCH)"
+#     definition_period = MONTH
+#     # Article R532-7 du Code de la sécurité sociale
+#     reference = "https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000031694522&cidTexte=LEGITEXT000006073189"
 
-    def formula_2021_01_01(individu, period, parameters):
-        activite = individu('activite', period)
-        date_debut_chomage = individu('date_debut_chomage', period)
-        two_months_ago = datetime64(period.offset(-2, 'month').start)
-        condition_neutralisation = individu('aide_logement_condition_neutralisation_chomage', period)
-        condition_abattement = (activite == TypesActivite.chomeur) * (date_debut_chomage < two_months_ago)
-        revenus_activite_pro = individu('aide_logement_assiette_abattement_chomage', period)
-        taux_abattement = parameters(period).prestations.aides_logement.ressources.abattement_chomage_indemnise
-        return condition_abattement * not_(condition_neutralisation) * taux_abattement * revenus_activite_pro
+#     def formula_2021_01_01(individu, period, parameters):
+#         activite = individu('activite', period)
+#         date_debut_chomage = individu('date_debut_chomage', period)
+#         two_months_ago = datetime64(period.offset(-2, 'month').start)
+#         condition_neutralisation = individu('aide_logement_condition_neutralisation_chomage', period)
+#         condition_abattement = (activite == TypesActivite.chomeur) * (date_debut_chomage < two_months_ago)
+#         revenus_activite_pro = individu('aide_logement_assiette_abattement_chomage', period)
+#         taux_abattement = parameters(period).prestations.aides_logement.ressources.abattement_chomage_indemnise
+#         return condition_abattement * not_(condition_neutralisation) * taux_abattement * revenus_activite_pro
 
-    def formula(individu, period, parameters):
-        activite = individu('activite', period)
-        date_debut_chomage = individu('date_debut_chomage', period)
-        two_months_ago = datetime64(period.offset(-2, 'month').start)
-        condition_abattement = (activite == TypesActivite.chomeur) * (date_debut_chomage < two_months_ago)
-        revenus_activite_pro = individu('aide_logement_assiette_abattement_chomage', period)
-        taux_abattement = parameters(period).prestations.aides_logement.ressources.abattement_chomage_indemnise
+#     def formula(individu, period, parameters):
+#         activite = individu('activite', period)
+#         date_debut_chomage = individu('date_debut_chomage', period)
+#         two_months_ago = datetime64(period.offset(-2, 'month').start)
+#         condition_abattement = (activite == TypesActivite.chomeur) * (date_debut_chomage < two_months_ago)
+#         revenus_activite_pro = individu('aide_logement_assiette_abattement_chomage', period)
+#         taux_abattement = parameters(period).prestations.aides_logement.ressources.abattement_chomage_indemnise
 
-        return condition_abattement * taux_abattement * revenus_activite_pro
+#         return condition_abattement * taux_abattement * revenus_activite_pro
 
 
 class aide_logement_abattement_depart_retraite(Variable):
