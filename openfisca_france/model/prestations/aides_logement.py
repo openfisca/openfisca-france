@@ -748,75 +748,73 @@ class aide_logement_condition_neutralisation_chomage(Variable):
 #         return condition_abattement * taux_abattement * revenus_activite_pro
 
 
-class aide_logement_abattement_depart_retraite(Variable):
-    value_type = float
-    entity = Individu
-    label = "Montant de l'abattement sur les salaires en cas de départ en retraite"
-    definition_period = MONTH
-    set_input = set_input_divide_by_period
-    # Article R532-5 du Code de la sécurité sociale
-    reference = "https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000006750910&cidTexte=LEGITEXT000006073189&dateTexte=20151231"
+# class aide_logement_abattement_depart_retraite(Variable):
+#     value_type = float
+#     entity = Individu
+#     label = "Montant de l'abattement sur les salaires en cas de départ en retraite"
+#     definition_period = MONTH
+#     # Article R532-5 du Code de la sécurité sociale
+#     reference = "https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000006750910&cidTexte=LEGITEXT000006073189&dateTexte=20151231"
 
-    def formula_2021_01_01(individu, period, parameters):
-        activite = individu('activite', period)
-        condition_retraite = activite == TypesActivite.retraite
+#     def formula_2021_01_01(individu, period, parameters):
+#         activite = individu('activite', period)
+#         condition_retraite = activite == TypesActivite.retraite
 
-        revenus_activite_pro = individu('al_revenu_assimile_salaire_apres_abattements', period)
+#         revenus_activite_pro = individu('al_revenu_assimile_salaire_apres_abattements', period)
 
-        abattement = condition_retraite * 0.3 * revenus_activite_pro
+#         abattement = condition_retraite * 0.3 * revenus_activite_pro
 
-        return abattement
+#         return abattement
 
-    def formula(individu, period, parameters):
-        activite = individu('activite', period)
-        condition_retraite = activite == TypesActivite.retraite
+#     def formula(individu, period, parameters):
+#         activite = individu('activite', period)
+#         condition_retraite = activite == TypesActivite.retraite
 
-        revenus_activite_pro = individu('al_revenu_assimile_salaire_apres_abattements', period)
+#         revenus_activite_pro = individu('al_revenu_assimile_salaire_apres_abattements', period)
 
-        abattement = condition_retraite * 0.3 * revenus_activite_pro
+#         abattement = condition_retraite * 0.3 * revenus_activite_pro
 
-        return abattement
-
-
-class aide_logement_neutralisation_conge_parental(Variable):
-    value_type = float
-    entity = Individu
-    label = "Abattement sur les revenus des parents en congé parental."
-    definition_period = MONTH
-    set_input = set_input_divide_by_period
-    reference = "https://github.com/openfisca/openfisca-france/wiki/files/prestations/Integration-de-la-reforme-AL-2019-dans-OpenFisca_PJ_20190722-FAM_Reforme_AL-2019_v1.4.pdf"
-
-    def formula(individu, period, parameters):
-        type_conges = individu('type_conges', period)
-        conge_parental = (type_conges == TypesConges.conge_parental)
-
-        revenus_a_neutraliser = individu('al_revenu_assimile_salaire_apres_abattements', period)
-
-        return revenus_a_neutraliser * conge_parental
+#         return abattement
 
 
-class aide_logement_neutralisation_rsa(Variable):
-    value_type = float
-    entity = Famille
-    label = "Abattement sur les revenus n-2 pour les bénéficiaires du RSA"
-    definition_period = MONTH
-    set_input = set_input_divide_by_period
-    reference = [
-        # Article R532-7 du Code de la sécurité sociale
-        "https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000031694522&cidTexte=LEGITEXT000006073189",
-        # Article R351-14-1 du Code de la construction et de l'habitation
-        "https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006074096&idArticle=LEGIARTI000006897410"
-        ]
+# class aide_logement_neutralisation_conge_parental(Variable):
+#     value_type = float
+#     entity = Individu
+#     label = "Abattement sur les revenus des parents en congé parental."
+#     definition_period = MONTH
+#     reference = "https://github.com/openfisca/openfisca-france/wiki/files/prestations/Integration-de-la-reforme-AL-2019-dans-OpenFisca_PJ_20190722-FAM_Reforme_AL-2019_v1.4.pdf"
 
-    def formula(famille, period, parameters):
-        # Circular definition, as rsa depends on al.
-        # We don't allow it, so default value of rsa will be returned if a recursion is detected.
-        rsa_mois_dernier = famille('rsa', period.last_month)
 
-        revenus_a_neutraliser_i = famille.members('al_revenu_assimile_salaire_apres_abattements', period)
-        revenus_a_neutraliser = famille.sum(revenus_a_neutraliser_i)
+#     def formula(individu, period, parameters):
+#         type_conges = individu('type_conges', period)
+#         conge_parental = (type_conges == TypesConges.conge_parental)
 
-        return revenus_a_neutraliser * (rsa_mois_dernier > 0)
+#         revenus_a_neutraliser = individu('al_revenu_assimile_salaire_apres_abattements', period)
+
+#         return revenus_a_neutraliser * conge_parental
+
+
+# class aide_logement_neutralisation_rsa(Variable):
+#     value_type = float
+#     entity = Famille
+#     label = "Abattement sur les revenus n-2 pour les bénéficiaires du RSA"
+#     definition_period = MONTH
+#     reference = [
+#         # Article R532-7 du Code de la sécurité sociale
+#         "https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000031694522&cidTexte=LEGITEXT000006073189",
+#         # Article R351-14-1 du Code de la construction et de l'habitation
+#         "https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006074096&idArticle=LEGIARTI000006897410"
+#         ]
+
+#     def formula(famille, period, parameters):
+#         # Circular definition, as rsa depends on al.
+#         # We don't allow it, so default value of rsa will be returned if a recursion is detected.
+#         rsa_mois_dernier = famille('rsa', period.last_month)
+
+#         revenus_a_neutraliser_i = famille.members('al_revenu_assimile_salaire_apres_abattements', period)
+#         revenus_a_neutraliser = famille.sum(revenus_a_neutraliser_i)
+
+#         return revenus_a_neutraliser * (rsa_mois_dernier > 0)
 
 
 class aide_logement_base_ressources_defaut(Variable):
@@ -1128,31 +1126,27 @@ class aide_logement_base_ressources(Variable):
         # Ressources N-2
         indemnites_journalieres_atexa_i = famille.members('indemnites_journalieres_atexa', period.n_2, options=[ADD])
         gains_exceptionnels_i = famille.members('gains_exceptionnels', period.n_2, options=[ADD])
-        benefice_agricole_i_n_2 = famille.members('rpns_benefice_exploitant_agricole', period.n_2)
-        benefice_micro_entreprise_i_n_2 = famille.members('rpns_micro_entreprise_benefice', period.n_2)
-        benefice_auto_entrepreneur_i_n_2 = famille.members('rpns_auto_entrepreneur_benefice', period.n_2, options=[ADD])
-        rpns_autres_revenus_i_n_2 = famille.members('rpns_autres_revenus', period.n_2)
-        # En l'absence de benefices TNS en N-2, on recupère les bénéfices de l'année glissante
-        benefice_agricole_i_m_12 = famille.members('rpns_benefice_exploitant_agricole', annee_glissante)
-        benefice_micro_entreprise_i_m_12 = famille.members('rpns_micro_entreprise_benefice', annee_glissante)
-        benefice_auto_entrepreneur_i_m_12 = famille.members('rpns_auto_entrepreneur_benefice', annee_glissante,
-                                                            options=[ADD])
-        rpns_autres_revenus_i_m_12 = famille.members('rpns_autres_revenus', annee_glissante)
-        benefice_agricole_i = where(benefice_agricole_i_n_2 > 0, benefice_agricole_i_n_2, benefice_agricole_i_m_12)
-        benefice_micro_entreprise_i = where(benefice_micro_entreprise_i_n_2 > 0, benefice_micro_entreprise_i_n_2,
-                                            benefice_micro_entreprise_i_m_12)
-        benefice_auto_entrepreneur_i = where(benefice_auto_entrepreneur_i_n_2 > 0, benefice_auto_entrepreneur_i_n_2,
-                                             benefice_auto_entrepreneur_i_m_12)
-        rpns_autres_revenus_i = where(rpns_autres_revenus_i_n_2 > 0, rpns_autres_revenus_i_n_2,
-                                     rpns_autres_revenus_i_m_12)
+    #    # En l'absence de benefices TNS en N-2, on recupère les bénéfices de l'année glissante
+    #     benefice_agricole_i_m_12 = famille.members('tns_benefice_exploitant_agricole', annee_glissante)
+    #     benefice_micro_entreprise_i_m_12 = famille.members('tns_micro_entreprise_benefice', annee_glissante)
+    #     benefice_auto_entrepreneur_i_m_12 = famille.members('tns_auto_entrepreneur_benefice', annee_glissante,
+    #                                                         options=[ADD])
+    #     tns_autres_revenus_i_m_12 = famille.members('tns_autres_revenus', annee_glissante)
+    #     benefice_agricole_i = where(benefice_agricole_i_n_2 > 0, benefice_agricole_i_n_2, benefice_agricole_i_m_12)
+    #     benefice_micro_entreprise_i = where(benefice_micro_entreprise_i_n_2 > 0, benefice_micro_entreprise_i_n_2,
+    #                                         benefice_micro_entreprise_i_m_12)
+    #     benefice_auto_entrepreneur_i = where(benefice_auto_entrepreneur_i_n_2 > 0, benefice_auto_entrepreneur_i_n_2,
+    #                                          benefice_auto_entrepreneur_i_m_12)
+    #     tns_autres_revenus_i = where(tns_autres_revenus_i_n_2 > 0, tns_autres_revenus_i_n_2,
+    #                                  tns_autres_revenus_i_m_12)
 
         ressources_n_2_i = (
             indemnites_journalieres_atexa_i
             + gains_exceptionnels_i
-            + benefice_agricole_i
-            + benefice_micro_entreprise_i
-            + benefice_auto_entrepreneur_i
-            + rpns_autres_revenus_i
+           # + benefice_agricole_i
+           # + benefice_micro_entreprise_i
+           # + benefice_auto_entrepreneur_i
+           # + tns_autres_revenus_i
             )
         ressources_n_2 = famille.sum(ressources_n_2_i, role=Famille.PARENT)
         f4ba = famille.demandeur.foyer_fiscal('f4ba', period.n_2)
@@ -1177,10 +1171,10 @@ class aide_logement_base_ressources(Variable):
                                             period) * conjoint_declarant_principal
             )
 
-        abattement_chomage_indemnise_i = famille.members('aide_logement_abattement_chomage_indemnise', period)
-        abattement_chomage_indemnise = famille.sum(abattement_chomage_indemnise_i, role=Famille.PARENT)
-        abattement_depart_retraite_i = famille.members('aide_logement_abattement_depart_retraite', period)
-        abattement_depart_retraite = famille.sum(abattement_depart_retraite_i, role=Famille.PARENT)
+        # abattement_chomage_indemnise_i = famille.members('aide_logement_abattement_chomage_indemnise', period)
+        # abattement_chomage_indemnise = famille.sum(abattement_chomage_indemnise_i, role=Famille.PARENT)
+        # abattement_depart_retraite_i = famille.members('aide_logement_abattement_depart_retraite', period)
+        # abattement_depart_retraite = famille.sum(abattement_depart_retraite_i, role=Famille.PARENT)
 
         abattement_ressources_enfant = parameters(
             period.n_2.stop).prestations.minima_sociaux.aspa.plafond_ressources_seul * 1.25
@@ -1195,14 +1189,14 @@ class aide_logement_base_ressources(Variable):
             + ressources_patrimoine
             + revenus_fiscaux
             - f4bb
-            - (abattement_chomage_indemnise + abattement_depart_retraite)
+            # - (abattement_chomage_indemnise + abattement_depart_retraite)
             )
         # Abattement forfaitaire pour double activité
         abattement_double_activite = biactivite * params_al_ressources.dar_1
 
         ressources = max_(ressources - abattement_double_activite, 0)
 
-        # Planchers de ressources pour étudiants
+        # Forfait de ressources pour étudiants
         # Seul le statut étudiant (et boursier) du demandeur importe, pas celui du conjoint
         demandeur_etudiant = famille.demandeur('etudiant', period) * (famille.demandeur('age', period) < age_etudiant_max)
         demandeur_boursier = famille.demandeur('boursier', period)
