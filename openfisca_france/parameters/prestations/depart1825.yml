@@ -11,13 +11,9 @@ plafond_ressources:
     2014-09-05:
       value: 4320
 age:
-<<<<<<< HEAD
   description: Fourchette d'âges pour laquelle le séjour peut être pris en charge pour les bénéficiaires de Départ 18-25.
   reference: https://www.ancv.com/actualites/le-magazine/depart-1825-un-nouveau-programme-pour-les-jeunes-de-18-25-ans
   unit: year
-=======
-  reference: https://www.ancv.com/actualites/le-magazine/depart-1825-un-nouveau-programme-pour-les-jeunes-de-18-25-ans
->>>>>>> ea95853e2 (Apply suggestions from code review)
   minimum:
     2014-09-05:
       value: 18
@@ -36,7 +32,6 @@ montant_maximum:
     2021-10-01:
       value: 200
 proportion_maximum:
-<<<<<<< HEAD
   description: Part maximale du montant du séjour prise en charge pour les bénéficiaires de Départ 18-25.
   unit: /1
   values:
