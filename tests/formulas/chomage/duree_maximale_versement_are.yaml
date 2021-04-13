@@ -1,0 +1,134 @@
+- name: Nombre de jours indemnisés par l'ARE - Cas n°1
+  description: Nombre de jours indemnisés par l'ARE au 2019-07 pour une personne de moins de 53 ans ayant travaillé moins de 2 ans
+  period: 2019-07
+  input:
+    age: 25
+    nombre_jours_travailles_dans_les_x_derniers_mois: 252
+  output:
+    duree_maximale_versement_are: 352.8
+
+- name: Nombre de jours indemnisés par l'ARE - Cas n°2
+  description: Nombre de jours indemnisés par l'ARE au 2019-07 pour une personne de moins de 53 ans ayant travaillé un peu moins de 2 ans
+  period: 2019-07
+  input:
+    age: 25
+    nombre_jours_travailles_dans_les_x_derniers_mois: 520
+  output:
+    duree_maximale_versement_are: 728
+
+- name: Nombre de jours indemnisés par l'ARE - Cas n°3
+  description: Nombre de jours indemnisés par l'ARE au 2019-07 pour une personne de moins de 53 ans ayant travaillé un peu plus de 2 ans
+  period: 2019-07
+  input:
+    age: 25
+    nombre_jours_travailles_dans_les_x_derniers_mois: 525
+  output:
+    duree_maximale_versement_are: 730
+
+- name: Nombre de jours indemnisés par l'ARE - Cas n°4
+  description: Nombre de jours indemnisés par l'ARE au 2019-07 pour une personne de moins de 53 ans ayant travaillé plus de 2 ans
+  period: 2019-07
+  input:
+    age: 25
+    nombre_jours_travailles_dans_les_x_derniers_mois: 700
+  output:
+    duree_maximale_versement_are: 730
+
+- name: Nombre de jours indemnisés par l'ARE - Cas n°5
+  description: Nombre de jours indemnisés par l'ARE au 2019-07 pour une personne de 53 ans ayant travaillé moins de 2 ans
+  period: 2019-07
+  input:
+    age: 53
+    nombre_jours_travailles_dans_les_x_derniers_mois: 252
+  output:
+    duree_maximale_versement_are: 352.8
+
+- name: Nombre de jours indemnisés par l'ARE - Cas n°6
+  description: Nombre de jours indemnisés par l'ARE au 2019-07 pour une personne de 53 ans ayant travaillé entre 2 ans et 2 ans et demi
+  period: 2019-07
+  input:
+    age: 53
+    nombre_jours_travailles_dans_les_x_derniers_mois: 607
+  output:
+    duree_maximale_versement_are: 849.8
+
+- name: Nombre de jours indemnisés par l'ARE - Cas n°7
+  description: Nombre de jours indemnisés par l'ARE au 2019-07 pour une personne de 53 ans ayant travaillé plus de 2 ans et demi
+  period: 2019-07
+  input:
+    age: 53
+    nombre_jours_travailles_dans_les_x_derniers_mois: 700
+  output:
+    duree_maximale_versement_are: 913
+
+- name: Nombre de jours indemnisés par l'ARE - Cas n°8
+  description: Nombre de jours indemnisés par l'ARE au 2019-07 pour une personne de 54 ans ayant travaillé moins de 2 ans
+  period: 2019-07
+  input:
+    age: 54
+    nombre_jours_travailles_dans_les_x_derniers_mois: 252
+  output:
+    duree_maximale_versement_are: 352.8
+
+- name: Nombre de jours indemnisés par l'ARE - Cas n°9
+  description: Nombre de jours indemnisés par l'ARE au 2019-07 pour une personne de 54 ans ayant travaillé entre 2 ans et 2 ans et demi
+  period: 2019-07
+  input:
+    age: 54
+    nombre_jours_travailles_dans_les_x_derniers_mois: 607
+  output:
+    duree_maximale_versement_are: 849.8
+
+- name: Nombre de jours indemnisés par l'ARE - Cas n°10
+  description: Nombre de jours indemnisés par l'ARE au 2019-07 pour une personne de 54 ans ayant travaillé plus de 2 ans et demi
+  period: 2019-07
+  input:
+    age: 54
+    nombre_jours_travailles_dans_les_x_derniers_mois: 700
+  output:
+    duree_maximale_versement_are: 913
+
+- name: Nombre de jours indemnisés par l'ARE - Cas n°11
+  description: Nombre de jours indemnisés par l'ARE au 2019-07 pour une personne de 55 ans ayant travaillé moins de 2 ans
+  period: 2019-07
+  input:
+    age: 55
+    nombre_jours_travailles_dans_les_x_derniers_mois: 200
+  output:
+    duree_maximale_versement_are: 280
+
+- name: Nombre de jours indemnisés par l'ARE - Cas n°12
+  description: Nombre de jours indemnisés par l'ARE au 2019-07 pour une personne de 55 ans ayant travaillé entre 2 ans et 2 ans et demi
+  period: 2019-07
+  input:
+    age: 55
+    nombre_jours_travailles_dans_les_x_derniers_mois: 570
+  output:
+    duree_maximale_versement_are: 798
+
+- name: Nombre de jours indemnisés par l'ARE - Cas n°13
+  description: Nombre de jours indemnisés par l'ARE au 2019-07 pour une personne de 55 ans ayant travaillé moins de 3 ans
+  period: 2019-07
+  input:
+    age: 55
+    nombre_jours_travailles_dans_les_x_derniers_mois: 700
+  output:
+    duree_maximale_versement_are: 980
+
+- name: Nombre de jours indemnisés par l'ARE - Cas n°14
+  description: Nombre de jours indemnisés par l'ARE au 2019-07 pour une personne de 55 ans ayant travaillé plus de 3 ans
+  period: 2019-07
+  input:
+    age: 55
+    nombre_jours_travailles_dans_les_x_derniers_mois: 785
+  output:
+    duree_maximale_versement_are: 1095
+
+- name: Nombre de jours indemnisés par l'ARE - Cas n°15
+  description: Nombre de jours indemnisés par l'ARE au 2019-07 pour une personne de plus de 55 ans ayant travaillé plus de 3 ans
+  period: 2019-07
+  input:
+    age: 60
+    nombre_jours_travailles_dans_les_x_derniers_mois: 785
+  output:
+    duree_maximale_versement_are: 1095

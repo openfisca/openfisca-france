@@ -39,6 +39,7 @@ class indemnites_chomage_partiel(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
+
 class jours_travailles_chomage(Variable):
     value_type = float
     entity = Individu
@@ -49,7 +50,6 @@ class jours_travailles_chomage(Variable):
     def formula(individu, period) :
       contrat_de_travail_debut = individu('contrat_de_travail_debut', period)
       contrat_de_travail_fin = individu('contrat_de_travail_fin', period)
-
       busday_count = partial(original_busday_count, weekmask = "1111100")
       debut_mois = datetime64(period.start.offset('first-of', 'month'))
       fin_mois = datetime64(period.start.offset('last-of', 'month'))
@@ -60,8 +60,8 @@ class jours_travailles_chomage(Variable):
             ),
         0,
         )
-
       return jours_travailles
+
 
 class salaire_de_reference(Variable):
     value_type = float
@@ -70,19 +70,19 @@ class salaire_de_reference(Variable):
     definition_period = MONTH
 
     def formula(individu, period):
-        sal_ref = individu.empty_array()
+        salaire_de_reference = individu.empty_array()
         for months in range(0, 48):
             contrat_de_travail_fin_potentiel = period.offset(-months)
-            sal_ref = where(
+            salaire_de_reference = where(
                 individu('contrat_de_travail_fin', period) == datetime64(contrat_de_travail_fin_potentiel.start),
                 individu(
                     'salaire_de_base',
                     contrat_de_travail_fin_potentiel.offset(-12).start.period('month', 12),
                     options = [ADD],
                     ),
-                sal_ref,
+                salaire_de_reference,
                 )
-        return sal_ref
+        return salaire_de_reference
 
 
 class nombre_jours_travailles_12_derniers_mois(Variable):
@@ -165,18 +165,19 @@ class are_eligibilite_individu(Variable):
         "https://www.unedic.org/sites/default/files/regulations/RglACh11.pdf",
         ]
 
-    # il faut résider en France, être involontairement privé d'emploi, être inscrit comme demandeur d'emploi,
-    # être à la recherche active et permanente d'un emploi,
-    # être physiquement apte à l'exercice d'un emploi.
     def formula_2017_11(individu, period, parameters):
+        # il faut résider en France, être involontairement privé d'emploi, être inscrit comme demandeur d'emploi,
+        # être à la recherche active et permanente d'un emploi,
+        # être physiquement apte à l'exercice d'un emploi.
         # Critère de l'âge: ARE non versé si l'âge de départ à la retraite atteint, sauf en cas de taux plein non atteint.
         # Pour simplifier, on stipule qu'on ne peut plus toucher d'ARE dès lors l'âge légal de départ à la retraite atteint.
         are = parameters(period).are
         age = individu('age', period)
         condition_age = age < are.age_legal_retraite
 
-        # Critère d'affiliation : avoir travaillé tant de jours dans les x derniers mois avant la date de fin de contrat pour les moins de 53 ans
-        # et tant de temps dans les y derniers mois pour les plus de 53 ans
+        # Critère d'affiliation : avoir travaillé un certain nombre de jours
+        # dans les derniers mois avant la date de fin de contrat.
+        # Le nombre de mois diffère selon qu'on ait plus ou moins de 53 ans.
         periode_affiliation = individu('nombre_jours_travailles_dans_les_x_derniers_mois', period)
         condition_affiliation = select(
             [
@@ -233,13 +234,35 @@ class nombre_jours_travailles_dans_les_x_derniers_mois(Variable):
             [age < 53, age >= 53],
             [nombre_jours_travailles_reference_moins_53, nombre_jours_travailles_reference_plus_53],
             )
-
         return nombre_jours_travailles_reference
 
+
 class duree_versement_are(Variable):
-    value_type = float
+    value_type = int
     entity = Individu
-    label = "Nombre de jours indemnisés par l'ARE"
+    label = "Nombre  de jours indemnisés par l'ARE"
+    definition_period = MONTH
+
+    def formula(individu, period):
+        are = individu('are', period)
+        duree_versement_are = individu('duree_versement_are', period.offset(-1))
+        busday_count = partial(original_busday_count, weekmask = "1111100")
+        duree_versement_are = (
+            duree_versement_are
+            + (
+                (are > 0)
+                * busday_count(
+                   datetime64(period.start),
+                    datetime64(period.offset(1).start)
+                    )
+                )
+            )
+        return duree_versement_are
+
+class duree_maximale_versement_are(Variable):
+    value_type = int
+    entity = Individu
+    label = "Nombre maximal de jours indemnisés par l'ARE"
     definition_period = MONTH
 
     def formula(individu, period):
@@ -251,6 +274,7 @@ class duree_versement_are(Variable):
             [age < 53, 53 <= age <= 54, age >= 55],
             [min_(nombre_jours_indemnises, 730), min_(nombre_jours_indemnises, 913), min_(nombre_jours_indemnises, 1095)],
             )
+
 
 class eligibilite_cumul_are_salaire(Variable):
     value_type = bool
@@ -267,6 +291,7 @@ class eligibilite_cumul_are_salaire(Variable):
         condition_cumul = revenus_totaux <= salaire_de_reference_mensuel
 
         return condition_cumul
+
 
 class are_nette(Variable):
     value_type = float
@@ -299,4 +324,3 @@ class retraite_complementaire_chomage(Variable):
             )
 
         return montant_retenue_retraite_complementaire
-
