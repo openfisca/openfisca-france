@@ -333,3 +333,17 @@ class boursier(Variable):
         lycee = individu.famille('bourse_lycee', period)
         sup = individu('bourse_criteres_sociaux', period)
         return (college > 0) + (lycee > 0) + (sup > 0)
+
+
+class debut_etudes_etranger(Variable):
+    value_type = date
+    entity = Individu
+    label = "Premier jour de la formation ou stage dans un pays étranger dans le cadre d'un cycle d'études supérieures"
+    definition_period = ETERNITY
+
+
+class fin_etudes_etranger(Variable):
+    value_type = date
+    entity = Individu
+    label = "Dernier jour de la formation ou stage dans un pays étranger dans le cadre d'un cycle d'études supérieures"
+    definition_period = ETERNITY

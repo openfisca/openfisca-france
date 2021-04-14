@@ -1,0 +1,54 @@
+- name: Montant de l'aide à la mobilité internationale selon l'éligibilité
+  period: 2021-04
+  input:
+    aide_mobilite_internationale_eligibilite: [ true, false ]
+  output:
+    aide_mobilite_internationale: [ 400, 0 ]
+
+- name: Éligibilité à l'aide à la mobilité internationale selon les critères sociaux
+  period: 2021-04
+  input:
+    debut_etudes_etranger: [ 2021-01, 2021-01 ]
+    fin_etudes_etranger: [ 2021-04, 2021-04 ]
+    statuts_etablissement_scolaire: [ public, public ]
+    bourse_criteres_sociaux_eligibilite: [ true, false ]
+  output:
+    aide_mobilite_internationale_eligibilite: [ true, false ]
+
+- name: Éligibilité à l'aide à la mobilité internationale selon la durée du séjour à l'étranger
+  period: 2021-03
+  input:
+    bourse_criteres_sociaux_eligibilite: [ true, true, true, true ]
+    statuts_etablissement_scolaire: [ public, public, public, public ]
+    debut_etudes_etranger: [ 2020-05-01, 2020-07, 2021-01-29, 2021-02-01 ]
+    fin_etudes_etranger: [ 2021-03-31, 2021-03, 2021-03-31, 2021-03-30 ]
+  output:
+    aide_mobilite_internationale_eligibilite: [ false, true, true, false ]
+
+- name: Éligibilité à l'aide à la mobilité internationale selon le statut de l'établissement
+  period: 2021-04
+  input:
+    bourse_criteres_sociaux_eligibilite: [ true, true, true ]
+    debut_etudes_etranger: [ 2021-01, 2021-01, 2021-01 ]
+    fin_etudes_etranger: [ 2021-04, 2021-04, 2021-04 ]
+    statuts_etablissement_scolaire: [ public, prive_sous_contrat, prive_hors_contrat ]
+  output:
+    aide_mobilite_internationale_eligibilite: [ true, true, false ]
+
+- name: Cas où le séjour à l'étranger n'est pas correctement défini (pas de date de fin)
+  period: 2021-04
+  input:
+    debut_etudes_etranger: 2021-01
+    statuts_etablissement_scolaire: public
+    bourse_criteres_sociaux_eligibilite: true
+  output:
+    aide_mobilite_internationale_eligibilite: false
+
+- name: Cas où le séjour à l'étranger n'est pas correctement défini (pas de date de début)
+  period: 2021-04
+  input:
+    fin_etudes_etranger: 2021-04
+    statuts_etablissement_scolaire: public
+    bourse_criteres_sociaux_eligibilite: true
+  output:
+    aide_mobilite_internationale_eligibilite: false

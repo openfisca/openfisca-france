@@ -1,5 +1,17 @@
 # Changelog
 
+## 51.17.0 [#1518](https://github.com/openfisca/openfisca-france/pull/1518)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : toutes.
+* Zones impactées :
+  * `prestations/education.py`
+  * `prestations/enseignement_superieur/aide_mobilite_internationale.py`
+  * `parameters/prestations/aide_mobilite_internationale/*`
+* Détails :
+  - Ajoute les variables `aide_mobilite_internationale` et `aide_mobilite_internationale_eligibilite` qui calculent l'Aide à la Mobilité Internationale.
+  - Ajoute les variables `debut_etudes_etranger` et `fin_etudes_etranger` pour caractériser un séjour de formation ou de stage à l'étranger.
+
 ### 51.16.1 [#1517](https://github.com/openfisca/openfisca-france/pull/1517)
 
 * Changement mineur.
