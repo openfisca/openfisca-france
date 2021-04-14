@@ -138,6 +138,9 @@ class are(Variable):
     def formula(individu, period, parameters):
         are_eligibilite_individu = individu('are_eligibilite_individu', period)
         salaire_de_reference_mensuel = individu('salaire_de_reference_mensuel', period)
+        duree_versement_are = individu('duree_versement_are', period.offset(-1))
+        duree_maximale_versement_are = individu('duree_maximale_versement_are', period)
+
         are = parameters(period).are
         montant_mensuel = max_(
             are.are_partie_fixe * 30 + are.pourcentage_du_sjr_complement * salaire_de_reference_mensuel,
@@ -151,8 +154,10 @@ class are(Variable):
             montant_plancher,
             are.max_en_pourcentage_sjr * salaire_de_reference_mensuel
             )
-
-        return montant_plafond * are_eligibilite_individu
+        print(period)
+        print(duree_maximale_versement_are)
+        print(duree_versement_are)
+        return montant_plafond * are_eligibilite_individu * (duree_versement_are < duree_maximale_versement_are)
 
 
 class are_eligibilite_individu(Variable):

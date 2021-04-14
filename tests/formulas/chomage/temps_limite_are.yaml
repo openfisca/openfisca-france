@@ -4,7 +4,7 @@
   max_spiral_loops: 50
   input:
     age: 25
-    jours_travailles_chomage: 
+    jours_travailles_chomage:
       2017-03: 23
       2017-04: 22
       2017-05: 18
@@ -48,22 +48,22 @@
       2019-05: 1000
       2019-06: 1000
       2019-07: 0
-    contrat_de_travail_fin: 
+    contrat_de_travail_fin:
       2019: 2019-07
       2020: 2019-07
-    
+
     are_eligibilite_individu:
       2019-07: true
     are:
       2019-06: 0
 
   output:
-    nombre_jours_travailles_dans_les_x_derniers_mois: 
+    nombre_jours_travailles_dans_les_x_derniers_mois:
       2019-07: 482
       2019-08: 482
       2019-09: 482
       2019-10: 482
-      2019-11: 403 #depuis novembre 2011 (exception faite du Covid) la période de reférence affiliation est passée à 24 mois
+      2019-11: 403 # depuis novembre 2011 (exception faite du Covid) la période de reférence affiliation est passée à 24 mois
       2019-12: 403
       2020-01: 403
       2020-02: 403
@@ -73,7 +73,13 @@
       2020-06: 403
       2020-07: 403
       2020-08: 403
-    nombre_jours_travailles_12_derniers_mois: 
+      2020-09: 403
+      2020-10: 403
+      2020-11: 403
+      2020-12: 403
+      2021-01: 403
+
+    nombre_jours_travailles_12_derniers_mois:
       2019-07: 209
       2019-08: 209
       2019-09: 209
@@ -88,8 +94,9 @@
       2020-06: 209
       2020-07: 209
       2020-08: 209
+
     duree_maximale_versement_are:
-      2019-07: 674 # Car variable int 
+      2019-07: 674
       2019-08: 674
       2019-09: 674
       2019-10: 674
@@ -107,6 +114,8 @@
       2020-10: 564
       2020-11: 564
       2020-12: 564
+      2021-01: 564
+
     are: # l'individu a initiallement le droit à 22,4933 mois d'indemnisation (674.8 jours travaillés dans les 28 derniers mois), mais avec la réforme qui intervient en 2019-11, il a le droit qu'à 18.8066 mois (564.2 jours travaillés dans les 24 derniers mois), soit jusqu'en janvier 2021 (janvier inclus au prorata)
       2019-07: 877.8
       2019-08: 877.8
@@ -120,14 +129,14 @@
       2020-04: 877.8
       2020-05: 877.8
       2020-06: 877.8
-      2020-07: 881.4 #changement législation
+      2020-07: 881.4 # changement législation
       2020-08: 881.4
       2020-09: 881.4
       2020-10: 881.4
       2020-11: 881.4
       2020-12: 881.4
-      2021-01: 710.93724 #(au prorata : 0.8066 * 881.4)
-      2021-02: 0 #ne reçoit plus du tout d'ARE à partir de cette date 
+      2021-01: 710.93724 # (au prorata : 0.8066 * 881.4)
+      2021-02: 0 # ne reçoit plus du tout d'ARE à partir de cette date
       2021-03: 0
       2021-04: 0
-    
+
