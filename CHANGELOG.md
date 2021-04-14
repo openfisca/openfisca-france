@@ -1,5 +1,14 @@
 # Changelog
 
+### 51.17.1 [#1520](https://github.com/openfisca/openfisca-france/pull/1520)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées : `openfisca_france/parameters/prelevements_sociaux/contributions/csg/activite/`
+* Détails :
+   - Met à jour le lien vers le barème IPP correspondant au taux global et déductible de la CSG.
+   - Complète par le lien legifrance menant à l'article précis.
+
 ## 51.17.0 [#1518](https://github.com/openfisca/openfisca-france/pull/1518)
 
 * Évolution du système socio-fiscal.
