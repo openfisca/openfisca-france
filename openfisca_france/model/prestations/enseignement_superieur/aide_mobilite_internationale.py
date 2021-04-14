@@ -37,6 +37,10 @@ class aide_mobilite_internationale(Variable):
     entity = Individu
     label = "Montant de l'aide à la mobilité internationale (AMI)"
     definition_period = MONTH
+    reference = [
+        "Circulaire du 8-6-2020 - Modalités d’attribution des bourses d’enseignement supérieur - Annexe 9 : Aide à la mobilité internationale",
+        "https://www.enseignementsup-recherche.gouv.fr/pid20536/bulletin-officiel.html?cid_bo=152353&cbo=1",
+        ]
 
     def formula(individu, period, parameters):
         '''
