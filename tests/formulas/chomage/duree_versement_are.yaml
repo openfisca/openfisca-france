@@ -1,7 +1,7 @@
 - name: Nombre de jours indemnisés par l'ARE 
   description: Nombre de jours indemnisés par l'ARE pour une personne de moins de 53 ans ayant travaillé moins de 2 ans
   period: 2019-07
-  max_spiral_loops: 30
+  max_spiral_loops: 60
   input:
     age: 25
     nombre_jours_travailles_dans_les_x_derniers_mois: 252
@@ -29,7 +29,7 @@
 
   output:
     are:
-      2019-07: 741.75824
+      2019-07: 738.91626
       2019-08: 741.75824
       2019-09: 741.75824
       2019-10: 741.75824
@@ -38,9 +38,9 @@
       2020-01: 741.75824
       2020-02: 741.75824
       2020-03: 741.75824
-      2020-04: 738.91626
-      2020-05: 738.91626
-      2020-06: 738.91626
+      2020-04: 741.75824
+      2020-05: 741.75824
+      2020-06: 741.75824
       2020-07: 0
       2020-08: 0
     duree_versement_are:
