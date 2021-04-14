@@ -160,6 +160,7 @@ class are_eligibilite_individu(Variable):
     label = "Éligibilité individuelle à l'ARE"
     entity = Individu
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
     reference = [
         "Unédic - Règlement général annexé à la convention du 6 mai 2011",
         "https://www.unedic.org/sites/default/files/regulations/RglACh11.pdf",
