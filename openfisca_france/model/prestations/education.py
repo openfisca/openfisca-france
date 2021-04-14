@@ -289,12 +289,11 @@ class bourse_lycee(Variable):
 
 
 class TypesScolarite(Enum):
-    __order__ = 'inconnue college lycee enseignement_superieur grande_ecole_du_numerique'  # Needed to preserve the enum order in Python 2
+    __order__ = 'inconnue college lycee enseignement_superieur'  # Needed to preserve the enum order in Python 2
     inconnue = "Inconnue"
     college = "Collège"
     lycee = "Lycée"
     enseignement_superieur = "Établissement de l'enseignement supérieur"
-    grande_ecole_du_numerique = "Formation labellisée par la Grande Ecole du numérique"
 
 
 class scolarite(Variable):
@@ -303,6 +302,14 @@ class scolarite(Variable):
     default_value = TypesScolarite.inconnue
     entity = Individu
     label = "Scolarité de l'enfant : collège, lycée..."
+    definition_period = MONTH
+
+
+class inscrit_grande_ecole_du_numerique(Variable):
+    value_type = bool
+    default_value: False
+    entity = Individu
+    label = "Participe à une formation labellisée par la Grande Ecole du numérique"
     definition_period = MONTH
 
 

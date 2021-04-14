@@ -1,7 +1,7 @@
 - name: Éligibilité selon le type de scolarité à l'aide fournie aux personnes inscrites à une formation labellisée par la Grande Ecole du numérique
   period: 2021-04
   input:
-    scolarite: [ enseignement_superieur, grande_ecole_du_numerique ]
+    inscrit_grande_ecole_du_numerique: [ false, true ]
     statuts_etablissement_scolaire: [ public, public ]
   output:
     aide_formation_gen_eligibilite: [ false, true ]
@@ -9,7 +9,7 @@
 - name: Éligibilité selon la nationalité à l'aide fournie aux personnes inscrites à une formation labellisée par la Grande Ecole du numérique
   period: 2021-04
   input:
-    scolarite: [ grande_ecole_du_numerique, grande_ecole_du_numerique, grande_ecole_du_numerique, grande_ecole_du_numerique, grande_ecole_du_numerique, grande_ecole_du_numerique ]
+    inscrit_grande_ecole_du_numerique: [ true, true, true, true, true, true ]
     nationalite: [ FR, DE, UK, CH, LI, NZ ]
   output:
     aide_formation_gen_eligibilite: [ true, true, true, true, true, false ]
@@ -17,7 +17,7 @@
 - name: Montant de l'aide fournie aux personnes inscrites à une formation labellisée par la Grande Ecole du numérique
   period: 2021-04
   input:
-    scolarite: [ grande_ecole_du_numerique, grande_ecole_du_numerique, grande_ecole_du_numerique, grande_ecole_du_numerique, grande_ecole_du_numerique ]
+    inscrit_grande_ecole_du_numerique: [ true, true, true, true, true ]
     bourse_criteres_sociaux_base_ressources: [ 0, 1000, 1000, 1000, 30351 ]
     bourse_criteres_sociaux_points_de_charge: [ 0, 0, 17, 18, 8 ]
   output:
