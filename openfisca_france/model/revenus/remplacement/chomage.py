@@ -154,10 +154,20 @@ class are(Variable):
             montant_plancher,
             are.max_en_pourcentage_sjr * salaire_de_reference_mensuel
             )
-        print(period)
-        print(duree_maximale_versement_are)
-        print(duree_versement_are)
-        return montant_plafond * are_eligibilite_individu * (duree_versement_are < duree_maximale_versement_are)
+
+        busday_count = partial(original_busday_count, weekmask = "1111100")
+
+        return (
+            montant_plafond
+            * are_eligibilite_individu
+            * min_(
+                1,
+                max_(
+                    0,
+                    (duree_maximale_versement_are - 1.4 * (duree_versement_are))
+                    ) / 30
+                )
+            )
 
 
 class are_eligibilite_individu(Variable):
