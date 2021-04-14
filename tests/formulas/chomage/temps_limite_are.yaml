@@ -1,0 +1,133 @@
+- name: Nombre de jours indemnisés par l'ARE
+  description: Nombre de jours indemnisés par l'ARE pour une personne de moins de 53 ans ayant travaillé moins de 2 ans
+  period: 2019-07
+  max_spiral_loops: 50
+  input:
+    age: 25
+    jours_travailles_chomage: 
+      2017-03: 23
+      2017-04: 22
+      2017-05: 18
+      2017-06: 16
+      2017-07: 15
+      2017-08: 21
+      2017-09: 23
+      2017-10: 22
+      2017-11: 21
+      2017-12: 2
+      2018-01: 6
+      2018-02: 19
+      2018-03: 22
+      2018-04: 23
+      2018-05: 20
+      2018-06: 0
+      2018-07: 19
+      2018-08: 7
+      2018-09: 2
+      2018-10: 23
+      2018-11: 22
+      2018-12: 21
+      2019-01: 9
+      2019-02: 20
+      2019-03: 21
+      2019-04: 22
+      2019-05: 23
+      2019-06: 20
+      2019-07: 0
+    salaire_de_base:
+      2018-07: 1000
+      2018-08: 1000
+      2018-09: 1000
+      2018-10: 1000
+      2018-11: 1000
+      2018-12: 1000
+      2019-01: 1000
+      2019-02: 1000
+      2019-03: 1000
+      2019-04: 1000
+      2019-05: 1000
+      2019-06: 1000
+      2019-07: 0
+    contrat_de_travail_fin: 
+      2019: 2019-07
+      2020: 2019-07
+    
+    are_eligibilite_individu:
+      2019-07: true
+    are:
+      2019-06: 0
+
+  output:
+    nombre_jours_travailles_dans_les_x_derniers_mois: 
+      2019-07: 482
+      2019-08: 482
+      2019-09: 482
+      2019-10: 482
+      2019-11: 403 #depuis novembre 2011 (exception faite du Covid) la période de reférence affiliation est passée à 24 mois
+      2019-12: 403
+      2020-01: 403
+      2020-02: 403
+      2020-03: 403
+      2020-04: 403
+      2020-05: 403
+      2020-06: 403
+      2020-07: 403
+      2020-08: 403
+    nombre_jours_travailles_12_derniers_mois: 
+      2019-07: 209
+      2019-08: 209
+      2019-09: 209
+      2019-10: 209
+      2019-11: 209
+      2019-12: 209
+      2020-01: 209
+      2020-02: 209
+      2020-03: 209
+      2020-04: 209
+      2020-05: 209
+      2020-06: 209
+      2020-07: 209
+      2020-08: 209
+    duree_maximale_versement_are:
+      2019-07: 674 # Car variable int 
+      2019-08: 674
+      2019-09: 674
+      2019-10: 674
+      2019-11: 564
+      2019-12: 564
+      2020-01: 564
+      2020-02: 564
+      2020-03: 564
+      2020-04: 564
+      2020-05: 564
+      2020-06: 564
+      2020-07: 564
+      2020-08: 564
+      2020-09: 564
+      2020-10: 564
+      2020-11: 564
+      2020-12: 564
+    are: # l'individu a initiallement le droit à 22,4933 mois d'indemnisation (674.8 jours travaillés dans les 28 derniers mois), mais avec la réforme qui intervient en 2019-11, il a le droit qu'à 18.8066 mois (564.2 jours travaillés dans les 24 derniers mois), soit jusqu'en janvier 2021 (janvier inclus au prorata)
+      2019-07: 877.8
+      2019-08: 877.8
+      2019-09: 877.8
+      2019-10: 877.8
+      2019-11: 877.8
+      2019-12: 877.8
+      2020-01: 877.8
+      2020-02: 877.8
+      2020-03: 877.8
+      2020-04: 877.8
+      2020-05: 877.8
+      2020-06: 877.8
+      2020-07: 881.4 #changement législation
+      2020-08: 881.4
+      2020-09: 881.4
+      2020-10: 881.4
+      2020-11: 881.4
+      2020-12: 881.4
+      2021-01: 710.93724 #(au prorata : 0.8066 * 881.4)
+      2021-02: 0 #ne reçoit plus du tout d'ARE à partir de cette date 
+      2021-03: 0
+      2021-04: 0
+    
