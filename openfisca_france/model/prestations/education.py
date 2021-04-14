@@ -323,17 +323,6 @@ class statuts_etablissement_scolaire(Variable):
     definition_period = MONTH
 
 
-class distance_domicile_familial(Variable):
-    entity = Individu
-    value_type = int
-    reference = [
-        "Circulaire ESRS2013435C - Annexe 3 - Conditions de ressources et points de charge / 2 - Points de charge à prendre en considération pour l'attribution d'une bourse sur critères sociaux / 2.1 - Les charges de l'étudiant",
-        "https://www.education.gouv.fr/bo/20/Hebdo25/ESRS2013435C.htm"
-        ]
-    label = "Distance en kilomètres entre le lieu d'étude et le domicile familial"
-    definition_period = MONTH
-
-
 class boursier(Variable):
     value_type = bool
     entity = Individu

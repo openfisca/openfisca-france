@@ -234,9 +234,20 @@ class bourse_criteres_sociaux_points_de_charge_distance_domicile_familial(Variab
     definition_period = MONTH
 
     def formula(individu, period, parameters):
-        distance = individu('distance_domicile_familial', period)
+        distance = individu('bourse_criteres_sociaux_distance_domicile_familial', period)
         bareme = parameters(period).bourses_enseignement_superieur.criteres_sociaux.points_de_charge.distance_domicile_familial
         return bareme.calc(distance)
+
+
+class bourse_criteres_sociaux_distance_domicile_familial(Variable):
+    entity = Individu
+    value_type = int
+    reference = [
+        "Circulaire ESRS2013435C - Annexe 3 - Conditions de ressources et points de charge / 2 - Points de charge à prendre en considération pour l'attribution d'une bourse sur critères sociaux / 2.1 - Les charges de l'étudiant",
+        "https://www.education.gouv.fr/bo/20/Hebdo25/ESRS2013435C.htm"
+        ]
+    label = "Distance en kilomètres entre le lieu d'étude et le domicile familial"
+    definition_period = MONTH
 
 
 class bourse_criteres_sociaux_nombre_enfants_a_charge(Variable):

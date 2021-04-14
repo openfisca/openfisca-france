@@ -10,7 +10,6 @@
   * `parameters/bourses_enseignement_superieur/criteres_sociaux/montants.yaml`
   * `parameters/bourses_enseignement_superieur/criteres_sociaux/nationalites_hors_eee.yaml`
 * Détails :
-  - Renomme `bourse_criteres_sociaux_distance_domicile_familial` en `distance_domicile_familial`.
   - Renomme `echelon_bourse` en `bourse_criteres_sociaux_echelon`.
   - Ajoute le barème 2015 des bourses sur critères sociaux de l'enseignement supérieur.
   - Ajoute la variable `bourse_criteres_sociaux_eligibilite_nationalite` et ajoute la condition de nationalité à l'éligibilité aux bourses sur critères sociaux de l'enseignement supérieur.
