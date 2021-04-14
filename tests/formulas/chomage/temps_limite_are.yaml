@@ -51,6 +51,7 @@
     contrat_de_travail_fin:
       2019: 2019-07
       2020: 2019-07
+      2021: 2019-07
 
     are_eligibilite_individu:
       2019-07: true
