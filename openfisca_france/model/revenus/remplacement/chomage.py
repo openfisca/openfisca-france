@@ -19,10 +19,13 @@ class chomeur_longue_duree(Variable):
 class chomage_brut(Variable):
     value_type = float
     entity = Individu
-    label = "Chômage brut"
+    label = "Chômage brut (revenus de remplacement pour les demandeurs d'emploi)"
     definition_period = MONTH
     set_input = set_input_divide_by_period
     calculate_output = calculate_output_add
+
+    def formula(individu, period):
+        return individu("allocation_retour_emploi", period)
 
 
 class indemnites_chomage_partiel(Variable):
@@ -33,7 +36,7 @@ class indemnites_chomage_partiel(Variable):
     set_input = set_input_divide_by_period
 
 
-class are(Variable):
+class allocation_retour_emploi(Variable):
     value_type = float
     entity = Individu
     label = "Allocation chômage d'aide au retour à l'emploi (ARE)"
