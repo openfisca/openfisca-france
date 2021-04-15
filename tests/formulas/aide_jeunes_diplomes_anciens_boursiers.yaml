@@ -10,7 +10,7 @@
       month:2021-01:10: [false, 5679.0, 1032.0]
     activite: [chomeur, chomeur, chomeur]
     formation: [false, false, false]
-    are: [0., 0., 881.4]
+    chomage_brut: [0., 0., 881.4]
     ass: [0., 0., 0.]
     allocation_travailleur_independant: [0., 0., 0.]
     garantie_jeunes: [0., 0., 0.]

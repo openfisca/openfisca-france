@@ -45,13 +45,13 @@ class aide_jeunes_diplomes_anciens_boursiers_eligibilite(Variable):
             + (individu("bourse_criteres_sociaux", 2021, options = [ADD]) > 0)
             )
 
-        # Être inscrit sur la liste des demandeurs d’emploi
+        # être inscrit sur la liste des demandeurs d’emploi
         demandeur_emploi = individu("activite", period) == TypesActivite.chomeur
         pas_en_formation = not_(individu("formation", period))
         condition_activite = demandeur_emploi * pas_en_formation
 
         condition_non_cumul = not_(
-            individu("are", period)
+            individu("chomage_brut", period)
             + individu("ass", period)
             + individu("allocation_travailleur_independant", period)
             + individu.famille("rsa", period)
