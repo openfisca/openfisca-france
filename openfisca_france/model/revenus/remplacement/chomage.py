@@ -164,7 +164,7 @@ class are(Variable):
                 1,
                 max_(
                     0,
-                    (duree_maximale_versement_are - 1.4 * (duree_versement_are))
+                    (duree_maximale_versement_are - (duree_versement_are))
                     ) / 30
                 )
             )
@@ -262,9 +262,9 @@ class duree_versement_are(Variable):
     def formula(individu, period):
         are = individu('are', period)
         duree_versement_are = individu('duree_versement_are', period.offset(-1))
-        busday_count = partial(original_busday_count, weekmask = "1111100")
+        busday_count = partial(original_busday_count, weekmask = "1" * 7)
         duree_versement_are = (
-            duree_versement_are
+            duree_versement_are 
             + (
                 (are > 0)
                 * busday_count(
@@ -273,7 +273,7 @@ class duree_versement_are(Variable):
                     )
                 )
             )
-        return duree_versement_are
+        return duree_versement_are 
 
 class duree_maximale_versement_are(Variable):
     value_type = int
