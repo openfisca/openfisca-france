@@ -546,9 +546,7 @@ class al_revenu_assimile_salaire(Variable):
         smic_annuel_brut = parameters(period).marche_travail.salaire_minimum.smic_h_b * 52 * 35
 
         # dans le cas des frais réels déclarés superieurs à Zero.
-        salaire_imposable_sans_abattement = individu('salaire_imposable', period_salaire_chomage, options=[ADD])
-        frais_reels = individu('frais_reels', period.last_year)
-        salaire_imposable = where(frais_reels > 0, salaire_imposable_sans_abattement, salaire_imposable_apres_abattement)
+        salaire_imposable = individu('salaire_imposable', period_salaire_chomage, options=[ADD])
 
         chomage_imposable = individu('chomage_imposable', period_salaire_chomage, options=[ADD])
         f1tt = individu('f1tt', period_f1tt_f3vj)
@@ -563,7 +561,8 @@ class al_revenu_assimile_salaire(Variable):
         smic_annuel_brut = parameters(period_al).cotsoc.gen.smic_h_b * 52 * 35
 
         # dans le cas des frais réels déclarés superieurs à Zero.
-       salaire_imposable_sans_abattement = individu('salaire_imposable', period_al, options=[ADD])
+        salaire_imposable_sans_abattement = individu('salaire_imposable', period_al, options=[ADD])
+
         frais_reels = individu('frais_reels', period_al)
         salaire_imposable = where(frais_reels > 0, salaire_imposable_sans_abattement, salaire_imposable_apres_abattement)
 
@@ -924,7 +923,22 @@ class al_revenu_assimile_salaire_apres_abattements(Variable):
         period_revenus = period
         period_frais = period.last_year
 
-        revenu_assimile_salaire = individu('al_revenu_assimile_salaire', period_revenus)
+        
+        # revenu_assimile_salaire
+        # version spécifique aux aides logement de revenu_assimile_salaire
+        period_salaire_chomage = period.start.period('year').offset(-1).offset(-1, 'month')
+        period_f1tt_f3vj = period.n_2
+
+        # dans le cas des frais réels déclarés superieurs à Zero.
+        salaire_imposable = individu('salaire_imposable', period_salaire_chomage, options=[ADD])
+
+        chomage_imposable = individu('chomage_imposable', period_salaire_chomage, options=[ADD])
+        f1tt = individu('f1tt', period_f1tt_f3vj)
+        f3vj = individu('f3vj', period_f1tt_f3vj)
+
+        revenu_assimile_salaire = salaire_imposable + chomage_imposable + f1tt + f3vj
+
+
         chomeur_longue_duree = individu('chomeur_longue_duree', period_revenus)
         frais_reels = individu('frais_reels', period_frais)
 
@@ -932,7 +946,7 @@ class al_revenu_assimile_salaire_apres_abattements(Variable):
         abattement_minimum = where(chomeur_longue_duree, abatpro.min2, abatpro.min)
         abattement_forfaitaire = round_(min_(max_(abatpro.taux * revenu_assimile_salaire, abattement_minimum), abatpro.max))
 
-        return where(frais_reels > 0, revenu_assimile_salaire - frais_reels,
+        return where(frais_reels > abattement_forfaitaire, revenu_assimile_salaire - frais_reels,
             max_(0, revenu_assimile_salaire - abattement_forfaitaire)
             )
 
