@@ -299,15 +299,39 @@ class eligibilite_cumul_are_salaire(Variable):
     definition_period = MONTH
 
     def formula(individu, period):
+        cumul_are_salaire = individu('cumul_are_salaire', period)
         salaire_de_reference_mensuel = individu('salaire_de_reference_mensuel', period)
-        salaire_de_base = individu('salaire_de_base', period)
-        are = individu('are', period)
-        revenus_totaux = salaire_de_base + are
-
-        condition_cumul = revenus_totaux <= salaire_de_reference_mensuel
+        
+        condition_cumul = cumul_are_salaire <= salaire_de_reference_mensuel
 
         return condition_cumul
 
+class cumul_are_salaire(Variable):
+    value_type = float
+    entity = Individu
+    label = "Revenus totaux d'un individu cumulant ARE et revenus issus d'une activité professionnelle"
+    definition_period = MONTH
+
+    def formula(individu, period):
+        are_activite_reduite = individu('are_activite_reduite', period)
+        salaire_de_base = individu('salaire_de_base', period)
+
+        return are + salaire_de_base
+
+class are_activite_reduite(Variable):
+    value_type = float
+    entity = Individu
+    label = "Montant de l'allocation chomage lorqu'un individu exerce une activité réduite (à faibles revenus professionels"
+    definition_period = MONTH
+
+    def formula(individu, period):
+        salaire_de_base = individu('salaire_de_base', period)
+        are = individu('are', period)
+        eligibilite_cumul_are_salaire = individu('eligibilite_cumul_are_salaire', period)
+        are_eligibilite_individu = individu('are_eligibilite_individu', period)
+        nombre_jours_indemnisables_are = (are - 0.7 * salaire_de_base) / (are / 30)
+
+        return nombre_jours_indemnisables_are * are * eligibilite_cumul_are_salaire * are_eligibilite_individu
 
 class are_nette(Variable):
     value_type = float
