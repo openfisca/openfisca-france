@@ -55,12 +55,12 @@ class aide_merite_eligibilite(Variable):
         # a déjà perçu l'aide l'année [universitaire] précédente
         periode_universitaire_precedente = periode_universitaire_precedente(period)
         aide_merite_eligibilite_an_dernier = individu(
-            "aide_merite_eligibilite", 
-            periode_universitaire_precedente, 
+            "aide_merite_eligibilite",
+            periode_universitaire_precedente,
             options = [ADD]
             )
 
-        return etudiant * condition_ressources * ( condition_mention + aide_merite_eligibilite_an_dernier )
+        return etudiant * condition_ressources * (condition_mention + aide_merite_eligibilite_an_dernier)
 
 
 class aide_merite_montant(Variable):
@@ -79,7 +79,7 @@ class aide_merite_montant(Variable):
     Non modélisé :
     Pour un baccalauréat obtenu avant 2015, le montant de l'aide est de 1800€/an.
     '''
-    
+
     def formula(individu, period, parameters):
         aide_merite_eligibilite = individu("aide_merite_eligibilite", period.first_month)
         return aide_merite_eligibilite * parameters(period).bourses_enseignement_superieur.aide_merite.montant_annuel

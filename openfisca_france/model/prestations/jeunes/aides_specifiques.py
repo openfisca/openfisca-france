@@ -11,7 +11,7 @@ class allocation_annuelle_etudiant(Variable):
         "https://www.etudiant.gouv.fr/fr/aides-specifiques-1306"
         ]
     documentation = '''
-    Cette aide est l'équivalent d'une bourse sur critères sociaux. 
-    Elle permet ainsi d'être exonéré·e des droits d'inscription universitaires 
+    Cette aide est l'équivalent d'une bourse sur critères sociaux.
+    Elle permet ainsi d'être exonéré·e des droits d'inscription universitaires
     et de la contribution vie étudiante et de campus (CVEC).
     '''
