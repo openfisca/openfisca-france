@@ -2,4 +2,4 @@
   input:
     etudiant: [ false, true ]
   output:
-    seances_sante_psy: [ 0, 6 ]
+    seances_sante_psy_etudiant: [ 0, 6 ]

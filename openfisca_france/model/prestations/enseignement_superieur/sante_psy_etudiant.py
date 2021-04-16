@@ -1,10 +1,10 @@
 from openfisca_france.model.base import *
 
 
-class seances_sante_psy(Variable):
+class seances_sante_psy_etudiant(Variable):
     value_type = int
     entity = Individu
-    label = "Nombre de séances prises en charge par le chèque santé psy"
+    label = "Nombre de séances prises en charge par l'Aide Santé Psy Étudiant"
     definition_period = MONTH
     reference = "https://www.service-public.fr/particuliers/actualites/A14726"
 
@@ -14,4 +14,4 @@ class seances_sante_psy(Variable):
         '''
         eligibilite = individu('etudiant', period)
 
-        return eligibilite * parameters(period).prestations.cheque_sante_psy.seances_max
+        return eligibilite * parameters(period).prestations.sante_psy_etudiant.seances_max
