@@ -1,5 +1,13 @@
 # Changelog
 
+### 51.17.3 [#1522](https://github.com/openfisca/openfisca-france/pull/1522)
+
+* Correction d'un crash.
+* Périodes concernées : à partir du 31/03/2006.
+* Zones impactées : `parameters/bourses_enseignement_superieur/criteres_sociaux/*`.
+* Détails :
+  - Corrige la déclaration de certaines dates dont les mois et jours étaient inversés.
+
 ### 51.17.2 [#1523](https://github.com/openfisca/openfisca-france/pull/1523)
 
 * Changement mineur.
@@ -8,7 +16,7 @@
    * `caracteristiques_socio_demographiques/demographie`.
    * `prelevements_obligatoires/impot_revenu/ir`.
 * Détails :
-  - Renomme `caseH`, dont le nom prêtait à confusion. Car il s'agit de l'année de naissance des enfants déclarés dans la case H, cette dernière renvoyant à la variable `nbH`. 
+  - Renomme `caseH`, dont le nom prêtait à confusion. Car il s'agit de l'année de naissance des enfants déclarés dans la case H, cette dernière renvoyant à la variable `nbH`.
 
 ### 51.17.1 [#1520](https://github.com/openfisca/openfisca-france/pull/1520)
 
