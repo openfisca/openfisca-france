@@ -37,3 +37,17 @@
     apprenti: [ false, false, true ]
   output:
     aide_formation_gen: [ 0, 567.9, 0 ]
+
+
+- name: Non-cumul des bourses avec l'aide fournie aux personnes inscrites à une formation labellisée par la Grande Ecole du numérique
+  period: 2021-04
+  input:
+    age: 20
+    bourse_criteres_sociaux_eligibilite: true  # TODO: forcer la variable n'a pas de sens ici (par exemple si le non-cumul avec l'aide GEN est évalué dans cette varibale), il faut déterminer la situation qui déclenche l'éligibilité
+    bourse_criteres_sociaux_points_de_charge: 20
+    etudiant: true
+    inscrit_grande_ecole_du_numerique: true
+    scolarite: enseignement_superieur
+  output:
+    aide_formation_gen: 567.9
+    bourse_criteres_sociaux: 0
