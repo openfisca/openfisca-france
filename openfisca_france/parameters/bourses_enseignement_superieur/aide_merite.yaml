@@ -1,0 +1,7 @@
+montant_annuel:
+  description: Montant annuel de l'aide au mérite pour un étudiant de l'enseignement supérieur
+  unit: currency
+  values:
+    2020-07-31:
+      reference: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000042541955
+      value: 900
