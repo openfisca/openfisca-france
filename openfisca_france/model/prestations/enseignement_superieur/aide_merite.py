@@ -1,3 +1,4 @@
+from openfisca_core.periods import Instant, Period
 from openfisca_france.model.base import *
 
 
@@ -24,6 +25,20 @@ class aide_merite_eligibilite(Variable):
     '''
 
     def formula(individu, period, parameters):
+
+        def periode_universitaire_precedente(mois_calcul):
+            nb_mois_annee_courante = mois_calcul.date.month - mois_calcul.this_year.date.month + 1
+
+            # https://www.campusfrance.org/fr/node/2176
+            if nb_mois_annee_courante < 9:
+                debut_annee_courante = mois_calcul.last_year
+            else:
+                debut_annee_courante = mois_calcul.this_year
+
+            rentree_an_passe = Instant((debut_annee_courante.offset(-1), 9, 1))
+            periode_universitaire_precedente = str(Period((MONTH, rentree_an_passe, 10)))
+            return periode_universitaire_precedente
+
         # l'individu intègre un établissement supérieur à la rentrée
         etudiant = individu('etudiant', period)
 
@@ -35,7 +50,11 @@ class aide_merite_eligibilite(Variable):
         condition_mention = mention_baccalaureat == TypesMention.mention_tres_bien
 
         # a déjà perçu l'aide l'année [universitaire] précédente
-        annee_glissante = period.start.period('year').offset(-1).offset(-1, 'month')
-        aide_merite_eligibilite_an_dernier = individu("aide_merite_eligibilite", annee_glissante, options = [ADD])
+        periode_universitaire_precedente = periode_universitaire_precedente(period)
+        aide_merite_eligibilite_an_dernier = individu(
+            "aide_merite_eligibilite", 
+            periode_universitaire_precedente, 
+            options = [ADD]
+            )
 
         return etudiant * condition_ressources * ( condition_mention + aide_merite_eligibilite_an_dernier )
