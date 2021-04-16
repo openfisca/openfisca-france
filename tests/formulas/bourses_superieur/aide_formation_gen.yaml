@@ -1,14 +1,16 @@
 - name: Éligibilité selon le type de scolarité à l'aide fournie aux personnes inscrites à une formation labellisée par la Grande Ecole du numérique
   period: 2021-04
   input:
-    inscrit_grande_ecole_du_numerique: [ false, true ]
+    etudiant: [ true, true ]
     statuts_etablissement_scolaire: [ public, public ]
+    inscrit_grande_ecole_du_numerique: [ false, true ]
   output:
     aide_formation_gen_eligibilite: [ false, true ]
 
 - name: Éligibilité selon la nationalité à l'aide fournie aux personnes inscrites à une formation labellisée par la Grande Ecole du numérique
   period: 2021-04
   input:
+    etudiant: [ true, true, true, true, true, true ]
     inscrit_grande_ecole_du_numerique: [ true, true, true, true, true, true ]
     nationalite: [ FR, DE, UK, CH, LI, NZ ]
   output:
@@ -17,8 +19,21 @@
 - name: Montant de l'aide fournie aux personnes inscrites à une formation labellisée par la Grande Ecole du numérique
   period: 2021-04
   input:
+    etudiant: [ true, true, true, true, true ]
     inscrit_grande_ecole_du_numerique: [ true, true, true, true, true ]
     bourse_criteres_sociaux_base_ressources: [ 0, 1000, 1000, 1000, 30351 ]
     bourse_criteres_sociaux_points_de_charge: [ 0, 0, 17, 18, 8 ]
   output:
     aide_formation_gen: [ 567.9, 488.9, 567.9, 567.9, 257.1 ]
+
+- name: Non-cumul RSA & apprenti de l'aide fournie aux personnes inscrites à une formation labellisée par la Grande Ecole du numérique
+  period: 2021-04
+  input:
+    inscrit_grande_ecole_du_numerique: [ true, true, true ]
+    etudiant: [ false, false, true ]
+    bourse_criteres_sociaux_points_de_charge: [ 20, 20, 20 ]
+    rsa: [ 400, 100, 0 ]
+    rsa_majore_eligibilite: [ false, true, false ]  # parent isolé
+    apprenti: [ false, false, true ]
+  output:
+    aide_formation_gen: [ 0, 567.9, 0 ]
