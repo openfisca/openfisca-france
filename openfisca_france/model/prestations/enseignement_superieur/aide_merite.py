@@ -28,8 +28,8 @@ class aide_merite_eligibilite(Variable):
         etudiant = individu('etudiant', period)
 
         bourse_criteres_sociaux = individu("bourse_criteres_sociaux", period)
-        allocation_annuelle = individu("allocation_annuelle", period)
-        condition_ressources = bourse_criteres_sociaux + allocation_annuelle
+        allocation_annuelle_etudiant = individu("allocation_annuelle_etudiant", period)
+        condition_ressources = bourse_criteres_sociaux + allocation_annuelle_etudiant
 
         mention_baccalaureat = individu("mention_baccalaureat", period)
         condition_mention = mention_baccalaureat == TypesMention.mention_tres_bien

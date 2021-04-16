@@ -3,6 +3,6 @@
   input:
     mention_baccalaureat: mention_tres_bien
     bourse_criteres_sociaux: 1032.0 / 10
-    allocation_annuelle: 0.
+    allocation_annuelle_etudiant: 0.
   output:
     aide_merite_eligibilite: true
