@@ -130,19 +130,13 @@ class caseG(Variable):
     # que l'on remplt et l'autre une case que l'on coche
 
 
-class caseH(Variable):
-    cerfa_field = "H"
+class annee_naissance_pac_alterne(Variable):
     value_type = int
     is_period_size_independent = True
     entity = FoyerFiscal
     label = "Année de naissance des enfants à charge en garde alternée"
     definition_period = YEAR
-
-
-# il ne s'agit pas à proprement parlé de la case H, les cases permettant d'indiquer l'année de naissance
-#    se rapportent bien à nbH mais ne sont pas nommées, choisissons nous de laisser cerfa_field = 'H' pour caseH ?
-#    De plus les caseH peuvent être multiples puisqu'il peut y avoir plusieurs enfants? donc faut-il les nommer caseH1, caseH2...caseH6 (les 6 présentes dans la déclaration) ?
-#    il faut aussi créer les cases F, G, R et I qui donnent également les années de naissances des PAC
+    # Il s'agit de l'année de naissance associé aux PAC déclarés dans nbH. Il peut y avoir plusieurs années de naissance si nbH>1. On ne le prend pas en compte
 
 
 class caseK(Variable):

@@ -1,5 +1,15 @@
 # Changelog
 
+### 51.17.2 [#1523](https://github.com/openfisca/openfisca-france/pull/1523)
+
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées
+   * `caracteristiques_socio_demographiques/demographie`.
+   * `prelevements_obligatoires/impot_revenu/ir`.
+* Détails :
+  - Renomme `caseH`, dont le nom prêtait à confusion. Car il s'agit de l'année de naissance des enfants déclarés dans la case H, cette dernière renvoyant à la variable `nbH`. 
+
 ### 51.17.1 [#1520](https://github.com/openfisca/openfisca-france/pull/1520)
 
 * Changement mineur.

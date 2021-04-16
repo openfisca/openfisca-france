@@ -1168,7 +1168,7 @@ class ir_plaf_qf(Variable):
         caseE = foyer_fiscal('caseE', period)
         caseF = foyer_fiscal('caseF', period)
         caseG = foyer_fiscal('caseG', period)
-        caseH = foyer_fiscal('caseH', period)
+        annee_naissance_pac_alterne = foyer_fiscal('annee_naissance_pac_alterne', period)
         caseK = foyer_fiscal('caseK', period)
         caseN = foyer_fiscal('caseN', period)
         caseP = foyer_fiscal('caseP', period)
@@ -1193,7 +1193,7 @@ class ir_plaf_qf(Variable):
         B3 = plafond_qf.celib
 
         condition61 = celibataire_ou_divorce & caseT
-        condition63 = (celibataire_ou_divorce | (veuf & not_(jeune_veuf))) & not_(caseN) & (nb_pac == 0) & (caseK | caseE) & (caseH < int(period.start.year) - 25)
+        condition63 = (celibataire_ou_divorce | (veuf & not_(jeune_veuf))) & not_(caseN) & (nb_pac == 0) & (caseK | caseE) & (annee_naissance_pac_alterne < int(period.start.year) - 25)
 
         B = B1 * condition61 + \
             B2 * (not_(condition61 | condition63)) + \
@@ -1211,7 +1211,7 @@ class ir_plaf_qf(Variable):
         condition62caa0 = (celibataire_ou_divorce | (veuf & not_(jeune_veuf)))
         condition62caa1 = (nb_pac == 0) & (caseP | caseG | caseF | caseW)
         condition62caa2 = caseP & ((nbF - nbG > 0) | (nbH - nbI > 0))
-        condition62caa3 = not_(caseN) & (caseE | caseK) & (caseH >= 1981)
+        condition62caa3 = not_(caseN) & (caseE | caseK) & (annee_naissance_pac_alterne >= 1981)
         condition62caa = condition62caa0 & (condition62caa1 | condition62caa2 | condition62caa3)
         # marié pacs
         condition62cab = (maries_ou_pacses | jeune_veuf) & caseS & not_(caseP | caseF)
