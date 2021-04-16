@@ -1,0 +1,5 @@
+- period: 2021-04
+  input:
+    etudiant: [ false, true ]
+  output:
+    seances_sante_psy: [ 0, 6 ]

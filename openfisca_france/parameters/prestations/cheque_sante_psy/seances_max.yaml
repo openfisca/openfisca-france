@@ -1,0 +1,6 @@
+description: Nombre maximum de séances prises en charge par le chèque santé psy étudiants
+reference: https://www.service-public.fr/particuliers/actualites/A14726
+values:
+  2021-03-10:
+    value: 6  # 2 cycles de 3 séances au maximum
+    reference: https://www.service-public.fr/particuliers/actualites/A14726
