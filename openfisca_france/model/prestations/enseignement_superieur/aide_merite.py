@@ -29,9 +29,13 @@ class aide_merite_eligibilite(Variable):
 
         bourse_criteres_sociaux = individu("bourse_criteres_sociaux", period)
         allocation_annuelle_etudiant = individu("allocation_annuelle_etudiant", period)
-        condition_ressources = bourse_criteres_sociaux + allocation_annuelle_etudiant
+        condition_ressources = (bourse_criteres_sociaux + allocation_annuelle_etudiant) > 0
 
         mention_baccalaureat = individu("mention_baccalaureat", period)
         condition_mention = mention_baccalaureat == TypesMention.mention_tres_bien
 
-        return etudiant * condition_ressources * condition_mention
+        # a déjà perçu l'aide l'année [universitaire] précédente
+        annee_glissante = period.start.period('year').offset(-1).offset(-1, 'month')
+        aide_merite_eligibilite_an_dernier = individu("aide_merite_eligibilite", annee_glissante, options = [ADD])
+
+        return etudiant * condition_ressources * ( condition_mention + aide_merite_eligibilite_an_dernier )
