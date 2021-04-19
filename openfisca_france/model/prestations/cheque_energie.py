@@ -82,5 +82,7 @@ class cheque_energie(Variable):
 
     def formula_2017(menage, period, parameters):
         eligible = menage('cheque_energie_eligibilite_logement', period)
+        declarant = menage.nb_persons(FoyerFiscal.DECLARANT) > 0
+
         montant = menage('cheque_energie_montant', period.this_year)
-        return eligible * montant
+        return declarant * eligible * montant
