@@ -10,7 +10,7 @@ class crous_logement_eligibilite(Variable):
 
     def formula(individu, period):
         """
-        Tous les étudiants sont éligibles aux logements proposés par le CROUs mais
+        Tous les étudiants sont éligibles aux logements proposés par le CROUS mais
         les non boursiers ont une probabilité très faible d'en obtenir.
         Pour une résidence donnée, les dossiers sont classés par « indice social » défini par :
         - revenu brut global (+ 1) divisé par le nombre total de points de charge (+ 1)
