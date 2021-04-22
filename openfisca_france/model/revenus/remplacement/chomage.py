@@ -39,6 +39,28 @@ class indemnites_chomage_partiel(Variable):
     definition_period = MONTH
     set_input = set_input_divide_by_period
 
+class chomeur_au_sens_du_BIT(Variable):
+    value_type = bool
+    entity = Individu
+    label = "Demandeur d'emploi inscrit depuis plus d'un an"
+    definition_period = MONTH
+    reference = [
+        "INSEE - Chômeur au sens du BIT",
+        "https://www.insee.fr/fr/metadonnees/definition/c1129",
+        ]
+    
+    def formula(individu,period):
+        # être sans emploi durant une semaine donnée
+        salaire_de_base = individu('salaire_de_base', period)
+        condition_salaire = (salaire_de_base == 0)
+        # être disponible pour travailler dans les deux semaines à venir
+        # avoir effectué, au cours des quatre dernières semaines, une démarche active de recherche d’emploi ou a trouvé un emploi qui commence dans les trois mois.
+        # Critère de l'âge: être âgé de 15 ans ou plus
+        age = individu('age', period)
+        condition_age = age >= 15
+
+        return condition_age * condition_salaire
+
 
 class jours_travailles_chomage(Variable):
     value_type = float
@@ -364,3 +386,21 @@ class retraite_complementaire_chomage(Variable):
             )
 
         return montant_retenue_retraite_complementaire
+
+class participation_tax_rate(Variable):
+    value_type = float
+    entity = Individu
+    label = "Participation Tax Rate (PTR)"
+    definition_period = MONTH
+
+    def formula(individu, period):
+        revenu_disponible_emploi = menage('revenu_disponible', period, options = [DIVIDE])
+        revenu_disponible_chomage = menage('revenu_disponible', period, options = [DIVIDE])
+        salaire_de_base = individu('salaire_de_base', period)
+        
+        revenus_disponible_statut = select(
+            [chomeur_au_sens_du_BIT, are <= not_(chomeur_au_sens_du_BIT)],
+            [revenu_disponible_chomage , revenu_disponible_emploi],
+            )   
+
+        return (1 - ((revenu_disponible_emploi - revenu_disponible_chomage) / salaire_de_base))
