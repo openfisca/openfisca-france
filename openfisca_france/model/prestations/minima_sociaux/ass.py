@@ -16,19 +16,20 @@ class ass_precondition_remplie(Variable):
         "https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006072050&idArticle=LEGIARTI000018525084&dateTexte=20190618&categorieLien=cid#LEGIARTI000018525084"
         ]
     set_input = set_input_dispatch_by_period
-    
+
     def formula(individu,period):
         nombre_annees_travaillees_les_10_dernieres_annees = individu('nombre_annees_travaillees_les_10_dernieres_annees', period)
         condition_eligibilite = nombre_annees_travaillees_les_10_dernieres_annees >= 5
 
         return condition_eligibilite
 
-    
+
 class nombre_annees_travaillees_les_10_dernieres_annees(Variable):
     value_type = float
     entity = Individu
     label = "Nombre d'années travaillées dans les 10 dernières années précédent la fin du contrat de travail"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula(individu, period):
         nombre_jours_travailles_10_dernieres_annees = individu.empty_array()
@@ -43,7 +44,7 @@ class nombre_annees_travaillees_les_10_dernieres_annees(Variable):
                     ),
                 nombre_jours_travailles_10_dernieres_annees,
                 )
-            
+
         nombre_mois_travailles_10_dernieres_annees = nombre_jours_travailles_10_dernieres_annees / 30
         nombre_annees_travaillees_10_dernieres_annees = nombre_mois_travailles_10_dernieres_annees / 12
 
@@ -62,7 +63,7 @@ class ass(Variable):
         residence_mayotte = individu.menage('residence_mayotte', period)
         ass_params = parameters(period).prestations.minima_sociaux.ass
 
-        elig = individu('ass_eligibilite_individu', period) 
+        elig = individu('ass_eligibilite_individu', period)
 
         non_cumul_avec_aah = not_(individu('aah', period) > 0)
 

@@ -48,7 +48,7 @@ class chomeur_au_sens_du_BIT(Variable):
         "INSEE - Chômeur au sens du BIT",
         "https://www.insee.fr/fr/metadonnees/definition/c1129",
         ]
-    
+
     def formula(individu,period):
         # être sans emploi durant une semaine donnée
         salaire_de_base = individu('salaire_de_base', period)
@@ -65,7 +65,7 @@ class chomeur_au_sens_du_BIT(Variable):
 class jours_travailles_chomage(Variable):
     value_type = float
     entity = Individu
-    label = "Nombre de jours travaillés pris en compte dans le calcul du salaire de référence journalier (5 au maximum par semaine civile"
+    label = "Nombre de jours travaillés pris en compte dans le calcul du salaire de référence journalier (5 au maximum par semaine civile)"
     definition_period = MONTH
     default_value = 21.75
 
@@ -90,6 +90,7 @@ class salaire_de_reference(Variable):
     entity = Individu
     label = "Salaire de référence (SR)"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula(individu, period):
         salaire_de_reference = individu.empty_array()
@@ -235,6 +236,7 @@ class nombre_jours_travailles_dans_les_x_derniers_mois(Variable):
     entity = Individu
     label = "Nombre de jours travaillés sur les x derniers mois avant la rupture de contrat pour les moins de 53 ans"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula_2017_11(individu, period, parameters):
         are = parameters(period).are
@@ -286,7 +288,7 @@ class duree_versement_are(Variable):
         duree_versement_are = individu('duree_versement_are', period.offset(-1))
         busday_count = partial(original_busday_count, weekmask = "1" * 7)
         duree_versement_are = (
-            duree_versement_are 
+            duree_versement_are
             + (
                 (are > 0)
                 * busday_count(
@@ -295,7 +297,7 @@ class duree_versement_are(Variable):
                     )
                 )
             )
-        return duree_versement_are 
+        return duree_versement_are
 
 class duree_maximale_versement_are(Variable):
     value_type = int
@@ -323,7 +325,7 @@ class eligibilite_cumul_are_salaire(Variable):
     def formula(individu, period):
         cumul_are_salaire = individu('cumul_are_salaire', period)
         salaire_de_reference_mensuel = individu('salaire_de_reference_mensuel', period)
-        
+
         condition_cumul = cumul_are_salaire <= salaire_de_reference_mensuel
 
         return condition_cumul
@@ -397,10 +399,10 @@ class participation_tax_rate(Variable):
         revenu_disponible_emploi = menage('revenu_disponible', period, options = [DIVIDE])
         revenu_disponible_chomage = menage('revenu_disponible', period, options = [DIVIDE])
         salaire_de_base = individu('salaire_de_base', period)
-        
+
         revenus_disponible_statut = select(
             [chomeur_au_sens_du_BIT, are <= not_(chomeur_au_sens_du_BIT)],
             [revenu_disponible_chomage , revenu_disponible_emploi],
-            )   
+            )
 
         return (1 - ((revenu_disponible_emploi - revenu_disponible_chomage) / salaire_de_base))
