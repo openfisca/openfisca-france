@@ -24,7 +24,6 @@ class aide_formation_gen_eligibilite(Variable):
             individu.famille('rsa', period) * not_(individu.famille('rsa_majore_eligibilite', period))
             )
 
-
         return eligibilite_formation * eligibilite_nationalite * not_(non_cumul)
 
 
