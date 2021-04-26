@@ -1,5 +1,6 @@
 - period: 2021-04
   input:
-    etudiant: [ false, true ]
+    etudiant: [ false, true, true ]
+    scolarite: [ enseignement_superieur, lycee, enseignement_superieur ]
   output:
-    seances_sante_psy_etudiant: [ 0, 6 ]
+    seances_sante_psy_etudiant: [ 0, 0, 6 ]

@@ -1,5 +1,7 @@
 from openfisca_france.model.base import *
 
+from openfisca_france.model.prestations.education import TypesScolarite
+
 
 class seances_sante_psy_etudiant(Variable):
     value_type = int
@@ -12,6 +14,7 @@ class seances_sante_psy_etudiant(Variable):
         '''
         Le nombre maximum de séances est donné sans prendre en compte les passages obligatoires intermédiaires chez un médecin.
         '''
-        eligibilite = individu('etudiant', period)
+        etudiant = individu('etudiant', period)
+        enseignement_superieur = individu('scolarite', period) == TypesScolarite.enseignement_superieur
 
-        return eligibilite * parameters(period).prestations.sante_psy_etudiant.seances_max
+        return etudiant * enseignement_superieur * parameters(period).prestations.sante_psy_etudiant.seances_max
