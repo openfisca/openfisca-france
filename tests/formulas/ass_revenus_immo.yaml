@@ -8,7 +8,7 @@
           2018-06: true
           2018-05: true
           2018-04: true
-        echelon_bourse:
+        bourse_criteres_sociaux_echelon:
           2018-07: -1
           2018-06: -1
           2018-05: -1
@@ -114,7 +114,7 @@
           2018-06: true
           2018-05: true
           2018-04: true
-        echelon_bourse:
+        bourse_criteres_sociaux_echelon:
           2018-07: -1
           2018-06: -1
           2018-05: -1

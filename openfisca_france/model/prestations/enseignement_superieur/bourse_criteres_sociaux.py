@@ -3,16 +3,6 @@ from openfisca_france.model.base import Famille, Individu, TypesStatutMarital
 from openfisca_france.model.prestations.education import TypesScolarite, StatutsEtablissementScolaire
 
 
-class echelon_bourse(Variable):
-    entity = Individu
-    value_type = int
-    label = "Échelon de la bourse sur critères sociaux de l'enseignement supérieur perçue (de 0 à 7)"
-    definition_period = MONTH
-
-    def formula(individu, period):
-        return individu('bourse_criteres_sociaux_echelon', period)
-
-
 class bourse_criteres_sociaux(Variable):
     value_type = float
     entity = Individu
@@ -49,6 +39,34 @@ class bourse_criteres_sociaux_eligibilite_etude(Variable):
         etablissement_eligible = (etablissement == StatutsEtablissementScolaire.public) + (etablissement == StatutsEtablissementScolaire.prive_sous_contrat)
 
         return enseignement_superieur * temps_plein * etablissement_eligible
+
+
+class bourse_criteres_sociaux_eligibilite_nationalite(Variable):
+    value_type = bool
+    entity = Individu
+    reference = [
+        "Circulaire ESRS2013435C - 2.3.A",
+        "https://www.education.gouv.fr/bo/20/Hebdo25/ESRS2013435C.htm"
+        ]
+    label = "Satisfaction des critères de nationalité pour la bourse sur critères sociaux de l'enseignement supérieur"
+    definition_period = MONTH
+
+    def formula_2004_07_21(individu, period, parameters):
+        '''
+        Reference: https://www.education.gouv.fr/bo/2004/30/MENS0401499C.htm
+        '''
+        ressortissant_eee = individu('ressortissant_eee', period)
+
+        nationalite = individu('nationalite', period)
+        ressortissant_pays_eligible = sum([nationalite == str.encode(etat) for etat in parameters(period).bourses_enseignement_superieur.criteres_sociaux.nationalites_hors_eee])  # TOOPTIMIZE: string encoding into bytes array should be done at load time
+
+        return ressortissant_eee + ressortissant_pays_eligible
+
+    def formula_2003_04_23(individu, period):
+        '''
+        Reference: https://www.education.gouv.fr/bo/2003/18/MENS0300894C.htm
+        '''
+        return individu('resident_ue', period)
 
 
 class bourse_criteres_sociaux_nombre_enfants_parent_etudiant(Variable):
@@ -97,8 +115,9 @@ class bourse_criteres_sociaux_eligibilite(Variable):
     def formula(individu, period, parameters):
         eligibilite_age = individu('bourse_criteres_sociaux_eligibilite_age', period)
         eligibilite_etude = individu('bourse_criteres_sociaux_eligibilite_etude', period)
+        eligibilite_nationalite = individu('bourse_criteres_sociaux_eligibilite_nationalite', period)
 
-        return eligibilite_age * eligibilite_etude
+        return eligibilite_age * eligibilite_etude * eligibilite_nationalite
 
 
 class bourse_criteres_sociaux_base_ressources(Variable):
@@ -227,7 +246,7 @@ class bourse_criteres_sociaux_distance_domicile_familial(Variable):
         "Circulaire ESRS2013435C - Annexe 3 - Conditions de ressources et points de charge / 2 - Points de charge à prendre en considération pour l'attribution d'une bourse sur critères sociaux / 2.1 - Les charges de l'étudiant",
         "https://www.education.gouv.fr/bo/20/Hebdo25/ESRS2013435C.htm"
         ]
-    label = "Distance entre le lieu d'étude et le domicile familial pour le calcul la bourse sur critères sociaux de l'enseignement supérieur"
+    label = "Distance en kilomètres entre le lieu d'étude et le domicile familial"
     definition_period = MONTH
 
 
@@ -238,7 +257,7 @@ class bourse_criteres_sociaux_nombre_enfants_a_charge(Variable):
         "Circulaire ESRS2013435C - Annexe 3 - Conditions de ressources et points de charge / 2 - Points de charge à prendre en considération pour l'attribution d'une bourse sur critères sociaux / 2.2 - Les charges de la famille",
         "https://www.education.gouv.fr/bo/20/Hebdo25/ESRS2013435C.htm"
         ]
-    label = "Nombre total d'enfants à la charge de la famille pour le calcul la bourse sur critères sociaux de l'enseignement supérieur"
+    label = "Nombre total d'enfants à la charge de la famille pour le calcul de la bourse sur critères sociaux de l'enseignement supérieur"
     definition_period = MONTH
 
 
