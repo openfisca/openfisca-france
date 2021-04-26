@@ -1,5 +1,7 @@
 from openfisca_france.model.base import *
 
+from openfisca_france.model.prestations.education import TypesScolarite
+
 
 class aide_formation_gen_eligibilite(Variable):
     value_type = bool
@@ -15,7 +17,7 @@ class aide_formation_gen_eligibilite(Variable):
         - Sont exclues du bénéfice de l'aide les personnes inscrites à Pôle Emploi comme demandeurs d'emploi qui perçoivent une aide à l'insertion ou une aide à la formation professionnelle ainsi que […] les personnes en congé individuel de formation.
         - Sont également exclues du bénéfice de l'aide les personnes percevant une aide du ministère chargé de l'emploi ou d'un conseil régional versée au titre de la formation professionnelle ou de l'insertion professionnelle.
         '''
-        eligibilite_formation = individu('inscrit_grande_ecole_du_numerique', period)
+        eligibilite_formation = individu('scolarite', period) == TypesScolarite.grande_ecole_du_numerique
         eligibilite_nationalite = individu('bourse_criteres_sociaux_eligibilite_nationalite', period)
 
         non_cumul = individu('apprenti', period) + (
