@@ -1,5 +1,16 @@
 # Changelog
 
+## 52.1.0 [#1524](https://github.com/openfisca/openfisca-france/pull/1524)
+
+* Évolution du système socio-fiscal.
+* Périodes concernées : à partir du 10/03/2021.
+* Zones impactées :
+  - `model/prestations/sante_psy/etudiant.py`
+  - `parameters/prestations/sante_psy/*`
+* Détails :
+  - Crée la variable `seances_sante_psy_etudiant`.
+  - Crée le paramètre `prestations.sante_psy.etudiant.seances_max`.
+
 # 52.0.0 [#1521](https://github.com/openfisca/openfisca-france/pull/1521)
 
 * Évolution du système socio-fiscal.
