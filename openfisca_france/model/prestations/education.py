@@ -294,7 +294,7 @@ class TypesScolarite(Enum):
     college = "Collège"
     lycee = "Lycée"
     enseignement_superieur = "Établissement de l'enseignement supérieur"
-    grande_ecole_du_numerique = "Formation labellisée par la Grande Ecole du numérique"
+    grande_ecole_du_numerique = "Formation labellisée par la Grande École du Numérique"
 
 
 class scolarite(Variable):

@@ -14,7 +14,7 @@
   - Ajoute le barème 2015 des bourses sur critères sociaux de l'enseignement supérieur.
   - Ajoute la variable `bourse_criteres_sociaux_eligibilite_nationalite` et ajoute la condition de nationalité à l'éligibilité aux bourses sur critères sociaux de l'enseignement supérieur.
   - Ajoute le type de scolarité `grande_ecole_du_numerique`.
-  - Ajoute le calcul de l'éligibilité et du montant à l'aide aux personnes inscrites dans les formations labellisées par la Grande Ecole du numérique avec les variables `aide_formation_gen_eligibilite` et `aide_formation_gen`.
+  - Ajoute le calcul de l'éligibilité et du montant à l'aide aux personnes inscrites dans les formations labellisées par la Grande École du Numérique avec les variables `aide_formation_gen_eligibilite` et `aide_formation_gen`.
 
 ### 51.17.3 [#1522](https://github.com/openfisca/openfisca-france/pull/1522)
 
