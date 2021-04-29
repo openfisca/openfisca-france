@@ -1,5 +1,13 @@
 # Changelog
 
+## 52.1.1 [#1530](https://github.com/openfisca/openfisca-france/pull/1530)
+* Changement mineur.
+* Périodes concernées : toutes.
+* Zones impactées
+   * `/model/prelevements_obligatoires/impot_revenu/ir.py`.
+* Détails :
+  - Documentation du taux_effectif.
+
 ## 52.1.0 [#1524](https://github.com/openfisca/openfisca-france/pull/1524)
 
 * Évolution du système socio-fiscal.
