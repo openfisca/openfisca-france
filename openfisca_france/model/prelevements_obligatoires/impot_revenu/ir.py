@@ -3110,8 +3110,15 @@ class abat_spe(Variable):
 class taux_effectif(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = "taux_effectif"
+    label = "La règle du taux effectif a pour objet de maintenir intégralement la progressivité de l'impôt"
     definition_period = YEAR
+    reference = "https://bofip.impots.gouv.fr/bofip/4616-PGP.html/identifiant=BOI-IR-LIQ-20-30-30-20120912"
+    documentation = '''
+        Cette règle du « taux effectif » s'applique notamment et sous certaines conditions :
+        - aux salariés détachés à l'étranger
+        - aux fonctionnaires des organisations internationales
+        - aux contribuables soumis au régime micro-entreprise
+        '''
 
     def formula_2009_01_01(foyer_fiscal, period, parameters):
         rni = foyer_fiscal('rni', period)
