@@ -1,5 +1,13 @@
 # Changelog
 
+## 51.17.0 [#1532](https://github.com/openfisca/openfisca-france/pull/1532)
+
+* Amélioration technique. 
+* Périodes concernées : toutes. 
+* Zones impactées : `/Users/sasha/Desktop/LexImpact_Code/openfisca-france/openfisca_france/model/prelevements_obligatoires/impot_revenu/prelevements_forfaitaires/revenus_capitaux_prelevement_forfaitaire_unique_ir`.
+* Détails :
+  - Ajout du set_input_divide_by_period sur
+
 ## 53.0.0 [#1541](https://github.com/openfisca/openfisca-france/pull/1541) 
 
 * Changement majeur.
