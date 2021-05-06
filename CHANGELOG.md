@@ -4,7 +4,7 @@
 
 * Amélioration technique. 
 * Périodes concernées : toutes. 
-* Zones impactées : `/Users/sasha/Desktop/LexImpact_Code/openfisca-france/openfisca_france/model/prelevements_obligatoires/impot_revenu/prelevements_forfaitaires/revenus_capitaux_prelevement_forfaitaire_unique_ir`.
+* Zones impactées : `model/prelevements_obligatoires/impot_revenu/prelevements_forfaitaires/revenus_capitaux_prelevement_forfaitaire_unique_ir`.
 * Détails :
   - Ajout du set_input_divide_by_period sur
 
