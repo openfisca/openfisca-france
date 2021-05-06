@@ -1,6 +1,6 @@
 # Changelog
 
-## 52.1.2 [#1531](https://github.com/openfisca/openfisca-france/pull/1531)
+## 52.1.2 [#1533](https://github.com/openfisca/openfisca-france/pull/1533)
 * Amélioration technique. 
 * Périodes concernées : toutes. 
 * Zones impactées : `model/prelevements_obligatoires/impot_revenu/prelevements_forfaitaires/ir_prelevement_forfaitaire_unique`.
