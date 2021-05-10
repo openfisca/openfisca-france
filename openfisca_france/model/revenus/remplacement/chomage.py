@@ -278,6 +278,8 @@ class nombre_jours_travailles_dans_les_x_derniers_mois(Variable):
         return nombre_jours_travailles_reference
 
 
+
+
 class duree_versement_are(Variable):
     value_type = int
     entity = Individu

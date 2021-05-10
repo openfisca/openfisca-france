@@ -3,22 +3,46 @@
   max_spiral_loops: 60
   input:
     contrat_de_travail_fin: 
-      2019: 2019-01
-      2020: 2019-01
+        2019: 2019-01
+        2020: 2019-01
     age: 40
-    salaire_de_reference_mensuel: 
-      2019-01: 1000
-      2019-02: 1000
-      2019-03: 1000
-      2019-04: 1000
-      2019-05: 1000
-    
-    nombre_jours_travailles_dans_les_x_derniers_mois: 
-      2019-01: 5 * 21
-      2019-02: 105
-      2019-03: 105
-      2019-04: 105
-      2019-05: 105    
+    famille:
+      parents: [parent1]
+      ass_base_ressources: 
+         2019-06: 0
+         2019-07: 0
+         2019-08: 0
+         2019-09: 0
+         2019-10: 0 
+    foyer_fiscal:
+      declarants: [parent1]
+    menage:
+      personne_de_reference: parent1
+    individus:
+      parent1:
+        nombre_annees_travaillees_les_10_dernieres_annees: 
+         2019-01: 6
+         2019-02: 6
+         2019-03: 6
+         2019-04: 6
+         2019-05: 6 
+         2019-06: 6
+         2019-07: 6
+         2019-08: 6
+         2019-09: 6
+         2019-10: 6 
+        salaire_de_reference_mensuel: 
+         2019-01: 1000
+         2019-02: 1000
+         2019-03: 1000
+         2019-04: 1000
+         2019-05: 1000
+        nombre_jours_travailles_dans_les_x_derniers_mois: 
+         2019-01: 5 * 21
+         2019-02: 105
+         2019-03: 105
+         2019-04: 105
+         2019-05: 105  
 
   output:
     are:
@@ -34,6 +58,13 @@
       2019-03: 90
       2019-04: 120
       2019-05: 151
+    ass: 
+      2019-01: 0
+      2019-02: 0
+      2019-03: 0
+      2019-04: 0
+      2019-05: 0
+      2019-06: 0
 
 
     
