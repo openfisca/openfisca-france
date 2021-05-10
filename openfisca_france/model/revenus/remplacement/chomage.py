@@ -136,6 +136,7 @@ class salaire_de_reference_mensuel(Variable):
     entity = Individu
     label = "Salaire de référence mensuel (SRM)"
     definition_period = MONTH
+    set_input = set_input_dispatch_by_period
 
     def formula(individu, period):
         nombre_jours_travailles_12_derniers_mois = individu('nombre_jours_travailles_12_derniers_mois', period)
