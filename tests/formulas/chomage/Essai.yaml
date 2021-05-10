@@ -1,9 +1,42 @@
-- name: Chômeur au sens du BIT - Cas n°1
-  description: Un individu avec un salaire positif et un âge inférieur à 15 ans n'est pas un chômeur
-  period: 2019-07
-  input: 
-    revenu_disponible: 4000
-    salaire_de_base: 2500
+- name: Test pour debug taxipp 
+  period: 2019-01
+  max_spiral_loops: 60
+  input:
+    contrat_de_travail_fin: 
+      2019: 2019-01
+      2020: 2019-01
+    age: 40
+    salaire_de_reference_mensuel: 
+      2019-01: 1000
+      2019-02: 1000
+      2019-03: 1000
+      2019-04: 1000
+      2019-05: 1000
+    
+    nombre_jours_travailles_dans_les_x_derniers_mois: 
+      2019-01: 5 * 21
+      2019-02: 105
+      2019-03: 105
+      2019-04: 105
+      2019-05: 105    
 
-  output: 
-    participation_tax_rate: false
+  output:
+    are:
+      2019-01: 750
+      2019-02: 750
+      2019-03: 750
+      2019-04: 750
+      2019-05: 675
+      2019-06: 0
+    duree_versement_are: 
+      2019-01: 31
+      2019-02: 59
+      2019-03: 90
+      2019-04: 120
+      2019-05: 151
+
+
+    
+
+
+ 
