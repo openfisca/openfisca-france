@@ -100,6 +100,7 @@ class revenus_capitaux_prelevement_forfaitaire_unique_ir(Variable):
     entity = FoyerFiscal
     label = "Revenus des valeurs et capitaux mobiliers soumis au prélèvement forfaitaire unique (partie impôt sur le revenu)"
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula_2018_01_01(foyer_fiscal, period, parameters):
         '''
