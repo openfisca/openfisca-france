@@ -80,7 +80,8 @@ class aide_merite_montant(Variable):
     Aide versée en 9 mensualités.
 
     Non modélisé :
-    Pour un baccalauréat obtenu avant 2015, le montant de l'aide est de 1800€/an.
+    Pour un baccalauréat obtenu avant 2015, quelques conditions d'attribution diffèrent
+    et le montant de l'aide est de 1800€/an.
     '''
 
     def formula(individu, period, parameters):
