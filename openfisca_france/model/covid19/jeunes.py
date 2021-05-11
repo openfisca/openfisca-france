@@ -21,12 +21,12 @@ class aide_jeunes_diplomes_anciens_boursiers_montant_mensuel_reference(Variable)
     def formula(individu, period, parameters):
         bourse_2020 = individu("bourse_criteres_sociaux", 2020, options = [ADD])
         bourse_2021 = individu("bourse_criteres_sociaux", 2021, options = [ADD])
-        parameters_bourse = parameters(period).bourses_superieur.criteres_sociaux
-
+        nombre_mensualites = parameters(period).bourses_enseignement_superieur.criteres_sociaux.nombre_mensualites
+        
         return where(
             bourse_2021 > 0,
-            bourse_2021 / parameters_bourse.nombre_mensualites,
-            bourse_2020 / parameters_bourse.nombre_mensualites
+            bourse_2021 / nombre_mensualites,
+            bourse_2020 / nombre_mensualites
             )
 
 
