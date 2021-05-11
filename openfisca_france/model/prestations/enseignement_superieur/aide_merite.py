@@ -43,7 +43,7 @@ class aide_merite_eligibilite(Variable):
             return periode_universitaire_precedente
 
         # l'individu intègre un établissement supérieur à la rentrée
-        etudiant = individu('etudiant', period)
+        etudiant = individu("etudiant", period)
 
         bourse_criteres_sociaux = individu("bourse_criteres_sociaux", period)
         allocation_annuelle_etudiant = individu("allocation_annuelle_etudiant", period)
