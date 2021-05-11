@@ -21,13 +21,14 @@ class TypesNiveauDiplome(Enum):
 
 
 class TypesMention(Enum):
-    # Mentions non honorifiques.
+    # Mentions délivrées aux candidats à l'issue d'épreuves d'enseignement.
     # https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037875563/2021-04-02
-    __order__ = 'non_renseignee mention_assez_bien mention_bien mention_tres_bien'
+    __order__ = 'non_renseignee mention_assez_bien mention_bien mention_tres_bien mention_tres_bien_felicitations_jury'
     non_renseignee = 'Non renseignée'
     mention_assez_bien = 'Mention assez bien'  # [12, 14[
     mention_bien = 'Mention bien'  # [14, 16[
-    mention_tres_bien = 'Mention très bien'  # 16+
+    mention_tres_bien = 'Mention très bien'  # [16, 18[
+    mention_tres_bien_felicitations_jury = 'Mention très bien avec félicitations du jury'  # 18+
 
 
 class TypesActivite(Enum):

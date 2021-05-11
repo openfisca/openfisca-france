@@ -50,7 +50,10 @@ class aide_merite_eligibilite(Variable):
         condition_ressources = (bourse_criteres_sociaux + allocation_annuelle_etudiant) > 0
 
         mention_baccalaureat = individu("mention_baccalaureat", period)
-        condition_mention = mention_baccalaureat == TypesMention.mention_tres_bien
+        condition_mention = (
+            (mention_baccalaureat == TypesMention.mention_tres_bien)
+            + (mention_baccalaureat == TypesMention.mention_tres_bien_felicitations_jury)
+            )
 
         # a déjà perçu l'aide l'année [universitaire] précédente
         periode_universitaire_precedente = periode_universitaire_precedente(period)
