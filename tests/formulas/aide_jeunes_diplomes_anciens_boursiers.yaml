@@ -3,13 +3,16 @@
   absolute_error_margin: 0.01
   input:
     age: [29, 29, 29, 29]
-    niveau_plus_haut_diplome: [niveau_5, niveau_5, niveau_5, niveau_5]
-    date_obtention_plus_haut_diplome: ['2020-01-01', '2021', '2021', '2022-01-01']
+    niveau_plus_haut_diplome: 
+      2021: [niveau_5, niveau_5, niveau_5, niveau_5]
+    date_obtention_plus_haut_diplome: 
+      2021: ['2020-01-01', '2021', '2021', '2022-01-01']
     bourse_criteres_sociaux:
       month:2020-01:10: [1000, false, 1000, 1000]
       month:2021-01:10: [false, 10000, 10000, 10000]
     activite: [chomeur, chomeur, chomeur, chomeur]
-    niveau_diplome_formation: [non_renseigne, non_renseigne, non_renseigne, non_renseigne]
+    niveau_diplome_formation: 
+      2021: [non_renseigne, non_renseigne, non_renseigne, non_renseigne]
     chomage_brut: [0., 0., 881.4, 0.]
     ass: [0., 0., 0., 0.]
     allocation_travailleur_independant: [0., 0., 0., 0.]

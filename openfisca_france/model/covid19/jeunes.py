@@ -48,8 +48,9 @@ class aide_jeunes_diplomes_anciens_boursiers_eligibilite(Variable):
         age_limite = parameters(period).bourses_superieur.criteres_sociaux.aide_jeunes_diplomes_anciens_boursiers.age_limite
         condition_age = individu("age", period) < age_limite
 
-        niveau_diplome = individu("niveau_plus_haut_diplome", period)
-        date_diplome = individu("date_obtention_plus_haut_diplome", period)
+        annee = period.this_year
+        niveau_diplome = individu("niveau_plus_haut_diplome", annee)
+        date_diplome = individu("date_obtention_plus_haut_diplome", annee)
 
         condition_diplome = (
             (niveau_diplome == TypesNiveauDiplome.niveau_5)
@@ -63,7 +64,7 @@ class aide_jeunes_diplomes_anciens_boursiers_eligibilite(Variable):
 
         # être inscrit sur la liste des demandeurs d’emploi
         demandeur_emploi = individu("activite", period) == TypesActivite.chomeur
-        pas_en_formation = individu("niveau_diplome_formation", period) == TypesNiveauDiplome.non_renseigne
+        pas_en_formation = individu("niveau_diplome_formation", annee) == TypesNiveauDiplome.non_renseigne
         condition_activite = demandeur_emploi * pas_en_formation
 
         condition_non_cumul = not_(
