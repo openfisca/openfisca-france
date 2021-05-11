@@ -45,7 +45,7 @@ class aide_jeunes_diplomes_anciens_boursiers_eligibilite(Variable):
     '''
 
     def formula_2021_02_05(individu, period, parameters):
-        age_limite = parameters(period).bourses_superieur.criteres_sociaux.aide_jeunes_diplomes_anciens_boursiers.age_limite
+        age_limite = parameters(period).covid19.aide_jeunes_diplomes_anciens_boursiers.age_limite
         condition_age = individu("age", period) < age_limite
 
         annee = period.this_year
@@ -90,15 +90,15 @@ class aide_jeunes_diplomes_anciens_boursiers_montant(Variable):
         aide_jeunes_diplomes_anciens_boursiers_eligibilite = individu("aide_jeunes_diplomes_anciens_boursiers_eligibilite", period)
 
         bourse_precedente = individu("aide_jeunes_diplomes_anciens_boursiers_montant_mensuel_reference", period)
-        parameters_bourse = parameters(period).bourses_superieur.criteres_sociaux
+        parameters_aide = parameters(period).covid19.aide_jeunes_diplomes_anciens_boursiers
 
-        part_bourse = bourse_precedente * parameters_bourse.aide_jeunes_diplomes_anciens_boursiers.taux_bourse
+        part_bourse = bourse_precedente * parameters_aide.taux_bourse
 
         statut_occupation_logement = individu.menage("statut_occupation_logement", period)
         condition_logement = not_(
             (statut_occupation_logement == TypesStatutOccupationLogement.loge_gratuitement)
             + (statut_occupation_logement == TypesStatutOccupationLogement.non_renseigne)
             )
-        part_logement = condition_logement * parameters_bourse.aide_jeunes_diplomes_anciens_boursiers.majoration_logement
+        part_logement = condition_logement * parameters_aide.majoration_logement
 
         return aide_jeunes_diplomes_anciens_boursiers_eligibilite * (part_bourse + part_logement)
