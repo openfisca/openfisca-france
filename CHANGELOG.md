@@ -1,12 +1,20 @@
 # Changelog
 
+### 52.1.3 [#1531](https://github.com/openfisca/openfisca-france/pull/1531) et [#1528](https://github.com/openfisca/openfisca-france/pull/1528)
+
+* Changement mineur.
+* Zones impactées : `.gitignore`, dépendances.
+* Détails :
+  - Met à jour des dépendances de développement.
+
 ### 52.1.2 [#1533](https://github.com/openfisca/openfisca-france/pull/1533)
-* Amélioration technique. 
-* Périodes concernées : toutes. 
+
+* Amélioration technique.
+* Périodes concernées : toutes.
 * Zones impactées : `model/prelevements_obligatoires/impot_revenu/prelevements_forfaitaires/ir_prelevement_forfaitaire_unique`.
 * Détails :
   - Ajout du set_input_divide_by_period sur la classe revenus_capitaux_prelevement_forfaitaire_unique_ir
-  
+
 ### 52.1.1 [#1530](https://github.com/openfisca/openfisca-france/pull/1530)
 * Changement mineur.
 * Périodes concernées : toutes.
