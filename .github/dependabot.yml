@@ -6,7 +6,3 @@ updates:
     interval: weekly
   labels:
   - kind:dependencies
-  ignore:
-  - dependency-name: autopep8
-    versions:
-    - 1.5.5
