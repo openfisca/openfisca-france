@@ -331,7 +331,7 @@ class bourse_criteres_sociaux_echelon(Variable):
                 base_ressources <= plafond_echelon_1,
                 base_ressources <= plafond_echelon_0bis,
                 ],
-            [7, 6, 5, 4, 3, 2, 1, 0])
+            [7, 6, 5, 4, 3, 2, 1, 0], default=-1)
 
         eligible = individu('bourse_criteres_sociaux_eligibilite', period)
         return where(eligible, echelon, -1)

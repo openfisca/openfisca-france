@@ -1,5 +1,15 @@
 # Changelog
 
+### 52.1.4 [#1526](https://github.com/openfisca/openfisca-france/pull/1526) et [#1529](https://github.com/openfisca/openfisca-france/pull/1529)
+
+* Changement mineur.
+* Zones impactées :
+  - `prestations/cheque_energie.py`
+  - `prestations/enseignement_superieur/bourse_criteres_sociaux.py`
+* Détails :
+  - Limite l'éligiblite du chèque énergie aux ménages avec déclarants fiscaux.
+  - Corrige l'échelon de la bourse sur critères sociaux pour les étudiants éligibles mais aux ressources trop élevées.
+
 ### 52.1.3 [#1531](https://github.com/openfisca/openfisca-france/pull/1531) et [#1528](https://github.com/openfisca/openfisca-france/pull/1528)
 
 * Changement mineur.
@@ -11,7 +21,7 @@
 
 * Amélioration technique.
 * Périodes concernées : toutes.
-* Zones impactées : `model/prelevements_obligatoires/impot_revenu/prelevements_forfaitaires/ir_prelevement_forfaitaire_unique`.
+* Zones impactées : `model/prelevements_obligatoires/impot_revenu/prelevements_forfaitaires/ir_prelevement_forfaitaire_unique`
 * Détails :
   - Ajout du set_input_divide_by_period sur la classe revenus_capitaux_prelevement_forfaitaire_unique_ir
 
@@ -19,7 +29,7 @@
 * Changement mineur.
 * Périodes concernées : toutes.
 * Zones impactées
-   * `/model/prelevements_obligatoires/impot_revenu/ir.py`.
+   * `/model/prelevements_obligatoires/impot_revenu/ir.py`
 * Détails :
   - Documentation du taux_effectif.
 
