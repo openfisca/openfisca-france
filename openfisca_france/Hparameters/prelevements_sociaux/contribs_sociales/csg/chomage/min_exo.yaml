@@ -1,0 +1,16 @@
+description: Revenu minimum imposable (en multiple du smic annuel brut) pour la CSG sur les allocations chômage
+min_exo:
+  values:
+    2002-01-01:
+      value: 1.0
+  metadata:
+      unit: /1
+metadata:
+  ux_name: Revenu minimum imposable
+  last_review:
+    2002-01-01 
+  reference:
+  date_parution_jo:
+  notes:
+  description_en:
+documentation:
