@@ -4,9 +4,9 @@ values:
     value: 0.005
 unit: /1
 metadata:
-  ux_name: CRDS activité
+  ux_name: Taux CRDS activité
   last_review:
-    2012-01-01
+    1998-01-01
   reference:
   date_parution_jo:
   notes:
