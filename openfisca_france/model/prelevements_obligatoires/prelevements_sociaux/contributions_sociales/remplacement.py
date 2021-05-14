@@ -248,7 +248,7 @@ class crds_retraite(Variable):
 
         montant_crds = montant_csg_crds(
             base_sans_abattement = retraite_brute,
-            law_node = law.prelevements_sociaux.contributions.crds.retraite,
+            law_node = law.par.prelevements_sociaux.contribs_sociales.crds.retraite,
             plafond_securite_sociale = law.cotsoc.gen.plafond_securite_sociale,
             ) * (taux_csg_remplacement == TypesTauxCSGRemplacement.exonere)
         return montant_crds
@@ -327,6 +327,6 @@ class crds_pfam(Variable):
         paje = famille('paje', period, options = [ADD])
         ape = famille('ape', period, options = [ADD])
         apje = famille('apje', period, options = [ADD])
-        taux_crds = parameters(period).prelevements_sociaux.contributions.crds.taux
+        taux_crds = parameters(period).par.prelevements_sociaux.contribs_sociales.crds.taux_global
 
         return -(af + cf + asf + ars + paje + ape + apje) * taux_crds
