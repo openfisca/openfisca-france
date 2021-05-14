@@ -137,7 +137,7 @@ class crds_chomage(Variable):
             )
         montant_crds = montant_csg_crds(
             base_avec_abattement = chomage_brut,
-            law_node = law.prelevements_sociaux.contributions.crds.activite,
+            law_node = law.par.prelevements_sociaux.contribs_sociales.crds.activite,
             plafond_securite_sociale = law.cotsoc.gen.plafond_securite_sociale,
             ) * eligible
 
