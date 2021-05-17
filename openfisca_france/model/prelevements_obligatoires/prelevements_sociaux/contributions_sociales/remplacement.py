@@ -27,9 +27,9 @@ class taux_csg_remplacement(Variable):
     def formula_2015(individu, period, parameters):
         rfr = individu.foyer_fiscal('rfr', period = period.n_2)
         nbptr = individu.foyer_fiscal('nbptr', period = period.n_2)
-        seuils = parameters(period).prelevements_sociaux.contributions.csg.remplacement.pensions_de_retraite_et_d_invalidite
-        seuil_exoneration = seuils.seuil_de_rfr_1 + (nbptr - 1) * seuils.demi_part_suppl
-        seuil_reduction = seuils.seuil_de_rfr_2 + (nbptr - 1) * seuils.demi_part_suppl
+        seuils = parameters(period).par.prelevements_sociaux.contribs_sociales.csg.retraite_invalidite.seuils
+        seuil_exoneration = seuils.seuil_rfr1 + (nbptr - 1) * seuils.rfr2_demi_part_suppl
+        seuil_reduction = seuils.seuil_rfr2 + (nbptr - 1) * seuils.rfr2_demi_part_suppl
         taux_csg_remplacement = where(
             rfr <= seuil_exoneration,
             TypesTauxCSGRemplacement.exonere,
@@ -207,7 +207,7 @@ class csg_deductible_retraite(Variable):
             base_sans_abattement = retraite_brute,
             indicatrice_taux_plein = (taux_csg_remplacement == TypesTauxCSGRemplacement.taux_plein),
             indicatrice_taux_reduit = (taux_csg_remplacement == TypesTauxCSGRemplacement.taux_reduit),
-            law_node = law.prelevements_sociaux.contributions.csg.retraite.deductible,
+            law_node = law.par.prelevements_sociaux.contribs_sociales.csg.retraite_invalidite.deductible,
             plafond_securite_sociale = law.cotsoc.gen.plafond_securite_sociale,
             )
         return montant_csg
@@ -227,7 +227,7 @@ class csg_imposable_retraite(Variable):
 
         montant_csg = montant_csg_crds(
             base_sans_abattement = retraite_brute,
-            law_node = law.prelevements_sociaux.contributions.csg.retraite.imposable,
+            law_node = law.par.prelevements_sociaux.contribs_sociales.csg.retraite_invalidite.imposable,
             plafond_securite_sociale = law.cotsoc.gen.plafond_securite_sociale,
             )
         return montant_csg

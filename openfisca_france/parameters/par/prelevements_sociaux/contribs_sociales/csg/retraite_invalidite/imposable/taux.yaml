@@ -1,10 +1,8 @@
 description: Taux imposable de la Contribution Sociale Généralisée sur les pensions de retraite et d'invalidité
-taux_imposable:
-  values:
-    1997-01-01:
-      value: 0.024
-  metadata:
-    unit: /1
+values:
+  1997-01-01:
+    value: 0.024
+unit: /1
 metadata:
   ux_name: Taux imposable
   last_review:
