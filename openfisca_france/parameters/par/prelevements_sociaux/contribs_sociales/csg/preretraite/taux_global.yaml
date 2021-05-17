@@ -1,20 +1,18 @@
 description: Taux global de la Contribution Sociale Généralisée sur les allocations de préretraite
-taux_global:
-  values:
-    1991-02-01:
-      value: null
-    1997-01-01:
-      value: 0.034
-    1998-01-01:
-      value: 0.062
-    2005-01-01:
-      value: 0.066
-    2018-01-01:
-      value: 0.075
-    2018-01-01:
-      value: 0.092
-  metadata:
-    unit: /1
+values:
+  1991-02-01:
+    value: null
+  1997-01-01:
+    value: 0.034
+  1998-01-01:
+    value: 0.062
+  2005-01-01:
+    value: 0.066
+  2018-01-01:
+    value: 0.075
+  2018-01-01:
+    value: 0.092
+unit: /1
 metadata:
   ux_name: Taux global
   last_review:
