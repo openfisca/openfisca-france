@@ -1,16 +1,14 @@
-description: Taux global de la Contribution Sociale Généralisée (CSG) sur les indemnités journalières
-taux_global:
-  values:
-    1991-02-01:
-      value: null
-    1997-01-01:
-      value: 0.034
-    1998-01-01:
-      value: 0.062
-  metadata:
-    unit: /1
+description: Taux déductible de la Contribution Sociale Généralisée (CSG) sur les indemnités journalières
+values:
+  1991-02-01:
+    value: null
+  1997-01-01:
+    value: 0.01
+  1998-01-01:
+    value: 0.038
+unit: /1
 metadata:
-  ux_name: Taux global
+  ux_name: Taux déductible
   last_review:
     1998-01-01
   reference:
