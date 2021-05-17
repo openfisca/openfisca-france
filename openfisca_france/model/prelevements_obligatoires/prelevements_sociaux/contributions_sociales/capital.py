@@ -323,7 +323,7 @@ class csg_revenus_capital(Variable):
         assiette_csg_revenus_capital = foyer_fiscal('assiette_csg_revenus_capital', period)
         P = parameters(period)
 
-        return -assiette_csg_revenus_capital * P.prelevements_sociaux.contributions.csg.capital.glob
+        return -assiette_csg_revenus_capital * P.par.prelevements_sociaux.contribs_sociales.csg.capital.taux_global
 
 # revenus du capital soumis au barème
 
