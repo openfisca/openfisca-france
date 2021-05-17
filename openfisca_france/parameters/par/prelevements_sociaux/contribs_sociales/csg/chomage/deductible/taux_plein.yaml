@@ -1,45 +1,18 @@
-description: Taux réduit de la Contribution Sociale Généralisée déductible sur les allocations chômage
-taux_reduit_deductible:
-  taux: # Taux
-    values:
-      1991-02-01:
-        value: null
-      1997-01-01:
-        value: 0.01
-      1998-01-01:
-        value: 0.038
-    metadata:
-      ux_name: Taux réduit déductible
-      description: Taux réduit de la CSG déductible sur les les allocations chômage
-      unit: /1
-  brackets:
-  - rate:
-      1997-01-01: # Date variable selon les fichiers
-        value: 0.05
-      2005-01-01:
-        value: 0.03
-      2012-01-01:
-        value: 0.0175
-    threshold:
-      1998-01-01:
-        value: 0.0
-  - rate:
-      2011-01-01:
-        value: 0.0
-    threshold:
-      2011-01-01:
-        value: 4.0
-    metadata:
-      ux_name: Abattement
-      description: Abattement de la CSG déductible sur les allocations chômage
-      unit: /1 # Unit de l'abattement
+description: Taux plein de la Contribution Sociale Généralisée déductible sur les allocations chômage
+values:
+  1991-02-01:
+    value: null
+  1997-01-01:
+    value: 0.01
+  1998-01-01:
+    value: 0.038
+  2005-01-01:
+    value: 0.042
+unit: /1
 metadata:
-  ux_name: CSG déductible réduite 
+  ux_name: CSG déductible pleine 
   last_review:
-    1998-01-01
-  order:
-  - taux
-  - brackets
+    2012-01-01
   reference:
     2012-01-01:
       title: Loi 2011-1906 du 28/12/2011, art. 17 (LFSS pour 2012)

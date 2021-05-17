@@ -61,13 +61,13 @@ class csg_deductible_chomage(Variable):
             base_avec_abattement = chomage_brut,
             indicatrice_taux_plein = (taux_csg_remplacement == TypesTauxCSGRemplacement.taux_plein),
             indicatrice_taux_reduit = (taux_csg_remplacement == TypesTauxCSGRemplacement.taux_reduit),
-            law_node = parameters.prelevements_sociaux.contributions.csg.chomage.deductible,
+            law_node = parameters.par.prelevements_sociaux.contribs_sociales.csg.chomage.deductible,
             plafond_securite_sociale = parameters.cotsoc.gen.plafond_securite_sociale,
             )
         nbh_travail = 35 * 52 / 12  # = 151.67  # TODO: depuis 2001 mais avant ?
 
         cho_seuil_exo = (
-            parameters.prelevements_sociaux.contributions.csg.chomage.min_exo
+            parameters.par.prelevements_sociaux.contribs_sociales.csg.chomage.min_exo
             * nbh_travail
             * parameters.cotsoc.gen.smic_h_b
             )
@@ -99,12 +99,12 @@ class csg_imposable_chomage(Variable):
 
         montant_csg = montant_csg_crds(
             base_avec_abattement = chomage_brut,
-            law_node = parameters.prelevements_sociaux.contributions.csg.chomage.imposable,
+            law_node = parameters.par.prelevements_sociaux.contribs_sociales.csg.chomage.imposable,
             plafond_securite_sociale = parameters.cotsoc.gen.plafond_securite_sociale,
             )
         nbh_travail = 35 * 52 / 12  # = 151.67  # TODO: depuis 2001 mais avant ?
         cho_seuil_exo = (
-            parameters.prelevements_sociaux.contributions.csg.chomage.min_exo
+            parameters.par.prelevements_sociaux.contribs_sociales.csg.chomage.min_exo
             * nbh_travail
             * parameters.cotsoc.gen.smic_h_b
             )
@@ -130,7 +130,7 @@ class crds_chomage(Variable):
         # salaire_mensuel_reference = chomage_brut / .7
         # heures_mensuelles = min_(salaire_mensuel_reference / smic_h_b, 35 * 52 / 12)  # TODO: depuis 2001 mais avant ?
         heures_mensuelles = 35 * 52 / 12
-        cho_seuil_exo = law.prelevements_sociaux.contributions.csg.chomage.min_exo * heures_mensuelles * smic_h_b
+        cho_seuil_exo = law.par.prelevements_sociaux.contribs_sociales.csg.chomage.min_exo * heures_mensuelles * smic_h_b
         eligible = (
             (taux_csg_remplacement == TypesTauxCSGRemplacement.taux_reduit)
             + (taux_csg_remplacement == TypesTauxCSGRemplacement.taux_plein)

@@ -1,41 +1,16 @@
-description: Taux de la Contribution Sociale Généralisée imposable sur les allocations chômage
-taux_imposable:
-  taux: # Taux
-    values:
-      1997-01-01:
-        value: 0.024
-    metadata:
-      ux_name: Taux imposable
-      description: Taux de la CSG imposable sur les les allocations chômage
-      unit: /1
-  brackets: #Ici l'abattement est défini après le taux... Il ne s'applique pas?
-  - rate:
-      1998-01-01: # Date variable selon les fichiers
-        value: 0.05
-      2005-01-01:
-        value: 0.03
-      2012-01-01:
-        value: 0.0175
-    threshold:
-      1998-01-01:
-        value: 0.0
-  - rate:
-      2011-01-01:
-        value: 0.0
-    threshold:
-      2011-01-01:
-        value: 4.0
-    metadata:
-      ux_name: Abattement
-      description: Abattement de la CSG imposable sur les allocations chômage
-      unit: /1 # Unit de l'abattement
+description: Taux réduit de la Contribution Sociale Généralisée déductible sur les allocations chômage
+values:
+  1991-02-01:
+    value: null
+  1997-01-01:
+    value: 0.01
+  1998-01-01:
+    value: 0.038
+unit: /1
 metadata:
-  ux_name: CSG imposable
+  ux_name: CSG déductible réduite 
   last_review:
-    2012-01-01
-  order:
-  - taux
-  - brackets
+    1998-01-01
   reference:
     2012-01-01:
       title: Loi 2011-1906 du 28/12/2011, art. 17 (LFSS pour 2012)
