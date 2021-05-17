@@ -1,26 +1,18 @@
-description: Abattement de la CSG sur les revenus d'activité
-brackets:
-- rate:
+description: Taux déductible de la Contribution Sociale Généralisée sur les revenus d'activité
+values:
+  1991-02-01:
+    value: null
+  1997-01-01:
+    value: 0.01
   1998-01-01:
-    value: 0.05
-  2005-01-01:
-    value: 0.03
-  2012-01-01:
-    value: 0.0175
-  threshold:
-  1998-01-01:
-    value: 0.0
-- rate:
-  2011-01-01:
-    value: 0.0
-  threshold:
-  2011-01-01:
-    value: 4.0
+    value: 0.051
+  2018-01-01:
+    value: 0.068
+unit: /1
 metadata:
-  ux_name: Abattement
+  ux_name: Taux déductible
   last_review:
     2018-01-01
-  unit: /1 # Unit de l'abattement
   reference:
     2018-01-01:
     - title: Référence openfisca
