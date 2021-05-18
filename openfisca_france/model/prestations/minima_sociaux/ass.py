@@ -89,6 +89,7 @@ class ass_base_ressources(Variable):
     label = "Base de ressources de l'ASS"
     entity = Famille
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(famille, period):
         ass_base_ressources_demandeur = famille.demandeur('ass_base_ressources_individu', period)
