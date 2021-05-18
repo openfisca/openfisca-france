@@ -1,49 +1,63 @@
-- name: Test pour debug taxipp 
+- name: Allocation chômage nette des retenues sociales - Cas n°1
+  description: ARE nette lorsque tous les seuils d'exonération sont franchis 
+  period: 2019-04
+  input:
+    salaire_de_reference_mensuel: 2800
+    contrat_de_travail_fin: 2019-04
+    are: 1596
+  output: 
+     csg_imposable_chomage: -37.63368
+     csg_chomage_deductible: -59.586662
+     crds_are: -7.8403497
+     are_nette_contributions_sociales: 1596
+
+    
+ 
+    
+- name: Calcul RSA pour personne seule ou famille monoparentale (excluant RSA jeune) - Cas n°3
+  description: Personne seule sans enfant avec ressources mensuelles durant les 3 derniers mois à la demande inférieures à 559,75 
   period: 2019-01
-  max_spiral_loops: 60
+  max_spiral_loops: 20
+  absolute_error_margin: 0.03
   input:
     contrat_de_travail_fin: 
         2019: 2019-01
-        2020: 2019-01
-    age: 40
     famille:
-      parents: [parent1]
-      ass_base_ressources: 
-         2019-06: 0
-         2019-07: 0
-         2019-08: 0
-         2019-09: 0
-         2019-10: 0 
+      parents: [personne1]
+      aide_logement:
+        2019-03: 80
+        2019-04: 80
+        2019-05: 80
+        2019-06: 80
     foyer_fiscal:
-      declarants: [parent1]
+      declarants: [personne1]
     menage:
-      personne_de_reference: parent1
+      personne_de_reference: personne1
+      statut_occupation_logement: locataire_vide
     individus:
-      parent1:
-        nombre_annees_travaillees_les_10_dernieres_annees: 
-         2019-01: 6
-         2019-02: 6
-         2019-03: 6
-         2019-04: 6
-         2019-05: 6 
-         2019-06: 6
-         2019-07: 6
-         2019-08: 6
-         2019-09: 6
-         2019-10: 6 
+      personne1:
+        age: 40
+        salaire_de_base:
+         2018-10: 1200
+         2018-11: 1200
+         2018-12: 1200
         salaire_de_reference_mensuel: 
          2019-01: 1000
          2019-02: 1000
          2019-03: 1000
          2019-04: 1000
          2019-05: 1000
+         2019-06: 1000
+         2019-07: 1000
+         2019-08: 1000
+         2019-09: 1000
         nombre_jours_travailles_dans_les_x_derniers_mois: 
-         2019-01: 5 * 21
+         2019-01: 105
          2019-02: 105
          2019-03: 105
          2019-04: 105
-         2019-05: 105  
-
+         2019-05: 105 
+         2019-06: 105
   output:
     are:
       2019-01: 750
@@ -52,22 +66,9 @@
       2019-04: 750
       2019-05: 675
       2019-06: 0
-    duree_versement_are: 
-      2019-01: 31
-      2019-02: 59
-      2019-03: 90
-      2019-04: 120
-      2019-05: 151
-    ass: 
-      2019-01: 0
-      2019-02: 0
-      2019-03: 0
-      2019-04: 0
-      2019-05: 0
-      2019-06: 0
+    rsa: 
+      2019-01: 
+  
+      
+      
 
-
-    
-
-
- 

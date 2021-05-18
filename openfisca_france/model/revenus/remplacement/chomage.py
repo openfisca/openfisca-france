@@ -4,7 +4,6 @@ from numpy import busday_count as original_busday_count, datetime64, timedelta64
 from openfisca_france.model.base import *
 from openfisca_core.periods import Instant
 
-
 class chomeur_longue_duree(Variable):
     cerfa_field = {
         0: "1AI",
@@ -360,19 +359,124 @@ class are_activite_reduite(Variable):
 
         return nombre_jours_indemnisables_are * are * eligibilite_cumul_are_salaire * are_eligibilite_individu
 
-class are_nette(Variable):
+
+
+
+
+
+
+
+
+class csg_chomage_deductible(Variable):
+    calculate_output = calculate_output_add
     value_type = float
     entity = Individu
-    label = "Allocation de retour à l'emploi nette déduite des retenues sociales"
+    label = "CSG déductible sur les allocations chômage"
+    reference = "http://vosdroits.service-public.fr/particuliers/F2329.xhtml"
     definition_period = MONTH
 
     def formula(individu, period, parameters):
-        chomage_net = individu('chomage_net', period)
-        retraite_complementaire_chomage = individu('retraite_complementaire_chomage', period)
+        chomage_brut = individu('chomage_brut', period)
+        taux_csg_deductible = parameters(period).prelevements_sociaux.contributions.csg.chomage.deductible
+        csg_deductible = taux_csg_deductible.taux_plein * 0.9825 * chomage_brut
 
-        return chomage_net - retraite_complementaire_chomage
+        return - csg_deductible
 
+class csg_chomage_imposable(Variable):
+    calculate_output = calculate_output_add
+    value_type = float
+    entity = Individu
+    label = "CSG imposable sur les allocations chômage"
+    reference = "http://vosdroits.service-public.fr/particuliers/F2329.xhtml"
+    definition_period = MONTH
 
+    def formula(individu, period, parameters):
+        chomage_brut = individu('chomage_brut', period)
+        taux_csg_imposable = parameters(period).prelevements_sociaux.contributions.csg.chomage.imposable
+        csg_imposable = taux_csg_imposable.taux * 0.9825 * chomage_brut
+
+        return - csg_imposable
+
+class csg_are(Variable):
+    value_type = float
+    entity = Individu
+    label = "CSG imposable et déductible sur les allocations chômage"
+    definition_period = MONTH
+
+    def formula(individu, period, parameters):
+        csg_chomage_deductible = individu('csg_chomage_deductible', period)
+        csg_chomage_imposable = individu('csg_chomage_imposable', period)
+        csg = csg_chomage_deductible + csg_chomage_imposable
+        are = individu('are', period)
+        smic_horaire = parameters(period).cotsoc.gen.smic_h_b
+        smic_mensuel = [(smic_horaire * 35 / 7) * 30]
+
+        csg_montant = select(
+            [are + csg > smic_mensuel , are + csg <= smic_mensuel],
+            [csg, 0],
+            )
+
+        return csg_montant
+
+class are_nette_csg(Variable):
+    value_type = float
+    entity = Individu
+    label = "Allocation de retour à l'emploi nette déduite de la CSG"
+    definition_period = MONTH
+
+    def formula(individu, period, parameters):
+        csg_are = individu('csg_are', period)
+        are = individu('are', period)
+
+        return are + csg_are
+
+class crds_are(Variable):
+    calculate_output = calculate_output_add
+    value_type = float
+    entity = Individu
+    label = "CRDS imposable sur les allocations chômage"
+    reference = "http://vosdroits.service-public.fr/particuliers/F2329.xhtml"
+    definition_period = MONTH
+
+    def formula(individu, period, parameters):
+        are = individu('are', period)
+        taux_crds = parameters(period).prelevements_sociaux.contributions.crds
+        crds = taux_crds.taux * 0.9825 * are
+        smic_horaire = parameters(period).cotsoc.gen.smic_h_b
+        smic_mensuel = [(smic_horaire * 35 / 7) * 30]
+        
+        crds_montant = select(
+            [(are - crds) > smic_mensuel , (are - crds) <= smic_mensuel],
+            [crds, 0],
+            )
+
+        return - crds
+
+class are_nette_crds(Variable):
+    value_type = float
+    entity = Individu
+    label = "Allocation de retour à l'emploi nette déduite de la CRDS"
+    definition_period = MONTH
+
+    def formula(individu, period, parameters):
+        crds_are = individu('crds_are', period)
+        are = individu('are', period)
+
+        return are + crds_are
+
+class are_nette_contributions_sociales(Variable):
+    value_type = float
+    entity = Individu
+    label = "Allocation de retour à l'emploi nette déduite des contributions sociales"
+    definition_period = MONTH
+
+    def formula(individu, period, parameters):
+        are = individu('are', period)
+        csg_are = individu('csg_are', period)
+        crds_are = individu('crds_are', period)
+
+        return are + csg_are + crds_are
+    
 class retraite_complementaire_chomage(Variable):
     value_type = float
     entity = Individu
@@ -390,22 +494,19 @@ class retraite_complementaire_chomage(Variable):
             [(0.03 * salaire_de_reference_mensuel) , 0],
             )
 
-        return montant_retenue_retraite_complementaire
+        return - montant_retenue_retraite_complementaire
 
-class participation_tax_rate(Variable):
+
+class are_nette(Variable):
     value_type = float
     entity = Individu
-    label = "Participation Tax Rate (PTR)"
+    label = "Allocation de retour à l'emploi nette déduite des contributions et des cotisations"
     definition_period = MONTH
 
-    def formula(individu, period):
-        revenu_disponible_emploi = menage('revenu_disponible', period, options = [DIVIDE])
-        revenu_disponible_chomage = menage('revenu_disponible', period, options = [DIVIDE])
-        salaire_de_base = individu('salaire_de_base', period)
+    def formula(individu, period, parameters):
+        are = individu('are', period)
+        csg_are = individu('csg_are', period)
+        crds_are = individu('crds_are', period)
+        retraite_complementaire_chomage = individu('retraite_complementaire_chomage', period)
 
-        revenus_disponible_statut = select(
-            [chomeur_au_sens_du_BIT, are <= not_(chomeur_au_sens_du_BIT)],
-            [revenu_disponible_chomage , revenu_disponible_emploi],
-            )
-
-        return (1 - ((revenu_disponible_emploi - revenu_disponible_chomage) / salaire_de_base))
+        return are + csg_are + crds_are + retraite_complementaire_chomage
